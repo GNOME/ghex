@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2002-04-26 10:54+0200\n"
-"PO-Revision-Date: 2002-04-26 10:56+0200\n"
+"POT-Creation-Date: 2002-05-18 09:40+0200\n"
+"PO-Revision-Date: 2002-05-18 09:40+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -60,29 +60,39 @@ msgstr "Konwerter zapisu liczb"
 
 #. entries
 #: src/converter.c:1
-msgid "_Binary"
-msgstr "_Binarnie"
+msgid "_Binary:"
+msgstr "_Binarnie:"
 
 #: src/converter.c:1
-msgid "_Octal"
-msgstr "Ó_semkowo"
+msgid "_Octal:"
+msgstr "Ó_semkowo:"
 
 #: src/converter.c:1
-msgid "_Decimal"
-msgstr "_Dziesiętnie"
+msgid "_Decimal:"
+msgstr "_Dziesiętnie:"
 
 #: src/converter.c:1
-msgid "_Hex"
-msgstr "_Szesnastkowo"
+msgid "_Hex:"
+msgstr "_Szesnastkowo:"
 
 #: src/converter.c:1
-msgid "_ASCII"
-msgstr "_ASCII"
+msgid "_ASCII:"
+msgstr "_ASCII:"
 
 #. get cursor button
 #: src/converter.c:1
 msgid "_Get cursor value"
 msgstr "_Pobierz wartość pod kursorem"
+
+#: src/converter.c:1
+msgid "Get cursor value"
+msgstr "Pobierz wartość pod kursorem"
+
+#: src/converter.c:1
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"Pobierz wartość pod kursorem w formie binarnej, ósemkowej dziesiętnej, "
+"szesnastkowej i znaku ASCII"
 
 #: src/converter.c:1
 msgid "ERROR"
@@ -98,13 +108,41 @@ msgstr "GHex (%s): Wyszukiwanie danych"
 msgid "Search for %s"
 msgstr "Szukaj %s"
 
-#: src/findreplace.c:1
+#: src/findreplace.c:1 src/findreplace.c:1
 msgid "Find Next"
 msgstr "Znajdź następne"
 
 #: src/findreplace.c:1
 msgid "Find Previous"
 msgstr "Znajdź poprzednie"
+
+#: src/findreplace.c:1 src/findreplace.c:1
+msgid "Find Data"
+msgstr "Wyszukiwanie danych"
+
+#: src/findreplace.c:1 src/findreplace.c:1
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Wprowadź wyszukiwane dane szesnastkowo lub w postaci znaków ASCII"
+
+#: src/findreplace.c:1 src/findreplace.c:1
+msgid "Finds the next occurrence of the search string"
+msgstr "Wyszukuje następne wystąpienie napisu"
+
+#: src/findreplace.c:1
+msgid "Find previous"
+msgstr "Znajdź poprzednie"
+
+#: src/findreplace.c:1
+msgid "Finds the previous occurrence of the search string "
+msgstr "Wyszukuje poprzednie wystąpienie napisu"
+
+#: src/findreplace.c:1 src/findreplace.c:1 src/findreplace.c:1
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: src/findreplace.c:1
+msgid "Closes find data window"
+msgstr "Zamyka okno wyszukiwania danych"
 
 #: src/findreplace.c:1 src/main.c:1
 #, c-format
@@ -116,22 +154,62 @@ msgstr "GHex (%s): Wyszukiwanie i zmiana danych"
 msgid "Replace %s"
 msgstr "Zmień %s"
 
-#: src/findreplace.c:1
+#: src/findreplace.c:1 src/findreplace.c:1
 msgid "Find next"
 msgstr "Znajdź następne"
 
-#: src/findreplace.c:1 src/ghex-ui.xml.h:1
+#: src/findreplace.c:1 src/findreplace.c:1 src/ghex-ui.xml.h:1
 msgid "Replace"
 msgstr "Zmień"
 
-#: src/findreplace.c:1
+#: src/findreplace.c:1 src/findreplace.c:1
 msgid "Replace All"
 msgstr "Zmień wszystkie"
+
+#: src/findreplace.c:1
+msgid "Replace Data"
+msgstr "Zmiana danych"
+
+#: src/findreplace.c:1
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Wprowadź zastępujące dane szesnastkowo lub w postaci znaków ASCII"
+
+#: src/findreplace.c:1
+msgid "Replaces the search string with the replace string"
+msgstr "Zastępuje wyszukiwany napis nowym napisem"
+
+#: src/findreplace.c:1
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Zastępuje wszystkie wystąpienia wyszukiwanego napisu nowym napisem"
+
+#: src/findreplace.c:1
+msgid "Closes find and replace data window"
+msgstr "Zamyka okno wyszukiwania i zmiany danych"
 
 #: src/findreplace.c:1 src/main.c:1
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Przejście do bajtu"
+
+#: src/findreplace.c:1
+msgid "Jump to byte"
+msgstr "Przejście do bajtu"
+
+#: src/findreplace.c:1
+msgid "Enter the byte to jump to"
+msgstr "Podaj bajt, do którego chcesz przejść"
+
+#: src/findreplace.c:1
+msgid "OK"
+msgstr "OK"
+
+#: src/findreplace.c:1
+msgid "Jumps to the specified byte"
+msgstr "Przechodzi do podanego bajtu"
+
+#: src/findreplace.c:1
+msgid "Closes jump to byte window"
+msgstr "Zamyka okno przejścia do bajtu"
 
 #: src/findreplace.c:1 src/findreplace.c:1 src/findreplace.c:1
 msgid "There is no active buffer to search!"
@@ -596,12 +674,20 @@ msgid "GHex Preferences"
 msgstr "GHex - Preferencje"
 
 #: src/preferences.c:1
-msgid "Maximum number of undo levels"
-msgstr "Maksymalna liczba cofnięć"
+msgid "_Maximum number of undo levels:"
+msgstr "_Maksymalna liczba cofnięć:"
 
 #: src/preferences.c:1
-msgid "Show cursor offset in statusbar as"
-msgstr "Format wyświetlania przesunięcia na pasku stanu"
+msgid "Undo levels"
+msgstr "Poziomy cofnięć"
+
+#: src/preferences.c:1
+msgid "Select maximum number of undo levels"
+msgstr "Ustala maksymalną liczbę cofnięć"
+
+#: src/preferences.c:1
+msgid "Show cursor offset in statusbar as:"
+msgstr "Format wyświetlania wartości przesunięcia na pasku stanu:"
 
 #: src/preferences.c:1
 msgid "Hexadecimal"
@@ -610,6 +696,22 @@ msgstr "Szesnastkowo"
 #: src/preferences.c:1
 msgid "Custom"
 msgstr "Dowolnie"
+
+#: src/preferences.c:1
+msgid "format_entry"
+msgstr "wejście formatu"
+
+#: src/preferences.c:1
+msgid "Enter the cursor offset format"
+msgstr "Wprowadź format wyświetlania wartości przesunięcia"
+
+#: src/preferences.c:1
+msgid "format_optionmenu"
+msgstr "opcja formatu"
+
+#: src/preferences.c:1
+msgid "Select the cursor offset format"
+msgstr "Wybierz format wyświetlania wartości przesunięcia"
 
 #. show offsets check button
 #: src/preferences.c:1
@@ -658,16 +760,40 @@ msgid "Fonts"
 msgstr "Czcionki"
 
 #: src/preferences.c:1
+msgid "_Data font:"
+msgstr "Czcionka _danych"
+
+#: src/preferences.c:1
 msgid "Data font"
 msgstr "Czcionka danych"
+
+#: src/preferences.c:1
+msgid "Select the data font"
+msgstr "Wybór czcionki danych"
+
+#: src/preferences.c:1
+msgid "Header fo_nt:"
+msgstr "Czcionka _nagłówka"
 
 #: src/preferences.c:1
 msgid "Header font"
 msgstr "Czcionka nagłówka"
 
 #: src/preferences.c:1
-msgid "Print shaded box over"
-msgstr "Drukowanie przyciemnionego prostokąta co"
+msgid "Select the header font"
+msgstr "Wybór czcionki nagłówka"
+
+#: src/preferences.c:1
+msgid "_Print shaded box over:"
+msgstr "_Drukowanie przyciemnionego prostokąta co:"
+
+#: src/preferences.c:1
+msgid "Box size"
+msgstr "Rozmiar prostokąta"
+
+#: src/preferences.c:1
+msgid "Select size of box (in number of lines)"
+msgstr "Wybierz rozmiar prostokąta (w liniach)"
 
 #: src/preferences.c:1
 msgid "lines (0 for no box)"
