@@ -25,8 +25,8 @@
 #define GHEX_H
 #include <config.h>
 #include <gnome.h>
-#include <gtk/gtk.h>
-#include <glib.h>
+
+#include <libgnomeprint/gnome-printer.h>
 
 #include <stdio.h>
 
@@ -39,7 +39,8 @@
 
 #define MAX_MAX_UNDO_DEPTH 100000
 
-extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[], tools_menu[];
+extern GnomeUIInfo help_menu[], file_menu[], view_menu[],
+	               main_menu[], tools_menu[];
 
 #define DATA_TYPE_HEX   0
 #define DATA_TYPE_ASCII 1
@@ -139,10 +140,14 @@ Converter     *create_converter      (void);
 GtkWidget     *create_char_table     (void);
 PropertyUI    *create_prefs_dialog   (void);
 
+/* various ui convenience functions */
 void create_dialog_title   (GtkWidget *, gchar *);
-
 gint ask_user              (GnomeMessageBox *);
 GtkWidget *create_button   (GtkWidget *, const gchar *, gchar *);
+
+/* printing */
+void print_document        (HexDocument *doc, guint group_type,
+							GnomePrinter *printer);
 
 /* config stuff */
 void save_configuration    (void);

@@ -36,7 +36,7 @@
 
 #define SCROLL_TIMEOUT 100
 
-#define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0xFF))?1:0)
+#define is_displayable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0xFF))?1:0)
 
 typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 
@@ -172,7 +172,7 @@ static gint format_ablock(GtkHex *gh, gchar *out, guint start, guint end) {
 
 	for(i = start, j = 0; i < end; i++, j++) {
 		c = gtk_hex_get_byte(gh, i);
-		if(is_printable(c))
+		if(is_displayable(c))
 			out[j] = c;
 		else
 			out[j] = '.';
@@ -261,7 +261,7 @@ static void render_byte(GtkHex *gh, gint pos) {
 	if(pos < gh->document->file_size) {
 		gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 		buf[0] = gtk_hex_get_byte(gh, pos);
-		if(!is_printable(buf[0]))
+		if(!is_displayable(buf[0]))
 			buf[0] = '.';
 		gdk_draw_text(gh->adisp->window, gh->disp_font, gh->adisp_gc,
 					  cx, cy + gh->disp_font->ascent, buf, 1);
@@ -282,7 +282,7 @@ static void render_ac(GtkHex *gh) {
 	
 	if(get_acoords(gh, gh->cursor_pos, &cx, &cy)) {
 		c[0] = gtk_hex_get_byte(gh, gh->cursor_pos);
-		if(!is_printable(c[0]))
+		if(!is_displayable(c[0]))
 			c[0] = '.';
 
 		if(gh->active_view == VIEW_ASCII) {
@@ -1054,7 +1054,7 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 			default:
 				if(event->length != 1)
 					ret = FALSE;
-				else if(is_printable(event->keyval)) {
+				else if(is_displayable(event->keyval)) {
 					hex_document_set_byte(gh->document, event->keyval,
 										  gh->cursor_pos, gh->insert, TRUE);
 					old_cp = gh->cursor_pos;

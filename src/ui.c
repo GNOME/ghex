@@ -23,7 +23,10 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnomeprint/gnome-print.h>
+#include <libgnomeprint/gnome-printer-dialog.h>
 #include "ghex.h"
+#include "print.h"
 
 static void open_selected_file(GtkWidget *);
 static void save_selected_file(GtkWidget *, GtkWidget *view);
@@ -38,6 +41,7 @@ static void open_cb(GtkWidget *);
 static void close_cb(GtkWidget *);
 static void save_cb(GtkWidget *);
 static void save_as_cb(GtkWidget *);
+static void print_cb(GtkWidget *w);
 static void export_html_cb(GtkWidget *);
 static void revert_cb(GtkWidget *);
 static void prefs_cb(GtkWidget *);
@@ -52,6 +56,8 @@ GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb,NULL),
 	GNOMEUIINFO_ITEM(N_("Export to HTML..."), N_("Export data to HTML source"), export_html_cb, NULL),
 	GNOMEUIINFO_MENU_REVERT_ITEM(revert_cb,NULL),
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_MENU_PRINT_ITEM(print_cb,NULL),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_CLOSE_ITEM(close_cb,NULL),
 	GNOMEUIINFO_MENU_EXIT_ITEM(quit_app_cb,NULL),
@@ -185,6 +191,7 @@ static void about_cb (GtkWidget *widget)
 	
 	static const gchar *authors[] = {
 		"Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>",
+		"Chema Chelorio <chema@celorio.com>",
 		NULL
 	};
 
@@ -284,6 +291,54 @@ static void save_as_cb(GtkWidget *w)
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
 						file_sel);
 	gtk_widget_show (file_sel);
+}
+
+static void print_dialog_clicked_cb(GtkWidget *widget, gint button, gpointer data)
+{
+	if(button == 0) {
+		GnomePrinter *printer;
+		GnomePrinterDialog *dialog = GNOME_PRINTER_DIALOG(widget);
+		HexDocument *doc = (HexDocument *)data;
+
+		printer = gnome_printer_dialog_get_printer(dialog);
+
+		if(printer) {
+			GtkWidget *active_view;
+			guint group_type = 1;
+
+			active_view = gnome_mdi_get_active_view(mdi);
+			if(active_view)
+				group_type = GTK_HEX(active_view)->group_type;
+
+			print_document(doc, group_type, printer);
+		}
+    }
+  
+	gnome_dialog_close(GNOME_DIALOG(widget));
+}
+
+static void print_cb(GtkWidget *w)
+{
+	HexDocument *doc;
+	GtkWidget *dialog;
+
+	if(gnome_mdi_get_active_child(mdi) == NULL  ||
+	   (file_sel && GTK_WIDGET_VISIBLE(file_sel)))
+		return;
+	
+	doc = HEX_DOCUMENT(gnome_mdi_get_active_child(mdi));
+
+	if(doc == NULL)
+		return;
+
+	dialog = gnome_printer_dialog_new ();
+
+	gnome_dialog_set_parent(GNOME_DIALOG(dialog),
+							GTK_WINDOW(mdi->active_window));
+	gtk_signal_connect(GTK_OBJECT(dialog), "clicked",
+					   (GtkSignalFunc)print_dialog_clicked_cb, doc);
+
+	gtk_widget_show_all(dialog);
 }
 
 static void export_html_cb(GtkWidget *w)
