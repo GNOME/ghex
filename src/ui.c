@@ -229,15 +229,15 @@ about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	static GtkWidget *about = NULL;
 	
 	static const gchar *authors[] = {
-		"Jaka Mocnik <jaka@gnu.org>",
-		"Chema Celorio <chema@celorio.com>",
-		"Shivram U <shivaram.upadhyayula@wipro.com>",
+		"Jaka Mo\304\215nik",
+		"Chema Celorio",
+		"Shivram Upadhyayula",
 		NULL
 	};
 
 	if(!about) {
 		about = gnome_about_new ( _("GHex, a binary file editor"), VERSION,
-								  "(C) 1998 - 2004 Jaka Mocnik",
+								  "(C) 1998 - 2004 Jaka Mo\304\215nik",
 								  _("Released under the terms of GNU Public License"),
 								  authors, NULL, NULL, NULL);
 		g_signal_connect(G_OBJECT(about), "destroy",
@@ -593,6 +593,10 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 
     /* this implicitly destroys all views including this one */
     g_object_unref(G_OBJECT(doc));
+
+    /* This is to clear the contents of status  bar after closing the files */
+    bonobo_ui_component_set_status(win->uic, " ", NULL);
+
 }
 
 void

@@ -209,7 +209,7 @@ static gboolean print_verify_fonts()
 
 	test_font_name = g_strdup(data_font_name); 
 	test_font = gnome_font_find_closest_from_full_name(test_font_name);
-	if(test_font==NULL)
+	if(test_font == NULL)
 	{
 		gchar *errstr =
 			g_strdup_printf(_("GHex could not find the font \"%s\".\n"

@@ -936,6 +936,10 @@ static gboolean scroll_timeout_handler(GtkHex *gh) {
 	return TRUE;
 }
 
+static void hex_scroll_cb(GtkWidget *w, GdkEventScroll *event, GtkHex *gh) {
+	gtk_widget_event(gh->scrollbar, (GdkEvent *)event);
+}
+
 static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 	if( (event->type == GDK_BUTTON_RELEASE) &&
 		(event->button == 1) ) {
@@ -986,7 +990,7 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 		}
 		gh->button = 0;
 	}
-	else 
+	else
 		gh->button = 0;
 }
 
@@ -1022,6 +1026,10 @@ static void hex_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 	if((gh->active_view == VIEW_HEX) && (gh->button == 1)) {
 		hex_to_pointer(gh, x, y);
 	}
+}
+
+static void ascii_scroll_cb(GtkWidget *w, GdkEventScroll *event, GtkHex *gh) {
+	gtk_widget_event(gh->scrollbar, (GdkEvent *)event);
 }
 
 static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
@@ -1917,7 +1925,7 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	gh->xlayout = gtk_widget_create_pango_layout (gh->xdisp, "");
 
 	gtk_widget_set_events (gh->xdisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
-						   GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK);
+						   GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK | GDK_SCROLL_MASK);
 	g_signal_connect(G_OBJECT(gh->xdisp), "expose_event",
 					 G_CALLBACK(hex_expose), gh);
 	g_signal_connect(G_OBJECT(gh->xdisp), "button_press_event",
@@ -1928,6 +1936,8 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 					 G_CALLBACK(hex_motion_cb), gh);
 	g_signal_connect(G_OBJECT(gh->xdisp), "realize",
 					 G_CALLBACK(hex_realize), gh);
+	g_signal_connect(G_OBJECT(gh->xdisp), "scroll_event",
+					 G_CALLBACK(hex_scroll_cb), gh);
 	gtk_fixed_put(GTK_FIXED(gh), gh->xdisp, 0, 0);
 	gtk_widget_show(gh->xdisp);
 	
@@ -1940,7 +1950,7 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	gh->alayout = gtk_widget_create_pango_layout (gh->adisp, "");
 
 	gtk_widget_set_events (gh->adisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
-						   GDK_BUTTON_RELEASE_MASK |GDK_BUTTON_MOTION_MASK);
+						   GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK | GDK_SCROLL_MASK);
 	g_signal_connect(G_OBJECT(gh->adisp), "expose_event",
 					 G_CALLBACK(ascii_expose), gh);
 	g_signal_connect(G_OBJECT(gh->adisp), "button_press_event",
@@ -1951,6 +1961,8 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 					 G_CALLBACK(ascii_motion_cb), gh);
 	g_signal_connect(G_OBJECT(gh->adisp), "realize",
 					 G_CALLBACK(ascii_realize), gh);
+	g_signal_connect(G_OBJECT(gh->adisp), "scroll_event",
+					 G_CALLBACK(ascii_scroll_cb), gh);
 	gtk_fixed_put(GTK_FIXED(gh), gh->adisp, 0, 0);
 	gtk_widget_show(gh->adisp);
 	

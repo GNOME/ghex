@@ -755,6 +755,9 @@ gboolean   gnome_print_font_picker_set_font_name    (GnomePrintFontPicker *gfp,
     g_return_val_if_fail (GNOME_PRINT_IS_FONT_PICKER (gfp), FALSE);
     g_return_val_if_fail (fontname != NULL, FALSE);
 
+    if(fontname == NULL)
+	    fontname = "Sans";
+
     if (gfp->_priv->font_name != fontname) {
 	    g_free(gfp->_priv->font_name);
 	    gfp->_priv->font_name = g_strdup (fontname);
@@ -762,7 +765,6 @@ gboolean   gnome_print_font_picker_set_font_name    (GnomePrintFontPicker *gfp,
 	    if (gfp->_priv->font != NULL)
 		    g_object_unref (gfp->_priv->font);
 
-	    
 	    gfp->_priv->font = gnome_font_find_closest_from_full_name (fontname);	
     }
 
@@ -1043,7 +1045,10 @@ gnome_print_font_picker_label_use_font_in_label  (GnomePrintFontPicker *gfp)
 	PangoFontDescription *desc;
 	GtkStyle *style;
 
-	desc = gnome_font_get_pango_description (gfp->_priv->font, 1 /*FIXME*/);
+	if(gfp->_priv->font != NULL)
+		desc = gnome_font_get_pango_description (gfp->_priv->font, 1 /*FIXME*/);
+	else
+		desc = NULL;
 	if (desc == NULL) {
 		return; /* Use widget default */
 	}
@@ -1071,14 +1076,23 @@ gnome_print_font_picker_update_font_info (GnomePrintFontPicker *gfp)
 {
 	const char *name;
 
-	name = gnome_font_get_family_name (gfp->_priv->font);
+	if(NULL != gfp->_priv->font)
+		name = gnome_font_get_family_name (gfp->_priv->font);
+	else
+		name = "Sans";
 
 	gtk_label_set_text (GTK_LABEL (gfp->_priv->font_label), name);
 
 	/* Extract font size */
 	if (gfp->_priv->show_size) {
-		gdouble size = gnome_font_get_size (gfp->_priv->font);
-		gchar *size_str = g_strdup_printf ("%.1f", size);
+		gdouble size;
+		gchar *size_str;
+
+		if(gfp->_priv->font != NULL)
+			size = gnome_font_get_size (gfp->_priv->font);
+		else
+			size = 10.0;
+		size_str = g_strdup_printf ("%.1f", size);
 
 		gtk_label_set_text (GTK_LABEL (gfp->_priv->size_label), size_str);
 

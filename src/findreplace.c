@@ -810,10 +810,10 @@ static void replace_all_cb(GtkButton *button, GtkWidget *w)
 	gtk_hex_set_cursor(gh, MIN(offset, doc->file_size));  
 
 	if(count == 0) {
-		display_info_dialog(win, _("No occurences were found."));
+		display_info_dialog(win, _("No occurrences were found."));
 	}
 	
-	flash = g_strdup_printf(_("Replaced %d occurencies."), count);
+	flash = g_strdup_printf(_("Replaced %d occurrences."), count);
 	ghex_window_flash(win, flash);
 	g_free(flash);
 }

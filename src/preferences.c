@@ -42,12 +42,6 @@ static void format_activated_cb(GtkEntry *entry, PropertyUI *pui);
 
 PropertyUI *prefs_ui = NULL;
 
-PangoFontMetrics *def_metrics = NULL; /* Changes for Gnome 2.0 */
-PangoFontDescription *def_font_desc = NULL;
-
-gchar *def_font_name = NULL;
-gboolean show_offsets_column = TRUE;
-
 PropertyUI *
 create_prefs_dialog()
 {

@@ -1,3 +1,22 @@
+2004-10-04  Jaka Mocnik  <jaka@gnu.org>
+
+	* configure.in: set version back to 2.6.3; there really hasn't been anything that
+	new that would require a new minor version...
+	* src/gtkhex.c: added hex_scroll_cb() and ascii_scroll_cb() that propagate the event
+	to the scrollbar, effectively enabling mouse wheel scrolling while the pointer is in
+	the hex or ascii view.
+	* src/ui.c (about_cb): caronized the c in my surname;) and removed email addresses.
+	* src/preferences.c: moved definitions of variables pertaining to configuration
+	to config.c.
+	* src/gnome-print-font-picker.c (gnome_print_font_picker_label_use_font_in_label):
+	introduced some sanity checks; probably fixes #144261 - I couldn't reproduce it
+	in any way, so I suspect it only appears in faulty font setups.
+	* applied the following patches patch by Subrahmanyam Madduri:
+ 	* src/ghex-window.c (drag_data_received): 
+	avoids many DND issues. fixes #150333, #150335, #150336.
+ 	* src/findreplace.c (replace_all_cb): removed typo mistakes. fixes #150338.
+ 	* src/ui.c (close_cb): status bar is reset upon file close. fixes #150339.
+
 2004-08-26  Mohammad DAMT  <mdamt@bisnisweb.com>
 
 	* configure.in: Added id to ALL_LINGUAS

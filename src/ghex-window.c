@@ -72,13 +72,26 @@ ghex_window_drag_data_received(GtkWidget *widget,
             newwin = NULL;
         while(*uri) {
             if(!g_ascii_strncasecmp("file:", *uri, 5)) {
-                if(newwin == NULL) {
-                    newwin = ghex_window_new_from_file((*uri) + 5);
-                    gtk_widget_show(newwin);
+	    	if(newwin == NULL)
+                                newwin = ghex_window_new();
+                if(ghex_window_load(GHEX_WINDOW(newwin), (*uri) + 5)) {
+                	if(newwin != GTK_WIDGET(win))
+                                        gtk_widget_show(newwin);
+                        newwin = NULL;
                 }
-                else
-                    ghex_window_load(GHEX_WINDOW(newwin), (*uri) + 5);
-                newwin = NULL;
+                else {
+                	GtkWidget *dlg;
+                        dlg = gtk_message_dialog_new(GTK_WINDOW(win),
+                                                             GTK_DIALOG_MODAL,
+                                                             GTK_MESSAGE_ERROR,
+                                                             GTK_BUTTONS_OK,
+                                                             _("Can not open file:\n%s"),
+                                                             *uri);
+                        gtk_widget_show(dlg);
+                        gtk_dialog_run(GTK_DIALOG(dlg));
+                        gtk_widget_destroy(dlg);
+                }
+
             }
             uri++;
         }

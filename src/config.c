@@ -33,7 +33,10 @@ GConfClient *gconf_client = NULL;
 gint def_group_type = GROUP_BYTE;
 guint max_undo_depth;
 gchar *offset_fmt = NULL;
-gboolean show_offsets_column;
+PangoFontMetrics *def_metrics = NULL; /* Changes for Gnome 2.0 */
+PangoFontDescription *def_font_desc = NULL;
+gchar *def_font_name = NULL;
+gboolean show_offsets_column = TRUE;
 
 void load_configuration () {
 	gchar *font_name;
