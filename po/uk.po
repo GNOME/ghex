@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex 1.0.50\n"
-"POT-Creation-Date: 2001-03-08 19:39+0100\n"
+"POT-Creation-Date: 2001-03-23 15:44+0200\n"
 "PO-Revision-Date: 1999-10-01 19:18+0300\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -21,120 +21,124 @@ msgstr "GHex: Перекодувач"
 msgid "Binary"
 msgstr "Дв╕йковий"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:161
+#: src/chartable.c:91 src/converter.c:63
+msgid "Octal"
+msgstr "В╕с╕мкове"
+
+#: src/chartable.c:90 src/converter.c:73 src/preferences.c:161
 msgid "Decimal"
 msgstr "Десятковий"
 
-#: src/chartable.c:90 src/converter.c:73
+#: src/chartable.c:90 src/converter.c:83
 msgid "Hex"
 msgstr "Ш╕стнадсятковий"
 
-#: src/chartable.c:90 src/converter.c:83
+#: src/chartable.c:90 src/converter.c:93
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/converter.c:93
+#: src/converter.c:103
 msgid "Get cursor value"
 msgstr "Взяти значення п╕д курсором"
 
-#: src/converter.c:99
+#: src/converter.c:109
 msgid "Close"
 msgstr "Закрити"
 
-#: src/converter.c:194
+#: src/converter.c:213
 msgid "ERROR"
 msgstr "ПОМИЛКА"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:60 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): пошук даних"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:69
 #, c-format
 msgid "Search for %s"
 msgstr "Пошук %s"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:86
 msgid "Find Next"
 msgstr "Шукати наступне"
 
-#: src/findreplace.c:91
+#: src/findreplace.c:94
 msgid "Find Previous"
 msgstr "Шукати попередн╓"
 
-#: src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:130 src/main.c:100
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): знайти та зам╕нити дан╕"
 
-#: src/findreplace.c:141
+#: src/findreplace.c:144
 #, c-format
 msgid "Replace %s"
 msgstr "Зам╕нити %s"
 
-#: src/findreplace.c:157
+#: src/findreplace.c:161
 msgid "Find next"
 msgstr "Знайти наступне"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:169
 msgid "Replace"
 msgstr "Зам╕нити"
 
-#: src/findreplace.c:173
+#: src/findreplace.c:177
 msgid "Replace All"
 msgstr "Зам╕нити все"
 
-#: src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:210 src/main.c:102
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): перескочити до байта"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:299 src/findreplace.c:324 src/findreplace.c:376
 msgid "There is no active buffer to search!"
 msgstr "Нема╓ д╕ючих буфер╕в для пошуку!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:307 src/findreplace.c:332 src/findreplace.c:384
 msgid "There seems to be no string to search for!"
 msgstr "Це означае, що нема╓ рядка для пошуку"
 
-#: src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:314 src/findreplace.c:392
 msgid "End Of File reached"
 msgstr "Досягнуто к╕нця файлу"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:340
 msgid "Beginning Of File reached"
 msgstr "Досягнуто початку файлу"
 
-#: src/findreplace.c:345
+#: src/findreplace.c:349
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Нема╓ д╕ючих буфер╕в для перем╕щення курсора!"
 
-#: src/findreplace.c:350
+#: src/findreplace.c:354
 msgid "No offset has been specified!"
 msgstr "Не вказано зм╕щення!"
 
-#: src/findreplace.c:357
+#: src/findreplace.c:361
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Неможливо встановити курсор за межами файлу!"
 
-#: src/findreplace.c:362
+#: src/findreplace.c:366
 msgid "The offset must be a positive integer value!"
 msgstr "Зм╕щення мусить бути беззнаковим ц╕лим!"
 
-#: src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:403 src/findreplace.c:440
 msgid "There is no active buffer to replace data in!"
 msgstr "Нема╓ д╕ючих буфер╕в для зам╕ни даних"
 
-#: src/findreplace.c:410 src/findreplace.c:447
+#: src/findreplace.c:414 src/findreplace.c:451
 msgid "Strange find or replace string!"
 msgstr "Дивний рядок для пошуку чи зам╕ни!"
 
-#: src/findreplace.c:425
+#: src/findreplace.c:429
 msgid "End Of File reached!"
 msgstr "Досягнуто к╕нця файлу!"
 
-#: src/findreplace.c:463
+#: src/findreplace.c:467
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Зм╕нено %d входжень"
@@ -215,7 +219,7 @@ msgstr "Забрати вигляд"
 msgid "Remove the current view of the buffer"
 msgstr "Видалення в╕кна перегляду буфера"
 
-#: src/main.c:51
+#: src/main.c:52
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -223,7 +227,7 @@ msgid ""
 msgstr ""
 "Файл %s було зм╕нено з часу останнього збереження.Ви хочете зберегти зм╕ни?"
 
-#: src/main.c:202
+#: src/main.c:204
 #, c-format
 msgid "Offset: %s"
 msgstr "Зм╕щення: %s"
@@ -330,14 +334,15 @@ msgstr "рядка (0 - без смужку)"
 msgid "Printing"
 msgstr "Друкування"
 
-#: src/preferences.c:534
+#: src/preferences.c:536
 msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
-"Рядок формату м╕стить специф╕катор в╕дм╕нний в╕д \"x\", \"d\" чи \"o\"!"
+"Рядок формату зм╕щення м╕стить нев╕рний специф╕катор.\n"
+"Дозволяються лише \"x\", \"X\", \"p\", \"P\", \"d\" ╕ \"o\"."
 
-#: src/preferences.c:570
+#: src/preferences.c:573
 msgid "Can not open desired font!"
 msgstr "Неможливо завантажити вказаний шрифт!"
 
@@ -405,11 +410,11 @@ msgstr "GHex, редактор дв╕йкових даних"
 msgid "Released under the terms of GNU Public License"
 msgstr "Розповсюджу╓ться на умовах GNU Public License"
 
-#: src/ui.c:226 src/ui.c:548
+#: src/ui.c:226 src/ui.c:550
 msgid "Error saving file!"
 msgstr "Помилка збереження файлу!"
 
-#: src/ui.c:230 src/ui.c:543
+#: src/ui.c:230 src/ui.c:545
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Зберегти буфер у файл╕ %s."
@@ -426,32 +431,28 @@ msgstr "Вибрати файл для збереження буфера"
 msgid "Select path and file name for the HTML source"
 msgstr "Вибер╕ть шлях та назву HTML-файлу"
 
-#: src/ui.c:475
+#: src/ui.c:476
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Справд╕ в╕дновити файл %s?"
 
-#: src/ui.c:488
+#: src/ui.c:490
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "В╕дновити буфер з файлу %s"
 
-#: src/ui.c:504
+#: src/ui.c:506
 #, c-format
 msgid "Loaded file %s"
 msgstr "Завантажено файл %s"
 
-#: src/ui.c:509
+#: src/ui.c:511
 msgid "Can not open file!"
 msgstr "Неможливо в╕дкрити файл!"
 
-#: src/ui.c:552
+#: src/ui.c:554
 msgid "Can't open file for writing!"
 msgstr "Неможливо в╕дкрити файл для запису!"
-
-#: src/chartable.c:91
-msgid "Octal"
-msgstr "В╕с╕мкове"
 
 #: src/chartable.c:98
 msgid "GHex: Character table"
