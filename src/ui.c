@@ -3,6 +3,7 @@
  * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
 
+#include <config.h>
 #include <gnome.h>
 #include "gtkhex.h"
 #include "gnome-support.h"
@@ -10,27 +11,27 @@
 #include "ghex.h"
 
 GnomeUIInfo file_menu[] = {
-  { GNOME_APP_UI_ITEM, "Open", NULL, open_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Open"), NULL, open_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'O', GDK_CONTROL_MASK, NULL },
-  { GNOME_APP_UI_ITEM, "Save", NULL, save_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Save"), NULL, save_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 'S', GDK_CONTROL_MASK, NULL },
-  { GNOME_APP_UI_ITEM, "Save as...", NULL, save_as_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Save as..."), NULL, save_as_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE_AS, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, "Revert", NULL, revert_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Revert"), NULL, revert_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_REVERT, 'R', GDK_CONTROL_MASK, NULL },
-  { GNOME_APP_UI_ITEM, "Close", NULL, close_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Close"), NULL, close_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CLOSE, 0, 0, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, "Open Converter...", NULL, converter_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Open Converter..."), NULL, converter_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, "Preferences", NULL, prefs_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Preferences"), NULL, prefs_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'P', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, "Exit", NULL, quit_app_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Exit"), NULL, quit_app_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'X', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
@@ -40,10 +41,10 @@ GnomeUIInfo empty_menu[] = {
 };
 
 GnomeUIInfo view_menu[] = {
-  { GNOME_APP_UI_ITEM, "Add view", NULL, add_view_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Add view"), NULL, add_view_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0,
     0, NULL },
-  { GNOME_APP_UI_ITEM, "Remove view", NULL, remove_view_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Remove view"), NULL, remove_view_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
@@ -53,19 +54,19 @@ GnomeUIInfo help_menu[] = {
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, "About...", NULL, about_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("About..."), NULL, about_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
 
 GnomeUIInfo main_menu[] = {
-  { GNOME_APP_UI_SUBTREE, "File", NULL, file_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, N_("File"), NULL, file_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_SUBTREE, "View", NULL, view_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, N_("View"), NULL, view_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_SUBTREE, "Files", NULL, empty_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, N_("Files"), NULL, empty_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_SUBTREE, "Help", NULL, help_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
@@ -77,9 +78,9 @@ guint group_type[3] = {
 };
 
 gchar *group_type_label[3] = {
-  "Bytes",
-  "Words",
-  "Longwords",
+  N_("Bytes"),
+  N_("Words"),
+  N_("Longwords"),
 };
 
 static void set_prefs(PropertyUI *);
@@ -103,16 +104,16 @@ guint mdi_type[NUM_MDI_MODES] = {
 };
 
 gchar *mdi_type_label[NUM_MDI_MODES] = {
-  "Default",
-  "Notebook",
-  "Toplevel",
-  "Modal",
+  N_("Default"),
+  N_("Notebook"),
+  N_("Toplevel"),
+  N_("Modal"),
 };
 
 guint search_type = 0;
 gchar *search_type_label[] = {
-  "hex data",
-  "ASCII data",
+  N_("hex data"),
+  N_("ASCII data"),
 };
 
 void show_message(gchar *msg) {
@@ -198,7 +199,7 @@ void create_find_dialog(FindDialog *dialog) {
 
   for(i = 0, group = NULL; i < 2;
       i++, group = gtk_radio_button_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
-    sprintf(type_label, _("Search for %s"), search_type_label[i]);
+    sprintf(type_label, _("Search for %s"), _(search_type_label[i]));
 
     dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
 
@@ -263,7 +264,7 @@ void create_replace_dialog(ReplaceDialog *dialog) {
 
   for(i = 0, group = NULL; i < 2;
       i++, group = gtk_radio_button_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
-    sprintf(type_label, _("Replace %s"), search_type_label[i]);
+    sprintf(type_label, _("Replace %s"), _(search_type_label[i]));
 
     dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
 
@@ -459,7 +460,7 @@ void create_prefs_dialog(PropertyUI *pui) {
   gtk_widget_show(box);
   group = NULL;
   for(i = 0; i < 3; i++) {
-    pui->group_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, group_type_label[i]));
+    pui->group_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, _(group_type_label[i])));
     gtk_widget_show(GTK_WIDGET(pui->group_type[i]));
     gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->group_type[i]), TRUE, TRUE, 2);
     group = gtk_radio_button_group (pui->group_type[i]);
@@ -482,7 +483,7 @@ void create_prefs_dialog(PropertyUI *pui) {
   gtk_widget_show(box);
   group = NULL;
   for(i = 0; i < NUM_MDI_MODES; i++) {
-    pui->mdi_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, mdi_type_label[i]));
+    pui->mdi_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, _(mdi_type_label[i])));
     gtk_widget_show(GTK_WIDGET(pui->mdi_type[i]));
     gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->mdi_type[i]), TRUE, TRUE, 2);
     group = gtk_radio_button_group (pui->mdi_type[i]);
@@ -507,4 +508,3 @@ void create_prefs_dialog(PropertyUI *pui) {
 		       properties_modified_cb, pui->pbox);
   } 
 }
-

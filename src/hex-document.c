@@ -1,3 +1,4 @@
+#include <config.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 #include <gnome.h>
@@ -26,11 +27,11 @@ static void set_word_cb();
 static void set_long_cb();
 
 GnomeUIInfo group_radio_items[] = {
-  { GNOME_APP_UI_ITEM, "Bytes", NULL, set_byte_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Bytes"), NULL, set_byte_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, "Words", NULL, set_word_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Words"), NULL, set_word_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, "Longwords", NULL, set_long_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Longwords"), NULL, set_long_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO },
 };
@@ -41,23 +42,23 @@ GnomeUIInfo group_type_menu[] = {
   { GNOME_APP_UI_ENDOFINFO },
 };
 GnomeUIInfo edit_menu[] = {
-  { GNOME_APP_UI_ITEM, "Find...", NULL, find_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Find..."), NULL, find_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SEARCH, 'F', GDK_CONTROL_MASK, NULL },
-  { GNOME_APP_UI_ITEM, "Replace...", NULL, replace_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Replace..."), NULL, replace_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SRCHRPL, 'R', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, "Goto Byte...", NULL, jump_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Goto Byte..."), NULL, jump_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 'J', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_SUBTREE, "Group Data As", NULL, group_type_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, N_("Group Data As"), NULL, group_type_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
 
 GnomeUIInfo doc_menu[] = {
-  { GNOME_APP_UI_SUBTREE, "Edit", NULL, edit_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, N_("Edit"), NULL, edit_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
