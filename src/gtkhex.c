@@ -1434,6 +1434,7 @@ void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
 
 	hide_cursor(gh);
 	gh->group_type = gt;
+	recalc_displays(gh, GTK_WIDGET(gh)->allocation.width, GTK_WIDGET(gh)->allocation.height);
 	gtk_widget_queue_resize(GTK_WIDGET(gh));
 	show_cursor(gh);
 }
