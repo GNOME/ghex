@@ -36,7 +36,7 @@
 
 #define SCROLL_TIMEOUT 100
 
-#define is_printable(c) (((((unsigned char)c)>=0x20) && (((unsigned char)c)<=0xFF))?1:0)
+#define is_printable(c) (((((guint)c)>=0x20) && (((guint)c)<=0xFF))?1:0)
 
 typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 

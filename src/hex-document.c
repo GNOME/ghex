@@ -36,8 +36,6 @@
 #include <sys/stat.h>
 #include <string.h>
 
-#define GNOME_ENABLE_DEBUG
-
 static void       hex_document_class_init        (HexDocumentClass *);
 static void       hex_document_init              (HexDocument *);
 static GtkWidget *hex_document_create_view       (GnomeMDIChild *);
