@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-26 12:01+0200\n"
-"PO-Revision-Date: 2003-02-12 08:46+0100\n"
+"POT-Creation-Date: 2003-10-26 19:41+0100\n"
+"PO-Revision-Date: 2003-10-27 02:52+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -671,20 +671,20 @@ msgstr ""
 "Bestand %s bestaad reeds.\n"
 "Wilt u het overschrijven?"
 
-#: src/ghex-window.c:1032 src/ui.c:356
+#: src/ghex-window.c:1035 src/ui.c:356
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Buffer naar bestand %s geschreven"
 
-#: src/ghex-window.c:1038
+#: src/ghex-window.c:1041
 msgid "Error saving file!"
 msgstr "Fout bij bewaren bestand!"
 
-#: src/ghex-window.c:1044
+#: src/ghex-window.c:1047
 msgid "Can't open file for writing!"
 msgstr "Kan bestand niet openen om te schrijven!"
 
-#: src/ghex-window.c:1071
+#: src/ghex-window.c:1090
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -693,15 +693,15 @@ msgstr ""
 "Bestand %s is veranderd sinds laatste opgeslagen versie.\n"
 "Wilt u de veranderingen bewaren?"
 
-#: src/ghex-window.c:1081
+#: src/ghex-window.c:1100
 msgid "Do_n't save"
 msgstr "_Niet opslaan."
 
-#: src/ghex-window.c:1101 src/ui.c:344
+#: src/ghex-window.c:1120 src/ui.c:344
 msgid "You don't have the permissions to save the file!"
 msgstr "U heeft de toestemming niet om het bestand op te slaan!"
 
-#: src/ghex-window.c:1105 src/ui.c:349
+#: src/ghex-window.c:1124 src/ui.c:349
 msgid "An error occured while saving file!"
 msgstr "Er trad een fout op bij het opslaan van het bestand!"
 
@@ -784,7 +784,7 @@ msgid "Editing"
 msgstr "Bewerken"
 
 #. display font
-#: src/preferences.c:212
+#: src/preferences.c:212 src/gnome-print-font-picker.c:1017
 msgid "Font"
 msgstr "Lettertype"
 
@@ -965,3 +965,84 @@ msgstr "Pagina's"
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Afdrukvoorbeeld"
+
+#: src/gnome-print-font-dialog.c:111
+msgid "_Insert a new preview phrase."
+msgstr "_Nieuw voorbeeldfrase invoegen."
+
+#: src/gnome-print-font-dialog.c:117
+msgid "Modify preview phrase..."
+msgstr "Voorbeeldfrase aanpassen..."
+
+#: src/gnome-print-font-dialog.c:171
+msgid "Preview"
+msgstr "Voorbeeld"
+
+#: src/gnome-print-font-dialog.c:184
+msgid "_Modify preview phrase..."
+msgstr "Voorbeeld_frase aanpassen..."
+
+#: src/gnome-print-font-dialog.c:247
+msgid "Font Selection"
+msgstr "Lettertypeselectie"
+
+#: src/gnome-print-font-picker.c:91
+msgid "Sans Regular 12"
+msgstr "Sans Regular 12"
+
+#: src/gnome-print-font-picker.c:92
+msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+
+# gebiedende wijs hier beter?
+#: src/gnome-print-font-picker.c:93
+msgid "Pick a Font"
+msgstr "Een lettertype kiezen"
+
+#: src/gnome-print-font-picker.c:178
+msgid "Title"
+msgstr "Titel"
+
+#: src/gnome-print-font-picker.c:179
+msgid "The title of the selection dialog box"
+msgstr "De titel van het selectie-dialoogvenster"
+
+#: src/gnome-print-font-picker.c:199
+msgid "Font name"
+msgstr "Lettertype"
+
+#: src/gnome-print-font-picker.c:200
+msgid "Name of the selected font"
+msgstr "Naam van het geselecteerde lettertype"
+
+#: src/gnome-print-font-picker.c:208
+msgid "Preview text"
+msgstr "Tekstvoorbeeld"
+
+#: src/gnome-print-font-picker.c:209
+msgid "Preview text shown in the dialog"
+msgstr "Tekstvoorbeeld tonen in het dialoogvenster"
+
+#: src/gnome-print-font-picker.c:217
+msgid "Use font in label"
+msgstr "Lettertype gebruiken in label"
+
+#: src/gnome-print-font-picker.c:218
+msgid "Use font in the label in font info mode"
+msgstr "Lettertype gebruiken in het label in lettertype-info modus"
+
+#: src/gnome-print-font-picker.c:226
+msgid "Font size for label"
+msgstr "Lettertypegrootte voor label"
+
+#: src/gnome-print-font-picker.c:227
+msgid "Font size for label in font info mode"
+msgstr "Lettertypegrootte voor label in lettetype-info modus"
+
+#: src/gnome-print-font-picker.c:237
+msgid "Show size"
+msgstr "Grootte tonen"
+
+#: src/gnome-print-font-picker.c:238
+msgid "Show size in font info mode"
+msgstr "Grootte tonen in lettertype-info modus"
