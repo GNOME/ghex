@@ -35,7 +35,7 @@
 
 #define SCROLL_TIMEOUT 100
 
-#define is_printable(c) (((c>=0x20) && (c<=0xFF))?1:0)
+#define is_printable(c) (((((unsigned char)c)>=0x20) && (((unsigned char)c)<=0xFF))?1:0)
 
 typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 
@@ -164,7 +164,7 @@ static gint format_ablock(GtkHex *gh, gchar *out, guint start, guint end) {
 		else
 			out[j] = '.';
 	}
-	
+
 	return end - start;
 }
 
@@ -381,14 +381,14 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 	
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 	
-	gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
-	gdk_draw_rectangle(w->window, gh->xdisp_gc, TRUE,
+	gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
+	gdk_draw_rectangle(w->window, gh->adisp_gc, TRUE,
 					   0, imin*gh->char_height, w->allocation.width,
 					   (imax - imin + 1)*gh->char_height);
 	
 	imax = MIN(imax, gh->vis_lines);
 	
-	gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
+	gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 	
 	frm_len = format_ablock(gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
 							MIN((gh->top_line+imax+1)*gh->cpl, gh->document->buffer_size) );
@@ -423,7 +423,7 @@ static void hex_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
 
 static void ascii_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
 	gint imin, imax;
-	
+
 	imin = (event->area.y) / gh->char_height;
 	imax = (event->area.y + event->area.height) / gh->char_height;
 	if((event->area.y + event->area.height) % gh->char_height)
@@ -885,7 +885,6 @@ static void gtk_hex_draw(GtkWidget *w, GdkRectangle *area) {
 
 static gint gtk_hex_expose(GtkWidget *w, GdkEventExpose *event) {
 	draw_shadow(w, &event->area);
-	
 	
 	if(GTK_WIDGET_CLASS(parent_class)->expose_event)
 		(* GTK_WIDGET_CLASS(parent_class)->expose_event)(w, event);  
