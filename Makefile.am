@@ -2,8 +2,8 @@
 
 #Remove macros intl directory from SUBDIRS -- SnM 
 
-#SUBDIRS = po src help omf-install
-SUBDIRS = po src help
+SUBDIRS = po src help omf-install
+#SUBDIRS = po src help
 
 schemadir = $(sysconfdir)/gconf/schemas
 schema_DATA = ghex2.schemas
