@@ -5,8 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 2003-03-17 00:16+0100\n"
-"PO-Revision-Date: 2003-03-17 00:16+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-11-09 17:01+0100\n"
+"PO-Revision-Date: 2003-11-09 17:07+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +30,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Heksadesimal"
 
-#: src/chartable.c:140 src/preferences.c:175
+#: src/chartable.c:140 src/preferences.c:164
 msgid "Decimal"
 msgstr "Desimal"
 
@@ -45,239 +46,273 @@ msgstr "Binær"
 msgid "Character table"
 msgstr "Tegntabell"
 
-#: src/converter.c:209
+#: src/converter.c:225
 msgid "Base Converter"
 msgstr "Basiskonvertering"
 
 #. entries
-#: src/converter.c:228
+#: src/converter.c:246
 msgid "_Binary:"
 msgstr "_Binær:"
 
-#: src/converter.c:230
+#: src/converter.c:248
 msgid "_Octal:"
 msgstr "_Oktal:"
 
-#: src/converter.c:232
+#: src/converter.c:250
 msgid "_Decimal:"
 msgstr "_Desimal:"
 
-#: src/converter.c:234
+#: src/converter.c:252
 msgid "_Hex:"
 msgstr "_Heksadesimal:"
 
-#: src/converter.c:236
+#: src/converter.c:254
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:240
+#: src/converter.c:258
 msgid "_Get cursor value"
 msgstr "_Hent markørverdi"
 
-#: src/converter.c:254
+#: src/converter.c:272
 msgid "Get cursor value"
 msgstr "Hent markørverdi"
 
-#: src/converter.c:254
+#: src/converter.c:272
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr ""
 "Henter verdien ved markøren i binær, oktal, desimal, heksadesimal og ASCII"
 
-#: src/converter.c:387
+#: src/converter.c:405
 msgid "ERROR"
 msgstr "FEIL"
 
-#: src/findreplace.c:60 src/ui.c:901
+#: src/findreplace.c:85 src/findreplace.c:239 src/ui.c:901
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Finn data"
 
-#: src/findreplace.c:69
+#: src/findreplace.c:94 src/findreplace.c:172
 #, c-format
 msgid "Search for %s"
 msgstr "Søk etter %s"
 
-#: src/findreplace.c:86
+#: src/findreplace.c:111 src/findreplace.c:276
 msgid "Find _Next"
 msgstr "Finn _neste"
 
-#: src/findreplace.c:94
+#: src/findreplace.c:118 src/findreplace.c:285
 msgid "Find _Previous"
 msgstr "Finn _forrige"
 
-#: src/findreplace.c:118 src/findreplace.c:210
+#: src/findreplace.c:141 src/findreplace.c:441
 msgid "Find Data"
 msgstr "Finn data"
 
-#: src/findreplace.c:118 src/findreplace.c:210
+#: src/findreplace.c:141 src/findreplace.c:441
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Skriv inn heksadesimale data eller ASCII-data du vil søke etter"
 
-#: src/findreplace.c:119
+#: src/findreplace.c:142
 msgid "Find Next"
 msgstr "Finn neste"
 
-#: src/findreplace.c:119 src/findreplace.c:212
+#: src/findreplace.c:142 src/findreplace.c:443
 msgid "Finds the next occurrence of the search string"
 msgstr "Finner neste instans av søkestrengen"
 
-#: src/findreplace.c:120
+#: src/findreplace.c:143
 msgid "Find previous"
 msgstr "Finn forrige"
 
-#: src/findreplace.c:120
+#: src/findreplace.c:143
 msgid "Finds the previous occurrence of the search string "
 msgstr "Finner forrige instans av søkestrengen"
 
-#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
+#: src/findreplace.c:144 src/findreplace.c:446 src/findreplace.c:494
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: src/findreplace.c:121
+#: src/findreplace.c:144
 msgid "Closes find data window"
 msgstr "Lukker «finn data»-vinduet"
 
-#: src/findreplace.c:140 src/ui.c:899
+#: src/findreplace.c:163
+#, c-format
+msgid "GHex (%s): Find Data: Add search"
+msgstr "GHex (%s): Finn data: Legg til søk"
+
+#: src/findreplace.c:186
+msgid "Add"
+msgstr "Legg til"
+
+#: src/findreplace.c:208 src/findreplace.c:261
+msgid "Highlight Colour"
+msgstr "Farge for utheving"
+
+#: src/findreplace.c:253
+msgid "Search String"
+msgstr "Søkestreng"
+
+#: src/findreplace.c:298
+msgid "_Add New"
+msgstr "L_egg til ny"
+
+#: src/findreplace.c:307
+msgid "_Remove Selected"
+msgstr "Fje_rn valgt"
+
+#: src/findreplace.c:327 src/ghex-ui.xml.h:9
+msgid "Close"
+msgstr "Lukk"
+
+#: src/findreplace.c:327
+msgid "Closes advanced find window"
+msgstr "Lukker vinduet avansert søk"
+
+#: src/findreplace.c:371 src/ui.c:899
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Søk og erstatt data"
 
-#: src/findreplace.c:155
+#: src/findreplace.c:386
 #, c-format
 msgid "Replace %s"
 msgstr "Erstatt %s"
 
-#: src/findreplace.c:172
+#: src/findreplace.c:403
 msgid "Find _next"
 msgstr "Finn _neste"
 
-#: src/findreplace.c:180 src/ghex-ui.xml.h:84
+#: src/findreplace.c:411 src/ghex-ui.xml.h:89
 msgid "_Replace"
 msgstr "E_rstatt"
 
-#: src/findreplace.c:188
+#: src/findreplace.c:419
 msgid "Replace _All"
 msgstr "Erstatt _alle"
 
-#: src/findreplace.c:211
+#: src/findreplace.c:442
 msgid "Replace Data"
 msgstr "Erstatt data"
 
-#: src/findreplace.c:211
+#: src/findreplace.c:442
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "Skriv inn heksadesimale data eller ASCII-data som erstatning"
 
-#: src/findreplace.c:212
+#: src/findreplace.c:443
 msgid "Find next"
 msgstr "Finn neste"
 
-#: src/findreplace.c:213 src/ghex-ui.xml.h:48
+#: src/findreplace.c:444 src/ghex-ui.xml.h:49
 msgid "Replace"
 msgstr "Erstatt"
 
-#: src/findreplace.c:213
+#: src/findreplace.c:444
 msgid "Replaces the search string with the replace string"
 msgstr "Erstatter søketeksten med en erstatningsstreng"
 
-#: src/findreplace.c:214
+#: src/findreplace.c:445
 msgid "Replace All"
 msgstr "Erstatt alle"
 
-#: src/findreplace.c:214
+#: src/findreplace.c:445
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Erstatter alle instanser av søkestrengen med erstatningsstrengen"
 
-#: src/findreplace.c:215
+#: src/findreplace.c:446
 msgid "Closes find and replace data window"
 msgstr "Lukker «finn og erstatt data»-vinduet"
 
-#: src/findreplace.c:231 src/ui.c:897
+#: src/findreplace.c:462 src/ui.c:897
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hopp til byte"
 
-#: src/findreplace.c:261
+#: src/findreplace.c:492
 msgid "Jump to byte"
 msgstr "Hopp til byte"
 
-#: src/findreplace.c:261
+#: src/findreplace.c:492
 msgid "Enter the byte to jump to"
 msgstr "Skriv inn byte du vil hoppe til"
 
-#: src/findreplace.c:262
+#: src/findreplace.c:493
 msgid "OK"
 msgstr "OK"
 
-#: src/findreplace.c:262
+#: src/findreplace.c:493
 msgid "Jumps to the specified byte"
 msgstr "Hopper til spesifisert byte"
 
-#: src/findreplace.c:263
+#: src/findreplace.c:494
 msgid "Closes jump to byte window"
 msgstr "Lukker «hopp til byte»-vinduet"
 
-#: src/findreplace.c:329 src/findreplace.c:357 src/findreplace.c:413
+#: src/findreplace.c:598 src/findreplace.c:631 src/findreplace.c:690
 msgid "There is no active document to search!"
 msgstr "Ingen aktive dokumenter å søke i!"
 
-#: src/findreplace.c:337 src/findreplace.c:365
+#: src/findreplace.c:606 src/findreplace.c:639 src/findreplace.c:836
 msgid "The string is not appropriate for the selected data type!"
 msgstr "Strengen er ikke korrekt for valgt datatype!"
 
-#: src/findreplace.c:344 src/findreplace.c:430
+#: src/findreplace.c:618 src/findreplace.c:707 src/findreplace.c:899
 msgid "End Of File reached"
 msgstr "Slutten på filen nådd"
 
-#: src/findreplace.c:345 src/findreplace.c:374 src/findreplace.c:429
+#: src/findreplace.c:619 src/findreplace.c:651 src/findreplace.c:706
+#: src/findreplace.c:900 src/findreplace.c:923
 msgid "String was not found!\n"
 msgstr "Strengen ble ikke funnet!\n"
 
-#: src/findreplace.c:373
+#: src/findreplace.c:650 src/findreplace.c:922
 msgid "Beginning Of File reached"
 msgstr "Begynnelsen på filen nådd"
 
-#: src/findreplace.c:385
+#: src/findreplace.c:662
 msgid "There is no active document to move the cursor in!"
 msgstr "Ingen aktive dokumenter å bevege markøren i!"
 
-#: src/findreplace.c:390
+#: src/findreplace.c:667
 msgid "No offset has been specified!"
 msgstr "Ingen posisjon har blitt spesifisert!"
 
-#: src/findreplace.c:397
+#: src/findreplace.c:674
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Kan ikke plassere markøren forbi filens slutt!"
 
-#: src/findreplace.c:402
+#: src/findreplace.c:679
 msgid "The offset must be a positive integer value!"
 msgstr "Posisjonen må være et positivt heltall"
 
-#: src/findreplace.c:421
+#: src/findreplace.c:698
 msgid "There seems to be no string to search for!"
 msgstr "Ingen streng å søke etter!"
 
-#: src/findreplace.c:443
+#: src/findreplace.c:720
 msgid "There is no active buffer to replace data in!"
 msgstr "Ingen aktiv buffer å erstatte data i!"
 
-#: src/findreplace.c:455 src/findreplace.c:496
+#: src/findreplace.c:732 src/findreplace.c:773
 msgid "Strings are not appropriate for the selected data type!"
 msgstr "Strengene er ikke korrekte for valgt datatype!"
 
-#: src/findreplace.c:470 src/findreplace.c:471
+#: src/findreplace.c:747 src/findreplace.c:748
 msgid "End Of File reached!"
 msgstr "Filslutt nådd!"
 
-#: src/findreplace.c:484
+#: src/findreplace.c:761
 msgid "There is no active document to replace data in!"
 msgstr "Ingen aktive dokumenter å erstatte data i!"
 
-#: src/findreplace.c:516
+#: src/findreplace.c:793
 msgid "No occurences were found."
 msgstr "Ingen oppføringer funnet."
 
-#: src/findreplace.c:519
+#: src/findreplace.c:796
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Byttet ut %d forekomster."
@@ -294,370 +329,386 @@ msgstr "Legg til visning"
 msgid "Add a new view to the buffer"
 msgstr "Legg til en ny visning i bufferen"
 
-#: src/ghex-ui.xml.h:4 src/ui.c:64
+#: src/ghex-ui.xml.h:4
+msgid "Advanced Find"
+msgstr "Avansert søk"
+
+#: src/ghex-ui.xml.h:5 src/ui.c:67
 msgid "Bytes"
 msgstr "Bytes"
 
-#: src/ghex-ui.xml.h:5
+#: src/ghex-ui.xml.h:6
 msgid "C_ut"
 msgstr "Klipp _ut"
 
-#: src/ghex-ui.xml.h:6
+#: src/ghex-ui.xml.h:7
 msgid "Character Table..."
 msgstr "Tegntabell..."
 
-#: src/ghex-ui.xml.h:7
+#: src/ghex-ui.xml.h:8
 msgid "Character _Table..."
 msgstr "_Tegntabell..."
 
-#: src/ghex-ui.xml.h:8
-msgid "Close"
-msgstr "Lukk"
-
-#: src/ghex-ui.xml.h:9
+#: src/ghex-ui.xml.h:10
 msgid "Close the current file"
 msgstr "Lukk aktiv fil"
 
-#: src/ghex-ui.xml.h:10
+#: src/ghex-ui.xml.h:11
 msgid "Configure the application"
 msgstr "Konfigurer applikasjonen"
 
-#: src/ghex-ui.xml.h:11
+#: src/ghex-ui.xml.h:12
 msgid "Contents"
 msgstr "Innhold"
 
-#: src/ghex-ui.xml.h:12
+#: src/ghex-ui.xml.h:13
 msgid "Converter..."
 msgstr "Konverterer..."
 
-#: src/ghex-ui.xml.h:13
+#: src/ghex-ui.xml.h:14
 msgid "Copy"
 msgstr "Kopier"
 
-#: src/ghex-ui.xml.h:14
+#: src/ghex-ui.xml.h:15
 msgid "Copy selection to clipboard"
 msgstr "Kopier utvalg til utklippstavlen"
 
-#: src/ghex-ui.xml.h:15
+#: src/ghex-ui.xml.h:16
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: src/ghex-ui.xml.h:16
+#: src/ghex-ui.xml.h:17
 msgid "Cut selection"
 msgstr "Klipp ut utvalg"
 
-#: src/ghex-ui.xml.h:17
+#: src/ghex-ui.xml.h:18
 msgid "E_xit"
 msgstr "A_vslutt"
 
-#: src/ghex-ui.xml.h:18
+#: src/ghex-ui.xml.h:19
 msgid "Exit"
 msgstr "Avslutt"
 
-#: src/ghex-ui.xml.h:19
+#: src/ghex-ui.xml.h:20
 msgid "Exit the program"
 msgstr "Avslutt programmet"
 
-#: src/ghex-ui.xml.h:20
+#: src/ghex-ui.xml.h:21
 msgid "Export data to HTML source"
 msgstr "Eksporter data til HTML kilde"
 
-#: src/ghex-ui.xml.h:21
+#: src/ghex-ui.xml.h:22
 msgid "Export to HTML..."
 msgstr "Eksporter til HTML..."
 
-#: src/ghex-ui.xml.h:22
+#: src/ghex-ui.xml.h:23
 msgid "Find"
 msgstr "Finn"
 
-#: src/ghex-ui.xml.h:23
+#: src/ghex-ui.xml.h:24
 msgid "Goto Byte"
 msgstr "Gå til byte"
 
-#: src/ghex-ui.xml.h:24
+#: src/ghex-ui.xml.h:25
 msgid "Group data by 16 bits"
 msgstr "Grupper data i 16 bits grupper"
 
-#: src/ghex-ui.xml.h:25
+#: src/ghex-ui.xml.h:26
 msgid "Group data by 32 bits"
 msgstr "_Grupper data i 32 bits grupper"
 
-#: src/ghex-ui.xml.h:26
+#: src/ghex-ui.xml.h:27
 msgid "Group data by 8 bits"
 msgstr "Grupper data i 8 bits grupper"
 
-#: src/ghex-ui.xml.h:27
+#: src/ghex-ui.xml.h:28
 msgid "Help Chat"
 msgstr "Hjelp pratekanal"
 
-#: src/ghex-ui.xml.h:28
+#: src/ghex-ui.xml.h:29
 msgid "Help on this application"
 msgstr "Hjelp om denne applikasjonen"
 
-#: src/ghex-ui.xml.h:29
+#: src/ghex-ui.xml.h:30
 msgid "Insert Mode"
 msgstr "Innsettingsmodus"
 
-#: src/ghex-ui.xml.h:30
+#: src/ghex-ui.xml.h:31
 msgid "Insert/overwrite data"
 msgstr "Sett inn/overskriv data"
 
-#: src/ghex-ui.xml.h:31
+#: src/ghex-ui.xml.h:32
 msgid "Jump to a certain position"
 msgstr "Hopp til en bestemt posisjon"
 
-#: src/ghex-ui.xml.h:32 src/ui.c:66
+#: src/ghex-ui.xml.h:33 src/ui.c:69
 msgid "Longwords"
 msgstr "Lange ord"
 
-#: src/ghex-ui.xml.h:33
+#: src/ghex-ui.xml.h:34
 msgid "Open"
 msgstr "Åpne"
 
-#: src/ghex-ui.xml.h:34
+#: src/ghex-ui.xml.h:35
 msgid "Open a file"
 msgstr "Åpne en fil"
 
-#: src/ghex-ui.xml.h:35
+#: src/ghex-ui.xml.h:36
 msgid "Open base conversion dialog"
 msgstr "Åpne dialog for konvertering"
 
-#: src/ghex-ui.xml.h:36
+#: src/ghex-ui.xml.h:37
 msgid "Paste"
 msgstr "Lim inn"
 
-#: src/ghex-ui.xml.h:37
+#: src/ghex-ui.xml.h:38
 msgid "Paste data from clipboard"
 msgstr "Lim inn data fra utklippstavlen"
 
-#: src/ghex-ui.xml.h:38
+#: src/ghex-ui.xml.h:39
 msgid "Preferences"
 msgstr "Brukervalg"
 
-#: src/ghex-ui.xml.h:39
+#: src/ghex-ui.xml.h:40
 msgid "Preview printed data"
 msgstr "Forhåndsvis utskriftsdata"
 
-#: src/ghex-ui.xml.h:40
+#: src/ghex-ui.xml.h:41
 msgid "Print"
 msgstr "Skriv ut"
 
-#: src/ghex-ui.xml.h:41
+#: src/ghex-ui.xml.h:42
 msgid "Print Previe_w..."
 msgstr "Forhånds_visning av utskrift..."
 
-#: src/ghex-ui.xml.h:42
+#: src/ghex-ui.xml.h:43
 msgid "Print Preview..."
 msgstr "Forhåndsvisning av utskrift..."
 
-#: src/ghex-ui.xml.h:43
+#: src/ghex-ui.xml.h:44
 msgid "Print the current file"
 msgstr "Skriv ut aktivt fil"
 
-#: src/ghex-ui.xml.h:44
+#: src/ghex-ui.xml.h:45
 msgid "Redo"
 msgstr "Gjenopprett"
 
-#: src/ghex-ui.xml.h:45
+#: src/ghex-ui.xml.h:46
 msgid "Redo the undone action"
 msgstr "Gjenopprett angret handling"
 
-#: src/ghex-ui.xml.h:46
+#: src/ghex-ui.xml.h:47
 msgid "Remove View"
 msgstr "Fjern visning"
 
-#: src/ghex-ui.xml.h:47
+#: src/ghex-ui.xml.h:48
 msgid "Remove the current view of the buffer"
 msgstr "Fjern nåværende visning av bufferen"
 
-#: src/ghex-ui.xml.h:49
+#: src/ghex-ui.xml.h:50
 msgid "Replace a string"
 msgstr "Erstatt en streng"
 
-#: src/ghex-ui.xml.h:50
+#: src/ghex-ui.xml.h:51
 msgid "Revert"
 msgstr "Forkast"
 
-#: src/ghex-ui.xml.h:51
+#: src/ghex-ui.xml.h:52
 msgid "Revert to a saved version of the file"
 msgstr "Gå tilbake til en lagret versjon av filen"
 
-#: src/ghex-ui.xml.h:52
+#: src/ghex-ui.xml.h:53
 msgid "Save"
 msgstr "Lagre"
 
-#: src/ghex-ui.xml.h:53
+#: src/ghex-ui.xml.h:54
 msgid "Save As"
 msgstr "Lagre som"
 
-#: src/ghex-ui.xml.h:54
+#: src/ghex-ui.xml.h:55
 msgid "Save As _HTML..."
 msgstr "Lagre som _HTML..."
 
-#: src/ghex-ui.xml.h:55
+#: src/ghex-ui.xml.h:56
 msgid "Save _As..."
 msgstr "Lagre _som..."
 
-#: src/ghex-ui.xml.h:56
+#: src/ghex-ui.xml.h:57
 msgid "Save the current file"
 msgstr "Lagre aktiv fil"
 
-#: src/ghex-ui.xml.h:57
+#: src/ghex-ui.xml.h:58
 msgid "Save the current file with a different name"
 msgstr "Lagre aktiv fil med et nytt navn"
 
-#: src/ghex-ui.xml.h:58
+#: src/ghex-ui.xml.h:59
 msgid "Search for a string"
 msgstr "Søk etter en streng"
 
-#: src/ghex-ui.xml.h:59
+#: src/ghex-ui.xml.h:60
 msgid "Show the character table"
 msgstr "Vis tegntabellen"
 
-#: src/ghex-ui.xml.h:60
+#: src/ghex-ui.xml.h:61
+msgid "Show the type conversion dialog in the edit window"
+msgstr "Vis dialog for konvertering mellom typer i redigeringsvinduet"
+
+#: src/ghex-ui.xml.h:62
+msgid "Type Conversion Dialog..."
+msgstr "Dialog for konvertering mellom typer..."
+
+#: src/ghex-ui.xml.h:63
+msgid "Type Conversion _Dialog"
+msgstr "_Dialog for konvertering mellom typer"
+
+#: src/ghex-ui.xml.h:64
 msgid "Undo"
 msgstr "Angre"
 
-#: src/ghex-ui.xml.h:61
+#: src/ghex-ui.xml.h:65
 msgid "Undo the last action"
 msgstr "Angre siste handling"
 
-#: src/ghex-ui.xml.h:62 src/ui.c:65
+#: src/ghex-ui.xml.h:66 src/ui.c:68
 msgid "Words"
 msgstr "Ord"
 
-#: src/ghex-ui.xml.h:63
+#: src/ghex-ui.xml.h:67
 msgid "_About"
 msgstr "_Om"
 
-#: src/ghex-ui.xml.h:64
+#: src/ghex-ui.xml.h:68
 msgid "_Add View"
 msgstr "L_egg til visning"
 
-#: src/ghex-ui.xml.h:65
+#: src/ghex-ui.xml.h:69
+msgid "_Advanced Find"
+msgstr "_Avansert søk"
+
+#: src/ghex-ui.xml.h:70
 msgid "_Base Converter"
 msgstr "_Basiskonvertering"
 
-#: src/ghex-ui.xml.h:66
+#: src/ghex-ui.xml.h:71
 msgid "_Bytes"
 msgstr "Bytes"
 
-#: src/ghex-ui.xml.h:67
+#: src/ghex-ui.xml.h:72
 msgid "_Close"
 msgstr "_Lukk"
 
-#: src/ghex-ui.xml.h:68
+#: src/ghex-ui.xml.h:73
 msgid "_Contents"
 msgstr "_Innhold"
 
-#: src/ghex-ui.xml.h:69
+#: src/ghex-ui.xml.h:74
 msgid "_Copy"
 msgstr "_Kopier"
 
-#: src/ghex-ui.xml.h:70
+#: src/ghex-ui.xml.h:75
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: src/ghex-ui.xml.h:71
+#: src/ghex-ui.xml.h:76
 msgid "_File"
 msgstr "_Fil"
 
-#: src/ghex-ui.xml.h:72
+#: src/ghex-ui.xml.h:77
 msgid "_Find"
 msgstr "_Finn"
 
-#: src/ghex-ui.xml.h:73
+#: src/ghex-ui.xml.h:78
 msgid "_Goto Byte..."
 msgstr "Gå til byte..."
 
-#: src/ghex-ui.xml.h:74
+#: src/ghex-ui.xml.h:79
 msgid "_Group Data As"
 msgstr "Grupper data som"
 
-#: src/ghex-ui.xml.h:75
+#: src/ghex-ui.xml.h:80
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: src/ghex-ui.xml.h:76
+#: src/ghex-ui.xml.h:81
 msgid "_Insert Mode"
 msgstr "_Innsettingsmodus"
 
-#: src/ghex-ui.xml.h:77
+#: src/ghex-ui.xml.h:82
 msgid "_Longwords"
 msgstr "Lange ord"
 
-#: src/ghex-ui.xml.h:78
+#: src/ghex-ui.xml.h:83
 msgid "_Open..."
 msgstr "_Åpne..."
 
-#: src/ghex-ui.xml.h:79
+#: src/ghex-ui.xml.h:84
 msgid "_Paste"
 msgstr "_Lim inn"
 
-#: src/ghex-ui.xml.h:80
+#: src/ghex-ui.xml.h:85
 msgid "_Preferences"
 msgstr "_Brukervalg"
 
-#: src/ghex-ui.xml.h:81
+#: src/ghex-ui.xml.h:86
 msgid "_Print"
 msgstr "_Skriv ut"
 
-#: src/ghex-ui.xml.h:82
+#: src/ghex-ui.xml.h:87
 msgid "_Redo"
 msgstr "_Gjenopprett"
 
-#: src/ghex-ui.xml.h:83
+#: src/ghex-ui.xml.h:88
 msgid "_Remove View"
 msgstr "Fje_rn visning"
 
-#: src/ghex-ui.xml.h:85
+#: src/ghex-ui.xml.h:90
 msgid "_Revert"
 msgstr "Fo_rkast"
 
-#: src/ghex-ui.xml.h:86
+#: src/ghex-ui.xml.h:91
 msgid "_Save"
 msgstr "_Lagre"
 
-#: src/ghex-ui.xml.h:87
+#: src/ghex-ui.xml.h:92
 msgid "_Undo"
 msgstr "_Angre"
 
-#: src/ghex-ui.xml.h:88
+#: src/ghex-ui.xml.h:93
 msgid "_View"
 msgstr "_Vis"
 
-#: src/ghex-ui.xml.h:89
+#: src/ghex-ui.xml.h:94
 msgid "_Windows"
 msgstr "_Vinduer"
 
-#: src/ghex-ui.xml.h:90
+#: src/ghex-ui.xml.h:95
 msgid "_Words"
 msgstr "Ord"
 
-#: src/ghex-window.c:438 src/ghex-window.c:816
+#: src/ghex-window.c:461 src/ghex-window.c:875
 msgid "GHex"
 msgstr "GHex"
 
-#: src/ghex-window.c:571
+#: src/ghex-window.c:603
 #, c-format
 msgid "Offset: %s"
 msgstr "Avstand: %s"
 
-#: src/ghex-window.c:770
+#: src/ghex-window.c:829
 #, c-format
 msgid "Activate file %s"
 msgstr "Aktiver fil %s"
 
-#: src/ghex-window.c:812
+#: src/ghex-window.c:871
 #, c-format
 msgid "GHex - %s"
 msgstr "GHex - %s"
 
-#: src/ghex-window.c:944
+#: src/ghex-window.c:1005
 msgid "Select a file to save buffer as"
 msgstr "Velg en fil for lagring av buffer"
 
-#: src/ghex-window.c:974
+#: src/ghex-window.c:1061
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -666,20 +717,20 @@ msgstr ""
 "Filen %s eksisterer.\n"
 "Vil du overskrive den?"
 
-#: src/ghex-window.c:1009 src/ui.c:356
+#: src/ghex-window.c:1093 src/ui.c:355
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Lagret buffer til fil %s"
 
-#: src/ghex-window.c:1015
+#: src/ghex-window.c:1099
 msgid "Error saving file!"
 msgstr "Feil under lagring av fil!"
 
-#: src/ghex-window.c:1021
+#: src/ghex-window.c:1105
 msgid "Can't open file for writing!"
 msgstr "Kan ikke åpne filen for skriving!"
 
-#: src/ghex-window.c:1048
+#: src/ghex-window.c:1150
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -688,15 +739,15 @@ msgstr ""
 "Filen %s er endret siden forrige lagring.\n"
 "Vil du lagre endringene?"
 
-#: src/ghex-window.c:1058
+#: src/ghex-window.c:1154
 msgid "Do_n't save"
 msgstr "I_kke lagre"
 
-#: src/ghex-window.c:1078 src/ui.c:344
+#: src/ghex-window.c:1174 src/ui.c:343
 msgid "You don't have the permissions to save the file!"
 msgstr "Du har ikke tilgang til å lagre filen!"
 
-#: src/ghex-window.c:1082 src/ui.c:349
+#: src/ghex-window.c:1178 src/ui.c:348
 msgid "An error occured while saving file!"
 msgstr "En feil oppsto under lagring av fil!"
 
@@ -720,133 +771,137 @@ msgstr "Forrige side"
 msgid "Next page"
 msgstr "Neste side"
 
-#: src/main.c:49
+#: src/main.c:51
 msgid "The gnome binary editor"
 msgstr "GNOME binærfileditor"
 
-#: src/main.c:64
+#: src/main.c:66
 msgid "Could not initialize Bonobo!\n"
 msgstr "Kunne ikke initiere Bonobo!\n"
 
-#: src/main.c:87 src/main.c:99
+#: src/main.c:91 src/main.c:105
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Ugyldig geometristreng «%s»\n"
 
-#: src/preferences.c:92
+#: src/preferences.c:94
 msgid "GHex Preferences"
 msgstr "Brukervalg for GHex"
 
-#: src/preferences.c:137
+#: src/preferences.c:126
 msgid "_Maximum number of undo levels:"
 msgstr "_Maksimalt antall angrenivåer:"
 
-#: src/preferences.c:157
+#: src/preferences.c:146
 msgid "Undo levels"
 msgstr "Angrenivåer"
 
-#: src/preferences.c:157
+#: src/preferences.c:146
 msgid "Select maximum number of undo levels"
 msgstr "Velg maksimalt antall angrenivå"
 
-#: src/preferences.c:161
+#: src/preferences.c:150
 msgid "Show cursor offset in statusbar as:"
 msgstr "Vis markøravstand på statuslinjen som:"
 
-#: src/preferences.c:180
+#: src/preferences.c:166
 msgid "Hexadecimal"
 msgstr "Heksadesimal"
 
-#: src/preferences.c:186
+#: src/preferences.c:168
 msgid "Custom"
 msgstr "Egendefinert"
 
-#: src/preferences.c:197
+#: src/preferences.c:177
 msgid "Enter the cursor offset format"
 msgstr "Skriv inn format for markøravstand"
 
-#: src/preferences.c:198
+#: src/preferences.c:178
 msgid "Select the cursor offset format"
 msgstr "Velg format for markøravstand"
 
 #. show offsets check button
-#: src/preferences.c:208
+#: src/preferences.c:188
 msgid "Show offsets column"
 msgstr "Vis kolonne for markøravstand"
 
-#: src/preferences.c:213
+#: src/preferences.c:193
 msgid "Editing"
 msgstr "Redigering"
 
 #. display font
-#: src/preferences.c:222
+#: src/preferences.c:202 src/gnome-print-font-picker.c:1017
 msgid "Font"
 msgstr "Skrifttype"
 
 #. default group type
-#: src/preferences.c:250
+#: src/preferences.c:228
 msgid "Default Group Type"
 msgstr "Standard gruppetype"
 
-#: src/preferences.c:266
+#: src/preferences.c:244
 msgid "Display"
 msgstr "Skjerm"
 
 #. paper selection
-#: src/preferences.c:275
+#: src/preferences.c:253
 msgid "Paper size"
 msgstr "Papirstørrelse"
 
 #. data & header font selection
-#: src/preferences.c:280
+#: src/preferences.c:258
 msgid "Fonts"
 msgstr "Skrifttyper"
 
-#: src/preferences.c:286
+#: src/preferences.c:264
 msgid "_Data font:"
 msgstr "_Skrift for data:"
 
-#: src/preferences.c:305
+#: src/preferences.c:283
 msgid "Data font"
 msgstr "Skrifttype for data"
 
-#: src/preferences.c:305
+#: src/preferences.c:283
 msgid "Select the data font"
 msgstr "Velg skrift for data"
 
-#: src/preferences.c:319
+#: src/preferences.c:297
 msgid "Header fo_nt:"
 msgstr "Skrift for _topptekst:"
 
-#: src/preferences.c:337
+#: src/preferences.c:315
 msgid "Header font"
 msgstr "Skrifttype for topptekst"
 
-#: src/preferences.c:337
+#: src/preferences.c:315
 msgid "Select the header font"
 msgstr "Velg skrift for topptekst"
 
-#: src/preferences.c:365
+#: src/preferences.c:341
 msgid "_Print shaded box over:"
 msgstr "S_kriv ut skyggelagt boks over:"
 
-#: src/preferences.c:377
+#: src/preferences.c:353
 msgid "Box size"
 msgstr "Størrelse på boks"
 
-#: src/preferences.c:377
+#: src/preferences.c:353
 msgid "Select size of box (in number of lines)"
 msgstr "Velg størrelse på boksen (antall linjer)"
 
-#: src/preferences.c:381
+#: src/preferences.c:357
 msgid "lines (0 for no box)"
 msgstr "linjer (0 for ingen boks)"
 
-#: src/preferences.c:388
+#: src/preferences.c:364
 msgid "Printing"
 msgstr "Utskrift"
 
-#: src/preferences.c:534
+#: src/preferences.c:523
+msgid "Can not open desired font!"
+msgstr "Kan ikke åpne ønsket skrifttype!"
+
+#: src/preferences.c:581
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -854,16 +909,12 @@ msgstr ""
 "Formatstrengen for avstand inneholder en ugyldig formatspesifikatorer.\n"
 "Kun 'x', 'X', 'p', 'P', 'd' eller 'o' er tillat."
 
-#: src/preferences.c:566
-msgid "Can not open desired font!"
-msgstr "Kan ikke åpne ønsket skrifttype!"
-
-#: src/print.c:54
+#: src/print.c:53
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Side: %i %i"
 
-#: src/print.c:205 src/print.c:219
+#: src/print.c:204 src/print.c:218
 #, c-format
 msgid ""
 "GHex could not find the font \"%s\".\n"
@@ -880,23 +931,23 @@ msgstr "Spesifikasjon av X-geometri (se manualsiden for «X»)."
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
-#: src/ui.c:71
+#: src/ui.c:74
 msgid "hex data"
 msgstr "heksadesimale data"
 
-#: src/ui.c:72
+#: src/ui.c:75
 msgid "ASCII data"
 msgstr "ASCII data"
 
-#: src/ui.c:243
+#: src/ui.c:245
 msgid "GHex, a binary file editor"
 msgstr "GHex, en binærfileditor"
 
-#: src/ui.c:245
+#: src/ui.c:247
 msgid "Released under the terms of GNU Public License"
 msgstr "Utgitt under vilkårene gitt i GNU Public License"
 
-#: src/ui.c:268
+#: src/ui.c:270
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -905,32 +956,32 @@ msgstr ""
 "Det oppsto en feil under visning av hjelp: \n"
 "%s"
 
-#: src/ui.c:385
+#: src/ui.c:374
 msgid "Select a file to open"
 msgstr "Velg en fil å åpne"
 
-#: src/ui.c:423
+#: src/ui.c:411
 #, c-format
 msgid "Loaded file %s"
 msgstr "Lastet fil %s"
 
-#: src/ui.c:431
+#: src/ui.c:419
 msgid "Can not open file!"
 msgstr "Kan ikke åpne filen!"
 
-#: src/ui.c:495
+#: src/ui.c:483
 msgid "Select path and file name for the HTML source"
 msgstr "Velg sti og filnavn for HTML kilden"
 
-#: src/ui.c:530
+#: src/ui.c:518
 msgid "You need to specify a base name for the HTML files."
 msgstr "Du må spesifisere et basisnavn for HTML filene."
 
-#: src/ui.c:541 src/ui.c:563
+#: src/ui.c:529 src/ui.c:552
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Du har ikke tilgang til å skrive til valgt sti.\n"
 
-#: src/ui.c:547
+#: src/ui.c:540
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -938,21 +989,21 @@ msgstr ""
 "Lagring av HTML vil overskrive noen filer.\n"
 "Vil du fortsette?"
 
-#: src/ui.c:695
+#: src/ui.c:687
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Virkelig forkaste filen %s?"
 
-#: src/ui.c:713
+#: src/ui.c:701
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Forkastet buffer fra fil %s"
 
-#: src/ui.c:788
+#: src/ui.c:809
 msgid "Print Hex Document"
 msgstr "Skriv ut Hex dokument"
 
-#: src/ui.c:793
+#: src/ui.c:814
 msgid "Pages"
 msgstr "Sider"
 
@@ -960,3 +1011,83 @@ msgstr "Sider"
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Forhåndsvisning av utskrift"
+
+#: src/gnome-print-font-dialog.c:111
+msgid "_Insert a new preview phrase."
+msgstr "Sett _inn en ny forhåndsvisningstekst."
+
+#: src/gnome-print-font-dialog.c:117
+msgid "Modify preview phrase..."
+msgstr "Endre tekst for forhåndsvisning..."
+
+#: src/gnome-print-font-dialog.c:171
+msgid "Preview"
+msgstr "Forhåndsvisning"
+
+#: src/gnome-print-font-dialog.c:184
+msgid "_Modify preview phrase..."
+msgstr "_Endre tekst for forhåndsvisning..."
+
+#: src/gnome-print-font-dialog.c:247
+msgid "Font Selection"
+msgstr "Skriftvalg"
+
+#: src/gnome-print-font-picker.c:91
+msgid "Sans Regular 12"
+msgstr "Sans Regular 12"
+
+#: src/gnome-print-font-picker.c:92
+msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzÆæØøÅå"
+
+#: src/gnome-print-font-picker.c:93
+msgid "Pick a Font"
+msgstr "Velg en skrift"
+
+#: src/gnome-print-font-picker.c:178
+msgid "Title"
+msgstr "Tittel"
+
+#: src/gnome-print-font-picker.c:179
+msgid "The title of the selection dialog box"
+msgstr "Tittel på dialogboksen for utvalget"
+
+#: src/gnome-print-font-picker.c:199
+msgid "Font name"
+msgstr "Skriftnavn"
+
+#: src/gnome-print-font-picker.c:200
+msgid "Name of the selected font"
+msgstr "Navn på valgt skrift"
+
+#: src/gnome-print-font-picker.c:208
+msgid "Preview text"
+msgstr "Tekst for forhåndsvisning"
+
+#: src/gnome-print-font-picker.c:209
+msgid "Preview text shown in the dialog"
+msgstr "Tekst som vises i forhåndsvisningsdialogen"
+
+#: src/gnome-print-font-picker.c:217
+msgid "Use font in label"
+msgstr "Bruk skrift i etikett"
+
+#: src/gnome-print-font-picker.c:218
+msgid "Use font in the label in font info mode"
+msgstr "Bruk skrift i etikett i informasjonsmodus for skrift"
+
+#: src/gnome-print-font-picker.c:226
+msgid "Font size for label"
+msgstr "Skriftstørrelse for etikett"
+
+#: src/gnome-print-font-picker.c:227
+msgid "Font size for label in font info mode"
+msgstr "Skriftstørrelse for etikett i informasjonsmodus for skrift"
+
+#: src/gnome-print-font-picker.c:237
+msgid "Show size"
+msgstr "Vis størrelse"
+
+#: src/gnome-print-font-picker.c:238
+msgid "Show size in font info mode"
+msgstr "Vis størrelse i informasjonsmodus for skrift"
