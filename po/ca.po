@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 1999-11-29 11:09+0100\n"
-"PO-Revision-Date: 1999-07-19 15:51+02:00\n"
+"POT-Creation-Date: 2000-02-03 19:02+0100\n"
+"PO-Revision-Date: 2000-01-31 12:56+01:00\n"
 "Last-Translator: Ivan Vilata i Balaguer <al011097@alumail.uji.es>\n"
 "Language-Team: Catalan <linux-ca@chanae.alphanet.ch>\n"
 "MIME-Version: 1.0\n"
@@ -51,14 +51,14 @@ msgstr "ASCII"
 
 #: ghex/converter.c:90
 msgid "Get cursor value"
-msgstr ""
+msgstr "Obtenir el valor del cursor"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
 #: mini-utils/gshutdown/gshutdown.c:596
 msgid "Close"
 msgstr "Tancar"
 
-#: ghex/converter.c:190
+#: ghex/converter.c:189
 msgid "ERROR"
 msgstr "ERROR"
 
@@ -160,55 +160,55 @@ msgstr "S'ha arribat al final del fitxer!"
 msgid "Replaced %d occurencies."
 msgstr "S'ha substituït %d ocurrències."
 
-#: ghex/hex-document.c:57
+#: ghex/hex-document.c:59
 msgid "_Bytes"
 msgstr "_Octets"
 
-#: ghex/hex-document.c:58
+#: ghex/hex-document.c:60
 msgid "Group data by 8 bits"
 msgstr "Agrupa les dades cada 8 bits"
 
-#: ghex/hex-document.c:59
+#: ghex/hex-document.c:61
 msgid "_Words"
 msgstr "_Paraules"
 
-#: ghex/hex-document.c:60
+#: ghex/hex-document.c:62
 msgid "Group data by 16 bits"
 msgstr "Agrupa les dades cada 16 bits"
 
-#: ghex/hex-document.c:61
+#: ghex/hex-document.c:63
 msgid "_Longwords"
 msgstr "Paraules _llargues"
 
-#: ghex/hex-document.c:62
+#: ghex/hex-document.c:64
 msgid "Group data by 32 bits"
 msgstr "Agrupa les dades cada 32 bits"
 
-#: ghex/hex-document.c:78
+#: ghex/hex-document.c:80
 msgid "Jump to a certain position"
 msgstr "Salta a una posició determinada"
 
-#: ghex/hex-document.c:78
+#: ghex/hex-document.c:80
 msgid "_Goto Byte..."
 msgstr "_Anar a l'octet..."
 
-#: ghex/hex-document.c:81
+#: ghex/hex-document.c:83
 msgid "_Group Data As"
 msgstr "A_grupar dades per"
 
-#: ghex/hex-document.c:86
+#: ghex/hex-document.c:88
 msgid "_Add view"
 msgstr "_Afegir vista"
 
-#: ghex/hex-document.c:87
+#: ghex/hex-document.c:89
 msgid "Add a new view of the buffer"
 msgstr "Afig una nova vista del tampó"
 
-#: ghex/hex-document.c:88
+#: ghex/hex-document.c:90
 msgid "_Remove view"
 msgstr "_Eliminar vista"
 
-#: ghex/hex-document.c:89
+#: ghex/hex-document.c:91
 msgid "Remove the current view of the buffer"
 msgstr "Elimina la vista actual del tampó"
 
@@ -224,7 +224,7 @@ msgstr ""
 #: ghex/main.c:170
 #, c-format
 msgid "Offset: %s"
-msgstr ""
+msgstr "Desplaçament: %s"
 
 #: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
 #: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
@@ -249,21 +249,19 @@ msgstr "Màxim nombre d'accions a desfer"
 
 #: ghex/preferences.c:96
 msgid "Show cursor offset in statusbar as"
-msgstr ""
+msgstr "Veure desplaçament del cursor en barra d'estat com a"
 
 #: ghex/preferences.c:115
-#, fuzzy
 msgid "Hexadecimal"
-msgstr "Decimal"
+msgstr "Hexadecimal"
 
 #: ghex/preferences.c:121
-#, fuzzy
 msgid "Custom"
-msgstr "Tallar"
+msgstr "Personalitzat"
 
 #: ghex/preferences.c:131
 msgid "Show offsets column"
-msgstr ""
+msgstr "Mostrar columna de desplaçaments"
 
 #: ghex/preferences.c:136
 msgid "Editing"
@@ -326,505 +324,504 @@ msgid "ASCII data"
 msgstr "ASCII"
 
 # Els fitxers són el que són, el binari és l'editor!  iv
-#: ghex/ui.c:174
+#: ghex/ui.c:175
 msgid "GHex, a binary file editor"
 msgstr "GHex, un editor binari de fitxers"
 
-#: ghex/ui.c:176
+#: ghex/ui.c:177
 msgid "Released under the terms of GNU Public License"
 msgstr "Lliurat sota els termes de la Llicència Pública General GNU."
 
-#: ghex/ui.c:193 ghex/ui.c:344
+#: ghex/ui.c:194 ghex/ui.c:345
 msgid "Error saving file!"
 msgstr "Error en guardar el fitxer!"
 
-#: ghex/ui.c:197 ghex/ui.c:339
+#: ghex/ui.c:198 ghex/ui.c:340
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "S'ha guardat el tampó al fitxer %s"
 
-#: ghex/ui.c:206
+#: ghex/ui.c:207
 msgid "Select a file to open"
 msgstr "Seleccioneu un fitxer a obrir"
 
-#: ghex/ui.c:224
+#: ghex/ui.c:225
 msgid "Select a file to save buffer as"
 msgstr "Seleccioneu un fitxer on guardar el tampó"
 
-#: ghex/ui.c:272
+#: ghex/ui.c:273
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Voleu realment revertir el fitxer %s?"
 
-#: ghex/ui.c:285
+#: ghex/ui.c:286
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "S'ha revertit el tampó des del fitxer %s"
 
-#: ghex/ui.c:300
+#: ghex/ui.c:301
 #, c-format
 msgid "Loaded file %s"
 msgstr "S'ha carregat el fitxer %s"
 
-#: ghex/ui.c:305
+#: ghex/ui.c:306
 msgid "Can not open file!"
 msgstr "No es pot obrir el fitxer!"
 
-#: ghex/ui.c:348
+#: ghex/ui.c:349
 msgid "Can't open file for writing!"
 msgstr "No es pot obrir el fitxer per escriure!"
 
-#: gsearchtool/gsearchtool.c:21
+#: gsearchtool/gsearchtool.c:25
 msgid "File name"
 msgstr "Nom del fitxer"
 
-#: gsearchtool/gsearchtool.c:23
+#: gsearchtool/gsearchtool.c:27
 msgid "Don't search subdirectories"
 msgstr "No cercar als subdirectoris"
 
-#: gsearchtool/gsearchtool.c:24
+#: gsearchtool/gsearchtool.c:28
 msgid "File owner"
 msgstr "Propietari del fitxer"
 
-#: gsearchtool/gsearchtool.c:25
+#: gsearchtool/gsearchtool.c:29
 msgid "File owner group"
 msgstr "Grup del fitxer"
 
-#: gsearchtool/gsearchtool.c:26
+#: gsearchtool/gsearchtool.c:30
 msgid "Last modification time"
 msgstr "Data de l'última modificació"
 
-#: gsearchtool/gsearchtool.c:28
+#: gsearchtool/gsearchtool.c:32
 msgid "Don't search mounted filesystems"
 msgstr "Evitar sistemes muntats sota el directori"
 
-#: gsearchtool/gsearchtool.c:30
+#: gsearchtool/gsearchtool.c:34
 msgid "Empty file"
 msgstr "Fitxers buits"
 
-#: gsearchtool/gsearchtool.c:32
+#: gsearchtool/gsearchtool.c:36
 msgid "Invalid user or group"
 msgstr "Propietaris o grups no vàlids"
 
-#: gsearchtool/gsearchtool.c:33
+#: gsearchtool/gsearchtool.c:37
 msgid "Filenames except"
 msgstr "Excepte els que s'anomenen"
 
-#: gsearchtool/gsearchtool.c:34
+#: gsearchtool/gsearchtool.c:39
+msgid "Follow symbolic links"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:40
 msgid "Simple substring search"
 msgstr "Recerca per sub-cadena simple"
 
-#: gsearchtool/gsearchtool.c:35
+#: gsearchtool/gsearchtool.c:41
 msgid "Regular expression search"
 msgstr "Recerca amb expressió regular"
 
-#: gsearchtool/gsearchtool.c:37
+#: gsearchtool/gsearchtool.c:43
 msgid "Extended regular expression search"
 msgstr "Recerca amb expressió regular estesa"
 
-#: gsearchtool/gsearchtool.c:94 gsearchtool/gsearchtool.c:150
+#: gsearchtool/gsearchtool.c:102 gsearchtool/gsearchtool.c:158
 msgid "grep options found in find list bad bad!"
 msgstr "Opcions per «grep» a la llista de «find», malament!"
 
-#: gsearchtool/gsearchtool.c:165
+#: gsearchtool/gsearchtool.c:173
 msgid "non-grep option found in grep list, bad bad!"
 msgstr "Opcions no per «grep» a la llista de «grep», malament!"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
-#: gsearchtool/gsearchtool.c:205
+#: gsearchtool/gsearchtool.c:214
 msgid "Search Results"
 msgstr "Resultats de la recerca"
 
-#: gsearchtool/gsearchtool.c:430
+#: gsearchtool/gsearchtool.c:483
 msgid "Enable"
 msgstr "Activa"
 
-#: gsearchtool/gsearchtool.c:437
+#: gsearchtool/gsearchtool.c:490
 msgid "Remove"
 msgstr "Eliminar"
 
-#: gsearchtool/gsearchtool.c:489
+#: gsearchtool/gsearchtool.c:542
 msgid "Start in directory:"
 msgstr "Començar al directori:"
 
-#: gsearchtool/gsearchtool.c:507 mini-utils/gw/gw.c:488
+#: gsearchtool/gsearchtool.c:560 mini-utils/gw/gw.c:488
 msgid "Add"
 msgstr "Afegir"
 
-#: gsearchtool/gsearchtool.c:518
+#: gsearchtool/gsearchtool.c:571
 msgid "Start"
 msgstr "Iniciar"
 
-#: gsearchtool/gsearchtool.c:519
+#: gsearchtool/gsearchtool.c:572
 msgid "Stop"
 msgstr "Parar"
 
-#: gsearchtool/gsearchtool.c:537
+#: gsearchtool/gsearchtool.c:590
 msgid "This is not yet implemented"
 msgstr "Açò encara no s'ha implementat"
 
-#: gsearchtool/gsearchtool.c:550
+#: gsearchtool/gsearchtool.c:603
 msgid "Full find (find)"
 msgstr "Recerca completa (find)"
 
-#: gsearchtool/gsearchtool.c:553
+#: gsearchtool/gsearchtool.c:606
 msgid "Quick find (locate)"
 msgstr "Recerca ràpida (locate)"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:621
 msgid "The Gnome Search Tool"
 msgstr "L'Eina de Recerca de GNOME"
 
-#: gsearchtool/gsearchtool.c:569
+#: gsearchtool/gsearchtool.c:622
 msgid "(C) 1998 the Free Software Foundation"
 msgstr "(C) 1998 Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:571
+#: gsearchtool/gsearchtool.c:624
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Una interfície a les comandes unix find/grep/locate."
 
-#: gsearchtool/gsearchtool.c:614
+#: gsearchtool/gsearchtool.c:666
 msgid "Gnome Search Tool"
 msgstr "Eina de Recerca de GNOME"
 
-#: gstripchart/gstripchart.c:427
+#: gstripchart/gstripchart.c:434
 msgid "rparen expected"
-msgstr ""
+msgstr "s'esperava parèntesi dret"
 
-#: gstripchart/gstripchart.c:444
+#: gstripchart/gstripchart.c:451
 #, c-format
 msgid "no such field: %d"
-msgstr ""
+msgstr "el camp no existeix: %d"
 
-#: gstripchart/gstripchart.c:472
+#: gstripchart/gstripchart.c:479
 msgid "missing variable identifer"
-msgstr ""
+msgstr "manca l'identificador de variable"
 
-#: gstripchart/gstripchart.c:474
+#: gstripchart/gstripchart.c:481
 #, c-format
 msgid "invalid variable identifer: %s"
-msgstr ""
+msgstr "l'identificador de variable no és vàlid: %s"
 
-#: gstripchart/gstripchart.c:478
+#: gstripchart/gstripchart.c:485
 msgid "number expected"
-msgstr ""
+msgstr "s'esperava un número"
 
-#: gstripchart/gstripchart.c:557
+#: gstripchart/gstripchart.c:563
 #, c-format
 msgid "extra gunk at end: \"%s\""
-msgstr ""
+msgstr "hi ha fem al final: «%s»"
 
-#: gstripchart/gstripchart.c:637
+#: gstripchart/gstripchart.c:645
 #, c-format
 msgid "%s, line %d: "
-msgstr ""
+msgstr "%s, línia %d: "
 
-#: gstripchart/gstripchart.c:714
+#: gstripchart/gstripchart.c:726
 #, c-format
 msgid "can't open config file \"%s\""
-msgstr ""
+msgstr "no es pot obrir el fitxer de configuració «%s»"
 
-#: gstripchart/gstripchart.c:741
+#: gstripchart/gstripchart.c:753
 #, c-format
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
 msgstr ""
+"no es pot obrir el fitxer de configuració «./gstripchart.conf», «%s», «%s» o "
+"«%s»"
 
-#: gstripchart/gstripchart.c:746
+#: gstripchart/gstripchart.c:758
 #, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
 msgstr ""
+"no es pot obrir el fitxer de configuració «./gstripchart.conf», «%s» o «%s»"
 
-#: gstripchart/gstripchart.c:824
+#: gstripchart/gstripchart.c:836
 msgid "identifier or begin must be first"
-msgstr ""
+msgstr "primer ha d'haver «begin» o un identificador"
 
-#: gstripchart/gstripchart.c:832 gstripchart/gstripchart.c:849
+#: gstripchart/gstripchart.c:844 gstripchart/gstripchart.c:861
 #, c-format
 msgid "unrecognized color: %s"
-msgstr ""
+msgstr "el color no és reconegut: %s"
 
-#: gstripchart/gstripchart.c:864
+#: gstripchart/gstripchart.c:876
 msgid "scale must be either \"log\" or \"linear\""
+msgstr "«scale» ha de ser «log» o «linear»"
+
+#: gstripchart/gstripchart.c:891
+msgid "no equation found"
 msgstr ""
 
-#: gstripchart/gstripchart.c:886
+#: gstripchart/gstripchart.c:908
 #, c-format
 msgid "invalid option: \"%s\""
-msgstr ""
+msgstr "l'opció no és vàlida: «%s»"
 
-#: gstripchart/gstripchart.c:1449
+#: gstripchart/gstripchart.c:1471
 msgid "E_xit"
 msgstr "Ei_xir"
 
-#: gstripchart/gstripchart.c:1449
+#: gstripchart/gstripchart.c:1471
 msgid "Terminate the stripchart program"
 msgstr "Abandona el programa stripchart"
 
-#: gstripchart/gstripchart.c:1465
-#, fuzzy
+#: gstripchart/gstripchart.c:1487
 msgid "Copyright 1998,99 John Kodis"
-msgstr "Copyright 1998 John Kodis"
+msgstr "Copyright 1998,99 John Kodis"
 
-#: gstripchart/gstripchart.c:1467
+#: gstripchart/gstripchart.c:1489
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
 "such as CPU load, CPU utilization, network traffic levels, and the like.  "
 "Other more ingenious uses are left as an exercise for the interested user."
 msgstr ""
+"El programa GNOME stripchart dibuixa diversos paràmetres especificats per "
+"l'usuari o usuària en funció del temps.  La seua utilitat principal és fer "
+"gràfiques de les prestacions del sistema, com ara càrrega de CPU, ús de CPU, "
+"tràfic de xarxa, etc.  Altres usos més enginyosos queden com a exercici per "
+"l'usuari o usuària interessada."
 
-#: gstripchart/gstripchart.c:1480
+#: gstripchart/gstripchart.c:1502
 msgid "Info about the striphart program"
 msgstr "Informació sobre el programa stripchart"
 
-#: gstripchart/gstripchart.c:1480
+#: gstripchart/gstripchart.c:1502
 msgid "_About"
 msgstr "A _propòsit de..."
 
-#: gstripchart/gstripchart.c:1491
+#: gstripchart/gstripchart.c:1513
 msgid "_File"
 msgstr "_Fitxer"
 
-#: gstripchart/gstripchart.c:1492
+#: gstripchart/gstripchart.c:1514
 msgid "_Help"
 msgstr "_Ajuda"
 
-#: gstripchart/gstripchart.c:1556 gstripchart/gstripchart.c:1694
-#, fuzzy
+#: gstripchart/gstripchart.c:1578 gstripchart/gstripchart.c:1716
 msgid "Param"
 msgstr "Paràmetres"
 
-#: gstripchart/gstripchart.c:1556 mini-utils/gcolorsel/gcolorsel.c:156
+#: gstripchart/gstripchart.c:1578 mini-utils/gcolorsel/gcolorsel.c:156
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Valor"
 
-#: gstripchart/gstripchart.c:1560
+#: gstripchart/gstripchart.c:1582
 msgid "Identifier"
-msgstr ""
+msgstr "Identificador"
 
-#: gstripchart/gstripchart.c:1562 mini-utils/gcolorsel/gcolorsel.c:155
+#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/gcolorsel.c:155
 msgid "Color"
 msgstr "Color"
 
-#: gstripchart/gstripchart.c:1564
-#, fuzzy
+#: gstripchart/gstripchart.c:1586
 msgid "Filename"
 msgstr "Nom del fitxer"
 
-#: gstripchart/gstripchart.c:1566
-#, fuzzy
+#: gstripchart/gstripchart.c:1588
 msgid "Pattern"
-msgstr "Apegar"
+msgstr "Patró"
 
-#: gstripchart/gstripchart.c:1568
+#: gstripchart/gstripchart.c:1590
 msgid "Equation"
-msgstr ""
+msgstr "Equació"
 
-#: gstripchart/gstripchart.c:1570
+#: gstripchart/gstripchart.c:1592
 msgid "Expected range"
-msgstr ""
+msgstr "Rang esperat"
 
-#: gstripchart/gstripchart.c:1574
-#, fuzzy
+#: gstripchart/gstripchart.c:1596
 msgid "Displayed range"
-msgstr "Nom de la pantalla X:"
+msgstr "Rang mostrat"
 
-#: gstripchart/gstripchart.c:1578
+#: gstripchart/gstripchart.c:1600
 msgid "Current value"
-msgstr ""
+msgstr "Valor actual"
 
-#: gstripchart/gstripchart.c:1585
+#: gstripchart/gstripchart.c:1607
 msgid "Active"
-msgstr ""
+msgstr "Actiu"
 
-#: gstripchart/gstripchart.c:1601
+#: gstripchart/gstripchart.c:1623
 msgid "Stripchart Parameters"
-msgstr ""
+msgstr "Paràmetres de les gràfiques"
 
-#: gstripchart/gstripchart.c:1695
-#, fuzzy
+#: gstripchart/gstripchart.c:1717
 msgid "Current"
-msgstr "Tallar"
+msgstr "Actual"
 
-#: gstripchart/gstripchart.c:1696
+#: gstripchart/gstripchart.c:1718
 msgid "Top"
-msgstr ""
+msgstr "Màxim"
 
-#: gstripchart/gstripchart.c:1697
-#, fuzzy
+#: gstripchart/gstripchart.c:1719
 msgid "Scale"
-msgstr "Guardar"
+msgstr "Escala"
 
-#: gstripchart/gstripchart.c:1734 gstripchart/gstripchart.c:2013
-#, fuzzy
+#: gstripchart/gstripchart.c:1756 gstripchart/gstripchart.c:2035
 msgid "Help"
-msgstr "_Ajuda"
+msgstr "Ajuda"
 
-#: gstripchart/gstripchart.c:1740 gstripchart/gstripchart.c:2016
+#: gstripchart/gstripchart.c:1762 gstripchart/gstripchart.c:2038
 #: mini-utils/gshutdown/gshutdown.c:318
-#, fuzzy
 msgid "About"
-msgstr "A _propòsit de..."
+msgstr "A propòsit de..."
 
-#: gstripchart/gstripchart.c:1746
+#: gstripchart/gstripchart.c:1768
 msgid "Params"
 msgstr "Paràmetres"
 
-#: gstripchart/gstripchart.c:1752
-#, fuzzy
+#: gstripchart/gstripchart.c:1774
 msgid "Exit"
-msgstr "Ei_xir"
+msgstr "Eixir"
 
-#: gstripchart/gstripchart.c:1858
+#: gstripchart/gstripchart.c:1880
 msgid "Stripchart Viewer"
-msgstr ""
+msgstr "Visor de gràfiques"
 
 #. Create a top-level application window. Set minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
-#: gstripchart/gstripchart.c:1858
+#: gstripchart/gstripchart.c:1880
 msgid "gstripchart"
-msgstr ""
+msgstr "gstripchart"
 
-#: gstripchart/gstripchart.c:2019
-#, fuzzy
+#: gstripchart/gstripchart.c:2041
 msgid "Params..."
-msgstr "Paràmetres"
+msgstr "Paràmetres..."
 
-#: gstripchart/gstripchart.c:2063
+#: gstripchart/gstripchart.c:2086
 #, c-format
 msgid "invalid display type: %s\n"
-msgstr ""
+msgstr "el tipus de pantalla no és vàlid: %s\n"
 
 # Ací s'han armat un cacau...  proveu --help amb diferents LANGUAGEs  iv
+# Supose que ho arreglaran...
 # FIXME: keywords and descriptions are swapped here!  iv
-#: gstripchart/gstripchart.c:2088
+#: gstripchart/gstripchart.c:2111
 msgid "GEO"
-msgstr "Especifica la geometria"
+msgstr "GEOMETRIA"
 
-#: gstripchart/gstripchart.c:2088
+#: gstripchart/gstripchart.c:2111
 msgid "Geometry string: WxH+X+Y"
-msgstr ""
+msgstr "Especifica la geometria: WxH+X+Y"
 
-#: gstripchart/gstripchart.c:2090
-#, fuzzy
+#: gstripchart/gstripchart.c:2113
 msgid "Configuration file name"
+msgstr "Nom del fitxer de configuració"
+
+#: gstripchart/gstripchart.c:2113
+msgid "FILE"
 msgstr "FITXER"
 
-#: gstripchart/gstripchart.c:2090
-msgid "FILE"
-msgstr "Especifica el fitxer de configuració"
-
-# Açò no es pot traduir...  Destrossaria l'ajuda en pantalla!  Esperem que
-# a l'altra versió es pose tot al lloc...  iv
-#: gstripchart/gstripchart.c:2092
-#, fuzzy
+#: gstripchart/gstripchart.c:2115
 msgid "Chart update interval"
 msgstr "Interval d'actualització del gràfic"
 
-#: gstripchart/gstripchart.c:2092 gstripchart/gstripchart.c:2094
-#: gstripchart/gstripchart.c:2096 gstripchart/gstripchart.c:2098
+#: gstripchart/gstripchart.c:2115 gstripchart/gstripchart.c:2117
+#: gstripchart/gstripchart.c:2119 gstripchart/gstripchart.c:2121
 msgid "SECS"
 msgstr "SEGONS"
 
-#: gstripchart/gstripchart.c:2094
+#: gstripchart/gstripchart.c:2117
 msgid "Chart low-pass filter time constant"
 msgstr "Ctt. temps fitre passa-baixa del gràfic"
 
-#: gstripchart/gstripchart.c:2096
+#: gstripchart/gstripchart.c:2119
 msgid "Slider update interval"
 msgstr "Interval d'actualització de l'agulla"
 
-#: gstripchart/gstripchart.c:2098
+#: gstripchart/gstripchart.c:2121
 msgid "Slider low-pass filter time constant"
 msgstr "Ctt. temps filtre passa-baixa de l'agulla"
 
-#: gstripchart/gstripchart.c:2100
+#: gstripchart/gstripchart.c:2123
 msgid "Adds a menubar to the main window"
-msgstr ""
+msgstr "Afig una barra de menús a la finestra principal"
 
-#: gstripchart/gstripchart.c:2102
+#: gstripchart/gstripchart.c:2125
 msgid "Omits slider window"
 msgstr "Amaga l'agulla lateral"
 
-#: gstripchart/gstripchart.c:2105 gstripchart/gstripchart.c:2107
+#: gstripchart/gstripchart.c:2128 gstripchart/gstripchart.c:2130
 msgid "TYPE"
-msgstr "Tipus de gràfic: gtk|text|graph|none"
+msgstr "TIPUS"
 
-#: gstripchart/gstripchart.c:2105
+#: gstripchart/gstripchart.c:2128
 msgid "TYPE is one of gtk, applet, text, or none"
-msgstr ""
+msgstr "Tipus de gràfic: gtk, applet, text o none"
 
-#: gstripchart/gstripchart.c:2107
+#: gstripchart/gstripchart.c:2130
 msgid "TYPE is one of gtk, text, or none"
-msgstr ""
+msgstr "Tipus de gràfic: gtk, text o none"
 
-#: gstripchart/gstripchart.c:2258
+#: gstripchart/gstripchart.c:2281
 msgid "black"
-msgstr ""
+msgstr "negre"
 
-#: gstripchart/gstripchart.c:2258
+#: gstripchart/gstripchart.c:2281
 msgid "red"
-msgstr ""
+msgstr "roig"
 
-#: gstripchart/gstripchart.c:2258
+#: gstripchart/gstripchart.c:2281
 msgid "white"
-msgstr ""
+msgstr "blanc"
 
-#: gstripchart/gstripchart.c:2258
+#: gstripchart/gstripchart.c:2281
 msgid "yellow"
-msgstr ""
+msgstr "groc"
 
-#: gstripchart/gstripchart.c:2259
-#, fuzzy
+#: gstripchart/gstripchart.c:2282
 msgid "blue"
-msgstr "Valor"
+msgstr "blau"
 
-#: gstripchart/gstripchart.c:2259
+#: gstripchart/gstripchart.c:2282
 msgid "cyan"
-msgstr ""
+msgstr "cian"
 
-#: gstripchart/gstripchart.c:2259
+#: gstripchart/gstripchart.c:2282
 msgid "green"
-msgstr ""
+msgstr "verd"
 
-#: gstripchart/gstripchart.c:2259
+#: gstripchart/gstripchart.c:2282
 msgid "magenta"
-msgstr ""
+msgstr "magenta"
 
-#: gstripchart/gstripchart.c:2260
-#, fuzzy
+#: gstripchart/gstripchart.c:2283
 msgid "Battery"
-msgstr "Apegar"
+msgstr "Bateria"
 
-#: gstripchart/gstripchart.c:2260
+#: gstripchart/gstripchart.c:2283
 msgid "Busy"
-msgstr ""
+msgstr "Ocupat"
 
-#: gstripchart/gstripchart.c:2260
-#, fuzzy
+#: gstripchart/gstripchart.c:2283
 msgid "Load"
-msgstr "Rellegir"
+msgstr "Càrrega"
 
-#: gstripchart/gstripchart.c:2260
+#: gstripchart/gstripchart.c:2283
 msgid "Swap"
-msgstr ""
+msgstr "Intercanvi"
 
-#: gstripchart/gstripchart.c:2261
+#: gstripchart/gstripchart.c:2284
 msgid "Net In"
-msgstr ""
+msgstr "Entrada xarxa"
 
-#: gstripchart/gstripchart.c:2261
+#: gstripchart/gstripchart.c:2284
 msgid "Net Out"
-msgstr ""
+msgstr "Eixida xarxa"
 
-#: gstripchart/gstripchart.c:2261
+#: gstripchart/gstripchart.c:2284
 msgid "ppp"
-msgstr ""
+msgstr "PPP"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -1298,7 +1295,7 @@ msgstr "Copyright 1998, sota la Llicència Pública General GNU."
 #: mini-utils/gless/gless.c:116
 #, c-format
 msgid "Reason %d\n"
-msgstr ""
+msgstr "Motiu %d\n"
 
 #: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
@@ -1329,33 +1326,36 @@ msgid "Text File Viewer"
 msgstr "Visor de Fitxers de Text"
 
 #: mini-utils/gless/gless.c:460
-#, fuzzy
 msgid "Find string"
-msgstr "Trobar següent"
+msgstr "Cercar cadena"
 
 #: mini-utils/gless/gless.c:461
-#, fuzzy
 msgid "Find"
-msgstr "Trobar següent"
+msgstr "Cercar"
 
 #: mini-utils/gless/gless.c:498
 msgid "Loading..."
 msgstr "Carregant..."
 
 #: mini-utils/gless/gless.c:502
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "No such file or directory:\n"
 "%s"
-msgstr "El fitxer o directori no existeix:\n"
+msgstr ""
+"El fitxer o directori no existeix:\n"
+"%s"
 
 #: mini-utils/gless/gless.c:520
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to decompress and display the file:\n"
 "%s\n"
 "%s"
-msgstr "No s'ha pogut descomprimir i mostrar el fitxer:\n"
+msgstr ""
+"No s'ha pogut descomprimir i mostrar el fitxer:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:533
 msgid ""
@@ -1366,24 +1366,30 @@ msgstr ""
 "zcat no és a la ruta d'executables."
 
 #: mini-utils/gless/gless.c:541
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error loading file:\n"
 "%s\n"
 "%s"
-msgstr "Error en carregar el fitxer:\n"
+msgstr ""
+"Error en carregar el fitxer:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:599
 msgid "Saving..."
 msgstr "Guardant..."
 
 #: mini-utils/gless/gless.c:610
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to write file:\n"
 "%s\n"
 "%s"
-msgstr "No s'ha pogut escriure el fitxer:\n"
+msgstr ""
+"No s'ha pogut escriure el fitxer:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:660
 msgid "Save Text As..."
@@ -1395,25 +1401,26 @@ msgstr "Obrir fitxer de text..."
 
 #: mini-utils/gless/gless.c:764
 msgid "Sorry, no preferences yet."
-msgstr ""
+msgstr "Ho sent, encara no hi ha preferències."
 
 #: mini-utils/gless/gless.c:851
-#, fuzzy
 msgid "Searching..."
-msgstr "Guardant..."
+msgstr "Cercant..."
 
 #: mini-utils/gless/gless.c:862
-#, fuzzy
 msgid "No search string was specified!"
-msgstr "No s'ha especificat un desplaçament!"
+msgstr "No s'ha especificat cap cadena de recerca!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to execute command:\n"
 "%s\n"
 "%s"
-msgstr "Ha fallat l'execució de la comanda:\n"
+msgstr ""
+"Ha fallat l'execució de la comanda:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run Program"
@@ -1537,6 +1544,8 @@ msgid ""
 "%s\n"
 "You will lose any unsaved work."
 msgstr ""
+"%s\n"
+"Ara perdreu el treball que no hàgeu guardat."
 
 #: mini-utils/gshutdown/gshutdown.c:458
 msgid "Don't ask next time."
@@ -1544,15 +1553,15 @@ msgstr "No preguntar a la pròxima volta."
 
 #: mini-utils/gshutdown/gshutdown.c:691
 msgid "Command execution failed: fork failed"
-msgstr ""
+msgstr "Ha fallat l'execució de la comanda: ha fallat fork()"
 
 #: mini-utils/guname/guname.c:51
 msgid "Make guname act as a control center applet"
-msgstr ""
+msgstr "Fer que guname actue com a applet centre de control"
 
 #: mini-utils/guname/guname.c:117
 msgid "an initialization error occurred while starting 'guname-capplet'."
-msgstr ""
+msgstr "error d'inicialització en executar «guname-capplet»."
 
 #: mini-utils/guname/guname.c:427
 msgid "System Information"
@@ -1569,7 +1578,7 @@ msgstr "Contribuïdors de GNOME:"
 
 #: mini-utils/guname/guname.c:516
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-msgstr ""
+msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
 #: mini-utils/guname/guname.c:527
 msgid "GNOME: The GNU Network Object Model Environment"
@@ -1604,19 +1613,20 @@ msgid "Mail To..."
 msgstr "Enviar a..."
 
 #: mini-utils/guname/guname.c:686
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error closing file `%s': \n"
 "%s\n"
 "Some or all data may not have been written."
 msgstr ""
-"\n"
+"Error en tancar el fitxer «%s»: \n"
+"%s\n"
 "Potser algunes o totes les dades no han estat escrites."
 
 #: mini-utils/guname/guname.c:698
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't open file `%s': %s"
-msgstr "No s'ha pogut obrir el fitxer `"
+msgstr "No s'ha pogut obrir el fitxer «%s»: %s"
 
 #: mini-utils/guname/guname.c:713
 msgid "Save System Information As..."
@@ -1624,22 +1634,22 @@ msgstr "Guardar informació del sistema com a..."
 
 #. I don't think the error_string() will reliably mean anything.
 #: mini-utils/guname/guname.c:759
-#, fuzzy, c-format
+#, c-format
 msgid "Command failed ` %s ': %s"
-msgstr "Ha fallat la comanda « "
+msgstr "Ha fallat la comanda « %s »: %s"
 
 #: mini-utils/guname/guname.c:767
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't run command ` %s ': %s"
-msgstr "No s'ha pogut executar la comanda « "
+msgstr "No s'ha pogut executar la comanda « %s »: %s"
 
 #: mini-utils/guname/guname.c:791
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
-".\n"
+"El correu següent serà enviat a %s.\n"
 "Realment voleu enviar aquesta informació?"
 
 #: mini-utils/guname/guname.c:802
@@ -1762,11 +1772,11 @@ msgstr "Memòria"
 
 #: mini-utils/guname/moreinfo.c:186
 msgid "%ld%% memory used."
-msgstr ""
+msgstr "%ld%% de memòria en ús."
 
 #: mini-utils/guname/moreinfo.c:197
 msgid "%ld%% swap used."
-msgstr ""
+msgstr "%ld%% d'intercanvi en ús."
 
 #: mini-utils/guname/moreinfo.c:222
 #, c-format
@@ -1809,7 +1819,7 @@ msgstr ""
 
 #: mini-utils/guname/moreinfo.c:353
 msgid "%2d%% full "
-msgstr ""
+msgstr "%2d%% ple "
 
 #: mini-utils/gw/gw.c:141
 msgid ""
@@ -1836,9 +1846,8 @@ msgid "Update Information"
 msgstr "Actualitzar la informació"
 
 #: mini-utils/gw/gw.c:466
-#, fuzzy
 msgid "Save not implemented yet\n"
-msgstr "Açò encara no s'ha implementat"
+msgstr "«Guardar» encara no ha estat implementat\n"
 
 #: mini-utils/gw/gw.c:479
 msgid "Command Line"
@@ -1890,31 +1899,31 @@ msgstr "Comanda"
 #: mini-utils/gw/gw.c:947
 #, c-format
 msgid "Running: %s\n"
-msgstr ""
+msgstr "Executant: %s\n"
 
 #: mini-utils/idetool/idetool.c:20
 msgid "16-bit"
-msgstr ""
+msgstr "16 bits"
 
 #: mini-utils/idetool/idetool.c:21
 msgid "32-bit"
-msgstr ""
+msgstr "32 bits"
 
 #: mini-utils/idetool/idetool.c:22
 msgid "32-bit w/sync"
-msgstr ""
+msgstr "32 bits amb sinc."
 
 #: mini-utils/idetool/idetool.c:27
 msgid "Sleeping"
-msgstr ""
+msgstr "Dormint"
 
 #: mini-utils/idetool/idetool.c:28
 msgid "Active/Idle"
-msgstr ""
+msgstr "Actiu/Ociós"
 
 #: mini-utils/idetool/idetool.c:29
 msgid "Standby"
-msgstr ""
+msgstr "En espera"
 
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
@@ -1948,7 +1957,7 @@ msgstr "Mantenir configuracions"
 
 #: mini-utils/idetool/idetool.c:207
 msgid "None"
-msgstr ""
+msgstr "Cap"
 
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
@@ -1964,17 +1973,17 @@ msgstr "(Cache de doble port)"
 
 #: mini-utils/idetool/idetool.c:243
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: mini-utils/idetool/idetool.c:245
-#, fuzzy, c-format
+#, c-format
 msgid "Yes (%d sector)"
-msgstr "(1 Sector)"
+msgstr "Sí (%d sector)"
 
 #: mini-utils/idetool/idetool.c:247
-#, fuzzy, c-format
+#, c-format
 msgid "Yes (%d sectors)"
-msgstr "(1 Sector)"
+msgstr "Sí (%d sectors)"
 
 #: mini-utils/idetool/idetool.c:310 mini-utils/idetool/idetool.c:320
 msgid "Model"

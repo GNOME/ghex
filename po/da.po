@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 1999-12-18 06:42+0100\n"
+"POT-Creation-Date: 2000-02-03 19:02+0100\n"
 "PO-Revision-Date: 1999-12-18 07:24+01:00\n"
 "Last-Translator: Birger Langkjer <birger.langkjer@image.dk>\n"
 "Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
@@ -64,7 +64,7 @@ msgstr "Skaf markørværdi"
 msgid "Close"
 msgstr "Luk"
 
-#: ghex/converter.c:190
+#: ghex/converter.c:189
 msgid "ERROR"
 msgstr "ERROR"
 
@@ -166,55 +166,55 @@ msgstr "Filens slutning er nået!"
 msgid "Replaced %d occurencies."
 msgstr "Erstattede %d forekomster."
 
-#: ghex/hex-document.c:57
+#: ghex/hex-document.c:59
 msgid "_Bytes"
 msgstr "_Byte"
 
-#: ghex/hex-document.c:58
+#: ghex/hex-document.c:60
 msgid "Group data by 8 bits"
 msgstr "Gruppér data pr. 8bit"
 
-#: ghex/hex-document.c:59
+#: ghex/hex-document.c:61
 msgid "_Words"
 msgstr "_Ord"
 
-#: ghex/hex-document.c:60
+#: ghex/hex-document.c:62
 msgid "Group data by 16 bits"
 msgstr "Gruppér data pr. 16 bits"
 
-#: ghex/hex-document.c:61
+#: ghex/hex-document.c:63
 msgid "_Longwords"
 msgstr "_lange ord"
 
-#: ghex/hex-document.c:62
+#: ghex/hex-document.c:64
 msgid "Group data by 32 bits"
 msgstr "Gruppér data pr. 32 bit"
 
-#: ghex/hex-document.c:78
-msgid "_Goto Byte..."
-msgstr "_Gå til byte..."
-
-#: ghex/hex-document.c:78
+#: ghex/hex-document.c:80
 msgid "Jump to a certain position"
 msgstr "Hop til bestemt position"
 
-#: ghex/hex-document.c:81
+#: ghex/hex-document.c:80
+msgid "_Goto Byte..."
+msgstr "_Gå til byte..."
+
+#: ghex/hex-document.c:83
 msgid "_Group Data As"
 msgstr "_Gruppér data som"
 
-#: ghex/hex-document.c:86
+#: ghex/hex-document.c:88
 msgid "_Add view"
 msgstr "_Tilføj visning"
 
-#: ghex/hex-document.c:87
+#: ghex/hex-document.c:89
 msgid "Add a new view of the buffer"
 msgstr "Tilføj en ny visning af bufferen"
 
-#: ghex/hex-document.c:88
+#: ghex/hex-document.c:90
 msgid "_Remove view"
 msgstr "_Fjern visning"
 
-#: ghex/hex-document.c:89
+#: ghex/hex-document.c:91
 msgid "Remove the current view of the buffer"
 msgstr "Fjern dem aktuelle visning af bufferen"
 
@@ -329,51 +329,51 @@ msgstr "hex data"
 msgid "ASCII data"
 msgstr "ASCII data"
 
-#: ghex/ui.c:174
+#: ghex/ui.c:175
 msgid "GHex, a binary file editor"
 msgstr "GHex, en editor til binære filer"
 
-#: ghex/ui.c:176
+#: ghex/ui.c:177
 msgid "Released under the terms of GNU Public License"
 msgstr "Udgivet under GNU Public Licence (GPL)"
 
-#: ghex/ui.c:193 ghex/ui.c:344
+#: ghex/ui.c:194 ghex/ui.c:345
 msgid "Error saving file!"
 msgstr "Fejl under gemning af fil!"
 
-#: ghex/ui.c:197 ghex/ui.c:339
+#: ghex/ui.c:198 ghex/ui.c:340
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Gemte buffer til filen %s"
 
-#: ghex/ui.c:206
+#: ghex/ui.c:207
 msgid "Select a file to open"
 msgstr "Vælg en fil der skal åbnes"
 
-#: ghex/ui.c:224
+#: ghex/ui.c:225
 msgid "Select a file to save buffer as"
 msgstr "Vælg en fil at gemme bufferen som"
 
-#: ghex/ui.c:272
+#: ghex/ui.c:273
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Vil du gerne gendanne filen %s?"
 
-#: ghex/ui.c:285
+#: ghex/ui.c:286
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Gendannede buffer fra filen %s"
 
-#: ghex/ui.c:300
+#: ghex/ui.c:301
 #, c-format
 msgid "Loaded file %s"
 msgstr "Åbnede filen %s"
 
-#: ghex/ui.c:305
+#: ghex/ui.c:306
 msgid "Can not open file!"
 msgstr "Kan ikke åbne fil!"
 
-#: ghex/ui.c:348
+#: ghex/ui.c:349
 msgid "Can't open file for writing!"
 msgstr "Kan ikke åbne fil for skrivning"
 
@@ -592,12 +592,12 @@ msgstr ""
 "Andre formål er skjult for at give den interesserede bruger lidt øvelse."
 
 #: gstripchart/gstripchart.c:1502
-msgid "_About"
-msgstr "_Om..."
-
-#: gstripchart/gstripchart.c:1502
 msgid "Info about the striphart program"
 msgstr "Information om stripgrafprogrammet"
+
+#: gstripchart/gstripchart.c:1502
+msgid "_About"
+msgstr "_Om..."
 
 #: gstripchart/gstripchart.c:1513
 msgid "_File"
@@ -685,16 +685,16 @@ msgstr "Parametre"
 msgid "Exit"
 msgstr "Afslut"
 
+#: gstripchart/gstripchart.c:1880
+msgid "Stripchart Viewer"
+msgstr "Stripgraffremviser"
+
 #. Create a top-level application window. Set minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
 #: gstripchart/gstripchart.c:1880
 msgid "gstripchart"
 msgstr "gstripgraf"
-
-#: gstripchart/gstripchart.c:1880
-msgid "Stripchart Viewer"
-msgstr "Stripgraffremviser"
 
 #: gstripchart/gstripchart.c:2041
 msgid "Params..."
@@ -706,12 +706,12 @@ msgid "invalid display type: %s\n"
 msgstr "Ugyldig fremvisertype: %s\n"
 
 #: gstripchart/gstripchart.c:2111
-msgid "Geometry string: WxH+X+Y"
-msgstr "Geometristreng: VxH+X+Y"
-
-#: gstripchart/gstripchart.c:2111
 msgid "GEO"
 msgstr "GEO"
+
+#: gstripchart/gstripchart.c:2111
+msgid "Geometry string: WxH+X+Y"
+msgstr "Geometristreng: VxH+X+Y"
 
 #: gstripchart/gstripchart.c:2113
 msgid "Configuration file name"
@@ -750,21 +750,17 @@ msgstr "Tilføj en menulinie til hovedvinduet"
 msgid "Omits slider window"
 msgstr "Udelader slidervindue"
 
-#: gstripchart/gstripchart.c:2128
-msgid "TYPE is one of gtk, applet, text, or none"
-msgstr "TYPE er enten gtk, applet, tekst eller ingen"
-
 #: gstripchart/gstripchart.c:2128 gstripchart/gstripchart.c:2130
 msgid "TYPE"
 msgstr "TYPE"
 
+#: gstripchart/gstripchart.c:2128
+msgid "TYPE is one of gtk, applet, text, or none"
+msgstr "TYPE er enten gtk, applet, tekst eller ingen"
+
 #: gstripchart/gstripchart.c:2130
 msgid "TYPE is one of gtk, text, or none"
 msgstr "TYPE er enten gtk, tekst eller ingen"
-
-#: gstripchart/gstripchart.c:2281
-msgid "white"
-msgstr "hvid"
 
 #: gstripchart/gstripchart.c:2281
 msgid "black"
@@ -775,6 +771,10 @@ msgid "red"
 msgstr "rød"
 
 #: gstripchart/gstripchart.c:2281
+msgid "white"
+msgstr "hvid"
+
+#: gstripchart/gstripchart.c:2281
 msgid "yellow"
 msgstr "gul"
 
@@ -783,16 +783,20 @@ msgid "blue"
 msgstr "blå"
 
 #: gstripchart/gstripchart.c:2282
-msgid "green"
-msgstr "grøn"
-
-#: gstripchart/gstripchart.c:2282
 msgid "cyan"
 msgstr "cyan"
 
 #: gstripchart/gstripchart.c:2282
+msgid "green"
+msgstr "grøn"
+
+#: gstripchart/gstripchart.c:2282
 msgid "magenta"
 msgstr "magenta"
+
+#: gstripchart/gstripchart.c:2283
+msgid "Battery"
+msgstr "Batteri"
 
 #: gstripchart/gstripchart.c:2283
 msgid "Busy"
@@ -805,10 +809,6 @@ msgstr "Belast."
 #: gstripchart/gstripchart.c:2283
 msgid "Swap"
 msgstr "Swap"
-
-#: gstripchart/gstripchart.c:2283
-msgid "Battery"
-msgstr "Batteri"
 
 #: gstripchart/gstripchart.c:2284
 msgid "Net In"
@@ -886,21 +886,21 @@ msgstr ""
 "En fejl opstod under læsning af konfigurationsfilen.\n"
 "Skal der oprettes en ny?"
 
-#: gtt/main.c:204
-msgid "Specify geometry"
-msgstr "Angiv geometri"
-
 #: gtt/main.c:204 mini-utils/gless/gless.c:131
 msgid "GEOMETRY"
 msgstr "GEOMETRY"
 
-#: gtt/main.c:206
-msgid "Select a project on startup"
-msgstr "Vælg projekt ved opstart"
+#: gtt/main.c:204
+msgid "Specify geometry"
+msgstr "Angiv geometri"
 
 #: gtt/main.c:206
 msgid "PROJECT"
 msgstr "PROJECT"
+
+#: gtt/main.c:206
+msgid "Select a project on startup"
+msgstr "Vælg projekt ved opstart"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1267,12 +1267,12 @@ msgid "Selection:"
 msgstr "Valg:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "Font to load"
-msgstr "Skrifttype som skal indlæses"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "FONTSPEC"
 msgstr "FONTSPEC"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "Font to load"
+msgstr "Skrifttype som skal indlæses"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1425,12 +1425,12 @@ msgid "Run Program"
 msgstr "Kør program"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Run"
-msgstr "Kør"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Cancel"
 msgstr "Annullér"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Run"
+msgstr "Kør"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1761,12 +1761,12 @@ msgid "No information for this filesystem."
 msgstr "Ingen information for dette filsystem."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Memory"
-msgstr "Hukommelse"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Kilobytes"
 msgstr "Kilobyte"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Memory"
+msgstr "Hukommelse"
 
 #: mini-utils/guname/moreinfo.c:186
 msgid "%ld%% memory used."
@@ -1827,12 +1827,12 @@ msgstr ""
 "Denne kommando er nødvendig for at programmet kan virke."
 
 #: mini-utils/gw/gw.c:174
-msgid "_Save..."
-msgstr "_Gem..."
-
-#: mini-utils/gw/gw.c:174
 msgid "Write information to disk"
 msgstr "Skriv information til disk"
+
+#: mini-utils/gw/gw.c:174
+msgid "_Save..."
+msgstr "_Gem..."
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1932,13 +1932,13 @@ msgstr "DMA opsætningen for dette drev kan ikke ændres."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Slå til"
+msgid "Disabled"
+msgstr "Slå fra"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Slå fra"
+msgid "Enabled"
+msgstr "Slå til"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
