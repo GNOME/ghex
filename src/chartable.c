@@ -72,12 +72,12 @@ static void select_chartable_row_cb(GtkCList *cl, gint row, gint col,
 	GtkWidget *active_view;
 
 	if(row == sel_row && event->type == GDK_2BUTTON_PRESS) {
-		g_message("row %d\n", row);
 		active_view = gnome_mdi_get_active_view(mdi);
 		if(active_view) {
 			GtkHex *gh = GTK_HEX(active_view);
 			hex_document_set_byte(gh->document, (guchar)row, gh->cursor_pos,
 								  gh->insert, TRUE);
+			gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 		}
 	}
 
