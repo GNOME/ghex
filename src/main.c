@@ -31,10 +31,13 @@ enum {
 
 /* callbacks for MDI signals */
 static gint remove_doc_cb(GnomeMDI *, HexDocument *);
+static gint add_view_cb(GnomeMDI *, GtkHex *);
 static void view_changed_cb(GnomeMDI *, GtkHex *);
 static void child_changed_cb(GnomeMDI *, HexDocument *);
 static void customize_app_cb(GnomeMDI *, GnomeApp *);
 static void cleanup_cb(GnomeMDI *);
+
+static void cursor_moved_cb(GtkHex *gtkhex);
 
 GnomeMDI *mdi;
 
@@ -60,6 +63,13 @@ gint remove_doc_cb(GnomeMDI *mdi, HexDocument *doc) {
 			return FALSE;
 	}
 	
+	return TRUE;
+}
+
+gint add_view_cb(GnomeMDI *mdi, GtkHex *view) {
+	gtk_signal_connect(GTK_OBJECT(view), "cursor_moved",
+					   GTK_SIGNAL_FUNC(cursor_moved_cb), mdi);
+
 	return TRUE;
 }
 
@@ -90,7 +100,7 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	
 	GROUP_MENU_PATH(p);
 	shell = gnome_app_find_menu_pos(app->menubar, p, &pos);
-	if (shell){
+	if (shell) {
 		group_item = GTK_HEX(mdi->active_view)->group_type / 2;
 		shell = gnome_app_find_menu_pos(shell, _(group_type_label[group_item]), &pos);
 		
@@ -156,6 +166,18 @@ void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
 	gnome_app_install_menu_hints(app, gnome_mdi_get_menubar_info(app));
 }
 
+static void cursor_moved_cb(GtkHex *gtkhex) {
+	static gchar cursor_pos[64];
+
+	if(offset_base == OFFSET_BASE_16)
+		sprintf(cursor_pos, _("Offset: %x"), gtk_hex_get_cursor(gtkhex));
+	else
+		sprintf(cursor_pos, _("Offset: %d"), gtk_hex_get_cursor(gtkhex));
+
+	gnome_appbar_set_status(GNOME_APPBAR(gnome_mdi_get_app_from_view(GTK_WIDGET(gtkhex))->statusbar),
+							cursor_pos);
+}
+
 int main(int argc, char **argv) {
 	GnomeClient *client;
 	HexDocument *doc;
@@ -189,6 +211,7 @@ int main(int argc, char **argv) {
     gtk_signal_connect(GTK_OBJECT(mdi), "view_changed", GTK_SIGNAL_FUNC(view_changed_cb), NULL);
 	gtk_signal_connect(GTK_OBJECT(mdi), "child_changed", GTK_SIGNAL_FUNC(child_changed_cb), NULL);
 	gtk_signal_connect(GTK_OBJECT(mdi), "app_created", GTK_SIGNAL_FUNC(customize_app_cb), NULL);
+	gtk_signal_connect(GTK_OBJECT(mdi), "add_view", GTK_SIGNAL_FUNC(add_view_cb), NULL);
 
     /* load preferences */
     load_configuration();

@@ -1,3 +1,13 @@
+1999-03-10  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* main.c (add_view_cb, cursor_moved_cb): new functions to
+	display the cursor offset in the statusbar.
+	(main): connect add_view_cb to MDI add_view signal.
+	* ghex.h: declare offset_base.
+	* preferences.c: add an option menu for selecting the base
+	for cursor offset displaying (hex or decimal).
+	* config.c: load and save offset base prefs.
+	
 1999-02-21  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* hex-document.c (hex_document_new): leave freeing stuff to

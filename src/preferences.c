@@ -53,6 +53,7 @@ gchar *mdi_type_label[NUM_MDI_MODES] = {
 
 void create_prefs_dialog(PropertyUI *pui) {
 	GtkWidget *vbox, *label, *frame, *box, *entry, *fbox, *flabel;
+	GtkWidget *menu, *item;
 	GtkAdjustment *undo_adj;
 	GSList *group;
 	
@@ -84,6 +85,33 @@ void create_prefs_dialog(PropertyUI *pui) {
 	pui->spin = gtk_spin_button_new(undo_adj, 1, 0);
 	gtk_box_pack_end (GTK_BOX(box), GTK_WIDGET(pui->spin), FALSE, TRUE, GNOME_PAD);
 	gtk_widget_show(pui->spin);
+
+	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 2);
+
+	box = gtk_hbox_new(FALSE, 0);
+	gtk_widget_show(box);
+
+	label = gtk_label_new(_("Show cursor offset in"));
+	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
+	gtk_widget_show(label);
+
+	pui->offset_menu = gtk_option_menu_new();
+	gtk_widget_show(pui->offset_menu);
+	menu = gtk_menu_new();
+	item = gtk_menu_item_new_with_label(_("decimal"));
+	gtk_signal_connect(GTK_OBJECT(item), "activate",
+					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
+	gtk_widget_show(item);
+	gtk_menu_append(GTK_MENU(menu), item);
+	item = gtk_menu_item_new_with_label(_("hexadecimal"));
+	gtk_widget_show(item);
+	gtk_menu_append(GTK_MENU(menu), item);
+	gtk_option_menu_set_menu(GTK_OPTION_MENU(pui->offset_menu), menu);
+	gtk_signal_connect(GTK_OBJECT(item), "activate",
+					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
+	pui->offset16 = item;
+	gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(pui->offset_menu), FALSE, TRUE, GNOME_PAD);
 
 	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 2);
 
@@ -200,6 +228,11 @@ static void set_prefs(PropertyUI *pui) {
 			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->mdi_type[i]), TRUE);
 			break;
 		}
+
+	if(offset_base == OFFSET_BASE_16)
+		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 1);
+	else
+		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 0);
 }
 
 /*
@@ -251,6 +284,11 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 			child = child->next;
 		}
 	}
+
+	if(pui->offset16 == gtk_menu_get_active(GTK_MENU(gtk_option_menu_get_menu(GTK_OPTION_MENU(pui->offset_menu)))))
+		offset_base = OFFSET_BASE_16;
+	else
+		offset_base = OFFSET_BASE_10;
 
 	if(strcmp(gnome_font_picker_get_font_name(GNOME_FONT_PICKER
 											  (pui->font_button)), def_font_name) != 0) {

@@ -34,8 +34,13 @@
 #include "gtkhex.h"
 
 #define NO_BUFFER_LABEL "No buffer"
+
 #define DEFAULT_FONT    "-adobe-courier-medium-r-normal--12-*-*-*-*-*-*-*"
+
 #define MAX_MAX_UNDO_DEPTH 100000
+
+#define OFFSET_BASE_16 16
+#define OFFSET_BASE_10 10
 
 extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[];
 
@@ -53,6 +58,7 @@ typedef struct _PropertyUI {
 	GtkRadioButton *mdi_type[NUM_MDI_MODES];
 	GtkRadioButton *group_type[3];
 	GtkWidget *font_button, *spin;
+	GtkWidget *offset_menu, *offset16;
 } PropertyUI;
 
 typedef struct _JumpDialog {
@@ -108,6 +114,7 @@ extern GdkFont *def_font;
 extern gchar *def_font_name;
 
 extern guint max_undo_depth;
+extern guint offset_base;
 
 extern gint def_group_type;
 extern guint group_type[3];
