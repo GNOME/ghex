@@ -1,0 +1,584 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "1.99.0.1">
+  <!ENTITY manrevision "2.3">
+  <!ENTITY date "August 2002">
+  <!ENTITY app "GHex">
+]>
+
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Feb 12, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="ko">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo>
+    <title>&app; 설명서 V&manrevision;</title>
+
+    <copyright> 
+      <year>2002</year> 
+      <holder>Sun Microsystems</holder> 
+    </copyright> 
+    <copyright> 
+      <year>1998</year>	
+      <year>1999</year> 
+      <year>2000</year> 
+      <holder>Jaka Mocnik</holder> 
+    </copyright>
+	<!-- translators: uncomment this:
+  	<copyright>
+   	  <year>2002</year>
+      <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  	</copyright>
+   	-->
+
+    <publisher> 
+      <publishername> 그놈 문서 프로젝트 </publishername> 
+    </publisher> 
+
+   &legal;
+   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+	any of this. -->
+
+    <authorgroup>
+      <author> 
+		<firstname>Sun</firstname> 
+		<surname>그놈 문서 팀</surname> 
+		<affiliation> 
+	  		<orgname>Sun Microsystems</orgname> 
+	  		<address> <email>gdocteam@sun.com</email> </address>
+		</affiliation>
+      </author>
+      <author> 
+		<firstname>Jaka</firstname> 
+		<surname>Mocnik</surname> 
+		<affiliation> 
+	  		<orgname>그놈 문서 프로젝트</orgname> 
+	  		<address> <email>jaka@gnu.org</email> </address>
+		</affiliation>
+      </author>
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+      <othercredit role="translator">
+		<firstname>Latin</firstname> 
+		<surname>Translator 1</surname> 
+		<affiliation> 
+	 		<orgname>Latin Translation Team</orgname> 
+	  		<address> <email>translator@gnome.org</email> </address> 
+		</affiliation>
+		<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
+ 
+    <revhistory>
+      <revision> 
+			<revnumber>&app; 설명서 V&manrevision;</revnumber> 
+			<date>&date;</date> 
+			<revdescription> 
+	  			<para role="author">Sun 그놈 문서 팀
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">그놈 문서 프로젝트</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex 설명서 V2.2</revnumber> 
+			<date>2002년 8월</date> 
+			<revdescription> 
+	  			<para role="author">Sun 그놈 문서 팀
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">그놈 문서 프로젝트</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex 설명서 V2.1</revnumber> 
+			<date>2002년 7월</date> 
+			<revdescription> 
+	  			<para role="author">Sun 그놈 문서 팀
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">그놈 문서 프로젝트</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex 설명서 V2.0</revnumber> 
+			<date>2002년 3월</date> 
+			<revdescription> 
+	  			<para role="author">Sun 그놈 문서 팀
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">그놈 문서 프로젝트</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex 설명서 V1.0</revnumber> 
+			<date>2000년</date> 
+			<revdescription> 
+	  			<para role="author">Jaka Mocnik
+	    		<email>jaka@gnu.org</email>
+	  			</para>
+	  			<para role="publisher">그놈 문서 프로젝트</para>
+			</revdescription>
+      </revision>
+    </revhistory>
+
+    <releaseinfo>이 설명서에서는 &app;의 버전 &appversion;에 대해 설명합니다.
+    </releaseinfo>
+    <legalnotice> 
+      <title>피드백</title>
+      <para>&app; 응용프로그램 또는 이 설명서에 대한 버그를 보고하거나
+	 의견을 제시하려면    
+	<ulink url="ghelp:gnome-feedback" type="help">그놈 피드백 페이지</ulink>에 있는 지시 사항을 따르십시오. 
+      </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice>
+  </articleinfo>
+
+  <indexterm> 
+    <primary>GHex</primary> 
+  </indexterm> 
+
+
+<!-- ============= Document Body ============================= -->
+
+<!-- ============= Introduction ============================== -->
+
+<sect1 id="ghex-intro">
+<title>소개</title>
+<para><application>&app;</application> 응용프로그램을 사용하면 다음 작업을 수행할 수 있습니다.</para>
+<itemizedlist>
+<listitem><para>파일을 ASCII와 16진수 형식으로 동시에 봅니다. </para>
+</listitem>
+<listitem><para>파일을 ASCII 또는 16진수 형식으로 편집합니다.</para>
+</listitem>
+</itemizedlist>
+</sect1>
+
+<!-- ============= Getting Started ============================== -->
+
+<sect1 id="ghex-getting-started">
+<title>시작하기</title>
+
+<!-- ============= To Start GHex ============================== -->
+
+<sect2 id="ghex-to-start">
+<title>&app;을(를) 시작하려면</title>
+
+<para>다음과 같은 방법으로 <application>&app;</application>을(를) 시작할 수 있습니다.</para>
+<variablelist>
+<varlistentry>
+<term><guimenu>응용프로그램</guimenu> 메뉴</term>
+<listitem>
+<para> 
+<menuchoice>
+<guisubmenu>액세서리</guisubmenu>
+<guimenuitem>16진수 편집기</guimenuitem>
+</menuchoice>를 선택합니다. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>명령줄</term>
+<listitem>
+<para>명령줄에서 <application>&app;</application>을(를) 실행할  파일을 하나 또는 여러 개 열 수 있습니다. 명령줄에서 파일을 여러 개 열려면 다음 명령을 입력한 다음 <keycap>Return</keycap> 키를 누릅니다.</para>
+<para><command>ghex2</command> <replaceable>file1.txt</replaceable> <replaceable>file2.txt</replaceable></para>
+<para>여기에서 <replaceable>file1.txt</replaceable>와 <replaceable>file2.txt</replaceable>는 열려는 파일의 이름입니다.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2 id="ghex-when-you-start">
+<title>&app; 시작</title>
+
+<para><application>&app;</application>을(를) 시작하면 다음 창이 표시됩니다.</para>
+
+<!-- ==== Figure ==== -->
+<figure id="ghex-window-empty">
+<title>파일을 열기 전의 &app; 창</title>
+<screenshot>
+ <mediaobject>
+   <imageobject>
+     <imagedata fileref="figures/ghex_window_empty.png" format="PNG"/>
+   </imageobject>
+ <textobject>
+   <phrase>파일을 열기 전에 GHex 주 창을 표시합니다.</phrase>
+ </textobject>
+ </mediaobject>
+</screenshot>
+</figure>
+<!-- ==== End of Figure ==== -->
+
+</sect2>
+
+
+<!-- ============= To Open a file ============================== -->
+
+<sect2 id="ghex-open-file">
+<title>파일을 열려면</title>
+<para>파일을 열려면 <menuchoice>
+<guimenu>파일</guimenu>
+<guimenuitem>열기</guimenuitem>
+</menuchoice>를 선택합니다. 열려는 파일을 선택한 다음 <guibutton>확인</guibutton>을 클릭합니다. <application>&app;</application>에서는 파일을 여러 개 열 수 있습니다. <application>&app;</application>은(는) 새 창에 각 파일을 표시합니다.</para>
+<para><application>&app;</application>에서 파일을 열면 다음 창에 파일이 표시됩니다.</para>
+
+<!-- ==== Figure ==== -->
+<figure id="ghex-window-open">
+<title>파일이 열려 있는 &app; 창</title>
+<screenshot>
+ <mediaobject>
+   <imageobject>
+     <imagedata fileref="figures/ghex_window_open.png" format="PNG"/>
+   </imageobject>
+ <textobject>
+   <phrase>파일이 열려 있는 GHex 주 창을 표시합니다.</phrase>
+ </textobject>
+ </mediaobject>
+</screenshot>
+</figure>
+<!-- ==== End of Figure ==== -->
+
+<para><application>&app;</application> 창에는 다음 요소가 들어 있습니다. </para>
+<variablelist>
+<varlistentry>
+<term>메뉴 모음</term>
+<listitem>
+<para>메뉴 모음의 메뉴에는 <application>&app;</application>에서 파일 작업을 수행하는 데 필요한 명령이 모두 들어 있습니다.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>커서 오프셋 열</term>
+<listitem>
+<para>커서 오프셋은 파일 시작 부분과 각 줄의 첫 바이트 간의 거리입니다. 
+기본적으로 <application>&app;</application>은(는) 16진수 보기의 왼쪽에 커서 오프셋 열을 표시합니다.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>왼쪽 표시 창</term>
+<listitem>
+<para>표시 영역의 왼쪽 표시 창에는 파일의 16진수 보기가 표시됩니다.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>오른쪽 표시 창</term>
+<listitem>
+<para>표시 영역의 오른쪽 표시 창에는 파일의 ASCII 보기가 표시됩니다.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+
+<!-- ============= Usage ============================== -->
+
+<sect1 id="ghex-usage">
+<title>사용</title>
+
+<!-- ============= To Edit a File ============================== -->
+
+<sect2 id="ghex-edit-file">
+<title>파일을 편집하려면</title>
+<para>파일을 편집하려면 다음 단계를 수행합니다. </para>
+<orderedlist>
+<listitem><para>파일의 16진수 보기 또는 ASCII 보기를 클릭합니다. 커서가 활성화되어 있는 보기에는 전체 커서가 표시됩니다. 커서가 활성화되어 있지 않은 보기에는 커서의 윤곽만 표시됩니다. </para>
+</listitem>
+<listitem><para>다음 방법 중 하나를 사용하여 커서를 파일 주변으로 이동시킵니다.</para>
+<itemizedlist>
+<listitem><para>창에서 스크롤 바를 사용하거나 키보드에 있는 화살표 키를 사용하여 파일을 스크롤합니다.</para>
+</listitem>
+<listitem><para><menuchoice>
+<guimenu>편집</guimenu>
+<guimenuitem>바이트로 이동</guimenuitem>
+</menuchoice>을 선택하고 커서 오프셋을 10진수 또는 16진수 값으로 입력한 다음 <guibutton>확인</guibutton>을 클릭합니다. 16진수 값은 0x 다음에 오프셋을 지정하는 형식이어야 합니다(예: 0x3).</para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>일반 텍스트 파일을 편집하는 것과 동일한 방식으로 ASCII 형식을 편집합니다. 0&tilde;9 및 a&tilde;f 값을 사용하여 16진수 형식을 편집합니다.</para>
+</listitem>
+</orderedlist>
+<para>기존 데이터를 겹쳐쓰지 않고 데이터를 삽입하려면 <menuchoice>
+<guimenu>편집</guimenu>
+<guimenuitem>삽입 모드</guimenuitem>
+</menuchoice>를 선택합니다.</para>
+</sect2>
+
+<!-- ============= To Save a File ============================== -->
+
+<sect2 id="ghex-save-file"> 
+<title>파일을 저장하려면</title>
+<para>다음과 같은 방법으로 파일을 저장할 수 있습니다.</para>
+<itemizedlist>
+<listitem><para>현재 파일에 대한 변경 내용을 저장하려면 <menuchoice>
+<guimenu>파일</guimenu>
+<guimenuitem>저장</guimenuitem>
+</menuchoice>을 선택합니다.</para>
+</listitem>
+<listitem><para>현재 파일을 새 파일 이름으로 저장하려면 <menuchoice>
+<guimenu>파일</guimenu>
+<guimenuitem>다른 이름으로 저장</guimenuitem>
+</menuchoice>을 선택합니다. <guilabel>버퍼를 다른 이름으로 저장할 파일 선택</guilabel> 대화 상자에 파일 이름을 입력한 다음 <guibutton>확인</guibutton>을 클릭합니다.</para>
+</listitem>
+</itemizedlist>
+</sect2>
+
+<!-- ============= To Find Data in a File ============================== -->
+
+<sect2 id="ghex-find-data">
+<title>파일에서 데이터를 찾으려면</title>
+<para>파일에서 16진수 또는 ASCII 문자열을 검색하려면 다음 단계를 수행합니다. </para>
+<orderedlist>
+<listitem><para><menuchoice>
+<guimenu>편집</guimenu>
+<guimenuitem>찾기</guimenuitem>
+</menuchoice>를 선택합니다.</para>
+</listitem>
+<listitem><para><guilabel>데이터 찾기</guilabel> 대화 상자에서 다음 옵션 중 하나를 선택합니다.</para>
+<itemizedlist>
+<listitem><para><guilabel>16진수 데이터 찾기</guilabel></para>
+</listitem>
+<listitem><para><guilabel>ASCII 데이터 찾기</guilabel></para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>찾을 문자열을 입력합니다.</para>
+</listitem>
+<listitem><para>동일한 다음 문자열을 찾으려면 <guibutton>다음 찾기</guibutton>를 클릭합니다.</para>
+</listitem>
+<listitem><para>동일한 이전 문자열을 찾으려면 <guibutton>이전 찾기</guibutton>를 클릭합니다.</para>
+</listitem>
+
+</orderedlist>
+</sect2>
+
+<!-- ============= To Find and Replace Data in a File ====================== -->
+
+<sect2 id="ghex-find-replace-data">
+<title>파일에서 데이터를 찾아 바꾸려면</title>
+<para>파일에서 16진수 또는 ASCII 문자열을 검색하여 이 문자열을 다른 문자열로 바꾸려면 다음 단계를 수행합니다.</para>
+<orderedlist>
+<listitem><para><menuchoice>
+<guimenu>편집</guimenu>
+<guimenuitem>바꾸기</guimenuitem>
+</menuchoice>를 선택합니다.</para>
+</listitem>
+<listitem><para><guilabel>데이터 찾기 및 바꾸기</guilabel> 대화 상자에서 다음 옵션 중 하나를 선택합니다.</para>
+<itemizedlist>
+<listitem><para><guilabel>16진수 데이터 바꾸기</guilabel></para>
+</listitem>
+<listitem><para><guilabel>ASCII 데이터 바꾸기</guilabel></para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>첫 번째 텍스트 상자에는 찾을 문자열을 입력합니다. </para>
+</listitem>
+<listitem><para>두 번째 텍스트 상자에는 찾은 문자열을 바꾸는 데 사용할 문자열을 입력합니다. </para>
+</listitem>
+<listitem><para><guibutton>다음 찾기</guibutton>를 클릭합니다.</para>
+</listitem>
+<listitem><para><guibutton>바꾸기</guibutton>를 클릭하여 현재 일치하는 문자열을 바꾸거나 <guibutton>모두 바꾸기</guibutton>를 클릭하여 일치하는 모든 문자열을 바꿉니다.</para>
+</listitem>
+</orderedlist>
+</sect2>
+
+<!-- ========== To Add or Remove Additional Views of a File ================ -->
+
+<sect2 id="ghex-add-remove-views">
+<title>파일에 대한 보기를 추가하거나 제거하려면</title>
+<para><application>&app;</application> 창이나 바탕 화면에 현재 파일의 보기를 
+추가하려면
+<menuchoice>
+<guimenu>보기</guimenu>
+<guimenuitem>보기 추가</guimenuitem>
+</menuchoice>를 선택합니다. </para>
+<para>현재 파일의 보기를 제거하려면 <menuchoice>
+<guimenu>보기</guimenu>
+<guimenuitem>보기 제거</guimenuitem>
+</menuchoice>를 선택합니다. 열려 있는 마지막 보기를 제거하면 응용프로그램이 종료됩니다.</para>
+</sect2>
+
+<!-- ============= To Export the GHex Display to HTML =================== -->
+
+<sect2 id="ghex-export-to-html">
+<title>&app;에 표시된 내용을 HTML로 내보내려면</title>
+<para><application>&app;</application> 창에 포함된 데이터를 HTML로 내보내려면 <menuchoice>
+<guimenu>파일</guimenu>
+<guimenuitem>HTML로 저장</guimenuitem>
+</menuchoice>을 선택합니다. 디렉토리를 선택하고 HTML 파일의 이름을 지정한 다음 <guibutton>확인</guibutton>을 클릭합니다. <application>&app;</application>은(는) 다음 작업을 구현합니다. <itemizedlist>
+<listitem><para><application>&app;</application> 창에 표시되는 각 데이터 페이지에 대해 별도의 HTML 파일을 만듭니다.</para>
+</listitem>
+<listitem><para>기본 파일 이름으로 지정한 HTML 파일 이름을 사용합니다. </para>
+</listitem>
+<listitem><para>파일 이름에 페이지 번호를 첨가하여 파일을 구분합니다.</para>
+</listitem>
+</itemizedlist> 예를 들어, 파일 이름을 <filename>log.html</filename>로 지정하면 <application>&app;</application>이(가) 
+<filename>log00000000.html</filename>, 
+<filename>log00000001.html</filename>, 
+<filename>log00000002.html</filename> 등의 이름을 가진 HTML 파일을 만듭니다.</para>
+</sect2>
+
+<!-- ============= To View a Character Table ================ -->
+
+<sect2 id="ghex-view-character-table">
+<title>문자 테이블을 보려면</title>
+<para>0&tilde;255 값에 대한 ASCII, 16진수, 10진수, 8진수 및 2진수 표현이 포함된 테이블을 표시하려면 <menuchoice>
+<guimenu>창</guimenu>
+<guimenuitem>문자 테이블</guimenuitem>
+</menuchoice>을 선택합니다.</para>
+</sect2>
+
+<!-- ============= To View Data Conversions ===================== -->
+
+<sect2 id="ghex-view-data-conversions">
+<title>데이터 변환을 보려면</title>
+<para>최대 4바이트 데이터에 대해 2진수, 10진수, 16진수 및 ASCII 변환을 표시하려면 다음 단계를 수행합니다.</para>
+<orderedlist>
+<listitem><para><menuchoice>
+<guimenu>창</guimenu>
+<guimenuitem>기본 변환기</guimenuitem>
+</menuchoice>를 선택합니다.</para>
+</listitem>
+<listitem><para>다음 작업 중 하나를 수행합니다.</para>
+	<itemizedlist>
+	<listitem><para><guilabel>기본 변환기</guilabel> 대화 상자의 필드 중 하나에 변환할 데이터를 입력한 다음 <keycap>Return</keycap> 키를 누릅니다. </para>
+	</listitem>
+	<listitem><para>현재 파일의 커서 위치에 있는 데이터의 변환을 표시하려면 <guibutton>커서 값 가져오기</guibutton> 버튼을 클릭합니다.</para>
+	</listitem>
+	</itemizedlist>
+	<para><application>&app;</application>은(는) 다른 필드의 값을 갱신하여 데이터 변환을 표시합니다. </para>
+</listitem>
+</orderedlist>
+</sect2>
+
+<!-- ============= To Print a File ===================== -->
+
+<sect2 id="ghex-print-file">
+<title>파일을 인쇄하려면</title>
+<para>파일을 인쇄하려면 <menuchoice>
+<guimenu>파일</guimenu>
+<guimenuitem>인쇄</guimenuitem>
+</menuchoice>를 선택합니다. <guilabel>인쇄</guilabel> 대화 상자에서 필요한 인쇄 옵션을 선택한 다음 <guibutton>확인</guibutton>을 클릭합니다. </para>
+<para>파일의 인쇄 사본을 미리 보려면 <menuchoice>
+<guimenu>파일</guimenu>
+<guimenuitem>인쇄 미리 보기</guimenuitem>
+</menuchoice>를 선택합니다.</para>
+</sect2>
+
+
+</sect1>
+
+<!-- ============= Customization ============================== -->
+
+<sect1 id="ghex-prefs"> 
+<title>환경 설정</title>
+<para><application>&app;</application>을(를) 구성하려면 <menuchoice>
+	<guimenu>편집</guimenu>
+	<guimenuitem>환경 설정</guimenuitem>
+	</menuchoice>을 선택합니다. <guilabel>환경 설정</guilabel> 대화 상자는 다음 탭 섹션으로 구성되어 있습니다.</para>
+<itemizedlist>
+<listitem><para><xref linkend="ghex-prefs-editing"/></para>
+</listitem>
+<listitem><para><xref linkend="ghex-prefs-display"/></para>
+</listitem>
+<listitem><para><xref linkend="ghex-prefs-printing"/></para>
+</listitem>
+</itemizedlist>
+
+<!-- ============= Editing Tabbed Section ============================== -->
+
+<sect2 id="ghex-prefs-editing">
+<title>편집</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>실행 취소 최대 횟수</guilabel> </term>
+<listitem>
+<para>이 스핀 상자를 사용하면 <guimenu>편집</guimenu> 메뉴의 <guimenuitem>실행 취소</guimenuitem> 메뉴 항목을 통해 취소할 수 있는 편집 내용의 최대 개수를 지정할 수 있습니다. </para>
+<!-- <para>Default: 100.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>상태 표시줄에서 커서 오프셋을 표시하는 방법</guilabel> </term>
+<listitem>
+<para>이 드롭다운 목록 상자를 사용하여 커서 오프셋의 표시 형식을 선택합니다. 10진수나 16진수 형식을 사용할 수도 있고 형식 지정자 x, o, s만 포함하는 사용자 정의 인쇄 스타일 문자열 형식을 사용할 수도 있습니다. </para>
+<!-- <para>Default: <guilabel>Hexadecimal</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>오프셋 열 표시</guilabel> </term>
+<listitem>
+<para>커서 오프셋을 <application>&app;</application> 창의 16진수 보기 왼쪽 열에 표시하려면 이 옵션을 선택합니다. </para>
+<!-- <para>Default: selected.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<!-- ============= Display Tabbed Section ======================== -->
+
+<sect2 id="ghex-prefs-display">
+<title>표시</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>글꼴</guilabel> </term>
+<listitem>
+<para>글꼴 선택 대화 상자를 표시하려면 이 버튼을 클릭합니다. 글꼴 선택 대화 상자를 사용하여 기존 글꼴 정보를 편집하거나 새 글꼴 정보를 입력합니다. <application>&app;</application>에 파일 내용을 표시하기 위한 글꼴 유형, 스타일 및 크기를 지정한 다음 <guibutton>확인</guibutton>을 클릭합니다. 지정된 글꼴 정보는 <guilabel>글꼴</guilabel> 버튼에 표시됩니다. </para>
+<!-- <para>Default: <guilabel>Courier 12</guilabel></para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>기본 그룹 유형</guilabel> </term>
+<listitem>
+<para>응용프로그램이 <application>&app;</application> 창에 16진수 파일 내용을 표시하는 방식을 선택합니다. 다음과 같은 옵션이 제공됩니다. </para>
+<itemizedlist>
+<listitem><para><guilabel>바이트</guilabel> - 단일 바이트</para>
+</listitem>
+<listitem><para><guilabel>단어</guilabel> - 2바이트 그룹</para>
+</listitem>
+<listitem><para><guilabel>긴 단어</guilabel> - 4바이트 그룹 </para>
+</listitem>
+</itemizedlist>
+<!-- <para>Default: <guilabel>Bytes</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<!-- ============= Printing Tabbed Section ============================== -->
+
+<sect2 id="ghex-prefs-printing">
+<title>인쇄</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>데이터 글꼴</guilabel> </term>
+<listitem>
+<para>파일에 포함된 데이터를 인쇄하는 데 사용할 글꼴의 크기를 지정하려면 <guibutton>데이터 글꼴</guibutton> 버튼을 클릭합니다. </para>
+<!-- <para>Default: <guilabel>Courier 10.0</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>헤더 글꼴</guilabel> </term>
+<listitem>
+<para>파일에 포함된 헤더 정보를 인쇄하는 데 사용할 글꼴의 크기를 지정하려면 <guibutton>헤더 글꼴</guibutton> 버튼을 클릭합니다. </para>
+<!-- <para>Default: <guilabel>Helvetica 12.0</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>테두리 그리기</guilabel> </term>
+<listitem>
+<para>이 스핀 상자를 사용하여 <application>&app;</application>이(가) 테두리 안에 인쇄할 줄 수를 지정합니다. 스핀 상자의 값이 10이면 <application>&app;</application>은(는) 파일의 처음 10줄에 대해 테두리를 인쇄합니다. </para>
+<!-- <para>Default: 0.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+
+</article>

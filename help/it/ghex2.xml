@@ -1,0 +1,576 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "1.99.0.1">
+  <!ENTITY manrevision "2.3">
+  <!ENTITY date "Agosto 2002">
+  <!ENTITY app "GHex">
+]>
+
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Feb 12, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="it">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo>
+     <title>Manuale di &app; V&manrevision;</title>
+
+    <copyright> 
+      <year>2003</year> 
+      <holder>Sun Microsystems</holder> 
+    </copyright> 
+    <copyright> 
+      <year>1998</year>	
+      <year>1999</year> 
+      <year>2000</year> 
+      <holder>Jaka Mocnik</holder> 
+    </copyright>
+	<!-- translators: uncomment this:
+  	<copyright>
+   	  <year>2002</year>
+      <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  	</copyright>
+   	-->
+
+    <publisher> 
+      <publishername> GNOME Documentation Project </publishername> 
+    </publisher> 
+
+   &legal;
+   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+	any of this. -->
+
+    <authorgroup>
+      <author> 
+		<firstname>Sun</firstname> 
+		<surname>GNOME Documentation Team</surname> 
+		<affiliation> 
+	  		<orgname>Sun Microsystems</orgname> 
+	  		<address> <email>gdocteam@sun.com</email> </address>
+		</affiliation>
+      </author>
+      <author> 
+		<firstname>Jaka</firstname> 
+		<surname>Mocnik</surname> 
+		<affiliation> 
+	  		<orgname>GNOME Documentation Project</orgname> 
+	  		<address> <email>jaka@gnu.org</email> </address>
+		</affiliation>
+      </author>
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+      <othercredit role="translator">
+		<firstname>Latin</firstname> 
+		<surname>Translator 1</surname> 
+		<affiliation> 
+	 		<orgname>Latin Translation Team</orgname> 
+	  		<address> <email>translator@gnome.org</email> </address> 
+		</affiliation>
+		<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
+ 
+    <revhistory>
+      <revision> 
+		  <revnumber>Manuale di &app; V&manrevision;</revnumber>
+		  <date>&date;</date> 
+		  <revdescription> 
+			 <para role="author">Sun GNOME Documentation Team
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>Manuale di GHex V2.2</revnumber> 
+			<date>Agosto 2002</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>Manuale di GHex V2.1</revnumber> 
+			<date>Luglio 2002</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>Manuale di GHex V2.0</revnumber> 
+			<date>Marzo 2002</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>Manuale di GHex V1.0</revnumber> 
+			<date>2000</date> 
+			<revdescription> 
+	  			<para role="author">Jaka Mocnik
+	    		<email>jaka@gnu.org</email>
+	  			</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription>
+      </revision>
+    </revhistory>
+
+    <releaseinfo>Questo manuale descrive la versione &appversion; di &app;.
+    </releaseinfo>
+    <legalnotice> 
+        <title>Commenti</title>
+      <para> Per segnalare un problema o inviare suggerimenti sull'applicazione &app; o su questo manuale, seguire le istruzioni presenti alla <ulink url="ghelp:gnome-feedback" type="help">Pagina di commenti su GNOME</ulink>. 
+      </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice>
+  </articleinfo>
+
+  <indexterm> 
+    <primary>GHex</primary> 
+  </indexterm> 
+
+
+<!-- ============= Document Body ============================= -->
+
+<!-- ============= Introduction ============================== -->
+
+<sect1 id="ghex-intro">
+<title>Introduzione</title>
+<para>L'applicazione <application>&app;</application> permette di eseguire le seguenti azioni:</para>
+<itemizedlist>
+<listitem><para>Visualizzare un file simultaneamente in formato ASCII e esadecimale. </para>
+</listitem>
+<listitem><para>Modificare un file in formato ASCII o esadecimale.</para>
+</listitem>
+</itemizedlist>
+</sect1>
+
+<!-- ============= Getting Started ============================== -->
+
+<sect1 id="ghex-getting-started"> 
+	 <title>Per iniziare</title>
+
+<!-- ============= To Start GHex ============================== -->
+
+<sect2 id="ghex-to-start">
+   <title>Avviare &app;</title>
+
+<para>Sono disponibili i seguenti metodi per avviare <application>&app;</application>:</para>
+<variablelist>
+<varlistentry>
+<term>Menu <guimenu>Programmi</guimenu></term>
+<listitem>
+<para>Scegliere 
+<menuchoice>
+<guisubmenu>Accessori</guisubmenu>
+<guimenuitem>Editor esadecimale</guimenuitem>
+</menuchoice>. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Riga di comando</term>
+<listitem>
+<para>&Egrave; possibile eseguire <application>&app;</application> dalla riga di comando ed aprire automaticamente uno o pi&ugrave; file Per aprire pi&ugrave; file dalla riga di comando, digitare il comando seguente e premere <keycap>Return</keycap>:</para>
+<para><command>ghex2</command> <replaceable>file1.txt</replaceable> <replaceable>file2.txt</replaceable></para>
+<para>dove <replaceable>file1.txt</replaceable> e <replaceable>file2.txt</replaceable> sono i nomi dei file da aprire.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2 id="ghex-when-you-start">		<title>Avvio di &app;</title>
+
+<para>All'avvio di <application>&app;</application> viene visualizzata la finestra seguente.</para>
+
+<!-- ==== Figure ==== -->
+<figure id="ghex-window-empty">
+<title>La finestra di &app; prima dell'apertura di un file</title>
+<screenshot>
+ <mediaobject>
+   <imageobject>
+     <imagedata fileref="figures/ghex_window_empty.png" format="PNG"/>
+   </imageobject>
+ <textobject>
+   <phrase>Mostra la finestra principale di GHex prima dell'apertura di un file.</phrase>
+ </textobject>
+ </mediaobject>
+</screenshot>
+</figure>
+<!-- ==== End of Figure ==== -->
+
+</sect2>
+
+
+<!-- ============= To Open a file ============================== -->
+
+<sect2 id="ghex-open-file">
+<title>Aprire un file</title>
+<para>Per aprire un file, scegliere <menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Apri</guimenuitem>
+</menuchoice>. Selezionare il file da aprire e fare clic su <guibutton>OK</guibutton>. <application>&app;</application> consente di aprire contemporaneamente pi&ugrave; file. <application>&app;</application> visualizza ogni file in una nuova finestra.</para>
+<para>Dopo avere aperto un file in <application>&app;</application>, l'applicazione visualizza il file nella finestra seguente.</para>
+
+<!-- ==== Figure ==== -->
+<figure id="ghex-window-open">
+<title>Finestra di &app; con un file aperto</title>
+<screenshot>
+ <mediaobject>
+   <imageobject>
+     <imagedata fileref="figures/ghex_window_open.png" format="PNG"/>
+   </imageobject>
+ <textobject>
+   <phrase>Mostra la finestra principale di GHex con un file aperto</phrase>
+ </textobject>
+ </mediaobject>
+</screenshot>
+</figure>
+<!-- ==== End of Figure ==== -->
+
+<para>La finestra di <application>&app;</application> contiene i seguenti elementi: </para>
+<variablelist>
+<varlistentry>
+<term>Barra dei menu</term>
+<listitem>
+<para>I menu contengono tutti i comandi utilizzati per eseguire le varie attivit&agrave; sui file in <application>&app;</application>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Colonna della posizione del cursore</term>
+<listitem>
+<para>La posizione del cursore rappresenta la distanza tra l'inizio del file e il primo byte di ogni riga. 
+Nell'impostazione predefinita, <application>&app;</application> visualizza la colonna delle posizioni alla sinistra della visualizzazione esadecimale.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Riquadro di visualizzazione di sinistra</term>
+<listitem>
+<para>Il riquadro di visualizzazione posto nella parte sinistra dello schermo contiene una vista del file in formato esadecimale.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Riquadro di visualizzazione di destra</term>
+<listitem>
+<para>Il riquadro di visualizzazione posto nella parte destra dello schermo contiene una vista del file in formato ASCII.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+
+<!-- ============= Usage ============================== -->
+
+<sect1 id="ghex-usage">
+<title>Utilizzo</title>
+
+<!-- ============= To Edit a File ============================== -->
+
+<sect2 id="ghex-edit-file">
+<title>Modificare un file</title>
+<para>Per modificare un file, procedere come segue: </para>
+<orderedlist>
+<listitem><para>Fare clic nell'area della visualizzazione ASCII o esadecimale del file. Nella visualizzazione in cui il cursore &egrave; attivo compare un cursore completo. Nella visualizzazione in cui il cursore non &egrave; attivo, compare solo il contorno del cursore. </para>
+</listitem>
+<listitem><para>Usare uno dei metodi seguenti per spostare il cursore all'interno del file:</para>
+<itemizedlist>
+<listitem><para>Spostarsi usando la barra di scorrimento della finestra o i tasti freccia.</para>
+</listitem>
+<listitem><para>Scegliere <menuchoice>
+<guimenu>Modifica</guimenu>
+<guimenuitem>Vai al byte</guimenuitem>
+</menuchoice>, digitare il valore decimale o esadecimale della posizione e fare clic su <guibutton>OK</guibutton>. Per indicare un valore esadecimale, utilizzare il formato 0x seguito dalla posizione, ad esempio 0x3.</para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>Il formato ASCII pu&ograve; essere modificato come un normale file di testo. Per modificare il formato esadecimale, usare i valori 0-9 e a-f.</para>
+</listitem>
+</orderedlist>
+<para>Per inserire nuovi dati senza sovrascrivere quelli esistenti, scegliere <menuchoice>
+<guimenu>Modifica</guimenu>
+<guimenuitem>Modo inserimento</guimenuitem>
+</menuchoice>.</para>
+</sect2>
+
+<!-- ============= To Save a File ============================== -->
+
+<sect2 id="ghex-save-file">
+<title>Salvare un file</title>
+<para>Sono disponibili i seguenti metodi per salvare un file:</para>
+<itemizedlist>
+<listitem><para>Per salvare le modifiche al file corrente, scegliere <menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Salva</guimenuitem>
+</menuchoice>.</para>
+</listitem>
+<listitem><para>Per salvare il file corrente con un nuovo nome, scegliere <menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Salva con nome</guimenuitem>
+</menuchoice>. Inserire il nome del file nella finestra di dialogo <guilabel>Selezionare un file in cui salvare il buffer</guilabel> e fare clic su <guibutton>OK</guibutton>.</para>
+</listitem>
+</itemizedlist>
+</sect2>
+
+<!-- ============= To Find Data in a File ============================== -->
+
+<sect2 id="ghex-find-data">
+<title>Trovare le informazioni all'interno di un file</title>
+<para>Per ricercare una stringa esadecimale o ASCII all'interno di un file, procedere come segue: </para>
+<orderedlist>
+<listitem><para>Scegliere <menuchoice>
+<guimenu>Modifica</guimenu>
+<guimenuitem>Trova</guimenuitem>
+</menuchoice>.</para>
+</listitem>
+<listitem><para>Nella finestra di dialogo <guilabel>Trova dati</guilabel>, scegliere una delle seguenti opzioni:</para>
+<itemizedlist>
+<listitem><para><guilabel>Cerca dati esadecimali</guilabel></para>
+</listitem>
+<listitem><para><guilabel>Cerca dati ASCII</guilabel></para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>Digitare la stringa da trovare.</para>
+</listitem>
+<listitem><para>Per trovare la successiva occorrenza, fare clic su <guibutton>Trova successivo</guibutton>.</para>
+</listitem>
+<listitem><para>Fare clic su <guibutton>Trova precedente</guibutton> per trovare la precedente occorrenza della stringa.</para>
+</listitem>
+
+</orderedlist>
+</sect2>
+
+<!-- ============= To Find and Replace Data in a File ====================== -->
+
+<sect2 id="ghex-find-replace-data">
+<title>Trovare e sostituire i dati in un file</title>
+<para>Per ricercare una stringa esadecimale o ASCII all'interno di un file e sostituirla con una differente, procedere come segue:</para>
+<orderedlist>
+<listitem><para>Scegliere <menuchoice>
+<guimenu>Modifica</guimenu>
+<guimenuitem>Sostituisci</guimenuitem>
+</menuchoice>.</para>
+</listitem>
+<listitem><para>Nella finestra di dialogo <guilabel>Cerca e sostituisci dati</guilabel>, scegliere una delle seguenti opzioni:</para>
+<itemizedlist>
+<listitem><para><guilabel>Sostituisci dati esadecimali</guilabel></para>
+</listitem>
+<listitem><para><guilabel>Sostituisci dati ASCII</guilabel></para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>Nella prima casella di testo, digitare la stringa da trovare. </para>
+</listitem>
+<listitem><para>Nella seconda casella di testo, digitare la stringa con cui sostituire la stringa trovata.</para>
+</listitem>
+<listitem><para>Fare clic su <guibutton>Trova successivo</guibutton>.</para>
+</listitem>
+<listitem><para>Fare clic su <guibutton>Sostituisci</guibutton> per sostituire la prima stringa individuata, o fare clic su <guibutton>Sostituisci tutto</guibutton> per sostituire la stringa in tutto il file.</para>
+</listitem>
+</orderedlist>
+</sect2>
+
+<!-- ========== To Add or Remove Additional Views of a File ================ -->
+
+<sect2 id="ghex-add-remove-views">
+<title>Aggiungere o rimuovere visualizzazioni supplementari di un file</title>
+<para>Per aggiungere una visualizzazione supplementare del file corrente nella finestra di <application>&app;</application> o sul desktop, scegliere <menuchoice>
+<guimenu>Vista</guimenu>
+<guimenuitem>Aggiungi una vista</guimenuitem>
+</menuchoice>. </para>
+<para>Per rimuovere una visualizzazione del file corrente, scegliere <menuchoice>
+<guimenu>Visualizzazione</guimenu>
+<guimenuitem>Rimuovi visualizzazione</guimenuitem>
+</menuchoice>. Quando viene rimossa l'ultima vista aperta, l'applicazione si chiude. </para>
+</sect2>
+
+<!-- ============= To Export the GHex Display to HTML =================== -->
+
+<sect2 id="ghex-export-to-html">
+<title>Esportare la visualizzazione di &app; in formato HTML</title>
+<para>Per esportare in formato HTML i dati contenuti nella finestra di <application>&app;</application>, scegliere <menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Salva come HTML</guimenuitem>
+</menuchoice>. Scegliere una directory e specificare un nome per il file HTML, quindi fare clic su <guibutton>OK</guibutton>. <application>&app;</application> esegue le seguenti azioni: <itemizedlist>
+<listitem><para>Crea un file HTML separato per ogni pagina di dati visualizzata nella finestra di <application>&app;</application>.</para>
+</listitem>
+<listitem><para>Usa il nome del file HTML che &egrave; stato specificato come base per il nome dei file che vengono generati. </para>
+</listitem>
+<listitem><para>Aggiunge un numero al nome del file per indicare la pagina.</para>
+</listitem>
+</itemizedlist> Ad esempio, se si specifica il nome  <filename>log.html</filename>, <application>&app;</application> crea una serie di file HTML denominati <filename>log00000000.html</filename>, <filename>log00000001.html</filename>, <filename>log00000002.html</filename> e cos&igrave; via.</para>
+</sect2>
+
+<!-- ============= To View a Character Table ================ -->
+
+<sect2 id="ghex-view-character-table">
+<title>Visualizzare una tabella caratteri</title>
+<para>Per visualizzare una tabella che contiene le rappresentazioni ASCII, esadecimale, decimale, ottale e binaria dei valori da 0 a 255, scegliere <menuchoice>
+<guimenu>Finestre</guimenu>
+<guimenuitem>Tabella caratteri</guimenuitem>
+</menuchoice>.</para>
+</sect2>
+
+<!-- ============= To View Data Conversions ===================== -->
+
+<sect2 id="ghex-view-data-conversions">
+<title>Visualizzare le conversioni di dati</title>
+<para>Per visualizzare le conversioni binaria, decimale, esadecimale e ASCII per un gruppo di dati (fino a 4 byte), procedere come segue:</para>
+<orderedlist>
+<listitem><para>Scegliere <menuchoice>
+<guimenu>Finestre</guimenu>
+<guimenuitem>Convertitore basi</guimenuitem>
+</menuchoice>.</para>
+</listitem>
+<listitem><para>Eseguire una delle seguenti azioni:</para>
+	<itemizedlist>
+	<listitem><para>Digitare i dati da convertire in uno dei campi della finestra di dialogo <guilabel>Convertitore basi</guilabel>, quindi premere <keycap>Return</keycap>. </para>
+	</listitem>
+	<listitem><para>Per visualizzare il valore di conversione dei dati relativi alla posizione del cursore nel file corrente, fare clic sul pulsante <guibutton>Ottieni valore al cursore</guibutton>.</para>
+	</listitem>
+	</itemizedlist>
+	<para><application>&app;</application> aggiorna i valori degli altri campi per visualizzare le conversioni. </para>
+</listitem>
+</orderedlist>
+</sect2>
+
+<!-- ============= To Print a File ===================== -->
+
+<sect2 id="ghex-print-file">
+<title>Stampare un file</title>
+<para>Per stampare un file, scegliere <menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Stampa</guimenuitem>
+</menuchoice>. Selezionare le opzioni di stampa appropriate nella finestra di dialogo <guilabel>Stampa</guilabel>, quindi fare clic su <guibutton>OK</guibutton>. </para>
+<para>Per visualizzare un'anteprima di stampa del file, scegliere <menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Anteprima di stampa</guimenuitem>
+</menuchoice>.</para>
+</sect2>
+
+
+</sect1>
+
+<!-- ============= Customization ============================== -->
+
+<sect1 id="ghex-prefs">
+<title>Preferenze</title>
+<para>Per configurare <application>&app;</application>, scegliere <menuchoice>
+<guimenu>Modifica</guimenu>
+<guimenuitem>Preferenze</guimenuitem>
+</menuchoice>. La finestra di dialogo <guilabel>Preferenze</guilabel> contiene le seguenti schede:</para>
+<itemizedlist>
+<listitem><para><xref linkend="ghex-prefs-editing"/></para>
+</listitem>
+<listitem><para><xref linkend="ghex-prefs-display"/></para>
+</listitem>
+<listitem><para><xref linkend="ghex-prefs-printing"/></para>
+</listitem>
+</itemizedlist>
+
+<!-- ============= Editing Tabbed Section ============================== -->
+
+<sect2 id="ghex-prefs-editing">
+<title>Editing</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>Massimo numero di livelli annullamento modifiche</guilabel> </term>
+<listitem>
+<para>Usare questa casella di selezione per specificare il numero massimo di modifiche che &egrave; possibile annullare usando la voce <guimenuitem>Annulla</guimenuitem> del menu <guimenu> Modifica</guimenu>. </para>
+<!-- <para>Default: 100.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Mostra la posizione del cursore nella barra di stato come</guilabel> </term>
+<listitem>
+<para>Usare questa casella di riepilogo per selezionare il formato in cui viene visualizzata la posizione del cursore. Il formato pu&ograve; essere decimale, esadecimale o un formato personalizzato che contenga solo gli specificatori di formato x, o e s. </para>
+<!-- <para>Default: <guilabel>Hexadecimal</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Mostra la posizione della colonna</guilabel> </term>
+<listitem>
+<para>Selezionare questa opzione per visualizzare la posizione del cursore in una colonna posta a sinistra della visualizzazione esadecimale della finestra di <application>&app;</application>. </para>
+<!-- <para>Default: selected.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<!-- ============= Display Tabbed Section ======================== -->
+
+<sect2 id="ghex-prefs-display">
+<title>Visualizzazione</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>Tipo di carattere</guilabel> </term>
+<listitem>
+<para>Fare clic su questo pulsante per visualizzare la finestra di dialogo del selettore font. Usare questa finestra per modificare le informazioni relative al tipo di carattere, o aggiungerne di nuove. Specificare il tipo di carattere, lo stile e la dimensione per la visualizzazione del contenuto dei file in <application>&app;</application>, quindi fare clic su <guibutton>OK</guibutton>. Le informazioni specificate vengono inserite nel campo <guilabel>Tipo di carattere</guilabel>. </para>
+<!-- <para>Default: <guilabel>Courier 12</guilabel></para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Tipo di gruppo di default</guilabel> </term>
+<listitem>
+<para>Selezionare il modo con cui l'applicazione visualizza il contenuto esadecimale di un file nella finestra di <application>&app;</application>. Le opzioni disponibili sono: </para>
+<itemizedlist>
+<listitem><para><guilabel>Byte</guilabel> - singoli byte.</para>
+</listitem>
+<listitem><para><guilabel>Word</guilabel> - gruppi di due byte.</para>
+</listitem>
+<listitem><para><guilabel>Longword</guilabel> - gruppi di quattro byte. </para>
+</listitem>
+</itemizedlist>
+<!-- <para>Default: <guilabel>Bytes</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<!-- ============= Printing Tabbed Section ============================== -->
+
+<sect2 id="ghex-prefs-printing">
+<title>Stampa</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>Carattere dati</guilabel> </term>
+<listitem>
+<para>Fare clic sul pulsante <guibutton>Carattere dati</guibutton> per specificare la dimensione del carattere da usare per stampare il file. </para>
+<!-- <para>Default: <guilabel>Courier 10.0</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Carattere intestazione</guilabel> </term>
+<listitem>
+<para>Fare clic su <guibutton>Carattere intestazione</guibutton> per specificare la dimensione del font da usare per stampare l'intestazione del file. </para>
+<!-- <para>Default: <guilabel>Helvetica 12.0</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Stampa bordo a rilievo</guilabel> </term>
+<listitem>
+<para>Usare questa casella di selezione per specificare il numero di righe che <application>&app;</application> deve stampare all'interno di un riquadro ombreggiato. Se il valore nella casella &egrave; 10, <application>&app;</application> stampa un riquadro ombreggiato che contiene le prime dieci righe del file. </para>
+<!-- <para>Default: 0.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+
+</article>

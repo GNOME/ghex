@@ -1,0 +1,613 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "1.99.0.1">
+  <!ENTITY manrevision "2.3">
+  <!ENTITY date "2002 年 8 月">
+  <!ENTITY app "GHex">
+]>
+
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Feb 12, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="ja">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo>
+<title>&app; のマニュアル V&manrevision;</title>
+
+    <copyright> 
+      <year>2002</year> 
+      <holder>Sun Microsystems</holder> 
+    </copyright> 
+    <copyright> 
+      <year>1998</year>	
+      <year>1999</year> 
+      <year>2000</year> 
+      <holder>Jaka Mocnik</holder> 
+    </copyright>
+	<!-- translators: uncomment this:
+  	<copyright>
+   	  <year>2002</year>
+      <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  	</copyright>
+   	-->
+
+    <publisher> 
+      <publishername> GNOME ドキュメンテーションプロジェクト</publishername> 
+    </publisher> 
+
+   &legal;
+   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+	any of this. -->
+
+    <authorgroup>
+      <author> 
+		<firstname>Sun</firstname> 
+		<surname>GNOME ドキュメンテーションチーム</surname> 
+		<affiliation> 
+	  		<orgname>Sun Microsystems</orgname> 
+	  		<address> <email>gdocteam@sun.com</email> </address>
+		</affiliation>
+      </author>
+      <author> 
+		<firstname>Jaka</firstname> 
+		<surname>Mocnik</surname> 
+		<affiliation> 
+	  		<orgname>GNOME ドキュメンテーションプロジェクト</orgname> 
+	  		<address> <email>jaka@gnu.org</email> </address>
+		</affiliation>
+      </author>
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+      <othercredit role="translator">
+		<firstname>Latin</firstname> 
+		<surname>Translator 1</surname> 
+		<affiliation> 
+	 		<orgname>Latin Translation Team</orgname> 
+	  		<address> <email>translator@gnome.org</email> </address> 
+		</affiliation>
+		<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
+ 
+    <revhistory>
+      <revision> 
+			<revnumber>&app; のマニュアル V&manrevision;</revnumber> 
+			<date>2002 年 8 月</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME ドキュメンテーションチーム
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME ドキュメンテーションプロジェクト</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex のマニュアル V2.2</revnumber> 
+			<date>2002 年 8 月</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME ドキュメンテーションチーム
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME ドキュメンテーションプロジェクト</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex のマニュアル V2.1</revnumber> 
+			<date>2002 年 7 月</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME ドキュメンテーションチーム
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME ドキュメンテーションプロジェクト</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex のマニュアル V2.0</revnumber> 
+			<date>2002 年 3 月</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME ドキュメンテーションチーム
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME ドキュメンテーションプロジェクト</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex のマニュアル V1.0</revnumber> 
+			<date>2000 年</date> 
+			<revdescription> 
+	  			<para role="author">Jaka Mocnik
+	    		<email>jaka@gnu.org</email>
+	  			</para>
+	  			<para role="publisher">GNOME ドキュメンテーションプロジェクト</para>
+			</revdescription>
+      </revision>
+    </revhistory>
+
+    <releaseinfo>このマニュアルは &app; のバージョン &appversion; について説明します。
+    </releaseinfo>
+    <legalnotice><title>フィードバック</title>
+      <para>&app; アプリケーションまたはこのマニュアルに関してバグやご意見をご報告いただく場合は、<ulink 
+url="ghelp:gnome-feedback" type="help">『GNOME フィードバックページ』</ulink> を参照してください。 
+</para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice>
+  </articleinfo>
+
+  <indexterm> 
+    <primary>GHex</primary> 
+  </indexterm> 
+
+
+<!-- ============= Document Body ============================= -->
+
+<!-- ============= Introduction ============================== -->
+
+<sect1 id="ghex-intro">
+<title>概要</title>
+<para><application>&app;</application> アプリケーションでは、下記の処理を行うことができます。</para>
+<itemizedlist>
+<listitem><para>ファイルの内容を、ASCII および 16 進形式で同時に表示する。</para>
+</listitem>
+<listitem><para>ファイルを ASCII または 16 進形式で編集する。</para>
+</listitem>
+</itemizedlist>
+</sect1>
+
+<!-- ============= Getting Started ============================== -->
+
+<sect1 id="ghex-getting-started"> 
+	 <title>基本的な使用方法</title>
+
+<!-- ============= To Start GHex ============================== -->
+
+<sect2 id="ghex-to-start"> 
+		<title>&app; を起動する</title>
+
+<para>以下の方法で <application>&app;</application> を起動してください。</para>
+<variablelist>
+<varlistentry>
+<term><guimenu>「アプリケーション」</guimenu>メニュー</term>
+<listitem>
+<para><menuchoice>
+<guisubmenu>「アクセサリ」</guisubmenu>
+<guimenuitem>「バイナリエディタ」</guimenuitem>
+</menuchoice>を選択します。</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>コマンドライン</term>
+<listitem>
+<para>コマンドラインから <application>&app;</application> 
+を実行する際には、複数のファイルを同時に開くことができます。複数のファイルを開く場合は、下記の形式でコマンドを入力
+し、<keycap>リターン</keycap> キーを押します。</para>
+<para><command>ghex2</command> <replaceable>file1.txt</replaceable> <replaceable>file2.txt</replaceable></para>
+<para>ここで <replaceable>file1.txt</replaceable> や <replaceable>file2.txt</replaceable> 
+には開きたいファイル名を指定します。</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2 id="ghex-when-you-start">
+<title>起動時の &app; の状態</title>
+
+<para><application>&app;</application> を起動すると、以下のウィンドウが表示されます。</para>
+
+<!-- ==== Figure ==== -->
+<figure id="ghex-window-empty">
+<title>ファイルを開く前の &app; ウィンドウ</title>
+<screenshot>
+ <mediaobject>
+   <imageobject>
+     <imagedata fileref="figures/ghex_window_empty.png" format="PNG"/>
+   </imageobject>
+ <textobject>
+   <phrase>ファイルを開く前の GHex メインウィンドウを表示。</phrase>
+ </textobject>
+ </mediaobject>
+</screenshot>
+</figure>
+<!-- ==== End of Figure ==== -->
+
+</sect2>
+
+
+<!-- ============= To Open a file ============================== -->
+
+<sect2 id="ghex-open-file"> 
+<title>ファイルを開く</title>
+<para>ファイルを開くには、<menuchoice>
+<guimenu>「ファイル」</guimenu>
+<guimenuitem>「開く」</guimenuitem>
+</menuchoice>を選択します。開きたいファイルを選択し、<guibutton>「了解」</guibutton>をクリックします。<application
+>&app;</application> では、複数のファイルを同時に開くことができます。<application>&app;</application> 
+は各ファイルを新しいウィンドウに表示します。</para>
+<para><application>&app;</application> で開いたファイルは、下記のウィンドウに表示されます。</para>
+
+<!-- ==== Figure ==== -->
+<figure id="ghex-window-open">
+<title>ファイルを開いた状態の &app; ウィンドウ</title>
+<screenshot>
+ <mediaobject>
+   <imageobject>
+     <imagedata fileref="figures/ghex_window_open.png" format="PNG"/>
+   </imageobject>
+ <textobject>
+   <phrase>ファイルを開いた状態の GHex メインウィンドウ</phrase>
+ </textobject>
+ </mediaobject>
+</screenshot>
+</figure>
+<!-- ==== End of Figure ==== -->
+
+<para><application>&app;</application> ウィンドウには、以下の要素が含まれています。 </para>
+<variablelist>
+<varlistentry>
+<term>メニューバー</term>
+<listitem>
+<para>メニューバーのメニューには、<application>&app;</application> 
+でのファイル操作に用いるすべてのコマンドが用意されています。</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>カーソルオフセット列</term>
+<listitem>
+<para>カーソルオフセットとは、ファイルの先頭から各行の先頭バイトまでの間隔を示します。
+通常 <application>&app;</application> は、カーソルオフセット列を 16 進表示ビューの左側に表示します。</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>左側の表示区画</term>
+<listitem>
+<para>表示領域の左側にある表示区画には、ファイルの 16 進表示ビューが表示されます。</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>右側の表示区画</term>
+<listitem>
+<para>表示領域の右側にある表示区画には、ファイルの  ASCII 表示ビューが表示されます。</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+
+<!-- ============= Usage ============================== -->
+
+<sect1 id="ghex-usage">
+<title>使用方法</title>
+
+<!-- ============= To Edit a File ============================== -->
+
+<sect2 id="ghex-edit-file">
+<title>ファイルを編集する</title>
+<para>ファイルを編集するには、下記の手順に従います。 </para>
+<orderedlist>
+<listitem><para>ファイルの ASCII ビューまたは 16 
+進ビューをクリックします。カーソルがアクティブなビューでは、カーソルがフル表示されます。カーソルがアクティブでない
+ビューでは、カーソルがアウトライン表示されます。</para>
+</listitem>
+<listitem><para>下記のいずれかの操作により、ファイル内の変更を加える位置にカーソルを移動します。</para>
+<itemizedlist>
+<listitem><para>ウィンドウ上のスクロールバーまたはキーボード上の矢印キーを用いて、ファイルをスクロールします。</para>
+</listitem>
+<listitem><para><menuchoice>
+<guimenu>「編集」</guimenu>
+<guimenuitem>「バイトに移動」</guimenuitem>
+</menuchoice>を選択し、10 進数ないし 16 
+進数でカーソルオフセットを入力し、<guibutton>「了解」</guibutton>をクリックします。なお 16 
+進数で指定する場合は、0x3 のように、オフセット値の前に 0x を付ける必要があります。</para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>ASCII 形式の場合は、通常のテキストファイルの操作と同様にして、必要な編集を行います。16 
+進形式の場合は、0 から 9 および a から f で構成される 16 進値を入力することで、必要な編集を行います。</para>
+</listitem>
+</orderedlist>
+<para>既存のデータを上書きせずに新規データを挿入したい場合は<menuchoice><guimenu>「編集」</guimenu><guimenuitem>「挿入モード」</guimenuitem></menuchoice>を選択します。</para>
+</sect2>
+
+<!-- ============= To Save a File ============================== -->
+
+<sect2 id="ghex-save-file">
+<title>ファイルを保存する</title>
+<para>ファイルの保存は、下記のいずれかの方法で行えます。</para>
+<itemizedlist>
+<listitem><para>ファイルに加えた変更を保存するには、<menuchoice>
+<guimenu>「ファイル」</guimenu>
+<guimenuitem>「保存」</guimenuitem>
+</menuchoice>を選択します。</para>
+</listitem>
+<listitem><para>現在のファイルを新規ファイル名で保存するには、<menuchoice>
+<guimenu>「ファイル」</guimenu>
+<guimenuitem>「名前をつけて保存」</guimenuitem>
+</menuchoice>を選択します。この場合は<guilabel>「バッファを書き込むファイル名を選択」</guilabel>ダイアログに新規フ
+ァイル名を入力し、<guibutton>「了解」</guibutton>をクリックします。</para>
+</listitem>
+</itemizedlist>
+</sect2>
+
+<!-- ============= To Find Data in a File ============================== -->
+
+<sect2 id="ghex-find-data">
+<title>ファイル内のデータを検索する</title>
+<para>ファイル内にある ASCII ないし 16 進の文字列を検索するには、下記の手順に従います。 </para>
+<orderedlist>
+<listitem><para><menuchoice>
+<guimenu>「編集」</guimenu>
+<guimenuitem>「検索」</guimenuitem>
+</menuchoice>を選択します。</para>
+</listitem>
+<listitem><para><guilabel>「データ検索」</guilabel>ダイアログで、下記のオプションのいずれかを選択します。</para>
+<itemizedlist>
+<listitem><para><guilabel>「16進データを検索」</guilabel></para>
+</listitem>
+<listitem><para><guilabel>「ASCIIデータを検索」</guilabel></para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>検索する文字列を入力します。</para>
+</listitem>
+<listitem><para>文字列の次の一致を検索するには、<guibutton>「次を検索」</guibutton>をクリックします。</para>
+</listitem>
+<listitem><para>文字列の前の一致を検索するには、<guibutton>「前を検索」</guibutton>をクリックします。</para>
+</listitem>
+
+</orderedlist>
+</sect2>
+
+<!-- ============= To Find and Replace Data in a File ====================== -->
+
+<sect2 id="ghex-find-replace-data">
+<title>ファイル内のデータを検索して置換する</title>
+<para>ファイル内にある ASCII ないし 16 進の文字列の検索と置換をするには、下記の手順に従います。</para>
+<orderedlist>
+<listitem><para><menuchoice>
+<guimenu>「編集」</guimenu>
+<guimenuitem>「置換」</guimenuitem>
+</menuchoice>を選択します。</para>
+</listitem>
+<listitem><para><guilabel>「
+検索およびデータの置換」</guilabel>ダイアログで、下記のオプションのいずれかを選択します。</para>
+<itemizedlist>
+<listitem><para><guilabel>「16進データを置換」</guilabel></para>
+</listitem>
+<listitem><para><guilabel>「ASCII データを置換」</guilabel></para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>最初のテキストボックスに、検索する文字列を入力します。</para>
+</listitem>
+<listitem><para>2 番目のテキストボックスに、検索した文字列と置換する文字列を入力します。</para>
+</listitem>
+<listitem><para><guibutton>「次を検索」</guibutton>をクリックします。</para>
+</listitem>
+<listitem><para>現在の該当文字列を置換するには<guibutton>「置換」</guibutton>をクリックし、すべての該当文字列を一
+度に置換するには<guibutton>「全て置換」</guibutton>をクリックします。</para>
+</listitem>
+</orderedlist>
+</sect2>
+
+<!-- ========== To Add or Remove Additional Views of a File ================ -->
+
+<sect2 id="ghex-add-remove-views">
+<title>ファイルのビューの追加および削除</title>
+<para>現在のファイルの新規ビューを<application>&app;</application>ウィンドウやデスクトップに追加するには、<menuchoice>
+<guimenu>「ビュー」</guimenu>
+<guimenuitem>「ビューを追加」</guimenuitem></menuchoice>を選択します。</para>
+<para>現在のファイルのビューを削除するには、<menuchoice>
+<guimenu>「ビュー」</guimenu>
+<guimenuitem>「ビューを削除」</guimenuitem>
+</menuchoice>を選択します。なお、開いていた最後のビューを削除すると、アプリケーションは自動的に終了します。</para>
+</sect2>
+
+<!-- ============= To Export the GHex Display to HTML =================== -->
+
+<sect2 id="ghex-export-to-html">
+<title>&app; の表示データを HTML にエクスポートする</title>
+<para><application>&app;</application> ウィンドウ内のデータを HTML にエクスポートするには、<menuchoice>
+<guimenu>「ファイル」</guimenu>
+<guimenuitem>「HTMLとして保存」</guimenuitem>
+</menuchoice>を選択します。HTML 
+ファイルを作成するディレクトリおよびファイル名を指定し、<guibutton>「了解」</guibutton>をクリックします。<application>&app;</application> により下記の処理が実行されます。 <itemizedlist>
+<listitem><para><application>&app;</application>ウィンドウ内に表示される個々のページごとに、個別の HTML 
+ファイルを作成。</para>
+</listitem>
+<listitem><para>各ファイルのベース名には、指定されたファイル名を使用。</para>
+</listitem>
+<listitem><para>ファイルを区別するために、ファイル名にページ番号を追加。</para>
+</listitem>
+</itemizedlist>たとえばファイル名を <filename>log.html</filename> と指定すると、<application>&app;</application> 
+の作成する HTML ファイルの名前は 
+<filename>log00000000.html</filename>、<filename>log00000001.html</filename>、<filename>log00000002.html</filename
+> のようになります。</para>
+</sect2>
+
+<!-- ============= To View a Character Table ================ -->
+
+<sect2 id="ghex-view-character-table">
+<title>キャラクタテーブルを表示する</title>
+<para>0 から 255 の各値に対応する ASCII キャラクタ、16 進数、10 進数、8 進数、2 
+進数を示した表を表示するには、<menuchoice>
+<guimenu>「ウィンドウ」</guimenu>
+<guimenuitem>「文字一覧表」</guimenuitem>
+</menuchoice>を選択します。</para>
+</sect2>
+
+<!-- ============= To View Data Conversions ===================== -->
+
+<sect2 id="ghex-view-data-conversions">
+<title>データを変換表示する</title>
+<para>2 進数、10 進数、16 進数、ASCII 間でのデータを変換表示 (最大 4 バイト) 
+するには、下記の手順に従います。</para>
+<orderedlist>
+<listitem><para><menuchoice>
+<guimenu>「ウィンドウ」</guimenu>
+<guimenuitem>「基底変換」</guimenuitem>
+</menuchoice>を選択します。</para>
+</listitem>
+<listitem><para>次のアクションから 1 つを実行します。</para>
+	<itemizedlist>
+	
+<listitem><para><guilabel>「基底変換」</guilabel>ダイアログ上の該当するフィールドに変換するデータを入力し、<keycap
+>リターン</keycap> キーを押します。</para>
+	</listitem>
+	
+<listitem><para>また、現在のカーソル位置にあるデータを変換する場合は、<guibutton>「カーソル下の値を取得」</guibutton>ボタンをクリックします。</para>
+	</listitem>
+	</itemizedlist>
+	<para><application>&app;</application> によりデータの変換結果が、他のフィールドに表示されます。</para>
+</listitem>
+</orderedlist>
+</sect2>
+
+<!-- ============= To Print a File ===================== -->
+
+<sect2 id="ghex-print-file">
+<title>ファイルを印刷する</title>
+<para>ファイルを印刷するには、<menuchoice>
+<guimenu>「ファイル」</guimenu>
+<guimenuitem>「印刷」</guimenuitem>
+</menuchoice>を選択します。<guilabel>「印刷」</guilabel>ダイアログで必要な印刷オプションを選択して、<guibutton>「
+了解」</guibutton>をクリックします。</para>
+<para>印刷したファイルのプレビューを表示するには、<menuchoice>
+<guimenu>「ファイル」</guimenu>
+<guimenuitem>「印刷プレビュー」</guimenuitem>
+</menuchoice>を選択します。</para>
+</sect2>
+
+
+</sect1>
+
+<!-- ============= Customization ============================== -->
+
+<sect1 id="ghex-prefs"> 
+<title>設定</title>
+<para><application>&app;</application> を設定するには、<menuchoice> <guimenu>「編集」</guimenu>
+		  <guimenuitem>「設定」</guimenuitem> 
+</menuchoice>を選択します。<guilabel>「設定」</guilabel>ダイアログには下記のタブが表示されます。</para>
+<itemizedlist>
+<listitem><para><xref linkend="ghex-prefs-editing"/></para>
+</listitem>
+<listitem><para><xref linkend="ghex-prefs-display"/></para>
+</listitem>
+<listitem><para><xref linkend="ghex-prefs-printing"/></para>
+</listitem>
+</itemizedlist>
+
+<!-- ============= Editing Tabbed Section ============================== -->
+
+<sect2 id="ghex-prefs-editing">
+<title>「編集」</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>「元に戻せる最大回数」</guilabel> </term>
+<listitem>
+<para>このスピンボックスでは、<guimenu>「編集」</guimenu>メニューの<guimenuitem>「元に戻す」</guimenuitem>で元に戻
+せる最大回数を指定します。</para>
+<!-- <para>初期値: 100.</para>
+ -->
+</listitem>
+</varlistentry>
+<varlistentry><term><guilabel>「ステータスバーのカーソルオフセット表現」</guilabel> </term>
+<listitem>
+<para>このドロップダウンリストでは、カーソルオフセットの表示形式を選択します。選択可能な表示形式には 10 進数および 
+16 進数の他に、形式指示子 x、o、s からなるカスタム印刷スタイル文字列があります。</para>
+<!-- <para>初期値: <guilabel>16進</guilabel>.</para>
+ -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>「オフセット欄の表示」</guilabel> </term>
+<listitem>
+<para>このオプションを選択するとカーソルオフセット列が、<application>&app;</application>ウィンドウの 16 
+進表示ビューの左側に表示されます。</para>
+<!-- <para>初期値: 選択</para>
+ -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<!-- ============= Display Tabbed Section ======================== -->
+
+<sect2 id="ghex-prefs-display">
+<title>「表示」</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>「フォント」</guilabel> </term>
+<listitem>
+<para>このボタンをクリックすると、フォント選択ダイアログが表示されます。このフォント選択ダイアログを使って現在のフ
+ォント設定を変更しますが、その際には該当するフォント情報を直接入力して指定することもできます。<application>&app;</application>での表示に用いるフォントの種類、スタイル、サイズを指定して<guibutton>「了解」</guibutton>をクリックし
+ます。指定したフォント情報は、<guilabel>「フォント」</guilabel>ボタンに表示されます。</para>
+<!-- <para>初期値: <guilabel>Courier 12</guilabel></para>
+ -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>「デフォルトのデータ表示」</guilabel> </term>
+<listitem>
+<para>ここでは <application>&app;</application> ウィンドウでの 16 
+進数を、どの形式で表示するかを指定します。指定できるのは下記のオプションです。 </para>
+<itemizedlist>
+<listitem><para><guilabel>「バイト」</guilabel> - 1 バイト単位で表示。</para>
+</listitem>
+<listitem><para><guilabel>「ワード」</guilabel> - 2 バイトでグループ化。</para>
+</listitem>
+<listitem><para><guilabel>「ロングワード」</guilabel> - 4 バイトでグループ化。</para>
+</listitem>
+</itemizedlist>
+<!-- <para>初期値: <guilabel>バイト</guilabel>.</para>
+ -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+
+<!-- ============= Printing Tabbed Section ============================== -->
+
+<sect2 id="ghex-prefs-printing">
+<title>「印刷」</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>「データ用フォント」</guilabel> </term>
+<listitem>
+<para>ファイルのデータの印刷用フォントサイズを指定するには、この<guibutton>「データ用フォント」</guibutton>ボタン
+をクリックします。</para>
+<!-- <para>初期値: <guilabel>HGゴシックB 10.0</guilabel>.</para>
+ -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>「ヘッダー用フォント」</guilabel> </term>
+<listitem>
+<para>ファイルのヘッダー情報の印刷用フォントサイズを指定するには、この<guibutton>「ヘッダー用フォント」</guibutton
+>ボタンをクリックします。</para>
+<!-- <para>初期値: <guilabel>HGゴシックB 12.0</guilabel>.</para>
+ -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>「陰影を付けて印刷」</guilabel> </term>
+<listitem>
+<para>このスピンボックスには、<application>&app;</application> 
+が影付きボックスで囲んで印刷する行数を指定します。たとえばスピンボックスに「10」を指定すると、<application>&app;</application>はファイル内の最初の 10 行を影付きボックス内に印刷します。</para>
+<!-- <para>初期値: 0.</para>
+ -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+
+</article>

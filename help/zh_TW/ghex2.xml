@@ -1,0 +1,475 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "1.99.0.1">
+  <!ENTITY manrevision "2.3">
+  <!ENTITY date "August 2002">
+  <!ENTITY app "GHex">
+]>
+
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Feb 12, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="zh_tw">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo>
+    <title>&app; 手冊 V&manrevision;</title>
+
+    <copyright> 
+      <year>2002</year> 
+      <holder>Sun Microsystems</holder> 
+    </copyright> 
+    <copyright> 
+      <year>1998</year>	
+      <year>1999</year> 
+      <year>2000</year> 
+      <holder>Jaka Mocnik</holder> 
+    </copyright>
+	<!-- translators: uncomment this:
+  	<copyright>
+   	  <year>2002</year>
+      <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  	</copyright>
+   	-->
+
+    <publisher> 
+      <publishername> GNOME 文件專案</publishername> 
+    </publisher> 
+
+   &legal;
+   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+	any of this. -->
+
+    <authorgroup>
+      <author> 
+		<firstname>Sun</firstname> 
+		<surname>GNOME 文件小組</surname> 
+		<affiliation> 
+	  		<orgname>Sun Microsystems</orgname> 
+	  		<address> <email>gdocteam@sun.com</email> </address>
+		</affiliation>
+      </author>
+      <author> 
+		<firstname>Jaka</firstname> 
+		<surname>Mocnik</surname> 
+		<affiliation> 
+	  		<orgname>GNOME 文件專案</orgname> 
+	  		<address> <email>jaka@gnu.org</email> </address>
+		</affiliation>
+      </author>
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+      <othercredit role="translator">
+		<firstname>Latin</firstname> 
+		<surname>Translator 1</surname> 
+		<affiliation> 
+	 		<orgname>Latin Translation Team</orgname> 
+	  		<address> <email>translator@gnome.org</email> </address> 
+		</affiliation>
+		<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
+ 
+    <revhistory>
+      <revision> 
+			<revnumber>&app; 手冊 V&manrevision;</revnumber> 
+			<date>&date;</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME 文件小組
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME 文件專案</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex 手冊 V2.2</revnumber> 
+			<date>2002 年 8 月</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME 文件小組
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME 文件專案</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex 手冊 V2.1</revnumber> 
+			<date>2002 年 7 月</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME 文件小組
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME 文件專案</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex 手冊 V2.0</revnumber> 
+			<date>2002 年 3 月</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME 文件小組
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME 文件專案</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>GHex 手冊 V1.0</revnumber> 
+			<date>2000</date> 
+			<revdescription> 
+	  			<para role="author">Jaka Mocnik
+	    		<email>jaka@gnu.org</email>
+	  			</para>
+	  			<para role="publisher">GNOME 文件專案</para>
+			</revdescription>
+      </revision>
+    </revhistory>
+
+    <releaseinfo>本手冊的內容是說明 &appversion; 版的 &app;。
+    </releaseinfo>
+    <legalnotice><title>回饋</title>
+      <para>關於 &app; 應用程式或本手冊，如果要報告錯誤或提出建議，請遵照 <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink> 的指示。
+      </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice>
+  </articleinfo>
+
+  <indexterm><primary>GHex</primary></indexterm><!-- ============= Document Body ============================= --><!-- ============= Introduction ============================== --><sect1 id="ghex-intro"><title>介紹</title>
+<para>您可以使用 <application>&app;</application> 應用程式，執行下列動作：</para>
+<itemizedlist>
+<listitem><para>同時以 ASCII 或十六進制格式檢視檔案。 </para>
+</listitem>
+<listitem><para>以 ASCII 或十六進制格式編輯檔案。</para>
+</listitem>
+</itemizedlist>
+</sect1>
+
+<!-- ============= Getting Started ============================== -->
+
+<sect1 id="ghex-getting-started"><title>入門</title>
+
+<!-- ============= To Start GHex ============================== -->
+
+<sect2 id="ghex-to-start"><title>啟動&app;</title>
+
+<para>您可以使用下列方式啟動 <application>&app;</application>：</para>
+<variablelist>
+<varlistentry><term><guimenu>應用程式</guimenu>功能表</term>
+<listitem>
+<para>請選擇<menuchoice><guisubmenu>周邊裝置</guisubmenu>
+<guimenuitem>十六進位編輯器</guimenuitem></menuchoice>。</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>指令行</term><listitem>
+<para>當您從指令行執行 <application>&app;</application> 時，您可以開啟單一個檔案，也可以開啟多個檔案。 如果要從指令行開啟多個檔案，請輸入下面的指令，然後按一下 <keycap>Return</keycap> 鍵：</para>
+<para><command>ghex2</command><replaceable>file1.txt</replaceable><replaceable>file2.txt</replaceable></para>
+<para>其中，<replaceable>file1.txt</replaceable> 以及 <replaceable>file2.txt</replaceable> 是您想要開啟的檔案名稱。</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2 id="ghex-when-you-start"><title>當您啟動 &app;</title>
+
+<para>當您啟動 <application>&app;</application> 時，會出現如下面所列的視窗。</para>
+
+<!-- ==== Figure ==== -->
+<figure id="ghex-window-empty"><title>開啟檔案前的 &app; 視窗</title>
+<screenshot>
+ <mediaobject>
+   <imageobject>
+     <imagedata fileref="figures/ghex_window_empty.png" format="PNG"/>
+   </imageobject>
+ <textobject>
+   <phrase>顯示開啟檔案前的 GHex 主視窗。</phrase>
+ </textobject>
+ </mediaobject>
+</screenshot>
+</figure>
+<!-- ==== End of Figure ==== -->
+
+</sect2>
+
+
+<!-- ============= To Open a file ============================== -->
+
+<sect2 id="ghex-open-file"><title>開啟檔案</title>
+<para>如果要開啟檔案，請選擇<menuchoice><guimenu>檔案</guimenu><guimenuitem>開啟</guimenuitem></menuchoice>。請選取要開啟的檔案，然後按一下<guibutton>確定</guibutton>。您可以在 <application>&app;</application> 中開啟多個檔案。 <application>&app;</application> 會將每個檔案分別顯示在新視窗中。</para>
+<para>在 <application>&app;</application> 中開啟檔案時，本應用程式會在下面的視窗中顯示檔案。</para>
+
+<!-- ==== Figure ==== -->
+<figure id="ghex-window-open"><title>含有開啟檔案的 &app; 視窗</title>
+<screenshot>
+ <mediaobject>
+   <imageobject>
+     <imagedata fileref="figures/ghex_window_open.png" format="PNG"/>
+   </imageobject><textobject><phrase>顯示含有開啟檔案的 GHex 主視窗</phrase></textobject></mediaobject>
+</screenshot>
+</figure>
+<!-- ==== End of Figure ==== -->
+
+<para> <application>&app;</application> 視窗中包含下列元素：   </para>
+<variablelist>
+<varlistentry><term>功能表列</term>
+<listitem>
+<para>功能表列上的功能表，有在 <application>&app;</application> 中使用檔案時，所需要的所有指令。</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>游標偏移欄位</term>
+<listitem>
+<para>游標偏移量是指檔案開頭與各行第一個位元組之間的距離。
+依預設值，<application>&app;</application> 會在十六進制檢視的左邊，顯示游標偏移量欄位。</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>左邊的顯示窗格</term>
+<listitem>
+<para>顯示區域左邊的顯示窗格，會以十六進制顯示檔案。</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>右邊的顯示窗格</term><listitem>
+<para>顯示區域右邊的顯示窗格，會以 ASCII 制顯示檔案。</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+
+<!-- ============= Usage ============================== -->
+
+<sect1 id="ghex-usage"><title>使用</title>
+
+<!-- ============= To Edit a File ============================== -->
+
+<sect2 id="ghex-edit-file"><title>編輯檔案</title>
+<para>如果要編輯檔案，請執行下列步驟：   </para>
+<orderedlist>
+<listitem><para>請按一下檔案的十六進位或 ASCII 檢視。 檢視若為作用中，則會顯示完整的游標。 檢視若為非作用中，則只會顯示游標的外框。 </para>
+</listitem>
+<listitem><para>請使用下列任一種方法，在檔案中移動游標：</para>
+<itemizedlist>
+<listitem><para>使用視窗中的捲動軸捲動檔案，或是使用鍵盤的箭頭鍵。</para>
+</listitem>
+<listitem><para>請選擇<menuchoice><guimenu>編輯</guimenu><guimenuitem>到位元</guimenuitem></menuchoice>，以十進制或十六進制鍵入游標偏移量，然後按一下<guibutton>確定</guibutton>。十六進制數值的格式，必須為 0x 加上偏移量，例如 0x3。</para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>請使用一般編輯文字檔的方式，編輯 ASCII 格式。 請使用 0 到 9 以及 a 到 f 的數值，編輯十六進制格式。</para>
+</listitem>
+</orderedlist>
+<para>如果要插入資料但不覆寫現有的資料，請選擇<menuchoice>
+<guimenu>編輯</guimenu><guimenuitem>插入模式</guimenuitem></menuchoice>。</para>
+</sect2>
+
+<!-- ============= To Save a File ============================== -->
+
+<sect2 id="ghex-save-file"><title>儲存檔案</title>
+<para>您可以使用下列方式儲存檔案：</para>
+<itemizedlist>
+<listitem><para>如果要將變更儲存至目前的檔案，請選擇<menuchoice><guimenu>檔案</guimenu><guimenuitem>儲存</guimenuitem></menuchoice>。</para>
+</listitem>
+<listitem><para>如果要用新的檔名儲存目前的檔案，請選擇<menuchoice><guimenu>檔案</guimenu><guimenuitem>另存新檔</guimenuitem></menuchoice>。請在<guilabel>選擇檔案儲存緩衝區</guilabel>對話方塊中，輸入檔案的名稱，然後按一下<guibutton>確定</guibutton>。</para>
+</listitem>
+</itemizedlist>
+</sect2>
+
+<!-- ============= To Find Data in a File ============================== -->
+
+<sect2 id="ghex-find-data"><title>在檔案中尋找資料</title>
+<para>如果要在檔案中搜尋十六進制或 ASCII 字串，請執行下列步驟：   </para>
+<orderedlist>
+<listitem><para>請選擇 <menuchoice><guimenu>編輯</guimenu><guimenuitem>尋找</guimenuitem></menuchoice>。</para>
+</listitem>
+<listitem><para>在<guilabel>尋找資料</guilabel>對話方塊中，選擇下列任一項選項：</para>
+<itemizedlist>
+<listitem><para><guilabel>搜尋十六進位資料</guilabel></para>
+</listitem>
+<listitem><para><guilabel>搜尋 ASCII 資料</guilabel></para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>請輸入您想要尋找的字串。</para>
+</listitem>
+<listitem><para>按一下<guibutton>尋找下一個</guibutton>，尋找下一個符合的字串。</para>
+</listitem>
+<listitem><para>按一下<guibutton>尋找上一個</guibutton>，尋找上一個符合的字串。</para>
+</listitem>
+
+</orderedlist>
+</sect2>
+
+<!-- ============= To Find and Replace Data in a File ====================== -->
+
+<sect2 id="ghex-find-replace-data"><title>在檔案中尋找並取代資料</title>
+<para>如果要先在檔案中搜尋十六進制或 ASCII 字串，然後取代該字串，請執行下列步驟：</para>
+<orderedlist>
+<listitem><para>請選擇<menuchoice><guimenu>編輯</guimenu><guimenuitem>取代</guimenuitem></menuchoice>。</para>
+</listitem>
+<listitem><para>在<guilabel>尋找 &amp; 取代資料</guilabel>對話方塊中，選擇下列任一項選項：</para>
+<itemizedlist>
+<listitem><para><guilabel>取代十六進位資料</guilabel></para>
+</listitem>
+<listitem><para><guilabel>取代 ASCII 資料</guilabel></para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>請在第一個文字方塊中，輸入您想要尋找的字串。 </para>
+</listitem>
+<listitem><para>請在第二個文字方塊中，輸入您想要取代所尋找字串的字串。</para>
+</listitem>
+<listitem><para>請按一下<guibutton>尋找下一個</guibutton>。</para>
+</listitem>
+<listitem><para>請按一下<guibutton>取代</guibutton>，取代目前所在位置的字串；或是按一下<guibutton>全部取代</guibutton>，取代所有該字串。</para>
+</listitem>
+</orderedlist>
+</sect2>
+
+<!-- ========== To Add or Remove Additional Views of a File ================ -->
+
+<sect2 id="ghex-add-remove-views"><title>新增或移除檔案的其他檢視</title>
+<para>如果要將現有檔案的其他檢視新增到 <application>&app;</application> 視窗或桌面，請選擇<menuchoice><guimenu>檢視</guimenu><guimenuitem>新增檢視</guimenuitem></menuchoice>。</para>
+<para>如果要移除目前檔案的檢視，請選擇<menuchoice><guimenu>檢視</guimenu><guimenuitem>移除檢視</guimenuitem></menuchoice>。如果您移除的是最後一個開啟的檔案，本應用程式便會結束。</para>
+</sect2>
+
+<!-- ============= To Export the GHex Display to HTML =================== -->
+
+<sect2 id="ghex-export-to-html"><title>匯出 &app; 檢視至 HTML</title>
+<para>如果要將 <application>&app;</application> 視窗中的資料匯出至 HTML，請選擇<menuchoice><guimenu>檔案</guimenu><guimenuitem>儲存為 HTML</guimenuitem></menuchoice>。請選擇目錄，並為 HTML 檔案指定檔案名稱，然後按一下<guibutton>確定</guibutton>。 <application>&app;</application> 會執行下列動作：<itemizedlist>
+<listitem><para>替 <application>&app;</application> 視窗中顯示的各個資料頁，分別建立不同的 HTML 檔案。</para>
+</listitem>
+<listitem><para>使用所指定的 HTML 檔案名稱，作為檔名的基礎。</para>
+</listitem>
+<listitem><para>在檔案名稱中附加頁數，以區別檔案。</para>
+</listitem>
+</itemizedlist> 例如，如果您指定的檔案名稱是 <filename>log.html</filename>，<application>&app;</application> 便會建立一系列名稱為 <filename>log00000000.html</filename>、<filename>log00000001.html</filename>、<filename>log00000002.html</filename> 等等的 HTML 檔案。</para>
+</sect2>
+
+<!-- ============= To View a Character Table ================ -->
+
+<sect2 id="ghex-view-character-table">
+<title>檢視字元表</title>
+<para>如果要檢視以 ASCII、十六進位、十進位、八進位及二進位表示法表示 0 到 255 數值的表格，請選擇<menuchoice><guimenu>視窗</guimenu><guimenuitem>字元表</guimenuitem></menuchoice>。</para>
+</sect2>
+
+<!-- ============= To View Data Conversions ===================== -->
+
+<sect2 id="ghex-view-data-conversions">
+<title>檢視資料轉換</title>
+<para>如果要顯示最多四個位元組資料的二進制、十進制、十六進制以及 ASCII 轉換，請執行下列步驟：</para>
+<orderedlist>
+<listitem><para>請選擇<menuchoice><guimenu>視窗</guimenu><guimenuitem>基數轉換程式</guimenuitem></menuchoice>。</para>
+</listitem>
+<listitem><para>執行下列任一項動作：</para>
+	<itemizedlist>
+	<listitem><para>請在<guilabel>基數轉換程式</guilabel>對話方塊的其中一個欄位，鍵入要轉換的資料，然後按一下 <keycap>Return</keycap>。</para>
+	</listitem>
+	<listitem><para>如果要在目前檔案的游標位置顯示資料轉換，請按一下<guibutton>取得游標值</guibutton>按鈕。</para>
+	</listitem>
+	</itemizedlist>
+	<para><application>&app;</application> 會更新其他欄位的數值，顯示資料轉換。</para>
+</listitem>
+</orderedlist>
+</sect2>
+
+<!-- ============= To Print a File ===================== -->
+
+<sect2 id="ghex-print-file"><title>列印檔案</title>
+<para>如果要列印檔案，請選擇<menuchoice><guimenu>檔案</guimenu><guimenuitem>列印</guimenuitem></menuchoice>。請在<guilabel>列印</guilabel>對話方塊中，選取所需的列印選項，然後按一下<guibutton>確定</guibutton>。</para>
+<para>如果要預覽列印檔案的副本，請選擇<menuchoice><guimenu>檔案</guimenu><guimenuitem>列印預視</guimenuitem></menuchoice>。</para>
+</sect2>
+
+
+</sect1>
+
+<!-- ============= Customization ============================== -->
+
+<sect1 id="ghex-prefs"><title>個人喜好</title>
+<para>如果要配置 <application>&app;</application>，請選擇<menuchoice><guimenu>編輯</guimenu><guimenuitem>個人喜好</guimenuitem></menuchoice>。在<guilabel>個人喜好</guilabel>對話方塊中，含有下列標籤區段：</para>
+<itemizedlist>
+<listitem><para><xref linkend="ghex-prefs-editing"/></para>
+</listitem>
+<listitem><para><xref linkend="ghex-prefs-display"/></para>
+</listitem>
+<listitem><para><xref linkend="ghex-prefs-printing"/></para>
+</listitem>
+</itemizedlist>
+
+<!-- ============= Editing Tabbed Section ============================== -->
+
+<sect2 id="ghex-prefs-editing"><title>編輯</title>
+<variablelist>
+<varlistentry><term><guilabel>還原等級的最大值</guilabel></term><listitem>
+<para>請使用這個旋轉方塊，指定使用<guimenuitem>還原</guimenuitem>功能表項目時，可以還原編輯的最大數值 (旋轉方塊位於<guimenu>編輯</guimenu>功能表上)。</para>
+<!-- <para>Default: 100.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry><term><guilabel>狀態列中顯示游標偏移量的方式</guilabel> </term><listitem>
+<para>請使用這個下拉式清單方塊，選取顯示游標偏移量的格式。 格式可以是十進制、十六進制，或是自訂的列印樣式字串，這些字串只能有 x、o 與 s 等格式限定符號。 </para>
+<!-- <para>Default: <guilabel>Hexadecimal</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>顯示偏移量欄位</guilabel> </term>
+<listitem>
+<para>選取這個選項，可以在 <application>&app;</application> 視窗十六進制檢視的左邊欄位中，顯示游標偏移量。</para>
+<!-- <para>Default: selected.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<!-- ============= Display Tabbed Section ======================== -->
+
+<sect2 id="ghex-prefs-display"><title>顯示</title>
+<variablelist>
+<varlistentry><term><guilabel>字型</guilabel></term><listitem>
+<para>請按一下這個按鈕，顯示字型選擇器對話方塊。 請使用字型選擇器對話方塊，編輯現有的字型資訊，或是鍵入新的字型資訊。 請指定在 <application>&app;</application> 中顯示檔案內容時，所要使用的字型類型、樣式及大小，然後按一下<guibutton>確定</guibutton>。您所指定的字型資訊，會顯示在<guilabel>字型</guilabel>按鈕上。 </para>
+<!-- <para>Default: <guilabel>Courier 12</guilabel></para> -->
+</listitem>
+</varlistentry>
+<varlistentry><term><guilabel>預設群組類型</guilabel></term><listitem>
+<para>請選取選項，以指定應用程式在 <application>&app;</application> 視窗中，要如何顯示檔案的十六進制內容。 選項如下：   </para>
+<itemizedlist>
+<listitem><para><guilabel>位元組</guilabel> - 單一位元組。</para>
+</listitem>
+<listitem><para><guilabel>字</guilabel> - 二個位元組的群組。</para>
+</listitem>
+<listitem><para><guilabel>長字</guilabel> - 四個位元組的群組。</para>
+</listitem>
+</itemizedlist>
+<!-- <para>Default: <guilabel>Bytes</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<!-- ============= Printing Tabbed Section ============================== -->
+
+<sect2 id="ghex-prefs-printing"><title>列印</title>
+<variablelist>
+<varlistentry><term><guilabel>資料字型</guilabel></term><listitem>
+<para>請按一下<guibutton>資料字型</guibutton>按鈕，指定列印檔案資料時，所要使用的字型大小。</para>
+<!-- <para>Default: <guilabel>Courier 10.0</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry><term><guilabel>標頭字型</guilabel></term><listitem>
+<para>請按一下<guibutton>標頭字型</guibutton>按鈕，指定列印檔案的標頭資訊時，所要使用的字型大小。 </para>
+<!-- <para>Default: <guilabel>Helvetica 12.0</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry><term><guilabel>列印灰色方塊</guilabel></term><listitem>
+<para>請使用這個旋轉方塊，指定 <application>&app;</application> 列印灰色方塊時，方塊中所含的行數。如果旋轉方塊的數值為 10，<application>&app;</application> 便會在灰色方塊中，列印檔案最前面的 10 行。</para>
+<!-- <para>Default: 0.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+
+</article>

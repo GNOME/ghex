@@ -1,0 +1,578 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "1.99.0.1">
+  <!ENTITY manrevision "2.3">
+  <!ENTITY date "August 2002">
+  <!ENTITY app "GHex">
+]>
+
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Feb 12, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="fr">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo>
+    <title>Manuel &app;  V&manrevision;</title>
+
+    <copyright> 
+      <year>2003</year> 
+      <holder>Sun Microsystems</holder> 
+    </copyright> 
+    <copyright> 
+      <year>1998</year>	
+      <year>1999</year> 
+      <year>2000</year> 
+      <holder>Jaka Mocnik</holder> 
+    </copyright>
+	<!-- translators: uncomment this:
+  	<copyright>
+   	  <year>2002</year>
+      <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  	</copyright>
+   	-->
+
+    <publisher> 
+      <publishername>Projet de documentation GNOME</publishername> 
+    </publisher> 
+
+   &legal;
+   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+	any of this. -->
+
+    <authorgroup>
+      <author> 
+		<firstname>Sun</firstname> 
+		<surname>&Eacute;quipe de documentation GNOME</surname> 
+		<affiliation> 
+	  		<orgname>Sun Microsystems</orgname> 
+	  		<address> <email>gdocteam@sun.com</email> </address>
+		</affiliation>
+      </author>
+      <author> 
+		<firstname>Jaka</firstname> 
+		<surname>Mocnik</surname> 
+		<affiliation> 
+	  		<orgname>Projet de documentation GNOME</orgname> 
+	  		<address> <email>jaka@gnu.org</email> </address>
+		</affiliation>
+      </author>
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+      <othercredit role="translator">
+		<firstname>Latin</firstname> 
+		<surname>Translator 1</surname> 
+		<affiliation> 
+	 		<orgname>Latin Translation Team</orgname> 
+	  		<address> <email>translator@gnome.org</email> </address> 
+		</affiliation>
+		<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
+ 
+    <revhistory>
+      <revision> 
+			<revnumber>Manuel &app; V&manrevision;</revnumber> 
+			<date>&date;</date> 
+			<revdescription> 
+	  			<para role="author">&Eacute;quipe de documentation Sun GNOME
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  			<para role="publisher">Projet de documentation GNOME</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>Manuel GHex V2.2</revnumber> 
+			<date>Ao&ucirc;t 2002</date> 
+			<revdescription> 
+	  			<para role="author">&Eacute;quipe de documentation Sun GNOME
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  			<para role="publisher">Projet de documentation GNOME</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>Manuel GHex V2.1</revnumber> 
+			<date>Juillet 2002</date> 
+			<revdescription> 
+	  			<para role="author">&Eacute;quipe de documentation Sun GNOME
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  			<para role="publisher">Projet de documentation GNOME</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>Manuel GHex V2.0</revnumber> 
+			<date>Mars 2002</date> 
+			<revdescription> 
+	  			<para role="author">&Eacute;quipe de documentation Sun GNOME
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  			<para role="publisher">Projet de documentation GNOME</para>
+			</revdescription>
+      </revision>
+      <revision> 
+			<revnumber>Manuel GHex V1.0</revnumber> 
+			<date>2000</date> 
+			<revdescription> 
+	  			<para role="author">Jaka Mocnik
+	    		<email>jaka@gnu.org</email>
+	  			</para>
+	  			<para role="publisher">Projet de documentation GNOME</para>
+			</revdescription>
+      </revision>
+    </revhistory>
+
+    <releaseinfo>Le pr&eacute;sent manuel d&eacute;crit la version &appversion; de &app;.
+    </releaseinfo>
+    <legalnotice> 
+        <title>Votre avis</title>
+      <para>Pour signaler un probl&egrave;me ou faire une suggestion concernant l'application &app; ou le pr&eacute;sent manuel, proc&eacute;dez comme indiqu&eacute; &agrave; la <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink>. 
+      </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice>
+  </articleinfo>
+
+  <indexterm> 
+    <primary>GHex</primary> 
+  </indexterm> 
+
+
+<!-- ============= Document Body ============================= -->
+
+<!-- ============= Introduction ============================== -->
+
+<sect1 id="ghex-intro">
+<title>Introduction</title>
+<para>L'application <application>&app;</application> vous permet d'ex&eacute;cuter les actions suivantes :</para>
+<itemizedlist>
+<listitem><para>consulter un fichier au format ASCII ou hexad&eacute;cimal simultan&eacute;ment ; </para>
+</listitem>
+<listitem><para>&Eacute;diter un fichier au format ASCII ou hexad&eacute;cimal.</para>
+</listitem>
+</itemizedlist>
+</sect1>
+
+<!-- ============= Getting Started ============================== -->
+
+<sect1 id="ghex-getting-started"><title>D&eacute;marrage</title>
+
+<!-- ============= To Start GHex ============================== -->
+
+<sect2 id="ghex-to-start">
+<title>D&eacute;marrage de &app;</title>
+
+<para>Vous pouvez d&eacute;marrer <application>&app;</application> en recourant &agrave; l'une des m&eacute;thodes suivantes :</para>
+<variablelist>
+<varlistentry>
+<term>Menu <guimenu>Applications</guimenu></term>
+<listitem>
+<para>S&eacute;lectionnez 
+<menuchoice>
+<guisubmenu>Accessoires</guisubmenu>
+<guimenuitem>&Eacute;diteur hexad&eacute;cimal</guimenuitem>
+</menuchoice>. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Ligne de commande</term>
+<listitem>
+<para>Vous pouvez ouvrir un ou plusieurs fichiers lorsque vous ex&eacute;cutez <application>&app;</application> depuis une ligne de commande. Pour ouvrir plusieurs fichiers depuis une ligne de commande, entrez la commande suivante, puis appuyez sur <keycap>Entr&eacute;e</keycap> :</para>
+<para><command>ghex2</command> <replaceable>file1.txt</replaceable> <replaceable>file2.txt</replaceable></para>
+<para>o&ugrave; <replaceable>file1.txt</replaceable> et <replaceable>file2.txt</replaceable> sont les noms des fichiers &agrave; ouvrir.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2 id="ghex-when-you-start">
+	
+		<title>Lancement de &app;</title>
+
+<para>Losrque vous lancez <application>&app;</application>, la fen&ecirc;tre suivante appara&icirc;t.</para>
+
+<!-- ==== Figure ==== -->
+<figure id="ghex-window-empty">
+<title>Fen&ecirc;tre &app; avant l'ouverture d'un fichier</title>
+<screenshot>
+ <mediaobject>
+   <imageobject>
+     <imagedata fileref="figures/ghex_window_empty.png" format="PNG"/>
+   </imageobject>
+ <textobject>
+   <phrase>Affiche la fen&ecirc;tre principale de GHex avant l'ouverture d'un fichier.</phrase>
+ </textobject>
+ </mediaobject>
+</screenshot>
+</figure>
+<!-- ==== End of Figure ==== -->
+
+</sect2>
+
+
+<!-- ============= To Open a file ============================== -->
+
+<sect2 id="ghex-open-file"> 
+		<title>Ouverture d'un fichier</title>
+<para>Pour ouvrir un fichier, s&eacute;lectionnez <menuchoice>
+<guimenu>Fichier</guimenu>
+<guimenuitem>Ouvrir</guimenuitem>
+</menuchoice>. S&eacute;lectionnez le fichier &agrave; ouvrir, puis cliquez sur <guibutton>OK</guibutton>. Vous pouvez ouvrir plusieurs fichiers dans <application>&app;</application>. <application>&app;</application> affiche chacun d'entre eux dans une nouvelle fen&ecirc;tre.</para>
+<para>Quand vous ouvrez un fichier dans <application>&app;</application>, l'application affiche le fichier dans la fen&ecirc;tre suivante.</para>
+
+<!-- ==== Figure ==== -->
+<figure id="ghex-window-open">
+<title>Fen&ecirc;tre &app; avec un fichier ouvert</title>
+<screenshot>
+ <mediaobject>
+   <imageobject>
+     <imagedata fileref="figures/ghex_window_open.png" format="PNG"/>
+   </imageobject>
+ <textobject>
+   <phrase>Affiche la fen&ecirc;tre principale GHex avec un fichier ouvert</phrase>
+ </textobject>
+ </mediaobject>
+</screenshot>
+</figure>
+<!-- ==== End of Figure ==== -->
+
+<para>La fen&ecirc;tre <application>&app;</application> contient les &eacute;l&eacute;ments suivants : </para>
+<variablelist>
+<varlistentry>
+<term>Barre de menus</term>
+<listitem>
+<para>Les menus de la barre de menus contiennent toutes les commandes n&eacute;cessaires pour manipuler des fichiers dans <application>&app;</application>. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Colonne de d&eacute;calage du pointeur</term>
+<listitem>
+<para>Le d&eacute;calage du pointeur est &eacute;gal &agrave; la distance entre le d&eacute;but du fichier et le premier octet de chaque ligne.  
+Par d&eacute;faut, <application>&app;</application> affiche la colonne de d&eacute;calage du pointeur &agrave; gauche de la vue hexad&eacute;cimale.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Volet d'affichage &agrave; gauche</term>
+<listitem>
+<para>Le volet d'affichage situ&eacute; &agrave; gauche de la zone d'affichage pr&eacute;sente une vue hexad&eacute;cimale du fichier.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Volet d'affichage &agrave; droite</term>
+<listitem>
+<para>Le volet d'affichage situ&eacute; &agrave; droite de la zone d'affichage pr&eacute;sente une vue ASCII du fichier.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+
+<!-- ============= Usage ============================== -->
+
+<sect1 id="ghex-usage">
+	<title>Utilisation</title>
+
+<!-- ============= To Edit a File ============================== -->
+
+<sect2 id="ghex-edit-file">
+<title>&Eacute;dition d'un fichier</title>
+<para>Pour &eacute;diter un fichier, proc&eacute;dez comme suit : </para>
+<orderedlist>
+<listitem><para>Cliquez dans la vue hexad&eacute;cimale ou ASCII du fichier. La vue active affiche un pointeur entier. Dans l'autre vue, seul le contour de celui-ci est visible. </para>
+</listitem>
+<listitem><para>Les m&eacute;thodes suivantes permettent de d&eacute;placer le pointeur dans le fichier :</para>
+<itemizedlist>
+<listitem><para>Faites d&eacute;filer le fichier &agrave; l'aide de la barre de d&eacute;filement de la fen&ecirc;tre ou des touches fl&egrave;ches du clavier.</para>
+</listitem>
+<listitem><para>S&eacute;lectionnez <menuchoice>
+<guimenu>&Eacute;dition</guimenu>
+<guimenuitem>Aller &eacute; l'octet</guimenuitem>
+</menuchoice>, entrez le d&eacute;calage du pointeur sous la forme d'une valeur d&eacute;cimale ou hexad&eacute;cimale, puis cliquez sur <guibutton>OK</guibutton>. Le format de la valeur hexad&eacute;cimale doit &ecirc;tre 0x suivi du d&eacute;calage, par exemple 0x3.</para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>Editez le format ASCII comme si vous &eacute;ditiez du texte normal. Editez le format hexad&eacute;cimal &agrave; l'aide des valeurs 0 &agrave; 9 et a &agrave; f.</para>
+</listitem>
+</orderedlist>
+<para>Pour ins&eacute;rer des donn&eacute;es sans &eacute;craser celles d&eacute;j&agrave; pr&eacute;sentes, s&eacute;lectionnez <menuchoice>
+<guimenu>&Eacute;dition</guimenu>
+<guimenuitem>Mode insertion</guimenuitem>
+</menuchoice>.</para>
+</sect2>
+
+<!-- ============= To Save a File ============================== -->
+
+<sect2 id="ghex-save-file">
+<title>Enregistrement d'un fichier</title>
+<para>Vous pouvez enregistrer un fichier en recourant aux m&eacute;thodes suivantes :</para>
+<itemizedlist>
+<listitem><para>Pour enregistrer les modifications du fichier courant, s&eacute;lectionnez <menuchoice>
+<guimenu>Fichier</guimenu>
+<guimenuitem>Enregistrer</guimenuitem>
+</menuchoice>.</para>
+</listitem>
+<listitem><para>Pour enregistrer le fichier courant sous un nouveau nom de fichier, s&eacute;lectionnez <menuchoice>
+<guimenu>Fichier</guimenu>
+<guimenuitem>Enregistrer</guimenuitem>
+</menuchoice>. Entrez le nom du fichier dans la bo&icirc;te de dialogue <guilabel>S&eacute;lectionnez un fichier o&ugrave; enregistrer le tampon</guilabel>, puis cliquez sur <guibutton>OK</guibutton>.</para>
+</listitem>
+</itemizedlist>
+</sect2>
+
+<!-- ============= To Find Data in a File ============================== -->
+
+<sect2 id="ghex-find-data">
+<title>Recherche de donn&eacute;es dans un fichier</title>
+<para>Pour rechercher une cha&icirc;ne hexad&eacute;cimale ou ASCII dans un fichier, proc&eacute;dez comme suit : </para>
+<orderedlist>
+<listitem><para>S&eacute;lectionnez <menuchoice>
+<guimenu>&Eacute;dition</guimenu>
+<guimenuitem>Rechercher</guimenuitem>
+</menuchoice>.</para>
+</listitem>
+<listitem><para>Dans la bo&icirc;te de dialogue <guilabel>Rechercher des donn&eacute;es</guilabel>, s&eacute;lectionnez l'une des options suivantes :</para>
+<itemizedlist>
+<listitem><para><guilabel>Rechercher des donn&eacute;es hexa</guilabel> ;</para>
+</listitem>
+<listitem><para><guilabel>Rechercher des donn&eacute;es ASCII</guilabel>.</para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>Entrez la cha&icirc;ne &agrave; rechercher.</para>
+</listitem>
+<listitem><para>Pour rechercher l'occurrence suivante, cliquez sur le bouton <guibutton>Rechercher le suivant</guibutton>.</para>
+</listitem>
+<listitem><para>Cliquez sur <guibutton>Rechercher le pr&eacute;c&eacute;dent</guibutton> pour rechercher l'occurrence pr&eacute;c&eacute;dente de la cha&icirc;ne.</para>
+</listitem>
+
+</orderedlist>
+</sect2>
+
+<!-- ============= To Find and Replace Data in a File ====================== -->
+
+<sect2 id="ghex-find-replace-data">
+<title>Recherche et remplacement de donn&eacute;es dans un fichier</title>
+<para>Pour rechercher et remplacer une cha&icirc;ne hexad&eacute;cimale ou ASCII dans un fichier, proc&eacute;dez comme suit :</para>
+<orderedlist>
+<listitem><para>S&eacute;lectionnez <menuchoice>
+<guimenu>&Eacute;dition</guimenu>
+<guimenuitem>Remplacer</guimenuitem>
+</menuchoice>.</para>
+</listitem>
+<listitem><para>Dans la bo&icirc;te de dialogue <guilabel>Rechercher &amp; remplacer des donn&eacute;es</guilabel>, s&eacute;lectionnez l'une des options suivantes :</para>
+<itemizedlist>
+<listitem><para><guilabel>Remplacer des donn&eacute;es hexa</guilabel> ;</para>
+</listitem>
+<listitem><para><guilabel>Remplacer des donn&eacute;es ASCII</guilabel>.</para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>Dans la premi&egrave;re zone de texte, entrez la cha&icirc;ne &agrave; rechercher. </para>
+</listitem>
+<listitem><para>Dans la deuxi&egrave;me zone de texte, entrez celle &agrave; utiliser pour remplacer le texte recherch&eacute;.</para>
+</listitem>
+<listitem><para>Cliquez sur <guibutton>Rechercher le suivant</guibutton>.</para>
+</listitem>
+<listitem><para>Cliquez sur <guibutton>Remplacer</guibutton> pour remplacer l'occurrence courante de la cha&icirc;ne ou sur <guibutton>Remplacer tout</guibutton> pour les remplacer toutes.</para>
+</listitem>
+</orderedlist>
+</sect2>
+
+<!-- ========== To Add or Remove Additional Views of a File ================ -->
+
+<sect2 id="ghex-add-remove-views">
+<title>Ajout ou suppression de vues d'un fichier</title>
+<para>Pour ajouter une autre vue du fichier courant &agrave; votre fen&ecirc;tre <application>&app;</application> ou au bureau, s&eacute;lectionnez <menuchoice>
+<guimenu>Fichier</guimenu>
+<guimenuitem>Ajouter une vue</guimenuitem>
+</menuchoice>. </para>
+<para>Pour supprimer une vue du fichier courant, s&eacute;lectionnez <menuchoice>
+<guimenu>Afficher</guimenu>
+<guimenuitem>Supprimer la vue</guimenuitem>
+</menuchoice>. Si vous fermez la derni&egrave;re vue ouverte, l'application se ferme.</para>
+</sect2>
+
+<!-- ============= To Export the GHex Display to HTML =================== -->
+
+<sect2 id="ghex-export-to-html">
+<title>Exportation de l'affichage &app; en HTML</title>
+<para>Pour exporter les donn&eacute;es contenues dans la fen&ecirc;tre <application>&app;</application> en HTML, s&eacute;lectionnez <menuchoice>
+<guimenu>Fichier</guimenu>
+<guimenuitem>Enregistrer au format HTML</guimenuitem>
+</menuchoice>. S&eacute;lectionnez un r&eacute;pertoire et nommez le fichier HTML, puis cliquez sur <guibutton>OK</guibutton>. <application>&app;</application> impl&eacute;mente les actions suivantes : <itemizedlist>
+<listitem><para>Cr&eacute;e un fichier HTML distinct pour chaque page de donn&eacute;es affich&eacute;e dans la fen&ecirc;tre <application>&app;</application>.</para>
+</listitem>
+<listitem><para>Utilise le nom du fichier HTML sp&eacute;cifi&eacute; comme base du nom du fichier. </para>
+</listitem>
+<listitem><para>Annexe un num&eacute;ro de page au nom de fichier pour diff&eacute;rencier les fichiers.</para>
+</listitem>
+</itemizedlist>Par exemple, si vous sp&eacute;cifiez le nom de fichier <filename>log.html</filename>, <application>&app;</application> cr&eacute;e une s&eacute;rie de fichiers HTML appel&eacute;s <filename>log00000000.html</filename>, <filename>log00000001.html</filename>, <filename>log00000002.html</filename>, etc.</para>
+</sect2>
+
+<!-- ============= To View a Character Table ================ -->
+
+<sect2 id="ghex-view-character-table">
+<title>Affichage d'une table des caract&egrave;res</title>
+<para>Pour afficher une table contenant des repr&eacute;sentations ASCII, hexad&eacute;cimales, d&eacute;cimales, octales et binaires des valeurs 0 &agrave; 255, s&eacute;lectionnez <menuchoice>
+<guimenu>Fen&ecirc;tre</guimenu>
+<guimenuitem>Table de caract&egrave;res</guimenuitem>
+</menuchoice>.</para>
+</sect2>
+
+<!-- ============= To View Data Conversions ===================== -->
+
+<sect2 id="ghex-view-data-conversions">
+<title>Affichage des conversions de donn&eacute;es</title>
+<para>Pour afficher les conversions binaires, d&eacute;cimales, hexad&eacute;cimales et ASCII jusqu'&agrave; quatre octets de donn&eacute;es, proc&eacute;dez comme suit :</para>
+<orderedlist>
+<listitem><para>S&eacute;lectionnez <menuchoice>
+<guimenu>Fen&ecirc;tres</guimenu>
+<guimenuitem>Convertisseur de base</guimenuitem>
+</menuchoice>.</para>
+</listitem>
+<listitem><para>Proc&eacute;dez comme suit :</para>
+	<itemizedlist>
+	<listitem><para>Entrez les donn&eacute;es &agrave; convertir dans l'un des champs de la bo&icirc;te de dialogue <guilabel>Convertisseur de base</guilabel> et appuyez sur <keycap>Entr&eacute;e</keycap>. </para>
+	</listitem>
+	<listitem><para>Vous pouvez &eacute;galement afficher la conversion des donn&eacute;es situ&eacute;es &agrave; la position du pointeur dans le fichier courant. Pour ce faire, cliquez sur le bouton <guibutton>Prendre la valeur sous le curseur</guibutton>.</para>
+	</listitem>
+	</itemizedlist>
+	<para><application>&app;</application> met &agrave; jour les valeurs des autres champs pour afficher les conversions de donn&eacute;es. </para>
+</listitem>
+</orderedlist>
+</sect2>
+
+<!-- ============= To Print a File ===================== -->
+
+<sect2 id="ghex-print-file">
+<title>Modification d'un fichier</title>
+<para>Pour imprimer un fichier, s&eacute;lectionnez <menuchoice>
+<guimenu>Fichier</guimenu>
+<guimenuitem>Imprimer</guimenuitem>
+</menuchoice>. S&eacute;lectionnez les options requises dans la bo&icirc;te de dialogue <guilabel>Imprimer</guilabel>, puis cliquez sur <guibutton>OK</guibutton>. </para>
+<para>Pour obtenir un aper&ccedil;u avant l'impression du fichier, s&eacute;lectionnez <menuchoice>
+<guimenu>Fichier</guimenu>
+<guimenuitem>Aper&ccedil;u avant impression</guimenuitem>
+</menuchoice>.</para>
+</sect2>
+
+
+</sect1>
+
+<!-- ============= Customization ============================== -->
+
+<sect1 id="ghex-prefs"> 
+	 <title>Pr&eacute;f&eacute;rences</title>
+<para>Pour configurer <application>&app;</application>, s&eacute;lectionnez <menuchoice>
+<guimenu>&Eacute;dition</guimenu>
+<guimenuitem>Pr&eacute;f&eacute;rences</guimenuitem>
+</menuchoice>. La bo&icirc;te de dialogue <guilabel>Pr&eacute;f&eacute;rences</guilabel> contient les onglets suivants :</para>
+<itemizedlist>
+<listitem><para><xref linkend="ghex-prefs-editing"/></para>
+</listitem>
+<listitem><para><xref linkend="ghex-prefs-display"/></para>
+</listitem>
+<listitem><para><xref linkend="ghex-prefs-printing"/></para>
+</listitem>
+</itemizedlist>
+
+<!-- ============= Editing Tabbed Section ============================== -->
+
+<sect2 id="ghex-prefs-editing">
+<title>&Eacute;dition</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>Nombre maximum de niveaux d'annulation</guilabel> </term>
+<listitem>
+<para>Cette zone de s&eacute;lection num&eacute;rique permet de sp&eacute;cifier le nombre maximum d'op&eacute;rations que vous pouvez annuler &agrave; l'aide de l'&eacute;l&eacute;ment <guimenuitem>Annuler</guimenuitem> du menu <guimenu> &eacute;dition</guimenu>. </para>
+<!-- <para>Par d&eacute;faut : 100.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Afficher la position du curseur dans la barre d'&eacute;tat comme</guilabel> </term>
+<listitem>
+<para>Cette zone de liste d&eacute;roulante permet de s&eacute;lectionner le format dans lequel le d&eacute;calage du pointeur est affich&eacute;. Celui-ci peut &ecirc;tre d&eacute;cimal ou hexad&eacute;cimal, mais il peut &eacute;galement &ecirc;tre repr&eacute;sent&eacute; sous la forme d'une cha&icirc;ne de styles d'impression personnalis&eacute;e qui ne contient que les sp&eacute;cificateurs de format x, o et s. </para>
+<!-- <para>Par d&eacute;faut : <guilabel>Hexad&eacute;cimal</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Afficher la colonne de d&eacute;calage</guilabel> </term>
+<listitem>
+<para>Cette option permet d'afficher les d&eacute;calages du pointeur dans une colonne &agrave; gauche de la vue hexad&eacute;cimale de la fen&ecirc;tre <application>&app;</application>. </para>
+<!-- <para>Part d&eacute;faut : s&eacute;lectionn&eacute;.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<!-- ============= Display Tabbed Section ======================== -->
+
+<sect2 id="ghex-prefs-display">
+<title>Affichage</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>Police</guilabel> </term>
+<listitem>
+<para>Cliquez sur ce bouton pour afficher la bo&icirc;te de dialogue de s&eacute;lection de police. Celle-ci permet de modifier les informations de police existantes ou d'en saisir de nouvelles. Sp&eacute;cifiez un type de police, ainsi qu'un style et une taille pour afficher le contenu des fichiers dans <application>&app;</application>, puis cliquez sur <guibutton>OK</guibutton>. Les informations de police sp&eacute;cifi&eacute;es sont affich&eacute;es dans le bouton <guilabel>Police</guilabel>. </para>
+<!-- <para>Par d&eacute;faut : <guilabel>Courier 12</guilabel></para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Type de groupement par d&eacute;faut</guilabel> </term>
+<listitem>
+<para>D&eacute;terminez l'affichage du contenu hexad&eacute;cimal d'un fichier dans la fen&ecirc;tre <application>&app;</application>. Les options sont les suivantes : </para>
+<itemizedlist>
+<listitem><para><guilabel>Octets</guilabel> - octets simples.</para>
+</listitem>
+<listitem><para><guilabel>Mots</guilabel> - groupes de deux octets.</para>
+</listitem>
+<listitem><para><guilabel>Mots longs</guilabel> - groupes de quatre octets. </para>
+</listitem>
+</itemizedlist>
+<!-- <para>Par d&eacute;faut : <guilabel>Octets</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<!-- ============= Printing Tabbed Section ============================== -->
+
+<sect2 id="ghex-prefs-printing">
+<title>Impression</title>
+<variablelist>
+<varlistentry>
+<term><guilabel>Police des donn&eacute;es</guilabel> </term>
+<listitem>
+<para>Ce bouton permet de sp&eacute;cifier la taille de police &agrave; utiliser pour imprimer les donn&eacute;es contenues dans un fichier. </para>
+<!-- <para>Par d&eacute;faut : <guilabel>Courier 10.0</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Police de l'en-t&ecirc;te</guilabel> </term>
+<listitem>
+<para>Ce bouton permet de sp&eacute;cifier la taille de police &agrave; utiliser pour imprimer les informations d'en-t&ecirc;te contenues dans le fichier. </para>
+<!-- <para>Par d&eacute;faut: <guilabel>Helvetica 12.0</guilabel>.</para> -->
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Imprimer une bo&icirc;te ombr&eacute;e par-dessus</guilabel> </term>
+<listitem>
+<para>Cette zone de s&eacute;lection num&eacute;rique permet de sp&eacute;cifier le nombre de lignes que <application>&app;</application> imprime dans une bo&icirc;te ombr&eacute;e. Si sa valeur est 10, <application>&app;</application> imprime les 10 premi&egrave;res lignes du fichier dans la bo&icirc;te. </para>
+<!-- <para>Par d&eacute;faut : 0.</para> -->
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+</sect1>
+
+</article>
+
