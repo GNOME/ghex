@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 0.30\n"
-"POT-Creation-Date: 1999-01-03 15:21-0500\n"
-"PO-Revision-Date: 1998-12-13 17:35+0100\n"
+"Project-Id-Version: gnome-utils 0.99.1\n"
+"POT-Creation-Date: 1998-12-13 17:35+0100\n"
+"PO-Revision-Date: 1999-01-13 14:09+0100\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Date: 1998-12-13 20:24:00+0100\n"
+"Date: 1999-01-13 20:24:00+0100\n"
 "From: Miguel de Icaza,computo,622-4680 <miguel@metropolis.nuclecu.unam.mx>\n"
 "Xgettext-Options: --default-domain=gnome-utils --directory=.. --add-comments "
 "--keyword=_ --keyword=N_ --files-from=./POTFILES.in\n"
@@ -23,48 +23,11 @@ msgstr "Calculadora de GNOME"
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Simple calculadora de doble precisión, similar a xcalc"
 
-#: gcalc/gcalc.c:85 gdiskfree/df.c:128 ghex/ui.c:52
-#: gsearchtool/gsearchtool.c:582 gtt/menus.c:45
-#: mini-utils/gcolorsel/gcolorsel.c:371 mini-utils/gless/gless.c:314
-#: mini-utils/gw/gw.c:190
-msgid "E_xit"
-msgstr "_Salir"
-
-#: gcalc/gcalc.c:92 gdiskfree/df.c:137 ghex/ui.c:75
-#: gsearchtool/gsearchtool.c:591 gtt/menus.c:103 mini-utils/gless/gless.c:278
-#: mini-utils/gw/gw.c:171
-msgid "_About..."
-msgstr "_Acerca..."
-
-#: gcalc/gcalc.c:98 gtt/menus.c:59 gtt/menus.c:139
-msgid "_Copy"
-msgstr "_Copiar"
-
-#: gcalc/gcalc.c:105
-msgid "_Calculator"
-msgstr "_Calculadora"
-
-#: gcalc/gcalc.c:107 ghex/hex-document.c:85 gtt/menus.c:115
-msgid "_Edit"
-msgstr "_Editar"
-
-#: gcalc/gcalc.c:109 gdiskfree/df.c:146 ghex/ui.c:87
-#: gsearchtool/gsearchtool.c:601 gtt/menus.c:120
-#: mini-utils/gcolorsel/gcolorsel.c:379 mini-utils/gless/gless.c:334
-#: mini-utils/gw/gw.c:201
-msgid "_Help"
-msgstr "A_yuda"
-
-#: gcalc/gcalc.c:131
+#: gcalc/gcalc.c:124
 msgid "Gnome Calculator"
 msgstr "Calculadora de GNOME"
 
-#: gdiskfree/df.c:144 ghex/ui.c:81 gsearchtool/gsearchtool.c:598
-#: gtt/menus.c:113 mini-utils/gless/gless.c:332 mini-utils/gw/gw.c:199
-msgid "_File"
-msgstr "_Archivo"
-
-#: gdiskfree/df.c:219
+#: gdiskfree/df.c:213
 msgid ""
 "A quick hack to show the amount of space free on mounted file systems "
 "uitilizing a dial."
@@ -157,9 +120,8 @@ msgid "There is no active buffer to replace data in!"
 msgstr "No existe un buffer activo en el cual remplazar los datos"
 
 #: ghex/callbacks.c:420 ghex/callbacks.c:459
-#, fuzzy
 msgid "Strange find or replace string!"
-msgstr "Búsqueda errónea"
+msgstr "¡Cadena de busqueda o de reemplazo extraña!"
 
 #: ghex/callbacks.c:425 ghex/callbacks.c:464
 msgid "Both strings must be of the same length!"
@@ -187,30 +149,30 @@ msgstr ""
 "El archivo %s cambió desde la última vez que fué guardado.\n"
 "¿Desea guardar los cambios?"
 
-#: ghex/callbacks.c:589 ghex/ui.c:175
-#, fuzzy, c-format
+#: ghex/callbacks.c:589 ghex/ui.c:159
+#, c-format
 msgid "GHex (%s): Find Data"
-msgstr "GHex: Busca los datos"
+msgstr "GHex (%s): Busca los datos"
 
-#: ghex/callbacks.c:590 ghex/ui.c:235
-#, fuzzy, c-format
+#: ghex/callbacks.c:590 ghex/ui.c:219
+#, c-format
 msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex: Buscar & Reemplazar datos"
+msgstr "GHex (%s): Buscar & Reemplazar datos"
 
-#: ghex/callbacks.c:591 ghex/ui.c:320
-#, fuzzy, c-format
+#: ghex/callbacks.c:591 ghex/ui.c:304
+#, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex: Saltar al byte"
+msgstr "GHex (%s): Saltar al byte"
 
-#: ghex/callbacks.c:663
+#: ghex/callbacks.c:665
 msgid "ERROR"
-msgstr ""
+msgstr "ERROR"
 
 #: ghex/hex-document.c:54
 msgid "_Bytes"
 msgstr "_Bytes"
 
-#: ghex/hex-document.c:54
+#: ghex/hex-document.c:55
 msgid "Group data by 8 bits"
 msgstr "Grupar datos por 8 bits"
 
@@ -218,7 +180,7 @@ msgstr "Grupar datos por 8 bits"
 msgid "_Words"
 msgstr ""
 
-#: ghex/hex-document.c:56
+#: ghex/hex-document.c:57
 msgid "Group data by 16 bits"
 msgstr "Grupar datos por 16 bits"
 
@@ -226,287 +188,205 @@ msgstr "Grupar datos por 16 bits"
 msgid "_Longwords"
 msgstr ""
 
-#: ghex/hex-document.c:58
+#: ghex/hex-document.c:59
 msgid "Group data by 32 bits"
 msgstr "Grupar datos por 32 bits"
 
-#: ghex/hex-document.c:69
-msgid "_Find..."
-msgstr "_Buscar..."
-
-#: ghex/hex-document.c:69
-msgid "Search for a string"
-msgstr "Buscar una cadena de texto"
-
-#: ghex/hex-document.c:71
-msgid "_Replace..."
-msgstr "_Reemplazar..."
-
-#: ghex/hex-document.c:71
-msgid "Replace a string"
-msgstr "Reemplazar una cadena de texto"
-
-#: ghex/hex-document.c:75
+#: ghex/hex-document.c:72
 msgid "_Goto Byte..."
 msgstr "_Ir al Byte..."
 
-#: ghex/hex-document.c:75
+#: ghex/hex-document.c:72
 msgid "Jump to a certain position"
 msgstr "Saltar a una posición dada"
 
-#: ghex/hex-document.c:79
+#: ghex/hex-document.c:75
 msgid "_Group Data As"
 msgstr "_Grupar Datos como"
 
-#: ghex/ui.c:32
-msgid "_Open"
-msgstr "_Abrir"
-
-#: ghex/ui.c:32
-msgid "Open a file"
-msgstr "Abrir un archivo"
-
-#: ghex/ui.c:34
-msgid "_Save"
-msgstr "_Guardar"
-
-#: ghex/ui.c:34
-msgid "Save buffer "
-msgstr "Guardar el buffer "
-
-#: ghex/ui.c:36 mini-utils/gless/gless.c:297
-#, fuzzy
-msgid "Save _As..."
-msgstr "Guardar como..."
-
-#: ghex/ui.c:36
-msgid "Save buffer under a different file name"
-msgstr "Guardar el buffer bajo un nombre de archivo diferente"
-
-#: ghex/ui.c:38
-msgid "_Revert"
-msgstr "_Revertir"
-
-#: ghex/ui.c:38
-msgid "Revert buffer"
-msgstr "Revertir buffer"
-
-#: ghex/ui.c:40 mini-utils/gless/gless.c:301
-msgid "_Close"
-msgstr "_Cerrar"
-
-#: ghex/ui.c:40
-msgid "Close file"
-msgstr "Cerrar archivo"
-
-#: ghex/ui.c:44
-#, fuzzy
+#: ghex/ui.c:37
 msgid "Open Con_verter..."
-msgstr "Abrir Conver_tidor..."
+msgstr "Abrir Con_vertidor..."
 
-#: ghex/ui.c:44
+#: ghex/ui.c:38
 msgid "Open base conversion dialog"
 msgstr "Abrir la ventana de conversión de bases"
 
-#: ghex/ui.c:48
-msgid "_Preferences"
-msgstr "_Preferencias"
-
-#: ghex/ui.c:48
-msgid "Set user preferences"
-msgstr "Definir preferencias usuario"
-
-#: ghex/ui.c:52
-msgid "Exit GHex"
-msgstr "Salir de GHex"
-
-#: ghex/ui.c:62
+#: ghex/ui.c:55
 msgid "_Add view"
 msgstr "_Añadir vista"
 
-#: ghex/ui.c:62
+#: ghex/ui.c:56
 msgid "Add a new view of the buffer"
 msgstr "Añadir una nueva vista del buffer"
 
-#: ghex/ui.c:65
+#: ghex/ui.c:57
 msgid "_Remove view"
 msgstr "_Quitar vista"
 
-#: ghex/ui.c:65
+#: ghex/ui.c:58
 msgid "Remove the current view of the buffer"
 msgstr "Quitar la vista actual del buffer"
 
-#: ghex/ui.c:75
-msgid "About GHex"
-msgstr "Acerca de GHex"
-
-#: ghex/ui.c:83 mini-utils/gless/gless.c:333
-msgid "_View"
-msgstr "_Vista"
-
 #: ghex/ui.c:85
-msgid "File_s"
-msgstr "Archivo_s"
-
-#: ghex/ui.c:99
 msgid "Bytes"
 msgstr "Bytes"
 
-#: ghex/ui.c:100
+#: ghex/ui.c:86
 msgid "Words"
 msgstr ""
 
-#: ghex/ui.c:101
+#: ghex/ui.c:87
 msgid "Longwords"
 msgstr ""
 
-#: ghex/ui.c:125 mini-utils/idetool/idetool.c:141
-#: mini-utils/idetool/idetool.c:326
+#: ghex/ui.c:111 mini-utils/idetool/idetool.c:142
+#: mini-utils/idetool/idetool.c:325
 msgid "Default"
 msgstr "Valores por omisión"
 
-#: ghex/ui.c:126
+#: ghex/ui.c:112
 msgid "Notebook"
 msgstr "Bloc de notas"
 
-#: ghex/ui.c:127
+#: ghex/ui.c:113
 msgid "Toplevel"
 msgstr "Primer plano"
 
-#: ghex/ui.c:128
+#: ghex/ui.c:114
 msgid "Modal"
 msgstr "Modal"
 
-#: ghex/ui.c:133
+#: ghex/ui.c:119
 msgid "hex data"
 msgstr "hexadecimal"
 
-#: ghex/ui.c:134
+#: ghex/ui.c:120
 msgid "ASCII data"
 msgstr "ASCII"
 
-#: ghex/ui.c:184
+#: ghex/ui.c:168
 #, c-format
 msgid "Search for %s"
 msgstr "Buscar %s"
 
-#: ghex/ui.c:200
+#: ghex/ui.c:184
 msgid "Find Next"
 msgstr "Encuentra el siguiente"
 
-#: ghex/ui.c:207
+#: ghex/ui.c:191
 msgid "Find Previous"
 msgstr "Encuentra el anterior"
 
-#: ghex/ui.c:249
+#: ghex/ui.c:233
 #, c-format
 msgid "Replace %s"
 msgstr "Reemplazar %s"
 
-#: ghex/ui.c:265
+#: ghex/ui.c:249
 msgid "Find next"
 msgstr "Encontrar el siguiente"
 
-#: ghex/ui.c:272
+#: ghex/ui.c:256
 msgid "Replace"
 msgstr "Reemplazar"
 
-#: ghex/ui.c:279
+#: ghex/ui.c:263
 msgid "Replace All"
 msgstr "Reemplazar todos"
 
-#: ghex/ui.c:353
+#: ghex/ui.c:337
 msgid "GHex: Converter"
 msgstr "GHex: Conversor"
 
-#: ghex/ui.c:360
+#: ghex/ui.c:344
 msgid "Binary"
 msgstr "Binario"
 
-#: ghex/ui.c:370
+#: ghex/ui.c:354
 msgid "Decimal"
 msgstr "Decimal"
 
-#: ghex/ui.c:380
+#: ghex/ui.c:364
 msgid "Hex"
 msgstr "Hexadecimal"
 
-#: ghex/ui.c:390
+#: ghex/ui.c:374
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ghex/ui.c:400
+#: ghex/ui.c:384
 msgid "Close"
 msgstr "Cerrar"
 
-#: ghex/ui.c:444
+#: ghex/ui.c:428
 msgid "Font"
 msgstr "Fuente"
 
-#: ghex/ui.c:460
+#: ghex/ui.c:444
 msgid "Browse..."
 msgstr "Buscar..."
 
-#: ghex/ui.c:479
+#: ghex/ui.c:463
 msgid "Default Group Type"
 msgstr "Tipo de grupo por omisión"
 
-#: ghex/ui.c:495 gtt/options.c:195
+#: ghex/ui.c:479 gtt/options.c:195
 msgid "Display"
 msgstr "Despliegue"
 
-#: ghex/ui.c:502
+#: ghex/ui.c:486
 msgid "MDI Mode"
 msgstr "Modo MDI"
 
-#: ghex/ui.c:519
+#: ghex/ui.c:503
 msgid "MDI"
 msgstr "MDI"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
-#: gsearchtool/gsearchtool.c:201
+#: gsearchtool/gsearchtool.c:203
 msgid "Search Results"
 msgstr "Resultados de la búsqueda"
 
-#: gsearchtool/gsearchtool.c:487
+#: gsearchtool/gsearchtool.c:488
 msgid "Start in directory:"
 msgstr "A partir del directorio:"
 
-#: gsearchtool/gsearchtool.c:505 mini-utils/gw/gw.c:463
+#: gsearchtool/gsearchtool.c:506 mini-utils/gw/gw.c:454
 msgid "Add"
 msgstr "Añadir"
 
-#: gsearchtool/gsearchtool.c:516
+#: gsearchtool/gsearchtool.c:517
 msgid "Start"
 msgstr "Iniciar"
 
-#: gsearchtool/gsearchtool.c:517
+#: gsearchtool/gsearchtool.c:518
 msgid "Stop"
 msgstr "Detener"
 
-#: gsearchtool/gsearchtool.c:534
+#: gsearchtool/gsearchtool.c:536
 msgid "This is not yet implemented"
 msgstr "Aún no implementado"
 
-#: gsearchtool/gsearchtool.c:546
+#: gsearchtool/gsearchtool.c:549
 msgid "Full find (find)"
 msgstr "Búsqueda completa (find)"
 
-#: gsearchtool/gsearchtool.c:549
+#: gsearchtool/gsearchtool.c:552
 msgid "Quick find (locate)"
 msgstr "Búsqueda rápida (locate)"
 
-#: gsearchtool/gsearchtool.c:564
+#: gsearchtool/gsearchtool.c:567
 msgid "The Gnome Search Tool"
 msgstr "La Herramienta de Búsqueda de Gnome"
 
-#: gsearchtool/gsearchtool.c:567
+#: gsearchtool/gsearchtool.c:570
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Frontal para los comandos unix find/grep/locate"
 
-#: gsearchtool/gsearchtool.c:620
+#: gsearchtool/gsearchtool.c:613
 msgid "Gnome Search Tool"
 msgstr "Herramienta de Búsqueda de Gnome"
 
@@ -518,19 +398,19 @@ msgstr "no se ha seleccionado un proyecto"
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/clist.c:134
+#: gtt/clist.c:169
 msgid "Total"
 msgstr "Total"
 
-#: gtt/clist.c:135
+#: gtt/clist.c:170
 msgid "Today"
 msgstr "Hoy"
 
-#: gtt/clist.c:136
+#: gtt/clist.c:171
 msgid "Project Title"
 msgstr "Título del proyecto"
 
-#: gtt/clist.c:137
+#: gtt/clist.c:172
 msgid "Description"
 msgstr "Descripción"
 
@@ -546,19 +426,19 @@ msgstr "Sin descripción"
 msgid "program exited"
 msgstr "programa terminado"
 
-#: gtt/main.c:75 gtt/main.c:117
+#: gtt/main.c:77
+msgid ""
+"There seems to be another GTimeTracker running.\n"
+"Press OK to start GTimeTracker anyway, or press Cancel to quit."
+msgstr ""
+"Al parecer hay otro GTimeTracker corriendo.\n"
+"Pulse OK para iniciar GTimeTRacker igual, o Cancelar para salir."
+
+#: gtt/main.c:121
 msgid "Error"
 msgstr "Error"
 
-#: gtt/main.c:75
-msgid ""
-"There seems to be another GTimeTracker running.\n"
-"Please remove the pid file, if that is not correct."
-msgstr ""
-"Al parecer hay otro GTimeTracker corriendo.\n"
-"Borre el archivo ~/.gtimetracker.pid si no es el caso."
-
-#: gtt/main.c:118
+#: gtt/main.c:122
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -566,24 +446,24 @@ msgstr ""
 "Un error ha ocurrido al cargar el archivo de configuración\n"
 "¿Desea que instale una nueva configuración?"
 
-#: gtt/main.c:211 gtt/main.c:227 gtt/main.c:238 gtt/main.c:244
+#: gtt/main.c:215 gtt/main.c:231 gtt/main.c:242 gtt/main.c:248
 #, c-format
 msgid "error in geometry string \"%s\"\n"
 msgstr "error en la especificación de la geometría \"%s\"\n"
 
-#: gtt/main.c:263
+#: gtt/main.c:267
 msgid "Specify geometry"
 msgstr "Especificar la geometría"
 
-#: gtt/main.c:263 mini-utils/gless/gless.c:116
+#: gtt/main.c:267 mini-utils/gless/gless.c:115
 msgid "GEOMETRY"
 msgstr "GEOMETRÍA"
 
-#: gtt/main.c:265
+#: gtt/main.c:269
 msgid "Select a project on startup"
 msgstr "Seleccionar un proyecto al arrancar"
 
-#: gtt/main.c:265
+#: gtt/main.c:269
 msgid "PROJECT"
 msgstr "PROYECTO"
 
@@ -623,54 +503,33 @@ msgstr ""
 msgid "_New Project..."
 msgstr "_Nuevo Proyecto..."
 
-#: gtt/menus.c:31
+#: gtt/menus.c:30
 msgid "_Reload Configuration File"
 msgstr "_Releer Archivo de Configuración"
 
-#: gtt/menus.c:35
+#: gtt/menus.c:34
 msgid "_Save Configuration File"
 msgstr "_Guardar Archivo de Configuración"
 
-#: gtt/menus.c:40 mini-utils/gless/gless.c:308 mini-utils/gw/gw.c:185
-msgid "_Preferences..."
-msgstr "_Preferencias..."
-
-#: gtt/menus.c:55 gtt/menus.c:134
-msgid "C_ut"
-msgstr "_Cortar"
-
-#: gtt/menus.c:64 gtt/menus.c:144
-msgid "_Paste"
-msgstr "_Pegar"
-
-#: gtt/menus.c:70
+#: gtt/menus.c:59 gtt/menus.c:115
 msgid "Clear _Daily Counter"
 msgstr "Limpiar Contador _Diario"
 
-#: gtt/menus.c:75 gtt/menus.c:128
-#, fuzzy
-msgid "P_roperties..."
-msgstr "Propiedades..."
-
-#: gtt/menus.c:85
+#: gtt/menus.c:71
 msgid "St_art"
 msgstr "_Inicio"
 
-#: gtt/menus.c:89
+#: gtt/menus.c:75
 msgid "Sto_p"
 msgstr "_Fin"
 
-#: gtt/menus.c:94
+#: gtt/menus.c:80
 msgid "_Timer Running"
 msgstr "_Cronógrafo activado"
 
-#: gtt/menus.c:117
+#: gtt/menus.c:99
 msgid "_Timer"
 msgstr "_Cronógrafo"
-
-#: gtt/menus.c:149
-msgid "Clear Daily Counter"
-msgstr "Borrar el contador diario"
 
 #: gtt/options.c:203
 msgid "Show Seconds"
@@ -914,6 +773,10 @@ msgstr "Terminar GTimeTracker"
 msgid "Gnome Color Browser"
 msgstr "Visualizador de Colores de GNOME"
 
+#: mini-utils/gcolorsel/gcolorsel.c:71
+msgid "Format Style:"
+msgstr "Estilo del Formato:"
+
 #: mini-utils/gcolorsel/gcolorsel.c:81
 msgid "Color Name:"
 msgstr "Nombre del Color:"
@@ -927,12 +790,11 @@ msgid "Color"
 msgstr "Color"
 
 #: mini-utils/gcolorsel/gcolorsel.c:148 mini-utils/guname/moreinfo.c:220
-#: mini-utils/idetool/idetool.c:258
 msgid "Value"
 msgstr "Valor"
 
 #: mini-utils/gcolorsel/gcolorsel.c:149 mini-utils/guname/moreinfo.c:219
-#: mini-utils/gw/gw.c:454 mini-utils/gw/gw.c:529
+#: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
 msgid "Name"
 msgstr "Nombre"
 
@@ -970,15 +832,6 @@ msgstr ""
 "Pequeño utilitario para visualizar los colores disponibles en el  servidor "
 "X11."
 
-#: mini-utils/gcolorsel/gcolorsel.c:365
-#, fuzzy
-msgid "_About"
-msgstr "_Acerca..."
-
-#: mini-utils/gcolorsel/gcolorsel.c:378
-msgid "_Program"
-msgstr "_Programa"
-
 #: mini-utils/gfontsel/gfontsel.c:145
 msgid "Font Selector"
 msgstr "Selector de Fuentes"
@@ -1007,66 +860,35 @@ msgstr "No acordarse de la fuente seleccionada para la próxima vez"
 msgid "Inhibit loading of last font"
 msgstr "No cargar la última fuente seleccionada"
 
-#: mini-utils/gless/gless.c:116
+#: mini-utils/gless/gless.c:115
 msgid "Where to put the window, and its size"
 msgstr "Donde poner la ventana, y su tamaño"
 
-#: mini-utils/gless/gless.c:117
+#: mini-utils/gless/gless.c:116
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "Ignorar la entrada estándar; puede ser útil en ciertos casos."
 
-#: mini-utils/gless/gless.c:279 mini-utils/gw/gw.c:172
-msgid "Tell about this application"
-msgstr "Información acerca de esta aplicación"
-
-#: mini-utils/gless/gless.c:287
-#, fuzzy
+#: mini-utils/gless/gless.c:278
 msgid "_New Window"
-msgstr "Nueva Ventana"
+msgstr "_Nueva Ventana"
 
-#: mini-utils/gless/gless.c:287
+#: mini-utils/gless/gless.c:279
 msgid "New text viewer window"
 msgstr "Nueva ventana de visor de texto"
 
-#: mini-utils/gless/gless.c:292
-#, fuzzy
-msgid "_Open..."
-msgstr "Abrir..."
-
-#: mini-utils/gless/gless.c:292
-msgid "Open a new file in this window"
-msgstr "Abrir un nuevo archivo en esta ventana"
-
-#: mini-utils/gless/gless.c:297
-msgid "Save file to disk"
-msgstr "Escribir archivo al disco"
-
-#: mini-utils/gless/gless.c:302
-msgid "Close this window"
-msgstr "Cerrar esta ventana"
-
-#: mini-utils/gless/gless.c:309 mini-utils/gw/gw.c:186
-msgid "Change application preferences"
-msgstr "Cambiar preferencias de la aplicación"
-
-#: mini-utils/gless/gless.c:315 mini-utils/gw/gw.c:191
-msgid "Quit the application"
-msgstr "Salir de la aplicación"
-
-#: mini-utils/gless/gless.c:323
-#, fuzzy
+#: mini-utils/gless/gless.c:291
 msgid "_Fixed Font"
-msgstr "Fuente Constante"
+msgstr "Fuente _Constante"
 
-#: mini-utils/gless/gless.c:324
+#: mini-utils/gless/gless.c:292
 msgid "Display text with a fixed font"
 msgstr "Muestra el texto con una fuente de espacio constante"
 
-#: mini-utils/gless/gless.c:349
+#: mini-utils/gless/gless.c:321
 msgid "Text File Viewer"
 msgstr "Visor de Archivos Texto"
 
-#: mini-utils/gless/gless.c:409
+#: mini-utils/gless/gless.c:383
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -1074,19 +896,19 @@ msgstr ""
 "No puede entender la geometría (posición y tamaño)\n"
 " dados en la linea de comando"
 
-#: mini-utils/gless/gless.c:450
+#: mini-utils/gless/gless.c:424
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: mini-utils/gless/gless.c:455
+#: mini-utils/gless/gless.c:429
 msgid "No such file or directory:\n"
 msgstr "No existe el archivo o el directorio:\n"
 
-#: mini-utils/gless/gless.c:472
+#: mini-utils/gless/gless.c:446
 msgid "Failed to decompress and display the file:\n"
 msgstr "Falló la descompresión y afichage del archivo:\n"
 
-#: mini-utils/gless/gless.c:483
+#: mini-utils/gless/gless.c:457
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1094,23 +916,23 @@ msgstr ""
 "Incapaz de afichar el archivo comprimido.\n"
 "zcat no se encuentra en el path."
 
-#: mini-utils/gless/gless.c:491
+#: mini-utils/gless/gless.c:465
 msgid "Error loading file:\n"
 msgstr "Error al cargar el archivo:\n"
 
-#: mini-utils/gless/gless.c:545
+#: mini-utils/gless/gless.c:519
 msgid "Saving..."
 msgstr "Guardando..."
 
-#: mini-utils/gless/gless.c:556
+#: mini-utils/gless/gless.c:530
 msgid "Failed to write file:\n"
 msgstr "Falló escribir el archivo:\n"
 
-#: mini-utils/gless/gless.c:603
+#: mini-utils/gless/gless.c:577
 msgid "Save Text As..."
 msgstr "Guardar el Texto como..."
 
-#: mini-utils/gless/gless.c:643
+#: mini-utils/gless/gless.c:617
 msgid "Open Text File..."
 msgstr "Abrir Archivo Texto..."
 
@@ -1119,23 +941,20 @@ msgid "Failed to execute command:\n"
 msgstr "Falló ejecutar el comando:\n"
 
 #: mini-utils/gnome-run/gnome-run.c:68
-#, fuzzy
 msgid "Run Program"
-msgstr "_Programa"
+msgstr "Lanzar Programa"
 
 #: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run"
-msgstr ""
+msgstr "Lanzar"
 
 #: mini-utils/gnome-run/gnome-run.c:69
-#, fuzzy
 msgid "Cancel"
-msgstr "Caché"
+msgstr "Cancelar"
 
 #: mini-utils/gnome-run/gnome-run.c:80
-#, fuzzy
 msgid "Select a program to run"
-msgstr "Seleccionar un proyecto al arrancar"
+msgstr "Seleccione un programa a lanzar"
 
 #: mini-utils/gshutdown/gshutdown.c:82
 msgid "Shut Down"
@@ -1239,52 +1058,52 @@ msgstr "No preguntar la próxima vez."
 msgid "System Information"
 msgstr "Información del Sistema"
 
-#: mini-utils/guname/guname.c:411
+#: mini-utils/guname/guname.c:409
 msgid "Logo file not found"
 msgstr "No se encuentra el logotipo"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:415
+#: mini-utils/guname/guname.c:413
 msgid "GNOME contributors:"
 msgstr "Contribuidores de GNOME:"
 
-#: mini-utils/guname/guname.c:429
+#: mini-utils/guname/guname.c:427
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME: Modelo de Entorno de Objetos por Red de GNU"
 
-#: mini-utils/guname/guname.c:453
+#: mini-utils/guname/guname.c:451
 msgid "Email Information..."
 msgstr "Información Correo Electrónico..."
 
-#: mini-utils/guname/guname.c:464
+#: mini-utils/guname/guname.c:462
 msgid "Save Information to File..."
 msgstr "Guardar la Información a un Archivo..."
 
-#: mini-utils/guname/guname.c:476 mini-utils/guname/guname.c:540
+#: mini-utils/guname/guname.c:474 mini-utils/guname/guname.c:538
 msgid "Detailed Information..."
 msgstr "Información Detallada..."
 
-#: mini-utils/guname/guname.c:491
+#: mini-utils/guname/guname.c:489
 msgid "Category"
 msgstr "Categoría"
 
-#: mini-utils/guname/guname.c:491
+#: mini-utils/guname/guname.c:489
 msgid "Your System"
 msgstr "Su Sistema"
 
-#: mini-utils/guname/guname.c:526
+#: mini-utils/guname/guname.c:524
 msgid "Save As..."
 msgstr "Guardar como..."
 
-#: mini-utils/guname/guname.c:532
+#: mini-utils/guname/guname.c:530
 msgid "Mail To..."
 msgstr "Mandar correo a..."
 
-#: mini-utils/guname/guname.c:580
+#: mini-utils/guname/guname.c:578
 msgid "Error closing file `"
 msgstr "Error al cerrar el archivo `"
 
-#: mini-utils/guname/guname.c:582
+#: mini-utils/guname/guname.c:580
 msgid ""
 "\n"
 "Some or all data may not have been written."
@@ -1292,32 +1111,32 @@ msgstr ""
 "\n"
 "Es posible que alguna o toda la información no haya podido escribirse."
 
-#: mini-utils/guname/guname.c:591
+#: mini-utils/guname/guname.c:589
 msgid "Couldn't open file `"
 msgstr "No pude abrir el archivo `"
 
-#: mini-utils/guname/guname.c:605
+#: mini-utils/guname/guname.c:603
 msgid "Save System Information As..."
 msgstr "Guardar Información Sistema como..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:651
+#: mini-utils/guname/guname.c:649
 msgid "Command failed ` "
 msgstr "Falló el comando ` "
 
-#: mini-utils/guname/guname.c:651 mini-utils/guname/guname.c:658
+#: mini-utils/guname/guname.c:649 mini-utils/guname/guname.c:656
 msgid " ': "
 msgstr " ': "
 
-#: mini-utils/guname/guname.c:658
+#: mini-utils/guname/guname.c:656
 msgid "Couldn't run command ` "
 msgstr "No pude lanzar el comando ` "
 
-#: mini-utils/guname/guname.c:681
+#: mini-utils/guname/guname.c:679
 msgid "The following mail will be sent to "
 msgstr "El correo siguiente será enviado a "
 
-#: mini-utils/guname/guname.c:683
+#: mini-utils/guname/guname.c:681
 msgid ""
 ".\n"
 " Are you sure you want to mail this information?"
@@ -1325,11 +1144,11 @@ msgstr ""
 ".\n"
 "¿Está seguro que quiere enviar está información por correo electrónico?"
 
-#: mini-utils/guname/guname.c:692
+#: mini-utils/guname/guname.c:690
 msgid "Are you sure?"
 msgstr "¿Está seguro?"
 
-#: mini-utils/guname/guname.c:725
+#: mini-utils/guname/guname.c:723
 msgid "Address to mail to:"
 msgstr "Dirección adonde enviar:"
 
@@ -1399,7 +1218,7 @@ msgstr "Memoria Libre:"
 
 #: mini-utils/guname/info.c:57
 msgid "Device"
-msgstr "Dispositivo"
+msgstr " Dispositivo "
 
 #: mini-utils/guname/info.c:58
 msgid "Size"
@@ -1460,42 +1279,42 @@ msgstr "swap"
 msgid "CPU %d"
 msgstr "CPU %d"
 
-#: mini-utils/guname/moreinfo.c:262
+#: mini-utils/guname/moreinfo.c:264
 msgid "Detailed System Information"
 msgstr "Información Sistema Detallada"
 
-#: mini-utils/guname/moreinfo.c:275
+#: mini-utils/guname/moreinfo.c:277
 msgid "Disk Information"
 msgstr "Información Disco"
 
-#: mini-utils/guname/moreinfo.c:277
+#: mini-utils/guname/moreinfo.c:279
 msgid "Memory Information"
 msgstr "Información Memoria"
 
-#: mini-utils/guname/moreinfo.c:280
+#: mini-utils/guname/moreinfo.c:282
 msgid "CPU Information"
 msgstr "Información CPU"
 
-#: mini-utils/guname/moreinfo.c:301
+#: mini-utils/guname/moreinfo.c:303
 msgid "%2d%% full "
 msgstr "lleno a %2d%%"
 
-#: mini-utils/guname/moreinfo.c:303
+#: mini-utils/guname/moreinfo.c:305
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr "%ld megabytes, %ld libres (%ld superuser); %ld inodoes, %ld libres."
 
-#: mini-utils/guname/moreinfo.c:317
-msgid "Mount Point: "
-msgstr "Punto de Montaje:"
-
-#: mini-utils/guname/moreinfo.c:318
-msgid "    Device: "
-msgstr "Dispositivo:"
-
 #: mini-utils/guname/moreinfo.c:319
+msgid "Mount Point: "
+msgstr "Punto de Montaje: "
+
+#: mini-utils/guname/moreinfo.c:320
+msgid "    Device: "
+msgstr "   Dispositivo: " 
+
+#: mini-utils/guname/moreinfo.c:321
 msgid "    Filesystem Type: "
-msgstr "Tipo de Sistema de Archivos:"
+msgstr "   Tipo de Sistema de Archivos: "
 
 #: mini-utils/gw/gw.c:144
 msgid ""
@@ -1505,42 +1324,41 @@ msgstr ""
 "No pude encontrar el comando \"w\" en el path.\n"
 "Este comando es necesario para el funcionamiento del programa."
 
-#: mini-utils/gw/gw.c:180
-#, fuzzy
+#: mini-utils/gw/gw.c:177
 msgid "_Save..."
-msgstr "Guardar..."
+msgstr "_Guardar..."
 
-#: mini-utils/gw/gw.c:180
+#: mini-utils/gw/gw.c:177
 msgid "Write information to disk"
 msgstr "Escribir la información al disco"
 
-#: mini-utils/gw/gw.c:212
+#: mini-utils/gw/gw.c:205
 msgid "User Listing"
 msgstr "Lista de Usuarios"
 
-#: mini-utils/gw/gw.c:231
+#: mini-utils/gw/gw.c:222
 msgid "Update Information"
 msgstr "Actualizar Información"
 
-#: mini-utils/gw/gw.c:454
+#: mini-utils/gw/gw.c:445
 msgid "Command Line"
 msgstr "Linea de Comando"
 
 #. Create everything.
-#: mini-utils/gw/gw.c:462
+#: mini-utils/gw/gw.c:453
 msgid "Add some defaults"
 msgstr "Añadir algunos valores de entorno"
 
 # gncal/gncal-todo.c:283 gncal/gnomecard/gnomecard.c:1042 gncal/gnomecard/gnome
-#: mini-utils/gw/gw.c:464
+#: mini-utils/gw/gw.c:455
 msgid "Delete"
 msgstr "Borrar"
 
-#: mini-utils/gw/gw.c:482
+#: mini-utils/gw/gw.c:473
 msgid "Command Editor"
 msgstr "Editor de Comandos"
 
-#: mini-utils/gw/gw.c:492
+#: mini-utils/gw/gw.c:483
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -1554,7 +1372,7 @@ msgstr ""
 "Al entrar el comando, puede usar %u para representar \n"
 "el nombre de usuario actual, y %t para el tty."
 
-#: mini-utils/gw/gw.c:499
+#: mini-utils/gw/gw.c:490
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -1562,41 +1380,41 @@ msgstr ""
 "Cliquee este botón para añadir\n"
 "algunos ejemplos de comandos."
 
-#: mini-utils/gw/gw.c:507
+#: mini-utils/gw/gw.c:498
 msgid "Menu items"
 msgstr "Elementos de Menú"
 
-#: mini-utils/gw/gw.c:535
+#: mini-utils/gw/gw.c:526
 msgid "Command"
 msgstr "Comando"
 
-#: mini-utils/idetool/idetool.c:41
+#: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
 msgstr "Imposible de acceder al disco."
 
-#: mini-utils/idetool/idetool.c:58 mini-utils/idetool/idetool.c:70
+#: mini-utils/idetool/idetool.c:59 mini-utils/idetool/idetool.c:71
 msgid "The DMA setting for this drive cannot be changed."
 msgstr "La configuración DMA de este disco no puede cambiarse."
 
-#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
-#: mini-utils/idetool/idetool.c:322 mini-utils/idetool/idetool.c:324
+#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
+#: mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
 msgid "Enabled"
 msgstr "Activado"
 
-#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
-#: mini-utils/idetool/idetool.c:322 mini-utils/idetool/idetool.c:324
+#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
+#: mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
 msgid "Disabled"
 msgstr "Desactivado"
 
-#: mini-utils/idetool/idetool.c:90 mini-utils/idetool/idetool.c:102
+#: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
 msgstr "La configuración de IRQ unmask para este disco no puede cambiarse."
 
-#: mini-utils/idetool/idetool.c:121 mini-utils/idetool/idetool.c:133
+#: mini-utils/idetool/idetool.c:122 mini-utils/idetool/idetool.c:134
 msgid "The drive refused to keep its settings."
 msgstr "El disco no acceptó de guardar su configuración."
 
-#: mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:326
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
 msgid "Keep settings"
 msgstr "Guardar configuración"
 
@@ -1617,130 +1435,225 @@ msgstr "(Puerto Dual)"
 msgid "(Dual Port Cache)"
 msgstr "(Caché Puerto Dual)"
 
-#: mini-utils/idetool/idetool.c:258
-msgid "Setting"
-msgstr "Configuración"
-
-#: mini-utils/idetool/idetool.c:309 mini-utils/idetool/idetool.c:319
+#: mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
 msgid "Model"
 msgstr "Modelo"
 
-#: mini-utils/idetool/idetool.c:310
+#: mini-utils/idetool/idetool.c:309
 msgid "Firmware"
 msgstr "Firmware"
 
-#: mini-utils/idetool/idetool.c:311
+#: mini-utils/idetool/idetool.c:310
 msgid "Serial No."
 msgstr "Nº de serie"
 
 #. do config here
-#: mini-utils/idetool/idetool.c:313
+#: mini-utils/idetool/idetool.c:312
 msgid "Geometry"
 msgstr "Geometría"
 
-#: mini-utils/idetool/idetool.c:314
+#: mini-utils/idetool/idetool.c:313
 msgid "Cache"
 msgstr "Caché"
 
-#: mini-utils/idetool/idetool.c:315
+#: mini-utils/idetool/idetool.c:314
 msgid "Status"
 msgstr "Estado"
 
-#: mini-utils/idetool/idetool.c:319
+#: mini-utils/idetool/idetool.c:318
 msgid "Legacy MFM/RLL drive"
 msgstr "Disco antiguo MFM/RLL"
 
-#: mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:321
 msgid "DMA Mode"
 msgstr "Modo DMA"
 
-#: mini-utils/idetool/idetool.c:323
+#: mini-utils/idetool/idetool.c:322
 msgid "IO Mode"
 msgstr "Modo IO"
 
-#: mini-utils/idetool/idetool.c:324
+#: mini-utils/idetool/idetool.c:323
 msgid "IRQ Unmask"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:325
+#: mini-utils/idetool/idetool.c:324
 msgid "Multisector"
 msgstr "Multisector"
 
-#: mini-utils/idetool/idetool.c:326
+#: mini-utils/idetool/idetool.c:325
 msgid "On Reset"
 msgstr "Al Reiniciar"
 
 #.
 #. *	Set up the outer display first
 #.
-#: mini-utils/idetool/idetool.c:352
+#: mini-utils/idetool/idetool.c:351
 msgid "IDE Status"
 msgstr "Estado IDE"
 
-#: mini-utils/idetool/idetool.c:365
+#: mini-utils/idetool/idetool.c:364
 msgid "Disk Logo Not Found"
 msgstr "No se encuentra el logotipo del disco"
 
-#: mini-utils/idetool/idetool.c:416
+#: mini-utils/idetool/idetool.c:415
 msgid "Only the superuser can use this tool"
 msgstr "Solamente el superusuario puede usar esta herramienta"
 
-#: mini-utils/idetool/idetool.c:427
+#: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "Al parecer Vd. no tiene discos IDE"
 
-#~ msgid "Exit"
-#~ msgstr "Salir"
+msgid "_File"
+msgstr "_Archivo"
 
-#~ msgid "About..."
-#~ msgstr "Acerca de..."
+msgid "_Open..."
+msgstr "_Abrir..."
 
-#~ msgid "File"
-#~ msgstr "Archivo"
+msgid "_Save"
+msgstr "_Guardar"
 
-#~ msgid "Help"
-#~ msgstr "Ayuda"
+msgid "Save _As..."
+msgstr "Guardar _Como..."
 
-#, fuzzy
-#~ msgid "_Edit/_Group Data As/"
-#~ msgstr "Editar/Grupar Datos Como/"
+msgid "_Revert"
+msgstr "_Revertir"
 
-#~ msgid "Discard session"
-#~ msgstr "Descarta la sesión"
+msgid "_Close"
+msgstr "_Cerrar"
 
-#~ msgid "ID"
-#~ msgstr "ID"
+msgid "Clear"
+msgstr "Limpiar"
 
-#, fuzzy
-#~ msgid "File_s/"
-#~ msgstr "Archivos/"
+msgid "_Edit"
+msgstr "_Editar"
 
-#~ msgid "Save _as..."
-#~ msgstr "Guardar c_omo..."
+msgid "_View"
+msgstr "_Vista"
 
-#~ msgid "_Exit"
-#~ msgstr "_Salir"
+msgid "_Settings"
+msgstr "_Configuración"
 
-#~ msgid "_Quit"
-#~ msgstr "_Salir"
+msgid "_Preferences..."
+msgstr "_Preferencias..."
 
-#~ msgid "Pr_operties..."
-#~ msgstr "Pr_opiedades..."
+msgid "_Properties..."
+msgstr "_Propiedades..."
 
-#~ msgid "Preferences..."
-#~ msgstr "Preferencias..."
+msgid "Fi_les"
+msgstr "Archivo_s"
 
-#~ msgid "View"
-#~ msgstr "Ver"
+msgid "_Help"
+msgstr "A_yuda"
 
-#~ msgid "Mounted filesystems"
-#~ msgstr "Sistemas de archivos montados"
+msgid "_About..."
+msgstr "_Acerca..."
 
-#~ msgid "Quit the application without saving"
-#~ msgstr "Salir de la aplicación sin guardar"
+msgid "Help"
+msgstr "Ayuda"
 
-#~ msgid "ERRONEUS STRING"
-#~ msgstr "CADENA ERRÓNEA"
+msgid "_Copy"
+msgstr "_Copiar"
 
-#~ msgid "Enter a command to execute:"
-#~ msgstr "Entre un comando a ejecutar:"
+msgid "C_ut"
+msgstr "Cor_tar"
+
+msgid "_Paste"
+msgstr "_Pegar"
+
+msgid "E_xit"
+msgstr "_Salir"
+
+#: gtk/gtkfontsel.c:203
+msgid "Foundry:"
+msgstr "Fundición:"
+
+#: gtk/gtkfontsel.c:204
+msgid "Family:"
+msgstr "Familia:"
+
+#: gtk/gtkfontsel.c:205
+msgid "Weight:"
+msgstr "Peso:"
+
+#: gtk/gtkfontsel.c:206
+msgid "Slant:"
+msgstr "Inclinación:"
+
+#: gtk/gtkfontsel.c:207
+msgid "Set Width:"
+msgstr "Ancho:"
+
+#: gtk/gtkfontsel.c:208
+msgid "Add Style:"
+msgstr "Estilo adicional:"
+
+#: gtk/gtkfontsel.c:209
+msgid "Pixel Size:"
+msgstr "Tamaño Pixeles:"
+
+#: gtk/gtkfontsel.c:210
+msgid "Point Size:"
+msgstr "Tamaño Puntos:"
+
+#: gtk/gtkfontsel.c:211
+msgid "Resolution X:"
+msgstr "Resolución X:"
+
+#: gtk/gtkfontsel.c:212
+msgid "Resolution Y:"
+msgstr "Resolución Y:"
+
+#: gtk/gtkfontsel.c:213
+msgid "Spacing:"
+msgstr "Espacio:"
+
+#: gtk/gtkfontsel.c:214
+msgid "Average Width:"
+msgstr "Ancho promedio:"
+
+#: gtk/gtkfontsel.c:215
+msgid "Charset:"
+msgstr "Codificación:"
+
+msgid "File name"
+msgstr "Nombre de archivo"
+
+msgid "Enable"
+msgstr "Activar"
+
+msgid "Remove"
+msgstr "Quitar"
+
+msgid "Don't search subdirectories"
+msgstr "No buscar en los subdirectorios"
+
+msgid "File owner"
+msgstr "Dueño del archivo"
+
+msgid "File owner group"
+msgstr "Grupo dueño del archivo"
+
+msgid "Last modification time"
+msgstr "Fecha de la última modificación"
+
+msgid "Don't search mounted filesystems"
+msgstr "No buscar en otros sistemas de archivos"
+
+msgid "Empty file"
+msgstr "Archivos vacios"
+
+msgid "Invalid user or group"
+msgstr "Dueños o grupos no válidos"
+
+msgid "Filenames except"
+msgstr "Nombres de archivos diferentes de"
+
+msgid "Simple substring search"
+msgstr "Simple búsqueda de cadenas de texto"
+
+msgid "Regular expression search"
+msgstr "Búsqueda con expresiones regulares"
+
+msgid "Extended regular expression search"
+msgstr "Búsqueda con expresiones regulares extendidas"
+
