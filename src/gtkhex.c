@@ -971,6 +971,19 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	hide_cursor(gh);
 
 	switch(event->keyval) {
+	case GDK_BackSpace:
+		if(gh->cursor_pos > 0) {
+			hex_document_set_data(gh->document, gh->cursor_pos - 1,
+								  0, 1, NULL, TRUE);
+			gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
+		}
+		break;
+	case GDK_Delete:
+		if(gh->cursor_pos < gh->document->file_size) {
+			hex_document_set_data(gh->document, gh->cursor_pos,
+								  0, 1, NULL, TRUE);
+		}
+		break;
 	case GDK_Up:
 	case GDK_KP_8:
 		gtk_hex_set_cursor(gh, gh->cursor_pos - gh->cpl);

@@ -1,3 +1,11 @@
+2000-03-16  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* gtkhex.c (gtk_hex_key_press): added support for backspace
+	and delete.
+	* hex-document.c (hex_document_undo): fixed a bug that caused it
+	to crash when undoing removal of data.
+	* released version 1.1.0.
+	
 2000-03-15  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* chartable.c (select_chartable_row_cb): new function;  set byte under
