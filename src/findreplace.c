@@ -342,7 +342,7 @@ static void find_next_cb(GtkWidget *w)
 		gtk_hex_set_cursor(gh, offset);
 	else {
 		ghex_window_flash(win, _("End Of File reached"));
-		display_info_dialog(win, "String was not found!\n");
+		display_info_dialog(win, _("String was not found!\n"));
 	}
 }
 
@@ -371,7 +371,7 @@ static void find_prev_cb(GtkWidget *w)
 		gtk_hex_set_cursor(gh, offset);
 	else {
 		ghex_window_flash(win, _("Beginning Of File reached"));
-		display_info_dialog(win, "String was not found!\n");
+		display_info_dialog(win, _("String was not found!\n"));
 	}
 }
 
@@ -426,7 +426,7 @@ static void replace_next_cb(GtkWidget *w)
 								 gh->cursor_pos+1, str, str_len, &offset))
 		gtk_hex_set_cursor(gh, offset);
 	else {
-		display_info_dialog(win, "String was not found!\n");
+		display_info_dialog(win, _("String was not found!\n"));
 		ghex_window_flash(win, _("End Of File reached"));
 	}
 }
