@@ -1003,6 +1003,9 @@ ghex_window_save_as(GHexWindow *win)
                                                            GNOME_STOCK_BUTTON_YES,
                                                            GNOME_STOCK_BUTTON_NO,
                                                            NULL));
+			 gtk_window_set_type_hint (GTK_WINDOW (mbox), GDK_WINDOW_TYPE_HINT_DIALOG);
+			 gtk_window_set_transient_for (GTK_WINDOW (mbox), GTK_WINDOW (file_sel));
+
             g_free(msg);
             ret_val = (ask_user(mbox) == 0);
         }
@@ -1051,11 +1054,27 @@ ghex_window_save_as(GHexWindow *win)
 }
 
 gboolean
+ghex_window_uri_exists (const gchar* text_uri)
+{
+	GnomeVFSURI *uri;
+	gboolean res;
+
+	g_return_val_if_fail (text_uri != NULL, FALSE);
+	uri = gnome_vfs_uri_new (text_uri);
+	g_return_val_if_fail (uri != NULL, FALSE);
+	res = gnome_vfs_uri_exists (uri);
+
+	gnome_vfs_uri_unref (uri);
+	return res;
+}
+
+gboolean
 ghex_window_ok_to_close(GHexWindow *win)
 {
 	static char msg[MESSAGE_LEN + 1];
 	GtkWidget *mbox;
 	gint reply;
+	gboolean uri_exists;
 	GtkWidget *save_btn;
     HexDocument *doc;
 
@@ -1063,8 +1082,8 @@ ghex_window_ok_to_close(GHexWindow *win)
         return TRUE;
 
     doc = win->gh->document;
-
-    if(!hex_document_has_changed(doc))
+    uri_exists = ghex_window_uri_exists(doc->file_name);
+    if(!hex_document_has_changed(doc) && uri_exists)
         return TRUE;
 
 	g_snprintf(msg, MESSAGE_LEN,
@@ -1091,7 +1110,7 @@ ghex_window_ok_to_close(GHexWindow *win)
 	gtk_widget_destroy(mbox);
 		
 	if(reply == GTK_RESPONSE_YES) {
-		if(doc->file_name == NULL) {
+		if(!uri_exists) {
 			if(!ghex_window_save_as(win)) {
 				return FALSE;
 			}

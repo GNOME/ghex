@@ -1,3 +1,11 @@
+2003-09-01  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/ghex-window.c: applied a patch from Kaushal Kumar: Check on
+	close if the current file was deleted, and prompt for a save to
+	avoid a possible data loss. fixes #119855.
+	(ghex_window_save_as): put warning dialog on top. fixes #119707.
+	patch by Shakti Sen.
+
 2003-08-18  Stanislav Brabec  <sbrabec@suse.cz>
 
 	* Makefile.am: Added xmldocs.make to EXTRA_DIST (needed for
