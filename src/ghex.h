@@ -29,6 +29,7 @@
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprint/gnome-printer.h>
 #include <libgnomeprint/gnome-print-preview.h>
+#include <libgnomeprint/gnome-print-master.h>
 
 #include <stdio.h>
 
@@ -100,8 +101,8 @@ typedef struct _Converter {
 } Converter;
 
 typedef struct {
+	GnomePrintMaster *master;
 	GnomePrintContext *pc;
-	GnomePrintPreviewJob *pj;
 	HexDocument *doc;
 
 	int   pages;
@@ -120,14 +121,6 @@ typedef struct {
 	int   gt;            /* group_type */
 } GHexPrintJobInfo;
 
-typedef struct _PreviewWindow {
-	GtkWidget *window;
-	GtkWidget *prev, *next, *first, *last, *zoom, *close;
-	GtkAdjustment *zoom_adj;
-	GtkWidget *canvas;
-	GHexPrintJobInfo *job;
-} PreviewWindow;
-
 extern int restarted;
 extern const struct poptOption options[];
 extern GSList *cl_files;
@@ -140,7 +133,6 @@ extern JumpDialog     *jump_dialog;
 extern Converter      *converter;
 extern GtkWidget      *char_table;
 extern PropertyUI     *prefs_ui;
-extern PreviewWindow  *preview_window;
 
 /* our preferred settings; as only one copy of them is required,
    we'll make them global vars, although this is a bit ugly */
@@ -169,7 +161,6 @@ JumpDialog    *create_jump_dialog    (void);
 Converter     *create_converter      (void);
 GtkWidget     *create_char_table     (void);
 PropertyUI    *create_prefs_dialog   (void);
-PreviewWindow *create_preview_window (void);
 
 /* various ui convenience functions */
 void create_dialog_title   (GtkWidget *, gchar *);

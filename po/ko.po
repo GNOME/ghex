@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 2000-03-25 18:59+0100\n"
+"POT-Creation-Date: 2000-03-26 20:34+0200\n"
 "PO-Revision-Date: 1999-12-16 11:50+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@adam.kaist.ac.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -310,105 +310,113 @@ msgstr ""
 msgid "Can not open desired font!"
 msgstr "선택한 글꼴을 열 수 없습니다!"
 
-#: src/ui.c:56
+#: src/ui.c:57
 msgid "Export to HTML..."
 msgstr ""
 
-#: src/ui.c:56
+#: src/ui.c:57
 msgid "Export data to HTML source"
 msgstr ""
 
-#: src/ui.c:72
+#: src/ui.c:61
+msgid "Print preview..."
+msgstr ""
+
+#: src/ui.c:61
+msgid "Preview printed data"
+msgstr ""
+
+#: src/ui.c:74
 #, fuzzy
 msgid "Con_verter..."
 msgstr "변환기 열기(_N)..."
 
-#: src/ui.c:73
+#: src/ui.c:75
 msgid "Open base conversion dialog"
 msgstr "기본 변환 대화창 열기"
 
-#: src/ui.c:74
+#: src/ui.c:76
 msgid "Character Table..."
 msgstr ""
 
-#: src/ui.c:75
+#: src/ui.c:77
 msgid "Show the character table"
 msgstr ""
 
-#: src/ui.c:92
+#: src/ui.c:94
 #, fuzzy
 msgid "Tools"
 msgstr "도구막대"
 
-#: src/ui.c:106
+#: src/ui.c:108
 msgid "Bytes"
 msgstr "바이트"
 
-#: src/ui.c:107
+#: src/ui.c:109
 msgid "Words"
 msgstr "워드"
 
-#: src/ui.c:108
+#: src/ui.c:110
 msgid "Longwords"
 msgstr "긴 단어"
 
-#: src/ui.c:113
+#: src/ui.c:115
 msgid "hex data"
 msgstr "십육진 자료"
 
-#: src/ui.c:114
+#: src/ui.c:116
 msgid "ASCII data"
 msgstr "아스키 자료"
 
-#: src/ui.c:198
+#: src/ui.c:200
 msgid "GHex, a binary file editor"
 msgstr "GHex, 이진 파일 편집기"
 
-#: src/ui.c:200
+#: src/ui.c:202
 msgid "Released under the terms of GNU Public License"
 msgstr "GNU Public License에 의거하여 공개"
 
-#: src/ui.c:224 src/ui.c:527
+#: src/ui.c:226 src/ui.c:539
 msgid "Error saving file!"
 msgstr "파일 저장 에러!"
 
-#: src/ui.c:228 src/ui.c:522
+#: src/ui.c:230 src/ui.c:534
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "버퍼를 파일 %s 에 저장"
 
-#: src/ui.c:249
+#: src/ui.c:251
 msgid "Select a file to open"
 msgstr "열기 위한 파일 선택"
 
-#: src/ui.c:282
+#: src/ui.c:284
 msgid "Select a file to save buffer as"
 msgstr "버퍼를 저장할 파일 선택"
 
-#: src/ui.c:358
+#: src/ui.c:370
 msgid "Select path and file name for the HTML source"
 msgstr ""
 
-#: src/ui.c:454
+#: src/ui.c:466
 #, c-format
 msgid "Really revert file %s?"
 msgstr "정말로 %s 파일을 원상복구할까요?"
 
-#: src/ui.c:467
+#: src/ui.c:479
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "파일 %s 에서 버퍼 복구"
 
-#: src/ui.c:483
+#: src/ui.c:495
 #, c-format
 msgid "Loaded file %s"
 msgstr "파일 %s 읽어들임"
 
-#: src/ui.c:488
+#: src/ui.c:500
 msgid "Can not open file!"
 msgstr "파일을 열 수 없습니다!"
 
-#: src/ui.c:531
+#: src/ui.c:543
 msgid "Can't open file for writing!"
 msgstr "쓰기위해 파일을 열 수 없습니다!"
 
@@ -422,7 +430,12 @@ msgstr "비율"
 msgid "GHex: Character table"
 msgstr "GHex: 변환기"
 
-#: src/print.c:136
+#: src/print.c:121
+#, fuzzy, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): 자료 찾기"
+
+#: src/print.c:137
 #, c-format
 msgid "Page: %i/%i"
 msgstr ""

@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 2000-03-25 18:59+0100\n"
+"POT-Creation-Date: 2000-03-26 20:34+0200\n"
 "PO-Revision-Date: 2000-01-24 22:21-0500\n"
 "Last-Translator: Spiros Papadimitriou <spapadim+@cs.cmu.edu>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -316,105 +316,113 @@ msgstr ""
 msgid "Can not open desired font!"
 msgstr "¶νοιγμα γραμματοσειράς ανεπιτυχής!"
 
-#: src/ui.c:56
+#: src/ui.c:57
 msgid "Export to HTML..."
 msgstr ""
 
-#: src/ui.c:56
+#: src/ui.c:57
 msgid "Export data to HTML source"
 msgstr ""
 
-#: src/ui.c:72
+#: src/ui.c:61
+msgid "Print preview..."
+msgstr ""
+
+#: src/ui.c:61
+msgid "Preview printed data"
+msgstr ""
+
+#: src/ui.c:74
 #, fuzzy
 msgid "Con_verter..."
 msgstr "¶νοιγμα Μετατ_ροπέα"
 
-#: src/ui.c:73
+#: src/ui.c:75
 msgid "Open base conversion dialog"
 msgstr "¶νοιγμα διαλόγου μετατροπής συστήματος αρίθμισης"
 
-#: src/ui.c:74
+#: src/ui.c:76
 msgid "Character Table..."
 msgstr ""
 
-#: src/ui.c:75
+#: src/ui.c:77
 msgid "Show the character table"
 msgstr ""
 
-#: src/ui.c:92
+#: src/ui.c:94
 #, fuzzy
 msgid "Tools"
 msgstr "Γραμμή Εργαλείων"
 
-#: src/ui.c:106
+#: src/ui.c:108
 msgid "Bytes"
 msgstr "Byte"
 
-#: src/ui.c:107
+#: src/ui.c:109
 msgid "Words"
 msgstr "Λέξεις"
 
-#: src/ui.c:108
+#: src/ui.c:110
 msgid "Longwords"
 msgstr "Μεγάλες λέξεις"
 
-#: src/ui.c:113
+#: src/ui.c:115
 msgid "hex data"
 msgstr "δεκαεξ. δεδομένα"
 
-#: src/ui.c:114
+#: src/ui.c:116
 msgid "ASCII data"
 msgstr "ASCII δεδομένα"
 
-#: src/ui.c:198
+#: src/ui.c:200
 msgid "GHex, a binary file editor"
 msgstr "GHex, δυαδικός διορθωτής αρχείων"
 
-#: src/ui.c:200
+#: src/ui.c:202
 msgid "Released under the terms of GNU Public License"
 msgstr "Διανέμεται σύμφωνα με τους όρους της Δημόσιας άδειας GNU (GPL)"
 
-#: src/ui.c:224 src/ui.c:527
+#: src/ui.c:226 src/ui.c:539
 msgid "Error saving file!"
 msgstr "Σφάλμα κατά την αποθήκευση του αρχείου!"
 
-#: src/ui.c:228 src/ui.c:522
+#: src/ui.c:230 src/ui.c:534
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr ""
 
-#: src/ui.c:249
+#: src/ui.c:251
 msgid "Select a file to open"
 msgstr "Επιλογή αρχείου προς ανάγνωση"
 
-#: src/ui.c:282
+#: src/ui.c:284
 msgid "Select a file to save buffer as"
 msgstr ""
 
-#: src/ui.c:358
+#: src/ui.c:370
 msgid "Select path and file name for the HTML source"
 msgstr ""
 
-#: src/ui.c:454
+#: src/ui.c:466
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Πράγματι να ακυρώσω όλες τις αλλαγές στο αρχείο %s;"
 
-#: src/ui.c:467
+#: src/ui.c:479
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr ""
 
-#: src/ui.c:483
+#: src/ui.c:495
 #, c-format
 msgid "Loaded file %s"
 msgstr "Ανοιχτό αρχείο %s"
 
-#: src/ui.c:488
+#: src/ui.c:500
 msgid "Can not open file!"
 msgstr "¶νοιγμα αρχείου ανεπιτυχές!"
 
-#: src/ui.c:531
+#: src/ui.c:543
 msgid "Can't open file for writing!"
 msgstr "¶νοιγμα αρχείου για εγγραφή ανεπιτυχές!"
 
@@ -428,7 +436,12 @@ msgstr "Κλίμακα"
 msgid "GHex: Character table"
 msgstr "GHex: Μετατροπέας"
 
-#: src/print.c:136
+#: src/print.c:121
+#, fuzzy, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): Αναζήτηση Δεδομένων"
+
+#: src/print.c:137
 #, c-format
 msgid "Page: %i/%i"
 msgstr ""

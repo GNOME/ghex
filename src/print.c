@@ -25,10 +25,11 @@
 #include "ghex.h"
 #include "gtkhex.h"
 
+#include <libgnomeprint/gnome-print-master-preview.h>
+
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0x7F))?1:0)
 
 GnomePaper *def_paper;
-PreviewWindow *preview_window = NULL;
 
 static void start_job(GnomePrintContext *pc);
 static void print_header(GHexPrintJobInfo *pji, unsigned int page);
@@ -39,239 +40,30 @@ static void end_job(GnomePrintContext *pc);
 static void format_hex(HexDocument *doc, guint gt, gchar *out, guint start, guint end);
 static void format_ascii(HexDocument *doc, gchar *out, guint start, guint end);
 
-static void close_preview(PreviewWindow *pw);
-static gboolean preview_delete_event_cb(GtkWidget *w, GdkEventAny *e, PreviewWindow *pw);
-static void preview_buttons_set_sensitivity(PreviewWindow *pw);
-static void preview_next_cb(GtkWidget *w, PreviewWindow *pw);
-static void preview_prev_cb(GtkWidget *w, PreviewWindow *pw);
-static void preview_first_cb(GtkWidget *w, PreviewWindow *pw);
-static void preview_last_cb(GtkWidget *w, PreviewWindow *pw);
-static void preview_zoom_value_changed_cb(GtkAdjustment *adj, PreviewWindow *pw);
-static void preview_close_cb(GtkWidget *w, PreviewWindow *pw);
+static void preview_destroy_cb(GtkObject *obj, GHexPrintJobInfo *job);
 
-
-static void close_preview(PreviewWindow *pw)
+static void preview_destroy_cb(GtkObject *obj, GHexPrintJobInfo *job)
 {
-	if(pw->job) {
-		gnome_print_context_close(pw->job->pc);
-		g_free(pw->job);
-		pw->job = NULL;
-	}
-}
-
-static gboolean preview_delete_event_cb(GtkWidget *w, GdkEventAny *e, PreviewWindow *pw)
-{
-	close_preview(pw);
-
-	gtk_widget_hide(pw->window);
-
-	return TRUE;
-}
-
-static void preview_buttons_set_sensitivity(PreviewWindow *pw)
-{
-	gint page, no_pages;
-
-	no_pages = gnome_print_preview_job_num_pages(pw->job->pj);
-	page = gnome_print_preview_job_current_page(pw->job->pj);
-
-	gtk_widget_set_sensitive(pw->prev, page > 0);
-	gtk_widget_set_sensitive(pw->next, page < no_pages - 1);
-}
-
-static void preview_next_cb(GtkWidget *w, PreviewWindow *pw)
-{
-	gint page, no_pages;
-
-	no_pages = gnome_print_preview_job_num_pages(pw->job->pj);
-	page = gnome_print_preview_job_current_page(pw->job->pj);
-
-	page++;
-	if(page < no_pages)
-		gnome_print_preview_job_page_show(pw->job->pj, page);
-	if(page >= no_pages - 1)
-		gtk_widget_set_sensitive(pw->next, FALSE);
-	if(page > 0)
-		gtk_widget_set_sensitive(pw->prev, TRUE);
-}
-
-static void preview_prev_cb(GtkWidget *w, PreviewWindow *pw)
-{
-	gint page, no_pages;
-
-	no_pages = gnome_print_preview_job_num_pages(pw->job->pj);
-	page = gnome_print_preview_job_current_page(pw->job->pj);
-
-	page--;
-	if(page >= 0)
-		gnome_print_preview_job_page_show(pw->job->pj, page);
-	if(page <= 0)
-		gtk_widget_set_sensitive(pw->prev, FALSE);
-	if(page < no_pages - 1)
-		gtk_widget_set_sensitive(pw->next, TRUE);
-}
-
-static void preview_first_cb(GtkWidget *w, PreviewWindow *pw)
-{
-	gint page;
-
-	page = gnome_print_preview_job_current_page(pw->job->pj);
-
-	if(page != 0)
-		gnome_print_preview_job_page_show(pw->job->pj, 0);
-	preview_buttons_set_sensitivity(pw);
-}
-
-static void preview_last_cb(GtkWidget *w, PreviewWindow *pw)
-{
-	gint page, no_pages;
-
-	no_pages = gnome_print_preview_job_num_pages(pw->job->pj);
-	page = gnome_print_preview_job_current_page(pw->job->pj);
-
-	if(page != no_pages - 1)
-		gnome_print_preview_job_page_show(pw->job->pj, no_pages - 1);
-	preview_buttons_set_sensitivity(pw);
-}
-
-static void preview_zoom_value_changed_cb(GtkAdjustment *adj, PreviewWindow *pw)
-{
-	gnome_canvas_set_pixels_per_unit(GNOME_CANVAS(pw->canvas), adj->value/100.0);
-}
-
-static void preview_close_cb(GtkWidget *w, PreviewWindow *pw)
-{
-	close_preview(pw);
-
-	gtk_widget_hide(pw->window);
-}
-
-PreviewWindow *create_preview_window()
-{
-	PreviewWindow *pw;
-	GtkWidget *sw, *label;
-	GtkWidget *hbox, *vbox;
-
-	gtk_widget_set_default_colormap(gdk_rgb_get_cmap());
-	gtk_widget_set_default_visual(gdk_rgb_get_visual());
-		
-	pw = (PreviewWindow *)g_new0(PreviewWindow, 1);
-	pw->window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_signal_connect(GTK_OBJECT(pw->window), "delete_event",
-					   GTK_SIGNAL_FUNC(preview_delete_event_cb),
-					   pw);
-	vbox = gtk_vbox_new(FALSE, 2);
-	gtk_widget_show(vbox);
-	hbox = gtk_hbox_new(FALSE, 2);
-	gtk_widget_show(hbox);
-
-	/* navigation buttons */
-	/* TODO: this needs fixing, UP and DOWN are not suitable names! */
-	pw->first = gnome_stock_button(GNOME_STOCK_BUTTON_UP);
-	gtk_box_pack_start(GTK_BOX(hbox), pw->first, FALSE, TRUE, 0);
-	gtk_signal_connect(GTK_OBJECT(pw->first), "clicked",
-					   GTK_SIGNAL_FUNC(preview_first_cb), pw);
-	gtk_widget_show(pw->first);
-	pw->prev = gnome_stock_button(GNOME_STOCK_BUTTON_PREV);
-	gtk_box_pack_start(GTK_BOX(hbox), pw->prev, FALSE, TRUE, 0);
-	gtk_signal_connect(GTK_OBJECT(pw->prev), "clicked",
-					   GTK_SIGNAL_FUNC(preview_prev_cb), pw);
-	gtk_widget_show(pw->prev);
-	pw->next = gnome_stock_button(GNOME_STOCK_BUTTON_NEXT);
-	gtk_box_pack_start(GTK_BOX(hbox), pw->next, FALSE, TRUE, 0);
-	gtk_signal_connect(GTK_OBJECT(pw->next), "clicked",
-					   GTK_SIGNAL_FUNC(preview_next_cb), pw);
-	gtk_widget_show(pw->next);
-	pw->last = gnome_stock_button(GNOME_STOCK_BUTTON_DOWN);
-	gtk_box_pack_start(GTK_BOX(hbox), pw->last, FALSE, TRUE, 0);
-	gtk_signal_connect(GTK_OBJECT(pw->last), "clicked",
-					   GTK_SIGNAL_FUNC(preview_last_cb), pw);
-	gtk_widget_show(pw->last);
-
-	/* zoom */
-	/* FIXME: prevent setting zoom for every incrementation as this
-	   is _grossly_ slow */
-	label = gtk_label_new(_("Zoom:"));
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, TRUE, 0);
-	gtk_widget_show(label);
-	pw->zoom_adj = GTK_ADJUSTMENT(gtk_adjustment_new(100.0, 1.0, 1000.0,
-													 10.0, 100.0, 100.0));
-	pw->zoom = gtk_spin_button_new(pw->zoom_adj, 0.0, 1);
-	gtk_box_pack_start(GTK_BOX(hbox), pw->zoom, TRUE, TRUE, 0);
-	gtk_widget_show(pw->zoom);
-
-	/* close button */
-	pw->close = gnome_stock_button(GNOME_STOCK_BUTTON_CLOSE);
-	gtk_box_pack_start(GTK_BOX(hbox), pw->close, FALSE, TRUE, 0);
-	gtk_signal_connect(GTK_OBJECT(pw->close), "clicked",
-					   GTK_SIGNAL_FUNC(preview_close_cb), pw);
-	gtk_widget_show(pw->close);
-
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
-	/* scrolled window with canvas */
-	sw = gtk_scrolled_window_new (NULL, NULL);
-	gtk_widget_show(sw);
-	gtk_box_pack_start(GTK_BOX(vbox), sw, TRUE, TRUE, 0);
-	pw->canvas = gnome_canvas_new_aa();
-	gnome_canvas_set_pixels_per_unit(GNOME_CANVAS(pw->canvas), 1);
-	gtk_widget_show(pw->canvas);
-	gtk_container_add(GTK_CONTAINER(sw), pw->canvas);
-
-	/* connect this after creating the canvas! */
-	gtk_signal_connect(GTK_OBJECT(pw->zoom_adj), "value_changed",
-					   GTK_SIGNAL_FUNC(preview_zoom_value_changed_cb), pw);
-
-	gtk_container_add(GTK_CONTAINER(pw->window), vbox);
-
-	return pw;
+	gnome_print_master_close(job->master);
+	g_free(job);
 }
 
 void print_document(HexDocument *doc, guint gt, GnomePrinter *printer)
 {
 	int i, j;
 	GHexPrintJobInfo *pji;
-	const gchar *paper_name;
 
 	pji = g_new0(GHexPrintJobInfo, 1);
 
 	pji->gt = gt;
-	paper_name = gnome_paper_name(def_paper);
+	pji->master = gnome_print_master_new();
+	gnome_print_master_set_paper(pji->master, def_paper);
+
 	if(printer) {
-		pji->pc = gnome_print_context_new_with_paper_size(printer, paper_name);
-		pji->pj = NULL;
+		gnome_print_master_set_printer(pji->master, printer);
 	}
-	else { /* printer == NULL => preview */
-		if(!preview_window)
-			preview_window = create_preview_window();
-		else {
-			GnomeCanvasGroup *root;
-			GList *children;
-			GtkObject *item;
 
-			root = gnome_canvas_root(GNOME_CANVAS(preview_window->canvas));
-			if(root) {
-				children = root->item_list;
-				
-				while(children) {
-					item = GTK_OBJECT(children->data);
-					children = children->next;
-					gtk_object_destroy(GTK_OBJECT(item));
-				}
-			}
-		}
-
-		create_dialog_title(preview_window->window, _("GHex (%s): Print Preview"));
-
-		pji->pc = gnome_print_preview_new(GNOME_CANVAS(preview_window->canvas),
-										  paper_name);
-		if(preview_window->job) {
-			gnome_print_context_close(preview_window->job->pc);
-			g_free(preview_window->job);
-		}
-		preview_window->job = pji;
-		gtk_widget_show(preview_window->window);
-	}
+	pji->pc = gnome_print_master_get_context(pji->master);
 	pji->doc = doc;
 
 	g_return_if_fail(pji->pc != NULL);
@@ -315,14 +107,23 @@ void print_document(HexDocument *doc, guint gt, GnomePrinter *printer)
 	}
     end_job(pji->pc);
 
+	gnome_print_context_close(pji->pc);
+
 	if(printer) {
-		gnome_print_context_close(pji->pc);
+		gnome_print_master_print(pji->master);
+		gnome_print_master_close(pji->master);
 		g_free(pji);
 	}
 	else {
-		pji->pj = gnome_print_preview_get_job(GNOME_PRINT_PREVIEW(pji->pc));
-		gnome_print_preview_job_page_show(pji->pj, 0);
-		preview_buttons_set_sensitivity(preview_window);
+		GnomePrintMasterPreview *preview;
+		gchar *title;
+
+		title = g_strdup_printf(_("GHex (%s): Print Preview"), doc->file_name);
+		preview = gnome_print_master_preview_new(pji->master, title);
+		g_free(title);
+		gtk_signal_connect(GTK_OBJECT(preview), "destroy",
+						   GTK_SIGNAL_FUNC(preview_destroy_cb), pji);
+		gtk_widget_show(GTK_WIDGET(preview));
 	}
 }
 

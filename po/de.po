@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-0.99.8.1\n"
-"POT-Creation-Date: 2000-03-25 18:59+0100\n"
+"POT-Creation-Date: 2000-03-26 20:34+0200\n"
 "PO-Revision-Date: 1999-09-09 22:08+02:00\n"
 "Last-Translator: Matthias Warkus <mawa@iname.com>\n"
 "Language-Team: Matthias Warkus <mawa@iname.com>\n"
@@ -312,105 +312,113 @@ msgstr ""
 msgid "Can not open desired font!"
 msgstr "Kann gewünschte Schriftart nicht öffnen!"
 
-#: src/ui.c:56
+#: src/ui.c:57
 msgid "Export to HTML..."
 msgstr ""
 
-#: src/ui.c:56
+#: src/ui.c:57
 msgid "Export data to HTML source"
 msgstr ""
 
-#: src/ui.c:72
+#: src/ui.c:61
+msgid "Print preview..."
+msgstr ""
+
+#: src/ui.c:61
+msgid "Preview printed data"
+msgstr ""
+
+#: src/ui.c:74
 #, fuzzy
 msgid "Con_verter..."
 msgstr "Konverter öffnen..."
 
-#: src/ui.c:73
+#: src/ui.c:75
 msgid "Open base conversion dialog"
 msgstr "Basenumwandlungsdialog öffnen"
 
-#: src/ui.c:74
+#: src/ui.c:76
 msgid "Character Table..."
 msgstr ""
 
-#: src/ui.c:75
+#: src/ui.c:77
 msgid "Show the character table"
 msgstr ""
 
-#: src/ui.c:92
+#: src/ui.c:94
 #, fuzzy
 msgid "Tools"
 msgstr "Toolbar"
 
-#: src/ui.c:106
+#: src/ui.c:108
 msgid "Bytes"
 msgstr "Bytes"
 
-#: src/ui.c:107
+#: src/ui.c:109
 msgid "Words"
 msgstr "Wörter"
 
-#: src/ui.c:108
+#: src/ui.c:110
 msgid "Longwords"
 msgstr "Longwords"
 
-#: src/ui.c:113
+#: src/ui.c:115
 msgid "hex data"
 msgstr "Hexdaten"
 
-#: src/ui.c:114
+#: src/ui.c:116
 msgid "ASCII data"
 msgstr "ASCII-Daten"
 
-#: src/ui.c:198
+#: src/ui.c:200
 msgid "GHex, a binary file editor"
 msgstr "GHex, ein Binärdatei-Editor"
 
-#: src/ui.c:200
+#: src/ui.c:202
 msgid "Released under the terms of GNU Public License"
 msgstr "Freigegeben unter den Bedingungen der GNU General Public License"
 
-#: src/ui.c:224 src/ui.c:527
+#: src/ui.c:226 src/ui.c:539
 msgid "Error saving file!"
 msgstr "Fehler beim Speichern der Datei!"
 
-#: src/ui.c:228 src/ui.c:522
+#: src/ui.c:230 src/ui.c:534
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Habe Puffer in Datei %s gespeichert"
 
-#: src/ui.c:249
+#: src/ui.c:251
 msgid "Select a file to open"
 msgstr "Datei zum Öffnen auswählen"
 
-#: src/ui.c:282
+#: src/ui.c:284
 msgid "Select a file to save buffer as"
 msgstr "Datei zum Abspeichern des Puffers auswählen"
 
-#: src/ui.c:358
+#: src/ui.c:370
 msgid "Select path and file name for the HTML source"
 msgstr ""
 
-#: src/ui.c:454
+#: src/ui.c:466
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Wirklich auf Datei %s zurückgreifen?"
 
-#: src/ui.c:467
+#: src/ui.c:479
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Habe Puffer zurückgedreht auf Datei %s"
 
-#: src/ui.c:483
+#: src/ui.c:495
 #, c-format
 msgid "Loaded file %s"
 msgstr "Datei %s geladen"
 
-#: src/ui.c:488
+#: src/ui.c:500
 msgid "Can not open file!"
 msgstr "Kann Datei nicht öffnen!"
 
-#: src/ui.c:531
+#: src/ui.c:543
 msgid "Can't open file for writing!"
 msgstr "Kann Datei nicht zum Schreiben öffnen!"
 
@@ -424,7 +432,12 @@ msgstr "Gesamt"
 msgid "GHex: Character table"
 msgstr "GHex: Konverter"
 
-#: src/print.c:136
+#: src/print.c:121
+#, fuzzy, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): Finde Daten"
+
+#: src/print.c:137
 #, c-format
 msgid "Page: %i/%i"
 msgstr ""

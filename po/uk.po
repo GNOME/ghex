@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 2000-03-25 18:59+0100\n"
+"POT-Creation-Date: 2000-03-26 20:34+0200\n"
 "PO-Revision-Date: 1999-10-01 19:18+0300\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -309,105 +309,113 @@ msgstr ""
 msgid "Can not open desired font!"
 msgstr "Неможливо завантажити вказаний шрифт!"
 
-#: src/ui.c:56
+#: src/ui.c:57
 msgid "Export to HTML..."
 msgstr ""
 
-#: src/ui.c:56
+#: src/ui.c:57
 msgid "Export data to HTML source"
 msgstr ""
 
-#: src/ui.c:72
+#: src/ui.c:61
+msgid "Print preview..."
+msgstr ""
+
+#: src/ui.c:61
+msgid "Preview printed data"
+msgstr ""
+
+#: src/ui.c:74
 #, fuzzy
 msgid "Con_verter..."
 msgstr "В╕дкрити перекодувач..."
 
-#: src/ui.c:73
+#: src/ui.c:75
 msgid "Open base conversion dialog"
 msgstr "В╕дкрити основний д╕алог перекодування"
 
-#: src/ui.c:74
+#: src/ui.c:76
 msgid "Character Table..."
 msgstr ""
 
-#: src/ui.c:75
+#: src/ui.c:77
 msgid "Show the character table"
 msgstr ""
 
-#: src/ui.c:92
+#: src/ui.c:94
 #, fuzzy
 msgid "Tools"
 msgstr "Панель ╕нструмент╕в"
 
-#: src/ui.c:106
+#: src/ui.c:108
 msgid "Bytes"
 msgstr "Байти"
 
-#: src/ui.c:107
+#: src/ui.c:109
 msgid "Words"
 msgstr "Слова"
 
-#: src/ui.c:108
+#: src/ui.c:110
 msgid "Longwords"
 msgstr "Довг╕ слова"
 
-#: src/ui.c:113
+#: src/ui.c:115
 msgid "hex data"
 msgstr "ш╕стнадцятков╕ дан╕"
 
-#: src/ui.c:114
+#: src/ui.c:116
 msgid "ASCII data"
 msgstr "ASCII дан╕"
 
-#: src/ui.c:198
+#: src/ui.c:200
 msgid "GHex, a binary file editor"
 msgstr "GHex, редактор дв╕йкових даних"
 
-#: src/ui.c:200
+#: src/ui.c:202
 msgid "Released under the terms of GNU Public License"
 msgstr "Розповсюджу╓ться на умовах GNU Public License"
 
-#: src/ui.c:224 src/ui.c:527
+#: src/ui.c:226 src/ui.c:539
 msgid "Error saving file!"
 msgstr "Помилка збереження файлу!"
 
-#: src/ui.c:228 src/ui.c:522
+#: src/ui.c:230 src/ui.c:534
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Зберегти буфер у файл╕ %s."
 
-#: src/ui.c:249
+#: src/ui.c:251
 msgid "Select a file to open"
 msgstr "Вибрати файл для в╕дкриття"
 
-#: src/ui.c:282
+#: src/ui.c:284
 msgid "Select a file to save buffer as"
 msgstr "Вибрати файл для збереження буфера"
 
-#: src/ui.c:358
+#: src/ui.c:370
 msgid "Select path and file name for the HTML source"
 msgstr ""
 
-#: src/ui.c:454
+#: src/ui.c:466
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Справд╕ в╕дновити файл %s?"
 
-#: src/ui.c:467
+#: src/ui.c:479
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "В╕дновити буфер з файлу %s"
 
-#: src/ui.c:483
+#: src/ui.c:495
 #, c-format
 msgid "Loaded file %s"
 msgstr "Завантажено файл %s"
 
-#: src/ui.c:488
+#: src/ui.c:500
 msgid "Can not open file!"
 msgstr "Неможливо в╕дкрити файл!"
 
-#: src/ui.c:531
+#: src/ui.c:543
 msgid "Can't open file for writing!"
 msgstr "Неможливо в╕дкрити файл для запису!"
 
@@ -421,7 +429,12 @@ msgstr "Всього"
 msgid "GHex: Character table"
 msgstr "GHex: Перекодувач"
 
-#: src/print.c:136
+#: src/print.c:121
+#, fuzzy, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): пошук даних"
+
+#: src/print.c:137
 #, c-format
 msgid "Page: %i/%i"
 msgstr ""

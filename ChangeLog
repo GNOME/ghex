@@ -1,5 +1,14 @@
 2000-03-26  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
+	* src/ghex.h (struct _PreviewWindow): removed.
+	(GHexPrintJobInfo): added master member.
+	* src/print.c (preview_*_cb): removed.
+	(preview_destroy_cb): clean up printing stuff after previewing.
+	(print_document): use GnomePrintMaster for printing and
+	GnomePrintMasterPreview for previewing. didn't notice them before :(
+
+2000-03-26  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
 	* src/ghex.h: moved GhexPrintJobInfo here and renamed it to
 	GHexPrintJobInfo.
 	(struct _PreviewWindow): a structure with everything necessary
