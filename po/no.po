@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 2002-05-23 14:27+0200\n"
-"PO-Revision-Date: 2002-05-23 15:14+0200\n"
+"POT-Creation-Date: 2002-05-31 21:30+0200\n"
+"PO-Revision-Date: 2002-05-31 21:31+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,8 @@ msgstr "Hent markørverdi"
 
 #: src/converter.c:231
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
-msgstr "Henter verdien ved markøren i binær, oktal, desimal, heksadesimal og ASCII"
+msgstr ""
+"Henter verdien ved markøren i binær, oktal, desimal, heksadesimal og ASCII"
 
 #: src/converter.c:358
 msgid "ERROR"
@@ -797,7 +798,16 @@ msgstr "linjer (0 for ingen boks)"
 msgid "Printing"
 msgstr "Skriver ut"
 
-#: src/preferences.c:699
+#: src/preferences.c:614 src/ui.c:270
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Det oppsto en feil under visning av hjelp: \n"
+"%s"
+
+#: src/preferences.c:717
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -805,7 +815,7 @@ msgstr ""
 "Formatstrengen for avstand inneholder en ugyldig formatspesifikatorer.\n"
 "Kun 'x', 'X', 'p', 'P', 'd' eller 'o' er tillat."
 
-#: src/preferences.c:742
+#: src/preferences.c:760
 msgid "Can not open desired font!"
 msgstr "Kan ikke åpne ønsket skrifttype!"
 
@@ -851,59 +861,59 @@ msgstr "GHex, en binærfileditor"
 msgid "Released under the terms of GNU Public License"
 msgstr "Utgitt under vilkårene gitt i GNU Public License"
 
-#: src/ui.c:304 src/ui.c:665
+#: src/ui.c:322 src/ui.c:683
 msgid "Error saving file!"
 msgstr "Feil under lagring av fil!"
 
-#: src/ui.c:308 src/ui.c:660
+#: src/ui.c:326 src/ui.c:678
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Lagret buffer til fil %s"
 
-#: src/ui.c:332
+#: src/ui.c:350
 msgid "Select a file to open"
 msgstr "Velg en fil å åpne"
 
-#: src/ui.c:369
+#: src/ui.c:387
 msgid "Select a file to save buffer as"
 msgstr "Velg en fil for lagring av buffer"
 
-#: src/ui.c:413
+#: src/ui.c:431
 msgid "Select path and file name for the HTML source"
 msgstr "Velg sti og filnavn for HTML kilden"
 
-#: src/ui.c:584
+#: src/ui.c:602
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Virkelig forkaste filen %s?"
 
-#: src/ui.c:598
+#: src/ui.c:616
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Forkastet buffer fra fil %s"
 
-#: src/ui.c:614
+#: src/ui.c:632
 #, c-format
 msgid "Loaded file %s"
 msgstr "Lastet fil %s"
 
-#: src/ui.c:626
+#: src/ui.c:644
 msgid "Can not open file!"
 msgstr "Kan ikke åpne filen!"
 
-#: src/ui.c:669
+#: src/ui.c:687
 msgid "Can't open file for writing!"
 msgstr "Kan ikke åpne filen for skriving!"
 
-#: src/ui.c:748
+#: src/ui.c:766
 msgid "Print Hex Document"
 msgstr "Skriv ut Hex dokument"
 
-#: src/ui.c:753
+#: src/ui.c:771
 msgid "Pages"
 msgstr "Sider"
 
-#: src/ui.c:799
+#: src/ui.c:817
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Forhåndsvisning av utskrift"
