@@ -59,7 +59,7 @@ typedef struct _PropertyUI {
 	GtkRadioButton *group_type[3];
 	GtkWidget *font_button, *spin;
 	GtkWidget *offset_menu, *offset_choice[3];
-	GtkWidget *format;
+	GtkWidget *format, *offsets_col;
 } PropertyUI;
 
 typedef struct _JumpDialog {
@@ -117,6 +117,7 @@ extern gchar *def_font_name;
 
 extern guint max_undo_depth;
 extern gchar *offset_fmt;
+extern gboolean show_offsets_column;
 
 extern gint def_group_type;
 extern guint group_type[3];

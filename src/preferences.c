@@ -37,6 +37,7 @@ PropertyUI prefs_ui = { NULL };
 
 GdkFont *def_font = NULL;
 gchar *def_font_name = NULL;
+gboolean show_offsets_column = TRUE;
 
 guint mdi_type[NUM_MDI_MODES] = {
 	GNOME_MDI_DEFAULT_MODE,
@@ -80,19 +81,19 @@ void create_prefs_dialog(PropertyUI *pui) {
 
 	label = gtk_label_new(_("Maximum number of undo levels"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
+	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD_SMALL);
 	gtk_widget_show(label);
 						  
 	pui->spin = gtk_spin_button_new(undo_adj, 1, 0);
 	gtk_box_pack_end (GTK_BOX(box), GTK_WIDGET(pui->spin), FALSE, TRUE, GNOME_PAD);
 	gtk_widget_show(pui->spin);
 
-	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 2);
+	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, GNOME_PAD_SMALL);
 
 	box = gtk_hbox_new(FALSE, 0);
 	gtk_widget_show(box);
 
-	label = gtk_label_new(_("Show cursor offset as"));
+	label = gtk_label_new(_("Show cursor offset in statusbar as"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
 	gtk_widget_show(label);
@@ -125,7 +126,12 @@ void create_prefs_dialog(PropertyUI *pui) {
 					   GTK_SIGNAL_FUNC(offset_cb), pui);
 	gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(pui->offset_menu), FALSE, TRUE, GNOME_PAD);
 
-	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 2);
+	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, GNOME_PAD_SMALL);
+
+	pui->offsets_col = gtk_check_button_new_with_label(_("Show offsets column"));
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->offsets_col), show_offsets_column);
+	gtk_box_pack_start(GTK_BOX(vbox), pui->offsets_col, FALSE, TRUE, GNOME_PAD_SMALL);
+	gtk_widget_show(pui->offsets_col);
 
 	label = gtk_label_new(_("Editing"));
 	gtk_widget_show(label);
@@ -135,7 +141,7 @@ void create_prefs_dialog(PropertyUI *pui) {
 	gtk_widget_show(vbox);
 	
 	frame = gtk_frame_new(_("Font"));
-	gtk_container_border_width(GTK_CONTAINER(frame), 4);
+	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
 	
 	fbox = gtk_hbox_new(0, 0);
@@ -160,17 +166,17 @@ void create_prefs_dialog(PropertyUI *pui) {
 	gtk_widget_show(GTK_WIDGET(pui->font_button));
 	gtk_widget_show(entry);
 	
-	gtk_container_border_width(GTK_CONTAINER(fbox), 4);
+	gtk_container_border_width(GTK_CONTAINER(fbox), GNOME_PAD_SMALL);
 	gtk_box_pack_start (GTK_BOX (fbox), entry, 1, 1, GNOME_PAD);
 	gtk_box_pack_end (GTK_BOX (fbox), GTK_WIDGET(pui->font_button), 0, 1, GNOME_PAD);
 	
 	gtk_widget_show(fbox);
 	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(fbox));
 	
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 2);
+	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, GNOME_PAD_SMALL);
 	
 	frame = gtk_frame_new(_("Default Group Type"));
-	gtk_container_border_width(GTK_CONTAINER(frame), 4);
+	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
 	
 	box = gtk_vbox_new(FALSE, 0);
@@ -183,7 +189,7 @@ void create_prefs_dialog(PropertyUI *pui) {
 		group = gtk_radio_button_group (pui->group_type[i]);
 	}
 	gtk_container_add(GTK_CONTAINER(frame), box);
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 2);
+	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, GNOME_PAD_SMALL);
 	
 	label = gtk_label_new(_("Display"));
 	gtk_widget_show(label);
@@ -193,7 +199,7 @@ void create_prefs_dialog(PropertyUI *pui) {
 	gtk_widget_show(vbox);
 
 	frame = gtk_frame_new(_("MDI Mode"));
-	gtk_container_border_width(GTK_CONTAINER(frame), 4);
+	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
 	
 	box = gtk_vbox_new(FALSE, 0);
@@ -202,12 +208,12 @@ void create_prefs_dialog(PropertyUI *pui) {
 	for(i = 0; i < NUM_MDI_MODES; i++) {
 		pui->mdi_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, _(mdi_type_label[i])));
 		gtk_widget_show(GTK_WIDGET(pui->mdi_type[i]));
-		gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->mdi_type[i]), TRUE, TRUE, 2);
+		gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->mdi_type[i]), TRUE, TRUE, GNOME_PAD_SMALL);
 		group = gtk_radio_button_group (pui->mdi_type[i]);
 	}
 	
 	gtk_container_add(GTK_CONTAINER(frame), box);
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 2);  
+	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, GNOME_PAD_SMALL);  
 	
 	label = gtk_label_new(_("MDI"));
 	gtk_widget_show(label);
@@ -224,6 +230,9 @@ void create_prefs_dialog(PropertyUI *pui) {
 	for(i = 0; i < 3; i++)
 		gtk_signal_connect(GTK_OBJECT(pui->group_type[i]), "clicked",
 						   properties_modified_cb, pui->pbox);
+
+	gtk_signal_connect(GTK_OBJECT(pui->offsets_col), "toggled",
+					   properties_modified_cb, pui->pbox);
 }
 
 static void set_prefs(PropertyUI *pui) {
@@ -240,6 +249,8 @@ static void set_prefs(PropertyUI *pui) {
 			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->mdi_type[i]), TRUE);
 			break;
 		}
+
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->offsets_col), show_offsets_column);
 
 	gtk_widget_set_sensitive(pui->format, FALSE);
 	gtk_entry_set_text(GTK_ENTRY(pui->format), offset_fmt);
@@ -274,9 +285,26 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 	GList *child, *view;
 	GdkFont *new_font;
 	guint new_undo_max;
+	gboolean show_off;
 
 	if ( page != -1 ) return; /* Only do something on global apply */
 	
+	show_off = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(pui->offsets_col));
+	if(show_off != show_offsets_column) {
+		show_offsets_column = show_off;
+		child = mdi->children;
+			
+		while(child) {
+			view = GNOME_MDI_CHILD(child->data)->views;
+			while(view) {
+				gtk_hex_show_offsets(GTK_HEX(view->data), show_off);
+				view = g_list_next(view);
+			}
+			child = g_list_next(child);
+		}
+	}
+		
+
 	for(i = 0; i < 3; i++)
 		if(GTK_TOGGLE_BUTTON(pui->group_type[i])->active) {
 			def_group_type = group_type[i];

@@ -28,6 +28,7 @@
 gint def_group_type = GROUP_BYTE;
 guint max_undo_depth;
 gchar *offset_fmt = NULL;
+gboolean show_offsets_column;
 
 void save_configuration() {
 	if(def_font)
@@ -42,6 +43,8 @@ void save_configuration() {
 	gnome_config_set_int("/ghex/Editing/MaxUndoDepth", max_undo_depth);
 
 	gnome_config_set_string("/ghex/Editing/OffsetFormat", offset_fmt);
+
+	gnome_config_set_bool("/ghex/Editing/OffsetsColumn", show_offsets_column);
 
 	gnome_config_sync();
 }
@@ -72,4 +75,6 @@ void load_configuration() {
 	offset_fmt = gnome_config_get_string("/ghex/Editing/OffsetFormat=%x");
 
 	mdi_mode = gnome_config_get_int("/ghex/MDI/Mode=2");
+
+	show_offsets_column = gnome_config_get_bool("/ghex/Editing/OffsetsColumn=true");
 }

@@ -295,7 +295,6 @@ static GtkWidget *hex_document_create_view(GnomeMDIChild *child) {
 	new_view = gtk_hex_new(HEX_DOCUMENT(child));
 	
 	/* TODO: perhaps it would be nicer to put such stuff in the MDI add_view signal handler */
-	gtk_hex_show_offsets(GTK_HEX(new_view), TRUE);
 	gtk_hex_set_group_type(GTK_HEX(new_view), def_group_type);
 	gtk_hex_set_font(GTK_HEX(new_view), def_font);
 	

@@ -69,6 +69,7 @@ gint remove_doc_cb(GnomeMDI *mdi, HexDocument *doc) {
 gint add_view_cb(GnomeMDI *mdi, GtkHex *view) {
 	gtk_signal_connect(GTK_OBJECT(view), "cursor_moved",
 					   GTK_SIGNAL_FUNC(cursor_moved_cb), mdi);
+	gtk_hex_show_offsets(GTK_HEX(view), show_offsets_column);
 
 	return TRUE;
 }

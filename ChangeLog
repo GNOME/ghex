@@ -1,5 +1,13 @@
 1999-06-20  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
+	* preferences.c, config.c, ghex.h: make showing the offset column
+	configurable.
+	* main.c, hex-document.c: respect offset column configuration when
+	adding new views.
+	* help/C/index.html: bring up to date.
+
+1999-06-20  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
 	* gtkhex.[ch]: added option to show offset of each line in
 	a column on the left. complete rework of the cursor stuff.
 	* hex-document.c: enable offsets. should be made configurable
