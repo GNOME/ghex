@@ -99,8 +99,6 @@ guint gtk_hex_get_type(void);
 
 GtkWidget *gtk_hex_new(HexDocument *);
 
-void gtk_hex_data_changed(GtkHex *, gint, gint);
-
 void gtk_hex_set_cursor(GtkHex *, gint);
 void gtk_hex_set_cursor_xy(GtkHex *, gint, gint);
 void gtk_hex_set_nibble(GtkHex *, gint);

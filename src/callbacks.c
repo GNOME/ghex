@@ -593,7 +593,9 @@ void child_changed_cb(GnomeMDI *mdi, HexDocument *doc) {
 
 void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	GnomeApp *app;
+	GnomeUIInfo *uiinfo;
 	GtkWidget *shell, *item;
+	HexDocument *doc;
 	gint pos;
 	gint group_item;
 	char *p;
@@ -612,6 +614,11 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	item = g_list_nth(GTK_MENU_SHELL(shell)->children, pos - 1)->data;
 	
 	gtk_menu_shell_activate_item(GTK_MENU_SHELL(shell), item, TRUE);
+
+	uiinfo = gnome_mdi_get_child_menu_info(app);
+	uiinfo = (GnomeUIInfo *)uiinfo[0].moreinfo;
+    doc = HEX_DOCUMENT(gnome_mdi_get_child_from_view(mdi->active_view));
+	gtk_widget_set_sensitive(uiinfo[0].widget, doc->undo_depth > 0);
 
 	gnome_app_install_menu_hints(app, gnome_mdi_get_child_menu_info(app));
 	g_free(p);

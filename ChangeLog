@@ -1,3 +1,22 @@
+1999-01-15  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* hex-document.h (struct _HexChangeData): extended to hold all
+	info necessary for undo implementation.
+	(struct _HexDocument): new undo_stack, undo_depth, undo_max members.
+	added a gboolean parameter to document_changed signal to let the
+	handler know whether undo data should be saved.
+	* hex_document.c (undo_stack_*): new functions for pushing/popping
+	undo data on/from undo stack and for freeing it.
+	(hex_document_real_changed): if desired, push undo data on stack.
+	(undo_cb): a menuitem callback to undo the last action.
+	(hex_document_set_nibble): new public function.
+	* gtkhex.c (gtk_hex_key_press): use hex_document_set_nibble().
+	(gtk_hex_data_changed): removed.
+	* callbacks.c (view_changed_cb): set sensitivity of undo item
+	depending of emptiness of the undo stack.
+	* callbacks.h (struct _ReplaceCBData): removed.
+	made prototypes nicer.
+
 1999-01-12  Christopher Blizzard  <blizzard@appliedtheory.com>
 
 	* callbacks.c: free up pointer after use.

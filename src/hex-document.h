@@ -39,8 +39,17 @@ typedef struct _HexDocument       HexDocument;
 typedef struct _HexDocumentClass  HexDocumentClass;
 typedef struct _HexChangeData     HexChangeData;
 
+typedef enum {
+	HEX_CHANGE_STRING,
+	HEX_CHANGE_BYTE
+} HexChangeType;
+
 struct _HexChangeData {
 	gint start, end;
+	gboolean lower_nibble;
+	HexChangeType type;
+	gchar *v_string;
+	gchar v_byte;
 };
 
 struct _HexDocument
@@ -55,7 +64,11 @@ struct _HexDocument
 	guint buffer_size;
 	
 	gboolean changed;
-	
+
+	GSList *undo_stack;
+	guint undo_depth;
+	guint undo_max;
+
 	HexChangeData change_data;
 };
 
@@ -63,17 +76,18 @@ struct _HexDocumentClass
 {
 	GnomeMDIChildClass parent_class;
 	
-	void (*document_changed)(HexDocument *, gpointer);
+	void (*document_changed)(HexDocument *, gpointer, gboolean);
 };
 
 GtkType hex_document_get_type(void);
 HexDocument *hex_document_new(const gchar *);
 void hex_document_set_data(HexDocument *, guint, guint, guchar *);
 void hex_document_set_byte(HexDocument *, guchar, guint);
+void hex_document_set_nibble(HexDocument *, guchar, guint, gboolean);
 gint hex_document_read(HexDocument *doc);
 gint hex_document_write(HexDocument *doc);
 gboolean hex_document_has_changed(HexDocument *doc);
-void hex_document_changed(HexDocument *doc, gpointer change_data);
+void hex_document_changed(HexDocument *doc, gpointer change_data, gboolean push_undo);
 GnomeMDIChild *hex_document_new_from_config(const gchar *);
 gint find_string_forward(HexDocument *doc, guint start, guchar *what, gint len, guint *found);
 gint find_string_backward(HexDocument *doc, guint start, guchar *what, gint len, guint *found);

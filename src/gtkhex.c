@@ -820,31 +820,25 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 				break;
 			default:
 				if((event->keyval >= '0')&&(event->keyval <= '9')) {
-					hex_document_set_byte(gh->document, (gh->document->buffer[gh->cursor_pos] & (0x0F << 4*gh->lower_nibble)) |
-										  ((event->keyval - '0') << ((gh->lower_nibble)?0:4)), gh->cursor_pos);
+					hex_document_set_nibble(gh->document, event->keyval - '0', gh->cursor_pos, gh->lower_nibble);
 					render_byte(gh, gh->cursor_pos);
 					gh->lower_nibble = !gh->lower_nibble;
 					if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-					gtk_hex_data_changed(gh, old_cp, old_cp);
 				}
 				if((event->keyval >= 'A')&&(event->keyval <= 'F')) {
-					hex_document_set_byte(gh->document, (gh->document->buffer[gh->cursor_pos] & (0x0F << 4*gh->lower_nibble)) |
-										  ((event->keyval - 'A' + 10) << ((gh->lower_nibble)?0:4)), gh->cursor_pos);
+					hex_document_set_nibble(gh->document, event->keyval - 'A' + 10, gh->cursor_pos, gh->lower_nibble);
 					render_byte(gh, gh->cursor_pos);
 					gh->lower_nibble = !gh->lower_nibble;
 					if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-					gtk_hex_data_changed(gh, old_cp, old_cp);
 				}
 				if((event->keyval >= 'a')&&(event->keyval <= 'f')) {
-					hex_document_set_byte(gh->document, (gh->document->buffer[gh->cursor_pos] & (0x0F << 4*gh->lower_nibble)) |
-										  ((event->keyval - 'a' + 10) << ((gh->lower_nibble)?0:4)), gh->cursor_pos);
+					hex_document_set_nibble(gh->document, event->keyval - 'a' + 10, gh->cursor_pos, gh->lower_nibble);
 					render_byte(gh, gh->cursor_pos);
 					gh->lower_nibble = !gh->lower_nibble;
 					if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-					gtk_hex_data_changed(gh, old_cp, old_cp);
 				}
 				break;      
 			}
@@ -864,7 +858,6 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 					render_byte(gh, gh->cursor_pos);
 					old_cp = gh->cursor_pos;
 					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-					gtk_hex_data_changed(gh, old_cp, old_cp);
 				}
 				break;
 			}
@@ -1170,14 +1163,6 @@ guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
 void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
 	gh->group_type = gt;
 	gtk_widget_queue_resize(GTK_WIDGET(gh));
-}
-
-void gtk_hex_data_changed(GtkHex *gh, gint start, gint end) {
-	gh->document->change_data.start = start;
-	gh->document->change_data.end = end;
-	
-	if(gh->document)
-		hex_document_changed(HEX_DOCUMENT(gh->document), &gh->document->change_data);
 }
 
 /*

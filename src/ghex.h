@@ -115,17 +115,17 @@ extern gchar *search_type_label[2];
 
 extern GSList *cl_files;
 
-void create_find_dialog(FindDialog *);
-void create_replace_dialog(ReplaceDialog *);
-void create_jump_dialog(JumpDialog *);
-void create_converter(Converter *);
-void create_prefs_dialog(PropertyUI *);
-void create_dialog_title(GtkWidget *, gchar *);
+void create_find_dialog    (FindDialog *);
+void create_replace_dialog (ReplaceDialog *);
+void create_jump_dialog    (JumpDialog *);
+void create_converter      (Converter *);
+void create_prefs_dialog   (PropertyUI *);
+void create_dialog_title   (GtkWidget *, gchar *);
 
-gint ask_user(GnomeMessageBox *);
+gint ask_user              (GnomeMessageBox *);
 
 /* config stuff */
-void save_configuration();
-void load_configuration();
+void save_configuration    (void);
+void load_configuration    (void);
 
 #endif
