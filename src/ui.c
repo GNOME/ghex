@@ -409,16 +409,6 @@ void create_menus() {
   /* the Help menu */
   menu = gtk_menu_new();
 
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK, _("Help..."));
-  gtk_widget_show(w);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(show_help_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);  
-
-  w = gtk_menu_item_new();
-  gtk_widget_show(w);
-  gtk_menu_append(GTK_MENU(menu), w);
-
   w = gnome_stock_menu_item(GNOME_STOCK_MENU_ABOUT, _("About..."));
   gtk_widget_show(w);
   gtk_widget_install_accelerator(w, accel, "activate",
@@ -427,11 +417,23 @@ void create_menus() {
 		     GTK_SIGNAL_FUNC(about_cb), NULL);
   gtk_menu_append(GTK_MENU(menu), w);
 
+  w = gtk_menu_item_new();
+  gtk_widget_show(w);
+  gtk_menu_append(GTK_MENU(menu), w);
+
+  w = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK, _("Help..."));
+  gtk_widget_show(w);
+  gtk_signal_connect(GTK_OBJECT(w), "activate",
+		     GTK_SIGNAL_FUNC(show_help_cb), NULL);
+  gtk_menu_append(GTK_MENU(menu), w);  
+
   w = gtk_menu_item_new_with_label(_("Help"));
   gtk_widget_show(w);
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
   gtk_menu_item_right_justify(GTK_MENU_ITEM(w));
   gtk_menu_bar_append(GTK_MENU_BAR(mbar), w);
+
+
 }
 
 void create_find_dialog(GtkWidget **dialog) {
