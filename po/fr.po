@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex 2.5.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-17 16:08+0100\n"
-"PO-Revision-Date: 2004-01-17 14:14+0100\n"
+"POT-Creation-Date: 2004-03-07 13:29+0100\n"
+"PO-Revision-Date: 2004-03-07 13:11+0100\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "ASCII"
 
 #: src/chartable.c:140
 msgid "Hex"
-msgstr "Hexa"
+msgstr "Hex"
 
 #: src/chartable.c:140 src/preferences.c:164
 msgid "Decimal"
@@ -193,15 +193,15 @@ msgstr "Rechercher le _suivant"
 
 #: src/findreplace.c:411 src/ghex-ui.xml.h:89
 msgid "_Replace"
-msgstr "_Remplacer"
+msgstr "Re_mplacer"
 
 #: src/findreplace.c:419
 msgid "Replace _All"
-msgstr "Remplacer _tout"
+msgstr "_Tout remplacer"
 
 #: src/findreplace.c:442
 msgid "Replace Data"
-msgstr "Remplacer"
+msgstr "Remplacer les données"
 
 #: src/findreplace.c:442
 msgid "Enter the hex data or ASCII data to replace with"
@@ -221,7 +221,7 @@ msgstr "Remplace la chaîne trouvée par la chaîne de remplacement"
 
 #: src/findreplace.c:445
 msgid "Replace All"
-msgstr "Remplacer tout"
+msgstr "Tout remplacer"
 
 #: src/findreplace.c:445
 msgid "Replaces all occurrences of the search string with the replace string"
@@ -248,7 +248,7 @@ msgstr "Saisissez l'octet à atteindre"
 
 #: src/findreplace.c:493
 msgid "OK"
-msgstr "OK"
+msgstr "Valider"
 
 #: src/findreplace.c:493
 msgid "Jumps to the specified byte"
@@ -458,7 +458,7 @@ msgstr "Ouvrir"
 
 #: src/ghex-ui.xml.h:35
 msgid "Open a file"
-msgstr "Ouvrir un fichier"
+msgstr "Ouvre un fichier"
 
 #: src/ghex-ui.xml.h:36
 msgid "Open base conversion dialog"
@@ -486,7 +486,7 @@ msgstr "Imprimer"
 
 #: src/ghex-ui.xml.h:42
 msgid "Print Previe_w..."
-msgstr "Aperçu avant _impression..."
+msgstr "_Aperçu avant impression..."
 
 #: src/ghex-ui.xml.h:43
 msgid "Print Preview..."
@@ -498,11 +498,11 @@ msgstr "Imprime le fichier en cours"
 
 #: src/ghex-ui.xml.h:45
 msgid "Redo"
-msgstr "Rétablir"
+msgstr "Refaire"
 
 #: src/ghex-ui.xml.h:46
 msgid "Redo the undone action"
-msgstr "Rétablir la dernière action annulée"
+msgstr "Refait la dernière action annulée"
 
 #: src/ghex-ui.xml.h:47
 msgid "Remove View"
@@ -518,11 +518,11 @@ msgstr "Remplacer une chaîne"
 
 #: src/ghex-ui.xml.h:51
 msgid "Revert"
-msgstr "Revenir"
+msgstr "Récupérer"
 
 #: src/ghex-ui.xml.h:52
 msgid "Revert to a saved version of the file"
-msgstr "Revenir à une version enregistrée du fichier"
+msgstr "Récupère la version enregistrée du fichier"
 
 #: src/ghex-ui.xml.h:53
 msgid "Save"
@@ -671,7 +671,7 @@ msgstr "_Supprimer la vue"
 
 #: src/ghex-ui.xml.h:90
 msgid "_Revert"
-msgstr "_Revenir"
+msgstr "_Récupérer"
 
 #: src/ghex-ui.xml.h:91
 msgid "_Save"
@@ -679,15 +679,15 @@ msgstr "_Enregistrer"
 
 #: src/ghex-ui.xml.h:92
 msgid "_Undo"
-msgstr "_Annuler"
+msgstr "A_nnuler"
 
 #: src/ghex-ui.xml.h:93
 msgid "_View"
-msgstr "_Vue"
+msgstr "Afficha_ge"
 
 #: src/ghex-ui.xml.h:94
 msgid "_Windows"
-msgstr "_Fenêtres"
+msgstr "Fe_nêtres"
 
 #: src/ghex-ui.xml.h:95
 msgid "_Words"
@@ -794,7 +794,7 @@ msgstr "Impossible d'initialiser Bonobo !\n"
 #: src/main.c:91 src/main.c:105
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
-msgstr "Chaîne de géométrie \"%s\" non valide\n"
+msgstr "Chaîne de géométrie « %s » non valide\n"
 
 #: src/preferences.c:94
 msgid "GHex Preferences"
@@ -879,11 +879,11 @@ msgstr "Sélectionnez une police de données"
 
 #: src/preferences.c:297
 msgid "Header fo_nt:"
-msgstr "_Police d'en-tête :"
+msgstr "_Police de l'en-tête :"
 
 #: src/preferences.c:315
 msgid "Header font"
-msgstr "Police d'en-tête"
+msgstr "Police de l'en-tête"
 
 #: src/preferences.c:315
 msgid "Select the header font"
@@ -938,7 +938,7 @@ msgstr ""
 
 #: src/session.c:29
 msgid "X geometry specification (see \"X\" man page)."
-msgstr "Spécification de géopétrie X (voir la page d'aide de \"X\")"
+msgstr "Spécification de géométrie X (voir la page d'aide de « X »)."
 
 #: src/session.c:30
 msgid "GEOMETRY"
@@ -966,7 +966,7 @@ msgid ""
 "There was an error displaying help: \n"
 "%s"
 msgstr ""
-"Une erreur s'est produite en affichant l'aide :\n"
+"Il y a eu une erreur lors de l'affichage de l'aide : \n"
 "%s"
 
 #: src/ui.c:374
@@ -1005,16 +1005,16 @@ msgstr ""
 #: src/ui.c:688
 #, c-format
 msgid "Really revert file %s?"
-msgstr "Vraiment revenir à la version enregistrée du fichier %s ?"
+msgstr "Voulez-vous vraiment récupérer le fichier %s ?"
 
 #: src/ui.c:702
 #, c-format
 msgid "Reverted buffer from file %s"
-msgstr "Revenir à la version enregistrée %s"
+msgstr "Rétablit le tampon depuis le fichier %s"
 
 #: src/ui.c:810
 msgid "Print Hex Document"
-msgstr "Affiche un document héxa"
+msgstr "Affiche un document hexa"
 
 #: src/ui.c:815
 msgid "Pages"
@@ -1027,11 +1027,11 @@ msgstr "GHex (%s) : Aperçu de l'impression"
 
 #: src/gnome-print-font-dialog.c:111
 msgid "_Insert a new preview phrase."
-msgstr "_Insérer une nouvelle phrase."
+msgstr "_Insérer une nouvelle phrase d'aperçu."
 
 #: src/gnome-print-font-dialog.c:117
 msgid "Modify preview phrase..."
-msgstr "Modifier la phrase d'aperçu..."
+msgstr "Modifiez la phrase d'aperçu..."
 
 #: src/gnome-print-font-dialog.c:171
 msgid "Preview"
@@ -1051,7 +1051,8 @@ msgstr "Sans Regular 12"
 
 #: src/gnome-print-font-picker.c:92
 msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+msgstr ""
+"Portez ce vieux whisky au juge blond qui fume. 0123456789. àâçèéêëîïôùûüæœ."
 
 #: src/gnome-print-font-picker.c:93
 msgid "Pick a Font"
@@ -1067,7 +1068,7 @@ msgstr "Le titre de la boîte de dialogue de sélection"
 
 #: src/gnome-print-font-picker.c:199
 msgid "Font name"
-msgstr "Nom de police"
+msgstr "Nom de la police"
 
 #: src/gnome-print-font-picker.c:200
 msgid "Name of the selected font"
@@ -1106,61 +1107,3 @@ msgstr "Afficher la taille"
 #: src/gnome-print-font-picker.c:238
 msgid "Show size in font info mode"
 msgstr "Afficher la taille en mode d'informations de police"
-
-#~ msgid "About..."
-#~ msgstr "À _propos..."
-
-#~ msgid "Strange find or replace string!"
-#~ msgstr "Chaîne recherchée bizarre !"
-
-#~ msgid ""
-#~ "Do you want to save the changes you made to the document ``%s''? \n"
-#~ "\n"
-#~ "Your changes will be lost if you don't save them."
-#~ msgstr ""
-#~ "Voulez-vous enregistrer les changements effectués sur le document « %s "
-#~ "» ?\n"
-#~ "\n"
-#~ "Vos changements seront perdus si vous ne les enregistrez pas."
-
-#~ msgid "_Don't save"
-#~ msgstr "_Ne pas enregistrer"
-
-#~ msgid "(modified)"
-#~ msgstr "(modifié)"
-
-#~ msgid "(readonly)"
-#~ msgstr "(lecture seule)"
-
-#~ msgid "Fi_les"
-#~ msgstr "_Fichiers"
-
-#~ msgid "_Tools"
-#~ msgstr "_Outils"
-
-#~ msgid "Default"
-#~ msgstr "Défaut"
-
-#~ msgid "Notebook"
-#~ msgstr "Carnet"
-
-#~ msgid "Modal"
-#~ msgstr "Modal"
-
-#~ msgid "Browse..."
-#~ msgstr "Parcourir..."
-
-#~ msgid "MDI Mode"
-#~ msgstr "Mode MDI"
-
-#~ msgid "MDI"
-#~ msgstr "MDI"
-
-#~ msgid "Export to _HTML..."
-#~ msgstr "Exporter en _HTML..."
-
-#~ msgid "Print pre_view..."
-#~ msgstr "Aperçu avant _impression..."
-
-#~ msgid "Con_verter..."
-#~ msgstr "Con_vertir..."
