@@ -12,7 +12,7 @@ void about_cb (GtkWidget *widget) {
   GtkWidget *about;
 
   gchar *authors[] = {
-	  "Jaka Mocnik",
+	  "Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>",
           NULL
   };
 
@@ -123,12 +123,9 @@ gint delete_event_cb(GtkWidget *w, gpointer who_cares, GtkWidget **me) {
   return TRUE;  /* stop default delete_event handlers */
 }
 
-gint prop_delete_event_cb(GtkWidget *w, gpointer who_cares, PropertyUI **data) {
-  gtk_widget_destroy(GTK_WIDGET((*data)->pbox));
+void prop_destroy_cb(GtkWidget *w, PropertyUI **data) {
   g_free(*data);
   *data = NULL;
-
-  return TRUE;  /* stop default delete_event handlers */
 }
 
 void open_cb(GtkWidget *w) {
@@ -481,13 +478,15 @@ void remove_view_cb(GtkWidget *w) {
 }
 
 gint remove_doc_cb(GnomeMDI *mdi, GnomeDocument *doc) {
+  static char msg[512];
   GnomeMessageBox *mbox;
   gint reply;
 
+  sprintf(msg, _("The document %s has changed since last save.\n"
+                 "Do you want to save changes?"), doc->title);
+
   if(gnome_document_has_changed(doc)) {
-    mbox = GNOME_MESSAGE_BOX(gnome_message_box_new( _("The document has changed since last save.\n"
-						      "Do you want to save changes?"),
-						    GNOME_MESSAGE_BOX_QUESTION, GNOME_STOCK_BUTTON_YES,
+    mbox = GNOME_MESSAGE_BOX(gnome_message_box_new( msg, GNOME_MESSAGE_BOX_QUESTION, GNOME_STOCK_BUTTON_YES,
 						    GNOME_STOCK_BUTTON_NO, GNOME_STOCK_BUTTON_CANCEL, NULL));
     gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
     reply = ask_user(mbox);
@@ -504,6 +503,13 @@ gint remove_doc_cb(GnomeMDI *mdi, GnomeDocument *doc) {
 void cleanup_cb(GnomeMDI *mdi) {
   save_configuration();
   gtk_main_quit();
+}
+
+void app_created_cb(GnomeMDI *mdi, GnomeApp *app) {
+  GtkWidget *sb;
+
+  sb = gtk_statusbar_new();
+  gnome_app_set_statusbar(app, sb);
 }
 
 

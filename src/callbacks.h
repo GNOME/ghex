@@ -25,7 +25,7 @@ void properties_modified_cb();
 void set_group_type_cb();
 void cancel_cb();
 gint delete_event_cb();
-gint prop_delete_event_cb();
+void prop_destroy_cb();
 void select_font_cb();
 void apply_changes_cb();
 void add_view_cb();
@@ -33,6 +33,7 @@ void remove_view_cb();
 
 gint remove_doc_cb();
 void cleanup_cb();
+void app_created_cb();
 
 void prefs_cb();
 void find_cb();

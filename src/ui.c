@@ -31,42 +31,6 @@ gchar *mdi_type_label[3] = {
   "Toplevel",
 };
 
-#if 0
-void cursor_moved(GtkWidget *w) {
-  static gchar info_msg[64];
-
-  sprintf(info_msg, "%9d / %d", GTK_HEX(w)->cursor_pos, GTK_HEX(w)->buffer_size-1);
-  gtk_label_set(GTK_LABEL(offset_label), info_msg);
-  data_changed(w, GTK_HEX(w)->cursor_pos, GTK_HEX(w)->cursor_pos);
-}
-
-void data_changed(GtkWidget *w, guint start, guint end) {
-  GtkHex *gh = GTK_HEX(w);
-  static gchar data_msg[64];
-  guint word, longword, pos;
-
-  if((gh->cursor_pos >= start) && (gh->cursor_pos <= end)) {
-    pos = gh->cursor_pos;
-    while(pos % 2 != 0)
-      pos--;
-    if(pos > gh->buffer_size-2)
-      word = 0;
-    else
-      word = (gh->buffer[pos] << 8) | gh->buffer[pos+1];
-    while(pos % 4 != 0)
-      pos--;
-    if(pos > gh->buffer_size-4)
-      longword = 0;
-    else
-      longword = (((((gh->buffer[pos] << 8) | gh->buffer[pos+1]) << 8) |
-	       gh->buffer[pos+2]) << 8) | gh->buffer[pos+3];
-
-    sprintf(data_msg, "B:%03u W:%05lu L:%010lu", gh->buffer[gh->cursor_pos], word, longword);
-    gtk_label_set(GTK_LABEL(data_label), data_msg);
-  }
-}
-#endif
-
 void show_message(gchar *msg) {
   GtkWidget *message_box;
 
@@ -245,6 +209,10 @@ GList *create_mdi_menus(GnomeMDI *mdi) {
   w = gtk_menu_item_new_with_label(_("View"));
   gtk_widget_show(w);
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
+  
+  /* I'm looking for a nicer way to mark where document-specific menus should be inserted.
+     this prevents one from using gnome-app-helper functions and casting some nonsense to
+     gpointer looks really bad. any ideas? */
   gtk_object_set_data(GTK_OBJECT(w), "document_menu", (gpointer)TRUE);
 
   menu_list = g_list_append(menu_list, w);
@@ -453,8 +421,8 @@ void create_prefs_dialog(PropertyUI **prop_data) {
 
   pui->pbox = GNOME_PROPERTY_BOX(gnome_property_box_new());
 
-  gtk_signal_connect(GTK_OBJECT(pui->pbox), "delete_event",
-		     GTK_SIGNAL_FUNC(prop_delete_event_cb), prop_data);
+  gtk_signal_connect(GTK_OBJECT(pui->pbox), "destroy",
+		     GTK_SIGNAL_FUNC(prop_destroy_cb), prop_data);
   gtk_signal_connect(GTK_OBJECT(pui->pbox), "apply",
 		     GTK_SIGNAL_FUNC(apply_changes_cb), pui);
 
