@@ -338,8 +338,8 @@ static void find_prev_cb(GtkWidget *w)
 
 static void goto_byte_cb(GtkWidget *w)
 {
-	guint byte;
-	gchar *byte_str = gtk_entry_get_text(GTK_ENTRY(jump_dialog->int_entry)), *endptr;
+	guint byte = 2;
+	gchar *byte_str = gtk_entry_get_text(GTK_ENTRY(jump_dialog->int_entry));
 	
 	if(mdi->active_child == NULL) {
 		gnome_app_error(mdi->active_window, _("There is no active buffer to move the cursor in!"));
@@ -351,19 +351,15 @@ static void goto_byte_cb(GtkWidget *w)
 		return;
 	}
 	
-	byte = strtoul(byte_str, &endptr, 10);
-	
-	if(*endptr != '\0') {
+	if((sscanf(byte_str, "0x%x", &byte) == 1) ||
+	   (sscanf(byte_str, "%d", &byte) == 1)) {
+		if(byte >= HEX_DOCUMENT(mdi->active_child)->file_size)
+			gnome_app_error(mdi->active_window,_("Can not position cursor beyond the End Of File!"));
+		else
+			gtk_hex_set_cursor(GTK_HEX(mdi->active_view), byte);
+	}
+	else
 		gnome_app_error(mdi->active_window, _("The offset must be a positive integer value!"));
-		return;
-	}
-	
-	if(byte >= HEX_DOCUMENT(mdi->active_child)->file_size) {
-		gnome_app_error(mdi->active_window,_("Can not position cursor beyond the End Of File!"));
-		return;
-	}
-	
-	gtk_hex_set_cursor(GTK_HEX(mdi->active_view), byte);
 }
 
 static void replace_next_cb(GtkWidget *w)
