@@ -52,22 +52,26 @@ mkdir -p $RPM_BUILD_ROOT%{_prefix}
 
 make prefix=$RPM_BUILD_ROOT%{_prefix} bindir=$RPM_BUILD_ROOT%{_bindir} \
     datadir=$RPM_BUILD_ROOT%{_datadir} \
-    sysconfdir=$RPM_BUILD_ROOT%{_sysconfidr} install
+    sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir} install
 
 %files
 %defattr(-,root,root)
 %doc README COPYING AUTHORS
 %attr(755,root,root) %{_bindir}/*
-%{_datadir}/gnome/apps/Applications/*
-%{_datadir}/gnome/help/ghex
+%{_datadir}/applications/*
+%{_datadir}/gnome/help/ghex2
 %{_datadir}/pixmaps/*
 %{_datadir}/locale/*/*/*
-%{_datadir}/omf/ghex
+%{_datadir}/gnome-2.0/ui/*
+%{_sysconfdir}/gconf/schemas/*
 
 %clean
 rm -r $RPM_BUILD_ROOT
 
 %changelog
+* Sun Oct 27 2002 Dan Hensley <dan.hensley@attbi.com>
+- Fix RPM build errors
+
 * Wed Feb 21 2001 Gregory Leblanc <gleblanc@cu-portland.edu>
 - removed hard-coded paths, updated macros.
 

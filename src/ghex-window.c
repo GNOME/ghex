@@ -626,7 +626,7 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
 }
 
 static gchar* 
-escape_underscores (const gchar* text)
+encode_xml_and_escape_underscores(gchar *text)
 {
 	GString *str;
 	gint length;
@@ -649,6 +649,69 @@ escape_underscores (const gchar* text)
 		switch (*p) {
         case '_':
             g_string_append (str, "__");
+            break;
+        case '&':
+            g_string_append (str, "&amp;");
+            break;
+        case '<':
+            g_string_append (str, "&lt;");
+            break;
+        case '>':
+            g_string_append (str, "&gt;");
+            break;
+        case '"':
+            g_string_append (str, "&quot;");
+            break;
+        case '\'':
+            g_string_append (str, "&apos;");
+            break;
+        default:
+            g_string_append_len (str, p, next - p);
+            break;
+        }
+        
+        p = next;
+    }
+    
+	return g_string_free (str, FALSE);
+}
+
+static gchar* 
+encode_xml (const gchar* text)
+{
+	GString *str;
+	gint length;
+	const gchar *p;
+ 	const gchar *end;
+
+  	g_return_val_if_fail (text != NULL, NULL);
+
+    length = strlen (text);
+
+	str = g_string_new ("");
+
+  	p = text;
+  	end = text + length;
+
+  	while (p != end) {
+        const gchar *next;
+        next = g_utf8_next_char (p);
+
+		switch (*p) {
+        case '&':
+            g_string_append (str, "&amp;");
+            break;
+        case '<':
+            g_string_append (str, "&lt;");
+            break;
+        case '>':
+            g_string_append (str, "&gt;");
+            break;
+        case '"':
+            g_string_append (str, "&quot;");
+            break;
+        case '\'':
+            g_string_append (str, "&apos;");
             break;
         default:
             g_string_append_len (str, p, next - p);
@@ -682,15 +745,17 @@ ghex_window_add_doc_to_list(GHexWindow *win, HexDocument *doc)
 {
     gchar *menu = NULL, *verb_name;
     gchar *cmd = NULL;
-    gchar *escaped_name;
+    gchar *escaped_name, *encoded_name;
     gchar *tip;
 
-    escaped_name = escape_underscores(doc->path_end);
-    tip = g_strdup_printf(_("Activate file %s"), doc->path_end);
+    escaped_name = encode_xml (doc->path_end);
+    tip = g_strdup_printf(_("Activate file %s"), escaped_name);
+    g_free(escaped_name);
+    escaped_name = encode_xml_and_escape_underscores(doc->path_end);
     verb_name = g_strdup_printf("FilesFile_%p", doc);
     menu = g_strdup_printf("<menuitem name=\"%s\" verb=\"%s\" label=\"%s\"/>",
                            verb_name, verb_name, escaped_name);
-    cmd = g_strdup_printf("<cmd name=\"%s\" _label=\"%s\" _tip=\"%s\"/>",
+    cmd = g_strdup_printf("<cmd name=\"%s\" label=\"%s\" _tip=\"%s\"/>",
                           verb_name, escaped_name, tip);
     g_free(tip);
     g_free(escaped_name);

@@ -66,21 +66,19 @@ static char *ascii_non_printable_label[] = {
 	"US"
 };
 
-static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *event, GtkTreeModel *model)
+static void
+insert_char(GtkTreeView *treeview, GtkTreeModel *model)
 {
 	GHexWindow *win;
 	GtkTreeIter iter;
 	GtkTreeSelection *selection;
-	GValue value = {0, };
+	GValue value = { 0 };
 
 	selection = gtk_tree_view_get_selection(treeview);
-
-	if (!gtk_tree_selection_get_selected(selection, &model, &iter))
-		return FALSE;
-
+	if(!gtk_tree_selection_get_selected(selection, &model, &iter))
+		return;
 	gtk_tree_model_get_value(model, &iter, 2, &value);
-
-	if(selection == sel_row && event->type == GDK_2BUTTON_PRESS) {
+	if(selection == sel_row) {
 		win = ghex_window_get_active();
 		if(win->gh) {
 			hex_document_set_byte(win->gh->document, (guchar)atoi(g_value_get_string(&value)), win->gh->cursor_pos,
@@ -90,7 +88,14 @@ static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *e
 	}
 	g_value_unset(&value);
 	sel_row = selection;
+}
 
+static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *event, gpointer data)
+{
+	GtkTreeModel *model = GTK_TREE_MODEL(data);
+
+	if(event->type == GDK_2BUTTON_PRESS)
+		insert_char(treeview, model);
 	return FALSE;
 }
 
@@ -99,10 +104,16 @@ static void hide_chartable_cb (GtkWidget *widget, GtkWidget *win)
 	gtk_widget_hide(win);
 }
 
-static gint key_press_cb (GtkWidget *w, GdkEventKey *e)
+static gint key_press_cb (GtkTreeView *treeview, GdkEventKey *e, gpointer data)
 {
+	GtkTreeModel *model = GTK_TREE_MODEL(data);
+
 	if (e->keyval == GDK_Escape) {
-		gtk_widget_hide(w);
+		gtk_widget_hide(GTK_WIDGET(treeview));
+		return TRUE;
+	}
+	else if(e->keyval == GDK_Return) {
+		insert_char(treeview, model);
 		return TRUE;
 	}
 	return FALSE;
@@ -186,10 +197,10 @@ GtkWidget *create_char_table()
 	gtk_signal_connect(GTK_OBJECT(ct), "delete-event",
 					   GTK_SIGNAL_FUNC(delete_event_cb), ct);
 	g_signal_connect(G_OBJECT(ctv), "button_press_event",
-					   G_CALLBACK(select_chartable_row_cb), GTK_TREE_MODEL(store));
-
-	g_signal_connect(G_OBJECT(ct), "key_press_event",
-					  G_CALLBACK(key_press_cb), ct);
+					 G_CALLBACK(select_chartable_row_cb), GTK_TREE_MODEL(store));
+	g_signal_connect(G_OBJECT(ctv), "key_press_event",
+					 G_CALLBACK(key_press_cb), GTK_TREE_MODEL(store));
+	gtk_widget_grab_focus(ctv);
 
 	cbtn = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
 	gtk_widget_show(cbtn);
