@@ -44,7 +44,7 @@ static void preview_destroy_cb(GtkObject *obj, GHexPrintJobInfo *job);
 
 static void preview_destroy_cb(GtkObject *obj, GHexPrintJobInfo *job)
 {
-	gnome_print_master_close(job->master);
+	gtk_object_unref(GTK_OBJECT(job->master));
 	g_free(job);
 }
 
@@ -109,9 +109,11 @@ void print_document(HexDocument *doc, guint gt, GnomePrinter *printer)
 
 	gnome_print_context_close(pji->pc);
 
+	gnome_print_master_close(pji->master);
+
 	if(printer) {
 		gnome_print_master_print(pji->master);
-		gnome_print_master_close(pji->master);
+		gtk_object_unref(GTK_OBJECT(pji->master));
 		g_free(pji);
 	}
 	else {
