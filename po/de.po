@@ -1,445 +1,633 @@
 msgid ""
 msgstr ""
-"Date: 1998-01-13 12:21:39+0100\n"
+"Date: 1998-03-10 13:58:43+0100\n"
 "From: Eckehard Berns <eb@berns>\n"
 "Content-Type: text/plain; charset=\n"
-"Xgettext-Options: \n"
-"Files: app.c dialog.c err.c gtthelp.c log.c main.c menucmd.c menus.c options.c proj.c prop.c timer.c toolbar.c\n"
+"Xgettext-Options: --default-domain=gnome-utils --directory=.. --add-comments --keyword=_ --keyword=N_ --files-from=./POTFILES.in\n"
+"Files: gtt/app.c gtt/toolbar.c gtt/main.c gtt/menucmd.c gtt/menus.c gtt/proj.c gtt/log.c gtt/options.c gtt/prop.c gtt/clist.c gtop/main.c gtop/procbar.c gtop/procview.c gtop/details.c genius/calc.c genius/genius.c genius/eval.c genius/util.c\n"
 
-#: src/app.c:69
+#: gtt/app.c:114 gtt/app.c:253
 msgid "no project selected"
 msgstr "kein Projekt ausgewählt"
 
-#. define one empty project on the first start
-#: src/app.c:256 src/prop.c:57
-msgid "empty"
-msgstr "leeres Projekt"
+#. not DEBUG
+#: gtt/app.c:203 gtt/main.c:70
+msgid "Error"
+msgstr "Fehler"
 
-#: src/app.c:289
-msgid "Confirmation request"
-msgstr "Sind Sie sicher?"
-
-#: src/app.c:290
+#: gtt/app.c:204
 msgid ""
-"I could not read the init file.\n"
-"Shall I install a new init file?"
+"An error occured while reading the configuration file.\n"
+"Shall I setup a new configuration?"
 msgstr ""
-"Die Konfigurationsdatei konnte nicht gelesen werden.\n"
-"Soll eine neue Konfigurationsdatei angelegt werden?"
+"Beim Einlesen der Konfigurationsdatei ist ein Fehler aufgetreten.\n"
+"Soll eine neue Konfiguration angelegt werden?"
 
-#: src/app.c:292 src/menucmd.c:168
+#: gtt/app.c:207 gtt/menucmd.c:140
 msgid "Yes"
 msgstr "Ja"
 
-#: src/app.c:292
-msgid "No, just quit!"
-msgstr "Nein!"
+#: gtt/app.c:207 gtt/menucmd.c:140
+msgid "No"
+msgstr "Nein"
 
-#: src/app.c:360 src/app.c:375 src/app.c:385 src/app.c:391
-msgid "error in geometry string \"%s\"\n"
-msgstr "Fehler in der Angabe -geometry \"%s\"\n"
+#: gtt/app.c:242
+msgid "00:00"
+msgstr "00:00"
 
-#: src/app.c:398
-msgid "unknown arg: %s\n"
-msgstr "Unbekannter Parameter: %s\n"
-
-#: src/toolbar.c:273
-msgid "New"
+#. Note to translators: just skip the `[GTT]'
+#: gtt/toolbar.c:196
+msgid "[GTT]New"
 msgstr "Neu"
 
-#: src/toolbar.c:273
+#: gtt/menucmd.c:85 gtt/menus.c:27 gtt/toolbar.c:197
 msgid "New Project..."
 msgstr "Neues Projekt..."
 
-#: src/toolbar.c:276
+#: gtt/toolbar.c:203
 msgid "Reload"
 msgstr "Einlesen"
 
-#: src/toolbar.c:276
+#: gtt/menucmd.c:137 gtt/menus.c:31 gtt/toolbar.c:204
 msgid "Reload Configuration File"
 msgstr "Konfigurationsdatei neu einlesen"
 
-#: src/toolbar.c:278
+#: gtt/toolbar.c:207
 msgid "Save"
 msgstr "Speichern"
 
-#: src/toolbar.c:278
+#: gtt/menus.c:35 gtt/toolbar.c:208
 msgid "Save Configuration File"
 msgstr "Konfigurationsdatei speichern"
 
-#: src/toolbar.c:281
+#: gtt/menus.c:50 gtt/menus.c:134 gtt/toolbar.c:214
 msgid "Cut"
-msgstr "Aussch."
+msgstr "Ausschneiden"
 
-#: src/toolbar.c:281
+#: gtt/toolbar.c:215
 msgid "Cut Selected Project"
-msgstr "Gewähltes Project ausschneiden"
+msgstr "Ausgewähltes Projekt ausschneiden"
 
-#: src/toolbar.c:283
+#: gtt/menus.c:54 gtt/menus.c:139 gtt/toolbar.c:218
 msgid "Copy"
-msgstr "kopieren"
+msgstr "Kopieren"
 
-#: src/toolbar.c:283
+#: gtt/toolbar.c:219
 msgid "Copy Selected Project"
-msgstr "Gewähltes Projekt kopieren"
+msgstr "Ausgewähltes Projekt kopieren"
 
-#: src/toolbar.c:285
+#: gtt/menus.c:59 gtt/menus.c:144 gtt/toolbar.c:222
 msgid "Paste"
-msgstr "Einf."
+msgstr "Einfügen"
 
-#: src/toolbar.c:285
+#: gtt/toolbar.c:223
 msgid "Paste Project"
-msgstr "Project einfügen"
+msgstr "Projekt einfügen"
 
-#: src/toolbar.c:288
+#: gtt/toolbar.c:229
 msgid "Props"
-msgstr "Eigen."
+msgstr "Eigenschaften"
 
-#: src/toolbar.c:288
+#: gtt/toolbar.c:230
 msgid "Edit Properties..."
-msgstr "Eigenschaften bearbeiten..."
+msgstr "Eigenschaften bearbeiten"
 
-#: src/toolbar.c:290
+#: gtt/menus.c:117 gtt/toolbar.c:234
 msgid "Timer"
-msgstr "Uhr"
+msgstr "Stoppuhr"
 
-#: src/toolbar.c:290
+#: gtt/toolbar.c:235
 msgid "Start/Stop Timer"
 msgstr "Stoppuhr starten/stoppen"
 
-#: src/toolbar.c:293
+#: gtt/toolbar.c:244
 msgid "Prefs"
-msgstr "Einst."
+msgstr "Einstellungen"
 
-#: src/toolbar.c:293
+#: gtt/toolbar.c:245
 msgid "Edit Preferences..."
-msgstr "Einstellungen bearbeiten..."
+msgstr "Einstellungen bearbeiten"
 
-#: src/menucmd.c:64 src/toolbar.c:297
-msgid "About"
-msgstr "Info"
+#: gtt/toolbar.c:249
+msgid "Manual"
+msgstr "Handbuch"
 
-#: src/toolbar.c:297
-msgid "About..."
-msgstr "Info..."
+#: gtt/toolbar.c:249
+msgid "Manual..."
+msgstr "Handbuch..."
 
-#: src/toolbar.c:299
-msgid "Quit"
-msgstr "Ende"
+#: gtop/main.c:141 gtt/menus.c:40 gtt/toolbar.c:254
+msgid "Exit"
+msgstr "Beenden"
 
-#: src/toolbar.c:299
-msgid "Quit GTimeTracker"
+#: gtt/toolbar.c:254
+msgid "Exit GTimeTracker"
 msgstr "GTimeTracker beenden"
 
-#. not needed
-#: src/menucmd.c:37
-msgid "Notice"
-msgstr "Info"
+#: gtt/main.c:70
+msgid ""
+"There seems to be another GTimeTracker running.\n"
+"Please remove the pid file, if that is not correct."
+msgstr ""
+"Es sieht so aus, als liefe schon ein anderer GTimeTracker.\n"
+"Bitte loeschen Sie die PID Datei falls das nicht der Fall ist."
 
-#: src/menucmd.c:38
-msgid "Not implemented yet"
-msgstr "Noch nicht implementiert"
-
-#: src/menucmd.c:39 src/menucmd.c:65
-msgid "Close"
-msgstr "Schließen"
-
-#: src/menucmd.c:47 src/menucmd.c:145 src/menucmd.c:193
-msgid "Warning"
-msgstr "Warnung"
-
-#: src/menucmd.c:48 src/menucmd.c:195
-msgid "I could not write the configuration file!"
-msgstr "Die Konfigurationsdatei konnte nicht geschrieben werden!"
-
-#: src/menucmd.c:49 src/menucmd.c:146 src/menucmd.c:194
+#: gtt/main.c:72 gtt/menucmd.c:33 gtt/menucmd.c:122 gtt/menucmd.c:154
 msgid "Oops"
 msgstr "Oops"
 
-#: src/menucmd.c:72 src/menucmd.c:75
-msgid "version"
-msgstr "Version"
+#: gtt/main.c:111 gtt/main.c:126 gtt/main.c:137 gtt/main.c:143
+msgid "error in geometry string \"%s\"\n"
+msgstr "Fehler beim spezifizieren der Geometry \"%s\"\n"
 
-#: src/menucmd.c:115 src/options.c:93 src/prop.c:171
+#: gtt/main.c:157
+msgid "specify geometry"
+msgstr "Geometry angeben"
+
+#: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
+msgid "Warning"
+msgstr "Achtung!"
+
+#: gtt/menucmd.c:32 gtt/menucmd.c:155
+msgid "I could not write the configuration file!"
+msgstr "Ich konnte die Konfigurationsdatei nicht speichern!"
+
+#: genius/genius.c:119 gtt/menucmd.c:86
 msgid "OK"
 msgstr "OK"
 
-#: src/menucmd.c:117 src/options.c:108 src/prop.c:182
+#: gtt/menucmd.c:88
 msgid "Cancel"
 msgstr "Abbruch"
 
-#: src/menucmd.c:118
+#: gtt/menucmd.c:89
 msgid "Please enter the name of the new project:"
-msgstr "Bitte geben Sie einen Namen für das neue Projekt ein:"
+msgstr "Bitte geben Sie den Namen für das neue Projekt ein:"
 
-#: src/menucmd.c:147
+#: gtt/menucmd.c:123
 msgid "I could not read the configuration file"
-msgstr "Die Konfigurationsdatei konnte nicht gelesen werden"
+msgstr "Ich konnte die Konfigurationsdatei nicht lesen"
 
-#: src/menucmd.c:165
-msgid "Confirmation Request"
-msgstr "Sind Sie sicher?"
-
-#: src/menucmd.c:166
+#: gtt/menucmd.c:138
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
 msgstr ""
-"Wenn sie fortsetzen, wird die Liste Ihrer Projekte überschrieben\n"
-"Wollen Sie die Konfigurationsdatei trotzdem neu einlesen?"
+"Diese Aktion macht Ihre derzeitige Konfiguration ungültig.\n"
+"Soll die Konfigurationsdatei wirklich neu eingelesen werden?"
 
-#: src/menucmd.c:168
-msgid "No"
-msgstr "Nein"
+#: gtt/menus.c:65 gtt/menus.c:149
+msgid "Clear Daily Counter"
+msgstr "Tageszähler löschen"
 
-#: src/menucmd.c:354 src/menus.c:126
-msgid "<Main>/Timer/Timer running"
-msgstr "<Main>/Stoppuhr/Stoppuhr läuft"
+#: gtt/menus.c:70 gtt/menus.c:128
+msgid "Properties..."
+msgstr "Eigenschaften..."
 
-#: src/menucmd.c:355 src/menus.c:81
-msgid "<Main>/Timer/Start"
-msgstr "<Main>/Stoppuhr/Starten"
+#: gtt/menus.c:75
+msgid "Preferences..."
+msgstr "Einstellungen..."
 
-#: src/menucmd.c:356 src/menus.c:82
-msgid "<Main>/Timer/Stop"
-msgstr "<Main>/Stoppuhr/Stoppen"
+#: gtt/menus.c:85
+msgid "Start"
+msgstr "Starten"
 
-#: src/menucmd.c:357 src/menus.c:73
-msgid "<Main>/Edit/Cut"
-msgstr "<Main>/Bearbeiten/Ausschneiden"
+#: gtt/menus.c:89
+msgid "Stop"
+msgstr "Stoppen"
 
-#: src/menucmd.c:358 src/menus.c:74
-msgid "<Main>/Edit/Copy"
-msgstr "<Main>/Bearbeiten/Kopieren"
+#: gtt/menus.c:94
+msgid "Timer Running"
+msgstr "Stoppuhr läuft"
 
-#: src/menucmd.c:359 src/menus.c:75
-msgid "<Main>/Edit/Paste"
-msgstr "<Main>/Bearbeiten/Einfügen"
+#: gtop/main.c:128 gtt/menus.c:103
+msgid "About..."
+msgstr "Info..."
 
-#: src/menucmd.c:360 src/menus.c:94
-msgid "<Popup>/Paste"
-msgstr "<Popup>/Einfügen"
+#: gtop/main.c:147 gtt/menus.c:113
+msgid "File"
+msgstr "Datei"
 
-#: src/menucmd.c:361 src/menus.c:77
-msgid "<Main>/Edit/Clear Daily Counter"
-msgstr "<Main>/Bearbeiten/Tageszähler zurücksetzen"
+#: gtt/menus.c:115
+msgid "Edit"
+msgstr "Bearbeiten"
 
-#: src/menucmd.c:362 src/menus.c:96
-msgid "<Popup>/Clear Daily Counter"
-msgstr "<Popup>/Tageszähler zurücksetzen"
+#: genius/genius.c:322 gtop/main.c:150 gtt/menus.c:120
+msgid "Help"
+msgstr "Hilfe"
 
-#: src/menucmd.c:363 src/menus.c:78
-msgid "<Main>/Edit/Properties..."
-msgstr "<Main>/Bearbeiten/Eigenschaften..."
-
-#: src/menus.c:67
-msgid "<Main>/File/New Project..."
-msgstr "<Main>/Datei/Neues Projekt..."
-
-#: src/menus.c:67
-msgid "<control>N"
-msgstr "<control>N"
-
-#: src/menus.c:68 src/menus.c:71
-msgid "<Main>/File/<separator>"
-msgstr "<Main>/Datei/<separator>"
-
-#: src/menus.c:69
-msgid "<Main>/File/Reload Configuration File"
-msgstr "<Main>/Datei/Konfigurationsdatei neu einlesen"
-
-#: src/menus.c:69
-msgid "<control>R"
-msgstr "<control>L"
-
-#: src/menus.c:70
-msgid "<Main>/File/Save Configuration File"
-msgstr "<Main>/Datei/Konfigurationsdatei speichern"
-
-#: src/menus.c:70
-msgid "<control>S"
-msgstr "<control>S"
-
-#: src/menus.c:72
-msgid "<Main>/File/Quit"
-msgstr "<Main>/Datei/Beenden"
-
-#: src/menus.c:72
-msgid "<control>Q"
-msgstr "<control>Q"
-
-#: src/menus.c:73
-msgid "<control>X"
-msgstr "<control>X"
-
-#: src/menus.c:74
-msgid "<control>C"
-msgstr "<control>C"
-
-#: src/menus.c:75
-msgid "<control>V"
-msgstr "<control>V"
-
-#: src/menus.c:76 src/menus.c:79
-msgid "<Main>/Edit/<separator>"
-msgstr "<Main>/Bearbeiten/<separator>"
-
-#: src/menus.c:78
-msgid "<control>E"
-msgstr "<control>E"
-
-#: src/menus.c:80
-msgid "<Main>/Edit/Preferences..."
-msgstr "<Main>/Bearbeiten/Einstellungen..."
-
-#: src/menus.c:81
-msgid "<control>A"
-msgstr "<control>A"
-
-#: src/menus.c:82
-msgid "<control>P"
-msgstr "<control>P"
-
-#: src/menus.c:83
-msgid "<Main>/Timer/<check>Timer running"
-msgstr "<Main>/Stoppuhr/<check>Stoppuhr läuft"
-
-#: src/menus.c:83
-msgid "<control>T"
-msgstr "<control>U"
-
-#: src/menus.c:85
-msgid "<Main>/Help/Help on Help..."
-msgstr "<Main>/Hilfe/Hilfe über Hilfe..."
-
-#: src/menus.c:86
-msgid "<Main>/Help/Contents..."
-msgstr "<Main>/Hilfe/Inhalt..."
-
-#: src/menus.c:86
-msgid "<alt>H"
-msgstr "<alt>H"
-
-#: src/menus.c:87
-msgid "<Main>/Help/<separator>"
-msgstr "<Main>/Hilfe/<separator>"
-
-#: src/menus.c:89
-msgid "<Main>/Help/About..."
-msgstr "<Main>/Hilfe/Info..."
-
-#: src/menus.c:90
-msgid "<Popup>/Properties..."
-msgstr "<Popup>/Eigenschaften..."
-
-#: src/menus.c:91 src/menus.c:95
-msgid "<Popup>/<separator>"
-msgstr "<Popup>/<separator>"
-
-#: src/menus.c:92
-msgid "<Popup>/Cut"
-msgstr "<Popup>/Ausschneiden"
-
-#: src/menus.c:93
-msgid "<Popup>/Copy"
-msgstr "<Popup>/Kopieren"
-
-#: src/menus.c:123
-msgid "<Main>/Help"
-msgstr "<Main>/Hilfe"
-
-#: src/log.c:72
+#: gtt/log.c:62
 msgid "stopped project"
-msgstr "Project angehalten"
+msgstr "Projekt angehalten"
 
-#: src/log.c:101
+#: gtt/log.c:129
 msgid "program exited"
 msgstr "Programm beendet"
 
-#: src/options.c:101 src/prop.c:177
-msgid "Apply"
-msgstr "Übernehmen"
+#: gtt/log.c:137
+msgid "program started"
+msgstr "Programm gestartet"
 
-#: src/options.c:123
+#: genius/genius.c:392 gtt/options.c:196
 msgid "Display"
-msgstr "Ansicht"
+msgstr "Anzeige"
 
-#: src/options.c:131
+#: gtt/options.c:204
 msgid "Show Seconds"
-msgstr "Sekunden zeigen"
+msgstr "Sekunden anzeigen"
 
-#: src/options.c:137
-msgid "Show Toolbar Icons"
-msgstr "Toolbaricons zeigen"
-
-#: src/options.c:142
-msgid "Show Toolbar Texts"
-msgstr "Toolbartexte zeigen"
-
-#: src/options.c:147
+#: gtt/options.c:209
 msgid "Show Status Bar"
-msgstr "Statusbalken zeigen"
+msgstr "Statusbalken anzeigen"
 
-#: src/options.c:160
+#: gtt/options.c:214
+msgid "Show Table Header"
+msgstr "Tabellenkopf anzeigen"
+
+#: gtt/options.c:227 gtt/options.c:484
+msgid "Toolbar"
+msgstr "Toolbar"
+
+#: gtt/options.c:235
+msgid "Show Toolbar Icons"
+msgstr "Toolbar Icons anzeigen"
+
+#: gtt/options.c:240
+msgid "Show Toolbar Texts"
+msgstr "Toolbar Texte anzeigen"
+
+#: gtt/options.c:245
+msgid "Show Tooltips"
+msgstr "Tooltips anzeigen"
+
+#: gtt/options.c:250
+msgid "Toolbar Segments"
+msgstr "Toolbar Abschnitte"
+
+#: gtt/options.c:258
+msgid "Show `New'"
+msgstr "`Neu' anzeigen"
+
+#: gtt/options.c:263
+msgid "Show `Save', `Reload'"
+msgstr "`Speichern' und `Einlesen' anzeigen"
+
+#: gtt/options.c:268
+msgid "Show `Cut', `Copy', `Paste'"
+msgstr "`Ausschneiden', `Kopieren' und `Einfügen' anzeigen"
+
+#: gtt/options.c:273
+msgid "Show `Properties'"
+msgstr "`Eigenschaften' anzeigen"
+
+#: gtt/options.c:278
+msgid "Show `Timer'"
+msgstr "`Stoppuhr' anzeigen"
+
+#: gtt/options.c:283
+msgid "Show `Preferences'"
+msgstr "`Einstellungen' anzeigen"
+
+#: gtt/options.c:288
+msgid "Show `Help'"
+msgstr "`Hilfe' anzeigen"
+
+#: gtt/options.c:293
+msgid "Show `Exit'"
+msgstr "`Beenden' anzeigen"
+
+#: gtt/options.c:306
 msgid "Shell Commands"
-msgstr "Befehlszeilen"
+msgstr "Befehle"
 
-#: src/options.c:168
+#: gtt/options.c:314
 msgid "Switch Project Command:"
-msgstr "Befehl bei gewechseltem Projekt:"
+msgstr "Befehle beim wechseln eines Projekts:"
 
-#: src/options.c:177
+#: gtt/options.c:323
 msgid "No Project Command:"
-msgstr "Befehl ohne Projekt:"
+msgstr "Befehle beim beenden eines Projekts:"
 
-#: src/options.c:206
+#: gtt/options.c:352
 msgid "Logfile"
 msgstr "Logdatei"
 
-#: src/options.c:214
+#: gtt/options.c:360
 msgid "Use Logfile"
 msgstr "Logdatei benutzen"
 
-#: src/options.c:226
+#: gtt/options.c:372
 msgid "Filename:"
 msgstr "Dateiname:"
 
-#: src/options.c:240
+#: gtt/options.c:386
 msgid "Timeout in secs:"
-msgstr "Mindestzeit in Sek.:"
+msgstr "Verzögerung in Sekunden:"
 
-#: src/options.c:287
+#: gtt/options.c:456
 msgid "Preferences"
-msgstr "Einstellungen"
+msgstr "Einstellungen:"
 
-#: src/prop.c:162
+#: gtt/options.c:472
+msgid "Misc"
+msgstr "Verschiedenes"
+
+#. define one empty project on the first start
+#: gtt/clist.c:124 gtt/prop.c:55
+msgid "empty"
+msgstr "leeres Projekt"
+
+#: gtt/prop.c:161
 msgid "Properties"
 msgstr "Eigenschaften"
 
-#: src/prop.c:196
+#: gtt/prop.c:206
 msgid "Project Title:"
 msgstr "Projekttitel:"
 
-#: src/prop.c:205
+#: gtt/prop.c:215
 msgid "Project Description:"
 msgstr "Projektbeschreibung:"
 
-#: src/prop.c:214
+#: gtt/prop.c:224
 msgid "Project Time today:"
 msgstr "Projektzeit heute:"
 
-#: src/prop.c:227 src/prop.c:256
+#: gtt/prop.c:237 gtt/prop.c:266
 msgid "hours"
 msgstr "Stunden"
 
-#: src/prop.c:235 src/prop.c:264
+#: gtt/prop.c:245 gtt/prop.c:274
 msgid "mins"
 msgstr "Minuten"
 
-#: src/prop.c:243 src/prop.c:272
+#: gtt/prop.c:253 gtt/prop.c:282
 msgid "secs"
 msgstr "Sekunden"
 
-#: src/prop.c:247
+#: gtt/prop.c:257
 msgid "Project Time ever:"
-msgstr "Projektzeit insgesammt:"
+msgstr "gesammte Projektzeit"
+
+#: gtt/clist.c:84
+msgid "Time"
+msgstr "Zeit"
+
+#: gtt/clist.c:85
+msgid "Project Title"
+msgstr "Projekttitel"
+
+#: gtop/main.c:62
+msgid "GTop"
+msgstr "GTop"
+
+#. another comments
+#: gtop/main.c:67
+msgid "The GNOME System Monitor program"
+msgstr "Das GNOME Systemmonitor Programm"
+
+#: gtop/main.c:134
+msgid "item 1"
+msgstr "Eintrag 1"
+
+#: gtop/main.c:135
+msgid "item 2"
+msgstr "Einrtag 2"
+
+#: gtop/main.c:136
+msgid "item 3"
+msgstr "Eintrag 3"
+
+#: gtop/main.c:148
+msgid "View"
+msgstr "Ansicht"
+
+#: gtop/main.c:149
+msgid "System"
+msgstr "System"
+
+#: gtop/main.c:155
+msgid "Start / Stop sampling"
+msgstr "Auswertung starten/stoppen"
+
+#: gtop/main.c:181
+msgid "GNOME System Monitor"
+msgstr "GNOME Systemmonitor"
+
+#: gtop/procview.c:290
+msgid "All processes"
+msgstr "Alle Prozesse"
+
+#: gtop/procview.c:292
+msgid "User processes"
+msgstr "Userprozesse"
+
+#: gtop/procview.c:294
+msgid "TTY processes"
+msgstr "Prozesse mit TTY"
+
+#: gtop/procview.c:564
+msgid "Send"
+msgstr "Senden"
+
+#: gtop/procview.c:585
+msgid "More ..."
+msgstr "Mehr..."
+
+#: gtop/procview.c:599
+msgid "SIGTERM"
+msgstr ""
+
+#: gtop/procview.c:606
+msgid "SIGKILL"
+msgstr ""
+
+#: gtop/procview.c:618
+msgid "Details ..."
+msgstr ""
+
+#: gtop/details.c:46
+msgid "Close"
+msgstr "Schließen"
+
+#: gtop/details.c:71
+msgid "Process %d details"
+msgstr "Details von Prozess %d bearbeiten"
+
+#: gtop/details.c:158
+msgid "Process info"
+msgstr "Prozessinformationen"
+
+#: gtop/details.c:160
+msgid "Attribute"
+msgstr "Attribute"
+
+#: gtop/details.c:161
+msgid "Value"
+msgstr "Wert"
+
+#: gtop/details.c:334
+msgid "Raw memory map"
+msgstr ""
+
+#: gtop/details.c:336
+msgid "VM start"
+msgstr ""
+
+#: gtop/details.c:337
+msgid "VM end"
+msgstr ""
+
+#: gtop/details.c:338
+msgid "Flags"
+msgstr ""
+
+#: gtop/details.c:339
+msgid "VM offset"
+msgstr ""
+
+#: gtop/details.c:340
+msgid "Device"
+msgstr ""
+
+#: gtop/details.c:341
+msgid "Inode"
+msgstr ""
+
+#: gtop/details.c:342
+msgid "Filename"
+msgstr "Dateiname"
+
+#: gtop/details.c:452
+msgid "Graphical memory map"
+msgstr ""
+
+#: genius/calc.c:277
+msgid "ERROR: Probably corrupt stack!"
+msgstr ""
+
+#: genius/calc.c:301
+msgid "ERROR: "
+msgstr ""
+
+#: genius/calc.c:303
+msgid " before '"
+msgstr " vor '"
+
+#: genius/genius.c:223 genius/genius.c:339
+msgid "GnomENIUS Calculator"
+msgstr ""
+
+#. another comments
+#: genius/genius.c:228
+msgid "The Gnome Calculator program"
+msgstr ""
+
+#: genius/genius.c:302
+msgid "Calculator/Exit"
+msgstr ""
+
+#: genius/genius.c:302
+msgid "<control>X"
+msgstr ""
+
+#: genius/genius.c:303
+msgid "View/<check>Numpad"
+msgstr ""
+
+#: genius/genius.c:304
+msgid "View/<check>Scientific"
+msgstr ""
+
+#: genius/genius.c:305
+msgid "View/<check>Options"
+msgstr ""
+
+#: genius/genius.c:306
+msgid "Help/About"
+msgstr ""
+
+#: genius/genius.c:325
+msgid "View/Numpad"
+msgstr ""
+
+#: genius/genius.c:328
+msgid "View/Options"
+msgstr ""
+
+#. numpad
+#: genius/genius.c:428
+msgid "Numpad"
+msgstr ""
+
+#: genius/genius.c:450
+msgid "Scientific"
+msgstr ""
+
+#: genius/genius.c:462
+msgid "Options"
+msgstr ""
+
+#: genius/genius.c:467
+msgid "Prefix notation"
+msgstr ""
+
+#: genius/genius.c:474
+msgid "Infix notation"
+msgstr ""
+
+#: genius/genius.c:482
+msgid "Postfix notation (RPN)"
+msgstr ""
+
+#: genius/genius.c:491
+msgid "Full (exact) answers"
+msgstr ""
+
+#: genius/genius.c:497
+msgid "Make floats integers (e.g. 10.0=10)"
+msgstr ""
+
+#: genius/genius.c:507
+msgid "Results as floats"
+msgstr ""
+
+#: genius/genius.c:513
+msgid "Floats in scientific notation"
+msgstr ""
+
+#: genius/eval.c:329
+msgid "Variable used uninitialized!"
+msgstr ""
+
+#: genius/eval.c:480
+msgid "Left value is NOT a number! (ignoring if construct)"
+msgstr ""
+
+#: genius/eval.c:492
+msgid "Left value is NOT a number! (ignoring ifelse construct)"
+msgstr ""
+
+#: genius/eval.c:706
+msgid "'=' can't function without proper nodes!"
+msgstr ""
+
+#: genius/eval.c:710
+msgid "Left value is NOT a 0\\function! (ignoring '=')"
+msgstr ""
+
+#: genius/eval.c:714
+msgid "Right value is NOT computed! (ignoring '=')"
+msgstr ""
+
+#: genius/eval.c:727
+msgid "funcdefop can't function without proper nodes!"
+msgstr ""
+
+#: genius/eval.c:730
+msgid "Left value is NOT a function! (ignoring function definition)"
+msgstr ""
+
+#: genius/util.c:125
+msgid "Stack underflow!"
+msgstr ""
