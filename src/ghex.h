@@ -47,8 +47,6 @@
 
 #define NO_BUFFER_LABEL "No buffer"
 
-#define DEFAULT_FONT    "-adobe-courier-medium-r-normal--12-*-*-*-*-*-*-*"
-
 #define MAX_MAX_UNDO_DEPTH 100000
 
 #define MESSAGE_LEN 512
@@ -119,10 +117,7 @@ typedef struct _Converter {
 typedef struct {
 	GnomePrintMaster *master;
 	GnomePrintContext *pc;
-#ifdef SNM
-	GnomePrinter *printer; /* GnomePrinter struct no longer present-- SnM */
-#endif
-	guchar *printer; /* Changed to guchar -- SnM */
+	GnomePrintConfig *config;
 
 	GnomeFont *d_font, *h_font;
 	HexDocument *doc;
@@ -163,7 +158,12 @@ extern PropertyUI     *prefs_ui;
 
 /* our preferred settings; as only one copy of them is required,
    we'll make them global vars, although this is a bit ugly */
+#if 0
 extern GdkFont    *def_font;
+#endif
+extern PangoFontMetrics *def_metrics;
+extern PangoFontDescription *def_font_desc;
+
 extern gchar      *def_font_name;
 extern gchar      *data_font_name, *header_font_name;
 extern gdouble    data_font_size, header_font_size;    
@@ -251,4 +251,5 @@ void ghex_menus_set_verb_list_sensitive (BonoboUIComponent *uic, gboolean allmen
 
 gint remove_doc_cb (BonoboMDI *mdi, HexDocument *doc);
 void cleanup_cb (BonoboMDI *mdi);
+
 #endif

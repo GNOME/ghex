@@ -28,6 +28,10 @@
 
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0x7F))?1:0)
 
+/* Stolen from gedit SnM */
+#define A4_WIDTH (210.0 * 72 / 25.4)
+#define A4_HEIGHT (297.0 * 72 / 25.4)
+
 #ifdef SNM /* GnomePaper no longer present -- SnM */
 const GnomePaper *def_paper;
 #endif
@@ -59,9 +63,7 @@ static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 	y = pji->page_height - pji->margin_top -
 		2.1*gnome_font_get_ascender(pji->h_font) -
 		1.1*gnome_font_get_descender(pji->h_font);
-#ifdef SNM /* Replacement has to be found -- SnM */
-	len = gnome_font_get_width_string (pji->h_font, text1);
-#endif
+	len = gnome_font_get_width_utf8 (pji->h_font, text1);
 	x = pji->page_width/2 - len/2;
 	gnome_print_moveto(pji->pc, x, y);
 	gnome_print_show(pji->pc, text1);
@@ -69,9 +71,7 @@ static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 	/* Print the page/pages  */
 	y = pji->page_height - pji->margin_top -
 		gnome_font_get_ascender(pji->h_font);
-#ifdef SNM /* Replacement has to be found -- SnM */
-	len = gnome_font_get_width_string (pji->h_font, text2);
-#endif
+	len = gnome_font_get_width_utf8 (pji->h_font, text2);
 	x = pji->page_width - len - 36;
 	gnome_print_moveto(pji->pc, x, y);
 	gnome_print_show(pji->pc, text2);
@@ -197,18 +197,17 @@ static void print_shaded_box(GHexPrintJobInfo *pji, guint row, guint rows)
 
 static gboolean print_verify_fonts()
 {
-#ifdef SNM
 	GnomeFont *test_font;
 	guchar *test_font_name;
 
 	test_font_name = g_strdup(data_font_name); 
-	test_font = gnome_font_new(test_font_name, 10);
+	test_font = gnome_font_find_closest(test_font_name, 10);
 	if(test_font==NULL)
 	{
 		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
 										  "GHex is unable to print without this font installed."),
 										test_font_name);
-		display_error_dialog (mdi->active_window, errstr);
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), errstr);
 		g_free(errstr);
 		return FALSE;
 	}
@@ -216,19 +215,18 @@ static gboolean print_verify_fonts()
 	g_free(test_font_name);
 	
 	test_font_name = g_strdup(header_font_name);
-	test_font = gnome_font_new(test_font_name, 10);
+	test_font = gnome_font_find_closest(test_font_name, 10);
 	if(test_font==NULL)
 	{
 		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
 										  "GHex is unable to print without this font installed."),
 										test_font_name);
-		display_error_dialog (mdi->active_window, errstr);
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), errstr);
 		g_free(errstr);
 		return FALSE;
 	}
 	gnome_font_unref(test_font);
 	g_free(test_font_name);	
-#endif 
 	return TRUE;
 }
 
@@ -254,18 +252,16 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 	if (!doc || !print_verify_fonts())
 		return NULL;
 
-#ifdef SNM
 	/* Create the header and data fonts */
-	d_font = gnome_font_new(data_font_name, data_font_size);
+	d_font = gnome_font_find_closest(data_font_name, data_font_size);
 	if (!d_font)
 		return NULL;
 
-	h_font = gnome_font_new(header_font_name, header_font_size);
+	h_font = gnome_font_find_closest(header_font_name, header_font_size);
 	if (!h_font) {
 		gnome_font_unref(d_font);
 		return NULL;
 	}
-#endif
 
 	pji = g_new0(GHexPrintJobInfo, 1);
 	pji->h_font = h_font;
@@ -282,6 +278,8 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 	pji->page_width = gnome_paper_pswidth(def_paper);
 	pji->page_height = gnome_paper_psheight(def_paper);
 #endif
+	pji->page_width = A4_WIDTH;
+	pji->page_height = A4_HEIGHT;
 
 	/* Convert inches to ps points */
 	pji->margin_top = .75 * 72; /* Printer margins, not page margins */
@@ -324,7 +322,7 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 	pji->page_first = 1;
 	pji->page_last = pji->pages;
 	pji->preview = FALSE;
-	pji->printer = NULL;
+	pji->config = NULL;
 	pji->range = GNOME_PRINT_RANGE_ALL;
 
 	return pji;
@@ -342,6 +340,16 @@ ghex_print_job_info_destroy(GHexPrintJobInfo *pji)
 	gnome_print_master_close(pji->master);
 	gnome_font_unref(pji->h_font);
 	gnome_font_unref(pji->d_font);
+
+	if (pji->config != NULL)
+		gnome_print_config_unref (pji->config);
+
+	if (pji->pc != NULL)
+		g_object_unref (pji->pc);
+
+	if (pji->master != NULL)
+		g_object_unref (pji->master);
+
 	g_free(pji);
 }
 

@@ -51,21 +51,13 @@ gboolean show_offsets_column;
 
 void save_configuration () {
 
-	if(def_font)
-		gnome_config_set_string("/ghex/Display/Font", def_font_name);
-	else
-		gnome_config_clean_key("/ghex/Display/Font");
-	
-
-#ifdef SNM /* Will revert to this once i have fixed loading of font -- SnM */
-	/* Set the default font -- SnM */
-	if (def_font) {
+	/* Set the default font name -- SnM */
+	if (def_metrics) {
 		gconf_client_set_string (gconf_client,
 				GHEX_BASE_KEY GHEX_PREF_FONT,
 				def_font_name,
 				NULL);
 	}
-#endif
 
 	/* Set group type -- SnM */
 	gconf_client_set_int (gconf_client,
@@ -174,80 +166,52 @@ void save_configuration() {
 #endif
 
 void load_configuration () {
-	gchar *font_desc;
+	gchar *font_name;
+#if 0
 	GdkFont *new_font;
+#endif
+	PangoFontMetrics *new_metrics;
+
 	GnomeFont *print_font;
 	gchar *def_paper_name;
 
-	if((font_desc = gnome_config_get_string("/ghex/Display/Font=" DEFAULT_FONT)) != NULL) {
-		if((new_font = gdk_font_load(font_desc)) != NULL) {
-			if(def_font)
-				gdk_font_unref(def_font);
-			def_font = new_font;
-			if(def_font_name)
-				g_free(def_font_name);
-			
-			def_font_name = strdup(font_desc);
-		}
-	}
-
-#ifdef SNM /* Have to see why gdk_font_fails here -- SnM */	
-	/* Get the default font -- SnM */
-	font_desc = gconf_client_get_string (gconf_client,
+	/* Get the default font metrics */
+	font_name = gconf_client_get_string (gconf_client,
 						GHEX_BASE_KEY GHEX_PREF_FONT,
 						NULL);
 
-	/* Check for null.. Shouldnt happen if we get the default value from
-	 * the gconf client -- SnM 
-	 */
+	if (NULL == font_name)
+		font_name = g_strdup (DEFAULT_FONT);
 
-	if (NULL == font_desc) {
-		font_desc = g_strdup (DEFAULT_FONT);
+	if (def_metrics)
+		pango_font_metrics_unref (def_metrics);
+
+	if (def_font_desc)
+		pango_font_description_free (def_font_desc);
+
+	new_metrics = gtk_hex_load_font (font_name);
+
+	if (!new_metrics) {
+		def_metrics = gtk_hex_load_font (DEFAULT_FONT);
+		def_font_desc = pango_font_description_from_string (font_name);
+		def_font_name = g_strdup (DEFAULT_FONT);
 	}
-
-	if((new_font = gdk_font_load(font_desc)) != NULL) {
-
-		if(def_font) {
-			gdk_font_unref(def_font);
-		}
-
-		def_font = new_font;
-
-		if(def_font_name) {
-			g_free(def_font_name);
-		}
-		
-		def_font_name = g_strdup(font_desc);
-	}
-
-	/* This else block can finally removed once i have resolved the issues
-	 * with the font_desc.
-	 * SnM
-	 */
-
 	else {
-		new_font = gdk_font_load (DEFAULT_FONT);
-
-		if ( new_font != NULL ) {
-			if (def_font) {
-				gdk_font_unref(def_font);
-			}
-			def_font = new_font;
-
-			if (def_font_name) {
-				g_free (def_font_name);
-			}
-
-			def_font_name = g_strdup (DEFAULT_FONT);
-		}
+		def_metrics = new_metrics;
+		def_font_desc = pango_font_description_from_string (font_name);
+		def_font_name = g_strdup (font_name);
 	}
-#endif
 
+	g_free (font_name);
 
 	/* Get the default group type -- SnM */
 	def_group_type = gconf_client_get_int (gconf_client,
 					GHEX_BASE_KEY GHEX_PREF_GROUP,
 					NULL);
+
+	/* Sanity check for group type */
+	if (def_group_type <= 0 )
+		def_group_type = GROUP_BYTE;
 
 	/* Get the max undo depth -- SnM */
 	max_undo_depth = gconf_client_get_int (gconf_client,

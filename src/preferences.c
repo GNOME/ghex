@@ -39,7 +39,9 @@ static void offset_cb(GtkWidget *w, PropertyUI *pui);
 
 PropertyUI *prefs_ui = NULL;
 
-GdkFont *def_font = NULL;
+PangoFontMetrics *def_metrics = NULL; /* Changes for Gnome 2.0 */
+PangoFontDescription *def_font_desc = NULL;
+
 gchar *def_font_name = NULL;
 gboolean show_offsets_column = TRUE;
 
@@ -504,7 +506,8 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 
 	int i, len;
 	GList *child, *view;
-	GdkFont *new_font;
+	PangoFontMetrics *new_metrics; /* Changes for Gnome 2.0 */
+
 	guint new_undo_max;
 	gboolean show_off, expect_spec;
 	gchar *old_offset_fmt;
@@ -589,28 +592,32 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 
 	if(strcmp(gnome_font_picker_get_font_name(GNOME_FONT_PICKER
 											  (pui->font_button)), def_font_name) != 0) {
-		if((new_font = gdk_font_load(gnome_font_picker_get_font_name
+		if((new_metrics = gtk_hex_load_font(gnome_font_picker_get_font_name
 									 (GNOME_FONT_PICKER(pui->font_button)))) != NULL) {
 			child = bonobo_mdi_get_children (BONOBO_MDI (mdi));
 			
 			while(child) {
 				view = bonobo_mdi_child_get_views (BONOBO_MDI_CHILD(child->data));
 				while(view) {
-					gtk_hex_set_font(GTK_HEX(view->data), new_font);
+					gtk_hex_set_font(GTK_HEX(view->data), new_metrics, pango_font_description_from_string (gnome_font_picker_get_font_name (GNOME_FONT_PICKER (pui->font_button))));
 					view = g_list_next(view);
 				}
 				child = g_list_next(child);
 			}
-			
-			if(def_font)
-				gdk_font_unref(def_font);
-			
-			def_font = new_font;
+		
+			if (def_metrics)
+				pango_font_metrics_unref (def_metrics);
+
+			if (def_font_desc)
+				pango_font_description_free (def_font_desc);
+
+			def_metrics = new_metrics;
 			
 			g_free(def_font_name);
 			
 			def_font_name = g_strdup(gnome_font_picker_get_font_name
 									 (GNOME_FONT_PICKER(pui->font_button)));
+			def_font_desc = pango_font_description_from_string (def_font_name);
 		}
 		else
 			display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Can not open desired font!"));

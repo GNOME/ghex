@@ -283,9 +283,9 @@ static GtkWidget *hex_document_create_view(BonoboMDIChild *child)
 	/* TODO: perhaps it would be nicer to put such stuff in the MDI add_view signal handler */
 	gtk_hex_set_group_type(GTK_HEX(new_view), def_group_type);
 
-	/* Sanity check for default font -- SnM */
-	if (def_font) {
-		gtk_hex_set_font(GTK_HEX(new_view), def_font);
+	/* Sanity check for default font -- SnM. I dont think this check is required now. */
+	if (def_metrics && def_font_desc) {
+		gtk_hex_set_font(GTK_HEX(new_view), def_metrics, def_font_desc);
 	}
 
 	return new_view;

@@ -35,8 +35,6 @@
 #define DEFAULT_CPL 32
 #define DEFAULT_LINES 16
 
-#define DEFAULT_FONT "-*-courier-medium-r-normal--12-*-*-*-*-*-*-*"
-
 #define SCROLL_TIMEOUT 100
 
 #define is_displayable(c) ((char_widths[(guchar)c])?1:0)
@@ -174,28 +172,34 @@ static void ascii_to_pointer(GtkHex *gh, gint mx, gint my) {
 	gtk_hex_set_cursor_xy(gh, mx/gh->char_width, cy);
 }
 
-static guint get_max_char_width(GdkFont *font) {
+static guint get_max_char_width(GtkHex *gh, PangoFontMetrics *font_metrics) {
 	/* this is, I guess, a rather dirty trick, but
 	   right now i can't think of anything better */
 	guint i;
 	guint maxwidth = 0;
+	PangoRectangle logical_rect;
+	PangoLayout *layout;
+	gchar str[2]; 
 
 	if (char_widths == NULL)
 		char_widths = (gchar*)g_malloc(0x100);
 
 	char_widths[0] = 0;
-	for(i = 1; i < 0x100; i++)
-		char_widths[i] = gdk_char_width(font, (gchar)i);
-	
+
+	layout = gtk_widget_create_pango_layout (GTK_WIDGET (gh), "");
+	pango_layout_set_font_description (layout, gh->font_desc);
+
+	for(i = 1; i < 0x100; i++) {
+		sprintf (str, "%c", (gchar)i);
+		pango_layout_set_text(layout, str, -1);
+		pango_layout_get_pixel_extents (layout, &logical_rect, NULL);
+		char_widths[i] = logical_rect.width;
+	}
+
 	for(i = '0'; i <= 'z'; i++)
 		maxwidth = MAX(maxwidth, char_widths[i]);
 
-/*	for(i = 0; i < 0x100; i++)
-		if(char_widths[i] && (char_widths[i] != maxwidth)) {
-			gnome_app_warning(mdi->active_window, _("This does not appear to be a monospaced font. Ghex's display may not be perfect with this font."));
-			break;
-		}*/
-	
+	g_object_unref (G_OBJECT (layout));
 	return maxwidth;
 }
 
@@ -319,8 +323,10 @@ static void render_byte(GtkHex *gh, gint pos) {
 
 	if(pos < gh->document->file_size) {
 		gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
-		gdk_draw_text(gh->xdisp->window, gh->disp_font, gh->xdisp_gc,
-					  cx, cy + gh->disp_font->ascent, buf, 2);
+		/* Changes for Gnome 2.0 */
+		pango_layout_set_text (gh->xlayout, buf, 2);
+		gdk_draw_layout (gh->xdisp->window, gh->xdisp_gc, cx, cy, gh->xlayout);
+
 	}
 	
 	if(!get_acoords(gh, pos, &cx, &cy))
@@ -334,8 +340,10 @@ static void render_byte(GtkHex *gh, gint pos) {
 		buf[0] = gtk_hex_get_byte(gh, pos);
 		if(!is_displayable(buf[0]))
 			buf[0] = '.';
-		gdk_draw_text(gh->adisp->window, gh->disp_font, gh->adisp_gc,
-					  cx, cy + gh->disp_font->ascent, buf, 1);
+		/* Changes for Gnome 2.0 */
+		pango_layout_set_text (gh->alayout, buf, 1);
+		gdk_draw_layout (gh->adisp->window, gh->adisp_gc, cx, cy, gh->alayout);
+
 	}
 }
 
@@ -368,8 +376,9 @@ static void render_ac(GtkHex *gh) {
 		gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window,
 					 state, shadow,
 					 cx, cy, gh->char_width, gh->char_height - 1);
-		gdk_draw_text(gh->adisp->window, gh->disp_font, gh->adisp_gc,
-					  cx, cy + gh->disp_font->ascent, c, 1);
+		/* Changes for Gnome 2.0 */
+		pango_layout_set_text (gh->alayout, c, 1);
+		gdk_draw_layout (gh->adisp->window, gh->adisp_gc, cx, cy, gh->alayout);
 	}
 }
 
@@ -405,8 +414,8 @@ static void render_xc(GtkHex *gh) {
 		gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
 					 state, shadow,
 					 cx, cy, gh->char_width, gh->char_height - 1);
-		gdk_draw_text(gh->xdisp->window, gh->disp_font, gh->xdisp_gc,
-					  cx, cy + gh->disp_font->ascent, &c[i], 1);
+		pango_layout_set_text (gh->xlayout, &c[i], 1);
+		gdk_draw_layout (gh->xdisp->window, gh->xdisp_gc, cx, cy, gh->xlayout);
 	}
 }
 
@@ -503,11 +512,10 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 							 0, i*gh->char_height,
 							 xcpl*gh->char_width, gh->char_height);
 			}
-		}  
-		gdk_draw_text(w->window, gh->disp_font, gh->xdisp_gc,
-					  0, gh->disp_font->ascent + i*gh->char_height,
-					  gh->disp_buffer + (i - imin)*xcpl, 
-					  MIN(xcpl, tmp));
+		} 
+		/* Changes for Gnome 2.0 */
+		pango_layout_set_text (gh->xlayout, gh->disp_buffer + (i - imin)*xcpl, MIN(xcpl, tmp));
+		gdk_draw_layout (w->window, gh->xdisp_gc, 0, i*gh->char_height, gh->xlayout);
 	}
 	
 	if((cursor_line >= imin) && (cursor_line <= imax) && (gh->cursor_shown))
@@ -581,10 +589,10 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 							 gh->cpl*gh->char_width, gh->char_height);
 			}
 		}  
-		gdk_draw_text(w->window, gh->disp_font, gh->adisp_gc,
-					  0, gh->disp_font->ascent + i*gh->char_height,
-					  gh->disp_buffer + (i - imin)*gh->cpl,
-					  MIN(gh->cpl, tmp));
+		/* Changes for Gnome 2.0 */
+		pango_layout_set_text (gh->alayout, gh->disp_buffer + (i - imin)*gh->cpl, MIN(gh->cpl, tmp));
+		gdk_draw_layout (w->window, gh->adisp_gc, 0, i*gh->char_height, gh->alayout);
+
 	}
 	
 	if((cursor_line >= imin) && (cursor_line <= imax) && (gh->cursor_shown))
@@ -616,9 +624,10 @@ static void render_offsets(GtkHex *gh, gint imin, gint imax) {
 	
 	for(i = imin; i <= imax; i++) {
 		sprintf(offstr, "%08X", (gh->top_line + i)*gh->cpl);
-		gdk_draw_text(w->window, gh->disp_font, gh->offsets_gc,
-					  0, gh->disp_font->ascent + i*gh->char_height,
-					  offstr, 8);
+		/* Changes for Gnome 2.0 */
+		pango_layout_set_text (gh->olayout, offstr, 8);
+		gdk_draw_layout (w->window, gh->offsets_gc, 0, i*gh->char_height, gh->olayout);
+
 	}
 }
 
@@ -1053,6 +1062,13 @@ static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 
 static void show_offsets_widget(GtkHex *gh) {
 	gh->offsets = gtk_drawing_area_new();
+
+	/* Modify the font for the widget */
+	gtk_widget_modify_font (gh->offsets, gh->font_desc);
+ 
+	/* Create the pango layout for the widget */
+	gh->olayout = gtk_widget_create_pango_layout (gh->offsets, "");
+
 	gtk_widget_set_events (gh->offsets, GDK_EXPOSURE_MASK);
 	gtk_signal_connect(GTK_OBJECT(gh->offsets), "expose_event",
 					   GTK_SIGNAL_FUNC(offsets_expose), gh);
@@ -1396,6 +1412,21 @@ static void gtk_hex_finalize(GObject *o) {
 	if(gh->disp_buffer)
 		g_free(gh->disp_buffer);
 
+	if (gh->disp_font_metrics)
+		pango_font_metrics_unref (gh->disp_font_metrics);
+
+	if (gh->font_desc)
+		pango_font_description_free (gh->font_desc);
+
+	if (gh->xlayout)
+		g_object_unref (G_OBJECT (gh->xlayout));
+	
+	if (gh->alayout)
+		g_object_unref (G_OBJECT (gh->xlayout));
+	
+	if (gh->olayout)
+		g_object_unref (G_OBJECT (gh->xlayout));
+	
 	/* Changes for Gnome 2.0 -- SnM */	
 	if(G_OBJECT_CLASS(parent_class)->finalize)
 		(* G_OBJECT_CLASS(parent_class)->finalize)(G_OBJECT(o));  
@@ -1698,23 +1729,28 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	gh->insert = FALSE; /* default to overwrite mode */
 	gh->selecting = FALSE;
 
+
 	/* get ourselves a decent monospaced font for rendering text */
-	gh->disp_font = gdk_font_load(DEFAULT_FONT);
+	gh->disp_font_metrics = gtk_hex_load_font (DEFAULT_FONT);
+	gh->font_desc = pango_font_description_from_string (DEFAULT_FONT);
 
-	if (gh->disp_font) {
-		gdk_font_ref (gh->disp_font);
-	}
+	gh->char_width = get_max_char_width(gh, gh->disp_font_metrics);
+	gh->char_height = PANGO_PIXELS (pango_font_metrics_get_ascent (gh->disp_font_metrics)) + PANGO_PIXELS (pango_font_metrics_get_descent (gh->disp_font_metrics));
 
-	gh->char_width = get_max_char_width(gh->disp_font);
-	gh->char_height = gh->disp_font->ascent + gh->disp_font->descent + 2;
 	
 	GTK_WIDGET_SET_FLAGS(gh, GTK_CAN_FOCUS);
 	gtk_widget_set_events(GTK_WIDGET(gh), GDK_KEY_PRESS_MASK);
 	gtk_container_border_width(GTK_CONTAINER(gh), DISPLAY_BORDER);
 	
 	gh->adj = GTK_ADJUSTMENT(gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
-	
 	gh->xdisp = gtk_drawing_area_new();
+
+	/* Modify the font for the widget */
+	gtk_widget_modify_font (gh->xdisp, gh->font_desc);
+
+	/* Create the pango layout for the widget */
+	gh->xlayout = gtk_widget_create_pango_layout (gh->xdisp, "");
+
 	gtk_widget_set_events (gh->xdisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
 						   GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK);
 	gtk_signal_connect(GTK_OBJECT(gh->xdisp), "expose_event",
@@ -1731,6 +1767,13 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	gtk_widget_show(gh->xdisp);
 	
 	gh->adisp = gtk_drawing_area_new();
+
+	/* Modify the font for the widget */
+	gtk_widget_modify_font (gh->adisp, gh->font_desc);
+
+	/* Create the pango layout for the widget */
+	gh->alayout = gtk_widget_create_pango_layout (gh->adisp, "");
+
 	gtk_widget_set_events (gh->adisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
 						   GDK_BUTTON_RELEASE_MASK |GDK_BUTTON_MOTION_MASK);
 	gtk_signal_connect(GTK_OBJECT(gh->adisp), "expose_event",
@@ -1966,17 +2009,32 @@ void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
 /*
  * sets font for displaying data
  */
-void gtk_hex_set_font(GtkHex *gh, GdkFont *font) {
+void gtk_hex_set_font(GtkHex *gh, PangoFontMetrics *font_metrics, PangoFontDescription *font_desc) {
+	PangoFontDescription *tmp_desc;
 	g_return_if_fail(gh != NULL);
 	g_return_if_fail(GTK_IS_HEX(gh));
 
-	if(gh->disp_font)
-		gdk_font_unref(gh->disp_font);
+	if (gh->disp_font_metrics)
+		pango_font_metrics_unref (gh->disp_font_metrics);
+
+	if (gh->font_desc)
+		pango_font_description_free (gh->font_desc);
 	
-	gh->disp_font = gdk_font_ref(font);
-	gh->char_width = get_max_char_width(gh->disp_font);
-	gh->char_height = gh->disp_font->ascent + gh->disp_font->descent + 2;
-	
+	gh->disp_font_metrics = font_metrics;
+	gh->font_desc = font_desc;
+
+	if (gh->xdisp)
+		gtk_widget_modify_font (gh->xdisp, gh->font_desc);
+
+	if (gh->adisp)
+		gtk_widget_modify_font (gh->adisp, gh->font_desc);
+
+	if (gh->offsets)
+		gtk_widget_modify_font (gh->offsets, gh->font_desc);
+
+
+	gh->char_width = get_max_char_width(gh, gh->disp_font_metrics);
+	gh->char_height = PANGO_PIXELS (pango_font_metrics_get_ascent (gh->disp_font_metrics)) + PANGO_PIXELS (pango_font_metrics_get_descent (gh->disp_font_metrics));
 	recalc_displays(gh, GTK_WIDGET(gh)->allocation.width, GTK_WIDGET(gh)->allocation.height);
 	
 	redraw_widget(GTK_WIDGET(gh));
@@ -2011,3 +2069,27 @@ void gtk_hex_set_insert_mode(GtkHex *gh, gboolean insert)
 		gh->cursor_pos = gh->document->file_size - 1;
 }
 
+PangoFontMetrics* gtk_hex_load_font (char *font_name)
+{
+	PangoContext *context;
+	PangoFont *new_font;
+	PangoFontDescription *new_desc;
+	PangoFontMetrics *new_metrics;
+
+	new_desc = pango_font_description_from_string (font_name);
+
+	context = gdk_pango_context_get();
+
+	/* FIXME - Should get the locale language here */
+	pango_context_set_language (context, pango_language_from_string (gtk_get_default_language()));
+
+	new_font = pango_context_load_font (context, new_desc);
+
+	new_metrics = pango_font_get_metrics (new_font, pango_context_get_language (context));
+
+	pango_font_description_free (new_desc);
+	g_object_unref (G_OBJECT (context));
+	g_object_unref (G_OBJECT (new_font));
+
+	return new_metrics;
+}

@@ -642,16 +642,15 @@ to display the print dialog.
 static void
 ghex_print(gboolean preview)
 {
-#ifdef SNM
 	GHexPrintJobInfo *pji;
 	HexDocument *doc;
 	GtkWidget *active_view;
 	gboolean cancel = FALSE;
 
-	if (!bonobo_mdi_get_active_child(mdi))
+	if (!bonobo_mdi_get_active_child(BONOBO_MDI(mdi)))
 		return;
 
-	doc = HEX_DOCUMENT(bonobo_mdi_get_active_child(mdi));
+	doc = HEX_DOCUMENT(bonobo_mdi_get_active_child(BONOBO_MDI(mdi)));
 	active_view = bonobo_mdi_get_active_view (BONOBO_MDI (mdi));
 	if (!active_view || !doc)
 		return;
@@ -665,6 +664,8 @@ ghex_print(gboolean preview)
 
 	if (!pji->preview)
 		cancel = ghex_print_run_dialog(pji);
+	else
+		pji->config = gnome_print_config_default();
 
 	/* Cancel clicked */
 	if (cancel) {
@@ -672,7 +673,16 @@ ghex_print(gboolean preview)
 		return;
 	}
 
+	g_return_if_fail (pji->config != NULL);
+
+	pji->master = gnome_print_master_new_from_config (pji->config);
+	g_return_if_fail (pji->master != NULL);
+
+	pji->pc = gnome_print_master_get_context (pji->master);
+	g_return_if_fail (pji->pc != NULL);
+
 	ghex_print_job_execute(pji);
+	gnome_print_master_close (pji->master);
 
 	if (pji->preview)
 		ghex_print_preview_real(pji);
@@ -680,7 +690,6 @@ ghex_print(gboolean preview)
 		gnome_print_master_print(pji->master);
 
 	ghex_print_job_info_destroy(pji);
-#endif
 
 }
 
@@ -695,8 +704,8 @@ ghex_print(gboolean preview)
 static gboolean
 ghex_print_run_dialog(GHexPrintJobInfo *pji)
 {
-#ifdef SNM
-	GnomeDialog *dialog;
+	GtkWidget *dialog;
+	gint res;
 
 	dialog = (GnomeDialog *) gnome_print_dialog_new(
 			(const char *) _("Print Hex Document"),
@@ -706,31 +715,35 @@ ghex_print_run_dialog(GHexPrintJobInfo *pji)
 			GNOME_PRINT_RANGE_ALL | GNOME_PRINT_RANGE_RANGE,
 			1, pji->pages, "A", _("Pages"));
 
-	switch(gnome_dialog_run(GNOME_DIALOG(dialog))) {
-		case GNOME_PRINT_PRINT:
+	res = gtk_dialog_run(GTK_DIALOG(dialog));
+
+	switch (res) {
+		case GNOME_PRINT_DIALOG_RESPONSE_PRINT:
 			break;
-		case GNOME_PRINT_PREVIEW:
+		case GNOME_PRINT_DIALOG_RESPONSE_PREVIEW:
 			pji->preview = TRUE;
 			break;
 		case -1:
 			return TRUE;
 		default:
-			gnome_dialog_close(GNOME_DIALOG(dialog));
+			gtk_widget_destroy(dialog);
 			return TRUE;
 	};
 
-	pji->printer = gnome_print_dialog_get_printer(
+	g_return_val_if_fail (pji->config == NULL, TRUE);
+	pji->config = gnome_print_dialog_get_config(
 			GNOME_PRINT_DIALOG(dialog));
 
+#if 0
 	if (pji->printer && !pji->preview)
 		gnome_print_master_set_printer(pji->master, pji->printer);
+#endif
 
 	pji->range = gnome_print_dialog_get_range_page(
 			GNOME_PRINT_DIALOG(dialog),
 			&pji->page_first, &pji->page_last);
 
 	gnome_dialog_close(GNOME_DIALOG(dialog));
-#endif
 	return FALSE;
 }
 

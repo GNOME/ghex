@@ -45,6 +45,8 @@ extern "C" {
 #define LOWER_NIBBLE TRUE
 #define UPPER_NIBBLE FALSE
 
+#define DEFAULT_FONT "Courier Medium 12"
+
 #define GTK_HEX(obj)          GTK_CHECK_CAST (obj, gtk_hex_get_type (), GtkHex)
 #define GTK_HEX_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, gtk_hex_get_type (), GtkHexClass)
 #define GTK_IS_HEX(obj)       GTK_CHECK_TYPE (obj, gtk_hex_get_type ())
@@ -61,9 +63,16 @@ struct _GtkHex {
 	GtkWidget *xdisp, *adisp, *scrollbar;
 	GtkWidget *offsets;
 
+	PangoLayout *xlayout, *alayout, *olayout; /* Changes for Gnome 2.0 */
+
 	GtkAdjustment *adj;
-	
+
+#if 0	
 	GdkFont *disp_font;
+#endif
+	PangoFontMetrics *disp_font_metrics;
+	PangoFontDescription *font_desc;
+
 	GdkGC *xdisp_gc, *adisp_gc, *offsets_gc;
 	
 	gint active_view;
@@ -121,11 +130,13 @@ guchar gtk_hex_get_byte(GtkHex *, guint);
 void gtk_hex_set_group_type(GtkHex *, guint);
 
 void gtk_hex_show_offsets(GtkHex *, gboolean);
-void gtk_hex_set_font(GtkHex *, GdkFont *);
+void gtk_hex_set_font(GtkHex *, PangoFontMetrics *, PangoFontDescription *);
 
 void gtk_hex_set_insert_mode(GtkHex *, gboolean);
 
 void gtk_hex_claim_selection (GtkHex *gh, gboolean claim, guint32 time);
+
+PangoFontMetrics* gtk_hex_load_font (char *font_name); 
 
 #ifdef __cplusplus
 }
