@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.1\n"
-"POT-Creation-Date: 1999-05-22 02:33+0200\n"
-"PO-Revision-Date: 1999-05-24 02:11+0200\n"
+"POT-Creation-Date: 1999-07-19 00:36+0200\n"
+"PO-Revision-Date: 1999-07-19 00:44+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,36 +31,40 @@ msgid ""
 "uitilizing a dial."
 msgstr "Et raskt hack for å vise ledig plass på monterte filsystemer "
 
-#: ghex/converter.c:39
+#: ghex/converter.c:41
 msgid "GHex: Converter"
 msgstr "GHex: Konvertering"
 
-#: ghex/converter.c:46
+#: ghex/converter.c:50
 msgid "Binary"
 msgstr "Binær"
 
-#: ghex/converter.c:56 ghex/preferences.c:109
+#: ghex/converter.c:60 ghex/preferences.c:110
 msgid "Decimal"
 msgstr "Desimal"
 
-#: ghex/converter.c:66
+#: ghex/converter.c:70
 msgid "Hex"
 msgstr "Heksadesimal"
 
-#: ghex/converter.c:76
+#: ghex/converter.c:80
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ghex/converter.c:86 mini-utils/gshutdown/gshutdown.c:152
+#: ghex/converter.c:90
+msgid "Get cursor value"
+msgstr "Hent markørverdi"
+
+#: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
 #: mini-utils/gshutdown/gshutdown.c:594
 msgid "Close"
 msgstr "Lukk"
 
-#: ghex/converter.c:134
+#: ghex/converter.c:190
 msgid "ERROR"
 msgstr "FEIL"
 
-#: ghex/findreplace.c:51 ghex/main.c:82
+#: ghex/findreplace.c:51 ghex/main.c:83
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Finn data"
@@ -78,7 +82,7 @@ msgstr "Finn neste"
 msgid "Find Previous"
 msgstr "Finn forrige"
 
-#: ghex/findreplace.c:111 ghex/main.c:83
+#: ghex/findreplace.c:111 ghex/main.c:84
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Søk og erstatt data"
@@ -100,7 +104,7 @@ msgstr "Erstatt"
 msgid "Replace All"
 msgstr "Erstatt alle"
 
-#: ghex/findreplace.c:179 ghex/main.c:84
+#: ghex/findreplace.c:179 ghex/main.c:85
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hopp til byte"
@@ -219,72 +223,76 @@ msgstr ""
 "Filen %s er endret siden forrige lagring.\n"
 "Vil du lagre endringene?"
 
-#: ghex/main.c:172
+#: ghex/main.c:173
 msgid "Offset: "
 msgstr "Avstand: "
 
-#: ghex/preferences.c:49 mini-utils/idetool/idetool.c:142
+#: ghex/preferences.c:50 mini-utils/idetool/idetool.c:142
 #: mini-utils/idetool/idetool.c:325
 msgid "Default"
 msgstr "Standard"
 
-#: ghex/preferences.c:50
+#: ghex/preferences.c:51
 msgid "Notebook"
 msgstr "Notisblokk"
 
-#: ghex/preferences.c:51
+#: ghex/preferences.c:52
 msgid "Toplevel"
 msgstr "Toppnivå"
 
-#: ghex/preferences.c:52
+#: ghex/preferences.c:53
 msgid "Modal"
 msgstr "Modal"
 
-#: ghex/preferences.c:81
+#: ghex/preferences.c:82
 msgid "Maximum number of undo levels"
 msgstr "Maksimalt angrenivå"
 
-#: ghex/preferences.c:95
-msgid "Show cursor offset as"
-msgstr "Vis markøravstand i"
+#: ghex/preferences.c:96
+msgid "Show cursor offset in statusbar as"
+msgstr "Vis markøravstand som"
 
-#: ghex/preferences.c:114
+#: ghex/preferences.c:115
 msgid "Hexadecimal"
 msgstr "Heksadesimal"
 
-#: ghex/preferences.c:120
+#: ghex/preferences.c:121
 msgid "Custom"
 msgstr "Egendefinert"
 
-#: ghex/preferences.c:130
+#: ghex/preferences.c:131
+msgid "Show offsets column"
+msgstr "Vis kolonne for markøravstand"
+
+#: ghex/preferences.c:136
 msgid "Editing"
 msgstr "Redigering"
 
-#: ghex/preferences.c:137
+#: ghex/preferences.c:143
 msgid "Font"
 msgstr "Skrifttype"
 
-#: ghex/preferences.c:153
+#: ghex/preferences.c:159
 msgid "Browse..."
 msgstr "Se på..."
 
-#: ghex/preferences.c:172
+#: ghex/preferences.c:178
 msgid "Default Group Type"
 msgstr "Standard gruppetype"
 
-#: ghex/preferences.c:188 gtt/options.c:186
+#: ghex/preferences.c:194 gtt/options.c:186
 msgid "Display"
 msgstr "Skjerm"
 
-#: ghex/preferences.c:195
+#: ghex/preferences.c:201
 msgid "MDI Mode"
 msgstr "MDI-modus"
 
-#: ghex/preferences.c:212
+#: ghex/preferences.c:218
 msgid "MDI"
 msgstr "MDI"
 
-#: ghex/preferences.c:337
+#: ghex/preferences.c:365
 msgid "Can not open desired font!"
 msgstr "Kan ikke åpne ønsket skrifttype!"
 
@@ -479,92 +487,269 @@ msgstr "Grensesnitt mot UNIXs find/grep/locate kommandoer"
 msgid "Gnome Search Tool"
 msgstr "Gnome søkeverktøy"
 
-#: gstripchart/gstripchart.c:1330
-msgid "Params"
-msgstr "Param"
+#: gstripchart/gstripchart.c:374
+msgid "rparen expected"
+msgstr "rparen forventet"
 
-#: gstripchart/gstripchart.c:1330
-msgid "Examine and adjust parameters"
-msgstr "Undersøk og tilpass parameterene"
+#: gstripchart/gstripchart.c:391
+#, c-format
+msgid "no such field: %d"
+msgstr "ikke noe slikt felt: %d"
 
-#: gstripchart/gstripchart.c:1336
+#: gstripchart/gstripchart.c:415
+msgid "missing variable identifer"
+msgstr "variabel-identifikator mangler"
+
+#: gstripchart/gstripchart.c:417
+#, c-format
+msgid "invalid variable identifer: %s"
+msgstr "ugyldig variabel-identifikator: %s"
+
+#: gstripchart/gstripchart.c:421
+msgid "number expected"
+msgstr "tall forventet"
+
+#: gstripchart/gstripchart.c:498
+#, c-format
+msgid "extra gunk at end: \"%s\""
+msgstr "ekstra gunk på slutten: \"%s\""
+
+#: gstripchart/gstripchart.c:575
+#, c-format
+msgid "%s, line %d: "
+msgstr "%s, linje %d: "
+
+#: gstripchart/gstripchart.c:652
+#, c-format
+msgid "can't open config file \"%s\""
+msgstr "kan ikke åpne konfigurasjonsfilen \"%s\""
+
+#: gstripchart/gstripchart.c:743
+#, c-format
+msgid "invalid display type: %s"
+msgstr "ugyldig skjermtype: %s"
+
+#: gstripchart/gstripchart.c:777
+msgid "identifier or begin must be first"
+msgstr "identifikator eller begin må være først"
+
+#: gstripchart/gstripchart.c:784 gstripchart/gstripchart.c:800
+#, c-format
+msgid "unrecognized color: %s"
+msgstr "ugjenkjent farge: %s"
+
+#: gstripchart/gstripchart.c:827
+#, c-format
+msgid "invalid option: \"%s\""
+msgstr "ugyldig flagg: \"%s\""
+
+#: gstripchart/gstripchart.c:1344
 msgid "E_xit"
 msgstr "Avslutt"
 
-#: gstripchart/gstripchart.c:1336
+#: gstripchart/gstripchart.c:1344
 msgid "Terminate the stripchart program"
 msgstr "Avslutt stripchart programmet"
 
-#: gstripchart/gstripchart.c:1352
+#: gstripchart/gstripchart.c:1360
 msgid "Copyright 1998 John Kodis"
 msgstr "Copyright 1998 John Kodis"
 
-#: gstripchart/gstripchart.c:1367
+#: gstripchart/gstripchart.c:1362
+msgid ""
+"The GNOME stripchart program plots various user-specified parameters as a "
+"function of time.  Its main use is to chart system performance parameters "
+"such as CPU load, CPU utilization, network traffic levels, and the like.  "
+"Other more ingenious uses are left as an exercise for the interested user."
+msgstr ""
+
+#: gstripchart/gstripchart.c:1375
 msgid "_About"
 msgstr "Om..."
 
-#: gstripchart/gstripchart.c:1367
+#: gstripchart/gstripchart.c:1375
 msgid "Info about the striphart program"
 msgstr "Informasjon om stripchart programmet"
 
-#: gstripchart/gstripchart.c:1378
+#: gstripchart/gstripchart.c:1386
 msgid "_File"
 msgstr "Fil"
 
-#: gstripchart/gstripchart.c:1379
+#: gstripchart/gstripchart.c:1387
 msgid "_Help"
 msgstr "Hjelp"
 
-#: gstripchart/gstripchart.c:1782
+#: gstripchart/gstripchart.c:1450
+msgid "Param"
+msgstr "Param"
+
+#: gstripchart/gstripchart.c:1450 mini-utils/gcolorsel/gcolorsel.c:156
+#: mini-utils/guname/moreinfo.c:228
+msgid "Value"
+msgstr "Verdi"
+
+#: gstripchart/gstripchart.c:1454
+msgid "Identifier"
+msgstr "Identifikator"
+
+#: gstripchart/gstripchart.c:1465
+msgid "yellow"
+msgstr "gul"
+
+#: gstripchart/gstripchart.c:1465
+msgid "blue"
+msgstr "blå"
+
+#: gstripchart/gstripchart.c:1465
+msgid "red"
+msgstr "rød"
+
+#: gstripchart/gstripchart.c:1465
+msgid "green"
+msgstr "grønn"
+
+#: gstripchart/gstripchart.c:1465
+msgid "white"
+msgstr "hvit"
+
+#: gstripchart/gstripchart.c:1466
+msgid "Busy"
+msgstr "Opptatt"
+
+#: gstripchart/gstripchart.c:1466
+msgid "Load"
+msgstr "Last"
+
+#: gstripchart/gstripchart.c:1466
+msgid "PPP In"
+msgstr "PPP inn"
+
+#: gstripchart/gstripchart.c:1466
+msgid "PPP Out"
+msgstr "PPP ut"
+
+#: gstripchart/gstripchart.c:1466
+msgid "Swap"
+msgstr "Swap"
+
+#: gstripchart/gstripchart.c:1470 mini-utils/gcolorsel/gcolorsel.c:155
+msgid "Color"
+msgstr "Farge"
+
+#: gstripchart/gstripchart.c:1472
+msgid "Filename"
+msgstr "Filnavn"
+
+#: gstripchart/gstripchart.c:1474
+msgid "Pattern"
+msgstr "Mønster"
+
+#: gstripchart/gstripchart.c:1476
+msgid "Equation"
+msgstr "Likning"
+
+#: gstripchart/gstripchart.c:1478
+msgid "Expected range"
+msgstr "Forventet område"
+
+#: gstripchart/gstripchart.c:1482
+msgid "Displayed range"
+msgstr "Vist område"
+
+#: gstripchart/gstripchart.c:1486
+msgid "Current value"
+msgstr "Nåværende verdi"
+
+#: gstripchart/gstripchart.c:1493
+msgid "Active"
+msgstr "Aktiv"
+
+#: gstripchart/gstripchart.c:1509
+msgid "Gnome Stripchart Parameters"
+msgstr "Gnome stripchart parametere"
+
+#: gstripchart/gstripchart.c:1609
+msgid "Help"
+msgstr "Hjelp"
+
+#: gstripchart/gstripchart.c:1615
+msgid "About"
+msgstr "Om"
+
+#: gstripchart/gstripchart.c:1621
+msgid "Params"
+msgstr "Param"
+
+#: gstripchart/gstripchart.c:1627
+msgid "Exit"
+msgstr "Avslutt"
+
+#. Create a top-level window. Set the title, minimum size (_usize),
+#. initial size (_default_size), and establish delete and destroy
+#. event handlers.
+#: gstripchart/gstripchart.c:1729
+msgid "gstripchart"
+msgstr "gstripchart"
+
+#: gstripchart/gstripchart.c:1729
+msgid "Gnome stripchart viewer"
+msgstr "Gnome stripchart visning"
+
+#: gstripchart/gstripchart.c:1805
+#, c-format
+msgid "invalid display type: %s\n"
+msgstr "ugyldig skjermtype: %s\n"
+
+#: gstripchart/gstripchart.c:1832
 msgid "GEO"
 msgstr "GEO"
 
-#: gstripchart/gstripchart.c:1782
+#: gstripchart/gstripchart.c:1832
 msgid "geometry"
 msgstr "geometri"
 
-#: gstripchart/gstripchart.c:1784
+#: gstripchart/gstripchart.c:1834
 msgid "FILE"
 msgstr "FIL"
 
-#: gstripchart/gstripchart.c:1784
+#: gstripchart/gstripchart.c:1834
 msgid "configuration file"
 msgstr "konfigurasjonsfil"
 
-#: gstripchart/gstripchart.c:1786 gstripchart/gstripchart.c:1788
-#: gstripchart/gstripchart.c:1790 gstripchart/gstripchart.c:1792
+#: gstripchart/gstripchart.c:1836 gstripchart/gstripchart.c:1838
+#: gstripchart/gstripchart.c:1840 gstripchart/gstripchart.c:1842
 msgid "SECS"
 msgstr "SEK"
 
-#: gstripchart/gstripchart.c:1786
+#: gstripchart/gstripchart.c:1836
 msgid "chart update interval"
 msgstr "oppdateringsintervall"
 
-#: gstripchart/gstripchart.c:1788
+#: gstripchart/gstripchart.c:1838
 msgid "chart LP filter TC"
 msgstr "plott LP filter TC"
 
-#: gstripchart/gstripchart.c:1790
+#: gstripchart/gstripchart.c:1840
 msgid "slider update interval"
 msgstr "oppdateringsintervall for glider"
 
-#: gstripchart/gstripchart.c:1792
+#: gstripchart/gstripchart.c:1842
 msgid "slider LP filter TC"
 msgstr "glider LP filter TC"
 
-#: gstripchart/gstripchart.c:1794
+#: gstripchart/gstripchart.c:1844
 msgid "add menubar"
 msgstr "legg til menylinje"
 
-#: gstripchart/gstripchart.c:1796
+#: gstripchart/gstripchart.c:1846
 msgid "omit slider"
 msgstr "utelat slider"
 
-#: gstripchart/gstripchart.c:1798
+#: gstripchart/gstripchart.c:1848
 msgid "TYPE"
 msgstr "TYPE"
 
-#: gstripchart/gstripchart.c:1798
+#: gstripchart/gstripchart.c:1848
 msgid "gtk|text|graph|none"
 msgstr "gtk|tekst|graf|ingen"
 
@@ -576,7 +761,7 @@ msgstr "ingen prosjekter valgt"
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:251 mini-utils/gless/gless.c:384
+#: gtt/app.c:251 mini-utils/gless/gless.c:424
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -636,7 +821,7 @@ msgstr ""
 msgid "Specify geometry"
 msgstr "Spesifiser geometri"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:116
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
@@ -966,14 +1151,6 @@ msgstr "Fargenavn:"
 msgid "Color Values:"
 msgstr "Fargeverdier:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:155
-msgid "Color"
-msgstr "Farge"
-
-#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:228
-msgid "Value"
-msgstr "Verdi"
-
 #: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:227
 #: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
 msgid "Name"
@@ -1043,47 +1220,55 @@ msgstr "Hindre lasting av forrige skrifttype"
 msgid "Copyright 1998, under the GNU General Public License."
 msgstr "Copyright 1998, under the GNU General Public License."
 
-#: mini-utils/gless/gless.c:116
+#: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
 msgstr "Hvor vinduet skal plasseres, og størrelsen på det"
 
-#: mini-utils/gless/gless.c:117
+#: mini-utils/gless/gless.c:132
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "Ignorer standard inndata; behøves i noen tilfeller."
 
-#: mini-utils/gless/gless.c:279
+#: mini-utils/gless/gless.c:294
 msgid "_New Window"
 msgstr "Nytt vindu"
 
-#: mini-utils/gless/gless.c:280
+#: mini-utils/gless/gless.c:295
 msgid "New text viewer window"
 msgstr "Nytt tekstvisningsvindu"
 
-#: mini-utils/gless/gless.c:292
+#: mini-utils/gless/gless.c:313
 msgid "_Fixed Font"
 msgstr "Låst skrifttype"
 
-#: mini-utils/gless/gless.c:293
+#: mini-utils/gless/gless.c:314
 msgid "Display text with a fixed font"
 msgstr "Vis teksten med en låst skrifttype"
 
-#: mini-utils/gless/gless.c:322
+#: mini-utils/gless/gless.c:352
 msgid "Text File Viewer"
 msgstr "Tekstfilvisning"
 
-#: mini-utils/gless/gless.c:425
+#: mini-utils/gless/gless.c:460
+msgid "Find string"
+msgstr "Finn streng"
+
+#: mini-utils/gless/gless.c:461
+msgid "Find"
+msgstr "Finn"
+
+#: mini-utils/gless/gless.c:498
 msgid "Loading..."
 msgstr "Laster..."
 
-#: mini-utils/gless/gless.c:430
+#: mini-utils/gless/gless.c:503
 msgid "No such file or directory:\n"
 msgstr "Ikke en fil eller en katalog:\n"
 
-#: mini-utils/gless/gless.c:447
+#: mini-utils/gless/gless.c:520
 msgid "Failed to decompress and display the file:\n"
 msgstr "Klarte ikke å dekomprimere og vise filen:\n"
 
-#: mini-utils/gless/gless.c:458
+#: mini-utils/gless/gless.c:531
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1091,25 +1276,33 @@ msgstr ""
 "Ute av stand til å vise den komprimerte filen.\n"
 "zcat ble ikke funnet i søkestien."
 
-#: mini-utils/gless/gless.c:466
+#: mini-utils/gless/gless.c:539
 msgid "Error loading file:\n"
 msgstr "Feil under lasting av fil:\n"
 
-#: mini-utils/gless/gless.c:520
+#: mini-utils/gless/gless.c:594
 msgid "Saving..."
 msgstr "Lagrer..."
 
-#: mini-utils/gless/gless.c:531
+#: mini-utils/gless/gless.c:605
 msgid "Failed to write file:\n"
 msgstr "Feil under skriving av fil:\n"
 
-#: mini-utils/gless/gless.c:578
+#: mini-utils/gless/gless.c:652
 msgid "Save Text As..."
 msgstr "Lagre teksten som..."
 
-#: mini-utils/gless/gless.c:618
+#: mini-utils/gless/gless.c:692
 msgid "Open Text File..."
 msgstr "Åpne tekstfil..."
+
+#: mini-utils/gless/gless.c:843
+msgid "Searching..."
+msgstr "Søker..."
+
+#: mini-utils/gless/gless.c:854
+msgid "No search string was specified!"
+msgstr "Ingen søkestreng ble spesifisert!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
 msgid "Failed to execute command:\n"
@@ -1676,6 +1869,9 @@ msgstr "Bare superbruker kan bruke dette verktøyet"
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "Det ser ut til at du ikke har noen IDE disker"
+
+#~ msgid "Examine and adjust parameters"
+#~ msgstr "Undersøk og tilpass parameterene"
 
 #~ msgid "Using command:"
 #~ msgstr "Ved bruk av kommando:"
