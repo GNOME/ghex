@@ -508,6 +508,21 @@ void cleanup_cb(GnomeMDI *mdi) {
   gtk_main_quit();
 }
 
+void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
+  GtkWidget *shell, *item;
+  gint pos;
+
+  if(mdi->active_view == NULL)
+    return;
+
+  shell = gnome_app_find_menu_pos(gnome_mdi_get_app_from_view(mdi->active_view)->menubar,
+				  _("Edit/Group Data As/"), &pos);
+
+  item = g_list_nth(GTK_MENU_SHELL(shell)->children, GTK_HEX(mdi->active_view)->group_type / 2)->data;
+
+  gtk_menu_shell_activate_item(GTK_MENU_SHELL(shell), item, TRUE);
+}
+
 void conv_entry_cb(GtkEntry *entry, gint base) {
   guchar buffer[33];
   gchar *text, *endptr;

@@ -31,6 +31,7 @@ void add_view_cb();
 void remove_view_cb();
 
 gint remove_doc_cb();
+void view_changed_cb();
 void cleanup_cb();
 
 void prefs_cb();

@@ -1,3 +1,11 @@
+1998-09-21  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* callbacks.[ch] (view_changed_cb): new function; connects to
+	MDI view_changed signal and takes care of updating the
+	"Group Data As" menu.
+	* main.c (main): connect the above handler to MDI's view_changed
+	signal.
+	
 1998-09-04  Nuno Ferreira  <nmrf@rnl.ist.utl.pt>
 
 	* hex-document.c: Include <config.h>. Marked strings for
