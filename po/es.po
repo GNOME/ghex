@@ -492,59 +492,59 @@ msgstr "Herramienta de Búsqueda de Gnome"
 
 #: gstripchart/gstripchart.c:374
 msgid "rparen expected"
-msgstr ""
+msgstr "se esperaba una paréntesis derecha"
 
 #: gstripchart/gstripchart.c:391
 #, c-format
 msgid "no such field: %d"
-msgstr ""
+msgstr "no existe ese campo: %d"
 
 #: gstripchart/gstripchart.c:415
 msgid "missing variable identifer"
-msgstr ""
+msgstr "identificador de variable ausente"
 
 #: gstripchart/gstripchart.c:417
 #, c-format
 msgid "invalid variable identifer: %s"
-msgstr ""
+msgstr "identificador de variable inválido: %s"
 
 #: gstripchart/gstripchart.c:421
 msgid "number expected"
-msgstr ""
+msgstr "se esperaba un número"
 
 #: gstripchart/gstripchart.c:498
 #, c-format
 msgid "extra gunk at end: \"%s\""
-msgstr ""
+msgstr "gunk extra al final: \"%s\""
 
 #: gstripchart/gstripchart.c:575
 #, c-format
 msgid "%s, line %d: "
-msgstr ""
+msgstr "%s, línea %d: "
 
 #: gstripchart/gstripchart.c:652
 #, c-format
 msgid "can't open config file \"%s\""
-msgstr ""
+msgstr "no se puede abrir el archivo de configuración \"%s\""
 
 #: gstripchart/gstripchart.c:743
 #, c-format
 msgid "invalid display type: %s"
-msgstr ""
+msgstr "tipo de afichage inválido: %s"
 
 #: gstripchart/gstripchart.c:777
 msgid "identifier or begin must be first"
-msgstr ""
+msgstr "un identificador o el comienzo tiene que venir antes"
 
 #: gstripchart/gstripchart.c:784 gstripchart/gstripchart.c:800
 #, c-format
 msgid "unrecognized color: %s"
-msgstr ""
+msgstr "color desconocido: %s"
 
 #: gstripchart/gstripchart.c:827
 #, c-format
 msgid "invalid option: \"%s\""
-msgstr ""
+msgstr "opción inválida: \"%s\""
 
 #: gstripchart/gstripchart.c:1344
 msgid "E_xit"
@@ -565,6 +565,12 @@ msgid ""
 "such as CPU load, CPU utilization, network traffic levels, and the like.  "
 "Other more ingenious uses are left as an exercise for the interested user."
 msgstr ""
+"El programa de stripchart de GNOME dibúja gráficos de varios parámetros "
+"especificados por el usuario, en función del tiemp.  Su principal interés "
+"es de ver gráficos del comportamiento del sistema según parámetros como "
+"la carga del CPU, el uso del CPU, los niveles de trafico de la red, etc.  "
+"Otros posibilidades más ingeniosas se dejan como ejercicio para el "
+"usuario interesado en ello."
 
 #: gstripchart/gstripchart.c:1375
 msgid "Info about the striphart program"
@@ -617,7 +623,7 @@ msgstr "amarillo"
 
 #: gstripchart/gstripchart.c:1466
 msgid "Busy"
-msgstr ""
+msgstr "Ocupado"
 
 #: gstripchart/gstripchart.c:1466
 msgid "Load"
@@ -701,7 +707,7 @@ msgstr "gstripchart"
 #: gstripchart/gstripchart.c:1805
 #, c-format
 msgid "invalid display type: %s\n"
-msgstr ""
+msgstr "tipo de afichage inválido: %s\n"
 
 #: gstripchart/gstripchart.c:1832
 msgid "GEO"
@@ -728,6 +734,7 @@ msgstr "SEG"
 msgid "chart update interval"
 msgstr "intervalo de actualización del grafo"
 
+# fuzzy
 #: gstripchart/gstripchart.c:1838
 msgid "chart LP filter TC"
 msgstr ""
@@ -1254,14 +1261,12 @@ msgid "Text File Viewer"
 msgstr "Visor de Archivos Texto"
 
 #: mini-utils/gless/gless.c:460
-#, fuzzy
 msgid "Find string"
-msgstr "Encuentra el siguiente"
+msgstr "Encontrar texto"
 
 #: mini-utils/gless/gless.c:461
-#, fuzzy
 msgid "Find"
-msgstr "Encuentra el siguiente"
+msgstr "Encontrar"
 
 #: mini-utils/gless/gless.c:498
 msgid "Loading..."
@@ -1304,14 +1309,12 @@ msgid "Open Text File..."
 msgstr "Abrir Archivo Texto..."
 
 #: mini-utils/gless/gless.c:843
-#, fuzzy
 msgid "Searching..."
-msgstr "Guardando..."
+msgstr "Buscando..."
 
 #: mini-utils/gless/gless.c:854
-#, fuzzy
 msgid "No search string was specified!"
-msgstr "No se ha especificado el desplazamiento"
+msgstr "¡Ninguna cadena de texto fué especificada!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
 msgid "Failed to execute command:\n"
@@ -1881,8 +1884,3 @@ msgstr "Solamente el superusuario puede usar esta herramienta"
 msgid "You appear to have no IDE drives"
 msgstr "Al parecer Vd. no tiene discos IDE"
 
-#~ msgid "Using command:"
-#~ msgstr "Usando el comando:"
-
-#~ msgid "Examine and adjust parameters"
-#~ msgstr "Examine y ajuste los parámetros"
