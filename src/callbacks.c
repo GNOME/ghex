@@ -614,6 +614,7 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	gtk_menu_shell_activate_item(GTK_MENU_SHELL(shell), item, TRUE);
 
 	gnome_app_install_menu_hints(app, gnome_mdi_get_child_menu_info(app));
+	g_free(p);
 }
 
 void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {

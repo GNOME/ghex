@@ -1,3 +1,10 @@
+1999-01-12  Christopher Blizzard  <blizzard@appliedtheory.com>
+
+	* callbacks.c: free up pointer after use.
+
+	* ghex.h (GROUP_MENU_PATH): use g_strconcat() in macro, not
+ 	alloca() function.
+
 Fri Jan 08 16:21:13 1999  George Lebl  <jirka@5z.com>
 
 	* ghex.h,callbacks.h: concatenate all the strings for the path to
