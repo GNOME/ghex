@@ -223,67 +223,6 @@ static gint get_acoords(GtkHex *gh, gint pos, gint *x, gint *y) {
 	return TRUE;
 }
 
-/*
- * the cursor rendering stuff...
- */
-static void render_ac(GtkHex *gh) {
-	gint cx, cy;
-	
-	if(!GTK_WIDGET_REALIZED(gh->xdisp))
-		return;
-	
-	if(gh->adisp_gc == NULL) {
-		gh->adisp_gc = gdk_gc_new(gh->adisp->window);
-		gdk_gc_set_exposures(gh->adisp_gc, TRUE);
-	}
-	
-	gdk_gc_set_function(gh->adisp_gc, GDK_INVERT);
-	
-	if(get_acoords(gh, gh->cursor_pos, &cx, &cy))
-		gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc, (gh->active_view == VIEW_ASCII),
-						   cx, cy, gh->char_width, gh->char_height - 1);
-
-	gdk_gc_set_function(gh->adisp_gc, GDK_COPY);
-}
-
-static void render_xc(GtkHex *gh) {
-	gint cx, cy;
-
-	if(!GTK_WIDGET_REALIZED(gh->xdisp))
-		return;
-
-	if(gh->xdisp_gc == NULL) {
-		gh->xdisp_gc = gdk_gc_new(gh->xdisp->window);
-		gdk_gc_set_exposures(gh->xdisp_gc, TRUE);
-	}
-
-	gdk_gc_set_function(gh->xdisp_gc, GDK_INVERT);
-
-	if(get_xcoords(gh, gh->cursor_pos, &cx, &cy)) {
-		if(gh->lower_nibble)
-			cx += gh->char_width;
-		gdk_draw_rectangle(gh->xdisp->window, gh->xdisp_gc, (gh->active_view == VIEW_HEX),
-						   cx, cy, gh->char_width, gh->char_height - 1);
-	}
-
-	gdk_gc_set_function(gh->xdisp_gc, GDK_COPY);
-}
-
-static void show_cursor(GtkHex *gh) {
-	if(!gh->cursor_shown) {
-		render_xc(gh);
-		render_ac(gh);
-	}
-	gh->cursor_shown = TRUE;
-}
-
-static void hide_cursor(GtkHex *gh) {
-	if(gh->cursor_shown) {
-		render_xc(gh);
-		render_ac(gh);
-	}
-	gh->cursor_shown = FALSE;
-}
 
 /*
  * renders a byte at offset pos in both displays
@@ -326,6 +265,91 @@ static void render_byte(GtkHex *gh, gint pos) {
 				  cx, cy + gh->disp_font->ascent, &gh->document->buffer[pos], 1);
 }
 
+/*
+ * the cursor rendering stuff...
+ */
+static void render_ac(GtkHex *gh) {
+	gint cx, cy;
+	static guchar c[2] = "\0\0";
+	GtkStateType state;
+
+	if(!GTK_WIDGET_REALIZED(gh->adisp))
+		return;
+	
+	if(gh->adisp_gc == NULL) {
+		gh->adisp_gc = gdk_gc_new(gh->adisp->window);
+		gdk_gc_set_exposures(gh->adisp_gc, TRUE);
+	}
+	
+	if(get_acoords(gh, gh->cursor_pos, &cx, &cy)) {
+		c[0] = gh->document->buffer[gh->cursor_pos];
+
+		if(gh->active_view == VIEW_ASCII)
+			state = GTK_STATE_SELECTED;
+		else
+			state = GTK_STATE_INSENSITIVE;
+
+		gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window,
+					 state, GTK_SHADOW_NONE,
+					 cx, cy, gh->char_width, gh->char_height - 1);
+		gtk_draw_string(GTK_WIDGET(gh)->style, gh->adisp->window,
+						state,
+						cx, cy + gh->disp_font->ascent, c);
+	}
+}
+
+static void render_xc(GtkHex *gh) {
+	gint cx, cy, i;
+	static guchar c[3];
+	GtkStateType state;
+
+	if(!GTK_WIDGET_REALIZED(gh->xdisp))
+		return;
+
+	if(gh->xdisp_gc == NULL) {
+		gh->xdisp_gc = gdk_gc_new(gh->xdisp->window);
+		gdk_gc_set_exposures(gh->xdisp_gc, TRUE);
+	}
+
+	if(get_xcoords(gh, gh->cursor_pos, &cx, &cy)) {
+		format_xbyte(gh, gh->cursor_pos, c);
+		if(gh->lower_nibble) {
+			cx += gh->char_width;
+			i = 1;
+		}
+		else {
+			c[1] = 0;
+			i = 0;
+		}
+
+		if(gh->active_view == VIEW_HEX)
+			state = GTK_STATE_SELECTED;
+		else
+			state = GTK_STATE_INSENSITIVE;
+
+		gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
+					 state, GTK_SHADOW_NONE,
+					 cx, cy, gh->char_width, gh->char_height - 1);
+		gtk_draw_string(GTK_WIDGET(gh)->style, gh->xdisp->window,
+						state,
+						cx, cy + gh->disp_font->ascent, &c[i]);
+	}
+}
+
+static void show_cursor(GtkHex *gh) {
+	if(!gh->cursor_shown) {
+		render_xc(gh);
+		render_ac(gh);
+	}
+	gh->cursor_shown = TRUE;
+}
+
+static void hide_cursor(GtkHex *gh) {
+	if(gh->cursor_shown) {
+		render_byte(gh, gh->cursor_pos);
+	}
+	gh->cursor_shown = FALSE;
+}
 
 /*
  * when calling render_*_lines() the imin and imax arguments are the
@@ -415,6 +439,36 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 		render_ac(gh);
 }
 
+static void render_offsets(GtkHex *gh, gint imin, gint imax) {
+	GtkWidget *w = gh->offsets;
+	gint i, cursor_line;
+	gchar offstr[9];
+
+	if(!GTK_WIDGET_REALIZED(gh))
+		return;
+
+	if(gh->offsets_gc == NULL) {
+		gh->offsets_gc = gdk_gc_new(gh->offsets->window);
+		gdk_gc_set_exposures(gh->offsets_gc, TRUE);
+	}
+	
+	gdk_gc_set_foreground(gh->offsets_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_INSENSITIVE]);
+	gdk_draw_rectangle(w->window, gh->offsets_gc, TRUE,
+					   0, imin*gh->char_height, w->allocation.width,
+					   (imax - imin + 1)*gh->char_height);
+  
+	imax = MIN(imax, gh->vis_lines);
+
+	gdk_gc_set_foreground(gh->offsets_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
+	
+	for(i = imin; i <= imax; i++) {
+		sprintf(offstr, "%08X", (gh->top_line + i)*gh->cpl);
+		gdk_draw_text(w->window, gh->disp_font, gh->offsets_gc,
+					  0, gh->disp_font->ascent + i*gh->char_height,
+					  offstr, 8);
+	}
+}
+
 /*
  * expose signal handlers for both displays
  */
@@ -444,19 +498,42 @@ static void ascii_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
 	render_ascii_lines(gh, imin, imax);
 }
 
+static void offsets_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
+	gint imin, imax;
+	
+	imin = (event->area.y) / gh->char_height;
+	imax = (event->area.y + event->area.height) / gh->char_height;
+	if((event->area.y + event->area.height) % gh->char_height)
+		imax++;
+
+	imax = MAX(imax, gh->vis_lines);
+	
+	render_offsets(gh, imin, imax);
+}
+
 /*
  * expose signal handler for the GtkHex itself: draws shadows around both displays
  */
 static void draw_shadow(GtkWidget *widget, GdkRectangle *area) {
 	GtkHex *gh = GTK_HEX(widget);
 	gint border = GTK_CONTAINER(widget)->border_width;
+	gint x;
 	
 	gdk_window_clear_area (widget->window, area->x, area->y,
 						   area->width, area->height);
-	
+
+	x = border;
+	if(gh->show_offsets) {
+		gtk_draw_shadow(widget->style, widget->window,
+						GTK_STATE_NORMAL, GTK_SHADOW_IN,
+						border, border, 8*gh->char_width + 2*widget_get_xt(widget),
+						widget->allocation.height - 2*border);
+		x += 8*gh->char_width + 2*widget_get_xt(widget);
+	}
+
 	gtk_draw_shadow(widget->style, widget->window,
 					GTK_STATE_NORMAL, GTK_SHADOW_IN,
-					border, border, gh->xdisp_width + 2*widget_get_xt(widget),
+					x, border, gh->xdisp_width + 2*widget_get_xt(widget),
 					widget->allocation.height - 2*border);
 	
 	gtk_draw_shadow(widget->style, widget->window,
@@ -478,11 +555,14 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 
 	gtk_widget_size_request(gh->scrollbar, &req);
 	
-	total_width -= 2*GTK_CONTAINER(gh)->border_width + 4*widget_get_xt(GTK_WIDGET(gh)) +
-		req.width;
-	
+	total_width -= 2*GTK_CONTAINER(gh)->border_width +
+		4*widget_get_xt(GTK_WIDGET(gh)) + req.width;
+
+	if(gh->show_offsets)
+		total_width -= 2*widget_get_xt(GTK_WIDGET(gh)) + 8*gh->char_width;
+
 	total_cpl = total_width / gh->char_width;
-	
+
 	if((total_cpl == 0) || (total_width < 0)) {
 		gh->cpl = gh->lines = gh->vis_lines = 0;
 		return;
@@ -500,7 +580,10 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 		if(gh->cpl % gh->group_type == 0) /* just ended a group */
 			total_cpl--;
 	} while(total_cpl > 0);
-	
+
+	if(gh->cpl == 0)
+		return;
+
 	gh->lines = gh->document->buffer_size / gh->cpl;
 	if(gh->document->buffer_size % gh->cpl)
 		gh->lines++;
@@ -563,7 +646,11 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 		gh->adisp_gc = gdk_gc_new(gh->adisp->window);
 		gdk_gc_set_exposures(gh->adisp_gc, TRUE);
 	}
-	
+	if(gh->offsets_gc == NULL && gh->offsets) {
+		gh->offsets_gc = gdk_gc_new(gh->offsets->window);
+		gdk_gc_set_exposures(gh->offsets_gc, TRUE);
+	}
+
 	hide_cursor(gh);
 	
 	gh->top_line = adj->value;
@@ -602,7 +689,16 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 						 0, dest_min,
 						 gh->adisp->allocation.width,
 						 source_max - source_min);
-		
+		if(gh->offsets) {
+			gdk_draw_pixmap (gh->offsets->window,
+							 gh->offsets_gc,
+							 gh->offsets->window,
+							 0, source_min,
+							 0, dest_min,
+							 gh->offsets->allocation.width,
+							 source_max - source_min);
+		}
+
 		while ((event = gdk_event_get_graphics_expose (gh->xdisp->window)) != NULL) {
 			gtk_widget_event (gh->xdisp, event);
 			if (event->expose.count == 0) {
@@ -620,11 +716,24 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 			}
 			gdk_event_free (event);
 		}
+
+		if(gh->offsets) {
+			while ((event = gdk_event_get_graphics_expose (gh->offsets->window)) != NULL) {
+				gtk_widget_event (gh->offsets, event);
+				if (event->expose.count == 0) {
+					gdk_event_free (event);
+					break;
+				}
+				gdk_event_free (event);
+			}
+		}
 	}
 	
 	if (rect.height != 0) {
 		gtk_widget_draw(gh->xdisp, &rect);
 		gtk_widget_draw(gh->adisp, &rect);
+		if(gh->offsets)
+			gtk_widget_draw(gh->offsets, &rect);
 	}
 	
 	show_cursor(gh);
@@ -750,6 +859,23 @@ static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 			}
 			ascii_to_pointer(gh, x, y);
 		}
+	}
+}
+
+static void show_offsets_widget(GtkHex *gh) {
+	gh->offsets = gtk_drawing_area_new();
+	gtk_widget_set_events (gh->offsets, GDK_EXPOSURE_MASK);
+	gtk_signal_connect(GTK_OBJECT(gh->offsets), "expose_event",
+					   GTK_SIGNAL_FUNC(offsets_expose), gh);
+	gtk_fixed_put(GTK_FIXED(gh), gh->offsets, 0, 0);
+	gtk_widget_show(gh->offsets);
+}
+
+static void hide_offsets_widget(GtkHex *gh) {
+	if(gh->offsets) {
+		gtk_container_remove(GTK_CONTAINER(gh), gh->offsets);
+		gh->offsets = NULL;
+		gh->offsets_gc = NULL;
 	}
 }
 
@@ -912,9 +1038,14 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	xt = widget_get_xt(w);
 	yt = widget_get_yt(w);
 
-	my_alloc.x = border_width + xt;
+   	my_alloc.x = border_width + xt;
 	my_alloc.y = border_width + yt;
 	my_alloc.height = alloc->height - 2*border_width - 2*yt;
+	if(gh->show_offsets) {
+		my_alloc.width = 8*gh->char_width;
+		gtk_widget_size_allocate(gh->offsets, &my_alloc);
+		my_alloc.x += 2*xt + my_alloc.width;
+	}
 	my_alloc.width = gh->xdisp_width;
 	gtk_widget_size_allocate(gh->xdisp, &my_alloc);
 	my_alloc.x = alloc->width - border_width - gh->scrollbar->requisition.width;
@@ -1053,7 +1184,7 @@ static void gtk_hex_init(GtkHex *gh) {
 	
 	gtk_signal_connect(GTK_OBJECT(gh->adj), "value_changed",
 					   GTK_SIGNAL_FUNC(display_scrolled), gh);
-	
+
 	gh->scrollbar = gtk_vscrollbar_new(gh->adj);
 	gtk_fixed_put(GTK_FIXED(gh), gh->scrollbar, 0, 0);
 	gtk_widget_show(gh->scrollbar);
@@ -1195,4 +1326,18 @@ void gtk_hex_set_font(GtkHex *gh, GdkFont *font) {
 	recalc_displays(gh, GTK_WIDGET(gh)->allocation.width, GTK_WIDGET(gh)->allocation.height);
 	
 	redraw_widget(GTK_WIDGET(gh));
+}
+
+/*
+ *  do we show the offsets of lines?
+ */
+void gtk_hex_show_offsets(GtkHex *gh, gboolean show) {
+	if(gh->show_offsets == show)
+		return;
+
+	gh->show_offsets = show;
+	if(show)
+		show_offsets_widget(gh);
+	else
+		hide_offsets_widget(gh);
 }

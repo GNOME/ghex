@@ -59,11 +59,12 @@ struct _GtkHex {
 	HexDocument *document;
 	
 	GtkWidget *xdisp, *adisp, *scrollbar;
-	
+	GtkWidget *offsets;
+
 	GtkAdjustment *adj;
 	
 	GdkFont *disp_font;
-	GdkGC *xdisp_gc, *adisp_gc;
+	GdkGC *xdisp_gc, *adisp_gc, *offsets_gc;
 	
 	gint active_view;
 	
@@ -86,6 +87,7 @@ struct _GtkHex {
 	
 	gint scroll_dir;
 	guint scroll_timeout;
+	gboolean show_offsets;
 };
 
 struct _GtkHexClass {
@@ -108,6 +110,7 @@ guchar gtk_hex_get_byte(GtkHex *, guint);
 
 void gtk_hex_set_group_type(GtkHex *, guint);
 
+void gtk_hex_show_offsets(GtkHex *, gboolean);
 void gtk_hex_set_font(GtkHex *, GdkFont *);
 
 #ifdef __cplusplus
