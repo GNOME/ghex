@@ -592,7 +592,7 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	if(gh->document->file_size % gh->cpl)
 		gh->lines++;
 	
-	gh->vis_lines = (height - 2*GTK_CONTAINER(gh)->border_width - 2*widget_get_yt(GTK_WIDGET(gh))) / gh->char_height;
+	gh->vis_lines = ( (gint) (height - 2*GTK_CONTAINER(gh)->border_width - 2*widget_get_yt(GTK_WIDGET(gh))) ) / ( (gint) gh->char_height );
 
 	gh->adisp_width = gh->cpl*gh->char_width + 1;
 	xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
@@ -603,7 +603,7 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	if(gh->disp_buffer)
 		g_free(gh->disp_buffer);
 	
-	gh->disp_buffer = g_malloc(xcpl * (gh->vis_lines + 3));
+	gh->disp_buffer = g_malloc( (xcpl + 1) * (gh->vis_lines + 1) );
 
 	/* adjust the scrollbar and display position to
 	   new sizes */
