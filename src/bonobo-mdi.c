@@ -1193,7 +1193,7 @@ static void app_create (BonoboMDI *bonobo_mdi, gchar *layout_string)
 	/* Create Container: */
  	ui_container = bonobo_window_get_ui_container (bw);
 
-	config_path = g_strdup_printf ("/%s/UIConfig/kvps/", bonobo_mdi->priv->mdi_name);
+	config_path = g_strdup_printf ("/%s/UIConfig/kvps", bonobo_mdi->priv->mdi_name);
   	bonobo_ui_engine_config_set_path (bonobo_window_get_ui_engine (bw),
 					  config_path);
 	g_free (config_path);
