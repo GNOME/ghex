@@ -42,7 +42,6 @@ void save_configuration() {
 
 void load_configuration() {
 	gchar *font_desc;
-	gint group;
 	GdkFont *new_font;
 	
 	if((font_desc = gnome_config_get_string("/ghex/Display/Font=" DEFAULT_FONT)) != NULL) {

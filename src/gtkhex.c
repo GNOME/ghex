@@ -377,7 +377,7 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 	GtkWidget *w = gh->adisp;
 	gint i, tmp, frm_len;
-	guint cx, cy, cursor_line;
+	guint cursor_line;
 	
 	if( (!GTK_WIDGET_REALIZED(gh)) || (gh->cpl == 0) )
 		return;
@@ -471,7 +471,7 @@ static void draw_shadow(GtkWidget *widget, GdkRectangle *area) {
  * lines we can display according to the current size of the widget
  */
 static void recalc_displays(GtkHex *gh, guint width, guint height) {
-	gint sep_width, total_width = width;
+	gint total_width = width;
 	gint total_cpl, xcpl;
 	gint old_cpl = gh->cpl;
 
@@ -640,7 +640,6 @@ static void scroll_timeout_handler(GtkHex *gh) {
 }
 
 static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
-	guint mx, my, cx, cy, x;
 	
 	if( (event->type == GDK_BUTTON_RELEASE) &&
 		(event->button == 1) ) {
@@ -990,7 +989,6 @@ static void gtk_hex_class_init(GtkHexClass *klass) {
 }
 
 static void gtk_hex_init(GtkHex *gh) {
-	GtkWidget *widget = GTK_WIDGET(gh);
 	
 	gh->scroll_timeout = -1;
 	
@@ -1162,6 +1160,8 @@ gint gtk_hex_get_cursor(GtkHex *gh) {
 guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
 	if((offset >= 0) && (offset < gh->document->buffer_size))
 		return gh->document->buffer[offset];
+
+	return 0;
 }
 
 /*

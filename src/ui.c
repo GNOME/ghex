@@ -117,8 +117,6 @@ gchar *search_type_label[] = {
 };
 
 gint ask_user(GnomeMessageBox *message_box) {
-	gint reply;
-	
 	gtk_window_set_modal(GTK_WINDOW(message_box), TRUE);	
 
 	return gnome_dialog_run_and_close(GNOME_DIALOG(message_box));

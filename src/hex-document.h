@@ -66,11 +66,13 @@ struct _HexDocumentClass
 	void (*document_changed)(HexDocument *, gpointer);
 };
 
+GtkType hex_document_get_type(void);
 HexDocument *hex_document_new(const gchar *);
 void hex_document_set_data(HexDocument *, guint, guint, guchar *);
 void hex_document_set_byte(HexDocument *, guchar, guint);
 gint hex_document_read(HexDocument *doc);
 gint hex_document_write(HexDocument *doc);
+gboolean hex_document_has_changed(HexDocument *doc);
 void hex_document_changed(HexDocument *doc, gpointer change_data);
 GnomeMDIChild *hex_document_new_from_config(const gchar *);
 gint find_string_forward(HexDocument *doc, guint start, guchar *what, gint len, guint *found);

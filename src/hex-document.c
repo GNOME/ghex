@@ -103,11 +103,11 @@ static void hex_document_marshal (GtkObject	    *object,
 	(* rfunc)(object, GTK_VALUE_POINTER(args[0]), func_data);
 }
 
-guint hex_document_get_type () {
-	static guint doc_type = 0;
+GtkType hex_document_get_type () {
+	static GtkType doc_type = 0;
 	
 	if (!doc_type) {
-		GtkTypeInfo doc_info = {
+		static const GtkTypeInfo doc_info = {
 			"HexDocument",
 			sizeof (HexDocument),
 			sizeof (HexDocumentClass),
@@ -119,7 +119,7 @@ guint hex_document_get_type () {
 		
 		doc_type = gtk_type_unique (gnome_mdi_child_get_type (), &doc_info);
 	}
-	
+
 	return doc_type;
 }
 
@@ -218,7 +218,7 @@ HexDocument *hex_document_new(const gchar *name) {
 	/* hopefully using stat() works for all flavours of UNIX...
 	   don't know for sure, though */
 	if(!stat(name, &stats)) {
-		if(document = gtk_type_new (hex_document_get_type ())) {
+		if((document = gtk_type_new (hex_document_get_type ()))) {
 			document->buffer_size = stats.st_size;
 			
 			if((document->buffer = (guchar *)g_malloc(document->buffer_size)) != NULL) {

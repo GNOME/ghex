@@ -429,7 +429,7 @@ void replace_one_cb(GtkWidget *w) {
 	if(find_len > doc->buffer_size - gh->cursor_pos)
 		return;
 	
-	if(compare_data(&doc->buffer[gh->cursor_pos], find_str, find_len) == 0)
+	if(memcmp(&doc->buffer[gh->cursor_pos], find_str, find_len) == 0)
 		hex_document_set_data(doc, gh->cursor_pos, rep_len, rep_str);
 	
 	if(find_string_forward(doc, gh->cursor_pos+1, find_str, find_len, &offset) == 0)
@@ -679,7 +679,7 @@ void conv_entry_cb(GtkEntry *entry, gint base) {
 	sprintf(buffer, "%lu", val);
 	gtk_entry_set_text(GTK_ENTRY(converter.entry[1]), buffer);
 	
-	sprintf(buffer, "%08x", val);
+	sprintf(buffer, "%08lx", val);
 	gtk_entry_set_text(GTK_ENTRY(converter.entry[2]), buffer);
 	
 	for(i = 0; i < 4; i++) {
