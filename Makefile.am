@@ -15,6 +15,7 @@ EXTRA_DIST =			\
 	ghex.spec.in		\
 	ghex.desktop.in		\
 	app-docs.make   	\
+	xmldocs.make		\
 	COPYING-DOCS    	\
 	intltool-extract.in	\
 	intltool-merge.in	\
