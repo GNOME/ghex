@@ -225,8 +225,10 @@ int main(int argc, char **argv) {
     gnome_mdi_set_child_menu_path(mdi, CHILD_MENU_PATH);
     gnome_mdi_set_child_list_path(mdi, CHILD_LIST_PATH);
 
+#if 0
 	/* set default window icon */
 	gnome_window_icon_set_default_from_file("gnome-ghex.png");
+#endif
 
     /* connect signals */
     gtk_signal_connect(GTK_OBJECT(mdi), "remove_child", GTK_SIGNAL_FUNC(remove_doc_cb), NULL);
