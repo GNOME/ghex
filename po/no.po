@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 0.99.3\n"
-"POT-Creation-Date: 1999-01-26 00:15-0500\n"
+"POT-Creation-Date: 1999-01-28 18:52-0600\n"
 "PO-Revision-Date: 1999-01-26 00:20+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@fib.hl.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -31,112 +31,59 @@ msgid ""
 "uitilizing a dial."
 msgstr "Et raskt hack for å vise ledig plass på monterte filsystemer "
 
-#: ghex/callbacks.c:44
-msgid "GHex, a binary file editor"
-msgstr "GHex, en binærfileditor"
+#: ghex/hex-document.c:57
+msgid "_Bytes"
+msgstr "Bytes"
 
-#: ghex/callbacks.c:46
-msgid "Released under the terms of GNU Public License"
-msgstr "Utgitt under vilkårene gitt i GNU Public License"
+#: ghex/hex-document.c:58
+msgid "Group data by 8 bits"
+msgstr "Grupper data i 8 bits grupper"
 
-#: ghex/callbacks.c:76 ghex/callbacks.c:169
-msgid "Error saving file!"
-msgstr "Feil under lagring av fil!"
+#: ghex/hex-document.c:59
+msgid "_Words"
+msgstr "Ord"
 
-#: ghex/callbacks.c:80 ghex/callbacks.c:164
-#, c-format
-msgid "Saved buffer to file %s"
-msgstr "Lagret buffer til fil %s"
+#: ghex/hex-document.c:60
+msgid "Group data by 16 bits"
+msgstr "Grupper data i 16 bits grupper"
 
-#: ghex/callbacks.c:97
-#, c-format
-msgid "Really revert file %s?"
-msgstr "Virkelig forkaste filen %s?"
+#: ghex/hex-document.c:61
+msgid "_Longwords"
+msgstr "Lange ord"
 
-#: ghex/callbacks.c:110
-#, c-format
-msgid "Reverted buffer from file %s"
-msgstr "Forkastet buffer fra fil %s"
+#: ghex/hex-document.c:62
+msgid "Group data by 32 bits"
+msgstr "_Grupper data i 32 bits grupper"
 
-#: ghex/callbacks.c:125
-#, c-format
-msgid "Loaded file %s"
-msgstr "Lastet fil %s"
+#: ghex/hex-document.c:78
+msgid "_Goto Byte..."
+msgstr "Gå til byte..."
 
-#: ghex/callbacks.c:130
-msgid "Can not open file!"
-msgstr "Kan ikke åpne filen!"
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "Hopp til en bestemt posisjon"
 
-#: ghex/callbacks.c:173
-msgid "Can't open file for writing!"
-msgstr "Kan ikke åpne filen for skriving!"
+#: ghex/hex-document.c:81
+msgid "_Group Data As"
+msgstr "Grupper data som"
 
-#: ghex/callbacks.c:197
-msgid "Select a file to open"
-msgstr "Velg en fil å åpne"
+#: ghex/hex-document.c:86
+msgid "_Add view"
+msgstr "Legg til visning"
 
-#: ghex/callbacks.c:215
-msgid "Select a file to save buffer as"
-msgstr "Velg en fil for lagring av buffer"
+#: ghex/hex-document.c:87
+msgid "Add a new view of the buffer"
+msgstr "Legg til en ny visning av bufferen"
 
-#: ghex/callbacks.c:308 ghex/callbacks.c:331 ghex/callbacks.c:384
-msgid "There is no active buffer to search!"
-msgstr "Ingen aktiv buffer for søk!"
+#: ghex/hex-document.c:88
+msgid "_Remove view"
+msgstr "Fjern visning"
 
-#: ghex/callbacks.c:316 ghex/callbacks.c:339 ghex/callbacks.c:392
-msgid "There seems to be no string to search for!"
-msgstr "Ingen streng å søke etter!"
+#: ghex/hex-document.c:89
+msgid "Remove the current view of the buffer"
+msgstr "Fjern nåværende visning av bufferen"
 
-#: ghex/callbacks.c:322 ghex/callbacks.c:399
-msgid "End Of File reached"
-msgstr "Slutten på filen nådd"
-
-#: ghex/callbacks.c:346
-msgid "Beginning Of File reached"
-msgstr "Begynnelsen på filen nådd"
-
-#: ghex/callbacks.c:354
-msgid "There is no active buffer to move the cursor in!"
-msgstr "Ingen aktiv buffer å bevege markøren i!"
-
-#: ghex/callbacks.c:359
-msgid "No offset has been specified!"
-msgstr "Ingen posisjon har blitt spesifisert!"
-
-#: ghex/callbacks.c:366
-msgid "The offset must be a positive integer value!"
-msgstr "Posisjonen må være et positivt heltall"
-
-#: ghex/callbacks.c:371
-msgid "Can not position cursor beyond the End Of File!"
-msgstr "Kan ikke plassere markøren forbi filens slutt!"
-
-#: ghex/callbacks.c:409 ghex/callbacks.c:448
-msgid "There is no active buffer to replace data in!"
-msgstr "Ingen aktiv buffer å erstatte data i!"
-
-#: ghex/callbacks.c:420 ghex/callbacks.c:459
-msgid "Strange find or replace string!"
-msgstr "Merkelig søk eller erstatt-streng!"
-
-#: ghex/callbacks.c:425 ghex/callbacks.c:464
-msgid "Both strings must be of the same length!"
-msgstr "Begge strengene må være av samme lengde!"
-
-#: ghex/callbacks.c:438
-msgid "End Of File reached!"
-msgstr "Filslutt nådd!"
-
-#: ghex/callbacks.c:479
-#, c-format
-msgid "Replaced %d occurencies."
-msgstr "Byttet ut %d forekomster."
-
-#: ghex/callbacks.c:564
-msgid "Can not open desired font!"
-msgstr "Kan ikke åpne ønsket skrifttype!"
-
-#: ghex/callbacks.c:573
+#: ghex/main.c:44
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -145,207 +92,96 @@ msgstr ""
 "Filen %s er endret siden forrige lagring.\n"
 "Vil du lagre endringene?"
 
-#: ghex/callbacks.c:597 ghex/ui.c:149
+#: ghex/main.c:68
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Finn data"
 
-#: ghex/callbacks.c:598 ghex/ui.c:209
+#: ghex/main.c:69
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Søk og erstatt data"
 
-#: ghex/callbacks.c:599 ghex/ui.c:294
+#: ghex/main.c:70
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hopp til byte"
 
-#: ghex/callbacks.c:682
-msgid "ERROR"
-msgstr "FEIL"
-
-#: ghex/hex-document.c:58
-msgid "_Bytes"
-msgstr "Bytes"
-
-#: ghex/hex-document.c:59
-msgid "Group data by 8 bits"
-msgstr "Grupper data i 8 bits grupper"
-
-#: ghex/hex-document.c:60
-msgid "_Words"
-msgstr "Ord"
-
-#: ghex/hex-document.c:61
-msgid "Group data by 16 bits"
-msgstr "Grupper data i 16 bits grupper"
-
-#: ghex/hex-document.c:62
-msgid "_Longwords"
-msgstr "Lange ord"
-
-#: ghex/hex-document.c:63
-msgid "Group data by 32 bits"
-msgstr "_Grupper data i 32 bits grupper"
-
-#: ghex/hex-document.c:79
-msgid "_Goto Byte..."
-msgstr "Gå til byte..."
-
-#: ghex/hex-document.c:79
-msgid "Jump to a certain position"
-msgstr "Hopp til en bestemt posisjon"
-
-#: ghex/hex-document.c:82
-msgid "_Group Data As"
-msgstr "Grupper data som"
-
-#: ghex/hex-document.c:87
-msgid "_Add view"
-msgstr "Legg til visning"
-
-#: ghex/hex-document.c:88
-msgid "Add a new view of the buffer"
-msgstr "Legg til en ny visning av bufferen"
-
-#: ghex/hex-document.c:89
-msgid "_Remove view"
-msgstr "Fjern visning"
-
-#: ghex/hex-document.c:90
-msgid "Remove the current view of the buffer"
-msgstr "Fjern nåværende visning av bufferen"
-
-#: ghex/ui.c:37
+#: ghex/ui.c:51
 msgid "Open Con_verter..."
 msgstr "Åpne konverterer..."
 
-#: ghex/ui.c:38
+#: ghex/ui.c:52
 msgid "Open base conversion dialog"
 msgstr "Åpne dialog for konvertering"
 
-#: ghex/ui.c:75
+#: ghex/ui.c:89
 msgid "Bytes"
 msgstr "Bytes"
 
-#: ghex/ui.c:76
+#: ghex/ui.c:90
 msgid "Words"
 msgstr "Ord"
 
-#: ghex/ui.c:77
+#: ghex/ui.c:91
 msgid "Longwords"
 msgstr "Lange ord"
 
-#: ghex/ui.c:101 mini-utils/idetool/idetool.c:142
-#: mini-utils/idetool/idetool.c:325
-msgid "Default"
-msgstr "Standard"
-
-#: ghex/ui.c:102
-msgid "Notebook"
-msgstr "Notisblokk"
-
-#: ghex/ui.c:103
-msgid "Toplevel"
-msgstr "Toppnivå"
-
-#: ghex/ui.c:104
-msgid "Modal"
-msgstr "Modal"
-
-#: ghex/ui.c:109
+#: ghex/ui.c:96
 msgid "hex data"
 msgstr "heksadesimale data"
 
-#: ghex/ui.c:110
+#: ghex/ui.c:97
 msgid "ASCII data"
 msgstr "ASCII data"
 
-#: ghex/ui.c:158
-#, c-format
-msgid "Search for %s"
-msgstr "Søk etter %s"
-
 #: ghex/ui.c:174
-msgid "Find Next"
-msgstr "Finn neste"
+msgid "GHex, a binary file editor"
+msgstr "GHex, en binærfileditor"
 
-#: ghex/ui.c:181
-msgid "Find Previous"
-msgstr "Finn forrige"
+#: ghex/ui.c:176
+msgid "Released under the terms of GNU Public License"
+msgstr "Utgitt under vilkårene gitt i GNU Public License"
 
-#: ghex/ui.c:223
+#: ghex/ui.c:193 ghex/ui.c:344
+msgid "Error saving file!"
+msgstr "Feil under lagring av fil!"
+
+#: ghex/ui.c:197 ghex/ui.c:339
 #, c-format
-msgid "Replace %s"
-msgstr "Erstatt %s"
+msgid "Saved buffer to file %s"
+msgstr "Lagret buffer til fil %s"
 
-#: ghex/ui.c:239
-msgid "Find next"
-msgstr "Finn neste"
+#: ghex/ui.c:206
+msgid "Select a file to open"
+msgstr "Velg en fil å åpne"
 
-#: ghex/ui.c:246
-msgid "Replace"
-msgstr "Erstatt"
+#: ghex/ui.c:224
+msgid "Select a file to save buffer as"
+msgstr "Velg en fil for lagring av buffer"
 
-#: ghex/ui.c:253
-msgid "Replace All"
-msgstr "Erstatt alle"
+#: ghex/ui.c:272
+#, c-format
+msgid "Really revert file %s?"
+msgstr "Virkelig forkaste filen %s?"
 
-#: ghex/ui.c:327
-msgid "GHex: Converter"
-msgstr "GHex: Konvertering"
+#: ghex/ui.c:285
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "Forkastet buffer fra fil %s"
 
-#: ghex/ui.c:334
-msgid "Binary"
-msgstr "Binær"
+#: ghex/ui.c:300
+#, c-format
+msgid "Loaded file %s"
+msgstr "Lastet fil %s"
 
-#: ghex/ui.c:344
-msgid "Decimal"
-msgstr "Desimal"
+#: ghex/ui.c:305
+msgid "Can not open file!"
+msgstr "Kan ikke åpne filen!"
 
-#: ghex/ui.c:354
-msgid "Hex"
-msgstr "Heksadesimal"
-
-#: ghex/ui.c:364
-msgid "ASCII"
-msgstr "ASCII"
-
-#: ghex/ui.c:374 mini-utils/gshutdown/gshutdown.c:149
-msgid "Close"
-msgstr "Lukk"
-
-#: ghex/ui.c:427
-msgid "Maximum number of undo levels"
-msgstr "Maksimalt angrenivå"
-
-#: ghex/ui.c:438
-msgid "Editing"
-msgstr "Redigering"
-
-#: ghex/ui.c:445
-msgid "Font"
-msgstr "Skrifttype"
-
-#: ghex/ui.c:461
-msgid "Browse..."
-msgstr "Se på..."
-
-#: ghex/ui.c:480
-msgid "Default Group Type"
-msgstr "Standard gruppetype"
-
-#: ghex/ui.c:496 gtt/options.c:184
-msgid "Display"
-msgstr "Skjerm"
-
-#: ghex/ui.c:503
-msgid "MDI Mode"
-msgstr "MDI-modus"
-
-#: ghex/ui.c:520
-msgid "MDI"
-msgstr "MDI"
+#: ghex/ui.c:348
+msgid "Can't open file for writing!"
+msgstr "Kan ikke åpne filen for skriving!"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
@@ -534,6 +370,10 @@ msgstr "Klokken kjører"
 #: gtt/menus.c:99
 msgid "_Timer"
 msgstr "Klokke"
+
+#: gtt/options.c:184
+msgid "Display"
+msgstr "Skjerm"
 
 #: gtt/options.c:192
 msgid "Show Seconds"
@@ -1016,7 +856,12 @@ msgstr "Er du sikker på at du vil starte maskinen på nytt?"
 
 #: mini-utils/gshutdown/gshutdown.c:147
 msgid "You must be the super-user (root) to shut down or restart the computer."
-msgstr "Du må være superbruker (root) for å slå av eller starte maskinen på nytt."
+msgstr ""
+"Du må være superbruker (root) for å slå av eller starte maskinen på nytt."
+
+#: mini-utils/gshutdown/gshutdown.c:149
+msgid "Close"
+msgstr "Lukk"
 
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:183
@@ -1423,6 +1268,10 @@ msgstr "Disken nekter å beholde instillingene."
 msgid "Keep settings"
 msgstr "Behold innstillingene"
 
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
+msgid "Default"
+msgstr "Standard"
+
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr "(1 sektor)"
@@ -1502,6 +1351,117 @@ msgstr "Bare superbruker kan bruke dette verktøyet"
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "Det ser ut til at du ikke har noen IDE disker"
+
+#~ msgid "There is no active buffer to search!"
+#~ msgstr "Ingen aktiv buffer for søk!"
+
+#~ msgid "There seems to be no string to search for!"
+#~ msgstr "Ingen streng å søke etter!"
+
+#~ msgid "End Of File reached"
+#~ msgstr "Slutten på filen nådd"
+
+#~ msgid "Beginning Of File reached"
+#~ msgstr "Begynnelsen på filen nådd"
+
+#~ msgid "There is no active buffer to move the cursor in!"
+#~ msgstr "Ingen aktiv buffer å bevege markøren i!"
+
+#~ msgid "No offset has been specified!"
+#~ msgstr "Ingen posisjon har blitt spesifisert!"
+
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "Posisjonen må være et positivt heltall"
+
+#~ msgid "Can not position cursor beyond the End Of File!"
+#~ msgstr "Kan ikke plassere markøren forbi filens slutt!"
+
+#~ msgid "There is no active buffer to replace data in!"
+#~ msgstr "Ingen aktiv buffer å erstatte data i!"
+
+#~ msgid "Strange find or replace string!"
+#~ msgstr "Merkelig søk eller erstatt-streng!"
+
+#~ msgid "Both strings must be of the same length!"
+#~ msgstr "Begge strengene må være av samme lengde!"
+
+#~ msgid "End Of File reached!"
+#~ msgstr "Filslutt nådd!"
+
+#~ msgid "Replaced %d occurencies."
+#~ msgstr "Byttet ut %d forekomster."
+
+#~ msgid "Can not open desired font!"
+#~ msgstr "Kan ikke åpne ønsket skrifttype!"
+
+#~ msgid "ERROR"
+#~ msgstr "FEIL"
+
+#~ msgid "Notebook"
+#~ msgstr "Notisblokk"
+
+#~ msgid "Toplevel"
+#~ msgstr "Toppnivå"
+
+#~ msgid "Modal"
+#~ msgstr "Modal"
+
+#~ msgid "Search for %s"
+#~ msgstr "Søk etter %s"
+
+#~ msgid "Find Next"
+#~ msgstr "Finn neste"
+
+#~ msgid "Find Previous"
+#~ msgstr "Finn forrige"
+
+#~ msgid "Replace %s"
+#~ msgstr "Erstatt %s"
+
+#~ msgid "Find next"
+#~ msgstr "Finn neste"
+
+#~ msgid "Replace"
+#~ msgstr "Erstatt"
+
+#~ msgid "Replace All"
+#~ msgstr "Erstatt alle"
+
+#~ msgid "GHex: Converter"
+#~ msgstr "GHex: Konvertering"
+
+#~ msgid "Binary"
+#~ msgstr "Binær"
+
+#~ msgid "Decimal"
+#~ msgstr "Desimal"
+
+#~ msgid "Hex"
+#~ msgstr "Heksadesimal"
+
+#~ msgid "ASCII"
+#~ msgstr "ASCII"
+
+#~ msgid "Maximum number of undo levels"
+#~ msgstr "Maksimalt angrenivå"
+
+#~ msgid "Editing"
+#~ msgstr "Redigering"
+
+#~ msgid "Font"
+#~ msgstr "Skrifttype"
+
+#~ msgid "Browse..."
+#~ msgstr "Se på..."
+
+#~ msgid "Default Group Type"
+#~ msgstr "Standard gruppetype"
+
+#~ msgid "MDI Mode"
+#~ msgstr "MDI-modus"
+
+#~ msgid "MDI"
+#~ msgstr "MDI"
 
 #~ msgid "PIO Mode"
 #~ msgstr "PIO-modus"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1999-01-18 14:54-0500\n"
+"POT-Creation-Date: 1999-01-28 18:52-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,316 +32,158 @@ msgid ""
 "uitilizing a dial."
 msgstr ""
 
-#: ghex/callbacks.c:44
-msgid "GHex, a binary file editor"
+#: ghex/hex-document.c:57
+#, fuzzy
+msgid "_Bytes"
+msgstr "út"
+
+#: ghex/hex-document.c:58
+msgid "Group data by 8 bits"
 msgstr ""
 
-#: ghex/callbacks.c:46
-msgid "Released under the terms of GNU Public License"
+#: ghex/hex-document.c:59
+msgid "_Words"
 msgstr ""
 
-#: ghex/callbacks.c:76 ghex/callbacks.c:169
-msgid "Error saving file!"
+#: ghex/hex-document.c:60
+msgid "Group data by 16 bits"
 msgstr ""
 
-#: ghex/callbacks.c:80 ghex/callbacks.c:164
-#, c-format
-msgid "Saved buffer to file %s"
+#: ghex/hex-document.c:61
+msgid "_Longwords"
 msgstr ""
 
-#: ghex/callbacks.c:97
-#, c-format
-msgid "Really revert file %s?"
+#: ghex/hex-document.c:62
+msgid "Group data by 32 bits"
 msgstr ""
 
-#: ghex/callbacks.c:110
-#, c-format
-msgid "Reverted buffer from file %s"
+#: ghex/hex-document.c:78
+msgid "_Goto Byte..."
 msgstr ""
 
-#: ghex/callbacks.c:125
-#, c-format
-msgid "Loaded file %s"
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
 msgstr ""
 
-#: ghex/callbacks.c:130
-msgid "Can not open file!"
+#: ghex/hex-document.c:81
+msgid "_Group Data As"
 msgstr ""
 
-#: ghex/callbacks.c:173
-msgid "Can't open file for writing!"
+#: ghex/hex-document.c:86
+msgid "_Add view"
 msgstr ""
 
-#: ghex/callbacks.c:197
-msgid "Select a file to open"
+#: ghex/hex-document.c:87
+msgid "Add a new view of the buffer"
 msgstr ""
 
-#: ghex/callbacks.c:215
-msgid "Select a file to save buffer as"
+#: ghex/hex-document.c:88
+msgid "_Remove view"
 msgstr ""
 
-#: ghex/callbacks.c:308 ghex/callbacks.c:331 ghex/callbacks.c:384
-msgid "There is no active buffer to search!"
+#: ghex/hex-document.c:89
+msgid "Remove the current view of the buffer"
 msgstr ""
 
-#: ghex/callbacks.c:316 ghex/callbacks.c:339 ghex/callbacks.c:392
-msgid "There seems to be no string to search for!"
-msgstr ""
-
-#: ghex/callbacks.c:322 ghex/callbacks.c:399
-msgid "End Of File reached"
-msgstr ""
-
-#: ghex/callbacks.c:346
-msgid "Beginning Of File reached"
-msgstr ""
-
-#: ghex/callbacks.c:354
-msgid "There is no active buffer to move the cursor in!"
-msgstr ""
-
-#: ghex/callbacks.c:359
-msgid "No offset has been specified!"
-msgstr ""
-
-#: ghex/callbacks.c:366
-msgid "The offset must be a positive integer value!"
-msgstr ""
-
-#: ghex/callbacks.c:371
-msgid "Can not position cursor beyond the End Of File!"
-msgstr ""
-
-#: ghex/callbacks.c:409 ghex/callbacks.c:448
-msgid "There is no active buffer to replace data in!"
-msgstr ""
-
-#: ghex/callbacks.c:420 ghex/callbacks.c:459
-msgid "Strange find or replace string!"
-msgstr ""
-
-#: ghex/callbacks.c:425 ghex/callbacks.c:464
-msgid "Both strings must be of the same length!"
-msgstr ""
-
-#: ghex/callbacks.c:438
-msgid "End Of File reached!"
-msgstr ""
-
-#: ghex/callbacks.c:479
-#, c-format
-msgid "Replaced %d occurencies."
-msgstr ""
-
-#: ghex/callbacks.c:546
-msgid "Can not open desired font!"
-msgstr ""
-
-#: ghex/callbacks.c:565
+#: ghex/main.c:44
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
 
-#: ghex/callbacks.c:589 ghex/ui.c:159
+#: ghex/main.c:68
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr ""
 
-#: ghex/callbacks.c:590 ghex/ui.c:219
+#: ghex/main.c:69
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr ""
 
-#: ghex/callbacks.c:591 ghex/ui.c:304
+#: ghex/main.c:70
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr ""
 
-#: ghex/callbacks.c:673
-msgid "ERROR"
-msgstr ""
-
-#: ghex/hex-document.c:55
-#, fuzzy
-msgid "_Bytes"
-msgstr "út"
-
-#: ghex/hex-document.c:56
-msgid "Group data by 8 bits"
-msgstr ""
-
-#: ghex/hex-document.c:57
-msgid "_Words"
-msgstr ""
-
-#: ghex/hex-document.c:58
-msgid "Group data by 16 bits"
-msgstr ""
-
-#: ghex/hex-document.c:59
-msgid "_Longwords"
-msgstr ""
-
-#: ghex/hex-document.c:60
-msgid "Group data by 32 bits"
-msgstr ""
-
-#: ghex/hex-document.c:75
-msgid "_Goto Byte..."
-msgstr ""
-
-#: ghex/hex-document.c:75
-msgid "Jump to a certain position"
-msgstr ""
-
-#: ghex/hex-document.c:78
-msgid "_Group Data As"
-msgstr ""
-
-#: ghex/ui.c:37
+#: ghex/ui.c:51
 #, fuzzy
 msgid "Open Con_verter..."
 msgstr "Otevøít kalendáø ..."
 
-#: ghex/ui.c:38
+#: ghex/ui.c:52
 msgid "Open base conversion dialog"
 msgstr ""
 
-#: ghex/ui.c:55
-msgid "_Add view"
-msgstr ""
-
-#: ghex/ui.c:56
-msgid "Add a new view of the buffer"
-msgstr ""
-
-#: ghex/ui.c:57
-msgid "_Remove view"
-msgstr ""
-
-#: ghex/ui.c:58
-msgid "Remove the current view of the buffer"
-msgstr ""
-
-#: ghex/ui.c:85
+#: ghex/ui.c:89
 #, fuzzy
 msgid "Bytes"
 msgstr "út"
 
-#: ghex/ui.c:86
+#: ghex/ui.c:90
 #, fuzzy
 msgid "Words"
 msgstr "Hodiny"
 
-#: ghex/ui.c:87
+#: ghex/ui.c:91
 msgid "Longwords"
 msgstr ""
 
-#: ghex/ui.c:111 mini-utils/idetool/idetool.c:142
-#: mini-utils/idetool/idetool.c:325
-msgid "Default"
-msgstr ""
-
-#: ghex/ui.c:112
-msgid "Notebook"
-msgstr ""
-
-#: ghex/ui.c:113
-msgid "Toplevel"
-msgstr ""
-
-#: ghex/ui.c:114
-#, fuzzy
-msgid "Modal"
-msgstr "Pondìlí"
-
-#: ghex/ui.c:119
+#: ghex/ui.c:96
 msgid "hex data"
 msgstr ""
 
-#: ghex/ui.c:120
+#: ghex/ui.c:97
 msgid "ASCII data"
 msgstr ""
 
-#: ghex/ui.c:168
+#: ghex/ui.c:174
+msgid "GHex, a binary file editor"
+msgstr ""
+
+#: ghex/ui.c:176
+msgid "Released under the terms of GNU Public License"
+msgstr ""
+
+#: ghex/ui.c:193 ghex/ui.c:344
+msgid "Error saving file!"
+msgstr ""
+
+#: ghex/ui.c:197 ghex/ui.c:339
 #, c-format
-msgid "Search for %s"
+msgid "Saved buffer to file %s"
 msgstr ""
 
-#: ghex/ui.c:184
-msgid "Find Next"
+#: ghex/ui.c:206
+msgid "Select a file to open"
 msgstr ""
 
-#: ghex/ui.c:191
-msgid "Find Previous"
+#: ghex/ui.c:224
+msgid "Select a file to save buffer as"
 msgstr ""
 
-#: ghex/ui.c:233
+#: ghex/ui.c:272
 #, c-format
-msgid "Replace %s"
+msgid "Really revert file %s?"
 msgstr ""
 
-#: ghex/ui.c:249
-msgid "Find next"
+#: ghex/ui.c:285
+#, c-format
+msgid "Reverted buffer from file %s"
 msgstr ""
 
-#: ghex/ui.c:256
-msgid "Replace"
+#: ghex/ui.c:300
+#, c-format
+msgid "Loaded file %s"
 msgstr ""
 
-#: ghex/ui.c:263
-msgid "Replace All"
+#: ghex/ui.c:305
+msgid "Can not open file!"
 msgstr ""
 
-#: ghex/ui.c:337
-msgid "GHex: Converter"
-msgstr ""
-
-#: ghex/ui.c:344
-msgid "Binary"
-msgstr ""
-
-#: ghex/ui.c:354
-msgid "Decimal"
-msgstr ""
-
-#: ghex/ui.c:364
-msgid "Hex"
-msgstr ""
-
-#: ghex/ui.c:374
-msgid "ASCII"
-msgstr ""
-
-#: ghex/ui.c:384
-msgid "Close"
-msgstr "Zavøít"
-
-#: ghex/ui.c:428
-msgid "Font"
-msgstr ""
-
-#: ghex/ui.c:444
-msgid "Browse..."
-msgstr ""
-
-#: ghex/ui.c:463
-msgid "Default Group Type"
-msgstr ""
-
-#: ghex/ui.c:479 gtt/options.c:195
-msgid "Display"
-msgstr "Zobrazit"
-
-#: ghex/ui.c:486
-#, fuzzy
-msgid "MDI Mode"
-msgstr "I-uzel"
-
-#: ghex/ui.c:503
-msgid "MDI"
+#: ghex/ui.c:348
+msgid "Can't open file for writing!"
 msgstr ""
 
 #. create the results box
@@ -529,111 +371,115 @@ msgstr ""
 msgid "_Timer"
 msgstr "Èas"
 
-#: gtt/options.c:203
+#: gtt/options.c:184
+msgid "Display"
+msgstr "Zobrazit"
+
+#: gtt/options.c:192
 msgid "Show Seconds"
 msgstr "Zobrazit vteøiny"
 
-#: gtt/options.c:209
+#: gtt/options.c:198
 msgid "Show Status Bar"
 msgstr "Zobrazit statusbar"
 
-#: gtt/options.c:215
+#: gtt/options.c:204
 msgid "Show Table Header"
 msgstr "Zobrazit hlavièku tabulek"
 
-#: gtt/options.c:229 gtt/options.c:527
+#: gtt/options.c:218 gtt/options.c:516
 msgid "Toolbar"
 msgstr ""
 
-#: gtt/options.c:237
+#: gtt/options.c:226
 msgid "Show Toolbar Icons"
 msgstr ""
 
-#: gtt/options.c:243
+#: gtt/options.c:232
 msgid "Show Toolbar Texts"
 msgstr ""
 
-#: gtt/options.c:249
+#: gtt/options.c:238
 msgid "Show Tooltips"
 msgstr ""
 
-#: gtt/options.c:255
+#: gtt/options.c:244
 msgid "Toolbar Segments"
 msgstr ""
 
-#: gtt/options.c:263
+#: gtt/options.c:252
 msgid "Show `New'"
 msgstr ""
 
-#: gtt/options.c:269
+#: gtt/options.c:258
 msgid "Show `Save', `Reload'"
 msgstr ""
 
-#: gtt/options.c:275
+#: gtt/options.c:264
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr ""
 
-#: gtt/options.c:281
+#: gtt/options.c:270
 msgid "Show `Properties'"
 msgstr ""
 
-#: gtt/options.c:287
+#: gtt/options.c:276
 msgid "Show `Timer'"
 msgstr ""
 
-#: gtt/options.c:293
+#: gtt/options.c:282
 msgid "Show `Preferences'"
 msgstr ""
 
-#: gtt/options.c:299
+#: gtt/options.c:288
 msgid "Show `Help'"
 msgstr ""
 
-#: gtt/options.c:305
+#: gtt/options.c:294
 msgid "Show `Quit'"
 msgstr ""
 
-#: gtt/options.c:319
+#: gtt/options.c:308
 msgid "Shell Commands"
 msgstr ""
 
-#: gtt/options.c:327
+#: gtt/options.c:316
 msgid "Switch Project Command:"
 msgstr ""
 
-#: gtt/options.c:338
+#: gtt/options.c:327
 msgid "No Project Command:"
 msgstr ""
 
-#: gtt/options.c:372
+#: gtt/options.c:361
 msgid "Logfile"
 msgstr ""
 
-#: gtt/options.c:380
+#: gtt/options.c:369
 msgid "Use Logfile"
 msgstr ""
 
-#: gtt/options.c:389
+#: gtt/options.c:378
 msgid "Filename:"
 msgstr ""
 
-#: gtt/options.c:403
+#: gtt/options.c:392
 msgid "Entry Start:"
 msgstr ""
 
-#: gtt/options.c:417
+#: gtt/options.c:406
 msgid "Entry Stop:"
 msgstr ""
 
-#: gtt/options.c:431
+#: gtt/options.c:420
 msgid "Timeout in secs:"
 msgstr ""
 
-#: gtt/options.c:508
+#: gtt/options.c:497
 msgid "Preferences"
 msgstr ""
 
-#: gtt/options.c:514
+#: gtt/options.c:503
 msgid "Misc"
 msgstr ""
 
@@ -645,43 +491,43 @@ msgstr ""
 msgid "stopped project %t"
 msgstr ""
 
-#: gtt/prop.c:60
+#: gtt/prop.c:55
 msgid "empty"
 msgstr ""
 
-#: gtt/prop.c:175
+#: gtt/prop.c:171
 msgid "Properties"
 msgstr ""
 
-#: gtt/prop.c:182
+#: gtt/prop.c:178
 msgid "Project"
 msgstr ""
 
-#: gtt/prop.c:202
+#: gtt/prop.c:197
 msgid "Project Title:"
 msgstr ""
 
-#: gtt/prop.c:214
+#: gtt/prop.c:209
 msgid "Project Description:"
 msgstr ""
 
-#: gtt/prop.c:226
+#: gtt/prop.c:221
 msgid "Project Time today:"
 msgstr ""
 
-#: gtt/prop.c:242 gtt/prop.c:280
+#: gtt/prop.c:237 gtt/prop.c:275
 msgid "hours"
 msgstr ""
 
-#: gtt/prop.c:253 gtt/prop.c:291
+#: gtt/prop.c:248 gtt/prop.c:286
 msgid "mins"
 msgstr ""
 
-#: gtt/prop.c:264 gtt/prop.c:302
+#: gtt/prop.c:259 gtt/prop.c:297
 msgid "secs"
 msgstr ""
 
-#: gtt/prop.c:268
+#: gtt/prop.c:263
 msgid "Project Time ever:"
 msgstr ""
 
@@ -955,100 +801,108 @@ msgstr ""
 msgid "Select a program to run"
 msgstr "Vyber program, který se spustí pøi alarmu"
 
-#: mini-utils/gshutdown/gshutdown.c:82
+#: mini-utils/gshutdown/gshutdown.c:83
 msgid "Shut Down"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:83
+#: mini-utils/gshutdown/gshutdown.c:84
 msgid "Single User Mode"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:84
+#: mini-utils/gshutdown/gshutdown.c:85
 msgid "Runlevel 2"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:85
+#: mini-utils/gshutdown/gshutdown.c:86
 msgid "Runlevel 3"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:86
+#: mini-utils/gshutdown/gshutdown.c:87
 msgid "Runlevel 4"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:87
+#: mini-utils/gshutdown/gshutdown.c:88
 msgid "Runlevel 5"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:88
+#: mini-utils/gshutdown/gshutdown.c:89
 msgid "Reboot"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:94
+#: mini-utils/gshutdown/gshutdown.c:95
 msgid "Are you sure you want to shut down the computer?"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:95
+#: mini-utils/gshutdown/gshutdown.c:96
 msgid "Are you sure you want to switch to single user mode?"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:96
+#: mini-utils/gshutdown/gshutdown.c:97
 msgid "Are you sure you want to switch to runlevel 2?"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:97
+#: mini-utils/gshutdown/gshutdown.c:98
 msgid "Are you sure you want to switch to runlevel 3?"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:98
+#: mini-utils/gshutdown/gshutdown.c:99
 msgid "Are you sure you want to switch to runlevel 4?"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:99
+#: mini-utils/gshutdown/gshutdown.c:100
 msgid "Are you sure you want to switch to runlevel 5?"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:100
+#: mini-utils/gshutdown/gshutdown.c:101
 msgid "Are you sure you want to reboot the system?"
 msgstr ""
 
+#: mini-utils/gshutdown/gshutdown.c:147
+msgid "You must be the super-user (root) to shut down or restart the computer."
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:149
+msgid "Close"
+msgstr "Zavøít"
+
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:173
+#: mini-utils/gshutdown/gshutdown.c:183
 msgid "Shutdown or Reboot"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:190 mini-utils/gshutdown/gshutdown.c:191
+#: mini-utils/gshutdown/gshutdown.c:200 mini-utils/gshutdown/gshutdown.c:201
 msgid "Easy"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:195 mini-utils/gshutdown/gshutdown.c:196
+#: mini-utils/gshutdown/gshutdown.c:205 mini-utils/gshutdown/gshutdown.c:206
 msgid "Advanced"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:228
+#: mini-utils/gshutdown/gshutdown.c:238
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
 msgstr ""
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:355
+#: mini-utils/gshutdown/gshutdown.c:365
 msgid "Revert to Defaults"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:365
+#: mini-utils/gshutdown/gshutdown.c:375
 #, fuzzy
 msgid "Commands"
 msgstr "Pøíkaz"
 
-#: mini-utils/gshutdown/gshutdown.c:370
+#: mini-utils/gshutdown/gshutdown.c:380
 msgid "Confirm before shutdown?"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:382
+#: mini-utils/gshutdown/gshutdown.c:392
 msgid "General"
 msgstr "Obecné"
 
-#: mini-utils/gshutdown/gshutdown.c:444
+#: mini-utils/gshutdown/gshutdown.c:454
 msgid "Don't ask next time."
 msgstr ""
 
@@ -1423,11 +1277,9 @@ msgstr ""
 msgid "Keep settings"
 msgstr ""
 
-#. IO
-#: mini-utils/idetool/idetool.c:168
-#, fuzzy
-msgid "PIO Mode"
-msgstr "I-uzel"
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
+msgid "Default"
+msgstr ""
 
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
@@ -1514,6 +1366,18 @@ msgstr ""
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Modal"
+#~ msgstr "Pondìlí"
+
+#, fuzzy
+#~ msgid "MDI Mode"
+#~ msgstr "I-uzel"
+
+#, fuzzy
+#~ msgid "PIO Mode"
+#~ msgstr "I-uzel"
 
 #, fuzzy
 #~ msgid "E_xit"

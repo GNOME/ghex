@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 1999-01-18 14:54-0500\n"
+"POT-Creation-Date: 1999-01-28 18:52-0600\n"
 "PO-Revision-Date: 1998-12-11 07:17+09:00\n"
 "Last-Translator: Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
 "Language-Team: <gnome@lists.hypercore.co.jp>\n"
@@ -33,113 +33,59 @@ msgstr ""
 "マウントされているファイルシステムの未使用領域を "
 "ダイヤル表示するちょっとしたプログラム。"
 
-#: ghex/callbacks.c:44
-msgid "GHex, a binary file editor"
-msgstr "GHex、バイナリファイルエディタ"
+#: ghex/hex-document.c:57
+msgid "_Bytes"
+msgstr "バイトで(_B)"
 
-#: ghex/callbacks.c:46
-msgid "Released under the terms of GNU Public License"
-msgstr "GNU一般許諾使用書に基づいてリリースされています"
+#: ghex/hex-document.c:58
+msgid "Group data by 8 bits"
+msgstr "データは8ビットで"
 
-#: ghex/callbacks.c:76 ghex/callbacks.c:169
-msgid "Error saving file!"
-msgstr "ファイル書き込みにエラー!"
+#: ghex/hex-document.c:59
+msgid "_Words"
+msgstr "ワードで(_W)"
 
-#: ghex/callbacks.c:80 ghex/callbacks.c:164
-#, fuzzy, c-format
-msgid "Saved buffer to file %s"
-msgstr "バッファの保存"
+#: ghex/hex-document.c:60
+msgid "Group data by 16 bits"
+msgstr "データは16ビットで"
 
-#: ghex/callbacks.c:97
-#, c-format
-msgid "Really revert file %s?"
-msgstr "本当にファイル %s を元に戻しますか?"
+#: ghex/hex-document.c:61
+msgid "_Longwords"
+msgstr "ロングワードで(_W)"
 
-#: ghex/callbacks.c:110
-#, fuzzy, c-format
-msgid "Reverted buffer from file %s"
-msgstr "バッファを戻す"
+#: ghex/hex-document.c:62
+msgid "Group data by 32 bits"
+msgstr "データは32ビットで"
 
-#: ghex/callbacks.c:125
-#, c-format
-msgid "Loaded file %s"
-msgstr ""
+#: ghex/hex-document.c:78
+msgid "_Goto Byte..."
+msgstr "Nバイト目へ(_G)..."
 
-#: ghex/callbacks.c:130
-msgid "Can not open file!"
-msgstr "ファイルが開けません!"
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "指定箇所へ飛ぶ"
 
-#: ghex/callbacks.c:173
-msgid "Can't open file for writing!"
-msgstr "ファイルに書き込めません!"
+#: ghex/hex-document.c:81
+msgid "_Group Data As"
+msgstr "データ表示は(_G)"
 
-#: ghex/callbacks.c:197
-msgid "Select a file to open"
-msgstr "開くファイルを選択"
+#: ghex/hex-document.c:86
+msgid "_Add view"
+msgstr "ビューの追加(_A)"
 
-#: ghex/callbacks.c:215
-msgid "Select a file to save buffer as"
-msgstr "バッファを書き込むファイル名は"
+#: ghex/hex-document.c:87
+msgid "Add a new view of the buffer"
+msgstr "バッファビューを追加"
 
-#: ghex/callbacks.c:308 ghex/callbacks.c:331 ghex/callbacks.c:384
-msgid "There is no active buffer to search!"
-msgstr "検索対象バッファの指定がありません!"
+#: ghex/hex-document.c:88
+msgid "_Remove view"
+msgstr "ビューの削除(_R)"
 
-#: ghex/callbacks.c:316 ghex/callbacks.c:339 ghex/callbacks.c:392
-msgid "There seems to be no string to search for!"
-msgstr "検索すべき文字列はないみたいです!"
+#: ghex/hex-document.c:89
+msgid "Remove the current view of the buffer"
+msgstr "現在のバッファビューを削除"
 
-#: ghex/callbacks.c:322 ghex/callbacks.c:399
-msgid "End Of File reached"
-msgstr "ファイル終端に到達"
-
-#: ghex/callbacks.c:346
-msgid "Beginning Of File reached"
-msgstr "ファイル先頭に到達"
-
-#: ghex/callbacks.c:354
-msgid "There is no active buffer to move the cursor in!"
-msgstr "カーソルを動かすべきアクティブなバッファがありません!"
-
-#: ghex/callbacks.c:359
-msgid "No offset has been specified!"
-msgstr "オフセットが指定されていません!"
-
-#: ghex/callbacks.c:366
-msgid "The offset must be a positive integer value!"
-msgstr "オフセットは正の数でなければいけません!"
-
-#: ghex/callbacks.c:371
-msgid "Can not position cursor beyond the End Of File!"
-msgstr "ファイルの終端より先にはカーソルを移動できません!"
-
-#: ghex/callbacks.c:409 ghex/callbacks.c:448
-msgid "There is no active buffer to replace data in!"
-msgstr "置換を行なうべきアクティブなバッファがありません!"
-
-#: ghex/callbacks.c:420 ghex/callbacks.c:459
-#, fuzzy
-msgid "Strange find or replace string!"
-msgstr "検索もしくは文字置換のエラーです!"
-
-#: ghex/callbacks.c:425 ghex/callbacks.c:464
-msgid "Both strings must be of the same length!"
-msgstr "文字は双方同じ長さでなければいけません!"
-
-#: ghex/callbacks.c:438
-msgid "End Of File reached!"
-msgstr "ファイル終端に到達!"
-
-#: ghex/callbacks.c:479
-#, c-format
-msgid "Replaced %d occurencies."
-msgstr "%d箇所置き換えました。"
-
-#: ghex/callbacks.c:546
-msgid "Can not open desired font!"
-msgstr "お望みのフォントを読めません!"
-
-#: ghex/callbacks.c:565
+#: ghex/main.c:44
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -148,200 +94,97 @@ msgstr ""
 "ファイル%sは前回セーブしてから更新されています。\n"
 "変更をセーブしますか?"
 
-#: ghex/callbacks.c:589 ghex/ui.c:159
+#: ghex/main.c:68
 #, fuzzy, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex: データ検索"
 
-#: ghex/callbacks.c:590 ghex/ui.c:219
+#: ghex/main.c:69
 #, fuzzy, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex: 検索およびデータの置換"
 
-#: ghex/callbacks.c:591 ghex/ui.c:304
+#: ghex/main.c:70
 #, fuzzy, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex: nバイト目にジャンプ"
 
-#: ghex/callbacks.c:673
-msgid "ERROR"
-msgstr ""
-
-#: ghex/hex-document.c:55
-msgid "_Bytes"
-msgstr "バイトで(_B)"
-
-#: ghex/hex-document.c:56
-msgid "Group data by 8 bits"
-msgstr "データは8ビットで"
-
-#: ghex/hex-document.c:57
-msgid "_Words"
-msgstr "ワードで(_W)"
-
-#: ghex/hex-document.c:58
-msgid "Group data by 16 bits"
-msgstr "データは16ビットで"
-
-#: ghex/hex-document.c:59
-msgid "_Longwords"
-msgstr "ロングワードで(_W)"
-
-#: ghex/hex-document.c:60
-msgid "Group data by 32 bits"
-msgstr "データは32ビットで"
-
-#: ghex/hex-document.c:75
-msgid "_Goto Byte..."
-msgstr "Nバイト目へ(_G)..."
-
-#: ghex/hex-document.c:75
-msgid "Jump to a certain position"
-msgstr "指定箇所へ飛ぶ"
-
-#: ghex/hex-document.c:78
-msgid "_Group Data As"
-msgstr "データ表示は(_G)"
-
-#: ghex/ui.c:37
+#: ghex/ui.c:51
 #, fuzzy
 msgid "Open Con_verter..."
 msgstr "変換器を開く(_C)..."
 
-#: ghex/ui.c:38
+#: ghex/ui.c:52
 msgid "Open base conversion dialog"
 msgstr "変換ダイアログを開く"
 
-#: ghex/ui.c:55
-msgid "_Add view"
-msgstr "ビューの追加(_A)"
-
-#: ghex/ui.c:56
-msgid "Add a new view of the buffer"
-msgstr "バッファビューを追加"
-
-#: ghex/ui.c:57
-msgid "_Remove view"
-msgstr "ビューの削除(_R)"
-
-#: ghex/ui.c:58
-msgid "Remove the current view of the buffer"
-msgstr "現在のバッファビューを削除"
-
-#: ghex/ui.c:85
+#: ghex/ui.c:89
 msgid "Bytes"
 msgstr "バイト"
 
-#: ghex/ui.c:86
+#: ghex/ui.c:90
 msgid "Words"
 msgstr "ワード"
 
-#: ghex/ui.c:87
+#: ghex/ui.c:91
 msgid "Longwords"
 msgstr "ロングワード"
 
-#: ghex/ui.c:111 mini-utils/idetool/idetool.c:142
-#: mini-utils/idetool/idetool.c:325
-msgid "Default"
-msgstr "デフォルト"
-
-#: ghex/ui.c:112
-msgid "Notebook"
-msgstr "ノートブック"
-
-#: ghex/ui.c:113
-msgid "Toplevel"
-msgstr "トップレベル"
-
-#: ghex/ui.c:114
-msgid "Modal"
-msgstr "モーダル"
-
-#: ghex/ui.c:119
+#: ghex/ui.c:96
 msgid "hex data"
 msgstr "16進データ"
 
-#: ghex/ui.c:120
+#: ghex/ui.c:97
 msgid "ASCII data"
 msgstr "ASCIIデータ"
 
-#: ghex/ui.c:168
+#: ghex/ui.c:174
+msgid "GHex, a binary file editor"
+msgstr "GHex、バイナリファイルエディタ"
+
+#: ghex/ui.c:176
+msgid "Released under the terms of GNU Public License"
+msgstr "GNU一般許諾使用書に基づいてリリースされています"
+
+#: ghex/ui.c:193 ghex/ui.c:344
+msgid "Error saving file!"
+msgstr "ファイル書き込みにエラー!"
+
+#: ghex/ui.c:197 ghex/ui.c:339
+#, fuzzy, c-format
+msgid "Saved buffer to file %s"
+msgstr "バッファの保存"
+
+#: ghex/ui.c:206
+msgid "Select a file to open"
+msgstr "開くファイルを選択"
+
+#: ghex/ui.c:224
+msgid "Select a file to save buffer as"
+msgstr "バッファを書き込むファイル名は"
+
+#: ghex/ui.c:272
 #, c-format
-msgid "Search for %s"
-msgstr "%sを探す"
+msgid "Really revert file %s?"
+msgstr "本当にファイル %s を元に戻しますか?"
 
-#: ghex/ui.c:184
-msgid "Find Next"
-msgstr "grep gnome_mdi_get_menubar *.[ch"
+#: ghex/ui.c:285
+#, fuzzy, c-format
+msgid "Reverted buffer from file %s"
+msgstr "バッファを戻す"
 
-#: ghex/ui.c:191
-msgid "Find Previous"
-msgstr "以前を検索"
-
-#: ghex/ui.c:233
+#: ghex/ui.c:300
 #, c-format
-msgid "Replace %s"
-msgstr "%sを置換"
-
-#: ghex/ui.c:249
-msgid "Find next"
-msgstr "以降を検索"
-
-#: ghex/ui.c:256
-msgid "Replace"
-msgstr "置換"
-
-#: ghex/ui.c:263
-msgid "Replace All"
-msgstr "全て置換"
-
-#: ghex/ui.c:337
-msgid "GHex: Converter"
-msgstr "GHex: 変換器"
-
-#: ghex/ui.c:344
-msgid "Binary"
-msgstr "バイナリ"
-
-#: ghex/ui.c:354
-msgid "Decimal"
-msgstr "10進"
-
-#: ghex/ui.c:364
-msgid "Hex"
-msgstr "16進"
-
-#: ghex/ui.c:374
-msgid "ASCII"
-msgstr "ASCII"
-
-#: ghex/ui.c:384
-msgid "Close"
-msgstr "閉じる"
-
-#: ghex/ui.c:428
-msgid "Font"
-msgstr "フォント"
-
-#: ghex/ui.c:444
-msgid "Browse..."
-msgstr "参照..."
-
-#: ghex/ui.c:463
-msgid "Default Group Type"
-msgstr "デフォルトのデータ表示"
-
-#: ghex/ui.c:479 gtt/options.c:195
-msgid "Display"
-msgstr "表示"
-
-#: ghex/ui.c:486
-msgid "MDI Mode"
-msgstr "MDIモード"
-
-#: ghex/ui.c:503
-msgid "MDI"
+msgid "Loaded file %s"
 msgstr ""
+
+#: ghex/ui.c:305
+msgid "Can not open file!"
+msgstr "ファイルが開けません!"
+
+#: ghex/ui.c:348
+msgid "Can't open file for writing!"
+msgstr "ファイルに書き込めません!"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
@@ -532,111 +375,115 @@ msgstr "動作中のタイマー(_T)"
 msgid "_Timer"
 msgstr "タイマー(_T)"
 
-#: gtt/options.c:203
+#: gtt/options.c:184
+msgid "Display"
+msgstr "表示"
+
+#: gtt/options.c:192
 msgid "Show Seconds"
 msgstr "秒を表示"
 
-#: gtt/options.c:209
+#: gtt/options.c:198
 msgid "Show Status Bar"
 msgstr "ステータスバーを表示"
 
-#: gtt/options.c:215
+#: gtt/options.c:204
 msgid "Show Table Header"
 msgstr "テーブル見出しを表示"
 
-#: gtt/options.c:229 gtt/options.c:527
+#: gtt/options.c:218 gtt/options.c:516
 msgid "Toolbar"
 msgstr "ツールバー"
 
-#: gtt/options.c:237
+#: gtt/options.c:226
 msgid "Show Toolbar Icons"
 msgstr "ツールバーにアイコンを表示"
 
-#: gtt/options.c:243
+#: gtt/options.c:232
 msgid "Show Toolbar Texts"
 msgstr "ツールバーにテキストを表示"
 
-#: gtt/options.c:249
+#: gtt/options.c:238
 msgid "Show Tooltips"
 msgstr "ツールチップの表示"
 
-#: gtt/options.c:255
+#: gtt/options.c:244
 msgid "Toolbar Segments"
 msgstr "ツールバーの領域"
 
-#: gtt/options.c:263
+#: gtt/options.c:252
 msgid "Show `New'"
 msgstr "`新規'の表示"
 
-#: gtt/options.c:269
+#: gtt/options.c:258
 msgid "Show `Save', `Reload'"
 msgstr "`保存'、`読み直し'の表示"
 
-#: gtt/options.c:275
+#: gtt/options.c:264
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "`切り出し'、`コピー'、`貼り付け'の表示"
 
-#: gtt/options.c:281
+#: gtt/options.c:270
 msgid "Show `Properties'"
 msgstr "`設定'の表示"
 
-#: gtt/options.c:287
+#: gtt/options.c:276
 msgid "Show `Timer'"
 msgstr "`タイマー'の表示"
 
-#: gtt/options.c:293
+#: gtt/options.c:282
 msgid "Show `Preferences'"
 msgstr "`好み'の表示"
 
-#: gtt/options.c:299
+#: gtt/options.c:288
 msgid "Show `Help'"
 msgstr "`ヘルプ'の表示"
 
-#: gtt/options.c:305
+#: gtt/options.c:294
 msgid "Show `Quit'"
 msgstr "`終了'の表示"
 
-#: gtt/options.c:319
+#: gtt/options.c:308
 msgid "Shell Commands"
 msgstr "シェルコマンド"
 
-#: gtt/options.c:327
+#: gtt/options.c:316
 msgid "Switch Project Command:"
 msgstr "プロジェクト切替え時の命令:"
 
-#: gtt/options.c:338
+#: gtt/options.c:327
 msgid "No Project Command:"
 msgstr "プロジェクトがない時の命令:"
 
-#: gtt/options.c:372
+#: gtt/options.c:361
 msgid "Logfile"
 msgstr "ログファイル"
 
-#: gtt/options.c:380
+#: gtt/options.c:369
 msgid "Use Logfile"
 msgstr "ログファイルを使う"
 
-#: gtt/options.c:389
+#: gtt/options.c:378
 msgid "Filename:"
 msgstr "ファイル名:"
 
-#: gtt/options.c:403
+#: gtt/options.c:392
 msgid "Entry Start:"
 msgstr "始動時のエントリ:"
 
-#: gtt/options.c:417
+#: gtt/options.c:406
 msgid "Entry Stop:"
 msgstr "停止時のエントリ:"
 
-#: gtt/options.c:431
+#: gtt/options.c:420
 msgid "Timeout in secs:"
 msgstr "タイムアウト時間(秒):"
 
-#: gtt/options.c:508
+#: gtt/options.c:497
 msgid "Preferences"
 msgstr "設定"
 
-#: gtt/options.c:514
+#: gtt/options.c:503
 msgid "Misc"
 msgstr "諸々"
 
@@ -648,43 +495,43 @@ msgstr "プロジェクト %t 開始しました"
 msgid "stopped project %t"
 msgstr "プロジェクト %t を停止しました"
 
-#: gtt/prop.c:60
+#: gtt/prop.c:55
 msgid "empty"
 msgstr "空"
 
-#: gtt/prop.c:175
+#: gtt/prop.c:171
 msgid "Properties"
 msgstr "設定"
 
-#: gtt/prop.c:182
+#: gtt/prop.c:178
 msgid "Project"
 msgstr "プロジェクト"
 
-#: gtt/prop.c:202
+#: gtt/prop.c:197
 msgid "Project Title:"
 msgstr "プロジェクト名:"
 
-#: gtt/prop.c:214
+#: gtt/prop.c:209
 msgid "Project Description:"
 msgstr "プロジェクトの説明:"
 
-#: gtt/prop.c:226
+#: gtt/prop.c:221
 msgid "Project Time today:"
 msgstr "今日プロジェクトに費やした時間"
 
-#: gtt/prop.c:242 gtt/prop.c:280
+#: gtt/prop.c:237 gtt/prop.c:275
 msgid "hours"
 msgstr "時間"
 
-#: gtt/prop.c:253 gtt/prop.c:291
+#: gtt/prop.c:248 gtt/prop.c:286
 msgid "mins"
 msgstr "分"
 
-#: gtt/prop.c:264 gtt/prop.c:302
+#: gtt/prop.c:259 gtt/prop.c:297
 msgid "secs"
 msgstr "秒"
 
-#: gtt/prop.c:268
+#: gtt/prop.c:263
 msgid "Project Time ever:"
 msgstr "これまでプロジェクトに費やした時間:"
 
@@ -960,76 +807,85 @@ msgstr "キャッシュ"
 msgid "Select a program to run"
 msgstr "起動時にスタートするプロジェクトを選択"
 
-#: mini-utils/gshutdown/gshutdown.c:82
+#: mini-utils/gshutdown/gshutdown.c:83
 msgid "Shut Down"
 msgstr "シャットダウン"
 
-#: mini-utils/gshutdown/gshutdown.c:83
+#: mini-utils/gshutdown/gshutdown.c:84
 msgid "Single User Mode"
 msgstr "シングルユーザーモード"
 
-#: mini-utils/gshutdown/gshutdown.c:84
+#: mini-utils/gshutdown/gshutdown.c:85
 msgid "Runlevel 2"
 msgstr "実行レベル2"
 
-#: mini-utils/gshutdown/gshutdown.c:85
+#: mini-utils/gshutdown/gshutdown.c:86
 msgid "Runlevel 3"
 msgstr "実行レベル3"
 
-#: mini-utils/gshutdown/gshutdown.c:86
+#: mini-utils/gshutdown/gshutdown.c:87
 msgid "Runlevel 4"
 msgstr "実行レベル4"
 
-#: mini-utils/gshutdown/gshutdown.c:87
+#: mini-utils/gshutdown/gshutdown.c:88
 msgid "Runlevel 5"
 msgstr "実行レベル5"
 
-#: mini-utils/gshutdown/gshutdown.c:88
+#: mini-utils/gshutdown/gshutdown.c:89
 msgid "Reboot"
 msgstr "リブート"
 
-#: mini-utils/gshutdown/gshutdown.c:94
+#: mini-utils/gshutdown/gshutdown.c:95
 msgid "Are you sure you want to shut down the computer?"
 msgstr "本当にコンピュータをシャットダウンしてしていいのですね?"
 
-#: mini-utils/gshutdown/gshutdown.c:95
+#: mini-utils/gshutdown/gshutdown.c:96
 msgid "Are you sure you want to switch to single user mode?"
 msgstr "本当にシングルユーザーモードにしていいのですね?"
 
-#: mini-utils/gshutdown/gshutdown.c:96
+#: mini-utils/gshutdown/gshutdown.c:97
 msgid "Are you sure you want to switch to runlevel 2?"
 msgstr "実行レベルを本当に2にしていいのですね?"
 
-#: mini-utils/gshutdown/gshutdown.c:97
+#: mini-utils/gshutdown/gshutdown.c:98
 msgid "Are you sure you want to switch to runlevel 3?"
 msgstr "実行レベルを本当に3にしていいのですね?"
 
-#: mini-utils/gshutdown/gshutdown.c:98
+#: mini-utils/gshutdown/gshutdown.c:99
 msgid "Are you sure you want to switch to runlevel 4?"
 msgstr "実行レベルを本当に4にしていいのですね?"
 
-#: mini-utils/gshutdown/gshutdown.c:99
+#: mini-utils/gshutdown/gshutdown.c:100
 msgid "Are you sure you want to switch to runlevel 5?"
 msgstr "実行レベルを本当に5にしていいのですね?"
 
-#: mini-utils/gshutdown/gshutdown.c:100
+#: mini-utils/gshutdown/gshutdown.c:101
 msgid "Are you sure you want to reboot the system?"
 msgstr "システムを本当にリブートしていいのですね?"
 
+#: mini-utils/gshutdown/gshutdown.c:147
+#, fuzzy
+msgid "You must be the super-user (root) to shut down or restart the computer."
+msgstr "本当にコンピュータをシャットダウンしてしていいのですね?"
+
+#: mini-utils/gshutdown/gshutdown.c:149
+msgid "Close"
+msgstr "閉じる"
+
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:173
+#: mini-utils/gshutdown/gshutdown.c:183
 msgid "Shutdown or Reboot"
 msgstr "シャットダウン/リブート"
 
-#: mini-utils/gshutdown/gshutdown.c:190 mini-utils/gshutdown/gshutdown.c:191
+#: mini-utils/gshutdown/gshutdown.c:200 mini-utils/gshutdown/gshutdown.c:201
 msgid "Easy"
 msgstr "簡易"
 
-#: mini-utils/gshutdown/gshutdown.c:195 mini-utils/gshutdown/gshutdown.c:196
+#: mini-utils/gshutdown/gshutdown.c:205 mini-utils/gshutdown/gshutdown.c:206
 msgid "Advanced"
 msgstr "高等"
 
-#: mini-utils/gshutdown/gshutdown.c:228
+#: mini-utils/gshutdown/gshutdown.c:238
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
@@ -1038,23 +894,23 @@ msgstr ""
 "まだ保存されていないデータは全て失われます。"
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:355
+#: mini-utils/gshutdown/gshutdown.c:365
 msgid "Revert to Defaults"
 msgstr "デフォルトに戻す"
 
-#: mini-utils/gshutdown/gshutdown.c:365
+#: mini-utils/gshutdown/gshutdown.c:375
 msgid "Commands"
 msgstr "コマンド"
 
-#: mini-utils/gshutdown/gshutdown.c:370
+#: mini-utils/gshutdown/gshutdown.c:380
 msgid "Confirm before shutdown?"
 msgstr "シャットダウンの前には確認する?"
 
-#: mini-utils/gshutdown/gshutdown.c:382
+#: mini-utils/gshutdown/gshutdown.c:392
 msgid "General"
 msgstr "一般"
 
-#: mini-utils/gshutdown/gshutdown.c:444
+#: mini-utils/gshutdown/gshutdown.c:454
 msgid "Don't ask next time."
 msgstr "もう聞かない"
 
@@ -1422,10 +1278,9 @@ msgstr "このドライブは設定を保持してくれません。"
 msgid "Keep settings"
 msgstr "設定を保持"
 
-#. IO
-#: mini-utils/idetool/idetool.c:168
-msgid "PIO Mode"
-msgstr "PIOモード"
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
+msgid "Default"
+msgstr "デフォルト"
 
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
@@ -1506,6 +1361,109 @@ msgstr "スーパーユーザのみがこのツールを使えます"
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "IDEドライブは付いていないようですね"
+
+#~ msgid "There is no active buffer to search!"
+#~ msgstr "検索対象バッファの指定がありません!"
+
+#~ msgid "There seems to be no string to search for!"
+#~ msgstr "検索すべき文字列はないみたいです!"
+
+#~ msgid "End Of File reached"
+#~ msgstr "ファイル終端に到達"
+
+#~ msgid "Beginning Of File reached"
+#~ msgstr "ファイル先頭に到達"
+
+#~ msgid "There is no active buffer to move the cursor in!"
+#~ msgstr "カーソルを動かすべきアクティブなバッファがありません!"
+
+#~ msgid "No offset has been specified!"
+#~ msgstr "オフセットが指定されていません!"
+
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "オフセットは正の数でなければいけません!"
+
+#~ msgid "Can not position cursor beyond the End Of File!"
+#~ msgstr "ファイルの終端より先にはカーソルを移動できません!"
+
+#~ msgid "There is no active buffer to replace data in!"
+#~ msgstr "置換を行なうべきアクティブなバッファがありません!"
+
+#, fuzzy
+#~ msgid "Strange find or replace string!"
+#~ msgstr "検索もしくは文字置換のエラーです!"
+
+#~ msgid "Both strings must be of the same length!"
+#~ msgstr "文字は双方同じ長さでなければいけません!"
+
+#~ msgid "End Of File reached!"
+#~ msgstr "ファイル終端に到達!"
+
+#~ msgid "Replaced %d occurencies."
+#~ msgstr "%d箇所置き換えました。"
+
+#~ msgid "Can not open desired font!"
+#~ msgstr "お望みのフォントを読めません!"
+
+#~ msgid "Notebook"
+#~ msgstr "ノートブック"
+
+#~ msgid "Toplevel"
+#~ msgstr "トップレベル"
+
+#~ msgid "Modal"
+#~ msgstr "モーダル"
+
+#~ msgid "Search for %s"
+#~ msgstr "%sを探す"
+
+#~ msgid "Find Next"
+#~ msgstr "grep gnome_mdi_get_menubar *.[ch"
+
+#~ msgid "Find Previous"
+#~ msgstr "以前を検索"
+
+#~ msgid "Replace %s"
+#~ msgstr "%sを置換"
+
+#~ msgid "Find next"
+#~ msgstr "以降を検索"
+
+#~ msgid "Replace"
+#~ msgstr "置換"
+
+#~ msgid "Replace All"
+#~ msgstr "全て置換"
+
+#~ msgid "GHex: Converter"
+#~ msgstr "GHex: 変換器"
+
+#~ msgid "Binary"
+#~ msgstr "バイナリ"
+
+#~ msgid "Decimal"
+#~ msgstr "10進"
+
+#~ msgid "Hex"
+#~ msgstr "16進"
+
+#~ msgid "ASCII"
+#~ msgstr "ASCII"
+
+#~ msgid "Font"
+#~ msgstr "フォント"
+
+#~ msgid "Browse..."
+#~ msgstr "参照..."
+
+#~ msgid "Default Group Type"
+#~ msgstr "デフォルトのデータ表示"
+
+#~ msgid "MDI Mode"
+#~ msgstr "MDIモード"
+
+#~ msgid "PIO Mode"
+#~ msgstr "PIOモード"
 
 #~ msgid "E_xit"
 #~ msgstr "終了(_X)"
