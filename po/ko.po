@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 1999-09-28 17:18-0400\n"
+"POT-Creation-Date: 1999-11-26 15:32+0100\n"
 "PO-Revision-Date: 1999-09-10 21:48+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@adam.kaist.ac.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -189,12 +189,12 @@ msgid "Group data by 32 bits"
 msgstr "데이타를 32 비트단위로 모음"
 
 #: ghex/hex-document.c:78
-msgid "_Goto Byte..."
-msgstr "바이트로 가기(_G)..."
-
-#: ghex/hex-document.c:78
 msgid "Jump to a certain position"
 msgstr "특정 위치로 이동"
+
+#: ghex/hex-document.c:78
+msgid "_Goto Byte..."
+msgstr "바이트로 가기(_G)..."
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -490,44 +490,44 @@ msgstr "유닉스 find/grep/locate 명령의 프론트 엔드"
 msgid "Gnome Search Tool"
 msgstr "그놈 찾기 도구"
 
-#: gstripchart/gstripchart.c:423
+#: gstripchart/gstripchart.c:427
 msgid "rparen expected"
 msgstr "오른쪽 괄호가 있어야 합니다"
 
-#: gstripchart/gstripchart.c:440
+#: gstripchart/gstripchart.c:444
 #, c-format
 msgid "no such field: %d"
 msgstr "그런 필드가 없습니다: %d"
 
-#: gstripchart/gstripchart.c:468
+#: gstripchart/gstripchart.c:472
 msgid "missing variable identifer"
 msgstr "변수명이 없습니다"
 
-#: gstripchart/gstripchart.c:470
+#: gstripchart/gstripchart.c:474
 #, c-format
 msgid "invalid variable identifer: %s"
 msgstr "변수명이 잘못되었습니다: %s"
 
-#: gstripchart/gstripchart.c:474
+#: gstripchart/gstripchart.c:478
 msgid "number expected"
 msgstr "숫자가 와야 합니다"
 
-#: gstripchart/gstripchart.c:553
+#: gstripchart/gstripchart.c:557
 #, c-format
 msgid "extra gunk at end: \"%s\""
 msgstr "끝에 쓸데 없는 것이 붙어 있습니다: \"%s\""
 
-#: gstripchart/gstripchart.c:630
+#: gstripchart/gstripchart.c:635
 #, c-format
 msgid "%s, line %d: "
 msgstr "%s, %d번째 줄: "
 
-#: gstripchart/gstripchart.c:707
+#: gstripchart/gstripchart.c:712
 #, c-format
 msgid "can't open config file \"%s\""
 msgstr "설정 파일 \"%s\"을(를) 열 수 없습니다"
 
-#: gstripchart/gstripchart.c:734
+#: gstripchart/gstripchart.c:739
 #, c-format
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
@@ -535,43 +535,39 @@ msgstr ""
 "설정 파일을 열 수 없습니다: \"./gstripchart.conf\", \"%s\", \"%s\", 혹은 "
 "\"%s\""
 
-#: gstripchart/gstripchart.c:739
+#: gstripchart/gstripchart.c:744
 #, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
 msgstr "설정 파일을 열 수 없습니다: \"./gstripchart.conf\", \"%s\", or \"%s\""
 
-#: gstripchart/gstripchart.c:796
-#, c-format
-msgid "invalid display type: %s"
-msgstr "표시 타입이 잘못되었습니다: %s"
-
-#: gstripchart/gstripchart.c:830
+#: gstripchart/gstripchart.c:821
 msgid "identifier or begin must be first"
 msgstr "변수명 혹은 begin은 첫번째로 와야 합니다"
 
-#: gstripchart/gstripchart.c:837 gstripchart/gstripchart.c:853
+#: gstripchart/gstripchart.c:829 gstripchart/gstripchart.c:846
 #, c-format
 msgid "unrecognized color: %s"
 msgstr "알 수 없는 색깔: %s"
 
-#: gstripchart/gstripchart.c:880
+#: gstripchart/gstripchart.c:873
 #, c-format
 msgid "invalid option: \"%s\""
 msgstr "잘못된 옵션: \"%s\""
 
-#: gstripchart/gstripchart.c:1409
+#: gstripchart/gstripchart.c:1423
 msgid "E_xit"
 msgstr "끝내기(_X)"
 
-#: gstripchart/gstripchart.c:1409
+#: gstripchart/gstripchart.c:1423
 msgid "Terminate the stripchart program"
 msgstr "스트립차트 프로그램 끝내기"
 
-#: gstripchart/gstripchart.c:1425
-msgid "Copyright 1998 John Kodis"
+#: gstripchart/gstripchart.c:1439
+#, fuzzy
+msgid "Copyright 1998,99 John Kodis"
 msgstr "Copyright 1998 John Kodis"
 
-#: gstripchart/gstripchart.c:1427
+#: gstripchart/gstripchart.c:1441
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -584,167 +580,231 @@ msgstr ""
 "것입니다.  그 외에 재치 있게 사용하는 방법은 관심있는 사용자에게 연습 문제로 "
 "남겨 둡니다."
 
-#: gstripchart/gstripchart.c:1440
-msgid "_About"
-msgstr "이 프로그램은(_A)"
-
-#: gstripchart/gstripchart.c:1440
+#: gstripchart/gstripchart.c:1454
 msgid "Info about the striphart program"
 msgstr "스트립차트 프로그램 정보"
 
-#: gstripchart/gstripchart.c:1451
+#: gstripchart/gstripchart.c:1454
+msgid "_About"
+msgstr "이 프로그램은(_A)"
+
+#: gstripchart/gstripchart.c:1465
 msgid "_File"
 msgstr "파일(_F)"
 
-#: gstripchart/gstripchart.c:1452
+#: gstripchart/gstripchart.c:1466
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: gstripchart/gstripchart.c:1516 gstripchart/gstripchart.c:1633
+#: gstripchart/gstripchart.c:1530 gstripchart/gstripchart.c:1647
 msgid "Param"
 msgstr "변수"
 
-#: gstripchart/gstripchart.c:1516 mini-utils/gcolorsel/gcolorsel.c:156
-#: mini-utils/guname/moreinfo.c:218
+#: gstripchart/gstripchart.c:1530 mini-utils/gcolorsel/gcolorsel.c:156
+#: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "값"
 
-#: gstripchart/gstripchart.c:1520
+#: gstripchart/gstripchart.c:1534
 msgid "Identifier"
 msgstr "변수명"
 
-#: gstripchart/gstripchart.c:1522 mini-utils/gcolorsel/gcolorsel.c:155
+#: gstripchart/gstripchart.c:1536 mini-utils/gcolorsel/gcolorsel.c:155
 msgid "Color"
 msgstr "색상"
 
-#: gstripchart/gstripchart.c:1524
+#: gstripchart/gstripchart.c:1538
 msgid "Filename"
 msgstr "파일 이름"
 
-#: gstripchart/gstripchart.c:1526
+#: gstripchart/gstripchart.c:1540
 msgid "Pattern"
 msgstr "패턴"
 
-#: gstripchart/gstripchart.c:1528
+#: gstripchart/gstripchart.c:1542
 msgid "Equation"
 msgstr "수식"
 
-#: gstripchart/gstripchart.c:1530
+#: gstripchart/gstripchart.c:1544
 msgid "Expected range"
 msgstr "예상 범위"
 
-#: gstripchart/gstripchart.c:1534
+#: gstripchart/gstripchart.c:1548
 msgid "Displayed range"
 msgstr "표시 범위:"
 
-#: gstripchart/gstripchart.c:1538
+#: gstripchart/gstripchart.c:1552
 msgid "Current value"
 msgstr "현재 값"
 
-#: gstripchart/gstripchart.c:1545
+#: gstripchart/gstripchart.c:1559
 msgid "Active"
 msgstr "동작"
 
-#: gstripchart/gstripchart.c:1561
+#: gstripchart/gstripchart.c:1575
 msgid "Gnome Stripchart Parameters"
 msgstr "그놈 스트립차트 매개 변수"
 
-#: gstripchart/gstripchart.c:1633
+#: gstripchart/gstripchart.c:1647
 msgid "Current"
 msgstr "현재"
 
-#: gstripchart/gstripchart.c:1633
+#: gstripchart/gstripchart.c:1647
 msgid "Top"
 msgstr "최고"
 
-#: gstripchart/gstripchart.c:1661
+#: gstripchart/gstripchart.c:1675 gstripchart/gstripchart.c:1950
 msgid "Help"
 msgstr "도움말"
 
-#: gstripchart/gstripchart.c:1667 mini-utils/gshutdown/gshutdown.c:318
+#: gstripchart/gstripchart.c:1681 gstripchart/gstripchart.c:1953
+#: mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "이 프로그램은"
 
-#: gstripchart/gstripchart.c:1673
+#: gstripchart/gstripchart.c:1687
 msgid "Params"
 msgstr "파라미터"
 
-#: gstripchart/gstripchart.c:1679
+#: gstripchart/gstripchart.c:1693
 msgid "Exit"
 msgstr "끝내기"
 
-#. Create a top-level window. Set the title, minimum size (_usize),
-#. initial size (_default_size), and establish delete and destroy
-#. event handlers.
-#: gstripchart/gstripchart.c:1781
-msgid "gstripchart"
-msgstr "스트립차트"
-
-#: gstripchart/gstripchart.c:1781
+#: gstripchart/gstripchart.c:1799
 msgid "Gnome stripchart viewer"
 msgstr "그놈 스트립차트 뷰어"
 
-#: gstripchart/gstripchart.c:1860
+#. Create a top-level application window. Set minimum size (_usize),
+#. initial size (_default_size), and establish delete and destroy
+#. event handlers.
+#: gstripchart/gstripchart.c:1799
+msgid "gstripchart"
+msgstr "스트립차트"
+
+#: gstripchart/gstripchart.c:1956
+#, fuzzy
+msgid "Params..."
+msgstr "파라미터"
+
+#: gstripchart/gstripchart.c:2000
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "표시 타입이 틀렸습니다: %s\n"
 
-#: gstripchart/gstripchart.c:1887
-msgid "Geometry string: WxH+X+Y"
-msgstr "위치 및 크기 문자열: WxH+X+Y"
-
-#: gstripchart/gstripchart.c:1887
+#: gstripchart/gstripchart.c:2025
 msgid "GEO"
 msgstr "위치"
 
-#: gstripchart/gstripchart.c:1889
+#: gstripchart/gstripchart.c:2025
+msgid "Geometry string: WxH+X+Y"
+msgstr "위치 및 크기 문자열: WxH+X+Y"
+
+#: gstripchart/gstripchart.c:2027
 msgid "Configuration file name"
 msgstr "설정 파일 이름"
 
-#: gstripchart/gstripchart.c:1889
+#: gstripchart/gstripchart.c:2027
 msgid "FILE"
 msgstr "파일"
 
-#: gstripchart/gstripchart.c:1891
+#: gstripchart/gstripchart.c:2029
 msgid "Chart update interval"
 msgstr "차트 갱신 간격"
 
-#: gstripchart/gstripchart.c:1891 gstripchart/gstripchart.c:1893
-#: gstripchart/gstripchart.c:1895 gstripchart/gstripchart.c:1897
+#: gstripchart/gstripchart.c:2029 gstripchart/gstripchart.c:2031
+#: gstripchart/gstripchart.c:2033 gstripchart/gstripchart.c:2035
 msgid "SECS"
 msgstr "초"
 
 # low-pass filter?
 #
-#: gstripchart/gstripchart.c:1893
+#: gstripchart/gstripchart.c:2031
 msgid "Chart low-pass filter time constant"
 msgstr "차트 low-pass 필터 시간 상수"
 
-#: gstripchart/gstripchart.c:1895
+#: gstripchart/gstripchart.c:2033
 msgid "Slider update interval"
 msgstr "슬라이더 갱신 간격"
 
 # low-pass filter?
 #
-#: gstripchart/gstripchart.c:1897
+#: gstripchart/gstripchart.c:2035
 msgid "Slider low-pass filter time constant"
 msgstr "슬라이더 low-pass 필터 시간 상수"
 
-#: gstripchart/gstripchart.c:1899
+#: gstripchart/gstripchart.c:2037
 msgid "Adds a menubar to the main window"
 msgstr "메인 창에 메뉴 막대 추가"
 
-#: gstripchart/gstripchart.c:1901
+#: gstripchart/gstripchart.c:2039
 msgid "Omits slider window"
 msgstr "슬라이더 윈도우 생략"
 
-#: gstripchart/gstripchart.c:1903
+#: gstripchart/gstripchart.c:2041
+msgid "TYPE"
+msgstr "타입"
+
+#: gstripchart/gstripchart.c:2041
 msgid "TYPE is one of gtk, text, graph, or none"
 msgstr "타입은 gtk, text, graph, none중의 하나입니다"
 
-#: gstripchart/gstripchart.c:1903
-msgid "TYPE"
-msgstr "타입"
+#: gstripchart/gstripchart.c:2190
+msgid "black"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2190
+#, fuzzy
+msgid "blue"
+msgstr "값"
+
+#: gstripchart/gstripchart.c:2190
+msgid "red"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2190
+msgid "white"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2190
+msgid "yellow"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2191
+msgid "Busy"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2191
+#, fuzzy
+msgid "Load"
+msgstr "다시 읽기"
+
+#: gstripchart/gstripchart.c:2191
+msgid "cyan"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2191
+msgid "green"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2191
+msgid "magenta"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2192
+msgid "Net In"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2192
+msgid "Net Out"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2192
+msgid "Swap"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2192
+msgid "ppp"
+msgstr ""
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -811,21 +871,21 @@ msgstr ""
 "설정 파일을 읽는데 오류가 발생하였습니다.\n"
 "새로운 설정 파일을 만들까요?"
 
-#: gtt/main.c:204
-msgid "Specify geometry"
-msgstr "위치 지정"
-
 #: gtt/main.c:204 mini-utils/gless/gless.c:131
 msgid "GEOMETRY"
 msgstr "위치"
 
-#: gtt/main.c:206
-msgid "Select a project on startup"
-msgstr "시작시 프로젝트 선택"
+#: gtt/main.c:204
+msgid "Specify geometry"
+msgstr "위치 지정"
 
 #: gtt/main.c:206
 msgid "PROJECT"
 msgstr "프로젝트"
+
+#: gtt/main.c:206
+msgid "Select a project on startup"
+msgstr "시작시 프로젝트 선택"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1146,7 +1206,7 @@ msgstr "색상 이름:"
 msgid "Color Values:"
 msgstr "색상 값:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:217
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
 msgid "Name"
 msgstr "성명"
@@ -1192,12 +1252,12 @@ msgid "Selection:"
 msgstr "선택:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "Font to load"
-msgstr "읽을 폰트"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "FONTSPEC"
 msgstr "FONTSPEC"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "Font to load"
+msgstr "읽을 폰트"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1350,12 +1410,12 @@ msgid "Run Program"
 msgstr "프로그램 실행"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Run"
-msgstr "실행"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Cancel"
 msgstr "취소"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Run"
+msgstr "실행"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1480,62 +1540,62 @@ msgstr "명령어 실행 실패: fork 실패"
 msgid "Make guname act as a control center applet"
 msgstr "guname을 조종판 애플릿으로 동작하게 만듦"
 
-#: mini-utils/guname/guname.c:114
+#: mini-utils/guname/guname.c:115
 msgid "an initialization error occurred while starting 'guname-capplet'."
 msgstr "'guname-capplet'을 시작할 때 초기화 문제 발생"
 
-#: mini-utils/guname/guname.c:424
+#: mini-utils/guname/guname.c:425
 msgid "System Information"
 msgstr "시스템 정보"
 
-#: mini-utils/guname/guname.c:506
+#: mini-utils/guname/guname.c:510
 msgid "Logo file not found"
 msgstr "로고파일을 찾을 수 없습니다"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:510
+#: mini-utils/guname/guname.c:514
 msgid "GNOME contributors:"
 msgstr "그놈에 기여한 사람들:"
 
 # Nonsense..  It should not be in a PO file.
 #
-#: mini-utils/guname/guname.c:513
+#: mini-utils/guname/guname.c:517
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
-#: mini-utils/guname/guname.c:524
+#: mini-utils/guname/guname.c:528
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "그놈(GNOME): The GNU Network Object Model Environment"
 
-#: mini-utils/guname/guname.c:548
+#: mini-utils/guname/guname.c:552
 msgid "Email Information..."
 msgstr "정보를 메일로 보내기..."
 
-#: mini-utils/guname/guname.c:561
+#: mini-utils/guname/guname.c:565
 msgid "Save Information to File..."
 msgstr "정보를 파일에 저장..."
 
-#: mini-utils/guname/guname.c:573 mini-utils/guname/guname.c:640
+#: mini-utils/guname/guname.c:577 mini-utils/guname/guname.c:647
 msgid "Detailed Information..."
 msgstr "상세한 정보..."
 
-#: mini-utils/guname/guname.c:588
+#: mini-utils/guname/guname.c:592
 msgid "Category"
 msgstr "구분"
 
-#: mini-utils/guname/guname.c:588
+#: mini-utils/guname/guname.c:592
 msgid "Your System"
 msgstr "당신의 시스템"
 
-#: mini-utils/guname/guname.c:626
+#: mini-utils/guname/guname.c:633
 msgid "Save As..."
 msgstr "다른 이름으로 저장..."
 
-#: mini-utils/guname/guname.c:632
+#: mini-utils/guname/guname.c:639
 msgid "Mail To..."
 msgstr "전자우편 보내기..."
 
-#: mini-utils/guname/guname.c:680
+#: mini-utils/guname/guname.c:687
 #, c-format
 msgid ""
 "Error closing file `%s': \n"
@@ -1546,27 +1606,27 @@ msgstr ""
 "%s\n"
 "몇몇 혹은 모든 자료가 저장되지 않았습니다."
 
-#: mini-utils/guname/guname.c:692
+#: mini-utils/guname/guname.c:699
 #, c-format
 msgid "Couldn't open file `%s': %s"
 msgstr "`%s' 파일을 열지 못함: %s"
 
-#: mini-utils/guname/guname.c:707
+#: mini-utils/guname/guname.c:714
 msgid "Save System Information As..."
 msgstr "시스템 정보를 다른 이름으로 저장..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:753
+#: mini-utils/guname/guname.c:760
 #, c-format
 msgid "Command failed ` %s ': %s"
 msgstr "명령어 실패 ` %s ': %s"
 
-#: mini-utils/guname/guname.c:761
+#: mini-utils/guname/guname.c:768
 #, c-format
 msgid "Couldn't run command ` %s ': %s"
 msgstr "명령어를 실행할 수 없음 ` %s ' : %s"
 
-#: mini-utils/guname/guname.c:785
+#: mini-utils/guname/guname.c:792
 #, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
@@ -1575,105 +1635,105 @@ msgstr ""
 "다음 편지를 %s에 보냅니다.\n"
 " 정말로 이 정보를 전자우편으로 보낼까요?"
 
-#: mini-utils/guname/guname.c:796
+#: mini-utils/guname/guname.c:803
 msgid "Are you sure?"
 msgstr "확실합니까?"
 
-#: mini-utils/guname/guname.c:830
+#: mini-utils/guname/guname.c:837
 msgid "Address to mail to:"
 msgstr "전자우편 보낼 주소:"
 
-#: mini-utils/guname/info.c:39
+#: mini-utils/guname/info.c:40
 msgid "Distribution:"
 msgstr "배포판:"
 
-#: mini-utils/guname/info.c:40
+#: mini-utils/guname/info.c:41
 msgid "Operating System:"
 msgstr "운영 체계:"
 
-#: mini-utils/guname/info.c:41
+#: mini-utils/guname/info.c:42
 msgid "Distribution Version:"
 msgstr "배포 판번호:"
 
-#: mini-utils/guname/info.c:42
+#: mini-utils/guname/info.c:43
 msgid "Operating System Version:"
 msgstr "운영 체계 판번호:"
 
-#: mini-utils/guname/info.c:43
+#: mini-utils/guname/info.c:44
 msgid "Operating System Release:"
 msgstr "운영 체제 릴리즈:"
 
-#: mini-utils/guname/info.c:44
+#: mini-utils/guname/info.c:45
 msgid "Processor Type:"
 msgstr "프로세서 종류:"
 
-#: mini-utils/guname/info.c:45
+#: mini-utils/guname/info.c:46
 msgid "Processor Speed:"
 msgstr "프로세서 속도:"
 
-#: mini-utils/guname/info.c:46
+#: mini-utils/guname/info.c:47
 msgid "Host Name:"
 msgstr "호스트 이름:"
 
-#: mini-utils/guname/info.c:47
+#: mini-utils/guname/info.c:48
 msgid "Domain Name:"
 msgstr "도메인 이름:"
 
-#: mini-utils/guname/info.c:48
+#: mini-utils/guname/info.c:49
 msgid "User Name:"
 msgstr "당신의 이름:"
 
-#: mini-utils/guname/info.c:49
+#: mini-utils/guname/info.c:50
 msgid "X Display Name:"
 msgstr "X Display 이름:"
 
-#: mini-utils/guname/info.c:50
+#: mini-utils/guname/info.c:51
 msgid "System Status:"
 msgstr "시스템 상태:"
 
-#: mini-utils/guname/info.c:51
+#: mini-utils/guname/info.c:52
 msgid "Real Memory:"
 msgstr "실제 메모리:"
 
-#: mini-utils/guname/info.c:52
+#: mini-utils/guname/info.c:53
 msgid "Swap Space (\"virtual memory\"):"
 msgstr "스왑 공간 (\"가상 메모리\"):"
 
-#: mini-utils/guname/info.c:53
+#: mini-utils/guname/info.c:54
 msgid "Total Memory:"
 msgstr "총 메모리:"
 
-#: mini-utils/guname/info.c:54
+#: mini-utils/guname/info.c:55
 msgid "Free Memory:"
 msgstr "여유 메모리:"
 
-#: mini-utils/guname/info.c:59
+#: mini-utils/guname/info.c:60
 msgid "Device"
 msgstr "장치"
 
-#: mini-utils/guname/info.c:60
+#: mini-utils/guname/info.c:61
 msgid "Size"
 msgstr "크기"
 
-#: mini-utils/guname/info.c:61
+#: mini-utils/guname/info.c:62
 msgid "Used space"
 msgstr "사용된 공간"
 
-#: mini-utils/guname/info.c:62
+#: mini-utils/guname/info.c:63
 msgid "Free space"
 msgstr "여유 공간"
 
-#: mini-utils/guname/info.c:63
+#: mini-utils/guname/info.c:64
 msgid "Percent free"
 msgstr "여유 퍼센트"
 
-#: mini-utils/guname/info.c:64
+#: mini-utils/guname/info.c:65
 msgid "Mount point"
 msgstr "마운트 포인트"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:206 mini-utils/idetool/idetool.c:26
+#: mini-utils/guname/info.c:207 mini-utils/idetool/idetool.c:26
 msgid "Unknown"
 msgstr "모름"
 
@@ -1686,51 +1746,63 @@ msgid "No information for this filesystem."
 msgstr "현재 파일시스템에 대한 정보 없음."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Memory"
-msgstr "기억장치"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Kilobytes"
 msgstr "킬로바이트"
 
-#: mini-utils/guname/moreinfo.c:214
+#: mini-utils/guname/moreinfo.c:161
+msgid "Memory"
+msgstr "기억장치"
+
+#: mini-utils/guname/moreinfo.c:186
+msgid "%ld%% memory used."
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:197
+msgid "%ld%% swap used."
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:222
 #, c-format
 msgid "CPU %d"
 msgstr "CPU %d"
 
-#: mini-utils/guname/moreinfo.c:262
+#: mini-utils/guname/moreinfo.c:276
 msgid "Detailed System Information"
 msgstr "자세한 시스템 정보"
 
-#: mini-utils/guname/moreinfo.c:275
+#: mini-utils/guname/moreinfo.c:289
 msgid "Disk Information"
 msgstr "디스크 정보"
 
-#: mini-utils/guname/moreinfo.c:277
+#: mini-utils/guname/moreinfo.c:291
 msgid "Memory Information"
 msgstr "메모리 정보"
 
-#: mini-utils/guname/moreinfo.c:280
+#: mini-utils/guname/moreinfo.c:294
 msgid "CPU Information"
 msgstr "CPU 정보"
 
-#: mini-utils/guname/moreinfo.c:312
+#: mini-utils/guname/moreinfo.c:326
 msgid "Mount Point: "
 msgstr "마운트 정보: "
 
-#: mini-utils/guname/moreinfo.c:313
+#: mini-utils/guname/moreinfo.c:327
 msgid "    Device: "
 msgstr "    장치: "
 
-#: mini-utils/guname/moreinfo.c:314
+#: mini-utils/guname/moreinfo.c:328
 msgid "    Filesystem Type: "
 msgstr "    파일시스템 종류: "
 
-#: mini-utils/guname/moreinfo.c:327
+#: mini-utils/guname/moreinfo.c:341
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr ""
 "%ld 메가바이트, %ld 사용가능 (%ld 수퍼유저용); %ld개의 inode, %ld개 사용가능."
+
+#: mini-utils/guname/moreinfo.c:353
+msgid "%2d%% full "
+msgstr ""
 
 #: mini-utils/gw/gw.c:141
 msgid ""
@@ -1741,12 +1813,12 @@ msgstr ""
 "프로그램이 동작하기 위해서 이 명령이 필요합니다."
 
 #: mini-utils/gw/gw.c:174
-msgid "_Save..."
-msgstr "저장(_S)..."
-
-#: mini-utils/gw/gw.c:174
 msgid "Write information to disk"
 msgstr "정보를 디스크에 저장"
+
+#: mini-utils/gw/gw.c:174
+msgid "_Save..."
+msgstr "저장(_S)..."
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1846,13 +1918,13 @@ msgstr "현재 드라이브에 대한 DMA 설정을 바꿀 수 없습니다."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "사용하기"
+msgid "Disabled"
+msgstr "사용하지 않기"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "사용하지 않기"
+msgid "Enabled"
+msgstr "사용하기"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
@@ -1963,3 +2035,6 @@ msgstr "수퍼유저만이 이 툴을 사용할 수 있습니다"
 #: mini-utils/idetool/idetool.c:428
 msgid "You appear to have no IDE drives"
 msgstr "IDE 드라이브를 찾을 수 없습니다"
+
+#~ msgid "invalid display type: %s"
+#~ msgstr "표시 타입이 잘못되었습니다: %s"

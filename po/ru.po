@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-util-1.0.1\n"
-"POT-Creation-Date: 1999-10-05 20:05-0400\n"
+"POT-Creation-Date: 1999-11-26 15:32+0100\n"
 "PO-Revision-Date: 1999-10-05 20:47-0400\n"
 "Last-Translator: Sergey Panov <sipan@mit.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -189,12 +189,12 @@ msgid "Group data by 32 bits"
 msgstr "Группировать данные по 32 бита"
 
 #: ghex/hex-document.c:78
-msgid "_Goto Byte..."
-msgstr "Перейти к байту..."
-
-#: ghex/hex-document.c:78
 msgid "Jump to a certain position"
 msgstr "Перескочить в указанную позицию"
+
+#: ghex/hex-document.c:78
+msgid "_Goto Byte..."
+msgstr "Перейти к байту..."
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -490,87 +490,86 @@ msgstr "Оболочка для UNIX-команд find/grep/locate"
 msgid "Gnome Search Tool"
 msgstr "Искатель Gnome"
 
-#: gstripchart/gstripchart.c:423
+#: gstripchart/gstripchart.c:427
 msgid "rparen expected"
 msgstr "ожидается rparen"
 
-#: gstripchart/gstripchart.c:440
+#: gstripchart/gstripchart.c:444
 #, c-format
 msgid "no such field: %d"
 msgstr "нет такого поля: %d"
 
-#: gstripchart/gstripchart.c:468
+#: gstripchart/gstripchart.c:472
 msgid "missing variable identifer"
 msgstr "отсутствует идентификатор переменной"
 
-#: gstripchart/gstripchart.c:470
+#: gstripchart/gstripchart.c:474
 #, c-format
 msgid "invalid variable identifer: %s"
 msgstr "неправильный идентификатор переменной: %s"
 
-#: gstripchart/gstripchart.c:474
+#: gstripchart/gstripchart.c:478
 msgid "number expected"
 msgstr "ожидается число"
 
-#: gstripchart/gstripchart.c:553
+#: gstripchart/gstripchart.c:557
 #, c-format
 msgid "extra gunk at end: \"%s\""
 msgstr "дополнительный кусок в конце: \"%s\""
 
-#: gstripchart/gstripchart.c:630
+#: gstripchart/gstripchart.c:635
 #, c-format
 msgid "%s, line %d: "
 msgstr "%s, строка %d: "
 
-#: gstripchart/gstripchart.c:707
+#: gstripchart/gstripchart.c:712
 #, c-format
 msgid "can't open config file \"%s\""
 msgstr "не удалось открыть конфигурационный файл \"%s\""
 
-#: gstripchart/gstripchart.c:734
+#: gstripchart/gstripchart.c:739
 #, c-format
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
 msgstr ""
-"не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+"не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", "
+"\"%s\", or \"%s\""
 
-#: gstripchart/gstripchart.c:739
+#: gstripchart/gstripchart.c:744
 #, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr "не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", or \"%s\""
+msgstr ""
+"не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", or "
+"\"%s\""
 
-#: gstripchart/gstripchart.c:796
-#, c-format
-msgid "invalid display type: %s"
-msgstr "неправильный тип дисплея: %s"
-
-#: gstripchart/gstripchart.c:830
+#: gstripchart/gstripchart.c:821
 msgid "identifier or begin must be first"
 msgstr "в начале должен быть идентификатор или begin"
 
-#: gstripchart/gstripchart.c:837 gstripchart/gstripchart.c:853
+#: gstripchart/gstripchart.c:829 gstripchart/gstripchart.c:846
 #, c-format
 msgid "unrecognized color: %s"
 msgstr "нераспознаваемый цвет: %s"
 
-#: gstripchart/gstripchart.c:880
+#: gstripchart/gstripchart.c:873
 #, c-format
 msgid "invalid option: \"%s\""
 msgstr "неправильный ключ: \"%s\""
 
-#: gstripchart/gstripchart.c:1409
+#: gstripchart/gstripchart.c:1423
 msgid "E_xit"
 msgstr "Выход"
 
-#: gstripchart/gstripchart.c:1409
+#: gstripchart/gstripchart.c:1423
 msgid "Terminate the stripchart program"
 msgstr "Прервать самописец"
 
-#: gstripchart/gstripchart.c:1425
-msgid "Copyright 1998 John Kodis"
+#: gstripchart/gstripchart.c:1439
+#, fuzzy
+msgid "Copyright 1998,99 John Kodis"
 msgstr "Авторское право 1998 John Kodis"
 
-#: gstripchart/gstripchart.c:1427
+#: gstripchart/gstripchart.c:1441
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -583,163 +582,227 @@ msgstr ""
 "применения оставлены в качестве упражнения для заинтересованного "
 "пользователя."
 
-#: gstripchart/gstripchart.c:1440
-msgid "_About"
-msgstr "О программе"
-
-#: gstripchart/gstripchart.c:1440
+#: gstripchart/gstripchart.c:1454
 msgid "Info about the striphart program"
 msgstr "Информация о самописце"
 
-#: gstripchart/gstripchart.c:1451
+#: gstripchart/gstripchart.c:1454
+msgid "_About"
+msgstr "О программе"
+
+#: gstripchart/gstripchart.c:1465
 msgid "_File"
 msgstr "Файл"
 
-#: gstripchart/gstripchart.c:1452
+#: gstripchart/gstripchart.c:1466
 msgid "_Help"
 msgstr "Помощь"
 
-#: gstripchart/gstripchart.c:1516 gstripchart/gstripchart.c:1633
+#: gstripchart/gstripchart.c:1530 gstripchart/gstripchart.c:1647
 msgid "Param"
 msgstr "Парам"
 
-#: gstripchart/gstripchart.c:1516 mini-utils/gcolorsel/gcolorsel.c:156
-#: mini-utils/guname/moreinfo.c:218
+#: gstripchart/gstripchart.c:1530 mini-utils/gcolorsel/gcolorsel.c:156
+#: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Значение"
 
-#: gstripchart/gstripchart.c:1520
+#: gstripchart/gstripchart.c:1534
 msgid "Identifier"
 msgstr "Идентификатор"
 
-#: gstripchart/gstripchart.c:1522 mini-utils/gcolorsel/gcolorsel.c:155
+#: gstripchart/gstripchart.c:1536 mini-utils/gcolorsel/gcolorsel.c:155
 msgid "Color"
 msgstr "Цвет"
 
-#: gstripchart/gstripchart.c:1524
+#: gstripchart/gstripchart.c:1538
 msgid "Filename"
 msgstr "Имя файла"
 
-#: gstripchart/gstripchart.c:1526
+#: gstripchart/gstripchart.c:1540
 msgid "Pattern"
 msgstr "Тип"
 
-#: gstripchart/gstripchart.c:1528
+#: gstripchart/gstripchart.c:1542
 msgid "Equation"
 msgstr "Уравнение"
 
-#: gstripchart/gstripchart.c:1530
+#: gstripchart/gstripchart.c:1544
 msgid "Expected range"
 msgstr "Ожидаемый диапазон"
 
-#: gstripchart/gstripchart.c:1534
+#: gstripchart/gstripchart.c:1548
 msgid "Displayed range"
 msgstr "Используемый диапазон"
 
-#: gstripchart/gstripchart.c:1538
+#: gstripchart/gstripchart.c:1552
 msgid "Current value"
 msgstr "Текущее значение"
 
-#: gstripchart/gstripchart.c:1545
+#: gstripchart/gstripchart.c:1559
 msgid "Active"
 msgstr "Задействован"
 
-#: gstripchart/gstripchart.c:1561
+#: gstripchart/gstripchart.c:1575
 msgid "Gnome Stripchart Parameters"
 msgstr "Параметры самописца Gnome"
 
-#: gstripchart/gstripchart.c:1633
+#: gstripchart/gstripchart.c:1647
 msgid "Current"
 msgstr "Текущее"
 
-#: gstripchart/gstripchart.c:1633
+#: gstripchart/gstripchart.c:1647
 msgid "Top"
 msgstr "Верхнее"
 
-#: gstripchart/gstripchart.c:1661
+#: gstripchart/gstripchart.c:1675 gstripchart/gstripchart.c:1950
 msgid "Help"
 msgstr "Справка"
 
-#: gstripchart/gstripchart.c:1667 mini-utils/gshutdown/gshutdown.c:318
+#: gstripchart/gstripchart.c:1681 gstripchart/gstripchart.c:1953
+#: mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "О программе"
 
-#: gstripchart/gstripchart.c:1673
+#: gstripchart/gstripchart.c:1687
 msgid "Params"
 msgstr "Параметры"
 
-#: gstripchart/gstripchart.c:1679
+#: gstripchart/gstripchart.c:1693
 msgid "Exit"
 msgstr "Выход"
 
-#. Create a top-level window. Set the title, minimum size (_usize),
-#. initial size (_default_size), and establish delete and destroy
-#. event handlers.
-#: gstripchart/gstripchart.c:1781
-msgid "gstripchart"
-msgstr "самописец"
-
-#: gstripchart/gstripchart.c:1781
+#: gstripchart/gstripchart.c:1799
 msgid "Gnome stripchart viewer"
 msgstr "Gnome самописец"
 
-#: gstripchart/gstripchart.c:1860
+#. Create a top-level application window. Set minimum size (_usize),
+#. initial size (_default_size), and establish delete and destroy
+#. event handlers.
+#: gstripchart/gstripchart.c:1799
+msgid "gstripchart"
+msgstr "самописец"
+
+#: gstripchart/gstripchart.c:1956
+#, fuzzy
+msgid "Params..."
+msgstr "Параметры"
+
+#: gstripchart/gstripchart.c:2000
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "неправильный тип дисплея: %s\n"
 
-#: gstripchart/gstripchart.c:1887
-msgid "Geometry string: WxH+X+Y"
-msgstr "Описание геометрии: WxH+X+Y"
-
-#: gstripchart/gstripchart.c:1887
+#: gstripchart/gstripchart.c:2025
 msgid "GEO"
 msgstr "ГЕОМ"
 
-#: gstripchart/gstripchart.c:1889
+#: gstripchart/gstripchart.c:2025
+msgid "Geometry string: WxH+X+Y"
+msgstr "Описание геометрии: WxH+X+Y"
+
+#: gstripchart/gstripchart.c:2027
 msgid "Configuration file name"
 msgstr "Имя конфигурационного файла"
 
-#: gstripchart/gstripchart.c:1889
+#: gstripchart/gstripchart.c:2027
 msgid "FILE"
 msgstr "ФАЙЛ"
 
-#: gstripchart/gstripchart.c:1891
+#: gstripchart/gstripchart.c:2029
 msgid "Chart update interval"
 msgstr "Интервал обновления диаграммы"
 
-#: gstripchart/gstripchart.c:1891 gstripchart/gstripchart.c:1893
-#: gstripchart/gstripchart.c:1895 gstripchart/gstripchart.c:1897
+#: gstripchart/gstripchart.c:2029 gstripchart/gstripchart.c:2031
+#: gstripchart/gstripchart.c:2033 gstripchart/gstripchart.c:2035
 msgid "SECS"
 msgstr "СЕКУНДЫ"
 
-#: gstripchart/gstripchart.c:1893
+#: gstripchart/gstripchart.c:2031
 msgid "Chart low-pass filter time constant"
 msgstr "Константа времени сглаживания диаграммы"
 
-#: gstripchart/gstripchart.c:1895
+#: gstripchart/gstripchart.c:2033
 msgid "Slider update interval"
 msgstr "Интервал обновления ползунка"
 
-#: gstripchart/gstripchart.c:1897
+#: gstripchart/gstripchart.c:2035
 msgid "Slider low-pass filter time constant"
 msgstr "Константа времени сглаживания ползунка"
 
-#: gstripchart/gstripchart.c:1899
+#: gstripchart/gstripchart.c:2037
 msgid "Adds a menubar to the main window"
 msgstr "Добавляет к главному окну панель меню"
 
-#: gstripchart/gstripchart.c:1901
+#: gstripchart/gstripchart.c:2039
 msgid "Omits slider window"
 msgstr "Пропускает окно ползунка"
 
-#: gstripchart/gstripchart.c:1903
+#: gstripchart/gstripchart.c:2041
+msgid "TYPE"
+msgstr "ТИП"
+
+#: gstripchart/gstripchart.c:2041
 msgid "TYPE is one of gtk, text, graph, or none"
 msgstr "ТИП это либо gtk, text, graph или none"
 
-#: gstripchart/gstripchart.c:1903
-msgid "TYPE"
-msgstr "ТИП"
+#: gstripchart/gstripchart.c:2190
+msgid "black"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2190
+#, fuzzy
+msgid "blue"
+msgstr "Значение"
+
+#: gstripchart/gstripchart.c:2190
+msgid "red"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2190
+msgid "white"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2190
+msgid "yellow"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2191
+msgid "Busy"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2191
+#, fuzzy
+msgid "Load"
+msgstr "Перезагрузить"
+
+#: gstripchart/gstripchart.c:2191
+msgid "cyan"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2191
+msgid "green"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2191
+msgid "magenta"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2192
+msgid "Net In"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2192
+msgid "Net Out"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2192
+msgid "Swap"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2192
+msgid "ppp"
+msgstr ""
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -806,21 +869,21 @@ msgstr ""
 "При чтении конфигурационного файла возникла ошибка.\n"
 "Установить новую конфигурацию?"
 
-#: gtt/main.c:204
-msgid "Specify geometry"
-msgstr "Указать геометрию"
-
 #: gtt/main.c:204 mini-utils/gless/gless.c:131
 msgid "GEOMETRY"
 msgstr "ГЕОМЕТРИЯ"
 
-#: gtt/main.c:206
-msgid "Select a project on startup"
-msgstr "Выбрать проект при запуске"
+#: gtt/main.c:204
+msgid "Specify geometry"
+msgstr "Указать геометрию"
 
 #: gtt/main.c:206
 msgid "PROJECT"
 msgstr "ПРОЕКТ"
+
+#: gtt/main.c:206
+msgid "Select a project on startup"
+msgstr "Выбрать проект при запуске"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1141,7 +1204,7 @@ msgstr "Название цвета:"
 msgid "Color Values:"
 msgstr "Цветовые значения:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:217
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
 msgid "Name"
 msgstr "Название"
@@ -1187,12 +1250,12 @@ msgid "Selection:"
 msgstr "Выделение:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "Font to load"
-msgstr "Шрифт для загрузки"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "FONTSPEC"
 msgstr "ШРИФТ"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "Font to load"
+msgstr "Шрифт для загрузки"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1346,12 +1409,12 @@ msgid "Run Program"
 msgstr "Запустить программу"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Run"
-msgstr "Запуск"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Cancel"
 msgstr "Отмена"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Run"
+msgstr "Запуск"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1479,60 +1542,60 @@ msgstr "Не удалось исполнить команду: отпочкование не состоялось"
 msgid "Make guname act as a control center applet"
 msgstr "Превратить guname апплет центра управления"
 
-#: mini-utils/guname/guname.c:114
+#: mini-utils/guname/guname.c:115
 msgid "an initialization error occurred while starting 'guname-capplet'."
 msgstr "ошибка инициализации при запуске 'guname-capplet'."
 
-#: mini-utils/guname/guname.c:424
+#: mini-utils/guname/guname.c:425
 msgid "System Information"
 msgstr "Информация о системе"
 
-#: mini-utils/guname/guname.c:506
+#: mini-utils/guname/guname.c:510
 msgid "Logo file not found"
 msgstr "Файл логотипа не найден"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:510
+#: mini-utils/guname/guname.c:514
 msgid "GNOME contributors:"
 msgstr "Участники проекта GNOME:"
 
-#: mini-utils/guname/guname.c:513
+#: mini-utils/guname/guname.c:517
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-koi8-*"
 
-#: mini-utils/guname/guname.c:524
+#: mini-utils/guname/guname.c:528
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME: The GNU Network Object Model Environment"
 
-#: mini-utils/guname/guname.c:548
+#: mini-utils/guname/guname.c:552
 msgid "Email Information..."
 msgstr "Передать по электронной почте..."
 
-#: mini-utils/guname/guname.c:561
+#: mini-utils/guname/guname.c:565
 msgid "Save Information to File..."
 msgstr "Сохранить информацию в файле..."
 
-#: mini-utils/guname/guname.c:573 mini-utils/guname/guname.c:640
+#: mini-utils/guname/guname.c:577 mini-utils/guname/guname.c:647
 msgid "Detailed Information..."
 msgstr "Подробная информация..."
 
-#: mini-utils/guname/guname.c:588
+#: mini-utils/guname/guname.c:592
 msgid "Category"
 msgstr "Категория"
 
-#: mini-utils/guname/guname.c:588
+#: mini-utils/guname/guname.c:592
 msgid "Your System"
 msgstr "Ваша система"
 
-#: mini-utils/guname/guname.c:626
+#: mini-utils/guname/guname.c:633
 msgid "Save As..."
 msgstr "Сохранить как..."
 
-#: mini-utils/guname/guname.c:632
+#: mini-utils/guname/guname.c:639
 msgid "Mail To..."
 msgstr "Отправить почту..."
 
-#: mini-utils/guname/guname.c:680
+#: mini-utils/guname/guname.c:687
 #, c-format
 msgid ""
 "Error closing file `%s': \n"
@@ -1543,27 +1606,27 @@ msgstr ""
 "%s\n"
 "Все или часть данных могут быть не записаны."
 
-#: mini-utils/guname/guname.c:692
+#: mini-utils/guname/guname.c:699
 #, c-format
 msgid "Couldn't open file `%s': %s"
 msgstr "Не удалось открыть файл `%s': %s"
 
-#: mini-utils/guname/guname.c:707
+#: mini-utils/guname/guname.c:714
 msgid "Save System Information As..."
 msgstr "Сохранить информацию о системе как..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:753
+#: mini-utils/guname/guname.c:760
 #, c-format
 msgid "Command failed ` %s ': %s"
 msgstr "Ошибка в команде ` %s ': %s"
 
-#: mini-utils/guname/guname.c:761
+#: mini-utils/guname/guname.c:768
 #, c-format
 msgid "Couldn't run command ` %s ': %s"
 msgstr "Не удалось выполнить команду ` %s ': %s"
 
-#: mini-utils/guname/guname.c:785
+#: mini-utils/guname/guname.c:792
 #, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
@@ -1572,105 +1635,105 @@ msgstr ""
 "Это письмо будет отправлено по адресу %s.\n"
 "Вы уверены, в том что хотите послать эту информацию?"
 
-#: mini-utils/guname/guname.c:796
+#: mini-utils/guname/guname.c:803
 msgid "Are you sure?"
 msgstr "Вы уверены?"
 
-#: mini-utils/guname/guname.c:830
+#: mini-utils/guname/guname.c:837
 msgid "Address to mail to:"
 msgstr "Адрес для отправки:"
 
-#: mini-utils/guname/info.c:39
+#: mini-utils/guname/info.c:40
 msgid "Distribution:"
 msgstr "Дистрибутив:"
 
-#: mini-utils/guname/info.c:40
+#: mini-utils/guname/info.c:41
 msgid "Operating System:"
 msgstr "Операционная система:"
 
-#: mini-utils/guname/info.c:41
+#: mini-utils/guname/info.c:42
 msgid "Distribution Version:"
 msgstr "Версия дистрибутива:"
 
-#: mini-utils/guname/info.c:42
+#: mini-utils/guname/info.c:43
 msgid "Operating System Version:"
 msgstr "Версия операционной системы:"
 
-#: mini-utils/guname/info.c:43
+#: mini-utils/guname/info.c:44
 msgid "Operating System Release:"
 msgstr "Выпуск операционной системы:"
 
-#: mini-utils/guname/info.c:44
+#: mini-utils/guname/info.c:45
 msgid "Processor Type:"
 msgstr "Тип процессора:"
 
-#: mini-utils/guname/info.c:45
+#: mini-utils/guname/info.c:46
 msgid "Processor Speed:"
 msgstr "Скорость процессора:"
 
-#: mini-utils/guname/info.c:46
+#: mini-utils/guname/info.c:47
 msgid "Host Name:"
 msgstr "Имя хоста:"
 
-#: mini-utils/guname/info.c:47
+#: mini-utils/guname/info.c:48
 msgid "Domain Name:"
 msgstr "Доменное имя:"
 
-#: mini-utils/guname/info.c:48
+#: mini-utils/guname/info.c:49
 msgid "User Name:"
 msgstr "Имя пользователя:"
 
-#: mini-utils/guname/info.c:49
+#: mini-utils/guname/info.c:50
 msgid "X Display Name:"
 msgstr "Имя X-дисплея"
 
-#: mini-utils/guname/info.c:50
+#: mini-utils/guname/info.c:51
 msgid "System Status:"
 msgstr "Состояние системы:"
 
-#: mini-utils/guname/info.c:51
+#: mini-utils/guname/info.c:52
 msgid "Real Memory:"
 msgstr "Память:"
 
-#: mini-utils/guname/info.c:52
+#: mini-utils/guname/info.c:53
 msgid "Swap Space (\"virtual memory\"):"
 msgstr "Подкачка (\"виртуальная память\"):"
 
-#: mini-utils/guname/info.c:53
+#: mini-utils/guname/info.c:54
 msgid "Total Memory:"
 msgstr "Всего памяти:"
 
-#: mini-utils/guname/info.c:54
+#: mini-utils/guname/info.c:55
 msgid "Free Memory:"
 msgstr "Свободная память:"
 
-#: mini-utils/guname/info.c:59
+#: mini-utils/guname/info.c:60
 msgid "Device"
 msgstr "Устройство"
 
-#: mini-utils/guname/info.c:60
+#: mini-utils/guname/info.c:61
 msgid "Size"
 msgstr "Размер"
 
-#: mini-utils/guname/info.c:61
+#: mini-utils/guname/info.c:62
 msgid "Used space"
 msgstr "Используемое пространство"
 
-#: mini-utils/guname/info.c:62
+#: mini-utils/guname/info.c:63
 msgid "Free space"
 msgstr "Свободное пространство"
 
-#: mini-utils/guname/info.c:63
+#: mini-utils/guname/info.c:64
 msgid "Percent free"
 msgstr "Процент свободного"
 
-#: mini-utils/guname/info.c:64
+#: mini-utils/guname/info.c:65
 msgid "Mount point"
 msgstr "Точка подсоединения"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:206 mini-utils/idetool/idetool.c:26
+#: mini-utils/guname/info.c:207 mini-utils/idetool/idetool.c:26
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -1683,50 +1746,62 @@ msgid "No information for this filesystem."
 msgstr "Нет сведений об этой файловой системе."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Memory"
-msgstr "Память"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Kilobytes"
 msgstr "Килобайты"
 
-#: mini-utils/guname/moreinfo.c:214
+#: mini-utils/guname/moreinfo.c:161
+msgid "Memory"
+msgstr "Память"
+
+#: mini-utils/guname/moreinfo.c:186
+msgid "%ld%% memory used."
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:197
+msgid "%ld%% swap used."
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:222
 #, c-format
 msgid "CPU %d"
 msgstr "ЦПУ %d"
 
-#: mini-utils/guname/moreinfo.c:262
+#: mini-utils/guname/moreinfo.c:276
 msgid "Detailed System Information"
 msgstr "Подробная информация о системе"
 
-#: mini-utils/guname/moreinfo.c:275
+#: mini-utils/guname/moreinfo.c:289
 msgid "Disk Information"
 msgstr "Информация о дисках"
 
-#: mini-utils/guname/moreinfo.c:277
+#: mini-utils/guname/moreinfo.c:291
 msgid "Memory Information"
 msgstr "Информация о памяти"
 
-#: mini-utils/guname/moreinfo.c:280
+#: mini-utils/guname/moreinfo.c:294
 msgid "CPU Information"
 msgstr "Информация о ЦПУ"
 
-#: mini-utils/guname/moreinfo.c:312
+#: mini-utils/guname/moreinfo.c:326
 msgid "Mount Point: "
 msgstr "Точка подсоединения:"
 
-#: mini-utils/guname/moreinfo.c:313
+#: mini-utils/guname/moreinfo.c:327
 msgid "    Device: "
 msgstr "    Устройство: "
 
-#: mini-utils/guname/moreinfo.c:314
+#: mini-utils/guname/moreinfo.c:328
 msgid "    Filesystem Type: "
 msgstr "    Тип файловой системы: "
 
-#: mini-utils/guname/moreinfo.c:327
+#: mini-utils/guname/moreinfo.c:341
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr "%ld мегабайт, %ld свободно (%ld superuser); %ld inodes, %ld свободно."
+
+#: mini-utils/guname/moreinfo.c:353
+msgid "%2d%% full "
+msgstr ""
 
 #: mini-utils/gw/gw.c:141
 msgid ""
@@ -1737,12 +1812,12 @@ msgstr ""
 "Эта команда необходима для работы программы."
 
 #: mini-utils/gw/gw.c:174
-msgid "_Save..."
-msgstr "Сохранить..."
-
-#: mini-utils/gw/gw.c:174
 msgid "Write information to disk"
 msgstr "Записать информацию на диск"
+
+#: mini-utils/gw/gw.c:174
+msgid "_Save..."
+msgstr "Сохранить..."
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1842,13 +1917,13 @@ msgstr "Установки DMA для этого диска не могут быть изменены."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Вкл."
+msgid "Disabled"
+msgstr "Выкл."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Выкл."
+msgid "Enabled"
+msgstr "Вкл."
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
@@ -1959,3 +2034,6 @@ msgstr "Только администратор может использовать этот инструмент"
 #: mini-utils/idetool/idetool.c:428
 msgid "You appear to have no IDE drives"
 msgstr "Кажется у Вас нет IDE дисков"
+
+#~ msgid "invalid display type: %s"
+#~ msgstr "неправильный тип дисплея: %s"
