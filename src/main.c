@@ -38,14 +38,14 @@ int main(int argc, char **argv) {
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain(PACKAGE);
 
-  client = gnome_client_new_default();
+  printf("starting ghex\n");
+
+  gnome_init("ghex", &parser, argc, argv, 0, NULL);
+
+  client = gnome_master_client();
 
   gtk_signal_connect (GTK_OBJECT (client), "save_yourself",
 		      GTK_SIGNAL_FUNC (save_state), (gpointer) argv[0]);
-  gtk_signal_connect (GTK_OBJECT (client), "connect",
-		      GTK_SIGNAL_FUNC (connect_client), NULL);
-
-  gnome_init("ghex", &parser, argc, argv, 0, NULL);
 
   if(!just_exit) {
     mdi = GNOME_MDI(gnome_mdi_new("ghex", "GHex"));
@@ -69,6 +69,46 @@ int main(int argc, char **argv) {
 
     /* set MDI mode */
     gnome_mdi_set_mode(mdi, mdi_mode);
+
+    /* open documents from previous session if there are any */
+    if (GNOME_CLIENT_CONNECTED (client)) {
+      /* Get the client, that may hold the configuration for this
+         program.  */
+      GnomeClient *cloned= gnome_cloned_client ();
+
+      if (cloned) {
+        restarted = 1;
+
+        gnome_config_push_prefix (gnome_client_get_config_prefix (cloned));
+        open_files = gnome_config_get_string("Files/files");
+        gnome_config_pop_prefix ();
+
+        printf("open: %s\n", open_files);
+        if(open_files) {
+          HexDocument *doc;
+          gchar file_name[256], *c;
+          int i;
+          
+          c = open_files;
+          while(*c != '\0') {
+            for(i = 0; *c != ':'; i++, c++)
+              file_name[i] = *c;
+            file_name[i] = '\0';
+            c++;
+            printf("file: %s\n", file_name);
+            if((doc = hex_document_new(file_name)) != NULL) {
+              gnome_mdi_add_child(mdi, GNOME_MDI_CHILD(doc));
+              gnome_mdi_add_view(mdi, GNOME_MDI_CHILD(doc));
+            }
+            else
+              report_error(_("Can not open file!"));
+          }
+          
+          g_free(open_files);
+          open_files = NULL;
+        }
+      }
+    }
 
     /* and here we go... */
     gtk_main();

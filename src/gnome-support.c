@@ -1,5 +1,5 @@
 /*
- * gnome-support.c - GNOMEificating code for ghex
+ * gnome-support.c - GNOMEificating code for ghex (actually only SM)
  * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
 
@@ -35,20 +35,16 @@ struct argp parser =
 
 int restarted = 0, just_exit = FALSE;
 
-int os_x = 0,
-    os_y = 0,
-    os_w = 0,
-    os_h = 0;
+gchar *open_files = NULL;
 
 static error_t
 parse_an_arg (int key, char *arg, struct argp_state *state)
 {
-  if (key == DISCARD_KEY)
-    {
-      discard_session (arg);
-      just_exit = TRUE;
-      return 0;
-    }
+  if (key == DISCARD_KEY) {
+    discard_session(arg);
+    just_exit = 1;
+    return 0;
+  }
 
   /* We didn't recognize it.  */
   return ARGP_ERR_UNKNOWN;
@@ -57,28 +53,50 @@ parse_an_arg (int key, char *arg, struct argp_state *state)
 /* Session management */
 
 int save_state (GnomeClient        *client,
-		gint                phase,
-		GnomeRestartStyle   save_style,
-		gint                shutdown,
-		GnomeInteractStyle  interact_style,
-		gint                fast,
-		gpointer            client_data) {
+                gint                phase,
+                GnomeRestartStyle   save_style,
+                gint                shutdown,
+                GnomeInteractStyle  interact_style,
+                gint                fast,
+                gpointer            client_data) {
   gchar *session_id;
-  gchar *sess;
-  gchar *buf;
+  gchar files[2048];       /* I hope this does for most requirements, one could overflow it, however */
   gchar *argv[3];
   gint x, y, w, h;
 
+  GList *child;
+  HexDocument *doc;
+
+  printf("saving session...\n");
+
   session_id = gnome_client_get_id (client);
 
-  /* unfortunately we dont have much to save now... */
+  /* Save the state using gnome-config stuff. */
+  gnome_config_push_prefix (gnome_client_get_config_prefix (client));
+
+  files[0] = '\0';
+  child = mdi->children;
+  while(child) {
+    doc = HEX_DOCUMENT(child->data);
+    strcat(files, doc->file_name);
+    strcat(files, ":");
+    child = g_list_next(child);
+  }
+
+  if(mdi->children)
+    gnome_config_set_string("Files/files", files);
+  else
+    gnome_config_clean_key("Files/files");
+
+  gnome_config_pop_prefix();
+  gnome_config_sync();
 
   /* Here is the real SM code. We set the argv to the parameters needed
      to restart/discard the session that we've just saved and call
      the gnome_session_set_*_command to tell the session manager it. */
   argv[0] = (char*) client_data;
   argv[1] = "--discard-session";
-  argv[2] = session_id;
+  argv[2] = gnome_client_get_config_prefix (client);
   gnome_client_set_discard_command (client, 3, argv);
 
   /* Set commands to clone and restart this application.  Note that we
@@ -91,60 +109,14 @@ int save_state (GnomeClient        *client,
   return TRUE;
 }
 
-/* Connected to session manager. If restarted from a former session:
-   reads the state of the previous session. Sets os_* (prepare_app
-   uses them) */
-void connect_client (GnomeClient *client, gint was_restarted, gpointer client_data) {
-  gchar *session_id;
-
-  /* Note that information is stored according to our *old*
-     session id.  The id can change across sessions.  */
-  session_id = gnome_client_get_previous_id (client);
-
-  if (was_restarted && session_id != NULL)
-    {
-      gchar *sess;
-      gchar *buf;
-
-      restarted = 1;
-
-      sess = g_copy_strings ("/ghex/Saved-Session-", session_id, NULL);
-
-      buf = g_copy_strings ( sess, "/x", NULL);
-      os_x = gnome_config_get_int (buf);
-      g_free(buf);
-      buf = g_copy_strings ( sess, "/y", NULL);
-      os_y = gnome_config_get_int (buf);
-      g_free(buf);
-      buf = g_copy_strings ( sess, "/w", NULL);
-      os_w = gnome_config_get_int (buf);
-      g_free(buf);
-      buf = g_copy_strings ( sess, "/h", NULL);
-      os_h = gnome_config_get_int (buf);
-      g_free(buf);
-    }
-
-  /* If we had an old session, we clean up after ourselves.  */
-  if (session_id != NULL)
-    discard_session (session_id);
-
-  return;
-}
-
 void
-discard_session (gchar *id)
+discard_session (gchar *arg)
 {
-  gchar *sess;
-
-  sess = g_copy_strings ("/ghex/Saved-Session-", id, NULL);
-
-  /* we use the gnome_config_get_* to work around a bug in gnome-config 
-     (it's going under a redesign/rewrite, so i didn't correct it) */
-  gnome_config_get_int ("/ghex/Bug/work-around=0");
-
-  gnome_config_clean_section (sess);
-  gnome_config_sync ();
-
-  g_free (sess);
-  return;
+    /* This discards the saved information about this client.  */
+    gnome_config_clean_file (arg);
+    gnome_config_sync ();
+    
+    /* We really need not connect, because we just exit after the
+       gnome_init call.  */
+    gnome_client_disable_master_connection ();
 }
