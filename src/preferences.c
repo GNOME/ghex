@@ -241,7 +241,7 @@ PropertyUI *create_prefs_dialog() {
 	gtk_widget_show(box);
 
 	label = gtk_label_new(_("Print shaded box over"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_misc_set_alignment(GTK_MISC(label), 1.0, 0.5);
 	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD_SMALL);
 	gtk_widget_show(label);
 						  
@@ -251,7 +251,7 @@ PropertyUI *create_prefs_dialog() {
 
 	label = gtk_label_new(_("lines (0 for no box)"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX(box), label, FALSE, TRUE, GNOME_PAD_SMALL);
 	gtk_widget_show(label);
 
 	gtk_box_pack_start(GTK_BOX(vbox), box, TRUE, TRUE, GNOME_PAD_SMALL);  
