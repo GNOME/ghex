@@ -73,6 +73,9 @@ void              ghex_window_add_doc_to_list     (GHexWindow *win,
                                                    HexDocument *doc);
 GHexWindow        *ghex_window_find_for_doc       (HexDocument *doc);
 
+void ghex_window_sync_char_table_item(GHexWindow *win, gboolean state);
+void ghex_window_sync_converter_item(GHexWindow *win, gboolean state);
+
 G_END_DECLS
 
 #endif /* __GHEX_WINDOW_H__ */

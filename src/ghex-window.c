@@ -179,11 +179,14 @@ ghex_window_doc_changed(HexDocument *doc, HexChangeData *change_data,
 {
     GHexWindow *win = GHEX_WINDOW(user_data);
 
+    if(!win->gh->document->changed)
+        return;
+
     if(!win->changed) {
         ghex_window_set_sensitivity(win);
         win->changed = TRUE;
     }
-    else {
+    else if(push_undo) {
         if(win->undo_sens != ( win->gh->document->undo_top == NULL)) {
             win->undo_sens = (win->gh->document->undo_top != NULL);
             bonobo_ui_component_set_prop (win->uic, "/commands/EditUndo", "sensitive",
@@ -295,6 +298,36 @@ ghex_window_get_type (void)
 	return ghex_window_type;
 }
 
+void
+ghex_window_sync_converter_item(GHexWindow *win, gboolean state)
+{
+    const GList *wnode;
+
+    wnode = ghex_window_get_list();
+    while(wnode) {
+        if(GHEX_WINDOW(wnode->data) != win)
+            bonobo_ui_component_set_prop (GHEX_WINDOW(wnode->data)->uic,
+                                          "/commands/Converter", "state",
+                                          state?"1":"0", NULL);
+        wnode = wnode->next;
+    }
+}
+
+void
+ghex_window_sync_char_table_item(GHexWindow *win, gboolean state)
+{
+    const GList *wnode;
+
+    wnode = ghex_window_get_list();
+    while(wnode) {
+        if(GHEX_WINDOW(wnode->data) != win)
+            bonobo_ui_component_set_prop (GHEX_WINDOW(wnode->data)->uic,
+                                          "/commands/CharacterTable", "state",
+                                          state?"1":"0", NULL);
+        wnode = wnode->next;
+    }
+}
+
 static void
 ghex_window_listener (BonoboUIComponent           *uic,
                       const char                  *path,
@@ -335,8 +368,10 @@ ghex_window_listener (BonoboUIComponent           *uic,
                 gtk_widget_set_sensitive(converter_get, TRUE);
         }
         else {
-            gtk_widget_hide(converter->window);
+            if(GTK_WIDGET_VISIBLE(converter->window))
+                gtk_widget_hide(converter->window);
         }
+        ghex_window_sync_converter_item(win, atoi(state));
         return;
     }
     else if(!strcmp (path, "CharacterTable")) {
@@ -351,8 +386,10 @@ ghex_window_listener (BonoboUIComponent           *uic,
             raise_and_focus_widget(char_table);
         }
         else {
-            gtk_widget_hide(GTK_WIDGET(char_table));
+            if(GTK_WIDGET_VISIBLE(char_table))
+                gtk_widget_hide(GTK_WIDGET(char_table));
         }
+        ghex_window_sync_char_table_item(win, atoi(state));
         return;
     }
 	if (!state || !atoi (state) || (win->gh == NULL))
@@ -414,6 +451,12 @@ ghex_window_new(void)
                                       ghex_window_listener, win);
 	bonobo_ui_component_add_listener (uic, "CharacterTable",
                                       ghex_window_listener, win);
+    bonobo_ui_component_set_prop (uic, "/commands/Converter", "state",
+                                  (converter && GTK_WIDGET_VISIBLE(converter->window))?"1":"0",
+                                  NULL);
+    bonobo_ui_component_set_prop (uic, "/commands/CharacterTable", "state",
+                                  (char_table && GTK_WIDGET_VISIBLE(char_table))?"1":"0",
+                                  NULL);
 	bonobo_ui_component_set_prop (uic, "/status", "hidden", "0", NULL);
 
     ghex_window_set_sensitivity(win);

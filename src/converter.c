@@ -177,6 +177,14 @@ close_converter(GtkWidget *button, GnomeDialog *dialog)
 	gnome_dialog_close(dialog);
 }
 
+static gboolean
+converter_delete_event_cb(GtkWidget *widget, GdkEventAny *e, gpointer user_data)
+{
+	ghex_window_sync_converter_item(NULL, FALSE);
+	gtk_widget_hide(widget);
+	return TRUE;
+}
+
 Converter *
 create_converter()
 {
@@ -220,6 +228,8 @@ create_converter()
 	/* get cursor button */
 	converter_get = create_converter_button(_("_Get cursor value"), accel_group);
 
+	gtk_signal_connect(GTK_OBJECT(conv->window), "delete_event",
+						GTK_SIGNAL_FUNC(converter_delete_event_cb), conv);
 	gtk_signal_connect(GTK_OBJECT(converter_get), "clicked",
 						GTK_SIGNAL_FUNC(get_cursor_val_cb), conv);
 	gtk_table_attach_defaults(GTK_TABLE(table), converter_get, 0, 2, 5, 6);

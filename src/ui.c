@@ -553,8 +553,12 @@ raise_and_focus_widget (GtkWidget *widget)
 	if(!GTK_WIDGET_REALIZED (widget))
 		return;
 
+#if 0
 	gdk_window_raise (widget->window);
 	gtk_widget_grab_focus (widget);
+#else
+	gtk_window_present(widget);
+#endif /* 0/1 */
 }
 
 void
@@ -631,6 +635,7 @@ revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		if(reply == 0) {
 			gchar *flash;
 
+			win->changed = FALSE;
 			hex_document_read(doc);
 			flash = g_strdup_printf(_("Reverted buffer from file %s"), doc->file_name);
 			ghex_window_flash(win, flash);
@@ -698,6 +703,7 @@ save_selected_file(GtkWidget *w, GHexWindow *win)
 				g_free(doc->file_name);
 			doc->file_name = strdup(filename);
 			doc->changed = FALSE;
+			win->changed = FALSE;
 
 			for(i = strlen(doc->file_name);
 				(i >= 0) && (doc->file_name[i] != '/');

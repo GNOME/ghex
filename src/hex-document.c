@@ -627,9 +627,8 @@ hex_document_read(HexDocument *doc)
 
 	change_data.start = 0;
 	change_data.end = doc->file_size - 1;
-	hex_document_changed(doc, &change_data, FALSE);
-
 	doc->changed = FALSE;
+	hex_document_changed(doc, &change_data, FALSE);
 
 	return TRUE;
 }

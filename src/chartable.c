@@ -99,13 +99,21 @@ static void hide_chartable_cb (GtkWidget *widget, GtkWidget *win)
 	gtk_widget_hide(win);
 }
 
-gint key_press_cb (GtkWidget *w, GdkEventKey *e)
+static gint key_press_cb (GtkWidget *w, GdkEventKey *e)
 {
 	if (e->keyval == GDK_Escape) {
 		gtk_widget_hide(w);
 		return TRUE;
 	}
 	return FALSE;
+}
+
+static gboolean
+char_table_delete_event_cb(GtkWidget *widget, GdkEventAny *e, gpointer user_data)
+{
+	ghex_window_sync_char_table_item(NULL, FALSE);
+	gtk_widget_hide(widget);
+	return TRUE;
 }
 
 GtkWidget *create_char_table()
@@ -124,6 +132,8 @@ GtkWidget *create_char_table()
 	gchar *label, ascii_printable_label[2], bin_label[9], *row[5];
 
 	ct = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_signal_connect(GTK_OBJECT(ct), "delete_event",
+					   GTK_SIGNAL_FUNC(char_table_delete_event_cb), NULL);
 	gtk_window_set_title(GTK_WINDOW(ct), _("Character table"));
 	sw = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);

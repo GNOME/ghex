@@ -1,4 +1,21 @@
 2002-09-01  Jaka Mocnik  <jaka@gnu.org>
+	
+	* configure.in: version 1.99.1. tagged as GHEX_1_99_1.
+	* src/ghex-window.c (ghex_window_listener): sync "Character Table" and
+	"Converter" items in all windows.
+	(ghex_window_sync_*_item): sync items in all windows.
+	* src/converter.c (create_converter): connect a signal to delete
+	event of the window.
+	(converter_delete_event_cb): deselect "Converter" item in all
+	windows.
+	* src/chartable.c (create_char_table): connect a signal to delete
+	event of the window.
+	(char_table_delete_event_cb): deselect "Character Table" item in all
+	windows.
+	* src/ui.c (revert_cb): set win->changed to FALSE. fixes #90240.
+	(raise_and_focus_widget): use gtk_window_present();
+
+2002-09-01  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/findreplace.c (replace_all_cb): fixed a replace all bug.
 
