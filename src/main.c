@@ -69,10 +69,8 @@ int main(int argc, char **argv) {
 
     /* load preferences */
     load_configuration();
-
     /* set MDI mode */
     gnome_mdi_set_mode(mdi, mdi_mode);
-	gnome_mdi_open_toplevel(mdi);
 
     /* restore state from previous session */
     if (GNOME_CLIENT_CONNECTED (client)) {
@@ -84,11 +82,14 @@ int main(int argc, char **argv) {
         restarted = 1;
 
         gnome_config_push_prefix (gnome_client_get_config_prefix (cloned));
-        gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreate)hex_document_new_from_config);
+        gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreator)hex_document_new_from_config);
         gnome_config_pop_prefix ();
       }
     }
 
+	if(!restarted)
+		  gnome_mdi_open_toplevel(mdi);
+	
     cl_files = poptGetArgs(ctx);
     while(cl_files) {
       doc = hex_document_new(*cl_files);

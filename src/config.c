@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* -*- mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* config.c - configuration loading/saving via gnome-config routines
 
    Copyright (C) 1997, 1998 Free Software Foundation
