@@ -1,3 +1,12 @@
+2000-03-12  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* gtkhex.[ch] (gtk_hex_set_insert_mode): new public function.
+	* hex-document-ui.c: added a menu item to select insert mode for the
+	current view.
+	* main.c (view_changed_cb): update state of the insert mode toggle
+	item.
+	* ghex.h: #define a path for the "Insert mode" menu item.
+	
 2000-03-11  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* hex-document-ui.c: put all the UI related stuff for HexDocument

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* main.c - genesis of a GHex application
 
-   Copyright (C) 1998, 1999 Free Software Foundation
+   Copyright (C) 1998, 1999, 2000 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -121,6 +121,12 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 		item = g_list_nth(GTK_MENU_SHELL(shell)->children, pos - 1)->data;
 		
 		gtk_menu_shell_activate_item(GTK_MENU_SHELL(shell), item, TRUE);
+	}
+	shell = gnome_app_find_menu_pos(app->menubar, OVERWRITE_ITEM_PATH, &pos);
+	if (shell) {
+		item = g_list_nth(GTK_MENU_SHELL(shell)->children, pos - 1)->data;
+		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(item),
+									   GTK_HEX(mdi->active_view)->insert);
 	}
 	uiinfo = gnome_mdi_get_child_menu_info(app);
 	uiinfo = (GnomeUIInfo *)uiinfo[0].moreinfo;

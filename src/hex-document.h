@@ -62,7 +62,7 @@ struct _HexDocument
 	
 	gchar *file_name;
 	gchar *path_end;
-	
+
 	guchar *buffer;    /* data buffer */
 	guchar *gap_pos;   /* pointer to the start of insertion gap */
 	gint gap_size;     /* insertion gap size */

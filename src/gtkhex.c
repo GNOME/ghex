@@ -933,7 +933,6 @@ static void gtk_hex_finalize(GtkObject *o) {
 static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	GtkHex *gh = GTK_HEX(w);
 	guint old_cp = gh->cursor_pos;
-	static guchar buf[4];
 	gint ret = TRUE;
 
 	hide_cursor(gh);
@@ -1143,10 +1142,10 @@ static void gtk_hex_class_init(GtkHexClass *klass) {
 static void gtk_hex_init(GtkHex *gh) {
 	
 	gh->scroll_timeout = -1;
-	
+
 	gh->disp_buffer = NULL;
 	gh->document = NULL;
-	
+
 	gh->xdisp_width = gh->adisp_width = 200;
 	gh->adisp_gc = gh->xdisp_gc = NULL;
 	gh->active_view = VIEW_HEX;
@@ -1156,7 +1155,7 @@ static void gtk_hex_init(GtkHex *gh) {
 	gh->lower_nibble = FALSE;
 	gh->cursor_shown = FALSE;
 	gh->button = 0;
-	gh->insert = TRUE;
+	gh->insert = FALSE; /* default to overwrite mode */
 
 	/* get ourselves a decent monospaced font for rendering text */
 	gh->disp_font = gdk_font_load(DEFAULT_FONT);
@@ -1261,7 +1260,10 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 	g_return_if_fail(gh != NULL);
 	g_return_if_fail(GTK_IS_HEX(gh));
 
-	if((index >= 0) && (index < gh->document->file_size)) {
+	if((index >= 0) && (index <= gh->document->file_size)) {
+		if(!gh->insert && index == gh->document->file_size)
+			index--;
+
 		hide_cursor(gh);
 		
 		gh->cursor_pos = index;
@@ -1297,7 +1299,10 @@ void gtk_hex_set_cursor_xy(GtkHex *gh, gint x, gint y) {
 	cp = y*gh->cpl + x;
 
 	if((y >= 0) && (y < gh->lines) && (x >= 0) &&
-	   (x < gh->cpl) && (cp < gh->document->file_size)) {
+	   (x < gh->cpl) && (cp <= gh->document->file_size)) {
+		if(!gh->insert && cp == gh->document->file_size)
+			cp--;
+
 		hide_cursor(gh);
 		
 		gh->cursor_pos = cp;
@@ -1375,7 +1380,8 @@ void gtk_hex_set_font(GtkHex *gh, GdkFont *font) {
 /*
  *  do we show the offsets of lines?
  */
-void gtk_hex_show_offsets(GtkHex *gh, gboolean show) {
+void gtk_hex_show_offsets(GtkHex *gh, gboolean show)
+{
 	g_return_if_fail(gh != NULL);
 	g_return_if_fail(GTK_IS_HEX(gh));
 
@@ -1388,3 +1394,12 @@ void gtk_hex_show_offsets(GtkHex *gh, gboolean show) {
 	else
 		hide_offsets_widget(gh);
 }
+
+void gtk_hex_set_insert_mode(GtkHex *gh, gboolean insert)
+{
+	g_return_if_fail(gh != NULL);
+	g_return_if_fail(GTK_IS_HEX(gh));
+
+	gh->insert = insert;
+}
+

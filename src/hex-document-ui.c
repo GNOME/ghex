@@ -43,6 +43,7 @@ static void undo_cb     (GtkWidget *, gpointer);
 static void redo_cb     (GtkWidget *, gpointer);
 static void add_view_cb    (GtkWidget *, gpointer);
 static void remove_view_cb (GtkWidget *, gpointer);
+static void insert_cb      (GtkWidget *w);
 
 static GnomeUIInfo group_radio_items[] =
 {
@@ -70,8 +71,12 @@ static GnomeUIInfo edit_menu[] =
 	GNOMEUIINFO_MENU_FIND_ITEM(find_cb,NULL),
 	GNOMEUIINFO_MENU_REPLACE_ITEM(replace_cb,NULL),
 	GNOMEUIINFO_SEPARATOR,
-	{ GNOME_APP_UI_ITEM, N_("_Goto Byte..."), N_("Jump to a certain position"), jump_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_JUMP_TO, 'J', GDK_CONTROL_MASK, NULL },
+	{ GNOME_APP_UI_ITEM, N_("_Goto Byte..."), N_("Jump to a certain position"),
+	  jump_cb, NULL, NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_JUMP_TO,
+	  'J', GDK_CONTROL_MASK, NULL },
+	GNOMEUIINFO_SEPARATOR,
+	{ GNOME_APP_UI_TOGGLEITEM, N_("_Insert mode"), N_("Insert/overwrite data"),
+	  insert_cb, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, GDK_Insert, 0, NULL },
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_SUBTREE(N_("_Group Data As"), group_type_menu),
 	GNOMEUIINFO_END
@@ -106,32 +111,44 @@ void hex_document_set_menu_sensitivity(HexDocument *doc)
 	while(view_node) {
 		view = GTK_WIDGET(view_node->data);
 		app = gnome_mdi_get_app_from_view(view);
-		uiinfo = gnome_mdi_get_child_menu_info(app);
-		uiinfo = (GnomeUIInfo *)uiinfo[0].moreinfo;
-		sensitive = doc->undo_top != NULL;
-		gtk_widget_set_sensitive(uiinfo[0].widget, sensitive);
-		sensitive = doc->undo_stack && doc->undo_top != doc->undo_stack;
-		gtk_widget_set_sensitive(uiinfo[1].widget, sensitive);
-		view_node = view_node->next;
+		if(view == gnome_mdi_get_view_from_window(mdi, app)) { 
+			uiinfo = gnome_mdi_get_child_menu_info(app);
+			uiinfo = (GnomeUIInfo *)uiinfo[0].moreinfo;
+			sensitive = doc->undo_top != NULL;
+			gtk_widget_set_sensitive(uiinfo[0].widget, sensitive);
+			sensitive = doc->undo_stack && doc->undo_top != doc->undo_stack;
+			gtk_widget_set_sensitive(uiinfo[1].widget, sensitive);
+			view_node = view_node->next;
+		}
 	}
 }
 
 /*
  * callbacks for document's menus
  */
-static void set_byte_cb(GtkWidget *w) {
-	if( GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
+static void set_byte_cb(GtkWidget *w)
+{
+	if(GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
 		gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_BYTE);
 }
 
-static void set_word_cb(GtkWidget *w) {
-	if( GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
+static void set_word_cb(GtkWidget *w)
+{
+	if(GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
 		gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_WORD);
 }
 
-static void set_long_cb(GtkWidget *w) {
-	if( GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
+static void set_long_cb(GtkWidget *w)
+{
+	if(GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
 		gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_LONG);
+}
+
+static void insert_cb(GtkWidget *w)
+{
+	if(mdi->active_view)
+		gtk_hex_set_insert_mode(GTK_HEX(mdi->active_view),
+								GTK_CHECK_MENU_ITEM(w)->active);
 }
 
 static void find_cb(GtkWidget *w) {

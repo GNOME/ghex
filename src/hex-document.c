@@ -351,7 +351,10 @@ void hex_document_set_nibble(HexDocument *doc, guchar val, guint offset,
 {
 	static HexChangeData change_data;
 
-	if(offset >= 0 && offset < doc->file_size) {
+	if(offset <= doc->file_size) {
+		if(!insert && offset == doc->file_size)
+			return;
+
 		doc->changed = TRUE;
 		change_data.start = offset;
 		change_data.end = offset;
@@ -364,6 +367,8 @@ void hex_document_set_nibble(HexDocument *doc, guchar val, guint offset,
 			doc->gap_pos++;
 			doc->file_size++;
 			change_data.rep_len = 0;
+			if(offset == doc->file_size)
+				doc->buffer[offset] = 0;
 		}
 		else {
 			if(doc->buffer + offset >= doc->gap_pos)
@@ -383,7 +388,10 @@ void hex_document_set_byte(HexDocument *doc, guchar val, guint offset,
 {
 	static HexChangeData change_data;
 
-	if(offset >= 0 && offset < doc->file_size) {
+	if(offset <= doc->file_size) {
+		if(!insert && offset == doc->file_size)
+			return;
+
 		doc->changed = TRUE;
 		change_data.start = offset;
 		change_data.end = offset;
@@ -414,57 +422,60 @@ void hex_document_set_data(HexDocument *doc, guint offset, guint len,
 	guchar *ptr;
 	static HexChangeData change_data;
 
-	if(offset >= 0 && offset < doc->file_size)
+	if(offset <= doc->file_size) {
+		if(doc->file_size - offset < rep_len)
+			rep_len -= doc->file_size - offset;
+
 		doc->changed = TRUE;
-
-	change_data.v_string = g_realloc(change_data.v_string, rep_len);
-	change_data.start = offset;
-	change_data.end = change_data.start + len - 1;
-	change_data.rep_len = rep_len;
-	change_data.type = HEX_CHANGE_STRING;
-	change_data.lower_nibble = FALSE;
-
-	i = 0;
-	ptr = &doc->buffer[offset];
-	if(ptr >= doc->gap_pos)
-		ptr += doc->gap_size;
-	while(offset + i < doc->file_size && i < rep_len) {
-		if(ptr >= doc->gap_pos && ptr < doc->gap_pos + doc->gap_size)
+		
+		change_data.v_string = g_realloc(change_data.v_string, rep_len);
+		change_data.start = offset;
+		change_data.end = change_data.start + len - 1;
+		change_data.rep_len = rep_len;
+		change_data.type = HEX_CHANGE_STRING;
+		change_data.lower_nibble = FALSE;
+		
+		i = 0;
+		ptr = &doc->buffer[offset];
+		if(ptr >= doc->gap_pos)
 			ptr += doc->gap_size;
-		change_data.v_string[i] = *ptr++;
-		i++;
-	}
-
-	if(rep_len == len) {
-		if(doc->buffer + offset >= doc->gap_pos)
-			offset += doc->gap_size;
-	}
-	else {
-		if(rep_len > len) {
-			move_gap_to(doc, offset + rep_len, 1);
+		while(offset + i < doc->file_size && i < rep_len) {
+			if(ptr >= doc->gap_pos && ptr < doc->gap_pos + doc->gap_size)
+				ptr += doc->gap_size;
+			change_data.v_string[i] = *ptr++;
+			i++;
 		}
-		else if(rep_len < len) {
-			move_gap_to(doc, offset + rep_len, len - rep_len);
+		
+		if(rep_len == len) {
+			if(doc->buffer + offset >= doc->gap_pos)
+				offset += doc->gap_size;
 		}
-		doc->gap_pos -= (gint)rep_len - (gint)len;
-		doc->gap_size += (gint)rep_len - (gint)len;
-		doc->file_size += (gint)len - (gint)rep_len;
+		else {
+			if(rep_len > len) {
+				move_gap_to(doc, offset + rep_len, 1);
+			}
+			else if(rep_len < len) {
+				move_gap_to(doc, offset + rep_len, len - rep_len);
+			}
+			doc->gap_pos -= (gint)rep_len - (gint)len;
+			doc->gap_size += (gint)rep_len - (gint)len;
+			doc->file_size += (gint)len - (gint)rep_len;
+		}
+		
+		ptr = &doc->buffer[offset];
+		i = 0;
+		while(offset + i < doc->buffer_size && i < len) {
+			*ptr++ = *data++;
+			i++;
+		}
+		
+		hex_document_changed(doc, &change_data, undoable);
 	}
-
-	ptr = &doc->buffer[offset];
-	i = 0;
-	while(offset + i < doc->buffer_size && i < len) {
-		*ptr++ = *data++;
-		i++;
-	}
-
-	hex_document_changed(doc, &change_data, undoable);
 }
 
 void hex_document_delete_data(HexDocument *doc, guint offset, guint len, gboolean undoable)
 {
 	hex_document_set_data(doc, offset, 0, len, NULL, undoable);
-
 #if 0
 	/* TODO: add undo capabilities */
 

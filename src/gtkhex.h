@@ -114,6 +114,8 @@ void gtk_hex_set_group_type(GtkHex *, guint);
 void gtk_hex_show_offsets(GtkHex *, gboolean);
 void gtk_hex_set_font(GtkHex *, GdkFont *);
 
+void gtk_hex_set_insert_mode(GtkHex *, gboolean);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

@@ -46,9 +46,10 @@ extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[], tools_men
 
 #define NUM_MDI_MODES 4
 
-#define CHILD_MENU_PATH "_File"
-#define CHILD_LIST_PATH "Fi_les/"
-#define GROUP_MENU_PATH "_Edit/_Group Data As/"
+#define CHILD_MENU_PATH      "_File"
+#define CHILD_LIST_PATH      "Fi_les/"
+#define GROUP_MENU_PATH      "_Edit/_Group Data As/"
+#define OVERWRITE_ITEM_PATH  "_Edit/_Insert mode"
 
 #define GHEX_URL "http://pluton.ijs.si/~jaka/gnome.html#GHEX"
 
