@@ -14,7 +14,6 @@
 
 #include "hex-document.h"
 #include "gtkhex.h"
-#include "gnome-mdi.h"
 
 #define NO_BUFFER_LABEL "No buffer"
 #define DEFAULT_FONT    "-*-courier-medium-r-normal--12-*-*-*-*-*-*-*"

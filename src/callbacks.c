@@ -27,7 +27,7 @@ void about_cb (GtkWidget *widget) {
 }
 
 void quit_app_cb (GtkWidget *widget) {
-  if(gnome_mdi_remove_all_documents(mdi, FALSE))
+  if(gnome_mdi_remove_all(mdi, FALSE))
     gtk_object_destroy(GTK_OBJECT(mdi));
 }
 
@@ -50,22 +50,22 @@ void properties_modified_cb(GtkWidget *w, GnomePropertyBox *pbox) {
 }
 
 void save_cb(GtkWidget *w) {
-  if(mdi->active_doc)
-    if(hex_document_write(HEX_DOCUMENT(mdi->active_doc)))
+  if(mdi->active_child)
+    if(hex_document_write(HEX_DOCUMENT(mdi->active_child)))
       report_error(_("Error saving file!")); 
 }
 
 void revert_cb(GtkWidget *w) {
-  if(mdi->active_doc)
-    hex_document_read(HEX_DOCUMENT(mdi->active_doc));
+  if(mdi->active_child)
+    hex_document_read(HEX_DOCUMENT(mdi->active_child));
 }
 
 void open_selected_file(GtkWidget *w) {
   HexDocument *new_doc;
 
   if((new_doc = hex_document_new((gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel))))) != NULL) {
-    gnome_mdi_add_document(mdi, GNOME_DOCUMENT(new_doc));
-    gnome_mdi_add_view(mdi, GNOME_DOCUMENT(new_doc));
+    gnome_mdi_add_child(mdi, GNOME_MDI_CHILD(new_doc));
+    gnome_mdi_add_view(mdi, GNOME_MDI_CHILD(new_doc));
   }
   else
     report_error(_("Can not open file!"));
@@ -79,10 +79,10 @@ void save_selected_file(GtkWidget *w) {
   gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
   int i;
 
-  if(mdi->active_doc == NULL)
+  if(mdi->active_child == NULL)
     return;
 
-  doc = HEX_DOCUMENT(mdi->active_doc);
+  doc = HEX_DOCUMENT(mdi->active_child);
 
   if((doc->file = fopen(filename, "w")) != NULL) {
     if(fwrite(doc->buffer, doc->buffer_size, 1, doc->file) == 1) {
@@ -99,7 +99,7 @@ void save_selected_file(GtkWidget *w) {
       else
 	doc->path_end = doc->file_name;
 
-      gnome_document_set_title(GNOME_DOCUMENT(doc), doc->path_end);
+      gnome_mdi_child_set_name(GNOME_MDI_CHILD(doc), doc->path_end);
     }
     else
       report_error(_("Error saving file!"));
@@ -145,7 +145,7 @@ void open_cb(GtkWidget *w) {
 }
 
 void save_as_cb(GtkWidget *w) {
-  if(mdi->active_doc == NULL)
+  if(mdi->active_child == NULL)
     return;
 
   if(file_sel == NULL)
@@ -163,10 +163,10 @@ void save_as_cb(GtkWidget *w) {
 }
 
 void close_cb(GtkWidget *w) {
-  if(mdi->active_doc == NULL)
+  if(mdi->active_child == NULL)
     return;
 
-  gnome_mdi_remove_document(mdi, mdi->active_doc, FALSE);
+  gnome_mdi_remove_child(mdi, mdi->active_child, FALSE);
 }
 
 void find_cb(GtkWidget *w) {
@@ -266,14 +266,14 @@ void find_next_cb(GtkWidget *w, GtkEntry *data) {
     return;
   }
 
-  if(mdi->active_doc == NULL) {
+  if(mdi->active_child == NULL) {
     report_error(_("There is no active buffer to search!"));
     return;
   }
 
   gh = GTK_HEX(mdi->active_view);
 
-  if(find_string_forward(HEX_DOCUMENT(mdi->active_doc), gh->cursor_pos+1, str, str_len, &offset) == 0)
+  if(find_string_forward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos+1, str, str_len, &offset) == 0)
     gtk_hex_set_cursor(gh, offset);
   else
     show_message(_("End Of File reached"));
@@ -289,14 +289,14 @@ void find_prev_cb(GtkWidget *w, GtkEntry *data) {
     return;
   }
 
-  if(mdi->active_doc == NULL) {
+  if(mdi->active_child == NULL) {
     report_error(_("There is no active buffer to search!"));
     return;
   }
 
   gh = GTK_HEX(mdi->active_view);
 
-  if(find_string_backward(HEX_DOCUMENT(mdi->active_doc), gh->cursor_pos-1, str, str_len, &offset) == 0)
+  if(find_string_backward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos-1, str, str_len, &offset) == 0)
     gtk_hex_set_cursor(gh, offset);
   else
     show_message(_("Beginning Of File reached"));
@@ -306,7 +306,7 @@ void goto_byte_cb(GtkWidget *w, GtkEntry *data) {
   guint byte;
   gchar *byte_str = gtk_entry_get_text(data), *endptr;
   
-  if(mdi->active_doc == NULL) {
+  if(mdi->active_child == NULL) {
     report_error(_("There is no active buffer to move the cursor in!"));
     return;
   }
@@ -323,7 +323,7 @@ void goto_byte_cb(GtkWidget *w, GtkEntry *data) {
     return;
   }
 
-  if(byte >= HEX_DOCUMENT(mdi->active_doc)->buffer_size) {
+  if(byte >= HEX_DOCUMENT(mdi->active_child)->buffer_size) {
     report_error(_("Can not position cursor beyond the End Of File!"));
     return;
   }
@@ -337,13 +337,13 @@ void replace_one_cb(GtkWidget *w, ReplaceCBData *data) {
   GtkHex *gh;
   HexDocument *doc;
 
-  if(mdi->active_doc == NULL) {
+  if(mdi->active_child == NULL) {
     report_error(_("There is no active buffer to replace data in!"));
     return;
   }
 
   gh = GTK_HEX(mdi->active_view);
-  doc = HEX_DOCUMENT(mdi->active_doc);
+  doc = HEX_DOCUMENT(mdi->active_child);
 
   if( ((find_len = get_search_string(gtk_entry_get_text(data->find), find_str)) == 0) ||
       ((rep_len = get_search_string(gtk_entry_get_text(data->replace), rep_str)) == 0)) {
@@ -374,13 +374,13 @@ void replace_all_cb(GtkWidget *w, ReplaceCBData *data) {
   GtkHex *gh;
   HexDocument *doc;
 
-  if(mdi->active_doc == NULL) {
+  if(mdi->active_child == NULL) {
     report_error(_("There is no active buffer to replace data in!"));
     return;
   }
 
   gh = GTK_HEX(mdi->active_view);
-  doc = HEX_DOCUMENT(mdi->active_doc);
+  doc = HEX_DOCUMENT(mdi->active_child);
 
   if( ((find_len = get_search_string(gtk_entry_get_text(data->find), find_str)) == 0) ||
       ((rep_len = get_search_string(gtk_entry_get_text(data->replace), rep_str)) == 0)) {
@@ -423,7 +423,7 @@ void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {
 
 void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
   int i;
-  GList *doc, *view;
+  GList *child, *view;
   GdkFont *new_font;
 
   if ( page != -1 ) return; /* Only do something on global apply */
@@ -443,15 +443,15 @@ void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
 
   if(strcmp(GTK_LABEL(pui->font_button->child)->label, def_font_name) != 0) {
     if((new_font = gdk_font_load(GTK_LABEL(pui->font_button->child)->label)) != NULL) {
-      doc = mdi->documents;
+      child = mdi->children;
 
-      while(doc) {
-	view = GNOME_DOCUMENT(doc->data)->views;
+      while(child) {
+	view = GNOME_MDI_CHILD(child->data)->views;
 	while(view) {
 	  gtk_hex_set_font(GTK_HEX(view->data), new_font);
 	  view = g_list_next(view);
 	}
-	doc = g_list_next(doc);
+	child = g_list_next(child);
       }
 
       if(def_font)
@@ -469,8 +469,8 @@ void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
 }
       
 void add_view_cb(GtkWidget *w) {
-  if(mdi->active_doc)
-    gnome_mdi_add_view(mdi, mdi->active_doc);
+  if(mdi->active_child)
+    gnome_mdi_add_view(mdi, mdi->active_child);
 }
 
 void remove_view_cb(GtkWidget *w) {
@@ -478,22 +478,22 @@ void remove_view_cb(GtkWidget *w) {
     gnome_mdi_remove_view(mdi, mdi->active_view, FALSE);
 }
 
-gint remove_doc_cb(GnomeMDI *mdi, GnomeDocument *doc) {
+gint remove_doc_cb(GnomeMDI *mdi, HexDocument *doc) {
   static char msg[512];
   GnomeMessageBox *mbox;
   gint reply;
 
   sprintf(msg, _("The document %s has changed since last save.\n"
-                 "Do you want to save changes?"), doc->title);
+                 "Do you want to save changes?"), GNOME_MDI_CHILD(doc)->name);
 
-  if(gnome_document_has_changed(doc)) {
+  if(hex_document_has_changed(doc)) {
     mbox = GNOME_MESSAGE_BOX(gnome_message_box_new( msg, GNOME_MESSAGE_BOX_QUESTION, GNOME_STOCK_BUTTON_YES,
 						    GNOME_STOCK_BUTTON_NO, GNOME_STOCK_BUTTON_CANCEL, NULL));
     gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
     reply = ask_user(mbox);
 
     if(reply == 0)
-      hex_document_write(HEX_DOCUMENT(doc));
+      hex_document_write(doc);
     else if(reply == 2)
       return FALSE;
   }

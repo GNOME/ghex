@@ -1020,7 +1020,7 @@ void gtk_hex_data_changed(GtkHex *gh, gint start, gint end) {
   gh->document->change_data.end = end;
 
   if(gh->document)
-    gnome_document_changed(GNOME_DOCUMENT(gh->document), &gh->document->change_data);
+    hex_document_changed(HEX_DOCUMENT(gh->document), &gh->document->change_data);
 }
 
 /*

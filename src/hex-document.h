@@ -13,8 +13,6 @@
 
 #include <libgnomeui/libgnomeui.h>
 
-#include <gnome-document.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
@@ -33,7 +31,7 @@ struct _HexChangeData {
 
 struct _HexDocument
 {
-  GnomeDocument document;
+  GnomeMDIChild mdi_child;
 
   gchar *file_name;
   gchar *path_end;
@@ -42,12 +40,16 @@ struct _HexDocument
   guchar *buffer;
   guint buffer_size;
 
+  gboolean changed;
+
   HexChangeData change_data;
 };
 
 struct _HexDocumentClass
 {
-  GnomeDocumentClass parent_class;
+  GnomeMDIChildClass parent_class;
+
+  void (*document_changed)(HexDocument *, gpointer);
 };
 
 HexDocument *hex_document_new(gchar *);
@@ -55,6 +57,7 @@ void hex_document_set_data(HexDocument *, guint, guint, guchar *);
 void hex_document_set_byte(HexDocument *, guchar, guint);
 gint hex_document_read(HexDocument *doc);
 gint hex_document_write(HexDocument *doc);
+void hex_document_changed(HexDocument *doc, gpointer change_data);
 gint find_string_forward(HexDocument *doc, guint start, guchar *what, gint len, guint *found);
 gint find_string_backward(HexDocument *doc, guint start, guchar *what, gint len, guint *found);
 

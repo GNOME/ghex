@@ -58,11 +58,11 @@ int main(int argc, char **argv) {
 #endif
 
     /* and document menu and document list paths */
-    gnome_mdi_set_document_menu_path(mdi, "File");
-    gnome_mdi_set_document_list_path(mdi, "View");
+    gnome_mdi_set_child_menu_path(mdi, "File");
+    gnome_mdi_set_child_list_path(mdi, "View");
 
     /* connect signals */
-    gtk_signal_connect(GTK_OBJECT(mdi), "remove_document", GTK_SIGNAL_FUNC(remove_doc_cb), NULL);
+    gtk_signal_connect(GTK_OBJECT(mdi), "remove_child", GTK_SIGNAL_FUNC(remove_doc_cb), NULL);
     gtk_signal_connect(GTK_OBJECT(mdi), "destroy", GTK_SIGNAL_FUNC(cleanup_cb), NULL);
 
     /* load preferences */

@@ -18,12 +18,9 @@
 
 static void hex_document_class_init        (HexDocumentClass *klass);
 static void hex_document_init              (HexDocument *);
-static GtkWidget *hex_document_create_view (GnomeDocument *);
+static GtkWidget *hex_document_create_view (GnomeMDIChild *);
 static void hex_document_destroy           (GtkObject *);
-
-#ifndef USE_APP_HELPER
-static GList *hex_document_create_menus    (GnomeDocument *, GtkWidget *);
-#endif
+static void hex_document_real_changed      (HexDocument *, gpointer);
 
 GnomeUIInfo edit_menu[] = {
   { GNOME_APP_UI_ITEM, "Find...", NULL, find_cb, NULL, NULL,
@@ -58,13 +55,33 @@ gchar *group_type_label[3] = {
   _("Longwords"),
 };
 
-static GnomeDocumentClass *parent_class = NULL;
+enum {
+  DOCUMENT_CHANGED,
+  LAST_SIGNAL
+};
+
+static gint hex_signals[LAST_SIGNAL];
+
+typedef void       (*HexDocumentSignal) (GtkObject *, gpointer, gpointer);
+
+static GnomeMDIChildClass *parent_class = NULL;
+
+static void hex_document_marshal (GtkObject	    *object,
+				  GtkSignalFunc     func,
+				  gpointer	    func_data,
+				  GtkArg	    *args) {
+  HexDocumentSignal rfunc;
+  
+  rfunc = (HexDocumentSignal) func;
+  
+  (* rfunc)(object, GTK_VALUE_POINTER(args[0]), func_data);
+}
 
 guint hex_document_get_type () {
-  static guint document_type = 0;
+  static guint doc_type = 0;
 
-  if (!document_type) {
-    GtkTypeInfo document_info = {
+  if (!doc_type) {
+    GtkTypeInfo doc_info = {
       "HexDocument",
       sizeof (HexDocument),
       sizeof (HexDocumentClass),
@@ -74,22 +91,20 @@ guint hex_document_get_type () {
       (GtkArgGetFunc) NULL,
     };
     
-    document_type = gtk_type_unique (gnome_document_get_type (), &document_info);
+    doc_type = gtk_type_unique (gnome_mdi_child_get_type (), &doc_info);
   }
   
-  return document_type;
+  return doc_type;
 }
 
-static GtkWidget *hex_document_create_view(GnomeDocument *doc) {
+static GtkWidget *hex_document_create_view(GnomeMDIChild *child) {
   GtkWidget *new_view;
 
-  new_view = gtk_hex_new(HEX_DOCUMENT(doc));
+  new_view = gtk_hex_new(HEX_DOCUMENT(child));
 
   /* TODO: perhaps it would be nicer to put such stuff in the MDI add_view signal handler */
   gtk_hex_set_group_type(GTK_HEX(new_view), def_group_type);
   gtk_hex_set_font(GTK_HEX(new_view), def_font);
-
-  gtk_widget_show(new_view);
 
   return new_view;
 }
@@ -116,63 +131,6 @@ static GtkWidget *create_group_type_menu(GtkHex *gh) {
   return menu;
 }
 
-#ifndef USE_APP_HELPER
-static GList *hex_document_create_menus(GnomeDocument *doc, GtkWidget *view) {
-  GList *menu_list;
-  GtkWidget *menu, *w;
-  GtkAcceleratorTable *accel = NULL;
-
-  menu_list = NULL;
-
-  /* the Edit menu */
-  menu = gtk_menu_new();
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_SEARCH, _("Find..."));
-  gtk_widget_show(w);
-  gtk_widget_install_accelerator(w, accel, "activate",
-				 'F', GDK_CONTROL_MASK);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(find_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK,_("Replace..."));
-  gtk_widget_show(w);
-  gtk_widget_install_accelerator(w, accel, "activate",
-				 'R', GDK_CONTROL_MASK);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(replace_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_menu_item_new();
-  gtk_widget_show(w);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK,_("Goto byte"));
-  gtk_widget_show(w);
-  gtk_widget_install_accelerator(w, accel, "activate",
-				 'G', GDK_CONTROL_MASK);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(jump_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_menu_item_new();
-  gtk_widget_show(w);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK, _("Group Data As"));
-  gtk_widget_show(w);
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), create_group_type_menu(GTK_HEX(view)));
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_menu_item_new_with_label(_("Edit"));
-  gtk_widget_show(w);
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
-  menu_list = g_list_append(menu_list, w);
-
-  return menu_list;
-}  
-#endif
-
 static void hex_document_destroy(GtkObject *obj) {
   HexDocument *hex;
 
@@ -190,23 +148,31 @@ static void hex_document_destroy(GtkObject *obj) {
 
 static void hex_document_class_init (HexDocumentClass *class) {
   GtkObjectClass *object_class;
-  GnomeDocumentClass *doc_class;
+  GnomeMDIChildClass *child_class;
 
   object_class = (GtkObjectClass*)class;
-  doc_class = GNOME_DOCUMENT_CLASS(class);
+  child_class = GNOME_MDI_CHILD_CLASS(class);
+
+  hex_signals[DOCUMENT_CHANGED] = gtk_signal_new ("document_changed",
+						   GTK_RUN_LAST,
+						   object_class->type,
+						   GTK_SIGNAL_OFFSET (HexDocumentClass, document_changed),
+						   hex_document_marshal,
+						   GTK_TYPE_NONE, 1, GTK_TYPE_POINTER);
+  
+  gtk_object_class_add_signals (object_class, hex_signals, LAST_SIGNAL);
 
   object_class->destroy = hex_document_destroy;
 
-  doc_class->create_view = hex_document_create_view;
-#ifndef USE_APP_HELPER
-  doc_class->create_menus = hex_document_create_menus;
-#endif
+  child_class->create_view = hex_document_create_view;
 
-  parent_class = gtk_type_class (gnome_document_get_type ());
+  class->document_changed = hex_document_real_changed;
+
+  parent_class = gtk_type_class (gnome_mdi_child_get_type ());
 }
 
 void hex_document_set_byte(HexDocument *document, guchar val, guint offset) {
-  GNOME_DOCUMENT(document)->changed = TRUE;
+  document->changed = TRUE;
 
   if((offset >= 0) && (offset < document->buffer_size))
     document->buffer[offset] = val;
@@ -214,13 +180,13 @@ void hex_document_set_byte(HexDocument *document, guchar val, guint offset) {
   document->change_data.start = offset;
   document->change_data.end = offset;
 
-  gnome_document_changed(GNOME_DOCUMENT(document), &document->change_data);
+  hex_document_changed(document, &document->change_data);
 }
 
 void hex_document_set_data(HexDocument *document, guint offset, guint len, guchar *data) {
   guint i;
 
-  GNOME_DOCUMENT(document)->changed = TRUE;
+  document->changed = TRUE;
 
   for(i = 0; (offset < document->buffer_size) && (i < len); offset++, i++)
     document->buffer[offset] = data[i];
@@ -228,17 +194,14 @@ void hex_document_set_data(HexDocument *document, guint offset, guint len, gucha
   document->change_data.start = offset;
   document->change_data.end = offset + i - 1;
 
-  gnome_document_changed(GNOME_DOCUMENT(document), &document->change_data);
+  hex_document_changed(document, &document->change_data);
 }
 
 static void hex_document_init (HexDocument *document) {
   document->buffer = NULL;
   document->buffer_size = 0;
-#ifdef USE_APP_HELPER
-  GNOME_DOCUMENT(document)->menu_template = doc_menu;
-#else
-  GNOME_DOCUMENT(document)->menu_template = NULL;
-#endif
+  document->changed = FALSE;
+  gnome_mdi_child_set_menu_template(GNOME_MDI_CHILD(document), doc_menu);
 }
 
 HexDocument *hex_document_new(gchar *name) {
@@ -265,7 +228,7 @@ HexDocument *hex_document_new(gchar *name) {
 
 	  if((document->file = fopen(name, "r")) != NULL) {
 	    document->buffer_size = fread(document->buffer, 1, document->buffer_size, document->file);
-	    gnome_document_set_title(GNOME_DOCUMENT(document), document->path_end);
+	    gnome_mdi_child_set_name(GNOME_MDI_CHILD(document), document->path_end);
 	    fclose(document->file);
 	    document->file = 0;
 	    return document;
@@ -292,7 +255,7 @@ gint hex_document_read(HexDocument *doc) {
   doc->change_data.start = 0;
   doc->change_data.end = doc->buffer_size - 1;
 
-  gnome_document_changed(GNOME_DOCUMENT(doc), &doc->change_data);
+  hex_document_changed(doc, &doc->change_data);
 
   return 1;
 }
@@ -305,6 +268,27 @@ gint hex_document_write(HexDocument *doc) {
     return 0;
   }
   return 1;
+}
+
+void hex_document_real_changed(HexDocument *doc, gpointer change_data) {
+  GList *view;
+  GnomeMDIChild *child;
+
+  child = GNOME_MDI_CHILD(doc);
+
+  view = child->views;
+  while(view) {
+    gtk_signal_emit_by_name(GTK_OBJECT(view->data), "data_changed", change_data);
+    view = g_list_next(view);
+  }
+}
+
+void hex_document_changed(HexDocument *doc, gpointer change_data) {
+  gtk_signal_emit(GTK_OBJECT(doc), hex_signals[DOCUMENT_CHANGED], change_data);
+}
+
+gboolean hex_document_has_changed(HexDocument *doc) {
+  return doc->changed;
 }
 
 gint compare_data(guchar *s1, guchar *s2, gint len) {
