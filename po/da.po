@@ -7,12 +7,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 1999-11-29 11:09+0100\n"
-"PO-Revision-Date: 1999-11-29 03:56+01:00\n"
+"POT-Creation-Date: 1999-12-18 06:42+0100\n"
+"PO-Revision-Date: 1999-12-18 07:24+01:00\n"
 "Last-Translator: Birger Langkjer <birger.langkjer@image.dk>\n"
 "Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gcalc/gcalc.c:30
@@ -21,11 +21,11 @@ msgstr "GNOME Lommeregneren"
 
 #: gcalc/gcalc.c:33
 msgid "Simple double precision calculator similiar to xcalc"
-msgstr "Simpel dobbeltpræcisions lommeregner magen til xcalc"
+msgstr "Simpel dobbeltpræcisionslommeregner magen til xcalc"
 
 #: gcalc/gcalc.c:124
 msgid "Gnome Calculator"
-msgstr "GNOME Lommeregner"
+msgstr "Gnome Lommeregner"
 
 #: gdiskfree/df.c:212
 msgid ""
@@ -57,7 +57,7 @@ msgstr "ASCII"
 
 #: ghex/converter.c:90
 msgid "Get cursor value"
-msgstr "Få markør værdi"
+msgstr "Skaf markørværdi"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
 #: mini-utils/gshutdown/gshutdown.c:596
@@ -188,15 +188,15 @@ msgstr "_lange ord"
 
 #: ghex/hex-document.c:62
 msgid "Group data by 32 bits"
-msgstr "Gruppér data pr. 32 bits"
-
-#: ghex/hex-document.c:78
-msgid "Jump to a certain position"
-msgstr "Hop til bestemt position"
+msgstr "Gruppér data pr. 32 bit"
 
 #: ghex/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr "_Gå til byte..."
+
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "Hop til bestemt position"
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -303,7 +303,7 @@ msgstr "Kan ikke åbne den ønskede skrifttype!"
 
 #: ghex/ui.c:51
 msgid "Open Con_verter..."
-msgstr "Åbner Kon_verteringsprogram"
+msgstr "Åbner _konverteringsprogram"
 
 #: ghex/ui.c:52
 msgid "Open base conversion dialog"
@@ -377,201 +377,209 @@ msgstr "Kan ikke åbne fil!"
 msgid "Can't open file for writing!"
 msgstr "Kan ikke åbne fil for skrivning"
 
-#: gsearchtool/gsearchtool.c:21
+#: gsearchtool/gsearchtool.c:25
 msgid "File name"
 msgstr "Filnavn"
 
-#: gsearchtool/gsearchtool.c:23
+#: gsearchtool/gsearchtool.c:27
 msgid "Don't search subdirectories"
 msgstr "Søg ikke i undermapper"
 
-#: gsearchtool/gsearchtool.c:24
+#: gsearchtool/gsearchtool.c:28
 msgid "File owner"
 msgstr "Filejer"
 
-#: gsearchtool/gsearchtool.c:25
+#: gsearchtool/gsearchtool.c:29
 msgid "File owner group"
 msgstr "Filejergruppe"
 
-#: gsearchtool/gsearchtool.c:26
+#: gsearchtool/gsearchtool.c:30
 msgid "Last modification time"
 msgstr "Sidste ændringsdato"
 
-#: gsearchtool/gsearchtool.c:28
+#: gsearchtool/gsearchtool.c:32
 msgid "Don't search mounted filesystems"
 msgstr "Søg ikke i monterede filsystemer"
 
-#: gsearchtool/gsearchtool.c:30
+#: gsearchtool/gsearchtool.c:34
 msgid "Empty file"
 msgstr "Tom fil"
 
-#: gsearchtool/gsearchtool.c:32
+#: gsearchtool/gsearchtool.c:36
 msgid "Invalid user or group"
 msgstr "Forkert bruger eller gruppe"
 
-#: gsearchtool/gsearchtool.c:33
+#: gsearchtool/gsearchtool.c:37
 msgid "Filenames except"
 msgstr "Filnavne pånær"
 
-#: gsearchtool/gsearchtool.c:34
+#: gsearchtool/gsearchtool.c:39
+msgid "Follow symbolic links"
+msgstr "Følg symbolske lænker"
+
+#: gsearchtool/gsearchtool.c:40
 msgid "Simple substring search"
 msgstr "Simpel substrengssøgning"
 
-#: gsearchtool/gsearchtool.c:35
+#: gsearchtool/gsearchtool.c:41
 msgid "Regular expression search"
-msgstr "Standard-udtrykssøgning"
+msgstr "Regulær udtryks-søgning"
 
-#: gsearchtool/gsearchtool.c:37
+#: gsearchtool/gsearchtool.c:43
 msgid "Extended regular expression search"
-msgstr "Udvidet standard-udtrykssøgning"
+msgstr "Udvidet regulær udtryks-søgning"
 
-#: gsearchtool/gsearchtool.c:94 gsearchtool/gsearchtool.c:150
+#: gsearchtool/gsearchtool.c:102 gsearchtool/gsearchtool.c:158
 msgid "grep options found in find list bad bad!"
 msgstr "grep flag fundet i søgeliste! fy fy!"
 
-#: gsearchtool/gsearchtool.c:165
+#: gsearchtool/gsearchtool.c:173
 msgid "non-grep option found in grep list, bad bad!"
-msgstr "Ikke-grep flag fundet i grep liste! fy fy!"
+msgstr "ikke-grep flag fundet i grep liste! fy fy!"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
-#: gsearchtool/gsearchtool.c:205
+#: gsearchtool/gsearchtool.c:214
 msgid "Search Results"
-msgstr "Søgningsresultater"
+msgstr "Søgeresultater"
 
-#: gsearchtool/gsearchtool.c:430
+#: gsearchtool/gsearchtool.c:483
 msgid "Enable"
 msgstr "Slå til"
 
-#: gsearchtool/gsearchtool.c:437
+#: gsearchtool/gsearchtool.c:490
 msgid "Remove"
 msgstr "Fjern"
 
-#: gsearchtool/gsearchtool.c:489
+#: gsearchtool/gsearchtool.c:542
 msgid "Start in directory:"
 msgstr "Start i mappe:"
 
-#: gsearchtool/gsearchtool.c:507 mini-utils/gw/gw.c:488
+#: gsearchtool/gsearchtool.c:560 mini-utils/gw/gw.c:488
 msgid "Add"
 msgstr "Tilføj"
 
-#: gsearchtool/gsearchtool.c:518
+#: gsearchtool/gsearchtool.c:571
 msgid "Start"
 msgstr "Start"
 
-#: gsearchtool/gsearchtool.c:519
+#: gsearchtool/gsearchtool.c:572
 msgid "Stop"
 msgstr "Stop"
 
-#: gsearchtool/gsearchtool.c:537
+#: gsearchtool/gsearchtool.c:590
 msgid "This is not yet implemented"
 msgstr "Dette er endnu ikke implementeret"
 
-#: gsearchtool/gsearchtool.c:550
+#: gsearchtool/gsearchtool.c:603
 msgid "Full find (find)"
 msgstr "Grundig søgning (find)"
 
-#: gsearchtool/gsearchtool.c:553
+#: gsearchtool/gsearchtool.c:606
 msgid "Quick find (locate)"
 msgstr "Hurtig søgning (locate)"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:621
 msgid "The Gnome Search Tool"
 msgstr "Gnome filsøgningsredskab"
 
-#: gsearchtool/gsearchtool.c:569
+#: gsearchtool/gsearchtool.c:622
 msgid "(C) 1998 the Free Software Foundation"
 msgstr "(C) 1998 Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:571
+#: gsearchtool/gsearchtool.c:624
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Grafisk menu for unix's find/grep/locate kommandoer"
 
-#: gsearchtool/gsearchtool.c:614
+#: gsearchtool/gsearchtool.c:666
 msgid "Gnome Search Tool"
-msgstr "GNOME filsøgningsredskab"
+msgstr "Gnome filsøgningsredskab"
 
-#: gstripchart/gstripchart.c:427
+#: gstripchart/gstripchart.c:434
 msgid "rparen expected"
 msgstr "rparen forventet"
 
-#: gstripchart/gstripchart.c:444
+#: gstripchart/gstripchart.c:451
 #, c-format
 msgid "no such field: %d"
 msgstr "feltet findes ikke: %d"
 
-#: gstripchart/gstripchart.c:472
+#: gstripchart/gstripchart.c:479
 msgid "missing variable identifer"
 msgstr "mangler variabel identifikator"
 
-#: gstripchart/gstripchart.c:474
+#: gstripchart/gstripchart.c:481
 #, c-format
 msgid "invalid variable identifer: %s"
 msgstr "ugyldig variabel identifikator: %s"
 
-#: gstripchart/gstripchart.c:478
+#: gstripchart/gstripchart.c:485
 msgid "number expected"
 msgstr "nummer forventet"
 
-#: gstripchart/gstripchart.c:557
+#: gstripchart/gstripchart.c:563
 #, c-format
 msgid "extra gunk at end: \"%s\""
 msgstr "overflødigt snavs ved slutning: \"%s\""
 
-#: gstripchart/gstripchart.c:637
+#: gstripchart/gstripchart.c:645
 #, c-format
 msgid "%s, line %d: "
 msgstr "%s, linie %d: "
 
-#: gstripchart/gstripchart.c:714
+#: gstripchart/gstripchart.c:726
 #, c-format
 msgid "can't open config file \"%s\""
 msgstr "kan ikke åbne konfigurationsfil \"%s\""
 
-#: gstripchart/gstripchart.c:741
+#: gstripchart/gstripchart.c:753
 #, c-format
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
 msgstr ""
 "Kan ikke åbne konfigfil \"./gstripchart.conf\", \"%s\", \"%s\", eller \"%s\""
 
-#: gstripchart/gstripchart.c:746
+#: gstripchart/gstripchart.c:758
 #, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
 msgstr "kan ikke åbne konfigfil \"./gstripchart.conf\", \"%s\", eller \"%s\""
 
-#: gstripchart/gstripchart.c:824
+#: gstripchart/gstripchart.c:836
 msgid "identifier or begin must be first"
 msgstr "identifikator eller begynd skal være i starten"
 
-#: gstripchart/gstripchart.c:832 gstripchart/gstripchart.c:849
+#: gstripchart/gstripchart.c:844 gstripchart/gstripchart.c:861
 #, c-format
 msgid "unrecognized color: %s"
 msgstr "ukendt farve: %s"
 
-#: gstripchart/gstripchart.c:864
+#: gstripchart/gstripchart.c:876
 msgid "scale must be either \"log\" or \"linear\""
 msgstr "skala skal enten være \"log\" eller \"lineær\""
 
-#: gstripchart/gstripchart.c:886
+#: gstripchart/gstripchart.c:891
+msgid "no equation found"
+msgstr "ingen beregning fundet"
+
+#: gstripchart/gstripchart.c:908
 #, c-format
 msgid "invalid option: \"%s\""
 msgstr "ugyldigt flag: \"%s\""
 
-#: gstripchart/gstripchart.c:1449
+#: gstripchart/gstripchart.c:1471
 msgid "E_xit"
 msgstr "_Afslut"
 
-#: gstripchart/gstripchart.c:1449
+#: gstripchart/gstripchart.c:1471
 msgid "Terminate the stripchart program"
 msgstr "Afslut diagramprogrammet"
 
-#: gstripchart/gstripchart.c:1465
+#: gstripchart/gstripchart.c:1487
 msgid "Copyright 1998,99 John Kodis"
 msgstr "Ophavsret 1998, 99 John Kodis"
 
-#: gstripchart/gstripchart.c:1467
+#: gstripchart/gstripchart.c:1489
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -583,234 +591,234 @@ msgstr ""
 "ydelsesparametre såsom CPU forbrug, CPU utilisation, netværkstrafik, osv. "
 "Andre formål er skjult for at give den interesserede bruger lidt øvelse."
 
-#: gstripchart/gstripchart.c:1480
-msgid "Info about the striphart program"
-msgstr "Information om stripgrafprogrammet"
-
-#: gstripchart/gstripchart.c:1480
+#: gstripchart/gstripchart.c:1502
 msgid "_About"
 msgstr "_Om..."
 
-#: gstripchart/gstripchart.c:1491
+#: gstripchart/gstripchart.c:1502
+msgid "Info about the striphart program"
+msgstr "Information om stripgrafprogrammet"
+
+#: gstripchart/gstripchart.c:1513
 msgid "_File"
 msgstr "_Filer"
 
-#: gstripchart/gstripchart.c:1492
+#: gstripchart/gstripchart.c:1514
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: gstripchart/gstripchart.c:1556 gstripchart/gstripchart.c:1694
+#: gstripchart/gstripchart.c:1578 gstripchart/gstripchart.c:1716
 msgid "Param"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1556 mini-utils/gcolorsel/gcolorsel.c:156
+#: gstripchart/gstripchart.c:1578 mini-utils/gcolorsel/gcolorsel.c:156
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Værdi"
 
-#: gstripchart/gstripchart.c:1560
+#: gstripchart/gstripchart.c:1582
 msgid "Identifier"
 msgstr "Identifikator"
 
-#: gstripchart/gstripchart.c:1562 mini-utils/gcolorsel/gcolorsel.c:155
+#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/gcolorsel.c:155
 msgid "Color"
 msgstr "Farve"
 
-#: gstripchart/gstripchart.c:1564
+#: gstripchart/gstripchart.c:1586
 msgid "Filename"
 msgstr "Filnavn"
 
-#: gstripchart/gstripchart.c:1566
+#: gstripchart/gstripchart.c:1588
 msgid "Pattern"
 msgstr "Mønster"
 
-#: gstripchart/gstripchart.c:1568
+#: gstripchart/gstripchart.c:1590
 msgid "Equation"
 msgstr "Beregning"
 
-#: gstripchart/gstripchart.c:1570
+#: gstripchart/gstripchart.c:1592
 msgid "Expected range"
 msgstr "Forventet længde"
 
-#: gstripchart/gstripchart.c:1574
+#: gstripchart/gstripchart.c:1596
 msgid "Displayed range"
 msgstr "Vist længde"
 
-#: gstripchart/gstripchart.c:1578
+#: gstripchart/gstripchart.c:1600
 msgid "Current value"
 msgstr "Nuværende værdi"
 
-#: gstripchart/gstripchart.c:1585
+#: gstripchart/gstripchart.c:1607
 msgid "Active"
 msgstr "Aktiv"
 
-#: gstripchart/gstripchart.c:1601
+#: gstripchart/gstripchart.c:1623
 msgid "Stripchart Parameters"
 msgstr "Stripgraf parametre"
 
-#: gstripchart/gstripchart.c:1695
+#: gstripchart/gstripchart.c:1717
 msgid "Current"
 msgstr "Nuværende"
 
-#: gstripchart/gstripchart.c:1696
+#: gstripchart/gstripchart.c:1718
 msgid "Top"
 msgstr "Top"
 
-#: gstripchart/gstripchart.c:1697
+#: gstripchart/gstripchart.c:1719
 msgid "Scale"
 msgstr "Skalér"
 
-#: gstripchart/gstripchart.c:1734 gstripchart/gstripchart.c:2013
+#: gstripchart/gstripchart.c:1756 gstripchart/gstripchart.c:2035
 msgid "Help"
 msgstr "Hjælp"
 
-#: gstripchart/gstripchart.c:1740 gstripchart/gstripchart.c:2016
+#: gstripchart/gstripchart.c:1762 gstripchart/gstripchart.c:2038
 #: mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "Om..."
 
-#: gstripchart/gstripchart.c:1746
+#: gstripchart/gstripchart.c:1768
 msgid "Params"
 msgstr "Parametre"
 
-#: gstripchart/gstripchart.c:1752
+#: gstripchart/gstripchart.c:1774
 msgid "Exit"
 msgstr "Afslut"
-
-#: gstripchart/gstripchart.c:1858
-msgid "Stripchart Viewer"
-msgstr "Stripgraffremviser"
 
 #. Create a top-level application window. Set minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
-#: gstripchart/gstripchart.c:1858
+#: gstripchart/gstripchart.c:1880
 msgid "gstripchart"
 msgstr "gstripgraf"
 
-#: gstripchart/gstripchart.c:2019
+#: gstripchart/gstripchart.c:1880
+msgid "Stripchart Viewer"
+msgstr "Stripgraffremviser"
+
+#: gstripchart/gstripchart.c:2041
 msgid "Params..."
 msgstr "Param..."
 
-#: gstripchart/gstripchart.c:2063
+#: gstripchart/gstripchart.c:2086
 #, c-format
 msgid "invalid display type: %s\n"
-msgstr "forkert fremvisertype: %s\n"
+msgstr "Ugyldig fremvisertype: %s\n"
 
-#: gstripchart/gstripchart.c:2088
-msgid "GEO"
-msgstr "GEO"
-
-#: gstripchart/gstripchart.c:2088
+#: gstripchart/gstripchart.c:2111
 msgid "Geometry string: WxH+X+Y"
 msgstr "Geometristreng: VxH+X+Y"
 
-#: gstripchart/gstripchart.c:2090
+#: gstripchart/gstripchart.c:2111
+msgid "GEO"
+msgstr "GEO"
+
+#: gstripchart/gstripchart.c:2113
 msgid "Configuration file name"
 msgstr "konfigurationsfilnavn"
 
-#: gstripchart/gstripchart.c:2090
+#: gstripchart/gstripchart.c:2113
 msgid "FILE"
 msgstr "FILE"
 
-#: gstripchart/gstripchart.c:2092
+#: gstripchart/gstripchart.c:2115
 msgid "Chart update interval"
-msgstr "Graf opdateringsinterval"
+msgstr "Grafopdateringsinterval"
 
-#: gstripchart/gstripchart.c:2092 gstripchart/gstripchart.c:2094
-#: gstripchart/gstripchart.c:2096 gstripchart/gstripchart.c:2098
+#: gstripchart/gstripchart.c:2115 gstripchart/gstripchart.c:2117
+#: gstripchart/gstripchart.c:2119 gstripchart/gstripchart.c:2121
 msgid "SECS"
 msgstr "SEK."
 
-#: gstripchart/gstripchart.c:2094
+#: gstripchart/gstripchart.c:2117
 msgid "Chart low-pass filter time constant"
 msgstr "Chart low-pass filter tidskonstant"
 
-#: gstripchart/gstripchart.c:2096
+#: gstripchart/gstripchart.c:2119
 msgid "Slider update interval"
 msgstr "Slider opdateringsinterval"
 
-#: gstripchart/gstripchart.c:2098
+#: gstripchart/gstripchart.c:2121
 msgid "Slider low-pass filter time constant"
 msgstr "Slider low-pass filter tidskonstant"
 
-#: gstripchart/gstripchart.c:2100
+#: gstripchart/gstripchart.c:2123
 msgid "Adds a menubar to the main window"
 msgstr "Tilføj en menulinie til hovedvinduet"
 
-#: gstripchart/gstripchart.c:2102
+#: gstripchart/gstripchart.c:2125
 msgid "Omits slider window"
 msgstr "Udelader slidervindue"
 
-#: gstripchart/gstripchart.c:2105 gstripchart/gstripchart.c:2107
-msgid "TYPE"
-msgstr "TYPE"
-
-#: gstripchart/gstripchart.c:2105
+#: gstripchart/gstripchart.c:2128
 msgid "TYPE is one of gtk, applet, text, or none"
 msgstr "TYPE er enten gtk, applet, tekst eller ingen"
 
-#: gstripchart/gstripchart.c:2107
+#: gstripchart/gstripchart.c:2128 gstripchart/gstripchart.c:2130
+msgid "TYPE"
+msgstr "TYPE"
+
+#: gstripchart/gstripchart.c:2130
 msgid "TYPE is one of gtk, text, or none"
 msgstr "TYPE er enten gtk, tekst eller ingen"
 
-#: gstripchart/gstripchart.c:2258
-msgid "black"
-msgstr "sort"
-
-#: gstripchart/gstripchart.c:2258
-msgid "red"
-msgstr "rød"
-
-#: gstripchart/gstripchart.c:2258
+#: gstripchart/gstripchart.c:2281
 msgid "white"
 msgstr "hvid"
 
-#: gstripchart/gstripchart.c:2258
+#: gstripchart/gstripchart.c:2281
+msgid "black"
+msgstr "sort"
+
+#: gstripchart/gstripchart.c:2281
+msgid "red"
+msgstr "rød"
+
+#: gstripchart/gstripchart.c:2281
 msgid "yellow"
 msgstr "gul"
 
-#: gstripchart/gstripchart.c:2259
+#: gstripchart/gstripchart.c:2282
 msgid "blue"
 msgstr "blå"
 
-#: gstripchart/gstripchart.c:2259
-msgid "cyan"
-msgstr "cyan"
-
-#: gstripchart/gstripchart.c:2259
+#: gstripchart/gstripchart.c:2282
 msgid "green"
 msgstr "grøn"
 
-#: gstripchart/gstripchart.c:2259
+#: gstripchart/gstripchart.c:2282
+msgid "cyan"
+msgstr "cyan"
+
+#: gstripchart/gstripchart.c:2282
 msgid "magenta"
 msgstr "magenta"
 
-#: gstripchart/gstripchart.c:2260
-msgid "Battery"
-msgstr "Batteri"
-
-#: gstripchart/gstripchart.c:2260
+#: gstripchart/gstripchart.c:2283
 msgid "Busy"
 msgstr "Arbejder"
 
-#: gstripchart/gstripchart.c:2260
+#: gstripchart/gstripchart.c:2283
 msgid "Load"
 msgstr "Belast."
 
-#: gstripchart/gstripchart.c:2260
+#: gstripchart/gstripchart.c:2283
 msgid "Swap"
 msgstr "Swap"
 
-#: gstripchart/gstripchart.c:2261
+#: gstripchart/gstripchart.c:2283
+msgid "Battery"
+msgstr "Batteri"
+
+#: gstripchart/gstripchart.c:2284
 msgid "Net In"
 msgstr "Net ind"
 
-#: gstripchart/gstripchart.c:2261
+#: gstripchart/gstripchart.c:2284
 msgid "Net Out"
 msgstr "Net ud"
 
-#: gstripchart/gstripchart.c:2261
+#: gstripchart/gstripchart.c:2284
 msgid "ppp"
 msgstr "ppp"
 
@@ -878,21 +886,21 @@ msgstr ""
 "En fejl opstod under læsning af konfigurationsfilen.\n"
 "Skal der oprettes en ny?"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "GEOMETRY"
-
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "Angiv geometri"
 
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "PROJECT"
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
+msgid "GEOMETRY"
+msgstr "GEOMETRY"
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "Vælg projekt ved opstart"
+
+#: gtt/main.c:206
+msgid "PROJECT"
+msgstr "PROJECT"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1199,7 +1207,7 @@ msgstr "Afslut GTidstæller"
 #: mini-utils/gcolorsel/gcolorsel.c:65 mini-utils/gcolorsel/gcolorsel.c:67
 #: mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:369
 msgid "Gnome Color Browser"
-msgstr "GNOME Farvebrowser"
+msgstr "Gnome farvebrowser"
 
 #: mini-utils/gcolorsel/gcolorsel.c:79
 msgid "Format Style:"
@@ -1259,16 +1267,16 @@ msgid "Selection:"
 msgstr "Valg:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "FONTSPEC"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
 msgstr "Skrifttype som skal indlæses"
 
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr "FONTSPEC"
+
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
-msgstr "Skriv valgte skrifttypenavn ved afslutning"
+msgstr "Skriv valgte skrifttypenavn ved afslut"
 
 #: mini-utils/gfontsel/gfontsel.c:255
 msgid "Inhibit remembering selected font for next run"
@@ -1417,12 +1425,12 @@ msgid "Run Program"
 msgstr "Kør program"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Annullér"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "Kør"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Cancel"
+msgstr "Annullér"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1434,7 +1442,7 @@ msgstr "Luk ned"
 
 #: mini-utils/gshutdown/gshutdown.c:87
 msgid "Single User Mode"
-msgstr "Enkeltbruger modus"
+msgstr "Enkeltbrugermodus"
 
 #: mini-utils/gshutdown/gshutdown.c:88
 msgid "Runlevel 2"
@@ -1462,7 +1470,7 @@ msgstr "Er du sikker på at du vil lukke computeren ned?"
 
 #: mini-utils/gshutdown/gshutdown.c:99
 msgid "Are you sure you want to switch to single user mode?"
-msgstr "Er du sikker på at du vil skifte til enkeltbruger model?"
+msgstr "Er du sikker på at du vil skifte til enkeltbrugermodus?"
 
 #: mini-utils/gshutdown/gshutdown.c:100
 msgid "Are you sure you want to switch to runlevel 2?"
@@ -1501,7 +1509,7 @@ msgstr "Simpelt"
 
 #: mini-utils/gshutdown/gshutdown.c:208 mini-utils/gshutdown/gshutdown.c:209
 msgid "Advanced"
-msgstr "Advanceret"
+msgstr "Avanceret"
 
 #: mini-utils/gshutdown/gshutdown.c:241
 msgid ""
@@ -1543,11 +1551,11 @@ msgstr "Spørg ikke næste gang."
 
 #: mini-utils/gshutdown/gshutdown.c:691
 msgid "Command execution failed: fork failed"
-msgstr "Kørsel af kommando fejlede: fork fejlede"
+msgstr "Kørsel af kommando fejlede: forgrening fejlede"
 
 #: mini-utils/guname/guname.c:51
 msgid "Make guname act as a control center applet"
-msgstr "Få guname til at opføre sig som en control center applet"
+msgstr "Få guname til at opføre sig som en kontrolcenter-applet"
 
 #: mini-utils/guname/guname.c:117
 msgid "an initialization error occurred while starting 'guname-capplet'."
@@ -1732,7 +1740,7 @@ msgstr "Ledig plads"
 
 #: mini-utils/guname/info.c:64
 msgid "Percent free"
-msgstr "Procent fri"
+msgstr "Procent ledig"
 
 #: mini-utils/guname/info.c:65
 msgid "Mount point"
@@ -1753,12 +1761,12 @@ msgid "No information for this filesystem."
 msgstr "Ingen information for dette filsystem."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "Kilobyte"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "Hukommelse"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Kilobytes"
+msgstr "Kilobyte"
 
 #: mini-utils/guname/moreinfo.c:186
 msgid "%ld%% memory used."
@@ -1819,12 +1827,12 @@ msgstr ""
 "Denne kommando er nødvendig for at programmet kan virke."
 
 #: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "Skriv information til disk"
-
-#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "_Gem..."
+
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "Skriv information til disk"
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1912,7 +1920,7 @@ msgstr "Aktiv/Passiv"
 
 #: mini-utils/idetool/idetool.c:29
 msgid "Standby"
-msgstr "Standby"
+msgstr "Hvilemodus"
 
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
@@ -1924,13 +1932,13 @@ msgstr "DMA opsætningen for dette drev kan ikke ændres."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Slå fra"
+msgid "Enabled"
+msgstr "Slå til"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Slå til"
+msgid "Disabled"
+msgstr "Slå fra"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
@@ -2005,11 +2013,11 @@ msgstr "Gammeldags MFM/RLL drev"
 
 #: mini-utils/idetool/idetool.c:323
 msgid "DMA Mode"
-msgstr "DMA modus"
+msgstr "DMA-modus"
 
 #: mini-utils/idetool/idetool.c:324
 msgid "IO Mode"
-msgstr "IO Modus"
+msgstr "IO-modus"
 
 #: mini-utils/idetool/idetool.c:325
 msgid "IRQ Unmask"
