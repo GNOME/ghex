@@ -1153,7 +1153,10 @@ static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 	req->width = 4*widget_get_xt(w) + 2*GTK_CONTAINER(w)->border_width +
 		sb_req.width + gh->char_width * (DEFAULT_CPL + (DEFAULT_CPL - 1) /
 										 gh->group_type);
-	req->height = DEFAULT_LINES * gh->char_height + 2*widget_get_yt(w) + 2*GTK_CONTAINER(w)->border_width;
+	if(gh->show_offsets)
+		req->width += 2*widget_get_xt(w) + 8*gh->char_width;
+	req->height = DEFAULT_LINES * gh->char_height + 2*widget_get_yt(w) +
+		2*GTK_CONTAINER(w)->border_width;
 }
 
 static void gtk_hex_class_init(GtkHexClass *klass) {
