@@ -153,7 +153,7 @@ GtkWidget *create_char_table()
 	gtk_signal_connect(GTK_OBJECT(ct), "delete_event",
 					   GTK_SIGNAL_FUNC(char_table_delete_event_cb), NULL);
 	gtk_signal_connect(GTK_OBJECT(ct), "key_press_event",
-					   GTK_SIGNAL_FUNC(char_table_delete_event_cb), NULL);
+					   GTK_SIGNAL_FUNC(char_table_key_press_cb), NULL);
 	gtk_window_set_title(GTK_WINDOW(ct), _("Character table"));
 	sw = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
