@@ -361,7 +361,7 @@ static void hide_cursor(GtkHex *gh) {
 
 /*
  * when calling render_*_lines() the imin and imax arguments are the
- * numbers of the first and last line TO BE DISPLAYES in the range
+ * numbers of the first and last line TO BE DISPLAYED in the range
  * [0 .. gh->vis_lines-1] AND NOT [0 .. gh->lines]!
  */
 static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
@@ -593,9 +593,6 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 		gh->lines++;
 	
 	gh->vis_lines = (height - 2*GTK_CONTAINER(gh)->border_width - 2*widget_get_yt(GTK_WIDGET(gh))) / gh->char_height;
-#if 0
-	gh->vis_lines = MIN(gh->vis_lines, gh->lines);
-#endif
 
 	gh->adisp_width = gh->cpl*gh->char_width + 1;
 	xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
@@ -634,7 +631,7 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
  * from testgtk.c ;)
  */
 static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
-	gint source_min = ((int)adj->value - gh->top_line) * gh->char_height;
+	gint source_min = ((gint)adj->value - gh->top_line) * gh->char_height;
 	gint source_max = source_min + gh->xdisp->allocation.height;
 	gint dest_min = 0;
 	gint dest_max = gh->xdisp->allocation.height;
@@ -650,14 +647,16 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 
 	hide_cursor(gh);
 	
-	gh->top_line = adj->value;
+	gh->top_line = (gint)adj->value;
 	
+	rect.x = 0;
+	rect.width = -1;
+
 	if (source_min < 0) {
 		rect.y = 0;
 		rect.height = -source_min;
 		if (rect.height > gh->xdisp->allocation.height)
 			rect.height = gh->xdisp->allocation.height;
-		
 		source_min = 0;
 		dest_min = rect.height;
 	}
@@ -991,7 +990,13 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	case GDK_Down:
 	case GDK_KP_2:
 		gtk_hex_set_cursor(gh, gh->cursor_pos + gh->cpl);
-		break; 
+		break;
+	case GDK_Page_Up:
+		gtk_hex_set_cursor(gh, MAX(0, (gint)gh->cursor_pos - gh->vis_lines*gh->cpl));
+		break;
+	case GDK_Page_Down:
+		gtk_hex_set_cursor(gh, MIN((gint)gh->document->file_size, (gint)gh->cursor_pos + gh->vis_lines*gh->cpl));
+		break;
 	default:
 		if(gh->active_view == VIEW_HEX)
 			switch(event->keyval) {
