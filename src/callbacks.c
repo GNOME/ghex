@@ -38,11 +38,6 @@ void show_help_cb (GtkWidget *widget) {
   gnome_help_display(NULL, &entry);
 }
 
-void set_group_type_cb(GtkWidget *w, guint *type) {
-  if( GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
-    gtk_hex_set_group_type(GTK_HEX(mdi->active_view), *type);
-}
-
 void properties_modified_cb(GtkWidget *w, GnomePropertyBox *pbox) {
   gnome_property_box_changed(pbox);
 }
@@ -164,33 +159,6 @@ void close_cb(GtkWidget *w) {
     return;
 
   gnome_mdi_remove_child(mdi, mdi->active_child, FALSE);
-}
-
-void find_cb(GtkWidget *w) {
-  if(find_dialog.window == NULL)
-    create_find_dialog(&find_dialog);
-
-  gtk_window_position (GTK_WINDOW(find_dialog.window), GTK_WIN_POS_MOUSE);
-
-  gtk_widget_show(find_dialog.window);
-}
-
-void replace_cb(GtkWidget *w) {
-  if(replace_dialog.window == NULL)
-    create_replace_dialog(&replace_dialog);
-
-  gtk_window_position (GTK_WINDOW(replace_dialog.window), GTK_WIN_POS_MOUSE);
-
-  gtk_widget_show(replace_dialog.window);
-}
-
-void jump_cb(GtkWidget *w) {
-  if(jump_dialog.window == NULL)
-    create_jump_dialog(&jump_dialog);
-
-  gtk_window_position (GTK_WINDOW(jump_dialog.window), GTK_WIN_POS_MOUSE);
-
-  gtk_widget_show(jump_dialog.window);
 }
 
 void converter_cb(GtkWidget *w) {
@@ -583,14 +551,14 @@ void conv_entry_cb(GtkWidget *entry, gint base) {
   converter.value = val;
 
   for(i = 0; i < 32; i++)
-    buffer[i] = ((val & (1L << i))?'1':'0');
+    buffer[i] = ((val & (1L << (31 - i)))?'1':'0');
   buffer[i] = 0;
   gtk_entry_set_text(GTK_ENTRY(converter.b_entry), buffer);
 
   sprintf(buffer, "%lu", val);
   gtk_entry_set_text(GTK_ENTRY(converter.d_entry), buffer);
 
-  sprintf(buffer, "%lx", val);
+  sprintf(buffer, "%08x", val);
   gtk_entry_set_text(GTK_ENTRY(converter.x_entry), buffer);
 
   for(i = 0; i < 4; i++) {

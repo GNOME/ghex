@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
   gnome_init("ghex", &parser, argc, argv, 0, NULL);
 
   if(!just_exit) {
-    mdi = gnome_mdi_new("ghex", "GNOME hex editor");
+    mdi = GNOME_MDI(gnome_mdi_new("ghex", "GNOME hex editor"));
 
     /* set up MDI menus */
     gnome_mdi_set_menu_template(mdi, main_menu);

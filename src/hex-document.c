@@ -22,18 +22,41 @@ static GtkWidget *hex_document_create_view (GnomeMDIChild *);
 static void hex_document_destroy           (GtkObject *);
 static void hex_document_real_changed      (HexDocument *, gpointer);
 
+static void find_cb();
+static void replace_cb();
+static void jump_cb();
+static void set_byte_cb();
+static void set_word_cb();
+static void set_long_cb();
+
+GnomeUIInfo group_radio_items[] = {
+  { GNOME_APP_UI_ITEM, "Bytes", NULL, set_byte_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_ITEM, "Words", NULL, set_word_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_ITEM, "Longwords", NULL, set_long_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_ENDOFINFO },
+};
+
+GnomeUIInfo group_type_menu[] = {
+  { GNOME_APP_UI_RADIOITEMS, NULL, NULL, group_radio_items, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_ENDOFINFO },
+};
 GnomeUIInfo edit_menu[] = {
   { GNOME_APP_UI_ITEM, "Find...", NULL, find_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SEARCH, 'F',
-    GDK_CONTROL_MASK, NULL },
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SEARCH, 'F', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_ITEM, "Replace...", NULL, replace_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL, 'R',
-    GDK_CONTROL_MASK, NULL },
+    GNOME_APP_PIXMAP_NONE, NULL, 'R', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ITEM, "Goto Byte...", NULL, jump_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL, 'J',
-    GDK_CONTROL_MASK, NULL },
+    GNOME_APP_PIXMAP_NONE, NULL, 'J', GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_SUBTREE, "Group Data As", NULL, group_type_menu, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
 
@@ -41,18 +64,6 @@ GnomeUIInfo doc_menu[] = {
   { GNOME_APP_UI_SUBTREE, "Edit", NULL, edit_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
-};
-
-guint group_type[3] = {
-  GROUP_BYTE,
-  GROUP_WORD,
-  GROUP_LONG,
-};
-
-gchar *group_type_label[3] = {
-  _("Single Bytes"),
-  _("Words"),
-  _("Longwords"),
 };
 
 enum {
@@ -107,28 +118,6 @@ static GtkWidget *hex_document_create_view(GnomeMDIChild *child) {
   gtk_hex_set_font(GTK_HEX(new_view), def_font);
 
   return new_view;
-}
-
-static GtkWidget *create_group_type_menu(GtkHex *gh) {
-  GtkWidget *menu;
-  GtkWidget *menuitem;
-  GSList *group;
-  int i;
-
-  menu = gtk_menu_new ();
-  group = NULL;
-  
-  for(i = 0; i < 3; i++) {
-    menuitem = gtk_radio_menu_item_new_with_label (group, group_type_label[i]);
-    if((1L << i) == gh->group_type)
-      gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
-    gtk_signal_connect(GTK_OBJECT(menuitem), "activate", GTK_SIGNAL_FUNC(set_group_type_cb), &group_type[i]);
-    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM(menuitem));
-    gtk_menu_append (GTK_MENU (menu), menuitem);
-    gtk_widget_show (menuitem);
-  }
-
-  return menu;
 }
 
 static void hex_document_destroy(GtkObject *obj) {
@@ -335,4 +324,49 @@ gint find_string_backward(HexDocument *doc, guint start, guchar *what, gint len,
   }
 
   return 1;
+}
+
+/*
+ * callbacks for document's menus
+ */
+static void set_byte_cb(GtkWidget *w, HexDocument *doc) {
+  if( GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
+    gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_BYTE);
+}
+
+static void set_word_cb(GtkWidget *w, HexDocument *doc) {
+  if( GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
+    gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_WORD);
+}
+
+static void set_long_cb(GtkWidget *w, HexDocument *doc) {
+  if( GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
+    gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_LONG);
+}
+
+static void find_cb(GtkWidget *w) {
+  if(find_dialog.window == NULL)
+    create_find_dialog(&find_dialog);
+
+  gtk_window_position (GTK_WINDOW(find_dialog.window), GTK_WIN_POS_MOUSE);
+
+  gtk_widget_show(find_dialog.window);
+}
+
+static void replace_cb(GtkWidget *w) {
+  if(replace_dialog.window == NULL)
+    create_replace_dialog(&replace_dialog);
+
+  gtk_window_position (GTK_WINDOW(replace_dialog.window), GTK_WIN_POS_MOUSE);
+
+  gtk_widget_show(replace_dialog.window);
+}
+
+static void jump_cb(GtkWidget *w) {
+  if(jump_dialog.window == NULL)
+    create_jump_dialog(&jump_dialog);
+
+  gtk_window_position (GTK_WINDOW(jump_dialog.window), GTK_WIN_POS_MOUSE);
+
+  gtk_widget_show(jump_dialog.window);
 }

@@ -66,6 +66,18 @@ GnomeUIInfo main_menu[] = {
   { GNOME_APP_UI_ENDOFINFO }
 };
 
+guint group_type[3] = {
+  GROUP_BYTE,
+  GROUP_WORD,
+  GROUP_LONG,
+};
+
+gchar *group_type_label[3] = {
+  "Bytes",
+  "Words",
+  "Longwords",
+};
+
 static void set_prefs(PropertyUI *);
 
 GtkWidget *file_sel = NULL;

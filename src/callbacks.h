@@ -22,7 +22,6 @@ void save_cb();
 void save_as_cb();
 void revert_cb();
 void properties_modified_cb();
-void set_group_type_cb();
 void cancel_cb();
 gint delete_event_cb();
 void prop_destroy_cb();
@@ -35,9 +34,6 @@ gint remove_doc_cb();
 void cleanup_cb();
 
 void prefs_cb();
-void find_cb();
-void replace_cb();
-void jump_cb();
 void converter_cb();
 void find_next_cb();
 void find_prev_cb();

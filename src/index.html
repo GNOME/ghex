@@ -3,7 +3,7 @@
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
    <META NAME="Keywords" CONTENT="GHex, ghex, GNOME, Hex Editor">
    <META NAME="Author" CONTENT="Jaka Mocnik">
-   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (X11; I; Linux 2.1.98 i586) [Netscape]">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (X11; I; Linux 2.1.106 i586) [Netscape]">
    <TITLE>GNOME Hex Editor Documentation</TITLE>
 </HEAD>
 <BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
@@ -83,6 +83,10 @@ the buffer to a file with this name.</LI>
 <I>Close </I>closes all views and removes the file from the memory.</LI>
 
 <LI>
+<I>Open Converter... </I>opens the <A HREF="#converter">Base Conversion
+Dialog</A></LI>
+
+<LI>
 <I>Preferences</I> brings up the <A HREF="#prefs">Preferences Dialog</A></LI>
 
 <LI>
@@ -99,11 +103,11 @@ Menu <I>Edit</I> (is shown only when a file is being edited)
 <LI>
 <I>Goto Byte </I>opens the Jump To Byte Dialog</LI>
 
-<LI><I>Group Data As </I>offers three different ways how the bytes in the
-hex display are grouped: either as single bytes or in groups of two bytes
-(words) or four bytes (long words).</LI>
+<LI>
+<I>Group Data As </I>offers three different ways how the bytes in the hex
+display are grouped: either as single bytes or in groups of two bytes (words)
+or four bytes (long words).</LI>
 </UL>
-
 Menu <I>View</I>
 <UL>
 <LI>
@@ -161,6 +165,11 @@ that one. Finally, the <I>Replace All </I>button will replace all occurences
 of the searched-for string from the current cursor position to the end
 of the file.
 <H4>
+<A NAME="converter"></A>Base Conversion Dialog</H4>
+Shows you up to four bytes of data as their binary, decimal, hexadecimal
+and ASCII&nbsp;representation. The values automatically update when you
+change data in any entry.
+<H4>
 <A NAME="prefs"></A>Setting user preferences</H4>
 
 <UL>
@@ -185,9 +194,6 @@ Modal: only displays one view at a time, allowing user to select a document
 from the <I>Documents </I>menu</LI>
 </UL>
 </UL>
-
-<H2>
-</H2>
 
 <H2>
 <A NAME="feedback"></A>4. Feedback</H2>
