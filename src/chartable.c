@@ -29,7 +29,7 @@
 #include "ghex.h"
 
 GtkWidget *char_table = NULL;
-static gint sel_row = -1;
+static GtkTreeSelection *sel_row = NULL;
 
 static char *ascii_non_printable_label[] = {
 	"NUL",
@@ -66,22 +66,33 @@ static char *ascii_non_printable_label[] = {
 	"US"
 };
 
-static void select_chartable_row_cb(GtkCList *cl, gint row, gint col,
-									GdkEvent *event)
+static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *event, GtkTreeModel *model)
 {
 	GtkWidget *active_view;
+	GtkTreeIter iter;
+	GtkTreeSelection *selection;
+	GValue value = {0, };
 
-	if(row == sel_row && event->type == GDK_2BUTTON_PRESS) {
+	selection = gtk_tree_view_get_selection(treeview);
+
+	if (!gtk_tree_selection_get_selected(selection, &model, &iter))
+		return FALSE;
+
+	gtk_tree_model_get_value(model, &iter, 2, &value);
+
+	if(selection == sel_row && event->type == GDK_2BUTTON_PRESS) {
 		active_view = bonobo_mdi_get_active_view (BONOBO_MDI (mdi));
 		if(active_view) {
 			GtkHex *gh = GTK_HEX(active_view);
-			hex_document_set_byte(gh->document, (guchar)row, gh->cursor_pos,
+			hex_document_set_byte(gh->document, (guchar)atoi(g_value_get_string(&value)), gh->cursor_pos,
 								  gh->insert, TRUE);
 			gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 		}
 	}
+	g_value_unset(&value);
+	sel_row = selection;
 
-	sel_row = row;
+	return FALSE;
 }
 
 GtkWidget *create_char_table()
@@ -90,7 +101,12 @@ GtkWidget *create_char_table()
 	static gchar *titles[] = {  N_("ASCII"), N_("Hex"), N_("Decimal"),
 								N_("Octal"), N_("Binary") };
 	gchar *real_titles[5];
-	GtkWidget *ct, *sw, *cl;
+	GtkWidget *ct, *sw, *ctv;
+	GtkListStore *store;
+	GtkCellRenderer *cell_renderer;
+	GtkTreeViewColumn *column;
+	GtkTreeIter iter;
+	GtkTreeSelection *selection;
 	int i, col;
 	gchar *label, ascii_printable_label[2], bin_label[9], *row[5];
 
@@ -100,7 +116,14 @@ GtkWidget *create_char_table()
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	for(i = 0; i < 5; i++)
 		real_titles[i] = _(titles[i]);
-	cl = gtk_clist_new_with_titles(5, real_titles);
+	store = gtk_list_store_new(5, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+	cell_renderer = gtk_cell_renderer_text_new();
+	ctv = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+	for (i = 0; i < 5; i++) {
+		column = gtk_tree_view_column_new_with_attributes (real_titles[i], cell_renderer, "text", i, NULL);
+		gtk_tree_view_append_column(GTK_TREE_VIEW(ctv), column);
+	}
+
 	bin_label[8] = 0;
 	ascii_printable_label[1] = 0;
 	for(i = 0; i < 256; i++) {
@@ -120,19 +143,31 @@ GtkWidget *create_char_table()
 			bin_label[7-col] = (i & (1L << col))?'1':'0';
 			row[4] = bin_label;
 		}
-		gtk_clist_append(GTK_CLIST(cl), row);
+
+		gtk_list_store_append(GTK_LIST_STORE(store), &iter);
+		gtk_list_store_set(GTK_LIST_STORE(store), &iter,
+				   0, row[0],
+				   1, row[1],
+				   2, row[2],
+				   3, row[3],
+				   4, row[4],
+				   -1);
+
 		for(col = 1; col < 4; col++)
 			g_free(row[col]);
 	}
 
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW (ctv));
+	gtk_tree_selection_set_mode(selection, GTK_SELECTION_SINGLE);
+
 	gtk_signal_connect(GTK_OBJECT(ct), "delete-event",
 					   GTK_SIGNAL_FUNC(delete_event_cb), ct);
-	gtk_signal_connect(GTK_OBJECT(cl), "select-row",
-					   GTK_SIGNAL_FUNC(select_chartable_row_cb), NULL);
+	g_signal_connect(G_OBJECT(ctv), "button_press_event",
+					   G_CALLBACK(select_chartable_row_cb), GTK_TREE_MODEL(store));
 
-	gtk_container_add(GTK_CONTAINER(sw), cl);
+	gtk_container_add(GTK_CONTAINER(sw), ctv);
 	gtk_container_add(GTK_CONTAINER(ct), sw);
-	gtk_widget_show(cl);
+	gtk_widget_show(ctv);
 	gtk_widget_show(sw);
 
 	gtk_widget_set_usize(ct, 320, 256);
