@@ -36,7 +36,7 @@
 
 #define SCROLL_TIMEOUT 100
 
-#define is_displayable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0xFF))?1:0)
+#define is_displayable(c) ((char_widths[(guchar)c])?1:0)
 
 typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 
@@ -49,6 +49,7 @@ enum {
 static gint gtkhex_signals[LAST_SIGNAL] = { 0, 0 };
 
 GtkFixedClass *parent_class = NULL;
+gchar *char_widths = NULL;
 
 static void render_hex_lines(GtkHex *, gint, gint);
 static void render_ascii_lines(GtkHex *, gint, gint);
@@ -119,14 +120,25 @@ static void ascii_to_pointer(GtkHex *gh, gint mx, gint my) {
 
 static guint get_max_char_width(GdkFont *font) {
 	/* this is, I guess, a rather dirty trick, but
-	   right now I cant think of anything better */
+	   right now i can't think of anything better */
 	guint i;
-	guint w, maxwidth = 0;
+	guint maxwidth = 0;
+
+	if (char_widths == NULL)
+		char_widths = (gchar*)g_malloc(0x100);
+
+	char_widths[0] = 0;
+	for(i = 1; i < 0x100; i++)
+		char_widths[i] = gdk_char_width(font, (gchar)i);
 	
-	for(i = '0'; i <= 'z'; i++) {
-		w = gdk_char_width(font, (gchar)i);
-		maxwidth = MAX(maxwidth, w);
-	}
+	for(i = '0'; i <= 'z'; i++)
+		maxwidth = MAX(maxwidth, char_widths[i]);
+
+/*	for(i = 0; i < 0x100; i++)
+		if(char_widths[i] && (char_widths[i] != maxwidth)) {
+			gnome_app_warning(mdi->active_window, _("This does not appear to be a monospaced font. Ghex's display may not be perfect with this font."));
+			break;
+		}*/
 	
 	return maxwidth;
 }
