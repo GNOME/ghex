@@ -10,22 +10,22 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 1.2.x\n"
-"POT-Creation-Date: 2002-08-16 21:17+0200\n"
-"PO-Revision-Date: 2002-08-16 21:18+0200\n"
-"Last-Translator: Manuel Borchers <webmaster@matronix.de>\n"
+"Project-Id-Version: ghex 2.0.x\n"
+"POT-Creation-Date: 2002-08-20 13:40+0200\n"
+"PO-Revision-Date: 2002-08-20 13:39+0100\n"
+"Last-Translator: Christian Neumair <christian-neumair@web.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ghex.desktop.in.h:1 src/ghex-window.c:387
-msgid "GHex"
-msgstr "GHex"
+#: ghex.desktop.in.h:1
+msgid "GNOME Hexadecimal Editor"
+msgstr "GNOME Hexadezimal-Editor"
 
 #: ghex.desktop.in.h:2
-msgid "Gnome Hexadecimal Editor"
-msgstr "GNOME Hexadezimal-Editor"
+msgid "Hex Editor"
+msgstr "Hex-Editor"
 
 #: src/chartable.c:114
 msgid "ASCII"
@@ -35,7 +35,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Hex"
 
-#: src/chartable.c:114 src/preferences.c:170
+#: src/chartable.c:114 src/preferences.c:174
 msgid "Decimal"
 msgstr "Dezimal"
 
@@ -209,9 +209,8 @@ msgid "Jumps to the specified byte"
 msgstr "Zum angegebene Byte springen"
 
 #: src/findreplace.c:263
-#, fuzzy
 msgid "Closes jump to byte window"
-msgstr "Schließen des »Springe zu Byte«-Dialogs"
+msgstr "Den »Springe zu Byte«-Dialog schließen"
 
 #: src/findreplace.c:329 src/findreplace.c:357 src/findreplace.c:413
 msgid "There is no active document to search!"
@@ -396,7 +395,7 @@ msgstr "Basenumwandlungsdialog öffnen"
 
 #: src/ghex-ui.xml.h:32
 msgid "Preferences"
-msgstr "Vorlieben"
+msgstr "Einstellungen"
 
 #: src/ghex-ui.xml.h:33
 msgid "Preview printed data"
@@ -553,7 +552,7 @@ msgstr "Ö_ffnen..."
 
 #: src/ghex-ui.xml.h:72
 msgid "_Preferences"
-msgstr "_Vorlieben"
+msgstr "_Einstellungen"
 
 #: src/ghex-ui.xml.h:73
 msgid "_Print"
@@ -594,6 +593,10 @@ msgstr "_Fenster"
 #: src/ghex-ui.xml.h:82
 msgid "_Words"
 msgstr "_Words"
+
+#: src/ghex-window.c:387
+msgid "GHex"
+msgstr "GHex"
 
 #: src/ghex-window.c:496
 #, c-format
@@ -652,125 +655,125 @@ msgid "Could not initialize Bonobo!\n"
 msgstr "Bonobo konnte nicht initialisiert werden!\n"
 
 #: src/main.c:87 src/main.c:99
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid geometry string \"%s\"\n"
-msgstr "Ungültiger Geometrie-Wert »%s«\n"
+msgstr "Ungültige Geometrie-Zeichenkette »%s«\n"
 
 #: src/preferences.c:91
 msgid "GHex Preferences"
-msgstr "GHex Vorlieben"
+msgstr "GHex Einstellungen"
 
-#: src/preferences.c:132
+#: src/preferences.c:136
 msgid "_Maximum number of undo levels:"
 msgstr "_Maximale Anzahl der Rückgängig-Befehle:"
 
-#: src/preferences.c:152
+#: src/preferences.c:156
 msgid "Undo levels"
 msgstr "Anzahl der Rückgängig-Befehle"
 
-#: src/preferences.c:152
+#: src/preferences.c:156
 msgid "Select maximum number of undo levels"
 msgstr "Wählen Sie die maximale Anzahl der Rückgängig-Befehle"
 
-#: src/preferences.c:156
+#: src/preferences.c:160
 msgid "Show cursor offset in statusbar as:"
 msgstr "Anzeige des Cursoroffsets im Statusbalken als:"
 
-#: src/preferences.c:175
+#: src/preferences.c:179
 msgid "Hexadecimal"
 msgstr "Hexadezimal"
 
-#: src/preferences.c:181
+#: src/preferences.c:185
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
-#: src/preferences.c:192
+#: src/preferences.c:196
 msgid "Enter the cursor offset format"
 msgstr "Das Format für den Cursoroffest angeben"
 
-#: src/preferences.c:193
+#: src/preferences.c:197
 msgid "Select the cursor offset format"
 msgstr "Das Format für den Cursoroffset auswählen"
 
 #. show offsets check button
-#: src/preferences.c:203
+#: src/preferences.c:207
 msgid "Show offsets column"
 msgstr "Offset-Spalte zeigen"
 
-#: src/preferences.c:208
+#: src/preferences.c:212
 msgid "Editing"
 msgstr "Bearbeitung"
 
 #. display font
-#: src/preferences.c:217
+#: src/preferences.c:221
 msgid "Font"
 msgstr "Schrift"
 
 #. default group type
-#: src/preferences.c:245
+#: src/preferences.c:249
 msgid "Default Group Type"
 msgstr "Voreingestellter Gruppentyp"
 
-#: src/preferences.c:261
+#: src/preferences.c:265
 msgid "Display"
 msgstr "Anzeige"
 
 #. paper selection
-#: src/preferences.c:270
+#: src/preferences.c:274
 msgid "Paper size"
 msgstr "Papiergröße"
 
 #. data & header font selection
-#: src/preferences.c:275
+#: src/preferences.c:279
 msgid "Fonts"
 msgstr "Schriften"
 
-#: src/preferences.c:281
+#: src/preferences.c:285
 msgid "_Data font:"
 msgstr "Schrift für _Daten:"
 
-#: src/preferences.c:299
+#: src/preferences.c:303
 msgid "Data font"
 msgstr "Schrift für Daten"
 
-#: src/preferences.c:299
+#: src/preferences.c:303
 msgid "Select the data font"
 msgstr "Schrift für Daten auswählen"
 
-#: src/preferences.c:313
+#: src/preferences.c:317
 msgid "Header fo_nt:"
 msgstr "Sch_rift der Kopfzeile:"
 
-#: src/preferences.c:330
+#: src/preferences.c:334
 msgid "Header font"
 msgstr "Schrift der Kopfzeile"
 
-#: src/preferences.c:330
+#: src/preferences.c:334
 msgid "Select the header font"
 msgstr "Wählen Sie die Schriftart der Kopfzeile"
 
-#: src/preferences.c:358
+#: src/preferences.c:362
 #, fuzzy
 msgid "_Print shaded box over:"
 msgstr "Schattierte Box _drucken über:"
 
-#: src/preferences.c:370
+#: src/preferences.c:374
 msgid "Box size"
 msgstr "Größe der Box"
 
-#: src/preferences.c:370
+#: src/preferences.c:374
 msgid "Select size of box (in number of lines)"
 msgstr "Die Größe der Box auswählen (Anzahl der Zeilen)"
 
-#: src/preferences.c:374
+#: src/preferences.c:378
 msgid "lines (0 for no box)"
 msgstr "Zeilen drucken (0 für keine Box)"
 
-#: src/preferences.c:381
+#: src/preferences.c:385
 msgid "Printing"
 msgstr "Drucken"
 
-#: src/preferences.c:523
+#: src/preferences.c:527
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -778,7 +781,7 @@ msgstr ""
 "Die Zeichenkette für die Offset-Formatierung enthält andere Angaben als\n"
 "'x', 'X', 'p', 'P', 'd' oder 'o'."
 
-#: src/preferences.c:555
+#: src/preferences.c:559
 msgid "Can not open desired font!"
 msgstr "Gewünschte Schrift kann nicht geöffnet werden!"
 
@@ -797,9 +800,8 @@ msgstr ""
 "GHex kann ohne diese nicht drucken."
 
 #: src/session.c:29
-#, fuzzy
 msgid "X geometry specification (see \"X\" man page)."
-msgstr "Spezifikation der X-Geometrie (siehe man zu X)"
+msgstr "Spezifikation der X-Geometrie (siehe »X« man-Handbuch-Seite)"
 
 #: src/session.c:30
 msgid "GEOMETRY"
