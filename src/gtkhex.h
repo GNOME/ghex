@@ -28,6 +28,7 @@
 #include <gdk/gdk.h>
 
 #include <hex-document.h>
+#include <hex-dialog.h>
 
 #ifdef __cplusplus
 extern "C" {

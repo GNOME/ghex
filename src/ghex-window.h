@@ -44,6 +44,9 @@ struct _GHexWindow
     BonoboUIComponent *uic;
     gboolean changed, undo_sens, redo_sens;
 
+    HexDialog *dialog;
+    GtkWidget *dialog_widget;
+
     gchar **uris_to_open;
 };
 

@@ -4,8 +4,6 @@ INCLUDES = -I$(includedir) 					\
 	-DGNOMEICONDIR=\""$(datadir)/pixmaps"\"			\
 	-DGNOMELOCALEDIR=\""${prefix}/${DATADIRNAME}/locale"\" 	\
 	-DLOCALEDIR=\"${prefix}/${DATADIRNAME}/locale\"		\
-	-DGHEX_UI_DIR=\""$(datadir)/ghex2/ui/"\"		\
-	-DGHEX_GLADEDIR=\""$(datadir)/ghex2/glade/"\"		\
 	-DDATADIR=\""$(datadir)"\"				\
 	$(GHEX_CFLAGS) $(GAILUTIL_CFLAGS)
 
@@ -44,7 +42,7 @@ ghex2_SOURCES = \
 	print.c ghex-window.c ghex-window.h				\
 	gnome-print-font-dialog.c gnome-print-font-dialog.h		\
 	gnome-print-font-picker.c gnome-print-font-picker.h		\
-	factory.c factory.h
+	factory.c factory.h hex-dialog.c hex-dialog.h
 
 ghex-marshal.h: ghex-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --header --prefix=ghex_marshal > $@

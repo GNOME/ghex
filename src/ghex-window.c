@@ -238,6 +238,11 @@ ghex_window_destroy(GtkObject *object)
                                                  win);
             win->gh = NULL;
         }
+        if (win->dialog)
+        {
+            g_object_unref (G_OBJECT(win->dialog));
+            win->dialog = NULL;
+        }
 
         window_list = g_list_remove(window_list, win);
 
@@ -406,6 +411,22 @@ ghex_window_listener (BonoboUIComponent           *uic,
         ghex_window_sync_char_table_item(win, atoi(state));
         return;
     }
+    else if (strcmp(path, "TypeDialog") == 0)
+    {
+        if (!win->dialog)
+            return;
+        if (state && atoi(state)) {
+            if (!GTK_WIDGET_VISIBLE(win->dialog_widget))
+            {
+                gtk_widget_show(win->dialog_widget);
+            }
+        }
+        else if (GTK_WIDGET_VISIBLE(win->dialog_widget))
+        {
+            gtk_widget_hide(GTK_WIDGET(win->dialog_widget));
+        }
+        return;
+    }
 	if (!state || !atoi (state) || (win->gh == NULL))
 		return;
 
@@ -465,12 +486,16 @@ ghex_window_new(void)
                                       ghex_window_listener, win);
 	bonobo_ui_component_add_listener (uic, "CharacterTable",
                                       ghex_window_listener, win);
+	bonobo_ui_component_add_listener (uic, "TypeDialog",
+                                      ghex_window_listener, win);
     bonobo_ui_component_set_prop (uic, "/commands/Converter", "state",
                                   (converter && GTK_WIDGET_VISIBLE(converter->window))?"1":"0",
                                   NULL);
     bonobo_ui_component_set_prop (uic, "/commands/CharacterTable", "state",
                                   (char_table && GTK_WIDGET_VISIBLE(char_table))?"1":"0",
                                   NULL);
+    bonobo_ui_component_set_prop (uic, "/commands/TypeDialog", "state",
+                                  "1", NULL);
 	bonobo_ui_component_set_prop (uic, "/status", "hidden", "0", NULL);
 
     ghex_window_set_sensitivity(win);
@@ -566,15 +591,26 @@ static void
 cursor_moved_cb(GtkHex *gtkhex, gpointer user_data)
 {
 	static gchar *cursor_pos, *format;
+    int i;
+    int current_pos;
+    HexDialogVal64 val;
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
+    current_pos = gtk_hex_get_cursor(gtkhex);
+
 	if((format = g_strdup_printf(_("Offset: %s"), offset_fmt)) != NULL) {
-		if((cursor_pos = g_strdup_printf(format, gtk_hex_get_cursor(gtkhex))) != NULL) {
+		if((cursor_pos = g_strdup_printf(format, current_pos)) != NULL) {
 			ghex_window_show_status(win, cursor_pos);
             g_free(cursor_pos);
 		}
 		g_free(format);
 	}
+    for (i = 0; i < 8; i++)
+    {
+        /* returns  0 on buffer overflow, which is what we want */
+        val.v[i] = gtk_hex_get_byte(gtkhex, current_pos+i);
+    }
+    hex_dialog_updateview(win->dialog, &val);
 }
 
 gboolean
@@ -583,7 +619,9 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     gchar *full_path;
     HexDocument *doc;
     GtkWidget *gh;
+    GtkWidget *vbox;
     const GList *window_list;
+    gchar *state;
 
     g_return_val_if_fail(win != NULL, FALSE);
     g_return_val_if_fail(GHEX_IS_WINDOW(win), FALSE);
@@ -611,7 +649,24 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     g_signal_connect(G_OBJECT(gh), "cursor_moved",
                      G_CALLBACK(cursor_moved_cb), win);
     gtk_widget_show(gh);
-    
+
+    vbox = gtk_vbox_new(FALSE, 0);
+    gtk_widget_show(vbox);
+    gtk_box_pack_start(GTK_BOX(vbox), gh, TRUE, TRUE, GNOME_PAD);
+
+    win->dialog = hex_dialog_new();
+    win->dialog_widget = hex_dialog_getview(win->dialog);
+    gtk_box_pack_start(GTK_BOX(vbox), win->dialog_widget, FALSE, FALSE, GNOME_PAD);
+    state = bonobo_ui_component_get_prop (win->uic, "/commands/TypeDialog", "state", NULL);
+    if ((state && atoi(state)) || !state)
+    {
+      gtk_widget_show(win->dialog_widget);
+    }
+    else
+    {
+      gtk_widget_hide(win->dialog_widget);
+    }
+
     if(win->gh) {
         window_list = ghex_window_get_list();
         while(window_list) {
@@ -626,7 +681,7 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
                                              ghex_window_doc_changed,
                                              win);
     }
-    bonobo_window_set_contents(BONOBO_WINDOW(win), gh);
+    bonobo_window_set_contents(BONOBO_WINDOW(win), vbox);
     win->gh = GTK_HEX(gh);
     win->changed = FALSE;
 
@@ -639,6 +694,8 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     ghex_window_sync_group_type(win);
     ghex_window_set_doc_name(win, win->gh->document->path_end);
     ghex_window_set_sensitivity(win);
+
+    gtk_signal_emit_by_name(GTK_OBJECT(gh), "cursor_moved");
    
     return TRUE;
 }
