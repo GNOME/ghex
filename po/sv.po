@@ -1,5 +1,5 @@
 # Swedish translation for ghex.
-# Copyright (C) 1999-2001 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001 Free Software Foundation, Inc.
 # Tomas Ögren <stric@ing.umu.se>, 1999.
 # Andreas Hyden <a.hyden@cyberpoint.se>, 2000.
 # Christian Rose <menthos@menthos.com>, 2001.
@@ -9,47 +9,45 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2001-03-29 23:30+0200\n"
-"PO-Revision-Date: 2001-03-29 23:33+0200\n"
+"POT-Creation-Date: 2001-06-14 14:05+0200\n"
+"PO-Revision-Date: 2001-06-14 14:10+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/converter.c:44
+#: src/converter.c:176
 msgid "GHex: Converter"
 msgstr "GHex: Konverterare"
 
-#: src/chartable.c:91 src/converter.c:53
-msgid "Binary"
-msgstr "Binärt"
+#. entries
+#: src/converter.c:195
+msgid "_Binary"
+msgstr "_Binärt"
 
-#: src/chartable.c:91 src/converter.c:63
-msgid "Octal"
-msgstr "Oktalt"
+#: src/converter.c:197
+msgid "_Octal"
+msgstr "_Oktalt"
 
-#: src/chartable.c:90 src/converter.c:73 src/preferences.c:161
-msgid "Decimal"
-msgstr "Decimalt"
+#: src/converter.c:199
+msgid "_Decimal"
+msgstr "_Decimalt"
 
-#: src/chartable.c:90 src/converter.c:83
-msgid "Hex"
-msgstr "Hexadecimalt"
+#: src/converter.c:201
+msgid "_Hex"
+msgstr "_Hexadecimalt"
 
-#: src/chartable.c:90 src/converter.c:93
-msgid "ASCII"
-msgstr "ASCII"
+#: src/converter.c:203
+msgid "_ASCII"
+msgstr "_ASCII"
 
-#: src/converter.c:103
-msgid "Get cursor value"
-msgstr "Hämta värde vid markör"
+#. get cursor button
+#: src/converter.c:207
+msgid "_Get cursor value"
+msgstr "Hämta värde vid _markör"
 
-#: src/converter.c:109
-msgid "Close"
-msgstr "Stäng"
-
-#: src/converter.c:213
+#: src/converter.c:323
 msgid "ERROR"
 msgstr "FEL"
 
@@ -257,89 +255,93 @@ msgstr "Modal"
 msgid "Select font"
 msgstr "Välj typsnitt"
 
-#: src/preferences.c:132
+#: src/preferences.c:136
 msgid "Maximum number of undo levels"
 msgstr "Maximalt antal ångra-steg"
 
-#: src/preferences.c:147
+#: src/preferences.c:151
 msgid "Show cursor offset in statusbar as"
 msgstr "Visa markörpositionen i statusraden"
 
-#: src/preferences.c:166
+#: src/chartable.c:90 src/preferences.c:165
+msgid "Decimal"
+msgstr "Decimalt"
+
+#: src/preferences.c:170
 msgid "Hexadecimal"
 msgstr "Hexadecimalt"
 
-#: src/preferences.c:172
+#: src/preferences.c:176
 msgid "Custom"
 msgstr "Anpassad"
 
 #. show offsets check button
-#: src/preferences.c:183
+#: src/preferences.c:187
 msgid "Show offsets column"
 msgstr "Visa offset-kolumn"
 
-#: src/preferences.c:188
+#: src/preferences.c:192
 msgid "Editing"
 msgstr "Redigerar"
 
 #. display font
-#: src/preferences.c:197
+#: src/preferences.c:201
 msgid "Font"
 msgstr "Typsnitt"
 
-#: src/preferences.c:213
+#: src/preferences.c:217
 msgid "Browse..."
 msgstr "Bläddra..."
 
 #. default group type
-#: src/preferences.c:233
+#: src/preferences.c:237
 msgid "Default Group Type"
 msgstr "Standardgrupptyp"
 
-#: src/preferences.c:249
+#: src/preferences.c:253
 msgid "Display"
 msgstr "Utseende"
 
 #. mdi modes
-#: src/preferences.c:258
+#: src/preferences.c:262
 msgid "MDI Mode"
 msgstr "MDI-läge"
 
-#: src/preferences.c:275
+#: src/preferences.c:279
 msgid "MDI"
 msgstr "MDI"
 
 #. paper selection
-#: src/preferences.c:284
+#: src/preferences.c:288
 msgid "Paper size"
 msgstr "Pappersstorlek"
 
 #. data & header font selection
-#: src/preferences.c:298
+#: src/preferences.c:302
 msgid "Fonts"
 msgstr "Typsnitt"
 
-#: src/preferences.c:304
+#: src/preferences.c:308
 msgid "Data font"
 msgstr "Datatypsnitt"
 
-#: src/preferences.c:319
+#: src/preferences.c:323
 msgid "Header font"
 msgstr "Rubriktypsnitt"
 
-#: src/preferences.c:345
+#: src/preferences.c:349
 msgid "Print shaded box over"
 msgstr "Skriv skuggad ruta över"
 
-#: src/preferences.c:354
+#: src/preferences.c:358
 msgid "lines (0 for no box)"
 msgstr "rader (0 för ingen ruta)"
 
-#: src/preferences.c:361
+#: src/preferences.c:365
 msgid "Printing"
 msgstr "Skriver ut"
 
-#: src/preferences.c:536
+#: src/preferences.c:540
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -347,128 +349,164 @@ msgstr ""
 "Offsetformateringssträngen innehåller ogiltiga formatspecificerare.\n"
 "Endast \"x\", \"X\", \"p\", \"P\", \"d\" och \"o\" är tillåtna."
 
-#: src/preferences.c:573
+#: src/preferences.c:577
 msgid "Can not open desired font!"
 msgstr "Kan inte öppna det önskade typsnittet!"
 
-#: src/ui.c:57
-msgid "Export to HTML..."
-msgstr "Exportera till HTML..."
+#: src/ui.c:61
+msgid "Export to _HTML..."
+msgstr "Exportera till _HTML..."
 
-#: src/ui.c:57
+#: src/ui.c:61
 msgid "Export data to HTML source"
 msgstr "Exportera data till HTML-kod"
 
-#: src/ui.c:61
-msgid "Print preview..."
-msgstr "Förhandsgranska..."
+#: src/ui.c:65
+msgid "Print pre_view..."
+msgstr "_Förhandsgranska..."
 
-#: src/ui.c:61
+#: src/ui.c:65
 msgid "Preview printed data"
 msgstr "Förhandsgranska utskrift"
 
-#: src/ui.c:74
+#: src/ui.c:78
 msgid "Con_verter..."
 msgstr "_Konverterare..."
 
-#: src/ui.c:75
+#: src/ui.c:79
 msgid "Open base conversion dialog"
 msgstr "Öppna baskonverteringsfönstret"
 
-#: src/ui.c:76
-msgid "Character Table..."
-msgstr "Teckentabell..."
+#: src/ui.c:80
+msgid "Character _Table..."
+msgstr "_Teckentabell..."
 
-#: src/ui.c:77
+#: src/ui.c:81
 msgid "Show the character table"
 msgstr "Visa teckentabellen"
 
-#: src/ui.c:94
-msgid "Tools"
-msgstr "Verktyg"
+#: src/ui.c:98
+msgid "_Tools"
+msgstr "_Verktyg"
 
-#: src/ui.c:108
+#: src/ui.c:112
 msgid "Bytes"
 msgstr "Byte"
 
-#: src/ui.c:109
+#: src/ui.c:113
 msgid "Words"
 msgstr "Ord"
 
-#: src/ui.c:110
+#: src/ui.c:114
 msgid "Longwords"
 msgstr "Långord"
 
-#: src/ui.c:115
+#: src/ui.c:119
 msgid "hex data"
 msgstr "hex-data"
 
-#: src/ui.c:116
+#: src/ui.c:120
 msgid "ASCII data"
 msgstr "ASCII-data"
 
-#: src/ui.c:200
+#: src/ui.c:204
 msgid "GHex, a binary file editor"
 msgstr "GHex, en binärfilsredigerare"
 
-#: src/ui.c:202
+#: src/ui.c:206
 msgid "Released under the terms of GNU Public License"
 msgstr "Släppt under villkoren i GNU Public License"
 
-#: src/ui.c:226 src/ui.c:550
+#: src/ui.c:230 src/ui.c:506
 msgid "Error saving file!"
 msgstr "Fel vid sparande av fil!"
 
-#: src/ui.c:230 src/ui.c:545
+#: src/ui.c:234 src/ui.c:501
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Sparade bufferten till filen %s"
 
-#: src/ui.c:251
+#: src/ui.c:255
 msgid "Select a file to open"
 msgstr "Välj en fil att öppna"
 
-#: src/ui.c:286
+#: src/ui.c:290
 msgid "Select a file to save buffer as"
 msgstr "Välj en fil att spara bufferten som"
 
-#: src/ui.c:375
+#: src/ui.c:331
 msgid "Select path and file name for the HTML source"
 msgstr "Ange sökväg och filnamn för HTML-koden"
 
-#: src/ui.c:476
+#: src/ui.c:432
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Vill du verkligen återställa filen %s?"
 
-#: src/ui.c:490
+#: src/ui.c:446
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Återställde buffert från filen %s"
 
-#: src/ui.c:506
+#: src/ui.c:462
 #, c-format
 msgid "Loaded file %s"
 msgstr "Läste in filen %s"
 
-#: src/ui.c:511
+#: src/ui.c:467
 msgid "Can not open file!"
 msgstr "Kan inte öppna filen!"
 
-#: src/ui.c:554
+#: src/ui.c:510
 msgid "Can't open file for writing!"
 msgstr "Kan inte öppna filen för skrivning!"
+
+#: src/ui.c:579
+msgid "Print Hex Document"
+msgstr "Skriv ut hexadecimalt dokument"
+
+#: src/ui.c:584
+msgid "Pages"
+msgstr "Sidor"
+
+#: src/ui.c:625
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): Förhandsgranskning"
+
+#: src/chartable.c:90
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:90
+msgid "Hex"
+msgstr "Hexadecimalt"
+
+#: src/chartable.c:91
+msgid "Octal"
+msgstr "Oktalt"
+
+#: src/chartable.c:91
+msgid "Binary"
+msgstr "Binärt"
 
 #: src/chartable.c:98
 msgid "GHex: Character table"
 msgstr "GHex: Teckentabell"
 
-#: src/print.c:171
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Förhandsgranskning"
-
-#: src/print.c:187
+#: src/print.c:47
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Sida: %i/%i"
+
+#: src/print.c:197 src/print.c:211
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"GHex kunde inte hitta typsnittet \"%s\".\n"
+"GHex kan inte skriva ut om inte detta typsnitt är installerat."
+
+#~ msgid "Close"
+#~ msgstr "Stäng"
