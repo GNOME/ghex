@@ -1,7 +1,25 @@
-/*
- * gtkhex.h - definition of a GtkHex widget, modified for use with GnomeMDI
- * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
- */
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* gtkhex.h - definition of a GtkHex widget, modified for use with GnomeMDI
+
+   Copyright (C) 1997, 1998 Free Software Foundation
+
+   GHex is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License as
+   published by the Free Software Foundation; either version 2 of the
+   License, or (at your option) any later version.
+
+   GHex is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with GHex; see the file COPYING.
+   If not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
+
+   Author: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
+*/
 
 #ifndef __GTKHEX_H__
 #define __GTKHEX_H__
@@ -30,51 +48,51 @@ extern "C" {
 #define GTK_HEX(obj)          GTK_CHECK_CAST (obj, gtk_hex_get_type (), GtkHex)
 #define GTK_HEX_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, gtk_hex_get_type (), GtkHexClass)
 #define IS_GTK_HEX(obj)       GTK_CHECK_TYPE (obj, gtk_hex_get_type ())
-  
+
 typedef struct _GtkHex GtkHex;
 typedef struct _GtkHexClass GtkHexClass;
 typedef struct _GtkHexChangeData GtkHexChangeData;
 
 struct _GtkHex {
-  GtkFixed fixed;
-
-  HexDocument *document;
-
-  GtkWidget *xdisp, *adisp, *scrollbar;
-
-  GtkAdjustment *adj;
-  
-  GdkFont *disp_font;
-  GdkGC *xdisp_gc, *adisp_gc;
-
-  gint active_view;
-
-  guint char_width, char_height;
-  guint button;
-
-  guint cursor_pos;
-  gint lower_nibble;
-
-  guint group_type;
-
-  gint lines, vis_lines, cpl, top_line;
-  gint cursor_shown;
-
-  gint xdisp_width, adisp_width;
-
-  /* buffer for storing formatted data for rendering.
-     dynamically adjusts its size to the display size */
-  guchar *disp_buffer;
-
-  gint scroll_dir;
-  guint scroll_timeout;
+	GtkFixed fixed;
+	
+	HexDocument *document;
+	
+	GtkWidget *xdisp, *adisp, *scrollbar;
+	
+	GtkAdjustment *adj;
+	
+	GdkFont *disp_font;
+	GdkGC *xdisp_gc, *adisp_gc;
+	
+	gint active_view;
+	
+	guint char_width, char_height;
+	guint button;
+	
+	guint cursor_pos;
+	gint lower_nibble;
+	
+	guint group_type;
+	
+	gint lines, vis_lines, cpl, top_line;
+	gint cursor_shown;
+	
+	gint xdisp_width, adisp_width;
+	
+	/* buffer for storing formatted data for rendering.
+	   dynamically adjusts its size to the display size */
+	guchar *disp_buffer;
+	
+	gint scroll_dir;
+	guint scroll_timeout;
 };
 
 struct _GtkHexClass {
-  GtkFixedClass parent_class;
-
-  void (*cursor_moved)(GtkHex *);
-  void (*data_changed)(GtkHex *, gpointer);
+	GtkFixedClass parent_class;
+	
+	void (*cursor_moved)(GtkHex *);
+	void (*data_changed)(GtkHex *, gpointer);
 };
 
 guint gtk_hex_get_type(void);
@@ -99,6 +117,3 @@ void gtk_hex_set_font(GtkHex *, GdkFont *);
 #endif /* __cplusplus */
 
 #endif
-
-
-

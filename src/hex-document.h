@@ -1,6 +1,24 @@
-/*
- * hex-document.h
- * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* hex-document.h
+
+   Copyright (C) 1997, 1998 Free Software Foundation
+
+   GHex is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License as
+   published by the Free Software Foundation; either version 2 of the
+   License, or (at your option) any later version.
+
+   GHex is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with GHex; see the file COPYING.
+   If not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
+
+   Author: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
 
 #ifndef __HEX_DOCUMENT_H__
@@ -22,30 +40,30 @@ typedef struct _HexDocumentClass  HexDocumentClass;
 typedef struct _HexChangeData     HexChangeData;
 
 struct _HexChangeData {
-  gint start, end;
+	gint start, end;
 };
 
 struct _HexDocument
 {
-  GnomeMDIChild mdi_child;
-
-  gchar *file_name;
-  gchar *path_end;
-  FILE *file;
-
-  guchar *buffer;
-  guint buffer_size;
-
-  gboolean changed;
-
-  HexChangeData change_data;
+	GnomeMDIChild mdi_child;
+	
+	gchar *file_name;
+	gchar *path_end;
+	FILE *file;
+	
+	guchar *buffer;
+	guint buffer_size;
+	
+	gboolean changed;
+	
+	HexChangeData change_data;
 };
 
 struct _HexDocumentClass
 {
-  GnomeMDIChildClass parent_class;
-
-  void (*document_changed)(HexDocument *, gpointer);
+	GnomeMDIChildClass parent_class;
+	
+	void (*document_changed)(HexDocument *, gpointer);
 };
 
 HexDocument *hex_document_new(const gchar *);
@@ -61,4 +79,3 @@ gint find_string_backward(HexDocument *doc, guint start, guchar *what, gint len,
 END_GNOME_DECLS
 
 #endif /* __HEX_DOCUMENT_H__ */
-

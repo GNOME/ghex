@@ -1,7 +1,25 @@
-/*
- * ghex.h - defines GHex ;)
- * written by jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
- */
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* ghex.h - defines GHex ;)
+
+   Copyright (C) 1997, 1998 Free Software Foundation
+
+   GHex is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License as
+   published by the Free Software Foundation; either version 2 of the
+   License, or (at your option) any later version.
+
+   GHex is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with GHex; see the file COPYING.
+   If not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
+
+   Author: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
+*/
 
 #ifndef GHEX_H
 #define GHEX_H
@@ -26,42 +44,42 @@ extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[];
 #define NUM_MDI_MODES 4
 
 typedef struct _PropertyUI {
-  GnomePropertyBox *pbox;
-  GtkRadioButton *mdi_type[NUM_MDI_MODES];
-  GtkRadioButton *group_type[3];
-  GtkWidget *font_button;
+	GnomePropertyBox *pbox;
+	GtkRadioButton *mdi_type[NUM_MDI_MODES];
+	GtkRadioButton *group_type[3];
+	GtkWidget *font_button;
 } PropertyUI;
 
 typedef struct _JumpDialog {
-  GtkWidget *window;
-  GtkWidget *int_entry;
-  GtkWidget *ok, *cancel;
+	GtkWidget *window;
+	GtkWidget *int_entry;
+	GtkWidget *ok, *cancel;
 } JumpDialog;
 
 typedef struct _ReplaceDialog {
-  GtkWidget *window;
-  GtkWidget *f_string, *r_string;
-  GtkWidget *replace, *replace_all, *next, *close;
-  GtkWidget *type_button[2];
-
-  gint search_type;
+	GtkWidget *window;
+	GtkWidget *f_string, *r_string;
+	GtkWidget *replace, *replace_all, *next, *close;
+	GtkWidget *type_button[2];
+	
+	gint search_type;
 } ReplaceDialog; 
 
 typedef struct _FindDialog {
-  GtkWidget *window;
-  GtkWidget *f_string;
-  GtkWidget *f_next, *f_prev, *f_close;
-  GtkWidget *type_button[2];
-
-  gint search_type;
+	GtkWidget *window;
+	GtkWidget *f_string;
+	GtkWidget *f_next, *f_prev, *f_close;
+	GtkWidget *type_button[2];
+	
+	gint search_type;
 } FindDialog;
 
 typedef struct _Converter {
-  GtkWidget *window;
-  GtkWidget *entry[4];
-  GtkWidget *close;
-
-  gulong value;
+	GtkWidget *window;
+	GtkWidget *entry[4];
+	GtkWidget *close;
+	
+	gulong value;
 } Converter;
 
 extern GnomeMDI *mdi;
@@ -108,16 +126,3 @@ void save_configuration();
 void load_configuration();
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
