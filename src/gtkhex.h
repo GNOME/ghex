@@ -88,6 +88,7 @@ struct _GtkHex {
 	gint scroll_dir;
 	guint scroll_timeout;
 	gboolean show_offsets;
+	gboolean insert;
 };
 
 struct _GtkHexClass {
@@ -105,7 +106,7 @@ void gtk_hex_set_cursor(GtkHex *, gint);
 void gtk_hex_set_cursor_xy(GtkHex *, gint, gint);
 void gtk_hex_set_nibble(GtkHex *, gint);
 
-gint gtk_hex_get_cursor(GtkHex *);
+guint gtk_hex_get_cursor(GtkHex *);
 guchar gtk_hex_get_byte(GtkHex *, guint);
 
 void gtk_hex_set_group_type(GtkHex *, guint);

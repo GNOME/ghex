@@ -50,6 +50,8 @@ extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[], tools_men
 #define CHILD_LIST_PATH "Fi_les/"
 #define GROUP_MENU_PATH "_Edit/_Group Data As/"
 
+#define GHEX_URL "http://pluton.ijs.si/~jaka/gnome.html#GHEX"
+
 typedef struct _PropertyUI {
 	GnomePropertyBox *pbox;
 	GtkRadioButton *mdi_type[NUM_MDI_MODES];

@@ -7,10 +7,9 @@ INCLUDES = -I$(includedir) 				\
 
 bin_PROGRAMS = ghex
 
-ghex_SOURCES = hex-document.c hex-document.h             \
-	preferences.c findreplace.c converter.c config.c \
-	ghex.h gtkhex.c gtkhex.h main.c ui.c session.c   \
-	chartable.c
+ghex_SOURCES = hex-document.c hex-document.h hex-document-ui.c  \
+	preferences.c findreplace.c converter.c config.c ghex.h \
+	gtkhex.c gtkhex.h main.c ui.c session.c chartable.c
 
 ghex_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 

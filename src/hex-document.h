@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* hex-document.h
 
-   Copyright (C) 1998, 1999 Free Software Foundation
+   Copyright (C) 1998, 1999, 2000 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -24,6 +24,8 @@
 #ifndef __HEX_DOCUMENT_H__
 #define __HEX_DOCUMENT_H__
 
+#include <stdio.h>
+
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
@@ -39,13 +41,15 @@ typedef struct _HexDocument       HexDocument;
 typedef struct _HexDocumentClass  HexDocumentClass;
 typedef struct _HexChangeData     HexChangeData;
 
-typedef enum {
+typedef enum
+{
 	HEX_CHANGE_STRING,
 	HEX_CHANGE_BYTE
 } HexChangeType;
 
-struct _HexChangeData {
-	gint start, end;
+struct _HexChangeData
+{
+	guint start, end, rep_len;
 	gboolean lower_nibble;
 	HexChangeType type;
 	gchar *v_string;
@@ -58,51 +62,68 @@ struct _HexDocument
 	
 	gchar *file_name;
 	gchar *path_end;
-	FILE *file;
 	
-	guchar *buffer;
-	guint buffer_size;
-	
+	guchar *buffer;    /* data buffer */
+	guchar *gap_pos;   /* pointer to the start of insertion gap */
+	gint gap_size;     /* insertion gap size */
+	guint buffer_size; /* buffer size = file size + gap size */
+	guint file_size;   /* real file size */
+
 	gboolean changed;
 
-	GList *undo_stack;
+	GList *undo_stack; /* stack base */
 	GList *undo_top;   /* top of the stack (for redo) */
-	guint undo_depth;
-	guint undo_max;
-
-	HexChangeData change_data;
+	guint undo_depth;  /* number of els on stack */
+	guint undo_max;    /* max undo depth */
 };
 
 struct _HexDocumentClass
 {
 	GnomeMDIChildClass parent_class;
-	
+
 	void (*document_changed)(HexDocument *, gpointer, gboolean);
 };
 
-GtkType hex_document_get_type(void);
+GtkType     hex_document_get_type(void);
 HexDocument *hex_document_new(const gchar *name);
-void hex_document_set_data(HexDocument *doc, guint offset,
-						   guint len, guchar *data);
-void hex_document_set_byte(HexDocument *doc, guchar val, guint offset);
-void hex_document_set_nibble(HexDocument *doc, guchar val,
-							 guint offset, gboolean lower_nibble);
-guchar hex_document_get_byte(HexDocument *doc, guint offset);
-gint hex_document_read(HexDocument *doc);
-gint hex_document_write(HexDocument *doc);
-gint hex_document_export_html(HexDocument *doc,
-							  gchar *html_path, gchar *base_name,
-							  guint start, guint end,
-							  guint cpl, guint lpp, guint cpw);
-gboolean hex_document_has_changed(HexDocument *doc);
-void hex_document_changed(HexDocument *doc, gpointer change_data,
-						  gboolean push_undo);
+
+void        hex_document_set_data(HexDocument *doc, guint offset,
+								  guint len, guint rep_len, guchar *data,
+								  gboolean undoable);
+void        hex_document_set_byte(HexDocument *doc, guchar val, guint offset,
+								  gboolean insert, gboolean undoable);
+void        hex_document_set_nibble(HexDocument *doc, guchar val,
+									guint offset, gboolean lower_nibble,
+									gboolean insert, gboolean undoable);
+guchar      hex_document_get_byte(HexDocument *doc, guint offset);
+guchar      *hex_document_get_data(HexDocument *doc, guint offset, guint len);
+void        hex_document_delete_data(HexDocument *doc, guint offset,
+									 guint len, gboolean undoable);
+
+gint        hex_document_read(HexDocument *doc);
+gint        hex_document_write(HexDocument *doc);
+gint        hex_document_write_to_file(HexDocument *doc, FILE *file);
+gint        hex_document_export_html(HexDocument *doc,
+									 gchar *html_path, gchar *base_name,
+									 guint start, guint end,
+									 guint cpl, guint lpp, guint cpw);
+
+gboolean    hex_document_has_changed(HexDocument *doc);
+void        hex_document_changed(HexDocument *doc, gpointer change_data,
+								 gboolean push_undo);
+
+void        hex_document_set_max_undo(HexDocument *doc, guint max_undo);
+gboolean    hex_document_undo(HexDocument *doc);
+gboolean    hex_document_redo(HexDocument *doc);
+
+gint        hex_document_compare_data(HexDocument *doc, guchar *s2,
+									  gint pos, gint len);
+gint        hex_document_find_forward(HexDocument *doc, guint start,
+									  guchar *what, gint len, guint *found);
+gint        hex_document_find_backward(HexDocument *doc, guint start,
+									   guchar *what, gint len, guint *found);
+
 GnomeMDIChild *hex_document_new_from_config(const gchar *);
-void hex_document_set_max_undo(HexDocument *doc, guint max_undo);
-gint find_string_forward(HexDocument *doc, guint start, guchar *what,
-						 gint len, guint *found);
-gint find_string_backward(HexDocument *doc, guint start, guchar *what,
-						  gint len, guint *found);
 
 END_GNOME_DECLS
 

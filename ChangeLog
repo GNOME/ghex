@@ -1,3 +1,16 @@
+2000-03-11  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* hex-document-ui.c: put all the UI related stuff for HexDocument
+	here.
+	* hex-document.[ch]: major rewrite in order to allow for insertion
+	of data. currently GHex allows only for insertion which is probably
+	still buggy.
+	* gtkhex.[ch]: only use accessor functions for setting/getting
+	hex data to/from HexDocument in order to make the changes to
+	HexDocument transparent to GtkHex widget.
+	* findreplace.c: allow for replacing strings of different lengths.
+	* Makefile.am: add hex-document-ui.c to sources list.
+
 2000-03-04  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* Makefile.am: add chartable.c to sources list. I tend to forget

@@ -50,7 +50,7 @@ GnomeUIInfo file_menu[] = {
 	/* keep in sync: main.c/child_changed_cb: setting sensitivity of items 1 - 3 */
 	GNOMEUIINFO_MENU_SAVE_ITEM(save_cb,NULL),
 	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb,NULL),
-	GNOMEUIINFO_ITEM(N_("Export as HTML..."), N_("Export data to HTML source"), export_html_cb, NULL),
+	GNOMEUIINFO_ITEM(N_("Export to HTML..."), N_("Export data to HTML source"), export_html_cb, NULL),
 	GNOMEUIINFO_MENU_REVERT_ITEM(revert_cb,NULL),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_CLOSE_ITEM(close_cb,NULL),
@@ -214,7 +214,7 @@ static void save_cb(GtkWidget *w)
 		return;
 
 	doc = HEX_DOCUMENT(gnome_mdi_get_active_child(mdi));
-	if(hex_document_write(doc))
+	if(!hex_document_write(doc))
 		gnome_app_error(mdi->active_window, _("Error saving file!"));
 	else {
 		gchar *flash;
@@ -227,11 +227,18 @@ static void save_cb(GtkWidget *w)
 
 static void open_cb(GtkWidget *w)
 {
+	HexDocument *doc;
+
 	if(file_sel && GTK_WIDGET_VISIBLE(file_sel))
 		return;
 
 	if(file_sel == NULL)
 		file_sel = gtk_file_selection_new(NULL);
+
+	if(gnome_mdi_get_active_child(mdi) != NULL) {
+		doc = HEX_DOCUMENT(gnome_mdi_get_active_child(mdi));
+		gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel), doc->file_name);
+	}
 
 	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to open"));
 	
@@ -253,12 +260,18 @@ static void open_cb(GtkWidget *w)
 
 static void save_as_cb(GtkWidget *w)
 {
+	HexDocument *doc;
+
 	if(gnome_mdi_get_active_child(mdi) == NULL  ||
-	   file_sel && GTK_WIDGET_VISIBLE(file_sel))
+	   (file_sel && GTK_WIDGET_VISIBLE(file_sel)))
 		return;
 	
+	doc = HEX_DOCUMENT(gnome_mdi_get_active_child(mdi));
+
 	if(file_sel == NULL)
 		file_sel = gtk_file_selection_new(NULL);
+
+	gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel), doc->file_name);
 
 	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to save buffer as"));
 	
@@ -275,14 +288,20 @@ static void save_as_cb(GtkWidget *w)
 
 static void export_html_cb(GtkWidget *w)
 {
+	HexDocument *doc;
+
 	if(gnome_mdi_get_active_child(mdi) == NULL ||
-	   file_sel && GTK_WIDGET_VISIBLE(file_sel))
+	   (file_sel && GTK_WIDGET_VISIBLE(file_sel)))
 		return;
-	
+
+	doc = HEX_DOCUMENT(gnome_mdi_get_active_child(mdi));
+
 	if(file_sel == NULL)
 		file_sel = gtk_file_selection_new(NULL);
 
-	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select path and file name HTML source to"));
+	gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel), doc->file_name);
+
+	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select path and file name for the HTML source"));
 	
 	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 	
@@ -318,9 +337,7 @@ static void export_html_selected_file(GtkWidget *w, GtkHex *view)
 	
 	doc = HEX_DOCUMENT(gnome_mdi_get_child_from_view(GTK_WIDGET(view)));
 
-	g_message("exporting to %s/%s", html_path, base_name);
-
-	hex_document_export_html(doc, html_path, base_name, 0, doc->buffer_size,
+	hex_document_export_html(doc, html_path, base_name, 0, doc->file_size,
 							 view->cpl, view->vis_lines, view->group_type);
 }
 
@@ -422,16 +439,17 @@ static void open_selected_file(GtkWidget *w)
 static void save_selected_file(GtkWidget *w, GtkWidget *view)
 {
 	HexDocument *doc;
+	FILE *file;
 	gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
 	gchar *flash;
 	int i;
 	
 	doc = HEX_DOCUMENT(gnome_mdi_get_child_from_view(view));
 	
-	if((doc->file = fopen(filename, "w")) != NULL) {
-		if(fwrite(doc->buffer, doc->buffer_size, 1, doc->file) == 1) {
+	if((file = fopen(filename, "w")) != NULL) {
+		if(hex_document_write_to_file(doc, file)) {
 			if(doc->file_name)
-				free(doc->file_name);
+				g_free(doc->file_name);
 			doc->file_name = strdup(filename);
 			
 			for(i = strlen(doc->file_name);
@@ -451,7 +469,7 @@ static void save_selected_file(GtkWidget *w, GtkWidget *view)
 		}
 		else
 			gnome_app_error(mdi->active_window, _("Error saving file!"));
-		fclose(doc->file);
+		fclose(file);
 	}
 	else
 		gnome_app_error(mdi->active_window, _("Can't open file for writing!"));

@@ -236,6 +236,8 @@ PropertyUI *create_prefs_dialog() {
 
 	gtk_signal_connect(GTK_OBJECT(pui->offsets_col), "toggled",
 					   properties_modified_cb, pui->pbox);
+
+	return pui;
 }
 
 static void set_prefs(PropertyUI *pui) {

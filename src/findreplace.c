@@ -294,7 +294,8 @@ static void find_next_cb(GtkWidget *w)
 		gnome_app_error(mdi->active_window, _("There seems to be no string to search for!"));
 		return;
 	}
-   	if(find_string_forward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos+1, str, str_len, &offset) == 0)
+   	if(hex_document_find_forward(HEX_DOCUMENT(mdi->active_child),
+								 gh->cursor_pos+1, str, str_len, &offset))
 		gtk_hex_set_cursor(gh, offset);
 	else
 		gnome_app_flash(mdi->active_window, _("End Of File reached"));
@@ -319,7 +320,8 @@ static void find_prev_cb(GtkWidget *w)
 		return;
 	}
 
-	if(find_string_backward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos, str, str_len, &offset) == 0)
+	if(hex_document_find_backward(HEX_DOCUMENT(mdi->active_child),
+								  gh->cursor_pos, str, str_len, &offset))
 		gtk_hex_set_cursor(gh, offset);
 	else
 		gnome_app_flash(mdi->active_window, _("Beginning Of File reached"));
@@ -347,7 +349,7 @@ static void goto_byte_cb(GtkWidget *w)
 		return;
 	}
 	
-	if(byte >= HEX_DOCUMENT(mdi->active_child)->buffer_size) {
+	if(byte >= HEX_DOCUMENT(mdi->active_child)->file_size) {
 		gnome_app_error(mdi->active_window,_("Can not position cursor beyond the End Of File!"));
 		return;
 	}
@@ -374,7 +376,8 @@ static void replace_next_cb(GtkWidget *w)
 		return;
 	}
 
-	if(find_string_forward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos+1, str, str_len, &offset) == 0)
+	if(hex_document_find_forward(HEX_DOCUMENT(mdi->active_child),
+								 gh->cursor_pos+1, str, str_len, &offset))
 		gtk_hex_set_cursor(gh, offset);
 	else
 		gnome_app_flash(mdi->active_window, _("End Of File reached"));
@@ -403,18 +406,15 @@ static void replace_one_cb(GtkWidget *w)
 		return;
 	}
 	
-	if(find_len != rep_len) {
-		gnome_app_error(mdi->active_window, _("Both strings must be of the same length!"));
-		return;
-	}
-	
-	if(find_len > doc->buffer_size - gh->cursor_pos)
+	if(find_len > doc->file_size - gh->cursor_pos)
 		return;
 	
-	if(memcmp(&doc->buffer[gh->cursor_pos], find_str, find_len) == 0)
-		hex_document_set_data(doc, gh->cursor_pos, rep_len, rep_str);
+	if(hex_document_compare_data(doc, find_str, gh->cursor_pos, find_len) == 0)
+		hex_document_set_data(doc, gh->cursor_pos,
+							  rep_len, find_len, rep_str, TRUE);
 	
-	if(find_string_forward(doc, gh->cursor_pos+1, find_str, find_len, &offset) == 0)
+	if(hex_document_find_forward(doc, gh->cursor_pos + rep_len, find_str, find_len,
+								 &offset))
 		gtk_hex_set_cursor(gh, offset);
 	else
 		gnome_app_flash(mdi->active_window, _("End Of File reached!"));
@@ -443,17 +443,13 @@ static void replace_all_cb(GtkWidget *w)
 		return;
 	}
 	
-	if(find_len != rep_len) {
-		gnome_app_error(mdi->active_window, _("Both strings must be of the same length!"));
-		return;
-	}
-	
-	if(find_len > doc->buffer_size - gh->cursor_pos)
+	if(find_len > doc->file_size - gh->cursor_pos)
 		return;
 	
 	count = 0;
-	while(find_string_forward(doc, gh->cursor_pos, find_str, find_len, &offset) == 0) {
-		hex_document_set_data(doc, offset, rep_len, rep_str);
+	while(hex_document_find_forward(doc, gh->cursor_pos, find_str, find_len,
+									&offset)) {
+		hex_document_set_data(doc, offset, rep_len, find_len, rep_str, TRUE);
 		count++;
 	}
 	

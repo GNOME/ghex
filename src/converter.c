@@ -123,7 +123,7 @@ static void get_cursor_val_cb(GtkButton *button, Converter *conv) {
 			val |= gtk_hex_get_byte(GTK_HEX(view), start);
 			start++;
 		} while( (start % GTK_HEX(view)->group_type != 0) &&
-				 (start < GTK_HEX(view)->document->buffer_size) );
+				 (start < GTK_HEX(view)->document->file_size) );
 
 		set_values(conv, val);
 	}
