@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ui.c - main menus and callbacks; utility functions
 
-   Copyright (C) 1998 - 2003 Free Software Foundation
+   Copyright (C) 1998 - 2004 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -243,7 +243,7 @@ about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 
 	if(!about) {
 		about = gnome_about_new ( _("GHex, a binary file editor"), VERSION,
-								  "(C) 1998 - 2002 Jaka Mocnik",
+								  "(C) 1998 - 2004 Jaka Mocnik",
 								  _("Released under the terms of GNU Public License"),
 								  authors, NULL, NULL, NULL);
 		g_signal_connect(G_OBJECT(about), "destroy",
@@ -541,6 +541,7 @@ export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbnam
 											"Do you want to proceed?"));
 			gtk_dialog_set_default_response(GTK_DIALOG(mbox), GTK_RESPONSE_NO);
 			reply = ask_user(GTK_MESSAGE_DIALOG(mbox));
+			gtk_widget_destroy(mbox);
 			if(reply != GTK_RESPONSE_YES) {
 				g_free(html_path);
 				g_free(check_path);
@@ -705,6 +706,8 @@ revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 			g_free(gtk_file_name);
 			g_free(flash);
 		}
+
+		gtk_widget_destroy (mbox);
 	}
 }
 
@@ -742,8 +745,31 @@ ghex_print(GtkHex *gh, gboolean preview)
 }
 
 static void
+ghex_print_progress(gint page, gint ofpages, gpointer data)
+{
+	GtkProgressBar *progress_bar = GTK_PROGRESS_BAR(data);
+	gchar *progress_str;
+
+	gtk_progress_bar_set_fraction(progress_bar,
+								  (gdouble)page/(gdouble)ofpages);
+	progress_str = g_strdup_printf("%d/%d", page, ofpages);
+	gtk_progress_bar_set_text(progress_bar, progress_str);	
+	g_free(progress_str);
+	while(gtk_events_pending())
+		gtk_main_iteration();
+}
+
+static gboolean
+ignore_cb(GtkWidget *w, GdkEventAny *e, gpointer user_data)
+{
+	return TRUE;
+}
+
+static void
 ghex_print_document_real(GHexPrintJobInfo *pji, gboolean preview)
 {
+	GtkWidget *progress_dialog, *progress_bar;
+
 	g_return_if_fail (pji->config != NULL);
 
 	pji->master = gnome_print_job_new (pji->config);
@@ -751,7 +777,23 @@ ghex_print_document_real(GHexPrintJobInfo *pji, gboolean preview)
 	g_return_if_fail (pji->master != NULL);
 
 	ghex_print_update_page_size_and_margins (pji->doc, pji);
-	ghex_print_job_execute(pji);
+
+	progress_dialog = gtk_dialog_new();
+	gtk_window_set_resizable(GTK_WINDOW(progress_dialog), FALSE);
+	gtk_window_set_modal(GTK_WINDOW(progress_dialog), TRUE);
+	g_signal_connect(G_OBJECT(progress_dialog), "delete-event",
+					 G_CALLBACK(ignore_cb), NULL);
+	gtk_window_set_title(GTK_WINDOW(progress_dialog),
+						 _("Printing file..."));
+	progress_bar = gtk_progress_bar_new();
+	gtk_widget_show(progress_bar);
+	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(progress_dialog)->vbox),
+					  progress_bar);
+	gtk_widget_show(progress_dialog);
+
+	ghex_print_job_execute(pji, ghex_print_progress, progress_bar);
+
+	gtk_widget_destroy(progress_dialog);
 
 	if(pji->preview)
 		ghex_print_preview_real(pji);
@@ -777,11 +819,6 @@ ghex_print_dialog_response (GtkWidget *dialog, int response,
 		return;
 	}
 
-	if (pji->config == NULL) {
-		pji->config = gnome_print_dialog_get_config
-			(GNOME_PRINT_DIALOG(dialog));		
-	}
-	
 	pji->range = gnome_print_dialog_get_range_page
 		(GNOME_PRINT_DIALOG(dialog), &pji->page_first, &pji->page_last);
 	
@@ -809,6 +846,13 @@ ghex_print_run_dialog(GHexPrintJobInfo *pji)
 	dialog = gnome_print_dialog_new(pji->master,
 			     (const char *) _("Print Hex Document"),
 			     GNOME_PRINT_DIALOG_RANGE);
+
+	if (pji->config == NULL) {
+		pji->config = gnome_print_dialog_get_config(
+						GNOME_PRINT_DIALOG(dialog));
+	}
+
+	ghex_print_update_page_size_and_margins (pji->doc, pji);
 
 	gnome_print_dialog_construct_range_page((GnomePrintDialog *)dialog,
 			GNOME_PRINT_RANGE_ALL | GNOME_PRINT_RANGE_RANGE,

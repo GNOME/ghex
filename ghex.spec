@@ -1,5 +1,5 @@
 %define nam   ghex
-%define ver   2.5.0
+%define ver   2.5.3
 %define rel   0.2
 
 Summary: GNOME binary editor

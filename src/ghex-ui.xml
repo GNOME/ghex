@@ -2,72 +2,81 @@
 
 <commands>
         <cmd name="FileOpen" _label="Open"
-	_tip="Open a file" pixtype="stock" pixname="gtk-open" accel="*Control*O"/>
+	     _tip="Open a file" pixtype="stock" pixname="gtk-open"
+	     accel="*Control*O"/>
 	
         <cmd name="FileSave" _label="Save"
-	_tip="Save the current file" pixtype="stock" pixname="gtk-save"
-	accel="*Control*S"/>
+	     _tip="Save the current file" pixtype="stock" pixname="gtk-save"
+	     accel="*Control*S"/>
 	
         <cmd name="FileSaveAs" _label="Save As"
-        _tip="Save the current file with a different name"
-	pixtype="stock" pixname="gtk-save-as" accel="*Shift**Control*S"/>
+	     _tip="Save the current file with a different name"
+	     pixtype="stock" pixname="gtk-save-as" accel="*Shift**Control*S"/>
 
 	<cmd name="ExportToHTML" _label="Export to HTML..."
-	_tip="Export data to HTML source"/>
+	     _tip="Export data to HTML source"/>
 
         <cmd name="FileRevert" _label="Revert"
-        _tip="Revert to a saved version of the file"
-        pixtype="stock" pixname="gtk-revert-to-saved"/>
+	     _tip="Revert to a saved version of the file"
+	     pixtype="stock" pixname="gtk-revert-to-saved"/>
 	
         <cmd name="FilePrint" _label="Print"
-	_tip="Print the current file" pixtype="stock" pixname="gtk-print"
-	accel="*Control*P"/>
+	     _tip="Print the current file" pixtype="stock" pixname="gtk-print"
+	     accel="*Control*P"/>
 	
 	<cmd name="FilePrintPreview" _label="Print Preview..."
-	_tip="Preview printed data" pixtype="stock" pixname="gtk-print-preview"
-	accel="*Shift**Control*P"/>
+	     _tip="Preview printed data"
+	     pixtype="stock" pixname="gtk-print-preview"
+	     accel="*Shift**Control*P"/>
 	
         <cmd name="FileClose" _label="Close"
-	_tip="Close the current file" pixtype="stock" pixname="gtk-close"
-	accel="*Control*W"/>
+	     _tip="Close the current file" pixtype="stock" pixname="gtk-close"
+	     accel="*Control*W"/>
 
         <cmd name="FileExit" _label="Exit" _tip="Exit the program"
-           pixtype="stock" pixname="gtk-quit" accel="*Control*Q"/>
+	     pixtype="stock" pixname="gtk-quit" accel="*Control*Q"/>
 
-	<cmd name="Converter" type="toggle" _label="Converter..." _tip="Open base conversion dialog"/>
+	<cmd name="Converter" type="toggle" _label="Converter..."
+	     _tip="Open base conversion dialog"/>
 
-	<cmd name="CharacterTable" type="toggle" _label="Character Table..." _tip="Show the character table"/>
+	<cmd name="CharacterTable" type="toggle" _label="Character Table..."
+	     _tip="Show the character table"/>
 
-	<cmd name="TypeDialog" type="toggle" _label="Type Conversion Dialog..." _tip="Show the type conversion dialog in the edit window"/>
+	<cmd name="TypeDialog" type="toggle"
+	     _label="Type Conversion Dialog..."
+	     _tip="Show the type conversion dialog in the edit window"/>
 
 	<cmd name="EditUndo" _label="Undo" _tip="Undo the last action"
-	pixtype="stock" pixname="gtk-undo" accel="*Control*Z"/>
+	     pixtype="stock" pixname="gtk-undo" accel="*Control*Z"/>
 
 	<cmd name="EditRedo" _label="Redo" _tip="Redo the undone action"
-	pixtype="stock" pixname="gtk-redo" accel="*Shift**Control*Z"/>
+	     pixtype="stock" pixname="gtk-redo" accel="*Shift**Control*Z"/>
 
         <cmd name="EditPaste" _label="Paste" _tip="Paste data from clipboard"
-        pixtype="stock" pixname="gtk-paste" accel="*Control*V"/>
+	     pixtype="stock" pixname="gtk-paste" accel="*Control*V"/>
 
         <cmd name="EditCopy" _label="Copy" _tip="Copy selection to clipboard"
-        pixtype="stock" pixname="gtk-copy" accel="*Control*C"/>
+	     pixtype="stock" pixname="gtk-copy" accel="*Control*C"/>
 
         <cmd name="EditCut" _label="Cut" _tip="Cut selection"
-        pixtype="stock" pixname="gtk-cut" accel="*Control*X"/>
+	     pixtype="stock" pixname="gtk-cut" accel="*Control*X"/>
 
 	<cmd name="Find" _label="Find" _tip="Search for a string"
-	pixtype="stock" pixname="gtk-find" accel="*Control*F"/>
+	     pixtype="stock" pixname="gtk-find" accel="*Control*F"/>
 
 	<cmd name="AdvancedFind" _label="Advanced Find" _tip="Advanced Find"
-	pixtype="stock" pixname="gtk-find"/>
+	     pixtype="stock" pixname="gtk-find"/>
 
-	<cmd name="Replace" _label="Replace" _tip="Replace a string"
-	pixtype="stock" pixname="gtk-find-and-replace" accel="*Control*H"/>
+        <cmd name="Replace" _label="Replace" _tip="Replace a string"
+	     pixtype="stock" pixname="gtk-find-and-replace"
+	     accel="*Control*H"/>
 
-	<cmd name="GoToByte" _label="Goto Byte" _tip="Jump to a certain position"
+	<cmd name="GoToByte" _label="Goto Byte"
+	     _tip="Jump to a certain position"
 	accel="*Control*J"/>
 
-	<cmd name="InsertMode" _label="Insert Mode" _tip="Insert/overwrite data"
+	<cmd name="InsertMode" _label="Insert Mode"
+	     _tip="Insert/overwrite data"
              type="toggle" accel="Insert"/>
 
 	<cmd name="Bytes" _label="Bytes" _tip="Group data by 8 bits"
@@ -79,18 +88,23 @@
 	<cmd name="Longwords" _label="Longwords" _tip="Group data by 32 bits"
              type="radio" group="Group"/>
 
-	<cmd name="AddView" _label="Add View" _tip="Add a new view to the buffer"/>
+	<cmd name="AddView" _label="Add View"
+	     _tip="Add a new view to the buffer"/>
 
-	<cmd name="RemoveView" _label="Remove View" _tip="Remove the current view of the buffer"/>
+	<cmd name="RemoveView" _label="Remove View"
+	     _tip="Remove the current view of the buffer"/>
 
-        <cmd name="Preferences" _label="Preferences" _tip="Configure the application"
+        <cmd name="Preferences" _label="Preferences"
+	     _tip="Configure the application"
 	  pixtype="stock" pixname="gtk-preferences"/>
 
 	<cmd name="HelpChat..." _label="Help Chat" _tip=""/>
 
-        <cmd name="About" _label="_About" _tip="About this application"/>
+        <cmd name="About" _label="_About" _tip="About this application"
+	     pixtype="stock" pixname="About"/>
 
-	<cmd name="Help" _label="Contents" _tip="Help on this application" pixtype="stock" pixname="gtk-help" accel="F1"/>
+	<cmd name="Help" _label="Contents" _tip="Help on this application"
+	     pixtype="stock" pixname="gtk-help" accel="F1"/>
 
 </commands>
 
@@ -189,11 +203,14 @@
 
 	<separator/>
 
-	<menuitem name="CharacterTable" type="toggle" verb="" _label="Character _Table..."/>
+	<menuitem name="CharacterTable" type="toggle" verb=""
+		  _label="Character _Table..."/>
 
-	<menuitem name="Converter" type="toggle" verb="" _label="_Base Converter"/>
+	<menuitem name="Converter" type="toggle" verb=""
+		  _label="_Base Converter"/>
 
-	<menuitem name="TypeDialog" type="toggle" verb="" _label="Type Conversion _Dialog"/>
+	<menuitem name="TypeDialog" type="toggle" verb=""
+		  _label="Type Conversion _Dialog"/>
 </submenu>
 
 <submenu name="Help" _label="_Help">

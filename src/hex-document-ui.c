@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* hex-document-ui.c - menu definitions and callbacks for hex-document MDI child
 
-   Copyright (C) 1998 - 2002 Free Software Foundation
+   Copyright (C) 1998 - 2004 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as

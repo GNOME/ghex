@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* hex-document.c - implementation of a hex document
 
-   Copyright (C) 1998 - 2002 Free Software Foundation
+   Copyright (C) 1998 - 2004 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -711,10 +711,10 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 						 guint start, guint end, guint cpl, guint lpp,
 						 guint cpw)
 {
+	GtkWidget *progress_dialog, *progress_bar;
 	FILE *file;
 	int page, line, pos, lines, pages, c;
 	gchar *page_name, b;
-	GtkWidget *progress_dialog, *progress_bar;
 	gint update_pages;
 	gchar *progress_str;
 
@@ -733,7 +733,8 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 	if(!file)
 		return FALSE;
 	fprintf(file, "<HTML>\n<HEAD>\n");
-	fprintf(file, "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n");
+	fprintf(file, "<META HTTP-EQUIV=\"Content-Type\" "
+			"CONTENT=\"text/html; charset=UTF-8\">\n");
 	fprintf(file, "<META NAME=\"hexdata\" CONTENT=\"GHex export to HTML\">\n");
 	fprintf(file, "</HEAD>\n<BODY>\n");
 
@@ -754,16 +755,17 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 	fprintf(file, "</BODY>\n</HTML>\n");
 	fclose(file);
 
-	progress_dialog = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	progress_dialog = gtk_dialog_new();
 	gtk_window_set_resizable(GTK_WINDOW(progress_dialog), FALSE);
+	gtk_window_set_modal(GTK_WINDOW(progress_dialog), TRUE);
 	g_signal_connect(G_OBJECT(progress_dialog), "delete-event",
 					 G_CALLBACK(ignore_cb), NULL);
 	gtk_window_set_title(GTK_WINDOW(progress_dialog),
 						 _("Saving to HTML..."));
-	gtk_container_set_border_width(GTK_CONTAINER(progress_dialog), 8);
 	progress_bar = gtk_progress_bar_new();
 	gtk_widget_show(progress_bar);
-	gtk_container_add(GTK_CONTAINER(progress_dialog), progress_bar);
+	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(progress_dialog)->vbox),
+					  progress_bar);
 	gtk_widget_show(progress_dialog);
 
 	pos = start;
@@ -772,8 +774,7 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 		if((page%update_pages) == 0) {
 			gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(progress_bar),
 										  (gdouble)page/(gdouble)pages);
-			progress_str = g_strdup_printf("%d%%",
-										   (gint)((gdouble)page/(gdouble)pages*100));
+			progress_str = g_strdup_printf("%d/%d", page, pages);
 			gtk_progress_bar_set_text(GTK_PROGRESS_BAR(progress_bar),
 									  progress_str);
 			g_free(progress_str);

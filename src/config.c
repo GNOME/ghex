@@ -1,7 +1,7 @@
 /* -*- mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* config.c - configuration loading/saving via gnome-config routines
 
-   Copyright (C) 1997 - 2003 Free Software Foundation
+   Copyright (C) 1997 - 2004 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as

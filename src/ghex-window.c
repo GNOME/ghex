@@ -2,7 +2,7 @@
 /*
  * ghex-window.c: a ghex window
  *
- * Copyright (C) 2002 the Free Software Foundation
+ * Copyright (C) 2002 - 2004 the Free Software Foundation
  *
  * Author: Jaka Mocnik  <jaka@gnu.org>
  */
@@ -173,6 +173,8 @@ ghex_window_set_sensitivity (GHexWindow *win)
 	bonobo_ui_component_set_prop (uic, "/commands/Find", "sensitive",
                                   allmenus?"1":"0", NULL);
 	bonobo_ui_component_set_prop (uic, "/commands/Replace", "sensitive",
+                                  allmenus?"1":"0", NULL);
+	bonobo_ui_component_set_prop (uic, "/commands/AdvancedFind", "sensitive",
                                   allmenus?"1":"0", NULL);
 	bonobo_ui_component_set_prop (uic, "/commands/GoToByte", "sensitive",
                                   allmenus?"1":"0", NULL);
@@ -1066,6 +1068,7 @@ ghex_window_save_as(GHexWindow *win)
             gtk_dialog_set_default_response(GTK_DIALOG(mbox), GTK_RESPONSE_NO);
 
             ret_val = (ask_user(GTK_MESSAGE_DIALOG(mbox)) == GTK_RESPONSE_YES);
+            gtk_widget_destroy (mbox);
         }
 
         if(ret_val) {

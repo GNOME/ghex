@@ -2,7 +2,7 @@
 /*
  * ghex-window.c: everything describing a single ghex window
  *
- * Copyright (C) 2002 the Free Software Foundation
+ * Copyright (C) 2002 - 2004 the Free Software Foundation
  *
  * Author: Jaka Mocnik  <jaka@gnu.org>
  */

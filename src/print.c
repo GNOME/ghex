@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* print.c - print a HexDocument
 
-   Copyright (C) 1998 - 2002 Free Software Foundation
+   Copyright (C) 1998 - 2004 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -15,8 +15,9 @@
 
    You should have received a copy of the GNU General Public License
    along with GHex; see the file COPYING.
-   If not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   If not, write to the Free Software Foundation, Inc.,
+                        59 Temple Place - Suite 330,
+						Boston, MA 02111-1307, USA.
 
    Author: Jaka Mocnik <jaka@gnu.org>
    Printing module by: Chema Celorio <chema@celorio.com>
@@ -40,16 +41,21 @@ gint shaded_box_size;
 
 static void print_header(GHexPrintJobInfo *pji, unsigned int page);
 static void end_page(GnomePrintContext *pc);
-static void print_row(GHexPrintJobInfo *pji, unsigned int offset, unsigned int bytes, int row);
-static void format_hex(HexDocument *doc, guint gt, gchar *out, guint start, guint end);
-static void format_ascii(HexDocument *doc, gchar *out, guint start, guint end);
-static void print_shaded_boxes( GHexPrintJobInfo *pji, guint page, guint max_row);
+static void print_row(GHexPrintJobInfo *pji, unsigned int offset,
+					  unsigned int bytes, int row);
+static void format_hex(HexDocument *doc, guint gt, gchar *out,
+					   guint start, guint end);
+static void format_ascii(HexDocument *doc, gchar *out,
+						 guint start, guint end);
+static void print_shaded_boxes( GHexPrintJobInfo *pji, guint page,
+								guint max_row);
 static void print_shaded_box( GHexPrintJobInfo *pji, guint row, guint rows);
 static gboolean print_verify_fonts (void);
 
 static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 {
-	guchar* text1 = g_filename_to_utf8(pji->doc->file_name, -1, NULL, NULL, NULL);
+	guchar* text1 = g_filename_to_utf8(pji->doc->file_name, -1, NULL,
+									   NULL, NULL);
 	guchar* text2 = g_strdup_printf(_("Page: %i/%i"),page,pji->pages);
 	guchar* pagetext = g_strdup_printf("%d", page);
 	gfloat x, y, len;
@@ -80,7 +86,8 @@ static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 
 #define TEMP_LEN 256
 
-static void print_row(GHexPrintJobInfo *pji, unsigned int offset, unsigned int bytes, int row)
+static void print_row(GHexPrintJobInfo *pji, unsigned int offset,
+					  unsigned int bytes, int row)
 {
 	gfloat x, y;
 	gchar *temp = g_malloc(TEMP_LEN + 1);
@@ -116,7 +123,8 @@ static void end_page(GnomePrintContext *pc)
 	gnome_print_showpage(pc);
 }
 
-static void format_hex(HexDocument *doc, guint gt, gchar *out, guint start, guint end)
+static void format_hex(HexDocument *doc, guint gt, gchar *out,
+					   guint start, guint end)
 {
 	gint i, j, low, high;
 	guchar c;
@@ -150,7 +158,8 @@ static void format_ascii(HexDocument *doc, gchar *out, guint start, guint end)
 	out[j++] = 0;
 }
 
-static void print_shaded_boxes(GHexPrintJobInfo *pji, guint page, guint max_row)
+static void print_shaded_boxes(GHexPrintJobInfo *pji, guint page,
+							   guint max_row)
 {
 	gint i;
 	gint box_size = shaded_box_size;
@@ -161,7 +170,8 @@ static void print_shaded_boxes(GHexPrintJobInfo *pji, guint page, guint max_row)
 	for(i = box_size + 1;
 		i <= pji->rows_per_page && i <= max_row;
 		i += box_size*2)
-		print_shaded_box(pji, i, ((i + box_size - 1) > max_row ? max_row - i + 1 : box_size));
+		print_shaded_box(pji, i, ((i + box_size - 1) > max_row ?
+								  max_row - i + 1 : box_size));
 }
 
 static void print_shaded_box(GHexPrintJobInfo *pji, guint row, guint rows)
@@ -201,9 +211,11 @@ static gboolean print_verify_fonts()
 	test_font = gnome_font_find_closest_from_full_name(test_font_name);
 	if(test_font==NULL)
 	{
-		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
-										  "GHex is unable to print without this font installed."),
-										test_font_name);
+		gchar *errstr =
+			g_strdup_printf(_("GHex could not find the font \"%s\".\n"
+							  "GHex is unable to print without this font "
+							  "installed."),
+							test_font_name);
 		display_error_dialog (ghex_window_get_active(), errstr);
 		g_free(errstr);
 		return FALSE;
@@ -215,9 +227,11 @@ static gboolean print_verify_fonts()
 	test_font = gnome_font_find_closest_from_full_name(test_font_name);
 	if(test_font==NULL)
 	{
-		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
-										  "GHex is unable to print without this font installed."),
-										test_font_name);
+		gchar *errstr =
+			g_strdup_printf(_("GHex could not find the font \"%s\".\n"
+							  "GHex is unable to print without this font "
+							  "installed."),
+							test_font_name);
 		display_error_dialog (ghex_window_get_active(), errstr);
 		g_free(errstr);
 		return FALSE;
@@ -228,34 +242,43 @@ static gboolean print_verify_fonts()
 }
 
 void
-ghex_print_update_page_size_and_margins (HexDocument *doc, GHexPrintJobInfo *pji)
+ghex_print_update_page_size_and_margins (HexDocument *doc,
+										 GHexPrintJobInfo *pji)
 {
 	const GnomePrintUnit *unit;
 
 	gnome_print_job_get_page_size_from_config (pji->config,
 			&pji->page_width, &pji->page_height);
 
-	if (gnome_print_config_get_length (pji->config, GNOME_PRINT_KEY_PAGE_MARGIN_LEFT,
-				&pji->margin_left, &unit))
+	if (gnome_print_config_get_length (pji->config,
+									   GNOME_PRINT_KEY_PAGE_MARGIN_LEFT,
+									   &pji->margin_left, &unit))
 	{
-		gnome_print_convert_distance (&pji->margin_left, unit, GNOME_PRINT_PS_UNIT);
+		gnome_print_convert_distance (&pji->margin_left, unit,
+									  GNOME_PRINT_PS_UNIT);
 	}
 
-	if (gnome_print_config_get_length (pji->config, GNOME_PRINT_KEY_PAGE_MARGIN_RIGHT,
-				&pji->margin_right, &unit))
+	if (gnome_print_config_get_length (pji->config,
+									   GNOME_PRINT_KEY_PAGE_MARGIN_RIGHT,
+									   &pji->margin_right, &unit))
 	{
-		gnome_print_convert_distance (&pji->margin_right, unit, GNOME_PRINT_PS_UNIT);
+		gnome_print_convert_distance (&pji->margin_right, unit,
+									  GNOME_PRINT_PS_UNIT);
 	}
 
-	if (gnome_print_config_get_length (pji->config, GNOME_PRINT_KEY_PAGE_MARGIN_TOP,
-				&pji->margin_top, &unit))
+	if (gnome_print_config_get_length (pji->config,
+									   GNOME_PRINT_KEY_PAGE_MARGIN_TOP,
+									   &pji->margin_top, &unit))
 	{
-		gnome_print_convert_distance (&pji->margin_top, unit, GNOME_PRINT_PS_UNIT);
+		gnome_print_convert_distance (&pji->margin_top, unit,
+									  GNOME_PRINT_PS_UNIT);
 	}
-	if (gnome_print_config_get_length (pji->config, GNOME_PRINT_KEY_PAGE_MARGIN_BOTTOM,
+	if (gnome_print_config_get_length (pji->config,
+									   GNOME_PRINT_KEY_PAGE_MARGIN_BOTTOM,
 				&pji->margin_bottom, &unit))
 	{
-		gnome_print_convert_distance (&pji->margin_bottom, unit, GNOME_PRINT_PS_UNIT);
+		gnome_print_convert_distance (&pji->margin_bottom, unit,
+									  GNOME_PRINT_PS_UNIT);
 	}
 
 	pji->printable_width = pji->page_width -
@@ -284,8 +307,8 @@ ghex_print_update_page_size_and_margins (HexDocument *doc, GHexPrintJobInfo *pji
  * @doc: Pointer to the HexDocument to be printed.
  * @group_type: How to group bytes. GROUP_BYTE, GROUP_WORD, or GROUP_LONG.
  *
- * Return value: A pointer to a newly-created GHexPrintJobInfo object.  NULL if
-unable to create.
+ * Return value: A pointer to a newly-created GHexPrintJobInfo object.
+ * NULL if unable to create.
  *
  * Creates a new GHexPrintJobInfo object.
  **/
@@ -380,7 +403,9 @@ ghex_print_job_info_destroy(GHexPrintJobInfo *pji)
  * Performs the printing job described by the GHexPrintJobInfo object.
  **/
 void
-ghex_print_job_execute(GHexPrintJobInfo *pji)
+ghex_print_job_execute(GHexPrintJobInfo *pji,
+					   void (*progress_func)(gint, gint, gpointer),
+					   gpointer data)
 {
 	gint i;
 	gint j;
@@ -416,6 +441,8 @@ ghex_print_job_execute(GHexPrintJobInfo *pji)
 			print_row(pji, file_offset, length, j);
 		}
 		end_page(pji->pc);
+		progress_func(i - pji->page_first + 1,
+					  pji->page_last - pji->page_first + 1, data);
 	}
 	gnome_print_job_close(pji->master);
 }

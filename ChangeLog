@@ -1,3 +1,39 @@
+2004-04-25  Jaka Mocnik <jaka@gnu.org>
+
+	* applied a patch from Muktha Narayan; prevent a crash when advanced
+	find is issued with no file loaded (fixes #131919):
+	* findreplace.c (advanced_find_add_cbadvanced_find_add_cb): check if
+	there is a document loaded. 
+	* ghex-window.c (ghex_window_set_sensitivity): disable AdvanceFind 
+	option if there's no document loaded. 
+	* applied a patch from Kaushal Kumar to destroy a dialog upon
+	response (fixes #131411):
+	* ghex-window.c (ghex_window_save_as): Destroy the 'overwrite' 
+	message dialog after getting the response.
+	Fix bugzilla bug #131411.
+	* applied a patch from Vijaykumar Patwari to validate the print
+	ranges (fixes #120295):
+	* src/ui.c (ghex_print_dialog_response): Removed pji->config
+	getting populated.
+	(ghex_print_run_dialog): setting the value for pji->config.
+	Fixes bug# 120295.
+	* applied a patch from Shakti Sen that closes another question dialog.
+	fixes #136745:
+	* src/ui.c (revert_cb): Destroying the question dialog.
+	Fixes bug #136745
+	* src/ghex-ui.xml: added About item its stock icon, as suggested by
+	Kaveri Murthy.
+	* src/findreplace.c (create_advanced_find_add_dialog): move the color
+	selection in the vbox, since it screws up the action area if put
+	there.
+	* src/ui.c (ghex_print_document_real): create a progress dialog.
+	(ghex_print_progress): progress callback for printing.
+	* src/print.c (ghex_print_job_execute): allow user to call a progress
+	indication callback.
+	* src/hex-document.c (hex_document_export_html): fixed progress dialog
+	to be a true dialog.
+	(export_html_cb): destroy message box.
+
 2004-03-04 Breda McColgan <breda.mccolgan@sun.com>
 
 	* help/C/ghex2.xml: Updated for GNOME 2.6, technical review draft

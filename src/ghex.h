@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ghex.h - defines GHex ;)
 
-   Copyright (C) 1998 - 2003 Free Software Foundation
+   Copyright (C) 1998 - 2004 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -220,8 +220,11 @@ gint ask_user              (GtkMessageDialog *);
 GtkWidget *create_button   (GtkWidget *, const gchar *, gchar *);
 
 /* printing */
-void ghex_print_job_execute(GHexPrintJobInfo *pji);
-void ghex_print_update_page_size_and_margins (HexDocument *doc, GHexPrintJobInfo *pji);
+void ghex_print_job_execute(GHexPrintJobInfo *pji,
+							void (*progress_func)(gint, gint, gpointer),
+							gpointer data);
+void ghex_print_update_page_size_and_margins (HexDocument *doc,
+											  GHexPrintJobInfo *pji);
 
 GHexPrintJobInfo *ghex_print_job_info_new(HexDocument *doc, guint group_type);
 void ghex_print_job_info_destroy(GHexPrintJobInfo *pji);

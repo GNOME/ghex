@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* findreplace.c - finding & replacing data
 
-   Copyright (C) 1998 - 2002 Free Software Foundation
+   Copyright (C) 1998 - 2004 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -183,6 +183,13 @@ AdvancedFind_AddDialog *create_advanced_find_add_dialog(AdvancedFindDialog *pare
 		gtk_widget_show(dialog->type_button[i]);
 	}
 
+	dialog->colour = gtk_color_selection_new();
+	gtk_color_selection_set_has_opacity_control(GTK_COLOR_SELECTION(dialog->colour),
+												FALSE);
+	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox),
+					   dialog->colour, TRUE, TRUE, 0);
+	gtk_widget_show(dialog->colour);
+
 	button = create_button(dialog->window, GTK_STOCK_ADD, _("Add"));
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), button,
 					   TRUE, TRUE, 0);
@@ -200,17 +207,6 @@ AdvancedFind_AddDialog *create_advanced_find_add_dialog(AdvancedFindDialog *pare
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(button, GTK_CAN_DEFAULT);
 	gtk_widget_show(button);
-
-	dialog->colour = gtk_color_selection_new();
-	gtk_color_selection_set_has_opacity_control(GTK_COLOR_SELECTION(dialog->colour),
-												FALSE);
-#if 0
-	gnome_color_picker_set_title(GTK_COLOR_SELECTION(dialog->colour), _("Highlight Colour"));
-	gnome_color_picker_set_i8(GTK_COLOR_SELECTION(dialog->colour), 255, 0, 0, 0);
-#endif /* 0/1 */
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area),
-					   dialog->colour, TRUE, TRUE, 0);
-	gtk_widget_show(dialog->colour);
 
 	return dialog;
 }
@@ -831,6 +827,8 @@ static void advanced_find_add_cb(GtkButton *button, AdvancedFindDialog *dialog)
 		GtkHex *gh = dialog->parent->gh;
 		const gchar *findstr = gtk_entry_get_text(GTK_ENTRY(dialog->addDialog->f_string));
 		GtkTreeIter iter;
+		
+		g_return_if_fail (gh != NULL);
 		
 		if((data->str_len = get_search_string(findstr, data->str, ret)) == 0) {
 			display_error_dialog (dialog->parent, _("The string is not appropriate for the selected data type!"));
