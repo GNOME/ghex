@@ -854,7 +854,7 @@ static void gtk_hex_class_init(GtkHexClass *class) {
   GTK_OBJECT_CLASS(class)->destroy = gtk_hex_destroy;
 }
 
-void gtk_hex_init(GtkHex *gh) {
+static void gtk_hex_init(GtkHex *gh) {
   gh->disp_buffer = NULL;
   gh->document = NULL;
 

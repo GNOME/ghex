@@ -1,10 +1,6 @@
-#include <gnome.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
-
-#include <libgnome/libgnome.h>
-
-#include <libgnomeui/libgnomeui.h>
+#include <gnome.h>
 
 #include <hex-document.h>
 
@@ -16,11 +12,11 @@
 #include <sys/stat.h>
 #include <string.h>
 
-static void hex_document_class_init        (HexDocumentClass *klass);
-static void hex_document_init              (HexDocument *);
-static GtkWidget *hex_document_create_view (GnomeMDIChild *);
-static void hex_document_destroy           (GtkObject *);
-static void hex_document_real_changed      (HexDocument *, gpointer);
+static void       hex_document_class_init   (HexDocumentClass *);
+static void       hex_document_init         (HexDocument *);
+static GtkWidget *hex_document_create_view  (GnomeMDIChild *);
+static void       hex_document_destroy      (GtkObject *);
+static void       hex_document_real_changed (HexDocument *, gpointer);
 
 static void find_cb();
 static void replace_cb();
@@ -73,7 +69,7 @@ enum {
 
 static gint hex_signals[LAST_SIGNAL];
 
-typedef void       (*HexDocumentSignal) (GtkObject *, gpointer, gpointer);
+typedef void (*HexDocumentSignal) (GtkObject *, gpointer, gpointer);
 
 static GnomeMDIChildClass *parent_class = NULL;
 
@@ -259,7 +255,7 @@ gint hex_document_write(HexDocument *doc) {
   return 1;
 }
 
-void hex_document_real_changed(HexDocument *doc, gpointer change_data) {
+static void hex_document_real_changed(HexDocument *doc, gpointer change_data) {
   GList *view;
   GnomeMDIChild *child;
 

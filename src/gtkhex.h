@@ -3,12 +3,6 @@
  * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
 
-/*
- * TODO:
- * - add timer for scrolling when pointer is within TOP|BOTTOM_SCROLL_BORDER
- * - improve the goddamn' cursor rendering
- */
-
 #ifndef __GTKHEX_H__
 #define __GTKHEX_H__
 
@@ -19,6 +13,7 @@
 
 #ifdef __cplusplus
 extern "C" {
+#pragma }
 #endif /* __cplusplus */
 
 /* how to group bytes? */
@@ -99,7 +94,7 @@ void gtk_hex_set_font(GtkHex *, GdkFont *);
 
 #ifdef __cplusplus
 }
-#endif
+#endif /* __cplusplus */
 
 #endif
 
