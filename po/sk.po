@@ -1,11 +1,11 @@
 # GHex Slovak translation
-# Copyright (C) 2000 Free Software Foundation, Inc.
-# Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2000.
+# Copyright (C) 2000-2001 Free Software Foundation, Inc.
+# Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2000-2001.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.1.4\n"
-"POT-Creation-Date: 2001-03-08 19:39+0100\n"
+"Project-Id-Version: 1.2\n"
+"POT-Creation-Date: 2001-03-21 13:21+0100\n"
 "PO-Revision-Date: 2000-12-13 13:31CET\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@rak.isternet.sk>\n"
@@ -22,120 +22,124 @@ msgstr "GHex: Prevádzaè"
 msgid "Binary"
 msgstr "Dvojkové"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:161
+#: src/chartable.c:91 src/converter.c:63
+msgid "Octal"
+msgstr "Osmièkové"
+
+#: src/chartable.c:90 src/converter.c:73 src/preferences.c:161
 msgid "Decimal"
 msgstr "Desiatkové"
 
-#: src/chartable.c:90 src/converter.c:73
+#: src/chartable.c:90 src/converter.c:83
 msgid "Hex"
 msgstr "©estnástkové"
 
-#: src/chartable.c:90 src/converter.c:83
+#: src/chartable.c:90 src/converter.c:93
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/converter.c:93
+#: src/converter.c:103
 msgid "Get cursor value"
 msgstr "Vlo¾i» pozíciu kurzoru"
 
-#: src/converter.c:99
+#: src/converter.c:109
 msgid "Close"
 msgstr "Zavrie»"
 
-#: src/converter.c:194
+#: src/converter.c:213
 msgid "ERROR"
 msgstr "CHYBA"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:60 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Nájs» dáta"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:69
 #, c-format
 msgid "Search for %s"
 msgstr "Hµadám %s"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:86
 msgid "Find Next"
 msgstr "Hµada» následujúce"
 
-#: src/findreplace.c:91
+#: src/findreplace.c:94
 msgid "Find Previous"
 msgstr "Hµada» predchádzajúce"
 
-#: src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:130 src/main.c:100
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Nájs» & Nahradi» dáta"
 
-#: src/findreplace.c:141
+#: src/findreplace.c:144
 #, c-format
 msgid "Replace %s"
 msgstr "Nahradi» %s"
 
-#: src/findreplace.c:157
+#: src/findreplace.c:161
 msgid "Find next"
 msgstr "Hµada» následujúce"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:169
 msgid "Replace"
 msgstr "Nahradi»"
 
-#: src/findreplace.c:173
+#: src/findreplace.c:177
 msgid "Replace All"
 msgstr "Nahradi» v¹etky"
 
-#: src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:210 src/main.c:102
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Prejs» na bajt"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:299 src/findreplace.c:324 src/findreplace.c:376
 msgid "There is no active buffer to search!"
 msgstr "Nie je ¾iadny aktívny bufer pre hµadanie!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:307 src/findreplace.c:332 src/findreplace.c:384
 msgid "There seems to be no string to search for!"
 msgstr "Vyzerá to, ¾e nie je èo hµada»!"
 
-#: src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:314 src/findreplace.c:392
 msgid "End Of File reached"
 msgstr "Dosiahnutý koniec súboru"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:340
 msgid "Beginning Of File reached"
 msgstr "Dosiahnutý zaèiatok súboru"
 
-#: src/findreplace.c:345
+#: src/findreplace.c:349
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Nie je ¾iadny aktívny bufer pre presun!"
 
-#: src/findreplace.c:350
+#: src/findreplace.c:354
 msgid "No offset has been specified!"
 msgstr "Neuvedený posun!"
 
-#: src/findreplace.c:357
+#: src/findreplace.c:361
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Nie je mo¾né umiestni» kurzor za koniec súboru!"
 
-#: src/findreplace.c:362
+#: src/findreplace.c:366
 msgid "The offset must be a positive integer value!"
 msgstr "Posun musí by» kladné celé èíslo!"
 
-#: src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:403 src/findreplace.c:440
 msgid "There is no active buffer to replace data in!"
 msgstr "Nie je ¾iadny aktívny bufer pre nahradzovanie!"
 
-#: src/findreplace.c:410 src/findreplace.c:447
+#: src/findreplace.c:414 src/findreplace.c:451
 msgid "Strange find or replace string!"
 msgstr "Divný hµadaný alebo nahradzovaný re»azec!"
 
-#: src/findreplace.c:425
+#: src/findreplace.c:429
 msgid "End Of File reached!"
 msgstr "Dosiahnutý koniec súboru!"
 
-#: src/findreplace.c:463
+#: src/findreplace.c:467
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d nahradení."
@@ -216,7 +220,7 @@ msgstr "_Odstráni» pohµad"
 msgid "Remove the current view of the buffer"
 msgstr "Odstáni aktuálny pohµad na bufer"
 
-#: src/main.c:51
+#: src/main.c:52
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -225,7 +229,7 @@ msgstr ""
 "Súbor %s bol od posledného ulo¾enia zmenený.\n"
 "Chcete zmenu ulo¾i»?"
 
-#: src/main.c:202
+#: src/main.c:204
 #, c-format
 msgid "Offset: %s"
 msgstr "Posun: %s"
@@ -332,15 +336,15 @@ msgstr "riadkov (0 pre ¾iadnu)"
 msgid "Printing"
 msgstr "Tlaè"
 
-#: src/preferences.c:534
+#: src/preferences.c:536
 msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
-"Formátovací re»azec pre pozíciu obsahuje iný ¹pecifikátor formátu ne¾ 'x', "
-"'d' alebo 'o'!"
+"Formátovací re»azec pre pozíciu obsahuje neplatný ¹pecifikátor formátu.\n"
+"Povolené sú iba 'x', 'X', 'p', 'P', 'd' a 'o'."
 
-#: src/preferences.c:570
+#: src/preferences.c:573
 msgid "Can not open desired font!"
 msgstr "Nie je mo¾né otvori» po¾adované písmo!"
 
@@ -408,11 +412,11 @@ msgstr "GHex, binárny editor súborov"
 msgid "Released under the terms of GNU Public License"
 msgstr "Distribuovaný pod GNU Public License"
 
-#: src/ui.c:226 src/ui.c:548
+#: src/ui.c:226 src/ui.c:550
 msgid "Error saving file!"
 msgstr "Chyba pri ukladaní súboru!"
 
-#: src/ui.c:230 src/ui.c:543
+#: src/ui.c:230 src/ui.c:545
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Bufer ulo¾ený do súboru %s"
@@ -429,32 +433,28 @@ msgstr "Vyberte súbor pre ulo¾enie buferu"
 msgid "Select path and file name for the HTML source"
 msgstr "Vyberte cestu a meno súboru pre HTML"
 
-#: src/ui.c:475
+#: src/ui.c:476
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Naozaj sa vráti» k pôvodnému obsahu %s?"
 
-#: src/ui.c:488
+#: src/ui.c:490
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Vrátený pôvodný obsah súboru %s"
 
-#: src/ui.c:504
+#: src/ui.c:506
 #, c-format
 msgid "Loaded file %s"
 msgstr "Nahraný súbor %s"
 
-#: src/ui.c:509
+#: src/ui.c:511
 msgid "Can not open file!"
 msgstr "Nie je mo¾né otvori» súbor!"
 
-#: src/ui.c:552
+#: src/ui.c:554
 msgid "Can't open file for writing!"
 msgstr "Nie je mo¾né otvori» súbor pre zápis!"
-
-#: src/chartable.c:91
-msgid "Octal"
-msgstr "Osmièkové"
 
 #: src/chartable.c:98
 msgid "GHex: Character table"
