@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex 1.0.50\n"
-"POT-Creation-Date: 2001-03-23 15:44+0200\n"
+"POT-Creation-Date: 2001-04-24 01:57-0400\n"
 "PO-Revision-Date: 1999-10-01 19:18+0300\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -13,39 +13,37 @@ msgstr ""
 "Content-Type: text/plain; charset=koi8-u\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/converter.c:44
+#: src/converter.c:176
 msgid "GHex: Converter"
 msgstr "GHex: Перекодувач"
 
-#: src/chartable.c:91 src/converter.c:53
-msgid "Binary"
-msgstr "Дв╕йковий"
+#. entries
+#: src/converter.c:195
+msgid "_Binary"
+msgstr "Дв╕йкова"
 
-#: src/chartable.c:91 src/converter.c:63
-msgid "Octal"
-msgstr "В╕с╕мкове"
+#: src/converter.c:197
+msgid "_Octal"
+msgstr "В╕с╕мкова"
 
-#: src/chartable.c:90 src/converter.c:73 src/preferences.c:161
-msgid "Decimal"
-msgstr "Десятковий"
+#: src/converter.c:199
+msgid "_Decimal"
+msgstr "Десяткова"
 
-#: src/chartable.c:90 src/converter.c:83
-msgid "Hex"
-msgstr "Ш╕стнадсятковий"
+#: src/converter.c:201
+msgid "_Hex"
+msgstr "Ш╕стнадсяткова"
 
-#: src/chartable.c:90 src/converter.c:93
-msgid "ASCII"
-msgstr "ASCII"
+#: src/converter.c:203
+msgid "_ASCII"
+msgstr "_ASCII"
 
-#: src/converter.c:103
-msgid "Get cursor value"
+#. get cursor button
+#: src/converter.c:207
+msgid "_Get cursor value"
 msgstr "Взяти значення п╕д курсором"
 
-#: src/converter.c:109
-msgid "Close"
-msgstr "Закрити"
-
-#: src/converter.c:213
+#: src/converter.c:323
 msgid "ERROR"
 msgstr "ПОМИЛКА"
 
@@ -260,6 +258,10 @@ msgstr "Максимально можливе число в╕дкат╕в"
 msgid "Show cursor offset in statusbar as"
 msgstr "Показувати зм╕щення курсора в панел╕ стану як"
 
+#: src/chartable.c:90 src/preferences.c:161
+msgid "Decimal"
+msgstr "Десятковий"
+
 #: src/preferences.c:166
 msgid "Hexadecimal"
 msgstr "Ш╕стнадцятковий"
@@ -346,124 +348,157 @@ msgstr ""
 msgid "Can not open desired font!"
 msgstr "Неможливо завантажити вказаний шрифт!"
 
-#: src/ui.c:57
-msgid "Export to HTML..."
-msgstr "Експортувати в HTML..."
+#: src/ui.c:61
+msgid "Export to _HTML..."
+msgstr "Експортувати в _HTML..."
 
-#: src/ui.c:57
+#: src/ui.c:61
 msgid "Export data to HTML source"
 msgstr "Експортувати дан╕ в HTML код"
 
-#: src/ui.c:61
-msgid "Print preview..."
+#: src/ui.c:65
+msgid "Print pre_view..."
 msgstr "Перегляд друку..."
 
-#: src/ui.c:61
+#: src/ui.c:65
 msgid "Preview printed data"
 msgstr "Перегляд даних, що п╕длягають друку"
 
-#: src/ui.c:74
+#: src/ui.c:78
 msgid "Con_verter..."
 msgstr "Перекодувач..."
 
-#: src/ui.c:75
+#: src/ui.c:79
 msgid "Open base conversion dialog"
 msgstr "В╕дкрити основний д╕алог перекодування"
 
-#: src/ui.c:76
-msgid "Character Table..."
+#: src/ui.c:80
+msgid "Character _Table..."
 msgstr "Таблиця символ╕в..."
 
-#: src/ui.c:77
+#: src/ui.c:81
 msgid "Show the character table"
 msgstr "Показати таблицю символ╕в"
 
-#: src/ui.c:94
-msgid "Tools"
+#: src/ui.c:98
+msgid "_Tools"
 msgstr "╤нструменти"
 
-#: src/ui.c:108
+#: src/ui.c:112
 msgid "Bytes"
 msgstr "Байти"
 
-#: src/ui.c:109
+#: src/ui.c:113
 msgid "Words"
 msgstr "Слова"
 
-#: src/ui.c:110
+#: src/ui.c:114
 msgid "Longwords"
 msgstr "Довг╕ слова"
 
-#: src/ui.c:115
+#: src/ui.c:119
 msgid "hex data"
 msgstr "ш╕стнадцятков╕ дан╕"
 
-#: src/ui.c:116
+#: src/ui.c:120
 msgid "ASCII data"
 msgstr "ASCII дан╕"
 
-#: src/ui.c:200
+#: src/ui.c:204
 msgid "GHex, a binary file editor"
 msgstr "GHex, редактор дв╕йкових даних"
 
-#: src/ui.c:202
+#: src/ui.c:206
 msgid "Released under the terms of GNU Public License"
 msgstr "Розповсюджу╓ться на умовах GNU Public License"
 
-#: src/ui.c:226 src/ui.c:550
+#: src/ui.c:230 src/ui.c:506
 msgid "Error saving file!"
 msgstr "Помилка збереження файлу!"
 
-#: src/ui.c:230 src/ui.c:545
+#: src/ui.c:234 src/ui.c:501
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Зберегти буфер у файл╕ %s."
 
-#: src/ui.c:251
+#: src/ui.c:255
 msgid "Select a file to open"
 msgstr "Вибрати файл для в╕дкриття"
 
-#: src/ui.c:286
+#: src/ui.c:290
 msgid "Select a file to save buffer as"
 msgstr "Вибрати файл для збереження буфера"
 
-#: src/ui.c:375
+#: src/ui.c:331
 msgid "Select path and file name for the HTML source"
 msgstr "Вибер╕ть шлях та назву HTML-файлу"
 
-#: src/ui.c:476
+#: src/ui.c:432
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Справд╕ в╕дновити файл %s?"
 
-#: src/ui.c:490
+#: src/ui.c:446
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "В╕дновити буфер з файлу %s"
 
-#: src/ui.c:506
+#: src/ui.c:462
 #, c-format
 msgid "Loaded file %s"
 msgstr "Завантажено файл %s"
 
-#: src/ui.c:511
+#: src/ui.c:467
 msgid "Can not open file!"
 msgstr "Неможливо в╕дкрити файл!"
 
-#: src/ui.c:554
+#: src/ui.c:510
 msgid "Can't open file for writing!"
 msgstr "Неможливо в╕дкрити файл для запису!"
+
+#: src/ui.c:579
+msgid "Print Hex Document"
+msgstr "Друк ш╕стнадцяткового документа"
+
+#: src/ui.c:584
+msgid "Pages"
+msgstr "Стор╕нки"
+
+#: src/ui.c:625
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): Перегляд друку"
+
+#: src/chartable.c:90
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:90
+msgid "Hex"
+msgstr "Ш╕стнадсяткова"
+
+#: src/chartable.c:91
+msgid "Octal"
+msgstr "В╕с╕мкова"
+
+#: src/chartable.c:91
+msgid "Binary"
+msgstr "Дв╕йкова"
 
 #: src/chartable.c:98
 msgid "GHex: Character table"
 msgstr "GHex: Таблиця символ╕в"
 
-#: src/print.c:171
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Перегляд друку"
-
-#: src/print.c:187
+#: src/print.c:47
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Стор╕нка: %i/%i"
+
+#: src/print.c:197 src/print.c:211
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"Не вдалось знайти шрифт \"%s\".\n"
+"Друк без цього шрифту не можливий."
