@@ -271,7 +271,7 @@ void load_configuration () {
 	 * default value from the gconf client -- SnM
 	 */
 	if (NULL == data_font_name) {
-		data_font_name = g_strdup ("Courier");
+		data_font_name = g_strdup ("Courier 10");
 	}
 
 	/* Get the data font size -- SnM */
@@ -296,7 +296,7 @@ void load_configuration () {
 	 */
 
 	if(NULL == header_font_name) {
-		header_font_name = g_strdup ("Helvetica");
+		header_font_name = g_strdup ("Helvetica 12");
 	}
 
 	/* Get the header font size -- SnM */

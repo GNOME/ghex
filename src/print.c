@@ -201,7 +201,7 @@ static gboolean print_verify_fonts()
 	guchar *test_font_name;
 
 	test_font_name = g_strdup(data_font_name); 
-	test_font = gnome_font_find_closest(test_font_name, 10);
+	test_font = gnome_font_find_closest_from_full_name(test_font_name);
 	if(test_font==NULL)
 	{
 		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
@@ -215,7 +215,7 @@ static gboolean print_verify_fonts()
 	g_free(test_font_name);
 	
 	test_font_name = g_strdup(header_font_name);
-	test_font = gnome_font_find_closest(test_font_name, 10);
+	test_font = gnome_font_find_closest_from_full_name(test_font_name);
 	if(test_font==NULL)
 	{
 		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
@@ -253,11 +253,11 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 		return NULL;
 
 	/* Create the header and data fonts */
-	d_font = gnome_font_find_closest(data_font_name, data_font_size);
+	d_font = gnome_font_find_closest_from_full_name(data_font_name);
 	if (!d_font)
 		return NULL;
 
-	h_font = gnome_font_find_closest(header_font_name, header_font_size);
+	h_font = gnome_font_find_closest_from_full_name(header_font_name);
 	if (!h_font) {
 		gnome_font_unref(d_font);
 		return NULL;

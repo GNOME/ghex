@@ -75,6 +75,7 @@ typedef struct _PropertyUI {
 	GtkWidget *format, *offsets_col;
 	GtkWidget *paper_sel, *print_font_sel;
 	GtkWidget *df_button, *hf_button;
+	GtkWidget *df_label, *hf_label;
 	GnomeFont *data_font, *header_font;
 } PropertyUI;
 
@@ -204,6 +205,7 @@ GtkWidget *create_button   (GtkWidget *, const gchar *, gchar *);
 
 /* printing */
 void ghex_print_job_execute(GHexPrintJobInfo *pji);
+
 GHexPrintJobInfo *ghex_print_job_info_new(HexDocument *doc, guint group_type);
 void ghex_print_job_info_destroy(GHexPrintJobInfo *pji);
 

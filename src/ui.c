@@ -756,7 +756,6 @@ ghex_print_run_dialog(GHexPrintJobInfo *pji)
 static void
 ghex_print_preview_real(GHexPrintJobInfo *pji)
 {
-#ifdef SNM
 	GnomePrintMasterPreview *preview;
 	gchar *title;
 
@@ -766,7 +765,6 @@ ghex_print_preview_real(GHexPrintJobInfo *pji)
 	g_free(title);
 
 	gtk_widget_show(GTK_WIDGET(preview));
-#endif
 }
 
 /*

@@ -59,6 +59,14 @@ gchar *mdi_type_label[NUM_MDI_MODES] = {
 	N_("Modal"),
 };
 
+static char* get_font_name (const gchar *name, int size) {
+	gchar *caption;
+
+	g_warning ("Size in get_font_name is %d", size);
+	caption = g_strdup_printf("%s %d", name, size);
+	return caption;
+}
+
 static GtkWidget *get_font_label(const gchar *name, gdouble size) {
 	gchar *caption;
 	GtkWidget *label;
@@ -73,7 +81,7 @@ static GtkWidget *get_font_label(const gchar *name, gdouble size) {
 
 static void font_button_clicked(GtkWidget *button, GnomeFont **font) {
 
-#ifdef SNM
+#if 0
 	static GtkWidget *fsd = NULL;
 	static GtkWidget *fontsel = NULL;
 	const gchar *f_name;
@@ -227,31 +235,46 @@ PropertyUI *create_prefs_dialog() {
 	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
 	
-	fbox = gtk_hbox_new(0, 0);
+	fbox = gtk_hbox_new(0, 5);
+#if 0
 	entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(entry), def_font_name);
 	gtk_signal_connect (GTK_OBJECT (entry), "changed",
 						GTK_SIGNAL_FUNC(select_font_cb), pui->pbox);
+#endif
 	pui->font_button = gnome_font_picker_new();
 	gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->font_button),
 									def_font_name);
 	gnome_font_picker_set_mode(GNOME_FONT_PICKER(pui->font_button),
-							   GNOME_FONT_PICKER_MODE_USER_WIDGET);
+							   GNOME_FONT_PICKER_MODE_FONT_INFO);
+	gnome_font_picker_fi_set_use_font_in_label (GNOME_FONT_PICKER (pui->font_button), TRUE, 14);
+	gnome_font_picker_fi_set_show_size (GNOME_FONT_PICKER (pui->font_button), TRUE);
+	
 	gtk_signal_connect (GTK_OBJECT (pui->font_button), "font_set",
 						GTK_SIGNAL_FUNC (select_font_cb), pui->pbox);
+#if 0
 	flabel = gtk_label_new (_("Browse..."));
 	gnome_font_picker_uw_set_widget(GNOME_FONT_PICKER(pui->font_button), GTK_WIDGET(flabel));
+#endif
+	flabel = gtk_label_new("");
+	gtk_label_set_mnemonic_widget (GTK_LABEL (flabel), pui->font_button);
+#if 0
 	
 	gtk_object_set_user_data(GTK_OBJECT(entry), GTK_OBJECT(pui->font_button)); 
 	gtk_object_set_user_data (GTK_OBJECT(pui->font_button), GTK_OBJECT(entry)); 
 	
+#endif
 	gtk_widget_show(flabel);
 	gtk_widget_show(GTK_WIDGET(pui->font_button));
+#if 0
 	gtk_widget_show(entry);
-	
+#endif
 	gtk_container_border_width(GTK_CONTAINER(fbox), GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX (fbox), GTK_WIDGET(pui->font_button), FALSE, TRUE, GNOME_PAD_BIG);
+#if 0
 	gtk_box_pack_start (GTK_BOX (fbox), entry, 1, 1, GNOME_PAD);
 	gtk_box_pack_end (GTK_BOX (fbox), GTK_WIDGET(pui->font_button), 0, 1, GNOME_PAD);
+#endif
 	
 	gtk_widget_show(fbox);
 	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(fbox));
@@ -338,11 +361,23 @@ PropertyUI *create_prefs_dialog() {
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
 					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
 					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	pui->df_button = gnome_font_picker_new();
+	gnome_font_picker_set_mode (GNOME_FONT_PICKER (pui->df_button),
+				GNOME_FONT_PICKER_MODE_FONT_INFO);
+	gnome_font_picker_fi_set_use_font_in_label (GNOME_FONT_PICKER (pui->df_button), TRUE, 14);
+	gnome_font_picker_fi_set_show_size (GNOME_FONT_PICKER (pui->df_button), TRUE);
+	pui->df_label = gtk_label_new("");
+	gtk_label_set_mnemonic_widget (GTK_LABEL (pui->df_label), pui->df_button);
+	
+	
+#if 0
 	pui->df_button = gtk_button_new();
 	gtk_container_add(GTK_CONTAINER(pui->df_button),
 					  get_font_label(data_font_name, data_font_size));
 	gtk_signal_connect(GTK_OBJECT(pui->df_button), "clicked",
 					   GTK_SIGNAL_FUNC(font_button_clicked), &pui->data_font);
+#endif
 	gtk_widget_show(pui->df_button);
 	gtk_table_attach(GTK_TABLE(table), pui->df_button, 1, 2, 0, 1,
 					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
@@ -353,9 +388,21 @@ PropertyUI *create_prefs_dialog() {
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
 					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
 					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+#if 0
 	pui->hf_button = gtk_button_new();
+#endif
+	pui->hf_button = gnome_font_picker_new();
+	gnome_font_picker_set_mode (GNOME_FONT_PICKER (pui->hf_button),
+				GNOME_FONT_PICKER_MODE_FONT_INFO);
+	gnome_font_picker_fi_set_use_font_in_label (GNOME_FONT_PICKER (pui->hf_button), TRUE, 14);
+	gnome_font_picker_fi_set_show_size (GNOME_FONT_PICKER (pui->hf_button), TRUE);
+	pui->hf_label = gtk_label_new("");
+	gtk_label_set_mnemonic_widget (GTK_LABEL (pui->hf_label), pui->hf_button);
+
+#if 0	
 	gtk_signal_connect(GTK_OBJECT(pui->hf_button), "clicked",
 					   GTK_SIGNAL_FUNC(font_button_clicked), &pui->header_font);
+#endif
 	gtk_widget_show(pui->hf_button);
 	gtk_table_attach(GTK_TABLE(table), pui->hf_button, 1, 2, 1, 2,
 					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
@@ -456,30 +503,17 @@ static void set_prefs(PropertyUI *pui) {
 		gtk_widget_set_sensitive(pui->format, TRUE);
 	}
 
+	gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->hf_button),
+					header_font_name);
+
+	gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->df_button),
+					data_font_name);
+	
+
 #ifdef SNM
 	if(def_paper)
 		gnome_paper_selector_set_name(GNOME_PAPER_SELECTOR(pui->paper_sel),
 									  gnome_paper_name(def_paper));
-#endif
-
-	if(GTK_BIN(pui->hf_button)->child)
-		gtk_container_remove(GTK_CONTAINER(pui->hf_button),
-							 GTK_BIN(pui->hf_button)->child);
-	gtk_container_add(GTK_CONTAINER(pui->hf_button),
-					  get_font_label(header_font_name, header_font_size));
-	if(GTK_BIN(pui->df_button)->child)
-		gtk_container_remove(GTK_CONTAINER(pui->df_button),
-							 GTK_BIN(pui->df_button)->child);
-
-#ifdef SNM
-	gtk_container_add(GTK_CONTAINER(pui->df_button),
-					  get_font_label(data_font_name, data_font_size));
-	if(pui->data_font)
-		gtk_object_unref(GTK_OBJECT(pui->data_font));
-	pui->data_font = gnome_font_new(data_font_name, data_font_size);
-	if(pui->header_font)
-		gtk_object_unref(GTK_OBJECT(pui->header_font));
-	pui->header_font = gnome_font_new(header_font_name, header_font_size);
 #endif
 
 }
@@ -507,6 +541,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 	int i, len;
 	GList *child, *view;
 	PangoFontMetrics *new_metrics; /* Changes for Gnome 2.0 */
+	PangoFontDescription *new_desc;
 
 	guint new_undo_max;
 	gboolean show_off, expect_spec;
@@ -536,6 +571,16 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 	for(i = 0; i < 3; i++)
 		if(GTK_TOGGLE_BUTTON(pui->group_type[i])->active) {
 			def_group_type = group_type[i];
+			child = bonobo_mdi_get_children (BONOBO_MDI (mdi));
+			
+			while(child) {
+				view = bonobo_mdi_child_get_views (BONOBO_MDI_CHILD(child->data));
+				while(view) {
+					gtk_hex_set_group_type(GTK_HEX(view->data), def_group_type);
+					view = g_list_next(view);
+				}
+				child = g_list_next(child);
+			}
 			break;
 		}
 	
@@ -594,12 +639,13 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 											  (pui->font_button)), def_font_name) != 0) {
 		if((new_metrics = gtk_hex_load_font(gnome_font_picker_get_font_name
 									 (GNOME_FONT_PICKER(pui->font_button)))) != NULL) {
+			new_desc = pango_font_description_from_string (gnome_font_picker_get_font_name (GNOME_FONT_PICKER (pui->font_button)));
 			child = bonobo_mdi_get_children (BONOBO_MDI (mdi));
 			
 			while(child) {
 				view = bonobo_mdi_child_get_views (BONOBO_MDI_CHILD(child->data));
 				while(view) {
-					gtk_hex_set_font(GTK_HEX(view->data), new_metrics, pango_font_description_from_string (gnome_font_picker_get_font_name (GNOME_FONT_PICKER (pui->font_button))));
+					gtk_hex_set_font(GTK_HEX(view->data), new_metrics, new_desc);
 					view = g_list_next(view);
 				}
 				child = g_list_next(child);
@@ -614,6 +660,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 			def_metrics = new_metrics;
 			
 			g_free(def_font_name);
+			pango_font_description_free (new_desc);
 			
 			def_font_name = g_strdup(gnome_font_picker_get_font_name
 									 (GNOME_FONT_PICKER(pui->font_button)));
@@ -623,11 +670,13 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 			display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Can not open desired font!"));
 	} 
 
+
+	data_font_name = g_strdup (gnome_font_picker_get_font_name (GNOME_FONT_PICKER (pui->df_button)));
+	header_font_name = g_strdup (gnome_font_picker_get_font_name (GNOME_FONT_PICKER (pui->hf_button)));
 #ifdef SNM /* Have to find a replacement for this */
 	new_paper_name = gnome_paper_selector_get_name(GNOME_PAPER_SELECTOR(pui->paper_sel));
 
 	def_paper = gnome_paper_with_name(new_paper_name);
-#endif
 
 	if(pui->data_font) {
 		if(data_font_name)
@@ -641,6 +690,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 		header_font_name = g_strdup(gnome_font_get_name(GNOME_FONT(pui->header_font)));
 		header_font_size = gnome_font_get_size(GNOME_FONT(pui->header_font));
 	}
+#endif
 }
 
 static void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {

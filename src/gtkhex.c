@@ -192,7 +192,7 @@ static guint get_max_char_width(GtkHex *gh, PangoFontMetrics *font_metrics) {
 	for(i = 1; i < 0x100; i++) {
 		sprintf (str, "%c", (gchar)i);
 		pango_layout_set_text(layout, str, -1);
-		pango_layout_get_pixel_extents (layout, &logical_rect, NULL);
+		pango_layout_get_pixel_extents (layout, NULL, &logical_rect);
 		char_widths[i] = logical_rect.width;
 	}
 
@@ -1735,7 +1735,7 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	gh->font_desc = pango_font_description_from_string (DEFAULT_FONT);
 
 	gh->char_width = get_max_char_width(gh, gh->disp_font_metrics);
-	gh->char_height = PANGO_PIXELS (pango_font_metrics_get_ascent (gh->disp_font_metrics)) + PANGO_PIXELS (pango_font_metrics_get_descent (gh->disp_font_metrics));
+	gh->char_height = PANGO_PIXELS (pango_font_metrics_get_ascent (gh->disp_font_metrics)) + PANGO_PIXELS (pango_font_metrics_get_descent (gh->disp_font_metrics)) + 2;
 
 	
 	GTK_WIDGET_SET_FLAGS(gh, GTK_CAN_FOCUS);
@@ -2020,8 +2020,8 @@ void gtk_hex_set_font(GtkHex *gh, PangoFontMetrics *font_metrics, PangoFontDescr
 	if (gh->font_desc)
 		pango_font_description_free (gh->font_desc);
 	
-	gh->disp_font_metrics = font_metrics;
-	gh->font_desc = font_desc;
+	gh->disp_font_metrics = pango_font_metrics_ref (font_metrics);
+	gh->font_desc = pango_font_description_copy (font_desc);
 
 	if (gh->xdisp)
 		gtk_widget_modify_font (gh->xdisp, gh->font_desc);
@@ -2034,7 +2034,7 @@ void gtk_hex_set_font(GtkHex *gh, PangoFontMetrics *font_metrics, PangoFontDescr
 
 
 	gh->char_width = get_max_char_width(gh, gh->disp_font_metrics);
-	gh->char_height = PANGO_PIXELS (pango_font_metrics_get_ascent (gh->disp_font_metrics)) + PANGO_PIXELS (pango_font_metrics_get_descent (gh->disp_font_metrics));
+	gh->char_height = PANGO_PIXELS (pango_font_metrics_get_ascent (gh->disp_font_metrics)) + PANGO_PIXELS (pango_font_metrics_get_descent (gh->disp_font_metrics)) + 2;
 	recalc_displays(gh, GTK_WIDGET(gh)->allocation.width, GTK_WIDGET(gh)->allocation.height);
 	
 	redraw_widget(GTK_WIDGET(gh));
@@ -2069,7 +2069,7 @@ void gtk_hex_set_insert_mode(GtkHex *gh, gboolean insert)
 		gh->cursor_pos = gh->document->file_size - 1;
 }
 
-PangoFontMetrics* gtk_hex_load_font (char *font_name)
+PangoFontMetrics* gtk_hex_load_font (const char *font_name)
 {
 	PangoContext *context;
 	PangoFont *new_font;
@@ -2081,7 +2081,7 @@ PangoFontMetrics* gtk_hex_load_font (char *font_name)
 	context = gdk_pango_context_get();
 
 	/* FIXME - Should get the locale language here */
-	pango_context_set_language (context, pango_language_from_string (gtk_get_default_language()));
+	pango_context_set_language (context, gtk_get_default_language());
 
 	new_font = pango_context_load_font (context, new_desc);
 

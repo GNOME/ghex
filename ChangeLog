@@ -1,4 +1,10 @@
 2002-03-05  Shivram U  <shivaram.upadhyayula@wipro.com>
+	* src/preferences.c : Fix for #71467 and #71468.
+	* src/print.c : Enabled print preview functionality.
+	* src/ui.c : Changed the data_font_name and header_font_name to be the
+	the full font name and size. Also updated ghex2.schemas file.
+
+2002-03-05  Shivram U  <shivaram.upadhyayula@wipro.com>
 	* src/bonobo-mdi.c : (bonobo_mdi_show_status) Now using 
 	bonobo_ui_component_set_status() to set the status.
 	(bonobo_mdi_flash), (remove_message_timeout) Using 

@@ -136,7 +136,7 @@ void gtk_hex_set_insert_mode(GtkHex *, gboolean);
 
 void gtk_hex_claim_selection (GtkHex *gh, gboolean claim, guint32 time);
 
-PangoFontMetrics* gtk_hex_load_font (char *font_name); 
+PangoFontMetrics* gtk_hex_load_font (const char *font_name); 
 
 #ifdef __cplusplus
 }
