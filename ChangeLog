@@ -1,3 +1,16 @@
+2002-07-10  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/ui.c (export_html_cb): give GtkHex not GHexWindow as user data
+	to ok_button "clicked" signal.
+	* src/preferences.c: replaced deprecated GnomePropertyBox with a
+	GtkDialog.
+
+2002-07-08  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/config.c (ghex_prefs_notify_cb): update GHex state according to
+	changes.
+	* src/gtkhex.c: invalidate widget windows properly.
+
 2002-07-07  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/ghex-window.c (ghex_window_load): connect cursor_moved signal

@@ -452,13 +452,16 @@ ghex_window_sync_group_type(GHexWindow *win)
     bonobo_ui_component_set_prop(win->uic, group_path, "state", "1", NULL);
 }
 
-static void cursor_moved_cb(GtkHex *gtkhex, gpointer user_data) {
+static void
+cursor_moved_cb(GtkHex *gtkhex, gpointer user_data)
+{
 	static gchar *cursor_pos, *format;
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
 	if((format = g_strdup_printf(_("Offset: %s"), offset_fmt)) != NULL) {
 		if((cursor_pos = g_strdup_printf(format, gtk_hex_get_cursor(gtkhex))) != NULL) {
-			ghex_window_show_status(win, format);
+			ghex_window_show_status(win, cursor_pos);
+            g_free(cursor_pos);
 		}
 		g_free(format);
 	}

@@ -1,7 +1,7 @@
 /* -*- mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* config.c - configuration loading/saving via gnome-config routines
 
-   Copyright (C) 1997 - 2001 Free Software Foundation
+   Copyright (C) 1997 - 2002 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -81,13 +81,6 @@ void save_configuration () {
 						   GHEX_BASE_KEY GHEX_PREF_OFFSETS_COLUMN,
 						   show_offsets_column,
 						   NULL);	
-#ifdef SNM
-	/* Set the printing paper -- SnM */
-	gconf_client_set_string (gconf_client,
-							 GHEX_BASE_KEY GHEX_PREF_PAPER,
-							 gnome_paper_name (def_paper),
-							 NULL);
-#endif
 
 	/* Set the box size  -- SnM */
 	gconf_client_set_int (gconf_client,
@@ -124,9 +117,6 @@ void save_configuration () {
 
 void load_configuration () {
 	gchar *font_name;
-#if 0
-	GdkFont *new_font;
-#endif
 	PangoFontMetrics *new_metrics;
 
 	GnomeFont *print_font;
@@ -189,7 +179,7 @@ void load_configuration () {
 	 * value from the gconf client -- SnM
 	 */
 
-	if (NULL==offset_fmt) {
+	if (NULL == offset_fmt) {
 		offset_fmt = g_strdup("%X"); 
 	}
 
@@ -197,17 +187,6 @@ void load_configuration () {
 	show_offsets_column = gconf_client_get_bool (gconf_client,
 												 GHEX_BASE_KEY GHEX_PREF_OFFSETS_COLUMN,
 												 NULL);
-
-#ifdef SNM
-	/* Get the default paper name -- SnM */
-	def_paper_name = gconf_client_get_string (gconf_client,
-											  GHEX_BASE_KEY GHEX_PREF_PAPER,
-											  NULL);
-	def_paper = gnome_paper_with_name (def_paper_name);
-	g_free (def_paper_name);
-	if (!def_paper)
-		def_paper = gnome_paper_with_name (gnome_paper_name_default ());
-#endif
 
 	/* Get the shaded box size -- SnM */
 	shaded_box_size = gconf_client_get_int (gconf_client,
@@ -263,31 +242,117 @@ void load_configuration () {
 	if (0.0 == header_font_size) {
 		header_font_size = 12.0;
 	}	
-	
-#ifdef SNM
-	print_font = gnome_font_new(data_font_name, data_font_size);
-	if(!print_font) {
-		data_font_name = g_strdup("Courier");
-		data_font_size = 10.0;
-	}
-	else
-		gtk_object_unref(GTK_OBJECT(print_font));
-	print_font = gnome_font_new(header_font_name, header_font_size);
-	if(!print_font) {
-		header_font_name = g_strdup("Helvetica");
-		header_font_size = 12.0;
-	}
-	else
-		gtk_object_unref(GTK_OBJECT(print_font));
-#endif
 }
 
-static void ghex_prefs_notify_cb (GConfClient *client,
+static void ghex_prefs_notify_cb (GConfClient *gconf_client,
 								  guint cnxn_id,
 								  GConfEntry *entry,
 								  gpointer user_data)
 {
-	/* Doing nothing for now -- SnM */
+	const GList *winn, *docn;
+
+	if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_OFFSETS_COLUMN)) {
+		gboolean show_off = gconf_value_get_bool(entry->value);
+		show_offsets_column = show_off;
+		winn = ghex_window_get_list();
+		while(winn) {
+			if(GHEX_WINDOW(winn->data)->gh)
+				gtk_hex_show_offsets(GHEX_WINDOW(winn->data)->gh, show_off);
+			winn = g_list_next(winn);
+		}
+	}
+	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_GROUP)) {
+		def_group_type = gconf_value_get_int(entry->value);
+	}
+	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_MAX_UNDO_DEPTH)) {
+		gint new_undo_max = gconf_value_get_int(entry->value);
+		max_undo_depth = new_undo_max;
+		docn = hex_document_get_list();
+		while(docn) {
+			hex_document_set_max_undo(HEX_DOCUMENT(docn->data), max_undo_depth);
+			docn = g_list_next(docn);
+		}
+	}
+	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_BOX_SIZE)) {
+		shaded_box_size = gconf_value_get_int(entry->value);
+	}
+	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_OFFSET_FORMAT) &&
+			strcmp(gconf_value_get_string(entry->value), offset_fmt)) {
+		gchar *old_offset_fmt = offset_fmt;
+		gint len, i;
+		gboolean expect_spec;
+
+		offset_fmt = g_strdup(gconf_value_get_string(entry->value));
+
+		/* check for a valid format string */
+		len = strlen(offset_fmt);
+		expect_spec = FALSE;
+		for(i = 0; i < len; i++) {
+			if(offset_fmt[i] == '%')
+				expect_spec = TRUE;
+			if( expect_spec &&
+				( (offset_fmt[i] >= 'a' && offset_fmt[i] <= 'z') ||
+				  (offset_fmt[i] >= 'A' && offset_fmt[i] <= 'Z') ) ) {
+				expect_spec = FALSE;
+				if(offset_fmt[i] != 'x' && offset_fmt[i] != 'd' &&
+				   offset_fmt[i] != 'o' && offset_fmt[i] != 'X' &&
+				   offset_fmt[i] != 'P' && offset_fmt[i] != 'p') {
+					g_free(offset_fmt);
+					offset_fmt = old_offset_fmt;
+					gconf_client_set_string(gconf_client, GHEX_BASE_KEY GHEX_PREF_OFFSET_FORMAT,
+											"%X", NULL);
+				}
+			}
+		}
+		if(offset_fmt != old_offset_fmt)
+			g_free(old_offset_fmt);
+	}
+	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_FONT)) {
+		if(gconf_value_get_string(entry->value) != NULL) {
+			gchar *font_name = gconf_value_get_string(entry->value);
+			PangoFontMetrics *new_metrics;
+			PangoFontDescription *new_desc;
+
+			if((new_metrics = gtk_hex_load_font(font_name)) != NULL) {
+				new_desc = pango_font_description_from_string (font_name);
+				winn = ghex_window_get_list();
+				while(winn) {
+					if(GHEX_WINDOW(winn->data)->gh)
+						gtk_hex_set_font(GHEX_WINDOW(winn->data)->gh, new_metrics, new_desc);
+					winn = g_list_next(winn);
+				}
+		
+				if (def_metrics)
+					pango_font_metrics_unref (def_metrics);
+			
+				if (def_font_desc)
+					pango_font_description_free (def_font_desc);
+
+				if (def_font_name)
+					g_free(def_font_name);
+
+				def_metrics = new_metrics;
+				def_font_name = g_strdup(font_name);
+				def_font_desc = new_desc;
+			}
+		}
+	}
+	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_DATA_FONT)) {
+		if(data_font_name)
+			g_free(data_font_name);
+		data_font_name = g_strdup (gconf_value_get_string(entry->value));
+	}
+	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_DATA_FONT_SIZE)) {
+		data_font_size = gconf_value_get_float(entry->value);
+	}
+	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_HEADER_FONT)) {
+		if(header_font_name)
+			g_free(header_font_name);
+		header_font_name = g_strdup (gconf_value_get_string(entry->value));
+	}
+	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_HEADER_FONT_SIZE)) {
+		header_font_size = gconf_value_get_float(entry->value);
+	}
 }
 
 void ghex_prefs_init ()

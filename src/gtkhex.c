@@ -113,13 +113,10 @@ static guint32 get_event_time() {
  * simply forces widget w to redraw itself
  */
 static void redraw_widget(GtkWidget *w) {
-	GdkRectangle rect;
+	if(!GTK_WIDGET_REALIZED(w))
+		return;
 
-	rect.x = rect.y = 0;
-	rect.width = w->allocation.width;
-	rect.height = w->allocation.height;
-	
-	gtk_widget_draw(w, &rect);
+	gdk_window_invalidate_rect (w->window, NULL, FALSE);
 }
 
 static gint widget_get_xt(GtkWidget *w) {
@@ -853,52 +850,15 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 							 gh->offsets->allocation.width,
 							 source_max - source_min);
 		}
-
-			gdk_window_invalidate_rect (gh->xdisp->window, NULL, FALSE);
-			gdk_window_invalidate_rect (gh->adisp->window, NULL, FALSE);
-			if(gh->offsets) {
-				gdk_window_invalidate_rect (gh->offsets->window, NULL, FALSE);
-			}
-#ifdef SNM
-		while ((event = gdk_event_get_graphics_expose (gh->xdisp->window)) != NULL) {
-//			gdk_window_invalidate_rect (gh->xdisp->window, NULL, FALSE);
-			gtk_widget_event (gh->xdisp, event);
-			if (event->expose.count == 0) {
-				gdk_event_free (event);
-				break;
-			}
-			gdk_event_free (event);
-		}
-		
-		while ((event = gdk_event_get_graphics_expose (gh->adisp->window)) != NULL) {
-//			gdk_window_invalidate_rect (gh->adisp->window, NULL, FALSE);
-			gtk_widget_event (gh->adisp, event);
-			if (event->expose.count == 0) {
-				gdk_event_free (event);
-				break;
-			}
-			gdk_event_free (event);
-		}
-
-		if(gh->offsets) {
-			while ((event = gdk_event_get_graphics_expose (gh->offsets->window)) != NULL) {
-//			gdk_window_invalidate_rect (gh->offsets->window, NULL, FALSE);
-				gtk_widget_event (gh->offsets, event);
-				if (event->expose.count == 0) {
-					gdk_event_free (event);
-					break;
-				}
-				gdk_event_free (event);
-			}
-		}
-#endif
 	}
-	
-	if (rect.height != 0) {
-		gtk_widget_draw(gh->xdisp, &rect);
-		gtk_widget_draw(gh->adisp, &rect);
-		if(gh->offsets)
-			gtk_widget_draw(gh->offsets, &rect);
+
+	rect.width = gh->xdisp->allocation.width;
+	gdk_window_invalidate_rect (gh->xdisp->window, &rect, FALSE);
+	rect.width = gh->adisp->allocation.width;
+	gdk_window_invalidate_rect (gh->adisp->window, &rect, FALSE);
+	if(gh->offsets) {
+		rect.width = gh->offsets->allocation.width;
+		gdk_window_invalidate_rect (gh->offsets->window, &rect, FALSE);
 	}
 }
 
@@ -1652,15 +1612,6 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	show_cursor(gh);
 }
 
-#ifdef SNM /* No longer required for Gnome 2.0 */
-static void gtk_hex_draw(GtkWidget *w, GdkRectangle *area) {
-	if(GTK_WIDGET_CLASS(parent_class)->draw)
-		(* GTK_WIDGET_CLASS(parent_class)->draw)(w, area);
-
-	draw_shadow(w, area);
-}
-#endif
-
 static gint gtk_hex_expose(GtkWidget *w, GdkEventExpose *event) {
 	draw_shadow(w, &event->area);
 	
@@ -1725,19 +1676,11 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 			GTK_SIGNAL_OFFSET (GtkHexClass, paste_clipboard),
 			gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
 
-#ifdef SNM /* Not needed now for Gnome 2.0 -- SnM */
-	gtk_object_class_add_signals (object_class, gtkhex_signals, LAST_SIGNAL);
-#endif
-	
 	klass->cursor_moved = NULL;
 	klass->data_changed = gtk_hex_real_data_changed;
 	klass->cut_clipboard = gtk_hex_real_cut_clipboard;
 	klass->copy_clipboard = gtk_hex_real_copy_clipboard;
 	klass->paste_clipboard = gtk_hex_real_paste_clipboard;
-
-#ifdef SNM /* No longer present in Gnome 2.0 -- SnM */
-	GTK_WIDGET_CLASS(klass)->draw = gtk_hex_draw;
-#endif
 
 	GTK_WIDGET_CLASS(klass)->size_allocate = gtk_hex_size_allocate;
 	GTK_WIDGET_CLASS(klass)->size_request = gtk_hex_size_request;

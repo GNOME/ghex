@@ -54,7 +54,7 @@ G_BEGIN_DECLS
 #define GHEX_URL "http://pluton.ijs.si/~jaka/gnome.html#GHEX"
 
 typedef struct _PropertyUI {
-	GnomePropertyBox *pbox;
+	GtkWidget *pbox;
 	GtkRadioButton *group_type[3];
 	GtkWidget *font_button, *undo_spin, *box_size_spin;
 	GtkWidget *offset_menu, *offset_choice[3];
@@ -152,8 +152,6 @@ extern gdouble    data_font_size, header_font_size;
 extern guint      max_undo_depth;
 extern gchar      *offset_fmt;
 extern gboolean   show_offsets_column;
-
-extern const guchar *def_paper;
 
 extern gint       shaded_box_size;
 extern gint       def_group_type;

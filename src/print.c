@@ -33,9 +33,6 @@
 #define A4_WIDTH (210.0 * 72 / 25.4)
 #define A4_HEIGHT (297.0 * 72 / 25.4)
 
-#ifdef SNM /* GnomePaper no longer present -- SnM */
-const GnomePaper *def_paper;
-#endif
 const guchar *def_paper; /* Using guchar instead -- SnM */
 
 gchar *data_font_name, *header_font_name;
@@ -323,28 +320,11 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 
 	pji->master = gnome_print_master_new();
 
-#if 0
-	gnome_print_master_set_paper(pji->master, def_paper);
-#endif
-
 	pji->doc = doc;
 
-#ifdef SNM
-	pji->page_width = gnome_paper_pswidth(def_paper);
-	pji->page_height = gnome_paper_psheight(def_paper);
-#endif
 	pji->page_width = A4_WIDTH;
 	pji->page_height = A4_HEIGHT;
 
-#if 0
-	/* Convert inches to ps points */
-	pji->margin_top = .75 * 72; /* Printer margins, not page margins */
-	pji->margin_bottom = .75 * 72;
-	pji->margin_left = .75 * 72;
-	pji->margin_right = .75 * 72;
-	pji->header_height = 2.2*(gnome_font_get_ascender(GNOME_FONT(h_font)) +
-		gnome_font_get_descender(GNOME_FONT(h_font)));
-#endif
 	pji->margin_top = CM (1);
 	pji->margin_bottom = CM (1);
 	pji->margin_left = CM (1);
@@ -356,10 +336,6 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 	gnome_font_get_glyph_stdadvance(GNOME_FONT(d_font), glyph, &point);
 	pji->font_char_width = point.x;
 
-#if 0
-	pji->font_char_height = gnome_font_get_ascender(GNOME_FONT(d_font)) +
-		gnome_font_get_descender(GNOME_FONT(d_font));
-#endif
 	pji->font_char_height = gnome_font_get_size (GNOME_FONT(d_font));
 
 	/* Add 10% spacing between lines */
@@ -367,27 +343,6 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 	pji->pad_size = .5 * 72;
 	pji->offset_chars = 8;
 
-#if 0 /* We are doing this in update now */
-	pji->printable_width = pji->page_width -
-		pji->margin_left -
-		pji->margin_right;
-	pji->printable_height = pji->page_height -
-		pji->margin_top -
-		pji->margin_bottom;
-
-	pji->bytes_per_row = (pji->printable_width - pji->pad_size*2 -
-						(pji->offset_chars *
-						 pji->font_char_width))/
-				((3 + (1/((float)pji->gt))) *
-				 pji->font_char_width);
-	pji->bytes_per_row -= pji->bytes_per_row % pji->gt;
-	pji->rows_per_page = (pji->printable_height - pji->header_height) /
-		pji->font_char_height - 1;
-	pji->pages = (((doc->file_size/pji->bytes_per_row) + 1)/
-				pji->rows_per_page) + 1;
-	pji->page_first = 1;
-	pji->page_last = pji->pages;
-#endif
 	pji->preview = FALSE;
 	pji->config = NULL;
 	pji->range = GNOME_PRINT_RANGE_ALL;

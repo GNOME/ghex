@@ -435,7 +435,7 @@ export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbnam
 	
 	gtk_signal_connect(GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
 						"clicked", GTK_SIGNAL_FUNC(export_html_selected_file),
-						win);
+						win->gh);
 	gtk_signal_connect(GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
 						file_sel);
@@ -532,7 +532,7 @@ file_list_activated_cb (BonoboUIComponent *uic, gpointer user_data, const gchar*
 {
 	GHexWindow *win;
 	HexDocument *doc = HEX_DOCUMENT(user_data);
-	GList *window_list;
+	const GList *window_list;
 
 	window_list = ghex_window_get_list();
 	while(window_list) {
@@ -584,11 +584,15 @@ char_table_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 static
 void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	/* TODO: why this? */
-//	if(!prefs_ui)
+	if(!prefs_ui)
 		prefs_ui = create_prefs_dialog();
 
-	gnome_dialog_set_default(GNOME_DIALOG(prefs_ui->pbox), 2);
+	gtk_dialog_set_default_response(GTK_DIALOG(prefs_ui->pbox), GTK_RESPONSE_CANCEL);
+	gtk_dialog_set_response_sensitive(GTK_DIALOG(prefs_ui->pbox), GTK_RESPONSE_OK, FALSE);
+	gtk_dialog_set_response_sensitive(GTK_DIALOG(prefs_ui->pbox), GTK_RESPONSE_APPLY, FALSE);
+	if(ghex_window_get_active() != NULL)
+		gtk_window_set_transient_for(GTK_WINDOW(prefs_ui->pbox),
+									 GTK_WINDOW(ghex_window_get_active()));
 	if(!GTK_WIDGET_VISIBLE(prefs_ui->pbox)) {
 		gtk_window_position (GTK_WINDOW(prefs_ui->pbox), GTK_WIN_POS_MOUSE);
 		gtk_widget_show(GTK_WIDGET(prefs_ui->pbox));
