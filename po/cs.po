@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex HEAD\n"
-"POT-Creation-Date: 2002-11-04 10:01+0100\n"
-"PO-Revision-Date: 2002-11-04 22:32GMT\n"
+"POT-Creation-Date: 2003-02-06 11:19+0100\n"
+"PO-Revision-Date: 2003-02-07 16:04+0100\n"
 "Last-Translator: Michal Bukovjan <bukm@centrum.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,27 +23,27 @@ msgstr "Editor hexadecimálních čísel pro GNOME"
 msgid "Hex Editor"
 msgstr "Editor hexadecimálních čísel"
 
-#: src/chartable.c:122
+#: src/chartable.c:133
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:122
+#: src/chartable.c:133
 msgid "Hex"
 msgstr "Hex"
 
-#: src/chartable.c:122 src/preferences.c:174
+#: src/chartable.c:133 src/preferences.c:175
 msgid "Decimal"
 msgstr "Desítkově"
 
-#: src/chartable.c:123
+#: src/chartable.c:134
 msgid "Octal"
 msgstr "Osmičkově"
 
-#: src/chartable.c:123
+#: src/chartable.c:134
 msgid "Binary"
 msgstr "Binárně"
 
-#: src/chartable.c:137
+#: src/chartable.c:148
 msgid "Character table"
 msgstr "Tabulka znaků"
 
@@ -91,7 +91,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "CHYBA"
 
-#: src/findreplace.c:60 src/ui.c:889
+#: src/findreplace.c:60 src/ui.c:901
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Najít data"
@@ -141,7 +141,7 @@ msgstr "Zrušit"
 msgid "Closes find data window"
 msgstr "Zavře okno pro hledání dat"
 
-#: src/findreplace.c:140 src/ui.c:887
+#: src/findreplace.c:140 src/ui.c:899
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Najít a nahradit data"
@@ -155,7 +155,7 @@ msgstr "Nahradit %s"
 msgid "Find _next"
 msgstr "_Najít další"
 
-#: src/findreplace.c:180 src/ghex-ui.xml.h:85
+#: src/findreplace.c:180 src/ghex-ui.xml.h:84
 msgid "_Replace"
 msgstr "Na_hradit"
 
@@ -169,7 +169,8 @@ msgstr "Nahradit data"
 
 #: src/findreplace.c:211
 msgid "Enter the hex data or ASCII data to replace with"
-msgstr "Zadejte data v hexadecimálním nebo ASCII tvaru, kterými se má nahrazovat"
+msgstr ""
+"Zadejte data v hexadecimálním nebo ASCII tvaru, kterými se má nahrazovat"
 
 #: src/findreplace.c:212
 msgid "Find next"
@@ -195,7 +196,7 @@ msgstr "Nahradí všechny výskyty hledaného řetězce řetězcem pro nahrazen�
 msgid "Closes find and replace data window"
 msgstr "Zavře okno pro hledání a nahrazování dat"
 
-#: src/findreplace.c:231 src/ui.c:885
+#: src/findreplace.c:231 src/ui.c:897
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Přeskočit na bajt"
@@ -530,114 +531,110 @@ msgid "_About"
 msgstr "O _aplikaci"
 
 #: src/ghex-ui.xml.h:64
-msgid "_About..."
-msgstr "_O programu..."
-
-#: src/ghex-ui.xml.h:65
 msgid "_Add View"
 msgstr "Přid_at pohled"
 
-#: src/ghex-ui.xml.h:66
+#: src/ghex-ui.xml.h:65
 msgid "_Base Converter"
 msgstr "_Báze konverze"
 
-#: src/ghex-ui.xml.h:67
+#: src/ghex-ui.xml.h:66
 msgid "_Bytes"
 msgstr "_Bajtů"
 
-#: src/ghex-ui.xml.h:68
+#: src/ghex-ui.xml.h:67
 msgid "_Close"
 msgstr "_Zavřít"
 
-#: src/ghex-ui.xml.h:69
+#: src/ghex-ui.xml.h:68
 msgid "_Contents"
 msgstr "O_bsah"
 
-#: src/ghex-ui.xml.h:70
+#: src/ghex-ui.xml.h:69
 msgid "_Copy"
 msgstr "_Kopírovat"
 
-#: src/ghex-ui.xml.h:71
+#: src/ghex-ui.xml.h:70
 msgid "_Edit"
 msgstr "Ú_pravy"
 
-#: src/ghex-ui.xml.h:72
+#: src/ghex-ui.xml.h:71
 msgid "_File"
 msgstr "_Soubor"
 
-#: src/ghex-ui.xml.h:73
+#: src/ghex-ui.xml.h:72
 msgid "_Find"
 msgstr "_Najít"
 
-#: src/ghex-ui.xml.h:74
+#: src/ghex-ui.xml.h:73
 msgid "_Goto Byte..."
 msgstr "_Přeskočit na bajt..."
 
-#: src/ghex-ui.xml.h:75
+#: src/ghex-ui.xml.h:74
 msgid "_Group Data As"
 msgstr "_Seskupit data"
 
-#: src/ghex-ui.xml.h:76
+#: src/ghex-ui.xml.h:75
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: src/ghex-ui.xml.h:77
+#: src/ghex-ui.xml.h:76
 msgid "_Insert Mode"
 msgstr "Rež_im vkládání"
 
-#: src/ghex-ui.xml.h:78
+#: src/ghex-ui.xml.h:77
 msgid "_Longwords"
 msgstr "D_louhá slova"
 
-#: src/ghex-ui.xml.h:79
+#: src/ghex-ui.xml.h:78
 msgid "_Open..."
 msgstr "_Otevřít..."
 
-#: src/ghex-ui.xml.h:80
+#: src/ghex-ui.xml.h:79
 msgid "_Paste"
 msgstr "V_ložit"
 
-#: src/ghex-ui.xml.h:81
+#: src/ghex-ui.xml.h:80
 msgid "_Preferences"
 msgstr "Nastav_ení"
 
-#: src/ghex-ui.xml.h:82
+#: src/ghex-ui.xml.h:81
 msgid "_Print"
 msgstr "_Tisk"
 
-#: src/ghex-ui.xml.h:83
+#: src/ghex-ui.xml.h:82
 msgid "_Redo"
 msgstr "Zn_ovu"
 
-#: src/ghex-ui.xml.h:84
+#: src/ghex-ui.xml.h:83
 msgid "_Remove View"
 msgstr "Odst_ranit pohled"
 
-#: src/ghex-ui.xml.h:86
+#: src/ghex-ui.xml.h:85
 msgid "_Revert"
 msgstr "V_rátit"
 
-#: src/ghex-ui.xml.h:87
+#: src/ghex-ui.xml.h:86
 msgid "_Save"
 msgstr "_Uložit"
 
-#: src/ghex-ui.xml.h:88
+#: src/ghex-ui.xml.h:87
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: src/ghex-ui.xml.h:89
+#: src/ghex-ui.xml.h:88
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: src/ghex-ui.xml.h:90
+#: src/ghex-ui.xml.h:89
 msgid "_Windows"
 msgstr "_Okna"
 
-#: src/ghex-ui.xml.h:91
+#: src/ghex-ui.xml.h:90
 msgid "_Words"
 msgstr "_Slova"
 
-#: src/ghex-window.c:435
+#: src/ghex-window.c:435 src/ghex-window.c:798
 msgid "GHex"
 msgstr "GHex"
 
@@ -646,21 +643,21 @@ msgstr "GHex"
 msgid "Offset: %s"
 msgstr "Posun: %s"
 
-#: src/ghex-window.c:689
+#: src/ghex-window.c:752
 #, c-format
 msgid "Activate file %s"
 msgstr "Aktivovat soubor %s"
 
-#: src/ghex-window.c:728
+#: src/ghex-window.c:794
 #, c-format
 msgid "GHex - %s"
 msgstr "GHex - %s"
 
-#: src/ghex-window.c:857
+#: src/ghex-window.c:926
 msgid "Select a file to save buffer as"
 msgstr "Vyberte soubor pro uložení bufferu"
 
-#: src/ghex-window.c:883
+#: src/ghex-window.c:956
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -669,20 +666,20 @@ msgstr ""
 "Soubor %s existuje.\n"
 "Chcete jej přepsat?"
 
-#: src/ghex-window.c:915 src/ui.c:353
+#: src/ghex-window.c:991 src/ui.c:356
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Buffer uložen do souboru %s"
 
-#: src/ghex-window.c:920
+#: src/ghex-window.c:997
 msgid "Error saving file!"
 msgstr "Chyba při ukládání souboru!"
 
-#: src/ghex-window.c:926
+#: src/ghex-window.c:1003
 msgid "Can't open file for writing!"
 msgstr "Soubor nelze otevřít pro zápis!"
 
-#: src/ghex-window.c:953
+#: src/ghex-window.c:1030
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -691,35 +688,35 @@ msgstr ""
 "Soubor %s se od posledního uložení změnil.\n"
 "Chcete tyto změny uložit?"
 
-#: src/ghex-window.c:963
+#: src/ghex-window.c:1040
 msgid "Do_n't save"
 msgstr "_Neukládat"
 
-#: src/ghex-window.c:983 src/ui.c:344
+#: src/ghex-window.c:1060 src/ui.c:344
 msgid "You don't have the permissions to save the file!"
 msgstr "Nemáte oprávnění pro uložení souboru!"
 
-#: src/ghex-window.c:987 src/ui.c:349
+#: src/ghex-window.c:1064 src/ui.c:349
 msgid "An error occured while saving file!"
 msgstr "Při ukládání souboru se vyskytla chyba!"
 
-#: src/hex-document.c:740
+#: src/hex-document.c:744
 msgid "Page"
 msgstr "Stránka"
 
-#: src/hex-document.c:746 src/hex-document.c:871
+#: src/hex-document.c:750 src/hex-document.c:875
 msgid "Hex dump generated by"
 msgstr "Hexadecimální výpis generovaný"
 
-#: src/hex-document.c:756
+#: src/hex-document.c:760
 msgid "Saving to HTML..."
 msgstr "Ukládání do HTML..."
 
-#: src/hex-document.c:794
+#: src/hex-document.c:798
 msgid "Previous page"
 msgstr "Předchozí stránka"
 
-#: src/hex-document.c:809
+#: src/hex-document.c:813
 msgid "Next page"
 msgstr "Následující stránka"
 
@@ -736,76 +733,76 @@ msgstr "Nelze inicializovat Bonobo!\n"
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Neplatný řetězec s geometrií \"%s\"\n"
 
-#: src/preferences.c:91
+#: src/preferences.c:92
 msgid "GHex Preferences"
 msgstr "Nastavení programu GHex"
 
-#: src/preferences.c:136
+#: src/preferences.c:137
 msgid "_Maximum number of undo levels:"
 msgstr "_Maximální počet vrácených akcí:"
 
-#: src/preferences.c:156
+#: src/preferences.c:157
 msgid "Undo levels"
 msgstr "Počet vrácených akcí"
 
-#: src/preferences.c:156
+#: src/preferences.c:157
 msgid "Select maximum number of undo levels"
 msgstr "Vyberte maximální počet vrácených akcí"
 
-#: src/preferences.c:160
+#: src/preferences.c:161
 msgid "Show cursor offset in statusbar as:"
 msgstr "Ukazovat pozici kurzoru ve stavovém řádku ve tvaru:"
 
-#: src/preferences.c:179
+#: src/preferences.c:180
 msgid "Hexadecimal"
 msgstr "Hexadecimálním"
 
-#: src/preferences.c:185
+#: src/preferences.c:186
 msgid "Custom"
 msgstr "Vlastním"
 
-#: src/preferences.c:196
+#: src/preferences.c:197
 msgid "Enter the cursor offset format"
 msgstr "Zadejte vlastní tvar pozice kurzoru"
 
-#: src/preferences.c:197
+#: src/preferences.c:198
 msgid "Select the cursor offset format"
 msgstr "Vyberte tvar pozice kurzoru"
 
 #. show offsets check button
-#: src/preferences.c:207
+#: src/preferences.c:208
 msgid "Show offsets column"
 msgstr "Ukázat sloupec s posunutím"
 
-#: src/preferences.c:212
+#: src/preferences.c:213
 msgid "Editing"
 msgstr "Úpravy"
 
 #. display font
-#: src/preferences.c:221
+#: src/preferences.c:222
 msgid "Font"
 msgstr "Písmo"
 
 #. default group type
-#: src/preferences.c:249
+#: src/preferences.c:250
 msgid "Default Group Type"
 msgstr "Výchozí typ seskupování"
 
-#: src/preferences.c:265
+#: src/preferences.c:266
 msgid "Display"
 msgstr "Zobrazit"
 
 #. paper selection
-#: src/preferences.c:274
+#: src/preferences.c:275
 msgid "Paper size"
 msgstr "Velikost papíru"
 
 #. data & header font selection
-#: src/preferences.c:279
+#: src/preferences.c:280
 msgid "Fonts"
 msgstr "Písma"
 
-#: src/preferences.c:285
+#: src/preferences.c:286
 msgid "_Data font:"
 msgstr "Písmo _dat:"
 
@@ -821,35 +818,35 @@ msgstr "Vyberte písmo dat"
 msgid "Header fo_nt:"
 msgstr "Pís_mo hlavičky:"
 
-#: src/preferences.c:338
+#: src/preferences.c:337
 msgid "Header font"
 msgstr "Písmo hlavičky"
 
-#: src/preferences.c:338
+#: src/preferences.c:337
 msgid "Select the header font"
 msgstr "Vyberte písmo hlavičky"
 
-#: src/preferences.c:366
+#: src/preferences.c:365
 msgid "_Print shaded box over:"
 msgstr "Tisk stínované _plochy přes:"
 
-#: src/preferences.c:378
+#: src/preferences.c:377
 msgid "Box size"
 msgstr "Velikost plochy"
 
-#: src/preferences.c:378
+#: src/preferences.c:377
 msgid "Select size of box (in number of lines)"
 msgstr "Vyberte velikost plochy (v počtu řádků)"
 
-#: src/preferences.c:382
+#: src/preferences.c:381
 msgid "lines (0 for no box)"
 msgstr "řádků (0 pro žádnou)"
 
-#: src/preferences.c:389
+#: src/preferences.c:388
 msgid "Printing"
 msgstr "Tisk"
 
-#: src/preferences.c:531
+#: src/preferences.c:534
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -857,7 +854,7 @@ msgstr ""
 "Řetězec s formátem posunutí obsahuje neplatný specifikátor formátu.\n"
 "Jsou povoleny pouze 'x', 'X', 'p', 'P', 'd' a 'o' ."
 
-#: src/preferences.c:563
+#: src/preferences.c:566
 msgid "Can not open desired font!"
 msgstr "Nelze otevřít požadované písmo!"
 
@@ -908,32 +905,32 @@ msgstr ""
 "Při zobrazování nápovědy nastala chyba:\n"
 "%s"
 
-#: src/ui.c:382
+#: src/ui.c:385
 msgid "Select a file to open"
 msgstr "Vyberte soubor pro otevření"
 
-#: src/ui.c:416
+#: src/ui.c:423
 #, c-format
 msgid "Loaded file %s"
 msgstr "Načten soubor %s"
 
-#: src/ui.c:424
+#: src/ui.c:431
 msgid "Can not open file!"
 msgstr "Soubor nelze otevřít!"
 
-#: src/ui.c:488
+#: src/ui.c:495
 msgid "Select path and file name for the HTML source"
 msgstr "Vyber cestu a název souboru pro HTML zdroj"
 
-#: src/ui.c:523
+#: src/ui.c:530
 msgid "You need to specify a base name for the HTML files."
 msgstr "Pro HTML soubory musíte zadat základní název."
 
-#: src/ui.c:534 src/ui.c:556
+#: src/ui.c:541 src/ui.c:563
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Nemáte oprávnění k zápisu na uvedené cestě.\n"
 
-#: src/ui.c:540
+#: src/ui.c:547
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -941,28 +938,31 @@ msgstr ""
 "Uložení do formátu HTML přepíše některé soubory.\n"
 "Chcete pokračovat?"
 
-#: src/ui.c:687
+#: src/ui.c:695
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Opravdu vrátit soubor %s do původní podoby?"
 
-#: src/ui.c:702
+#: src/ui.c:713
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Buffer vrácen ze souboru %s"
 
-#: src/ui.c:776
+#: src/ui.c:788
 msgid "Print Hex Document"
 msgstr "Tisknout hexadecimální dokument"
 
-#: src/ui.c:781
+#: src/ui.c:793
 msgid "Pages"
 msgstr "Stránek"
 
-#: src/ui.c:827
+#: src/ui.c:839
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Ukázka před tiskem"
+
+#~ msgid "_About..."
+#~ msgstr "_O programu..."
 
 #~ msgid "About..."
 #~ msgstr "O programu..."
@@ -984,9 +984,6 @@ msgstr "GHex (%s): Ukázka před tiskem"
 
 #~ msgid "MDI Mode"
 #~ msgstr "MDI režim"
-
-#~ msgid "MDI"
-#~ msgstr "MDI"
 
 #~ msgid "_Tools"
 #~ msgstr "Nás_toje"
@@ -1070,9 +1067,6 @@ msgstr "GHex (%s): Ukázka před tiskem"
 #~ msgid "The Gnome Search Tool"
 #~ msgstr "Vyhledávací program Gnome"
 
-#~ msgid "(C) 1998 the Free Software Foundation"
-#~ msgstr "(C) 1998 Nadace free softwéru"
-
 #~ msgid "number expected"
 #~ msgstr "očekáváno číslo"
 
@@ -1081,10 +1075,6 @@ msgstr "GHex (%s): Ukázka před tiskem"
 
 #~ msgid "unrecognized color: %s"
 #~ msgstr "neznámá barva: %s"
-
-#, fuzzy
-#~ msgid "Copyright 1998,99 John Kodis"
-#~ msgstr "(C) 1998 John Kodis"
 
 #~ msgid "Value"
 #~ msgstr "Hodnota"
@@ -1167,9 +1157,6 @@ msgstr "GHex (%s): Ukázka před tiskem"
 #~ msgid "no project selected"
 #~ msgstr "žádný projekt nebyl vybrán"
 
-#~ msgid "00:00"
-#~ msgstr "00:00"
-
 #~ msgid "Today"
 #~ msgstr "Dnes"
 
@@ -1224,12 +1211,6 @@ msgstr "GHex (%s): Ukázka před tiskem"
 
 #~ msgid "Clear _Daily Counter"
 #~ msgstr "Smazar _denní počítadlo"
-
-#~ msgid "St_art"
-#~ msgstr "St_art"
-
-#~ msgid "Sto_p"
-#~ msgstr "Sto_p"
 
 #~ msgid "_Timer Running"
 #~ msgstr "Časovač _běží"
@@ -1402,9 +1383,6 @@ msgstr "GHex (%s): Ukázka před tiskem"
 #~ msgid "Small utility to browse available X11 colors."
 #~ msgstr "Program k prohlížení dostupných barev."
 
-#~ msgid "FONTSPEC"
-#~ msgstr "FONTSPEC"
-
 #~ msgid "Font to load"
 #~ msgstr "Načíst font"
 
@@ -1550,12 +1528,6 @@ msgstr "GHex (%s): Ukázka před tiskem"
 
 #~ msgid "GNOME contributors:"
 #~ msgstr "Spoluautoři GNOME:"
-
-#~ msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-#~ msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-
-#~ msgid "GNOME: The GNU Network Object Model Environment"
-#~ msgstr "GNOME: The GNU Network Object Model Environment"
 
 #~ msgid "Email Information..."
 #~ msgstr "Poslat informace..."
@@ -1801,20 +1773,11 @@ msgstr "GHex (%s): Ukázka před tiskem"
 #~ msgid "(1 Sector)"
 #~ msgstr "(1 Sektor)"
 
-#~ msgid "No"
-#~ msgstr "Ne"
-
 #~ msgid "Yes (%d sector)"
 #~ msgstr "Ano (%d sektor)"
 
 #~ msgid "Yes (%d sectors)"
 #~ msgstr "Ano (%d sektorů)"
-
-#~ msgid "Model"
-#~ msgstr "Model"
-
-#~ msgid "Firmware"
-#~ msgstr "Firmware"
 
 #~ msgid "Serial No."
 #~ msgstr "Seriové číslo"
@@ -1854,4 +1817,3 @@ msgstr "GHex (%s): Ukázka před tiskem"
 
 #~ msgid "You appear to have no IDE drives"
 #~ msgstr "Zdá se, že počítač neobsahuje žádné IDE jednotky"
-
