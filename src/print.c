@@ -233,7 +233,7 @@ ghex_print_update_page_size_and_margins (HexDocument *doc, GHexPrintJobInfo *pji
 {
 	const GnomePrintUnit *unit;
 
-	gnome_print_master_get_page_size_from_config (pji->config,
+	gnome_print_job_get_page_size_from_config (pji->config,
 			&pji->page_width, &pji->page_height);
 
 	if (gnome_print_config_get_length (pji->config, GNOME_PRINT_KEY_PAGE_MARGIN_LEFT,
@@ -359,7 +359,7 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 void
 ghex_print_job_info_destroy(GHexPrintJobInfo *pji)
 {
-	gnome_print_master_close(pji->master);
+	gnome_print_job_close(pji->master);
 	gnome_font_unref(pji->h_font);
 	gnome_font_unref(pji->d_font);
 
@@ -389,7 +389,7 @@ ghex_print_job_execute(GHexPrintJobInfo *pji)
 
 	g_return_if_fail(pji != NULL);
 
-	pji->pc = gnome_print_master_get_context(pji->master);
+	pji->pc = gnome_print_job_get_context(pji->master);
 
 	g_return_if_fail(pji->pc != NULL);
 

@@ -29,7 +29,7 @@
 
 #include <libgnomeprint/gnome-print.h>
 
-#include <libgnomeprint/gnome-print-master.h>
+#include <libgnomeprint/gnome-print-job.h>
 
 #include <stdio.h>
 
@@ -102,7 +102,7 @@ typedef struct _Converter {
 } Converter;
 
 typedef struct {
-	GnomePrintMaster *master;
+	GnomePrintJob *master;
 	GnomePrintContext *pc;
 	GnomePrintConfig *config;
 

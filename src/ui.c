@@ -26,7 +26,7 @@
 
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprintui/gnome-print-dialog.h>
-#include <libgnomeprintui/gnome-print-master-preview.h>
+#include <libgnomeprintui/gnome-print-job-preview.h>
 
 #include "ghex.h"
 
@@ -755,17 +755,17 @@ ghex_print(GtkHex *gh, gboolean preview)
 
 	g_return_if_fail (pji->config != NULL);
 
-	pji->master = gnome_print_master_new_from_config (pji->config);
+	pji->master = gnome_print_job_new (pji->config);
 	g_return_if_fail (pji->master != NULL);
 
 	ghex_print_update_page_size_and_margins (doc, pji);
 	ghex_print_job_execute(pji);
-	gnome_print_master_close (pji->master);
+	gnome_print_job_close (pji->master);
 
 	if (pji->preview)
 		ghex_print_preview_real(pji);
 	else
-		gnome_print_master_print(pji->master);
+		gnome_print_job_print(pji->master);
 
 	ghex_print_job_info_destroy(pji);
 }
@@ -784,7 +784,7 @@ ghex_print_run_dialog(GHexPrintJobInfo *pji)
 	GtkWidget *dialog;
 	gint res;
 
-	dialog = gnome_print_dialog_new(
+	dialog = gnome_print_dialog_new(pji->master,
 			     (const char *) _("Print Hex Document"),
 			     GNOME_PRINT_DIALOG_RANGE);
 
@@ -813,7 +813,7 @@ ghex_print_run_dialog(GHexPrintJobInfo *pji)
 
 #if 0
 	if (pji->printer && !pji->preview)
-		gnome_print_master_set_printer(pji->master, pji->printer);
+		gnome_print_job_set_printer(pji->master, pji->printer);
 #endif
 
 	pji->range = gnome_print_dialog_get_range_page(
@@ -838,7 +838,7 @@ ghex_print_preview_real(GHexPrintJobInfo *pji)
 
 	title = g_strdup_printf(_("GHex (%s): Print Preview"),
 			pji->doc->file_name);
-	preview = gnome_print_master_preview_new(pji->master, title);
+	preview = gnome_print_job_preview_new(pji->master, title);
 	g_free(title);
 
 	gtk_widget_show(preview);

@@ -1,7 +1,7 @@
 AC_PREREQ(2.52)
-AC_INIT(ghex, 2.0.0, http://bugzilla.gnome.org/enter_bug.cgi?product=ghex)
+AC_INIT(ghex, 2.2.0, http://bugzilla.gnome.org/enter_bug.cgi?product=ghex)
 AC_CONFIG_SRCDIR(src/ghex-window.c)
-AM_INIT_AUTOMAKE(ghex, 2.0.0)
+AM_INIT_AUTOMAKE(ghex, 2.2.0)
 AM_CONFIG_HEADER(config.h)
 
 AM_MAINTAINER_MODE
@@ -23,7 +23,7 @@ AC_PROG_MAKE_SET
 PKG_CHECK_MODULES(GHEX,
 		  libgnomeui-2.0 >= 2.0.0	\
 		  libglade-2.0 >= 2.0.0	\
-		  libgnomeprintui-2.0 >= 1.116.0)
+		  libgnomeprintui-2.2 >= 1.116.0)
 
 AC_SUBST(GHEX_CFLAGS)
 AC_SUBST(GHEX_LIBS)
