@@ -1,4 +1,4 @@
- /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ui.c - main menus and callbacks; utility functions
 
    Copyright (C) 1998 - 2002 Free Software Foundation
@@ -349,11 +349,14 @@ save_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		display_error_dialog (win, _("An error occured while saving file!"));
 	else {
 		gchar *flash;
-		
-		flash = g_strdup_printf(_("Saved buffer to file %s"), doc->file_name);
+		gchar *gtk_file_name;
+
+		gtk_file_name = g_filename_to_utf8 (doc->file_name, -1,
+											NULL, NULL, NULL);
+		flash = g_strdup_printf(_("Saved buffer to file %s"), gtk_file_name);
 
 		ghex_window_flash (win, flash);
-
+		g_free(gtk_file_name);
 		g_free(flash);
 	}
 }
@@ -413,9 +416,13 @@ open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		}
 
 		if(win != NULL) {
-			flash = g_strdup_printf(_("Loaded file %s"),
-									win->gh->document->file_name);
-			ghex_window_flash(win, flash);
+			gchar *gtk_file_name;
+			gtk_file_name = g_filename_to_utf8
+				(GHEX_WINDOW(win)->gh->document->file_name, -1, 
+				 NULL, NULL, NULL);
+			flash = g_strdup_printf(_("Loaded file %s"), gtk_file_name);
+			ghex_window_flash(GHEX_WINDOW(win), flash);
+			g_free(gtk_file_name);
 			g_free(flash);
 			if (converter_get)
 				gtk_widget_set_sensitive(converter_get, TRUE);
@@ -696,12 +703,16 @@ revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		
 		if(reply == 0) {
 			gchar *flash;
+			gchar *gtk_file_name;
 
+			gtk_file_name = g_filename_to_utf8 (doc->file_name, -1,
+												NULL, NULL, NULL);
 			win->changed = FALSE;
 			hex_document_read(doc);
-			flash = g_strdup_printf(_("Reverted buffer from file %s"), doc->file_name);
+			flash = g_strdup_printf(_("Reverted buffer from file %s"), gtk_file_name);
 			ghex_window_flash(win, flash);
 			ghex_window_set_sensitivity(win);
+			g_free(gtk_file_name);
 			g_free(flash);
 		}
 	}

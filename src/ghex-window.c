@@ -942,12 +942,17 @@ ghex_window_save_as(GHexWindow *win)
 		gchar *flash;
 		int i;
         gint save = 0;
+        gchar *gtk_file_name, *path_end;
 
         if(access(filename, F_OK) == 0) {
             GnomeMessageBox *mbox;
-            gchar *msg = g_strdup_printf(_("File %s exists.\n"
-                                           "Do you want to overwrite it?"),
-                                         filename);
+            gchar *msg;
+
+            gtk_file_name = g_filename_to_utf8(filename, -1, NULL, NULL, NULL);
+            msg= g_strdup_printf(_("File %s exists.\n"
+                                   "Do you want to overwrite it?"),
+                                 gtk_file_name);
+            g_free(gtk_file_name);
             mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(msg,
                                                            GNOME_MESSAGE_BOX_QUESTION,
                                                            GNOME_STOCK_BUTTON_YES,
@@ -962,6 +967,8 @@ ghex_window_save_as(GHexWindow *win)
                 if(hex_document_write_to_file(doc, file)) {
                     if(doc->file_name)
                         g_free(doc->file_name);
+                    if(doc->path_end)
+                        g_free(doc->path_end);
                     doc->file_name = strdup(filename);
                     doc->changed = FALSE;
                     win->changed = FALSE;
@@ -971,14 +978,15 @@ ghex_window_save_as(GHexWindow *win)
                         i--)
                         ;
                     if(doc->file_name[i] == '/')
-                        doc->path_end = &doc->file_name[i+1];
+                        path_end = &doc->file_name[i+1];
                     else
-                        doc->path_end = doc->file_name;
-                    
+                        path_end = doc->file_name;
+                    doc->path_end = g_filename_to_utf8(path_end, -1, NULL, NULL, NULL);
                     ghex_window_set_doc_name(win, doc->path_end);
-                    
-                    flash = g_strdup_printf(_("Saved buffer to file %s"), doc->file_name);
+                    gtk_file_name = g_filename_to_utf8(doc->file_name, -1, NULL, NULL, NULL);
+                    flash = g_strdup_printf(_("Saved buffer to file %s"), gtk_file_name);
                     ghex_window_flash(win, flash);
+                    g_free(gtk_file_name);
                     g_free(flash);
                 }
                 else {

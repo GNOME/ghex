@@ -1,3 +1,9 @@
+2002-11-24  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/hex-document.c, src/ui.c: applied patch from Hideoshi
+	Tajima to convert all filenames to utf8 before being used in
+	strings for GTK+ to display.
+
 2002-11-10  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/ghex-window.c (ghex_window_add_doc_to_list): encode strings

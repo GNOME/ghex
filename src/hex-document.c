@@ -298,6 +298,9 @@ hex_document_finalize(GObject *obj)
 	if(hex->file_name)
 		g_free(hex->file_name);
 
+	if(hex->path_end)
+		g_free(hex->path_end);
+
 	undo_stack_free(hex);
 
 	while(hex->views)
@@ -397,7 +400,7 @@ HexDocument *
 hex_document_new(const gchar *name)
 {
 	HexDocument *doc;
-	
+	gchar *path_end;
 	int i;
 
 	doc = HEX_DOCUMENT (g_object_new (hex_document_get_type(), NULL));
@@ -413,10 +416,11 @@ hex_document_new(const gchar *name)
 		for(i = strlen(doc->file_name); (i >= 0) && (doc->file_name[i] != '/'); i--)
 			;
 		if(doc->file_name[i] == '/')
-			doc->path_end = &doc->file_name[i+1];
+			path_end = &doc->file_name[i+1];
 		else
-			doc->path_end = doc->file_name;
-					
+			path_end = doc->file_name;
+
+		doc->path_end = g_filename_to_utf8 (path_end, -1, NULL, NULL, NULL);
 		if(hex_document_read(doc)) {
 			doc_list = g_list_append(doc_list, doc);
 			return doc;
