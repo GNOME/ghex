@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 0.99.3\n"
-"POT-Creation-Date: 1999-01-28 18:52-0600\n"
+"POT-Creation-Date: 1999-02-06 08:47-0600\n"
 "PO-Revision-Date: 1999-01-26 00:20+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@fib.hl.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -30,6 +30,132 @@ msgid ""
 "A quick hack to show the amount of space free on mounted file systems "
 "uitilizing a dial."
 msgstr "Et raskt hack for å vise ledig plass på monterte filsystemer "
+
+#: ghex/converter.c:39
+msgid "GHex: Converter"
+msgstr "GHex: Konvertering"
+
+#: ghex/converter.c:46
+msgid "Binary"
+msgstr "Binær"
+
+#: ghex/converter.c:56
+msgid "Decimal"
+msgstr "Desimal"
+
+#: ghex/converter.c:66
+msgid "Hex"
+msgstr "Heksadesimal"
+
+#: ghex/converter.c:76
+msgid "ASCII"
+msgstr "ASCII"
+
+#: ghex/converter.c:86 mini-utils/gshutdown/gshutdown.c:149
+msgid "Close"
+msgstr "Lukk"
+
+#: ghex/converter.c:134
+msgid "ERROR"
+msgstr "FEIL"
+
+#: ghex/findreplace.c:51 ghex/main.c:68
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr "GHex (%s): Finn data"
+
+#: ghex/findreplace.c:60
+#, c-format
+msgid "Search for %s"
+msgstr "Søk etter %s"
+
+#: ghex/findreplace.c:76
+msgid "Find Next"
+msgstr "Finn neste"
+
+#: ghex/findreplace.c:83
+msgid "Find Previous"
+msgstr "Finn forrige"
+
+#: ghex/findreplace.c:111 ghex/main.c:69
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "GHex (%s): Søk og erstatt data"
+
+#: ghex/findreplace.c:125
+#, c-format
+msgid "Replace %s"
+msgstr "Erstatt %s"
+
+#: ghex/findreplace.c:141
+msgid "Find next"
+msgstr "Finn neste"
+
+#: ghex/findreplace.c:148
+msgid "Replace"
+msgstr "Erstatt"
+
+#: ghex/findreplace.c:155
+msgid "Replace All"
+msgstr "Erstatt alle"
+
+#: ghex/findreplace.c:179 ghex/main.c:70
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr "GHex (%s): Hopp til byte"
+
+#: ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
+msgid "There is no active buffer to search!"
+msgstr "Ingen aktiv buffer for søk!"
+
+#: ghex/findreplace.c:268 ghex/findreplace.c:291 ghex/findreplace.c:344
+msgid "There seems to be no string to search for!"
+msgstr "Ingen streng å søke etter!"
+
+#: ghex/findreplace.c:274 ghex/findreplace.c:351
+msgid "End Of File reached"
+msgstr "Slutten på filen nådd"
+
+#: ghex/findreplace.c:298
+msgid "Beginning Of File reached"
+msgstr "Begynnelsen på filen nådd"
+
+#: ghex/findreplace.c:306
+msgid "There is no active buffer to move the cursor in!"
+msgstr "Ingen aktiv buffer å bevege markøren i!"
+
+#: ghex/findreplace.c:311
+msgid "No offset has been specified!"
+msgstr "Ingen posisjon har blitt spesifisert!"
+
+#: ghex/findreplace.c:318
+msgid "The offset must be a positive integer value!"
+msgstr "Posisjonen må være et positivt heltall"
+
+#: ghex/findreplace.c:323
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "Kan ikke plassere markøren forbi filens slutt!"
+
+#: ghex/findreplace.c:361 ghex/findreplace.c:400
+msgid "There is no active buffer to replace data in!"
+msgstr "Ingen aktiv buffer å erstatte data i!"
+
+#: ghex/findreplace.c:372 ghex/findreplace.c:411
+msgid "Strange find or replace string!"
+msgstr "Merkelig søk eller erstatt-streng!"
+
+#: ghex/findreplace.c:377 ghex/findreplace.c:416
+msgid "Both strings must be of the same length!"
+msgstr "Begge strengene må være av samme lengde!"
+
+#: ghex/findreplace.c:390
+msgid "End Of File reached!"
+msgstr "Filslutt nådd!"
+
+#: ghex/findreplace.c:431
+#, c-format
+msgid "Replaced %d occurencies."
+msgstr "Byttet ut %d forekomster."
 
 #: ghex/hex-document.c:57
 msgid "_Bytes"
@@ -92,20 +218,58 @@ msgstr ""
 "Filen %s er endret siden forrige lagring.\n"
 "Vil du lagre endringene?"
 
-#: ghex/main.c:68
-#, c-format
-msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): Finn data"
+#: ghex/preferences.c:48 mini-utils/idetool/idetool.c:142
+#: mini-utils/idetool/idetool.c:325
+msgid "Default"
+msgstr "Standard"
 
-#: ghex/main.c:69
-#, c-format
-msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): Søk og erstatt data"
+#: ghex/preferences.c:49
+msgid "Notebook"
+msgstr "Notisblokk"
 
-#: ghex/main.c:70
-#, c-format
-msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): Hopp til byte"
+#: ghex/preferences.c:50
+msgid "Toplevel"
+msgstr "Toppnivå"
+
+#: ghex/preferences.c:51
+msgid "Modal"
+msgstr "Modal"
+
+#: ghex/preferences.c:79
+msgid "Maximum number of undo levels"
+msgstr "Maksimalt angrenivå"
+
+#: ghex/preferences.c:90
+msgid "Editing"
+msgstr "Redigering"
+
+#: ghex/preferences.c:97
+msgid "Font"
+msgstr "Skrifttype"
+
+#: ghex/preferences.c:113
+msgid "Browse..."
+msgstr "Se på..."
+
+#: ghex/preferences.c:132
+msgid "Default Group Type"
+msgstr "Standard gruppetype"
+
+#: ghex/preferences.c:148 gtt/options.c:184
+msgid "Display"
+msgstr "Skjerm"
+
+#: ghex/preferences.c:155
+msgid "MDI Mode"
+msgstr "MDI-modus"
+
+#: ghex/preferences.c:172
+msgid "MDI"
+msgstr "MDI"
+
+#: ghex/preferences.c:281
+msgid "Can not open desired font!"
+msgstr "Kan ikke åpne ønsket skrifttype!"
 
 #: ghex/ui.c:51
 msgid "Open Con_verter..."
@@ -183,6 +347,134 @@ msgstr "Kan ikke åpne filen!"
 msgid "Can't open file for writing!"
 msgstr "Kan ikke åpne filen for skriving!"
 
+#: gnome-find/gnome-find.c:42
+msgid "New search"
+msgstr ""
+
+#: gnome-find/gnome-find.c:43
+msgid "Open search spec"
+msgstr ""
+
+#: gnome-find/gnome-find.c:44
+msgid "Save search spec"
+msgstr ""
+
+#: gnome-find/gnome-find.c:45
+#, fuzzy
+msgid "Save search spec as..."
+msgstr "Lagre som..."
+
+#: gnome-find/gnome-find.c:49
+msgid "Exit"
+msgstr "Avslutt"
+
+#: gnome-find/gnome-find.c:55
+msgid "Preferences..."
+msgstr "Innstillinger..."
+
+#: gnome-find/gnome-find.c:61
+msgid "Add condition"
+msgstr ""
+
+#: gnome-find/gnome-find.c:61 gnome-find/gnome-find.c:100
+msgid "Add a search condition"
+msgstr ""
+
+#: gnome-find/gnome-find.c:62
+msgid "Remove condition"
+msgstr ""
+
+#: gnome-find/gnome-find.c:62 gnome-find/gnome-find.c:102
+msgid "Remove last search condition"
+msgstr ""
+
+#: gnome-find/gnome-find.c:64 gnome-find/gnome-find.c:65
+#: gnome-find/gnome-find.c:103
+msgid "Show advanced options"
+msgstr ""
+
+#: gnome-find/gnome-find.c:70
+msgid "Start search"
+msgstr ""
+
+#: gnome-find/gnome-find.c:77
+msgid "About Gnome Find..."
+msgstr ""
+
+#: gnome-find/gnome-find.c:86
+msgid "File"
+msgstr "Fil"
+
+#: gnome-find/gnome-find.c:87
+#, fuzzy
+msgid "Edit"
+msgstr "Avslutt"
+
+#: gnome-find/gnome-find.c:88 gnome-find/gnome-find.c:109
+#, fuzzy
+msgid "Search"
+msgstr "Søk etter %s"
+
+#: gnome-find/gnome-find.c:89
+msgid "Help"
+msgstr "Hjelp"
+
+#: gnome-find/gnome-find.c:95
+msgid "New"
+msgstr ""
+
+#: gnome-find/gnome-find.c:95
+#, fuzzy
+msgid "Clear the search window"
+msgstr "Lukk dette vinduet"
+
+#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:506
+#: mini-utils/gw/gw.c:454
+msgid "Add"
+msgstr "Legg til"
+
+#: gnome-find/gnome-find.c:102
+#, fuzzy
+msgid "Remove"
+msgstr "Fjern visning"
+
+#: gnome-find/gnome-find.c:103 mini-utils/gshutdown/gshutdown.c:205
+#: mini-utils/gshutdown/gshutdown.c:206
+msgid "Advanced"
+msgstr "Avansert"
+
+#: gnome-find/gnome-find.c:109
+msgid "Start the current search"
+msgstr ""
+
+#: gnome-find/gnome-find.c:180
+#, fuzzy
+msgid "Find Files"
+msgstr "Finn neste"
+
+#: gnome-find/gnome-find.c:182
+#, fuzzy
+msgid "Directory:"
+msgstr "Start i katalog:"
+
+#: gnome-find/gnome-find.c:184
+msgid "Directory to Search"
+msgstr ""
+
+#: gnome-find/gnome-find.c:426
+msgid "GNOME Find"
+msgstr ""
+
+#. copyright notice
+#: gnome-find/gnome-find.c:428
+msgid "(C) 1998 the Free Software Foundation"
+msgstr ""
+
+#. another comments
+#: gnome-find/gnome-find.c:431
+msgid "GNOME Find is a fast, flexible file search tool."
+msgstr ""
+
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
@@ -193,10 +485,6 @@ msgstr "Søkeresultater"
 #: gsearchtool/gsearchtool.c:488
 msgid "Start in directory:"
 msgstr "Start i katalog:"
-
-#: gsearchtool/gsearchtool.c:506 mini-utils/gw/gw.c:454
-msgid "Add"
-msgstr "Legg til"
 
 #: gsearchtool/gsearchtool.c:517
 msgid "Start"
@@ -230,13 +518,112 @@ msgstr "Grensesnitt mot UNIXs find/grep/locate kommandoer"
 msgid "Gnome Search Tool"
 msgstr "Gnome søkeverktøy"
 
-#: gtt/app.c:110 gtt/app.c:209
+#: gstripchart/gstripchart.c:1249
+msgid "Params"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1249
+msgid "Examine and adjust parameters"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1255
+msgid "E_xit"
+msgstr "Avslutt"
+
+#: gstripchart/gstripchart.c:1255
+msgid "Terminate the stripchart program"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1271
+msgid "Copyright 1998 John Kodis"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1286
+msgid "_About"
+msgstr "Om..."
+
+#: gstripchart/gstripchart.c:1286
+msgid "Info about the striphart program"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1297
+msgid "_File"
+msgstr "Fil"
+
+#: gstripchart/gstripchart.c:1298
+msgid "_Help"
+msgstr "Hjelp"
+
+#: gstripchart/gstripchart.c:1706
+msgid "GEO"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1706
+#, fuzzy
+msgid "geometry"
+msgstr "Geometri"
+
+#: gstripchart/gstripchart.c:1708
+msgid "FILE"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1708
+#, fuzzy
+msgid "configuration file"
+msgstr "Lagre konfigurasjonsfilen"
+
+#: gstripchart/gstripchart.c:1710 gstripchart/gstripchart.c:1712
+#: gstripchart/gstripchart.c:1714 gstripchart/gstripchart.c:1716
+msgid "SECS"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1710
+msgid "chart update interval"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1712
+msgid "chart LP filter TC"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1714
+msgid "slider update interval"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1716
+msgid "slider LP filter TC"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1718
+msgid "add menubar"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1720
+msgid "omit slider"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1722
+msgid "TYPE"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1722
+msgid "gtk|text|graph|none"
+msgstr ""
+
+#: gtt/app.c:110 gtt/app.c:210
 msgid "no project selected"
 msgstr "ingen prosjekter valgt"
 
-#: gtt/app.c:198
+#: gtt/app.c:199
 msgid "00:00"
 msgstr "00:00"
+
+#: gtt/app.c:239 mini-utils/gless/gless.c:383
+msgid ""
+"Couldn't understand geometry (position and size)\n"
+" specified on command line"
+msgstr ""
+"Kunne ikke forstå geometrien (posisjonen og størrelsen)\n"
+" spesifisert på kommandolinjen"
 
 #: gtt/clist.c:169
 msgid "Total"
@@ -286,24 +673,19 @@ msgstr ""
 "En feil oppstod under lesing av konfigurasjonsfilen.\n"
 "Skal jeg lage en ny konfigurasjon?"
 
-#: gtt/main.c:215 gtt/main.c:231 gtt/main.c:242 gtt/main.c:248
-#, c-format
-msgid "error in geometry string \"%s\"\n"
-msgstr "feil i geometri-strengen \"%s\"\n"
-
-#: gtt/main.c:267
+#: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "Spesifiser geometri"
 
-#: gtt/main.c:267 mini-utils/gless/gless.c:115
+#: gtt/main.c:204 mini-utils/gless/gless.c:115
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
-#: gtt/main.c:269
+#: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "Velg et prosjekt ved oppstart"
 
-#: gtt/main.c:269
+#: gtt/main.c:206
 msgid "PROJECT"
 msgstr "PROSJEKT"
 
@@ -370,10 +752,6 @@ msgstr "Klokken kjører"
 #: gtt/menus.c:99
 msgid "_Timer"
 msgstr "Klokke"
-
-#: gtt/options.c:184
-msgid "Display"
-msgstr "Skjerm"
 
 #: gtt/options.c:192
 msgid "Show Seconds"
@@ -730,14 +1108,6 @@ msgstr "Vis teksten med en låst skrifttype"
 msgid "Text File Viewer"
 msgstr "Tekstfilvisning"
 
-#: mini-utils/gless/gless.c:383
-msgid ""
-"Couldn't understand geometry (position and size)\n"
-" specified on command line"
-msgstr ""
-"Kunne ikke forstå geometrien (posisjonen og størrelsen)\n"
-" spesifisert på kommandolinjen"
-
 #: mini-utils/gless/gless.c:424
 msgid "Loading..."
 msgstr "Laster..."
@@ -859,10 +1229,6 @@ msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Du må være superbruker (root) for å slå av eller starte maskinen på nytt."
 
-#: mini-utils/gshutdown/gshutdown.c:149
-msgid "Close"
-msgstr "Lukk"
-
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:183
 msgid "Shutdown or Reboot"
@@ -871,10 +1237,6 @@ msgstr "Slå av maskinen eller start på nytt"
 #: mini-utils/gshutdown/gshutdown.c:200 mini-utils/gshutdown/gshutdown.c:201
 msgid "Easy"
 msgstr "Enkel"
-
-#: mini-utils/gshutdown/gshutdown.c:205 mini-utils/gshutdown/gshutdown.c:206
-msgid "Advanced"
-msgstr "Avansert"
 
 #: mini-utils/gshutdown/gshutdown.c:238
 msgid ""
@@ -904,6 +1266,106 @@ msgstr "Generelt"
 #: mini-utils/gshutdown/gshutdown.c:454
 msgid "Don't ask next time."
 msgstr "Ikke spør neste gang."
+
+#: mini-utils/gsu/gsu.c:210
+msgid "virtual memory exhausted"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:394
+#, c-format
+msgid "Cannot set groups: %s"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:398
+#, c-format
+msgid "Cannot set group id: %s"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:400
+#, c-format
+msgid "Cannot set user id: %s"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:444
+#, c-format
+msgid "cannot run %s"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:472
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:476
+#, c-format
+msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:477
+msgid ""
+"Change the effective user id and group id to that of USER.\n"
+"\n"
+"  -, -l, --login               make the shell a login shell\n"
+"  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
+"  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
+"  -m, --preserve-environment   do not reset environment variables\n"
+"  -p                           same as -m\n"
+"  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
+"      --help                   display this help and exit\n"
+"      --version                output version information and exit\n"
+"\n"
+"A mere - implies -l.   If USER not given, assume root.\n"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:491
+msgid ""
+"\n"
+"Report bugs to sh-utils-bugs@gnu.ai.mit.edu"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:577
+#, c-format
+msgid "user %s does not exist"
+msgstr ""
+
+#. wait for dialog to die, then quit
+#: mini-utils/gsu/gsu.c:602
+msgid "incorrect password"
+msgstr ""
+
+#. The user being su'd to has a nonstandard shell, and so is
+#. probably a uucp account or has restricted access.  Don't
+#. compromise the account by allowing access with a standard
+#. shell.
+#: mini-utils/gsu/gsu.c:621
+#, c-format
+msgid "using restricted shell %s"
+msgstr ""
+
+#. error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir);
+#: mini-utils/gsu/gsu.c:634
+#, c-format
+msgid "Cannot change directory to %s"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:666
+msgid "Root password request"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:676
+msgid ""
+"You are trying to do something which requires\n"
+"root (system administrator) privileges.\n"
+"To do this, you must give the root password.\n"
+"Please enter the root password now, or choose\n"
+"Cancel if you do not know it."
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:683
+msgid ""
+"You are trying to change your user identity.\n"
+"Please enter the password for user `"
+msgstr ""
 
 #: mini-utils/guname/guname.c:327
 msgid "System Information"
@@ -1268,10 +1730,6 @@ msgstr "Disken nekter å beholde instillingene."
 msgid "Keep settings"
 msgstr "Behold innstillingene"
 
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
-msgid "Default"
-msgstr "Standard"
-
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr "(1 sektor)"
@@ -1352,122 +1810,11 @@ msgstr "Bare superbruker kan bruke dette verktøyet"
 msgid "You appear to have no IDE drives"
 msgstr "Det ser ut til at du ikke har noen IDE disker"
 
-#~ msgid "There is no active buffer to search!"
-#~ msgstr "Ingen aktiv buffer for søk!"
-
-#~ msgid "There seems to be no string to search for!"
-#~ msgstr "Ingen streng å søke etter!"
-
-#~ msgid "End Of File reached"
-#~ msgstr "Slutten på filen nådd"
-
-#~ msgid "Beginning Of File reached"
-#~ msgstr "Begynnelsen på filen nådd"
-
-#~ msgid "There is no active buffer to move the cursor in!"
-#~ msgstr "Ingen aktiv buffer å bevege markøren i!"
-
-#~ msgid "No offset has been specified!"
-#~ msgstr "Ingen posisjon har blitt spesifisert!"
-
-#~ msgid "The offset must be a positive integer value!"
-#~ msgstr "Posisjonen må være et positivt heltall"
-
-#~ msgid "Can not position cursor beyond the End Of File!"
-#~ msgstr "Kan ikke plassere markøren forbi filens slutt!"
-
-#~ msgid "There is no active buffer to replace data in!"
-#~ msgstr "Ingen aktiv buffer å erstatte data i!"
-
-#~ msgid "Strange find or replace string!"
-#~ msgstr "Merkelig søk eller erstatt-streng!"
-
-#~ msgid "Both strings must be of the same length!"
-#~ msgstr "Begge strengene må være av samme lengde!"
-
-#~ msgid "End Of File reached!"
-#~ msgstr "Filslutt nådd!"
-
-#~ msgid "Replaced %d occurencies."
-#~ msgstr "Byttet ut %d forekomster."
-
-#~ msgid "Can not open desired font!"
-#~ msgstr "Kan ikke åpne ønsket skrifttype!"
-
-#~ msgid "ERROR"
-#~ msgstr "FEIL"
-
-#~ msgid "Notebook"
-#~ msgstr "Notisblokk"
-
-#~ msgid "Toplevel"
-#~ msgstr "Toppnivå"
-
-#~ msgid "Modal"
-#~ msgstr "Modal"
-
-#~ msgid "Search for %s"
-#~ msgstr "Søk etter %s"
-
-#~ msgid "Find Next"
-#~ msgstr "Finn neste"
-
-#~ msgid "Find Previous"
-#~ msgstr "Finn forrige"
-
-#~ msgid "Replace %s"
-#~ msgstr "Erstatt %s"
-
-#~ msgid "Find next"
-#~ msgstr "Finn neste"
-
-#~ msgid "Replace"
-#~ msgstr "Erstatt"
-
-#~ msgid "Replace All"
-#~ msgstr "Erstatt alle"
-
-#~ msgid "GHex: Converter"
-#~ msgstr "GHex: Konvertering"
-
-#~ msgid "Binary"
-#~ msgstr "Binær"
-
-#~ msgid "Decimal"
-#~ msgstr "Desimal"
-
-#~ msgid "Hex"
-#~ msgstr "Heksadesimal"
-
-#~ msgid "ASCII"
-#~ msgstr "ASCII"
-
-#~ msgid "Maximum number of undo levels"
-#~ msgstr "Maksimalt angrenivå"
-
-#~ msgid "Editing"
-#~ msgstr "Redigering"
-
-#~ msgid "Font"
-#~ msgstr "Skrifttype"
-
-#~ msgid "Browse..."
-#~ msgstr "Se på..."
-
-#~ msgid "Default Group Type"
-#~ msgstr "Standard gruppetype"
-
-#~ msgid "MDI Mode"
-#~ msgstr "MDI-modus"
-
-#~ msgid "MDI"
-#~ msgstr "MDI"
+#~ msgid "error in geometry string \"%s\"\n"
+#~ msgstr "feil i geometri-strengen \"%s\"\n"
 
 #~ msgid "PIO Mode"
 #~ msgstr "PIO-modus"
-
-#~ msgid "E_xit"
-#~ msgstr "Avslutt"
 
 #~ msgid "_About..."
 #~ msgstr "Om..."
@@ -1477,12 +1824,6 @@ msgstr "Det ser ut til at du ikke har noen IDE disker"
 
 #~ msgid "_Calculator"
 #~ msgstr "Kalkulator"
-
-#~ msgid "_Help"
-#~ msgstr "Hjelp"
-
-#~ msgid "_File"
-#~ msgstr "Fil"
 
 #~ msgid "_Find..."
 #~ msgstr "Finn..."
@@ -1559,9 +1900,6 @@ msgstr "Det ser ut til at du ikke har noen IDE disker"
 #~ msgid "Clear Daily Counter"
 #~ msgstr "Tøm daglig teller"
 
-#~ msgid "_About"
-#~ msgstr "Om..."
-
 #~ msgid "_Program"
 #~ msgstr "_Program"
 
@@ -1576,9 +1914,6 @@ msgstr "Det ser ut til at du ikke har noen IDE disker"
 
 #~ msgid "Save file to disk"
 #~ msgstr "Lagre fil til disk"
-
-#~ msgid "Close this window"
-#~ msgstr "Lukk dette vinduet"
 
 #~ msgid "Change application preferences"
 #~ msgstr "Endre applikasjonens innstillinger"
@@ -1601,20 +1936,8 @@ msgstr "Det ser ut til at du ikke har noen IDE disker"
 #~ msgid "File_s/"
 #~ msgstr "Filer/"
 
-#~ msgid "Exit"
-#~ msgstr "Avslutt"
-
 #~ msgid "About..."
 #~ msgstr "Om..."
-
-#~ msgid "File"
-#~ msgstr "Fil"
-
-#~ msgid "Help"
-#~ msgstr "Hjelp"
-
-#~ msgid "Save _as..."
-#~ msgstr "Lagre som..."
 
 #~ msgid "_Exit"
 #~ msgstr "Avslutt"
@@ -1624,9 +1947,6 @@ msgstr "Det ser ut til at du ikke har noen IDE disker"
 
 #~ msgid "Pr_operties..."
 #~ msgstr "Egenskaper..."
-
-#~ msgid "Preferences..."
-#~ msgstr "Innstillinger..."
 
 #~ msgid "View"
 #~ msgstr "Vis"

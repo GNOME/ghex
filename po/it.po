@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 1999-01-28 18:52-0600\n"
+"POT-Creation-Date: 1999-02-06 08:47-0600\n"
 "Content-Type: text/plain; charset=\n"
 "Date: 1998-02-23 15:09:38+0100\n"
 "From: Tristan Tarrant <ttarrant@suntlc.etnoteam.it>\n"
@@ -29,6 +29,135 @@ msgstr "Calcolatrice GnomENIUS"
 msgid ""
 "A quick hack to show the amount of space free on mounted file systems "
 "uitilizing a dial."
+msgstr ""
+
+#: ghex/converter.c:39
+msgid "GHex: Converter"
+msgstr ""
+
+#: ghex/converter.c:46
+msgid "Binary"
+msgstr ""
+
+#: ghex/converter.c:56
+msgid "Decimal"
+msgstr ""
+
+#: ghex/converter.c:66
+msgid "Hex"
+msgstr ""
+
+#: ghex/converter.c:76
+msgid "ASCII"
+msgstr ""
+
+#: ghex/converter.c:86 mini-utils/gshutdown/gshutdown.c:149
+msgid "Close"
+msgstr "Chiudi"
+
+#: ghex/converter.c:134
+#, fuzzy
+msgid "ERROR"
+msgstr "ERRORE: "
+
+#: ghex/findreplace.c:51 ghex/main.c:68
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr ""
+
+#: ghex/findreplace.c:60
+#, c-format
+msgid "Search for %s"
+msgstr ""
+
+#: ghex/findreplace.c:76
+msgid "Find Next"
+msgstr ""
+
+#: ghex/findreplace.c:83
+msgid "Find Previous"
+msgstr ""
+
+#: ghex/findreplace.c:111 ghex/main.c:69
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr ""
+
+#: ghex/findreplace.c:125
+#, fuzzy, c-format
+msgid "Replace %s"
+msgstr "Ricarica"
+
+#: ghex/findreplace.c:141
+msgid "Find next"
+msgstr ""
+
+#: ghex/findreplace.c:148
+#, fuzzy
+msgid "Replace"
+msgstr "Ricarica"
+
+#: ghex/findreplace.c:155
+#, fuzzy
+msgid "Replace All"
+msgstr "Ricarica"
+
+#: ghex/findreplace.c:179 ghex/main.c:70
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr ""
+
+#: ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
+msgid "There is no active buffer to search!"
+msgstr ""
+
+#: ghex/findreplace.c:268 ghex/findreplace.c:291 ghex/findreplace.c:344
+msgid "There seems to be no string to search for!"
+msgstr ""
+
+#: ghex/findreplace.c:274 ghex/findreplace.c:351
+msgid "End Of File reached"
+msgstr ""
+
+#: ghex/findreplace.c:298
+msgid "Beginning Of File reached"
+msgstr ""
+
+#: ghex/findreplace.c:306
+msgid "There is no active buffer to move the cursor in!"
+msgstr ""
+
+#: ghex/findreplace.c:311
+msgid "No offset has been specified!"
+msgstr ""
+
+#: ghex/findreplace.c:318
+msgid "The offset must be a positive integer value!"
+msgstr ""
+
+#: ghex/findreplace.c:323
+msgid "Can not position cursor beyond the End Of File!"
+msgstr ""
+
+#: ghex/findreplace.c:361 ghex/findreplace.c:400
+msgid "There is no active buffer to replace data in!"
+msgstr ""
+
+#: ghex/findreplace.c:372 ghex/findreplace.c:411
+msgid "Strange find or replace string!"
+msgstr ""
+
+#: ghex/findreplace.c:377 ghex/findreplace.c:416
+msgid "Both strings must be of the same length!"
+msgstr ""
+
+#: ghex/findreplace.c:390
+msgid "End Of File reached!"
+msgstr ""
+
+#: ghex/findreplace.c:431
+#, c-format
+msgid "Replaced %d occurencies."
 msgstr ""
 
 #: ghex/hex-document.c:57
@@ -90,19 +219,58 @@ msgid ""
 "Do you want to save changes?"
 msgstr ""
 
-#: ghex/main.c:68
-#, c-format
-msgid "GHex (%s): Find Data"
+#: ghex/preferences.c:48 mini-utils/idetool/idetool.c:142
+#: mini-utils/idetool/idetool.c:325
+msgid "Default"
 msgstr ""
 
-#: ghex/main.c:69
-#, c-format
-msgid "GHex (%s): Find & Replace Data"
+#: ghex/preferences.c:49
+msgid "Notebook"
 msgstr ""
 
-#: ghex/main.c:70
-#, c-format
-msgid "GHex (%s): Jump To Byte"
+#: ghex/preferences.c:50
+msgid "Toplevel"
+msgstr ""
+
+#: ghex/preferences.c:51
+msgid "Modal"
+msgstr ""
+
+#: ghex/preferences.c:79
+msgid "Maximum number of undo levels"
+msgstr ""
+
+#: ghex/preferences.c:90
+#, fuzzy
+msgid "Editing"
+msgstr "Esci"
+
+#: ghex/preferences.c:97
+msgid "Font"
+msgstr ""
+
+#: ghex/preferences.c:113
+msgid "Browse..."
+msgstr ""
+
+#: ghex/preferences.c:132
+msgid "Default Group Type"
+msgstr ""
+
+#: ghex/preferences.c:148 gtt/options.c:184
+msgid "Display"
+msgstr "Visualizzazione"
+
+#: ghex/preferences.c:155
+msgid "MDI Mode"
+msgstr ""
+
+#: ghex/preferences.c:172
+msgid "MDI"
+msgstr ""
+
+#: ghex/preferences.c:281
+msgid "Can not open desired font!"
 msgstr ""
 
 #: ghex/ui.c:51
@@ -182,6 +350,130 @@ msgstr ""
 msgid "Can't open file for writing!"
 msgstr ""
 
+#: gnome-find/gnome-find.c:42
+msgid "New search"
+msgstr ""
+
+#: gnome-find/gnome-find.c:43
+msgid "Open search spec"
+msgstr ""
+
+#: gnome-find/gnome-find.c:44
+msgid "Save search spec"
+msgstr ""
+
+#: gnome-find/gnome-find.c:45
+msgid "Save search spec as..."
+msgstr ""
+
+#: gnome-find/gnome-find.c:49
+msgid "Exit"
+msgstr "Esci"
+
+#: gnome-find/gnome-find.c:55
+#, fuzzy
+msgid "Preferences..."
+msgstr "Preferenze"
+
+#: gnome-find/gnome-find.c:61
+msgid "Add condition"
+msgstr ""
+
+#: gnome-find/gnome-find.c:61 gnome-find/gnome-find.c:100
+msgid "Add a search condition"
+msgstr ""
+
+#: gnome-find/gnome-find.c:62
+msgid "Remove condition"
+msgstr ""
+
+#: gnome-find/gnome-find.c:62 gnome-find/gnome-find.c:102
+msgid "Remove last search condition"
+msgstr ""
+
+#: gnome-find/gnome-find.c:64 gnome-find/gnome-find.c:65
+#: gnome-find/gnome-find.c:103
+msgid "Show advanced options"
+msgstr ""
+
+#: gnome-find/gnome-find.c:70
+msgid "Start search"
+msgstr ""
+
+#: gnome-find/gnome-find.c:77
+msgid "About Gnome Find..."
+msgstr ""
+
+#: gnome-find/gnome-find.c:86
+msgid "File"
+msgstr "Archivio"
+
+#: gnome-find/gnome-find.c:87
+#, fuzzy
+msgid "Edit"
+msgstr "Esci"
+
+#: gnome-find/gnome-find.c:88 gnome-find/gnome-find.c:109
+msgid "Search"
+msgstr ""
+
+#: gnome-find/gnome-find.c:89
+msgid "Help"
+msgstr "Aiuto"
+
+#: gnome-find/gnome-find.c:95
+msgid "New"
+msgstr ""
+
+#: gnome-find/gnome-find.c:95
+msgid "Clear the search window"
+msgstr ""
+
+#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:506
+#: mini-utils/gw/gw.c:454
+msgid "Add"
+msgstr ""
+
+#: gnome-find/gnome-find.c:102
+msgid "Remove"
+msgstr ""
+
+#: gnome-find/gnome-find.c:103 mini-utils/gshutdown/gshutdown.c:205
+#: mini-utils/gshutdown/gshutdown.c:206
+msgid "Advanced"
+msgstr ""
+
+#: gnome-find/gnome-find.c:109
+msgid "Start the current search"
+msgstr ""
+
+#: gnome-find/gnome-find.c:180
+#, fuzzy
+msgid "Find Files"
+msgstr "Archivio"
+
+#: gnome-find/gnome-find.c:182
+msgid "Directory:"
+msgstr ""
+
+#: gnome-find/gnome-find.c:184
+msgid "Directory to Search"
+msgstr ""
+
+#: gnome-find/gnome-find.c:426
+msgid "GNOME Find"
+msgstr ""
+
+#. copyright notice
+#: gnome-find/gnome-find.c:428
+msgid "(C) 1998 the Free Software Foundation"
+msgstr ""
+
+#. another comments
+#: gnome-find/gnome-find.c:431
+msgid "GNOME Find is a fast, flexible file search tool."
+msgstr ""
+
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
@@ -191,10 +483,6 @@ msgstr ""
 
 #: gsearchtool/gsearchtool.c:488
 msgid "Start in directory:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:506 mini-utils/gw/gw.c:454
-msgid "Add"
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:517
@@ -230,13 +518,114 @@ msgstr ""
 msgid "Gnome Search Tool"
 msgstr ""
 
-#: gtt/app.c:110 gtt/app.c:209
+#: gstripchart/gstripchart.c:1249
+msgid "Params"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1249
+msgid "Examine and adjust parameters"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1255
+#, fuzzy
+msgid "E_xit"
+msgstr "Esci"
+
+#: gstripchart/gstripchart.c:1255
+msgid "Terminate the stripchart program"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1271
+msgid "Copyright 1998 John Kodis"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1286
+#, fuzzy
+msgid "_About"
+msgstr "Informazioni"
+
+#: gstripchart/gstripchart.c:1286
+msgid "Info about the striphart program"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1297
+#, fuzzy
+msgid "_File"
+msgstr "Archivio"
+
+#: gstripchart/gstripchart.c:1298
+#, fuzzy
+msgid "_Help"
+msgstr "Aiuto"
+
+#: gstripchart/gstripchart.c:1706
+msgid "GEO"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1706
+#, fuzzy
+msgid "geometry"
+msgstr "vuoto"
+
+#: gstripchart/gstripchart.c:1708
+msgid "FILE"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1708
+#, fuzzy
+msgid "configuration file"
+msgstr "Salva file di configurazione"
+
+#: gstripchart/gstripchart.c:1710 gstripchart/gstripchart.c:1712
+#: gstripchart/gstripchart.c:1714 gstripchart/gstripchart.c:1716
+msgid "SECS"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1710
+msgid "chart update interval"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1712
+msgid "chart LP filter TC"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1714
+msgid "slider update interval"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1716
+msgid "slider LP filter TC"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1718
+msgid "add menubar"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1720
+msgid "omit slider"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1722
+msgid "TYPE"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1722
+msgid "gtk|text|graph|none"
+msgstr ""
+
+#: gtt/app.c:110 gtt/app.c:210
 msgid "no project selected"
 msgstr "nessun progetto selezionato"
 
-#: gtt/app.c:198
+#: gtt/app.c:199
 msgid "00:00"
 msgstr "00:00"
+
+#: gtt/app.c:239 mini-utils/gless/gless.c:383
+msgid ""
+"Couldn't understand geometry (position and size)\n"
+" specified on command line"
+msgstr ""
 
 #: gtt/clist.c:169
 msgid "Total"
@@ -289,24 +678,19 @@ msgstr ""
 "E' stato rilevato un errore durante la lettura del file di configurazione.\n"
 "Devo installare una nuova configurazione?"
 
-#: gtt/main.c:215 gtt/main.c:231 gtt/main.c:242 gtt/main.c:248
-#, c-format
-msgid "error in geometry string \"%s\"\n"
-msgstr "errore nella strina di geometria \"%s\"\n"
-
-#: gtt/main.c:267
+#: gtt/main.c:204
 msgid "Specify geometry"
 msgstr ""
 
-#: gtt/main.c:267 mini-utils/gless/gless.c:115
+#: gtt/main.c:204 mini-utils/gless/gless.c:115
 msgid "GEOMETRY"
 msgstr ""
 
-#: gtt/main.c:269
+#: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr ""
 
-#: gtt/main.c:269
+#: gtt/main.c:206
 msgid "PROJECT"
 msgstr ""
 
@@ -379,10 +763,6 @@ msgstr "<Main>/Cronometro/Cronometro attivo"
 #, fuzzy
 msgid "_Timer"
 msgstr "Cronometro"
-
-#: gtt/options.c:184
-msgid "Display"
-msgstr "Visualizzazione"
 
 #: gtt/options.c:192
 msgid "Show Seconds"
@@ -745,12 +1125,6 @@ msgstr ""
 msgid "Text File Viewer"
 msgstr ""
 
-#: mini-utils/gless/gless.c:383
-msgid ""
-"Couldn't understand geometry (position and size)\n"
-" specified on command line"
-msgstr ""
-
 #: mini-utils/gless/gless.c:424
 msgid "Loading..."
 msgstr ""
@@ -869,10 +1243,6 @@ msgstr ""
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:149
-msgid "Close"
-msgstr "Chiudi"
-
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:183
 msgid "Shutdown or Reboot"
@@ -880,10 +1250,6 @@ msgstr ""
 
 #: mini-utils/gshutdown/gshutdown.c:200 mini-utils/gshutdown/gshutdown.c:201
 msgid "Easy"
-msgstr ""
-
-#: mini-utils/gshutdown/gshutdown.c:205 mini-utils/gshutdown/gshutdown.c:206
-msgid "Advanced"
 msgstr ""
 
 #: mini-utils/gshutdown/gshutdown.c:238
@@ -912,6 +1278,106 @@ msgstr ""
 
 #: mini-utils/gshutdown/gshutdown.c:454
 msgid "Don't ask next time."
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:210
+msgid "virtual memory exhausted"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:394
+#, c-format
+msgid "Cannot set groups: %s"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:398
+#, c-format
+msgid "Cannot set group id: %s"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:400
+#, c-format
+msgid "Cannot set user id: %s"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:444
+#, c-format
+msgid "cannot run %s"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:472
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:476
+#, c-format
+msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:477
+msgid ""
+"Change the effective user id and group id to that of USER.\n"
+"\n"
+"  -, -l, --login               make the shell a login shell\n"
+"  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
+"  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
+"  -m, --preserve-environment   do not reset environment variables\n"
+"  -p                           same as -m\n"
+"  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
+"      --help                   display this help and exit\n"
+"      --version                output version information and exit\n"
+"\n"
+"A mere - implies -l.   If USER not given, assume root.\n"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:491
+msgid ""
+"\n"
+"Report bugs to sh-utils-bugs@gnu.ai.mit.edu"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:577
+#, c-format
+msgid "user %s does not exist"
+msgstr ""
+
+#. wait for dialog to die, then quit
+#: mini-utils/gsu/gsu.c:602
+msgid "incorrect password"
+msgstr ""
+
+#. The user being su'd to has a nonstandard shell, and so is
+#. probably a uucp account or has restricted access.  Don't
+#. compromise the account by allowing access with a standard
+#. shell.
+#: mini-utils/gsu/gsu.c:621
+#, c-format
+msgid "using restricted shell %s"
+msgstr ""
+
+#. error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir);
+#: mini-utils/gsu/gsu.c:634
+#, c-format
+msgid "Cannot change directory to %s"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:666
+msgid "Root password request"
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:676
+msgid ""
+"You are trying to do something which requires\n"
+"root (system administrator) privileges.\n"
+"To do this, you must give the root password.\n"
+"Please enter the root password now, or choose\n"
+"Cancel if you do not know it."
+msgstr ""
+
+#: mini-utils/gsu/gsu.c:683
+msgid ""
+"You are trying to change your user identity.\n"
+"Please enter the password for user `"
 msgstr ""
 
 #: mini-utils/guname/guname.c:327
@@ -1275,10 +1741,6 @@ msgstr ""
 msgid "Keep settings"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
-msgid "Default"
-msgstr ""
-
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr ""
@@ -1361,17 +1823,8 @@ msgstr ""
 msgid "You appear to have no IDE drives"
 msgstr ""
 
-#, fuzzy
-#~ msgid "ERROR"
-#~ msgstr "ERRORE: "
-
-#, fuzzy
-#~ msgid "Replace"
-#~ msgstr "Ricarica"
-
-#, fuzzy
-#~ msgid "E_xit"
-#~ msgstr "Esci"
+#~ msgid "error in geometry string \"%s\"\n"
+#~ msgstr "errore nella strina di geometria \"%s\"\n"
 
 #, fuzzy
 #~ msgid "_About..."
@@ -1384,18 +1837,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "_Calculator"
 #~ msgstr "Calcolatrice/Esci"
-
-#, fuzzy
-#~ msgid "_Edit"
-#~ msgstr "Esci"
-
-#, fuzzy
-#~ msgid "_Help"
-#~ msgstr "Aiuto"
-
-#, fuzzy
-#~ msgid "_File"
-#~ msgstr "Archivio"
 
 #, fuzzy
 #~ msgid "_Save"
@@ -1434,10 +1875,6 @@ msgstr ""
 #~ msgstr "Vista"
 
 #, fuzzy
-#~ msgid "File_s"
-#~ msgstr "Archivio"
-
-#, fuzzy
 #~ msgid "_Preferences..."
 #~ msgstr "Preferenze"
 
@@ -1457,21 +1894,8 @@ msgstr ""
 #~ msgid "Clear Daily Counter"
 #~ msgstr "<Popup>/Azzera contatore giornaliero"
 
-#, fuzzy
-#~ msgid "_About"
-#~ msgstr "Informazioni"
-
-#~ msgid "Exit"
-#~ msgstr "Esci"
-
 #~ msgid "About..."
 #~ msgstr "Informazioni..."
-
-#~ msgid "File"
-#~ msgstr "Archivio"
-
-#~ msgid "Help"
-#~ msgstr "Aiuto"
 
 #, fuzzy
 #~ msgid "File_s/"
@@ -1484,10 +1908,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Pr_operties..."
 #~ msgstr "Proprietà"
-
-#, fuzzy
-#~ msgid "Preferences..."
-#~ msgstr "Preferenze"
 
 #~ msgid "View"
 #~ msgstr "Vista"
