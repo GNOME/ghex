@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.5\n"
-"POT-Creation-Date: 1999-09-01 15:44+0200\n"
+"POT-Creation-Date: 1999-09-08 10:50+0200\n"
 "PO-Revision-Date: 1998-02-28 19:57+0100\n"
 "Last-Translator: Vincent Renardias <vincent@ldsol.com>\n"
 "Language-Team: Vincent Renardias <vincent@ldsol.com>\n"
@@ -59,7 +59,7 @@ msgid "Get cursor value"
 msgstr "Prendre la valeur sous le curseur"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:595
+#: mini-utils/gshutdown/gshutdown.c:596
 msgid "Close"
 msgstr "Fermer"
 
@@ -190,12 +190,12 @@ msgid "Group data by 32 bits"
 msgstr "Grouper les données par 32 bits"
 
 #: ghex/hex-document.c:78
-msgid "Jump to a certain position"
-msgstr "Aller à la position..."
-
-#: ghex/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr "Aller à l'_octet..."
+
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "Aller à la position..."
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -532,12 +532,12 @@ msgstr "Impossible d'ouvrir le fichier de configuration \"%s\""
 #, c-format
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-msgstr ""
+msgstr "Impossible d'ouvrir le fichier de configuration \"./gstripchart.conf\", \"%s\", \"%s\" ou \"%s\""
 
 #: gstripchart/gstripchart.c:739
-#, fuzzy, c-format
+#, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr "Impossible d'ouvrir le fichier de configuration \"%s\""
+msgstr "Impossible d'ouvrir le fichier de configuration \"./gstripchart.conf\", \"%s\" ou \"%s\""
 
 #: gstripchart/gstripchart.c:796
 #, c-format
@@ -583,12 +583,12 @@ msgstr ""
 "utilisateur intéressé pourra lui trouver d'autres usages plus ingénieux."
 
 #: gstripchart/gstripchart.c:1440
-msgid "Info about the striphart program"
-msgstr "Informations sur le programme gStripchart"
-
-#: gstripchart/gstripchart.c:1440
 msgid "_About"
 msgstr "_A propos"
+
+#: gstripchart/gstripchart.c:1440
+msgid "Info about the striphart program"
+msgstr "Informations sur le programme gStripchart"
 
 #: gstripchart/gstripchart.c:1451
 msgid "_File"
@@ -648,13 +648,12 @@ msgid "Gnome Stripchart Parameters"
 msgstr "Paramètres de GNOME Stripchart"
 
 #: gstripchart/gstripchart.c:1629
-#, fuzzy
 msgid "Current"
-msgstr "Valeur courante"
+msgstr "Actuel"
 
 #: gstripchart/gstripchart.c:1629
 msgid "Top"
-msgstr ""
+msgstr "Haut"
 
 #: gstripchart/gstripchart.c:1657
 msgid "Help"
@@ -672,10 +671,6 @@ msgstr "Paramètres"
 msgid "Exit"
 msgstr "Quitter"
 
-#: gstripchart/gstripchart.c:1777
-msgid "Gnome stripchart viewer"
-msgstr "Moniteur GNOME stripchart"
-
 #. Create a top-level window. Set the title, minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
@@ -683,21 +678,24 @@ msgstr "Moniteur GNOME stripchart"
 msgid "gstripchart"
 msgstr "gStripchart"
 
+#: gstripchart/gstripchart.c:1777
+msgid "Gnome stripchart viewer"
+msgstr "Moniteur GNOME stripchart"
+
 #: gstripchart/gstripchart.c:1856
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "Type d'affichage non valide : %s\n"
 
 #: gstripchart/gstripchart.c:1883
+msgid "Geometry string: WxH+X+Y"
+msgstr "Chaîne de géométrie : LxH+X+Y"
+
+#: gstripchart/gstripchart.c:1883
 msgid "GEO"
 msgstr "GEO"
 
-#: gstripchart/gstripchart.c:1883
-msgid "Geometry string: WxH+X+Y"
-msgstr ""
-
 #: gstripchart/gstripchart.c:1885
-#, fuzzy
 msgid "Configuration file name"
 msgstr "fichier de configuration"
 
@@ -706,7 +704,6 @@ msgid "FILE"
 msgstr "FICHIER"
 
 #: gstripchart/gstripchart.c:1887
-#, fuzzy
 msgid "Chart update interval"
 msgstr "Intervalle entre les mises à jour du graphe"
 
@@ -716,21 +713,22 @@ msgid "SECS"
 msgstr "SECS"
 
 #: gstripchart/gstripchart.c:1889
+#, fuzzy
 msgid "Chart low-pass filter time constant"
 msgstr ""
 
 #: gstripchart/gstripchart.c:1891
-#, fuzzy
 msgid "Slider update interval"
 msgstr "Intervalle entre les mises à jour de l'ascenseur"
 
 #: gstripchart/gstripchart.c:1893
+#, fuzzy
 msgid "Slider low-pass filter time constant"
 msgstr ""
 
 #: gstripchart/gstripchart.c:1895
 msgid "Adds a menubar to the main window"
-msgstr ""
+msgstr "Ajouter une barre de menu à la fenêtre principale"
 
 #: gstripchart/gstripchart.c:1897
 #, fuzzy
@@ -738,12 +736,13 @@ msgid "Omits slider window"
 msgstr "Omettre l'ascenseur"
 
 #: gstripchart/gstripchart.c:1899
-msgid "TYPE"
-msgstr "TYPE"
+#, fuzzy
+msgid "TYPE is one of gtk, text, graph, or none"
+msgstr "Le TYPE est soit 'gtk' ou 'text' ou 'graph' ou 'aucun'"
 
 #: gstripchart/gstripchart.c:1899
-msgid "TYPE is one of gtk, text, graph, or none"
-msgstr ""
+msgid "TYPE"
+msgstr "TYPE"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -809,21 +808,21 @@ msgstr ""
 "Une erreur est survenue durant la lecture du fichier de configuration.\n"
 "Dois-je installer une nouvelle configuration ?"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "GEOMETRIE"
-
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "Spécifie la géométrie"
 
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "PROJET"
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
+msgid "GEOMETRY"
+msgstr "GÉOMÉTRIE"
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "Choisir un projet au lancement de l'application"
+
+#: gtt/main.c:206
+msgid "PROJECT"
+msgstr "PROJET"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1191,12 +1190,12 @@ msgid "Selection:"
 msgstr "Sélection :"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "FONTSPEC"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
 msgstr "Police à charger"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr "FONTSPEC"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1350,12 +1349,12 @@ msgid "Run Program"
 msgstr "Exécuter un programme"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Annuler"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "Exécuter"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Cancel"
+msgstr "Annuler"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1417,7 +1416,7 @@ msgstr "Etes-vous sûr de vouloir passer en runlevel 5 ?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Etes-vous sûr de vouloir redémarrer l'ordinateur ?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:592
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:593
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Vous devez être le super-utilisateur (root) pour éteindre ou redémarrer "
@@ -1475,7 +1474,7 @@ msgstr ""
 msgid "Don't ask next time."
 msgstr "Ne pas poser la question la prochaine fois."
 
-#: mini-utils/gshutdown/gshutdown.c:685
+#: mini-utils/gshutdown/gshutdown.c:691
 msgid "Command execution failed: fork failed"
 msgstr "Échec de l'exécution de la commande: échec de fork"
 
@@ -1689,12 +1688,12 @@ msgid "No information for this filesystem."
 msgstr "Aucune information sur ce système de fichier."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "Kilo-octets"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "Mémoire"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Kilobytes"
+msgstr "Kilo-octets"
 
 #: mini-utils/guname/moreinfo.c:214
 #, c-format
@@ -1745,12 +1744,12 @@ msgstr ""
 "Cette commande est nécessaire pour que l'application puisse fonctionner."
 
 #: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "Enregistrer l'information sur le disque"
-
-#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "Enregi_strer..."
+
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "Enregistrer l'information sur le disque"
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1850,13 +1849,13 @@ msgstr "Le paramétrage DMA de ce disque ne peut être changé."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Désactivé"
+msgid "Enabled"
+msgstr "Activé"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Activé"
+msgid "Disabled"
+msgstr "Désactivé"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
@@ -1970,47 +1969,3 @@ msgstr "Seul le super-utilisateur (root) peut utiliser cet outil"
 msgid "You appear to have no IDE drives"
 msgstr "Il semble que vous n'ayez pas de disque IDE"
 
-#~ msgid "blue"
-#~ msgstr "bleu"
-
-#~ msgid "green"
-#~ msgstr "vert"
-
-#~ msgid "red"
-#~ msgstr "rouge"
-
-#~ msgid "white"
-#~ msgstr "blanc"
-
-#~ msgid "yellow"
-#~ msgstr "jaune"
-
-#~ msgid "Busy"
-#~ msgstr "Occupé"
-
-#~ msgid "Load"
-#~ msgstr "Charge"
-
-#~ msgid "PPP In"
-#~ msgstr "PPP entrant"
-
-#~ msgid "PPP Out"
-#~ msgstr "PPP sortant"
-
-#~ msgid "Swap"
-#~ msgstr "Swap"
-
-#~ msgid "geometry"
-#~ msgstr "géométrie"
-
-#~ msgid "chart LP filter TC"
-#~ msgstr "graphe LP filtre TC"
-
-#~ msgid "slider LP filter TC"
-#~ msgstr "ascenseur LP filtre TC"
-
-#~ msgid "add menubar"
-#~ msgstr "Ajouter une barre de menu"
-
-#~ msgid "gtk|text|graph|none"
-#~ msgstr "gtk|texte|graphe|aucun"
