@@ -6,48 +6,46 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 1.2\n"
-"POT-Creation-Date: 2001-03-19 15:00+0100\n"
-"PO-Revision-Date: 2001-03-19 14:44+0100\n"
+"Project-Id-Version: ghex 1.3.0\n"
+"POT-Creation-Date: 2001-05-30 17:22+0200\n"
+"PO-Revision-Date: 2001-05-30 17:21+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@eikonex.org>\n"
 "Language-Team: GNOME French Team <gnomefr@gnomefr.traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/converter.c:44
+#: src/converter.c:176
 msgid "GHex: Converter"
 msgstr "GHex : convertisseur"
 
-#: src/chartable.c:91 src/converter.c:53
-msgid "Binary"
-msgstr "Binaire"
+#. entries
+#: src/converter.c:195
+msgid "_Binary"
+msgstr "_Binaire"
 
-#: src/chartable.c:91 src/converter.c:63
-msgid "Octal"
-msgstr "Octal"
+#: src/converter.c:197
+msgid "_Octal"
+msgstr "_Octal"
 
-#: src/chartable.c:90 src/converter.c:73 src/preferences.c:161
-msgid "Decimal"
-msgstr "Décimal"
+#: src/converter.c:199
+msgid "_Decimal"
+msgstr "_Décimal"
 
-#: src/chartable.c:90 src/converter.c:83
-msgid "Hex"
-msgstr "Héxa"
+#: src/converter.c:201
+msgid "_Hex"
+msgstr "_Héxa"
 
-#: src/chartable.c:90 src/converter.c:93
-msgid "ASCII"
-msgstr "ASCII"
+#: src/converter.c:203
+msgid "_ASCII"
+msgstr "_ASCII"
 
-#: src/converter.c:103
-msgid "Get cursor value"
-msgstr "Prendre la valeur sous le curseur"
+#. get cursor button
+#: src/converter.c:207
+msgid "_Get cursor value"
+msgstr "_Prendre la valeur sous le curseur"
 
-#: src/converter.c:109
-msgid "Close"
-msgstr "Fermer"
-
-#: src/converter.c:213
+#: src/converter.c:323
 msgid "ERROR"
 msgstr "ERREUR"
 
@@ -255,89 +253,93 @@ msgstr "Modal"
 msgid "Select font"
 msgstr "Sélectionnez une police"
 
-#: src/preferences.c:132
+#: src/preferences.c:136
 msgid "Maximum number of undo levels"
 msgstr "Nombre maximum de niveaux d'annulation"
 
-#: src/preferences.c:147
+#: src/preferences.c:151
 msgid "Show cursor offset in statusbar as"
 msgstr "Afficher la position du curseur dans la barre d'état comme"
 
-#: src/preferences.c:166
+#: src/chartable.c:90 src/preferences.c:165
+msgid "Decimal"
+msgstr "Décimal"
+
+#: src/preferences.c:170
 msgid "Hexadecimal"
 msgstr "Héxadécimal"
 
-#: src/preferences.c:172
+#: src/preferences.c:176
 msgid "Custom"
 msgstr "Personnalisé"
 
 #. show offsets check button
-#: src/preferences.c:183
+#: src/preferences.c:187
 msgid "Show offsets column"
 msgstr "Afficher la colonne de décalage"
 
-#: src/preferences.c:188
+#: src/preferences.c:192
 msgid "Editing"
 msgstr "Édition"
 
 #. display font
-#: src/preferences.c:197
+#: src/preferences.c:201
 msgid "Font"
 msgstr "Police"
 
-#: src/preferences.c:213
+#: src/preferences.c:217
 msgid "Browse..."
 msgstr "Parcourir..."
 
 #. default group type
-#: src/preferences.c:233
+#: src/preferences.c:237
 msgid "Default Group Type"
 msgstr "Type de groupement par défaut"
 
-#: src/preferences.c:249
+#: src/preferences.c:253
 msgid "Display"
 msgstr "Affichage"
 
 #. mdi modes
-#: src/preferences.c:258
+#: src/preferences.c:262
 msgid "MDI Mode"
 msgstr "Mode MDI"
 
-#: src/preferences.c:275
+#: src/preferences.c:279
 msgid "MDI"
 msgstr "MDI"
 
 #. paper selection
-#: src/preferences.c:284
+#: src/preferences.c:288
 msgid "Paper size"
 msgstr "Taille du papier"
 
 #. data & header font selection
-#: src/preferences.c:298
+#: src/preferences.c:302
 msgid "Fonts"
 msgstr "Polices"
 
-#: src/preferences.c:304
+#: src/preferences.c:308
 msgid "Data font"
 msgstr "Police des données"
 
-#: src/preferences.c:319
+#: src/preferences.c:323
 msgid "Header font"
 msgstr "Police d'en-tête"
 
-#: src/preferences.c:345
+#: src/preferences.c:349
 msgid "Print shaded box over"
 msgstr "Imprimer une boîte ombrée par-dessus"
 
-#: src/preferences.c:354
+#: src/preferences.c:358
 msgid "lines (0 for no box)"
 msgstr "lignes (0 pour aucune boîte)"
 
-#: src/preferences.c:361
+#: src/preferences.c:365
 msgid "Printing"
 msgstr "Impression"
 
-#: src/preferences.c:536
+#: src/preferences.c:540
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -346,131 +348,167 @@ msgstr ""
 "invalide.\n"
 "Seul « x », « X », « p », « P », « d » et « o » sont autorisés."
 
-#: src/preferences.c:573
+#: src/preferences.c:577
 msgid "Can not open desired font!"
 msgstr "Ne peut ouvrir la police spécifiée !"
 
-#: src/ui.c:57
-msgid "Export to HTML..."
-msgstr "Exporter en HTML..."
+#: src/ui.c:61
+msgid "Export to _HTML..."
+msgstr "Exporter en _HTML..."
 
-#: src/ui.c:57
+#: src/ui.c:61
 msgid "Export data to HTML source"
 msgstr "Exporte les données en code source HTML"
 
-#: src/ui.c:61
-msgid "Print preview..."
-msgstr "Aperçu avant impression..."
+#: src/ui.c:65
+msgid "Print pre_view..."
+msgstr "Aperçu avant _impression..."
 
-#: src/ui.c:61
+#: src/ui.c:65
 msgid "Preview printed data"
 msgstr "Aperçu des données imprimées"
 
-#: src/ui.c:74
+#: src/ui.c:78
 msgid "Con_verter..."
 msgstr "Con_vertir..."
 
-#: src/ui.c:75
+#: src/ui.c:79
 msgid "Open base conversion dialog"
 msgstr "Fait des changements de base numérique"
 
-#: src/ui.c:76
-msgid "Character Table..."
-msgstr "Table de caractères..."
+#: src/ui.c:80
+msgid "Character _Table..."
+msgstr "_Table de caractères..."
 
-#: src/ui.c:77
+#: src/ui.c:81
 msgid "Show the character table"
 msgstr "Affiche la table de caractères"
 
-#: src/ui.c:94
-msgid "Tools"
-msgstr "Outils"
+#: src/ui.c:98
+msgid "_Tools"
+msgstr "_Outils"
 
-#: src/ui.c:108
+#: src/ui.c:112
 msgid "Bytes"
 msgstr "Octets"
 
-#: src/ui.c:109
+#: src/ui.c:113
 msgid "Words"
 msgstr "Mots"
 
-#: src/ui.c:110
+#: src/ui.c:114
 msgid "Longwords"
 msgstr "Mots longs"
 
-#: src/ui.c:115
+#: src/ui.c:119
 msgid "hex data"
 msgstr "données héxa"
 
-#: src/ui.c:116
+#: src/ui.c:120
 msgid "ASCII data"
 msgstr "données ASCII"
 
-#: src/ui.c:200
+#: src/ui.c:204
 msgid "GHex, a binary file editor"
 msgstr "GHex, un éditeur de fichiers binaires"
 
-#: src/ui.c:202
+#: src/ui.c:206
 msgid "Released under the terms of GNU Public License"
 msgstr "Distribué sous les termes de la Licence Publique Générale GNU"
 
-#: src/ui.c:226 src/ui.c:550
+#: src/ui.c:230 src/ui.c:506
 msgid "Error saving file!"
 msgstr "Erreur lors de la sauvegarde du fichier !"
 
-#: src/ui.c:230 src/ui.c:545
+#: src/ui.c:234 src/ui.c:501
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Enregistrer le tampon dans le fichier %s"
 
-#: src/ui.c:251
+#: src/ui.c:255
 msgid "Select a file to open"
 msgstr "Sélectionnez un fichier à ouvrir"
 
-#: src/ui.c:286
+#: src/ui.c:290
 msgid "Select a file to save buffer as"
 msgstr "Sélectionnez un fichier où enregistrer le tampon"
 
-#: src/ui.c:375
+#: src/ui.c:331
 msgid "Select path and file name for the HTML source"
 msgstr "Sélectionnez le chemin et un nom de fichier pour la source HTML"
 
-#: src/ui.c:476
+#: src/ui.c:432
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Vraiment revenir à la version enregistrée du fichier %s ?"
 
-#: src/ui.c:490
+#: src/ui.c:446
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Revenir à la version enregistrée %s"
 
-#: src/ui.c:506
+#: src/ui.c:462
 #, c-format
 msgid "Loaded file %s"
 msgstr "Fichier %s chargé"
 
-#: src/ui.c:511
+#: src/ui.c:467
 msgid "Can not open file!"
 msgstr "Ne peut ouvrir le fichier !"
 
-#: src/ui.c:554
+#: src/ui.c:510
 msgid "Can't open file for writing!"
 msgstr "Ne peut ouvrir le fichier en écriture !"
+
+#: src/ui.c:579
+msgid "Print Hex Document"
+msgstr "Affiche un document héxa"
+
+#: src/ui.c:584
+msgid "Pages"
+msgstr "Pages"
+
+#: src/ui.c:625
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s) : Aperçu de l'impression"
+
+#: src/chartable.c:90
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:90
+msgid "Hex"
+msgstr "Héxa"
+
+#: src/chartable.c:91
+msgid "Octal"
+msgstr "Octal"
+
+#: src/chartable.c:91
+msgid "Binary"
+msgstr "Binaire"
 
 #: src/chartable.c:98
 msgid "GHex: Character table"
 msgstr "GHex : Table de caractères"
 
-#: src/print.c:171
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s) : Aperçu de l'impression"
-
-#: src/print.c:187
+#: src/print.c:47
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Page : %i/%i"
+
+#: src/print.c:197 src/print.c:211
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"GHex ne peut pas trouver la police « %s ».\n"
+"GHex ne peut pas imprimer si cette police n'est pas installée."
+
+#~ msgid "Close"
+#~ msgstr "Fermer"
 
 #~ msgid "Both strings must be of the same length!"
 #~ msgstr "Les deux chaînes doivent avoir la même longueur !"
