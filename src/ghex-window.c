@@ -21,6 +21,9 @@
 #include "ghex-window.h"
 #include "ghex.h"
 
+#define GHEX_WINDOW_DEFAULT_WIDTH 320
+#define GHEX_WINDOW_DEFAULT_HEIGHT 256
+
 static BonoboWindowClass *parent_class;
 
 static GList *window_list = NULL;
@@ -466,6 +469,10 @@ ghex_window_new(void)
         ghex_window_add_doc_to_list(win, HEX_DOCUMENT(doc_list->data));
         doc_list = doc_list->next;
     }
+
+    gtk_window_set_default_size(GTK_WINDOW(win),
+                                GHEX_WINDOW_DEFAULT_WIDTH,
+                                GHEX_WINDOW_DEFAULT_HEIGHT);
 
 	return GTK_WIDGET(win);
 }
