@@ -31,6 +31,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 static void max_undo_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox);
 static void properties_modified_cb(GtkWidget *w, GnomePropertyBox *pbox);
 static void prop_destroy_cb(GtkWidget *w, PropertyUI *data);
+static void offset_cb(GtkWidget *w, PropertyUI *pui);
 
 PropertyUI prefs_ui = { NULL };
 
@@ -91,26 +92,37 @@ void create_prefs_dialog(PropertyUI *pui) {
 	box = gtk_hbox_new(FALSE, 0);
 	gtk_widget_show(box);
 
-	label = gtk_label_new(_("Show cursor offset in"));
+	label = gtk_label_new(_("Show cursor offset as"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
 	gtk_widget_show(label);
 
+	pui->format = gtk_entry_new();
+	gtk_signal_connect(GTK_OBJECT(pui->format), "activate",
+					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
+	gtk_box_pack_start (GTK_BOX(box), pui->format, TRUE, TRUE, GNOME_PAD);
+	gtk_widget_show(pui->format);
+
 	pui->offset_menu = gtk_option_menu_new();
 	gtk_widget_show(pui->offset_menu);
 	menu = gtk_menu_new();
-	item = gtk_menu_item_new_with_label(_("decimal"));
+	pui->offset_choice[0] = item = gtk_menu_item_new_with_label(_("Decimal"));
 	gtk_signal_connect(GTK_OBJECT(item), "activate",
-					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
+					   GTK_SIGNAL_FUNC(offset_cb), pui);
 	gtk_widget_show(item);
 	gtk_menu_append(GTK_MENU(menu), item);
-	item = gtk_menu_item_new_with_label(_("hexadecimal"));
+	pui->offset_choice[1] = item = gtk_menu_item_new_with_label(_("Hexadecimal"));
 	gtk_widget_show(item);
 	gtk_menu_append(GTK_MENU(menu), item);
 	gtk_option_menu_set_menu(GTK_OPTION_MENU(pui->offset_menu), menu);
 	gtk_signal_connect(GTK_OBJECT(item), "activate",
-					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
-	pui->offset16 = item;
+					   GTK_SIGNAL_FUNC(offset_cb), pui);
+	pui->offset_choice[2] = item = gtk_menu_item_new_with_label(_("Custom"));
+	gtk_widget_show(item);
+	gtk_menu_append(GTK_MENU(menu), item);
+	gtk_option_menu_set_menu(GTK_OPTION_MENU(pui->offset_menu), menu);
+	gtk_signal_connect(GTK_OBJECT(item), "activate",
+					   GTK_SIGNAL_FUNC(offset_cb), pui);
 	gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(pui->offset_menu), FALSE, TRUE, GNOME_PAD);
 
 	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 2);
@@ -229,10 +241,16 @@ static void set_prefs(PropertyUI *pui) {
 			break;
 		}
 
-	if(offset_base == OFFSET_BASE_16)
-		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 1);
-	else
+	gtk_widget_set_sensitive(pui->format, FALSE);
+	gtk_entry_set_text(GTK_ENTRY(pui->format), offset_fmt);
+	if(strcmp(offset_fmt, "%d") == 0)
 		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 0);
+	else if(strcmp(offset_fmt, "%x") == 0)
+		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 1);
+	else {
+		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 2);
+		gtk_widget_set_sensitive(pui->format, TRUE);
+	}
 }
 
 /*
@@ -285,10 +303,10 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 		}
 	}
 
-	if(pui->offset16 == gtk_menu_get_active(GTK_MENU(gtk_option_menu_get_menu(GTK_OPTION_MENU(pui->offset_menu)))))
-		offset_base = OFFSET_BASE_16;
-	else
-		offset_base = OFFSET_BASE_10;
+	if(offset_fmt)
+		g_free(offset_fmt);
+
+	offset_fmt = g_strdup(gtk_entry_get_text(GTK_ENTRY(pui->format)));
 
 	if(strcmp(gnome_font_picker_get_font_name(GNOME_FONT_PICKER
 											  (pui->font_button)), def_font_name) != 0) {
@@ -333,4 +351,28 @@ static void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {
 		gnome_font_picker_set_font_name (GNOME_FONT_PICKER(peer), font_desc);
 		gnome_property_box_changed(pbox);
 	}
+}
+
+static void offset_cb(GtkWidget *w, PropertyUI *pui) {
+	int i;
+
+	for(i = 0; i < 3; i++)
+		if(w == pui->offset_choice[i])
+			break;
+
+	switch(i) {
+	case 0:
+		gtk_entry_set_text(GTK_ENTRY(pui->format), "%d");
+		gtk_widget_set_sensitive(pui->format, FALSE);
+		break;
+	case 1:
+		gtk_entry_set_text(GTK_ENTRY(pui->format), "%x");
+		gtk_widget_set_sensitive(pui->format, FALSE);
+		break;
+	case 2:
+		gtk_widget_set_sensitive(pui->format, TRUE);
+		break;
+	}
+
+	properties_modified_cb(w, pui->pbox);	
 }

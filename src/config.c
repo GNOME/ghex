@@ -27,7 +27,7 @@
 
 gint def_group_type = GROUP_BYTE;
 guint max_undo_depth;
-guint offset_base;
+gchar *offset_fmt = NULL;
 
 void save_configuration() {
 	if(def_font)
@@ -41,7 +41,7 @@ void save_configuration() {
 	
 	gnome_config_set_int("/ghex/Editing/MaxUndoDepth", max_undo_depth);
 
-	gnome_config_set_int("/ghex/Editing/OffsetBase", offset_base);
+	gnome_config_set_string("/ghex/Editing/OffsetFormat", offset_fmt);
 
 	gnome_config_sync();
 }
@@ -66,7 +66,10 @@ void load_configuration() {
 
 	max_undo_depth = gnome_config_get_int("/ghex/Editing/MaxUndoDepth=100");
 
-	offset_base = gnome_config_get_int("/ghex/Editing/OffsetBase=10");
+	if(offset_fmt)
+		g_free(offset_fmt);
+
+	offset_fmt = gnome_config_get_string("/ghex/Editing/OffsetFormat=%x");
 
 	mdi_mode = gnome_config_get_int("/ghex/MDI/Mode=2");
 }

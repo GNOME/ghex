@@ -167,15 +167,16 @@ void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
 }
 
 static void cursor_moved_cb(GtkHex *gtkhex) {
-	static gchar cursor_pos[64];
+	static gchar *cursor_pos, *format;
 
-	if(offset_base == OFFSET_BASE_16)
-		sprintf(cursor_pos, _("Offset: %x"), gtk_hex_get_cursor(gtkhex));
-	else
-		sprintf(cursor_pos, _("Offset: %d"), gtk_hex_get_cursor(gtkhex));
-
-	gnome_appbar_set_status(GNOME_APPBAR(gnome_mdi_get_app_from_view(GTK_WIDGET(gtkhex))->statusbar),
-							cursor_pos);
+	if(format = g_strconcat(_("Offset: "), offset_fmt, NULL)) {
+		if(cursor_pos = g_strdup_printf(format, gtk_hex_get_cursor(gtkhex))) {
+			gnome_appbar_set_status(GNOME_APPBAR(gnome_mdi_get_app_from_view(GTK_WIDGET(gtkhex))->statusbar),
+									cursor_pos);
+			g_free(cursor_pos);
+		}
+		g_free(format);
+	}
 }
 
 int main(int argc, char **argv) {
