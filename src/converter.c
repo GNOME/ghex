@@ -35,7 +35,7 @@ static void set_values(Converter *conv, gulong val);
 Converter *converter = NULL;
 
 static gboolean
-is_char_ok(char c, gint base)
+is_char_ok(signed char c, gint base)
 {
 	/* ASCII which is base 0 is always ok */
 	if(base == 0)
