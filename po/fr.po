@@ -2,141 +2,143 @@
 # Copyright (C) 1998-2001 Free Software Foundation, Inc.
 # Vincent Renardias <vincent@ldsol.com>, 1998-2000.
 # Thibaut Cousin <cousin@clermont.in2p3.fr>, 1999.
-# Christophe Merlet (RedFox) <redfox@eikonex.org>, 2000-2001.
+# maintainer: Christophe Merlet (RedFox) <redfox@eikonex.org>, 2000-2001.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 1.1.4\n"
-"POT-Creation-Date: 2001-03-08 19:39+0100\n"
-"PO-Revision-Date: 2001-02-13 11:27+0100\n"
+"Project-Id-Version: ghex 1.2.1\n"
+"POT-Creation-Date: 2001-10-23 19:43+0200\n"
+"PO-Revision-Date: 2001-10-23 19:40+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@eikonex.org>\n"
-"Language-Team: GNOME French Team <gnomefr@gnomefr.traduc.org>\n"
+"Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/converter.c:44
+#: src/converter.c:176
 msgid "GHex: Converter"
 msgstr "GHex : convertisseur"
 
-#: src/chartable.c:91 src/converter.c:53
-msgid "Binary"
-msgstr "Binaire"
+#. entries
+#: src/converter.c:195
+msgid "_Binary"
+msgstr "_Binaire"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:161
-msgid "Decimal"
-msgstr "Décimal"
+#: src/converter.c:197
+msgid "_Octal"
+msgstr "_Octal"
 
-#: src/chartable.c:90 src/converter.c:73
-msgid "Hex"
-msgstr "Hexa"
+#: src/converter.c:199
+msgid "_Decimal"
+msgstr "_Décimal"
 
-#: src/chartable.c:90 src/converter.c:83
-msgid "ASCII"
-msgstr "ASCII"
+#: src/converter.c:201
+msgid "_Hex"
+msgstr "_Héxa"
 
-#: src/converter.c:93
-msgid "Get cursor value"
-msgstr "Prendre la valeur sous le curseur"
+#: src/converter.c:203
+msgid "_ASCII"
+msgstr "_ASCII"
 
-#: src/converter.c:99
-msgid "Close"
-msgstr "Fermer"
+#. get cursor button
+#: src/converter.c:207
+msgid "_Get cursor value"
+msgstr "_Prendre la valeur sous le curseur"
 
-#: src/converter.c:194
+#: src/converter.c:323
 msgid "ERROR"
 msgstr "ERREUR"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:60 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): rechercher des données"
+msgstr "GHex (%s) : rechercher des données"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:69
 #, c-format
 msgid "Search for %s"
 msgstr "Rechercher %s"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:86
 msgid "Find Next"
 msgstr "Rechercher le suivant"
 
-#: src/findreplace.c:91
+#: src/findreplace.c:94
 msgid "Find Previous"
 msgstr "Rechercher le précédent"
 
-#: src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:130 src/main.c:100
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): rechercher & remplacer des données"
 
-#: src/findreplace.c:141
+#: src/findreplace.c:144
 #, c-format
 msgid "Replace %s"
 msgstr "Remplacer %s"
 
-#: src/findreplace.c:157
+#: src/findreplace.c:161
 msgid "Find next"
 msgstr "Rechercher le suivant"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:169
 msgid "Replace"
 msgstr "Remplacer"
 
-#: src/findreplace.c:173
+#: src/findreplace.c:177
 msgid "Replace All"
 msgstr "Remplacer tout"
 
-#: src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:210 src/main.c:102
 #, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): aller à l'octet"
+msgstr "GHex (%s) : aller à l'octet"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:299 src/findreplace.c:324 src/findreplace.c:376
 msgid "There is no active buffer to search!"
 msgstr "Il n'y a pas de tampon actif dans lequel chercher !"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:307 src/findreplace.c:332 src/findreplace.c:384
 msgid "There seems to be no string to search for!"
 msgstr "Il semble qu'il n'y ait pas de chaîne à rechercher !"
 
-#: src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:314 src/findreplace.c:392
 msgid "End Of File reached"
 msgstr "Fin du fichier atteinte"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:340
 msgid "Beginning Of File reached"
 msgstr "Début du fichier atteint"
 
-#: src/findreplace.c:345
+#: src/findreplace.c:349
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Il n'y a pas de tampon actif pour y déplacer le curseur !"
 
-#: src/findreplace.c:350
+#: src/findreplace.c:354
 msgid "No offset has been specified!"
 msgstr "Le déplacement n'a pas été spécifié !"
 
-#: src/findreplace.c:357
+#: src/findreplace.c:361
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Impossible de positionner le curseur après la fin du fichier !"
 
-#: src/findreplace.c:362
+#: src/findreplace.c:366
 msgid "The offset must be a positive integer value!"
 msgstr "Le déplacement doit être une valeur positive et entière !"
 
-#: src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:403 src/findreplace.c:440
 msgid "There is no active buffer to replace data in!"
 msgstr "Il n'y a pas de tampon actif dans lequel remplacer des données !"
 
-#: src/findreplace.c:410 src/findreplace.c:447
+#: src/findreplace.c:414 src/findreplace.c:451
 msgid "Strange find or replace string!"
 msgstr "Chaîne recherchée bizarre !"
 
-#: src/findreplace.c:425
+#: src/findreplace.c:429
 msgid "End Of File reached!"
 msgstr "Fin du fichier atteinte !"
 
-#: src/findreplace.c:463
+#: src/findreplace.c:467
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d occurences remplacées."
@@ -147,7 +149,7 @@ msgstr "Page"
 
 #: src/hex-document.c:713 src/hex-document.c:814
 msgid "Hex dump generated by"
-msgstr "Sortie Hexa générée par"
+msgstr "Sortie Héxa générée par"
 
 #: src/hex-document.c:737
 msgid "Previous page"
@@ -163,7 +165,7 @@ msgstr "_Octets"
 
 #: src/hex-document-ui.c:51
 msgid "Group data by 8 bits"
-msgstr "Grouper les données par 8 bits"
+msgstr "Groupe les données par 8 bits"
 
 #: src/hex-document-ui.c:52
 msgid "_Words"
@@ -171,7 +173,7 @@ msgstr "_Mots"
 
 #: src/hex-document-ui.c:53
 msgid "Group data by 16 bits"
-msgstr "Grouper les données par 16 bits"
+msgstr "Groupe les données par 16 bits"
 
 #: src/hex-document-ui.c:54
 msgid "_Longwords"
@@ -179,7 +181,7 @@ msgstr "Mots _longs"
 
 #: src/hex-document-ui.c:55
 msgid "Group data by 32 bits"
-msgstr "Grouper les données par 32 bits"
+msgstr "Groupe les données par 32 bits"
 
 #: src/hex-document-ui.c:74
 msgid "_Goto Byte..."
@@ -187,7 +189,7 @@ msgstr "Aller à l'_octet..."
 
 #: src/hex-document-ui.c:74
 msgid "Jump to a certain position"
-msgstr "Aller à la position..."
+msgstr "Va à la position..."
 
 #: src/hex-document-ui.c:78
 msgid "_Insert mode"
@@ -195,7 +197,7 @@ msgstr "Mode d'_insertion"
 
 #: src/hex-document-ui.c:78
 msgid "Insert/overwrite data"
-msgstr "Insérer/Écraser les données"
+msgstr "Insére/Écrase les données"
 
 #: src/hex-document-ui.c:81
 msgid "_Group Data As"
@@ -207,17 +209,17 @@ msgstr "_Ajouter une vue"
 
 #: src/hex-document-ui.c:88
 msgid "Add a new view of the buffer"
-msgstr "Ajouter une vue du tampon"
+msgstr "Ajoute une nouvelle une vue du tampon"
 
 #: src/hex-document-ui.c:89
 msgid "_Remove view"
-msgstr "Enleve_r la vue"
+msgstr "_Supprimer la vue"
 
 #: src/hex-document-ui.c:90
 msgid "Remove the current view of the buffer"
-msgstr "Enlever la vue courante du tampon"
+msgstr "Supprime la vue courante du tampon"
 
-#: src/main.c:51
+#: src/main.c:52
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -226,10 +228,10 @@ msgstr ""
 "Le document %s a été modifié depuis son dernier enregistrement.\n"
 "Voulez-vous enregistrer les changements ?"
 
-#: src/main.c:202
+#: src/main.c:204
 #, c-format
 msgid "Offset: %s"
-msgstr "Offset: %s"
+msgstr "Décalage : %s"
 
 #: src/preferences.c:52
 msgid "Default"
@@ -259,9 +261,13 @@ msgstr "Nombre maximum de niveaux d'annulation"
 msgid "Show cursor offset in statusbar as"
 msgstr "Afficher la position du curseur dans la barre d'état comme"
 
+#: src/chartable.c:90 src/preferences.c:161
+msgid "Decimal"
+msgstr "Décimal"
+
 #: src/preferences.c:166
 msgid "Hexadecimal"
-msgstr "Hexadécimal"
+msgstr "Héxadécimal"
 
 #: src/preferences.c:172
 msgid "Custom"
@@ -270,7 +276,7 @@ msgstr "Personnalisé"
 #. show offsets check button
 #: src/preferences.c:183
 msgid "Show offsets column"
-msgstr "Montrer la colonne de décalage"
+msgstr "Afficher la colonne de décalage"
 
 #: src/preferences.c:188
 msgid "Editing"
@@ -283,7 +289,7 @@ msgstr "Police"
 
 #: src/preferences.c:213
 msgid "Browse..."
-msgstr "Naviguer..."
+msgstr "Parcourir..."
 
 #. default group type
 #: src/preferences.c:233
@@ -333,1424 +339,170 @@ msgstr "lignes (0 pour aucune boîte)"
 msgid "Printing"
 msgstr "Impression"
 
-#: src/preferences.c:534
+#: src/preferences.c:536
 msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
-"La chaîne de format de décalage contient un spécificateur autre que 'x', 'd' "
-"ou 'o' !"
+"La chaîne de format de décalage contient un spécificateur de format "
+"invalide.\n"
+"Seul « x », « X », « p », « P », « d » et « o » sont autorisés."
 
-#: src/preferences.c:570
+#: src/preferences.c:573
 msgid "Can not open desired font!"
 msgstr "Ne peut ouvrir la police spécifiée !"
 
-#: src/ui.c:57
-msgid "Export to HTML..."
-msgstr "Exporter en HTML..."
+#: src/ui.c:61
+msgid "Export to _HTML..."
+msgstr "Exporter en _HTML..."
 
-#: src/ui.c:57
+#: src/ui.c:61
 msgid "Export data to HTML source"
 msgstr "Exporte les données en code source HTML"
 
-#: src/ui.c:61
-msgid "Print preview..."
-msgstr "Aperçu avant impression..."
+#: src/ui.c:65
+msgid "Print pre_view..."
+msgstr "Aperçu avant _impression..."
 
-#: src/ui.c:61
+#: src/ui.c:65
 msgid "Preview printed data"
 msgstr "Aperçu des données imprimées"
 
-#: src/ui.c:74
+#: src/ui.c:78
 msgid "Con_verter..."
 msgstr "Con_vertir..."
 
-#: src/ui.c:75
+#: src/ui.c:79
 msgid "Open base conversion dialog"
 msgstr "Fait des changements de base numérique"
 
-#: src/ui.c:76
-msgid "Character Table..."
-msgstr "Table de caractères..."
+#: src/ui.c:80
+msgid "Character _Table..."
+msgstr "_Table de caractères..."
 
-#: src/ui.c:77
+#: src/ui.c:81
 msgid "Show the character table"
 msgstr "Affiche la table de caractères"
 
-#: src/ui.c:94
-msgid "Tools"
-msgstr "Outils"
+#: src/ui.c:98
+msgid "_Tools"
+msgstr "_Outils"
 
-#: src/ui.c:108
+#: src/ui.c:112
 msgid "Bytes"
 msgstr "Octets"
 
-#: src/ui.c:109
+#: src/ui.c:113
 msgid "Words"
 msgstr "Mots"
 
-#: src/ui.c:110
+#: src/ui.c:114
 msgid "Longwords"
 msgstr "Mots longs"
 
-#: src/ui.c:115
+#: src/ui.c:119
 msgid "hex data"
-msgstr "données hexa"
+msgstr "données héxa"
 
-#: src/ui.c:116
+#: src/ui.c:120
 msgid "ASCII data"
 msgstr "données ASCII"
 
-#: src/ui.c:200
+#: src/ui.c:204
 msgid "GHex, a binary file editor"
 msgstr "GHex, un éditeur de fichiers binaires"
 
-#: src/ui.c:202
+#: src/ui.c:206
 msgid "Released under the terms of GNU Public License"
 msgstr "Distribué sous les termes de la Licence Publique Générale GNU"
 
-#: src/ui.c:226 src/ui.c:548
+#: src/ui.c:230 src/ui.c:506
 msgid "Error saving file!"
 msgstr "Erreur lors de la sauvegarde du fichier !"
 
-#: src/ui.c:230 src/ui.c:543
+#: src/ui.c:234 src/ui.c:501
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Enregistrer le tampon dans le fichier %s"
 
-#: src/ui.c:251
+#: src/ui.c:255
 msgid "Select a file to open"
 msgstr "Sélectionnez un fichier à ouvrir"
 
-#: src/ui.c:286
+#: src/ui.c:290
 msgid "Select a file to save buffer as"
 msgstr "Sélectionnez un fichier où enregistrer le tampon"
 
-#: src/ui.c:375
+#: src/ui.c:331
 msgid "Select path and file name for the HTML source"
 msgstr "Sélectionnez le chemin et un nom de fichier pour la source HTML"
 
-#: src/ui.c:475
+#: src/ui.c:432
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Vraiment revenir à la version enregistrée du fichier %s ?"
 
-#: src/ui.c:488
+#: src/ui.c:446
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Revenir à la version enregistrée %s"
 
-#: src/ui.c:504
+#: src/ui.c:462
 #, c-format
 msgid "Loaded file %s"
 msgstr "Fichier %s chargé"
 
-#: src/ui.c:509
+#: src/ui.c:467
 msgid "Can not open file!"
 msgstr "Ne peut ouvrir le fichier !"
 
-#: src/ui.c:552
+#: src/ui.c:510
 msgid "Can't open file for writing!"
 msgstr "Ne peut ouvrir le fichier en écriture !"
+
+#: src/ui.c:579
+msgid "Print Hex Document"
+msgstr "Affiche un document héxa"
+
+#: src/ui.c:584
+msgid "Pages"
+msgstr "Pages"
+
+#: src/ui.c:625
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s) : Aperçu de l'impression"
+
+#: src/chartable.c:90
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:90
+msgid "Hex"
+msgstr "Héxa"
 
 #: src/chartable.c:91
 msgid "Octal"
 msgstr "Octal"
 
+#: src/chartable.c:91
+msgid "Binary"
+msgstr "Binaire"
+
 #: src/chartable.c:98
 msgid "GHex: Character table"
 msgstr "GHex : Table de caractères"
 
-#: src/print.c:171
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s) : Aperçu de l'impression"
-
-#: src/print.c:187
+#: src/print.c:48
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Page : %i/%i"
 
-#~ msgid "Both strings must be of the same length!"
-#~ msgstr "Les deux chaînes doivent avoir la même longueur !"
-
-#~ msgid "The Gnome Calculator"
-#~ msgstr "La calculatrice GNOME"
-
-#~ msgid "Simple double precision calculator similiar to xcalc"
-#~ msgstr "Calculatrice simple en double-précision similaire a xcalc"
-
-#~ msgid "Gnome Calculator"
-#~ msgstr "Calculatrice GNOME"
-
-#~ msgid ""
-#~ "A quick hack to show the amount of space free on mounted file systems "
-#~ "uitilizing a dial."
-#~ msgstr ""
-#~ "Une bidouille rapide pour afficher l'espace libre sur les systèmes de "
-#~ "fichiers montés en utilisant un cadran."
-
-#~ msgid "File name"
-#~ msgstr "Nom du fichier"
-
-#~ msgid "Don't search subdirectories"
-#~ msgstr "Ne pas chercher dans les sous-répertoires"
-
-#~ msgid "File owner"
-#~ msgstr "Propriétaire"
-
-#~ msgid "File owner group"
-#~ msgstr "Groupe du propriétaire du fichier"
-
-#~ msgid "Last modification time"
-#~ msgstr "Date de dernière modification"
-
-#~ msgid "Don't search mounted filesystems"
-#~ msgstr "Ne pas chercher dans les systèmes de fichiers montés"
-
-#~ msgid "Empty file"
-#~ msgstr "Fichier vide"
-
-#~ msgid "Invalid user or group"
-#~ msgstr "Utilisateur ou groupe invalide"
-
-#~ msgid "Filenames except"
-#~ msgstr "Noms de fichier à exclure"
-
-#~ msgid "Follow symbolic links"
-#~ msgstr "Suivre les liens symboliques"
-
-#~ msgid "Simple substring search"
-#~ msgstr "Recherche d'une sous-chaîne simple"
-
-#~ msgid "Regular expression search"
-#~ msgstr "Recherche par expression régulière"
-
-#~ msgid "Extended regular expression search"
-#~ msgstr "Recherche étendue par expression régulière"
-
-#~ msgid "grep options found in find list bad bad!"
-#~ msgstr "Options pour grep passées à find. Pas bon !"
-
-#~ msgid "non-grep option found in grep list, bad bad!"
-#~ msgstr "Options inconnues de grep passées à grep. Pas bon !"
-
-#~ msgid "Search already running on another page"
-#~ msgstr "Une recherche est déjà en cours sur une autre page"
-
-#~ msgid "Search Results"
-#~ msgstr "Résultats de la recherche"
-
-#~ msgid "Start directory does not exist"
-#~ msgstr "Le répertoire de démarrage n'existe pas"
-
-#~ msgid "Enable"
-#~ msgstr "Activer"
-
-#~ msgid "Remove"
-#~ msgstr "Enlever"
-
-#~ msgid "Start in directory:"
-#~ msgstr "Démarrer dans ce répertoire :"
-
-#~ msgid "Browse"
-#~ msgstr "Parcourir"
-
-#~ msgid "Add"
-#~ msgstr "Ajouter"
-
-#~ msgid "Start"
-#~ msgstr "Démarrer"
-
-#~ msgid "Stop"
-#~ msgstr "Stop"
-
-#~ msgid "Nothing to locate"
-#~ msgstr "Rien à localiser"
-
-#~ msgid ""
-#~ "This is an interface to locate.  If you type in a simple string it\n"
-#~ "will be matched as a subset of the full path, and if you type\n"
-#~ "in a string with wildcards, it will have to match the full path"
-#~ msgstr ""
-#~ "Ceci est une interface pour locate. Si vous tapez une chaîne\n"
-#~ "simple, elle sera comparée au chemin complet des fichiers, et si vous\n"
-#~ "entrez une expression régulière, elle sera comparée au chemin complet"
-
-#~ msgid "Locate file: "
-#~ msgstr "Localiser le fichier"
-
-#~ msgid "Full find (find)"
-#~ msgstr "Recherche complète (find)"
-
-#~ msgid "Quick find (locate)"
-#~ msgstr "Recherche rapide (locate)"
-
-#~ msgid "The Gnome Search Tool"
-#~ msgstr "L'outil de recherche GNOME"
-
-#~ msgid "(C) 1998,2000 the Free Software Foundation"
-#~ msgstr "(C) 1998,2000 the Free Software Foundation"
-
-#~ msgid "Frontend to the unix find/grep/locate commands"
-#~ msgstr "Interface graphique des commandes Unix find, grep et locate"
-
-#~ msgid "Gnome Search Tool"
-#~ msgstr "Outil de recherche GNOME"
-
-#~ msgid "rparen expected"
-#~ msgstr "rparen attendu"
-
-#~ msgid "no such field: %d"
-#~ msgstr "Champ non trouvé : %d"
-
-#~ msgid "missing variable identifer"
-#~ msgstr "Variable non trouvée"
-
-#~ msgid "invalid variable identifer: %s"
-#~ msgstr "Variable invalide : %s"
-
-#~ msgid "number expected"
-#~ msgstr "Nombre attendu"
-
-#~ msgid "extra gunk at end: \"%s\""
-#~ msgstr "données supplémentaire à la fin: « %s »"
-
-#~ msgid "%s, line %d: "
-#~ msgstr "%s, ligne %d : "
-
-#~ msgid "can't open config file \"%s\""
-#~ msgstr "Impossible d'ouvrir le fichier de configuration « %s »"
-
-#~ msgid ""
-#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-#~ msgstr ""
-#~ "Impossible d'ouvrir le fichier de configuration « ./gstripchart.conf », « %s "
-#~ "», « %s » ou « %s »"
-
-#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-#~ msgstr ""
-#~ "Impossible d'ouvrir le fichier de configuration « ./gstripchart.conf », « %s "
-#~ "» ou « %s »"
-
-#~ msgid "identifier or begin must be first"
-#~ msgstr "La première ligne doit être un identificateur ou un begin"
-
-#~ msgid "unrecognized color: %s"
-#~ msgstr "Couleur inconnue : %s"
-
-#~ msgid "scale must be either \"log\" or \"linear\""
-#~ msgstr "l'échelle doit être soit « log » soit « linéaire »"
-
-#~ msgid "no equation found"
-#~ msgstr "aucune équation trouvée"
-
-#~ msgid "invalid option: \"%s\""
-#~ msgstr "Option invalide : « %s »"
-
-#~ msgid "E_xit"
-#~ msgstr "_Quitter"
-
-#~ msgid "Terminate the stripchart program"
-#~ msgstr "Terminer le programme gStripchart"
-
-#~ msgid "Copyright 1998,99 John Kodis"
-#~ msgstr "Copyright 1998,99 John Kodis"
-
-#~ msgid ""
-#~ "The GNOME stripchart program plots various user-specified parameters as a "
-#~ "function of time.  Its main use is to chart system performance parameters "
-#~ "such as CPU load, CPU utilization, network traffic levels, and the like.  "
-#~ "Other more ingenious uses are left as an exercise for the interested user."
-#~ msgstr ""
-#~ "Le programme GNOME Stripchart trace divers paramètres définis par "
-#~ "l'utilisateur en fonction du temps. Il sert surtout à suivre des paramètres "
-#~ "comme la charge CPU, l'utilisation CPU, le traffic réseau, etc. Un "
-#~ "utilisateur intéressé pourra lui trouver d'autres usages plus ingénieux."
-
-#~ msgid "_About"
-#~ msgstr "_A propos"
-
-#~ msgid "Info about the striphart program"
-#~ msgstr "Informations sur le programme gStripchart"
-
-#~ msgid "_File"
-#~ msgstr "_Fichier"
-
-#~ msgid "_Help"
-#~ msgstr "_Aide"
-
-#~ msgid "Param"
-#~ msgstr "Paramètres"
-
-#~ msgid "Value"
-#~ msgstr "Valeur"
-
-#~ msgid "Identifier"
-#~ msgstr "Identificateur"
-
-#~ msgid "Color"
-#~ msgstr "Couleur"
-
-#~ msgid "Filename"
-#~ msgstr "Nom du fichier"
-
-#~ msgid "Pattern"
-#~ msgstr "Motif"
-
-#~ msgid "Equation"
-#~ msgstr "Équation"
-
-#~ msgid "Expected range"
-#~ msgstr "Intervalle attendu"
-
-#~ msgid "Displayed range"
-#~ msgstr "Intervalle affiché"
-
-#~ msgid "Current value"
-#~ msgstr "Valeur courante"
-
-#~ msgid "Active"
-#~ msgstr "Actif"
-
-#~ msgid "Stripchart Parameters"
-#~ msgstr "Paramètres de Stripchart"
-
-#~ msgid "Current"
-#~ msgstr "Actuel"
-
-#~ msgid "Top"
-#~ msgstr "Haut"
-
-#~ msgid "Help"
-#~ msgstr "Aide"
-
-#~ msgid "About"
-#~ msgstr "A propos"
-
-#~ msgid "Params"
-#~ msgstr "Paramètres"
-
-#~ msgid "Exit"
-#~ msgstr "Quitter"
-
-#~ msgid "gstripchart"
-#~ msgstr "gStripchart"
-
-#~ msgid "Stripchart Viewer"
-#~ msgstr "Moniteur Stripchart"
-
-#~ msgid "Params..."
-#~ msgstr "Param..."
-
-#~ msgid "invalid display type: %s\n"
-#~ msgstr "Type d'affichage non valide : %s\n"
-
-#~ msgid "Geometry string: WxH+X+Y"
-#~ msgstr "Chaîne de géométrie : LxH+X+Y"
-
-#~ msgid "GEO"
-#~ msgstr "GEO"
-
-#~ msgid "Configuration file name"
-#~ msgstr "fichier de configuration"
-
-#~ msgid "FILE"
-#~ msgstr "FICHIER"
-
-#~ msgid "Chart update interval"
-#~ msgstr "Intervalle entre les mises à jour du graphe"
-
-#~ msgid "SECS"
-#~ msgstr "SECS"
-
-#~ msgid "Chart low-pass filter time constant"
-#~ msgstr "Constante de temps pour le filtre passe-bas du graphe"
-
-#~ msgid "Slider update interval"
-#~ msgstr "Intervalle entre les mises à jour de l'ascenseur"
-
-#~ msgid "Slider low-pass filter time constant"
-#~ msgstr "Constante de temps pour le filtre passe-bas de l'ascenseur"
-
-#~ msgid "Adds a menubar to the main window"
-#~ msgstr "Ajouter une barre de menu à la fenêtre principale"
-
-#~ msgid "Omits slider window"
-#~ msgstr "Omettre la fenêtre coulissante"
-
-#~ msgid "TYPE is one of gtk, applet, text, or none"
-#~ msgstr "Le TYPE peut être gtk, text, graph ou aucun"
-
-#~ msgid "TYPE"
-#~ msgstr "TYPE"
-
-#~ msgid "TYPE is one of gtk, text, or none"
-#~ msgstr "Le TYPE peut être gtk, text, graph ou aucun"
-
-#~ msgid "white"
-#~ msgstr "blanc"
-
-#~ msgid "black"
-#~ msgstr "noir"
-
-#~ msgid "red"
-#~ msgstr "rouge"
-
-#~ msgid "yellow"
-#~ msgstr "jaune"
-
-#~ msgid "blue"
-#~ msgstr "bleu"
-
-#~ msgid "green"
-#~ msgstr "vert"
-
-#~ msgid "cyan"
-#~ msgstr "cyan"
-
-#~ msgid "magenta"
-#~ msgstr "magenta"
-
-#~ msgid "Busy"
-#~ msgstr "Occupé"
-
-#~ msgid "Load"
-#~ msgstr "Charger"
-
-#~ msgid "Swap"
-#~ msgstr "Swap"
-
-#~ msgid "Battery"
-#~ msgstr "Baterie"
-
-#~ msgid "Net In"
-#~ msgstr "Net In"
-
-#~ msgid "Net Out"
-#~ msgstr "Net Out"
-
-#~ msgid "ppp"
-#~ msgstr "ppp"
-
-#~ msgid "no project selected"
-#~ msgstr "Pas de projet sélectionné"
-
-#~ msgid "00:00"
-#~ msgstr "00:00"
-
-#~ msgid ""
-#~ "Couldn't understand geometry (position and size)\n"
-#~ " specified on command line"
-#~ msgstr ""
-#~ "Impossible de comprendre la géométrie (position et taille)\n"
-#~ "spécifiée sur la ligne de commande"
-
-#~ msgid "Total"
-#~ msgstr "Total"
-
-#~ msgid "Today"
-#~ msgstr "Aujourd'hui"
-
-#~ msgid "Project Title"
-#~ msgstr "Titre du projet"
-
-#~ msgid "Description"
-#~ msgstr "Description"
-
-#~ msgid "program started"
-#~ msgstr "Programme lancé"
-
-#~ msgid "no description"
-#~ msgstr "Pas de description"
-
-#~ msgid "program exited"
-#~ msgstr "Programme terminé"
-
-#~ msgid ""
-#~ "There seems to be another GTimeTracker running.\n"
-#~ "Press OK to start GTimeTracker anyway, or press Cancel to quit."
-#~ msgstr ""
-#~ "Il semble qu'un autre GTimerTracker soit en cours d'exécution.\n"
-#~ "Tapez OK pour démarrer GTimeTracker tout de même ou Annuler pour quitter."
-
-#~ msgid "Error"
-#~ msgstr "Erreur"
-
-#~ msgid ""
-#~ "An error occured while reading the configuration file.\n"
-#~ "Shall I setup a new configuration?"
-#~ msgstr ""
-#~ "Une erreur est survenue durant la lecture du fichier de configuration.\n"
-#~ "Dois-je installer une nouvelle configuration ?"
-
-#~ msgid "Specify geometry"
-#~ msgstr "Spécifie la géométrie"
-
-#~ msgid "GEOMETRY"
-#~ msgstr "GÉOMÉTRIE"
-
-#~ msgid "Select a project on startup"
-#~ msgstr "Choisir un projet au lancement de l'application"
-
-#~ msgid "PROJECT"
-#~ msgstr "PROJET"
-
-#~ msgid "Warning"
-#~ msgstr "Avertissement"
-
-#~ msgid "I could not write the configuration file!"
-#~ msgstr "Je n'ai pas pu enregistrer le fichier de configuration !"
-
-#~ msgid "New Project..."
-#~ msgstr "Nouveau projet..."
-
-#~ msgid "Please enter the name of the new project:"
-#~ msgstr "Entrez le nom du nouveau projet :"
-
-#~ msgid "I could not read the configuration file"
-#~ msgstr "Je n'ai pas pu lire le fichier de configuration"
-
-#~ msgid "Reload Configuration File"
-#~ msgstr "Recharger le fichier de configuration"
-
-#~ msgid ""
-#~ "This will overwrite your current set of projects.\n"
-#~ "Do you really want to reload the configuration file?"
-#~ msgstr ""
-#~ "Cela écrasera vos projets actuels.\n"
-#~ "Voulez-vous vraiment recharger votre fichier de configuration ?"
-
-#~ msgid "_New Project..."
-#~ msgstr "_Nouveau projet..."
-
-#~ msgid "_Reload Configuration File"
-#~ msgstr "_Recharger le fichier de configuration"
-
-#~ msgid "_Save Configuration File"
-#~ msgstr "_Enregistrer le fichier de configuration"
-
-#~ msgid "Clear _Daily Counter"
-#~ msgstr "Ré_initialiser le compteur journalier"
-
-#~ msgid "St_art"
-#~ msgstr "Dém_arrer"
-
-#~ msgid "Sto_p"
-#~ msgstr "Sto_p"
-
-#~ msgid "_Timer Running"
-#~ msgstr "Chronomè_tre lancé"
-
-#~ msgid "_Timer"
-#~ msgstr "Chronomè_tre"
-
-#~ msgid "Show Seconds"
-#~ msgstr "Afficher les secondes"
-
-#~ msgid "Show Status Bar"
-#~ msgstr "Afficher la barre d'état"
-
-#~ msgid "Show Table Header"
-#~ msgstr "Afficher les en-têtes de table"
-
-#~ msgid "Show Toolbar Icons"
-#~ msgstr "Afficher les icônes de la barre d'outils"
-
-#~ msgid "Show Toolbar Texts"
-#~ msgstr "Afficher les textes de la barre d'outils"
-
-#~ msgid "Show Tooltips"
-#~ msgstr "Activer les bulles d'aide"
-
-#~ msgid "Toolbar Segments"
-#~ msgstr "Segments de la barre d'outils"
-
-#~ msgid "Show `New'"
-#~ msgstr "Afficher `Nouveau'"
-
-#~ msgid "Show `Save', `Reload'"
-#~ msgstr "Afficher `Enregistrer', `Recharger'"
-
-#~ msgid "Show `Cut', `Copy', `Paste'"
-#~ msgstr "Afficher `Couper', `Copier', `Coller'"
-
-#~ msgid "Show `Properties'"
-#~ msgstr "Afficher `Propriétés'"
-
-#~ msgid "Show `Timer'"
-#~ msgstr "Afficher `Chronomètre'"
-
-#~ msgid "Show `Preferences'"
-#~ msgstr "Afficher `Préférences'"
-
-#~ msgid "Show `Help'"
-#~ msgstr "Afficher `Aide'"
-
-#~ msgid "Show `Quit'"
-#~ msgstr "Afficher `Quitter'"
-
-#~ msgid "Shell Commands"
-#~ msgstr "Commandes Shell"
-
-#~ msgid "Switch Project Command:"
-#~ msgstr "Commande pour changer de projet :"
-
-#~ msgid "No Project Command:"
-#~ msgstr "Commande 'aucun projet' :"
-
-#~ msgid "Logfile"
-#~ msgstr "Historique"
-
-#~ msgid "Use Logfile"
-#~ msgstr "Utiliser l'historique"
-
-#~ msgid "Filename:"
-#~ msgstr "Nom du fichier :"
-
-#~ msgid "Entry Start:"
-#~ msgstr "Début de l'entrée :"
-
-#~ msgid "Entry Stop:"
-#~ msgstr "Fin de l'entrée:"
-
-#~ msgid "Timeout in secs:"
-#~ msgstr "Délai avant expiration en secondes :"
-
-#~ msgid "Preferences"
-#~ msgstr "Préférences"
-
-#~ msgid "Misc"
-#~ msgstr "Divers"
-
-#~ msgid "project %t started"
-#~ msgstr "Projet %t démarré"
-
-#~ msgid "stopped project %t"
-#~ msgstr "Projet stoppé %t"
-
-#~ msgid "empty"
-#~ msgstr "vide"
-
-#~ msgid "Project"
-#~ msgstr "Projet"
-
-#~ msgid "Project Title:"
-#~ msgstr "Titre du projet :"
-
-#~ msgid "Project Description:"
-#~ msgstr "Description du projet :"
-
-#~ msgid "Project Time today:"
-#~ msgstr "Temps pour le projet aujourd'hui :"
-
-#~ msgid "hours"
-#~ msgstr "heures"
-
-#~ msgid "mins"
-#~ msgstr "minutes"
-
-#~ msgid "secs"
-#~ msgstr "secondes"
-
-#~ msgid "Project Time ever:"
-#~ msgstr "Temps total sur le projet :"
-
-#~ msgid "[GTT]New"
-#~ msgstr "Nouveau"
-
-#~ msgid "Reload"
-#~ msgstr "Recharger"
-
-#~ msgid "Save"
-#~ msgstr "Enregistrer"
-
-#~ msgid "Save Configuration File"
-#~ msgstr "Enregistrer le fichier de configuration"
-
-#~ msgid "Cut"
-#~ msgstr "Couper"
-
-#~ msgid "Cut Selected Project"
-#~ msgstr "Couper le projet sélectionné"
-
-#~ msgid "Copy"
-#~ msgstr "Couper"
-
-#~ msgid "Copy Selected Project"
-#~ msgstr "Copier le projet sélectionné"
-
-#~ msgid "Paste Project"
-#~ msgstr "Coller le projet"
-
-#~ msgid "Props"
-#~ msgstr "Propriétés"
-
-#~ msgid "Edit Properties..."
-#~ msgstr "Editer les propriétés..."
-
-#~ msgid "Timer"
-#~ msgstr "Chronomètre"
-
-#~ msgid "Start/Stop Timer"
-#~ msgstr "Lancer / arrêter le chronomètre"
-
-#~ msgid "Prefs"
-#~ msgstr "Préférences"
-
-#~ msgid "Edit Preferences..."
-#~ msgstr "Editer les préférences..."
-
-#~ msgid "Manual"
-#~ msgstr "Manuel"
-
-#~ msgid "Manual..."
-#~ msgstr "Manuel..."
-
-#~ msgid "Quit"
-#~ msgstr "Quitter"
-
-#~ msgid "Quit GTimeTracker"
-#~ msgstr "Quitter GTimeTracker"
-
-#~ msgid "Gnome Color Browser"
-#~ msgstr "Sélecteur de couleurs GNOME"
-
-#~ msgid "Format Style:"
-#~ msgstr "Format :"
-
-#~ msgid "Color Name:"
-#~ msgstr "Nom de la couleur :"
-
-#~ msgid "Color Values:"
-#~ msgstr "Attributs de la couleur :"
-
-#~ msgid "Name"
-#~ msgstr "Nom"
-
-#~ msgid "Error, cannot find the file 'rgb.txt' on your system!"
-#~ msgstr ""
-#~ "Erreur : impossible de trouver le fichier 'rgb.txt' dans votre système !"
-
-#~ msgid "Parsing Colors"
-#~ msgstr "Analyse des couleurs"
-
-#~ msgid "Decimal (8 bit)"
-#~ msgstr "Décimal (8 bits)"
-
-#~ msgid "Decimal (16 bit)"
-#~ msgstr "Décimal (16 bits)"
-
-#~ msgid "Hex (8 bit)"
-#~ msgstr "Hexa (8 bits)"
-
-#~ msgid "Hex (16 bit)"
-#~ msgstr "Hexa (16 bits)"
-
-#~ msgid "Float"
-#~ msgstr "Flottant"
-
-#~ msgid "Small utility to browse available X11 colors."
-#~ msgstr "Petit utilitaire pour voir les couleurs X11 disponibles."
-
-#~ msgid "Font Selector"
-#~ msgstr "Sélecteur de couleurs"
-
-#~ msgid "Font to load"
-#~ msgstr "Police à charger"
-
-#~ msgid "FONTSPEC"
-#~ msgstr "FONTSPEC"
-
-#~ msgid "Print selected font name on exit"
-#~ msgstr "Affiche le nom de la police sélectionnée en quittant"
-
-#~ msgid "Inhibit remembering selected font for next run"
-#~ msgstr ""
-#~ "Empêche la mémorisation de la police sélectionnée au prochain démarrage"
-
-#~ msgid "Inhibit loading of last font"
-#~ msgstr "Empêche le chargement de la dernière police"
-
-#~ msgid "Reason %d\n"
-#~ msgstr "Raison %d\n"
-
-#~ msgid "Where to put the window, and its size"
-#~ msgstr "Taille et position de la fenêtre"
-
-#~ msgid "Ignore standard input; may be needed in some cases."
-#~ msgstr "Ignorer l'entrée standard ; peut être utile dans certains cas."
-
-#~ msgid "_New Window"
-#~ msgstr "_Nouvelle fenêtre"
-
-#~ msgid "New text viewer window"
-#~ msgstr "Nouvelle fenêtre de texte"
-
-#~ msgid "_Fixed Font"
-#~ msgstr "Police _fixe"
-
-#~ msgid "Display text with a fixed font"
-#~ msgstr "Affiche le texte avec une police fixe"
-
-#~ msgid "Text File Viewer"
-#~ msgstr "Visualiseur de fichiers texte"
-
-#~ msgid "Copyright 1998, under the GNU General Public License."
-#~ msgstr ""
-#~ "Copyright 1998, sous les termes de la Licence Publique Générale GNU."
-
-#~ msgid "Find string"
-#~ msgstr "Trouver une chaîne"
-
-#~ msgid "Find"
-#~ msgstr "Rechercher"
-
-#~ msgid "Loading..."
-#~ msgstr "Chargement..."
-
-#~ msgid ""
-#~ "No such file or directory:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Aucun fichier ou répertoire:\n"
-#~ "%s"
-
-#~ msgid ""
-#~ "Failed to decompress and display the file:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Echec lors de la décompression et de l'affichage du fichier :\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid ""
-#~ "Unable to display compressed file.\n"
-#~ "zcat not found in your path."
-#~ msgstr ""
-#~ "Impossible d'afficher le fichier compressé.\n"
-#~ "zcat n'est pas dans votre chemin."
-
-#~ msgid ""
-#~ "Error loading file:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Erreur lors du chargement du fichier :\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid "Saving..."
-#~ msgstr "Enregistrement..."
-
-#~ msgid ""
-#~ "Failed to write file:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Echec lors de l'enregistrement du fichier :\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid "Save Text As..."
-#~ msgstr "Enregistrer le texte sous..."
-
-#~ msgid "Open Text File..."
-#~ msgstr "Ouvrir un fichier texte..."
-
-#~ msgid "Sorry, no preferences yet."
-#~ msgstr "Désolé, pas encore de préférences."
-
-#~ msgid "Searching..."
-#~ msgstr "Recherche en cours..."
-
-#~ msgid "No search string was specified!"
-#~ msgstr "Aucune chaîne à rechercher n'a été spécifiée !"
-
-#~ msgid ""
-#~ "Failed to execute command:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Echec de l'exécution de la commande :\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid "Run Program"
-#~ msgstr "Exécuter un programme"
-
-#~ msgid "Run"
-#~ msgstr "Exécuter"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuler"
-
-#~ msgid "Select a program to run"
-#~ msgstr "Choisissez un programme à exécuter"
-
-#~ msgid "Shut Down"
-#~ msgstr "Eteindre"
-
-#~ msgid "Single User Mode"
-#~ msgstr "Mode Mono-Utilisateur"
-
-#~ msgid "Runlevel 2"
-#~ msgstr "Runlevel 2"
-
-#~ msgid "Runlevel 3"
-#~ msgstr "Runlevel 3"
-
-#~ msgid "Runlevel 4"
-#~ msgstr "Runlevel 4"
-
-#~ msgid "Runlevel 5"
-#~ msgstr "Runlevel 5"
-
-#~ msgid "Reboot"
-#~ msgstr "Redémarrage"
-
-#~ msgid "Are you sure you want to shut down the computer?"
-#~ msgstr "Etes-vous sûr de vouloir éteindre l'ordinateur ?"
-
-#~ msgid "Are you sure you want to switch to single user mode?"
-#~ msgstr "Etes-vous sûr de vouloir passer en mode mono-utilisateur ?"
-
-#~ msgid "Are you sure you want to switch to runlevel 2?"
-#~ msgstr "Etes-vous sûr de vouloir passer en runlevel 2 ?"
-
-#~ msgid "Are you sure you want to switch to runlevel 3?"
-#~ msgstr "Etes-vous sûr de vouloir passer en runlevel 3 ?"
-
-#~ msgid "Are you sure you want to switch to runlevel 4?"
-#~ msgstr "Etes-vous sûr de vouloir passer en runleve 4 ?"
-
-#~ msgid "Are you sure you want to switch to runlevel 5?"
-#~ msgstr "Etes-vous sûr de vouloir passer en runlevel 5 ?"
-
-#~ msgid "Are you sure you want to reboot the system?"
-#~ msgstr "Etes-vous sûr de vouloir redémarrer l'ordinateur ?"
-
-#~ msgid ""
-#~ "You must be the super-user (root) to shut down or restart the computer."
-#~ msgstr ""
-#~ "Vous devez être le super-utilisateur (root) pour éteindre ou redémarrer "
-#~ "l'ordinateur."
-
-#~ msgid "Shutdown or Reboot"
-#~ msgstr "Eteindre ou redémarrer"
-
-#~ msgid "Easy"
-#~ msgstr "Facile"
-
-#~ msgid "Advanced"
-#~ msgstr "Avancé"
-
-#~ msgid ""
-#~ "Click OK to shutdown or reboot. You will lose\n"
-#~ "any unsaved information in open applications."
-#~ msgstr ""
-#~ "Cliquez sur OK pour arrêter le système. Vous\n"
-#~ "perdrez toutes les informations non sauvées dans les\n"
-#~ "applications ouvertes."
-
-#~ msgid "Revert to Defaults"
-#~ msgstr "Revenir à la configuration par défaut"
-
-#~ msgid "Commands"
-#~ msgstr "Commandes"
-
-#~ msgid "Confirm before shutdown?"
-#~ msgstr "Confirmation avant d'éteindre ?"
-
-#~ msgid "General"
-#~ msgstr "Général"
-
-#~ msgid ""
-#~ "%s\n"
-#~ "You will lose any unsaved work."
-#~ msgstr ""
-#~ "%s\n"
-#~ "Tout travail non enregistré sera perdu."
-
-#~ msgid "Don't ask next time."
-#~ msgstr "Ne pas poser la question la prochaine fois."
-
-#~ msgid "Command execution failed: fork failed"
-#~ msgstr "Échec de l'exécution de la commande: échec de fork"
-
-#~ msgid "Make guname act as a control center applet"
-#~ msgstr "Guname doit agir comme une applet du control center"
-
-#~ msgid "an initialization error occurred while starting 'guname-capplet'."
-#~ msgstr ""
-#~ "une erreur d'initialisation est survenue lors du démarrage de "
-#~ "'guname-capplet'."
-
-#~ msgid "System Information"
-#~ msgstr "Informations système"
-
-#~ msgid "Logo file not found"
-#~ msgstr "Fichier logo non trouvé"
-
-#~ msgid "GNOME contributors:"
-#~ msgstr "Contributeurs à GNOME :"
-
-#~ msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-#~ msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-
-#~ msgid "GNOME: The GNU Network Object Model Environment"
-#~ msgstr "GNOME : The GNU Network Object Model Environment"
-
-#~ msgid "Email Information..."
-#~ msgstr "Envoyer par e-mail l'information..."
-
-#~ msgid "Save Information to File..."
-#~ msgstr "Enregistrer l'information dans un fichier..."
-
-#~ msgid "Detailed Information..."
-#~ msgstr "Informations détaillées..."
-
-#~ msgid "Category"
-#~ msgstr "Carégorie"
-
-#~ msgid "Your System"
-#~ msgstr "Votre système"
-
-#~ msgid "Save As..."
-#~ msgstr "Enregistrer sous..."
-
-#~ msgid "Mail To..."
-#~ msgstr "Envoyer un courrier à ..."
-
-#~ msgid ""
-#~ "Error closing file `%s': \n"
-#~ "%s\n"
-#~ "Some or all data may not have been written."
-#~ msgstr ""
-#~ "Erreur lors de la fermeture du fichier `%s' :\n"
-#~ "%s\n"
-#~ "Tout ou partie des données n'ont pas pu être enregistrées."
-
-#~ msgid "Couldn't open file `%s': %s"
-#~ msgstr "Impossible d'ouvrir le fichier `%s' : %s"
-
-#~ msgid "Save System Information As..."
-#~ msgstr "Enregistrer les informations système sous..."
-
-#~ msgid "Command failed ` %s ': %s"
-#~ msgstr "Echec de la commande ` %s ' : %s"
-
-#~ msgid "Couldn't run command ` %s ': %s"
-#~ msgstr "Impossible de lancer la commande ` %s ' : %s"
-
-#~ msgid ""
-#~ "The following mail will be sent to %s.\n"
-#~ " Are you sure you want to mail this information?"
-#~ msgstr ""
-#~ "Le courier suivant sera envoyé à %s.\n"
-#~ "Etes-vous sûr de vouloir envoyer cette information par courrier ?"
-
-#~ msgid "Are you sure?"
-#~ msgstr "Etes-vous sûr ?"
-
-#~ msgid "Address to mail to:"
-#~ msgstr "Envoyer le courrier à :"
-
-#~ msgid "Distribution:"
-#~ msgstr "Distribution :"
-
-#~ msgid "Operating System:"
-#~ msgstr "Système d'exploitation :"
-
-#~ msgid "Distribution Version:"
-#~ msgstr "Version de la distribution :"
-
-#~ msgid "Operating System Version:"
-#~ msgstr "Version du système d'exploitation :"
-
-#~ msgid "Operating System Release:"
-#~ msgstr "Sous-version du système d'exploitation :"
-
-#~ msgid "Processor Type:"
-#~ msgstr "Type de processeur :"
-
-#~ msgid "Processor Speed:"
-#~ msgstr "Vitesse du processeur :"
-
-#~ msgid "Host Name:"
-#~ msgstr "Nom de la machine hôte :"
-
-#~ msgid "Domain Name:"
-#~ msgstr "Nom de domaine :"
-
-#~ msgid "User Name:"
-#~ msgstr "Nom d'utilisateur :"
-
-#~ msgid "X Display Name:"
-#~ msgstr "Affichage X11 :"
-
-#~ msgid "System Status:"
-#~ msgstr "Etat du système :"
-
-#~ msgid "Real Memory:"
-#~ msgstr "Mémoire physique :"
-
-#~ msgid "Swap Space (\"virtual memory\"):"
-#~ msgstr "Swap (\"mémoire virtuelle\") :"
-
-#~ msgid "Total Memory:"
-#~ msgstr "Mémoire totale :"
-
-#~ msgid "Free Memory:"
-#~ msgstr "Mémoire libre :"
-
-#~ msgid "Device"
-#~ msgstr "Périphérique"
-
-#~ msgid "Size"
-#~ msgstr "Taille"
-
-#~ msgid "Used space"
-#~ msgstr "Espace utilisé"
-
-#~ msgid "Free space"
-#~ msgstr "Espace libre"
-
-#~ msgid "Percent free"
-#~ msgstr "Pourcentage libre"
-
-#~ msgid "Mount point"
-#~ msgstr "Point de montage"
-
-#~ msgid "Unknown"
-#~ msgstr "Inconnu"
-
-#~ msgid "Unknown filesystem"
-#~ msgstr "Système de fichier inconnu"
-
-#~ msgid "No information for this filesystem."
-#~ msgstr "Aucune information sur ce système de fichier."
-
-#~ msgid "Memory"
-#~ msgstr "Mémoire"
-
-#~ msgid "Kilobytes"
-#~ msgstr "Kilo-octets"
-
-#~ msgid "%ld%% memory used."
-#~ msgstr "mémoire utilisée: %ld%%."
-
-#~ msgid "%ld%% swap used."
-#~ msgstr "swap utilisé : %ld%%."
-
-#~ msgid "CPU %d"
-#~ msgstr "CPU %d"
-
-#~ msgid "Detailed System Information"
-#~ msgstr "Informations système détaillées"
-
-#~ msgid "Disk Information"
-#~ msgstr "Informations sur les disques"
-
-#~ msgid "Memory Information"
-#~ msgstr "Informations sur la mémoire"
-
-#~ msgid "CPU Information"
-#~ msgstr "Informations sur le processeur"
-
-#~ msgid "Mount Point: "
-#~ msgstr "Point de montage : "
-
-#~ msgid "    Device: "
-#~ msgstr "    Périphérique : "
-
-#~ msgid "    Filesystem Type: "
-#~ msgstr "    Type de système de fichiers : "
-
-#~ msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-#~ msgstr ""
-#~ "%ld mégaoctets, %ld libres (%ld super-utilisateur) ; %ld i-noeuds, %ld "
-#~ "libres."
-
-#~ msgid "%2d%% full "
-#~ msgstr "%2d%% plein "
-
-#~ msgid ""
-#~ "Couldn't find the \"w\" command in your path.\n"
-#~ "This command is needed for the program to work."
-#~ msgstr ""
-#~ "Impossible de trouver la commande « w » dans votre chemin.\n"
-#~ "Cette commande est nécessaire pour que l'application puisse fonctionner."
-
-#~ msgid "_Save..."
-#~ msgstr "Enregi_strer..."
-
-#~ msgid "Write information to disk"
-#~ msgstr "Enregistrer l'information sur le disque"
-
-#~ msgid "Active User Listing"
-#~ msgstr "Liste des utilisateurs"
-
-#~ msgid "Update Information"
-#~ msgstr "Mettre les informations à jour"
-
-#~ msgid "Save not implemented yet\n"
-#~ msgstr "Ceci n'est pas encore implémenté\n"
-
-#~ msgid "Command Line"
-#~ msgstr "Ligne de commande"
-
-#~ msgid "Add some defaults"
-#~ msgstr "Ajouter des exemples par défaut"
-
-#~ msgid "Delete"
-#~ msgstr "Effacer"
-
-#~ msgid "Command Editor"
-#~ msgstr "Editeur de commande"
-
-#~ msgid ""
-#~ "You can configure the commands on the popup menus.\n"
-#~ "Just enter the name you want to appear on the \n"
-#~ "menu, and the command to execute.\n"
-#~ "In the command, you can use %u to represent the\n"
-#~ "currently selected username, and %t for the tty."
-#~ msgstr ""
-#~ "Vous pouvez configurer les commandes des menus contextuels.\n"
-#~ "Tapez le nom que vous désirez voir apparaître dans le\n"
-#~ "menu, et la commande à exécuter.\n"
-#~ "Dans la commande, vous pouvez utiliser %u pour désigner\n"
-#~ "l'utilisateur sélectionné, et %t pour la console tty."
-
-#~ msgid ""
-#~ "Click this button to add\n"
-#~ "some sample commands."
-#~ msgstr ""
-#~ "Cliquer sur ce bouton pour\n"
-#~ "ajouter des exemples de commandes."
-
-#~ msgid "Menu items"
-#~ msgstr "Entrées du menu"
-
-#~ msgid "Command"
-#~ msgstr "Commande"
-
-#~ msgid "Running: %s\n"
-#~ msgstr "Exécution de : %s\n"
-
-#~ msgid "16-bit"
-#~ msgstr "16-bit"
-
-#~ msgid "32-bit"
-#~ msgstr "32-bit"
-
-#~ msgid "32-bit w/sync"
-#~ msgstr "32-bit sans sync"
-
-#~ msgid "Sleeping"
-#~ msgstr "Endormi"
-
-#~ msgid "Active/Idle"
-#~ msgstr "Actif/Inatif"
-
-#~ msgid "Standby"
-#~ msgstr "En attente"
-
-#~ msgid "Unable to access the drive."
-#~ msgstr "Impossible d'accéder à ce disque."
-
-#~ msgid "The DMA setting for this drive cannot be changed."
-#~ msgstr "Le paramétrage DMA de ce disque ne peut être changé."
-
-#~ msgid "Enabled"
-#~ msgstr "Activé"
-
-#~ msgid "Disabled"
-#~ msgstr "Désactivé"
-
-#~ msgid "The IRQ unmask setting for this drive cannot be changed."
-#~ msgstr ""
-#~ "Les paramètres d'IRQ unmask ne peuvent pas être\n"
-#~ "modifiés pour ce lecteur."
-
-#~ msgid "The drive refused to keep its settings."
-#~ msgstr "Le lecteur refuse de conserver ses paramètres."
-
-#~ msgid "Keep settings"
-#~ msgstr "Conserver les paramètres"
-
-#~ msgid "None"
-#~ msgstr "Aucun"
-
-#~ msgid "(1 Sector)"
-#~ msgstr "(1 secteur)"
-
-#~ msgid "(Dual Port)"
-#~ msgstr "(port dual)"
-
-#~ msgid "(Dual Port Cache)"
-#~ msgstr "(cache du port dual)"
-
-#~ msgid "No"
-#~ msgstr "Non"
-
-#~ msgid "Yes (%d sector)"
-#~ msgstr "Oui (%d secteur)"
-
-#~ msgid "Yes (%d sectors)"
-#~ msgstr "Oui (%d secteurs)"
-
-#~ msgid "Model"
-#~ msgstr "Modèle"
-
-#~ msgid "Firmware"
-#~ msgstr "Firmware"
-
-#~ msgid "Serial No."
-#~ msgstr "Numéro de série"
-
-#~ msgid "Geometry"
-#~ msgstr "Géométrie"
-
-#~ msgid "Cache"
-#~ msgstr "Cache"
-
-#~ msgid "Status"
-#~ msgstr "Etat"
-
-#~ msgid "Legacy MFM/RLL drive"
-#~ msgstr "Ancien disque MFM/RLL"
-
-#~ msgid "DMA Mode"
-#~ msgstr "Mode DMA"
-
-#~ msgid "IO Mode"
-#~ msgstr "Mode IO"
-
-#~ msgid "IRQ Unmask"
-#~ msgstr "Démasquer les IRQ"
-
-#~ msgid "Multisector"
-#~ msgstr "Multisecteur"
-
-#~ msgid "On Reset"
-#~ msgstr "A la réinitialisation"
-
-#~ msgid "IDE Status"
-#~ msgstr "Etat IDE"
-
-#~ msgid "Disk Logo Not Found"
-#~ msgstr "Logo du disque non trouvé"
-
-#~ msgid "Only the superuser can use this tool"
-#~ msgstr "Seul le super-utilisateur (root) peut utiliser cet outil"
-
-#~ msgid "You appear to have no IDE drives"
-#~ msgstr "Il semble que vous n'ayez pas de disque IDE"
-
-#~ msgid "This is not yet implemented"
-#~ msgstr "Ceci n'est pas encore implémenté"
-
-#~ msgid "invalid display type: %s"
-#~ msgstr "Type d'affichage invalide : %s"
+#: src/print.c:198 src/print.c:212
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"GHex ne peut pas trouver la police « %s ».\n"
+"GHex ne peut pas imprimer si cette police n'est pas installée."
