@@ -141,6 +141,7 @@ static void app_drop_cb(GtkWidget *widget, GdkDragContext *context,
 		gnome_uri_list_free_strings (list);
 		break;
 	default:
+		break;
 	}
 }
 
