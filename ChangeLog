@@ -1,3 +1,18 @@
+2000-03-26  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* src/ghex.h: moved GhexPrintJobInfo here and renamed it to
+	GHexPrintJobInfo.
+	(struct _PreviewWindow): a structure with everything necessary
+	for the print preview window.
+	* src/ui.c: added 'Print preview...' menu item and its callback.
+	* src/print.c (create_preview_window): do just that ;)
+	(print_document): improved to create a preview print context if
+	the printer argument passed is NULL.
+	(preview_*_cb): callbacks for navigation, zoom buttons and closing
+	of preview window.
+	(preview_close): clean up.
+	* applied another small patch from Chema <chema@celorio.com>.
+
 2000-03-25  Chema Celorio  <chema@celorio.com>
 
 	* src/ui.c (about_cb): fixed small typo.

@@ -26,7 +26,9 @@
 #include <config.h>
 #include <gnome.h>
 
+#include <libgnomeprint/gnome-print.h>
 #include <libgnomeprint/gnome-printer.h>
+#include <libgnomeprint/gnome-print-preview.h>
 
 #include <stdio.h>
 
@@ -97,6 +99,35 @@ typedef struct _Converter {
 	gulong value;
 } Converter;
 
+typedef struct {
+	GnomePrintContext *pc;
+	GnomePrintPreviewJob *pj;
+	HexDocument *doc;
+
+	int   pages;
+	float page_width, page_height;
+	float margin_top, margin_bottom, margin_left, margin_right;
+	float printable_width, printable_height;
+
+	float header_height;
+	
+	float font_char_width;
+	float font_char_height;
+
+	int   bytes_per_row, rows_per_page;
+	float pad_size;
+	int   offset_chars ; /* How many chars are used in the offset window */
+	int   gt;            /* group_type */
+} GHexPrintJobInfo;
+
+typedef struct _PreviewWindow {
+	GtkWidget *window;
+	GtkWidget *prev, *next, *first, *last, *zoom, *close;
+	GtkAdjustment *zoom_adj;
+	GtkWidget *canvas;
+	GHexPrintJobInfo *job;
+} PreviewWindow;
+
 extern int restarted;
 extern const struct poptOption options[];
 extern GSList *cl_files;
@@ -109,10 +140,11 @@ extern JumpDialog     *jump_dialog;
 extern Converter      *converter;
 extern GtkWidget      *char_table;
 extern PropertyUI     *prefs_ui;
+extern PreviewWindow  *preview_window;
 
 /* our preferred settings; as only one copy of them is required,
    we'll make them global vars, although this is a bit ugly */
-extern GdkFont *def_font;
+extern GdkFont    *def_font;
 extern gchar      *def_font_name;
 extern guint      max_undo_depth;
 extern gchar      *offset_fmt;
@@ -137,6 +169,7 @@ JumpDialog    *create_jump_dialog    (void);
 Converter     *create_converter      (void);
 GtkWidget     *create_char_table     (void);
 PropertyUI    *create_prefs_dialog   (void);
+PreviewWindow *create_preview_window (void);
 
 /* various ui convenience functions */
 void create_dialog_title   (GtkWidget *, gchar *);

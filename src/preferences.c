@@ -416,11 +416,13 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 static void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {
 	gchar *font_desc;
 	GtkWidget *peer;
+
 	if (GNOME_IS_FONT_PICKER(w)) {
 		font_desc = gnome_font_picker_get_font_name (GNOME_FONT_PICKER(w));
 		peer = gtk_object_get_user_data (GTK_OBJECT(w));
 		gtk_entry_set_text (GTK_ENTRY(peer), font_desc);
-	} else {
+	} 
+	else {
 		font_desc = gtk_entry_get_text (GTK_ENTRY(w));
 		peer = gtk_object_get_user_data (GTK_OBJECT(w));
 		gnome_font_picker_set_font_name (GNOME_FONT_PICKER(peer), font_desc);
@@ -441,7 +443,7 @@ static void offset_cb(GtkWidget *w, PropertyUI *pui) {
 		gtk_widget_set_sensitive(pui->format, FALSE);
 		break;
 	case 1:
-		gtk_entry_set_text(GTK_ENTRY(pui->format), "%x");
+		gtk_entry_set_text(GTK_ENTRY(pui->format), "%X");
 		gtk_widget_set_sensitive(pui->format, FALSE);
 		break;
 	case 2:

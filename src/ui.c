@@ -41,6 +41,7 @@ static void close_cb(GtkWidget *);
 static void save_cb(GtkWidget *);
 static void save_as_cb(GtkWidget *);
 static void print_cb(GtkWidget *w);
+static void print_preview_cb(GtkWidget *w);
 static void export_html_cb(GtkWidget *);
 static void revert_cb(GtkWidget *);
 static void prefs_cb(GtkWidget *);
@@ -49,17 +50,18 @@ static void char_table_cb(GtkWidget *);
 static void about_cb(GtkWidget *);
 
 GnomeUIInfo file_menu[] = {
-	GNOMEUIINFO_MENU_OPEN_ITEM(open_cb,NULL),
+	GNOMEUIINFO_MENU_OPEN_ITEM(open_cb, NULL),
 	/* keep in sync: main.c/child_changed_cb: setting sensitivity of items 1 - 3 */
-	GNOMEUIINFO_MENU_SAVE_ITEM(save_cb,NULL),
-	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb,NULL),
+	GNOMEUIINFO_MENU_SAVE_ITEM(save_cb, NULL),
+	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb, NULL),
 	GNOMEUIINFO_ITEM(N_("Export to HTML..."), N_("Export data to HTML source"), export_html_cb, NULL),
-	GNOMEUIINFO_MENU_REVERT_ITEM(revert_cb,NULL),
+	GNOMEUIINFO_MENU_REVERT_ITEM(revert_cb, NULL),
 	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_MENU_PRINT_ITEM(print_cb,NULL),
+	GNOMEUIINFO_MENU_PRINT_ITEM(print_cb, NULL),
+	GNOMEUIINFO_ITEM(N_("Print preview..."), N_("Preview printed data"), print_preview_cb, NULL),
 	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_MENU_CLOSE_ITEM(close_cb,NULL),
-	GNOMEUIINFO_MENU_EXIT_ITEM(quit_app_cb,NULL),
+	GNOMEUIINFO_MENU_CLOSE_ITEM(close_cb, NULL),
+	GNOMEUIINFO_MENU_EXIT_ITEM(quit_app_cb, NULL),
 	GNOMEUIINFO_END
 };
 
@@ -321,14 +323,10 @@ static void print_cb(GtkWidget *w)
 	HexDocument *doc;
 	GtkWidget *dialog;
 
-	if(gnome_mdi_get_active_child(mdi) == NULL  ||
-	   (file_sel && GTK_WIDGET_VISIBLE(file_sel)))
+	if(gnome_mdi_get_active_child(mdi) == NULL)
 		return;
 	
 	doc = HEX_DOCUMENT(gnome_mdi_get_active_child(mdi));
-
-	if(doc == NULL)
-		return;
 
 	dialog = gnome_printer_dialog_new ();
 
@@ -338,6 +336,20 @@ static void print_cb(GtkWidget *w)
 					   (GtkSignalFunc)print_dialog_clicked_cb, doc);
 
 	gtk_widget_show_all(dialog);
+}
+
+static void print_preview_cb(GtkWidget *w)
+{
+	GtkWidget *active_view;
+	HexDocument *doc;
+
+	active_view = gnome_mdi_get_active_view(mdi);
+	if(!active_view)
+		return;
+
+	doc = HEX_DOCUMENT(gnome_mdi_get_child_from_view(active_view));
+
+	print_document(doc, GTK_HEX(active_view)->group_type, NULL);
 }
 
 static void export_html_cb(GtkWidget *w)
