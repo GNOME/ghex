@@ -1,5 +1,9 @@
-2003-10-10  Jaka Mocnik  <jaka@fish>
+2003-10-10  Jaka Mocnik  <jaka@gnu.org>
 
+	* src/print.c (ghex_print_job_info_destroy): remove
+	gnome_print_job_close().
+	* src/print.c (ghex_print_job_execute): call gnome_print_job_close()
+	here!
 	* src/gtkhex.c (gtk_hex_update_auto_highlight): moved cur declaration
 	to beginning of the block!
 

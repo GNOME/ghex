@@ -31,8 +31,9 @@
 #include "ghex.h"
 
 static void ghex_print(GtkHex *gh, gboolean preview);
-static gboolean ghex_print_run_dialog(GHexPrintJobInfo *pji);
+static void ghex_print_run_dialog(GHexPrintJobInfo *pji);
 static void ghex_print_preview_real(GHexPrintJobInfo *pji);
+static void ghex_print_document_real (GHexPrintJobInfo *pji, gboolean preview);
 
 /* callbacks to nullify widget pointer after a delete event */
 static void about_destroy_cb(GtkObject *, GtkWidget **);
@@ -735,30 +736,66 @@ ghex_print(GtkHex *gh, gboolean preview)
 	pji->preview = preview;
 
 	if (!pji->preview)
-		cancel = ghex_print_run_dialog(pji);
+		ghex_print_run_dialog(pji);
 	else
 		pji->config = gnome_print_config_default();
 
-	/* Cancel clicked */
-	if (cancel) {
+	if (pji->preview) {
+		ghex_print_document_real(pji, preview);
 		ghex_print_job_info_destroy(pji);
-		return;
 	}
+}
 
+static void
+ghex_print_document_real(GHexPrintJobInfo *pji, gboolean preview)
+{
 	g_return_if_fail (pji->config != NULL);
 
 	pji->master = gnome_print_job_new (pji->config);
+
 	g_return_if_fail (pji->master != NULL);
 
-	ghex_print_update_page_size_and_margins (doc, pji);
+	ghex_print_update_page_size_and_margins (pji->doc, pji);
 	ghex_print_job_execute(pji);
 
-	if (pji->preview)
+	if(pji->preview)
 		ghex_print_preview_real(pji);
 	else
 		gnome_print_job_print(pji->master);
+}
 
-	ghex_print_job_info_destroy(pji);
+static void
+ghex_print_dialog_response (GtkWidget *dialog, int response,
+							GHexPrintJobInfo *pji)
+{
+	pji->preview = FALSE;
+ 
+	switch (response) {
+	case GNOME_PRINT_DIALOG_RESPONSE_PRINT:
+		break;
+	case GNOME_PRINT_DIALOG_RESPONSE_PREVIEW:
+		pji->preview = TRUE;
+		break;
+	default:
+		gtk_widget_destroy(dialog);
+		ghex_print_job_info_destroy (pji);
+		return;
+	}
+
+	if (pji->config == NULL) {
+		pji->config = gnome_print_dialog_get_config
+			(GNOME_PRINT_DIALOG(dialog));		
+	}
+	
+	pji->range = gnome_print_dialog_get_range_page
+		(GNOME_PRINT_DIALOG(dialog), &pji->page_first, &pji->page_last);
+	
+	ghex_print_document_real (pji, pji->preview);
+	
+	if (response == GNOME_PRINT_DIALOG_RESPONSE_PRINT) {
+		ghex_print_job_info_destroy (pji);
+		gtk_widget_destroy(dialog);
+	}
 }
 
 /**
@@ -769,7 +806,7 @@ ghex_print(GtkHex *gh, gboolean preview)
  *
  * Runs the GHex print dialog.
  **/
-static gboolean
+static void
 ghex_print_run_dialog(GHexPrintJobInfo *pji)
 {
 	GtkWidget *dialog;
@@ -783,36 +820,15 @@ ghex_print_run_dialog(GHexPrintJobInfo *pji)
 			GNOME_PRINT_RANGE_ALL | GNOME_PRINT_RANGE_RANGE,
 			1, pji->pages, "A", _("Pages"));
 
-	res = gtk_dialog_run(GTK_DIALOG(dialog));
+	if(ghex_window_get_active() != NULL)
+		gtk_window_set_transient_for(GTK_WINDOW(dialog),
+					     GTK_WINDOW(ghex_window_get_active()));
 
-	switch (res) {
-		case GNOME_PRINT_DIALOG_RESPONSE_PRINT:
-			break;
-		case GNOME_PRINT_DIALOG_RESPONSE_PREVIEW:
-			pji->preview = TRUE;
-			break;
-		case -1:
-			return TRUE;
-		default:
-			gtk_widget_destroy(dialog);
-			return TRUE;
-	};
+	g_signal_connect (dialog, "response",
+			  G_CALLBACK (ghex_print_dialog_response),
+			  pji);
 
-	g_return_val_if_fail (pji->config == NULL, TRUE);
-	pji->config = gnome_print_dialog_get_config(
-			GNOME_PRINT_DIALOG(dialog));
-
-#if 0
-	if (pji->printer && !pji->preview)
-		gnome_print_job_set_printer(pji->master, pji->printer);
-#endif
-
-	pji->range = gnome_print_dialog_get_range_page(
-			GNOME_PRINT_DIALOG(dialog),
-			&pji->page_first, &pji->page_last);
-
-	gtk_widget_destroy (dialog);
-	return FALSE;
+	gtk_widget_show (dialog);
 }
 
 /**

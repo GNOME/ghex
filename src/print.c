@@ -358,7 +358,6 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 void
 ghex_print_job_info_destroy(GHexPrintJobInfo *pji)
 {
-	gnome_print_job_close(pji->master);
 	gnome_font_unref(pji->h_font);
 	gnome_font_unref(pji->d_font);
 
@@ -418,5 +417,6 @@ ghex_print_job_execute(GHexPrintJobInfo *pji)
 		}
 		end_page(pji->pc);
 	}
+	gnome_print_job_close(pji->master);
 }
 
