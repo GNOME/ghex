@@ -113,7 +113,7 @@ static gint key_press_cb (GtkTreeView *treeview, GdkEventKey *e, gpointer data)
 		gtk_widget_hide(GTK_WIDGET(treeview));
 		return TRUE;
 	}
-	else if(e->keyval == GDK_Return) {
+	if(e->keyval == GDK_Return) {
 		insert_char(treeview, model);
 		return TRUE;
 	}
