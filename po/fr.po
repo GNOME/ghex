@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.5\n"
-"POT-Creation-Date: 1999-11-26 15:32+0100\n"
+"POT-Creation-Date: 1999-11-26 16:53+0100\n"
 "PO-Revision-Date: 1998-02-28 19:57+0100\n"
 "Last-Translator: Vincent Renardias <vincent@ldsol.com>\n"
 "Language-Team: Vincent Renardias <vincent@ldsol.com>\n"
@@ -190,12 +190,12 @@ msgid "Group data by 32 bits"
 msgstr "Grouper les données par 32 bits"
 
 #: ghex/hex-document.c:78
-msgid "Jump to a certain position"
-msgstr "Aller à la position..."
-
-#: ghex/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr "Aller à l'_octet..."
+
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "Aller à la position..."
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -566,9 +566,8 @@ msgid "Terminate the stripchart program"
 msgstr "Terminer le programme gStripchart"
 
 #: gstripchart/gstripchart.c:1439
-#, fuzzy
 msgid "Copyright 1998,99 John Kodis"
-msgstr "Copyright 1998 John Kodis"
+msgstr "Copyright 1998,99 John Kodis"
 
 #: gstripchart/gstripchart.c:1441
 msgid ""
@@ -583,12 +582,12 @@ msgstr ""
 "utilisateur intéressé pourra lui trouver d'autres usages plus ingénieux."
 
 #: gstripchart/gstripchart.c:1454
-msgid "Info about the striphart program"
-msgstr "Informations sur le programme gStripchart"
-
-#: gstripchart/gstripchart.c:1454
 msgid "_About"
 msgstr "_A propos"
+
+#: gstripchart/gstripchart.c:1454
+msgid "Info about the striphart program"
+msgstr "Informations sur le programme gStripchart"
 
 #: gstripchart/gstripchart.c:1465
 msgid "_File"
@@ -672,10 +671,6 @@ msgstr "Paramètres"
 msgid "Exit"
 msgstr "Quitter"
 
-#: gstripchart/gstripchart.c:1799
-msgid "Gnome stripchart viewer"
-msgstr "Moniteur GNOME stripchart"
-
 #. Create a top-level application window. Set minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
@@ -683,10 +678,13 @@ msgstr "Moniteur GNOME stripchart"
 msgid "gstripchart"
 msgstr "gStripchart"
 
+#: gstripchart/gstripchart.c:1799
+msgid "Gnome stripchart viewer"
+msgstr "Moniteur GNOME stripchart"
+
 #: gstripchart/gstripchart.c:1956
-#, fuzzy
 msgid "Params..."
-msgstr "Paramètres"
+msgstr "Param..."
 
 #: gstripchart/gstripchart.c:2000
 #, c-format
@@ -694,12 +692,12 @@ msgid "invalid display type: %s\n"
 msgstr "Type d'affichage non valide : %s\n"
 
 #: gstripchart/gstripchart.c:2025
-msgid "GEO"
-msgstr "GEO"
-
-#: gstripchart/gstripchart.c:2025
 msgid "Geometry string: WxH+X+Y"
 msgstr "Chaîne de géométrie : LxH+X+Y"
+
+#: gstripchart/gstripchart.c:2025
+msgid "GEO"
+msgstr "GEO"
 
 #: gstripchart/gstripchart.c:2027
 msgid "Configuration file name"
@@ -735,76 +733,72 @@ msgid "Adds a menubar to the main window"
 msgstr "Ajouter une barre de menu à la fenêtre principale"
 
 #: gstripchart/gstripchart.c:2039
-#, fuzzy
 msgid "Omits slider window"
-msgstr "Omettre l'ascenseur"
+msgstr "Omettre la fenêtre coulissante"
+
+#: gstripchart/gstripchart.c:2041
+msgid "TYPE is one of gtk, text, graph, or none"
+msgstr "Le TYPE peut être 'gtk', 'text', 'graph' ou 'aucun'"
 
 #: gstripchart/gstripchart.c:2041
 msgid "TYPE"
 msgstr "TYPE"
 
-#: gstripchart/gstripchart.c:2041
-#, fuzzy
-msgid "TYPE is one of gtk, text, graph, or none"
-msgstr "Le TYPE est soit 'gtk' ou 'text' ou 'graph' ou 'aucun'"
+#: gstripchart/gstripchart.c:2190
+msgid "white"
+msgstr "blanc"
 
 #: gstripchart/gstripchart.c:2190
 msgid "black"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2190
-#, fuzzy
-msgid "blue"
-msgstr "Valeur"
+msgstr "noir"
 
 #: gstripchart/gstripchart.c:2190
 msgid "red"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2190
-msgid "white"
-msgstr ""
+msgstr "rouge"
 
 #: gstripchart/gstripchart.c:2190
 msgid "yellow"
-msgstr ""
+msgstr "jaune"
 
-#: gstripchart/gstripchart.c:2191
-msgid "Busy"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2191
-#, fuzzy
-msgid "Load"
-msgstr "Recharger"
-
-#: gstripchart/gstripchart.c:2191
-msgid "cyan"
-msgstr ""
+#: gstripchart/gstripchart.c:2190
+msgid "blue"
+msgstr "bleu"
 
 #: gstripchart/gstripchart.c:2191
 msgid "green"
-msgstr ""
+msgstr "vert"
+
+#: gstripchart/gstripchart.c:2191
+msgid "cyan"
+msgstr "cyan"
 
 #: gstripchart/gstripchart.c:2191
 msgid "magenta"
-msgstr ""
+msgstr "magenta"
 
-#: gstripchart/gstripchart.c:2192
-msgid "Net In"
-msgstr ""
+#: gstripchart/gstripchart.c:2191
+msgid "Busy"
+msgstr "Occupé"
 
-#: gstripchart/gstripchart.c:2192
-msgid "Net Out"
-msgstr ""
+#: gstripchart/gstripchart.c:2191
+msgid "Load"
+msgstr "Charger"
 
 #: gstripchart/gstripchart.c:2192
 msgid "Swap"
-msgstr ""
+msgstr "Swap"
+
+#: gstripchart/gstripchart.c:2192
+msgid "Net In"
+msgstr "Net In"
+
+#: gstripchart/gstripchart.c:2192
+msgid "Net Out"
+msgstr "Net Out"
 
 #: gstripchart/gstripchart.c:2192
 msgid "ppp"
-msgstr ""
+msgstr "ppp"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -870,21 +864,21 @@ msgstr ""
 "Une erreur est survenue durant la lecture du fichier de configuration.\n"
 "Dois-je installer une nouvelle configuration ?"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "GÉOMÉTRIE"
-
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "Spécifie la géométrie"
 
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "PROJET"
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
+msgid "GEOMETRY"
+msgstr "GÉOMÉTRIE"
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "Choisir un projet au lancement de l'application"
+
+#: gtt/main.c:206
+msgid "PROJECT"
+msgstr "PROJET"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1252,12 +1246,12 @@ msgid "Selection:"
 msgstr "Sélection :"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "FONTSPEC"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
 msgstr "Police à charger"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr "FONTSPEC"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1411,12 +1405,12 @@ msgid "Run Program"
 msgstr "Exécuter un programme"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Annuler"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "Exécuter"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Cancel"
+msgstr "Annuler"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1544,62 +1538,62 @@ msgstr "Échec de l'exécution de la commande: échec de fork"
 msgid "Make guname act as a control center applet"
 msgstr "Guname doit agir comme une applet du control center"
 
-#: mini-utils/guname/guname.c:115
+#: mini-utils/guname/guname.c:117
 msgid "an initialization error occurred while starting 'guname-capplet'."
 msgstr ""
 "une erreur d'initialisation est survenue lors du démarrage de "
 "'guname-capplet'."
 
-#: mini-utils/guname/guname.c:425
+#: mini-utils/guname/guname.c:427
 msgid "System Information"
 msgstr "Informations système"
 
-#: mini-utils/guname/guname.c:510
+#: mini-utils/guname/guname.c:509
 msgid "Logo file not found"
 msgstr "Fichier logo non trouvé"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:514
+#: mini-utils/guname/guname.c:513
 msgid "GNOME contributors:"
 msgstr "Contributeurs à GNOME :"
 
-#: mini-utils/guname/guname.c:517
+#: mini-utils/guname/guname.c:516
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
-#: mini-utils/guname/guname.c:528
+#: mini-utils/guname/guname.c:527
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME : The GNU Network Object Model Environment"
 
-#: mini-utils/guname/guname.c:552
+#: mini-utils/guname/guname.c:551
 msgid "Email Information..."
 msgstr "Envoyer par e-mail l'information..."
 
-#: mini-utils/guname/guname.c:565
+#: mini-utils/guname/guname.c:564
 msgid "Save Information to File..."
 msgstr "Enregistrer l'information dans un fichier..."
 
-#: mini-utils/guname/guname.c:577 mini-utils/guname/guname.c:647
+#: mini-utils/guname/guname.c:576 mini-utils/guname/guname.c:646
 msgid "Detailed Information..."
 msgstr "Informations détaillées..."
 
-#: mini-utils/guname/guname.c:592
+#: mini-utils/guname/guname.c:591
 msgid "Category"
 msgstr "Carégorie"
 
-#: mini-utils/guname/guname.c:592
+#: mini-utils/guname/guname.c:591
 msgid "Your System"
 msgstr "Votre système"
 
-#: mini-utils/guname/guname.c:633
+#: mini-utils/guname/guname.c:632
 msgid "Save As..."
 msgstr "Enregistrer sous..."
 
-#: mini-utils/guname/guname.c:639
+#: mini-utils/guname/guname.c:638
 msgid "Mail To..."
 msgstr "Envoyer un courrier à ..."
 
-#: mini-utils/guname/guname.c:687
+#: mini-utils/guname/guname.c:686
 #, c-format
 msgid ""
 "Error closing file `%s': \n"
@@ -1610,27 +1604,27 @@ msgstr ""
 "%s\n"
 "Tout ou partie des données n'ont pas pu être enregistrées."
 
-#: mini-utils/guname/guname.c:699
+#: mini-utils/guname/guname.c:698
 #, c-format
 msgid "Couldn't open file `%s': %s"
 msgstr "Impossible d'ouvrir le fichier `%s' : %s"
 
-#: mini-utils/guname/guname.c:714
+#: mini-utils/guname/guname.c:713
 msgid "Save System Information As..."
 msgstr "Enregistrer les informations système sous..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:760
+#: mini-utils/guname/guname.c:759
 #, c-format
 msgid "Command failed ` %s ': %s"
 msgstr "Echec de la commande ` %s ' : %s"
 
-#: mini-utils/guname/guname.c:768
+#: mini-utils/guname/guname.c:767
 #, c-format
 msgid "Couldn't run command ` %s ': %s"
 msgstr "Impossible de lancer la commande ` %s ' : %s"
 
-#: mini-utils/guname/guname.c:792
+#: mini-utils/guname/guname.c:791
 #, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
@@ -1639,11 +1633,11 @@ msgstr ""
 "Le courier suivant sera envoyé à %s.\n"
 "Etes-vous sûr de vouloir envoyer cette information par courrier ?"
 
-#: mini-utils/guname/guname.c:803
+#: mini-utils/guname/guname.c:802
 msgid "Are you sure?"
 msgstr "Etes-vous sûr ?"
 
-#: mini-utils/guname/guname.c:837
+#: mini-utils/guname/guname.c:836
 msgid "Address to mail to:"
 msgstr "Envoyer le courrier à :"
 
@@ -1750,20 +1744,20 @@ msgid "No information for this filesystem."
 msgstr "Aucune information sur ce système de fichier."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "Kilo-octets"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "Mémoire"
 
+#: mini-utils/guname/moreinfo.c:161
+msgid "Kilobytes"
+msgstr "Kilo-octets"
+
 #: mini-utils/guname/moreinfo.c:186
 msgid "%ld%% memory used."
-msgstr ""
+msgstr "mémoire utilisée: %ld%%."
 
 #: mini-utils/guname/moreinfo.c:197
 msgid "%ld%% swap used."
-msgstr ""
+msgstr "swap utilisé : %ld%%."
 
 #: mini-utils/guname/moreinfo.c:222
 #, c-format
@@ -1807,7 +1801,7 @@ msgstr ""
 
 #: mini-utils/guname/moreinfo.c:353
 msgid "%2d%% full "
-msgstr ""
+msgstr "%2d%% plein "
 
 #: mini-utils/gw/gw.c:141
 msgid ""
@@ -1818,12 +1812,12 @@ msgstr ""
 "Cette commande est nécessaire pour que l'application puisse fonctionner."
 
 #: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "Enregistrer l'information sur le disque"
-
-#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "Enregi_strer..."
+
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "Enregistrer l'information sur le disque"
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1923,13 +1917,13 @@ msgstr "Le paramétrage DMA de ce disque ne peut être changé."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Désactivé"
+msgid "Enabled"
+msgstr "Activé"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Activé"
+msgid "Disabled"
+msgstr "Désactivé"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
