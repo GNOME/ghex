@@ -76,7 +76,7 @@
 
         <cmd name="About" _label="About..." _tip="About this application"/>
 
-	<cmd name="Help" _label="Contents" _tip="Help on this application" accel="F1"/>
+	<cmd name="Help" _label="Contents" _tip="Help on this application" pixtype="stock" pixname="gtk-help" accel="F1"/>
 
 </commands>
 
@@ -179,8 +179,6 @@
 
 <submenu name="Help" _label="_Help">
 	
-	<placeholder name="BuiltMenuItems"/>
-
 	<menuitem name="Help" verb="" _label="_Contents"/>
 
         <menuitem name="About" verb="" _label="_About..."/>

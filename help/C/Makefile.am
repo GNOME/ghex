@@ -1,7 +1,7 @@
 figs = \
 	figures/ghex_window_empty.png	\
 	figures/ghex_window_open.png
-docname = ghex
+docname = ghex2
 lang = C
 omffile = ghex-C.omf
 entities = legal.xml
