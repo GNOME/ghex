@@ -4,7 +4,7 @@
  * This file is part of ghex
  *
  * Copyright (C) 1998, 1999 Alex Roberts, Evan Lawrence
- * Copyright (C) 2000, 2001 Chema Celorio, Paolo Maggi 
+ * Copyright (C) 2000, 2001, 2002 Chema Celorio, Paolo Maggi, Jaka Mocnik
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,9 +55,9 @@ static void ghex_mdi_finalize 		(GObject 	*object);
 
 static void ghex_mdi_app_created_handler	(BonoboMDI *mdi, BonoboWindow *win);
 static void ghex_mdi_drag_data_received_handler (GtkWidget *widget, GdkDragContext *context, 
-		                                  gint x, gint y, 
-						  GtkSelectionData *selection_data, 
-				                  guint info, guint time);
+						 gint x, gint y, 
+						 GtkSelectionData *selection_data, 
+						 guint info, guint time, gpointer data);
 
 #ifdef SNM /* Do we need this for ghex2? -- SnM */
 static void ghex_mdi_set_app_toolbar_style 	(BonoboWindow *win);
@@ -243,6 +243,7 @@ static void
 ghex_mdi_app_created_handler (BonoboMDI *mdi, BonoboWindow *win)
 {
 	BonoboUIComponent *uic;
+
 	static GtkTargetEntry drag_types[] =
 	{
 		{ "text/uri-list", 0, 0 },
@@ -258,9 +259,9 @@ ghex_mdi_app_created_handler (BonoboMDI *mdi, BonoboWindow *win)
 			   drag_types, n_drag_types,
 			   GDK_ACTION_COPY);
 		
-	gtk_signal_connect (GTK_OBJECT (win), "drag_data_received",
-			    GTK_SIGNAL_FUNC (ghex_mdi_drag_data_received_handler), 
-			    NULL);
+	g_signal_connect (G_OBJECT (win), "drag_data_received",
+			  G_CALLBACK (ghex_mdi_drag_data_received_handler), 
+			  mdi);
 
 	ghex_mdi_set_app_statusbar_style (win);
 
@@ -295,26 +296,28 @@ ghex_mdi_app_created_handler (BonoboMDI *mdi, BonoboWindow *win)
 
 static void 
 ghex_mdi_drag_data_received_handler (GtkWidget *widget, GdkDragContext *context, 
-		                      gint x, gint y, GtkSelectionData *selection_data, 
-				      guint info, guint time)
+				     gint x, gint y, GtkSelectionData *selection_data, 
+				     guint info, guint time, gpointer data)
 {
-	GList *list = NULL;
-	GList *file_list = NULL;
-	GList *p = NULL;
-	
-	list = gnome_vfs_uri_list_parse (selection_data->data);
-	p = list;
+	gchar **uris_to_open, **uri;
+	GhexMDI *mdi = GHEX_MDI(data);
+	HexDocument *newdoc;
 
-	while (p != NULL)
-	{
-		file_list = g_list_append (file_list, 
-				gnome_vfs_uri_to_string ((const GnomeVFSURI*)(p->data), 
-				GNOME_VFS_URI_HIDE_NONE));
-		p = p->next;
+        uris_to_open = g_strsplit(selection_data->data, "\r\n", 0);
+
+	uri = uris_to_open;
+
+	while(*uri) {
+		if(!g_strncasecmp("file:", *uri, 5)) {
+			newdoc = hex_document_new((*uri) + 5);
+			if(newdoc) {
+				bonobo_mdi_add_child(BONOBO_MDI (mdi), BONOBO_MDI_CHILD(newdoc));
+				bonobo_mdi_add_view(BONOBO_MDI (mdi), BONOBO_MDI_CHILD(newdoc));
+			}
+		}
+		uri++;
 	}
-	
-	gnome_vfs_uri_list_free (list);
-
+	g_strfreev(uris_to_open);
 }
 
 #ifdef SNM /* We dont need this for ghex2. Atleast for now -- SnM */
@@ -436,27 +439,6 @@ ghex_mdi_add_child_handler (BonoboMDI *mdi, BonoboMDIChild *child)
 static gint 
 ghex_mdi_add_view_handler (BonoboMDI *mdi, GtkWidget *view)
 {
-#ifdef SNM /* Modified according to the ghex2 app -- SnM */
-	static GtkTargetEntry drag_types[] =
-	{
-		{ "text/uri-list", 0, 0 },
-	};
-
-	static gint n_drag_types = sizeof (drag_types) / sizeof (drag_types [0]);
-
-	/* FIXME */
-	/* Drag and drop support */
-	gtk_drag_dest_set (view,
-			   GTK_DEST_DEFAULT_MOTION |
-			   GTK_DEST_DEFAULT_HIGHLIGHT |
-			   GTK_DEST_DEFAULT_DROP,
-			   drag_types, n_drag_types,
-			   GDK_ACTION_COPY);
-		
-	gtk_signal_connect (GTK_OBJECT (view), "drag_data_received",
-			    GTK_SIGNAL_FUNC (ghex_mdi_drag_data_received_handler), 
-			    NULL);
-#endif
 	gtk_signal_connect (GTK_OBJECT(view), "cursor_moved",
 			    GTK_SIGNAL_FUNC (cursor_moved_cb),
 			    mdi);

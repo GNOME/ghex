@@ -235,21 +235,21 @@ static void about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* v
 	static const gchar *authors[] = {
 		"Jaka Mocnik <jaka@gnu.org>",
 		"Chema Celorio <chema@celorio.com>",
+		"Shivram U <shivaram.upadhyayula@wipro.com>",
 		NULL
 	};
 
-#ifdef SNM
 	if(!about) {
 		about = gnome_about_new ( _("GHex, a binary file editor"), VERSION,
-								  "(C) 1998 - 2001 Jaka Mocnik", authors,
-								  _("Released under the terms of GNU Public License"), NULL);
-		gtk_signal_connect(GTK_OBJECT(about), "destroy",
-						   GTK_SIGNAL_FUNC(about_destroy_cb), &about);
+								  "(C) 1998 - 2002 Jaka Mocnik",
+								  _("Released under the terms of GNU Public License"),
+								  authors, NULL, NULL, NULL);
+		g_signal_connect(G_OBJECT(about), "destroy",
+						 G_CALLBACK(about_destroy_cb), &about);
 		gtk_widget_show (about);
 	}
 	else
 		gdk_window_raise(GTK_WIDGET(about)->window);
-#endif
 }
 
 /* Changed the function parameters -- SnM */
