@@ -5,20 +5,28 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex 1.0.50\n"
-"POT-Creation-Date: 2002-03-01 20:23+0200\n"
-"PO-Revision-Date: 2002-03-01 19:38+0200\n"
+"POT-Creation-Date: 2002-04-12 21:23+0300\n"
+"PO-Revision-Date: 2002-04-12 20:34+0200\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/bonobo-mdi.c:490
-#: src/bonobo-mdi.c:566
-#: src/bonobo-mdi.c:1917
+#: ghex.desktop.in.h:1
+msgid "GHex"
+msgstr "GHex"
+
+#: ghex.desktop.in.h:2
+msgid "Gnome Hexadecimal Editor"
+msgstr "Шістнадцятковий редактор для GNOME"
+
+#: src/bonobo-mdi.c:494
+#: src/bonobo-mdi.c:570
+#: src/bonobo-mdi.c:1886
 #, c-format
 msgid "Activate %s"
-msgstr ""
+msgstr "Активувати %s"
 
 #: src/chartable.c:90
 msgid "ASCII"
@@ -29,7 +37,7 @@ msgid "Hex"
 msgstr "Шістнадсяткова"
 
 #: src/chartable.c:90
-#: src/preferences.c:188
+#: src/preferences.c:198
 msgid "Decimal"
 msgstr "Десятковий"
 
@@ -75,7 +83,7 @@ msgstr "_ASCII"
 msgid "_Get cursor value"
 msgstr "Взяти значення під курсором"
 
-#: src/converter.c:324
+#: src/converter.c:336
 msgid "ERROR"
 msgstr "ПОМИЛКА"
 
@@ -184,27 +192,30 @@ msgstr "Досягнуто кінця файлу!"
 msgid "Replaced %d occurencies."
 msgstr "Змінено %d входжень"
 
-#: src/ghex-mdi.c:501
+#: src/ghex-mdi.c:479
 #, c-format
 msgid ""
 "Do you want to save the changes you made to the document ``%s''? \n"
 "\n"
 "Your changes will be lost if you don't save them."
 msgstr ""
+"Чи хочете ви зберезти зроблені в документі \"%s\" зміни?\n"
+"\n"
+"Без цього ваші зміни буде втрачено."
 
-#: src/ghex-mdi.c:506
+#: src/ghex-mdi.c:484
 msgid "_Don't save"
 msgstr "_Не збарігати"
 
-#: src/ghex-mdi.c:584
+#: src/ghex-mdi.c:562
 msgid "(modified)"
 msgstr "(змінено)"
 
-#: src/ghex-mdi.c:590
+#: src/ghex-mdi.c:568
 msgid "(readonly)"
 msgstr "(лише читання)"
 
-#: src/ghex-mdi.c:843
+#: src/ghex-mdi.c:876
 #: src/main.c:225
 #, c-format
 msgid "Offset: %s"
@@ -316,7 +327,7 @@ msgstr "Довідка"
 
 #: src/ghex-ui.xml.h:26
 msgid "Help Chat"
-msgstr ""
+msgstr "Довідкова розмова"
 
 #: src/ghex-ui.xml.h:27
 msgid "Insert Mode"
@@ -569,113 +580,113 @@ msgid ""
 "Do you want to save changes?"
 msgstr "Файл %s було змінено з часу останнього збереження.Ви хочете зберегти зміни?"
 
-#: src/main.c:334
+#: src/main.c:338
 msgid "The gnome binary editor"
 msgstr "Редактор двійкових даних"
 
-#: src/preferences.c:54
+#: src/preferences.c:56
 msgid "Default"
 msgstr "Типовий"
 
-#: src/preferences.c:55
+#: src/preferences.c:57
 msgid "Notebook"
 msgstr "Закладки"
 
-#: src/preferences.c:56
+#: src/preferences.c:58
 msgid "Toplevel"
 msgstr "Зверху"
 
-#: src/preferences.c:57
+#: src/preferences.c:59
 msgid "Modal"
 msgstr "Модальний"
 
-#: src/preferences.c:81
+#: src/preferences.c:91
 msgid "Select font"
 msgstr "Вибрати шрифт"
 
-#: src/preferences.c:159
+#: src/preferences.c:169
 msgid "Maximum number of undo levels"
 msgstr "Максимально можливе число відкатів"
 
-#: src/preferences.c:174
+#: src/preferences.c:184
 msgid "Show cursor offset in statusbar as"
 msgstr "Показувати зміщення курсора в панелі стану як"
 
-#: src/preferences.c:193
+#: src/preferences.c:203
 msgid "Hexadecimal"
 msgstr "Шістнадцятковий"
 
-#: src/preferences.c:199
+#: src/preferences.c:209
 msgid "Custom"
 msgstr "Нетиповий"
 
 #. show offsets check button
-#: src/preferences.c:210
+#: src/preferences.c:220
 msgid "Show offsets column"
 msgstr "Показ стовпчика зміщень"
 
-#: src/preferences.c:215
+#: src/preferences.c:225
 msgid "Editing"
 msgstr "Редагування"
 
 #. display font
-#: src/preferences.c:224
+#: src/preferences.c:234
 msgid "Font"
 msgstr "Шрифт"
 
-#: src/preferences.c:240
+#: src/preferences.c:256
 msgid "Browse..."
 msgstr "Перегляд..."
 
 #. default group type
-#: src/preferences.c:260
+#: src/preferences.c:285
 msgid "Default Group Type"
 msgstr "Типове групування"
 
-#: src/preferences.c:276
+#: src/preferences.c:301
 msgid "Display"
 msgstr "Представлення"
 
 #. mdi modes
-#: src/preferences.c:285
+#: src/preferences.c:310
 msgid "MDI Mode"
 msgstr "MDI Режим"
 
-#: src/preferences.c:302
+#: src/preferences.c:327
 msgid "MDI"
 msgstr "MDI"
 
 #. paper selection
-#: src/preferences.c:311
+#: src/preferences.c:336
 msgid "Paper size"
 msgstr "Розмір паперу"
 
 #. data & header font selection
-#: src/preferences.c:327
+#: src/preferences.c:352
 msgid "Fonts"
 msgstr "Шрифти"
 
-#: src/preferences.c:333
+#: src/preferences.c:358
 msgid "Data font"
 msgstr "Шрифт даних"
 
-#: src/preferences.c:348
+#: src/preferences.c:385
 msgid "Header font"
 msgstr "Шрифт заголовку"
 
-#: src/preferences.c:374
+#: src/preferences.c:423
 msgid "Print shaded box over"
 msgstr "Друкувати смужку після кожного"
 
-#: src/preferences.c:383
+#: src/preferences.c:432
 msgid "lines (0 for no box)"
 msgstr "рядка (0 - без смужку)"
 
-#: src/preferences.c:390
+#: src/preferences.c:439
 msgid "Printing"
 msgstr "Друкування"
 
-#: src/preferences.c:579
+#: src/preferences.c:629
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -683,11 +694,11 @@ msgstr ""
 "Рядок формату зміщення містить невірний специфікатор.\n"
 "Дозволяються лише \"x\", \"X\", \"p\", \"P\", \"d\" і \"o\"."
 
-#: src/preferences.c:616
+#: src/preferences.c:672
 msgid "Can not open desired font!"
 msgstr "Неможливо завантажити вказаний шрифт!"
 
-#: src/print.c:52
+#: src/print.c:57
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Сторінка: %i/%i"
@@ -768,15 +779,15 @@ msgstr "Неможливо відкрити файл!"
 msgid "Can't open file for writing!"
 msgstr "Неможливо відкрити файл для запису!"
 
-#: src/ui.c:702
+#: src/ui.c:708
 msgid "Print Hex Document"
 msgstr "Друк шістнадцяткового документа"
 
-#: src/ui.c:707
+#: src/ui.c:713
 msgid "Pages"
 msgstr "Сторінки"
 
-#: src/ui.c:750
+#: src/ui.c:759
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Перегляд друку"
