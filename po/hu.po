@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex VERSION\n"
 "POT-Creation-Date: 2000-05-08 23:11+0200\n"
-"PO-Revision-Date: 1999-02-20 18:37+01:00\n"
+"PO-Revision-Date: 2001-01-25 10:12+01:00\n"
 "Last-Translator: Szabolcs BAN <shooby@gnome.hu>\n"
-"Language-Team: Hungarian <hu@li.org>\n"
+"Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,23 +23,23 @@ msgstr "Bináris"
 
 #: src/chartable.c:90 src/converter.c:63 src/preferences.c:158
 msgid "Decimal"
-msgstr "Tízes"
+msgstr "Decimális"
 
 #: src/chartable.c:90 src/converter.c:73
 msgid "Hex"
-msgstr "Tizenhatos"
+msgstr "Hexadecimális"
 
 #: src/chartable.c:90 src/converter.c:83
 msgid "ASCII"
-msgstr "ACSII"
+msgstr "ASCII"
 
 #: src/converter.c:93
 msgid "Get cursor value"
-msgstr "Kurzor érték"
+msgstr "Kurzor alatti érték"
 
 #: src/converter.c:99
 msgid "Close"
-msgstr "Bezár"
+msgstr "Bezárás"
 
 #: src/converter.c:194
 msgid "ERROR"
@@ -53,7 +53,7 @@ msgstr "GHex (%s): Adat keresése"
 #: src/findreplace.c:67
 #, c-format
 msgid "Search for %s"
-msgstr "Keresés %s-re"
+msgstr "%s keresése"
 
 #: src/findreplace.c:83
 msgid "Find Next"
@@ -92,11 +92,11 @@ msgstr "GHex (%s): Bájtra ugrás"
 
 #: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
 msgid "There is no active buffer to search!"
-msgstr "Nincs aktív menteni való puffer!"
+msgstr "Nincs aktív kereshetõ tároló!"
 
 #: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
 msgid "There seems to be no string to search for!"
-msgstr "Nem úgy néz ki, mintha keresni volna mit!"
+msgstr "Úgy tûnik, nem adtad meg a keresendõ karakterláncot!"
 
 #: src/findreplace.c:310 src/findreplace.c:388
 msgid "End Of File reached"
@@ -108,7 +108,7 @@ msgstr "A fájl elején vagyok"
 
 #: src/findreplace.c:345
 msgid "There is no active buffer to move the cursor in!"
-msgstr "Nincs aktív puffer, amibe az egeret lehetne mozgatni!"
+msgstr "Nincs aktív tároló, amelybe a kurzort lehetne mozgatni!"
 
 #: src/findreplace.c:350
 msgid "No offset has been specified!"
@@ -116,23 +116,23 @@ msgstr "Nincs eltolás megadva!"
 
 #: src/findreplace.c:357
 msgid "Can not position cursor beyond the End Of File!"
-msgstr "Nem lehet a kurzort pozícionálni, mivel ez a fájl vége!"
+msgstr "Nem lehet a kurzort a fájl végén túlra mozgatni!"
 
 #: src/findreplace.c:362
 msgid "The offset must be a positive integer value!"
-msgstr "Az eltolás egész szám kell hogy legyen!"
+msgstr "Az eltolás pozitív egész szám kell hogy legyen!"
 
 #: src/findreplace.c:399 src/findreplace.c:436
 msgid "There is no active buffer to replace data in!"
-msgstr "Nincs cserélendõ puffer"
+msgstr "Nincs olyan aktív tároló, amelyben adatot lehetne cserélni!"
 
 #: src/findreplace.c:410 src/findreplace.c:447
 msgid "Strange find or replace string!"
-msgstr "Nehéz megtalálni vagy cserélni a szöveget!"
+msgstr "Furcsa karakterláncot adtál meg keresendõ vagy cserélendõ szövegként!"
 
 #: src/findreplace.c:425
 msgid "End Of File reached!"
-msgstr "Fájl vége!"
+msgstr "A fájl végén vagyok!"
 
 #: src/findreplace.c:463
 #, c-format
@@ -169,7 +169,7 @@ msgstr "_Szavak"
 
 #: src/hex-document-ui.c:53
 msgid "Group data by 16 bits"
-msgstr "16 bitenként csoportosít"
+msgstr "16 bitenként csoportosítja az adatokat"
 
 #: src/hex-document-ui.c:54
 msgid "_Longwords"
@@ -177,7 +177,7 @@ msgstr "_Hosszúszavak"
 
 #: src/hex-document-ui.c:55
 msgid "Group data by 32 bits"
-msgstr "32 bitenként csoportosít"
+msgstr "32 bitenként csoportosítja az adatokat"
 
 #: src/hex-document-ui.c:74
 msgid "_Goto Byte..."
@@ -205,7 +205,7 @@ msgstr "_Nézet hozzáadása"
 
 #: src/hex-document-ui.c:88
 msgid "Add a new view of the buffer"
-msgstr "Új nézet az új pufferhez"
+msgstr "Új nézet az új tárolóhoz"
 
 #: src/hex-document-ui.c:89
 msgid "_Remove view"
@@ -247,7 +247,7 @@ msgstr "Kizárólagos"
 
 #: src/preferences.c:76
 msgid "Select font"
-msgstr "Betûtípus kiválasztása"
+msgstr "Betûkészlet választása"
 
 #: src/preferences.c:129
 msgid "Maximum number of undo levels"
@@ -277,16 +277,16 @@ msgstr "Szerkesztés"
 #. display font
 #: src/preferences.c:194
 msgid "Font"
-msgstr "Betûtípus"
+msgstr "Betûkészlet"
 
 #: src/preferences.c:210
 msgid "Browse..."
-msgstr "Keres..."
+msgstr "Tallóz..."
 
 #. default group type
 #: src/preferences.c:230
 msgid "Default Group Type"
-msgstr "Alap csoport típus"
+msgstr "Alapértelmezett csoporttípus"
 
 #: src/preferences.c:246
 msgid "Display"
@@ -309,7 +309,7 @@ msgstr "Papírméret"
 #. data & header font selection
 #: src/preferences.c:295
 msgid "Fonts"
-msgstr "Betûtípusok"
+msgstr "Betûkészletek"
 
 #: src/preferences.c:301
 msgid "Data font"
@@ -340,11 +340,11 @@ msgstr ""
 
 #: src/preferences.c:567
 msgid "Can not open desired font!"
-msgstr "Nem tudom a meghatározott betûkészletet megnyitni!"
+msgstr "Nem tudom a kívánt betûkészletet megnyitni!"
 
 #: src/ui.c:57
 msgid "Export to HTML..."
-msgstr "HTML-be ment..."
+msgstr "Exportálás HTML-be..."
 
 #: src/ui.c:57
 msgid "Export data to HTML source"
@@ -356,7 +356,7 @@ msgstr "Nyomtatási elõnézet..."
 
 #: src/ui.c:61
 msgid "Preview printed data"
-msgstr "A nyomatandó lapokat mutatja meg"
+msgstr "A nyomtatandó lapokat mutatja meg"
 
 #: src/ui.c:74
 msgid "Con_verter..."
@@ -372,7 +372,7 @@ msgstr "Karaktertábla..."
 
 #: src/ui.c:77
 msgid "Show the character table"
-msgstr "Karaktertáblát jelenít meg"
+msgstr "Karaktertáblázatot jelenít meg"
 
 #: src/ui.c:94
 msgid "Tools"
@@ -400,15 +400,15 @@ msgstr "ASCII adat"
 
 #: src/ui.c:200
 msgid "GHex, a binary file editor"
-msgstr "GHex, egy bináris fájlszerkesztõ"
+msgstr "GHex bináris fájlszerkesztõ"
 
 #: src/ui.c:202
 msgid "Released under the terms of GNU Public License"
-msgstr "GNU közengedély alatt jelent meg"
+msgstr "GNU Public License alatt jelent meg"
 
 #: src/ui.c:226 src/ui.c:539
 msgid "Error saving file!"
-msgstr "Fájl mentési hiba!"
+msgstr "Hiba a fájl mentése közben!"
 
 #: src/ui.c:230 src/ui.c:534
 #, c-format
@@ -425,30 +425,30 @@ msgstr "Válassz ki egy fáljt a mentéshez"
 
 #: src/ui.c:370
 msgid "Select path and file name for the HTML source"
-msgstr "A HTML forrás elérését és fájlnevét add meg"
+msgstr "Add meg a HTML forrás elérését és fájlnevét"
 
 #: src/ui.c:466
 #, c-format
 msgid "Really revert file %s?"
-msgstr "Téynleg visszaállítod a %s fájlt?"
+msgstr "Tényleg visszaállítod %s fájlt?"
 
 #: src/ui.c:479
 #, c-format
 msgid "Reverted buffer from file %s"
-msgstr "Viszzaállítva %s-ból"
+msgstr "Visszaállítva %s fájlból"
 
 #: src/ui.c:495
 #, c-format
 msgid "Loaded file %s"
-msgstr "Betöltve %s"
+msgstr "%s betöltve"
 
 #: src/ui.c:500
 msgid "Can not open file!"
-msgstr "Nem tudom megnyitni!"
+msgstr "Nem tudom megnyitni a fájlt!"
 
 #: src/ui.c:543
 msgid "Can't open file for writing!"
-msgstr "Nem tudom megnyitni írásra!"
+msgstr "Nem tudom megnyitni a fájlt írásra!"
 
 #: src/chartable.c:91
 msgid "Octal"
