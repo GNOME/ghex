@@ -45,7 +45,7 @@ extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[];
 
 #define CHILD_MENU_PATH GNOME_MENU_FILE_STRING
 #define CHILD_LIST_PATH GNOME_MENU_FILES_PATH
-#define GROUP_MENU_PATH _("Edit/Group Data As/")
+#define GROUP_MENU_PATH(p) g_strconcat3_a(p,GNOME_MENU_EDIT_PATH,_("Group Data As"),"/")
 
 typedef struct _PropertyUI {
 	GnomePropertyBox *pbox;
