@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2003-08-10 02:26+0800\n"
+"POT-Creation-Date: 2003-08-29 04:51+0800\n"
 "PO-Revision-Date: 2002-09-18 03:14+0800\n"
 "Last-Translator: Wang Jian <lark@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -194,15 +194,15 @@ msgstr "关闭查找和替换数据窗口"
 #: src/findreplace.c:231 src/ui.c:887
 #, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s)：跳到字节"
+msgstr "GHex (%s)：转到字节位置"
 
 #: src/findreplace.c:261
 msgid "Jump to byte"
-msgstr ""
+msgstr "转到字节位置"
 
 #: src/findreplace.c:261
 msgid "Enter the byte to jump to"
-msgstr ""
+msgstr "输入要转到的字节位置"
 
 #: src/findreplace.c:262
 msgid "OK"
@@ -210,11 +210,11 @@ msgstr "确定"
 
 #: src/findreplace.c:262
 msgid "Jumps to the specified byte"
-msgstr ""
+msgstr "转到指定的字节位置"
 
 #: src/findreplace.c:263
 msgid "Closes jump to byte window"
-msgstr ""
+msgstr "关闭“转到字节位置”窗口"
 
 #: src/findreplace.c:329 src/findreplace.c:357 src/findreplace.c:413
 msgid "There is no active document to search!"
@@ -652,11 +652,11 @@ msgstr "激活文件 %s"
 msgid "GHex - %s"
 msgstr "GHex - %s"
 
-#: src/ghex-window.c:944
+#: src/ghex-window.c:946
 msgid "Select a file to save buffer as"
 msgstr "选择用来保存缓冲区的文件"
 
-#: src/ghex-window.c:974
+#: src/ghex-window.c:997
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -665,20 +665,20 @@ msgstr ""
 "文件 %s 已存在。\n"
 "您要覆盖它吗？"
 
-#: src/ghex-window.c:1009 src/ui.c:356
+#: src/ghex-window.c:1032 src/ui.c:356
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "保存缓冲区到文件 %s"
 
-#: src/ghex-window.c:1015
+#: src/ghex-window.c:1038
 msgid "Error saving file!"
 msgstr "保存文件时发生错误！"
 
-#: src/ghex-window.c:1021
+#: src/ghex-window.c:1044
 msgid "Can't open file for writing!"
 msgstr "无法打开文件写！"
 
-#: src/ghex-window.c:1048
+#: src/ghex-window.c:1071
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -687,15 +687,15 @@ msgstr ""
 "文件 %s 自上次保存后已被修改。\n"
 "您要保存改动吗？"
 
-#: src/ghex-window.c:1058
+#: src/ghex-window.c:1081
 msgid "Do_n't save"
 msgstr "不保存(_N)"
 
-#: src/ghex-window.c:1078 src/ui.c:344
+#: src/ghex-window.c:1101 src/ui.c:344
 msgid "You don't have the permissions to save the file!"
 msgstr "您没有权限保存文件！"
 
-#: src/ghex-window.c:1082 src/ui.c:349
+#: src/ghex-window.c:1105 src/ui.c:349
 msgid "An error occured while saving file!"
 msgstr "保存文件时发生错误！"
 
@@ -727,7 +727,7 @@ msgstr "GNOME二进制编辑器"
 msgid "Could not initialize Bonobo!\n"
 msgstr "无法初始化 Bonobo！\n"
 
-#: src/main.c:88 src/main.c:101
+#: src/main.c:89 src/main.c:103
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "无效的几何属性字符串“%s”\n"
@@ -826,9 +826,8 @@ msgid "Select the header font"
 msgstr "选择页眉字体"
 
 #: src/preferences.c:353
-#, fuzzy
 msgid "_Print shaded box over:"
-msgstr "打印阴影框"
+msgstr "打印阴影框(_P)："
 
 #: src/preferences.c:365
 msgid "Box size"
