@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 0.30\n"
-"POT-Creation-Date: 1998-10-14 20:34+0100\n"
+"POT-Creation-Date: 1998-12-20 13:20-0500\n"
 "PO-Revision-Date: 1998-10-14 21:12+01:00\n"
 "Last-Translator: Nuno Ferreira <nmrf@rnl.ist.utl.pt>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -9,64 +9,63 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gcalc/gcalc.c:26
+#: gcalc/gcalc.c:30
 msgid "The Gnome Calculator"
 msgstr "A Calculadora GNOME"
 
-#: gcalc/gcalc.c:29
+#: gcalc/gcalc.c:33
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Calculadora simples de dupla precisão parecida com a xcalc"
 
-#: gcalc/gcalc.c:43 ghex/ui.c:57 gtt/menus.c:103
+#: gcalc/gcalc.c:85 gsearchtool/gsearchtool.c:579
+#: mini-utils/gcolorsel/gcolorsel.c:371
+msgid "E_xit"
+msgstr "_Sair"
+
+#: gcalc/gcalc.c:92 ghex/ui.c:75 gtt/menus.c:103
 msgid "_About..."
 msgstr "_Acerca..."
 
-#: gcalc/gcalc.c:48 ghex/ui.c:34 gtt/menus.c:45
-msgid "_Quit"
-msgstr "_Sair"
-
-#: gcalc/gcalc.c:55 gtt/menus.c:59
+#: gcalc/gcalc.c:98 gtt/menus.c:59
 msgid "_Copy"
 msgstr "_Copiar"
 
-#: gcalc/gcalc.c:65
-msgid "_Program"
-msgstr "_Aplicação"
+#: gcalc/gcalc.c:104
+#, fuzzy
+msgid "_Calculator"
+msgstr "Calculadora Gnome"
 
-#: gcalc/gcalc.c:68 ghex/hex-document.c:62 gncal/main.c:439 gtt/menus.c:115
+#: gcalc/gcalc.c:106 ghex/hex-document.c:85 gtt/menus.c:115
 msgid "_Edit"
 msgstr "_Editar"
 
-#: gcalc/gcalc.c:88
+#: gcalc/gcalc.c:108 ghex/ui.c:87 gsearchtool/gsearchtool.c:598
+#: gtt/menus.c:120 mini-utils/gcolorsel/gcolorsel.c:378
+msgid "_Help"
+msgstr "_Ajuda"
+
+#: gcalc/gcalc.c:130
 msgid "Gnome Calculator"
 msgstr "Calculadora Gnome"
 
-#: gdiskfree/df.c:135 gncal/gnomecard/gnomecard.c:424
-#: gsearchtool/gsearchtool.c:579 mini-utils/gless/gless.c:330
-#: mini-utils/gw/gw.c:187
+#: gdiskfree/df.c:128 mini-utils/gless/gless.c:307 mini-utils/gw/gw.c:185
 msgid "Exit"
 msgstr "Sair"
 
-#: gdiskfree/df.c:144 gncal/gnomecard/gnomecard.c:543
-#: gsearchtool/gsearchtool.c:588 mini-utils/gless/gless.c:301
-#: mini-utils/gw/gw.c:173
+#: gdiskfree/df.c:137 gsearchtool/gsearchtool.c:588
+#: mini-utils/gless/gless.c:278 mini-utils/gw/gw.c:171
 msgid "About..."
 msgstr "Acerca..."
 
-#. and document menu and document list paths
-#: gdiskfree/df.c:151 ghex/main.c:55 gncal/gnomecard/gnomecard.c:551
-#: gsearchtool/gsearchtool.c:595 mini-utils/gless/gless.c:357
-#: mini-utils/gw/gw.c:205
+#: gdiskfree/df.c:144 mini-utils/gless/gless.c:334 mini-utils/gw/gw.c:203
 msgid "File"
 msgstr "Ficheiro"
 
-#: gdiskfree/df.c:153 gncal/gnomecard/gnomecard.c:565
-#: gsearchtool/gsearchtool.c:598 mini-utils/gless/gless.c:365
-#: mini-utils/gw/gw.c:208
+#: gdiskfree/df.c:146 mini-utils/gless/gless.c:337 mini-utils/gw/gw.c:206
 msgid "Help"
 msgstr "Ajuda"
 
-#: gdiskfree/df.c:209
+#: gdiskfree/df.c:219
 msgid ""
 "A quick hack to show the amount of space free on mounted file systems "
 "uitilizing a dial."
@@ -74,1350 +73,433 @@ msgstr ""
 "Um \"quick hack\" que mostra a quantidade de espaço livre nos sistemas de "
 "ficheiros montados utilizando um mostrador."
 
-#: ghex/callbacks.c:20
+#: ghex/callbacks.c:44
 msgid "GHex, a binary file editor"
 msgstr "GHex, um editor de ficheiros binários"
 
-#: ghex/callbacks.c:22
+#: ghex/callbacks.c:46
 msgid "Released under the terms of GNU Public License"
 msgstr "Publicado sob os termos da GNU Public License"
 
-#: ghex/callbacks.c:48 ghex/callbacks.c:98
+#: ghex/callbacks.c:76 ghex/callbacks.c:169
 msgid "Error saving file!"
 msgstr "Erro a gravar o ficheiro!"
 
-#: ghex/callbacks.c:64
+#: ghex/callbacks.c:80 ghex/callbacks.c:164
+#, fuzzy, c-format
+msgid "Saved buffer to file %s"
+msgstr "Gravar ficheiro para o disco"
+
+#: ghex/callbacks.c:97
+#, c-format
+msgid "Really revert file %s?"
+msgstr ""
+
+#: ghex/callbacks.c:110
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr ""
+
+#: ghex/callbacks.c:125
+#, c-format
+msgid "Loaded file %s"
+msgstr ""
+
+#: ghex/callbacks.c:130
 msgid "Can not open file!"
 msgstr "Não consigo abrir o ficheiro!"
 
-#: ghex/callbacks.c:102
+#: ghex/callbacks.c:173
 msgid "Can't open file for writing!"
 msgstr "Não consigo abrir o ficheiro para escrita!"
 
-#: ghex/callbacks.c:126
+#: ghex/callbacks.c:197
 msgid "Select a file to open"
 msgstr "Seleccione um ficheiro para abrir"
 
-#: ghex/callbacks.c:144
+#: ghex/callbacks.c:215
 msgid "Select a file to save buffer as"
 msgstr "Seleccione um ficheiro onde gravar o documento"
 
-#: ghex/callbacks.c:238 ghex/callbacks.c:262 ghex/callbacks.c:315
-msgid "There seems to be no string to search for!"
-msgstr "Não parece existir uma expressão para procurar!"
-
-#: ghex/callbacks.c:243 ghex/callbacks.c:267 ghex/callbacks.c:320
+#: ghex/callbacks.c:308 ghex/callbacks.c:331 ghex/callbacks.c:384
 msgid "There is no active buffer to search!"
 msgstr "Não existe nenhum documento activo para procurar!"
 
-#: ghex/callbacks.c:252 ghex/callbacks.c:329
+#: ghex/callbacks.c:316 ghex/callbacks.c:339 ghex/callbacks.c:392
+msgid "There seems to be no string to search for!"
+msgstr "Não parece existir uma expressão para procurar!"
+
+#: ghex/callbacks.c:322 ghex/callbacks.c:399
 msgid "End Of File reached"
 msgstr "Fim de Ficheiro"
 
-#: ghex/callbacks.c:276
+#: ghex/callbacks.c:346
 msgid "Beginning Of File reached"
 msgstr "Início de Ficheiro"
 
-#: ghex/callbacks.c:284
+#: ghex/callbacks.c:354
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Não existe nenhum documento activo onde mover o cursor."
 
-#: ghex/callbacks.c:289
+#: ghex/callbacks.c:359
 msgid "No offset has been specified!"
 msgstr "Deslocamento não foi especificado!"
 
-#: ghex/callbacks.c:296
+#: ghex/callbacks.c:366
 msgid "The offset must be a positive integer value!"
 msgstr "O deslocamento tem de ser um valor inteiro positivo!"
 
-#: ghex/callbacks.c:301
+#: ghex/callbacks.c:371
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Não posso posicionar o cursor após o Fim de Ficheiro!"
 
-#: ghex/callbacks.c:339 ghex/callbacks.c:378
+#: ghex/callbacks.c:409 ghex/callbacks.c:448
 msgid "There is no active buffer to replace data in!"
 msgstr "Não existe nenhum documento activo onde substituir a expressão!"
 
-#: ghex/callbacks.c:350 ghex/callbacks.c:389
-msgid "Erroneous find or replace string!"
+#: ghex/callbacks.c:420 ghex/callbacks.c:459
+#, fuzzy
+msgid "Strange find or replace string!"
 msgstr "Expressão para procura ou substituição errónea!"
 
-#: ghex/callbacks.c:355 ghex/callbacks.c:394
+#: ghex/callbacks.c:425 ghex/callbacks.c:464
 msgid "Both strings must be of the same length!"
 msgstr "Ambas as expressões têm que ter o mesmo comprimento!"
 
-#: ghex/callbacks.c:368
+#: ghex/callbacks.c:438
 msgid "End Of File reached!"
 msgstr "Fim de Ficheiro!"
 
-#: ghex/callbacks.c:409
+#: ghex/callbacks.c:479
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d ocurrências foram substituidas."
 
-#: ghex/callbacks.c:469
+#: ghex/callbacks.c:546
 msgid "Can not open desired font!"
 msgstr "Não consigo abrir a fonte desejada!"
 
-#: ghex/callbacks.c:488
-#, c-format
+#: ghex/callbacks.c:565
+#, fuzzy, c-format
 msgid ""
-"The document %s has changed since last save.\n"
+"File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
 "O documento %s foi modificado desde a última vez que foi gravado.\n"
 "Deseja gravar as modificações?"
 
-#: ghex/callbacks.c:519
-msgid "Edit/Group Data As/"
+#: ghex/callbacks.c:589 ghex/ui.c:175
+#, fuzzy, c-format
+msgid "GHex (%s): Find Data"
+msgstr "GHex: Procurar expressão"
+
+#: ghex/callbacks.c:590 ghex/ui.c:235
+#, fuzzy, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "GHex: Procurar e Substituir Expressões"
+
+#: ghex/callbacks.c:591 ghex/ui.c:320
+#, fuzzy, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr "GHex: Ir para Byte"
+
+#: ghex/callbacks.c:605
+#, fuzzy
+msgid "_Edit/_Group Data As/"
 msgstr "Editar/Agrupar dados como/"
 
-#: ghex/callbacks.c:562
-msgid "ERRONEUS STRING"
-msgstr "EXPRESSÃO ERRÓNEA"
-
-#: ghex/config.c:40
-msgid "Can not open configured font!"
-msgstr "Não condigo abrir a fonte configurada!"
-
-#: ghex/gnome-support.c:13
-msgid "ID"
-msgstr "ID"
-
-#: ghex/gnome-support.c:13
-msgid "Discard session"
-msgstr "Rejeitar sessão"
-
-#: ghex/hex-document.c:31
+#: ghex/callbacks.c:610 ghex/hex-document.c:54
 msgid "_Bytes"
 msgstr "_Bytes"
 
-#: ghex/hex-document.c:33
+#: ghex/callbacks.c:613 ghex/hex-document.c:56
 msgid "_Words"
 msgstr "_Words"
 
-#: ghex/hex-document.c:35
+#: ghex/callbacks.c:616 ghex/hex-document.c:58
 msgid "_Longwords"
 msgstr "_Longwords"
 
-#: ghex/hex-document.c:46
+#: ghex/callbacks.c:673
+msgid "ERROR"
+msgstr ""
+
+#: ghex/gnome-support.c:30
+msgid "Discard session"
+msgstr "Rejeitar sessão"
+
+#: ghex/gnome-support.c:30
+msgid "ID"
+msgstr "ID"
+
+#: ghex/hex-document.c:54
+#, fuzzy
+msgid "Group data by 8 bits"
+msgstr "_Agrupar dados como"
+
+#: ghex/hex-document.c:56
+#, fuzzy
+msgid "Group data by 16 bits"
+msgstr "_Agrupar dados como"
+
+#: ghex/hex-document.c:58
+#, fuzzy
+msgid "Group data by 32 bits"
+msgstr "_Agrupar dados como"
+
+#: ghex/hex-document.c:69
 msgid "_Find..."
 msgstr "_Procurar..."
 
-#: ghex/hex-document.c:48
+#: ghex/hex-document.c:69
+#, fuzzy
+msgid "Search for a string"
+msgstr "Procurar %s"
+
+#: ghex/hex-document.c:71
 msgid "_Replace..."
 msgstr "_Substituir..."
 
-#: ghex/hex-document.c:52
+#: ghex/hex-document.c:71
+#, fuzzy
+msgid "Replace a string"
+msgstr "Substituir %s"
+
+#: ghex/hex-document.c:75
 msgid "_Goto Byte..."
 msgstr "_Ir para o Byte..."
 
-#: ghex/hex-document.c:56
+#: ghex/hex-document.c:75
+msgid "Jump to a certain position"
+msgstr ""
+
+#: ghex/hex-document.c:79
 msgid "_Group Data As"
 msgstr "_Agrupar dados como"
 
-#: ghex/main.c:56
-msgid "Files/"
-msgstr "Ficheiros/"
-
-#: ghex/ui.c:14
-msgid "_Open"
-msgstr "_Abrir"
-
-#: ghex/ui.c:16
-msgid "_Save"
-msgstr "_Gravar"
-
-#: ghex/ui.c:18
-msgid "Save _as..."
-msgstr "Gravar _como..."
-
-#: ghex/ui.c:20
-msgid "_Revert"
-msgstr "_Reverter"
-
-#: ghex/ui.c:22
-msgid "_Close"
-msgstr "_Fechar"
-
-#: ghex/ui.c:26
-msgid "Open _Converter..."
-msgstr "Abrir _conversor..."
-
-#: ghex/ui.c:30
-msgid "_Preferences"
-msgstr "_Preferências"
-
-#: ghex/ui.c:44
-msgid "_Add view"
-msgstr "_Adicionar vista"
-
-#: ghex/ui.c:47
-msgid "_Remove view"
-msgstr "_Remover vista"
-
-#: ghex/ui.c:63 gncal/main.c:438 gtt/menus.c:113
+#. and document menu and document list paths
+#: ghex/main.c:62 ghex/ui.c:81 gsearchtool/gsearchtool.c:595 gtt/menus.c:113
 msgid "_File"
 msgstr "_Ficheiro"
 
+#: ghex/main.c:63
+#, fuzzy
+msgid "File_s/"
+msgstr "Ficheiros/"
+
+#: ghex/ui.c:32
+msgid "_Open"
+msgstr "_Abrir"
+
+#: ghex/ui.c:32
+#, fuzzy
+msgid "Open a file"
+msgstr "Abrir ficheiro"
+
+#: ghex/ui.c:34
+msgid "_Save"
+msgstr "_Gravar"
+
+#: ghex/ui.c:34
+msgid "Save buffer "
+msgstr ""
+
+#: ghex/ui.c:36
+msgid "Save _as..."
+msgstr "Gravar _como..."
+
+#: ghex/ui.c:36
+msgid "Save buffer under a different file name"
+msgstr ""
+
+#: ghex/ui.c:38
+msgid "_Revert"
+msgstr "_Reverter"
+
+#: ghex/ui.c:38
+#, fuzzy
+msgid "Revert buffer"
+msgstr "_Reverter"
+
+#: ghex/ui.c:40
+msgid "_Close"
+msgstr "_Fechar"
+
+#: ghex/ui.c:40
+#, fuzzy
+msgid "Close file"
+msgstr "Fechar"
+
+#: ghex/ui.c:44
+msgid "Open _Converter..."
+msgstr "Abrir _conversor..."
+
+#: ghex/ui.c:44
+msgid "Open base conversion dialog"
+msgstr ""
+
+#: ghex/ui.c:48
+msgid "_Preferences"
+msgstr "_Preferências"
+
+#: ghex/ui.c:48
+#, fuzzy
+msgid "Set user preferences"
+msgstr "Preferências"
+
+#: ghex/ui.c:52
+#, fuzzy
+msgid "_Exit"
+msgstr "Sair"
+
+#: ghex/ui.c:52
+#, fuzzy
+msgid "Exit GHex"
+msgstr "Sair"
+
+#: ghex/ui.c:62
+msgid "_Add view"
+msgstr "_Adicionar vista"
+
+#: ghex/ui.c:62
+msgid "Add a new view of the buffer"
+msgstr ""
+
 #: ghex/ui.c:65
+msgid "_Remove view"
+msgstr "_Remover vista"
+
+#: ghex/ui.c:65
+msgid "Remove the current view of the buffer"
+msgstr ""
+
+#: ghex/ui.c:75
+#, fuzzy
+msgid "About GHex"
+msgstr "Acerca de"
+
+#: ghex/ui.c:83
 msgid "_View"
 msgstr "_Ver"
 
-#: ghex/ui.c:67
+#: ghex/ui.c:85
 msgid "File_s"
 msgstr "Ficheiro_s"
 
-#: ghex/ui.c:69 gncal/main.c:440 gtt/menus.c:120
-msgid "_Help"
-msgstr "_Ajuda"
-
-#: ghex/ui.c:81
+#: ghex/ui.c:99
 msgid "Bytes"
 msgstr "Bytes"
 
-#: ghex/ui.c:82
+#: ghex/ui.c:100
 msgid "Words"
 msgstr "Words"
 
-#: ghex/ui.c:83
+#: ghex/ui.c:101
 msgid "Longwords"
 msgstr "Longwords"
 
-#: ghex/ui.c:107 mini-utils/idetool/idetool.c:140
-#: mini-utils/idetool/idetool.c:322
+#: ghex/ui.c:125 mini-utils/idetool/idetool.c:141
+#: mini-utils/idetool/idetool.c:326
 msgid "Default"
 msgstr "Por omissão"
 
-#: ghex/ui.c:108
+#: ghex/ui.c:126
 msgid "Notebook"
 msgstr ""
 
-#: ghex/ui.c:109
+#: ghex/ui.c:127
 msgid "Toplevel"
 msgstr ""
 
-#: ghex/ui.c:110
+#: ghex/ui.c:128
 msgid "Modal"
 msgstr "Modal"
 
-#: ghex/ui.c:115
+#: ghex/ui.c:133
 msgid "hex data"
 msgstr "Dados Hex."
 
-#: ghex/ui.c:116
+#: ghex/ui.c:134
 msgid "ASCII data"
 msgstr "Dados ASCII"
 
-#: ghex/ui.c:193
-msgid "GHex: Find Data"
-msgstr "GHex: Procurar expressão"
-
-#: ghex/ui.c:202
+#: ghex/ui.c:184
 #, c-format
 msgid "Search for %s"
 msgstr "Procurar %s"
 
-#: ghex/ui.c:218
+#: ghex/ui.c:200
 msgid "Find Next"
 msgstr "Procurar Seguinte"
 
-#: ghex/ui.c:225
+#: ghex/ui.c:207
 msgid "Find Previous"
 msgstr "Procurar Anterior"
 
-#: ghex/ui.c:253
-msgid "GHex: Find & Replace Data"
-msgstr "GHex: Procurar e Substituir Expressões"
-
-#: ghex/ui.c:267
+#: ghex/ui.c:249
 #, c-format
 msgid "Replace %s"
 msgstr "Substituir %s"
 
-#: ghex/ui.c:283
+#: ghex/ui.c:265
 msgid "Find next"
 msgstr "Procurar seguinte"
 
-#: ghex/ui.c:290
+#: ghex/ui.c:272
 msgid "Replace"
 msgstr "Substituir"
 
-#: ghex/ui.c:297
+#: ghex/ui.c:279
 msgid "Replace All"
 msgstr "Substituir Todas"
 
-#: ghex/ui.c:321
-msgid "GHex: Jump To Byte"
-msgstr "GHex: Ir para Byte"
-
-#: ghex/ui.c:354
+#: ghex/ui.c:353
 msgid "GHex: Converter"
 msgstr "GHex: Conversor"
 
-#: ghex/ui.c:361
+#: ghex/ui.c:360
 msgid "Binary"
 msgstr "Binário"
 
-#: ghex/ui.c:371
+#: ghex/ui.c:370
 msgid "Decimal"
 msgstr "Decimal"
 
-#: ghex/ui.c:381
+#: ghex/ui.c:380
 msgid "Hex"
 msgstr "Hexadecimal"
 
-#: ghex/ui.c:391
+#: ghex/ui.c:390
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ghex/ui.c:401 mini-utils/gless/gless.c:324
+#: ghex/ui.c:400 mini-utils/gless/gless.c:301
 msgid "Close"
 msgstr "Fechar"
 
-#: ghex/ui.c:445
+#: ghex/ui.c:444
 msgid "Font"
 msgstr "Fonte"
 
-#: ghex/ui.c:455
+#: ghex/ui.c:460
+msgid "Browse..."
+msgstr ""
+
+#: ghex/ui.c:479
 msgid "Default Group Type"
 msgstr "Tipo de Agrupamento por omissão"
 
-#: ghex/ui.c:471 gncal/eventedit.c:379 gtt/options.c:195
+#: ghex/ui.c:495 gtt/options.c:195
 msgid "Display"
 msgstr "Ecrã"
 
-#: ghex/ui.c:478
+#: ghex/ui.c:502
 msgid "MDI Mode"
 msgstr "Modo MDI"
 
-#: ghex/ui.c:495
+#: ghex/ui.c:519
 msgid "MDI"
 msgstr "MDI"
-
-#: gncal/calobj.c:878
-msgid "Appointment"
-msgstr "Compromisso"
-
-#: gncal/eventedit.c:219
-msgid "Time"
-msgstr "Tempo"
-
-#: gncal/eventedit.c:237
-msgid "Start time:"
-msgstr "Hora de inicio:"
-
-#: gncal/eventedit.c:253
-msgid "End time:"
-msgstr "Hora de término:"
-
-#. 3. All day checkbox
-#: gncal/eventedit.c:263
-msgid "All day event"
-msgstr "Evento que dura todo o dia"
-
-#: gncal/eventedit.c:279
-msgid "Minutes"
-msgstr "Minutos"
-
-#: gncal/eventedit.c:279
-msgid "Hours"
-msgstr "Horas"
-
-#: gncal/eventedit.c:279
-msgid "Days"
-msgstr "Dias"
-
-#: gncal/eventedit.c:338 gncal/eventedit.c:376
-msgid "Mail to:"
-msgstr "Enviar para:"
-
-#: gncal/eventedit.c:347
-msgid "Run program:"
-msgstr "Executar aplicação:"
-
-#: gncal/eventedit.c:350
-msgid "Select program to run at alarm time"
-msgstr "Aplicação a correr ao toque do alarme"
-
-#: gncal/eventedit.c:368
-msgid "Alarms"
-msgstr "Alarmes"
-
-#: gncal/eventedit.c:380
-msgid "Audio"
-msgstr "Audio"
-
-#: gncal/eventedit.c:381
-msgid "Program"
-msgstr "Aplicação"
-
-#: gncal/eventedit.c:382
-msgid "Mail"
-msgstr "Correio"
-
-#: gncal/eventedit.c:393
-msgid "Classification"
-msgstr "Classificação"
-
-#: gncal/eventedit.c:399
-msgid "Public"
-msgstr "Público"
-
-#: gncal/eventedit.c:400
-msgid "Private"
-msgstr "Privado"
-
-#: gncal/eventedit.c:401
-msgid "Confidential"
-msgstr "Confidencial"
-
-#: gncal/eventedit.c:779 mini-utils/gshutdown/gshutdown.c:388
-msgid "General"
-msgstr "Geral"
-
-#: gncal/eventedit.c:788
-msgid "Owner:"
-msgstr "Dono:"
-
-#: gncal/eventedit.c:791
-msgid "?"
-msgstr "?"
-
-#: gncal/eventedit.c:795 gncal/gncal-todo.c:108
-msgid "Summary:"
-msgstr "Sumário:"
-
-#: gncal/eventedit.c:845
-msgid "None"
-msgstr "Nenhuma"
-
-#: gncal/eventedit.c:846
-msgid "Daily"
-msgstr "Diariamente"
-
-#: gncal/eventedit.c:847
-msgid "Weekly"
-msgstr "Semanalmente"
-
-#: gncal/eventedit.c:848
-msgid "Monthly"
-msgstr "Mensalmente"
-
-#: gncal/eventedit.c:849
-msgid "Yearly"
-msgstr "Anualmente"
-
-#: gncal/eventedit.c:871
-msgid "1st"
-msgstr "1º"
-
-#: gncal/eventedit.c:872
-msgid "2nd"
-msgstr "2º"
-
-#: gncal/eventedit.c:873
-msgid "3rd"
-msgstr "3º"
-
-#: gncal/eventedit.c:874
-msgid "4th"
-msgstr "4º"
-
-#: gncal/eventedit.c:875
-msgid "5th"
-msgstr "5º"
-
-#: gncal/eventedit.c:880 gncal/prop.c:269
-msgid "Monday"
-msgstr "Segunda"
-
-#: gncal/eventedit.c:881
-msgid "Tuesday"
-msgstr "Terça"
-
-#: gncal/eventedit.c:882
-msgid "Wednesday"
-msgstr "Quarta"
-
-#: gncal/eventedit.c:883
-msgid "Thursday"
-msgstr "Quinta"
-
-#: gncal/eventedit.c:884
-msgid "Friday"
-msgstr "Sexta"
-
-#: gncal/eventedit.c:885
-msgid "Saturday"
-msgstr "Sábado"
-
-#: gncal/eventedit.c:886 gncal/prop.c:268
-msgid "Sunday"
-msgstr "Domingo"
-
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:733
-msgid "Mon"
-msgstr "Seg"
-
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:734
-msgid "Tue"
-msgstr "Ter"
-
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:735
-msgid "Wed"
-msgstr "Qua"
-
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:736
-msgid "Thu"
-msgstr "Qui"
-
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:737
-msgid "Fri"
-msgstr "Sex"
-
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:738
-msgid "Sat"
-msgstr "Sáb"
-
-#. Initialize by default to three-letter day names
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:732
-msgid "Sun"
-msgstr "Dom"
-
-#: gncal/eventedit.c:950
-msgid "Recurrence rule"
-msgstr "Regra de recorrência"
-
-#: gncal/eventedit.c:1051 gncal/eventedit.c:1065 gncal/eventedit.c:1110
-#: gncal/eventedit.c:1132
-msgid "Every"
-msgstr "Cada"
-
-#: gncal/eventedit.c:1053
-msgid "day(s)"
-msgstr "dia(s)"
-
-#: gncal/eventedit.c:1067
-msgid "week(s)"
-msgstr "semana(s)"
-
-#: gncal/eventedit.c:1088 gncal/eventedit.c:1100
-msgid "Recur on the"
-msgstr "Repetir o"
-
-#: gncal/eventedit.c:1090
-msgid "th day of the month"
-msgstr "º dia do mês"
-
-#: gncal/eventedit.c:1115
-msgid "month(s)"
-msgstr "mês(es)"
-
-#: gncal/eventedit.c:1134
-msgid "year(s)"
-msgstr "ano(s)"
-
-#: gncal/eventedit.c:1172
-msgid "Ending date"
-msgstr "Data de término"
-
-#: gncal/eventedit.c:1185
-msgid "Repeat forever"
-msgstr "Repetir para sempre"
-
-#: gncal/eventedit.c:1194
-msgid "End on"
-msgstr "Acabar em"
-
-#: gncal/eventedit.c:1219
-msgid "End after"
-msgstr "Acabar após"
-
-#: gncal/eventedit.c:1235
-msgid "occurrence(s)"
-msgstr "ocorrência(s)"
-
-#: gncal/eventedit.c:1353
-msgid "Exceptions"
-msgstr "Excepções"
-
-#: gncal/eventedit.c:1365
-msgid "Add exception"
-msgstr "Adicionar excepção"
-
-#: gncal/eventedit.c:1375
-msgid "Change selected"
-msgstr "Modificar selecção"
-
-#: gncal/eventedit.c:1381
-msgid "Delete selected"
-msgstr "Apagar selecção"
-
-#: gncal/eventedit.c:1407
-msgid "Recurrence"
-msgstr "Recorrência"
-
-#: gncal/getdate.y:391
-msgid "january"
-msgstr "janeiro"
-
-#: gncal/getdate.y:392
-msgid "february"
-msgstr "fevereiro"
-
-#: gncal/getdate.y:393
-msgid "march"
-msgstr "março"
-
-#: gncal/getdate.y:394
-msgid "april"
-msgstr "abril"
-
-#: gncal/getdate.y:395
-msgid "may"
-msgstr "maio"
-
-#: gncal/getdate.y:396
-msgid "june"
-msgstr "junho"
-
-#: gncal/getdate.y:397
-msgid "july"
-msgstr "julho"
-
-#: gncal/getdate.y:398
-msgid "august"
-msgstr "agosto"
-
-#: gncal/getdate.y:399
-msgid "september"
-msgstr "setembro"
-
-#: gncal/getdate.y:400
-msgid "sept"
-msgstr "setem"
-
-#: gncal/getdate.y:401
-msgid "october"
-msgstr "outubro"
-
-#: gncal/getdate.y:402
-msgid "november"
-msgstr "novembro"
-
-#: gncal/getdate.y:403
-msgid "december"
-msgstr "dezembro"
-
-#: gncal/getdate.y:404
-msgid "sunday"
-msgstr "domingo"
-
-#: gncal/getdate.y:405
-msgid "monday"
-msgstr "segunda"
-
-#: gncal/getdate.y:406
-msgid "tuesday"
-msgstr "terça"
-
-#: gncal/getdate.y:407
-msgid "tues"
-msgstr "terça"
-
-#: gncal/getdate.y:408
-msgid "wednesday"
-msgstr "quarta"
-
-#: gncal/getdate.y:409
-msgid "wednes"
-msgstr "quarta"
-
-#: gncal/getdate.y:410
-msgid "thursday"
-msgstr "quinta"
-
-#: gncal/getdate.y:411
-msgid "thur"
-msgstr "quinta"
-
-#: gncal/getdate.y:412
-msgid "thurs"
-msgstr "quinta"
-
-#: gncal/getdate.y:413
-msgid "friday"
-msgstr "sexta"
-
-#: gncal/getdate.y:414
-msgid "saturday"
-msgstr "sábado"
-
-#: gncal/getdate.y:420
-msgid "year"
-msgstr "ano"
-
-#: gncal/getdate.y:421
-msgid "month"
-msgstr "mês"
-
-#: gncal/getdate.y:422
-msgid "fortnight"
-msgstr "15 dias"
-
-#: gncal/getdate.y:423
-msgid "week"
-msgstr "semana"
-
-#: gncal/getdate.y:424
-msgid "day"
-msgstr "dia"
-
-#: gncal/getdate.y:425
-msgid "hour"
-msgstr "hora"
-
-#: gncal/getdate.y:426
-msgid "minute"
-msgstr "minuto"
-
-#: gncal/getdate.y:427
-msgid "min"
-msgstr "min"
-
-#: gncal/getdate.y:428
-msgid "second"
-msgstr "segundo"
-
-#: gncal/getdate.y:429
-msgid "sec"
-msgstr "seg"
-
-#: gncal/getdate.y:435
-msgid "tomorrow"
-msgstr "amanhã"
-
-#: gncal/getdate.y:436
-msgid "yesterday"
-msgstr "ontem"
-
-#: gncal/getdate.y:437
-msgid "today"
-msgstr "hoje"
-
-#: gncal/getdate.y:438
-msgid "now"
-msgstr "agora"
-
-#: gncal/getdate.y:439
-msgid "last"
-msgstr "último"
-
-#: gncal/getdate.y:440
-msgid "this"
-msgstr "este"
-
-#: gncal/getdate.y:441
-msgid "next"
-msgstr "próximo"
-
-#: gncal/getdate.y:442
-msgid "first"
-msgstr "primeiro"
-
-#. { N_("second"),		tUNUMBER,	2 },
-#: gncal/getdate.y:444
-msgid "third"
-msgstr "terceiro"
-
-#: gncal/getdate.y:445
-msgid "fourth"
-msgstr "quarto"
-
-#: gncal/getdate.y:446
-msgid "fifth"
-msgstr "quinto"
-
-#: gncal/getdate.y:447
-msgid "sixth"
-msgstr "sexto"
-
-#: gncal/getdate.y:448
-msgid "seventh"
-msgstr "sétimo"
-
-#: gncal/getdate.y:449
-msgid "eighth"
-msgstr "oitavo"
-
-#: gncal/getdate.y:450
-msgid "ninth"
-msgstr "nono"
-
-#: gncal/getdate.y:451
-msgid "tenth"
-msgstr "décimo"
-
-#: gncal/getdate.y:452
-msgid "eleventh"
-msgstr "décimo primeiro"
-
-#: gncal/getdate.y:453
-msgid "twelfth"
-msgstr "décimo segundo"
-
-#: gncal/getdate.y:454
-msgid "ago"
-msgstr "atrás"
-
-#: gncal/gncal-day-view.c:135 gncal/gncal-full-day.c:472
-#: gncal/gncal-full-day.c:1628
-msgid "New appointment..."
-msgstr "Novo compromisso..."
-
-#: gncal/gncal-full-day.c:468
-msgid "Make this appointment movable"
-msgstr "Tornar este compromisso móvel."
-
-#: gncal/gncal-full-day.c:469
-msgid "Edit this appointment..."
-msgstr "Editar este compromisso..."
-
-#: gncal/gncal-full-day.c:470
-msgid "Delete this appointment"
-msgstr "Apagar este compromisso"
-
-#: gncal/gncal-todo.c:98
-msgid "Create to-do item"
-msgstr "Criar item a-fazer"
-
-#: gncal/gncal-todo.c:98
-msgid "Edit to-do item"
-msgstr "Editar item a-fazer"
-
-#: gncal/gncal-todo.c:197
-msgid "Add to-do item..."
-msgstr "Adicionar item a-fazer..."
-
-#: gncal/gncal-todo.c:198
-msgid "Edit this item..."
-msgstr "Editar este item..."
-
-#: gncal/gncal-todo.c:199
-msgid "Delete this item"
-msgstr "Apagar este item"
-
-#. Label
-#: gncal/gncal-todo.c:238
-msgid "To-do list"
-msgstr "Lista a-fazer"
-
-#. Add
-#: gncal/gncal-todo.c:266
-msgid "Add..."
-msgstr "Adicionar..."
-
-#. Edit
-#: gncal/gncal-todo.c:275
-msgid "Edit..."
-msgstr "Editar..."
-
-#. Delete
-#: gncal/gncal-todo.c:286 gncal/gnomecard/gnomecard.c:480
-#: mini-utils/gw/gw.c:466
-msgid "Delete"
-msgstr "Apagar"
-
-#: gncal/gnome-cal.c:57
-msgid "Day View"
-msgstr "Vista Diária"
-
-#: gncal/gnome-cal.c:58
-msgid "Week View"
-msgstr "Vista Semanal"
-
-#: gncal/gnome-cal.c:59
-msgid "Month View"
-msgstr "Vista Mensal"
-
-#: gncal/gnome-cal.c:60
-msgid "Year View"
-msgstr "Vista Anual"
-
-#: gncal/gnome-cal.c:333 gncal/gnome-cal.c:368
-msgid "Reminder of your appointment at "
-msgstr "Aviso do seu compromisso de "
-
-#: gncal/gnomecard/gnomecard.c:162
-msgid "No cards, yet."
-msgstr "Nenhum cartão."
-
-#: gncal/gnomecard/gnomecard.c:256
-msgid " changed. Save?"
-msgstr " modificado. Gravar?"
-
-#: gncal/gnomecard/gnomecard.c:386
-msgid "A new Gnomecard could not be spawned. Maybe it is not in your path."
-msgstr ""
-"Não consegui executar um novo Gnomecard. Talvez não esteja na sua \"path\"."
-
-#: gncal/gnomecard/gnomecard.c:397
-msgid "New Gnomecard"
-msgstr "Novo GnomeCard"
-
-#: gncal/gnomecard/gnomecard.c:397
-msgid "Spawn a new Card Manager."
-msgstr "Executar um novo gestor de cartões."
-
-#: gncal/gnomecard/gnomecard.c:403 gncal/gnomecard/gnomecard.c:572
-#: gncal/main.c:445
-msgid "New"
-msgstr "Novo"
-
-#: gncal/gnomecard/gnomecard.c:403
-msgid "Create new Card File."
-msgstr "Criar um novo ficheiro de cartões."
-
-#: gncal/gnomecard/gnomecard.c:407 mini-utils/gless/gless.c:315
-msgid "Open..."
-msgstr "Abrir..."
-
-#: gncal/gnomecard/gnomecard.c:407
-msgid "Open a Card File."
-msgstr "Abrir um ficheiro de cartões."
-
-#: gncal/gnomecard/gnomecard.c:411 gncal/gnomecard/gnomecard.c:580
-#: gtt/toolbar.c:152
-msgid "Save"
-msgstr "Gravar"
-
-#: gncal/gnomecard/gnomecard.c:411
-msgid "Save current changes."
-msgstr "Gravar modificações correntes."
-
-#: gncal/gnomecard/gnomecard.c:415
-msgid "Save as..."
-msgstr "Gravar como..."
-
-#: gncal/gnomecard/gnomecard.c:415
-msgid "Save current changes, choosing file name."
-msgstr "Gravar as modificações correntes, escolhendo um nome de ficheiro."
-
-#: gncal/gnomecard/gnomecard.c:421 gtt/menus.c:128
-msgid "Properties..."
-msgstr "Propriedades..."
-
-#: gncal/gnomecard/gnomecard.c:421
-msgid "Appereance, customizations..."
-msgstr "Aparência, customizações..."
-
-#: gncal/gnomecard/gnomecard.c:424
-msgid "Close the program."
-msgstr "Fechar a aplicação."
-
-#: gncal/gnomecard/gnomecard.c:432 gncal/gnomecard/gnomecard.c:600
-msgid "First"
-msgstr "Primeiro"
-
-#: gncal/gnomecard/gnomecard.c:432 gncal/gnomecard/gnomecard.c:600
-msgid "First card"
-msgstr "Primeiro cartão"
-
-#: gncal/gnomecard/gnomecard.c:436 gncal/gnomecard/gnomecard.c:604
-#: gncal/main.c:449
-msgid "Prev"
-msgstr "Anterior"
-
-#: gncal/gnomecard/gnomecard.c:436 gncal/gnomecard/gnomecard.c:604
-msgid "Previous card"
-msgstr "Cartão anterior"
-
-#: gncal/gnomecard/gnomecard.c:440 gncal/gnomecard/gnomecard.c:608
-#: gncal/main.c:451
-msgid "Next"
-msgstr "Seguinte"
-
-#: gncal/gnomecard/gnomecard.c:440 gncal/gnomecard/gnomecard.c:608
-msgid "Next card"
-msgstr "Cartão seguinte"
-
-#: gncal/gnomecard/gnomecard.c:444 gncal/gnomecard/gnomecard.c:612
-msgid "Last"
-msgstr "Último"
-
-#: gncal/gnomecard/gnomecard.c:444 gncal/gnomecard/gnomecard.c:612
-msgid "Last card"
-msgstr "Último cartão"
-
-#: gncal/gnomecard/gnomecard.c:452
-msgid "By Card Name"
-msgstr "Por nome de cartão"
-
-#: gncal/gnomecard/gnomecard.c:456
-msgid "By Name"
-msgstr "Por nome"
-
-#: gncal/gnomecard/gnomecard.c:460
-msgid "By E-mail"
-msgstr "Por E-mail"
-
-#: gncal/gnomecard/gnomecard.c:469 gncal/gnomecard/gnomecard.c:495
-msgid "Sort"
-msgstr "Ordenar"
-
-#: gncal/gnomecard/gnomecard.c:469 gncal/gnomecard/gnomecard.c:495
-msgid "Set sort criteria"
-msgstr "Escolher critério de ordenação"
-
-#: gncal/gnomecard/gnomecard.c:476 gncal/gnomecard/gnomecard.c:502
-#: gncal/gnomecard/gnomecard.c:528
-msgid "Card"
-msgstr "Cartão"
-
-#: gncal/gnomecard/gnomecard.c:476 gncal/gnomecard/gnomecard.c:590
-msgid "Edit card"
-msgstr "Editar cartão"
-
-#: gncal/gnomecard/gnomecard.c:480
-msgid "Delete element"
-msgstr "Apagar elemento"
-
-#: gncal/gnomecard/gnomecard.c:486
-msgid "Go"
-msgstr "Ir"
-
-#: gncal/gnomecard/gnomecard.c:486
-msgid "Change current card"
-msgstr "Modificar cartão actual."
-
-#: gncal/gnomecard/gnomecard.c:491 gncal/gnomecard/gnomecard.c:618
-msgid "Find"
-msgstr "Procurar"
-
-#: gncal/gnomecard/gnomecard.c:491 gncal/gnomecard/gnomecard.c:618
-msgid "Search card"
-msgstr "Procurar cartão"
-
-#: gncal/gnomecard/gnomecard.c:502 gncal/gnomecard/gnomecard.c:586
-msgid "Create new card"
-msgstr "Criar novo cartão"
-
-#: gncal/gnomecard/gnomecard.c:508
-msgid "E-mail"
-msgstr "Correio"
-
-#: gncal/gnomecard/gnomecard.c:508
-msgid "Add Electronic Address"
-msgstr "Adicionar endereço electrónico"
-
-#: gncal/gnomecard/gnomecard.c:512
-msgid "Phone"
-msgstr "Telefone"
-
-#: gncal/gnomecard/gnomecard.c:512
-msgid "Add Telephone Number"
-msgstr "Adicionar número de telefone"
-
-#: gncal/gnomecard/gnomecard.c:516
-msgid "Address"
-msgstr "Endereço"
-
-#: gncal/gnomecard/gnomecard.c:516
-msgid "Add Delivery Address"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:520
-msgid "Address Label"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:520
-msgid "Add Delivery Address Label"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:528
-msgid "Toggle Card View"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:532
-msgid "Tree"
-msgstr "Árvore"
-
-#: gncal/gnomecard/gnomecard.c:532
-msgid "Toggle Tree View"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:543
-msgid "Version, credits, etc."
-msgstr "Versão, agradecimentos, etc."
-
-#: gncal/gnomecard/gnomecard.c:554 gncal/gnomecard/gnomecard.c:590
-msgid "Edit"
-msgstr "Editar"
-
-#: gncal/gnomecard/gnomecard.c:557 gncal/gnomecard/gnomecard.c:586
-#: gsearchtool/gsearchtool.c:504 mini-utils/gw/gw.c:465
-msgid "Add"
-msgstr "Adicionar"
-
-#: gncal/gnomecard/gnomecard.c:572
-msgid "New file"
-msgstr "Novo ficheiro"
-
-#: gncal/gnomecard/gnomecard.c:576
-msgid "Open"
-msgstr "Abrir"
-
-#: gncal/gnomecard/gnomecard.c:576
-msgid "Open file"
-msgstr "Abrir ficheiro"
-
-#: gncal/gnomecard/gnomecard.c:580
-msgid "Save changes"
-msgstr "Gravar modificações"
-
-#: gncal/gnomecard/gnomecard.c:594
-msgid "Del"
-msgstr "Apagar"
-
-#: gncal/gnomecard/gnomecard.c:594
-msgid "Delete card"
-msgstr "Apagar cartão"
-
-#: gncal/goto.c:82
-msgid "Year:"
-msgstr "Ano:"
-
-#: gncal/goto.c:264
-msgid "Go to date"
-msgstr "Ir para data"
-
-#. Instructions
-#: gncal/goto.c:272
-msgid ""
-"Please select the date you want to go to.\n"
-"When you click on a day, you will be taken\n"
-"to that date."
-msgstr ""
-"Por favor seleccione a data para a qual deseja ir.\n"
-"Quando carregar num dia será levado para essa data."
-
-#: gncal/goto.c:309
-msgid "Go to today"
-msgstr "Ir para hoje"
-
-#: gncal/main.c:173
-msgid "Gnome Calendar"
-msgstr "A Agenda GNOME"
-
-#: gncal/main.c:176
-msgid "The GNOME personal calendar and schedule manager."
-msgstr "A agenda e calendário GNOME."
-
-#: gncal/main.c:324
-msgid "Open calendar"
-msgstr "Abrir agenda"
-
-#: gncal/main.c:365
-msgid "Save calendar"
-msgstr "Gravar agenda"
-
-#: gncal/main.c:395
-msgid "_New calendar"
-msgstr "_Nova agenda"
-
-#: gncal/main.c:397
-msgid "_Open calendar..."
-msgstr "_Abrir agenda..."
-
-#: gncal/main.c:399
-msgid "_Save calendar"
-msgstr "_Gravar agenda"
-
-#: gncal/main.c:401
-msgid "Save calendar _as..."
-msgstr "Gravar agenda _como..."
-
-#: gncal/main.c:406
-msgid "P_references..."
-msgstr "_Preferências..."
-
-#: gncal/main.c:411
-msgid "_Close this calendar"
-msgstr "_Fechar esta agenda"
-
-#: gncal/main.c:413
-msgid "E_xit"
-msgstr "_Sair"
-
-#: gncal/main.c:420
-msgid "_New appointment..."
-msgstr "_Novo compromisso..."
-
-#: gncal/main.c:422
-msgid "New appointment for _today..."
-msgstr "Novo compromisso para _hoje..."
-
-#: gncal/main.c:428
-msgid "_About Gnomecal..."
-msgstr "_Acerca de Gnomecal..."
-
-#: gncal/main.c:445
-msgid "Create a new appointment"
-msgstr "Criar um novo compromisso"
-
-#: gncal/main.c:449
-msgid "Go back in time"
-msgstr "Ir para uma data anterior"
-
-#: gncal/main.c:450 gtt/clist.c:132
-msgid "Today"
-msgstr "Hoje"
-
-#: gncal/main.c:450
-msgid "Go to present time"
-msgstr "Ir para o dia de hoje"
-
-#: gncal/main.c:451
-msgid "Go forward in time"
-msgstr "Ir para uma data posterior"
-
-#: gncal/main.c:455
-msgid "Go to"
-msgstr "Ir para"
-
-#: gncal/main.c:455
-msgid "Go to a specific date"
-msgstr "Ir para uma data específica"
-
-#. i18n: This "%s%s" indicates possession. Languages where the order is
-#. the inverse should translate it to "%2$s%1$s".
-#: gncal/main.c:483
-#, c-format
-msgid "%s%s"
-msgstr "%2$s%1$s"
-
-#: gncal/main.c:483
-msgid "'s calendar"
-msgstr "O calendário de "
-
-#: gncal/main.c:527
-msgid "Show events and quit"
-msgstr "Mostrar eventos e sair"
-
-#: gncal/main.c:528 gncal/main.c:533
-msgid "DATE"
-msgstr "DATA"
-
-#: gncal/main.c:528
-msgid "Specifies start date [for --events]"
-msgstr "Especifica data de início [para --events]"
-
-#: gncal/main.c:529
-msgid "FILE"
-msgstr "FICHEIRO"
-
-#: gncal/main.c:529
-msgid "File to load calendar from"
-msgstr "Ficheiro de onde carregar a agenda"
-
-#: gncal/main.c:530
-msgid "Load the user calendar"
-msgstr "Carregar a agenda do utilizador"
-
-#. name
-#. key
-#: gncal/main.c:531 mini-utils/gless/gless.c:99
-msgid "GEOMETRY"
-msgstr "GEOMETRIA"
-
-#: gncal/main.c:531
-msgid "Geometry for starting up"
-msgstr "Geometria ao iniciar"
-
-#: gncal/main.c:532
-msgid "VIEW"
-msgstr "VISTA"
-
-#: gncal/main.c:532
-msgid "The startup view mode"
-msgstr "A vista inicial"
-
-#: gncal/main.c:533
-msgid "Specifies ending date [for --events]"
-msgstr "Especifica a data de término [para --events]"
-
-#: gncal/prop.c:251
-msgid "Time display"
-msgstr "Configurar tempo"
-
-#. Time format
-#: gncal/prop.c:255
-msgid "Time format"
-msgstr "Formato da hora"
-
-#: gncal/prop.c:256
-msgid "12-hour (AM/PM)"
-msgstr "12 horas (AM/PM)"
-
-#: gncal/prop.c:257
-msgid "24-hour"
-msgstr "24 horas"
-
-#. Weeks start on
-#: gncal/prop.c:267
-msgid "Weeks start on"
-msgstr "Semana começa em"
-
-#. Day range
-#: gncal/prop.c:279
-msgid "Day range"
-msgstr "Intervalo de dias"
-
-#: gncal/prop.c:290
-msgid ""
-"Please select the start and end hours you want\n"
-"to be displayed in the day view and week view.\n"
-"Times outside this range will not be displayed\n"
-"by default."
-msgstr ""
-"Por favor seleccione as horas de início e término\n"
-"a serem mostradas nas vistas diária e semanal.\n"
-"Horas fora destes limites não serão mostradas \n"
-"por omissão."
-
-#: gncal/prop.c:306
-msgid "Day start:"
-msgstr "Início do dia:"
-
-#: gncal/prop.c:317
-msgid "Day end:"
-msgstr "Final do dia:"
-
-#: gncal/prop.c:440
-msgid "Colors for months"
-msgstr "Cores para os meses"
-
-#: gncal/prop.c:443
-msgid "Colors"
-msgstr "Cores"
-
-#: gncal/prop.c:505 gtt/options.c:508 mini-utils/gless/gless.c:359
-#: mini-utils/gw/gw.c:206
-msgid "Preferences"
-msgstr "Preferências"
-
-#: gncal/timeutil.c:83
-msgid "am"
-msgstr "am"
-
-#: gncal/timeutil.c:83
-msgid "pm"
-msgstr "pm"
-
-#: gncal/timeutil.c:85
-msgid "h"
-msgstr "h"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
@@ -1429,6 +511,10 @@ msgstr "Resultados da procura"
 #: gsearchtool/gsearchtool.c:486
 msgid "Start in directory:"
 msgstr "Iniciar na directoria:"
+
+#: gsearchtool/gsearchtool.c:504 mini-utils/gw/gw.c:467
+msgid "Add"
+msgstr "Adicionar"
 
 #: gsearchtool/gsearchtool.c:515
 msgid "Start"
@@ -1458,7 +544,7 @@ msgstr "A ferramenta de procura Gnome"
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Interface para os comandos unix find/grep/locate"
 
-#: gsearchtool/gsearchtool.c:619
+#: gsearchtool/gsearchtool.c:617
 msgid "Gnome Search Tool"
 msgstr "Ferramenta de procura Gnome"
 
@@ -1470,15 +556,19 @@ msgstr "nenhum projecto seleccionado"
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/clist.c:131
+#: gtt/clist.c:134
 msgid "Total"
 msgstr "Total"
 
-#: gtt/clist.c:133
+#: gtt/clist.c:135
+msgid "Today"
+msgstr "Hoje"
+
+#: gtt/clist.c:136
 msgid "Project Title"
 msgstr "Nome do Projecto"
 
-#: gtt/clist.c:134
+#: gtt/clist.c:137
 msgid "Description"
 msgstr "Descrição"
 
@@ -1494,11 +584,11 @@ msgstr "nenhuma descrição"
 msgid "program exited"
 msgstr "término da aplicação"
 
-#: gtt/main.c:74 gtt/main.c:116
+#: gtt/main.c:75 gtt/main.c:117
 msgid "Error"
 msgstr "Erro"
 
-#: gtt/main.c:74
+#: gtt/main.c:75
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Please remove the pid file, if that is not correct."
@@ -1506,7 +596,7 @@ msgstr ""
 "Parece haver outro GTimeTracker a correr.\n"
 "Se não houver por favor apague o ficheiro com o pid do processo anterior."
 
-#: gtt/main.c:117
+#: gtt/main.c:118
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -1514,18 +604,28 @@ msgstr ""
 "Ocurreu um erro durante a leitura do ficheiro de configuração.\n"
 "Quer que efectue uma nova configuração?"
 
-#: gtt/main.c:210 gtt/main.c:225 gtt/main.c:236 gtt/main.c:242
+#: gtt/main.c:211 gtt/main.c:227 gtt/main.c:238 gtt/main.c:244
 #, c-format
 msgid "error in geometry string \"%s\"\n"
 msgstr "erro na especificação da geometria \"%s\"\n"
 
-#: gtt/main.c:259
-msgid "specify geometry"
+#: gtt/main.c:263
+#, fuzzy
+msgid "Specify geometry"
 msgstr "especifique a geometria"
 
-#: gtt/main.c:261
-msgid "select a project on startup"
+#: gtt/main.c:263 mini-utils/gless/gless.c:116
+msgid "GEOMETRY"
+msgstr "GEOMETRIA"
+
+#: gtt/main.c:265
+#, fuzzy
+msgid "Select a project on startup"
 msgstr "seleccionar um projecto no arranque"
+
+#: gtt/main.c:265
+msgid "PROJECT"
+msgstr ""
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1575,6 +675,10 @@ msgstr "_Gravar Ficheiro de Configuração"
 msgid "_Preferences..."
 msgstr "_Preferências..."
 
+#: gtt/menus.c:45
+msgid "_Quit"
+msgstr "_Sair"
+
 #: gtt/menus.c:55
 msgid "C_ut"
 msgstr "C_ortar"
@@ -1606,6 +710,10 @@ msgstr "Cr_onómetro a contar"
 #: gtt/menus.c:117
 msgid "_Timer"
 msgstr "C_ronómetro"
+
+#: gtt/menus.c:128
+msgid "Properties..."
+msgstr "Propriedades..."
 
 #: gtt/menus.c:134 gtt/toolbar.c:159
 msgid "Cut"
@@ -1723,6 +831,10 @@ msgstr "Término do registo:"
 msgid "Timeout in secs:"
 msgstr "Temporizador em segs:"
 
+#: gtt/options.c:508 mini-utils/gless/gless.c:336 mini-utils/gw/gw.c:204
+msgid "Preferences"
+msgstr "Preferências"
+
 #: gtt/options.c:514
 msgid "Misc"
 msgstr "Vários"
@@ -1784,6 +896,10 @@ msgstr "[GTT]Novo"
 msgid "Reload"
 msgstr "Reler"
 
+#: gtt/toolbar.c:152
+msgid "Save"
+msgstr "Gravar"
+
 #: gtt/toolbar.c:153
 msgid "Save Configuration File"
 msgstr "Gravar Ficheiro de Configuração"
@@ -1840,64 +956,73 @@ msgstr "Sair"
 msgid "Quit GTimeTracker"
 msgstr "Sair do GTimeTracker"
 
-#: mini-utils/gcolorsel/gcolorsel.c:55 mini-utils/gcolorsel/gcolorsel.c:57
-#: mini-utils/gcolorsel/gcolorsel.c:239 mini-utils/gcolorsel/gcolorsel.c:357
+#: mini-utils/gcolorsel/gcolorsel.c:57 mini-utils/gcolorsel/gcolorsel.c:59
+#: mini-utils/gcolorsel/gcolorsel.c:231 mini-utils/gcolorsel/gcolorsel.c:352
 msgid "Gnome Color Browser"
 msgstr "Visualizador de cores Gnome"
 
-#: mini-utils/gcolorsel/gcolorsel.c:78
+#: mini-utils/gcolorsel/gcolorsel.c:81
 msgid "Color Name:"
 msgstr "Nome da cor:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:85
+#: mini-utils/gcolorsel/gcolorsel.c:88
 msgid "Color Values:"
 msgstr "Valor da cor:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:152
+#: mini-utils/gcolorsel/gcolorsel.c:147
 msgid "Color"
 msgstr "Cor"
 
-#: mini-utils/gcolorsel/gcolorsel.c:153 mini-utils/guname/moreinfo.c:218
-#: mini-utils/idetool/idetool.c:257
+#: mini-utils/gcolorsel/gcolorsel.c:148 mini-utils/guname/moreinfo.c:218
+#: mini-utils/idetool/idetool.c:258
 msgid "Value"
 msgstr "Valor"
 
-#: mini-utils/gcolorsel/gcolorsel.c:154 mini-utils/guname/moreinfo.c:217
-#: mini-utils/gw/gw.c:456 mini-utils/gw/gw.c:528
+#: mini-utils/gcolorsel/gcolorsel.c:149 mini-utils/guname/moreinfo.c:217
+#: mini-utils/gw/gw.c:458 mini-utils/gw/gw.c:533
 msgid "Name"
 msgstr "Nome"
 
-#: mini-utils/gcolorsel/gcolorsel.c:230
+#: mini-utils/gcolorsel/gcolorsel.c:222
 msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
 msgstr "Erro, não consegui abrir /usr/X11R6/lib/X11/rgb.txt.\n"
 
-#: mini-utils/gcolorsel/gcolorsel.c:242
+#: mini-utils/gcolorsel/gcolorsel.c:235
 msgid "Parsing Colors"
 msgstr "Analisando as cores"
 
-#: mini-utils/gcolorsel/gcolorsel.c:304
+#: mini-utils/gcolorsel/gcolorsel.c:299
 msgid "Decimal (8 bit)"
 msgstr "Decimal (8 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:305
+#: mini-utils/gcolorsel/gcolorsel.c:300
 msgid "Decimal (16 bit)"
 msgstr "Decimal (16 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:306
+#: mini-utils/gcolorsel/gcolorsel.c:301
 msgid "Hex (8 bit)"
 msgstr "Hex (8 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:307
+#: mini-utils/gcolorsel/gcolorsel.c:302
 msgid "Hex (16 bit)"
 msgstr "Hex (16 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:308
+#: mini-utils/gcolorsel/gcolorsel.c:303
 msgid "Float"
 msgstr "Real"
 
-#: mini-utils/gcolorsel/gcolorsel.c:361
+#: mini-utils/gcolorsel/gcolorsel.c:356
 msgid "Small utility to browse available X11 colors."
 msgstr "Pequeno utilitário para visualizar as cores X11 disponíveis."
+
+#: mini-utils/gcolorsel/gcolorsel.c:365
+#, fuzzy
+msgid "_About"
+msgstr "Acerca de"
+
+#: mini-utils/gcolorsel/gcolorsel.c:377
+msgid "_Program"
+msgstr "_Aplicação"
 
 #: mini-utils/gfontsel/gfontsel.c:145
 msgid "Font Selector"
@@ -1907,93 +1032,99 @@ msgstr "Selector de fontes"
 msgid "Selection:"
 msgstr "Selecção:"
 
-#: mini-utils/gfontsel/gfontsel.c:263
-msgid "font to load"
+#: mini-utils/gfontsel/gfontsel.c:253
+#, fuzzy
+msgid "Font to load"
 msgstr "fonte a carregar"
 
-#: mini-utils/gfontsel/gfontsel.c:266
-msgid "print selected font name on exit"
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr ""
+
+#: mini-utils/gfontsel/gfontsel.c:254
+#, fuzzy
+msgid "Print selected font name on exit"
 msgstr "imprimir nome da fonte seleccionada ao sair"
 
-#: mini-utils/gfontsel/gfontsel.c:269
-msgid "inhibit remembering selected font for next run"
+#: mini-utils/gfontsel/gfontsel.c:255
+#, fuzzy
+msgid "Inhibit remembering selected font for next run"
 msgstr "Não lembrar qual a última fonte seleccionada na próxima execução"
 
-#: mini-utils/gfontsel/gfontsel.c:272
-msgid "inhibit loading of last font"
+#: mini-utils/gfontsel/gfontsel.c:256
+#, fuzzy
+msgid "Inhibit loading of last font"
 msgstr "Não carregar última fonte"
 
-#. name of argument to option
-#. flags
-#: mini-utils/gless/gless.c:101
+#: mini-utils/gless/gless.c:116
 msgid "Where to put the window, and its size"
 msgstr "Onde pôr a janela, e o seu tamanho"
 
-#. name
-#. key
-#. name of argument to option
-#. flags
-#: mini-utils/gless/gless.c:109
+#: mini-utils/gless/gless.c:117
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "Ignorar \"standard input\"; pode ser necessário nalguns casos."
 
-#: mini-utils/gless/gless.c:302 mini-utils/gw/gw.c:174
+#: mini-utils/gless/gless.c:279 mini-utils/gw/gw.c:172
 msgid "Tell about this application"
 msgstr "Informação acerca desta aplicação"
 
-#: mini-utils/gless/gless.c:310
+#: mini-utils/gless/gless.c:287
 msgid "New Window"
 msgstr "Nova Janela"
 
-#: mini-utils/gless/gless.c:310
+#: mini-utils/gless/gless.c:287
 msgid "New text viewer window"
 msgstr "Nova janela para visualizar texto"
 
-#: mini-utils/gless/gless.c:315
+#: mini-utils/gless/gless.c:292
+msgid "Open..."
+msgstr "Abrir..."
+
+#: mini-utils/gless/gless.c:292
 msgid "Open a new file in this window"
 msgstr "Abrir novo ficheiro nesta janela"
 
-#: mini-utils/gless/gless.c:320 mini-utils/guname/guname.c:523
+#: mini-utils/gless/gless.c:297 mini-utils/guname/guname.c:526
 msgid "Save As..."
 msgstr "Gravar como..."
 
-#: mini-utils/gless/gless.c:320
+#: mini-utils/gless/gless.c:297
 msgid "Save file to disk"
 msgstr "Gravar ficheiro para o disco"
 
-#: mini-utils/gless/gless.c:325
+#: mini-utils/gless/gless.c:302
 msgid "Close this window"
 msgstr "Fechar esta janela"
 
-#: mini-utils/gless/gless.c:331
+#: mini-utils/gless/gless.c:308
 msgid "Quit the application"
 msgstr "Sair da aplicação"
 
-#: mini-utils/gless/gless.c:339
+#: mini-utils/gless/gless.c:316
 msgid "Fixed Font"
 msgstr "Fonte fixa"
 
-#: mini-utils/gless/gless.c:340
+#: mini-utils/gless/gless.c:317
 msgid "Display text with a fixed font"
 msgstr "Mostrar texto usando uma fonte fixa"
 
-#: mini-utils/gless/gless.c:348 mini-utils/gw/gw.c:196
+#: mini-utils/gless/gless.c:325 mini-utils/gw/gw.c:194
 msgid "Preferences..."
 msgstr "Preferências..."
 
-#: mini-utils/gless/gless.c:349 mini-utils/gw/gw.c:197
+#: mini-utils/gless/gless.c:326 mini-utils/gw/gw.c:195
 msgid "Change application preferences"
 msgstr "Mudar preferências da aplicação"
 
-#: mini-utils/gless/gless.c:358
+#: mini-utils/gless/gless.c:335
 msgid "View"
 msgstr "Ver"
 
-#: mini-utils/gless/gless.c:380
+#: mini-utils/gless/gless.c:352
 msgid "Text File Viewer"
 msgstr "Visualizador de ficheiros de texto"
 
-#: mini-utils/gless/gless.c:440
+#: mini-utils/gless/gless.c:412
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -2001,19 +1132,19 @@ msgstr ""
 "Não percebi geometria (posição e tamanho)\n"
 " especificada na linha de comando"
 
-#: mini-utils/gless/gless.c:481
+#: mini-utils/gless/gless.c:453
 msgid "Loading..."
 msgstr "Caregando..."
 
-#: mini-utils/gless/gless.c:486
+#: mini-utils/gless/gless.c:458
 msgid "No such file or directory:\n"
 msgstr "Ficheiro ou directoria inexistente:\n"
 
-#: mini-utils/gless/gless.c:503
+#: mini-utils/gless/gless.c:475
 msgid "Failed to decompress and display the file:\n"
 msgstr "Falhou a descompressão e visualização do ficheiro:\n"
 
-#: mini-utils/gless/gless.c:514
+#: mini-utils/gless/gless.c:486
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -2021,33 +1152,49 @@ msgstr ""
 "Não consigo mostrar o ficheiro comprimido.\n"
 "zcat não se encontra na sua \"path\"."
 
-#: mini-utils/gless/gless.c:522
+#: mini-utils/gless/gless.c:494
 msgid "Error loading file:\n"
 msgstr "Erro a carregar o ficheiro:\n"
 
-#: mini-utils/gless/gless.c:576
+#: mini-utils/gless/gless.c:548
 msgid "Saving..."
 msgstr "Gravando..."
 
-#: mini-utils/gless/gless.c:587
+#: mini-utils/gless/gless.c:559
 msgid "Failed to write file:\n"
 msgstr "Falhou a escrita do ficheiro:\n"
 
-#: mini-utils/gless/gless.c:634
+#: mini-utils/gless/gless.c:606
 msgid "Save Text As..."
 msgstr "Gravar texto como..."
 
-#: mini-utils/gless/gless.c:674
+#: mini-utils/gless/gless.c:646
 msgid "Open Text File..."
 msgstr "Abrir ficheiro de texto..."
 
-#: mini-utils/gnome-run/gnome-run.c:36
+#: mini-utils/gnome-run/gnome-run.c:43
 msgid "Failed to execute command:\n"
 msgstr "Falhou a execução do comando:\n"
 
-#: mini-utils/gnome-run/gnome-run.c:56
-msgid "Enter a command to execute:"
-msgstr "Digite o comando a executar:"
+#: mini-utils/gnome-run/gnome-run.c:63
+#, fuzzy
+msgid "Run Program"
+msgstr "Executar aplicação:"
+
+#: mini-utils/gnome-run/gnome-run.c:64
+#, fuzzy
+msgid "Run"
+msgstr "Dom"
+
+#: mini-utils/gnome-run/gnome-run.c:64
+#, fuzzy
+msgid "Cancel"
+msgstr "Cache"
+
+#: mini-utils/gnome-run/gnome-run.c:75
+#, fuzzy
+msgid "Select a program to run"
+msgstr "Aplicação a correr ao toque do alarme"
 
 #: mini-utils/gshutdown/gshutdown.c:82
 msgid "Shut Down"
@@ -2106,19 +1253,19 @@ msgid "Are you sure you want to reboot the system?"
 msgstr "Tem a certeza que deseja reiniciar o sistema?"
 
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:175
+#: mini-utils/gshutdown/gshutdown.c:173
 msgid "Shutdown or Reboot"
 msgstr "Desligar ou Reiniciar"
 
-#: mini-utils/gshutdown/gshutdown.c:192 mini-utils/gshutdown/gshutdown.c:193
+#: mini-utils/gshutdown/gshutdown.c:190 mini-utils/gshutdown/gshutdown.c:191
 msgid "Easy"
 msgstr "Fácil"
 
-#: mini-utils/gshutdown/gshutdown.c:197 mini-utils/gshutdown/gshutdown.c:198
+#: mini-utils/gshutdown/gshutdown.c:195 mini-utils/gshutdown/gshutdown.c:196
 msgid "Advanced"
 msgstr "Avançado"
 
-#: mini-utils/gshutdown/gshutdown.c:230
+#: mini-utils/gshutdown/gshutdown.c:228
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
@@ -2128,48 +1275,52 @@ msgstr ""
 "que estão abertas."
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:360
+#: mini-utils/gshutdown/gshutdown.c:355
 msgid "Revert to Defaults"
 msgstr "Utilizar valores por omissão"
 
-#: mini-utils/gshutdown/gshutdown.c:371
+#: mini-utils/gshutdown/gshutdown.c:365
 msgid "Commands"
 msgstr "Comandos"
 
-#: mini-utils/gshutdown/gshutdown.c:376
+#: mini-utils/gshutdown/gshutdown.c:370
 msgid "Confirm before shutdown?"
 msgstr "Confirmar antes de desligar?"
 
-#: mini-utils/gshutdown/gshutdown.c:450
+#: mini-utils/gshutdown/gshutdown.c:382
+msgid "General"
+msgstr "Geral"
+
+#: mini-utils/gshutdown/gshutdown.c:444
 msgid "Don't ask next time."
 msgstr "Não perguntar da próxima vez."
 
-#: mini-utils/guname/guname.c:328
+#: mini-utils/guname/guname.c:327
 msgid "System Information"
 msgstr "Informação do sistema"
 
-#: mini-utils/guname/guname.c:412
+#: mini-utils/guname/guname.c:411
 msgid "Logo file not found"
 msgstr "Não encontrei ficheiro do logótipo"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:416
+#: mini-utils/guname/guname.c:415
 msgid "GNOME contributors:"
 msgstr "Pessoas que contribuiram para o GNOME:"
 
-#: mini-utils/guname/guname.c:430
+#: mini-utils/guname/guname.c:429
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME: O \"GNU Network Object Model Environment\"."
 
-#: mini-utils/guname/guname.c:454
+#: mini-utils/guname/guname.c:453
 msgid "Email Information..."
 msgstr "Eviar informação por Email..."
 
-#: mini-utils/guname/guname.c:465
+#: mini-utils/guname/guname.c:464
 msgid "Save Information to File..."
 msgstr "Gravar informação para ficheiro..."
 
-#: mini-utils/guname/guname.c:477 mini-utils/guname/guname.c:537
+#: mini-utils/guname/guname.c:476 mini-utils/guname/guname.c:540
 msgid "Detailed Information..."
 msgstr "Informação detalhada..."
 
@@ -2181,15 +1332,15 @@ msgstr "Categoria"
 msgid "Your System"
 msgstr "O seu Sistema"
 
-#: mini-utils/guname/guname.c:529
+#: mini-utils/guname/guname.c:532
 msgid "Mail To..."
 msgstr "Enviar para..."
 
-#: mini-utils/guname/guname.c:577
+#: mini-utils/guname/guname.c:580
 msgid "Error closing file `"
 msgstr "Erro a fechar o ficheiro `"
 
-#: mini-utils/guname/guname.c:579
+#: mini-utils/guname/guname.c:582
 msgid ""
 "\n"
 "Some or all data may not have been written."
@@ -2197,32 +1348,32 @@ msgstr ""
 "\n"
 "Parte ou a totalidade dos seus dados podem não ter sido gravados."
 
-#: mini-utils/guname/guname.c:588
+#: mini-utils/guname/guname.c:591
 msgid "Couldn't open file `"
 msgstr "Não consigo abrir o ficheiro `"
 
-#: mini-utils/guname/guname.c:602
+#: mini-utils/guname/guname.c:605
 msgid "Save System Information As..."
 msgstr "Gravar informação do sistema como..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:648
+#: mini-utils/guname/guname.c:651
 msgid "Command failed ` "
 msgstr "Comando falhou ` "
 
-#: mini-utils/guname/guname.c:648 mini-utils/guname/guname.c:655
+#: mini-utils/guname/guname.c:651 mini-utils/guname/guname.c:658
 msgid " ': "
 msgstr " ': "
 
-#: mini-utils/guname/guname.c:655
+#: mini-utils/guname/guname.c:658
 msgid "Couldn't run command ` "
 msgstr "Não consegui correr o comando ` "
 
-#: mini-utils/guname/guname.c:678
+#: mini-utils/guname/guname.c:681
 msgid "The following mail will be sent to "
 msgstr "O mail seguinte será enviado para "
 
-#: mini-utils/guname/guname.c:680
+#: mini-utils/guname/guname.c:683
 msgid ""
 ".\n"
 " Are you sure you want to mail this information?"
@@ -2230,11 +1381,11 @@ msgstr ""
 ".\n"
 "Tem a certeza que deseja enviar esta informação?"
 
-#: mini-utils/guname/guname.c:689
+#: mini-utils/guname/guname.c:692
 msgid "Are you sure?"
 msgstr "Tem a certeza?"
 
-#: mini-utils/guname/guname.c:722
+#: mini-utils/guname/guname.c:725
 msgid "Address to mail to:"
 msgstr "Endereço para o qual enviar:"
 
@@ -2407,7 +1558,7 @@ msgstr "Dispositivo: "
 msgid "    Filesystem Type: "
 msgstr " Tipo de sistema de ficheiros: "
 
-#: mini-utils/gw/gw.c:146
+#: mini-utils/gw/gw.c:144
 msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
@@ -2415,40 +1566,44 @@ msgstr ""
 "Não encontrei o comando \"w\" na sua \"path\".\n"
 "Este comando é necessário para o funcionamento desta aplicação."
 
-#: mini-utils/gw/gw.c:182
+#: mini-utils/gw/gw.c:180
 msgid "Save..."
 msgstr "Gravar..."
 
-#: mini-utils/gw/gw.c:182
+#: mini-utils/gw/gw.c:180
 msgid "Write information to disk"
 msgstr "Gravar informação para o disco"
 
-#: mini-utils/gw/gw.c:188
+#: mini-utils/gw/gw.c:186
 msgid "Quit the application without saving"
 msgstr "Sair da aplicação sem gravar"
 
-#: mini-utils/gw/gw.c:218
+#: mini-utils/gw/gw.c:217
 msgid "User Listing"
 msgstr "Listagem dos utilizadores"
 
-#: mini-utils/gw/gw.c:237
+#: mini-utils/gw/gw.c:236
 msgid "Update Information"
 msgstr "Actualizar Informação"
 
-#: mini-utils/gw/gw.c:456
+#: mini-utils/gw/gw.c:458
 msgid "Command Line"
 msgstr "Linha de comandos"
 
 #. Create everything.
-#: mini-utils/gw/gw.c:464
+#: mini-utils/gw/gw.c:466
 msgid "Add some defaults"
 msgstr "Adicionar alguns comandos"
 
-#: mini-utils/gw/gw.c:481
+#: mini-utils/gw/gw.c:468
+msgid "Delete"
+msgstr "Apagar"
+
+#: mini-utils/gw/gw.c:486
 msgid "Command Editor"
 msgstr "Editor de Comandos"
 
-#: mini-utils/gw/gw.c:491
+#: mini-utils/gw/gw.c:496
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -2462,7 +1617,7 @@ msgstr ""
 "No comando pode utilizar %u para representar o nome de\n"
 "utilizador seleccionado e %t para o tty."
 
-#: mini-utils/gw/gw.c:498
+#: mini-utils/gw/gw.c:503
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -2470,132 +1625,836 @@ msgstr ""
 "Pressione este botão para adicionar\n"
 "alguns comandos de exemplo."
 
-#: mini-utils/gw/gw.c:506
+#: mini-utils/gw/gw.c:511
 msgid "Menu items"
 msgstr "Items de menu"
 
-#: mini-utils/gw/gw.c:534
+#: mini-utils/gw/gw.c:539
 msgid "Command"
 msgstr "Comando"
 
-#: mini-utils/idetool/idetool.c:40
+#: mini-utils/idetool/idetool.c:41
 msgid "Unable to access the drive."
 msgstr "Não consegui aceder ao dispositivo."
 
-#: mini-utils/idetool/idetool.c:57 mini-utils/idetool/idetool.c:69
+#: mini-utils/idetool/idetool.c:58 mini-utils/idetool/idetool.c:70
 msgid "The DMA setting for this drive cannot be changed."
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:77 mini-utils/idetool/idetool.c:109
-#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:322 mini-utils/idetool/idetool.c:324
 msgid "Enabled"
 msgstr "Activo"
 
-#: mini-utils/idetool/idetool.c:77 mini-utils/idetool/idetool.c:109
-#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:322 mini-utils/idetool/idetool.c:324
 msgid "Disabled"
 msgstr "Inactivo"
 
-#: mini-utils/idetool/idetool.c:89 mini-utils/idetool/idetool.c:101
+#: mini-utils/idetool/idetool.c:90 mini-utils/idetool/idetool.c:102
 msgid "The IRQ unmask setting for this drive cannot be changed."
 msgstr "A opção desmascarar IRQ deste dispositivo não pode ser modificada."
 
-#: mini-utils/idetool/idetool.c:120 mini-utils/idetool/idetool.c:132
+#: mini-utils/idetool/idetool.c:121 mini-utils/idetool/idetool.c:133
 msgid "The drive refused to keep its settings."
 msgstr "O dispositivo recusou manter os parâmetros."
 
-#: mini-utils/idetool/idetool.c:140 mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:326
 msgid "Keep settings"
 msgstr "Guardar preferências"
 
 #. IO
-#: mini-utils/idetool/idetool.c:167
+#: mini-utils/idetool/idetool.c:168
 msgid "PIO Mode"
 msgstr "Modo PIO"
 
-#: mini-utils/idetool/idetool.c:210
+#: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr "(1 Sector)"
 
-#: mini-utils/idetool/idetool.c:212
+#: mini-utils/idetool/idetool.c:213
 msgid "(Dual Port)"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:214
+#: mini-utils/idetool/idetool.c:215
 msgid "(Dual Port Cache)"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:257
+#: mini-utils/idetool/idetool.c:258
 msgid "Setting"
 msgstr "Preferências"
 
-#: mini-utils/idetool/idetool.c:305 mini-utils/idetool/idetool.c:315
+#: mini-utils/idetool/idetool.c:309 mini-utils/idetool/idetool.c:319
 msgid "Model"
 msgstr "Modelo"
 
-#: mini-utils/idetool/idetool.c:306
+#: mini-utils/idetool/idetool.c:310
 msgid "Firmware"
 msgstr "Firmware"
 
-#: mini-utils/idetool/idetool.c:307
+#: mini-utils/idetool/idetool.c:311
 msgid "Serial No."
 msgstr "Nº Série"
 
 #. do config here
-#: mini-utils/idetool/idetool.c:309
+#: mini-utils/idetool/idetool.c:313
 msgid "Geometry"
 msgstr "Geometria"
 
-#: mini-utils/idetool/idetool.c:310
+#: mini-utils/idetool/idetool.c:314
 msgid "Cache"
 msgstr "Cache"
 
-#: mini-utils/idetool/idetool.c:311
+#: mini-utils/idetool/idetool.c:315
 msgid "Status"
 msgstr "Estado"
 
-#: mini-utils/idetool/idetool.c:315
+#: mini-utils/idetool/idetool.c:319
 msgid "Legacy MFM/RLL drive"
 msgstr "Dispositivo antigo MFM/RLL"
 
-#: mini-utils/idetool/idetool.c:318
+#: mini-utils/idetool/idetool.c:322
 msgid "DMA Mode"
 msgstr "Modo DMA"
 
-#: mini-utils/idetool/idetool.c:319
+#: mini-utils/idetool/idetool.c:323
 msgid "IO Mode"
 msgstr "Modo IO"
 
-#: mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:324
 msgid "IRQ Unmask"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:321
+#: mini-utils/idetool/idetool.c:325
 msgid "Multisector"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:326
 msgid "On Reset"
 msgstr ""
 
 #.
 #. *	Set up the outer display first
 #.
-#: mini-utils/idetool/idetool.c:347
+#: mini-utils/idetool/idetool.c:352
 msgid "IDE Status"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:360
+#: mini-utils/idetool/idetool.c:365
 msgid "Disk Logo Not Found"
 msgstr "Não encontrei logótipo do disco"
 
-#: mini-utils/idetool/idetool.c:413
+#: mini-utils/idetool/idetool.c:416
 msgid "Only the superuser can use this tool"
 msgstr "Esta ferramenta só pode ser utilizada pelo super-utilizador"
 
-#: mini-utils/idetool/idetool.c:424
+#: mini-utils/idetool/idetool.c:427
 msgid "You appear to have no IDE drives"
 msgstr "Você parece não ter quaisquer discos IDE"
+
+#~ msgid "ERRONEUS STRING"
+#~ msgstr "EXPRESSÃO ERRÓNEA"
+
+#~ msgid "Can not open configured font!"
+#~ msgstr "Não condigo abrir a fonte configurada!"
+
+#~ msgid "Appointment"
+#~ msgstr "Compromisso"
+
+#~ msgid "Time"
+#~ msgstr "Tempo"
+
+#~ msgid "Start time:"
+#~ msgstr "Hora de inicio:"
+
+#~ msgid "End time:"
+#~ msgstr "Hora de término:"
+
+#~ msgid "All day event"
+#~ msgstr "Evento que dura todo o dia"
+
+#~ msgid "Minutes"
+#~ msgstr "Minutos"
+
+#~ msgid "Hours"
+#~ msgstr "Horas"
+
+#~ msgid "Days"
+#~ msgstr "Dias"
+
+#~ msgid "Mail to:"
+#~ msgstr "Enviar para:"
+
+#~ msgid "Alarms"
+#~ msgstr "Alarmes"
+
+#~ msgid "Audio"
+#~ msgstr "Audio"
+
+#~ msgid "Program"
+#~ msgstr "Aplicação"
+
+#~ msgid "Mail"
+#~ msgstr "Correio"
+
+#~ msgid "Classification"
+#~ msgstr "Classificação"
+
+#~ msgid "Public"
+#~ msgstr "Público"
+
+#~ msgid "Private"
+#~ msgstr "Privado"
+
+#~ msgid "Confidential"
+#~ msgstr "Confidencial"
+
+#~ msgid "Owner:"
+#~ msgstr "Dono:"
+
+#~ msgid "?"
+#~ msgstr "?"
+
+#~ msgid "Summary:"
+#~ msgstr "Sumário:"
+
+#~ msgid "None"
+#~ msgstr "Nenhuma"
+
+#~ msgid "Daily"
+#~ msgstr "Diariamente"
+
+#~ msgid "Weekly"
+#~ msgstr "Semanalmente"
+
+#~ msgid "Monthly"
+#~ msgstr "Mensalmente"
+
+#~ msgid "Yearly"
+#~ msgstr "Anualmente"
+
+#~ msgid "1st"
+#~ msgstr "1º"
+
+#~ msgid "2nd"
+#~ msgstr "2º"
+
+#~ msgid "3rd"
+#~ msgstr "3º"
+
+#~ msgid "4th"
+#~ msgstr "4º"
+
+#~ msgid "5th"
+#~ msgstr "5º"
+
+#~ msgid "Monday"
+#~ msgstr "Segunda"
+
+#~ msgid "Tuesday"
+#~ msgstr "Terça"
+
+#~ msgid "Wednesday"
+#~ msgstr "Quarta"
+
+#~ msgid "Thursday"
+#~ msgstr "Quinta"
+
+#~ msgid "Friday"
+#~ msgstr "Sexta"
+
+#~ msgid "Saturday"
+#~ msgstr "Sábado"
+
+#~ msgid "Sunday"
+#~ msgstr "Domingo"
+
+#~ msgid "Mon"
+#~ msgstr "Seg"
+
+#~ msgid "Tue"
+#~ msgstr "Ter"
+
+#~ msgid "Wed"
+#~ msgstr "Qua"
+
+#~ msgid "Thu"
+#~ msgstr "Qui"
+
+#~ msgid "Fri"
+#~ msgstr "Sex"
+
+#~ msgid "Sat"
+#~ msgstr "Sáb"
+
+#~ msgid "Recurrence rule"
+#~ msgstr "Regra de recorrência"
+
+#~ msgid "Every"
+#~ msgstr "Cada"
+
+#~ msgid "day(s)"
+#~ msgstr "dia(s)"
+
+#~ msgid "week(s)"
+#~ msgstr "semana(s)"
+
+#~ msgid "Recur on the"
+#~ msgstr "Repetir o"
+
+#~ msgid "th day of the month"
+#~ msgstr "º dia do mês"
+
+#~ msgid "month(s)"
+#~ msgstr "mês(es)"
+
+#~ msgid "year(s)"
+#~ msgstr "ano(s)"
+
+#~ msgid "Ending date"
+#~ msgstr "Data de término"
+
+#~ msgid "Repeat forever"
+#~ msgstr "Repetir para sempre"
+
+#~ msgid "End on"
+#~ msgstr "Acabar em"
+
+#~ msgid "End after"
+#~ msgstr "Acabar após"
+
+#~ msgid "occurrence(s)"
+#~ msgstr "ocorrência(s)"
+
+#~ msgid "Exceptions"
+#~ msgstr "Excepções"
+
+#~ msgid "Add exception"
+#~ msgstr "Adicionar excepção"
+
+#~ msgid "Change selected"
+#~ msgstr "Modificar selecção"
+
+#~ msgid "Delete selected"
+#~ msgstr "Apagar selecção"
+
+#~ msgid "Recurrence"
+#~ msgstr "Recorrência"
+
+#~ msgid "january"
+#~ msgstr "janeiro"
+
+#~ msgid "february"
+#~ msgstr "fevereiro"
+
+#~ msgid "march"
+#~ msgstr "março"
+
+#~ msgid "april"
+#~ msgstr "abril"
+
+#~ msgid "may"
+#~ msgstr "maio"
+
+#~ msgid "june"
+#~ msgstr "junho"
+
+#~ msgid "july"
+#~ msgstr "julho"
+
+#~ msgid "august"
+#~ msgstr "agosto"
+
+#~ msgid "september"
+#~ msgstr "setembro"
+
+#~ msgid "sept"
+#~ msgstr "setem"
+
+#~ msgid "october"
+#~ msgstr "outubro"
+
+#~ msgid "november"
+#~ msgstr "novembro"
+
+#~ msgid "december"
+#~ msgstr "dezembro"
+
+#~ msgid "sunday"
+#~ msgstr "domingo"
+
+#~ msgid "monday"
+#~ msgstr "segunda"
+
+#~ msgid "tuesday"
+#~ msgstr "terça"
+
+#~ msgid "tues"
+#~ msgstr "terça"
+
+#~ msgid "wednesday"
+#~ msgstr "quarta"
+
+#~ msgid "wednes"
+#~ msgstr "quarta"
+
+#~ msgid "thursday"
+#~ msgstr "quinta"
+
+#~ msgid "thur"
+#~ msgstr "quinta"
+
+#~ msgid "thurs"
+#~ msgstr "quinta"
+
+#~ msgid "friday"
+#~ msgstr "sexta"
+
+#~ msgid "saturday"
+#~ msgstr "sábado"
+
+#~ msgid "year"
+#~ msgstr "ano"
+
+#~ msgid "month"
+#~ msgstr "mês"
+
+#~ msgid "fortnight"
+#~ msgstr "15 dias"
+
+#~ msgid "week"
+#~ msgstr "semana"
+
+#~ msgid "day"
+#~ msgstr "dia"
+
+#~ msgid "hour"
+#~ msgstr "hora"
+
+#~ msgid "minute"
+#~ msgstr "minuto"
+
+#~ msgid "min"
+#~ msgstr "min"
+
+#~ msgid "second"
+#~ msgstr "segundo"
+
+#~ msgid "sec"
+#~ msgstr "seg"
+
+#~ msgid "tomorrow"
+#~ msgstr "amanhã"
+
+#~ msgid "yesterday"
+#~ msgstr "ontem"
+
+#~ msgid "today"
+#~ msgstr "hoje"
+
+#~ msgid "now"
+#~ msgstr "agora"
+
+#~ msgid "last"
+#~ msgstr "último"
+
+#~ msgid "this"
+#~ msgstr "este"
+
+#~ msgid "next"
+#~ msgstr "próximo"
+
+#~ msgid "first"
+#~ msgstr "primeiro"
+
+#~ msgid "third"
+#~ msgstr "terceiro"
+
+#~ msgid "fourth"
+#~ msgstr "quarto"
+
+#~ msgid "fifth"
+#~ msgstr "quinto"
+
+#~ msgid "sixth"
+#~ msgstr "sexto"
+
+#~ msgid "seventh"
+#~ msgstr "sétimo"
+
+#~ msgid "eighth"
+#~ msgstr "oitavo"
+
+#~ msgid "ninth"
+#~ msgstr "nono"
+
+#~ msgid "tenth"
+#~ msgstr "décimo"
+
+#~ msgid "eleventh"
+#~ msgstr "décimo primeiro"
+
+#~ msgid "twelfth"
+#~ msgstr "décimo segundo"
+
+#~ msgid "ago"
+#~ msgstr "atrás"
+
+#~ msgid "New appointment..."
+#~ msgstr "Novo compromisso..."
+
+#~ msgid "Make this appointment movable"
+#~ msgstr "Tornar este compromisso móvel."
+
+#~ msgid "Edit this appointment..."
+#~ msgstr "Editar este compromisso..."
+
+#~ msgid "Delete this appointment"
+#~ msgstr "Apagar este compromisso"
+
+#~ msgid "Create to-do item"
+#~ msgstr "Criar item a-fazer"
+
+#~ msgid "Edit to-do item"
+#~ msgstr "Editar item a-fazer"
+
+#~ msgid "Add to-do item..."
+#~ msgstr "Adicionar item a-fazer..."
+
+#~ msgid "Edit this item..."
+#~ msgstr "Editar este item..."
+
+#~ msgid "Delete this item"
+#~ msgstr "Apagar este item"
+
+#~ msgid "To-do list"
+#~ msgstr "Lista a-fazer"
+
+#~ msgid "Add..."
+#~ msgstr "Adicionar..."
+
+#~ msgid "Edit..."
+#~ msgstr "Editar..."
+
+#~ msgid "Day View"
+#~ msgstr "Vista Diária"
+
+#~ msgid "Week View"
+#~ msgstr "Vista Semanal"
+
+#~ msgid "Month View"
+#~ msgstr "Vista Mensal"
+
+#~ msgid "Year View"
+#~ msgstr "Vista Anual"
+
+#~ msgid "Reminder of your appointment at "
+#~ msgstr "Aviso do seu compromisso de "
+
+#~ msgid "No cards, yet."
+#~ msgstr "Nenhum cartão."
+
+#~ msgid " changed. Save?"
+#~ msgstr " modificado. Gravar?"
+
+#~ msgid "A new Gnomecard could not be spawned. Maybe it is not in your path."
+#~ msgstr ""
+#~ "Não consegui executar um novo Gnomecard. Talvez não esteja na sua \"path\"."
+
+#~ msgid "New Gnomecard"
+#~ msgstr "Novo GnomeCard"
+
+#~ msgid "Spawn a new Card Manager."
+#~ msgstr "Executar um novo gestor de cartões."
+
+#~ msgid "New"
+#~ msgstr "Novo"
+
+#~ msgid "Create new Card File."
+#~ msgstr "Criar um novo ficheiro de cartões."
+
+#~ msgid "Open a Card File."
+#~ msgstr "Abrir um ficheiro de cartões."
+
+#~ msgid "Save current changes."
+#~ msgstr "Gravar modificações correntes."
+
+#~ msgid "Save as..."
+#~ msgstr "Gravar como..."
+
+#~ msgid "Save current changes, choosing file name."
+#~ msgstr "Gravar as modificações correntes, escolhendo um nome de ficheiro."
+
+#~ msgid "Appereance, customizations..."
+#~ msgstr "Aparência, customizações..."
+
+#~ msgid "Close the program."
+#~ msgstr "Fechar a aplicação."
+
+#~ msgid "First"
+#~ msgstr "Primeiro"
+
+#~ msgid "First card"
+#~ msgstr "Primeiro cartão"
+
+#~ msgid "Prev"
+#~ msgstr "Anterior"
+
+#~ msgid "Previous card"
+#~ msgstr "Cartão anterior"
+
+#~ msgid "Next"
+#~ msgstr "Seguinte"
+
+#~ msgid "Next card"
+#~ msgstr "Cartão seguinte"
+
+#~ msgid "Last"
+#~ msgstr "Último"
+
+#~ msgid "Last card"
+#~ msgstr "Último cartão"
+
+#~ msgid "By Card Name"
+#~ msgstr "Por nome de cartão"
+
+#~ msgid "By Name"
+#~ msgstr "Por nome"
+
+#~ msgid "By E-mail"
+#~ msgstr "Por E-mail"
+
+#~ msgid "Sort"
+#~ msgstr "Ordenar"
+
+#~ msgid "Set sort criteria"
+#~ msgstr "Escolher critério de ordenação"
+
+#~ msgid "Card"
+#~ msgstr "Cartão"
+
+#~ msgid "Edit card"
+#~ msgstr "Editar cartão"
+
+#~ msgid "Delete element"
+#~ msgstr "Apagar elemento"
+
+#~ msgid "Go"
+#~ msgstr "Ir"
+
+#~ msgid "Change current card"
+#~ msgstr "Modificar cartão actual."
+
+#~ msgid "Find"
+#~ msgstr "Procurar"
+
+#~ msgid "Search card"
+#~ msgstr "Procurar cartão"
+
+#~ msgid "Create new card"
+#~ msgstr "Criar novo cartão"
+
+#~ msgid "E-mail"
+#~ msgstr "Correio"
+
+#~ msgid "Add Electronic Address"
+#~ msgstr "Adicionar endereço electrónico"
+
+#~ msgid "Phone"
+#~ msgstr "Telefone"
+
+#~ msgid "Add Telephone Number"
+#~ msgstr "Adicionar número de telefone"
+
+#~ msgid "Address"
+#~ msgstr "Endereço"
+
+#~ msgid "Tree"
+#~ msgstr "Árvore"
+
+#~ msgid "Version, credits, etc."
+#~ msgstr "Versão, agradecimentos, etc."
+
+#~ msgid "Edit"
+#~ msgstr "Editar"
+
+#~ msgid "New file"
+#~ msgstr "Novo ficheiro"
+
+#~ msgid "Open"
+#~ msgstr "Abrir"
+
+#~ msgid "Save changes"
+#~ msgstr "Gravar modificações"
+
+#~ msgid "Del"
+#~ msgstr "Apagar"
+
+#~ msgid "Delete card"
+#~ msgstr "Apagar cartão"
+
+#~ msgid "Year:"
+#~ msgstr "Ano:"
+
+#~ msgid "Go to date"
+#~ msgstr "Ir para data"
+
+#~ msgid ""
+#~ "Please select the date you want to go to.\n"
+#~ "When you click on a day, you will be taken\n"
+#~ "to that date."
+#~ msgstr ""
+#~ "Por favor seleccione a data para a qual deseja ir.\n"
+#~ "Quando carregar num dia será levado para essa data."
+
+#~ msgid "Go to today"
+#~ msgstr "Ir para hoje"
+
+#~ msgid "Gnome Calendar"
+#~ msgstr "A Agenda GNOME"
+
+#~ msgid "The GNOME personal calendar and schedule manager."
+#~ msgstr "A agenda e calendário GNOME."
+
+#~ msgid "Open calendar"
+#~ msgstr "Abrir agenda"
+
+#~ msgid "Save calendar"
+#~ msgstr "Gravar agenda"
+
+#~ msgid "_New calendar"
+#~ msgstr "_Nova agenda"
+
+#~ msgid "_Open calendar..."
+#~ msgstr "_Abrir agenda..."
+
+#~ msgid "_Save calendar"
+#~ msgstr "_Gravar agenda"
+
+#~ msgid "Save calendar _as..."
+#~ msgstr "Gravar agenda _como..."
+
+#~ msgid "P_references..."
+#~ msgstr "_Preferências..."
+
+#~ msgid "_Close this calendar"
+#~ msgstr "_Fechar esta agenda"
+
+#~ msgid "_New appointment..."
+#~ msgstr "_Novo compromisso..."
+
+#~ msgid "New appointment for _today..."
+#~ msgstr "Novo compromisso para _hoje..."
+
+#~ msgid "_About Gnomecal..."
+#~ msgstr "_Acerca de Gnomecal..."
+
+#~ msgid "Create a new appointment"
+#~ msgstr "Criar um novo compromisso"
+
+#~ msgid "Go back in time"
+#~ msgstr "Ir para uma data anterior"
+
+#~ msgid "Go to present time"
+#~ msgstr "Ir para o dia de hoje"
+
+#~ msgid "Go forward in time"
+#~ msgstr "Ir para uma data posterior"
+
+#~ msgid "Go to"
+#~ msgstr "Ir para"
+
+#~ msgid "Go to a specific date"
+#~ msgstr "Ir para uma data específica"
+
+#~ msgid "%s%s"
+#~ msgstr "%2$s%1$s"
+
+#~ msgid "'s calendar"
+#~ msgstr "O calendário de "
+
+#~ msgid "Show events and quit"
+#~ msgstr "Mostrar eventos e sair"
+
+#~ msgid "DATE"
+#~ msgstr "DATA"
+
+#~ msgid "Specifies start date [for --events]"
+#~ msgstr "Especifica data de início [para --events]"
+
+#~ msgid "FILE"
+#~ msgstr "FICHEIRO"
+
+#~ msgid "File to load calendar from"
+#~ msgstr "Ficheiro de onde carregar a agenda"
+
+#~ msgid "Load the user calendar"
+#~ msgstr "Carregar a agenda do utilizador"
+
+#~ msgid "Geometry for starting up"
+#~ msgstr "Geometria ao iniciar"
+
+#~ msgid "VIEW"
+#~ msgstr "VISTA"
+
+#~ msgid "The startup view mode"
+#~ msgstr "A vista inicial"
+
+#~ msgid "Specifies ending date [for --events]"
+#~ msgstr "Especifica a data de término [para --events]"
+
+#~ msgid "Time display"
+#~ msgstr "Configurar tempo"
+
+#~ msgid "Time format"
+#~ msgstr "Formato da hora"
+
+#~ msgid "12-hour (AM/PM)"
+#~ msgstr "12 horas (AM/PM)"
+
+#~ msgid "24-hour"
+#~ msgstr "24 horas"
+
+#~ msgid "Weeks start on"
+#~ msgstr "Semana começa em"
+
+#~ msgid "Day range"
+#~ msgstr "Intervalo de dias"
+
+#~ msgid ""
+#~ "Please select the start and end hours you want\n"
+#~ "to be displayed in the day view and week view.\n"
+#~ "Times outside this range will not be displayed\n"
+#~ "by default."
+#~ msgstr ""
+#~ "Por favor seleccione as horas de início e término\n"
+#~ "a serem mostradas nas vistas diária e semanal.\n"
+#~ "Horas fora destes limites não serão mostradas \n"
+#~ "por omissão."
+
+#~ msgid "Day start:"
+#~ msgstr "Início do dia:"
+
+#~ msgid "Day end:"
+#~ msgstr "Final do dia:"
+
+#~ msgid "Colors for months"
+#~ msgstr "Cores para os meses"
+
+#~ msgid "Colors"
+#~ msgstr "Cores"
+
+#~ msgid "am"
+#~ msgstr "am"
+
+#~ msgid "pm"
+#~ msgstr "pm"
+
+#~ msgid "h"
+#~ msgstr "h"
+
+#~ msgid "Enter a command to execute:"
+#~ msgstr "Digite o comando a executar:"
 
 #~ msgid "Preferred"
 #~ msgstr "Preferido"
@@ -2902,9 +2761,6 @@ msgstr "Você parece não ter quaisquer discos IDE"
 
 #~ msgid "New Folder"
 #~ msgstr "Nova Pasta"
-
-#~ msgid "About"
-#~ msgstr "Acerca de"
 
 #~ msgid "Info about the striphart program"
 #~ msgstr "Informação acerca da aplicação \"stripchart\""

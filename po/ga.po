@@ -1,130 +1,597 @@
 msgid ""
 msgstr ""
+"POT-Creation-Date: 1998-12-20 13:20-0500\n"
+"Content-Type: text/plain; charset=\n"
 "Date: 1998-03-10 13:58:43+0100\n"
 "From: Alastair McKinstry <alastair@ilo.dec.com> \n"
-"Content-Type: text/plain; charset=\n"
-"Xgettext-Options: --default-domain=gnome-utils --directory=.. --add-comments --keyword=_ --keyword=N_ --files-from=./POTFILES.in\n"
-"Files: gtt/app.c gtt/toolbar.c gtt/main.c gtt/menucmd.c gtt/menus.c gtt/proj.c gtt/log.c gtt/options.c gtt/prop.c gtt/clist.c gtop/main.c gtop/procbar.c gtop/procview.c gtop/details.c genius/calc.c genius/genius.c genius/eval.c genius/util.c\n"
+"Xgettext-Options: --default-domain=gnome-utils --directory=.. --add-comments "
+"--keyword=_ --keyword=N_ --files-from=./POTFILES.in\n"
+"Files: gtt/app.c gtt/toolbar.c gtt/main.c gtt/menucmd.c gtt/menus.c "
+"gtt/proj.c gtt/log.c gtt/options.c gtt/prop.c gtt/clist.c gtop/main.c "
+"gtop/procbar.c gtop/procview.c gtop/details.c genius/calc.c genius/genius.c "
+"genius/eval.c genius/util.c\n"
 
-#: gtt/app.c:114 gtt/app.c:253
-msgid "no project selected"
-msgstr "Nml tionscnamh roghnaithe"
-
-#. not DEBUG
-#: gtt/app.c:203 gtt/main.c:70
-msgid "Error"
-msgstr "Botzn"
-
-#: gtt/app.c:204
-msgid ""
-"An error occured while reading the configuration file.\n"
-"Shall I setup a new configuration?"
+#: gcalc/gcalc.c:30
+msgid "The Gnome Calculator"
 msgstr ""
-"Tharla botzn a liamh an comhad cumhraiochta.\n"
-"An mbunfaidh me cumhraiocht nua?"
 
-#: gtt/app.c:207 gtt/menucmd.c:140
-msgid "Yes"
-msgstr "Ceart"
+#: gcalc/gcalc.c:33
+msgid "Simple double precision calculator similiar to xcalc"
+msgstr ""
 
-#: gtt/app.c:207 gtt/menucmd.c:140
-msgid "No"
-msgstr "Nm Ceart"
+#: gcalc/gcalc.c:85 gsearchtool/gsearchtool.c:579
+#: mini-utils/gcolorsel/gcolorsel.c:371
+#, fuzzy
+msgid "E_xit"
+msgstr "Ialaigh"
 
-#: gtt/app.c:242
-msgid "00:00"
-msgstr "00:00"
+#: gcalc/gcalc.c:92 ghex/ui.c:75 gtt/menus.c:103
+#, fuzzy
+msgid "_About..."
+msgstr "Faoi..."
 
-#. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:196
-msgid "[GTT]New"
-msgstr "Nua"
-
-#: gtt/menucmd.c:85 gtt/menus.c:27 gtt/toolbar.c:197
-msgid "New Project..."
-msgstr "Tionscnamh nua..."
-
-#: gtt/toolbar.c:203
-msgid "Reload"
-msgstr "Athchur"
-
-#: gtt/menucmd.c:137 gtt/menus.c:31 gtt/toolbar.c:204
-msgid "Reload Configuration File"
-msgstr "Athchur Comhad Chumramochta"
-
-#: gtt/toolbar.c:207
-msgid "Save"
-msgstr "Sabhail"
-
-#: gtt/menus.c:35 gtt/toolbar.c:208
-msgid "Save Configuration File"
-msgstr "Sabhail Comhad Cumramochta"
-
-#: gtt/menus.c:50 gtt/menus.c:134 gtt/toolbar.c:214
-msgid "Cut"
-msgstr "Gearr"
-
-#: gtt/toolbar.c:215
-msgid "Cut Selected Project"
-msgstr "Gearr Tionscnamh Roghnaithe"
-
-#: gtt/menus.c:54 gtt/menus.c:139 gtt/toolbar.c:218
-msgid "Copy"
+#: gcalc/gcalc.c:98 gtt/menus.c:59
+#, fuzzy
+msgid "_Copy"
 msgstr "Dian Csip"
 
-#: gtt/toolbar.c:219
-msgid "Copy Selected Project"
-msgstr "Dian Csip den Tionscnamh Roghnaithe"
-
-#: gtt/menus.c:59 gtt/menus.c:144 gtt/toolbar.c:222
-msgid "Paste"
-msgstr "Greamaigh"
-
-#: gtt/toolbar.c:223
-msgid "Paste Project"
-msgstr "Greamaigh Tionscnamh"
-
-#: gtt/toolbar.c:229
-msgid "Props"
-msgstr "Abaltachtam"
-
-#: gtt/toolbar.c:230
-msgid "Edit Properties..."
-msgstr "Eagraigh Abaltachtai..."
-
-#: gtt/menus.c:117 gtt/toolbar.c:234
-msgid "Timer"
-msgstr "Uaireadsir"
-
-#: gtt/toolbar.c:235
-msgid "Start/Stop Timer"
-msgstr "Tosaigh/Stop Uaireadsi"
-
-#: gtt/toolbar.c:244
-msgid "Prefs"
-msgstr "Roghnachais"
-
-#: gtt/toolbar.c:245
-msgid "Edit Preferences..."
+#: gcalc/gcalc.c:104
+msgid "_Calculator"
 msgstr ""
 
-#: gtt/toolbar.c:249
-msgid "Manual"
+#: gcalc/gcalc.c:106 ghex/hex-document.c:85 gtt/menus.c:115
+#, fuzzy
+msgid "_Edit"
+msgstr "Eagar"
+
+#: gcalc/gcalc.c:108 ghex/ui.c:87 gsearchtool/gsearchtool.c:598
+#: gtt/menus.c:120 mini-utils/gcolorsel/gcolorsel.c:378
+#, fuzzy
+msgid "_Help"
+msgstr "Cznamh"
+
+#: gcalc/gcalc.c:130
+msgid "Gnome Calculator"
 msgstr ""
 
-#: gtt/toolbar.c:249
-msgid "Manual..."
-msgstr ""
-
-#: gtop/main.c:141 gtt/menus.c:40 gtt/toolbar.c:254
+#: gdiskfree/df.c:128 mini-utils/gless/gless.c:307 mini-utils/gw/gw.c:185
 msgid "Exit"
 msgstr "Ialaigh"
 
-#: gtt/toolbar.c:254
-msgid "Exit GTimeTracker"
-msgstr "Ialaigh GtimeTracker"
+#: gdiskfree/df.c:137 gsearchtool/gsearchtool.c:588
+#: mini-utils/gless/gless.c:278 mini-utils/gw/gw.c:171
+msgid "About..."
+msgstr "Faoi..."
 
-#: gtt/main.c:70
+#: gdiskfree/df.c:144 mini-utils/gless/gless.c:334 mini-utils/gw/gw.c:203
+msgid "File"
+msgstr "Comhad"
+
+#: gdiskfree/df.c:146 mini-utils/gless/gless.c:337 mini-utils/gw/gw.c:206
+msgid "Help"
+msgstr "Cznamh"
+
+#: gdiskfree/df.c:219
+msgid ""
+"A quick hack to show the amount of space free on mounted file systems "
+"uitilizing a dial."
+msgstr ""
+
+#: ghex/callbacks.c:44
+msgid "GHex, a binary file editor"
+msgstr ""
+
+#: ghex/callbacks.c:46
+msgid "Released under the terms of GNU Public License"
+msgstr ""
+
+#: ghex/callbacks.c:76 ghex/callbacks.c:169
+msgid "Error saving file!"
+msgstr ""
+
+#: ghex/callbacks.c:80 ghex/callbacks.c:164
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr ""
+
+#: ghex/callbacks.c:97
+#, c-format
+msgid "Really revert file %s?"
+msgstr ""
+
+#: ghex/callbacks.c:110
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr ""
+
+#: ghex/callbacks.c:125
+#, c-format
+msgid "Loaded file %s"
+msgstr ""
+
+#: ghex/callbacks.c:130
+msgid "Can not open file!"
+msgstr ""
+
+#: ghex/callbacks.c:173
+msgid "Can't open file for writing!"
+msgstr ""
+
+#: ghex/callbacks.c:197
+msgid "Select a file to open"
+msgstr ""
+
+#: ghex/callbacks.c:215
+msgid "Select a file to save buffer as"
+msgstr ""
+
+#: ghex/callbacks.c:308 ghex/callbacks.c:331 ghex/callbacks.c:384
+msgid "There is no active buffer to search!"
+msgstr ""
+
+#: ghex/callbacks.c:316 ghex/callbacks.c:339 ghex/callbacks.c:392
+msgid "There seems to be no string to search for!"
+msgstr ""
+
+#: ghex/callbacks.c:322 ghex/callbacks.c:399
+msgid "End Of File reached"
+msgstr ""
+
+#: ghex/callbacks.c:346
+msgid "Beginning Of File reached"
+msgstr ""
+
+#: ghex/callbacks.c:354
+msgid "There is no active buffer to move the cursor in!"
+msgstr ""
+
+#: ghex/callbacks.c:359
+msgid "No offset has been specified!"
+msgstr ""
+
+#: ghex/callbacks.c:366
+msgid "The offset must be a positive integer value!"
+msgstr ""
+
+#: ghex/callbacks.c:371
+msgid "Can not position cursor beyond the End Of File!"
+msgstr ""
+
+#: ghex/callbacks.c:409 ghex/callbacks.c:448
+msgid "There is no active buffer to replace data in!"
+msgstr ""
+
+#: ghex/callbacks.c:420 ghex/callbacks.c:459
+msgid "Strange find or replace string!"
+msgstr ""
+
+#: ghex/callbacks.c:425 ghex/callbacks.c:464
+msgid "Both strings must be of the same length!"
+msgstr ""
+
+#: ghex/callbacks.c:438
+msgid "End Of File reached!"
+msgstr ""
+
+#: ghex/callbacks.c:479
+#, c-format
+msgid "Replaced %d occurencies."
+msgstr ""
+
+#: ghex/callbacks.c:546
+msgid "Can not open desired font!"
+msgstr ""
+
+#: ghex/callbacks.c:565
+#, c-format
+msgid ""
+"File %s has changed since last save.\n"
+"Do you want to save changes?"
+msgstr ""
+
+#: ghex/callbacks.c:589 ghex/ui.c:175
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr ""
+
+#: ghex/callbacks.c:590 ghex/ui.c:235
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr ""
+
+#: ghex/callbacks.c:591 ghex/ui.c:320
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr ""
+
+#: ghex/callbacks.c:605
+msgid "_Edit/_Group Data As/"
+msgstr ""
+
+#: ghex/callbacks.c:610 ghex/hex-document.c:54
+msgid "_Bytes"
+msgstr ""
+
+#: ghex/callbacks.c:613 ghex/hex-document.c:56
+msgid "_Words"
+msgstr ""
+
+#: ghex/callbacks.c:616 ghex/hex-document.c:58
+msgid "_Longwords"
+msgstr ""
+
+#: ghex/callbacks.c:673
+#, fuzzy
+msgid "ERROR"
+msgstr "BOTZN:"
+
+#: ghex/gnome-support.c:30
+msgid "Discard session"
+msgstr ""
+
+#: ghex/gnome-support.c:30
+msgid "ID"
+msgstr ""
+
+#: ghex/hex-document.c:54
+msgid "Group data by 8 bits"
+msgstr ""
+
+#: ghex/hex-document.c:56
+msgid "Group data by 16 bits"
+msgstr ""
+
+#: ghex/hex-document.c:58
+msgid "Group data by 32 bits"
+msgstr ""
+
+#: ghex/hex-document.c:69
+msgid "_Find..."
+msgstr ""
+
+#: ghex/hex-document.c:69
+msgid "Search for a string"
+msgstr ""
+
+#: ghex/hex-document.c:71
+msgid "_Replace..."
+msgstr ""
+
+#: ghex/hex-document.c:71
+msgid "Replace a string"
+msgstr ""
+
+#: ghex/hex-document.c:75
+msgid "_Goto Byte..."
+msgstr ""
+
+#: ghex/hex-document.c:75
+msgid "Jump to a certain position"
+msgstr ""
+
+#: ghex/hex-document.c:79
+msgid "_Group Data As"
+msgstr ""
+
+#. and document menu and document list paths
+#: ghex/main.c:62 ghex/ui.c:81 gsearchtool/gsearchtool.c:595 gtt/menus.c:113
+#, fuzzy
+msgid "_File"
+msgstr "Comhad"
+
+#: ghex/main.c:63
+#, fuzzy
+msgid "File_s/"
+msgstr "Comhad"
+
+#: ghex/ui.c:32
+msgid "_Open"
+msgstr ""
+
+#: ghex/ui.c:32
+msgid "Open a file"
+msgstr ""
+
+#: ghex/ui.c:34
+#, fuzzy
+msgid "_Save"
+msgstr "Sabhail"
+
+#: ghex/ui.c:34
+msgid "Save buffer "
+msgstr ""
+
+#: ghex/ui.c:36
+msgid "Save _as..."
+msgstr ""
+
+#: ghex/ui.c:36
+msgid "Save buffer under a different file name"
+msgstr ""
+
+#: ghex/ui.c:38
+msgid "_Revert"
+msgstr ""
+
+#: ghex/ui.c:38
+msgid "Revert buffer"
+msgstr ""
+
+#: ghex/ui.c:40
+#, fuzzy
+msgid "_Close"
+msgstr "Dzn"
+
+#: ghex/ui.c:40
+#, fuzzy
+msgid "Close file"
+msgstr "Zsaid Comhad Log"
+
+#: ghex/ui.c:44
+msgid "Open _Converter..."
+msgstr ""
+
+#: ghex/ui.c:44
+msgid "Open base conversion dialog"
+msgstr ""
+
+#: ghex/ui.c:48
+#, fuzzy
+msgid "_Preferences"
+msgstr "Roghnachas"
+
+#: ghex/ui.c:48
+#, fuzzy
+msgid "Set user preferences"
+msgstr "Roghnachas"
+
+#: ghex/ui.c:52
+#, fuzzy
+msgid "_Exit"
+msgstr "Ialaigh"
+
+#: ghex/ui.c:52
+#, fuzzy
+msgid "Exit GHex"
+msgstr "Ialaigh"
+
+#: ghex/ui.c:62
+msgid "_Add view"
+msgstr ""
+
+#: ghex/ui.c:62
+msgid "Add a new view of the buffer"
+msgstr ""
+
+#: ghex/ui.c:65
+msgid "_Remove view"
+msgstr ""
+
+#: ghex/ui.c:65
+msgid "Remove the current view of the buffer"
+msgstr ""
+
+#: ghex/ui.c:75
+msgid "About GHex"
+msgstr ""
+
+#: ghex/ui.c:83
+msgid "_View"
+msgstr ""
+
+#: ghex/ui.c:85
+#, fuzzy
+msgid "File_s"
+msgstr "Comhad"
+
+#: ghex/ui.c:99
+msgid "Bytes"
+msgstr ""
+
+#: ghex/ui.c:100
+#, fuzzy
+msgid "Words"
+msgstr "uaireanta"
+
+#: ghex/ui.c:101
+msgid "Longwords"
+msgstr ""
+
+#: ghex/ui.c:125 mini-utils/idetool/idetool.c:141
+#: mini-utils/idetool/idetool.c:326
+msgid "Default"
+msgstr ""
+
+#: ghex/ui.c:126
+msgid "Notebook"
+msgstr ""
+
+#: ghex/ui.c:127
+msgid "Toplevel"
+msgstr ""
+
+#: ghex/ui.c:128
+msgid "Modal"
+msgstr ""
+
+#: ghex/ui.c:133
+msgid "hex data"
+msgstr ""
+
+#: ghex/ui.c:134
+msgid "ASCII data"
+msgstr ""
+
+#: ghex/ui.c:184
+#, c-format
+msgid "Search for %s"
+msgstr ""
+
+#: ghex/ui.c:200
+msgid "Find Next"
+msgstr ""
+
+#: ghex/ui.c:207
+msgid "Find Previous"
+msgstr ""
+
+#: ghex/ui.c:249
+#, c-format
+msgid "Replace %s"
+msgstr ""
+
+#: ghex/ui.c:265
+msgid "Find next"
+msgstr ""
+
+#: ghex/ui.c:272
+#, fuzzy
+msgid "Replace"
+msgstr "Athchur"
+
+#: ghex/ui.c:279
+msgid "Replace All"
+msgstr ""
+
+#: ghex/ui.c:353
+msgid "GHex: Converter"
+msgstr ""
+
+#: ghex/ui.c:360
+msgid "Binary"
+msgstr ""
+
+#: ghex/ui.c:370
+msgid "Decimal"
+msgstr ""
+
+#: ghex/ui.c:380
+msgid "Hex"
+msgstr ""
+
+#: ghex/ui.c:390
+msgid "ASCII"
+msgstr ""
+
+#: ghex/ui.c:400 mini-utils/gless/gless.c:301
+msgid "Close"
+msgstr "Dzn"
+
+#: ghex/ui.c:444
+msgid "Font"
+msgstr ""
+
+#: ghex/ui.c:460
+msgid "Browse..."
+msgstr ""
+
+#: ghex/ui.c:479
+msgid "Default Group Type"
+msgstr ""
+
+#: ghex/ui.c:495 gtt/options.c:195
+msgid "Display"
+msgstr "Taispeain"
+
+#: ghex/ui.c:502
+#, fuzzy
+msgid "MDI Mode"
+msgstr "Inode"
+
+#: ghex/ui.c:519
+msgid "MDI"
+msgstr ""
+
+#. create the results box
+#. FIXME: add an option to autoclear result box and pass TRUE in that
+#. case
+#: gsearchtool/gsearchtool.c:200
+msgid "Search Results"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:486
+msgid "Start in directory:"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:504 mini-utils/gw/gw.c:467
+msgid "Add"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:515
+msgid "Start"
+msgstr "Tosaigh"
+
+#: gsearchtool/gsearchtool.c:516
+msgid "Stop"
+msgstr "Stop"
+
+#: gsearchtool/gsearchtool.c:533
+msgid "This is not yet implemented"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:545
+msgid "Full find (find)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:547
+msgid "Quick find (locate)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:561
+msgid "The Gnome Search Tool"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:564
+msgid "Frontend to the unix find/grep/locate commands"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:617
+msgid "Gnome Search Tool"
+msgstr ""
+
+#: gtt/app.c:110 gtt/app.c:209
+msgid "no project selected"
+msgstr "Nml tionscnamh roghnaithe"
+
+#: gtt/app.c:198
+msgid "00:00"
+msgstr "00:00"
+
+#: gtt/clist.c:134
+msgid "Total"
+msgstr ""
+
+#: gtt/clist.c:135
+msgid "Today"
+msgstr ""
+
+#: gtt/clist.c:136
+msgid "Project Title"
+msgstr "Teideal Tionscnaimhe:"
+
+#: gtt/clist.c:137
+#, fuzzy
+msgid "Description"
+msgstr "Cur sios tionscnaimhe:"
+
+#: gtt/log.c:55 gtt/log.c:207
+msgid "program started"
+msgstr "Rmomhchlar Tosaithe."
+
+#: gtt/log.c:73
+#, fuzzy
+msgid "no description"
+msgstr "Cur sios tionscnaimhe:"
+
+#: gtt/log.c:199
+msgid "program exited"
+msgstr "Rmomhchlar Iirithe as."
+
+#: gtt/main.c:75 gtt/main.c:117
+msgid "Error"
+msgstr "Botzn"
+
+#: gtt/main.c:75
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Please remove the pid file, if that is not correct."
@@ -132,16 +599,33 @@ msgstr ""
 "Is cosuil go bhfuil gTimeTracker ar siuil.\n"
 "Bain amach an comhad pid muna bhfuil se ceart."
 
-#: gtt/main.c:72 gtt/menucmd.c:33 gtt/menucmd.c:122 gtt/menucmd.c:154
-msgid "Oops"
-msgstr "Oops"
+#: gtt/main.c:118
+msgid ""
+"An error occured while reading the configuration file.\n"
+"Shall I setup a new configuration?"
+msgstr ""
+"Tharla botzn a liamh an comhad cumhraiochta.\n"
+"An mbunfaidh me cumhraiocht nua?"
 
-#: gtt/main.c:111 gtt/main.c:126 gtt/main.c:137 gtt/main.c:143
+#: gtt/main.c:211 gtt/main.c:227 gtt/main.c:238 gtt/main.c:244
+#, c-format
 msgid "error in geometry string \"%s\"\n"
 msgstr ""
 
-#: gtt/main.c:157
-msgid "specify geometry"
+#: gtt/main.c:263
+msgid "Specify geometry"
+msgstr ""
+
+#: gtt/main.c:263 mini-utils/gless/gless.c:116
+msgid "GEOMETRY"
+msgstr ""
+
+#: gtt/main.c:265
+msgid "Select a project on startup"
+msgstr ""
+
+#: gtt/main.c:265
+msgid "PROJECT"
 msgstr ""
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
@@ -152,13 +636,9 @@ msgstr "Rabhadh"
 msgid "I could not write the configuration file!"
 msgstr "Nmor eirigh liom an comhad cumhraiocht a scriobh!"
 
-#: genius/genius.c:119 gtt/menucmd.c:86
-msgid "OK"
-msgstr "Togha"
-
-#: gtt/menucmd.c:88
-msgid "Cancel"
-msgstr "Cosc"
+#: gtt/menucmd.c:85 gtt/toolbar.c:142
+msgid "New Project..."
+msgstr "Tionscnamh nua..."
 
 #: gtt/menucmd.c:89
 msgid "Please enter the name of the new project:"
@@ -168,6 +648,10 @@ msgstr "Iontrail ainm an tionscnamh nua, le do thsil:"
 msgid "I could not read the configuration file"
 msgstr "Nmor eirigh liom an comhad cumhraiocht a leamh"
 
+#: gtt/menucmd.c:137 gtt/toolbar.c:149
+msgid "Reload Configuration File"
+msgstr "Athchur Comhad Chumramochta"
+
 #: gtt/menucmd.c:138
 msgid ""
 "This will overwrite your current set of projects.\n"
@@ -176,63 +660,91 @@ msgstr ""
 "Cludoigh se seo an liosta tionscnaimh ata agat.\n"
 "An bhfuil athchuireadh an chomhad cumhraiochta uait? "
 
-#: gtt/menus.c:65 gtt/menus.c:149
-msgid "Clear Daily Counter"
-msgstr "Glan Uaireadoir Laethuil"
+#: gtt/menus.c:27
+#, fuzzy
+msgid "_New Project..."
+msgstr "Tionscnamh nua..."
 
-#: gtt/menus.c:70 gtt/menus.c:128
-msgid "Properties..."
-msgstr "Albaltachtam"
+#: gtt/menus.c:31
+#, fuzzy
+msgid "_Reload Configuration File"
+msgstr "Athchur Comhad Chumramochta"
 
-#: gtt/menus.c:75
-msgid "Preferences..."
+#: gtt/menus.c:35
+#, fuzzy
+msgid "_Save Configuration File"
+msgstr "Sabhail Comhad Cumramochta"
+
+#: gtt/menus.c:40
+#, fuzzy
+msgid "_Preferences..."
 msgstr "Roghnachais..."
 
+#: gtt/menus.c:45
+msgid "_Quit"
+msgstr ""
+
+#: gtt/menus.c:55
+#, fuzzy
+msgid "C_ut"
+msgstr "Gearr"
+
+#: gtt/menus.c:64
+#, fuzzy
+msgid "_Paste"
+msgstr "Greamaigh"
+
+#: gtt/menus.c:70
+#, fuzzy
+msgid "Clear _Daily Counter"
+msgstr "Glan Uaireadoir Laethuil"
+
+#: gtt/menus.c:75
+#, fuzzy
+msgid "Pr_operties..."
+msgstr "Albaltachtam"
+
 #: gtt/menus.c:85
-msgid "Start"
+#, fuzzy
+msgid "St_art"
 msgstr "Tosaigh"
 
 #: gtt/menus.c:89
-msgid "Stop"
+#, fuzzy
+msgid "Sto_p"
 msgstr "Stop"
 
 #: gtt/menus.c:94
-msgid "Timer Running"
+#, fuzzy
+msgid "_Timer Running"
 msgstr "Uaireadsir ar siuil"
 
-#: gtop/main.c:128 gtt/menus.c:103
-msgid "About..."
-msgstr "Faoi..."
+#: gtt/menus.c:117
+#, fuzzy
+msgid "_Timer"
+msgstr "Uaireadsir"
 
-#: gtop/main.c:147 gtt/menus.c:113
-msgid "File"
-msgstr "Comhad"
+#: gtt/menus.c:128
+msgid "Properties..."
+msgstr "Albaltachtam"
 
-#: gtt/menus.c:115
-msgid "Edit"
-msgstr "Eagar"
+#: gtt/menus.c:134 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Gearr"
 
-#: genius/genius.c:322 gtop/main.c:150 gtt/menus.c:120
-msgid "Help"
-msgstr "Cznamh"
+#: gtt/menus.c:139 gtt/toolbar.c:163
+msgid "Copy"
+msgstr "Dian Csip"
 
-#: gtt/log.c:62
-msgid "stopped project"
-msgstr "Tionscnamh stoptha"
+#: gtt/menus.c:144 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Greamaigh"
 
-#: gtt/log.c:129
-msgid "program exited"
-msgstr "Rmomhchlar Iirithe as."
+#: gtt/menus.c:149
+msgid "Clear Daily Counter"
+msgstr "Glan Uaireadoir Laethuil"
 
-#: gtt/log.c:137
-msgid "program started"
-msgstr "Rmomhchlar Tosaithe."
-
-#: genius/genius.c:392 gtt/options.c:196
-msgid "Display"
-msgstr "Taispeain"
-
-#: gtt/options.c:204
+#: gtt/options.c:203
 msgid "Show Seconds"
 msgstr "Taispeain Soicind"
 
@@ -240,395 +752,1038 @@ msgstr "Taispeain Soicind"
 msgid "Show Status Bar"
 msgstr "Taispeain Staidchla"
 
-#: gtt/options.c:214
+#: gtt/options.c:215
 msgid "Show Table Header"
 msgstr "Taispeain Ceannline"
 
-#: gtt/options.c:227 gtt/options.c:484
+#: gtt/options.c:229 gtt/options.c:527
 msgid "Toolbar"
 msgstr "Uirlischlar"
 
-#: gtt/options.c:235
+#: gtt/options.c:237
 msgid "Show Toolbar Icons"
 msgstr "Taispeain iomhanna an uirlischlair"
 
-#: gtt/options.c:240
+#: gtt/options.c:243
 msgid "Show Toolbar Texts"
 msgstr "Taispeain teacs an uirlischlair"
 
-#: gtt/options.c:245
+#: gtt/options.c:249
 msgid "Show Tooltips"
 msgstr "Taispeain tooltips"
 
-#: gtt/options.c:250
+#: gtt/options.c:255
 msgid "Toolbar Segments"
 msgstr "Roinn Uirlischlair"
 
-#: gtt/options.c:258
+#: gtt/options.c:263
 msgid "Show `New'"
 msgstr "Taispeain `Nua'"
 
-#: gtt/options.c:263
+#: gtt/options.c:269
 msgid "Show `Save', `Reload'"
 msgstr "Taispeain `Sabha'il', `Athchur'"
 
-#: gtt/options.c:268
+#: gtt/options.c:275
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Taispeain 'Gearr', `Dian Coip', 'Greamaigh'"
 
-#: gtt/options.c:273
+#: gtt/options.c:281
 msgid "Show `Properties'"
 msgstr "Taispeain `Abaltachtam'"
 
-#: gtt/options.c:278
+#: gtt/options.c:287
 msgid "Show `Timer'"
 msgstr "Taispeain `Uaireadsir'"
 
-#: gtt/options.c:283
+#: gtt/options.c:293
 msgid "Show `Preferences'"
 msgstr "Taispeain `Roghnachais'"
 
-#: gtt/options.c:288
+#: gtt/options.c:299
 msgid "Show `Help'"
 msgstr "Taispeain `Cznamh'"
 
-#: gtt/options.c:293
-msgid "Show `Exit'"
+#: gtt/options.c:305
+#, fuzzy
+msgid "Show `Quit'"
 msgstr "Taispeain 'Ialu"
 
-#: gtt/options.c:306
+#: gtt/options.c:319
 msgid "Shell Commands"
 msgstr "Ordaithe scartha"
 
-#: gtt/options.c:314
+#: gtt/options.c:327
 msgid "Switch Project Command:"
 msgstr "Aistrigh ordu tionscnamh:"
 
-#: gtt/options.c:323
+#: gtt/options.c:338
 msgid "No Project Command:"
 msgstr "Easpa ordu tionscnaimh:"
 
-#: gtt/options.c:352
+#: gtt/options.c:372
 msgid "Logfile"
 msgstr "Comhad Log"
 
-#: gtt/options.c:360
+#: gtt/options.c:380
 msgid "Use Logfile"
 msgstr "Zsaid Comhad Log"
 
-#: gtt/options.c:372
+#: gtt/options.c:389
 msgid "Filename:"
 msgstr "Aimn Comhaid:"
 
-#: gtt/options.c:386
+#: gtt/options.c:403
+msgid "Entry Start:"
+msgstr ""
+
+#: gtt/options.c:417
+msgid "Entry Stop:"
+msgstr ""
+
+#: gtt/options.c:431
 msgid "Timeout in secs:"
 msgstr "Criochthreimhse i soicind:"
 
-#: gtt/options.c:456
+#: gtt/options.c:508 mini-utils/gless/gless.c:336 mini-utils/gw/gw.c:204
 msgid "Preferences"
 msgstr "Roghnachas"
 
-#: gtt/options.c:472
+#: gtt/options.c:514
 msgid "Misc"
 msgstr "Teibi"
 
-#. define one empty project on the first start
-#: gtt/clist.c:124 gtt/prop.c:55
+#: gtt/proj.c:461
+#, fuzzy
+msgid "project %t started"
+msgstr "Rmomhchlar Tosaithe."
+
+#: gtt/proj.c:464
+#, fuzzy
+msgid "stopped project %t"
+msgstr "Tionscnamh stoptha"
+
+#: gtt/prop.c:60
 msgid "empty"
 msgstr "folamh"
 
-#: gtt/prop.c:161
+#: gtt/prop.c:175
 msgid "Properties"
 msgstr "Abaltachtam"
 
-#: gtt/prop.c:206
+#: gtt/prop.c:182
+#, fuzzy
+msgid "Project"
+msgstr "Greamaigh Tionscnamh"
+
+#: gtt/prop.c:202
 msgid "Project Title:"
 msgstr "Teideal Tionscnaimhe:"
 
-#: gtt/prop.c:215
+#: gtt/prop.c:214
 msgid "Project Description:"
 msgstr "Cur sios tionscnaimhe:"
 
-#: gtt/prop.c:224
+#: gtt/prop.c:226
 msgid "Project Time today:"
 msgstr "Fad Thionscnaihme Inniu:"
 
-#: gtt/prop.c:237 gtt/prop.c:266
+#: gtt/prop.c:242 gtt/prop.c:280
 msgid "hours"
 msgstr "uaireanta"
 
-#: gtt/prop.c:245 gtt/prop.c:274
+#: gtt/prop.c:253 gtt/prop.c:291
 msgid "mins"
 msgstr "noimiid"
 
-#: gtt/prop.c:253 gtt/prop.c:282
+#: gtt/prop.c:264 gtt/prop.c:302
 msgid "secs"
 msgstr "soicind"
 
-#: gtt/prop.c:257
+#: gtt/prop.c:268
 msgid "Project Time ever:"
 msgstr "Fad thionscnaimhe iomlan"
 
-#: gtt/clist.c:84
-msgid "Time"
-msgstr "Am"
+#. Note to translators: just skip the `[GTT]'
+#: gtt/toolbar.c:141
+msgid "[GTT]New"
+msgstr "Nua"
 
-#: gtt/clist.c:85
-msgid "Project Title"
-msgstr "Teideal Tionscnaimhe:"
+#: gtt/toolbar.c:148
+msgid "Reload"
+msgstr "Athchur"
 
-#: gtop/main.c:62
-msgid "GTop"
-msgstr "GTop"
+#: gtt/toolbar.c:152
+msgid "Save"
+msgstr "Sabhail"
 
-#. another comments
-#: gtop/main.c:67
-msgid "The GNOME System Monitor program"
+#: gtt/toolbar.c:153
+msgid "Save Configuration File"
+msgstr "Sabhail Comhad Cumramochta"
+
+#: gtt/toolbar.c:160
+msgid "Cut Selected Project"
+msgstr "Gearr Tionscnamh Roghnaithe"
+
+#: gtt/toolbar.c:164
+msgid "Copy Selected Project"
+msgstr "Dian Csip den Tionscnamh Roghnaithe"
+
+#: gtt/toolbar.c:168
+msgid "Paste Project"
+msgstr "Greamaigh Tionscnamh"
+
+#: gtt/toolbar.c:174
+msgid "Props"
+msgstr "Abaltachtam"
+
+#: gtt/toolbar.c:175
+msgid "Edit Properties..."
+msgstr "Eagraigh Abaltachtai..."
+
+#: gtt/toolbar.c:179
+msgid "Timer"
+msgstr "Uaireadsir"
+
+#: gtt/toolbar.c:180
+msgid "Start/Stop Timer"
+msgstr "Tosaigh/Stop Uaireadsi"
+
+#: gtt/toolbar.c:188
+msgid "Prefs"
+msgstr "Roghnachais"
+
+#: gtt/toolbar.c:189
+msgid "Edit Preferences..."
 msgstr ""
 
-#: gtop/main.c:134
-msgid "item 1"
+#: gtt/toolbar.c:193
+msgid "Manual"
 msgstr ""
 
-#: gtop/main.c:135
-msgid "item 2"
+#: gtt/toolbar.c:193
+msgid "Manual..."
 msgstr ""
 
-#: gtop/main.c:136
-msgid "item 3"
+#: gtt/toolbar.c:198
+msgid "Quit"
 msgstr ""
 
-#: gtop/main.c:148
-msgid "View"
+#: gtt/toolbar.c:198
+#, fuzzy
+msgid "Quit GTimeTracker"
+msgstr "Ialaigh GtimeTracker"
+
+#: mini-utils/gcolorsel/gcolorsel.c:57 mini-utils/gcolorsel/gcolorsel.c:59
+#: mini-utils/gcolorsel/gcolorsel.c:231 mini-utils/gcolorsel/gcolorsel.c:352
+msgid "Gnome Color Browser"
 msgstr ""
 
-#: gtop/main.c:149
-msgid "System"
+#: mini-utils/gcolorsel/gcolorsel.c:81
+msgid "Color Name:"
 msgstr ""
 
-#: gtop/main.c:155
-msgid "Start / Stop sampling"
+#: mini-utils/gcolorsel/gcolorsel.c:88
+msgid "Color Values:"
 msgstr ""
 
-#: gtop/main.c:181
-msgid "GNOME System Monitor"
-msgstr ""
-
-#: gtop/procview.c:290
-msgid "All processes"
-msgstr ""
-
-#: gtop/procview.c:292
-msgid "User processes"
-msgstr ""
-
-#: gtop/procview.c:294
-msgid "TTY processes"
-msgstr ""
-
-#: gtop/procview.c:564
-msgid "Send"
-msgstr "Post"
-
-#: gtop/procview.c:585
-msgid "More ..."
-msgstr "Msr"
-
-#: gtop/procview.c:599
-msgid "SIGTERM"
-msgstr ""
-
-#: gtop/procview.c:606
-msgid "SIGKILL"
-msgstr ""
-
-#: gtop/procview.c:618
-msgid "Details ..."
-msgstr ""
-
-#: gtop/details.c:46
-msgid "Close"
+#: mini-utils/gcolorsel/gcolorsel.c:147
+#, fuzzy
+msgid "Color"
 msgstr "Dzn"
 
-#: gtop/details.c:71
-msgid "Process %d details"
-msgstr ""
-
-#: gtop/details.c:158
-msgid "Process info"
-msgstr ""
-
-#: gtop/details.c:160
-msgid "Attribute"
-msgstr ""
-
-#: gtop/details.c:161
+#: mini-utils/gcolorsel/gcolorsel.c:148 mini-utils/guname/moreinfo.c:218
+#: mini-utils/idetool/idetool.c:258
 msgid "Value"
 msgstr ""
 
-#: gtop/details.c:334
-msgid "Raw memory map"
+#: mini-utils/gcolorsel/gcolorsel.c:149 mini-utils/guname/moreinfo.c:217
+#: mini-utils/gw/gw.c:458 mini-utils/gw/gw.c:533
+msgid "Name"
 msgstr ""
 
-#: gtop/details.c:336
-msgid "VM start"
+#: mini-utils/gcolorsel/gcolorsel.c:222
+msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
 msgstr ""
 
-#: gtop/details.c:337
-msgid "VM end"
+#: mini-utils/gcolorsel/gcolorsel.c:235
+msgid "Parsing Colors"
 msgstr ""
 
-#: gtop/details.c:338
-msgid "Flags"
+#: mini-utils/gcolorsel/gcolorsel.c:299
+msgid "Decimal (8 bit)"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:300
+msgid "Decimal (16 bit)"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:301
+msgid "Hex (8 bit)"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:302
+msgid "Hex (16 bit)"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:303
+#, fuzzy
+msgid "Float"
 msgstr "Bratam"
 
-#: gtop/details.c:339
-msgid "VM offset"
+#: mini-utils/gcolorsel/gcolorsel.c:356
+msgid "Small utility to browse available X11 colors."
 msgstr ""
 
-#: gtop/details.c:340
+#: mini-utils/gcolorsel/gcolorsel.c:365
+#, fuzzy
+msgid "_About"
+msgstr "Faoi..."
+
+#: mini-utils/gcolorsel/gcolorsel.c:377
+msgid "_Program"
+msgstr ""
+
+#: mini-utils/gfontsel/gfontsel.c:145
+msgid "Font Selector"
+msgstr ""
+
+#: mini-utils/gfontsel/gfontsel.c:170
+msgid "Selection:"
+msgstr ""
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "Font to load"
+msgstr ""
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr ""
+
+#: mini-utils/gfontsel/gfontsel.c:254
+msgid "Print selected font name on exit"
+msgstr ""
+
+#: mini-utils/gfontsel/gfontsel.c:255
+msgid "Inhibit remembering selected font for next run"
+msgstr ""
+
+#: mini-utils/gfontsel/gfontsel.c:256
+msgid "Inhibit loading of last font"
+msgstr ""
+
+#: mini-utils/gless/gless.c:116
+msgid "Where to put the window, and its size"
+msgstr ""
+
+#: mini-utils/gless/gless.c:117
+msgid "Ignore standard input; may be needed in some cases."
+msgstr ""
+
+#: mini-utils/gless/gless.c:279 mini-utils/gw/gw.c:172
+msgid "Tell about this application"
+msgstr ""
+
+#: mini-utils/gless/gless.c:287
+msgid "New Window"
+msgstr ""
+
+#: mini-utils/gless/gless.c:287
+msgid "New text viewer window"
+msgstr ""
+
+#: mini-utils/gless/gless.c:292
+msgid "Open..."
+msgstr ""
+
+#: mini-utils/gless/gless.c:292
+msgid "Open a new file in this window"
+msgstr ""
+
+#: mini-utils/gless/gless.c:297 mini-utils/guname/guname.c:526
+msgid "Save As..."
+msgstr ""
+
+#: mini-utils/gless/gless.c:297
+msgid "Save file to disk"
+msgstr ""
+
+#: mini-utils/gless/gless.c:302
+msgid "Close this window"
+msgstr ""
+
+#: mini-utils/gless/gless.c:308
+msgid "Quit the application"
+msgstr ""
+
+#: mini-utils/gless/gless.c:316
+msgid "Fixed Font"
+msgstr ""
+
+#: mini-utils/gless/gless.c:317
+msgid "Display text with a fixed font"
+msgstr ""
+
+#: mini-utils/gless/gless.c:325 mini-utils/gw/gw.c:194
+msgid "Preferences..."
+msgstr "Roghnachais..."
+
+#: mini-utils/gless/gless.c:326 mini-utils/gw/gw.c:195
+msgid "Change application preferences"
+msgstr ""
+
+#: mini-utils/gless/gless.c:335
+msgid "View"
+msgstr ""
+
+#: mini-utils/gless/gless.c:352
+msgid "Text File Viewer"
+msgstr ""
+
+#: mini-utils/gless/gless.c:412
+msgid ""
+"Couldn't understand geometry (position and size)\n"
+" specified on command line"
+msgstr ""
+
+#: mini-utils/gless/gless.c:453
+msgid "Loading..."
+msgstr ""
+
+#: mini-utils/gless/gless.c:458
+msgid "No such file or directory:\n"
+msgstr ""
+
+#: mini-utils/gless/gless.c:475
+msgid "Failed to decompress and display the file:\n"
+msgstr ""
+
+#: mini-utils/gless/gless.c:486
+msgid ""
+"Unable to display compressed file.\n"
+"zcat not found in your path."
+msgstr ""
+
+#: mini-utils/gless/gless.c:494
+msgid "Error loading file:\n"
+msgstr ""
+
+#: mini-utils/gless/gless.c:548
+msgid "Saving..."
+msgstr ""
+
+#: mini-utils/gless/gless.c:559
+msgid "Failed to write file:\n"
+msgstr ""
+
+#: mini-utils/gless/gless.c:606
+msgid "Save Text As..."
+msgstr ""
+
+#: mini-utils/gless/gless.c:646
+msgid "Open Text File..."
+msgstr ""
+
+#: mini-utils/gnome-run/gnome-run.c:43
+msgid "Failed to execute command:\n"
+msgstr ""
+
+#: mini-utils/gnome-run/gnome-run.c:63
+msgid "Run Program"
+msgstr ""
+
+#: mini-utils/gnome-run/gnome-run.c:64
+msgid "Run"
+msgstr ""
+
+#: mini-utils/gnome-run/gnome-run.c:64
+msgid "Cancel"
+msgstr "Cosc"
+
+#: mini-utils/gnome-run/gnome-run.c:75
+msgid "Select a program to run"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:82
+msgid "Shut Down"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:83
+msgid "Single User Mode"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:84
+msgid "Runlevel 2"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:85
+msgid "Runlevel 3"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:86
+msgid "Runlevel 4"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:87
+msgid "Runlevel 5"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:88
+msgid "Reboot"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:94
+msgid "Are you sure you want to shut down the computer?"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:95
+msgid "Are you sure you want to switch to single user mode?"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:96
+msgid "Are you sure you want to switch to runlevel 2?"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:97
+msgid "Are you sure you want to switch to runlevel 3?"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:98
+msgid "Are you sure you want to switch to runlevel 4?"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:99
+msgid "Are you sure you want to switch to runlevel 5?"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:100
+msgid "Are you sure you want to reboot the system?"
+msgstr ""
+
+#. notebook pages
+#: mini-utils/gshutdown/gshutdown.c:173
+msgid "Shutdown or Reboot"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:190 mini-utils/gshutdown/gshutdown.c:191
+msgid "Easy"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:195 mini-utils/gshutdown/gshutdown.c:196
+msgid "Advanced"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:228
+msgid ""
+"Click OK to shutdown or reboot. You will lose\n"
+"any unsaved information in open applications."
+msgstr ""
+
+#. Put in a "revert to defaults" button
+#: mini-utils/gshutdown/gshutdown.c:355
+msgid "Revert to Defaults"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:365
+#, fuzzy
+msgid "Commands"
+msgstr "Ordaithe scartha"
+
+#: mini-utils/gshutdown/gshutdown.c:370
+msgid "Confirm before shutdown?"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:382
+msgid "General"
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:444
+msgid "Don't ask next time."
+msgstr ""
+
+#: mini-utils/guname/guname.c:327
+msgid "System Information"
+msgstr ""
+
+#: mini-utils/guname/guname.c:411
+msgid "Logo file not found"
+msgstr ""
+
+#. Up here so it uses the default font
+#: mini-utils/guname/guname.c:415
+msgid "GNOME contributors:"
+msgstr ""
+
+#: mini-utils/guname/guname.c:429
+msgid "GNOME: The GNU Network Object Model Environment"
+msgstr ""
+
+#: mini-utils/guname/guname.c:453
+msgid "Email Information..."
+msgstr ""
+
+#: mini-utils/guname/guname.c:464
+#, fuzzy
+msgid "Save Information to File..."
+msgstr "Sabhail Comhad Cumramochta"
+
+#: mini-utils/guname/guname.c:476 mini-utils/guname/guname.c:540
+msgid "Detailed Information..."
+msgstr ""
+
+#: mini-utils/guname/guname.c:491
+msgid "Category"
+msgstr ""
+
+#: mini-utils/guname/guname.c:491
+msgid "Your System"
+msgstr ""
+
+#: mini-utils/guname/guname.c:532
+msgid "Mail To..."
+msgstr ""
+
+#: mini-utils/guname/guname.c:580
+msgid "Error closing file `"
+msgstr ""
+
+#: mini-utils/guname/guname.c:582
+msgid ""
+"\n"
+"Some or all data may not have been written."
+msgstr ""
+
+#: mini-utils/guname/guname.c:591
+msgid "Couldn't open file `"
+msgstr ""
+
+#: mini-utils/guname/guname.c:605
+msgid "Save System Information As..."
+msgstr ""
+
+#. I don't think the error_string() will reliably mean anything.
+#: mini-utils/guname/guname.c:651
+msgid "Command failed ` "
+msgstr ""
+
+#: mini-utils/guname/guname.c:651 mini-utils/guname/guname.c:658
+msgid " ': "
+msgstr ""
+
+#: mini-utils/guname/guname.c:658
+msgid "Couldn't run command ` "
+msgstr ""
+
+#: mini-utils/guname/guname.c:681
+msgid "The following mail will be sent to "
+msgstr ""
+
+#: mini-utils/guname/guname.c:683
+msgid ""
+".\n"
+" Are you sure you want to mail this information?"
+msgstr ""
+
+#: mini-utils/guname/guname.c:692
+msgid "Are you sure?"
+msgstr ""
+
+#: mini-utils/guname/guname.c:725
+msgid "Address to mail to:"
+msgstr ""
+
+#: mini-utils/guname/info.c:37
+msgid "Distribution:"
+msgstr ""
+
+#: mini-utils/guname/info.c:38
+msgid "Operating System:"
+msgstr ""
+
+#: mini-utils/guname/info.c:39
+msgid "Distribution Version:"
+msgstr ""
+
+#: mini-utils/guname/info.c:40
+msgid "Operating System Version:"
+msgstr ""
+
+#: mini-utils/guname/info.c:41
+msgid "Operating System Release:"
+msgstr ""
+
+#: mini-utils/guname/info.c:42
+msgid "Processor Type:"
+msgstr ""
+
+#: mini-utils/guname/info.c:43
+msgid "Processor Speed:"
+msgstr ""
+
+#: mini-utils/guname/info.c:44
+msgid "Host Name:"
+msgstr ""
+
+#: mini-utils/guname/info.c:45
+msgid "Domain Name:"
+msgstr ""
+
+#: mini-utils/guname/info.c:46
+msgid "User Name:"
+msgstr ""
+
+#: mini-utils/guname/info.c:47
+#, fuzzy
+msgid "X Display Name:"
+msgstr "Taispeain"
+
+#: mini-utils/guname/info.c:48
+msgid "System Status:"
+msgstr ""
+
+#: mini-utils/guname/info.c:49
+msgid "Real Memory:"
+msgstr ""
+
+#: mini-utils/guname/info.c:50
+msgid "Swap Space (\"virtual memory\"):"
+msgstr ""
+
+#: mini-utils/guname/info.c:51
+msgid "Total Memory:"
+msgstr ""
+
+#: mini-utils/guname/info.c:52
+msgid "Free Memory:"
+msgstr ""
+
+#: mini-utils/guname/info.c:57
 msgid "Device"
 msgstr ""
 
-#: gtop/details.c:341
-msgid "Inode"
+#: mini-utils/guname/info.c:58
+msgid "Size"
+msgstr ""
+
+#: mini-utils/guname/info.c:59
+msgid "Used space"
+msgstr ""
+
+#: mini-utils/guname/info.c:60
+msgid "Free space"
+msgstr ""
+
+#: mini-utils/guname/info.c:61
+#, fuzzy
+msgid "Percent free"
+msgstr "Roghnachas"
+
+#: mini-utils/guname/info.c:62
+msgid "Mount point"
+msgstr ""
+
+#. This is about the only case where we'll put Unknown instead
+#. of simply not showing the info.
+#: mini-utils/guname/info.c:168
+msgid "Unknown"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:82
+msgid "Unknown filesystem"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:104
+msgid "No information for this filesystem."
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:119
+msgid "Mounted filesystems"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:155
+msgid "Memory"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:155
+msgid "Kilobytes"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:158
+msgid "%ld%% %s used."
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:174
+msgid "memory"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:188
+msgid "swap"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:214
+#, c-format
+msgid "CPU %d"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:255
+msgid "Detailed System Information"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:268
+msgid "Disk Information"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:270
+msgid "Memory Information"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:273
+msgid "CPU Information"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:294
+msgid "%2d%% full "
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:296
+#, c-format
+msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:310
+msgid "Mount Point: "
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:311
+msgid "    Device: "
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:312
+msgid "    Filesystem Type: "
+msgstr ""
+
+#: mini-utils/gw/gw.c:144
+msgid ""
+"Couldn't find the \"w\" command in your path.\n"
+"This command is needed for the program to work."
+msgstr ""
+
+#: mini-utils/gw/gw.c:180
+#, fuzzy
+msgid "Save..."
+msgstr "Sabhail"
+
+#: mini-utils/gw/gw.c:180
+msgid "Write information to disk"
+msgstr ""
+
+#: mini-utils/gw/gw.c:186
+msgid "Quit the application without saving"
+msgstr ""
+
+#: mini-utils/gw/gw.c:217
+msgid "User Listing"
+msgstr ""
+
+#: mini-utils/gw/gw.c:236
+msgid "Update Information"
+msgstr ""
+
+#: mini-utils/gw/gw.c:458
+msgid "Command Line"
+msgstr ""
+
+#. Create everything.
+#: mini-utils/gw/gw.c:466
+msgid "Add some defaults"
+msgstr ""
+
+#: mini-utils/gw/gw.c:468
+msgid "Delete"
+msgstr ""
+
+#: mini-utils/gw/gw.c:486
+msgid "Command Editor"
+msgstr ""
+
+#: mini-utils/gw/gw.c:496
+msgid ""
+"You can configure the commands on the popup menus.\n"
+"Just enter the name you want to appear on the \n"
+"menu, and the command to execute.\n"
+"In the command, you can use %u to represent the\n"
+"currently selected username, and %t for the tty."
+msgstr ""
+
+#: mini-utils/gw/gw.c:503
+msgid ""
+"Click this button to add\n"
+"some sample commands."
+msgstr ""
+
+#: mini-utils/gw/gw.c:511
+msgid "Menu items"
+msgstr ""
+
+#: mini-utils/gw/gw.c:539
+#, fuzzy
+msgid "Command"
+msgstr "Ordaithe scartha"
+
+#: mini-utils/idetool/idetool.c:41
+msgid "Unable to access the drive."
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:58 mini-utils/idetool/idetool.c:70
+msgid "The DMA setting for this drive cannot be changed."
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:322 mini-utils/idetool/idetool.c:324
+msgid "Enabled"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:322 mini-utils/idetool/idetool.c:324
+msgid "Disabled"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:90 mini-utils/idetool/idetool.c:102
+msgid "The IRQ unmask setting for this drive cannot be changed."
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:121 mini-utils/idetool/idetool.c:133
+msgid "The drive refused to keep its settings."
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:326
+msgid "Keep settings"
+msgstr ""
+
+#. IO
+#: mini-utils/idetool/idetool.c:168
+#, fuzzy
+msgid "PIO Mode"
 msgstr "Inode"
 
-#: gtop/details.c:342
-msgid "Filename"
-msgstr "Comhad"
-
-#: gtop/details.c:452
-msgid "Graphical memory map"
+#: mini-utils/idetool/idetool.c:211
+msgid "(1 Sector)"
 msgstr ""
 
-#: genius/calc.c:277
-msgid "ERROR: Probably corrupt stack!"
+#: mini-utils/idetool/idetool.c:213
+msgid "(Dual Port)"
 msgstr ""
 
-#: genius/calc.c:301
-msgid "ERROR: "
-msgstr "BOTZN:"
-
-#: genius/calc.c:303
-msgid " before '"
+#: mini-utils/idetool/idetool.c:215
+msgid "(Dual Port Cache)"
 msgstr ""
 
-#: genius/genius.c:223 genius/genius.c:339
-msgid "GnomENIUS Calculator"
+#: mini-utils/idetool/idetool.c:258
+msgid "Setting"
 msgstr ""
 
-#. another comments
-#: genius/genius.c:228
-msgid "The Gnome Calculator program"
+#: mini-utils/idetool/idetool.c:309 mini-utils/idetool/idetool.c:319
+#, fuzzy
+msgid "Model"
+msgstr "Inode"
+
+#: mini-utils/idetool/idetool.c:310
+msgid "Firmware"
 msgstr ""
 
-#: genius/genius.c:302
-msgid "Calculator/Exit"
+#: mini-utils/idetool/idetool.c:311
+msgid "Serial No."
 msgstr ""
 
-#: genius/genius.c:302
-msgid "<control>X"
+#. do config here
+#: mini-utils/idetool/idetool.c:313
+#, fuzzy
+msgid "Geometry"
+msgstr "folamh"
+
+#: mini-utils/idetool/idetool.c:314
+#, fuzzy
+msgid "Cache"
+msgstr "Cosc"
+
+#: mini-utils/idetool/idetool.c:315
+#, fuzzy
+msgid "Status"
+msgstr "Tosaigh"
+
+#: mini-utils/idetool/idetool.c:319
+msgid "Legacy MFM/RLL drive"
 msgstr ""
 
-#: genius/genius.c:303
-msgid "View/<check>Numpad"
+#: mini-utils/idetool/idetool.c:322
+msgid "DMA Mode"
 msgstr ""
 
-#: genius/genius.c:304
-msgid "View/<check>Scientific"
+#: mini-utils/idetool/idetool.c:323
+#, fuzzy
+msgid "IO Mode"
+msgstr "Inode"
+
+#: mini-utils/idetool/idetool.c:324
+msgid "IRQ Unmask"
 msgstr ""
 
-#: genius/genius.c:305
-msgid "View/<check>Options"
+#: mini-utils/idetool/idetool.c:325
+msgid "Multisector"
 msgstr ""
 
-#: genius/genius.c:306
-msgid "Help/About"
-msgstr "Cznamh/Faoi"
-
-#: genius/genius.c:325
-msgid "View/Numpad"
+#: mini-utils/idetool/idetool.c:326
+msgid "On Reset"
 msgstr ""
 
-#: genius/genius.c:328
-msgid "View/Options"
+#.
+#. *	Set up the outer display first
+#.
+#: mini-utils/idetool/idetool.c:352
+msgid "IDE Status"
 msgstr ""
 
-#. numpad
-#: genius/genius.c:428
-msgid "Numpad"
+#: mini-utils/idetool/idetool.c:365
+msgid "Disk Logo Not Found"
 msgstr ""
 
-#: genius/genius.c:450
-msgid "Scientific"
+#: mini-utils/idetool/idetool.c:416
+msgid "Only the superuser can use this tool"
 msgstr ""
 
-#: genius/genius.c:462
-msgid "Options"
-msgstr "Rogha"
-
-#: genius/genius.c:467
-msgid "Prefix notation"
+#: mini-utils/idetool/idetool.c:427
+msgid "You appear to have no IDE drives"
 msgstr ""
 
-#: genius/genius.c:474
-msgid "Infix notation"
-msgstr ""
+#~ msgid "Yes"
+#~ msgstr "Ceart"
 
-#: genius/genius.c:482
-msgid "Postfix notation (RPN)"
-msgstr ""
+#~ msgid "No"
+#~ msgstr "Nm Ceart"
 
-#: genius/genius.c:491
-msgid "Full (exact) answers"
-msgstr ""
+#~ msgid "Oops"
+#~ msgstr "Oops"
 
-#: genius/genius.c:497
-msgid "Make floats integers (e.g. 10.0=10)"
-msgstr ""
+#~ msgid "OK"
+#~ msgstr "Togha"
 
-#: genius/genius.c:507
-msgid "Results as floats"
-msgstr ""
+#~ msgid "Time"
+#~ msgstr "Am"
 
-#: genius/genius.c:513
-msgid "Floats in scientific notation"
-msgstr ""
+#~ msgid "GTop"
+#~ msgstr "GTop"
 
-#: genius/eval.c:329
-msgid "Variable used uninitialized!"
-msgstr ""
+#~ msgid "Send"
+#~ msgstr "Post"
 
-#: genius/eval.c:480
-msgid "Left value is NOT a number! (ignoring if construct)"
-msgstr ""
+#~ msgid "More ..."
+#~ msgstr "Msr"
 
-#: genius/eval.c:492
-msgid "Left value is NOT a number! (ignoring ifelse construct)"
-msgstr ""
+#~ msgid "Filename"
+#~ msgstr "Comhad"
 
-#: genius/eval.c:706
-msgid "'=' can't function without proper nodes!"
-msgstr ""
+#~ msgid "Help/About"
+#~ msgstr "Cznamh/Faoi"
 
-#: genius/eval.c:710
-msgid "Left value is NOT a 0\\function! (ignoring '=')"
-msgstr ""
-
-#: genius/eval.c:714
-msgid "Right value is NOT computed! (ignoring '=')"
-msgstr ""
-
-#: genius/eval.c:727
-msgid "funcdefop can't function without proper nodes!"
-msgstr ""
-
-#: genius/eval.c:730
-msgid "Left value is NOT a function! (ignoring function definition)"
-msgstr ""
-
-#: genius/util.c:125
-msgid "Stack underflow!"
-msgstr ""
-
+#~ msgid "Options"
+#~ msgstr "Rogha"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1998-07-02 13:31+0200\n"
+"POT-Creation-Date: 1998-12-20 13:20-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,12 +14,880 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: ENCODING\n"
 
-#: gtt/app.c:114 gtt/app.c:213
+#: gcalc/gcalc.c:30
+msgid "The Gnome Calculator"
+msgstr ""
+
+#: gcalc/gcalc.c:33
+msgid "Simple double precision calculator similiar to xcalc"
+msgstr ""
+
+#: gcalc/gcalc.c:85 gsearchtool/gsearchtool.c:579
+#: mini-utils/gcolorsel/gcolorsel.c:371
+#, fuzzy
+msgid "E_xit"
+msgstr "Konec"
+
+#: gcalc/gcalc.c:92 ghex/ui.c:75 gtt/menus.c:103
+#, fuzzy
+msgid "_About..."
+msgstr "O programu ..."
+
+#: gcalc/gcalc.c:98 gtt/menus.c:59
+msgid "_Copy"
+msgstr ""
+
+#: gcalc/gcalc.c:104
+msgid "_Calculator"
+msgstr ""
+
+#: gcalc/gcalc.c:106 ghex/hex-document.c:85 gtt/menus.c:115
+#, fuzzy
+msgid "_Edit"
+msgstr "Konec"
+
+#: gcalc/gcalc.c:108 ghex/ui.c:87 gsearchtool/gsearchtool.c:598
+#: gtt/menus.c:120 mini-utils/gcolorsel/gcolorsel.c:378
+#, fuzzy
+msgid "_Help"
+msgstr "Nápovìda"
+
+#: gcalc/gcalc.c:130
+msgid "Gnome Calculator"
+msgstr ""
+
+#: gdiskfree/df.c:128 mini-utils/gless/gless.c:307 mini-utils/gw/gw.c:185
+msgid "Exit"
+msgstr "Konec"
+
+#: gdiskfree/df.c:137 gsearchtool/gsearchtool.c:588
+#: mini-utils/gless/gless.c:278 mini-utils/gw/gw.c:171
+msgid "About..."
+msgstr "O programu ..."
+
+#: gdiskfree/df.c:144 mini-utils/gless/gless.c:334 mini-utils/gw/gw.c:203
+msgid "File"
+msgstr "Soubor"
+
+#: gdiskfree/df.c:146 mini-utils/gless/gless.c:337 mini-utils/gw/gw.c:206
+msgid "Help"
+msgstr "Nápovìda"
+
+#: gdiskfree/df.c:219
+msgid ""
+"A quick hack to show the amount of space free on mounted file systems "
+"uitilizing a dial."
+msgstr ""
+
+#: ghex/callbacks.c:44
+msgid "GHex, a binary file editor"
+msgstr ""
+
+#: ghex/callbacks.c:46
+msgid "Released under the terms of GNU Public License"
+msgstr ""
+
+#: ghex/callbacks.c:76 ghex/callbacks.c:169
+msgid "Error saving file!"
+msgstr ""
+
+#: ghex/callbacks.c:80 ghex/callbacks.c:164
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr ""
+
+#: ghex/callbacks.c:97
+#, c-format
+msgid "Really revert file %s?"
+msgstr ""
+
+#: ghex/callbacks.c:110
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr ""
+
+#: ghex/callbacks.c:125
+#, c-format
+msgid "Loaded file %s"
+msgstr ""
+
+#: ghex/callbacks.c:130
+msgid "Can not open file!"
+msgstr ""
+
+#: ghex/callbacks.c:173
+msgid "Can't open file for writing!"
+msgstr ""
+
+#: ghex/callbacks.c:197
+msgid "Select a file to open"
+msgstr ""
+
+#: ghex/callbacks.c:215
+msgid "Select a file to save buffer as"
+msgstr ""
+
+#: ghex/callbacks.c:308 ghex/callbacks.c:331 ghex/callbacks.c:384
+msgid "There is no active buffer to search!"
+msgstr ""
+
+#: ghex/callbacks.c:316 ghex/callbacks.c:339 ghex/callbacks.c:392
+msgid "There seems to be no string to search for!"
+msgstr ""
+
+#: ghex/callbacks.c:322 ghex/callbacks.c:399
+msgid "End Of File reached"
+msgstr ""
+
+#: ghex/callbacks.c:346
+msgid "Beginning Of File reached"
+msgstr ""
+
+#: ghex/callbacks.c:354
+msgid "There is no active buffer to move the cursor in!"
+msgstr ""
+
+#: ghex/callbacks.c:359
+msgid "No offset has been specified!"
+msgstr ""
+
+#: ghex/callbacks.c:366
+msgid "The offset must be a positive integer value!"
+msgstr ""
+
+#: ghex/callbacks.c:371
+msgid "Can not position cursor beyond the End Of File!"
+msgstr ""
+
+#: ghex/callbacks.c:409 ghex/callbacks.c:448
+msgid "There is no active buffer to replace data in!"
+msgstr ""
+
+#: ghex/callbacks.c:420 ghex/callbacks.c:459
+msgid "Strange find or replace string!"
+msgstr ""
+
+#: ghex/callbacks.c:425 ghex/callbacks.c:464
+msgid "Both strings must be of the same length!"
+msgstr ""
+
+#: ghex/callbacks.c:438
+msgid "End Of File reached!"
+msgstr ""
+
+#: ghex/callbacks.c:479
+#, c-format
+msgid "Replaced %d occurencies."
+msgstr ""
+
+#: ghex/callbacks.c:546
+msgid "Can not open desired font!"
+msgstr ""
+
+#: ghex/callbacks.c:565
+#, c-format
+msgid ""
+"File %s has changed since last save.\n"
+"Do you want to save changes?"
+msgstr ""
+
+#: ghex/callbacks.c:589 ghex/ui.c:175
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr ""
+
+#: ghex/callbacks.c:590 ghex/ui.c:235
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr ""
+
+#: ghex/callbacks.c:591 ghex/ui.c:320
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr ""
+
+#: ghex/callbacks.c:605
+msgid "_Edit/_Group Data As/"
+msgstr ""
+
+#: ghex/callbacks.c:610 ghex/hex-document.c:54
+#, fuzzy
+msgid "_Bytes"
+msgstr "út"
+
+#: ghex/callbacks.c:613 ghex/hex-document.c:56
+msgid "_Words"
+msgstr ""
+
+#: ghex/callbacks.c:616 ghex/hex-document.c:58
+msgid "_Longwords"
+msgstr ""
+
+#: ghex/callbacks.c:673
+msgid "ERROR"
+msgstr ""
+
+#: ghex/gnome-support.c:30
+msgid "Discard session"
+msgstr ""
+
+#: ghex/gnome-support.c:30
+msgid "ID"
+msgstr ""
+
+#: ghex/hex-document.c:54
+msgid "Group data by 8 bits"
+msgstr ""
+
+#: ghex/hex-document.c:56
+msgid "Group data by 16 bits"
+msgstr ""
+
+#: ghex/hex-document.c:58
+msgid "Group data by 32 bits"
+msgstr ""
+
+#: ghex/hex-document.c:69
+msgid "_Find..."
+msgstr ""
+
+#: ghex/hex-document.c:69
+msgid "Search for a string"
+msgstr ""
+
+#: ghex/hex-document.c:71
+msgid "_Replace..."
+msgstr ""
+
+#: ghex/hex-document.c:71
+msgid "Replace a string"
+msgstr ""
+
+#: ghex/hex-document.c:75
+msgid "_Goto Byte..."
+msgstr ""
+
+#: ghex/hex-document.c:75
+msgid "Jump to a certain position"
+msgstr ""
+
+#: ghex/hex-document.c:79
+msgid "_Group Data As"
+msgstr ""
+
+#. and document menu and document list paths
+#: ghex/main.c:62 ghex/ui.c:81 gsearchtool/gsearchtool.c:595 gtt/menus.c:113
+#, fuzzy
+msgid "_File"
+msgstr "Soubor"
+
+#: ghex/main.c:63
+#, fuzzy
+msgid "File_s/"
+msgstr "Soubor"
+
+#: ghex/ui.c:32
+msgid "_Open"
+msgstr ""
+
+#: ghex/ui.c:32
+#, fuzzy
+msgid "Open a file"
+msgstr "Otevøít kalendáø"
+
+#: ghex/ui.c:34
+#, fuzzy
+msgid "_Save"
+msgstr "Sdílená"
+
+#: ghex/ui.c:34
+msgid "Save buffer "
+msgstr ""
+
+#: ghex/ui.c:36
+#, fuzzy
+msgid "Save _as..."
+msgstr "Ulo¾it kalendáø jako ..."
+
+#: ghex/ui.c:36
+msgid "Save buffer under a different file name"
+msgstr ""
+
+#: ghex/ui.c:38
+msgid "_Revert"
+msgstr ""
+
+#: ghex/ui.c:38
+msgid "Revert buffer"
+msgstr ""
+
+#: ghex/ui.c:40
+#, fuzzy
+msgid "_Close"
+msgstr "Zavøít"
+
+#: ghex/ui.c:40
+#, fuzzy
+msgid "Close file"
+msgstr "Zavøít"
+
+#: ghex/ui.c:44
+msgid "Open _Converter..."
+msgstr ""
+
+#: ghex/ui.c:44
+msgid "Open base conversion dialog"
+msgstr ""
+
+#: ghex/ui.c:48
+msgid "_Preferences"
+msgstr ""
+
+#: ghex/ui.c:48
+msgid "Set user preferences"
+msgstr ""
+
+#: ghex/ui.c:52
+#, fuzzy
+msgid "_Exit"
+msgstr "Konec"
+
+#: ghex/ui.c:52
+#, fuzzy
+msgid "Exit GHex"
+msgstr "Konec"
+
+#: ghex/ui.c:62
+msgid "_Add view"
+msgstr ""
+
+#: ghex/ui.c:62
+msgid "Add a new view of the buffer"
+msgstr ""
+
+#: ghex/ui.c:65
+msgid "_Remove view"
+msgstr ""
+
+#: ghex/ui.c:65
+msgid "Remove the current view of the buffer"
+msgstr ""
+
+#: ghex/ui.c:75
+msgid "About GHex"
+msgstr ""
+
+#: ghex/ui.c:83
+#, fuzzy
+msgid "_View"
+msgstr "Zobrazení"
+
+#: ghex/ui.c:85
+#, fuzzy
+msgid "File_s"
+msgstr "Soubor"
+
+#: ghex/ui.c:99
+#, fuzzy
+msgid "Bytes"
+msgstr "út"
+
+#: ghex/ui.c:100
+#, fuzzy
+msgid "Words"
+msgstr "Hodiny"
+
+#: ghex/ui.c:101
+msgid "Longwords"
+msgstr ""
+
+#: ghex/ui.c:125 mini-utils/idetool/idetool.c:141
+#: mini-utils/idetool/idetool.c:326
+msgid "Default"
+msgstr ""
+
+#: ghex/ui.c:126
+msgid "Notebook"
+msgstr ""
+
+#: ghex/ui.c:127
+msgid "Toplevel"
+msgstr ""
+
+#: ghex/ui.c:128
+#, fuzzy
+msgid "Modal"
+msgstr "Pondìlí"
+
+#: ghex/ui.c:133
+msgid "hex data"
+msgstr ""
+
+#: ghex/ui.c:134
+msgid "ASCII data"
+msgstr ""
+
+#: ghex/ui.c:184
+#, c-format
+msgid "Search for %s"
+msgstr ""
+
+#: ghex/ui.c:200
+msgid "Find Next"
+msgstr ""
+
+#: ghex/ui.c:207
+msgid "Find Previous"
+msgstr ""
+
+#: ghex/ui.c:249
+#, c-format
+msgid "Replace %s"
+msgstr ""
+
+#: ghex/ui.c:265
+msgid "Find next"
+msgstr ""
+
+#: ghex/ui.c:272
+msgid "Replace"
+msgstr ""
+
+#: ghex/ui.c:279
+msgid "Replace All"
+msgstr ""
+
+#: ghex/ui.c:353
+msgid "GHex: Converter"
+msgstr ""
+
+#: ghex/ui.c:360
+msgid "Binary"
+msgstr ""
+
+#: ghex/ui.c:370
+msgid "Decimal"
+msgstr ""
+
+#: ghex/ui.c:380
+msgid "Hex"
+msgstr ""
+
+#: ghex/ui.c:390
+msgid "ASCII"
+msgstr ""
+
+#: ghex/ui.c:400 mini-utils/gless/gless.c:301
+msgid "Close"
+msgstr "Zavøít"
+
+#: ghex/ui.c:444
+msgid "Font"
+msgstr ""
+
+#: ghex/ui.c:460
+msgid "Browse..."
+msgstr ""
+
+#: ghex/ui.c:479
+msgid "Default Group Type"
+msgstr ""
+
+#: ghex/ui.c:495 gtt/options.c:195
+msgid "Display"
+msgstr "Zobrazit"
+
+#: ghex/ui.c:502
+#, fuzzy
+msgid "MDI Mode"
+msgstr "I-uzel"
+
+#: ghex/ui.c:519
+msgid "MDI"
+msgstr ""
+
+#. create the results box
+#. FIXME: add an option to autoclear result box and pass TRUE in that
+#. case
+#: gsearchtool/gsearchtool.c:200
+msgid "Search Results"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:486
+#, fuzzy
+msgid "Start in directory:"
+msgstr "Zaèátek"
+
+#: gsearchtool/gsearchtool.c:504 mini-utils/gw/gw.c:467
+msgid "Add"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:515
+msgid "Start"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:516
+msgid "Stop"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:533
+msgid "This is not yet implemented"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:545
+msgid "Full find (find)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:547
+msgid "Quick find (locate)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:561
+msgid "The Gnome Search Tool"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:564
+msgid "Frontend to the unix find/grep/locate commands"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:617
+msgid "Gnome Search Tool"
+msgstr ""
+
+#: gtt/app.c:110 gtt/app.c:209
 msgid "no project selected"
 msgstr ""
 
-#: gtt/app.c:202
+#: gtt/app.c:198
 msgid "00:00"
+msgstr ""
+
+#: gtt/clist.c:134
+msgid "Total"
+msgstr ""
+
+#: gtt/clist.c:135
+msgid "Today"
+msgstr "Dnes"
+
+#: gtt/clist.c:136
+msgid "Project Title"
+msgstr ""
+
+#: gtt/clist.c:137
+msgid "Description"
+msgstr ""
+
+#: gtt/log.c:55 gtt/log.c:207
+msgid "program started"
+msgstr ""
+
+#: gtt/log.c:73
+msgid "no description"
+msgstr ""
+
+#: gtt/log.c:199
+msgid "program exited"
+msgstr ""
+
+#: gtt/main.c:75 gtt/main.c:117
+msgid "Error"
+msgstr ""
+
+#: gtt/main.c:75
+msgid ""
+"There seems to be another GTimeTracker running.\n"
+"Please remove the pid file, if that is not correct."
+msgstr ""
+
+#: gtt/main.c:118
+msgid ""
+"An error occured while reading the configuration file.\n"
+"Shall I setup a new configuration?"
+msgstr ""
+
+#: gtt/main.c:211 gtt/main.c:227 gtt/main.c:238 gtt/main.c:244
+#, c-format
+msgid "error in geometry string \"%s\"\n"
+msgstr ""
+
+#: gtt/main.c:263
+msgid "Specify geometry"
+msgstr ""
+
+#: gtt/main.c:263 mini-utils/gless/gless.c:116
+msgid "GEOMETRY"
+msgstr ""
+
+#: gtt/main.c:265
+msgid "Select a project on startup"
+msgstr ""
+
+#: gtt/main.c:265
+msgid "PROJECT"
+msgstr ""
+
+#: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
+msgid "Warning"
+msgstr ""
+
+#: gtt/menucmd.c:32 gtt/menucmd.c:155
+msgid "I could not write the configuration file!"
+msgstr ""
+
+#: gtt/menucmd.c:85 gtt/toolbar.c:142
+msgid "New Project..."
+msgstr ""
+
+#: gtt/menucmd.c:89
+msgid "Please enter the name of the new project:"
+msgstr ""
+
+#: gtt/menucmd.c:123
+msgid "I could not read the configuration file"
+msgstr ""
+
+#: gtt/menucmd.c:137 gtt/toolbar.c:149
+msgid "Reload Configuration File"
+msgstr ""
+
+#: gtt/menucmd.c:138
+msgid ""
+"This will overwrite your current set of projects.\n"
+"Do you really want to reload the configuration file?"
+msgstr ""
+
+#: gtt/menus.c:27
+msgid "_New Project..."
+msgstr ""
+
+#: gtt/menus.c:31
+msgid "_Reload Configuration File"
+msgstr ""
+
+#: gtt/menus.c:35
+msgid "_Save Configuration File"
+msgstr ""
+
+#: gtt/menus.c:40
+#, fuzzy
+msgid "_Preferences..."
+msgstr "Vlastnosti ..."
+
+#: gtt/menus.c:45
+msgid "_Quit"
+msgstr ""
+
+#: gtt/menus.c:55
+msgid "C_ut"
+msgstr ""
+
+#: gtt/menus.c:64
+#, fuzzy
+msgid "_Paste"
+msgstr "Soukromý"
+
+#: gtt/menus.c:70
+msgid "Clear _Daily Counter"
+msgstr ""
+
+#: gtt/menus.c:75
+#, fuzzy
+msgid "Pr_operties..."
+msgstr "Vlastnosti ..."
+
+#: gtt/menus.c:85
+#, fuzzy
+msgid "St_art"
+msgstr "So"
+
+#: gtt/menus.c:89
+msgid "Sto_p"
+msgstr ""
+
+#: gtt/menus.c:94
+msgid "_Timer Running"
+msgstr ""
+
+#: gtt/menus.c:117
+#, fuzzy
+msgid "_Timer"
+msgstr "Èas"
+
+#: gtt/menus.c:128
+msgid "Properties..."
+msgstr "Vlastnosti ..."
+
+#: gtt/menus.c:134 gtt/toolbar.c:159
+msgid "Cut"
+msgstr ""
+
+#: gtt/menus.c:139 gtt/toolbar.c:163
+msgid "Copy"
+msgstr ""
+
+#: gtt/menus.c:144 gtt/toolbar.c:167
+msgid "Paste"
+msgstr ""
+
+#: gtt/menus.c:149
+msgid "Clear Daily Counter"
+msgstr ""
+
+#: gtt/options.c:203
+msgid "Show Seconds"
+msgstr "Zobrazit vteøiny"
+
+#: gtt/options.c:209
+msgid "Show Status Bar"
+msgstr "Zobrazit statusbar"
+
+#: gtt/options.c:215
+msgid "Show Table Header"
+msgstr "Zobrazit hlavièku tabulek"
+
+#: gtt/options.c:229 gtt/options.c:527
+msgid "Toolbar"
+msgstr ""
+
+#: gtt/options.c:237
+msgid "Show Toolbar Icons"
+msgstr ""
+
+#: gtt/options.c:243
+msgid "Show Toolbar Texts"
+msgstr ""
+
+#: gtt/options.c:249
+msgid "Show Tooltips"
+msgstr ""
+
+#: gtt/options.c:255
+msgid "Toolbar Segments"
+msgstr ""
+
+#: gtt/options.c:263
+msgid "Show `New'"
+msgstr ""
+
+#: gtt/options.c:269
+msgid "Show `Save', `Reload'"
+msgstr ""
+
+#: gtt/options.c:275
+msgid "Show `Cut', `Copy', `Paste'"
+msgstr ""
+
+#: gtt/options.c:281
+msgid "Show `Properties'"
+msgstr ""
+
+#: gtt/options.c:287
+msgid "Show `Timer'"
+msgstr ""
+
+#: gtt/options.c:293
+msgid "Show `Preferences'"
+msgstr ""
+
+#: gtt/options.c:299
+msgid "Show `Help'"
+msgstr ""
+
+#: gtt/options.c:305
+msgid "Show `Quit'"
+msgstr ""
+
+#: gtt/options.c:319
+msgid "Shell Commands"
+msgstr ""
+
+#: gtt/options.c:327
+msgid "Switch Project Command:"
+msgstr ""
+
+#: gtt/options.c:338
+msgid "No Project Command:"
+msgstr ""
+
+#: gtt/options.c:372
+msgid "Logfile"
+msgstr ""
+
+#: gtt/options.c:380
+msgid "Use Logfile"
+msgstr ""
+
+#: gtt/options.c:389
+msgid "Filename:"
+msgstr ""
+
+#: gtt/options.c:403
+msgid "Entry Start:"
+msgstr ""
+
+#: gtt/options.c:417
+msgid "Entry Stop:"
+msgstr ""
+
+#: gtt/options.c:431
+msgid "Timeout in secs:"
+msgstr ""
+
+#: gtt/options.c:508 mini-utils/gless/gless.c:336 mini-utils/gw/gw.c:204
+msgid "Preferences"
+msgstr ""
+
+#: gtt/options.c:514
+msgid "Misc"
+msgstr ""
+
+#: gtt/proj.c:461
+msgid "project %t started"
+msgstr ""
+
+#: gtt/proj.c:464
+msgid "stopped project %t"
+msgstr ""
+
+#: gtt/prop.c:60
+msgid "empty"
+msgstr ""
+
+#: gtt/prop.c:175
+msgid "Properties"
+msgstr ""
+
+#: gtt/prop.c:182
+msgid "Project"
+msgstr ""
+
+#: gtt/prop.c:202
+msgid "Project Title:"
+msgstr ""
+
+#: gtt/prop.c:214
+msgid "Project Description:"
+msgstr ""
+
+#: gtt/prop.c:226
+msgid "Project Time today:"
+msgstr ""
+
+#: gtt/prop.c:242 gtt/prop.c:280
+msgid "hours"
+msgstr ""
+
+#: gtt/prop.c:253 gtt/prop.c:291
+msgid "mins"
+msgstr ""
+
+#: gtt/prop.c:264 gtt/prop.c:302
+msgid "secs"
+msgstr ""
+
+#: gtt/prop.c:268
+msgid "Project Time ever:"
 msgstr ""
 
 #. Note to translators: just skip the `[GTT]'
@@ -27,44 +895,24 @@ msgstr ""
 msgid "[GTT]New"
 msgstr ""
 
-#: gtt/menucmd.c:85 gtt/menus.c:27 gtt/toolbar.c:142
-msgid "New Project..."
-msgstr ""
-
 #: gtt/toolbar.c:148
 msgid "Reload"
-msgstr ""
-
-#: gtt/menucmd.c:137 gtt/menus.c:31 gtt/toolbar.c:149
-msgid "Reload Configuration File"
 msgstr ""
 
 #: gtt/toolbar.c:152
 msgid "Save"
 msgstr ""
 
-#: gtt/menus.c:35 gtt/toolbar.c:153
+#: gtt/toolbar.c:153
 msgid "Save Configuration File"
-msgstr ""
-
-#: gtt/menus.c:55 gtt/menus.c:134 gtt/toolbar.c:159
-msgid "Cut"
 msgstr ""
 
 #: gtt/toolbar.c:160
 msgid "Cut Selected Project"
 msgstr ""
 
-#: gtt/menus.c:59 gtt/menus.c:139 gtt/toolbar.c:163
-msgid "Copy"
-msgstr ""
-
 #: gtt/toolbar.c:164
 msgid "Copy Selected Project"
-msgstr ""
-
-#: gtt/menus.c:64 gtt/menus.c:144 gtt/toolbar.c:167
-msgid "Paste"
 msgstr ""
 
 #: gtt/toolbar.c:168
@@ -79,7 +927,7 @@ msgstr ""
 msgid "Edit Properties..."
 msgstr ""
 
-#: gtt/menus.c:117 gtt/toolbar.c:179
+#: gtt/toolbar.c:179
 msgid "Timer"
 msgstr ""
 
@@ -103,7 +951,7 @@ msgstr ""
 msgid "Manual..."
 msgstr ""
 
-#: gtt/menus.c:45 gtt/toolbar.c:198
+#: gtt/toolbar.c:198
 msgid "Quit"
 msgstr ""
 
@@ -111,1657 +959,244 @@ msgstr ""
 msgid "Quit GTimeTracker"
 msgstr ""
 
-#: gtt/main.c:74 gtt/main.c:116
-msgid "Error"
+#: mini-utils/gcolorsel/gcolorsel.c:57 mini-utils/gcolorsel/gcolorsel.c:59
+#: mini-utils/gcolorsel/gcolorsel.c:231 mini-utils/gcolorsel/gcolorsel.c:352
+msgid "Gnome Color Browser"
 msgstr ""
 
-#: gtt/main.c:74
-msgid ""
-"There seems to be another GTimeTracker running.\n"
-"Please remove the pid file, if that is not correct."
+#: mini-utils/gcolorsel/gcolorsel.c:81
+msgid "Color Name:"
 msgstr ""
 
-#: gtt/main.c:117
-msgid ""
-"An error occured while reading the configuration file.\n"
-"Shall I setup a new configuration?"
+#: mini-utils/gcolorsel/gcolorsel.c:88
+msgid "Color Values:"
 msgstr ""
 
-#: gtt/main.c:210 gtt/main.c:225 gtt/main.c:236 gtt/main.c:242
-#, c-format
-msgid "error in geometry string \"%s\"\n"
-msgstr ""
-
-#: gtt/main.c:259
-msgid "specify geometry"
-msgstr ""
-
-#: gtt/main.c:261
-msgid "select a project on startup"
-msgstr ""
-
-#: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
-msgid "Warning"
-msgstr ""
-
-#: gtt/menucmd.c:32 gtt/menucmd.c:155
-msgid "I could not write the configuration file!"
-msgstr ""
-
-#: gtt/menucmd.c:89
-msgid "Please enter the name of the new project:"
-msgstr ""
-
-#: gtt/menucmd.c:123
-msgid "I could not read the configuration file"
-msgstr ""
-
-#: gtt/menucmd.c:138
-msgid ""
-"This will overwrite your current set of projects.\n"
-"Do you really want to reload the configuration file?"
-msgstr ""
-
-#: gtt/menus.c:40
-msgid "Preferences..."
-msgstr ""
-
-#: gtt/menus.c:70 gtt/menus.c:149
-msgid "Clear Daily Counter"
-msgstr ""
-
-#: genius/genius.c:463 gncal/main.c:351 gtop/main.c:159 gtt/menus.c:75
-#: gtt/menus.c:128
-msgid "Properties..."
-msgstr "Vlastnosti ..."
-
-#: gtt/menus.c:85
-msgid "Start"
-msgstr ""
-
-#: gtt/menus.c:89
-msgid "Stop"
-msgstr ""
-
-#: gtt/menus.c:94
-msgid "Timer Running"
-msgstr ""
-
-#: gcalc/gcalc.c:46 genius/genius.c:482 gncal/main.c:340 gtop/main.c:146
-#: gtt/menus.c:103
-msgid "About..."
-msgstr "O programu ..."
-
-#: gncal/main.c:357 gtop/main.c:168 gtt/menus.c:113
-msgid "File"
-msgstr "Soubor"
-
-#: gtt/menus.c:115
-msgid "Edit"
-msgstr ""
-
-#: gcalc/gcalc.c:56 genius/genius.c:495 gncal/main.c:359 gtop/main.c:172
-#: gtt/menus.c:120
-msgid "Help"
-msgstr "Nápovìda"
-
-#: gtt/log.c:62
-msgid "stopped project"
-msgstr ""
-
-#: gtt/log.c:129
-msgid "program exited"
-msgstr ""
-
-#: gtt/log.c:137
-msgid "program started"
-msgstr ""
-
-#: genius/genius.c:618 ghex/ui.c:466 gncal/eventedit.c:379 gtt/options.c:193
-msgid "Display"
-msgstr "Zobrazit"
-
-#: gtt/options.c:201
-msgid "Show Seconds"
-msgstr "Zobrazit vteøiny"
-
-#: gtt/options.c:207
-msgid "Show Status Bar"
-msgstr "Zobrazit statusbar"
-
-#: gtt/options.c:213
-msgid "Show Table Header"
-msgstr "Zobrazit hlavièku tabulek"
-
-#: gtt/options.c:227 gtt/options.c:495
-msgid "Toolbar"
-msgstr ""
-
-#: gtt/options.c:235
-msgid "Show Toolbar Icons"
-msgstr ""
-
-#: gtt/options.c:241
-msgid "Show Toolbar Texts"
-msgstr ""
-
-#: gtt/options.c:247
-msgid "Show Tooltips"
-msgstr ""
-
-#: gtt/options.c:253
-msgid "Toolbar Segments"
-msgstr ""
-
-#: gtt/options.c:261
-msgid "Show `New'"
-msgstr ""
-
-#: gtt/options.c:267
-msgid "Show `Save', `Reload'"
-msgstr ""
-
-#: gtt/options.c:273
-msgid "Show `Cut', `Copy', `Paste'"
-msgstr ""
-
-#: gtt/options.c:279
-msgid "Show `Properties'"
-msgstr ""
-
-#: gtt/options.c:285
-msgid "Show `Timer'"
-msgstr ""
-
-#: gtt/options.c:291
-msgid "Show `Preferences'"
-msgstr ""
-
-#: gtt/options.c:297
-msgid "Show `Help'"
-msgstr ""
-
-#: gtt/options.c:303
-msgid "Show `Quit'"
-msgstr ""
-
-#: gtt/options.c:317
-msgid "Shell Commands"
-msgstr ""
-
-#: gtt/options.c:325
-msgid "Switch Project Command:"
-msgstr ""
-
-#: gtt/options.c:336
-msgid "No Project Command:"
-msgstr ""
-
-#: gtt/options.c:366
-msgid "Logfile"
-msgstr ""
-
-#: gtt/options.c:374
-msgid "Use Logfile"
-msgstr ""
-
-#: gtt/options.c:387
-msgid "Filename:"
-msgstr ""
-
-#: gtt/options.c:403
-msgid "Timeout in secs:"
-msgstr ""
-
-#: gtt/options.c:477
-msgid "Preferences"
-msgstr ""
-
-#: gtt/options.c:483
-msgid "Misc"
-msgstr ""
-
-#: gtt/prop.c:60
-msgid "empty"
-msgstr ""
-
-#. options area
-#: genius/genius.c:372 gtop/main.c:181 gtt/prop.c:175
-msgid "Properties"
-msgstr ""
-
-#: gtt/prop.c:181
-msgid "Project"
-msgstr ""
-
-#: gtt/prop.c:201
-msgid "Project Title:"
-msgstr ""
-
-#: gtt/prop.c:213
-msgid "Project Description:"
-msgstr ""
-
-#: gtt/prop.c:225
-msgid "Project Time today:"
-msgstr ""
-
-#: gtt/prop.c:241 gtt/prop.c:279
-msgid "hours"
-msgstr ""
-
-#: gtt/prop.c:252 gtt/prop.c:290
-msgid "mins"
-msgstr ""
-
-#: gtt/prop.c:263 gtt/prop.c:301
-msgid "secs"
-msgstr ""
-
-#: gtt/prop.c:267
-msgid "Project Time ever:"
-msgstr ""
-
-#: gtt/clist.c:131
-msgid "Total"
-msgstr ""
-
-#: gncal/main.c:372 gtt/clist.c:132
-msgid "Today"
-msgstr "Dnes"
-
-#: gtt/clist.c:133
-msgid "Project Title"
-msgstr ""
-
-#: gtt/clist.c:134
-msgid "Description"
-msgstr ""
-
-#: gtop/main.c:73
-msgid "GTop"
-msgstr "GTop"
-
-#. copyrigth notice
-#: gtop/main.c:75
-msgid "(C) 1998 the Free Software Foundation"
-msgstr "(C) 1998 Nadace free softwéru"
-
-#. another comments
-#: gtop/main.c:78
-msgid "The GNOME System Monitor program"
-msgstr "GNOME monitor systému"
-
-#: gtop/main.c:152
-msgid "item 1"
-msgstr ""
-
-#: gtop/main.c:153
-msgid "item 2"
-msgstr ""
-
-#: gtop/main.c:154
-msgid "item 3"
-msgstr ""
-
-#: gcalc/gcalc.c:37 genius/genius.c:465 gncal/main.c:333 gtop/main.c:162
-msgid "Exit"
-msgstr "Konec"
-
-#: genius/genius.c:492 gtop/main.c:169
-msgid "View"
-msgstr "Zobrazení"
-
-#: gtop/main.c:170
-msgid "Memory"
-msgstr "Pamì»"
-
-#: gtop/main.c:171 gtop/sysview.c:34
-msgid "System"
-msgstr "Systém"
-
-#: gtop/main.c:177
+#: mini-utils/gcolorsel/gcolorsel.c:147
 #, fuzzy
-msgid "Start/Stop"
-msgstr "Zaèít / pøestat vzorkovat"
+msgid "Color"
+msgstr "Zavøít"
 
-#: gtop/main.c:177
-msgid "Start / Stop sampling"
-msgstr "Zaèít / pøestat vzorkovat"
-
-#: gtop/main.c:181
-msgid "Set gtop properties"
-msgstr ""
-
-#: gtop/main.c:206
-msgid "GNOME System Monitor"
-msgstr "GNOME monitor systému"
-
-#: gtop/procview.c:178
-msgid "PID"
-msgstr ""
-
-#: gtop/procview.c:178
-msgid "Process ID"
-msgstr "IÈ Procesu"
-
-#: gtop/procview.c:180
-#, fuzzy
-msgid "User"
-msgstr "Jméno u¾ivatele"
-
-#: gtop/procview.c:180
-msgid "User name"
-msgstr "Jméno u¾ivatele"
-
-#: gtop/procview.c:182
-msgid "Pri"
-msgstr ""
-
-#: gtop/procview.c:182
-msgid "Priority"
-msgstr "Priorita"
-
-#: gtop/procview.c:184
-msgid "Ni"
-msgstr ""
-
-#: gtop/procview.c:184
-msgid "Nice"
-msgstr ""
-
-#: gtop/memusage.c:40 gtop/procview.c:186
-msgid "Size"
-msgstr "Velikost"
-
-#: gtop/procview.c:186
-msgid "Used memory size"
-msgstr "Velikost u¾ité pamìti"
-
-#: gtop/procview.c:188
-msgid "RSS"
-msgstr ""
-
-#: gtop/procview.c:188
-msgid "Resident memory set size"
-msgstr "Velikost residentní pamìti"
-
-#: gtop/procview.c:190
-#, fuzzy
-msgid "Share"
-msgstr "Sdílená"
-
-#: gtop/procview.c:190
-msgid "Shared memory size"
-msgstr "Velikost sdílené pamìti"
-
-#: gtop/procview.c:192
-msgid "Stat"
-msgstr ""
-
-#: gtop/procview.c:192
-msgid "Process state"
-msgstr "Stav procesu"
-
-#: gtop/procview.c:194
-msgid "CPU"
-msgstr ""
-
-#: gtop/procview.c:194
-msgid "Percent CPU usage"
-msgstr "U¾ití CPU v procentech"
-
-#: gtop/procview.c:196
-msgid "MEM"
-msgstr ""
-
-#: gtop/procview.c:196
-msgid "Percent memory usage"
-msgstr "U¾ití pamìti v procentech"
-
-#: gncal/eventedit.c:219 gtop/procview.c:198
-msgid "Time"
-msgstr "Èas"
-
-#: gtop/procview.c:198
-msgid "Time consumed"
-msgstr "Spotøebovaný èas"
-
-#: gtop/procview.c:200
-msgid "UTime"
-msgstr ""
-
-#: gtop/procview.c:200
-msgid "User time consumed"
-msgstr "Spotøebovaný u¾ivatelský èas"
-
-#: gtop/procview.c:202
-#, fuzzy
-msgid "STime"
-msgstr "Velikost"
-
-#: gtop/procview.c:202
-msgid "System time consumed"
-msgstr "Spotøebovaný systémový èas"
-
-#: gtop/procview.c:204
-#, fuzzy
-msgid "Cmd"
-msgstr "Pøíkaz"
-
-#: gtop/procview.c:204
-msgid "Command"
-msgstr "Pøíkaz"
-
-#: gtop/memusage.c:36 gtop/procview.c:206
-msgid "Resident"
-msgstr "Residentní"
-
-#: gtop/procview.c:206
-msgid "Resident memory size"
-msgstr "Velikost residentní pamìti"
-
-#: gtop/procview.c:318
-msgid "All processes"
-msgstr "V¹echny procesy"
-
-#: gtop/procview.c:320
-msgid "User processes"
-msgstr "U¾ivatelovy procesy"
-
-#: gtop/procview.c:322
-msgid "TTY processes"
-msgstr "TTY procesy"
-
-#: gtop/procview.c:408
-msgid "Processes"
-msgstr "Procesy"
-
-#: gtop/procview.c:637
-#, c-format
-msgid "Cannot locate process %d"
-msgstr ""
-
-#: gtop/procview.c:641
-msgid "Only root can set negative priority"
-msgstr ""
-
-#: gtop/procview.c:644
-msgid "Permission denied"
-msgstr ""
-
-#: gtop/procview.c:671
-#, fuzzy
-msgid "Renice"
-msgstr "Zaøízení"
-
-#: gtop/procview.c:681
-#, fuzzy
-msgid "Set priority"
-msgstr "Priorita"
-
-#: gtop/procview.c:690
-msgid "high"
-msgstr ""
-
-#: gtop/procview.c:693
-msgid "low"
-msgstr ""
-
-#: gtop/procview.c:728
-msgid "Send"
-msgstr "Poslat"
-
-#: gtop/procview.c:749
-msgid "More ..."
-msgstr "Dal¹í ..."
-
-#: gtop/procview.c:763
-msgid "SIGTERM"
-msgstr ""
-
-#: gtop/procview.c:770
-msgid "SIGKILL"
-msgstr ""
-
-#: gtop/procview.c:782
-msgid "Renice ..."
-msgstr ""
-
-#: gtop/procview.c:789
-msgid "Details ..."
-msgstr "Podrobnosti ..."
-
-#: gtop/memusage.c:38
-msgid "Shared"
-msgstr "Sdílená"
-
-#: gtop/memusage.c:92
-msgid "Memory usage"
-msgstr "Vyu¾ití pamìti"
-
-#: gtop/memusage.c:175
-msgid "Resident Sizes of Processes"
-msgstr ""
-
-#: gtop/memusage.c:176
-#, c-format
-msgid "Sum of Resident Sizes: %ldk"
-msgstr ""
-
-#: gtop/memusage.c:179
-msgid "Shared Sizes of Processes"
-msgstr ""
-
-#: gtop/memusage.c:180
-#, c-format
-msgid "Sum of Shared Sizes: %ldk"
-msgstr ""
-
-#: gtop/memusage.c:183
-msgid "Total Sizes of Processes"
-msgstr ""
-
-#: gtop/memusage.c:184
-#, c-format
-msgid "Sum of Total Sizes: %ldk"
-msgstr ""
-
-#: gtop/details.c:42
-#, c-format
-msgid "Process %d details"
-msgstr "Proces %d - podrobnosti"
-
-#: gtop/details.c:172
-msgid "Process info"
-msgstr "Informace o procesu"
-
-#: gtop/details.c:174
-msgid "Attribute"
-msgstr "Polo¾ka"
-
-#: gtop/details.c:175
+#: mini-utils/gcolorsel/gcolorsel.c:148 mini-utils/guname/moreinfo.c:218
+#: mini-utils/idetool/idetool.c:258
 msgid "Value"
 msgstr "Hodnota"
 
-#: gtop/details.c:365
-msgid "Raw memory map"
-msgstr "Mapa pamìti"
-
-#: gtop/details.c:367
-msgid "VM start"
-msgstr "zaèátek VP"
-
-#: gtop/details.c:368
-msgid "VM end"
-msgstr "konec VP"
-
-#: gtop/details.c:369
-msgid "Flags"
-msgstr "pøíznaky"
-
-#: gtop/details.c:370
-msgid "VM offset"
-msgstr "poloha ve VP"
-
-#: gtop/details.c:371
-msgid "Device"
-msgstr "Zaøízení"
-
-#: gtop/details.c:372
-msgid "Inode"
-msgstr "I-uzel"
-
-#: gtop/details.c:373
-msgid "Filename"
-msgstr "Jméno souboru"
-
-#: gtop/details.c:422
-msgid "Data"
-msgstr ""
-
-#: gtop/details.c:424
-msgid "Text"
-msgstr ""
-
-#: gtop/details.c:430
-msgid "Stack"
-msgstr ""
-
-#: gtop/details.c:432
-msgid "Hole"
-msgstr "Díra"
-
-#: gtop/details.c:483
-msgid "Graphical memory map"
-msgstr "Grafická mapa pamìti"
-
-#: genius/calc.c:280
-msgid "ERROR: Probably corrupt stack!"
-msgstr ""
-
-#: genius/calc.c:304
-msgid "ERROR: "
-msgstr ""
-
-#: genius/calc.c:306
-msgid " before '"
-msgstr ""
-
-#: genius/genius.c:226 genius/genius.c:508
-msgid "GnomENIUS Calculator"
-msgstr ""
-
-#. another comments
-#: genius/genius.c:231
-msgid "The Gnome Calculator program"
-msgstr ""
-
-#: genius/genius.c:359
-msgid "GnomENIUS Calculator setup"
-msgstr ""
-
-#: genius/genius.c:369 gncal/eventedit.c:774
-#: mini-utils/gshutdown/gshutdown.c:388
-msgid "General"
-msgstr "Obecné"
-
-#: genius/genius.c:376
-msgid "Prefix notation"
-msgstr ""
-
-#: genius/genius.c:387
-msgid "Infix notation"
-msgstr ""
-
-#: genius/genius.c:398
-msgid "Postfix notation (RPN)"
-msgstr ""
-
-#: genius/genius.c:412
-msgid "Full (exact) answers"
-msgstr ""
-
-#: genius/genius.c:422
-msgid "Make floats integers (e.g. 10.0=10)"
-msgstr ""
-
-#: genius/genius.c:431
-msgid "Results as floats"
-msgstr ""
-
-#: genius/genius.c:440
-msgid "Floats in scientific notation"
-msgstr ""
-
-#. numpad
-#: genius/genius.c:471 genius/genius.c:654
-msgid "Numpad"
-msgstr ""
-
-#. scientific
-#: genius/genius.c:473 genius/genius.c:679
-msgid "Scientific"
-msgstr ""
-
-#: gcalc/gcalc.c:53 genius/genius.c:489
-msgid "Calculator"
-msgstr ""
-
-#: genius/eval.c:332
-msgid "Variable used uninitialized!"
-msgstr ""
-
-#: genius/eval.c:483
-msgid "Left value is NOT a number! (ignoring if construct)"
-msgstr ""
-
-#: genius/eval.c:495
-msgid "Left value is NOT a number! (ignoring ifelse construct)"
-msgstr ""
-
-#: genius/eval.c:709
-msgid "'=' can't function without proper nodes!"
-msgstr ""
-
-#: genius/eval.c:713
-msgid "Left value is NOT a 0\\function! (ignoring '=')"
-msgstr ""
-
-#: genius/eval.c:717
-msgid "Right value is NOT computed! (ignoring '=')"
-msgstr ""
-
-#: genius/eval.c:730
-msgid "funcdefop can't function without proper nodes!"
-msgstr ""
-
-#: genius/eval.c:733
-msgid "Left value is NOT a function! (ignoring function definition)"
-msgstr ""
-
-#: genius/util.c:128
-msgid "Stack underflow!"
-msgstr ""
-
-#: ghex/callbacks.c:20
-msgid "GHex, a binary file editor"
-msgstr ""
-
-#: ghex/callbacks.c:22
-msgid "Released under the terms of GNU Public License"
-msgstr ""
-
-#: ghex/callbacks.c:48 ghex/callbacks.c:98
-msgid "Error saving file!"
-msgstr ""
-
-#: ghex/callbacks.c:64
-msgid "Can not open file!"
-msgstr ""
-
-#: ghex/callbacks.c:102
-msgid "Can't open file for writing!"
-msgstr ""
-
-#: ghex/callbacks.c:126
-msgid "Select a file to open"
-msgstr ""
-
-#: ghex/callbacks.c:144
-msgid "Select a file to save buffer as"
-msgstr ""
-
-#: ghex/callbacks.c:238 ghex/callbacks.c:262 ghex/callbacks.c:315
-msgid "There seems to be no string to search for!"
-msgstr ""
-
-#: ghex/callbacks.c:243 ghex/callbacks.c:267 ghex/callbacks.c:320
-msgid "There is no active buffer to search!"
-msgstr ""
-
-#: ghex/callbacks.c:252 ghex/callbacks.c:329
-msgid "End Of File reached"
-msgstr ""
-
-#: ghex/callbacks.c:276
-msgid "Beginning Of File reached"
-msgstr ""
-
-#: ghex/callbacks.c:284
-msgid "There is no active buffer to move the cursor in!"
-msgstr ""
-
-#: ghex/callbacks.c:289
-msgid "No offset has been specified!"
-msgstr ""
-
-#: ghex/callbacks.c:296
-msgid "The offset must be a positive integer value!"
-msgstr ""
-
-#: ghex/callbacks.c:301
-msgid "Can not position cursor beyond the End Of File!"
-msgstr ""
-
-#: ghex/callbacks.c:339 ghex/callbacks.c:378
-msgid "There is no active buffer to replace data in!"
-msgstr ""
-
-#: ghex/callbacks.c:350 ghex/callbacks.c:389
-msgid "Erroneous find or replace string!"
-msgstr ""
-
-#: ghex/callbacks.c:355 ghex/callbacks.c:394
-msgid "Both strings must be of the same length!"
-msgstr ""
-
-#: ghex/callbacks.c:368
-msgid "End Of File reached!"
-msgstr ""
-
-#: ghex/callbacks.c:409
-#, c-format
-msgid "Replaced %d occurencies."
+#: mini-utils/gcolorsel/gcolorsel.c:149 mini-utils/guname/moreinfo.c:217
+#: mini-utils/gw/gw.c:458 mini-utils/gw/gw.c:533
+msgid "Name"
 msgstr ""
 
-#: ghex/callbacks.c:469
-msgid "Can not open desired font!"
+#: mini-utils/gcolorsel/gcolorsel.c:222
+msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
 msgstr ""
 
-#: ghex/callbacks.c:488
-#, c-format
-msgid ""
-"The document %s has changed since last save.\n"
-"Do you want to save changes?"
+#: mini-utils/gcolorsel/gcolorsel.c:235
+msgid "Parsing Colors"
 msgstr ""
 
-#: ghex/callbacks.c:547
-msgid "ERRONEUS STRING"
+#: mini-utils/gcolorsel/gcolorsel.c:299
+msgid "Decimal (8 bit)"
 msgstr ""
 
-#: ghex/config.c:40
-msgid "Can not open configured font!"
+#: mini-utils/gcolorsel/gcolorsel.c:300
+msgid "Decimal (16 bit)"
 msgstr ""
-
-#: ghex/gnome-support.c:13
-msgid "ID"
-msgstr ""
-
-#: ghex/gnome-support.c:13
-msgid "Discard session"
-msgstr ""
-
-#: ghex/ui.c:188
-msgid "GHex: Find Data"
-msgstr ""
-
-#: ghex/ui.c:197
-#, c-format
-msgid "Search for %s"
-msgstr ""
-
-#: ghex/ui.c:213
-msgid "Find Next"
-msgstr ""
-
-#: ghex/ui.c:220
-msgid "Find Previous"
-msgstr ""
-
-#: ghex/ui.c:248
-msgid "GHex: Find & Replace Data"
-msgstr ""
-
-#: ghex/ui.c:262
-#, c-format
-msgid "Replace %s"
-msgstr ""
-
-#: ghex/ui.c:278
-msgid "Find next"
-msgstr ""
-
-#: ghex/ui.c:285
-msgid "Replace"
-msgstr ""
-
-#: ghex/ui.c:292
-msgid "Replace All"
-msgstr ""
-
-#: ghex/ui.c:316
-msgid "GHex: Jump To Byte"
-msgstr ""
-
-#: ghex/ui.c:349
-msgid "GHex: Converter"
-msgstr ""
-
-#: ghex/ui.c:356
-msgid "Binary"
-msgstr ""
-
-#: ghex/ui.c:366
-msgid "Decimal"
-msgstr ""
-
-#: ghex/ui.c:376
-msgid "Hex"
-msgstr ""
-
-#: ghex/ui.c:386
-msgid "ASCII"
-msgstr ""
-
-#: ghex/ui.c:396
-msgid "Close"
-msgstr "Zavøít"
 
-#: ghex/ui.c:440
-msgid "Font"
+#: mini-utils/gcolorsel/gcolorsel.c:301
+msgid "Hex (8 bit)"
 msgstr ""
 
-#: ghex/ui.c:450
-msgid "Default Group Type"
+#: mini-utils/gcolorsel/gcolorsel.c:302
+msgid "Hex (16 bit)"
 msgstr ""
 
-#: ghex/ui.c:473
+#: mini-utils/gcolorsel/gcolorsel.c:303
 #, fuzzy
-msgid "MDI Mode"
-msgstr "I-uzel"
-
-#: ghex/ui.c:490
-msgid "MDI"
-msgstr ""
-
-#: gcalc/gcalc.c:19
-msgid "The Gnome Calculator"
-msgstr ""
-
-#: gcalc/gcalc.c:22
-msgid "Simple double precision calculator similiar to xcalc"
-msgstr ""
-
-#: gcalc/gcalc.c:73
-msgid "Gnome Calculator"
-msgstr ""
-
-#: gncal/eventedit.c:237
-msgid "Start time:"
-msgstr "Zaèátek"
-
-#: gncal/eventedit.c:253
-msgid "End time:"
-msgstr "Konec"
-
-#. 3. All day checkbox
-#: gncal/eventedit.c:263
-msgid "All day event"
-msgstr "Ka¾dodenní událost"
-
-#: gncal/eventedit.c:279
-msgid "Minutes"
-msgstr "Minuty"
-
-#: gncal/eventedit.c:279
-msgid "Hours"
-msgstr "Hodiny"
-
-#: gncal/eventedit.c:279
-msgid "Days"
-msgstr "Dny"
-
-#: gncal/eventedit.c:338 gncal/eventedit.c:376
-msgid "Mail to:"
-msgstr "Poslat mail:"
-
-#: gncal/eventedit.c:347
-msgid "Run program:"
-msgstr "Spustit program:"
-
-#: gncal/eventedit.c:350
-msgid "Select program to run at alarm time"
-msgstr "Vyber program, který se spustí pøi alarmu"
-
-#: gncal/eventedit.c:368
-msgid "Alarms"
-msgstr "Alarmy"
-
-#: gncal/eventedit.c:380
-msgid "Audio"
-msgstr "Zvuk"
-
-#: gncal/eventedit.c:381
-msgid "Program"
-msgstr ""
-
-#: gncal/eventedit.c:382
-msgid "Mail"
-msgstr ""
-
-#: gncal/eventedit.c:393
-msgid "Classification"
-msgstr "Klasifikace"
-
-#: gncal/eventedit.c:399
-msgid "Public"
-msgstr "Veøejný"
-
-#: gncal/eventedit.c:400
-msgid "Private"
-msgstr "Soukromý"
-
-#: gncal/eventedit.c:401
-msgid "Confidential"
-msgstr ""
-
-#: gncal/eventedit.c:783
-msgid "Owner:"
-msgstr "Vlastník:"
-
-#: gncal/eventedit.c:786
-msgid "?"
-msgstr ""
-
-#: gncal/eventedit.c:790
-msgid "Summary:"
-msgstr "Shrnutí:"
-
-#: gncal/eventedit.c:840
-msgid "None"
-msgstr "®ádný"
-
-#: gncal/eventedit.c:841
-msgid "Daily"
-msgstr "Dennì"
-
-#: gncal/eventedit.c:842
-msgid "Weekly"
-msgstr "Týdnì"
-
-#: gncal/eventedit.c:843
-msgid "Monthly"
-msgstr "Mìsíènì"
-
-#: gncal/eventedit.c:844
-msgid "Yearly"
-msgstr "Roènì"
-
-#: gncal/eventedit.c:866
-msgid "1st"
-msgstr "1."
-
-#: gncal/eventedit.c:867
-msgid "2nd"
-msgstr "2."
-
-#: gncal/eventedit.c:868
-msgid "3rd"
-msgstr "3."
-
-#: gncal/eventedit.c:869
-msgid "4th"
-msgstr "4."
-
-#: gncal/eventedit.c:870
-msgid "5th"
-msgstr "5."
-
-#: gncal/eventedit.c:875
-msgid "Monday"
-msgstr "Pondìlí"
-
-#: gncal/eventedit.c:876
-msgid "Tuesday"
-msgstr "Úterý"
-
-#: gncal/eventedit.c:877
-msgid "Wednesday"
-msgstr "Støeda"
-
-#: gncal/eventedit.c:878
-msgid "Thursday"
-msgstr "Ètvrtek"
-
-#: gncal/eventedit.c:879
-msgid "Friday"
-msgstr "Pátek"
-
-#: gncal/eventedit.c:880
-msgid "Saturday"
-msgstr "Sobota"
-
-#: gncal/eventedit.c:881
-msgid "Sunday"
-msgstr "Nedìle"
-
-#: gncal/eventedit.c:934
-msgid "Mon"
-msgstr "Po"
-
-#: gncal/eventedit.c:934
-msgid "Tue"
-msgstr "Út"
-
-#: gncal/eventedit.c:934
-msgid "Wed"
-msgstr "St"
-
-#: gncal/eventedit.c:934
-msgid "Thu"
-msgstr "Èt"
-
-#: gncal/eventedit.c:934
-msgid "Fri"
-msgstr "Pá"
-
-#: gncal/eventedit.c:934
-msgid "Sat"
-msgstr "So"
-
-#: gncal/eventedit.c:934
-msgid "Sun"
-msgstr "Ne"
-
-#: gncal/eventedit.c:945
-msgid "Recurrence rule"
-msgstr "Rekurentní pravidlo"
-
-#: gncal/eventedit.c:1046 gncal/eventedit.c:1060 gncal/eventedit.c:1105
-#: gncal/eventedit.c:1127
-msgid "Every"
-msgstr "Ka¾dý"
-
-#: gncal/eventedit.c:1048
-msgid "day(s)"
-msgstr "dnù"
-
-#: gncal/eventedit.c:1062
-msgid "week(s)"
-msgstr "týdnù"
-
-#: gncal/eventedit.c:1083 gncal/eventedit.c:1095
-msgid "Recur on the"
-msgstr ""
-
-#: gncal/eventedit.c:1085
-msgid "th day of the month"
-msgstr ". den v mìsíci"
-
-#: gncal/eventedit.c:1110
-msgid "month(s)"
-msgstr "mìsícù"
-
-#: gncal/eventedit.c:1129
-msgid "year(s)"
-msgstr "let"
-
-#: gncal/eventedit.c:1167
-msgid "Ending date"
-msgstr ""
-
-#: gncal/eventedit.c:1180
-msgid "Repeat forever"
-msgstr "Opakuj v¾dy"
-
-#: gncal/eventedit.c:1189
-msgid "End on"
-msgstr "Skonèi pøi"
-
-#: gncal/eventedit.c:1214
-msgid "End after"
-msgstr "Skonèi po"
-
-#: gncal/eventedit.c:1230
-msgid "occurrence(s)"
-msgstr "výskytù"
-
-#: gncal/eventedit.c:1348
-msgid "Exceptions"
-msgstr "Výjimky"
-
-#: gncal/eventedit.c:1360
-msgid "Add exception"
-msgstr "Pøidat výjimku"
-
-#: gncal/eventedit.c:1370
-msgid "Change selected"
-msgstr "Zmìnit vybrané"
-
-#: gncal/eventedit.c:1376
-msgid "Delete selected"
-msgstr "Smazat vybrané"
-
-#: gncal/eventedit.c:1402
-msgid "Recurrence"
-msgstr "Rekurence"
-
-#: gncal/gncal-full-day.c:471
-msgid "Make this appointment movable"
-msgstr ""
-
-#: gncal/gncal-full-day.c:472
-msgid "Edit this appointment..."
-msgstr ""
-
-#: gncal/gncal-full-day.c:473
-msgid "Delete this appointment"
-msgstr ""
-
-#: gncal/gncal-day-view.c:135 gncal/gncal-full-day.c:475
-#: gncal/gncal-full-day.c:1710 gncal/main.c:348
-msgid "New appointment..."
-msgstr ""
-
-#: gncal/gnome-cal.c:57
-msgid "Day View"
-msgstr "Dny"
-
-#: gncal/gnome-cal.c:58
-msgid "Week View"
-msgstr "Týdny"
-
-#: gncal/gnome-cal.c:59
-msgid "Year View"
-msgstr "Roky"
-
-#: gncal/gnome-cal.c:290 gncal/gnome-cal.c:324
-msgid "Reminder of your appointment at "
-msgstr ""
-
-#: gncal/main.c:132
-msgid "Gnome Calendar"
-msgstr ""
-
-#: gncal/main.c:135
-msgid "The GNOME personal calendar and schedule manager."
-msgstr ""
-
-#: gncal/main.c:246
-msgid "Open calendar"
-msgstr "Otevøít kalendáø"
-
-#: gncal/main.c:287 gncal/main.c:323
-msgid "Save calendar"
-msgstr "Ulo¾it kalendáø"
-
-#: gncal/main.c:317
-msgid "New calendar"
-msgstr "Nový kalendáø"
-
-#: gncal/main.c:320
-msgid "Open calendar..."
-msgstr "Otevøít kalendáø ..."
-
-#: gncal/main.c:326
-msgid "Save calendar as..."
-msgstr "Ulo¾it kalendáø jako ..."
-
-#: gncal/main.c:330
-msgid "Close this calendar"
-msgstr "Zavøít tento kalendáø"
-
-#: gncal/main.c:349
-msgid "New appointment for today..."
-msgstr ""
-
-#: gncal/main.c:358
-msgid "Calendar"
-msgstr "Kalendáø"
-
-#: gncal/main.c:364
-msgid "New"
-msgstr "Nový"
-
-#: gncal/main.c:364
-msgid "Create a new appointment"
-msgstr ""
-
-#: gncal/main.c:369
-msgid "Prev"
-msgstr "Pøedchozí"
-
-#: gncal/main.c:369
-msgid "Go back in time"
-msgstr "Nazpátek v èase"
-
-#: gncal/main.c:372
-msgid "Go to present time"
-msgstr ""
-
-#: gncal/main.c:375
-msgid "Next"
-msgstr "Dal¹í"
-
-#: gncal/main.c:375
-msgid "Go forward in time"
-msgstr "Dopøedu v èase"
-
-#: gncal/main.c:443
-msgid "Show events and quit"
-msgstr ""
-
-#: gncal/main.c:444 gncal/main.c:448
-msgid "DATE"
-msgstr ""
-
-#: gncal/main.c:444
-msgid "Specifies start date [for --events]"
-msgstr ""
-
-#: gncal/main.c:445
-msgid "FILE"
-msgstr ""
-
-#: gncal/main.c:445
-msgid "File to load calendar from"
-msgstr ""
-
-#: gncal/main.c:446
-msgid "Load the user calendar"
-msgstr ""
-
-#: gncal/main.c:447
-msgid "GEOMETRY"
-msgstr ""
-
-#: gncal/main.c:447
-msgid "Geometry for starting up"
-msgstr ""
-
-#: gncal/main.c:448
-msgid "Specifies ending date [for --events]"
-msgstr ""
-
-#: gncal/timeutil.c:83
-msgid "am"
-msgstr ""
-
-#: gncal/timeutil.c:83
-msgid "pm"
-msgstr ""
-
-#: gncal/timeutil.c:85
-msgid "h"
-msgstr ""
-
-#: gncal/getdate.y:391
-msgid "january"
-msgstr "leden"
-
-#: gncal/getdate.y:392
-msgid "february"
-msgstr "únor"
-
-#: gncal/getdate.y:393
-msgid "march"
-msgstr "bøezen"
-
-#: gncal/getdate.y:394
-msgid "april"
-msgstr "duben"
-
-#: gncal/getdate.y:395
-msgid "may"
-msgstr "kvìten"
-
-#: gncal/getdate.y:396
-msgid "june"
-msgstr "èerven"
-
-#: gncal/getdate.y:397
-msgid "july"
-msgstr "èervenec"
-
-#: gncal/getdate.y:398
-msgid "august"
-msgstr "srpen"
-
-#: gncal/getdate.y:399
-msgid "september"
-msgstr "záøí"
-
-#: gncal/getdate.y:400
-msgid "sept"
-msgstr "zá"
-
-#: gncal/getdate.y:401
-msgid "october"
-msgstr "øíjen"
-
-#: gncal/getdate.y:402
-msgid "november"
-msgstr "listopad"
-
-#: gncal/getdate.y:403
-msgid "december"
-msgstr "prosinec"
-
-#: gncal/getdate.y:404
-msgid "sunday"
-msgstr "nedìle"
-
-#: gncal/getdate.y:405
-msgid "monday"
-msgstr "pondìlí"
-
-#: gncal/getdate.y:406
-msgid "tuesday"
-msgstr "úterý"
-
-#: gncal/getdate.y:407
-msgid "tues"
-msgstr "út"
-
-#: gncal/getdate.y:408
-msgid "wednesday"
-msgstr "støeda"
-
-#: gncal/getdate.y:409
-msgid "wednes"
-msgstr "st"
-
-#: gncal/getdate.y:410
-msgid "thursday"
-msgstr "ètvrtek"
-
-#: gncal/getdate.y:411
-msgid "thur"
-msgstr "èt"
-
-#: gncal/getdate.y:412
-msgid "thurs"
-msgstr "èt"
-
-#: gncal/getdate.y:413
-msgid "friday"
-msgstr "pátek"
-
-#: gncal/getdate.y:414
-msgid "saturday"
-msgstr "sobota"
-
-#: gncal/getdate.y:420
-msgid "year"
-msgstr "rok"
-
-#: gncal/getdate.y:421
-msgid "month"
-msgstr "mìsíc"
-
-#: gncal/getdate.y:422
-msgid "fortnight"
-msgstr ""
-
-#: gncal/getdate.y:423
-msgid "week"
-msgstr "týden"
-
-#: gncal/getdate.y:424
-msgid "day"
-msgstr "den"
-
-#: gncal/getdate.y:425
-msgid "hour"
-msgstr "hodina"
-
-#: gncal/getdate.y:426
-msgid "minute"
-msgstr "minuta"
-
-#: gncal/getdate.y:427
-msgid "min"
-msgstr ""
-
-#: gncal/getdate.y:428
-msgid "second"
-msgstr "vteøina"
-
-#: gncal/getdate.y:429
-msgid "sec"
-msgstr ""
-
-#: gncal/getdate.y:435
-msgid "tomorrow"
-msgstr "zítra"
-
-#: gncal/getdate.y:436
-msgid "yesterday"
-msgstr "vèera"
-
-#: gncal/getdate.y:437
-msgid "today"
-msgstr "dnes"
-
-#: gncal/getdate.y:438
-msgid "now"
-msgstr "teï"
-
-#: gncal/getdate.y:439
-msgid "last"
+msgid "Float"
 msgstr "poslední"
 
-#: gncal/getdate.y:440
-msgid "this"
-msgstr "tento"
-
-#: gncal/getdate.y:441
-msgid "next"
-msgstr "dal¹í"
-
-#: gncal/getdate.y:442
-msgid "first"
-msgstr "první"
-
-#. { N_("second"),		tUNUMBER,	2 },
-#: gncal/getdate.y:444
-msgid "third"
-msgstr "tøetí"
-
-#: gncal/getdate.y:445
-msgid "fourth"
-msgstr "ètvrtý"
-
-#: gncal/getdate.y:446
-msgid "fifth"
-msgstr "pátý"
-
-#: gncal/getdate.y:447
-msgid "sixth"
-msgstr "¹estý"
-
-#: gncal/getdate.y:448
-msgid "seventh"
-msgstr "sedmý"
-
-#: gncal/getdate.y:449
-msgid "eighth"
-msgstr "osmý"
-
-#: gncal/getdate.y:450
-msgid "ninth"
-msgstr "devátý"
-
-#: gncal/getdate.y:451
-msgid "tenth"
-msgstr "desátý"
-
-#: gncal/getdate.y:452
-msgid "eleventh"
-msgstr "jedenáctý"
-
-#: gncal/getdate.y:453
-msgid "twelfth"
-msgstr "dvanáctý"
-
-#: gncal/getdate.y:454
-msgid "ago"
+#: mini-utils/gcolorsel/gcolorsel.c:356
+msgid "Small utility to browse available X11 colors."
 msgstr ""
 
-#: gedit/gE_about.c:99
-msgid "gEdit is a small and lightweight text editor for GNOME/Gtk+"
+#: mini-utils/gcolorsel/gcolorsel.c:365
+#, fuzzy
+msgid "_About"
+msgstr "O programu ..."
+
+#: mini-utils/gcolorsel/gcolorsel.c:377
+#, fuzzy
+msgid "_Program"
+msgstr "Spustit program:"
+
+#: mini-utils/gfontsel/gfontsel.c:145
+msgid "Font Selector"
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:210
-msgid "virtual memory exhausted"
+#: mini-utils/gfontsel/gfontsel.c:170
+msgid "Selection:"
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:394
-#, c-format
-msgid "Cannot set groups: %s"
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "Font to load"
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:398
-#, c-format
-msgid "Cannot set group id: %s"
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:400
-#, c-format
-msgid "Cannot set user id: %s"
+#: mini-utils/gfontsel/gfontsel.c:254
+msgid "Print selected font name on exit"
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:444
-#, c-format
-msgid "cannot run %s"
+#: mini-utils/gfontsel/gfontsel.c:255
+msgid "Inhibit remembering selected font for next run"
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:472
-#, c-format
-msgid "Try `%s --help' for more information.\n"
+#: mini-utils/gfontsel/gfontsel.c:256
+msgid "Inhibit loading of last font"
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:476
-#, c-format
-msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
+#: mini-utils/gless/gless.c:116
+msgid "Where to put the window, and its size"
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:477
+#: mini-utils/gless/gless.c:117
+msgid "Ignore standard input; may be needed in some cases."
+msgstr ""
+
+#: mini-utils/gless/gless.c:279 mini-utils/gw/gw.c:172
+msgid "Tell about this application"
+msgstr ""
+
+#: mini-utils/gless/gless.c:287
+msgid "New Window"
+msgstr ""
+
+#: mini-utils/gless/gless.c:287
+msgid "New text viewer window"
+msgstr ""
+
+#: mini-utils/gless/gless.c:292
+#, fuzzy
+msgid "Open..."
+msgstr "Otevøít kalendáø ..."
+
+#: mini-utils/gless/gless.c:292
+msgid "Open a new file in this window"
+msgstr ""
+
+#: mini-utils/gless/gless.c:297 mini-utils/guname/guname.c:526
+#, fuzzy
+msgid "Save As..."
+msgstr "Ulo¾it kalendáø jako ..."
+
+#: mini-utils/gless/gless.c:297
+msgid "Save file to disk"
+msgstr ""
+
+#: mini-utils/gless/gless.c:302
+#, fuzzy
+msgid "Close this window"
+msgstr "Zavøít tento kalendáø"
+
+#: mini-utils/gless/gless.c:308
+msgid "Quit the application"
+msgstr ""
+
+#: mini-utils/gless/gless.c:316
+msgid "Fixed Font"
+msgstr ""
+
+#: mini-utils/gless/gless.c:317
+msgid "Display text with a fixed font"
+msgstr ""
+
+#: mini-utils/gless/gless.c:325 mini-utils/gw/gw.c:194
+msgid "Preferences..."
+msgstr ""
+
+#: mini-utils/gless/gless.c:326 mini-utils/gw/gw.c:195
+msgid "Change application preferences"
+msgstr ""
+
+#: mini-utils/gless/gless.c:335
+msgid "View"
+msgstr "Zobrazení"
+
+#: mini-utils/gless/gless.c:352
+msgid "Text File Viewer"
+msgstr ""
+
+#: mini-utils/gless/gless.c:412
 msgid ""
-"Change the effective user id and group id to that of USER.\n"
-"\n"
-"  -, -l, --login               make the shell a login shell\n"
-"  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
-"  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
-"  -m, --preserve-environment   do not reset environment variables\n"
-"  -p                           same as -m\n"
-"  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
-"      --help                   display this help and exit\n"
-"      --version                output version information and exit\n"
-"\n"
-"A mere - implies -l.   If USER not given, assume root.\n"
+"Couldn't understand geometry (position and size)\n"
+" specified on command line"
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:491
+#: mini-utils/gless/gless.c:453
+msgid "Loading..."
+msgstr ""
+
+#: mini-utils/gless/gless.c:458
+msgid "No such file or directory:\n"
+msgstr ""
+
+#: mini-utils/gless/gless.c:475
+msgid "Failed to decompress and display the file:\n"
+msgstr ""
+
+#: mini-utils/gless/gless.c:486
 msgid ""
-"\n"
-"Report bugs to sh-utils-bugs@gnu.ai.mit.edu"
+"Unable to display compressed file.\n"
+"zcat not found in your path."
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:577
-#, c-format
-msgid "user %s does not exist"
+#: mini-utils/gless/gless.c:494
+msgid "Error loading file:\n"
 msgstr ""
 
-#. wait for dialog to die, then quit
-#: mini-utils/gsu/gsu.c:602
-msgid "incorrect password"
+#: mini-utils/gless/gless.c:548
+msgid "Saving..."
 msgstr ""
 
-#. The user being su'd to has a nonstandard shell, and so is
-#. probably a uucp account or has restricted access.  Don't
-#. compromise the account by allowing access with a standard
-#. shell.
-#: mini-utils/gsu/gsu.c:621
-#, c-format
-msgid "using restricted shell %s"
+#: mini-utils/gless/gless.c:559
+msgid "Failed to write file:\n"
 msgstr ""
 
-#. error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir);
-#: mini-utils/gsu/gsu.c:634
-#, c-format
-msgid "Cannot change directory to %s"
+#: mini-utils/gless/gless.c:606
+#, fuzzy
+msgid "Save Text As..."
+msgstr "Ulo¾it kalendáø jako ..."
+
+#: mini-utils/gless/gless.c:646
+#, fuzzy
+msgid "Open Text File..."
+msgstr "Otevøít kalendáø ..."
+
+#: mini-utils/gnome-run/gnome-run.c:43
+msgid "Failed to execute command:\n"
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:666
-msgid "Root password request"
+#: mini-utils/gnome-run/gnome-run.c:63
+#, fuzzy
+msgid "Run Program"
+msgstr "Spustit program:"
+
+#: mini-utils/gnome-run/gnome-run.c:64
+#, fuzzy
+msgid "Run"
+msgstr "Ne"
+
+#: mini-utils/gnome-run/gnome-run.c:64
+msgid "Cancel"
 msgstr ""
 
-#: mini-utils/gsu/gsu.c:676
-msgid ""
-"You are trying to do something which requires\n"
-"root (system administrator) privileges.\n"
-"To do this, you must give the root password.\n"
-"Please enter the root password now, or choose\n"
-"Cancel if you do not know it."
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:683
-msgid ""
-"You are trying to change your user identity.\n"
-"Please enter the password for user `"
-msgstr ""
+#: mini-utils/gnome-run/gnome-run.c:75
+#, fuzzy
+msgid "Select a program to run"
+msgstr "Vyber program, který se spustí pøi alarmu"
 
 #: mini-utils/gshutdown/gshutdown.c:82
 msgid "Shut Down"
@@ -1820,41 +1255,949 @@ msgid "Are you sure you want to reboot the system?"
 msgstr ""
 
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:175
+#: mini-utils/gshutdown/gshutdown.c:173
 msgid "Shutdown or Reboot"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:192 mini-utils/gshutdown/gshutdown.c:193
+#: mini-utils/gshutdown/gshutdown.c:190 mini-utils/gshutdown/gshutdown.c:191
 msgid "Easy"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:197 mini-utils/gshutdown/gshutdown.c:198
+#: mini-utils/gshutdown/gshutdown.c:195 mini-utils/gshutdown/gshutdown.c:196
 msgid "Advanced"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:230
+#: mini-utils/gshutdown/gshutdown.c:228
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
 msgstr ""
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:360
+#: mini-utils/gshutdown/gshutdown.c:355
 msgid "Revert to Defaults"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:371
+#: mini-utils/gshutdown/gshutdown.c:365
 #, fuzzy
 msgid "Commands"
 msgstr "Pøíkaz"
 
-#: mini-utils/gshutdown/gshutdown.c:376
+#: mini-utils/gshutdown/gshutdown.c:370
 msgid "Confirm before shutdown?"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:450
+#: mini-utils/gshutdown/gshutdown.c:382
+msgid "General"
+msgstr "Obecné"
+
+#: mini-utils/gshutdown/gshutdown.c:444
 msgid "Don't ask next time."
 msgstr ""
+
+#: mini-utils/guname/guname.c:327
+msgid "System Information"
+msgstr ""
+
+#: mini-utils/guname/guname.c:411
+msgid "Logo file not found"
+msgstr ""
+
+#. Up here so it uses the default font
+#: mini-utils/guname/guname.c:415
+#, fuzzy
+msgid "GNOME contributors:"
+msgstr "GNOME monitor systému"
+
+#: mini-utils/guname/guname.c:429
+msgid "GNOME: The GNU Network Object Model Environment"
+msgstr ""
+
+#: mini-utils/guname/guname.c:453
+msgid "Email Information..."
+msgstr ""
+
+#: mini-utils/guname/guname.c:464
+msgid "Save Information to File..."
+msgstr ""
+
+#: mini-utils/guname/guname.c:476 mini-utils/guname/guname.c:540
+msgid "Detailed Information..."
+msgstr ""
+
+#: mini-utils/guname/guname.c:491
+msgid "Category"
+msgstr ""
+
+#: mini-utils/guname/guname.c:491
+#, fuzzy
+msgid "Your System"
+msgstr "Systém"
+
+#: mini-utils/guname/guname.c:532
+#, fuzzy
+msgid "Mail To..."
+msgstr "Podrobnosti ..."
+
+#: mini-utils/guname/guname.c:580
+msgid "Error closing file `"
+msgstr ""
+
+#: mini-utils/guname/guname.c:582
+msgid ""
+"\n"
+"Some or all data may not have been written."
+msgstr ""
+
+#: mini-utils/guname/guname.c:591
+msgid "Couldn't open file `"
+msgstr ""
+
+#: mini-utils/guname/guname.c:605
+msgid "Save System Information As..."
+msgstr ""
+
+#. I don't think the error_string() will reliably mean anything.
+#: mini-utils/guname/guname.c:651
+msgid "Command failed ` "
+msgstr ""
+
+#: mini-utils/guname/guname.c:651 mini-utils/guname/guname.c:658
+msgid " ': "
+msgstr ""
+
+#: mini-utils/guname/guname.c:658
+msgid "Couldn't run command ` "
+msgstr ""
+
+#: mini-utils/guname/guname.c:681
+msgid "The following mail will be sent to "
+msgstr ""
+
+#: mini-utils/guname/guname.c:683
+msgid ""
+".\n"
+" Are you sure you want to mail this information?"
+msgstr ""
+
+#: mini-utils/guname/guname.c:692
+msgid "Are you sure?"
+msgstr ""
+
+#: mini-utils/guname/guname.c:725
+msgid "Address to mail to:"
+msgstr ""
+
+#: mini-utils/guname/info.c:37
+msgid "Distribution:"
+msgstr ""
+
+#: mini-utils/guname/info.c:38
+msgid "Operating System:"
+msgstr ""
+
+#: mini-utils/guname/info.c:39
+msgid "Distribution Version:"
+msgstr ""
+
+#: mini-utils/guname/info.c:40
+msgid "Operating System Version:"
+msgstr ""
+
+#: mini-utils/guname/info.c:41
+msgid "Operating System Release:"
+msgstr ""
+
+#: mini-utils/guname/info.c:42
+#, fuzzy
+msgid "Processor Type:"
+msgstr "Procesy"
+
+#: mini-utils/guname/info.c:43
+#, fuzzy
+msgid "Processor Speed:"
+msgstr "Procesy"
+
+#: mini-utils/guname/info.c:44
+msgid "Host Name:"
+msgstr ""
+
+#: mini-utils/guname/info.c:45
+msgid "Domain Name:"
+msgstr ""
+
+#: mini-utils/guname/info.c:46
+#, fuzzy
+msgid "User Name:"
+msgstr "Jméno u¾ivatele"
+
+#: mini-utils/guname/info.c:47
+#, fuzzy
+msgid "X Display Name:"
+msgstr "Zobrazit"
+
+#: mini-utils/guname/info.c:48
+#, fuzzy
+msgid "System Status:"
+msgstr "Systém"
+
+#: mini-utils/guname/info.c:49
+#, fuzzy
+msgid "Real Memory:"
+msgstr "Pamì»"
+
+#: mini-utils/guname/info.c:50
+msgid "Swap Space (\"virtual memory\"):"
+msgstr ""
+
+#: mini-utils/guname/info.c:51
+#, fuzzy
+msgid "Total Memory:"
+msgstr "Pamì»"
+
+#: mini-utils/guname/info.c:52
+#, fuzzy
+msgid "Free Memory:"
+msgstr "Pamì»"
+
+#: mini-utils/guname/info.c:57
+msgid "Device"
+msgstr "Zaøízení"
+
+#: mini-utils/guname/info.c:58
+msgid "Size"
+msgstr "Velikost"
+
+#: mini-utils/guname/info.c:59
+#, fuzzy
+msgid "Used space"
+msgstr "Jméno u¾ivatele"
+
+#: mini-utils/guname/info.c:60
+msgid "Free space"
+msgstr ""
+
+#: mini-utils/guname/info.c:61
+#, fuzzy
+msgid "Percent free"
+msgstr "U¾ití pamìti v procentech"
+
+#: mini-utils/guname/info.c:62
+msgid "Mount point"
+msgstr ""
+
+#. This is about the only case where we'll put Unknown instead
+#. of simply not showing the info.
+#: mini-utils/guname/info.c:168
+#, fuzzy
+msgid "Unknown"
+msgstr "teï"
+
+#: mini-utils/guname/moreinfo.c:82
+msgid "Unknown filesystem"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:104
+msgid "No information for this filesystem."
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:119
+msgid "Mounted filesystems"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:155
+msgid "Memory"
+msgstr "Pamì»"
+
+#: mini-utils/guname/moreinfo.c:155
+msgid "Kilobytes"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:158
+msgid "%ld%% %s used."
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:174
+#, fuzzy
+msgid "memory"
+msgstr "Pamì»"
+
+#: mini-utils/guname/moreinfo.c:188
+msgid "swap"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:214
+#, c-format
+msgid "CPU %d"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:255
+msgid "Detailed System Information"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:268
+msgid "Disk Information"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:270
+msgid "Memory Information"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:273
+msgid "CPU Information"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:294
+msgid "%2d%% full "
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:296
+#, c-format
+msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:310
+msgid "Mount Point: "
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:311
+#, fuzzy
+msgid "    Device: "
+msgstr "Zaøízení"
+
+#: mini-utils/guname/moreinfo.c:312
+msgid "    Filesystem Type: "
+msgstr ""
+
+#: mini-utils/gw/gw.c:144
+msgid ""
+"Couldn't find the \"w\" command in your path.\n"
+"This command is needed for the program to work."
+msgstr ""
+
+#: mini-utils/gw/gw.c:180
+msgid "Save..."
+msgstr ""
+
+#: mini-utils/gw/gw.c:180
+msgid "Write information to disk"
+msgstr ""
+
+#: mini-utils/gw/gw.c:186
+msgid "Quit the application without saving"
+msgstr ""
+
+#: mini-utils/gw/gw.c:217
+msgid "User Listing"
+msgstr ""
+
+#: mini-utils/gw/gw.c:236
+msgid "Update Information"
+msgstr ""
+
+#: mini-utils/gw/gw.c:458
+#, fuzzy
+msgid "Command Line"
+msgstr "Pøíkaz"
+
+#. Create everything.
+#: mini-utils/gw/gw.c:466
+msgid "Add some defaults"
+msgstr ""
+
+#: mini-utils/gw/gw.c:468
+msgid "Delete"
+msgstr ""
+
+#: mini-utils/gw/gw.c:486
+#, fuzzy
+msgid "Command Editor"
+msgstr "Pøíkaz"
+
+#: mini-utils/gw/gw.c:496
+msgid ""
+"You can configure the commands on the popup menus.\n"
+"Just enter the name you want to appear on the \n"
+"menu, and the command to execute.\n"
+"In the command, you can use %u to represent the\n"
+"currently selected username, and %t for the tty."
+msgstr ""
+
+#: mini-utils/gw/gw.c:503
+msgid ""
+"Click this button to add\n"
+"some sample commands."
+msgstr ""
+
+#: mini-utils/gw/gw.c:511
+#, fuzzy
+msgid "Menu items"
+msgstr "Minuty"
+
+#: mini-utils/gw/gw.c:539
+msgid "Command"
+msgstr "Pøíkaz"
+
+#: mini-utils/idetool/idetool.c:41
+msgid "Unable to access the drive."
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:58 mini-utils/idetool/idetool.c:70
+msgid "The DMA setting for this drive cannot be changed."
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:322 mini-utils/idetool/idetool.c:324
+msgid "Enabled"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:322 mini-utils/idetool/idetool.c:324
+msgid "Disabled"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:90 mini-utils/idetool/idetool.c:102
+msgid "The IRQ unmask setting for this drive cannot be changed."
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:121 mini-utils/idetool/idetool.c:133
+msgid "The drive refused to keep its settings."
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:326
+msgid "Keep settings"
+msgstr ""
+
+#. IO
+#: mini-utils/idetool/idetool.c:168
+#, fuzzy
+msgid "PIO Mode"
+msgstr "I-uzel"
+
+#: mini-utils/idetool/idetool.c:211
+msgid "(1 Sector)"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:213
+msgid "(Dual Port)"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:215
+msgid "(Dual Port Cache)"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:258
+msgid "Setting"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:309 mini-utils/idetool/idetool.c:319
+#, fuzzy
+msgid "Model"
+msgstr "I-uzel"
+
+#: mini-utils/idetool/idetool.c:310
+msgid "Firmware"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:311
+msgid "Serial No."
+msgstr ""
+
+#. do config here
+#: mini-utils/idetool/idetool.c:313
+msgid "Geometry"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:314
+#, fuzzy
+msgid "Cache"
+msgstr "bøezen"
+
+#: mini-utils/idetool/idetool.c:315
+#, fuzzy
+msgid "Status"
+msgstr "So"
+
+#: mini-utils/idetool/idetool.c:319
+msgid "Legacy MFM/RLL drive"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:322
+#, fuzzy
+msgid "DMA Mode"
+msgstr "I-uzel"
+
+#: mini-utils/idetool/idetool.c:323
+#, fuzzy
+msgid "IO Mode"
+msgstr "I-uzel"
+
+#: mini-utils/idetool/idetool.c:324
+msgid "IRQ Unmask"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:325
+msgid "Multisector"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:326
+#, fuzzy
+msgid "On Reset"
+msgstr "Residentní"
+
+#.
+#. *	Set up the outer display first
+#.
+#: mini-utils/idetool/idetool.c:352
+msgid "IDE Status"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:365
+msgid "Disk Logo Not Found"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:416
+msgid "Only the superuser can use this tool"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:427
+msgid "You appear to have no IDE drives"
+msgstr ""
+
+#~ msgid "GTop"
+#~ msgstr "GTop"
+
+#~ msgid "(C) 1998 the Free Software Foundation"
+#~ msgstr "(C) 1998 Nadace free softwéru"
+
+#~ msgid "The GNOME System Monitor program"
+#~ msgstr "GNOME monitor systému"
+
+#, fuzzy
+#~ msgid "Start/Stop"
+#~ msgstr "Zaèít / pøestat vzorkovat"
+
+#~ msgid "Start / Stop sampling"
+#~ msgstr "Zaèít / pøestat vzorkovat"
+
+#~ msgid "Process ID"
+#~ msgstr "IÈ Procesu"
+
+#, fuzzy
+#~ msgid "User"
+#~ msgstr "Jméno u¾ivatele"
+
+#~ msgid "Priority"
+#~ msgstr "Priorita"
+
+#~ msgid "Used memory size"
+#~ msgstr "Velikost u¾ité pamìti"
+
+#~ msgid "Resident memory set size"
+#~ msgstr "Velikost residentní pamìti"
+
+#~ msgid "Shared memory size"
+#~ msgstr "Velikost sdílené pamìti"
+
+#~ msgid "Process state"
+#~ msgstr "Stav procesu"
+
+#~ msgid "Percent CPU usage"
+#~ msgstr "U¾ití CPU v procentech"
+
+#~ msgid "Time consumed"
+#~ msgstr "Spotøebovaný èas"
+
+#~ msgid "User time consumed"
+#~ msgstr "Spotøebovaný u¾ivatelský èas"
+
+#, fuzzy
+#~ msgid "STime"
+#~ msgstr "Velikost"
+
+#~ msgid "System time consumed"
+#~ msgstr "Spotøebovaný systémový èas"
+
+#, fuzzy
+#~ msgid "Cmd"
+#~ msgstr "Pøíkaz"
+
+#~ msgid "Resident memory size"
+#~ msgstr "Velikost residentní pamìti"
+
+#~ msgid "All processes"
+#~ msgstr "V¹echny procesy"
+
+#~ msgid "User processes"
+#~ msgstr "U¾ivatelovy procesy"
+
+#~ msgid "TTY processes"
+#~ msgstr "TTY procesy"
+
+#, fuzzy
+#~ msgid "Renice"
+#~ msgstr "Zaøízení"
+
+#, fuzzy
+#~ msgid "Set priority"
+#~ msgstr "Priorita"
+
+#~ msgid "Send"
+#~ msgstr "Poslat"
+
+#~ msgid "More ..."
+#~ msgstr "Dal¹í ..."
+
+#~ msgid "Shared"
+#~ msgstr "Sdílená"
+
+#~ msgid "Memory usage"
+#~ msgstr "Vyu¾ití pamìti"
+
+#~ msgid "Process %d details"
+#~ msgstr "Proces %d - podrobnosti"
+
+#~ msgid "Process info"
+#~ msgstr "Informace o procesu"
+
+#~ msgid "Attribute"
+#~ msgstr "Polo¾ka"
+
+#~ msgid "Raw memory map"
+#~ msgstr "Mapa pamìti"
+
+#~ msgid "VM start"
+#~ msgstr "zaèátek VP"
+
+#~ msgid "VM end"
+#~ msgstr "konec VP"
+
+#~ msgid "Flags"
+#~ msgstr "pøíznaky"
+
+#~ msgid "VM offset"
+#~ msgstr "poloha ve VP"
+
+#~ msgid "Inode"
+#~ msgstr "I-uzel"
+
+#~ msgid "Filename"
+#~ msgstr "Jméno souboru"
+
+#~ msgid "Hole"
+#~ msgstr "Díra"
+
+#~ msgid "Graphical memory map"
+#~ msgstr "Grafická mapa pamìti"
+
+#~ msgid "End time:"
+#~ msgstr "Konec"
+
+#~ msgid "All day event"
+#~ msgstr "Ka¾dodenní událost"
+
+#~ msgid "Days"
+#~ msgstr "Dny"
+
+#~ msgid "Mail to:"
+#~ msgstr "Poslat mail:"
+
+#~ msgid "Alarms"
+#~ msgstr "Alarmy"
+
+#~ msgid "Audio"
+#~ msgstr "Zvuk"
+
+#~ msgid "Classification"
+#~ msgstr "Klasifikace"
+
+#~ msgid "Public"
+#~ msgstr "Veøejný"
+
+#~ msgid "Owner:"
+#~ msgstr "Vlastník:"
+
+#~ msgid "Summary:"
+#~ msgstr "Shrnutí:"
+
+#~ msgid "None"
+#~ msgstr "®ádný"
+
+#~ msgid "Daily"
+#~ msgstr "Dennì"
+
+#~ msgid "Weekly"
+#~ msgstr "Týdnì"
+
+#~ msgid "Monthly"
+#~ msgstr "Mìsíènì"
+
+#~ msgid "Yearly"
+#~ msgstr "Roènì"
+
+#~ msgid "1st"
+#~ msgstr "1."
+
+#~ msgid "2nd"
+#~ msgstr "2."
+
+#~ msgid "3rd"
+#~ msgstr "3."
+
+#~ msgid "4th"
+#~ msgstr "4."
+
+#~ msgid "5th"
+#~ msgstr "5."
+
+#~ msgid "Tuesday"
+#~ msgstr "Úterý"
+
+#~ msgid "Wednesday"
+#~ msgstr "Støeda"
+
+#~ msgid "Thursday"
+#~ msgstr "Ètvrtek"
+
+#~ msgid "Friday"
+#~ msgstr "Pátek"
+
+#~ msgid "Saturday"
+#~ msgstr "Sobota"
+
+#~ msgid "Sunday"
+#~ msgstr "Nedìle"
+
+#~ msgid "Mon"
+#~ msgstr "Po"
+
+#~ msgid "Tue"
+#~ msgstr "Út"
+
+#~ msgid "Wed"
+#~ msgstr "St"
+
+#~ msgid "Thu"
+#~ msgstr "Èt"
+
+#~ msgid "Fri"
+#~ msgstr "Pá"
+
+#~ msgid "Recurrence rule"
+#~ msgstr "Rekurentní pravidlo"
+
+#~ msgid "Every"
+#~ msgstr "Ka¾dý"
+
+#~ msgid "day(s)"
+#~ msgstr "dnù"
+
+#~ msgid "week(s)"
+#~ msgstr "týdnù"
+
+#~ msgid "th day of the month"
+#~ msgstr ". den v mìsíci"
+
+#~ msgid "month(s)"
+#~ msgstr "mìsícù"
+
+#~ msgid "year(s)"
+#~ msgstr "let"
+
+#~ msgid "Repeat forever"
+#~ msgstr "Opakuj v¾dy"
+
+#~ msgid "End on"
+#~ msgstr "Skonèi pøi"
+
+#~ msgid "End after"
+#~ msgstr "Skonèi po"
+
+#~ msgid "occurrence(s)"
+#~ msgstr "výskytù"
+
+#~ msgid "Exceptions"
+#~ msgstr "Výjimky"
+
+#~ msgid "Add exception"
+#~ msgstr "Pøidat výjimku"
+
+#~ msgid "Change selected"
+#~ msgstr "Zmìnit vybrané"
+
+#~ msgid "Delete selected"
+#~ msgstr "Smazat vybrané"
+
+#~ msgid "Recurrence"
+#~ msgstr "Rekurence"
+
+#~ msgid "Day View"
+#~ msgstr "Dny"
+
+#~ msgid "Week View"
+#~ msgstr "Týdny"
+
+#~ msgid "Year View"
+#~ msgstr "Roky"
+
+#~ msgid "Save calendar"
+#~ msgstr "Ulo¾it kalendáø"
+
+#~ msgid "New calendar"
+#~ msgstr "Nový kalendáø"
+
+#~ msgid "Calendar"
+#~ msgstr "Kalendáø"
+
+#~ msgid "New"
+#~ msgstr "Nový"
+
+#~ msgid "Prev"
+#~ msgstr "Pøedchozí"
+
+#~ msgid "Go back in time"
+#~ msgstr "Nazpátek v èase"
+
+#~ msgid "Next"
+#~ msgstr "Dal¹í"
+
+#~ msgid "Go forward in time"
+#~ msgstr "Dopøedu v èase"
+
+#~ msgid "january"
+#~ msgstr "leden"
+
+#~ msgid "february"
+#~ msgstr "únor"
+
+#~ msgid "april"
+#~ msgstr "duben"
+
+#~ msgid "may"
+#~ msgstr "kvìten"
+
+#~ msgid "june"
+#~ msgstr "èerven"
+
+#~ msgid "july"
+#~ msgstr "èervenec"
+
+#~ msgid "august"
+#~ msgstr "srpen"
+
+#~ msgid "september"
+#~ msgstr "záøí"
+
+#~ msgid "sept"
+#~ msgstr "zá"
+
+#~ msgid "october"
+#~ msgstr "øíjen"
+
+#~ msgid "november"
+#~ msgstr "listopad"
+
+#~ msgid "december"
+#~ msgstr "prosinec"
+
+#~ msgid "sunday"
+#~ msgstr "nedìle"
+
+#~ msgid "monday"
+#~ msgstr "pondìlí"
+
+#~ msgid "tuesday"
+#~ msgstr "úterý"
+
+#~ msgid "wednesday"
+#~ msgstr "støeda"
+
+#~ msgid "wednes"
+#~ msgstr "st"
+
+#~ msgid "thursday"
+#~ msgstr "ètvrtek"
+
+#~ msgid "thur"
+#~ msgstr "èt"
+
+#~ msgid "thurs"
+#~ msgstr "èt"
+
+#~ msgid "friday"
+#~ msgstr "pátek"
+
+#~ msgid "saturday"
+#~ msgstr "sobota"
+
+#~ msgid "year"
+#~ msgstr "rok"
+
+#~ msgid "month"
+#~ msgstr "mìsíc"
+
+#~ msgid "week"
+#~ msgstr "týden"
+
+#~ msgid "day"
+#~ msgstr "den"
+
+#~ msgid "hour"
+#~ msgstr "hodina"
+
+#~ msgid "minute"
+#~ msgstr "minuta"
+
+#~ msgid "second"
+#~ msgstr "vteøina"
+
+#~ msgid "tomorrow"
+#~ msgstr "zítra"
+
+#~ msgid "yesterday"
+#~ msgstr "vèera"
+
+#~ msgid "today"
+#~ msgstr "dnes"
+
+#~ msgid "this"
+#~ msgstr "tento"
+
+#~ msgid "next"
+#~ msgstr "dal¹í"
+
+#~ msgid "first"
+#~ msgstr "první"
+
+#~ msgid "third"
+#~ msgstr "tøetí"
+
+#~ msgid "fourth"
+#~ msgstr "ètvrtý"
+
+#~ msgid "fifth"
+#~ msgstr "pátý"
+
+#~ msgid "sixth"
+#~ msgstr "¹estý"
+
+#~ msgid "seventh"
+#~ msgstr "sedmý"
+
+#~ msgid "eighth"
+#~ msgstr "osmý"
+
+#~ msgid "ninth"
+#~ msgstr "devátý"
+
+#~ msgid "tenth"
+#~ msgstr "desátý"
+
+#~ msgid "eleventh"
+#~ msgstr "jedenáctý"
+
+#~ msgid "twelfth"
+#~ msgstr "dvanáctý"
 
 #~ msgid "Physical Memory Breakdown"
 #~ msgstr "Mapa fyzické pamìti"
