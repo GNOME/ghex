@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* main.c - genesis of a GHex application
 
-   Copyright (C) 1997, 1998 Free Software Foundation
+   Copyright (C) 1998, 1999 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -23,13 +23,96 @@
 
 #include <config.h>
 #include <gnome.h>
-#include "gnome-support.h"
 #include "ghex.h"
-#include "callbacks.h"
+
+/* callbacks for MDI signals */
+static gint remove_doc_cb(GnomeMDI *, HexDocument *);
+static void view_changed_cb(GnomeMDI *, GtkHex *);
+static void child_changed_cb(GnomeMDI *, HexDocument *);
+static void customize_app_cb(GnomeMDI *, GnomeApp *);
+static void cleanup_cb(GnomeMDI *);
 
 GnomeMDI *mdi;
 
 gint mdi_mode = GNOME_MDI_DEFAULT_MODE;
+
+gint remove_doc_cb(GnomeMDI *mdi, HexDocument *doc) {
+	static char msg[512];
+	GnomeMessageBox *mbox;
+	gint reply;
+	
+	sprintf(msg, _("File %s has changed since last save.\n"
+				   "Do you want to save changes?"), GNOME_MDI_CHILD(doc)->name);
+	
+	if(hex_document_has_changed(doc)) {
+		mbox = GNOME_MESSAGE_BOX(gnome_message_box_new( msg, GNOME_MESSAGE_BOX_QUESTION, GNOME_STOCK_BUTTON_YES,
+														GNOME_STOCK_BUTTON_NO, GNOME_STOCK_BUTTON_CANCEL, NULL));
+		gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
+		reply = ask_user(mbox);
+		
+		if(reply == 0)
+			hex_document_write(doc);
+		else if(reply == 2)
+			return FALSE;
+	}
+	
+	return TRUE;
+}
+
+void cleanup_cb(GnomeMDI *mdi) {
+	save_configuration();
+	gtk_main_quit();
+}
+
+void child_changed_cb(GnomeMDI *mdi, HexDocument *doc) {
+	create_dialog_title(find_dialog.window, _("GHex (%s): Find Data"));
+	create_dialog_title(replace_dialog.window, _("GHex (%s): Find & Replace Data"));
+	create_dialog_title(jump_dialog.window, _("GHex (%s): Jump To Byte"));
+}
+
+void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
+	GnomeApp *app;
+	GnomeUIInfo *uiinfo;
+	GtkWidget *shell, *item;
+	HexDocument *doc;
+	gint pos;
+	gint group_item;
+	char *p;
+
+	if(mdi->active_view == NULL)
+		return;
+
+	app = gnome_mdi_get_app_from_view(mdi->active_view);
+	
+	GROUP_MENU_PATH(p);
+	shell = gnome_app_find_menu_pos(app->menubar, p, &pos);
+
+	group_item = GTK_HEX(mdi->active_view)->group_type / 2;
+	shell = gnome_app_find_menu_pos(shell, _(group_type_label[group_item]), &pos);
+
+	item = g_list_nth(GTK_MENU_SHELL(shell)->children, pos - 1)->data;
+	
+	gtk_menu_shell_activate_item(GTK_MENU_SHELL(shell), item, TRUE);
+
+	uiinfo = gnome_mdi_get_child_menu_info(app);
+	uiinfo = (GnomeUIInfo *)uiinfo[0].moreinfo;
+    doc = HEX_DOCUMENT(gnome_mdi_get_child_from_view(mdi->active_view));
+	gtk_widget_set_sensitive(uiinfo[0].widget, doc->undo_depth > 0);
+	gtk_widget_set_sensitive(uiinfo[1].widget, doc->undo_top != doc->undo_stack);
+
+	gnome_app_install_menu_hints(app, gnome_mdi_get_child_menu_info(app));
+	g_free(p);
+}
+
+void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
+	GtkWidget *bar;
+
+	bar = gnome_appbar_new(FALSE, TRUE, GNOME_PREFERENCES_USER);
+	gnome_app_set_statusbar(app, bar);
+	gtk_widget_show(bar);
+
+	gnome_app_install_menu_hints(app, gnome_mdi_get_menubar_info(app));
+}
 
 int main(int argc, char **argv) {
 	GnomeClient *client;

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ui.c - GHex user interface
 
-   Copyright (C) 1997, 1998 Free Software Foundation
+   Copyright (C) 1998, 1999 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -23,10 +23,24 @@
 
 #include <config.h>
 #include <gnome.h>
-#include "gtkhex.h"
-#include "gnome-support.h"
-#include "callbacks.h"
 #include "ghex.h"
+
+static void open_selected_file(GtkWidget *);
+static void save_selected_file(GtkWidget *);
+
+/* callbacks to nullify widget pointer after a delete event */
+static void about_destroy_cb(GtkObject *, GtkWidget **);
+
+/* callbacks for global menus */
+static void quit_app_cb(GtkWidget *);
+static void open_cb(GtkWidget *);
+static void close_cb(GtkWidget *);
+static void save_cb(GtkWidget *);
+static void save_as_cb(GtkWidget *);
+static void revert_cb(GtkWidget *);
+static void prefs_cb(GtkWidget *);
+static void converter_cb(GtkWidget *);
+static void about_cb(GtkWidget *);
 
 GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_MENU_OPEN_ITEM(open_cb,NULL),
@@ -77,38 +91,25 @@ gchar *group_type_label[3] = {
 	N_("Longwords"),
 };
 
-static void set_prefs(PropertyUI *);
-
-GtkWidget *file_sel = NULL;
-
-FindDialog find_dialog = { NULL };
-ReplaceDialog replace_dialog = { NULL };
-JumpDialog jump_dialog = { NULL };
-Converter converter = { NULL };
-PropertyUI prefs_ui = { NULL };
-
-GdkFont *def_font = NULL;
-gchar *def_font_name = NULL;
-
-guint mdi_type[NUM_MDI_MODES] = {
-	GNOME_MDI_DEFAULT_MODE,
-	GNOME_MDI_NOTEBOOK,
-	GNOME_MDI_TOPLEVEL,
-	GNOME_MDI_MODAL
-};
-
-gchar *mdi_type_label[NUM_MDI_MODES] = {
-	N_("Default"),
-	N_("Notebook"),
-	N_("Toplevel"),
-	N_("Modal"),
-};
-
 guint search_type = 0;
 gchar *search_type_label[] = {
 	N_("hex data"),
 	N_("ASCII data"),
 };
+
+GtkWidget *file_sel = NULL;
+
+void cancel_cb(GtkWidget *w, GtkWidget **me) {
+	gtk_widget_destroy(*me);
+	*me = NULL;
+}
+
+gint delete_event_cb(GtkWidget *w, gpointer who_cares, GtkWidget **me) {
+	gtk_widget_destroy(*me);
+	*me = NULL;
+	
+	return TRUE;
+}
 
 gint ask_user(GnomeMessageBox *message_box) {
 	gtk_window_set_modal(GTK_WINDOW(message_box), TRUE);	
@@ -137,138 +138,6 @@ GtkWidget *create_button(GtkWidget *window, gchar *type, gchar *text) {
 	return button;
 }
 
-void create_find_dialog(FindDialog *dialog) {
-	gint i;
-	GSList *group;
-	gchar type_label[256];
-	
-	dialog->window = gtk_dialog_new();
-	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
-	
-	create_dialog_title(dialog->window, _("GHex (%s): Find Data"));
-	
-	dialog->f_string = gtk_entry_new();
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->f_string,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->f_string);
-	
-	for(i = 0, group = NULL; i < 2;
-		i++, group = gtk_radio_button_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
-		sprintf(type_label, _("Search for %s"), _(search_type_label[i]));
-		
-		dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
-		
-		if(find_dialog.search_type == i)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
-		
-		gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
-						   GTK_SIGNAL_FUNC(set_find_type_cb), GINT_TO_POINTER(i));
-		
-		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->type_button[i],
-						   TRUE, TRUE, 0);
-		
-		gtk_widget_show(dialog->type_button[i]);
-	}
-	
-	dialog->f_next = create_button(dialog->window, GNOME_STOCK_PIXMAP_FORWARD, _("Find Next"));
-	gtk_signal_connect (GTK_OBJECT (dialog->f_next),
-						"clicked", GTK_SIGNAL_FUNC(find_next_cb),
-						dialog->f_string);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_next,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->f_next);
-	dialog->f_prev = create_button(dialog->window, GNOME_STOCK_PIXMAP_BACK, _("Find Previous"));
-	gtk_signal_connect (GTK_OBJECT (dialog->f_prev),
-						"clicked", GTK_SIGNAL_FUNC(find_prev_cb),
-						dialog->f_string);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_prev,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->f_prev);
-	dialog->f_close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
-	gtk_signal_connect (GTK_OBJECT (dialog->f_close),
-						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						&dialog->window);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_close,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->f_close);
-	
-	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
-	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
-}
-
-void create_replace_dialog(ReplaceDialog *dialog) {
-	gint i;
-	GSList *group;
-	gchar type_label[256];
-	
-	dialog->window = gtk_dialog_new();
-	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
-	
-	create_dialog_title(dialog->window, _("GHex (%s): Find & Replace Data"));
-	
-	dialog->f_string = gtk_entry_new();
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->f_string,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->f_string);
-	
-	dialog->r_string = gtk_entry_new();
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->r_string,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->r_string);
-	
-	for(i = 0, group = NULL; i < 2;
-		i++, group = gtk_radio_button_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
-		sprintf(type_label, _("Replace %s"), _(search_type_label[i]));
-		
-		dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
-		
-		if(replace_dialog.search_type == i)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
-		
-		gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
-						   GTK_SIGNAL_FUNC(set_replace_type_cb), GINT_TO_POINTER(i));
-		
-		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->type_button[i],
-						   TRUE, TRUE, 0);
-		
-		gtk_widget_show(dialog->type_button[i]);
-	}
-	
-	dialog->next = create_button(dialog->window, GNOME_STOCK_PIXMAP_FORWARD, _("Find next"));
-	gtk_signal_connect (GTK_OBJECT (dialog->next),
-						"clicked", GTK_SIGNAL_FUNC(replace_next_cb),
-						dialog->f_string);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->next,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->next);
-	dialog->replace = gtk_button_new_with_label(_("Replace"));
-	gtk_signal_connect (GTK_OBJECT (dialog->replace),
-						"clicked", GTK_SIGNAL_FUNC(replace_one_cb),
-						NULL);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->replace,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->replace);
-	dialog->replace_all= gtk_button_new_with_label(_("Replace All"));
-	gtk_signal_connect (GTK_OBJECT (dialog->replace_all),
-						"clicked", GTK_SIGNAL_FUNC(replace_all_cb),
-						NULL);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->replace_all,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->replace_all);
-	dialog->close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
-	gtk_signal_connect (GTK_OBJECT (dialog->close),
-						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						&dialog->window);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->close,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->close);
-	
-	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
-	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
-}
-
 void create_dialog_title(GtkWidget *window, gchar *title) {
 	gchar *full_title;
 
@@ -286,250 +155,198 @@ void create_dialog_title(GtkWidget *window, gchar *title) {
 	}
 }
 
-void create_jump_dialog(JumpDialog *dialog) {
-	dialog->window = gtk_dialog_new();
-	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
-	
-	create_dialog_title(dialog->window, _("GHex (%s): Jump To Byte"));
-	
-	dialog->int_entry = gtk_entry_new();
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->int_entry,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->int_entry);
-	
-	dialog->ok = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
-	gtk_signal_connect (GTK_OBJECT (dialog->ok),
-						"clicked", GTK_SIGNAL_FUNC(goto_byte_cb),
-						dialog->int_entry);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->ok,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->ok);
-	dialog->cancel = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
-	gtk_signal_connect (GTK_OBJECT (dialog->cancel),
-						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						&dialog->window);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->cancel,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(dialog->cancel);
-	
-	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
-	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
+/*
+ * callbacks for global menus
+ */
+static void about_destroy_cb(GtkObject *obj, GtkWidget **about) {
+	*about = NULL;
 }
 
-void create_converter(Converter *conv) {
-	GtkWidget *table, *label, *close;
+static void about_cb (GtkWidget *widget) {
+	static GtkWidget *about = NULL;
 	
-	conv->window = gtk_dialog_new();
-	gtk_signal_connect(GTK_OBJECT(conv->window), "delete_event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), &conv->window);
-	
-	gtk_window_set_title(GTK_WINDOW(conv->window), _("GHex: Converter"));
-	
-	table = gtk_table_new(4, 2, FALSE);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(conv->window)->vbox), table,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(table);
-	
-	label = gtk_label_new(_("Binary"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 0, 1);
-	gtk_widget_show(label);
-	conv->entry[0] = gtk_entry_new();
-	gtk_signal_connect(GTK_OBJECT(conv->entry[0]), "activate",
-					   GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)2);
-	gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[0], 1, 2, 0, 1);
-	gtk_widget_show(conv->entry[0]);
-	
-	label = gtk_label_new(_("Decimal"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 1, 2);
-	gtk_widget_show(label);
-	conv->entry[1] = gtk_entry_new();
-	gtk_signal_connect(GTK_OBJECT(conv->entry[1]), "activate",
-					   GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)10);
-	gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[1], 1, 2, 1, 2);
-	gtk_widget_show(conv->entry[1]);
-	
-	label = gtk_label_new(_("Hex"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 2, 3);
-	gtk_widget_show(label);
-	conv->entry[2] = gtk_entry_new();
-	gtk_signal_connect(GTK_OBJECT(conv->entry[2]), "activate",
-					   GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)16);
-	gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[2], 1, 2, 2, 3);
-	gtk_widget_show(conv->entry[2]);
-	
-	label = gtk_label_new(_("ASCII"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 3, 4);
-	gtk_widget_show(label);
-	conv->entry[3] = gtk_entry_new();
-	gtk_signal_connect(GTK_OBJECT(conv->entry[3]), "activate",
-					   GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)0);
-	gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[3], 1, 2, 3, 4);
-	gtk_widget_show(conv->entry[3]);
-	
-	close = gtk_button_new_with_label(_("Close"));
-	gtk_signal_connect (GTK_OBJECT (close),
-						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						&conv->window);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(conv->window)->action_area), close,
-					   TRUE, TRUE, 0);
-	gtk_widget_show(close);
-	
-	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(conv->window)->vbox), 2);
-	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(conv->window)->vbox), 2);
+	static const gchar *authors[] = {
+		"Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>",
+		NULL
+	};
+
+	if(!about) {
+		about = gnome_about_new ( _("GHex, a binary file editor"), VERSION,
+								  "(C) 1998, 1999 Jaka Mocnik", authors,
+								  _("Released under the terms of GNU Public License"), NULL);
+		gtk_signal_connect(GTK_OBJECT(about), "destroy",
+						   GTK_SIGNAL_FUNC(about_destroy_cb), &about);
+		gtk_widget_show (about);
+	}
+	else
+		gdk_window_raise(GTK_WIDGET(about)->window);
 }
 
-static void set_prefs(PropertyUI *pui) {
+static void quit_app_cb (GtkWidget *widget) {
+	if(gnome_mdi_remove_all(mdi, FALSE))
+		gtk_object_destroy(GTK_OBJECT(mdi));
+}
+
+static void save_cb(GtkWidget *w) {
+	if(mdi->active_child) {
+		if(hex_document_write(HEX_DOCUMENT(mdi->active_child)))
+			gnome_app_error(mdi->active_window, _("Error saving file!"));
+		else {
+			gchar *flash;
+
+			flash = g_strdup_printf(_("Saved buffer to file %s"), HEX_DOCUMENT(mdi->active_child)->file_name);
+			gnome_app_flash(mdi->active_window, flash);
+			g_free(flash);
+		}
+	}
+}
+
+static void open_cb(GtkWidget *w) {
+	if(file_sel == NULL)
+		file_sel = gtk_file_selection_new(_("Select a file to open"));
+	
+	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+	
+	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
+						"clicked", GTK_SIGNAL_FUNC(open_selected_file),
+						NULL);
+	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
+						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
+						&file_sel);
+	gtk_widget_show (file_sel);
+}
+
+static void save_as_cb(GtkWidget *w) {
+	if(mdi->active_child == NULL)
+		return;
+	
+	if(file_sel == NULL)
+		file_sel = gtk_file_selection_new(_("Select a file to save buffer as"));
+	
+	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+	
+	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
+						"clicked", GTK_SIGNAL_FUNC(save_selected_file),
+						NULL);
+	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
+						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
+						&file_sel);
+	gtk_widget_show (file_sel);
+}
+
+static void close_cb(GtkWidget *w) {
+	if(mdi->active_child == NULL)
+		return;
+	
+	gnome_mdi_remove_child(mdi, mdi->active_child, FALSE);
+}
+
+static void converter_cb(GtkWidget *w) {
+	if(converter.window == NULL)
+		create_converter(&converter);
+	
+	gtk_window_position (GTK_WINDOW(converter.window), GTK_WIN_POS_MOUSE);
+	
+	gtk_widget_show(converter.window);
+}
+
+static void prefs_cb(GtkWidget *w) {
+	if(prefs_ui.pbox == NULL)
+		create_prefs_dialog(&prefs_ui);
+	
+	gtk_window_position (GTK_WINDOW(prefs_ui.pbox), GTK_WIN_POS_MOUSE);
+	
+	gtk_widget_show(GTK_WIDGET(prefs_ui.pbox));
+}
+
+static void revert_cb(GtkWidget *w) {
+	static gchar msg[512];
+	
+	HexDocument *doc;
+	GnomeMessageBox *mbox;
+	gint reply;
+	
+	if(mdi->active_child) {
+		doc = HEX_DOCUMENT(mdi->active_child);
+		if(doc->changed) {
+			sprintf(msg, _("Really revert file %s?"), GNOME_MDI_CHILD(doc)->name);
+			mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(msg,
+														   GNOME_MESSAGE_BOX_QUESTION,
+														   GNOME_STOCK_BUTTON_YES,
+														   GNOME_STOCK_BUTTON_NO,
+														   NULL));
+			gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
+			reply = ask_user(mbox);
+			
+			if(reply == 0) {
+				gchar *flash;
+
+				hex_document_read(doc);
+				flash = g_strdup_printf(_("Reverted buffer from file %s"), HEX_DOCUMENT(mdi->active_child)->file_name);
+				gnome_app_flash(mdi->active_window, flash);
+				g_free(flash);
+			}
+		}
+	}
+}
+
+static void open_selected_file(GtkWidget *w) {
+	HexDocument *new_doc;
+	gchar *flash;
+	
+	if((new_doc = hex_document_new((gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel))))) != NULL) {
+		gnome_mdi_add_child(mdi, GNOME_MDI_CHILD(new_doc));
+		gnome_mdi_add_view(mdi, GNOME_MDI_CHILD(new_doc));
+		flash = g_strdup_printf(_("Loaded file %s"), new_doc->file_name);
+		gnome_app_flash(mdi->active_window, flash);
+		g_free(flash);
+	}
+	else
+		gnome_app_error(mdi->active_window, _("Can not open file!"));
+	
+	gtk_widget_destroy(GTK_WIDGET(file_sel));
+	file_sel = NULL;
+}
+
+static void save_selected_file(GtkWidget *w) {
+	HexDocument *doc;
+	gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
+	gchar *flash;
 	int i;
 	
-	for(i = 0; i < 3; i++)
-		if(def_group_type == group_type[i]) {
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->group_type[i]), TRUE);
-			break;
+	if(mdi->active_child == NULL)
+		return;
+	
+	doc = HEX_DOCUMENT(mdi->active_child);
+	
+	if((doc->file = fopen(filename, "w")) != NULL) {
+		if(fwrite(doc->buffer, doc->buffer_size, 1, doc->file) == 1) {
+			if(doc->file_name)
+				free(doc->file_name);
+			doc->file_name = strdup(filename);
+			
+			for(i = strlen(doc->file_name);
+				(i >= 0) && (doc->file_name[i] != '/');
+				i--)
+				;
+			if(doc->file_name[i] == '/')
+				doc->path_end = &doc->file_name[i+1];
+			else
+				doc->path_end = doc->file_name;
+			
+			gnome_mdi_child_set_name(GNOME_MDI_CHILD(doc), doc->path_end);
+
+			flash = g_strdup_printf(_("Saved buffer to file %s"), HEX_DOCUMENT(mdi->active_child)->file_name);
+			gnome_app_flash(mdi->active_window, flash);
+			g_free(flash);
 		}
-	
-	for(i = 0; i < NUM_MDI_MODES; i++)
-		if(mdi_mode == mdi_type[i]) {
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->mdi_type[i]), TRUE);
-			break;
-		}
-}
-
-void create_prefs_dialog(PropertyUI *pui) {
-	GtkWidget *vbox, *label, *frame, *box, *entry, *fbox, *flabel;
-	GtkAdjustment *undo_adj;
-	GSList *group;
-	
-	int i;
-	
-	pui->pbox = GNOME_PROPERTY_BOX(gnome_property_box_new());
-	
-	gtk_signal_connect(GTK_OBJECT(pui->pbox), "destroy",
-					   GTK_SIGNAL_FUNC(prop_destroy_cb), pui);
-	gtk_signal_connect(GTK_OBJECT(pui->pbox), "apply",
-					   GTK_SIGNAL_FUNC(apply_changes_cb), pui);
-	
-	vbox = gtk_vbox_new(FALSE, 0);
-	gtk_widget_show(vbox);
-
-	undo_adj = GTK_ADJUSTMENT(gtk_adjustment_new(MIN(max_undo_depth, MAX_MAX_UNDO_DEPTH),
-												 0, MAX_MAX_UNDO_DEPTH, 1, 10, 0));
-	gtk_signal_connect(GTK_OBJECT(undo_adj), "value_changed",
-					   GTK_SIGNAL_FUNC(max_undo_changed_cb), pui->pbox);
-
-	box = gtk_hbox_new(FALSE, 0);
-	gtk_widget_show(box);
-
-	label = gtk_label_new(_("Maximum number of undo levels"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
-	gtk_widget_show(label);
-						  
-	pui->spin = gtk_spin_button_new(undo_adj, 1, 0);
-	gtk_box_pack_end (GTK_BOX(box), GTK_WIDGET(pui->spin), FALSE, TRUE, GNOME_PAD);
-	gtk_widget_show(pui->spin);
-
-	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 2);
-
-	label = gtk_label_new(_("Editing"));
-	gtk_widget_show(label);
-	gtk_notebook_append_page (GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
-	
-	vbox = gtk_vbox_new(FALSE, 0);
-	gtk_widget_show(vbox);
-	
-	frame = gtk_frame_new(_("Font"));
-	gtk_container_border_width(GTK_CONTAINER(frame), 4);
-	gtk_widget_show(frame);
-	
-	fbox = gtk_hbox_new(0, 0);
-	entry = gtk_entry_new();
-	gtk_entry_set_text(GTK_ENTRY(entry), def_font_name);
-	gtk_signal_connect (GTK_OBJECT (entry), "changed",
-						select_font_cb, pui->pbox);
-	pui->font_button = gnome_font_picker_new();
-	gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->font_button),
-									def_font_name);
-	gnome_font_picker_set_mode(GNOME_FONT_PICKER(pui->font_button),
-							   GNOME_FONT_PICKER_MODE_USER_WIDGET);
-	gtk_signal_connect (GTK_OBJECT (pui->font_button), "font_set",
-						GTK_SIGNAL_FUNC (select_font_cb), pui->pbox);
-	flabel = gtk_label_new (_("Browse..."));
-	gnome_font_picker_uw_set_widget(GNOME_FONT_PICKER(pui->font_button), GTK_WIDGET(flabel));
-	
-	gtk_object_set_user_data(GTK_OBJECT(entry), GTK_OBJECT(pui->font_button)); 
-	gtk_object_set_user_data (GTK_OBJECT(pui->font_button), GTK_OBJECT(entry)); 
-	
-	gtk_widget_show(flabel);
-	gtk_widget_show(GTK_WIDGET(pui->font_button));
-	gtk_widget_show(entry);
-	
-	gtk_container_border_width(GTK_CONTAINER(fbox), 4);
-	gtk_box_pack_start (GTK_BOX (fbox), entry, 1, 1, GNOME_PAD);
-	gtk_box_pack_end (GTK_BOX (fbox), GTK_WIDGET(pui->font_button), 0, 1, GNOME_PAD);
-	
-	gtk_widget_show(fbox);
-	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(fbox));
-	
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 2);
-	
-	frame = gtk_frame_new(_("Default Group Type"));
-	gtk_container_border_width(GTK_CONTAINER(frame), 4);
-	gtk_widget_show(frame);
-	
-	box = gtk_vbox_new(FALSE, 0);
-	gtk_widget_show(box);
-	group = NULL;
-	for(i = 0; i < 3; i++) {
-		pui->group_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, _(group_type_label[i])));
-		gtk_widget_show(GTK_WIDGET(pui->group_type[i]));
-		gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->group_type[i]), TRUE, TRUE, 2);
-		group = gtk_radio_button_group (pui->group_type[i]);
+		else
+			gnome_app_error(mdi->active_window, _("Error saving file!"));
+		fclose(doc->file);
 	}
-	gtk_container_add(GTK_CONTAINER(frame), box);
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 2);
+	else
+		gnome_app_error(mdi->active_window, _("Can't open file for writing!"));
 	
-	label = gtk_label_new(_("Display"));
-	gtk_widget_show(label);
-	gtk_notebook_append_page (GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
-	
-	vbox = gtk_vbox_new(FALSE, 0);
-	gtk_widget_show(vbox);
-
-	frame = gtk_frame_new(_("MDI Mode"));
-	gtk_container_border_width(GTK_CONTAINER(frame), 4);
-	gtk_widget_show(frame);
-	
-	box = gtk_vbox_new(FALSE, 0);
-	gtk_widget_show(box);
-	group = NULL;
-	for(i = 0; i < NUM_MDI_MODES; i++) {
-		pui->mdi_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, _(mdi_type_label[i])));
-		gtk_widget_show(GTK_WIDGET(pui->mdi_type[i]));
-		gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->mdi_type[i]), TRUE, TRUE, 2);
-		group = gtk_radio_button_group (pui->mdi_type[i]);
-	}
-	
-	gtk_container_add(GTK_CONTAINER(frame), box);
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 2);  
-	
-	label = gtk_label_new(_("MDI"));
-	gtk_widget_show(label);
-	gtk_notebook_append_page(GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
-	
-	set_prefs(pui);
-	
-	/* signals have to be connected after set_prefs(), otherwise
-	   a gnome_property_box_changed() is called */
-	
-	for(i = 0; i < NUM_MDI_MODES; i++)
-		gtk_signal_connect(GTK_OBJECT(pui->mdi_type[i]), "clicked",
-						   properties_modified_cb, pui->pbox);
-	for(i = 0; i < 3; i++)
-		gtk_signal_connect(GTK_OBJECT(pui->group_type[i]), "clicked",
-						   properties_modified_cb, pui->pbox);
+	gtk_widget_destroy(GTK_WIDGET(file_sel));
+	file_sel = NULL;
 }

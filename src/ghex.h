@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ghex.h - defines GHex ;)
 
-   Copyright (C) 1997, 1998 Free Software Foundation
+   Copyright (C) 1998, 1999 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -87,6 +87,9 @@ typedef struct _Converter {
 	gulong value;
 } Converter;
 
+extern int restarted;
+extern const struct poptOption options[];
+
 extern GnomeMDI *mdi;
 extern gint mdi_mode;
 
@@ -126,9 +129,26 @@ void create_prefs_dialog   (PropertyUI *);
 void create_dialog_title   (GtkWidget *, gchar *);
 
 gint ask_user              (GnomeMessageBox *);
+GtkWidget *create_button   (GtkWidget *, gchar *, gchar *);
 
 /* config stuff */
 void save_configuration    (void);
 void load_configuration    (void);
+
+/* callbacks to nullify widget pointer after a delete event */
+gint delete_event_cb(GtkWidget *, gpointer, GtkWidget **);
+void cancel_cb(GtkWidget *, GtkWidget **);
+
+/* session managment */
+int save_state      (GnomeClient        *client,
+                     gint                phase,
+                     GnomeRestartStyle   save_style,
+                     gint                shutdown,
+                     GnomeInteractStyle  interact_style,
+                     gint                fast,
+                     gpointer            client_data);
+
+gint client_die     (GnomeClient *client, gpointer client_data);
+
 
 #endif

@@ -30,7 +30,6 @@
 
 #include "ghex.h"
 #include "gtkhex.h"
-#include "callbacks.h"
 
 #include <stdio.h>
 #include <sys/stat.h>

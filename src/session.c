@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gnome-support.c - GNOMEificating code for ghex (actually only SM)
+/* session.c - SM code for ghex
 
-   Copyright (C) 1997, 1998 Free Software Foundation
+   Copyright (C) 1998, 1999 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -21,7 +21,6 @@
    Author: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
 */
 
-#include "gnome-support.h"
 #include "ghex.h"
 
 int restarted = 0;

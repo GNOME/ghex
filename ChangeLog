@@ -1,4 +1,16 @@
-1991-01-23  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+1999-01-27  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* callbacks.[ch]: removed. contents moved to the following files:
+	* preferences.c: put all the prefs stuff here.
+	* findreplace.c: find/replace and goto code.
+	* converter.c: conversion dialog code.
+	* main.c: put MDI signal handlers here.
+	* ui.c: only global menus and ui utility functions
+	remain here.
+	* gnome-support.c: becomes session.c.
+	* gnome-support.h: removed. contents moved to ghex.h.
+	
+1999-01-23  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* ghex.h, config.c (guint max_undo_depth): global max undo depth
 	for edited files.
@@ -37,7 +49,7 @@
 	* hex-document.c: implemented redo capabilities. actions that
 	have been undone can be redone as long as no new changes are
 	entered. as soon as something changes we forget the undone
-	actions (part of stack between undo_stack and stack_top) and
+	actions (part of stack between undo_stack and undo_top) and
 	start pushing new undo data on top of undo_top.
 	* callbacks.c (view_changed_cb): take care of the redo item's
 	sensitivity.
