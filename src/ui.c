@@ -576,6 +576,7 @@ void setup_ui() {
   GtkWidget *w;
 
   app = gnome_app_new("ghex", "GNOME hex editor");
+  gtk_window_set_wmclass (GTK_WINDOW (app), "ghex", "ghex");
   gtk_widget_realize(app);
 
   gtk_signal_connect(GTK_OBJECT(app), "delete_event", GTK_SIGNAL_FUNC(quit_app_cb), NULL);
