@@ -1,14 +1,17 @@
-# ghex sv.po
-# Copyright (C) 1999 Free Software Foundation, Inc.
+# Swedish translation for ghex.
+# Copyright (C) 1999-2001 Free Software Foundation, Inc.
 # Tomas Ögren <stric@ing.umu.se>, 1999.
 # Andreas Hyden <a.hyden@cyberpoint.se>, 2000.
+# Christian Rose <menthos@menthos.com>, 2001.
+#
+# $Id$
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 1.0.x\n"
-"POT-Creation-Date: 2001-03-08 19:39+0100\n"
-"PO-Revision-Date: 2000-04-20 18:12+0200\n"
-"Last-Translator: Andreas Hyden <a.hyden@cyberpoint.se>\n"
+"Project-Id-Version: ghex\n"
+"POT-Creation-Date: 2001-03-23 13:32+0100\n"
+"PO-Revision-Date: 2001-03-23 14:30+0100\n"
+"Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -20,125 +23,129 @@ msgstr "GHex: Konverterare"
 
 #: src/chartable.c:91 src/converter.c:53
 msgid "Binary"
-msgstr "Binär"
+msgstr "Binärt"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:161
+#: src/chartable.c:91 src/converter.c:63
+msgid "Octal"
+msgstr "Oktalt"
+
+#: src/chartable.c:90 src/converter.c:73 src/preferences.c:161
 msgid "Decimal"
-msgstr "Decimal"
-
-#: src/chartable.c:90 src/converter.c:73
-msgid "Hex"
-msgstr "Hex"
+msgstr "Decimalt"
 
 #: src/chartable.c:90 src/converter.c:83
+msgid "Hex"
+msgstr "Hexadecimalt"
+
+#: src/chartable.c:90 src/converter.c:93
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/converter.c:93
+#: src/converter.c:103
 msgid "Get cursor value"
 msgstr "Hämta värde vid markör"
 
-#: src/converter.c:99
+#: src/converter.c:109
 msgid "Close"
 msgstr "Stäng"
 
-#: src/converter.c:194
+#: src/converter.c:213
 msgid "ERROR"
 msgstr "FEL"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:60 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Sök data"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:69
 #, c-format
 msgid "Search for %s"
 msgstr "Sök efter %s"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:86
 msgid "Find Next"
 msgstr "Sök nästa"
 
-#: src/findreplace.c:91
+#: src/findreplace.c:94
 msgid "Find Previous"
 msgstr "Sök föregående"
 
-#: src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:130 src/main.c:100
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Sök och ersätt data"
 
-#: src/findreplace.c:141
+#: src/findreplace.c:144
 #, c-format
 msgid "Replace %s"
 msgstr "Ersätt %s"
 
-#: src/findreplace.c:157
+#: src/findreplace.c:161
 msgid "Find next"
 msgstr "Sök nästa"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:169
 msgid "Replace"
 msgstr "Ersätt"
 
-#: src/findreplace.c:173
+#: src/findreplace.c:177
 msgid "Replace All"
 msgstr "Ersätt alla"
 
-#: src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:210 src/main.c:102
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hoppa till byte"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:299 src/findreplace.c:324 src/findreplace.c:376
 msgid "There is no active buffer to search!"
 msgstr "Det finns ingen aktiv buffer att söka i!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:307 src/findreplace.c:332 src/findreplace.c:384
 msgid "There seems to be no string to search for!"
 msgstr "Det verkar inte finnas någon sträng att söka efter!"
 
-#: src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:314 src/findreplace.c:392
 msgid "End Of File reached"
-msgstr "Slutet på filen nådd"
+msgstr "Nådde slutet på filen"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:340
 msgid "Beginning Of File reached"
-msgstr "Början av filen nådd"
+msgstr "Nådde början på filen"
 
-#: src/findreplace.c:345
+#: src/findreplace.c:349
 msgid "There is no active buffer to move the cursor in!"
-msgstr "Finns ingen aktiv buffer att flytta markören i!"
+msgstr "Det finns ingen aktiv buffer att flytta markören i!"
 
-#: src/findreplace.c:350
+#: src/findreplace.c:354
 msgid "No offset has been specified!"
-msgstr "Ingen offset har specificerats!"
+msgstr "Ingen offset har angivits!"
 
-#: src/findreplace.c:357
+#: src/findreplace.c:361
 msgid "Can not position cursor beyond the End Of File!"
-msgstr "Kan ej positionera markören efter filens slut!"
+msgstr "Kan inte placera markören efter filslutet!"
 
-#: src/findreplace.c:362
+#: src/findreplace.c:366
 msgid "The offset must be a positive integer value!"
-msgstr "Offsetten måste vara ett positivt heltal!"
+msgstr "Offset måste vara ett positivt heltal!"
 
-#: src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:403 src/findreplace.c:440
 msgid "There is no active buffer to replace data in!"
 msgstr "Det finns ingen aktiv buffer att ersätta data i!"
 
-#: src/findreplace.c:410 src/findreplace.c:447
+#: src/findreplace.c:414 src/findreplace.c:451
 msgid "Strange find or replace string!"
 msgstr "Konstig sök- eller ersätt-sträng!"
 
-#: src/findreplace.c:425
+#: src/findreplace.c:429
 msgid "End Of File reached!"
-msgstr "Slutet på filen nådd!"
+msgstr "Nådde slutet på filen!"
 
-#: src/findreplace.c:463
+#: src/findreplace.c:467
 #, c-format
 msgid "Replaced %d occurencies."
-msgstr "Bytte ut %d förekomster"
+msgstr "Ersatte %d förekomster."
 
 #: src/hex-document.c:707
 msgid "Page"
@@ -158,7 +165,7 @@ msgstr "Nästa sida"
 
 #: src/hex-document-ui.c:50
 msgid "_Bytes"
-msgstr "_Bytes"
+msgstr "_Byte"
 
 #: src/hex-document-ui.c:51
 msgid "Group data by 8 bits"
@@ -214,18 +221,18 @@ msgstr "_Ta bort vy"
 
 #: src/hex-document-ui.c:90
 msgid "Remove the current view of the buffer"
-msgstr "Ta bort nyvarande vy av bufferten"
+msgstr "Ta bort nuvarande vy av bufferten"
 
-#: src/main.c:51
+#: src/main.c:52
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
-"Filen %s har ändrats sen den sparades senast.\n"
+"Filen %s har ändrats sedan den senast sparades.\n"
 "Vill du spara ändringarna?"
 
-#: src/main.c:202
+#: src/main.c:204
 #, c-format
 msgid "Offset: %s"
 msgstr "Offset: %s"
@@ -236,7 +243,7 @@ msgstr "Standard"
 
 #: src/preferences.c:53
 msgid "Notebook"
-msgstr "Anteckningsblock"
+msgstr "Flikhäfte"
 
 #: src/preferences.c:54
 msgid "Toplevel"
@@ -252,15 +259,15 @@ msgstr "Välj typsnitt"
 
 #: src/preferences.c:132
 msgid "Maximum number of undo levels"
-msgstr "Max antal ångra-steg"
+msgstr "Maximalt antal ångra-steg"
 
 #: src/preferences.c:147
 msgid "Show cursor offset in statusbar as"
-msgstr "Visa markörposition i statusrad som"
+msgstr "Visa markörpositionen i statusraden"
 
 #: src/preferences.c:166
 msgid "Hexadecimal"
-msgstr "Hexadecimal"
+msgstr "Hexadecimalt"
 
 #: src/preferences.c:172
 msgid "Custom"
@@ -287,7 +294,7 @@ msgstr "Bläddra..."
 #. default group type
 #: src/preferences.c:233
 msgid "Default Group Type"
-msgstr "Standard grupptyp"
+msgstr "Standardgrupptyp"
 
 #: src/preferences.c:249
 msgid "Display"
@@ -332,15 +339,15 @@ msgstr "rader (0 för ingen ruta)"
 msgid "Printing"
 msgstr "Skriver ut"
 
-#: src/preferences.c:534
+#: src/preferences.c:536
 msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
-"Offsetformateringssträngen innehåller formatspecificerare som inte är 'x', "
-"'d', eller 'o'!"
+"Offsetformateringssträngen innehåller ogiltiga formatspecificerare.\n"
+"Endast \"x\", \"X\", \"p\", \"P\", \"d\" och \"o\" är tillåtna."
 
-#: src/preferences.c:570
+#: src/preferences.c:573
 msgid "Can not open desired font!"
 msgstr "Kan inte öppna det önskade typsnittet!"
 
@@ -366,7 +373,7 @@ msgstr "_Konverterare..."
 
 #: src/ui.c:75
 msgid "Open base conversion dialog"
-msgstr "Öppna bas-konverteringsfönstret"
+msgstr "Öppna baskonverteringsfönstret"
 
 #: src/ui.c:76
 msgid "Character Table..."
@@ -394,11 +401,11 @@ msgstr "Långord"
 
 #: src/ui.c:115
 msgid "hex data"
-msgstr "hex data"
+msgstr "hex-data"
 
 #: src/ui.c:116
 msgid "ASCII data"
-msgstr "ASCII data"
+msgstr "ASCII-data"
 
 #: src/ui.c:200
 msgid "GHex, a binary file editor"
@@ -406,16 +413,16 @@ msgstr "GHex, en binärfilsredigerare"
 
 #: src/ui.c:202
 msgid "Released under the terms of GNU Public License"
-msgstr "Släppt under GNU Public License"
+msgstr "Släppt under villkoren i GNU Public License"
 
-#: src/ui.c:226 src/ui.c:548
+#: src/ui.c:226 src/ui.c:550
 msgid "Error saving file!"
-msgstr "Fel vid sparning av fil!"
+msgstr "Fel vid sparande av fil!"
 
-#: src/ui.c:230 src/ui.c:543
+#: src/ui.c:230 src/ui.c:545
 #, c-format
 msgid "Saved buffer to file %s"
-msgstr "Spara bufferten till fil %s"
+msgstr "Sparade bufferten till filen %s"
 
 #: src/ui.c:251
 msgid "Select a file to open"
@@ -429,32 +436,28 @@ msgstr "Välj en fil att spara bufferten som"
 msgid "Select path and file name for the HTML source"
 msgstr "Ange sökväg och filnamn för HTML-koden"
 
-#: src/ui.c:475
+#: src/ui.c:476
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Vill du verkligen återställa filen %s?"
 
-#: src/ui.c:488
+#: src/ui.c:490
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Återställde buffert från filen %s"
 
-#: src/ui.c:504
+#: src/ui.c:506
 #, c-format
 msgid "Loaded file %s"
-msgstr "Laddade in filen %s"
+msgstr "Läste in filen %s"
 
-#: src/ui.c:509
+#: src/ui.c:511
 msgid "Can not open file!"
-msgstr "Kan inte öppna fil!"
+msgstr "Kan inte öppna filen!"
 
-#: src/ui.c:552
+#: src/ui.c:554
 msgid "Can't open file for writing!"
-msgstr "Kan inte öppna fil för skrivning!"
-
-#: src/chartable.c:91
-msgid "Octal"
-msgstr "Oktal"
+msgstr "Kan inte öppna filen för skrivning!"
 
 #: src/chartable.c:98
 msgid "GHex: Character table"
@@ -469,1251 +472,3 @@ msgstr "GHex (%s): Förhandsgranskning"
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Sida: %i/%i"
-
-#~ msgid "Both strings must be of the same length!"
-#~ msgstr "Båda strängarna måste vara lika långa!"
-
-#~ msgid "The Gnome Calculator"
-#~ msgstr "Gnome miniräknaren"
-
-#~ msgid "Simple double precision calculator similiar to xcalc"
-#~ msgstr "Enkel dubbelprecisionsminiräknare liknande xcalc"
-
-#~ msgid "Gnome Calculator"
-#~ msgstr "Gnome miniräknaren"
-
-#~ msgid ""
-#~ "A quick hack to show the amount of space free on mounted file systems "
-#~ "uitilizing a dial."
-#~ msgstr ""
-#~ "Ett snabbt hack för att visa mängden fritt utrymme på ett monterat filsystem "
-#~ "med hjälp av en visare."
-
-#~ msgid "File name"
-#~ msgstr "Filnamn"
-
-#~ msgid "Don't search subdirectories"
-#~ msgstr "Leta inte i underkataloger"
-
-#~ msgid "File owner"
-#~ msgstr "Filägare"
-
-#~ msgid "File owner group"
-#~ msgstr "Filägargrupp"
-
-#~ msgid "Last modification time"
-#~ msgstr "Senast modifierad"
-
-#~ msgid "Don't search mounted filesystems"
-#~ msgstr "Leta inte i monterade filsystem"
-
-#~ msgid "Empty file"
-#~ msgstr "Tom fil"
-
-#~ msgid "Invalid user or group"
-#~ msgstr "Ogiltig användare eller grupp"
-
-#~ msgid "Filenames except"
-#~ msgstr "Filnamn förutom"
-
-#~ msgid "Follow symbolic links"
-#~ msgstr "Följ symboliska länkar"
-
-#~ msgid "Simple substring search"
-#~ msgstr "Enkel delsträngssökning"
-
-#~ msgid "Regular expression search"
-#~ msgstr "RegExp-sökning"
-
-#~ msgid "Extended regular expression search"
-#~ msgstr "Utökad RegExp-sökning"
-
-#~ msgid "grep options found in find list bad bad!"
-#~ msgstr "grep-alternativ hittade i söklistan, fy fy!"
-
-#~ msgid "non-grep option found in grep list, bad bad!"
-#~ msgstr "icke-grep-alternativ hittade i grep-listan, fy fy!"
-
-#~ msgid "Search Results"
-#~ msgstr "Sökresultat"
-
-#~ msgid "Enable"
-#~ msgstr "Aktivera"
-
-#~ msgid "Remove"
-#~ msgstr "Ta bort"
-
-#~ msgid "Start in directory:"
-#~ msgstr "Börja i bibliotek:"
-
-#~ msgid "Add"
-#~ msgstr "Lägg till"
-
-#~ msgid "Start"
-#~ msgstr "Start"
-
-#~ msgid "Stop"
-#~ msgstr "Stop"
-
-#~ msgid "This is not yet implemented"
-#~ msgstr "Ej implementerat ännu"
-
-#~ msgid "Full find (find)"
-#~ msgstr "Full sökning (find)"
-
-#~ msgid "Quick find (locate)"
-#~ msgstr "Snabbsökning (locate)"
-
-#~ msgid "The Gnome Search Tool"
-#~ msgstr "Sökverktyget i Gnome"
-
-#~ msgid "(C) 1998 the Free Software Foundation"
-#~ msgstr "(C) 1998 the Free Software Foundation"
-
-#~ msgid "Frontend to the unix find/grep/locate commands"
-#~ msgstr "Gränssnitt för unix kommandona find/grep/locate"
-
-#~ msgid "Gnome Search Tool"
-#~ msgstr "Gnome sökverktyg"
-
-#~ msgid "rparen expected"
-#~ msgstr "rparen förväntades"
-
-#~ msgid "no such field: %d"
-#~ msgstr "inget sådant fält: %d"
-
-#~ msgid "missing variable identifer"
-#~ msgstr "variabelidentifierare saknas"
-
-#~ msgid "invalid variable identifer: %s"
-#~ msgstr "ogiltig identifierare: %s"
-
-#~ msgid "number expected"
-#~ msgstr "nummer förväntades"
-
-#~ msgid "extra gunk at end: \"%s\""
-#~ msgstr "extra skräp på slutet: \"%s\""
-
-#~ msgid "%s, line %d: "
-#~ msgstr "%s, rad %d: "
-
-#~ msgid "can't open config file \"%s\""
-#~ msgstr "kan ej öppna konfigurationsfil \"%s\""
-
-#~ msgid ""
-#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-#~ msgstr ""
-#~ "kan ej öppna konfigurationsfil \"./gstripchart.conf\", \"%s\", \"%s\", eller "
-#~ "\"%s\""
-
-#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-#~ msgstr ""
-#~ "kan ej öppna konfigurationsfil \"./gstripchart.conf\", \"%s\" eller \"%s\""
-
-#~ msgid "identifier or begin must be first"
-#~ msgstr "identifierare eller 'begin' måste vara först"
-
-#~ msgid "unrecognized color: %s"
-#~ msgstr "ej igenkänd färg: %s"
-
-#~ msgid "scale must be either \"log\" or \"linear\""
-#~ msgstr "Skala måste antingen vara \"log\" eller \"linear\""
-
-#~ msgid "invalid option: \"%s\""
-#~ msgstr "ej giltig flagga: \"%s\""
-
-#~ msgid "E_xit"
-#~ msgstr "_Avsluta"
-
-#~ msgid "Terminate the stripchart program"
-#~ msgstr "Avsluta stripchart programmet"
-
-#~ msgid "Copyright 1998,99 John Kodis"
-#~ msgstr "Copyright 1998,1999 John Kodis"
-
-#~ msgid ""
-#~ "The GNOME stripchart program plots various user-specified parameters as a "
-#~ "function of time.  Its main use is to chart system performance parameters "
-#~ "such as CPU load, CPU utilization, network traffic levels, and the like.  "
-#~ "Other more ingenious uses are left as an exercise for the interested user."
-#~ msgstr ""
-#~ "GNOME diagramritaren ritar diverse användar-specifierade parametrar som "
-#~ "enfunktion av tiden.  Dess huvud-användingsområde är att plotta grafer "
-#~ "översystemanvädning, såsom cpu-last, cpu-användning, nätverkslast och "
-#~ "liknande.Andra användningsområden lämnas som en övning för den intresserade."
-
-#~ msgid "_About"
-#~ msgstr "_Om"
-
-#~ msgid "Info about the striphart program"
-#~ msgstr "Information om stripchart programmet"
-
-#~ msgid "_File"
-#~ msgstr "_Arkiv"
-
-#~ msgid "_Help"
-#~ msgstr "_Hjälp"
-
-#~ msgid "Param"
-#~ msgstr "Param"
-
-#~ msgid "Value"
-#~ msgstr "Värde"
-
-#~ msgid "Identifier"
-#~ msgstr "Identifierare"
-
-#~ msgid "Color"
-#~ msgstr "Färg"
-
-#~ msgid "Filename"
-#~ msgstr "Filnamn"
-
-#~ msgid "Pattern"
-#~ msgstr "Mönster"
-
-#~ msgid "Equation"
-#~ msgstr "Formel"
-
-#~ msgid "Expected range"
-#~ msgstr "Väntat område"
-
-#~ msgid "Displayed range"
-#~ msgstr "Visat område"
-
-#~ msgid "Current value"
-#~ msgstr "Aktuellt värde"
-
-#~ msgid "Active"
-#~ msgstr "Aktiv"
-
-#~ msgid "Stripchart Parameters"
-#~ msgstr "Gnome Diagramritare - parametrar"
-
-#~ msgid "Current"
-#~ msgstr "Nuvarande"
-
-#~ msgid "Top"
-#~ msgstr "Topp"
-
-#~ msgid "Help"
-#~ msgstr "Hjälp"
-
-#~ msgid "About"
-#~ msgstr "Om"
-
-#~ msgid "Params"
-#~ msgstr "Parametrar"
-
-#~ msgid "Exit"
-#~ msgstr "Avsluta"
-
-#~ msgid "gstripchart"
-#~ msgstr "gstripchart"
-
-#~ msgid "Stripchart Viewer"
-#~ msgstr "Stripchart-visare"
-
-#~ msgid "Params..."
-#~ msgstr "Parametrar..."
-
-#~ msgid "invalid display type: %s\n"
-#~ msgstr "ogiltig visningstyp: %s\n"
-
-#~ msgid "Geometry string: WxH+X+Y"
-#~ msgstr "Geometristräng: BxH+X+Y"
-
-#~ msgid "GEO"
-#~ msgstr "GEO"
-
-#~ msgid "Configuration file name"
-#~ msgstr "Filnamn för inställningsfil"
-
-#~ msgid "FILE"
-#~ msgstr "FIL"
-
-#~ msgid "Chart update interval"
-#~ msgstr "Diagram updateringsintervall"
-
-#~ msgid "SECS"
-#~ msgstr "SEK"
-
-#~ msgid "Chart low-pass filter time constant"
-#~ msgstr "Tidskonstant för lågpassfilter-diagram"
-
-#~ msgid "Slider update interval"
-#~ msgstr "Justera uppdateringsintervall"
-
-#~ msgid "Slider low-pass filter time constant"
-#~ msgstr "Justera tidskonstant för lågpass-filter"
-
-#~ msgid "Adds a menubar to the main window"
-#~ msgstr "Lägger till en menyrad för huvudfönstret"
-
-#~ msgid "Omits slider window"
-#~ msgstr "Ta bort justerar-handtag"
-
-#~ msgid "TYPE is one of gtk, applet, text, or none"
-#~ msgstr "TYP är en av gtk, applet, text, eller none"
-
-#~ msgid "TYPE"
-#~ msgstr "TYP"
-
-#~ msgid "TYPE is one of gtk, text, or none"
-#~ msgstr "TYP är en av gtk, text, eller none"
-
-#~ msgid "white"
-#~ msgstr "vit"
-
-#~ msgid "black"
-#~ msgstr "svart"
-
-#~ msgid "red"
-#~ msgstr "röd"
-
-#~ msgid "yellow"
-#~ msgstr "gul"
-
-#~ msgid "blue"
-#~ msgstr "blå"
-
-#~ msgid "green"
-#~ msgstr "grön"
-
-#~ msgid "cyan"
-#~ msgstr "cyan"
-
-#~ msgid "magenta"
-#~ msgstr "magenta"
-
-#~ msgid "Busy"
-#~ msgstr "Upptagen"
-
-#~ msgid "Load"
-#~ msgstr "Belastning"
-
-#~ msgid "Swap"
-#~ msgstr "Swap"
-
-#~ msgid "Battery"
-#~ msgstr "Batteri"
-
-#~ msgid "Net In"
-#~ msgstr "Nät In"
-
-#~ msgid "Net Out"
-#~ msgstr "Nät ut"
-
-#~ msgid "ppp"
-#~ msgstr "ppp"
-
-#~ msgid "no project selected"
-#~ msgstr "inget projekt valt"
-
-#~ msgid "00:00"
-#~ msgstr "00:00"
-
-#~ msgid ""
-#~ "Couldn't understand geometry (position and size)\n"
-#~ " specified on command line"
-#~ msgstr ""
-#~ "Förstod ej geometrin (position och storlek)\n"
-#~ " given på kommandoraden"
-
-#~ msgid "Total"
-#~ msgstr "Totalt"
-
-#~ msgid "Today"
-#~ msgstr "Idag"
-
-#~ msgid "Project Title"
-#~ msgstr "Projekttitel"
-
-#~ msgid "Description"
-#~ msgstr "Beskrivning"
-
-#~ msgid "program started"
-#~ msgstr "programmet startades"
-
-#~ msgid "no description"
-#~ msgstr "ingen beskrivning"
-
-#~ msgid "program exited"
-#~ msgstr "programmet avslutades"
-
-#~ msgid ""
-#~ "There seems to be another GTimeTracker running.\n"
-#~ "Press OK to start GTimeTracker anyway, or press Cancel to quit."
-#~ msgstr ""
-#~ "Du verkar redan köra en GTimeTracker.\n"
-#~ "Klicka på OK för att starta ändå eller tryck Avbryt för att hoppa ur."
-
-#~ msgid "Error"
-#~ msgstr "Fel"
-
-#~ msgid ""
-#~ "An error occured while reading the configuration file.\n"
-#~ "Shall I setup a new configuration?"
-#~ msgstr ""
-#~ "Ett fel uppstod vid läsning av inställningsfilen.\n"
-#~ "Ska jag skapa en ny uppsättning inställningar?"
-
-#~ msgid "Specify geometry"
-#~ msgstr "Välj geometri"
-
-#~ msgid "GEOMETRY"
-#~ msgstr "GEOMETRI"
-
-#~ msgid "Select a project on startup"
-#~ msgstr "Välj ett projekt vid uppstart"
-
-#~ msgid "PROJECT"
-#~ msgstr "PROJEKT"
-
-#~ msgid "Warning"
-#~ msgstr "Varning"
-
-#~ msgid "I could not write the configuration file!"
-#~ msgstr "Kunde ej spara inställningsfilen!"
-
-#~ msgid "New Project..."
-#~ msgstr "Nytt projekt..."
-
-#~ msgid "Please enter the name of the new project:"
-#~ msgstr "Mata in namnet på det nya projektet:"
-
-#~ msgid "I could not read the configuration file"
-#~ msgstr "Kunde ej ladda om inställningsfilen"
-
-#~ msgid "Reload Configuration File"
-#~ msgstr "Ladda om inställningsfilen"
-
-#~ msgid ""
-#~ "This will overwrite your current set of projects.\n"
-#~ "Do you really want to reload the configuration file?"
-#~ msgstr ""
-#~ "Detta skriver över dina nuvarande projekt.\n"
-#~ "Är du säker på att du vill ladda om inställningsfilen?"
-
-#~ msgid "_New Project..."
-#~ msgstr "_Nytt projekt..."
-
-#~ msgid "_Reload Configuration File"
-#~ msgstr "Ladda _om inställningsfilen"
-
-#~ msgid "_Save Configuration File"
-#~ msgstr "_Spara inställningsfilen"
-
-#~ msgid "Clear _Daily Counter"
-#~ msgstr "Rensa _dagliga räknaren"
-
-#~ msgid "St_art"
-#~ msgstr "St_arta"
-
-#~ msgid "Sto_p"
-#~ msgstr "Sto_ppa"
-
-#~ msgid "_Timer Running"
-#~ msgstr "_Timer aktiverad"
-
-#~ msgid "_Timer"
-#~ msgstr "_Timer"
-
-#~ msgid "Show Seconds"
-#~ msgstr "Visa sekunder"
-
-#~ msgid "Show Status Bar"
-#~ msgstr "Visa statusrad"
-
-#~ msgid "Show Table Header"
-#~ msgstr "Visa tabellhuvud"
-
-#~ msgid "Show Toolbar Icons"
-#~ msgstr "Visa knappradsikoner"
-
-#~ msgid "Show Toolbar Texts"
-#~ msgstr "Visa knappradstexter"
-
-#~ msgid "Show Tooltips"
-#~ msgstr "Visa hjälpbubblor"
-
-#~ msgid "Toolbar Segments"
-#~ msgstr "Knappradsdelar"
-
-#~ msgid "Show `New'"
-#~ msgstr "Visa `Ny'"
-
-#~ msgid "Show `Save', `Reload'"
-#~ msgstr "Visa `Ladda om', `Spara'"
-
-#~ msgid "Show `Cut', `Copy', `Paste'"
-#~ msgstr "Visa `Klipp ut', `Kopiera', `Klistra in'"
-
-#~ msgid "Show `Properties'"
-#~ msgstr "Visa `Egenskaper'"
-
-#~ msgid "Show `Timer'"
-#~ msgstr "Visa `Timer'"
-
-#~ msgid "Show `Preferences'"
-#~ msgstr "Visa `Inställningar'"
-
-#~ msgid "Show `Help'"
-#~ msgstr "Visa `Hjälp'"
-
-#~ msgid "Show `Quit'"
-#~ msgstr "Visa `Avsluta'"
-
-#~ msgid "Shell Commands"
-#~ msgstr "Skalkommandon"
-
-#~ msgid "Switch Project Command:"
-#~ msgstr "Byta projekt-kommando:"
-
-#~ msgid "No Project Command:"
-#~ msgstr "Inget projekt-kommando:"
-
-#~ msgid "Logfile"
-#~ msgstr "Loggfil"
-
-#~ msgid "Use Logfile"
-#~ msgstr "Använd loggfil"
-
-#~ msgid "Filename:"
-#~ msgstr "Filnamn:"
-
-#~ msgid "Entry Start:"
-#~ msgstr "Projektstart:"
-
-#~ msgid "Entry Stop:"
-#~ msgstr "Projektstopp:"
-
-#~ msgid "Timeout in secs:"
-#~ msgstr "Timeout i sekunder:"
-
-#~ msgid "Preferences"
-#~ msgstr "Inställningar"
-
-# FIXME
-#~ msgid "Misc"
-#~ msgstr "Diverse"
-
-#~ msgid "project %t started"
-#~ msgstr "projekt %t startad"
-
-#~ msgid "stopped project %t"
-#~ msgstr "stoppade projekt %t"
-
-#~ msgid "empty"
-#~ msgstr "tom"
-
-#~ msgid "Project"
-#~ msgstr "Projekt"
-
-#~ msgid "Project Title:"
-#~ msgstr "Projekttitel:"
-
-#~ msgid "Project Description:"
-#~ msgstr "Projektbeskrivning:"
-
-#~ msgid "Project Time today:"
-#~ msgstr "Projekttid idag:"
-
-#~ msgid "hours"
-#~ msgstr "timmar"
-
-#~ msgid "mins"
-#~ msgstr "minuter"
-
-#~ msgid "secs"
-#~ msgstr "sekunder"
-
-#~ msgid "Project Time ever:"
-#~ msgstr "Projekttid totalt:"
-
-#~ msgid "[GTT]New"
-#~ msgstr "Ny"
-
-#~ msgid "Reload"
-#~ msgstr "Ladda om"
-
-#~ msgid "Save"
-#~ msgstr "Spara"
-
-#~ msgid "Save Configuration File"
-#~ msgstr "Spara inställningsfil"
-
-#~ msgid "Cut"
-#~ msgstr "Klipp ut"
-
-#~ msgid "Cut Selected Project"
-#~ msgstr "Klipp ut markerat projekt"
-
-#~ msgid "Copy"
-#~ msgstr "Kopiera"
-
-#~ msgid "Copy Selected Project"
-#~ msgstr "Kopiera markerat projekt"
-
-#~ msgid "Paste Project"
-#~ msgstr "Klistra in projekt"
-
-#~ msgid "Props"
-#~ msgstr "Egensk."
-
-#~ msgid "Edit Properties..."
-#~ msgstr "Ändra egenskaper..."
-
-#~ msgid "Timer"
-#~ msgstr "Timer"
-
-#~ msgid "Start/Stop Timer"
-#~ msgstr "Starta/stoppa timer"
-
-#~ msgid "Prefs"
-#~ msgstr "Inställn."
-
-#~ msgid "Edit Preferences..."
-#~ msgstr "Ändra inställningar"
-
-#~ msgid "Manual"
-#~ msgstr "Manual"
-
-#~ msgid "Manual..."
-#~ msgstr "Manual..."
-
-#~ msgid "Quit"
-#~ msgstr "Avsluta"
-
-#~ msgid "Quit GTimeTracker"
-#~ msgstr "Avsluta GTimeTracker"
-
-#~ msgid "Gnome Color Browser"
-#~ msgstr "Gnome färgbläddrare"
-
-#~ msgid "Format Style:"
-#~ msgstr "Formatstil:"
-
-#~ msgid "Color Name:"
-#~ msgstr "Färgnamn:"
-
-#~ msgid "Color Values:"
-#~ msgstr "Färgvärden:"
-
-#~ msgid "Name"
-#~ msgstr "Namn"
-
-#~ msgid "Error, cannot find the file 'rgb.txt' on your system!"
-#~ msgstr "Fel, kan inte hitta filen 'rgb.txt' på ditt system!"
-
-#~ msgid "Parsing Colors"
-#~ msgstr "Tolkar färger"
-
-#~ msgid "Decimal (8 bit)"
-#~ msgstr "Decimal (8 bit)"
-
-#~ msgid "Decimal (16 bit)"
-#~ msgstr "Decimal (16 bit)"
-
-#~ msgid "Hex (8 bit)"
-#~ msgstr "Hex (8 bit)"
-
-#~ msgid "Hex (16 bit)"
-#~ msgstr "Hex (16 bit)"
-
-#~ msgid "Float"
-#~ msgstr "Flyttal"
-
-#~ msgid "Small utility to browse available X11 colors."
-#~ msgstr "Litet program för att bläddra tillgängliga X11-färger."
-
-#~ msgid "Font Selector"
-#~ msgstr "Typsnittsväljare"
-
-#~ msgid "Font to load"
-#~ msgstr "Typsnitt att ladda"
-
-#~ msgid "FONTSPEC"
-#~ msgstr "FONTSPEC"
-
-#~ msgid "Print selected font name on exit"
-#~ msgstr "Skriv ut valt typsnitt vid avslutning"
-
-#~ msgid "Inhibit remembering selected font for next run"
-#~ msgstr "Avaktivera minne för valt typsnitt vid nästa körning"
-
-#~ msgid "Inhibit loading of last font"
-#~ msgstr "Avaktivera laddning av senaste typsnitt"
-
-#~ msgid "Copyright 1998, under the GNU General Public License."
-#~ msgstr "Copyright 1998, under GNU General Public License."
-
-#~ msgid "Reason %d\n"
-#~ msgstr "Anledning %d\n"
-
-#~ msgid "Where to put the window, and its size"
-#~ msgstr "Var fönstret skall placeras och dess storlek"
-
-#~ msgid "Ignore standard input; may be needed in some cases."
-#~ msgstr "Ingorera standard-inmatning; kan behövas i vissa fall."
-
-#~ msgid "_New Window"
-#~ msgstr "_Nytt fönster"
-
-#~ msgid "New text viewer window"
-#~ msgstr "Nytt textvisarfönster"
-
-#~ msgid "_Fixed Font"
-#~ msgstr "_Fixt typsnitt"
-
-#~ msgid "Display text with a fixed font"
-#~ msgstr "Visa text med fixt typsnitt"
-
-#~ msgid "Text File Viewer"
-#~ msgstr "Textfilsvisare"
-
-#~ msgid "Find string"
-#~ msgstr "Sök sträng"
-
-#~ msgid "Find"
-#~ msgstr "Sök"
-
-#~ msgid "Loading..."
-#~ msgstr "Laddar..."
-
-#~ msgid ""
-#~ "No such file or directory:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Ingen sådan fil eller katalog:\n"
-#~ "%s"
-
-#~ msgid ""
-#~ "Failed to decompress and display the file:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Misslyckades med att packa upp och visa filen:\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid ""
-#~ "Unable to display compressed file.\n"
-#~ "zcat not found in your path."
-#~ msgstr ""
-#~ "Kan ej visa den komprimerade filen.\n"
-#~ "Hittade ej zcat i din sökväg."
-
-#~ msgid ""
-#~ "Error loading file:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Fel vid inläsning av fil:\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid "Saving..."
-#~ msgstr "Sparar..."
-
-#~ msgid ""
-#~ "Failed to write file:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Misslyckades med att skriva fil:\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid "Save Text As..."
-#~ msgstr "Spara text som..."
-
-#~ msgid "Open Text File..."
-#~ msgstr "Öppna textfil..."
-
-#~ msgid "Sorry, no preferences yet."
-#~ msgstr "Ledsen, inga inställningar än."
-
-#~ msgid "Searching..."
-#~ msgstr "Söker..."
-
-#~ msgid "No search string was specified!"
-#~ msgstr "Ingen söksträng har specifierats!"
-
-#~ msgid ""
-#~ "Failed to execute command:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Misslyckades med att exekvera kommando:\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid "Run Program"
-#~ msgstr "Kör program"
-
-#~ msgid "Run"
-#~ msgstr "Kör"
-
-#~ msgid "Cancel"
-#~ msgstr "Avbryt"
-
-#~ msgid "Select a program to run"
-#~ msgstr "Välj program som skall köras"
-
-#~ msgid "Shut Down"
-#~ msgstr "Stäng av"
-
-#~ msgid "Single User Mode"
-#~ msgstr "Singel-användarläge"
-
-#~ msgid "Runlevel 2"
-#~ msgstr "Runlevel 2"
-
-#~ msgid "Runlevel 3"
-#~ msgstr "Runlevel 3"
-
-#~ msgid "Runlevel 4"
-#~ msgstr "Runlevel 4"
-
-#~ msgid "Runlevel 5"
-#~ msgstr "Runlevel 5"
-
-#~ msgid "Reboot"
-#~ msgstr "Omstart"
-
-#~ msgid "Are you sure you want to shut down the computer?"
-#~ msgstr "Är du säker att du vill stänga av datorn?"
-
-#~ msgid "Are you sure you want to switch to single user mode?"
-#~ msgstr "Är du säker att du vill ändra till singel-användarläge?"
-
-#~ msgid "Are you sure you want to switch to runlevel 2?"
-#~ msgstr "Är du säker på att du vill byta till runlevel 2?"
-
-#~ msgid "Are you sure you want to switch to runlevel 3?"
-#~ msgstr "Är du säker på att du vill byta till runlevel 3?"
-
-#~ msgid "Are you sure you want to switch to runlevel 4?"
-#~ msgstr "Är du säker på att du vill byta till runlevel 4?"
-
-#~ msgid "Are you sure you want to switch to runlevel 5?"
-#~ msgstr "Är du säker på att du vill byta till runlevel 5?"
-
-#~ msgid "Are you sure you want to reboot the system?"
-#~ msgstr "Är du säker på att du vill starta om systemet?"
-
-#~ msgid ""
-#~ "You must be the super-user (root) to shut down or restart the computer."
-#~ msgstr ""
-#~ "Du måste vara super-användaren (root) för att stänga av eller starta om "
-#~ "datorn."
-
-#~ msgid "Shutdown or Reboot"
-#~ msgstr "Stänga av eller starta om datorn"
-
-#~ msgid "Easy"
-#~ msgstr "Enkel"
-
-#~ msgid "Advanced"
-#~ msgstr "Avancerad"
-
-#~ msgid ""
-#~ "Click OK to shutdown or reboot. You will lose\n"
-#~ "any unsaved information in open applications."
-#~ msgstr ""
-#~ "Tryck OK för att stänga av eller starta om\n"
-#~ "datorn. Du kommer då att förlora osparad data."
-
-#~ msgid "Revert to Defaults"
-#~ msgstr "Återställ till standard"
-
-#~ msgid "Commands"
-#~ msgstr "Kommandon"
-
-#~ msgid "Confirm before shutdown?"
-#~ msgstr "Bekräfta före avstängning"
-
-#~ msgid "General"
-#~ msgstr "Allmänt"
-
-#~ msgid ""
-#~ "%s\n"
-#~ "You will lose any unsaved work."
-#~ msgstr ""
-#~ "%s\n"
-#~ "Du kommer att förlora data du ej sparat."
-
-#~ msgid "Don't ask next time."
-#~ msgstr "Fråga inte nästa gång"
-
-#~ msgid "Command execution failed: fork failed"
-#~ msgstr "Kommando-exekvering misslyckades: gren misslyckades"
-
-#~ msgid "Make guname act as a control center applet"
-#~ msgstr "Gör så att guname blir ett kontrollcenter-applet"
-
-#~ msgid "an initialization error occurred while starting 'guname-capplet'."
-#~ msgstr "ett initialiseringsfel uppstod vid start av 'guname-capplet'."
-
-#~ msgid "System Information"
-#~ msgstr "Systeminformation"
-
-#~ msgid "Logo file not found"
-#~ msgstr "Hittade ej logo-filen"
-
-#~ msgid "GNOME contributors:"
-#~ msgstr "GNOME bidragare:"
-
-#~ msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-#~ msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-
-#~ msgid "GNOME: The GNU Network Object Model Environment"
-#~ msgstr "GNOME: The GNU Network Object Model Environment"
-
-#~ msgid "Email Information..."
-#~ msgstr "Skicka informationen via epost..."
-
-#~ msgid "Save Information to File..."
-#~ msgstr "Spara informationen till fil..."
-
-#~ msgid "Detailed Information..."
-#~ msgstr "Detaljerad information..."
-
-#~ msgid "Category"
-#~ msgstr "Kategori"
-
-#~ msgid "Your System"
-#~ msgstr "Ditt system"
-
-#~ msgid "Save As..."
-#~ msgstr "Spara som..."
-
-#~ msgid "Mail To..."
-#~ msgstr "Skicka epost till..."
-
-#~ msgid ""
-#~ "Error closing file `%s': \n"
-#~ "%s\n"
-#~ "Some or all data may not have been written."
-#~ msgstr ""
-#~ "Fel vid stängning av fil `%s': \n"
-#~ "%s\n"
-#~ "Delar eller all data kanske inte skrevs korrekt."
-
-#~ msgid "Couldn't open file `%s': %s"
-#~ msgstr "Kunde ej öppna filen `%s': %s"
-
-#~ msgid "Save System Information As..."
-#~ msgstr "Spara systeminformation som..."
-
-#~ msgid "Command failed ` %s ': %s"
-#~ msgstr "Kommando misslyckades ` %s ': %s"
-
-#~ msgid "Couldn't run command ` %s ': %s"
-#~ msgstr "Kunde ej köra kommando ` %s ': %s"
-
-#~ msgid ""
-#~ "The following mail will be sent to %s.\n"
-#~ " Are you sure you want to mail this information?"
-#~ msgstr ""
-#~ "Följande epost kommer att skickas till %s.\n"
-#~ " Är du säker att du vill skicka denna information via epost?"
-
-#~ msgid "Are you sure?"
-#~ msgstr "Är du säker?"
-
-#~ msgid "Address to mail to:"
-#~ msgstr "Adress att skicka epost till:"
-
-#~ msgid "Distribution:"
-#~ msgstr "Distribution:"
-
-#~ msgid "Operating System:"
-#~ msgstr "Operativsystem:"
-
-#~ msgid "Distribution Version:"
-#~ msgstr "Distributionsversion:"
-
-#~ msgid "Operating System Version:"
-#~ msgstr "Operativsystemsversion:"
-
-#~ msgid "Operating System Release:"
-#~ msgstr "Operativsystemsutgåva:"
-
-#~ msgid "Processor Type:"
-#~ msgstr "Processortyp:"
-
-#~ msgid "Processor Speed:"
-#~ msgstr "Processorhastighet:"
-
-#~ msgid "Host Name:"
-#~ msgstr "Värdnamn:"
-
-#~ msgid "Domain Name:"
-#~ msgstr "Domännamn:"
-
-#~ msgid "User Name:"
-#~ msgstr "Användarnamn:"
-
-#~ msgid "X Display Name:"
-#~ msgstr "X Display namn:"
-
-#~ msgid "System Status:"
-#~ msgstr "Systemstatus:"
-
-#~ msgid "Real Memory:"
-#~ msgstr "Fysiskt minne:"
-
-#~ msgid "Swap Space (\"virtual memory\"):"
-#~ msgstr "Swaputrymme (\"virtuellt minne\"):"
-
-#~ msgid "Total Memory:"
-#~ msgstr "Totalt minne:"
-
-#~ msgid "Free Memory:"
-#~ msgstr "Fritt minne:"
-
-#~ msgid "Device"
-#~ msgstr "Enhet"
-
-#~ msgid "Size"
-#~ msgstr "Storlek"
-
-#~ msgid "Used space"
-#~ msgstr "Använt utrymme"
-
-#~ msgid "Free space"
-#~ msgstr "Fritt utrymme"
-
-#~ msgid "Percent free"
-#~ msgstr "Procent fritt"
-
-#~ msgid "Mount point"
-#~ msgstr "Monteringspunkt"
-
-#~ msgid "Unknown"
-#~ msgstr "Okänt"
-
-#~ msgid "Unknown filesystem"
-#~ msgstr "Okänt filsystem"
-
-#~ msgid "No information for this filesystem."
-#~ msgstr "Ingen information om detta filsystem."
-
-#~ msgid "Memory"
-#~ msgstr "Minne"
-
-#~ msgid "Kilobytes"
-#~ msgstr "Kilobyte"
-
-#~ msgid "%ld%% memory used."
-#~ msgstr "%ld%% minne använt."
-
-#~ msgid "%ld%% swap used."
-#~ msgstr "%ld%% swap använd."
-
-#~ msgid "CPU %d"
-#~ msgstr "CPU %d"
-
-#~ msgid "Detailed System Information"
-#~ msgstr "Detaljerad systeminformation"
-
-#~ msgid "Disk Information"
-#~ msgstr "Diskinformation"
-
-#~ msgid "Memory Information"
-#~ msgstr "Minnesinformation"
-
-#~ msgid "CPU Information"
-#~ msgstr "CPU Information"
-
-#~ msgid "Mount Point: "
-#~ msgstr "Monteringspunkt: "
-
-#~ msgid "    Device: "
-#~ msgstr "    Enhet: "
-
-#~ msgid "    Filesystem Type: "
-#~ msgstr "    Filsystemstyp: "
-
-#~ msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-#~ msgstr "%ld megabyte, %ld fritt (%ld superanvändare); %ld inoder, %ld fria."
-
-#~ msgid "%2d%% full "
-#~ msgstr "%2d%% full "
-
-#~ msgid ""
-#~ "Couldn't find the \"w\" command in your path.\n"
-#~ "This command is needed for the program to work."
-#~ msgstr ""
-#~ "Kunde ej hitta kommandot \"w\" i din sökväg.\n"
-#~ "Det kommandot krävs för korrekt körning."
-
-#~ msgid "_Save..."
-#~ msgstr "_Spara..."
-
-#~ msgid "Write information to disk"
-#~ msgstr "Spara information till disk"
-
-#~ msgid "Active User Listing"
-#~ msgstr "Lista med aktiva användare"
-
-#~ msgid "Update Information"
-#~ msgstr "Uppdatera informationen"
-
-#~ msgid "Save not implemented yet\n"
-#~ msgstr "Spara är ej implementerat ännu\n"
-
-#~ msgid "Command Line"
-#~ msgstr "Kommandorad"
-
-#~ msgid "Add some defaults"
-#~ msgstr "Lägg till några standardposter"
-
-#~ msgid "Delete"
-#~ msgstr "Ta bort"
-
-#~ msgid "Command Editor"
-#~ msgstr "Kommandoeditor"
-
-#~ msgid ""
-#~ "You can configure the commands on the popup menus.\n"
-#~ "Just enter the name you want to appear on the \n"
-#~ "menu, and the command to execute.\n"
-#~ "In the command, you can use %u to represent the\n"
-#~ "currently selected username, and %t for the tty."
-#~ msgstr ""
-#~ "Du kan ändra kommandona på popup-menyn.\n"
-#~ "Mata bara in namnet i menyn och vilket program\n"
-#~ "den skall köra. I kommandosträngen kan du\n"
-#~ "använda %u för att representera vald användare\n"
-#~ "och %t för dess tty."
-
-#~ msgid ""
-#~ "Click this button to add\n"
-#~ "some sample commands."
-#~ msgstr ""
-#~ "Tryck på den här knappen\n"
-#~ "för att lägga till standard\n"
-#~ "kommandon."
-
-#~ msgid "Menu items"
-#~ msgstr "Menyposter"
-
-#~ msgid "Command"
-#~ msgstr "Kommando"
-
-#~ msgid "Running: %s\n"
-#~ msgstr "Kör: %s\n"
-
-#~ msgid "16-bit"
-#~ msgstr "16-bit"
-
-#~ msgid "32-bit"
-#~ msgstr "32-bit"
-
-#~ msgid "32-bit w/sync"
-#~ msgstr "32-bit med sync"
-
-#~ msgid "Sleeping"
-#~ msgstr "Sover"
-
-#~ msgid "Active/Idle"
-#~ msgstr "Aktiv/Oaktiv"
-
-#~ msgid "Standby"
-#~ msgstr "Viloläge"
-
-#~ msgid "Unable to access the drive."
-#~ msgstr "Kan ej komma åt disken."
-
-#~ msgid "The DMA setting for this drive cannot be changed."
-#~ msgstr "DMA-inställningarna för denna disk kan ej ändras."
-
-#~ msgid "Enabled"
-#~ msgstr "Aktiverad"
-
-#~ msgid "Disabled"
-#~ msgstr "Avaktiverad"
-
-#~ msgid "The IRQ unmask setting for this drive cannot be changed."
-#~ msgstr "IRQ unmask-inställningen för denna disk kan ej ändras."
-
-#~ msgid "The drive refused to keep its settings."
-#~ msgstr "Disken vägrade behålla sina inställningar."
-
-#~ msgid "Keep settings"
-#~ msgstr "Behåll inställningar"
-
-#~ msgid "None"
-#~ msgstr "Ingen"
-
-#~ msgid "(1 Sector)"
-#~ msgstr "(1 sektor)"
-
-#~ msgid "(Dual Port)"
-#~ msgstr "(dubbelport)"
-
-#~ msgid "(Dual Port Cache)"
-#~ msgstr "(dubbelports-cache)"
-
-#~ msgid "No"
-#~ msgstr "Nej"
-
-#~ msgid "Yes (%d sector)"
-#~ msgstr "Ja (%d sektor)"
-
-#~ msgid "Yes (%d sectors)"
-#~ msgstr "Ja (%d sektorer)"
-
-#~ msgid "Model"
-#~ msgstr "Modell"
-
-#~ msgid "Firmware"
-#~ msgstr "Fast mjukvara"
-
-#~ msgid "Serial No."
-#~ msgstr "Serienummer"
-
-#~ msgid "Geometry"
-#~ msgstr "Geometri"
-
-#~ msgid "Cache"
-#~ msgstr "Cache"
-
-#~ msgid "Status"
-#~ msgstr "Status"
-
-#~ msgid "Legacy MFM/RLL drive"
-#~ msgstr "Gammal MFM/RLL-disk"
-
-#~ msgid "DMA Mode"
-#~ msgstr "DMA-läge"
-
-#~ msgid "IO Mode"
-#~ msgstr "IO-läge"
-
-#~ msgid "IRQ Unmask"
-#~ msgstr "IRQ Unmask"
-
-#~ msgid "Multisector"
-#~ msgstr "Multisektor"
-
-#~ msgid "On Reset"
-#~ msgstr "Vid reset"
-
-#~ msgid "IDE Status"
-#~ msgstr "IDE status"
-
-#~ msgid "Disk Logo Not Found"
-#~ msgstr "Hittade ej Disk-logon"
-
-#~ msgid "Only the superuser can use this tool"
-#~ msgstr "Endast superanvändaren kan använda detta verktyg"
-
-#~ msgid "You appear to have no IDE drives"
-#~ msgstr "Du verkar inte ha några IDE-diskar"
-
-#~ msgid "invalid display type: %s"
-#~ msgstr "ogiltig visningstyp: %s"
