@@ -54,11 +54,11 @@ GnomeUIInfo file_menu[] = {
 	/* keep in sync: main.c/child_changed_cb: setting sensitivity of items 1 - 3 */
 	GNOMEUIINFO_MENU_SAVE_ITEM(save_cb, NULL),
 	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb, NULL),
-	GNOMEUIINFO_ITEM(N_("Export to HTML..."), N_("Export data to HTML source"), export_html_cb, NULL),
+	GNOMEUIINFO_ITEM(N_("Export to _HTML..."), N_("Export data to HTML source"), export_html_cb, NULL),
 	GNOMEUIINFO_MENU_REVERT_ITEM(revert_cb, NULL),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_PRINT_ITEM(print_cb, NULL),
-	GNOMEUIINFO_ITEM(N_("Print preview..."), N_("Preview printed data"), print_preview_cb, NULL),
+	GNOMEUIINFO_ITEM(N_("Print pre_view..."), N_("Preview printed data"), print_preview_cb, NULL),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_CLOSE_ITEM(close_cb, NULL),
 	GNOMEUIINFO_MENU_EXIT_ITEM(quit_app_cb, NULL),
@@ -73,7 +73,7 @@ GnomeUIInfo settings_menu[] = {
 GnomeUIInfo tools_menu[] = {
 	GNOMEUIINFO_ITEM_NONE(N_("Con_verter..."),
 						  N_("Open base conversion dialog"), converter_cb),
-	GNOMEUIINFO_ITEM_NONE(N_("Character Table..."),
+	GNOMEUIINFO_ITEM_NONE(N_("Character _Table..."),
 						  N_("Show the character table"), char_table_cb),
 	GNOMEUIINFO_END
 };
@@ -91,7 +91,7 @@ GnomeUIInfo help_menu[] = {
 
 GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
-	GNOMEUIINFO_SUBTREE(N_("Tools"), tools_menu),
+	GNOMEUIINFO_SUBTREE(N_("_Tools"), tools_menu),
 	GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menu),
 	GNOMEUIINFO_MENU_FILES_TREE(empty_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),

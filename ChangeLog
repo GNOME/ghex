@@ -1,3 +1,27 @@
+2001-04-12  Chema Celorio  <chema@celorio.com>
+
+	* src/converter.c (set_values): remove leading 0's
+	from the entries
+	(clean): implement.
+	(filter_editable): add a filter to the entries so that
+	we don't have to relly on the user typing a valid number.
+	We should not get ERROR in the entries no
+	(is_char_ok): implement
+	(key_press_event_cb): implement. We can now acces the menus
+	that have accelerartors with hex letters A-F. "File" menu
+	is now accelerated
+	(my_entry): implement to create the conversion entries
+	(my_button): implement
+	* src/converter.c: remove a compile warning by casting val to
+	unsigned int
+	* src/ui.c: mark the "_T" for the Tools menu so that we can use the
+	accelerator
+	mark the _H in Export to _HTML 
+	ditto for "Print pre_view"
+	Character _Table
+	* src/gtkhex.c (gtk_hex_key_press): don't handle the A-F keys
+	if the MOD1_MASK flag is set, the user wants to get to a menu
+
 2001-03-22  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/gtkhex.c: changed one more free() to g_free().
