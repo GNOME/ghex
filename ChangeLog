@@ -1,3 +1,13 @@
+1998-05-28  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* gnome-mdi.[ch]: cleaned the code up a bit and added toolbar creation
+	support.
+	* gnome-document.c: added default document_changed signal handler to
+	GnomeDocument, so that derived classes need not take care of it.
+	* hex-document.c: removed document_changed signal handler because the
+	default one in the parent class serves its purpose.
+	* ui.c: changed to accomodate clean-ups in gnome-mdi.c
+
 1998-05-27  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* ui.c: use the new GNOME_APP_UI_JUSTIFY_RIGHT tag to right-justify the

@@ -182,12 +182,12 @@ void create_toolbar() {
 #endif
 
 #ifndef USE_APP_HELPER
-GList *create_mdi_menus(GnomeMDI *mdi) {
-  GList *menu_list;
+GtkMenuBar *create_mdi_menus(GnomeMDI *mdi) {
   GtkWidget *w, *menu;
+  GtkMenuBar *menubar;
   GtkAcceleratorTable *accel = NULL;
 
-  menu_list = NULL;
+  menubar = GTK_WIDGET(gtk_menubar_new());
 
   menu = gtk_menu_new();
 
@@ -250,7 +250,8 @@ GList *create_mdi_menus(GnomeMDI *mdi) {
   w = gtk_menu_item_new_with_label(_("File"));
   gtk_widget_show(w);
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
-  menu_list = g_list_append(menu_list, w);
+  
+  gtk_menubar_append(menubar, w);
 
   /* the View menu */
   menu = gtk_menu_new();
@@ -276,7 +277,7 @@ GList *create_mdi_menus(GnomeMDI *mdi) {
      gpointer looks really bad. any ideas? */
   gtk_object_set_data(GTK_OBJECT(w), "MDIDocumentMenu", (gpointer)TRUE);
 
-  menu_list = g_list_append(menu_list, w);
+  gtk_menubar_append(menubar, w);
 
   /* the Help menu */
   menu = gtk_menu_new();
@@ -305,9 +306,9 @@ GList *create_mdi_menus(GnomeMDI *mdi) {
   gtk_menu_item_right_justify(GTK_MENU_ITEM(w));
   gtk_object_set_data(GTK_OBJECT(w), "MDIDocumentList", (gpointer)TRUE);
 
-  menu_list = g_list_append(menu_list, w);
+  gtk_menubar_append(menubar, w);
 
-  return menu_list;
+  return menubar;
 }
 #endif
 

@@ -32,7 +32,6 @@
 #include <gdk/gdk.h>
 
 #include <libgnome/libgnome.h>
-
 #include <libgnomeui/libgnomeui.h>
 
 #include <gnome-document.h>
@@ -48,10 +47,12 @@ extern "C" {
 typedef struct _GnomeMDI       GnomeMDI;
 typedef struct _GnomeMDIClass  GnomeMDIClass;
 
-#define GNOME_MDI_MS       (1L << 0)      /* for MS-like MDI */
-#define GNOME_MDI_NOTEBOOK (1L << 1)      /* notebook */
-#define GNOME_MDI_MODAL    (1L << 2)      /* "modal" app */
-#define GNOME_MDI_TOPLEVEL (1L << 3)      /* many toplevel windows */
+#define GNOME_MDI_MS         (1L << 0)      /* for MS-like MDI */
+#define GNOME_MDI_NOTEBOOK   (1L << 1)      /* notebook */
+#define GNOME_MDI_MODAL      (1L << 2)      /* "modal" app */
+#define GNOME_MDI_TOPLEVEL   (1L << 3)      /* many toplevel windows */
+
+#define GNOME_MDI_MODE_FLAGS (GNOME_MDI_MS | GNOME_MDI_NOTEBOOK | GNOME_MDI_MODAL | GNOME_MDI_TOPLEVEL)
 
 struct _GnomeMDI {
   GtkObject object;
@@ -71,21 +72,21 @@ struct _GnomeMDI {
   GnomeUIInfo *menu_template;
   GnomeUIInfo *toolbar_template;
 
-  GnomeRootWin *root_window; /* this will be needed for DND */
+  GnomeRootWin *root_window; /* this is needed for DND */
 };
 
 struct _GnomeMDIClass
 {
   GtkObjectClass parent_class;
 
-  GList * (*create_menus)(GnomeMDI *); 
-  gint    (*add_document)(GnomeMDI *, GnomeDocument *); 
-  gint    (*remove_document)(GnomeMDI *, GnomeDocument *); 
-  gint    (*add_view)(GnomeMDI *, GtkWidget *); 
-  gint    (*remove_view)(GnomeMDI *, GtkWidget *); 
-  void    (*document_changed)(GnomeMDI *, GnomeDocument *, gpointer);
-  void    (*document_retitled)(GnomeMDI *, GnomeDocument *);
-  void    (*app_created)(GnomeMDI *, GnomeApp *);
+  GtkMenuBar *(*create_menus)(GnomeMDI *);
+  GtkToolbar *(*create_toolbar)(GnomeMDI *);
+  gint        (*add_document)(GnomeMDI *, GnomeDocument *); 
+  gint        (*remove_document)(GnomeMDI *, GnomeDocument *); 
+  gint        (*add_view)(GnomeMDI *, GtkWidget *); 
+  gint        (*remove_view)(GnomeMDI *, GtkWidget *); 
+  void        (*document_changed)(GnomeMDI *, GnomeDocument *, gpointer);
+  void        (*app_created)(GnomeMDI *, GnomeApp *);
 };
 
 GtkObject *gnome_mdi_new(gchar *, gchar *);

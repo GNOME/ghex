@@ -13,6 +13,7 @@
 static void gnome_document_class_init       (GnomeDocumentClass *klass);
 static void gnome_document_init             (GnomeDocument *);
 static void gnome_document_destroy          (GtkObject *);
+static void gnome_document_real_changed     (GnomeDocument *, gpointer);
 
 enum {
   CREATE_VIEW,
@@ -22,7 +23,7 @@ enum {
 };
 
 typedef GtkWidget *(*GnomeDocumentSignal1) (GtkObject *, gpointer);
-typedef void (*GnomeDocumentSignal2) (GtkObject *, gpointer, gpointer);
+typedef void       (*GnomeDocumentSignal2) (GtkObject *, gpointer, gpointer);
 typedef GtkWidget *(*GnomeDocumentSignal3) (GtkObject *, gpointer, gpointer);
 
 static GtkObjectClass *parent_class = NULL;
@@ -116,7 +117,7 @@ static void gnome_document_class_init (GnomeDocumentClass *class) {
 
   class->create_view = NULL;
   class->create_menus = NULL;
-  class->document_changed = NULL;
+  class->document_changed = gnome_document_real_changed;
 
   parent_class = gtk_type_class (gtk_object_get_type ());
 }
@@ -125,20 +126,6 @@ static void gnome_document_init (GnomeDocument *document) {
   document->title = NULL;
   document->views = NULL;
   document->changed = FALSE;
-}
-
-GtkWidget *gnome_document_add_view(GnomeDocument *doc) {
-  GtkWidget *view;
-
-  gtk_signal_emit (GTK_OBJECT (doc), document_signals[CREATE_VIEW], &view);
-
-  doc->views = g_list_append(doc->views, view);
-
-  gtk_object_set_data(GTK_OBJECT(view), "document_data", doc);
-
-  gtk_widget_ref(view);
-
-  return view;
 }
 
 GnomeDocument *gnome_document_new () {
@@ -168,6 +155,20 @@ static void gnome_document_destroy(GtkObject *obj) {
     (* GTK_OBJECT_CLASS(parent_class)->destroy)(GTK_OBJECT(doc));
 }
 
+GtkWidget *gnome_document_add_view(GnomeDocument *doc) {
+  GtkWidget *view;
+
+  gtk_signal_emit (GTK_OBJECT (doc), document_signals[CREATE_VIEW], &view);
+
+  doc->views = g_list_append(doc->views, view);
+
+  gtk_object_set_data(GTK_OBJECT(view), "GnomeDocument", doc);
+
+  gtk_widget_ref(view);
+
+  return view;
+}
+
 void gnome_document_remove_view(GnomeDocument *doc, GtkWidget *view) {
   doc->views = g_list_remove(doc->views, view);
 
@@ -179,10 +180,18 @@ void gnome_document_set_title(GnomeDocument *doc, gchar *title) {
 
   doc->title = (gchar *)strdup(title);
 
-  /* TODO: send a document_retitled signal to MDI */
-
   if(old_title)
     free(old_title);
+}
+
+void gnome_document_real_changed(GnomeDocument *doc, gpointer change_data) {
+  GList *view;
+
+  view = doc->views;
+  while(view) {
+    gtk_signal_emit_by_name(GTK_OBJECT(view->data), "data_changed", change_data);
+    view = g_list_next(view);
+  }
 }
 
 void gnome_document_changed(GnomeDocument *doc, gpointer change_data) {

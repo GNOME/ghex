@@ -21,8 +21,7 @@ static void hex_document_init              (HexDocument *);
 static GtkWidget *hex_document_create_view (GnomeDocument *);
 static GList *hex_document_create_menus    (GnomeDocument *, GtkWidget *);
 static void hex_document_destroy           (GtkObject *);
-static void hex_document_changed           (GnomeDocument *,
-					    gpointer);
+
 guint group_type[3] = {
   GROUP_BYTE,
   GROUP_WORD,
@@ -174,19 +173,8 @@ static void hex_document_class_init (HexDocumentClass *class) {
 
   doc_class->create_view = hex_document_create_view;
   doc_class->create_menus = hex_document_create_menus;
-  doc_class->document_changed = hex_document_changed;
 
   parent_class = gtk_type_class (gnome_document_get_type ());
-}
-
-void hex_document_changed(GnomeDocument *doc, gpointer change_data) {
-  GList *view;
-
-  view = doc->views;
-  while(view) {
-    gtk_signal_emit_by_name(GTK_OBJECT(view->data), "data_changed", change_data);
-    view = g_list_next(view);
-  }
 }
 
 void hex_document_set_byte(HexDocument *document, guchar val, guint offset) {
@@ -331,5 +319,3 @@ gint find_string_backward(HexDocument *doc, guint start, guchar *what, gint len,
 
   return 1;
 }
-
-

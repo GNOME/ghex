@@ -71,14 +71,13 @@ char *accepted_drop_types[] = { DND_DATA_TYPE };
 
 enum {
   CREATE_MENUS,
-  /* the following will - I guess - prove useful */
+  CREATE_TOOLBAR,
   ADD_DOCUMENT,
   REMOVE_DOCUMENT,
   ADD_VIEW,
   REMOVE_VIEW,
   DOCUMENT_CHANGED,
-  DOCUMENT_RETITLED,
-  APP_CREATED,       /* so new GnomeApps can be customized by applications */
+  APP_CREATED,       /* so new GnomeApps can be further customized by applications */
   LAST_SIGNAL
 };
 
@@ -92,8 +91,8 @@ static gint mdi_signals[LAST_SIGNAL];
 static GtkObjectClass *parent_class = NULL;
 
 static void gnome_mdi_marshal_1 (GtkObject	    *object,
-				 GtkSignalFunc        func,
-				 gpointer	      func_data,
+				 GtkSignalFunc       func,
+				 gpointer	     func_data,
 				 GtkArg	            *args) {
   GnomeMDISignal1 rfunc;
   gpointer *return_val;
@@ -105,8 +104,8 @@ static void gnome_mdi_marshal_1 (GtkObject	    *object,
 }
 
 static void gnome_mdi_marshal_2 (GtkObject	    *object,
-				 GtkSignalFunc        func,
-				 gpointer	      func_data,
+				 GtkSignalFunc       func,
+				 gpointer	     func_data,
 				 GtkArg	            *args) {
   GnomeMDISignal2 rfunc;
   gint *return_val;
@@ -118,8 +117,8 @@ static void gnome_mdi_marshal_2 (GtkObject	    *object,
 }
 
 static void gnome_mdi_marshal_3 (GtkObject	    *object,
-				 GtkSignalFunc        func,
-				 gpointer	      func_data,
+				 GtkSignalFunc       func,
+				 gpointer	     func_data,
 				 GtkArg	            *args) {
   GnomeMDISignal3 rfunc;
 
@@ -129,8 +128,8 @@ static void gnome_mdi_marshal_3 (GtkObject	    *object,
 }
 
 static void gnome_mdi_marshal_4 (GtkObject	    *object,
-				 GtkSignalFunc        func,
-				 gpointer	      func_data,
+				 GtkSignalFunc       func,
+				 gpointer	     func_data,
 				 GtkArg	            *args) {
   GnomeMDISignal4 rfunc;
 
@@ -173,6 +172,12 @@ static void gnome_mdi_class_init (GnomeMDIClass *class) {
 					      GTK_SIGNAL_OFFSET (GnomeMDIClass, create_menus),
 					      gnome_mdi_marshal_1,
 					      GTK_TYPE_POINTER, 0);
+  mdi_signals[CREATE_TOOLBAR] = gtk_signal_new ("create_toolbar",
+						GTK_RUN_LAST,
+						object_class->type,
+						GTK_SIGNAL_OFFSET (GnomeMDIClass, create_menus),
+						gnome_mdi_marshal_1,
+						GTK_TYPE_POINTER, 0);
   mdi_signals[ADD_DOCUMENT] = gtk_signal_new ("add_document",
 					      GTK_RUN_LAST,
 					      object_class->type,
@@ -203,12 +208,6 @@ static void gnome_mdi_class_init (GnomeMDIClass *class) {
 					     GTK_SIGNAL_OFFSET (GnomeMDIClass, document_changed),
 					     gnome_mdi_marshal_3,
 					     GTK_TYPE_NONE, 2, GTK_TYPE_POINTER, GTK_TYPE_POINTER);
-  mdi_signals[DOCUMENT_RETITLED] = gtk_signal_new ("document_retitled",
-					     GTK_RUN_LAST,
-					     object_class->type,
-					     GTK_SIGNAL_OFFSET (GnomeMDIClass, document_retitled),
-					     gnome_mdi_marshal_4,
-					     GTK_TYPE_NONE, 1, GTK_TYPE_POINTER);
   mdi_signals[APP_CREATED] = gtk_signal_new ("app_created",
 					     GTK_RUN_LAST,
 					     object_class->type,
@@ -219,12 +218,12 @@ static void gnome_mdi_class_init (GnomeMDIClass *class) {
   gtk_object_class_add_signals (object_class, mdi_signals, LAST_SIGNAL);
 
   class->create_menus = NULL;
+  class->create_toolbar = NULL;
   class->add_document = NULL;
   class->remove_document = NULL;
   class->add_view = NULL;
   class->remove_view = NULL;
   class->document_changed = NULL;
-  class->document_retitled = NULL;
   class->app_created = NULL;
 
   parent_class = gtk_type_class (gtk_object_get_type ());
@@ -332,7 +331,11 @@ static void doc_list_activated_cb(GtkWidget *w, GnomeMDI *mdi) {
   GnomeDocument *doc;
   GtkWindow *window;
 
+
+#if 0
   doc = gnome_mdi_find_document(mdi, GTK_LABEL(GTK_BIN(w)->child)->label);
+#endif
+  doc = gtk_object_get_data(GTK_OBJECT(w), "GnomeDocument");
 
   if( doc && (doc != mdi->active_doc) ) {
     mdi->active_doc = doc;
@@ -484,7 +487,7 @@ static void doc_list_menu_add_item(GnomeMDI *mdi, GnomeDocument *doc) {
     item = gtk_menu_item_new_with_label(doc->title);
     gtk_signal_connect(GTK_OBJECT(item), "activate",
 		       GTK_SIGNAL_FUNC(doc_list_activated_cb), mdi);
-
+    gtk_object_set_data(GTK_OBJECT(item), "GnomeDocument", doc);
     gtk_widget_show(item);
 
     menu = GTK_MENU_ITEM(gtk_object_get_data(GTK_OBJECT(app->menubar), "MDIDocListMenu"));
@@ -650,7 +653,7 @@ static void book_drop(GtkNotebook *book, GdkEvent *event, GnomeMDI *mdi) {
     if(old_book->cur_page == NULL) {
       app = GNOME_APP(GTK_WIDGET(old_book)->parent->parent);
       mdi->windows = g_list_remove(mdi->windows, app);
-      app_destroy(app);
+      gtk_widget_destroy(GTK_WIDGET(app));
     }
   }
 }
@@ -716,12 +719,13 @@ static gint app_close_top(GnomeApp *app, GdkEventAny *event, GnomeMDI *mdi) {
 
     gnome_mdi_remove_all_documents(mdi, TRUE);
     mdi->windows = g_list_remove(mdi->windows, app);
-    app_destroy(app);
+    gtk_widget_destroy(GTK_WIDGET(app));
     gtk_object_destroy(GTK_OBJECT(mdi));
   }
   else if(app->contents) {
     doc = VIEW_GET_DOCUMENT(app->contents);
     if(DOC_LAST_VIEW(doc)) {
+
       /* if this is the last view, we should remove the document! */
       if(!gnome_mdi_remove_document(mdi, doc, FALSE))
 	return TRUE;
@@ -752,7 +756,7 @@ static gint app_close_book(GnomeApp *app, GdkEventAny *event, GnomeMDI *mdi) {
 
     gnome_mdi_remove_all_documents(mdi, TRUE);
     mdi->windows = g_list_remove(mdi->windows, app);
-    app_destroy(app);
+    gtk_widget_destroy(GTK_WIDGET(app));
     gtk_object_destroy(GTK_OBJECT(mdi));
   }
   else {
@@ -772,14 +776,14 @@ static gint app_close_book(GnomeApp *app, GdkEventAny *event, GnomeMDI *mdi) {
 	node = g_list_next(node);
       }
 
-      if(node == NULL) {   /* all the view's reside in this GnomeApp */
+      if(node == NULL) {   /* all the views reside in this GnomeApp */
 	gtk_signal_emit(GTK_OBJECT(mdi), mdi_signals[REMOVE_DOCUMENT], doc, &handler_ret);
 	if(handler_ret == FALSE)
 	  return TRUE;
       }
     }
 
-    /* now actually remove all documents/views since we may do so! */
+    /* now actually remove all documents/views! */
     page_node = GTK_NOTEBOOK(app->contents)->children;
     while(page_node) {
       view = ((GtkNotebookPage *)page_node->data)->child;
@@ -804,7 +808,7 @@ static gint app_close_ms(GnomeApp *app, GdkEventAny *event, GnomeMDI *mdi) {
     if(!gnome_mdi_remove_document(mdi, GNOME_DOCUMENT(mdi->documents->data), FALSE))
       ret = TRUE;
 
-  app_destroy(app);
+  gtk_widget_destroy(GTK_WIDGET(app));
   gtk_object_destroy(GTK_OBJECT(mdi));
 
   return FALSE;
@@ -843,21 +847,23 @@ static void app_set_active_view(GnomeMDI *mdi, GnomeApp *app, GtkWidget *view) {
 }
 
 static void app_destroy(GnomeApp *app) {
-  GnomeUIInfo *app_menu_template;
+  GnomeUIInfo *ui_info;
 
-  app_menu_template = gtk_object_get_data(GTK_OBJECT(app), "MDIMenuUIInfo");
-  if(app_menu_template)
-    free_ui_info_tree(app_menu_template);
-
-  gtk_widget_destroy(GTK_WIDGET(app));
+  ui_info = gtk_object_get_data(GTK_OBJECT(app), "MDIMenuUIInfo");
+  if(ui_info)
+    free_ui_info_tree(ui_info);
+  ui_info = gtk_object_get_data(GTK_OBJECT(app), "MDIToolbarUIInfo");
+  if(ui_info)
+    free_ui_info_tree(ui_info);
 }
 
 static void app_create(GnomeMDI *mdi) {
   GtkWidget *window;
-  GtkWidget *menubar, *doc_menu;
-  GList *menu_list;
+  GtkWidget *doc_menu;
+  GtkMenuBar *menubar = NULL;
+  GtkToolbar *toolbar = NULL;
   GtkSignalFunc func;
-  GnomeUIInfo *menu_tmpl;
+  GnomeUIInfo *ui_info;
 
   window = gnome_app_new(mdi->appname, mdi->title);
 
@@ -881,39 +887,57 @@ static void app_create(GnomeMDI *mdi) {
 		     func, mdi);
   gtk_signal_connect(GTK_OBJECT(window), "focus_in_event",
 		     GTK_SIGNAL_FUNC(toplevel_focus), mdi);
-  
+  gtk_signal_connect(GTK_OBJECT(window), "destroy",
+		     GTK_SIGNAL_FUNC(app_destroy), NULL);
+
   gtk_window_position (GTK_WINDOW(window), GTK_WIN_POS_MOUSE);
 
+  /* set up menus */
   if(mdi->menu_template) {
-    menu_tmpl = copy_ui_info_tree(mdi->menu_template);
-    gnome_app_create_menus(GNOME_APP(window), menu_tmpl);
-    gtk_object_set_data(GTK_OBJECT(window), "MDIMenuUIInfo", menu_tmpl);
+    ui_info = copy_ui_info_tree(mdi->menu_template);
+    gnome_app_create_menus(GNOME_APP(window), ui_info);
+    gtk_object_set_data(GTK_OBJECT(window), "MDIMenuUIInfo", ui_info);
 
     /* this is a dirty hack for GHex since libgnomeui can't tag items with data */
-    gtk_object_set_data(GTK_OBJECT(menu_tmpl[1].widget), "MDIDocumentMenu", (gpointer)TRUE);
-    gtk_object_set_data(GTK_OBJECT(menu_tmpl[2].widget), "MDIDocumentList", (gpointer)TRUE);
+    gtk_object_set_data(GTK_OBJECT(ui_info[1].widget), "MDIDocumentMenu", (gpointer)TRUE);
+    gtk_object_set_data(GTK_OBJECT(ui_info[3].widget), "MDIDocumentList", (gpointer)TRUE);
 
-    menubar = GNOME_APP(window)->menubar;
+    menubar = GTK_MENU_BAR(GNOME_APP(window)->menubar);
   }
   else {
     /* we use the (hopefully) supplied create_menus signal handler */
-    gtk_signal_emit (GTK_OBJECT (mdi), mdi_signals[CREATE_MENUS], &menu_list);
+    gtk_signal_emit (GTK_OBJECT (mdi), mdi_signals[CREATE_MENUS], &menubar);
 
-    menubar = gtk_menu_bar_new();
-    gtk_widget_show(menubar);
-
-    while(menu_list) {
-      gtk_menu_bar_append(GTK_MENU_BAR(menubar), GTK_WIDGET(menu_list->data));
-      menu_list = g_list_remove(menu_list, menu_list->data);
+    if(menubar) {
+      gtk_widget_show(GTK_WIDGET(menubar));
+      gnome_app_set_menus(GNOME_APP(window), GTK_MENU_BAR(menubar));
     }
-
-    gnome_app_set_menus(GNOME_APP(window), GTK_MENU_BAR(menubar));
   }
-    
-  doc_menu = doc_list_menu_create(mdi);
-  doc_list_menu_insert(GTK_MENU_BAR(menubar), doc_menu);
+
+  /* we add the document list menu to the toolbar */
+  if(menubar) {
+    doc_menu = doc_list_menu_create(mdi);
+    doc_list_menu_insert(GTK_MENU_BAR(menubar), doc_menu);
+  }
+
+  /* create toolbar */
+  if(mdi->toolbar_template) {
+    ui_info = copy_ui_info_tree(mdi->menu_template);
+    gnome_app_create_toolbar(GNOME_APP(window), ui_info);
+    gtk_object_set_data(GTK_OBJECT(window), "MDIToolbarUIInfo", ui_info);
+  }
+  else {
+    gtk_signal_emit(GTK_OBJECT (mdi), mdi_signals[CREATE_TOOLBAR], &toolbar);
+
+    if(toolbar) {
+      gtk_widget_show(GTK_WIDGET(toolbar));
+      gnome_app_set_toolbar(GNOME_APP(window), toolbar);
+    }
+  }
 
   mdi->active_window = GNOME_APP(window);
+  mdi->active_doc = NULL;
+  mdi->active_view = NULL;
 
   gtk_signal_emit(GTK_OBJECT(mdi), mdi_signals[APP_CREATED], window);
 }
@@ -957,7 +981,8 @@ gint gnome_mdi_add_view(GnomeMDI *mdi, GnomeDocument *doc) {
   else if(mdi->flags & GNOME_MDI_NOTEBOOK)
     book_add_view(GTK_NOTEBOOK(mdi->active_window->contents), view);
   else if(mdi->flags & GNOME_MDI_TOPLEVEL)
-    top_add_view(mdi, doc, view);          /* add a new toplevel unless the remaining one is empty */
+    /* add a new toplevel unless the remaining one is empty */
+    top_add_view(mdi, doc, view);
   else if(mdi->flags & GNOME_MDI_MODAL) {
     /* replace the existing view if there is one */
     if(mdi->active_window->contents) {
@@ -1013,7 +1038,7 @@ gint gnome_mdi_remove_view(GnomeMDI *mdi, GtkWidget *view, gint force) {
     /* if this is NOT the last toplevel, we destroy it */
     if(g_list_length(mdi->windows) > 1) {
       mdi->windows = g_list_remove(mdi->windows, window);
-      app_destroy(window);
+      gtk_widget_destroy(GTK_WIDGET(window));
     }
     else
       app_set_active_view(mdi, window, NULL);
@@ -1023,7 +1048,7 @@ gint gnome_mdi_remove_view(GnomeMDI *mdi, GtkWidget *view, gint force) {
 	   (g_list_length(mdi->windows) > 1) ) {
     /* if this is NOT the last toplevel, destroy it! */
     mdi->windows = g_list_remove(mdi->windows, window);
-    app_destroy(window);
+    gtk_widget_destroy(GTK_WIDGET(window));
   }
   else if(mdi->active_doc == NULL)
     app_set_active_view(mdi, window, NULL);
@@ -1140,12 +1165,12 @@ static GnomeDocument *gnome_mdi_find_document(GnomeMDI *mdi, gchar *title) {
   return NULL;
 }
 
-void gnome_mdi_set_mode(GnomeMDI *mdi, gint type) {
+void gnome_mdi_set_mode(GnomeMDI *mdi, gint mode) {
   GtkWidget *us, *view;
   GnomeDocument *doc;
   GList *doc_node, *view_node;
 
-  if(type & mdi->flags)
+  if(mode & mdi->flags)
     return;
 
   /* remove all views from their parents */
@@ -1164,7 +1189,7 @@ void gnome_mdi_set_mode(GnomeMDI *mdi, gint type) {
       view_node = g_list_next(view_node);
 
       /* if we are to change mode to MODAL, destroy all views except the active one */
-      if( (type & GNOME_MDI_MODAL)  && (view != mdi->active_view) )
+      if( (mdi->flags & GNOME_MDI_MODAL)  && (view != mdi->active_view) )
 	gnome_document_remove_view(doc, view);
     }
     doc_node = g_list_next(doc_node);
@@ -1172,15 +1197,14 @@ void gnome_mdi_set_mode(GnomeMDI *mdi, gint type) {
 
   /* remove all GnomeApps */
   while(mdi->windows) {
-    app_destroy(GNOME_APP(mdi->windows->data));
+    gtk_widget_destroy(GTK_WIDGET(mdi->windows->data));
     mdi->windows = g_list_remove(mdi->windows, mdi->windows->data);
   }
 
   mdi->active_window = NULL;
 
-  mdi->flags &= ~(GNOME_MDI_MS | GNOME_MDI_NOTEBOOK |
-		  GNOME_MDI_TOPLEVEL | GNOME_MDI_MODAL);
-  mdi->flags |= type;
+  mdi->flags &= ~GNOME_MDI_MODE_FLAGS;
+  mdi->flags |= mode;
 
   app_create(mdi);
 
@@ -1235,12 +1259,12 @@ GnomeDocument *gnome_mdi_active_document(GnomeMDI *mdi) {
   return NULL;
 }
 
-static GList *gnome_mdi_create_menus(GnomeMDI *mdi) {
-  GList *menu_list;
+static GtkMenuBar *gnome_mdi_create_menus(GnomeMDI *mdi) {
+  GtkMenuBar *menubar;
 
-  gtk_signal_emit(GTK_OBJECT(mdi), mdi_signals[CREATE_MENUS], &menu_list);
+  gtk_signal_emit(GTK_OBJECT(mdi), mdi_signals[CREATE_MENUS], &menubar);
 
-  return menu_list;
+  return menubar;
 }
 
 void gnome_mdi_set_menu_template(GnomeMDI *mdi, GnomeUIInfo *menu_tmpl) {
@@ -1252,7 +1276,6 @@ void gnome_mdi_set_toolbar_template(GnomeMDI *mdi, GnomeUIInfo *tbar_tmpl) {
 }
 
 /* the app-helper support routines */
-
 static GnomeUIInfo *copy_ui_info_tree(GnomeUIInfo source[]) {
   GnomeUIInfo *copy;
   int i, count;
