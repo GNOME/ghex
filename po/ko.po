@@ -5,16 +5,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 1.2-beta3\n"
-"POT-Creation-Date: 2002-06-11 12:06+0900\n"
-"PO-Revision-Date: 2002-06-11 14:51+0900\n"
+"Project-Id-Version: ghex 1.99.0\n"
+"POT-Creation-Date: 2002-07-21 20:40+0900\n"
+"PO-Revision-Date: 2002-07-21 20:42+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
-"Language-Team: Korean <ko@li.org>\n"
+"Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ghex.desktop.in.h:1
+#: ghex.desktop.in.h:1 src/ghex-window.c:389
 msgid "GHex"
 msgstr "GHex"
 
@@ -22,32 +22,27 @@ msgstr "GHex"
 msgid "Gnome Hexadecimal Editor"
 msgstr "그놈 십육진 에디터"
 
-#: src/bonobo-mdi.c:494 src/bonobo-mdi.c:570 src/bonobo-mdi.c:1886
-#, c-format
-msgid "Activate %s"
-msgstr "%s 활성화"
-
-#: src/chartable.c:115
+#: src/chartable.c:114
 msgid "ASCII"
 msgstr "아스키"
 
-#: src/chartable.c:115
+#: src/chartable.c:114
 msgid "Hex"
 msgstr "십육진수"
 
-#: src/chartable.c:115 src/preferences.c:214
+#: src/chartable.c:114 src/preferences.c:171
 msgid "Decimal"
 msgstr "십진수"
 
-#: src/chartable.c:116
+#: src/chartable.c:115
 msgid "Octal"
 msgstr "팔진법"
 
-#: src/chartable.c:116
+#: src/chartable.c:115
 msgid "Binary"
 msgstr "이진"
 
-#: src/chartable.c:128
+#: src/chartable.c:127
 msgid "Character table"
 msgstr "문자 테이블"
 
@@ -87,13 +82,15 @@ msgstr "커서 값 알아내기"
 
 #: src/converter.c:231
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
-msgstr "커서가 있는 위치의 값을 이진수, 팔진수, 십진수, 십육진수, 그리고 ASCII 값으로 알아내기"
+msgstr ""
+"커서가 있는 위치의 값을 이진수, 팔진수, 십진수, 십육진수, 그리고 ASCII 값으"
+"로 알아내기"
 
-#: src/converter.c:358
+#: src/converter.c:364
 msgid "ERROR"
 msgstr "오류"
 
-#: src/findreplace.c:60 src/main.c:118
+#: src/findreplace.c:60 src/ui.c:872
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): 자료 찾기"
@@ -139,7 +136,7 @@ msgstr "취소"
 msgid "Closes find data window"
 msgstr "데이타 찾기 창을 닫습니다"
 
-#: src/findreplace.c:140 src/main.c:120
+#: src/findreplace.c:140 src/ui.c:870
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): 자료를 찾아서 바꾸기"
@@ -153,7 +150,7 @@ msgstr "%s 바꾸기"
 msgid "Find next"
 msgstr "다음 찾기"
 
-#: src/findreplace.c:180 src/findreplace.c:213 src/ghex-ui.xml.h:43
+#: src/findreplace.c:180 src/findreplace.c:213 src/ghex-ui.xml.h:42
 msgid "Replace"
 msgstr "바꾸기"
 
@@ -181,7 +178,7 @@ msgstr "찾은 모든 문자열을 바꾸기 문자열로 바꿉니다"
 msgid "Closes find and replace data window"
 msgstr "찾기 및 바꾸기 데이타 창을 닫습니다"
 
-#: src/findreplace.c:231 src/main.c:122
+#: src/findreplace.c:231 src/ui.c:868
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): 바이트로 이동"
@@ -206,82 +203,62 @@ msgstr "지정한 바이트로 이동합니다"
 msgid "Closes jump to byte window"
 msgstr "바이트로 이동 창을 닫습니다"
 
-#: src/findreplace.c:328 src/findreplace.c:354 src/findreplace.c:407
-msgid "There is no active buffer to search!"
-msgstr "찾기를 할 버퍼가 없습니다!"
+#: src/findreplace.c:329 src/findreplace.c:357 src/findreplace.c:413
+msgid "There is no active document to search!"
+msgstr "찾기를 할 활성화된 버퍼가 없습니다!"
 
-#: src/findreplace.c:336 src/findreplace.c:362 src/findreplace.c:415
-msgid "There seems to be no string to search for!"
-msgstr "찾을 문자열이 없습니다!"
+#: src/findreplace.c:337 src/findreplace.c:365
+msgid "The string is not appropriate for the selected data type!"
+msgstr "이 문자열은 선택된 데이타 타입으로 적합하지 않습니다!"
 
-#: src/findreplace.c:343 src/findreplace.c:423
+#: src/findreplace.c:344 src/findreplace.c:430
 msgid "End Of File reached"
 msgstr "파일의 끝입니다"
 
-#: src/findreplace.c:370
+#: src/findreplace.c:373
 msgid "Beginning Of File reached"
 msgstr "파일의 처음입니다"
 
-#: src/findreplace.c:380
-msgid "There is no active buffer to move the cursor in!"
-msgstr "커서를 이동할 버퍼가 없습니다!"
-
 #: src/findreplace.c:385
+msgid "There is no active document to move the cursor in!"
+msgstr "커서를 이동할 활성화된 버퍼가 없습니다!"
+
+#: src/findreplace.c:390
 msgid "No offset has been specified!"
 msgstr "오프셋이 지정되지 않았습니다!"
 
-#: src/findreplace.c:392
+#: src/findreplace.c:397
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "파일의 끝보다 뒤에 커서를 위치할 수는 없습니다!"
 
-#: src/findreplace.c:397
+#: src/findreplace.c:402
 msgid "The offset must be a positive integer value!"
 msgstr "오프셋은 0보다 큰 정수값이어야 합니다!"
 
-#: src/findreplace.c:435 src/findreplace.c:473
+#: src/findreplace.c:421
+msgid "There seems to be no string to search for!"
+msgstr "찾을 문자열이 없습니다!"
+
+#: src/findreplace.c:443
 msgid "There is no active buffer to replace data in!"
 msgstr "데이타를 치환할 버퍼가 없습니다!"
 
-#: src/findreplace.c:446 src/findreplace.c:484
-msgid "Strange find or replace string!"
-msgstr "찾기 혹은 치환 문자열이 이상합니다!"
+#: src/findreplace.c:455 src/findreplace.c:496
+msgid "Strings are not approprate for the selected data type!"
+msgstr "문자열이 선택된 데이타 타입으로 적합하지 않습니다!"
 
-#: src/findreplace.c:461
+#: src/findreplace.c:471
 msgid "End Of File reached!"
 msgstr "파일의 끝입니다!"
 
-#: src/findreplace.c:500
+#: src/findreplace.c:484
+msgid "There is no active document to replace data in!"
+msgstr "데이타를 치환할 활성화된 버퍼가 없습니다!"
+
+#: src/findreplace.c:515
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d번 바꾸기."
-
-#: src/ghex-mdi.c:490
-#, c-format
-msgid ""
-"Do you want to save the changes you made to the document ``%s''? \n"
-"\n"
-"Your changes will be lost if you don't save them."
-msgstr ""
-"``%s''문서에 대해 변경된 사항을 저장하시겠습니까? \n"
-"\n"
-"저장하지 않으면 변경한 사항을 잃어버릴 것입니다."
-
-#: src/ghex-mdi.c:495
-msgid "_Don't save"
-msgstr "저장 안 함(_D)"
-
-#: src/ghex-mdi.c:573
-msgid "(modified)"
-msgstr "(변경됨)"
-
-#: src/ghex-mdi.c:579
-msgid "(readonly)"
-msgstr "(읽기 전용)"
-
-#: src/ghex-mdi.c:887 src/main.c:239
-#, c-format
-msgid "Offset: %s"
-msgstr "오프셋: %s"
 
 #: src/ghex-ui.xml.h:1
 msgid "About this application"
@@ -299,7 +276,7 @@ msgstr "보기 추가"
 msgid "Add a new view to the buffer"
 msgstr "버퍼에 새로운 view 추가"
 
-#: src/ghex-ui.xml.h:5 src/ui.c:119
+#: src/ghex-ui.xml.h:5 src/ui.c:64
 msgid "Bytes"
 msgstr "바이트"
 
@@ -307,7 +284,7 @@ msgstr "바이트"
 msgid "Character Table..."
 msgstr "문자 테이블..."
 
-#: src/ghex-ui.xml.h:7 src/ui.c:85
+#: src/ghex-ui.xml.h:7
 msgid "Character _Table..."
 msgstr "문자 테이블(_T)..."
 
@@ -343,7 +320,7 @@ msgstr "끝내기"
 msgid "Exit the program"
 msgstr "프로그램 끝내기"
 
-#: src/ghex-ui.xml.h:16 src/ui.c:66
+#: src/ghex-ui.xml.h:16
 msgid "Export data to HTML source"
 msgstr "데이타를 HTML로 만듭니다"
 
@@ -352,462 +329,431 @@ msgid "Export to HTML..."
 msgstr "HTML로 변환..."
 
 #: src/ghex-ui.xml.h:18
-msgid "Fi_les"
-msgstr "파일(_L)"
-
-#: src/ghex-ui.xml.h:19
 msgid "Find"
 msgstr "찾기"
 
-#: src/ghex-ui.xml.h:20
+#: src/ghex-ui.xml.h:19
 msgid "Goto Byte"
 msgstr "바이트로 이동"
 
-#: src/ghex-ui.xml.h:21
+#: src/ghex-ui.xml.h:20
 msgid "Group data by 16 bits"
 msgstr "데이타를 16 비트단위로 모음"
 
-#: src/ghex-ui.xml.h:22
+#: src/ghex-ui.xml.h:21
 msgid "Group data by 32 bits"
 msgstr "데이타를 32 비트단위로 모음"
 
-#: src/ghex-ui.xml.h:23
+#: src/ghex-ui.xml.h:22
 msgid "Group data by 8 bits"
 msgstr "데이타를 8 비트단위로 모음"
 
-#: src/ghex-ui.xml.h:24
+#: src/ghex-ui.xml.h:23
 msgid "Help Chat"
 msgstr "도움말 대화"
 
-#: src/ghex-ui.xml.h:25
+#: src/ghex-ui.xml.h:24
 msgid "Help on this application"
 msgstr "이 프로그램에 대한 도움말"
 
-#: src/ghex-ui.xml.h:26
+#: src/ghex-ui.xml.h:25
 msgid "Insert Mode"
 msgstr "삽입 모드"
 
-#: src/ghex-ui.xml.h:27
+#: src/ghex-ui.xml.h:26
 msgid "Insert/overwrite data"
 msgstr "데이타를 삽입/겹쳐쓰기"
 
-#: src/ghex-ui.xml.h:28
+#: src/ghex-ui.xml.h:27
 msgid "Jump to a certain position"
 msgstr "특정 위치로 이동"
 
-#: src/ghex-ui.xml.h:29 src/ui.c:121
+#: src/ghex-ui.xml.h:28 src/ui.c:66
 msgid "Longwords"
 msgstr "긴 단어"
 
-#: src/ghex-ui.xml.h:30
+#: src/ghex-ui.xml.h:29
 msgid "Open"
 msgstr "열기"
 
-#: src/ghex-ui.xml.h:31
+#: src/ghex-ui.xml.h:30
 msgid "Open a file"
 msgstr "파일 열기"
 
-#: src/ghex-ui.xml.h:32 src/ui.c:84
+#: src/ghex-ui.xml.h:31
 msgid "Open base conversion dialog"
 msgstr "기본 변환 대화창 열기"
 
-#: src/ghex-ui.xml.h:33
+#: src/ghex-ui.xml.h:32
 msgid "Preferences"
 msgstr "기본 설정"
 
-#: src/ghex-ui.xml.h:34 src/ui.c:70
+#: src/ghex-ui.xml.h:33
 msgid "Preview printed data"
 msgstr "인쇄될 모습을 미리 봅니다"
 
-#: src/ghex-ui.xml.h:35
+#: src/ghex-ui.xml.h:34
 msgid "Print"
 msgstr "인쇄"
 
-#: src/ghex-ui.xml.h:36
+#: src/ghex-ui.xml.h:35
 msgid "Print Previe_w..."
 msgstr "인쇄 미리 보기(_W)..."
 
-#: src/ghex-ui.xml.h:37
+#: src/ghex-ui.xml.h:36
 msgid "Print Preview..."
 msgstr "인쇄 미리 보기..."
 
-#: src/ghex-ui.xml.h:38
+#: src/ghex-ui.xml.h:37
 msgid "Print the current file"
 msgstr "현재 파일 인쇄"
 
-#: src/ghex-ui.xml.h:39
+#: src/ghex-ui.xml.h:38
 msgid "Redo"
 msgstr "다시 실행"
 
-#: src/ghex-ui.xml.h:40
+#: src/ghex-ui.xml.h:39
 msgid "Redo the undone action"
 msgstr "실행 취소한 작업 다시 실행"
 
-#: src/ghex-ui.xml.h:41
+#: src/ghex-ui.xml.h:40
 msgid "Remove View"
 msgstr "보기 삭제"
 
-#: src/ghex-ui.xml.h:42
+#: src/ghex-ui.xml.h:41
 msgid "Remove the current view of the buffer"
 msgstr "버퍼의 현재 view 삭제"
 
-#: src/ghex-ui.xml.h:44
+#: src/ghex-ui.xml.h:43
 msgid "Replace a string"
 msgstr "문자열 바꾸기"
 
-#: src/ghex-ui.xml.h:45
+#: src/ghex-ui.xml.h:44
 msgid "Revert"
 msgstr "되돌리기"
 
-#: src/ghex-ui.xml.h:46
+#: src/ghex-ui.xml.h:45
 msgid "Revert to a saved version of the file"
 msgstr "파일의 저장된 버전으로 되돌리기"
 
-#: src/ghex-ui.xml.h:47
+#: src/ghex-ui.xml.h:46
 msgid "Save"
 msgstr "저장"
 
-#: src/ghex-ui.xml.h:48
+#: src/ghex-ui.xml.h:47
 msgid "Save As"
 msgstr "다른 이름으로 저장"
 
-#: src/ghex-ui.xml.h:49
+#: src/ghex-ui.xml.h:48
 msgid "Save As _HTML..."
 msgstr "HTML로 저장(_H)..."
 
-#: src/ghex-ui.xml.h:50
+#: src/ghex-ui.xml.h:49
 msgid "Save _As..."
 msgstr "다른 이름으로 저장(_A)..."
 
-#: src/ghex-ui.xml.h:51
+#: src/ghex-ui.xml.h:50
 msgid "Save the current file"
 msgstr "현재 파일 저장"
 
-#: src/ghex-ui.xml.h:52
+#: src/ghex-ui.xml.h:51
 msgid "Save the current file with a different name"
 msgstr "현재 파일을 다른 이름으로 저장"
 
-#: src/ghex-ui.xml.h:53
+#: src/ghex-ui.xml.h:52
 msgid "Search for a string"
 msgstr "문자열 찾기"
 
-#: src/ghex-ui.xml.h:54 src/ui.c:86
+#: src/ghex-ui.xml.h:53
 msgid "Show the character table"
 msgstr "문자 테이블 보기"
 
-#: src/ghex-ui.xml.h:55
+#: src/ghex-ui.xml.h:54
 msgid "Undo"
 msgstr "실행 취소"
 
-#: src/ghex-ui.xml.h:56
+#: src/ghex-ui.xml.h:55
 msgid "Undo the last action"
 msgstr "마지막 작업 실행 취소"
 
-#: src/ghex-ui.xml.h:57 src/ui.c:120
+#: src/ghex-ui.xml.h:56 src/ui.c:65
 msgid "Words"
 msgstr "워드"
 
-#: src/ghex-ui.xml.h:58
+#: src/ghex-ui.xml.h:57
 msgid "_About..."
 msgstr "정보(_A)..."
 
-#: src/ghex-ui.xml.h:59
+#: src/ghex-ui.xml.h:58
 msgid "_Add View"
 msgstr "보기 추가(_A)"
 
-#: src/ghex-ui.xml.h:60
+#: src/ghex-ui.xml.h:59
 msgid "_Base Converter"
 msgstr "진법 변환기(_B)"
 
-#: src/ghex-ui.xml.h:61
+#: src/ghex-ui.xml.h:60
 msgid "_Bytes"
 msgstr "바이트(_B)"
 
-#: src/ghex-ui.xml.h:62
+#: src/ghex-ui.xml.h:61
 msgid "_Close"
 msgstr "닫기(_C)"
 
-#: src/ghex-ui.xml.h:63
+#: src/ghex-ui.xml.h:62
 msgid "_Contents"
 msgstr "차례(_C)"
 
-#: src/ghex-ui.xml.h:64
+#: src/ghex-ui.xml.h:63
 msgid "_Edit"
 msgstr "편집(_E)"
 
-#: src/ghex-ui.xml.h:65
+#: src/ghex-ui.xml.h:64
 msgid "_File"
 msgstr "파일(_F)"
 
-#: src/ghex-ui.xml.h:66
+#: src/ghex-ui.xml.h:65
 msgid "_Find"
 msgstr "찾기(_F)"
 
-#: src/ghex-ui.xml.h:67
+#: src/ghex-ui.xml.h:66
 msgid "_Goto Byte..."
 msgstr "바이트로 가기(_G)..."
 
-#: src/ghex-ui.xml.h:68
+#: src/ghex-ui.xml.h:67
 msgid "_Group Data As"
 msgstr "데이타를 모으기(_G)"
 
-#: src/ghex-ui.xml.h:69
+#: src/ghex-ui.xml.h:68
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: src/ghex-ui.xml.h:70
+#: src/ghex-ui.xml.h:69
 msgid "_Insert Mode"
 msgstr "삽입 모드(_I)"
 
-#: src/ghex-ui.xml.h:71
+#: src/ghex-ui.xml.h:70
 msgid "_Longwords"
 msgstr "긴 단어(_L)"
 
-#: src/ghex-ui.xml.h:72
+#: src/ghex-ui.xml.h:71
 msgid "_Open..."
 msgstr "열기(_O)..."
 
-#: src/ghex-ui.xml.h:73
+#: src/ghex-ui.xml.h:72
 msgid "_Preferences"
 msgstr "기본 설정(_P)"
 
-#: src/ghex-ui.xml.h:74
+#: src/ghex-ui.xml.h:73
 msgid "_Print"
 msgstr "인쇄(_P)"
 
-#: src/ghex-ui.xml.h:75
+#: src/ghex-ui.xml.h:74
 msgid "_Redo"
 msgstr "다시 실행(_R)"
 
-#: src/ghex-ui.xml.h:76
+#: src/ghex-ui.xml.h:75
 msgid "_Remove View"
 msgstr "보기 삭제(_R)"
 
-#: src/ghex-ui.xml.h:77
+#: src/ghex-ui.xml.h:76
 msgid "_Replace"
 msgstr "바꾸기(_R)"
 
-#: src/ghex-ui.xml.h:78
+#: src/ghex-ui.xml.h:77
 msgid "_Revert"
 msgstr "되돌리기(_R)"
 
-#: src/ghex-ui.xml.h:79
+#: src/ghex-ui.xml.h:78
 msgid "_Save"
 msgstr "저장(_S)"
 
-#: src/ghex-ui.xml.h:80 src/ui.c:103
-msgid "_Tools"
-msgstr "도구(_T)"
-
-#: src/ghex-ui.xml.h:81
+#: src/ghex-ui.xml.h:79
 msgid "_Undo"
 msgstr "실행 취소(_U)"
 
-#: src/ghex-ui.xml.h:82
+#: src/ghex-ui.xml.h:80
 msgid "_View"
 msgstr "보기(_V)"
 
-#: src/ghex-ui.xml.h:83
+#: src/ghex-ui.xml.h:81
+msgid "_Windows"
+msgstr "창(_W)"
+
+#: src/ghex-ui.xml.h:82
 msgid "_Words"
 msgstr "워드(_W)"
 
-#: src/hex-document.c:749
-msgid "Page"
-msgstr "페이지"
+#: src/ghex-window.c:498
+#, c-format
+msgid "Offset: %s"
+msgstr "오프셋: %s"
 
-#: src/hex-document.c:755 src/hex-document.c:856
-msgid "Hex dump generated by"
-msgstr "이진 출력 by"
+#: src/ghex-window.c:633
+#, c-format
+msgid "Activate file %s"
+msgstr "%s 파일 활성화"
 
-#: src/hex-document.c:779
-msgid "Previous page"
-msgstr "이전 쪽"
+#: src/ghex-window.c:672
+#, c-format
+msgid "GHex - %s"
+msgstr "GHex - %s"
 
-#: src/hex-document.c:794
-msgid "Next page"
-msgstr "다음 쪽"
-
-#: src/main.c:56
+#: src/hex-document-ui.c:178
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
-"문서 %s가 마지막 저장된 후로 바뀌었습니다.\n"
+"문서 %s이(가) 마지막 저장된 후로 바뀌었습니다.\n"
 "바뀐 내용을 저장할까요?"
 
-#: src/main.c:67
+#: src/hex-document-ui.c:188
 msgid "Do_n't save"
 msgstr "저장 안 함(_N)"
 
-#: src/main.c:352
+#: src/hex-document.c:742
+msgid "Page"
+msgstr "페이지"
+
+#: src/hex-document.c:748 src/hex-document.c:873
+msgid "Hex dump generated by"
+msgstr "이진 출력 by"
+
+#: src/hex-document.c:758
+msgid "Saving to HTML..."
+msgstr "HTML로 저장..."
+
+#: src/hex-document.c:796
+msgid "Previous page"
+msgstr "이전 쪽"
+
+#: src/hex-document.c:811
+msgid "Next page"
+msgstr "다음 쪽"
+
+#: src/main.c:49
 msgid "The gnome binary editor"
 msgstr "그놈 이진 파일 편집기"
 
-#: src/preferences.c:57
-msgid "Default"
-msgstr "기본값"
-
-#: src/preferences.c:58
-msgid "Notebook"
-msgstr "노트북"
-
-#: src/preferences.c:59
-msgid "Toplevel"
-msgstr "최고단계 창"
-
-#: src/preferences.c:60
-msgid "Modal"
-msgstr "모달"
+#: src/main.c:64
+msgid "Could not initialize Bonobo!\n"
+msgstr "보노보를 초기화할 수 없습니다!\n"
 
 #: src/preferences.c:92
-msgid "Select font"
-msgstr "글꼴 선택"
-
-#: src/preferences.c:148
 msgid "GHex Preferences"
 msgstr "GHex 기본 설정"
 
-#: src/preferences.c:176
+#: src/preferences.c:133
 msgid "_Maximum number of undo levels:"
 msgstr "실행 취소 최대 회수(_M)"
 
-#: src/preferences.c:196
+#: src/preferences.c:153
 msgid "Undo levels"
 msgstr "실행 취소 단계"
 
-#: src/preferences.c:196
+#: src/preferences.c:153
 msgid "Select maximum number of undo levels"
 msgstr "실행 취소 단계 최대 회수"
 
-#: src/preferences.c:200
+#: src/preferences.c:157
 msgid "Show cursor offset in statusbar as:"
 msgstr "상태 표시줄에서 커서 오프셋을 보여주는 방법:"
 
-#: src/preferences.c:219
+#: src/preferences.c:176
 msgid "Hexadecimal"
 msgstr "십육진수"
 
-#: src/preferences.c:225
+#: src/preferences.c:182
 msgid "Custom"
 msgstr "맞춤형"
 
-#: src/preferences.c:236
-msgid "format_entry"
-msgstr "형식_엔트리"
-
-#: src/preferences.c:236
+#: src/preferences.c:193
 msgid "Enter the cursor offset format"
 msgstr "커서 오프셋 형식을 입력합니다"
 
-#: src/preferences.c:237
-msgid "format_optionmenu"
-msgstr "형식_옵션메뉴"
-
-#: src/preferences.c:237
+#: src/preferences.c:194
 msgid "Select the cursor offset format"
 msgstr "커서 오프셋 형식을 선택합니다"
 
 #. show offsets check button
-#: src/preferences.c:247
+#: src/preferences.c:204
 msgid "Show offsets column"
 msgstr "오프셋 열 보여주기"
 
-#: src/preferences.c:252
+#: src/preferences.c:209
 msgid "Editing"
 msgstr "편집"
 
 #. display font
-#: src/preferences.c:261
+#: src/preferences.c:218
 msgid "Font"
 msgstr "글꼴"
 
-#: src/preferences.c:283
-msgid "Browse..."
-msgstr "찾아보기..."
-
 #. default group type
-#: src/preferences.c:312
+#: src/preferences.c:246
 msgid "Default Group Type"
 msgstr "기본 그룹 타입"
 
-#: src/preferences.c:328
+#: src/preferences.c:262
 msgid "Display"
 msgstr "표시"
 
-#. mdi modes
-#: src/preferences.c:337
-msgid "MDI Mode"
-msgstr "MDI 모드"
-
-#: src/preferences.c:354
-msgid "MDI"
-msgstr "MDI"
-
 #. paper selection
-#: src/preferences.c:363
+#: src/preferences.c:271
 msgid "Paper size"
 msgstr "종이 크기"
 
 #. data & header font selection
-#: src/preferences.c:379
+#: src/preferences.c:276
 msgid "Fonts"
 msgstr "글꼴"
 
-#: src/preferences.c:385
+#: src/preferences.c:282
 msgid "_Data font:"
 msgstr "데이타 글꼴(_D):"
 
-#: src/preferences.c:403
+#: src/preferences.c:300
 msgid "Data font"
 msgstr "데이타 글꼴"
 
-#: src/preferences.c:403
+#: src/preferences.c:300
 msgid "Select the data font"
 msgstr "데이타 글꼴 선택"
 
-#: src/preferences.c:424
+#: src/preferences.c:314
 msgid "Header fo_nt:"
 msgstr "헤더 글꼴(_N):"
 
-#: src/preferences.c:444
+#: src/preferences.c:331
 msgid "Header font"
 msgstr "헤더 글꼴"
 
-#: src/preferences.c:444
+#: src/preferences.c:331
 msgid "Select the header font"
 msgstr "헤더 글꼴 선택"
 
-#: src/preferences.c:476
+#: src/preferences.c:359
 msgid "_Print shaded box over:"
 msgstr "그림자진 상자를 위에 인쇄(_P):"
 
-#: src/preferences.c:488
+#: src/preferences.c:371
 msgid "Box size"
 msgstr "상자 크기"
 
-#: src/preferences.c:488
+#: src/preferences.c:371
 msgid "Select size of box (in number of lines)"
 msgstr "상자의 크기 (줄 개수)"
 
-#: src/preferences.c:492
+#: src/preferences.c:375
 msgid "lines (0 for no box)"
 msgstr "줄마다(0은 테두리 없음)"
 
-#: src/preferences.c:499
+#: src/preferences.c:382
 msgid "Printing"
 msgstr "인쇄"
 
-#: src/preferences.c:614 src/ui.c:270
-#, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-"도움말을 표시하는 데 오류가 발생했습니다: \n"
-"%s"
-
-#: src/preferences.c:717
+#: src/preferences.c:520
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -815,16 +761,16 @@ msgstr ""
 "옵셋 형식 문자열에 잘못된 형식 지정자가 들어 있습니다.\n"
 "옵셋 형식에 'x', 'X', 'p', 'P', 'd', 그리고 'o'만 사용할 수 있습니다"
 
-#: src/preferences.c:760
+#: src/preferences.c:552
 msgid "Can not open desired font!"
 msgstr "선택한 글꼴을 열 수 없습니다!"
 
-#: src/print.c:57
+#: src/print.c:54
 #, c-format
 msgid "Page: %i/%i"
 msgstr "쪽: %i/%i"
 
-#: src/print.c:208 src/print.c:222
+#: src/print.c:205 src/print.c:219
 #, c-format
 msgid ""
 "GHex could not find the font \"%s\".\n"
@@ -833,71 +779,68 @@ msgstr ""
 "GHex가 \"%s\" 글꼴을 찾을 수 없습니다.\n"
 "GHex는 이 글꼴이 설치되어 있지 않으면 인쇄할 수 없습니다."
 
-#: src/ui.c:66
-msgid "Export to _HTML..."
-msgstr "HTML로 내보내기(_H)..."
-
-#: src/ui.c:70
-msgid "Print pre_view..."
-msgstr "인쇄 미리보기(_V)..."
-
-#: src/ui.c:83
-msgid "Con_verter..."
-msgstr "변환기(_v)..."
-
-#: src/ui.c:126
+#: src/ui.c:71
 msgid "hex data"
 msgstr "십육진 자료"
 
-#: src/ui.c:127
+#: src/ui.c:72
 msgid "ASCII data"
 msgstr "아스키 자료"
 
-#: src/ui.c:246
+#: src/ui.c:220
 msgid "GHex, a binary file editor"
 msgstr "GHex, 이진 파일 편집기"
 
-#: src/ui.c:248
+#: src/ui.c:222
 msgid "Released under the terms of GNU Public License"
 msgstr "GNU Public License에 의거하여 공개"
 
-#: src/ui.c:322 src/ui.c:683
+#: src/ui.c:245
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"도움말을 표시하는 데 오류가 발생했습니다: \n"
+"%s"
+
+#: src/ui.c:292 src/ui.c:683
 msgid "Error saving file!"
 msgstr "파일 저장 에러!"
 
-#: src/ui.c:326 src/ui.c:678
+#: src/ui.c:296 src/ui.c:678
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "버퍼를 파일 %s 에 저장"
 
-#: src/ui.c:350
+#: src/ui.c:327
 msgid "Select a file to open"
 msgstr "열기 위한 파일 선택"
 
-#: src/ui.c:387
+#: src/ui.c:371
 msgid "Select a file to save buffer as"
 msgstr "버퍼를 저장할 파일 선택"
 
-#: src/ui.c:431
+#: src/ui.c:428
 msgid "Select path and file name for the HTML source"
 msgstr "HTML 소스를위한 경로와 파일 이름을 고르세요"
 
-#: src/ui.c:602
+#: src/ui.c:586
 #, c-format
 msgid "Really revert file %s?"
 msgstr "정말로 %s 파일을 원상복구할까요?"
 
-#: src/ui.c:616
+#: src/ui.c:600
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "파일 %s 에서 버퍼 복구"
 
-#: src/ui.c:632
+#: src/ui.c:629
 #, c-format
 msgid "Loaded file %s"
 msgstr "파일 %s 읽어들임"
 
-#: src/ui.c:644
+#: src/ui.c:637
 msgid "Can not open file!"
 msgstr "파일을 열 수 없습니다!"
 
@@ -905,15 +848,15 @@ msgstr "파일을 열 수 없습니다!"
 msgid "Can't open file for writing!"
 msgstr "쓰기위해 파일을 열 수 없습니다!"
 
-#: src/ui.c:766
+#: src/ui.c:759
 msgid "Print Hex Document"
 msgstr "십육진 문서 인쇄"
 
-#: src/ui.c:771
+#: src/ui.c:764
 msgid "Pages"
 msgstr "페이지"
 
-#: src/ui.c:817
+#: src/ui.c:810
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): 인쇄 미리보기"
