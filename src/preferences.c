@@ -29,7 +29,9 @@
 #include "ghex.h"
 #include "gnome-print-font-picker.h"
 
-static void select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui);
+static void select_font_cb(GtkWidget *w, const gchar *font_name,
+						   PropertyUI *pui);
+static void select_display_font_cb(GtkWidget *w, PropertyUI *pui);
 static void max_undo_changed_cb(GtkAdjustment *adj, PropertyUI *pui);
 static void box_size_changed_cb(GtkAdjustment *adj, PropertyUI *pui);
 static void offset_cb(GtkWidget *w, PropertyUI *pui);
@@ -46,34 +48,6 @@ PangoFontDescription *def_font_desc = NULL;
 gchar *def_font_name = NULL;
 gboolean show_offsets_column = TRUE;
 
-#if 0
-static char* get_font_name (const gchar *name, int size) {
-	gchar *caption;
-
-	g_warning ("Size in get_font_name is %d", size);
-	caption = g_strdup_printf("%s %d", name, size);
-	return caption;
-}
-
-static GtkWidget *get_font_label(const gchar *name, gdouble size) {
-	gchar *caption;
-	GtkWidget *label;
-
-	caption = g_strdup_printf("%s %.1f", name, size);
-	label = gtk_label_new(caption);
-	g_free(caption);
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_widget_show(label);
-	return label;
-}
-#endif /* 0/1 */
-
-/*
- * Now we shall have a preferences dialog similar to what gedit2 does.
- * GnomePropertyBox has been deprecated completely.
- * We dont need this function. Alteast for now -- SnM
- * Look at dialogs/ghex-preferences-dialog.[ch]
- */
 PropertyUI *
 create_prefs_dialog()
 {
@@ -208,7 +182,7 @@ create_prefs_dialog()
 	gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->font_button),
 								  def_font_name);
 	gtk_signal_connect (GTK_OBJECT (pui->font_button), "font-set",
-						GTK_SIGNAL_FUNC (select_font_cb), pui);
+						GTK_SIGNAL_FUNC (select_display_font_cb), pui);
 	flabel = gtk_label_new("");
 	gtk_label_set_mnemonic_widget (GTK_LABEL (flabel), pui->font_button);
 	gtk_widget_show(flabel);

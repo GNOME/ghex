@@ -986,7 +986,7 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 		}
 		gh->button = 0;
 	}
-	else
+	else 
 		gh->button = 0;
 }
 
