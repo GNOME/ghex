@@ -98,6 +98,7 @@ static void font_button_clicked(GtkWidget *button, GnomeFont **font) {
 }
 
 PropertyUI *create_prefs_dialog() {
+	static GnomeHelpMenuEntry help_entry = { "ghex", "prefs.html" };
 	GtkWidget *vbox, *label, *frame, *box, *entry, *fbox, *flabel, *table;
 	GtkWidget *menu, *item;
 	GtkAdjustment *undo_adj, *box_adj;
@@ -114,8 +115,11 @@ PropertyUI *create_prefs_dialog() {
 	
 	gtk_signal_connect(GTK_OBJECT(pui->pbox), "apply",
 					   GTK_SIGNAL_FUNC(apply_changes_cb), pui);
+	gtk_signal_connect (GTK_OBJECT (pui->pbox), "help",
+					GTK_SIGNAL_FUNC(gnome_help_pbox_goto), &help_entry);
 	gnome_dialog_close_hides(GNOME_DIALOG(pui->pbox), TRUE);
 	
+
 	/* editing page */
 	vbox = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(vbox);
