@@ -260,6 +260,8 @@ static void open_cb(GtkWidget *w)
 						"delete-event", GTK_SIGNAL_FUNC(delete_event_cb),
 						file_sel);
 
+	gtk_window_set_modal (GTK_WINDOW(file_sel), TRUE);
+
 	if(!GTK_WIDGET_VISIBLE(file_sel)) {
 		gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 		gtk_widget_show (file_sel);
@@ -291,6 +293,9 @@ static void save_as_cb(GtkWidget *w)
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
 						file_sel);
+
+	gtk_window_set_modal(GTK_WINDOW(file_sel), TRUE);
+
 	gtk_widget_show (file_sel);
 }
 
@@ -334,7 +339,7 @@ static void print_cb(GtkWidget *w)
 							GTK_WINDOW(mdi->active_window));
 	gtk_signal_connect(GTK_OBJECT(dialog), "clicked",
 					   (GtkSignalFunc)print_dialog_clicked_cb, doc);
-
+	gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);
 	gtk_widget_show_all(dialog);
 }
 
@@ -369,15 +374,16 @@ static void export_html_cb(GtkWidget *w)
 
 	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select path and file name for the HTML source"));
 	
-	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+	gtk_window_position(GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 	
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
+	gtk_signal_connect(GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
 						"clicked", GTK_SIGNAL_FUNC(export_html_selected_file),
 						gnome_mdi_get_active_view(mdi));
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
+	gtk_signal_connect(GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
 						file_sel);
-	gtk_widget_show (file_sel);
+	gtk_window_set_modal(GTK_WINDOW(file_sel), TRUE);
+	gtk_widget_show(file_sel);
 }
 
 static void export_html_selected_file(GtkWidget *w, GtkHex *view)
@@ -405,6 +411,9 @@ static void export_html_selected_file(GtkWidget *w, GtkHex *view)
 
 	hex_document_export_html(doc, html_path, base_name, 0, doc->file_size,
 							 view->cpl, view->vis_lines, view->group_type);
+
+	gtk_widget_destroy(GTK_WIDGET(file_sel));
+	file_sel = NULL;
 }
 
 static void close_cb(GtkWidget *w)
@@ -542,5 +551,6 @@ static void save_selected_file(GtkWidget *w, GtkWidget *view)
 	else
 		gnome_app_error(mdi->active_window, _("Can't open file for writing!"));
 	
-	gtk_widget_hide(GTK_WIDGET(file_sel));
+	gtk_widget_destroy(GTK_WIDGET(file_sel));
+	file_sel = NULL;
 }
