@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ghex.h - defines GHex ;)
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998 - 2001 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -41,6 +41,8 @@
 #define DEFAULT_FONT    "-adobe-courier-medium-r-normal--12-*-*-*-*-*-*-*"
 
 #define MAX_MAX_UNDO_DEPTH 100000
+
+#define MESSAGE_LEN 512
 
 extern GnomeUIInfo help_menu[], file_menu[], view_menu[],
 	               main_menu[], tools_menu[];
@@ -95,7 +97,7 @@ typedef struct _FindDialog {
 
 typedef struct _Converter {
 	GtkWidget *window;
-	GtkWidget *entry[4];
+	GtkWidget *entry[5];
 	GtkWidget *close;
 	GtkWidget *get;
 

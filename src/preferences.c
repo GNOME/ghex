@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* preferences.c - setting the preferences
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998 - 2001 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -414,7 +414,7 @@ static void set_prefs(PropertyUI *pui) {
 	gtk_entry_set_text(GTK_ENTRY(pui->format), offset_fmt);
 	if(strcmp(offset_fmt, "%d") == 0)
 		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 0);
-	else if(strcmp(offset_fmt, "%x") == 0)
+	else if(strcmp(offset_fmt, "%X") == 0)
 		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 1);
 	else {
 		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 2);
@@ -527,11 +527,14 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 			( (offset_fmt[i] >= 'a' && offset_fmt[i] <= 'z') ||
 			  (offset_fmt[i] >= 'A' && offset_fmt[i] <= 'Z') ) ) {
 			expect_spec = FALSE;
-			if(offset_fmt[i] != 'x' && offset_fmt[i] != 'd' && offset_fmt[i] != 'o') {
+			if(offset_fmt[i] != 'x' && offset_fmt[i] != 'd' &&
+			   offset_fmt[i] != 'o' && offset_fmt[i] != 'X' &&
+			   offset_fmt[i] != 'P' && offset_fmt[i] != 'p') {
 				g_free(offset_fmt);
 				offset_fmt = old_offset_fmt;
 				gtk_entry_select_region(GTK_ENTRY(pui->format), i, i+1);
-				gnome_error_dialog_parented(_("The offset format string contains format specifier other than 'x', 'd' or 'o'!"),
+				gnome_error_dialog_parented(_("The offset format string contains invalid format specifier.\n"
+											  "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."),
 											GTK_WINDOW(pui->pbox));
 				gtk_window_set_focus(GTK_WINDOW(pui->pbox), pui->format);
 				break;

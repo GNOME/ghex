@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ui.c - main menus and callbacks; utility functions
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998 - 2001 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -463,7 +463,7 @@ static void prefs_cb(GtkWidget *w)
 
 static void revert_cb(GtkWidget *w)
 {
-	static gchar msg[512];
+	static gchar msg[MESSAGE_LEN + 1];
 	
 	HexDocument *doc;
 	GnomeMessageBox *mbox;
@@ -472,7 +472,9 @@ static void revert_cb(GtkWidget *w)
 	if(mdi->active_child) {
 		doc = HEX_DOCUMENT(mdi->active_child);
 		if(doc->changed) {
-			sprintf(msg, _("Really revert file %s?"), GNOME_MDI_CHILD(doc)->name);
+			g_snprintf(msg, MESSAGE_LEN,
+					   _("Really revert file %s?"),
+					   GNOME_MDI_CHILD(doc)->name);
 			mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(msg,
 														   GNOME_MESSAGE_BOX_QUESTION,
 														   GNOME_STOCK_BUTTON_YES,

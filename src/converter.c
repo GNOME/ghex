@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* converter.c - conversion dialog
 
-   Copyright (C) 1998, 1999 Free Software Foundation
+   Copyright (C) 1998 - 2001 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -43,7 +43,7 @@ Converter *create_converter() {
 	
 	gtk_window_set_title(GTK_WINDOW(conv->window), _("GHex: Converter"));
 	
-	table = gtk_table_new(5, 2, FALSE);
+	table = gtk_table_new(6, 2, FALSE);
 	gtk_table_set_row_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
 	gtk_table_set_col_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(conv->window)->vbox), table,
@@ -56,44 +56,54 @@ Converter *create_converter() {
 	gtk_widget_show(label);
 	conv->entry[0] = gtk_entry_new();
 	gtk_signal_connect(GTK_OBJECT(conv->entry[0]), "activate",
-					   GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)2);
+					   GTK_SIGNAL_FUNC(conv_entry_cb), GINT_TO_POINTER(2));
 	gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[0], 1, 2, 0, 1);
 	gtk_widget_show(conv->entry[0]);
 	
-	label = gtk_label_new(_("Decimal"));
+	label = gtk_label_new(_("Octal"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 1, 2);
 	gtk_widget_show(label);
 	conv->entry[1] = gtk_entry_new();
 	gtk_signal_connect(GTK_OBJECT(conv->entry[1]), "activate",
-					   GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)10);
+					   GTK_SIGNAL_FUNC(conv_entry_cb), GINT_TO_POINTER(8));
 	gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[1], 1, 2, 1, 2);
 	gtk_widget_show(conv->entry[1]);
-	
-	label = gtk_label_new(_("Hex"));
+
+	label = gtk_label_new(_("Decimal"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 2, 3);
 	gtk_widget_show(label);
 	conv->entry[2] = gtk_entry_new();
 	gtk_signal_connect(GTK_OBJECT(conv->entry[2]), "activate",
-					   GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)16);
+					   GTK_SIGNAL_FUNC(conv_entry_cb), GINT_TO_POINTER(10));
 	gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[2], 1, 2, 2, 3);
 	gtk_widget_show(conv->entry[2]);
 	
-	label = gtk_label_new(_("ASCII"));
+	label = gtk_label_new(_("Hex"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 3, 4);
 	gtk_widget_show(label);
 	conv->entry[3] = gtk_entry_new();
 	gtk_signal_connect(GTK_OBJECT(conv->entry[3]), "activate",
-					   GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)0);
+					   GTK_SIGNAL_FUNC(conv_entry_cb), GINT_TO_POINTER(16));
 	gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[3], 1, 2, 3, 4);
 	gtk_widget_show(conv->entry[3]);
+	
+	label = gtk_label_new(_("ASCII"));
+	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 4, 5);
+	gtk_widget_show(label);
+	conv->entry[4] = gtk_entry_new();
+	gtk_signal_connect(GTK_OBJECT(conv->entry[4]), "activate",
+					   GTK_SIGNAL_FUNC(conv_entry_cb), GINT_TO_POINTER(0));
+	gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[4], 1, 2, 4, 5);
+	gtk_widget_show(conv->entry[4]);
 	
 	conv->get = get = gtk_button_new_with_label(_("Get cursor value"));
 	gtk_signal_connect (GTK_OBJECT (get), "clicked",
 						GTK_SIGNAL_FUNC(get_cursor_val_cb), conv);
-	gtk_table_attach_defaults(GTK_TABLE(table), get, 0, 2, 4, 5);
+	gtk_table_attach_defaults(GTK_TABLE(table), get, 0, 2, 5, 6);
 	gtk_widget_show(get);
 
 	conv->close = close = gtk_button_new_with_label(_("Close"));
@@ -129,8 +139,10 @@ static void get_cursor_val_cb(GtkButton *button, Converter *conv) {
 	}
 }
 
+#define CONV_BUFFER_LEN 32
+
 static void set_values(Converter *conv, gulong val) {
-	guchar buffer[33];
+	guchar buffer[CONV_BUFFER_LEN + 1];
 	gint i;
 
 	conv->value = val;
@@ -139,12 +151,15 @@ static void set_values(Converter *conv, gulong val) {
 		buffer[i] = ((val & (1L << (31 - i)))?'1':'0');
 	buffer[i] = 0;
 	gtk_entry_set_text(GTK_ENTRY(conv->entry[0]), buffer);
-	
-	sprintf(buffer, "%lu", val);
+
+	g_snprintf(buffer, CONV_BUFFER_LEN, "%o", val);
 	gtk_entry_set_text(GTK_ENTRY(conv->entry[1]), buffer);
 	
-	sprintf(buffer, "%08lX", val);
+	g_snprintf(buffer, CONV_BUFFER_LEN, "%lu", val);
 	gtk_entry_set_text(GTK_ENTRY(conv->entry[2]), buffer);
+	
+	g_snprintf(buffer, CONV_BUFFER_LEN, "%08lX", val);
+	gtk_entry_set_text(GTK_ENTRY(conv->entry[3]), buffer);
 	
 	for(i = 0; i < 4; i++) {
 		buffer[i] = (val & (0xFF << (3 - i)*8)) >> (3 - i)*8;
@@ -152,7 +167,7 @@ static void set_values(Converter *conv, gulong val) {
 			buffer[i] = '_';
 	}
 	buffer[i] = 0;
-	gtk_entry_set_text(GTK_ENTRY(conv->entry[3]), buffer);
+	gtk_entry_set_text(GTK_ENTRY(conv->entry[4]), buffer);
 }
 
 static void conv_entry_cb(GtkEntry *entry, gint base) {
@@ -176,6 +191,10 @@ static void conv_entry_cb(GtkEntry *entry, gint base) {
 		strncpy(buffer, text, 32);
 		buffer[32] = 0;
 		break;
+	case 8:
+		strncpy(buffer, text, 12);
+		buffer[12] = 0;
+		break;
 	case 10:
 		strncpy(buffer, text, 10);
 		buffer[10] = 0;
@@ -190,7 +209,7 @@ static void conv_entry_cb(GtkEntry *entry, gint base) {
 		val = strtoul(buffer, &endptr, base);
 		if(*endptr != 0) {
 			converter->value = 0;
-			for(i = 0; i < 4; i++)
+			for(i = 0; i < 5; i++)
 				gtk_entry_set_text(GTK_ENTRY(converter->entry[i]), _("ERROR"));
 			gtk_entry_select_region(entry, 0, -1);
 			return;

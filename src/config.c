@@ -1,7 +1,7 @@
 /* -*- mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* config.c - configuration loading/saving via gnome-config routines
 
-   Copyright (C) 1997, 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1997 - 2001 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -86,7 +86,7 @@ void load_configuration() {
 	if(offset_fmt)
 		g_free(offset_fmt);
 
-	offset_fmt = gnome_config_get_string("/ghex/Editing/OffsetFormat=%x");
+	offset_fmt = gnome_config_get_string("/ghex/Editing/OffsetFormat=%X");
 
 	mdi_mode = gnome_config_get_int("/ghex/MDI/Mode=2");
 

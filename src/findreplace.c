@@ -42,11 +42,13 @@ FindDialog *find_dialog = NULL;
 ReplaceDialog *replace_dialog = NULL;
 JumpDialog *jump_dialog = NULL;
 
+#define TYPE_LABEL_LEN 256
+
 FindDialog *create_find_dialog()
 {
 	gint i;
 	GSList *group;
-	gchar type_label[256];
+	gchar type_label[TYPE_LABEL_LEN + 1];
 	FindDialog *dialog;
 
 	dialog = g_new0(FindDialog, 1);
@@ -64,7 +66,8 @@ FindDialog *create_find_dialog()
 	
 	for(i = 0, group = NULL; i < 2;
 		i++, group = gtk_radio_button_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
-		sprintf(type_label, _("Search for %s"), _(search_type_label[i]));
+		g_snprintf(type_label, TYPE_LABEL_LEN, _("Search for %s"),
+				   _(search_type_label[i]));
 		
 		dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
 		
@@ -138,7 +141,8 @@ ReplaceDialog *create_replace_dialog()
 	
 	for(i = 0, group = NULL; i < 2;
 		i++, group = gtk_radio_button_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
-		sprintf(type_label, _("Replace %s"), _(search_type_label[i]));
+		g_snprintf(type_label, TYPE_LABEL_LEN, _("Replace %s"),
+				   _(search_type_label[i]));
 		
 		dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
 		
