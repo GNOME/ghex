@@ -1,0 +1,705 @@
+
+     <!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant
+      V1.1//EN"[<!ENTITY version "1.1.4"> ]>   
+
+     <!--       (Do not remove this comment block.)  Maintained by the GNOME
+      Documentation Project  http://developer.gnome.org/projects/gdp  Template
+      version: 1.0.3  Template last modified: Nov 16, 2000-->   
+
+     <!-- =============Document Header ============================= --> 
+      <article id="index"> 
+
+<!-- please do not change the id -->  <artheader> 
+
+     <title>Ghex-en eskuliburua</title> <copyright> <year>1998, 1999,
+      2000</year> <holder>Jaka Mocnik</holder> </copyright>  
+       <copyright> <year>2000</year> <holder>Hizkuntza Politikarako
+      Sailburuordetza (euskarazko itzulpena) </holder>
+
+<!-- Use this legal notice for online documents which depend on --> 
+
+     <!-- core GNOME packages.                                       -->
+      <legalnotice id="legalnotice"> 
+
+   <para> 
+       Baimena ematen da dokumentu hau kopiatu, banatu eta/edo aldatzeko Free
+      Software Foundation-ek argitaratutako <ulink type="help"        
+      url="gnome-help:fdl"><citetitle>GNU Dokumentazio Librearen
+      Lizentzia</citetitle></ulink>ren 1.1 bertsioan edo berriago batean
+      ezarritako baldintzak betetzen badira; Atal Aldaezinik, Aurreko azaleko
+      testurik eta Atzeko azaleko testurik gabe. Lizentziaren kopia <ulink
+      type="help" url="gnome-help:fdl">hemen</ulink> aurkituko duzu. 
+   </para> 
+ 
+
+   <para> 
+      Enpresek euren produktu eta zerbitzuak bereizteko erabiltzen dituzten izen
+      asko marka erregistratu moduan hartu behar dira. Izen horiek GNOMEren
+      edozein agiritan agertzen direnean, GNOMEren dokumentazio-proiektuko
+      kideak marka erregistratuak direla konturatu badira, izen horiek osorik
+      maiuskulaz edo hasierako letra maiuskulaz idatzi dituzte. 
+   </para> 
+ </legalnotice>    
+
+     <!-- This is the manual version, not application version. --> 
+      <releaseinfo> Hau GHex-en eskuliburuaren 1.0 bertsioa da. </releaseinfo> 
+      </artheader>  
+
+<!-- ============= Document Body ============================= -->  
+
+<!-- ============= Introduction ============================== --> 
+
+<sect1 id="intro"> 
+
+<title>Sarrera</title>  
+
+   <para> 
+      <application>GHex</application> (<acronym>GNOME</acronym>ren editore
+      hamaseitarra) edozein fitxategiren edukia hamaseitarrean eta ASCII testu
+      gisa ikusi eta editatzeko aukera ematen duen tresna txiki bat da.
+      <acronym>GNOME</acronym>ren mahaigainaren inguruneko zati bat denez,
+      gainerako osagaiekin egoki integratzen da, <acronym>GNOME</acronym>
+      aplikazioen ildo orokorrei jarraiki. 
+   </para> 
+   
+
+   <para> 
+ <application>GHex</application> exekutatzeko, hautatu <menuchoice> 
+<guisubmenu>Aplikazioak</guisubmenu> 
+<guimenuitem>GHex</guimenuitem> </menuchoice> 
+     <guimenu>Menu Nagusian</guimenu>, edo idatzi <command>ghex</command>
+      komando-lerroan. 
+   </para> 
+  
+
+   <para> 
+     Dokumentu honek <application>GHex</application>-en &version; bertsioa
+      deskribatzen du. 
+   </para> 
+ </sect1>   
+
+<!-- ================ Usage ================================ --> 
+
+<!-- This section should describe basic usage of the application. -->  
+
+<sect1 id="usage"> 
+
+<title>Ghex-en erabilera</title> 
+
+   <para> 
+      <application>GHex</application> abiaraztean, menu-barra bat besterik ez
+      duen leiho bat bistaratuko da.  
+
+<!-- ==== Figure ==== --> <figure id="ghexmenubar-fig">  
+
+<title>GHex-en leiho nagusia</title>  
+<screenshot>  
+     <screeninfo><application>GHex</application> Menu-barraren
+      leihoa</screeninfo>  <graphic fileref="ghexmenubar" format="png"
+      srccredit="John Fleck"> </graphic>  </screenshot>  </figure> 
+
+<!-- ==== End of Figure ==== --> 
+   </para> 
+  
+
+   <para> 
+      Fitxategi bat kargatzen denean, fitxategiaren edukia menu-barraren azpian
+      bistaratuko da, leihoaren zatirik handiena hartuko duen area batean.
+      Edukia hamaseitarrean eta ascii-n, bietan, bistaratuko da; balio
+      hamaseitarrak ezkerrean agertuko dira eta byte horien ascii irudikapena
+      eskuinaldean. <figure id="ghexfullwindow-fig">  
+
+<title>GHex-en leiho nagusia</title>  
+<screenshot>  
+     <screeninfo><application>GHex</application> Leiho osoa</screeninfo> 
+      <graphic fileref="ghexfullwindow" format="png" srccredit="John Fleck">
+      </graphic>  </screenshot>  </figure> 
+   </para> 
+ </sect1> 
+
+<sect1 id="ghexmenues">   
+
+<title>Menuak</title> 
+
+   <para> 
+      <interface>Leiho nagusia</interface>ren goialdean dagoen menu-barrak
+      ondorengo menuak ditu: 
+   </para> 
+ <variablelist>  <varlistentry>  <term>
+<guimenu>Fitxategia</guimenu></term>  
+
+<listitem>  
+
+   <para> 
+Menuaren edukia:  
+
+<itemizedlist>   
+
+<listitem>   
+
+   <para> 
+  <menuchoice>   <shortcut>    <keycap>F3</keycap>   </shortcut>   
+     <guimenuitem>Ireki</guimenuitem>   </menuchoice>   &mdash; fitxategi bat
+      hautatu eta irekitzeko aukera eskaintzen dizu, baita edukia buffer batera
+      irakurtzeko eta ikuspegi batean berehala bistaratzeko ere.   
+   </para> 
+   </listitem>   
+
+<listitem>   
+
+   <para> 
+       <menuchoice>   <shortcut>   
+      <keycombo><keycap>Ktrl</keycap><keycap>S</keycap></keycombo>   </shortcut>
+        
+     <guimenuitem>Gorde</guimenuitem>   </menuchoice>  &mdash; bufferraren
+      edukia izen bereko fitxategian idazten du.   <warning>   
+
+   <para> 
+     Kontuz ibili honekin, formatu jakin bateko fitxategiak erraz honda
+      baititzakezu.
+   </para> 
+   </warning>  
+   </para> 
+   </listitem>  
+
+<listitem>   
+
+   <para> 
+   <menuchoice>   
+     <guimenuitem>Gorde honela</guimenuitem> </menuchoice> &mdash;
+      fitxategi-izen berri bat hautatzeko aukera ematen dizu eta gero fitxategi
+      horretan gordetzen du bufferraren edukia.   
+   </para> 
+  </listitem>  
+
+<listitem>   
+
+   <para> 
+   <menuchoice>   
+     <guimenuitem>Esportatu HTMLra</guimenuitem>   </menuchoice>   &mdash;  html
+      fitxategien pakete bat sortzen du, irekita dagoen fitxategiaren eduki
+      hamaseitarra dokumentatzeko.   
+   </para> 
+  </listitem>  
+
+<listitem>   
+
+   <para> 
+   <menuchoice>   
+     <guimenuitem>Itzuli</guimenuitem></menuchoice>   &mdash; Fitxategia gorde
+      zen azken alditik egindako aldaketa guztiak kentzen ditu.   
+   </para> 
+  </listitem>   
+
+<listitem>   
+
+   <para> 
+   <menuchoice>   
+     <guimenuitem>Inprimatu</guimenuitem>   </menuchoice>   &mdash; Irekita
+      dagoen fitxategiaren eduki hamaseitarra erakusten duten orrialdeak
+      inprimatzen ditu.   
+   </para> 
+  </listitem>  
+
+<listitem>   
+
+   <para> 
+   <menuchoice>   
+     <guimenuitem>Inprimatzeko aurrebista</guimenuitem>   </menuchoice>  
+      &mdash; Inprimatuko den orrialdearen pantailako bertsioa bistaratzen du.  
+      
+   </para> 
+  </listitem>   
+
+<listitem>   
+
+   <para> 
+       <menuchoice>   <shortcut>   
+      <keycombo><keycap>Ktrl</keycap><keycap>W</keycap></keycombo>   </shortcut>
+        
+     <guimenuitem>Itxi</guimenuitem>   </menuchoice>  &mdash; Fitxategia ixten
+      du.  
+   </para> 
+   </listitem>   
+
+<listitem>   
+
+   <para> 
+       <menuchoice>   <shortcut>   
+      <keycombo><keycap>Ktrl</keycap><keycap>Q</keycap></keycombo>   </shortcut>
+        
+     <guimenuitem>Irten</guimenuitem>   </menuchoice>  &mdash; Aplikaziotik
+      irteten da.  
+   </para> 
+   </listitem>  </itemizedlist>  
+   </para> 
+  </listitem>  </varlistentry>    <varlistentry>  <term>
+<guimenu>Edizioa</guimenu></term>  
+
+<listitem>  
+
+   <para> 
+Menuaren edukia:  
+
+<itemizedlist>  
+
+<listitem>   
+
+   <para> 
+       <menuchoice>   <shortcut>   
+      <keycombo><keycap>Ktrl</keycap><keycap>Z</keycap></keycombo>   </shortcut>
+        
+     <guimenuitem>Desegin</guimenuitem>   </menuchoice>  &mdash; azkeneko
+      ekintza desegiten du.  
+   </para> 
+   </listitem>  
+
+<listitem>   
+
+   <para> 
+       <menuchoice>   <shortcut>   
+      <keycombo><keycap>Ktrl</keycap><keycap>R</keycap></keycombo>   </shortcut>
+        
+     <guimenuitem>Berregin</guimenuitem>   </menuchoice>  &mdash; desegindako
+      azken ekintza berregiten du.  
+   </para> 
+   </listitem>      
+
+<listitem>   
+
+   <para> 
+       <menuchoice>   <shortcut>    <keycombo><keycap>F6</keycap></keycombo>  
+      </shortcut>   
+     <guimenuitem>Bilatu</guimenuitem>   </menuchoice>   &mdash; <link		 
+      linkend="ghexfindreplace">Bilatu</link> elkarrizketa-koadroa irekitzen du.
+      
+   </para> 
+   </listitem>      
+
+<listitem>   
+
+   <para> 
+       <menuchoice>   <shortcut>    <keycombo><keycap>F7</keycap></keycombo>  
+      </shortcut>   
+     <guimenuitem>Ordeztu</guimenuitem>   </menuchoice>   &mdash;  <link
+      linkend="ghexfindreplace">Bilatu eta ordeztu</link> elkarrizketa-koadroa
+      irekitzen du. 
+   </para> 
+   </listitem>   
+
+<listitem>   
+
+   <para> 
+       <menuchoice>   <shortcut>   
+      <keycombo><keycap>Ktrl</keycap><keycap>J</keycap></keycombo>   </shortcut>
+        
+     <guimenuitem>Joan bytera</guimenuitem>   </menuchoice>  &mdash; 'Joan
+      bytera' elkarrizketa-koadroa irekitzen du. Kurtsorearen desplazamendua
+      zehatz dezakezu hamartarrean edo hamaseitarrean (aurretik "0x" duela).  
+   </para> 
+   </listitem>   
+
+<listitem>   
+
+   <para> 
+  <menuchoice>   
+     <guimenuitem>Txertatze-modua</guimenuitem>   </menuchoice>  &mdash; datuak
+      txertatzea (eta ez gainidaztea) hautatzen du.  
+   </para> 
+   </listitem>  </itemizedlist>  
+   </para> 
+  </listitem>  </varlistentry>  <varlistentry>  <term>
+<guimenu>Ikusi</guimenu></term>  
+
+<listitem>  
+
+   <para> 
+Menuaren edukia:  
+
+<itemizedlist>   
+
+<listitem>   
+
+   <para> 
+  
+     <guimenuitem>Gehitu ikuspegia</guimenuitem>  &mdash; unean editatzen ari
+      den fitxategiaren beste ikuspegi bat gehitzen du.  
+   </para> 
+   </listitem>   
+
+<listitem>   
+
+   <para> 
+  
+     <guimenuitem>Kendu ikuspegia</guimenuitem> &mdash; ikuspegi aktiboa kentzen
+      du. Fitxategiaren azken ikuspegia bada ere, fitxategia ez da itxiko eta
+      Fitxategiak menuaren bidez erabilgarri egongo da.   
+   </para> 
+   </listitem>  </itemizedlist>  
+   </para> 
+  </listitem>  </varlistentry>  <varlistentry>  <term>
+<guimenu>Tresnak</guimenu></term>  
+
+<listitem>  
+
+   <para> 
+Menuaren edukia:  
+
+<itemizedlist>   
+
+<listitem>   
+
+   <para> 
+  
+     <guimenuitem>Bihurtzailea</guimenuitem>   &mdash; oinarria bihurtzeko
+      elkarrizketa-koadroa irekitzen du. ADD LINK   
+   </para> 
+   </listitem>   
+
+<listitem>   
+
+   <para> 
+  
+     <guimenuitem>Karaktere-taula</guimenuitem> &mdash;   0 eta  255 bitarteko
+      balio guztien ASCII azalpena, eta irudikapen hamaseitarra, hamartarra,
+      zortzitarra eta bitarra biltzen dituen taula bat erakusten du. Errenkada
+      batean klik bikoitza eginez, uneko ikuspegiko kurtsore-kokalekuan dagoen
+      bytea errenkadako balioan ezarriko du.   
+   </para> 
+   </listitem>  </itemizedlist>  
+   </para> 
+  </listitem>  </varlistentry>  <varlistentry>  <term>
+<guimenu>Ezarpenak</guimenu></term>  
+
+<listitem>  
+
+   <para> 
+Menuaren edukia:  
+
+<itemizedlist>   
+
+<listitem>   
+
+   <para> 
+  
+     <guimenuitem>Hobespenak&hellip;</guimenuitem>  &mdash; <link	      
+      linkend="prefs"><interface>Hobespenen
+      elkarrizketa-koadroa</interface></link> irekitzen du, ezarpenak
+      konfiguratzeko.  
+   </para> 
+    </listitem>     </itemizedlist>  
+   </para> 
+  </listitem>  </varlistentry>    <varlistentry>  <term>
+<guimenu>Fitxategiak</guimenu></term>  
+
+<listitem>  
+
+   <para> 
+      Irekita dauden fitxategi guztien izenak bistaratzen ditu. Horietako bat
+      atzitzeko, menuan hautatu besterik ez duzu egin behar.
+   </para> 
+   </listitem>     </varlistentry> <varlistentry>  <term>
+<guimenu>Laguntza</guimenu></term>  
+
+<listitem>  
+
+   <para> 
+Menuaren edukia:  
+
+<itemizedlist>   
+
+<listitem>   
+
+   <para> 
+  
+     <guimenuitem>Laguntza</guimenuitem> &mdash;
+      <application>Laguntza-arakatzailea</application> ireki eta eskuliburu hau
+      bistaratzen du.  
+   </para> 
+   </listitem>      
+
+<listitem>   
+
+   <para> 
+  
+     <guimenuitem>Honi buruz</guimenuitem> &mdash; <interface>Honi</interface>
+      buruz elkarrizketa-koadroa irekitzen du GHex-i buruzko oinarrizko
+      informazioa eskaintzeko, hala nola, egilearen izena, aplikazioaren
+      bertsioa eta aplikazioaren Web orriaren URLa, halakorik badago.  
+   </para> 
+   </listitem>  </itemizedlist> 
+   </para> 
+  </listitem>  </varlistentry>  </variablelist>  </sect1>  
+
+<sect1 id="ghexediting"> 
+
+<title>Fitxategiak editatu</title> 
+
+   <para> 
+     Fitxategian zehar mugitzeko gezi-teklak erabil ditzakezu, edo zenbakizko
+      teklatua edo buffer-bistaratzearen ezkerraldeko korritze-barra, edo saguaz
+      klik egin dezakezu. Hamaseitarraren edo ascii-ren pantailan klik eginez,
+      edizio-modu hamaseitarra edo ascii-koa aktibatuko da. Kurtsore beteak
+      adieraziko du zein bistaratze dagoen aktibo; bestean kurtsorearen ertzak
+      baino ez dira ikusiko. 
+   </para> 
+ 
+
+   <para> 
+     Ascii moduan, edozein testu-editorerekin edita dezakezu fitxategia. Modu
+      hamaseitarrean, kurtsorearen azpiko nibble-aren (lau bit, bytearen erdia)
+      balioa alda dezakezu, digitu hamaseitarrak adierazten dituzten teklen
+      bidez: '0' .. '9' and 'a' .. 'f'. 
+   </para> 
+ </sect1>  
+
+<sect1 id="ghexfindreplace"> 
+
+<title>Bilatu eta ordeztu</title> 
+
+   <para> 
+ 
+<guimenu>Edizioa</guimenu> menuan 
+<guimenuitem>Bilatu</guimenuitem> hautatuz, 
+     <guimenu>Bilatu elkarrizketa-koadroa</guimenu> bistaratuko da.  <figure
+      id="ghexfind-fig">  
+
+<title>GHex-en Bilatu elkarrizketa-koadroa</title>  
+<screenshot>  
+     <screeninfo><application>GHex</application>-en Bilatu
+      elkarrizketa-koadroa</screeninfo> <graphic fileref="ghexfind" format="png"
+      srccredit="John Fleck"> </graphic> </screenshot> </figure>Fitxategian kate
+      bat bilatzeko aukera eskaintzen dizu; kate hori formatu hamaseitarrean edo
+      ascii-n idatz dezakezu. <acronym>ASCII</acronym> kate bat bilatzeko,
+      idatzi katea horretarako dagoen koadroan eta egin klik Aurrekoa edo
+      Hurrengoa botoietan. Bilatzeko katea zein formatutan (hamaseitarra edo
+      <acronym>ASCII</acronym>) idatzi nahi duzun hauta dezakezu,
+      sarrera-koadroaren azpiko bi aukera-botoien bidez. 
+   </para> 
+ 
+
+   <para> 
+     Datuak ordezteko prozesua oso antzekoa da baina, oraingoan, bilatzeko
+      kateaz gainera ordezteko erabiliko den katea ere idatzi behar da. 
+<guimenu>Edizioan</guimenu> menuan 
+     <guimenuitem>Ordeztu</guimenuitem> hautatuz, <interface>Bilatu eta Ordeztu
+      elkarrizketa-koadroa</interface> bistaratuko da. <figure
+      id="ghexfindreplace-fig">  
+
+<title>GHex-en Bilatu eta Ordeztu elkarrizketa-koadroa</title>  
+<screenshot>  
+     <screeninfo><application>GHex</application>-en Bilatu eta Ordeztu
+      elkarrizketa-koadro</screeninfo>  <graphic fileref="ghexfindreplace"
+      format="png" srccredit="John Fleck"> </graphic>  </screenshot>  </figure> 
+      <guibutton>Hurrengoa</guibutton> botoian klik eginez, goiko koadroan
+      idatzitako katearen hurrengo agerpena bilatuko da; kurtsorea kate horrekin
+      bat datorren agerpen baten hasieran kokatzen bada,
+      <guibutton>Ordeztu</guibutton> botoiak katea ordeztuko du eta hurrengo
+      agerpena bilatuko du, baina kurtsorea ez bada katearen hasieran kokatzen,
+      hurrengo agerpena bilatuko du ordezpenik egin gabe. Azkenik,
+      <guibutton>Ordeztu guztiak</guibutton> botoian klik eginez, bilatutako
+      katearen agerpen guztiak ordeztuko dira kurtsorearen kokalekutik hasi eta
+      fitxategiaren amaieraraino. 
+   </para> 
+ </sect1>  
+
+<sect1 id="ghexconversion"> 
+
+<title>Oinarria bihurtzeko elkarrizketa-koadroa</title> 
+
+   <para> 
+     Datu-byteen (gehienez lau datu-byteren) irudikapen bitarra, hamartarra,
+      hamaseitarra eta ASCIIkoa erakusten ditu.  <figure id="ghexconverter-fig">
+       
+
+<title>GHex-en Bihurtzailearen elkarrizketa-koadroa</title>  
+<screenshot>  
+     <screeninfo><application>GHex</application>-en Bihurtzailearen
+      elkarrizketa-koadroa</screeninfo> <graphic fileref="ghexconverter"
+      format="png" srccredit="John Fleck"> </graphic> </screenshot> </figure>
+      Balioak automatikoki eguneratuko dira sarrera bateko datuak aldatzen
+      dituzunean. 'Hartu kurtsore-balioa' botoiak kurtsorearen azpiko datuaren
+      balioa hartzen du (bytea, hitza edo hitz luzea izan daiteke,
+      talde-ezarpenaren arabera). 
+   </para> 
+ </sect1> 
+
+<!-- ============= Customization ============================= -->  
+
+<sect1 id="prefs"> 
+
+<title>Pertsonalizazioa</title> 
+
+   <para> 
+Aplikazioaren ezarpenak aldatzeko, hautatu <menuchoice> 
+<guimenu>Ezarpenak</guimenu> 
+     <guimenuitem>Hobespenak...</guimenuitem> </menuchoice>.
+      <interface>Hobespenak</interface> elkarrizketa-koadroa irekiko da. 
+   </para> 
+ 
+
+   <para> 
+Ezarpenak editatu:   <figure id="ghexprefedit-fig"> 
+
+<title>GHex-en Hobespenen elkarrizketa-koadroa</title> 
+<screenshot> 
+     <screeninfo>GHex-en Hobespenen elkarrizketa-koadroa</screeninfo> <graphic
+      fileref="ghexprefedit" format="png"     srccredit="John Fleck"> </graphic>
+      </screenshot> </figure>  Hemen, gehienez ere zenbat aldaketa desegin
+      daitezkeen ezar dezakezu eta kurtsore-desplazamendua bistaratzeko formatua
+      hauta dezakezu. Formatu hori izan daiteke hamartarra edo hamaseitarra, edo
+      'x', 'o' eta 's' beste formatu-adierazlerik ez duen estilo
+      pertsonalizatuko katea. Era berean, hamaseitarra editatzeko koadroan beste
+      zutabe bat agertzea ezar dezakezu, lerro-hasierako desplazamenduak
+      ezkerrean bistaratzeko. 
+   </para> 
+ 
+
+   <para> 
+Bistaratze-ezarpenak: <figure id="ghexdisplaypref-fig"> 
+
+<title>GHex-en Hobespenak - Bistaratzearen elkarrizketa-koadroa</title> 
+<screenshot> 
+     <screeninfo>GHex-en Hobespenak - Bistaratzearen
+      elkarrizketa-koadroa</screeninfo> <graphic fileref="ghexdisplaypref"
+      format="png"     srccredit="John Fleck"> </graphic> </screenshot>
+      </figure> Datuak taldeka elkartzeko mota lehenetsia eta bistaratzeko
+      letra-tipoa ezar ditzakezu. 
+   </para> 
+  
+
+   <para> 
+MDI ezarpenak: <figure id="ghexmdipref-fig"> 
+
+<title>GHex-en Hobespenak - MDI elkarrizketa-koadroa</title> 
+<screenshot> 
+     <screeninfo>GHex-en Hobespenak - MDI elkarrizketa-koadroa</screeninfo>
+      <graphic fileref="ghexmdiprefs" format="png"     srccredit="John Fleck">
+      </graphic> </screenshot> </figure>  
+
+<itemizedlist>  
+
+<listitem>  
+
+   <para> 
+      Lehenetsia: Itxura eta Izaeraren propietateak dituzten erabiltzaileek
+      hautatutako modua.  
+   </para> 
+  </listitem>  
+
+<listitem>  
+
+   <para> 
+     Ohar-koadernoa: ikuspegiak ohar-koadernoen orrialdeetan bistaratzen ditu
+      eta orrialde bakoitzetik goi-mailako leiho berri bat sortzeko aukera
+      ematen du (orrialdea erroko leihora arrastatuz).   
+   </para> 
+  </listitem>  
+
+<listitem>  
+
+   <para> 
+Goi-maila: ikuspegi bakoitza goi-mailako bere leihoan bistaratzen du.
+   </para> 
+  </listitem>  
+
+<listitem>  
+
+   <para> 
+     Modala: ikuspegi bakarra bistaratzen du aldiko, Fitxategiak menutik
+      dokumentu bat hautatzeko aukera emanez erabiltzaileari.
+   </para> 
+  </listitem> </itemizedlist> 
+   </para> 
+  
+
+   <para> 
+Inprimatze-ezarpenak: <figure id="ghexprintpref-fig"> 
+
+<title>GHex-en Hobespenak - Inprimatzearen elkarrizketa-koadroa</title> 
+<screenshot> 
+     <screeninfo>GHex-en Hobespenak - Inprimatzearen
+      elkarrizketa-koadroa</screeninfo> <graphic fileref="ghexprintprefs"
+      format="png"     srccredit="John Fleck"> </graphic> </screenshot>
+      </figure>  Elkarrizketa-koadro honetan aukera dezakezu paper-tamaina,
+      datuen eta goiburukoen letra-tipoa, edo irteerako zein zati agertuko diren
+      lausotuta. 
+   </para> 
+  </sect1>   
+
+<!-- ============= Authors ================================ -->  
+
+<sect1 id="authors"> 
+
+<title>Egileak</title> 
+
+   <para> 
+      <application>GHex</application> Jaka Mocnik-ek idatzi du
+      (<email>jaka@gnu.org</email>). <application>GHex</application>
+      aplikazioari buruz informazio gehiago nahi izanez gero, joan <ulink  
+      url="http://pluton.ijs.si/~jaka/gnome.html#GHEX" type="http">GHex-en web
+      orrira</ulink>. Bidali zuen iruzkin, iradokizun eta akatsen berri-emateak
+      <ulink url="http://bugzilla.gnome.org" type="http">GNOMEren akatsen
+      segimendurako datu-basera</ulink>. Akatsen berri emateko,
+      <application>akatsen berri emateko tresna</application>
+      (<command>bug-buddy</command>) ere erabil dezakezu. Tresna hori 
+<guimenu>Menu nagusi</guimenu>ko 
+<guisubmenu>Utilitateak</guisubmenu> azpimenuan duzu eskuragarri. 
+   </para> 
+  
+
+   <para> 
+     Eskuliburu hau Jaka Mocnik-ek idatzi du (<email>jaka@gnu.org</email>).
+      Eskuliburuari dagozkion iruzkinak eta iradokizunak <ulink type="http"    
+      url="http://developer.gnome.org/projects/gdp/">GNOMEren
+      dokumentazio-proiektura</ulink> bidal ditzakezue:
+      <email>docs@gnome.org</email>. Iruzkinak linean ere egin ditzakezue <ulink
+      type="http"  
+      url="http://developer.gnome.org/projects/gdp/doctable/">GNOMEren
+      dokumentazio-egoeraren taula</ulink> erabiliz. 
+   </para> 
+  
+
+   <para> 
+      Euskarazko itzulpena Hizkuntza Politikarako Sailburuordetzak egin du
+      (<email>hizkpol@ej-gv.es</email>). Itzulpenari buruzko oharrak eta
+      iradokizunak helbide honetara bidal ditzakezue:
+      <email>hizkpol@ej-gv.es</email> 
+   </para> 
+   </sect1>   
+
+<!-- ============= Application License ============================= -->  
+
+<sect1 id="license"> 
+
+<title>Lizentzia</title> 
+
+   <para> 
+     Programa hau software librea da; birbana eta/edo alda dezakezu, Free
+      Software Foundation-ek argitaratutako <ulink type="help"
+      url="gnome-help:gpl"> <citetitle>GNU Lizentzia Publiko
+      Orokorra</citetitle></ulink>ren 2. bertsioan, edo (nahiago baduzu) bertsio
+      berriago batean, jasotako baldintzak betez gero. 
+   </para> 
+ 
+
+   <para> 
+      Programa hau erabilgarria izango delakoan banatzen da, baina INOLAKO
+      BERMERIK GABE; era berean, ez da bermatzen beraren EGOKITASUNA
+      MERKATURATZEKO edo HELBURU PARTIKULARRETARAKO ERABILTZEKO. Argibide
+      gehiago nahi izanez gero, ikus <citetitle>GNU Lizentzia Publiko
+      Orokorra</citetitle>. 
+   </para> 
+ 
+
+   <para> 
+      <citetitle>GNU Lizentzia Publiko Orokorra</citetitle>ren kopia bat
+      <citetitle>GNOMEren erabiltzailearen gida</citetitle>ren eranskinean
+      daukazu. <citetitle>GNU Lizentzia Publiko Orokorra</citetitle>ren kopia
+      Free Software Foundation-en bidez ere lor dezakezu <ulink type="http"  
+      url="http://www.fsf.org">haren Web gunea</ulink> bisitatuz edo hona
+      idatziz: <address> Free Software Foundation, Inc. <street>59 Temple
+      Place</street> - Suite 330 <city>Boston</city>, <state>MA</state>
+      <postcode>02111-1307</postcode> <country>USA</country> </address> 
+   </para> 
+ </sect1> </article>
