@@ -85,7 +85,7 @@ find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		gtk_window_set_default(GTK_WINDOW(find_dialog->window), find_dialog->f_next);
 		gtk_widget_show(find_dialog->window);
 	}
-	gdk_window_raise(find_dialog->window->window);
+	raise_and_focus_widget(find_dialog->window);
 }
 
 void
@@ -99,7 +99,7 @@ replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		gtk_window_set_default(GTK_WINDOW(replace_dialog->window), replace_dialog->next);
 		gtk_widget_show(replace_dialog->window);
 	}
-	gdk_window_raise(replace_dialog->window->window);
+	raise_and_focus_widget(replace_dialog->window);
 }
 
 void
@@ -113,7 +113,7 @@ jump_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		gtk_window_set_default(GTK_WINDOW(jump_dialog->window), jump_dialog->ok);
 		gtk_widget_show(jump_dialog->window);
 	}
-	gdk_window_raise(jump_dialog->window->window);
+	raise_and_focus_widget(jump_dialog->window);
 }
 
 void
@@ -158,4 +158,49 @@ redo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		gtk_hex_set_cursor(win->gh, cd->start);
 		gtk_hex_set_nibble(win->gh, cd->lower_nibble);
 	}
+}
+
+gboolean
+hex_document_ok_to_close(HexDocument *doc)
+{
+	static char msg[MESSAGE_LEN + 1];
+	GtkWidget *mbox;
+	gint reply;
+	GtkWidget *save_btn;
+	GHexWindow *win;
+
+	win = ghex_window_find_for_doc(doc);
+
+	if(win == NULL)
+		return FALSE;
+
+	g_snprintf(msg, MESSAGE_LEN,
+			   _("File %s has changed since last save.\n"
+				 "Do you want to save changes?"),
+			   doc->path_end);
+
+	mbox = gtk_message_dialog_new(GTK_WINDOW(win),
+								  GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
+								  GTK_MESSAGE_QUESTION,
+								  GTK_BUTTONS_NONE,
+								  msg);
+			
+	save_btn = create_button(mbox, GTK_STOCK_NO, _("Do_n't save"));
+	gtk_widget_show (save_btn);
+	gtk_dialog_add_action_widget(GTK_DIALOG(mbox), save_btn, GTK_RESPONSE_NO);
+	gtk_dialog_add_button(GTK_DIALOG(mbox), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+	gtk_dialog_add_button(GTK_DIALOG(mbox), GTK_STOCK_SAVE, GTK_RESPONSE_YES);
+	gtk_dialog_set_default_response(GTK_DIALOG(mbox), GTK_RESPONSE_YES);
+	gtk_window_set_resizable(GTK_WINDOW(mbox), FALSE);
+	
+	reply = gtk_dialog_run(GTK_DIALOG(mbox));
+	
+	gtk_widget_destroy(mbox);
+		
+	if(reply == GTK_RESPONSE_YES)
+		hex_document_write(doc);
+	else if(reply == GTK_RESPONSE_CANCEL)
+		return FALSE;
+
+	return TRUE;
 }

@@ -262,7 +262,19 @@ help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar *verbname)
 void
 quit_app_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	/* TODO: need to kill all windows */
+	const GList *win_node, *doc_node;
+	GHexWindow *win;
+	HexDocument *doc;
+
+	doc_node = hex_document_get_list();
+	while(doc_node) {
+		doc = HEX_DOCUMENT(doc_node->data);
+		if(hex_document_has_changed(doc)) {
+			if(!hex_document_ok_to_close(doc))
+				return;
+		}
+		doc_node = doc_node->next;
+	}
 	bonobo_main_quit();
 }
 
@@ -466,18 +478,14 @@ export_html_selected_file(GtkWidget *w, GtkHex *view)
 }
 
 /* Defined in converter.c: used by close_cb and converter_cb */
-
 extern GtkWidget *get;
 
 static void
 close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
-	static char msg[MESSAGE_LEN + 1];
-	GtkWidget *mbox;
-	gint reply;
-	GtkWidget *save_btn;
 	HexDocument *doc;
+	GList *window_list;
 
 	if(win->gh == NULL) {
 		gtk_widget_destroy(GTK_WIDGET(win));
@@ -486,35 +494,18 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 
 	doc = win->gh->document;
 	
-	g_snprintf(msg, MESSAGE_LEN,
-			   _("File %s has changed since last save.\n"
-				 "Do you want to save changes?"),
-			   doc->path_end);
-	
 	if(hex_document_has_changed(doc)) {
-		mbox = gtk_message_dialog_new(GTK_WINDOW(win),
-				GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
-				GTK_MESSAGE_QUESTION,
-				GTK_BUTTONS_NONE,
-				msg);
-		
-		save_btn = create_button(mbox, GTK_STOCK_NO, _("Do_n't save"));
-		gtk_widget_show (save_btn);
-		gtk_dialog_add_action_widget(GTK_DIALOG(mbox), save_btn, GTK_RESPONSE_NO);
-		gtk_dialog_add_button(GTK_DIALOG(mbox), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
-		gtk_dialog_add_button(GTK_DIALOG(mbox), GTK_STOCK_SAVE, GTK_RESPONSE_YES);
-		gtk_dialog_set_default_response(GTK_DIALOG(mbox), GTK_RESPONSE_YES);
-		gtk_window_set_resizable(GTK_WINDOW(mbox), FALSE);
-
-		reply = gtk_dialog_run(GTK_DIALOG(mbox));
-
-		gtk_widget_destroy(mbox);
-		
-		if(reply == GTK_RESPONSE_YES)
-			hex_document_write(doc);
-		else if(reply == GTK_RESPONSE_CANCEL)
+		if(!hex_document_ok_to_close(doc))
 			return;
 	}	
+
+	window_list = ghex_window_get_list();
+	while(window_list) {
+		win = GHEX_WINDOW(window_list->data);
+		window_list = window_list->next;
+		if(win->gh && win->gh->document == doc)
+			gtk_widget_destroy(GTK_WIDGET(win));
+	}
 
 	/* this implicitly destroys all views including this one */
 	g_object_unref(G_OBJECT(doc));
@@ -524,6 +515,35 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	 */
 	if (get)
 		gtk_widget_set_sensitive(get, FALSE);
+}
+
+void
+raise_and_focus_widget (GtkWidget *widget)
+{
+	g_assert (GTK_WIDGET_REALIZED (widget));
+	gdk_window_raise (widget->window);
+	gtk_widget_grab_focus (widget);
+}
+
+void
+file_list_activated_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	GHexWindow *win;
+	HexDocument *doc = HEX_DOCUMENT(user_data);
+	GList *window_list;
+
+	window_list = ghex_window_get_list();
+	while(window_list) {
+		win = GHEX_WINDOW(window_list->data);
+		if(win->gh && win->gh->document == doc)
+			break;
+		window_list = window_list->next;
+	}
+
+	if(window_list) {
+		win = GHEX_WINDOW(window_list->data);
+		raise_and_focus_widget(win);
+	}
 }
 
 static void
@@ -536,7 +556,7 @@ converter_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		gtk_window_position(GTK_WINDOW(converter->window), GTK_WIN_POS_MOUSE);
 		gtk_widget_show(converter->window);
 	}
-	gdk_window_raise(converter->window->window);
+	raise_and_focus_widget(converter->window);
 
 	if (!ghex_window_get_active())
 		gtk_widget_set_sensitive(get, FALSE);
@@ -554,7 +574,7 @@ char_table_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 		gtk_window_position(GTK_WINDOW(char_table), GTK_WIN_POS_MOUSE);
 		gtk_widget_show(char_table);
 	}
-	gdk_window_raise(char_table->window);
+	raise_and_focus_widget(char_table->window);
 }
 
 
@@ -571,7 +591,7 @@ void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 		gtk_window_position (GTK_WINDOW(prefs_ui->pbox), GTK_WIN_POS_MOUSE);
 		gtk_widget_show(GTK_WIDGET(prefs_ui->pbox));
 	}
-	gdk_window_raise(GTK_WIDGET(prefs_ui->pbox)->window);
+	raise_and_focus_widget(GTK_WIDGET(prefs_ui->pbox)->window);
 }
 
 
@@ -861,12 +881,13 @@ void
 add_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
+	GtkWidget *newwin;
 
 	if(win->gh == NULL)
 		return;
 
-	win = ghex_window_new_from_doc(win->gh->document);
-	gtk_widget_show(win);
+	newwin = ghex_window_new_from_doc(win->gh->document);
+	gtk_widget_show(newwin);
 }
 
 void
@@ -874,5 +895,6 @@ remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbnam
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
-	gtk_widget_destroy(GTK_WIDGET(win));
+	ghex_window_close(win);
 }
+

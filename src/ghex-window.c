@@ -83,6 +83,46 @@ ghex_window_drag_data_received(GtkWidget *widget,
     }
 }
 
+/* Defined in converter.c: used by close_cb and converter_cb */
+extern GtkWidget *get;
+
+gboolean
+ghex_window_close(GHexWindow *win)
+{
+	HexDocument *doc;
+	const GList *window_list;
+
+	if(win->gh == NULL) {
+		gtk_widget_destroy(GTK_WIDGET(win));
+		return;
+	}
+
+	doc = win->gh->document;
+	
+	if(doc->views->next == NULL && hex_document_has_changed(doc)) {
+		if(!hex_document_ok_to_close(doc))
+			return;
+	}	
+
+    if(doc->views == NULL) {
+        window_list = ghex_window_get_list();
+        while(window_list) {
+            ghex_window_remove_doc_from_list(GHEX_WINDOW(window_list->data),
+                                             win->gh->document);
+            window_list = window_list->next;
+        }
+        g_object_unref(G_OBJECT(doc));
+    }
+
+	/* If we have created the converter window disable the 
+	 * "Get cursor value" button
+	 */
+	if (get)
+		gtk_widget_set_sensitive(get, FALSE);
+
+    gtk_widget_destroy(GTK_WIDGET(win));
+}
+
 static gboolean 
 ghex_window_focus_in_event(GtkWidget *win, GdkEventFocus *event)
 {
@@ -172,8 +212,8 @@ ghex_window_destroy(GtkObject *object)
         win = GHEX_WINDOW(object);
 
         if(win->uic) {
-                bonobo_object_unref(win->uic);
-                win->uic = NULL;
+            bonobo_object_unref(win->uic);
+            win->uic = NULL;
         }
         if(win->gh) {
             hex_document_remove_view(win->gh->document, GTK_WIDGET(win->gh));
@@ -201,7 +241,7 @@ ghex_window_destroy(GtkObject *object)
 static gboolean
 ghex_window_delete_event(GtkWidget *widget, GdkEventAny *e)
 {
-    gtk_widget_destroy(widget);
+    ghex_window_close(GHEX_WINDOW(widget));
     return TRUE;
 }
 
@@ -305,6 +345,7 @@ ghex_window_new(void)
 	BonoboUIContainer *ui_container;
 	BonoboUIComponent *uic;
     CORBA_Environment ev;
+    const GList *doc_list;
 
 	static const GtkTargetEntry drag_types[] = {
 		{ "text/uri-list", 0, TARGET_URI_LIST }
@@ -341,6 +382,12 @@ ghex_window_new(void)
 	bonobo_ui_component_set_prop (uic, "/status", "hidden", "0", NULL);
 
     ghex_window_set_sensitivity(win);
+
+    doc_list = hex_document_get_list();
+    while(doc_list) {
+        ghex_window_add_doc_to_list(win, HEX_DOCUMENT(doc_list->data));
+        doc_list = doc_list->next;
+    }
 
 	return GTK_WIDGET(win);
 }
@@ -411,6 +458,7 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     gchar *full_path;
     HexDocument *doc;
     GtkWidget *gh;
+    const GList *window_list;
 
     g_return_val_if_fail(win != NULL, FALSE);
     g_return_val_if_fail(GHEX_IS_WINDOW(win), FALSE);
@@ -436,6 +484,12 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     gtk_widget_show(gh);
     
     if(win->gh) {
+        window_list = ghex_window_get_list();
+        while(window_list) {
+            ghex_window_remove_doc_from_list(GHEX_WINDOW(window_list->data),
+                                             win->gh->document);
+            window_list = window_list->next;
+        }
         hex_document_remove_view(win->gh->document, GTK_WIDGET(win->gh));
         g_signal_handlers_disconnect_matched(win->gh->document,
                                              G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA,
@@ -447,11 +501,96 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     win->gh = GTK_HEX(gh);
     win->changed = FALSE;
 
+    window_list = ghex_window_get_list();
+    while(window_list) {
+        ghex_window_add_doc_to_list(GHEX_WINDOW(window_list->data), win->gh->document);
+        window_list = window_list->next;
+    }
+
     ghex_window_sync_group_type(win);
     ghex_window_set_doc_name(win, win->gh->document->path_end);
     ghex_window_set_sensitivity(win);
    
     return TRUE;
+}
+
+static gchar* 
+escape_underscores (const gchar* text)
+{
+	GString *str;
+	gint length;
+	const gchar *p;
+ 	const gchar *end;
+
+  	g_return_val_if_fail (text != NULL, NULL);
+
+    length = strlen (text);
+
+	str = g_string_new ("");
+
+  	p = text;
+  	end = text + length;
+
+  	while (p != end) {
+        const gchar *next;
+        next = g_utf8_next_char (p);
+
+		switch (*p) {
+        case '_':
+            g_string_append (str, "__");
+            break;
+        default:
+            g_string_append_len (str, p, next - p);
+            break;
+        }
+        
+        p = next;
+    }
+    
+	return g_string_free (str, FALSE);
+}
+
+void
+ghex_window_remove_doc_from_list(GHexWindow *win, HexDocument *doc)
+{
+    gchar *verb_name = g_strdup_printf("FilesFile_%p", doc);
+    gchar *menu_path = g_strdup_printf("/menu/Files/%s", verb_name);
+    gchar *cmd_path = g_strdup_printf("/commands/%s", verb_name);
+
+    bonobo_ui_component_remove_verb(win->uic, verb_name);
+    bonobo_ui_component_rm(win->uic, cmd_path, NULL);
+    bonobo_ui_component_rm(win->uic, menu_path, NULL);
+ 
+    g_free(cmd_path);
+    g_free(menu_path);
+    g_free(verb_name);
+}
+
+void
+ghex_window_add_doc_to_list(GHexWindow *win, HexDocument *doc)
+{
+    gchar *menu = NULL, *verb_name;
+    gchar *cmd = NULL;
+    gchar *escaped_name;
+    gchar *tip;
+
+    escaped_name = escape_underscores(doc->path_end);
+    tip = g_strdup_printf(_("Activate file %s"), doc->path_end);
+    verb_name = g_strdup_printf("FilesFile_%p", doc);
+    menu = g_strdup_printf("<menuitem name=\"%s\" verb=\"%s\" label=\"%s\"/>",
+                           verb_name, verb_name, escaped_name);
+    cmd = g_strdup_printf("<cmd name=\"%s\" _label=\"%s\" _tip=\"%s\"/>",
+                          verb_name, escaped_name, tip);
+    g_free(tip);
+    g_free(escaped_name);
+
+    bonobo_ui_component_set_translate(win->uic, "/menu/Files/", menu, NULL);
+    bonobo_ui_component_set_translate(win->uic, "/commands/", cmd, NULL);
+    bonobo_ui_component_add_verb(win->uic, verb_name, file_list_activated_cb, doc);
+
+    g_free(menu);
+    g_free(cmd);
+    g_free(verb_name);
 }
 
 const GList *
@@ -569,4 +708,20 @@ ghex_window_flash (GHexWindow * win, const gchar * flash)
                             GTK_SIGNAL_FUNC (remove_timeout_cb),
                             mi );
 	mi->win = win;
+}
+
+GHexWindow *
+ghex_window_find_for_doc(HexDocument *doc)
+{
+    const GList *win_node;
+    GHexWindow *win;
+
+    win_node = ghex_window_get_list();
+    while(win_node) {
+        win = GHEX_WINDOW(win_node->data);
+        if(win->gh && win->gh->document == doc)
+            return win;
+        win_node = win_node->next;
+    }
+    return NULL;
 }

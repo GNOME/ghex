@@ -300,6 +300,9 @@ hex_document_finalize(GObject *obj)
 
 	undo_stack_free(hex);
 
+	while(hex->views)
+		hex_document_remove_view(hex, (GtkWidget *)hex->views->data);
+
 	doc_list = g_list_remove(doc_list, hex);
 
 	G_OBJECT_CLASS (parent_class)->finalize (obj);

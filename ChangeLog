@@ -1,3 +1,20 @@
+2002-06-30  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/ui.c (quit_app_cb): ask to save or cancel if the documents
+	were changed.
+	* src/ghex-window.c (ghex_window_close): the proper way to get rid of
+	a GHexWindow. if this is the last view of a doc and the doc has
+	changed, ask user whether to save the changes.
+	(ghex_window_load): add/remove new/old document to/from the "Files"
+	menu.
+	(ghex_window_remove_doc_from_list): remove document name from the
+	"Files" menu.
+	(ghex_window_add_doc_to_list): add document name to the "Files" menu.
+	(ghex_window_new): add all existing document to "Files" menu.
+	* src/ui.c (close_cb): kill all views of the closed document.
+	* src/hex-document.c (hex_document_finalize): release refs to all
+	views.
+
 2002-06-20  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/ui.c (add_view_cb, remove_view_cb): implemented.

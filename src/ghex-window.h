@@ -56,7 +56,7 @@ GType             ghex_window_get_type           (void);
 GtkWidget         *ghex_window_new               (void);
 GtkWidget         *ghex_window_new_from_doc      (HexDocument *doc);
 GtkWidget         *ghex_window_new_from_file     (const gchar *filename);
-void              ghex_window_close              (GHexWindow *win);
+gboolean          ghex_window_close              (GHexWindow *win);
 BonoboUIComponent *ghex_window_get_ui_component  (GHexWindow *win);
 const GList       *ghex_window_get_list          (void);
 GHexWindow        *ghex_window_get_active        (void);
@@ -67,6 +67,11 @@ void              ghex_window_show_status        (GHexWindow *win,
                                                   const gchar *msg);
 void              ghex_window_flash              (GHexWindow *win,
                                                   const gchar * flash);
+void              ghex_window_remove_doc_from_list(GHexWindow *win,
+                                                   HexDocument *doc);
+void              ghex_window_add_doc_to_list     (GHexWindow *win,
+                                                   HexDocument *doc);
+GHexWindow        *ghex_window_find_for_doc       (HexDocument *doc);
 
 G_END_DECLS
 

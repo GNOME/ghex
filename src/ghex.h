@@ -220,9 +220,14 @@ void add_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbn
 void remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 void insert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 void quit_app_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void file_list_activated_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 
 void display_error_dialog (GHexWindow *win, const gchar *msg);
 void update_dialog_titles (void);
+void raise_and_focus_widget(GtkWidget *);
+
+gboolean hex_document_ok_to_close(HexDocument *doc);
+
 
 G_END_DECLS
 
