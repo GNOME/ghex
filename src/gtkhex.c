@@ -952,7 +952,7 @@ static void gtk_hex_finalize(GtkObject *o) {
 	GtkHex *gh = GTK_HEX(o);
 	
 	if(gh->disp_buffer)
-		free(gh->disp_buffer);
+		g_free(gh->disp_buffer);
 	
 	if(GTK_OBJECT_CLASS(parent_class)->finalize)
 		(* GTK_OBJECT_CLASS(parent_class)->finalize)(o);  
