@@ -101,18 +101,25 @@ static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *e
 
 static void hide_chartable_cb (GtkWidget *widget, GtkWidget *win)
 {
+    /* widget may be NULL if called from keypress cb! */
+	ghex_window_sync_char_table_item(NULL, FALSE);
 	gtk_widget_hide(win);
+}
+
+static gint char_table_key_press_cb (GtkWindow *w, GdkEventKey *e, gpointer data)
+{
+	if (e->keyval == GDK_Escape) {
+		hide_chartable_cb(NULL, w);
+		return TRUE;
+	}
+	return FALSE;
 }
 
 static gint key_press_cb (GtkTreeView *treeview, GdkEventKey *e, gpointer data)
 {
 	GtkTreeModel *model = GTK_TREE_MODEL(data);
 
-	if (e->keyval == GDK_Escape) {
-		gtk_widget_hide(GTK_WIDGET(treeview));
-		return TRUE;
-	}
-	else if(e->keyval == GDK_Return) {
+	if(e->keyval == GDK_Return) {
 		insert_char(treeview, model);
 		return TRUE;
 	}
@@ -144,6 +151,8 @@ GtkWidget *create_char_table()
 
 	ct = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_signal_connect(GTK_OBJECT(ct), "delete_event",
+					   GTK_SIGNAL_FUNC(char_table_delete_event_cb), NULL);
+	gtk_signal_connect(GTK_OBJECT(ct), "key_press_event",
 					   GTK_SIGNAL_FUNC(char_table_delete_event_cb), NULL);
 	gtk_window_set_title(GTK_WINDOW(ct), _("Character table"));
 	sw = gtk_scrolled_window_new(NULL, NULL);

@@ -174,6 +174,7 @@ GtkWidget *converter_get = NULL;
 static void
 close_converter(GtkWidget *button, GnomeDialog *dialog)
 {
+	ghex_window_sync_converter_item(NULL, FALSE);
 	gnome_dialog_close(dialog);
 }
 
@@ -183,6 +184,16 @@ converter_delete_event_cb(GtkWidget *widget, GdkEventAny *e, gpointer user_data)
 	ghex_window_sync_converter_item(NULL, FALSE);
 	gtk_widget_hide(widget);
 	return TRUE;
+}
+
+static gboolean
+conv_key_press_cb (GtkWidget *widget, GdkEventKey *e, gpointer user_data)
+{
+	if (e->keyval == GDK_Escape) {
+		converter_delete_event_cb(widget, (GdkEventAny *)e, user_data);
+		return TRUE;
+	}
+	return FALSE;
 }
 
 Converter *
@@ -232,7 +243,9 @@ create_converter()
 						GTK_SIGNAL_FUNC(converter_delete_event_cb), conv);
 	gtk_signal_connect(GTK_OBJECT(converter_get), "clicked",
 						GTK_SIGNAL_FUNC(get_cursor_val_cb), conv);
-	gtk_table_attach_defaults(GTK_TABLE(table), converter_get, 0, 2, 5, 6);
+	gtk_signal_connect(GTK_OBJECT(conv->window), "key_press_event",
+					   G_CALLBACK(conv_key_press_cb), conv);
+ 	gtk_table_attach_defaults(GTK_TABLE(table), converter_get, 0, 2, 5, 6);
 
 	/* add the accelerators */
 	gtk_window_add_accel_group(GTK_WINDOW(conv->window), accel_group);
