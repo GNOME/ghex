@@ -3,140 +3,143 @@
 # Eiichiro ITANI <emu@ceres.dti.ne.jp>, 1998.
 # Yuusuke Tahara <tahara@gnome.gr.jp>, 2000.
 # Yukihiro Nakai <nakai@gnome.gr.jp>, 2000.
+# Akira TAGOH <tagoh@gnome.gr.jp>, 2001.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 1.1.3\n"
-"POT-Creation-Date: 2001-03-08 19:39+0100\n"
-"PO-Revision-Date: 2000-09-26 00:26+09:00\n"
-"Last-Translator: Yukihiro Nakai <nakai@gnome.gr.jp>\n"
+"Project-Id-Version: ghex CVS-20011214\n"
+"POT-Creation-Date: 2001-12-18 19:06+0900\n"
+"PO-Revision-Date: 2001-12-18 19:06+0900\n"
+"Last-Translator: Akira TAGOH <tagoh@gnome.gr.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=euc-jp\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/converter.c:44
+#: src/converter.c:176
 msgid "GHex: Converter"
 msgstr "GHex: コンバータ"
 
-#: src/chartable.c:91 src/converter.c:53
-msgid "Binary"
-msgstr "バイナリ"
+#. entries
+#: src/converter.c:195
+msgid "_Binary"
+msgstr "バイナリ(_B)"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:161
-msgid "Decimal"
-msgstr "10進"
+#: src/converter.c:197
+msgid "_Octal"
+msgstr "8進(_O)"
 
-#: src/chartable.c:90 src/converter.c:73
-msgid "Hex"
-msgstr "16進"
+#: src/converter.c:199
+msgid "_Decimal"
+msgstr "10進(_D)"
 
-#: src/chartable.c:90 src/converter.c:83
-msgid "ASCII"
-msgstr "ASCII"
+#: src/converter.c:201
+msgid "_Hex"
+msgstr "16進(_H)"
 
-#: src/converter.c:93
-msgid "Get cursor value"
-msgstr "カーソルの値を取得"
+#: src/converter.c:203
+msgid "_ASCII"
+msgstr "ASCII(_A)"
 
-#: src/converter.c:99
-msgid "Close"
-msgstr "閉じる"
+#. get cursor button
+#: src/converter.c:207
+msgid "_Get cursor value"
+msgstr "カーソルの値を取得(_G)"
 
-#: src/converter.c:194
+#: src/converter.c:323
 msgid "ERROR"
 msgstr "エラー"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:60 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): データ検索"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:69
 #, c-format
 msgid "Search for %s"
 msgstr "%sを探す"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:86
 msgid "Find Next"
 msgstr "次を検索"
 
-#: src/findreplace.c:91
+#: src/findreplace.c:94
 msgid "Find Previous"
 msgstr "前を検索"
 
-#: src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:130 src/main.c:100
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): 検索およびデータの置換"
 
-#: src/findreplace.c:141
+#: src/findreplace.c:144
 #, c-format
 msgid "Replace %s"
 msgstr "%sを置換"
 
-#: src/findreplace.c:157
+#: src/findreplace.c:161
 msgid "Find next"
 msgstr "以降を検索"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:169
 msgid "Replace"
 msgstr "置換"
 
-#: src/findreplace.c:173
+#: src/findreplace.c:177
 msgid "Replace All"
 msgstr "全て置換"
 
-#: src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:210 src/main.c:102
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): nバイト目にジャンプ"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:299 src/findreplace.c:324 src/findreplace.c:376
 msgid "There is no active buffer to search!"
 msgstr "検索対象バッファの指定がありません!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:307 src/findreplace.c:332 src/findreplace.c:384
 msgid "There seems to be no string to search for!"
 msgstr "検索すべき文字列はないみたいです!"
 
-#: src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:314 src/findreplace.c:392
 msgid "End Of File reached"
 msgstr "ファイル終端に到達"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:340
 msgid "Beginning Of File reached"
 msgstr "ファイル先頭に到達"
 
-#: src/findreplace.c:345
+#: src/findreplace.c:349
 msgid "There is no active buffer to move the cursor in!"
 msgstr "カーソルを動かすべきアクティブなバッファがありません!"
 
-#: src/findreplace.c:350
+#: src/findreplace.c:354
 msgid "No offset has been specified!"
 msgstr "オフセットが指定されていません!"
 
-#: src/findreplace.c:357
+#: src/findreplace.c:361
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "ファイルの終端より先にはカーソルを移動できません!"
 
-#: src/findreplace.c:362
+#: src/findreplace.c:366
 msgid "The offset must be a positive integer value!"
 msgstr "オフセットは正の数でなければいけません!"
 
-#: src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:403 src/findreplace.c:440
 msgid "There is no active buffer to replace data in!"
 msgstr "置換を行なうべきアクティブなバッファがありません!"
 
-#: src/findreplace.c:410 src/findreplace.c:447
+#: src/findreplace.c:414 src/findreplace.c:451
 msgid "Strange find or replace string!"
 msgstr "検索・置換文字列が変です!"
 
-#: src/findreplace.c:425
+#: src/findreplace.c:429
 msgid "End Of File reached!"
 msgstr "ファイル終端に到達!"
 
-#: src/findreplace.c:463
+#: src/findreplace.c:467
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d箇所置き換えました。"
@@ -217,7 +220,7 @@ msgstr "ビューを削除(_R)"
 msgid "Remove the current view of the buffer"
 msgstr "現在のバッファのビューを削除します"
 
-#: src/main.c:51
+#: src/main.c:52
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -226,7 +229,7 @@ msgstr ""
 "ファイル%sは前回セーブしてから更新されています。\n"
 "変更をセーブしますか?"
 
-#: src/main.c:202
+#: src/main.c:204
 #, c-format
 msgid "Offset: %s"
 msgstr "オフセット: %s"
@@ -258,6 +261,10 @@ msgstr "やり直しの最大回数"
 #: src/preferences.c:147
 msgid "Show cursor offset in statusbar as"
 msgstr "ステータスバーにカーソルのオフセット表示を"
+
+#: src/chartable.c:90 src/preferences.c:161
+msgid "Decimal"
+msgstr "10進"
 
 #: src/preferences.c:166
 msgid "Hexadecimal"
@@ -333,138 +340,169 @@ msgstr "行 (0 のときは無し)"
 msgid "Printing"
 msgstr "印刷"
 
-#: src/preferences.c:534
+#: src/preferences.c:536
 msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
-msgstr "オフセット文字列に 'x', 'd', 'o' 以外のフォーマットを含んでいます!"
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"オフセット書式文字列に無効な識別形式が含まれています\n"
+"'x', 'X', 'p', 'P', 'd', 'o' だけが使用出来ます"
 
-#: src/preferences.c:570
+#: src/preferences.c:573
 msgid "Can not open desired font!"
 msgstr "お望みのフォントを読めません!"
 
-#: src/ui.c:57
-msgid "Export to HTML..."
-msgstr "HTMLに出力..."
+#: src/ui.c:61
+msgid "Export to _HTML..."
+msgstr "HTMLに出力(_H)..."
 
-#: src/ui.c:57
+#: src/ui.c:61
 msgid "Export data to HTML source"
 msgstr "データをHTMLファイルに出力します"
 
-#: src/ui.c:61
-msgid "Print preview..."
-msgstr "印刷プレビュー..."
+#: src/ui.c:65
+msgid "Print pre_view..."
+msgstr "印刷プレビュー(_v)..."
 
-#: src/ui.c:61
+#: src/ui.c:65
 msgid "Preview printed data"
 msgstr "印刷するデータのプレビューを行ないます"
 
-#: src/ui.c:74
+#: src/ui.c:78
 msgid "Con_verter..."
 msgstr "変換(_V)..."
 
-#: src/ui.c:75
+#: src/ui.c:79
 msgid "Open base conversion dialog"
 msgstr "基底変換用のダイアログを開きます"
 
-#: src/ui.c:76
-msgid "Character Table..."
-msgstr "キャラクタテーブル..."
+#: src/ui.c:80
+msgid "Character _Table..."
+msgstr "キャラクタテーブル(_T)..."
 
-#: src/ui.c:77
+#: src/ui.c:81
 msgid "Show the character table"
 msgstr "キャラクタテーブルを表示します"
 
-#: src/ui.c:94
-msgid "Tools"
-msgstr "ツール"
+#: src/ui.c:98
+msgid "_Tools"
+msgstr "ツール(_T)"
 
-#: src/ui.c:108
+#: src/ui.c:112
 msgid "Bytes"
 msgstr "バイト"
 
-#: src/ui.c:109
+#: src/ui.c:113
 msgid "Words"
 msgstr "ワード"
 
-#: src/ui.c:110
+#: src/ui.c:114
 msgid "Longwords"
 msgstr "ロングワード"
 
-#: src/ui.c:115
+#: src/ui.c:119
 msgid "hex data"
 msgstr "16進データ"
 
-#: src/ui.c:116
+#: src/ui.c:120
 msgid "ASCII data"
 msgstr "ASCIIデータ"
 
-#: src/ui.c:200
+#: src/ui.c:204
 msgid "GHex, a binary file editor"
 msgstr "GHex、バイナリファイルエディタ"
 
-#: src/ui.c:202
+#: src/ui.c:206
 msgid "Released under the terms of GNU Public License"
 msgstr "GNU一般許諾使用書に基づいてリリースされています"
 
-#: src/ui.c:226 src/ui.c:548
+#: src/ui.c:230 src/ui.c:506
 msgid "Error saving file!"
 msgstr "ファイル書き込みにエラー!"
 
-#: src/ui.c:230 src/ui.c:543
+#: src/ui.c:234 src/ui.c:501
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "バッファを%sファイルに保存しました"
 
-#: src/ui.c:251
+#: src/ui.c:255
 msgid "Select a file to open"
 msgstr "開くファイルを選択"
 
-#: src/ui.c:286
+#: src/ui.c:290
 msgid "Select a file to save buffer as"
 msgstr "バッファを書き込むファイル名は"
 
-#: src/ui.c:375
+#: src/ui.c:331
 msgid "Select path and file name for the HTML source"
 msgstr "HTMLファイルのパスと名前を選択"
 
-#: src/ui.c:475
+#: src/ui.c:432
 #, c-format
 msgid "Really revert file %s?"
 msgstr "本当にファイル %s を元に戻しますか?"
 
-#: src/ui.c:488
+#: src/ui.c:446
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "ファイル%sを使ってバッファをもとに戻しました"
 
-#: src/ui.c:504
+#: src/ui.c:462
 #, c-format
 msgid "Loaded file %s"
 msgstr "%sファイルの読み込み完了"
 
-#: src/ui.c:509
+#: src/ui.c:467
 msgid "Can not open file!"
 msgstr "ファイルが開けません!"
 
-#: src/ui.c:552
+#: src/ui.c:510
 msgid "Can't open file for writing!"
 msgstr "ファイルに書き込めません!"
+
+#: src/ui.c:579
+msgid "Print Hex Document"
+msgstr "16進ドキュメントの印刷"
+
+#: src/ui.c:584
+msgid "Pages"
+msgstr "ページ"
+
+#: src/ui.c:625
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): 印刷プレビュー"
+
+#: src/chartable.c:90
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:90
+msgid "Hex"
+msgstr "16進"
 
 #: src/chartable.c:91
 msgid "Octal"
 msgstr "8進"
 
+#: src/chartable.c:91
+msgid "Binary"
+msgstr "バイナリ"
+
 #: src/chartable.c:98
 msgid "GHex: Character table"
 msgstr "GHex: キャラクタテーブル"
 
-#: src/print.c:171
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): 印刷プレビュー"
-
-#: src/print.c:187
+#: src/print.c:48
 #, c-format
 msgid "Page: %i/%i"
 msgstr "ページ: %i/%i"
+
+#: src/print.c:198 src/print.c:212
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"GHexはフォント \"%s\" を見つけることが出来ませんでした\n"
+"GHexはこのフォントをインストールせずに印刷することが出来ません"
