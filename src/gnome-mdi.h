@@ -61,7 +61,7 @@ struct _GnomeMDI {
 
   gchar *appname, *title;
 
-  /* probably only one of these would do, but... */
+  /* probably only one of these would do, but... redundancy rules ;) */
   GnomeDocument *active_doc;
   GtkWidget *active_view;
   GnomeApp *active_window;
@@ -72,7 +72,8 @@ struct _GnomeMDI {
   GnomeUIInfo *menu_template;
   GnomeUIInfo *toolbar_template;
 
-  gchar *menu_insertion_point;
+  gchar *document_menu_path;
+  gchar *document_list_path;
 
   GnomeRootWin *root_window; /* this is needed for DND */
 };
@@ -107,7 +108,8 @@ gint gnome_mdi_add_document(GnomeMDI *, GnomeDocument *);
 gint gnome_mdi_remove_document(GnomeMDI *, GnomeDocument *, gint);
 gint gnome_mdi_remove_all_documents(GnomeMDI *, gint);
 
-void gnome_mdi_menu_place(GnomeMDI *, gint);
+void gnome_mdi_set_document_menu_path(GnomeMDI *, gchar *);
+void gnome_mdi_set_document_list_path(GnomeMDI *, gchar *);
 
 #endif /* __GNOME_MDI_H__ */
 

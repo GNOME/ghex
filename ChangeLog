@@ -1,5 +1,15 @@
 1998-06-02  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
+	* gnome-mdi.[ch]: added gnome_mdi_set_document_[menu|list]_path()
+	functions that set path for insertion of document-specific menus and
+	document list menu respectively. also patched things up a bit so that
+	there is no ghex specific code in GnomeMDI any more.
+
+	* main.c (main): added some comments and calls to
+	gnome_mdi_set_document_[menu|list]_path().
+	
+1998-06-02  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
 	* gnome-mdi.c (app_set_active_view): a few more fixes, I hope it works
 	OK now.
 

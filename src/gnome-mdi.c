@@ -60,8 +60,7 @@ static void             rootwin_drop             (GtkWidget *, GdkEvent *, Gnome
 
 static GnomeUIInfo     *copy_ui_info_tree        (GnomeUIInfo *);
 static void             free_ui_info_tree        (GnomeUIInfo *);
-
-void gnome_app_insert_menus(GnomeApp *, gchar *, GnomeUIInfo *);
+static gint             count_ui_info_items      (GnomeUIInfo *);
 
 #define DND_DATA_TYPE "mdi/bookpage"
 
@@ -75,8 +74,6 @@ static char *accepted_drop_types[] = { DND_DATA_TYPE };
 
 /* this is just for simple debugging (as little gdb or ddd as possible...) */
 #define EMBRACE(s) { printf("<\n"); s; printf(">\n"); }
-
-extern GnomeUIInfo doc_menu[];
 
 enum {
   CREATE_MENUS,
@@ -255,6 +252,11 @@ static void gnome_mdi_destroy(GtkObject *object) {
     g_warning("GnomeMDI destroying: non-removed documents exist!\n");
 #endif
 
+  if(mdi->document_menu_path)
+    g_free(mdi->document_menu_path);
+  if(mdi->document_list_path)
+    g_free(mdi->document_list_path);
+
   g_free (mdi->appname);
   g_free (mdi->title);
 
@@ -278,7 +280,8 @@ static void gnome_mdi_init (GnomeMDI *mdi) {
 
   mdi->menu_template = NULL;
   mdi->toolbar_template = NULL;
-  mdi->menu_insertion_point = "File";
+  mdi->document_menu_path = NULL;
+  mdi->document_list_path = NULL;
 }
 
 GtkObject *gnome_mdi_new(gchar *appname, gchar *title) {
@@ -290,6 +293,62 @@ GtkObject *gnome_mdi_new(gchar *appname, gchar *title) {
   mdi->title = g_strdup(title);
 
   return GTK_OBJECT (mdi);
+}
+
+/* the app-helper support routines */
+static GnomeUIInfo *copy_ui_info_tree(GnomeUIInfo source[]) {
+  GnomeUIInfo *copy;
+  int i, count;
+
+#ifdef DEBUG
+  printf("copying UI info tree!\n");
+#endif
+
+  for(count = 0; source[count].type != GNOME_APP_UI_ENDOFINFO; count++)
+    ;
+
+  count++;
+
+  copy = g_malloc(count*sizeof(GnomeUIInfo));
+
+  if(copy == NULL) {
+    g_warning("Could not allocate new GnomeUIInfo");
+    return NULL;
+  }
+
+  memcpy(copy, source, count*sizeof(GnomeUIInfo));
+
+  for(i = 0; i < count; i++) {
+    if( (source[i].type == GNOME_APP_UI_SUBTREE) ||
+	(source[i].type == GNOME_APP_UI_RADIOITEMS) )
+      copy[i].moreinfo = copy_ui_info_tree(source[i].moreinfo);
+  }
+
+  return copy;
+}
+
+static gint count_ui_info_items(GnomeUIInfo *ui_info) {
+  gint num;
+
+  for(num = 0; ui_info[num].type != GNOME_APP_UI_ENDOFINFO; num++)
+    ;
+
+  return num;
+}
+
+static void free_ui_info_tree(GnomeUIInfo *root) {
+  int count;
+
+#ifdef DEBUG
+  printf("freeing UI Info tree!\n");
+#endif
+
+  for(count = 0; root[count].type != GNOME_APP_UI_ENDOFINFO; count++)
+    if( (root[count].type == GNOME_APP_UI_SUBTREE) ||
+	(root[count].type == GNOME_APP_UI_RADIOITEMS) )
+      free_ui_info_tree(root[count].moreinfo);
+
+  g_free(root);
 }
 
 static gint book_has_child(GtkNotebook *book, GtkWidget *child) {
@@ -372,6 +431,9 @@ static void doc_list_activated_cb(GtkWidget *w, GnomeMDI *mdi) {
 }
 
 #if 0
+/* 
+ * this has been replaced by gnome-app-helper routines
+ */
 static void doc_menus_insert(GtkMenuBar *menubar, GList *menu_list) {
   GList *children;
   GtkWidget *menu;
@@ -633,7 +695,7 @@ static void toplevel_focus(GnomeApp *app, GdkEventFocus *event, GnomeMDI *mdi) {
 }
 
 static void book_drag_begin(GtkNotebook *book, GdkEvent *event, GnomeMDI *mdi) {
-  GdkPoint hotspot = { 15, 15 };
+  GdkPoint hotspot = { 5, 5 };
 
   if (drag_page && drag_page_ok) {
     gdk_dnd_set_drag_shape (drag_page->window, &hotspot,
@@ -863,11 +925,11 @@ static void app_set_title(GnomeMDI *mdi, GnomeApp *app) {
 }
 
 static void app_set_active_view(GnomeMDI *mdi, GnomeApp *app, GtkWidget *view) {
-  GList *menu_list = NULL;
+  GList *menu_list = NULL, *children;
   GtkWidget *parent;
   GnomeDocument *doc;
   GnomeUIInfo *ui_info;
-  gint pos;
+  gint pos, items;
 
   app_set_title(mdi, app);
 
@@ -877,24 +939,47 @@ static void app_set_active_view(GnomeMDI *mdi, GnomeApp *app, GtkWidget *view) {
   }
   ui_info = NULL;
 
+#if 0
   /* this is still a bit ghex specific */
   gnome_app_remove_menus(app, "Edit", 1);
+#else
+  if((items = (gint)gtk_object_get_data(GTK_OBJECT(app), "DocumentMenuItems")) > 0) {
+    if(parent = gnome_app_find_menu_pos(app->menubar, mdi->document_menu_path, &pos)) {
+      /* remove items */
+      children = g_list_nth(GTK_MENU_SHELL(parent)->children, pos);
+      while(children && items > 0) {
+	gtk_container_remove(GTK_CONTAINER(parent), GTK_WIDGET(children->data));
+	children = g_list_nth(GTK_MENU_SHELL(parent)->children, pos);
+	items--;
+      }
+    }
+
+    gtk_widget_queue_resize(parent);
+
+    gtk_object_set_data(GTK_OBJECT(app), "DocumentMenuItems", NULL);
+  }
+#endif
+
   if(view) {
     doc = VIEW_GET_DOCUMENT(view);
     if( doc->menu_template &&
         ( (ui_info = copy_ui_info_tree(doc->menu_template)) != NULL) ) {
-      gnome_app_insert_menus(app, mdi->menu_insertion_point, ui_info);
+      gnome_app_insert_menus(app, mdi->document_menu_path, ui_info);
       gtk_object_set_data(GTK_OBJECT(app), "DocumentMenuUIInfo", ui_info);
+      gtk_object_set_data(GTK_OBJECT(app), "DocumentMenuItems", (gpointer)count_ui_info_items(ui_info));
     }
     else {
       gtk_signal_emit_by_name(GTK_OBJECT(doc), "create_menus", view, &menu_list);
-      parent = gnome_app_find_menu_pos(app->menubar, mdi->menu_insertion_point, &pos);
+      parent = gnome_app_find_menu_pos(app->menubar, mdi->document_menu_path, &pos);
       if(menu_list && parent) {
+	items = 0;
 	while(menu_list) {
 	  gtk_menu_shell_insert(GTK_MENU_SHELL(parent), GTK_WIDGET(menu_list->data), pos);
-	  pos++;
 	  menu_list = g_list_remove(menu_list, menu_list->data);
+	  pos++;
+	  items++;
 	}
+	gtk_object_set_data(GTK_OBJECT(app), "DocumentMenuItems", (gpointer)items);
       }
     }
   }
@@ -916,11 +1001,12 @@ static void app_destroy(GnomeApp *app) {
 
 static void app_create(GnomeMDI *mdi) {
   GtkWidget *window;
-  GtkWidget *doc_menu;
+  GtkWidget *doc_menu, *parent;
   GtkMenuBar *menubar = NULL;
   GtkToolbar *toolbar = NULL;
   GtkSignalFunc func;
   GnomeUIInfo *ui_info;
+  gint pos = 0;
 
   window = gnome_app_new(mdi->appname, mdi->title);
 
@@ -955,9 +1041,13 @@ static void app_create(GnomeMDI *mdi) {
     gnome_app_create_menus(GNOME_APP(window), ui_info);
     gtk_object_set_data(GTK_OBJECT(window), "MDIMenuUIInfo", ui_info);
 
+#if 0
+#if USE_APP_HELPER
     /* this is a dirty hack for GHex since libgnomeui can't tag items with data */
     gtk_object_set_data(GTK_OBJECT(ui_info[1].widget), "MDIDocumentMenu", (gpointer)TRUE);
     gtk_object_set_data(GTK_OBJECT(ui_info[3].widget), "MDIDocumentList", (gpointer)TRUE);
+#endif
+#endif
 
     menubar = GTK_MENU_BAR(GNOME_APP(window)->menubar);
   }
@@ -971,10 +1061,18 @@ static void app_create(GnomeMDI *mdi) {
     }
   }
 
-  /* we add the document list menu to the toolbar */
+  /* we add the document list menu to the menubar */
   if(menubar) {
+#if 1
+    if(parent = gnome_app_find_menu_pos(GTK_WIDGET(menubar), mdi->document_list_path, &pos)) {
+      doc_menu = doc_list_menu_create(mdi);
+      gtk_menu_shell_insert(GTK_MENU_SHELL(parent), doc_menu, pos);
+      gtk_object_set_data(GTK_OBJECT(menubar), "MDIDocListMenu", doc_menu);
+    }
+#else
     doc_menu = doc_list_menu_create(mdi);
     doc_list_menu_insert(GTK_MENU_BAR(menubar), doc_menu);
+#endif
   }
 
   /* create toolbar */
@@ -1332,49 +1430,16 @@ void gnome_mdi_set_toolbar_template(GnomeMDI *mdi, GnomeUIInfo *tbar_tmpl) {
   mdi->toolbar_template = tbar_tmpl;
 }
 
-/* the app-helper support routines */
-static GnomeUIInfo *copy_ui_info_tree(GnomeUIInfo source[]) {
-  GnomeUIInfo *copy;
-  int i, count;
+void gnome_mdi_set_document_menu_path(GnomeMDI *mdi, gchar *path) {
+  if(mdi->document_menu_path)
+    g_free(mdi->document_menu_path);
 
-#ifdef DEBUG
-  printf("copying UI info tree!\n");
-#endif
-
-  for(count = 0; source[count].type != GNOME_APP_UI_ENDOFINFO; count++)
-    ;
-
-  count++;
-
-  copy = g_malloc(count*sizeof(GnomeUIInfo));
-
-  if(copy == NULL) {
-    g_warning("Could not allocate new GnomeUIInfo");
-    return NULL;
-  }
-
-  memcpy(copy, source, count*sizeof(GnomeUIInfo));
-
-  for(i = 0; i < count; i++) {
-    if( (source[i].type == GNOME_APP_UI_SUBTREE) ||
-	(source[i].type == GNOME_APP_UI_RADIOITEMS) )
-      copy[i].moreinfo = copy_ui_info_tree(source[i].moreinfo);
-  }
-
-  return copy;
+  mdi->document_menu_path = g_strdup(path);
 }
 
-static void free_ui_info_tree(GnomeUIInfo *root) {
-  int count;
+void gnome_mdi_set_document_list_path(GnomeMDI *mdi, gchar *path) {
+  if(mdi->document_list_path)
+    g_free(mdi->document_list_path);
 
-#ifdef DEBUG
-  printf("freeing UI Info tree!\n");
-#endif
-
-  for(count = 0; root[count].type != GNOME_APP_UI_ENDOFINFO; count++)
-    if( (root[count].type == GNOME_APP_UI_SUBTREE) ||
-	(root[count].type == GNOME_APP_UI_RADIOITEMS) )
-      free_ui_info_tree(root[count].moreinfo);
-
-  g_free(root);
+  mdi->document_list_path = g_strdup(path);
 }
