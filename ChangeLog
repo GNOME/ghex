@@ -1,3 +1,11 @@
+1999-02-20  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* hex-document.c (hex_document_new): only create a new document
+	if the file is a regular one (S_ISREG == 1).
+	* gtkhex.c (recalc_displays, gtk_hex_size_request): use our own
+	requisition instead of scrollbar's one for determining the size
+	requested by the scrollbar in order to prevent GTK warnings.
+
 1999-02-07  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* main.c (customize_app_cb, app_drop_cb): added DnD support to open

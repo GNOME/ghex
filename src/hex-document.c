@@ -419,7 +419,7 @@ HexDocument *hex_document_new(const gchar *name) {
 	
 	/* hopefully using stat() works for all flavours of UNIX...
 	   don't know for sure, though */
-	if(!stat(name, &stats)) {
+	if(!stat(name, &stats) && S_ISREG(stats.st_mode)) {
 		if((document = gtk_type_new (hex_document_get_type ()))) {
 			document->buffer_size = stats.st_size;
 			

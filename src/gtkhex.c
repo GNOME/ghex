@@ -474,11 +474,12 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	gint total_width = width;
 	gint total_cpl, xcpl;
 	gint old_cpl = gh->cpl;
+	GtkRequisition req;
 
-	gtk_widget_size_request(gh->scrollbar, &gh->scrollbar->requisition);
+	gtk_widget_size_request(gh->scrollbar, &req);
 	
 	total_width -= 2*GTK_CONTAINER(gh)->border_width + 4*widget_get_xt(GTK_WIDGET(gh)) +
-		gh->scrollbar->requisition.width;
+		req.width;
 	
 	total_cpl = total_width / gh->char_width;
 	
@@ -943,12 +944,13 @@ static gint gtk_hex_expose(GtkWidget *w, GdkEventExpose *event) {
 
 static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 	GtkHex *gh = GTK_HEX(w);
+	GtkRequisition sb_req;
 
 	if(gh->cpl == 0) {
-		gtk_widget_size_request(gh->scrollbar, &gh->scrollbar->requisition);
+		gtk_widget_size_request(gh->scrollbar, &sb_req);
 		req->width = 4*widget_get_xt(w) + 2*GTK_CONTAINER(w)->border_width +
-			gh->scrollbar->requisition.width +
-			gh->char_width * (DEFAULT_CPL + (DEFAULT_CPL - 1) / gh->group_type);
+			sb_req.width + gh->char_width * (DEFAULT_CPL + (DEFAULT_CPL - 1) /
+										  gh->group_type);
 		req->height = DEFAULT_LINES * gh->char_height;
 	}
 	else
