@@ -5,14 +5,12 @@
 # Benedikt Roth <Benedikt.Roth@gmx.net>, 2000.
 # Christian Meyer <chrisime@gnome.org>, 2001, 2002.
 #
-# 2002-03-11  Christian Meyer  <chrisime@gnome.org>
-# I'm not sure how to translate 'revert'.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 2.0.x\n"
-"POT-Creation-Date: 2002-11-09 10:57+0100\n"
-"PO-Revision-Date: 2002-11-02 13:42+0100\n"
+"Project-Id-Version: ghex 2.4.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-11-16 13:26+0100\n"
+"PO-Revision-Date: 2003-11-16 13:26+0100\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,74 +25,74 @@ msgstr "Ein hexadezimaler Editor für GNOME"
 msgid "Hex Editor"
 msgstr "Hex-Editor"
 
-#: src/chartable.c:122
+#: src/chartable.c:140
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:122
+#: src/chartable.c:140
 msgid "Hex"
 msgstr "Hex"
 
-#: src/chartable.c:122 src/preferences.c:174
+#: src/chartable.c:140 src/preferences.c:164
 msgid "Decimal"
 msgstr "Dezimal"
 
-#: src/chartable.c:123
+#: src/chartable.c:141
 msgid "Octal"
 msgstr "Oktal"
 
-#: src/chartable.c:123
+#: src/chartable.c:141
 msgid "Binary"
 msgstr "Binär"
 
-#: src/chartable.c:137
+#: src/chartable.c:157
 msgid "Character table"
 msgstr "Zeichentabelle"
 
-#: src/converter.c:198
+#: src/converter.c:209
 msgid "Base Converter"
 msgstr "Basis-Konverter"
 
 #. entries
-#: src/converter.c:217
+#: src/converter.c:228
 msgid "_Binary:"
 msgstr "_Binär:"
 
-#: src/converter.c:219
+#: src/converter.c:230
 msgid "_Octal:"
 msgstr "_Oktal:"
 
-#: src/converter.c:221
+#: src/converter.c:232
 msgid "_Decimal:"
 msgstr "_Dezimal:"
 
-#: src/converter.c:223
+#: src/converter.c:234
 msgid "_Hex:"
 msgstr "_Hex:"
 
-#: src/converter.c:225
+#: src/converter.c:236
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:229
+#: src/converter.c:240
 msgid "_Get cursor value"
 msgstr "Wert unter Cursor aus_lesen"
 
-#: src/converter.c:241
+#: src/converter.c:254
 msgid "Get cursor value"
 msgstr "Wert unter Cursor auslesen"
 
-#: src/converter.c:241
+#: src/converter.c:254
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr ""
 "Liest den Wert unter dem Cursor binär, oktal, hexadezimal und ASCII aus"
 
-#: src/converter.c:374
+#: src/converter.c:387
 msgid "ERROR"
 msgstr "FEHLER"
 
-#: src/findreplace.c:60 src/ui.c:889
+#: src/findreplace.c:60 src/ui.c:891
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Daten suchen"
@@ -146,7 +144,7 @@ msgstr "Abbrechen"
 msgid "Closes find data window"
 msgstr "Schließen des Datensuch-Dialogs"
 
-#: src/findreplace.c:140 src/ui.c:887
+#: src/findreplace.c:140 src/ui.c:889
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Daten suchen und ersetzen"
@@ -160,7 +158,7 @@ msgstr "%s ersetzen"
 msgid "Find _next"
 msgstr "_Weitersuchen"
 
-#: src/findreplace.c:180 src/ghex-ui.xml.h:85
+#: src/findreplace.c:180 src/ghex-ui.xml.h:84
 msgid "_Replace"
 msgstr "Erse_tzen"
 
@@ -203,7 +201,7 @@ msgstr ""
 msgid "Closes find and replace data window"
 msgstr "Schließen des »Suchen und Ersetzen«-Dialogs"
 
-#: src/findreplace.c:231 src/ui.c:885
+#: src/findreplace.c:231 src/ui.c:887
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Zu Byte springen"
@@ -239,6 +237,10 @@ msgstr "Die Zeichenkette entspricht nicht dem gewählten Datentyp!"
 #: src/findreplace.c:344 src/findreplace.c:430
 msgid "End Of File reached"
 msgstr "Dateiende erreicht"
+
+#: src/findreplace.c:345 src/findreplace.c:374 src/findreplace.c:429
+msgid "String was not found!\n"
+msgstr "Zeichenkette wurde nicht gefunden!\n"
 
 #: src/findreplace.c:373
 msgid "Beginning Of File reached"
@@ -487,7 +489,7 @@ msgstr "Zurücksetzen"
 
 #: src/ghex-ui.xml.h:51
 msgid "Revert to a saved version of the file"
-msgstr "Zu einer gesicherten Version der Datei zurückkehren"
+msgstr "Auf eine gespeicherten Version der Datei zurücksetzen"
 
 #: src/ghex-ui.xml.h:52
 msgid "Save"
@@ -538,137 +540,133 @@ msgid "_About"
 msgstr "_Info"
 
 #: src/ghex-ui.xml.h:64
-msgid "_About..."
-msgstr "_Info..."
-
-#: src/ghex-ui.xml.h:65
 msgid "_Add View"
 msgstr "Ansicht _hinzufügen"
 
-#: src/ghex-ui.xml.h:66
+#: src/ghex-ui.xml.h:65
 msgid "_Base Converter"
 msgstr "_Basis-Konverter"
 
-#: src/ghex-ui.xml.h:67
+#: src/ghex-ui.xml.h:66
 msgid "_Bytes"
 msgstr "_Byte"
 
-#: src/ghex-ui.xml.h:68
+#: src/ghex-ui.xml.h:67
 msgid "_Close"
 msgstr "S_chließen"
 
-#: src/ghex-ui.xml.h:69
+#: src/ghex-ui.xml.h:68
 msgid "_Contents"
 msgstr "_Inhalt"
 
-#: src/ghex-ui.xml.h:70
+#: src/ghex-ui.xml.h:69
 msgid "_Copy"
 msgstr "_Kopieren"
 
-#: src/ghex-ui.xml.h:71
+#: src/ghex-ui.xml.h:70
 msgid "_Edit"
 msgstr "_Bearbeiten"
 
-#: src/ghex-ui.xml.h:72
+#: src/ghex-ui.xml.h:71
 msgid "_File"
 msgstr "_Datei"
 
-#: src/ghex-ui.xml.h:73
+#: src/ghex-ui.xml.h:72
 msgid "_Find"
 msgstr "_Suchen"
 
-#: src/ghex-ui.xml.h:74
+#: src/ghex-ui.xml.h:73
 msgid "_Goto Byte..."
 msgstr "_Gehe zu Byte..."
 
-#: src/ghex-ui.xml.h:75
+#: src/ghex-ui.xml.h:74
 msgid "_Group Data As"
 msgstr "Daten _gruppieren als"
 
-#: src/ghex-ui.xml.h:76
+#: src/ghex-ui.xml.h:75
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: src/ghex-ui.xml.h:77
+#: src/ghex-ui.xml.h:76
 msgid "_Insert Mode"
 msgstr "E_infügen-Modus"
 
-#: src/ghex-ui.xml.h:78
+#: src/ghex-ui.xml.h:77
 msgid "_Longwords"
 msgstr "_Longwords"
 
-#: src/ghex-ui.xml.h:79
+#: src/ghex-ui.xml.h:78
 msgid "_Open..."
 msgstr "Ö_ffnen..."
 
-#: src/ghex-ui.xml.h:80
+#: src/ghex-ui.xml.h:79
 msgid "_Paste"
 msgstr "Ei_nfügen"
 
-#: src/ghex-ui.xml.h:81
+#: src/ghex-ui.xml.h:80
 msgid "_Preferences"
 msgstr "_Einstellungen"
 
-#: src/ghex-ui.xml.h:82
+#: src/ghex-ui.xml.h:81
 msgid "_Print"
 msgstr "D_rucken"
 
-#: src/ghex-ui.xml.h:83
+#: src/ghex-ui.xml.h:82
 msgid "_Redo"
 msgstr "_Wiederherstellen"
 
-#: src/ghex-ui.xml.h:84
+#: src/ghex-ui.xml.h:83
 msgid "_Remove View"
 msgstr "Ansicht ent_fernen"
 
-#: src/ghex-ui.xml.h:86
+#: src/ghex-ui.xml.h:85
 msgid "_Revert"
 msgstr "Zu_rücksetzen"
 
-#: src/ghex-ui.xml.h:87
+#: src/ghex-ui.xml.h:86
 msgid "_Save"
 msgstr "_Speichern"
 
-#: src/ghex-ui.xml.h:88
+#: src/ghex-ui.xml.h:87
 msgid "_Undo"
 msgstr "_Rückgängig"
 
-#: src/ghex-ui.xml.h:89
+#: src/ghex-ui.xml.h:88
 msgid "_View"
 msgstr "_Ansicht"
 
-#: src/ghex-ui.xml.h:90
+#: src/ghex-ui.xml.h:89
 msgid "_Windows"
 msgstr "_Fenster"
 
-#: src/ghex-ui.xml.h:91
+#: src/ghex-ui.xml.h:90
 msgid "_Words"
 msgstr "_Words"
 
-#: src/ghex-window.c:435
+#: src/ghex-window.c:438 src/ghex-window.c:816
 msgid "GHex"
 msgstr "GHex"
 
-#: src/ghex-window.c:554
+#: src/ghex-window.c:571
 #, c-format
 msgid "Offset: %s"
 msgstr "Offset: %s"
 
-#: src/ghex-window.c:689
+#: src/ghex-window.c:770
 #, c-format
 msgid "Activate file %s"
 msgstr "Datei %s aktivieren"
 
-#: src/ghex-window.c:728
+#: src/ghex-window.c:812
 #, c-format
 msgid "GHex - %s"
 msgstr "GHex - %s"
 
-#: src/ghex-window.c:857
+#: src/ghex-window.c:946
 msgid "Select a file to save buffer as"
 msgstr "Datei zum Abspeichern des Puffers auswählen"
 
-#: src/ghex-window.c:883
+#: src/ghex-window.c:997
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -677,20 +675,20 @@ msgstr ""
 "Datei %s existiert bereits.\n"
 "Wollen Sie diese Datei überschreiben?"
 
-#: src/ghex-window.c:915 src/ui.c:353
+#: src/ghex-window.c:1035 src/ui.c:356
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Puffer in Datei %s gespeichert"
 
-#: src/ghex-window.c:920
+#: src/ghex-window.c:1041
 msgid "Error saving file!"
 msgstr "Beim Speichern der Datei ist ein Fehler aufgetreten!"
 
-#: src/ghex-window.c:926
+#: src/ghex-window.c:1047
 msgid "Can't open file for writing!"
 msgstr "Datei kann nicht zum Schreiben geöffnet werden!"
 
-#: src/ghex-window.c:953
+#: src/ghex-window.c:1090
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -699,35 +697,35 @@ msgstr ""
 "Datei %s wurde seit dem letzten Speichern geändert.\n"
 "Wollen Sie die Änderungen speichern?"
 
-#: src/ghex-window.c:963
+#: src/ghex-window.c:1100
 msgid "Do_n't save"
 msgstr "_Nicht speichern"
 
-#: src/ghex-window.c:983 src/ui.c:344
+#: src/ghex-window.c:1120 src/ui.c:344
 msgid "You don't have the permissions to save the file!"
 msgstr "Sie haben nicht die Berechtigung, um die Datei zu speichern!"
 
-#: src/ghex-window.c:987 src/ui.c:349
+#: src/ghex-window.c:1124 src/ui.c:349
 msgid "An error occured while saving file!"
 msgstr "Beim Speichern der Datei ist ein Fehler aufgetreten!"
 
-#: src/hex-document.c:740
+#: src/hex-document.c:746
 msgid "Page"
 msgstr "Seite"
 
-#: src/hex-document.c:746 src/hex-document.c:871
+#: src/hex-document.c:752 src/hex-document.c:877
 msgid "Hex dump generated by"
 msgstr "Hex-Dump erzeugt von"
 
-#: src/hex-document.c:756
+#: src/hex-document.c:762
 msgid "Saving to HTML..."
 msgstr "Es wird nach HTML exportiert..."
 
-#: src/hex-document.c:794
+#: src/hex-document.c:800
 msgid "Previous page"
 msgstr "Voherige Seite"
 
-#: src/hex-document.c:809
+#: src/hex-document.c:815
 msgid "Next page"
 msgstr "Nächste Seite"
 
@@ -739,125 +737,129 @@ msgstr "Der GNOME Binärdatei-Editor"
 msgid "Could not initialize Bonobo!\n"
 msgstr "Bonobo konnte nicht initialisiert werden!\n"
 
-#: src/main.c:87 src/main.c:99
+#: src/main.c:89 src/main.c:103
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Ungültige Geometrie-Zeichenkette »%s«\n"
 
-#: src/preferences.c:91
+#: src/preferences.c:94
 msgid "GHex Preferences"
 msgstr "GHex Einstellungen"
 
-#: src/preferences.c:136
+#: src/preferences.c:126
 msgid "_Maximum number of undo levels:"
 msgstr "_Maximale Anzahl der Rückgängig-Befehle:"
 
-#: src/preferences.c:156
+#: src/preferences.c:146
 msgid "Undo levels"
 msgstr "Anzahl der Rückgängig-Befehle"
 
-#: src/preferences.c:156
+#: src/preferences.c:146
 msgid "Select maximum number of undo levels"
 msgstr "Wählen Sie die maximale Anzahl der Rückgängig-Befehle"
 
-#: src/preferences.c:160
+#: src/preferences.c:150
 msgid "Show cursor offset in statusbar as:"
 msgstr "Anzeige des Cursoroffsets im Statusbalken als:"
 
-#: src/preferences.c:179
+#: src/preferences.c:169
 msgid "Hexadecimal"
 msgstr "Hexadezimal"
 
-#: src/preferences.c:185
+#: src/preferences.c:175
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
-#: src/preferences.c:196
+#: src/preferences.c:187
 msgid "Enter the cursor offset format"
 msgstr "Das Format für den Cursoroffest angeben"
 
-#: src/preferences.c:197
+#: src/preferences.c:188
 msgid "Select the cursor offset format"
 msgstr "Das Format für den Cursoroffset auswählen"
 
 #. show offsets check button
-#: src/preferences.c:207
+#: src/preferences.c:198
 msgid "Show offsets column"
 msgstr "Offset-Spalte zeigen"
 
-#: src/preferences.c:212
+#: src/preferences.c:203
 msgid "Editing"
 msgstr "Bearbeitung"
 
 #. display font
-#: src/preferences.c:221
+#: src/preferences.c:212 src/gnome-print-font-picker.c:1017
 msgid "Font"
 msgstr "Schrift"
 
 #. default group type
-#: src/preferences.c:249
+#: src/preferences.c:240
 msgid "Default Group Type"
 msgstr "Voreingestellter Gruppentyp"
 
-#: src/preferences.c:265
+#: src/preferences.c:256
 msgid "Display"
 msgstr "Anzeige"
 
 #. paper selection
-#: src/preferences.c:274
+#: src/preferences.c:265
 msgid "Paper size"
 msgstr "Papiergröße"
 
 #. data & header font selection
-#: src/preferences.c:279
+#: src/preferences.c:270
 msgid "Fonts"
 msgstr "Schriften"
 
-#: src/preferences.c:285
+#: src/preferences.c:276
 msgid "_Data font:"
 msgstr "Schrift für _Daten:"
 
-#: src/preferences.c:305
+#: src/preferences.c:295
 msgid "Data font"
 msgstr "Schrift für Daten"
 
-#: src/preferences.c:305
+#: src/preferences.c:295
 msgid "Select the data font"
 msgstr "Schrift für Daten auswählen"
 
-#: src/preferences.c:319
+#: src/preferences.c:309
 msgid "Header fo_nt:"
 msgstr "Sch_rift der Kopfzeile:"
 
-#: src/preferences.c:338
+#: src/preferences.c:327
 msgid "Header font"
 msgstr "Schrift der Kopfzeile"
 
-#: src/preferences.c:338
+#: src/preferences.c:327
 msgid "Select the header font"
 msgstr "Wählen Sie die Schriftart der Kopfzeile"
 
-#: src/preferences.c:366
+#: src/preferences.c:353
 msgid "_Print shaded box over:"
 msgstr "Schattierte Box _drucken über:"
 
-#: src/preferences.c:378
+#: src/preferences.c:365
 msgid "Box size"
 msgstr "Größe der Box"
 
-#: src/preferences.c:378
+#: src/preferences.c:365
 msgid "Select size of box (in number of lines)"
 msgstr "Die Größe der Box auswählen (Anzahl der Zeilen)"
 
-#: src/preferences.c:382
+#: src/preferences.c:369
 msgid "lines (0 for no box)"
 msgstr "Zeilen drucken (0 für keine Box)"
 
-#: src/preferences.c:389
+#: src/preferences.c:376
 msgid "Printing"
 msgstr "Drucken"
 
 #: src/preferences.c:531
+msgid "Can not open desired font!"
+msgstr "Gewünschte Schrift kann nicht geöffnet werden!"
+
+#: src/preferences.c:581
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -865,16 +867,12 @@ msgstr ""
 "Die Zeichenkette für die Offset-Formatierung enthält andere Angaben als\n"
 "'x', 'X', 'p', 'P', 'd' oder 'o'."
 
-#: src/preferences.c:563
-msgid "Can not open desired font!"
-msgstr "Gewünschte Schrift kann nicht geöffnet werden!"
-
-#: src/print.c:54
+#: src/print.c:53
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Seite: %i/%i"
 
-#: src/print.c:205 src/print.c:219
+#: src/print.c:204 src/print.c:218
 #, c-format
 msgid ""
 "GHex could not find the font \"%s\".\n"
@@ -916,32 +914,32 @@ msgstr ""
 "Beim Anzeigen der Hilfe ist ein Fehler aufgetreten: \n"
 "%s"
 
-#: src/ui.c:382
+#: src/ui.c:376
 msgid "Select a file to open"
 msgstr "Datei zum Öffnen auswählen"
 
-#: src/ui.c:416
+#: src/ui.c:414
 #, c-format
 msgid "Loaded file %s"
 msgstr "Datei %s geladen"
 
-#: src/ui.c:424
+#: src/ui.c:422
 msgid "Can not open file!"
 msgstr "Datei kann nicht geöffnet werden!"
 
-#: src/ui.c:488
+#: src/ui.c:486
 msgid "Select path and file name for the HTML source"
 msgstr "Pfad und Dateiname für die HTML-Quelle wählen"
 
-#: src/ui.c:523
+#: src/ui.c:521
 msgid "You need to specify a base name for the HTML files."
 msgstr "Sie müssen einen Basisnamen für die HTML-Dateien angeben."
 
-#: src/ui.c:534 src/ui.c:556
+#: src/ui.c:532 src/ui.c:554
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Sie haben nicht die Berechtigung, um im gewählten Pfad zu schreiben!\n"
 
-#: src/ui.c:540
+#: src/ui.c:538
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -949,25 +947,105 @@ msgstr ""
 "Das Speichern im HTML-Format wird einige Dateien überschreiben.\n"
 "Wollen Sie fortfahren?"
 
-#: src/ui.c:687
+#: src/ui.c:686
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Wirklich auf Datei %s zurückgreifen?"
 
-#: src/ui.c:702
+#: src/ui.c:704
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Puffer zurückgesetzt auf Datei %s"
 
-#: src/ui.c:776
+#: src/ui.c:778
 msgid "Print Hex Document"
 msgstr "Hex-Dokument drucken"
 
-#: src/ui.c:781
+#: src/ui.c:783
 msgid "Pages"
 msgstr "Seiten"
 
-#: src/ui.c:827
+#: src/ui.c:829
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Druckvorschau"
+
+#: src/gnome-print-font-dialog.c:111
+msgid "_Insert a new preview phrase."
+msgstr "Eine neue Vorschautext e_infügen"
+
+#: src/gnome-print-font-dialog.c:117
+msgid "Modify preview phrase..."
+msgstr "Vorschautext verändern..."
+
+#: src/gnome-print-font-dialog.c:171
+msgid "Preview"
+msgstr "Vorschau"
+
+#: src/gnome-print-font-dialog.c:184
+msgid "_Modify preview phrase..."
+msgstr "Vorschautext _verändern"
+
+#: src/gnome-print-font-dialog.c:247
+msgid "Font Selection"
+msgstr "Schriftwahl"
+
+#: src/gnome-print-font-picker.c:91
+msgid "Sans Regular 12"
+msgstr "Sans Regular 12"
+
+#: src/gnome-print-font-picker.c:92
+msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+
+#: src/gnome-print-font-picker.c:93
+msgid "Pick a Font"
+msgstr "Wählen Sie eine Schrift"
+
+#: src/gnome-print-font-picker.c:178
+msgid "Title"
+msgstr "Titel"
+
+#: src/gnome-print-font-picker.c:179
+msgid "The title of the selection dialog box"
+msgstr "Der Titel der Auswahl-Dialogbox"
+
+#: src/gnome-print-font-picker.c:199
+msgid "Font name"
+msgstr "Schriftname"
+
+#: src/gnome-print-font-picker.c:200
+msgid "Name of the selected font"
+msgstr "Name der gewählten Schrift"
+
+#: src/gnome-print-font-picker.c:208
+msgid "Preview text"
+msgstr "Vorschautext"
+
+#: src/gnome-print-font-picker.c:209
+msgid "Preview text shown in the dialog"
+msgstr "Im Dialog anzuzeigender Vorschautext"
+
+#: src/gnome-print-font-picker.c:217
+msgid "Use font in label"
+msgstr "Schrift im Label verwenden"
+
+#: src/gnome-print-font-picker.c:218
+msgid "Use font in the label in font info mode"
+msgstr "Schrift im Label im Schriftinfo-Modus verwenden"
+
+#: src/gnome-print-font-picker.c:226
+msgid "Font size for label"
+msgstr "Schriftgröße für Label"
+
+#: src/gnome-print-font-picker.c:227
+msgid "Font size for label in font info mode"
+msgstr "Schriftgröße für Label im Schrift-Info-Modus"
+
+#: src/gnome-print-font-picker.c:237
+msgid "Show size"
+msgstr "Größe anzeigen"
+
+#: src/gnome-print-font-picker.c:238
+msgid "Show size in font info mode"
+msgstr "Schriftgröße im Schriftinfo-Modus"
