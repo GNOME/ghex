@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-0.99.8.1\n"
-"POT-Creation-Date: 1999-09-08 14:44-0400\n"
-"PO-Revision-Date: 1999-07-30 12:51+02:00\n"
+"POT-Creation-Date: 1999-09-01 15:44+0200\n"
+"PO-Revision-Date: 1999-09-09 22:08+02:00\n"
 "Last-Translator: Matthias Warkus <mawa@iname.com>\n"
 "Language-Team: Matthias Warkus <mawa@iname.com>\n"
 "MIME-Version: 1.0\n"
@@ -533,12 +533,12 @@ msgstr "kann Konfigurationsdatei \"%s\" nicht öffnen"
 #, c-format
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-msgstr ""
+msgstr "Kann Konfigurationsdatei \"./gstripchart.conf\", \"%s\", \"%s\" oder \"%s\" nicht öffnen"
 
 #: gstripchart/gstripchart.c:739
-#, fuzzy, c-format
+#, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr "kann Konfigurationsdatei \"%s\" nicht öffnen"
+msgstr "kann Konfigurationsdatei \"./gstripchart.conf\", \"%s\", oder \"%s\" nicht öffnen"
 
 #: gstripchart/gstripchart.c:796
 #, c-format
@@ -650,13 +650,12 @@ msgid "Gnome Stripchart Parameters"
 msgstr "Gnome-Kurvenzeichner-Parameter"
 
 #: gstripchart/gstripchart.c:1629
-#, fuzzy
 msgid "Current"
-msgstr "Momentaner Wert"
+msgstr "Momentan"
 
 #: gstripchart/gstripchart.c:1629
 msgid "Top"
-msgstr ""
+msgstr "Oben"
 
 #: gstripchart/gstripchart.c:1657
 msgid "Help"
@@ -681,7 +680,7 @@ msgstr "Beenden"
 msgid "gstripchart"
 msgstr "gstripchart"
 
-#: gstripchart/gstripchart.c:1777
+#: gstripchart/gstripchart.c:1729
 msgid "Gnome stripchart viewer"
 msgstr "Gnome-Kurvenzeichner"
 
@@ -691,24 +690,22 @@ msgid "invalid display type: %s\n"
 msgstr "ungültiger Displaytyp: %s\n"
 
 #: gstripchart/gstripchart.c:1883
-msgid "Geometry string: WxH+X+Y"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1883
 msgid "GEO"
 msgstr "GEO"
 
+#: gstripchart/gstripchart.c:1883
+msgid "Geometry string: WxH+X+Y"
+msgstr "Geometrieangabe: BxH+X+Y"
+
 #: gstripchart/gstripchart.c:1885
-#, fuzzy
 msgid "Configuration file name"
-msgstr "Konfigurationsdatei"
+msgstr "Konfigurationsdateiname"
 
 #: gstripchart/gstripchart.c:1885
 msgid "FILE"
 msgstr "DATEI"
 
 #: gstripchart/gstripchart.c:1887
-#, fuzzy
 msgid "Chart update interval"
 msgstr "Diagramm-Auffrischungsintervall"
 
@@ -719,33 +716,31 @@ msgstr "S"
 
 #: gstripchart/gstripchart.c:1889
 msgid "Chart low-pass filter time constant"
-msgstr ""
+msgstr "Tiefpassfilter-Zeitkonstante für Graph"
 
 #: gstripchart/gstripchart.c:1891
-#, fuzzy
 msgid "Slider update interval"
 msgstr "Feder-Auffrischungsintervall"
 
 #: gstripchart/gstripchart.c:1893
 msgid "Slider low-pass filter time constant"
-msgstr ""
+msgstr "Tiefpassfilter-Zeitkonstante für Federn"
 
 #: gstripchart/gstripchart.c:1895
 msgid "Adds a menubar to the main window"
-msgstr ""
+msgstr "Fügt dem Hauptfenster einen Menübalken hinzu"
 
 #: gstripchart/gstripchart.c:1897
-#, fuzzy
 msgid "Omits slider window"
-msgstr "Keine Federn"
-
-#: gstripchart/gstripchart.c:1899
-msgid "TYPE is one of gtk, text, graph, or none"
-msgstr ""
+msgstr "Kein Federfenster"
 
 #: gstripchart/gstripchart.c:1899
 msgid "TYPE"
 msgstr "TYP"
+
+#: gstripchart/gstripchart.c:1899
+msgid "TYPE is one of gtk, text, graph, or none"
+msgstr "TYPE ist entweder gtk, text, graph oder none"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -1889,17 +1884,15 @@ msgstr "(Dual Port Cache)"
 msgid "No"
 msgstr "Nein"
 
-# FIXME: the second %s (the optional s) need to be localised
 #: mini-utils/idetool/idetool.c:245
-#, fuzzy, c-format
+#, c-format
 msgid "Yes (%d sector)"
-msgstr "Ja (%d sector%s)"
+msgstr "Ja (%d Sektor)"
 
-# FIXME: the second %s (the optional s) need to be localised
 #: mini-utils/idetool/idetool.c:247
-#, fuzzy, c-format
+#, c-format
 msgid "Yes (%d sectors)"
-msgstr "Ja (%d sector%s)"
+msgstr "Ja (%d Sektoren)"
 
 #: mini-utils/idetool/idetool.c:310 mini-utils/idetool/idetool.c:320
 msgid "Model"
@@ -1968,48 +1961,3 @@ msgstr "Nur der Superuser kann dieses Werkzeug benutzen"
 #: mini-utils/idetool/idetool.c:428
 msgid "You appear to have no IDE drives"
 msgstr "Sie scheinen keine IDE-Laufwerke zu besitzen"
-
-#~ msgid "blue"
-#~ msgstr "blau"
-
-#~ msgid "green"
-#~ msgstr "grün"
-
-#~ msgid "red"
-#~ msgstr "rot"
-
-#~ msgid "white"
-#~ msgstr "weiß"
-
-#~ msgid "yellow"
-#~ msgstr "gelb"
-
-#~ msgid "Busy"
-#~ msgstr "Beschäftigt"
-
-#~ msgid "Load"
-#~ msgstr "Last"
-
-#~ msgid "PPP In"
-#~ msgstr "PPP Rein"
-
-#~ msgid "PPP Out"
-#~ msgstr "PPP Raus"
-
-#~ msgid "Swap"
-#~ msgstr "Swap"
-
-#~ msgid "geometry"
-#~ msgstr "Geometrie"
-
-#~ msgid "chart LP filter TC"
-#~ msgstr "Diagramm LP Filter TC"
-
-#~ msgid "slider LP filter TC"
-#~ msgstr "Feder LP Filter TC"
-
-#~ msgid "add menubar"
-#~ msgstr "Menübalken hinzufügen"
-
-#~ msgid "gtk|text|graph|none"
-#~ msgstr "gtk|text|graph|nichts"
