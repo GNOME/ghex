@@ -1,15 +1,9 @@
 figs = \
-	ghexconverter.png \
-	ghexfindreplace.png  \
-	ghexmenubar.png \
-	ghexdisplaypref.png  \
-	ghexfullwindow.png   \
-	ghexprefedit.png \
-	ghexfind.png \
-	ghexmdiprefs.png \
-	ghexprintprefs.png
-app = ghex2
+	figures/ghex_window_empty.png	\
+	figures/ghex_window_open.png
+docname = ghex
 lang = C
-omffiles=ghex-C.omf
-include $(top_srcdir)/app-docs.make
+omffile = ghex-C.omf
+entities = legal.xml
+include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
