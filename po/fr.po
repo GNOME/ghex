@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 1999-07-30 15:46-0400\n"
+"POT-Creation-Date: 1999-08-16 08:24+0200\n"
 "PO-Revision-Date: 1998-02-28 19:57+0100\n"
 "Last-Translator: Vincent Renardias <vincent@ldsol.com>\n"
 "Language-Team: Vincent Renardias <vincent@ldsol.com>\n"
@@ -227,9 +227,9 @@ msgstr ""
 "Voulez-vous enregistrer les changements ?"
 
 #: ghex/main.c:173
-#, fuzzy, c-format
+#, c-format
 msgid "Offset: %s"
-msgstr "Décalage : "
+msgstr "Offset: %s"
 
 #: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
 #: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
@@ -1234,7 +1234,7 @@ msgstr "Copyright 1998, sous les termes de la Licence Publique Générale GNU."
 #: mini-utils/gless/gless.c:116
 #, c-format
 msgid "Reason %d\n"
-msgstr ""
+msgstr "Raison %d\n"
 
 #: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
@@ -1277,19 +1277,23 @@ msgid "Loading..."
 msgstr "Chargement..."
 
 #: mini-utils/gless/gless.c:502
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "No such file or directory:\n"
 "%s"
-msgstr "Aucun fichier ou répertoire de ce type :\n"
+msgstr ""
+"Aucun fichier ou répertoire:\n"
+"%s"
 
 #: mini-utils/gless/gless.c:520
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to decompress and display the file:\n"
 "%s\n"
 "%s"
 msgstr "Echec lors de la décompression et de l'affichage du fichier :\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:533
 msgid ""
@@ -1300,24 +1304,28 @@ msgstr ""
 "zcat n'est pas dans votre chemin."
 
 #: mini-utils/gless/gless.c:541
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error loading file:\n"
 "%s\n"
 "%s"
 msgstr "Erreur lors du chargement du fichier :\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:599
 msgid "Saving..."
 msgstr "Enregistrement..."
 
 #: mini-utils/gless/gless.c:610
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to write file:\n"
 "%s\n"
 "%s"
 msgstr "Echec lors de l'enregistrement du fichier :\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:660
 msgid "Save Text As..."
@@ -1329,7 +1337,7 @@ msgstr "Ouvrir un fichier texte..."
 
 #: mini-utils/gless/gless.c:764
 msgid "Sorry, no preferences yet."
-msgstr ""
+msgstr "Désolé, pas encore de préférences."
 
 #: mini-utils/gless/gless.c:851
 msgid "Searching..."
@@ -1340,12 +1348,14 @@ msgid "No search string was specified!"
 msgstr "Aucune chaîne à rechercher n'a été spécifiée !"
 
 #: mini-utils/gnome-run/gnome-run.c:48
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to execute command:\n"
 "%s\n"
 "%s"
 msgstr "Echec de l'exécution de la commande :\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run Program"
@@ -1470,6 +1480,8 @@ msgid ""
 "%s\n"
 "You will lose any unsaved work."
 msgstr ""
+"%s\n"
+"Tout travail non enregistré sera perdu."
 
 #: mini-utils/gshutdown/gshutdown.c:458
 msgid "Don't ask next time."
@@ -1477,15 +1489,15 @@ msgstr "Ne pas poser la question la prochaine fois."
 
 #: mini-utils/gshutdown/gshutdown.c:685
 msgid "Command execution failed: fork failed"
-msgstr ""
+msgstr "Échec de l'exécution de la commande: échec de fork"
 
 #: mini-utils/guname/guname.c:51
 msgid "Make guname act as a control center applet"
-msgstr ""
+msgstr "Guname doit agir comme une applet du control center"
 
 #: mini-utils/guname/guname.c:114
 msgid "an initialization error occurred while starting 'guname-capplet'."
-msgstr ""
+msgstr "une erreur d'initialisation est survenue lors du démarrage de 'guname-capplet'."
 
 #: mini-utils/guname/guname.c:424
 msgid "System Information"
@@ -1502,7 +1514,7 @@ msgstr "Contributeurs à GNOME :"
 
 #: mini-utils/guname/guname.c:513
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-msgstr ""
+msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
 #: mini-utils/guname/guname.c:524
 msgid "GNOME: The GNU Network Object Model Environment"
@@ -1537,19 +1549,19 @@ msgid "Mail To..."
 msgstr "Envoyer un courrier à ..."
 
 #: mini-utils/guname/guname.c:680
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error closing file `%s': \n"
 "%s\n"
 "Some or all data may not have been written."
-msgstr ""
-"\n"
+msgstr "Erreur lors de la fermeture du fichier `%s' :\n"
+"%s\n"
 "Tout ou partie des données n'ont pas pu être enregistrées."
 
 #: mini-utils/guname/guname.c:692
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't open file `%s': %s"
-msgstr "Impossible d'ouvrir le fichier `"
+msgstr "Impossible d'ouvrir le fichier `%s' : %s"
 
 #: mini-utils/guname/guname.c:707
 msgid "Save System Information As..."
@@ -1557,22 +1569,22 @@ msgstr "Enregistrer les informations système sous..."
 
 #. I don't think the error_string() will reliably mean anything.
 #: mini-utils/guname/guname.c:753
-#, fuzzy, c-format
+#, c-format
 msgid "Command failed ` %s ': %s"
-msgstr "Echec de la commande ` "
+msgstr "Echec de la commande ` %s ' : %s"
 
 #: mini-utils/guname/guname.c:761
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't run command ` %s ': %s"
-msgstr "Impossible de lancer la commande ` "
+msgstr "Impossible de lancer la commande ` %s ' : %s"
 
 #: mini-utils/guname/guname.c:785
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
-".\n"
+"Le courier suivant sera envoyé à %s.\n"
 "Etes-vous sûr de vouloir envoyer cette information par courrier ?"
 
 #: mini-utils/guname/guname.c:796
@@ -1583,97 +1595,97 @@ msgstr "Etes-vous sûr ?"
 msgid "Address to mail to:"
 msgstr "Envoyer le courrier à :"
 
-#: mini-utils/guname/info.c:38
+#: mini-utils/guname/info.c:39
 msgid "Distribution:"
 msgstr "Distribution :"
 
-#: mini-utils/guname/info.c:39
+#: mini-utils/guname/info.c:40
 msgid "Operating System:"
 msgstr "Système d'exploitation :"
 
-#: mini-utils/guname/info.c:40
+#: mini-utils/guname/info.c:41
 msgid "Distribution Version:"
 msgstr "Version de la distribution :"
 
-#: mini-utils/guname/info.c:41
+#: mini-utils/guname/info.c:42
 msgid "Operating System Version:"
 msgstr "Version du système d'exploitation :"
 
-#: mini-utils/guname/info.c:42
+#: mini-utils/guname/info.c:43
 msgid "Operating System Release:"
 msgstr "Sous-version du système d'exploitation :"
 
-#: mini-utils/guname/info.c:43
+#: mini-utils/guname/info.c:44
 msgid "Processor Type:"
 msgstr "Type de processeur :"
 
-#: mini-utils/guname/info.c:44
+#: mini-utils/guname/info.c:45
 msgid "Processor Speed:"
 msgstr "Vitesse du processeur :"
 
-#: mini-utils/guname/info.c:45
+#: mini-utils/guname/info.c:46
 msgid "Host Name:"
 msgstr "Nom de la machine hôte :"
 
-#: mini-utils/guname/info.c:46
+#: mini-utils/guname/info.c:47
 msgid "Domain Name:"
 msgstr "Nom de domaine :"
 
-#: mini-utils/guname/info.c:47
+#: mini-utils/guname/info.c:48
 msgid "User Name:"
 msgstr "Nom d'utilisateur :"
 
-#: mini-utils/guname/info.c:48
+#: mini-utils/guname/info.c:49
 msgid "X Display Name:"
 msgstr "Affichage X11 :"
 
-#: mini-utils/guname/info.c:49
+#: mini-utils/guname/info.c:50
 msgid "System Status:"
 msgstr "Etat du système :"
 
-#: mini-utils/guname/info.c:50
+#: mini-utils/guname/info.c:51
 msgid "Real Memory:"
 msgstr "Mémoire physique :"
 
-#: mini-utils/guname/info.c:51
+#: mini-utils/guname/info.c:52
 msgid "Swap Space (\"virtual memory\"):"
 msgstr "Swap (\"mémoire virtuelle\") :"
 
-#: mini-utils/guname/info.c:52
+#: mini-utils/guname/info.c:53
 msgid "Total Memory:"
 msgstr "Mémoire totale :"
 
-#: mini-utils/guname/info.c:53
+#: mini-utils/guname/info.c:54
 msgid "Free Memory:"
 msgstr "Mémoire libre :"
 
-#: mini-utils/guname/info.c:58
+#: mini-utils/guname/info.c:59
 msgid "Device"
 msgstr "Périphérique"
 
-#: mini-utils/guname/info.c:59
+#: mini-utils/guname/info.c:60
 msgid "Size"
 msgstr "Taille"
 
-#: mini-utils/guname/info.c:60
+#: mini-utils/guname/info.c:61
 msgid "Used space"
 msgstr "Espace utilisé"
 
-#: mini-utils/guname/info.c:61
+#: mini-utils/guname/info.c:62
 msgid "Free space"
 msgstr "Espace libre"
 
-#: mini-utils/guname/info.c:62
+#: mini-utils/guname/info.c:63
 msgid "Percent free"
 msgstr "Pourcentage libre"
 
-#: mini-utils/guname/info.c:63
+#: mini-utils/guname/info.c:64
 msgid "Mount point"
 msgstr "Point de montage"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:182 mini-utils/idetool/idetool.c:26
+#: mini-utils/guname/info.c:206 mini-utils/idetool/idetool.c:26
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -1758,9 +1770,8 @@ msgid "Update Information"
 msgstr "Mettre les informations à jour"
 
 #: mini-utils/gw/gw.c:466
-#, fuzzy
 msgid "Save not implemented yet\n"
-msgstr "Ceci n'est pas encore implémenté"
+msgstr "Ceci n'est pas encore implémenté\n"
 
 #: mini-utils/gw/gw.c:479
 msgid "Command Line"
@@ -1812,32 +1823,31 @@ msgstr "Commande"
 #: mini-utils/gw/gw.c:947
 #, c-format
 msgid "Running: %s\n"
-msgstr ""
+msgstr "Exécution de : %s\n"
 
 #: mini-utils/idetool/idetool.c:20
 msgid "16-bit"
-msgstr ""
+msgstr "16-bit"
 
 #: mini-utils/idetool/idetool.c:21
 msgid "32-bit"
-msgstr ""
+msgstr "32-bit"
 
 #: mini-utils/idetool/idetool.c:22
 msgid "32-bit w/sync"
-msgstr ""
+msgstr "32-bit sans sync"
 
 #: mini-utils/idetool/idetool.c:27
 msgid "Sleeping"
-msgstr ""
+msgstr "Endormi"
 
 #: mini-utils/idetool/idetool.c:28
-#, fuzzy
 msgid "Active/Idle"
-msgstr "Actif"
+msgstr "Actif/Inatif"
 
 #: mini-utils/idetool/idetool.c:29
 msgid "Standby"
-msgstr ""
+msgstr "En attente"
 
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
@@ -1873,7 +1883,7 @@ msgstr "Conserver les paramètres"
 
 #: mini-utils/idetool/idetool.c:207
 msgid "None"
-msgstr ""
+msgstr "Aucun"
 
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
@@ -1889,17 +1899,17 @@ msgstr "(cache du port dual)"
 
 #: mini-utils/idetool/idetool.c:243
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: mini-utils/idetool/idetool.c:245
-#, fuzzy, c-format
+#, c-format
 msgid "Yes (%d sector)"
-msgstr "(1 secteur)"
+msgstr "Oui (%d secteur)"
 
 #: mini-utils/idetool/idetool.c:247
-#, fuzzy, c-format
+#, c-format
 msgid "Yes (%d sectors)"
-msgstr "(1 secteur)"
+msgstr "Oui (%d secteurs)"
 
 #: mini-utils/idetool/idetool.c:310 mini-utils/idetool/idetool.c:320
 msgid "Model"
@@ -1969,229 +1979,3 @@ msgstr "Seul le super-utilisateur (root) peut utiliser cet outil"
 msgid "You appear to have no IDE drives"
 msgstr "Il semble que vous n'ayez pas de disque IDE"
 
-#~ msgid "New search"
-#~ msgstr "Nouvelle recherche"
-
-#~ msgid "Open search spec"
-#~ msgstr "Charger une configuration de recherche"
-
-#~ msgid "Save search spec"
-#~ msgstr "Enregistrer une configuration de recherche"
-
-#~ msgid "Save search spec as..."
-#~ msgstr "Enregistrer la configuration de recherche sous..."
-
-#~ msgid "Preferences..."
-#~ msgstr "Préférences..."
-
-#~ msgid "Add condition"
-#~ msgstr "Ajouter une condition"
-
-#~ msgid "Add a search condition"
-#~ msgstr "Ajouter une condition de recherche"
-
-#~ msgid "Remove condition"
-#~ msgstr "Enlever une condition"
-
-#~ msgid "Remove last search condition"
-#~ msgstr "Enlever la dernière condition de recherche"
-
-#~ msgid "Show advanced options"
-#~ msgstr "Montrer les options avancées"
-
-#~ msgid "Start search"
-#~ msgstr "Démarrer la recherche"
-
-#~ msgid "About Gnome Find..."
-#~ msgstr "A propos de GNOME Find..."
-
-#~ msgid "File"
-#~ msgstr "Fichier"
-
-#~ msgid "Edit"
-#~ msgstr "Editer"
-
-#~ msgid "Search"
-#~ msgstr "Recherche"
-
-#~ msgid "New"
-#~ msgstr "Nouveau"
-
-#~ msgid "Clear the search window"
-#~ msgstr "Réinitialiser la fenêtre de recherche"
-
-#~ msgid "Start the current search"
-#~ msgstr "Démarrer la recherche"
-
-#~ msgid "Find Files"
-#~ msgstr "Trouver les fichiers"
-
-#~ msgid "Directory:"
-#~ msgstr "Répertoire :"
-
-#~ msgid "Directory to Search"
-#~ msgstr "Répertoire à examiner"
-
-#~ msgid "GNOME Find"
-#~ msgstr "GNOME Find"
-
-#~ msgid "GNOME Find is a fast, flexible file search tool."
-#~ msgstr ""
-#~ "GNOME Find est un outil de recherche de fichiers rapide et flexible."
-
-#~ msgid "This program should never be called directly.\n"
-#~ msgstr "Ce programme ne devrait jamais être appelé directement.\n"
-
-#~ msgid "virtual memory exhausted"
-#~ msgstr "Mémoire virtuelle épuisée"
-
-#~ msgid "getpass: cannot open /dev/tty"
-#~ msgstr "getpass: impossible d'ouvrir /dev/tty"
-
-#~ msgid "cannot set groups"
-#~ msgstr "Impossible de définir les groupes"
-
-#~ msgid "cannot set group id"
-#~ msgstr "Impossible de définir l'ID de groupe"
-
-#~ msgid "cannot set user id"
-#~ msgstr "Impossible de définir l'ID utilisateur"
-
-#~ msgid "cannot run %s"
-#~ msgstr "Impossible de lancer %s"
-
-#~ msgid "Try `%s --help' for more information.\n"
-#~ msgstr "Essayez `%s --help' pour avoir plus d'informations.\n"
-
-#~ msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
-#~ msgstr "Usage: %s [OPTION]... [-] [UTILISATEUR [ARG]...]\n"
-
-#~ msgid ""
-#~ "Change the effective user id and group id to that of USER.\n"
-#~ "\n"
-#~ "  -, -l, --login               make the shell a login shell\n"
-#~ "  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
-#~ "  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
-#~ "  -m, --preserve-environment   do not reset environment variables\n"
-#~ "  -p                           same as -m\n"
-#~ "  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
-#~ "      --help                   display this help and exit\n"
-#~ "      --version                output version information and exit\n"
-#~ "\n"
-#~ "A mere - implies -l.   If USER not given, assume root.\n"
-#~ msgstr ""
-#~ "Remplace les ID utilisateur et groupe effectifs par ceux d'UTILISATEUR\n"
-#~ "  -, -l, --login               utilise un shell de connexion\n"
-#~ "  -c, --commmand=COMMANDE      passe une seule COMMANDE au shell avec -c\n"
-#~ "  -f, --fast                   passe l'argument -f au shell (pour csh ou "
-#~ "tcsh)\n"
-#~ "  -m, --preserve-environment   ne réinitialise pas les variables "
-#~ "d'environnement\n"
-#~ "  -p                           comme -m\n"
-#~ "  -s, --shell=SHELL            utilise SHELL si /etc/shells le permet\n"
-#~ "      --help                   affiche ce message d'aide et quitte\n"
-#~ "      --version                affiche la version du programme et quitte\n"
-#~ "\n"
-#~ "Un simple - équivaut à -l. Si UTILISATEUR est omis, root est utilisé.\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Report bugs to sh-utils-bugs@gnu.ai.mit.edu"
-#~ msgstr ""
-#~ "\n"
-#~ "Signalez les bugs à sh-utils-bugs@gnu.ai.mit.edu (en Anglais)"
-
-#~ msgid "user %s does not exist"
-#~ msgstr "L'utilisateur %s n'existe pas"
-
-#~ msgid "incorrect password"
-#~ msgstr "Mot de passe incorrect"
-
-#~ msgid "using restricted shell %s"
-#~ msgstr "Utilisation du shell restreint %s"
-
-#~ msgid "warning: cannot change directory to %s"
-#~ msgstr "Avertissement : Impossible d'aller dans le répertoire %s"
-
-#~ msgid ""
-#~ "This program needs a SUID helper program called gsu-helper\n"
-#~ "which is either not installed or has the wrong permissions.\n"
-#~ "\n"
-#~ "Please contact your local system administrator."
-#~ msgstr ""
-#~ "Ce programme nécessite un programme d'aide appelé gsu-helper\n"
-#~ "qui doit être SUID, et qui n'est pas installé ou n'a pas\n"
-#~ "les bonnes permissions.\n"
-#~ "\n"
-#~ "Contactez l'administrateur de votre système."
-
-#~ msgid "You gave an incorrect password."
-#~ msgstr "Mot de passe incorrect"
-
-#~ msgid "SU was successful."
-#~ msgstr "La commande su a réussi."
-
-#~ msgid ""
-#~ "You are trying to do something which requires\n"
-#~ "root (system administrator) privileges.\n"
-#~ "To do this, you must give the root password.\n"
-#~ "Please enter the root password now, or choose\n"
-#~ "Cancel if you do not know it."
-#~ msgstr ""
-#~ "Vous essayez de faire quelque chose qui\n"
-#~ "nécessite les priviléges root (administrateur système)\n"
-#~ "Pour cela, vous devez donner le mot de passe de root.\n"
-#~ "Entrez le mot de passe de root maintenant, ou choisissez\n"
-#~ "Annuler si vous ne le connaissez pas."
-
-#~ msgid ""
-#~ "You are trying to change your user identity.\n"
-#~ "Please enter the password for user `"
-#~ msgstr ""
-#~ "Vous etes en train d'essayer de changer votre identité d'utilisateur.\n"
-#~ "Veuillez entrer le mot de passe de l'utilisateur `"
-
-#~ msgid "Target User"
-#~ msgstr "Utilisateur cible"
-
-#~ msgid "USER"
-#~ msgstr "UTILISATEUR"
-
-#~ msgid "Cannot set groups: %s"
-#~ msgstr "Impossible de définir les groupes : %s"
-
-#~ msgid "Cannot set group id: %s"
-#~ msgstr "Impossible de définir l'ID de groupe : %s"
-
-#~ msgid "Cannot set user id: %s"
-#~ msgstr "Impossible de définir l'ID utilisateur : %s"
-
-#~ msgid "Cannot change directory to %s"
-#~ msgstr "Impossible d'aller dans le répertoire %s"
-
-#~ msgid "Root password request"
-#~ msgstr "Mot de passe du root exigé"
-
-#~ msgid "Memory exhausted"
-#~ msgstr "Mémoire épuisée"
-
-#~ msgid "Error closing file `"
-#~ msgstr "Erreur lors de la fermeture du fichier `"
-
-#~ msgid " ': "
-#~ msgstr " ': "
-
-#~ msgid "The following mail will be sent to "
-#~ msgstr "Ce courrier sera envoyé à "
-
-#~ msgid "%ld%% %s used."
-#~ msgstr "%ld%% %s utilisés."
-
-#~ msgid "memory"
-#~ msgstr "mémoire"
-
-#~ msgid "swap"
-#~ msgstr "swap"
-
-#~ msgid "%2d%% full "
-#~ msgstr "%2d%% plein "
