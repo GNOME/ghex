@@ -1,3 +1,11 @@
+2001-03-05  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/main.c (view_changed_cb): fixed a bug that caused slovene
+	translation (and probably some other) to segfault as nouns change
+	their form according to context and the previous code was using
+	a translation from prefs dialog that differed from the one in menus.
+	* src/chartable.c (create_char_table): translate titles.
+
 2001-03-03 John Fleck <jfleck@inkstain.net>
 
 	adding COPYING-DOCS

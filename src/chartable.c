@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* chartable.c - a window with a character table
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998 - 2001 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -18,7 +18,7 @@
    If not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
+   Author: Jaka Mocnik <jaka@gnu.org>
 */
 
 #ifdef HAVE_CONFIG_H
@@ -89,6 +89,7 @@ GtkWidget *create_char_table()
 	static gchar *fmt[] = { NULL, "%02X", "%03d", "%03o" };
 	static gchar *titles[] = {  N_("ASCII"), N_("Hex"), N_("Decimal"),
 								N_("Octal"), N_("Binary") };
+	gchar *real_titles[5];
 	GtkWidget *ct, *sw, *cl;
 	int i, col;
 	gchar *label, ascii_printable_label[2], bin_label[9], *row[5];
@@ -97,8 +98,9 @@ GtkWidget *create_char_table()
 	gtk_window_set_title(GTK_WINDOW(ct), _("GHex: Character table"));
 	sw = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	cl = gtk_clist_new_with_titles(5, titles);
-
+	for(i = 0; i < 5; i++)
+		real_titles[i] = _(titles[i]);
+	cl = gtk_clist_new_with_titles(5, real_titles);
 	bin_label[8] = 0;
 	ascii_printable_label[1] = 0;
 	for(i = 0; i < 256; i++) {

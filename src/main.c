@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* main.c - genesis of a GHex application
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998 - 2001 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -18,7 +18,7 @@
    If not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
+   Author: Jaka Mocnik <jaka@gnu.org>
 */
 
 #include <config.h>
@@ -104,6 +104,7 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	GnomeApp *app;
 	GnomeUIInfo *uiinfo;
 	GtkWidget *shell, *item;
+	GList *item_node;
 	HexDocument *doc;
 	gint pos;
 	gint group_item;
@@ -116,11 +117,21 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	shell = gnome_app_find_menu_pos(app->menubar, GROUP_MENU_PATH, &pos);
 	if (shell) {
 		group_item = GTK_HEX(mdi->active_view)->group_type / 2;
-		shell = gnome_app_find_menu_pos(shell, _(group_type_label[group_item]), &pos);
-		
-		item = g_list_nth(GTK_MENU_SHELL(shell)->children, pos - 1)->data;
-		
-		gtk_menu_shell_activate_item(GTK_MENU_SHELL(shell), item, TRUE);
+		item_node = GTK_MENU_SHELL(shell)->children;
+		item = NULL;
+		while(item_node) {
+			if(!GTK_IS_TEAROFF_MENU_ITEM(item_node->data)) {
+				if(group_item == 0) {
+					item = GTK_WIDGET(item_node->data);
+					break;
+				}
+				group_item--;
+			}
+			item_node = item_node->next;
+		}
+		if(item) {
+			gtk_menu_shell_activate_item(GTK_MENU_SHELL(shell), item, TRUE);
+		}
 	}
 	shell = gnome_app_find_menu_pos(app->menubar, OVERWRITE_ITEM_PATH, &pos);
 	if (shell) {
