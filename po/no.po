@@ -5,67 +5,74 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 0.30\n"
-"POT-Creation-Date: 1998-11-07 00:35+0100\n"
-"PO-Revision-Date: 1998-11-07 00:40+0100\n"
+"POT-Creation-Date: 1998-11-21 11:16+0100\n"
+"PO-Revision-Date: 1998-11-21 12:34+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@fib.hl.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: gcalc/gcalc.c:26
+#: gcalc/gcalc.c:22
 msgid "The Gnome Calculator"
 msgstr "Gnome Kalkulator"
 
-#: gcalc/gcalc.c:29
+#: gcalc/gcalc.c:25
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Enkel dobbelpresisjonskalkulator lik xcalc"
 
-#: gcalc/gcalc.c:43 ghex/ui.c:75 gtt/menus.c:103
+#: gcalc/gcalc.c:60 gncal/main.c:413 mini-utils/gcolorsel/gcolorsel.c:368
+msgid "E_xit"
+msgstr "_Avslutt"
+
+#: gcalc/gcalc.c:67 ghex/ui.c:75 gtt/menus.c:103
+#: mini-utils/gcolorsel/gcolorsel.c:362
 msgid "_About..."
 msgstr "_Om..."
 
-#: gcalc/gcalc.c:48 ghex/ui.c:52 gtt/menus.c:45
-msgid "_Quit"
-msgstr "_Avslutt"
-
-#: gcalc/gcalc.c:55 gtt/menus.c:59
+#: gcalc/gcalc.c:73 gtt/menus.c:59
 msgid "_Copy"
 msgstr "_Kopier"
 
-#: gcalc/gcalc.c:65
-msgid "_Program"
-msgstr "_Program"
+#: gcalc/gcalc.c:79
+#, fuzzy
+msgid "_Calculator"
+msgstr "Gnome Kalkulator"
 
-#: gcalc/gcalc.c:68 ghex/hex-document.c:85 gncal/main.c:439 gtt/menus.c:115
+#: gcalc/gcalc.c:81 ghex/hex-document.c:85 gncal/main.c:439 gtt/menus.c:115
 msgid "_Edit"
 msgstr "_Rediger"
 
-#: gcalc/gcalc.c:86
+#: gcalc/gcalc.c:83 ghex/ui.c:87 gncal/main.c:440 gtt/menus.c:120
+#: mini-utils/gcolorsel/gcolorsel.c:375
+msgid "_Help"
+msgstr "_Hjelp"
+
+#: gcalc/gcalc.c:100
 msgid "Gnome Calculator"
 msgstr "Gnome Kalkulator"
 
-#: gdiskfree/df.c:128 gncal/gnomecard/gnomecard.c:440
-#: gsearchtool/gsearchtool.c:579 mini-utils/gless/gless.c:306
+#: gdiskfree/df.c:128 gncal/gnomecard/gnomecard.c:398
+#: gsearchtool/gsearchtool.c:579 mini-utils/gless/gless.c:307
 #: mini-utils/gw/gw.c:185
 msgid "Exit"
 msgstr "Avslutt"
 
-#: gdiskfree/df.c:137 gncal/gnomecard/gnomecard.c:559
-#: gsearchtool/gsearchtool.c:588 mini-utils/gless/gless.c:277
+#: gdiskfree/df.c:137 gncal/gnomecard/gnomecard.c:521
+#: gsearchtool/gsearchtool.c:588 mini-utils/gless/gless.c:278
 #: mini-utils/gw/gw.c:171
 msgid "About..."
 msgstr "Om..."
 
 #. and document menu and document list paths
-#: gdiskfree/df.c:144 ghex/main.c:62 gncal/gnomecard/gnomecard.c:567
-#: gsearchtool/gsearchtool.c:595 mini-utils/gless/gless.c:333
+#: gdiskfree/df.c:144 ghex/main.c:62 gncal/gnomecard/gnomecard.c:529
+#: gsearchtool/gsearchtool.c:595 mini-utils/gless/gless.c:334
 #: mini-utils/gw/gw.c:203
 msgid "File"
 msgstr "Fil"
 
-#: gdiskfree/df.c:146 gncal/gnomecard/gnomecard.c:581
-#: gsearchtool/gsearchtool.c:598 mini-utils/gless/gless.c:341
+#: gdiskfree/df.c:146 gncal/gnomecard/gnomecard.c:543
+#: gsearchtool/gsearchtool.c:598 mini-utils/gless/gless.c:342
 #: mini-utils/gw/gw.c:206
 msgid "Help"
 msgstr "Hjelp"
@@ -91,7 +98,7 @@ msgstr "Feil under lagring av fil!"
 #: ghex/callbacks.c:80
 #, c-format
 msgid "Really revert file %s?"
-msgstr ""
+msgstr "Virkelig forkaste filen %s?"
 
 #: ghex/callbacks.c:103
 msgid "Can not open file!"
@@ -255,6 +262,10 @@ msgstr "Åpne _konverterer..."
 msgid "_Preferences"
 msgstr "_Innstillinger"
 
+#: ghex/ui.c:52 gtt/menus.c:45
+msgid "_Quit"
+msgstr "_Avslutt"
+
 #: ghex/ui.c:62
 msgid "_Add view"
 msgstr "_Legg til visning"
@@ -274,10 +285,6 @@ msgstr "_Vis"
 #: ghex/ui.c:85
 msgid "File_s"
 msgstr "Fil_er"
-
-#: ghex/ui.c:87 gncal/main.c:440 gtt/menus.c:120
-msgid "_Help"
-msgstr "_Hjelp"
 
 #: ghex/ui.c:99
 msgid "Bytes"
@@ -378,7 +385,7 @@ msgstr "Heksadesimal"
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ghex/ui.c:419 mini-utils/gless/gless.c:300
+#: ghex/ui.c:419 mini-utils/gless/gless.c:301
 msgid "Close"
 msgstr "Lukk"
 
@@ -388,7 +395,7 @@ msgstr "Skrifttype"
 
 #: ghex/ui.c:479
 msgid "Browse..."
-msgstr ""
+msgstr "Se på..."
 
 #: ghex/ui.c:498
 msgid "Default Group Type"
@@ -406,7 +413,7 @@ msgstr "MDI-modus"
 msgid "MDI"
 msgstr "MDI"
 
-#: gncal/calobj.c:878
+#: gncal/calobj.c:879
 msgid "Appointment"
 msgstr "Avtale"
 
@@ -483,189 +490,189 @@ msgstr "Privat"
 msgid "Confidential"
 msgstr "Konfidensiell"
 
-#: gncal/eventedit.c:779 mini-utils/gshutdown/gshutdown.c:382
+#: gncal/eventedit.c:780 mini-utils/gshutdown/gshutdown.c:382
 msgid "General"
 msgstr "Generelt"
 
-#: gncal/eventedit.c:788
+#: gncal/eventedit.c:789
 msgid "Owner:"
 msgstr "Eier:"
 
-#: gncal/eventedit.c:791
+#: gncal/eventedit.c:792
 msgid "?"
 msgstr "?"
 
-#: gncal/eventedit.c:795 gncal/gncal-todo.c:108
+#: gncal/eventedit.c:796 gncal/gncal-todo.c:108
 msgid "Summary:"
 msgstr "Sammendrag:"
 
-#: gncal/eventedit.c:845
+#: gncal/eventedit.c:846
 msgid "None"
 msgstr "Ingen"
 
-#: gncal/eventedit.c:846
+#: gncal/eventedit.c:847
 msgid "Daily"
 msgstr "Daglig"
 
-#: gncal/eventedit.c:847
+#: gncal/eventedit.c:848
 msgid "Weekly"
 msgstr "Ukentlig"
 
-#: gncal/eventedit.c:848
+#: gncal/eventedit.c:849
 msgid "Monthly"
 msgstr "Månedlig"
 
-#: gncal/eventedit.c:849
+#: gncal/eventedit.c:850
 msgid "Yearly"
 msgstr "Årlig"
 
-#: gncal/eventedit.c:871
+#: gncal/eventedit.c:872
 msgid "1st"
 msgstr "1."
 
-#: gncal/eventedit.c:872
+#: gncal/eventedit.c:873
 msgid "2nd"
 msgstr "2."
 
-#: gncal/eventedit.c:873
+#: gncal/eventedit.c:874
 msgid "3rd"
 msgstr "3."
 
-#: gncal/eventedit.c:874
+#: gncal/eventedit.c:875
 msgid "4th"
 msgstr "4."
 
-#: gncal/eventedit.c:875
+#: gncal/eventedit.c:876
 msgid "5th"
 msgstr "5."
 
-#: gncal/eventedit.c:880 gncal/prop.c:269
+#: gncal/eventedit.c:881 gncal/prop.c:269
 msgid "Monday"
 msgstr "Mandag"
 
-#: gncal/eventedit.c:881
+#: gncal/eventedit.c:882
 msgid "Tuesday"
 msgstr "Tirsdag"
 
-#: gncal/eventedit.c:882
+#: gncal/eventedit.c:883
 msgid "Wednesday"
 msgstr "Onsdag"
 
-#: gncal/eventedit.c:883
+#: gncal/eventedit.c:884
 msgid "Thursday"
 msgstr "Torsdag"
 
-#: gncal/eventedit.c:884
+#: gncal/eventedit.c:885
 msgid "Friday"
 msgstr "Fredag"
 
-#: gncal/eventedit.c:885
+#: gncal/eventedit.c:886
 msgid "Saturday"
 msgstr "Lørdag"
 
-#: gncal/eventedit.c:886 gncal/prop.c:268
+#: gncal/eventedit.c:887 gncal/prop.c:268
 msgid "Sunday"
 msgstr "Søndag"
 
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:733
+#: gncal/eventedit.c:940 gncal/gnome-month-item.c:733
 msgid "Mon"
 msgstr "Man"
 
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:734
+#: gncal/eventedit.c:940 gncal/gnome-month-item.c:734
 msgid "Tue"
 msgstr "Tir"
 
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:735
+#: gncal/eventedit.c:940 gncal/gnome-month-item.c:735
 msgid "Wed"
 msgstr "Ons"
 
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:736
+#: gncal/eventedit.c:940 gncal/gnome-month-item.c:736
 msgid "Thu"
 msgstr "Tor"
 
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:737
+#: gncal/eventedit.c:940 gncal/gnome-month-item.c:737
 msgid "Fri"
 msgstr "Fre"
 
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:738
+#: gncal/eventedit.c:940 gncal/gnome-month-item.c:738
 msgid "Sat"
 msgstr "Lør"
 
 #. Initialize by default to three-letter day names
-#: gncal/eventedit.c:939 gncal/gnome-month-item.c:732
+#: gncal/eventedit.c:940 gncal/gnome-month-item.c:732
 msgid "Sun"
 msgstr "Søn"
 
-#: gncal/eventedit.c:950
+#: gncal/eventedit.c:951
 msgid "Recurrence rule"
 msgstr "Regel for gjeninntreffelse"
 
-#: gncal/eventedit.c:1051 gncal/eventedit.c:1065 gncal/eventedit.c:1110
-#: gncal/eventedit.c:1132
+#: gncal/eventedit.c:1052 gncal/eventedit.c:1066 gncal/eventedit.c:1111
+#: gncal/eventedit.c:1133
 msgid "Every"
 msgstr "Hver"
 
-#: gncal/eventedit.c:1053
+#: gncal/eventedit.c:1054
 msgid "day(s)"
 msgstr "dag(er)"
 
-#: gncal/eventedit.c:1067
+#: gncal/eventedit.c:1068
 msgid "week(s)"
 msgstr "uke(e)"
 
-#: gncal/eventedit.c:1088 gncal/eventedit.c:1100
+#: gncal/eventedit.c:1089 gncal/eventedit.c:1101
 msgid "Recur on the"
 msgstr "Gjeninntreff på"
 
-#: gncal/eventedit.c:1090
+#: gncal/eventedit.c:1091
 msgid "th day of the month"
 msgstr "te dag av måneden"
 
-#: gncal/eventedit.c:1115
+#: gncal/eventedit.c:1116
 msgid "month(s)"
 msgstr "måned(er)"
 
-#: gncal/eventedit.c:1134
+#: gncal/eventedit.c:1135
 msgid "year(s)"
 msgstr "år"
 
-#: gncal/eventedit.c:1172
+#: gncal/eventedit.c:1173
 msgid "Ending date"
 msgstr "Slutter på dato"
 
-#: gncal/eventedit.c:1185
+#: gncal/eventedit.c:1186
 msgid "Repeat forever"
 msgstr "Gjenta for alltid"
 
-#: gncal/eventedit.c:1194
+#: gncal/eventedit.c:1195
 msgid "End on"
 msgstr "Slutt på"
 
-#: gncal/eventedit.c:1219
+#: gncal/eventedit.c:1220
 msgid "End after"
 msgstr "Slutt etter"
 
-#: gncal/eventedit.c:1235
+#: gncal/eventedit.c:1236
 msgid "occurrence(s)"
 msgstr "inntreffelser"
 
-#: gncal/eventedit.c:1353
+#: gncal/eventedit.c:1354
 msgid "Exceptions"
 msgstr "Unntak"
 
-#: gncal/eventedit.c:1365
+#: gncal/eventedit.c:1366
 msgid "Add exception"
 msgstr "Legg til unntak"
 
-#: gncal/eventedit.c:1375
+#: gncal/eventedit.c:1376
 msgid "Change selected"
 msgstr "Endre valgt"
 
-#: gncal/eventedit.c:1381
+#: gncal/eventedit.c:1382
 msgid "Delete selected"
 msgstr "Slett valgt"
 
-#: gncal/eventedit.c:1407
+#: gncal/eventedit.c:1408
 msgid "Recurrence"
 msgstr "Gjeninntreffelse"
 
@@ -911,7 +918,7 @@ msgstr "Rediger to-do oppføring"
 msgid "Add to-do item..."
 msgstr "Legg til to-do oppføring"
 
-#: gncal/gncal-todo.c:198 gncal/gnomecard/gnomecard.c:181
+#: gncal/gncal-todo.c:198
 msgid "Edit this item..."
 msgstr "Rediger denne avtalen..."
 
@@ -920,22 +927,22 @@ msgid "Delete this item"
 msgstr "Slett denne avtalen"
 
 #. Label
-#: gncal/gncal-todo.c:238
+#: gncal/gncal-todo.c:239
 msgid "To-do list"
 msgstr "To-do liste"
 
 #. Add
-#: gncal/gncal-todo.c:266
+#: gncal/gncal-todo.c:270
 msgid "Add..."
 msgstr "Legg til..."
 
 #. Edit
-#: gncal/gncal-todo.c:275
+#: gncal/gncal-todo.c:279
 msgid "Edit..."
 msgstr "Rediger..."
 
 #. Delete
-#: gncal/gncal-todo.c:286 gncal/gnomecard/gnomecard.c:496
+#: gncal/gncal-todo.c:290 gncal/gnomecard/gnomecard.c:458
 #: mini-utils/gw/gw.c:464
 msgid "Delete"
 msgstr "Slett"
@@ -960,212 +967,216 @@ msgstr "Årsoversikt"
 msgid "Reminder of your appointment at "
 msgstr "Påminnelse om avtale ved"
 
-#: gncal/gnomecard/gnomecard.c:167
+#: gncal/gnomecard/gnomecard.c:193
 msgid "No cards, yet."
 msgstr "Ingen kort, ennå."
 
-#: gncal/gnomecard/gnomecard.c:291
+#: gncal/gnomecard/gnomecard.c:248
 msgid " changed. Save?"
 msgstr " endret. Lagre?"
 
-#: gncal/gnomecard/gnomecard.c:398
+#: gncal/gnomecard/gnomecard.c:356
 msgid "A new Gnomecard could not be spawned. Maybe it is not in your path."
 msgstr "Et nytt Gnomekort kunne ikke opprettes. Kanskje det ikke er i stien."
 
-#: gncal/gnomecard/gnomecard.c:409
+#: gncal/gnomecard/gnomecard.c:367
 msgid "New Gnomecard"
 msgstr "Nytt Gnomekort"
 
-#: gncal/gnomecard/gnomecard.c:409
+#: gncal/gnomecard/gnomecard.c:367
 msgid "Spawn a new Card Manager."
 msgstr "Opprett ny kortbehandler."
 
-#: gncal/gnomecard/gnomecard.c:415 gncal/gnomecard/gnomecard.c:588
+#: gncal/gnomecard/gnomecard.c:373 gncal/gnomecard/gnomecard.c:550
 #: gncal/main.c:445
 msgid "New"
 msgstr "Ny"
 
-#: gncal/gnomecard/gnomecard.c:415
+#: gncal/gnomecard/gnomecard.c:373
 msgid "Create new Card File."
 msgstr "Lag en ny kortfil."
 
-#: gncal/gnomecard/gnomecard.c:419 mini-utils/gless/gless.c:291
+#: gncal/gnomecard/gnomecard.c:377 mini-utils/gless/gless.c:292
 msgid "Open..."
 msgstr "Åpne..."
 
-#: gncal/gnomecard/gnomecard.c:419
+#: gncal/gnomecard/gnomecard.c:377
 msgid "Open a Card File."
 msgstr "Åpne en kortfil."
 
-#: gncal/gnomecard/gnomecard.c:423
+#: gncal/gnomecard/gnomecard.c:381
 msgid "Append..."
 msgstr "Legg til..."
 
-#: gncal/gnomecard/gnomecard.c:423
+#: gncal/gnomecard/gnomecard.c:381
 msgid "Add the contents of another Card File."
-msgstr ""
+msgstr "Legg til innholdet fra en annen Card fil."
 
-#: gncal/gnomecard/gnomecard.c:427 gncal/gnomecard/gnomecard.c:596
+#: gncal/gnomecard/gnomecard.c:385 gncal/gnomecard/gnomecard.c:558
 #: gtt/toolbar.c:152
 msgid "Save"
 msgstr "Lagre"
 
-#: gncal/gnomecard/gnomecard.c:427
+#: gncal/gnomecard/gnomecard.c:385
 msgid "Save current changes."
 msgstr "Lagre endringer."
 
-#: gncal/gnomecard/gnomecard.c:431
+#: gncal/gnomecard/gnomecard.c:389
 msgid "Save as..."
 msgstr "Lagre som..."
 
-#: gncal/gnomecard/gnomecard.c:431
+#: gncal/gnomecard/gnomecard.c:389
 msgid "Save current changes, choosing file name."
 msgstr "Lagre nåværende endringer, og velg filnavn."
 
-#: gncal/gnomecard/gnomecard.c:437 gtt/menus.c:128
+#: gncal/gnomecard/gnomecard.c:395 gtt/menus.c:128
 msgid "Properties..."
 msgstr "Egenskaper..."
 
-#: gncal/gnomecard/gnomecard.c:437
+#: gncal/gnomecard/gnomecard.c:395
 msgid "Appereance, customizations..."
 msgstr "Utseende, egeninnstillinger..."
 
-#: gncal/gnomecard/gnomecard.c:440
+#: gncal/gnomecard/gnomecard.c:398
 msgid "Close the program."
 msgstr "Lukk programmet."
 
-#: gncal/gnomecard/gnomecard.c:448 gncal/gnomecard/gnomecard.c:616
+#: gncal/gnomecard/gnomecard.c:406 gncal/gnomecard/gnomecard.c:578
 msgid "First"
 msgstr "Første"
 
-#: gncal/gnomecard/gnomecard.c:448 gncal/gnomecard/gnomecard.c:616
+#: gncal/gnomecard/gnomecard.c:406 gncal/gnomecard/gnomecard.c:578
 msgid "First card"
 msgstr "Første kort"
 
-#: gncal/gnomecard/gnomecard.c:452 gncal/gnomecard/gnomecard.c:620
+#: gncal/gnomecard/gnomecard.c:410 gncal/gnomecard/gnomecard.c:582
 #: gncal/main.c:449
 msgid "Prev"
 msgstr "Forrige"
 
-#: gncal/gnomecard/gnomecard.c:452 gncal/gnomecard/gnomecard.c:620
+#: gncal/gnomecard/gnomecard.c:410 gncal/gnomecard/gnomecard.c:582
 msgid "Previous card"
 msgstr "Forrige kort"
 
-#: gncal/gnomecard/gnomecard.c:456 gncal/gnomecard/gnomecard.c:624
+#: gncal/gnomecard/gnomecard.c:414 gncal/gnomecard/gnomecard.c:586
 #: gncal/main.c:451
 msgid "Next"
 msgstr "Neste"
 
-#: gncal/gnomecard/gnomecard.c:456 gncal/gnomecard/gnomecard.c:624
+#: gncal/gnomecard/gnomecard.c:414 gncal/gnomecard/gnomecard.c:586
 msgid "Next card"
 msgstr "Neste kort"
 
-#: gncal/gnomecard/gnomecard.c:460 gncal/gnomecard/gnomecard.c:628
+#: gncal/gnomecard/gnomecard.c:418 gncal/gnomecard/gnomecard.c:590
 msgid "Last"
 msgstr "Siste"
 
-#: gncal/gnomecard/gnomecard.c:460 gncal/gnomecard/gnomecard.c:628
+#: gncal/gnomecard/gnomecard.c:418 gncal/gnomecard/gnomecard.c:590
 msgid "Last card"
 msgstr "Siste kort"
 
-#: gncal/gnomecard/gnomecard.c:469
+#: gncal/gnomecard/gnomecard.c:427
 msgid "By Card Name"
 msgstr "Etter kortnavn"
 
-#: gncal/gnomecard/gnomecard.c:473
+#: gncal/gnomecard/gnomecard.c:431
 msgid "By Name"
 msgstr "Etter navn"
 
-#: gncal/gnomecard/gnomecard.c:477
+#: gncal/gnomecard/gnomecard.c:435
 msgid "By E-mail"
 msgstr "Etter e-post"
 
-#: gncal/gnomecard/gnomecard.c:492 gncal/gnomecard/gnomecard.c:545
+#: gncal/gnomecard/gnomecard.c:439
+msgid "By Organization"
+msgstr "Etter organisasjon"
+
+#: gncal/gnomecard/gnomecard.c:454 gncal/gnomecard/gnomecard.c:507
 msgid "Card"
 msgstr "Kort"
 
-#: gncal/gnomecard/gnomecard.c:492 gncal/gnomecard/gnomecard.c:606
+#: gncal/gnomecard/gnomecard.c:454 gncal/gnomecard/gnomecard.c:568
 msgid "Edit card"
 msgstr "Rediger kort"
 
-#: gncal/gnomecard/gnomecard.c:496
+#: gncal/gnomecard/gnomecard.c:458
 msgid "Delete element"
 msgstr "Slett element"
 
-#: gncal/gnomecard/gnomecard.c:502
+#: gncal/gnomecard/gnomecard.c:464
 msgid "Go"
 msgstr "Start"
 
-#: gncal/gnomecard/gnomecard.c:502
+#: gncal/gnomecard/gnomecard.c:464
 msgid "Change current card"
 msgstr "Skift nåværende kort"
 
-#: gncal/gnomecard/gnomecard.c:507 gncal/gnomecard/gnomecard.c:634
+#: gncal/gnomecard/gnomecard.c:469 gncal/gnomecard/gnomecard.c:596
 msgid "Find"
 msgstr "Finn"
 
-#: gncal/gnomecard/gnomecard.c:507 gncal/gnomecard/gnomecard.c:634
+#: gncal/gnomecard/gnomecard.c:469 gncal/gnomecard/gnomecard.c:596
 msgid "Search card"
 msgstr "Søk etter kort"
 
-#: gncal/gnomecard/gnomecard.c:511
+#: gncal/gnomecard/gnomecard.c:473
 msgid "Sort"
 msgstr "Sorter"
 
-#: gncal/gnomecard/gnomecard.c:511
+#: gncal/gnomecard/gnomecard.c:473
 msgid "Set sort criteria"
 msgstr "Sett sorteringskriterie"
 
-#: gncal/gnomecard/gnomecard.c:545
+#: gncal/gnomecard/gnomecard.c:507
 msgid "Toggle Card View"
 msgstr "Slå av/på kortvisning"
 
-#: gncal/gnomecard/gnomecard.c:550
+#: gncal/gnomecard/gnomecard.c:512
 msgid "Tree"
 msgstr "Tre"
 
-#: gncal/gnomecard/gnomecard.c:550
+#: gncal/gnomecard/gnomecard.c:512
 msgid "Toggle Tree View"
 msgstr "Slå av/på trevisning"
 
-#: gncal/gnomecard/gnomecard.c:559
+#: gncal/gnomecard/gnomecard.c:521
 msgid "Version, credits, etc."
 msgstr "Versjon, kreditter, osv."
 
-#: gncal/gnomecard/gnomecard.c:570 gncal/gnomecard/gnomecard.c:606
+#: gncal/gnomecard/gnomecard.c:532 gncal/gnomecard/gnomecard.c:568
 msgid "Edit"
 msgstr "Rediger"
 
-#: gncal/gnomecard/gnomecard.c:588
+#: gncal/gnomecard/gnomecard.c:550
 msgid "New file"
 msgstr "Ny fil"
 
-#: gncal/gnomecard/gnomecard.c:592
+#: gncal/gnomecard/gnomecard.c:554
 msgid "Open"
 msgstr "Åpne"
 
-#: gncal/gnomecard/gnomecard.c:592
+#: gncal/gnomecard/gnomecard.c:554
 msgid "Open file"
 msgstr "Åpne en fil"
 
-#: gncal/gnomecard/gnomecard.c:596
+#: gncal/gnomecard/gnomecard.c:558
 msgid "Save changes"
 msgstr "Lagre endringer"
 
-#: gncal/gnomecard/gnomecard.c:602 gsearchtool/gsearchtool.c:504
+#: gncal/gnomecard/gnomecard.c:564 gsearchtool/gsearchtool.c:504
 #: mini-utils/gw/gw.c:463
 msgid "Add"
 msgstr "Legg til"
 
-#: gncal/gnomecard/gnomecard.c:602
+#: gncal/gnomecard/gnomecard.c:564
 msgid "Create new card"
 msgstr "Lag et nytt kort"
 
-#: gncal/gnomecard/gnomecard.c:610
+#: gncal/gnomecard/gnomecard.c:572
 msgid "Del"
 msgstr "Slett"
 
-#: gncal/gnomecard/gnomecard.c:610
+#: gncal/gnomecard/gnomecard.c:572
 msgid "Delete card"
 msgstr "Slett kort"
 
@@ -1232,10 +1243,6 @@ msgstr "_Innstillinger..."
 msgid "_Close this calendar"
 msgstr "_Lukk denne kalenderen"
 
-#: gncal/main.c:413
-msgid "E_xit"
-msgstr "_Avslutt"
-
 #: gncal/main.c:420
 msgid "_New appointment..."
 msgstr "_Ny avtale..."
@@ -1256,7 +1263,7 @@ msgstr "Lag en ny avtale"
 msgid "Go back in time"
 msgstr "Gå tilbake i tid"
 
-#: gncal/main.c:450 gtt/clist.c:132
+#: gncal/main.c:450 gtt/clist.c:135
 msgid "Today"
 msgstr "Idag"
 
@@ -1315,7 +1322,7 @@ msgstr "Les brukerkalenderen"
 msgid "Geometry for starting up"
 msgstr "Geometri for oppstart"
 
-#: gncal/main.c:637 gtt/main.c:255 mini-utils/gless/gless.c:115
+#: gncal/main.c:637 gtt/main.c:263 mini-utils/gless/gless.c:116
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
@@ -1385,7 +1392,7 @@ msgstr "Farge for måneder"
 msgid "Colors"
 msgstr "Farger"
 
-#: gncal/prop.c:505 gtt/options.c:508 mini-utils/gless/gless.c:335
+#: gncal/prop.c:505 gtt/options.c:508 mini-utils/gless/gless.c:336
 #: mini-utils/gw/gw.c:204
 msgid "Preferences"
 msgstr "Innstillinger"
@@ -1453,15 +1460,15 @@ msgstr "ingen prosjekter valgt"
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/clist.c:131
+#: gtt/clist.c:134
 msgid "Total"
 msgstr "Total"
 
-#: gtt/clist.c:133
+#: gtt/clist.c:136
 msgid "Project Title"
 msgstr "Prosjekttittel"
 
-#: gtt/clist.c:134
+#: gtt/clist.c:137
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -1497,20 +1504,20 @@ msgstr ""
 "En feil oppstod under lesing av konfigurasjonsfilen.\n"
 "Skal jeg lage en ny konfigurasjon?"
 
-#: gtt/main.c:209 gtt/main.c:224 gtt/main.c:235 gtt/main.c:241
+#: gtt/main.c:211 gtt/main.c:227 gtt/main.c:238 gtt/main.c:244
 #, c-format
 msgid "error in geometry string \"%s\"\n"
 msgstr "feil i geometri-strengen \"%s\"\n"
 
-#: gtt/main.c:255
+#: gtt/main.c:263
 msgid "Specify geometry"
 msgstr "Spesifiser geometri"
 
-#: gtt/main.c:256
+#: gtt/main.c:265
 msgid "Select a project on startup"
 msgstr "Velg et prosjekt ved oppstart"
 
-#: gtt/main.c:256
+#: gtt/main.c:265
 msgid "PROJECT"
 msgstr "PROSJEKT"
 
@@ -1827,64 +1834,68 @@ msgstr "Avslutt"
 msgid "Quit GTimeTracker"
 msgstr "Avslutt GTimeTracker"
 
-#: mini-utils/gcolorsel/gcolorsel.c:55 mini-utils/gcolorsel/gcolorsel.c:57
-#: mini-utils/gcolorsel/gcolorsel.c:239 mini-utils/gcolorsel/gcolorsel.c:357
+#: mini-utils/gcolorsel/gcolorsel.c:57 mini-utils/gcolorsel/gcolorsel.c:59
+#: mini-utils/gcolorsel/gcolorsel.c:231 mini-utils/gcolorsel/gcolorsel.c:349
 msgid "Gnome Color Browser"
 msgstr "Gnome fargevisning"
 
-#: mini-utils/gcolorsel/gcolorsel.c:78
+#: mini-utils/gcolorsel/gcolorsel.c:81
 msgid "Color Name:"
 msgstr "Fargenavn:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:85
+#: mini-utils/gcolorsel/gcolorsel.c:88
 msgid "Color Values:"
 msgstr "Fargeverdier:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:152
+#: mini-utils/gcolorsel/gcolorsel.c:147
 msgid "Color"
 msgstr "Farge"
 
-#: mini-utils/gcolorsel/gcolorsel.c:153 mini-utils/guname/moreinfo.c:218
+#: mini-utils/gcolorsel/gcolorsel.c:148 mini-utils/guname/moreinfo.c:218
 #: mini-utils/idetool/idetool.c:258
 msgid "Value"
 msgstr "Verdi"
 
-#: mini-utils/gcolorsel/gcolorsel.c:154 mini-utils/guname/moreinfo.c:217
+#: mini-utils/gcolorsel/gcolorsel.c:149 mini-utils/guname/moreinfo.c:217
 #: mini-utils/gw/gw.c:454 mini-utils/gw/gw.c:526
 msgid "Name"
 msgstr "Navn"
 
-#: mini-utils/gcolorsel/gcolorsel.c:230
+#: mini-utils/gcolorsel/gcolorsel.c:222
 msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
 msgstr "Feil, kan ikke åpne /usr/X11R6/lib/X11/rgb.txt.\n"
 
-#: mini-utils/gcolorsel/gcolorsel.c:242
+#: mini-utils/gcolorsel/gcolorsel.c:234
 msgid "Parsing Colors"
 msgstr "Gjennomgår farger"
 
-#: mini-utils/gcolorsel/gcolorsel.c:304
+#: mini-utils/gcolorsel/gcolorsel.c:296
 msgid "Decimal (8 bit)"
 msgstr "Desimal (8 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:305
+#: mini-utils/gcolorsel/gcolorsel.c:297
 msgid "Decimal (16 bit)"
 msgstr "Desimal (16 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:306
+#: mini-utils/gcolorsel/gcolorsel.c:298
 msgid "Hex (8 bit)"
 msgstr "Heksadesimal (8 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:307
+#: mini-utils/gcolorsel/gcolorsel.c:299
 msgid "Hex (16 bit)"
 msgstr "Heksadesimal (16 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:308
+#: mini-utils/gcolorsel/gcolorsel.c:300
 msgid "Float"
 msgstr "Flytende"
 
-#: mini-utils/gcolorsel/gcolorsel.c:361
+#: mini-utils/gcolorsel/gcolorsel.c:353
 msgid "Small utility to browse available X11 colors."
 msgstr "Lite verktøy for å se på tilgjengelige X11 farger."
+
+#: mini-utils/gcolorsel/gcolorsel.c:374
+msgid "_Program"
+msgstr "_Program"
 
 #: mini-utils/gfontsel/gfontsel.c:145
 msgid "Font Selector"
@@ -1894,91 +1905,91 @@ msgstr "Skrifttypevelger"
 msgid "Selection:"
 msgstr "Valg:"
 
-#: mini-utils/gfontsel/gfontsel.c:251
+#: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
 msgstr "Skrifttype som skal lastes"
 
-#: mini-utils/gfontsel/gfontsel.c:251
+#: mini-utils/gfontsel/gfontsel.c:253
 msgid "FONTSPEC"
 msgstr "FONTSPEC"
 
-#: mini-utils/gfontsel/gfontsel.c:252
+#: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
 msgstr "Skriv ut navn på valgte skrifttype ved avslutning"
 
-#: mini-utils/gfontsel/gfontsel.c:253
+#: mini-utils/gfontsel/gfontsel.c:255
 msgid "Inhibit remembering selected font for next run"
 msgstr "Hindre husking av valgt skrifttype for neste kjøring"
 
-#: mini-utils/gfontsel/gfontsel.c:254
+#: mini-utils/gfontsel/gfontsel.c:256
 msgid "Inhibit loading of last font"
 msgstr "Hindre lasting av forrige skrifttype"
 
-#: mini-utils/gless/gless.c:115
+#: mini-utils/gless/gless.c:116
 msgid "Where to put the window, and its size"
 msgstr "Hvor vinduet skal plasseres, og størrelsen på det"
 
-#: mini-utils/gless/gless.c:116
+#: mini-utils/gless/gless.c:117
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "Ignorer standard inndata; behøves i noen tilfeller."
 
-#: mini-utils/gless/gless.c:278 mini-utils/gw/gw.c:172
+#: mini-utils/gless/gless.c:279 mini-utils/gw/gw.c:172
 msgid "Tell about this application"
 msgstr "Fortell om denne applikasjonen"
 
-#: mini-utils/gless/gless.c:286
+#: mini-utils/gless/gless.c:287
 msgid "New Window"
 msgstr "Nytt vindu"
 
-#: mini-utils/gless/gless.c:286
+#: mini-utils/gless/gless.c:287
 msgid "New text viewer window"
 msgstr "Nytt tekstvisningsvindu"
 
-#: mini-utils/gless/gless.c:291
+#: mini-utils/gless/gless.c:292
 msgid "Open a new file in this window"
 msgstr "Åpne en ny fil i dette vinduet"
 
-#: mini-utils/gless/gless.c:296 mini-utils/guname/guname.c:521
+#: mini-utils/gless/gless.c:297 mini-utils/guname/guname.c:522
 msgid "Save As..."
 msgstr "Lagre som..."
 
-#: mini-utils/gless/gless.c:296
+#: mini-utils/gless/gless.c:297
 msgid "Save file to disk"
 msgstr "Lagre fil til disk"
 
-#: mini-utils/gless/gless.c:301
+#: mini-utils/gless/gless.c:302
 msgid "Close this window"
 msgstr "Lukk dette vinduet"
 
-#: mini-utils/gless/gless.c:307
+#: mini-utils/gless/gless.c:308
 msgid "Quit the application"
 msgstr "Avslutt applikasjonen"
 
-#: mini-utils/gless/gless.c:315
+#: mini-utils/gless/gless.c:316
 msgid "Fixed Font"
 msgstr "Låst skrifttype"
 
-#: mini-utils/gless/gless.c:316
+#: mini-utils/gless/gless.c:317
 msgid "Display text with a fixed font"
 msgstr "Vis teksten med en låst skrifttype"
 
-#: mini-utils/gless/gless.c:324 mini-utils/gw/gw.c:194
+#: mini-utils/gless/gless.c:325 mini-utils/gw/gw.c:194
 msgid "Preferences..."
 msgstr "Innstillinger..."
 
-#: mini-utils/gless/gless.c:325 mini-utils/gw/gw.c:195
+#: mini-utils/gless/gless.c:326 mini-utils/gw/gw.c:195
 msgid "Change application preferences"
 msgstr "Endre applikasjonens innstillinger"
 
-#: mini-utils/gless/gless.c:334
+#: mini-utils/gless/gless.c:335
 msgid "View"
 msgstr "Vis"
 
-#: mini-utils/gless/gless.c:356
+#: mini-utils/gless/gless.c:357
 msgid "Text File Viewer"
 msgstr "Tekstfilvisning"
 
-#: mini-utils/gless/gless.c:416
+#: mini-utils/gless/gless.c:417
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -1986,19 +1997,19 @@ msgstr ""
 "Kunne ikke forstå geometrien (posisjonen og størrelsen)\n"
 " spesifisert på kommandolinjen"
 
-#: mini-utils/gless/gless.c:457
+#: mini-utils/gless/gless.c:458
 msgid "Loading..."
 msgstr "Laster..."
 
-#: mini-utils/gless/gless.c:462
+#: mini-utils/gless/gless.c:463
 msgid "No such file or directory:\n"
 msgstr "Ikke en fil eller en katalog:\n"
 
-#: mini-utils/gless/gless.c:479
+#: mini-utils/gless/gless.c:480
 msgid "Failed to decompress and display the file:\n"
 msgstr "Klarte ikke å dekomprimere og vise filen:\n"
 
-#: mini-utils/gless/gless.c:490
+#: mini-utils/gless/gless.c:491
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -2006,23 +2017,23 @@ msgstr ""
 "Ute av stand til å vise den komprimerte filen.\n"
 "zcat ble ikke funnet i søkestien."
 
-#: mini-utils/gless/gless.c:498
+#: mini-utils/gless/gless.c:499
 msgid "Error loading file:\n"
 msgstr "Feil under lasting av fil:\n"
 
-#: mini-utils/gless/gless.c:552
+#: mini-utils/gless/gless.c:553
 msgid "Saving..."
 msgstr "Lagrer..."
 
-#: mini-utils/gless/gless.c:563
+#: mini-utils/gless/gless.c:564
 msgid "Failed to write file:\n"
 msgstr "Feil under skriving av fil:\n"
 
-#: mini-utils/gless/gless.c:610
+#: mini-utils/gless/gless.c:611
 msgid "Save Text As..."
 msgstr "Lagre teksten som..."
 
-#: mini-utils/gless/gless.c:650
+#: mini-utils/gless/gless.c:651
 msgid "Open Text File..."
 msgstr "Åpne tekstfil..."
 
@@ -2128,52 +2139,52 @@ msgstr "Bekreft før nedstenging?"
 msgid "Don't ask next time."
 msgstr "Ikke spør neste gang."
 
-#: mini-utils/guname/guname.c:326
+#: mini-utils/guname/guname.c:327
 msgid "System Information"
 msgstr "Systeminformasjon"
 
-#: mini-utils/guname/guname.c:410
+#: mini-utils/guname/guname.c:411
 msgid "Logo file not found"
 msgstr "Logofilen ble ikke funnet"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:414
+#: mini-utils/guname/guname.c:415
 msgid "GNOME contributors:"
 msgstr "GNOME hjelpere:"
 
-#: mini-utils/guname/guname.c:428
+#: mini-utils/guname/guname.c:429
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME: The GNU Network Object Model Environment"
 
-#: mini-utils/guname/guname.c:452
+#: mini-utils/guname/guname.c:453
 msgid "Email Information..."
 msgstr "Send informasjon..."
 
-#: mini-utils/guname/guname.c:463
+#: mini-utils/guname/guname.c:464
 msgid "Save Information to File..."
 msgstr "Lagre informasjonen til en fil..."
 
-#: mini-utils/guname/guname.c:475 mini-utils/guname/guname.c:535
+#: mini-utils/guname/guname.c:476 mini-utils/guname/guname.c:536
 msgid "Detailed Information..."
 msgstr "Detaljert informasjon..."
 
-#: mini-utils/guname/guname.c:489
+#: mini-utils/guname/guname.c:490
 msgid "Category"
 msgstr "Kategori"
 
-#: mini-utils/guname/guname.c:489
+#: mini-utils/guname/guname.c:490
 msgid "Your System"
 msgstr "Ditt system"
 
-#: mini-utils/guname/guname.c:527
+#: mini-utils/guname/guname.c:528
 msgid "Mail To..."
 msgstr "Send til..."
 
-#: mini-utils/guname/guname.c:575
+#: mini-utils/guname/guname.c:576
 msgid "Error closing file `"
 msgstr "Feil under lukking av fil `"
 
-#: mini-utils/guname/guname.c:577
+#: mini-utils/guname/guname.c:578
 msgid ""
 "\n"
 "Some or all data may not have been written."
@@ -2181,32 +2192,32 @@ msgstr ""
 "\n"
 "Deler av, eller alle data ble kanskje ikke skrevet."
 
-#: mini-utils/guname/guname.c:586
+#: mini-utils/guname/guname.c:587
 msgid "Couldn't open file `"
 msgstr "Kan ikke åpne filen!"
 
-#: mini-utils/guname/guname.c:600
+#: mini-utils/guname/guname.c:601
 msgid "Save System Information As..."
 msgstr "Lagre systeminformasjonen som..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:646
+#: mini-utils/guname/guname.c:647
 msgid "Command failed ` "
 msgstr "Kommandoen feilet ` "
 
-#: mini-utils/guname/guname.c:646 mini-utils/guname/guname.c:653
+#: mini-utils/guname/guname.c:647 mini-utils/guname/guname.c:654
 msgid " ': "
 msgstr " ': "
 
-#: mini-utils/guname/guname.c:653
+#: mini-utils/guname/guname.c:654
 msgid "Couldn't run command ` "
 msgstr "Kunne ikke kjøre kommandoen ` "
 
-#: mini-utils/guname/guname.c:676
+#: mini-utils/guname/guname.c:677
 msgid "The following mail will be sent to "
 msgstr "Følgende e-post vil bli sent til "
 
-#: mini-utils/guname/guname.c:678
+#: mini-utils/guname/guname.c:679
 msgid ""
 ".\n"
 " Are you sure you want to mail this information?"
@@ -2214,11 +2225,11 @@ msgstr ""
 ".\n"
 " Er du sikker på at du vil sende denne informasjonen?"
 
-#: mini-utils/guname/guname.c:687
+#: mini-utils/guname/guname.c:688
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
-#: mini-utils/guname/guname.c:720
+#: mini-utils/guname/guname.c:721
 msgid "Address to mail to:"
 msgstr "Adresse for sending:"
 
