@@ -30,7 +30,7 @@ msgid ""
 "uitilizing a dial."
 msgstr ""
 "Это быстрый хак показывающий размер свободного пространства на "
-"подсоединенной файловой системе, используя циферблат"
+"подсоединенной файловой системе, с использованием циферблата"
 
 #: ghex/converter.c:39
 msgid "GHex: Converter"
@@ -231,11 +231,11 @@ msgstr "Блокнот"
 
 #: ghex/preferences.c:50
 msgid "Toplevel"
-msgstr "Toplevel [235]"
+msgstr "Верхний уровень"
 
 #: ghex/preferences.c:51
 msgid "Modal"
-msgstr "Modal [239]"
+msgstr "Модальный"
 
 #: ghex/preferences.c:79
 msgid "Maximum number of undo levels"
@@ -259,7 +259,7 @@ msgstr "Тип группирования по умолчанию"
 
 #: ghex/preferences.c:148 gtt/options.c:184
 msgid "Display"
-msgstr "Display [263]"
+msgstr "Представление"
 
 #: ghex/preferences.c:155
 msgid "MDI Mode"
@@ -329,12 +329,12 @@ msgstr "Выбрать файл для сохранения буфера"
 #: ghex/ui.c:272
 #, c-format
 msgid "Really revert file %s?"
-msgstr "Действительно revert файл %s? [333]"
+msgstr "Действительно вернуть файл %s?"
 
 #: ghex/ui.c:285
 #, c-format
 msgid "Reverted buffer from file %s"
-msgstr "Reverted буфер из файла %s [338]"
+msgstr "Reverted буфер из файла %s"
 
 #: ghex/ui.c:300
 #, c-format
@@ -482,7 +482,7 @@ msgstr "Выход"
 
 #: gstripchart/gstripchart.c:1255
 msgid "Terminate the stripchart program"
-msgstr "Прервать stripchart программу [414]"
+msgstr "Прервать самописец"
 
 #: gstripchart/gstripchart.c:1271
 msgid "Copyright 1998 John Kodis"
@@ -494,7 +494,7 @@ msgstr "О программе"
 
 #: gstripchart/gstripchart.c:1286
 msgid "Info about the striphart program"
-msgstr "Информация о striphart программе"
+msgstr "Информация о самописце"
 
 #: gstripchart/gstripchart.c:1297
 msgid "_File"
@@ -506,7 +506,7 @@ msgstr "Помощь"
 
 #: gstripchart/gstripchart.c:1706
 msgid "GEO"
-msgstr "GEO [438]"
+msgstr "ГЕОМ"
 
 #: gstripchart/gstripchart.c:1706
 msgid "geometry"
@@ -531,23 +531,23 @@ msgstr "интервал обновления диаграммы"
 
 #: gstripchart/gstripchart.c:1712
 msgid "chart LP filter TC"
-msgstr "chart LP filter TC [463]"
+msgstr ""
 
 #: gstripchart/gstripchart.c:1714
 msgid "slider update interval"
-msgstr "интервал обновления slider [467]"
+msgstr "интервал обновления ползунка"
 
 #: gstripchart/gstripchart.c:1716
 msgid "slider LP filter TC"
-msgstr "slider LP filter TC [471]"
+msgstr ""
 
 #: gstripchart/gstripchart.c:1718
 msgid "add menubar"
-msgstr "добавить меню"
+msgstr "добавить строку меню"
 
 #: gstripchart/gstripchart.c:1720
 msgid "omit slider"
-msgstr "пропустить slider [479]"
+msgstr "пропустить ползунок"
 
 #: gstripchart/gstripchart.c:1722
 msgid "TYPE"
@@ -555,7 +555,7 @@ msgstr "ТИП"
 
 #: gstripchart/gstripchart.c:1722
 msgid "gtk|text|graph|none"
-msgstr "gtk|text|graph|none [487]"
+msgstr ""
 
 #: gtt/app.c:110 gtt/app.c:212
 msgid "no project selected"
@@ -583,7 +583,7 @@ msgstr "Сегодня"
 
 #: gtt/clist.c:171
 msgid "Project Title"
-msgstr "Заголовок проекта"
+msgstr "Название проекта"
 
 #: gtt/clist.c:172
 msgid "Description"
@@ -632,7 +632,7 @@ msgstr "ГЕОМЕТРИЯ"
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
-msgstr "Выбрать проект для загрузки [563]"
+msgstr "Выбрать проект при запуске"
 
 #: gtt/main.c:206
 msgid "PROJECT"
@@ -732,7 +732,7 @@ msgstr "Показывать подсказки"
 
 #: gtt/options.c:244
 msgid "Toolbar Segments"
-msgstr "Toolbar Segments [663]"
+msgstr "Элементы панели инструментов"
 
 #: gtt/options.c:252
 msgid "Show `New'"
@@ -772,19 +772,19 @@ msgstr "Команды оболочки"
 
 #: gtt/options.c:316
 msgid "Switch Project Command:"
-msgstr "Switch Project Command:[703]"
+msgstr "Команда переключения проекта:"
 
 #: gtt/options.c:327
 msgid "No Project Command:"
-msgstr "No Project Command:[707]"
+msgstr "Команда отсутствия проекта:"
 
 #: gtt/options.c:361
 msgid "Logfile"
-msgstr "Logfile [711]"
+msgstr "Файл регистрации"
 
 #: gtt/options.c:369
 msgid "Use Logfile"
-msgstr "Использовать Logfile [715]"
+msgstr "Использовать файл регистрации"
 
 #: gtt/options.c:378
 msgid "Filename:"
@@ -800,7 +800,7 @@ msgstr "Точка остановки:"
 
 #: gtt/options.c:420
 msgid "Timeout in secs:"
-msgstr "Timeout в секундах:[731]"
+msgstr "Время ожидания в секундах:"
 
 #: gtt/options.c:497
 msgid "Preferences"
@@ -820,7 +820,7 @@ msgstr "проект \"%t\" остановлен"
 
 #: gtt/prop.c:55
 msgid "empty"
-msgstr "пусто [751]"
+msgstr "пусто"
 
 #: gtt/prop.c:171
 msgid "Properties"
@@ -840,7 +840,7 @@ msgstr "Описание проекта:"
 
 #: gtt/prop.c:221
 msgid "Project Time today:"
-msgstr "Project Time today:[771]"
+msgstr "Время работы над проектом, сегодня:"
 
 #: gtt/prop.c:237 gtt/prop.c:275
 msgid "hours"
@@ -856,7 +856,7 @@ msgstr "секунды"
 
 #: gtt/prop.c:263
 msgid "Project Time ever:"
-msgstr "Project Time ever:[787]"
+msgstr "Время работы над проектом, полное:"
 
 #. Note to translators: just skip the `[GTT]'
 #: gtt/toolbar.c:141
@@ -946,7 +946,7 @@ msgstr "Демонстратор цветов Gnome"
 
 #: mini-utils/gcolorsel/gcolorsel.c:79
 msgid "Format Style:"
-msgstr "Format Style:[877]"
+msgstr "Формат:"
 
 #: mini-utils/gcolorsel/gcolorsel.c:89
 msgid "Color Name:"
@@ -954,7 +954,7 @@ msgstr "Название цвета:"
 
 #: mini-utils/gcolorsel/gcolorsel.c:96
 msgid "Color Values:"
-msgstr "Color Values:[885]"
+msgstr "Цветовые значения:"
 
 #: mini-utils/gcolorsel/gcolorsel.c:155
 msgid "Color"
@@ -962,7 +962,7 @@ msgstr "Цвет"
 
 #: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:223
 msgid "Value"
-msgstr "Value [893]"
+msgstr "Значение"
 
 #: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:222
 #: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
@@ -975,7 +975,7 @@ msgstr "Ошибка, не удалось найти файл 'rgb.txt' на Вашей системе!"
 
 #: mini-utils/gcolorsel/gcolorsel.c:247
 msgid "Parsing Colors"
-msgstr "Parsing Colors [906]"
+msgstr "Синтаксический анализ описания цветов"
 
 #: mini-utils/gcolorsel/gcolorsel.c:316
 msgid "Decimal (8 bit)"
@@ -995,7 +995,7 @@ msgstr "Шестнадцатеричное (16 бит)"
 
 #: mini-utils/gcolorsel/gcolorsel.c:320
 msgid "Float"
-msgstr "Float [926]"
+msgstr "С плавающей точкой"
 
 #: mini-utils/gcolorsel/gcolorsel.c:373
 msgid "Small utility to browse available X11 colors."
@@ -1003,11 +1003,11 @@ msgstr "Маленькая утилита для просмотра доступных X11 цветов."
 
 #: mini-utils/gfontsel/gfontsel.c:145
 msgid "Font Selector"
-msgstr ""
+msgstr "Переключатель шрифтов"
 
 #: mini-utils/gfontsel/gfontsel.c:170
 msgid "Selection:"
-msgstr ""
+msgstr "Выделение:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
@@ -1019,15 +1019,15 @@ msgstr ""
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
-msgstr ""
+msgstr "Напечатать название выделенного шрифта при выходе"
 
 #: mini-utils/gfontsel/gfontsel.c:255
 msgid "Inhibit remembering selected font for next run"
-msgstr ""
+msgstr "Отключить запоминание выделенного шрифта для следующего запуска"
 
 #: mini-utils/gfontsel/gfontsel.c:256
 msgid "Inhibit loading of last font"
-msgstr ""
+msgstr "Отключить загрузку последнего шрифта"
 
 #: mini-utils/gless/gless.c:29
 msgid "Copyright 1998, under the GNU General Public License."
@@ -1035,11 +1035,11 @@ msgstr ""
 
 #: mini-utils/gless/gless.c:115
 msgid "Where to put the window, and its size"
-msgstr ""
+msgstr "Положение окна и его размер"
 
 #: mini-utils/gless/gless.c:116
 msgid "Ignore standard input; may be needed in some cases."
-msgstr ""
+msgstr "Игнорировать стандартный ввод; это может быть необходимо в некоторых случаях"
 
 #: mini-utils/gless/gless.c:278
 msgid "_New Window"
@@ -1047,19 +1047,19 @@ msgstr "Новое окно"
 
 #: mini-utils/gless/gless.c:279
 msgid "New text viewer window"
-msgstr ""
+msgstr "Новое окно просмотра текста"
 
 #: mini-utils/gless/gless.c:291
 msgid "_Fixed Font"
-msgstr ""
+msgstr "Фиксированный шрифт"
 
 #: mini-utils/gless/gless.c:292
 msgid "Display text with a fixed font"
-msgstr ""
+msgstr "Показывать текст фиксированным шрифтом"
 
 #: mini-utils/gless/gless.c:321
 msgid "Text File Viewer"
-msgstr ""
+msgstr "Программа просмотра текстовых файлов"
 
 #: mini-utils/gless/gless.c:424
 msgid "Loading..."
@@ -1078,6 +1078,8 @@ msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
 msgstr ""
+"Не удалось показать сжатый файл.\n"
+"не найден zcat в пути поиска команд."
 
 #: mini-utils/gless/gless.c:465
 msgid "Error loading file:\n"
@@ -1159,23 +1161,23 @@ msgstr ""
 
 #: mini-utils/gshutdown/gshutdown.c:100
 msgid "Are you sure you want to switch to runlevel 2?"
-msgstr "Вы уверены, в том что хотите переключиться на runlevel 2? [1084]"
+msgstr "Вы уверены, в том что хотите переключиться на runlevel 2?"
 
 #: mini-utils/gshutdown/gshutdown.c:101
 msgid "Are you sure you want to switch to runlevel 3?"
-msgstr "Вы уверены, в том что хотите переключиться на runlevel 3? [1088]"
+msgstr "Вы уверены, в том что хотите переключиться на runlevel 3?"
 
 #: mini-utils/gshutdown/gshutdown.c:102
 msgid "Are you sure you want to switch to runlevel 4?"
-msgstr "Вы уверены, в том что хотите переключиться на runlevel 4? [1092]"
+msgstr "Вы уверены, в том что хотите переключиться на runlevel 4?"
 
 #: mini-utils/gshutdown/gshutdown.c:103
 msgid "Are you sure you want to switch to runlevel 5?"
-msgstr "Вы уверены, в том что хотите переключиться на runlevel 5? [1096]"
+msgstr "Вы уверены, в том что хотите переключиться на runlevel 5?"
 
 #: mini-utils/gshutdown/gshutdown.c:104
 msgid "Are you sure you want to reboot the system?"
-msgstr "Вы уверены, в том что хотите перезагрузить систему? [1100]"
+msgstr "Вы уверены, в том что хотите перезагрузить систему?"
 
 #: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:591
 msgid "You must be the super-user (root) to shut down or restart the computer."
@@ -1190,11 +1192,11 @@ msgstr "Выключение или перезагрузка"
 
 #: mini-utils/gshutdown/gshutdown.c:203 mini-utils/gshutdown/gshutdown.c:204
 msgid "Easy"
-msgstr "Простой [1113]"
+msgstr "Простое"
 
 #: mini-utils/gshutdown/gshutdown.c:208 mini-utils/gshutdown/gshutdown.c:209
 msgid "Advanced"
-msgstr "Дополнительный [1117]"
+msgstr "Сложное"
 
 #: mini-utils/gshutdown/gshutdown.c:241
 msgid ""
@@ -1207,7 +1209,7 @@ msgstr ""
 #. Put in a "revert to defaults" button
 #: mini-utils/gshutdown/gshutdown.c:368
 msgid "Revert to Defaults"
-msgstr ""
+msgstr "Вернуть значения по умолчанию"
 
 #: mini-utils/gshutdown/gshutdown.c:378
 msgid "Commands"
@@ -1215,11 +1217,11 @@ msgstr "Команды"
 
 #: mini-utils/gshutdown/gshutdown.c:383
 msgid "Confirm before shutdown?"
-msgstr ""
+msgstr "Подтверждать перед выключением?"
 
 #: mini-utils/gshutdown/gshutdown.c:395
 msgid "General"
-msgstr "Общие [1142]"
+msgstr "Общие"
 
 #: mini-utils/gshutdown/gshutdown.c:457
 msgid "Don't ask next time."
@@ -1236,7 +1238,7 @@ msgstr "Файл логотипа не найден"
 #. Up here so it uses the default font
 #: mini-utils/guname/guname.c:413
 msgid "GNOME contributors:"
-msgstr ""
+msgstr "Участники проекта GNOME:"
 
 #: mini-utils/guname/guname.c:427
 msgid "GNOME: The GNU Network Object Model Environment"
@@ -1244,7 +1246,7 @@ msgstr ""
 
 #: mini-utils/guname/guname.c:451
 msgid "Email Information..."
-msgstr ""
+msgstr "Передать по электронной почте..."
 
 #: mini-utils/guname/guname.c:462
 msgid "Save Information to File..."
@@ -1272,17 +1274,19 @@ msgstr "Отправить почту..."
 
 #: mini-utils/guname/guname.c:581
 msgid "Error closing file `"
-msgstr ""
+msgstr "Ошибка при закрытии файла `"
 
 #: mini-utils/guname/guname.c:583
 msgid ""
 "\n"
 "Some or all data may not have been written."
 msgstr ""
+"\n"
+"Все или часть данных могут быть не записаны."
 
 #: mini-utils/guname/guname.c:592
 msgid "Couldn't open file `"
-msgstr "Не удалось открыть файл \""
+msgstr "Не удалось открыть файл `"
 
 #: mini-utils/guname/guname.c:606
 msgid "Save System Information As..."
@@ -1291,15 +1295,15 @@ msgstr "Сохранить информацию о системе как..."
 #. I don't think the error_string() will reliably mean anything.
 #: mini-utils/guname/guname.c:652
 msgid "Command failed ` "
-msgstr ""
+msgstr "Ошибка в команде ` "
 
 #: mini-utils/guname/guname.c:652 mini-utils/guname/guname.c:659
 msgid " ': "
-msgstr " \": "
+msgstr " ': "
 
 #: mini-utils/guname/guname.c:659
 msgid "Couldn't run command ` "
-msgstr ""
+msgstr "Не удалось выполнить команду ` "
 
 #: mini-utils/guname/guname.c:682
 msgid "The following mail will be sent to "
@@ -1319,7 +1323,7 @@ msgstr "Вы уверены?"
 
 #: mini-utils/guname/guname.c:727
 msgid "Address to mail to:"
-msgstr ""
+msgstr "Адрес для отправки:"
 
 #: mini-utils/guname/info.c:37
 msgid "Distribution:"
@@ -1413,7 +1417,7 @@ msgstr "Точка подсоединения"
 #. of simply not showing the info.
 #: mini-utils/guname/info.c:168
 msgid "Unknown"
-msgstr "Неизвестно [1336]"
+msgstr "Неизвестно"
 
 #: mini-utils/guname/moreinfo.c:82
 msgid "Unknown filesystem"
@@ -1466,7 +1470,7 @@ msgstr "Информация о ЦПУ"
 
 #: mini-utils/guname/moreinfo.c:306
 msgid "%2d%% full "
-msgstr "%2d%% заполнено [1389] "
+msgstr "%2d%% заполнено "
 
 #: mini-utils/guname/moreinfo.c:308
 #, c-format
@@ -1490,6 +1494,8 @@ msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
 msgstr ""
+"Не удалось найти команду \"w\".\n"
+"Эта команда необходима для работы программы."
 
 #: mini-utils/gw/gw.c:177
 msgid "_Save..."
@@ -1514,7 +1520,7 @@ msgstr "Командная строка"
 #. Create everything.
 #: mini-utils/gw/gw.c:453
 msgid "Add some defaults"
-msgstr ""
+msgstr "Добавить несколько значений по умолчанию"
 
 #: mini-utils/gw/gw.c:455
 msgid "Delete"
@@ -1532,12 +1538,19 @@ msgid ""
 "In the command, you can use %u to represent the\n"
 "currently selected username, and %t for the tty."
 msgstr ""
+"Вы можете сконфигурировать команды для всплывающих меню.\n"
+"Просто введите название, которое должно возникать в меню и\n"
+"выполняемую команду. В этой команде Вы можете\n"
+"использовать %u для представления выбранного в настоящий момент\n"
+"имени пользователя и %t для tty."
 
 #: mini-utils/gw/gw.c:490
 msgid ""
 "Click this button to add\n"
 "some sample commands."
 msgstr ""
+"Нажмите на эту кнопку чтобы\n"
+"добавить несколько примеров команд."
 
 #: mini-utils/gw/gw.c:498
 msgid "Menu items"
@@ -1558,12 +1571,12 @@ msgstr "Установки DMA для этого диска не могут быть изменены."
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
 msgid "Enabled"
-msgstr "Enabled[1481]"
+msgstr "Вкл."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
 msgid "Disabled"
-msgstr "Disabled[1486]"
+msgstr "Выкл."
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
@@ -1643,7 +1656,7 @@ msgstr ""
 #.
 #: mini-utils/idetool/idetool.c:351
 msgid "IDE Status"
-msgstr "Состояния IDE"
+msgstr "Состояние IDE"
 
 #: mini-utils/idetool/idetool.c:364
 msgid "Disk Logo Not Found"
@@ -1655,4 +1668,4 @@ msgstr "Только администратор может использовать этот инструмент"
 
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
-msgstr ""
+msgstr "Кажется у Вас нет IDE дисков"
