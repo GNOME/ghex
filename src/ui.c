@@ -145,28 +145,6 @@ delete_event_cb(GtkWidget *w, GdkEventAny *e, GtkWindow *win)
 	return TRUE;
 }
 
-void
-file_sel_ok_cb(GtkWidget *w, gboolean *resp)
-{
-	*resp = TRUE;
-	gtk_main_quit();
-}
-
-void
-file_sel_cancel_cb(GtkWidget *w, gboolean *resp)
-{
-	*resp = FALSE;
-	gtk_main_quit();
-}
-
-gint
-file_sel_delete_event_cb(GtkWidget *w, GdkEventAny *e, gboolean *resp)
-{
-	*resp = FALSE;
-	gtk_main_quit();
-	return TRUE;
-}
-
 gint
 ask_user(GtkMessageDialog *message_box)
 {
@@ -365,41 +343,33 @@ open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	GHexWindow *win;
 	GtkWidget *file_sel;
-	gboolean resp;
+	GtkResponseType resp;
 
 	win = GHEX_WINDOW(user_data);
 
-	file_sel = gtk_file_selection_new(NULL);
-
-	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to open"));
-	
-	g_signal_connect (G_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
-					  "clicked", G_CALLBACK(file_sel_ok_cb),
-					  &resp);
-	g_signal_connect (G_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
-					  "clicked", G_CALLBACK(file_sel_cancel_cb),
-					  &resp);
-	g_signal_connect (G_OBJECT (file_sel),
-					  "delete-event", G_CALLBACK(file_sel_delete_event_cb),
-					  &resp);
-
+	file_sel = gtk_file_chooser_dialog_new(_("Select a file to open"),
+										   GTK_WINDOW(win),
+										   GTK_FILE_CHOOSER_ACTION_OPEN,
+										   GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+										   GTK_STOCK_OPEN, GTK_RESPONSE_OK,
+										   NULL);
 	gtk_window_set_modal (GTK_WINDOW(file_sel), TRUE);
 	gtk_window_set_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 	gtk_widget_show (file_sel);
 
-	gtk_main();
+	resp = gtk_dialog_run(GTK_DIALOG(file_sel));
 
-	if(resp) {
+	if(resp == GTK_RESPONSE_OK) {
 		gchar *flash;
 
 		if(GHEX_WINDOW(win)->gh != NULL) {
-			win = GHEX_WINDOW(ghex_window_new_from_file(gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel))));
+			win = GHEX_WINDOW(ghex_window_new_from_file(gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_sel))));
 			if(win != NULL)
 				gtk_widget_show(GTK_WIDGET(win));
 		}
 		else {
 			if(!ghex_window_load(GHEX_WINDOW(win),
-								 gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel))))
+								 gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_sel))))
 				win = NULL;
 		}
 
@@ -419,7 +389,7 @@ open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 			display_error_dialog (ghex_window_get_active(), _("Can not open file!"));
 	}
 
-	gtk_widget_destroy(GTK_WIDGET(file_sel));
+	gtk_widget_destroy(file_sel);
 }
 
 static void
@@ -467,7 +437,7 @@ export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbnam
 	GHexWindow *win = GHEX_WINDOW(user_data);
 	HexDocument *doc;
 	GtkWidget *file_sel;
-	gboolean resp;
+	GtkResponseType resp;
 
 	if(win->gh)
 		doc = win->gh->document;
@@ -477,27 +447,23 @@ export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbnam
 	if(doc == NULL)
 		return;
 
-	file_sel = gtk_file_selection_new(NULL);
-
-	gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel), doc->file_name);
-	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select path and file name for the HTML source"));	
-	g_signal_connect(G_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
-					 "clicked", G_CALLBACK(file_sel_ok_cb),
-					 &resp);
-	g_signal_connect(G_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
-					 "clicked", G_CALLBACK(file_sel_cancel_cb),
-					 &resp);
-	g_signal_connect (G_OBJECT (file_sel),
-					  "delete-event", G_CALLBACK(file_sel_delete_event_cb),
-					  &resp);
+	file_sel = gtk_file_chooser_dialog_new(_("Select path and file name for the HTML source"),
+										   GTK_WINDOW(win),
+										   GTK_FILE_CHOOSER_ACTION_SAVE,
+										   GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+										   GTK_STOCK_SAVE, GTK_RESPONSE_OK,
+										   NULL);
+#if 0
+	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(file_sel), doc->file_name);
+#endif
 	gtk_window_set_modal(GTK_WINDOW(file_sel), TRUE);
-	gtk_widget_show(file_sel);
 	gtk_window_set_position(GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+	gtk_widget_show(file_sel);
 
-	gtk_main();
+	resp = gtk_dialog_run(GTK_DIALOG(file_sel));
 
-	if(resp) {
-		gchar *html_path = g_strdup(gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel)));
+	if(resp == GTK_RESPONSE_OK) {
+		gchar *html_path = g_strdup(gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_sel)));
 		gchar *sep, *base_name, *check_path;
 		GtkHex *view = win->gh;
 

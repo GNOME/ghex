@@ -990,61 +990,57 @@ ghex_window_save_as(GHexWindow *win)
 {
 	HexDocument *doc;
 	GtkWidget *file_sel;
-	gboolean resp, ret_val = TRUE;
+	gboolean ret_val = TRUE;
 	const gchar *filename;
 	gboolean dir_flag = FALSE;
+    GtkResponseType resp;
 
 	if(win->gh == NULL)
 		return ret_val;
 
 	doc = win->gh->document;
-	file_sel = gtk_file_selection_new(NULL);
+	file_sel =
+        gtk_file_chooser_dialog_new(_("Select a file to save buffer as"),
+                                    GTK_WINDOW(win),
+                                    GTK_FILE_CHOOSER_ACTION_SAVE,
+                                    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                    GTK_STOCK_SAVE, GTK_RESPONSE_OK,
+                                    NULL);
 
 	if(doc->file_name)
-		gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel),
-										doc->file_name);
-
-	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to save buffer as"));
-	g_signal_connect (G_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
-                      "clicked", G_CALLBACK(file_sel_ok_cb),
-                      &resp);
-	g_signal_connect (G_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
-                      "clicked", G_CALLBACK(file_sel_cancel_cb),
-                      &resp);
-	g_signal_connect (G_OBJECT (file_sel),
-                      "delete-event", G_CALLBACK(file_sel_delete_event_cb),
-                      &resp);
-
+		gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(file_sel),
+                                      doc->file_name);
 	gtk_window_set_modal(GTK_WINDOW(file_sel), TRUE);
 	gtk_window_set_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 	gtk_widget_show (file_sel);
 
 	do {
-		gtk_main();
-		filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
-		if (g_file_test(filename,G_FILE_TEST_IS_DIR)) {
-			gint name_len;
-			gchar *dir_name;
+        resp = gtk_dialog_run(GTK_DIALOG(file_sel));
+        if(resp == GTK_RESPONSE_OK) {
+            filename =
+                gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_sel));
+            if (g_file_test(filename,G_FILE_TEST_IS_DIR)) {
+                gint name_len;
+                gchar *dir_name;
 
-			name_len = strlen (filename);
-			if (name_len < 1 || filename [name_len - 1] != '/')	{
-				dir_name = g_strconcat (filename, "/", NULL);
-			} else  {
-				dir_name = g_strdup (filename);
-			}
-			gtk_file_selection_set_filename (GTK_FILE_SELECTION(file_sel),
-                                             dir_name);
-			g_free (dir_name);
-			dir_flag = TRUE;
-		}
-		else  {
-	     dir_flag = FALSE;
-		}
-	} while (resp && dir_flag);	   
+                name_len = strlen (filename);
+                if (name_len < 1 || filename [name_len - 1] != '/')	{
+                    dir_name = g_strconcat (filename, "/", NULL);
+                } else  {
+                    dir_name = g_strdup (filename);
+                }
+                gtk_file_chooser_set_filename (GTK_FILE_CHOOSER(file_sel),
+                                               dir_name);
+                g_free (dir_name);
+                dir_flag = TRUE;
+            }
+            else  {
+                dir_flag = FALSE;
+            }
+        }
+	} while (resp == GTK_RESPONSE_OK && dir_flag);	   
 
-
-
-	if(resp) {
+	if(resp == GTK_RESPONSE_OK) {
 		FILE *file;
 		gchar *flash;
 		int i;

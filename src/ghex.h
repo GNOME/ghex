@@ -277,10 +277,6 @@ void raise_and_focus_widget(GtkWidget *);
 
 void set_prefs(PropertyUI *pui);
 
-void file_sel_ok_cb(GtkWidget *w, gboolean *resp);
-void file_sel_cancel_cb(GtkWidget *w, gboolean *resp);
-gint file_sel_delete_event_cb(GtkWidget *w, GdkEventAny *e, gboolean *resp);
-
 G_END_DECLS
 
 #endif /* __GHEX_H__ */

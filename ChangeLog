@@ -25,14 +25,20 @@
 	Kaveri Murthy.
 	* src/findreplace.c (create_advanced_find_add_dialog): move the color
 	selection in the vbox, since it screws up the action area if put
-	there.
+	there. fixes #131907.
 	* src/ui.c (ghex_print_document_real): create a progress dialog.
 	(ghex_print_progress): progress callback for printing.
 	* src/print.c (ghex_print_job_execute): allow user to call a progress
-	indication callback.
+	indication callback. fixes #113356.
 	* src/hex-document.c (hex_document_export_html): fixed progress dialog
 	to be a true dialog.
 	(export_html_cb): destroy message box.
+	*  (ghex-window.c, ui.c): replaced all uses of GtkFileSelection with
+	GtkFileChooserDialog! among other things, this fixes #140332.
+	* src/hex-document.c (hex_document_export_html): create UTF-8 encoded
+	output. fixes #122493.
+	* configure.in: version 2.6.0; tagged as GHEX_2_6_0; branched off
+	gnome-2-6 branch.
 
 2004-03-04 Breda McColgan <breda.mccolgan@sun.com>
 
