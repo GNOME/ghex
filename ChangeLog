@@ -1,3 +1,10 @@
+2001-04-14    <jaka@gnu.org>
+
+	* src/gtkhex.c (scroll_timeout_handler): return TRUE.
+	(*_motion_cb): simplify scrolling logic.
+	(display_scrolled): removed hide_cursor()/show_cursor() pair.
+	this should fix scrolling bugs.
+
 2001-04-14  AleX Espinoza  <cured@yahoo.com>
  
  	* src/print.c (print_verify_fonts): Added to verify that the fonts

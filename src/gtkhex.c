@@ -240,7 +240,9 @@ static void render_byte(GtkHex *gh, gint pos) {
 	   !GTK_WIDGET_REALIZED(gh->xdisp) || !GTK_WIDGET_REALIZED(gh->adisp))
 		return;
 
-	get_xcoords(gh, pos, &cx, &cy);
+	if(!get_xcoords(gh, pos, &cx, &cy))
+		return;
+
 	format_xbyte(gh, pos, buf);
 
 	gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
@@ -253,7 +255,8 @@ static void render_byte(GtkHex *gh, gint pos) {
 					  cx, cy + gh->disp_font->ascent, buf, 2);
 	}
 	
-	get_acoords(gh, pos, &cx, &cy);
+	if(!get_acoords(gh, pos, &cx, &cy))
+		return;
 
 	gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
 	gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc, TRUE,
@@ -645,8 +648,6 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 	   (!GTK_WIDGET_DRAWABLE(gh->adisp)))
 		return;
 
-	hide_cursor(gh);
-	
 	gh->top_line = (gint)adj->value;
 	
 	rect.x = 0;
@@ -735,19 +736,18 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 		if(gh->offsets)
 			gtk_widget_draw(gh->offsets, &rect);
 	}
-	
-	show_cursor(gh);
 }
 
 /*
  * mouse signal handlers (button 1 and motion) for both displays
  */
-static void scroll_timeout_handler(GtkHex *gh) {
+static gboolean scroll_timeout_handler(GtkHex *gh) {
 	if(gh->scroll_dir < 0)
 		gtk_hex_set_cursor(gh, MAX(0, (int)(gh->cursor_pos - gh->cpl)));
 	else if(gh->scroll_dir > 0)
 		gtk_hex_set_cursor(gh, MIN(gh->document->file_size - 1,
 								   gh->cursor_pos + gh->cpl));    
+	return TRUE;
 }
 
 static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
@@ -757,6 +757,7 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 		if(gh->scroll_timeout != -1) {
 			gtk_timeout_remove(gh->scroll_timeout);
 			gh->scroll_timeout = -1;
+			gh->scroll_dir = 0;
 		}
 		gtk_grab_remove(w);
 		gh->button = 0;
@@ -790,21 +791,26 @@ static void hex_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 		gh->scroll_dir = -1;
 	else if(y >= w->allocation.height)
 		gh->scroll_dir = 1;
-			
-	if(gh->scroll_timeout == -1)
-		gh->scroll_timeout = gtk_timeout_add(SCROLL_TIMEOUT, (GtkFunction)scroll_timeout_handler, gh);
+	else
+		gh->scroll_dir = 0;
 
+	if(gh->scroll_dir != 0) {
+		if(gh->scroll_timeout == -1)
+			gh->scroll_timeout = gtk_timeout_add(SCROLL_TIMEOUT, (GtkFunction)scroll_timeout_handler, gh);
+		return;
+	}
+	else {
+		if(gh->scroll_timeout != -1) {
+			gtk_timeout_remove(gh->scroll_timeout);
+			gh->scroll_timeout = -1;
+		}
+	}
+			
 	if(event->window != w->window)
 		return;
 
 	if((gh->active_view == VIEW_HEX) && (gh->button == 1)) {
-		if( (y <= w->allocation.height) && (y >= 0) ) {
-			if(gh->scroll_timeout != -1) {
-				gtk_timeout_remove(gh->scroll_timeout);
-				gh->scroll_timeout = -1;
-			}
-			hex_to_pointer(gh, x, y);
-		}
+		hex_to_pointer(gh, x, y);
 	}
 }
 
@@ -814,6 +820,7 @@ static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 		if(gh->scroll_timeout != -1) {
 			gtk_timeout_remove(gh->scroll_timeout);
 			gh->scroll_timeout = -1;
+			gh->scroll_dir = 0;
 		}
 		gtk_grab_remove(w);
 		gh->button = 0;
@@ -845,21 +852,26 @@ static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 		gh->scroll_dir = -1;
 	else if(y >= w->allocation.height)
 		gh->scroll_dir = 1;
-			
-	if(gh->scroll_timeout == -1)
-		gh->scroll_timeout = gtk_timeout_add(SCROLL_TIMEOUT, (GtkFunction)scroll_timeout_handler, gh);
+	else
+		gh->scroll_dir = 0;
+
+	if(gh->scroll_dir != 0) {
+		if(gh->scroll_timeout == -1)
+			gh->scroll_timeout = gtk_timeout_add(SCROLL_TIMEOUT, (GtkFunction)scroll_timeout_handler, gh);
+		return;
+	}
+	else {
+		if(gh->scroll_timeout != -1) {
+			gtk_timeout_remove(gh->scroll_timeout);
+			gh->scroll_timeout = -1;
+		}
+	}
 
 	if(event->window != w->window)
 		return;
 
 	if((gh->active_view == VIEW_ASCII) && (gh->button == 1)) {
-		if( (y <= w->allocation.height) && (y >= 0) ) {
-			if(gh->scroll_timeout != -1) {
-				gtk_timeout_remove(gh->scroll_timeout);
-				gh->scroll_timeout = -1;
-			}
-			ascii_to_pointer(gh, x, y);
-		}
+		ascii_to_pointer(gh, x, y);
 	}
 }
 
