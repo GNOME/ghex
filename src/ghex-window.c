@@ -930,6 +930,8 @@ ghex_window_save_as(GHexWindow *win)
 	HexDocument *doc;
 	GtkWidget *file_sel;
 	gboolean resp, ret_val = TRUE;
+	const gchar *filename;
+	gboolean dir_flag = FALSE;
 
 	if(win->gh == NULL)
 		return ret_val;
@@ -956,11 +958,32 @@ ghex_window_save_as(GHexWindow *win)
 	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 	gtk_widget_show (file_sel);
 
-	gtk_main();
+	do {
+		gtk_main();
+		filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
+		if (g_file_test(filename,G_FILE_TEST_IS_DIR)) {
+			gint name_len;
+			gchar *dir_name;
+
+			name_len = strlen (filename);
+			if (name_len < 1 || filename [name_len - 1] != '/')	{
+				dir_name = g_strconcat (filename, "/", NULL);
+			} else  {
+				dir_name = g_strdup (filename);
+			}
+			gtk_file_selection_set_filename (file_sel, dir_name);
+			g_free (dir_name);
+			dir_flag = TRUE;
+		}
+		else  {
+	     dir_flag = FALSE;
+		}
+	} while (resp && dir_flag);	   
+
+
 
 	if(resp) {
 		FILE *file;
-		const gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
 		gchar *flash;
 		int i;
         gint save = 0;

@@ -1,3 +1,10 @@
+2003-08-12  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/ghex-window.c: applied patch by Shakti Sen to prevent NULL
+	filenames.
+	* src/main.c: dont crash if a document fails to open because of
+	lack of memory.
+
 2003-05-14  Guntupalli Karunakar  <karunakar@freedomink.org>
 
 	* configure.in: Added "ml" to ALL_LINGUAS.
