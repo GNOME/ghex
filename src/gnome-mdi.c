@@ -24,13 +24,9 @@ static GnomeDocument   *gnome_mdi_find_document  (GnomeMDI *, gchar *);
 static GtkWidget       *find_item_by_label       (GtkMenuShell *, gchar *);
 
 static GtkWidget       *doc_list_menu_create     (GnomeMDI *);
-static void             doc_list_menu_insert     (GtkMenuBar *, GtkWidget *);
 static void             doc_list_menu_remove_item(GnomeMDI *, GnomeDocument *);
 static void             doc_list_menu_add_item   (GnomeMDI *, GnomeDocument *);
 static void             doc_list_activated_cb    (GtkWidget *, GnomeMDI *);
-
-static void             doc_menus_insert         (GtkMenuBar *, GList *);
-static void             doc_menus_remove         (GtkMenuBar *);
 
 static void             app_create               (GnomeMDI *);
 static void             app_destroy              (GnomeApp *);
@@ -71,9 +67,6 @@ static GtkWidget *drag_page = NULL, *drag_page_ok = NULL;
 /* accepted DND types for the Notebook */
 static char *possible_drag_types[] = { DND_DATA_TYPE };
 static char *accepted_drop_types[] = { DND_DATA_TYPE };
-
-/* this is just for simple debugging (as little gdb or ddd as possible...) */
-#define EMBRACE(s) { printf("<\n"); s; printf(">\n"); }
 
 enum {
   CREATE_MENUS,
@@ -241,16 +234,10 @@ static void gnome_mdi_destroy(GtkObject *object) {
   g_return_if_fail (object != NULL);
   g_return_if_fail (GNOME_IS_MDI (object));
 
-#ifdef DEBUG
-  printf("GnomeMDI: destroying!\n");
-#endif
-
   mdi = GNOME_MDI (object);
 
-#ifdef DEBUG
   if(mdi->documents)
-    g_warning("GnomeMDI destroying: non-removed documents exist!\n");
-#endif
+    g_warning("GnomeMDI: Destroying when documents still exist!");
 
   if(mdi->document_menu_path)
     g_free(mdi->document_menu_path);
@@ -261,7 +248,7 @@ static void gnome_mdi_destroy(GtkObject *object) {
   g_free (mdi->title);
 
   if(GTK_OBJECT_CLASS(parent_class)->destroy)
-    (* GTK_OBJECT_CLASS(parent_class)->destroy)(GTK_OBJECT(mdi));
+    (* GTK_OBJECT_CLASS(parent_class)->destroy)(object);
 }
 
 static void gnome_mdi_init (GnomeMDI *mdi) {
@@ -300,10 +287,6 @@ static GnomeUIInfo *copy_ui_info_tree(GnomeUIInfo source[]) {
   GnomeUIInfo *copy;
   int i, count;
 
-#ifdef DEBUG
-  printf("copying UI info tree!\n");
-#endif
-
   for(count = 0; source[count].type != GNOME_APP_UI_ENDOFINFO; count++)
     ;
 
@@ -312,7 +295,7 @@ static GnomeUIInfo *copy_ui_info_tree(GnomeUIInfo source[]) {
   copy = g_malloc(count*sizeof(GnomeUIInfo));
 
   if(copy == NULL) {
-    g_warning("Could not allocate new GnomeUIInfo");
+    g_warning("GnomeMDI: Could not allocate new GnomeUIInfo");
     return NULL;
   }
 
@@ -338,10 +321,6 @@ static gint count_ui_info_items(GnomeUIInfo *ui_info) {
 
 static void free_ui_info_tree(GnomeUIInfo *root) {
   int count;
-
-#ifdef DEBUG
-  printf("freeing UI Info tree!\n");
-#endif
 
   for(count = 0; root[count].type != GNOME_APP_UI_ENDOFINFO; count++)
     if( (root[count].type == GNOME_APP_UI_SUBTREE) ||
@@ -403,10 +382,6 @@ static void doc_list_activated_cb(GtkWidget *w, GnomeMDI *mdi) {
   GnomeDocument *doc;
   GtkWindow *window;
 
-
-#if 0
-  doc = gnome_mdi_find_document(mdi, GTK_LABEL(GTK_BIN(w)->child)->label);
-#endif
   doc = gtk_object_get_data(GTK_OBJECT(w), "GnomeDocument");
 
   if( doc && (doc != mdi->active_doc) ) {
@@ -431,57 +406,6 @@ static void doc_list_activated_cb(GtkWidget *w, GnomeMDI *mdi) {
 }
 
 #if 0
-/* 
- * this has been replaced by gnome-app-helper routines
- */
-static void doc_menus_insert(GtkMenuBar *menubar, GList *menu_list) {
-  GList *children;
-  GtkWidget *menu;
-  gint i;
-
-  i = 0;
-  children = GTK_MENU_SHELL(menubar)->children;
-  while( children && (gtk_object_get_data(GTK_OBJECT(children->data), "MDIDocumentMenu") == NULL) ) {
-    i++;
-    children = g_list_next(children);
-  }
-
-  if(menu_list)
-    gtk_object_set_data(GTK_OBJECT(menu_list->data), "MDIDocMenuFirst", (gpointer)TRUE);
-
-  while(menu_list) {
-    menu = GTK_WIDGET(menu_list->data);
-    gtk_menu_bar_insert(menubar, menu, i);
-    i++;
-    menu_list = g_list_remove(menu_list, menu_list->data);
-  }
-
-  if(menu)
-    gtk_object_set_data(GTK_OBJECT(menu), "MDIDocMenuLast", (gpointer)TRUE);
-}
-#endif
-
-#if 0
-static void doc_menus_remove(GtkMenuBar *menubar) {
-  GList *children;
-  gboolean more;
-
-  children = GTK_MENU_SHELL(menubar)->children;
-  while( children &&
-	 (gtk_object_get_data(GTK_OBJECT(children->data), "MDIDocMenuFirst") == NULL) )
-    children = g_list_next(children);
-
-  more = (children != NULL);
-
-  while ( children && more ) {
-    if(gtk_object_get_data(GTK_OBJECT(children->data), "MDIDocMenuLast"))
-      more = FALSE;
-    gtk_container_remove(GTK_CONTAINER(menubar), GTK_WIDGET(children->data));
-    children = g_list_next(children);
-  }
-}
-#endif
-
 static void doc_list_menu_insert(GtkMenuBar *menubar, GtkWidget *doc_menu) {
   GList *children;
   gint i;
@@ -497,6 +421,7 @@ static void doc_list_menu_insert(GtkMenuBar *menubar, GtkWidget *doc_menu) {
 
   gtk_object_set_data(GTK_OBJECT(menubar), "MDIDocListMenu", doc_menu);
 }
+#endif
 
 static GtkWidget *doc_list_menu_create(GnomeMDI *mdi) {
   GtkWidget *menu, *item, *title_item;
@@ -663,11 +588,6 @@ static void book_switch_page(GtkNotebook *book, GtkNotebookPage *page, gint page
   app = VIEW_GET_WINDOW(mdi->active_view);
 
   app_set_active_view(mdi, app, mdi->active_view);
-
-#ifdef DEBUG
-  if(mdi->active_doc)
-    printf("active doc <%s>\n", mdi->active_doc->title);
-#endif
 }
 
 static void toplevel_focus(GnomeApp *app, GdkEventFocus *event, GnomeMDI *mdi) {
@@ -687,11 +607,6 @@ static void toplevel_focus(GnomeApp *app, GdkEventFocus *event, GnomeMDI *mdi) {
     mdi->active_view = GTK_NOTEBOOK(app->contents)->cur_page->child;
     mdi->active_doc = VIEW_GET_DOCUMENT(mdi->active_view);
   }
-
-#ifdef DEBUG
-  if(mdi->active_doc)
-    printf("GnomeMDI: active doc <%s>\n", mdi->active_doc->title);
-#endif
 }
 
 static void book_drag_begin(GtkNotebook *book, GdkEvent *event, GnomeMDI *mdi) {
@@ -715,16 +630,8 @@ static void book_drop(GtkNotebook *book, GdkEvent *event, GnomeMDI *mdi) {
   GtkNotebook *old_book;
   GnomeApp *app;
 
-#ifdef DEBUG
-  printf("GnomeMDI: page dropped on book!\n");
-#endif
-
-  if(strcmp(event->dropdataavailable.data_type, DND_DATA_TYPE) != 0) {
-#ifdef DEBUG
-    printf("GnomeMDI: unrecognized data dropped!\n");
-#endif
+  if(strcmp(event->dropdataavailable.data_type, DND_DATA_TYPE) != 0)
     return;
-  }
 
 #if 0
   /* can get this to work */
@@ -756,16 +663,8 @@ static void rootwin_drop(GtkWidget *rw, GdkEvent *event, GnomeMDI *mdi) {
   GtkNotebook *old_book;
   GnomeApp *app;
 
-#ifdef DEBUG
-  printf("GnomeMDI: page dropped on root window!\n");
-#endif
-
-  if(strcmp(event->dropdataavailable.data_type, DND_DATA_TYPE) != 0) {
-#ifdef DEBUG
-    printf("GnomeMDI: unrecognized data dropped!\n");
-#endif
+  if(strcmp(event->dropdataavailable.data_type, DND_DATA_TYPE) != 0)
     return;
-  }
 
 #if 0
   /* dont know why this doesnt work... */
@@ -939,10 +838,6 @@ static void app_set_active_view(GnomeMDI *mdi, GnomeApp *app, GtkWidget *view) {
   }
   ui_info = NULL;
 
-#if 0
-  /* this is still a bit ghex specific */
-  gnome_app_remove_menus(app, "Edit", 1);
-#else
   if((items = (gint)gtk_object_get_data(GTK_OBJECT(app), "DocumentMenuItems")) > 0) {
     if(parent = gnome_app_find_menu_pos(app->menubar, mdi->document_menu_path, &pos)) {
       /* remove items */
@@ -958,7 +853,6 @@ static void app_set_active_view(GnomeMDI *mdi, GnomeApp *app, GtkWidget *view) {
 
     gtk_object_set_data(GTK_OBJECT(app), "DocumentMenuItems", NULL);
   }
-#endif
 
   if(view) {
     doc = VIEW_GET_DOCUMENT(view);
@@ -1041,14 +935,6 @@ static void app_create(GnomeMDI *mdi) {
     gnome_app_create_menus(GNOME_APP(window), ui_info);
     gtk_object_set_data(GTK_OBJECT(window), "MDIMenuUIInfo", ui_info);
 
-#if 0
-#if USE_APP_HELPER
-    /* this is a dirty hack for GHex since libgnomeui can't tag items with data */
-    gtk_object_set_data(GTK_OBJECT(ui_info[1].widget), "MDIDocumentMenu", (gpointer)TRUE);
-    gtk_object_set_data(GTK_OBJECT(ui_info[3].widget), "MDIDocumentList", (gpointer)TRUE);
-#endif
-#endif
-
     menubar = GTK_MENU_BAR(GNOME_APP(window)->menubar);
   }
   else {
@@ -1062,17 +948,10 @@ static void app_create(GnomeMDI *mdi) {
   }
 
   /* we add the document list menu to the menubar */
-  if(menubar) {
-#if 1
-    if(parent = gnome_app_find_menu_pos(GTK_WIDGET(menubar), mdi->document_list_path, &pos)) {
-      doc_menu = doc_list_menu_create(mdi);
-      gtk_menu_shell_insert(GTK_MENU_SHELL(parent), doc_menu, pos);
-      gtk_object_set_data(GTK_OBJECT(menubar), "MDIDocListMenu", doc_menu);
-    }
-#else
+  if( menubar && (parent = gnome_app_find_menu_pos(GTK_WIDGET(menubar), mdi->document_list_path, &pos)) ) {
     doc_menu = doc_list_menu_create(mdi);
-    doc_list_menu_insert(GTK_MENU_BAR(menubar), doc_menu);
-#endif
+    gtk_menu_shell_insert(GTK_MENU_SHELL(parent), doc_menu, pos);
+    gtk_object_set_data(GTK_OBJECT(menubar), "MDIDocListMenu", doc_menu);
   }
 
   /* create toolbar */
@@ -1161,10 +1040,6 @@ gint gnome_mdi_remove_view(GnomeMDI *mdi, GtkWidget *view, gint force) {
   GnomeDocument *doc;
   gint ret = TRUE;
 
-#ifdef DEBUG
-  printf("GnomeMDI: removing view!\n");
-#endif
-
   if(!force)
     gtk_signal_emit(GTK_OBJECT(mdi), mdi_signals[REMOVE_VIEW], view, &ret);
 
@@ -1230,10 +1105,6 @@ gint gnome_mdi_add_document(GnomeMDI *mdi, GnomeDocument *doc) {
 
   doc->owner = mdi;
 
-#ifdef 0
-  gnome_mdi_add_view(mdi, doc);
-#endif
-
   mdi->documents = g_list_append(mdi->documents, doc);
 
   doc_list_menu_add_item(mdi, doc);
@@ -1260,10 +1131,6 @@ gint gnome_mdi_remove_document(GnomeMDI *mdi, GnomeDocument *doc, gint force) {
 
   while(doc->views)
     gnome_mdi_remove_view(mdi, GTK_WIDGET(doc->views->data), TRUE);
-
-#ifdef DEBUG
-  printf("GnomeMDI: removing document!\n");
-#endif
 
   mdi->documents = g_list_remove(mdi->documents, doc);
 
@@ -1296,10 +1163,9 @@ gint gnome_mdi_remove_all_documents(GnomeMDI *mdi, gint force) {
     }
   }
 
-  doc_node = mdi->documents;
-  while(doc_node) {
-    doc = GNOME_DOCUMENT(doc_node->data);
-    doc_node = g_list_next(doc_node);
+  while(mdi->documents) {
+    doc = GNOME_DOCUMENT(mdi->documents->data);
+    mdi->documents = g_list_next(mdi->documents);
     gnome_mdi_remove_document(mdi, doc, TRUE);
   }
 
@@ -1414,6 +1280,7 @@ GnomeDocument *gnome_mdi_active_document(GnomeMDI *mdi) {
   return NULL;
 }
 
+#if 0
 static GtkMenuBar *gnome_mdi_create_menus(GnomeMDI *mdi) {
   GtkMenuBar *menubar;
 
@@ -1421,6 +1288,7 @@ static GtkMenuBar *gnome_mdi_create_menus(GnomeMDI *mdi) {
 
   return menubar;
 }
+#endif
 
 void gnome_mdi_set_menu_template(GnomeMDI *mdi, GnomeUIInfo *menu_tmpl) {
   mdi->menu_template = menu_tmpl;
