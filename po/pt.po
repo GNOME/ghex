@@ -1,157 +1,162 @@
+# ghex' Portuguese Translation
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Nuno Ferreira <nmrf@rnl.ist.utl.pt>, 1999
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 0.99.2\n"
-"POT-Creation-Date: 2001-03-08 19:39+0100\n"
-"PO-Revision-Date: 1999-01-10 19:28+00:00\n"
-"Last-Translator: Nuno Ferreira <nmrf@rnl.ist.utl.pt>\n"
-"Language-Team: Portuguese <pt@li.org>\n"
+"Project-Id-Version: ghex 1.4.1\n"
+"POT-Creation-Date: 2001-10-11 06:17-0400\n"
+"PO-Revision-Date: 2001-10-13 18:14+0000\n"
+"Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
+"Language-Team: Portuguese <none@none.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/converter.c:44
+#: src/converter.c:176
 msgid "GHex: Converter"
 msgstr "GHex: Conversor"
 
-#: src/chartable.c:91 src/converter.c:53
-msgid "Binary"
-msgstr "Binário"
+#. entries
+#: src/converter.c:195
+msgid "_Binary"
+msgstr "_Binário"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:161
-msgid "Decimal"
-msgstr "Decimal"
+#: src/converter.c:197
+msgid "_Octal"
+msgstr "_Octal"
 
-#: src/chartable.c:90 src/converter.c:73
-msgid "Hex"
-msgstr "Hexadecimal"
+#: src/converter.c:199
+msgid "_Decimal"
+msgstr "_Decimal"
 
-#: src/chartable.c:90 src/converter.c:83
-msgid "ASCII"
-msgstr "ASCII"
+#: src/converter.c:201
+msgid "_Hex"
+msgstr "_Hexadecimal"
 
-#: src/converter.c:93
-msgid "Get cursor value"
-msgstr ""
+#: src/converter.c:203
+msgid "_ASCII"
+msgstr "_ASCII"
 
-#: src/converter.c:99
-msgid "Close"
-msgstr "Fechar"
+#. get cursor button
+#: src/converter.c:207
+msgid "_Get cursor value"
+msgstr "O_bter valor de cursor"
 
-#: src/converter.c:194
+#: src/converter.c:323
 msgid "ERROR"
 msgstr "ERRO"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:60 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Procurar Dados"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:69
 #, c-format
 msgid "Search for %s"
 msgstr "Procurar %s"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:86
 msgid "Find Next"
 msgstr "Procurar Seguinte"
 
-#: src/findreplace.c:91
+#: src/findreplace.c:94
 msgid "Find Previous"
 msgstr "Procurar Anterior"
 
-#: src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:130 src/main.c:100
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): Procurar e Substituir Dados"
+msgstr "GHex (%s): Procurar & Substituir Dados"
 
-#: src/findreplace.c:141
+#: src/findreplace.c:144
 #, c-format
 msgid "Replace %s"
 msgstr "Substituir %s"
 
-#: src/findreplace.c:157
+#: src/findreplace.c:161
 msgid "Find next"
 msgstr "Procurar seguinte"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:169
 msgid "Replace"
 msgstr "Substituir"
 
-#: src/findreplace.c:173
+#: src/findreplace.c:177
 msgid "Replace All"
 msgstr "Substituir Todas"
 
-#: src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:210 src/main.c:102
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Ir para Byte"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:299 src/findreplace.c:324 src/findreplace.c:376
 msgid "There is no active buffer to search!"
-msgstr "Não existe nenhum documento activo para procurar!"
+msgstr "Não existe nenhum buffer activo para procurar!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:307 src/findreplace.c:332 src/findreplace.c:384
 msgid "There seems to be no string to search for!"
-msgstr "Não parece existir uma expressão para procurar!"
+msgstr "Parece não existir expressão a procurar!"
 
-#: src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:314 src/findreplace.c:392
 msgid "End Of File reached"
-msgstr "Fim de Ficheiro"
+msgstr "Atingido Fim de Ficheiro"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:340
 msgid "Beginning Of File reached"
-msgstr "Início de Ficheiro"
+msgstr "Atingido Início de Ficheiro"
 
-#: src/findreplace.c:345
+#: src/findreplace.c:349
 msgid "There is no active buffer to move the cursor in!"
-msgstr "Não existe nenhum documento activo onde mover o cursor."
+msgstr "Não existe nenhum buffer activo para onde mover o cursor."
 
-#: src/findreplace.c:350
+#: src/findreplace.c:354
 msgid "No offset has been specified!"
-msgstr "Deslocamento não foi especificado!"
+msgstr "Offset não especificado!"
 
-#: src/findreplace.c:357
+#: src/findreplace.c:361
 msgid "Can not position cursor beyond the End Of File!"
-msgstr "Não posso posicionar o cursor após o Fim de Ficheiro!"
+msgstr "Impossível posicionar o cursor após Fim de Ficheiro!"
 
-#: src/findreplace.c:362
+#: src/findreplace.c:366
 msgid "The offset must be a positive integer value!"
-msgstr "O deslocamento tem de ser um valor inteiro positivo!"
+msgstr "O offset tem de ser um valor inteiro positivo!"
 
-#: src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:403 src/findreplace.c:440
 msgid "There is no active buffer to replace data in!"
-msgstr "Não existe nenhum documento activo onde substituir a expressão!"
+msgstr "Não existe nenhum buffer activo onde substituir a expressão!"
 
-#: src/findreplace.c:410 src/findreplace.c:447
+#: src/findreplace.c:414 src/findreplace.c:451
 msgid "Strange find or replace string!"
 msgstr "Expressão estranha para procura ou substituição!"
 
-#: src/findreplace.c:425
+#: src/findreplace.c:429
 msgid "End Of File reached!"
-msgstr "Fim de Ficheiro!"
+msgstr "Atingido Fim de Ficheiro!"
 
-#: src/findreplace.c:463
+#: src/findreplace.c:467
 #, c-format
 msgid "Replaced %d occurencies."
-msgstr "%d ocurrências foram substituidas."
+msgstr "%d ocorrências substituidas."
 
 #: src/hex-document.c:707
-#, fuzzy
 msgid "Page"
-msgstr "Colar"
+msgstr "Página"
 
 #: src/hex-document.c:713 src/hex-document.c:814
 msgid "Hex dump generated by"
-msgstr ""
+msgstr "Dump Hex gerado por"
 
 #: src/hex-document.c:737
-#, fuzzy
 msgid "Previous page"
-msgstr "Procurar Anterior"
+msgstr "Página anterior"
 
 #: src/hex-document.c:752
 msgid "Next page"
-msgstr ""
+msgstr "Página seguinte"
 
 #: src/hex-document-ui.c:50
 msgid "_Bytes"
@@ -159,7 +164,7 @@ msgstr "_Bytes"
 
 #: src/hex-document-ui.c:51
 msgid "Group data by 8 bits"
-msgstr "Agrupar cada 8 bits"
+msgstr "Agrupar dados em 8 bits"
 
 #: src/hex-document-ui.c:52
 msgid "_Words"
@@ -167,7 +172,7 @@ msgstr "_Words"
 
 #: src/hex-document-ui.c:53
 msgid "Group data by 16 bits"
-msgstr "Agrupar cada 16 bits"
+msgstr "Agrupar dados em 16 bits"
 
 #: src/hex-document-ui.c:54
 msgid "_Longwords"
@@ -175,11 +180,11 @@ msgstr "_Longwords"
 
 #: src/hex-document-ui.c:55
 msgid "Group data by 32 bits"
-msgstr "Agrupar cada 32 bits"
+msgstr "Agrupar dados em 32 bits"
 
 #: src/hex-document-ui.c:74
 msgid "_Goto Byte..."
-msgstr "_Ir para o Byte..."
+msgstr "_Ir para Byte..."
 
 #: src/hex-document-ui.c:74
 msgid "Jump to a certain position"
@@ -187,15 +192,15 @@ msgstr "Ir para uma determinada posição"
 
 #: src/hex-document-ui.c:78
 msgid "_Insert mode"
-msgstr ""
+msgstr "Modo de _inserção"
 
 #: src/hex-document-ui.c:78
 msgid "Insert/overwrite data"
-msgstr ""
+msgstr "Inserir/sobrepor dados"
 
 #: src/hex-document-ui.c:81
 msgid "_Group Data As"
-msgstr "_Agrupar dados como"
+msgstr "_Agrupar Dados Como"
 
 #: src/hex-document-ui.c:87
 msgid "_Add view"
@@ -203,7 +208,7 @@ msgstr "_Adicionar vista"
 
 #: src/hex-document-ui.c:88
 msgid "Add a new view of the buffer"
-msgstr "Adiciona uma nova vista do documento"
+msgstr "Adiciona uma nova vista do buffer"
 
 #: src/hex-document-ui.c:89
 msgid "_Remove view"
@@ -211,69 +216,70 @@ msgstr "_Remover vista"
 
 #: src/hex-document-ui.c:90
 msgid "Remove the current view of the buffer"
-msgstr "Apaga a vista corrente do documento "
+msgstr "Apaga a vista actual do buffer"
 
-#: src/main.c:51
+#: src/main.c:52
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
-"Ficheiro %s foi modificado desde a última vez que foi gravado.\n"
-"Deseja gravar as modificações?"
+"Ficheiro %s foi modificado desde a última gravação.\n"
+"Deseja gravar modificações?"
 
-#: src/main.c:202
+#: src/main.c:204
 #, c-format
 msgid "Offset: %s"
-msgstr ""
+msgstr "Offset: %s"
 
 #: src/preferences.c:52
 msgid "Default"
-msgstr "Por omissão"
+msgstr "Por defeito"
 
 #: src/preferences.c:53
 msgid "Notebook"
-msgstr ""
+msgstr "Separadores"
 
 #: src/preferences.c:54
 msgid "Toplevel"
-msgstr ""
+msgstr "Nível de topo"
 
 #: src/preferences.c:55
 msgid "Modal"
 msgstr "Modal"
 
 #: src/preferences.c:77
-#, fuzzy
 msgid "Select font"
-msgstr "Selecção:"
+msgstr "Seleccionar fonte"
 
 #: src/preferences.c:132
 msgid "Maximum number of undo levels"
-msgstr ""
+msgstr "Número máximo de níveis a desfazer"
 
 #: src/preferences.c:147
 msgid "Show cursor offset in statusbar as"
-msgstr ""
+msgstr "Mostrar cursor de offset na barra de estados como"
 
-#: src/preferences.c:166
-#, fuzzy
-msgid "Hexadecimal"
+#: src/chartable.c:90 src/preferences.c:161
+msgid "Decimal"
 msgstr "Decimal"
 
+#: src/preferences.c:166
+msgid "Hexadecimal"
+msgstr "Hexadecimal"
+
 #: src/preferences.c:172
-#, fuzzy
 msgid "Custom"
-msgstr "Cortar"
+msgstr "Customizado"
 
 #. show offsets check button
 #: src/preferences.c:183
 msgid "Show offsets column"
-msgstr ""
+msgstr "Mostrar coluna do offset"
 
 #: src/preferences.c:188
 msgid "Editing"
-msgstr ""
+msgstr "A Editar"
 
 #. display font
 #: src/preferences.c:197
@@ -287,7 +293,7 @@ msgstr "Procurar..."
 #. default group type
 #: src/preferences.c:233
 msgid "Default Group Type"
-msgstr "Tipo de Agrupamento por omissão"
+msgstr "Tipo de Agrupamento por Defeito"
 
 #: src/preferences.c:249
 msgid "Display"
@@ -304,179 +310,206 @@ msgstr "MDI"
 
 #. paper selection
 #: src/preferences.c:284
-#, fuzzy
 msgid "Paper size"
-msgstr "Propriedades"
+msgstr "Tamanho do papel"
 
 #. data & header font selection
 #: src/preferences.c:298
-#, fuzzy
 msgid "Fonts"
-msgstr "Fonte"
+msgstr "Fontes"
 
 #: src/preferences.c:304
 msgid "Data font"
-msgstr ""
+msgstr "Fonte de dados"
 
 #: src/preferences.c:319
 msgid "Header font"
-msgstr ""
+msgstr "Fonte do cabeçalho"
 
 #: src/preferences.c:345
 msgid "Print shaded box over"
-msgstr ""
+msgstr "Imprimir caixa sombreada sobre"
 
 #: src/preferences.c:354
 msgid "lines (0 for no box)"
-msgstr ""
+msgstr "linhas (0 para nenhuma caixa)"
 
 #: src/preferences.c:361
-#, fuzzy
 msgid "Printing"
-msgstr "Aviso"
+msgstr "A Imprimir"
 
-#: src/preferences.c:534
+#: src/preferences.c:536
 msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
+"A expressão de formato de offset contem especificadores de formato inválidos.\n"
+"Apenas 'x', 'X', 'p', 'P', 'd' e 'o' são permitidos."
 
-#: src/preferences.c:570
+#: src/preferences.c:573
 msgid "Can not open desired font!"
-msgstr "Não consigo abrir a fonte desejada!"
+msgstr "Impossível abrir fonte desejada!"
 
-#: src/ui.c:57
-msgid "Export to HTML..."
-msgstr ""
+#: src/ui.c:61
+msgid "Export to _HTML..."
+msgstr "Exportar para _HTML..."
 
-#: src/ui.c:57
+#: src/ui.c:61
 msgid "Export data to HTML source"
-msgstr ""
+msgstr "Exportar dados para fonte HTML"
 
-#: src/ui.c:61
-msgid "Print preview..."
-msgstr ""
+#: src/ui.c:65
+msgid "Print pre_view..."
+msgstr "Pre_ver impressão..."
 
-#: src/ui.c:61
+#: src/ui.c:65
 msgid "Preview printed data"
-msgstr ""
+msgstr "Prever dados a imprimir"
 
-#: src/ui.c:74
-#, fuzzy
+#: src/ui.c:78
 msgid "Con_verter..."
-msgstr "Abrir _Conversor..."
+msgstr "Con_versor..."
 
-#: src/ui.c:75
+#: src/ui.c:79
 msgid "Open base conversion dialog"
-msgstr "Abre diálogo de conversão de bases"
+msgstr "Abrir diálogo base de conversão"
 
-#: src/ui.c:76
-msgid "Character Table..."
-msgstr ""
+#: src/ui.c:80
+msgid "Character _Table..."
+msgstr "_Tabela de Caracteres..."
 
-#: src/ui.c:77
+#: src/ui.c:81
 msgid "Show the character table"
-msgstr ""
+msgstr "Mostrar a tabela de caracteres"
 
-#: src/ui.c:94
-#, fuzzy
-msgid "Tools"
-msgstr "Barra de Ferramentas"
+#: src/ui.c:98
+msgid "_Tools"
+msgstr "Ferramen_tas"
 
-#: src/ui.c:108
+#: src/ui.c:112
 msgid "Bytes"
 msgstr "Bytes"
 
-#: src/ui.c:109
+#: src/ui.c:113
 msgid "Words"
 msgstr "Words"
 
-#: src/ui.c:110
+#: src/ui.c:114
 msgid "Longwords"
 msgstr "Longwords"
 
-#: src/ui.c:115
+#: src/ui.c:119
 msgid "hex data"
-msgstr "Dados Hex."
+msgstr "dados hex."
 
-#: src/ui.c:116
+#: src/ui.c:120
 msgid "ASCII data"
-msgstr "Dados ASCII"
+msgstr "dados ASCII"
 
-#: src/ui.c:200
+#: src/ui.c:204
 msgid "GHex, a binary file editor"
 msgstr "GHex, um editor de ficheiros binários"
 
-#: src/ui.c:202
+#: src/ui.c:206
 msgid "Released under the terms of GNU Public License"
-msgstr "Publicado sob os termos da GNU Public License"
+msgstr "Distribuido sob os termos da GNU Public License"
 
-#: src/ui.c:226 src/ui.c:548
+#: src/ui.c:230 src/ui.c:506
 msgid "Error saving file!"
 msgstr "Erro a gravar o ficheiro!"
 
-#: src/ui.c:230 src/ui.c:543
+#: src/ui.c:234 src/ui.c:501
 #, c-format
 msgid "Saved buffer to file %s"
-msgstr "Gravei documento para o ficheiro %s"
+msgstr "Buffer gravado no ficheiro %s"
 
-#: src/ui.c:251
+#: src/ui.c:255
 msgid "Select a file to open"
-msgstr "Seleccione um ficheiro para abrir"
+msgstr "Seleccione um ficheiro a abrir"
 
-#: src/ui.c:286
+#: src/ui.c:290
 msgid "Select a file to save buffer as"
-msgstr "Seleccione um ficheiro onde gravar o documento"
+msgstr "Seleccione um ficheiro onde gravar o buffer"
 
-#: src/ui.c:375
+#: src/ui.c:331
 msgid "Select path and file name for the HTML source"
-msgstr ""
+msgstr "Seleccione caminho e nome de ficheiro para a fonte HTML"
 
-#: src/ui.c:475
+#: src/ui.c:432
 #, c-format
 msgid "Really revert file %s?"
-msgstr "Revertero ficheiro %s?"
+msgstr "Reverter mesmo o ficheiro %s?"
 
-#: src/ui.c:488
+#: src/ui.c:446
 #, c-format
 msgid "Reverted buffer from file %s"
-msgstr "Reveti o documento a partir do ficheiro %s"
+msgstr "Buffer revertido a partir do ficheiro %s"
 
-#: src/ui.c:504
+#: src/ui.c:462
 #, c-format
 msgid "Loaded file %s"
-msgstr "Carreguei o ficheio %s"
+msgstr "Ficheio %s carregado"
 
-#: src/ui.c:509
+#: src/ui.c:467
 msgid "Can not open file!"
-msgstr "Não consigo abrir o ficheiro!"
+msgstr "Impossível abrir ficheiro!"
 
-#: src/ui.c:552
+#: src/ui.c:510
 msgid "Can't open file for writing!"
-msgstr "Não consigo abrir o ficheiro para escrita!"
+msgstr "Impossível abrir ficheiro para escrita!"
+
+#: src/ui.c:579
+msgid "Print Hex Document"
+msgstr "Imprimir Documento Hex"
+
+#: src/ui.c:584
+msgid "Pages"
+msgstr "Páginas"
+
+#: src/ui.c:625
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): Prever Impressão"
+
+#: src/chartable.c:90
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:90
+msgid "Hex"
+msgstr "Hex"
 
 #: src/chartable.c:91
-#, fuzzy
 msgid "Octal"
-msgstr "Total"
+msgstr "Octal"
+
+#: src/chartable.c:91
+msgid "Binary"
+msgstr "Binário"
 
 #: src/chartable.c:98
-#, fuzzy
 msgid "GHex: Character table"
-msgstr "GHex: Conversor"
+msgstr "GHex: Tabela de caracteres"
 
-#: src/print.c:171
-#, fuzzy, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Procurar Dados"
-
-#: src/print.c:187
+#: src/print.c:48
 #, c-format
 msgid "Page: %i/%i"
+msgstr "Página: %i/%i"
+
+#: src/print.c:198 src/print.c:212
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
 msgstr ""
+"GHex não encontrou a fonte \"%s\".\n"
+"GHex não pode imprimir sem esta fonte instalada."
+
+#~ msgid "Close"
+#~ msgstr "Fechar"
 
 #~ msgid "Both strings must be of the same length!"
-#~ msgstr "Ambas as expressões têm que ter o mesmo comprimento!"
+#~ msgstr "Ambas as expressões têm de ter o mesmo comprimento!"
 
 #~ msgid "The Gnome Calculator"
 #~ msgstr "A Calculadora GNOME"
@@ -494,31 +527,26 @@ msgstr ""
 #~ "Um \"quick hack\" que mostra a quantidade de espaço livre nos sistemas de "
 #~ "ficheiros montados utilizando um mostrador."
 
-#, fuzzy
 #~ msgid "File name"
-#~ msgstr "Nome do Ficheiro:"
+#~ msgstr "Nome do ficheiro"
 
-#, fuzzy
 #~ msgid "File owner"
-#~ msgstr "Nome do Ficheiro:"
+#~ msgstr "Dono do ficheiro"
 
-#, fuzzy
 #~ msgid "Filenames except"
-#~ msgstr "Nome do Ficheiro:"
+#~ msgstr "Nomes de ficheiro excepto"
 
 #~ msgid "Search Results"
-#~ msgstr "Resultados da procura"
+#~ msgstr "Resultados da Pesquisa"
 
-#, fuzzy
 #~ msgid "Enable"
 #~ msgstr "Activo"
 
-#, fuzzy
 #~ msgid "Remove"
-#~ msgstr "_Remover vista"
+#~ msgstr "Remover"
 
 #~ msgid "Start in directory:"
-#~ msgstr "Iniciar na directoria:"
+#~ msgstr "Iniciar no directório:"
 
 #~ msgid "Add"
 #~ msgstr "Adicionar"
@@ -539,13 +567,13 @@ msgstr ""
 #~ msgstr "Procura rápida (locate)"
 
 #~ msgid "The Gnome Search Tool"
-#~ msgstr "A ferramenta de procura Gnome"
+#~ msgstr "A Ferramenta de Procura Gnome"
 
 #~ msgid "Frontend to the unix find/grep/locate commands"
 #~ msgstr "Interface para os comandos unix find/grep/locate"
 
 #~ msgid "Gnome Search Tool"
-#~ msgstr "Ferramenta de procura Gnome"
+#~ msgstr "Ferramenta de Procura Gnome"
 
 #~ msgid "Value"
 #~ msgstr "Valor"
@@ -553,37 +581,29 @@ msgstr ""
 #~ msgid "Color"
 #~ msgstr "Cor"
 
-#, fuzzy
 #~ msgid "Filename"
-#~ msgstr "Nome do Ficheiro:"
+#~ msgstr "Nome do ficheiro"
 
-#, fuzzy
 #~ msgid "Pattern"
-#~ msgstr "Colar"
+#~ msgstr "Padrão"
 
-#, fuzzy
 #~ msgid "Displayed range"
-#~ msgstr "Nome do display X:"
+#~ msgstr "Intrevalo apresentado"
 
-#, fuzzy
 #~ msgid "Current"
-#~ msgstr "Cortar"
+#~ msgstr "Actual"
 
-#, fuzzy
 #~ msgid "Configuration file name"
-#~ msgstr "Gravar Ficheiro de Configuração"
+#~ msgstr "Nome de ficheiro de configuração"
 
-#, fuzzy
 #~ msgid "blue"
-#~ msgstr "Valor"
+#~ msgstr "azul"
 
-#, fuzzy
 #~ msgid "Load"
-#~ msgstr "Reler"
+#~ msgstr "Carregar"
 
-#, fuzzy
 #~ msgid "Swap"
-#~ msgstr "\"swap\""
+#~ msgstr "Swap"
 
 #~ msgid "no project selected"
 #~ msgstr "nenhum projecto seleccionado"
@@ -595,33 +615,33 @@ msgstr ""
 #~ "Couldn't understand geometry (position and size)\n"
 #~ " specified on command line"
 #~ msgstr ""
-#~ "Não percebi geometria (posição e tamanho)\n"
+#~ "Geometria (posição e tamanho) não percebida\n"
 #~ " especificada na linha de comando"
 
 #~ msgid "Today"
 #~ msgstr "Hoje"
 
 #~ msgid "Project Title"
-#~ msgstr "Nome do Projecto"
+#~ msgstr "Título do Projecto"
 
 #~ msgid "Description"
 #~ msgstr "Descrição"
 
 #~ msgid "program started"
-#~ msgstr "arranque da aplicação"
+#~ msgstr "aplicação iniciada"
 
 #~ msgid "no description"
 #~ msgstr "nenhuma descrição"
 
 #~ msgid "program exited"
-#~ msgstr "término da aplicação"
+#~ msgstr "aplicação terminada"
 
 #~ msgid ""
 #~ "There seems to be another GTimeTracker running.\n"
 #~ "Press OK to start GTimeTracker anyway, or press Cancel to quit."
 #~ msgstr ""
 #~ "Parece haver outro GTimeTracker a correr.\n"
-#~ "Pressione OK para recomeçar o GTimeTracker, ou Cancel para sair."
+#~ "Pressione OK para recomeçar o GTimeTracker, ou Cancelar para sair."
 
 #~ msgid "Error"
 #~ msgstr "Erro"
@@ -630,32 +650,32 @@ msgstr ""
 #~ "An error occured while reading the configuration file.\n"
 #~ "Shall I setup a new configuration?"
 #~ msgstr ""
-#~ "Ocurreu um erro durante a leitura do ficheiro de configuração.\n"
-#~ "Quer que efectue uma nova configuração?"
+#~ "Ocorreu um erro durante a leitura do ficheiro de configuração.\n"
+#~ "Quer efectuar uma nova configuração?"
 
 #~ msgid "GEOMETRY"
 #~ msgstr "GEOMETRIA"
 
 #~ msgid "Specify geometry"
-#~ msgstr "Especifique a geometria"
+#~ msgstr "Especificar a geometria"
 
 #~ msgid "PROJECT"
 #~ msgstr "PROJECTO"
 
 #~ msgid "Select a project on startup"
-#~ msgstr "Seleccione um projecto ao arrancar"
+#~ msgstr "Seleccionar um projecto ao arrancar"
 
 #~ msgid "I could not write the configuration file!"
-#~ msgstr "Não consegui escrever no ficheiro de configuração!"
+#~ msgstr "Impossível escrever no ficheiro de configuração!"
 
 #~ msgid "New Project..."
 #~ msgstr "Novo Projecto..."
 
 #~ msgid "Please enter the name of the new project:"
-#~ msgstr "Digite o nome do novo projecto:"
+#~ msgstr "Introduza o nome do novo projecto:"
 
 #~ msgid "I could not read the configuration file"
-#~ msgstr "Não consegui ler o ficheiro de configuração"
+#~ msgstr "Impossível ler o ficheiro de configuração"
 
 #~ msgid "Reload Configuration File"
 #~ msgstr "Reler Ficheiro de Configuração"
@@ -665,7 +685,7 @@ msgstr ""
 #~ "Do you really want to reload the configuration file?"
 #~ msgstr ""
 #~ "Vai perder os dados ainda não gravados nos seus projectos.\n"
-#~ "Tem a certeza que deseja reler o ficheiro de configuração?"
+#~ "Deseja mesmo reler o ficheiro de configuração?"
 
 #~ msgid "_New Project..."
 #~ msgstr "_Novo Projecto..."
@@ -680,16 +700,16 @@ msgstr ""
 #~ msgstr "Limpar o Contador _Diário"
 
 #~ msgid "St_art"
-#~ msgstr "_Começar"
+#~ msgstr "Inici_ar"
 
 #~ msgid "Sto_p"
 #~ msgstr "_Parar"
 
 #~ msgid "_Timer Running"
-#~ msgstr "Cr_onómetro a contar"
+#~ msgstr "Cr_onómetro a Contar"
 
 #~ msgid "_Timer"
-#~ msgstr "C_ronómetro"
+#~ msgstr "Cronóme_tro"
 
 #~ msgid "Show Seconds"
 #~ msgstr "Mostrar Segundos"
@@ -931,29 +951,30 @@ msgstr ""
 #~ msgid "Text File Viewer"
 #~ msgstr "Visualizador de ficheiros de texto"
 
-#, fuzzy
 #~ msgid "Find string"
-#~ msgstr "Procurar Seguinte"
+#~ msgstr "Procurar expressão"
 
-#, fuzzy
 #~ msgid "Find"
-#~ msgstr "Procurar Seguinte"
+#~ msgstr "Procurar"
 
 #~ msgid "Loading..."
 #~ msgstr "Caregando..."
 
-#, fuzzy
 #~ msgid ""
 #~ "No such file or directory:\n"
 #~ "%s"
-#~ msgstr "Ficheiro ou directoria inexistente:\n"
+#~ msgstr ""
+#~ "Ficheiro ou directório inexistente:\n"
+#~ "%s"
 
-#, fuzzy
 #~ msgid ""
 #~ "Failed to decompress and display the file:\n"
 #~ "%s\n"
 #~ "%s"
-#~ msgstr "Falhou a descompressão e visualização do ficheiro:\n"
+#~ msgstr ""
+#~ "Falha na descompressão e visualização do ficheiro:\n"
+#~ "%s\n"
+#~ "%s"
 
 #~ msgid ""
 #~ "Unable to display compressed file.\n"
@@ -962,22 +983,26 @@ msgstr ""
 #~ "Não consigo mostrar o ficheiro comprimido.\n"
 #~ "zcat não se encontra na sua \"path\"."
 
-#, fuzzy
 #~ msgid ""
 #~ "Error loading file:\n"
 #~ "%s\n"
 #~ "%s"
-#~ msgstr "Erro a carregar o ficheiro:\n"
+#~ msgstr ""
+#~ "Erro a carregar o ficheiro:\n"
+#~ "%s\n"
+#~ "%s"
 
 #~ msgid "Saving..."
 #~ msgstr "Gravando..."
 
-#, fuzzy
 #~ msgid ""
 #~ "Failed to write file:\n"
 #~ "%s\n"
 #~ "%s"
-#~ msgstr "Falhou a escrita do ficheiro:\n"
+#~ msgstr ""
+#~ "Falha na escrita do ficheiro:\n"
+#~ "%s\n"
+#~ "%s"
 
 #~ msgid "Save Text As..."
 #~ msgstr "Gravar texto como..."
@@ -985,20 +1010,20 @@ msgstr ""
 #~ msgid "Open Text File..."
 #~ msgstr "Abrir ficheiro de texto..."
 
-#, fuzzy
 #~ msgid "Searching..."
-#~ msgstr "Gravando..."
+#~ msgstr "A Procurar..."
 
-#, fuzzy
 #~ msgid "No search string was specified!"
-#~ msgstr "Deslocamento não foi especificado!"
+#~ msgstr "Expressão a pesquisar não especificada!"
 
-#, fuzzy
 #~ msgid ""
 #~ "Failed to execute command:\n"
 #~ "%s\n"
 #~ "%s"
-#~ msgstr "Falhou a execução do comando:\n"
+#~ msgstr ""
+#~ "Falha na execução do comando:\n"
+#~ "%s\n"
+#~ "%s"
 
 #~ msgid "Run Program"
 #~ msgstr "Executar Aplicação"
@@ -1054,10 +1079,10 @@ msgstr ""
 #~ msgid "Are you sure you want to reboot the system?"
 #~ msgstr "Tem a certeza que deseja reiniciar o sistema?"
 
-#, fuzzy
 #~ msgid ""
 #~ "You must be the super-user (root) to shut down or restart the computer."
-#~ msgstr "Tem a certeza que deseja desligar o computador?"
+#~ msgstr ""
+#~ "Tem de ser o super-utilizador (root) para desligar ou reiniciar o computador."
 
 #~ msgid "Shutdown or Reboot"
 #~ msgstr "Desligar ou Reiniciar"
@@ -1124,36 +1149,32 @@ msgstr ""
 #~ msgid "Mail To..."
 #~ msgstr "Enviar para..."
 
-#, fuzzy
 #~ msgid ""
 #~ "Error closing file `%s': \n"
 #~ "%s\n"
 #~ "Some or all data may not have been written."
 #~ msgstr ""
-#~ "\n"
+#~ "Erro ao fechar ficheiro `%s': \n"
+#~ "%s\n"
 #~ "Parte ou a totalidade dos seus dados podem não ter sido gravados."
 
-#, fuzzy
 #~ msgid "Couldn't open file `%s': %s"
-#~ msgstr "Não consigo abrir o ficheiro `"
+#~ msgstr "Impossível abrir ficheiro `%s': %s"
 
 #~ msgid "Save System Information As..."
 #~ msgstr "Gravar informação do sistema como..."
 
-#, fuzzy
 #~ msgid "Command failed ` %s ': %s"
-#~ msgstr "Comando falhou ` "
+#~ msgstr "Comando falhou ` %s ': %s"
 
-#, fuzzy
 #~ msgid "Couldn't run command ` %s ': %s"
-#~ msgstr "Não consegui correr o comando ` "
+#~ msgstr "Impossível executar comando ` %s ': %s"
 
-#, fuzzy
 #~ msgid ""
 #~ "The following mail will be sent to %s.\n"
 #~ " Are you sure you want to mail this information?"
 #~ msgstr ""
-#~ ".\n"
+#~ "O seguinte e-mail será enviado para %s.\n"
 #~ "Tem a certeza que deseja enviar esta informação?"
 
 #~ msgid "Are you sure?"
@@ -1243,13 +1264,11 @@ msgstr ""
 #~ msgid "Memory"
 #~ msgstr "Memória"
 
-#, fuzzy
 #~ msgid "%ld%% memory used."
-#~ msgstr "%ld%% %s usado."
+#~ msgstr "%ld%% memória utilizada."
 
-#, fuzzy
 #~ msgid "%ld%% swap used."
-#~ msgstr "%ld%% %s usado."
+#~ msgstr "%ld%% swap utilizado."
 
 #~ msgid "CPU %d"
 #~ msgstr "CPU %d"
@@ -1295,16 +1314,14 @@ msgstr ""
 #~ msgid "_Save..."
 #~ msgstr "_Gravar..."
 
-#, fuzzy
 #~ msgid "Active User Listing"
-#~ msgstr "Listagem dos utilizadores"
+#~ msgstr "Listagem dos Utilizadores Activos"
 
 #~ msgid "Update Information"
 #~ msgstr "Actualizar Informação"
 
-#, fuzzy
 #~ msgid "Save not implemented yet\n"
-#~ msgstr "Isto ainda não está implementado"
+#~ msgstr "Gravação ainda não implementada\n"
 
 #~ msgid "Command Line"
 #~ msgstr "Linha de comandos"
@@ -1365,13 +1382,11 @@ msgstr ""
 #~ msgid "(1 Sector)"
 #~ msgstr "(1 Sector)"
 
-#, fuzzy
 #~ msgid "Yes (%d sector)"
-#~ msgstr "(1 Sector)"
+#~ msgstr "Sim (%d sector)"
 
-#, fuzzy
 #~ msgid "Yes (%d sectors)"
-#~ msgstr "(1 Sector)"
+#~ msgstr "Sim (%d sectores)"
 
 #~ msgid "Model"
 #~ msgstr "Modelo"
@@ -1409,9 +1424,8 @@ msgstr ""
 #~ msgid "You appear to have no IDE drives"
 #~ msgstr "Você parece não ter quaisquer discos IDE"
 
-#, fuzzy
 #~ msgid "geometry"
-#~ msgstr "Geometria"
+#~ msgstr "geometria"
 
 #~ msgid "Error closing file `"
 #~ msgstr "Erro a fechar o ficheiro `"
@@ -1425,29 +1439,23 @@ msgstr ""
 #~ msgid "memory"
 #~ msgstr "memória"
 
-#, fuzzy
 #~ msgid "Preferences..."
-#~ msgstr "Preferências"
+#~ msgstr "Preferências..."
 
-#, fuzzy
 #~ msgid "File"
-#~ msgstr "Nome do Ficheiro:"
+#~ msgstr "Ficheiro"
 
-#, fuzzy
 #~ msgid "Search"
-#~ msgstr "Procurar %s"
+#~ msgstr "Procurar"
 
-#, fuzzy
 #~ msgid "Clear the search window"
-#~ msgstr "Nova janela para visualizar texto"
+#~ msgstr "Limpar janela de pesquisa"
 
-#, fuzzy
 #~ msgid "Find Files"
-#~ msgstr "Procurar Seguinte"
+#~ msgstr "Procurar Ficheiros"
 
-#, fuzzy
 #~ msgid "Directory:"
-#~ msgstr "Iniciar na directoria:"
+#~ msgstr "Directório:"
 
 #~ msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
 #~ msgstr "Erro, não consegui abrir /usr/X11R6/lib/X11/rgb.txt.\n"
