@@ -8,35 +8,30 @@
 #include "callbacks.h"
 #include "ghex.h"
 
-GtkWidget *app, *table;
-GtkWidget *tbar, *mbar;
-GtkWidget *name_label, *offset_label, *data_label;
-GtkAcceleratorTable *accel;
+static void set_prefs(PropertyUI *);
 
 GtkWidget *file_sel = NULL;
 GtkWidget *find_dialog = NULL;
 GtkWidget *replace_dialog = NULL;
 GtkWidget *jump_dialog = NULL;
-
-/* the "important" menus and menu items */
-GtkMenuItem *group_menu, *buffers_menu;
-GtkCheckMenuItem *save_config_item;
+PropertyUI *prefs_ui = NULL;
 
 GdkFont *def_font = NULL;
-gchar def_font_name[256];
+gchar *def_font_name = NULL;
 
-guint group_type[3] = {
-  GROUP_BYTE,
-  GROUP_WORD,
-  GROUP_LONG,
+guint mdi_type[3] = {
+  GNOME_MDI_NOTEBOOK,
+  GNOME_MDI_MODAL,
+  GNOME_MDI_TOPLEVEL,
 };
 
-gchar *group_type_label[3] = {
-  _("Single Bytes"),
-  _("Words"),
-  _("Longwords"),
+gchar *mdi_type_label[3] = {
+  "Notebook",
+  "Modal",
+  "Toplevel",
 };
 
+#if 0
 void cursor_moved(GtkWidget *w) {
   static gchar info_msg[64];
 
@@ -70,6 +65,7 @@ void data_changed(GtkWidget *w, guint start, guint end) {
     gtk_label_set(GTK_LABEL(data_label), data_msg);
   }
 }
+#endif
 
 void show_message(gchar *msg) {
   GtkWidget *message_box;
@@ -89,150 +85,13 @@ void report_error(gchar *msg) {
   gtk_widget_show(message_box);
 }
 
-guint get_desired_group_type() {
-  GtkMenuShell *menu;
-  GList *children;
-  int i;
-
-  menu = GTK_MENU_SHELL(group_menu->submenu);
-
-  for(children = menu->children, i = 0; children != NULL; children = g_list_next(children), i++) {
-    if(GTK_CHECK_MENU_ITEM(children->data)->active)
-      return (1L << i);
-  }
-
-  return 1;
-}
-
-void set_desired_group_type(gint type) {
-  GtkMenuShell *menu;
-  GList *children;
-  int i;
-
-  menu = GTK_MENU_SHELL(group_menu->submenu);
-
-  for(children = menu->children, i = 0; children != NULL; children = g_list_next(children), i++) {
-    if((1L << i) == type)
-      gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(children->data), TRUE);
-  }
-}
-
-int add_view(FileEntry *fe) {
-
-  fe->hexedit = gtk_hex_new();
-
-  gtk_signal_connect(GTK_OBJECT(fe->hexedit), "cursor_moved",
-		     GTK_SIGNAL_FUNC(cursor_moved), NULL);
-  gtk_signal_connect(GTK_OBJECT(fe->hexedit), "data_changed",
-		     GTK_SIGNAL_FUNC(data_changed), NULL);
-
-  gtk_hex_set_buffer(GTK_HEX(fe->hexedit), fe->contents, fe->len);
-  GTK_HEX(fe->hexedit)->group_type = get_desired_group_type();
-  gtk_hex_set_cursor(GTK_HEX(fe->hexedit), fe->cursor_pos);
-
-  gtk_table_attach(GTK_TABLE(table), fe->hexedit, 0, 3, 0, 1,
-		   GTK_FILL|GTK_SHRINK|GTK_EXPAND,
-		   GTK_FILL|GTK_SHRINK|GTK_EXPAND, 0, 0);
-  if(def_font)
-    gtk_hex_set_font(GTK_HEX(fe->hexedit), def_font);
-
-  gtk_widget_show(fe->hexedit);
-
-  gtk_label_set(GTK_LABEL(name_label), fe->path_end);
-
-  gtk_signal_emit_by_name(GTK_OBJECT(fe->hexedit), "cursor_moved");
-  return 0;
-}
-
-void remove_view(FileEntry *fe) {
-  if(fe == NULL)
-    return;
-
-  fe->cursor_pos = gtk_hex_get_cursor(GTK_HEX(fe->hexedit));
-
-  gtk_label_set(GTK_LABEL(name_label), NO_BUFFER_LABEL);
-  gtk_label_set(GTK_LABEL(offset_label), "");
-  gtk_label_set(GTK_LABEL(data_label), "");
-
-  gtk_widget_destroy(fe->hexedit);
-
-  fe->hexedit = NULL;
-}
-
-void add_buffer_entry(FileEntry *fe) {
-  GtkWidget *menu, *menuitem;
-
-  if(fe == NULL)
-    return;
-
-  menu = buffers_menu->submenu;
-
-  if(menu == NULL) {
-    menu = gtk_menu_new();
-    gtk_menu_item_set_submenu(GTK_MENU_ITEM(buffers_menu), menu);
-  }
-
-  menuitem = gtk_menu_item_new_with_label(fe->file_name);
-
-  gtk_signal_connect(GTK_OBJECT(menuitem), "activate", GTK_SIGNAL_FUNC(select_buffer_cb), fe);
-
-  gtk_menu_append(GTK_MENU(menu), menuitem);
-
-  gtk_widget_show(menuitem);
-}
-
-void remake_buffer_menu() {
-  /* uh-huh... how to dynamically remove menuitems? should I directly manipulate the
-     gtkmenu's children GList?
-     for now, we will just remake the whole menu... :(
-     fe must first be removed from buffer_list for this to work!!!
-     */
-  GtkWidget *menu;
-
-  menu = buffers_menu->submenu;
-
-  if(menu) {
-#if 0
-    gtk_menu_detach(GTK_MENU(menu));
-    gtk_widget_destroy(menu);
-#endif
-  }
-
-  if(g_slist_length(buffer_list) > 1) {
-    menu = gtk_menu_new();
-    gtk_menu_item_set_submenu(buffers_menu, menu);
-    
-    g_slist_foreach(buffer_list, (GFunc)add_buffer_entry, NULL);
-  }
-}
-
-GtkWidget *create_group_type_menu() {
-  GtkWidget *menu;
-  GtkWidget *menuitem;
-  GSList *group;
-  int i;
-
-  menu = gtk_menu_new ();
-  group = NULL;
-  
-  for(i = 0; i < 3; i++) {
-    menuitem = gtk_radio_menu_item_new_with_label (group, group_type_label[i]);
-    gtk_signal_connect(GTK_OBJECT(menuitem), "activate", GTK_SIGNAL_FUNC(set_group_type_cb), &group_type[i]);
-    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM(menuitem));
-    gtk_menu_append (GTK_MENU (menu), menuitem);
-    gtk_widget_show (menuitem);
-  }
-
-  return menu;
-}
-
-GtkWidget *create_button(gchar *type, gchar *text) {
+GtkWidget *create_button(GtkWidget *window, gchar *type, gchar *text) {
   GtkWidget *button, *pixmap, *label, *hbox;
 
   hbox = gtk_hbox_new(FALSE, 2);
 
   label = gtk_label_new(text);
-  pixmap = gnome_stock_pixmap_widget(app, type);
+  pixmap = gnome_stock_pixmap_widget(window, type);
 
   gtk_box_pack_start(GTK_BOX(hbox), pixmap, FALSE, FALSE, 1);
   gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 1);
@@ -247,6 +106,7 @@ GtkWidget *create_button(gchar *type, gchar *text) {
   return button;
 }
 
+#if 0
 void create_toolbar() {
   tbar = gtk_toolbar_new(GTK_ORIENTATION_HORIZONTAL, GTK_TOOLBAR_BOTH);
   gtk_container_border_width(GTK_CONTAINER(tbar), 2);
@@ -269,14 +129,15 @@ void create_toolbar() {
 
   gtk_toolbar_append_space(GTK_TOOLBAR(tbar));
 }
+#endif
 
-void create_menus() {
+GList *create_mdi_menus(GnomeMDI *mdi) {
+  GList *menu_list;
   GtkWidget *w, *menu;
+  GtkAcceleratorTable *accel = NULL;
 
-  accel = gtk_accelerator_table_new();
-  mbar = gtk_menu_bar_new();
-  gtk_widget_show(mbar);
-  
+  menu_list = NULL;
+
   menu = gtk_menu_new();
 
   w = gnome_stock_menu_item(GNOME_STOCK_MENU_NEW, _("Open..."));
@@ -317,6 +178,16 @@ void create_menus() {
   gtk_widget_show(w);
   gtk_menu_append(GTK_MENU(menu), w);
 
+  w = gnome_stock_menu_item(GNOME_STOCK_MENU_PREF, _("Preferences"));
+  gtk_widget_show(w);
+  gtk_signal_connect(GTK_OBJECT(w), "activate",
+		     GTK_SIGNAL_FUNC(prefs_cb), NULL);
+  gtk_menu_append(GTK_MENU(menu), w);
+
+  w = gtk_menu_item_new();
+  gtk_widget_show(w);
+  gtk_menu_append(GTK_MENU(menu), w);
+
   w = gnome_stock_menu_item(GNOME_STOCK_MENU_QUIT, _("Quit"));
   gtk_widget_show(w);
   gtk_widget_install_accelerator(w, accel, "activate",
@@ -328,80 +199,29 @@ void create_menus() {
   w = gtk_menu_item_new_with_label(_("File"));
   gtk_widget_show(w);
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
-  gtk_menu_bar_append(GTK_MENU_BAR(mbar), w);
+  menu_list = g_list_append(menu_list, w);
 
-  /* the Edit menu */
+  /* the View menu */
   menu = gtk_menu_new();
 
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_SEARCH, _("Find..."));
+  w = gtk_menu_item_new_with_label(_("Add"));
   gtk_widget_show(w);
-  gtk_widget_install_accelerator(w, accel, "activate",
-				 'F', GDK_CONTROL_MASK);
   gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(find_cb), NULL);
+		     GTK_SIGNAL_FUNC(add_view_cb), NULL);
   gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK,_("Replace..."));
+  
+  w = gtk_menu_item_new_with_label(_("Remove"));
   gtk_widget_show(w);
-  gtk_widget_install_accelerator(w, accel, "activate",
-				 'R', GDK_CONTROL_MASK);
   gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(replace_cb), NULL);
+		     GTK_SIGNAL_FUNC(remove_view_cb), NULL);
   gtk_menu_append(GTK_MENU(menu), w);
 
-  w = gtk_menu_item_new();
-  gtk_widget_show(w);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK,_("Goto byte"));
-  gtk_widget_show(w);
-  gtk_widget_install_accelerator(w, accel, "activate",
-				 'G', GDK_CONTROL_MASK);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(jump_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_menu_item_new_with_label(_("Edit"));
+  w = gtk_menu_item_new_with_label(_("View"));
   gtk_widget_show(w);
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
-  gtk_menu_bar_append(GTK_MENU_BAR(mbar), w);
+  gtk_object_set_data(GTK_OBJECT(w), "document_menu", (gpointer)TRUE);
 
-  /* the Options menu */
-  menu = gtk_menu_new();
-
-  w = gtk_menu_item_new_with_label(_("Group Data As"));
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), create_group_type_menu());
-  group_menu = GTK_MENU_ITEM(w);
-  gtk_widget_show(w);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_menu_item_new_with_label(_("Select Font..."));
-  gtk_widget_show(w);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(select_font_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_menu_item_new();
-  gtk_widget_show(w);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_check_menu_item_new_with_label(_("Save Configuration On Exit"));
-  gtk_widget_show(w);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(save_on_exit_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);  
-  save_config_item = GTK_CHECK_MENU_ITEM(w);
-
-  w = gtk_menu_item_new_with_label(_("Options"));
-  gtk_widget_show(w);
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
-  gtk_menu_bar_append(GTK_MENU_BAR(mbar), w);
-
-  /* the Buffers menu */
-  w = gtk_menu_item_new_with_label(_("Buffers"));
-  buffers_menu = GTK_MENU_ITEM(w);
-  gtk_widget_show(w);
-  gtk_menu_bar_append(GTK_MENU_BAR(mbar), w);
+  menu_list = g_list_append(menu_list, w);
 
   /* the Help menu */
   menu = gtk_menu_new();
@@ -428,9 +248,11 @@ void create_menus() {
   gtk_widget_show(w);
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
   gtk_menu_item_right_justify(GTK_MENU_ITEM(w));
-  gtk_menu_bar_append(GTK_MENU_BAR(mbar), w);
+  gtk_object_set_data(GTK_OBJECT(w), "document_list", (gpointer)TRUE);
 
+  menu_list = g_list_append(menu_list, w);
 
+  return menu_list;
 }
 
 void create_find_dialog(GtkWidget **dialog) {
@@ -439,6 +261,8 @@ void create_find_dialog(GtkWidget **dialog) {
   GtkWidget *f_next, *f_prev, *f_close, *f_string;
 
   window = gtk_dialog_new();
+  gtk_signal_connect(GTK_OBJECT(window), "delete_event",
+		     GTK_SIGNAL_FUNC(delete_event_cb), dialog);
 
   gtk_window_set_title(GTK_WINDOW(window), _("Find Data"));
 
@@ -448,14 +272,14 @@ void create_find_dialog(GtkWidget **dialog) {
   gtk_widget_show(f_string);
 
   /*   f_next = gtk_button_new_with_label(_("Find Next")); */
-  f_next = create_button(GNOME_STOCK_PIXMAP_FORWARD, _("Find Next"));
+  f_next = create_button(window, GNOME_STOCK_PIXMAP_FORWARD, _("Find Next"));
   gtk_signal_connect (GTK_OBJECT (f_next),
 		      "clicked", GTK_SIGNAL_FUNC(find_next_cb),
 		      f_string);
   gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->action_area), f_next,
 		     TRUE, TRUE, 0);
   gtk_widget_show(f_next);
-  f_prev = create_button(GNOME_STOCK_PIXMAP_BACK, _("Find Previous"));
+  f_prev = create_button(window, GNOME_STOCK_PIXMAP_BACK, _("Find Previous"));
   gtk_signal_connect (GTK_OBJECT (f_prev),
 		      "clicked", GTK_SIGNAL_FUNC(find_prev_cb),
 		      f_string);
@@ -485,6 +309,8 @@ void create_replace_dialog(GtkWidget **dialog) {
   static ReplaceCBData cbdata;
 
   window = gtk_dialog_new();
+  gtk_signal_connect(GTK_OBJECT(window), "delete_event",
+		     GTK_SIGNAL_FUNC(delete_event_cb), dialog);
 
   gtk_window_set_title(GTK_WINDOW(window), _("Find & Replace Data"));
 
@@ -501,7 +327,7 @@ void create_replace_dialog(GtkWidget **dialog) {
   cbdata.find = GTK_ENTRY(f_string);
   cbdata.replace = GTK_ENTRY(r_string);
 
-  next = create_button(GNOME_STOCK_PIXMAP_FORWARD, _("Find next"));
+  next = create_button(window, GNOME_STOCK_PIXMAP_FORWARD, _("Find next"));
   gtk_signal_connect (GTK_OBJECT (next),
 		      "clicked", GTK_SIGNAL_FUNC(find_next_cb),
 		      f_string);
@@ -543,6 +369,8 @@ void create_jump_dialog(GtkWidget **dialog) {
   GtkWidget *ok, *cancel;
 
   window = gtk_dialog_new();
+  gtk_signal_connect(GTK_OBJECT(window), "delete_event",
+		     GTK_SIGNAL_FUNC(delete_event_cb), dialog);
 
   gtk_window_set_title(GTK_WINDOW(window), _("Jump To Byte"));
 
@@ -572,64 +400,107 @@ void create_jump_dialog(GtkWidget **dialog) {
   *dialog = window;
 }
 
-void setup_ui() {
-  GtkWidget *w;
+static void set_prefs(PropertyUI *pui) {
+  int i;
 
-  app = gnome_app_new("ghex", "GNOME hex editor");
-  gtk_window_set_wmclass (GTK_WINDOW (app), "ghex", "ghex");
-  gtk_widget_realize(app);
+  for(i = 0; i < 3; i++)
+    if(def_group_type == group_type[i]) {
+      gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(pui->group_type[i]), TRUE);
+      break;
+    }
+  
+  for(i = 0; i < 3; i++)
+    if(mdi_mode == mdi_type[i]) {
+      gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(pui->mdi_type[i]), TRUE);
+      break;
+    }
+}
 
-  gtk_signal_connect(GTK_OBJECT(app), "delete_event", GTK_SIGNAL_FUNC(quit_app_cb), NULL);
-  gtk_window_set_policy(GTK_WINDOW(app), TRUE, TRUE, FALSE);
+void create_prefs_dialog(PropertyUI **prop_data) {
+  GtkWidget *vbox, *label, *frame, *box;
+  GSList *group;
+  PropertyUI *pui;
+  
+  int i;
 
-  if (restarted) {
-    gtk_widget_set_uposition (app, os_x, os_y);
-    gtk_widget_set_usize     (app, os_w, os_h);
+  pui = g_malloc(sizeof(PropertyUI));
+
+  pui->pbox = GNOME_PROPERTY_BOX(gnome_property_box_new());
+
+  gtk_signal_connect(GTK_OBJECT(pui->pbox), "delete_event",
+		     GTK_SIGNAL_FUNC(prop_delete_event_cb), prop_data);
+  gtk_signal_connect(GTK_OBJECT(pui->pbox), "apply",
+		     GTK_SIGNAL_FUNC(apply_changes_cb), pui);
+
+  vbox = gtk_vbox_new(FALSE, 0);
+  gtk_widget_show(vbox);
+
+  frame = gtk_frame_new(_("Font"));
+  gtk_container_border_width(GTK_CONTAINER(frame), 4);
+  gtk_widget_show(frame);
+  pui->font_button = GTK_BUTTON(gtk_button_new_with_label(def_font_name));
+  gtk_signal_connect(GTK_OBJECT(pui->font_button), "clicked",
+		     select_font_cb, pui->pbox);
+  gtk_widget_show(GTK_WIDGET(pui->font_button));
+  gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(pui->font_button));
+  gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 2);
+
+  frame = gtk_frame_new(_("Default Group Type"));
+  gtk_container_border_width(GTK_CONTAINER(frame), 4);
+  gtk_widget_show(frame);
+
+  box = gtk_vbox_new(FALSE, 0);
+  gtk_widget_show(box);
+  group = NULL;
+  for(i = 0; i < 3; i++) {
+    pui->group_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, group_type_label[i]));
+    gtk_widget_show(GTK_WIDGET(pui->group_type[i]));
+    gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->group_type[i]), TRUE, TRUE, 2);
+    group = gtk_radio_button_group (pui->group_type[i]);
+  }
+  gtk_container_add(GTK_CONTAINER(frame), box);
+  gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 2);
+  
+  label = gtk_label_new(_("Display"));
+  gtk_widget_show(label);
+  gnome_property_box_append_page(pui->pbox, vbox, label);
+
+  vbox = gtk_vbox_new(FALSE, 0);
+  gtk_widget_show(vbox);
+
+  frame = gtk_frame_new(_("MDI Mode"));
+  gtk_container_border_width(GTK_CONTAINER(frame), 4);
+  gtk_widget_show(frame);
+
+  box = gtk_vbox_new(FALSE, 0);
+  gtk_widget_show(box);
+  group = NULL;
+  for(i = 0; i < 3; i++) {
+    pui->mdi_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, mdi_type_label[i]));
+    gtk_widget_show(GTK_WIDGET(pui->mdi_type[i]));
+    gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->mdi_type[i]), TRUE, TRUE, 2);
+    group = gtk_radio_button_group (pui->mdi_type[i]);
   }
 
-  create_menus();
-  create_toolbar();
-  table = gtk_table_new(2, 3, FALSE);
-  gtk_widget_show(table);
+  gtk_container_add(GTK_CONTAINER(frame), box);
+  gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 2);  
 
-  w = gtk_frame_new(NULL);
-  gtk_frame_set_shadow_type (GTK_FRAME(w), GTK_SHADOW_IN);
-  gtk_widget_show(w);
-  name_label = gtk_label_new(NO_BUFFER_LABEL);
-  gtk_label_set_justify(GTK_LABEL(name_label), GTK_JUSTIFY_RIGHT);
-  gtk_container_add(GTK_CONTAINER(w), name_label);
-  gtk_widget_show(name_label); 
-  gtk_table_attach(GTK_TABLE(table), w, 0, 1, 1, 2,
-		   GTK_FILL|GTK_SHRINK|GTK_EXPAND,
-		   0, 0, 0); 
+  label = gtk_label_new(_("MDI"));
+  gtk_widget_show(label);
+  gnome_property_box_append_page(pui->pbox, vbox, label);
 
-  w = gtk_frame_new(NULL);
-  gtk_frame_set_shadow_type (GTK_FRAME(w), GTK_SHADOW_IN);
-  gtk_widget_show(w);
-  offset_label = gtk_label_new("");
-  gtk_label_set_justify(GTK_LABEL(offset_label), GTK_JUSTIFY_RIGHT);
-  gtk_container_add(GTK_CONTAINER(w), offset_label);
-  gtk_widget_show(offset_label);
-  gtk_table_attach(GTK_TABLE(table), w, 1, 2, 1, 2,
-		   GTK_FILL|GTK_SHRINK|GTK_EXPAND,
-		   0, 0, 0); 
+  set_prefs(pui);
 
-  w = gtk_frame_new(NULL);
-  gtk_frame_set_shadow_type (GTK_FRAME(w), GTK_SHADOW_IN);
-  gtk_widget_show(w);
-  data_label = gtk_label_new("");
-  gtk_label_set_justify(GTK_LABEL(data_label), GTK_JUSTIFY_RIGHT);
-  gtk_container_add(GTK_CONTAINER(w), data_label);
-  gtk_widget_show(data_label);
-  gtk_table_attach(GTK_TABLE(table), w, 2, 3, 1, 2,
-		   GTK_FILL|GTK_SHRINK|GTK_EXPAND,
-		   0, 0, 0); 
+  /* signals have to be connected after set_prefs(), otherwise
+     a gnome_property_box_changed() is called */
 
-  gnome_app_set_menus(GNOME_APP(app), GTK_MENU_BAR(mbar));
-  gnome_app_set_toolbar(GNOME_APP(app), GTK_TOOLBAR(tbar));
-  gnome_app_set_contents(GNOME_APP(app), table);
+  for(i = 0; i < 3; i++) {
+    gtk_signal_connect(GTK_OBJECT(pui->mdi_type[i]), "clicked",
+		       properties_modified_cb, pui->pbox);
+    gtk_signal_connect(GTK_OBJECT(pui->group_type[i]), "clicked",
+		       properties_modified_cb, pui->pbox);
+  } 
 
-  gtk_window_add_accelerator_table(GTK_WINDOW(app), accel);
-
-  gtk_widget_show(app);
+  *prop_data = pui;
 }
+

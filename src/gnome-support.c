@@ -71,30 +71,7 @@ int save_state (GnomeClient        *client,
 
   session_id = gnome_client_get_id (client);
 
-  /* The only state that gnome-hello has is the window geometry. 
-     Get it. */
-  gdk_window_get_geometry (app->window, &x, &y, &w, &h, NULL);
-
-  /* Save the state using gnome-config stuff. */
-  sess = g_copy_strings ("/ghex/Saved-Session-",
-                         session_id,
-                         NULL);
-
-  buf = g_copy_strings ( sess, "/x", NULL);
-  gnome_config_set_int (buf, x);
-  g_free(buf);
-  buf = g_copy_strings ( sess, "/y", NULL);
-  gnome_config_set_int (buf, y);
-  g_free(buf);
-  buf = g_copy_strings ( sess, "/w", NULL);
-  gnome_config_set_int (buf, w);
-  g_free(buf);
-  buf = g_copy_strings ( sess, "/h", NULL);
-  gnome_config_set_int (buf, h);
-  g_free(buf);
-
-  gnome_config_sync();
-  g_free(sess);
+  /* unfortunately we dont have much to save now... */
 
   /* Here is the real SM code. We set the argv to the parameters needed
      to restart/discard the session that we've just saved and call

@@ -21,11 +21,17 @@ void close_cb();
 void save_cb();
 void save_as_cb();
 void revert_cb();
+void properties_modified_cb();
 void set_group_type_cb();
 void cancel_cb();
+gint delete_event_cb();
+gint prop_delete_event_cb();
 void select_font_cb();
-void save_on_exit_cb();
+void apply_changes_cb();
+void add_view_cb();
+void remove_view_cb();
 
+void prefs_cb();
 void find_cb();
 void replace_cb();
 void jump_cb();

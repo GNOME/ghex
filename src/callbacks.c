@@ -4,6 +4,7 @@
  */
 #include <libgnome/gnome-help.h> 
 #include <string.h>
+#include "hex-document.h"
 #include "ghex.h"
 #include "callbacks.h"
 
@@ -24,6 +25,11 @@ void about_cb (GtkWidget *widget) {
   gtk_widget_show (about);
 }
 
+void quit_app_cb (GtkWidget *widget) {
+  gtk_object_destroy(GTK_OBJECT(mdi));
+  gtk_main_quit();
+}
+
 void show_help_cb (GtkWidget *widget) {
   static GnomeHelpMenuEntry entry = {
     "ghex",
@@ -34,53 +40,31 @@ void show_help_cb (GtkWidget *widget) {
 }
 
 void set_group_type_cb(GtkWidget *w, guint *type) {
-  if(active_fe)
-    gtk_hex_set_group_type(GTK_HEX(active_fe->hexedit), *type);
+  if( GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
+    gtk_hex_set_group_type(GTK_HEX(mdi->active_view), *type);
 }
 
-void select_buffer_cb(GtkWidget *w, FileEntry *fe) {
-  if(active_fe != fe) {
-    remove_view(active_fe);
-    active_fe = fe;
-    add_view(fe);
-  }
-} 
-
-void quit_app_cb(GtkWidget *w, void *data) {  
-  if(active_fe)
-    remove_view(active_fe);
-
-  g_slist_foreach(buffer_list, (GFunc)close_file, NULL);
-
-  if(save_config_on_exit)
-    save_configuration();
-
-  gtk_main_quit();
+void properties_modified_cb(GtkWidget *w, GnomePropertyBox *pbox) {
+  gnome_property_box_changed(pbox);
 }
 
 void save_cb(GtkWidget *w) {
-  if(active_fe)
-    if(write_file(active_fe))
+  if(mdi->active_doc)
+    if(hex_document_write(HEX_DOCUMENT(mdi->active_doc)))
       report_error(_("Error saving file!")); 
 }
 
 void revert_cb(GtkWidget *w) {
-  if(active_fe) {
-    read_file(active_fe);
-    gtk_signal_emit_by_name(GTK_OBJECT(active_fe->hexedit), "data_changed",
-			    0, active_fe->len - 1);
-  }
+  if(mdi->active_doc)
+    hex_document_read(HEX_DOCUMENT(mdi->active_doc));
 }
 
 void open_selected_file(GtkWidget *w) {
-  FileEntry *new_fe, *fe;
+  HexDocument *new_doc;
 
-  fe = active_fe;
-  if((new_fe = open_file(gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel)))) != NULL) {
-    active_fe = new_fe;
-    if(fe)
-      remove_view(fe);
-    add_view(new_fe);
+  if((new_doc = hex_document_new((gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel))))) != NULL) {
+    gnome_mdi_add_document(mdi, GNOME_DOCUMENT(new_doc));
+    gnome_mdi_add_view(mdi, GNOME_DOCUMENT(new_doc));
   }
   else
     report_error(_("Can not open file!"));
@@ -90,29 +74,35 @@ void open_selected_file(GtkWidget *w) {
 }
 
 void save_selected_file(GtkWidget *w) {
+  HexDocument *doc;
   gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
   int i;
 
-  if((active_fe->file = fopen(filename, "w")) != NULL) {
-    if(fwrite(active_fe->contents, active_fe->len, 1, active_fe->file) == 1) {
-      if(active_fe->file_name)
-	free(active_fe->file_name);
-      active_fe->file_name = strdup(filename);
+  if(mdi->active_doc == NULL)
+    return;
 
-      for(i = strlen(active_fe->file_name);
-	  (i >= 0) && (active_fe->file_name[i] != '/');
+  doc = HEX_DOCUMENT(mdi->active_doc);
+
+  if((doc->file = fopen(filename, "w")) != NULL) {
+    if(fwrite(doc->buffer, doc->buffer_size, 1, doc->file) == 1) {
+      if(doc->file_name)
+	free(doc->file_name);
+      doc->file_name = strdup(filename);
+
+      for(i = strlen(doc->file_name);
+	  (i >= 0) && (doc->file_name[i] != '/');
 	  i--)
 	;
-      if(active_fe->file_name[i] == '/')
-	active_fe->path_end = &active_fe->file_name[i+1];
+      if(doc->file_name[i] == '/')
+	doc->path_end = &doc->file_name[i+1];
       else
-	active_fe->path_end = active_fe->file_name;
+	doc->path_end = doc->file_name;
 
-      remake_buffer_menu();
+      gnome_document_set_title(GNOME_DOCUMENT(doc), doc->path_end);
     }
     else
       report_error(_("Error saving file!"));
-    fclose(active_fe->file);
+    fclose(doc->file);
   }
   else
     report_error(_("Can't open file for writing!"));
@@ -124,6 +114,21 @@ void save_selected_file(GtkWidget *w) {
 void cancel_cb(GtkWidget *w, GtkWidget **me) {
   gtk_widget_destroy(*me);
   *me = NULL;
+}
+
+gint delete_event_cb(GtkWidget *w, gpointer who_cares, GtkWidget **me) {
+  gtk_widget_destroy(*me);
+  *me = NULL;
+
+  return TRUE;  /* stop default delete_event handlers */
+}
+
+gint prop_delete_event_cb(GtkWidget *w, gpointer who_cares, PropertyUI **data) {
+  gtk_widget_destroy(GTK_WIDGET((*data)->pbox));
+  g_free(*data);
+  *data = NULL;
+
+  return TRUE;  /* stop default delete_event handlers */
 }
 
 void open_cb(GtkWidget *w) {
@@ -142,7 +147,7 @@ void open_cb(GtkWidget *w) {
 }
 
 void save_as_cb(GtkWidget *w) {
-  if(active_fe == NULL)
+  if(mdi->active_doc == NULL)
     return;
 
   if(file_sel == NULL)
@@ -160,20 +165,10 @@ void save_as_cb(GtkWidget *w) {
 }
 
 void close_cb(GtkWidget *w) {
-  GSList *first;
-
-  if(active_fe == NULL)
+  if(mdi->active_doc == NULL)
     return;
 
-  remove_view(active_fe);
-  buffer_list = g_slist_remove(buffer_list, active_fe);
-  close_file(active_fe);
-  if((first = g_slist_nth(buffer_list, 1)) != NULL) {
-    active_fe = (FileEntry *)first->data;
-    add_view(active_fe);
-  }
-  else
-    active_fe = NULL;
+  gnome_mdi_remove_document(mdi, mdi->active_doc);
 }
 
 void find_cb(GtkWidget *w) {
@@ -201,6 +196,15 @@ void jump_cb(GtkWidget *w) {
   gtk_window_position (GTK_WINDOW(jump_dialog), GTK_WIN_POS_MOUSE);
 
   gtk_widget_show(jump_dialog);
+}
+
+void prefs_cb(GtkWidget *w) {
+  if(prefs_ui == NULL)
+    create_prefs_dialog(&prefs_ui);
+
+  gtk_window_position (GTK_WINDOW(prefs_ui->pbox), GTK_WIN_POS_MOUSE);
+
+  gtk_widget_show(GTK_WIDGET(prefs_ui->pbox));
 }
 
 static gint get_search_string(gchar *str, gchar *buf) {
@@ -264,14 +268,14 @@ void find_next_cb(GtkWidget *w, GtkEntry *data) {
     return;
   }
 
-  if(active_fe == NULL) {
+  if(mdi->active_doc == NULL) {
     report_error(_("There is no active buffer to search!"));
     return;
   }
 
-  gh = GTK_HEX(active_fe->hexedit);
+  gh = GTK_HEX(mdi->active_view);
 
-  if(find_string_forward(active_fe, gh->cursor_pos+1, str, str_len, &offset) == 0)
+  if(find_string_forward(HEX_DOCUMENT(mdi->active_doc), gh->cursor_pos+1, str, str_len, &offset) == 0)
     gtk_hex_set_cursor(gh, offset);
   else
     show_message(_("End Of File reached"));
@@ -287,14 +291,14 @@ void find_prev_cb(GtkWidget *w, GtkEntry *data) {
     return;
   }
 
-  if(active_fe == NULL) {
+  if(mdi->active_doc == NULL) {
     report_error(_("There is no active buffer to search!"));
     return;
   }
 
-  gh = GTK_HEX(active_fe->hexedit);
+  gh = GTK_HEX(mdi->active_view);
 
-  if(find_string_backward(active_fe, gh->cursor_pos-1, str, str_len, &offset) == 0)
+  if(find_string_backward(HEX_DOCUMENT(mdi->active_doc), gh->cursor_pos-1, str, str_len, &offset) == 0)
     gtk_hex_set_cursor(gh, offset);
   else
     show_message(_("Beginning Of File reached"));
@@ -304,7 +308,7 @@ void goto_byte_cb(GtkWidget *w, GtkEntry *data) {
   guint byte;
   gchar *byte_str = gtk_entry_get_text(data), *endptr;
   
-  if(active_fe == NULL) {
+  if(mdi->active_doc == NULL) {
     report_error(_("There is no active buffer to move the cursor in!"));
     return;
   }
@@ -321,25 +325,27 @@ void goto_byte_cb(GtkWidget *w, GtkEntry *data) {
     return;
   }
 
-  if(byte >= active_fe->len) {
+  if(byte >= HEX_DOCUMENT(mdi->active_doc)->buffer_size) {
     report_error(_("Can not position cursor beyond the End Of File!"));
     return;
   }
 
-  gtk_hex_set_cursor(GTK_HEX(active_fe->hexedit), byte);
+  gtk_hex_set_cursor(GTK_HEX(mdi->active_view), byte);
 }
 
 void replace_one_cb(GtkWidget *w, ReplaceCBData *data) {
   gchar find_str[256], rep_str[256];
   guint find_len, rep_len, offset;
   GtkHex *gh;
+  HexDocument *doc;
 
-  if(active_fe == NULL) {
+  if(mdi->active_doc == NULL) {
     report_error(_("There is no active buffer to replace data in!"));
     return;
   }
 
-  gh = GTK_HEX(active_fe->hexedit);
+  gh = GTK_HEX(mdi->active_view);
+  doc = HEX_DOCUMENT(mdi->active_doc);
 
   if( ((find_len = get_search_string(gtk_entry_get_text(data->find), find_str)) == 0) ||
       ((rep_len = get_search_string(gtk_entry_get_text(data->replace), rep_str)) == 0)) {
@@ -352,14 +358,14 @@ void replace_one_cb(GtkWidget *w, ReplaceCBData *data) {
     return;
   }
 
-  if(find_len > gh->buffer_size - gh->cursor_pos)
+  if(find_len > doc->buffer_size - gh->cursor_pos)
     return;
 
-  if(compare_data(&gh->buffer[gh->cursor_pos], find_str, find_len) == 0)
-    gtk_hex_set_data(gh, gh->cursor_pos, rep_len, rep_str);
+  if(compare_data(&doc->buffer[gh->cursor_pos], find_str, find_len) == 0)
+    hex_document_set_data(doc, gh->cursor_pos, rep_len, rep_str);
 
-  if(find_string_forward(active_fe, gh->cursor_pos+1, find_str, find_len, &offset) == 0)
-    gtk_hex_set_cursor(GTK_HEX(active_fe->hexedit), offset);
+  if(find_string_forward(doc, gh->cursor_pos+1, find_str, find_len, &offset) == 0)
+    gtk_hex_set_cursor(gh, offset);
   else
     show_message(_("End Of File reached!"));
 }
@@ -368,13 +374,15 @@ void replace_all_cb(GtkWidget *w, ReplaceCBData *data) {
   gchar find_str[256], rep_str[256];
   guint find_len, rep_len, offset, count;
   GtkHex *gh;
+  HexDocument *doc;
 
-  if(active_fe == NULL) {
+  if(mdi->active_doc == NULL) {
     report_error(_("There is no active buffer to replace data in!"));
     return;
   }
 
-  gh = GTK_HEX(active_fe->hexedit);
+  gh = GTK_HEX(mdi->active_view);
+  doc = HEX_DOCUMENT(mdi->active_doc);
 
   if( ((find_len = get_search_string(gtk_entry_get_text(data->find), find_str)) == 0) ||
       ((rep_len = get_search_string(gtk_entry_get_text(data->replace), rep_str)) == 0)) {
@@ -387,45 +395,87 @@ void replace_all_cb(GtkWidget *w, ReplaceCBData *data) {
     return;
   }
 
-  if(find_len > gh->buffer_size - gh->cursor_pos)
+  if(find_len > doc->buffer_size - gh->cursor_pos)
     return;
 
   count = 0;
-  while(find_string_forward(active_fe, gh->cursor_pos, find_str, find_len, &offset) == 0) {
-    gtk_hex_set_data(gh, offset, rep_len, rep_str);
+  while(find_string_forward(doc, gh->cursor_pos, find_str, find_len, &offset) == 0) {
+    hex_document_set_data(doc, offset, rep_len, rep_str);
     count++;
   }
 
-  gtk_hex_set_cursor(GTK_HEX(active_fe->hexedit), offset);  
+  gtk_hex_set_cursor(gh, offset);  
 
   sprintf(find_str, _("Replaced %d occurencies."), count);
   show_message(find_str);
 }
 
-void select_font_cb(GtkWidget *w) {
+void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {
   gchar *font_desc;
-  GdkFont *new_font;
+  GList *doc, *view;
 
   if((font_desc = gnome_font_select()) != NULL) {
-    if((new_font = gdk_font_load(font_desc)) != NULL) {
-      if(active_fe)
-	gtk_hex_set_font(GTK_HEX(active_fe->hexedit), new_font);
-      if(def_font)
-        gdk_font_unref(def_font);
-      def_font = new_font;
-      strcpy(def_font_name, font_desc);
+    if(strcmp(font_desc, def_font_name) != 0) {
+      gnome_property_box_changed(pbox);
+      gtk_label_set(GTK_LABEL(GTK_BUTTON(w)->child), font_desc);
     }
-    else
-      report_error(_("Can not open desired font!"));
-    free(font_desc);
+    g_free(font_desc);
   }
 }
 
-void save_on_exit_cb(GtkWidget *w) {
-  if(GTK_CHECK_MENU_ITEM(w)->active)
-    save_config_on_exit = TRUE;
-  else
-    save_config_on_exit = FALSE;
+void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
+  int i;
+  GList *doc, *view;
+  GdkFont *new_font;
+
+  if ( page != -1 ) return; /* Only do something on global apply */
+
+  for(i = 0; i < 3; i++)
+    if(GTK_TOGGLE_BUTTON(pui->group_type[i])->active) {
+      def_group_type = group_type[i];
+      break;
+    }
+
+  for(i = 0; i < 3; i++)
+    if(GTK_TOGGLE_BUTTON(pui->mdi_type[i])->active) {
+      mdi_mode = mdi_type[i];
+      gnome_mdi_set_mode(mdi, mdi_mode);
+      break;
+    }
+
+  if(strcmp(GTK_LABEL(pui->font_button->child)->label, def_font_name) != 0) {
+    if((new_font = gdk_font_load(GTK_LABEL(pui->font_button->child)->label)) != NULL) {
+      doc = mdi->documents;
+
+      while(doc) {
+	view = GNOME_DOCUMENT(doc->data)->views;
+	while(view) {
+	  gtk_hex_set_font(GTK_HEX(view->data), new_font);
+	  view = g_list_next(view);
+	}
+	doc = g_list_next(doc);
+      }
+
+      if(def_font)
+        gdk_font_unref(def_font);
+
+      def_font = new_font;
+
+      free(def_font_name);
+
+      def_font_name = g_strdup(GTK_LABEL(pui->font_button->child)->label);
+    }
+    else
+      report_error(_("Can not open desired font!"));
+  }
+}
+      
+void add_view_cb(GtkWidget *w) {
+  if(mdi->active_doc)
+    gnome_mdi_add_view(mdi, mdi->active_doc);
 }
 
-      
+void remove_view_cb(GtkWidget *w) {
+  if(mdi->active_view)
+    gnome_mdi_remove_view(mdi, mdi->active_view);
+}

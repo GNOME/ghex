@@ -7,8 +7,11 @@ INCLUDES = -I$(includedir) 				\
 
 bin_PROGRAMS = ghex
 
-ghex_SOURCES = callbacks.c callbacks.h config.c ghex.h gnome-support.c \
-	gnome-support.h gtkhex.c gtkhex.h io.c main.c ui.c
+ghex_SOURCES = gnome-document.c gnome-document.h gnome-mdi.c \
+	gnome-mdi.h gnome-mdi-pouch.c gnome-mdi-pouch.h \
+	gnome-mdi-roo.c gnome-mdi-roo.h hex-document.c hex-document.h \
+	callbacks.c callbacks.h config.c ghex.h gnome-support.c \
+	gnome-support.h gtkhex.c gtkhex.h main.c ui.c
 ghex_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
 EXTRA_DIST = index.html ghex.desktop
@@ -22,3 +25,4 @@ install-data-local:
 
 sysdir   = $(datadir)/apps/Applications
 sys_DATA = ghex.desktop
+

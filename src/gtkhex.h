@@ -1,5 +1,5 @@
 /*
- * gtkhex.h - definition of a GtkHex widget
+ * gtkhex.h - definition of a GtkHex widget, modified for use with GnomeMDI
  * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
 
@@ -14,6 +14,8 @@
 
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
+
+#include <hex-document.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -36,9 +38,12 @@ extern "C" {
   
 typedef struct _GtkHex GtkHex;
 typedef struct _GtkHexClass GtkHexClass;
+typedef struct _GtkHexChangeData GtkHexChangeData;
 
 struct _GtkHex {
   GtkFixed fixed;
+
+  HexDocument *document;
 
   GtkWidget *xdisp, *adisp, *scrollbar;
 
@@ -50,18 +55,17 @@ struct _GtkHex {
   gint active_view;
 
   guint char_width, char_height;
-  guint group_type;
   guint button;
 
-  gint lines, vis_lines, cpl, top_line;
-  gint cursor_pos, cursor_shown;
+  guint cursor_pos;
   gint lower_nibble;
 
-  gint xdisp_width, adisp_width;
+  guint group_type;
 
-  guchar *buffer;
-  /* the malloc()ed size of buffer */
-  guint buffer_size;
+  gint lines, vis_lines, cpl, top_line;
+  gint cursor_shown;
+
+  gint xdisp_width, adisp_width;
 
   /* buffer for storing formatted data for rendering.
      dynamically adjusts its size to the display size */
@@ -72,13 +76,15 @@ struct _GtkHexClass {
   GtkFixedClass parent_class;
 
   void (*cursor_moved)(GtkHex *);
-  void (*data_changed)(GtkHex *, guint, guint);
+  void (*data_changed)(GtkHex *, gpointer);
 };
 
 void gtk_hex_init(GtkHex *);
 guint gtk_hex_get_type(void);
 
-GtkWidget *gtk_hex_new(void);
+GtkWidget *gtk_hex_new(HexDocument *);
+
+void gtk_hex_data_changed(GtkHex *, gint, gint);
 
 void gtk_hex_set_cursor(GtkHex *, gint);
 void gtk_hex_set_cursor_xy(GtkHex *, gint, gint);
@@ -87,10 +93,7 @@ void gtk_hex_set_nibble(GtkHex *, gint);
 gint gtk_hex_get_cursor(GtkHex *);
 guchar gtk_hex_get_byte(GtkHex *, guint);
 
-void gtk_hex_set_byte(GtkHex *, guchar, guint);
 void gtk_hex_set_group_type(GtkHex *, guint);
-void gtk_hex_set_data(GtkHex *, guint, guint, guchar *);
-void gtk_hex_set_buffer(GtkHex *, guchar *, guint);
 
 void gtk_hex_set_font(GtkHex *, GdkFont *);
 

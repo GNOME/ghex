@@ -1,9 +1,11 @@
 /*
- * gtkhex.c - a GtkHex widget
+ * gtkhex.c - a GtkHex widget, modified for use with GnomeMDI
  * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
 
 #include <gdk/gdkkeysyms.h>
+
+#include <hex-document.h>
 
 #include "gtkhex.h"
 
@@ -18,9 +20,9 @@
 
 #define is_printable(c) (((c>=0x20) && (c<=0xFF))?1:0)
 
-#define DEBUG YES!
+#define DEBUG
 
-typedef void (*DataChangedSignal)(GtkObject *, guint, guint, gpointer);
+typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 
 enum {
   CURSOR_MOVED_SIGNAL,
@@ -39,7 +41,7 @@ static void gtk_hex_marshaller (GtkObject *object, GtkSignalFunc func,
   
   rfunc = (DataChangedSignal) func;
   
-  (* rfunc)(object, GTK_VALUE_INT (args[0]), GTK_VALUE_INT (args[1]), func_data);
+  (* rfunc)(object, GTK_VALUE_POINTER (args[0]), func_data);
 }
 
 /*
@@ -118,8 +120,8 @@ static void format_xbyte(GtkHex *gh, gint pos, gchar buf[2]) {
   /* actually does a sprintf(buf, "%x", gh->buffer[pos]) */
   guint low, high;
 
-  low = gh->buffer[pos] & 0x0F;
-  high = (gh->buffer[pos] & 0xF0) >> 4;
+  low = gh->document->buffer[pos] & 0x0F;
+  high = (gh->document->buffer[pos] & 0xF0) >> 4;
 
   buf[0] = ((high < 10)?(high + '0'):(high - 10 + 'A'));
   buf[1] = ((low < 10)?(low + '0'):(low - 10 + 'A'));
@@ -133,8 +135,8 @@ static gint format_xblock(GtkHex *gh, gchar *out, guint start, guint end) {
   int i, j, low, high;
 
   for(i = start + 1, j = 0; i <= end; i++) {
-    low = gh->buffer[i-1] & 0x0F;
-    high = (gh->buffer[i-1] & 0xF0) >> 4;
+    low = gh->document->buffer[i-1] & 0x0F;
+    high = (gh->document->buffer[i-1] & 0xF0) >> 4;
 
     out[j++] = ((high < 10)?(high + '0'):(high - 10 + 'A'));
     out[j++] = ((low < 10)?(low + '0'):(low - 10 + 'A'));
@@ -150,8 +152,8 @@ static gint format_ablock(GtkHex *gh, gchar *out, guint start, guint end) {
   int i, j;
 
   for(i = start, j = 0; i < end; i++, j++) {
-    if(is_printable(gh->buffer[i]))
-      out[j] = gh->buffer[i];
+    if(is_printable(gh->document->buffer[i]))
+      out[j] = gh->document->buffer[i];
     else
       out[j] = '.';
   }
@@ -165,6 +167,9 @@ static gint format_ablock(GtkHex *gh, gchar *out, guint start, guint end) {
  */
 static gint get_xcoords(GtkHex *gh, gint pos, gint *x, gint *y) {
   gint cx, cy, spaces;
+
+  if(gh->cpl == 0)
+    return FALSE;
 
   cy = pos / gh->cpl;
   cy -= gh->top_line;
@@ -186,6 +191,9 @@ static gint get_xcoords(GtkHex *gh, gint pos, gint *x, gint *y) {
 static gint get_acoords(GtkHex *gh, gint pos, gint *x, gint *y) {
   gint cx, cy;
 
+  if(gh->cpl == 0)
+    return FALSE;
+
   cy = pos / gh->cpl;
   cy -= gh->top_line;
   if(cy < 0)
@@ -206,6 +214,9 @@ static gint get_acoords(GtkHex *gh, gint pos, gint *x, gint *y) {
 static void render_ac(GtkHex *gh) {
   gint cx, cy;
 
+  if(!GTK_WIDGET_REALIZED(gh->xdisp))
+    return;
+
   if(gh->adisp_gc == NULL) {
     gh->adisp_gc = gdk_gc_new(gh->adisp->window);
     gdk_gc_set_exposures(gh->adisp_gc, TRUE);
@@ -222,6 +233,9 @@ static void render_ac(GtkHex *gh) {
 
 static void render_xc(GtkHex *gh) {
   gint cx, cy;
+
+  if(!GTK_WIDGET_REALIZED(gh->xdisp))
+    return;
 
   if(gh->xdisp_gc == NULL) {
     gh->xdisp_gc = gdk_gc_new(gh->xdisp->window);
@@ -264,6 +278,18 @@ static void render_byte(GtkHex *gh, gint pos) {
   gint cx, cy;
   gchar buf[2];
 
+  if(!GTK_WIDGET_REALIZED(gh))
+    return;
+
+  if(gh->xdisp_gc == NULL) {
+    gh->xdisp_gc = gdk_gc_new(gh->xdisp->window);
+    gdk_gc_set_exposures(gh->xdisp_gc, TRUE);
+  }
+  if(gh->adisp_gc == NULL) {
+    gh->adisp_gc = gdk_gc_new(gh->adisp->window);
+    gdk_gc_set_exposures(gh->adisp_gc, TRUE);
+  }
+
   get_xcoords(gh, pos, &cx, &cy);
   format_xbyte(gh, pos, buf);
 
@@ -291,7 +317,7 @@ static void render_byte(GtkHex *gh, gint pos) {
       gh->char_width, gh->char_height); */
 
   gdk_draw_text(gh->adisp->window, gh->disp_font, gh->adisp_gc,
-		cx, cy + gh->disp_font->ascent, &gh->buffer[pos], 1);
+		cx, cy + gh->disp_font->ascent, &gh->document->buffer[pos], 1);
 }
 
 
@@ -302,9 +328,19 @@ static void render_byte(GtkHex *gh, gint pos) {
  */
 static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
   GtkWidget *w = gh->xdisp;
-  gint i, cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
+  gint i, cursor_line;
   gint xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
   gint frm_len, tmp;
+
+  if( (!GTK_WIDGET_REALIZED(gh)) || (gh->cpl == 0) )
+    return;
+
+  if(gh->xdisp_gc == NULL) {
+    gh->xdisp_gc = gdk_gc_new(gh->xdisp->window);
+    gdk_gc_set_exposures(gh->xdisp_gc, TRUE);
+  }
+
+  cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 
   imax = MIN(imax, gh->vis_lines);
 
@@ -313,13 +349,13 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 			    (imax - imin + 1)*gh->char_height); */
 
   gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
-  gdk_draw_rectangle(gh->xdisp->window, gh->xdisp_gc, TRUE,
+  gdk_draw_rectangle(w->window, gh->xdisp_gc, TRUE,
 		     0, imin*gh->char_height, w->allocation.width,
 		     (imax - imin + 1)*gh->char_height);
   gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 
   frm_len = format_xblock(gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
-			  MIN((gh->top_line+imax+1)*gh->cpl, gh->buffer_size) );
+			  MIN((gh->top_line+imax+1)*gh->cpl, gh->document->buffer_size) );
 
   for(i = imin; i <= imax; i++) {
     tmp = (gint)frm_len - (gint)((i - imin)*xcpl);
@@ -338,7 +374,17 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
   GtkWidget *w = gh->adisp;
   gint i, tmp, frm_len;
-  guint cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
+  guint cx, cy, cursor_line;
+
+  if( (!GTK_WIDGET_REALIZED(gh)) || (gh->cpl == 0) )
+    return;
+
+  if(gh->adisp_gc == NULL) {
+    gh->adisp_gc = gdk_gc_new(gh->adisp->window);
+    gdk_gc_set_exposures(gh->adisp_gc, TRUE);
+  }
+
+  cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 
   imax = MIN(imax, gh->vis_lines);
 
@@ -352,7 +398,7 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
   gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 
   frm_len = format_ablock(gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
-			  MIN((gh->top_line+imax+1)*gh->cpl, gh->buffer_size) );
+			  MIN((gh->top_line+imax+1)*gh->cpl, gh->document->buffer_size) );
 
   for(i = imin; i <= imax; i++) {
     tmp = (gint)frm_len - (gint)((i - imin)*gh->cpl);
@@ -421,7 +467,7 @@ static void draw_shadow(GtkWidget *widget, GdkEventExpose *event) {
  * lines we can display according to the current size of the widget
  */
 static void recalc_displays(GtkHex *gh, guint width, guint height) {
-  gint total_width = width;
+  gint sep_width, total_width = width;
   gint total_cpl, xcpl;
   gint old_cpl = gh->cpl;
 
@@ -453,8 +499,8 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
       }
   } while(total_cpl > 0);
 
-  gh->lines = gh->buffer_size / gh->cpl;
-  if(gh->buffer_size % gh->cpl)
+  gh->lines = gh->document->buffer_size / gh->cpl;
+  if(gh->document->buffer_size % gh->cpl)
     gh->lines++;
 
   gh->vis_lines = (height - 2*GTK_CONTAINER(gh)->border_width - 2*SHADOW_WIDTH) / gh->char_height;
@@ -619,6 +665,7 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
  * mouse signal handlers (button 1 and motion) for both displays
  */
 static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
+  guint mx, my, cx, cy, x;
 
   if((event->type == GDK_BUTTON_PRESS) && (event->button == 1)) {
     if (!GTK_WIDGET_HAS_FOCUS (gh))
@@ -665,14 +712,15 @@ static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 /*
  * default data_changed signal handler
  */
-static void gtk_hex_data_changed(GtkHex *gh, guint start, guint end) {
+static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
+  HexChangeData *change_data = (HexChangeData *)data;
   gint start_line, end_line;
 
   if(gh->cpl == 0)
     return;
 
-  start_line = start/gh->cpl - gh->top_line;
-  end_line = end/gh->cpl - gh->top_line;
+  start_line = change_data->start/gh->cpl - gh->top_line;
+  end_line = change_data->end/gh->cpl - gh->top_line;
   start_line = MAX(start_line, 0);
   end_line = MIN(end_line, gh->vis_lines);
 
@@ -682,6 +730,10 @@ static void gtk_hex_data_changed(GtkHex *gh, guint start, guint end) {
 
 static void gtk_hex_destroy(GtkObject *o) {
   GtkHex *gh = GTK_HEX(o);
+
+#ifdef DEBUG
+  printf("GtkHex: destroying!\n");
+#endif
 
   if(gh->disp_buffer)
     free(gh->disp_buffer);
@@ -719,34 +771,34 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	break;
       default:
 	if((event->keyval >= '0')&&(event->keyval <= '9')) {
-	  gh->buffer[gh->cursor_pos] = (gh->buffer[gh->cursor_pos] &
+	  gh->document->buffer[gh->cursor_pos] = (gh->document->buffer[gh->cursor_pos] &
 					(0x0F << 4*gh->lower_nibble)) |
 	    ((event->keyval - '0') << ((gh->lower_nibble)?0:4));
 	  render_byte(gh, gh->cursor_pos);
 	  gh->lower_nibble = !gh->lower_nibble;
-	  if((!gh->lower_nibble) && (gh->cursor_pos < gh->buffer_size-1))
+	  if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
 	    gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-	  gtk_signal_emit_by_name(GTK_OBJECT(gh), "data_changed", old_cp, old_cp);
+	  gtk_hex_data_changed(gh, old_cp, old_cp);
 	}
 	if((event->keyval >= 'A')&&(event->keyval <= 'F')) {
-	  gh->buffer[gh->cursor_pos] = (gh->buffer[gh->cursor_pos] &
+	  gh->document->buffer[gh->cursor_pos] = (gh->document->buffer[gh->cursor_pos] &
 					(0x0F << 4*gh->lower_nibble)) | 
 	    ((event->keyval - 'A' + 10) << ((gh->lower_nibble)?0:4));
 	  render_byte(gh, gh->cursor_pos);
 	  gh->lower_nibble = !gh->lower_nibble;
-	  if((!gh->lower_nibble) && (gh->cursor_pos < gh->buffer_size-1))
+	  if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
 	    gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-	  gtk_signal_emit_by_name(GTK_OBJECT(gh), "data_changed", old_cp, old_cp);
+	  gtk_hex_data_changed(gh, old_cp, old_cp);
 	}
 	if((event->keyval >= 'a')&&(event->keyval <= 'f')) {
-	  gh->buffer[gh->cursor_pos] = (gh->buffer[gh->cursor_pos] &
+	  gh->document->buffer[gh->cursor_pos] = (gh->document->buffer[gh->cursor_pos] &
 					(0x0F << 4*gh->lower_nibble)) | 
 	    ((event->keyval - 'a' + 10) << ((gh->lower_nibble)?0:4));
 	  render_byte(gh, gh->cursor_pos);
 	  gh->lower_nibble = !gh->lower_nibble;
-	  if((!gh->lower_nibble) && (gh->cursor_pos < gh->buffer_size-1))
+	  if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
 	    gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-	  gtk_signal_emit_by_name(GTK_OBJECT(gh), "data_changed", old_cp, old_cp);
+	  gtk_hex_data_changed(gh, old_cp, old_cp);
 	}
 	break;      
       }
@@ -762,9 +814,11 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	break;
       default:
 	if(is_printable(event->keyval)) {
-	  gh->buffer[gh->cursor_pos] = event->keyval;
+	  gh->document->buffer[gh->cursor_pos] = event->keyval;
 	  render_byte(gh, gh->cursor_pos);
+	  old_cp = gh->cursor_pos;
 	  gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+	  gtk_hex_data_changed(gh, old_cp, old_cp);
 	}
 	break;
       }
@@ -796,16 +850,15 @@ static void gtk_hex_class_init(GtkHexClass *class) {
   gtk_object_class_add_signals (object_class, gtkhex_signals, LAST_SIGNAL);
 
   class->cursor_moved = NULL;
-  class->data_changed = gtk_hex_data_changed;
+  class->data_changed = gtk_hex_real_data_changed;
 
   GTK_WIDGET_CLASS(class)->key_press_event = gtk_hex_key_press;
   GTK_OBJECT_CLASS(class)->destroy = gtk_hex_destroy;
 }
 
 void gtk_hex_init(GtkHex *gh) {
-  gh->buffer_size = 0;
-  gh->buffer = NULL;
   gh->disp_buffer = NULL;
+  gh->document = NULL;
 
   gh->xdisp_width = gh->adisp_width = 200;
   gh->adisp_gc = gh->xdisp_gc = NULL;
@@ -884,7 +937,7 @@ void gtk_hex_set_nibble(GtkHex *gh, gint lower_nibble) {
 void gtk_hex_set_cursor(GtkHex *gh, gint index) {
   guint y;
 
-  if((index >= 0) && (index < gh->buffer_size)) {
+  if((index >= 0) && (index < gh->document->buffer_size)) {
     hide_cursor(gh);
 
     gh->cursor_pos = index;
@@ -913,7 +966,7 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
  */
 void gtk_hex_set_cursor_xy(GtkHex *gh, gint x, gint y) {
   gint cp = y*gh->cpl + x;
-  if((y >= 0) && (y < gh->lines) && (x >= 0) && (x < gh->cpl) && (cp < gh->buffer_size)) {
+  if((y >= 0) && (y < gh->lines) && (x >= 0) && (x < gh->cpl) && (cp < gh->document->buffer_size)) {
     hide_cursor(gh);
 
     gh->cursor_pos = cp;
@@ -944,31 +997,8 @@ gint gtk_hex_get_cursor(GtkHex *gh) {
  * returns value of the byte at position offset
  */
 guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
-  if((offset >= 0) && (offset < gh->buffer_size))
-    return gh->buffer[offset];
-  return 0;
-}
-
-/*
- * sets value of the byte at position offset to val
- */
-void gtk_hex_set_byte(GtkHex *gh, guchar val, guint offset) {
-  if((offset >= 0) && (offset < gh->buffer_size))
-    gh->buffer[offset] = val;
-
-  gtk_signal_emit_by_name(GTK_OBJECT(gh), "data_changed", offset, offset);
-}
-
-/*
- * copies len bytes from address data into buffer begining at position offset
- */
-void gtk_hex_set_data(GtkHex *gh, guint offset, guint len, guchar *data) {
-  guint i;
-
-  for(i = 0; (offset < gh->buffer_size) && (i < len); offset++, i++)
-    gh->buffer[offset] = data[i];
-
-  gtk_signal_emit_by_name(GTK_OBJECT(gh), "data_changed", offset, offset + i - 1);
+  if((offset >= 0) && (offset < gh->document->buffer_size))
+    return gh->document->buffer[offset];
 }
 
 /*
@@ -977,43 +1007,22 @@ void gtk_hex_set_data(GtkHex *gh, guint offset, guint len, guchar *data) {
 void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
   GtkAllocation alloc;
 
+#ifdef DEBUG
+  printf("GtkHex: setting group type!\n");
+#endif
+
   memcpy(&alloc, &(GTK_WIDGET(gh)->allocation), sizeof(GtkAllocation));
 
   gh->group_type = gt;
   gtk_signal_emit_by_name(GTK_OBJECT(gh), "size_allocate", &alloc);
 }
 
-/*
- * replaces the whole buffer (note that the buffer (de)allocation is NOT handled by
- * the GtkHex widget!)
- */
-void gtk_hex_set_buffer(GtkHex *gh, guchar *new_buf, guint new_size) {
-  gh->buffer = new_buf;
-  gh->buffer_size = new_size;
+void gtk_hex_data_changed(GtkHex *gh, gint start, gint end) {
+  gh->document->change_data.start = start;
+  gh->document->change_data.end = end;
 
-  if(!GTK_WIDGET_REALIZED(gh))
-    return;
-
-  gh->lines = gh->buffer_size / gh->cpl;
-  if(gh->buffer_size % gh->cpl)
-    gh->lines++;
-  gh->vis_lines = MIN(gh->vis_lines, gh->lines);
-  
-  /* adjust the scrollbar and display position to
-     new sizes */
-  gh->adj->value = 0;
-  gh->adj->lower = 0;
-  gh->adj->upper = gh->lines;
-  gh->adj->step_increment = 1;
-  gh->adj->page_increment = gh->vis_lines - 1;
-  gh->adj->page_size = gh->vis_lines;
-
-  gtk_hex_set_cursor(gh, 0);
-
-  gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "changed");
-  gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "value_changed");
-
-  gtk_signal_emit_by_name(GTK_OBJECT(gh), "data_changed", 0, new_size - 1);
+  if(gh->document)
+    gnome_document_changed(GNOME_DOCUMENT(gh->document), &gh->document->change_data);
 }
 
 /*
@@ -1050,8 +1059,12 @@ guint gtk_hex_get_type() {
   return gh_type;
 }
 
-GtkWidget *gtk_hex_new() {
-  return GTK_WIDGET(gtk_type_new(gtk_hex_get_type()));
+GtkWidget *gtk_hex_new(HexDocument *owner) {
+  GtkHex *gh = gtk_type_new(gtk_hex_get_type());
+
+  gh->document = owner;
+
+  return GTK_WIDGET(gh);
 }
 
 

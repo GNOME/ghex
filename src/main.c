@@ -25,8 +25,13 @@
 #include "gnome-support.h"
 #include "ghex.h"
 
-GSList *buffer_list;
-FileEntry *active_fe;
+GnomeMDI *mdi;
+
+gint mdi_mode = GNOME_MDI_NOTEBOOK;
+
+static void cleanup(GtkObject *obj) {
+  save_configuration();
+}
 
 int main(int argc, char **argv) {
   GnomeClient *client;
@@ -46,17 +51,16 @@ int main(int argc, char **argv) {
   gnome_init("ghex", &parser, argc, argv, 0, NULL);
 
   if(!just_exit) {
-    setup_ui();
+    mdi = gnome_mdi_new("ghex", "GNOME hex editor");
 
-    buffer_list = g_slist_alloc();
-
-    active_fe = NULL;
+    gtk_signal_connect(GTK_OBJECT(mdi), "create_menus", GTK_SIGNAL_FUNC(create_mdi_menus), NULL);  
+    gtk_signal_connect(GTK_OBJECT(mdi), "destroy", GTK_SIGNAL_FUNC(cleanup), NULL);
 
     load_configuration();
 
+    gnome_mdi_set_mode(mdi, mdi_mode);
+
     gtk_main();
-    
-    g_slist_free(buffer_list);
   }
 
   return 0;
