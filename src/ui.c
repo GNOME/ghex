@@ -172,7 +172,7 @@ void create_find_dialog(FindDialog *dialog) {
 	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
 					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
 	
-	gtk_window_set_title(GTK_WINDOW(dialog->window), _("GHex: Find Data"));
+	create_dialog_title(dialog->window, _("GHex (%s): Find Data"));
 	
 	dialog->f_string = gtk_entry_new();
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->f_string,
@@ -232,7 +232,7 @@ void create_replace_dialog(ReplaceDialog *dialog) {
 	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
 					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
 	
-	gtk_window_set_title(GTK_WINDOW(dialog->window), _("GHex: Find & Replace Data"));
+	create_dialog_title(dialog->window, _("GHex (%s): Find & Replace Data"));
 	
 	dialog->f_string = gtk_entry_new();
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->f_string,
@@ -295,12 +295,29 @@ void create_replace_dialog(ReplaceDialog *dialog) {
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
 }
 
+void create_dialog_title(GtkWidget *window, gchar *title) {
+	gchar *full_title;
+
+	if(!window)
+		return;
+
+	if(mdi->active_child)
+		full_title = g_strdup_printf(title, mdi->active_child->name);
+	else
+		full_title = g_strdup_printf(title, "");
+
+	if(full_title) {
+		gtk_window_set_title(GTK_WINDOW(window), full_title);
+		g_free(full_title);
+	}
+}
+
 void create_jump_dialog(JumpDialog *dialog) {
 	dialog->window = gtk_dialog_new();
 	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
 					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
 	
-	gtk_window_set_title(GTK_WINDOW(dialog->window), _("GHex: Jump To Byte"));
+	create_dialog_title(dialog->window, _("GHex (%s): Jump To Byte"));
 	
 	dialog->int_entry = gtk_entry_new();
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->int_entry,

@@ -1,5 +1,15 @@
 1998-12-17  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
+	* ui.c, ghex.h (create_dialog_title): combines a format string
+	and active document's name and sets them as title to
+	a dialog window.
+	* callbacks.[ch] (child_changed_cb) new callback, updates
+	dialog titles as active document changes.
+	* main.c (main): connect child_changed_cb to child_changed
+	signal.
+	
+1998-12-17  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
 	* callbacks.c (view_changed_cb): add accelerator labels
  	to menu paths. also fix group type item activation code
 	to work in a cleaner way and respect possible tear off

@@ -185,7 +185,7 @@ gint delete_event_cb(GtkWidget *w, gpointer who_cares, GtkWidget **me) {
 	gtk_widget_destroy(*me);
 	*me = NULL;
 	
-	return TRUE;  /* stop default delete_event handlers */
+	return TRUE;
 }
 
 void prop_destroy_cb(GtkWidget *w, PropertyUI *data) {
@@ -583,6 +583,12 @@ gint remove_doc_cb(GnomeMDI *mdi, HexDocument *doc) {
 void cleanup_cb(GnomeMDI *mdi) {
 	save_configuration();
 	gtk_main_quit();
+}
+
+void child_changed_cb(GnomeMDI *mdi, HexDocument *doc) {
+	create_dialog_title(find_dialog.window, _("GHex (%s): Find Data"));
+	create_dialog_title(replace_dialog.window, _("GHex (%s): Find & Replace Data"));
+	create_dialog_title(jump_dialog.window, _("GHex (%s): Jump To Byte"));
 }
 
 void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {

@@ -116,6 +116,7 @@ void create_replace_dialog(ReplaceDialog *);
 void create_jump_dialog(JumpDialog *);
 void create_converter(Converter *);
 void create_prefs_dialog(PropertyUI *);
+void create_dialog_title(GtkWidget *, gchar *);
 
 gint ask_user(GnomeMessageBox *);
 
