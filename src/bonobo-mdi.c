@@ -2440,6 +2440,8 @@ bonobo_window_show_status (BonoboWindow *win, const gchar *msg)
 			gtk_object_get_data (GTK_OBJECT (win), UI_COMPONENT_KEY));
 	g_return_if_fail (ui_component != NULL);			
 
+	if (strcmp (msg, " "))
+		bonobo_ui_component_set_status (ui_component, " ", NULL);
 	bonobo_ui_component_set_status (ui_component, msg, NULL);
 }
 

@@ -158,22 +158,27 @@ create_converter_button(const gchar *name, GtkAccelGroup *accel_group)
 	return button;
 }    
 
+/* Made global. We need to access this in ui.c */
+GtkWidget *get = NULL;
+
 static void
 close_converter(GtkWidget *button, GnomeDialog *dialog)
 {
 	gnome_dialog_close(dialog);
+	/* We have to do this. Accessed in ui.c:close_cb */
+	get = NULL;
 }
 
 Converter *
 create_converter()
 {
 	Converter *conv;
-	GtkWidget *table, *get;
+	GtkWidget *table;
 	GtkAccelGroup *accel_group;
  
 	conv = g_new0(Converter, 1);
 
-	conv->window = gnome_dialog_new(_("GHex: Converter"),
+	conv->window = gnome_dialog_new(_("Base Converter"),
 									 GNOME_STOCK_BUTTON_CLOSE, NULL);
 	gnome_dialog_close_hides(GNOME_DIALOG(conv->window), TRUE);
 	gnome_dialog_button_connect(GNOME_DIALOG(conv->window), 0,

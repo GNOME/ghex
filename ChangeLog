@@ -1,3 +1,11 @@
+2002-04-25  Shivram U  <shivaram.upadhyayula@wipro.com>
+
+	* src/bonobo-mdi.c: Before setting the status message, if the message
+	passed is not space " " then we first set the status bar message as
+	a space " ". Required to clear the status bar first.
+	* src/chartable.c: Added close button for the chartable window.
+	* Fixed usablility issues as mentioned in Bug #79251 and #79253.
+	
 2002-04-23  Shivram U  <shivaram.upadhyayula@wipro.com>
 
 	* configure.in: Replace AC_PROG_LIBTOOL with AM_PROG_LIBTOOL

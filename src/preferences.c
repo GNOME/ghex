@@ -142,6 +142,7 @@ PropertyUI *create_prefs_dialog() {
 	pui = g_new0(PropertyUI, 1);
 	
 	pui->pbox = GNOME_PROPERTY_BOX(gnome_property_box_new());
+	gtk_window_set_title(GTK_WINDOW(pui->pbox), _("GHex Preferences"));
 	
 	gtk_signal_connect(GTK_OBJECT(pui->pbox), "apply",
 					   GTK_SIGNAL_FUNC(apply_changes_cb), pui);
@@ -168,14 +169,14 @@ PropertyUI *create_prefs_dialog() {
 
 	label = gtk_label_new(_("Maximum number of undo levels"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
 	gtk_widget_show(label);
 						  
 	pui->undo_spin = gtk_spin_button_new(undo_adj, 1, 0);
 	gtk_box_pack_end (GTK_BOX(box), GTK_WIDGET(pui->undo_spin), FALSE, TRUE, GNOME_PAD);
 	gtk_widget_show(pui->undo_spin);
 
-	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, GNOME_PAD);
 
 	/* cursor offset format */
 	box = gtk_hbox_new(FALSE, 0);
@@ -353,7 +354,7 @@ PropertyUI *create_prefs_dialog() {
 	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
 
-	table = gtk_table_new(2, 2, TRUE);
+	table = gtk_table_new(2, 3, TRUE);
 	gtk_widget_show(table);
 	label = gtk_label_new(_("Data font"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
@@ -382,6 +383,12 @@ PropertyUI *create_prefs_dialog() {
 	gtk_table_attach(GTK_TABLE(table), pui->df_button, 1, 2, 0, 1,
 					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
 					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+	label = gtk_label_new("");
+	gtk_widget_show(label);
+	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
+					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
+					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
 	label = gtk_label_new(_("Header font"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_widget_show(label);
@@ -407,6 +414,13 @@ PropertyUI *create_prefs_dialog() {
 	gtk_table_attach(GTK_TABLE(table), pui->hf_button, 1, 2, 1, 2,
 					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
 					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	label = gtk_label_new("");
+	gtk_widget_show(label);
+	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 1, 2,
+					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
+					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
 	gtk_container_add(GTK_CONTAINER(frame), table);
 
 	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE,

@@ -48,8 +48,9 @@ gint mdi_mode = BONOBO_MDI_DEFAULT_MODE;
 
 gint remove_doc_cb(BonoboMDI *mdi, HexDocument *doc) {
 	static char msg[MESSAGE_LEN + 1];
-	GnomeMessageBox *mbox;
+	GtkWidget *mbox;
 	gint reply;
+	GtkWidget *save_btn;
 	
 	g_snprintf(msg, MESSAGE_LEN,
 			   _("File %s has changed since last save.\n"
@@ -57,14 +58,27 @@ gint remove_doc_cb(BonoboMDI *mdi, HexDocument *doc) {
 			   bonobo_mdi_child_get_name (BONOBO_MDI_CHILD(doc)));
 	
 	if(hex_document_has_changed(doc)) {
-		mbox = GNOME_MESSAGE_BOX(gnome_message_box_new( msg, GNOME_MESSAGE_BOX_QUESTION, GNOME_STOCK_BUTTON_YES,
-														GNOME_STOCK_BUTTON_NO, GNOME_STOCK_BUTTON_CANCEL, NULL));
-		gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
-		reply = ask_user(mbox);
+		mbox = gtk_message_dialog_new(GTK_WINDOW (bonobo_mdi_get_active_window(BONOBO_MDI(mdi))),
+				GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
+				GTK_MESSAGE_QUESTION,
+				GTK_BUTTONS_NONE,
+				msg);
 		
-		if(reply == 0)
+		save_btn = create_button(mbox, GTK_STOCK_NO, _("Do_n't save"));
+		gtk_widget_show (save_btn);
+		gtk_dialog_add_action_widget(GTK_DIALOG(mbox), save_btn, GTK_RESPONSE_NO);
+		gtk_dialog_add_button(GTK_DIALOG(mbox), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+		gtk_dialog_add_button(GTK_DIALOG(mbox), GTK_STOCK_SAVE, GTK_RESPONSE_YES);
+		gtk_dialog_set_default_response(GTK_DIALOG(mbox), GTK_RESPONSE_YES);
+		gtk_window_set_resizable(GTK_WINDOW(mbox), FALSE);
+
+		reply = gtk_dialog_run(GTK_DIALOG(mbox));
+
+		gtk_widget_destroy(mbox);
+		
+		if(reply == GTK_RESPONSE_YES)
 			hex_document_write(doc);
-		else if(reply == 2)
+		else if(reply == GTK_RESPONSE_CANCEL)
 			return FALSE;
 	}
 	

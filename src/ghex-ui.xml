@@ -2,15 +2,15 @@
 
 <commands>
         <cmd name="FileOpen" _label="Open"
-	_tip="Open a file" pixtype="stock" pixname="gtk-open" accel="F3"/>
+	_tip="Open a file" pixtype="stock" pixname="gtk-open" accel="*Control*O"/>
 	
         <cmd name="FileSave" _label="Save"
 	_tip="Save the current file" pixtype="stock" pixname="gtk-save"
-	accel="*Control*s"/>
+	accel="*Control*S"/>
 	
         <cmd name="FileSaveAs" _label="Save As"
         _tip="Save the current file with a different name"
-	pixtype="stock" pixname="gtk-save-as"/>
+	pixtype="stock" pixname="gtk-save-as" accel="*Shift**Control*S"/>
 
 	<cmd name="ExportToHTML" _label="Export to HTML..."
 	_tip="Export data to HTML source"/>
@@ -20,36 +20,38 @@
         pixtype="stock" pixname="gtk-revert-to-saved"/>
 	
         <cmd name="FilePrint" _label="Print"
-	_tip="Print the current file" pixtype="stock" pixname="gtk-print"/>
+	_tip="Print the current file" pixtype="stock" pixname="gtk-print"
+	accel="*Control*P"/>
 	
 	<cmd name="FilePrintPreview" _label="Print Preview..."
-	_tip="Preview printed data" pixtype="stock" pixname="gtk-print-preview"/>
+	_tip="Preview printed data" pixtype="stock" pixname="gtk-print-preview"
+	accel="*Shift**Control*P"/>
 	
         <cmd name="FileClose" _label="Close"
 	_tip="Close the current file" pixtype="stock" pixname="gtk-close"
-	accel="*Control*w"/>
+	accel="*Control*W"/>
 
         <cmd name="FileExit" _label="Exit" _tip="Exit the program"
-           pixtype="stock" pixname="gtk-quit" accel="*Control*q"/>
+           pixtype="stock" pixname="gtk-quit" accel="*Control*Q"/>
 
 	<cmd name="Converter" _label="Converter..." _tip="Open base conversion dialog"/>
 
 	<cmd name="CharacterTable" _label="Character Table..." _tip="Show the character table"/>
 
 	<cmd name="EditUndo" _label="Undo" _tip="Undo the last action"
-	pixtype="stock" pixname="gtk-undo" accel="*Control*z"/>
+	pixtype="stock" pixname="gtk-undo" accel="*Control*Z"/>
 
 	<cmd name="EditRedo" _label="Redo" _tip="Redo the undone action"
-	pixtype="stock" pixname="gtk-redo" accel="*Control*r"/>
+	pixtype="stock" pixname="gtk-redo" accel="*Shift**Control*Z"/>
 
 	<cmd name="Find" _label="Find" _tip="Search for a string"
-	pixtype="stock" pixname="gtk-find" accel="F6"/>
+	pixtype="stock" pixname="gtk-find" accel="*Control*F"/>
 
 	<cmd name="Replace" _label="Replace" _tip="Replace a string"
-	pixtype="stock" pixname="gtk-find-and-replace" accel="F7"/>
+	pixtype="stock" pixname="gtk-find-and-replace" accel="*Control*H"/>
 
 	<cmd name="GoToByte" _label="Goto Byte" _tip="Jump to a certain position"
-	accel="*control*J"/>
+	accel="*Control*J"/>
 
 	<cmd name="InsertMode" _label="Insert Mode" _tip="Insert/overwrite data"
              type="toggle" accel="Insert"/>
@@ -84,11 +86,15 @@
         
         <menuitem name="FileOpen" verb="" _label="_Open..."/>
 	
+	<separator/>
+
         <menuitem name="FileSave" verb=""  _label="_Save"/>
 	
         <menuitem name="FileSaveAs" verb="" _label="Save _As..."/>
 
-	<menuitem name="ExportToHTML" verb="" _label="Export to _HTML..."/>
+	<menuitem name="ExportToHTML" verb="" _label="Save As _HTML..."/>
+
+	<separator/>
 
         <menuitem name="FileRevert" verb="" _label="_Revert"/>
 	
@@ -96,7 +102,7 @@
 
 	<menuitem name="FilePrint" verb="" _label="_Print"/>
 	
-	<menuitem name="FilePrintPreview" verb="" _label="Print pre_view..."/>
+	<menuitem name="FilePrintPreview" verb="" _label="Print Previe_w..."/>
 
 	<separator/>
 	
@@ -106,7 +112,7 @@
 
 </submenu>
 
-<submenu name="Edit" _label="_Edit" hidden="1">
+<submenu name="Edit" _label="_Edit" hidden="0">
         
         <menuitem name="EditUndo" verb="" _label="_Undo"/>
 
@@ -129,6 +135,18 @@
 
 	<separator/>
 
+        <menuitem name="Preferences" verb="" _label="_Preferences"/>
+
+</submenu>
+
+<submenu name="View" _label="_View" hidden="1">
+
+	<menuitem name="AddView" verb="" _label="_Add View"/>
+
+	<menuitem name="RemoveView" verb="" _label="_Remove View"/>
+
+	<separator/>
+
 	<submenu name="GroupDataAs" _label="_Group Data As">
 
 		<menuitem name="Bytes" verb="" _label="_Bytes"
@@ -144,25 +162,12 @@
 
 </submenu>
 
-<submenu name="View" _label="_View" hidden="1">
-
-	<menuitem name="AddView" verb="" _label="_Add View"/>
-
-	<menuitem name="RemoveView" verb="" _label="_Remove View"/>
-
-</submenu>
 
 <submenu name="Tools" _label="_Tools">
 
-	<menuitem name="Converter" verb="" _label="Con_verter"/>
-
 	<menuitem name="CharacterTable" verb="" _label="Character _Table..."/>
 
-</submenu>
-
-<submenu name="Settings" _label="_Settings" hidden="0">
-
-        <menuitem name="Preferences" verb="" _label="_Preferences"/>
+	<menuitem name="Converter" verb="" _label="_Base Converter"/>
 
 </submenu>
 

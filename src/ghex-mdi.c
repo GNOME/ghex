@@ -277,6 +277,16 @@ ghex_mdi_app_created_handler (BonoboMDI *mdi, BonoboWindow *win)
 
 	uic = bonobo_mdi_get_ui_component_from_window(win);
 
+	/* Disable commands Undo, Redo etc... when the app is first created */
+	bonobo_ui_component_freeze (uic, NULL);
+	ghex_menus_set_verb_list_sensitive (uic, FALSE);
+
+	/*FIXME: Actually this should be done in the ghex-ui.xml file */
+	bonobo_ui_component_set_prop (uic, "/commands/EditUndo", "sensitive", "0", NULL);
+	bonobo_ui_component_set_prop (uic, "/commands/EditRedo", "sensitive", "0", NULL);
+
+	bonobo_ui_component_thaw (uic, NULL);
+
 	bonobo_ui_component_add_listener (uic, "Bytes",
 					  ghex_mdi_listener, win);
 	bonobo_ui_component_add_listener (uic, "Words",
@@ -442,6 +452,7 @@ ghex_mdi_add_view_handler (BonoboMDI *mdi, GtkWidget *view)
 	gtk_signal_connect (GTK_OBJECT(view), "cursor_moved",
 			    GTK_SIGNAL_FUNC (cursor_moved_cb),
 			    mdi);
+
 	gtk_hex_show_offsets (GTK_HEX(view), show_offsets_column);
 
 	return TRUE;
@@ -888,9 +899,34 @@ static void cursor_moved_cb (GtkHex *gtkhex) {
 void
 ghex_menus_set_verb_list_sensitive (BonoboUIComponent *uic, gboolean allmenus)
 {
+#if 0
 	bonobo_ui_component_set_prop (uic, "/menu/Edit", "hidden",
 				      (TRUE == allmenus)?"0": "1", NULL);
+#endif
 
 	bonobo_ui_component_set_prop (uic, "/menu/View", "hidden", 
 				      (TRUE == allmenus)?"0": "1", NULL);
+
+	bonobo_ui_component_set_prop (uic, "/commands/FileSave", "sensitive", allmenus ? "1" : "0", NULL);
+
+	bonobo_ui_component_set_prop (uic, "/commands/FileSaveAs", "sensitive", allmenus ? "1" : "0", NULL);
+
+	bonobo_ui_component_set_prop (uic, "/commands/ExportToHTML", "sensitive", allmenus ? "1" : "0", NULL);
+
+	bonobo_ui_component_set_prop (uic, "/commands/FileRevert", "sensitive", allmenus ? "1" : "0", NULL);
+
+	bonobo_ui_component_set_prop (uic, "/commands/FilePrint", "sensitive", allmenus ? "1" : "0", NULL);
+
+	bonobo_ui_component_set_prop (uic, "/commands/FilePrintPreview", "sensitive", allmenus ? "1" : "0", NULL);
+
+	bonobo_ui_component_set_prop (uic, "/commands/FileClose", "sensitive", allmenus ? "1" : "0", NULL);
+
+	bonobo_ui_component_set_prop (uic, "/commands/Find", "sensitive", allmenus ? "1" : "0", NULL);
+
+	bonobo_ui_component_set_prop (uic, "/commands/Replace", "sensitive", allmenus ? "1" : "0", NULL);
+
+	bonobo_ui_component_set_prop (uic, "/commands/GoToByte", "sensitive", allmenus ? "1" : "0", NULL);
+
+	bonobo_ui_component_set_prop (uic, "/commands/InsertMode", "sensitive", allmenus ? "1" : "0", NULL);
+
 }

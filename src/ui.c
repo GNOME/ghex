@@ -184,7 +184,7 @@ GtkWidget *create_button(GtkWidget *window, const gchar *type, gchar *text)
 	gtk_box_pack_start(GTK_BOX(hbox), pixmap, FALSE, FALSE, 1);
 #endif	
 
-	label = gtk_label_new(text);
+	label = gtk_label_new_with_mnemonic(text);
 
 	pixmap = gtk_image_new_from_stock (type, GTK_ICON_SIZE_BUTTON );
 
@@ -192,6 +192,7 @@ GtkWidget *create_button(GtkWidget *window, const gchar *type, gchar *text)
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 1);
 	
 	button = gtk_button_new();
+	gtk_label_set_mnemonic_widget(GTK_LABEL(label), GTK_WIDGET(button));
 	gtk_container_add(GTK_CONTAINER(button), hbox);
 	
 	gtk_widget_show(label);
@@ -447,9 +448,14 @@ static void export_html_selected_file(GtkWidget *w, GtkHex *view)
 	g_free(html_path);
 }
 
+/* Defined in converter.c: used by close_cb and converter_cb */
+
+extern GtkWidget *get;
 /* Changed the function parameters -- SnM */
 static void close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
+	BonoboWindow *win;
+
 	if(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)) == NULL)
 		return;
 
@@ -457,6 +463,19 @@ static void close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* v
 
 	/* Added on 18th Jan 2001 -- SnM */
 	ghex_mdi_set_active_window_verbs_sensitivity (BONOBO_MDI (mdi));
+
+	win = bonobo_mdi_get_active_window (BONOBO_MDI (mdi));
+
+	if (win)
+		bonobo_window_show_status (win, " ");
+
+	/* If we have created the converter window disable the 
+	 * "Get cursor value" button
+	 */
+	if (get)
+		gtk_widget_set_sensitive(get, FALSE);
+	
+
 }
 
 /* Changed the function parameters -- SnM */
@@ -470,6 +489,11 @@ static void converter_cb (BonoboUIComponent *uic, gpointer user_data, const gcha
 		gtk_widget_show(converter->window);
 	}
 	gdk_window_raise(converter->window->window);
+
+	if (!bonobo_mdi_get_active_view(BONOBO_MDI(mdi)))
+		gtk_widget_set_sensitive(get, FALSE);
+	else
+		gtk_widget_set_sensitive(get, TRUE);
 }
 
 /* Changed the function parameters -- SnM */

@@ -95,13 +95,18 @@ static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *e
 	return FALSE;
 }
 
+static void hide_chartable_cb (GtkWidget *widget, GtkWidget *win)
+{
+	gtk_widget_hide(win);
+}
+
 GtkWidget *create_char_table()
 {
 	static gchar *fmt[] = { NULL, "%02X", "%03d", "%03o" };
 	static gchar *titles[] = {  N_("ASCII"), N_("Hex"), N_("Decimal"),
 								N_("Octal"), N_("Binary") };
 	gchar *real_titles[5];
-	GtkWidget *ct, *sw, *ctv;
+	GtkWidget *ct, *sw, *ctv, *cbtn, *vbox, *hbox, *lbl;
 	GtkListStore *store;
 	GtkCellRenderer *cell_renderer;
 	GtkTreeViewColumn *column;
@@ -111,7 +116,7 @@ GtkWidget *create_char_table()
 	gchar *label, ascii_printable_label[2], bin_label[9], *row[5];
 
 	ct = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title(GTK_WINDOW(ct), _("GHex: Character table"));
+	gtk_window_set_title(GTK_WINDOW(ct), _("Character table"));
 	sw = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	for(i = 0; i < 5; i++)
@@ -165,8 +170,27 @@ GtkWidget *create_char_table()
 	g_signal_connect(G_OBJECT(ctv), "button_press_event",
 					   G_CALLBACK(select_chartable_row_cb), GTK_TREE_MODEL(store));
 
+	cbtn = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
+	gtk_widget_show(cbtn);
+	g_signal_connect(G_OBJECT (cbtn), "clicked",
+					G_CALLBACK(hide_chartable_cb), ct);
+
+	lbl = gtk_label_new ("");
+	gtk_widget_show(lbl);
+
+	vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
+	gtk_widget_show(vbox);
+
+	hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
+	gtk_widget_show(hbox);
+
+	gtk_box_pack_start(GTK_BOX(vbox), sw, TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(hbox), lbl, TRUE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(GTK_BOX(hbox), cbtn, FALSE, TRUE, GNOME_PAD_BIG);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+
 	gtk_container_add(GTK_CONTAINER(sw), ctv);
-	gtk_container_add(GTK_CONTAINER(ct), sw);
+	gtk_container_add(GTK_CONTAINER(ct), vbox);
 	gtk_widget_show(ctv);
 	gtk_widget_show(sw);
 
