@@ -3,16 +3,17 @@
 # Eckehard Berns <eb@berns>
 # Matthias Warkus <mawa@iname.com>, 1999.
 # Benedikt Roth <Benedikt.Roth@gmx.net>, 2000
+# Christian Meyer <cm@ggtt.de>
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex-1.1.3cvs\n"
-"POT-Creation-Date: 2000-09-13 11:16+0200\n"
-"PO-Revision-Date: 2000-07-10 23:40+02:00\n"
-"Last-Translator: Benedikt Roth <Benedikt.Roth@gmx.net>\n"
+"Project-Id-Version: ghex 1.1.3\n"
+"POT-Creation-Date: 2001-02-01 21:16+0100\n"
+"PO-Revision-Date: 2001-02-01 21:38+0100\n"
+"Last-Translator: Christian Meyer <chrisime@ggtt.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/converter.c:44
@@ -50,12 +51,12 @@ msgstr "FEHLER"
 #: src/findreplace.c:58 src/main.c:96
 #, c-format
 msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): Finde Daten"
+msgstr "GHex (%s): Daten suchen"
 
 #: src/findreplace.c:67
 #, c-format
 msgid "Search for %s"
-msgstr "Suche nach %s"
+msgstr "Nach %s suchen"
 
 #: src/findreplace.c:83
 msgid "Find Next"
@@ -63,17 +64,17 @@ msgstr "Weitersuchen"
 
 #: src/findreplace.c:91
 msgid "Find Previous"
-msgstr "Rückwärts weitersuchen"
+msgstr "Rückwärts suchen"
 
 #: src/findreplace.c:127 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): Suche und Ersetze Daten"
+msgstr "GHex (%s): Daten suchen & ersetzen"
 
 #: src/findreplace.c:141
 #, c-format
 msgid "Replace %s"
-msgstr "Ersetze %s"
+msgstr "%s ersetzen"
 
 #: src/findreplace.c:157
 msgid "Find next"
@@ -90,7 +91,7 @@ msgstr "Alle erstezen"
 #: src/findreplace.c:206 src/main.c:100
 #, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): Springe zu Byte"
+msgstr "GHex (%s): Zu Byte springen"
 
 #: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
 msgid "There is no active buffer to search!"
@@ -118,11 +119,11 @@ msgstr "Kein Offset wurde angegeben!"
 
 #: src/findreplace.c:357
 msgid "Can not position cursor beyond the End Of File!"
-msgstr "Kann Cursor nicht hinter Dateiende setzen!"
+msgstr "Cursor kann nicht hinter Dateiende gesetzt werden!"
 
 #: src/findreplace.c:362
 msgid "The offset must be a positive integer value!"
-msgstr "Der Offset muß eine natürliche Zahl sein!"
+msgstr "Das Offset muß ein positiver Integerwert sein!"
 
 #: src/findreplace.c:399 src/findreplace.c:436
 msgid "There is no active buffer to replace data in!"
@@ -139,7 +140,7 @@ msgstr "Dateiende erreicht!"
 #: src/findreplace.c:463
 #, c-format
 msgid "Replaced %d occurencies."
-msgstr "Habe %dmaliges Auftreten ersetzt."
+msgstr "%dmaliges Auftreten ersetzt."
 
 #: src/hex-document.c:707
 msgid "Page"
@@ -167,7 +168,7 @@ msgstr "Data in 8-Bit-Gruppen gruppieren"
 
 #: src/hex-document-ui.c:52
 msgid "_Words"
-msgstr "_Wörter"
+msgstr "_Words"
 
 #: src/hex-document-ui.c:53
 msgid "Group data by 16 bits"
@@ -183,7 +184,7 @@ msgstr "Data in 32-Bit-Gruppen gruppieren"
 
 #: src/hex-document-ui.c:74
 msgid "_Goto Byte..."
-msgstr "Gehe zu Byte..."
+msgstr "_Gehe zu Byte..."
 
 #: src/hex-document-ui.c:74
 msgid "Jump to a certain position"
@@ -203,7 +204,7 @@ msgstr "Daten _gruppieren als"
 
 #: src/hex-document-ui.c:87
 msgid "_Add view"
-msgstr "_Ansicht hinzufügen"
+msgstr "Ansicht _hinzufügen"
 
 #: src/hex-document-ui.c:88
 msgid "Add a new view of the buffer"
@@ -211,7 +212,7 @@ msgstr "Eine neue Ansicht des Puffers hinzufügen"
 
 #: src/hex-document-ui.c:89
 msgid "_Remove view"
-msgstr "Ansicht entfe_rnen"
+msgstr "Ansicht ent_fernen"
 
 #: src/hex-document-ui.c:90
 msgid "Remove the current view of the buffer"
@@ -265,7 +266,7 @@ msgstr "Hexadezimal"
 
 #: src/preferences.c:172
 msgid "Custom"
-msgstr "Selbstgemacht"
+msgstr "Benutzerdefiniert"
 
 #. show offsets check button
 #: src/preferences.c:183
@@ -283,12 +284,12 @@ msgstr "Schrifart"
 
 #: src/preferences.c:213
 msgid "Browse..."
-msgstr "Blättern..."
+msgstr "Durchsuchen..."
 
 #. default group type
 #: src/preferences.c:233
 msgid "Default Group Type"
-msgstr "Default-Gruppentyp"
+msgstr "Standard-Gruppentyp"
 
 #: src/preferences.c:249
 msgid "Display"
@@ -306,7 +307,7 @@ msgstr "MDI"
 #. paper selection
 #: src/preferences.c:284
 msgid "Paper size"
-msgstr "Papier Größe"
+msgstr "Papiergröße"
 
 #. data & header font selection
 #: src/preferences.c:298
@@ -343,7 +344,7 @@ msgstr ""
 
 #: src/preferences.c:570
 msgid "Can not open desired font!"
-msgstr "Kann gewünschte Schriftart nicht öffnen!"
+msgstr "Gewünschte Schriftart kann nicht geöffnet werden!"
 
 #: src/ui.c:57
 msgid "Export to HTML..."
@@ -387,7 +388,7 @@ msgstr "Bytes"
 
 #: src/ui.c:109
 msgid "Words"
-msgstr "Wörter"
+msgstr "Words"
 
 #: src/ui.c:110
 msgid "Longwords"
@@ -416,7 +417,7 @@ msgstr "Fehler beim Speichern der Datei!"
 #: src/ui.c:230 src/ui.c:534
 #, c-format
 msgid "Saved buffer to file %s"
-msgstr "Habe Puffer in Datei %s gespeichert"
+msgstr "Puffer in Datei %s gespeichert"
 
 #: src/ui.c:251
 msgid "Select a file to open"
@@ -438,7 +439,7 @@ msgstr "Wirklich auf Datei %s zurückgreifen?"
 #: src/ui.c:479
 #, c-format
 msgid "Reverted buffer from file %s"
-msgstr "Habe Puffer zurückgedreht auf Datei %s"
+msgstr "Puffer zurückgestellt auf Datei %s"
 
 #: src/ui.c:495
 #, c-format
@@ -447,11 +448,11 @@ msgstr "Datei %s geladen"
 
 #: src/ui.c:500
 msgid "Can not open file!"
-msgstr "Kann Datei nicht öffnen!"
+msgstr "Datei kann nicht geöffnet werden!"
 
 #: src/ui.c:543
 msgid "Can't open file for writing!"
-msgstr "Kann Datei nicht zum Schreiben öffnen!"
+msgstr "Datei kann nicht zum Schreiben geöffnet werden!"
 
 #: src/chartable.c:91
 msgid "Octal"
