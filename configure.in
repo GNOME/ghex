@@ -68,13 +68,19 @@ AC_SUBST(GHEX_CFLAGS)
 AC_SUBST(GHEX_LIBS)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
-ALL_LINGUAS="ca cs da de el en_GB es et fi fr ga gl hr hu it ja ko nl nn no pl pt pt_BR ro ru sk sl sv tr uk wa zh_TW zh_CN"
 
 dnl removed the following lines -- SnM
 dnl AM_GNOME_GETTEXT -- SnM
 dnl AM_PATH_GNOME_PRINT(0.32.0) -- SnM
 
 dnl added AM_GLIB_GNU_GETTEXT -- SnM
+dnl =================================================================
+dnl Gettext stuff
+dnl =================================================================
+GETTEXT_PACKAGE=ghex-2.0
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
+ALL_LINGUAS="ca cs da de el en_GB es et fi fr ga gl hr hu it ja ko nl nn no pl pt pt_BR ro ru sk sl sv tr uk wa zh_TW zh_CN"
 AM_GLIB_GNU_GETTEXT
 
 AC_CHECK_LIB(popt, poptGetArgs, [POPT_LIBS="-lpopt"],

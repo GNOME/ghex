@@ -326,6 +326,10 @@ main(int argc, char **argv)
 
 	char **cl_files;
 
+	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	textdomain (GETTEXT_PACKAGE);
+
         /* Initialize gnome program */
 	program = gnome_program_init ("ghex2", VERSION,
 				LIBGNOMEUI_MODULE, argc, argv,

@@ -1,3 +1,11 @@
+2002-03-10  Shivram U  <shivaram.upadhyayula@wipro.com>
+
+	* configure.in: Added gettext changes.
+	* src/main.c : (main) Added locale changes.
+	* src/print.c, src/ui.c : Completed the print functionality changes.
+	* src/preferences.c : (apply_changes_cb) Reverting back to the old
+	functionality. Changes to group type does not update the views
+ 
 2002-03-08  Laszlo Peter  <laca@ireland.sun.com>
 
 	* configure.in: check for popt, define POPT_LIBS

@@ -231,6 +231,58 @@ static gboolean print_verify_fonts()
 	return TRUE;
 }
 
+void
+ghex_print_update_page_size_and_margins (HexDocument *doc, GHexPrintJobInfo *pji)
+{
+	const GnomePrintUnit *unit;
+
+	gnome_print_master_get_page_size_from_config (pji->config,
+			&pji->page_width, &pji->page_height);
+
+	if (gnome_print_config_get_length (pji->config, GNOME_PRINT_KEY_PAGE_MARGIN_LEFT,
+				&pji->margin_left, &unit))
+	{
+		gnome_print_convert_distance (&pji->margin_left, unit, GNOME_PRINT_PS_UNIT);
+	}
+
+	if (gnome_print_config_get_length (pji->config, GNOME_PRINT_KEY_PAGE_MARGIN_RIGHT,
+				&pji->margin_right, &unit))
+	{
+		gnome_print_convert_distance (&pji->margin_right, unit, GNOME_PRINT_PS_UNIT);
+	}
+
+	if (gnome_print_config_get_length (pji->config, GNOME_PRINT_KEY_PAGE_MARGIN_TOP,
+				&pji->margin_top, &unit))
+	{
+		gnome_print_convert_distance (&pji->margin_top, unit, GNOME_PRINT_PS_UNIT);
+	}
+	if (gnome_print_config_get_length (pji->config, GNOME_PRINT_KEY_PAGE_MARGIN_BOTTOM,
+				&pji->margin_bottom, &unit))
+	{
+		gnome_print_convert_distance (&pji->margin_bottom, unit, GNOME_PRINT_PS_UNIT);
+	}
+
+	pji->printable_width = pji->page_width -
+		pji->margin_left -
+		pji->margin_right;
+	pji->printable_height = pji->page_height -
+		pji->margin_top -
+		pji->margin_bottom;
+
+	pji->bytes_per_row = (pji->printable_width - pji->pad_size*2 -
+						(pji->offset_chars *
+						 pji->font_char_width))/
+				((3 + (1/((float)pji->gt))) *
+				 pji->font_char_width);
+	pji->bytes_per_row -= pji->bytes_per_row % pji->gt;
+	pji->rows_per_page = (pji->printable_height - pji->header_height) /
+		pji->font_char_height - 1;
+	pji->pages = (((doc->file_size/pji->bytes_per_row) + 1)/
+				pji->rows_per_page) + 1;
+	pji->page_first = 1;
+	pji->page_last = pji->pages;
+}
+
 /**
  * ghex_print_job_info_new:
  * @doc: Pointer to the HexDocument to be printed.
@@ -304,14 +356,18 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 	gnome_font_get_glyph_stdadvance(GNOME_FONT(d_font), glyph, &point);
 	pji->font_char_width = point.x;
 
+#if 0
 	pji->font_char_height = gnome_font_get_ascender(GNOME_FONT(d_font)) +
 		gnome_font_get_descender(GNOME_FONT(d_font));
+#endif
+	pji->font_char_height = gnome_font_get_size (GNOME_FONT(d_font));
 
 	/* Add 10% spacing between lines */
 	pji->font_char_height *= 1.1;
 	pji->pad_size = .5 * 72;
 	pji->offset_chars = 8;
 
+#if 0 /* We are doing this in update now */
 	pji->printable_width = pji->page_width -
 		pji->margin_left -
 		pji->margin_right;
@@ -331,6 +387,7 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 				pji->rows_per_page) + 1;
 	pji->page_first = 1;
 	pji->page_last = pji->pages;
+#endif
 	pji->preview = FALSE;
 	pji->config = NULL;
 	pji->range = GNOME_PRINT_RANGE_ALL;

@@ -127,17 +127,17 @@ typedef struct {
 	gint range;
 	gint page_first;
 	gint page_last;
-	float page_width, page_height;
-	float margin_top, margin_bottom, margin_left, margin_right;
-	float printable_width, printable_height;
+	gdouble page_width, page_height;
+	gdouble margin_top, margin_bottom, margin_left, margin_right;
+	gdouble printable_width, printable_height;
 
-	float header_height;
+	gdouble header_height;
 	
-	float font_char_width;
-	float font_char_height;
+	gdouble font_char_width;
+	gdouble font_char_height;
 
 	int   bytes_per_row, rows_per_page;
-	float pad_size;
+	gdouble pad_size;
 	int   offset_chars ; /* How many chars are used in the offset window */
 	int   gt;            /* group_type */
 	gboolean preview;
@@ -205,6 +205,7 @@ GtkWidget *create_button   (GtkWidget *, const gchar *, gchar *);
 
 /* printing */
 void ghex_print_job_execute(GHexPrintJobInfo *pji);
+void ghex_print_update_page_size_and_margins (HexDocument *doc, GHexPrintJobInfo *pji);
 
 GHexPrintJobInfo *ghex_print_job_info_new(HexDocument *doc, guint group_type);
 void ghex_print_job_info_destroy(GHexPrintJobInfo *pji);

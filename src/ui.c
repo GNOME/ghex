@@ -678,6 +678,7 @@ ghex_print(gboolean preview)
 	pji->master = gnome_print_master_new_from_config (pji->config);
 	g_return_if_fail (pji->master != NULL);
 
+	ghex_print_update_page_size_and_margins (doc, pji);
 	ghex_print_job_execute(pji);
 
 	if (pji->preview)
@@ -739,7 +740,7 @@ ghex_print_run_dialog(GHexPrintJobInfo *pji)
 			GNOME_PRINT_DIALOG(dialog),
 			&pji->page_first, &pji->page_last);
 
-	gnome_dialog_close(GNOME_DIALOG(dialog));
+	gtk_widget_destroy (dialog);
 	return FALSE;
 }
 

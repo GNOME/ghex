@@ -571,6 +571,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 	for(i = 0; i < 3; i++)
 		if(GTK_TOGGLE_BUTTON(pui->group_type[i])->active) {
 			def_group_type = group_type[i];
+#if 0 /* FIXME : Should we update the view */
 			child = bonobo_mdi_get_children (BONOBO_MDI (mdi));
 			
 			while(child) {
@@ -581,6 +582,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 				}
 				child = g_list_next(child);
 			}
+#endif
 			break;
 		}
 	
