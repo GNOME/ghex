@@ -326,10 +326,6 @@ main(int argc, char **argv)
 
 	char **cl_files;
 
-	GList *file_list = NULL;
-
-	gint i;
-
         /* Initialize gnome program */
 	program = gnome_program_init ("ghex2", VERSION,
 				LIBGNOMEUI_MODULE, argc, argv,
@@ -338,23 +334,13 @@ main(int argc, char **argv)
 				_("The gnome binary editor"),
 				NULL);
 
-	/* Set default icon */
-//	ghex_set_default_icon();
+	/* FIXME - Couldnt find gnome-ghex.png in the sources directory */
+	/* Set default window icon */
+	gnome_window_icon_set_default_from_file ("gnome-ghex.png");
 
 	/* load preferences */
 	ghex_prefs_init();
 	load_configuration();
-
-	/* Parse args and build the list of files to be loaded at startup */
-	g_value_init (&value, G_TYPE_POINTER);
-	g_object_get_property (G_OBJECT (program), GNOME_PARAM_POPT_CONTEXT, &value);
-	ctx = g_value_get_pointer (&value);
-	g_value_unset (&value);
-
-	args = (char**) poptGetArgs(ctx);
-
-	for (i = 0; args && args[i]; i++)
-		file_list = g_list_append (file_list, args[i]);
 
 	client = gnome_master_client();
 
@@ -367,8 +353,8 @@ main(int argc, char **argv)
 	/* Create ghex_mdi and open the first top level window */
 	mdi = ghex_mdi_new ();
 
-    /* restore state from previous session */
-    if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
+	/* restore state from previous session */
+	if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
 
 		gnome_config_push_prefix (gnome_client_get_config_prefix (client));
 
@@ -379,6 +365,14 @@ main(int argc, char **argv)
 
 	if (!restarted)
 		bonobo_mdi_open_toplevel(BONOBO_MDI(mdi));
+
+	/* Parse args and build the list of files to be loaded at startup */
+	g_value_init (&value, G_TYPE_POINTER);
+	g_object_get_property (G_OBJECT (program), GNOME_PARAM_POPT_CONTEXT, &value);
+	ctx = g_value_get_pointer (&value);
+	g_value_unset (&value);
+
+	args = (char**) poptGetArgs(ctx);
 
 	cl_files = (char **)poptGetArgs(ctx);
 	
@@ -392,7 +386,6 @@ main(int argc, char **argv)
 	}
 	poptFreeContext(ctx);
 	
-
 	gtk_main();
 
 	return 0;

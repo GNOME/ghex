@@ -358,8 +358,9 @@ static void hex_document_class_init (HexDocumentClass *class)
 	BONOBO_MDI_CHILD_CLASS (class)->create_view = 
 			(BonoboMDIChildViewCreator)(hex_document_create_view);
 
-#ifdef SNM
 	BONOBO_MDI_CHILD_CLASS (class)->get_config_string = (BonoboMDIChildConfigFunc)(hex_document_get_config_string);
+
+#ifdef SNM
 	parent_class = gtk_type_class (gnome_mdi_child_get_type ());
 #endif
 

@@ -1,3 +1,12 @@
+2002-02-28  Shivram U  <shivaram.upadhyayula@wipro.com>
+
+	* src/hex-document.c : (hex_document_class_init) Overriding 
+	bonobo_mdi_child class's get_config_string() virtual function.
+	Needed for session management.
+	
+	* src/main.c : (main) Setting the default window icon.
+	Removed unnecessary code in the main function
+
 2002-02-06  Jaka Mocnik  <jaka@gnu.org>
 
 	* migrated most of the ui_engine stuff to use ui_component.
