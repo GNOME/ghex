@@ -6,21 +6,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2002-07-26 08:27+0400\n"
-"PO-Revision-Date: 2002-07-26 08:32+0400\n"
+"POT-Creation-Date: 2002-08-26 12:08+0400\n"
+"PO-Revision-Date: 2002-08-26 12:08+0400\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: ghex.desktop.in.h:1 src/ghex-window.c:387
-msgid "GHex"
-msgstr "GHex"
+#: ghex.desktop.in.h:1
+msgid "GNOME Hexadecimal Editor"
+msgstr "Шестнадцатиричный редактор для среды GNOME"
 
 #: ghex.desktop.in.h:2
-msgid "Gnome Hexadecimal Editor"
-msgstr "Шестнадцатиричный редактор для среды GNOME"
+msgid "Hex Editor"
+msgstr "Шестнадцатиричный редактор"
 
 #: src/chartable.c:114
 msgid "ASCII"
@@ -30,7 +30,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Шестнадц."
 
-#: src/chartable.c:114 src/preferences.c:170
+#: src/chartable.c:114 src/preferences.c:174
 msgid "Decimal"
 msgstr "Десятичное"
 
@@ -584,6 +584,10 @@ msgstr "_Окна"
 msgid "_Words"
 msgstr "_Слова"
 
+#: src/ghex-window.c:387
+msgid "GHex"
+msgstr "GHex"
+
 #: src/ghex-window.c:496
 #, c-format
 msgid "Offset: %s"
@@ -649,116 +653,116 @@ msgstr "Недопустимая строка геометрии окна \"%s\"
 msgid "GHex Preferences"
 msgstr "Настроить программу GHex"
 
-#: src/preferences.c:132
+#: src/preferences.c:136
 msgid "_Maximum number of undo levels:"
 msgstr "Ма_ксимальное число уровней отмены"
 
-#: src/preferences.c:152
+#: src/preferences.c:156
 msgid "Undo levels"
 msgstr "Уровни отмены"
 
-#: src/preferences.c:152
+#: src/preferences.c:156
 msgid "Select maximum number of undo levels"
 msgstr "Выберите максимальное число уровней отмены"
 
-#: src/preferences.c:156
+#: src/preferences.c:160
 msgid "Show cursor offset in statusbar as:"
 msgstr "Показывать смещение курсора в строке состояния как:"
 
-#: src/preferences.c:175
+#: src/preferences.c:179
 msgid "Hexadecimal"
 msgstr "Шестнадцатиричное"
 
-#: src/preferences.c:181
+#: src/preferences.c:185
 msgid "Custom"
 msgstr "Нестандартное"
 
-#: src/preferences.c:192
+#: src/preferences.c:196
 msgid "Enter the cursor offset format"
 msgstr "Введите формат смещения курсора"
 
-#: src/preferences.c:193
+#: src/preferences.c:197
 msgid "Select the cursor offset format"
 msgstr "Выберите формат смещения курсора"
 
 #. show offsets check button
-#: src/preferences.c:203
+#: src/preferences.c:207
 msgid "Show offsets column"
 msgstr "Показывать колонку смещения"
 
-#: src/preferences.c:208
+#: src/preferences.c:212
 msgid "Editing"
 msgstr "Редактирование"
 
 #. display font
-#: src/preferences.c:217
+#: src/preferences.c:221
 msgid "Font"
 msgstr "Шрифт"
 
 #. default group type
-#: src/preferences.c:245
+#: src/preferences.c:249
 msgid "Default Group Type"
 msgstr "Тип группирования по умолчанию"
 
-#: src/preferences.c:261
+#: src/preferences.c:265
 msgid "Display"
 msgstr "Представление"
 
 #. paper selection
-#: src/preferences.c:270
+#: src/preferences.c:274
 msgid "Paper size"
 msgstr "Размер бумаги"
 
 #. data & header font selection
-#: src/preferences.c:275
+#: src/preferences.c:279
 msgid "Fonts"
 msgstr "Шрифты"
 
-#: src/preferences.c:281
+#: src/preferences.c:285
 msgid "_Data font:"
 msgstr "Шрифт _данных:"
 
-#: src/preferences.c:299
+#: src/preferences.c:303
 msgid "Data font"
 msgstr "Шрифт данных"
 
-#: src/preferences.c:299
+#: src/preferences.c:303
 msgid "Select the data font"
 msgstr "Выберите шрифт для данных"
 
-#: src/preferences.c:313
+#: src/preferences.c:317
 msgid "Header fo_nt:"
 msgstr "Шрифт за_головка:"
 
-#: src/preferences.c:330
+#: src/preferences.c:334
 msgid "Header font"
 msgstr "Шрифт заголовка"
 
-#: src/preferences.c:330
+#: src/preferences.c:334
 msgid "Select the header font"
 msgstr "Выберите шрифт заголовка"
 
-#: src/preferences.c:358
+#: src/preferences.c:362
 msgid "_Print shaded box over:"
 msgstr "_Печатать полоску каждые"
 
-#: src/preferences.c:370
+#: src/preferences.c:374
 msgid "Box size"
 msgstr "Размер полоски"
 
-#: src/preferences.c:370
+#: src/preferences.c:374
 msgid "Select size of box (in number of lines)"
 msgstr "Выберите размер полоски (число строк)"
 
-#: src/preferences.c:374
+#: src/preferences.c:378
 msgid "lines (0 for no box)"
 msgstr "строки (0 - без полоски)"
 
-#: src/preferences.c:381
+#: src/preferences.c:385
 msgid "Printing"
 msgstr "Печать"
 
-#: src/preferences.c:523
+#: src/preferences.c:527
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -766,7 +770,7 @@ msgstr ""
 "Строка формата содержит недопустимый спецификатор.\n"
 "Допустимы только \"x\", \"X\", \"p\", \"P\", \"d\" или \"o\"!"
 
-#: src/preferences.c:555
+#: src/preferences.c:559
 msgid "Can not open desired font!"
 msgstr "Не удалось загрузить желаемый шрифт!"
 
