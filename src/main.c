@@ -71,16 +71,12 @@ int main(int argc, char **argv) {
     gnome_mdi_set_mode(mdi, mdi_mode);
 
     /* restore state from previous session */
-    if (GNOME_CLIENT_CONNECTED (client)) {
+    if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
 
 		gnome_config_push_prefix (gnome_client_get_config_prefix (client));
-
-		restarted= gnome_config_get_bool ("General/saved_session=0");
 		
-		if (restarted)
-			restarted = gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreator)hex_document_new_from_config);
-				
-
+		restarted= gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreator)hex_document_new_from_config);		
+		
 		gnome_config_pop_prefix ();
 	}
 

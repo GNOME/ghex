@@ -45,7 +45,6 @@ int save_state (GnomeClient        *client,
 	gnome_config_push_prefix (prefix);
 	
 	gnome_mdi_save_state(mdi, "Session");
-	gnome_config_set_bool ("General/saved_session", TRUE);
 	
 	gnome_config_pop_prefix();
 	gnome_config_sync();
