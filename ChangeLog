@@ -37,8 +37,11 @@
 	GtkFileChooserDialog! among other things, this fixes #140332.
 	* src/hex-document.c (hex_document_export_html): create UTF-8 encoded
 	output. fixes #122493.
-	* configure.in: version 2.6.0; tagged as GHEX_2_6_0; branched off
-	gnome-2-6 branch.
+	* src/preferences.c (select_display_font_cb, create_prefs_dialog): use
+	GtkFontButton for display font selection.
+	* Makefile.am: removed OrigTree.pm from EXTRA_DIST.
+	* configure.in: fixed package dependency versions; bumped version to
+	2.6.0;tagged as GHEX_2_6_0; branched off gnome-2-6 branch.
 
 2004-03-04 Breda McColgan <breda.mccolgan@sun.com>
 

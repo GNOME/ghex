@@ -9,7 +9,7 @@ AM_MAINTAINER_MODE
 dnl The following line will have to be removed -- SnM
 GNOME_COMMON_INIT
 
-AC_PROG_INTLTOOL([0.28])
+AC_PROG_INTLTOOL([0.30])
 
 AC_ISC_POSIX
 AC_PROG_CC
@@ -23,11 +23,13 @@ AC_PROG_MAKE_SET
 LIBGTKHEX_RELEASE=1.0
 AC_SUBST(LIBGTKHEX_RELEASE)
 LIBGTKHEX_VERSION=${LIBGTKHEX_RELEASE}.0
+LIBGTKHEX_RELEASE_STRING=gtkhex-${LIBGTKHEX_RELEASE}
 AC_SUBST(LIBGTKHEX_VERSION)
-AC_DEFINE(LIBGTKHEX_RELEASE_STRING, "gtkhex-$LIBGTKHEX_RELEASE", [GtkHex library release string.])
+AC_DEFINE_UNQUOTED(LIBGTKHEX_RELEASE_STRING, "$LIBGTKHEX_RELEASE_STRING",
+                   [GtkHex library release string.])
 
 PKG_CHECK_MODULES(LIBGTKHEX,
-		  gtk+-2.0 >= 2.3.0	\
+		  gtk+-2.0 >= 2.4.0	\
 		  atk >= 1.0.0)
 
 LIBGTKHEX_CFLAGS="$LIBGTKHEX_CFLAGS"
@@ -36,9 +38,8 @@ AC_SUBST(LIBGTKHEX_LIBS)
 AC_SUBST(LIBGTKHEX_CFLAGS)
 
 PKG_CHECK_MODULES(GHEX,
-		  gtk+-2.0 >= 2.3.0 		\
-		  libgnomeui-2.0 >= 2.5.0	\
-		  libglade-2.0 >= 2.3.0		\
+		  gtk+-2.0 >= 2.4.0 		\
+		  libgnomeui-2.0 >= 2.6.0	\
 		  libgnomeprintui-2.2)
 
 GHEX_CFLAGS="$GHEX_CFLAGS"
@@ -104,6 +105,3 @@ help/zh_TW/Makefile
 omf-install/Makefile
 ghex.spec
 gtkhex.pc])
-
-dnl FIXME: put back when this is added to SUBDIRS
-dnl omf-install/Makefile

@@ -3,7 +3,6 @@
 #Remove macros intl directory from SUBDIRS -- SnM 
 
 SUBDIRS = po src help omf-install
-#SUBDIRS = po src help
 
 schemadir = $(sysconfdir)/gconf/schemas
 schema_DATA = ghex2.schemas
@@ -20,7 +19,6 @@ EXTRA_DIST =			\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in	\
-	intltool-modules/XML/Parser/Style/OrigTree.pm \
 	$(schema_DATA)		\
 	$(appicon_DATA)
 

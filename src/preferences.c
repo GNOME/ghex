@@ -204,14 +204,11 @@ create_prefs_dialog()
 	gtk_widget_show(frame);
 	
 	fbox = gtk_hbox_new(0, 5);
-	pui->font_button = gtk_font_selection_new();
-	gtk_font_selection_set_font_name(GTK_FONT_SELECTION(pui->font_button),
-									 def_font_name);
-#if 0	
-	gtk_signal_connect (GTK_OBJECT (pui->font_button), "font_set",
+	pui->font_button = gtk_font_button_new();
+	gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->font_button),
+								  def_font_name);
+	gtk_signal_connect (GTK_OBJECT (pui->font_button), "font-set",
 						GTK_SIGNAL_FUNC (select_font_cb), pui);
-#endif /* 0/1 */
-
 	flabel = gtk_label_new("");
 	gtk_label_set_mnemonic_widget (GTK_LABEL (flabel), pui->font_button);
 	gtk_widget_show(flabel);
@@ -412,8 +409,8 @@ void set_prefs(PropertyUI *pui) {
 			(GNOME_PRINT_FONT_PICKER(pui->df_button),
 			 data_font_name);
 	if(def_font_name)
-		gtk_font_selection_set_font_name(GTK_FONT_SELECTION(pui->font_button),
-										 def_font_name);
+		gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->font_button),
+									  def_font_name);
 
 	gtk_dialog_set_default_response(GTK_DIALOG(pui->pbox), GTK_RESPONSE_CLOSE);
 }
@@ -488,42 +485,46 @@ prefs_response_cb(GtkDialog *dlg, gint response, PropertyUI *pui)
 }
 
 static void
-select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui)
+select_display_font_cb(GtkWidget *w, PropertyUI *pui)
 {
 	PangoFontMetrics *new_metrics;
 	PangoFontDescription *new_desc;
 
-	if(w == pui->font_button) {
-		if(strcmp(gnome_print_font_picker_get_font_name
-				  (GNOME_PRINT_FONT_PICKER(pui->font_button)),
-				  def_font_name) != 0) {
-			if((new_metrics = gtk_hex_load_font
-				(gnome_print_font_picker_get_font_name
-				 (GNOME_PRINT_FONT_PICKER(pui->font_button)))) != NULL) {
-				new_desc = pango_font_description_from_string
-					(gnome_print_font_picker_get_font_name
-					 (GNOME_PRINT_FONT_PICKER (pui->font_button)));
-				if (def_metrics)
-					pango_font_metrics_unref (def_metrics);
-				if (def_font_desc)
-					pango_font_description_free (def_font_desc);
-				def_metrics = new_metrics;
-				if(def_font_name)
-					g_free(def_font_name);
-				def_font_name = g_strdup
-					(gnome_print_font_picker_get_font_name
-					 (GNOME_PRINT_FONT_PICKER(pui->font_button)));
-				def_font_desc = new_desc;
-				gconf_client_set_string (gconf_client,
-										 GHEX_BASE_KEY GHEX_PREF_FONT,
-										 def_font_name,
-										 NULL);
-			}
-			else
-				display_error_dialog (ghex_window_get_active(), _("Can not open desired font!"));
+	if(strcmp(gtk_font_button_get_font_name
+			  (GTK_FONT_BUTTON(pui->font_button)),
+			  def_font_name) != 0) {
+		if((new_metrics = gtk_hex_load_font
+			(gtk_font_button_get_font_name
+			 (GTK_FONT_BUTTON(pui->font_button)))) != NULL) {
+			new_desc = pango_font_description_from_string
+				(gtk_font_button_get_font_name
+				 (GTK_FONT_BUTTON (pui->font_button)));
+			if (def_metrics)
+				pango_font_metrics_unref (def_metrics);
+			if (def_font_desc)
+				pango_font_description_free (def_font_desc);
+			def_metrics = new_metrics;
+			if(def_font_name)
+				g_free(def_font_name);
+			def_font_name = g_strdup
+				(gtk_font_button_get_font_name
+				 (GTK_FONT_BUTTON(pui->font_button)));
+			def_font_desc = new_desc;
+			gconf_client_set_string (gconf_client,
+									 GHEX_BASE_KEY GHEX_PREF_FONT,
+									 def_font_name,
+									 NULL);
 		}
+		else
+			display_error_dialog (ghex_window_get_active(),
+								  _("Can not open desired font!"));
 	}
-	else if(w == pui->df_button) {
+}
+
+static void
+select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui)
+{
+	if(w == pui->df_button) {
 		if(data_font_name)
 			g_free(data_font_name);
 		data_font_name = g_strdup(gnome_print_font_picker_get_font_name
