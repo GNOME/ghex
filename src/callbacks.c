@@ -517,7 +517,7 @@ void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
 	
 	for(i = 0; i < NUM_MDI_MODES; i++)
 		if(GTK_TOGGLE_BUTTON(pui->mdi_type[i])->active) {
-			if(mdi->mode != mdi_type[i]) {
+			if(mdi_mode != mdi_type[i]) {
 				mdi_mode = mdi_type[i];
 				gnome_mdi_set_mode(mdi, mdi_mode);
 			}
