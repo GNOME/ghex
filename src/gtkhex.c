@@ -3,6 +3,7 @@
  * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
 
+#include <gnome.h>
 #include <gdk/gdkkeysyms.h>
 
 #include <hex-document.h>

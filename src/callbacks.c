@@ -2,6 +2,7 @@
  * callbacks.c - callbacks for GHex widgets
  * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
+#include <gnome.h>
 #include <libgnome/gnome-help.h> 
 #include <string.h>
 #include "hex-document.h"

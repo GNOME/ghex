@@ -1,6 +1,7 @@
 #ifndef __GNOME_MDI_ROO_H__
 #define __GNOME_MDI_ROO_H__
 
+#include <gnome.h>
 #include <gdk/gdk.h>
 #include <gtk/gtkcontainer.h>
 

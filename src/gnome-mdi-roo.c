@@ -1,4 +1,5 @@
 #include <string.h>
+#include <gnome.h>
 #include <gtk/gtk.h>
 
 #include <libgnome/libgnome.h>

@@ -10,6 +10,7 @@
 #ifndef __GNOME_MDI_POUCH_H__
 #define __GNOME_MDI_POUCH_H__
 
+#include <gnome.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 

@@ -3,6 +3,7 @@
  * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
 
+#include <gnome.h>
 #include "gtkhex.h"
 #include "gnome-support.h"
 #include "callbacks.h"
