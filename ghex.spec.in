@@ -22,7 +22,7 @@ saving.
 
 %prep
 
-%setup
+%setup -q
 
 %build
 %ifarch alpha
@@ -31,11 +31,12 @@ saving.
 
 if [ ! -f configure ]; then
     CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh $MYARCH_FLAGS \
-	--prefix=%{_prefix} --bindir=%{_bindir} --datadir=%{_datadir}
+	--prefix=%{_prefix} --bindir=%{_bindir} --datadir=%{_datadir} \
+	--sysconfdir=%{_sysconfdir}
+else
+    CFLAGS="$RPM_OPT_FLAGS" ./configure $MYARCH_FLAGS --prefix=%{_prefix} \
+        --bindir=%{_bindir} --datadir=%{_datadir} --sysconfdir=%{_sysconfdir}
 fi
-
-CFLAGS="$RPM_OPT_FLAGS" ./configure $MYARCH_FLAGS --prefix=%{_prefix} \
-    --bindir=%{_bindir} --datadir=%{_datadir}
 
 
 if [ "$SMP" != "" ]; then
@@ -50,7 +51,8 @@ if [ -d $RPM_BUILD_ROOT ]; then rm -r $RPM_BUILD_ROOT; fi
 mkdir -p $RPM_BUILD_ROOT%{_prefix}
 
 make prefix=$RPM_BUILD_ROOT%{_prefix} bindir=$RPM_BUILD_ROOT%{_bindir} \
-    datadir=$RPM_BUILD_ROOT%{_datadir} install
+    datadir=$RPM_BUILD_ROOT%{_datadir} \
+    sysconfdir=$RPM_BUILD_ROOT%{_sysconfidr} install
 
 %files
 %defattr(-,root,root)
