@@ -1,13 +1,11 @@
 # gnome-utils ko.po
 # Copyright (C) 1998 Free Software Foundation, Inc.
 # Changwoo Ryu <cwryu@adam.kaist.ac.kr>, 1998
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-utils 0.30\n"
-"POT-Creation-Date: 1998-02-16 20:29+0900\n"
-"PO-Revision-Date: 1998-09-28 08:45:22+0900\n"
+"POT-Creation-Date: 1998-11-10 16:48+0900\n"
+"PO-Revision-Date: 1998-11-14 07:17:52+0900\n"
 "Last-Translator: Sung-Hyun Nam <namsh@lgic.co.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,11 +20,11 @@ msgstr "그놈 계산기"
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "간단하면서 두배로 정밀하고 xcalc와 비슷한 계산기"
 
-#: gcalc/gcalc.c:43 ghex/ui.c:57 gtt/menus.c:103
+#: gcalc/gcalc.c:43 ghex/ui.c:75 gtt/menus.c:103
 msgid "_About..."
 msgstr "이 프로그램은(_A)..."
 
-#: gcalc/gcalc.c:48 ghex/ui.c:34 gtt/menus.c:45
+#: gcalc/gcalc.c:48 ghex/ui.c:52 gtt/menus.c:45
 msgid "_Quit"
 msgstr "종료(_Q)"
 
@@ -38,369 +36,378 @@ msgstr "복사(_C)"
 msgid "_Program"
 msgstr "프로그램(_P)"
 
-#: gcalc/gcalc.c:68 ghex/hex-document.c:61 gncal/main.c:439 gtt/menus.c:115
+#: gcalc/gcalc.c:68 ghex/hex-document.c:85 gncal/main.c:439 gtt/menus.c:115
 msgid "_Edit"
 msgstr "편집(_E)"
 
-#: gcalc/gcalc.c:88
+#: gcalc/gcalc.c:86
 msgid "Gnome Calculator"
 msgstr "그놈 계산기"
 
-#: gdiskfree/df.c:135 gncal/gnomecard/gnomecard.c:424
-#: gsearchtool/gsearchtool.c:579 mini-utils/gless/gless.c:330
-#: mini-utils/gw/gw.c:187
+#: gdiskfree/df.c:128 gncal/gnomecard/gnomecard.c:452
+#: gsearchtool/gsearchtool.c:579 mini-utils/gless/gless.c:306
+#: mini-utils/gw/gw.c:185
 msgid "Exit"
 msgstr "끝내기"
 
-#: gdiskfree/df.c:144 gncal/gnomecard/gnomecard.c:543
-#: gsearchtool/gsearchtool.c:588 mini-utils/gless/gless.c:301
-#: mini-utils/gw/gw.c:173
+#: gdiskfree/df.c:137 gncal/gnomecard/gnomecard.c:571
+#: gsearchtool/gsearchtool.c:588 mini-utils/gless/gless.c:277
+#: mini-utils/gw/gw.c:171
 msgid "About..."
 msgstr "이 프로그램은..."
 
 #. and document menu and document list paths
-#: gdiskfree/df.c:151 ghex/main.c:55 gncal/gnomecard/gnomecard.c:551
-#: gsearchtool/gsearchtool.c:595 mini-utils/gless/gless.c:357
-#: mini-utils/gw/gw.c:205
+#: gdiskfree/df.c:144 ghex/main.c:62 gncal/gnomecard/gnomecard.c:579
+#: gsearchtool/gsearchtool.c:595 mini-utils/gless/gless.c:333
+#: mini-utils/gw/gw.c:203
 msgid "File"
 msgstr "파일"
 
-#: gdiskfree/df.c:153 gncal/gnomecard/gnomecard.c:565
-#: gsearchtool/gsearchtool.c:598 mini-utils/gless/gless.c:365
-#: mini-utils/gw/gw.c:208
+#: gdiskfree/df.c:146 gncal/gnomecard/gnomecard.c:593
+#: gsearchtool/gsearchtool.c:598 mini-utils/gless/gless.c:341
+#: mini-utils/gw/gw.c:206
 msgid "Help"
 msgstr "도움말"
 
-#: gdiskfree/df.c:209
+#: gdiskfree/df.c:219
 msgid ""
 "A quick hack to show the amount of space free on mounted file systems "
 "uitilizing a dial."
 msgstr ""
-"지침판을 이용하여 마운트된 파일 시스템의 여유 공간의 크기를 "
-"보여주는 빠른 해킹판"
+"지침판을 이용하여 마운트된 파일 시스템의 여유 공간의 크기를 보여주는 빠른 "
+"해킹판"
 
-#: ghex/callbacks.c:20
+#: ghex/callbacks.c:39
 msgid "GHex, a binary file editor"
 msgstr "GHex, 이진 파일 편집기"
 
-#: ghex/callbacks.c:22
+#: ghex/callbacks.c:41
 msgid "Released under the terms of GNU Public License"
 msgstr "GNU Public License에 의거하여 공개"
 
-#: ghex/callbacks.c:48 ghex/callbacks.c:98
+#: ghex/callbacks.c:67 ghex/callbacks.c:137
 msgid "Error saving file!"
 msgstr "파일 저장 에러!"
 
-#: ghex/callbacks.c:64 ghex/main.c:100
+#: ghex/callbacks.c:80
+#, c-format
+msgid "Really revert file %s?"
+msgstr "정말로 %s 파일을 원상복구할까요?"
+
+#: ghex/callbacks.c:103
 msgid "Can not open file!"
 msgstr "파일을 열 수 없습니다!"
 
-#: ghex/callbacks.c:102
+#: ghex/callbacks.c:141
 msgid "Can't open file for writing!"
 msgstr "쓰기위해 파일을 열 수 없습니다!"
 
-#: ghex/callbacks.c:126
+#: ghex/callbacks.c:165
 msgid "Select a file to open"
 msgstr "열기 위한 파일 선택"
 
-#: ghex/callbacks.c:144
+#: ghex/callbacks.c:183
 msgid "Select a file to save buffer as"
 msgstr "버퍼를 저장할 파일 선택"
 
-#: ghex/callbacks.c:238 ghex/callbacks.c:262 ghex/callbacks.c:315
+#: ghex/callbacks.c:277 ghex/callbacks.c:301 ghex/callbacks.c:354
 msgid "There seems to be no string to search for!"
 msgstr "찾을 문자열이 없는 것처럼 보입니다!"
 
-#: ghex/callbacks.c:243 ghex/callbacks.c:267 ghex/callbacks.c:320
+#: ghex/callbacks.c:282 ghex/callbacks.c:306 ghex/callbacks.c:359
 msgid "There is no active buffer to search!"
 msgstr "찾기 위한 활성화된 버퍼가 없습니다!"
 
-#: ghex/callbacks.c:252 ghex/callbacks.c:329
+#: ghex/callbacks.c:291 ghex/callbacks.c:368
 msgid "End Of File reached"
 msgstr "파일 끝 만남"
 
-#: ghex/callbacks.c:276
+#: ghex/callbacks.c:315
 msgid "Beginning Of File reached"
 msgstr "파일 처음 만남"
 
-#: ghex/callbacks.c:284
+#: ghex/callbacks.c:323
 msgid "There is no active buffer to move the cursor in!"
 msgstr "깜박이를 옮길 만한 활성화된 버퍼가 없습니다!"
 
-#: ghex/callbacks.c:289
+#: ghex/callbacks.c:328
 msgid "No offset has been specified!"
 msgstr "어떤 오프셋값도 주어지지 않았습니다!"
 
-#: ghex/callbacks.c:296
+#: ghex/callbacks.c:335
 msgid "The offset must be a positive integer value!"
 msgstr "오프셋 값은 양수이어야만 합니다!"
 
-#: ghex/callbacks.c:301
+#: ghex/callbacks.c:340
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "파일 끝 이후로 깜박이를 옮길 수는 없습니다!"
 
-#: ghex/callbacks.c:339 ghex/callbacks.c:378
+#: ghex/callbacks.c:378 ghex/callbacks.c:417
 msgid "There is no active buffer to replace data in!"
 msgstr "자료를 바꿀만한 활성화된 버퍼가 없습니다!"
 
-#: ghex/callbacks.c:350 ghex/callbacks.c:389
+#: ghex/callbacks.c:389 ghex/callbacks.c:428
 msgid "Erroneous find or replace string!"
 msgstr "이상한 찾을 혹은 바꿀 문자열!"
 
-#: ghex/callbacks.c:355 ghex/callbacks.c:394
+#: ghex/callbacks.c:394 ghex/callbacks.c:433
 msgid "Both strings must be of the same length!"
 msgstr "두 문자열은 길이가 같아야 합니다!"
 
-#: ghex/callbacks.c:368
+#: ghex/callbacks.c:407
 msgid "End Of File reached!"
 msgstr "파일 끝 만남!"
 
-#: ghex/callbacks.c:409
+#: ghex/callbacks.c:448
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d 개를 바꿈."
 
-#: ghex/callbacks.c:469
+#: ghex/callbacks.c:514
 msgid "Can not open desired font!"
 msgstr "원하는 글꼴을 열 수 없습니다!"
 
-#: ghex/callbacks.c:488
+#: ghex/callbacks.c:533
 #, c-format
 msgid ""
-"The document %s has changed since last save.\n"
+"File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
 "문서 %s가 마지막 저장된 후로 바뀌었습니다.\n"
 "바뀐 내용을 저장할까요?"
 
-#: ghex/callbacks.c:519
+#: ghex/callbacks.c:564
 msgid "Edit/Group Data As/"
-msgstr ""
+msgstr "편집/Group Data As/"
 
-#: ghex/callbacks.c:562
+#: ghex/callbacks.c:607
 msgid "ERRONEUS STRING"
 msgstr "이상한 문자열"
 
-#: ghex/config.c:40
+#: ghex/config.c:59
 msgid "Can not open configured font!"
 msgstr "설정된 글꼴을 열 수 없습니다!"
 
-#: ghex/gnome-support.c:13
-msgid "ID"
-msgstr "ID"
-
-#: ghex/gnome-support.c:13
+#: ghex/gnome-support.c:30
 msgid "Discard session"
 msgstr ""
 
-#: ghex/hex-document.c:30
+#: ghex/gnome-support.c:30
+msgid "ID"
+msgstr "ID"
+
+#: ghex/hex-document.c:54
 msgid "_Bytes"
-msgstr ""
+msgstr "바이트(_B)"
 
-#: ghex/hex-document.c:32
+#: ghex/hex-document.c:56
 msgid "_Words"
-msgstr ""
+msgstr "워드(_W)"
 
-#: ghex/hex-document.c:34
+#: ghex/hex-document.c:58
 msgid "_Longwords"
 msgstr ""
 
-#: ghex/hex-document.c:45
+#: ghex/hex-document.c:69
 msgid "_Find..."
 msgstr "찾기(_F)..."
 
-#: ghex/hex-document.c:47
+#: ghex/hex-document.c:71
 msgid "_Replace..."
 msgstr "바꾸기(_R)..."
 
-#: ghex/hex-document.c:51
+#: ghex/hex-document.c:75
 msgid "_Goto Byte..."
 msgstr ""
 
-#: ghex/hex-document.c:55
+#: ghex/hex-document.c:79
 msgid "_Group Data As"
 msgstr ""
 
-#: ghex/main.c:56
+#: ghex/main.c:63
 msgid "Files/"
 msgstr "파일/"
 
-#: ghex/ui.c:14
+#: ghex/ui.c:32
 msgid "_Open"
 msgstr "열기(_O)"
 
-#: ghex/ui.c:16
+#: ghex/ui.c:34
 msgid "_Save"
 msgstr "저장(_S)"
 
-#: ghex/ui.c:18
+#: ghex/ui.c:36
 msgid "Save _as..."
 msgstr "다른 이름으로 저장(_a)..."
 
-#: ghex/ui.c:20
+#: ghex/ui.c:38
 msgid "_Revert"
-msgstr ""
+msgstr "원상복구(_R)"
 
-#: ghex/ui.c:22
+#: ghex/ui.c:40
 msgid "_Close"
 msgstr "닫기(_C)"
 
-#: ghex/ui.c:26
+#: ghex/ui.c:44
 msgid "Open _Converter..."
-msgstr ""
+msgstr "변환기 열기(_C)..."
 
-#: ghex/ui.c:30
+#: ghex/ui.c:48
 msgid "_Preferences"
 msgstr "속성(_P)"
 
-#: ghex/ui.c:44
+#: ghex/ui.c:62
 msgid "_Add view"
-msgstr ""
+msgstr "보기 추가(_A)"
 
-#: ghex/ui.c:47
+#: ghex/ui.c:65
 msgid "_Remove view"
-msgstr ""
+msgstr "보기 삭제(_R)"
 
-#: ghex/ui.c:63 gncal/main.c:438 gtt/menus.c:113
+#: ghex/ui.c:81 gncal/main.c:438 gtt/menus.c:113
 msgid "_File"
 msgstr "파일(_F)"
 
-#: ghex/ui.c:65
+#: ghex/ui.c:83
 msgid "_View"
 msgstr "보기(_V)"
 
-#: ghex/ui.c:67
+#: ghex/ui.c:85
 msgid "File_s"
 msgstr "파일(_s)"
 
-#: ghex/ui.c:69 gncal/main.c:440 gtt/menus.c:120
+#: ghex/ui.c:87 gncal/main.c:440 gtt/menus.c:120
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: ghex/ui.c:81
+#: ghex/ui.c:99
 msgid "Bytes"
-msgstr ""
+msgstr "바이트"
 
-#: ghex/ui.c:82
+#: ghex/ui.c:100
 msgid "Words"
-msgstr ""
+msgstr "워드"
 
-#: ghex/ui.c:83
+#: ghex/ui.c:101
 msgid "Longwords"
 msgstr ""
 
-#: ghex/ui.c:107 mini-utils/idetool/idetool.c:140
-#: mini-utils/idetool/idetool.c:322
+#: ghex/ui.c:125 mini-utils/idetool/idetool.c:141
+#: mini-utils/idetool/idetool.c:323
 msgid "Default"
 msgstr ""
 
-#: ghex/ui.c:108
+#: ghex/ui.c:126
 msgid "Notebook"
 msgstr ""
 
-#: ghex/ui.c:109
+#: ghex/ui.c:127
 msgid "Toplevel"
 msgstr ""
 
-#: ghex/ui.c:110
+#: ghex/ui.c:128
 msgid "Modal"
 msgstr ""
 
-#: ghex/ui.c:115
+#: ghex/ui.c:133
 msgid "hex data"
-msgstr ""
+msgstr "십육진 자료"
 
-#: ghex/ui.c:116
+#: ghex/ui.c:134
 msgid "ASCII data"
-msgstr ""
+msgstr "아스키 자료"
 
-#: ghex/ui.c:193
+#: ghex/ui.c:211
 msgid "GHex: Find Data"
 msgstr "GHex: 자료 찾기"
 
-#: ghex/ui.c:202
+#: ghex/ui.c:220
 #, c-format
 msgid "Search for %s"
 msgstr "%s 찾기"
 
-#: ghex/ui.c:218
+#: ghex/ui.c:236
 msgid "Find Next"
 msgstr "다음 찾기"
 
-#: ghex/ui.c:225
+#: ghex/ui.c:243
 msgid "Find Previous"
 msgstr "이전 찾기"
 
-#: ghex/ui.c:253
+#: ghex/ui.c:271
 msgid "GHex: Find & Replace Data"
 msgstr "GHex: 자료를 찾아서 바꾸기"
 
-#: ghex/ui.c:267
+#: ghex/ui.c:285
 #, c-format
 msgid "Replace %s"
 msgstr "%s를 바꿈"
 
-#: ghex/ui.c:283
+#: ghex/ui.c:301
 msgid "Find next"
 msgstr "다음 찾기"
 
-#: ghex/ui.c:290
+#: ghex/ui.c:308
 msgid "Replace"
 msgstr "바꾸기"
 
-#: ghex/ui.c:297
+#: ghex/ui.c:315
 msgid "Replace All"
 msgstr "모두 바꾸기"
 
-#: ghex/ui.c:321
+#: ghex/ui.c:339
 msgid "GHex: Jump To Byte"
 msgstr ""
 
-#: ghex/ui.c:354
+#: ghex/ui.c:372
 msgid "GHex: Converter"
 msgstr "GHex: 변환기"
 
-#: ghex/ui.c:361
+#: ghex/ui.c:379
 msgid "Binary"
 msgstr "이진"
 
-#: ghex/ui.c:371
+#: ghex/ui.c:389
 msgid "Decimal"
 msgstr "십진"
 
-#: ghex/ui.c:381
+#: ghex/ui.c:399
 msgid "Hex"
 msgstr "십육진"
 
-#: ghex/ui.c:391
+#: ghex/ui.c:409
 msgid "ASCII"
 msgstr "아스키"
 
-#: ghex/ui.c:401 mini-utils/gless/gless.c:324
+#: ghex/ui.c:419 mini-utils/gless/gless.c:300
 msgid "Close"
 msgstr "닫기"
 
-#: ghex/ui.c:445
+#: ghex/ui.c:463
 msgid "Font"
 msgstr "글꼴"
 
-#: ghex/ui.c:455
+#: ghex/ui.c:479
+msgid "Browse..."
+msgstr "브라우즈..."
+
+#: ghex/ui.c:498
 msgid "Default Group Type"
 msgstr "생략시 그룹 종류"
 
-#: ghex/ui.c:471 gncal/eventedit.c:379 gtt/options.c:195
+#: ghex/ui.c:514 gncal/eventedit.c:379 gtt/options.c:195
 msgid "Display"
 msgstr "표시"
 
-#: ghex/ui.c:478
+#: ghex/ui.c:521
 msgid "MDI Mode"
 msgstr "MDI 모드"
 
-#: ghex/ui.c:495
+#: ghex/ui.c:538
 msgid "MDI"
 msgstr "MDI"
 
-#: gncal/calobj.c:878
+#: gncal/calobj.c:879
 msgid "Appointment"
 msgstr "약속"
 
@@ -477,189 +484,189 @@ msgstr "비공개"
 msgid "Confidential"
 msgstr "비밀"
 
-#: gncal/eventedit.c:774 mini-utils/gshutdown/gshutdown.c:388
+#: gncal/eventedit.c:779 mini-utils/gshutdown/gshutdown.c:382
 msgid "General"
 msgstr "일반"
 
-#: gncal/eventedit.c:783
+#: gncal/eventedit.c:788
 msgid "Owner:"
 msgstr "소유자:"
 
-#: gncal/eventedit.c:786
+#: gncal/eventedit.c:791
 msgid "?"
 msgstr "?"
 
-#: gncal/eventedit.c:790 gncal/gncal-todo.c:108
+#: gncal/eventedit.c:795 gncal/gncal-todo.c:108
 msgid "Summary:"
 msgstr "요약"
 
-#: gncal/eventedit.c:840
+#: gncal/eventedit.c:845
 msgid "None"
 msgstr "없슴"
 
-#: gncal/eventedit.c:841
+#: gncal/eventedit.c:846
 msgid "Daily"
 msgstr "매일"
 
-#: gncal/eventedit.c:842
+#: gncal/eventedit.c:847
 msgid "Weekly"
 msgstr "매주"
 
-#: gncal/eventedit.c:843
+#: gncal/eventedit.c:848
 msgid "Monthly"
 msgstr "매달"
 
-#: gncal/eventedit.c:844
+#: gncal/eventedit.c:849
 msgid "Yearly"
 msgstr "매년"
 
-#: gncal/eventedit.c:866
+#: gncal/eventedit.c:871
 msgid "1st"
 msgstr "첫번째"
 
-#: gncal/eventedit.c:867
+#: gncal/eventedit.c:872
 msgid "2nd"
 msgstr "두번째"
 
-#: gncal/eventedit.c:868
+#: gncal/eventedit.c:873
 msgid "3rd"
 msgstr "세번째"
 
-#: gncal/eventedit.c:869
+#: gncal/eventedit.c:874
 msgid "4th"
 msgstr "네번째"
 
-#: gncal/eventedit.c:870
+#: gncal/eventedit.c:875
 msgid "5th"
 msgstr "다섯번째"
 
-#: gncal/eventedit.c:875 gncal/prop.c:266
+#: gncal/eventedit.c:880 gncal/prop.c:269
 msgid "Monday"
 msgstr "월요일"
 
-#: gncal/eventedit.c:876
+#: gncal/eventedit.c:881
 msgid "Tuesday"
 msgstr "화요일"
 
-#: gncal/eventedit.c:877
+#: gncal/eventedit.c:882
 msgid "Wednesday"
 msgstr "수요일"
 
-#: gncal/eventedit.c:878
+#: gncal/eventedit.c:883
 msgid "Thursday"
 msgstr "목요일"
 
-#: gncal/eventedit.c:879
+#: gncal/eventedit.c:884
 msgid "Friday"
 msgstr "금요일"
 
-#: gncal/eventedit.c:880
+#: gncal/eventedit.c:885
 msgid "Saturday"
 msgstr "토요일"
 
-#: gncal/eventedit.c:881 gncal/prop.c:265
+#: gncal/eventedit.c:886 gncal/prop.c:268
 msgid "Sunday"
 msgstr "일요일"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:590
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:733
 msgid "Mon"
 msgstr "월"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:591
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:734
 msgid "Tue"
 msgstr "화"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:592
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:735
 msgid "Wed"
 msgstr "수"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:593
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:736
 msgid "Thu"
 msgstr "목"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:594
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:737
 msgid "Fri"
 msgstr "금"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:595
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:738
 msgid "Sat"
 msgstr "토"
 
 #. Initialize by default to three-letter day names
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:589
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:732
 msgid "Sun"
 msgstr "일"
 
-#: gncal/eventedit.c:945
+#: gncal/eventedit.c:950
 msgid "Recurrence rule"
 msgstr "반복 규칙"
 
-#: gncal/eventedit.c:1046 gncal/eventedit.c:1060 gncal/eventedit.c:1105
-#: gncal/eventedit.c:1127
+#: gncal/eventedit.c:1051 gncal/eventedit.c:1065 gncal/eventedit.c:1110
+#: gncal/eventedit.c:1132
 msgid "Every"
 msgstr "매번"
 
-#: gncal/eventedit.c:1048
+#: gncal/eventedit.c:1053
 msgid "day(s)"
 msgstr "하루"
 
-#: gncal/eventedit.c:1062
+#: gncal/eventedit.c:1067
 msgid "week(s)"
 msgstr "한주"
 
-#: gncal/eventedit.c:1083 gncal/eventedit.c:1095
+#: gncal/eventedit.c:1088 gncal/eventedit.c:1100
 msgid "Recur on the"
 msgstr "Recur on the"
 
-#: gncal/eventedit.c:1085
+#: gncal/eventedit.c:1090
 msgid "th day of the month"
 msgstr "th day of the month"
 
-#: gncal/eventedit.c:1110
+#: gncal/eventedit.c:1115
 msgid "month(s)"
 msgstr "한달"
 
-#: gncal/eventedit.c:1129
+#: gncal/eventedit.c:1134
 msgid "year(s)"
 msgstr "한해"
 
-#: gncal/eventedit.c:1167
+#: gncal/eventedit.c:1172
 msgid "Ending date"
 msgstr "끝나는 날"
 
-#: gncal/eventedit.c:1180
+#: gncal/eventedit.c:1185
 msgid "Repeat forever"
 msgstr "영원히 반복"
 
-#: gncal/eventedit.c:1189
+#: gncal/eventedit.c:1194
 msgid "End on"
 msgstr ""
 
-#: gncal/eventedit.c:1214
+#: gncal/eventedit.c:1219
 msgid "End after"
 msgstr ""
 
-#: gncal/eventedit.c:1230
+#: gncal/eventedit.c:1235
 msgid "occurrence(s)"
 msgstr ""
 
-#: gncal/eventedit.c:1348
+#: gncal/eventedit.c:1353
 msgid "Exceptions"
 msgstr "예외"
 
-#: gncal/eventedit.c:1360
+#: gncal/eventedit.c:1365
 msgid "Add exception"
 msgstr "예외 추가"
 
-#: gncal/eventedit.c:1370
+#: gncal/eventedit.c:1375
 msgid "Change selected"
 msgstr "선택된 내용 바꿈"
 
-#: gncal/eventedit.c:1376
+#: gncal/eventedit.c:1381
 msgid "Delete selected"
 msgstr "선택된 내용 지움"
 
-#: gncal/eventedit.c:1402
+#: gncal/eventedit.c:1407
 msgid "Recurrence"
 msgstr "반복"
 
@@ -876,20 +883,20 @@ msgstr "열두번째"
 msgid "ago"
 msgstr "이전"
 
-#: gncal/gncal-day-view.c:135 gncal/gncal-full-day.c:476
-#: gncal/gncal-full-day.c:1713
+#: gncal/gncal-day-view.c:135 gncal/gncal-full-day.c:472
+#: gncal/gncal-full-day.c:1628
 msgid "New appointment..."
 msgstr "새 약속..."
 
-#: gncal/gncal-full-day.c:472
+#: gncal/gncal-full-day.c:468
 msgid "Make this appointment movable"
 msgstr "이 약속을 이동 가능하게 만듦"
 
-#: gncal/gncal-full-day.c:473
+#: gncal/gncal-full-day.c:469
 msgid "Edit this appointment..."
 msgstr "이 약속을 편집..."
 
-#: gncal/gncal-full-day.c:474
+#: gncal/gncal-full-day.c:470
 msgid "Delete this appointment"
 msgstr "이 약속을 지움"
 
@@ -905,7 +912,7 @@ msgstr "TODO 아이템 편집"
 msgid "Add to-do item..."
 msgstr "TODO 아이템 추가..."
 
-#: gncal/gncal-todo.c:198
+#: gncal/gncal-todo.c:198 gncal/gnomecard/gnomecard.c:194
 msgid "Edit this item..."
 msgstr "이 아이템 편집..."
 
@@ -914,23 +921,23 @@ msgid "Delete this item"
 msgstr "이 아이템 지움"
 
 #. Label
-#: gncal/gncal-todo.c:235
+#: gncal/gncal-todo.c:238
 msgid "To-do list"
 msgstr "TODO 목록"
 
 #. Add
-#: gncal/gncal-todo.c:263
+#: gncal/gncal-todo.c:266
 msgid "Add..."
 msgstr "추가..."
 
 #. Edit
-#: gncal/gncal-todo.c:272
+#: gncal/gncal-todo.c:275
 msgid "Edit..."
 msgstr "편집..."
 
 #. Delete
-#: gncal/gncal-todo.c:283 gncal/gnomecard/gnomecard.c:480
-#: mini-utils/gw/gw.c:466
+#: gncal/gncal-todo.c:286 gncal/gnomecard/gnomecard.c:508
+#: mini-utils/gw/gw.c:464
 msgid "Delete"
 msgstr "삭제"
 
@@ -950,254 +957,229 @@ msgstr "월별 보기"
 msgid "Year View"
 msgstr "년별 보기"
 
-#: gncal/gnome-cal.c:334 gncal/gnome-cal.c:369
+#: gncal/gnome-cal.c:333 gncal/gnome-cal.c:368
 msgid "Reminder of your appointment at "
 msgstr ""
 
-#: gncal/gnomecard/gnomecard.c:162
+#: gncal/gnomecard/gnomecard.c:179
 msgid "No cards, yet."
 msgstr ""
 
-#: gncal/gnomecard/gnomecard.c:256
+#: gncal/gnomecard/gnomecard.c:302
 msgid " changed. Save?"
 msgstr " 이 바뀌었습니다. 저장할까요?"
 
-#: gncal/gnomecard/gnomecard.c:386
+#: gncal/gnomecard/gnomecard.c:410
 msgid "A new Gnomecard could not be spawned. Maybe it is not in your path."
 msgstr "새로운 그놈카드를 띄울 수 없습니다. 아마도 당신의 패스에 없나봅니다."
 
-#: gncal/gnomecard/gnomecard.c:397
+#: gncal/gnomecard/gnomecard.c:421
 msgid "New Gnomecard"
 msgstr "새 그놈카드"
 
-#: gncal/gnomecard/gnomecard.c:397
+#: gncal/gnomecard/gnomecard.c:421
 msgid "Spawn a new Card Manager."
 msgstr "새 카드 매니져 띄우기"
 
-#: gncal/gnomecard/gnomecard.c:403 gncal/gnomecard/gnomecard.c:572
+#: gncal/gnomecard/gnomecard.c:427 gncal/gnomecard/gnomecard.c:600
 #: gncal/main.c:445
 msgid "New"
 msgstr "새 것"
 
-#: gncal/gnomecard/gnomecard.c:403
+#: gncal/gnomecard/gnomecard.c:427
 msgid "Create new Card File."
 msgstr "새 카드 파일 생성"
 
-#: gncal/gnomecard/gnomecard.c:407 mini-utils/gless/gless.c:315
+#: gncal/gnomecard/gnomecard.c:431 mini-utils/gless/gless.c:291
 msgid "Open..."
 msgstr "열기..."
 
-#: gncal/gnomecard/gnomecard.c:407
+#: gncal/gnomecard/gnomecard.c:431
 msgid "Open a Card File."
 msgstr "카드 파일 열기"
 
-#: gncal/gnomecard/gnomecard.c:411 gncal/gnomecard/gnomecard.c:580
+#: gncal/gnomecard/gnomecard.c:435
+msgid "Append..."
+msgstr "덧붙이기..."
+
+#: gncal/gnomecard/gnomecard.c:435
+msgid "Add the contents of another Card File."
+msgstr "다른 카드 파일의 내용을 추가"
+
+#: gncal/gnomecard/gnomecard.c:439 gncal/gnomecard/gnomecard.c:608
 #: gtt/toolbar.c:152
 msgid "Save"
 msgstr "저장"
 
-#: gncal/gnomecard/gnomecard.c:411
+#: gncal/gnomecard/gnomecard.c:439
 msgid "Save current changes."
 msgstr "현재의 바뀐 내용 저장"
 
-#: gncal/gnomecard/gnomecard.c:415
+#: gncal/gnomecard/gnomecard.c:443
 msgid "Save as..."
 msgstr "다른 이름으로 저장..."
 
-#: gncal/gnomecard/gnomecard.c:415
+#: gncal/gnomecard/gnomecard.c:443
 msgid "Save current changes, choosing file name."
 msgstr "파일 이름을 선택하여 현재 바뀐내용 저장"
 
-#: gncal/gnomecard/gnomecard.c:421 gtt/menus.c:128
+#: gncal/gnomecard/gnomecard.c:449 gtt/menus.c:128
 msgid "Properties..."
 msgstr "속성..."
 
-#: gncal/gnomecard/gnomecard.c:421
+#: gncal/gnomecard/gnomecard.c:449
 msgid "Appereance, customizations..."
 msgstr ""
 
-#: gncal/gnomecard/gnomecard.c:424
+#: gncal/gnomecard/gnomecard.c:452
 msgid "Close the program."
 msgstr "프로그램 닫기"
 
-#: gncal/gnomecard/gnomecard.c:432 gncal/gnomecard/gnomecard.c:600
+#: gncal/gnomecard/gnomecard.c:460 gncal/gnomecard/gnomecard.c:628
 msgid "First"
 msgstr "처음"
 
-#: gncal/gnomecard/gnomecard.c:432 gncal/gnomecard/gnomecard.c:600
+#: gncal/gnomecard/gnomecard.c:460 gncal/gnomecard/gnomecard.c:628
 msgid "First card"
 msgstr "첫번째 카드"
 
-#: gncal/gnomecard/gnomecard.c:436 gncal/gnomecard/gnomecard.c:604
+#: gncal/gnomecard/gnomecard.c:464 gncal/gnomecard/gnomecard.c:632
 #: gncal/main.c:449
 msgid "Prev"
 msgstr "이전"
 
-#: gncal/gnomecard/gnomecard.c:436 gncal/gnomecard/gnomecard.c:604
+#: gncal/gnomecard/gnomecard.c:464 gncal/gnomecard/gnomecard.c:632
 msgid "Previous card"
 msgstr "이전 카드"
 
-#: gncal/gnomecard/gnomecard.c:440 gncal/gnomecard/gnomecard.c:608
+#: gncal/gnomecard/gnomecard.c:468 gncal/gnomecard/gnomecard.c:636
 #: gncal/main.c:451
 msgid "Next"
 msgstr "다음"
 
-#: gncal/gnomecard/gnomecard.c:440 gncal/gnomecard/gnomecard.c:608
+#: gncal/gnomecard/gnomecard.c:468 gncal/gnomecard/gnomecard.c:636
 msgid "Next card"
 msgstr "다음 카드"
 
-#: gncal/gnomecard/gnomecard.c:444 gncal/gnomecard/gnomecard.c:612
+#: gncal/gnomecard/gnomecard.c:472 gncal/gnomecard/gnomecard.c:640
 msgid "Last"
 msgstr "끝"
 
-#: gncal/gnomecard/gnomecard.c:444 gncal/gnomecard/gnomecard.c:612
+#: gncal/gnomecard/gnomecard.c:472 gncal/gnomecard/gnomecard.c:640
 msgid "Last card"
 msgstr "마지막 카드"
 
-#: gncal/gnomecard/gnomecard.c:452
+#: gncal/gnomecard/gnomecard.c:481
 msgid "By Card Name"
-msgstr ""
+msgstr "카드 이름으로"
 
-#: gncal/gnomecard/gnomecard.c:456
+#: gncal/gnomecard/gnomecard.c:485
 msgid "By Name"
-msgstr ""
+msgstr "이름으로"
 
-#: gncal/gnomecard/gnomecard.c:460
+#: gncal/gnomecard/gnomecard.c:489
 msgid "By E-mail"
-msgstr ""
+msgstr "전자우편 주소로"
 
-#: gncal/gnomecard/gnomecard.c:469 gncal/gnomecard/gnomecard.c:495
-msgid "Sort"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:469 gncal/gnomecard/gnomecard.c:495
-msgid "Set sort criteria"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:476 gncal/gnomecard/gnomecard.c:502
-#: gncal/gnomecard/gnomecard.c:528
+#: gncal/gnomecard/gnomecard.c:504 gncal/gnomecard/gnomecard.c:557
 msgid "Card"
 msgstr "카드"
 
-#: gncal/gnomecard/gnomecard.c:476 gncal/gnomecard/gnomecard.c:590
+#: gncal/gnomecard/gnomecard.c:504 gncal/gnomecard/gnomecard.c:618
 msgid "Edit card"
 msgstr "카드 편집"
 
-#: gncal/gnomecard/gnomecard.c:480
+#: gncal/gnomecard/gnomecard.c:508
 msgid "Delete element"
 msgstr ""
 
-#: gncal/gnomecard/gnomecard.c:486
+#: gncal/gnomecard/gnomecard.c:514
 msgid "Go"
 msgstr ""
 
-#: gncal/gnomecard/gnomecard.c:486
+#: gncal/gnomecard/gnomecard.c:514
 msgid "Change current card"
 msgstr ""
 
-#: gncal/gnomecard/gnomecard.c:491 gncal/gnomecard/gnomecard.c:618
+#: gncal/gnomecard/gnomecard.c:519 gncal/gnomecard/gnomecard.c:646
 msgid "Find"
 msgstr "찾기"
 
-#: gncal/gnomecard/gnomecard.c:491 gncal/gnomecard/gnomecard.c:618
+#: gncal/gnomecard/gnomecard.c:519 gncal/gnomecard/gnomecard.c:646
 msgid "Search card"
 msgstr "카드 찾기"
 
-#: gncal/gnomecard/gnomecard.c:502 gncal/gnomecard/gnomecard.c:586
-msgid "Create new card"
-msgstr "새 카드 생성"
+#: gncal/gnomecard/gnomecard.c:523
+msgid "Sort"
+msgstr "정렬"
 
-#: gncal/gnomecard/gnomecard.c:508
-msgid "E-mail"
-msgstr "전자우편"
-
-#: gncal/gnomecard/gnomecard.c:508
-msgid "Add Electronic Address"
-msgstr "전자우편 주소 추가"
-
-#: gncal/gnomecard/gnomecard.c:512
-msgid "Phone"
-msgstr "전화"
-
-#: gncal/gnomecard/gnomecard.c:512
-msgid "Add Telephone Number"
-msgstr "전화번호 추가"
-
-#: gncal/gnomecard/gnomecard.c:516
-msgid "Address"
-msgstr "주소"
-
-#: gncal/gnomecard/gnomecard.c:516
-msgid "Add Delivery Address"
-msgstr "주소 추가"
-
-#: gncal/gnomecard/gnomecard.c:520
-msgid "Address Label"
+#: gncal/gnomecard/gnomecard.c:523
+msgid "Set sort criteria"
 msgstr ""
 
-#: gncal/gnomecard/gnomecard.c:520
-msgid "Add Delivery Address Label"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:528
+#: gncal/gnomecard/gnomecard.c:557
 msgid "Toggle Card View"
 msgstr "카드보기 토글"
 
-#: gncal/gnomecard/gnomecard.c:532
+#: gncal/gnomecard/gnomecard.c:562
 msgid "Tree"
 msgstr "트리"
 
-#: gncal/gnomecard/gnomecard.c:532
+#: gncal/gnomecard/gnomecard.c:562
 msgid "Toggle Tree View"
 msgstr "트리보기 토글"
 
-#: gncal/gnomecard/gnomecard.c:543
+#: gncal/gnomecard/gnomecard.c:571
 msgid "Version, credits, etc."
 msgstr "판번호, 크레딧, 기타."
 
-#: gncal/gnomecard/gnomecard.c:554 gncal/gnomecard/gnomecard.c:590
+#: gncal/gnomecard/gnomecard.c:582 gncal/gnomecard/gnomecard.c:618
 msgid "Edit"
 msgstr "편집"
 
-#: gncal/gnomecard/gnomecard.c:557 gncal/gnomecard/gnomecard.c:586
-#: gsearchtool/gsearchtool.c:504 mini-utils/gw/gw.c:465
-msgid "Add"
-msgstr "추가"
-
-#: gncal/gnomecard/gnomecard.c:572
+#: gncal/gnomecard/gnomecard.c:600
 msgid "New file"
 msgstr "새 파일"
 
-#: gncal/gnomecard/gnomecard.c:576
+#: gncal/gnomecard/gnomecard.c:604
 msgid "Open"
 msgstr "열기"
 
-#: gncal/gnomecard/gnomecard.c:576
+#: gncal/gnomecard/gnomecard.c:604
 msgid "Open file"
 msgstr "파일 열기"
 
-#: gncal/gnomecard/gnomecard.c:580
+#: gncal/gnomecard/gnomecard.c:608
 msgid "Save changes"
 msgstr "바뀐내용 저장"
 
-#: gncal/gnomecard/gnomecard.c:594
+#: gncal/gnomecard/gnomecard.c:614 gsearchtool/gsearchtool.c:504
+#: mini-utils/gw/gw.c:463
+msgid "Add"
+msgstr "추가"
+
+#: gncal/gnomecard/gnomecard.c:614
+msgid "Create new card"
+msgstr "새 카드 생성"
+
+#: gncal/gnomecard/gnomecard.c:622
 msgid "Del"
 msgstr ""
 
-#: gncal/gnomecard/gnomecard.c:594
+#: gncal/gnomecard/gnomecard.c:622
 msgid "Delete card"
 msgstr "카드 삭제"
 
-#: gncal/goto.c:52
+#: gncal/goto.c:82
 msgid "Year:"
 msgstr "년도:"
 
-#: gncal/goto.c:231
+#: gncal/goto.c:264
 msgid "Go to date"
 msgstr ""
 
 #. Instructions
-#: gncal/goto.c:239
+#: gncal/goto.c:272
 msgid ""
 "Please select the date you want to go to.\n"
 "When you click on a day, you will be taken\n"
@@ -1207,7 +1189,7 @@ msgstr ""
 "날짜를 클릭하면, 당신은 그 날짜를\n"
 "보게 될 겁니다."
 
-#: gncal/goto.c:271
+#: gncal/goto.c:309
 msgid "Go to today"
 msgstr ""
 
@@ -1306,80 +1288,78 @@ msgstr "%s%s"
 msgid "'s calendar"
 msgstr "의 달력"
 
-#: gncal/main.c:527
+#: gncal/main.c:632
 msgid "Show events and quit"
 msgstr "이벤트 보여주고 종료"
 
-#: gncal/main.c:528 gncal/main.c:533
-msgid "DATE"
-msgstr "날짜"
-
-#: gncal/main.c:528
+#: gncal/main.c:634
 msgid "Specifies start date [for --events]"
 msgstr "시작 날짜 지정 [for --events]"
 
-#: gncal/main.c:529
-msgid "FILE"
-msgstr "파일"
+#: gncal/main.c:634 gncal/main.c:639
+msgid "DATE"
+msgstr "날짜"
 
-#: gncal/main.c:529
+#: gncal/main.c:635
 msgid "File to load calendar from"
 msgstr ""
 
-#: gncal/main.c:530
+#: gncal/main.c:635
+msgid "FILE"
+msgstr "파일"
+
+#: gncal/main.c:636
 msgid "Load the user calendar"
 msgstr "사용자 달력 읽어오기"
 
-#. name
-#. key
-#: gncal/main.c:531 mini-utils/gless/gless.c:99
-msgid "GEOMETRY"
-msgstr "위치"
-
-#: gncal/main.c:531
+#: gncal/main.c:637
 msgid "Geometry for starting up"
 msgstr "시작시 위치"
 
-#: gncal/main.c:532
-msgid "VIEW"
-msgstr "보기"
+#: gncal/main.c:637 gtt/main.c:260 mini-utils/gless/gless.c:115
+msgid "GEOMETRY"
+msgstr "위치"
 
-#: gncal/main.c:532
+#: gncal/main.c:638
 msgid "The startup view mode"
 msgstr "시작시 보기 모드"
 
-#: gncal/main.c:533
+#: gncal/main.c:638
+msgid "VIEW"
+msgstr "보기"
+
+#: gncal/main.c:639
 msgid "Specifies ending date [for --events]"
 msgstr "마지막 날짜 지정 [for --events]"
 
-#: gncal/prop.c:248
+#: gncal/prop.c:251
 msgid "Time display"
 msgstr "시간 출력"
 
 #. Time format
-#: gncal/prop.c:252
+#: gncal/prop.c:255
 msgid "Time format"
 msgstr "시간 형식"
 
-#: gncal/prop.c:253
+#: gncal/prop.c:256
 msgid "12-hour (AM/PM)"
 msgstr "12-시간 (오전/오후)"
 
-#: gncal/prop.c:254
+#: gncal/prop.c:257
 msgid "24-hour"
 msgstr "24-시간"
 
 #. Weeks start on
-#: gncal/prop.c:264
+#: gncal/prop.c:267
 msgid "Weeks start on"
 msgstr ""
 
 #. Day range
-#: gncal/prop.c:276
+#: gncal/prop.c:279
 msgid "Day range"
 msgstr ""
 
-#: gncal/prop.c:287
+#: gncal/prop.c:290
 msgid ""
 "Please select the start and end hours you want\n"
 "to be displayed in the day view and week view.\n"
@@ -1387,24 +1367,24 @@ msgid ""
 "by default."
 msgstr ""
 
-#: gncal/prop.c:303
+#: gncal/prop.c:306
 msgid "Day start:"
 msgstr "시작 시간:"
 
-#: gncal/prop.c:314
+#: gncal/prop.c:317
 msgid "Day end:"
 msgstr "끝 시간:"
 
-#: gncal/prop.c:456
+#: gncal/prop.c:440
 msgid "Colors for months"
 msgstr ""
 
-#: gncal/prop.c:459
+#: gncal/prop.c:443
 msgid "Colors"
 msgstr ""
 
-#: gncal/prop.c:521 gtt/options.c:508 mini-utils/gless/gless.c:359
-#: mini-utils/gw/gw.c:206
+#: gncal/prop.c:505 gtt/options.c:508 mini-utils/gless/gless.c:335
+#: mini-utils/gw/gw.c:204
 msgid "Preferences"
 msgstr "설정"
 
@@ -1459,7 +1439,7 @@ msgstr "그놈 찾기 도구"
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "유닉스 find/grep/locate 명령의 프론트 엔드"
 
-#: gsearchtool/gsearchtool.c:619
+#: gsearchtool/gsearchtool.c:617
 msgid "Gnome Search Tool"
 msgstr "그놈 찾기 도구"
 
@@ -1495,11 +1475,11 @@ msgstr ""
 msgid "program exited"
 msgstr "프로그램이 끝났습니다"
 
-#: gtt/main.c:74 gtt/main.c:116
+#: gtt/main.c:75 gtt/main.c:117
 msgid "Error"
 msgstr "오류"
 
-#: gtt/main.c:74
+#: gtt/main.c:75
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Please remove the pid file, if that is not correct."
@@ -1507,7 +1487,7 @@ msgstr ""
 "다른 GTimeTracker가 실행중인 것 같습니다.\n"
 "실행되고 있지 않다면, pid 파일을 지워 주십시오."
 
-#: gtt/main.c:117
+#: gtt/main.c:118
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -1515,18 +1495,22 @@ msgstr ""
 "설정 파일을 읽는데 오류가 발생하였습니다.\n"
 "새로운 설정 파일을 만들까요?"
 
-#: gtt/main.c:210 gtt/main.c:225 gtt/main.c:236 gtt/main.c:242
+#: gtt/main.c:211 gtt/main.c:227 gtt/main.c:238 gtt/main.c:244
 #, c-format
 msgid "error in geometry string \"%s\"\n"
 msgstr "geometry 문자열에 오류 \"%s\"\n"
 
-#: gtt/main.c:259
-msgid "specify geometry"
+#: gtt/main.c:260
+msgid "Specify geometry"
 msgstr "위치 지정"
 
 #: gtt/main.c:261
-msgid "select a project on startup"
+msgid "Select a project on startup"
 msgstr "시작시 프로젝트 선택"
+
+#: gtt/main.c:261
+msgid "PROJECT"
+msgstr ""
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1590,7 +1574,7 @@ msgstr ""
 
 #: gtt/menus.c:75
 msgid "Pr_operties..."
-msgstr ""
+msgstr "속성(_o)..."
 
 #: gtt/menus.c:85
 msgid "St_art"
@@ -1859,12 +1843,12 @@ msgid "Color"
 msgstr "색상"
 
 #: mini-utils/gcolorsel/gcolorsel.c:153 mini-utils/guname/moreinfo.c:218
-#: mini-utils/idetool/idetool.c:257
+#: mini-utils/idetool/idetool.c:258
 msgid "Value"
 msgstr ""
 
 #: mini-utils/gcolorsel/gcolorsel.c:154 mini-utils/guname/moreinfo.c:217
-#: mini-utils/gw/gw.c:456 mini-utils/gw/gw.c:528
+#: mini-utils/gw/gw.c:454 mini-utils/gw/gw.c:526
 msgid "Name"
 msgstr "성명"
 
@@ -1908,93 +1892,91 @@ msgstr ""
 msgid "Selection:"
 msgstr ""
 
-#: mini-utils/gfontsel/gfontsel.c:263
-msgid "font to load"
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "Font to load"
 msgstr ""
 
-#: mini-utils/gfontsel/gfontsel.c:266
-msgid "print selected font name on exit"
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
 msgstr ""
 
-#: mini-utils/gfontsel/gfontsel.c:269
-msgid "inhibit remembering selected font for next run"
+#: mini-utils/gfontsel/gfontsel.c:254
+msgid "Print selected font name on exit"
 msgstr ""
 
-#: mini-utils/gfontsel/gfontsel.c:272
-msgid "inhibit loading of last font"
+#: mini-utils/gfontsel/gfontsel.c:255
+msgid "Inhibit remembering selected font for next run"
 msgstr ""
 
-#. name of argument to option
-#. flags
-#: mini-utils/gless/gless.c:101
+#: mini-utils/gfontsel/gfontsel.c:256
+msgid "Inhibit loading of last font"
+msgstr ""
+
+#: mini-utils/gless/gless.c:115
 msgid "Where to put the window, and its size"
 msgstr "창을 어떤 크기로 어디에 위치시킬 지"
 
-#. name
-#. key
-#. name of argument to option
-#. flags
-#: mini-utils/gless/gless.c:109
+#: mini-utils/gless/gless.c:116
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "표준 입력 무시; 아마 필요한 경우가 있을 겁니다."
 
-#: mini-utils/gless/gless.c:302 mini-utils/gw/gw.c:174
+#: mini-utils/gless/gless.c:278 mini-utils/gw/gw.c:172
 msgid "Tell about this application"
 msgstr "이 프로그램에 대한 설명"
 
-#: mini-utils/gless/gless.c:310
+#: mini-utils/gless/gless.c:286
 msgid "New Window"
 msgstr "새 창"
 
-#: mini-utils/gless/gless.c:310
+#: mini-utils/gless/gless.c:286
 msgid "New text viewer window"
 msgstr "새 텍스트 보기 창"
 
-#: mini-utils/gless/gless.c:315
+#: mini-utils/gless/gless.c:291
 msgid "Open a new file in this window"
 msgstr "현재 창에 새 파일 열기"
 
-#: mini-utils/gless/gless.c:320 mini-utils/guname/guname.c:523
+#: mini-utils/gless/gless.c:296 mini-utils/guname/guname.c:522
 msgid "Save As..."
 msgstr "다른 이름으로 저장..."
 
-#: mini-utils/gless/gless.c:320
+#: mini-utils/gless/gless.c:296
 msgid "Save file to disk"
 msgstr "저장판에 파일 저장"
 
-#: mini-utils/gless/gless.c:325
+#: mini-utils/gless/gless.c:301
 msgid "Close this window"
 msgstr "현재 창 닫기"
 
-#: mini-utils/gless/gless.c:331
+#: mini-utils/gless/gless.c:307
 msgid "Quit the application"
 msgstr "응용 프로그램 종료"
 
-#: mini-utils/gless/gless.c:339
+#: mini-utils/gless/gless.c:315
 msgid "Fixed Font"
 msgstr "고정폭 글꼴"
 
-#: mini-utils/gless/gless.c:340
+#: mini-utils/gless/gless.c:316
 msgid "Display text with a fixed font"
 msgstr "고정폭 글꼴로 문자열 출력"
 
-#: mini-utils/gless/gless.c:348 mini-utils/gw/gw.c:196
+#: mini-utils/gless/gless.c:324 mini-utils/gw/gw.c:194
 msgid "Preferences..."
 msgstr "속성..."
 
-#: mini-utils/gless/gless.c:349 mini-utils/gw/gw.c:197
+#: mini-utils/gless/gless.c:325 mini-utils/gw/gw.c:195
 msgid "Change application preferences"
 msgstr "프로그램 설정 바꾸기"
 
-#: mini-utils/gless/gless.c:358
+#: mini-utils/gless/gless.c:334
 msgid "View"
 msgstr "보기"
 
-#: mini-utils/gless/gless.c:380
+#: mini-utils/gless/gless.c:356
 msgid "Text File Viewer"
 msgstr "텍스트 파일 뷰어"
 
-#: mini-utils/gless/gless.c:440
+#: mini-utils/gless/gless.c:416
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -2002,19 +1984,19 @@ msgstr ""
 "명령행 옵션에 주어진 위치 및 크기(geometry)를\n"
 "이해할 수 없습니다."
 
-#: mini-utils/gless/gless.c:481
+#: mini-utils/gless/gless.c:457
 msgid "Loading..."
 msgstr "읽는 중..."
 
-#: mini-utils/gless/gless.c:486
+#: mini-utils/gless/gless.c:462
 msgid "No such file or directory:\n"
 msgstr "그런 파일이나 자료방 없슴:\n"
 
-#: mini-utils/gless/gless.c:503
+#: mini-utils/gless/gless.c:479
 msgid "Failed to decompress and display the file:\n"
 msgstr "압축된 파일을 보여주기 실패:\n"
 
-#: mini-utils/gless/gless.c:514
+#: mini-utils/gless/gless.c:490
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -2022,27 +2004,27 @@ msgstr ""
 "압축된 파일을 보여드릴 수가 없습니다.\n"
 "당신 path에서 zcat을 찾을 수 없습니다."
 
-#: mini-utils/gless/gless.c:522
+#: mini-utils/gless/gless.c:498
 msgid "Error loading file:\n"
 msgstr "파일 읽어오기 에러:\n"
 
-#: mini-utils/gless/gless.c:576
+#: mini-utils/gless/gless.c:552
 msgid "Saving..."
 msgstr "저장 중..."
 
-#: mini-utils/gless/gless.c:587
+#: mini-utils/gless/gless.c:563
 msgid "Failed to write file:\n"
 msgstr "파일 쓰기 실패:\n"
 
-#: mini-utils/gless/gless.c:634
+#: mini-utils/gless/gless.c:610
 msgid "Save Text As..."
 msgstr "다른 이름으로 저장..."
 
-#: mini-utils/gless/gless.c:674
+#: mini-utils/gless/gless.c:650
 msgid "Open Text File..."
 msgstr "텍스트 파일 열기..."
 
-#: mini-utils/gnome-run/gnome-run.c:36
+#: mini-utils/gnome-run/gnome-run.c:37
 msgid "Failed to execute command:\n"
 msgstr "명령 실행 실패:\n"
 
@@ -2107,19 +2089,19 @@ msgid "Are you sure you want to reboot the system?"
 msgstr "확실히 시스템을 재시동하기를 원하십니까?"
 
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:175
+#: mini-utils/gshutdown/gshutdown.c:173
 msgid "Shutdown or Reboot"
 msgstr "끄기 혹은 재시동"
 
-#: mini-utils/gshutdown/gshutdown.c:192 mini-utils/gshutdown/gshutdown.c:193
+#: mini-utils/gshutdown/gshutdown.c:190 mini-utils/gshutdown/gshutdown.c:191
 msgid "Easy"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:197 mini-utils/gshutdown/gshutdown.c:198
+#: mini-utils/gshutdown/gshutdown.c:195 mini-utils/gshutdown/gshutdown.c:196
 msgid "Advanced"
 msgstr ""
 
-#: mini-utils/gshutdown/gshutdown.c:230
+#: mini-utils/gshutdown/gshutdown.c:228
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
@@ -2128,68 +2110,68 @@ msgstr ""
 "응용프로그램이 저장하지 않은 정보를 읽어버릴 수 있습니다."
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:360
+#: mini-utils/gshutdown/gshutdown.c:355
 msgid "Revert to Defaults"
 msgstr "기본값으로 복구"
 
-#: mini-utils/gshutdown/gshutdown.c:371
+#: mini-utils/gshutdown/gshutdown.c:365
 msgid "Commands"
 msgstr "명령"
 
-#: mini-utils/gshutdown/gshutdown.c:376
+#: mini-utils/gshutdown/gshutdown.c:370
 msgid "Confirm before shutdown?"
 msgstr "끄기전에 확인?"
 
-#: mini-utils/gshutdown/gshutdown.c:450
+#: mini-utils/gshutdown/gshutdown.c:444
 msgid "Don't ask next time."
 msgstr "다음번에 묻지 말기"
 
-#: mini-utils/guname/guname.c:328
+#: mini-utils/guname/guname.c:327
 msgid "System Information"
 msgstr "시스템 정보"
 
-#: mini-utils/guname/guname.c:412
+#: mini-utils/guname/guname.c:411
 msgid "Logo file not found"
 msgstr "로고파일을 찾을 수 없습니다"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:416
+#: mini-utils/guname/guname.c:415
 msgid "GNOME contributors:"
 msgstr ""
 
-#: mini-utils/guname/guname.c:430
+#: mini-utils/guname/guname.c:429
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr ""
 
-#: mini-utils/guname/guname.c:454
+#: mini-utils/guname/guname.c:453
 msgid "Email Information..."
 msgstr ""
 
-#: mini-utils/guname/guname.c:465
+#: mini-utils/guname/guname.c:464
 msgid "Save Information to File..."
 msgstr ""
 
-#: mini-utils/guname/guname.c:477 mini-utils/guname/guname.c:537
+#: mini-utils/guname/guname.c:476 mini-utils/guname/guname.c:536
 msgid "Detailed Information..."
 msgstr "상세한 정보..."
 
-#: mini-utils/guname/guname.c:491
+#: mini-utils/guname/guname.c:490
 msgid "Category"
 msgstr "구분"
 
-#: mini-utils/guname/guname.c:491
+#: mini-utils/guname/guname.c:490
 msgid "Your System"
 msgstr "당신의 시스템"
 
-#: mini-utils/guname/guname.c:529
+#: mini-utils/guname/guname.c:528
 msgid "Mail To..."
 msgstr "전자우편 보내기..."
 
-#: mini-utils/guname/guname.c:577
+#: mini-utils/guname/guname.c:576
 msgid "Error closing file `"
 msgstr "파일 닫기 에러: `"
 
-#: mini-utils/guname/guname.c:579
+#: mini-utils/guname/guname.c:578
 msgid ""
 "\n"
 "Some or all data may not have been written."
@@ -2197,32 +2179,32 @@ msgstr ""
 "\n"
 "몇몇 혹은 모든 자료가 저장되지 않았습니다."
 
-#: mini-utils/guname/guname.c:588
+#: mini-utils/guname/guname.c:587
 msgid "Couldn't open file `"
 msgstr "파열 열지 못함: `"
 
-#: mini-utils/guname/guname.c:602
+#: mini-utils/guname/guname.c:601
 msgid "Save System Information As..."
 msgstr "시스템 정보를 다른 이름으로 저장..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:648
+#: mini-utils/guname/guname.c:647
 msgid "Command failed ` "
 msgstr ""
 
-#: mini-utils/guname/guname.c:648 mini-utils/guname/guname.c:655
+#: mini-utils/guname/guname.c:647 mini-utils/guname/guname.c:654
 msgid " ': "
 msgstr ""
 
-#: mini-utils/guname/guname.c:655
+#: mini-utils/guname/guname.c:654
 msgid "Couldn't run command ` "
 msgstr ""
 
-#: mini-utils/guname/guname.c:678
+#: mini-utils/guname/guname.c:677
 msgid "The following mail will be sent to "
 msgstr ""
 
-#: mini-utils/guname/guname.c:680
+#: mini-utils/guname/guname.c:679
 msgid ""
 ".\n"
 " Are you sure you want to mail this information?"
@@ -2230,105 +2212,105 @@ msgstr ""
 ".\n"
 " 이 정보를 전자우편으로 보내고 싶으십니까?"
 
-#: mini-utils/guname/guname.c:689
+#: mini-utils/guname/guname.c:688
 msgid "Are you sure?"
 msgstr "확실합니까?"
 
-#: mini-utils/guname/guname.c:722
+#: mini-utils/guname/guname.c:721
 msgid "Address to mail to:"
 msgstr "전자우편 보낼 주소:"
 
-#: mini-utils/guname/info.c:36
+#: mini-utils/guname/info.c:37
 msgid "Distribution:"
 msgstr "배포판:"
 
-#: mini-utils/guname/info.c:37
+#: mini-utils/guname/info.c:38
 msgid "Operating System:"
 msgstr "운영 체계:"
 
-#: mini-utils/guname/info.c:38
+#: mini-utils/guname/info.c:39
 msgid "Distribution Version:"
 msgstr "배포 판번호:"
 
-#: mini-utils/guname/info.c:39
+#: mini-utils/guname/info.c:40
 msgid "Operating System Version:"
 msgstr "운영 체계 판번호:"
 
-#: mini-utils/guname/info.c:40
+#: mini-utils/guname/info.c:41
 msgid "Operating System Release:"
 msgstr ""
 
-#: mini-utils/guname/info.c:41
+#: mini-utils/guname/info.c:42
 msgid "Processor Type:"
 msgstr "프로세서 종류:"
 
-#: mini-utils/guname/info.c:42
+#: mini-utils/guname/info.c:43
 msgid "Processor Speed:"
 msgstr "프로세서 속도:"
 
-#: mini-utils/guname/info.c:43
+#: mini-utils/guname/info.c:44
 msgid "Host Name:"
 msgstr "호스트 이름:"
 
-#: mini-utils/guname/info.c:44
+#: mini-utils/guname/info.c:45
 msgid "Domain Name:"
 msgstr "도메인 이름:"
 
-#: mini-utils/guname/info.c:45
+#: mini-utils/guname/info.c:46
 msgid "User Name:"
 msgstr "당신의 이름:"
 
-#: mini-utils/guname/info.c:46
+#: mini-utils/guname/info.c:47
 msgid "X Display Name:"
 msgstr "X Display 이름:"
 
-#: mini-utils/guname/info.c:47
+#: mini-utils/guname/info.c:48
 msgid "System Status:"
 msgstr "시스템 상태:"
 
-#: mini-utils/guname/info.c:48
+#: mini-utils/guname/info.c:49
 msgid "Real Memory:"
 msgstr "실제 메모리:"
 
-#: mini-utils/guname/info.c:49
+#: mini-utils/guname/info.c:50
 msgid "Swap Space (\"virtual memory\"):"
 msgstr "스왑 공간 (\"가상 메모리\"):"
 
-#: mini-utils/guname/info.c:50
+#: mini-utils/guname/info.c:51
 msgid "Total Memory:"
 msgstr "총 메모리:"
 
-#: mini-utils/guname/info.c:51
+#: mini-utils/guname/info.c:52
 msgid "Free Memory:"
 msgstr "여유 메모리:"
 
-#: mini-utils/guname/info.c:56
+#: mini-utils/guname/info.c:57
 msgid "Device"
 msgstr ""
 
-#: mini-utils/guname/info.c:57
+#: mini-utils/guname/info.c:58
 msgid "Size"
 msgstr ""
 
-#: mini-utils/guname/info.c:58
+#: mini-utils/guname/info.c:59
 msgid "Used space"
 msgstr "사용된 공간"
 
-#: mini-utils/guname/info.c:59
+#: mini-utils/guname/info.c:60
 msgid "Free space"
 msgstr "여유 공간"
 
-#: mini-utils/guname/info.c:60
+#: mini-utils/guname/info.c:61
 msgid "Percent free"
 msgstr "여유 퍼센트"
 
-#: mini-utils/guname/info.c:61
+#: mini-utils/guname/info.c:62
 msgid "Mount point"
 msgstr "마운트 포인트"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:167
+#: mini-utils/guname/info.c:168
 msgid "Unknown"
 msgstr ""
 
@@ -2406,7 +2388,7 @@ msgstr "    장치: "
 msgid "    Filesystem Type: "
 msgstr "    파일시스템 종류: "
 
-#: mini-utils/gw/gw.c:146
+#: mini-utils/gw/gw.c:144
 msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
@@ -2414,40 +2396,40 @@ msgstr ""
 "당신의 패스에서 \"w\" 명령을 찾을 수 없습니다.\n"
 "프로그램이 동작하기 위해서 이 명령이 필요합니다."
 
-#: mini-utils/gw/gw.c:182
+#: mini-utils/gw/gw.c:180
 msgid "Save..."
 msgstr "저장..."
 
-#: mini-utils/gw/gw.c:182
+#: mini-utils/gw/gw.c:180
 msgid "Write information to disk"
 msgstr "정보를 디스크에 저장"
 
-#: mini-utils/gw/gw.c:188
+#: mini-utils/gw/gw.c:186
 msgid "Quit the application without saving"
 msgstr "저장하지 않고 프로그램 종료"
 
-#: mini-utils/gw/gw.c:218
+#: mini-utils/gw/gw.c:216
 msgid "User Listing"
 msgstr "사용자 목록"
 
-#: mini-utils/gw/gw.c:237
+#: mini-utils/gw/gw.c:235
 msgid "Update Information"
 msgstr "정보 갱신"
 
-#: mini-utils/gw/gw.c:456
+#: mini-utils/gw/gw.c:454
 msgid "Command Line"
 msgstr "명령 행"
 
 #. Create everything.
-#: mini-utils/gw/gw.c:464
+#: mini-utils/gw/gw.c:462
 msgid "Add some defaults"
 msgstr ""
 
-#: mini-utils/gw/gw.c:481
+#: mini-utils/gw/gw.c:479
 msgid "Command Editor"
 msgstr "명령 편집기"
 
-#: mini-utils/gw/gw.c:491
+#: mini-utils/gw/gw.c:489
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -2461,7 +2443,7 @@ msgstr ""
 "명령에서, 현재 사용자를 표현하기 위해 %u를,\n"
 "tty를 표현하기 위해 %t를 사용할 수 있습니다."
 
-#: mini-utils/gw/gw.c:498
+#: mini-utils/gw/gw.c:496
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -2469,129 +2451,129 @@ msgstr ""
 "이 버튼을 누르면 몇몇\n"
 "예제 명령이 추가됩니다."
 
-#: mini-utils/gw/gw.c:506
+#: mini-utils/gw/gw.c:504
 msgid "Menu items"
 msgstr "메뉴 항목"
 
-#: mini-utils/gw/gw.c:534
+#: mini-utils/gw/gw.c:532
 msgid "Command"
 msgstr "명령"
 
-#: mini-utils/idetool/idetool.c:40
+#: mini-utils/idetool/idetool.c:41
 msgid "Unable to access the drive."
 msgstr "드라이브를 액세스할 수 없습니다."
 
-#: mini-utils/idetool/idetool.c:57 mini-utils/idetool/idetool.c:69
+#: mini-utils/idetool/idetool.c:58 mini-utils/idetool/idetool.c:70
 msgid "The DMA setting for this drive cannot be changed."
 msgstr "현재 드라이브에 대한 DMA 설정을 바꿀 수 없습니다."
 
-#: mini-utils/idetool/idetool.c:77 mini-utils/idetool/idetool.c:109
-#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:319 mini-utils/idetool/idetool.c:321
 msgid "Enabled"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:77 mini-utils/idetool/idetool.c:109
-#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:319 mini-utils/idetool/idetool.c:321
 msgid "Disabled"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:89 mini-utils/idetool/idetool.c:101
+#: mini-utils/idetool/idetool.c:90 mini-utils/idetool/idetool.c:102
 msgid "The IRQ unmask setting for this drive cannot be changed."
 msgstr "현재 드라이브에 대한 IRQ unmask 설정을 바꿀 수 없습니다."
 
-#: mini-utils/idetool/idetool.c:120 mini-utils/idetool/idetool.c:132
+#: mini-utils/idetool/idetool.c:121 mini-utils/idetool/idetool.c:133
 msgid "The drive refused to keep its settings."
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:140 mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:323
 msgid "Keep settings"
 msgstr "설정 보존"
 
 #. IO
-#: mini-utils/idetool/idetool.c:167
+#: mini-utils/idetool/idetool.c:168
 msgid "PIO Mode"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:210
+#: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:212
+#: mini-utils/idetool/idetool.c:213
 msgid "(Dual Port)"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:214
+#: mini-utils/idetool/idetool.c:215
 msgid "(Dual Port Cache)"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:257
+#: mini-utils/idetool/idetool.c:258
 msgid "Setting"
-msgstr ""
+msgstr "설정"
 
-#: mini-utils/idetool/idetool.c:305 mini-utils/idetool/idetool.c:315
+#: mini-utils/idetool/idetool.c:306 mini-utils/idetool/idetool.c:316
 msgid "Model"
-msgstr ""
-
-#: mini-utils/idetool/idetool.c:306
-msgid "Firmware"
-msgstr ""
+msgstr "모델"
 
 #: mini-utils/idetool/idetool.c:307
+msgid "Firmware"
+msgstr "펌웨어"
+
+#: mini-utils/idetool/idetool.c:308
 msgid "Serial No."
 msgstr ""
 
 #. do config here
-#: mini-utils/idetool/idetool.c:309
+#: mini-utils/idetool/idetool.c:310
 msgid "Geometry"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:310
-msgid "Cache"
-msgstr ""
-
 #: mini-utils/idetool/idetool.c:311
-msgid "Status"
-msgstr ""
+msgid "Cache"
+msgstr "캐쉬"
 
-#: mini-utils/idetool/idetool.c:315
+#: mini-utils/idetool/idetool.c:312
+msgid "Status"
+msgstr "상태"
+
+#: mini-utils/idetool/idetool.c:316
 msgid "Legacy MFM/RLL drive"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:318
-msgid "DMA Mode"
-msgstr ""
-
 #: mini-utils/idetool/idetool.c:319
-msgid "IO Mode"
-msgstr ""
+msgid "DMA Mode"
+msgstr "DMA 모드"
 
 #: mini-utils/idetool/idetool.c:320
+msgid "IO Mode"
+msgstr "입출력 모드"
+
+#: mini-utils/idetool/idetool.c:321
 msgid "IRQ Unmask"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:321
+#: mini-utils/idetool/idetool.c:322
 msgid "Multisector"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:323
 msgid "On Reset"
 msgstr ""
 
 #.
 #. *	Set up the outer display first
 #.
-#: mini-utils/idetool/idetool.c:347
+#: mini-utils/idetool/idetool.c:348
 msgid "IDE Status"
-msgstr ""
+msgstr "IDE 상태"
 
-#: mini-utils/idetool/idetool.c:360
+#: mini-utils/idetool/idetool.c:361
 msgid "Disk Logo Not Found"
 msgstr "디스크 로고를 찾을 수 없습니다"
 
-#: mini-utils/idetool/idetool.c:413
+#: mini-utils/idetool/idetool.c:412
 msgid "Only the superuser can use this tool"
 msgstr "수퍼유저만이 이 툴을 사용할 수 있습니다"
 
-#: mini-utils/idetool/idetool.c:424
+#: mini-utils/idetool/idetool.c:423
 msgid "You appear to have no IDE drives"
 msgstr "IDE 드라이브를 찾을 수 없습니다"
