@@ -1,3 +1,10 @@
+1998-11-26  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* main.c (main): comply to the latest changes to GnomeMDI API.
+	* gtkhex.c (gtk_hex_realize): new realize signal handler for
+	GtkHex: only sets the backing pixmap properly
+	(gtk_hex_draw): fixed shadow redrawing.
+	
 1998-11-09  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* gtkhex.c (render_ascii_lines): fixed a bug that used adisp_gc

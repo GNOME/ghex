@@ -439,7 +439,6 @@ static void draw_shadow(GtkWidget *widget, GdkRectangle *area) {
 	GtkHex *gh = GTK_HEX(widget);
 	gint border = GTK_CONTAINER(widget)->border_width;
 	
-	gdk_window_set_back_pixmap (widget->window, NULL, TRUE);
 	gdk_window_clear_area (widget->window, area->x, area->y,
 						   area->width, area->height);
 	
@@ -726,6 +725,13 @@ static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 	}
 }
 
+static void gtk_hex_realize(GtkWidget *widget) {
+	if(GTK_WIDGET_CLASS(parent_class)->realize)
+		(* GTK_WIDGET_CLASS(parent_class)->realize)(widget);  	
+
+	gdk_window_set_back_pixmap(widget->window, NULL, TRUE);
+}
+
 /*
  * default data_changed signal handler
  */
@@ -877,10 +883,10 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 }
 
 static void gtk_hex_draw(GtkWidget *w, GdkRectangle *area) {
-	draw_shadow(w, area);
-	
 	if(GTK_WIDGET_CLASS(parent_class)->draw)
-		(* GTK_WIDGET_CLASS(parent_class)->draw)(w, area);  
+		(* GTK_WIDGET_CLASS(parent_class)->draw)(w, area);
+
+	draw_shadow(w, area);
 }
 
 static gint gtk_hex_expose(GtkWidget *w, GdkEventExpose *event) {
@@ -892,10 +898,10 @@ static gint gtk_hex_expose(GtkWidget *w, GdkEventExpose *event) {
 	return TRUE;
 }
 
-static void gtk_hex_class_init(GtkHexClass *class) {
+static void gtk_hex_class_init(GtkHexClass *klass) {
 	GtkObjectClass *object_class;
-	
-	object_class = (GtkObjectClass*) class;
+
+	object_class = (GtkObjectClass*) klass;
 	
 	gtkhex_signals[CURSOR_MOVED_SIGNAL] = gtk_signal_new ("cursor_moved",
 														  GTK_RUN_FIRST,
@@ -911,14 +917,15 @@ static void gtk_hex_class_init(GtkHexClass *class) {
 	
 	gtk_object_class_add_signals (object_class, gtkhex_signals, LAST_SIGNAL);
 	
-	class->cursor_moved = NULL;
-	class->data_changed = gtk_hex_real_data_changed;
+	klass->cursor_moved = NULL;
+	klass->data_changed = gtk_hex_real_data_changed;
 	
-	GTK_WIDGET_CLASS(class)->draw = gtk_hex_draw;
-	GTK_WIDGET_CLASS(class)->size_allocate = gtk_hex_size_allocate;
-	GTK_WIDGET_CLASS(class)->expose_event = gtk_hex_expose;
-	GTK_WIDGET_CLASS(class)->key_press_event = gtk_hex_key_press;
-	GTK_OBJECT_CLASS(class)->destroy = gtk_hex_destroy;
+	GTK_WIDGET_CLASS(klass)->draw = gtk_hex_draw;
+	GTK_WIDGET_CLASS(klass)->size_allocate = gtk_hex_size_allocate;
+	GTK_WIDGET_CLASS(klass)->expose_event = gtk_hex_expose;
+	GTK_WIDGET_CLASS(klass)->key_press_event = gtk_hex_key_press;
+	GTK_WIDGET_CLASS(klass)->realize = gtk_hex_realize;
+	GTK_OBJECT_CLASS(klass)->destroy = gtk_hex_destroy;
 	
 	parent_class = gtk_type_class (gtk_fixed_get_type ());
 }

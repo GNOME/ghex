@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
     mdi = GNOME_MDI(gnome_mdi_new("ghex", "GHex"));
 
     /* set up MDI menus */
-    gnome_mdi_set_menu_template(mdi, main_menu);
+    gnome_mdi_set_menubar_template(mdi, main_menu);
 
     /* and document menu and document list paths */
     gnome_mdi_set_child_menu_path(mdi, _("File"));
@@ -72,6 +72,7 @@ int main(int argc, char **argv) {
 
     /* set MDI mode */
     gnome_mdi_set_mode(mdi, mdi_mode);
+	gnome_mdi_open_toplevel(mdi);
 
     /* restore state from previous session */
     if (GNOME_CLIENT_CONNECTED (client)) {
