@@ -512,12 +512,12 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	if(gh->cpl % gh->group_type == 0)
 		xcpl--;
 	gh->xdisp_width = xcpl*gh->char_width + 1;
-	
+
 	if(gh->disp_buffer)
-		free(gh->disp_buffer);
+		g_free(gh->disp_buffer);
 	
-	gh->disp_buffer = malloc(xcpl * (gh->vis_lines + 3));
-	
+	gh->disp_buffer = g_malloc(xcpl * (gh->vis_lines + 3));
+
 	/* adjust the scrollbar and display position to
 	   new sizes */
 	gh->adj->value = MIN(gh->top_line*old_cpl / gh->cpl, gh->lines - gh->vis_lines);
@@ -779,14 +779,14 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 	render_ascii_lines(gh, start_line, end_line);
 }
 
-static void gtk_hex_destroy(GtkObject *o) {
+static void gtk_hex_finalize(GtkObject *o) {
 	GtkHex *gh = GTK_HEX(o);
 	
 	if(gh->disp_buffer)
 		free(gh->disp_buffer);
 	
-	if(GTK_OBJECT_CLASS(parent_class)->destroy)
-		(* GTK_OBJECT_CLASS(parent_class)->destroy)(o);  
+	if(GTK_OBJECT_CLASS(parent_class)->finalize)
+		(* GTK_OBJECT_CLASS(parent_class)->finalize)(o);  
 }
 
 static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
@@ -984,7 +984,7 @@ static void gtk_hex_class_init(GtkHexClass *klass) {
 	GTK_WIDGET_CLASS(klass)->expose_event = gtk_hex_expose;
 	GTK_WIDGET_CLASS(klass)->key_press_event = gtk_hex_key_press;
 	GTK_WIDGET_CLASS(klass)->realize = gtk_hex_realize;
-	GTK_OBJECT_CLASS(klass)->destroy = gtk_hex_destroy;
+	GTK_OBJECT_CLASS(klass)->finalize = gtk_hex_finalize;
 	
 	parent_class = gtk_type_class (gtk_fixed_get_type ());
 }

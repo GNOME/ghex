@@ -51,7 +51,7 @@ void load_configuration() {
 				gdk_font_unref(def_font);
 			def_font = new_font;
 			if(def_font_name)
-				free(def_font_name);
+				g_free(def_font_name);
 			
 			def_font_name = strdup(font_desc);
 		}

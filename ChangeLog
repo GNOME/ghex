@@ -1,3 +1,15 @@
+1998-12-26  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* gtkhex.c (gtk_hex_destroy): make it gtk_hex_finalize().
+	* *.c: minor bugfixes, change menu paths since accellabel
+	behaviour has reverted, etc.
+	
+1998-12-23  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* ghex.h: #define all menu paths used in code.
+	* main.c (main): use #defines for menu paths.
+	* callbacks.c (view_changed_cb): use #define for menu path.
+
 1998-12-19  Herbert Valerio Riedel  <hvr@hvrlab.ml.org>
 
 	* ui.c: (gpointer) -> GINT_TO_POINTER()

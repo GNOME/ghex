@@ -537,7 +537,7 @@ void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
 			
 			def_font = new_font;
 			
-			free(def_font_name);
+			g_free(def_font_name);
 			
 			def_font_name = g_strdup(gnome_font_picker_get_font_name
 									 (GNOME_FONT_PICKER(pui->font_button)));
@@ -602,21 +602,11 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 
 	app = gnome_mdi_get_app_from_view(mdi->active_view);
 	
-	shell = gnome_app_find_menu_pos(app->menubar, _("_Edit/_Group Data As/"), &pos);
+	shell = gnome_app_find_menu_pos(app->menubar, _(GROUP_MENU_PATH), &pos);
 
 	group_item = GTK_HEX(mdi->active_view)->group_type / 2;
-	switch(group_item) {
-	case 0:
-		shell = gnome_app_find_menu_pos(shell, _("_Bytes"), &pos);
-		break;
-	case 1:
-		shell = gnome_app_find_menu_pos(shell, _("_Words"), &pos);
-		break;
-	case 2:
-		shell = gnome_app_find_menu_pos(shell, _("_Longwords"), &pos);
-		break;
-	}
-	
+	shell = gnome_app_find_menu_pos(shell, _(group_type_label[group_item]), &pos);
+
 	item = g_list_nth(GTK_MENU_SHELL(shell)->children, pos - 1)->data;
 	
 	gtk_menu_shell_activate_item(GTK_MENU_SHELL(shell), item, TRUE);

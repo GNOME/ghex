@@ -47,8 +47,6 @@ int save_state (GnomeClient        *client,
 	gchar *argv[3];
 	gint x, y, w, h;
 	
-	printf("saving session...\n");
-	
 	session_id = gnome_client_get_id (client);
 	
 	/* Save the state using gnome-config stuff. */

@@ -59,8 +59,8 @@ int main(int argc, char **argv) {
     gnome_mdi_set_menubar_template(mdi, main_menu);
 
     /* and document menu and document list paths */
-    gnome_mdi_set_child_menu_path(mdi, _("_File"));
-    gnome_mdi_set_child_list_path(mdi, _("File_s/"));
+    gnome_mdi_set_child_menu_path(mdi, _(CHILD_MENU_PATH));
+    gnome_mdi_set_child_list_path(mdi, _(CHILD_LIST_PATH));
 
     /* connect signals */
     gtk_signal_connect(GTK_OBJECT(mdi), "remove_child", GTK_SIGNAL_FUNC(remove_doc_cb), NULL);

@@ -147,10 +147,10 @@ static void hex_document_destroy(GtkObject *obj) {
 	hex = HEX_DOCUMENT(obj);
 	
 	if(hex->buffer)
-		free(hex->buffer);
+		g_free(hex->buffer);
 	
 	if(hex->file_name)
-		free(hex->file_name);
+		g_free(hex->file_name);
 	
 	if(GTK_OBJECT_CLASS(parent_class)->destroy)
 		(* GTK_OBJECT_CLASS(parent_class)->destroy)(GTK_OBJECT(hex));
@@ -227,7 +227,7 @@ HexDocument *hex_document_new(const gchar *name) {
 		if(document = gtk_type_new (hex_document_get_type ())) {
 			document->buffer_size = stats.st_size;
 			
-			if((document->buffer = (guchar *)malloc(document->buffer_size)) != NULL) {
+			if((document->buffer = (guchar *)g_malloc(document->buffer_size)) != NULL) {
 				if((document->file_name = (gchar *)strdup(name)) != NULL) {
 					for(i = strlen(document->file_name); (i >= 0) && (document->file_name[i] != '/'); i--)
 						;
@@ -244,9 +244,9 @@ HexDocument *hex_document_new(const gchar *name) {
 						document->file = 0;
 						return document;
 					}
-					free(document->file_name);
+					g_free(document->file_name);
 				}
-				free(document->buffer);
+				g_free(document->buffer);
 			}
 			gtk_object_destroy(GTK_OBJECT(document));
 		}
