@@ -1,5 +1,5 @@
 %define name ghex
-%define version 1.2-beta1
+%define version 1.2
 %define release 1
 %define prefix /usr
 

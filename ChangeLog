@@ -1,3 +1,10 @@
+2001-03-08  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/gtkhex.c (render_?c): fixed a strange bug that caused ghex to
+	segfault when sl locale was set because gh->?disp_gc was NULL.
+	* removed translated help from distribution.
+	* bumped version to 1.2 and made a new tarball for GNOME 1.4.
+
 2001-03-05  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/main.c (view_changed_cb): fixed a bug that caused slovene

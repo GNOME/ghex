@@ -18,7 +18,7 @@
    If not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
+   Author: Jaka Mocnik <jaka@gnu.org>
  */
 
 #include <config.h>

@@ -18,7 +18,7 @@
    If not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
+   Author: Jaka Mocnik <jaka@gnu.org>
  */
 
 #include <gnome.h>
@@ -237,7 +237,7 @@ static void render_byte(GtkHex *gh, gint pos) {
 	gchar buf[2];
 
 	if(gh->xdisp_gc == NULL || gh->adisp_gc == NULL ||
-	   !GTK_WIDGET_MAPPED(gh->xdisp) || !GTK_WIDGET_MAPPED(gh->adisp))
+	   !GTK_WIDGET_REALIZED(gh->xdisp) || !GTK_WIDGET_REALIZED(gh->adisp))
 		return;
 
 	get_xcoords(gh, pos, &cx, &cy);
@@ -334,7 +334,7 @@ static void render_xc(GtkHex *gh) {
 		gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
 					 state, shadow,
 					 cx, cy, gh->char_width, gh->char_height - 1);
-		gdk_draw_text(gh->xdisp->window, gh->disp_font, gh->adisp_gc,
+		gdk_draw_text(gh->xdisp->window, gh->disp_font, gh->xdisp_gc,
 					  cx, cy + gh->disp_font->ascent, &c[i], 1);
 	}
 }
@@ -342,7 +342,7 @@ static void render_xc(GtkHex *gh) {
 static void show_cursor(GtkHex *gh) {
 	if(!gh->cursor_shown) {
 		if(gh->xdisp_gc != NULL || gh->adisp_gc != NULL ||
-		   GTK_WIDGET_MAPPED(gh->xdisp) || GTK_WIDGET_MAPPED(gh->adisp)) {
+		   GTK_WIDGET_REALIZED(gh->xdisp) || GTK_WIDGET_REALIZED(gh->adisp)) {
 			render_xc(gh);
 			render_ac(gh);
 		}
@@ -353,7 +353,7 @@ static void show_cursor(GtkHex *gh) {
 static void hide_cursor(GtkHex *gh) {
 	if(gh->cursor_shown) {
 		if(gh->xdisp_gc != NULL || gh->adisp_gc != NULL ||
-		   GTK_WIDGET_MAPPED(gh->xdisp) || GTK_WIDGET_MAPPED(gh->adisp))
+		   GTK_WIDGET_REALIZED(gh->xdisp) || GTK_WIDGET_REALIZED(gh->adisp))
 			render_byte(gh, gh->cursor_pos);
 		gh->cursor_shown = FALSE;
 	}
@@ -880,18 +880,14 @@ static void hide_offsets_widget(GtkHex *gh) {
 	}
 }
 
-static gint hex_map_event(GtkWidget *widget, GdkEventAny *event, GtkHex *gh) {
+static void hex_realize(GtkWidget *widget, GtkHex *gh) {
 	gh->xdisp_gc = gdk_gc_new(gh->xdisp->window);
 	gdk_gc_set_exposures(gh->xdisp_gc, TRUE);
-
-	return FALSE;
 }
 	
-static gint ascii_map_event(GtkWidget *widget, GdkEventAny *event, GtkHex *gh) {
+static void ascii_realize(GtkWidget *widget, GtkHex *gh) {
 	gh->adisp_gc = gdk_gc_new(gh->adisp->window);
 	gdk_gc_set_exposures(gh->adisp_gc, TRUE);
-
-	return FALSE;
 }
 
 static void gtk_hex_realize(GtkWidget *widget) {
@@ -1193,7 +1189,6 @@ static void gtk_hex_class_init(GtkHexClass *klass) {
 }
 
 static void gtk_hex_init(GtkHex *gh) {
-	
 	gh->scroll_timeout = -1;
 
 	gh->disp_buffer = NULL;
@@ -1232,8 +1227,8 @@ static void gtk_hex_init(GtkHex *gh) {
 					   GTK_SIGNAL_FUNC(hex_button_cb), gh);
 	gtk_signal_connect(GTK_OBJECT(gh->xdisp), "motion_notify_event",
 					   GTK_SIGNAL_FUNC(hex_motion_cb), gh);
-	gtk_signal_connect(GTK_OBJECT(gh->xdisp), "map_event",
-					   GTK_SIGNAL_FUNC(hex_map_event), gh);
+	gtk_signal_connect(GTK_OBJECT(gh->xdisp), "realize",
+					   GTK_SIGNAL_FUNC(hex_realize), gh);
 	gtk_fixed_put(GTK_FIXED(gh), gh->xdisp, 0, 0);
 	gtk_widget_show(gh->xdisp);
 	
@@ -1248,8 +1243,8 @@ static void gtk_hex_init(GtkHex *gh) {
 					   GTK_SIGNAL_FUNC(ascii_button_cb), gh);
 	gtk_signal_connect(GTK_OBJECT(gh->adisp), "motion_notify_event",
 					   GTK_SIGNAL_FUNC(ascii_motion_cb), gh);
-	gtk_signal_connect(GTK_OBJECT(gh->adisp), "map_event",
-					   GTK_SIGNAL_FUNC(ascii_map_event), gh);
+	gtk_signal_connect(GTK_OBJECT(gh->adisp), "realize",
+					   GTK_SIGNAL_FUNC(ascii_realize), gh);
 	gtk_fixed_put(GTK_FIXED(gh), gh->adisp, 0, 0);
 	gtk_widget_show(gh->adisp);
 	
