@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.0\n"
-"POT-Creation-Date: 1999-03-01 17:26-0500\n"
+"POT-Creation-Date: 1999-04-14 22:16+0200\n"
 "PO-Revision-Date: 1999-02-20 18:37+01:00\n"
 "Last-Translator: Shooby Ban <bansz@szif.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -39,7 +39,7 @@ msgstr "GHex: konvertáló"
 msgid "Binary"
 msgstr "Bináris"
 
-#: ghex/converter.c:56
+#: ghex/converter.c:56 ghex/preferences.c:109
 msgid "Decimal"
 msgstr "Tízes"
 
@@ -60,7 +60,7 @@ msgstr "Bezár"
 msgid "ERROR"
 msgstr ""
 
-#: ghex/findreplace.c:51 ghex/main.c:72
+#: ghex/findreplace.c:51 ghex/main.c:82
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Adat keresése"
@@ -78,7 +78,7 @@ msgstr "Következõ keresése"
 msgid "Find Previous"
 msgstr "Elõzõ keresése"
 
-#: ghex/findreplace.c:111 ghex/main.c:73
+#: ghex/findreplace.c:111 ghex/main.c:83
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Keresés és csere"
@@ -100,7 +100,7 @@ msgstr "Csere"
 msgid "Replace All"
 msgstr "Mindent cserél"
 
-#: ghex/findreplace.c:179 ghex/main.c:74
+#: ghex/findreplace.c:179 ghex/main.c:84
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Bájtra ugrás"
@@ -210,7 +210,7 @@ msgstr "_Nézet törlése"
 msgid "Remove the current view of the buffer"
 msgstr "Törli az aktuális nézetet"
 
-#: ghex/main.c:48
+#: ghex/main.c:51
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -219,56 +219,74 @@ msgstr ""
 "A %s fájl változott, de nincs elmentve.\n"
 "Szeretnéd menteni?"
 
-#: ghex/preferences.c:48 mini-utils/idetool/idetool.c:142
+#: ghex/main.c:172
+msgid "Offset: "
+msgstr ""
+
+#: ghex/preferences.c:49 mini-utils/idetool/idetool.c:142
 #: mini-utils/idetool/idetool.c:325
 msgid "Default"
 msgstr "Alap"
 
-#: ghex/preferences.c:49
+#: ghex/preferences.c:50
 msgid "Notebook"
 msgstr "Notesz"
 
-#: ghex/preferences.c:50
+#: ghex/preferences.c:51
 msgid "Toplevel"
 msgstr "Felsõ szint"
 
-#: ghex/preferences.c:51
+#: ghex/preferences.c:52
 msgid "Modal"
 msgstr "Kizárólagos"
 
-#: ghex/preferences.c:79
+#: ghex/preferences.c:81
 msgid "Maximum number of undo levels"
 msgstr "Visszavonások maximális száma"
 
-#: ghex/preferences.c:90
+#: ghex/preferences.c:95
+msgid "Show cursor offset as"
+msgstr ""
+
+#: ghex/preferences.c:114
+#, fuzzy
+msgid "Hexadecimal"
+msgstr "Tízes"
+
+#: ghex/preferences.c:120
+#, fuzzy
+msgid "Custom"
+msgstr "Kivágás"
+
+#: ghex/preferences.c:130
 msgid "Editing"
 msgstr "Szerkesztés"
 
-#: ghex/preferences.c:97
+#: ghex/preferences.c:137
 msgid "Font"
 msgstr "Betûtípus"
 
-#: ghex/preferences.c:113
+#: ghex/preferences.c:153
 msgid "Browse..."
 msgstr "Keres..."
 
-#: ghex/preferences.c:132
+#: ghex/preferences.c:172
 msgid "Default Group Type"
 msgstr "Alap csoport típus"
 
-#: ghex/preferences.c:148 gtt/options.c:187
+#: ghex/preferences.c:188 gtt/options.c:186
 msgid "Display"
 msgstr "Képernyõ"
 
-#: ghex/preferences.c:155
+#: ghex/preferences.c:195
 msgid "MDI Mode"
 msgstr "MDI mód"
 
-#: ghex/preferences.c:172
+#: ghex/preferences.c:212
 msgid "MDI"
 msgstr ""
 
-#: ghex/preferences.c:281
+#: ghex/preferences.c:337
 msgid "Can not open desired font!"
 msgstr "Nem tudom a meghatározott betûkészletet megnyitni!"
 
@@ -411,160 +429,156 @@ msgstr "nem grep opciókat találtam a grep listában!"
 msgid "Search Results"
 msgstr "Keresés eredménye"
 
-#: gsearchtool/gsearchtool.c:209
-msgid "Using command:"
-msgstr "Parancs használata:"
-
-#: gsearchtool/gsearchtool.c:429
+#: gsearchtool/gsearchtool.c:426
 msgid "Enable"
 msgstr "Engedélyez"
 
-#: gsearchtool/gsearchtool.c:436
+#: gsearchtool/gsearchtool.c:433
 msgid "Remove"
 msgstr "Töröl"
 
-#: gsearchtool/gsearchtool.c:488
+#: gsearchtool/gsearchtool.c:485
 msgid "Start in directory:"
 msgstr "Kezdõ könyvtár:"
 
-#: gsearchtool/gsearchtool.c:506 mini-utils/gw/gw.c:454
+#: gsearchtool/gsearchtool.c:503 mini-utils/gw/gw.c:454
 msgid "Add"
 msgstr "Hozzáad"
 
-#: gsearchtool/gsearchtool.c:517
+#: gsearchtool/gsearchtool.c:514
 msgid "Start"
 msgstr "Indít"
 
-#: gsearchtool/gsearchtool.c:518
+#: gsearchtool/gsearchtool.c:515
 msgid "Stop"
 msgstr "Megállít"
 
-#: gsearchtool/gsearchtool.c:536
+#: gsearchtool/gsearchtool.c:533
 msgid "This is not yet implemented"
 msgstr "Ez még nincs megírva..."
 
-#: gsearchtool/gsearchtool.c:549
+#: gsearchtool/gsearchtool.c:546
 msgid "Full find (find)"
 msgstr "Teljes lista (keresés)"
 
-#: gsearchtool/gsearchtool.c:552
+#: gsearchtool/gsearchtool.c:549
 msgid "Quick find (locate)"
 msgstr "Gyors keresés (locate)"
 
-#: gsearchtool/gsearchtool.c:567
+#: gsearchtool/gsearchtool.c:564
 msgid "The Gnome Search Tool"
 msgstr "Gnome keresõ"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:565
 msgid "(C) 1998 the Free Software Foundation"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:570
+#: gsearchtool/gsearchtool.c:567
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Felület a find/grep/locate parancsokhoz"
 
-#: gsearchtool/gsearchtool.c:613
+#: gsearchtool/gsearchtool.c:610
 msgid "Gnome Search Tool"
 msgstr "Gnome keresõ"
 
-#: gstripchart/gstripchart.c:1249
+#: gstripchart/gstripchart.c:1321
 msgid "Params"
 msgstr "Paraméterek"
 
-#: gstripchart/gstripchart.c:1249
+#: gstripchart/gstripchart.c:1321
 msgid "Examine and adjust parameters"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:1327
 msgid "E_xit"
 msgstr "_Kilép"
 
-#: gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:1327
 msgid "Terminate the stripchart program"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1271
+#: gstripchart/gstripchart.c:1343
 msgid "Copyright 1998 John Kodis"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1286
+#: gstripchart/gstripchart.c:1358
 msgid "_About"
 msgstr "_Megszakít"
 
-#: gstripchart/gstripchart.c:1286
+#: gstripchart/gstripchart.c:1358
 msgid "Info about the striphart program"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1297
+#: gstripchart/gstripchart.c:1369
 msgid "_File"
 msgstr "_Fájl"
 
-#: gstripchart/gstripchart.c:1298
+#: gstripchart/gstripchart.c:1370
 msgid "_Help"
 msgstr "_Súgó"
 
-#: gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1776
 msgid "GEO"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1776
 msgid "geometry"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1708
+#: gstripchart/gstripchart.c:1778
 msgid "FILE"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1708
+#: gstripchart/gstripchart.c:1778
 msgid "configuration file"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1710 gstripchart/gstripchart.c:1712
-#: gstripchart/gstripchart.c:1714 gstripchart/gstripchart.c:1716
+#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:1782
+#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:1786
 msgid "SECS"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1710
+#: gstripchart/gstripchart.c:1780
 msgid "chart update interval"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1712
+#: gstripchart/gstripchart.c:1782
 msgid "chart LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1714
+#: gstripchart/gstripchart.c:1784
 msgid "slider update interval"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1716
+#: gstripchart/gstripchart.c:1786
 msgid "slider LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1718
+#: gstripchart/gstripchart.c:1788
 msgid "add menubar"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1720
+#: gstripchart/gstripchart.c:1790
 msgid "omit slider"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1792
 msgid "TYPE"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1792
 msgid "gtk|text|graph|none"
 msgstr ""
 
-#: gtt/app.c:110 gtt/app.c:212
+#: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
 msgstr ""
 
-#: gtt/app.c:201
+#: gtt/app.c:212
 msgid "00:00"
 msgstr ""
 
-#: gtt/app.c:234 mini-utils/gless/gless.c:383
+#: gtt/app.c:251 mini-utils/gless/gless.c:384
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -586,15 +600,15 @@ msgstr "Projekt neve"
 msgid "Description"
 msgstr "Leírás"
 
-#: gtt/log.c:55 gtt/log.c:207
+#: gtt/log.c:64 gtt/log.c:216
 msgid "program started"
 msgstr "program elindítva"
 
-#: gtt/log.c:73
+#: gtt/log.c:82
 msgid "no description"
 msgstr "nincs leírás"
 
-#: gtt/log.c:199
+#: gtt/log.c:208
 msgid "program exited"
 msgstr "program kilépett"
 
@@ -618,7 +632,7 @@ msgstr ""
 msgid "Specify geometry"
 msgstr ""
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:115
+#: gtt/main.c:204 mini-utils/gless/gless.c:116
 msgid "GEOMETRY"
 msgstr ""
 
@@ -638,7 +652,7 @@ msgstr "Figyelem"
 msgid "I could not write the configuration file!"
 msgstr ""
 
-#: gtt/menucmd.c:85 gtt/toolbar.c:142
+#: gtt/menucmd.c:85 gtt/toolbar.c:146
 msgid "New Project..."
 msgstr "Új projekt..."
 
@@ -650,7 +664,7 @@ msgstr "Kérlek írd be az új projekt nevét:"
 msgid "I could not read the configuration file"
 msgstr "Nem tudom a konfigurációs állományt olvasni"
 
-#: gtt/menucmd.c:137 gtt/toolbar.c:149
+#: gtt/menucmd.c:137 gtt/toolbar.c:153
 msgid "Reload Configuration File"
 msgstr "Konfigurációs állomány újratöltése"
 
@@ -692,111 +706,111 @@ msgstr "Ó_ra fut"
 msgid "_Timer"
 msgstr "Ór_ák"
 
-#: gtt/options.c:195
+#: gtt/options.c:194
 msgid "Show Seconds"
 msgstr "Másodpercek mutatása"
 
-#: gtt/options.c:201
+#: gtt/options.c:200
 msgid "Show Status Bar"
 msgstr "Állapotsor mutatása"
 
-#: gtt/options.c:207
+#: gtt/options.c:206
 msgid "Show Table Header"
 msgstr "Táblázat fejléc mutatása"
 
-#: gtt/options.c:221 gtt/options.c:519
+#: gtt/options.c:220 gtt/options.c:518
 msgid "Toolbar"
 msgstr "Eszközsor"
 
-#: gtt/options.c:229
+#: gtt/options.c:228
 msgid "Show Toolbar Icons"
 msgstr "Eszközsor ikonok mutatása"
 
-#: gtt/options.c:235
+#: gtt/options.c:234
 msgid "Show Toolbar Texts"
 msgstr "Eszközsor szövegek"
 
-#: gtt/options.c:241
+#: gtt/options.c:240
 msgid "Show Tooltips"
 msgstr "Segédszövegek mutatása"
 
-#: gtt/options.c:247
+#: gtt/options.c:246
 msgid "Toolbar Segments"
 msgstr "Eszközsor elválasztók"
 
-#: gtt/options.c:255
+#: gtt/options.c:254
 msgid "Show `New'"
 msgstr "Mutasd az 'Új' gombot"
 
-#: gtt/options.c:261
+#: gtt/options.c:260
 msgid "Show `Save', `Reload'"
 msgstr "Mutasd a 'Ment' és az 'Újratölt' gombokat"
 
-#: gtt/options.c:267
+#: gtt/options.c:266
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Mutasd a 'Kivág', 'Másol' és 'Beilleszt' gombokat"
 
-#: gtt/options.c:273
+#: gtt/options.c:272
 msgid "Show `Properties'"
 msgstr "Mutasd a 'Beállít' gombot"
 
-#: gtt/options.c:279
+#: gtt/options.c:278
 msgid "Show `Timer'"
 msgstr "Mutasd az 'Óra' gombot"
 
-#: gtt/options.c:285
+#: gtt/options.c:284
 msgid "Show `Preferences'"
 msgstr "Mutasd a 'Tulajdonságok' gombot"
 
-#: gtt/options.c:291
+#: gtt/options.c:290
 msgid "Show `Help'"
 msgstr "Mutasd a 'Súgó' gombot"
 
-#: gtt/options.c:297
+#: gtt/options.c:296
 msgid "Show `Quit'"
 msgstr "Mutasd a 'Kilépés' gombot"
 
-#: gtt/options.c:311
+#: gtt/options.c:310
 msgid "Shell Commands"
 msgstr "Shell parancsok"
 
-#: gtt/options.c:319
+#: gtt/options.c:318
 msgid "Switch Project Command:"
 msgstr ""
 
-#: gtt/options.c:330
+#: gtt/options.c:329
 msgid "No Project Command:"
 msgstr ""
 
-#: gtt/options.c:364
+#: gtt/options.c:363
 msgid "Logfile"
 msgstr ""
 
-#: gtt/options.c:372
+#: gtt/options.c:371
 msgid "Use Logfile"
 msgstr ""
 
-#: gtt/options.c:381
+#: gtt/options.c:380
 msgid "Filename:"
 msgstr "Fájlnév:"
 
-#: gtt/options.c:395
+#: gtt/options.c:394
 msgid "Entry Start:"
 msgstr "Bejegyzés kezdete:"
 
-#: gtt/options.c:409
+#: gtt/options.c:408
 msgid "Entry Stop:"
 msgstr "Bejegyzés vége:"
 
-#: gtt/options.c:423
+#: gtt/options.c:422
 msgid "Timeout in secs:"
 msgstr "Idõtúllépés másodpercekben:"
 
-#: gtt/options.c:500
+#: gtt/options.c:499
 msgid "Preferences"
 msgstr "Tulajdonságok"
 
-#: gtt/options.c:506
+#: gtt/options.c:505
 msgid "Misc"
 msgstr "Más"
 
@@ -812,120 +826,120 @@ msgstr "%t projekt megállt"
 msgid "empty"
 msgstr "üres"
 
-#: gtt/prop.c:172
+#: gtt/prop.c:171
 msgid "Properties"
 msgstr "Beállítások"
 
-#: gtt/prop.c:179
+#: gtt/prop.c:178
 msgid "Project"
 msgstr "Projekt"
 
-#: gtt/prop.c:198
+#: gtt/prop.c:197
 msgid "Project Title:"
 msgstr "Projekt neve:"
 
-#: gtt/prop.c:210
+#: gtt/prop.c:209
 msgid "Project Description:"
 msgstr "Projekt leírása:"
 
-#: gtt/prop.c:222
+#: gtt/prop.c:221
 msgid "Project Time today:"
 msgstr "Projekt idõ ma:"
 
-#: gtt/prop.c:238 gtt/prop.c:276
+#: gtt/prop.c:237 gtt/prop.c:275
 msgid "hours"
 msgstr "órák"
 
-#: gtt/prop.c:249 gtt/prop.c:287
+#: gtt/prop.c:248 gtt/prop.c:286
 msgid "mins"
 msgstr "percek"
 
-#: gtt/prop.c:260 gtt/prop.c:298
+#: gtt/prop.c:259 gtt/prop.c:297
 msgid "secs"
 msgstr "másodpercek"
 
-#: gtt/prop.c:264
+#: gtt/prop.c:263
 msgid "Project Time ever:"
 msgstr "Projekt idõ összesen:"
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:141
+#: gtt/toolbar.c:145
 msgid "[GTT]New"
 msgstr ""
 
-#: gtt/toolbar.c:148
+#: gtt/toolbar.c:152
 msgid "Reload"
 msgstr "Újratölt"
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:156
 msgid "Save"
 msgstr "Ment"
 
-#: gtt/toolbar.c:153
+#: gtt/toolbar.c:157
 msgid "Save Configuration File"
 msgstr "Beállítások mentése"
 
-#: gtt/toolbar.c:159
+#: gtt/toolbar.c:163
 msgid "Cut"
 msgstr "Kivágás"
 
-#: gtt/toolbar.c:160
+#: gtt/toolbar.c:164
 msgid "Cut Selected Project"
 msgstr "A kiválasztott projekt kivágása"
 
-#: gtt/toolbar.c:163
+#: gtt/toolbar.c:167
 msgid "Copy"
 msgstr "Másolás"
 
-#: gtt/toolbar.c:164
+#: gtt/toolbar.c:168
 msgid "Copy Selected Project"
 msgstr "A kiválasztott projekt mentése"
 
-#: gtt/toolbar.c:167
+#: gtt/toolbar.c:171
 msgid "Paste"
 msgstr "Beilleszt"
 
-#: gtt/toolbar.c:168
+#: gtt/toolbar.c:172
 msgid "Paste Project"
 msgstr "Projekt beszúrása"
 
-#: gtt/toolbar.c:174
+#: gtt/toolbar.c:178
 msgid "Props"
 msgstr "Beállít"
 
-#: gtt/toolbar.c:175
+#: gtt/toolbar.c:179
 msgid "Edit Properties..."
 msgstr "Beállítások szerkesztése..."
 
-#: gtt/toolbar.c:179
+#: gtt/toolbar.c:183
 msgid "Timer"
 msgstr "Óra"
 
-#: gtt/toolbar.c:180
+#: gtt/toolbar.c:184
 msgid "Start/Stop Timer"
 msgstr "Órát indít/megállít"
 
-#: gtt/toolbar.c:188
+#: gtt/toolbar.c:193
 msgid "Prefs"
 msgstr "Tulaj"
 
-#: gtt/toolbar.c:189
+#: gtt/toolbar.c:194
 msgid "Edit Preferences..."
 msgstr "Tulajdonságok szerkesztése..."
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual"
 msgstr "Kézikönyv"
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual..."
 msgstr "Kézikönyv..."
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit"
 msgstr "Kilép"
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit GTimeTracker"
 msgstr "GTimeTracker-bõl való kilépés"
 
@@ -950,11 +964,11 @@ msgstr "Szín értékek:"
 msgid "Color"
 msgstr "Szín"
 
-#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:223
+#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:228
 msgid "Value"
 msgstr "Érték"
 
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:222
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:227
 #: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
 msgid "Name"
 msgstr "Név"
@@ -1023,69 +1037,69 @@ msgstr "Az utolsó betûkészlet betöltésének tiltása"
 msgid "Copyright 1998, under the GNU General Public License."
 msgstr ""
 
-#: mini-utils/gless/gless.c:115
+#: mini-utils/gless/gless.c:116
 msgid "Where to put the window, and its size"
 msgstr "Hova tegyem az ablakot, és milyen méretben"
 
-#: mini-utils/gless/gless.c:116
+#: mini-utils/gless/gless.c:117
 msgid "Ignore standard input; may be needed in some cases."
 msgstr ""
 
-#: mini-utils/gless/gless.c:278
+#: mini-utils/gless/gless.c:279
 msgid "_New Window"
 msgstr "Ú_j ablak"
 
-#: mini-utils/gless/gless.c:279
+#: mini-utils/gless/gless.c:280
 msgid "New text viewer window"
 msgstr "Új megjelenítõ ablak"
 
-#: mini-utils/gless/gless.c:291
+#: mini-utils/gless/gless.c:292
 msgid "_Fixed Font"
 msgstr "_Fix méretû betûtípus"
 
-#: mini-utils/gless/gless.c:292
+#: mini-utils/gless/gless.c:293
 msgid "Display text with a fixed font"
 msgstr "Fix méretû (fixed) betûtípussal való megjelenítés"
 
-#: mini-utils/gless/gless.c:321
+#: mini-utils/gless/gless.c:322
 msgid "Text File Viewer"
 msgstr "Szövegfájl-megjelenítõ"
 
-#: mini-utils/gless/gless.c:424
+#: mini-utils/gless/gless.c:425
 msgid "Loading..."
 msgstr "Töltök..."
 
-#: mini-utils/gless/gless.c:429
+#: mini-utils/gless/gless.c:430
 msgid "No such file or directory:\n"
 msgstr "Nincs ilyen nevû fájl:\n"
 
-#: mini-utils/gless/gless.c:446
+#: mini-utils/gless/gless.c:447
 msgid "Failed to decompress and display the file:\n"
 msgstr "Nem tudom kicsomagolni és megjeleníteni a fájlt:\n"
 
-#: mini-utils/gless/gless.c:457
+#: mini-utils/gless/gless.c:458
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
 msgstr ""
 
-#: mini-utils/gless/gless.c:465
+#: mini-utils/gless/gless.c:466
 msgid "Error loading file:\n"
 msgstr ""
 
-#: mini-utils/gless/gless.c:519
+#: mini-utils/gless/gless.c:520
 msgid "Saving..."
 msgstr "Mentés..."
 
-#: mini-utils/gless/gless.c:530
+#: mini-utils/gless/gless.c:531
 msgid "Failed to write file:\n"
 msgstr ""
 
-#: mini-utils/gless/gless.c:577
+#: mini-utils/gless/gless.c:578
 msgid "Save Text As..."
 msgstr "Fájl mentése mint..."
 
-#: mini-utils/gless/gless.c:617
+#: mini-utils/gless/gless.c:618
 msgid "Open Text File..."
 msgstr "Megnyitás..."
 
@@ -1297,8 +1311,7 @@ msgstr "A következõ levél címzettje "
 msgid ""
 ".\n"
 " Are you sure you want to mail this information?"
-msgstr ""
-"El akarod küldeni az információkat?"
+msgstr "El akarod küldeni az információkat?"
 
 #: mini-utils/guname/guname.c:693
 msgid "Are you sure?"
@@ -1398,7 +1411,7 @@ msgstr "Beillesztési pont"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:168
+#: mini-utils/guname/info.c:170
 msgid "Unknown"
 msgstr "Nem ismert"
 
@@ -1410,65 +1423,65 @@ msgstr "Nem ismert fájlrendszer"
 msgid "No information for this filesystem."
 msgstr "Nincs a fájlrendszerrõl információ."
 
-#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:165
+#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:166
 msgid "Memory"
 msgstr "Memória"
 
-#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:166
+#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:167
 msgid "Kilobytes"
 msgstr "kilobájt"
 
-#: mini-utils/guname/moreinfo.c:163
+#: mini-utils/guname/moreinfo.c:164
 msgid "%ld%% %s used."
 msgstr "%ld%% %s használva."
 
-#: mini-utils/guname/moreinfo.c:178 mini-utils/guname/moreinfo.c:182
+#: mini-utils/guname/moreinfo.c:183 mini-utils/guname/moreinfo.c:187
 msgid "memory"
 msgstr "memória"
 
-#: mini-utils/guname/moreinfo.c:192 mini-utils/guname/moreinfo.c:196
+#: mini-utils/guname/moreinfo.c:197 mini-utils/guname/moreinfo.c:201
 msgid "swap"
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:219
+#: mini-utils/guname/moreinfo.c:224
 #, c-format
 msgid "CPU %d"
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:267
+#: mini-utils/guname/moreinfo.c:272
 msgid "Detailed System Information"
 msgstr "Részletes rendszer-információk"
 
-#: mini-utils/guname/moreinfo.c:280
+#: mini-utils/guname/moreinfo.c:285
 msgid "Disk Information"
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:282
+#: mini-utils/guname/moreinfo.c:287
 msgid "Memory Information"
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:285
+#: mini-utils/guname/moreinfo.c:290
 msgid "CPU Information"
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:306
+#: mini-utils/guname/moreinfo.c:311
 msgid "%2d%% full "
 msgstr "%2d%% megtelt"
 
-#: mini-utils/guname/moreinfo.c:308
+#: mini-utils/guname/moreinfo.c:313
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:322
+#: mini-utils/guname/moreinfo.c:327
 msgid "Mount Point: "
 msgstr "Beillesztési hely"
 
-#: mini-utils/guname/moreinfo.c:323
+#: mini-utils/guname/moreinfo.c:328
 msgid "    Device: "
 msgstr "     Eszköz: "
 
-#: mini-utils/guname/moreinfo.c:324
+#: mini-utils/guname/moreinfo.c:329
 msgid "    Filesystem Type: "
 msgstr "    Fájlrendszer típusa:"
 
@@ -1643,3 +1656,6 @@ msgstr ""
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr ""
+
+#~ msgid "Using command:"
+#~ msgstr "Parancs használata:"

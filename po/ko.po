@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.0\n"
-"POT-Creation-Date: 1999-03-01 17:26-0500\n"
+"POT-Creation-Date: 1999-04-14 22:16+0200\n"
 "PO-Revision-Date: 1999-02-26 05:57:58+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@adam.kaist.ac.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -41,7 +41,7 @@ msgstr "GHex: 변환기"
 msgid "Binary"
 msgstr "이진"
 
-#: ghex/converter.c:56
+#: ghex/converter.c:56 ghex/preferences.c:109
 msgid "Decimal"
 msgstr "십진수"
 
@@ -62,7 +62,7 @@ msgstr "닫기"
 msgid "ERROR"
 msgstr "오류"
 
-#: ghex/findreplace.c:51 ghex/main.c:72
+#: ghex/findreplace.c:51 ghex/main.c:82
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): 자료 찾기"
@@ -80,7 +80,7 @@ msgstr "다음 찾기"
 msgid "Find Previous"
 msgstr "이전 찾기"
 
-#: ghex/findreplace.c:111 ghex/main.c:73
+#: ghex/findreplace.c:111 ghex/main.c:83
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): 자료를 찾아서 바꾸기"
@@ -102,7 +102,7 @@ msgstr "치환"
 msgid "Replace All"
 msgstr "모두 치환"
 
-#: ghex/findreplace.c:179 ghex/main.c:74
+#: ghex/findreplace.c:179 ghex/main.c:84
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): 바이트로 이동"
@@ -212,7 +212,7 @@ msgstr "보기 삭제(_R)"
 msgid "Remove the current view of the buffer"
 msgstr "버퍼의 현재 view 삭제"
 
-#: ghex/main.c:48
+#: ghex/main.c:51
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -221,56 +221,74 @@ msgstr ""
 "문서 %s가 마지막 저장된 후로 바뀌었습니다.\n"
 "바뀐 내용을 저장할까요?"
 
-#: ghex/preferences.c:48 mini-utils/idetool/idetool.c:142
+#: ghex/main.c:172
+msgid "Offset: "
+msgstr ""
+
+#: ghex/preferences.c:49 mini-utils/idetool/idetool.c:142
 #: mini-utils/idetool/idetool.c:325
 msgid "Default"
 msgstr "기본 사항"
 
-#: ghex/preferences.c:49
+#: ghex/preferences.c:50
 msgid "Notebook"
 msgstr "노트북"
 
-#: ghex/preferences.c:50
+#: ghex/preferences.c:51
 msgid "Toplevel"
 msgstr "상위 윈도우"
 
-#: ghex/preferences.c:51
+#: ghex/preferences.c:52
 msgid "Modal"
 msgstr "모달"
 
-#: ghex/preferences.c:79
+#: ghex/preferences.c:81
 msgid "Maximum number of undo levels"
 msgstr "실행 취소 최대 횟수"
 
-#: ghex/preferences.c:90
+#: ghex/preferences.c:95
+msgid "Show cursor offset as"
+msgstr ""
+
+#: ghex/preferences.c:114
+#, fuzzy
+msgid "Hexadecimal"
+msgstr "십진수"
+
+#: ghex/preferences.c:120
+#, fuzzy
+msgid "Custom"
+msgstr "자르기"
+
+#: ghex/preferences.c:130
 msgid "Editing"
 msgstr "편집"
 
-#: ghex/preferences.c:97
+#: ghex/preferences.c:137
 msgid "Font"
 msgstr "글꼴"
 
-#: ghex/preferences.c:113
+#: ghex/preferences.c:153
 msgid "Browse..."
 msgstr "찾아보기..."
 
-#: ghex/preferences.c:132
+#: ghex/preferences.c:172
 msgid "Default Group Type"
 msgstr "기본 그룹 타입"
 
-#: ghex/preferences.c:148 gtt/options.c:187
+#: ghex/preferences.c:188 gtt/options.c:186
 msgid "Display"
 msgstr "표시"
 
-#: ghex/preferences.c:155
+#: ghex/preferences.c:195
 msgid "MDI Mode"
 msgstr "MDI 모드"
 
-#: ghex/preferences.c:172
+#: ghex/preferences.c:212
 msgid "MDI"
 msgstr "MDI"
 
-#: ghex/preferences.c:281
+#: ghex/preferences.c:337
 msgid "Can not open desired font!"
 msgstr "선택한 글꼴을 열 수 없습니다!"
 
@@ -413,160 +431,156 @@ msgstr "grep 리스트에 나타난 grep이 아닌 옵션이 틀렸습니다!"
 msgid "Search Results"
 msgstr "찾은 결과"
 
-#: gsearchtool/gsearchtool.c:209
-msgid "Using command:"
-msgstr "사용할 명령어:"
-
-#: gsearchtool/gsearchtool.c:429
+#: gsearchtool/gsearchtool.c:426
 msgid "Enable"
 msgstr "사용하기"
 
-#: gsearchtool/gsearchtool.c:436
+#: gsearchtool/gsearchtool.c:433
 msgid "Remove"
 msgstr "지우기"
 
-#: gsearchtool/gsearchtool.c:488
+#: gsearchtool/gsearchtool.c:485
 msgid "Start in directory:"
 msgstr "시작 자료방:"
 
-#: gsearchtool/gsearchtool.c:506 mini-utils/gw/gw.c:454
+#: gsearchtool/gsearchtool.c:503 mini-utils/gw/gw.c:454
 msgid "Add"
 msgstr "추가"
 
-#: gsearchtool/gsearchtool.c:517
+#: gsearchtool/gsearchtool.c:514
 msgid "Start"
 msgstr "시작"
 
-#: gsearchtool/gsearchtool.c:518
+#: gsearchtool/gsearchtool.c:515
 msgid "Stop"
 msgstr "멈춤"
 
-#: gsearchtool/gsearchtool.c:536
+#: gsearchtool/gsearchtool.c:533
 msgid "This is not yet implemented"
 msgstr "이 기능은 아직 완성되지 않았습니다."
 
-#: gsearchtool/gsearchtool.c:549
+#: gsearchtool/gsearchtool.c:546
 msgid "Full find (find)"
 msgstr "전체 찾기 (찾기)"
 
-#: gsearchtool/gsearchtool.c:552
+#: gsearchtool/gsearchtool.c:549
 msgid "Quick find (locate)"
 msgstr "빨리 찾기 (위치)"
 
-#: gsearchtool/gsearchtool.c:567
+#: gsearchtool/gsearchtool.c:564
 msgid "The Gnome Search Tool"
 msgstr "그놈 찾기 도구"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:565
 msgid "(C) 1998 the Free Software Foundation"
 msgstr "(C) 1998 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:570
+#: gsearchtool/gsearchtool.c:567
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "유닉스 find/grep/locate 명령의 프론트 엔드"
 
-#: gsearchtool/gsearchtool.c:613
+#: gsearchtool/gsearchtool.c:610
 msgid "Gnome Search Tool"
 msgstr "그놈 찾기 도구"
 
-#: gstripchart/gstripchart.c:1249
+#: gstripchart/gstripchart.c:1321
 msgid "Params"
 msgstr "파라미터"
 
-#: gstripchart/gstripchart.c:1249
+#: gstripchart/gstripchart.c:1321
 msgid "Examine and adjust parameters"
 msgstr "파라미터 검사 및 조정"
 
-#: gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:1327
 msgid "E_xit"
 msgstr "끝내기(_X)"
 
-#: gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:1327
 msgid "Terminate the stripchart program"
 msgstr "스트립차트 프로그램 끝내기"
 
-#: gstripchart/gstripchart.c:1271
+#: gstripchart/gstripchart.c:1343
 msgid "Copyright 1998 John Kodis"
 msgstr "Copyright 1998 John Kodis"
 
-#: gstripchart/gstripchart.c:1286
+#: gstripchart/gstripchart.c:1358
 msgid "_About"
 msgstr "이 프로그램은(_A)"
 
-#: gstripchart/gstripchart.c:1286
+#: gstripchart/gstripchart.c:1358
 msgid "Info about the striphart program"
 msgstr "스트립차트 프로그램 정보"
 
-#: gstripchart/gstripchart.c:1297
+#: gstripchart/gstripchart.c:1369
 msgid "_File"
 msgstr "파일(_F)"
 
-#: gstripchart/gstripchart.c:1298
+#: gstripchart/gstripchart.c:1370
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1776
 msgid "GEO"
 msgstr "위치"
 
-#: gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1776
 msgid "geometry"
 msgstr "위치 및 크기"
 
-#: gstripchart/gstripchart.c:1708
+#: gstripchart/gstripchart.c:1778
 msgid "FILE"
 msgstr "파일"
 
-#: gstripchart/gstripchart.c:1708
+#: gstripchart/gstripchart.c:1778
 msgid "configuration file"
 msgstr "설정 파일"
 
-#: gstripchart/gstripchart.c:1710 gstripchart/gstripchart.c:1712
-#: gstripchart/gstripchart.c:1714 gstripchart/gstripchart.c:1716
+#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:1782
+#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:1786
 msgid "SECS"
 msgstr "초"
 
-#: gstripchart/gstripchart.c:1710
+#: gstripchart/gstripchart.c:1780
 msgid "chart update interval"
 msgstr "차트 갱신 간격"
 
-#: gstripchart/gstripchart.c:1712
+#: gstripchart/gstripchart.c:1782
 msgid "chart LP filter TC"
 msgstr "차트 LP 필터 TC"
 
-#: gstripchart/gstripchart.c:1714
+#: gstripchart/gstripchart.c:1784
 msgid "slider update interval"
 msgstr "슬라이더 갱신 간격"
 
-#: gstripchart/gstripchart.c:1716
+#: gstripchart/gstripchart.c:1786
 msgid "slider LP filter TC"
 msgstr "슬라이더 LP 필터 TC"
 
-#: gstripchart/gstripchart.c:1718
+#: gstripchart/gstripchart.c:1788
 msgid "add menubar"
 msgstr "메뉴바 추가"
 
-#: gstripchart/gstripchart.c:1720
+#: gstripchart/gstripchart.c:1790
 msgid "omit slider"
 msgstr "슬라이더 없음"
 
-#: gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1792
 msgid "TYPE"
 msgstr "타입"
 
-#: gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1792
 msgid "gtk|text|graph|none"
 msgstr "gtk|text|graph|none"
 
-#: gtt/app.c:110 gtt/app.c:212
+#: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
 msgstr "프로젝트를 선택하지 않았습니다"
 
-#: gtt/app.c:201
+#: gtt/app.c:212
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:234 mini-utils/gless/gless.c:383
+#: gtt/app.c:251 mini-utils/gless/gless.c:384
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -590,15 +604,15 @@ msgstr "프로젝트 이름"
 msgid "Description"
 msgstr "설명"
 
-#: gtt/log.c:55 gtt/log.c:207
+#: gtt/log.c:64 gtt/log.c:216
 msgid "program started"
 msgstr "프로그램이 시작했습니다"
 
-#: gtt/log.c:73
+#: gtt/log.c:82
 msgid "no description"
 msgstr "설명 없음"
 
-#: gtt/log.c:199
+#: gtt/log.c:208
 msgid "program exited"
 msgstr "프로그램이 끝났습니다"
 
@@ -627,7 +641,7 @@ msgstr ""
 msgid "Specify geometry"
 msgstr "위치 지정"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:115
+#: gtt/main.c:204 mini-utils/gless/gless.c:116
 msgid "GEOMETRY"
 msgstr "위치"
 
@@ -647,7 +661,7 @@ msgstr "경고"
 msgid "I could not write the configuration file!"
 msgstr "컨피그 파일을 쓸 수 없습니다!"
 
-#: gtt/menucmd.c:85 gtt/toolbar.c:142
+#: gtt/menucmd.c:85 gtt/toolbar.c:146
 msgid "New Project..."
 msgstr "새 프로젝트"
 
@@ -659,7 +673,7 @@ msgstr "새로운 프로젝트의 이름을 입력하세요:"
 msgid "I could not read the configuration file"
 msgstr "컨피그 파일을 읽을 수 없습니다"
 
-#: gtt/menucmd.c:137 gtt/toolbar.c:149
+#: gtt/menucmd.c:137 gtt/toolbar.c:153
 msgid "Reload Configuration File"
 msgstr "컨피그 파일 다시 읽기"
 
@@ -703,111 +717,111 @@ msgstr "타이머 실행(_T)"
 msgid "_Timer"
 msgstr "타이머(_T)"
 
-#: gtt/options.c:195
+#: gtt/options.c:194
 msgid "Show Seconds"
 msgstr "초 표시"
 
-#: gtt/options.c:201
+#: gtt/options.c:200
 msgid "Show Status Bar"
 msgstr "상태바 표시"
 
-#: gtt/options.c:207
+#: gtt/options.c:206
 msgid "Show Table Header"
 msgstr "테이블 헤더 보이기"
 
-#: gtt/options.c:221 gtt/options.c:519
+#: gtt/options.c:220 gtt/options.c:518
 msgid "Toolbar"
 msgstr "툴바"
 
-#: gtt/options.c:229
+#: gtt/options.c:228
 msgid "Show Toolbar Icons"
 msgstr "툴바의 아이콘 표시"
 
-#: gtt/options.c:235
+#: gtt/options.c:234
 msgid "Show Toolbar Texts"
 msgstr "툴바의 글 표시"
 
-#: gtt/options.c:241
+#: gtt/options.c:240
 msgid "Show Tooltips"
 msgstr "툴팁 표시"
 
-#: gtt/options.c:247
+#: gtt/options.c:246
 msgid "Toolbar Segments"
 msgstr "툴바의 조각들"
 
-#: gtt/options.c:255
+#: gtt/options.c:254
 msgid "Show `New'"
 msgstr "`새 프로젝트' 표시"
 
-#: gtt/options.c:261
+#: gtt/options.c:260
 msgid "Show `Save', `Reload'"
 msgstr "`저장', `다시 읽기' 표시"
 
-#: gtt/options.c:267
+#: gtt/options.c:266
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "`자르기', `복사', `붙이기' 표시"
 
-#: gtt/options.c:273
+#: gtt/options.c:272
 msgid "Show `Properties'"
 msgstr "`속성' 표시"
 
-#: gtt/options.c:279
+#: gtt/options.c:278
 msgid "Show `Timer'"
 msgstr "`타이머' 표시"
 
-#: gtt/options.c:285
+#: gtt/options.c:284
 msgid "Show `Preferences'"
 msgstr "`설정' 표시"
 
-#: gtt/options.c:291
+#: gtt/options.c:290
 msgid "Show `Help'"
 msgstr "`도움말' 표시"
 
-#: gtt/options.c:297
+#: gtt/options.c:296
 msgid "Show `Quit'"
 msgstr "`종료' 표시"
 
-#: gtt/options.c:311
+#: gtt/options.c:310
 msgid "Shell Commands"
 msgstr "셸 명령"
 
-#: gtt/options.c:319
+#: gtt/options.c:318
 msgid "Switch Project Command:"
 msgstr "프로젝트를 바꿀 때의 명령"
 
-#: gtt/options.c:330
+#: gtt/options.c:329
 msgid "No Project Command:"
 msgstr "프로젝트가 없을 때의 명령:"
 
-#: gtt/options.c:364
+#: gtt/options.c:363
 msgid "Logfile"
 msgstr "기록 파일"
 
-#: gtt/options.c:372
+#: gtt/options.c:371
 msgid "Use Logfile"
 msgstr "기록 파일 사용하기"
 
-#: gtt/options.c:381
+#: gtt/options.c:380
 msgid "Filename:"
 msgstr "파일이름:"
 
-#: gtt/options.c:395
+#: gtt/options.c:394
 msgid "Entry Start:"
 msgstr "항목 시장:"
 
-#: gtt/options.c:409
+#: gtt/options.c:408
 msgid "Entry Stop:"
 msgstr "항목 정지:"
 
-#: gtt/options.c:423
+#: gtt/options.c:422
 msgid "Timeout in secs:"
 msgstr "기록할 시간 (초):"
 
-#: gtt/options.c:500
+#: gtt/options.c:499
 msgid "Preferences"
 msgstr "설정"
 
-#: gtt/options.c:506
+#: gtt/options.c:505
 msgid "Misc"
 msgstr "기타"
 
@@ -823,120 +837,120 @@ msgstr "%t 프로젝트 정지"
 msgid "empty"
 msgstr "없음"
 
-#: gtt/prop.c:172
+#: gtt/prop.c:171
 msgid "Properties"
 msgstr "속성"
 
-#: gtt/prop.c:179
+#: gtt/prop.c:178
 msgid "Project"
 msgstr "프로젝트"
 
-#: gtt/prop.c:198
+#: gtt/prop.c:197
 msgid "Project Title:"
 msgstr "프로젝트 이름:"
 
-#: gtt/prop.c:210
+#: gtt/prop.c:209
 msgid "Project Description:"
 msgstr "프로젝트 설명:"
 
-#: gtt/prop.c:222
+#: gtt/prop.c:221
 msgid "Project Time today:"
 msgstr "오늘의 프로젝트 시간:"
 
-#: gtt/prop.c:238 gtt/prop.c:276
+#: gtt/prop.c:237 gtt/prop.c:275
 msgid "hours"
 msgstr "시간"
 
-#: gtt/prop.c:249 gtt/prop.c:287
+#: gtt/prop.c:248 gtt/prop.c:286
 msgid "mins"
 msgstr "분"
 
-#: gtt/prop.c:260 gtt/prop.c:298
+#: gtt/prop.c:259 gtt/prop.c:297
 msgid "secs"
 msgstr "초"
 
-#: gtt/prop.c:264
+#: gtt/prop.c:263
 msgid "Project Time ever:"
 msgstr "이때까지의 프로젝트 시간:"
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:141
+#: gtt/toolbar.c:145
 msgid "[GTT]New"
 msgstr "[GTT]새 프로젝트"
 
-#: gtt/toolbar.c:148
+#: gtt/toolbar.c:152
 msgid "Reload"
 msgstr "다시 읽기"
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:156
 msgid "Save"
 msgstr "저장"
 
-#: gtt/toolbar.c:153
+#: gtt/toolbar.c:157
 msgid "Save Configuration File"
 msgstr "컨피그 파일 저장"
 
-#: gtt/toolbar.c:159
+#: gtt/toolbar.c:163
 msgid "Cut"
 msgstr "자르기"
 
-#: gtt/toolbar.c:160
+#: gtt/toolbar.c:164
 msgid "Cut Selected Project"
 msgstr "선택된 프로젝트 자르기"
 
-#: gtt/toolbar.c:163
+#: gtt/toolbar.c:167
 msgid "Copy"
 msgstr "복사"
 
-#: gtt/toolbar.c:164
+#: gtt/toolbar.c:168
 msgid "Copy Selected Project"
 msgstr "선택된 프로젝트 복사"
 
-#: gtt/toolbar.c:167
+#: gtt/toolbar.c:171
 msgid "Paste"
 msgstr "붙이기"
 
-#: gtt/toolbar.c:168
+#: gtt/toolbar.c:172
 msgid "Paste Project"
 msgstr "프로젝트 붙이기"
 
-#: gtt/toolbar.c:174
+#: gtt/toolbar.c:178
 msgid "Props"
 msgstr "속성"
 
-#: gtt/toolbar.c:175
+#: gtt/toolbar.c:179
 msgid "Edit Properties..."
 msgstr "속성 바꾸기..."
 
-#: gtt/toolbar.c:179
+#: gtt/toolbar.c:183
 msgid "Timer"
 msgstr "타이머"
 
-#: gtt/toolbar.c:180
+#: gtt/toolbar.c:184
 msgid "Start/Stop Timer"
 msgstr "타이머 시작/멈춤"
 
-#: gtt/toolbar.c:188
+#: gtt/toolbar.c:193
 msgid "Prefs"
 msgstr "설정"
 
-#: gtt/toolbar.c:189
+#: gtt/toolbar.c:194
 msgid "Edit Preferences..."
 msgstr "설정 바꾸기"
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual"
 msgstr "도움말"
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual..."
 msgstr "도움말..."
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit"
 msgstr "종료"
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit GTimeTracker"
 msgstr "GTimeTracker 종료"
 
@@ -961,11 +975,11 @@ msgstr "색상 값:"
 msgid "Color"
 msgstr "색상"
 
-#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:223
+#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:228
 msgid "Value"
 msgstr "값"
 
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:222
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:227
 #: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
 msgid "Name"
 msgstr "성명"
@@ -1034,47 +1048,47 @@ msgstr "마지막 폰트 읽기"
 msgid "Copyright 1998, under the GNU General Public License."
 msgstr "Copyright 1998, under the GNU General Public License."
 
-#: mini-utils/gless/gless.c:115
+#: mini-utils/gless/gless.c:116
 msgid "Where to put the window, and its size"
 msgstr "창을 어떤 크기로 어디에 위치시킬 지"
 
-#: mini-utils/gless/gless.c:116
+#: mini-utils/gless/gless.c:117
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "표준 입력 무시; 아마 필요한 경우가 있을 겁니다."
 
-#: mini-utils/gless/gless.c:278
+#: mini-utils/gless/gless.c:279
 msgid "_New Window"
 msgstr "새 창(_N)"
 
-#: mini-utils/gless/gless.c:279
+#: mini-utils/gless/gless.c:280
 msgid "New text viewer window"
 msgstr "새 텍스트 보기 창"
 
-#: mini-utils/gless/gless.c:291
+#: mini-utils/gless/gless.c:292
 msgid "_Fixed Font"
 msgstr "고정폭 글꼴(_F)"
 
-#: mini-utils/gless/gless.c:292
+#: mini-utils/gless/gless.c:293
 msgid "Display text with a fixed font"
 msgstr "고정폭 글꼴로 문자열 출력"
 
-#: mini-utils/gless/gless.c:321
+#: mini-utils/gless/gless.c:322
 msgid "Text File Viewer"
 msgstr "텍스트 파일 뷰어"
 
-#: mini-utils/gless/gless.c:424
+#: mini-utils/gless/gless.c:425
 msgid "Loading..."
 msgstr "읽는 중..."
 
-#: mini-utils/gless/gless.c:429
+#: mini-utils/gless/gless.c:430
 msgid "No such file or directory:\n"
 msgstr "그런 파일이나 자료방 없음:\n"
 
-#: mini-utils/gless/gless.c:446
+#: mini-utils/gless/gless.c:447
 msgid "Failed to decompress and display the file:\n"
 msgstr "압축된 파일을 보여주기 실패:\n"
 
-#: mini-utils/gless/gless.c:457
+#: mini-utils/gless/gless.c:458
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1082,23 +1096,23 @@ msgstr ""
 "압축된 파일을 보여드릴 수가 없습니다.\n"
 "당신 path에서 zcat을 찾을 수 없습니다."
 
-#: mini-utils/gless/gless.c:465
+#: mini-utils/gless/gless.c:466
 msgid "Error loading file:\n"
 msgstr "파일 읽어오기 에러:\n"
 
-#: mini-utils/gless/gless.c:519
+#: mini-utils/gless/gless.c:520
 msgid "Saving..."
 msgstr "저장 중..."
 
-#: mini-utils/gless/gless.c:530
+#: mini-utils/gless/gless.c:531
 msgid "Failed to write file:\n"
 msgstr "파일 쓰기 실패:\n"
 
-#: mini-utils/gless/gless.c:577
+#: mini-utils/gless/gless.c:578
 msgid "Save Text As..."
 msgstr "다른 이름으로 저장..."
 
-#: mini-utils/gless/gless.c:617
+#: mini-utils/gless/gless.c:618
 msgid "Open Text File..."
 msgstr "텍스트 파일 열기..."
 
@@ -1412,7 +1426,7 @@ msgstr "마운트 포인트"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:168
+#: mini-utils/guname/info.c:170
 msgid "Unknown"
 msgstr "모름"
 
@@ -1424,66 +1438,66 @@ msgstr "알려지지 않은 파일시스템"
 msgid "No information for this filesystem."
 msgstr "현재 파일시스템에 대한 정보 없음."
 
-#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:165
+#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:166
 msgid "Memory"
 msgstr "기억장치"
 
-#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:166
+#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:167
 msgid "Kilobytes"
 msgstr "킬로바이트"
 
-#: mini-utils/guname/moreinfo.c:163
+#: mini-utils/guname/moreinfo.c:164
 msgid "%ld%% %s used."
 msgstr "%ld%% %s 사용."
 
-#: mini-utils/guname/moreinfo.c:178 mini-utils/guname/moreinfo.c:182
+#: mini-utils/guname/moreinfo.c:183 mini-utils/guname/moreinfo.c:187
 msgid "memory"
 msgstr "메모리"
 
-#: mini-utils/guname/moreinfo.c:192 mini-utils/guname/moreinfo.c:196
+#: mini-utils/guname/moreinfo.c:197 mini-utils/guname/moreinfo.c:201
 msgid "swap"
 msgstr "스왑"
 
-#: mini-utils/guname/moreinfo.c:219
+#: mini-utils/guname/moreinfo.c:224
 #, c-format
 msgid "CPU %d"
 msgstr "CPU %d"
 
-#: mini-utils/guname/moreinfo.c:267
+#: mini-utils/guname/moreinfo.c:272
 msgid "Detailed System Information"
 msgstr "자세한 시스템 정보"
 
-#: mini-utils/guname/moreinfo.c:280
+#: mini-utils/guname/moreinfo.c:285
 msgid "Disk Information"
 msgstr "디스크 정보"
 
-#: mini-utils/guname/moreinfo.c:282
+#: mini-utils/guname/moreinfo.c:287
 msgid "Memory Information"
 msgstr "메모리 정보"
 
-#: mini-utils/guname/moreinfo.c:285
+#: mini-utils/guname/moreinfo.c:290
 msgid "CPU Information"
 msgstr "CPU 정보"
 
-#: mini-utils/guname/moreinfo.c:306
+#: mini-utils/guname/moreinfo.c:311
 msgid "%2d%% full "
 msgstr "%2d%% 꽉 참 "
 
-#: mini-utils/guname/moreinfo.c:308
+#: mini-utils/guname/moreinfo.c:313
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr ""
 "%ld 메가바이트, %ld 사용가능 (%ld 수퍼유저용); %ld개의 inode, %ld개 사용가능."
 
-#: mini-utils/guname/moreinfo.c:322
+#: mini-utils/guname/moreinfo.c:327
 msgid "Mount Point: "
 msgstr "마운트 정보: "
 
-#: mini-utils/guname/moreinfo.c:323
+#: mini-utils/guname/moreinfo.c:328
 msgid "    Device: "
 msgstr "    장치: "
 
-#: mini-utils/guname/moreinfo.c:324
+#: mini-utils/guname/moreinfo.c:329
 msgid "    Filesystem Type: "
 msgstr "    파일시스템 종류: "
 
@@ -1668,3 +1682,6 @@ msgstr "수퍼유저만이 이 툴을 사용할 수 있습니다"
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "IDE 드라이브를 찾을 수 없습니다"
+
+#~ msgid "Using command:"
+#~ msgstr "사용할 명령어:"

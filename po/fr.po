@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 1999-03-01 17:26-0500\n"
+"POT-Creation-Date: 1999-04-14 22:16+0200\n"
 "PO-Revision-Date: 1998-02-28 19:57+0100\n"
 "Last-Translator: Vincent Renardias <vincent@ldsol.com>\n"
 "Language-Team: Vincent Renardias <vincent@ldsol.com>\n"
@@ -39,7 +39,7 @@ msgstr "GHex: Convertisseur"
 msgid "Binary"
 msgstr "Binaire"
 
-#: ghex/converter.c:56
+#: ghex/converter.c:56 ghex/preferences.c:109
 msgid "Decimal"
 msgstr "Décimal"
 
@@ -60,7 +60,7 @@ msgstr "Fermer"
 msgid "ERROR"
 msgstr ""
 
-#: ghex/findreplace.c:51 ghex/main.c:72
+#: ghex/findreplace.c:51 ghex/main.c:82
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Trouver Données"
@@ -78,7 +78,7 @@ msgstr "Trouver le suivant"
 msgid "Find Previous"
 msgstr "Trouver le précédent"
 
-#: ghex/findreplace.c:111 ghex/main.c:73
+#: ghex/findreplace.c:111 ghex/main.c:83
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Rechercher & Remplacer données"
@@ -100,7 +100,7 @@ msgstr "Remplacer"
 msgid "Replace All"
 msgstr "Remplacer Tout"
 
-#: ghex/findreplace.c:179 ghex/main.c:74
+#: ghex/findreplace.c:179 ghex/main.c:84
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Aller à l'Octet"
@@ -210,7 +210,7 @@ msgstr "Enleve_r la vue"
 msgid "Remove the current view of the buffer"
 msgstr ""
 
-#: ghex/main.c:48
+#: ghex/main.c:51
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -219,56 +219,74 @@ msgstr ""
 "Le document %s a changé depuis son dernier enregistrement.\n"
 "Voulez-vous enregistrer les changements?"
 
-#: ghex/preferences.c:48 mini-utils/idetool/idetool.c:142
+#: ghex/main.c:172
+msgid "Offset: "
+msgstr ""
+
+#: ghex/preferences.c:49 mini-utils/idetool/idetool.c:142
 #: mini-utils/idetool/idetool.c:325
 msgid "Default"
 msgstr "Défaut"
 
-#: ghex/preferences.c:49
+#: ghex/preferences.c:50
 msgid "Notebook"
 msgstr "Carnet"
 
-#: ghex/preferences.c:50
+#: ghex/preferences.c:51
 msgid "Toplevel"
 msgstr ""
 
-#: ghex/preferences.c:51
+#: ghex/preferences.c:52
 msgid "Modal"
 msgstr "Modal"
 
-#: ghex/preferences.c:79
+#: ghex/preferences.c:81
 msgid "Maximum number of undo levels"
 msgstr ""
 
-#: ghex/preferences.c:90
+#: ghex/preferences.c:95
+msgid "Show cursor offset as"
+msgstr ""
+
+#: ghex/preferences.c:114
+#, fuzzy
+msgid "Hexadecimal"
+msgstr "Décimal"
+
+#: ghex/preferences.c:120
+#, fuzzy
+msgid "Custom"
+msgstr "Couper"
+
+#: ghex/preferences.c:130
 msgid "Editing"
 msgstr "Edition en cours"
 
-#: ghex/preferences.c:97
+#: ghex/preferences.c:137
 msgid "Font"
 msgstr "Police"
 
-#: ghex/preferences.c:113
+#: ghex/preferences.c:153
 msgid "Browse..."
 msgstr "Naviguer..."
 
-#: ghex/preferences.c:132
+#: ghex/preferences.c:172
 msgid "Default Group Type"
 msgstr "Type du groupe par défaut"
 
-#: ghex/preferences.c:148 gtt/options.c:187
+#: ghex/preferences.c:188 gtt/options.c:186
 msgid "Display"
 msgstr "Affichage"
 
-#: ghex/preferences.c:155
+#: ghex/preferences.c:195
 msgid "MDI Mode"
 msgstr "Mode MDI"
 
-#: ghex/preferences.c:172
+#: ghex/preferences.c:212
 msgid "MDI"
 msgstr "MDI"
 
-#: ghex/preferences.c:281
+#: ghex/preferences.c:337
 msgid "Can not open desired font!"
 msgstr "Impossible d'utiliser la police spécifiée!"
 
@@ -414,162 +432,158 @@ msgstr ""
 msgid "Search Results"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:209
-msgid "Using command:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:429
+#: gsearchtool/gsearchtool.c:426
 #, fuzzy
 msgid "Enable"
 msgstr "Activé"
 
-#: gsearchtool/gsearchtool.c:436
+#: gsearchtool/gsearchtool.c:433
 msgid "Remove"
 msgstr "Enlever"
 
-#: gsearchtool/gsearchtool.c:488
+#: gsearchtool/gsearchtool.c:485
 msgid "Start in directory:"
 msgstr "Démarrer dans ce répertoire:"
 
-#: gsearchtool/gsearchtool.c:506 mini-utils/gw/gw.c:454
+#: gsearchtool/gsearchtool.c:503 mini-utils/gw/gw.c:454
 msgid "Add"
 msgstr "Ajouter"
 
-#: gsearchtool/gsearchtool.c:517
+#: gsearchtool/gsearchtool.c:514
 msgid "Start"
 msgstr "Démarer"
 
-#: gsearchtool/gsearchtool.c:518
+#: gsearchtool/gsearchtool.c:515
 msgid "Stop"
 msgstr "Stop"
 
-#: gsearchtool/gsearchtool.c:536
+#: gsearchtool/gsearchtool.c:533
 msgid "This is not yet implemented"
 msgstr "Ceci n'est pas encore implémenté"
 
-#: gsearchtool/gsearchtool.c:549
+#: gsearchtool/gsearchtool.c:546
 msgid "Full find (find)"
 msgstr "Recherche complête (find)"
 
-#: gsearchtool/gsearchtool.c:552
+#: gsearchtool/gsearchtool.c:549
 msgid "Quick find (locate)"
 msgstr "Recherche rapide (locate)"
 
-#: gsearchtool/gsearchtool.c:567
+#: gsearchtool/gsearchtool.c:564
 msgid "The Gnome Search Tool"
 msgstr "L'Outil de Recherche Gnome"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:565
 msgid "(C) 1998 the Free Software Foundation"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:570
+#: gsearchtool/gsearchtool.c:567
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:613
+#: gsearchtool/gsearchtool.c:610
 msgid "Gnome Search Tool"
 msgstr "Outil de Recherche Gnome"
 
-#: gstripchart/gstripchart.c:1249
+#: gstripchart/gstripchart.c:1321
 msgid "Params"
 msgstr "Params"
 
-#: gstripchart/gstripchart.c:1249
+#: gstripchart/gstripchart.c:1321
 msgid "Examine and adjust parameters"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:1327
 msgid "E_xit"
 msgstr "_Quitter"
 
-#: gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:1327
 msgid "Terminate the stripchart program"
 msgstr "Terminer le programme stripchart"
 
-#: gstripchart/gstripchart.c:1271
+#: gstripchart/gstripchart.c:1343
 msgid "Copyright 1998 John Kodis"
 msgstr "Copyright 1998 John Kodis"
 
-#: gstripchart/gstripchart.c:1286
+#: gstripchart/gstripchart.c:1358
 msgid "_About"
 msgstr "_A Propos"
 
-#: gstripchart/gstripchart.c:1286
+#: gstripchart/gstripchart.c:1358
 msgid "Info about the striphart program"
 msgstr "Informations sur le programme stripchart"
 
-#: gstripchart/gstripchart.c:1297
+#: gstripchart/gstripchart.c:1369
 msgid "_File"
 msgstr "_Fichier"
 
-#: gstripchart/gstripchart.c:1298
+#: gstripchart/gstripchart.c:1370
 msgid "_Help"
 msgstr "_Aide"
 
-#: gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1776
 msgid "GEO"
 msgstr "GEO"
 
-#: gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1776
 msgid "geometry"
 msgstr "géométrie"
 
-#: gstripchart/gstripchart.c:1708
+#: gstripchart/gstripchart.c:1778
 msgid "FILE"
 msgstr "FICHIER"
 
-#: gstripchart/gstripchart.c:1708
+#: gstripchart/gstripchart.c:1778
 msgid "configuration file"
 msgstr "fichier de configuration"
 
-#: gstripchart/gstripchart.c:1710 gstripchart/gstripchart.c:1712
-#: gstripchart/gstripchart.c:1714 gstripchart/gstripchart.c:1716
+#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:1782
+#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:1786
 msgid "SECS"
 msgstr "SECS"
 
-#: gstripchart/gstripchart.c:1710
+#: gstripchart/gstripchart.c:1780
 msgid "chart update interval"
 msgstr "intervalle de mise à jour"
 
-#: gstripchart/gstripchart.c:1712
+#: gstripchart/gstripchart.c:1782
 msgid "chart LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1714
+#: gstripchart/gstripchart.c:1784
 #, fuzzy
 msgid "slider update interval"
 msgstr "intervalle de mise à jour"
 
-#: gstripchart/gstripchart.c:1716
+#: gstripchart/gstripchart.c:1786
 msgid "slider LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1718
+#: gstripchart/gstripchart.c:1788
 msgid "add menubar"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1720
+#: gstripchart/gstripchart.c:1790
 msgid "omit slider"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1792
 msgid "TYPE"
 msgstr "TYPE"
 
-#: gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1792
 msgid "gtk|text|graph|none"
 msgstr ""
 
-#: gtt/app.c:110 gtt/app.c:212
+#: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
 msgstr "pas de projet sélectionné"
 
-#: gtt/app.c:201
+#: gtt/app.c:212
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:234 mini-utils/gless/gless.c:383
+#: gtt/app.c:251 mini-utils/gless/gless.c:384
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -591,15 +605,15 @@ msgstr "Titre du Projet"
 msgid "Description"
 msgstr "Description"
 
-#: gtt/log.c:55 gtt/log.c:207
+#: gtt/log.c:64 gtt/log.c:216
 msgid "program started"
 msgstr "program lancé"
 
-#: gtt/log.c:73
+#: gtt/log.c:82
 msgid "no description"
 msgstr "pas de description"
 
-#: gtt/log.c:199
+#: gtt/log.c:208
 msgid "program exited"
 msgstr "programme terminé"
 
@@ -628,7 +642,7 @@ msgstr ""
 msgid "Specify geometry"
 msgstr "Spécifier la géométrie"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:115
+#: gtt/main.c:204 mini-utils/gless/gless.c:116
 msgid "GEOMETRY"
 msgstr "GEOMETRIE"
 
@@ -648,7 +662,7 @@ msgstr "Avertissement"
 msgid "I could not write the configuration file!"
 msgstr "Je n'ai pas pu écrire le fichier de configuration!"
 
-#: gtt/menucmd.c:85 gtt/toolbar.c:142
+#: gtt/menucmd.c:85 gtt/toolbar.c:146
 msgid "New Project..."
 msgstr "Nouveau Projet..."
 
@@ -660,7 +674,7 @@ msgstr "Entrez le nom du nouveau projet:"
 msgid "I could not read the configuration file"
 msgstr "Je n'ai pas pu lire le fichier de configuration"
 
-#: gtt/menucmd.c:137 gtt/toolbar.c:149
+#: gtt/menucmd.c:137 gtt/toolbar.c:153
 msgid "Reload Configuration File"
 msgstr "Recharger le fichier de configuration"
 
@@ -704,112 +718,112 @@ msgstr "Chronomé_tre Lancé"
 msgid "_Timer"
 msgstr "Chronomé_tre"
 
-#: gtt/options.c:195
+#: gtt/options.c:194
 msgid "Show Seconds"
 msgstr "Afficher les secondes"
 
-#: gtt/options.c:201
+#: gtt/options.c:200
 msgid "Show Status Bar"
 msgstr "Afficher la barre d'état"
 
-#: gtt/options.c:207
+#: gtt/options.c:206
 msgid "Show Table Header"
 msgstr "Afficher les entetes de table"
 
-#: gtt/options.c:221 gtt/options.c:519
+#: gtt/options.c:220 gtt/options.c:518
 msgid "Toolbar"
 msgstr "Barre d'outils"
 
-#: gtt/options.c:229
+#: gtt/options.c:228
 msgid "Show Toolbar Icons"
 msgstr "Afficher les icones de la barre d'outils"
 
-#: gtt/options.c:235
+#: gtt/options.c:234
 msgid "Show Toolbar Texts"
 msgstr "Afficher les textes de la barre d'outils"
 
-#: gtt/options.c:241
+#: gtt/options.c:240
 msgid "Show Tooltips"
 msgstr "Activer les Bulles d'Aide"
 
-#: gtt/options.c:247
+#: gtt/options.c:246
 msgid "Toolbar Segments"
 msgstr "Segments de la barre d'outils"
 
-#: gtt/options.c:255
+#: gtt/options.c:254
 msgid "Show `New'"
 msgstr "Afficher `Nouveau'"
 
-#: gtt/options.c:261
+#: gtt/options.c:260
 msgid "Show `Save', `Reload'"
 msgstr "Afficher `Sauver', `Recharger'"
 
-#: gtt/options.c:267
+#: gtt/options.c:266
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Afficher `Couper', `Copier', `Coller'"
 
-#: gtt/options.c:273
+#: gtt/options.c:272
 msgid "Show `Properties'"
 msgstr "Afficher `Propriétés'"
 
-#: gtt/options.c:279
+#: gtt/options.c:278
 msgid "Show `Timer'"
 msgstr "Afficher `Chronométre'"
 
-#: gtt/options.c:285
+#: gtt/options.c:284
 msgid "Show `Preferences'"
 msgstr "Afficher `Preférences'"
 
-#: gtt/options.c:291
+#: gtt/options.c:290
 msgid "Show `Help'"
 msgstr "Afficher `Aide'"
 
-#: gtt/options.c:297
+#: gtt/options.c:296
 msgid "Show `Quit'"
 msgstr "Afficher `Quitter'"
 
-#: gtt/options.c:311
+#: gtt/options.c:310
 msgid "Shell Commands"
 msgstr "Commandes Shell"
 
-#: gtt/options.c:319
+#: gtt/options.c:318
 msgid "Switch Project Command:"
 msgstr "Commande pour changer de projet:"
 
-#: gtt/options.c:330
+#: gtt/options.c:329
 msgid "No Project Command:"
 msgstr "No Project Command:"
 
-#: gtt/options.c:364
+#: gtt/options.c:363
 msgid "Logfile"
 msgstr "Historique"
 
-#: gtt/options.c:372
+#: gtt/options.c:371
 msgid "Use Logfile"
 msgstr "Utiliser l'historique"
 
-#: gtt/options.c:381
+#: gtt/options.c:380
 msgid "Filename:"
 msgstr "Nom du fichier:"
 
-#: gtt/options.c:395
+#: gtt/options.c:394
 #, fuzzy
 msgid "Entry Start:"
 msgstr "Début MV"
 
-#: gtt/options.c:409
+#: gtt/options.c:408
 msgid "Entry Stop:"
 msgstr ""
 
-#: gtt/options.c:423
+#: gtt/options.c:422
 msgid "Timeout in secs:"
 msgstr "Délai d'expiration en secondes:"
 
-#: gtt/options.c:500
+#: gtt/options.c:499
 msgid "Preferences"
 msgstr "Préférences"
 
-#: gtt/options.c:506
+#: gtt/options.c:505
 msgid "Misc"
 msgstr "Divers"
 
@@ -825,120 +839,120 @@ msgstr "projet stopé %t"
 msgid "empty"
 msgstr "vide"
 
-#: gtt/prop.c:172
+#: gtt/prop.c:171
 msgid "Properties"
 msgstr "Propriétés"
 
-#: gtt/prop.c:179
+#: gtt/prop.c:178
 msgid "Project"
 msgstr "Projet"
 
-#: gtt/prop.c:198
+#: gtt/prop.c:197
 msgid "Project Title:"
 msgstr "Titre du projet:"
 
-#: gtt/prop.c:210
+#: gtt/prop.c:209
 msgid "Project Description:"
 msgstr "Description du projet:"
 
-#: gtt/prop.c:222
+#: gtt/prop.c:221
 msgid "Project Time today:"
 msgstr "Temps pour le projet aujourd'hui:"
 
-#: gtt/prop.c:238 gtt/prop.c:276
+#: gtt/prop.c:237 gtt/prop.c:275
 msgid "hours"
 msgstr "heures"
 
-#: gtt/prop.c:249 gtt/prop.c:287
+#: gtt/prop.c:248 gtt/prop.c:286
 msgid "mins"
 msgstr "minutes"
 
-#: gtt/prop.c:260 gtt/prop.c:298
+#: gtt/prop.c:259 gtt/prop.c:297
 msgid "secs"
 msgstr "secondes"
 
-#: gtt/prop.c:264
+#: gtt/prop.c:263
 msgid "Project Time ever:"
 msgstr "Temps total sur le projet:"
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:141
+#: gtt/toolbar.c:145
 msgid "[GTT]New"
 msgstr "Nouveau"
 
-#: gtt/toolbar.c:148
+#: gtt/toolbar.c:152
 msgid "Reload"
 msgstr "Recharger"
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:156
 msgid "Save"
 msgstr "Sauver"
 
-#: gtt/toolbar.c:153
+#: gtt/toolbar.c:157
 msgid "Save Configuration File"
 msgstr "Sauver le fichier de configuration"
 
-#: gtt/toolbar.c:159
+#: gtt/toolbar.c:163
 msgid "Cut"
 msgstr "Couper"
 
-#: gtt/toolbar.c:160
+#: gtt/toolbar.c:164
 msgid "Cut Selected Project"
 msgstr "Couper le projet sélectionné"
 
-#: gtt/toolbar.c:163
+#: gtt/toolbar.c:167
 msgid "Copy"
 msgstr "Couper"
 
-#: gtt/toolbar.c:164
+#: gtt/toolbar.c:168
 msgid "Copy Selected Project"
 msgstr "Copier le projet sélectionné"
 
-#: gtt/toolbar.c:167
+#: gtt/toolbar.c:171
 msgid "Paste"
 msgstr "Coller"
 
-#: gtt/toolbar.c:168
+#: gtt/toolbar.c:172
 msgid "Paste Project"
 msgstr "Coller le projet"
 
-#: gtt/toolbar.c:174
+#: gtt/toolbar.c:178
 msgid "Props"
 msgstr "Propriétés"
 
-#: gtt/toolbar.c:175
+#: gtt/toolbar.c:179
 msgid "Edit Properties..."
 msgstr "Editer les propriétés..."
 
-#: gtt/toolbar.c:179
+#: gtt/toolbar.c:183
 msgid "Timer"
 msgstr "Chronométre"
 
-#: gtt/toolbar.c:180
+#: gtt/toolbar.c:184
 msgid "Start/Stop Timer"
 msgstr "Lancer/Arréter le chronométre"
 
-#: gtt/toolbar.c:188
+#: gtt/toolbar.c:193
 msgid "Prefs"
 msgstr "Préférences"
 
-#: gtt/toolbar.c:189
+#: gtt/toolbar.c:194
 msgid "Edit Preferences..."
 msgstr "Edition des préférences..."
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual"
 msgstr "Manuel"
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual..."
 msgstr "Manuel..."
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit"
 msgstr "Quitter"
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit GTimeTracker"
 msgstr "Quitter GTimeTracker"
 
@@ -963,11 +977,11 @@ msgstr ""
 msgid "Color"
 msgstr "Couleur"
 
-#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:223
+#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:228
 msgid "Value"
 msgstr "Valeur"
 
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:222
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:227
 #: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
 msgid "Name"
 msgstr "Nom"
@@ -1036,47 +1050,47 @@ msgstr ""
 msgid "Copyright 1998, under the GNU General Public License."
 msgstr ""
 
-#: mini-utils/gless/gless.c:115
+#: mini-utils/gless/gless.c:116
 msgid "Where to put the window, and its size"
 msgstr "Taille et position de la fenetre"
 
-#: mini-utils/gless/gless.c:116
+#: mini-utils/gless/gless.c:117
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "Ignorer l'entrée standrad; peut etre utile dans certains cas."
 
-#: mini-utils/gless/gless.c:278
+#: mini-utils/gless/gless.c:279
 msgid "_New Window"
 msgstr "_Nouvelle Fenetre"
 
-#: mini-utils/gless/gless.c:279
+#: mini-utils/gless/gless.c:280
 msgid "New text viewer window"
 msgstr "Nouvelle fenetre de texte"
 
-#: mini-utils/gless/gless.c:291
+#: mini-utils/gless/gless.c:292
 msgid "_Fixed Font"
 msgstr "Police _Fixe"
 
-#: mini-utils/gless/gless.c:292
+#: mini-utils/gless/gless.c:293
 msgid "Display text with a fixed font"
 msgstr "Affiche le texte avec une police fixe"
 
-#: mini-utils/gless/gless.c:321
+#: mini-utils/gless/gless.c:322
 msgid "Text File Viewer"
 msgstr ""
 
-#: mini-utils/gless/gless.c:424
+#: mini-utils/gless/gless.c:425
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: mini-utils/gless/gless.c:429
+#: mini-utils/gless/gless.c:430
 msgid "No such file or directory:\n"
 msgstr "Aucun fichier ou répertoire de ce type:\n"
 
-#: mini-utils/gless/gless.c:446
+#: mini-utils/gless/gless.c:447
 msgid "Failed to decompress and display the file:\n"
 msgstr "Echec lors de la décompression et de l'affichage du fichier:\n"
 
-#: mini-utils/gless/gless.c:457
+#: mini-utils/gless/gless.c:458
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1084,23 +1098,23 @@ msgstr ""
 "Impossible d'afficher le fichier compressé.\n"
 "zcat n'est pas dans votre chemin."
 
-#: mini-utils/gless/gless.c:465
+#: mini-utils/gless/gless.c:466
 msgid "Error loading file:\n"
 msgstr "Erreur lors du chargement du fichier:\n"
 
-#: mini-utils/gless/gless.c:519
+#: mini-utils/gless/gless.c:520
 msgid "Saving..."
 msgstr "Enregistrement..."
 
-#: mini-utils/gless/gless.c:530
+#: mini-utils/gless/gless.c:531
 msgid "Failed to write file:\n"
 msgstr "Echec lors de l'écriture du fichier:\n"
 
-#: mini-utils/gless/gless.c:577
+#: mini-utils/gless/gless.c:578
 msgid "Save Text As..."
 msgstr "Enregistrer le texte sous..."
 
-#: mini-utils/gless/gless.c:617
+#: mini-utils/gless/gless.c:618
 msgid "Open Text File..."
 msgstr "Ouvrir un fichier texte..."
 
@@ -1414,7 +1428,7 @@ msgstr "Point de montage"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:168
+#: mini-utils/guname/info.c:170
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -1426,66 +1440,66 @@ msgstr "Système de fichier inconnu"
 msgid "No information for this filesystem."
 msgstr "Aucune information sur ce système de fichier."
 
-#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:165
+#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:166
 msgid "Memory"
 msgstr "Mémoire"
 
-#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:166
+#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:167
 msgid "Kilobytes"
 msgstr "Kilo-Octets"
 
-#: mini-utils/guname/moreinfo.c:163
+#: mini-utils/guname/moreinfo.c:164
 msgid "%ld%% %s used."
 msgstr "%ld%% %s utilisés."
 
-#: mini-utils/guname/moreinfo.c:178 mini-utils/guname/moreinfo.c:182
+#: mini-utils/guname/moreinfo.c:183 mini-utils/guname/moreinfo.c:187
 msgid "memory"
 msgstr "mémoire"
 
-#: mini-utils/guname/moreinfo.c:192 mini-utils/guname/moreinfo.c:196
+#: mini-utils/guname/moreinfo.c:197 mini-utils/guname/moreinfo.c:201
 msgid "swap"
 msgstr "swap"
 
-#: mini-utils/guname/moreinfo.c:219
+#: mini-utils/guname/moreinfo.c:224
 #, c-format
 msgid "CPU %d"
 msgstr "PROC %d"
 
-#: mini-utils/guname/moreinfo.c:267
+#: mini-utils/guname/moreinfo.c:272
 msgid "Detailed System Information"
 msgstr "Informations Systèmes Détaillées"
 
-#: mini-utils/guname/moreinfo.c:280
+#: mini-utils/guname/moreinfo.c:285
 msgid "Disk Information"
 msgstr "Informations Disques"
 
-#: mini-utils/guname/moreinfo.c:282
+#: mini-utils/guname/moreinfo.c:287
 msgid "Memory Information"
 msgstr "Information sur la mémoire"
 
-#: mini-utils/guname/moreinfo.c:285
+#: mini-utils/guname/moreinfo.c:290
 msgid "CPU Information"
 msgstr "Informations Processeur"
 
-#: mini-utils/guname/moreinfo.c:306
+#: mini-utils/guname/moreinfo.c:311
 msgid "%2d%% full "
 msgstr "%2d%% plein "
 
-#: mini-utils/guname/moreinfo.c:308
+#: mini-utils/guname/moreinfo.c:313
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr ""
 "%ld mégaoctets, %ld libre (%ld super-utilisateur); %ld i-noeuds, %ld libre."
 
-#: mini-utils/guname/moreinfo.c:322
+#: mini-utils/guname/moreinfo.c:327
 msgid "Mount Point: "
 msgstr "Point de montage: "
 
-#: mini-utils/guname/moreinfo.c:323
+#: mini-utils/guname/moreinfo.c:328
 msgid "    Device: "
 msgstr "Périphérique: "
 
-#: mini-utils/guname/moreinfo.c:324
+#: mini-utils/guname/moreinfo.c:329
 msgid "    Filesystem Type: "
 msgstr "Type du système de fichiers: "
 

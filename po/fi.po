@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 1999-03-01 17:26-0500\n"
+"POT-Creation-Date: 1999-04-14 22:16+0200\n"
 "PO-Revision-Date: 1999-03-16 23:03+0200\n"
 "Last-Translator: Mikko Rauhala <mjr@iki.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -41,7 +41,7 @@ msgstr "GHex: Heksamuuntaja"
 msgid "Binary"
 msgstr "Binääri"
 
-#: ghex/converter.c:56
+#: ghex/converter.c:56 ghex/preferences.c:109
 msgid "Decimal"
 msgstr "Desimaali"
 
@@ -62,7 +62,7 @@ msgstr "Sulje"
 msgid "ERROR"
 msgstr "VIRHE"
 
-#: ghex/findreplace.c:51 ghex/main.c:72
+#: ghex/findreplace.c:51 ghex/main.c:82
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Etsi"
@@ -80,7 +80,7 @@ msgstr "Etsi seuraava"
 msgid "Find Previous"
 msgstr "Etsi edellinen"
 
-#: ghex/findreplace.c:111 ghex/main.c:73
+#: ghex/findreplace.c:111 ghex/main.c:83
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Etsi ja korvaa"
@@ -102,7 +102,7 @@ msgstr "Korvaa"
 msgid "Replace All"
 msgstr "Korvaa kaikki"
 
-#: ghex/findreplace.c:179 ghex/main.c:74
+#: ghex/findreplace.c:179 ghex/main.c:84
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Siirry tavuun"
@@ -212,7 +212,7 @@ msgstr "_Poista näkymä"
 msgid "Remove the current view of the buffer"
 msgstr "Poista tämänhetkinen puskurinäkymä"
 
-#: ghex/main.c:48
+#: ghex/main.c:51
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -221,56 +221,74 @@ msgstr ""
 "Tiedosto %s on muuttunut sitten viime tallennuksen.\n"
 "Haluatko tallentaa muutokset?"
 
-#: ghex/preferences.c:48 mini-utils/idetool/idetool.c:142
+#: ghex/main.c:172
+msgid "Offset: "
+msgstr ""
+
+#: ghex/preferences.c:49 mini-utils/idetool/idetool.c:142
 #: mini-utils/idetool/idetool.c:325
 msgid "Default"
 msgstr "Oletus"
 
-#: ghex/preferences.c:49
+#: ghex/preferences.c:50
 msgid "Notebook"
 msgstr "Lehtiö"
 
-#: ghex/preferences.c:50
+#: ghex/preferences.c:51
 msgid "Toplevel"
 msgstr "Ikkuna"
 
-#: ghex/preferences.c:51
+#: ghex/preferences.c:52
 msgid "Modal"
 msgstr "Modaalinen"
 
-#: ghex/preferences.c:79
+#: ghex/preferences.c:81
 msgid "Maximum number of undo levels"
 msgstr "Suurin peruutustasojen määrä"
 
-#: ghex/preferences.c:90
+#: ghex/preferences.c:95
+msgid "Show cursor offset as"
+msgstr ""
+
+#: ghex/preferences.c:114
+#, fuzzy
+msgid "Hexadecimal"
+msgstr "Desimaali"
+
+#: ghex/preferences.c:120
+#, fuzzy
+msgid "Custom"
+msgstr "Leikkaa"
+
+#: ghex/preferences.c:130
 msgid "Editing"
 msgstr "Muokkaus"
 
-#: ghex/preferences.c:97
+#: ghex/preferences.c:137
 msgid "Font"
 msgstr "Kirjasinlaji"
 
-#: ghex/preferences.c:113
+#: ghex/preferences.c:153
 msgid "Browse..."
 msgstr "Selaa..."
 
-#: ghex/preferences.c:132
+#: ghex/preferences.c:172
 msgid "Default Group Type"
 msgstr "Oletusryhmittely"
 
-#: ghex/preferences.c:148 gtt/options.c:187
+#: ghex/preferences.c:188 gtt/options.c:186
 msgid "Display"
 msgstr "Näyttö"
 
-#: ghex/preferences.c:155
+#: ghex/preferences.c:195
 msgid "MDI Mode"
 msgstr "MDI-malli"
 
-#: ghex/preferences.c:172
+#: ghex/preferences.c:212
 msgid "MDI"
 msgstr ""
 
-#: ghex/preferences.c:281
+#: ghex/preferences.c:337
 msgid "Can not open desired font!"
 msgstr "Haluttua kirjasinlajia ei voitu avata!"
 
@@ -413,160 +431,156 @@ msgstr "kelvottomia grep-optioita löydetty grepin listasta, paha, paha!"
 msgid "Search Results"
 msgstr "Haun tulokset"
 
-#: gsearchtool/gsearchtool.c:209
-msgid "Using command:"
-msgstr "Käyttäen komentoa:"
-
-#: gsearchtool/gsearchtool.c:429
+#: gsearchtool/gsearchtool.c:426
 msgid "Enable"
 msgstr "Käytä"
 
-#: gsearchtool/gsearchtool.c:436
+#: gsearchtool/gsearchtool.c:433
 msgid "Remove"
 msgstr "Poista"
 
-#: gsearchtool/gsearchtool.c:488
+#: gsearchtool/gsearchtool.c:485
 msgid "Start in directory:"
 msgstr "Aloita hakemistosta:"
 
-#: gsearchtool/gsearchtool.c:506 mini-utils/gw/gw.c:454
+#: gsearchtool/gsearchtool.c:503 mini-utils/gw/gw.c:454
 msgid "Add"
 msgstr "Uusi"
 
-#: gsearchtool/gsearchtool.c:517
+#: gsearchtool/gsearchtool.c:514
 msgid "Start"
 msgstr "Aloita"
 
-#: gsearchtool/gsearchtool.c:518
+#: gsearchtool/gsearchtool.c:515
 msgid "Stop"
 msgstr "Pysäytä"
 
-#: gsearchtool/gsearchtool.c:536
+#: gsearchtool/gsearchtool.c:533
 msgid "This is not yet implemented"
 msgstr "Tätä ei ole vielä toteutettu"
 
-#: gsearchtool/gsearchtool.c:549
+#: gsearchtool/gsearchtool.c:546
 msgid "Full find (find)"
 msgstr "Täysi haku (find)"
 
-#: gsearchtool/gsearchtool.c:552
+#: gsearchtool/gsearchtool.c:549
 msgid "Quick find (locate)"
 msgstr "Pikahaku (locate)"
 
-#: gsearchtool/gsearchtool.c:567
+#: gsearchtool/gsearchtool.c:564
 msgid "The Gnome Search Tool"
 msgstr "GNOME:n etsintätyökalu"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:565
 msgid "(C) 1998 the Free Software Foundation"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:570
+#: gsearchtool/gsearchtool.c:567
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Käyttöliittymä unixin find-, grep- ja locate-komennoile"
 
-#: gsearchtool/gsearchtool.c:613
+#: gsearchtool/gsearchtool.c:610
 msgid "Gnome Search Tool"
 msgstr "GNOME:n etsintätyökalu"
 
-#: gstripchart/gstripchart.c:1249
+#: gstripchart/gstripchart.c:1321
 msgid "Params"
 msgstr "Parametrit"
 
-#: gstripchart/gstripchart.c:1249
+#: gstripchart/gstripchart.c:1321
 msgid "Examine and adjust parameters"
 msgstr "Tutki ja säädä parametrejä"
 
-#: gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:1327
 msgid "E_xit"
 msgstr "_Lopeta"
 
-#: gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:1327
 msgid "Terminate the stripchart program"
 msgstr "Lopeta stripchart-ohjelma"
 
-#: gstripchart/gstripchart.c:1271
+#: gstripchart/gstripchart.c:1343
 msgid "Copyright 1998 John Kodis"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1286
+#: gstripchart/gstripchart.c:1358
 msgid "_About"
 msgstr "_Tietoja"
 
-#: gstripchart/gstripchart.c:1286
+#: gstripchart/gstripchart.c:1358
 msgid "Info about the striphart program"
 msgstr "Tietoja stripchart-ohjelmasta"
 
-#: gstripchart/gstripchart.c:1297
+#: gstripchart/gstripchart.c:1369
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: gstripchart/gstripchart.c:1298
+#: gstripchart/gstripchart.c:1370
 msgid "_Help"
 msgstr "_Ohje"
 
-#: gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1776
 msgid "GEO"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1776
 msgid "geometry"
 msgstr "geometria"
 
-#: gstripchart/gstripchart.c:1708
+#: gstripchart/gstripchart.c:1778
 msgid "FILE"
 msgstr "TIEDOSTO"
 
-#: gstripchart/gstripchart.c:1708
+#: gstripchart/gstripchart.c:1778
 msgid "configuration file"
 msgstr "asetustiedosto"
 
-#: gstripchart/gstripchart.c:1710 gstripchart/gstripchart.c:1712
-#: gstripchart/gstripchart.c:1714 gstripchart/gstripchart.c:1716
+#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:1782
+#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:1786
 msgid "SECS"
 msgstr "SEKUNTIA"
 
-#: gstripchart/gstripchart.c:1710
+#: gstripchart/gstripchart.c:1780
 msgid "chart update interval"
 msgstr "kaavion päivitysväli"
 
-#: gstripchart/gstripchart.c:1712
+#: gstripchart/gstripchart.c:1782
 msgid "chart LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1714
+#: gstripchart/gstripchart.c:1784
 msgid "slider update interval"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1716
+#: gstripchart/gstripchart.c:1786
 msgid "slider LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1718
+#: gstripchart/gstripchart.c:1788
 msgid "add menubar"
 msgstr "lisää valkkopalkki"
 
-#: gstripchart/gstripchart.c:1720
+#: gstripchart/gstripchart.c:1790
 msgid "omit slider"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1792
 msgid "TYPE"
 msgstr "TYYPPI"
 
-#: gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1792
 msgid "gtk|text|graph|none"
 msgstr "gtk|teksti|graafi|ei mitään"
 
-#: gtt/app.c:110 gtt/app.c:212
+#: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
 msgstr "ei valittua projektia"
 
-#: gtt/app.c:201
+#: gtt/app.c:212
 msgid "00:00"
 msgstr ""
 
-#: gtt/app.c:234 mini-utils/gless/gless.c:383
+#: gtt/app.c:251 mini-utils/gless/gless.c:384
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -590,15 +604,15 @@ msgstr "Projektin nimi"
 msgid "Description"
 msgstr "Kuvaus"
 
-#: gtt/log.c:55 gtt/log.c:207
+#: gtt/log.c:64 gtt/log.c:216
 msgid "program started"
 msgstr "ohjelma aloitettu"
 
-#: gtt/log.c:73
+#: gtt/log.c:82
 msgid "no description"
 msgstr "ei kuvausta"
 
-#: gtt/log.c:199
+#: gtt/log.c:208
 msgid "program exited"
 msgstr "ohjelma lopetettu"
 
@@ -627,7 +641,7 @@ msgstr ""
 msgid "Specify geometry"
 msgstr "Määritä geometria"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:115
+#: gtt/main.c:204 mini-utils/gless/gless.c:116
 msgid "GEOMETRY"
 msgstr "GEOMETRIA"
 
@@ -647,7 +661,7 @@ msgstr "Varoitus"
 msgid "I could not write the configuration file!"
 msgstr "En voinut kirjoittaa asetustiedostoa."
 
-#: gtt/menucmd.c:85 gtt/toolbar.c:142
+#: gtt/menucmd.c:85 gtt/toolbar.c:146
 msgid "New Project..."
 msgstr "Uusi projekti..."
 
@@ -659,7 +673,7 @@ msgstr "Ole hyvä ja kirjoita uuden projektin nimi:"
 msgid "I could not read the configuration file"
 msgstr "En voinut lukea asetustiedostoa"
 
-#: gtt/menucmd.c:137 gtt/toolbar.c:149
+#: gtt/menucmd.c:137 gtt/toolbar.c:153
 msgid "Reload Configuration File"
 msgstr "Lataa asetustiedosto uudelleen"
 
@@ -703,111 +717,111 @@ msgstr "_Ajastin käy"
 msgid "_Timer"
 msgstr "A_jastin"
 
-#: gtt/options.c:195
+#: gtt/options.c:194
 msgid "Show Seconds"
 msgstr "Näytä sekunnit"
 
-#: gtt/options.c:201
+#: gtt/options.c:200
 msgid "Show Status Bar"
 msgstr "Näytä tilapalkki"
 
-#: gtt/options.c:207
+#: gtt/options.c:206
 msgid "Show Table Header"
 msgstr "Näytä taulukon otsake"
 
-#: gtt/options.c:221 gtt/options.c:519
+#: gtt/options.c:220 gtt/options.c:518
 msgid "Toolbar"
 msgstr "Työkalupalkki"
 
-#: gtt/options.c:229
+#: gtt/options.c:228
 msgid "Show Toolbar Icons"
 msgstr "Näytä työkalupalkin kuvakkeet"
 
-#: gtt/options.c:235
+#: gtt/options.c:234
 msgid "Show Toolbar Texts"
 msgstr "Näytä työkalupalkin tekstit"
 
-#: gtt/options.c:241
+#: gtt/options.c:240
 msgid "Show Tooltips"
 msgstr "Näytä työkaluvinkit"
 
-#: gtt/options.c:247
+#: gtt/options.c:246
 msgid "Toolbar Segments"
 msgstr "Työkalupalkin osat"
 
-#: gtt/options.c:255
+#: gtt/options.c:254
 msgid "Show `New'"
 msgstr "Näytä 'Uusi'"
 
-#: gtt/options.c:261
+#: gtt/options.c:260
 msgid "Show `Save', `Reload'"
 msgstr "Näytä 'Tallenna', 'Päivitä'"
 
-#: gtt/options.c:267
+#: gtt/options.c:266
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Näytä 'Leikkaa', 'Kopioi', 'Liitä'"
 
-#: gtt/options.c:273
+#: gtt/options.c:272
 msgid "Show `Properties'"
 msgstr "Näytä 'Ominaisuudet'"
 
-#: gtt/options.c:279
+#: gtt/options.c:278
 msgid "Show `Timer'"
 msgstr "Näytä 'Ajastin'"
 
-#: gtt/options.c:285
+#: gtt/options.c:284
 msgid "Show `Preferences'"
 msgstr "Näytä 'Asetukset'"
 
-#: gtt/options.c:291
+#: gtt/options.c:290
 msgid "Show `Help'"
 msgstr "Näytä 'Apua'"
 
-#: gtt/options.c:297
+#: gtt/options.c:296
 msgid "Show `Quit'"
 msgstr "Näytä 'Lopeta'"
 
-#: gtt/options.c:311
+#: gtt/options.c:310
 msgid "Shell Commands"
 msgstr "Ajettavat komennot"
 
-#: gtt/options.c:319
+#: gtt/options.c:318
 msgid "Switch Project Command:"
 msgstr "Projektin vaihtokomento:"
 
-#: gtt/options.c:330
+#: gtt/options.c:329
 msgid "No Project Command:"
 msgstr "'Ei projektia'-komento"
 
-#: gtt/options.c:364
+#: gtt/options.c:363
 msgid "Logfile"
 msgstr "Lokitiedosto"
 
-#: gtt/options.c:372
+#: gtt/options.c:371
 msgid "Use Logfile"
 msgstr "Käytä lokitiedostoa"
 
-#: gtt/options.c:381
+#: gtt/options.c:380
 msgid "Filename:"
 msgstr "Tiedostonimi:"
 
-#: gtt/options.c:395
+#: gtt/options.c:394
 msgid "Entry Start:"
 msgstr "Merkinnän alku:"
 
-#: gtt/options.c:409
+#: gtt/options.c:408
 msgid "Entry Stop:"
 msgstr "Merkinnän loppu:"
 
-#: gtt/options.c:423
+#: gtt/options.c:422
 msgid "Timeout in secs:"
 msgstr "Odotusajan loppu sekunneissa:"
 
-#: gtt/options.c:500
+#: gtt/options.c:499
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: gtt/options.c:506
+#: gtt/options.c:505
 msgid "Misc"
 msgstr "Sekalaiset"
 
@@ -823,120 +837,120 @@ msgstr "projekti %t pysäytetty"
 msgid "empty"
 msgstr "tyhjä"
 
-#: gtt/prop.c:172
+#: gtt/prop.c:171
 msgid "Properties"
 msgstr "Ominaisuudet"
 
-#: gtt/prop.c:179
+#: gtt/prop.c:178
 msgid "Project"
 msgstr "Projekti"
 
-#: gtt/prop.c:198
+#: gtt/prop.c:197
 msgid "Project Title:"
 msgstr "Projektin nimi:"
 
-#: gtt/prop.c:210
+#: gtt/prop.c:209
 msgid "Project Description:"
 msgstr "Projektin kuvaus:"
 
-#: gtt/prop.c:222
+#: gtt/prop.c:221
 msgid "Project Time today:"
 msgstr "Projektiin tänään käytetty aika"
 
-#: gtt/prop.c:238 gtt/prop.c:276
+#: gtt/prop.c:237 gtt/prop.c:275
 msgid "hours"
 msgstr "tuntia"
 
-#: gtt/prop.c:249 gtt/prop.c:287
+#: gtt/prop.c:248 gtt/prop.c:286
 msgid "mins"
 msgstr "minuuttia"
 
-#: gtt/prop.c:260 gtt/prop.c:298
+#: gtt/prop.c:259 gtt/prop.c:297
 msgid "secs"
 msgstr "sekuntia"
 
-#: gtt/prop.c:264
+#: gtt/prop.c:263
 msgid "Project Time ever:"
 msgstr "Projektiin käytetty kokonaisaika"
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:141
+#: gtt/toolbar.c:145
 msgid "[GTT]New"
 msgstr "Uusi"
 
-#: gtt/toolbar.c:148
+#: gtt/toolbar.c:152
 msgid "Reload"
 msgstr "Päivitä"
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:156
 msgid "Save"
 msgstr "Tallenna"
 
-#: gtt/toolbar.c:153
+#: gtt/toolbar.c:157
 msgid "Save Configuration File"
 msgstr "Tallenna asetustiedosto"
 
-#: gtt/toolbar.c:159
+#: gtt/toolbar.c:163
 msgid "Cut"
 msgstr "Leikkaa"
 
-#: gtt/toolbar.c:160
+#: gtt/toolbar.c:164
 msgid "Cut Selected Project"
 msgstr "Leikkaa valittu projekti"
 
-#: gtt/toolbar.c:163
+#: gtt/toolbar.c:167
 msgid "Copy"
 msgstr "Kopioi"
 
-#: gtt/toolbar.c:164
+#: gtt/toolbar.c:168
 msgid "Copy Selected Project"
 msgstr "Kopioi valittu projekti"
 
-#: gtt/toolbar.c:167
+#: gtt/toolbar.c:171
 msgid "Paste"
 msgstr "Liitä"
 
-#: gtt/toolbar.c:168
+#: gtt/toolbar.c:172
 msgid "Paste Project"
 msgstr "Liitä projekti"
 
-#: gtt/toolbar.c:174
+#: gtt/toolbar.c:178
 msgid "Props"
 msgstr "Ominaisuudet"
 
-#: gtt/toolbar.c:175
+#: gtt/toolbar.c:179
 msgid "Edit Properties..."
 msgstr "Muokkaa ominaisuuksia..."
 
-#: gtt/toolbar.c:179
+#: gtt/toolbar.c:183
 msgid "Timer"
 msgstr "Ajastin"
 
-#: gtt/toolbar.c:180
+#: gtt/toolbar.c:184
 msgid "Start/Stop Timer"
 msgstr "Käynnistä/pysäytä ajastin"
 
-#: gtt/toolbar.c:188
+#: gtt/toolbar.c:193
 msgid "Prefs"
 msgstr "Asetukset"
 
-#: gtt/toolbar.c:189
+#: gtt/toolbar.c:194
 msgid "Edit Preferences..."
 msgstr "Muokkaa asetuksia..."
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual"
 msgstr "Ohje"
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual..."
 msgstr "Ohje..."
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit"
 msgstr "Lopeta"
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit GTimeTracker"
 msgstr "Lopeta GTimeTracker"
 
@@ -961,11 +975,11 @@ msgstr "Väriarvot:"
 msgid "Color"
 msgstr "Väri"
 
-#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:223
+#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:228
 msgid "Value"
 msgstr "Arvo"
 
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:222
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:227
 #: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
 msgid "Name"
 msgstr "Nimi"
@@ -1034,47 +1048,47 @@ msgstr "Estä edellisen kirjasinlajin lataus"
 msgid "Copyright 1998, under the GNU General Public License."
 msgstr ""
 
-#: mini-utils/gless/gless.c:115
+#: mini-utils/gless/gless.c:116
 msgid "Where to put the window, and its size"
 msgstr "Mihin ikkuna sijoitetaan ja mikä on sen koko"
 
-#: mini-utils/gless/gless.c:116
+#: mini-utils/gless/gless.c:117
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "Ohita vakiosyöttövirta; voi olla tarpeen joissain tilanteissa."
 
-#: mini-utils/gless/gless.c:278
+#: mini-utils/gless/gless.c:279
 msgid "_New Window"
 msgstr "_Uusi ikkuna"
 
-#: mini-utils/gless/gless.c:279
+#: mini-utils/gless/gless.c:280
 msgid "New text viewer window"
 msgstr "Uusi teksti-ikkuna"
 
-#: mini-utils/gless/gless.c:291
+#: mini-utils/gless/gless.c:292
 msgid "_Fixed Font"
 msgstr "_Tasavälinen kirjasinlaji"
 
-#: mini-utils/gless/gless.c:292
+#: mini-utils/gless/gless.c:293
 msgid "Display text with a fixed font"
 msgstr "Näytä tiedosto tasavälisellä kirjasinlajilla"
 
-#: mini-utils/gless/gless.c:321
+#: mini-utils/gless/gless.c:322
 msgid "Text File Viewer"
 msgstr "Tekstitiedostojen näyttöohjelma"
 
-#: mini-utils/gless/gless.c:424
+#: mini-utils/gless/gless.c:425
 msgid "Loading..."
 msgstr "Lataan..."
 
-#: mini-utils/gless/gless.c:429
+#: mini-utils/gless/gless.c:430
 msgid "No such file or directory:\n"
 msgstr "Tiedostoa tai hakemistoa ei löydy:\n"
 
-#: mini-utils/gless/gless.c:446
+#: mini-utils/gless/gless.c:447
 msgid "Failed to decompress and display the file:\n"
 msgstr "Tiedoston purku ja näyttö epäonnistui:\n"
 
-#: mini-utils/gless/gless.c:457
+#: mini-utils/gless/gless.c:458
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1082,23 +1096,23 @@ msgstr ""
 "Pakatun tiedoston näyttö epäonnistui.\n"
 "zcat-komentoa ei löytynyt hakupolustasi."
 
-#: mini-utils/gless/gless.c:465
+#: mini-utils/gless/gless.c:466
 msgid "Error loading file:\n"
 msgstr "Virhe ladattaessa tiedostoa:\n"
 
-#: mini-utils/gless/gless.c:519
+#: mini-utils/gless/gless.c:520
 msgid "Saving..."
 msgstr "Tallennan..."
 
-#: mini-utils/gless/gless.c:530
+#: mini-utils/gless/gless.c:531
 msgid "Failed to write file:\n"
 msgstr "Tiedoston kirjoitus epäonnistui:\n"
 
-#: mini-utils/gless/gless.c:577
+#: mini-utils/gless/gless.c:578
 msgid "Save Text As..."
 msgstr "Tallenna teksti nimellä..."
 
-#: mini-utils/gless/gless.c:617
+#: mini-utils/gless/gless.c:618
 msgid "Open Text File..."
 msgstr "Avaa tekstitiedosto..."
 
@@ -1414,7 +1428,7 @@ msgstr "Kiinnityskohta"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:168
+#: mini-utils/guname/info.c:170
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -1426,66 +1440,66 @@ msgstr "Tuntematon tiedostojärjestelmä"
 msgid "No information for this filesystem."
 msgstr "Ei tietoja tälle tiedostojärjestelmälle."
 
-#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:165
+#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:166
 msgid "Memory"
 msgstr "Muisti"
 
-#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:166
+#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:167
 msgid "Kilobytes"
 msgstr "Kilotavua"
 
-#: mini-utils/guname/moreinfo.c:163
+#: mini-utils/guname/moreinfo.c:164
 msgid "%ld%% %s used."
 msgstr "%ld%% %s käytössä."
 
-#: mini-utils/guname/moreinfo.c:178 mini-utils/guname/moreinfo.c:182
+#: mini-utils/guname/moreinfo.c:183 mini-utils/guname/moreinfo.c:187
 msgid "memory"
 msgstr "muistista"
 
-#: mini-utils/guname/moreinfo.c:192 mini-utils/guname/moreinfo.c:196
+#: mini-utils/guname/moreinfo.c:197 mini-utils/guname/moreinfo.c:201
 msgid "swap"
 msgstr "sivutustilasta"
 
-#: mini-utils/guname/moreinfo.c:219
+#: mini-utils/guname/moreinfo.c:224
 #, c-format
 msgid "CPU %d"
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:267
+#: mini-utils/guname/moreinfo.c:272
 msgid "Detailed System Information"
 msgstr "Yksityiskohtaiset järjestelmätiedot"
 
-#: mini-utils/guname/moreinfo.c:280
+#: mini-utils/guname/moreinfo.c:285
 msgid "Disk Information"
 msgstr "Levytiedot"
 
-#: mini-utils/guname/moreinfo.c:282
+#: mini-utils/guname/moreinfo.c:287
 msgid "Memory Information"
 msgstr "Muistitiedot"
 
-#: mini-utils/guname/moreinfo.c:285
+#: mini-utils/guname/moreinfo.c:290
 msgid "CPU Information"
 msgstr "Prosessorin tiedot"
 
-#: mini-utils/guname/moreinfo.c:306
+#: mini-utils/guname/moreinfo.c:311
 msgid "%2d%% full "
 msgstr "%2d%% käytetty "
 
-#: mini-utils/guname/moreinfo.c:308
+#: mini-utils/guname/moreinfo.c:313
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr ""
 "%ld megatavua, %ld vapaana (%ld pääkäyttäjälle); %ld inodea, %ld vapaana."
 
-#: mini-utils/guname/moreinfo.c:322
+#: mini-utils/guname/moreinfo.c:327
 msgid "Mount Point: "
 msgstr "Liitoskohta: "
 
-#: mini-utils/guname/moreinfo.c:323
+#: mini-utils/guname/moreinfo.c:328
 msgid "    Device: "
 msgstr "     Laite: "
 
-#: mini-utils/guname/moreinfo.c:324
+#: mini-utils/guname/moreinfo.c:329
 msgid "    Filesystem Type: "
 msgstr "Tiedostojärjestelmä: "
 
@@ -1670,149 +1684,152 @@ msgstr "Vain pääkäyttäjä voi käyttää tätä työkalua"
 msgid "You appear to have no IDE drives"
 msgstr "Sinulla ei näytä olevan IDE-levyjä"
 
-msgid "Exit"
-msgstr "Lopeta"
+#~ msgid "Using command:"
+#~ msgstr "Käyttäen komentoa:"
 
-msgid "Edit"
-msgstr "Muokkaa"
+#~ msgid "Exit"
+#~ msgstr "Lopeta"
 
-msgid "Search"
-msgstr "Etsi"
+#~ msgid "Edit"
+#~ msgstr "Muokkaa"
 
-msgid "Help"
-msgstr "Ohje"
+#~ msgid "Search"
+#~ msgstr "Etsi"
 
-msgid "_About..."
-msgstr "_Tietoja..."
+#~ msgid "Help"
+#~ msgstr "Ohje"
 
-msgid "_Copy"
-msgstr "_Kopioi"
+#~ msgid "_About..."
+#~ msgstr "_Tietoja..."
 
-msgid "_Calculator"
-msgstr "_Laskin"
+#~ msgid "_Copy"
+#~ msgstr "_Kopioi"
 
-msgid "_Edit"
-msgstr "_Muokkaa"
+#~ msgid "_Calculator"
+#~ msgstr "_Laskin"
 
-msgid "Open a file"
-msgstr "Avaa tiedosto"
+#~ msgid "_Edit"
+#~ msgstr "_Muokkaa"
 
-msgid "Save _As..."
-msgstr "Tallenna _nimellä..."
+#~ msgid "Open a file"
+#~ msgstr "Avaa tiedosto"
 
-msgid "Close file"
-msgstr "Sulje tiedosto"
+#~ msgid "Save _As..."
+#~ msgstr "Tallenna _nimellä..."
 
-msgid "Exit GHex"
-msgstr "Lopeta GHex"
+#~ msgid "Close file"
+#~ msgstr "Sulje tiedosto"
 
-msgid "_Open..."
-msgstr "_Avaa..."
+#~ msgid "Exit GHex"
+#~ msgstr "Lopeta GHex"
 
-msgid "About..."
-msgstr "Tietoja..."
+#~ msgid "_Open..."
+#~ msgstr "_Avaa..."
 
-msgid "File_s/"
-msgstr "Tie_dostot/"
+#~ msgid "About..."
+#~ msgstr "Tietoja..."
 
-msgid "_Exit"
-msgstr "_Lopeta"
+#~ msgid "File_s/"
+#~ msgstr "Tie_dostot/"
 
-msgid "Quit the application without saving"
-msgstr "Poistu tallentamatta"
+#~ msgid "_Exit"
+#~ msgstr "_Lopeta"
 
-msgid "sunday"
-msgstr "sunnuntai"
+#~ msgid "Quit the application without saving"
+#~ msgstr "Poistu tallentamatta"
 
-msgid "monday"
-msgstr "maanantai"
+#~ msgid "sunday"
+#~ msgstr "sunnuntai"
 
-msgid "tuesday"
-msgstr "tiistai"
+#~ msgid "monday"
+#~ msgstr "maanantai"
 
-msgid "tues"
-msgstr "ti"
+#~ msgid "tuesday"
+#~ msgstr "tiistai"
 
-msgid "wednesday"
-msgstr "keskiviikko"
+#~ msgid "tues"
+#~ msgstr "ti"
 
-msgid "wednes"
-msgstr "ke"
+#~ msgid "wednesday"
+#~ msgstr "keskiviikko"
 
-msgid "thursday"
-msgstr "torstai"
+#~ msgid "wednes"
+#~ msgstr "ke"
 
-msgid "thur"
-msgstr "to"
+#~ msgid "thursday"
+#~ msgstr "torstai"
 
-msgid "thurs"
-msgstr "tuntia"
+#~ msgid "thur"
+#~ msgstr "to"
 
-msgid "friday"
-msgstr "perjantai"
+#~ msgid "thurs"
+#~ msgstr "tuntia"
 
-msgid "saturday"
-msgstr "lauantai"
+#~ msgid "friday"
+#~ msgstr "perjantai"
 
-msgid "fortnight"
-msgstr "kaksviikko"
+#~ msgid "saturday"
+#~ msgstr "lauantai"
 
-msgid "week"
-msgstr "viikko"
+#~ msgid "fortnight"
+#~ msgstr "kaksviikko"
 
-msgid "day"
-msgstr "päivä"
+#~ msgid "week"
+#~ msgstr "viikko"
 
-msgid "hour"
-msgstr "tunti"
+#~ msgid "day"
+#~ msgstr "päivä"
 
-msgid "minute"
-msgstr "minuutti"
+#~ msgid "hour"
+#~ msgstr "tunti"
 
-msgid "min"
-msgstr "min"
+#~ msgid "minute"
+#~ msgstr "minuutti"
 
-msgid "second"
-msgstr "sekunti"
+#~ msgid "min"
+#~ msgstr "min"
 
-msgid "sec"
-msgstr "sek"
+#~ msgid "second"
+#~ msgstr "sekunti"
 
-msgid "tomorrow"
-msgstr "huomenna"
+#~ msgid "sec"
+#~ msgstr "sek"
 
-msgid "yesterday"
-msgstr "eilen"
+#~ msgid "tomorrow"
+#~ msgstr "huomenna"
 
-msgid "now"
-msgstr "nyt"
+#~ msgid "yesterday"
+#~ msgstr "eilen"
 
-msgid "last"
-msgstr "edellinen"
+#~ msgid "now"
+#~ msgstr "nyt"
 
-msgid "this"
-msgstr "tämä"
+#~ msgid "last"
+#~ msgstr "edellinen"
 
-msgid "first"
-msgstr "ensimmäinen"
+#~ msgid "this"
+#~ msgstr "tämä"
 
-msgid "third"
-msgstr "kolmas"
+#~ msgid "first"
+#~ msgstr "ensimmäinen"
 
-msgid "fourth"
-msgstr "neljäs"
+#~ msgid "third"
+#~ msgstr "kolmas"
 
-msgid "Version, credits, etc."
-msgstr "Versio, tekijät jne."
+#~ msgid "fourth"
+#~ msgstr "neljäs"
 
-msgid "Create new card"
-msgstr "Luo uusi kortti"
+#~ msgid "Version, credits, etc."
+#~ msgstr "Versio, tekijät jne."
 
-msgid "Delete card"
-msgstr "Poista kortti"
+#~ msgid "Create new card"
+#~ msgstr "Luo uusi kortti"
 
-msgid "Year:"
-msgstr "Vuosi:"
+#~ msgid "Delete card"
+#~ msgstr "Poista kortti"
 
-msgid "Go to date"
-msgstr "Mene päivämäärään"
+#~ msgid "Year:"
+#~ msgstr "Vuosi:"
+
+#~ msgid "Go to date"
+#~ msgstr "Mene päivämäärään"
