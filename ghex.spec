@@ -1,6 +1,5 @@
-
 %define name ghex
-%define version 1.1.3
+%define version 1.2-beta1
 %define release 1
 %define prefix /usr
 
@@ -9,7 +8,7 @@ Summary: GNOME binary editor
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Group: Applications/Internet
+Group: Applications/Editors
 Copyright: GPL
 
 Url: http://pluton.ijs.si/~jaka/gnome.html#GHEX
@@ -27,8 +26,22 @@ saving.
 %setup
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{prefix}
-make
+%ifarch alpha
+  MYARCH_FLAGS="--host=alpha-redhat-linux"
+%endif
+
+if [ ! -f configure ]; then
+CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh $MYARCH_FLAGS --prefix=%{prefix}
+else
+CFLAGS="$RPM_OPT_FLAGS" ./configure $MYARCH_FLAGS --prefix=%{prefix}
+fi
+
+if [ "$SMP" != "" ]; then
+  (make "MAKE=make -k -j $SMP"; exit 0)
+  make
+else
+  make
+fi
 
 %install
 if [ -d $RPM_BUILD_ROOT ]; then rm -r $RPM_BUILD_ROOT; fi
@@ -37,10 +50,13 @@ make prefix=$RPM_BUILD_ROOT%{prefix} install-strip
 
 %files
 %defattr(-,root,root)
-%doc README
+%doc README COPYING AUTHORS
 %attr(755,root,root) %{prefix}/bin/ghex
 %{prefix}/share/gnome/apps/Applications/ghex.desktop
-%{prefix}/share/gnome/help/ghex
+%{prefix}/share/gnome/help/ghex/C/*
+%{prefix}/share/gnome/help/ghex/es/*
+%{prefix}/share/gnome/help/ghex/ja/*
+%{prefix}/share/gnome/help/ghex/sv/*
 %{prefix}/share/pixmaps/gnome-ghex.png
 %{prefix}/share/locale/*/*/*
 
@@ -48,5 +64,8 @@ make prefix=$RPM_BUILD_ROOT%{prefix} install-strip
 rm -r $RPM_BUILD_ROOT
 
 %changelog
+* Sun Oct 22 2000 John Gotts <jgotts@linuxsavvy.com>
+- Minor modifications.
+
 * Sun May 14 2000 John Gotts <jgotts@linuxsavvy.com>
 - New SPEC file.
