@@ -266,16 +266,30 @@ static void render_byte(GtkHex *gh, gint pos) {
 
   get_xcoords(gh, pos, &cx, &cy);
   format_xbyte(gh, pos, buf);
-  gdk_window_clear_area (gh->xdisp->window,
-			 cx, cy,
-			 2*gh->char_width, gh->char_height);
+
+  gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
+  gdk_draw_rectangle(gh->xdisp->window, gh->xdisp_gc, TRUE,
+		     cx, cy, 2*gh->char_width, gh->char_height);
+  gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
+
+  /*  gdk_window_clear_area (gh->xdisp->window,
+      cx, cy,
+      2*gh->char_width, gh->char_height); */
+
   gdk_draw_text(gh->xdisp->window, gh->disp_font, gh->xdisp_gc,
 		cx, cy + gh->disp_font->ascent, buf, 2);
 
   get_acoords(gh, pos, &cx, &cy);
-  gdk_window_clear_area (gh->adisp->window,
-			 cx, cy,
-			 gh->char_width, gh->char_height);
+
+  gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
+  gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc, TRUE,
+		     cx, cy, gh->char_width, gh->char_height);
+  gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
+
+  /*  gdk_window_clear_area (gh->adisp->window,
+      cx, cy,
+      gh->char_width, gh->char_height); */
+
   gdk_draw_text(gh->adisp->window, gh->disp_font, gh->adisp_gc,
 		cx, cy + gh->disp_font->ascent, &gh->buffer[pos], 1);
 }
@@ -299,7 +313,7 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 			    (imax - imin + 1)*gh->char_height); */
 
   gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
-  gdk_draw_rectangle(w->window, gh->xdisp_gc, TRUE,
+  gdk_draw_rectangle(gh->xdisp->window, gh->xdisp_gc, TRUE,
 		     0, imin*gh->char_height, w->allocation.width,
 		     (imax - imin + 1)*gh->char_height);
   gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
@@ -608,7 +622,11 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
   guint mx, my, cx, cy, x;
 
   if((event->type == GDK_BUTTON_PRESS) && (event->button == 1)) {
+    if (!GTK_WIDGET_HAS_FOCUS (gh))
+      gtk_widget_grab_focus (GTK_WIDGET(gh));
+
     gh->button = event->button;
+
     if(gh->active_view == VIEW_HEX)
       hex_to_pointer(gh, event->x, event->y);
     else {
@@ -626,6 +644,9 @@ static void hex_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 
 static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
   if((event->type == GDK_BUTTON_PRESS) && (event->button == 1)) {
+    if (!GTK_WIDGET_HAS_FOCUS (gh))
+      gtk_widget_grab_focus (GTK_WIDGET(gh));
+
     gh->button = event->button;
     if(gh->active_view == VIEW_ASCII)
       ascii_to_pointer(gh, event->x, event->y);
