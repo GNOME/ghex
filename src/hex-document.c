@@ -329,17 +329,17 @@ gint find_string_backward(HexDocument *doc, guint start, guchar *what, gint len,
 /*
  * callbacks for document's menus
  */
-static void set_byte_cb(GtkWidget *w, HexDocument *doc) {
+static void set_byte_cb(GtkWidget *w) {
   if( GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
     gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_BYTE);
 }
 
-static void set_word_cb(GtkWidget *w, HexDocument *doc) {
+static void set_word_cb(GtkWidget *w) {
   if( GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
     gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_WORD);
 }
 
-static void set_long_cb(GtkWidget *w, HexDocument *doc) {
+static void set_long_cb(GtkWidget *w) {
   if( GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
     gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_LONG);
 }

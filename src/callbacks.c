@@ -186,30 +186,30 @@ static gint get_search_string(gchar *str, gchar *buf, gint type) {
     if(type == DATA_TYPE_HEX) {
       /* we convert the string from hex */
       if(len % 2 != 0)
-	return 0;  /* the number of hex digits must be EVEN */
+        return 0;  /* the number of hex digits must be EVEN */
       len = 0;     /* we'll store the returned string length in len */
       shift = 4;
       *buf = '\0';
       while(*str != 0) {
-	if((*str >= '0') && (*str <= '9'))
-	  *buf |= (*str - '0') << shift;
-	else if((*str >= 'A') && (*str <= 'F'))
-	  *buf |= (*str - 'A') << shift;
-	else if((*str >= 'a') && (*str <= 'f'))
-	  *buf |= (*str - 'a' + 10) << shift;
-	else
-	  return 0;
-	
-	if(shift > 0)
-	  shift = 0;
-	else {
-	  shift = 4;
-	  buf++;
-	  len++;
-	  *buf = '\0';
-	}
-	
-	str++;
+        if((*str >= '0') && (*str <= '9'))
+          *buf |= (*str - '0') << shift;
+        else if((*str >= 'A') && (*str <= 'F'))
+          *buf |= (*str - 'A' + 10) << shift;
+        else if((*str >= 'a') && (*str <= 'f'))
+          *buf |= (*str - 'a' + 10) << shift;
+        else
+          return 0;
+        
+        if(shift > 0)
+          shift = 0;
+        else {
+          shift = 4;
+          buf++;
+          len++;
+          *buf = '\0';
+        }
+        
+        str++;
       }
     }
     else if(type == DATA_TYPE_ASCII)
