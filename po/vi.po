@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex VERSION\n"
-"POT-Creation-Date: 2002-10-16 05:56+0200\n"
-"PO-Revision-Date: 2002-10-17 11:08+0700\n"
+"POT-Creation-Date: 2003-01-19 04:00+0100\n"
+"PO-Revision-Date: 2003-01-19 21:22+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -20,27 +20,27 @@ msgstr "Bộ soạn thảo thập lục phân Gnome"
 msgid "Hex Editor"
 msgstr "Bộ soạn thảo thập lục phân"
 
-#: src/chartable.c:122
+#: src/chartable.c:133
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:122
+#: src/chartable.c:133
 msgid "Hex"
 msgstr "Hex"
 
-#: src/chartable.c:122 src/preferences.c:174
+#: src/chartable.c:133 src/preferences.c:174
 msgid "Decimal"
 msgstr "Thập phân"
 
-#: src/chartable.c:123
+#: src/chartable.c:134
 msgid "Octal"
 msgstr "Bát phân"
 
-#: src/chartable.c:123
+#: src/chartable.c:134
 msgid "Binary"
 msgstr "Nhị phân"
 
-#: src/chartable.c:137
+#: src/chartable.c:148
 msgid "Character table"
 msgstr "Bảng ký tự"
 
@@ -88,7 +88,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "LỖI"
 
-#: src/findreplace.c:60 src/ui.c:913
+#: src/findreplace.c:60 src/ui.c:901
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Tìm dữ liệu"
@@ -98,13 +98,13 @@ msgstr "GHex (%s): Tìm dữ liệu"
 msgid "Search for %s"
 msgstr "Tìm %s"
 
-#: src/findreplace.c:86 src/findreplace.c:119
-msgid "Find Next"
-msgstr "Tìm tiếp"
+#: src/findreplace.c:86
+msgid "Find _Next"
+msgstr "Tìm _tiếp"
 
 #: src/findreplace.c:94
-msgid "Find Previous"
-msgstr "Tìm lại"
+msgid "Find _Previous"
+msgstr "Tìm _lại"
 
 #: src/findreplace.c:118 src/findreplace.c:210
 msgid "Find Data"
@@ -113,6 +113,10 @@ msgstr "Tìm dữ liệu"
 #: src/findreplace.c:118 src/findreplace.c:210
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Nhập dữ liệu thập lục phân hoặc ASCII để tìm"
+
+#: src/findreplace.c:119
+msgid "Find Next"
+msgstr "Tìm tiếp"
 
 #: src/findreplace.c:119 src/findreplace.c:212
 msgid "Finds the next occurrence of the search string"
@@ -134,7 +138,7 @@ msgstr "Hủy bỏ"
 msgid "Closes find data window"
 msgstr "Đóng cửa sổ tìm dữ liệu"
 
-#: src/findreplace.c:140 src/ui.c:911
+#: src/findreplace.c:140 src/ui.c:899
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Tìm và thay thế dữ liệu"
@@ -144,17 +148,17 @@ msgstr "GHex (%s): Tìm và thay thế dữ liệu"
 msgid "Replace %s"
 msgstr "Thay thế %s"
 
-#: src/findreplace.c:172 src/findreplace.c:212
-msgid "Find next"
-msgstr "Tìm tiếp"
+#: src/findreplace.c:172
+msgid "Find _next"
+msgstr "Tìm _tiếp"
 
-#: src/findreplace.c:180 src/findreplace.c:213 src/ghex-ui.xml.h:49
-msgid "Replace"
-msgstr "Thay thế"
+#: src/findreplace.c:180 src/ghex-ui.xml.h:84
+msgid "_Replace"
+msgstr "_Thay thế"
 
-#: src/findreplace.c:188 src/findreplace.c:214
-msgid "Replace All"
-msgstr "Thay thế tất cả"
+#: src/findreplace.c:188
+msgid "Replace _All"
+msgstr "Thay thế tất _cả"
 
 #: src/findreplace.c:211
 msgid "Replace Data"
@@ -164,9 +168,21 @@ msgstr "Thay thế dữ liệu"
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "Nhập dữ liệu thập lục phân hoặc ASCII để thay thế"
 
+#: src/findreplace.c:212
+msgid "Find next"
+msgstr "Tìm tiếp"
+
+#: src/findreplace.c:213 src/ghex-ui.xml.h:48
+msgid "Replace"
+msgstr "Thay thế"
+
 #: src/findreplace.c:213
 msgid "Replaces the search string with the replace string"
 msgstr "Thay thế chuỗi tìm bằng chuỗi thay thế"
+
+#: src/findreplace.c:214
+msgid "Replace All"
+msgstr "Thay thế tất cả"
 
 #: src/findreplace.c:214
 msgid "Replaces all occurrences of the search string with the replace string"
@@ -176,7 +192,7 @@ msgstr "Thay thế mọi chuỗi tìm thấy"
 msgid "Closes find and replace data window"
 msgstr "Đóng cửa sổ tìm và thay thế"
 
-#: src/findreplace.c:231 src/ui.c:909
+#: src/findreplace.c:231 src/ui.c:897
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Nhảy tới byte"
@@ -242,10 +258,10 @@ msgid "There is no active buffer to replace data in!"
 msgstr "Không có gì để thay thế dữ liệu cả!"
 
 #: src/findreplace.c:455 src/findreplace.c:496
-msgid "Strings are not approprate for the selected data type!"
+msgid "Strings are not appropriate for the selected data type!"
 msgstr "Chuỗi không thích hợp với kiểu dữ liệu được chọn!"
 
-#: src/findreplace.c:471
+#: src/findreplace.c:470 src/findreplace.c:471
 msgid "End Of File reached!"
 msgstr "Đã tới cuối tập tin!"
 
@@ -253,7 +269,11 @@ msgstr "Đã tới cuối tập tin!"
 msgid "There is no active document to replace data in!"
 msgstr "Không có gì để thay thế dữ liệu cả!"
 
-#: src/findreplace.c:515
+#: src/findreplace.c:516
+msgid "No occurences were found."
+msgstr "Không tìm thấy."
+
+#: src/findreplace.c:519
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Đã thay thế %d lần."
@@ -263,381 +283,399 @@ msgid "About this application"
 msgstr "Giới thiệu ứng dụng này"
 
 #: src/ghex-ui.xml.h:2
-msgid "About..."
-msgstr "Giới thiệu..."
-
-#: src/ghex-ui.xml.h:3
 msgid "Add View"
 msgstr "Thêm khung nhìn"
 
-#: src/ghex-ui.xml.h:4
+#: src/ghex-ui.xml.h:3
 msgid "Add a new view to the buffer"
 msgstr "Thêm khung nhìn mới cho vùng đệm"
 
-#: src/ghex-ui.xml.h:5 src/ui.c:67
+#: src/ghex-ui.xml.h:4 src/ui.c:64
 msgid "Bytes"
 msgstr "Byte"
 
-#: src/ghex-ui.xml.h:6
+#: src/ghex-ui.xml.h:5
 msgid "C_ut"
 msgstr "_Cắt"
 
-#: src/ghex-ui.xml.h:7
+#: src/ghex-ui.xml.h:6
 msgid "Character Table..."
 msgstr "Bảng ký tự..."
 
-#: src/ghex-ui.xml.h:8
+#: src/ghex-ui.xml.h:7
 msgid "Character _Table..."
 msgstr "Bảng _ký tự..."
 
-#: src/ghex-ui.xml.h:9
+#: src/ghex-ui.xml.h:8
 msgid "Close"
 msgstr "Đóng"
 
-#: src/ghex-ui.xml.h:10
+#: src/ghex-ui.xml.h:9
 msgid "Close the current file"
 msgstr "Đóng tập tin hiện tại"
 
-#: src/ghex-ui.xml.h:11
+#: src/ghex-ui.xml.h:10
 msgid "Configure the application"
 msgstr "Cấu hình ứng dụng"
 
-#: src/ghex-ui.xml.h:12
+#: src/ghex-ui.xml.h:11
 msgid "Contents"
 msgstr "Nội dung"
 
-#: src/ghex-ui.xml.h:13
+#: src/ghex-ui.xml.h:12
 msgid "Converter..."
 msgstr "Bộ chuyển đổi..."
 
-#: src/ghex-ui.xml.h:14
+#: src/ghex-ui.xml.h:13
 msgid "Copy"
 msgstr "Sao chép"
 
-#: src/ghex-ui.xml.h:15
+#: src/ghex-ui.xml.h:14
 msgid "Copy selection to clipboard"
 msgstr "Sao chép vào clipboard"
 
-#: src/ghex-ui.xml.h:16
+#: src/ghex-ui.xml.h:15
 msgid "Cut"
 msgstr "Cắt"
 
-#: src/ghex-ui.xml.h:17
+#: src/ghex-ui.xml.h:16
 msgid "Cut selection"
 msgstr "Cắt vùng chọn"
 
-#: src/ghex-ui.xml.h:18
+#: src/ghex-ui.xml.h:17
 msgid "E_xit"
 msgstr "T_hoát"
 
-#: src/ghex-ui.xml.h:19
+#: src/ghex-ui.xml.h:18
 msgid "Exit"
 msgstr "Thoát"
 
-#: src/ghex-ui.xml.h:20
+#: src/ghex-ui.xml.h:19
 msgid "Exit the program"
 msgstr "Thoát chương trình"
 
-#: src/ghex-ui.xml.h:21
+#: src/ghex-ui.xml.h:20
 msgid "Export data to HTML source"
 msgstr "Xuất dữ liệu ra dạng HTML"
 
-#: src/ghex-ui.xml.h:22
+#: src/ghex-ui.xml.h:21
 msgid "Export to HTML..."
 msgstr "Xuất ra HTML..."
 
-#: src/ghex-ui.xml.h:23
+#: src/ghex-ui.xml.h:22
 msgid "Find"
 msgstr "Tìm"
 
-#: src/ghex-ui.xml.h:24
+#: src/ghex-ui.xml.h:23
 msgid "Goto Byte"
 msgstr "Đi tới byte"
 
-#: src/ghex-ui.xml.h:25
+#: src/ghex-ui.xml.h:24
 msgid "Group data by 16 bits"
 msgstr "Dữ liệu nhóm 16 bit"
 
-#: src/ghex-ui.xml.h:26
+#: src/ghex-ui.xml.h:25
 msgid "Group data by 32 bits"
 msgstr "Dữ liệu nhóm 32 bit"
 
-#: src/ghex-ui.xml.h:27
+#: src/ghex-ui.xml.h:26
 msgid "Group data by 8 bits"
 msgstr "Dữ liệu nhóm 8 bit"
 
-#: src/ghex-ui.xml.h:28
+#: src/ghex-ui.xml.h:27
 msgid "Help Chat"
 msgstr "Tán gẫu trợ giúp"
 
-#: src/ghex-ui.xml.h:29
+#: src/ghex-ui.xml.h:28
 msgid "Help on this application"
 msgstr "Trợ giúp về ứng dụng này"
 
-#: src/ghex-ui.xml.h:30
+#: src/ghex-ui.xml.h:29
 msgid "Insert Mode"
 msgstr "Chế độ chèn"
 
-#: src/ghex-ui.xml.h:31
+#: src/ghex-ui.xml.h:30
 msgid "Insert/overwrite data"
 msgstr "Chèn/Ghi đè dữ liệu"
 
-#: src/ghex-ui.xml.h:32
+#: src/ghex-ui.xml.h:31
 msgid "Jump to a certain position"
 msgstr "Nhảy tới vị trí nhất định"
 
-#: src/ghex-ui.xml.h:33 src/ui.c:69
+#: src/ghex-ui.xml.h:32 src/ui.c:66
 msgid "Longwords"
 msgstr "Từ dài"
 
-#: src/ghex-ui.xml.h:34
+#: src/ghex-ui.xml.h:33
 msgid "Open"
 msgstr "Mở"
 
-#: src/ghex-ui.xml.h:35
+#: src/ghex-ui.xml.h:34
 msgid "Open a file"
 msgstr "Mở tập tin"
 
-#: src/ghex-ui.xml.h:36
+#: src/ghex-ui.xml.h:35
 msgid "Open base conversion dialog"
 msgstr "Mở hộp thoại chuyển đổi cơ số"
 
-#: src/ghex-ui.xml.h:37
+#: src/ghex-ui.xml.h:36
 msgid "Paste"
 msgstr "Dán"
 
-#: src/ghex-ui.xml.h:38
+#: src/ghex-ui.xml.h:37
 msgid "Paste data from clipboard"
 msgstr "Dán dữ liệu từ clipboard"
 
-#: src/ghex-ui.xml.h:39
+#: src/ghex-ui.xml.h:38
 msgid "Preferences"
 msgstr "Thông số"
 
-#: src/ghex-ui.xml.h:40
+#: src/ghex-ui.xml.h:39
 msgid "Preview printed data"
 msgstr "Xem trước dữ liệu cần in"
 
-#: src/ghex-ui.xml.h:41
+#: src/ghex-ui.xml.h:40
 msgid "Print"
 msgstr "In"
 
-#: src/ghex-ui.xml.h:42
+#: src/ghex-ui.xml.h:41
 msgid "Print Previe_w..."
 msgstr "Xem thử _bản in..."
 
-#: src/ghex-ui.xml.h:43
+#: src/ghex-ui.xml.h:42
 msgid "Print Preview..."
 msgstr "Xem thử bản in..."
 
-#: src/ghex-ui.xml.h:44
+#: src/ghex-ui.xml.h:43
 msgid "Print the current file"
 msgstr "In tập tin hiện tại"
 
-#: src/ghex-ui.xml.h:45
+#: src/ghex-ui.xml.h:44
 msgid "Redo"
 msgstr "Làm lại"
 
-#: src/ghex-ui.xml.h:46
+#: src/ghex-ui.xml.h:45
 msgid "Redo the undone action"
 msgstr "Làm lại hành động vừa xảy ra"
 
-#: src/ghex-ui.xml.h:47
+#: src/ghex-ui.xml.h:46
 msgid "Remove View"
 msgstr "Loại bỏ khung nhìn"
 
-#: src/ghex-ui.xml.h:48
+#: src/ghex-ui.xml.h:47
 msgid "Remove the current view of the buffer"
 msgstr "Loại bỏ khung nhìn hiện tại của vùng đệm"
 
-#: src/ghex-ui.xml.h:50
+#: src/ghex-ui.xml.h:49
 msgid "Replace a string"
 msgstr "Thay thế chuỗi"
 
-#: src/ghex-ui.xml.h:51
+#: src/ghex-ui.xml.h:50
 msgid "Revert"
 msgstr "Hoàn nguyên"
 
-#: src/ghex-ui.xml.h:52
+#: src/ghex-ui.xml.h:51
 msgid "Revert to a saved version of the file"
 msgstr "Hoàn nguyên về phiên bản đã được lưu trước đó của tập tin"
 
-#: src/ghex-ui.xml.h:53
+#: src/ghex-ui.xml.h:52
 msgid "Save"
 msgstr "Lưu"
 
-#: src/ghex-ui.xml.h:54
+#: src/ghex-ui.xml.h:53
 msgid "Save As"
 msgstr "Lưu là"
 
-#: src/ghex-ui.xml.h:55
+#: src/ghex-ui.xml.h:54
 msgid "Save As _HTML..."
 msgstr "Lưu là _HTML..."
 
-#: src/ghex-ui.xml.h:56
+#: src/ghex-ui.xml.h:55
 msgid "Save _As..."
 msgstr "Lư_u là..."
 
-#: src/ghex-ui.xml.h:57
+#: src/ghex-ui.xml.h:56
 msgid "Save the current file"
 msgstr "Lưu tập tin hiện tại"
 
-#: src/ghex-ui.xml.h:58
+#: src/ghex-ui.xml.h:57
 msgid "Save the current file with a different name"
 msgstr "Lưu tập tin hiện tại với tên khác"
 
-#: src/ghex-ui.xml.h:59
+#: src/ghex-ui.xml.h:58
 msgid "Search for a string"
 msgstr "Tìm chuỗi"
 
-#: src/ghex-ui.xml.h:60
+#: src/ghex-ui.xml.h:59
 msgid "Show the character table"
 msgstr "Hiện bảng ký tự"
 
-#: src/ghex-ui.xml.h:61
+#: src/ghex-ui.xml.h:60
 msgid "Undo"
 msgstr "Hoàn lại"
 
-#: src/ghex-ui.xml.h:62
+#: src/ghex-ui.xml.h:61
 msgid "Undo the last action"
 msgstr "Hoàn lại hành động cuối cùng"
 
-#: src/ghex-ui.xml.h:63 src/ui.c:68
+#: src/ghex-ui.xml.h:62 src/ui.c:65
 msgid "Words"
 msgstr "Từ"
 
-#: src/ghex-ui.xml.h:64
-msgid "_About..."
-msgstr "_Giới thiệu..."
+#: src/ghex-ui.xml.h:63
+msgid "_About"
+msgstr "_Giới thiệu"
 
-#: src/ghex-ui.xml.h:65
+#: src/ghex-ui.xml.h:64
 msgid "_Add View"
 msgstr "_Thêm khung nhìn"
 
-#: src/ghex-ui.xml.h:66
+#: src/ghex-ui.xml.h:65
 msgid "_Base Converter"
 msgstr "_Bộ chuyển cơ số"
 
-#: src/ghex-ui.xml.h:67
+#: src/ghex-ui.xml.h:66
 msgid "_Bytes"
 msgstr "_Byte"
 
-#: src/ghex-ui.xml.h:68
+#: src/ghex-ui.xml.h:67
 msgid "_Close"
 msgstr "Đón_g"
 
-#: src/ghex-ui.xml.h:69
+#: src/ghex-ui.xml.h:68
 msgid "_Contents"
 msgstr "_Nội dung"
 
-#: src/ghex-ui.xml.h:70
+#: src/ghex-ui.xml.h:69
 msgid "_Copy"
 msgstr "_Sao chép"
 
-#: src/ghex-ui.xml.h:71
+#: src/ghex-ui.xml.h:70
 msgid "_Edit"
 msgstr "_Hiệu chỉnh"
 
-#: src/ghex-ui.xml.h:72
+#: src/ghex-ui.xml.h:71
 msgid "_File"
 msgstr "_Tập tin"
 
-#: src/ghex-ui.xml.h:73
+#: src/ghex-ui.xml.h:72
 msgid "_Find"
 msgstr "_Tìm"
 
-#: src/ghex-ui.xml.h:74
+#: src/ghex-ui.xml.h:73
 msgid "_Goto Byte..."
 msgstr "Đi tới _byte..."
 
-#: src/ghex-ui.xml.h:75
+#: src/ghex-ui.xml.h:74
 msgid "_Group Data As"
 msgstr "_Nhóm dữ liệu như"
 
-#: src/ghex-ui.xml.h:76
+#: src/ghex-ui.xml.h:75
 msgid "_Help"
 msgstr "Trợ _giúp"
 
-#: src/ghex-ui.xml.h:77
+#: src/ghex-ui.xml.h:76
 msgid "_Insert Mode"
 msgstr "Chế độ _chèn"
 
-#: src/ghex-ui.xml.h:78
+#: src/ghex-ui.xml.h:77
 msgid "_Longwords"
 msgstr "_Từ dài"
 
-#: src/ghex-ui.xml.h:79
+#: src/ghex-ui.xml.h:78
 msgid "_Open..."
 msgstr "_Mở..."
 
-#: src/ghex-ui.xml.h:80
+#: src/ghex-ui.xml.h:79
 msgid "_Paste"
 msgstr "_Dán"
 
-#: src/ghex-ui.xml.h:81
+#: src/ghex-ui.xml.h:80
 msgid "_Preferences"
 msgstr "_Thông số"
 
-#: src/ghex-ui.xml.h:82
+#: src/ghex-ui.xml.h:81
 msgid "_Print"
 msgstr "_In"
 
-#: src/ghex-ui.xml.h:83
+#: src/ghex-ui.xml.h:82
 msgid "_Redo"
 msgstr "_Làm lại"
 
-#: src/ghex-ui.xml.h:84
+#: src/ghex-ui.xml.h:83
 msgid "_Remove View"
 msgstr "Loại bỏ _khung nhìn"
 
 #: src/ghex-ui.xml.h:85
-msgid "_Replace"
-msgstr "_Thay thế"
-
-#: src/ghex-ui.xml.h:86
 msgid "_Revert"
 msgstr "Hoàn n_guyên"
 
-#: src/ghex-ui.xml.h:87
+#: src/ghex-ui.xml.h:86
 msgid "_Save"
 msgstr "_Lưu"
 
-#: src/ghex-ui.xml.h:88
+#: src/ghex-ui.xml.h:87
 msgid "_Undo"
 msgstr "_Hoàn lại"
 
-#: src/ghex-ui.xml.h:89
+#: src/ghex-ui.xml.h:88
 msgid "_View"
 msgstr "_Xem"
 
-#: src/ghex-ui.xml.h:90
+#: src/ghex-ui.xml.h:89
 msgid "_Windows"
 msgstr "_Cửa sổ"
 
-#: src/ghex-ui.xml.h:91
+#: src/ghex-ui.xml.h:90
 msgid "_Words"
 msgstr "_Từ"
 
-#: src/ghex-window.c:427
+#: src/ghex-window.c:435 src/ghex-window.c:798
 msgid "GHex"
 msgstr "GHex"
 
-#: src/ghex-window.c:546
+#: src/ghex-window.c:554
 #, c-format
 msgid "Offset: %s"
 msgstr "Offset: %s"
 
-#: src/ghex-window.c:681
+#: src/ghex-window.c:752
 #, c-format
 msgid "Activate file %s"
 msgstr "Kích hoạt tập tin %s"
 
-#: src/ghex-window.c:720
+#: src/ghex-window.c:794
 #, c-format
 msgid "GHex - %s"
 msgstr "GHex - %s"
 
-#: src/hex-document-ui.c:178
+#: src/ghex-window.c:926
+msgid "Select a file to save buffer as"
+msgstr "Chọn tập tin để lưu vùng đệm"
+
+#: src/ghex-window.c:956
+#, c-format
+msgid ""
+"File %s exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"Tập tin %s đã có rồi.\n"
+"Bạn có muốn ghi đè không?"
+
+#: src/ghex-window.c:991 src/ui.c:356
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "Đã lưu vùng đệm vào tập tin %s"
+
+#: src/ghex-window.c:997
+msgid "Error saving file!"
+msgstr "Lỗi lưu tập tin!"
+
+#: src/ghex-window.c:1003
+msgid "Can't open file for writing!"
+msgstr "Không thể mở tập tin để ghi!"
+
+#: src/ghex-window.c:1030
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -646,27 +684,35 @@ msgstr ""
 "Tập tin %s đã thay đổi kể từ lần lưu cuối cùng.\n"
 "Bạn có muốn lưu các thay đổi không?"
 
-#: src/hex-document-ui.c:188
+#: src/ghex-window.c:1040
 msgid "Do_n't save"
 msgstr "_Không lưu"
 
-#: src/hex-document.c:741
+#: src/ghex-window.c:1060 src/ui.c:344
+msgid "You don't have the permissions to save the file!"
+msgstr "Bạn không có đủ quyền truy cập để lưu tập tin!"
+
+#: src/ghex-window.c:1064 src/ui.c:349
+msgid "An error occured while saving file!"
+msgstr "Lỗi lưu tập tin!"
+
+#: src/hex-document.c:744
 msgid "Page"
 msgstr "Trang"
 
-#: src/hex-document.c:747 src/hex-document.c:872
+#: src/hex-document.c:750 src/hex-document.c:875
 msgid "Hex dump generated by"
 msgstr "Kết xuất hex bởi"
 
-#: src/hex-document.c:757
+#: src/hex-document.c:760
 msgid "Saving to HTML..."
 msgstr "Đang lưu vào HTML..."
 
-#: src/hex-document.c:795
+#: src/hex-document.c:798
 msgid "Previous page"
 msgstr "Trang trước"
 
-#: src/hex-document.c:810
+#: src/hex-document.c:813
 msgid "Next page"
 msgstr "Trang kế"
 
@@ -756,47 +802,47 @@ msgstr "Font"
 msgid "_Data font:"
 msgstr "Font _dữ liệu:"
 
-#: src/preferences.c:303
+#: src/preferences.c:305
 msgid "Data font"
 msgstr "Font dữ liệu"
 
-#: src/preferences.c:303
+#: src/preferences.c:305
 msgid "Select the data font"
 msgstr "Chọn font dữ liệu"
 
-#: src/preferences.c:317
+#: src/preferences.c:319
 msgid "Header fo_nt:"
 msgstr "Font _tiêu đề:"
 
-#: src/preferences.c:334
+#: src/preferences.c:338
 msgid "Header font"
 msgstr "Font tiêu đề"
 
-#: src/preferences.c:334
+#: src/preferences.c:338
 msgid "Select the header font"
 msgstr "Chọn font tiêu đề"
 
-#: src/preferences.c:362
+#: src/preferences.c:366
 msgid "_Print shaded box over:"
 msgstr "_In hộp bóng trên:"
 
-#: src/preferences.c:374
+#: src/preferences.c:378
 msgid "Box size"
 msgstr "Kích thước hộp"
 
-#: src/preferences.c:374
+#: src/preferences.c:378
 msgid "Select size of box (in number of lines)"
 msgstr "Chọn kích thước hộp (số dòng)"
 
-#: src/preferences.c:378
+#: src/preferences.c:382
 msgid "lines (0 for no box)"
 msgstr "dòng (0 là không có hộp)"
 
-#: src/preferences.c:385
+#: src/preferences.c:389
 msgid "Printing"
 msgstr "Đang in"
 
-#: src/preferences.c:527
+#: src/preferences.c:535
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -804,7 +850,7 @@ msgstr ""
 "Dạng thức chuỗi offset chứa dạng thức không hợp lệ.\n"
 "Chỉ có 'x', 'X', 'p', 'P', 'd' và 'o' là được phép."
 
-#: src/preferences.c:559
+#: src/preferences.c:567
 msgid "Can not open desired font!"
 msgstr "Không thể mở font yêu cầu!"
 
@@ -830,23 +876,23 @@ msgstr "X geometry specification (xem trang man \"X\")."
 msgid "GEOMETRY"
 msgstr "TỌA ĐỘ"
 
-#: src/ui.c:74
+#: src/ui.c:71
 msgid "hex data"
 msgstr "dữ liệu hex"
 
-#: src/ui.c:75
+#: src/ui.c:72
 msgid "ASCII data"
 msgstr "dữ liệu ASCII"
 
-#: src/ui.c:226
+#: src/ui.c:243
 msgid "GHex, a binary file editor"
 msgstr "GHex, bộ biên soạn nhị phân"
 
-#: src/ui.c:228
+#: src/ui.c:245
 msgid "Released under the terms of GNU Public License"
 msgstr "Được phát hành theo những điều khoản của giấy phép GPL"
 
-#: src/ui.c:251
+#: src/ui.c:268
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -855,62 +901,64 @@ msgstr ""
 "Lỗi hiển thị trợ giúp: \n"
 "%s"
 
-#: src/ui.c:328 src/ui.c:724
-msgid "Error saving file!"
-msgstr "Lỗi lưu tập tin!"
-
-#: src/ui.c:332 src/ui.c:719
-#, c-format
-msgid "Saved buffer to file %s"
-msgstr "Đã lưu vùng đệm vào tập tin %s"
-
-#: src/ui.c:363
+#: src/ui.c:385
 msgid "Select a file to open"
 msgstr "Chọn tập tin cần mở"
 
-#: src/ui.c:407
-msgid "Select a file to save buffer as"
-msgstr "Chọn tập tin để lưu vùng đệm"
-
-#: src/ui.c:464
-msgid "Select path and file name for the HTML source"
-msgstr "Chọn đường dẫn và tên tập tin HTML"
-
-#: src/ui.c:625
-#, c-format
-msgid "Really revert file %s?"
-msgstr "Thật sự muốn hoàn nguyên tập tin %s?"
-
-#: src/ui.c:640
-#, c-format
-msgid "Reverted buffer from file %s"
-msgstr "Đã hoàn nguyên vùng đệm từ tập tin %s"
-
-#: src/ui.c:669
+#: src/ui.c:423
 #, c-format
 msgid "Loaded file %s"
 msgstr "Đã nạp tập tin %s"
 
-#: src/ui.c:677
+#: src/ui.c:431
 msgid "Can not open file!"
 msgstr "Không thể mở tập tin!"
 
-#: src/ui.c:728
-msgid "Can't open file for writing!"
-msgstr "Không thể mở tập tin để ghi!"
+#: src/ui.c:495
+msgid "Select path and file name for the HTML source"
+msgstr "Chọn đường dẫn và tên tập tin HTML"
 
-#: src/ui.c:800
+#: src/ui.c:530
+msgid "You need to specify a base name for the HTML files."
+msgstr "Bạn cần xác định tên cơ sở (base name) cho tập tin HTML."
+
+#: src/ui.c:541 src/ui.c:563
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "Bạn không có đủ quyền truy cập để ghi vào thư mục được chọn.\n"
+
+#: src/ui.c:547
+msgid ""
+"Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr ""
+"Lưu thành HTML sẽ ghi đè một vài tập tin.\n"
+"Bạn có muốn tiến hành không?"
+
+#: src/ui.c:695
+#, c-format
+msgid "Really revert file %s?"
+msgstr "Thật sự muốn hoàn nguyên tập tin %s?"
+
+#: src/ui.c:713
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "Đã hoàn nguyên vùng đệm từ tập tin %s"
+
+#: src/ui.c:788
 msgid "Print Hex Document"
 msgstr "In tài liệu Hex"
 
-#: src/ui.c:805
+#: src/ui.c:793
 msgid "Pages"
 msgstr "Trang"
 
-#: src/ui.c:851
+#: src/ui.c:839
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Xem thử bản in"
+
+#~ msgid "About..."
+#~ msgstr "Giới thiệu..."
 
 #~ msgid "Strange find or replace string!"
 #~ msgstr "Chuỗi tìm/thay thế lạ!"
