@@ -26,10 +26,7 @@
 
 #include <stdio.h>
 
-#include <gtk/gtk.h>
-#include <gdk/gdk.h>
-
-#include <gnome.h>
+#include <glib-object.h>
 
 #define HEX_DOCUMENT_TYPE          (hex_document_get_type())
 #define HEX_DOCUMENT(obj)          G_TYPE_CHECK_INSTANCE_CAST (obj, hex_document_get_type (), HexDocument)

@@ -485,11 +485,25 @@ ghex_window_new(void)
 	return GTK_WIDGET(win);
 }
 
+static GtkWidget *
+create_document_view(HexDocument *doc)
+{
+    GtkWidget *gh = hex_document_add_view(doc);
+
+	gtk_hex_set_group_type(GTK_HEX(gh), def_group_type);
+
+	if (def_metrics && def_font_desc) {
+		gtk_hex_set_font(GTK_HEX(gh), def_metrics, def_font_desc);
+	}
+
+    return gh;
+}
+
 GtkWidget *
 ghex_window_new_from_doc(HexDocument *doc)
 {
     GtkWidget *win = ghex_window_new();
-    GtkWidget *gh = hex_document_add_view(doc);
+    GtkWidget *gh = create_document_view(doc);
 
     gtk_widget_show(gh);
     GHEX_WINDOW(win)->gh = GTK_HEX(gh);
@@ -583,10 +597,11 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
         full_path = g_strdup(filename);
     
     doc = hex_document_new(full_path);
+    hex_document_set_max_undo(doc, max_undo_depth);
     g_free(full_path);
     if(!doc)
         return FALSE;
-    gh = hex_document_add_view(doc);
+    gh = create_document_view(doc);
     gtk_hex_show_offsets(GTK_HEX(gh), show_offsets_column);
     g_signal_connect(G_OBJECT(doc), "document_changed",
                      G_CALLBACK(ghex_window_doc_changed), win);

@@ -1,7 +1,7 @@
-AC_PREREQ(2.52)
-AC_INIT(ghex, 2.2.0.1, http://bugzilla.gnome.org/enter_bug.cgi?product=ghex)
+AC_PREREQ(2.53)
+AC_INIT(ghex, 2.3.0, http://bugzilla.gnome.org/enter_bug.cgi?product=ghex)
 AC_CONFIG_SRCDIR(src/ghex-window.c)
-AM_INIT_AUTOMAKE(ghex, 2.2.0.1)
+AM_INIT_AUTOMAKE(ghex, 2.3.0)
 AM_CONFIG_HEADER(config.h)
 
 AM_MAINTAINER_MODE
@@ -20,9 +20,22 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
+LIBGTKHEX_RELEASE=1.0
+AC_SUBST(LIBGTKHEX_RELEASE)
+LIBGTKHEX_VERSION=${LIBGTKHEX_RELEASE}.0
+AC_SUBST(LIBGTKHEX_VERSION)
+AC_DEFINE(LIBGTKHEX_RELEASE_STRING, "gtkhex-$LIBGTKHEX_RELEASE", [GtkHex library release string.])
+
+PKG_CHECK_MODULES(LIBGTKHEX,
+		  gtk+-2.0 >= 2.0.0	\
+		  atk >= 1.0.0)
+
+AC_SUBST(LIBGTKHEX_LIBS)
+AC_SUBST(LIBGTKHEX_CFLAGS)
+
 PKG_CHECK_MODULES(GHEX,
 		  libgnomeui-2.0 >= 2.0.0	\
-		  libglade-2.0 >= 2.0.0	\
+		  libglade-2.0 >= 2.0.0		\
 		  libgnomeprintui-2.2)
 
 AC_SUBST(GHEX_CFLAGS)
@@ -37,7 +50,7 @@ dnl Gettext stuff
 dnl =================================================================
 GETTEXT_PACKAGE=ghex-2.0
 AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext package name.])
 ALL_LINGUAS="am az bg ca cs da de el en_GB es et eu fi fr ga gl hr hu it ja ko ms nl nn no pl pt pt_BR ro ru sk sl sv tr uk vi wa zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 
@@ -52,6 +65,9 @@ AC_SUBST(LDFLAGS)
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
+AC_ARG_ENABLE(debug,
+              [  --enable-debug      Enables extra debugging output], AC_DEFINE(ENABLE_DEBUG, 1, [Should verbose debugging output be enabled.]))
+
 dnl Checking for gconftool-2
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 
@@ -65,12 +81,12 @@ AC_OUTPUT([
 Makefile
 po/Makefile.in
 src/Makefile
-src/access/Makefile
 help/Makefile
 help/C/Makefile
 help/ja/Makefile
 omf-install/Makefile
-ghex.spec])
+ghex.spec
+gtkhex.pc])
 
 dnl FIXME: put back when this is added to SUBDIRS
 dnl omf-install/Makefile

@@ -293,7 +293,7 @@ create_prefs_dialog()
 	pui->df_button = gnome_print_font_picker_new();
 	gnome_print_font_picker_set_mode (GNOME_PRINT_FONT_PICKER (pui->df_button), GNOME_PRINT_FONT_PICKER_MODE_FONT_INFO);
 	gnome_print_font_picker_fi_set_use_font_in_label (GNOME_PRINT_FONT_PICKER (pui->df_button), TRUE, 14);
-	gnome_font_picker_fi_set_show_size (GNOME_PRINT_FONT_PICKER (pui->df_button), TRUE);
+	gnome_print_font_picker_fi_set_show_size (GNOME_PRINT_FONT_PICKER (pui->df_button), TRUE);
 	gtk_signal_connect (GTK_OBJECT (pui->df_button), "font_set",
 						GTK_SIGNAL_FUNC (select_font_cb), pui->pbox);
 	pui->df_label = gtk_label_new("");

@@ -24,10 +24,10 @@
 #include <gnome.h>
 #include <gdk/gdkkeysyms.h>
 
-#include "hex-document.h"
-#include "gtkhex.h"
+#include <hex-document.h>
+#include <gtkhex.h>
 
-#include "ghex-marshal.h"
+#include <ghex-marshal.h>
 
 #define DISPLAY_BORDER 4
 

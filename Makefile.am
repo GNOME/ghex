@@ -8,6 +8,9 @@ SUBDIRS = po src help omf-install
 schemadir = $(sysconfdir)/gconf/schemas
 schema_DATA = ghex2.schemas
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = gtkhex.pc
+
 EXTRA_DIST =			\
 	ghex.spec.in		\
 	ghex.desktop.in		\
@@ -22,10 +25,6 @@ EXTRA_DIST =			\
 dist-hook: ghex.spec
 	cp ghex.spec $(distdir)
 
-#pixmapsdir = $(datadir)/pixmaps
-#pixmaps_DATA =
-
-
 desktopdir = $(datadir)/applications
 desktop_in_files = ghex.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
@@ -35,16 +34,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 appicondir = $(datadir)/pixmaps
 appicon_DATA = gnome-ghex.png
 
-
-#sysdir   = $(datadir)/gnome/apps/Applications
-#sys_DATA = ghex.desktop
 @INTLTOOL_DESKTOP_RULE@
-
-## to automatically rebuild aclocal.m4 if any of the macros in
-## `macros/' change
-#@MAINT@include macros/macros.dep
-#@MAINT@macros/macros.dep: macros/Makefile.am
-#@MAINT@	cd macros && $(MAKE) macros.dep
 
 #Install the ghex2 schema file
 install-data-local:

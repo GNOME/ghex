@@ -309,7 +309,7 @@ static void ghex_prefs_notify_cb (GConfClient *gconf_client,
 	}
 	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_FONT)) {
 		if(gconf_value_get_string(entry->value) != NULL) {
-			gchar *font_name = gconf_value_get_string(entry->value);
+			const gchar *font_name = gconf_value_get_string(entry->value);
 			PangoFontMetrics *new_metrics;
 			PangoFontDescription *new_desc;
 
