@@ -1,3 +1,11 @@
+1998-12-08  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* ui.c, hex-document.c: add hint strings to menu descriptions.
+	* callbacks.c (customize_app_cb): new function that inserts
+	a statusbar and installs menu hints.
+	(view_changed_cb): install hints for child's menus.
+	* main.c: connect customize_app_cb to app_created signal.
+	
 1998-12-04  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* main.c (main): fixed initial toplevel window opening so

@@ -554,18 +554,32 @@ void cleanup_cb(GnomeMDI *mdi) {
 }
 
 void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
+	GnomeApp *app;
 	GtkWidget *shell, *item;
 	gint pos;
 	
 	if(mdi->active_view == NULL)
 		return;
+
+	app = gnome_mdi_get_app_from_view(mdi->active_view);
 	
-	shell = gnome_app_find_menu_pos(gnome_mdi_get_app_from_view(mdi->active_view)->menubar,
-									_("Edit/Group Data As/"), &pos);
+	shell = gnome_app_find_menu_pos(app->menubar, _("Edit/Group Data As/"), &pos);
 	
 	item = g_list_nth(GTK_MENU_SHELL(shell)->children, GTK_HEX(mdi->active_view)->group_type / 2)->data;
 	
 	gtk_menu_shell_activate_item(GTK_MENU_SHELL(shell), item, TRUE);
+
+	gnome_app_install_menu_hints(app, gnome_mdi_get_child_menu_info(app));
+}
+
+void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
+	GtkWidget *bar;
+
+	bar = gtk_statusbar_new();
+	gnome_app_set_statusbar(app, bar);
+	gtk_widget_show(bar);
+
+	gnome_app_install_menu_hints(app, gnome_mdi_get_menubar_info(app));
 }
 
 void conv_entry_cb(GtkEntry *entry, gint base) {

@@ -50,6 +50,7 @@ void remove_view_cb();
 
 gint remove_doc_cb();
 void view_changed_cb();
+void customize_app_cb();
 void cleanup_cb();
 
 void prefs_cb();
