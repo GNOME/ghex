@@ -1,12 +1,12 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# gnome-utils de.po file.
+# Copyright (C) 1999 Free Software Foundation, Inc.
+# Matthias Warkus <mawa@iname.com>, 1999.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-0.99.8.1\n"
-"POT-Creation-Date: 1999-07-29 14:24-0400\n"
-"PO-Revision-Date: 1999-06-09 16:43+02:00\n"
+"POT-Creation-Date: 1999-07-30 12:44+0200\n"
+"PO-Revision-Date: 1999-07-30 12:51+02:00\n"
 "Last-Translator: Matthias Warkus <mawa@iname.com>\n"
 "Language-Team: Matthias Warkus <mawa@iname.com>\n"
 "MIME-Version: 1.0\n"
@@ -62,9 +62,8 @@ msgid "ASCII"
 msgstr "ASCII"
 
 #: ghex/converter.c:90
-#, fuzzy
 msgid "Get cursor value"
-msgstr "Momentaner Wert"
+msgstr "Wert unter Cursor auslesen"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
 #: mini-utils/gshutdown/gshutdown.c:595
@@ -235,9 +234,9 @@ msgstr ""
 "Wollen Sie die Änderungen speichern?"
 
 #: ghex/main.c:173
-#, fuzzy, c-format
+#, c-format
 msgid "Offset: %s"
-msgstr "Offset: "
+msgstr "Offset: %s"
 
 #: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
 #: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
@@ -261,9 +260,8 @@ msgid "Maximum number of undo levels"
 msgstr "Chroniktiefe für den Rückgängig-Befehl"
 
 #: ghex/preferences.c:96
-#, fuzzy
 msgid "Show cursor offset in statusbar as"
-msgstr "Cursoroffset anzeigen: "
+msgstr "Cursoroffset im Statusbalken:"
 
 #: ghex/preferences.c:115
 msgid "Hexadecimal"
@@ -274,9 +272,8 @@ msgid "Custom"
 msgstr "Selbstgemacht"
 
 #: ghex/preferences.c:131
-#, fuzzy
 msgid "Show offsets column"
-msgstr "Cursoroffset anzeigen: "
+msgstr "Offsetspalte anzeigen"
 
 #: ghex/preferences.c:136
 msgid "Editing"
@@ -613,44 +610,41 @@ msgstr "Bezeichner"
 
 #: gstripchart/gstripchart.c:1465
 msgid "yellow"
-msgstr ""
+msgstr "gelb"
 
 #: gstripchart/gstripchart.c:1465
-#, fuzzy
 msgid "blue"
-msgstr "Wert"
+msgstr "blau"
 
 #: gstripchart/gstripchart.c:1465
 msgid "red"
-msgstr ""
+msgstr "rot"
 
 #: gstripchart/gstripchart.c:1465
 msgid "green"
-msgstr ""
+msgstr "grün"
 
 #: gstripchart/gstripchart.c:1465
 msgid "white"
-msgstr ""
+msgstr "weiß"
 
 #: gstripchart/gstripchart.c:1466
 msgid "Busy"
-msgstr ""
+msgstr "Beschäftigt"
 
 #: gstripchart/gstripchart.c:1466
-#, fuzzy
 msgid "Load"
-msgstr "Einlesen"
+msgstr "Last"
 
 #: gstripchart/gstripchart.c:1466
 msgid "PPP In"
-msgstr ""
+msgstr "PPP Rein"
 
 #: gstripchart/gstripchart.c:1466
 msgid "PPP Out"
-msgstr ""
+msgstr "PPP Raus"
 
 #: gstripchart/gstripchart.c:1466
-#, fuzzy
 msgid "Swap"
 msgstr "Swap"
 
@@ -684,7 +678,7 @@ msgstr "Momentaner Wert"
 
 #: gstripchart/gstripchart.c:1493
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #: gstripchart/gstripchart.c:1509
 msgid "Gnome Stripchart Parameters"
@@ -1246,7 +1240,7 @@ msgstr "Copyright 1998, unter der GNU General Public License."
 #: mini-utils/gless/gless.c:116
 #, c-format
 msgid "Reason %d\n"
-msgstr ""
+msgstr "Grund %d\n"
 
 #: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
@@ -1289,19 +1283,24 @@ msgid "Loading..."
 msgstr "Lade..."
 
 #: mini-utils/gless/gless.c:502
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "No such file or directory:\n"
 "%s"
-msgstr "Datei oder Verzeichnis nicht vorhanden:\n"
+msgstr ""
+"Datei oder Verzeichnis nicht vorhanden:\n"
+"%s"
 
 #: mini-utils/gless/gless.c:520
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to decompress and display the file:\n"
 "%s\n"
 "%s"
-msgstr "Konnte Datei nicht dekomprimieren und anzeigen:\n"
+msgstr ""
+"Konnte Datei nicht dekomprimieren und anzeigen:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:533
 msgid ""
@@ -1312,24 +1311,30 @@ msgstr ""
 "zcat liegt nicht in Ihrem Pfad."
 
 #: mini-utils/gless/gless.c:541
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error loading file:\n"
 "%s\n"
 "%s"
-msgstr "Fehler beim Laden der Datei:\n"
+msgstr ""
+"Fehler beim Laden der Datei:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:599
 msgid "Saving..."
 msgstr "Speichere..."
 
 #: mini-utils/gless/gless.c:610
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to write file:\n"
 "%s\n"
 "%s"
-msgstr "Konnte Datei nicht schreiben:\n"
+msgstr ""
+"Konnte Datei nicht schreiben:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:660
 msgid "Save Text As..."
@@ -1341,7 +1346,7 @@ msgstr "Textdatei öffnen..."
 
 #: mini-utils/gless/gless.c:764
 msgid "Sorry, no preferences yet."
-msgstr ""
+msgstr "Tut mir leid, noch keine Einstellungen möglich."
 
 #: mini-utils/gless/gless.c:851
 msgid "Searching..."
@@ -1352,12 +1357,15 @@ msgid "No search string was specified!"
 msgstr "Keine Suchzeichenkette wurde angegeben!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to execute command:\n"
 "%s\n"
 "%s"
-msgstr "Konnte Befehl nicht ausführen:\n"
+msgstr ""
+"Konnte Befehl nicht ausführen:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run Program"
@@ -1482,6 +1490,8 @@ msgid ""
 "%s\n"
 "You will lose any unsaved work."
 msgstr ""
+"%s\n"
+"Sie werden alle ungespeicherte Arbeit verlieren."
 
 #: mini-utils/gshutdown/gshutdown.c:458
 msgid "Don't ask next time."
@@ -1489,15 +1499,15 @@ msgstr "Nächstes Mal nicht fragen."
 
 #: mini-utils/gshutdown/gshutdown.c:685
 msgid "Command execution failed: fork failed"
-msgstr ""
+msgstr "Kommandoausführung fehlgeschlagen: fork() fehlgeschlagen"
 
 #: mini-utils/guname/guname.c:51
 msgid "Make guname act as a control center applet"
-msgstr ""
+msgstr "guname als Applet im Kontrollzentrum fungieren lassen"
 
 #: mini-utils/guname/guname.c:114
 msgid "an initialization error occurred while starting 'guname-capplet'."
-msgstr ""
+msgstr "Ein Initialisierungsfehler trat beim Starten von `guname-Capplet' auf."
 
 #: mini-utils/guname/guname.c:424
 msgid "System Information"
@@ -1512,9 +1522,10 @@ msgstr "Logodatei nicht gefunden"
 msgid "GNOME contributors:"
 msgstr "GNOME-Mitarbeiter:"
 
+# FIXME: why this?
 #: mini-utils/guname/guname.c:513
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-msgstr ""
+msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
 #: mini-utils/guname/guname.c:524
 msgid "GNOME: The GNU Network Object Model Environment"
@@ -1549,19 +1560,20 @@ msgid "Mail To..."
 msgstr "Schicken an..."
 
 #: mini-utils/guname/guname.c:680
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error closing file `%s': \n"
 "%s\n"
 "Some or all data may not have been written."
 msgstr ""
-"\n"
-"Eventuell wurden alle oder Teile der Daten nicht geschrieben."
+"Fehler beim Schließen der Datei `%s':\n"
+"%s\n"
+"Eventuell wurden die Datei ganz oder teilweise nicht geschrieben."
 
 #: mini-utils/guname/guname.c:692
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't open file `%s': %s"
-msgstr "Kann Datei nicht öffnen: `"
+msgstr "Kann Datei nicht öffnen: `%s': %s"
 
 #: mini-utils/guname/guname.c:707
 msgid "Save System Information As..."
@@ -1569,23 +1581,23 @@ msgstr "Speichere Systeminformation unter..."
 
 #. I don't think the error_string() will reliably mean anything.
 #: mini-utils/guname/guname.c:753
-#, fuzzy, c-format
+#, c-format
 msgid "Command failed ` %s ': %s"
-msgstr "Kommando fehlgeschlagen: ` "
+msgstr "Kommando fehlgeschlagen: `%s': %s"
 
 #: mini-utils/guname/guname.c:761
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't run command ` %s ': %s"
-msgstr "Kann Befehl nicht ausführen: ` "
+msgstr "Kann Befehl nicht ausführen: `%s': %s"
 
 #: mini-utils/guname/guname.c:785
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
-".\n"
-" Wollen Sie diese Information wirklich mailen?"
+"Die folgende Mail wird an %s geschickt werden.\n"
+"Wollen Sie diese Information wirklich mailen?"
 
 #: mini-utils/guname/guname.c:796
 msgid "Are you sure?"
@@ -1768,9 +1780,8 @@ msgid "Update Information"
 msgstr "Information auffrischen"
 
 #: mini-utils/gw/gw.c:466
-#, fuzzy
 msgid "Save not implemented yet\n"
-msgstr "Dies ist noch nicht implementiert!"
+msgstr "Abspeichern ist noch nicht implementiert\n"
 
 #: mini-utils/gw/gw.c:479
 msgid "Command Line"
@@ -1822,31 +1833,31 @@ msgstr "Befehl"
 #: mini-utils/gw/gw.c:947
 #, c-format
 msgid "Running: %s\n"
-msgstr ""
+msgstr "Führe aus: %s\n"
 
 #: mini-utils/idetool/idetool.c:20
 msgid "16-bit"
-msgstr ""
+msgstr "16-bit"
 
 #: mini-utils/idetool/idetool.c:21
 msgid "32-bit"
-msgstr ""
+msgstr "32-bit"
 
 #: mini-utils/idetool/idetool.c:22
 msgid "32-bit w/sync"
-msgstr ""
+msgstr "32-bit synch."
 
 #: mini-utils/idetool/idetool.c:27
 msgid "Sleeping"
-msgstr ""
+msgstr "Schläft"
 
 #: mini-utils/idetool/idetool.c:28
 msgid "Active/Idle"
-msgstr ""
+msgstr "Aktiv/Ruht"
 
 #: mini-utils/idetool/idetool.c:29
 msgid "Standby"
-msgstr ""
+msgstr "Bereit"
 
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
@@ -1882,7 +1893,7 @@ msgstr "Einstellungen beibehalten"
 
 #: mini-utils/idetool/idetool.c:207
 msgid "None"
-msgstr ""
+msgstr "Keine"
 
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
@@ -1896,14 +1907,15 @@ msgstr "(Dual Port)"
 msgid "(Dual Port Cache)"
 msgstr "(Dual Port Cache)"
 
+# FIXME: the second %s (the optional s) need to be localised
 #: mini-utils/idetool/idetool.c:243
 #, c-format
 msgid "Yes (%d sector%s)"
-msgstr ""
+msgstr "Ja (%d sector%s)"
 
 #: mini-utils/idetool/idetool.c:245
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
 msgid "Model"
@@ -1972,21 +1984,3 @@ msgstr "Nur der Superuser kann dieses Werkzeug benutzen"
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "Sie scheinen keine IDE-Laufwerke zu besitzen"
-
-#~ msgid "Error closing file `"
-#~ msgstr "Fehler beim Schließen der Datei `"
-
-#~ msgid " ': "
-#~ msgstr " ': "
-
-#~ msgid "The following mail will be sent to "
-#~ msgstr "Die folgende Mail wird gesendet an "
-
-#~ msgid "%ld%% %s used."
-#~ msgstr "%ld%% %s benutzt."
-
-#~ msgid "memory"
-#~ msgstr "Speicher"
-
-#~ msgid "%2d%% full "
-#~ msgstr "%2d%% voll "
