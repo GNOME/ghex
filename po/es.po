@@ -52,7 +52,7 @@ msgstr "Re-cargar"
 msgid "Reload Configuration File"
 msgstr "Re-cargar el archivo de configuración"
 
-#: gtt/toolbar.c:152
+#: ghex/ui.c:263 ghex/ui.c:293 gtt/toolbar.c:152
 msgid "Save"
 msgstr "Guardar"
 
@@ -116,7 +116,7 @@ msgstr "Manual"
 msgid "Manual..."
 msgstr "Manual..."
 
-#: gtt/menus.c:40 gtt/toolbar.c:198
+#: ghex/ui.c:323 gtt/menus.c:40 gtt/toolbar.c:198
 msgid "Quit"
 msgstr "Terminar"
 
@@ -152,7 +152,7 @@ msgstr "Advertencia"
 msgid "I could not write the configuration file!"
 msgstr "¡No pude guardar el archivo de configuración!"
 
-#: genius/genius.c:119 gtt/menucmd.c:86
+#: genius/genius.c:127 ghex/ui.c:78 ghex/ui.c:87 gtt/menucmd.c:86
 msgid "OK"
 msgstr "Aceptar"
 
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Clear Daily Counter"
 msgstr "Borrar el contador diario"
 
-#: gtt/menus.c:70 gtt/menus.c:128
+#: genius/genius.c:459 gtt/menus.c:70 gtt/menus.c:128
 msgid "Properties..."
 msgstr "Propiedades..."
 
@@ -200,19 +200,19 @@ msgstr "Detiene"
 msgid "Timer Running"
 msgstr "Cronómetro corriendo"
 
-#: gtop/main.c:128 gtt/menus.c:103
+#: genius/genius.c:478 ghex/ui.c:412 gtop/main.c:129 gtt/menus.c:103
 msgid "About..."
 msgstr "Acerca de..."
 
-#: gtop/main.c:147 gtt/menus.c:113
+#: ghex/ui.c:331 gtop/main.c:148 gtt/menus.c:113
 msgid "File"
 msgstr "Archivo"
 
-#: gtt/menus.c:115
+#: ghex/ui.c:367 gtt/menus.c:115
 msgid "Edit"
 msgstr "Edición"
 
-#: genius/genius.c:322 gtop/main.c:150 gtt/menus.c:120
+#: genius/genius.c:491 ghex/ui.c:430 gtop/main.c:152 gtt/menus.c:120
 msgid "Help"
 msgstr "Ayuda"
 
@@ -268,7 +268,7 @@ msgstr "programa terminado"
 msgid "program started"
 msgstr "programa iniciado"
 
-#: genius/genius.c:392 gtt/options.c:197
+#: genius/genius.c:604 gtt/options.c:197
 msgid "Display"
 msgstr "Despliegue"
 
@@ -372,12 +372,11 @@ msgstr "Preferencias"
 msgid "Misc"
 msgstr "Varios"
 
-#. define one empty project on the first start
-#: gtt/clist.c:128 gtt/prop.c:55
+#: gtt/prop.c:55
 msgid "empty"
 msgstr "vacio"
 
-#: gtt/prop.c:161
+#: genius/genius.c:356 gtt/prop.c:161
 msgid "Properties"
 msgstr "Propiedades"
 
@@ -409,153 +408,206 @@ msgstr "segundos"
 msgid "Project Time ever:"
 msgstr "Tiempo total del proyecto:"
 
-#: gtt/clist.c:86
-msgid "Time"
-msgstr "Tiempo"
+#: gtt/clist.c:97
+msgid "Total"
+msgstr "Total"
 
-#: gtt/clist.c:87
+#: gtt/clist.c:98
+msgid "Today"
+msgstr "Hoy"
+
+#: gtt/clist.c:99
 msgid "Project Title"
 msgstr "Título del proyecto"
 
-#: gtop/main.c:62
+#: gtt/clist.c:100
+msgid "Description"
+msgstr "Descripción"
+
+#: gtop/main.c:63
 msgid "GTop"
 msgstr "GTop"
 
 #. copyrigth notice
-#: gtop/main.c:64
+#: gtop/main.c:65
 msgid "(C) 1998 the Free Software Foundation"
 msgstr ""
 
 #. another comments
-#: gtop/main.c:67
+#: gtop/main.c:68
 msgid "The GNOME System Monitor program"
-msgstr ""
+msgstr "El monitor del sistema de GNOME"
 
-#: gtop/main.c:134
+#: gtop/main.c:135
 msgid "item 1"
 msgstr "item 1"
 
-#: gtop/main.c:135
+#: gtop/main.c:136
 msgid "item 2"
 msgstr "item 2"
 
-#: gtop/main.c:136
+#: gtop/main.c:137
 msgid "item 3"
 msgstr "item 3"
 
-#: gtop/main.c:141
+#: genius/genius.c:461 gtop/main.c:142
 msgid "Exit"
 msgstr "Salir"
 
-#: gtop/main.c:148
+#: genius/genius.c:488 gtop/main.c:149
 msgid "View"
 msgstr "Ver"
 
-#: gtop/main.c:149 gtop/sysview.c:34
+#: gtop/main.c:150
+msgid "Memory"
+msgstr "Memoria"
+
+#: gtop/main.c:151 gtop/sysview.c:34
 msgid "System"
 msgstr "Sistema"
 
-#: gtop/main.c:155
+#: gtop/main.c:157
 msgid "Start / Stop sampling"
 msgstr "Iniciar/Detener muestreo"
 
-#: gtop/main.c:181
+#: gtop/main.c:183
 msgid "GNOME System Monitor"
 msgstr "Monitor del sistema de GNOME"
 
-#: gtop/procview.c:162
+#: gtop/procview.c:163
 msgid "Process ID"
 msgstr "ID del proceso"
 
-#: gtop/procview.c:164
+#: gtop/procview.c:165
 msgid "User name"
 msgstr "Nombre de usuario"
 
-#: gtop/procview.c:166
+#: gtop/procview.c:167
 msgid "Priority"
 msgstr "Prioridad"
 
-#: gtop/procview.c:168
+#: gtop/procview.c:169
 msgid "Nice"
 msgstr "Nice"
 
-#: gtop/procview.c:170
+#: gtop/procview.c:171
 msgid "Used memory size"
 msgstr "Memoria en uso"
 
-#: gtop/procview.c:172
-msgid "Resident memory size"
-msgstr "Memoria residente en uso"
+#: gtop/procview.c:173
+msgid "Resident memory set size"
+msgstr "Tamaño de la memoria residente"
 
-#: gtop/procview.c:174
+#: gtop/procview.c:175
 msgid "Shared memory size"
 msgstr "Memoria compartida"
 
-#: gtop/procview.c:176
+#: gtop/procview.c:177
 msgid "Process state"
 msgstr "Estado del proceso"
 
-#: gtop/procview.c:178
+#: gtop/procview.c:179
 msgid "Percent CPU usage"
 msgstr "Porcentage de uso del CPU"
 
-#: gtop/procview.c:180
+#: gtop/procview.c:181
 msgid "Percent memory usage"
 msgstr "Porcentage de uso de la memoria"
 
-#: gtop/procview.c:182
+#: gtop/procview.c:183
 msgid "Time consumed"
 msgstr "Tiempo consumido"
 
-#: gtop/procview.c:184
+#: gtop/procview.c:185
 msgid "User time consumed"
 msgstr "Tiempo de usuario consumido"
 
-#: gtop/procview.c:186
+#: gtop/procview.c:187
 msgid "System time consumed"
 msgstr "Tiempo de sistema consumido"
 
-#: gtop/procview.c:188
+#: gtop/procview.c:189
 msgid "Command"
 msgstr "Comando"
 
-#: gtop/procview.c:298
+#: gtop/procview.c:191
+msgid "Resident memory size"
+msgstr "Memoria residente en uso"
+
+#: gtop/procview.c:301
 msgid "All processes"
 msgstr "Todos los procesos"
 
-#: gtop/procview.c:300
+#: gtop/procview.c:303
 msgid "User processes"
 msgstr "Procesos de usuario"
 
-#: gtop/procview.c:302
+#: gtop/procview.c:305
 msgid "TTY processes"
 msgstr "Procesos con terminal"
 
-#: gtop/procview.c:388
+#: gtop/procview.c:391
 msgid "Processes"
 msgstr "Procesos"
 
-#: gtop/procview.c:574
+#: gtop/procview.c:577
 msgid "Send"
 msgstr "Enviar"
 
-#: gtop/procview.c:595
+#: gtop/procview.c:598
 msgid "More ..."
 msgstr "Más..."
 
-#: gtop/procview.c:609
+#: gtop/procview.c:612
 msgid "SIGTERM"
 msgstr ""
 
-#: gtop/procview.c:616
+#: gtop/procview.c:619
 msgid "SIGKILL"
 msgstr ""
 
-#: gtop/procview.c:628
+#: gtop/procview.c:631
 msgid "Details ..."
 msgstr "Detalles..."
 
-#: gtop/details.c:47
+#: gtop/memusage.c:26
+msgid "Resident"
+msgstr "Residente"
+
+#: gtop/memusage.c:28
+msgid "Shared"
+msgstr "Compartida"
+
+#: gtop/memusage.c:30
+msgid "Size"
+msgstr "Tamaño"
+
+#: gtop/memusage.c:76
+msgid "Memory usage"
+msgstr "Uso de la memoria"
+
+#: gtop/memusage.c:175
+msgid "Physical Memory Breakdown"
+msgstr "Detalle sobre el uso de la memoria física"
+
+#: gtop/memusage.c:179
+msgid "Total Physical Memory %ldk (%ldk used)"
+msgstr "Total de memoria física %ldk (%ldk usada)"
+
+#: gtop/memusage.c:272
+msgid "Free"
+msgstr "Libre"
+
+#. the Buffers menu
+#: ghex/ui.c:404 gtop/memusage.c:281
+msgid "Buffers"
+msgstr "Buffers"
+
+#: gtop/memusage.c:285
+msgid "Kernel"
+msgstr "Núcleo (kernel)"
+
+#: ghex/ui.c:270 ghex/ui.c:313 gtop/details.c:47
 msgid "Close"
 msgstr "Cerrar"
 
@@ -623,139 +675,343 @@ msgstr "Pila"
 msgid "Hole"
 msgstr "Hoyo"
 
-#: gtop/details.c:486
+#: gtop/details.c:476
 msgid "Graphical memory map"
 msgstr "Mapa de memoria gráfico"
 
-#: genius/calc.c:277
+#: genius/calc.c:280
 msgid "ERROR: Probably corrupt stack!"
 msgstr "ERROR: La pida probablemente está corrupta"
 
-#: genius/calc.c:301
+#: genius/calc.c:304
 msgid "ERROR: "
 msgstr "ERROR: "
 
-#: genius/calc.c:303
+#: genius/calc.c:306
 msgid " before '"
 msgstr " antes '"
 
-#: genius/genius.c:223 genius/genius.c:339
+#: genius/genius.c:231 genius/genius.c:504
 msgid "GnomENIUS Calculator"
 msgstr "GnomeENIUS - Calculadora"
 
-#. another comments
-#: genius/genius.c:228
+#: genius/genius.c:236
 msgid "The Gnome Calculator program"
 msgstr "La calculadora de GNOME"
 
-#: genius/genius.c:302
-msgid "Calculator/Exit"
-msgstr "Calculadora/Salir"
+#: genius/genius.c:346
+msgid "GnomENIUS Calculator setup"
+msgstr "GnomENUIS configuración de la calculadora"
 
-#: genius/genius.c:302
-msgid "<control>X"
-msgstr ""
-
-#: genius/genius.c:303
-msgid "View/<check>Numpad"
-msgstr "Ver/<chec>Tablero de números"
-
-#: genius/genius.c:304
-msgid "View/<check>Scientific"
-msgstr "Ver/<check>Científica"
-
-#: genius/genius.c:305
-msgid "View/<check>Options"
-msgstr "Ver/<check>Opciones"
-
-#: genius/genius.c:306
-msgid "Help/About"
-msgstr "Ayuda/Acerca de..."
-
-#: genius/genius.c:325
-msgid "View/Numpad"
-msgstr "Ver/Tablero de números"
-
-#: genius/genius.c:328
-msgid "View/Options"
-msgstr "Ver/Opciones"
-
-#. numpad
-#: genius/genius.c:428
-msgid "Numpad"
-msgstr "Tablero de números"
-
-#: genius/genius.c:450
-msgid "Scientific"
-msgstr "Científica"
-
-#: genius/genius.c:462
-msgid "Options"
-msgstr "Opciones"
-
-#: genius/genius.c:467
+#: genius/genius.c:360
 msgid "Prefix notation"
 msgstr "Notación prefija"
 
-#: genius/genius.c:474
+#: genius/genius.c:371
 msgid "Infix notation"
 msgstr "Notación infija"
 
-#: genius/genius.c:482
+#: genius/genius.c:382
 msgid "Postfix notation (RPN)"
 msgstr "Notación postfija"
 
-#: genius/genius.c:491
+#: genius/genius.c:396
 msgid "Full (exact) answers"
 msgstr "Respuestas completas"
 
-#: genius/genius.c:497
+#: genius/genius.c:406
 msgid "Make floats integers (e.g. 10.0=10)"
 msgstr "Haga los número de punto flotante enteros (por ejemplo: 10.0=10)"
 
-#: genius/genius.c:507
+#: genius/genius.c:415
 msgid "Results as floats"
 msgstr "Los resultados son número de punto flotante"
 
-#: genius/genius.c:513
+#: genius/genius.c:424
 msgid "Floats in scientific notation"
 msgstr "Números de punto flotante en la notación científica"
 
-#: genius/eval.c:329
+#. numpad
+#: genius/genius.c:467 genius/genius.c:640
+msgid "Numpad"
+msgstr "Tablero de números"
+
+#. scientific
+#: genius/genius.c:469 genius/genius.c:665
+msgid "Scientific"
+msgstr "Científica"
+
+#: genius/genius.c:485
+msgid "Calculator"
+msgstr "Calculadora"
+
+#: genius/eval.c:332
 msgid "Variable used uninitialized!"
 msgstr "La variable fue usada sin haber sido inicializada"
 
-#: genius/eval.c:480
+#: genius/eval.c:483
 msgid "Left value is NOT a number! (ignoring if construct)"
 msgstr "El valor de la izquiera no es un número! (ignorando la construcción if)"
 
-#: genius/eval.c:492
+#: genius/eval.c:495
 msgid "Left value is NOT a number! (ignoring ifelse construct)"
 msgstr "El valor de la izquiera no es un número (ignorando construcción ifelse)"
 
-#: genius/eval.c:706
+#: genius/eval.c:709
 msgid "'=' can't function without proper nodes!"
 msgstr "'=' Requiere una función completa"
 
-#: genius/eval.c:710
+#: genius/eval.c:713
 msgid "Left value is NOT a 0\\function! (ignoring '=')"
 msgstr "El valor de la izquierda no es una 0\\función! (ignorando `=')"
 
-#: genius/eval.c:714
+#: genius/eval.c:717
 msgid "Right value is NOT computed! (ignoring '=')"
 msgstr "El valor de la derecha no se ha calculado (ignorando '=')"
 
-#: genius/eval.c:727
+#: genius/eval.c:730
 msgid "funcdefop can't function without proper nodes!"
 msgstr "funcdefop no puedo crear una función sin los nodos adecuados"
 
-#: genius/eval.c:730
+#: genius/eval.c:733
 msgid "Left value is NOT a function! (ignoring function definition)"
 msgstr "El valor de la izquierda no es una función (ignorando la definición de la función)"
 
-#: genius/util.c:125
+#: genius/util.c:128
 msgid "Stack underflow!"
 msgstr "Error en la pila"
+
+#: ghex/callbacks.c:19
+msgid "GHex, a binary file editor"
+msgstr "GHex, un editor binario de archivos"
+
+#: ghex/callbacks.c:21
+msgid ""
+"A small contribution to the GNOME project.\n"
+"Send bug reports (patches preferred ;)) to:\n"
+"<jaka.mocnik@kiss.uni-lj.si>"
+msgstr ""
+
+#: ghex/callbacks.c:65 ghex/callbacks.c:115
+msgid "Error saving file!"
+msgstr "Error al guardar el archivo"
+
+#: ghex/callbacks.c:87
+msgid "Can not open file!"
+msgstr "No puedo abrir el archivo"
+
+#: ghex/callbacks.c:119
+msgid "Can't open file for writing!"
+msgstr "No puedo abrir el archivo para escribir"
+
+#: ghex/callbacks.c:132
+msgid "Select a file to open"
+msgstr "Seleccione el archivo a abrir"
+
+#: ghex/callbacks.c:150
+msgid "Select a file to save buffer as"
+msgstr "Sleccione el archivo donde quiere guardar el buffer actual"
+
+#: ghex/callbacks.c:264 ghex/callbacks.c:287
+msgid "There seems to be no string to search for!"
+msgstr "No parece existir la cadena que se desea buscar"
+
+#: ghex/callbacks.c:269 ghex/callbacks.c:292
+msgid "There is no active buffer to search!"
+msgstr "No hay un buffer activo para buscar"
+
+#: ghex/callbacks.c:278
+msgid "End Of File reached"
+msgstr "Fin de archivo encontrado"
+
+#: ghex/callbacks.c:301
+msgid "Beginning Of File reached"
+msgstr "Pricipio del archivo encontrado"
+
+#: ghex/callbacks.c:309
+msgid "There is no active buffer to move the cursor in!"
+msgstr "No hay un buffer activo para mover el cursor"
+
+#: ghex/callbacks.c:314
+msgid "No offset has been specified!"
+msgstr "No se ha especificado el desplazamiento"
+
+#: ghex/callbacks.c:321
+msgid "The offset must be a positive integer value!"
+msgstr "El desplazamiento debe de ser un número entero positivo"
+
+#: ghex/callbacks.c:326
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "No se puede ir más allá del fin del archivo"
+
+#: ghex/callbacks.c:339 ghex/callbacks.c:374
+msgid "There is no active buffer to replace data in!"
+msgstr "No existe un buffer activo en el cual remplazar los datos"
+
+#: ghex/callbacks.c:347 ghex/callbacks.c:382
+msgid "Erroneous find or replace string!"
+msgstr "Búsqueda errónea"
+
+#: ghex/callbacks.c:352 ghex/callbacks.c:387
+msgid "Both strings must be of the same length!"
+msgstr "Ambas cadenas deben de tener la misma longitud"
+
+#: ghex/callbacks.c:365
+msgid "End Of File reached!"
+msgstr "Fin de archivo"
+
+#: ghex/callbacks.c:402
+msgid "Replaced %d occurencies."
+msgstr "Hubo %d rempazos"
+
+#: ghex/callbacks.c:420
+msgid "Can not open desired font!"
+msgstr "No puedo abrir la fuente deseada"
+
+#: ghex/config.c:38
+msgid "Can not open configured font!"
+msgstr "No puedo abrir la fuente configurada"
+
+#: ghex/gnome-support.c:13
+msgid "ID"
+msgstr ""
+
+#: ghex/gnome-support.c:13
+msgid "Discard session"
+msgstr "Descarta la sesión"
+
+#: ghex/ui.c:35
+msgid "Single Bytes"
+msgstr "Bytes aislados"
+
+#: ghex/ui.c:36
+msgid "Words"
+msgstr "Palabras"
+
+#: ghex/ui.c:37
+msgid "Longwords"
+msgstr "Palabras largas"
+
+#: ghex/ui.c:259
+msgid "Open"
+msgstr "Abrir"
+
+#: ghex/ui.c:259
+msgid "Open a file"
+msgstr "Abrir un archivo"
+
+#: ghex/ui.c:263
+msgid "Save file"
+msgstr "Guardar archivo"
+
+#: ghex/ui.c:267 ghex/ui.c:307
+msgid "Revert"
+msgstr "Revertir"
+
+#: ghex/ui.c:267
+msgid "Revert file"
+msgstr "Revertir archivo"
+
+#: ghex/ui.c:270
+msgid "Close file"
+msgstr "Cerrar archivo"
+
+#: ghex/ui.c:285
+msgid "Open..."
+msgstr "Abrir..."
+
+#: ghex/ui.c:301
+msgid "Save as..."
+msgstr "Guardar como..."
+
+#: ghex/ui.c:339
+msgid "Find..."
+msgstr "Buscar..."
+
+#: ghex/ui.c:347
+msgid "Replace..."
+msgstr "Remplazar..."
+
+#: ghex/ui.c:359
+msgid "Goto byte"
+msgstr "Saltar al byte"
+
+#: ghex/ui.c:375
+msgid "Group Data As"
+msgstr "Agrupar los datos como"
+
+#: ghex/ui.c:381
+msgid "Select Font..."
+msgstr "Seleccionar fuente"
+
+#: ghex/ui.c:391
+msgid "Save Configuration On Exit"
+msgstr "Guardar la configuración al terminar"
+
+#: ghex/ui.c:398
+msgid "Options"
+msgstr "Opciones"
+
+#: ghex/ui.c:424
+msgid "Help..."
+msgstr "Ayuda..."
+
+#: ghex/ui.c:446
+msgid "Find Data"
+msgstr "Busca los datos"
+
+#. f_next = gtk_button_new_with_label(_("Find Next"));
+#: ghex/ui.c:454
+msgid "Find Next"
+msgstr "Encuentra el siguiente"
+
+#: ghex/ui.c:461
+msgid "Find Previous"
+msgstr "Encuentra el anterior"
+
+#: ghex/ui.c:492
+msgid "Find & Replace Data"
+msgstr "Buscar y remplazar datos"
+
+#: ghex/ui.c:507
+msgid "Find next"
+msgstr "Encontrar el siguiente"
+
+#: ghex/ui.c:514
+msgid "Replace"
+msgstr "Replazar"
+
+#: ghex/ui.c:521
+msgid "Replace All"
+msgstr "Remplazar todos"
+
+#: ghex/ui.c:550
+msgid "Jump To Byte"
+msgstr "Saltar al byte"
+# msgid "View/<check>Options"
+# msgstr "Ver/<check>Opciones"
+# 
+# msgid "Help/About"
+# msgstr "Ayuda/Acerca de..."
+# 
+# msgid "Calculator/Exit"
+# msgstr "Calculadora/Salir"
+# 
+# msgid "View/Options"
+# msgstr "Ver/Opciones"
+# 
+# msgid "Time"
+# msgstr "Tiempo"
+# 
+# msgid "View/<check>Numpad"
+# msgstr "Ver/<chec>Tablero de números"
+# 
+# msgid "View/<check>Scientific"
+# msgstr "Ver/<check>Científica"
+# 
+# msgid "View/Numpad"
+# msgstr "Ver/Tablero de números"
+# 
 # msgid "Help Contents..."
 # msgstr "Contenido de la ayuda..."
 # 
