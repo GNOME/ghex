@@ -5,7 +5,7 @@
 # Pablo Saratxaga <srtxg@chanae.alphanet.ch> 1999
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 1.0.1\n"
+"Project-Id-Version: gnome-utils 1.0.12\n"
 "POT-Creation-Date: 1999-07-29 14:24-0400\n"
 "PO-Revision-Date: 1999-01-13 14:09+0100\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
@@ -61,9 +61,8 @@ msgid "ASCII"
 msgstr "ASCII"
 
 #: ghex/converter.c:90
-#, fuzzy
 msgid "Get cursor value"
-msgstr "Valor actual"
+msgstr "Recuperar valor del cursor"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
 #: mini-utils/gshutdown/gshutdown.c:595
@@ -234,9 +233,8 @@ msgstr ""
 "¿Desea guardar los cambios?"
 
 #: ghex/main.c:173
-#, fuzzy, c-format
 msgid "Offset: %s"
-msgstr "Offset: "
+msgstr "Offset: %s"
 
 #: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
 #: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
@@ -260,9 +258,8 @@ msgid "Maximum number of undo levels"
 msgstr "Nivel máximo de memoria de la anulación (undo)"
 
 #: ghex/preferences.c:96
-#, fuzzy
 msgid "Show cursor offset in statusbar as"
-msgstr "Ver el cursor del offset como"
+msgstr "Ver el offset del cursor en la barra de estado como"
 
 #: ghex/preferences.c:115
 msgid "Hexadecimal"
@@ -273,9 +270,8 @@ msgid "Custom"
 msgstr "Personalizado"
 
 #: ghex/preferences.c:131
-#, fuzzy
 msgid "Show offsets column"
-msgstr "Ver el cursor del offset como"
+msgstr "Ver la columna de los offsets"
 
 #: ghex/preferences.c:136
 msgid "Editing"
@@ -746,16 +742,18 @@ msgstr "SEG"
 msgid "chart update interval"
 msgstr "intervalo de actualización del grafo"
 
-# fuzzy
 #: gstripchart/gstripchart.c:1838
+#, fuzzy
 msgid "chart LP filter TC"
 msgstr ""
 
 #: gstripchart/gstripchart.c:1840
+#, fuzzy
 msgid "slider update interval"
 msgstr ""
 
 #: gstripchart/gstripchart.c:1842
+#, fuzzy
 msgid "slider LP filter TC"
 msgstr ""
 
@@ -764,6 +762,7 @@ msgid "add menubar"
 msgstr "añadir barra de menú"
 
 #: gstripchart/gstripchart.c:1846
+#, fuzzy
 msgid "omit slider"
 msgstr ""
 
@@ -1248,7 +1247,7 @@ msgstr "Copyright 1998, bajo la Licencia Pública General de GNU."
 #: mini-utils/gless/gless.c:116
 #, c-format
 msgid "Reason %d\n"
-msgstr ""
+msgstr "Razón %d\n"
 
 #: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
@@ -1291,19 +1290,22 @@ msgid "Loading..."
 msgstr "Cargando..."
 
 #: mini-utils/gless/gless.c:502
-#, fuzzy, c-format
 msgid ""
 "No such file or directory:\n"
 "%s"
-msgstr "No existe el archivo o el directorio:\n"
+msgstr ""
+"No existe el archivo o el directorio:\n"
+"%s"
 
 #: mini-utils/gless/gless.c:520
-#, fuzzy, c-format
 msgid ""
 "Failed to decompress and display the file:\n"
 "%s\n"
 "%s"
-msgstr "Falló la descompresión y afichage del archivo:\n"
+msgstr ""
+"Falló la descompresión y afichage del archivo:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:533
 msgid ""
@@ -1314,24 +1316,28 @@ msgstr ""
 "zcat no se encuentra en el path."
 
 #: mini-utils/gless/gless.c:541
-#, fuzzy, c-format
 msgid ""
 "Error loading file:\n"
 "%s\n"
 "%s"
-msgstr "Error al cargar el archivo:\n"
+msgstr ""
+"Error al cargar el archivo:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:599
 msgid "Saving..."
 msgstr "Guardando..."
 
 #: mini-utils/gless/gless.c:610
-#, fuzzy, c-format
 msgid ""
 "Failed to write file:\n"
 "%s\n"
 "%s"
-msgstr "Falló escribir el archivo:\n"
+msgstr ""
+"Fallo al escribir el archivo:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:660
 msgid "Save Text As..."
@@ -1343,7 +1349,7 @@ msgstr "Abrir Archivo Texto..."
 
 #: mini-utils/gless/gless.c:764
 msgid "Sorry, no preferences yet."
-msgstr ""
+msgstr "Disculpe, pero no hay preferencias por le momento."
 
 #: mini-utils/gless/gless.c:851
 msgid "Searching..."
@@ -1354,12 +1360,14 @@ msgid "No search string was specified!"
 msgstr "¡Ninguna cadena de texto fué especificada!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
-#, fuzzy, c-format
 msgid ""
 "Failed to execute command:\n"
 "%s\n"
 "%s"
-msgstr "Falló ejecutar el comando:\n"
+msgstr ""
+"Fallo al ejecutar el comando:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run Program"
@@ -1483,6 +1491,8 @@ msgid ""
 "%s\n"
 "You will lose any unsaved work."
 msgstr ""
+"%s\n"
+"Va a perder todo trabajo no guardado."
 
 #: mini-utils/gshutdown/gshutdown.c:458
 msgid "Don't ask next time."
@@ -1490,15 +1500,15 @@ msgstr "No preguntar la próxima vez."
 
 #: mini-utils/gshutdown/gshutdown.c:685
 msgid "Command execution failed: fork failed"
-msgstr ""
+msgstr "Falló la ejecución del comando: falló el fork"
 
 #: mini-utils/guname/guname.c:51
 msgid "Make guname act as a control center applet"
-msgstr ""
+msgstr "Hacer que guname funcione como un applet centro de control"
 
 #: mini-utils/guname/guname.c:114
 msgid "an initialization error occurred while starting 'guname-capplet'."
-msgstr ""
+msgstr "ocurrió un error de inicialización al lanzar 'guname-capplet'."
 
 #: mini-utils/guname/guname.c:424
 msgid "System Information"
@@ -1515,7 +1525,7 @@ msgstr "Contribuidores de GNOME:"
 
 #: mini-utils/guname/guname.c:513
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-msgstr ""
+msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-iso8859-1"
 
 #: mini-utils/guname/guname.c:524
 msgid "GNOME: The GNU Network Object Model Environment"
@@ -1550,19 +1560,18 @@ msgid "Mail To..."
 msgstr "Mandar correo a..."
 
 #: mini-utils/guname/guname.c:680
-#, fuzzy, c-format
 msgid ""
 "Error closing file `%s': \n"
 "%s\n"
 "Some or all data may not have been written."
 msgstr ""
-"\n"
+"Error al cerrar el archivo '%s': \n"
+"%s\n"
 "Es posible que alguna o toda la información no haya podido escribirse."
 
 #: mini-utils/guname/guname.c:692
-#, fuzzy, c-format
 msgid "Couldn't open file `%s': %s"
-msgstr "No pude abrir el archivo '"
+msgstr "No pude abrir el archivo '%s': %s"
 
 #: mini-utils/guname/guname.c:707
 msgid "Save System Information As..."
@@ -1570,22 +1579,19 @@ msgstr "Guardar Información Sistema como..."
 
 #. I don't think the error_string() will reliably mean anything.
 #: mini-utils/guname/guname.c:753
-#, fuzzy, c-format
 msgid "Command failed ` %s ': %s"
-msgstr "Falló el comando ' "
+msgstr "Falló el comando ' %s ': %s"
 
 #: mini-utils/guname/guname.c:761
-#, fuzzy, c-format
 msgid "Couldn't run command ` %s ': %s"
-msgstr "No pude lanzar el comando ' "
+msgstr "No pude lanzar el comando ' %s ': %s"
 
 #: mini-utils/guname/guname.c:785
-#, fuzzy, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
-".\n"
+"El correo electrónico siguiente será enviado a %s.\n"
 "¿Está seguro que quiere enviar está información por correo electrónico?"
 
 #: mini-utils/guname/guname.c:796
@@ -1769,9 +1775,8 @@ msgid "Update Information"
 msgstr "Actualizar Información"
 
 #: mini-utils/gw/gw.c:466
-#, fuzzy
 msgid "Save not implemented yet\n"
-msgstr "Aún no implementado"
+msgstr "Guardar aún no implementado\n"
 
 #: mini-utils/gw/gw.c:479
 msgid "Command Line"
@@ -1824,32 +1829,31 @@ msgstr "Comando"
 #: mini-utils/gw/gw.c:947
 #, c-format
 msgid "Running: %s\n"
-msgstr ""
+msgstr "Ejecutándose: %s\n"
 
 #: mini-utils/idetool/idetool.c:20
 msgid "16-bit"
-msgstr ""
+msgstr "16-bits"
 
 #: mini-utils/idetool/idetool.c:21
 msgid "32-bit"
-msgstr ""
+msgstr "32-bits"
 
 #: mini-utils/idetool/idetool.c:22
 msgid "32-bit w/sync"
-msgstr ""
+msgstr "32-bits con sincr."
 
 #: mini-utils/idetool/idetool.c:27
 msgid "Sleeping"
-msgstr ""
+msgstr "Durmiendo"
 
 #: mini-utils/idetool/idetool.c:28
-#, fuzzy
 msgid "Active/Idle"
-msgstr "Activo"
+msgstr "Activo/Inactivo"
 
 #: mini-utils/idetool/idetool.c:29
 msgid "Standby"
-msgstr ""
+msgstr "En espera"
 
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
@@ -1883,7 +1887,7 @@ msgstr "Guardar configuración"
 
 #: mini-utils/idetool/idetool.c:207
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
@@ -1899,12 +1903,15 @@ msgstr "(Caché Puerto Dual)"
 
 #: mini-utils/idetool/idetool.c:243
 #, c-format
-msgid "Yes (%d sector%s)"
-msgstr ""
+msgid "Yes (%d sector)"
+msgstr "Sí (%d sector)"
+
+msgid "Yes (%d sectors)"
+msgstr "Sí (%d sectores)"
 
 #: mini-utils/idetool/idetool.c:245
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
 msgid "Model"
