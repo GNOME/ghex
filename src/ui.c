@@ -40,22 +40,38 @@ static void ghex_print_document_real (GHexPrintJobInfo *pji, gboolean preview);
 /* callbacks to nullify widget pointer after a delete event */
 static void about_destroy_cb(GtkObject *, GtkWidget **);
 
-static void open_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void save_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void save_as_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void print_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void print_preview_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void cut_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void copy_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void paste_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void DnDNewWindow_cb(BonoboUIComponent *uic, gpointer user_data, const char *cname);
-static void DnDCancel_cb(BonoboUIComponent *uic, gpointer user_data, const char *cname);
+static void open_cb (BonoboUIComponent *uic, gpointer user_data,
+					 const gchar* verbname);
+static void close_cb (BonoboUIComponent *uic, gpointer user_data,
+					  const gchar* verbname);
+static void save_cb (BonoboUIComponent *uic, gpointer user_data,
+					 const gchar* verbname);
+static void save_as_cb (BonoboUIComponent *uic, gpointer user_data,
+						const gchar* verbname);
+static void print_cb (BonoboUIComponent *uic, gpointer user_data,
+					  const gchar* verbname);
+static void print_preview_cb (BonoboUIComponent *uic, gpointer user_data,
+							  const gchar* verbname);
+static void export_html_cb (BonoboUIComponent *uic, gpointer user_data,
+							const gchar* verbname);
+static void revert_cb (BonoboUIComponent *uic, gpointer user_data,
+					   const gchar* verbname);
+static void prefs_cb (BonoboUIComponent *uic, gpointer user_data,
+					  const gchar* verbname);
+static void about_cb (BonoboUIComponent *uic, gpointer user_data,
+					  const gchar* verbname);
+static void cut_cb (BonoboUIComponent *uic, gpointer user_data,
+					const gchar* verbname);
+static void copy_cb (BonoboUIComponent *uic, gpointer user_data,
+					 const gchar* verbname);
+static void paste_cb (BonoboUIComponent *uic, gpointer user_data,
+					  const gchar* verbname);
+static void help_cb (BonoboUIComponent *uic, gpointer user_data,
+					 const gchar* verbname);
+static void DnDNewWindow_cb(BonoboUIComponent *uic, gpointer user_data,
+							const char *cname);
+static void DnDCancel_cb(BonoboUIComponent *uic, gpointer user_data,
+						 const char *cname);
 
 guint group_type[3] = {
 	GROUP_BYTE,

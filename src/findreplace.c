@@ -650,29 +650,53 @@ static void find_prev_cb(GtkButton *button, FindDialog *dialog)
 
 static void goto_byte_cb(GtkButton *button, GtkWidget *w)
 {
-	guint byte = 2;
+	guint byte = 2, len, i;
+	gboolean is_hex;
 	const gchar *byte_str = gtk_entry_get_text(GTK_ENTRY(jump_dialog->int_entry));
 	GHexWindow *win = ghex_window_get_active();
 	
 	if(win == NULL || win->gh == NULL) {
-		display_error_dialog (win, _("There is no active document to move the cursor in!"));
+		display_error_dialog (win,
+							  _("There is no active document to move the "
+								"cursor in!"));
 		return;
 	}
 
-	if(strlen(byte_str) == 0) {
+	if((len = strlen(byte_str)) == 0) {
 		display_error_dialog (win, _("No offset has been specified!"));
 		return;
 	}
-	
-	if((sscanf(byte_str, "0x%x", &byte) == 1) ||
-	   (sscanf(byte_str, "%d", &byte) == 1)) {
+
+	is_hex = ((len > 2) && (byte_str[0] == '0') && (byte_str[1] == 'x'));
+
+	if(!is_hex) {
+		for(i = 0; i < len; i++)
+			if(!(byte_str[i] >= '0' && byte_str[i] <= '9')) 
+				break;
+	}
+	else {
+		for(i = 2; i < len; i++)
+			if(!((byte_str[i] >= '0' && byte_str[i] <= '9') ||
+				 (byte_str[i] >= 'A' && byte_str[i] <= 'F') ||
+				 (byte_str[i] >= 'a' && byte_str[i] <= 'f')))
+				break;
+	}
+
+	if((i == len) &&
+	   ((sscanf(byte_str, "0x%x", &byte) == 1) ||
+		(sscanf(byte_str, "%d", &byte) == 1))) {
 		if(byte >= win->gh->document->file_size)
-			display_error_dialog (win, _("Can not position cursor beyond the End Of File!"));
+			display_error_dialog(win,
+								 _("Can not position cursor beyond the "
+								   "End Of File!"));
 		else
 			gtk_hex_set_cursor(win->gh, byte);
 	}
 	else
-		display_error_dialog (win, _("The offset must be a positive integer value!"));
+		display_error_dialog(win,
+							 _("You may only give the offset as:\n"
+							   "  - a positive decimal number, or\n"
+							   "  - a hex number, beginning with '0x'"));
 }
 
 static void replace_next_cb(GtkButton *button, GtkWidget *w)

@@ -1,3 +1,10 @@
+2004-06-11  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/preferences.c (prefs_response_cb): display help. fixes #143643.
+	* src/findreplace.c (goto_byte_cb): report an error if the input is
+	not a positive decimal number or a hex number, beginning with '0x'.
+	fixes #144014.
+
 2004-05-20  Jaka Mocnik  <jaka@gnu.org>
 
 	* ported some bugfixes from gnome-2-6 branch:
