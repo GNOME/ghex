@@ -1,3 +1,15 @@
+2003-02-21  Jaka Mocnik  <jaka@gnu.org>
+
+        * The Grand Librarification: to help viv at veeev dot com,
+        the GtkHex widget, the HexDocument object and all relevant
+        accessibility stuff have been moved into a separate library,
+        libgtkhex, that comes bundled together with all the necessary
+        includes and a pkgconfig description file.
+        * in order to achieve this all config-dependent stuff has been
+        moved out of the lib and into the main app. this might have
+        resulted in introduction of a score of new bugs as the app itself
+        was not  tested at all ;)
+
 2003-02-17  Abel Cheung  <maddog@linux.org.hk>
 
 	* configure.in: Removed "ar" from ALL_LINGUAS.
