@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* hex-document.h
 
-   Copyright (C) 1997, 1998 Free Software Foundation
+   Copyright (C) 1998, 1999 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -65,7 +65,8 @@ struct _HexDocument
 	
 	gboolean changed;
 
-	GSList *undo_stack;
+	GList *undo_stack;
+	GList *undo_top;   /* top of the stack (for redo) */
 	guint undo_depth;
 	guint undo_max;
 

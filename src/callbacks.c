@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* callbacks.c - callbacks for GHex widgets
 
-   Copyright (C) 1997, 1998 Free Software Foundation
+   Copyright (C) 1998, 1999 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -42,7 +42,7 @@ void about_cb (GtkWidget *widget) {
 
 	if(!about) {
 		about = gnome_about_new ( _("GHex, a binary file editor"), VERSION,
-								  "(C) 1998 Jaka Mocnik", authors,
+								  "(C) 1998, 1999 Jaka Mocnik", authors,
 								  _("Released under the terms of GNU Public License"), NULL);
 		gtk_signal_connect(GTK_OBJECT(about), "destroy",
 						   GTK_SIGNAL_FUNC(about_destroy_cb), &about);
@@ -619,6 +619,7 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	uiinfo = (GnomeUIInfo *)uiinfo[0].moreinfo;
     doc = HEX_DOCUMENT(gnome_mdi_get_child_from_view(mdi->active_view));
 	gtk_widget_set_sensitive(uiinfo[0].widget, doc->undo_depth > 0);
+	gtk_widget_set_sensitive(uiinfo[1].widget, doc->undo_top != doc->undo_stack);
 
 	gnome_app_install_menu_hints(app, gnome_mdi_get_child_menu_info(app));
 	g_free(p);

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* hex-document.c - implementation of a hex-document MDI child
 
-   Copyright (C) 1997, 1998 Free Software Foundation
+   Copyright (C) 1998, 1999 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -36,6 +36,8 @@
 #include <sys/stat.h>
 #include <string.h>
 
+#define GNOME_ENABLE_DEBUG
+
 static void       hex_document_class_init        (HexDocumentClass *);
 static void       hex_document_init              (HexDocument *);
 static GtkWidget *hex_document_create_view       (GnomeMDIChild *);
@@ -50,6 +52,7 @@ static void set_byte_cb (GtkWidget *);
 static void set_word_cb (GtkWidget *);
 static void set_long_cb (GtkWidget *);
 static void undo_cb     (GtkWidget *, gpointer);
+static void redo_cb     (GtkWidget *, gpointer);
 
 GnomeUIInfo group_radio_items[] = {
 	GNOMEUIINFO_ITEM_NONE(N_("_Bytes"),
@@ -67,7 +70,8 @@ GnomeUIInfo group_type_menu[] = {
 	GNOMEUIINFO_END
 };
 GnomeUIInfo edit_menu[] = {
-	GNOMEUIINFO_MENU_UNDO_ITEM(undo_cb,(gpointer)42),
+	GNOMEUIINFO_MENU_UNDO_ITEM(undo_cb,NULL),
+	GNOMEUIINFO_MENU_REDO_ITEM(redo_cb,NULL),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_FIND_ITEM(find_cb,NULL),
 	GNOMEUIINFO_MENU_REPLACE_ITEM(replace_cb,NULL),
@@ -89,6 +93,9 @@ enum {
 	LAST_SIGNAL
 };
 
+#define HEX_DOC_UNDO (1L << 0)
+#define HEX_DOC_REDO (1L << 1)
+
 static gint hex_signals[LAST_SIGNAL];
 
 typedef void (*HexDocumentSignal) (GtkObject *, gpointer, gboolean, gpointer);
@@ -106,7 +113,7 @@ static void hex_document_marshal (GtkObject	    *object,
 	(* rfunc)(object, GTK_VALUE_POINTER(args[0]), GTK_VALUE_BOOL(args[1]), func_data);
 }
 
-static void set_undo_sensitivity(HexDocument *doc, gboolean sensitive) {
+static void set_sensitivity(HexDocument *doc, gint widgets, gboolean sensitive) {
 	GList *app;
 	GnomeUIInfo *uiinfo;
 	GnomeMDI *mdi;
@@ -125,18 +132,44 @@ static void set_undo_sensitivity(HexDocument *doc, gboolean sensitive) {
 		if(child == gnome_mdi_get_child_from_view(view)) {
 			uiinfo = gnome_mdi_get_child_menu_info(GNOME_APP(app->data));
 			uiinfo = (GnomeUIInfo *)uiinfo[0].moreinfo;
-			gtk_widget_set_sensitive(uiinfo[0].widget, sensitive);
+			if(widgets & HEX_DOC_REDO)
+				gtk_widget_set_sensitive(uiinfo[1].widget, sensitive);
+			if(widgets & HEX_DOC_UNDO)
+				gtk_widget_set_sensitive(uiinfo[0].widget, sensitive);
 		}
 		app = app->next;
 	}
 }
 
-static gint undo_stack_push(HexDocument *doc, HexChangeData *change_data) {
+static void free_stack(GList *stack) {
 	HexChangeData *cd;
 
+	while(stack) {
+		cd = (HexChangeData *)stack->data;
+		if(cd->v_string)
+			g_free(cd->v_string);
+		stack = g_list_remove(stack, cd);
+		g_free(cd);
+	}
+}
+
+static gint undo_stack_push(HexDocument *doc, HexChangeData *change_data) {
+	HexChangeData *cd;
+	GList *stack_rest;
 #ifdef GNOME_ENABLE_DEBUG
 	g_message("undo_stack_push");
 #endif
+
+	if(doc->undo_stack != doc->undo_top) {
+		set_sensitivity(doc, HEX_DOC_REDO, FALSE);
+		stack_rest = doc->undo_stack;
+		doc->undo_stack = doc->undo_top;
+		if(doc->undo_top) {
+			doc->undo_top->prev->next = NULL;
+			doc->undo_top->prev = NULL;
+		}
+		free_stack(stack_rest);
+	}
 
 	if(cd = g_new(HexChangeData, 1)) {
 		memcpy(cd, change_data, sizeof(HexChangeData));
@@ -144,52 +177,74 @@ static gint undo_stack_push(HexDocument *doc, HexChangeData *change_data) {
 			cd->v_string = g_malloc(cd->end - cd->start + 1);
 			memcpy(cd->v_string, change_data->v_string, cd->end - cd->start + 1);
 		}
+
 		doc->undo_depth++;
+
 		if(doc->undo_depth == 1)
-			set_undo_sensitivity(doc, TRUE);
+			set_sensitivity(doc, HEX_DOC_UNDO, TRUE);
+
 		if(doc->undo_depth > doc->undo_max) {
+			GList *last;
+
+			last = g_list_last(doc->undo_stack);
+			doc->undo_stack = g_list_remove_link(doc->undo_stack, last);
 			doc->undo_depth--;
-			doc->undo_stack = g_slist_remove_link(doc->undo_stack,
-												  g_slist_last(doc->undo_stack));
+			free_stack(last);
 		}
-		doc->undo_stack = g_slist_prepend(doc->undo_stack, cd);
+
+		doc->undo_stack = g_list_prepend(doc->undo_stack, cd);
+		doc->undo_top = doc->undo_stack;
+
+		return TRUE;
 	}
+	return FALSE;
 }
 
-static gint undo_stack_pop(HexDocument *doc) {
-	HexChangeData *cd;
+static void undo_stack_descend(HexDocument *doc) {
 #ifdef GNOME_ENABLE_DEBUG
-	g_message("undo_stack_pop");
+	g_message("undo_stack_descend");
 #endif
 
-	if(doc->undo_stack) {
-		cd = (HexChangeData *)doc->undo_stack->data;
-		if(cd->v_string)
-			g_free(cd->v_string);
-		doc->undo_stack = g_slist_remove(doc->undo_stack, cd);
-		g_free(cd);
-		doc->undo_depth--;
-	}
-	if(doc->undo_depth == 0)
-		set_undo_sensitivity(doc, FALSE);
+	if(doc->undo_top == NULL)
+		return;
+
+	set_sensitivity(doc, HEX_DOC_REDO, TRUE);
+	doc->undo_top = doc->undo_top->next;
+	doc->undo_depth--;
+	if(doc->undo_top == NULL)
+		set_sensitivity(doc, HEX_DOC_UNDO, FALSE);
 }
 
-static gint undo_stack_free(HexDocument *doc) {
-	HexChangeData *cd;
+static void undo_stack_ascend(HexDocument *doc) {
+#ifdef GNOME_ENABLE_DEBUG
+	g_message("undo_stack_ascend");
+#endif
+
+	if(doc->undo_stack == NULL || doc->undo_top == doc->undo_stack)
+		return;
+
+	if(doc->undo_top == NULL)
+		doc->undo_top = g_list_last(doc->undo_stack);
+	else
+		doc->undo_top = doc->undo_top->prev;
+	doc->undo_depth++;
+
+	set_sensitivity(doc, HEX_DOC_UNDO, TRUE);
+
+	if(doc->undo_top == doc->undo_stack)
+		set_sensitivity(doc, HEX_DOC_REDO, FALSE);
+}
+
+static void undo_stack_free(HexDocument *doc) {
 #ifdef GNOME_ENABLE_DEBUG
 	g_message("undo_stack_free");
 #endif
 
-	while(doc->undo_stack) {
-		cd = (HexChangeData *)doc->undo_stack->data;
-		if(cd->v_string)
-			g_free(cd->v_string);
-		doc->undo_stack = g_slist_remove(doc->undo_stack, cd);
-		g_free(cd);
-	}
+	free_stack(doc->undo_stack);
 	doc->undo_stack = NULL;
+	doc->undo_top = NULL;
 	doc->undo_depth = 0;
-	set_undo_sensitivity(doc, FALSE);
+	set_sensitivity(doc, HEX_DOC_UNDO|HEX_DOC_REDO, FALSE);
 }
 
 GtkType hex_document_get_type () {
@@ -328,6 +383,7 @@ static void hex_document_init (HexDocument *document) {
 	document->changed = FALSE;
 	document->change_data.v_string = NULL;
 	document->undo_stack = NULL;
+	document->undo_top = NULL;
 	document->undo_depth = 0;
 	document->undo_max = 100;
 	gnome_mdi_child_set_menu_template(GNOME_MDI_CHILD(document), doc_menu);
@@ -540,22 +596,29 @@ static void undo_cb(GtkWidget *w, gpointer user_data) {
 	HexDocument *doc = HEX_DOCUMENT(user_data);
 	HexChangeData *cd;
 	gint offset;
+	gchar c_val;
 
-	if(doc->undo_stack == NULL)
+	if(doc->undo_top == NULL)
 		return;
 
-	cd = (HexChangeData *)doc->undo_stack->data;
+	cd = (HexChangeData *)doc->undo_top->data;
 
 	switch(cd->type) {
 	case HEX_CHANGE_BYTE:
-		if(cd->start >= 0 && cd->end < doc->buffer_size)
+		if(cd->start >= 0 && cd->end < doc->buffer_size) {
+			c_val = doc->buffer[cd->start];
 			doc->buffer[cd->start] = cd->v_byte;
+			cd->v_byte = c_val;
+		}
 		break;
 	case HEX_CHANGE_STRING:
 		for(offset = cd->start;
 			offset < doc->buffer_size && offset <= cd->end;
-			offset++)
+			offset++) {
+			c_val = doc->buffer[offset];
 			doc->buffer[offset] = cd->v_string[offset - cd->start];
+			cd->v_string[offset - cd->start] = c_val;
+		}
 		break;
 	}
 
@@ -564,8 +627,49 @@ static void undo_cb(GtkWidget *w, gpointer user_data) {
 	gtk_hex_set_cursor(GTK_HEX(mdi->active_view), cd->start);
 	gtk_hex_set_nibble(GTK_HEX(mdi->active_view), cd->lower_nibble);
 
-	undo_stack_pop(doc);
+	undo_stack_descend(doc);
 
-	if(doc->undo_stack == NULL)
-		gtk_widget_set_sensitive(w, FALSE);
+	/* if(doc->undo_top == NULL)
+	   gtk_widget_set_sensitive(w, FALSE); */
+}
+
+static void redo_cb(GtkWidget *w, gpointer user_data) {
+	HexDocument *doc = HEX_DOCUMENT(user_data);
+	HexChangeData *cd;
+	gint offset;
+	gchar c_val;
+
+	if(doc->undo_stack == NULL || doc->undo_top == doc->undo_stack)
+		return;
+
+	undo_stack_ascend(doc);
+
+	cd = (HexChangeData *)doc->undo_top->data;
+
+	switch(cd->type) {
+	case HEX_CHANGE_BYTE:
+		if(cd->start >= 0 && cd->end < doc->buffer_size) {
+			c_val = doc->buffer[cd->start];
+			doc->buffer[cd->start] = cd->v_byte;
+			cd->v_byte = c_val;
+		}
+		break;
+	case HEX_CHANGE_STRING:
+		for(offset = cd->start;
+			offset < doc->buffer_size && offset <= cd->end;
+			offset++) {
+			c_val = doc->buffer[offset];
+			doc->buffer[offset] = cd->v_string[offset - cd->start];
+			cd->v_string[offset - cd->start] = c_val;
+		}
+		break;
+	}
+
+	hex_document_changed(doc, cd, FALSE);
+
+	gtk_hex_set_cursor(GTK_HEX(mdi->active_view), cd->start);
+	gtk_hex_set_nibble(GTK_HEX(mdi->active_view), cd->lower_nibble);
+
+	/* if(doc->undo_top == NULL)
+	   gtk_widget_set_sensitive(w, FALSE); */
 }

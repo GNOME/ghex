@@ -1,3 +1,18 @@
+1999-01-19  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* gtkhex.c (gtk_hex_key_press): return FALSE if we don't handle
+	the key press event. this is the Right Behaviour, I guess.
+	* hex-document.h: new member undo_top pointing to the stack
+	top (contains data for the next UNDO and its predecessor (if
+	it exists) contains data for the next REDO.
+	* hex-document.c: implemented redo capabilities. actions that
+	have been undone can be redone as long as no new changes are
+	entered. as soon as something changes we forget the undone
+	actions (part of stack between undo_stack and stack_top) and
+	start pushing new undo data on top of undo_top.
+	* callbacks.c (view_changed_cb): take care of the redo item's
+	sensitivity.
+
 1999-01-15  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* hex-document.h (struct _HexChangeData): extended to hold all

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* gtkhex.c - a GtkHex widget, modified for use in GHex
 
-   Copyright (C) 1997, 1998 Free Software Foundation
+   Copyright (C) 1998, 1999 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -791,6 +791,7 @@ static void gtk_hex_finalize(GtkObject *o) {
 static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	GtkHex *gh = GTK_HEX(w);
 	guint old_cp = gh->cursor_pos;
+	gint ret = TRUE;
 	
 	hide_cursor(gh);
 	
@@ -826,20 +827,23 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 					if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
-				if((event->keyval >= 'A')&&(event->keyval <= 'F')) {
+				else if((event->keyval >= 'A')&&(event->keyval <= 'F')) {
 					hex_document_set_nibble(gh->document, event->keyval - 'A' + 10, gh->cursor_pos, gh->lower_nibble);
 					render_byte(gh, gh->cursor_pos);
 					gh->lower_nibble = !gh->lower_nibble;
 					if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
-				if((event->keyval >= 'a')&&(event->keyval <= 'f')) {
+				else if((event->keyval >= 'a')&&(event->keyval <= 'f')) {
 					hex_document_set_nibble(gh->document, event->keyval - 'a' + 10, gh->cursor_pos, gh->lower_nibble);
 					render_byte(gh, gh->cursor_pos);
 					gh->lower_nibble = !gh->lower_nibble;
 					if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
+				else
+					ret = FALSE;
+
 				break;      
 			}
 		else if(gh->active_view == VIEW_ASCII)
@@ -859,6 +863,9 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 					old_cp = gh->cursor_pos;
 					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
+				else
+					ret = FALSE;
+
 				break;
 			}
 		break;
@@ -866,7 +873,7 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	
 	show_cursor(gh);
 	
-	return TRUE;
+	return ret;
 }
 
 /* 
