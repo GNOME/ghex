@@ -451,6 +451,10 @@ static void draw_shadow(GtkWidget *widget, GdkEventExpose *event) {
   GtkHex *gh = GTK_HEX(widget);
   gint border = GTK_CONTAINER(widget)->border_width;
 
+  gdk_window_set_back_pixmap (widget->window, NULL, TRUE);
+  gdk_window_clear_area (widget->window, event->area.x, event->area.y,
+			 event->area.width, event->area.height);
+
   gtk_draw_shadow(widget->style, widget->window,
 		  GTK_STATE_NORMAL, GTK_SHADOW_IN,
 		  border, border, gh->xdisp_width + 2*SHADOW_WIDTH,
@@ -855,6 +859,8 @@ static void gtk_hex_class_init(GtkHexClass *class) {
 }
 
 static void gtk_hex_init(GtkHex *gh) {
+  GtkWidget *widget = GTK_WIDGET(gh);
+
   gh->disp_buffer = NULL;
   gh->document = NULL;
 
@@ -880,7 +886,7 @@ static void gtk_hex_init(GtkHex *gh) {
 		     GTK_SIGNAL_FUNC(draw_shadow), NULL);
   gtk_signal_connect(GTK_OBJECT(gh), "size_allocate",
 		     GTK_SIGNAL_FUNC(resize_displays), NULL);
-
+  
   gh->adj = GTK_ADJUSTMENT(gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
 
   gh->xdisp = gtk_drawing_area_new();
