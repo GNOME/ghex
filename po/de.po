@@ -5,16 +5,27 @@
 # Benedikt Roth <Benedikt.Roth@gmx.net>, 2000.
 # Christian Meyer <chrisime@gnome.org>, 2001, 2002.
 #
+# 2002-03-11  Christian Meyer  <chrisime@gnome.org>
+# I'm not sure how to translate 'revert'.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex 1.2.x\n"
-"POT-Creation-Date: 2002-03-01 13:41+0100\n"
-"PO-Revision-Date: 2002-03-01 13:41+0100\n"
+"POT-Creation-Date: 2002-03-12 00:22+0100\n"
+"PO-Revision-Date: 2002-03-12 00:21+0100\n"
 "Last-Translator: Christian Meyer <chrisime@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ghex.desktop.in.h:1
+msgid "GHex"
+msgstr "GHex"
+
+#: ghex.desktop.in.h:2
+msgid "Gnome Hexadecimal Editor"
+msgstr "GNOME Hexadezimal-Editor"
 
 #: src/bonobo-mdi.c:490 src/bonobo-mdi.c:566 src/bonobo-mdi.c:1917
 #, c-format
@@ -29,7 +40,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Hex"
 
-#: src/chartable.c:90 src/preferences.c:188
+#: src/chartable.c:90 src/preferences.c:198
 msgid "Decimal"
 msgstr "Dezimal"
 
@@ -552,113 +563,113 @@ msgstr ""
 "Datei %s wurde seit der letzten Speicherung geändert.\n"
 "Wollen Sie die Änderungen speichern?"
 
-#: src/main.c:334
+#: src/main.c:338
 msgid "The gnome binary editor"
 msgstr "Der GNOME Binärdatei-Editor"
 
-#: src/preferences.c:54
+#: src/preferences.c:56
 msgid "Default"
 msgstr "Vorgabe"
 
-#: src/preferences.c:55
+#: src/preferences.c:57
 msgid "Notebook"
 msgstr "Notizbuch"
 
-#: src/preferences.c:56
+#: src/preferences.c:58
 msgid "Toplevel"
 msgstr "Oberste Ebene"
 
-#: src/preferences.c:57
+#: src/preferences.c:59
 msgid "Modal"
 msgstr "Modal"
 
-#: src/preferences.c:81
+#: src/preferences.c:91
 msgid "Select font"
 msgstr "Schriftart auswählen"
 
-#: src/preferences.c:159
+#: src/preferences.c:169
 msgid "Maximum number of undo levels"
 msgstr "Chroniktiefe für den Rückgängig-Befehl"
 
-#: src/preferences.c:174
+#: src/preferences.c:184
 msgid "Show cursor offset in statusbar as"
 msgstr "Cursoroffset im Statusbalken:"
 
-#: src/preferences.c:193
+#: src/preferences.c:203
 msgid "Hexadecimal"
 msgstr "Hexadezimal"
 
-#: src/preferences.c:199
+#: src/preferences.c:209
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
 #. show offsets check button
-#: src/preferences.c:210
+#: src/preferences.c:220
 msgid "Show offsets column"
 msgstr "Offset-Spalte zeigen"
 
-#: src/preferences.c:215
+#: src/preferences.c:225
 msgid "Editing"
 msgstr "Bearbeitung"
 
 #. display font
-#: src/preferences.c:224
+#: src/preferences.c:234
 msgid "Font"
 msgstr "Schrift"
 
-#: src/preferences.c:240
+#: src/preferences.c:256
 msgid "Browse..."
 msgstr "Auswählen..."
 
 #. default group type
-#: src/preferences.c:260
+#: src/preferences.c:285
 msgid "Default Group Type"
 msgstr "Voreingestellter Gruppentyp"
 
-#: src/preferences.c:276
+#: src/preferences.c:301
 msgid "Display"
 msgstr "Anzeige"
 
 #. mdi modes
-#: src/preferences.c:285
+#: src/preferences.c:310
 msgid "MDI Mode"
 msgstr "MDI-Modus"
 
-#: src/preferences.c:302
+#: src/preferences.c:327
 msgid "MDI"
 msgstr "MDI"
 
 #. paper selection
-#: src/preferences.c:311
+#: src/preferences.c:336
 msgid "Paper size"
 msgstr "Papiergröße"
 
 #. data & header font selection
-#: src/preferences.c:327
+#: src/preferences.c:352
 msgid "Fonts"
 msgstr "Schriften"
 
-#: src/preferences.c:333
+#: src/preferences.c:358
 msgid "Data font"
 msgstr "Schriftart der Daten"
 
-#: src/preferences.c:348
+#: src/preferences.c:385
 msgid "Header font"
 msgstr "Schriftart des Dateikopfes"
 
-#: src/preferences.c:374
+#: src/preferences.c:423
 msgid "Print shaded box over"
 msgstr "Schattierte Box über"
 
-#: src/preferences.c:383
+#: src/preferences.c:432
 msgid "lines (0 for no box)"
 msgstr "Zeilen drucken (0 für keine Box)"
 
-#: src/preferences.c:390
+#: src/preferences.c:439
 msgid "Printing"
 msgstr "Drucken"
 
-#: src/preferences.c:579
+#: src/preferences.c:629
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -666,11 +677,11 @@ msgstr ""
 "Die Zeichenkette für die Offset-Formatierung enthält andere Angaben als\n"
 "'x', 'X', 'p', 'P', 'd' oder 'o'."
 
-#: src/preferences.c:616
+#: src/preferences.c:672
 msgid "Can not open desired font!"
 msgstr "Gewünschte Schrift kann nicht geöffnet werden!"
 
-#: src/print.c:52
+#: src/print.c:57
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Seite: %i/%i"
@@ -748,15 +759,15 @@ msgstr "Datei kann nicht geöffnet werden!"
 msgid "Can't open file for writing!"
 msgstr "Datei kann nicht zum Schreiben geöffnet werden!"
 
-#: src/ui.c:702
+#: src/ui.c:708
 msgid "Print Hex Document"
 msgstr "Hex-Dokument drucken"
 
-#: src/ui.c:707
+#: src/ui.c:713
 msgid "Pages"
 msgstr "Seiten"
 
-#: src/ui.c:750
+#: src/ui.c:759
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Druckvorschau"
