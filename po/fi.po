@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1999-02-12 20:08+0100\n"
+"POT-Creation-Date: 1999-02-25 00:18-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Tuomas J. Lukka <lukka@iki.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -265,7 +265,7 @@ msgstr ""
 msgid "Default Group Type"
 msgstr ""
 
-#: ghex/preferences.c:148 gtt/options.c:184
+#: ghex/preferences.c:148 gtt/options.c:187
 msgid "Display"
 msgstr ""
 
@@ -358,11 +358,80 @@ msgstr "Tiedostoa ei voitu avata!"
 msgid "Can't open file for writing!"
 msgstr "Tiedostoa ei voitu avata kirjoitusta varten!"
 
+#: gsearchtool/gsearchtool.c:21
+#, fuzzy
+msgid "File name"
+msgstr "Tiedosto"
+
+#: gsearchtool/gsearchtool.c:23
+msgid "Don't search subdirectories"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:24
+msgid "File owner"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:25
+msgid "File owner group"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:26
+msgid "Last modification time"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:28
+msgid "Don't search mounted filesystems"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:30
+msgid "Empty file"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:32
+msgid "Invalid user or group"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:33
+msgid "Filenames except"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:34
+msgid "Simple substring search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:35
+msgid "Regular expression search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:37
+msgid "Extended regular expression search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:94 gsearchtool/gsearchtool.c:149
+msgid "grep options found in find list bad bad!"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:163
+msgid "non-grep option found in grep list, bad bad!"
+msgstr ""
+
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
 #: gsearchtool/gsearchtool.c:203
 msgid "Search Results"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:209
+msgid "Using command:"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:429
+msgid "Enable"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:436
+msgid "Remove"
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:488
@@ -395,6 +464,10 @@ msgstr ""
 
 #: gsearchtool/gsearchtool.c:567
 msgid "The Gnome Search Tool"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:568
+msgid "(C) 1998 the Free Software Foundation"
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:570
@@ -632,111 +705,111 @@ msgstr ""
 msgid "_Timer"
 msgstr ""
 
-#: gtt/options.c:192
+#: gtt/options.c:195
 msgid "Show Seconds"
 msgstr ""
 
-#: gtt/options.c:198
+#: gtt/options.c:201
 msgid "Show Status Bar"
 msgstr ""
 
-#: gtt/options.c:204
+#: gtt/options.c:207
 msgid "Show Table Header"
 msgstr ""
 
-#: gtt/options.c:218 gtt/options.c:516
+#: gtt/options.c:221 gtt/options.c:519
 msgid "Toolbar"
 msgstr ""
 
-#: gtt/options.c:226
+#: gtt/options.c:229
 msgid "Show Toolbar Icons"
 msgstr ""
 
-#: gtt/options.c:232
+#: gtt/options.c:235
 msgid "Show Toolbar Texts"
 msgstr ""
 
-#: gtt/options.c:238
+#: gtt/options.c:241
 msgid "Show Tooltips"
 msgstr ""
 
-#: gtt/options.c:244
+#: gtt/options.c:247
 msgid "Toolbar Segments"
 msgstr ""
 
-#: gtt/options.c:252
+#: gtt/options.c:255
 msgid "Show `New'"
 msgstr ""
 
-#: gtt/options.c:258
+#: gtt/options.c:261
 msgid "Show `Save', `Reload'"
 msgstr ""
 
-#: gtt/options.c:264
+#: gtt/options.c:267
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr ""
 
-#: gtt/options.c:270
+#: gtt/options.c:273
 msgid "Show `Properties'"
 msgstr ""
 
-#: gtt/options.c:276
+#: gtt/options.c:279
 msgid "Show `Timer'"
 msgstr ""
 
-#: gtt/options.c:282
+#: gtt/options.c:285
 msgid "Show `Preferences'"
 msgstr ""
 
-#: gtt/options.c:288
+#: gtt/options.c:291
 msgid "Show `Help'"
 msgstr ""
 
-#: gtt/options.c:294
+#: gtt/options.c:297
 msgid "Show `Quit'"
 msgstr ""
 
-#: gtt/options.c:308
+#: gtt/options.c:311
 msgid "Shell Commands"
 msgstr ""
 
-#: gtt/options.c:316
+#: gtt/options.c:319
 msgid "Switch Project Command:"
 msgstr ""
 
-#: gtt/options.c:327
+#: gtt/options.c:330
 msgid "No Project Command:"
 msgstr ""
 
-#: gtt/options.c:361
+#: gtt/options.c:364
 msgid "Logfile"
 msgstr ""
 
-#: gtt/options.c:369
+#: gtt/options.c:372
 msgid "Use Logfile"
 msgstr ""
 
-#: gtt/options.c:378
+#: gtt/options.c:381
 msgid "Filename:"
 msgstr ""
 
-#: gtt/options.c:392
+#: gtt/options.c:395
 msgid "Entry Start:"
 msgstr ""
 
-#: gtt/options.c:406
+#: gtt/options.c:409
 msgid "Entry Stop:"
 msgstr ""
 
-#: gtt/options.c:420
+#: gtt/options.c:423
 msgid "Timeout in secs:"
 msgstr ""
 
-#: gtt/options.c:497
+#: gtt/options.c:500
 msgid "Preferences"
 msgstr ""
 
-#: gtt/options.c:503
+#: gtt/options.c:506
 msgid "Misc"
 msgstr ""
 
@@ -752,39 +825,39 @@ msgstr ""
 msgid "empty"
 msgstr ""
 
-#: gtt/prop.c:171
+#: gtt/prop.c:172
 msgid "Properties"
 msgstr ""
 
-#: gtt/prop.c:178
+#: gtt/prop.c:179
 msgid "Project"
 msgstr ""
 
-#: gtt/prop.c:197
+#: gtt/prop.c:198
 msgid "Project Title:"
 msgstr ""
 
-#: gtt/prop.c:209
+#: gtt/prop.c:210
 msgid "Project Description:"
 msgstr ""
 
-#: gtt/prop.c:221
+#: gtt/prop.c:222
 msgid "Project Time today:"
 msgstr ""
 
-#: gtt/prop.c:237 gtt/prop.c:275
+#: gtt/prop.c:238 gtt/prop.c:276
 msgid "hours"
 msgstr ""
 
-#: gtt/prop.c:248 gtt/prop.c:286
+#: gtt/prop.c:249 gtt/prop.c:287
 msgid "mins"
 msgstr ""
 
-#: gtt/prop.c:259 gtt/prop.c:297
+#: gtt/prop.c:260 gtt/prop.c:298
 msgid "secs"
 msgstr ""
 
-#: gtt/prop.c:263
+#: gtt/prop.c:264
 msgid "Project Time ever:"
 msgstr ""
 
@@ -870,7 +943,7 @@ msgid "Quit GTimeTracker"
 msgstr ""
 
 #: mini-utils/gcolorsel/gcolorsel.c:65 mini-utils/gcolorsel/gcolorsel.c:67
-#: mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:364
+#: mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:369
 msgid "Gnome Color Browser"
 msgstr ""
 
@@ -890,11 +963,11 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:220
+#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:223
 msgid "Value"
 msgstr ""
 
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:219
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:222
 #: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
 msgid "Name"
 msgstr ""
@@ -907,27 +980,27 @@ msgstr ""
 msgid "Parsing Colors"
 msgstr ""
 
-#: mini-utils/gcolorsel/gcolorsel.c:311
+#: mini-utils/gcolorsel/gcolorsel.c:316
 msgid "Decimal (8 bit)"
 msgstr ""
 
-#: mini-utils/gcolorsel/gcolorsel.c:312
+#: mini-utils/gcolorsel/gcolorsel.c:317
 msgid "Decimal (16 bit)"
 msgstr ""
 
-#: mini-utils/gcolorsel/gcolorsel.c:313
+#: mini-utils/gcolorsel/gcolorsel.c:318
 msgid "Hex (8 bit)"
 msgstr ""
 
-#: mini-utils/gcolorsel/gcolorsel.c:314
+#: mini-utils/gcolorsel/gcolorsel.c:319
 msgid "Hex (16 bit)"
 msgstr ""
 
-#: mini-utils/gcolorsel/gcolorsel.c:315
+#: mini-utils/gcolorsel/gcolorsel.c:320
 msgid "Float"
 msgstr ""
 
-#: mini-utils/gcolorsel/gcolorsel.c:368
+#: mini-utils/gcolorsel/gcolorsel.c:373
 msgid "Small utility to browse available X11 colors."
 msgstr ""
 
@@ -957,6 +1030,10 @@ msgstr ""
 
 #: mini-utils/gfontsel/gfontsel.c:256
 msgid "Inhibit loading of last font"
+msgstr ""
+
+#: mini-utils/gless/gless.c:29
+msgid "Copyright 1998, under the GNU General Public License."
 msgstr ""
 
 #: mini-utils/gless/gless.c:115
@@ -1171,7 +1248,7 @@ msgstr ""
 msgid "Save Information to File..."
 msgstr ""
 
-#: mini-utils/guname/guname.c:474 mini-utils/guname/guname.c:538
+#: mini-utils/guname/guname.c:474 mini-utils/guname/guname.c:541
 msgid "Detailed Information..."
 msgstr ""
 
@@ -1183,60 +1260,60 @@ msgstr ""
 msgid "Your System"
 msgstr ""
 
-#: mini-utils/guname/guname.c:524
+#: mini-utils/guname/guname.c:527
 msgid "Save As..."
 msgstr ""
 
-#: mini-utils/guname/guname.c:530
+#: mini-utils/guname/guname.c:533
 msgid "Mail To..."
 msgstr ""
 
-#: mini-utils/guname/guname.c:578
+#: mini-utils/guname/guname.c:581
 msgid "Error closing file `"
 msgstr ""
 
-#: mini-utils/guname/guname.c:580
+#: mini-utils/guname/guname.c:583
 msgid ""
 "\n"
 "Some or all data may not have been written."
 msgstr ""
 
-#: mini-utils/guname/guname.c:589
+#: mini-utils/guname/guname.c:592
 msgid "Couldn't open file `"
 msgstr ""
 
-#: mini-utils/guname/guname.c:603
+#: mini-utils/guname/guname.c:606
 msgid "Save System Information As..."
 msgstr ""
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:649
+#: mini-utils/guname/guname.c:652
 msgid "Command failed ` "
 msgstr ""
 
-#: mini-utils/guname/guname.c:649 mini-utils/guname/guname.c:656
+#: mini-utils/guname/guname.c:652 mini-utils/guname/guname.c:659
 msgid " ': "
 msgstr ""
 
-#: mini-utils/guname/guname.c:656
+#: mini-utils/guname/guname.c:659
 msgid "Couldn't run command ` "
 msgstr ""
 
-#: mini-utils/guname/guname.c:679
+#: mini-utils/guname/guname.c:682
 msgid "The following mail will be sent to "
 msgstr ""
 
-#: mini-utils/guname/guname.c:681
+#: mini-utils/guname/guname.c:684
 msgid ""
 ".\n"
 " Are you sure you want to mail this information?"
 msgstr ""
 
-#: mini-utils/guname/guname.c:690
+#: mini-utils/guname/guname.c:693
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
-#: mini-utils/guname/guname.c:724
+#: mini-utils/guname/guname.c:727
 msgid "Address to mail to:"
 msgstr "Osoite johon l‰hetet‰‰n:"
 
@@ -1342,11 +1419,11 @@ msgstr "Tuntematon tiedostoj‰rjestelm‰"
 msgid "No information for this filesystem."
 msgstr "Ei tietoja t‰lle tiedostoj‰rjestelm‰lle."
 
-#: mini-utils/guname/moreinfo.c:160
+#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:165
 msgid "Memory"
 msgstr "Muisti"
 
-#: mini-utils/guname/moreinfo.c:160
+#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:166
 msgid "Kilobytes"
 msgstr "Kilotavua"
 
@@ -1354,54 +1431,54 @@ msgstr "Kilotavua"
 msgid "%ld%% %s used."
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:179
+#: mini-utils/guname/moreinfo.c:178 mini-utils/guname/moreinfo.c:182
 msgid "memory"
 msgstr "muisti"
 
-#: mini-utils/guname/moreinfo.c:193
+#: mini-utils/guname/moreinfo.c:192 mini-utils/guname/moreinfo.c:196
 msgid "swap"
 msgstr "swappi"
 
-#: mini-utils/guname/moreinfo.c:216
+#: mini-utils/guname/moreinfo.c:219
 #, c-format
 msgid "CPU %d"
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:264
+#: mini-utils/guname/moreinfo.c:267
 msgid "Detailed System Information"
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:277
+#: mini-utils/guname/moreinfo.c:280
 msgid "Disk Information"
 msgstr "Levytiedot"
 
-#: mini-utils/guname/moreinfo.c:279
+#: mini-utils/guname/moreinfo.c:282
 msgid "Memory Information"
 msgstr "Muistitiedot"
 
-#: mini-utils/guname/moreinfo.c:282
+#: mini-utils/guname/moreinfo.c:285
 msgid "CPU Information"
 msgstr "CPU-tiedot"
 
-#: mini-utils/guname/moreinfo.c:303
+#: mini-utils/guname/moreinfo.c:306
 msgid "%2d%% full "
 msgstr "%2d%% k‰ytetty "
 
-#: mini-utils/guname/moreinfo.c:305
+#: mini-utils/guname/moreinfo.c:308
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr ""
 "%ld megatavua, %ld vapaana (%ld superuserille); %ld inodea, %ld vapaana."
 
-#: mini-utils/guname/moreinfo.c:319
+#: mini-utils/guname/moreinfo.c:322
 msgid "Mount Point: "
 msgstr "Mounttauspiste: "
 
-#: mini-utils/guname/moreinfo.c:320
+#: mini-utils/guname/moreinfo.c:323
 msgid "    Device: "
 msgstr "    Laite: "
 
-#: mini-utils/guname/moreinfo.c:321
+#: mini-utils/guname/moreinfo.c:324
 msgid "    Filesystem Type: "
 msgstr "    Tiedostoj‰rjestelm‰: "
 
@@ -1580,9 +1657,6 @@ msgstr "Sinulla ei n‰yt‰ olevan IDE-levyj‰"
 
 #~ msgid "Exit"
 #~ msgstr "Poistu"
-
-#~ msgid "File"
-#~ msgstr "Tiedosto"
 
 #~ msgid "Edit"
 #~ msgstr "Muokkaa"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-utils 0.30\n"
-"POT-Creation-Date: 1999-02-12 20:08+0100\n"
+"POT-Creation-Date: 1999-02-25 00:18-0500\n"
 "PO-Revision-Date: 1999-02-04 14:57:58+0900\n"
 "Last-Translator: Sung-Hyun Nam <namsh@lgic.co.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -264,7 +264,7 @@ msgstr ""
 msgid "Default Group Type"
 msgstr ""
 
-#: ghex/preferences.c:148 gtt/options.c:184
+#: ghex/preferences.c:148 gtt/options.c:187
 msgid "Display"
 msgstr "표시"
 
@@ -358,12 +358,85 @@ msgstr "파일을 열 수 없습니다!"
 msgid "Can't open file for writing!"
 msgstr "쓰기위해 파일을 열 수 없습니다!"
 
+#: gsearchtool/gsearchtool.c:21
+#, fuzzy
+msgid "File name"
+msgstr "파일이름:"
+
+#: gsearchtool/gsearchtool.c:23
+msgid "Don't search subdirectories"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:24
+#, fuzzy
+msgid "File owner"
+msgstr "파일이름:"
+
+#: gsearchtool/gsearchtool.c:25
+msgid "File owner group"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:26
+msgid "Last modification time"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:28
+msgid "Don't search mounted filesystems"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:30
+msgid "Empty file"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:32
+msgid "Invalid user or group"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:33
+#, fuzzy
+msgid "Filenames except"
+msgstr "파일이름:"
+
+#: gsearchtool/gsearchtool.c:34
+msgid "Simple substring search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:35
+msgid "Regular expression search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:37
+msgid "Extended regular expression search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:94 gsearchtool/gsearchtool.c:149
+msgid "grep options found in find list bad bad!"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:163
+msgid "non-grep option found in grep list, bad bad!"
+msgstr ""
+
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
 #: gsearchtool/gsearchtool.c:203
 msgid "Search Results"
 msgstr "찾은 결과"
+
+#: gsearchtool/gsearchtool.c:209
+msgid "Using command:"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:429
+#, fuzzy
+msgid "Enable"
+msgstr "사용하기"
+
+#: gsearchtool/gsearchtool.c:436
+#, fuzzy
+msgid "Remove"
+msgstr "보기 삭제(_R)"
 
 #: gsearchtool/gsearchtool.c:488
 msgid "Start in directory:"
@@ -396,6 +469,10 @@ msgstr "빨리 찾기 (위치)"
 #: gsearchtool/gsearchtool.c:567
 msgid "The Gnome Search Tool"
 msgstr "그놈 찾기 도구"
+
+#: gsearchtool/gsearchtool.c:568
+msgid "(C) 1998 the Free Software Foundation"
+msgstr ""
 
 #: gsearchtool/gsearchtool.c:570
 msgid "Frontend to the unix find/grep/locate commands"
@@ -641,111 +718,111 @@ msgstr "타이머 실행(_T)"
 msgid "_Timer"
 msgstr "타이머(_T)"
 
-#: gtt/options.c:192
+#: gtt/options.c:195
 msgid "Show Seconds"
 msgstr "초 표시"
 
-#: gtt/options.c:198
+#: gtt/options.c:201
 msgid "Show Status Bar"
 msgstr "상태바 표시"
 
-#: gtt/options.c:204
+#: gtt/options.c:207
 msgid "Show Table Header"
 msgstr "테이블 헤더 보이기"
 
-#: gtt/options.c:218 gtt/options.c:516
+#: gtt/options.c:221 gtt/options.c:519
 msgid "Toolbar"
 msgstr "툴바"
 
-#: gtt/options.c:226
+#: gtt/options.c:229
 msgid "Show Toolbar Icons"
 msgstr "툴바의 아이콘 표시"
 
-#: gtt/options.c:232
+#: gtt/options.c:235
 msgid "Show Toolbar Texts"
 msgstr "툴바의 글 표시"
 
-#: gtt/options.c:238
+#: gtt/options.c:241
 msgid "Show Tooltips"
 msgstr "툴팁 표시"
 
-#: gtt/options.c:244
+#: gtt/options.c:247
 msgid "Toolbar Segments"
 msgstr "툴바의 조각들"
 
-#: gtt/options.c:252
+#: gtt/options.c:255
 msgid "Show `New'"
 msgstr "`새 프로젝트' 표시"
 
-#: gtt/options.c:258
+#: gtt/options.c:261
 msgid "Show `Save', `Reload'"
 msgstr "`저장', `다시 읽기' 표시"
 
-#: gtt/options.c:264
+#: gtt/options.c:267
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "`자르기', `복사', `붙이기' 표시"
 
-#: gtt/options.c:270
+#: gtt/options.c:273
 msgid "Show `Properties'"
 msgstr "`속성' 표시"
 
-#: gtt/options.c:276
+#: gtt/options.c:279
 msgid "Show `Timer'"
 msgstr "`타이머' 표시"
 
-#: gtt/options.c:282
+#: gtt/options.c:285
 msgid "Show `Preferences'"
 msgstr "`설정' 표시"
 
-#: gtt/options.c:288
+#: gtt/options.c:291
 msgid "Show `Help'"
 msgstr "`도움말' 표시"
 
-#: gtt/options.c:294
+#: gtt/options.c:297
 msgid "Show `Quit'"
 msgstr "`종료' 표시"
 
-#: gtt/options.c:308
+#: gtt/options.c:311
 msgid "Shell Commands"
 msgstr "셸 명령"
 
-#: gtt/options.c:316
+#: gtt/options.c:319
 msgid "Switch Project Command:"
 msgstr "프로젝트를 바꿀 때의 명령"
 
-#: gtt/options.c:327
+#: gtt/options.c:330
 msgid "No Project Command:"
 msgstr "프로젝트가 없을 때의 명령:"
 
-#: gtt/options.c:361
+#: gtt/options.c:364
 msgid "Logfile"
 msgstr "기록 파일"
 
-#: gtt/options.c:369
+#: gtt/options.c:372
 msgid "Use Logfile"
 msgstr "기록 파일 사용하기"
 
-#: gtt/options.c:378
+#: gtt/options.c:381
 msgid "Filename:"
 msgstr "파일이름:"
 
-#: gtt/options.c:392
+#: gtt/options.c:395
 msgid "Entry Start:"
 msgstr "항목 시장:"
 
-#: gtt/options.c:406
+#: gtt/options.c:409
 msgid "Entry Stop:"
 msgstr "항목 정지:"
 
-#: gtt/options.c:420
+#: gtt/options.c:423
 msgid "Timeout in secs:"
 msgstr "기록할 시간 (초):"
 
-#: gtt/options.c:497
+#: gtt/options.c:500
 msgid "Preferences"
 msgstr "설정"
 
-#: gtt/options.c:503
+#: gtt/options.c:506
 msgid "Misc"
 msgstr "기타"
 
@@ -761,39 +838,39 @@ msgstr "%t 프로젝트 정지"
 msgid "empty"
 msgstr "없음"
 
-#: gtt/prop.c:171
+#: gtt/prop.c:172
 msgid "Properties"
 msgstr "속성"
 
-#: gtt/prop.c:178
+#: gtt/prop.c:179
 msgid "Project"
 msgstr "프로젝트"
 
-#: gtt/prop.c:197
+#: gtt/prop.c:198
 msgid "Project Title:"
 msgstr "프로젝트 이름:"
 
-#: gtt/prop.c:209
+#: gtt/prop.c:210
 msgid "Project Description:"
 msgstr "프로젝트 설명:"
 
-#: gtt/prop.c:221
+#: gtt/prop.c:222
 msgid "Project Time today:"
 msgstr "오늘의 프로젝트 시간:"
 
-#: gtt/prop.c:237 gtt/prop.c:275
+#: gtt/prop.c:238 gtt/prop.c:276
 msgid "hours"
 msgstr "시간"
 
-#: gtt/prop.c:248 gtt/prop.c:286
+#: gtt/prop.c:249 gtt/prop.c:287
 msgid "mins"
 msgstr "분"
 
-#: gtt/prop.c:259 gtt/prop.c:297
+#: gtt/prop.c:260 gtt/prop.c:298
 msgid "secs"
 msgstr "초"
 
-#: gtt/prop.c:263
+#: gtt/prop.c:264
 msgid "Project Time ever:"
 msgstr "이때까지의 프로젝트 시간:"
 
@@ -879,7 +956,7 @@ msgid "Quit GTimeTracker"
 msgstr "GTimeTracker 종료"
 
 #: mini-utils/gcolorsel/gcolorsel.c:65 mini-utils/gcolorsel/gcolorsel.c:67
-#: mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:364
+#: mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:369
 msgid "Gnome Color Browser"
 msgstr "그놈 색상 브라우져"
 
@@ -899,11 +976,11 @@ msgstr "색상 값:"
 msgid "Color"
 msgstr "색상"
 
-#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:220
+#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:223
 msgid "Value"
 msgstr "값"
 
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:219
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:222
 #: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
 msgid "Name"
 msgstr "성명"
@@ -916,27 +993,27 @@ msgstr ""
 msgid "Parsing Colors"
 msgstr "칼라 파싱"
 
-#: mini-utils/gcolorsel/gcolorsel.c:311
+#: mini-utils/gcolorsel/gcolorsel.c:316
 msgid "Decimal (8 bit)"
 msgstr "십진 (8 비트)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:312
+#: mini-utils/gcolorsel/gcolorsel.c:317
 msgid "Decimal (16 bit)"
 msgstr "십진 (16 비트)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:313
+#: mini-utils/gcolorsel/gcolorsel.c:318
 msgid "Hex (8 bit)"
 msgstr "십육진 (8 비트)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:314
+#: mini-utils/gcolorsel/gcolorsel.c:319
 msgid "Hex (16 bit)"
 msgstr "십육진 (16 비트)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:315
+#: mini-utils/gcolorsel/gcolorsel.c:320
 msgid "Float"
 msgstr "부동소수점"
 
-#: mini-utils/gcolorsel/gcolorsel.c:368
+#: mini-utils/gcolorsel/gcolorsel.c:373
 msgid "Small utility to browse available X11 colors."
 msgstr "X11에서 사용가능한 색상을 보여주는 작은 프로그램."
 
@@ -967,6 +1044,10 @@ msgstr "다음 실행할 때 선택한 폰트 기억하기"
 #: mini-utils/gfontsel/gfontsel.c:256
 msgid "Inhibit loading of last font"
 msgstr "마지막 폰트 읽기"
+
+#: mini-utils/gless/gless.c:29
+msgid "Copyright 1998, under the GNU General Public License."
+msgstr ""
 
 #: mini-utils/gless/gless.c:115
 msgid "Where to put the window, and its size"
@@ -1183,7 +1264,7 @@ msgstr "전자메일 정보..."
 msgid "Save Information to File..."
 msgstr "정보를 파일에 저장..."
 
-#: mini-utils/guname/guname.c:474 mini-utils/guname/guname.c:538
+#: mini-utils/guname/guname.c:474 mini-utils/guname/guname.c:541
 msgid "Detailed Information..."
 msgstr "상세한 정보..."
 
@@ -1195,19 +1276,19 @@ msgstr "구분"
 msgid "Your System"
 msgstr "당신의 시스템"
 
-#: mini-utils/guname/guname.c:524
+#: mini-utils/guname/guname.c:527
 msgid "Save As..."
 msgstr "다른 이름으로 저장..."
 
-#: mini-utils/guname/guname.c:530
+#: mini-utils/guname/guname.c:533
 msgid "Mail To..."
 msgstr "전자우편 보내기..."
 
-#: mini-utils/guname/guname.c:578
+#: mini-utils/guname/guname.c:581
 msgid "Error closing file `"
 msgstr "파일 닫기 에러: `"
 
-#: mini-utils/guname/guname.c:580
+#: mini-utils/guname/guname.c:583
 msgid ""
 "\n"
 "Some or all data may not have been written."
@@ -1215,32 +1296,32 @@ msgstr ""
 "\n"
 "몇몇 혹은 모든 자료가 저장되지 않았습니다."
 
-#: mini-utils/guname/guname.c:589
+#: mini-utils/guname/guname.c:592
 msgid "Couldn't open file `"
 msgstr "파열 열지 못함: `"
 
-#: mini-utils/guname/guname.c:603
+#: mini-utils/guname/guname.c:606
 msgid "Save System Information As..."
 msgstr "시스템 정보를 다른 이름으로 저장..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:649
+#: mini-utils/guname/guname.c:652
 msgid "Command failed ` "
 msgstr "명령어 실패 ` "
 
-#: mini-utils/guname/guname.c:649 mini-utils/guname/guname.c:656
+#: mini-utils/guname/guname.c:652 mini-utils/guname/guname.c:659
 msgid " ': "
 msgstr " ': "
 
-#: mini-utils/guname/guname.c:656
+#: mini-utils/guname/guname.c:659
 msgid "Couldn't run command ` "
 msgstr "명령어를 실행할 수 없음 ` "
 
-#: mini-utils/guname/guname.c:679
+#: mini-utils/guname/guname.c:682
 msgid "The following mail will be sent to "
 msgstr "다음 메일은 "
 
-#: mini-utils/guname/guname.c:681
+#: mini-utils/guname/guname.c:684
 msgid ""
 ".\n"
 " Are you sure you want to mail this information?"
@@ -1248,11 +1329,11 @@ msgstr ""
 "로 보내집니다.\n"
 " 이 정보를 전자우편으로 보내고 싶으십니까?"
 
-#: mini-utils/guname/guname.c:690
+#: mini-utils/guname/guname.c:693
 msgid "Are you sure?"
 msgstr "확실합니까?"
 
-#: mini-utils/guname/guname.c:724
+#: mini-utils/guname/guname.c:727
 msgid "Address to mail to:"
 msgstr "전자우편 보낼 주소:"
 
@@ -1358,11 +1439,11 @@ msgstr "알려지지 않은 파일시스템"
 msgid "No information for this filesystem."
 msgstr "현재 파일시스템에 대한 정보 없음."
 
-#: mini-utils/guname/moreinfo.c:160
+#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:165
 msgid "Memory"
 msgstr "기억장치"
 
-#: mini-utils/guname/moreinfo.c:160
+#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:166
 msgid "Kilobytes"
 msgstr "킬로바이트"
 
@@ -1370,54 +1451,54 @@ msgstr "킬로바이트"
 msgid "%ld%% %s used."
 msgstr "%ld%% %s 사용."
 
-#: mini-utils/guname/moreinfo.c:179
+#: mini-utils/guname/moreinfo.c:178 mini-utils/guname/moreinfo.c:182
 msgid "memory"
 msgstr "메모리"
 
-#: mini-utils/guname/moreinfo.c:193
+#: mini-utils/guname/moreinfo.c:192 mini-utils/guname/moreinfo.c:196
 msgid "swap"
 msgstr "스왑"
 
-#: mini-utils/guname/moreinfo.c:216
+#: mini-utils/guname/moreinfo.c:219
 #, c-format
 msgid "CPU %d"
 msgstr "CPU %d"
 
-#: mini-utils/guname/moreinfo.c:264
+#: mini-utils/guname/moreinfo.c:267
 msgid "Detailed System Information"
 msgstr "자세한 시스템 정보"
 
-#: mini-utils/guname/moreinfo.c:277
+#: mini-utils/guname/moreinfo.c:280
 msgid "Disk Information"
 msgstr "디스크 정보"
 
-#: mini-utils/guname/moreinfo.c:279
+#: mini-utils/guname/moreinfo.c:282
 msgid "Memory Information"
 msgstr "메모리 정보"
 
-#: mini-utils/guname/moreinfo.c:282
+#: mini-utils/guname/moreinfo.c:285
 msgid "CPU Information"
 msgstr "CPU 정보"
 
-#: mini-utils/guname/moreinfo.c:303
+#: mini-utils/guname/moreinfo.c:306
 msgid "%2d%% full "
 msgstr "%2d%% 꽉 참 "
 
-#: mini-utils/guname/moreinfo.c:305
+#: mini-utils/guname/moreinfo.c:308
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr ""
 "%ld 메가바이트, %ld 사용가능 (%ld 수퍼유저용); %ld개의 inode, %ld개 사용가능."
 
-#: mini-utils/guname/moreinfo.c:319
+#: mini-utils/guname/moreinfo.c:322
 msgid "Mount Point: "
 msgstr "마운트 정보: "
 
-#: mini-utils/guname/moreinfo.c:320
+#: mini-utils/guname/moreinfo.c:323
 msgid "    Device: "
 msgstr "    장치: "
 
-#: mini-utils/guname/moreinfo.c:321
+#: mini-utils/guname/moreinfo.c:324
 msgid "    Filesystem Type: "
 msgstr "    파일시스템 종류: "
 
@@ -1617,10 +1698,6 @@ msgstr "IDE 드라이브를 찾을 수 없습니다"
 #, fuzzy
 #~ msgid "Clear the search window"
 #~ msgstr "새 텍스트 보기 창"
-
-#, fuzzy
-#~ msgid "Remove"
-#~ msgstr "보기 삭제(_R)"
 
 #, fuzzy
 #~ msgid "Directory:"
