@@ -15,7 +15,9 @@ bin_PROGRAMS = ghex
 
 ghex_SOURCES = hex-document.c hex-document.h             \
 	preferences.c findreplace.c converter.c config.c \
-	ghex.h gtkhex.c gtkhex.h main.c ui.c session.c
+	ghex.h gtkhex.c gtkhex.h main.c ui.c session.c   \
+	chartable.c
+
 ghex_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
 EXTRA_DIST = ghex.desktop $(appicon_DATA)
