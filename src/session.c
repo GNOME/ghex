@@ -39,6 +39,31 @@ client_die(GnomeClient *client, gpointer data)
 	bonobo_main_quit ();
 }
 
+static void
+interaction_function (GnomeClient *client, gint key, GnomeDialogType dialog_type, gpointer shutdown)
+{
+
+	if (GPOINTER_TO_INT (shutdown)) {
+		const GList *doc_node;
+		GHexWindow *win;
+		HexDocument *doc;
+
+		doc_node = hex_document_get_list();
+		while(doc_node) {
+			doc = HEX_DOCUMENT(doc_node->data);
+			win = ghex_window_find_for_doc(doc);
+			if(!ghex_window_ok_to_close(win)) {
+				gnome_interaction_key_return (key, TRUE);
+				return;
+			}
+			doc_node = doc_node->next;
+		}
+	}
+	gnome_interaction_key_return (key, FALSE);
+}
+
+
+
 gint
 save_session(GnomeClient        *client,
              gint                phase,
@@ -55,6 +80,11 @@ save_session(GnomeClient        *client,
 
 	argv[0] = (gchar *)client_data;
 	argc = 1;
+	gnome_client_request_interaction (client,
+                                          GNOME_DIALOG_NORMAL,
+                                          interaction_function,
+                                          GINT_TO_POINTER (shutdown));
+
 	node = ghex_window_get_list();
 	while(node) {
 		win = GHEX_WINDOW(node->data);
