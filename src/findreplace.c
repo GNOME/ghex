@@ -292,7 +292,7 @@ static void find_prev_cb(GtkWidget *w) {
 		return;
 	}
 
-	if(find_string_backward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos-1, str, str_len, &offset) == 0)
+	if(find_string_backward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos, str, str_len, &offset) == 0)
 		gtk_hex_set_cursor(gh, offset);
 	else
 		gnome_app_flash(mdi->active_window, _("Beginning Of File reached"));

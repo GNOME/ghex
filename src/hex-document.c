@@ -565,13 +565,17 @@ gint find_string_backward(HexDocument *doc, guint start, guchar *what, gint len,
 	guint pos;
 	
 	pos = start;
-	while(pos >= 0) {
+
+	if(pos == 0)
+		return 1;
+
+	do {
+		pos--;
 		if(compare_data(&doc->buffer[pos], what, len) == 0) {
 			*found = pos;
 			return 0;
 		}
-		pos--;
-	}
+	} while(pos > 0);
 	
 	return 1;
 }

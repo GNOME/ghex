@@ -1,3 +1,11 @@
+1999-03-22  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* hex-document.c (find_string_backward): fixed it a bit to
+	prevent occasional segfaults, since a guint can't really be
+	less than 0.
+	* findreplace.c (find_prev_cb): start searching at gh->cursor_pos
+	instead of gh->cursor_pos-1 to comply with the above changes.
+
 1999-03-10  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* main.c (add_view_cb, cursor_moved_cb): new functions to
