@@ -14,7 +14,7 @@ ghex_SOURCES = gnome-document.c gnome-document.h gnome-mdi.c \
 	gnome-support.h gtkhex.c gtkhex.h main.c ui.c
 ghex_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
-EXTRA_DIST = index.html ghex.desktop
+EXTRA_DIST = index.html ghex.desktop ghex-topic.dat
 
 ghex_helpdir = $(datadir)/gnome/help/ghex/C
 
