@@ -1,3 +1,17 @@
+2000-03-15  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* chartable.c (select_chartable_row_cb): new function;  set byte under
+	cursor of currently active view to the selected character value on
+	double click.
+	* hex-document.c: added prototypes for static functions.
+	(get_document_attributes): new function. currently only updates file
+	size.
+	(hex_document_new, hex_document_read): use get_document_attributes().
+	* gtkhex.c (gtk_hex_real_data_changed): fixed scrollbar updating,
+	insertion at the end of file and rendering of bytes.
+	* ui.c (save_selected_file): mark document as unchanged.
+	* help/C/index.html: updated.
+
 2000-03-12  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* gtkhex.[ch] (gtk_hex_set_insert_mode): new public function.

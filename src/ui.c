@@ -451,7 +451,8 @@ static void save_selected_file(GtkWidget *w, GtkWidget *view)
 			if(doc->file_name)
 				g_free(doc->file_name);
 			doc->file_name = strdup(filename);
-			
+			doc->changed = FALSE;
+
 			for(i = strlen(doc->file_name);
 				(i >= 0) && (doc->file_name[i] != '/');
 				i--)

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* gtkhex.c - a GtkHex widget, modified for use in GHex
 
-   Copyright (C) 1998, 1999 Free Software Foundation
+   Copyright (C) 1998, 1999, 2000  Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -246,24 +246,26 @@ static void render_byte(GtkHex *gh, gint pos) {
 	gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
 	gdk_draw_rectangle(gh->xdisp->window, gh->xdisp_gc, TRUE,
 					   cx, cy, 2*gh->char_width, gh->char_height);
-	gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
-	
-	gdk_draw_text(gh->xdisp->window, gh->disp_font, gh->xdisp_gc,
-				  cx, cy + gh->disp_font->ascent, buf, 2);
+
+	if(pos < gh->document->file_size) {
+		gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
+		gdk_draw_text(gh->xdisp->window, gh->disp_font, gh->xdisp_gc,
+					  cx, cy + gh->disp_font->ascent, buf, 2);
+	}
 	
 	get_acoords(gh, pos, &cx, &cy);
 
 	gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
 	gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc, TRUE,
 					   cx, cy, gh->char_width, gh->char_height);
-	gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
-
-	buf[0] = gtk_hex_get_byte(gh, pos);
-	if(!is_printable(buf[0]))
-		buf[0] = '.';
-
-	gdk_draw_text(gh->adisp->window, gh->disp_font, gh->adisp_gc,
-				  cx, cy + gh->disp_font->ascent, buf, 1);
+	if(pos < gh->document->file_size) {
+		gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
+		buf[0] = gtk_hex_get_byte(gh, pos);
+		if(!is_printable(buf[0]))
+			buf[0] = '.';
+		gdk_draw_text(gh->adisp->window, gh->disp_font, gh->adisp_gc,
+					  cx, cy + gh->disp_font->ascent, buf, 1);
+	}
 }
 
 /*
@@ -379,6 +381,7 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 					   (imax - imin + 1)*gh->char_height);
   
 	imax = MIN(imax, gh->vis_lines);
+	imax = MIN(imax, gh->lines);
 
 	gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 
@@ -415,7 +418,8 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 					   (imax - imin + 1)*gh->char_height);
 	
 	imax = MIN(imax, gh->vis_lines);
-	
+	imax = MIN(imax, gh->lines);
+
 	gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 	
 	frm_len = format_ablock(gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
@@ -589,8 +593,10 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 		gh->lines++;
 	
 	gh->vis_lines = (height - 2*GTK_CONTAINER(gh)->border_width - 2*widget_get_yt(GTK_WIDGET(gh))) / gh->char_height;
+#if 0
 	gh->vis_lines = MIN(gh->vis_lines, gh->lines);
-	
+#endif
+
 	gh->adisp_width = gh->cpl*gh->char_width + 1;
 	xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
 	if(gh->cpl % gh->group_type == 0)
@@ -605,9 +611,12 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	/* adjust the scrollbar and display position to
 	   new sizes */
 	gh->adj->value = MIN(gh->top_line*old_cpl / gh->cpl, gh->lines - gh->vis_lines);
+	gh->adj->value = MAX(0, gh->adj->value);
 	if((gh->cursor_pos/gh->cpl < gh->adj->value) ||
-	   (gh->cursor_pos/gh->cpl > gh->adj->value + gh->vis_lines - 1))
+	   (gh->cursor_pos/gh->cpl > gh->adj->value + gh->vis_lines - 1)) {
 		gh->adj->value = MIN(gh->cursor_pos/gh->cpl, gh->lines - gh->vis_lines);
+		gh->adj->value = MAX(0, gh->adj->value);
+	}
 	gh->adj->lower = 0;
 	gh->adj->upper = gh->lines;
 	gh->adj->step_increment = 1;
@@ -899,10 +908,34 @@ static void gtk_hex_realize(GtkWidget *widget) {
 static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 	HexChangeData *change_data = (HexChangeData *)data;
 	gint start_line, end_line;
-	
+	guint lines;
+
 	if(gh->cpl == 0)
 		return;
-	
+
+	if(change_data->start - change_data->end + 1 != change_data->rep_len) {
+		lines = gh->document->file_size / gh->cpl;
+		if(gh->document->file_size % gh->cpl)
+			lines++;
+		if(lines != gh->lines) {
+			gh->lines = lines;
+			gh->adj->value = MIN(gh->adj->value, gh->lines - gh->vis_lines);
+			gh->adj->value = MAX(0, gh->adj->value);
+			if((gh->cursor_pos/gh->cpl < gh->adj->value) ||
+			   (gh->cursor_pos/gh->cpl > gh->adj->value + gh->vis_lines - 1)) {
+				gh->adj->value = MIN(gh->cursor_pos/gh->cpl, gh->lines - gh->vis_lines);
+				gh->adj->value = MAX(0, gh->adj->value);
+			}
+			gh->adj->lower = 0;
+			gh->adj->upper = gh->lines;
+			gh->adj->step_increment = 1;
+			gh->adj->page_increment = gh->vis_lines - 1;
+			gh->adj->page_size = gh->vis_lines;
+			gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "changed");
+			gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "value_changed");
+		}
+	}
+
 	start_line = change_data->start/gh->cpl - gh->top_line;
 	end_line = change_data->end/gh->cpl - gh->top_line;
 
@@ -957,6 +990,8 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 				break;
 			case GDK_Right:
 			case GDK_KP_6:
+				if(gh->cursor_pos >= gh->document->file_size)
+					break;
 				gh->lower_nibble = !gh->lower_nibble;
 				if(!gh->lower_nibble)
 					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
@@ -969,8 +1004,7 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 											gh->cursor_pos, gh->lower_nibble,
 											gh->insert, TRUE);
 					gh->lower_nibble = !gh->lower_nibble;
-					if((!gh->lower_nibble) &&
-					   (gh->cursor_pos < gh->document->file_size - 1))
+					if(!gh->lower_nibble)
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
 				else if((event->keyval >= 'A')&&(event->keyval <= 'F')) {
@@ -978,8 +1012,7 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 											gh->cursor_pos, gh->lower_nibble,
 											gh->insert, TRUE);
 					gh->lower_nibble = !gh->lower_nibble;
-					if((!gh->lower_nibble) &&
-					   (gh->cursor_pos < gh->document->file_size - 1))
+					if(!gh->lower_nibble)
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
 				else if((event->keyval >= 'a')&&(event->keyval <= 'f')) {
@@ -987,8 +1020,7 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 											gh->cursor_pos, gh->lower_nibble,
 											gh->insert, TRUE);
 					gh->lower_nibble = !gh->lower_nibble;
-					if((!gh->lower_nibble) &&
-					   (gh->cursor_pos < gh->document->file_size - 1))
+					if(!gh->lower_nibble)
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
 				else
@@ -1234,10 +1266,9 @@ GtkWidget *gtk_hex_new(HexDocument *owner) {
 	return GTK_WIDGET(gh);
 }
 
-/*
- * "public" functions follow. only these should be used when
- * manipulating a GtkHex widget outside this module
- */
+
+/*-------- public API starts here --------*/
+
 
 /*
  * moves cursor to UPPER_NIBBLE or LOWER_NIBBLE of the current byte
@@ -1274,12 +1305,16 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 		y = index / gh->cpl;
 		if(y >= gh->top_line + gh->vis_lines) {
 			gh->adj->value = MIN(y - gh->vis_lines + 1, gh->lines - gh->vis_lines);
+			gh->adj->value = MAX(gh->adj->value, 0);
 			gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "value_changed");
 		}
 		else if (y < gh->top_line) {
 			gh->adj->value = y;
 			gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "value_changed");
 		}      
+
+		if(index == gh->document->file_size)
+			gh->lower_nibble = FALSE;
 		
 		gtk_signal_emit_by_name(GTK_OBJECT(gh), "cursor_moved");
 		
@@ -1309,6 +1344,7 @@ void gtk_hex_set_cursor_xy(GtkHex *gh, gint x, gint y) {
 		
 		if(y >= gh->top_line + gh->vis_lines) {
 			gh->adj->value = MIN(y - gh->vis_lines + 1, gh->lines - gh->vis_lines);
+			gh->adj->value = MAX(0, gh->adj->value);
 			gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "value_changed");
 		}
 		else if (y < gh->top_line) {
@@ -1401,5 +1437,8 @@ void gtk_hex_set_insert_mode(GtkHex *gh, gboolean insert)
 	g_return_if_fail(GTK_IS_HEX(gh));
 
 	gh->insert = insert;
+
+	if(gh->cursor_pos >= gh->document->file_size)
+		gh->cursor_pos = gh->document->file_size - 1;
 }
 

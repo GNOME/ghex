@@ -29,6 +29,7 @@
 #include "ghex.h"
 
 GtkWidget *char_table = NULL;
+static gint sel_row = -1;
 
 static char *ascii_non_printable_label[] = {
 	"NUL",
@@ -65,6 +66,24 @@ static char *ascii_non_printable_label[] = {
 	"US"
 };
 
+static void select_chartable_row_cb(GtkCList *cl, gint row, gint col,
+									GdkEvent *event)
+{
+	GtkWidget *active_view;
+
+	if(row == sel_row && event->type == GDK_2BUTTON_PRESS) {
+		g_message("row %d\n", row);
+		active_view = gnome_mdi_get_active_view(mdi);
+		if(active_view) {
+			GtkHex *gh = GTK_HEX(active_view);
+			hex_document_set_byte(gh->document, (guchar)row, gh->cursor_pos,
+								  gh->insert, TRUE);
+		}
+	}
+
+	sel_row = row;
+}
+
 GtkWidget *create_char_table()
 {
 	static gchar *fmt[] = { NULL, "%02X", "%03d", "%03o" };
@@ -78,7 +97,7 @@ GtkWidget *create_char_table()
 	gtk_window_set_title(GTK_WINDOW(ct), _("GHex: Character table"));
 	sw = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	cl =  gtk_clist_new_with_titles(5, titles);
+	cl = gtk_clist_new_with_titles(5, titles);
 
 	bin_label[8] = 0;
 	ascii_printable_label[1] = 0;
@@ -104,6 +123,8 @@ GtkWidget *create_char_table()
 
 	gtk_signal_connect(GTK_OBJECT(ct), "delete-event",
 					   GTK_SIGNAL_FUNC(delete_event_cb), ct);
+	gtk_signal_connect(GTK_OBJECT(cl), "select-row",
+					   GTK_SIGNAL_FUNC(select_chartable_row_cb), NULL);
 
 	gtk_container_add(GTK_CONTAINER(sw), cl);
 	gtk_container_add(GTK_CONTAINER(ct), sw);
