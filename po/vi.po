@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex VERSION\n"
-"POT-Creation-Date: 2002-05-07 00:19+0200\n"
-"PO-Revision-Date: 2002-05-15 23:38-0400\n"
+"POT-Creation-Date: 2002-06-02 15:48+0200\n"
+"PO-Revision-Date: 2002-05-30 17:08+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -25,61 +25,71 @@ msgstr "Bộ soạn thảo nhị phân Gnome"
 msgid "Activate %s"
 msgstr "Kích hoạt %s"
 
-#: src/chartable.c:106
+#: src/chartable.c:115
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:106
+#: src/chartable.c:115
 msgid "Hex"
 msgstr "Hex"
 
-#: src/chartable.c:106 src/preferences.c:203
+#: src/chartable.c:115 src/preferences.c:214
 msgid "Decimal"
 msgstr "Thập phân"
 
-#: src/chartable.c:107
+#: src/chartable.c:116
 msgid "Octal"
 msgstr "Bát phân"
 
-#: src/chartable.c:107
+#: src/chartable.c:116
 msgid "Binary"
 msgstr "Nhị phân"
 
-#: src/chartable.c:119
+#: src/chartable.c:128
 msgid "Character table"
 msgstr "Bảng ký tự"
 
-#: src/converter.c:179
+#: src/converter.c:190
 msgid "Base Converter"
 msgstr "Bộ chuyển cơ số"
 
 #. entries
-#: src/converter.c:198
-msgid "_Binary"
-msgstr "_Nhị phân"
+#: src/converter.c:209
+msgid "_Binary:"
+msgstr "_Nhị phân:"
 
-#: src/converter.c:200
-msgid "_Octal"
-msgstr "_Bát phân"
+#: src/converter.c:211
+msgid "_Octal:"
+msgstr "_Bát phân:"
 
-#: src/converter.c:202
-msgid "_Decimal"
-msgstr "_Thập phân"
+#: src/converter.c:213
+msgid "_Decimal:"
+msgstr "_Thập phân:"
 
-#: src/converter.c:204
-msgid "_Hex"
-msgstr "_Hex"
+#: src/converter.c:215
+msgid "_Hex:"
+msgstr "_Hex:"
 
-#: src/converter.c:206
-msgid "_ASCII"
-msgstr "_ASCII"
+#: src/converter.c:217
+msgid "_ASCII:"
+msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:210
+#: src/converter.c:221
 msgid "_Get cursor value"
 msgstr "_Lấy giá trị con trỏ"
 
-#: src/converter.c:339
+#: src/converter.c:231
+msgid "Get cursor value"
+msgstr "Lấy giá trị con trỏ"
+
+#: src/converter.c:231
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"Lấy giá trị tại vị trí con tro theo dạng nhị phân, bát phân, thập phân, thập "
+"luc phân và ASCII"
+
+#: src/converter.c:358
 msgid "ERROR"
 msgstr "LỖI"
 
@@ -93,7 +103,7 @@ msgstr "GHex (%s): Tìm dữ liệu"
 msgid "Search for %s"
 msgstr "Tìm %s"
 
-#: src/findreplace.c:86
+#: src/findreplace.c:86 src/findreplace.c:119
 msgid "Find Next"
 msgstr "Tìm tiếp"
 
@@ -101,78 +111,146 @@ msgstr "Tìm tiếp"
 msgid "Find Previous"
 msgstr "Tìm lại"
 
-#: src/findreplace.c:133 src/main.c:120
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Find Data"
+msgstr "Tìm dữ liệu"
+
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Nhập dữ liệu thập lục phân hoặc ASCII để tìm"
+
+#: src/findreplace.c:119 src/findreplace.c:212
+msgid "Finds the next occurrence of the search string"
+msgstr "Tìm tiếp"
+
+#: src/findreplace.c:120
+msgid "Find previous"
+msgstr "Tìm trước đó"
+
+#: src/findreplace.c:120
+msgid "Finds the previous occurrence of the search string "
+msgstr "Tìm lại cái trước đó"
+
+#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
+msgid "Cancel"
+msgstr "Hủy bỏ"
+
+#: src/findreplace.c:121
+msgid "Closes find data window"
+msgstr "Đóng cửa sổ tìm dữ liệu"
+
+#: src/findreplace.c:140 src/main.c:120
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Tìm và thay thế dữ liệu"
 
-#: src/findreplace.c:148
+#: src/findreplace.c:155
 #, c-format
 msgid "Replace %s"
 msgstr "Thay thế %s"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:172 src/findreplace.c:212
 msgid "Find next"
 msgstr "Tìm tiếp"
 
-#: src/findreplace.c:173 src/ghex-ui.xml.h:43
+#: src/findreplace.c:180 src/findreplace.c:213 src/ghex-ui.xml.h:43
 msgid "Replace"
 msgstr "Thay thế"
 
-#: src/findreplace.c:181
+#: src/findreplace.c:188 src/findreplace.c:214
 msgid "Replace All"
 msgstr "Thay thế tất cả"
 
-#: src/findreplace.c:215 src/main.c:122
+#: src/findreplace.c:211
+msgid "Replace Data"
+msgstr "Thay thế dữ liệu"
+
+#: src/findreplace.c:211
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Nhập dữ liệu thập lục phân hoặc ASCII để thay thế"
+
+#: src/findreplace.c:213
+msgid "Replaces the search string with the replace string"
+msgstr "Thay thế chuỗi tìm bằng chuỗi thay thế"
+
+#: src/findreplace.c:214
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Thay thế mọi chuỗi tìm thấy"
+
+#: src/findreplace.c:215
+msgid "Closes find and replace data window"
+msgstr "Đóng cửa sổ tìm và thay thế"
+
+#: src/findreplace.c:231 src/main.c:122
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Nhảy tới byte"
 
-#: src/findreplace.c:306 src/findreplace.c:332 src/findreplace.c:385
+#: src/findreplace.c:261
+msgid "Jump to byte"
+msgstr "Nhảy tới byte"
+
+#: src/findreplace.c:261
+msgid "Enter the byte to jump to"
+msgstr "Nhập byte cần nhảy tới"
+
+#: src/findreplace.c:262
+msgid "OK"
+msgstr "Đồng ý"
+
+#: src/findreplace.c:262
+msgid "Jumps to the specified byte"
+msgstr "Nhảy tới byte xác định"
+
+#: src/findreplace.c:263
+msgid "Closes jump to byte window"
+msgstr "Đóng cửa sổ Nhảy tới byte"
+
+#: src/findreplace.c:328 src/findreplace.c:354 src/findreplace.c:407
 msgid "There is no active buffer to search!"
 msgstr "Không có cái gì để tìm cả!"
 
-#: src/findreplace.c:314 src/findreplace.c:340 src/findreplace.c:393
+#: src/findreplace.c:336 src/findreplace.c:362 src/findreplace.c:415
 msgid "There seems to be no string to search for!"
 msgstr "Chưa nhập chuỗi cần tìm!"
 
-#: src/findreplace.c:321 src/findreplace.c:401
+#: src/findreplace.c:343 src/findreplace.c:423
 msgid "End Of File reached"
 msgstr "Đã tới cuối tập tin"
 
-#: src/findreplace.c:348
+#: src/findreplace.c:370
 msgid "Beginning Of File reached"
 msgstr "Đã tới đầu tập tin"
 
-#: src/findreplace.c:358
+#: src/findreplace.c:380
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Không có chỗ nào để di chuyển con trỏ cả!"
 
-#: src/findreplace.c:363
+#: src/findreplace.c:385
 msgid "No offset has been specified!"
 msgstr "Chưa xác định offset!"
 
-#: src/findreplace.c:370
+#: src/findreplace.c:392
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Không thể đặt con trỏ đằng sau tập tin!"
 
-#: src/findreplace.c:375
+#: src/findreplace.c:397
 msgid "The offset must be a positive integer value!"
 msgstr "Offset phải là giá trị nguyên dương!"
 
-#: src/findreplace.c:413 src/findreplace.c:451
+#: src/findreplace.c:435 src/findreplace.c:473
 msgid "There is no active buffer to replace data in!"
 msgstr "Không có gì để thay thế dữ liệu cả!"
 
-#: src/findreplace.c:424 src/findreplace.c:462
+#: src/findreplace.c:446 src/findreplace.c:484
 msgid "Strange find or replace string!"
-msgstr ""
+msgstr "Chuỗi tìm/thay thế lạ!"
 
-#: src/findreplace.c:439
+#: src/findreplace.c:461
 msgid "End Of File reached!"
 msgstr "Đã tới cuối tập tin!"
 
-#: src/findreplace.c:478
+#: src/findreplace.c:500
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Đã thay thế %d lần."
@@ -299,7 +377,7 @@ msgstr "Dữ liệu nhóm 8 bit"
 
 #: src/ghex-ui.xml.h:24
 msgid "Help Chat"
-msgstr ""
+msgstr "Tán gẫu trợ giúp"
 
 #: src/ghex-ui.xml.h:25
 msgid "Help on this application"
@@ -533,19 +611,19 @@ msgstr "_Xem"
 msgid "_Words"
 msgstr "_Từ"
 
-#: src/hex-document.c:747
+#: src/hex-document.c:749
 msgid "Page"
 msgstr "Trang"
 
-#: src/hex-document.c:753 src/hex-document.c:854
+#: src/hex-document.c:755 src/hex-document.c:856
 msgid "Hex dump generated by"
-msgstr ""
+msgstr "Kết xuất hex bởi"
 
-#: src/hex-document.c:777
+#: src/hex-document.c:779
 msgid "Previous page"
 msgstr "Trang trước"
 
-#: src/hex-document.c:792
+#: src/hex-document.c:794
 msgid "Next page"
 msgstr "Trang kế"
 
@@ -580,99 +658,156 @@ msgstr ""
 
 #: src/preferences.c:60
 msgid "Modal"
-msgstr ""
+msgstr "Modal"
 
 #: src/preferences.c:92
 msgid "Select font"
 msgstr "Chọn font"
 
-#: src/preferences.c:146
+#: src/preferences.c:148
 msgid "GHex Preferences"
 msgstr "Thông số GHex"
 
-#: src/preferences.c:174
-msgid "Maximum number of undo levels"
-msgstr "Số mức hoàn lại tối đa"
+#: src/preferences.c:176
+msgid "_Maximum number of undo levels:"
+msgstr "_Số mức hoàn lại tối đa:"
 
-#: src/preferences.c:189
-msgid "Show cursor offset in statusbar as"
-msgstr "Hiện offset của con tro trên thanh trạng thái là"
+#: src/preferences.c:196
+msgid "Undo levels"
+msgstr "Mức hoàn lại"
 
-#: src/preferences.c:208
+#: src/preferences.c:196
+msgid "Select maximum number of undo levels"
+msgstr "Chọn số mức hoàn lại tối đa"
+
+#: src/preferences.c:200
+msgid "Show cursor offset in statusbar as:"
+msgstr "Hiện offset của con trỏ trên thanh trạng thái là:"
+
+#: src/preferences.c:219
 msgid "Hexadecimal"
 msgstr "Thập lục phân"
 
-#: src/preferences.c:214
+#: src/preferences.c:225
 msgid "Custom"
 msgstr "Tự chọn"
 
+#: src/preferences.c:236
+msgid "format_entry"
+msgstr ""
+
+#: src/preferences.c:236
+msgid "Enter the cursor offset format"
+msgstr "Nhập dạng thức vị trí cursor"
+
+#: src/preferences.c:237
+msgid "format_optionmenu"
+msgstr ""
+
+#: src/preferences.c:237
+msgid "Select the cursor offset format"
+msgstr "Chọn dạng thức vị trí cursor"
+
 #. show offsets check button
-#: src/preferences.c:225
+#: src/preferences.c:247
 msgid "Show offsets column"
 msgstr "Hiện cột offset"
 
-#: src/preferences.c:230
+#: src/preferences.c:252
 msgid "Editing"
 msgstr "Đang sửa"
 
 #. display font
-#: src/preferences.c:239
+#: src/preferences.c:261
 msgid "Font"
 msgstr "Font"
 
-#: src/preferences.c:261
+#: src/preferences.c:283
 msgid "Browse..."
 msgstr "Duyệt..."
 
 #. default group type
-#: src/preferences.c:290
+#: src/preferences.c:312
 msgid "Default Group Type"
 msgstr "Kiểu nhóm mặc định"
 
-#: src/preferences.c:306
+#: src/preferences.c:328
 msgid "Display"
 msgstr "Hiển thị"
 
 #. mdi modes
-#: src/preferences.c:315
+#: src/preferences.c:337
 msgid "MDI Mode"
 msgstr "Chế độ MDI"
 
-#: src/preferences.c:332
+#: src/preferences.c:354
 msgid "MDI"
 msgstr "MDI"
 
 #. paper selection
-#: src/preferences.c:341
+#: src/preferences.c:363
 msgid "Paper size"
 msgstr "Cỡ giấy"
 
 #. data & header font selection
-#: src/preferences.c:357
+#: src/preferences.c:379
 msgid "Fonts"
 msgstr "Font"
 
-#: src/preferences.c:363
+#: src/preferences.c:385
+msgid "_Data font:"
+msgstr "Font _dữ liệu:"
+
+#: src/preferences.c:403
 msgid "Data font"
 msgstr "Font dữ liệu"
 
-#: src/preferences.c:396
+#: src/preferences.c:403
+msgid "Select the data font"
+msgstr "Chọn font dữ liệu"
+
+#: src/preferences.c:424
+msgid "Header fo_nt:"
+msgstr "Font _tiêu đề:"
+
+#: src/preferences.c:444
 msgid "Header font"
 msgstr "Font tiêu đề"
 
-#: src/preferences.c:441
-msgid "Print shaded box over"
-msgstr "In hộp bóng trên"
+#: src/preferences.c:444
+msgid "Select the header font"
+msgstr "Chọn font tiêu đề"
 
-#: src/preferences.c:450
+#: src/preferences.c:476
+msgid "_Print shaded box over:"
+msgstr "_In hộp bóng trên:"
+
+#: src/preferences.c:488
+msgid "Box size"
+msgstr "Kích thước hộp"
+
+#: src/preferences.c:488
+msgid "Select size of box (in number of lines)"
+msgstr "Chọn kích thước hộp (số dòng)"
+
+#: src/preferences.c:492
 msgid "lines (0 for no box)"
 msgstr "dòng (0 là không có hộp)"
 
-#: src/preferences.c:457
+#: src/preferences.c:499
 msgid "Printing"
 msgstr "Đang in"
 
-#: src/preferences.c:657
+#: src/preferences.c:614 src/ui.c:270
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Lỗi hiển thị trợ giúp: \n"
+"%s"
+
+#: src/preferences.c:717
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -680,7 +815,7 @@ msgstr ""
 "Dạng thức chuỗi offset chứa dạng thức không hợp lệ.\n"
 "Chỉ có 'x', 'X', 'p', 'P', 'd' và 'o' là được phép."
 
-#: src/preferences.c:700
+#: src/preferences.c:760
 msgid "Can not open desired font!"
 msgstr "Không thể mở font yêu cầu!"
 
@@ -724,61 +859,61 @@ msgstr "GHex, bộ biên soạn nhị phân"
 
 #: src/ui.c:248
 msgid "Released under the terms of GNU Public License"
-msgstr ""
+msgstr "Được phát hành theo những điều khoản của giấy phép GPL"
 
-#: src/ui.c:304 src/ui.c:665
+#: src/ui.c:322 src/ui.c:683
 msgid "Error saving file!"
 msgstr "Lỗi lưu tập tin!"
 
-#: src/ui.c:308 src/ui.c:660
+#: src/ui.c:326 src/ui.c:678
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Đã lưu vùng đệm vào tập tin %s"
 
-#: src/ui.c:332
+#: src/ui.c:350
 msgid "Select a file to open"
 msgstr "Chọn tập tin cần mở"
 
-#: src/ui.c:369
+#: src/ui.c:387
 msgid "Select a file to save buffer as"
 msgstr "Chọn tập tin để lưu vùng đệm"
 
-#: src/ui.c:413
+#: src/ui.c:431
 msgid "Select path and file name for the HTML source"
 msgstr "Chọn đường dẫn và tên tập tin HTML"
 
-#: src/ui.c:584
+#: src/ui.c:602
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Thật sự muốn hoàn nguyên tập tin %s?"
 
-#: src/ui.c:598
+#: src/ui.c:616
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Đã hoàn nguyên vùng đệm từ tập tin %s"
 
-#: src/ui.c:614
+#: src/ui.c:632
 #, c-format
 msgid "Loaded file %s"
 msgstr "Đã nạp tập tin %s"
 
-#: src/ui.c:626
+#: src/ui.c:644
 msgid "Can not open file!"
 msgstr "Không thể mở tập tin!"
 
-#: src/ui.c:669
+#: src/ui.c:687
 msgid "Can't open file for writing!"
 msgstr "Không thể mở tập tin để ghi!"
 
-#: src/ui.c:748
+#: src/ui.c:766
 msgid "Print Hex Document"
 msgstr "In tài liệu Hex"
 
-#: src/ui.c:753
+#: src/ui.c:771
 msgid "Pages"
 msgstr "Trang"
 
-#: src/ui.c:799
+#: src/ui.c:817
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Xem thử bản in"
