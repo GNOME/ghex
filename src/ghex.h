@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ghex.h - defines GHex ;)
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998, 1999 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -39,16 +39,19 @@
 
 #define MAX_MAX_UNDO_DEPTH 100000
 
-extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[], tools_menu[];
+#define OFFSET_BASE_16 16
+#define OFFSET_BASE_10 10
+
+extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[];
 
 #define DATA_TYPE_HEX   0
 #define DATA_TYPE_ASCII 1
 
 #define NUM_MDI_MODES 4
 
-#define CHILD_MENU_PATH "_File"
-#define CHILD_LIST_PATH "Fi_les/"
-#define GROUP_MENU_PATH "_Edit/_Group Data As/"
+#define CHILD_MENU_PATH GNOME_MENU_FILE_STRING
+#define CHILD_LIST_PATH GNOME_MENU_FILES_PATH
+#define GROUP_MENU_PATH(p) p = g_strconcat(GNOME_MENU_EDIT_PATH,_("_Group Data As"),"/", NULL)
 
 typedef struct _PropertyUI {
 	GnomePropertyBox *pbox;
@@ -100,13 +103,12 @@ extern gint mdi_mode;
 
 extern GtkWidget *file_sel;
 
-extern FindDialog *find_dialog;
-extern ReplaceDialog *replace_dialog;
-extern JumpDialog *jump_dialog;
-extern Converter *converter;
-extern GtkWidget *char_table;
+extern FindDialog find_dialog;
+extern ReplaceDialog replace_dialog;
+extern JumpDialog jump_dialog;
+extern Converter converter;
 
-extern PropertyUI *prefs_ui;
+extern PropertyUI prefs_ui;
 
 extern GtkCheckMenuItem *save_config_item;
 
@@ -129,25 +131,23 @@ extern gchar *search_type_label[2];
 
 extern GSList *cl_files;
 
-FindDialog    *create_find_dialog    (void);
-ReplaceDialog *create_replace_dialog (void);
-JumpDialog    *create_jump_dialog    (void);
-Converter     *create_converter      (void);
-GtkWidget     *create_char_table     (void);
-PropertyUI    *create_prefs_dialog   (void);
-
+void create_find_dialog    (FindDialog *);
+void create_replace_dialog (ReplaceDialog *);
+void create_jump_dialog    (JumpDialog *);
+void create_converter      (Converter *);
+void create_prefs_dialog   (PropertyUI *);
 void create_dialog_title   (GtkWidget *, gchar *);
 
 gint ask_user              (GnomeMessageBox *);
-GtkWidget *create_button   (GtkWidget *, const gchar *, gchar *);
+GtkWidget *create_button   (GtkWidget *, gchar *, gchar *);
 
 /* config stuff */
 void save_configuration    (void);
 void load_configuration    (void);
 
-/* hide the widget passed as user data after delete event or click on a cancel button */
-gint delete_event_cb(GtkWidget *, gpointer, GtkWidget *);
-void cancel_cb(GtkWidget *, GtkWidget *);
+/* callbacks to nullify widget pointer after a delete event */
+gint delete_event_cb(GtkWidget *, gpointer, GtkWidget **);
+void cancel_cb(GtkWidget *, GtkWidget **);
 
 /* session managment */
 int save_state      (GnomeClient        *client,

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* findreplace.c - finding & replacing data
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998, 1999 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -21,10 +21,7 @@
    Author: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
 */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <gnome.h>
 #include "ghex.h"
 
@@ -38,19 +35,15 @@ static void set_replace_type_cb(GtkWidget *, gint);
 static void goto_byte_cb(GtkWidget *);
 static gint get_search_string(gchar *, gchar *, gint);
 
-FindDialog *find_dialog = NULL;
-ReplaceDialog *replace_dialog = NULL;
-JumpDialog *jump_dialog = NULL;
+FindDialog find_dialog = { NULL };
+ReplaceDialog replace_dialog = { NULL };
+JumpDialog jump_dialog = { NULL };
 
-FindDialog *create_find_dialog()
-{
+void create_find_dialog(FindDialog *dialog) {
 	gint i;
 	GSList *group;
 	gchar type_label[256];
-	FindDialog *dialog;
-
-	dialog = g_new0(FindDialog, 1);
-
+	
 	dialog->window = gtk_dialog_new();
 	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
 					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
@@ -68,7 +61,7 @@ FindDialog *create_find_dialog()
 		
 		dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
 		
-		if(dialog->search_type == i)
+		if(find_dialog.search_type == i)
 			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
 		
 		gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
@@ -97,26 +90,20 @@ FindDialog *create_find_dialog()
 	dialog->f_close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
 	gtk_signal_connect (GTK_OBJECT (dialog->f_close),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						dialog->window);
+						&dialog->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_close,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(dialog->f_close);
 	
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
-
-	return dialog;
 }
 
-ReplaceDialog *create_replace_dialog()
-{
+void create_replace_dialog(ReplaceDialog *dialog) {
 	gint i;
 	GSList *group;
 	gchar type_label[256];
-	ReplaceDialog *dialog;
-
-	dialog = g_new0(ReplaceDialog, 1);
-
+	
 	dialog->window = gtk_dialog_new();
 	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
 					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
@@ -139,7 +126,7 @@ ReplaceDialog *create_replace_dialog()
 		
 		dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
 		
-		if(dialog->search_type == i)
+		if(replace_dialog.search_type == i)
 			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
 		
 		gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
@@ -175,23 +162,16 @@ ReplaceDialog *create_replace_dialog()
 	dialog->close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
 	gtk_signal_connect (GTK_OBJECT (dialog->close),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						dialog->window);
+						&dialog->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->close,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(dialog->close);
 	
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
-
-	return dialog;
 }
 
-JumpDialog *create_jump_dialog()
-{
-	JumpDialog *dialog;
-
-	dialog = g_new0(JumpDialog, 1);
-
+void create_jump_dialog(JumpDialog *dialog) {
 	dialog->window = gtk_dialog_new();
 	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
 					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
@@ -213,19 +193,16 @@ JumpDialog *create_jump_dialog()
 	dialog->cancel = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
 	gtk_signal_connect (GTK_OBJECT (dialog->cancel),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						dialog->window);
+						&dialog->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->cancel,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(dialog->cancel);
 	
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
-
-	return dialog;
 }
 
-static gint get_search_string(gchar *str, gchar *buf, gint type)
-{
+static gint get_search_string(gchar *str, gchar *buf, gint type) {
 	gint len = strlen(str), shift;
 	
 	if(len > 0) {
@@ -266,18 +243,15 @@ static gint get_search_string(gchar *str, gchar *buf, gint type)
 	return 0;
 }
 
-static void set_find_type_cb(GtkWidget *w, gint type)
-{
-	find_dialog->search_type = type;
+static void set_find_type_cb(GtkWidget *w, gint type) {
+	find_dialog.search_type = type;
 }
 
-static void set_replace_type_cb(GtkWidget *w, gint type)
-{
-	replace_dialog->search_type = type;
+static void set_replace_type_cb(GtkWidget *w, gint type) {
+	replace_dialog.search_type = type;
 }
 
-static void find_next_cb(GtkWidget *w)
-{
+static void find_next_cb(GtkWidget *w) {
 	GtkHex *gh;
 	guint offset, str_len;
 	gchar str[256];
@@ -289,8 +263,8 @@ static void find_next_cb(GtkWidget *w)
 	
 	gh = GTK_HEX(mdi->active_view);
 	
-	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog->f_string)), str,
-									find_dialog->search_type)) == 0) {
+	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog.f_string)), str,
+									find_dialog.search_type)) == 0) {
 		gnome_app_error(mdi->active_window, _("There seems to be no string to search for!"));
 		return;
 	}
@@ -300,8 +274,7 @@ static void find_next_cb(GtkWidget *w)
 		gnome_app_flash(mdi->active_window, _("End Of File reached"));
 }
 
-static void find_prev_cb(GtkWidget *w)
-{
+static void find_prev_cb(GtkWidget *w) {
 	GtkHex *gh;
 	guint offset, str_len;
 	gchar str[256];
@@ -313,8 +286,8 @@ static void find_prev_cb(GtkWidget *w)
 	
 	gh = GTK_HEX(mdi->active_view);
 	
-	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog->f_string)), str,
-									find_dialog->search_type)) == 0) {
+	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog.f_string)), str,
+									find_dialog.search_type)) == 0) {
 		gnome_app_error(mdi->active_window, _("There seems to be no string to search for!"));
 		return;
 	}
@@ -325,10 +298,9 @@ static void find_prev_cb(GtkWidget *w)
 		gnome_app_flash(mdi->active_window, _("Beginning Of File reached"));
 }
 
-static void goto_byte_cb(GtkWidget *w)
-{
+static void goto_byte_cb(GtkWidget *w) {
 	guint byte;
-	gchar *byte_str = gtk_entry_get_text(GTK_ENTRY(jump_dialog->int_entry)), *endptr;
+	gchar *byte_str = gtk_entry_get_text(GTK_ENTRY(jump_dialog.int_entry)), *endptr;
 	
 	if(mdi->active_child == NULL) {
 		gnome_app_error(mdi->active_window, _("There is no active buffer to move the cursor in!"));
@@ -355,8 +327,7 @@ static void goto_byte_cb(GtkWidget *w)
 	gtk_hex_set_cursor(GTK_HEX(mdi->active_view), byte);
 }
 
-static void replace_next_cb(GtkWidget *w)
-{
+static void replace_next_cb(GtkWidget *w) {
 	GtkHex *gh;
 	guint offset, str_len;
 	gchar str[256];
@@ -368,8 +339,8 @@ static void replace_next_cb(GtkWidget *w)
 	
 	gh = GTK_HEX(mdi->active_view);
 
-	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->f_string)), str,
-									replace_dialog->search_type)) == 0) {
+	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.f_string)), str,
+									replace_dialog.search_type)) == 0) {
 		gnome_app_error(mdi->active_window, _("There seems to be no string to search for!"));
 		return;
 	}
@@ -380,8 +351,7 @@ static void replace_next_cb(GtkWidget *w)
 		gnome_app_flash(mdi->active_window, _("End Of File reached"));
 }
 
-static void replace_one_cb(GtkWidget *w)
-{
+static void replace_one_cb(GtkWidget *w) {
 	gchar find_str[256], rep_str[256];
 	guint find_len, rep_len, offset;
 	GtkHex *gh;
@@ -395,10 +365,10 @@ static void replace_one_cb(GtkWidget *w)
 	gh = GTK_HEX(mdi->active_view);
 	doc = HEX_DOCUMENT(mdi->active_child);
 	
-	if( ((find_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->f_string)), find_str,
-									   replace_dialog->search_type)) == 0) ||
-		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->r_string)), rep_str,
-									  replace_dialog->search_type)) == 0)) {
+	if( ((find_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.f_string)), find_str,
+									   replace_dialog.search_type)) == 0) ||
+		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.r_string)), rep_str,
+									  replace_dialog.search_type)) == 0)) {
 		gnome_app_error(mdi->active_window, _("Strange find or replace string!"));
 		return;
 	}
@@ -420,8 +390,7 @@ static void replace_one_cb(GtkWidget *w)
 		gnome_app_flash(mdi->active_window, _("End Of File reached!"));
 }
 
-static void replace_all_cb(GtkWidget *w)
-{
+static void replace_all_cb(GtkWidget *w) {
 	gchar find_str[256], rep_str[256], *flash;
 	guint find_len, rep_len, offset, count;
 	GtkHex *gh;
@@ -435,10 +404,10 @@ static void replace_all_cb(GtkWidget *w)
 	gh = GTK_HEX(mdi->active_view);
 	doc = HEX_DOCUMENT(mdi->active_child);
 	
-	if( ((find_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->f_string)), find_str,
-									   replace_dialog->search_type)) == 0) ||
-		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->r_string)), rep_str,
-									  replace_dialog->search_type)) == 0)) {
+	if( ((find_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.f_string)), find_str,
+									   replace_dialog.search_type)) == 0) ||
+		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.r_string)), rep_str,
+									  replace_dialog.search_type)) == 0)) {
 		gnome_app_error(mdi->active_window, _("Strange find or replace string!"));
 		return;
 	}

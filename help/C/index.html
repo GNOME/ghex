@@ -3,6 +3,7 @@
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
    <META NAME="Keywords" CONTENT="GHex, ghex, GNOME, Hex Editor">
    <META NAME="Author" CONTENT="Jaka Mocnik">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (X11; I; Linux 2.1.106 i586) [Netscape]">
    <TITLE>GNOME Hex Editor Documentation</TITLE>
 </HEAD>
 <BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
@@ -76,12 +77,11 @@ correspond to a given format.</LI>
 the buffer to a file with this name.</LI>
 
 <LI>
-<I>Export to HTML... </I>lets you select a filename and then saves the
-contents of the buffer to a set of files with this name plus number of
-the page plus the .html extension if it doesn't exist.</LI>
+<I>Revert </I>reloads the contents of the file.</LI>
 
 <LI>
-<I>Revert </I>reloads the contents of the file.</LI>
+<I>Open Converter... </I>opens the <A HREF="#converter">Base Conversion
+Dialog</A>.</LI>
 
 <LI>
 <I>Close </I>closes all views and removes the file from the memory.</LI>
@@ -120,16 +120,6 @@ Menu <I>View</I> (only when a file is open)
 <I>Remove view</I> removes the active view. Even if this is the last view
 of the corresponding file, the file will not be closed and will remain
 accessible through the <I>Files</I> menu.</LI>
-</UL>
-
-Menu <I>Tools</I>
-<UL>
-<LI>
-<I>Open Converter... </I>opens the <A HREF="#converter">Base Conversion
-Dialog</A>.</LI>
-<LI>
-<I>Character Table... </I>shows a table with ASCII description, a hexadecimal,
-decimal, octal and binary representation of each value from 0 to 255.</LI>
 </UL>
 
 Menu <I>Settings</I>
@@ -197,10 +187,9 @@ groupping setting).
 <LI>
 Editing settings: here you can set the maximum number of changes that can be
 undone and pick the format the the cursor offset will be shown at. This format
-can be either decimal or hexadecimal or a custom printf style string containing
-no other format specifiers but 'x', 'o' and 's'. You can also set whether
-the hex editing widget will show an extra column with the offsets of
-beginning of lines on the left.</LI>
+can be either decimal or hexadecimal or a custom printf style string. You can
+also set whether the hex editing widget will show an extra column with the
+offsets of beginning of lines on the left.</LI>
 <LI>
 Display settings: here you can set the default data grouping type and the
 display font.</LI>

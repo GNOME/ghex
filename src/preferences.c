@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* preferences.c - setting the preferences
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998, 1999 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -33,7 +33,7 @@ static void properties_modified_cb(GtkWidget *w, GnomePropertyBox *pbox);
 static void prop_destroy_cb(GtkWidget *w, PropertyUI *data);
 static void offset_cb(GtkWidget *w, PropertyUI *pui);
 
-PropertyUI *prefs_ui = NULL;
+PropertyUI prefs_ui = { NULL };
 
 GdkFont *def_font = NULL;
 gchar *def_font_name = NULL;
@@ -53,16 +53,13 @@ gchar *mdi_type_label[NUM_MDI_MODES] = {
 	N_("Modal"),
 };
 
-PropertyUI *create_prefs_dialog() {
+void create_prefs_dialog(PropertyUI *pui) {
 	GtkWidget *vbox, *label, *frame, *box, *entry, *fbox, *flabel;
 	GtkWidget *menu, *item;
 	GtkAdjustment *undo_adj;
 	GSList *group;
-	PropertyUI *pui;
-
+	
 	int i;
-
-	pui = g_new0(PropertyUI, 1);
 	
 	pui->pbox = GNOME_PROPERTY_BOX(gnome_property_box_new());
 	
@@ -102,7 +99,7 @@ PropertyUI *create_prefs_dialog() {
 	gtk_widget_show(label);
 
 	pui->format = gtk_entry_new();
-	gtk_signal_connect(GTK_OBJECT(pui->format), "changed",
+	gtk_signal_connect(GTK_OBJECT(pui->format), "activate",
 					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
 	gtk_box_pack_start (GTK_BOX(box), pui->format, TRUE, TRUE, GNOME_PAD);
 	gtk_widget_show(pui->format);
@@ -284,12 +281,11 @@ static void max_undo_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox) {
 }
 
 static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
-	int i, len;
+	int i;
 	GList *child, *view;
 	GdkFont *new_font;
 	guint new_undo_max;
-	gboolean show_off, expect_spec;
-	gchar *old_offset_fmt;
+	gboolean show_off;
 
 	if ( page != -1 ) return; /* Only do something on global apply */
 	
@@ -335,31 +331,10 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 		}
 	}
 
-	old_offset_fmt = offset_fmt;
+	if(offset_fmt)
+		g_free(offset_fmt);
+
 	offset_fmt = g_strdup(gtk_entry_get_text(GTK_ENTRY(pui->format)));
-	/* check for a valid format string */
-	len = strlen(offset_fmt);
-	expect_spec = FALSE;
-	for(i = 0; i < len; i++) {
-		if(offset_fmt[i] == '%')
-			expect_spec = TRUE;
-		if( expect_spec &&
-			( (offset_fmt[i] >= 'a' && offset_fmt[i] <= 'z') ||
-			  (offset_fmt[i] >= 'A' && offset_fmt[i] <= 'Z') ) ) {
-			expect_spec = FALSE;
-			if(offset_fmt[i] != 'x' && offset_fmt[i] != 'd' && offset_fmt[i] != 'o') {
-				g_free(offset_fmt);
-				offset_fmt = old_offset_fmt;
-				gtk_entry_select_region(GTK_ENTRY(pui->format), i, i+1);
-				gnome_error_dialog_parented(_("The offset format string contains format specifier other than 'x', 'd' or 'o'!"),
-											GTK_WINDOW(pui->pbox));
-				gtk_window_set_focus(GTK_WINDOW(pui->pbox), pui->format);
-				break;
-			}
-		}
-	}
-	if(offset_fmt != old_offset_fmt)
-		g_free(old_offset_fmt);
 
 	if(strcmp(gnome_font_picker_get_font_name(GNOME_FONT_PICKER
 											  (pui->font_button)), def_font_name) != 0) {

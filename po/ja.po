@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 2000-03-07 21:58+0100\n"
+"POT-Creation-Date: 2000-03-16 21:26+0100\n"
 "PO-Revision-Date: 1999-09-17 03:46+09:00\n"
 "Last-Translator: Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
 "Language-Team: <gnome@lists.hypercore.co.jp>\n"
@@ -13,186 +13,186 @@ msgstr ""
 "Content-Type: text/plain; charset=euc-japan\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/converter.c:44
+#: src/converter.c:41
 msgid "GHex: Converter"
 msgstr "GHex: 変換器"
 
-#: src/chartable.c:72 src/converter.c:53
+#: src/converter.c:50
 msgid "Binary"
 msgstr "バイナリ"
 
-#: src/chartable.c:71 src/converter.c:63 src/preferences.c:113
+#: src/converter.c:60 src/preferences.c:110
 msgid "Decimal"
 msgstr "10進"
 
-#: src/chartable.c:71 src/converter.c:73
+#: src/converter.c:70
 msgid "Hex"
 msgstr "16進"
 
-#: src/chartable.c:71 src/converter.c:83
+#: src/converter.c:80
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/converter.c:93
+#: src/converter.c:90
 msgid "Get cursor value"
 msgstr "カーソルの値を取得"
 
-#: src/converter.c:99
+#: src/converter.c:96
 msgid "Close"
 msgstr "閉じる"
 
-#: src/converter.c:194
+#: src/converter.c:190
 msgid "ERROR"
 msgstr ""
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:51 src/main.c:83
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): データ検索"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:60
 #, c-format
 msgid "Search for %s"
 msgstr "%sを探す"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:76
 msgid "Find Next"
 msgstr "grep gnome_mdi_get_menubar *.[ch"
 
-#: src/findreplace.c:90
+#: src/findreplace.c:83
 msgid "Find Previous"
 msgstr "以前を検索"
 
-#: src/findreplace.c:124 src/main.c:98
+#: src/findreplace.c:111 src/main.c:84
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): 検索およびデータの置換"
 
-#: src/findreplace.c:138
+#: src/findreplace.c:125
 #, c-format
 msgid "Replace %s"
 msgstr "%sを置換"
 
-#: src/findreplace.c:154
+#: src/findreplace.c:141
 msgid "Find next"
 msgstr "以降を検索"
 
-#: src/findreplace.c:161
+#: src/findreplace.c:148
 msgid "Replace"
 msgstr "置換"
 
-#: src/findreplace.c:168
+#: src/findreplace.c:155
 msgid "Replace All"
 msgstr "全て置換"
 
-#: src/findreplace.c:199 src/main.c:100
+#: src/findreplace.c:179 src/main.c:85
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): nバイト目にジャンプ"
 
-#: src/findreplace.c:286 src/findreplace.c:310 src/findreplace.c:365
+#: src/findreplace.c:260 src/findreplace.c:283 src/findreplace.c:336
 msgid "There is no active buffer to search!"
 msgstr "検索対象バッファの指定がありません!"
 
-#: src/findreplace.c:294 src/findreplace.c:318 src/findreplace.c:373
+#: src/findreplace.c:268 src/findreplace.c:291 src/findreplace.c:344
 msgid "There seems to be no string to search for!"
 msgstr "検索すべき文字列はないみたいです!"
 
-#: src/findreplace.c:300 src/findreplace.c:380
+#: src/findreplace.c:274 src/findreplace.c:351
 msgid "End Of File reached"
 msgstr "ファイル終端に到達"
 
-#: src/findreplace.c:325
+#: src/findreplace.c:298
 msgid "Beginning Of File reached"
 msgstr "ファイル先頭に到達"
 
-#: src/findreplace.c:334
+#: src/findreplace.c:306
 msgid "There is no active buffer to move the cursor in!"
 msgstr "カーソルを動かすべきアクティブなバッファがありません!"
 
-#: src/findreplace.c:339
+#: src/findreplace.c:311
 msgid "No offset has been specified!"
 msgstr "オフセットが指定されていません!"
 
-#: src/findreplace.c:346
+#: src/findreplace.c:318
 msgid "The offset must be a positive integer value!"
 msgstr "オフセットは正の数でなければいけません!"
 
-#: src/findreplace.c:351
+#: src/findreplace.c:323
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "ファイルの終端より先にはカーソルを移動できません!"
 
-#: src/findreplace.c:391 src/findreplace.c:431
+#: src/findreplace.c:361 src/findreplace.c:400
 msgid "There is no active buffer to replace data in!"
 msgstr "置換を行なうべきアクティブなバッファがありません!"
 
-#: src/findreplace.c:402 src/findreplace.c:442
+#: src/findreplace.c:372 src/findreplace.c:411
 msgid "Strange find or replace string!"
 msgstr "検索・置換文字列が変です!"
 
-#: src/findreplace.c:407 src/findreplace.c:447
+#: src/findreplace.c:377 src/findreplace.c:416
 msgid "Both strings must be of the same length!"
 msgstr "文字は双方同じ長さでなければいけません!"
 
-#: src/findreplace.c:420
+#: src/findreplace.c:390
 msgid "End Of File reached!"
 msgstr "ファイル終端に到達!"
 
-#: src/findreplace.c:462
+#: src/findreplace.c:431
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d箇所置き換えました。"
 
-#: src/hex-document.c:59
+#: src/hex-document.c:57
 msgid "_Bytes"
 msgstr ""
 
-#: src/hex-document.c:60
+#: src/hex-document.c:58
 msgid "Group data by 8 bits"
 msgstr ""
 
-#: src/hex-document.c:61
+#: src/hex-document.c:59
 msgid "_Words"
 msgstr ""
 
-#: src/hex-document.c:62
+#: src/hex-document.c:60
 msgid "Group data by 16 bits"
 msgstr ""
 
-#: src/hex-document.c:63
+#: src/hex-document.c:61
 msgid "_Longwords"
 msgstr ""
 
-#: src/hex-document.c:64
+#: src/hex-document.c:62
 msgid "Group data by 32 bits"
 msgstr ""
 
-#: src/hex-document.c:80
+#: src/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr ""
 
-#: src/hex-document.c:80
+#: src/hex-document.c:78
 msgid "Jump to a certain position"
 msgstr ""
 
-#: src/hex-document.c:83
+#: src/hex-document.c:81
 msgid "_Group Data As"
 msgstr ""
 
-#: src/hex-document.c:88
+#: src/hex-document.c:86
 msgid "_Add view"
 msgstr ""
 
-#: src/hex-document.c:89
+#: src/hex-document.c:87
 msgid "Add a new view of the buffer"
 msgstr ""
 
-#: src/hex-document.c:90
+#: src/hex-document.c:88
 #, fuzzy
 msgid "_Remove view"
 msgstr "削除"
 
-#: src/hex-document.c:91
+#: src/hex-document.c:89
 msgid "Remove the current view of the buffer"
 msgstr ""
 
@@ -205,7 +205,7 @@ msgstr ""
 "ファイル%sは前回セーブしてから更新されています。\n"
 "変更をセーブしますか?"
 
-#: src/main.c:185
+#: src/main.c:174
 #, c-format
 msgid "Offset: %s"
 msgstr "オフセット: %s"
@@ -227,176 +227,135 @@ msgstr ""
 msgid "Modal"
 msgstr "モデル"
 
-#: src/preferences.c:85
+#: src/preferences.c:82
 msgid "Maximum number of undo levels"
 msgstr "やり直しの最大回数"
 
-#: src/preferences.c:99
+#: src/preferences.c:96
 msgid "Show cursor offset in statusbar as"
 msgstr "ステータスバーにカーソルのオフセット表示を"
 
-#: src/preferences.c:118
+#: src/preferences.c:115
 msgid "Hexadecimal"
 msgstr "16進"
 
-#: src/preferences.c:124
+#: src/preferences.c:121
 msgid "Custom"
 msgstr "オリジナル"
 
-#: src/preferences.c:134
+#: src/preferences.c:131
 msgid "Show offsets column"
 msgstr "オフセットカラムの表示"
 
-#: src/preferences.c:139
+#: src/preferences.c:136
 msgid "Editing"
 msgstr "編集"
 
-#: src/preferences.c:146
+#: src/preferences.c:143
 msgid "Font"
 msgstr "フォント"
 
-#: src/preferences.c:162
+#: src/preferences.c:159
 msgid "Browse..."
 msgstr "参照..."
 
-#: src/preferences.c:181
+#: src/preferences.c:178
 msgid "Default Group Type"
 msgstr "デフォルトのデータ表示"
 
-#: src/preferences.c:197
+#: src/preferences.c:194
 msgid "Display"
 msgstr "表示"
 
-#: src/preferences.c:204
+#: src/preferences.c:201
 msgid "MDI Mode"
 msgstr "MDIモード"
 
-#: src/preferences.c:221
+#: src/preferences.c:218
 msgid "MDI"
 msgstr ""
 
-#: src/preferences.c:354
-msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
-msgstr ""
-
-#: src/preferences.c:390
+#: src/preferences.c:365
 msgid "Can not open desired font!"
 msgstr "お望みのフォントを読めません!"
 
-#: src/ui.c:53
-msgid "Export as HTML..."
-msgstr ""
-
-#: src/ui.c:53
-msgid "Export data to HTML source"
-msgstr ""
-
-#: src/ui.c:67
+#: src/ui.c:51
 #, fuzzy
-msgid "Con_verter..."
+msgid "Open Con_verter..."
 msgstr "GHex: 変換器"
 
-#: src/ui.c:68
+#: src/ui.c:52
 msgid "Open base conversion dialog"
 msgstr ""
 
-#: src/ui.c:69
-msgid "Character Table..."
-msgstr ""
-
-#: src/ui.c:70
-msgid "Show the character table"
-msgstr ""
-
-#: src/ui.c:87
-#, fuzzy
-msgid "Tools"
-msgstr "ツールバー"
-
-#: src/ui.c:101
+#: src/ui.c:89
 msgid "Bytes"
 msgstr ""
 
-#: src/ui.c:102
-#, fuzzy
+#: src/ui.c:90
 msgid "Words"
-msgstr "時間"
+msgstr ""
 
-#: src/ui.c:103
+#: src/ui.c:91
 msgid "Longwords"
 msgstr ""
 
-#: src/ui.c:108
+#: src/ui.c:96
 msgid "hex data"
 msgstr ""
 
-#: src/ui.c:109
+#: src/ui.c:97
 #, fuzzy
 msgid "ASCII data"
 msgstr "ASCII"
 
-#: src/ui.c:192
+#: src/ui.c:174
 msgid "GHex, a binary file editor"
 msgstr "GHex、バイナリファイルエディタ"
 
-#: src/ui.c:194
+#: src/ui.c:176
 msgid "Released under the terms of GNU Public License"
 msgstr "GNU一般許諾使用書に基づいてリリースされています"
 
-#: src/ui.c:218 src/ui.c:453
+#: src/ui.c:193 src/ui.c:344
 msgid "Error saving file!"
 msgstr "ファイル書き込みにエラー!"
 
-#: src/ui.c:222 src/ui.c:448
+#: src/ui.c:197 src/ui.c:339
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "バッファを%sファイルに保存しました"
 
-#: src/ui.c:236
+#: src/ui.c:206
 msgid "Select a file to open"
 msgstr "開くファイルを選択"
 
-#: src/ui.c:263
+#: src/ui.c:224
 msgid "Select a file to save buffer as"
 msgstr "バッファを書き込むファイル名は"
 
-#: src/ui.c:285
-msgid "Select path and file name HTML source to"
-msgstr ""
-
-#: src/ui.c:382
+#: src/ui.c:272
 #, c-format
 msgid "Really revert file %s?"
 msgstr "本当にファイル %s を元に戻しますか?"
 
-#: src/ui.c:395
+#: src/ui.c:285
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "ファイル%sを使ってバッファをもとに戻しました"
 
-#: src/ui.c:411
+#: src/ui.c:300
 #, c-format
 msgid "Loaded file %s"
 msgstr "%sファイルの読み込み完了"
 
-#: src/ui.c:416
+#: src/ui.c:305
 msgid "Can not open file!"
 msgstr "ファイルが開けません!"
 
-#: src/ui.c:457
+#: src/ui.c:348
 msgid "Can't open file for writing!"
 msgstr "ファイルに書き込めません!"
-
-#: src/chartable.c:72
-msgid "Octal"
-msgstr ""
-
-#: src/chartable.c:78
-#, fuzzy
-msgid "GHex: Character table"
-msgstr "GHex: 変換器"
 
 #~ msgid "The Gnome Calculator"
 #~ msgstr "GNOME電卓"
@@ -503,6 +462,9 @@ msgstr "GHex: 変換器"
 #~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
 #~ msgstr "設定ファイル \"./gstripchart.conf\"、\"%s\"、\"%s\" を読めません"
 
+#~ msgid "invalid display type: %s"
+#~ msgstr "正しくない表示形式です: %s"
+
 #~ msgid "identifier or begin must be first"
 #~ msgstr "識別子もしくは begin が先になければなりません"
 
@@ -596,24 +558,12 @@ msgstr "GHex: 変換器"
 #~ msgid "Gnome stripchart viewer"
 #~ msgstr "GNOMEストリップチャート表示"
 
-#, fuzzy
-#~ msgid "Params..."
-#~ msgstr "パラメータ"
-
 #~ msgid "invalid display type: %s\n"
 #~ msgstr "正しくない表示形式です: %s\n"
 
 #, fuzzy
 #~ msgid "Configuration file name"
 #~ msgstr "設定ファイルの保存"
-
-#, fuzzy
-#~ msgid "blue"
-#~ msgstr "値"
-
-#, fuzzy
-#~ msgid "Load"
-#~ msgstr "読み直し"
 
 #~ msgid "no project selected"
 #~ msgstr "プロジェクトが選択されていません"
@@ -720,6 +670,9 @@ msgstr "GHex: 変換器"
 
 #~ msgid "Show Table Header"
 #~ msgstr "テーブル見出しを表示"
+
+#~ msgid "Toolbar"
+#~ msgstr "ツールバー"
 
 #~ msgid "Show Toolbar Icons"
 #~ msgstr "ツールバーにアイコンを表示"
@@ -931,10 +884,6 @@ msgstr "GHex: 変換器"
 #~ msgid "Reason %d\n"
 #~ msgstr "理由 %d\n"
 
-#, fuzzy
-#~ msgid "_Fixed Font"
-#~ msgstr "以降を検索"
-
 #~ msgid "Text File Viewer"
 #~ msgstr "テキストファイルビューワ"
 
@@ -1018,11 +967,11 @@ msgstr "GHex: 変換器"
 #~ msgid "Run Program"
 #~ msgstr "プログラム実行"
 
-#~ msgid "Cancel"
-#~ msgstr "キャンセル"
-
 #~ msgid "Run"
 #~ msgstr "実行"
+
+#~ msgid "Cancel"
+#~ msgstr "キャンセル"
 
 #~ msgid "Select a program to run"
 #~ msgstr "実行するプログラムを選択"
@@ -1164,10 +1113,6 @@ msgstr "GHex: 変換器"
 #~ msgstr "表示域"
 
 #, fuzzy
-#~ msgid "System Status:"
-#~ msgstr "状態"
-
-#, fuzzy
 #~ msgid "Real Memory:"
 #~ msgstr "メモリ"
 
@@ -1200,11 +1145,11 @@ msgstr "GHex: 変換器"
 #~ msgid "No information for this filesystem."
 #~ msgstr "このファイルシステムの情報はありません"
 
-#~ msgid "Kilobytes"
-#~ msgstr "Kバイト"
-
 #~ msgid "Memory"
 #~ msgstr "メモリ"
+
+#~ msgid "Kilobytes"
+#~ msgstr "Kバイト"
 
 #~ msgid "Detailed System Information"
 #~ msgstr "詳細なシステム情報"
@@ -1238,12 +1183,12 @@ msgstr "GHex: 変換器"
 #~ "\"w\"がないとこのプログラムは動きません。"
 
 #, fuzzy
-#~ msgid "Write information to disk"
-#~ msgstr "ファイルに情報を記録"
-
-#, fuzzy
 #~ msgid "_Save..."
 #~ msgstr "名前をつけて保存..."
+
+#, fuzzy
+#~ msgid "Write information to disk"
+#~ msgstr "ファイルに情報を記録"
 
 #~ msgid "Active User Listing"
 #~ msgstr "蠕いているユーザの一覧"
@@ -1306,11 +1251,11 @@ msgstr "GHex: 変換器"
 #~ msgid "The DMA setting for this drive cannot be changed."
 #~ msgstr "このドライブのDMA設定を変更することはできません。"
 
-#~ msgid "Disabled"
-#~ msgstr "不許可"
-
 #~ msgid "Enabled"
 #~ msgstr "許可"
+
+#~ msgid "Disabled"
+#~ msgstr "不許可"
 
 #~ msgid "The IRQ unmask setting for this drive cannot be changed."
 #~ msgstr "このドライブのIRQ umask設定を変更することはできません。"
@@ -1389,6 +1334,3 @@ msgstr "GHex: 変換器"
 
 #~ msgid "You appear to have no IDE drives"
 #~ msgstr "IDEドライブは付いていないようですね"
-
-#~ msgid "invalid display type: %s"
-#~ msgstr "正しくない表示形式です: %s"

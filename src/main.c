@@ -79,25 +79,10 @@ void cleanup_cb(GnomeMDI *mdi) {
 	gtk_main_quit();
 }
 
-void child_changed_cb(GnomeMDI *mdi, HexDocument *old_doc) {
-	GnomeUIInfo *mdi_menus;
-	gboolean sens;
-	int i;
-
-	if(gnome_mdi_get_active_child(mdi) == NULL || old_doc == NULL) {
-		sens = old_doc == NULL;
-		mdi_menus = gnome_mdi_get_menubar_info(gnome_mdi_get_active_window(mdi));
-		/* keep in sync: ui.c/file_menu[] */
-		for(i = 1; i < 4; i++)
-			gtk_widget_set_sensitive(((GnomeUIInfo *)mdi_menus[0].moreinfo)[i].widget, sens);
-	}
-
-	if(find_dialog)
-		create_dialog_title(find_dialog->window, _("GHex (%s): Find Data"));
-	if(replace_dialog)
-		create_dialog_title(replace_dialog->window, _("GHex (%s): Find & Replace Data"));
-	if(jump_dialog)
-		create_dialog_title(jump_dialog->window, _("GHex (%s): Jump To Byte"));
+void child_changed_cb(GnomeMDI *mdi, HexDocument *doc) {
+	create_dialog_title(find_dialog.window, _("GHex (%s): Find Data"));
+	create_dialog_title(replace_dialog.window, _("GHex (%s): Find & Replace Data"));
+	create_dialog_title(jump_dialog.window, _("GHex (%s): Jump To Byte"));
 }
 
 void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
@@ -107,13 +92,15 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	HexDocument *doc;
 	gint pos;
 	gint group_item;
+	char *p;
 
 	if(mdi->active_view == NULL)
 		return;
 
 	app = gnome_mdi_get_app_from_view(mdi->active_view);
 	
-	shell = gnome_app_find_menu_pos(app->menubar, GROUP_MENU_PATH, &pos);
+	GROUP_MENU_PATH(p);
+	shell = gnome_app_find_menu_pos(app->menubar, p, &pos);
 	if (shell) {
 		group_item = GTK_HEX(mdi->active_view)->group_type / 2;
 		shell = gnome_app_find_menu_pos(shell, _(group_type_label[group_item]), &pos);
@@ -129,6 +116,7 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	gtk_widget_set_sensitive(uiinfo[1].widget, doc->undo_top != doc->undo_stack);
 
 	gnome_app_install_menu_hints(app, gnome_mdi_get_child_menu_info(app));
+	g_free(p);
 }
 
 static void app_drop_cb(GtkWidget *widget, GdkDragContext *context,
@@ -165,12 +153,12 @@ void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
 
 	gtk_drag_dest_set (GTK_WIDGET (app),
 	                   GTK_DEST_DEFAULT_MOTION |
-					   GTK_DEST_DEFAULT_HIGHLIGHT |
-					   GTK_DEST_DEFAULT_DROP,
-					   drop_types, n_drop_types,
-					   GDK_ACTION_COPY);
-	gtk_signal_connect (GTK_OBJECT (app), "drag_data_received",
-						GTK_SIGNAL_FUNC(app_drop_cb), NULL);
+			   GTK_DEST_DEFAULT_HIGHLIGHT |
+			   GTK_DEST_DEFAULT_DROP,
+			   drop_types, n_drop_types,
+			   GDK_ACTION_COPY);
+        gtk_signal_connect (GTK_OBJECT (app), "drag_data_received",
+			    GTK_SIGNAL_FUNC(app_drop_cb), NULL);
 
 	bar = gnome_appbar_new(FALSE, TRUE, GNOME_PREFERENCES_USER);
 	gnome_app_set_statusbar(app, bar);
@@ -182,8 +170,8 @@ void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
 static void cursor_moved_cb(GtkHex *gtkhex) {
 	static gchar *cursor_pos, *format;
 
-	if((format = g_strdup_printf(_("Offset: %s"), offset_fmt)) != NULL) {
-		if((cursor_pos = g_strdup_printf(format, gtk_hex_get_cursor(gtkhex))) != NULL) {
+	if((format = g_strdup_printf(_("Offset: %s"), offset_fmt))) {
+		if((cursor_pos = g_strdup_printf(format, gtk_hex_get_cursor(gtkhex)))) {
 			gnome_appbar_set_status(GNOME_APPBAR(gnome_mdi_get_app_from_view(GTK_WIDGET(gtkhex))->statusbar),
 									cursor_pos);
 			g_free(cursor_pos);
@@ -229,7 +217,6 @@ int main(int argc, char **argv) {
 
     /* load preferences */
     load_configuration();
-
     /* set MDI mode */
     gnome_mdi_set_mode(mdi, mdi_mode);
 
@@ -237,7 +224,7 @@ int main(int argc, char **argv) {
     if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
 
 		gnome_config_push_prefix (gnome_client_get_config_prefix (client));
-
+		
 		restarted= gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreator)hex_document_new_from_config);		
 		
 		gnome_config_pop_prefix ();
@@ -246,7 +233,7 @@ int main(int argc, char **argv) {
 	if (!restarted)
 		gnome_mdi_open_toplevel(mdi);
 	
-    cl_files = (char **)poptGetArgs(ctx);
+    cl_files = poptGetArgs(ctx);
 	
     while(cl_files && *cl_files) {
 		doc = hex_document_new(*cl_files);

@@ -1,198 +1,197 @@
 # ver. 0.0.5
 # Copyright (C) 1999 Free Software Foundation, Inc.
 # Valek Filppov <val@comptek.ru>, 1999.
-# Sergey Panov <sipan@mit.edu>, 1999,2000.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-util-1.0.1\n"
-"POT-Creation-Date: 2000-03-07 21:58+0100\n"
-"PO-Revision-Date: 2000-01-03 19:30-0400\n"
+"POT-Creation-Date: 2000-03-16 21:26+0100\n"
+"PO-Revision-Date: 1999-03-10 HO:MI+ZONE\n"
 "Last-Translator: Sergey Panov <sipan@mit.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=KOI8-r\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: src/converter.c:44
+#: src/converter.c:41
 msgid "GHex: Converter"
 msgstr "GHex: Преобразователь"
 
-#: src/chartable.c:72 src/converter.c:53
+#: src/converter.c:50
 msgid "Binary"
 msgstr "Двоичный"
 
-#: src/chartable.c:71 src/converter.c:63 src/preferences.c:113
+#: src/converter.c:60 src/preferences.c:110
 msgid "Decimal"
 msgstr "Десятичный"
 
-#: src/chartable.c:71 src/converter.c:73
+#: src/converter.c:70
 msgid "Hex"
 msgstr "Шестнадц."
 
-#: src/chartable.c:71 src/converter.c:83
+#: src/converter.c:80
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/converter.c:93
+#: src/converter.c:90
 msgid "Get cursor value"
 msgstr "Задать положение курсора"
 
-#: src/converter.c:99
+#: src/converter.c:96
 msgid "Close"
 msgstr "Закрыть"
 
-#: src/converter.c:194
+#: src/converter.c:190
 msgid "ERROR"
 msgstr "ОШИБКА"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:51 src/main.c:83
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): поиск данных"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:60
 #, c-format
 msgid "Search for %s"
 msgstr "Поиск %s"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:76
 msgid "Find Next"
 msgstr "Найти следующее"
 
-#: src/findreplace.c:90
+#: src/findreplace.c:83
 msgid "Find Previous"
 msgstr "Найти предыдущее"
 
-#: src/findreplace.c:124 src/main.c:98
+#: src/findreplace.c:111 src/main.c:84
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): найти и заменить данные"
 
-#: src/findreplace.c:138
+#: src/findreplace.c:125
 #, c-format
 msgid "Replace %s"
 msgstr "Заменить %s"
 
-#: src/findreplace.c:154
+#: src/findreplace.c:141
 msgid "Find next"
 msgstr "Найти следующее"
 
-#: src/findreplace.c:161
+#: src/findreplace.c:148
 msgid "Replace"
 msgstr "Заменить"
 
-#: src/findreplace.c:168
+#: src/findreplace.c:155
 msgid "Replace All"
 msgstr "Заменить все"
 
-#: src/findreplace.c:199 src/main.c:100
+#: src/findreplace.c:179 src/main.c:85
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): перескочить к байту"
 
-#: src/findreplace.c:286 src/findreplace.c:310 src/findreplace.c:365
+#: src/findreplace.c:260 src/findreplace.c:283 src/findreplace.c:336
 msgid "There is no active buffer to search!"
 msgstr "Нет действующих буферов для поиска!"
 
-#: src/findreplace.c:294 src/findreplace.c:318 src/findreplace.c:373
+#: src/findreplace.c:268 src/findreplace.c:291 src/findreplace.c:344
 msgid "There seems to be no string to search for!"
 msgstr "Это означает, что нет строки для поиска!"
 
-#: src/findreplace.c:300 src/findreplace.c:380
+#: src/findreplace.c:274 src/findreplace.c:351
 msgid "End Of File reached"
 msgstr "Достигнут конец файла"
 
-#: src/findreplace.c:325
+#: src/findreplace.c:298
 msgid "Beginning Of File reached"
 msgstr "Достигнуто начало файла"
 
-#: src/findreplace.c:334
+#: src/findreplace.c:306
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Нет действующих буферов для перемещения курсора!"
 
-#: src/findreplace.c:339
+#: src/findreplace.c:311
 msgid "No offset has been specified!"
 msgstr "Не было указано смещение!"
 
-#: src/findreplace.c:346
+#: src/findreplace.c:318
 msgid "The offset must be a positive integer value!"
 msgstr "Смещение должно быть положительным целым числом!"
 
-#: src/findreplace.c:351
+#: src/findreplace.c:323
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Невозможно установить курсор дальше конца файла!"
 
-#: src/findreplace.c:391 src/findreplace.c:431
+#: src/findreplace.c:361 src/findreplace.c:400
 msgid "There is no active buffer to replace data in!"
 msgstr "Нет действующих буферов для замены данных!"
 
-#: src/findreplace.c:402 src/findreplace.c:442
+#: src/findreplace.c:372 src/findreplace.c:411
 msgid "Strange find or replace string!"
 msgstr "Странная строка для поиска или замены!"
 
-#: src/findreplace.c:407 src/findreplace.c:447
+#: src/findreplace.c:377 src/findreplace.c:416
 msgid "Both strings must be of the same length!"
 msgstr "Обе строки должны быть одинаковой длины!"
 
-#: src/findreplace.c:420
+#: src/findreplace.c:390
 msgid "End Of File reached!"
 msgstr "Достигнут конец файла!"
 
-#: src/findreplace.c:462
+#: src/findreplace.c:431
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Заменено %d вхождений."
 
-#: src/hex-document.c:59
+#: src/hex-document.c:57
 msgid "_Bytes"
 msgstr "Байты"
 
-#: src/hex-document.c:60
+#: src/hex-document.c:58
 msgid "Group data by 8 bits"
 msgstr "Группировать данные по 8 бит"
 
-#: src/hex-document.c:61
+#: src/hex-document.c:59
 msgid "_Words"
 msgstr "Слова"
 
-#: src/hex-document.c:62
+#: src/hex-document.c:60
 msgid "Group data by 16 bits"
 msgstr "Группировать данные по 16 бит"
 
-#: src/hex-document.c:63
+#: src/hex-document.c:61
 msgid "_Longwords"
 msgstr "Двойные слова"
 
-#: src/hex-document.c:64
+#: src/hex-document.c:62
 msgid "Group data by 32 bits"
 msgstr "Группировать данные по 32 бита"
 
-#: src/hex-document.c:80
+#: src/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr "Перейти к байту..."
 
-#: src/hex-document.c:80
+#: src/hex-document.c:78
 msgid "Jump to a certain position"
 msgstr "Перескочить в указанную позицию"
 
-#: src/hex-document.c:83
+#: src/hex-document.c:81
 msgid "_Group Data As"
 msgstr "Группировать данные как..."
 
-#: src/hex-document.c:88
+#: src/hex-document.c:86
 msgid "_Add view"
 msgstr "Добавить окно просмотра"
 
-#: src/hex-document.c:89
+#: src/hex-document.c:87
 msgid "Add a new view of the buffer"
 msgstr "Добавить новое окно просмотра буфера"
 
-#: src/hex-document.c:90
+#: src/hex-document.c:88
 msgid "_Remove view"
 msgstr "Удалить окно просмотра"
 
-#: src/hex-document.c:91
+#: src/hex-document.c:89
 msgid "Remove the current view of the buffer"
 msgstr "Удалить текущее окно просмотра буфера"
 
@@ -205,7 +204,7 @@ msgstr ""
 "Файл %s был изменен со времени последнего сохранения.\n"
 "Сохранить изменения?"
 
-#: src/main.c:185
+#: src/main.c:174
 #, c-format
 msgid "Offset: %s"
 msgstr "Отступ: %s"
@@ -226,175 +225,133 @@ msgstr "Верхний уровень"
 msgid "Modal"
 msgstr "Модальный"
 
-#: src/preferences.c:85
+#: src/preferences.c:82
 msgid "Maximum number of undo levels"
 msgstr "Максимальное число уровней отмены"
 
-#: src/preferences.c:99
+#: src/preferences.c:96
 msgid "Show cursor offset in statusbar as"
 msgstr "Формат позиции указателя в панели состояния"
 
-#: src/preferences.c:118
+#: src/preferences.c:115
 msgid "Hexadecimal"
 msgstr "Шестнадцатиричный"
 
-#: src/preferences.c:124
+#: src/preferences.c:121
 msgid "Custom"
 msgstr "Нестандартный"
 
-#: src/preferences.c:134
+#: src/preferences.c:131
 msgid "Show offsets column"
 msgstr "Колонка отступов"
 
-#: src/preferences.c:139
+#: src/preferences.c:136
 msgid "Editing"
 msgstr "Редактирование"
 
-#: src/preferences.c:146
+#: src/preferences.c:143
 msgid "Font"
 msgstr "Шрифт"
 
-#: src/preferences.c:162
+#: src/preferences.c:159
 msgid "Browse..."
 msgstr "Просмотр..."
 
-#: src/preferences.c:181
+#: src/preferences.c:178
 msgid "Default Group Type"
 msgstr "Тип группирования по умолчанию"
 
-#: src/preferences.c:197
+#: src/preferences.c:194
 msgid "Display"
 msgstr "Представление"
 
-#: src/preferences.c:204
+#: src/preferences.c:201
 msgid "MDI Mode"
 msgstr "Режим MDI"
 
-#: src/preferences.c:221
+#: src/preferences.c:218
 msgid "MDI"
 msgstr "MDI"
 
-#: src/preferences.c:354
-msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
-msgstr ""
-
-#: src/preferences.c:390
+#: src/preferences.c:365
 msgid "Can not open desired font!"
 msgstr "Не удалось загрузить желаемый шрифт!"
 
-#: src/ui.c:53
-msgid "Export as HTML..."
-msgstr ""
-
-#: src/ui.c:53
-msgid "Export data to HTML source"
-msgstr ""
-
-#: src/ui.c:67
-#, fuzzy
-msgid "Con_verter..."
+#: src/ui.c:51
+msgid "Open Con_verter..."
 msgstr "Открыть преобразователь..."
 
-#: src/ui.c:68
+#: src/ui.c:52
 msgid "Open base conversion dialog"
 msgstr "Открыть основной диалог преобразования"
 
-#: src/ui.c:69
-msgid "Character Table..."
-msgstr ""
-
-#: src/ui.c:70
-msgid "Show the character table"
-msgstr ""
-
-#: src/ui.c:87
-#, fuzzy
-msgid "Tools"
-msgstr "Панель инструментов"
-
-#: src/ui.c:101
+#: src/ui.c:89
 msgid "Bytes"
 msgstr "Байты"
 
-#: src/ui.c:102
+#: src/ui.c:90
 msgid "Words"
 msgstr "Слова"
 
-#: src/ui.c:103
+#: src/ui.c:91
 msgid "Longwords"
 msgstr "Двойные слова"
 
-#: src/ui.c:108
+#: src/ui.c:96
 msgid "hex data"
 msgstr "шестнадцатиричные данные"
 
-#: src/ui.c:109
+#: src/ui.c:97
 msgid "ASCII data"
 msgstr "ASCII-данные"
 
-#: src/ui.c:192
+#: src/ui.c:174
 msgid "GHex, a binary file editor"
 msgstr "GHex, редактор двоичных файлов"
 
-#: src/ui.c:194
+#: src/ui.c:176
 msgid "Released under the terms of GNU Public License"
 msgstr "Распространяется на условиях GNU Public License"
 
-#: src/ui.c:218 src/ui.c:453
+#: src/ui.c:193 src/ui.c:344
 msgid "Error saving file!"
 msgstr "Ошибка сохранения файла!"
 
-#: src/ui.c:222 src/ui.c:448
+#: src/ui.c:197 src/ui.c:339
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Сохранить буфер в файле %s"
 
-#: src/ui.c:236
+#: src/ui.c:206
 msgid "Select a file to open"
 msgstr "Выбрать файл для открытия"
 
-#: src/ui.c:263
+#: src/ui.c:224
 msgid "Select a file to save buffer as"
 msgstr "Выбрать файл для сохранения буфера"
 
-#: src/ui.c:285
-msgid "Select path and file name HTML source to"
-msgstr ""
-
-#: src/ui.c:382
+#: src/ui.c:272
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Действительно вернуть файл %s?"
 
-#: src/ui.c:395
+#: src/ui.c:285
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Восстановленный буфер из файла %s"
 
-#: src/ui.c:411
+#: src/ui.c:300
 #, c-format
 msgid "Loaded file %s"
 msgstr "Загрузка файла %s"
 
-#: src/ui.c:416
+#: src/ui.c:305
 msgid "Can not open file!"
 msgstr "Не удалось открыть файл!"
 
-#: src/ui.c:457
+#: src/ui.c:348
 msgid "Can't open file for writing!"
 msgstr "Не удалось открыть файл для записи!"
-
-#: src/chartable.c:72
-#, fuzzy
-msgid "Octal"
-msgstr "Шкала"
-
-#: src/chartable.c:78
-#, fuzzy
-msgid "GHex: Character table"
-msgstr "GHex: Преобразователь"
 
 #~ msgid "The Gnome Calculator"
 #~ msgstr "Калькулятор Gnome"
@@ -438,9 +395,6 @@ msgstr "GHex: Преобразователь"
 
 #~ msgid "Filenames except"
 #~ msgstr "Исключить файлы"
-
-#~ msgid "Follow symbolic links"
-#~ msgstr "Включая символические ссылки"
 
 #~ msgid "Simple substring search"
 #~ msgstr "Поиск простой подстроки"
@@ -523,28 +477,18 @@ msgstr "GHex: Преобразователь"
 #~ msgid "can't open config file \"%s\""
 #~ msgstr "не удалось открыть конфигурационный файл \"%s\""
 
-#~ msgid ""
-#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-#~ msgstr ""
-#~ "не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", "
-#~ "\"%s\", or \"%s\""
-
+#, fuzzy
 #~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-#~ msgstr ""
-#~ "не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", or "
-#~ "\"%s\""
+#~ msgstr "не удалось открыть конфигурационный файл \"%s\""
+
+#~ msgid "invalid display type: %s"
+#~ msgstr "неправильный тип дисплея: %s"
 
 #~ msgid "identifier or begin must be first"
 #~ msgstr "в начале должен быть идентификатор или begin"
 
 #~ msgid "unrecognized color: %s"
 #~ msgstr "нераспознаваемый цвет: %s"
-
-#~ msgid "scale must be either \"log\" or \"linear\""
-#~ msgstr "шкала должна быть \"log\" или \"linear\""
-
-#~ msgid "no equation found"
-#~ msgstr "упавнение не найдено"
 
 #~ msgid "invalid option: \"%s\""
 #~ msgstr "неправильный ключ: \"%s\""
@@ -555,8 +499,8 @@ msgstr "GHex: Преобразователь"
 #~ msgid "Terminate the stripchart program"
 #~ msgstr "Прервать самописец"
 
-#~ msgid "Copyright 1998,99 John Kodis"
-#~ msgstr "Авторское право 1998,99 John Kodis"
+#~ msgid "Copyright 1998 John Kodis"
+#~ msgstr "Авторское право 1998 John Kodis"
 
 #~ msgid ""
 #~ "The GNOME stripchart program plots various user-specified parameters as a "
@@ -615,14 +559,12 @@ msgstr "GHex: Преобразователь"
 #~ msgid "Active"
 #~ msgstr "Задействован"
 
-#~ msgid "Stripchart Parameters"
-#~ msgstr "Параметры самописца"
+#~ msgid "Gnome Stripchart Parameters"
+#~ msgstr "Параметры самописца Gnome"
 
+#, fuzzy
 #~ msgid "Current"
-#~ msgstr "Текущее"
-
-#~ msgid "Top"
-#~ msgstr "Верхнее"
+#~ msgstr "Текущее значение"
 
 #~ msgid "Help"
 #~ msgstr "Справка"
@@ -639,101 +581,39 @@ msgstr "GHex: Преобразователь"
 #~ msgid "gstripchart"
 #~ msgstr "самописец"
 
-#~ msgid "Stripchart Viewer"
-#~ msgstr "Самописец визуализатор"
-
-#~ msgid "Params..."
-#~ msgstr "Параметры..."
+#~ msgid "Gnome stripchart viewer"
+#~ msgstr "Gnome самописец"
 
 #~ msgid "invalid display type: %s\n"
 #~ msgstr "неправильный тип дисплея: %s\n"
 
-#~ msgid "Geometry string: WxH+X+Y"
-#~ msgstr "Описание геометрии: WxH+X+Y"
-
 #~ msgid "GEO"
 #~ msgstr "ГЕОМ"
 
+#, fuzzy
 #~ msgid "Configuration file name"
-#~ msgstr "Имя конфигурационного файла"
+#~ msgstr "конфигурационный файл"
 
 #~ msgid "FILE"
 #~ msgstr "ФАЙЛ"
 
+#, fuzzy
 #~ msgid "Chart update interval"
-#~ msgstr "Интервал обновления диаграммы"
+#~ msgstr "интервал обновления диаграммы"
 
 #~ msgid "SECS"
 #~ msgstr "СЕКУНДЫ"
 
-#~ msgid "Chart low-pass filter time constant"
-#~ msgstr "Константа времени сглаживания диаграммы"
-
+#, fuzzy
 #~ msgid "Slider update interval"
-#~ msgstr "Интервал обновления ползунка"
+#~ msgstr "интервал обновления ползунка"
 
-#~ msgid "Slider low-pass filter time constant"
-#~ msgstr "Константа времени сглаживания ползунка"
-
-#~ msgid "Adds a menubar to the main window"
-#~ msgstr "Добавляет к главному окну панель меню"
-
+#, fuzzy
 #~ msgid "Omits slider window"
-#~ msgstr "Пропускает окно ползунка"
-
-#~ msgid "TYPE is one of gtk, applet, text, or none"
-#~ msgstr "ТИП это либо gtk, applet, text или none"
+#~ msgstr "пропустить ползунок"
 
 #~ msgid "TYPE"
 #~ msgstr "ТИП"
-
-#~ msgid "TYPE is one of gtk, text, or none"
-#~ msgstr "ТИП это либо gtk, text или none"
-
-#~ msgid "white"
-#~ msgstr "белый"
-
-#~ msgid "black"
-#~ msgstr "черный"
-
-#~ msgid "red"
-#~ msgstr "красный"
-
-#~ msgid "yellow"
-#~ msgstr "желтый"
-
-#~ msgid "blue"
-#~ msgstr "голубой"
-
-#~ msgid "green"
-#~ msgstr "зеленый"
-
-#~ msgid "cyan"
-#~ msgstr "голубой"
-
-#~ msgid "magenta"
-#~ msgstr "фиолетовый"
-
-#~ msgid "Busy"
-#~ msgstr "Занятость"
-
-#~ msgid "Load"
-#~ msgstr "Нагрузка"
-
-#~ msgid "Swap"
-#~ msgstr "Подкачка"
-
-#~ msgid "Battery"
-#~ msgstr "Батарея"
-
-#~ msgid "Net In"
-#~ msgstr "Сеть, в"
-
-#~ msgid "Net Out"
-#~ msgstr "Сеть, из"
-
-#~ msgid "ppp"
-#~ msgstr "ppp"
 
 #~ msgid "no project selected"
 #~ msgstr "проект не выбран"
@@ -856,6 +736,9 @@ msgstr "GHex: Преобразователь"
 
 #~ msgid "Show Table Header"
 #~ msgstr "Показывать заголовок таблицы"
+
+#~ msgid "Toolbar"
+#~ msgstr "Панель инструментов"
 
 #~ msgid "Show Toolbar Icons"
 #~ msgstr "Показывать пиктограммы на панели инструментов"
@@ -1446,12 +1329,6 @@ msgstr "GHex: Преобразователь"
 #~ msgid "Kilobytes"
 #~ msgstr "Килобайты"
 
-#~ msgid "%ld%% memory used."
-#~ msgstr "использованно %ld%% памяти."
-
-#~ msgid "%ld%% swap used."
-#~ msgstr "использованно %ld%% подкачки"
-
 #~ msgid "CPU %d"
 #~ msgstr "ЦПУ %d"
 
@@ -1479,9 +1356,6 @@ msgstr "GHex: Преобразователь"
 #~ msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 #~ msgstr ""
 #~ "%ld мегабайт, %ld свободно (%ld superuser); %ld inodes, %ld свободно."
-
-#~ msgid "%2d%% full "
-#~ msgstr "заполнен на %2d%%"
 
 #~ msgid ""
 #~ "Couldn't find the \"w\" command in your path.\n"
@@ -1600,11 +1474,13 @@ msgstr "GHex: Преобразователь"
 #~ msgid "No"
 #~ msgstr "Нет"
 
+#, fuzzy
 #~ msgid "Yes (%d sector)"
-#~ msgstr "Да (%d сектор)"
+#~ msgstr "Да (%d сектор%s)"
 
+#, fuzzy
 #~ msgid "Yes (%d sectors)"
-#~ msgstr "Да (%d секторов)"
+#~ msgstr "Да (%d сектор%s)"
 
 #~ msgid "Model"
 #~ msgstr "Модель"
@@ -1654,5 +1530,68 @@ msgstr "GHex: Преобразователь"
 #~ msgid "You appear to have no IDE drives"
 #~ msgstr "Кажется у Вас нет IDE дисков"
 
-#~ msgid "invalid display type: %s"
-#~ msgstr "неправильный тип дисплея: %s"
+#~ msgid "%2d%% full "
+#~ msgstr "%2d%% заполнено "
+
+#~ msgid "swap"
+#~ msgstr "подкачка"
+
+#~ msgid "memory"
+#~ msgstr "память"
+
+#~ msgid "%ld%% %s used."
+#~ msgstr "%ld%% %s использовано."
+
+#~ msgid "The following mail will be sent to "
+#~ msgstr "Следующее сообщение будет послано "
+
+#~ msgid " ': "
+#~ msgstr " ': "
+
+#~ msgid "Error closing file `"
+#~ msgstr "Ошибка при закрытии файла `"
+
+#~ msgid "blue"
+#~ msgstr "голубой"
+
+#~ msgid "green"
+#~ msgstr "зеленый"
+
+#~ msgid "red"
+#~ msgstr "красный"
+
+#~ msgid "white"
+#~ msgstr "белый"
+
+#~ msgid "yellow"
+#~ msgstr "желтый"
+
+#~ msgid "Busy"
+#~ msgstr "Занят"
+
+#~ msgid "Load"
+#~ msgstr "Нагрузка"
+
+#~ msgid "PPP In"
+#~ msgstr "PPP, в"
+
+#~ msgid "PPP Out"
+#~ msgstr "PPP, из"
+
+#~ msgid "Swap"
+#~ msgstr "Подкачка"
+
+#~ msgid "geometry"
+#~ msgstr "геометрия"
+
+#~ msgid "chart LP filter TC"
+#~ msgstr "чертить LP фильтр TC"
+
+#~ msgid "slider LP filter TC"
+#~ msgstr "ползунок LP фильтр TC"
+
+#~ msgid "add menubar"
+#~ msgstr "добавить строку меню"
+
+#~ msgid "gtk|text|graph|none"
+#~ msgstr "gtk|text|graph|none"

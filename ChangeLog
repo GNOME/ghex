@@ -1,44 +1,7 @@
-2000-03-04  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+2000-03-16  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
-	* Makefile.am: add chartable.c to sources list. I tend to forget
-	commiting Makefiles...
-
-2000-02-25  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
-
-	* preferences.c (apply_changes_cb): check offset format string for
-	format specifiers other than x, d or o. this prevents someone from
-	crashing ghex with a format of %s.
-	(create_prefs_dialog): connect properties_modified_cb() to "changed"
-	signal of pui->format instead of "activate".
-	* ui.c: added "Tools" menu and moved "Converter" there and added
-	"Character table" to it. added "Export to HTML" item to "File" menu.
-	* chartable.c: new file. implements a window with a character table.
-	* gtkhex.c (gtk_hex_size_request): fixed. there was some really
-	idiotic code here.
-	added some sanity checks.
-	* hex-document.[ch] (hex_document_destroy): becomes hex_document_finalize.
-	(hex_document_get_byte): new convenience function.
-	(hex_document_export_html): new function.
-	* changed behavior of dialogs: create them only once (upon first
-	invocation) and subsequently hide/show them.
-	* main.c (child_changed_cb): set sensitivity of saving and exporting
-	menu items.
-	* removed loads of useless artifacts all over the code.
-	* help/C/index.html: updated.
-
-1999-12-19  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
-
-	* fixed some compiler warnings.
-
-1999-11-28  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
-
-	* ghex.h: changed GROUP_MENU_PATH as libgnomeui does translating
-	on the fly.
-	* main.c (view_changed_cb): comply to the above.
-	* gtkhex.c (render_byte, render_ac): properly show a dot if a
-	non-printable char is to be rendered.
-	(render_ac, render_xc): use GTK_STATE_NORMAL and GTK_SHADOW_IN for
-	the non-active view's cursor.
+	* branched, set up build environment for the last tagged
+	stable version (GNOME_UTILS_1_0_50), released as 1.0.51.
 
 1999-09-05  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 

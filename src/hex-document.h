@@ -81,28 +81,18 @@ struct _HexDocumentClass
 };
 
 GtkType hex_document_get_type(void);
-HexDocument *hex_document_new(const gchar *name);
-void hex_document_set_data(HexDocument *doc, guint offset,
-						   guint len, guchar *data);
-void hex_document_set_byte(HexDocument *doc, guchar val, guint offset);
-void hex_document_set_nibble(HexDocument *doc, guchar val,
-							 guint offset, gboolean lower_nibble);
-guchar hex_document_get_byte(HexDocument *doc, guint offset);
+HexDocument *hex_document_new(const gchar *);
+void hex_document_set_data(HexDocument *, guint, guint, guchar *);
+void hex_document_set_byte(HexDocument *, guchar, guint);
+void hex_document_set_nibble(HexDocument *, guchar, guint, gboolean);
 gint hex_document_read(HexDocument *doc);
 gint hex_document_write(HexDocument *doc);
-gint hex_document_export_html(HexDocument *doc,
-							  gchar *html_path, gchar *base_name,
-							  guint start, guint end,
-							  guint cpl, guint lpp, guint cpw);
 gboolean hex_document_has_changed(HexDocument *doc);
-void hex_document_changed(HexDocument *doc, gpointer change_data,
-						  gboolean push_undo);
+void hex_document_changed(HexDocument *doc, gpointer change_data, gboolean push_undo);
 GnomeMDIChild *hex_document_new_from_config(const gchar *);
 void hex_document_set_max_undo(HexDocument *doc, guint max_undo);
-gint find_string_forward(HexDocument *doc, guint start, guchar *what,
-						 gint len, guint *found);
-gint find_string_backward(HexDocument *doc, guint start, guchar *what,
-						  gint len, guint *found);
+gint find_string_forward(HexDocument *doc, guint start, guchar *what, gint len, guint *found);
+gint find_string_backward(HexDocument *doc, guint start, guchar *what, gint len, guint *found);
 
 END_GNOME_DECLS
 

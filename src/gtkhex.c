@@ -36,7 +36,7 @@
 
 #define SCROLL_TIMEOUT 100
 
-#define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0xFF))?1:0)
+#define is_printable(c) (((((guint)c)>=0x20) && (((guint)c)<=0xFF))?1:0)
 
 typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 
@@ -253,12 +253,8 @@ static void render_byte(GtkHex *gh, gint pos) {
 					   cx, cy, gh->char_width, gh->char_height);
 	gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 
-	buf[0] = gh->document->buffer[pos];
-	if(!is_printable(buf[0]))
-		buf[0] = '.';
-
 	gdk_draw_text(gh->adisp->window, gh->disp_font, gh->adisp_gc,
-				  cx, cy + gh->disp_font->ascent, buf, 1);
+				  cx, cy + gh->disp_font->ascent, &gh->document->buffer[pos], 1);
 }
 
 /*
@@ -268,30 +264,24 @@ static void render_ac(GtkHex *gh) {
 	gint cx, cy;
 	static guchar c[2] = "\0\0";
 	GtkStateType state;
-	GtkShadowType shadow;
 
 	if(!GTK_WIDGET_REALIZED(gh->adisp))
 		return;
 	
 	if(get_acoords(gh, gh->cursor_pos, &cx, &cy)) {
 		c[0] = gh->document->buffer[gh->cursor_pos];
-		if(!is_printable(c[0]))
-			c[0] = '.';
 
-		if(gh->active_view == VIEW_ASCII) {
+		if(gh->active_view == VIEW_ASCII)
 			state = GTK_STATE_SELECTED;
-			shadow = GTK_SHADOW_NONE;
-		}
-		else {
-			state = GTK_STATE_NORMAL;
-			shadow = GTK_SHADOW_IN;
-		}
+		else
+			state = GTK_STATE_INSENSITIVE;
 
 		gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window,
-					 state, shadow,
+					 state, GTK_SHADOW_NONE,
 					 cx, cy, gh->char_width, gh->char_height - 1);
 		gtk_draw_string(GTK_WIDGET(gh)->style, gh->adisp->window,
-						state, cx, cy + gh->disp_font->ascent, c);
+						state,
+						cx, cy + gh->disp_font->ascent, c);
 	}
 }
 
@@ -299,7 +289,6 @@ static void render_xc(GtkHex *gh) {
 	gint cx, cy, i;
 	static guchar c[3];
 	GtkStateType state;
-	GtkShadowType shadow;
 
 	if(!GTK_WIDGET_REALIZED(gh->xdisp))
 		return;
@@ -315,20 +304,17 @@ static void render_xc(GtkHex *gh) {
 			i = 0;
 		}
 
-		if(gh->active_view == VIEW_HEX) {
+		if(gh->active_view == VIEW_HEX)
 			state = GTK_STATE_SELECTED;
-			shadow = GTK_SHADOW_NONE;
-		}
-		else {
-			state = GTK_STATE_NORMAL;
-			shadow = GTK_SHADOW_IN;
-		}
+		else
+			state = GTK_STATE_INSENSITIVE;
 
 		gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
-					 state, shadow,
+					 state, GTK_SHADOW_NONE,
 					 cx, cy, gh->char_width, gh->char_height - 1);
 		gtk_draw_string(GTK_WIDGET(gh)->style, gh->xdisp->window,
-						state, cx, cy + gh->disp_font->ascent, &c[i]);
+						state,
+						cx, cy + gh->disp_font->ascent, &c[i]);
 	}
 }
 
@@ -1011,15 +997,18 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 
 /* 
  * recalculate the width of both displays and reposition and resize all
- * the children widgets and adjust the scrollbar after resizing
+ * the children widgetsand adjust the scrollbar after resizing
  * connects to the size_allocate signal of the GtkHex widget
  */
 static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
-	GtkHex *gh;
+	GtkHex *gh = GTK_HEX(w);
 	GtkAllocation my_alloc;
 	gint border_width, xt, yt;
 
-	gh = GTK_HEX(w);
+	g_return_if_fail(w != NULL);
+	g_return_if_fail(GTK_IS_FIXED(w));
+	g_return_if_fail(alloc != NULL);
+
 	hide_cursor(gh);
 	
 	recalc_displays(gh, alloc->width, alloc->height);
@@ -1080,11 +1069,15 @@ static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 	GtkHex *gh = GTK_HEX(w);
 	GtkRequisition sb_req;
 
-	gtk_widget_size_request(gh->scrollbar, &sb_req);
-	req->width = 4*widget_get_xt(w) + 2*GTK_CONTAINER(w)->border_width +
-		sb_req.width + gh->char_width * (DEFAULT_CPL + (DEFAULT_CPL - 1) /
-										 gh->group_type);
-	req->height = DEFAULT_LINES * gh->char_height + 2*widget_get_yt(w) + 2*GTK_CONTAINER(w)->border_width;
+	if(gh->cpl == 0) {
+		gtk_widget_size_request(gh->scrollbar, &sb_req);
+		req->width = 4*widget_get_xt(w) + 2*GTK_CONTAINER(w)->border_width +
+			sb_req.width + gh->char_width * (DEFAULT_CPL + (DEFAULT_CPL - 1) /
+										  gh->group_type);
+		req->height = DEFAULT_LINES * gh->char_height;
+	}
+	else
+		GTK_WIDGET_CLASS(parent_class)->size_request(w, req);
 }
 
 static void gtk_hex_class_init(GtkHexClass *klass) {
@@ -1223,9 +1216,6 @@ GtkWidget *gtk_hex_new(HexDocument *owner) {
  * moves cursor to UPPER_NIBBLE or LOWER_NIBBLE of the current byte
  */
 void gtk_hex_set_nibble(GtkHex *gh, gint lower_nibble) {
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
-
 	hide_cursor(gh);
 	gh->lower_nibble = lower_nibble;
 	show_cursor(gh);
@@ -1237,9 +1227,6 @@ void gtk_hex_set_nibble(GtkHex *gh, gint lower_nibble) {
 void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 	guint y;
 	
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
-
 	if((index >= 0) && (index < gh->document->buffer_size)) {
 		hide_cursor(gh);
 		
@@ -1268,13 +1255,7 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
  * moves cursor to column x in line y (in the whole buffer, not just the currently visible part)
  */
 void gtk_hex_set_cursor_xy(GtkHex *gh, gint x, gint y) {
-	gint cp;
-
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
-
-	cp = y*gh->cpl + x;
-
+	gint cp = y*gh->cpl + x;
 	if((y >= 0) && (y < gh->lines) && (x >= 0) && (x < gh->cpl) && (cp < gh->document->buffer_size)) {
 		hide_cursor(gh);
 		
@@ -1299,9 +1280,6 @@ void gtk_hex_set_cursor_xy(GtkHex *gh, gint x, gint y) {
  * returns cursor position
  */
 gint gtk_hex_get_cursor(GtkHex *gh) {
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
-
 	return gh->cursor_pos;
 }
 
@@ -1309,9 +1287,6 @@ gint gtk_hex_get_cursor(GtkHex *gh) {
  * returns value of the byte at position offset
  */
 guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
-
 	if((offset >= 0) && (offset < gh->document->buffer_size))
 		return gh->document->buffer[offset];
 
@@ -1322,9 +1297,6 @@ guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
  * sets data group type (see GROUP_* defines in gtkhex.h)
  */
 void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
-
 	hide_cursor(gh);
 	gh->group_type = gt;
 	gtk_widget_queue_resize(GTK_WIDGET(gh));
@@ -1335,9 +1307,6 @@ void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
  * sets font for displaying data
  */
 void gtk_hex_set_font(GtkHex *gh, GdkFont *font) {
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
-
 	if(gh->disp_font)
 		gdk_font_unref(gh->disp_font);
 	
@@ -1354,9 +1323,6 @@ void gtk_hex_set_font(GtkHex *gh, GdkFont *font) {
  *  do we show the offsets of lines?
  */
 void gtk_hex_show_offsets(GtkHex *gh, gboolean show) {
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
-
 	if(gh->show_offsets == show)
 		return;
 
