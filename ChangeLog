@@ -1,5 +1,12 @@
 1998-12-10  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
+	* callbacks.c (about_destroy_cb): new callback. sets
+	a pointer to the about dialog to NULL on its destruction.
+	(about_cb): if the about dialog is already open, raise it
+	instead of opening a new one.
+
+1998-12-10  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
 	* main.c (main): fix arg parsing code. it actually works now.
 	* ui.c, ghex.h (report_error, show_message): removed.
 	* callbacks.c (customize_app_cb): use gnome-appbar instead of
