@@ -79,10 +79,25 @@ void cleanup_cb(GnomeMDI *mdi) {
 	gtk_main_quit();
 }
 
-void child_changed_cb(GnomeMDI *mdi, HexDocument *doc) {
-	create_dialog_title(find_dialog.window, _("GHex (%s): Find Data"));
-	create_dialog_title(replace_dialog.window, _("GHex (%s): Find & Replace Data"));
-	create_dialog_title(jump_dialog.window, _("GHex (%s): Jump To Byte"));
+void child_changed_cb(GnomeMDI *mdi, HexDocument *old_doc) {
+	GnomeUIInfo *mdi_menus;
+	gboolean sens;
+	int i;
+
+	if(gnome_mdi_get_active_child(mdi) == NULL || old_doc == NULL) {
+		sens = old_doc == NULL;
+		mdi_menus = gnome_mdi_get_menubar_info(gnome_mdi_get_active_window(mdi));
+		/* keep in sync: ui.c/file_menu[] */
+		for(i = 1; i < 4; i++)
+			gtk_widget_set_sensitive(((GnomeUIInfo *)mdi_menus[0].moreinfo)[i].widget, sens);
+	}
+
+	if(find_dialog)
+		create_dialog_title(find_dialog->window, _("GHex (%s): Find Data"));
+	if(replace_dialog)
+		create_dialog_title(replace_dialog->window, _("GHex (%s): Find & Replace Data"));
+	if(jump_dialog)
+		create_dialog_title(jump_dialog->window, _("GHex (%s): Jump To Byte"));
 }
 
 void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
@@ -214,6 +229,7 @@ int main(int argc, char **argv) {
 
     /* load preferences */
     load_configuration();
+
     /* set MDI mode */
     gnome_mdi_set_mode(mdi, mdi_mode);
 

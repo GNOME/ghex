@@ -1011,18 +1011,15 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 
 /* 
  * recalculate the width of both displays and reposition and resize all
- * the children widgetsand adjust the scrollbar after resizing
+ * the children widgets and adjust the scrollbar after resizing
  * connects to the size_allocate signal of the GtkHex widget
  */
 static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
-	GtkHex *gh = GTK_HEX(w);
+	GtkHex *gh;
 	GtkAllocation my_alloc;
 	gint border_width, xt, yt;
 
-	g_return_if_fail(w != NULL);
-	g_return_if_fail(GTK_IS_FIXED(w));
-	g_return_if_fail(alloc != NULL);
-
+	gh = GTK_HEX(w);
 	hide_cursor(gh);
 	
 	recalc_displays(gh, alloc->width, alloc->height);
@@ -1083,15 +1080,11 @@ static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 	GtkHex *gh = GTK_HEX(w);
 	GtkRequisition sb_req;
 
-	if(gh->cpl == 0) {
-		gtk_widget_size_request(gh->scrollbar, &sb_req);
-		req->width = 4*widget_get_xt(w) + 2*GTK_CONTAINER(w)->border_width +
-			sb_req.width + gh->char_width * (DEFAULT_CPL + (DEFAULT_CPL - 1) /
-										  gh->group_type);
-		req->height = DEFAULT_LINES * gh->char_height;
-	}
-	else
-		GTK_WIDGET_CLASS(parent_class)->size_request(w, req);
+	gtk_widget_size_request(gh->scrollbar, &sb_req);
+	req->width = 4*widget_get_xt(w) + 2*GTK_CONTAINER(w)->border_width +
+		sb_req.width + gh->char_width * (DEFAULT_CPL + (DEFAULT_CPL - 1) /
+										 gh->group_type);
+	req->height = DEFAULT_LINES * gh->char_height + 2*widget_get_yt(w) + 2*GTK_CONTAINER(w)->border_width;
 }
 
 static void gtk_hex_class_init(GtkHexClass *klass) {
@@ -1230,6 +1223,9 @@ GtkWidget *gtk_hex_new(HexDocument *owner) {
  * moves cursor to UPPER_NIBBLE or LOWER_NIBBLE of the current byte
  */
 void gtk_hex_set_nibble(GtkHex *gh, gint lower_nibble) {
+	g_return_if_fail(gh != NULL);
+	g_return_if_fail(GTK_IS_HEX(gh));
+
 	hide_cursor(gh);
 	gh->lower_nibble = lower_nibble;
 	show_cursor(gh);
@@ -1241,6 +1237,9 @@ void gtk_hex_set_nibble(GtkHex *gh, gint lower_nibble) {
 void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 	guint y;
 	
+	g_return_if_fail(gh != NULL);
+	g_return_if_fail(GTK_IS_HEX(gh));
+
 	if((index >= 0) && (index < gh->document->buffer_size)) {
 		hide_cursor(gh);
 		
@@ -1269,7 +1268,13 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
  * moves cursor to column x in line y (in the whole buffer, not just the currently visible part)
  */
 void gtk_hex_set_cursor_xy(GtkHex *gh, gint x, gint y) {
-	gint cp = y*gh->cpl + x;
+	gint cp;
+
+	g_return_if_fail(gh != NULL);
+	g_return_if_fail(GTK_IS_HEX(gh));
+
+	cp = y*gh->cpl + x;
+
 	if((y >= 0) && (y < gh->lines) && (x >= 0) && (x < gh->cpl) && (cp < gh->document->buffer_size)) {
 		hide_cursor(gh);
 		
@@ -1294,6 +1299,9 @@ void gtk_hex_set_cursor_xy(GtkHex *gh, gint x, gint y) {
  * returns cursor position
  */
 gint gtk_hex_get_cursor(GtkHex *gh) {
+	g_return_if_fail(gh != NULL);
+	g_return_if_fail(GTK_IS_HEX(gh));
+
 	return gh->cursor_pos;
 }
 
@@ -1301,6 +1309,9 @@ gint gtk_hex_get_cursor(GtkHex *gh) {
  * returns value of the byte at position offset
  */
 guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
+	g_return_if_fail(gh != NULL);
+	g_return_if_fail(GTK_IS_HEX(gh));
+
 	if((offset >= 0) && (offset < gh->document->buffer_size))
 		return gh->document->buffer[offset];
 
@@ -1311,6 +1322,9 @@ guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
  * sets data group type (see GROUP_* defines in gtkhex.h)
  */
 void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
+	g_return_if_fail(gh != NULL);
+	g_return_if_fail(GTK_IS_HEX(gh));
+
 	hide_cursor(gh);
 	gh->group_type = gt;
 	gtk_widget_queue_resize(GTK_WIDGET(gh));
@@ -1321,6 +1335,9 @@ void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
  * sets font for displaying data
  */
 void gtk_hex_set_font(GtkHex *gh, GdkFont *font) {
+	g_return_if_fail(gh != NULL);
+	g_return_if_fail(GTK_IS_HEX(gh));
+
 	if(gh->disp_font)
 		gdk_font_unref(gh->disp_font);
 	
@@ -1337,6 +1354,9 @@ void gtk_hex_set_font(GtkHex *gh, GdkFont *font) {
  *  do we show the offsets of lines?
  */
 void gtk_hex_show_offsets(GtkHex *gh, gboolean show) {
+	g_return_if_fail(gh != NULL);
+	g_return_if_fail(GTK_IS_HEX(gh));
+
 	if(gh->show_offsets == show)
 		return;
 

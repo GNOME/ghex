@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* ui.c - GHex user interface
+/* ui.c - main menus and callbacks; utility functions
 
-   Copyright (C) 1998, 1999 Free Software Foundation
+   Copyright (C) 1998, 1999, 2000 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -26,7 +26,8 @@
 #include "ghex.h"
 
 static void open_selected_file(GtkWidget *);
-static void save_selected_file(GtkWidget *);
+static void save_selected_file(GtkWidget *, GtkWidget *view);
+static void export_html_selected_file(GtkWidget *w, GtkHex *view);
 
 /* callbacks to nullify widget pointer after a delete event */
 static void about_destroy_cb(GtkObject *, GtkWidget **);
@@ -37,19 +38,20 @@ static void open_cb(GtkWidget *);
 static void close_cb(GtkWidget *);
 static void save_cb(GtkWidget *);
 static void save_as_cb(GtkWidget *);
+static void export_html_cb(GtkWidget *);
 static void revert_cb(GtkWidget *);
 static void prefs_cb(GtkWidget *);
 static void converter_cb(GtkWidget *);
+static void char_table_cb(GtkWidget *);
 static void about_cb(GtkWidget *);
 
 GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_MENU_OPEN_ITEM(open_cb,NULL),
+	/* keep in sync: main.c/child_changed_cb: setting sensitivity of items 1 - 3 */
 	GNOMEUIINFO_MENU_SAVE_ITEM(save_cb,NULL),
 	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb,NULL),
+	GNOMEUIINFO_ITEM(N_("Export as HTML..."), N_("Export data to HTML source"), export_html_cb, NULL),
 	GNOMEUIINFO_MENU_REVERT_ITEM(revert_cb,NULL),
-	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_ITEM_NONE(N_("Open Con_verter..."),
-			      N_("Open base conversion dialog"), converter_cb),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_CLOSE_ITEM(close_cb,NULL),
 	GNOMEUIINFO_MENU_EXIT_ITEM(quit_app_cb,NULL),
@@ -60,6 +62,15 @@ GnomeUIInfo settings_menu[] = {
 	GNOMEUIINFO_MENU_PREFERENCES_ITEM(prefs_cb,NULL),
 	GNOMEUIINFO_END
 };
+
+GnomeUIInfo tools_menu[] = {
+	GNOMEUIINFO_ITEM_NONE(N_("Con_verter..."),
+						  N_("Open base conversion dialog"), converter_cb),
+	GNOMEUIINFO_ITEM_NONE(N_("Character Table..."),
+						  N_("Show the character table"), char_table_cb),
+	GNOMEUIINFO_END
+};
+
 
 GnomeUIInfo empty_menu[] = {
 	GNOMEUIINFO_END
@@ -73,6 +84,7 @@ GnomeUIInfo help_menu[] = {
 
 GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+	GNOMEUIINFO_SUBTREE(N_("Tools"), tools_menu),
 	GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menu),
 	GNOMEUIINFO_MENU_FILES_TREE(empty_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
@@ -99,25 +111,27 @@ gchar *search_type_label[] = {
 
 GtkWidget *file_sel = NULL;
 
-void cancel_cb(GtkWidget *w, GtkWidget **me) {
-	gtk_widget_destroy(*me);
-	*me = NULL;
+void cancel_cb(GtkWidget *w, GtkWidget *me)
+{
+	gtk_widget_hide(me);
 }
 
-gint delete_event_cb(GtkWidget *w, gpointer who_cares, GtkWidget **me) {
-	gtk_widget_destroy(*me);
-	*me = NULL;
+gint delete_event_cb(GtkWidget *w, gpointer who_cares, GtkWidget *me)
+{
+	gtk_widget_hide(me);
 	
 	return TRUE;
 }
 
-gint ask_user(GnomeMessageBox *message_box) {
+gint ask_user(GnomeMessageBox *message_box)
+{
 	gtk_window_set_modal(GTK_WINDOW(message_box), TRUE);	
 
 	return gnome_dialog_run_and_close(GNOME_DIALOG(message_box));
 }
 
-GtkWidget *create_button(GtkWidget *window, const gchar *type, gchar *text) {
+GtkWidget *create_button(GtkWidget *window, const gchar *type, gchar *text)
+{
 	GtkWidget *button, *pixmap, *label, *hbox;
 	
 	hbox = gtk_hbox_new(FALSE, 2);
@@ -139,7 +153,8 @@ GtkWidget *create_button(GtkWidget *window, const gchar *type, gchar *text) {
 	return button;
 }
 
-void create_dialog_title(GtkWidget *window, gchar *title) {
+void create_dialog_title(GtkWidget *window, gchar *title)
+{
 	gchar *full_title;
 
 	if(!window)
@@ -159,11 +174,13 @@ void create_dialog_title(GtkWidget *window, gchar *title) {
 /*
  * callbacks for global menus
  */
-static void about_destroy_cb(GtkObject *obj, GtkWidget **about) {
+static void about_destroy_cb(GtkObject *obj, GtkWidget **about)
+{
 	*about = NULL;
 }
 
-static void about_cb (GtkWidget *widget) {
+static void about_cb (GtkWidget *widget)
+{
 	static GtkWidget *about = NULL;
 	
 	static const gchar *authors[] = {
@@ -173,7 +190,7 @@ static void about_cb (GtkWidget *widget) {
 
 	if(!about) {
 		about = gnome_about_new ( _("GHex, a binary file editor"), VERSION,
-								  "(C) 1998, 1999 Jaka Mocnik", authors,
+								  "(C) 1998, 1999, 2000 Jaka Mocnik", authors,
 								  _("Released under the terms of GNU Public License"), NULL);
 		gtk_signal_connect(GTK_OBJECT(about), "destroy",
 						   GTK_SIGNAL_FUNC(about_destroy_cb), &about);
@@ -183,84 +200,176 @@ static void about_cb (GtkWidget *widget) {
 		gdk_window_raise(GTK_WIDGET(about)->window);
 }
 
-static void quit_app_cb (GtkWidget *widget) {
+static void quit_app_cb (GtkWidget *widget)
+{
 	if(gnome_mdi_remove_all(mdi, FALSE))
 		gtk_object_destroy(GTK_OBJECT(mdi));
 }
 
-static void save_cb(GtkWidget *w) {
-	if(mdi->active_child) {
-		if(hex_document_write(HEX_DOCUMENT(mdi->active_child)))
-			gnome_app_error(mdi->active_window, _("Error saving file!"));
-		else {
-			gchar *flash;
+static void save_cb(GtkWidget *w)
+{
+	HexDocument *doc;
 
-			flash = g_strdup_printf(_("Saved buffer to file %s"), HEX_DOCUMENT(mdi->active_child)->file_name);
-			gnome_app_flash(mdi->active_window, flash);
-			g_free(flash);
-		}
+	if(gnome_mdi_get_active_child(mdi) == NULL)
+		return;
+
+	doc = HEX_DOCUMENT(gnome_mdi_get_active_child(mdi));
+	if(hex_document_write(doc))
+		gnome_app_error(mdi->active_window, _("Error saving file!"));
+	else {
+		gchar *flash;
+		
+		flash = g_strdup_printf(_("Saved buffer to file %s"), doc->file_name);
+		gnome_app_flash(mdi->active_window, flash);
+		g_free(flash);
 	}
 }
 
-static void open_cb(GtkWidget *w) {
+static void open_cb(GtkWidget *w)
+{
+	if(file_sel && GTK_WIDGET_VISIBLE(file_sel))
+		return;
+
 	if(file_sel == NULL)
-		file_sel = gtk_file_selection_new(_("Select a file to open"));
-	
-	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+		file_sel = gtk_file_selection_new(NULL);
+
+	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to open"));
 	
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
 						"clicked", GTK_SIGNAL_FUNC(open_selected_file),
 						NULL);
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						&file_sel);
-	gtk_widget_show (file_sel);
+						file_sel);
+	gtk_signal_connect (GTK_OBJECT (file_sel),
+						"delete-event", GTK_SIGNAL_FUNC(delete_event_cb),
+						file_sel);
+
+	if(!GTK_WIDGET_VISIBLE(file_sel)) {
+		gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+		gtk_widget_show (file_sel);
+	}
 }
 
-static void save_as_cb(GtkWidget *w) {
-	if(mdi->active_child == NULL)
+static void save_as_cb(GtkWidget *w)
+{
+	if(gnome_mdi_get_active_child(mdi) == NULL  ||
+	   file_sel && GTK_WIDGET_VISIBLE(file_sel))
 		return;
 	
 	if(file_sel == NULL)
-		file_sel = gtk_file_selection_new(_("Select a file to save buffer as"));
+		file_sel = gtk_file_selection_new(NULL);
+
+	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to save buffer as"));
 	
 	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 	
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
 						"clicked", GTK_SIGNAL_FUNC(save_selected_file),
-						NULL);
+						gnome_mdi_get_active_view(mdi));
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						&file_sel);
+						file_sel);
 	gtk_widget_show (file_sel);
 }
 
-static void close_cb(GtkWidget *w) {
-	if(mdi->active_child == NULL)
+static void export_html_cb(GtkWidget *w)
+{
+	if(gnome_mdi_get_active_child(mdi) == NULL ||
+	   file_sel && GTK_WIDGET_VISIBLE(file_sel))
 		return;
 	
-	gnome_mdi_remove_child(mdi, mdi->active_child, FALSE);
+	if(file_sel == NULL)
+		file_sel = gtk_file_selection_new(NULL);
+
+	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select path and file name HTML source to"));
+	
+	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+	
+	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
+						"clicked", GTK_SIGNAL_FUNC(export_html_selected_file),
+						gnome_mdi_get_active_view(mdi));
+	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
+						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
+						file_sel);
+	gtk_widget_show (file_sel);
 }
 
-static void converter_cb(GtkWidget *w) {
-	if(converter.window == NULL)
-		create_converter(&converter);
+static void export_html_selected_file(GtkWidget *w, GtkHex *view)
+{
+	gchar *html_path = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
+	gchar *sep, *base_name;
+	HexDocument *doc;
+
+	gtk_widget_hide(file_sel);
+
+	sep = html_path + strlen(html_path) - 1;
+	while(sep >= html_path && *sep != '/')
+		sep--;
+	if(sep >= html_path)
+		*sep = 0;
+	base_name = sep + 1;
+	sep = strstr(base_name, ".htm");
+	if(sep)
+		*sep = 0;
+
+	if(*base_name == 0)
+		return;
 	
-	gtk_window_position (GTK_WINDOW(converter.window), GTK_WIN_POS_MOUSE);
-	
-	gtk_widget_show(converter.window);
+	doc = HEX_DOCUMENT(gnome_mdi_get_child_from_view(GTK_WIDGET(view)));
+
+	g_message("exporting to %s/%s", html_path, base_name);
+
+	hex_document_export_html(doc, html_path, base_name, 0, doc->buffer_size,
+							 view->cpl, view->vis_lines, view->group_type);
 }
 
-static void prefs_cb(GtkWidget *w) {
-	if(prefs_ui.pbox == NULL)
-		create_prefs_dialog(&prefs_ui);
-	
-	gtk_window_position (GTK_WINDOW(prefs_ui.pbox), GTK_WIN_POS_MOUSE);
-	
-	gtk_widget_show(GTK_WIDGET(prefs_ui.pbox));
+static void close_cb(GtkWidget *w)
+{
+	if(gnome_mdi_get_active_child(mdi) == NULL)
+		return;
+
+	gnome_mdi_remove_child(mdi, gnome_mdi_get_active_child(mdi), FALSE);
 }
 
-static void revert_cb(GtkWidget *w) {
+static void converter_cb(GtkWidget *w)
+{
+	if(!converter)
+		converter = create_converter();
+
+	if(!GTK_WIDGET_VISIBLE(converter->window)) {
+		gtk_window_position(GTK_WINDOW(converter->window), GTK_WIN_POS_MOUSE);
+		gtk_widget_show(converter->window);
+	}
+	gdk_window_raise(converter->window->window);
+}
+
+static void char_table_cb(GtkWidget *w)
+{
+	if(!char_table)
+		char_table = create_char_table();
+
+	if(!GTK_WIDGET_VISIBLE(char_table)) {
+		gtk_window_position(GTK_WINDOW(char_table), GTK_WIN_POS_MOUSE);
+		gtk_widget_show(char_table);
+	}
+	gdk_window_raise(char_table->window);
+}
+
+static void prefs_cb(GtkWidget *w)
+{
+	if(!prefs_ui)
+		prefs_ui = create_prefs_dialog();
+
+	if(!GTK_WIDGET_VISIBLE(prefs_ui->pbox)) {
+		gtk_window_position (GTK_WINDOW(prefs_ui->pbox), GTK_WIN_POS_MOUSE);
+		gtk_widget_show(GTK_WIDGET(prefs_ui->pbox));
+	}
+	gdk_window_raise(GTK_WIDGET(prefs_ui->pbox)->window);
+}
+
+static void revert_cb(GtkWidget *w)
+{
 	static gchar msg[512];
 	
 	HexDocument *doc;
@@ -291,7 +400,8 @@ static void revert_cb(GtkWidget *w) {
 	}
 }
 
-static void open_selected_file(GtkWidget *w) {
+static void open_selected_file(GtkWidget *w)
+{
 	HexDocument *new_doc;
 	gchar *flash;
 	
@@ -309,16 +419,14 @@ static void open_selected_file(GtkWidget *w) {
 	file_sel = NULL;
 }
 
-static void save_selected_file(GtkWidget *w) {
+static void save_selected_file(GtkWidget *w, GtkWidget *view)
+{
 	HexDocument *doc;
 	gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
 	gchar *flash;
 	int i;
 	
-	if(mdi->active_child == NULL)
-		return;
-	
-	doc = HEX_DOCUMENT(mdi->active_child);
+	doc = HEX_DOCUMENT(gnome_mdi_get_child_from_view(view));
 	
 	if((doc->file = fopen(filename, "w")) != NULL) {
 		if(fwrite(doc->buffer, doc->buffer_size, 1, doc->file) == 1) {
@@ -348,6 +456,5 @@ static void save_selected_file(GtkWidget *w) {
 	else
 		gnome_app_error(mdi->active_window, _("Can't open file for writing!"));
 	
-	gtk_widget_destroy(GTK_WIDGET(file_sel));
-	file_sel = NULL;
+	gtk_widget_hide(GTK_WIDGET(file_sel));
 }

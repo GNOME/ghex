@@ -29,11 +29,14 @@ static void conv_entry_cb(GtkEntry *, gint);
 static void get_cursor_val_cb(GtkButton *button, Converter *conv);
 static void set_values(Converter *conv, gulong val);
 
-Converter converter = { NULL };
+Converter *converter = NULL;
 
-void create_converter(Converter *conv) {
+Converter *create_converter() {
+	Converter *conv;
 	GtkWidget *table, *label, *close, *get;
-	
+
+	conv = g_new0(Converter, 1);
+
 	conv->window = gtk_dialog_new();
 	gtk_signal_connect(GTK_OBJECT(conv->window), "delete_event",
 					   GTK_SIGNAL_FUNC(delete_event_cb), &conv->window);
@@ -96,13 +99,15 @@ void create_converter(Converter *conv) {
 	conv->close = close = gtk_button_new_with_label(_("Close"));
 	gtk_signal_connect (GTK_OBJECT (close),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						&conv->window);
+						conv->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(conv->window)->action_area), close,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(close);
 	
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(conv->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(conv->window)->vbox), 2);
+
+	return conv;
 }
 
 static void get_cursor_val_cb(GtkButton *button, Converter *conv) {
@@ -153,7 +158,7 @@ static void set_values(Converter *conv, gulong val) {
 static void conv_entry_cb(GtkEntry *entry, gint base) {
 	guchar buffer[33];
 	gchar *text, *endptr;
-	gulong val = converter.value;
+	gulong val = converter->value;
 	int i, len;
 	
 	text = gtk_entry_get_text(entry);
@@ -184,16 +189,16 @@ static void conv_entry_cb(GtkEntry *entry, gint base) {
 	if(base != 0) {
 		val = strtoul(buffer, &endptr, base);
 		if(*endptr != 0) {
-			converter.value = 0;
+			converter->value = 0;
 			for(i = 0; i < 4; i++)
-				gtk_entry_set_text(GTK_ENTRY(converter.entry[i]), _("ERROR"));
+				gtk_entry_set_text(GTK_ENTRY(converter->entry[i]), _("ERROR"));
 			gtk_entry_select_region(entry, 0, -1);
 			return;
 		}
 	}
 
-	if(val == converter.value)
+	if(val == converter->value)
 		return;
 	
-	set_values(&converter, val);
+	set_values(converter, val);
 }
