@@ -27,28 +27,12 @@ What is GHex
 GHex allows the user to load data from any file, view and edit it in either hex or
 ascii. A must for anyone playing games that use non-ascii format for saving.
 
-GHex also serves as testbed for the GnomeMDI object and all the related stuff.
-Read README-GnomeMDI
-
 
 System Requirements
 ===================
 
-GHex should build on (I guess) most unices. It needs the X11R6 libraries, the GTK/GDK
-libraries and GNOME libraries. I believe the ones from the Gnome-0.13 and Gtk+-0.99.5
-distributions should do, but I haven't tried them: if you have problems building ghex
-(unresolved symbols, wrong numbers of arguments, etc.) get the gnome-libs and gtk+
-modules from the Gnome CVS.
-
-
-Installation
-============
-
-Well, since I haven't been good enough to get to know the GNU auto**** stuff,
-you'll have to manually adjust the Makefile to your system (you need the GTK/GDK
-and GNOME includes and libs in your include and library paths) and then simply type
-'make'. If all goes well, this will leave you with an executable called 'ghex' in
-your working directory and you can play with it.
+GHex should build on (I guess) most unices. It needs the X11R6 libraries,
+glib, gdk and gtk 1.1.x libraries and GNOME-0.30 libraries.
 
 
 Use
@@ -60,9 +44,9 @@ Read the documentation: ghex.html (which is rather outdated)
 Invitation :)
 =============
 
-If anyone (surprisingly) wishes to improve GHex, have a look at the TODO list,
-but don't limit yourself to what is described therein. Send patches to my email
-address.
+If anyone (surprisingly) wishes to improve GHex, have a look at the TODO
+list, but don't limit yourself to what is described therein. Send patches
+to my email address.
 
 
 Author
@@ -72,14 +56,7 @@ GHex is being maintained by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>. If you are
 having trouble installing and/or running GHex, feel free to e-mail me.
 
 You can check on the current status of GHex via www at: 
-	http://www.kiss.uni-lj.si/~k4fe0026/soft.html#GHEX
+	http://pluton.ijs.si/~jaka/soft.html#GHEX
 
 Comments, ideas and (most of all) bug reports (and especially patches) are very welcome.
-
-
-
-
-
-
-
 
