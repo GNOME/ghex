@@ -72,6 +72,8 @@ struct _GnomeMDI {
   GnomeUIInfo *menu_template;
   GnomeUIInfo *toolbar_template;
 
+  gchar *menu_insertion_point;
+
   GnomeRootWin *root_window; /* this is needed for DND */
 };
 

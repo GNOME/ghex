@@ -187,7 +187,7 @@ GtkMenuBar *create_mdi_menus(GnomeMDI *mdi) {
   GtkMenuBar *menubar;
   GtkAcceleratorTable *accel = NULL;
 
-  menubar = GTK_WIDGET(gtk_menubar_new());
+  menubar = GTK_WIDGET(gtk_menu_bar_new());
 
   menu = gtk_menu_new();
 
@@ -251,7 +251,7 @@ GtkMenuBar *create_mdi_menus(GnomeMDI *mdi) {
   gtk_widget_show(w);
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
   
-  gtk_menubar_append(menubar, w);
+  gtk_menu_bar_append(menubar, w);
 
   /* the View menu */
   menu = gtk_menu_new();
@@ -277,7 +277,7 @@ GtkMenuBar *create_mdi_menus(GnomeMDI *mdi) {
      gpointer looks really bad. any ideas? */
   gtk_object_set_data(GTK_OBJECT(w), "MDIDocumentMenu", (gpointer)TRUE);
 
-  gtk_menubar_append(menubar, w);
+  gtk_menu_bar_append(menubar, w);
 
   /* the Help menu */
   menu = gtk_menu_new();
@@ -306,7 +306,7 @@ GtkMenuBar *create_mdi_menus(GnomeMDI *mdi) {
   gtk_menu_item_right_justify(GTK_MENU_ITEM(w));
   gtk_object_set_data(GTK_OBJECT(w), "MDIDocumentList", (gpointer)TRUE);
 
-  gtk_menubar_append(menubar, w);
+  gtk_menu_bar_append(menubar, w);
 
   return menubar;
 }

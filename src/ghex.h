@@ -55,7 +55,7 @@ void setup_ui();
 void redraw_widget(GtkWidget *);
 
 #ifndef USE_APP_HELPER
-GList *create_mdi_menus(GnomeMDI *);
+GtkMenuBar *create_mdi_menus(GnomeMDI *);
 #endif
 
 void create_find_dialog(GtkWidget **);

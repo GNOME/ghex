@@ -47,6 +47,8 @@ struct _GnomeDocument
 
   GList *views;
 
+  GnomeUIInfo *menu_template;
+
   gboolean changed;
 };
 
@@ -59,17 +61,18 @@ struct _GnomeDocumentClass
   void        (*document_changed)(GnomeDocument *, gpointer);
 };
 
-GnomeDocument *gnome_document_new();
+GnomeDocument *gnome_document_new     ();
+GList *gnome_document_get_views       (GnomeDocument *);
 
-GList *gnome_document_get_views(GnomeDocument *);
+GtkWidget *gnome_document_add_view    (GnomeDocument *);
+void gnome_document_remove_view       (GnomeDocument *, GtkWidget *view);
 
-GtkWidget *gnome_document_add_view(GnomeDocument *);
-void gnome_document_remove_view(GnomeDocument *, GtkWidget *view);
+void gnome_document_changed           (GnomeDocument *, gpointer);
+void gnome_document_set_title         (GnomeDocument *, gchar *);
 
-void gnome_document_changed(GnomeDocument *, gpointer);
-void gnome_document_set_title(GnomeDocument *, gchar *);
+gboolean gnome_document_has_changed   (GnomeDocument *);
 
-gboolean gnome_document_has_changed(GnomeDocument *);
+void gnome_document_set_menu_template (GnomeDocument *, GnomeUIInfo *);
 
 #endif /* __GNOME_DOCUMENT_H__ */
 

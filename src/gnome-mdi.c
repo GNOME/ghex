@@ -61,6 +61,8 @@ static void             rootwin_drop             (GtkWidget *, GdkEvent *, Gnome
 static GnomeUIInfo     *copy_ui_info_tree        (GnomeUIInfo *);
 static void             free_ui_info_tree        (GnomeUIInfo *);
 
+void gnome_app_insert_menus(GnomeApp *, gchar *, GnomeUIInfo *);
+
 #define DND_DATA_TYPE "mdi/bookpage"
 
 /* hmmm... is it OK to have these two widgets (used for notebook page DnD)
@@ -73,6 +75,8 @@ static char *accepted_drop_types[] = { DND_DATA_TYPE };
 
 /* this is just for simple debugging (as little gdb or ddd as possible...) */
 #define EMBRACE(s) { printf("<\n"); s; printf(">\n"); }
+
+extern GnomeUIInfo doc_menu[];
 
 enum {
   CREATE_MENUS,
@@ -271,6 +275,10 @@ static void gnome_mdi_init (GnomeMDI *mdi) {
   mdi->active_view = NULL;
 
   mdi->root_window = NULL;
+
+  mdi->menu_template = NULL;
+  mdi->toolbar_template = NULL;
+  mdi->menu_insertion_point = "File";
 }
 
 GtkObject *gnome_mdi_new(gchar *appname, gchar *title) {
@@ -363,6 +371,7 @@ static void doc_list_activated_cb(GtkWidget *w, GnomeMDI *mdi) {
   }
 }
 
+#if 0
 static void doc_menus_insert(GtkMenuBar *menubar, GList *menu_list) {
   GList *children;
   GtkWidget *menu;
@@ -388,7 +397,9 @@ static void doc_menus_insert(GtkMenuBar *menubar, GList *menu_list) {
   if(menu)
     gtk_object_set_data(GTK_OBJECT(menu), "MDIDocMenuLast", (gpointer)TRUE);
 }
+#endif
 
+#if 0
 static void doc_menus_remove(GtkMenuBar *menubar) {
   GList *children;
   gboolean more;
@@ -407,6 +418,7 @@ static void doc_menus_remove(GtkMenuBar *menubar) {
     children = g_list_next(children);
   }
 }
+#endif
 
 static void doc_list_menu_insert(GtkMenuBar *menubar, GtkWidget *doc_menu) {
   GList *children;
@@ -852,16 +864,37 @@ static void app_set_title(GnomeMDI *mdi, GnomeApp *app) {
 
 static void app_set_active_view(GnomeMDI *mdi, GnomeApp *app, GtkWidget *view) {
   GList *menu_list = NULL;
+  GtkWidget *parent;
   GnomeDocument *doc;
+  GnomeUIInfo *ui_info;
+  gint pos;
 
   app_set_title(mdi, app);
 
-  doc_menus_remove(GTK_MENU_BAR(app->menubar));
+  if(ui_info = gtk_object_get_data(GTK_OBJECT(app), "DocumentMenuUIInfo"))
+    free_ui_info_tree(ui_info);
+  ui_info = NULL;
+
+  /* this is still a bit ghex specific */
+  gnome_app_remove_menus(app, "Edit", 1);
   if(view) {
     doc = VIEW_GET_DOCUMENT(view);
-    gtk_signal_emit_by_name(GTK_OBJECT(doc), "create_menus", view, &menu_list);
-    if(menu_list)
-      doc_menus_insert(GTK_MENU_BAR(app->menubar), menu_list);
+    if( doc->menu_template &&
+        ( (ui_info = copy_ui_info_tree(doc->menu_template)) != NULL) ) {
+      gnome_app_insert_menus(app, mdi->menu_insertion_point, ui_info);
+      gtk_object_set_data(GTK_OBJECT(app), "DocumentMenuUIInfo", ui_info);
+    }
+    else {
+      gtk_signal_emit_by_name(GTK_OBJECT(doc), "create_menus", view, &menu_list);
+      parent = gnome_app_find_menu_pos(app->menubar, mdi->menu_insertion_point, &pos);
+      if(menu_list && parent) {
+	while(menu_list) {
+	  gtk_menu_shell_insert(GTK_MENU_SHELL(parent), GTK_WIDGET(menu_list->data), pos);
+	  pos++;
+	  menu_list = g_list_remove(menu_list, menu_list->data);
+	}
+      }
+    }
   }
 }
 
@@ -872,6 +905,9 @@ static void app_destroy(GnomeApp *app) {
   if(ui_info)
     free_ui_info_tree(ui_info);
   ui_info = gtk_object_get_data(GTK_OBJECT(app), "MDIToolbarUIInfo");
+  if(ui_info)
+    free_ui_info_tree(ui_info);
+  ui_info = gtk_object_get_data(GTK_OBJECT(app), "DocumentMenuUIInfo");
   if(ui_info)
     free_ui_info_tree(ui_info);
 }

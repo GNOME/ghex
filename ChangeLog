@@ -1,3 +1,11 @@
+1998-06-01  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* gnome-mdi.c: changed to use new gnome_app_insert_menus() and
+	gnome_app_remove_menus() routines.
+	* gnome-document.[ch]: added GnomeUIInfo support for menu creation via
+	menu_template member and gnome_document_set_menu_template().
+	* hex-document.c: changed to use GnomeUIInfo support.
+	
 1998-05-31  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* gnome-mdi.c: added images to Dnd cursors. The widges are global vars,

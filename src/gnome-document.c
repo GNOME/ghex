@@ -202,6 +202,9 @@ gboolean gnome_document_has_changed(GnomeDocument *doc) {
   return doc->changed;
 }
 
+void gnome_document_set_menu_template(GnomeDocument *doc, GnomeUIInfo *menu_tmpl) {
+  doc->menu_template = menu_tmpl;
+}
 
 
 

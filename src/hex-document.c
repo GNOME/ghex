@@ -19,8 +19,32 @@
 static void hex_document_class_init        (HexDocumentClass *klass);
 static void hex_document_init              (HexDocument *);
 static GtkWidget *hex_document_create_view (GnomeDocument *);
-static GList *hex_document_create_menus    (GnomeDocument *, GtkWidget *);
 static void hex_document_destroy           (GtkObject *);
+
+#ifndef USE_APP_HELPER
+static GList *hex_document_create_menus    (GnomeDocument *, GtkWidget *);
+#endif
+
+GnomeUIInfo edit_menu[] = {
+  { GNOME_APP_UI_ITEM, "Find...", NULL, find_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SEARCH, 'F',
+    GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_ITEM, "Replace...", NULL, find_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 'R',
+    GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_ITEM, "Goto Byte...", NULL, find_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 'G',
+    GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_ENDOFINFO }
+};
+
+GnomeUIInfo doc_menu[] = {
+  { GNOME_APP_UI_SUBTREE, "Edit", NULL, edit_menu, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_ENDOFINFO }
+};
 
 guint group_type[3] = {
   GROUP_BYTE,
@@ -92,6 +116,7 @@ static GtkWidget *create_group_type_menu(GtkHex *gh) {
   return menu;
 }
 
+#ifndef USE_APP_HELPER
 static GList *hex_document_create_menus(GnomeDocument *doc, GtkWidget *view) {
   GList *menu_list;
   GtkWidget *menu, *w;
@@ -146,6 +171,7 @@ static GList *hex_document_create_menus(GnomeDocument *doc, GtkWidget *view) {
 
   return menu_list;
 }  
+#endif
 
 static void hex_document_destroy(GtkObject *obj) {
   HexDocument *hex;
@@ -172,7 +198,9 @@ static void hex_document_class_init (HexDocumentClass *class) {
   object_class->destroy = hex_document_destroy;
 
   doc_class->create_view = hex_document_create_view;
+#ifndef USE_APP_HELPER
   doc_class->create_menus = hex_document_create_menus;
+#endif
 
   parent_class = gtk_type_class (gnome_document_get_type ());
 }
@@ -206,6 +234,11 @@ void hex_document_set_data(HexDocument *document, guint offset, guint len, gucha
 static void hex_document_init (HexDocument *document) {
   document->buffer = NULL;
   document->buffer_size = 0;
+#ifdef USE_APP_HELPER
+  GNOME_DOCUMENT(document)->menu_template = doc_menu;
+#else
+  GNOME_DOCUMENT(document)->menu_template = NULL;
+#endif
 }
 
 HexDocument *hex_document_new(gchar *name) {
