@@ -1,235 +1,236 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
+# traditional Chinese translation for ghex.
+# Copyright (C) 1999-2001 Free Software Foundation, Inc.
 # Ming-Yen Hsu <myhsu@cyberdude.com>, 1999.
+# Joe Man <trmetal@yahoo.com.hk>, 2001
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex-0.99.6\n"
-"POT-Creation-Date: 2001-03-08 19:39+0100\n"
-"PO-Revision-Date: 1999-02-20 08:00+0800\n"
-"Last-Translator: Ming-Yen Hsu <myhsu@cyberdude.com>\n"
+"Project-Id-Version: ghex-1.2.1\n"
+"POT-Creation-Date: 2001-08-12 02:40+0800\n"
+"PO-Revision-Date: 2001-07-09 15:32+0800\n"
+"Last-Translator: Joe Man <trmetal@yahoo.com.hk>\n"
 "Language-Team: Chinese <zh@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=big5\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/converter.c:44
+#: src/converter.c:176
 msgid "GHex: Converter"
-msgstr "GHex: 轉碼程式"
+msgstr "GHex: 轉碼工具"
 
-#: src/chartable.c:91 src/converter.c:53
-msgid "Binary"
-msgstr "二進位"
+#. entries
+#: src/converter.c:195
+msgid "_Binary"
+msgstr "二進位 (_B)"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:161
-msgid "Decimal"
-msgstr "十進位"
+#: src/converter.c:197
+msgid "_Octal"
+msgstr "八進位 (_O)"
 
-#: src/chartable.c:90 src/converter.c:73
-msgid "Hex"
-msgstr "十六進位"
+#: src/converter.c:199
+msgid "_Decimal"
+msgstr "十進位 (_D)"
 
-#: src/chartable.c:90 src/converter.c:83
-msgid "ASCII"
-msgstr "ASCII"
+#: src/converter.c:201
+msgid "_Hex"
+msgstr "十六進位 (_H)"
 
-#: src/converter.c:93
-msgid "Get cursor value"
-msgstr "獲得游標位置"
+#: src/converter.c:203
+msgid "_ASCII"
+msgstr "ASCII (_A)"
 
-#: src/converter.c:99
-msgid "Close"
-msgstr "關閉"
+#. get cursor button
+#: src/converter.c:207
+msgid "_Get cursor value"
+msgstr "讀取游標的數值 (_G)"
 
-#: src/converter.c:194
+#: src/converter.c:323
 msgid "ERROR"
 msgstr "錯誤"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:60 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): 尋找資料"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:69
 #, c-format
 msgid "Search for %s"
-msgstr "搜尋 %s"
+msgstr "尋找 %s"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:86
 msgid "Find Next"
 msgstr "找下一個"
 
-#: src/findreplace.c:91
+#: src/findreplace.c:94
 msgid "Find Previous"
-msgstr "找前一個"
+msgstr "找上一個"
 
-#: src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:130 src/main.c:100
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): 尋找並且取代資料"
+msgstr "GHex (%s): 尋找及取代資料"
 
-#: src/findreplace.c:141
+#: src/findreplace.c:144
 #, c-format
 msgid "Replace %s"
 msgstr "取代 %s"
 
-#: src/findreplace.c:157
+#: src/findreplace.c:161
 msgid "Find next"
 msgstr "找下一個"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:169
 msgid "Replace"
 msgstr "取代"
 
-#: src/findreplace.c:173
+#: src/findreplace.c:177
 msgid "Replace All"
 msgstr "全部取代"
 
-#: src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:210 src/main.c:102
 #, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): 跳至 Byte"
+msgstr "GHex (%s)： 跳至位元"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:299 src/findreplace.c:324 src/findreplace.c:376
 msgid "There is no active buffer to search!"
-msgstr "沒有緩衝區可供搜尋!"
+msgstr "沒有緩衝區可供搜尋！"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:307 src/findreplace.c:332 src/findreplace.c:384
 msgid "There seems to be no string to search for!"
-msgstr "沒有字串可供搜尋!"
+msgstr "沒有字串可供搜尋！"
 
-#: src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:314 src/findreplace.c:392
 msgid "End Of File reached"
-msgstr "到達檔案底端"
+msgstr "已到達檔案的結尾"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:340
 msgid "Beginning Of File reached"
-msgstr "到達檔案的頂端"
+msgstr "已到達檔案的開頭"
 
-#: src/findreplace.c:345
+#: src/findreplace.c:349
 msgid "There is no active buffer to move the cursor in!"
-msgstr "沒有緩衝區可供游標移入!"
+msgstr "沒有緩衝區可供游標移入！"
 
-#: src/findreplace.c:350
+#: src/findreplace.c:354
 msgid "No offset has been specified!"
-msgstr "尚未指定偏移量!"
+msgstr "仍未指定位置！"
 
-#: src/findreplace.c:357
+#: src/findreplace.c:361
 msgid "Can not position cursor beyond the End Of File!"
-msgstr "不能將游標置於檔案底端之後!"
+msgstr "不能將游標置於檔案結尾之後！"
 
-#: src/findreplace.c:362
+#: src/findreplace.c:366
 msgid "The offset must be a positive integer value!"
-msgstr "偏移量必需為正值!"
+msgstr "位置必需為正整數！"
 
-#: src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:403 src/findreplace.c:440
 msgid "There is no active buffer to replace data in!"
-msgstr "沒有緩衝區可供資料置換!"
+msgstr "沒有緩衝區可供資料置換！"
 
-#: src/findreplace.c:410 src/findreplace.c:447
+#: src/findreplace.c:414 src/findreplace.c:451
 msgid "Strange find or replace string!"
-msgstr "在搜尋和取代時遇到奇怪的字串!"
+msgstr "尋找或取代字串時發生錯誤！"
 
-#: src/findreplace.c:425
+#: src/findreplace.c:429
 msgid "End Of File reached!"
-msgstr "到達檔案底端!"
+msgstr "已到達檔案結尾！"
 
-#: src/findreplace.c:463
+#: src/findreplace.c:467
 #, c-format
 msgid "Replaced %d occurencies."
-msgstr "總共取代了 %d 個."
+msgstr "總共取代了 %d 個。"
 
 #: src/hex-document.c:707
-#, fuzzy
 msgid "Page"
-msgstr "貼上"
+msgstr "頁"
 
 #: src/hex-document.c:713 src/hex-document.c:814
 msgid "Hex dump generated by"
-msgstr ""
+msgstr "建立本文件內容的程式"
 
 #: src/hex-document.c:737
-#, fuzzy
 msgid "Previous page"
-msgstr "找前一個"
+msgstr "上一頁"
 
 #: src/hex-document.c:752
 msgid "Next page"
-msgstr ""
+msgstr "下一頁"
 
 #: src/hex-document-ui.c:50
 msgid "_Bytes"
-msgstr "_Byte"
+msgstr "8 位 (_B)"
 
 #: src/hex-document-ui.c:51
 msgid "Group data by 8 bits"
-msgstr "Group data by 8 bits"
+msgstr "將資料組合成 8 位"
 
 #: src/hex-document-ui.c:52
 msgid "_Words"
-msgstr "_Words"
+msgstr "16 位 (_W)"
 
 #: src/hex-document-ui.c:53
 msgid "Group data by 16 bits"
-msgstr "Group data by 16 bits"
+msgstr "將資料組合成 16 位"
 
 #: src/hex-document-ui.c:54
 msgid "_Longwords"
-msgstr "_Longwords"
+msgstr "32 位 (_L)"
 
 #: src/hex-document-ui.c:55
 msgid "Group data by 32 bits"
-msgstr "Group data by 32 bits"
+msgstr "將資料組合成 32 位"
 
 #: src/hex-document-ui.c:74
 msgid "_Goto Byte..."
-msgstr "跳至 _G Byte..."
+msgstr "跳至位元 (_G)..."
 
 #: src/hex-document-ui.c:74
 msgid "Jump to a certain position"
-msgstr "跳至一特定的位置"
+msgstr "跳至指定的位置"
 
 #: src/hex-document-ui.c:78
 msgid "_Insert mode"
-msgstr ""
+msgstr "編輯模式 (_I)"
 
 #: src/hex-document-ui.c:78
 msgid "Insert/overwrite data"
-msgstr ""
+msgstr "插入 / 取代資料"
 
 #: src/hex-document-ui.c:81
 msgid "_Group Data As"
-msgstr "_Group Data As"
+msgstr "資料顯示方式 (_G)"
 
 #: src/hex-document-ui.c:87
 msgid "_Add view"
-msgstr "_Add view"
+msgstr "新增檢視 (_A)"
 
 #: src/hex-document-ui.c:88
 msgid "Add a new view of the buffer"
-msgstr "Add a new view of the buffer"
+msgstr "新增另一個目前內容的檢視"
 
 #: src/hex-document-ui.c:89
 msgid "_Remove view"
-msgstr "_Remove view"
+msgstr "移除檢視 (_R)"
 
 #: src/hex-document-ui.c:90
 msgid "Remove the current view of the buffer"
-msgstr "Remove the current view of the buffer"
+msgstr "移除目前檢視"
 
-#: src/main.c:51
+#: src/main.c:52
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
-"檔案 %s 的內容已有變動.\n"
-"是否要儲存這些變動?"
+"檔案 %s 的內容已有變更。\n"
+"是否要儲存這些變更？"
 
-#: src/main.c:202
-#, fuzzy, c-format
+#: src/main.c:204
+#, c-format
 msgid "Offset: %s"
-msgstr "偏移:"
+msgstr "位置：%s"
 
 #: src/preferences.c:52
 msgid "Default"
@@ -237,20 +238,19 @@ msgstr "預設"
 
 #: src/preferences.c:53
 msgid "Notebook"
-msgstr "記事本"
+msgstr "標簽頁"
 
 #: src/preferences.c:54
 msgid "Toplevel"
-msgstr "最上層"
+msgstr "個別視窗"
 
 #: src/preferences.c:55
 msgid "Modal"
-msgstr "Modal"
+msgstr "同一視窗"
 
 #: src/preferences.c:77
-#, fuzzy
 msgid "Select font"
-msgstr "選擇:"
+msgstr "選擇字型："
 
 #: src/preferences.c:132
 msgid "Maximum number of undo levels"
@@ -258,7 +258,11 @@ msgstr "可還原的次數上限"
 
 #: src/preferences.c:147
 msgid "Show cursor offset in statusbar as"
-msgstr "在狀態列顯示游標位置的方式: "
+msgstr "在狀態列顯示游標位置的格式："
+
+#: src/chartable.c:90 src/preferences.c:161
+msgid "Decimal"
+msgstr "十進位"
 
 #: src/preferences.c:166
 msgid "Hexadecimal"
@@ -266,21 +270,21 @@ msgstr "十六進位"
 
 #: src/preferences.c:172
 msgid "Custom"
-msgstr "自定"
+msgstr "自訂"
 
 #. show offsets check button
 #: src/preferences.c:183
 msgid "Show offsets column"
-msgstr "顯示欄位"
+msgstr "顯示位置列"
 
 #: src/preferences.c:188
 msgid "Editing"
-msgstr "編輯中"
+msgstr "編輯"
 
 #. display font
 #: src/preferences.c:197
 msgid "Font"
-msgstr "字形"
+msgstr "字型"
 
 #: src/preferences.c:213
 msgid "Browse..."
@@ -289,7 +293,7 @@ msgstr "瀏覽..."
 #. default group type
 #: src/preferences.c:233
 msgid "Default Group Type"
-msgstr "Default Group Type"
+msgstr "預設資料顯示方式"
 
 #: src/preferences.c:249
 msgid "Display"
@@ -298,1522 +302,205 @@ msgstr "顯示"
 #. mdi modes
 #: src/preferences.c:258
 msgid "MDI Mode"
-msgstr "MDI 模式"
+msgstr "多重文件 (MDI) 模式"
 
 #: src/preferences.c:275
 msgid "MDI"
-msgstr "MDI"
+msgstr "多重文件 (MDI)"
 
 #. paper selection
 #: src/preferences.c:284
-#, fuzzy
 msgid "Paper size"
-msgstr "內容"
+msgstr "紙張大小"
 
 #. data & header font selection
 #: src/preferences.c:298
-#, fuzzy
 msgid "Fonts"
-msgstr "字形"
+msgstr "字型"
 
 #: src/preferences.c:304
 msgid "Data font"
-msgstr ""
+msgstr "資料字型"
 
 #: src/preferences.c:319
 msgid "Header font"
-msgstr ""
+msgstr "標題字型"
 
 #: src/preferences.c:345
 msgid "Print shaded box over"
-msgstr ""
+msgstr "列印灰色框：每"
 
 #: src/preferences.c:354
 msgid "lines (0 for no box)"
-msgstr ""
+msgstr "行 (0 代表無灰色框)"
 
 #: src/preferences.c:361
-#, fuzzy
 msgid "Printing"
-msgstr "編輯中"
+msgstr "列印"
 
-#: src/preferences.c:534
+#: src/preferences.c:536
 msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
+"格式字串具有不合法的語句。\n"
+"只接受 'x', 'X', 'p', 'P', 'd' 及 'o' 的格式符號。"
 
-#: src/preferences.c:570
+#: src/preferences.c:573
 msgid "Can not open desired font!"
-msgstr "無法開啟選定的字形!"
+msgstr "無法開啟選定的字形！"
 
-#: src/ui.c:57
-msgid "Export to HTML..."
-msgstr ""
+#: src/ui.c:61
+msgid "Export to _HTML..."
+msgstr "匯出 HTML (H)..."
 
-#: src/ui.c:57
+#: src/ui.c:61
 msgid "Export data to HTML source"
-msgstr ""
+msgstr "將內容匯出成 HTML 格式的檔案"
 
-#: src/ui.c:61
-msgid "Print preview..."
-msgstr ""
+#: src/ui.c:65
+msgid "Print pre_view..."
+msgstr "預覽列印 (_V)..."
 
-#: src/ui.c:61
+#: src/ui.c:65
 msgid "Preview printed data"
-msgstr ""
+msgstr "預覽要列印的資料"
 
-#: src/ui.c:74
-#, fuzzy
+#: src/ui.c:78
 msgid "Con_verter..."
-msgstr "開啟轉碼程式 _v..."
+msgstr "轉碼工具 (_V)..."
 
-#: src/ui.c:75
+#: src/ui.c:79
 msgid "Open base conversion dialog"
-msgstr "開啟位元轉換對話框"
+msgstr "開啟位元轉換工具"
 
-#: src/ui.c:76
-msgid "Character Table..."
-msgstr ""
+#: src/ui.c:80
+msgid "Character _Table..."
+msgstr "字元表 (_T)..."
 
-#: src/ui.c:77
+#: src/ui.c:81
 msgid "Show the character table"
-msgstr ""
+msgstr "顯示字元表"
 
-#: src/ui.c:94
-#, fuzzy
-msgid "Tools"
-msgstr "工具列"
+#: src/ui.c:98
+msgid "_Tools"
+msgstr "工具 (_T)"
 
-#: src/ui.c:108
+#: src/ui.c:112
 msgid "Bytes"
-msgstr "Bytes"
+msgstr "8 位"
 
-#: src/ui.c:109
+#: src/ui.c:113
 msgid "Words"
-msgstr "Words"
+msgstr "16 位"
 
-#: src/ui.c:110
+#: src/ui.c:114
 msgid "Longwords"
-msgstr "Longwords"
+msgstr "32 位"
 
-#: src/ui.c:115
+#: src/ui.c:119
 msgid "hex data"
-msgstr "hex data"
+msgstr "十六進位資料"
 
-#: src/ui.c:116
+#: src/ui.c:120
 msgid "ASCII data"
-msgstr "ASCII data"
+msgstr "ASCII 資料"
 
-#: src/ui.c:200
+#: src/ui.c:204
 msgid "GHex, a binary file editor"
-msgstr "GHex, 二位元檔編輯器"
+msgstr "GHex， 二位元檔編輯器"
 
-#: src/ui.c:202
+#: src/ui.c:206
 msgid "Released under the terms of GNU Public License"
-msgstr "Released under the terms of GNU Public License"
+msgstr "遵從 GNU 公用証書條款發佈"
 
-#: src/ui.c:226 src/ui.c:548
+#: src/ui.c:230 src/ui.c:506
 msgid "Error saving file!"
-msgstr "存檔時發生錯誤!"
+msgstr "存檔時發生錯誤！"
 
-#: src/ui.c:230 src/ui.c:543
+#: src/ui.c:234 src/ui.c:501
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "把緩衝區內容存至檔案 %s"
 
-#: src/ui.c:251
+#: src/ui.c:255
 msgid "Select a file to open"
 msgstr "選擇要開啟的檔案"
 
-#: src/ui.c:286
+#: src/ui.c:290
 msgid "Select a file to save buffer as"
-msgstr "選擇要把緩衝區存入的檔案"
+msgstr "選擇要把緩衝區資料存入的檔案"
 
-#: src/ui.c:375
+#: src/ui.c:331
 msgid "Select path and file name for the HTML source"
-msgstr ""
+msgstr "選擇要匯出 HTML 原始檔的路徑及檔案名稱"
 
-#: src/ui.c:475
+#: src/ui.c:432
 #, c-format
 msgid "Really revert file %s?"
-msgstr "確定要復原檔案 %s?"
+msgstr "確定要復原檔案 %s？"
 
-#: src/ui.c:488
+#: src/ui.c:446
 #, c-format
 msgid "Reverted buffer from file %s"
-msgstr "把緩衝區內容復原成檔案 %s"
+msgstr "把緩衝區內容復原成檔案 %s "
 
-#: src/ui.c:504
+#: src/ui.c:462
 #, c-format
 msgid "Loaded file %s"
 msgstr "已載入檔案 %s"
 
-#: src/ui.c:509
+#: src/ui.c:467
 msgid "Can not open file!"
-msgstr "無法開啟檔案!"
+msgstr "無法開啟檔案！"
 
-#: src/ui.c:552
+#: src/ui.c:510
 msgid "Can't open file for writing!"
-msgstr "檔案無法寫入!"
+msgstr "無法開啟檔案用作寫入資料！"
+
+#: src/ui.c:579
+msgid "Print Hex Document"
+msgstr "列印文件"
+
+#: src/ui.c:584
+msgid "Pages"
+msgstr "頁"
+
+#: src/ui.c:625
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s)：預覽列印"
+
+#: src/chartable.c:90
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:90
+msgid "Hex"
+msgstr "十六進位"
 
 #: src/chartable.c:91
-#, fuzzy
 msgid "Octal"
-msgstr "合計"
+msgstr "八進位"
+
+#: src/chartable.c:91
+msgid "Binary"
+msgstr "二進位"
 
 #: src/chartable.c:98
-#, fuzzy
 msgid "GHex: Character table"
-msgstr "GHex: 轉碼程式"
+msgstr "GHex：字元表格"
 
-#: src/print.c:171
-#, fuzzy, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): 尋找資料"
-
-#: src/print.c:187
+#: src/print.c:48
 #, c-format
 msgid "Page: %i/%i"
+msgstr "頁：%i / %i"
+
+#: src/print.c:198 src/print.c:212
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
 msgstr ""
-
-#~ msgid "Both strings must be of the same length!"
-#~ msgstr "兩個字串長度必需相同!"
-
-#~ msgid "The Gnome Calculator"
-#~ msgstr "Gnome 計算機"
-
-#~ msgid "Simple double precision calculator similiar to xcalc"
-#~ msgstr "一個類似 xcalc 的雙精準度計算機"
-
-#~ msgid "Gnome Calculator"
-#~ msgstr "Gnome 計算機"
-
-#~ msgid ""
-#~ "A quick hack to show the amount of space free on mounted file systems "
-#~ "uitilizing a dial."
-#~ msgstr "顯示已掛載之檔案系統的可用空間 "
-
-#~ msgid "File name"
-#~ msgstr "檔名"
-
-#~ msgid "Don't search subdirectories"
-#~ msgstr "不搜尋子目錄"
-
-#~ msgid "File owner"
-#~ msgstr "檔案擁有人"
-
-#~ msgid "File owner group"
-#~ msgstr "檔案所屬群組"
-
-#~ msgid "Last modification time"
-#~ msgstr "最後更動時間"
-
-#~ msgid "Don't search mounted filesystems"
-#~ msgstr "不搜尋掛上的其他檔案系統"
-
-#~ msgid "Empty file"
-#~ msgstr "清空檔案"
-
-#~ msgid "Invalid user or group"
-#~ msgstr "無效的使用者或群組"
-
-#~ msgid "Filenames except"
-#~ msgstr "排除的檔名"
-
-#~ msgid "Simple substring search"
-#~ msgstr "簡易字串搜尋"
-
-#~ msgid "Regular expression search"
-#~ msgstr "正規式搜尋"
-
-#~ msgid "Extended regular expression search"
-#~ msgstr "加強的正規式搜尋"
-
-#~ msgid "grep options found in find list bad bad!"
-#~ msgstr "搜尋列表中找到的 grep 選項有問題!"
-
-#~ msgid "non-grep option found in grep list, bad bad!"
-#~ msgstr "grep 列表中找到非 grep 用的選項，真糟糕!"
-
-#~ msgid "Search Results"
-#~ msgstr "搜尋結果"
-
-#~ msgid "Enable"
-#~ msgstr "啟動"
-
-#~ msgid "Remove"
-#~ msgstr "移除"
-
-#~ msgid "Start in directory:"
-#~ msgstr "開始搜尋目錄:"
-
-#~ msgid "Add"
-#~ msgstr "新增"
-
-#~ msgid "Start"
-#~ msgstr "開始"
-
-#~ msgid "Stop"
-#~ msgstr "停止"
-
-#~ msgid "This is not yet implemented"
-#~ msgstr "此功能尚未完成"
-
-#~ msgid "Full find (find)"
-#~ msgstr "完整尋找 (尋找)"
-
-#~ msgid "Quick find (locate)"
-#~ msgstr "快速尋找 (定位)"
-
-#~ msgid "The Gnome Search Tool"
-#~ msgstr "Gnome 搜尋工具"
-
-#~ msgid "(C) 1998 the Free Software Foundation"
-#~ msgstr "(C) 1998 自由軟體基金會"
-
-#~ msgid "Frontend to the unix find/grep/locate commands"
-#~ msgstr "Unix find/grep/locate 指令的使用界面"
-
-#~ msgid "Gnome Search Tool"
-#~ msgstr "Gnome 搜尋工具"
-
-#~ msgid "rparen expected"
-#~ msgstr "應該是正規式才對"
-
-#~ msgid "no such field: %d"
-#~ msgstr "找不到此一範圍: %d"
-
-#~ msgid "missing variable identifer"
-#~ msgstr "沒有變數的名稱"
-
-#~ msgid "invalid variable identifer: %s"
-#~ msgstr "無效的變數名稱: %s"
-
-#~ msgid "number expected"
-#~ msgstr "應該是數字才對"
-
-#~ msgid "extra gunk at end: \"%s\""
-#~ msgstr "結尾有多餘的廢物: \"%s\""
-
-#~ msgid "%s, line %d: "
-#~ msgstr "%s, %d 行: "
-
-#~ msgid "can't open config file \"%s\""
-#~ msgstr "無法開啟 \"%s\" 這個設定檔"
-
-#, fuzzy
-#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-#~ msgstr "無法開啟 \"%s\" 這個設定檔"
-
-#~ msgid "identifier or begin must be first"
-#~ msgstr "begin 或名稱要擺在最前面"
-
-#~ msgid "unrecognized color: %s"
-#~ msgstr "無效的顏色: %s"
-
-#~ msgid "invalid option: \"%s\""
-#~ msgstr "無效的選項: \"%s\""
-
-#~ msgid "E_xit"
-#~ msgstr "退出 _x"
-
-#~ msgid "Terminate the stripchart program"
-#~ msgstr "結束 stripchart"
-
-#, fuzzy
-#~ msgid "Copyright 1998,99 John Kodis"
-#~ msgstr "Copyright 1998 John Kodis"
-
-#~ msgid ""
-#~ "The GNOME stripchart program plots various user-specified parameters as a "
-#~ "function of time.  Its main use is to chart system performance parameters "
-#~ "such as CPU load, CPU utilization, network traffic levels, and the like.  "
-#~ "Other more ingenious uses are left as an exercise for the interested user."
-#~ msgstr ""
-#~ "GNOME "
-#~ "條形圖程式可以將使用者指定的參數對時間繪圖。它主要是用來畫出系統的效能參數，如 CPU 的使用率、網路負載狀況... 等等。 有興趣的使用者可以找出其他巧妙的應用。"
-
-#~ msgid "Info about the striphart program"
-#~ msgstr "關於條形圖程式的訊息"
-
-#~ msgid "_About"
-#~ msgstr "開於 _A"
-
-#~ msgid "_File"
-#~ msgstr "檔案 _F"
-
-#~ msgid "_Help"
-#~ msgstr "說明 _H"
-
-#~ msgid "Identifier"
-#~ msgstr "名稱"
-
-#~ msgid "Color"
-#~ msgstr "色彩"
-
-#~ msgid "Filename"
-#~ msgstr "檔名"
-
-#~ msgid "Pattern"
-#~ msgstr "樣式"
-
-#~ msgid "Equation"
-#~ msgstr "方程式"
-
-#~ msgid "Expected range"
-#~ msgstr "預期的區域"
-
-#~ msgid "Displayed range"
-#~ msgstr "顯示範圍"
-
-#~ msgid "Current value"
-#~ msgstr "目前的值"
-
-#~ msgid "Active"
-#~ msgstr "工作中"
-
-#~ msgid "Gnome Stripchart Parameters"
-#~ msgstr "Gnome 條形圖程式之參數"
-
-#, fuzzy
-#~ msgid "Current"
-#~ msgstr "目前的值"
-
-#~ msgid "Help"
-#~ msgstr "說明"
-
-#~ msgid "About"
-#~ msgstr "關於"
-
-#~ msgid "Params"
-#~ msgstr "參數"
-
-#~ msgid "Exit"
-#~ msgstr "退出"
-
-#~ msgid "Gnome stripchart viewer"
-#~ msgstr "Gnome 條形圖程式"
-
-#~ msgid "gstripchart"
-#~ msgstr "條形圖程式"
-
-#, fuzzy
-#~ msgid "Params..."
-#~ msgstr "參數"
-
-#~ msgid "invalid display type: %s\n"
-#~ msgstr "無效的顯示格式: %s\n"
-
-#~ msgid "GEO"
-#~ msgstr "GEO"
-
-#, fuzzy
-#~ msgid "Configuration file name"
-#~ msgstr "設定檔"
-
-#~ msgid "FILE"
-#~ msgstr "檔案"
-
-#, fuzzy
-#~ msgid "Chart update interval"
-#~ msgstr "chart 更新間隔"
-
-#~ msgid "SECS"
-#~ msgstr "SECS"
-
-#, fuzzy
-#~ msgid "Slider update interval"
-#~ msgstr "slider 更新間隔"
-
-#, fuzzy
-#~ msgid "Omits slider window"
-#~ msgstr "omit slider"
-
-#~ msgid "TYPE"
-#~ msgstr "TYPE"
-
-#~ msgid "blue"
-#~ msgstr "藍色"
-
-#~ msgid "red"
-#~ msgstr "紅色"
-
-#~ msgid "white"
-#~ msgstr "白色"
-
-#~ msgid "yellow"
-#~ msgstr "黃色"
-
-#~ msgid "Busy"
-#~ msgstr "忙線"
-
-#~ msgid "Load"
-#~ msgstr "載入"
-
-#~ msgid "green"
-#~ msgstr "綠色"
-
-#~ msgid "Swap"
-#~ msgstr "swap"
-
-#~ msgid "no project selected"
-#~ msgstr "沒有任何計劃被選取"
-
-#~ msgid "00:00"
-#~ msgstr "00:00"
-
-#~ msgid ""
-#~ "Couldn't understand geometry (position and size)\n"
-#~ " specified on command line"
-#~ msgstr ""
-#~ "無法識別在指令列指定的\n"
-#~ " geometry (位置和大小)"
-
-#~ msgid "Today"
-#~ msgstr "今日"
-
-#~ msgid "Project Title"
-#~ msgstr "計劃標題"
-
-#~ msgid "Description"
-#~ msgstr "描述"
-
-#~ msgid "program started"
-#~ msgstr "程式已啟動"
-
-#~ msgid "no description"
-#~ msgstr "沒有描述"
-
-#~ msgid "program exited"
-#~ msgstr "程式已退出"
-
-#~ msgid ""
-#~ "There seems to be another GTimeTracker running.\n"
-#~ "Press OK to start GTimeTracker anyway, or press Cancel to quit."
-#~ msgstr ""
-#~ "似乎有另一個 GTimeTracker 正在執行中.\n"
-#~ "按下 OK 強制啟動 GTimeTracker, 或按下 取消 結束."
-
-#~ msgid "Error"
-#~ msgstr "錯誤"
-
-#~ msgid ""
-#~ "An error occured while reading the configuration file.\n"
-#~ "Shall I setup a new configuration?"
-#~ msgstr ""
-#~ "讀取設定檔時發生錯誤.\n"
-#~ "是否開始一個新的設定檔?"
-
-#~ msgid "GEOMETRY"
-#~ msgstr "GEOMETRY"
-
-#~ msgid "Specify geometry"
-#~ msgstr "指定 geometry"
-
-#~ msgid "PROJECT"
-#~ msgstr "計劃"
-
-#~ msgid "Select a project on startup"
-#~ msgstr "在啟動時選取一個計劃"
-
-#~ msgid "Warning"
-#~ msgstr "警告"
-
-#~ msgid "I could not write the configuration file!"
-#~ msgstr "無法寫入設定檔!"
-
-#~ msgid "New Project..."
-#~ msgstr "新增計劃..."
-
-#~ msgid "Please enter the name of the new project:"
-#~ msgstr "請輸入新計劃的名稱:"
-
-#~ msgid "I could not read the configuration file"
-#~ msgstr "無法讀取設定檔"
-
-#~ msgid "Reload Configuration File"
-#~ msgstr "重新載入設定檔"
-
-#~ msgid ""
-#~ "This will overwrite your current set of projects.\n"
-#~ "Do you really want to reload the configuration file?"
-#~ msgstr ""
-#~ "將要覆蓋現存計劃的設定.\n"
-#~ "是否真的要重新載入設定檔?"
-
-#~ msgid "_New Project..."
-#~ msgstr "新增計劃 _N..."
-
-#~ msgid "_Reload Configuration File"
-#~ msgstr "重新載入設定檔 _R"
-
-#~ msgid "_Save Configuration File"
-#~ msgstr "另存設定檔 _S"
-
-#~ msgid "Clear _Daily Counter"
-#~ msgstr "清除 _Daily 計數器"
-
-#~ msgid "St_art"
-#~ msgstr "啟動 _a"
-
-#~ msgid "Sto_p"
-#~ msgstr "停止 _p"
-
-#~ msgid "_Timer Running"
-#~ msgstr "_Timer 執行中"
-
-#~ msgid "_Timer"
-#~ msgstr "_Timer"
-
-#~ msgid "Show Seconds"
-#~ msgstr "顯示秒"
-
-#~ msgid "Show Status Bar"
-#~ msgstr "顯示狀態列"
-
-#~ msgid "Show Table Header"
-#~ msgstr "顯示表格檔頭"
-
-#~ msgid "Show Toolbar Icons"
-#~ msgstr "顯示工具列圖示"
-
-#~ msgid "Show Toolbar Texts"
-#~ msgstr "顯示工具列文字"
-
-#~ msgid "Show Tooltips"
-#~ msgstr "顯示工具列提示"
-
-#~ msgid "Toolbar Segments"
-#~ msgstr "工具列區塊"
-
-#~ msgid "Show `New'"
-#~ msgstr "顯示 `新增'"
-
-#~ msgid "Show `Save', `Reload'"
-#~ msgstr "顯示 `儲存', `重新載入'"
-
-#~ msgid "Show `Cut', `Copy', `Paste'"
-#~ msgstr "顯示 `剪下', `複製', `貼上'"
-
-#~ msgid "Show `Properties'"
-#~ msgstr "顯示 `內容'"
-
-#~ msgid "Show `Timer'"
-#~ msgstr "顯示 `Timer'"
-
-#~ msgid "Show `Preferences'"
-#~ msgstr "顯示 `偏好設定'"
-
-#~ msgid "Show `Help'"
-#~ msgstr "顯示 `說明'"
-
-#~ msgid "Show `Quit'"
-#~ msgstr "顯示 `結束'"
-
-#~ msgid "Shell Commands"
-#~ msgstr "Shell 指令"
-
-#~ msgid "Switch Project Command:"
-#~ msgstr "切換計劃的指令:"
-
-#~ msgid "No Project Command:"
-#~ msgstr "沒有計劃的指令:"
-
-#~ msgid "Logfile"
-#~ msgstr "紀錄檔"
-
-#~ msgid "Use Logfile"
-#~ msgstr "使用紀錄檔"
-
-#~ msgid "Filename:"
-#~ msgstr "檔名:"
-
-#~ msgid "Entry Start:"
-#~ msgstr "啟動點:"
-
-#~ msgid "Entry Stop:"
-#~ msgstr "停止點:"
-
-#~ msgid "Timeout in secs:"
-#~ msgstr "Timeout in secs:"
-
-#~ msgid "Preferences"
-#~ msgstr "偏好設定"
-
-#~ msgid "Misc"
-#~ msgstr "其他"
-
-#~ msgid "project %t started"
-#~ msgstr "計劃 %t 啟動"
-
-#~ msgid "stopped project %t"
-#~ msgstr "停止計劃 %t"
-
-#~ msgid "empty"
-#~ msgstr "空"
-
-#~ msgid "Project"
-#~ msgstr "計劃"
-
-#~ msgid "Project Title:"
-#~ msgstr "計劃標題:"
-
-#~ msgid "Project Description:"
-#~ msgstr "計劃描述:"
-
-#~ msgid "Project Time today:"
-#~ msgstr "Project Time today:"
-
-#~ msgid "hours"
-#~ msgstr "時"
-
-#~ msgid "mins"
-#~ msgstr "分"
-
-#~ msgid "secs"
-#~ msgstr "秒"
-
-#~ msgid "Project Time ever:"
-#~ msgstr "Project Time ever:"
-
-#~ msgid "[GTT]New"
-#~ msgstr "[GTT]新增"
-
-#~ msgid "Reload"
-#~ msgstr "重新載入"
-
-#~ msgid "Save"
-#~ msgstr "儲存"
-
-#~ msgid "Save Configuration File"
-#~ msgstr "儲存設定檔"
-
-#~ msgid "Cut"
-#~ msgstr "剪下"
-
-#~ msgid "Cut Selected Project"
-#~ msgstr "剪下被選擇的計劃"
-
-#~ msgid "Copy"
-#~ msgstr "複製"
-
-#~ msgid "Copy Selected Project"
-#~ msgstr "複製被選擇的計劃"
-
-#~ msgid "Paste Project"
-#~ msgstr "貼上計劃"
-
-#~ msgid "Props"
-#~ msgstr "內容"
-
-#~ msgid "Edit Properties..."
-#~ msgstr "編輯內容..."
-
-#~ msgid "Timer"
-#~ msgstr "Timer"
-
-#~ msgid "Start/Stop Timer"
-#~ msgstr "啟動/停止 Timer"
-
-#~ msgid "Prefs"
-#~ msgstr "偏好設定"
-
-#~ msgid "Edit Preferences..."
-#~ msgstr "編輯偏好設定..."
-
-#~ msgid "Manual"
-#~ msgstr "使用手冊"
-
-#~ msgid "Manual..."
-#~ msgstr "使用手冊..."
-
-#~ msgid "Quit"
-#~ msgstr "結束"
-
-#~ msgid "Quit GTimeTracker"
-#~ msgstr "結束 GTimeTracker"
-
-#~ msgid "Gnome Color Browser"
-#~ msgstr "Gnome 色彩瀏覽器"
-
-#~ msgid "Format Style:"
-#~ msgstr "格式:"
-
-#~ msgid "Color Name:"
-#~ msgstr "色彩名稱:"
-
-#~ msgid "Color Values:"
-#~ msgstr "色彩值:"
-
-#~ msgid "Name"
-#~ msgstr "名稱"
-
-#~ msgid "Error, cannot find the file 'rgb.txt' on your system!"
-#~ msgstr "錯誤，在您的系統上找不到 'rgb.txt' 這個檔案!"
-
-#~ msgid "Parsing Colors"
-#~ msgstr "掃描可用色彩"
-
-#~ msgid "Decimal (8 bit)"
-#~ msgstr "十進位 (8 bit)"
-
-#~ msgid "Decimal (16 bit)"
-#~ msgstr "十進位 (16 bit)"
-
-#~ msgid "Hex (8 bit)"
-#~ msgstr "十六進位 (8 bit)"
-
-#~ msgid "Hex (16 bit)"
-#~ msgstr "十六進位 (16 bit)"
-
-#~ msgid "Float"
-#~ msgstr "浮點數"
-
-#~ msgid "Small utility to browse available X11 colors."
-#~ msgstr "一個瀏覽所有在 X11 下可用色彩的小工具程式."
-
-#~ msgid "Font Selector"
-#~ msgstr "字形選擇程式"
-
-#~ msgid "FONTSPEC"
-#~ msgstr "FONTSPEC"
-
-#~ msgid "Font to load"
-#~ msgstr "欲載入字形"
-
-#~ msgid "Print selected font name on exit"
-#~ msgstr "在退出時印出選擇的字形名稱"
-
-#~ msgid "Inhibit remembering selected font for next run"
-#~ msgstr "下次執行時不要記住現在被選取的字型"
-
-#~ msgid "Inhibit loading of last font"
-#~ msgstr "不要載入最後被選取的字型"
-
-#~ msgid "Copyright 1998, under the GNU General Public License."
-#~ msgstr "Copyright 1998, under the GNU General Public License."
-
-#~ msgid "Where to put the window, and its size"
-#~ msgstr "視窗擺放的位置與大小"
-
-#~ msgid "Ignore standard input; may be needed in some cases."
-#~ msgstr "忽略標準輸入; 在某些場合可能需要."
-
-#~ msgid "_New Window"
-#~ msgstr "新增視窗 _N"
-
-#~ msgid "New text viewer window"
-#~ msgstr "新增文字檢視器視窗"
-
-#~ msgid "_Fixed Font"
-#~ msgstr "字形 _F"
-
-#~ msgid "Display text with a fixed font"
-#~ msgstr "用固定字形顯示文字"
-
-#~ msgid "Text File Viewer"
-#~ msgstr "文字檔案檢視器"
-
-#~ msgid "Find string"
-#~ msgstr "搜尋字串"
-
-#~ msgid "Find"
-#~ msgstr "搜尋"
-
-#~ msgid "Loading..."
-#~ msgstr "正在載入..."
-
-#, fuzzy
-#~ msgid ""
-#~ "No such file or directory:\n"
-#~ "%s"
-#~ msgstr "沒有這個檔案或目錄:\n"
-
-#, fuzzy
-#~ msgid ""
-#~ "Failed to decompress and display the file:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr "無法解壓縮並且顯示檔案:\n"
-
-#~ msgid ""
-#~ "Unable to display compressed file.\n"
-#~ "zcat not found in your path."
-#~ msgstr ""
-#~ "無法顯示壓縮檔.\n"
-#~ "在執行路徑內找不到 zcat."
-
-#, fuzzy
-#~ msgid ""
-#~ "Error loading file:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr "載入檔案時錯誤:\n"
-
-#~ msgid "Saving..."
-#~ msgstr "正在儲存..."
-
-#, fuzzy
-#~ msgid ""
-#~ "Failed to write file:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr "寫入檔案失敗:\n"
-
-#~ msgid "Save Text As..."
-#~ msgstr "另存文字..."
-
-#~ msgid "Open Text File..."
-#~ msgstr "開啟文字檔案..."
-
-#~ msgid "Searching..."
-#~ msgstr "正在尋找..."
-
-#~ msgid "No search string was specified!"
-#~ msgstr "找不到字串!"
-
-#, fuzzy
-#~ msgid ""
-#~ "Failed to execute command:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr "執行指令失敗:\n"
-
-#~ msgid "Run Program"
-#~ msgstr "執行程式"
-
-#~ msgid "Cancel"
-#~ msgstr "取消"
-
-#~ msgid "Run"
-#~ msgstr "執行"
-
-#~ msgid "Select a program to run"
-#~ msgstr "選擇要執行的程式"
-
-#~ msgid "Shut Down"
-#~ msgstr "關機"
-
-#~ msgid "Single User Mode"
-#~ msgstr "單人使用模式"
-
-#~ msgid "Runlevel 2"
-#~ msgstr "Runlevel 2"
-
-#~ msgid "Runlevel 3"
-#~ msgstr "Runlevel 3"
-
-#~ msgid "Runlevel 4"
-#~ msgstr "Runlevel 4"
-
-#~ msgid "Runlevel 5"
-#~ msgstr "Runlevel 5"
-
-#~ msgid "Reboot"
-#~ msgstr "重新啟動系統"
-
-#~ msgid "Are you sure you want to shut down the computer?"
-#~ msgstr "你確定要關掉電腦?"
-
-#~ msgid "Are you sure you want to switch to single user mode?"
-#~ msgstr "你確定要切換至單人使用模式?"
-
-#~ msgid "Are you sure you want to switch to runlevel 2?"
-#~ msgstr "你確定要切換至 runlevel 2?"
-
-#~ msgid "Are you sure you want to switch to runlevel 3?"
-#~ msgstr "你確定要切換至 runlevel 3?"
-
-#~ msgid "Are you sure you want to switch to runlevel 4?"
-#~ msgstr "你確定要切換至 runlevel 4?"
-
-#~ msgid "Are you sure you want to switch to runlevel 5?"
-#~ msgstr "你確定要切換至 runlevel 5?"
-
-#~ msgid "Are you sure you want to reboot the system?"
-#~ msgstr "你確定要重新啟動系統?"
-
-#~ msgid ""
-#~ "You must be the super-user (root) to shut down or restart the computer."
-#~ msgstr "你必需有 super-user (root) 的權限才可以關閉或重新啟動電腦."
-
-#~ msgid "Shutdown or Reboot"
-#~ msgstr "關閉或重新啟動"
-
-#~ msgid "Easy"
-#~ msgstr "簡單"
-
-#~ msgid "Advanced"
-#~ msgstr "進階"
-
-#~ msgid ""
-#~ "Click OK to shutdown or reboot. You will lose\n"
-#~ "any unsaved information in open applications."
-#~ msgstr ""
-#~ "按下 OK 關閉或重新啟動電腦. 你會失去所有\n"
-#~ "已開啟程式中尚未儲存的資料."
-
-#~ msgid "Revert to Defaults"
-#~ msgstr "恢復成預設值"
-
-#~ msgid "Commands"
-#~ msgstr "指令"
-
-#~ msgid "Confirm before shutdown?"
-#~ msgstr "關機前是否再確認?"
-
-#~ msgid "General"
-#~ msgstr "一般"
-
-#~ msgid "Don't ask next time."
-#~ msgstr "下次別問了."
-
-#~ msgid "System Information"
-#~ msgstr "系統資訊"
-
-#~ msgid "Logo file not found"
-#~ msgstr "找不到 Logo 檔案"
-
-#~ msgid "GNOME contributors:"
-#~ msgstr "GNOME contributors:"
-
-#~ msgid "GNOME: The GNU Network Object Model Environment"
-#~ msgstr "GNOME: The GNU Network Object Model Environment"
-
-#~ msgid "Email Information..."
-#~ msgstr "電子郵件訊息..."
-
-#~ msgid "Save Information to File..."
-#~ msgstr "把訊息存入檔案..."
-
-#~ msgid "Detailed Information..."
-#~ msgstr "詳細的資訊..."
-
-#~ msgid "Category"
-#~ msgstr "類別"
-
-#~ msgid "Your System"
-#~ msgstr "你的系統"
-
-#~ msgid "Save As..."
-#~ msgstr "另存新檔..."
-
-#~ msgid "Mail To..."
-#~ msgstr "寄至..."
-
-#, fuzzy
-#~ msgid ""
-#~ "Error closing file `%s': \n"
-#~ "%s\n"
-#~ "Some or all data may not have been written."
-#~ msgstr ""
-#~ "\n"
-#~ "部份或可能所有資料都尚未被寫入."
-
-#, fuzzy
-#~ msgid "Couldn't open file `%s': %s"
-#~ msgstr "無法開啟檔案 `"
-
-#~ msgid "Save System Information As..."
-#~ msgstr "另存系統訊息..."
-
-#, fuzzy
-#~ msgid "Command failed ` %s ': %s"
-#~ msgstr "指令失敗 ` "
-
-#, fuzzy
-#~ msgid "Couldn't run command ` %s ': %s"
-#~ msgstr "無法執行指令 ` "
-
-#, fuzzy
-#~ msgid ""
-#~ "The following mail will be sent to %s.\n"
-#~ " Are you sure you want to mail this information?"
-#~ msgstr "你確定要寄出這些資訊?"
-
-# msgid ""
-# ".\n"
-# " Are you sure you want to mail this information?"
-# msgstr ""
-# ".\n"
-# msgstr " 你確定要寄出這個訊息?"
-#~ msgid "Are you sure?"
-#~ msgstr "你確定?"
-
-#~ msgid "Address to mail to:"
-#~ msgstr "欲寄至的郵件位址:"
-
-#~ msgid "Distribution:"
-#~ msgstr "發行套件:"
-
-#~ msgid "Operating System:"
-#~ msgstr "作業系統:"
-
-#~ msgid "Distribution Version:"
-#~ msgstr "發行套件版本:"
-
-#~ msgid "Operating System Version:"
-#~ msgstr "作業系統版本:"
-
-#~ msgid "Operating System Release:"
-#~ msgstr "作業系統發行版本:"
-
-#~ msgid "Processor Type:"
-#~ msgstr "處理器類型:"
-
-#~ msgid "Processor Speed:"
-#~ msgstr "處理器速度:"
-
-#~ msgid "Host Name:"
-#~ msgstr "主機名稱:"
-
-#~ msgid "Domain Name:"
-#~ msgstr "領域名稱:"
-
-#~ msgid "User Name:"
-#~ msgstr "使用者名稱:"
-
-#~ msgid "X Display Name:"
-#~ msgstr "X Display Name:"
-
-#~ msgid "System Status:"
-#~ msgstr "系統狀態:"
-
-#~ msgid "Real Memory:"
-#~ msgstr "真實記憶體:"
-
-#~ msgid "Swap Space (\"virtual memory\"):"
-#~ msgstr "Swap Space (\"虛擬記憶體\"):"
-
-#~ msgid "Total Memory:"
-#~ msgstr "記憶體合計:"
-
-#~ msgid "Free Memory:"
-#~ msgstr "可用剩餘記憶體:"
-
-#~ msgid "Device"
-#~ msgstr "裝置"
-
-#~ msgid "Size"
-#~ msgstr "大小"
-
-#~ msgid "Used space"
-#~ msgstr "已使用空間"
-
-#~ msgid "Free space"
-#~ msgstr "可用剩餘空間"
-
-#~ msgid "Percent free"
-#~ msgstr "可用百分比"
-
-#~ msgid "Mount point"
-#~ msgstr "掛載點"
-
-#~ msgid "Unknown"
-#~ msgstr "不明"
-
-#~ msgid "Unknown filesystem"
-#~ msgstr "不明的檔案系統"
-
-#~ msgid "No information for this filesystem."
-#~ msgstr "沒有關於這個檔案系統的資訊."
-
-#~ msgid "Kilobytes"
-#~ msgstr "千位元組"
-
-#~ msgid "Memory"
-#~ msgstr "記憶體"
-
-#, fuzzy
-#~ msgid "%ld%% memory used."
-#~ msgstr "%ld%% %s 已被使用."
-
-#, fuzzy
-#~ msgid "%ld%% swap used."
-#~ msgstr "%ld%% %s 已被使用."
-
-#~ msgid "CPU %d"
-#~ msgstr "CPU %d"
-
-#~ msgid "Detailed System Information"
-#~ msgstr "詳細的系統訊息"
-
-#~ msgid "Disk Information"
-#~ msgstr "磁碟機訊息"
-
-#~ msgid "Memory Information"
-#~ msgstr "記憶體訊息"
-
-#~ msgid "CPU Information"
-#~ msgstr "CPU 訊息"
-
-#~ msgid "Mount Point: "
-#~ msgstr "掛載點: "
-
-#~ msgid "    Device: "
-#~ msgstr "    裝置: "
-
-#~ msgid "    Filesystem Type: "
-#~ msgstr "    檔案系統類型: "
-
-#~ msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-#~ msgstr "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-
-#~ msgid "%2d%% full "
-#~ msgstr "%2d%% 滿了 "
-
-#~ msgid ""
-#~ "Couldn't find the \"w\" command in your path.\n"
-#~ "This command is needed for the program to work."
-#~ msgstr ""
-#~ "在你的執行路徑中找不到 \"w\" 這個指令.\n"
-#~ "這個指令必需存在以供程式執行."
-
-#~ msgid "Write information to disk"
-#~ msgstr "將訊息寫回磁碟"
-
-#~ msgid "_Save..."
-#~ msgstr "儲存 _S..."
-
-#~ msgid "Active User Listing"
-#~ msgstr "使用者列表"
-
-#~ msgid "Update Information"
-#~ msgstr "更新訊息"
-
-#, fuzzy
-#~ msgid "Save not implemented yet\n"
-#~ msgstr "此功能尚未完成"
-
-#~ msgid "Command Line"
-#~ msgstr "指令列"
-
-#~ msgid "Add some defaults"
-#~ msgstr "新增預設值"
-
-#~ msgid "Delete"
-#~ msgstr "刪除"
-
-#~ msgid "Command Editor"
-#~ msgstr "指令編輯器"
-
-#~ msgid ""
-#~ "You can configure the commands on the popup menus.\n"
-#~ "Just enter the name you want to appear on the \n"
-#~ "menu, and the command to execute.\n"
-#~ "In the command, you can use %u to represent the\n"
-#~ "currently selected username, and %t for the tty."
-#~ msgstr ""
-#~ "你可以自行設定彈出式選單上的指令.\n"
-#~ "輸入你欲在選單上顯示的名字, \n"
-#~ ", 和欲執行的指令.\n"
-#~ "在指令列中, 你可以用 %u 來表示目前正被選擇的使用者名稱\n"
-#~ ", 而 %t 表示 tty."
-
-#~ msgid ""
-#~ "Click this button to add\n"
-#~ "some sample commands."
-#~ msgstr ""
-#~ "按下這個按鈕以新增\n"
-#~ "一些樣本指令."
-
-#~ msgid "Menu items"
-#~ msgstr "選單項目"
-
-#~ msgid "Command"
-#~ msgstr "指令"
-
-#, fuzzy
-#~ msgid "Active/Idle"
-#~ msgstr "工作中"
-
-#~ msgid "Unable to access the drive."
-#~ msgstr "無法存取這個磁碟機."
-
-#~ msgid "The DMA setting for this drive cannot be changed."
-#~ msgstr "這個磁碟機的 DMA 設定值不能改變."
-
-#~ msgid "Disabled"
-#~ msgstr "關閉"
-
-#~ msgid "Enabled"
-#~ msgstr "啟動"
-
-#~ msgid "The IRQ unmask setting for this drive cannot be changed."
-#~ msgstr "這個磁碟機的 IRQ unmask 設定值不能改變."
-
-#~ msgid "The drive refused to keep its settings."
-#~ msgstr "這個磁碟機拒絕保留它的設定值."
-
-#~ msgid "Keep settings"
-#~ msgstr "保留設定值"
-
-#~ msgid "(1 Sector)"
-#~ msgstr "(1 Sector)"
-
-#~ msgid "(Dual Port)"
-#~ msgstr "(Dual Port)"
-
-#~ msgid "(Dual Port Cache)"
-#~ msgstr "(Dual Port Cache)"
-
-#, fuzzy
-#~ msgid "Yes (%d sector)"
-#~ msgstr "(1 Sector)"
-
-#, fuzzy
-#~ msgid "Yes (%d sectors)"
-#~ msgstr "(1 Sector)"
-
-#~ msgid "Model"
-#~ msgstr "型號"
-
-#~ msgid "Firmware"
-#~ msgstr "韌體"
-
-#~ msgid "Serial No."
-#~ msgstr "序號."
-
-#~ msgid "Geometry"
-#~ msgstr "Geometry"
-
-#~ msgid "Cache"
-#~ msgstr "快取記憶體"
-
-#~ msgid "Status"
-#~ msgstr "狀態"
-
-#~ msgid "Legacy MFM/RLL drive"
-#~ msgstr "Legacy MFM/RLL drive"
-
-#~ msgid "DMA Mode"
-#~ msgstr "DMA 模式"
-
-#~ msgid "IO Mode"
-#~ msgstr "IO 模式"
-
-#~ msgid "IRQ Unmask"
-#~ msgstr "IRQ Unmask"
-
-#~ msgid "Multisector"
-#~ msgstr "Multisector"
-
-#~ msgid "On Reset"
-#~ msgstr "On Reset"
-
-#~ msgid "IDE Status"
-#~ msgstr "IDE 狀態"
-
-#~ msgid "Disk Logo Not Found"
-#~ msgstr "Disk Logo Not Found"
-
-#~ msgid "Only the superuser can use this tool"
-#~ msgstr "只有 superuser 可以使用這個工具"
-
-#~ msgid "You appear to have no IDE drives"
-#~ msgstr "你似乎沒有 IDE 磁碟機"
-
-#~ msgid "gtk|text|graph|none"
-#~ msgstr "gtk|text|graph|none"
-
-#~ msgid "add menubar"
-#~ msgstr "新增選單列"
-
-#~ msgid "slider LP filter TC"
-#~ msgstr "slider LP filter TC"
-
-#~ msgid "chart LP filter TC"
-#~ msgstr "chart LP filter TC"
-
-#~ msgid "geometry"
-#~ msgstr "geometry"
-
-#~ msgid "PPP Out"
-#~ msgstr "PPP 出"
-
-#~ msgid "PPP In"
-#~ msgstr "PPP 入"
-
-#~ msgid "Error closing file `"
-#~ msgstr "關閉檔案時發生錯誤 `"
-
-#~ msgid " ': "
-#~ msgstr " ': "
-
-#~ msgid "The following mail will be sent to "
-#~ msgstr "以下郵件將寄至 "
-
-#~ msgid "memory"
-#~ msgstr "記憶體"
-
-#~ msgid "swap"
-#~ msgstr "swap"
-
-#~ msgid "New search"
-#~ msgstr "新的搜尋"
-
-#~ msgid "Open search spec"
-#~ msgstr "Open search spec"
-
-#~ msgid "Save search spec"
-#~ msgstr "Save search spec"
-
-#~ msgid "Save search spec as..."
-#~ msgstr "Save search spec as..."
-
-#~ msgid "Preferences..."
-#~ msgstr "偏好設定..."
-
-#~ msgid "Add condition"
-#~ msgstr "增加條件"
-
-#~ msgid "Add a search condition"
-#~ msgstr "增加一個新的條件"
-
-#~ msgid "Remove condition"
-#~ msgstr "移除條件"
-
-#~ msgid "Remove last search condition"
-#~ msgstr "移除最後一個搜尋條件"
-
-#~ msgid "Show advanced options"
-#~ msgstr "顯示進階選項"
-
-#~ msgid "Start search"
-#~ msgstr "開始搜尋"
-
-#~ msgid "About Gnome Find..."
-#~ msgstr "關於 Gnome 搜尋..."
-
-#~ msgid "File"
-#~ msgstr "檔案"
-
-#~ msgid "Edit"
-#~ msgstr "編輯"
-
-#~ msgid "Search"
-#~ msgstr "搜尋"
-
-#~ msgid "New"
-#~ msgstr "新增"
-
-#~ msgid "Clear the search window"
-#~ msgstr "清除搜尋視窗"
-
-#~ msgid "Start the current search"
-#~ msgstr "開始目前的搜尋"
-
-#~ msgid "Find Files"
-#~ msgstr "尋找檔案"
-
-#~ msgid "Directory:"
-#~ msgstr "目錄:"
-
-#~ msgid "Directory to Search"
-#~ msgstr "搜尋目錄"
-
-#~ msgid "GNOME Find"
-#~ msgstr "GNOME 搜尋"
-
-#~ msgid "GNOME Find is a fast, flexible file search tool."
-#~ msgstr "GNOME 搜尋是一個快速, 具彈性的檔案搜尋工具."
-
-#~ msgid "Examine and adjust parameters"
-#~ msgstr "檢視並調整參數"
-
-#~ msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
-#~ msgstr "錯誤, 無法開啟 /usr/X11R6/lib/X11/rgb.txt.\n"
-
-#~ msgid "virtual memory exhausted"
-#~ msgstr "虛擬記憶體用盡"
-
-#~ msgid "Cannot set groups: %s"
-#~ msgstr "無法設定群組: %s"
-
-#~ msgid "Cannot set group id: %s"
-#~ msgstr "無法設定群組代號: %s"
-
-#~ msgid "Cannot set user id: %s"
-#~ msgstr "無法設定使用者代號: %s"
-
-#~ msgid "cannot run %s"
-#~ msgstr "不能執行 %s"
-
-#~ msgid "Try `%s --help' for more information.\n"
-#~ msgstr "鍵入 `%s --help' 取得更多資訊.\n"
-
-#~ msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
-#~ msgstr "使用方法: %s [OPTION]... [-] [USER [ARG]...]\n"
-
-#~ msgid ""
-#~ "Change the effective user id and group id to that of USER.\n"
-#~ "\n"
-#~ "  -, -l, --login               make the shell a login shell\n"
-#~ "  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
-#~ "  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
-#~ "  -m, --preserve-environment   do not reset environment variables\n"
-#~ "  -p                           same as -m\n"
-#~ "  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
-#~ "      --help                   display this help and exit\n"
-#~ "      --version                output version information and exit\n"
-#~ "\n"
-#~ "A mere - implies -l.   If USER not given, assume root.\n"
-#~ msgstr ""
-#~ "切換使用者代號和群組代號成另一個使用者.\n"
-#~ "\n"
-#~ "  -, -l, --login               make the shell a login shell\n"
-#~ "  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
-#~ "  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
-#~ "  -m, --preserve-environment   do not reset environment variables\n"
-#~ "  -p                           同 -m\n"
-#~ "  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
-#~ "      --help                   顯示說明然後結束程式\n"
-#~ "      --version                顯示版本編號然後結束程式\n"
-#~ "\n"
-#~ "A mere - implies -l.   如果沒有指定使用者，則假設為 root.\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Report bugs to sh-utils-bugs@gnu.ai.mit.edu"
-#~ msgstr ""
-#~ "\n"
-#~ "回報程式錯誤給 sh-utils-bugs@gnu.ai.mit.edu"
-
-#~ msgid "user %s does not exist"
-#~ msgstr "使用者 %s 不存在"
-
-#~ msgid "incorrect password"
-#~ msgstr "密碼不正確"
-
-#~ msgid "using restricted shell %s"
-#~ msgstr "使用受限制的 shell %s"
-
-#~ msgid "Cannot change directory to %s"
-#~ msgstr "無法改變目錄至 %s"
-
-#~ msgid "Root password request"
-#~ msgstr "請輸入 Root 的密碼"
-
-#~ msgid ""
-#~ "You are trying to do something which requires\n"
-#~ "root (system administrator) privileges.\n"
-#~ "To do this, you must give the root password.\n"
-#~ "Please enter the root password now, or choose\n"
-#~ "Cancel if you do not know it."
-#~ msgstr ""
-#~ "你現在要做的事需要有\n"
-#~ "root (系統管理員) 的權限.\n"
-#~ "要完成這些事, 你必需輸入 root 的密碼.\n"
-#~ "現在請輸入 root 的密碼或選擇\n"
-#~ "取消如果你不知道 root 的密碼."
-
-#~ msgid ""
-#~ "You are trying to change your user identity.\n"
-#~ "Please enter the password for user `"
-#~ msgstr ""
-#~ "你正試圖變換你的使用者身份.\n"
-#~ "請輸入密碼 `"
-
-#~ msgid "invalid display type: %s"
-#~ msgstr "無效的顯示格式: %s"
+"GHex 找不到字型 \"%s\"。\n"
+"字型未安裝前，GHex 無法列印文件。"
