@@ -1,0 +1,445 @@
+msgid ""
+msgstr ""
+"Date: 1998-01-13 12:21:39+0100\n"
+"From: Eckehard Berns <eb@berns>\n"
+"Content-Type: text/plain; charset=\n"
+"Xgettext-Options: \n"
+"Files: app.c dialog.c err.c gtthelp.c log.c main.c menucmd.c menus.c options.c proj.c prop.c timer.c toolbar.c\n"
+
+#: src/app.c:69
+msgid "no project selected"
+msgstr "kein Projekt ausgewählt"
+
+#. define one empty project on the first start
+#: src/app.c:256 src/prop.c:57
+msgid "empty"
+msgstr "leeres Projekt"
+
+#: src/app.c:289
+msgid "Confirmation request"
+msgstr "Sind Sie sicher?"
+
+#: src/app.c:290
+msgid ""
+"I could not read the init file.\n"
+"Shall I install a new init file?"
+msgstr ""
+"Die Konfigurationsdatei konnte nicht gelesen werden.\n"
+"Soll eine neue Konfigurationsdatei angelegt werden?"
+
+#: src/app.c:292 src/menucmd.c:168
+msgid "Yes"
+msgstr "Ja"
+
+#: src/app.c:292
+msgid "No, just quit!"
+msgstr "Nein!"
+
+#: src/app.c:360 src/app.c:375 src/app.c:385 src/app.c:391
+msgid "error in geometry string \"%s\"\n"
+msgstr "Fehler in der Angabe -geometry \"%s\"\n"
+
+#: src/app.c:398
+msgid "unknown arg: %s\n"
+msgstr "Unbekannter Parameter: %s\n"
+
+#: src/toolbar.c:273
+msgid "New"
+msgstr "Neu"
+
+#: src/toolbar.c:273
+msgid "New Project..."
+msgstr "Neues Projekt..."
+
+#: src/toolbar.c:276
+msgid "Reload"
+msgstr "Einlesen"
+
+#: src/toolbar.c:276
+msgid "Reload Configuration File"
+msgstr "Konfigurationsdatei neu einlesen"
+
+#: src/toolbar.c:278
+msgid "Save"
+msgstr "Speichern"
+
+#: src/toolbar.c:278
+msgid "Save Configuration File"
+msgstr "Konfigurationsdatei speichern"
+
+#: src/toolbar.c:281
+msgid "Cut"
+msgstr "Aussch."
+
+#: src/toolbar.c:281
+msgid "Cut Selected Project"
+msgstr "Gewähltes Project ausschneiden"
+
+#: src/toolbar.c:283
+msgid "Copy"
+msgstr "kopieren"
+
+#: src/toolbar.c:283
+msgid "Copy Selected Project"
+msgstr "Gewähltes Projekt kopieren"
+
+#: src/toolbar.c:285
+msgid "Paste"
+msgstr "Einf."
+
+#: src/toolbar.c:285
+msgid "Paste Project"
+msgstr "Project einfügen"
+
+#: src/toolbar.c:288
+msgid "Props"
+msgstr "Eigen."
+
+#: src/toolbar.c:288
+msgid "Edit Properties..."
+msgstr "Eigenschaften bearbeiten..."
+
+#: src/toolbar.c:290
+msgid "Timer"
+msgstr "Uhr"
+
+#: src/toolbar.c:290
+msgid "Start/Stop Timer"
+msgstr "Stoppuhr starten/stoppen"
+
+#: src/toolbar.c:293
+msgid "Prefs"
+msgstr "Einst."
+
+#: src/toolbar.c:293
+msgid "Edit Preferences..."
+msgstr "Einstellungen bearbeiten..."
+
+#: src/menucmd.c:64 src/toolbar.c:297
+msgid "About"
+msgstr "Info"
+
+#: src/toolbar.c:297
+msgid "About..."
+msgstr "Info..."
+
+#: src/toolbar.c:299
+msgid "Quit"
+msgstr "Ende"
+
+#: src/toolbar.c:299
+msgid "Quit GTimeTracker"
+msgstr "GTimeTracker beenden"
+
+#. not needed
+#: src/menucmd.c:37
+msgid "Notice"
+msgstr "Info"
+
+#: src/menucmd.c:38
+msgid "Not implemented yet"
+msgstr "Noch nicht implementiert"
+
+#: src/menucmd.c:39 src/menucmd.c:65
+msgid "Close"
+msgstr "Schließen"
+
+#: src/menucmd.c:47 src/menucmd.c:145 src/menucmd.c:193
+msgid "Warning"
+msgstr "Warnung"
+
+#: src/menucmd.c:48 src/menucmd.c:195
+msgid "I could not write the configuration file!"
+msgstr "Die Konfigurationsdatei konnte nicht geschrieben werden!"
+
+#: src/menucmd.c:49 src/menucmd.c:146 src/menucmd.c:194
+msgid "Oops"
+msgstr "Oops"
+
+#: src/menucmd.c:72 src/menucmd.c:75
+msgid "version"
+msgstr "Version"
+
+#: src/menucmd.c:115 src/options.c:93 src/prop.c:171
+msgid "OK"
+msgstr "OK"
+
+#: src/menucmd.c:117 src/options.c:108 src/prop.c:182
+msgid "Cancel"
+msgstr "Abbruch"
+
+#: src/menucmd.c:118
+msgid "Please enter the name of the new project:"
+msgstr "Bitte geben Sie einen Namen für das neue Projekt ein:"
+
+#: src/menucmd.c:147
+msgid "I could not read the configuration file"
+msgstr "Die Konfigurationsdatei konnte nicht gelesen werden"
+
+#: src/menucmd.c:165
+msgid "Confirmation Request"
+msgstr "Sind Sie sicher?"
+
+#: src/menucmd.c:166
+msgid ""
+"This will overwrite your current set of projects.\n"
+"Do you really want to reload the configuration file?"
+msgstr ""
+"Wenn sie fortsetzen, wird die Liste Ihrer Projekte überschrieben\n"
+"Wollen Sie die Konfigurationsdatei trotzdem neu einlesen?"
+
+#: src/menucmd.c:168
+msgid "No"
+msgstr "Nein"
+
+#: src/menucmd.c:354 src/menus.c:126
+msgid "<Main>/Timer/Timer running"
+msgstr "<Main>/Stoppuhr/Stoppuhr läuft"
+
+#: src/menucmd.c:355 src/menus.c:81
+msgid "<Main>/Timer/Start"
+msgstr "<Main>/Stoppuhr/Starten"
+
+#: src/menucmd.c:356 src/menus.c:82
+msgid "<Main>/Timer/Stop"
+msgstr "<Main>/Stoppuhr/Stoppen"
+
+#: src/menucmd.c:357 src/menus.c:73
+msgid "<Main>/Edit/Cut"
+msgstr "<Main>/Bearbeiten/Ausschneiden"
+
+#: src/menucmd.c:358 src/menus.c:74
+msgid "<Main>/Edit/Copy"
+msgstr "<Main>/Bearbeiten/Kopieren"
+
+#: src/menucmd.c:359 src/menus.c:75
+msgid "<Main>/Edit/Paste"
+msgstr "<Main>/Bearbeiten/Einfügen"
+
+#: src/menucmd.c:360 src/menus.c:94
+msgid "<Popup>/Paste"
+msgstr "<Popup>/Einfügen"
+
+#: src/menucmd.c:361 src/menus.c:77
+msgid "<Main>/Edit/Clear Daily Counter"
+msgstr "<Main>/Bearbeiten/Tageszähler zurücksetzen"
+
+#: src/menucmd.c:362 src/menus.c:96
+msgid "<Popup>/Clear Daily Counter"
+msgstr "<Popup>/Tageszähler zurücksetzen"
+
+#: src/menucmd.c:363 src/menus.c:78
+msgid "<Main>/Edit/Properties..."
+msgstr "<Main>/Bearbeiten/Eigenschaften..."
+
+#: src/menus.c:67
+msgid "<Main>/File/New Project..."
+msgstr "<Main>/Datei/Neues Projekt..."
+
+#: src/menus.c:67
+msgid "<control>N"
+msgstr "<control>N"
+
+#: src/menus.c:68 src/menus.c:71
+msgid "<Main>/File/<separator>"
+msgstr "<Main>/Datei/<separator>"
+
+#: src/menus.c:69
+msgid "<Main>/File/Reload Configuration File"
+msgstr "<Main>/Datei/Konfigurationsdatei neu einlesen"
+
+#: src/menus.c:69
+msgid "<control>R"
+msgstr "<control>L"
+
+#: src/menus.c:70
+msgid "<Main>/File/Save Configuration File"
+msgstr "<Main>/Datei/Konfigurationsdatei speichern"
+
+#: src/menus.c:70
+msgid "<control>S"
+msgstr "<control>S"
+
+#: src/menus.c:72
+msgid "<Main>/File/Quit"
+msgstr "<Main>/Datei/Beenden"
+
+#: src/menus.c:72
+msgid "<control>Q"
+msgstr "<control>Q"
+
+#: src/menus.c:73
+msgid "<control>X"
+msgstr "<control>X"
+
+#: src/menus.c:74
+msgid "<control>C"
+msgstr "<control>C"
+
+#: src/menus.c:75
+msgid "<control>V"
+msgstr "<control>V"
+
+#: src/menus.c:76 src/menus.c:79
+msgid "<Main>/Edit/<separator>"
+msgstr "<Main>/Bearbeiten/<separator>"
+
+#: src/menus.c:78
+msgid "<control>E"
+msgstr "<control>E"
+
+#: src/menus.c:80
+msgid "<Main>/Edit/Preferences..."
+msgstr "<Main>/Bearbeiten/Einstellungen..."
+
+#: src/menus.c:81
+msgid "<control>A"
+msgstr "<control>A"
+
+#: src/menus.c:82
+msgid "<control>P"
+msgstr "<control>P"
+
+#: src/menus.c:83
+msgid "<Main>/Timer/<check>Timer running"
+msgstr "<Main>/Stoppuhr/<check>Stoppuhr läuft"
+
+#: src/menus.c:83
+msgid "<control>T"
+msgstr "<control>U"
+
+#: src/menus.c:85
+msgid "<Main>/Help/Help on Help..."
+msgstr "<Main>/Hilfe/Hilfe über Hilfe..."
+
+#: src/menus.c:86
+msgid "<Main>/Help/Contents..."
+msgstr "<Main>/Hilfe/Inhalt..."
+
+#: src/menus.c:86
+msgid "<alt>H"
+msgstr "<alt>H"
+
+#: src/menus.c:87
+msgid "<Main>/Help/<separator>"
+msgstr "<Main>/Hilfe/<separator>"
+
+#: src/menus.c:89
+msgid "<Main>/Help/About..."
+msgstr "<Main>/Hilfe/Info..."
+
+#: src/menus.c:90
+msgid "<Popup>/Properties..."
+msgstr "<Popup>/Eigenschaften..."
+
+#: src/menus.c:91 src/menus.c:95
+msgid "<Popup>/<separator>"
+msgstr "<Popup>/<separator>"
+
+#: src/menus.c:92
+msgid "<Popup>/Cut"
+msgstr "<Popup>/Ausschneiden"
+
+#: src/menus.c:93
+msgid "<Popup>/Copy"
+msgstr "<Popup>/Kopieren"
+
+#: src/menus.c:123
+msgid "<Main>/Help"
+msgstr "<Main>/Hilfe"
+
+#: src/log.c:72
+msgid "stopped project"
+msgstr "Project angehalten"
+
+#: src/log.c:101
+msgid "program exited"
+msgstr "Programm beendet"
+
+#: src/options.c:101 src/prop.c:177
+msgid "Apply"
+msgstr "Übernehmen"
+
+#: src/options.c:123
+msgid "Display"
+msgstr "Ansicht"
+
+#: src/options.c:131
+msgid "Show Seconds"
+msgstr "Sekunden zeigen"
+
+#: src/options.c:137
+msgid "Show Toolbar Icons"
+msgstr "Toolbaricons zeigen"
+
+#: src/options.c:142
+msgid "Show Toolbar Texts"
+msgstr "Toolbartexte zeigen"
+
+#: src/options.c:147
+msgid "Show Status Bar"
+msgstr "Statusbalken zeigen"
+
+#: src/options.c:160
+msgid "Shell Commands"
+msgstr "Befehlszeilen"
+
+#: src/options.c:168
+msgid "Switch Project Command:"
+msgstr "Befehl bei gewechseltem Projekt:"
+
+#: src/options.c:177
+msgid "No Project Command:"
+msgstr "Befehl ohne Projekt:"
+
+#: src/options.c:206
+msgid "Logfile"
+msgstr "Logdatei"
+
+#: src/options.c:214
+msgid "Use Logfile"
+msgstr "Logdatei benutzen"
+
+#: src/options.c:226
+msgid "Filename:"
+msgstr "Dateiname:"
+
+#: src/options.c:240
+msgid "Timeout in secs:"
+msgstr "Mindestzeit in Sek.:"
+
+#: src/options.c:287
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: src/prop.c:162
+msgid "Properties"
+msgstr "Eigenschaften"
+
+#: src/prop.c:196
+msgid "Project Title:"
+msgstr "Projekttitel:"
+
+#: src/prop.c:205
+msgid "Project Description:"
+msgstr "Projektbeschreibung:"
+
+#: src/prop.c:214
+msgid "Project Time today:"
+msgstr "Projektzeit heute:"
+
+#: src/prop.c:227 src/prop.c:256
+msgid "hours"
+msgstr "Stunden"
+
+#: src/prop.c:235 src/prop.c:264
+msgid "mins"
+msgstr "Minuten"
+
+#: src/prop.c:243 src/prop.c:272
+msgid "secs"
+msgstr "Sekunden"
+
+#: src/prop.c:247
+msgid "Project Time ever:"
+msgstr "Projektzeit insgesammt:"

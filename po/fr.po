@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 1998-02-22 00:16+0100\n"
-"PO-Revision-Date: 1998-02-22 00:16+0100\n"
+"POT-Creation-Date: 1998-02-24 20:59+0100\n"
+"PO-Revision-Date: 1998-02-24 20:59+0100\n"
 "Last-Translator: Vincent Renardias <vincent@waw.com>\n"
 "Language-Team: Vincent Renardias <vincent@waw.com>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,8 @@ msgstr "Erreur"
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
-msgstr "Une erreur est survenue derant la lecture du fichier de configuration.\n"
+msgstr ""
+"Une erreur est survenue derant la lecture du fichier de configuration.\n"
 "Dois-je installer une nouvelle configuration?"
 
 #: gtt/app.c:372 gtt/menucmd.c:198
@@ -166,7 +167,7 @@ msgstr "Edition des préférences..."
 msgid "<Main>/Edit/Preferences..."
 msgstr "<Main>/Edition/Préférences..."
 
-#: genius/genius.c:308 gtop/main.c:160 gtt/toolbar.c:416
+#: genius/genius.c:308 gtop/main.c:157 gtt/toolbar.c:416
 msgid "Help"
 msgstr "Aide"
 
@@ -190,7 +191,7 @@ msgstr "A Propos..."
 msgid "<Main>/Help/About..."
 msgstr "<Main>/Aide/A Propos..."
 
-#: gtop/main.c:147 gtt/toolbar.c:426
+#: gtop/main.c:145 gtt/toolbar.c:426
 msgid "Exit"
 msgstr "Quitter"
 
@@ -207,7 +208,7 @@ msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Please remove the pid file, if that is not correct."
 msgstr ""
-"Il semble qu'un autre GTimerTracker soit en cours d'éxecution.\n"                             
+"Il semble qu'un autre GTimerTracker soit en cours d'éxecution.\n"
 "Si ce n'est pas le cas, veuillez enlever le ficher pid (~/.gtimetracker.pid)."
 
 #: gtt/main.c:89 gtt/menucmd.c:53 gtt/menucmd.c:176 gtt/menucmd.c:212
@@ -222,7 +223,7 @@ msgstr "Info"
 msgid "Not implemented yet"
 msgstr "Pas encore implémenté"
 
-#: gtt/menucmd.c:42 gtt/menucmd.c:71
+#: gtop/details.c:42 gtt/menucmd.c:42 gtt/menucmd.c:71
 msgid "Close"
 msgstr "Fermer"
 
@@ -276,11 +277,11 @@ msgstr "<Popup>/Coller"
 
 #: gtt/menucmd.c:430 gtt/menus.c:79
 msgid "<Main>/Edit/Clear Daily Counter"
-msgstr "<Main>/Edition/Effacer le compteur journalier"
+msgstr "<Main>/Edition/Réinitialiser le compteur journalier"
 
 #: gtt/menucmd.c:431 gtt/menus.c:101
 msgid "<Popup>/Clear Daily Counter"
-msgstr "<Popup>/Effacer le compteur journalier"
+msgstr "<Popup>/Réinitialiser le compteur journalier"
 
 #: gtt/menus.c:69
 msgid "<control>N"
@@ -398,7 +399,7 @@ msgstr "Afficher la barre d'état"
 msgid "Show Table Header"
 msgstr "Afficher les entetes de table"
 
-#: gtt/options.c:245 gtt/options.c:503
+#: gtt/options.c:245 gtt/options.c:505
 msgid "Toolbar"
 msgstr "Barre d'outils"
 
@@ -412,7 +413,7 @@ msgstr "Afficher les textes de la barre d'outils"
 
 #: gtt/options.c:263
 msgid "Show Tooltips"
-msgstr "Activer les Tooltips"
+msgstr "Activer les Bulles d'Aide"
 
 #: gtt/options.c:268
 msgid "Toolbar Segments"
@@ -482,7 +483,7 @@ msgstr "Délai d'expiration en secondes:"
 msgid "Preferences"
 msgstr "Préférences"
 
-#: gtt/options.c:491
+#: gtt/options.c:493
 msgid "Misc"
 msgstr "Divers"
 
@@ -535,69 +536,122 @@ msgstr "GTop"
 msgid "The GNOME System Monitor program"
 msgstr "Le Moniteur Système GNOME"
 
-#: gtop/main.c:136
+#: gtop/main.c:135
 msgid "item 1"
 msgstr "item 1"
 
-#: gtop/main.c:138
+#: gtop/main.c:137
 msgid "item 2"
 msgstr "item 2"
 
-#: gtop/main.c:140
+#: gtop/main.c:139
 msgid "item 3"
 msgstr "item 3"
 
-#: gtop/main.c:154
+#: gtop/main.c:151
 msgid "File"
 msgstr "Fichier"
 
-#: gtop/main.c:156
+#: gtop/main.c:153
 msgid "View"
 msgstr "Voir"
 
-#: gtop/main.c:158
+#: gtop/main.c:155
 msgid "System"
 msgstr "Système"
 
-#: gtop/main.c:167
+#: gtop/main.c:163
 msgid "Start / Stop sampling"
 msgstr "Lancer / Arréter l'échantillonage"
 
-#: gtop/main.c:194
+#: gtop/main.c:189
 msgid "GNOME System Monitor"
 msgstr "Moniteur Système GNOME"
 
-#: gtop/procview.c:284
+#: gtop/procview.c:288
 msgid "All processes"
 msgstr "Tous les processus"
 
-#: gtop/procview.c:286
+#: gtop/procview.c:290
 msgid "User processes"
 msgstr "Processus utilisateurs"
 
-#: gtop/procview.c:288
+#: gtop/procview.c:292
 msgid "TTY processes"
 msgstr "Processus TTY"
 
-#: gtop/procview.c:559
+#: gtop/procview.c:562
 msgid "Send"
 msgstr "Envoyer"
 
-#: gtop/procview.c:580
+#: gtop/procview.c:583
 msgid "More ..."
 msgstr "Plus ..."
 
-#: gtop/procview.c:594
+#: gtop/procview.c:597
 msgid "SIGTERM"
 msgstr "SIGTERM"
 
-#: gtop/procview.c:601
+#: gtop/procview.c:604
 msgid "SIGKILL"
 msgstr "SIGKILL"
 
-#: gtop/procview.c:613
+#: gtop/procview.c:616
 msgid "Details ..."
 msgstr "Détails ..."
+
+#: gtop/details.c:67
+#, c-format
+msgid "Details about process %d"
+msgstr "Détails a propos du processus %d"
+
+#: gtop/details.c:156
+msgid "Process info"
+msgstr "Info processus"
+
+#: gtop/details.c:158
+msgid "Attribute"
+msgstr "Attribut"
+
+#: gtop/details.c:159
+msgid "Value"
+msgstr "Valeur"
+
+#: gtop/details.c:306
+msgid "Raw memory map"
+msgstr "Raw memery map"
+
+#: gtop/details.c:308
+msgid "VM start"
+msgstr "Début MV"
+
+#: gtop/details.c:309
+msgid "VM end"
+msgstr "Fin MV"
+
+#: gtop/details.c:310
+msgid "Flags"
+msgstr "Drapeaux"
+
+#: gtop/details.c:311
+msgid "VM offset"
+msgstr "Décallage MV"
+
+#: gtop/details.c:312
+msgid "Device"
+msgstr "Device"
+
+#: gtop/details.c:313
+msgid "Inode"
+msgstr "I-Noeud"
+
+#: gtop/details.c:314
+msgid "Filename"
+msgstr "Nom du fichier"
+
+#: gtop/details.c:361
+msgid "Graphical memory map"
+msgstr "Carte mémoire graphique"
 
 #: genius/calc.c:278
 msgid "ERROR: Probably corrupt stack!"
