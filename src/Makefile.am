@@ -46,7 +46,7 @@ ghex2_SOURCES = \
 	gnome-print-font-picker.c gnome-print-font-picker.h		\
 	factory.c factory.h hex-dialog.c hex-dialog.h			\
 	configuration.h preferences.h findreplace.h print.h		\
-	converter.h chartable.h ui.h
+	converter.h chartable.h ui.h session.h
 
 ghex-marshal.h: ghex-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --header --prefix=ghex_marshal > $@
