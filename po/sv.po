@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2002-07-21 18:02+0200\n"
-"PO-Revision-Date: 2002-07-21 18:02+0200\n"
+"POT-Creation-Date: 2002-07-23 13:52+0200\n"
+"PO-Revision-Date: 2002-07-23 13:53+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -643,6 +643,11 @@ msgstr "GNOME:s binärfilsredigerare"
 msgid "Could not initialize Bonobo!\n"
 msgstr "Kunde inte initiera Bonobo!\n"
 
+#: src/main.c:87 src/main.c:99
+#, c-format
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "Ogiltig geometristräng \"%s\"\n"
+
 #: src/preferences.c:92
 msgid "GHex Preferences"
 msgstr "Inställningar för GHex"
@@ -781,6 +786,14 @@ msgid ""
 msgstr ""
 "GHex kunde inte hitta typsnittet \"%s\".\n"
 "GHex kan inte skriva ut om inte detta typsnitt är installerat."
+
+#: src/session.c:29
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "X-geometrispecifikation (se manualsidan för \"X\")."
+
+#: src/session.c:30
+msgid "GEOMETRY"
+msgstr "GEOMETRI"
 
 #: src/ui.c:71
 msgid "hex data"
