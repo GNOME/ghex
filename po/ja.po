@@ -8,9 +8,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex Ver2.2.0\n"
-"POT-Creation-Date: 2003-01-08 02:14+0900\n"
-"PO-Revision-Date: 2003-01-08 02:09+0900\n"
+"Project-Id-Version: ghex Ver2.2.0.1\n"
+"POT-Creation-Date: 2003-02-14 02:19+0900\n"
+"PO-Revision-Date: 2003-02-14 02:18+0900\n"
 "Last-Translator: Takeshi Aihana <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "文字"
 msgid "Hex"
 msgstr "16進"
 
-#: src/chartable.c:133 src/preferences.c:174
+#: src/chartable.c:133 src/preferences.c:175
 msgid "Decimal"
 msgstr "10進"
 
@@ -231,6 +231,10 @@ msgstr "指定されたデータ型に対して適切な文字列ではありま
 #: src/findreplace.c:344 src/findreplace.c:430
 msgid "End Of File reached"
 msgstr "ファイル終端に到達しました"
+
+#: src/findreplace.c:345 src/findreplace.c:374 src/findreplace.c:429
+msgid "String was not found!\n"
+msgstr "文字列がありません！\n"
 
 #: src/findreplace.c:373
 msgid "Beginning Of File reached"
@@ -732,76 +736,76 @@ msgstr "Bonobo を初期化することができませんでした！\n"
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "表示位置の文字列 \"%s\" が正しくありません\n"
 
-#: src/preferences.c:91
+#: src/preferences.c:92
 msgid "GHex Preferences"
 msgstr "GHex の設定"
 
-#: src/preferences.c:136
+#: src/preferences.c:137
 msgid "_Maximum number of undo levels:"
 msgstr "元に戻す回数の最大値(_M):"
 
-#: src/preferences.c:156
+#: src/preferences.c:157
 msgid "Undo levels"
 msgstr "元に戻すレベル"
 
-#: src/preferences.c:156
+#: src/preferences.c:157
 msgid "Select maximum number of undo levels"
 msgstr "元に戻すレベルの最大値の選択"
 
-#: src/preferences.c:160
+#: src/preferences.c:161
 msgid "Show cursor offset in statusbar as:"
 msgstr "ステータスバーに表示するカーソルのオフセットの書式:"
 
-#: src/preferences.c:179
+#: src/preferences.c:180
 msgid "Hexadecimal"
 msgstr "16進"
 
-#: src/preferences.c:185
+#: src/preferences.c:186
 msgid "Custom"
 msgstr "カスタム"
 
-#: src/preferences.c:196
+#: src/preferences.c:197
 msgid "Enter the cursor offset format"
 msgstr "カーソル位置のオフセット値の書式を入力して下さい"
 
-#: src/preferences.c:197
+#: src/preferences.c:198
 msgid "Select the cursor offset format"
 msgstr "カーソル位置のオフセット値の書式の選択"
 
 #. show offsets check button
-#: src/preferences.c:207
+#: src/preferences.c:208
 msgid "Show offsets column"
 msgstr "オフセット・カラムを表示する"
 
-#: src/preferences.c:212
+#: src/preferences.c:213
 msgid "Editing"
 msgstr "編集"
 
 #. display font
-#: src/preferences.c:221
+#: src/preferences.c:222
 msgid "Font"
 msgstr "フォント"
 
 #. default group type
-#: src/preferences.c:249
+#: src/preferences.c:250
 msgid "Default Group Type"
 msgstr "デフォルトのデータ表示"
 
-#: src/preferences.c:265
+#: src/preferences.c:266
 msgid "Display"
 msgstr "表示"
 
 #. paper selection
-#: src/preferences.c:274
+#: src/preferences.c:275
 msgid "Paper size"
 msgstr "用紙のサイズ"
 
 #. data & header font selection
-#: src/preferences.c:279
+#: src/preferences.c:280
 msgid "Fonts"
 msgstr "フォント"
 
-#: src/preferences.c:285
+#: src/preferences.c:286
 msgid "_Data font:"
 msgstr "データのフォント(_D):"
 
@@ -817,35 +821,35 @@ msgstr "データの表示に使用するフォントを選択して下さい"
 msgid "Header fo_nt:"
 msgstr "ヘッダーのフォント(_N):"
 
-#: src/preferences.c:338
+#: src/preferences.c:337
 msgid "Header font"
 msgstr "ヘッダーのフォント"
 
-#: src/preferences.c:338
+#: src/preferences.c:337
 msgid "Select the header font"
 msgstr "ヘッダの表示に使用するフォントを選択して下さい"
 
-#: src/preferences.c:366
+#: src/preferences.c:365
 msgid "_Print shaded box over:"
 msgstr "印刷時に影を付与する間隔:"
 
-#: src/preferences.c:378
+#: src/preferences.c:377
 msgid "Box size"
 msgstr "影の大きさ"
 
-#: src/preferences.c:378
+#: src/preferences.c:377
 msgid "Select size of box (in number of lines)"
 msgstr "影の大きさの選択 (行数)"
 
-#: src/preferences.c:382
+#: src/preferences.c:381
 msgid "lines (0 for no box)"
 msgstr "行 (0 のときは無し)"
 
-#: src/preferences.c:389
+#: src/preferences.c:388
 msgid "Printing"
 msgstr "印刷"
 
-#: src/preferences.c:535
+#: src/preferences.c:534
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -853,7 +857,7 @@ msgstr ""
 "オフセット指定の文字列に間違った指定子が含まれています。\n"
 "'x', 'X', 'p', 'P', 'd' と 'o' だけが使用可能です。"
 
-#: src/preferences.c:567
+#: src/preferences.c:566
 msgid "Can not open desired font!"
 msgstr "お望みのフォントを読めません！"
 
