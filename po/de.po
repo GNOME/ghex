@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-0.99.8.1\n"
-"POT-Creation-Date: 1999-07-30 12:44+0200\n"
+"POT-Creation-Date: 1999-07-30 15:46-0400\n"
 "PO-Revision-Date: 1999-07-30 12:51+02:00\n"
 "Last-Translator: Matthias Warkus <mawa@iname.com>\n"
 "Language-Team: Matthias Warkus <mawa@iname.com>\n"
@@ -239,7 +239,7 @@ msgid "Offset: %s"
 msgstr "Offset: %s"
 
 #: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
 msgid "Default"
 msgstr "Standard"
 
@@ -1868,12 +1868,12 @@ msgid "The DMA setting for this drive cannot be changed."
 msgstr "Die DMA-Einstellung für dieses Laufwerk kann nicht geändert werden."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
-#: mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
+#: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
 msgid "Enabled"
 msgstr "Aktiv"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
-#: mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
+#: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
 msgid "Disabled"
 msgstr "Inaktiv"
 
@@ -1887,7 +1887,7 @@ msgstr ""
 msgid "The drive refused to keep its settings."
 msgstr "Das Laufwerk weigerte sich, seine Einstellungen zu behalten."
 
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
 msgid "Keep settings"
 msgstr "Einstellungen beibehalten"
 
@@ -1907,80 +1907,86 @@ msgstr "(Dual Port)"
 msgid "(Dual Port Cache)"
 msgstr "(Dual Port Cache)"
 
-# FIXME: the second %s (the optional s) need to be localised
 #: mini-utils/idetool/idetool.c:243
-#, c-format
-msgid "Yes (%d sector%s)"
-msgstr "Ja (%d sector%s)"
-
-#: mini-utils/idetool/idetool.c:245
 msgid "No"
 msgstr "Nein"
 
-#: mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
+# FIXME: the second %s (the optional s) need to be localised
+#: mini-utils/idetool/idetool.c:245
+#, fuzzy, c-format
+msgid "Yes (%d sector)"
+msgstr "Ja (%d sector%s)"
+
+# FIXME: the second %s (the optional s) need to be localised
+#: mini-utils/idetool/idetool.c:247
+#, fuzzy, c-format
+msgid "Yes (%d sectors)"
+msgstr "Ja (%d sector%s)"
+
+#: mini-utils/idetool/idetool.c:310 mini-utils/idetool/idetool.c:320
 msgid "Model"
 msgstr "Modell"
 
-#: mini-utils/idetool/idetool.c:309
+#: mini-utils/idetool/idetool.c:311
 msgid "Firmware"
 msgstr "Firmware"
 
-#: mini-utils/idetool/idetool.c:310
+#: mini-utils/idetool/idetool.c:312
 msgid "Serial No."
 msgstr "Seriennr."
 
 #. do config here
-#: mini-utils/idetool/idetool.c:312
+#: mini-utils/idetool/idetool.c:314
 msgid "Geometry"
 msgstr "Geometrie"
 
-#: mini-utils/idetool/idetool.c:313
+#: mini-utils/idetool/idetool.c:315
 msgid "Cache"
 msgstr "Cache"
 
-#: mini-utils/idetool/idetool.c:314
+#: mini-utils/idetool/idetool.c:316
 msgid "Status"
 msgstr "Status"
 
-#: mini-utils/idetool/idetool.c:318
+#: mini-utils/idetool/idetool.c:320
 msgid "Legacy MFM/RLL drive"
 msgstr "MFM/RLL-Erbstück"
 
-#: mini-utils/idetool/idetool.c:321
+#: mini-utils/idetool/idetool.c:323
 msgid "DMA Mode"
 msgstr "DMA-Modus"
 
-#: mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:324
 msgid "IO Mode"
 msgstr "IO-Modus"
 
-#: mini-utils/idetool/idetool.c:323
+#: mini-utils/idetool/idetool.c:325
 msgid "IRQ Unmask"
 msgstr "IRQ-Unmask"
 
-#: mini-utils/idetool/idetool.c:324
+#: mini-utils/idetool/idetool.c:326
 msgid "Multisector"
 msgstr "Multisektor"
 
-#: mini-utils/idetool/idetool.c:325
+#: mini-utils/idetool/idetool.c:327
 msgid "On Reset"
 msgstr "Bei Reset"
 
 #.
 #. *	Set up the outer display first
 #.
-#: mini-utils/idetool/idetool.c:351
+#: mini-utils/idetool/idetool.c:353
 msgid "IDE Status"
 msgstr "IDE-Status"
 
-#: mini-utils/idetool/idetool.c:364
+#: mini-utils/idetool/idetool.c:366
 msgid "Disk Logo Not Found"
 msgstr "Plattenlogo nicht gefunden"
 
-#: mini-utils/idetool/idetool.c:415
+#: mini-utils/idetool/idetool.c:417
 msgid "Only the superuser can use this tool"
 msgstr "Nur der Superuser kann dieses Werkzeug benutzen"
 
-#: mini-utils/idetool/idetool.c:426
+#: mini-utils/idetool/idetool.c:428
 msgid "You appear to have no IDE drives"
 msgstr "Sie scheinen keine IDE-Laufwerke zu besitzen"
