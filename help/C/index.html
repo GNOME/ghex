@@ -9,7 +9,8 @@
 
 <H1>
 GNOME Hex Editor Documentation</H1>
-Copyright (C) 1998, 1999 Jaka Mocnik
+<P>Copyright (C) 1998, 1999, 2000 Jaka Mocnik
+</P>
 
 <P>This program and the documentation are free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public License as
@@ -18,16 +19,19 @@ or (at your option) any later version. This program is distributed in the
 hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
 implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;
 See the GNU General Public License for more details.
+</P>
 
 <P>You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 59 Temple Place, Suite 330, Boston, MA&nbsp; 02111-1307&nbsp; USA
+</P>
 
 <P>For more details see the file COPYING.
-<BR>&nbsp;
+</P>
+
 <H2>
 <A NAME="toc"></A>1. Table of contents</H2>
-
+<P>
 <OL>
 <LI>
 <A HREF="#toc">Table of contents</A></LI>
@@ -41,25 +45,31 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 <LI>
 <A HREF="#feedback">Feedback</A></LI>
 </OL>
-&nbsp;
+</P>
+
 <H2>
 <A NAME="introduction"></A>2. Introduction</H2>
+</P>
 GHex (the <B>G</B>NOME <B>Hex </B>Editor) is a small tool that enables
 you, its user, to view and edit contents of any file in hex and as ASCII
 text. It is supposed to be a part of the GNOME desktop environment and
 tries to nicely integrate with its other components and conform to the
 general guidelines for GNOME applications.
-<BR>&nbsp;
+</P>
+
 <H2>
 <A NAME="use"></A>3. Use</H2>
-When starting GHex, it will pop up a window with nothing but a
+<P>When starting GHex, it will pop up a window with nothing but a
 <A HREF="#menubar">menubar</A>. When a file is loaded, its contents will
 be displayed below the menubar in an area that will occupy the largest part
 of the window. The contents are displayed in both hex and ascii at once, with
 hexadecimal values on the left and the corresponding ascii representation of
 those bytes on the right-hand side of the display.
+</P>
+
 <H4>
 <A NAME="menubar"></A>The menubar</H4>
+<P>
 Menu <I>File</I>
 <UL>
 <LI>
@@ -76,12 +86,18 @@ correspond to a given format.</LI>
 the buffer to a file with this name.</LI>
 
 <LI>
-<I>Export to HTML... </I>lets you select a filename and then saves the
+<I>Export to HTML </I>lets you select a filename and then saves the
 contents of the buffer to a set of files with this name plus number of
 the page plus the .html extension if it doesn't exist.</LI>
 
 <LI>
 <I>Revert </I>reloads the contents of the file.</LI>
+
+<LI>
+<I>Print </I>prints the contents of the file.</LI>
+
+<LI>
+<I>Print preview </I>shows a preview of the printout of the file.</LI>
 
 <LI>
 <I>Close </I>closes all views and removes the file from the memory.</LI>
@@ -90,7 +106,9 @@ the page plus the .html extension if it doesn't exist.</LI>
 <I>Exit </I>should be obvious: it exits GHex.</LI>
 
 </UL>
+</P>
 
+<P>
 Menu <I>Edit</I> (only when a file is open)
 <UL>
 <LI>
@@ -104,13 +122,20 @@ Menu <I>Edit</I> (only when a file is open)
 <I>Replace </I>opens the <A HREF="#findnreplace">Find &amp; Replace Dialog</A>.</LI>
 
 <LI>
-<I>Goto Byte </I>opens the Jump To Byte Dialog.</LI>
+<I>Goto Byte </I>opens the Jump To Byte Dialog. You can enter the offset of
+the cursor in decimal or in hex (preceeded by "0x").</LI>
+
+<LI>
+<I>Insert mode </I>selects inserting data rather than overwriting it.</LI>
 
 <LI>
 <I>Group Data As </I>offers three different ways how the bytes in the hex
 display are grouped: either as single bytes or in groups of two bytes (words)
 or four bytes (long words).</LI>
 </UL>
+</P>
+
+<P>
 Menu <I>View</I> (only when a file is open)
 <UL>
 <LI>
@@ -121,7 +146,9 @@ Menu <I>View</I> (only when a file is open)
 of the corresponding file, the file will not be closed and will remain
 accessible through the <I>Files</I> menu.</LI>
 </UL>
+</P>
 
+<P>
 Menu <I>Tools</I>
 <UL>
 <LI>
@@ -132,71 +159,82 @@ Dialog</A>.</LI>
 decimal, octal and binary representation of each value from 0 to 255. A double click on a row will set the byte at the cursor position in the active view
 to the value of the row.</LI>
 </UL>
+</P>
 
+<P>
 Menu <I>Settings</I>
 <UL>
 <LI>
 <I>Preferences</I> brings up the <A HREF="#prefs">Preferences Dialog</A>.</LI>
 </UL>
+</P>
 
+<P>
 Menu <I>Files</I>
 <UL>
 <LI>
 Displays names of all the open files. You can access any of them by
 simply picking them from this menu.</LI>
 </UL>
+</P>
+
+<P>
 Menu <I>Help</I>
 <UL>
 <LI>
 <I>Help </I>brings up the Gnome help browser with this very file.</LI>
 <LI>
-<I>About </I>shows you what GHex is and who is responsible for it.</LI>
+<I>About </I>tells you what GHex is and who is responsible for it.</LI>
 </UL>
+</P>
 
 <H4>
 Editing a file</H4>
-You can move around the file using the arrow keys, the numeric keypad,
+<P>You can move around the file using the arrow keys, the numeric keypad,
 the scrollbar on the left of the buffer display or by clicking into display
 with a mouse. Clicking into the hex or ascii display will activate hex
 or ascii editing mode. The active display is indicated by a full cursor,
-while the other one displays cursor as an outline. In ascii mode, you can
-edit the file pretty much as with any text editor except that GHex will
-not let you insert any data but only overwrite it. In hex mode, you can
-change the value of the nibble (four bits, a half of a byte) under the
-cursor with keys '0' .. '9' and 'a' .. 'f'.
+while the other one displays cursor as an outline.
+</P>
+<P>In ascii mode, you can edit the file pretty much as with any text editor.
+In hex mode, you can change the value of the nibble (four bits, a half of a
+byte) under the cursor with keys '0' .. '9' and 'a' .. 'f', representing the
+hex digits.
+</P>
 <H4>
 <A NAME="findnreplace"></A>Finding and replacing data</H4>
-Selecting <I>Find </I>from the <I>Edit </I>menu will bring up the Find
+<P>Selecting <I>Find </I>from the <I>Edit </I>menu will bring up the Find
 Dialog. It allows you to search the file for a string that you can enter
 in either hex or ascii. To find an ascii string, simply enter it into the
 entry widget and click on the <I>Find Next </I>or <I>Find Previous</I>
 button. You can choose in which form (either hex or ASCII) you wish to
-enter the search string with the two radio buttons below the entry widget
-<BR>Replacing data is much alike, except that you have to enter both a
-string to be found and a string that will replace the found value. Both
-strings must be of the same length (because GHex allows only overwriting
-of data and no insertion). The <I>Find Next </I>button will search for
-the next occurence of the string from the first entry widget, the <I>Replace
-</I>button will replace the data if the cursor is on the beginning of a
-string that equals to the searched-for one and then search for the next
-occurence, if the cursor is not positioned on the beginning of the searched-for
-string, it will try to find the next occurence of it, but will not replace
-that one. Finally, the <I>Replace All </I>button will replace all occurences
-of the searched-for string from the current cursor position to the end
-of the file.
+enter the search string with the two radio buttons below the entry widget.
+</P>
+<P>Replacing data is much alike, except that you have to enter both a
+string to be found and a string that will replace the found value. The
+<I>Find Next </I>button will search for the next occurence of the string
+from the first entry widget, the <I>Replace </I>button will replace the
+data if the cursor is on the beginning of a string that equals to the
+searched-for one and then search for the next occurence, if the cursor is
+not positioned on the beginning of the searched-for string, it will try to
+find the next occurence of it, but will not replace that one. Finally,
+the <I>Replace All </I>button will replace all occurences of the searched-for
+string from the current cursor position to the end of the file.
+</P>
 <H4>
 <A NAME="converter"></A>Base Conversion Dialog</H4>
-Shows you up to four bytes of data as their binary, decimal, hexadecimal
+<P>Shows you up to four bytes of data as their binary, decimal, hexadecimal
 and ASCII&nbsp;representation. The values automatically update when you
 change data in any entry. 'Get cursor value' button grabs the value of
 the data under the cursor (either byte, word or long word, depending on the
 groupping setting).
+</P>
 <H4>
 <A NAME="prefs"></A>Setting user preferences</H4>
-
+<P>
 <UL>
 <LI>
-Editing settings: here you can set the maximum number of changes that can be
+<b>Editing settings:</b> here you can set the maximum number of changes that can be
 undone and pick the format the the cursor offset will be shown at. This format
 can be either decimal or hexadecimal or a custom printf style string containing
 no other format specifiers but 'x', 'o' and 's'. You can also set whether
@@ -207,7 +245,7 @@ Display settings: here you can set the default data grouping type and the
 display font.</LI>
 
 <LI>
-MDI settings: lets user select preferred interface type. Currently supported
+<b>MDI settings:</b> lets user select preferred interface type. Currently supported
 options are:</LI>
 
 <UL>
@@ -224,22 +262,28 @@ Toplevel: displays each view in its own toplevel window.</LI>
 Modal: only displays one view at a time, allowing user to select a document
 from the <I>Files</I> menu.</LI>
 </UL>
+
+<LI>
+<b>Printing settings:</b> you can select the paper size, font for the data
+and the header and whether parts of the output should be shaded.</LI>
 </UL>
+</P>
 
 <H2>
 <A NAME="feedback"></A>4. Feedback</H2>
-GHex is being maintained by <A HREF="mailto:jaka.mocnik@kiss.uni-lj.si">Jaka
+<P>GHex is being maintained by <A HREF="mailto:jaka.mocnik@kiss.uni-lj.si">Jaka
 Mocnik &lt;jaka.mocnik@kiss.uni-lj.si></A>. If you are having trouble
 installing and/or running GHex, feel free to e-mail me.
-
+</P>
 <P>You can check the current status and/or get the latest stable release of
 GHex via WWW at 
-<A HREF="http://pluton.ijs.si/~jaka/gnome.html">this page.</A>
-&nbsp; The most recent version is also available at the Gnome CVS repository
+<A HREF="http://pluton.ijs.si/~jaka/gnome.html#GHEX">this page</A>.
+The most recent version is also available at the Gnome CVS repository
 in module gnome-utils.
-
+</P>
 <P>Comments, ideas and (most of all) bug reports (and especially patches)
 are very welcome at the above e-mail address.
-<BR>&nbsp;
+</P>
+
 </BODY>
 </HTML>

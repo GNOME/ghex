@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 2000-05-04 20:56+0200\n"
+"POT-Creation-Date: 2000-05-08 23:11+0200\n"
 "PO-Revision-Date: 2000-04-07 15:33+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -21,7 +21,7 @@ msgstr "GHex: Konvertering"
 msgid "Binary"
 msgstr "Binær"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:114
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:158
 msgid "Decimal"
 msgstr "Desimal"
 
@@ -229,83 +229,111 @@ msgstr ""
 msgid "Offset: %s"
 msgstr "Avstand: %s"
 
-#: src/preferences.c:50
+#: src/preferences.c:52
 msgid "Default"
 msgstr "Standard"
 
-#: src/preferences.c:51
+#: src/preferences.c:53
 msgid "Notebook"
 msgstr "Notisblokk"
 
-#: src/preferences.c:52
+#: src/preferences.c:54
 msgid "Toplevel"
 msgstr "Toppnivå"
 
-#: src/preferences.c:53
+#: src/preferences.c:55
 msgid "Modal"
 msgstr "Modal"
 
-#: src/preferences.c:86
+#: src/preferences.c:76
+#, fuzzy
+msgid "Select font"
+msgstr "Velg en fil å åpne"
+
+#: src/preferences.c:129
 msgid "Maximum number of undo levels"
 msgstr "Maksimalt angrenivå"
 
-#: src/preferences.c:100
+#: src/preferences.c:144
 msgid "Show cursor offset in statusbar as"
 msgstr "Vis markøravstand som"
 
-#: src/preferences.c:119
+#: src/preferences.c:163
 msgid "Hexadecimal"
 msgstr "Heksadesimal"
 
-#: src/preferences.c:125
+#: src/preferences.c:169
 msgid "Custom"
 msgstr "Egendefinert"
 
-#: src/preferences.c:135
+#. show offsets check button
+#: src/preferences.c:180
 msgid "Show offsets column"
 msgstr "Vis kolonne for markøravstand"
 
-#: src/preferences.c:140
+#: src/preferences.c:185
 msgid "Editing"
 msgstr "Redigering"
 
-#: src/preferences.c:147
+#. display font
+#: src/preferences.c:194
 msgid "Font"
 msgstr "Skrifttype"
 
-#: src/preferences.c:163
+#: src/preferences.c:210
 msgid "Browse..."
 msgstr "Se på..."
 
-#: src/preferences.c:182
+#. default group type
+#: src/preferences.c:230
 msgid "Default Group Type"
 msgstr "Standard gruppetype"
 
-#: src/preferences.c:198
+#: src/preferences.c:246
 msgid "Display"
 msgstr "Skjerm"
 
-#: src/preferences.c:205
+#. mdi modes
+#: src/preferences.c:255
 msgid "MDI Mode"
 msgstr "MDI-modus"
 
-#: src/preferences.c:222
+#: src/preferences.c:272
 msgid "MDI"
 msgstr "MDI"
 
-#: src/preferences.c:243
+#. paper selection
+#: src/preferences.c:281
+msgid "Paper size"
+msgstr ""
+
+#. data & header font selection
+#: src/preferences.c:295
+#, fuzzy
+msgid "Fonts"
+msgstr "Skrifttype"
+
+#: src/preferences.c:301
+msgid "Data font"
+msgstr ""
+
+#: src/preferences.c:316
+msgid "Header font"
+msgstr ""
+
+#: src/preferences.c:342
 msgid "Print shaded box over"
 msgstr "Skriv ut skyggelagt boks over"
 
-#: src/preferences.c:252
+#: src/preferences.c:351
 msgid "lines (0 for no box)"
 msgstr "linjer (0 for ingen boks)"
 
-#: src/preferences.c:259
+#: src/preferences.c:358
 msgid "Printing"
 msgstr "Skriver ut"
 
-#: src/preferences.c:411
+#: src/preferences.c:531
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
@@ -313,7 +341,7 @@ msgstr ""
 "Formatstrengen for avstand inneholder andre formatspesifikatorer enn 'x', "
 "'d' eller 'o'!"
 
-#: src/preferences.c:447
+#: src/preferences.c:567
 msgid "Can not open desired font!"
 msgstr "Kan ikke åpne ønsket skrifttype!"
 
@@ -433,12 +461,12 @@ msgstr "Oktal"
 msgid "GHex: Character table"
 msgstr "GHex: Tegntabell"
 
-#: src/print.c:143
+#: src/print.c:164
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Forhåndsvisning av utskrift"
 
-#: src/print.c:159
+#: src/print.c:180
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Side: %i %i"

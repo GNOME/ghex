@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GHex 1.1.2\n"
-"POT-Creation-Date: 2000-04-05 09:13+0200\n"
+"POT-Creation-Date: 2000-05-08 23:11+0200\n"
 "PO-Revision-Date: 2000-03-23 00:00+0100\n"
 "Last-Translator: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>\n"
 "Language-Team: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>\n"
@@ -22,7 +22,7 @@ msgstr "GHex: Pretvornik"
 msgid "Binary"
 msgstr "Binarno"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:114
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:158
 msgid "Decimal"
 msgstr "Deseti¹ko"
 
@@ -91,15 +91,15 @@ msgstr "Zamenjaj vse"
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Skoèi na zlog"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:376
+#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
 msgid "There is no active buffer to search!"
 msgstr "Ne vem katero datoteko preiskati!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:384
+#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
 msgid "There seems to be no string to search for!"
 msgstr "Doloèi iskani niz"
 
-#: src/findreplace.c:310 src/findreplace.c:392
+#: src/findreplace.c:310 src/findreplace.c:388
 msgid "End Of File reached"
 msgstr "Konec datoteke"
 
@@ -116,26 +116,26 @@ msgid "No offset has been specified!"
 msgstr "Odmik kurzorja ni doloèen!"
 
 #: src/findreplace.c:357
-msgid "The offset must be a positive integer value!"
-msgstr "Odmik kurzorja mora biti pozitivno celo ¹tevilo!"
-
-#: src/findreplace.c:362
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Ne morem premakniti kurzorja za konec datoteke!"
 
-#: src/findreplace.c:403 src/findreplace.c:440
+#: src/findreplace.c:362
+msgid "The offset must be a positive integer value!"
+msgstr "Odmik kurzorja mora biti pozitivno celo ¹tevilo!"
+
+#: src/findreplace.c:399 src/findreplace.c:436
 msgid "There is no active buffer to replace data in!"
 msgstr "Ne vem v kateri datoteki naj zamenjam niz!"
 
-#: src/findreplace.c:414 src/findreplace.c:451
+#: src/findreplace.c:410 src/findreplace.c:447
 msgid "Strange find or replace string!"
 msgstr "Neveljaven niz"
 
-#: src/findreplace.c:429
+#: src/findreplace.c:425
 msgid "End Of File reached!"
 msgstr "Konec datoteke"
 
-#: src/findreplace.c:467
+#: src/findreplace.c:463
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Zamenjanih je bilo %d pojavitev."
@@ -230,89 +230,117 @@ msgstr ""
 msgid "Offset: %s"
 msgstr "Odmik: %s"
 
-#: src/preferences.c:50
+#: src/preferences.c:52
 msgid "Default"
 msgstr "Globalna nastavitev"
 
-#: src/preferences.c:51
+#: src/preferences.c:53
 msgid "Notebook"
 msgstr "Blok"
 
-#: src/preferences.c:52
+#: src/preferences.c:54
 msgid "Toplevel"
 msgstr "Veè oken"
 
-#: src/preferences.c:53
+#: src/preferences.c:55
 msgid "Modal"
 msgstr "En sam dokument"
 
-#: src/preferences.c:86
+#: src/preferences.c:76
+#, fuzzy
+msgid "Select font"
+msgstr "Izberi tip èrk"
+
+#: src/preferences.c:129
 msgid "Maximum number of undo levels"
 msgstr "Najveèje ¹tevilo dejanj, ki jih lahko razveljavi¹"
 
-#: src/preferences.c:100
+#: src/preferences.c:144
 msgid "Show cursor offset in statusbar as"
 msgstr "Prika¾i odmik kurzorja"
 
-#: src/preferences.c:119
+#: src/preferences.c:163
 msgid "Hexadecimal"
 msgstr "©estnajsti¹ko"
 
-#: src/preferences.c:125
+#: src/preferences.c:169
 msgid "Custom"
 msgstr "Po meri"
 
-#: src/preferences.c:135
+#. show offsets check button
+#: src/preferences.c:180
 msgid "Show offsets column"
 msgstr "Prika¾i stolpec z odmiki"
 
-#: src/preferences.c:140
+#: src/preferences.c:185
 msgid "Editing"
 msgstr "Urejanje"
 
-#: src/preferences.c:147
+#. display font
+#: src/preferences.c:194
 msgid "Font"
 msgstr "Tip èrk"
 
-#: src/preferences.c:163
+#: src/preferences.c:210
 msgid "Browse..."
 msgstr "Poi¹èi..."
 
-#: src/preferences.c:182
+#. default group type
+#: src/preferences.c:230
 msgid "Default Group Type"
 msgstr "Grupiranje podatkov"
 
-#: src/preferences.c:198
+#: src/preferences.c:246
 msgid "Display"
 msgstr "Prikaz"
 
-#: src/preferences.c:205
+#. mdi modes
+#: src/preferences.c:255
 msgid "MDI Mode"
 msgstr "Prikaz MDI"
 
-#: src/preferences.c:222
+#: src/preferences.c:272
 msgid "MDI"
 msgstr "MDI"
 
-#: src/preferences.c:243
+#. paper selection
+#: src/preferences.c:281
+msgid "Paper size"
+msgstr ""
+
+#. data & header font selection
+#: src/preferences.c:295
+#, fuzzy
+msgid "Fonts"
+msgstr "Tip èrk"
+
+#: src/preferences.c:301
+msgid "Data font"
+msgstr "Podatki"
+
+#: src/preferences.c:316
+msgid "Header font"
+msgstr "Naslov"
+
+#: src/preferences.c:342
 msgid "Print shaded box over"
 msgstr "Osenèi"
 
-#: src/preferences.c:252
+#: src/preferences.c:351
 msgid "lines (0 for no box)"
 msgstr "vrstic (0 za neosenèen izpis)"
 
-#: src/preferences.c:259
+#: src/preferences.c:358
 msgid "Printing"
 msgstr "Tiskanje"
 
-#: src/preferences.c:411
+#: src/preferences.c:531
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
 msgstr "format za odmik lahko vsebuje le formatna doloèila 'x', 'd' ali 'o'!"
 
-#: src/preferences.c:447
+#: src/preferences.c:567
 msgid "Can not open desired font!"
 msgstr "Ne najdem ¾eljenega tipa èrk"
 
@@ -432,12 +460,12 @@ msgstr "Osmi¹ko"
 msgid "GHex: Character table"
 msgstr "GHex: Tabela znakov"
 
-#: src/print.c:143
+#: src/print.c:164
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Predogled"
 
-#: src/print.c:159
+#: src/print.c:180
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Stran: %i/%i"

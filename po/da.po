@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.5x\n"
-"POT-Creation-Date: 2000-04-15 05:06+0200\n"
+"POT-Creation-Date: 2000-05-08 23:11+0200\n"
 "PO-Revision-Date: 2000-04-14 17:24+02:00\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
@@ -23,7 +23,7 @@ msgstr "GHex: Konverteringsprogram"
 msgid "Binary"
 msgstr "Binær"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:114
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:158
 msgid "Decimal"
 msgstr "Decimal"
 
@@ -92,15 +92,15 @@ msgstr "Erstat alle"
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hop til byte"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:376
+#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
 msgid "There is no active buffer to search!"
 msgstr "Der er ingen aktiv buffer at søge i!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:384
+#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
 msgid "There seems to be no string to search for!"
 msgstr "Der er vist ingen tekst-streng at søge efter!"
 
-#: src/findreplace.c:310 src/findreplace.c:392
+#: src/findreplace.c:310 src/findreplace.c:388
 msgid "End Of File reached"
 msgstr "Du er ved slutningen af filen"
 
@@ -117,26 +117,26 @@ msgid "No offset has been specified!"
 msgstr "Der er ikke blevet angivet en afstand!"
 
 #: src/findreplace.c:357
-msgid "The offset must be a positive integer value!"
-msgstr "Afstanden skal have en positiv integerværdi!"
-
-#: src/findreplace.c:362
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Kan ikke placere markøren efter slutningen af filen!"
 
-#: src/findreplace.c:403 src/findreplace.c:440
+#: src/findreplace.c:362
+msgid "The offset must be a positive integer value!"
+msgstr "Afstanden skal have en positiv integerværdi!"
+
+#: src/findreplace.c:399 src/findreplace.c:436
 msgid "There is no active buffer to replace data in!"
 msgstr "Der er ingen aktiv buffer at erstatte data i!"
 
-#: src/findreplace.c:414 src/findreplace.c:451
+#: src/findreplace.c:410 src/findreplace.c:447
 msgid "Strange find or replace string!"
 msgstr "Mærkelig søg og erstat tekst-streng!"
 
-#: src/findreplace.c:429
+#: src/findreplace.c:425
 msgid "End Of File reached!"
 msgstr "Filens slutning er nået!"
 
-#: src/findreplace.c:467
+#: src/findreplace.c:463
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Erstattede %d forekomster."
@@ -231,83 +231,111 @@ msgstr ""
 msgid "Offset: %s"
 msgstr "Afstand: %s"
 
-#: src/preferences.c:50
+#: src/preferences.c:52
 msgid "Default"
 msgstr "Standard"
 
-#: src/preferences.c:51
+#: src/preferences.c:53
 msgid "Notebook"
 msgstr "Notesbog"
 
-#: src/preferences.c:52
+#: src/preferences.c:54
 msgid "Toplevel"
 msgstr "Øverste lag"
 
-#: src/preferences.c:53
+#: src/preferences.c:55
 msgid "Modal"
 msgstr "Modulær"
 
-#: src/preferences.c:86
+#: src/preferences.c:76
+#, fuzzy
+msgid "Select font"
+msgstr "Vælg en fil der skal åbnes"
+
+#: src/preferences.c:129
 msgid "Maximum number of undo levels"
 msgstr "Maksimum antal af fortrydninger?"
 
-#: src/preferences.c:100
+#: src/preferences.c:144
 msgid "Show cursor offset in statusbar as"
 msgstr "Vis markørafstand i statusbaren som"
 
-#: src/preferences.c:119
+#: src/preferences.c:163
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
 
-#: src/preferences.c:125
+#: src/preferences.c:169
 msgid "Custom"
 msgstr "Personlig"
 
-#: src/preferences.c:135
+#. show offsets check button
+#: src/preferences.c:180
 msgid "Show offsets column"
 msgstr "Vis afstandskolonne"
 
-#: src/preferences.c:140
+#: src/preferences.c:185
 msgid "Editing"
 msgstr "Redigering"
 
-#: src/preferences.c:147
+#. display font
+#: src/preferences.c:194
 msgid "Font"
 msgstr "Skrifttype"
 
-#: src/preferences.c:163
+#: src/preferences.c:210
 msgid "Browse..."
 msgstr "Gennemse..."
 
-#: src/preferences.c:182
+#. default group type
+#: src/preferences.c:230
 msgid "Default Group Type"
 msgstr "Standard gruppetype"
 
-#: src/preferences.c:198
+#: src/preferences.c:246
 msgid "Display"
 msgstr "Vis"
 
-#: src/preferences.c:205
+#. mdi modes
+#: src/preferences.c:255
 msgid "MDI Mode"
 msgstr "MDI-visning"
 
-#: src/preferences.c:222
+#: src/preferences.c:272
 msgid "MDI"
 msgstr "MDI"
 
-#: src/preferences.c:243
+#. paper selection
+#: src/preferences.c:281
+msgid "Paper size"
+msgstr ""
+
+#. data & header font selection
+#: src/preferences.c:295
+#, fuzzy
+msgid "Fonts"
+msgstr "Skrifttype"
+
+#: src/preferences.c:301
+msgid "Data font"
+msgstr ""
+
+#: src/preferences.c:316
+msgid "Header font"
+msgstr ""
+
+#: src/preferences.c:342
 msgid "Print shaded box over"
 msgstr "Skrive skygget kasse over"
 
-#: src/preferences.c:252
+#: src/preferences.c:351
 msgid "lines (0 for no box)"
 msgstr "linier (0 for ingen kasse)"
 
-#: src/preferences.c:259
+#: src/preferences.c:358
 msgid "Printing"
 msgstr "Udskriver"
 
-#: src/preferences.c:411
+#: src/preferences.c:531
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
@@ -315,7 +343,7 @@ msgstr ""
 "Afstands-formatstrengen indeholder formatangiver forskellig fra 'x', "
 "'d'eller 'o'!"
 
-#: src/preferences.c:447
+#: src/preferences.c:567
 msgid "Can not open desired font!"
 msgstr "Kan ikke åbne den ønskede skrifttype!"
 
@@ -435,12 +463,12 @@ msgstr "Oktalt"
 msgid "GHex: Character table"
 msgstr "GHex: Tegntabel"
 
-#: src/print.c:143
+#: src/print.c:164
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Udskriv Kladde"
 
-#: src/print.c:159
+#: src/print.c:180
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Side: %i/%i"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex 1.0.50\n"
-"POT-Creation-Date: 2000-04-05 09:13+0200\n"
+"POT-Creation-Date: 2000-05-08 23:11+0200\n"
 "PO-Revision-Date: 1999-12-16 11:50+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@adam.kaist.ac.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -21,7 +21,7 @@ msgstr "GHex: 변환기"
 msgid "Binary"
 msgstr "이진"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:114
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:158
 msgid "Decimal"
 msgstr "십진수"
 
@@ -90,15 +90,15 @@ msgstr "모두 치환"
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): 바이트로 이동"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:376
+#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
 msgid "There is no active buffer to search!"
 msgstr "찾기를 할 버퍼가 없습니다!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:384
+#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
 msgid "There seems to be no string to search for!"
 msgstr "찾을 문자열이 없습니다!"
 
-#: src/findreplace.c:310 src/findreplace.c:392
+#: src/findreplace.c:310 src/findreplace.c:388
 msgid "End Of File reached"
 msgstr "파일의 끝입니다"
 
@@ -115,26 +115,26 @@ msgid "No offset has been specified!"
 msgstr "오프셋이 지정되지 않았습니다!"
 
 #: src/findreplace.c:357
-msgid "The offset must be a positive integer value!"
-msgstr "오프셋은 0보다 큰 정수값이어야 합니다!"
-
-#: src/findreplace.c:362
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "파일의 끝보다 뒤에 커서를 위치할 수는 없습니다!"
 
-#: src/findreplace.c:403 src/findreplace.c:440
+#: src/findreplace.c:362
+msgid "The offset must be a positive integer value!"
+msgstr "오프셋은 0보다 큰 정수값이어야 합니다!"
+
+#: src/findreplace.c:399 src/findreplace.c:436
 msgid "There is no active buffer to replace data in!"
 msgstr "데이타를 치환할 버퍼가 없습니다!"
 
-#: src/findreplace.c:414 src/findreplace.c:451
+#: src/findreplace.c:410 src/findreplace.c:447
 msgid "Strange find or replace string!"
 msgstr "찾기 혹은 치환 문자열이 이상합니다!"
 
-#: src/findreplace.c:429
+#: src/findreplace.c:425
 msgid "End Of File reached!"
 msgstr "파일의 끝입니다!"
 
-#: src/findreplace.c:467
+#: src/findreplace.c:463
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d번 치환."
@@ -231,90 +231,119 @@ msgstr ""
 msgid "Offset: %s"
 msgstr "오프셋: %s"
 
-#: src/preferences.c:50
+#: src/preferences.c:52
 msgid "Default"
 msgstr "기본값"
 
-#: src/preferences.c:51
+#: src/preferences.c:53
 msgid "Notebook"
 msgstr "노트북"
 
-#: src/preferences.c:52
+#: src/preferences.c:54
 msgid "Toplevel"
 msgstr "최고단계 창"
 
-#: src/preferences.c:53
+#: src/preferences.c:55
 msgid "Modal"
 msgstr "모달"
 
-#: src/preferences.c:86
+#: src/preferences.c:76
+#, fuzzy
+msgid "Select font"
+msgstr "선택:"
+
+#: src/preferences.c:129
 msgid "Maximum number of undo levels"
 msgstr "실행 취소 최대 횟수"
 
-#: src/preferences.c:100
+#: src/preferences.c:144
 msgid "Show cursor offset in statusbar as"
 msgstr "상태 막대에서 커서 오프셋을 보여주는 방법:"
 
-#: src/preferences.c:119
+#: src/preferences.c:163
 msgid "Hexadecimal"
 msgstr "십육진수"
 
-#: src/preferences.c:125
+#: src/preferences.c:169
 msgid "Custom"
 msgstr "맞춤형"
 
-#: src/preferences.c:135
+#. show offsets check button
+#: src/preferences.c:180
 msgid "Show offsets column"
 msgstr "오프셋 열 보여주기"
 
-#: src/preferences.c:140
+#: src/preferences.c:185
 msgid "Editing"
 msgstr "편집"
 
-#: src/preferences.c:147
+#. display font
+#: src/preferences.c:194
 msgid "Font"
 msgstr "글꼴"
 
-#: src/preferences.c:163
+#: src/preferences.c:210
 msgid "Browse..."
 msgstr "찾아보기..."
 
-#: src/preferences.c:182
+#. default group type
+#: src/preferences.c:230
 msgid "Default Group Type"
 msgstr "기본 그룹 타입"
 
-#: src/preferences.c:198
+#: src/preferences.c:246
 msgid "Display"
 msgstr "표시"
 
-#: src/preferences.c:205
+#. mdi modes
+#: src/preferences.c:255
 msgid "MDI Mode"
 msgstr "MDI 모드"
 
-#: src/preferences.c:222
+#: src/preferences.c:272
 msgid "MDI"
 msgstr "MDI"
 
-#: src/preferences.c:243
+#. paper selection
+#: src/preferences.c:281
+#, fuzzy
+msgid "Paper size"
+msgstr "속성"
+
+#. data & header font selection
+#: src/preferences.c:295
+#, fuzzy
+msgid "Fonts"
+msgstr "글꼴"
+
+#: src/preferences.c:301
+msgid "Data font"
+msgstr ""
+
+#: src/preferences.c:316
+msgid "Header font"
+msgstr ""
+
+#: src/preferences.c:342
 msgid "Print shaded box over"
 msgstr ""
 
-#: src/preferences.c:252
+#: src/preferences.c:351
 msgid "lines (0 for no box)"
 msgstr ""
 
-#: src/preferences.c:259
+#: src/preferences.c:358
 #, fuzzy
 msgid "Printing"
 msgstr "편집"
 
-#: src/preferences.c:411
+#: src/preferences.c:531
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
 msgstr ""
 
-#: src/preferences.c:447
+#: src/preferences.c:567
 msgid "Can not open desired font!"
 msgstr "선택한 글꼴을 열 수 없습니다!"
 
@@ -438,12 +467,12 @@ msgstr "비율"
 msgid "GHex: Character table"
 msgstr "GHex: 변환기"
 
-#: src/print.c:143
+#: src/print.c:164
 #, fuzzy, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): 자료 찾기"
 
-#: src/print.c:159
+#: src/print.c:180
 #, c-format
 msgid "Page: %i/%i"
 msgstr ""
@@ -995,9 +1024,6 @@ msgstr ""
 #~ msgid "empty"
 #~ msgstr "없음"
 
-#~ msgid "Properties"
-#~ msgstr "속성"
-
 #~ msgid "Project"
 #~ msgstr "프로젝트"
 
@@ -1120,9 +1146,6 @@ msgstr ""
 
 #~ msgid "Font Selector"
 #~ msgstr "폰트 선택창"
-
-#~ msgid "Selection:"
-#~ msgstr "선택:"
 
 #~ msgid "Font to load"
 #~ msgstr "읽을 폰트"

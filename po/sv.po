@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex 1.0.x\n"
-"POT-Creation-Date: 2000-04-20 18:12+0200\n"
+"POT-Creation-Date: 2000-05-08 23:11+0200\n"
 "PO-Revision-Date: 2000-04-20 18:12+0200\n"
 "Last-Translator: \n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -21,7 +21,7 @@ msgstr "GHex: Konverterare"
 msgid "Binary"
 msgstr "Binär"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:114
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:158
 msgid "Decimal"
 msgstr "Decimal"
 
@@ -90,15 +90,15 @@ msgstr "Ersätt alla"
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hoppa till byte"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:376
+#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
 msgid "There is no active buffer to search!"
 msgstr "Det finns ingen aktiv buffer att söka i!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:384
+#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
 msgid "There seems to be no string to search for!"
 msgstr "Det verkar inte finnas någon sträng at söka efter!"
 
-#: src/findreplace.c:310 src/findreplace.c:392
+#: src/findreplace.c:310 src/findreplace.c:388
 msgid "End Of File reached"
 msgstr "Slutet på filen nådd"
 
@@ -115,26 +115,26 @@ msgid "No offset has been specified!"
 msgstr "Ingen offset har specificerats!"
 
 #: src/findreplace.c:357
-msgid "The offset must be a positive integer value!"
-msgstr "Offsetten måste vara ett positivt heltal!"
-
-#: src/findreplace.c:362
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Kan ej positionera markören efter filens slut!"
 
-#: src/findreplace.c:403 src/findreplace.c:440
+#: src/findreplace.c:362
+msgid "The offset must be a positive integer value!"
+msgstr "Offsetten måste vara ett positivt heltal!"
+
+#: src/findreplace.c:399 src/findreplace.c:436
 msgid "There is no active buffer to replace data in!"
 msgstr "Det finns ingen aktiv buffer att ersätta data i!"
 
-#: src/findreplace.c:414 src/findreplace.c:451
+#: src/findreplace.c:410 src/findreplace.c:447
 msgid "Strange find or replace string!"
 msgstr "Konstig sök- eller ersätt-sträng!"
 
-#: src/findreplace.c:429
+#: src/findreplace.c:425
 msgid "End Of File reached!"
 msgstr "Slutet på filen nådd!"
 
-#: src/findreplace.c:467
+#: src/findreplace.c:463
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Bytte ut %d förekomster"
@@ -229,90 +229,120 @@ msgstr ""
 msgid "Offset: %s"
 msgstr "Offset: %s"
 
-#: src/preferences.c:50
+#: src/preferences.c:52
 msgid "Default"
 msgstr "Standard"
 
-#: src/preferences.c:51
+#: src/preferences.c:53
 msgid "Notebook"
 msgstr "Anteckningsblock"
 
-#: src/preferences.c:52
+#: src/preferences.c:54
 msgid "Toplevel"
 msgstr "Toppnivå"
 
-#: src/preferences.c:53
+#: src/preferences.c:55
 msgid "Modal"
 msgstr "Modal"
 
-#: src/preferences.c:86
+#: src/preferences.c:76
+#, fuzzy
+msgid "Select font"
+msgstr "Markering:"
+
+#: src/preferences.c:129
 msgid "Maximum number of undo levels"
 msgstr "Max antal ångra-steg"
 
-#: src/preferences.c:100
+#: src/preferences.c:144
 msgid "Show cursor offset in statusbar as"
 msgstr "Visa markörposition i statusrad som"
 
-#: src/preferences.c:119
+#: src/preferences.c:163
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
 
-#: src/preferences.c:125
+#: src/preferences.c:169
 msgid "Custom"
 msgstr "Valfri"
 
-#: src/preferences.c:135
+#. show offsets check button
+#: src/preferences.c:180
 msgid "Show offsets column"
 msgstr "Visa offset-kolumn"
 
-#: src/preferences.c:140
+#: src/preferences.c:185
 msgid "Editing"
 msgstr "Editerar"
 
-#: src/preferences.c:147
+#. display font
+#: src/preferences.c:194
 msgid "Font"
 msgstr "Typsnitt"
 
-#: src/preferences.c:163
+#: src/preferences.c:210
 msgid "Browse..."
 msgstr "Bläddra..."
 
-#: src/preferences.c:182
+#. default group type
+#: src/preferences.c:230
 msgid "Default Group Type"
 msgstr "Standard grupptyp"
 
-#: src/preferences.c:198
+#: src/preferences.c:246
 msgid "Display"
 msgstr "Utseende"
 
-#: src/preferences.c:205
+#. mdi modes
+#: src/preferences.c:255
 msgid "MDI Mode"
 msgstr "MDI-läge"
 
-#: src/preferences.c:222
+#: src/preferences.c:272
 msgid "MDI"
 msgstr "MDI"
 
-#: src/preferences.c:243
+#. paper selection
+#: src/preferences.c:281
+#, fuzzy
+msgid "Paper size"
+msgstr "Egenskaper"
+
+#. data & header font selection
+#: src/preferences.c:295
+#, fuzzy
+msgid "Fonts"
+msgstr "Typsnitt"
+
+#: src/preferences.c:301
+msgid "Data font"
+msgstr ""
+
+#: src/preferences.c:316
+msgid "Header font"
+msgstr ""
+
+#: src/preferences.c:342
 msgid "Print shaded box over"
 msgstr "Skriv skuggad ruta över"
 
-#: src/preferences.c:252
+#: src/preferences.c:351
 msgid "lines (0 for no box)"
 msgstr "rader (0 för ingen ruta)"
 
-#: src/preferences.c:259
+#: src/preferences.c:358
 msgid "Printing"
 msgstr "Skriver ut"
 
-#: src/preferences.c:411
+#: src/preferences.c:531
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
 msgstr ""
-"Offsetformateringssträngen innehåller formatspecificerare som inte är 'x', 'd', eller 'o'!"
+"Offsetformateringssträngen innehåller formatspecificerare som inte är 'x', "
+"'d', eller 'o'!"
 
-#: src/preferences.c:447
+#: src/preferences.c:567
 msgid "Can not open desired font!"
 msgstr "Kan inte öppna det önskade typsnittet!"
 
@@ -432,12 +462,12 @@ msgstr "Oktal"
 msgid "GHex: Character table"
 msgstr "GHex: Teckentabell"
 
-#: src/print.c:143
+#: src/print.c:164
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Förhandsgranskning"
 
-#: src/print.c:159
+#: src/print.c:180
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Sida: %i/%i"
@@ -979,9 +1009,6 @@ msgstr "Sida: %i/%i"
 #~ msgid "empty"
 #~ msgstr "tom"
 
-#~ msgid "Properties"
-#~ msgstr "Egenskaper"
-
 #~ msgid "Project"
 #~ msgstr "Projekt"
 
@@ -1104,9 +1131,6 @@ msgstr "Sida: %i/%i"
 
 #~ msgid "Font Selector"
 #~ msgstr "Typsnittsväljare"
-
-#~ msgid "Selection:"
-#~ msgstr "Markering:"
 
 #~ msgid "Font to load"
 #~ msgstr "Typsnitt att ladda"

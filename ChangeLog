@@ -1,5 +1,21 @@
 2000-05-08  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
+	* src/preferences.c (create_prefs_dialog): change font selection
+	to a button with font name that brings up a font selection dialog.
+	add possibility to select a separate font for the header.
+	(get_font_label): create a label for the font button.
+	(font_button_clicked): run a modal font selection dialog.
+	* src/config.c: load & save the header font settings.
+	* src/print.c (print_header): print with a special font.
+	* src/ghex.h (struct _GHexPrintJobInfo): added d_font and h_font
+	members.
+	* po/*.po: made an update-po.
+	* po/sl.po: updated.
+	* po/ghex.pot: updated.
+	* help/C/index.html: updated.
+
+2000-05-08  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
 	* src/main.c: set the default window icon.
 	* src/preferences.c (create_prefs_dialog): add a font selector
 	for printing.

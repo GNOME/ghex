@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex-0.99.6\n"
-"POT-Creation-Date: 2000-04-05 09:13+0200\n"
+"POT-Creation-Date: 2000-05-08 23:11+0200\n"
 "PO-Revision-Date: 1999-02-20 08:00+0800\n"
 "Last-Translator: Ming-Yen Hsu <myhsu@cyberdude.com>\n"
 "Language-Team: Chinese <zh@li.org>\n"
@@ -21,7 +21,7 @@ msgstr "GHex: 轉碼程式"
 msgid "Binary"
 msgstr "二進位"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:114
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:158
 msgid "Decimal"
 msgstr "十進位"
 
@@ -90,15 +90,15 @@ msgstr "全部取代"
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): 跳至 Byte"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:376
+#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
 msgid "There is no active buffer to search!"
 msgstr "沒有緩衝區可供搜尋!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:384
+#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
 msgid "There seems to be no string to search for!"
 msgstr "沒有字串可供搜尋!"
 
-#: src/findreplace.c:310 src/findreplace.c:392
+#: src/findreplace.c:310 src/findreplace.c:388
 msgid "End Of File reached"
 msgstr "到達檔案底端"
 
@@ -115,26 +115,26 @@ msgid "No offset has been specified!"
 msgstr "尚未指定偏移量!"
 
 #: src/findreplace.c:357
-msgid "The offset must be a positive integer value!"
-msgstr "偏移量必需為正值!"
-
-#: src/findreplace.c:362
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "不能將游標置於檔案底端之後!"
 
-#: src/findreplace.c:403 src/findreplace.c:440
+#: src/findreplace.c:362
+msgid "The offset must be a positive integer value!"
+msgstr "偏移量必需為正值!"
+
+#: src/findreplace.c:399 src/findreplace.c:436
 msgid "There is no active buffer to replace data in!"
 msgstr "沒有緩衝區可供資料置換!"
 
-#: src/findreplace.c:414 src/findreplace.c:451
+#: src/findreplace.c:410 src/findreplace.c:447
 msgid "Strange find or replace string!"
 msgstr "在搜尋和取代時遇到奇怪的字串!"
 
-#: src/findreplace.c:429
+#: src/findreplace.c:425
 msgid "End Of File reached!"
 msgstr "到達檔案底端!"
 
-#: src/findreplace.c:467
+#: src/findreplace.c:463
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "總共取代了 %d 個."
@@ -231,90 +231,119 @@ msgstr ""
 msgid "Offset: %s"
 msgstr "偏移:"
 
-#: src/preferences.c:50
+#: src/preferences.c:52
 msgid "Default"
 msgstr "預設"
 
-#: src/preferences.c:51
+#: src/preferences.c:53
 msgid "Notebook"
 msgstr "記事本"
 
-#: src/preferences.c:52
+#: src/preferences.c:54
 msgid "Toplevel"
 msgstr "最上層"
 
-#: src/preferences.c:53
+#: src/preferences.c:55
 msgid "Modal"
 msgstr "Modal"
 
-#: src/preferences.c:86
+#: src/preferences.c:76
+#, fuzzy
+msgid "Select font"
+msgstr "選擇:"
+
+#: src/preferences.c:129
 msgid "Maximum number of undo levels"
 msgstr "可還原的次數上限"
 
-#: src/preferences.c:100
+#: src/preferences.c:144
 msgid "Show cursor offset in statusbar as"
 msgstr "在狀態列顯示游標位置的方式: "
 
-#: src/preferences.c:119
+#: src/preferences.c:163
 msgid "Hexadecimal"
 msgstr "十六進位"
 
-#: src/preferences.c:125
+#: src/preferences.c:169
 msgid "Custom"
 msgstr "自定"
 
-#: src/preferences.c:135
+#. show offsets check button
+#: src/preferences.c:180
 msgid "Show offsets column"
 msgstr "顯示欄位"
 
-#: src/preferences.c:140
+#: src/preferences.c:185
 msgid "Editing"
 msgstr "編輯中"
 
-#: src/preferences.c:147
+#. display font
+#: src/preferences.c:194
 msgid "Font"
 msgstr "字形"
 
-#: src/preferences.c:163
+#: src/preferences.c:210
 msgid "Browse..."
 msgstr "瀏覽..."
 
-#: src/preferences.c:182
+#. default group type
+#: src/preferences.c:230
 msgid "Default Group Type"
 msgstr "Default Group Type"
 
-#: src/preferences.c:198
+#: src/preferences.c:246
 msgid "Display"
 msgstr "顯示"
 
-#: src/preferences.c:205
+#. mdi modes
+#: src/preferences.c:255
 msgid "MDI Mode"
 msgstr "MDI 模式"
 
-#: src/preferences.c:222
+#: src/preferences.c:272
 msgid "MDI"
 msgstr "MDI"
 
-#: src/preferences.c:243
+#. paper selection
+#: src/preferences.c:281
+#, fuzzy
+msgid "Paper size"
+msgstr "內容"
+
+#. data & header font selection
+#: src/preferences.c:295
+#, fuzzy
+msgid "Fonts"
+msgstr "字形"
+
+#: src/preferences.c:301
+msgid "Data font"
+msgstr ""
+
+#: src/preferences.c:316
+msgid "Header font"
+msgstr ""
+
+#: src/preferences.c:342
 msgid "Print shaded box over"
 msgstr ""
 
-#: src/preferences.c:252
+#: src/preferences.c:351
 msgid "lines (0 for no box)"
 msgstr ""
 
-#: src/preferences.c:259
+#: src/preferences.c:358
 #, fuzzy
 msgid "Printing"
 msgstr "編輯中"
 
-#: src/preferences.c:411
+#: src/preferences.c:531
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
 msgstr ""
 
-#: src/preferences.c:447
+#: src/preferences.c:567
 msgid "Can not open desired font!"
 msgstr "無法開啟選定的字形!"
 
@@ -438,12 +467,12 @@ msgstr "合計"
 msgid "GHex: Character table"
 msgstr "GHex: 轉碼程式"
 
-#: src/print.c:143
+#: src/print.c:164
 #, fuzzy, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): 尋找資料"
 
-#: src/print.c:159
+#: src/print.c:180
 #, c-format
 msgid "Page: %i/%i"
 msgstr ""
@@ -931,9 +960,6 @@ msgstr ""
 #~ msgid "empty"
 #~ msgstr "空"
 
-#~ msgid "Properties"
-#~ msgstr "內容"
-
 #~ msgid "Project"
 #~ msgstr "計劃"
 
@@ -1056,9 +1082,6 @@ msgstr ""
 
 #~ msgid "Font Selector"
 #~ msgstr "字形選擇程式"
-
-#~ msgid "Selection:"
-#~ msgstr "選擇:"
 
 #~ msgid "FONTSPEC"
 #~ msgstr "FONTSPEC"

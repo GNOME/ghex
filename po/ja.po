@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex VERSION\n"
-"POT-Creation-Date: 2000-04-05 09:13+0200\n"
+"POT-Creation-Date: 2000-05-08 23:11+0200\n"
 "PO-Revision-Date: 1999-09-17 03:46+09:00\n"
 "Last-Translator: Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
 "Language-Team: <gnome@lists.hypercore.co.jp>\n"
@@ -21,7 +21,7 @@ msgstr "GHex: 変換器"
 msgid "Binary"
 msgstr "バイナリ"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:114
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:158
 msgid "Decimal"
 msgstr "10進"
 
@@ -90,15 +90,15 @@ msgstr "全て置換"
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): nバイト目にジャンプ"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:376
+#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
 msgid "There is no active buffer to search!"
 msgstr "検索対象バッファの指定がありません!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:384
+#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
 msgid "There seems to be no string to search for!"
 msgstr "検索すべき文字列はないみたいです!"
 
-#: src/findreplace.c:310 src/findreplace.c:392
+#: src/findreplace.c:310 src/findreplace.c:388
 msgid "End Of File reached"
 msgstr "ファイル終端に到達"
 
@@ -115,26 +115,26 @@ msgid "No offset has been specified!"
 msgstr "オフセットが指定されていません!"
 
 #: src/findreplace.c:357
-msgid "The offset must be a positive integer value!"
-msgstr "オフセットは正の数でなければいけません!"
-
-#: src/findreplace.c:362
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "ファイルの終端より先にはカーソルを移動できません!"
 
-#: src/findreplace.c:403 src/findreplace.c:440
+#: src/findreplace.c:362
+msgid "The offset must be a positive integer value!"
+msgstr "オフセットは正の数でなければいけません!"
+
+#: src/findreplace.c:399 src/findreplace.c:436
 msgid "There is no active buffer to replace data in!"
 msgstr "置換を行なうべきアクティブなバッファがありません!"
 
-#: src/findreplace.c:414 src/findreplace.c:451
+#: src/findreplace.c:410 src/findreplace.c:447
 msgid "Strange find or replace string!"
 msgstr "検索・置換文字列が変です!"
 
-#: src/findreplace.c:429
+#: src/findreplace.c:425
 msgid "End Of File reached!"
 msgstr "ファイル終端に到達!"
 
-#: src/findreplace.c:467
+#: src/findreplace.c:463
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d箇所置き換えました。"
@@ -233,91 +233,120 @@ msgstr ""
 msgid "Offset: %s"
 msgstr "オフセット: %s"
 
-#: src/preferences.c:50
+#: src/preferences.c:52
 msgid "Default"
 msgstr "デフォルト"
 
-#: src/preferences.c:51
+#: src/preferences.c:53
 msgid "Notebook"
 msgstr ""
 
-#: src/preferences.c:52
+#: src/preferences.c:54
 msgid "Toplevel"
 msgstr ""
 
-#: src/preferences.c:53
+#: src/preferences.c:55
 #, fuzzy
 msgid "Modal"
 msgstr "モデル"
 
-#: src/preferences.c:86
+#: src/preferences.c:76
+#, fuzzy
+msgid "Select font"
+msgstr "選択:"
+
+#: src/preferences.c:129
 msgid "Maximum number of undo levels"
 msgstr "やり直しの最大回数"
 
-#: src/preferences.c:100
+#: src/preferences.c:144
 msgid "Show cursor offset in statusbar as"
 msgstr "ステータスバーにカーソルのオフセット表示を"
 
-#: src/preferences.c:119
+#: src/preferences.c:163
 msgid "Hexadecimal"
 msgstr "16進"
 
-#: src/preferences.c:125
+#: src/preferences.c:169
 msgid "Custom"
 msgstr "オリジナル"
 
-#: src/preferences.c:135
+#. show offsets check button
+#: src/preferences.c:180
 msgid "Show offsets column"
 msgstr "オフセットカラムの表示"
 
-#: src/preferences.c:140
+#: src/preferences.c:185
 msgid "Editing"
 msgstr "編集"
 
-#: src/preferences.c:147
+#. display font
+#: src/preferences.c:194
 msgid "Font"
 msgstr "フォント"
 
-#: src/preferences.c:163
+#: src/preferences.c:210
 msgid "Browse..."
 msgstr "参照..."
 
-#: src/preferences.c:182
+#. default group type
+#: src/preferences.c:230
 msgid "Default Group Type"
 msgstr "デフォルトのデータ表示"
 
-#: src/preferences.c:198
+#: src/preferences.c:246
 msgid "Display"
 msgstr "表示"
 
-#: src/preferences.c:205
+#. mdi modes
+#: src/preferences.c:255
 msgid "MDI Mode"
 msgstr "MDIモード"
 
-#: src/preferences.c:222
+#: src/preferences.c:272
 msgid "MDI"
 msgstr ""
 
-#: src/preferences.c:243
+#. paper selection
+#: src/preferences.c:281
+#, fuzzy
+msgid "Paper size"
+msgstr "設定"
+
+#. data & header font selection
+#: src/preferences.c:295
+#, fuzzy
+msgid "Fonts"
+msgstr "フォント"
+
+#: src/preferences.c:301
+msgid "Data font"
+msgstr ""
+
+#: src/preferences.c:316
+msgid "Header font"
+msgstr ""
+
+#: src/preferences.c:342
 msgid "Print shaded box over"
 msgstr ""
 
-#: src/preferences.c:252
+#: src/preferences.c:351
 msgid "lines (0 for no box)"
 msgstr ""
 
-#: src/preferences.c:259
+#: src/preferences.c:358
 #, fuzzy
 msgid "Printing"
 msgstr "編集"
 
-#: src/preferences.c:411
+#: src/preferences.c:531
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
 msgstr ""
 
-#: src/preferences.c:447
+#: src/preferences.c:567
 msgid "Can not open desired font!"
 msgstr "お望みのフォントを読めません!"
 
@@ -442,12 +471,12 @@ msgstr ""
 msgid "GHex: Character table"
 msgstr "GHex: 変換器"
 
-#: src/print.c:143
+#: src/print.c:164
 #, fuzzy, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): データ検索"
 
-#: src/print.c:159
+#: src/print.c:180
 #, c-format
 msgid "Page: %i/%i"
 msgstr ""
@@ -856,9 +885,6 @@ msgstr ""
 #~ msgid "empty"
 #~ msgstr "空"
 
-#~ msgid "Properties"
-#~ msgstr "設定"
-
 #~ msgid "Project"
 #~ msgstr "プロジェクト"
 
@@ -978,9 +1004,6 @@ msgstr ""
 
 #~ msgid "Font Selector"
 #~ msgstr "フォントセレクタ"
-
-#~ msgid "Selection:"
-#~ msgstr "選択:"
 
 #~ msgid "Reason %d\n"
 #~ msgstr "理由 %d\n"

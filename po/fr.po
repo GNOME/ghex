@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex 1.0.50\n"
-"POT-Creation-Date: 2000-04-05 09:13+0200\n"
+"POT-Creation-Date: 2000-05-08 23:11+0200\n"
 "PO-Revision-Date: 1998-02-28 19:57+0100\n"
 "Last-Translator: Vincent Renardias <vincent@ldsol.com>\n"
 "Language-Team: GNOME French Team <gnomefr@gnomefr.traduc.org>\n"
@@ -22,7 +22,7 @@ msgstr "GHex : convertisseur"
 msgid "Binary"
 msgstr "Binaire"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:114
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:158
 msgid "Decimal"
 msgstr "Décimal"
 
@@ -91,15 +91,15 @@ msgstr "Remplacer tout"
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): aller à l'octet"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:376
+#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
 msgid "There is no active buffer to search!"
 msgstr "Il n'y a pas de tampon actif dans lequel chercher !"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:384
+#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
 msgid "There seems to be no string to search for!"
 msgstr "Il semble qu'il n'y ait pas de chaîne à rechercher !"
 
-#: src/findreplace.c:310 src/findreplace.c:392
+#: src/findreplace.c:310 src/findreplace.c:388
 msgid "End Of File reached"
 msgstr "Fin du fichier atteinte"
 
@@ -116,26 +116,26 @@ msgid "No offset has been specified!"
 msgstr "Le déplacement n'a pas été spécifié !"
 
 #: src/findreplace.c:357
-msgid "The offset must be a positive integer value!"
-msgstr "Le déplacement doit être une valeur positive et entière !"
-
-#: src/findreplace.c:362
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Impossible de positionner le curseur après la fin du fichier !"
 
-#: src/findreplace.c:403 src/findreplace.c:440
+#: src/findreplace.c:362
+msgid "The offset must be a positive integer value!"
+msgstr "Le déplacement doit être une valeur positive et entière !"
+
+#: src/findreplace.c:399 src/findreplace.c:436
 msgid "There is no active buffer to replace data in!"
 msgstr "Il n'y a pas de tampon actif dans lequel remplacer des données !"
 
-#: src/findreplace.c:414 src/findreplace.c:451
+#: src/findreplace.c:410 src/findreplace.c:447
 msgid "Strange find or replace string!"
 msgstr "Chaîne recherchée bizarre !"
 
-#: src/findreplace.c:429
+#: src/findreplace.c:425
 msgid "End Of File reached!"
 msgstr "Fin du fichier atteinte !"
 
-#: src/findreplace.c:467
+#: src/findreplace.c:463
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d occurences remplacées."
@@ -232,90 +232,119 @@ msgstr ""
 msgid "Offset: %s"
 msgstr "Offset: %s"
 
-#: src/preferences.c:50
+#: src/preferences.c:52
 msgid "Default"
 msgstr "Défaut"
 
-#: src/preferences.c:51
+#: src/preferences.c:53
 msgid "Notebook"
 msgstr "Carnet"
 
-#: src/preferences.c:52
+#: src/preferences.c:54
 msgid "Toplevel"
 msgstr "1er niveau"
 
-#: src/preferences.c:53
+#: src/preferences.c:55
 msgid "Modal"
 msgstr "Modal"
 
-#: src/preferences.c:86
+#: src/preferences.c:76
+#, fuzzy
+msgid "Select font"
+msgstr "Sélection :"
+
+#: src/preferences.c:129
 msgid "Maximum number of undo levels"
 msgstr "Nombre d'étapes en arrière mémorisées"
 
-#: src/preferences.c:100
+#: src/preferences.c:144
 msgid "Show cursor offset in statusbar as"
 msgstr "Afficher la position du curseur dans la barre d'état comme"
 
-#: src/preferences.c:119
+#: src/preferences.c:163
 msgid "Hexadecimal"
 msgstr "Hexadécimal"
 
-#: src/preferences.c:125
+#: src/preferences.c:169
 msgid "Custom"
 msgstr "Personnalisé"
 
-#: src/preferences.c:135
+#. show offsets check button
+#: src/preferences.c:180
 msgid "Show offsets column"
 msgstr "Montrer la colonne offset"
 
-#: src/preferences.c:140
+#: src/preferences.c:185
 msgid "Editing"
 msgstr "Edition en cours"
 
-#: src/preferences.c:147
+#. display font
+#: src/preferences.c:194
 msgid "Font"
 msgstr "Police"
 
-#: src/preferences.c:163
+#: src/preferences.c:210
 msgid "Browse..."
 msgstr "Naviguer..."
 
-#: src/preferences.c:182
+#. default group type
+#: src/preferences.c:230
 msgid "Default Group Type"
 msgstr "Type du groupe par défaut"
 
-#: src/preferences.c:198
+#: src/preferences.c:246
 msgid "Display"
 msgstr "Affichage"
 
-#: src/preferences.c:205
+#. mdi modes
+#: src/preferences.c:255
 msgid "MDI Mode"
 msgstr "Mode MDI"
 
-#: src/preferences.c:222
+#: src/preferences.c:272
 msgid "MDI"
 msgstr "MDI"
 
-#: src/preferences.c:243
+#. paper selection
+#: src/preferences.c:281
+#, fuzzy
+msgid "Paper size"
+msgstr "Propriétés"
+
+#. data & header font selection
+#: src/preferences.c:295
+#, fuzzy
+msgid "Fonts"
+msgstr "Police"
+
+#: src/preferences.c:301
+msgid "Data font"
+msgstr ""
+
+#: src/preferences.c:316
+msgid "Header font"
+msgstr ""
+
+#: src/preferences.c:342
 msgid "Print shaded box over"
 msgstr ""
 
-#: src/preferences.c:252
+#: src/preferences.c:351
 msgid "lines (0 for no box)"
 msgstr ""
 
-#: src/preferences.c:259
+#: src/preferences.c:358
 #, fuzzy
 msgid "Printing"
 msgstr "Edition en cours"
 
-#: src/preferences.c:411
+#: src/preferences.c:531
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
 msgstr ""
 
-#: src/preferences.c:447
+#: src/preferences.c:567
 msgid "Can not open desired font!"
 msgstr "Impossible d'utiliser la police spécifiée !"
 
@@ -439,12 +468,12 @@ msgstr "Échelle"
 msgid "GHex: Character table"
 msgstr "GHex : convertisseur"
 
-#: src/print.c:143
+#: src/print.c:164
 #, fuzzy, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): rechercher des données"
 
-#: src/print.c:159
+#: src/print.c:180
 #, c-format
 msgid "Page: %i/%i"
 msgstr ""
@@ -1010,9 +1039,6 @@ msgstr ""
 #~ msgid "empty"
 #~ msgstr "vide"
 
-#~ msgid "Properties"
-#~ msgstr "Propriétés"
-
 #~ msgid "Project"
 #~ msgstr "Projet"
 
@@ -1136,9 +1162,6 @@ msgstr ""
 
 #~ msgid "Font Selector"
 #~ msgstr "Sélecteur de couleurs"
-
-#~ msgid "Selection:"
-#~ msgstr "Sélection :"
 
 #~ msgid "Font to load"
 #~ msgstr "Police à charger"

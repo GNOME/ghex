@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.13\n"
-"POT-Creation-Date: 2000-04-05 09:13+0200\n"
+"POT-Creation-Date: 2000-05-08 23:11+0200\n"
 "PO-Revision-Date: 1999-09-29 16:52-03:00\n"
 "Last-Translator: Alexandre Hautequest <hquest@fesppr.br>\n"
 "Language-Team: pt_BR <some email will be apreciated>\n"
@@ -21,7 +21,7 @@ msgstr "GHex: Conversor"
 msgid "Binary"
 msgstr "Binário"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:114
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:158
 msgid "Decimal"
 msgstr "Decimal"
 
@@ -90,15 +90,15 @@ msgstr "Substituir Todos"
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Ir para Byte"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:376
+#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
 msgid "There is no active buffer to search!"
 msgstr "Não existe buffer ativo para procurar!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:384
+#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
 msgid "There seems to be no string to search for!"
 msgstr "Parece que não existe string para procurar!"
 
-#: src/findreplace.c:310 src/findreplace.c:392
+#: src/findreplace.c:310 src/findreplace.c:388
 msgid "End Of File reached"
 msgstr "Fim de Arquivo atingido"
 
@@ -115,26 +115,26 @@ msgid "No offset has been specified!"
 msgstr "Nenhum offset foi especificado!"
 
 #: src/findreplace.c:357
-msgid "The offset must be a positive integer value!"
-msgstr "O offset precisa ser um valor inteiro positivo!"
-
-#: src/findreplace.c:362
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Não posso posicionar o cursor após o Fim do Arqivo!"
 
-#: src/findreplace.c:403 src/findreplace.c:440
+#: src/findreplace.c:362
+msgid "The offset must be a positive integer value!"
+msgstr "O offset precisa ser um valor inteiro positivo!"
+
+#: src/findreplace.c:399 src/findreplace.c:436
 msgid "There is no active buffer to replace data in!"
 msgstr "Não existe buffer ativo para substituir os dados nele!"
 
-#: src/findreplace.c:414 src/findreplace.c:451
+#: src/findreplace.c:410 src/findreplace.c:447
 msgid "Strange find or replace string!"
 msgstr "String de Procura ou Substituição estranha!"
 
-#: src/findreplace.c:429
+#: src/findreplace.c:425
 msgid "End Of File reached!"
 msgstr "Fim do Arquivo atingido!"
 
-#: src/findreplace.c:467
+#: src/findreplace.c:463
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Substituídas %d ocorrências."
@@ -231,90 +231,119 @@ msgstr ""
 msgid "Offset: %s"
 msgstr "Offset: %s"
 
-#: src/preferences.c:50
+#: src/preferences.c:52
 msgid "Default"
 msgstr "Padrão"
 
-#: src/preferences.c:51
+#: src/preferences.c:53
 msgid "Notebook"
 msgstr "Orelha"
 
-#: src/preferences.c:52
+#: src/preferences.c:54
 msgid "Toplevel"
 msgstr "Nível Superior"
 
-#: src/preferences.c:53
+#: src/preferences.c:55
 msgid "Modal"
 msgstr "Modal"
 
-#: src/preferences.c:86
+#: src/preferences.c:76
+#, fuzzy
+msgid "Select font"
+msgstr "Seleção:"
+
+#: src/preferences.c:129
 msgid "Maximum number of undo levels"
 msgstr "Número máximo de níveis a desfazer"
 
-#: src/preferences.c:100
+#: src/preferences.c:144
 msgid "Show cursor offset in statusbar as"
 msgstr "Mostra offset do cursor na barra de status como"
 
-#: src/preferences.c:119
+#: src/preferences.c:163
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
 
-#: src/preferences.c:125
+#: src/preferences.c:169
 msgid "Custom"
 msgstr "Personalizado"
 
-#: src/preferences.c:135
+#. show offsets check button
+#: src/preferences.c:180
 msgid "Show offsets column"
 msgstr "Mostra coluna de offsets"
 
-#: src/preferences.c:140
+#: src/preferences.c:185
 msgid "Editing"
 msgstr "Editando"
 
-#: src/preferences.c:147
+#. display font
+#: src/preferences.c:194
 msgid "Font"
 msgstr "Fonte"
 
-#: src/preferences.c:163
+#: src/preferences.c:210
 msgid "Browse..."
 msgstr "Procurar..."
 
-#: src/preferences.c:182
+#. default group type
+#: src/preferences.c:230
 msgid "Default Group Type"
 msgstr "Tipo Padrão de Grupo"
 
-#: src/preferences.c:198
+#: src/preferences.c:246
 msgid "Display"
 msgstr "Mostrar"
 
-#: src/preferences.c:205
+#. mdi modes
+#: src/preferences.c:255
 msgid "MDI Mode"
 msgstr "Modo Interface de Múltiplos Documentos"
 
-#: src/preferences.c:222
+#: src/preferences.c:272
 msgid "MDI"
 msgstr "Interface de Múltiplos Documentos"
 
-#: src/preferences.c:243
+#. paper selection
+#: src/preferences.c:281
+#, fuzzy
+msgid "Paper size"
+msgstr "Propriedades"
+
+#. data & header font selection
+#: src/preferences.c:295
+#, fuzzy
+msgid "Fonts"
+msgstr "Fonte"
+
+#: src/preferences.c:301
+msgid "Data font"
+msgstr ""
+
+#: src/preferences.c:316
+msgid "Header font"
+msgstr ""
+
+#: src/preferences.c:342
 msgid "Print shaded box over"
 msgstr ""
 
-#: src/preferences.c:252
+#: src/preferences.c:351
 msgid "lines (0 for no box)"
 msgstr ""
 
-#: src/preferences.c:259
+#: src/preferences.c:358
 #, fuzzy
 msgid "Printing"
 msgstr "Editando"
 
-#: src/preferences.c:411
+#: src/preferences.c:531
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
 msgstr ""
 
-#: src/preferences.c:447
+#: src/preferences.c:567
 msgid "Can not open desired font!"
 msgstr "Não pude abrir a fonte desejada!"
 
@@ -438,12 +467,12 @@ msgstr "Total"
 msgid "GHex: Character table"
 msgstr "GHex: Conversor"
 
-#: src/print.c:143
+#: src/print.c:164
 #, fuzzy, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Procurar Dados"
 
-#: src/print.c:159
+#: src/print.c:180
 #, c-format
 msgid "Page: %i/%i"
 msgstr ""
@@ -941,9 +970,6 @@ msgstr ""
 #~ msgid "empty"
 #~ msgstr "vazio"
 
-#~ msgid "Properties"
-#~ msgstr "Propriedades"
-
 #~ msgid "Project"
 #~ msgstr "Projeto"
 
@@ -1066,9 +1092,6 @@ msgstr ""
 
 #~ msgid "Font Selector"
 #~ msgstr "Seletor de Fonte"
-
-#~ msgid "Selection:"
-#~ msgstr "Seleção:"
 
 #~ msgid "FONTSPEC"
 #~ msgstr "ESP. de FONTE"

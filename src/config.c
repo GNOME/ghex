@@ -50,9 +50,13 @@ void save_configuration() {
 
 	gnome_config_set_int("/ghex/Printing/BoxSize", shaded_box_size);
 
-	gnome_config_set_string("/ghex/Printing/Font", def_print_font_name);
+	gnome_config_set_string("/ghex/Printing/DataFont", data_font_name);
 
-	gnome_config_set_float("/ghex/Printing/FontSize", def_print_font_size);
+	gnome_config_set_float("/ghex/Printing/DataFontSize", data_font_size);
+
+	gnome_config_set_string("/ghex/Printing/HeaderFont", header_font_name);
+
+	gnome_config_set_float("/ghex/Printing/HeaderFontSize", header_font_size);
 
 	gnome_config_sync();
 }
@@ -91,20 +95,27 @@ void load_configuration() {
 	def_paper_name = gnome_config_get_string("/ghex/Printing/Paper=a4");
 	def_paper = gnome_paper_with_name(def_paper_name);
 	g_free(def_paper_name);
-	if(!def_paper) {
-		def_paper_name = gnome_paper_name_default();
-		def_paper = gnome_paper_with_name(def_paper_name);
-	}
+	if(!def_paper)
+		def_paper = gnome_paper_with_name(gnome_paper_name_default());
 
-	shaded_box_size = gnome_config_get_int("/ghex/Printing/BoxSize=0");
+ 	shaded_box_size = gnome_config_get_int("/ghex/Printing/BoxSize=0");
 
-	def_print_font_name = gnome_config_get_string("/ghex/Printing/Font=Courier");
-	def_print_font_size = gnome_config_get_float("/ghex/Printing/FontSize=10");
-	print_font = gnome_font_new(def_print_font_name, def_print_font_size);
+	data_font_name = gnome_config_get_string("/ghex/Printing/DataFont=Courier");
+	data_font_size = gnome_config_get_float("/ghex/Printing/DataFontSize=10");
+	header_font_name = gnome_config_get_string("/ghex/Printing/HeaderFont=Helvetica");
+	header_font_size = gnome_config_get_float("/ghex/Printing/HeaderFontSize=12");
+	print_font = gnome_font_new(data_font_name, data_font_size);
 	if(!print_font) {
-		def_print_font_name = "Courier";
-		def_print_font_size = 10.0;
+		data_font_name = g_strdup("Courier");
+		data_font_size = 10.0;
 	}
 	else
-		gtk_object_unref(print_font);
+		gtk_object_unref(GTK_OBJECT(print_font));
+	print_font = gnome_font_new(header_font_name, header_font_size);
+	if(!print_font) {
+	    header_font_name = g_strdup("Helvetica");
+		header_font_size = 12.0;
+	}
+	else
+		gtk_object_unref(GTK_OBJECT(print_font));
 }
