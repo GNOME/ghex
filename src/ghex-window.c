@@ -121,6 +121,9 @@ ghex_window_close(GHexWindow *win)
 		gtk_widget_set_sensitive(converter_get, FALSE);
 
     gtk_widget_destroy(GTK_WIDGET(win));
+
+    if (doc->views == NULL) /* If we have destroyed the last view */
+      g_object_unref (G_OBJECT (doc));
 }
 
 static gboolean 
