@@ -1,0 +1,1701 @@
+# gnome-utils
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# Eiichiro ITANI <emu@ceres.dti.ne.jp>, 1998.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-utils VERSION\n"
+"POT-Creation-Date: 1998-12-10 18:31+0900\n"
+"PO-Revision-Date: 1998-12-11 07:17+09:00\n"
+"Last-Translator: Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
+"Language-Team: <gnome@lists.hypercore.co.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=euc-japan\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gcalc/gcalc.c:30
+msgid "The Gnome Calculator"
+msgstr "GNOME電卓"
+
+#: gcalc/gcalc.c:33
+msgid "Simple double precision calculator similiar to xcalc"
+msgstr "xcalc同様シンプルな倍精度計算機"
+
+#: gcalc/gcalc.c:85 mini-utils/gcolorsel/gcolorsel.c:371
+msgid "E_xit"
+msgstr "終了(_X)"
+
+#: gcalc/gcalc.c:92 ghex/ui.c:75 gtt/menus.c:103
+#: mini-utils/gcolorsel/gcolorsel.c:365
+msgid "_About..."
+msgstr "情報...(_A)"
+
+#: gcalc/gcalc.c:98 gtt/menus.c:59
+msgid "_Copy"
+msgstr "コピー(_C)"
+
+#: gcalc/gcalc.c:104
+msgid "_Calculator"
+msgstr "計算器(_C)"
+
+#: gcalc/gcalc.c:106 ghex/hex-document.c:85 gtt/menus.c:115
+msgid "_Edit"
+msgstr "編集(_E)"
+
+#: gcalc/gcalc.c:108 ghex/ui.c:87 gtt/menus.c:120
+#: mini-utils/gcolorsel/gcolorsel.c:378
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: gcalc/gcalc.c:130
+msgid "Gnome Calculator"
+msgstr "GNOME電卓"
+
+#: gdiskfree/df.c:128 gsearchtool/gsearchtool.c:579
+#: mini-utils/gless/gless.c:307 mini-utils/gw/gw.c:185
+msgid "Exit"
+msgstr "終了"
+
+#: gdiskfree/df.c:137 gsearchtool/gsearchtool.c:588
+#: mini-utils/gless/gless.c:278 mini-utils/gw/gw.c:171
+msgid "About..."
+msgstr "情報..."
+
+#. and document menu and document list paths
+#: gdiskfree/df.c:144 ghex/main.c:62 gsearchtool/gsearchtool.c:595
+#: mini-utils/gless/gless.c:334 mini-utils/gw/gw.c:203
+msgid "File"
+msgstr "ファイル"
+
+#: gdiskfree/df.c:146 gsearchtool/gsearchtool.c:598
+#: mini-utils/gless/gless.c:337 mini-utils/gw/gw.c:206
+msgid "Help"
+msgstr "ヘルプ"
+
+#: gdiskfree/df.c:219
+msgid ""
+"A quick hack to show the amount of space free on mounted file systems "
+"uitilizing a dial."
+msgstr ""
+"マウントされているファイルシステムの未使用領域を "
+"ダイヤル表示するちょっとしたプログラム。"
+
+#: ghex/callbacks.c:39
+msgid "GHex, a binary file editor"
+msgstr "GHex、バイナリファイルエディタ"
+
+#: ghex/callbacks.c:41
+msgid "Released under the terms of GNU Public License"
+msgstr "GNU一般許諾使用書に基づいてリリースされています"
+
+#: ghex/callbacks.c:67 ghex/callbacks.c:137
+msgid "Error saving file!"
+msgstr "ファイル書き込みにエラー!"
+
+#: ghex/callbacks.c:80
+#, c-format
+msgid "Really revert file %s?"
+msgstr "本当にファイル %s を元に戻しますか?"
+
+#: ghex/callbacks.c:103
+msgid "Can not open file!"
+msgstr "ファイルが開けません!"
+
+#: ghex/callbacks.c:141
+msgid "Can't open file for writing!"
+msgstr "ファイルに書き込めません!"
+
+#: ghex/callbacks.c:165
+msgid "Select a file to open"
+msgstr "開くファイルを選択"
+
+#: ghex/callbacks.c:183
+msgid "Select a file to save buffer as"
+msgstr "バッファを書き込むファイル名は"
+
+#: ghex/callbacks.c:277 ghex/callbacks.c:301 ghex/callbacks.c:354
+msgid "There seems to be no string to search for!"
+msgstr "検索すべき文字列はないみたいです!"
+
+#: ghex/callbacks.c:282 ghex/callbacks.c:306 ghex/callbacks.c:359
+msgid "There is no active buffer to search!"
+msgstr "検索対象バッファの指定がありません!"
+
+#: ghex/callbacks.c:291 ghex/callbacks.c:368
+msgid "End Of File reached"
+msgstr "ファイル終端に到達"
+
+#: ghex/callbacks.c:315
+msgid "Beginning Of File reached"
+msgstr "ファイル先頭に到達"
+
+#: ghex/callbacks.c:323
+msgid "There is no active buffer to move the cursor in!"
+msgstr "カーソルを動かすべきアクティブなバッファがありません!"
+
+#: ghex/callbacks.c:328
+msgid "No offset has been specified!"
+msgstr "オフセットが指定されていません!"
+
+#: ghex/callbacks.c:335
+msgid "The offset must be a positive integer value!"
+msgstr "オフセットは正の数でなければいけません!"
+
+#: ghex/callbacks.c:340
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "ファイルの終端より先にはカーソルを移動できません!"
+
+#: ghex/callbacks.c:378 ghex/callbacks.c:417
+msgid "There is no active buffer to replace data in!"
+msgstr "置換を行なうべきアクティブなバッファがありません!"
+
+#: ghex/callbacks.c:389 ghex/callbacks.c:428
+msgid "Erroneous find or replace string!"
+msgstr "検索もしくは文字置換のエラーです!"
+
+#: ghex/callbacks.c:394 ghex/callbacks.c:433
+msgid "Both strings must be of the same length!"
+msgstr "文字は双方同じ長さでなければいけません!"
+
+#: ghex/callbacks.c:407
+msgid "End Of File reached!"
+msgstr "ファイル終端に到達!"
+
+#: ghex/callbacks.c:448
+#, c-format
+msgid "Replaced %d occurencies."
+msgstr "%d箇所置き換えました。"
+
+#: ghex/callbacks.c:514
+msgid "Can not open desired font!"
+msgstr "お望みのフォントを読めません!"
+
+#: ghex/callbacks.c:533
+#, c-format
+msgid ""
+"File %s has changed since last save.\n"
+"Do you want to save changes?"
+msgstr ""
+"ファイル%sは前回セーブしてから更新されています。\n"
+"変更をセーブしますか?"
+
+#: ghex/callbacks.c:566
+msgid "Edit/Group Data As/"
+msgstr "データ表示は"
+
+#: ghex/callbacks.c:621
+msgid "ERRONEUS STRING"
+msgstr "問題のある文字"
+
+#: ghex/config.c:59
+msgid "Can not open configured font!"
+msgstr "設定されたフォントを読めません!"
+
+#: ghex/gnome-support.c:30
+msgid "Discard session"
+msgstr "セッションの破棄"
+
+#: ghex/gnome-support.c:30
+msgid "ID"
+msgstr ""
+
+#: ghex/hex-document.c:54
+msgid "_Bytes"
+msgstr "バイトで(_B)"
+
+#: ghex/hex-document.c:54
+msgid "Group data by 8 bits"
+msgstr "データは8ビットで"
+
+#: ghex/hex-document.c:56
+msgid "_Words"
+msgstr "ワードで(_W)"
+
+#: ghex/hex-document.c:56
+msgid "Group data by 16 bits"
+msgstr "データは16ビットで"
+
+#: ghex/hex-document.c:58
+msgid "_Longwords"
+msgstr "ロングワードで(_W)"
+
+#: ghex/hex-document.c:58
+msgid "Group data by 32 bits"
+msgstr "データは32ビットで"
+
+#: ghex/hex-document.c:69
+msgid "_Find..."
+msgstr "検索(_F)..."
+
+#: ghex/hex-document.c:69
+msgid "Search for a string"
+msgstr "文字列を探す"
+
+#: ghex/hex-document.c:71
+msgid "_Replace..."
+msgstr "置換(_R)..."
+
+#: ghex/hex-document.c:71
+msgid "Replace a string"
+msgstr "文字列を置換"
+
+#: ghex/hex-document.c:75
+msgid "_Goto Byte..."
+msgstr "Nバイト目へ(_G)..."
+
+#: ghex/hex-document.c:75
+msgid "Jump to a certain position"
+msgstr "指定箇所へ飛ぶ"
+
+#: ghex/hex-document.c:79
+msgid "_Group Data As"
+msgstr "データ表示は(_G)"
+
+#: ghex/main.c:63
+msgid "Files/"
+msgstr "ファイル/"
+
+#: ghex/ui.c:32
+msgid "_Open"
+msgstr "開く(_O)"
+
+#: ghex/ui.c:32
+msgid "Open a file"
+msgstr "ファイルを開く"
+
+#: ghex/ui.c:34
+msgid "_Save"
+msgstr "保存(_S)"
+
+#: ghex/ui.c:34
+msgid "Save buffer "
+msgstr "バッファの保存"
+
+#: ghex/ui.c:36
+msgid "Save _as..."
+msgstr "名前をつけて保存(_A)..."
+
+#: ghex/ui.c:36
+msgid "Save buffer under a different file name"
+msgstr "バッファを別の名前のファイルに保存"
+
+#: ghex/ui.c:38
+msgid "_Revert"
+msgstr "戻す(_R)"
+
+#: ghex/ui.c:38
+msgid "Revert buffer"
+msgstr "バッファを戻す"
+
+#: ghex/ui.c:40
+msgid "_Close"
+msgstr "閉じる(_C)"
+
+#: ghex/ui.c:40
+msgid "Close file"
+msgstr "ファイルを閉じる"
+
+#: ghex/ui.c:44
+msgid "Open _Converter..."
+msgstr "変換器を開く(_C)..."
+
+#: ghex/ui.c:44
+msgid "Open base conversion dialog"
+msgstr "変換ダイアログを開く"
+
+#: ghex/ui.c:48
+msgid "_Preferences"
+msgstr "設定(_P)"
+
+#: ghex/ui.c:48
+msgid "Set user preferences"
+msgstr "カスタム設定"
+
+#: ghex/ui.c:52
+msgid "_Exit"
+msgstr "終了(_E)"
+
+#: ghex/ui.c:52
+msgid "Exit GHex"
+msgstr "GHexを終了"
+
+#: ghex/ui.c:62
+msgid "_Add view"
+msgstr "ビューの追加(_A)"
+
+#: ghex/ui.c:62
+msgid "Add a new view of the buffer"
+msgstr "バッファビューを追加"
+
+#: ghex/ui.c:65
+msgid "_Remove view"
+msgstr "ビューの削除(_R)"
+
+#: ghex/ui.c:65
+msgid "Remove the current view of the buffer"
+msgstr "現在のバッファビューを削除"
+
+#: ghex/ui.c:75
+msgid "About GHex"
+msgstr "GHexについて"
+
+#: ghex/ui.c:81 gtt/menus.c:113
+msgid "_File"
+msgstr "ファイル(_F)"
+
+#: ghex/ui.c:83
+msgid "_View"
+msgstr "ビュー(_V)"
+
+#: ghex/ui.c:85
+msgid "File_s"
+msgstr "ファイル集(_S)"
+
+#: ghex/ui.c:99
+msgid "Bytes"
+msgstr "バイト"
+
+#: ghex/ui.c:100
+msgid "Words"
+msgstr "ワード"
+
+#: ghex/ui.c:101
+msgid "Longwords"
+msgstr "ロングワード"
+
+#: ghex/ui.c:125 mini-utils/idetool/idetool.c:141
+#: mini-utils/idetool/idetool.c:326
+msgid "Default"
+msgstr "デフォルト"
+
+#: ghex/ui.c:126
+msgid "Notebook"
+msgstr "ノートブック"
+
+#: ghex/ui.c:127
+msgid "Toplevel"
+msgstr "トップレベル"
+
+#: ghex/ui.c:128
+msgid "Modal"
+msgstr "モーダル"
+
+#: ghex/ui.c:133
+msgid "hex data"
+msgstr "16進データ"
+
+#: ghex/ui.c:134
+msgid "ASCII data"
+msgstr "ASCIIデータ"
+
+#: ghex/ui.c:211
+msgid "GHex: Find Data"
+msgstr "GHex: データ検索"
+
+#: ghex/ui.c:220
+#, c-format
+msgid "Search for %s"
+msgstr "%sを探す"
+
+#: ghex/ui.c:236
+msgid "Find Next"
+msgstr "grep gnome_mdi_get_menubar *.[ch"
+
+#: ghex/ui.c:243
+msgid "Find Previous"
+msgstr "以前を検索"
+
+#: ghex/ui.c:271
+msgid "GHex: Find & Replace Data"
+msgstr "GHex: 検索およびデータの置換"
+
+#: ghex/ui.c:285
+#, c-format
+msgid "Replace %s"
+msgstr "%sを置換"
+
+#: ghex/ui.c:301
+msgid "Find next"
+msgstr "以降を検索"
+
+#: ghex/ui.c:308
+msgid "Replace"
+msgstr "置換"
+
+#: ghex/ui.c:315
+msgid "Replace All"
+msgstr "全て置換"
+
+#: ghex/ui.c:339
+msgid "GHex: Jump To Byte"
+msgstr "GHex: nバイト目にジャンプ"
+
+#: ghex/ui.c:372
+msgid "GHex: Converter"
+msgstr "GHex: 変換器"
+
+#: ghex/ui.c:379
+msgid "Binary"
+msgstr "バイナリ"
+
+#: ghex/ui.c:389
+msgid "Decimal"
+msgstr "10進"
+
+#: ghex/ui.c:399
+msgid "Hex"
+msgstr "16進"
+
+#: ghex/ui.c:409
+msgid "ASCII"
+msgstr "ASCII"
+
+#: ghex/ui.c:419 mini-utils/gless/gless.c:301
+msgid "Close"
+msgstr "閉じる"
+
+#: ghex/ui.c:463
+msgid "Font"
+msgstr "フォント"
+
+#: ghex/ui.c:479
+msgid "Browse..."
+msgstr "参照..."
+
+#: ghex/ui.c:498
+msgid "Default Group Type"
+msgstr "デフォルトのデータ表示"
+
+#: ghex/ui.c:514 gtt/options.c:195
+msgid "Display"
+msgstr "表示"
+
+#: ghex/ui.c:521
+msgid "MDI Mode"
+msgstr "MDIモード"
+
+#: ghex/ui.c:538
+msgid "MDI"
+msgstr ""
+
+#. create the results box
+#. FIXME: add an option to autoclear result box and pass TRUE in that
+#. case
+#: gsearchtool/gsearchtool.c:200
+msgid "Search Results"
+msgstr "検索結果"
+
+#: gsearchtool/gsearchtool.c:486
+msgid "Start in directory:"
+msgstr "起点ディレクトリ:"
+
+#: gsearchtool/gsearchtool.c:504 mini-utils/gw/gw.c:467
+msgid "Add"
+msgstr "追加"
+
+#: gsearchtool/gsearchtool.c:515
+msgid "Start"
+msgstr "開始"
+
+#: gsearchtool/gsearchtool.c:516
+msgid "Stop"
+msgstr "停止"
+
+#: gsearchtool/gsearchtool.c:533
+msgid "This is not yet implemented"
+msgstr "まだ実装されていません"
+
+#: gsearchtool/gsearchtool.c:545
+msgid "Full find (find)"
+msgstr "全検索(find)"
+
+#: gsearchtool/gsearchtool.c:547
+msgid "Quick find (locate)"
+msgstr "簡易検索(locate)"
+
+#: gsearchtool/gsearchtool.c:561
+msgid "The Gnome Search Tool"
+msgstr "GNOME探索ツール"
+
+#: gsearchtool/gsearchtool.c:564
+msgid "Frontend to the unix find/grep/locate commands"
+msgstr "UNIXコマンド find/grep/locate のフロントエンドです"
+
+#: gsearchtool/gsearchtool.c:617
+msgid "Gnome Search Tool"
+msgstr "GNOME探索ツール"
+
+#: gtt/app.c:110 gtt/app.c:209
+msgid "no project selected"
+msgstr "プロジェクトが選択されていません"
+
+#: gtt/app.c:198
+msgid "00:00"
+msgstr ""
+
+#: gtt/clist.c:134
+msgid "Total"
+msgstr "合計"
+
+#: gtt/clist.c:135
+msgid "Today"
+msgstr "今日"
+
+#: gtt/clist.c:136
+msgid "Project Title"
+msgstr "プロジェクト名"
+
+#: gtt/clist.c:137
+msgid "Description"
+msgstr "説明"
+
+#: gtt/log.c:55 gtt/log.c:207
+msgid "program started"
+msgstr "プログラム始動中"
+
+#: gtt/log.c:73
+msgid "no description"
+msgstr "説明なし"
+
+#: gtt/log.c:199
+msgid "program exited"
+msgstr "プログラム終了済"
+
+#: gtt/main.c:75 gtt/main.c:117
+msgid "Error"
+msgstr "エラー"
+
+#: gtt/main.c:75
+msgid ""
+"There seems to be another GTimeTracker running.\n"
+"Please remove the pid file, if that is not correct."
+msgstr ""
+"別のGTimeTrackerが動いているようです。\n"
+"動いていないなら、pidファイルを削除して下さい。"
+
+#: gtt/main.c:118
+msgid ""
+"An error occured while reading the configuration file.\n"
+"Shall I setup a new configuration?"
+msgstr ""
+"設定ファイル読み込み中にエラーが発生しました。\n"
+"新規に設定ファイルを用意しましょうか?"
+
+#: gtt/main.c:211 gtt/main.c:227 gtt/main.c:238 gtt/main.c:244
+#, c-format
+msgid "error in geometry string \"%s\"\n"
+msgstr "ジオメトリ指定 \"%s\" にエラーがあります。\n"
+
+#: gtt/main.c:263
+msgid "Specify geometry"
+msgstr "ジオメトリの指定"
+
+#: gtt/main.c:263 mini-utils/gless/gless.c:116
+msgid "GEOMETRY"
+msgstr ""
+
+#: gtt/main.c:265
+msgid "Select a project on startup"
+msgstr "起動時にスタートするプロジェクトを選択"
+
+#: gtt/main.c:265
+msgid "PROJECT"
+msgstr "プロジェクト"
+
+#: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
+msgid "Warning"
+msgstr "注意"
+
+#: gtt/menucmd.c:32 gtt/menucmd.c:155
+msgid "I could not write the configuration file!"
+msgstr "設定ファイルを保存できません!"
+
+#: gtt/menucmd.c:85 gtt/toolbar.c:142
+msgid "New Project..."
+msgstr "新規プロジェクト..."
+
+#: gtt/menucmd.c:89
+msgid "Please enter the name of the new project:"
+msgstr "新しいプロジェクトの名称を入力して下さい:"
+
+#: gtt/menucmd.c:123
+msgid "I could not read the configuration file"
+msgstr "設定ファイルを読み込めません"
+
+#: gtt/menucmd.c:137 gtt/toolbar.c:149
+msgid "Reload Configuration File"
+msgstr "設定ファイルの読み直し"
+
+#: gtt/menucmd.c:138
+msgid ""
+"This will overwrite your current set of projects.\n"
+"Do you really want to reload the configuration file?"
+msgstr ""
+"実行すると現時点のプロジェクトの状態が消えてしまいます。\n"
+"本当に設定を読み直しますか?"
+
+#: gtt/menus.c:27
+msgid "_New Project..."
+msgstr "新規プロジェクト(_N)..."
+
+#: gtt/menus.c:31
+msgid "_Reload Configuration File"
+msgstr "設定ファイルの読み直し(_R)..."
+
+#: gtt/menus.c:35
+msgid "_Save Configuration File"
+msgstr "設定ファイルの保存(_S)..."
+
+#: gtt/menus.c:40
+msgid "_Preferences..."
+msgstr "好み(_P)..."
+
+#: gtt/menus.c:45
+msgid "_Quit"
+msgstr "終了(_Q)"
+
+#: gtt/menus.c:55
+msgid "C_ut"
+msgstr "切り出し(_u)"
+
+#: gtt/menus.c:64
+msgid "_Paste"
+msgstr "貼り付け(_P)"
+
+#: gtt/menus.c:70
+msgid "Clear _Daily Counter"
+msgstr "日毎のカウンターをクリア(_D)"
+
+#: gtt/menus.c:75
+msgid "Pr_operties..."
+msgstr "設定(_O)..."
+
+#: gtt/menus.c:85
+msgid "St_art"
+msgstr "スタート(_A)"
+
+#: gtt/menus.c:89
+msgid "Sto_p"
+msgstr "停止(_P)"
+
+#: gtt/menus.c:94
+msgid "_Timer Running"
+msgstr "動作中のタイマー(_T)"
+
+#: gtt/menus.c:117
+msgid "_Timer"
+msgstr "タイマー(_T)"
+
+#: gtt/menus.c:128
+msgid "Properties..."
+msgstr "設定"
+
+#: gtt/menus.c:134 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "切り出し"
+
+#: gtt/menus.c:139 gtt/toolbar.c:163
+msgid "Copy"
+msgstr "コピー"
+
+#: gtt/menus.c:144 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "貼り付け"
+
+#: gtt/menus.c:149
+msgid "Clear Daily Counter"
+msgstr "日毎のカウンターのクリア"
+
+#: gtt/options.c:203
+msgid "Show Seconds"
+msgstr "秒を表示"
+
+#: gtt/options.c:209
+msgid "Show Status Bar"
+msgstr "ステータスバーを表示"
+
+#: gtt/options.c:215
+msgid "Show Table Header"
+msgstr "テーブル見出しを表示"
+
+#: gtt/options.c:229 gtt/options.c:527
+msgid "Toolbar"
+msgstr "ツールバー"
+
+#: gtt/options.c:237
+msgid "Show Toolbar Icons"
+msgstr "ツールバーにアイコンを表示"
+
+#: gtt/options.c:243
+msgid "Show Toolbar Texts"
+msgstr "ツールバーにテキストを表示"
+
+#: gtt/options.c:249
+msgid "Show Tooltips"
+msgstr "ツールチップの表示"
+
+#: gtt/options.c:255
+msgid "Toolbar Segments"
+msgstr "ツールバーの領域"
+
+#: gtt/options.c:263
+msgid "Show `New'"
+msgstr "`新規'の表示"
+
+#: gtt/options.c:269
+msgid "Show `Save', `Reload'"
+msgstr "`保存'、`読み直し'の表示"
+
+#: gtt/options.c:275
+msgid "Show `Cut', `Copy', `Paste'"
+msgstr "`切り出し'、`コピー'、`貼り付け'の表示"
+
+#: gtt/options.c:281
+msgid "Show `Properties'"
+msgstr "`設定'の表示"
+
+#: gtt/options.c:287
+msgid "Show `Timer'"
+msgstr "`タイマー'の表示"
+
+#: gtt/options.c:293
+msgid "Show `Preferences'"
+msgstr "`好み'の表示"
+
+#: gtt/options.c:299
+msgid "Show `Help'"
+msgstr "`ヘルプ'の表示"
+
+#: gtt/options.c:305
+msgid "Show `Quit'"
+msgstr "`終了'の表示"
+
+#: gtt/options.c:319
+msgid "Shell Commands"
+msgstr "シェルコマンド"
+
+#: gtt/options.c:327
+msgid "Switch Project Command:"
+msgstr "プロジェクト切替え時の命令:"
+
+#: gtt/options.c:338
+msgid "No Project Command:"
+msgstr "プロジェクトがない時の命令:"
+
+#: gtt/options.c:372
+msgid "Logfile"
+msgstr "ログファイル"
+
+#: gtt/options.c:380
+msgid "Use Logfile"
+msgstr "ログファイルを使う"
+
+#: gtt/options.c:389
+msgid "Filename:"
+msgstr "ファイル名:"
+
+#: gtt/options.c:403
+msgid "Entry Start:"
+msgstr "始動時のエントリ:"
+
+#: gtt/options.c:417
+msgid "Entry Stop:"
+msgstr "停止時のエントリ:"
+
+#: gtt/options.c:431
+msgid "Timeout in secs:"
+msgstr "タイムアウト時間(秒):"
+
+#: gtt/options.c:508 mini-utils/gless/gless.c:336 mini-utils/gw/gw.c:204
+msgid "Preferences"
+msgstr "設定"
+
+#: gtt/options.c:514
+msgid "Misc"
+msgstr "諸々"
+
+#: gtt/proj.c:461
+msgid "project %t started"
+msgstr "プロジェクト %t 開始しました"
+
+#: gtt/proj.c:464
+msgid "stopped project %t"
+msgstr "プロジェクト %t を停止しました"
+
+#: gtt/prop.c:60
+msgid "empty"
+msgstr "空"
+
+#: gtt/prop.c:175
+msgid "Properties"
+msgstr "設定"
+
+#: gtt/prop.c:182
+msgid "Project"
+msgstr "プロジェクト"
+
+#: gtt/prop.c:202
+msgid "Project Title:"
+msgstr "プロジェクト名:"
+
+#: gtt/prop.c:214
+msgid "Project Description:"
+msgstr "プロジェクトの説明:"
+
+#: gtt/prop.c:226
+msgid "Project Time today:"
+msgstr "今日プロジェクトに費やした時間"
+
+#: gtt/prop.c:242 gtt/prop.c:280
+msgid "hours"
+msgstr "時間"
+
+#: gtt/prop.c:253 gtt/prop.c:291
+msgid "mins"
+msgstr "分"
+
+#: gtt/prop.c:264 gtt/prop.c:302
+msgid "secs"
+msgstr "秒"
+
+#: gtt/prop.c:268
+msgid "Project Time ever:"
+msgstr "これまでプロジェクトに費やした時間:"
+
+#. Note to translators: just skip the `[GTT]'
+#: gtt/toolbar.c:141
+msgid "[GTT]New"
+msgstr "新規"
+
+#: gtt/toolbar.c:148
+msgid "Reload"
+msgstr "読み直し"
+
+#: gtt/toolbar.c:152
+msgid "Save"
+msgstr "保存"
+
+#: gtt/toolbar.c:153
+msgid "Save Configuration File"
+msgstr "設定ファイルの保存"
+
+#: gtt/toolbar.c:160
+msgid "Cut Selected Project"
+msgstr "選択したプロジェクトを切り出し"
+
+#: gtt/toolbar.c:164
+msgid "Copy Selected Project"
+msgstr "選択したプロジェクトをコピー"
+
+#: gtt/toolbar.c:168
+msgid "Paste Project"
+msgstr "プロジェクトの貼り付け"
+
+#: gtt/toolbar.c:174
+msgid "Props"
+msgstr "設定"
+
+#: gtt/toolbar.c:175
+msgid "Edit Properties..."
+msgstr "設定の編集..."
+
+#: gtt/toolbar.c:179
+msgid "Timer"
+msgstr "タイマー"
+
+#: gtt/toolbar.c:180
+msgid "Start/Stop Timer"
+msgstr "タイマーの始動/停止"
+
+#: gtt/toolbar.c:188
+msgid "Prefs"
+msgstr "好み"
+
+#: gtt/toolbar.c:189
+msgid "Edit Preferences..."
+msgstr "好みの編集..."
+
+#: gtt/toolbar.c:193
+msgid "Manual"
+msgstr "説明"
+
+#: gtt/toolbar.c:193
+msgid "Manual..."
+msgstr "説明..."
+
+#: gtt/toolbar.c:198
+msgid "Quit"
+msgstr "終了"
+
+#: gtt/toolbar.c:198
+msgid "Quit GTimeTracker"
+msgstr "GTimeTrackerの終了"
+
+#: mini-utils/gcolorsel/gcolorsel.c:57 mini-utils/gcolorsel/gcolorsel.c:59
+#: mini-utils/gcolorsel/gcolorsel.c:231 mini-utils/gcolorsel/gcolorsel.c:352
+msgid "Gnome Color Browser"
+msgstr "GNOME色ブラウザ"
+
+#: mini-utils/gcolorsel/gcolorsel.c:81
+msgid "Color Name:"
+msgstr "色名"
+
+#: mini-utils/gcolorsel/gcolorsel.c:88
+msgid "Color Values:"
+msgstr "色値"
+
+#: mini-utils/gcolorsel/gcolorsel.c:147
+msgid "Color"
+msgstr "色"
+
+#: mini-utils/gcolorsel/gcolorsel.c:148 mini-utils/guname/moreinfo.c:218
+#: mini-utils/idetool/idetool.c:258
+msgid "Value"
+msgstr "値"
+
+#: mini-utils/gcolorsel/gcolorsel.c:149 mini-utils/guname/moreinfo.c:217
+#: mini-utils/gw/gw.c:458 mini-utils/gw/gw.c:533
+msgid "Name"
+msgstr "名前"
+
+#: mini-utils/gcolorsel/gcolorsel.c:222
+msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
+msgstr "エラー。/usr/X11R6/lib/X11/rgb.txt が読めません\n"
+
+#: mini-utils/gcolorsel/gcolorsel.c:235
+msgid "Parsing Colors"
+msgstr "色を走査中"
+
+#: mini-utils/gcolorsel/gcolorsel.c:299
+msgid "Decimal (8 bit)"
+msgstr "10進(8ビット)"
+
+#: mini-utils/gcolorsel/gcolorsel.c:300
+msgid "Decimal (16 bit)"
+msgstr "10進(16ビット)"
+
+#: mini-utils/gcolorsel/gcolorsel.c:301
+msgid "Hex (8 bit)"
+msgstr "16進(8ビット)"
+
+#: mini-utils/gcolorsel/gcolorsel.c:302
+msgid "Hex (16 bit)"
+msgstr "16進(16ビット)"
+
+#: mini-utils/gcolorsel/gcolorsel.c:303
+msgid "Float"
+msgstr "小数"
+
+#: mini-utils/gcolorsel/gcolorsel.c:356
+msgid "Small utility to browse available X11 colors."
+msgstr "X11で定義された色を参照するための簡単なユーティリティです。"
+
+#: mini-utils/gcolorsel/gcolorsel.c:377
+msgid "_Program"
+msgstr "プログラム(_P)"
+
+#: mini-utils/gfontsel/gfontsel.c:145
+msgid "Font Selector"
+msgstr "フォントセレクタ"
+
+#: mini-utils/gfontsel/gfontsel.c:170
+msgid "Selection:"
+msgstr "選択:"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "Font to load"
+msgstr "読み込むフォント"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr "フォントのスペック"
+
+#: mini-utils/gfontsel/gfontsel.c:254
+msgid "Print selected font name on exit"
+msgstr "終了時に選択されたフォント名を表示"
+
+#: mini-utils/gfontsel/gfontsel.c:255
+msgid "Inhibit remembering selected font for next run"
+msgstr "次に起動する時まで選択したフォントを記憶しない"
+
+#: mini-utils/gfontsel/gfontsel.c:256
+msgid "Inhibit loading of last font"
+msgstr "前回読んだフォントを読み込まない"
+
+#: mini-utils/gless/gless.c:116
+msgid "Where to put the window, and its size"
+msgstr "ウインドウの位置とサイズ"
+
+#: mini-utils/gless/gless.c:117
+msgid "Ignore standard input; may be needed in some cases."
+msgstr "標準入力を無視する(何かで必要かもしれません)"
+
+#: mini-utils/gless/gless.c:279 mini-utils/gw/gw.c:172
+msgid "Tell about this application"
+msgstr "このアプリケーションについて語る"
+
+#: mini-utils/gless/gless.c:287
+msgid "New Window"
+msgstr "新規ウインドウ"
+
+#: mini-utils/gless/gless.c:287
+msgid "New text viewer window"
+msgstr "新しいテキスト表示ウインドウ"
+
+#: mini-utils/gless/gless.c:292
+msgid "Open..."
+msgstr "開く..."
+
+#: mini-utils/gless/gless.c:292
+msgid "Open a new file in this window"
+msgstr "このウインドウに新しいファイルを開く"
+
+#: mini-utils/gless/gless.c:297 mini-utils/guname/guname.c:526
+msgid "Save As..."
+msgstr "名前をつけて保存..."
+
+#: mini-utils/gless/gless.c:297
+msgid "Save file to disk"
+msgstr "ファイルをディスクに保存"
+
+#: mini-utils/gless/gless.c:302
+msgid "Close this window"
+msgstr "このウインドウを閉じる"
+
+#: mini-utils/gless/gless.c:308
+msgid "Quit the application"
+msgstr "アプリケーションを終了する"
+
+#: mini-utils/gless/gless.c:316
+msgid "Fixed Font"
+msgstr "固定幅フォント"
+
+#: mini-utils/gless/gless.c:317
+msgid "Display text with a fixed font"
+msgstr "固定幅フォントで表示する"
+
+#: mini-utils/gless/gless.c:325 mini-utils/gw/gw.c:194
+msgid "Preferences..."
+msgstr "好み..."
+
+#: mini-utils/gless/gless.c:326 mini-utils/gw/gw.c:195
+msgid "Change application preferences"
+msgstr "アプリケーションに関する好みを変更する"
+
+#: mini-utils/gless/gless.c:335
+msgid "View"
+msgstr "ビュー"
+
+#: mini-utils/gless/gless.c:352
+msgid "Text File Viewer"
+msgstr "テキストファイルビューワ"
+
+#: mini-utils/gless/gless.c:412
+msgid ""
+"Couldn't understand geometry (position and size)\n"
+" specified on command line"
+msgstr ""
+"コマンドラインで指定されたジオメトリ情報(位置と大きさ)\n"
+"を理解できません"
+
+#: mini-utils/gless/gless.c:453
+msgid "Loading..."
+msgstr "読み込み中..."
+
+#: mini-utils/gless/gless.c:458
+msgid "No such file or directory:\n"
+msgstr "そんなファイルもディレクトリもありません:\n"
+
+#: mini-utils/gless/gless.c:475
+msgid "Failed to decompress and display the file:\n"
+msgstr "ファイルの展開、表示に失敗しました:\n"
+
+#: mini-utils/gless/gless.c:486
+msgid ""
+"Unable to display compressed file.\n"
+"zcat not found in your path."
+msgstr ""
+"圧縮されたファイルを表示することができません。\n"
+"zcat が見当たりません。"
+
+#: mini-utils/gless/gless.c:494
+msgid "Error loading file:\n"
+msgstr "ファイル読み込み中にエラー:\n"
+
+#: mini-utils/gless/gless.c:548
+msgid "Saving..."
+msgstr "保存中..."
+
+#: mini-utils/gless/gless.c:559
+msgid "Failed to write file:\n"
+msgstr "ファイル書き込みに失敗:\n"
+
+#: mini-utils/gless/gless.c:606
+msgid "Save Text As..."
+msgstr "テキストに名前をつけて保存..."
+
+#: mini-utils/gless/gless.c:646
+msgid "Open Text File..."
+msgstr "テキストファイルを開く..."
+
+#: mini-utils/gnome-run/gnome-run.c:37
+msgid "Failed to execute command:\n"
+msgstr "コマンド実行に失敗:\n"
+
+#: mini-utils/gnome-run/gnome-run.c:56
+msgid "Enter a command to execute:"
+msgstr "実行するコマンドを入力して下さい:"
+
+#: mini-utils/gshutdown/gshutdown.c:82
+msgid "Shut Down"
+msgstr "シャットダウン"
+
+#: mini-utils/gshutdown/gshutdown.c:83
+msgid "Single User Mode"
+msgstr "シングルユーザーモード"
+
+#: mini-utils/gshutdown/gshutdown.c:84
+msgid "Runlevel 2"
+msgstr "実行レベル2"
+
+#: mini-utils/gshutdown/gshutdown.c:85
+msgid "Runlevel 3"
+msgstr "実行レベル3"
+
+#: mini-utils/gshutdown/gshutdown.c:86
+msgid "Runlevel 4"
+msgstr "実行レベル4"
+
+#: mini-utils/gshutdown/gshutdown.c:87
+msgid "Runlevel 5"
+msgstr "実行レベル5"
+
+#: mini-utils/gshutdown/gshutdown.c:88
+msgid "Reboot"
+msgstr "リブート"
+
+#: mini-utils/gshutdown/gshutdown.c:94
+msgid "Are you sure you want to shut down the computer?"
+msgstr "本当にコンピュータをシャットダウンしてしていいのですね?"
+
+#: mini-utils/gshutdown/gshutdown.c:95
+msgid "Are you sure you want to switch to single user mode?"
+msgstr "本当にシングルユーザーモードにしていいのですね?"
+
+#: mini-utils/gshutdown/gshutdown.c:96
+msgid "Are you sure you want to switch to runlevel 2?"
+msgstr "実行レベルを本当に2にしていいのですね?"
+
+#: mini-utils/gshutdown/gshutdown.c:97
+msgid "Are you sure you want to switch to runlevel 3?"
+msgstr "実行レベルを本当に3にしていいのですね?"
+
+#: mini-utils/gshutdown/gshutdown.c:98
+msgid "Are you sure you want to switch to runlevel 4?"
+msgstr "実行レベルを本当に4にしていいのですね?"
+
+#: mini-utils/gshutdown/gshutdown.c:99
+msgid "Are you sure you want to switch to runlevel 5?"
+msgstr "実行レベルを本当に5にしていいのですね?"
+
+#: mini-utils/gshutdown/gshutdown.c:100
+msgid "Are you sure you want to reboot the system?"
+msgstr "システムを本当にリブートしていいのですね?"
+
+#. notebook pages
+#: mini-utils/gshutdown/gshutdown.c:173
+msgid "Shutdown or Reboot"
+msgstr "シャットダウン/リブート"
+
+#: mini-utils/gshutdown/gshutdown.c:190 mini-utils/gshutdown/gshutdown.c:191
+msgid "Easy"
+msgstr "簡易"
+
+#: mini-utils/gshutdown/gshutdown.c:195 mini-utils/gshutdown/gshutdown.c:196
+msgid "Advanced"
+msgstr "高等"
+
+#: mini-utils/gshutdown/gshutdown.c:228
+msgid ""
+"Click OK to shutdown or reboot. You will lose\n"
+"any unsaved information in open applications."
+msgstr ""
+"OKをクリックするとシャットダウン/リブートします。\n"
+"まだ保存されていないデータは全て失われます。"
+
+#. Put in a "revert to defaults" button
+#: mini-utils/gshutdown/gshutdown.c:355
+msgid "Revert to Defaults"
+msgstr "デフォルトに戻す"
+
+#: mini-utils/gshutdown/gshutdown.c:365
+msgid "Commands"
+msgstr "コマンド"
+
+#: mini-utils/gshutdown/gshutdown.c:370
+msgid "Confirm before shutdown?"
+msgstr "シャットダウンの前には確認する?"
+
+#: mini-utils/gshutdown/gshutdown.c:382
+msgid "General"
+msgstr "一般"
+
+#: mini-utils/gshutdown/gshutdown.c:444
+msgid "Don't ask next time."
+msgstr "もう聞かない"
+
+#: mini-utils/guname/guname.c:327
+msgid "System Information"
+msgstr "システム情報"
+
+#: mini-utils/guname/guname.c:411
+msgid "Logo file not found"
+msgstr "ロゴが見つかりません"
+
+#. Up here so it uses the default font
+#: mini-utils/guname/guname.c:415
+msgid "GNOME contributors:"
+msgstr "GNOMEに貢献した人々:"
+
+#: mini-utils/guname/guname.c:429
+msgid "GNOME: The GNU Network Object Model Environment"
+msgstr ""
+
+#: mini-utils/guname/guname.c:453
+msgid "Email Information..."
+msgstr "メイルで情報を送る"
+
+#: mini-utils/guname/guname.c:464
+msgid "Save Information to File..."
+msgstr "ファイルに情報を記録"
+
+#: mini-utils/guname/guname.c:476 mini-utils/guname/guname.c:540
+msgid "Detailed Information..."
+msgstr "詳細な情報"
+
+#: mini-utils/guname/guname.c:491
+msgid "Category"
+msgstr "カテゴリ"
+
+#: mini-utils/guname/guname.c:491
+msgid "Your System"
+msgstr "システム"
+
+#: mini-utils/guname/guname.c:532
+msgid "Mail To..."
+msgstr "メイル先..."
+
+#: mini-utils/guname/guname.c:580
+msgid "Error closing file `"
+msgstr "ファイルを閉じるのに失敗"
+
+#: mini-utils/guname/guname.c:582
+msgid ""
+"\n"
+"Some or all data may not have been written."
+msgstr ""
+"\n"
+"一部もしくは全てのデータが記録されていないかもしれません。"
+
+#: mini-utils/guname/guname.c:591
+msgid "Couldn't open file `"
+msgstr "このファイルを開けません `"
+
+#: mini-utils/guname/guname.c:605
+msgid "Save System Information As..."
+msgstr "システム情報に名前をつけて保存..."
+
+#. I don't think the error_string() will reliably mean anything.
+#: mini-utils/guname/guname.c:651
+msgid "Command failed ` "
+msgstr "命令実行失敗"
+
+#: mini-utils/guname/guname.c:651 mini-utils/guname/guname.c:658
+msgid " ': "
+msgstr ""
+
+#: mini-utils/guname/guname.c:658
+msgid "Couldn't run command ` "
+msgstr "次のコマンドを実行できません `"
+
+#: mini-utils/guname/guname.c:681
+msgid "The following mail will be sent to "
+msgstr "以下のメイルがそこに送られます"
+
+#: mini-utils/guname/guname.c:683
+msgid ""
+".\n"
+" Are you sure you want to mail this information?"
+msgstr ""
+"。\n"
+"この情報をメイルしても良いですね?"
+
+#: mini-utils/guname/guname.c:692
+msgid "Are you sure?"
+msgstr "本当ですか?"
+
+#: mini-utils/guname/guname.c:725
+msgid "Address to mail to:"
+msgstr "メイル宛先:"
+
+#: mini-utils/guname/info.c:37
+msgid "Distribution:"
+msgstr "ディストリビューション:"
+
+#: mini-utils/guname/info.c:38
+msgid "Operating System:"
+msgstr "オペレーティングシステム:"
+
+#: mini-utils/guname/info.c:39
+msgid "Distribution Version:"
+msgstr "ディストリビューションのバージョン"
+
+#: mini-utils/guname/info.c:40
+msgid "Operating System Version:"
+msgstr "オペレーティングシステムのバージョン:"
+
+#: mini-utils/guname/info.c:41
+msgid "Operating System Release:"
+msgstr "オペレーティングシステムのリリース番号:"
+
+#: mini-utils/guname/info.c:42
+msgid "Processor Type:"
+msgstr "プロセッサの種別:"
+
+#: mini-utils/guname/info.c:43
+msgid "Processor Speed:"
+msgstr "プロセッサの速度:"
+
+#: mini-utils/guname/info.c:44
+msgid "Host Name:"
+msgstr "ホスト名:"
+
+#: mini-utils/guname/info.c:45
+msgid "Domain Name:"
+msgstr "ドメイン名:"
+
+#: mini-utils/guname/info.c:46
+msgid "User Name:"
+msgstr "ユーザ名:"
+
+#: mini-utils/guname/info.c:47
+msgid "X Display Name:"
+msgstr "Xディスプレイ名:"
+
+#: mini-utils/guname/info.c:48
+msgid "System Status:"
+msgstr "システム状態:"
+
+#: mini-utils/guname/info.c:49
+msgid "Real Memory:"
+msgstr "実メモリ:"
+
+#: mini-utils/guname/info.c:50
+msgid "Swap Space (\"virtual memory\"):"
+msgstr "スワップ空間(\"仮想メモリ\"):"
+
+#: mini-utils/guname/info.c:51
+msgid "Total Memory:"
+msgstr "全メモリ:"
+
+#: mini-utils/guname/info.c:52
+msgid "Free Memory:"
+msgstr "空きメモリ:"
+
+#: mini-utils/guname/info.c:57
+msgid "Device"
+msgstr "デバイス"
+
+#: mini-utils/guname/info.c:58
+msgid "Size"
+msgstr "サイズ"
+
+#: mini-utils/guname/info.c:59
+msgid "Used space"
+msgstr "使用領域"
+
+#: mini-utils/guname/info.c:60
+msgid "Free space"
+msgstr "未使用領域"
+
+#: mini-utils/guname/info.c:61
+msgid "Percent free"
+msgstr "未使用割合"
+
+#: mini-utils/guname/info.c:62
+msgid "Mount point"
+msgstr "マウントポイント"
+
+#. This is about the only case where we'll put Unknown instead
+#. of simply not showing the info.
+#: mini-utils/guname/info.c:168
+msgid "Unknown"
+msgstr "未知"
+
+#: mini-utils/guname/moreinfo.c:82
+msgid "Unknown filesystem"
+msgstr "未知のファイルシステム"
+
+#: mini-utils/guname/moreinfo.c:104
+msgid "No information for this filesystem."
+msgstr "このファイルシステムの情報はありません"
+
+#: mini-utils/guname/moreinfo.c:119
+msgid "Mounted filesystems"
+msgstr "マウント中のファイルシステム"
+
+#: mini-utils/guname/moreinfo.c:155
+msgid "Memory"
+msgstr "メモリ"
+
+#: mini-utils/guname/moreinfo.c:155
+msgid "Kilobytes"
+msgstr "Kバイト"
+
+#: mini-utils/guname/moreinfo.c:158
+msgid "%ld%% %s used."
+msgstr "%ld%% の%s使用中"
+
+#: mini-utils/guname/moreinfo.c:174
+msgid "memory"
+msgstr "メモリ"
+
+#: mini-utils/guname/moreinfo.c:188
+msgid "swap"
+msgstr "スワップ"
+
+#: mini-utils/guname/moreinfo.c:214
+#, c-format
+msgid "CPU %d"
+msgstr ""
+
+#: mini-utils/guname/moreinfo.c:255
+msgid "Detailed System Information"
+msgstr "詳細なシステム情報"
+
+#: mini-utils/guname/moreinfo.c:268
+msgid "Disk Information"
+msgstr "ディスク情報"
+
+#: mini-utils/guname/moreinfo.c:270
+msgid "Memory Information"
+msgstr "メモリ情報"
+
+#: mini-utils/guname/moreinfo.c:273
+msgid "CPU Information"
+msgstr "CPU情報"
+
+#: mini-utils/guname/moreinfo.c:294
+msgid "%2d%% full "
+msgstr "%2d%% 使用中 "
+
+#: mini-utils/guname/moreinfo.c:296
+#, c-format
+msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
+msgstr "%ld Mバイト、%ld 空き (%ld 特権領域); %ld Iノード、%ld空き"
+
+#: mini-utils/guname/moreinfo.c:310
+msgid "Mount Point: "
+msgstr "マウントポイント:"
+
+#: mini-utils/guname/moreinfo.c:311
+msgid "    Device: "
+msgstr "   デバイス: "
+
+#: mini-utils/guname/moreinfo.c:312
+msgid "    Filesystem Type: "
+msgstr "   ファイルシステム形式: "
+
+#: mini-utils/gw/gw.c:144
+msgid ""
+"Couldn't find the \"w\" command in your path.\n"
+"This command is needed for the program to work."
+msgstr ""
+"\"w\"コマンドが見つかりません。\n"
+"\"w\"がないとこのプログラムは動きません。"
+
+#: mini-utils/gw/gw.c:180
+msgid "Save..."
+msgstr "保存..."
+
+#: mini-utils/gw/gw.c:180
+msgid "Write information to disk"
+msgstr "情報をディスクに記録"
+
+#: mini-utils/gw/gw.c:186
+msgid "Quit the application without saving"
+msgstr "記録せずにアプリケーションを終了"
+
+#: mini-utils/gw/gw.c:217
+msgid "User Listing"
+msgstr "ユーザ表示"
+
+#: mini-utils/gw/gw.c:236
+msgid "Update Information"
+msgstr "情報の更新"
+
+#: mini-utils/gw/gw.c:458
+msgid "Command Line"
+msgstr "コマンドライン"
+
+#. Create everything.
+#: mini-utils/gw/gw.c:466
+msgid "Add some defaults"
+msgstr "デフォルトに何か追加"
+
+#: mini-utils/gw/gw.c:468
+msgid "Delete"
+msgstr "削除"
+
+#: mini-utils/gw/gw.c:486
+msgid "Command Editor"
+msgstr "コマンドエディタ"
+
+#: mini-utils/gw/gw.c:496
+msgid ""
+"You can configure the commands on the popup menus.\n"
+"Just enter the name you want to appear on the \n"
+"menu, and the command to execute.\n"
+"In the command, you can use %u to represent the\n"
+"currently selected username, and %t for the tty."
+msgstr ""
+"ポップアップメニューから実行するコマンドを設定できます。\n"
+"メニューに現れる文字を入力して、実行するコマンドを入力\n"
+"して下さい。\n"
+"コマンドには、%u 選択したユーザを表すものとして、%t を\n"
+"tty を表すものとして指示することができます。"
+
+#: mini-utils/gw/gw.c:503
+msgid ""
+"Click this button to add\n"
+"some sample commands."
+msgstr ""
+"このボタンをクリックして\n"
+"コマンドの例を追加できます。"
+
+#: mini-utils/gw/gw.c:511
+msgid "Menu items"
+msgstr "メニュー項目"
+
+#: mini-utils/gw/gw.c:539
+msgid "Command"
+msgstr "コマンド"
+
+#: mini-utils/idetool/idetool.c:41
+msgid "Unable to access the drive."
+msgstr "ドライブにアクセスできません。"
+
+#: mini-utils/idetool/idetool.c:58 mini-utils/idetool/idetool.c:70
+msgid "The DMA setting for this drive cannot be changed."
+msgstr "このドライブのDMA設定を変更することはできません。"
+
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:322 mini-utils/idetool/idetool.c:324
+msgid "Enabled"
+msgstr "許可"
+
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:322 mini-utils/idetool/idetool.c:324
+msgid "Disabled"
+msgstr "不許可"
+
+#: mini-utils/idetool/idetool.c:90 mini-utils/idetool/idetool.c:102
+msgid "The IRQ unmask setting for this drive cannot be changed."
+msgstr "このドライブのIRQ umask設定を変更することはできません。"
+
+#: mini-utils/idetool/idetool.c:121 mini-utils/idetool/idetool.c:133
+msgid "The drive refused to keep its settings."
+msgstr "このドライブは設定を保持してくれません。"
+
+#: mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:326
+msgid "Keep settings"
+msgstr "設定を保持"
+
+#. IO
+#: mini-utils/idetool/idetool.c:168
+msgid "PIO Mode"
+msgstr "PIOモード"
+
+#: mini-utils/idetool/idetool.c:211
+msgid "(1 Sector)"
+msgstr "(1セクター)"
+
+#: mini-utils/idetool/idetool.c:213
+msgid "(Dual Port)"
+msgstr "(デュアルポート)"
+
+#: mini-utils/idetool/idetool.c:215
+msgid "(Dual Port Cache)"
+msgstr "(デュアルポートキャッシュ)"
+
+#: mini-utils/idetool/idetool.c:258
+msgid "Setting"
+msgstr "設定"
+
+#: mini-utils/idetool/idetool.c:309 mini-utils/idetool/idetool.c:319
+msgid "Model"
+msgstr "モデル"
+
+#: mini-utils/idetool/idetool.c:310
+msgid "Firmware"
+msgstr "ファームウェア"
+
+#: mini-utils/idetool/idetool.c:311
+msgid "Serial No."
+msgstr "シリアル番号"
+
+#. do config here
+#: mini-utils/idetool/idetool.c:313
+msgid "Geometry"
+msgstr "ジオメトリ"
+
+#: mini-utils/idetool/idetool.c:314
+msgid "Cache"
+msgstr "キャッシュ"
+
+#: mini-utils/idetool/idetool.c:315
+msgid "Status"
+msgstr "状態"
+
+#: mini-utils/idetool/idetool.c:319
+msgid "Legacy MFM/RLL drive"
+msgstr "古いMFM/RLLドライブ"
+
+#: mini-utils/idetool/idetool.c:322
+msgid "DMA Mode"
+msgstr "DMAモード"
+
+#: mini-utils/idetool/idetool.c:323
+msgid "IO Mode"
+msgstr "IOモード"
+
+#: mini-utils/idetool/idetool.c:324
+msgid "IRQ Unmask"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:325
+msgid "Multisector"
+msgstr "マルチセクター"
+
+#: mini-utils/idetool/idetool.c:326
+msgid "On Reset"
+msgstr "リセット時"
+
+#.
+#. *	Set up the outer display first
+#.
+#: mini-utils/idetool/idetool.c:351
+msgid "IDE Status"
+msgstr "IDE状態"
+
+#: mini-utils/idetool/idetool.c:364
+msgid "Disk Logo Not Found"
+msgstr "ディスクのロゴが見つかりません"
+
+#: mini-utils/idetool/idetool.c:415
+msgid "Only the superuser can use this tool"
+msgstr "スーパーユーザのみがこのツールを使えます"
+
+#: mini-utils/idetool/idetool.c:426
+msgid "You appear to have no IDE drives"
+msgstr "IDEドライブは付いていないようですね"
