@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* findreplace.c - finding & replacing data
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998 - 2002 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -36,7 +36,7 @@ static void replace_all_cb(GtkWidget *);
 static void set_find_type_cb(GtkWidget *, gint);
 static void set_replace_type_cb(GtkWidget *, gint);
 static void goto_byte_cb(GtkWidget *);
-static gint get_search_string(gchar *, gchar *, gint);
+static gint get_search_string(const gchar *, gchar *, gint);
 
 FindDialog *find_dialog = NULL;
 ReplaceDialog *replace_dialog = NULL;
@@ -244,7 +244,7 @@ JumpDialog *create_jump_dialog()
 	return dialog;
 }
 
-static gint get_search_string(gchar *str, gchar *buf, gint type)
+static gint get_search_string(const gchar *str, gchar *buf, gint type)
 {
 	gint len = strlen(str), shift;
 	
@@ -352,7 +352,7 @@ static void find_prev_cb(GtkWidget *w)
 static void goto_byte_cb(GtkWidget *w)
 {
 	guint byte = 2;
-	gchar *byte_str = gtk_entry_get_text(GTK_ENTRY(jump_dialog->int_entry));
+	const gchar *byte_str = gtk_entry_get_text(GTK_ENTRY(jump_dialog->int_entry));
 	
 	if(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)) == NULL) {
 		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("There is no active buffer to move the cursor in!"));

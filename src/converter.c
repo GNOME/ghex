@@ -177,7 +177,7 @@ create_converter()
 									 GNOME_STOCK_BUTTON_CLOSE, NULL);
 	gnome_dialog_close_hides(GNOME_DIALOG(conv->window), TRUE);
 	gnome_dialog_button_connect(GNOME_DIALOG(conv->window), 0,
-								 close_converter, conv->window);
+								GTK_SIGNAL_FUNC(close_converter), conv->window);
 
 	table = gtk_table_new(6, 2, FALSE);
 	gtk_table_set_row_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
@@ -282,7 +282,8 @@ static void
 conv_entry_cb(GtkEntry *entry, gint base)
 {
 	guchar buffer[33];
-	gchar *text, *endptr;
+	const gchar *text;
+	gchar *endptr;
 	gulong val = converter->value;
 	int i, len;
 	

@@ -1390,7 +1390,7 @@ static void gtk_hex_real_paste_clipboard(GtkHex *gh)
 						  time);
 }
 
-static void gtk_hex_finalize(GtkObject *o) {
+static void gtk_hex_finalize(GObject *o) {
 	GtkHex *gh = GTK_HEX(o);
 	
 	if(gh->disp_buffer)
@@ -1398,7 +1398,7 @@ static void gtk_hex_finalize(GtkObject *o) {
 
 	/* Changes for Gnome 2.0 -- SnM */	
 	if(G_OBJECT_CLASS(parent_class)->finalize)
-		(* G_OBJECT_CLASS(parent_class)->finalize)(o);  
+		(* G_OBJECT_CLASS(parent_class)->finalize)(G_OBJECT(o));  
 }
 
 static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
@@ -1604,8 +1604,7 @@ static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 		2*GTK_CONTAINER(w)->border_width;
 }
 
-static void gtk_hex_class_init(GtkHexClass *klass) {
-
+static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 	GtkObjectClass *object_class = GTK_OBJECT_CLASS(klass);
 	GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
 
@@ -1676,7 +1675,7 @@ static void gtk_hex_class_init(GtkHexClass *klass) {
 	parent_class = gtk_type_class (gtk_fixed_get_type ());
 }
 
-static void gtk_hex_init(GtkHex *gh) {
+static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	static const GtkTargetEntry targets[] = {
 		{ "STRING", 0, TARGET_STRING }
 	};

@@ -31,76 +31,6 @@
 #include "ghex.h"
 #include "gtkhex.h"
 
-void hex_document_set_menu_sensitivity(HexDocument *doc);
-
-#ifdef SNM
-static void find_cb     (GtkWidget *);
-static void replace_cb  (GtkWidget *);
-static void jump_cb     (GtkWidget *);
-static void set_byte_cb (GtkWidget *);
-static void set_word_cb (GtkWidget *);
-static void set_long_cb (GtkWidget *);
-static void undo_cb     (GtkWidget *, gpointer);
-static void redo_cb     (GtkWidget *, gpointer);
-static void add_view_cb    (GtkWidget *, gpointer);
-static void remove_view_cb (GtkWidget *, gpointer);
-static void insert_cb      (GtkWidget *w);
-#endif
-
-static GnomeUIInfo group_radio_items[] =
-{
-	GNOMEUIINFO_ITEM_NONE(N_("_Bytes"),
-						  N_("Group data by 8 bits"), set_byte_cb),
-	GNOMEUIINFO_ITEM_NONE(N_("_Words"),
-						  N_("Group data by 16 bits"), set_word_cb),
-	GNOMEUIINFO_ITEM_NONE(N_("_Longwords"),
-						  N_("Group data by 32 bits"), set_long_cb),
-	GNOMEUIINFO_END
-};
-
-static GnomeUIInfo group_type_menu[] =
-{
-	{ GNOME_APP_UI_RADIOITEMS, NULL, NULL, group_radio_items, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	GNOMEUIINFO_END
-};
-
-static GnomeUIInfo edit_menu[] =
-{
-	GNOMEUIINFO_MENU_UNDO_ITEM(undo_cb,NULL),
-	GNOMEUIINFO_MENU_REDO_ITEM(redo_cb,NULL),
-	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_MENU_FIND_ITEM(find_cb,NULL),
-	GNOMEUIINFO_MENU_REPLACE_ITEM(replace_cb,NULL),
-	GNOMEUIINFO_SEPARATOR,
-	{ GNOME_APP_UI_ITEM, N_("_Goto Byte..."), N_("Jump to a certain position"),
-	  jump_cb, NULL, NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_JUMP_TO,
-	  'J', GDK_CONTROL_MASK, NULL },
-	GNOMEUIINFO_SEPARATOR,
-	{ GNOME_APP_UI_TOGGLEITEM, N_("_Insert mode"), N_("Insert/overwrite data"),
-	  insert_cb, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, GDK_Insert, 0, NULL },
-	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_SUBTREE(N_("_Group Data As"), group_type_menu),
-	GNOMEUIINFO_END
-};
-
-static GnomeUIInfo view_menu[] =
-{
-	GNOMEUIINFO_ITEM_NONE(N_("_Add view"),
-			      N_("Add a new view of the buffer"), add_view_cb),
-	GNOMEUIINFO_ITEM_NONE(N_("_Remove view"),
-			      N_("Remove the current view of the buffer"),
-			      remove_view_cb),
-	GNOMEUIINFO_END
-};
-
-GnomeUIInfo hex_document_menu[] =
-{
-	GNOMEUIINFO_MENU_EDIT_TREE(edit_menu),
-	GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
-	GNOMEUIINFO_END
-};
-
 #ifdef SNM /* No longer required for Gnome 2.0 -- SnM */
 void hex_document_set_menu_sensitivity(HexDocument *doc)
 {
@@ -134,8 +64,7 @@ void hex_document_set_menu_sensitivity(HexDocument *doc)
 	GtkWidget *view;
 	gboolean sensitive;
 	BonoboWindow *win;
-
-	BonoboUIEngine *ui_engine;
+	BonoboUIComponent *uic;
 
 	view_node = bonobo_mdi_child_get_views (BONOBO_MDI_CHILD (doc));
 
@@ -146,75 +75,30 @@ void hex_document_set_menu_sensitivity(HexDocument *doc)
 
 		g_return_if_fail (win != NULL);
  
-		ui_engine = bonobo_window_get_ui_engine (win);
+		uic = bonobo_mdi_get_ui_component_from_window(win);
 
-		g_return_if_fail (ui_engine != NULL);
+		g_return_if_fail (uic != NULL);
 
-		bonobo_ui_engine_freeze (ui_engine);
+		bonobo_ui_component_freeze (uic, NULL);
 
 		sensitive = doc->undo_top != NULL;
-		bonobo_ui_engine_xml_set_prop (ui_engine, "/commands/EditUndo",
-						"sensitive", sensitive ? "1" : "0", "EditUndo"); 
+		bonobo_ui_component_set_prop (uic, "/commands/EditUndo",
+									  "sensitive", sensitive ? "1" : "0",
+									  NULL); 
 	
 		sensitive = doc->undo_stack && doc->undo_top != doc->undo_stack;
 
-		bonobo_ui_engine_xml_set_prop (ui_engine, "/commands/EditRedo",
-						"sensitive", sensitive ? "1" : "0", "EditRedo"); 
+		bonobo_ui_component_set_prop (uic, "/commands/EditRedo",
+									  "sensitive", sensitive ? "1" : "0",
+									  NULL); 
 
-		bonobo_ui_engine_thaw (ui_engine);	
+		bonobo_ui_component_thaw (uic, NULL);	
 		view_node = view_node->next;
 	}
 
 }
 
 
-
-/*
- * callbacks for document's menus
- */
-
-/* Changed the function parameters -- SnM */
-void set_byte_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
-{
-#ifdef SNM
-	if(GTK_CHECK_MENU_ITEM(w)->active && bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
-#endif
-	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
-		gtk_hex_set_group_type(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), GROUP_BYTE);
-}
-
-/* Changed the function parameters -- SnM */
-void set_word_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
-{
-#ifdef SNM
-	if(GTK_CHECK_MENU_ITEM(w)->active && bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
-#endif
-	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
-		gtk_hex_set_group_type(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), GROUP_WORD);
-}
-
-/* Changed the function parameters -- SnM */
-void set_long_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
-{
-#ifdef SNM
-	if(GTK_CHECK_MENU_ITEM(w)->active && bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
-#endif
-	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
-		gtk_hex_set_group_type(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), GROUP_LONG);
-}
-
-/* Changed the function parameters -- SnM */
-void insert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
-{
-#ifdef REQUIRED
-	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
-		gtk_hex_set_insert_mode(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))),
-								GTK_CHECK_MENU_ITEM(w)->active);
-#endif
-	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
-		gtk_hex_set_insert_mode(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), TRUE ); /* Have to fix this -- SnM */
-
-}
 
 /* Changed the function parameters -- SnM */
 void find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
@@ -307,19 +191,19 @@ void remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* ve
 		bonobo_mdi_remove_view( BONOBO_MDI (mdi), bonobo_mdi_get_active_view (BONOBO_MDI (mdi)), FALSE);
 	
 	if ( NULL == bonobo_mdi_get_active_child (BONOBO_MDI (mdi))) {
-		BonoboUIEngine *ui_engine;
+		BonoboUIComponent *uic;
 		BonoboWindow *active_window;
 
 		active_window = bonobo_mdi_get_active_window (BONOBO_MDI (mdi));
 
 		g_return_if_fail (active_window != NULL);
 
-		ui_engine = bonobo_window_get_ui_engine (active_window);
+		uic = bonobo_mdi_get_ui_component_from_window(active_window);
 
-		bonobo_ui_engine_freeze (ui_engine);
+		bonobo_ui_component_freeze (uic, NULL);
 
-		ghex_menus_set_verb_list_sensitive (ui_engine, FALSE);
+		ghex_menus_set_verb_list_sensitive (uic, FALSE);
 	
-		bonobo_ui_engine_thaw (ui_engine);
+		bonobo_ui_component_thaw (uic, NULL);
 	}
 }

@@ -40,7 +40,9 @@
 #include "ghex.h"
 
 #include <bonobo/bonobo-ui-util.h>
+#include <bonobo/bonobo-ui-component.h>
 
+#define MDI_KEY "MDI"
 
 struct _GhexMDIPrivate
 {
@@ -74,10 +76,16 @@ static void ghex_mdi_child_state_changed_handler (HexDocument *child);
 
 static void ghex_mdi_set_active_window_undo_redo_verbs_sensitivity (BonoboMDI *mdi);
 
+static void ghex_mdi_listener(BonoboUIComponent           *uic,
+			      const char                  *path,
+			      Bonobo_UIComponent_EventType type,
+			      const char                  *state,
+			      gpointer                     user_data);
+
 static void cursor_moved_cb (GtkHex *gtkhex);
 
 #ifdef SNM /* Requried by remove_view_cb in hex-document-ui -- SnM */
-static void ghex_menus_set_verb_list_sensitive ( BonoboUIEngine *ui_engine, gboolean allmenus );
+static void ghex_menus_set_verb_list_sensitive (BonoboUIComponent *uic, gboolean allmenus );
 #endif
 
 
@@ -176,7 +184,6 @@ ghex_mdi_finalize (GObject *object)
 	g_free (mdi->priv);
 }
 
-
 /**
  * ghex_mdi_new:
  * 
@@ -196,8 +203,51 @@ ghex_mdi_new (void)
 }
 
 static void
+ghex_mdi_listener (BonoboUIComponent           *uic,
+		   const char                  *path,
+		   Bonobo_UIComponent_EventType type,
+		   const char                  *state,
+		   gpointer                     user_data)
+{
+	BonoboWindow *win;
+	GtkWidget *view;
+	BonoboMDI *mdi;
+
+	g_return_if_fail (user_data != NULL);
+	g_return_if_fail (BONOBO_IS_WINDOW (user_data));
+
+	if (type != Bonobo_UIComponent_STATE_CHANGED)
+		return;
+
+	win = BONOBO_WINDOW(user_data);
+
+	mdi = BONOBO_MDI(g_object_get_data(G_OBJECT(win), MDI_KEY));
+
+	view = bonobo_mdi_get_view_from_window(mdi, win);
+
+	if (!strcmp (path, "InsertMode")) {
+		gtk_hex_set_insert_mode(GTK_HEX(view), *state == '1');
+		return;
+	}
+
+	if (!state || !atoi (state))
+		return;
+
+	if (!strcmp (path, "Bytes"))
+		gtk_hex_set_group_type(GTK_HEX(view), GROUP_BYTE);
+	else if (!strcmp (path, "Words"))
+		gtk_hex_set_group_type(GTK_HEX(view), GROUP_WORD);
+	else if (!strcmp (path, "Longwords"))
+		gtk_hex_set_group_type(GTK_HEX(view), GROUP_LONG);
+	else {
+		g_warning("Unknown event: '%s'.", path);
+	}
+}
+
+static void
 ghex_mdi_app_created_handler (BonoboMDI *mdi, BonoboWindow *win)
 {
+	BonoboUIComponent *uic;
 	static GtkTargetEntry drag_types[] =
 	{
 		{ "text/uri-list", 0, 0 },
@@ -226,16 +276,26 @@ ghex_mdi_app_created_handler (BonoboMDI *mdi, BonoboWindow *win)
 		
 	/* Set the window prefs. */
 	/* gtk_window_set_policy () has been deprecated -- SnM */
-//	gtk_widget_set_size_request (GTK_WINDOW (win), 0, 0);
 	gtk_window_set_policy (GTK_WINDOW (win), TRUE, TRUE, FALSE);
 	gtk_window_set_resizable (GTK_WINDOW (win), TRUE);
+
+	uic = bonobo_mdi_get_ui_component_from_window(win);
+
+	bonobo_ui_component_add_listener (uic, "Bytes",
+					  ghex_mdi_listener, win);
+	bonobo_ui_component_add_listener (uic, "Words",
+					  ghex_mdi_listener, win);
+	bonobo_ui_component_add_listener (uic, "Longwords",
+					  ghex_mdi_listener, win);
+	bonobo_ui_component_add_listener (uic, "InsertMode",
+					  ghex_mdi_listener, win);
 
 #ifdef SNM
 	gtk_window_set_default_size (GTK_WINDOW (win), settings->width, settings->height);
 	gtk_window_set_default_size (GTK_WINDOW (win), 300, 300 );
 	gtk_window_set_policy (GTK_WINDOW (win), TRUE, TRUE, FALSE);
 #endif
-
+	g_object_set_data(G_OBJECT(win), MDI_KEY, mdi);
 }
 
 static void 
@@ -266,110 +326,83 @@ ghex_mdi_drag_data_received_handler (GtkWidget *widget, GdkDragContext *context,
 static void
 ghex_mdi_set_app_toolbar_style (BonoboWindow *win)
 {
-	BonoboUIEngine *ui_engine;
-	BonoboUIError ret;
+	BonoboUIComponent *uic;
 	
 	g_return_if_fail (BONOBO_IS_WINDOW (win));
 			
-	ui_engine = bonobo_window_get_ui_engine (win);
-	g_return_if_fail (ui_engine != NULL);
+	uic = bonobo_mdi_get_ui_component_from_window(win);
 
 #ifdef SNM	
-	if (!settings->have_toolbar)
-	{
-		ret = bonobo_ui_engine_xml_set_prop (ui_engine, "/Toolbar",
-				"hidden", "1");
-		g_return_if_fail (ret == BONOBO_UI_ERROR_OK);		
-
+	if (!settings->have_toolbar) {
+		bonobo_ui_component_set_prop (uic, "/Toolbar",
+					      "hidden", "1", NULL);
 		return;
 	}
 #endif
 	
-	bonobo_ui_engine_freeze (ui_engine);
+	bonobo_ui_component_freeze (uic);
 
-	ret = bonobo_ui_engine_xml_set_prop (ui_engine, "/Toolbar",
-				"hidden", "0");
-	if (ret != BONOBO_UI_ERROR_OK) 
-		goto error;
+	bonobo_ui_component_set_prop (uic, "/Toolbar",
+				      "hidden", "0", NULL);
 
 #ifdef SNM
-	ret = bonobo_ui_engine_xml_set_prop (ui_engine, "/Toolbar",
-					"tips", settings->show_tooltips ? "1" : "0");
-
-	if (ret != BONOBO_UI_ERROR_OK) 
-		goto error;
+	bonobo_ui_component_set_prop (uic, "/Toolbar",
+				      "tips", settings->show_tooltips ? "1" : "0", NULL);
 
 
-	switch (settings->toolbar_labels)
-	{
-		case GHEX_TOOLBAR_SYSTEM:
-			/* FIXME
-			if (gnome_preferences_get_toolbar_labels())
-			{
-			*/
-				ret = bonobo_ui_engine_xml_set_prop (ui_engine, "/Toolbar",
-						"look", "both");
-				if (ret != BONOBO_UI_ERROR_OK) 
-					goto error;
-			/*
-			}
-			else
-			{
-				ret = bonobo_ui_engine_xml_set_prop (ui_engine, "/Toolbar",
-						"look", "icons");
-				g_return_if_fail (ret == BONOBO_UI_ERROR_OK);
-			}*/
-			break;
-		case GHEX_TOOLBAR_ICONS:
-			ret = bonobo_ui_engine_xml_set_prop (ui_engine, "/Toolbar",
-						"look", "icon");
-			if (ret != BONOBO_UI_ERROR_OK) 
-					goto error;
-
-			break;
-		case GHEX_TOOLBAR_ICONS_AND_TEXT:
-			ret = bonobo_ui_engine_xml_set_prop (ui_engine, "/Toolbar",
-						"look", "both");
-			if (ret != BONOBO_UI_ERROR_OK) 
-					goto error;
-			break;
-		default:
-			goto error;
+	switch (settings->toolbar_labels) {
+	case GHEX_TOOLBAR_SYSTEM:
+		/* FIXME
+		   if (gnome_preferences_get_toolbar_labels())
+		   {
+		*/
+		bonobo_ui_component_set_prop (uic, "/Toolbar",
+					      "look", "both");
+		/*
+		  }
+		  else
+		  {
+		  bonobo_ui_component_set_prop (uic, "/Toolbar",
+		  "look", "icons", NULL);
+		  }*/
+		break;
+	case GHEX_TOOLBAR_ICONS:
+		bonobo_ui_component_set_prop (uic, "/Toolbar",
+					      "look", "icon", NULL);
+		break;
+	case GHEX_TOOLBAR_ICONS_AND_TEXT:
+		bonobo_ui_component_set_prop (uic, "/Toolbar",
+					      "look", "both", NULL);
+		break;
+	default:
 		break;
 	}
 #endif
 	
-	bonobo_ui_engine_thaw (ui_engine);
+	bonobo_ui_component_thaw (uic);
 	
 	return;
-	
-error:
-	g_warning ("Impossible to set toolbar style");
-	bonobo_ui_engine_thaw (ui_engine);
 }
 #endif
 
 static void
 ghex_mdi_set_app_statusbar_style (BonoboWindow *win)
 {
-	BonoboUIEngine *ui_engine;
-	BonoboUIError ret;
+	BonoboUIComponent *uic;
 	
 	g_return_if_fail (BONOBO_IS_WINDOW (win));
 			
-	ui_engine = bonobo_window_get_ui_engine (win);
-	g_return_if_fail (ui_engine != NULL);
+	uic = bonobo_mdi_get_ui_component_from_window(win);
 
-	ret = bonobo_ui_engine_xml_set_prop (ui_engine, "/status",
-					"hidden", "0", "status");
-	g_return_if_fail (ret == BONOBO_UI_ERROR_OK);
+	bonobo_ui_component_set_prop (uic, "/status",
+				      "hidden", "0",
+				      NULL);
 
 #ifdef SNM
-	ret = bonobo_ui_engine_xml_set_prop (ui_engine, "/status",
-				"hidden", settings->show_status ? "0" : "1", "status");
-	g_return_if_fail (ret == BONOBO_UI_ERROR_OK);		
+	bonobo_ui_component_set_prop (uic, "/status",
+				      "hidden", settings->show_status?"0":"1",
+				      NULL);
 #endif
-
 }
 
 static void 
@@ -402,7 +435,6 @@ ghex_mdi_add_child_handler (BonoboMDI *mdi, BonoboMDIChild *child)
 			    GTK_SIGNAL_FUNC (ghex_mdi_child_undo_redo_state_changed_handler), 
 			    NULL);
 #endif
-
 	return TRUE;
 }
 
@@ -431,10 +463,8 @@ ghex_mdi_add_view_handler (BonoboMDI *mdi, GtkWidget *view)
 			    NULL);
 #endif
 	gtk_signal_connect (GTK_OBJECT(view), "cursor_moved",
-				GTK_SIGNAL_FUNC (cursor_moved_cb),
-				mdi);
-						
-
+			    GTK_SIGNAL_FUNC (cursor_moved_cb),
+			    mdi);
 	gtk_hex_show_offsets (GTK_HEX(view), show_offsets_column);
 	return TRUE;
 }
@@ -599,29 +629,27 @@ ghex_mdi_set_active_window_verbs_sensitivity (BonoboMDI *mdi)
 	BonoboWindow* active_window = NULL;
 	BonoboMDIChild* active_child = NULL;
 	HexDocument* doc = NULL;
-	BonoboUIEngine *ui_engine;
+	BonoboUIComponent *uic;
 	
 	active_window = bonobo_mdi_get_active_window (BONOBO_MDI (mdi));
 
 	if (active_window == NULL)
 		return;
 	
-	ui_engine = bonobo_window_get_ui_engine (active_window);
+	uic = bonobo_mdi_get_ui_component_from_window(active_window);
 	
 	active_child = bonobo_mdi_get_active_child (BONOBO_MDI (mdi));
 	
-	bonobo_ui_engine_freeze (ui_engine);
+	bonobo_ui_component_freeze (uic, NULL);
 
-	if (active_child == NULL)
-	{
-		ghex_menus_set_verb_list_sensitive (ui_engine, FALSE);
+	if (active_child == NULL) {
+		ghex_menus_set_verb_list_sensitive (uic, FALSE);
 	}
-	else
-	{
-		ghex_menus_set_verb_list_sensitive (ui_engine, TRUE);
+	else {
+		ghex_menus_set_verb_list_sensitive (uic, TRUE);
 	}
 
-	bonobo_ui_engine_thaw (ui_engine);
+	bonobo_ui_component_thaw (uic, NULL);
 
 	hex_document_set_menu_sensitivity (HEX_DOCUMENT (active_child));
 
@@ -629,34 +657,36 @@ ghex_mdi_set_active_window_verbs_sensitivity (BonoboMDI *mdi)
 	doc = HEX_DOCUMENT (active_child);
 	g_return_if_fail (doc != NULL);
 
-	if (ghex_document_is_readonly (doc))
-	{
-		ghex_menus_set_verb_list_sensitive (ui_engine, 
-				ghex_menus_ro_sensible_verbs, FALSE);
+	if (ghex_document_is_readonly (doc)) {
+		ghex_menus_set_verb_list_sensitive (uic, 
+						    ghex_menus_ro_sensible_verbs,
+						    FALSE);
 		goto end;
 	}
 
 	if (!ghex_document_can_undo (doc))
-		ghex_menus_set_verb_sensitive (ui_engine, "/commands/EditUndo", FALSE);	
+		ghex_menus_set_verb_sensitive (uic, "/commands/EditUndo", FALSE);
 
 	if (!ghex_document_can_redo (doc))
-		ghex_menus_set_verb_sensitive (ui_engine, "/commands/EditRedo", FALSE);		
+		ghex_menus_set_verb_sensitive (uic, "/commands/EditRedo", FALSE);		
 
 	if (!ghex_document_get_modified (doc))
 	{
-		ghex_menus_set_verb_list_sensitive (ui_engine, 
-				ghex_menus_not_modified_doc_sensible_verbs, FALSE);
+		ghex_menus_set_verb_list_sensitive (uic, 
+						    ghex_menus_not_modified_doc_sensible_verbs,
+						    FALSE);
 		goto end;
 	}
 
 	if (ghex_document_is_untitled (doc))
 	{
-		ghex_menus_set_verb_list_sensitive (ui_engine, 
-				ghex_menus_untitled_doc_sensible_verbs, FALSE);
+		ghex_menus_set_verb_list_sensitive (uic, 
+						    ghex_menus_untitled_doc_sensible_verbs,
+						    FALSE);
 	}
 
 end:
-	bonobo_ui_engine_thaw (ui_engine);
+	bonobo_ui_component_thaw (uic);
 #endif
 }
 
@@ -667,28 +697,28 @@ ghex_mdi_set_active_window_undo_redo_verbs_sensitivity (BonoboMDI *mdi)
 	BonoboWindow* active_window = NULL;
 	BonoboMDIChild* active_child = NULL;
 	HexDocument* doc = NULL;
-	BonoboUIEngine *ui_engine;
+	BonoboUIComponent *uic;
 	
 	active_window = bonobo_mdi_get_active_window (BONOBO_MDI (mdi));
 	g_return_if_fail (active_window != NULL);
 	
-	ui_engine = bonobo_window_get_ui_engine (active_window);
+	uic = bonobo_mdi_get_ui_component_from_window(active_window);
 	
 	active_child = bonobo_mdi_get_active_child (BONOBO_MDI (mdi));
 	doc = HEX_DOCUMENT (active_child);
 	g_return_if_fail (doc != NULL);
 
-	bonobo_ui_engine_freeze (ui_engine);
+	bonobo_ui_component_freeze (uic, NULL);
 
 #ifdef SNM
-	ghex_menus_set_verb_sensitive (ui_engine, "/commands/EditUndo", 
-			ghex_document_can_undo (doc));	
+	ghex_menus_set_verb_sensitive (uic, "/commands/EditUndo", 
+				       ghex_document_can_undo (doc));	
 
-	ghex_menus_set_verb_sensitive (ui_engine, "/commands/EditRedo", 
-			ghex_document_can_redo (doc));	
+	ghex_menus_set_verb_sensitive (uic, "/commands/EditRedo", 
+				       ghex_document_can_redo (doc));	
 #endif
 
-	bonobo_ui_engine_thaw (ui_engine);
+	bonobo_ui_component_thaw (uic, NULL);
 }
 
 #ifdef SNM
@@ -707,14 +737,14 @@ ghex_mdi_update_ui_according_to_preferences (GhexMDI *mdi)
 
 	while (windows != NULL)
 	{
-		BonoboUIEngine *ui_engine;
+		BonoboUIComponent *uic;
 		BonoboWindow *active_window = BONOBO_WINDOW (windows->data);
 		g_return_if_fail (active_window != NULL);
 		
-		ui_engine = bonobo_window_get_ui_engine (active_window);
-		g_return_if_fail (ui_engine != NULL);
+		uic = bonobo_mdi_get_ui_component_from_window(active_window);
+		g_return_if_fail (uic != NULL);
 
-		bonobo_ui_engine_freeze (ui_engine);
+		bonobo_ui_component_freeze (uic);
 
 		ghex_mdi_set_app_statusbar_style (active_window);
 
@@ -722,7 +752,7 @@ ghex_mdi_update_ui_according_to_preferences (GhexMDI *mdi)
 		ghex_mdi_set_app_toolbar_style (active_window);
 #endif
 
-		bonobo_ui_engine_thaw (ui_engine);
+		bonobo_ui_component_thaw (uic);
 
 		windows = windows->next;
 	}
@@ -822,18 +852,12 @@ static void cursor_moved_cb (GtkHex *gtkhex) {
 }
 		
 
-void ghex_menus_set_verb_list_sensitive ( BonoboUIEngine *ui_engine, gboolean allmenus )
+void
+ghex_menus_set_verb_list_sensitive (BonoboUIComponent *uic, gboolean allmenus)
 {
-	BonoboUIError ret;
+	bonobo_ui_component_set_prop (uic, "/menu/Edit", "hidden",
+				      (TRUE == allmenus)?"0": "1", NULL);
 
-	ret = bonobo_ui_engine_xml_set_prop (ui_engine, "/menu/Edit",
-				"hidden", ((TRUE == allmenus) ? "0": "1"), "Edit");
-
-	g_return_if_fail (ret == BONOBO_UI_ERROR_OK);
-
-	ret = bonobo_ui_engine_xml_set_prop (ui_engine, "/menu/View",
-				"hidden", ((TRUE == allmenus) ? "0": "1"), "View");
-
-	g_return_if_fail (ret == BONOBO_UI_ERROR_OK);
-
+	bonobo_ui_component_set_prop (uic, "/menu/View", "hidden", 
+				      (TRUE == allmenus)?"0": "1", NULL);
 }

@@ -55,9 +55,6 @@ static void undo_stack_ascend(HexDocument *doc);
 static void undo_stack_free(HexDocument *doc);
 static gboolean get_document_attributes(HexDocument *doc);
 
-extern GnomeUIInfo hex_document_menu[];
-extern void hex_document_set_menu_sensitivity(HexDocument *doc);
-
 enum {
 	DOCUMENT_CHANGED,
 	LAST_SIGNAL

@@ -37,13 +37,13 @@ int save_state (GnomeClient        *client,
                 GnomeInteractStyle  interact_style,
                 gint                fast,
                 gpointer            client_data) {
-	gchar *prefix= gnome_client_get_config_prefix (client);
+	const gchar *prefix= gnome_client_get_config_prefix (client);
 	gchar *argv[]= { "rm", "-r", NULL };
 	
 	/* Save the state using gnome-config stuff. */
 	gnome_config_push_prefix (prefix);
 	
-	bonobo_mdi_save_state(mdi, "Session");
+	bonobo_mdi_save_state(BONOBO_MDI(mdi), "Session");
 	
 	gnome_config_pop_prefix();
 	gnome_config_sync();

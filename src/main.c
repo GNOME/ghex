@@ -372,16 +372,13 @@ main(int argc, char **argv)
 
 		gnome_config_push_prefix (gnome_client_get_config_prefix (client));
 
-		restarted= bonobo_mdi_restore_state (mdi, "Session", (BonoboMDIChildCreator)hex_document_new_from_config);		
+		restarted = bonobo_mdi_restore_state (BONOBO_MDI(mdi), "Session", (BonoboMDIChildCreator)hex_document_new_from_config);		
 		
 		gnome_config_pop_prefix ();
 	}
 
 	if (!restarted)
-		bonobo_mdi_open_toplevel(mdi);
-#if 0	
-	bonobo_mdi_open_toplevel (BONOBO_MDI (mdi));
-#endif
+		bonobo_mdi_open_toplevel(BONOBO_MDI(mdi));
 
 	cl_files = (char **)poptGetArgs(ctx);
 	

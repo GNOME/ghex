@@ -51,13 +51,17 @@
 	<cmd name="GoToByte" _label="Goto Byte" _tip="Jump to a certain position"
 	accel="*control*J"/>
 
-	<cmd name="InsertMode" _label="Insert Mode" _tip="Insert/overwrite data"/>
+	<cmd name="InsertMode" _label="Insert Mode" _tip="Insert/overwrite data"
+             type="toggle" accel="Insert"/>
 
-	<cmd name="Bytes" _label="Bytes" _tip="Group data by 8 bits"/>
+	<cmd name="Bytes" _label="Bytes" _tip="Group data by 8 bits"
+             type="radio" group="Group"/>
 
-	<cmd name="Words" _label="Words" _tip="Group data by 16 bits"/>
+	<cmd name="Words" _label="Words" _tip="Group data by 16 bits"
+             type="radio" group="Group"/>
 
-	<cmd name="Longwords" _label="Longwords" _tip="Group data by 32 bits"/>
+	<cmd name="Longwords" _label="Longwords" _tip="Group data by 32 bits"
+             type="radio" group="Group"/>
 
 	<cmd name="AddView" _label="Add View" _tip="Add a new view to the buffer"/>
 
@@ -120,17 +124,21 @@
 
 	<separator/>
 
-	<menuitem name="InsertMode" verb="" _label="_Insert Mode"/>
+	<menuitem name="InsertMode" verb="" _label="_Insert Mode"
+                        type="toggle"/>
 
 	<separator/>
 
 	<submenu name="GroupDataAs" _label="_Group Data As">
 
-		<menuitem name="Bytes" verb="" _label="_Bytes"/>
+		<menuitem name="Bytes" verb="" _label="_Bytes"
+                          type="radio" group="Group"/>
 
-		<menuitem name="Words" verb="" _label="_Words"/>
+		<menuitem name="Words" verb="" _label="_Words"
+                          type="radio" group="Group"/>
 
-		<menuitem name="Longwords" verb="" _label="_Longwords"/>
+		<menuitem name="Longwords" verb="" _label="_Longwords"
+                          type="radio" group="Group"/>
 
 	</submenu>
 

@@ -160,19 +160,6 @@ BonoboWindow      *bonobo_mdi_get_window_from_view    (GtkWidget *view);
 BonoboMDIChild    *bonobo_mdi_get_child_from_view     (GtkWidget *view);
 GtkWidget         *bonobo_mdi_get_view_from_window    (BonoboMDI *mdi, BonoboWindow *window);
 
-/* the following functions are used to obtain pointers to the BonoboUIInfo
- * structures for a specified MDI BonoboApp widget. this might be useful for
- * enabling/disabling menu items (via ui_info[i]->widget) when certain events
- * happen or selecting the default menuitem in a radio item group. these
- * BonoboUIInfo structures are exact copies of the template BonoboUIInfo trees
- * and are non-NULL only if templates are used for menu/toolbar creation.
- */
-/*
-BonoboUIInfo   *bonobo_mdi_get_menubar_info     (BonoboApp *app);
-BonoboUIInfo   *bonobo_mdi_get_toolbar_info     (BonoboApp *app);
-BonoboUIInfo   *bonobo_mdi_get_child_menu_info  (BonoboApp *app);
-*/
-
 GList          		*bonobo_mdi_get_children 			(BonoboMDI *mdi);
 GList          		*bonobo_mdi_get_windows				(BonoboMDI *mdi);
 

@@ -229,7 +229,7 @@ PropertyUI *create_prefs_dialog() {
 	entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(entry), def_font_name);
 	gtk_signal_connect (GTK_OBJECT (entry), "changed",
-						select_font_cb, pui->pbox);
+						GTK_SIGNAL_FUNC(select_font_cb), pui->pbox);
 	pui->font_button = gnome_font_picker_new();
 	gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->font_button),
 									def_font_name);
@@ -397,28 +397,28 @@ PropertyUI *create_prefs_dialog() {
 	   a gnome_property_box_changed() is called */
    	for(i = 0; i < NUM_MDI_MODES; i++)
 		gtk_signal_connect(GTK_OBJECT(pui->mdi_type[i]), "clicked",
-						   properties_modified_cb, pui->pbox);
+						   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
 
 	for(i = 0; i < 3; i++)
 		gtk_signal_connect(GTK_OBJECT(pui->group_type[i]), "clicked",
-						   properties_modified_cb, pui->pbox);
+						   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
 
 	gtk_signal_connect(GTK_OBJECT(pui->offsets_col), "toggled",
-					   properties_modified_cb, pui->pbox);
+					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
 
 #ifdef SNM
 	gtk_signal_connect(GTK_OBJECT(GTK_COMBO(paper_sel->paper)->entry), "changed",
-					   properties_modified_cb, pui->pbox);
+					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
 	gtk_signal_connect(GTK_OBJECT(paper_sel->width), "changed",
-					   properties_modified_cb, pui->pbox);
+					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
 	gtk_signal_connect(GTK_OBJECT(paper_sel->height), "changed",
-					   properties_modified_cb, pui->pbox);
+					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
 	gtk_signal_connect(GTK_OBJECT(pui->df_button), "clicked",
-					   properties_modified_cb, pui->pbox);
+					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
 #endif
 
 	gtk_signal_connect(GTK_OBJECT(pui->hf_button), "clicked",
-					   properties_modified_cb, pui->pbox);
+					   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
 
 	return pui;
 }
@@ -637,7 +637,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 }
 
 static void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {
-	gchar *font_desc;
+	const gchar *font_desc;
 	GtkWidget *peer;
 
 	if (GNOME_IS_FONT_PICKER(w)) {

@@ -60,9 +60,9 @@ dnl Now we shall use pkg-config rather than gnome-config. -- SnM
 dnl **************************************************************
 
 PKG_CHECK_MODULES(GHEX,
-		libgnomeui-2.0 >= 1.96.0	\
-		libglade-2.0 >= 1.99.2		\
-		libgnomeprintui-2.0 >= 1.106.0)
+			libgnomeui-2.0 >= 1.96.0	\
+			libglade-2.0 >= 1.99.2		\
+			libgnomeprintui-2.0 >= 1.106.0)
 
 AC_SUBST(GHEX_CFLAGS)
 AC_SUBST(GHEX_LIBS)

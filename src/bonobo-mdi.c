@@ -1195,7 +1195,7 @@ static void app_create (BonoboMDI *bonobo_mdi, gchar *layout_string)
 
 	config_path = g_strdup_printf ("/%s/UIConfig/kvps/", bonobo_mdi->priv->mdi_name);
   	bonobo_ui_engine_config_set_path (bonobo_window_get_ui_engine (bw),
-                                     config_path);
+					  config_path);
 	g_free (config_path);
 
 	/* Create a UI component with which to communicate with the window */
@@ -1215,12 +1215,12 @@ static void app_create (BonoboMDI *bonobo_mdi, gchar *layout_string)
 		if (bonobo_mdi->priv->ui_file_name)
 		{
 			bonobo_ui_util_set_ui (ui_component, "", bonobo_mdi->priv->ui_file_name,
-				       bonobo_mdi->priv->mdi_name, NULL);
+					       bonobo_mdi->priv->mdi_name, NULL);
 		}
 
 	if (bonobo_mdi->priv->verbs)
 		bonobo_ui_component_add_verb_list_with_data (ui_component, 
-				bonobo_mdi->priv->verbs, bonobo_mdi);
+							     bonobo_mdi->priv->verbs, bonobo_mdi);
 	
 	bonobo_mdi->priv->active_window = bw;
 	bonobo_mdi->priv->active_child = NULL;
@@ -1231,8 +1231,8 @@ static void app_create (BonoboMDI *bonobo_mdi, gchar *layout_string)
 	gtk_signal_emit (GTK_OBJECT (bonobo_mdi), mdi_signals [TOP_WINDOW_CREATED], window);
 
 	child_list_menu_create (bonobo_mdi, bw);
-#if 0
 
+#if 0
 	if (layout_string /*&& app->layout*/)
 		bonobo_dock_layout_parse_string(app->layout, layout_string);
 #endif

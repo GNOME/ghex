@@ -28,7 +28,6 @@
 #include <libgnomeprintui/gnome-print-master-preview.h>
 #include "ghex.h"
 
-
 static void open_selected_file(GtkWidget *);
 static void save_selected_file(GtkWidget *, GtkWidget *view);
 static void export_html_selected_file(GtkWidget *w, GtkHex *view);
@@ -57,6 +56,7 @@ static void converter_cb (BonoboUIComponent *uic, gpointer user_data, const gcha
 static void char_table_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 
+#if 0
 GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_MENU_OPEN_ITEM(open_cb, NULL),
 	/* keep in sync: main.c/child_changed_cb: setting sensitivity of items 1 - 3 */
@@ -106,6 +106,8 @@ GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_END
 };
 
+#endif
+
 guint group_type[3] = {
 	GROUP_BYTE,
 	GROUP_WORD,
@@ -145,18 +147,12 @@ BonoboUIVerb ghex_verbs [] = {
 	BONOBO_UI_VERB ("Find", find_cb),
 	BONOBO_UI_VERB ("Replace", replace_cb),
 	BONOBO_UI_VERB ("GoToByte", jump_cb),
-	BONOBO_UI_VERB ("InsertMode", insert_cb),
-	BONOBO_UI_VERB ("Bytes", set_byte_cb),
-	BONOBO_UI_VERB ("Words", set_word_cb),
-	BONOBO_UI_VERB ("Longwords", set_long_cb),
 	BONOBO_UI_VERB ("AddView", add_view_cb),
 	BONOBO_UI_VERB ("RemoveView", remove_view_cb),
 	BONOBO_UI_VERB ("Preferences", prefs_cb),
 	BONOBO_UI_VERB ("About", about_cb),
 	BONOBO_UI_VERB_END
 };
-
-
 
 void cancel_cb(GtkWidget *w, GtkWidget *me)
 {
@@ -420,7 +416,7 @@ static void export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gc
 
 static void export_html_selected_file(GtkWidget *w, GtkHex *view)
 {
-	gchar *html_path = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
+	gchar *html_path = g_strdup(gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel)));
 	gchar *sep, *base_name;
 	HexDocument *doc;
 
@@ -436,9 +432,11 @@ static void export_html_selected_file(GtkWidget *w, GtkHex *view)
 	if(sep)
 		*sep = 0;
 
-	if(*base_name == 0)
+	if(*base_name == 0) {
+		g_free(html_path);
 		return;
-	
+	}
+
 	doc = HEX_DOCUMENT(bonobo_mdi_get_child_from_view(GTK_WIDGET(view)));
 
 	hex_document_export_html(doc, html_path, base_name, 0, doc->file_size,
@@ -446,6 +444,7 @@ static void export_html_selected_file(GtkWidget *w, GtkHex *view)
 
 	gtk_widget_destroy(GTK_WIDGET(file_sel));
 	file_sel = NULL;
+	g_free(html_path);
 }
 
 /* Changed the function parameters -- SnM */
@@ -594,7 +593,7 @@ static void save_selected_file(GtkWidget *w, GtkWidget *view)
 {
 	HexDocument *doc;
 	FILE *file;
-	gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
+	const gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
 	gchar *flash;
 	int i;
 	

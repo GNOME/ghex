@@ -126,4 +126,6 @@ gint        hex_document_find_backward(HexDocument *doc, guint start,
 
 BonoboMDIChild *hex_document_new_from_config(const gchar *);
 
+void        hex_document_set_menu_sensitivity(HexDocument *doc);
+
 #endif /* __HEX_DOCUMENT_H__ */

@@ -151,10 +151,6 @@ extern int restarted;
 extern const struct poptOption options[];
 extern GSList *cl_files;
 
-#ifdef SNM
-extern GnomeMDI       *mdi;
-#endif
-
 extern GhexMDI        *mdi; /* We shall use the bonobo-mdi instead -- SnM */
 
 extern GtkWidget      *file_sel;
@@ -251,7 +247,7 @@ void quit_app_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbn
 
 void display_error_dialog (BonoboWindow *win, const gchar *msg);
 
-void ghex_menus_set_verb_list_sensitive (BonoboUIEngine *ui_engine, gboolean allmenus);
+void ghex_menus_set_verb_list_sensitive (BonoboUIComponent *uic, gboolean allmenus);
 
 gint remove_doc_cb (BonoboMDI *mdi, HexDocument *doc);
 void cleanup_cb (BonoboMDI *mdi);
