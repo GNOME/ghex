@@ -190,7 +190,7 @@ static void about_cb (GtkWidget *widget)
 	
 	static const gchar *authors[] = {
 		"Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>",
-		"Chema Chelorio <chema@celorio.com>",
+		"Chema Celorio <chema@celorio.com>",
 		NULL
 	};
 
