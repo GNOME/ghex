@@ -952,7 +952,7 @@ static void gtk_hex_finalize(GtkObject *o) {
 	GtkHex *gh = GTK_HEX(o);
 	
 	if(gh->disp_buffer)
-		free(gh->disp_buffer);
+		g_free(gh->disp_buffer);
 	
 	if(GTK_OBJECT_CLASS(parent_class)->finalize)
 		(* GTK_OBJECT_CLASS(parent_class)->finalize)(o);  
@@ -994,6 +994,10 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 		gtk_hex_set_cursor(gh, MIN((gint)gh->document->file_size, (gint)gh->cursor_pos + gh->vis_lines*gh->cpl));
 		break;
 	default:
+		if (event->state & GDK_MOD1_MASK) {
+			show_cursor(gh);
+			return FALSE;
+		}
 		if(gh->active_view == VIEW_HEX)
 			switch(event->keyval) {
 			case GDK_Left:

@@ -44,12 +44,14 @@ GnomeMDI *mdi;
 gint mdi_mode = GNOME_MDI_DEFAULT_MODE;
 
 gint remove_doc_cb(GnomeMDI *mdi, HexDocument *doc) {
-	static char msg[512];
+	static char msg[MESSAGE_LEN + 1];
 	GnomeMessageBox *mbox;
 	gint reply;
 	
-	sprintf(msg, _("File %s has changed since last save.\n"
-				   "Do you want to save changes?"), GNOME_MDI_CHILD(doc)->name);
+	g_snprintf(msg, MESSAGE_LEN,
+			   _("File %s has changed since last save.\n"
+				 "Do you want to save changes?"),
+			   GNOME_MDI_CHILD(doc)->name);
 	
 	if(hex_document_has_changed(doc)) {
 		mbox = GNOME_MESSAGE_BOX(gnome_message_box_new( msg, GNOME_MESSAGE_BOX_QUESTION, GNOME_STOCK_BUTTON_YES,

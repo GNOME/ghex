@@ -1,3 +1,19 @@
+2001-04-12  Jaka Mocnik  <jaka@gnu.org>
+
+	* merged chema's changes from HEAD.
+
+2001-03-22  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/gtkhex.c: changed one more free() to g_free().
+	* src/hex-document.c: changed strdup() to g_strdup().
+
+2001-03-18  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/converter.c: add octal conversion.
+	* src/preferences.c (apply_changes_cb): accept format specifiers
+	'x', 'X', 'o', 'd', 'p' and 'P'.
+	* changed all sprintf()s to g_snprintf()s.
+
 2001-03-08  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/gtkhex.c (render_?c): fixed a strange bug that caused ghex to

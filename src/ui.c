@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ui.c - main menus and callbacks; utility functions
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998 - 2001 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -54,11 +54,11 @@ GnomeUIInfo file_menu[] = {
 	/* keep in sync: main.c/child_changed_cb: setting sensitivity of items 1 - 3 */
 	GNOMEUIINFO_MENU_SAVE_ITEM(save_cb, NULL),
 	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb, NULL),
-	GNOMEUIINFO_ITEM(N_("Export to HTML..."), N_("Export data to HTML source"), export_html_cb, NULL),
+	GNOMEUIINFO_ITEM(N_("Export to _HTML..."), N_("Export data to HTML source"), export_html_cb, NULL),
 	GNOMEUIINFO_MENU_REVERT_ITEM(revert_cb, NULL),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_PRINT_ITEM(print_cb, NULL),
-	GNOMEUIINFO_ITEM(N_("Print preview..."), N_("Preview printed data"), print_preview_cb, NULL),
+	GNOMEUIINFO_ITEM(N_("Print pre_view..."), N_("Preview printed data"), print_preview_cb, NULL),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_CLOSE_ITEM(close_cb, NULL),
 	GNOMEUIINFO_MENU_EXIT_ITEM(quit_app_cb, NULL),
@@ -73,7 +73,7 @@ GnomeUIInfo settings_menu[] = {
 GnomeUIInfo tools_menu[] = {
 	GNOMEUIINFO_ITEM_NONE(N_("Con_verter..."),
 						  N_("Open base conversion dialog"), converter_cb),
-	GNOMEUIINFO_ITEM_NONE(N_("Character Table..."),
+	GNOMEUIINFO_ITEM_NONE(N_("Character _Table..."),
 						  N_("Show the character table"), char_table_cb),
 	GNOMEUIINFO_END
 };
@@ -91,7 +91,7 @@ GnomeUIInfo help_menu[] = {
 
 GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
-	GNOMEUIINFO_SUBTREE(N_("Tools"), tools_menu),
+	GNOMEUIINFO_SUBTREE(N_("_Tools"), tools_menu),
 	GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menu),
 	GNOMEUIINFO_MENU_FILES_TREE(empty_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
@@ -463,7 +463,7 @@ static void prefs_cb(GtkWidget *w)
 
 static void revert_cb(GtkWidget *w)
 {
-	static gchar msg[512];
+	static gchar msg[MESSAGE_LEN + 1];
 	
 	HexDocument *doc;
 	GnomeMessageBox *mbox;
@@ -472,7 +472,9 @@ static void revert_cb(GtkWidget *w)
 	if(mdi->active_child) {
 		doc = HEX_DOCUMENT(mdi->active_child);
 		if(doc->changed) {
-			sprintf(msg, _("Really revert file %s?"), GNOME_MDI_CHILD(doc)->name);
+			g_snprintf(msg, MESSAGE_LEN,
+					   _("Really revert file %s?"),
+					   GNOME_MDI_CHILD(doc)->name);
 			mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(msg,
 														   GNOME_MESSAGE_BOX_QUESTION,
 														   GNOME_STOCK_BUTTON_YES,
@@ -526,7 +528,7 @@ static void save_selected_file(GtkWidget *w, GtkWidget *view)
 		if(hex_document_write_to_file(doc, file)) {
 			if(doc->file_name)
 				g_free(doc->file_name);
-			doc->file_name = strdup(filename);
+			doc->file_name = g_strdup(filename);
 			doc->changed = FALSE;
 
 			for(i = strlen(doc->file_name);

@@ -384,7 +384,7 @@ HexDocument *hex_document_new(const gchar *name)
 	int i;
 	
 	if((doc = gtk_type_new(hex_document_get_type()))) {
-		doc->file_name = (gchar *)strdup(name);
+		doc->file_name = (gchar *)g_strdup(name);
 		if(get_document_attributes(doc)) {
 			doc->gap_size = 100;
 			doc->buffer_size = doc->file_size + doc->gap_size;

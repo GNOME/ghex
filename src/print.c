@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* print.c - print a HexDocument
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998 - 2001 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -208,10 +208,12 @@ static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 	gnome_print_stroke(pji->pc); 
 }
 
+#define TEMP_LEN 256
+
 static void print_row(GHexPrintJobInfo *pji, unsigned int offset, unsigned int bytes, int row)
 {
 	gfloat x, y;
-	gchar *temp = g_malloc(265);
+	gchar *temp = g_malloc(TEMP_LEN + 1);
 
 	y = pji->page_height -
 		pji->margin_top -
@@ -220,7 +222,7 @@ static void print_row(GHexPrintJobInfo *pji, unsigned int offset, unsigned int b
 	/* Print Offset */ 
 	x = pji->margin_left;
 	gnome_print_moveto(pji->pc, x , y);
-	sprintf(temp, "%08X", offset);
+	g_snprintf(temp, TEMP_LEN, "%08X", offset);
 	gnome_print_show(pji->pc, temp);
 	gnome_print_stroke(pji->pc);
 	/* Print Hex */
