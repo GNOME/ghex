@@ -536,7 +536,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 			   offset_fmt[i] != 'P' && offset_fmt[i] != 'p') {
 				g_free(offset_fmt);
 				offset_fmt = old_offset_fmt;
-				gtk_entry_select_region(GTK_ENTRY(pui->format), i, i+1);
+				gtk_entry_set_text(GTK_ENTRY(pui->format), old_offset_fmt);
 				gnome_error_dialog_parented(_("The offset format string contains invalid format specifier.\n"
 											  "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."),
 											GTK_WINDOW(pui->pbox));
