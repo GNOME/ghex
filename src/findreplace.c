@@ -506,11 +506,11 @@ static void replace_all_cb(GtkWidget *w)
 	while(hex_document_find_forward(doc, cursor_pos, find_str, find_len,
 									&offset)) {
 		hex_document_set_data(doc, offset, rep_len, find_len, rep_str, TRUE);
-		cursor_pos = cursor_pos + rep_len;
+		cursor_pos = offset + rep_len;
 		count++;
 	}
 	
-	gtk_hex_set_cursor(gh, offset);  
+	gtk_hex_set_cursor(gh, MIN(offset, doc->file_size));  
 	
 	flash = g_strdup_printf(_("Replaced %d occurencies."), count);
 	ghex_window_flash(win, flash);
