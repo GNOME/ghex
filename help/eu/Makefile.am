@@ -10,6 +10,6 @@ figs = \
 	ghexprintprefs.png
 app = ghex
 lang = eu
-omffiles=ghex-C.omf
+omffiles=ghex-eu.omf
 include $(top_srcdir)/app-docs.make
 dist-hook: app-dist-hook
