@@ -56,6 +56,8 @@ void print_document(HexDocument *doc, guint gt, GnomePrinter *printer)
 	gint i, j;
 	GHexPrintJobInfo *pji;
 	GnomeFont *d_font, *h_font;
+	guint32 glyph;
+	ArtPoint point;
 
 	d_font = gnome_font_new(data_font_name, data_font_size);
 	if(!d_font)
@@ -92,7 +94,12 @@ void print_document(HexDocument *doc, guint gt, GnomePrinter *printer)
     pji->margin_right = .75 * 72;
     pji->header_height = 2.2 * (gnome_font_get_ascender(GNOME_FONT(h_font)) +
 		gnome_font_get_descender(GNOME_FONT(h_font)));
-    pji->font_char_width = gnome_font_get_width(GNOME_FONT(d_font), ' ');
+
+	/* Get font_char_width */
+    glyph = ' ';
+	gnome_font_get_glyph_stdadvance (GNOME_FONT (d_font), glyph, &point);
+    pji->font_char_width  = point.x;
+	
     pji->font_char_height = gnome_font_get_ascender(GNOME_FONT(d_font)) +
 		gnome_font_get_descender(GNOME_FONT(d_font));
 	/* add 10% for spacing between lines */

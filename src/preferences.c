@@ -69,26 +69,29 @@ static GtkWidget *get_font_label(const gchar *name, gdouble size) {
 
 static void font_button_clicked(GtkWidget *button, GnomeFont **font) {
 	static GtkWidget *fsd = NULL;
+	static GtkWidget *fontsel = NULL;
 	const gchar *f_name;
 	gdouble f_size;
 
 	if(!fsd) {
 		fsd = gnome_font_selection_dialog_new(_("Select font"));
+		fontsel = gnome_font_selection_dialog_get_fontsel (GNOME_FONT_SELECTION_DIALOG(fsd));
 		gtk_window_set_modal(GTK_WINDOW(fsd), TRUE);
 		gnome_dialog_close_hides(GNOME_DIALOG(fsd), TRUE);
 	}
 	if(*font)
-		gnome_font_selection_dialog_set_font(GNOME_FONT_SELECTION_DIALOG(fsd),
-											 *font);
+		gnome_font_selection_set_font(GNOME_FONT_SELECTION (fontsel),
+									  *font);
+
 	gtk_widget_show(fsd);
 	if(gnome_dialog_run_and_close(GNOME_DIALOG(fsd)) == 0) {
-		GnomeDisplayFont *disp_font;
-		disp_font = gnome_font_selection_dialog_get_font(GNOME_FONT_SELECTION_DIALOG(fsd));
+		GnomeFont *disp_font;
+		disp_font = gnome_font_selection_get_font (GNOME_FONT_SELECTION(fontsel));
 		if(*font)
 			gtk_object_unref(GTK_OBJECT(*font));
-		*font = disp_font->gnome_font;
+		*font = disp_font;
 		f_name = gnome_font_get_name(*font);
-		f_size = (*font)->size;
+		f_size = gnome_font_selection_get_size (GNOME_FONT_SELECTION (fontsel));
 		gtk_container_remove(GTK_CONTAINER(button), GTK_BIN(button)->child);
 		gtk_container_add(GTK_CONTAINER(button), get_font_label(f_name, f_size));
 	}
@@ -574,13 +577,13 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 		if(data_font_name)
 			g_free(data_font_name);
 		data_font_name = g_strdup(gnome_font_get_name(GNOME_FONT(pui->data_font)));
-		data_font_size = GNOME_FONT(pui->data_font)->size;
+		data_font_size = gnome_font_get_size (GNOME_FONT(pui->data_font));
 	}
 	if(pui->header_font) {
 		if(header_font_name)
 			g_free(header_font_name);
 		header_font_name = g_strdup(gnome_font_get_name(GNOME_FONT(pui->header_font)));
-		header_font_size = GNOME_FONT(pui->header_font)->size;
+		header_font_size = gnome_font_get_size (GNOME_FONT(pui->header_font));
 	}
 }
 
