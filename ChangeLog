@@ -1,3 +1,11 @@
+2003-11-02  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/gtkhex.c (render_xc, render_ac): render inactive cursor as
+	an outlined rectangle. fixes #126034.
+	(gtk_hex_key_press): toggle active view on tab, not just on control
+	tab. fixes #126033.
+	(gtk_hex_size_allocate): queue offset widget for redraw .
+
 2003-09-10  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/Makefile.am: removed redundant -DGHEX_UI_DIR and

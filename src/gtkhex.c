@@ -352,15 +352,15 @@ static void render_ac(GtkHex *gh) {
 		if(!is_displayable(c[0]))
 			c[0] = '.';
 
+		gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_ACTIVE]);
 		if(gh->active_view == VIEW_ASCII) {
-			gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_ACTIVE]);
+			gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc,
+							   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
 		else {
-			gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->fg[GTK_STATE_INSENSITIVE]);
+			gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc,
+							   FALSE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
-
-		gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc,
-						   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
 		gdk_gc_set_foreground(gh->adisp_gc, &(GTK_WIDGET(gh)->style->black));
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->alayout, c, 1);
@@ -387,15 +387,15 @@ static void render_xc(GtkHex *gh) {
 			i = 0;
 		}
 
+		gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_ACTIVE]);
 		if(gh->active_view == VIEW_HEX) {
-			gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_ACTIVE]);
+			gdk_draw_rectangle(GTK_WIDGET(gh->xdisp)->window, gh->xdisp_gc,
+							   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
 		else {
-			gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->fg[GTK_STATE_INSENSITIVE]);
+			gdk_draw_rectangle(GTK_WIDGET(gh->xdisp)->window, gh->xdisp_gc,
+							   FALSE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
-
-		gdk_draw_rectangle(GTK_WIDGET(gh->xdisp)->window, gh->xdisp_gc,
-						   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
 		gdk_gc_set_foreground(gh->xdisp_gc, &(GTK_WIDGET(gh)->style->black));
 		pango_layout_set_text (gh->xlayout, &c[i], 1);
 		gdk_draw_layout (gh->xdisp->window, gh->xdisp_gc, cx, cy, gh->xlayout);
@@ -1340,19 +1340,13 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 		break;
 	case GDK_Tab:
 	case GDK_KP_Tab:
-			if (event->state & GDK_CONTROL_MASK) {
-				if (gh->active_view == VIEW_ASCII) {
-					get_acoords(gh, gh->cursor_pos, &cx, &cy);
-					gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window, GTK_STATE_NORMAL, GTK_SHADOW_IN, cx, cy, gh->char_width, gh->char_height-1);
-					gh->active_view = VIEW_HEX;
-				}
-				else {
-					get_xcoords(gh, gh->cursor_pos, &cx, &cy);
-					gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window, GTK_STATE_NORMAL, GTK_SHADOW_IN, cx, cy, gh->char_width, gh->char_height-1);
-					gh->active_view = VIEW_ASCII;
-				}
-			}
-			break;
+		if (gh->active_view == VIEW_ASCII) {
+			gh->active_view = VIEW_HEX;
+		}
+		else {
+			gh->active_view = VIEW_ASCII;
+		}
+		break;
 	case GDK_Delete:
 		if(gh->cursor_pos < gh->document->file_size) {
 			hex_document_set_data(gh->document, gh->cursor_pos,
@@ -1509,6 +1503,7 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	if(gh->show_offsets) {
 		my_alloc.width = 8*gh->char_width;
 		gtk_widget_size_allocate(gh->offsets, &my_alloc);
+		gtk_widget_queue_draw(gh->offsets);
 		my_alloc.x += 2*xt + my_alloc.width;
 	}
 	my_alloc.width = gh->xdisp_width;
