@@ -159,15 +159,3 @@ redo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		gtk_hex_set_nibble(win->gh, cd->lower_nibble);
 	}
 }
-
-void
-add_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
-{
-	/* TODO: implement this */
-}
-
-void
-remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
-{
-	/* TODO: implement this */
-}

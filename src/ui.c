@@ -856,3 +856,23 @@ update_dialog_titles()
 	if(find_dialog)
 		create_dialog_title(find_dialog->window, _("GHex (%s): Find Data"));
 }
+
+void
+add_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	GHexWindow *win = GHEX_WINDOW(user_data);
+
+	if(win->gh == NULL)
+		return;
+
+	win = ghex_window_new_from_doc(win->gh->document);
+	gtk_widget_show(win);
+}
+
+void
+remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	GHexWindow *win = GHEX_WINDOW(user_data);
+
+	gtk_widget_destroy(GTK_WIDGET(win));
+}

@@ -1,3 +1,24 @@
+2002-06-20  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/ui.c (add_view_cb, remove_view_cb): implemented.
+
+2002-06-17  Jaka Mocnik  <jaka@gnu.org>
+
+	* further de-MDI-zation; GHex is now semistable and MDI-less ;)
+	* src/bonobo-mdi.*, src/ghex-mdi.[ch]: removed
+
+2002-06-15  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/ghex-window.[ch]: a BonoboWindow descendant, hosting
+	at most one GtkHex widget.
+	* src/hex-document.[ch]: de-MDI-zing.
+	* src/ui.c: likewise. use GHexWindow for displaying a single view.
+	* src/main.c: likewise. use (GHexWindow)* instead of MDI.
+
+2002-06-12 Pasupathi Duraisamy <pasupathi.duraisamy@wipro.com>
+
+	* src/findreplace.c: Fixes #84988
+ 
 2002-06-08  Yanko Kaneti <yaneti@declera.com>
 
 	* configure.in: (ALL_LINGUAS) Added Bulgarian (bg).
