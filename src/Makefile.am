@@ -40,7 +40,7 @@ libgtkhex_HEADERS = \
 
 ghex2_SOURCES = \
 	hex-document-ui.c preferences.c findreplace.c converter.c	\
-	config.c ghex.h	main.c ui.c chartable.c session.c		\
+	config.c main.c ui.c chartable.c session.c		\
 	print.c ghex-window.c ghex-window.h				\
 	gnome-print-font-dialog.c gnome-print-font-dialog.h		\
 	gnome-print-font-picker.c gnome-print-font-picker.h		\
