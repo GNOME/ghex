@@ -191,14 +191,14 @@ static void about_cb (GtkWidget *widget)
 	static GtkWidget *about = NULL;
 	
 	static const gchar *authors[] = {
-		"Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>",
+		"Jaka Mocnik <jaka@gnu.org>",
 		"Chema Celorio <chema@celorio.com>",
 		NULL
 	};
 
 	if(!about) {
 		about = gnome_about_new ( _("GHex, a binary file editor"), VERSION,
-								  "(C) 1998, 1999, 2000 Jaka Mocnik", authors,
+								  "(C) 1998 - 2001 Jaka Mocnik", authors,
 								  _("Released under the terms of GNU Public License"), NULL);
 		gtk_signal_connect(GTK_OBJECT(about), "destroy",
 						   GTK_SIGNAL_FUNC(about_destroy_cb), &about);
