@@ -237,13 +237,15 @@ gint hex_document_read(HexDocument *doc) {
     doc->buffer_size = fread(doc->buffer, 1, doc->buffer_size, doc->file);
     fclose(doc->file);
     doc->file = 0;
+
+    doc->change_data.start = 0;
+    doc->change_data.end = doc->buffer_size - 1;
+    hex_document_changed(doc, &doc->change_data);
+
+    doc->changed = FALSE;
+
     return 0;
   }
-
-  doc->change_data.start = 0;
-  doc->change_data.end = doc->buffer_size - 1;
-
-  hex_document_changed(doc, &doc->change_data);
 
   return 1;
 }

@@ -1,3 +1,9 @@
+1998-10-04  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* hex-document.c (hex_document_read): fixed a bug with
+	an early return which preceded an emission of
+	"document_changed" signal.
+
 1998-09-30  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* hex-document.[ch], gnome-support.c, main.c: replaced
