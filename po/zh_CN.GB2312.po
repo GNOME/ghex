@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-0.99.6\n"
-"POT-Creation-Date: 2000-03-25 12:32+0100\n"
+"POT-Creation-Date: 2000-03-25 18:59+0100\n"
 "PO-Revision-Date: 1999-02-20 08:00+0800\n"
 "Last-Translator: Dillion Chen <dillon.chen@turbolinux.com.cn>\n"
 "Language-Team: TLDN\n"
@@ -17,7 +17,7 @@ msgstr "GHex: 转码程序"
 msgid "Binary"
 msgstr "二进位"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:111
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:113
 msgid "Decimal"
 msgstr "十进位"
 
@@ -243,163 +243,168 @@ msgstr "最上层"
 msgid "Modal"
 msgstr "Modal"
 
-#: src/preferences.c:83
+#: src/preferences.c:85
 msgid "Maximum number of undo levels"
 msgstr "可还原的次数上限"
 
-#: src/preferences.c:97
+#: src/preferences.c:99
 msgid "Show cursor offset in statusbar as"
 msgstr "在状态列显示游标位置的方式: "
 
-#: src/preferences.c:116
+#: src/preferences.c:118
 msgid "Hexadecimal"
 msgstr "十六进位"
 
-#: src/preferences.c:122
+#: src/preferences.c:124
 msgid "Custom"
 msgstr "自定"
 
-#: src/preferences.c:132
+#: src/preferences.c:134
 msgid "Show offsets column"
 msgstr "显示字段"
 
-#: src/preferences.c:137
+#: src/preferences.c:139
 msgid "Editing"
 msgstr "编辑中"
 
-#: src/preferences.c:144
+#: src/preferences.c:146
 msgid "Font"
 msgstr "字形"
 
-#: src/preferences.c:160
+#: src/preferences.c:162
 msgid "Browse..."
 msgstr "浏览..."
 
-#: src/preferences.c:179
+#: src/preferences.c:181
 msgid "Default Group Type"
 msgstr "Default Group Type"
 
-#: src/preferences.c:195
+#: src/preferences.c:197
 msgid "Display"
 msgstr "显示"
 
-#: src/preferences.c:202
+#: src/preferences.c:204
 msgid "MDI Mode"
 msgstr "MDI 模式"
 
-#: src/preferences.c:219
+#: src/preferences.c:221
 msgid "MDI"
 msgstr "MDI"
 
-#: src/preferences.c:350
+#: src/preferences.c:231
+#, fuzzy
+msgid "Printing"
+msgstr "编辑中"
+
+#: src/preferences.c:373
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
 msgstr ""
 
-#: src/preferences.c:386
+#: src/preferences.c:409
 msgid "Can not open desired font!"
 msgstr "无法开启选定的字形!"
 
-#: src/ui.c:57
+#: src/ui.c:56
 msgid "Export to HTML..."
 msgstr ""
 
-#: src/ui.c:57
+#: src/ui.c:56
 msgid "Export data to HTML source"
 msgstr ""
 
-#: src/ui.c:73
+#: src/ui.c:72
 #, fuzzy
 msgid "Con_verter..."
 msgstr "开启转码程序 _v..."
 
-#: src/ui.c:74
+#: src/ui.c:73
 msgid "Open base conversion dialog"
 msgstr "开启比特转换对话框"
 
-#: src/ui.c:75
+#: src/ui.c:74
 msgid "Character Table..."
 msgstr ""
 
-#: src/ui.c:76
+#: src/ui.c:75
 msgid "Show the character table"
 msgstr ""
 
-#: src/ui.c:93
+#: src/ui.c:92
 #, fuzzy
 msgid "Tools"
 msgstr "工具栏"
 
-#: src/ui.c:107
+#: src/ui.c:106
 msgid "Bytes"
 msgstr "Bytes"
 
-#: src/ui.c:108
+#: src/ui.c:107
 msgid "Words"
 msgstr "Words"
 
-#: src/ui.c:109
+#: src/ui.c:108
 msgid "Longwords"
 msgstr "Longwords"
 
-#: src/ui.c:114
+#: src/ui.c:113
 msgid "hex data"
 msgstr "hex data"
 
-#: src/ui.c:115
+#: src/ui.c:114
 msgid "ASCII data"
 msgstr "ASCII data"
 
-#: src/ui.c:199
+#: src/ui.c:198
 msgid "GHex, a binary file editor"
 msgstr "GHex, 二比特档编辑器"
 
-#: src/ui.c:201
+#: src/ui.c:200
 msgid "Released under the terms of GNU Public License"
 msgstr "Released under the terms of GNU Public License"
 
-#: src/ui.c:225 src/ui.c:528
+#: src/ui.c:224 src/ui.c:527
 msgid "Error saving file!"
 msgstr "存档时发生错误!"
 
-#: src/ui.c:229 src/ui.c:523
+#: src/ui.c:228 src/ui.c:522
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "把缓冲区内容存至文件 %s"
 
-#: src/ui.c:250
+#: src/ui.c:249
 msgid "Select a file to open"
 msgstr "选择要开启的文件"
 
-#: src/ui.c:283
+#: src/ui.c:282
 msgid "Select a file to save buffer as"
 msgstr "选择要把缓冲区存入的文件"
 
-#: src/ui.c:359
+#: src/ui.c:358
 msgid "Select path and file name for the HTML source"
 msgstr ""
 
-#: src/ui.c:455
+#: src/ui.c:454
 #, c-format
 msgid "Really revert file %s?"
 msgstr "确定要复原文件 %s?"
 
-#: src/ui.c:468
+#: src/ui.c:467
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "把缓冲区内容复原成文件 %s"
 
-#: src/ui.c:484
+#: src/ui.c:483
 #, c-format
 msgid "Loaded file %s"
 msgstr "已载入文件 %s"
 
-#: src/ui.c:489
+#: src/ui.c:488
 msgid "Can not open file!"
 msgstr "无法开启文件!"
 
-#: src/ui.c:532
+#: src/ui.c:531
 msgid "Can't open file for writing!"
 msgstr "文件无法写入!"
 
@@ -413,7 +418,7 @@ msgstr "合计"
 msgid "GHex: Character table"
 msgstr "GHex: 转码程序"
 
-#: src/print.c:134
+#: src/print.c:136
 #, c-format
 msgid "Page: %i/%i"
 msgstr ""

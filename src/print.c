@@ -49,6 +49,8 @@ typedef struct {
 	int   gt;            /* group_type */
 } GhexPrintJobInfo;
 
+GnomePaper *def_paper;
+
 static void start_job(GnomePrintContext *pc);
 static void print_header(GhexPrintJobInfo *pji, unsigned int page);
 static void end_page(GnomePrintContext *pc);
@@ -63,27 +65,28 @@ void print_document(HexDocument *doc, guint group_type, GnomePrinter *printer)
 	int i, j;
 	float width;
 	GhexPrintJobInfo *pji;
+	const gchar *paper_name;
 
 	pji = g_new0(GhexPrintJobInfo, 1);
 	
-	pji->pc = gnome_print_context_new_with_paper_size (printer, "US-Letter");
+	paper_name = gnome_paper_name(def_paper);
+	pji->pc = gnome_print_context_new_with_paper_size(printer, paper_name);
 	pji->doc = doc;
 
 	g_return_if_fail(pji->pc != NULL);
 
-    /* For now we will print in US-Letter 8.5x11 */
-    /* Is important to define this as variables so that when
-    we implement diferent page sizes the rest of the code will work */
-    pji->page_width  = 8.5;
-    pji->page_height = 11;
-    pji->margin_top = .75; /* Printer margins, not page margins */
-    pji->margin_bottom = .75; 
-    pji->margin_left = .75;
-    pji->margin_right = .75;
-    pji->header_height = 1;
-    pji->font_char_width = .0808;
-    pji->font_char_height = .14;
-    pji->pad_size = .5;   
+    pji->page_width  = gnome_paper_pswidth(def_paper);
+    pji->page_height = gnome_paper_psheight(def_paper);
+
+	/* I've taken the liberty to convert inches to ps points */
+    pji->margin_top = 54.0;       /* Printer margins, not page margins */
+    pji->margin_bottom = 54.0; 
+    pji->margin_left = 54.0;
+    pji->margin_right = 54.0;
+    pji->header_height = 72.0;
+    pji->font_char_width = 5.8176;
+    pji->font_char_height = 10.08;
+    pji->pad_size = 36.0;   
     pji->offset_chars = 8;
 
 	pji->printable_width  = pji->page_width - pji->margin_left - pji->margin_right;
@@ -140,16 +143,16 @@ static void print_header(GhexPrintJobInfo *pji, unsigned int page)
 	/* Print the file name */
 	y = pji->page_height - pji->margin_top - pji->header_height/2;
     len = gnome_font_get_width_string (font, text1);
-	x = pji->page_width/2 - (len/72)/2;
-	gnome_print_moveto(pji->pc, x*72, y*72);
+	x = pji->page_width/2 - len/2;
+	gnome_print_moveto(pji->pc, x, y);
 	gnome_print_show(pji->pc, text1);
 	gnome_print_stroke(pji->pc);
 
 	/* Print the page/pages  */
 	y = pji->page_height - pji->margin_top - pji->header_height/4;
     len = gnome_font_get_width_string (font, text2);
-	x = pji->page_width - (len/72) - .5;
-	gnome_print_moveto(pji->pc, x*72 , y*72);
+	x = pji->page_width - len - 36;
+	gnome_print_moveto(pji->pc, x, y);
 	gnome_print_show(pji->pc, text2);
 	gnome_print_stroke(pji->pc); 
 
@@ -167,19 +170,19 @@ static void print_row(GhexPrintJobInfo *pji, unsigned int offset, unsigned int b
 
 	/* Print Offset */ 
 	x = pji->margin_left;
-	gnome_print_moveto(pji->pc, x*72 , y*72);
+	gnome_print_moveto(pji->pc, x , y);
 	sprintf(temp, "%08X", offset);
 	gnome_print_show(pji->pc, temp);
 	gnome_print_stroke(pji->pc);
 	/* Print Hex */
 	x = pji->margin_left + pji->font_char_width*pji->offset_chars + pji->pad_size ;
-	gnome_print_moveto(pji->pc, x*72 , y*72);
+	gnome_print_moveto(pji->pc, x, y);
 	format_hex(pji->doc, pji->gt, temp, offset, offset + bytes);
 	gnome_print_show(pji->pc, temp);
 	gnome_print_stroke(pji->pc);
 	/* Print Ascii */
 	x = pji->margin_left + pji->font_char_width*(pji->offset_chars + pji->bytes_per_row*3) + pji->pad_size*2  ;
-	gnome_print_moveto(pji->pc, x*72 , y*72);
+	gnome_print_moveto(pji->pc, x, y);
 	format_ascii(pji->doc, temp, offset, offset + bytes);
 	gnome_print_show(pji->pc, temp);
 	gnome_print_stroke(pji->pc);

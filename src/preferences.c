@@ -56,8 +56,10 @@ PropertyUI *create_prefs_dialog() {
 	GtkWidget *vbox, *label, *frame, *box, *entry, *fbox, *flabel;
 	GtkWidget *menu, *item;
 	GtkAdjustment *undo_adj;
+	GnomePaperSelector *paper_sel;
 	GSList *group;
 	PropertyUI *pui;
+	const gchar *paper_name;
 
 	int i;
 
@@ -220,19 +222,36 @@ PropertyUI *create_prefs_dialog() {
 	gtk_widget_show(label);
 	gtk_notebook_append_page(GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
 	
+	pui->paper_sel = gnome_paper_selector_new();
+	paper_sel = GNOME_PAPER_SELECTOR(pui->paper_sel);
+	paper_name = gnome_paper_name(def_paper);
+	gnome_paper_selector_set_name(paper_sel, paper_name);
+	gtk_widget_show(pui->paper_sel);
+
+	label = gtk_label_new(_("Printing"));
+	gtk_widget_show(label);
+	gtk_notebook_append_page(GTK_NOTEBOOK(pui->pbox->notebook), pui->paper_sel, label);
+
 	set_prefs(pui);
 	
 	/* signals have to be connected after set_prefs(), otherwise
 	   a gnome_property_box_changed() is called */
-	
-	for(i = 0; i < NUM_MDI_MODES; i++)
+   	for(i = 0; i < NUM_MDI_MODES; i++)
 		gtk_signal_connect(GTK_OBJECT(pui->mdi_type[i]), "clicked",
 						   properties_modified_cb, pui->pbox);
+
 	for(i = 0; i < 3; i++)
 		gtk_signal_connect(GTK_OBJECT(pui->group_type[i]), "clicked",
 						   properties_modified_cb, pui->pbox);
 
 	gtk_signal_connect(GTK_OBJECT(pui->offsets_col), "toggled",
+					   properties_modified_cb, pui->pbox);
+
+	gtk_signal_connect(GTK_OBJECT(GTK_COMBO(paper_sel->paper)->entry), "changed",
+					   properties_modified_cb, pui->pbox);
+	gtk_signal_connect(GTK_OBJECT(paper_sel->width), "changed",
+					   properties_modified_cb, pui->pbox);
+	gtk_signal_connect(GTK_OBJECT(paper_sel->height), "changed",
 					   properties_modified_cb, pui->pbox);
 
 	return pui;
@@ -265,6 +284,9 @@ static void set_prefs(PropertyUI *pui) {
 		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 2);
 		gtk_widget_set_sensitive(pui->format, TRUE);
 	}
+
+	gnome_paper_selector_set_name(GNOME_PAPER_SELECTOR(pui->paper_sel),
+								  gnome_paper_name(def_paper));
 }
 
 /*
@@ -286,6 +308,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 	guint new_undo_max;
 	gboolean show_off, expect_spec;
 	gchar *old_offset_fmt;
+	gchar *new_paper_name;
 
 	if ( page != -1 ) return; /* Only do something on global apply */
 	
@@ -385,6 +408,9 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 		else
 			gnome_app_error(mdi->active_window, _("Can not open desired font!"));
 	} 
+
+	new_paper_name = gnome_paper_selector_get_name(GNOME_PAPER_SELECTOR(pui->paper_sel));
+	def_paper = gnome_paper_with_name(new_paper_name);
 }
 
 static void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {

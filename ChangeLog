@@ -1,5 +1,17 @@
 2000-03-25  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
+	* src/preferences.c (create_prefs_dialog): add another notebook
+	page for "Printing" and put a paper selector in there.
+	(apply_changes_cb): apply selected paper type.
+	(set_prefs): set preferred paper type.
+	* src/ghex.h (def_paper): new global var, preferred paper type.
+	* src/config.c (load_configuration, save_configuration): load/save
+	preferred paper type.
+	* src/print.c: use ps points instead of inches for all values.
+	(print_document): get paper size from def_paper.
+	
+2000-03-25  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
 	* configure.in: added check for GnomePrint.
 	* src/Makefile.am (INCLUDE): added GNOME_PRINT_CFLAGS.
 	(ghex_LDADD): added GNOME_PRINT_LIBS.

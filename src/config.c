@@ -46,13 +46,16 @@ void save_configuration() {
 
 	gnome_config_set_bool("/ghex/Editing/OffsetsColumn", show_offsets_column);
 
+	gnome_config_set_string("/ghex/Printing/Paper", gnome_paper_name(def_paper));
+
 	gnome_config_sync();
 }
 
 void load_configuration() {
 	gchar *font_desc;
 	GdkFont *new_font;
-	
+	gchar *def_paper_name;
+
 	if((font_desc = gnome_config_get_string("/ghex/Display/Font=" DEFAULT_FONT)) != NULL) {
 		if((new_font = gdk_font_load(font_desc)) != NULL) {
 			if(def_font)
@@ -77,4 +80,12 @@ void load_configuration() {
 	mdi_mode = gnome_config_get_int("/ghex/MDI/Mode=2");
 
 	show_offsets_column = gnome_config_get_bool("/ghex/Editing/OffsetsColumn=true");
+
+	def_paper_name = gnome_config_get_string("/ghex/Printing/Paper=a4");
+	def_paper = gnome_paper_with_name(def_paper_name);
+	g_free(def_paper_name);
+	if(!def_paper) {
+		def_paper_name = gnome_paper_name_default();
+		def_paper = gnome_paper_with_name(def_paper_name);
+	}
 }

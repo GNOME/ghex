@@ -61,6 +61,7 @@ typedef struct _PropertyUI {
 	GtkWidget *font_button, *spin;
 	GtkWidget *offset_menu, *offset_choice[3];
 	GtkWidget *format, *offsets_col;
+	GtkWidget *paper_sel;
 } PropertyUI;
 
 typedef struct _JumpDialog {
@@ -98,30 +99,28 @@ typedef struct _Converter {
 
 extern int restarted;
 extern const struct poptOption options[];
+extern GSList *cl_files;
 
-extern GnomeMDI *mdi;
-extern gint mdi_mode;
+extern GnomeMDI       *mdi;
+extern GtkWidget      *file_sel;
+extern FindDialog     *find_dialog;
+extern ReplaceDialog  *replace_dialog;
+extern JumpDialog     *jump_dialog;
+extern Converter      *converter;
+extern GtkWidget      *char_table;
+extern PropertyUI     *prefs_ui;
 
-extern GtkWidget *file_sel;
-
-extern FindDialog *find_dialog;
-extern ReplaceDialog *replace_dialog;
-extern JumpDialog *jump_dialog;
-extern Converter *converter;
-extern GtkWidget *char_table;
-
-extern PropertyUI *prefs_ui;
-
-extern GtkCheckMenuItem *save_config_item;
-
+/* our preferred settings; as only one copy of them is required,
+   we'll make them global vars, although this is a bit ugly */
 extern GdkFont *def_font;
-extern gchar *def_font_name;
+extern gchar      *def_font_name;
+extern guint      max_undo_depth;
+extern gchar      *offset_fmt;
+extern gboolean   show_offsets_column;
+extern GnomePaper *def_paper;
+extern gint       def_group_type;
+extern gint       mdi_mode;
 
-extern guint max_undo_depth;
-extern gchar *offset_fmt;
-extern gboolean show_offsets_column;
-
-extern gint def_group_type;
 extern guint group_type[3];
 extern gchar *group_type_label[3];
 
@@ -131,8 +130,7 @@ extern gchar *mdi_type_label[NUM_MDI_MODES];
 extern guint search_type;
 extern gchar *search_type_label[2];
 
-extern GSList *cl_files;
-
+/* creation of dialogs */
 FindDialog    *create_find_dialog    (void);
 ReplaceDialog *create_replace_dialog (void);
 JumpDialog    *create_jump_dialog    (void);
