@@ -1,3 +1,8 @@
+2003-02-25  Shivram U  <shivaram.upadhyayula@wipro.com>
+ 
+ 	* src/ghex-window.c (ghex_window_close): If the last view has been 
+ 	destroyed, unref the document.
+
 2003-01-06  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/ui.c (close_cb): fixed a possible crash.
