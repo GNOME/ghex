@@ -93,14 +93,14 @@ ghex_window_close(GHexWindow *win)
 	const GList *window_list;
 
 	if(win->gh == NULL) {
-		gtk_widget_destroy(GTK_WIDGET(win));
+        gtk_widget_destroy(GTK_WIDGET(win));
 		return;
 	}
 
 	doc = win->gh->document;
 	
-	if(doc->views->next == NULL && hex_document_has_changed(doc)) {
-		if(!hex_document_ok_to_close(doc))
+	if(doc->views->next == NULL) {
+		if(!ghex_window_ok_to_close(win))
 			return;
 	}	
 
@@ -149,6 +149,8 @@ ghex_window_set_sensitivity (GHexWindow *win)
     bonobo_ui_component_freeze(uic, NULL);
 	bonobo_ui_component_set_prop (uic, "/menu/View", "hidden", 
                                   allmenus?"0":"1", NULL);
+    bonobo_ui_component_set_prop (uic, "/commands/FileClose", "sensitive",
+                                  allmenus?"1":"0", NULL);
 	bonobo_ui_component_set_prop (uic, "/commands/FileSave", "sensitive",
                                   (allmenus && win->gh->document->changed)?"1":"0", NULL);
 	bonobo_ui_component_set_prop (uic, "/commands/FileSaveAs", "sensitive",
@@ -162,17 +164,23 @@ ghex_window_set_sensitivity (GHexWindow *win)
 	bonobo_ui_component_set_prop (uic, "/commands/FilePrintPreview", "sensitive",
                                   allmenus?"1":"0", NULL);
 	bonobo_ui_component_set_prop (uic, "/commands/Find", "sensitive",
-                                  anymenus?"1":"0", NULL);
+                                  allmenus?"1":"0", NULL);
 	bonobo_ui_component_set_prop (uic, "/commands/Replace", "sensitive",
-                                  anymenus?"1":"0", NULL);
+                                  allmenus?"1":"0", NULL);
 	bonobo_ui_component_set_prop (uic, "/commands/GoToByte", "sensitive",
-                                  anymenus?"1":"0", NULL);
+                                  allmenus?"1":"0", NULL);
 	bonobo_ui_component_set_prop (uic, "/commands/InsertMode", "sensitive",
                                   allmenus?"1":"0", NULL);
 	bonobo_ui_component_set_prop (uic, "/commands/EditUndo", "sensitive",
                                   (allmenus && win->undo_sens)?"1":"0", NULL);
 	bonobo_ui_component_set_prop (uic, "/commands/EditRedo", "sensitive",
                                   (allmenus && win->redo_sens)?"1":"0", NULL);
+	bonobo_ui_component_set_prop (uic, "/commands/EditCut", "sensitive",
+                                  (allmenus)?"1":"0", NULL);
+  	bonobo_ui_component_set_prop (uic, "/commands/EditCopy", "sensitive",
+                                  (allmenus)?"1":"0", NULL);
+  	bonobo_ui_component_set_prop (uic, "/commands/EditPaste", "sensitive",
+                                  (allmenus)?"1":"0", NULL);
     bonobo_ui_component_thaw(uic, NULL);
 }
 
@@ -827,4 +835,162 @@ ghex_window_find_for_doc(HexDocument *doc)
         win_node = win_node->next;
     }
     return NULL;
+}
+
+gboolean
+ghex_window_save_as(GHexWindow *win)
+{
+	HexDocument *doc;
+	GtkWidget *file_sel;
+	gboolean resp, ret_val = TRUE;
+
+	if(win->gh == NULL)
+		return ret_val;
+
+	doc = win->gh->document;
+	file_sel = gtk_file_selection_new(NULL);
+
+	if(doc->file_name)
+		gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel),
+										doc->file_name);
+
+	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to save buffer as"));
+	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
+						"clicked", GTK_SIGNAL_FUNC(file_sel_ok_cb),
+						&resp);
+	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
+						"clicked", GTK_SIGNAL_FUNC(file_sel_cancel_cb),
+						&resp);
+	gtk_signal_connect (GTK_OBJECT (file_sel),
+						"delete-event", GTK_SIGNAL_FUNC(file_sel_delete_event_cb),
+						&resp);
+
+	gtk_window_set_modal(GTK_WINDOW(file_sel), TRUE);
+	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+	gtk_widget_show (file_sel);
+
+	gtk_main();
+
+	if(resp) {
+		FILE *file;
+		const gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
+		gchar *flash;
+		int i;
+        gint save = 0;
+
+        if(access(filename, F_OK) == 0) {
+            GnomeMessageBox *mbox;
+            gchar *msg = g_strdup_printf(_("File %s exists.\n"
+                                           "Do you want to overwrite it?"),
+                                         filename);
+            mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(msg,
+                                                           GNOME_MESSAGE_BOX_QUESTION,
+                                                           GNOME_STOCK_BUTTON_YES,
+                                                           GNOME_STOCK_BUTTON_NO,
+                                                           NULL));
+            g_free(msg);
+            ret_val = (ask_user(mbox) == 0);
+        }
+
+        if(ret_val) {
+            if((file = fopen(filename, "w")) != NULL) {
+                if(hex_document_write_to_file(doc, file)) {
+                    if(doc->file_name)
+                        g_free(doc->file_name);
+                    doc->file_name = strdup(filename);
+                    doc->changed = FALSE;
+                    win->changed = FALSE;
+                    
+                    for(i = strlen(doc->file_name);
+                        (i >= 0) && (doc->file_name[i] != '/');
+                        i--)
+                        ;
+                    if(doc->file_name[i] == '/')
+                        doc->path_end = &doc->file_name[i+1];
+                    else
+                        doc->path_end = doc->file_name;
+                    
+                    ghex_window_set_doc_name(win, doc->path_end);
+                    
+                    flash = g_strdup_printf(_("Saved buffer to file %s"), doc->file_name);
+                    ghex_window_flash(win, flash);
+                    g_free(flash);
+                }
+                else {
+                    display_error_dialog (win, _("Error saving file!"));
+                    ret_val = FALSE;
+                }
+                fclose(file);
+            }
+            else {
+                display_error_dialog (win, _("Can't open file for writing!"));
+                ret_val = TRUE;
+            }
+        }
+	}
+	gtk_widget_destroy(file_sel);
+	return ret_val;
+}
+
+gboolean
+ghex_window_ok_to_close(GHexWindow *win)
+{
+	static char msg[MESSAGE_LEN + 1];
+	GtkWidget *mbox;
+	gint reply;
+	GtkWidget *save_btn;
+    HexDocument *doc;
+
+    if(win->gh == NULL)
+        return TRUE;
+
+    doc = win->gh->document;
+
+    if(!hex_document_has_changed(doc))
+        return TRUE;
+
+	g_snprintf(msg, MESSAGE_LEN,
+			   _("File %s has changed since last save.\n"
+				 "Do you want to save changes?"),
+			   doc->path_end);
+
+	mbox = gtk_message_dialog_new(GTK_WINDOW(win),
+								  GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
+								  GTK_MESSAGE_QUESTION,
+								  GTK_BUTTONS_NONE,
+								  msg);
+			
+	save_btn = create_button(mbox, GTK_STOCK_NO, _("Do_n't save"));
+	gtk_widget_show (save_btn);
+	gtk_dialog_add_action_widget(GTK_DIALOG(mbox), save_btn, GTK_RESPONSE_NO);
+	gtk_dialog_add_button(GTK_DIALOG(mbox), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+	gtk_dialog_add_button(GTK_DIALOG(mbox), GTK_STOCK_SAVE, GTK_RESPONSE_YES);
+	gtk_dialog_set_default_response(GTK_DIALOG(mbox), GTK_RESPONSE_YES);
+	gtk_window_set_resizable(GTK_WINDOW(mbox), FALSE);
+	
+	reply = gtk_dialog_run(GTK_DIALOG(mbox));
+	
+	gtk_widget_destroy(mbox);
+		
+	if(reply == GTK_RESPONSE_YES) {
+		if(doc->file_name == NULL) {
+			if(!ghex_window_save_as(win)) {
+				return FALSE;
+			}
+        }
+		else {
+            if(!hex_document_is_writable(doc)) {
+                display_error_dialog (win, _("You don't have the permissions to save the file!"));
+                return FALSE;
+            }
+            else if(!hex_document_write(doc)) {
+                display_error_dialog(win, _("An error occured while saving file!"));
+				return FALSE;
+			}
+		}
+	}
+	else if(reply == GTK_RESPONSE_CANCEL)
+		return FALSE;
+
+	return TRUE;
 }

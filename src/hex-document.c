@@ -664,7 +664,6 @@ hex_document_write(HexDocument *doc)
 		fclose(file);
 		if(ret) {
 			doc->changed = FALSE;
-			undo_stack_free(doc);
 		}
 	}
 
@@ -977,6 +976,13 @@ hex_document_undo(HexDocument *doc)
 	undo_stack_descend(doc);
 
 	return TRUE;
+}
+
+gboolean
+hex_document_is_writable(HexDocument *doc)
+{
+	return (doc->file_name != NULL &&
+			access(doc->file_name, W_OK) == 0);
 }
 
 gboolean

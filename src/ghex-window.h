@@ -76,6 +76,10 @@ GHexWindow        *ghex_window_find_for_doc       (HexDocument *doc);
 void ghex_window_sync_char_table_item(GHexWindow *win, gboolean state);
 void ghex_window_sync_converter_item(GHexWindow *win, gboolean state);
 
+gboolean ghex_window_ok_to_close(GHexWindow *win);
+gboolean ghex_window_save_as(GHexWindow *win);
+
+
 G_END_DECLS
 
 #endif /* __GHEX_WINDOW_H__ */

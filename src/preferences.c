@@ -291,9 +291,11 @@ create_prefs_dialog()
 
 	pui->df_button = gnome_font_picker_new();
 	gnome_font_picker_set_mode (GNOME_FONT_PICKER (pui->df_button),
-				GNOME_FONT_PICKER_MODE_FONT_INFO);
+								GNOME_FONT_PICKER_MODE_FONT_INFO);
 	gnome_font_picker_fi_set_use_font_in_label (GNOME_FONT_PICKER (pui->df_button), TRUE, 14);
 	gnome_font_picker_fi_set_show_size (GNOME_FONT_PICKER (pui->df_button), TRUE);
+	gtk_signal_connect (GTK_OBJECT (pui->df_button), "font_set",
+						GTK_SIGNAL_FUNC (select_font_cb), pui->pbox);
 	pui->df_label = gtk_label_new("");
 	gtk_label_set_mnemonic_widget (GTK_LABEL (pui->df_label), pui->df_button);
 
@@ -322,9 +324,11 @@ create_prefs_dialog()
 					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 	pui->hf_button = gnome_font_picker_new();
 	gnome_font_picker_set_mode (GNOME_FONT_PICKER (pui->hf_button),
-				GNOME_FONT_PICKER_MODE_FONT_INFO);
+								GNOME_FONT_PICKER_MODE_FONT_INFO);
 	gnome_font_picker_fi_set_use_font_in_label (GNOME_FONT_PICKER (pui->hf_button), TRUE, 14);
 	gnome_font_picker_fi_set_show_size (GNOME_FONT_PICKER (pui->hf_button), TRUE);
+	gtk_signal_connect (GTK_OBJECT (pui->hf_button), "font_set",
+						GTK_SIGNAL_FUNC (select_font_cb), pui->pbox);
 	pui->hf_label = gtk_label_new("");
 	gtk_label_set_mnemonic_widget (GTK_LABEL (pui->hf_label), pui->hf_button);
 

@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+ /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ui.c - main menus and callbacks; utility functions
 
    Copyright (C) 1998 - 2002 Free Software Foundation
@@ -30,9 +30,6 @@
 
 #include "ghex.h"
 
-static void open_selected_file(GtkWidget *w, gpointer user_data);
-static void save_selected_file(GtkWidget *w, GHexWindow *win);
-static void export_html_selected_file(GtkWidget *w, GtkHex *view);
 static void ghex_print(GtkHex *gh, gboolean preview);
 static gboolean ghex_print_run_dialog(GHexPrintJobInfo *pji);
 static void ghex_print_preview_real(GHexPrintJobInfo *pji);
@@ -74,8 +71,6 @@ gchar *search_type_label[] = {
 	N_("hex data"),
 	N_("ASCII data"),
 };
-
-GtkWidget *file_sel = NULL;
 
 BonoboUIVerb ghex_verbs [] = {
 	BONOBO_UI_VERB ("FileOpen", open_cb),
@@ -143,6 +138,28 @@ delete_event_cb(GtkWidget *w, GdkEventAny *e)
 {
 	gtk_widget_hide(w);
 	
+	return TRUE;
+}
+
+void
+file_sel_ok_cb(GtkWidget *w, gboolean *resp)
+{
+	*resp = TRUE;
+	gtk_main_quit();
+}
+
+void
+file_sel_cancel_cb(GtkWidget *w, gboolean *resp)
+{
+	*resp = FALSE;
+	gtk_main_quit();
+}
+
+gint
+file_sel_delete_event_cb(GtkWidget *w, GdkEventAny *e, gboolean *resp)
+{
+	*resp = FALSE;
+	gtk_main_quit();
 	return TRUE;
 }
 
@@ -301,10 +318,9 @@ quit_app_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	doc_node = hex_document_get_list();
 	while(doc_node) {
 		doc = HEX_DOCUMENT(doc_node->data);
-		if(hex_document_has_changed(doc)) {
-			if(!hex_document_ok_to_close(doc))
-				return;
-		}
+		win = ghex_window_find_for_doc(doc);
+		if(!ghex_window_ok_to_close(win))
+			return;
 		doc_node = doc_node->next;
 	}
 	bonobo_main_quit();
@@ -324,8 +340,13 @@ save_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	if(doc == NULL)
 		return;
 
+	if(!hex_document_is_writable(doc)) {
+		display_error_dialog (win, _("You don't have the permissions to save the file!"));
+		return;
+	}
+
 	if(!hex_document_write(doc))
-		display_error_dialog (win, _("Error saving file!"));
+		display_error_dialog (win, _("An error occured while saving file!"));
 	else {
 		gchar *flash;
 		
@@ -342,6 +363,8 @@ open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	GHexWindow *win;
 	HexDocument *doc;
+	GtkWidget *file_sel;
+	gboolean resp;
 
 	win = GHEX_WINDOW(user_data);
 
@@ -350,11 +373,7 @@ open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	else
 		doc = NULL;
 
-	if(file_sel && GTK_WIDGET_VISIBLE(file_sel))
-		return;
-
-	if(file_sel == NULL)
-		file_sel = gtk_file_selection_new(NULL);
+	file_sel = gtk_file_selection_new(NULL);
 
 	if(doc)
 		gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel),
@@ -363,22 +382,49 @@ open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to open"));
 	
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
-						"clicked", GTK_SIGNAL_FUNC(open_selected_file),
-						win);
+						"clicked", GTK_SIGNAL_FUNC(file_sel_ok_cb),
+					    &resp);
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
-						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						file_sel);
+						"clicked", GTK_SIGNAL_FUNC(file_sel_cancel_cb),
+						&resp);
 	gtk_signal_connect (GTK_OBJECT (file_sel),
-						"delete-event", GTK_SIGNAL_FUNC(delete_event_cb),
-						file_sel);
+						"delete-event", GTK_SIGNAL_FUNC(file_sel_delete_event_cb),
+						&resp);
 
 	gtk_window_set_modal (GTK_WINDOW(file_sel), TRUE);
+	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+	gtk_widget_show (file_sel);
 
-	if(!GTK_WIDGET_VISIBLE(file_sel)) {
-		gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
-		gtk_widget_show (file_sel);
+	gtk_main();
+
+	if(resp) {
+		HexDocument *new_doc;
+		gchar *flash;
+
+		if(GHEX_WINDOW(win)->gh != NULL) {
+			win = GHEX_WINDOW(ghex_window_new_from_file(gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel))));
+			if(win != NULL)
+				gtk_widget_show(GTK_WIDGET(win));
+		}
+		else {
+			if(!ghex_window_load(GHEX_WINDOW(win),
+								 gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel))))
+				win = NULL;
+		}
+
+		if(win != NULL) {
+			flash = g_strdup_printf(_("Loaded file %s"),
+									win->gh->document->file_name);
+			ghex_window_flash(win, flash);
+			g_free(flash);
+			if (converter_get)
+				gtk_widget_set_sensitive(converter_get, TRUE);
+		}
+		else
+			display_error_dialog (ghex_window_get_active(), _("Can not open file!"));
 	}
 
+	gtk_widget_destroy(GTK_WIDGET(file_sel));
 }
 
 static void
@@ -395,29 +441,7 @@ save_as_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	if(doc == NULL)
 		return;
 
-	if (file_sel && GTK_WIDGET_VISIBLE(file_sel))
-		return;
-	
-	if(file_sel == NULL)
-		file_sel = gtk_file_selection_new(NULL);
-
-	gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel),
-									doc->file_name);
-
-	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to save buffer as"));
-	
-	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
-	
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
-						"clicked", GTK_SIGNAL_FUNC(save_selected_file),
-						win);
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
-						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						file_sel);
-
-	gtk_window_set_modal(GTK_WINDOW(file_sel), TRUE);
-
-	gtk_widget_show (file_sel);
+	ghex_window_save_as(win);
 }
 
 static void
@@ -447,6 +471,8 @@ export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbnam
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 	HexDocument *doc;
+	GtkWidget *file_sel;
+	gboolean resp;
 
 	if(win->gh)
 		doc = win->gh->document;
@@ -456,84 +482,117 @@ export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbnam
 	if(doc == NULL)
 		return;
 
-	if(file_sel == NULL)
-		file_sel = gtk_file_selection_new(NULL);
+	file_sel = gtk_file_selection_new(NULL);
 
 	gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel), doc->file_name);
-
-	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select path and file name for the HTML source"));
-	
-	gtk_window_position(GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
-	
+	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select path and file name for the HTML source"));	
 	gtk_signal_connect(GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
-						"clicked", GTK_SIGNAL_FUNC(export_html_selected_file),
-						win->gh);
+						"clicked", GTK_SIGNAL_FUNC(file_sel_ok_cb),
+						&resp);
 	gtk_signal_connect(GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
-						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						file_sel);
+						"clicked", GTK_SIGNAL_FUNC(file_sel_cancel_cb),
+						&resp);
+	gtk_signal_connect (GTK_OBJECT (file_sel),
+						"delete-event", GTK_SIGNAL_FUNC(file_sel_delete_event_cb),
+						&resp);
 	gtk_window_set_modal(GTK_WINDOW(file_sel), TRUE);
 	gtk_widget_show(file_sel);
-}
+	gtk_window_position(GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 
-static void
-export_html_selected_file(GtkWidget *w, GtkHex *view)
-{
-	gchar *html_path = g_strdup(gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel)));
-	gchar *sep, *base_name;
-	HexDocument *doc;
+	gtk_main();
 
-	gtk_widget_hide(file_sel);
+	if(resp) {
+		gchar *html_path = g_strdup(gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel)));
+		gchar *sep, *base_name, *check_path;
+		GtkHex *view = win->gh;
 
-	sep = html_path + strlen(html_path) - 1;
-	while(sep >= html_path && *sep != '/')
-		sep--;
-	if(sep >= html_path)
-		*sep = 0;
-	base_name = sep + 1;
-	sep = strstr(base_name, ".htm");
-	if(sep)
-		*sep = 0;
+		gtk_widget_destroy(file_sel);
 
-	if(*base_name == 0) {
+		sep = html_path + strlen(html_path) - 1;
+		while(sep >= html_path && *sep != '/')
+			sep--;
+		if(sep >= html_path)
+			*sep = 0;
+		base_name = sep + 1;
+		sep = strstr(base_name, ".htm");
+		if(sep)
+			*sep = 0;
+
+		if(*base_name == 0) {
+			g_free(html_path);
+			display_error_dialog(win, _("You need to specify a base name for "
+										"the HTML files."));
+			return;
+		}
+
+		check_path = g_strdup_printf("%s/%s.html", html_path, base_name);
+		if(access(check_path, F_OK) == 0) {
+			gint reply;
+			GnomeMessageBox *mbox;
+
+			if(access(check_path, W_OK) != 0) {
+				display_error_dialog(win, _("You don't have the permission to write to the selected path.\n"));
+				g_free(html_path);
+				g_free(check_path);
+				return;
+			}
+
+			mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(_("Saving to HTML will overwrite some files.\n"
+															 "Do you want to proceed?"),
+														   GNOME_MESSAGE_BOX_QUESTION,
+														   GNOME_STOCK_BUTTON_YES,
+														   GNOME_STOCK_BUTTON_NO,
+														   NULL));
+			gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
+			reply = ask_user(mbox);
+			if(reply != 0) {
+				g_free(html_path);
+				g_free(check_path);
+				return;
+			}
+		}
+		else {
+			if(access(html_path, W_OK) != 0) {
+				display_error_dialog(win, _("You don't have the permission to write to the selected path.\n"));
+				g_free(html_path);
+				g_free(check_path);
+				return;
+			}
+		}
+		g_free(check_path);
+
+		hex_document_export_html(doc, html_path, base_name, 0, doc->file_size,
+								 view->cpl, view->vis_lines, view->group_type);
 		g_free(html_path);
-		return;
 	}
-
-	doc = view->document;
-
-	hex_document_export_html(doc, html_path, base_name, 0, doc->file_size,
-							 view->cpl, view->vis_lines, view->group_type);
-
-	gtk_widget_destroy(GTK_WIDGET(file_sel));
-	file_sel = NULL;
-	g_free(html_path);
+	else
+		gtk_widget_destroy(GTK_WIDGET(file_sel));
 }
 
 static void
 close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	GHexWindow *win = GHEX_WINDOW(user_data);
+	GHexWindow *win = GHEX_WINDOW(user_data), *other_win;
 	HexDocument *doc;
 	const GList *window_list;
 
 	if(win->gh == NULL) {
-		gtk_widget_destroy(GTK_WIDGET(win));
+        if(ghex_window_get_list()->next != NULL)
+            gtk_widget_destroy(GTK_WIDGET(win));
 		return;
 	}
 
 	doc = win->gh->document;
 	
-	if(hex_document_has_changed(doc)) {
-		if(!hex_document_ok_to_close(doc))
-			return;
-	}	
-
+	if(!ghex_window_ok_to_close(win))
+		return;
+	
 	window_list = ghex_window_get_list();
 	while(window_list) {
-		win = GHEX_WINDOW(window_list->data);
+		other_win = GHEX_WINDOW(window_list->data);
 		window_list = window_list->next;
-		ghex_window_remove_doc_from_list(win, doc);
-		if(win->gh && win->gh->document == doc)
+		ghex_window_remove_doc_from_list(other_win, doc);
+		if(other_win->gh && other_win->gh->document == doc && other_win != win)
 			gtk_widget_destroy(GTK_WIDGET(win));
 	}
 
@@ -545,6 +604,14 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	 */
 	if (converter_get)
 		gtk_widget_set_sensitive(converter_get, FALSE);
+
+    if(ghex_window_get_list()->next == NULL) {
+        bonobo_window_set_contents(BONOBO_WINDOW(win), NULL);
+		win->gh = NULL;
+        ghex_window_set_sensitivity(win);
+    }
+    else
+        gtk_widget_destroy(GTK_WIDGET(win));	
 }
 
 void
@@ -553,12 +620,7 @@ raise_and_focus_widget (GtkWidget *widget)
 	if(!GTK_WIDGET_REALIZED (widget))
 		return;
 
-#if 0
-	gdk_window_raise (widget->window);
-	gtk_widget_grab_focus (widget);
-#else
-	gtk_window_present(widget);
-#endif /* 0/1 */
+	gtk_window_present(GTK_WINDOW(widget));
 }
 
 void
@@ -643,92 +705,6 @@ revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 			g_free(flash);
 		}
 	}
-}
-
-static void
-open_selected_file(GtkWidget *w, gpointer user_data)
-{
-	HexDocument *new_doc;
-	GtkWidget *win;
-	gchar *flash;
-
-	win = GTK_WIDGET(user_data);
-	
-	if(GHEX_WINDOW(win)->gh != NULL) {
-		win = ghex_window_new_from_file(gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel)));
-		if(win != NULL)
-			gtk_widget_show(win);
-	}
-	else {
-		if(!ghex_window_load(GHEX_WINDOW(win),
-							 gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel))))
-			win = NULL;
-	}
-
-	if(win != NULL) {
-		flash = g_strdup_printf(_("Loaded file %s"),
-								GHEX_WINDOW(win)->gh->document->file_name);
-		ghex_window_flash(GHEX_WINDOW(win), flash);
-		g_free(flash);
-		if (converter_get)
-			gtk_widget_set_sensitive(converter_get, TRUE);
-	}
-	else
-		display_error_dialog (ghex_window_get_active(), _("Can not open file!"));
-
-	gtk_widget_destroy(GTK_WIDGET(file_sel));
-	file_sel = NULL;
-}
-
-static void
-save_selected_file(GtkWidget *w, GHexWindow *win)
-{
-	HexDocument *doc;
-	FILE *file;
-	const gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
-	gchar *flash;
-	int i;
-
-	if(win->gh)
-		doc = win->gh->document;
-	else
-		doc = NULL;
-	
-	if(doc == NULL)
-		return;
-	
-	if((file = fopen(filename, "w")) != NULL) {
-		if(hex_document_write_to_file(doc, file)) {
-			if(doc->file_name)
-				g_free(doc->file_name);
-			doc->file_name = strdup(filename);
-			doc->changed = FALSE;
-			win->changed = FALSE;
-
-			for(i = strlen(doc->file_name);
-				(i >= 0) && (doc->file_name[i] != '/');
-				i--)
-				;
-			if(doc->file_name[i] == '/')
-				doc->path_end = &doc->file_name[i+1];
-			else
-				doc->path_end = doc->file_name;
-			
-			ghex_window_set_doc_name(win, doc->path_end);
-
-			flash = g_strdup_printf(_("Saved buffer to file %s"), doc->file_name);
-			ghex_window_flash(win, flash);
-			g_free(flash);
-		}
-		else
-			display_error_dialog (win, _("Error saving file!"));
-		fclose(file);
-	}
-	else
-		display_error_dialog (win, _("Can't open file for writing!"));
-	
-	gtk_widget_destroy(GTK_WIDGET(file_sel));
-	file_sel = NULL;
 }
 
 /**

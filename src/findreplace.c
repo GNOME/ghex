@@ -83,7 +83,7 @@ FindDialog *create_find_dialog()
 		gtk_widget_show(dialog->type_button[i]);
 	}
 	
-	dialog->f_next = create_button(dialog->window, GTK_STOCK_GO_FORWARD, _("Find Next"));
+	dialog->f_next = create_button(dialog->window, GTK_STOCK_GO_FORWARD, _("Find _Next"));
 	gtk_signal_connect (GTK_OBJECT (dialog->f_next),
 						"clicked", GTK_SIGNAL_FUNC(find_next_cb),
 						dialog->f_string);
@@ -91,7 +91,7 @@ FindDialog *create_find_dialog()
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(dialog->f_next, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_next);
-	dialog->f_prev = create_button(dialog->window, GTK_STOCK_GO_BACK, _("Find Previous"));
+	dialog->f_prev = create_button(dialog->window, GTK_STOCK_GO_BACK, _("Find _Previous"));
 	gtk_signal_connect (GTK_OBJECT (dialog->f_prev),
 						"clicked", GTK_SIGNAL_FUNC(find_prev_cb),
 						dialog->f_string);
@@ -169,7 +169,7 @@ ReplaceDialog *create_replace_dialog()
 		gtk_widget_show(dialog->type_button[i]);
 	}
 	
-	dialog->next = create_button(dialog->window, GTK_STOCK_GO_FORWARD, _("Find next"));
+	dialog->next = create_button(dialog->window, GTK_STOCK_GO_FORWARD, _("Find _next"));
 	gtk_signal_connect (GTK_OBJECT (dialog->next),
 						"clicked", GTK_SIGNAL_FUNC(replace_next_cb),
 						dialog->f_string);
@@ -177,7 +177,7 @@ ReplaceDialog *create_replace_dialog()
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(dialog->next, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->next);
-	dialog->replace = gtk_button_new_with_label(_("Replace"));
+	dialog->replace = gtk_button_new_with_mnemonic(_("_Replace"));
 	gtk_signal_connect (GTK_OBJECT (dialog->replace),
 						"clicked", GTK_SIGNAL_FUNC(replace_one_cb),
 						NULL);
@@ -185,7 +185,7 @@ ReplaceDialog *create_replace_dialog()
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(dialog->replace, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->replace);
-	dialog->replace_all= gtk_button_new_with_label(_("Replace All"));
+	dialog->replace_all= gtk_button_new_with_mnemonic(_("Replace _All"));
 	gtk_signal_connect (GTK_OBJECT (dialog->replace_all),
 						"clicked", GTK_SIGNAL_FUNC(replace_all_cb),
 						NULL);
@@ -452,7 +452,7 @@ static void replace_one_cb(GtkWidget *w)
 									   replace_dialog->search_type)) == 0) ||
 		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->r_string)), rep_str,
 									  replace_dialog->search_type)) == 0)) {
-		display_error_dialog (win, _("Strings are not approprate for the selected data type!"));
+		display_error_dialog (win, _("Strings are not appropriate for the selected data type!"));
 		return;
 	}
 	
@@ -467,7 +467,7 @@ static void replace_one_cb(GtkWidget *w)
 								 &offset))
 		gtk_hex_set_cursor(gh, offset);
 	else {
-		display_info_dialog(win, "String was not found!\n");
+		display_info_dialog(win, _("End Of File reached!"));
 		ghex_window_flash(win, _("End Of File reached!"));
 	}
 }
@@ -493,7 +493,7 @@ static void replace_all_cb(GtkWidget *w)
 									   replace_dialog->search_type)) == 0) ||
 		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->r_string)), rep_str,
 									  replace_dialog->search_type)) == 0)) {
-		display_error_dialog (win, _("Strings are not approprate for the selected data type!"));
+		display_error_dialog (win, _("Strings are not appropriate for the selected data type!"));
 		return;
 	}
 	
@@ -511,6 +511,10 @@ static void replace_all_cb(GtkWidget *w)
 	}
 	
 	gtk_hex_set_cursor(gh, MIN(offset, doc->file_size));  
+
+	if(count == 0) {
+		display_info_dialog(win, _("No occurences were found."));
+	}
 	
 	flash = g_strdup_printf(_("Replaced %d occurencies."), count);
 	ghex_window_flash(win, flash);

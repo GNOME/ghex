@@ -133,7 +133,6 @@ extern int restarted;
 extern const struct poptOption options[];
 extern GSList *cl_files;
 
-extern GtkWidget      *file_sel;
 extern FindDialog     *find_dialog;
 extern ReplaceDialog  *replace_dialog;
 extern JumpDialog     *jump_dialog;
@@ -230,9 +229,11 @@ void display_info_dialog (GHexWindow *win, const gchar *msg, ...);
 void update_dialog_titles (void);
 void raise_and_focus_widget(GtkWidget *);
 
-gboolean hex_document_ok_to_close(HexDocument *doc);
-
 void set_prefs(PropertyUI *pui);
+
+void file_sel_ok_cb(GtkWidget *w, gboolean *resp);
+void file_sel_cancel_cb(GtkWidget *w, gboolean *resp);
+gint file_sel_delete_event_cb(GtkWidget *w, GdkEventAny *e, gboolean *resp);
 
 G_END_DECLS
 

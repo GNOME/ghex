@@ -25,8 +25,8 @@
 
 #include "ghex.h"
 
-/* We shall be using gconf for Gnome 2.0 -- SnM */
 #include <gconf/gconf-client.h>
+#include <gconf/gconf-value.h>
 
 #define GHEX_BASE_KEY                "/apps/ghex2"
 #define GHEX_PREF_FONT               "/font"

@@ -1,3 +1,36 @@
+2002-10-26  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/ghex-window.c (ghex_window_ok_to_close): new function that
+	replaces hex_document_ok_to_close() as this is really a window and
+	not document issue.
+	(ghex_window_save_as): new function that handles saving to a new
+	file instead of having this code duplicated all over.
+	* src/ui.c (export_html_cb): check for permissions. notify user if
+	the selected path is now writable.
+	(save_cb): check for write permissions of the file and notify user
+	if the file is not writable.
+	(save_as_cb): use ghex_window_save_as().
+	(close_cb): hex_document_ok_to_close() -> ghex_window_ok_to_close().
+	(save_cb, open_cb, export_html_cb): new, cleaner handling of
+	file selection.
+	* src/ghex-window.c (ghex_window_set_sensitivity): handle
+	cut/copy/paste items. also disable find/replace/goto items when
+	no document is loaded.
+	* src/ui.c (save_cb): test if the document is writable, report an
+	error if it is not so!
+	* src/hex-document.[ch] (hex_document_is_writable): a function to
+	test if the document is writable.
+	* src/findreplace.c (replace_all_cb): display info dialog if no
+	strings were replaced.
+
+2002-10-26  Muktha  <muktha.narayan@wipro.com>
+	
+ 	* findreplace.c: Added mnemonics for buttons. Fixes bug #96882.
+
+2002-10-25  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/ghex-ui.xml: 'About...' -> 'About'. fixes #96771.
+	
 2002-10-01  Jaka Mocnik  <jaka@gnu.org>
 
 	* ghex.desktop.in (Exec): added a missing '['.

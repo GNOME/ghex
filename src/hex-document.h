@@ -122,5 +122,6 @@ void        hex_document_set_menu_sensitivity(HexDocument *doc);
 void        hex_document_remove_view(HexDocument *doc, GtkWidget *view);
 GtkWidget   *hex_document_add_view(HexDocument *doc);
 const GList *hex_document_get_list(void);
+gboolean    hex_document_is_writable(HexDocument *doc);
 
 #endif /* __HEX_DOCUMENT_H__ */
