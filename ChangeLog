@@ -1,9 +1,36 @@
-1998-05-25  Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
+1998-05-27  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
-	* changed GtkSignalRunTypes for GnomeMDI and GnomeDocument
-	to GTK_RUN_LAST.
+	* ui.c: use the new GNOME_APP_UI_JUSTIFY_RIGHT tag to right-justify the
+	help menu.
 	
-1998-05-13  Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
+1998-05-26  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* gnome-mdi.c (gnome_mdi_remove_*): all these functions now have an extra
+	argument force, which if set to TRUE prevents emission of REMOVE_DOCUMENT
+	or REMOVE_VIEW signals and makes removing always successful.
+	* gnome-mdi.c: rewritten most of the GnomeApp delete_event handling code,
+	which SIGSEGV's no more.
+	* callbacks.c: fixed callbacks to work with the changed gnome_mdi_remove_*
+	functions.
+	* gnome-mdi.c: added copy_ui_info_tree() and free_ui_info_tree()
+	functions that copy the whole tree structure of GnomeUIInfo.
+	* gnome-mdi.h: added menu_template and toolbar_template members
+	to GnomeMDI. They store pointer to a template GnomeUIInfo structure
+	for menus and toolbars for all created GnomeApps.
+	* gnome-mdi.c: added code that uses gnome-app-helper routines and
+	GnomeUIInfo templates for menu creation if these have been passed
+	to GnomeMDI with a gnome_mdi_set_menu_template() function. If no such
+	templates have been passed, the GnomeMDI falls back to create_menus
+	signal for GnomeApp menu creation.
+	* main.c, ui.c: now we use the GnomeUIInfo method of creating MDI menus if
+	USE_APP_HELPER is defined and the create_menus signal otherwise.
+
+1998-05-25  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* gnome-mdi.c, gnome-document.c: changed GtkSignalRunTypes for GnomeMDI and
+	GnomeDocument to GTK_RUN_LAST.
+	
+1998-05-13  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
         * time to start a ChangeLog. fixed the properties dialog,
 	so that ghex doesn't SIGSEGV after clicking the Close button
