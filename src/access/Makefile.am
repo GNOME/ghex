@@ -2,11 +2,11 @@ INCLUDES = -I$(includedir)                              \
         -DGNOMEICONDIR=\""$(datadir)/pixmaps"\"         \
         -DGNOMELOCALEDIR=\""$(datadir)/locale"\"        \
         -DLOCALEDIR=\"$(datadir)/locale\"               \
-        -DGHEX_UI_DIR=\""$(datadir)/ghex2/ui/"\"                \
+        -DGHEX_UI_DIR=\""$(datadir)/ghex2/ui/"\"        \
         -DGHEX_GLADEDIR=\""$(datadir)/ghex2/glade/"\"   \
         $(GHEX_CFLAGS)                                  \
         $(GAILUTIL_CFLAGS)                              \
-        -I..
+        -I$(top_srcdir)/src
 
 noinst_LTLIBRARIES = libgtkhexaccess.la
 
