@@ -1,466 +1,761 @@
+# Copyright (C) 2001-2002 Free Software Foundation, Inc.
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# AktualnƒÖ wersjƒô tego pliku mo≈ºesz odnale≈∫ƒá w repozytorium cvs.gnome.pl
+# (:pserver:anonymous@cvs.gnome.pl:/home/cvs, puste has≈Ço)
+# Je≈õli masz jakiekolwiek uwagi odnoszƒÖce siƒô do t≈Çumaczenia lub chcesz
+# pom√≥c w jego rozwijaniu i pielƒôgnowaniu, napisz do nas na adres:
+# translators@gnome.pl
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2001-03-08 19:39+0100\n"
-"PO-Revision-Date: 2000-12-15 14:30+0100\n"
+"POT-Creation-Date: 2002-02-17 14:46+0100\n"
+"PO-Revision-Date: 2002-02-17 15:06+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/converter.c:44
-msgid "GHex: Converter"
-msgstr "GHex: Konwerter"
+#: src/bonobo-mdi.c:1 src/bonobo-mdi.c:1 src/bonobo-mdi.c:1
+#, c-format
+msgid "Activate %s"
+msgstr "Uaktywnia %s"
 
-#: src/chartable.c:91 src/converter.c:53
-msgid "Binary"
-msgstr "Binarnie"
-
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:161
-msgid "Decimal"
-msgstr "DziesiÍtnie"
-
-#: src/chartable.c:90 src/converter.c:73
-msgid "Hex"
-msgstr "Szesnastkowo"
-
-#: src/chartable.c:90 src/converter.c:83
+#: src/chartable.c:1
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/converter.c:93
-msgid "Get cursor value"
-msgstr "Pobierz warto∂Ê pod kursorem"
+#: src/chartable.c:1
+msgid "Hex"
+msgstr "Szesnastkowo"
 
-#: src/converter.c:99
-msgid "Close"
-msgstr "Zamknij"
+#: src/chartable.c:1 src/preferences.c:1
+msgid "Decimal"
+msgstr "Dziesiƒôtnie"
 
-#: src/converter.c:194
+#: src/chartable.c:1
+msgid "Octal"
+msgstr "√ìsemkowo"
+
+#: src/chartable.c:1
+msgid "Binary"
+msgstr "Binarnie"
+
+#: src/chartable.c:1
+msgid "GHex: Character table"
+msgstr "GHex: Tablica znak√≥w"
+
+#: src/converter.c:1
+msgid "GHex: Converter"
+msgstr "GHex: Konwerter"
+
+#. entries
+#: src/converter.c:1
+msgid "_Binary"
+msgstr "_Binarnie"
+
+#: src/converter.c:1
+msgid "_Octal"
+msgstr "√ì_semkowo"
+
+#: src/converter.c:1
+msgid "_Decimal"
+msgstr "_Dziesiƒôtnie"
+
+#: src/converter.c:1
+msgid "_Hex"
+msgstr "_Szesnastkowo"
+
+#: src/converter.c:1
+msgid "_ASCII"
+msgstr "_ASCII"
+
+#. get cursor button
+#: src/converter.c:1
+msgid "_Get cursor value"
+msgstr "_Pobierz warto≈õƒá pod kursorem"
+
+#: src/converter.c:1
 msgid "ERROR"
-msgstr "B£°D"
+msgstr "B≈ÅƒÑD"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:1 src/main.c:1
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Wyszukiwanie danych"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:1
 #, c-format
 msgid "Search for %s"
 msgstr "Szukaj %s"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:1
 msgid "Find Next"
-msgstr "Znajdº nastÍpne"
+msgstr "Znajd≈∫ nastƒôpne"
 
-#: src/findreplace.c:91
+#: src/findreplace.c:1
 msgid "Find Previous"
-msgstr "Znajdº poprzednie"
+msgstr "Znajd≈∫ poprzednie"
 
-#: src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:1 src/main.c:1
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Wyszukiwanie i zmiana danych"
 
-#: src/findreplace.c:141
+#: src/findreplace.c:1
 #, c-format
 msgid "Replace %s"
-msgstr "ZmieÒ %s"
+msgstr "Zmie≈Ñ %s"
 
-#: src/findreplace.c:157
+#: src/findreplace.c:1
 msgid "Find next"
-msgstr "Znajdº nastÍpne"
+msgstr "Znajd≈∫ nastƒôpne"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:1 src/ghex-ui.xml.h:1
 msgid "Replace"
-msgstr "ZmieÒ"
+msgstr "Zmie≈Ñ"
 
-#: src/findreplace.c:173
+#: src/findreplace.c:1
 msgid "Replace All"
-msgstr "ZmieÒ wszystkie"
+msgstr "Zmie≈Ñ wszystkie"
 
-#: src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:1 src/main.c:1
 #, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): Przej∂cie do bajtu"
+msgstr "GHex (%s): Przej≈õcie do bajtu"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:1 src/findreplace.c:1 src/findreplace.c:1
 msgid "There is no active buffer to search!"
-msgstr "Brak aktywnego pliku, ktÛry moøna przeszukiwaÊ!"
+msgstr "Brak aktywnego pliku, kt√≥ry mo≈ºna przeszukiwaƒá!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:1 src/findreplace.c:1 src/findreplace.c:1
 msgid "There seems to be no string to search for!"
-msgstr "Poszukiwany napis nie moøe byÊ pusty!"
+msgstr "Poszukiwany napis nie mo≈ºe byƒá pusty!"
 
-#: src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:1 src/findreplace.c:1
 msgid "End Of File reached"
-msgstr "Osi±gniÍto koniec pliku"
+msgstr "OsiƒÖgniƒôto koniec pliku"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:1
 msgid "Beginning Of File reached"
-msgstr "Osi±gniÍto pocz±tek pliku"
+msgstr "OsiƒÖgniƒôto poczƒÖtek pliku"
 
-#: src/findreplace.c:345
+#: src/findreplace.c:1
 msgid "There is no active buffer to move the cursor in!"
-msgstr "Brak aktywnego pliku, w ktÛrym moøna przemie∂ciÊ kursor!"
+msgstr "Brak aktywnego pliku, w kt√≥rym mo≈ºna przemie≈õciƒá kursor!"
 
-#: src/findreplace.c:350
+#: src/findreplace.c:1
 msgid "No offset has been specified!"
-msgstr "Nie okre∂lono przesuniÍcia"
+msgstr "Nie okre≈õlono przesuniƒôcia"
 
-#: src/findreplace.c:357
+#: src/findreplace.c:1
 msgid "Can not position cursor beyond the End Of File!"
-msgstr "Nie moøna umie∂ciÊ kursora poza koÒcem pliku!"
+msgstr "Nie mo≈ºna umie≈õciƒá kursora poza ko≈Ñcem pliku!"
 
-#: src/findreplace.c:362
+#: src/findreplace.c:1
 msgid "The offset must be a positive integer value!"
-msgstr "PrzesuniÍcie musi byÊ nieujemn± liczb± ca≥kowit±!"
+msgstr "Przesuniƒôcie musi byƒá nieujemnƒÖ liczbƒÖ ca≈ÇkowitƒÖ!"
 
-#: src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:1 src/findreplace.c:1
 msgid "There is no active buffer to replace data in!"
-msgstr "Brak aktywnego pliku, w ktÛrym moøna zmieniÊ dane!"
+msgstr "Brak aktywnego pliku, w kt√≥rym mo≈ºna zmieniƒá dane!"
 
-#: src/findreplace.c:410 src/findreplace.c:447
+#: src/findreplace.c:1 src/findreplace.c:1
 msgid "Strange find or replace string!"
-msgstr "Øaden z wprowadzonych napisÛw nie moøe byÊ pusty!"
+msgstr "≈ªaden z wprowadzonych napis√≥w nie mo≈ºe byƒá pusty!"
 
-#: src/findreplace.c:425
+#: src/findreplace.c:1
 msgid "End Of File reached!"
-msgstr "Osi±gniÍto koniec pliku!"
+msgstr "OsiƒÖgniƒôto koniec pliku!"
 
-#: src/findreplace.c:463
+#: src/findreplace.c:1
 #, c-format
 msgid "Replaced %d occurencies."
-msgstr "Zmieniono %d wyst±pieÒ."
+msgstr "Zmieniono %d wystƒÖpie≈Ñ."
 
-#: src/hex-document.c:707
-msgid "Page"
-msgstr "Strona"
+#: src/ghex-mdi.c:1
+#, c-format
+msgid ""
+"Do you want to save the changes you made to the document ``%s''? \n"
+"\n"
+"Your changes will be lost if you don't save them."
+msgstr ""
+"Czy chcesz zapisaƒá zmiany, wykonane w dokumencie \"%s\"?\n"
+"\n"
+"Niezapisane zmiany zostanƒÖ bezpowrotnie utracone."
 
-#: src/hex-document.c:713 src/hex-document.c:814
-msgid "Hex dump generated by"
-msgstr "Zrzut szesnastkowy stworzony przez"
+#: src/ghex-mdi.c:1
+msgid "_Don't save"
+msgstr "_Nie zapisuj"
 
-#: src/hex-document.c:737
-msgid "Previous page"
-msgstr "Poprzednia strona"
+#: src/ghex-mdi.c:1
+msgid "(modified)"
+msgstr "(zmodyfikowany)"
 
-#: src/hex-document.c:752
-msgid "Next page"
-msgstr "NastÍpna strona"
+#: src/ghex-mdi.c:1
+msgid "(readonly)"
+msgstr "(tylko do odczytu)"
 
-#: src/hex-document-ui.c:50
-msgid "_Bytes"
-msgstr "_Bajty"
+#: src/ghex-mdi.c:1 src/main.c:1
+#, c-format
+msgid "Offset: %s"
+msgstr "Przesuniƒôcie: %s"
 
-#: src/hex-document-ui.c:51
-msgid "Group data by 8 bits"
-msgstr "Grupuje dane po 8 bitÛw"
+#: src/ghex-ui.xml.h:1
+msgid "About this application"
+msgstr "Informacje o aplikacji"
 
-#: src/hex-document-ui.c:52
-msgid "_Words"
-msgstr "_S≥owa"
+#: src/ghex-ui.xml.h:1
+msgid "About..."
+msgstr "Informacje o..."
 
-#: src/hex-document-ui.c:53
+#: src/ghex-ui.xml.h:1
+msgid "Add View"
+msgstr "Dodaj widok"
+
+#: src/ghex-ui.xml.h:1
+msgid "Add a new view to the buffer"
+msgstr "Dodaje nowy widok bufora"
+
+#: src/ghex-ui.xml.h:1 src/ui.c:1
+msgid "Bytes"
+msgstr "Bajty"
+
+#: src/ghex-ui.xml.h:1
+msgid "Character Table..."
+msgstr "Tablica znak√≥w..."
+
+#: src/ghex-ui.xml.h:1 src/ui.c:1
+msgid "Character _Table..."
+msgstr "_Tablica znak√≥w..."
+
+#: src/ghex-ui.xml.h:1
+msgid "Close"
+msgstr "Zamknij"
+
+#: src/ghex-ui.xml.h:1
+msgid "Close the current file"
+msgstr "Zamyka bie≈ºƒÖcy plik"
+
+#: src/ghex-ui.xml.h:1
+msgid "Con_verter"
+msgstr "_Konwerter..."
+
+#: src/ghex-ui.xml.h:1
+msgid "Configure the application"
+msgstr "Konfiguruje aplikacjƒô"
+
+#: src/ghex-ui.xml.h:1
+msgid "Converter..."
+msgstr "Konwerter..."
+
+#: src/ghex-ui.xml.h:1
+msgid "E_xit"
+msgstr "Za_ko≈Ñcz"
+
+#: src/ghex-ui.xml.h:1
+msgid "Exit"
+msgstr "Zako≈Ñcz"
+
+#: src/ghex-ui.xml.h:1
+msgid "Exit the program"
+msgstr "Ko≈Ñczy dzia≈Çanie programu"
+
+#: src/ghex-ui.xml.h:1 src/ui.c:1
+msgid "Export data to HTML source"
+msgstr "Eksportuje dane do pliku w HTML-u"
+
+#: src/ghex-ui.xml.h:1
+msgid "Export to HTML..."
+msgstr "Wyeksportuj do formatu HTML..."
+
+#: src/ghex-ui.xml.h:1 src/ui.c:1
+msgid "Export to _HTML..."
+msgstr "Wyeksportuj do formatu _HTML..."
+
+#: src/ghex-ui.xml.h:1
+msgid "Fi_les"
+msgstr "P_liki"
+
+#: src/ghex-ui.xml.h:1
+msgid "Find"
+msgstr "Znajd≈∫"
+
+#: src/ghex-ui.xml.h:1
+msgid "Goto Byte"
+msgstr "Przejd≈∫ do bajtu"
+
+#: src/ghex-ui.xml.h:1
 msgid "Group data by 16 bits"
-msgstr "Grupuje dane po 16 bitÛw"
+msgstr "Grupuje dane po 16 bit√≥w"
 
-#: src/hex-document-ui.c:54
-msgid "_Longwords"
-msgstr "_D≥ugie s≥owa"
-
-#: src/hex-document-ui.c:55
+#: src/ghex-ui.xml.h:1
 msgid "Group data by 32 bits"
 msgstr "Grupuje dane po 32 bity"
 
-#: src/hex-document-ui.c:74
-msgid "_Goto Byte..."
-msgstr "_Przejdº do bajtu..."
+#: src/ghex-ui.xml.h:1
+msgid "Group data by 8 bits"
+msgstr "Grupuje dane po 8 bit√≥w"
 
-#: src/hex-document-ui.c:74
-msgid "Jump to a certain position"
-msgstr "Przechodzi do okre∂lonej pozycji"
+#: src/ghex-ui.xml.h:1
+msgid "Help"
+msgstr "Pomoc"
 
-#: src/hex-document-ui.c:78
-msgid "_Insert mode"
-msgstr "Tryb _wstawiania"
+#: src/ghex-ui.xml.h:1
+msgid "Help Chat"
+msgstr "Pomoc interaktywna"
 
-#: src/hex-document-ui.c:78
+#: src/ghex-ui.xml.h:1
+msgid "Insert Mode"
+msgstr "Tryb wstawiania"
+
+#: src/ghex-ui.xml.h:1
 msgid "Insert/overwrite data"
 msgstr "Wstawia/Nadpisuje dane"
 
-#: src/hex-document-ui.c:81
+#: src/ghex-ui.xml.h:1
+msgid "Jump to a certain position"
+msgstr "Przechodzi do okre≈õlonej pozycji"
+
+#: src/ghex-ui.xml.h:1 src/ui.c:1
+msgid "Longwords"
+msgstr "D≈Çugie s≈Çowa"
+
+#: src/ghex-ui.xml.h:1
+msgid "Open"
+msgstr "Otw√≥rz"
+
+#: src/ghex-ui.xml.h:1
+msgid "Open a file"
+msgstr "Otwiera plik"
+
+#: src/ghex-ui.xml.h:1 src/ui.c:1
+msgid "Open base conversion dialog"
+msgstr "Otwiera okno konwersji pomiƒôdzy systemami liczenia"
+
+#: src/ghex-ui.xml.h:1
+msgid "Preferences"
+msgstr "Preferencje"
+
+#: src/ghex-ui.xml.h:1 src/ui.c:1
+msgid "Preview printed data"
+msgstr "Wy≈õwietla podglƒÖd danych w postaci przygotowanej do druku"
+
+#: src/ghex-ui.xml.h:1
+msgid "Print"
+msgstr "Wydrukuj"
+
+#: src/ghex-ui.xml.h:1
+msgid "Print Preview..."
+msgstr "PodglƒÖd wydruku..."
+
+#: src/ghex-ui.xml.h:1 src/ui.c:1
+msgid "Print pre_view..."
+msgstr "Po_dglƒÖd wydruku..."
+
+#: src/ghex-ui.xml.h:1
+msgid "Print the current file"
+msgstr "Drukuje bie≈ºƒÖcy plik"
+
+#: src/ghex-ui.xml.h:1
+msgid "Redo"
+msgstr "Pon√≥w"
+
+#: src/ghex-ui.xml.h:1
+msgid "Redo the undone action"
+msgstr "Ponawia cofniƒôtƒÖ czynno≈õƒá"
+
+#: src/ghex-ui.xml.h:1
+msgid "Remove View"
+msgstr "Usu≈Ñ widok"
+
+#: src/ghex-ui.xml.h:1
+msgid "Remove the current view of the buffer"
+msgstr "Usuwa bie≈ºƒÖcy widok bufora"
+
+#: src/ghex-ui.xml.h:1
+msgid "Replace a string"
+msgstr "Zmie≈Ñ napis"
+
+#: src/ghex-ui.xml.h:1
+msgid "Revert"
+msgstr "Przywr√≥ƒá"
+
+#: src/ghex-ui.xml.h:1
+msgid "Revert to a saved version of the file"
+msgstr "Przywraca zapisanƒÖ wersjƒô pliku"
+
+#: src/ghex-ui.xml.h:1
+msgid "Save"
+msgstr "Zapisz"
+
+#: src/ghex-ui.xml.h:1
+msgid "Save As"
+msgstr "Zapisz jako"
+
+#: src/ghex-ui.xml.h:1
+msgid "Save _As..."
+msgstr "Z_apisz jako..."
+
+#: src/ghex-ui.xml.h:1
+msgid "Save the current file"
+msgstr "Zapisuje bie≈ºƒÖcy plik"
+
+#: src/ghex-ui.xml.h:1
+msgid "Save the current file with a different name"
+msgstr "Zapisuje bie≈ºƒÖcy plik pod innƒÖ nazwƒÖ"
+
+#: src/ghex-ui.xml.h:1
+msgid "Search for a string"
+msgstr "Wyszukuje napis"
+
+#: src/ghex-ui.xml.h:1 src/ui.c:1
+msgid "Show the character table"
+msgstr "Wy≈õwietla tablicƒô znak√≥w"
+
+#: src/ghex-ui.xml.h:1
+msgid "Undo"
+msgstr "Cofnij"
+
+#: src/ghex-ui.xml.h:1
+msgid "Undo the last action"
+msgstr "Cofa ostatniƒÖ czynno≈õƒá"
+
+#: src/ghex-ui.xml.h:1 src/ui.c:1
+msgid "Words"
+msgstr "S≈Çowa"
+
+#: src/ghex-ui.xml.h:1
+msgid "_About..."
+msgstr "_Informacje o..."
+
+#: src/ghex-ui.xml.h:1
+msgid "_Add View"
+msgstr "_Dodaj widok"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Bytes"
+msgstr "_Bajty"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Close"
+msgstr "Za_mknij"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Edit"
+msgstr "_Edycja"
+
+#: src/ghex-ui.xml.h:1
+msgid "_File"
+msgstr "_Plik"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Find"
+msgstr "_Znajd≈∫"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Goto Byte..."
+msgstr "_Przejd≈∫ do bajtu..."
+
+#: src/ghex-ui.xml.h:1
 msgid "_Group Data As"
 msgstr "_Grupowanie danych"
 
-#: src/hex-document-ui.c:87
-msgid "_Add view"
-msgstr "_Dodaj widok"
+#: src/ghex-ui.xml.h:1
+msgid "_Help"
+msgstr "Pomo_c"
 
-#: src/hex-document-ui.c:88
-msgid "Add a new view of the buffer"
-msgstr "Dodaje nowy widok bufora"
+#: src/ghex-ui.xml.h:1
+msgid "_Insert Mode"
+msgstr "Tryb _wstawiania"
 
-#: src/hex-document-ui.c:89
-msgid "_Remove view"
-msgstr "_UsuÒ widok"
+#: src/ghex-ui.xml.h:1
+msgid "_Longwords"
+msgstr "_D≈Çugie s≈Çowa"
 
-#: src/hex-document-ui.c:90
-msgid "Remove the current view of the buffer"
-msgstr "Usuwa bieø±cy widok bufora"
+#: src/ghex-ui.xml.h:1
+msgid "_Open..."
+msgstr "_Otw√≥rz..."
 
-#: src/main.c:51
+#: src/ghex-ui.xml.h:1
+msgid "_Preferences"
+msgstr "_Preferencje"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Print"
+msgstr "Wy_drukuj"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Redo"
+msgstr "P_on√≥w"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Remove View"
+msgstr "_Usu≈Ñ widok"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Replace"
+msgstr "Z_mie≈Ñ"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Revert"
+msgstr "_Przywr√≥ƒá"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Save"
+msgstr "_Zapisz"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Settings"
+msgstr "_Ustawienia"
+
+#: src/ghex-ui.xml.h:1 src/ui.c:1
+msgid "_Tools"
+msgstr "_Narzƒôdzia"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Undo"
+msgstr "Cof_nij"
+
+#: src/ghex-ui.xml.h:1
+msgid "_View"
+msgstr "_Widok"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Words"
+msgstr "_S≈Çowa"
+
+#: src/hex-document.c:1
+msgid "Page"
+msgstr "Strona"
+
+#: src/hex-document.c:1 src/hex-document.c:1
+msgid "Hex dump generated by"
+msgstr "Zrzut szesnastkowy stworzony przez"
+
+#: src/hex-document.c:1
+msgid "Previous page"
+msgstr "Poprzednia strona"
+
+#: src/hex-document.c:1
+msgid "Next page"
+msgstr "Nastƒôpna strona"
+
+#: src/main.c:1
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
-"Plik %s uleg≥ zmianie od ostatniego zapisu.\n"
-"Czy chcesz zapisaÊ zmiany?"
+"Plik %s uleg≈Ç zmianie od ostatniego zapisu.\n"
+"Czy chcesz zapisaƒá zmiany?"
 
-#: src/main.c:202
-#, c-format
-msgid "Offset: %s"
-msgstr "PrzesuniÍcie: %s"
+#: src/main.c:1
+msgid "The gnome binary editor"
+msgstr "Edytor plik√≥w binarnych dla GNOME"
 
-#: src/preferences.c:52
+#: src/preferences.c:1
 msgid "Default"
-msgstr "Domy∂lny"
+msgstr "Domy≈õlny"
 
-#: src/preferences.c:53
+#: src/preferences.c:1
 msgid "Notebook"
-msgstr "Zak≥adki"
+msgstr "Zak≈Çadki"
 
-#: src/preferences.c:54
+#: src/preferences.c:1
 msgid "Toplevel"
-msgstr "Okna nadrzÍdne"
+msgstr "Okna nadrzƒôdne"
 
-#: src/preferences.c:55
+#: src/preferences.c:1
 msgid "Modal"
 msgstr "Modalne"
 
-#: src/preferences.c:77
+#: src/preferences.c:1
 msgid "Select font"
-msgstr "WybÛr czcionki"
+msgstr "Wyb√≥r czcionki"
 
-#: src/preferences.c:132
+#: src/preferences.c:1
 msgid "Maximum number of undo levels"
-msgstr "Maksymalna liczba cofniÍÊ"
+msgstr "Maksymalna liczba cofniƒôƒá"
 
-#: src/preferences.c:147
+#: src/preferences.c:1
 msgid "Show cursor offset in statusbar as"
-msgstr "Format wy∂wietlania przesuniÍcia na pasku stanu"
+msgstr "Format wy≈õwietlania przesuniƒôcia na pasku stanu"
 
-#: src/preferences.c:166
+#: src/preferences.c:1
 msgid "Hexadecimal"
 msgstr "Szesnastkowo"
 
-#: src/preferences.c:172
+#: src/preferences.c:1
 msgid "Custom"
 msgstr "Dowolnie"
 
 #. show offsets check button
-#: src/preferences.c:183
+#: src/preferences.c:1
 msgid "Show offsets column"
-msgstr "Wy∂wietlanie kolumny z przesuniÍciem"
+msgstr "Wy≈õwietlanie kolumny z przesuniƒôciem"
 
-#: src/preferences.c:188
+#: src/preferences.c:1
 msgid "Editing"
 msgstr "Edycja"
 
 #. display font
-#: src/preferences.c:197
+#: src/preferences.c:1
 msgid "Font"
 msgstr "Czcionka"
 
-#: src/preferences.c:213
+#: src/preferences.c:1
 msgid "Browse..."
-msgstr "Przegl±daj..."
+msgstr "PrzeglƒÖdaj..."
 
 #. default group type
-#: src/preferences.c:233
+#: src/preferences.c:1
 msgid "Default Group Type"
-msgstr "Domy∂lny typ grupowania"
+msgstr "Domy≈õlny typ grupowania"
 
-#: src/preferences.c:249
+#: src/preferences.c:1
 msgid "Display"
-msgstr "Wy∂wietlanie"
+msgstr "Wy≈õwietlanie"
 
 #. mdi modes
-#: src/preferences.c:258
+#: src/preferences.c:1
 msgid "MDI Mode"
 msgstr "Tryb MDI"
 
-#: src/preferences.c:275
+#: src/preferences.c:1
 msgid "MDI"
 msgstr "MDI"
 
 #. paper selection
-#: src/preferences.c:284
+#: src/preferences.c:1
 msgid "Paper size"
 msgstr "Rozmiar papieru"
 
 #. data & header font selection
-#: src/preferences.c:298
+#: src/preferences.c:1
 msgid "Fonts"
 msgstr "Czcionki"
 
-#: src/preferences.c:304
+#: src/preferences.c:1
 msgid "Data font"
 msgstr "Czcionka danych"
 
-#: src/preferences.c:319
+#: src/preferences.c:1
 msgid "Header font"
-msgstr "Czcionka nag≥Ûwka"
+msgstr "Czcionka nag≈Ç√≥wka"
 
-#: src/preferences.c:345
+#: src/preferences.c:1
 msgid "Print shaded box over"
-msgstr "Drukowanie przyciemnionego prostok±ta co"
+msgstr "Drukowanie przyciemnionego prostokƒÖta co"
 
-#: src/preferences.c:354
+#: src/preferences.c:1
 msgid "lines (0 for no box)"
-msgstr "wierszy (0 wy≥±cza przyciemnianie)"
+msgstr "wierszy (0 wy≈ÇƒÖcza przyciemnianie)"
 
-#: src/preferences.c:361
+#: src/preferences.c:1
 msgid "Printing"
 msgstr "Drukowanie"
 
-#: src/preferences.c:534
+#: src/preferences.c:1
 msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
-"Napis formatuj±cy przesuniÍcie zawiera okre∂lenia formatu inne niø \"x\", "
-"\"d\" oraz \"o\"!"
+"Format wy≈õwietlania przesuniƒôcia zawiera niepoprawne specyfikatory.\n"
+"Poprawnymi specyfikatorami sƒÖ: \"x\", \"X\", \"p\", \"P\", \"d\" oraz \"o\"."
 
-#: src/preferences.c:570
+#: src/preferences.c:1
 msgid "Can not open desired font!"
-msgstr "Nie moøna odnaleºÊ wymaganej czcionki!"
+msgstr "Nie mo≈ºna odnale≈∫ƒá wymaganej czcionki!"
 
-#: src/ui.c:57
-msgid "Export to HTML..."
-msgstr "Eksportuj do HTML-a..."
+#: src/print.c:1
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Strona: %i/%i"
 
-#: src/ui.c:57
-msgid "Export data to HTML source"
-msgstr "Eksportuje dane do ºrÛd≥a w HTML-u"
+#: src/print.c:1 src/print.c:1
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"Nie mo≈ºna odnale≈∫ƒá czcionki \"%s\".\n"
+"Bez tej czcionki nie mo≈ºna wydrukowaƒá danych z programu GHex."
 
-#: src/ui.c:61
-msgid "Print preview..."
-msgstr "Podgl±d wydruku..."
-
-#: src/ui.c:61
-msgid "Preview printed data"
-msgstr "Wy∂wietla podgl±d drukowanych danych"
-
-#: src/ui.c:74
+#: src/ui.c:1
 msgid "Con_verter..."
 msgstr "_Konwerter..."
 
-#: src/ui.c:75
-msgid "Open base conversion dialog"
-msgstr "Otwiera okno konwersji pomiÍdzy systemami liczenia"
-
-#: src/ui.c:76
-msgid "Character Table..."
-msgstr "Tablica znakÛw..."
-
-#: src/ui.c:77
-msgid "Show the character table"
-msgstr "Wy∂wietla tablicÍ znakÛw"
-
-#: src/ui.c:94
-msgid "Tools"
-msgstr "_NarzÍdzia"
-
-#: src/ui.c:108
-msgid "Bytes"
-msgstr "Bajty"
-
-#: src/ui.c:109
-msgid "Words"
-msgstr "S≥owa"
-
-#: src/ui.c:110
-msgid "Longwords"
-msgstr "D≥ugie s≥owa"
-
-#: src/ui.c:115
+#: src/ui.c:1
 msgid "hex data"
 msgstr "danych szesnastkowych"
 
-#: src/ui.c:116
+#: src/ui.c:1
 msgid "ASCII data"
 msgstr "danych ASCII"
 
-#: src/ui.c:200
+#: src/ui.c:1
 msgid "GHex, a binary file editor"
-msgstr "GHex, edytor plikÛw binarnych"
+msgstr "GHex, edytor plik√≥w binarnych"
 
-#: src/ui.c:202
+#: src/ui.c:1
 msgid "Released under the terms of GNU Public License"
 msgstr "Rozpowszechniany na licencji GNU GPL."
 
-#: src/ui.c:226 src/ui.c:548
+#: src/ui.c:1 src/ui.c:1
 msgid "Error saving file!"
-msgstr "B≥±d przy zapisie pliku!"
+msgstr "B≈ÇƒÖd przy zapisie pliku!"
 
-#: src/ui.c:230 src/ui.c:543
+#: src/ui.c:1 src/ui.c:1
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Zapisano bufor do pliku %s"
 
-#: src/ui.c:251
+#: src/ui.c:1
 msgid "Select a file to open"
-msgstr "WybÛr pliku do odczytu"
+msgstr "Wyb√≥r pliku do odczytu"
 
-#: src/ui.c:286
+#: src/ui.c:1
 msgid "Select a file to save buffer as"
-msgstr "WybÛr plik do zapisu buforu"
+msgstr "Wyb√≥r plik do zapisu buforu"
 
-#: src/ui.c:375
+#: src/ui.c:1
 msgid "Select path and file name for the HTML source"
-msgstr "WybÛr ∂cieøki i nazwy pliku ze ºrÛd≥em w HTML-u"
+msgstr "Wyb√≥r ≈õcie≈ºki i nazwy pliku ze ≈∫r√≥d≈Çem w HTML-u"
 
-#: src/ui.c:475
+#: src/ui.c:1
 #, c-format
 msgid "Really revert file %s?"
-msgstr "Rzeczywi∂cie przywrÛciÊ plik %s?"
+msgstr "Rzeczywi≈õcie przywr√≥ciƒá plik %s?"
 
-#: src/ui.c:488
+#: src/ui.c:1
 #, c-format
 msgid "Reverted buffer from file %s"
-msgstr "PrzywrÛcono bufor z pliku %s"
+msgstr "Przywr√≥cono bufor z pliku %s"
 
-#: src/ui.c:504
+#: src/ui.c:1
 #, c-format
 msgid "Loaded file %s"
 msgstr "Wczytano plik %s"
 
-#: src/ui.c:509
+#: src/ui.c:1
 msgid "Can not open file!"
-msgstr "Nie moøna otworzyÊ pliku!"
+msgstr "Nie mo≈ºna otworzyƒá pliku!"
 
-#: src/ui.c:552
+#: src/ui.c:1
 msgid "Can't open file for writing!"
-msgstr "Nie moøna otworzyÊ pliku do zapisu!"
+msgstr "Nie mo≈ºna otworzyƒá pliku do zapisu!"
 
-#: src/chartable.c:91
-msgid "Octal"
-msgstr "”semkowo"
+#: src/ui.c:1
+msgid "Print Hex Document"
+msgstr "Wydruk dokumentu w postaci szesnastkowej"
 
-#: src/chartable.c:98
-msgid "GHex: Character table"
-msgstr "GHex: Tablica znakÛw"
+#: src/ui.c:1
+msgid "Pages"
+msgstr "Strony"
 
-#: src/print.c:171
+#: src/ui.c:1
 #, c-format
 msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Podgl±d wydruku"
-
-#: src/print.c:187
-#, c-format
-msgid "Page: %i/%i"
-msgstr "Strona: %i/%i"
+msgstr "GHex (%s): PodglƒÖd wydruku"
