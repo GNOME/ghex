@@ -1,5 +1,6 @@
 2004-02-12  Tomasz Kłoczk o<kloczek@pld.org.pl>
 
+	* src/Makefile.am: fixed paralel build (make -j<N>).
 	* configure.in: Trivial cleanup: remove AC_SUBST(CFLAGS),
 	  AC_SUBST(CPPFLAGS) and AC_SUBST(LDFLAGS). This variables are
 	  substed by default.

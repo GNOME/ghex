@@ -59,8 +59,8 @@ EXTRA_DIST = \
 	ghex-marshal.list
 
 LDADD =	\
-	$(POPT_LIBS)			\
-	$(GHEX_LIBS)			\
-	$(top_builddir)/src/libgtkhex.la
+	$(POPT_LIBS)	\
+	$(GHEX_LIBS)	\
+	libgtkhex.la
 
 CLEAN_FILES = $(BUILT_SOURCES)
