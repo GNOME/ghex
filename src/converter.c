@@ -30,7 +30,7 @@
 
 static void conv_entry_cb(GtkEntry *, gint);
 static void get_cursor_val_cb(GtkButton *button, Converter *conv);
-static void set_values(Converter *conv, gulong val);
+static void set_values(Converter *conv, gulong val, guint group);
 
 Converter *converter = NULL;
 
@@ -233,7 +233,7 @@ get_cursor_val_cb(GtkButton *button, Converter *conv)
 		} while((start % GTK_HEX(view)->group_type != 0) &&
 				(start < GTK_HEX(view)->document->file_size) );
 
-		set_values(conv, val);
+		set_values(conv, val, GTK_HEX(view)->group_type);
 	}
 }
 
@@ -248,13 +248,22 @@ clean(guchar *ptr)
 #define CONV_BUFFER_LEN 32
 
 static void
-set_values(Converter *conv, gulong val)
+set_values(Converter *conv, gulong val, guint group)
 {
 	guchar buffer[CONV_BUFFER_LEN + 1];
 	gint i;
 
 	conv->value = val;
 	
+	if(group == 0) {
+		if(val > 0xFFFF)
+			group = 4;
+		else if(val > 0xFF)
+			group = 2;
+		else
+			group = 1;
+	}
+
 	for(i = 0; i < 32; i++)
 		buffer[i] =((val & (1L << (31 - i)))?'1':'0');
 	buffer[i] = 0;
@@ -266,11 +275,14 @@ set_values(Converter *conv, gulong val)
 	g_snprintf(buffer, CONV_BUFFER_LEN, "%lu", val);
 	gtk_entry_set_text(GTK_ENTRY(conv->entry[2]), buffer);
 	
-	g_snprintf(buffer, CONV_BUFFER_LEN, "%08lX", val);
+	for(i = 0; i < group; i++) {
+		g_snprintf(buffer + 2*i, CONV_BUFFER_LEN - 2*i,
+				   "%02x", ((val & (0xFF << ((group - 1 - i)*8)))) >> (group - 1 - i)*8);
+	}
 	gtk_entry_set_text(GTK_ENTRY(conv->entry[3]), buffer);
 	
-	for(i = 0; i < 4; i++) {
-		buffer[i] =(val & (0xFF << (3 - i)*8)) >> (3 - i)*8;
+	for(i = 0; i < group; i++) {
+		buffer[i] = ((val & (0xFF << ((group - 1 - i)*8)))) >> (group - 1 - i)*8;
 		if(buffer[i] < ' ')
 			buffer[i] = '_';
 	}
@@ -329,5 +341,5 @@ conv_entry_cb(GtkEntry *entry, gint base)
 	if(val == converter->value)
 		return;
 	
-	set_values(converter, val);
+	set_values(converter, val, 0);
 }
