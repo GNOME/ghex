@@ -86,14 +86,14 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	
 	GROUP_MENU_PATH(p);
 	shell = gnome_app_find_menu_pos(app->menubar, p, &pos);
-
-	group_item = GTK_HEX(mdi->active_view)->group_type / 2;
-	shell = gnome_app_find_menu_pos(shell, _(group_type_label[group_item]), &pos);
-
-	item = g_list_nth(GTK_MENU_SHELL(shell)->children, pos - 1)->data;
-	
-	gtk_menu_shell_activate_item(GTK_MENU_SHELL(shell), item, TRUE);
-
+	if (shell){
+		group_item = GTK_HEX(mdi->active_view)->group_type / 2;
+		shell = gnome_app_find_menu_pos(shell, _(group_type_label[group_item]), &pos);
+		
+		item = g_list_nth(GTK_MENU_SHELL(shell)->children, pos - 1)->data;
+		
+		gtk_menu_shell_activate_item(GTK_MENU_SHELL(shell), item, TRUE);
+	}
 	uiinfo = gnome_mdi_get_child_menu_info(app);
 	uiinfo = (GnomeUIInfo *)uiinfo[0].moreinfo;
     doc = HEX_DOCUMENT(gnome_mdi_get_child_from_view(mdi->active_view));
