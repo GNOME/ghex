@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 1999-06-20 19:32+0900\n"
+"POT-Creation-Date: 1999-07-29 14:24-0400\n"
 "PO-Revision-Date: 1999-06-22 05:56+09:00\n"
 "Last-Translator: Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
 "Language-Team: <gnome@lists.hypercore.co.jp>\n"
@@ -41,7 +41,7 @@ msgstr "GHex: ÊÑ´¹´ï"
 msgid "Binary"
 msgstr "¥Ð¥¤¥Ê¥ê"
 
-#: ghex/converter.c:60 ghex/preferences.c:109
+#: ghex/converter.c:60 ghex/preferences.c:110
 msgid "Decimal"
 msgstr "10¿Ê"
 
@@ -58,7 +58,7 @@ msgid "Get cursor value"
 msgstr "¥«¡¼¥½¥ë¤ÎÃÍ¤ò¼èÆÀ"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:594
+#: mini-utils/gshutdown/gshutdown.c:595
 msgid "Close"
 msgstr "ÊÄ¤¸¤ë"
 
@@ -66,7 +66,7 @@ msgstr "ÊÄ¤¸¤ë"
 msgid "ERROR"
 msgstr ""
 
-#: ghex/findreplace.c:51 ghex/main.c:82
+#: ghex/findreplace.c:51 ghex/main.c:83
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): ¥Ç¡¼¥¿¸¡º÷"
@@ -84,7 +84,7 @@ msgstr "grep gnome_mdi_get_menubar *.[ch"
 msgid "Find Previous"
 msgstr "°ÊÁ°¤ò¸¡º÷"
 
-#: ghex/findreplace.c:111 ghex/main.c:83
+#: ghex/findreplace.c:111 ghex/main.c:84
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): ¸¡º÷¤ª¤è¤Ó¥Ç¡¼¥¿¤ÎÃÖ´¹"
@@ -106,7 +106,7 @@ msgstr "ÃÖ´¹"
 msgid "Replace All"
 msgstr "Á´¤ÆÃÖ´¹"
 
-#: ghex/findreplace.c:179 ghex/main.c:84
+#: ghex/findreplace.c:179 ghex/main.c:85
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): n¥Ð¥¤¥ÈÌÜ¤Ë¥¸¥ã¥ó¥×"
@@ -225,72 +225,79 @@ msgstr ""
 "¥Õ¥¡¥¤¥ë%s¤ÏÁ°²ó¥»¡¼¥Ö¤·¤Æ¤«¤é¹¹¿·¤µ¤ì¤Æ¤¤¤Þ¤¹¡£\n"
 "ÊÑ¹¹¤ò¥»¡¼¥Ö¤·¤Þ¤¹¤«?"
 
-#: ghex/main.c:172
-msgid "Offset: "
+#: ghex/main.c:173
+#, fuzzy, c-format
+msgid "Offset: %s"
 msgstr "¥ª¥Õ¥»¥Ã¥È: "
 
-#: ghex/preferences.c:49 mini-utils/idetool/idetool.c:142
-#: mini-utils/idetool/idetool.c:325
+#: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
 msgid "Default"
 msgstr "¥Ç¥Õ¥©¥ë¥È"
 
-#: ghex/preferences.c:50
+#: ghex/preferences.c:51
 msgid "Notebook"
 msgstr "¥Î¡¼¥È¥Ö¥Ã¥¯"
 
-#: ghex/preferences.c:51
+#: ghex/preferences.c:52
 msgid "Toplevel"
 msgstr "¥È¥Ã¥×¥ì¥Ù¥ë"
 
-#: ghex/preferences.c:52
+#: ghex/preferences.c:53
 msgid "Modal"
 msgstr "¥â¡¼¥À¥ë"
 
-#: ghex/preferences.c:81
+#: ghex/preferences.c:82
 msgid "Maximum number of undo levels"
 msgstr "¤ä¤êÄ¾¤·¤ÎºÇÂç²ó¿ô"
 
-#: ghex/preferences.c:95
-msgid "Show cursor offset as"
+#: ghex/preferences.c:96
+#, fuzzy
+msgid "Show cursor offset in statusbar as"
 msgstr "¥«¡¼¥½¥ë¤Î¥ª¥Õ¥»¥Ã¥ÈÉ½¼¨"
 
-#: ghex/preferences.c:114
+#: ghex/preferences.c:115
 msgid "Hexadecimal"
 msgstr "16¿Ê"
 
-#: ghex/preferences.c:120
+#: ghex/preferences.c:121
 msgid "Custom"
 msgstr "¥ª¥ê¥¸¥Ê¥ë"
 
-#: ghex/preferences.c:130
+#: ghex/preferences.c:131
+#, fuzzy
+msgid "Show offsets column"
+msgstr "¥«¡¼¥½¥ë¤Î¥ª¥Õ¥»¥Ã¥ÈÉ½¼¨"
+
+#: ghex/preferences.c:136
 msgid "Editing"
 msgstr "ÊÔ½¸"
 
-#: ghex/preferences.c:137
+#: ghex/preferences.c:143
 msgid "Font"
 msgstr "¥Õ¥©¥ó¥È"
 
-#: ghex/preferences.c:153
+#: ghex/preferences.c:159
 msgid "Browse..."
 msgstr "»²¾È..."
 
-#: ghex/preferences.c:172
+#: ghex/preferences.c:178
 msgid "Default Group Type"
 msgstr "¥Ç¥Õ¥©¥ë¥È¤Î¥Ç¡¼¥¿É½¼¨"
 
-#: ghex/preferences.c:188 gtt/options.c:186
+#: ghex/preferences.c:194 gtt/options.c:186
 msgid "Display"
 msgstr "É½¼¨"
 
-#: ghex/preferences.c:195
+#: ghex/preferences.c:201
 msgid "MDI Mode"
 msgstr "MDI¥â¡¼¥É"
 
-#: ghex/preferences.c:212
+#: ghex/preferences.c:218
 msgid "MDI"
 msgstr ""
 
-#: ghex/preferences.c:337
+#: ghex/preferences.c:365
 msgid "Can not open desired font!"
 msgstr "¤ªË¾¤ß¤Î¥Õ¥©¥ó¥È¤òÆÉ¤á¤Þ¤»¤ó!"
 
@@ -560,10 +567,10 @@ msgid ""
 "such as CPU load, CPU utilization, network traffic levels, and the like.  "
 "Other more ingenious uses are left as an exercise for the interested user."
 msgstr ""
-"GNOME¥¹¥È¥ê¥Ã¥×¥Á¥ã¡¼¥È¤Ï¥æ¡¼¥¶¡¼¤¬»ØÄê¤¹¤ëÍÍ¡¹¤Ê¥Ñ¥é¥á¡¼¥¿¤ò»þ´Ö¤Î´Ø"
-"¿ô¤È¤·¤ÆÉ½¼¨¤·¤Þ¤¹¡£¼ç¤ÊÌÜÅª¤ÏCPU¤ÎÉé²Ù¤ä»ÈÍÑÅÙ¡¢¥Í¥Ã¥È¥ï¡¼¥¯¥È¥é¥Õ¥£¥Ã"
-"¥¯¤Î¤è¤¦¤Ê¥·¥¹¥Æ¥à¥Ñ¥Õ¥©¡¼¥Þ¥ó¥¹¤òÉ½¤¹¥Ñ¥é¥á¡¼¥¿¤ò¥Á¥ã¡¼¥ÈÉ½¼¨¤¹¤ë¤³¤È"
-"¤Ç¤¹¡£¤½¤ì°Ê³°¤Îµ¤¤Î¸ú¤¤¤¿»È¤¤Êý¤Ï¡¢¶½Ì£¤ò¤â¤Ã¤¿¤¢¤Ê¤¿¼¡Âè¤Ç¤¹¡£"
+"GNOME¥¹¥È¥ê¥Ã¥×¥Á¥ã¡¼¥È¤Ï¥æ¡¼¥¶¡¼¤¬»ØÄê¤¹¤ëÍÍ¡¹¤Ê¥Ñ¥é¥á¡¼¥¿¤ò»þ´Ö¤Î´Ø¿ô¤È¤·¤Æ"
+"É½¼¨¤·¤Þ¤¹¡£¼ç¤ÊÌÜÅª¤ÏCPU¤ÎÉé²Ù¤ä»ÈÍÑÅÙ¡¢¥Í¥Ã¥È¥ï¡¼¥¯¥È¥é¥Õ¥£¥Ã¥¯¤Î¤è¤¦¤Ê¥·¥¹"
+"¥Æ¥à¥Ñ¥Õ¥©¡¼¥Þ¥ó¥¹¤òÉ½¤¹¥Ñ¥é¥á¡¼¥¿¤ò¥Á¥ã¡¼¥ÈÉ½¼¨¤¹¤ë¤³¤È¤Ç¤¹¡£¤½¤ì°Ê³°¤Îµ¤¤Î¸"
+"ú¤¤¤¿»È¤¤Êý¤Ï¡¢¶½Ì£¤ò¤â¤Ã¤¿¤¢¤Ê¤¿¼¡Âè¤Ç¤¹¡£"
 
 #: gstripchart/gstripchart.c:1375
 msgid "_About"
@@ -586,7 +593,7 @@ msgid "Param"
 msgstr "¥Ñ¥é¥á¡¼¥¿"
 
 #: gstripchart/gstripchart.c:1450 mini-utils/gcolorsel/gcolorsel.c:156
-#: mini-utils/guname/moreinfo.c:228
+#: mini-utils/guname/moreinfo.c:218
 msgid "Value"
 msgstr "ÃÍ"
 
@@ -674,7 +681,7 @@ msgstr "GNOME¥¹¥È¥ê¥Ã¥×¥Á¥ã¡¼¥È¥Ñ¥é¥á¡¼¥¿"
 msgid "Help"
 msgstr "¥Ø¥ë¥×"
 
-#: gstripchart/gstripchart.c:1615
+#: gstripchart/gstripchart.c:1615 mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "¾ðÊó"
 
@@ -999,7 +1006,8 @@ msgstr "Ää»ß»þ¤Î¥¨¥ó¥È¥ê:"
 msgid "Timeout in secs:"
 msgstr "¥¿¥¤¥à¥¢¥¦¥È»þ´Ö(ÉÃ):"
 
-#: gtt/options.c:499
+#. Fixme these should be stock buttons
+#: gtt/options.c:499 mini-utils/gshutdown/gshutdown.c:313
 msgid "Preferences"
 msgstr "ÀßÄê"
 
@@ -1153,7 +1161,7 @@ msgstr "¿§Ì¾"
 msgid "Color Values:"
 msgstr "¿§ÃÍ"
 
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:227
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:217
 #: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
 msgid "Name"
 msgstr "Ì¾Á°"
@@ -1222,6 +1230,11 @@ msgstr "Á°²óÆÉ¤ó¤À¥Õ¥©¥ó¥È¤òÆÉ¤ß¹þ¤Þ¤Ê¤¤"
 msgid "Copyright 1998, under the GNU General Public License."
 msgstr ""
 
+#: mini-utils/gless/gless.c:116
+#, c-format
+msgid "Reason %d\n"
+msgstr ""
+
 #: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
 msgstr "¥¦¥¤¥ó¥É¥¦¤Î°ÌÃÖ¤È¥µ¥¤¥º"
@@ -1262,15 +1275,22 @@ msgstr "¸¡º÷"
 msgid "Loading..."
 msgstr "ÆÉ¤ß¹þ¤ßÃæ..."
 
-#: mini-utils/gless/gless.c:503
-msgid "No such file or directory:\n"
+#: mini-utils/gless/gless.c:502
+#, fuzzy, c-format
+msgid ""
+"No such file or directory:\n"
+"%s"
 msgstr "¤½¤ó¤Ê¥Õ¥¡¥¤¥ë¤â¥Ç¥£¥ì¥¯¥È¥ê¤â¤¢¤ê¤Þ¤»¤ó:\n"
 
 #: mini-utils/gless/gless.c:520
-msgid "Failed to decompress and display the file:\n"
+#, fuzzy, c-format
+msgid ""
+"Failed to decompress and display the file:\n"
+"%s\n"
+"%s"
 msgstr "¥Õ¥¡¥¤¥ë¤ÎÅ¸³«¡¢É½¼¨¤Ë¼ºÇÔ¤·¤Þ¤·¤¿:\n"
 
-#: mini-utils/gless/gless.c:531
+#: mini-utils/gless/gless.c:533
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1278,51 +1298,67 @@ msgstr ""
 "°µ½Ì¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤òÉ½¼¨¤¹¤ë¤³¤È¤¬¤Ç¤­¤Þ¤»¤ó¡£\n"
 "zcat ¤¬¸«Åö¤¿¤ê¤Þ¤»¤ó¡£"
 
-#: mini-utils/gless/gless.c:539
-msgid "Error loading file:\n"
+#: mini-utils/gless/gless.c:541
+#, fuzzy, c-format
+msgid ""
+"Error loading file:\n"
+"%s\n"
+"%s"
 msgstr "¥Õ¥¡¥¤¥ëÆÉ¤ß¹þ¤ßÃæ¤Ë¥¨¥é¡¼:\n"
 
-#: mini-utils/gless/gless.c:594
+#: mini-utils/gless/gless.c:599
 msgid "Saving..."
 msgstr "ÊÝÂ¸Ãæ..."
 
-#: mini-utils/gless/gless.c:605
-msgid "Failed to write file:\n"
+#: mini-utils/gless/gless.c:610
+#, fuzzy, c-format
+msgid ""
+"Failed to write file:\n"
+"%s\n"
+"%s"
 msgstr "¥Õ¥¡¥¤¥ë½ñ¤­¹þ¤ß¤Ë¼ºÇÔ:\n"
 
-#: mini-utils/gless/gless.c:652
+#: mini-utils/gless/gless.c:660
 msgid "Save Text As..."
 msgstr "¥Æ¥­¥¹¥È¤ËÌ¾Á°¤ò¤Ä¤±¤ÆÊÝÂ¸..."
 
-#: mini-utils/gless/gless.c:692
+#: mini-utils/gless/gless.c:700
 msgid "Open Text File..."
 msgstr "¥Æ¥­¥¹¥È¥Õ¥¡¥¤¥ë¤ò³«¤¯..."
 
-#: mini-utils/gless/gless.c:843
+#: mini-utils/gless/gless.c:764
+msgid "Sorry, no preferences yet."
+msgstr ""
+
+#: mini-utils/gless/gless.c:851
 msgid "Searching..."
 msgstr "¸¡º÷Ãæ..."
 
-#: mini-utils/gless/gless.c:854
+#: mini-utils/gless/gless.c:862
 msgid "No search string was specified!"
 msgstr "¸¡º÷Ê¸»úÎó¤¬»ØÄê¤µ¤ì¤Æ¤¤¤Þ¤»¤ó!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
-msgid "Failed to execute command:\n"
+#, fuzzy, c-format
+msgid ""
+"Failed to execute command:\n"
+"%s\n"
+"%s"
 msgstr "¥³¥Þ¥ó¥É¼Â¹Ô¤Ë¼ºÇÔ:\n"
 
-#: mini-utils/gnome-run/gnome-run.c:68
+#: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run Program"
 msgstr "¥×¥í¥°¥é¥à¼Â¹Ô"
 
-#: mini-utils/gnome-run/gnome-run.c:69
+#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "¼Â¹Ô"
 
-#: mini-utils/gnome-run/gnome-run.c:69
+#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Cancel"
 msgstr "¥­¥ã¥ó¥»¥ë"
 
-#: mini-utils/gnome-run/gnome-run.c:80
+#: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
 msgstr "¼Â¹Ô¤¹¤ë¥×¥í¥°¥é¥à¤òÁªÂò"
 
@@ -1382,9 +1418,10 @@ msgstr "¼Â¹Ô¥ì¥Ù¥ë¤òËÜÅö¤Ë5¤Ë¤·¤Æ¤¤¤¤¤Î¤Ç¤¹¤Í?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "¥·¥¹¥Æ¥à¤òËÜÅö¤Ë¥ê¥Ö¡¼¥È¤·¤Æ¤¤¤¤¤Î¤Ç¤¹¤Í?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:591
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:592
 msgid "You must be the super-user (root) to shut down or restart the computer."
-msgstr "¥³¥ó¥Ô¥å¡¼¥¿¤ò¥·¥ã¥Ã¥È¥À¥¦¥ó/¥ê¥Ö¡¼¥È¤Ç¤­¤ë¤Î¤Ï¥¹¡¼¥Ñ¡¼¥æ¡¼¥¶(root)¤À¤±¤Ç¤¹¡£"
+msgstr ""
+"¥³¥ó¥Ô¥å¡¼¥¿¤ò¥·¥ã¥Ã¥È¥À¥¦¥ó/¥ê¥Ö¡¼¥È¤Ç¤­¤ë¤Î¤Ï¥¹¡¼¥Ñ¡¼¥æ¡¼¥¶(root)¤À¤±¤Ç¤¹¡£"
 
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:186
@@ -1424,105 +1461,122 @@ msgstr "¥·¥ã¥Ã¥È¥À¥¦¥ó¤ÎÁ°¤Ë¤Ï³ÎÇ§¤¹¤ë?"
 msgid "General"
 msgstr "°ìÈÌ"
 
-#: mini-utils/gshutdown/gshutdown.c:457
+#: mini-utils/gshutdown/gshutdown.c:448
+#, c-format
+msgid ""
+"%s\n"
+"You will lose any unsaved work."
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:458
 msgid "Don't ask next time."
 msgstr "¤â¤¦Ê¹¤«¤Ê¤¤"
 
-#: mini-utils/guname/guname.c:327
+#: mini-utils/gshutdown/gshutdown.c:685
+msgid "Command execution failed: fork failed"
+msgstr ""
+
+#: mini-utils/guname/guname.c:51
+msgid "Make guname act as a control center applet"
+msgstr ""
+
+#: mini-utils/guname/guname.c:114
+msgid "an initialization error occurred while starting 'guname-capplet'."
+msgstr ""
+
+#: mini-utils/guname/guname.c:424
 msgid "System Information"
 msgstr "¥·¥¹¥Æ¥à¾ðÊó"
 
-#: mini-utils/guname/guname.c:409
+#: mini-utils/guname/guname.c:506
 msgid "Logo file not found"
 msgstr "¥í¥´¤¬¸«¤Ä¤«¤ê¤Þ¤»¤ó"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:413
+#: mini-utils/guname/guname.c:510
 msgid "GNOME contributors:"
 msgstr "GNOME¤Ë¹×¸¥¤·¤¿¿Í¡¹:"
 
-#: mini-utils/guname/guname.c:427
+#: mini-utils/guname/guname.c:513
+msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
+msgstr ""
+
+#: mini-utils/guname/guname.c:524
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME: GNU¥Í¥Ã¥È¥ï¡¼¥¯¥ª¥Ö¥¸¥§¥¯¥È¥â¥Ç¥ë´Ä¶­"
 
-#: mini-utils/guname/guname.c:451
+#: mini-utils/guname/guname.c:548
 msgid "Email Information..."
 msgstr "¥á¥¤¥ë¤Ç¾ðÊó¤òÁ÷¤ë"
 
-#: mini-utils/guname/guname.c:462
+#: mini-utils/guname/guname.c:561
 msgid "Save Information to File..."
 msgstr "¥Õ¥¡¥¤¥ë¤Ë¾ðÊó¤òµ­Ï¿"
 
-#: mini-utils/guname/guname.c:474 mini-utils/guname/guname.c:541
+#: mini-utils/guname/guname.c:573 mini-utils/guname/guname.c:640
 msgid "Detailed Information..."
 msgstr "¾ÜºÙ¤Ê¾ðÊó"
 
-#: mini-utils/guname/guname.c:489
+#: mini-utils/guname/guname.c:588
 msgid "Category"
 msgstr "¥«¥Æ¥´¥ê"
 
-#: mini-utils/guname/guname.c:489
+#: mini-utils/guname/guname.c:588
 msgid "Your System"
 msgstr "¥·¥¹¥Æ¥à"
 
-#: mini-utils/guname/guname.c:527
+#: mini-utils/guname/guname.c:626
 msgid "Save As..."
 msgstr "Ì¾Á°¤ò¤Ä¤±¤ÆÊÝÂ¸..."
 
-#: mini-utils/guname/guname.c:533
+#: mini-utils/guname/guname.c:632
 msgid "Mail To..."
 msgstr "¥á¥¤¥ëÀè..."
 
-#: mini-utils/guname/guname.c:581
-msgid "Error closing file `"
-msgstr "¥Õ¥¡¥¤¥ë¤òÊÄ¤¸¤ë¤Î¤Ë¼ºÇÔ"
-
-#: mini-utils/guname/guname.c:583
+#: mini-utils/guname/guname.c:680
+#, fuzzy, c-format
 msgid ""
-"\n"
+"Error closing file `%s': \n"
+"%s\n"
 "Some or all data may not have been written."
 msgstr ""
 "\n"
 "°ìÉô¤â¤·¤¯¤ÏÁ´¤Æ¤Î¥Ç¡¼¥¿¤¬µ­Ï¿¤µ¤ì¤Æ¤¤¤Ê¤¤¤«¤â¤·¤ì¤Þ¤»¤ó¡£"
 
-#: mini-utils/guname/guname.c:592
-msgid "Couldn't open file `"
+#: mini-utils/guname/guname.c:692
+#, fuzzy, c-format
+msgid "Couldn't open file `%s': %s"
 msgstr "¤³¤Î¥Õ¥¡¥¤¥ë¤ò³«¤±¤Þ¤»¤ó `"
 
-#: mini-utils/guname/guname.c:606
+#: mini-utils/guname/guname.c:707
 msgid "Save System Information As..."
 msgstr "¥·¥¹¥Æ¥à¾ðÊó¤ËÌ¾Á°¤ò¤Ä¤±¤ÆÊÝÂ¸..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:652
-msgid "Command failed ` "
+#: mini-utils/guname/guname.c:753
+#, fuzzy, c-format
+msgid "Command failed ` %s ': %s"
 msgstr "Ì¿Îá¼Â¹Ô¼ºÇÔ"
 
-#: mini-utils/guname/guname.c:652 mini-utils/guname/guname.c:659
-msgid " ': "
-msgstr ""
-
-#: mini-utils/guname/guname.c:659
-msgid "Couldn't run command ` "
+#: mini-utils/guname/guname.c:761
+#, fuzzy, c-format
+msgid "Couldn't run command ` %s ': %s"
 msgstr "¼¡¤Î¥³¥Þ¥ó¥É¤ò¼Â¹Ô¤Ç¤­¤Þ¤»¤ó `"
 
-#: mini-utils/guname/guname.c:682
-msgid "The following mail will be sent to "
-msgstr "°Ê²¼¤Î¥á¥¤¥ë¤¬¤½¤³¤ËÁ÷¤é¤ì¤Þ¤¹"
-
-#: mini-utils/guname/guname.c:684
+#: mini-utils/guname/guname.c:785
+#, fuzzy, c-format
 msgid ""
-".\n"
+"The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
 "¡£\n"
 "¤³¤Î¾ðÊó¤ò¥á¥¤¥ë¤·¤Æ¤âÎÉ¤¤¤Ç¤¹¤Í?"
 
-#: mini-utils/guname/guname.c:693
+#: mini-utils/guname/guname.c:796
 msgid "Are you sure?"
 msgstr "ËÜÅö¤Ç¤¹¤«?"
 
-#: mini-utils/guname/guname.c:727
+#: mini-utils/guname/guname.c:830
 msgid "Address to mail to:"
 msgstr "¥á¥¤¥ë°¸Àè:"
 
@@ -1616,7 +1670,7 @@ msgstr "¥Þ¥¦¥ó¥È¥Ý¥¤¥ó¥È"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:182
+#: mini-utils/guname/info.c:182 mini-utils/idetool/idetool.c:26
 msgid "Unknown"
 msgstr "Ì¤ÃÎ"
 
@@ -1628,67 +1682,51 @@ msgstr "Ì¤ÃÎ¤Î¥Õ¥¡¥¤¥ë¥·¥¹¥Æ¥à"
 msgid "No information for this filesystem."
 msgstr "¤³¤Î¥Õ¥¡¥¤¥ë¥·¥¹¥Æ¥à¤Î¾ðÊó¤Ï¤¢¤ê¤Þ¤»¤ó"
 
-#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:166
+#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "¥á¥â¥ê"
 
-#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:167
+#: mini-utils/guname/moreinfo.c:161
 msgid "Kilobytes"
 msgstr "K¥Ð¥¤¥È"
 
-#: mini-utils/guname/moreinfo.c:164
-msgid "%ld%% %s used."
-msgstr "%ld%% ¤Î%s»ÈÍÑÃæ"
-
-#: mini-utils/guname/moreinfo.c:183 mini-utils/guname/moreinfo.c:187
-msgid "memory"
-msgstr "¥á¥â¥ê"
-
-#: mini-utils/guname/moreinfo.c:197 mini-utils/guname/moreinfo.c:201
-msgid "swap"
-msgstr "¥¹¥ï¥Ã¥×"
-
-#: mini-utils/guname/moreinfo.c:224
+#: mini-utils/guname/moreinfo.c:214
 #, c-format
 msgid "CPU %d"
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:272
+#: mini-utils/guname/moreinfo.c:262
 msgid "Detailed System Information"
 msgstr "¾ÜºÙ¤Ê¥·¥¹¥Æ¥à¾ðÊó"
 
-#: mini-utils/guname/moreinfo.c:285
+#: mini-utils/guname/moreinfo.c:275
 msgid "Disk Information"
 msgstr "¥Ç¥£¥¹¥¯¾ðÊó"
 
-#: mini-utils/guname/moreinfo.c:287
+#: mini-utils/guname/moreinfo.c:277
 msgid "Memory Information"
 msgstr "¥á¥â¥ê¾ðÊó"
 
-#: mini-utils/guname/moreinfo.c:290
+#: mini-utils/guname/moreinfo.c:280
 msgid "CPU Information"
 msgstr "CPU¾ðÊó"
 
-#: mini-utils/guname/moreinfo.c:311
-msgid "%2d%% full "
-msgstr "%2d%% »ÈÍÑÃæ "
-
-#: mini-utils/guname/moreinfo.c:313
-#, c-format
-msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-msgstr "%ld M¥Ð¥¤¥È¡¢%ld ¶õ¤­ (%ld ÆÃ¸¢ÎÎ°è); %ld I¥Î¡¼¥É¡¢%ld¶õ¤­"
-
-#: mini-utils/guname/moreinfo.c:327
+#: mini-utils/guname/moreinfo.c:312
 msgid "Mount Point: "
 msgstr "¥Þ¥¦¥ó¥È¥Ý¥¤¥ó¥È:"
 
-#: mini-utils/guname/moreinfo.c:328
+#: mini-utils/guname/moreinfo.c:313
 msgid "    Device: "
 msgstr "   ¥Ç¥Ð¥¤¥¹: "
 
-#: mini-utils/guname/moreinfo.c:329
+#: mini-utils/guname/moreinfo.c:314
 msgid "    Filesystem Type: "
 msgstr "   ¥Õ¥¡¥¤¥ë¥·¥¹¥Æ¥à·Á¼°: "
+
+#: mini-utils/guname/moreinfo.c:327
+#, c-format
+msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
+msgstr "%ld M¥Ð¥¤¥È¡¢%ld ¶õ¤­ (%ld ÆÃ¸¢ÎÎ°è); %ld I¥Î¡¼¥É¡¢%ld¶õ¤­"
 
 #: mini-utils/gw/gw.c:141
 msgid ""
@@ -1713,6 +1751,11 @@ msgstr "êÀ¤¤¤Æ¤¤¤ë¥æ¡¼¥¶¤Î°ìÍ÷"
 #: mini-utils/gw/gw.c:219
 msgid "Update Information"
 msgstr "¾ðÊó¤Î¹¹¿·"
+
+#: mini-utils/gw/gw.c:466
+#, fuzzy
+msgid "Save not implemented yet\n"
+msgstr "¤Þ¤À¼ÂÁõ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó"
 
 #: mini-utils/gw/gw.c:479
 msgid "Command Line"
@@ -1761,6 +1804,36 @@ msgstr "¥á¥Ë¥å¡¼¹àÌÜ"
 msgid "Command"
 msgstr "¥³¥Þ¥ó¥É"
 
+#: mini-utils/gw/gw.c:947
+#, c-format
+msgid "Running: %s\n"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:20
+msgid "16-bit"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:21
+msgid "32-bit"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:22
+msgid "32-bit w/sync"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:27
+msgid "Sleeping"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:28
+#, fuzzy
+msgid "Active/Idle"
+msgstr "É½¼¨"
+
+#: mini-utils/idetool/idetool.c:29
+msgid "Standby"
+msgstr ""
+
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
 msgstr "¥É¥é¥¤¥Ö¤Ë¥¢¥¯¥»¥¹¤Ç¤­¤Þ¤»¤ó¡£"
@@ -1791,6 +1864,10 @@ msgstr "¤³¤Î¥É¥é¥¤¥Ö¤ÏÀßÄê¤òÊÝ»ý¤·¤Æ¤¯¤ì¤Þ¤»¤ó¡£"
 msgid "Keep settings"
 msgstr "ÀßÄê¤òÊÝ»ý"
 
+#: mini-utils/idetool/idetool.c:207
+msgid "None"
+msgstr ""
+
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr "(1¥»¥¯¥¿¡¼)"
@@ -1802,6 +1879,15 @@ msgstr "(¥Ç¥å¥¢¥ë¥Ý¡¼¥È)"
 #: mini-utils/idetool/idetool.c:215
 msgid "(Dual Port Cache)"
 msgstr "(¥Ç¥å¥¢¥ë¥Ý¡¼¥È¥­¥ã¥Ã¥·¥å)"
+
+#: mini-utils/idetool/idetool.c:243
+#, c-format
+msgid "Yes (%d sector%s)"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:245
+msgid "No"
+msgstr ""
 
 #: mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
 msgid "Model"
@@ -1870,3 +1956,21 @@ msgstr "¥¹¡¼¥Ñ¡¼¥æ¡¼¥¶¤Î¤ß¤¬¤³¤Î¥Ä¡¼¥ë¤ò»È¤¨¤Þ¤¹"
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "IDE¥É¥é¥¤¥Ö¤ÏÉÕ¤¤¤Æ¤¤¤Ê¤¤¤è¤¦¤Ç¤¹¤Í"
+
+#~ msgid "Error closing file `"
+#~ msgstr "¥Õ¥¡¥¤¥ë¤òÊÄ¤¸¤ë¤Î¤Ë¼ºÇÔ"
+
+#~ msgid "The following mail will be sent to "
+#~ msgstr "°Ê²¼¤Î¥á¥¤¥ë¤¬¤½¤³¤ËÁ÷¤é¤ì¤Þ¤¹"
+
+#~ msgid "%ld%% %s used."
+#~ msgstr "%ld%% ¤Î%s»ÈÍÑÃæ"
+
+#~ msgid "memory"
+#~ msgstr "¥á¥â¥ê"
+
+#~ msgid "swap"
+#~ msgstr "¥¹¥ï¥Ã¥×"
+
+#~ msgid "%2d%% full "
+#~ msgstr "%2d%% »ÈÍÑÃæ "

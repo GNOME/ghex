@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-util-1.0.1\n"
-"POT-Creation-Date: 1999-07-22 22:49-0400\n"
+"POT-Creation-Date: 1999-07-29 14:24-0400\n"
 "PO-Revision-Date: 1999-03-10 HO:MI+ZONE\n"
 "Last-Translator: Sergey Panov <sipan@mit.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -58,7 +58,7 @@ msgid "Get cursor value"
 msgstr "Задать положение курсора"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:594
+#: mini-utils/gshutdown/gshutdown.c:595
 msgid "Close"
 msgstr "Закрыть"
 
@@ -226,11 +226,12 @@ msgstr ""
 "Сохранить изменения?"
 
 #: ghex/main.c:173
-msgid "Offset: "
+#, fuzzy, c-format
+msgid "Offset: %s"
 msgstr "Отступ: "
 
-#: ghex/preferences.c:50 mini-utils/idetool/idetool.c:142
-#: mini-utils/idetool/idetool.c:325
+#: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
 msgid "Default"
 msgstr "По умолчанию"
 
@@ -591,7 +592,7 @@ msgid "Param"
 msgstr "Парам"
 
 #: gstripchart/gstripchart.c:1450 mini-utils/gcolorsel/gcolorsel.c:156
-#: mini-utils/guname/moreinfo.c:228
+#: mini-utils/guname/moreinfo.c:218
 msgid "Value"
 msgstr "Значение"
 
@@ -679,7 +680,7 @@ msgstr "Параметры самописца Gnome"
 msgid "Help"
 msgstr "Справка"
 
-#: gstripchart/gstripchart.c:1615
+#: gstripchart/gstripchart.c:1615 mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "О программе"
 
@@ -1005,7 +1006,8 @@ msgstr "Точка остановки:"
 msgid "Timeout in secs:"
 msgstr "Время ожидания в секундах:"
 
-#: gtt/options.c:499
+#. Fixme these should be stock buttons
+#: gtt/options.c:499 mini-utils/gshutdown/gshutdown.c:313
 msgid "Preferences"
 msgstr "Настройки"
 
@@ -1159,7 +1161,7 @@ msgstr "Название цвета:"
 msgid "Color Values:"
 msgstr "Цветовые значения:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:227
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:217
 #: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
 msgid "Name"
 msgstr "Название"
@@ -1228,6 +1230,11 @@ msgstr "Отключить загрузку последнего шрифта"
 msgid "Copyright 1998, under the GNU General Public License."
 msgstr "Copyright 1998, на условиях GNU General Public License."
 
+#: mini-utils/gless/gless.c:116
+#, c-format
+msgid "Reason %d\n"
+msgstr ""
+
 #: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
 msgstr "Положение окна и его размер"
@@ -1269,15 +1276,22 @@ msgstr "Поиск"
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: mini-utils/gless/gless.c:503
-msgid "No such file or directory:\n"
+#: mini-utils/gless/gless.c:502
+#, fuzzy, c-format
+msgid ""
+"No such file or directory:\n"
+"%s"
 msgstr "Нет такого файла или каталога:\n"
 
 #: mini-utils/gless/gless.c:520
-msgid "Failed to decompress and display the file:\n"
+#, fuzzy, c-format
+msgid ""
+"Failed to decompress and display the file:\n"
+"%s\n"
+"%s"
 msgstr "Не удалось распаковать и показать файл:\n"
 
-#: mini-utils/gless/gless.c:531
+#: mini-utils/gless/gless.c:533
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1285,51 +1299,67 @@ msgstr ""
 "Не удалось показать сжатый файл.\n"
 "не найден zcat в пути поиска команд."
 
-#: mini-utils/gless/gless.c:539
-msgid "Error loading file:\n"
+#: mini-utils/gless/gless.c:541
+#, fuzzy, c-format
+msgid ""
+"Error loading file:\n"
+"%s\n"
+"%s"
 msgstr "Ошибка загрузки файла:\n"
 
-#: mini-utils/gless/gless.c:594
+#: mini-utils/gless/gless.c:599
 msgid "Saving..."
 msgstr "Сохранение..."
 
-#: mini-utils/gless/gless.c:605
-msgid "Failed to write file:\n"
+#: mini-utils/gless/gless.c:610
+#, fuzzy, c-format
+msgid ""
+"Failed to write file:\n"
+"%s\n"
+"%s"
 msgstr "Ошибка при записи файла:\n"
 
-#: mini-utils/gless/gless.c:652
+#: mini-utils/gless/gless.c:660
 msgid "Save Text As..."
 msgstr "Сохранить текст как..."
 
-#: mini-utils/gless/gless.c:692
+#: mini-utils/gless/gless.c:700
 msgid "Open Text File..."
 msgstr "Открыть текстовый файл..."
 
-#: mini-utils/gless/gless.c:843
+#: mini-utils/gless/gless.c:764
+msgid "Sorry, no preferences yet."
+msgstr ""
+
+#: mini-utils/gless/gless.c:851
 msgid "Searching..."
 msgstr "Поиск..."
 
-#: mini-utils/gless/gless.c:854
+#: mini-utils/gless/gless.c:862
 msgid "No search string was specified!"
 msgstr "Искомая строка не задана!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
-msgid "Failed to execute command:\n"
+#, fuzzy, c-format
+msgid ""
+"Failed to execute command:\n"
+"%s\n"
+"%s"
 msgstr "Не удалось выполнить команду:\n"
 
-#: mini-utils/gnome-run/gnome-run.c:68
+#: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run Program"
 msgstr "Запустить программу"
 
-#: mini-utils/gnome-run/gnome-run.c:69
+#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "Запуск"
 
-#: mini-utils/gnome-run/gnome-run.c:69
+#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Cancel"
 msgstr "Отмена"
 
-#: mini-utils/gnome-run/gnome-run.c:80
+#: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
 msgstr "Выбрать программу для запуска"
 
@@ -1390,7 +1420,7 @@ msgstr "Вы уверены, в том что хотите переключиться на runlevel 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Вы уверены, в том что хотите перезагрузить систему?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:591
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:592
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Необходимо обладать правами администратора (root) для выключения или "
@@ -1434,13 +1464,28 @@ msgstr "Подтверждать перед выключением?"
 msgid "General"
 msgstr "Общие"
 
-#: mini-utils/gshutdown/gshutdown.c:457
+#: mini-utils/gshutdown/gshutdown.c:448
+#, c-format
+msgid ""
+"%s\n"
+"You will lose any unsaved work."
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:458
 msgid "Don't ask next time."
 msgstr "Не спрашивать в следующий раз."
+
+#: mini-utils/gshutdown/gshutdown.c:685
+msgid "Command execution failed: fork failed"
+msgstr ""
 
 #: mini-utils/guname/guname.c:51
 msgid "Make guname act as a control center applet"
 msgstr "Превратить guname апплет центра управления"
+
+#: mini-utils/guname/guname.c:114
+msgid "an initialization error occurred while starting 'guname-capplet'."
+msgstr ""
 
 #: mini-utils/guname/guname.c:424
 msgid "System Information"
@@ -1454,6 +1499,10 @@ msgstr "Файл логотипа не найден"
 #: mini-utils/guname/guname.c:510
 msgid "GNOME contributors:"
 msgstr "Участники проекта GNOME:"
+
+#: mini-utils/guname/guname.c:513
+msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
+msgstr ""
 
 #: mini-utils/guname/guname.c:524
 msgid "GNOME: The GNU Network Object Model Environment"
@@ -1488,55 +1537,49 @@ msgid "Mail To..."
 msgstr "Отправить почту..."
 
 #: mini-utils/guname/guname.c:680
-msgid "Error closing file `"
-msgstr "Ошибка при закрытии файла `"
-
-#: mini-utils/guname/guname.c:682
+#, fuzzy, c-format
 msgid ""
-"\n"
+"Error closing file `%s': \n"
+"%s\n"
 "Some or all data may not have been written."
 msgstr ""
 "\n"
 "Все или часть данных могут быть не записаны."
 
-#: mini-utils/guname/guname.c:691
-msgid "Couldn't open file `"
+#: mini-utils/guname/guname.c:692
+#, fuzzy, c-format
+msgid "Couldn't open file `%s': %s"
 msgstr "Не удалось открыть файл `"
 
-#: mini-utils/guname/guname.c:705
+#: mini-utils/guname/guname.c:707
 msgid "Save System Information As..."
 msgstr "Сохранить информацию о системе как..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:751
-msgid "Command failed ` "
+#: mini-utils/guname/guname.c:753
+#, fuzzy, c-format
+msgid "Command failed ` %s ': %s"
 msgstr "Ошибка в команде ` "
 
-#: mini-utils/guname/guname.c:751 mini-utils/guname/guname.c:758
-msgid " ': "
-msgstr " ': "
-
-#: mini-utils/guname/guname.c:758
-msgid "Couldn't run command ` "
+#: mini-utils/guname/guname.c:761
+#, fuzzy, c-format
+msgid "Couldn't run command ` %s ': %s"
 msgstr "Не удалось выполнить команду ` "
 
-#: mini-utils/guname/guname.c:781
-msgid "The following mail will be sent to "
-msgstr "Следующее сообщение будет послано "
-
-#: mini-utils/guname/guname.c:783
+#: mini-utils/guname/guname.c:785
+#, fuzzy, c-format
 msgid ""
-".\n"
+"The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
 ".\n"
 "Вы уверены, в том что хотите послать эту информацию?"
 
-#: mini-utils/guname/guname.c:792
+#: mini-utils/guname/guname.c:796
 msgid "Are you sure?"
 msgstr "Вы уверены?"
 
-#: mini-utils/guname/guname.c:826
+#: mini-utils/guname/guname.c:830
 msgid "Address to mail to:"
 msgstr "Адрес для отправки:"
 
@@ -1630,7 +1673,7 @@ msgstr "Точка подсоединения"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:182
+#: mini-utils/guname/info.c:182 mini-utils/idetool/idetool.c:26
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -1642,67 +1685,51 @@ msgstr "Неизвестная файловая система"
 msgid "No information for this filesystem."
 msgstr "Нет сведений об этой файловой системе."
 
-#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:166
+#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "Память"
 
-#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:167
+#: mini-utils/guname/moreinfo.c:161
 msgid "Kilobytes"
 msgstr "Килобайты"
 
-#: mini-utils/guname/moreinfo.c:164
-msgid "%ld%% %s used."
-msgstr "%ld%% %s использовано."
-
-#: mini-utils/guname/moreinfo.c:183 mini-utils/guname/moreinfo.c:187
-msgid "memory"
-msgstr "память"
-
-#: mini-utils/guname/moreinfo.c:197 mini-utils/guname/moreinfo.c:201
-msgid "swap"
-msgstr "подкачка"
-
-#: mini-utils/guname/moreinfo.c:224
+#: mini-utils/guname/moreinfo.c:214
 #, c-format
 msgid "CPU %d"
 msgstr "ЦПУ %d"
 
-#: mini-utils/guname/moreinfo.c:272
+#: mini-utils/guname/moreinfo.c:262
 msgid "Detailed System Information"
 msgstr "Подробная информация о системе"
 
-#: mini-utils/guname/moreinfo.c:285
+#: mini-utils/guname/moreinfo.c:275
 msgid "Disk Information"
 msgstr "Информация о дисках"
 
-#: mini-utils/guname/moreinfo.c:287
+#: mini-utils/guname/moreinfo.c:277
 msgid "Memory Information"
 msgstr "Информация о памяти"
 
-#: mini-utils/guname/moreinfo.c:290
+#: mini-utils/guname/moreinfo.c:280
 msgid "CPU Information"
 msgstr "Информация о ЦПУ"
 
-#: mini-utils/guname/moreinfo.c:311
-msgid "%2d%% full "
-msgstr "%2d%% заполнено "
-
-#: mini-utils/guname/moreinfo.c:313
-#, c-format
-msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-msgstr "%ld мегабайт, %ld свободно (%ld superuser); %ld inodes, %ld свободно."
-
-#: mini-utils/guname/moreinfo.c:327
+#: mini-utils/guname/moreinfo.c:312
 msgid "Mount Point: "
 msgstr "Точка подсоединения:"
 
-#: mini-utils/guname/moreinfo.c:328
+#: mini-utils/guname/moreinfo.c:313
 msgid "    Device: "
 msgstr "    Устройство: "
 
-#: mini-utils/guname/moreinfo.c:329
+#: mini-utils/guname/moreinfo.c:314
 msgid "    Filesystem Type: "
 msgstr "    Тип файловой системы: "
+
+#: mini-utils/guname/moreinfo.c:327
+#, c-format
+msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
+msgstr "%ld мегабайт, %ld свободно (%ld superuser); %ld inodes, %ld свободно."
 
 #: mini-utils/gw/gw.c:141
 msgid ""
@@ -1727,6 +1754,11 @@ msgstr "Список пользователей"
 #: mini-utils/gw/gw.c:219
 msgid "Update Information"
 msgstr "Обновить информацию"
+
+#: mini-utils/gw/gw.c:466
+#, fuzzy
+msgid "Save not implemented yet\n"
+msgstr "Это пока не реализовано"
 
 #: mini-utils/gw/gw.c:479
 msgid "Command Line"
@@ -1775,6 +1807,36 @@ msgstr "Пункт меню"
 msgid "Command"
 msgstr "Команда"
 
+#: mini-utils/gw/gw.c:947
+#, c-format
+msgid "Running: %s\n"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:20
+msgid "16-bit"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:21
+msgid "32-bit"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:22
+msgid "32-bit w/sync"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:27
+msgid "Sleeping"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:28
+#, fuzzy
+msgid "Active/Idle"
+msgstr "Задействован"
+
+#: mini-utils/idetool/idetool.c:29
+msgid "Standby"
+msgstr ""
+
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
 msgstr "Нет доступа к диску."
@@ -1805,6 +1867,10 @@ msgstr "Диск не в состоянии сохранить установки."
 msgid "Keep settings"
 msgstr "Сохранить установки"
 
+#: mini-utils/idetool/idetool.c:207
+msgid "None"
+msgstr ""
+
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr "(1 Сектор)"
@@ -1816,6 +1882,15 @@ msgstr "(Двойной порт)"
 #: mini-utils/idetool/idetool.c:215
 msgid "(Dual Port Cache)"
 msgstr "(Кэше двойного порта)"
+
+#: mini-utils/idetool/idetool.c:243
+#, c-format
+msgid "Yes (%d sector%s)"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:245
+msgid "No"
+msgstr ""
 
 #: mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
 msgid "Model"
@@ -1885,5 +1960,23 @@ msgstr "Только администратор может использовать этот инструмент"
 msgid "You appear to have no IDE drives"
 msgstr "Кажется у Вас нет IDE дисков"
 
+#~ msgid "Error closing file `"
+#~ msgstr "Ошибка при закрытии файла `"
 
+#~ msgid " ': "
+#~ msgstr " ': "
 
+#~ msgid "The following mail will be sent to "
+#~ msgstr "Следующее сообщение будет послано "
+
+#~ msgid "%ld%% %s used."
+#~ msgstr "%ld%% %s использовано."
+
+#~ msgid "memory"
+#~ msgstr "память"
+
+#~ msgid "swap"
+#~ msgstr "подкачка"
+
+#~ msgid "%2d%% full "
+#~ msgstr "%2d%% заполнено "

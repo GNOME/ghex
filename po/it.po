@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1999-04-28 02:07+0200\n"
+"POT-Creation-Date: 1999-07-29 14:24-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,36 +31,40 @@ msgid ""
 "uitilizing a dial."
 msgstr "Un veloce hack per mostrare lo spazio libero sui file system montati."
 
-#: ghex/converter.c:39
+#: ghex/converter.c:41
 msgid "GHex: Converter"
 msgstr "GHex: Convertitore"
 
-#: ghex/converter.c:46
+#: ghex/converter.c:50
 msgid "Binary"
 msgstr "Binario"
 
-#: ghex/converter.c:56 ghex/preferences.c:109
+#: ghex/converter.c:60 ghex/preferences.c:110
 msgid "Decimal"
 msgstr "Decimale"
 
-#: ghex/converter.c:66
+#: ghex/converter.c:70
 msgid "Hex"
 msgstr "Esadecimale"
 
-#: ghex/converter.c:76
+#: ghex/converter.c:80
 msgid "ASCII"
 msgstr ""
 
-#: ghex/converter.c:86 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:594
+#: ghex/converter.c:90
+msgid "Get cursor value"
+msgstr ""
+
+#: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
+#: mini-utils/gshutdown/gshutdown.c:595
 msgid "Close"
 msgstr "Chiudi"
 
-#: ghex/converter.c:134
+#: ghex/converter.c:190
 msgid "ERROR"
 msgstr "ERRORE"
 
-#: ghex/findreplace.c:51 ghex/main.c:82
+#: ghex/findreplace.c:51 ghex/main.c:83
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex: (%s): Trova dati"
@@ -78,7 +82,7 @@ msgstr "Trova il successivo"
 msgid "Find Previous"
 msgstr "Trova il precedente"
 
-#: ghex/findreplace.c:111 ghex/main.c:83
+#: ghex/findreplace.c:111 ghex/main.c:84
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Cerca & sostituisci dati"
@@ -100,7 +104,7 @@ msgstr "Sostituisci"
 msgid "Replace All"
 msgstr "Sostituisci tutti"
 
-#: ghex/findreplace.c:179 ghex/main.c:84
+#: ghex/findreplace.c:179 ghex/main.c:85
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Salta a byte"
@@ -219,72 +223,79 @@ msgstr ""
 "Il file %s è stato modificato dopo l'ultimo salvataggio.\n"
 "Salvare le modifiche?"
 
-#: ghex/main.c:172
-msgid "Offset: "
+#: ghex/main.c:173
+#, fuzzy, c-format
+msgid "Offset: %s"
 msgstr "Offset:"
 
-#: ghex/preferences.c:49 mini-utils/idetool/idetool.c:142
-#: mini-utils/idetool/idetool.c:325
+#: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
 msgid "Default"
 msgstr "Default"
 
-#: ghex/preferences.c:50
+#: ghex/preferences.c:51
 msgid "Notebook"
 msgstr "Notebook"
 
-#: ghex/preferences.c:51
+#: ghex/preferences.c:52
 msgid "Toplevel"
 msgstr "Toplevel"
 
-#: ghex/preferences.c:52
+#: ghex/preferences.c:53
 msgid "Modal"
 msgstr "Modale"
 
-#: ghex/preferences.c:81
+#: ghex/preferences.c:82
 msgid "Maximum number of undo levels"
 msgstr "Massimo numero di livelli di annullamento modifiche"
 
-#: ghex/preferences.c:95
-msgid "Show cursor offset as"
+#: ghex/preferences.c:96
+#, fuzzy
+msgid "Show cursor offset in statusbar as"
 msgstr "Mostra la posizione del cursore in"
 
-#: ghex/preferences.c:114
+#: ghex/preferences.c:115
 msgid "Hexadecimal"
 msgstr "Esadecimale"
 
-#: ghex/preferences.c:120
+#: ghex/preferences.c:121
 msgid "Custom"
 msgstr "Personalizzato"
 
-#: ghex/preferences.c:130
+#: ghex/preferences.c:131
+#, fuzzy
+msgid "Show offsets column"
+msgstr "Mostra la posizione del cursore in"
+
+#: ghex/preferences.c:136
 msgid "Editing"
 msgstr "Editing"
 
-#: ghex/preferences.c:137
+#: ghex/preferences.c:143
 msgid "Font"
 msgstr "Font"
 
-#: ghex/preferences.c:153
+#: ghex/preferences.c:159
 msgid "Browse..."
 msgstr "Sfoglia..."
 
-#: ghex/preferences.c:172
+#: ghex/preferences.c:178
 msgid "Default Group Type"
 msgstr "Tipo di gruppo di default"
 
-#: ghex/preferences.c:188 gtt/options.c:186
+#: ghex/preferences.c:194 gtt/options.c:186
 msgid "Display"
 msgstr "Visualizzazione"
 
-#: ghex/preferences.c:195
+#: ghex/preferences.c:201
 msgid "MDI Mode"
 msgstr "Modo MDI"
 
-#: ghex/preferences.c:212
+#: ghex/preferences.c:218
 msgid "MDI"
 msgstr "MDI"
 
-#: ghex/preferences.c:337
+#: ghex/preferences.c:365
 msgid "Can not open desired font!"
 msgstr "Impossibile aprire il font desiderato!"
 
@@ -439,7 +450,7 @@ msgstr "Rimuovi"
 msgid "Start in directory:"
 msgstr "Comincia nella directory:"
 
-#: gsearchtool/gsearchtool.c:503 mini-utils/gw/gw.c:454
+#: gsearchtool/gsearchtool.c:503 mini-utils/gw/gw.c:488
 msgid "Add"
 msgstr "Aggiungi"
 
@@ -479,92 +490,279 @@ msgstr "Interfaccia ai comandi Unix find/grep/locate"
 msgid "Gnome Search Tool"
 msgstr "Tool di ricerca Gnome"
 
-#: gstripchart/gstripchart.c:1321
-msgid "Params"
-msgstr "Parametri"
+#: gstripchart/gstripchart.c:374
+msgid "rparen expected"
+msgstr ""
 
-#: gstripchart/gstripchart.c:1321
-msgid "Examine and adjust parameters"
-msgstr "Esamina e modifica paramtetri"
+#: gstripchart/gstripchart.c:391
+#, c-format
+msgid "no such field: %d"
+msgstr ""
 
-#: gstripchart/gstripchart.c:1327
+#: gstripchart/gstripchart.c:415
+msgid "missing variable identifer"
+msgstr ""
+
+#: gstripchart/gstripchart.c:417
+#, c-format
+msgid "invalid variable identifer: %s"
+msgstr ""
+
+#: gstripchart/gstripchart.c:421
+msgid "number expected"
+msgstr ""
+
+#: gstripchart/gstripchart.c:498
+#, c-format
+msgid "extra gunk at end: \"%s\""
+msgstr ""
+
+#: gstripchart/gstripchart.c:575
+#, c-format
+msgid "%s, line %d: "
+msgstr ""
+
+#: gstripchart/gstripchart.c:652
+#, c-format
+msgid "can't open config file \"%s\""
+msgstr ""
+
+#: gstripchart/gstripchart.c:743
+#, c-format
+msgid "invalid display type: %s"
+msgstr ""
+
+#: gstripchart/gstripchart.c:777
+msgid "identifier or begin must be first"
+msgstr ""
+
+#: gstripchart/gstripchart.c:784 gstripchart/gstripchart.c:800
+#, c-format
+msgid "unrecognized color: %s"
+msgstr ""
+
+#: gstripchart/gstripchart.c:827
+#, c-format
+msgid "invalid option: \"%s\""
+msgstr ""
+
+#: gstripchart/gstripchart.c:1344
 msgid "E_xit"
 msgstr "E_sci"
 
-#: gstripchart/gstripchart.c:1327
+#: gstripchart/gstripchart.c:1344
 msgid "Terminate the stripchart program"
 msgstr "Termina il programma stripchart"
 
-#: gstripchart/gstripchart.c:1343
+#: gstripchart/gstripchart.c:1360
 msgid "Copyright 1998 John Kodis"
 msgstr "Copyright 1998 John Kodis"
 
-#: gstripchart/gstripchart.c:1358
+#: gstripchart/gstripchart.c:1362
+msgid ""
+"The GNOME stripchart program plots various user-specified parameters as a "
+"function of time.  Its main use is to chart system performance parameters "
+"such as CPU load, CPU utilization, network traffic levels, and the like.  "
+"Other more ingenious uses are left as an exercise for the interested user."
+msgstr ""
+
+#: gstripchart/gstripchart.c:1375
 msgid "_About"
 msgstr "_Informazioni"
 
-#: gstripchart/gstripchart.c:1358
+#: gstripchart/gstripchart.c:1375
 msgid "Info about the striphart program"
 msgstr "Informazioni sul programma Stripchart."
 
-#: gstripchart/gstripchart.c:1369
+#: gstripchart/gstripchart.c:1386
 msgid "_File"
 msgstr "_File"
 
-#: gstripchart/gstripchart.c:1370
+#: gstripchart/gstripchart.c:1387
 msgid "_Help"
 msgstr "_Aiuto"
 
-#: gstripchart/gstripchart.c:1776
+#: gstripchart/gstripchart.c:1450
+#, fuzzy
+msgid "Param"
+msgstr "Parametri"
+
+#: gstripchart/gstripchart.c:1450 mini-utils/gcolorsel/gcolorsel.c:156
+#: mini-utils/guname/moreinfo.c:218
+msgid "Value"
+msgstr "Valore"
+
+#: gstripchart/gstripchart.c:1454
+msgid "Identifier"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1465
+msgid "yellow"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1465
+#, fuzzy
+msgid "blue"
+msgstr "Valore"
+
+#: gstripchart/gstripchart.c:1465
+msgid "red"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1465
+msgid "green"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1465
+msgid "white"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1466
+msgid "Busy"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1466
+#, fuzzy
+msgid "Load"
+msgstr "Ricarica"
+
+#: gstripchart/gstripchart.c:1466
+msgid "PPP In"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1466
+msgid "PPP Out"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1466
+#, fuzzy
+msgid "Swap"
+msgstr "memoria swap"
+
+#: gstripchart/gstripchart.c:1470 mini-utils/gcolorsel/gcolorsel.c:155
+msgid "Color"
+msgstr "Colore"
+
+#: gstripchart/gstripchart.c:1472
+#, fuzzy
+msgid "Filename"
+msgstr "Nome file"
+
+#: gstripchart/gstripchart.c:1474
+#, fuzzy
+msgid "Pattern"
+msgstr "Incolla"
+
+#: gstripchart/gstripchart.c:1476
+msgid "Equation"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1478
+msgid "Expected range"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1482
+#, fuzzy
+msgid "Displayed range"
+msgstr "Nome display X:"
+
+#: gstripchart/gstripchart.c:1486
+msgid "Current value"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1493
+msgid "Active"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1509
+msgid "Gnome Stripchart Parameters"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1609
+#, fuzzy
+msgid "Help"
+msgstr "_Aiuto"
+
+#: gstripchart/gstripchart.c:1615 mini-utils/gshutdown/gshutdown.c:318
+#, fuzzy
+msgid "About"
+msgstr "_Informazioni"
+
+#: gstripchart/gstripchart.c:1621
+msgid "Params"
+msgstr "Parametri"
+
+#: gstripchart/gstripchart.c:1627
+#, fuzzy
+msgid "Exit"
+msgstr "E_sci"
+
+#. Create a top-level window. Set the title, minimum size (_usize),
+#. initial size (_default_size), and establish delete and destroy
+#. event handlers.
+#: gstripchart/gstripchart.c:1729
+msgid "gstripchart"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1729
+msgid "Gnome stripchart viewer"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1805
+#, c-format
+msgid "invalid display type: %s\n"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1832
 msgid "GEO"
 msgstr "GEO"
 
-#: gstripchart/gstripchart.c:1776
+#: gstripchart/gstripchart.c:1832
 msgid "geometry"
 msgstr "dimensione"
 
-#: gstripchart/gstripchart.c:1778
+#: gstripchart/gstripchart.c:1834
 msgid "FILE"
 msgstr "FILE"
 
-#: gstripchart/gstripchart.c:1778
+#: gstripchart/gstripchart.c:1834
 msgid "configuration file"
 msgstr "File di configurazione"
 
-#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:1782
-#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:1786
+#: gstripchart/gstripchart.c:1836 gstripchart/gstripchart.c:1838
+#: gstripchart/gstripchart.c:1840 gstripchart/gstripchart.c:1842
 msgid "SECS"
 msgstr "SECS"
 
-#: gstripchart/gstripchart.c:1780
+#: gstripchart/gstripchart.c:1836
 msgid "chart update interval"
 msgstr "intervallo di aggiornamento del grafico"
 
-#: gstripchart/gstripchart.c:1782
+#: gstripchart/gstripchart.c:1838
 msgid "chart LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1784
+#: gstripchart/gstripchart.c:1840
 msgid "slider update interval"
 msgstr "intervallo di aggiornamento dello slider"
 
-#: gstripchart/gstripchart.c:1786
+#: gstripchart/gstripchart.c:1842
 msgid "slider LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1788
+#: gstripchart/gstripchart.c:1844
 msgid "add menubar"
 msgstr "aggiungi barra dei menù"
 
-#: gstripchart/gstripchart.c:1790
+#: gstripchart/gstripchart.c:1846
 msgid "omit slider"
 msgstr "nascondi lo slider"
 
-#: gstripchart/gstripchart.c:1792
+#: gstripchart/gstripchart.c:1848
 msgid "TYPE"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1792
+#: gstripchart/gstripchart.c:1848
 msgid "gtk|text|graph|none"
 msgstr ""
 
@@ -576,7 +774,7 @@ msgstr "nessun progetto selezionato"
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:251 mini-utils/gless/gless.c:384
+#: gtt/app.c:251 mini-utils/gless/gless.c:424
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -637,7 +835,7 @@ msgstr ""
 msgid "Specify geometry"
 msgstr "Specifica geometria"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:116
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
 msgid "GEOMETRY"
 msgstr ""
 
@@ -813,7 +1011,8 @@ msgstr "Interrompi elemento:"
 msgid "Timeout in secs:"
 msgstr "Scadenza in secondi:"
 
-#: gtt/options.c:499
+#. Fixme these should be stock buttons
+#: gtt/options.c:499 mini-utils/gshutdown/gshutdown.c:313
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -967,16 +1166,8 @@ msgstr "Nome colore:"
 msgid "Color Values:"
 msgstr "Valori colore:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:155
-msgid "Color"
-msgstr "Colore"
-
-#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:228
-msgid "Value"
-msgstr "Valore"
-
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:227
-#: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:217
+#: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
 msgid "Name"
 msgstr "Nome"
 
@@ -1046,46 +1237,68 @@ msgid "Copyright 1998, under the GNU General Public License."
 msgstr "Copyright 1998, sotto la GNU General Public License."
 
 #: mini-utils/gless/gless.c:116
+#, c-format
+msgid "Reason %d\n"
+msgstr ""
+
+#: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
 msgstr "Dove posizionare la finestra, e la sua dimensione"
 
-#: mini-utils/gless/gless.c:117
+#: mini-utils/gless/gless.c:132
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "Ignora lo standard input; potrebbe essere necessario in alcuni casi."
 
-#: mini-utils/gless/gless.c:279
+#: mini-utils/gless/gless.c:294
 msgid "_New Window"
 msgstr "_Nuova Finestra"
 
-#: mini-utils/gless/gless.c:280
+#: mini-utils/gless/gless.c:295
 msgid "New text viewer window"
 msgstr "Nuova finestra per il visualizzatore di testi"
 
-#: mini-utils/gless/gless.c:292
+#: mini-utils/gless/gless.c:313
 msgid "_Fixed Font"
 msgstr "Font a larghezza _fissa"
 
-#: mini-utils/gless/gless.c:293
+#: mini-utils/gless/gless.c:314
 msgid "Display text with a fixed font"
 msgstr "Visualizza il testo con un font a larghezza fissa"
 
-#: mini-utils/gless/gless.c:322
+#: mini-utils/gless/gless.c:352
 msgid "Text File Viewer"
 msgstr "Visualizzatore di file di testo"
 
-#: mini-utils/gless/gless.c:425
+#: mini-utils/gless/gless.c:460
+#, fuzzy
+msgid "Find string"
+msgstr "Trova il successivo"
+
+#: mini-utils/gless/gless.c:461
+#, fuzzy
+msgid "Find"
+msgstr "Trova il successivo"
+
+#: mini-utils/gless/gless.c:498
 msgid "Loading..."
 msgstr "Caricamento in corso..."
 
-#: mini-utils/gless/gless.c:430
-msgid "No such file or directory:\n"
+#: mini-utils/gless/gless.c:502
+#, fuzzy, c-format
+msgid ""
+"No such file or directory:\n"
+"%s"
 msgstr "File o directory non trovato:\n"
 
-#: mini-utils/gless/gless.c:447
-msgid "Failed to decompress and display the file:\n"
+#: mini-utils/gless/gless.c:520
+#, fuzzy, c-format
+msgid ""
+"Failed to decompress and display the file:\n"
+"%s\n"
+"%s"
 msgstr "Impossibile decomprimere e visualizzare il file:\n"
 
-#: mini-utils/gless/gless.c:458
+#: mini-utils/gless/gless.c:533
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1093,43 +1306,69 @@ msgstr ""
 "Impossibile visualizzare il file compresso.\n"
 "zcat non è nel path."
 
-#: mini-utils/gless/gless.c:466
-msgid "Error loading file:\n"
+#: mini-utils/gless/gless.c:541
+#, fuzzy, c-format
+msgid ""
+"Error loading file:\n"
+"%s\n"
+"%s"
 msgstr "Errore nel caricamento del file:\n"
 
-#: mini-utils/gless/gless.c:520
+#: mini-utils/gless/gless.c:599
 msgid "Saving..."
 msgstr "Salvataggio in corso..."
 
-#: mini-utils/gless/gless.c:531
-msgid "Failed to write file:\n"
+#: mini-utils/gless/gless.c:610
+#, fuzzy, c-format
+msgid ""
+"Failed to write file:\n"
+"%s\n"
+"%s"
 msgstr "Impossibile scrivere il file:\n"
 
-#: mini-utils/gless/gless.c:578
+#: mini-utils/gless/gless.c:660
 msgid "Save Text As..."
 msgstr "Salva il testo come..."
 
-#: mini-utils/gless/gless.c:618
+#: mini-utils/gless/gless.c:700
 msgid "Open Text File..."
 msgstr "Apri file di testo..."
 
+#: mini-utils/gless/gless.c:764
+msgid "Sorry, no preferences yet."
+msgstr ""
+
+#: mini-utils/gless/gless.c:851
+#, fuzzy
+msgid "Searching..."
+msgstr "Salvataggio in corso..."
+
+#: mini-utils/gless/gless.c:862
+#, fuzzy
+msgid "No search string was specified!"
+msgstr "Nessun offset è stato specificato!"
+
 #: mini-utils/gnome-run/gnome-run.c:48
-msgid "Failed to execute command:\n"
+#, fuzzy, c-format
+msgid ""
+"Failed to execute command:\n"
+"%s\n"
+"%s"
 msgstr "Impossibile eseguire il comando:\n"
 
-#: mini-utils/gnome-run/gnome-run.c:68
+#: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run Program"
 msgstr "Avvia programma"
 
-#: mini-utils/gnome-run/gnome-run.c:69
+#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "Avvia"
 
-#: mini-utils/gnome-run/gnome-run.c:69
+#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Cancel"
 msgstr "Annulla"
 
-#: mini-utils/gnome-run/gnome-run.c:80
+#: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
 msgstr "Selezionare un programma da avviare"
 
@@ -1189,7 +1428,7 @@ msgstr "Si desidera davvero porsi al livello di esecuzione 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Si desidera davvero riavviare il sistema?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:591
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:592
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr "Bisogna essere super-user (root) per spegnere o riavviare il computer."
 
@@ -1231,105 +1470,122 @@ msgstr "Confermare prima di spegnere?"
 msgid "General"
 msgstr "Generali"
 
-#: mini-utils/gshutdown/gshutdown.c:457
+#: mini-utils/gshutdown/gshutdown.c:448
+#, c-format
+msgid ""
+"%s\n"
+"You will lose any unsaved work."
+msgstr ""
+
+#: mini-utils/gshutdown/gshutdown.c:458
 msgid "Don't ask next time."
 msgstr "Non chiedre conferma la prossima volta."
 
-#: mini-utils/guname/guname.c:327
+#: mini-utils/gshutdown/gshutdown.c:685
+msgid "Command execution failed: fork failed"
+msgstr ""
+
+#: mini-utils/guname/guname.c:51
+msgid "Make guname act as a control center applet"
+msgstr ""
+
+#: mini-utils/guname/guname.c:114
+msgid "an initialization error occurred while starting 'guname-capplet'."
+msgstr ""
+
+#: mini-utils/guname/guname.c:424
 msgid "System Information"
 msgstr "Informazioni sul sistema"
 
-#: mini-utils/guname/guname.c:409
+#: mini-utils/guname/guname.c:506
 msgid "Logo file not found"
 msgstr "File contenente il logo non trovato"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:413
+#: mini-utils/guname/guname.c:510
 msgid "GNOME contributors:"
 msgstr ""
 
-#: mini-utils/guname/guname.c:427
+#: mini-utils/guname/guname.c:513
+msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
+msgstr ""
+
+#: mini-utils/guname/guname.c:524
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr ""
 
-#: mini-utils/guname/guname.c:451
+#: mini-utils/guname/guname.c:548
 msgid "Email Information..."
 msgstr "Invia le informazioni via email..."
 
-#: mini-utils/guname/guname.c:462
+#: mini-utils/guname/guname.c:561
 msgid "Save Information to File..."
 msgstr "Salva le informazioni in un file..."
 
-#: mini-utils/guname/guname.c:474 mini-utils/guname/guname.c:541
+#: mini-utils/guname/guname.c:573 mini-utils/guname/guname.c:640
 msgid "Detailed Information..."
 msgstr "Informazioni dettagliate..."
 
-#: mini-utils/guname/guname.c:489
+#: mini-utils/guname/guname.c:588
 msgid "Category"
 msgstr "Categoria"
 
-#: mini-utils/guname/guname.c:489
+#: mini-utils/guname/guname.c:588
 msgid "Your System"
 msgstr "Valore nel sistema"
 
-#: mini-utils/guname/guname.c:527
+#: mini-utils/guname/guname.c:626
 msgid "Save As..."
 msgstr "Salva come..."
 
-#: mini-utils/guname/guname.c:533
+#: mini-utils/guname/guname.c:632
 msgid "Mail To..."
 msgstr "Invia per email a..."
 
-#: mini-utils/guname/guname.c:581
-msgid "Error closing file `"
-msgstr "Errore chiudendo il file `"
-
-#: mini-utils/guname/guname.c:583
+#: mini-utils/guname/guname.c:680
+#, fuzzy, c-format
 msgid ""
-"\n"
+"Error closing file `%s': \n"
+"%s\n"
 "Some or all data may not have been written."
 msgstr ""
 "\n"
 "Parte dei dati può non essere stata scritta."
 
-#: mini-utils/guname/guname.c:592
-msgid "Couldn't open file `"
+#: mini-utils/guname/guname.c:692
+#, fuzzy, c-format
+msgid "Couldn't open file `%s': %s"
 msgstr "Impossibile aprire il file `"
 
-#: mini-utils/guname/guname.c:606
+#: mini-utils/guname/guname.c:707
 msgid "Save System Information As..."
 msgstr "Salva le informazioni di sistema come..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:652
-msgid "Command failed ` "
+#: mini-utils/guname/guname.c:753
+#, fuzzy, c-format
+msgid "Command failed ` %s ': %s"
 msgstr "Comando fallito ` "
 
-#: mini-utils/guname/guname.c:652 mini-utils/guname/guname.c:659
-msgid " ': "
-msgstr ""
-
-#: mini-utils/guname/guname.c:659
-msgid "Couldn't run command ` "
+#: mini-utils/guname/guname.c:761
+#, fuzzy, c-format
+msgid "Couldn't run command ` %s ': %s"
 msgstr "Impossibile eseguire il comando ` "
 
-#: mini-utils/guname/guname.c:682
-msgid "The following mail will be sent to "
-msgstr "La email verrà inviata a "
-
-#: mini-utils/guname/guname.c:684
+#: mini-utils/guname/guname.c:785
+#, fuzzy, c-format
 msgid ""
-".\n"
+"The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
 ".\n"
 "Sei sicuro di voler inviare queste informazioni?"
 
-#: mini-utils/guname/guname.c:693
+#: mini-utils/guname/guname.c:796
 msgid "Are you sure?"
 msgstr "Sei sicuro?"
 
-#: mini-utils/guname/guname.c:727
+#: mini-utils/guname/guname.c:830
 msgid "Address to mail to:"
 msgstr "Indirizzo email di destinazione:"
 
@@ -1423,7 +1679,7 @@ msgstr "Punto di montaggio"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:182
+#: mini-utils/guname/info.c:182 mini-utils/idetool/idetool.c:26
 msgid "Unknown"
 msgstr "Sconosciuto"
 
@@ -1435,69 +1691,53 @@ msgstr "File system sconosciuto"
 msgid "No information for this filesystem."
 msgstr "Nessuna informazione su questo file system."
 
-#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:166
+#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "Memoria"
 
-#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:167
+#: mini-utils/guname/moreinfo.c:161
 msgid "Kilobytes"
 msgstr "Kilobyte"
 
-#: mini-utils/guname/moreinfo.c:164
-msgid "%ld%% %s used."
-msgstr "%ld%% %s usata."
-
-#: mini-utils/guname/moreinfo.c:183 mini-utils/guname/moreinfo.c:187
-msgid "memory"
-msgstr "memoria"
-
-#: mini-utils/guname/moreinfo.c:197 mini-utils/guname/moreinfo.c:201
-msgid "swap"
-msgstr "memoria swap"
-
-#: mini-utils/guname/moreinfo.c:224
+#: mini-utils/guname/moreinfo.c:214
 #, c-format
 msgid "CPU %d"
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:272
+#: mini-utils/guname/moreinfo.c:262
 msgid "Detailed System Information"
 msgstr "Informazioni dettagliate sul sistema"
 
-#: mini-utils/guname/moreinfo.c:285
+#: mini-utils/guname/moreinfo.c:275
 msgid "Disk Information"
 msgstr "Informazioni sulle unità a dischi"
 
-#: mini-utils/guname/moreinfo.c:287
+#: mini-utils/guname/moreinfo.c:277
 msgid "Memory Information"
 msgstr "Informazioni sulla memoria"
 
-#: mini-utils/guname/moreinfo.c:290
+#: mini-utils/guname/moreinfo.c:280
 msgid "CPU Information"
 msgstr "Informazioni sulla CPU"
 
-#: mini-utils/guname/moreinfo.c:311
-msgid "%2d%% full "
-msgstr "%2d%% pieno "
+#: mini-utils/guname/moreinfo.c:312
+msgid "Mount Point: "
+msgstr "Mount point: "
 
 #: mini-utils/guname/moreinfo.c:313
+msgid "    Device: "
+msgstr "    Dispositivo: "
+
+#: mini-utils/guname/moreinfo.c:314
+msgid "    Filesystem Type: "
+msgstr "    Tipo di file system: "
+
+#: mini-utils/guname/moreinfo.c:327
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr "%ld megabytes, %ld liberi (%ld per superuser); %ld inodes, %ld liberi."
 
-#: mini-utils/guname/moreinfo.c:327
-msgid "Mount Point: "
-msgstr "Mount point: "
-
-#: mini-utils/guname/moreinfo.c:328
-msgid "    Device: "
-msgstr "    Dispositivo: "
-
-#: mini-utils/guname/moreinfo.c:329
-msgid "    Filesystem Type: "
-msgstr "    Tipo di file system: "
-
-#: mini-utils/gw/gw.c:144
+#: mini-utils/gw/gw.c:141
 msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
@@ -1505,40 +1745,45 @@ msgstr ""
 "Impossibile trovare il comando \"w\" in $PATH.\n"
 "Questo comando è richiesto per il funzionamento del programma."
 
-#: mini-utils/gw/gw.c:177
+#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "_Salva..."
 
-#: mini-utils/gw/gw.c:177
+#: mini-utils/gw/gw.c:174
 msgid "Write information to disk"
 msgstr "Scrivi le informazioni su disco"
 
-#: mini-utils/gw/gw.c:205
+#: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
 msgstr "Lista utenti attivi"
 
-#: mini-utils/gw/gw.c:222
+#: mini-utils/gw/gw.c:219
 msgid "Update Information"
 msgstr "Aggiorna informazioni"
 
-#: mini-utils/gw/gw.c:445
+#: mini-utils/gw/gw.c:466
+#, fuzzy
+msgid "Save not implemented yet\n"
+msgstr "Questo non è ancora implementato"
+
+#: mini-utils/gw/gw.c:479
 msgid "Command Line"
 msgstr "Linea di comando"
 
 #. Create everything.
-#: mini-utils/gw/gw.c:453
+#: mini-utils/gw/gw.c:487
 msgid "Add some defaults"
 msgstr "Aggiungi qualche default"
 
-#: mini-utils/gw/gw.c:455
+#: mini-utils/gw/gw.c:489
 msgid "Delete"
 msgstr "Elimina"
 
-#: mini-utils/gw/gw.c:473
+#: mini-utils/gw/gw.c:507
 msgid "Command Editor"
 msgstr "Editor comandi"
 
-#: mini-utils/gw/gw.c:483
+#: mini-utils/gw/gw.c:517
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -1552,7 +1797,7 @@ msgstr ""
 "Nel comando, è possibile utilizzare %u per rappresentare\n"
 "l'utente selezionato correntemente, e %t per la tty."
 
-#: mini-utils/gw/gw.c:490
+#: mini-utils/gw/gw.c:524
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -1560,13 +1805,42 @@ msgstr ""
 "Premere questo pulsante per aggiungere\n"
 "qualche comando di esempio."
 
-#: mini-utils/gw/gw.c:498
+#: mini-utils/gw/gw.c:532
 msgid "Menu items"
 msgstr "Elementi di menù"
 
-#: mini-utils/gw/gw.c:526
+#: mini-utils/gw/gw.c:560
 msgid "Command"
 msgstr "Comando"
+
+#: mini-utils/gw/gw.c:947
+#, c-format
+msgid "Running: %s\n"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:20
+msgid "16-bit"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:21
+msgid "32-bit"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:22
+msgid "32-bit w/sync"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:27
+msgid "Sleeping"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:28
+msgid "Active/Idle"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:29
+msgid "Standby"
+msgstr ""
 
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
@@ -1600,6 +1874,10 @@ msgstr "Il drive ha rifiutato di mantenere le proprie impostazioni."
 msgid "Keep settings"
 msgstr "Mantieni impostazioni"
 
+#: mini-utils/idetool/idetool.c:207
+msgid "None"
+msgstr ""
+
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr "(1 Settore)"
@@ -1611,6 +1889,15 @@ msgstr "(Porta Duale)"
 #: mini-utils/idetool/idetool.c:215
 msgid "(Dual Port Cache)"
 msgstr "(Cache Porta Duale)"
+
+#: mini-utils/idetool/idetool.c:243
+#, c-format
+msgid "Yes (%d sector%s)"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:245
+msgid "No"
+msgstr ""
 
 #: mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
 msgid "Model"
@@ -1679,3 +1966,21 @@ msgstr "Solo il superuser può usare questo programma"
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "Sembra che non ci siano drive IDE nel sistema"
+
+#~ msgid "Examine and adjust parameters"
+#~ msgstr "Esamina e modifica paramtetri"
+
+#~ msgid "Error closing file `"
+#~ msgstr "Errore chiudendo il file `"
+
+#~ msgid "The following mail will be sent to "
+#~ msgstr "La email verrà inviata a "
+
+#~ msgid "%ld%% %s used."
+#~ msgstr "%ld%% %s usata."
+
+#~ msgid "memory"
+#~ msgstr "memoria"
+
+#~ msgid "%2d%% full "
+#~ msgstr "%2d%% pieno "
