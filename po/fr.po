@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 1998-06-20 15:19+0200\n"
+"POT-Creation-Date: 1998-07-15 14:17+0200\n"
 "PO-Revision-Date: 1998-02-28 19:57+0100\n"
 "Last-Translator: Vincent Renardias <vincent@waw.com>\n"
 "Language-Team: Vincent Renardias <vincent@waw.com>\n"
@@ -39,7 +39,7 @@ msgstr "Recharger"
 msgid "Reload Configuration File"
 msgstr "Recharger le fichier de configuration"
 
-#: gedit/gE_document.c:49 gtt/toolbar.c:152
+#: gtt/toolbar.c:152
 msgid "Save"
 msgstr "Sauver"
 
@@ -47,7 +47,7 @@ msgstr "Sauver"
 msgid "Save Configuration File"
 msgstr "Sauver le fichier de configuration"
 
-#: gedit/gE_document.c:68 gtt/menus.c:55 gtt/menus.c:134 gtt/toolbar.c:159
+#: gtt/menus.c:55 gtt/menus.c:134 gtt/toolbar.c:159
 msgid "Cut"
 msgstr "Couper"
 
@@ -55,7 +55,7 @@ msgstr "Couper"
 msgid "Cut Selected Project"
 msgstr "Couper le projet sélectionné"
 
-#: gedit/gE_document.c:71 gtt/menus.c:59 gtt/menus.c:139 gtt/toolbar.c:163
+#: gtt/menus.c:59 gtt/menus.c:139 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Couper"
 
@@ -63,7 +63,7 @@ msgstr "Couper"
 msgid "Copy Selected Project"
 msgstr "Copier le projet sélectionné"
 
-#: gedit/gE_document.c:74 gtt/menus.c:64 gtt/menus.c:144 gtt/toolbar.c:167
+#: gtt/menus.c:64 gtt/menus.c:144 gtt/toolbar.c:167
 msgid "Paste"
 msgstr "Coller"
 
@@ -103,7 +103,7 @@ msgstr "Manuel"
 msgid "Manual..."
 msgstr "Manuel..."
 
-#: gedit/gE_document.c:61 gtt/menus.c:45 gtt/toolbar.c:198
+#: gtt/menus.c:45 gtt/toolbar.c:198
 msgid "Quit"
 msgstr "Quitter"
 
@@ -193,21 +193,21 @@ msgstr "Stop"
 msgid "Timer Running"
 msgstr "Chronométre lancé"
 
-#: gcalc/gcalc.c:46 gedit/gE_document.c:135 genius/genius.c:482
-#: gncal/main.c:340 gtop/main.c:146 gtt/menus.c:103
+#: gcalc/gcalc.c:46 genius/genius.c:482 gncal/main.c:340 gtop/main.c:146
+#: gtt/menus.c:103
 msgid "About..."
 msgstr "A Propos..."
 
-#: gedit/gE_document.c:160 gncal/main.c:357 gtop/main.c:168 gtt/menus.c:113
+#: gncal/main.c:357 gtop/main.c:168 gtt/menus.c:113
 msgid "File"
 msgstr "Fichier"
 
-#: gedit/gE_document.c:162 gtt/menus.c:115
+#: gtt/menus.c:115
 msgid "Edit"
 msgstr "Editer"
 
-#: gcalc/gcalc.c:56 gedit/gE_document.c:172 genius/genius.c:495
-#: gncal/main.c:359 gtop/main.c:172 gtt/menus.c:120
+#: gcalc/gcalc.c:56 genius/genius.c:495 gncal/main.c:359 gtop/main.c:172
+#: gtt/menus.c:120
 msgid "Help"
 msgstr "Aide"
 
@@ -223,7 +223,7 @@ msgstr "programme terminé"
 msgid "program started"
 msgstr "program lancé"
 
-#: genius/genius.c:618 ghex/ui.c:466 gncal/eventedit.c:379 gtt/options.c:193
+#: genius/genius.c:618 ghex/ui.c:470 gncal/eventedit.c:379 gtt/options.c:193
 msgid "Display"
 msgstr "Affichage"
 
@@ -239,7 +239,7 @@ msgstr "Afficher la barre d'état"
 msgid "Show Table Header"
 msgstr "Afficher les entetes de table"
 
-#: gedit/gE_document.c:125 gtt/options.c:227 gtt/options.c:495
+#: gtt/options.c:227 gtt/options.c:495
 msgid "Toolbar"
 msgstr "Barre d'outils"
 
@@ -931,6 +931,10 @@ msgstr ""
 "Le document %s a changé depuis son dernier enregistrement.\n"
 "Voulez-vous enregistrer?"
 
+#: ghex/callbacks.c:547
+msgid "ERRONEUS STRING"
+msgstr ""
+
 #: ghex/config.c:40
 msgid "Can not open configured font!"
 msgstr "Impossible d'ouvrir la police utilisée!"
@@ -943,85 +947,85 @@ msgstr "ID"
 msgid "Discard session"
 msgstr "Ne pas sauver la session"
 
-#: ghex/ui.c:188
+#: ghex/ui.c:192
 msgid "GHex: Find Data"
 msgstr "GHex: Trouver Données"
 
-#: ghex/ui.c:197
+#: ghex/ui.c:201
 #, c-format
 msgid "Search for %s"
 msgstr "Rechercher %s"
 
-#: ghex/ui.c:213
+#: ghex/ui.c:217
 msgid "Find Next"
 msgstr "Trouver le suivant"
 
-#: ghex/ui.c:220
+#: ghex/ui.c:224
 msgid "Find Previous"
 msgstr "Trouver le précédent"
 
-#: ghex/ui.c:248
+#: ghex/ui.c:252
 msgid "GHex: Find & Replace Data"
 msgstr "GHex: Rechercher & Remplacer données"
 
-#: ghex/ui.c:262
+#: ghex/ui.c:266
 #, c-format
 msgid "Replace %s"
 msgstr "Remplacer %s"
 
-#: ghex/ui.c:278
+#: ghex/ui.c:282
 msgid "Find next"
 msgstr "Trouver le suivant"
 
-#: ghex/ui.c:285
+#: ghex/ui.c:289
 msgid "Replace"
 msgstr "Remplacer"
 
-#: ghex/ui.c:292
+#: ghex/ui.c:296
 msgid "Replace All"
 msgstr "Remplacer Tout"
 
-#: ghex/ui.c:316
+#: ghex/ui.c:320
 msgid "GHex: Jump To Byte"
 msgstr "GHex: Aller à l'Octet"
 
-#: ghex/ui.c:349
+#: ghex/ui.c:353
 msgid "GHex: Converter"
 msgstr "GHex: Convertisseur"
 
-#: ghex/ui.c:356
+#: ghex/ui.c:360
 msgid "Binary"
 msgstr "Binaire"
 
-#: ghex/ui.c:366
+#: ghex/ui.c:370
 msgid "Decimal"
 msgstr "Décimal"
 
-#: ghex/ui.c:376
+#: ghex/ui.c:380
 msgid "Hex"
 msgstr "Hex"
 
-#: ghex/ui.c:386
+#: ghex/ui.c:390
 msgid "ASCII"
 msgstr "ASCII"
 
-#: gedit/gE_document.c:54 ghex/ui.c:396
+#: ghex/ui.c:400
 msgid "Close"
 msgstr "Fermer"
 
-#: ghex/ui.c:440
+#: ghex/ui.c:444
 msgid "Font"
 msgstr "Police"
 
-#: ghex/ui.c:450
+#: ghex/ui.c:454
 msgid "Default Group Type"
 msgstr "Type du groupe par défaut"
 
-#: ghex/ui.c:473
+#: ghex/ui.c:477
 msgid "MDI Mode"
 msgstr "Mode MDI"
 
-#: ghex/ui.c:490
+#: ghex/ui.c:494
 msgid "MDI"
 msgstr "MDI"
 
@@ -1316,7 +1320,7 @@ msgstr "Vue par Semaine"
 msgid "Year View"
 msgstr "Vue par An"
 
-#: gncal/gnome-cal.c:290 gncal/gnome-cal.c:324
+#: gncal/gnome-cal.c:319 gncal/gnome-cal.c:353
 msgid "Reminder of your appointment at "
 msgstr "Rappel de votre rendez-vous à "
 
@@ -1360,7 +1364,7 @@ msgstr "Nouveau rendez-vous pour aujourd'hui..."
 msgid "Calendar"
 msgstr "Calendrier"
 
-#: gedit/gE_document.c:43 gncal/main.c:364
+#: gncal/main.c:364
 msgid "New"
 msgstr "Nouveau"
 
@@ -1388,39 +1392,47 @@ msgstr "Suivant"
 msgid "Go forward in time"
 msgstr "Futur..."
 
-#: gncal/main.c:443
+#: gncal/main.c:447
 msgid "Show events and quit"
 msgstr "Afficher les événements et quitter"
 
-#: gncal/main.c:444 gncal/main.c:448
+#: gncal/main.c:448 gncal/main.c:453
 msgid "DATE"
 msgstr "DATE"
 
-#: gncal/main.c:444
+#: gncal/main.c:448
 msgid "Specifies start date [for --events]"
 msgstr "Spécifie la date de départ [pour --events]"
 
-#: gncal/main.c:445
+#: gncal/main.c:449
 msgid "FILE"
 msgstr "FICHIER"
 
-#: gncal/main.c:445
+#: gncal/main.c:449
 msgid "File to load calendar from"
 msgstr "Fichier à partir duquel sera chargé le calendrier"
 
-#: gncal/main.c:446
+#: gncal/main.c:450
 msgid "Load the user calendar"
 msgstr "Changer le calendrier utilisateur"
 
-#: gncal/main.c:447
+#: gncal/main.c:451
 msgid "GEOMETRY"
 msgstr "GEOMETRIE"
 
-#: gncal/main.c:447
+#: gncal/main.c:451
 msgid "Geometry for starting up"
 msgstr "Géométrie initiale"
 
-#: gncal/main.c:448
+#: gncal/main.c:452
+msgid "VIEW"
+msgstr ""
+
+#: gncal/main.c:452
+msgid "The startup view mode"
+msgstr ""
+
+#: gncal/main.c:453
 msgid "Specifies ending date [for --events]"
 msgstr "Spécifie la date de fin [pour --events]"
 
@@ -1649,121 +1661,9 @@ msgstr "douzième"
 msgid "ago"
 msgstr "il y a"
 
-#: gedit/gE_about.c:107
+#: gedit/gE_about.c:157
 msgid "gEdit is a small and lightweight text editor for GNOME/Gtk+"
 msgstr "gEdit est un petit éditeur de texte pour GNOME/Gtk+"
-
-#: gedit/gE_document.c:46
-msgid "Open"
-msgstr "Ouvrir"
-
-#: gedit/gE_document.c:52
-msgid "Save as"
-msgstr "Enregistrer sous"
-
-#: gedit/gE_document.c:58
-msgid "Print"
-msgstr "Imprimer"
-
-#: gedit/gE_document.c:78
-msgid "Select All"
-msgstr "Tout Sélectionner"
-
-#: gedit/gE_document.c:84 gedit/gE_document.c:164
-msgid "Search"
-msgstr "Rechercher"
-
-#: gedit/gE_document.c:86
-msgid "Search and Replace"
-msgstr "Rechercher et Remplacer"
-
-#: gedit/gE_document.c:89
-msgid "Search Again"
-msgstr "Rechercher a nouveau"
-
-#: gedit/gE_document.c:95
-msgid "Top"
-msgstr "Haut"
-
-#: gedit/gE_document.c:96
-msgid "Bottom"
-msgstr "Bas"
-
-#: gedit/gE_document.c:97
-msgid "Left"
-msgstr "Gauche"
-
-#: gedit/gE_document.c:98
-msgid "Right"
-msgstr "Droite"
-
-#: gedit/gE_document.c:100
-msgid "Toggle"
-msgstr "Echanger"
-
-#: gedit/gE_document.c:105
-msgid "Show Toolbar"
-msgstr "Afficher la barre d'outils"
-
-#: gedit/gE_document.c:106
-msgid "Hide Toolbar"
-msgstr "Masquer la barre d'outils"
-
-#: gedit/gE_document.c:108
-msgid "Pictures and Text"
-msgstr "Icones et Texte"
-
-#: gedit/gE_document.c:109
-msgid "Pictures only"
-msgstr "Icones seulement"
-
-#: gedit/gE_document.c:110
-msgid "Text only"
-msgstr "Texte seulement"
-
-#: gedit/gE_document.c:112
-msgid "Tooltips On"
-msgstr "Activer les Bulles d'Aide"
-
-#: gedit/gE_document.c:113
-msgid "Tooltips Off"
-msgstr "désactiver les Bulles d'Aide"
-
-#: gedit/gE_document.c:118
-msgid "Text Font..."
-msgstr "Sélectionner une police..."
-
-#: gedit/gE_document.c:120
-msgid "Toggle Autoindent"
-msgstr "Activer/Désactiver l'auto-indentation"
-
-#: gedit/gE_document.c:121
-msgid "Toggle Statusbar"
-msgstr "AfficherMasquer la barre d'état"
-
-#: gedit/gE_document.c:122
-msgid "Toggle Wordwrap"
-msgstr "Activer/Désactiver le retour à la ligne automatique"
-
-#: gedit/gE_document.c:124
-msgid "Document Tabs"
-msgstr "Tabulations du document"
-
-#: gedit/gE_document.c:127
-msgid "Save Settings"
-msgstr "Enregistrer la configuration"
-
-#: gedit/gE_document.c:153
-msgid "Hello World"
-msgstr "Bonjour tout le monde"
-
-#: gedit/gE_document.c:166
-msgid "Options"
-msgstr "Options"
-
-#: gedit/gE_document.c:169
-msgid "Plugins"
-msgstr ""
 
 #: mini-utils/gsu/gsu.c:210
 msgid "virtual memory exhausted"
@@ -1981,6 +1881,87 @@ msgstr "Confirmation avant d'éteindre?"
 #: mini-utils/gshutdown/gshutdown.c:450
 msgid "Don't ask next time."
 msgstr "Ne pas demander la prochaine fois."
+
+#~ msgid "Open"
+#~ msgstr "Ouvrir"
+
+#~ msgid "Save as"
+#~ msgstr "Enregistrer sous"
+
+#~ msgid "Print"
+#~ msgstr "Imprimer"
+
+#~ msgid "Select All"
+#~ msgstr "Tout Sélectionner"
+
+#~ msgid "Search"
+#~ msgstr "Rechercher"
+
+#~ msgid "Search and Replace"
+#~ msgstr "Rechercher et Remplacer"
+
+#~ msgid "Search Again"
+#~ msgstr "Rechercher a nouveau"
+
+#~ msgid "Top"
+#~ msgstr "Haut"
+
+#~ msgid "Bottom"
+#~ msgstr "Bas"
+
+#~ msgid "Left"
+#~ msgstr "Gauche"
+
+#~ msgid "Right"
+#~ msgstr "Droite"
+
+#~ msgid "Toggle"
+#~ msgstr "Echanger"
+
+#~ msgid "Show Toolbar"
+#~ msgstr "Afficher la barre d'outils"
+
+#~ msgid "Hide Toolbar"
+#~ msgstr "Masquer la barre d'outils"
+
+#~ msgid "Pictures and Text"
+#~ msgstr "Icones et Texte"
+
+#~ msgid "Pictures only"
+#~ msgstr "Icones seulement"
+
+#~ msgid "Text only"
+#~ msgstr "Texte seulement"
+
+#~ msgid "Tooltips On"
+#~ msgstr "Activer les Bulles d'Aide"
+
+#~ msgid "Tooltips Off"
+#~ msgstr "désactiver les Bulles d'Aide"
+
+#~ msgid "Text Font..."
+#~ msgstr "Sélectionner une police..."
+
+#~ msgid "Toggle Autoindent"
+#~ msgstr "Activer/Désactiver l'auto-indentation"
+
+#~ msgid "Toggle Statusbar"
+#~ msgstr "AfficherMasquer la barre d'état"
+
+#~ msgid "Toggle Wordwrap"
+#~ msgstr "Activer/Désactiver le retour à la ligne automatique"
+
+#~ msgid "Document Tabs"
+#~ msgstr "Tabulations du document"
+
+#~ msgid "Save Settings"
+#~ msgstr "Enregistrer la configuration"
+
+#~ msgid "Hello World"
+#~ msgstr "Bonjour tout le monde"
+
+#~ msgid "Options"
+#~ msgstr "Options"
 
 #~ msgid ""
 #~ "A small contribution to the GNOME project.\n"
