@@ -313,11 +313,9 @@ ghex_window_listener (BonoboUIComponent           *uic,
 
 	win = GHEX_WINDOW(user_data);
 
-    if (win->gh == NULL)
-        return;
-
 	if (!strcmp (path, "InsertMode")) {
-		gtk_hex_set_insert_mode(win->gh, *state == '1');
+        if (win->gh != NULL)
+            gtk_hex_set_insert_mode(win->gh, *state == '1');
 		return;
 	}
     else if(!strcmp (path, "Converter")) {
@@ -357,7 +355,7 @@ ghex_window_listener (BonoboUIComponent           *uic,
         }
         return;
     }
-	if (!state || !atoi (state))
+	if (!state || !atoi (state) || (win->gh == NULL))
 		return;
 
 	if (!strcmp (path, "Bytes"))

@@ -1,5 +1,10 @@
 2002-07-25  Jaka Mocnik  <jaka@gnu.org>
 
+	* src/ghex-window.c (ghex_window_listener): allow opening dialogs
+	even if win->gh == NULL.
+
+2002-07-25  Jaka Mocnik  <jaka@gnu.org>
+
 	* src/ghex.h: added prototype for set_prefs();
 	* src/ui.c (prefs_cb): set current values.
 	* src/preferences.c: set OK and apply buttons to insensitive.
