@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 2000-02-03 19:02+0100\n"
+"POT-Creation-Date: 2000-03-07 21:58+0100\n"
 "PO-Revision-Date: 1999-03-18 23:11+0100\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Language-Team: walon <linux-wa@chanae.alphanet.ch>\n"
@@ -17,1984 +17,920 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gcalc/gcalc.c:30
-msgid "The Gnome Calculator"
-msgstr "Li Carculete Gnome"
-
-#: gcalc/gcalc.c:33
-msgid "Simple double precision calculator similiar to xcalc"
-msgstr "Carculete simpe di dobe precision, ki s' ravise a xcalc"
-
-#: gcalc/gcalc.c:124
-msgid "Gnome Calculator"
-msgstr "Carculete Gnome"
-
-#: gdiskfree/df.c:212
-msgid ""
-"A quick hack to show the amount of space free on mounted file systems "
-"uitilizing a dial."
-msgstr ""
-
-#: ghex/converter.c:41
+#: src/converter.c:44
 msgid "GHex: Converter"
 msgstr ""
 
-#: ghex/converter.c:50
+#: src/chartable.c:72 src/converter.c:53
 msgid "Binary"
 msgstr "Binaire"
 
-#: ghex/converter.c:60 ghex/preferences.c:110
+#: src/chartable.c:71 src/converter.c:63 src/preferences.c:113
 msgid "Decimal"
 msgstr "Decimå"
 
-#: ghex/converter.c:70
+#: src/chartable.c:71 src/converter.c:73
 msgid "Hex"
 msgstr "Hex"
 
-#: ghex/converter.c:80
+#: src/chartable.c:71 src/converter.c:83
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ghex/converter.c:90
+#: src/converter.c:93
 msgid "Get cursor value"
 msgstr ""
 
-#: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:596
+#: src/converter.c:99
 msgid "Close"
 msgstr "Cloyu"
 
-#: ghex/converter.c:189
+#: src/converter.c:194
 msgid "ERROR"
 msgstr "AROKE"
 
-#: ghex/findreplace.c:51 ghex/main.c:83
+#: src/findreplace.c:58 src/main.c:96
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr ""
 
-#: ghex/findreplace.c:60
+#: src/findreplace.c:67
 #, c-format
 msgid "Search for %s"
 msgstr ""
 
-#: ghex/findreplace.c:76
+#: src/findreplace.c:83
 msgid "Find Next"
 msgstr ""
 
-#: ghex/findreplace.c:83
+#: src/findreplace.c:90
 msgid "Find Previous"
 msgstr ""
 
-#: ghex/findreplace.c:111 ghex/main.c:84
+#: src/findreplace.c:124 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr ""
 
-#: ghex/findreplace.c:125
+#: src/findreplace.c:138
 #, c-format
 msgid "Replace %s"
 msgstr ""
 
-#: ghex/findreplace.c:141
+#: src/findreplace.c:154
 msgid "Find next"
 msgstr ""
 
-#: ghex/findreplace.c:148
+#: src/findreplace.c:161
 msgid "Replace"
 msgstr ""
 
-#: ghex/findreplace.c:155
+#: src/findreplace.c:168
 msgid "Replace All"
 msgstr ""
 
-#: ghex/findreplace.c:179 ghex/main.c:85
+#: src/findreplace.c:199 src/main.c:100
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Potchî a l' octet"
 
-#: ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
+#: src/findreplace.c:286 src/findreplace.c:310 src/findreplace.c:365
 msgid "There is no active buffer to search!"
 msgstr ""
 
-#: ghex/findreplace.c:268 ghex/findreplace.c:291 ghex/findreplace.c:344
+#: src/findreplace.c:294 src/findreplace.c:318 src/findreplace.c:373
 msgid "There seems to be no string to search for!"
 msgstr ""
 
-#: ghex/findreplace.c:274 ghex/findreplace.c:351
+#: src/findreplace.c:300 src/findreplace.c:380
 msgid "End Of File reached"
 msgstr ""
 
-#: ghex/findreplace.c:298
+#: src/findreplace.c:325
 msgid "Beginning Of File reached"
 msgstr ""
 
-#: ghex/findreplace.c:306
+#: src/findreplace.c:334
 msgid "There is no active buffer to move the cursor in!"
 msgstr ""
 
-#: ghex/findreplace.c:311
+#: src/findreplace.c:339
 msgid "No offset has been specified!"
 msgstr ""
 
-#: ghex/findreplace.c:318
+#: src/findreplace.c:346
 msgid "The offset must be a positive integer value!"
 msgstr ""
 
-#: ghex/findreplace.c:323
+#: src/findreplace.c:351
 msgid "Can not position cursor beyond the End Of File!"
 msgstr ""
 
-#: ghex/findreplace.c:361 ghex/findreplace.c:400
+#: src/findreplace.c:391 src/findreplace.c:431
 msgid "There is no active buffer to replace data in!"
 msgstr ""
 
-#: ghex/findreplace.c:372 ghex/findreplace.c:411
+#: src/findreplace.c:402 src/findreplace.c:442
 msgid "Strange find or replace string!"
 msgstr ""
 
-#: ghex/findreplace.c:377 ghex/findreplace.c:416
+#: src/findreplace.c:407 src/findreplace.c:447
 msgid "Both strings must be of the same length!"
 msgstr "Les deus tchinnes doevèt esse del minme longeu!"
 
-#: ghex/findreplace.c:390
+#: src/findreplace.c:420
 msgid "End Of File reached!"
 msgstr ""
 
-#: ghex/findreplace.c:431
+#: src/findreplace.c:462
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr ""
 
-#: ghex/hex-document.c:59
+#: src/hex-document.c:59
 msgid "_Bytes"
 msgstr "_Octets"
 
-#: ghex/hex-document.c:60
+#: src/hex-document.c:60
 msgid "Group data by 8 bits"
 msgstr ""
 
-#: ghex/hex-document.c:61
+#: src/hex-document.c:61
 msgid "_Words"
 msgstr "_Mots"
 
-#: ghex/hex-document.c:62
+#: src/hex-document.c:62
 msgid "Group data by 16 bits"
 msgstr ""
 
-#: ghex/hex-document.c:63
+#: src/hex-document.c:63
 msgid "_Longwords"
 msgstr "_Lonmots"
 
-#: ghex/hex-document.c:64
+#: src/hex-document.c:64
 msgid "Group data by 32 bits"
 msgstr ""
 
-#: ghex/hex-document.c:80
-msgid "Jump to a certain position"
-msgstr ""
-
-#: ghex/hex-document.c:80
+#: src/hex-document.c:80
 msgid "_Goto Byte..."
 msgstr "_Potchî a l' octet..."
 
-#: ghex/hex-document.c:83
+#: src/hex-document.c:80
+msgid "Jump to a certain position"
+msgstr ""
+
+#: src/hex-document.c:83
 msgid "_Group Data As"
 msgstr ""
 
-#: ghex/hex-document.c:88
+#: src/hex-document.c:88
 msgid "_Add view"
 msgstr "_Radjouter vuwe"
 
-#: ghex/hex-document.c:89
+#: src/hex-document.c:89
 msgid "Add a new view of the buffer"
 msgstr ""
 
-#: ghex/hex-document.c:90
+#: src/hex-document.c:90
 msgid "_Remove view"
 msgstr "_Bodjî foû vuwe"
 
-#: ghex/hex-document.c:91
+#: src/hex-document.c:91
 msgid "Remove the current view of the buffer"
 msgstr ""
 
-#: ghex/main.c:51
+#: src/main.c:51
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
 
-#: ghex/main.c:170
+#: src/main.c:185
 #, c-format
 msgid "Offset: %s"
 msgstr ""
 
-#: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
+#: src/preferences.c:50
 msgid "Default"
 msgstr ""
 
-#: ghex/preferences.c:51
+#: src/preferences.c:51
 msgid "Notebook"
 msgstr ""
 
-#: ghex/preferences.c:52
+#: src/preferences.c:52
 msgid "Toplevel"
 msgstr ""
 
-#: ghex/preferences.c:53
+#: src/preferences.c:53
 msgid "Modal"
 msgstr ""
 
-#: ghex/preferences.c:82
+#: src/preferences.c:85
 msgid "Maximum number of undo levels"
 msgstr ""
 
-#: ghex/preferences.c:96
+#: src/preferences.c:99
 msgid "Show cursor offset in statusbar as"
 msgstr ""
 
-#: ghex/preferences.c:115
+#: src/preferences.c:118
 msgid "Hexadecimal"
 msgstr ""
 
-#: ghex/preferences.c:121
+#: src/preferences.c:124
 msgid "Custom"
 msgstr ""
 
-#: ghex/preferences.c:131
+#: src/preferences.c:134
 msgid "Show offsets column"
 msgstr ""
 
-#: ghex/preferences.c:136
+#: src/preferences.c:139
 msgid "Editing"
 msgstr ""
 
-#: ghex/preferences.c:143
+#: src/preferences.c:146
 msgid "Font"
 msgstr "Fonte"
 
-#: ghex/preferences.c:159
+#: src/preferences.c:162
 msgid "Browse..."
 msgstr "Foyter..."
 
-#: ghex/preferences.c:178
+#: src/preferences.c:181
 msgid "Default Group Type"
 msgstr ""
 
-#: ghex/preferences.c:194 gtt/options.c:186
+#: src/preferences.c:197
 msgid "Display"
 msgstr "Håynaedje"
 
-#: ghex/preferences.c:201
+#: src/preferences.c:204
 msgid "MDI Mode"
 msgstr "Môde MDI"
 
-#: ghex/preferences.c:218
+#: src/preferences.c:221
 msgid "MDI"
 msgstr "MDI"
 
-#: ghex/preferences.c:365
+#: src/preferences.c:354
+msgid ""
+"The offset format string contains format specifier other than 'x', 'd' or "
+"'o'!"
+msgstr ""
+
+#: src/preferences.c:390
 msgid "Can not open desired font!"
 msgstr ""
 
-#: ghex/ui.c:51
-msgid "Open Con_verter..."
+#: src/ui.c:53
+msgid "Export as HTML..."
 msgstr ""
 
-#: ghex/ui.c:52
+#: src/ui.c:53
+msgid "Export data to HTML source"
+msgstr ""
+
+#: src/ui.c:67
+msgid "Con_verter..."
+msgstr ""
+
+#: src/ui.c:68
 msgid "Open base conversion dialog"
 msgstr ""
 
-#: ghex/ui.c:89
+#: src/ui.c:69
+msgid "Character Table..."
+msgstr ""
+
+#: src/ui.c:70
+msgid "Show the character table"
+msgstr ""
+
+#: src/ui.c:87
+#, fuzzy
+msgid "Tools"
+msgstr "Bår ås Usteyes"
+
+#: src/ui.c:101
 msgid "Bytes"
 msgstr "Octets"
 
-#: ghex/ui.c:90
+#: src/ui.c:102
 msgid "Words"
 msgstr "Mots"
 
-#: ghex/ui.c:91
+#: src/ui.c:103
 msgid "Longwords"
 msgstr "Lonmots"
 
-#: ghex/ui.c:96
+#: src/ui.c:108
 msgid "hex data"
 msgstr ""
 
-#: ghex/ui.c:97
+#: src/ui.c:109
 msgid "ASCII data"
 msgstr ""
 
-#: ghex/ui.c:175
+#: src/ui.c:192
 msgid "GHex, a binary file editor"
 msgstr ""
 
-#: ghex/ui.c:177
+#: src/ui.c:194
 msgid "Released under the terms of GNU Public License"
 msgstr ""
 
-#: ghex/ui.c:194 ghex/ui.c:345
+#: src/ui.c:218 src/ui.c:453
 msgid "Error saving file!"
 msgstr ""
 
-#: ghex/ui.c:198 ghex/ui.c:340
+#: src/ui.c:222 src/ui.c:448
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr ""
 
-#: ghex/ui.c:207
+#: src/ui.c:236
 msgid "Select a file to open"
 msgstr ""
 
-#: ghex/ui.c:225
+#: src/ui.c:263
 msgid "Select a file to save buffer as"
 msgstr ""
 
-#: ghex/ui.c:273
+#: src/ui.c:285
+msgid "Select path and file name HTML source to"
+msgstr ""
+
+#: src/ui.c:382
 #, c-format
 msgid "Really revert file %s?"
 msgstr ""
 
-#: ghex/ui.c:286
+#: src/ui.c:395
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr ""
 
-#: ghex/ui.c:301
+#: src/ui.c:411
 #, c-format
 msgid "Loaded file %s"
 msgstr ""
 
-#: ghex/ui.c:306
+#: src/ui.c:416
 msgid "Can not open file!"
 msgstr ""
 
-#: ghex/ui.c:349
+#: src/ui.c:457
 msgid "Can't open file for writing!"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:25
-msgid "File name"
-msgstr "Nos di fitchîs"
-
-#: gsearchtool/gsearchtool.c:27
-msgid "Don't search subdirectories"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:28
-msgid "File owner"
-msgstr "Fitchîs ki sont di l' ûzeu"
-
-#: gsearchtool/gsearchtool.c:29
-msgid "File owner group"
-msgstr "Fitchîs ki sont do hopê"
-
-#: gsearchtool/gsearchtool.c:30
-msgid "Last modification time"
-msgstr "Tins di dierin ramîdraedje"
-
-#: gsearchtool/gsearchtool.c:32
-msgid "Don't search mounted filesystems"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:34
-msgid "Empty file"
-msgstr "Fitchîs vûdes"
-
-#: gsearchtool/gsearchtool.c:36
-msgid "Invalid user or group"
-msgstr "Ûzeus ou hopês nén valides"
-
-#: gsearchtool/gsearchtool.c:37
-msgid "Filenames except"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:39
-msgid "Follow symbolic links"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:40
-msgid "Simple substring search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:41
-msgid "Regular expression search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:43
-msgid "Extended regular expression search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:102 gsearchtool/gsearchtool.c:158
-msgid "grep options found in find list bad bad!"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:173
-msgid "non-grep option found in grep list, bad bad!"
-msgstr ""
-
-#. create the results box
-#. FIXME: add an option to autoclear result box and pass TRUE in that
-#. case
-#: gsearchtool/gsearchtool.c:214
-msgid "Search Results"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:483
-msgid "Enable"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:490
-msgid "Remove"
-msgstr "Bodjî"
-
-#: gsearchtool/gsearchtool.c:542
-msgid "Start in directory:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:560 mini-utils/gw/gw.c:488
-msgid "Add"
-msgstr "Radjouter"
-
-#: gsearchtool/gsearchtool.c:571
-msgid "Start"
-msgstr "Enonder"
-
-#: gsearchtool/gsearchtool.c:572
-msgid "Stop"
-msgstr " Åwe "
-
-#: gsearchtool/gsearchtool.c:590
-msgid "This is not yet implemented"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:603
-msgid "Full find (find)"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:606
-msgid "Quick find (locate)"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:621
-msgid "The Gnome Search Tool"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:622
-msgid "(C) 1998 the Free Software Foundation"
-msgstr "© 1998 li Free Software Foundation"
-
-#: gsearchtool/gsearchtool.c:624
-msgid "Frontend to the unix find/grep/locate commands"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:666
-msgid "Gnome Search Tool"
-msgstr ""
-
-#: gstripchart/gstripchart.c:434
-msgid "rparen expected"
-msgstr ""
-
-#: gstripchart/gstripchart.c:451
-#, c-format
-msgid "no such field: %d"
-msgstr ""
-
-#: gstripchart/gstripchart.c:479
-msgid "missing variable identifer"
-msgstr ""
-
-#: gstripchart/gstripchart.c:481
-#, c-format
-msgid "invalid variable identifer: %s"
-msgstr ""
-
-#: gstripchart/gstripchart.c:485
-msgid "number expected"
-msgstr ""
-
-#: gstripchart/gstripchart.c:563
-#, c-format
-msgid "extra gunk at end: \"%s\""
-msgstr ""
-
-#: gstripchart/gstripchart.c:645
-#, c-format
-msgid "%s, line %d: "
-msgstr ""
-
-#: gstripchart/gstripchart.c:726
-#, c-format
-msgid "can't open config file \"%s\""
-msgstr ""
-
-#: gstripchart/gstripchart.c:753
-#, c-format
-msgid ""
-"can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-msgstr ""
-
-#: gstripchart/gstripchart.c:758
-#, c-format
-msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr ""
-
-#: gstripchart/gstripchart.c:836
-msgid "identifier or begin must be first"
-msgstr ""
-
-#: gstripchart/gstripchart.c:844 gstripchart/gstripchart.c:861
-#, c-format
-msgid "unrecognized color: %s"
-msgstr ""
-
-#: gstripchart/gstripchart.c:876
-msgid "scale must be either \"log\" or \"linear\""
-msgstr ""
-
-#: gstripchart/gstripchart.c:891
-msgid "no equation found"
-msgstr ""
-
-#: gstripchart/gstripchart.c:908
-#, c-format
-msgid "invalid option: \"%s\""
-msgstr ""
-
-#: gstripchart/gstripchart.c:1471
-msgid "E_xit"
-msgstr "Moussî _foû"
-
-#: gstripchart/gstripchart.c:1471
-msgid "Terminate the stripchart program"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1487
-msgid "Copyright 1998,99 John Kodis"
-msgstr "Copyright © 1998,1999 John Kodis"
-
-#: gstripchart/gstripchart.c:1489
-msgid ""
-"The GNOME stripchart program plots various user-specified parameters as a "
-"function of time.  Its main use is to chart system performance parameters "
-"such as CPU load, CPU utilization, network traffic levels, and the like.  "
-"Other more ingenious uses are left as an exercise for the interested user."
-msgstr ""
-
-#: gstripchart/gstripchart.c:1502
-msgid "Info about the striphart program"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1502
-msgid "_About"
-msgstr "Å _dfait"
-
-#: gstripchart/gstripchart.c:1513
-msgid "_File"
-msgstr "_Fitchî"
-
-#: gstripchart/gstripchart.c:1514
-msgid "_Help"
-msgstr "_Aide"
-
-#: gstripchart/gstripchart.c:1578 gstripchart/gstripchart.c:1716
-msgid "Param"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1578 mini-utils/gcolorsel/gcolorsel.c:156
-#: mini-utils/guname/moreinfo.c:227
-msgid "Value"
-msgstr "Valixhance"
-
-#: gstripchart/gstripchart.c:1582
-msgid "Identifier"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/gcolorsel.c:155
-msgid "Color"
-msgstr "Coleur"
-
-#: gstripchart/gstripchart.c:1586
-msgid "Filename"
-msgstr "No do fitchî"
-
-#: gstripchart/gstripchart.c:1588
-msgid "Pattern"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1590
-msgid "Equation"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1592
-msgid "Expected range"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1596
-msgid "Displayed range"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1600
-msgid "Current value"
-msgstr "Valixhance do moumint"
-
-#: gstripchart/gstripchart.c:1607
-msgid "Active"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1623
-msgid "Stripchart Parameters"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1717
-msgid "Current"
-msgstr "Do moumint"
-
-#: gstripchart/gstripchart.c:1718
-msgid "Top"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1719
-msgid "Scale"
+#: src/chartable.c:72
+#, fuzzy
+msgid "Octal"
 msgstr "Schåle"
 
-#: gstripchart/gstripchart.c:1756 gstripchart/gstripchart.c:2035
-msgid "Help"
-msgstr "Aide"
-
-#: gstripchart/gstripchart.c:1762 gstripchart/gstripchart.c:2038
-#: mini-utils/gshutdown/gshutdown.c:318
-msgid "About"
-msgstr "Å dfait"
-
-#: gstripchart/gstripchart.c:1768
-msgid "Params"
+#: src/chartable.c:78
+msgid "GHex: Character table"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1774
-msgid "Exit"
-msgstr "Moussî foû"
+#~ msgid "The Gnome Calculator"
+#~ msgstr "Li Carculete Gnome"
 
-#: gstripchart/gstripchart.c:1880
-msgid "Stripchart Viewer"
-msgstr ""
-
-#. Create a top-level application window. Set minimum size (_usize),
-#. initial size (_default_size), and establish delete and destroy
-#. event handlers.
-#: gstripchart/gstripchart.c:1880
-msgid "gstripchart"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2041
-msgid "Params..."
-msgstr ""
-
-#: gstripchart/gstripchart.c:2086
-#, c-format
-msgid "invalid display type: %s\n"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2111
-msgid "GEO"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2111
-msgid "Geometry string: WxH+X+Y"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2113
-msgid "Configuration file name"
-msgstr "No do fitchî d' apontiaedje"
-
-#: gstripchart/gstripchart.c:2113
-msgid "FILE"
-msgstr "FITCHÎ"
-
-#: gstripchart/gstripchart.c:2115
-msgid "Chart update interval"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2115 gstripchart/gstripchart.c:2117
-#: gstripchart/gstripchart.c:2119 gstripchart/gstripchart.c:2121
-msgid "SECS"
-msgstr "SEG"
-
-#: gstripchart/gstripchart.c:2117
-msgid "Chart low-pass filter time constant"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2119
-msgid "Slider update interval"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2121
-msgid "Slider low-pass filter time constant"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2123
-msgid "Adds a menubar to the main window"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2125
-msgid "Omits slider window"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2128 gstripchart/gstripchart.c:2130
-msgid "TYPE"
-msgstr "SÔRTE"
-
-#: gstripchart/gstripchart.c:2128
-msgid "TYPE is one of gtk, applet, text, or none"
-msgstr "SÔRTE est onk di gtk, aplikete, tecse ou nole"
-
-#: gstripchart/gstripchart.c:2130
-msgid "TYPE is one of gtk, text, or none"
-msgstr "SÔRTE est onk di gtk, tecse ou nole"
-
-#: gstripchart/gstripchart.c:2281
-msgid "black"
-msgstr "noer"
-
-#: gstripchart/gstripchart.c:2281
-msgid "red"
-msgstr "rodje"
-
-#: gstripchart/gstripchart.c:2281
-msgid "white"
-msgstr "blanc"
-
-#: gstripchart/gstripchart.c:2281
-msgid "yellow"
-msgstr "djaene"
-
-#: gstripchart/gstripchart.c:2282
-msgid "blue"
-msgstr "bleu"
-
-#: gstripchart/gstripchart.c:2282
-msgid "cyan"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2282
-msgid "green"
-msgstr "vert"
-
-#: gstripchart/gstripchart.c:2282
-msgid "magenta"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2283
-msgid "Battery"
-msgstr "Batreye"
-
-#: gstripchart/gstripchart.c:2283
-msgid "Busy"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2283
-msgid "Load"
-msgstr "Tchedje"
-
-#: gstripchart/gstripchart.c:2283
-msgid "Swap"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2284
-msgid "Net In"
-msgstr "Rantoele intr."
-
-#: gstripchart/gstripchart.c:2284
-msgid "Net Out"
-msgstr "Rantoele rexh."
-
-#: gstripchart/gstripchart.c:2284
-msgid "ppp"
-msgstr "PPP"
-
-#: gtt/app.c:117 gtt/app.c:223
-msgid "no project selected"
-msgstr "nou prodjet tchwezi"
-
-#: gtt/app.c:212
-msgid "00:00"
-msgstr "00e00"
-
-#: gtt/app.c:251 mini-utils/gless/gless.c:424
-msgid ""
-"Couldn't understand geometry (position and size)\n"
-" specified on command line"
-msgstr ""
-
-#: gtt/clist.c:169
-msgid "Total"
-msgstr "Totå"
-
-#: gtt/clist.c:170
-msgid "Today"
-msgstr "Oûy"
-
-#: gtt/clist.c:171
-msgid "Project Title"
-msgstr "Tite do Prodjet"
-
-#: gtt/clist.c:172
-msgid "Description"
-msgstr ""
-
-#: gtt/log.c:64 gtt/log.c:216
-msgid "program started"
-msgstr "programe enondé"
-
-#: gtt/log.c:82
-msgid "no description"
-msgstr ""
-
-#: gtt/log.c:208
-msgid "program exited"
-msgstr "li program a sti moussî foû"
-
-#: gtt/main.c:77
-msgid ""
-"There seems to be another GTimeTracker running.\n"
-"Press OK to start GTimeTracker anyway, or press Cancel to quit."
-msgstr ""
-
-#: gtt/main.c:121
-msgid "Error"
-msgstr "Aroke"
-
-#: gtt/main.c:122
-msgid ""
-"An error occured while reading the configuration file.\n"
-"Shall I setup a new configuration?"
-msgstr ""
-
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "GEOMETREYE"
-
-#: gtt/main.c:204
-msgid "Specify geometry"
-msgstr ""
-
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "PRODJET"
-
-#: gtt/main.c:206
-msgid "Select a project on startup"
-msgstr ""
-
-#: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
-msgid "Warning"
-msgstr "Advertixhmint"
-
-#: gtt/menucmd.c:32 gtt/menucmd.c:155
-msgid "I could not write the configuration file!"
-msgstr ""
-
-#: gtt/menucmd.c:85 gtt/toolbar.c:146
-msgid "New Project..."
-msgstr "Novea Prodjet..."
-
-#: gtt/menucmd.c:89
-msgid "Please enter the name of the new project:"
-msgstr ""
-
-#: gtt/menucmd.c:123
-msgid "I could not read the configuration file"
-msgstr ""
-
-#: gtt/menucmd.c:137 gtt/toolbar.c:153
-msgid "Reload Configuration File"
-msgstr ""
-
-#: gtt/menucmd.c:138
-msgid ""
-"This will overwrite your current set of projects.\n"
-"Do you really want to reload the configuration file?"
-msgstr ""
-
-#: gtt/menus.c:27
-msgid "_New Project..."
-msgstr "_Novea Prodjet..."
-
-#: gtt/menus.c:30
-msgid "_Reload Configuration File"
-msgstr ""
-
-#: gtt/menus.c:34
-msgid "_Save Configuration File"
-msgstr "_Schaper fitchî d' apontiaedje"
-
-#: gtt/menus.c:59 gtt/menus.c:115
-msgid "Clear _Daily Counter"
-msgstr ""
-
-#: gtt/menus.c:71
-msgid "St_art"
-msgstr "_Enonder"
-
-#: gtt/menus.c:75
-msgid "Sto_p"
-msgstr "_Arester"
-
-#: gtt/menus.c:80
-msgid "_Timer Running"
-msgstr ""
-
-#: gtt/menus.c:99
-msgid "_Timer"
-msgstr ""
-
-#: gtt/options.c:194
-msgid "Show Seconds"
-msgstr ""
-
-#: gtt/options.c:200
-msgid "Show Status Bar"
-msgstr ""
-
-#: gtt/options.c:206
-msgid "Show Table Header"
-msgstr ""
-
-#: gtt/options.c:220 gtt/options.c:518
-msgid "Toolbar"
-msgstr "Bår ås Usteyes"
-
-#: gtt/options.c:228
-msgid "Show Toolbar Icons"
-msgstr "Vey Imådjetes èl Bår ås Usteyes"
-
-#: gtt/options.c:234
-msgid "Show Toolbar Texts"
-msgstr "Vey Tekse èl Bår ås Usteyes"
-
-#: gtt/options.c:240
-msgid "Show Tooltips"
-msgstr "Vey les Racsegnes"
-
-#: gtt/options.c:246
-msgid "Toolbar Segments"
-msgstr ""
-
-#: gtt/options.c:254
-msgid "Show `New'"
-msgstr "Vey «Novea»"
-
-#: gtt/options.c:260
-msgid "Show `Save', `Reload'"
-msgstr "Vey «Schaper», «Ritcherdjî»"
-
-#: gtt/options.c:266
-msgid "Show `Cut', `Copy', `Paste'"
-msgstr "Vey «Côper», «Copyî», «Claper»"
-
-#: gtt/options.c:272
-msgid "Show `Properties'"
-msgstr "Vet «Prôpietés»"
-
-#: gtt/options.c:278
-msgid "Show `Timer'"
-msgstr ""
-
-#: gtt/options.c:284
-msgid "Show `Preferences'"
-msgstr "Vey «Preferinces»"
-
-#: gtt/options.c:290
-msgid "Show `Help'"
-msgstr "Vey «Aide»"
-
-#: gtt/options.c:296
-msgid "Show `Quit'"
-msgstr "Vey «Moussî foû»"
-
-#: gtt/options.c:310
-msgid "Shell Commands"
-msgstr ""
-
-#: gtt/options.c:318
-msgid "Switch Project Command:"
-msgstr ""
-
-#: gtt/options.c:329
-msgid "No Project Command:"
-msgstr ""
-
-#: gtt/options.c:363
-msgid "Logfile"
-msgstr ""
-
-#: gtt/options.c:371
-msgid "Use Logfile"
-msgstr ""
-
-#: gtt/options.c:380
-msgid "Filename:"
-msgstr "No do fitchî:"
-
-#: gtt/options.c:394
-msgid "Entry Start:"
-msgstr ""
+#~ msgid "Simple double precision calculator similiar to xcalc"
+#~ msgstr "Carculete simpe di dobe precision, ki s' ravise a xcalc"
 
-#: gtt/options.c:408
-msgid "Entry Stop:"
-msgstr ""
-
-#: gtt/options.c:422
-msgid "Timeout in secs:"
-msgstr ""
-
-#. Fixme these should be stock buttons
-#: gtt/options.c:499 mini-utils/gshutdown/gshutdown.c:313
-msgid "Preferences"
-msgstr "Preferinces"
-
-#: gtt/options.c:505
-msgid "Misc"
-msgstr "Totes sôrtes"
-
-#: gtt/proj.c:461
-msgid "project %t started"
-msgstr ""
-
-#: gtt/proj.c:464
-msgid "stopped project %t"
-msgstr ""
-
-#: gtt/prop.c:55
-msgid "empty"
-msgstr "vûde"
-
-#: gtt/prop.c:171
-msgid "Properties"
-msgstr "Prôpietés"
-
-#: gtt/prop.c:178
-msgid "Project"
-msgstr ""
-
-#: gtt/prop.c:197
-msgid "Project Title:"
-msgstr ""
+#~ msgid "Gnome Calculator"
+#~ msgstr "Carculete Gnome"
 
-#: gtt/prop.c:209
-msgid "Project Description:"
-msgstr ""
-
-#: gtt/prop.c:221
-msgid "Project Time today:"
-msgstr ""
+#~ msgid "File name"
+#~ msgstr "Nos di fitchîs"
 
-#: gtt/prop.c:237 gtt/prop.c:275
-msgid "hours"
-msgstr "eures"
+#~ msgid "File owner"
+#~ msgstr "Fitchîs ki sont di l' ûzeu"
 
-#: gtt/prop.c:248 gtt/prop.c:286
-msgid "mins"
-msgstr "min."
+#~ msgid "File owner group"
+#~ msgstr "Fitchîs ki sont do hopê"
 
-#: gtt/prop.c:259 gtt/prop.c:297
-msgid "secs"
-msgstr "seg."
+#~ msgid "Last modification time"
+#~ msgstr "Tins di dierin ramîdraedje"
 
-#: gtt/prop.c:263
-msgid "Project Time ever:"
-msgstr ""
+#~ msgid "Empty file"
+#~ msgstr "Fitchîs vûdes"
 
-#. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:145
-msgid "[GTT]New"
-msgstr "[GTT]Novea"
+#~ msgid "Invalid user or group"
+#~ msgstr "Ûzeus ou hopês nén valides"
 
-#: gtt/toolbar.c:152
-msgid "Reload"
-msgstr "Ritcherdjî"
+#~ msgid "Remove"
+#~ msgstr "Bodjî"
 
-#: gtt/toolbar.c:156
-msgid "Save"
-msgstr "Schaper"
+#~ msgid "Add"
+#~ msgstr "Radjouter"
 
-#: gtt/toolbar.c:157
-msgid "Save Configuration File"
-msgstr "Schaper fitchî d' apontiaedje"
+#~ msgid "Start"
+#~ msgstr "Enonder"
 
-#: gtt/toolbar.c:163
-msgid "Cut"
-msgstr "Côper"
+#~ msgid "Stop"
+#~ msgstr " Åwe "
 
-#: gtt/toolbar.c:164
-msgid "Cut Selected Project"
-msgstr ""
+#~ msgid "(C) 1998 the Free Software Foundation"
+#~ msgstr "© 1998 li Free Software Foundation"
 
-#: gtt/toolbar.c:167
-msgid "Copy"
-msgstr "Copyî"
+#~ msgid "E_xit"
+#~ msgstr "Moussî _foû"
 
-#: gtt/toolbar.c:168
-msgid "Copy Selected Project"
-msgstr ""
+#~ msgid "Copyright 1998,99 John Kodis"
+#~ msgstr "Copyright © 1998,1999 John Kodis"
 
-#: gtt/toolbar.c:171
-msgid "Paste"
-msgstr "Claper"
+#~ msgid "_About"
+#~ msgstr "Å _dfait"
 
-#: gtt/toolbar.c:172
-msgid "Paste Project"
-msgstr ""
+#~ msgid "_File"
+#~ msgstr "_Fitchî"
 
-#: gtt/toolbar.c:178
-msgid "Props"
-msgstr "Prop."
+#~ msgid "_Help"
+#~ msgstr "_Aide"
 
-#: gtt/toolbar.c:179
-msgid "Edit Properties..."
-msgstr "Candjî Propietés..."
+#~ msgid "Value"
+#~ msgstr "Valixhance"
 
-#: gtt/toolbar.c:183
-msgid "Timer"
-msgstr ""
+#~ msgid "Color"
+#~ msgstr "Coleur"
 
-#: gtt/toolbar.c:184
-msgid "Start/Stop Timer"
-msgstr ""
+#~ msgid "Filename"
+#~ msgstr "No do fitchî"
 
-#: gtt/toolbar.c:193
-msgid "Prefs"
-msgstr "Pref."
+#~ msgid "Current value"
+#~ msgstr "Valixhance do moumint"
 
-#: gtt/toolbar.c:194
-msgid "Edit Preferences..."
-msgstr "Candjî Preferinces..."
+#~ msgid "Current"
+#~ msgstr "Do moumint"
 
-#: gtt/toolbar.c:198
-msgid "Manual"
-msgstr ""
+#~ msgid "Help"
+#~ msgstr "Aide"
 
-#: gtt/toolbar.c:198
-msgid "Manual..."
-msgstr ""
+#~ msgid "About"
+#~ msgstr "Å dfait"
 
-#: gtt/toolbar.c:203
-msgid "Quit"
-msgstr "Moussî foû"
+#~ msgid "Exit"
+#~ msgstr "Moussî foû"
 
-#: gtt/toolbar.c:203
-msgid "Quit GTimeTracker"
-msgstr "Moussî foû di GTimeTracker"
+#~ msgid "Configuration file name"
+#~ msgstr "No do fitchî d' apontiaedje"
 
-#: mini-utils/gcolorsel/gcolorsel.c:65 mini-utils/gcolorsel/gcolorsel.c:67
-#: mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:369
-msgid "Gnome Color Browser"
-msgstr ""
+#~ msgid "FILE"
+#~ msgstr "FITCHÎ"
 
-#: mini-utils/gcolorsel/gcolorsel.c:79
-msgid "Format Style:"
-msgstr ""
+#~ msgid "SECS"
+#~ msgstr "SEG"
 
-#: mini-utils/gcolorsel/gcolorsel.c:89
-msgid "Color Name:"
-msgstr "No del coleur:"
+#~ msgid "TYPE"
+#~ msgstr "SÔRTE"
 
-#: mini-utils/gcolorsel/gcolorsel.c:96
-msgid "Color Values:"
-msgstr "Valixhance del coleur:"
+#~ msgid "TYPE is one of gtk, applet, text, or none"
+#~ msgstr "SÔRTE est onk di gtk, aplikete, tecse ou nole"
 
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:225
-#: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
-msgid "Name"
-msgstr "No"
+#~ msgid "TYPE is one of gtk, text, or none"
+#~ msgstr "SÔRTE est onk di gtk, tecse ou nole"
 
-#: mini-utils/gcolorsel/gcolorsel.c:234
-msgid "Error, cannot find the file 'rgb.txt' on your system!"
-msgstr ""
+#~ msgid "black"
+#~ msgstr "noer"
 
-#: mini-utils/gcolorsel/gcolorsel.c:247
-msgid "Parsing Colors"
-msgstr ""
+#~ msgid "red"
+#~ msgstr "rodje"
 
-#: mini-utils/gcolorsel/gcolorsel.c:316
-msgid "Decimal (8 bit)"
-msgstr "Decimå (8 bit)"
+#~ msgid "white"
+#~ msgstr "blanc"
 
-#: mini-utils/gcolorsel/gcolorsel.c:317
-msgid "Decimal (16 bit)"
-msgstr "Decimå (16 bit)"
+#~ msgid "yellow"
+#~ msgstr "djaene"
 
-#: mini-utils/gcolorsel/gcolorsel.c:318
-msgid "Hex (8 bit)"
-msgstr ""
+#~ msgid "blue"
+#~ msgstr "bleu"
 
-#: mini-utils/gcolorsel/gcolorsel.c:319
-msgid "Hex (16 bit)"
-msgstr ""
+#~ msgid "green"
+#~ msgstr "vert"
 
-#: mini-utils/gcolorsel/gcolorsel.c:320
-msgid "Float"
-msgstr ""
+#~ msgid "Battery"
+#~ msgstr "Batreye"
 
-#: mini-utils/gcolorsel/gcolorsel.c:373
-msgid "Small utility to browse available X11 colors."
-msgstr ""
+#~ msgid "Load"
+#~ msgstr "Tchedje"
 
-#: mini-utils/gfontsel/gfontsel.c:145
-msgid "Font Selector"
-msgstr ""
+#~ msgid "Net In"
+#~ msgstr "Rantoele intr."
 
-#: mini-utils/gfontsel/gfontsel.c:170
-msgid "Selection:"
-msgstr ""
+#~ msgid "Net Out"
+#~ msgstr "Rantoele rexh."
 
-#: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr ""
+#~ msgid "ppp"
+#~ msgstr "PPP"
 
-#: mini-utils/gfontsel/gfontsel.c:253
-msgid "Font to load"
-msgstr ""
+#~ msgid "no project selected"
+#~ msgstr "nou prodjet tchwezi"
 
-#: mini-utils/gfontsel/gfontsel.c:254
-msgid "Print selected font name on exit"
-msgstr ""
+#~ msgid "00:00"
+#~ msgstr "00e00"
 
-#: mini-utils/gfontsel/gfontsel.c:255
-msgid "Inhibit remembering selected font for next run"
-msgstr ""
+#~ msgid "Total"
+#~ msgstr "Totå"
 
-#: mini-utils/gfontsel/gfontsel.c:256
-msgid "Inhibit loading of last font"
-msgstr ""
+#~ msgid "Today"
+#~ msgstr "Oûy"
 
-#: mini-utils/gless/gless.c:29
-msgid "Copyright 1998, under the GNU General Public License."
-msgstr "© 1998, sol Licinse Publike Djeneråle di GNU."
+#~ msgid "Project Title"
+#~ msgstr "Tite do Prodjet"
 
-#: mini-utils/gless/gless.c:116
-#, c-format
-msgid "Reason %d\n"
-msgstr ""
+#~ msgid "program started"
+#~ msgstr "programe enondé"
 
-#: mini-utils/gless/gless.c:131
-msgid "Where to put the window, and its size"
-msgstr ""
+#~ msgid "program exited"
+#~ msgstr "li program a sti moussî foû"
 
-#: mini-utils/gless/gless.c:132
-msgid "Ignore standard input; may be needed in some cases."
-msgstr ""
+#~ msgid "Error"
+#~ msgstr "Aroke"
 
-#: mini-utils/gless/gless.c:294
-msgid "_New Window"
-msgstr "_Novea purnea"
+#~ msgid "GEOMETRY"
+#~ msgstr "GEOMETREYE"
 
-#: mini-utils/gless/gless.c:295
-msgid "New text viewer window"
-msgstr ""
+#~ msgid "PROJECT"
+#~ msgstr "PRODJET"
 
-#: mini-utils/gless/gless.c:313
-msgid "_Fixed Font"
-msgstr ""
+#~ msgid "Warning"
+#~ msgstr "Advertixhmint"
 
-#: mini-utils/gless/gless.c:314
-msgid "Display text with a fixed font"
-msgstr ""
+#~ msgid "New Project..."
+#~ msgstr "Novea Prodjet..."
 
-#: mini-utils/gless/gless.c:352
-msgid "Text File Viewer"
-msgstr ""
+#~ msgid "_New Project..."
+#~ msgstr "_Novea Prodjet..."
 
-#: mini-utils/gless/gless.c:460
-msgid "Find string"
-msgstr ""
+#~ msgid "_Save Configuration File"
+#~ msgstr "_Schaper fitchî d' apontiaedje"
 
-#: mini-utils/gless/gless.c:461
-msgid "Find"
-msgstr ""
+#~ msgid "St_art"
+#~ msgstr "_Enonder"
 
-#: mini-utils/gless/gless.c:498
-msgid "Loading..."
-msgstr ""
+#~ msgid "Sto_p"
+#~ msgstr "_Arester"
 
-#: mini-utils/gless/gless.c:502
-#, c-format
-msgid ""
-"No such file or directory:\n"
-"%s"
-msgstr ""
+#~ msgid "Show Toolbar Icons"
+#~ msgstr "Vey Imådjetes èl Bår ås Usteyes"
 
-#: mini-utils/gless/gless.c:520
-#, c-format
-msgid ""
-"Failed to decompress and display the file:\n"
-"%s\n"
-"%s"
-msgstr ""
+#~ msgid "Show Toolbar Texts"
+#~ msgstr "Vey Tekse èl Bår ås Usteyes"
 
-#: mini-utils/gless/gless.c:533
-msgid ""
-"Unable to display compressed file.\n"
-"zcat not found in your path."
-msgstr ""
+#~ msgid "Show Tooltips"
+#~ msgstr "Vey les Racsegnes"
 
-#: mini-utils/gless/gless.c:541
-#, c-format
-msgid ""
-"Error loading file:\n"
-"%s\n"
-"%s"
-msgstr ""
+#~ msgid "Show `New'"
+#~ msgstr "Vey «Novea»"
 
-#: mini-utils/gless/gless.c:599
-msgid "Saving..."
-msgstr ""
+#~ msgid "Show `Save', `Reload'"
+#~ msgstr "Vey «Schaper», «Ritcherdjî»"
 
-#: mini-utils/gless/gless.c:610
-#, c-format
-msgid ""
-"Failed to write file:\n"
-"%s\n"
-"%s"
-msgstr ""
+#~ msgid "Show `Cut', `Copy', `Paste'"
+#~ msgstr "Vey «Côper», «Copyî», «Claper»"
 
-#: mini-utils/gless/gless.c:660
-msgid "Save Text As..."
-msgstr ""
+#~ msgid "Show `Properties'"
+#~ msgstr "Vet «Prôpietés»"
 
-#: mini-utils/gless/gless.c:700
-msgid "Open Text File..."
-msgstr ""
+#~ msgid "Show `Preferences'"
+#~ msgstr "Vey «Preferinces»"
 
-#: mini-utils/gless/gless.c:764
-msgid "Sorry, no preferences yet."
-msgstr ""
+#~ msgid "Show `Help'"
+#~ msgstr "Vey «Aide»"
 
-#: mini-utils/gless/gless.c:851
-msgid "Searching..."
-msgstr ""
+#~ msgid "Show `Quit'"
+#~ msgstr "Vey «Moussî foû»"
 
-#: mini-utils/gless/gless.c:862
-msgid "No search string was specified!"
-msgstr ""
+#~ msgid "Filename:"
+#~ msgstr "No do fitchî:"
 
-#: mini-utils/gnome-run/gnome-run.c:48
-#, c-format
-msgid ""
-"Failed to execute command:\n"
-"%s\n"
-"%s"
-msgstr ""
+#~ msgid "Preferences"
+#~ msgstr "Preferinces"
 
-#: mini-utils/gnome-run/gnome-run.c:69
-msgid "Run Program"
-msgstr "Enonder Programe"
+#~ msgid "Misc"
+#~ msgstr "Totes sôrtes"
 
-#: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Rinoncî"
+#~ msgid "empty"
+#~ msgstr "vûde"
 
-#: mini-utils/gnome-run/gnome-run.c:70
-msgid "Run"
-msgstr "Enonder"
+#~ msgid "Properties"
+#~ msgstr "Prôpietés"
 
-#: mini-utils/gnome-run/gnome-run.c:81
-msgid "Select a program to run"
-msgstr "Tchwezi on programe a enonder"
+#~ msgid "hours"
+#~ msgstr "eures"
 
-#: mini-utils/gshutdown/gshutdown.c:86
-msgid "Shut Down"
-msgstr "Xhufler"
+#~ msgid "mins"
+#~ msgstr "min."
 
-#: mini-utils/gshutdown/gshutdown.c:87
-msgid "Single User Mode"
-msgstr "Môde on seul ûzeu"
+#~ msgid "secs"
+#~ msgstr "seg."
 
-#: mini-utils/gshutdown/gshutdown.c:88
-msgid "Runlevel 2"
-msgstr ""
+#~ msgid "[GTT]New"
+#~ msgstr "[GTT]Novea"
 
-#: mini-utils/gshutdown/gshutdown.c:89
-msgid "Runlevel 3"
-msgstr ""
+#~ msgid "Reload"
+#~ msgstr "Ritcherdjî"
 
-#: mini-utils/gshutdown/gshutdown.c:90
-msgid "Runlevel 4"
-msgstr ""
+#~ msgid "Save"
+#~ msgstr "Schaper"
 
-#: mini-utils/gshutdown/gshutdown.c:91
-msgid "Runlevel 5"
-msgstr ""
+#~ msgid "Save Configuration File"
+#~ msgstr "Schaper fitchî d' apontiaedje"
 
-#: mini-utils/gshutdown/gshutdown.c:92
-msgid "Reboot"
-msgstr "Rinonder"
+#~ msgid "Cut"
+#~ msgstr "Côper"
 
-#: mini-utils/gshutdown/gshutdown.c:98
-msgid "Are you sure you want to shut down the computer?"
-msgstr ""
+#~ msgid "Copy"
+#~ msgstr "Copyî"
 
-#: mini-utils/gshutdown/gshutdown.c:99
-msgid "Are you sure you want to switch to single user mode?"
-msgstr ""
+#~ msgid "Paste"
+#~ msgstr "Claper"
 
-#: mini-utils/gshutdown/gshutdown.c:100
-msgid "Are you sure you want to switch to runlevel 2?"
-msgstr ""
+#~ msgid "Props"
+#~ msgstr "Prop."
 
-#: mini-utils/gshutdown/gshutdown.c:101
-msgid "Are you sure you want to switch to runlevel 3?"
-msgstr ""
+#~ msgid "Edit Properties..."
+#~ msgstr "Candjî Propietés..."
 
-#: mini-utils/gshutdown/gshutdown.c:102
-msgid "Are you sure you want to switch to runlevel 4?"
-msgstr ""
+#~ msgid "Prefs"
+#~ msgstr "Pref."
 
-#: mini-utils/gshutdown/gshutdown.c:103
-msgid "Are you sure you want to switch to runlevel 5?"
-msgstr ""
+#~ msgid "Edit Preferences..."
+#~ msgstr "Candjî Preferinces..."
 
-#: mini-utils/gshutdown/gshutdown.c:104
-msgid "Are you sure you want to reboot the system?"
-msgstr ""
+#~ msgid "Quit"
+#~ msgstr "Moussî foû"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:593
-msgid "You must be the super-user (root) to shut down or restart the computer."
-msgstr ""
+#~ msgid "Quit GTimeTracker"
+#~ msgstr "Moussî foû di GTimeTracker"
 
-#. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:186
-msgid "Shutdown or Reboot"
-msgstr "Xhufler ou rinonder"
-
-#: mini-utils/gshutdown/gshutdown.c:203 mini-utils/gshutdown/gshutdown.c:204
-msgid "Easy"
-msgstr "Åjhey"
-
-#: mini-utils/gshutdown/gshutdown.c:208 mini-utils/gshutdown/gshutdown.c:209
-msgid "Advanced"
-msgstr "Sipipieu"
-
-#: mini-utils/gshutdown/gshutdown.c:241
-msgid ""
-"Click OK to shutdown or reboot. You will lose\n"
-"any unsaved information in open applications."
-msgstr ""
+#~ msgid "Color Name:"
+#~ msgstr "No del coleur:"
 
-#. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:368
-msgid "Revert to Defaults"
-msgstr ""
+#~ msgid "Color Values:"
+#~ msgstr "Valixhance del coleur:"
 
-#: mini-utils/gshutdown/gshutdown.c:378
-msgid "Commands"
-msgstr "Comandes"
+#~ msgid "Name"
+#~ msgstr "No"
 
-#: mini-utils/gshutdown/gshutdown.c:383
-msgid "Confirm before shutdown?"
-msgstr ""
+#~ msgid "Decimal (8 bit)"
+#~ msgstr "Decimå (8 bit)"
 
-#: mini-utils/gshutdown/gshutdown.c:395
-msgid "General"
-msgstr "Djenerå"
-
-#: mini-utils/gshutdown/gshutdown.c:448
-#, c-format
-msgid ""
-"%s\n"
-"You will lose any unsaved work."
-msgstr ""
+#~ msgid "Decimal (16 bit)"
+#~ msgstr "Decimå (16 bit)"
 
-#: mini-utils/gshutdown/gshutdown.c:458
-msgid "Don't ask next time."
-msgstr "Nén dmander li côp ki vint."
+#~ msgid "Copyright 1998, under the GNU General Public License."
+#~ msgstr "© 1998, sol Licinse Publike Djeneråle di GNU."
 
-#: mini-utils/gshutdown/gshutdown.c:691
-msgid "Command execution failed: fork failed"
-msgstr ""
+#~ msgid "_New Window"
+#~ msgstr "_Novea purnea"
 
-#: mini-utils/guname/guname.c:51
-msgid "Make guname act as a control center applet"
-msgstr ""
+#~ msgid "Run Program"
+#~ msgstr "Enonder Programe"
 
-#: mini-utils/guname/guname.c:117
-msgid "an initialization error occurred while starting 'guname-capplet'."
-msgstr ""
+#~ msgid "Cancel"
+#~ msgstr "Rinoncî"
 
-#: mini-utils/guname/guname.c:427
-msgid "System Information"
-msgstr "Informåcion do Sistinme"
+#~ msgid "Run"
+#~ msgstr "Enonder"
 
-#: mini-utils/guname/guname.c:509
-msgid "Logo file not found"
-msgstr "Fitchî avou l' logo nén trové"
+#~ msgid "Select a program to run"
+#~ msgstr "Tchwezi on programe a enonder"
 
-#. Up here so it uses the default font
-#: mini-utils/guname/guname.c:513
-msgid "GNOME contributors:"
-msgstr ""
+#~ msgid "Shut Down"
+#~ msgstr "Xhufler"
 
-#: mini-utils/guname/guname.c:516
-msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
+#~ msgid "Single User Mode"
+#~ msgstr "Môde on seul ûzeu"
 
-#: mini-utils/guname/guname.c:527
-msgid "GNOME: The GNU Network Object Model Environment"
-msgstr ""
+#~ msgid "Reboot"
+#~ msgstr "Rinonder"
 
-#: mini-utils/guname/guname.c:551
-msgid "Email Information..."
-msgstr "Emiler l' informåcion..."
+#~ msgid "Shutdown or Reboot"
+#~ msgstr "Xhufler ou rinonder"
 
-#: mini-utils/guname/guname.c:564
-msgid "Save Information to File..."
-msgstr "Schaper l' informåcion dins on fitchî..."
+#~ msgid "Easy"
+#~ msgstr "Åjhey"
 
-#: mini-utils/guname/guname.c:576 mini-utils/guname/guname.c:646
-msgid "Detailed Information..."
-msgstr ""
+#~ msgid "Advanced"
+#~ msgstr "Sipipieu"
 
-#: mini-utils/guname/guname.c:591
-msgid "Category"
-msgstr "Categoreye"
-
-#: mini-utils/guname/guname.c:591
-msgid "Your System"
-msgstr "Vosse sistinme"
-
-#: mini-utils/guname/guname.c:632
-msgid "Save As..."
-msgstr "Schaper èt rlomer..."
-
-#: mini-utils/guname/guname.c:638
-msgid "Mail To..."
-msgstr "Emiler a..."
-
-#: mini-utils/guname/guname.c:686
-#, c-format
-msgid ""
-"Error closing file `%s': \n"
-"%s\n"
-"Some or all data may not have been written."
-msgstr ""
+#~ msgid "Commands"
+#~ msgstr "Comandes"
 
-#: mini-utils/guname/guname.c:698
-#, c-format
-msgid "Couldn't open file `%s': %s"
-msgstr ""
+#~ msgid "General"
+#~ msgstr "Djenerå"
 
-#: mini-utils/guname/guname.c:713
-msgid "Save System Information As..."
-msgstr "Schaper èt rlomer l' Informåcion sol Sistinme..."
-
-#. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:759
-#, c-format
-msgid "Command failed ` %s ': %s"
-msgstr ""
+#~ msgid "Don't ask next time."
+#~ msgstr "Nén dmander li côp ki vint."
 
-#: mini-utils/guname/guname.c:767
-#, c-format
-msgid "Couldn't run command ` %s ': %s"
-msgstr ""
+#~ msgid "System Information"
+#~ msgstr "Informåcion do Sistinme"
 
-#: mini-utils/guname/guname.c:791
-#, c-format
-msgid ""
-"The following mail will be sent to %s.\n"
-" Are you sure you want to mail this information?"
-msgstr ""
+#~ msgid "Logo file not found"
+#~ msgstr "Fitchî avou l' logo nén trové"
 
-#: mini-utils/guname/guname.c:802
-msgid "Are you sure?"
-msgstr "Estoz-ve shûr?"
+#~ msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
+#~ msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
-#: mini-utils/guname/guname.c:836
-msgid "Address to mail to:"
-msgstr "Adresse a emiler a:"
+#~ msgid "Email Information..."
+#~ msgstr "Emiler l' informåcion..."
 
-#: mini-utils/guname/info.c:40
-msgid "Distribution:"
-msgstr "Distribucion:"
+#~ msgid "Save Information to File..."
+#~ msgstr "Schaper l' informåcion dins on fitchî..."
 
-#: mini-utils/guname/info.c:41
-msgid "Operating System:"
-msgstr ""
+#~ msgid "Category"
+#~ msgstr "Categoreye"
 
-#: mini-utils/guname/info.c:42
-msgid "Distribution Version:"
-msgstr "Modeye del Distribucion:"
+#~ msgid "Your System"
+#~ msgstr "Vosse sistinme"
 
-#: mini-utils/guname/info.c:43
-msgid "Operating System Version:"
-msgstr ""
+#~ msgid "Save As..."
+#~ msgstr "Schaper èt rlomer..."
 
-#: mini-utils/guname/info.c:44
-msgid "Operating System Release:"
-msgstr ""
+#~ msgid "Mail To..."
+#~ msgstr "Emiler a..."
 
-#: mini-utils/guname/info.c:45
-msgid "Processor Type:"
-msgstr "Sôrte do Processeu:"
+#~ msgid "Save System Information As..."
+#~ msgstr "Schaper èt rlomer l' Informåcion sol Sistinme..."
 
-#: mini-utils/guname/info.c:46
-msgid "Processor Speed:"
-msgstr "Roedeu do Processeu:"
+#~ msgid "Are you sure?"
+#~ msgstr "Estoz-ve shûr?"
 
-#: mini-utils/guname/info.c:47
-msgid "Host Name:"
-msgstr "No di l' Éndjole:"
+#~ msgid "Address to mail to:"
+#~ msgstr "Adresse a emiler a:"
 
-#: mini-utils/guname/info.c:48
-msgid "Domain Name:"
-msgstr "No do Domaine:"
+#~ msgid "Distribution:"
+#~ msgstr "Distribucion:"
 
-#: mini-utils/guname/info.c:49
-msgid "User Name:"
-msgstr "No di l' ûzeu:"
+#~ msgid "Distribution Version:"
+#~ msgstr "Modeye del Distribucion:"
 
-#: mini-utils/guname/info.c:50
-msgid "X Display Name:"
-msgstr "No do Håynaedje X:"
+#~ msgid "Processor Type:"
+#~ msgstr "Sôrte do Processeu:"
 
-#: mini-utils/guname/info.c:51
-msgid "System Status:"
-msgstr ""
+#~ msgid "Processor Speed:"
+#~ msgstr "Roedeu do Processeu:"
 
-#: mini-utils/guname/info.c:52
-msgid "Real Memory:"
-msgstr "Memwere vreye:"
+#~ msgid "Host Name:"
+#~ msgstr "No di l' Éndjole:"
 
-#: mini-utils/guname/info.c:53
-msgid "Swap Space (\"virtual memory\"):"
-msgstr ""
+#~ msgid "Domain Name:"
+#~ msgstr "No do Domaine:"
 
-#: mini-utils/guname/info.c:54
-msgid "Total Memory:"
-msgstr "Memwere å totå:"
+#~ msgid "User Name:"
+#~ msgstr "No di l' ûzeu:"
 
-#: mini-utils/guname/info.c:55
-msgid "Free Memory:"
-msgstr "Memwere libe:"
+#~ msgid "X Display Name:"
+#~ msgstr "No do Håynaedje X:"
 
-#: mini-utils/guname/info.c:60
-msgid "Device"
-msgstr "Éndjin"
+#~ msgid "Real Memory:"
+#~ msgstr "Memwere vreye:"
 
-#: mini-utils/guname/info.c:61
-msgid "Size"
-msgstr "Grandeu"
+#~ msgid "Total Memory:"
+#~ msgstr "Memwere å totå:"
 
-#: mini-utils/guname/info.c:62
-msgid "Used space"
-msgstr ""
+#~ msgid "Free Memory:"
+#~ msgstr "Memwere libe:"
 
-#: mini-utils/guname/info.c:63
-msgid "Free space"
-msgstr ""
+#~ msgid "Device"
+#~ msgstr "Éndjin"
 
-#: mini-utils/guname/info.c:64
-msgid "Percent free"
-msgstr "Å cints di libe"
-
-#: mini-utils/guname/info.c:65
-msgid "Mount point"
-msgstr "Pont di montaedje"
-
-#. This is about the only case where we'll put Unknown instead
-#. of simply not showing the info.
-#: mini-utils/guname/info.c:207 mini-utils/idetool/idetool.c:26
-msgid "Unknown"
-msgstr "Nén cnoxhu"
-
-#: mini-utils/guname/moreinfo.c:82
-msgid "Unknown filesystem"
-msgstr "Sistinme di fitchîs nén cnoxhu"
-
-#: mini-utils/guname/moreinfo.c:104
-msgid "No information for this filesystem."
-msgstr "Nole informåcion po ci sistinme di fitchî chal."
-
-#: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "Kilo-octets"
-
-#: mini-utils/guname/moreinfo.c:161
-msgid "Memory"
-msgstr "Memwere"
-
-#: mini-utils/guname/moreinfo.c:186
-msgid "%ld%% memory used."
-msgstr "%ld%% di memwere eployieye."
-
-#: mini-utils/guname/moreinfo.c:197
-msgid "%ld%% swap used."
-msgstr ""
+#~ msgid "Size"
+#~ msgstr "Grandeu"
 
-#: mini-utils/guname/moreinfo.c:222
-#, c-format
-msgid "CPU %d"
-msgstr "CPU %d"
+#~ msgid "Percent free"
+#~ msgstr "Å cints di libe"
 
-#: mini-utils/guname/moreinfo.c:276
-msgid "Detailed System Information"
-msgstr ""
+#~ msgid "Mount point"
+#~ msgstr "Pont di montaedje"
 
-#: mini-utils/guname/moreinfo.c:289
-msgid "Disk Information"
-msgstr "Informåcion sol Deure Plake"
-
-#: mini-utils/guname/moreinfo.c:291
-msgid "Memory Information"
-msgstr "Informåcion sol Memwere"
-
-#: mini-utils/guname/moreinfo.c:294
-msgid "CPU Information"
-msgstr "Informåcion sol Processeu"
-
-#: mini-utils/guname/moreinfo.c:326
-msgid "Mount Point: "
-msgstr "Pont di Montaedje: "
-
-#: mini-utils/guname/moreinfo.c:327
-msgid "    Device: "
-msgstr "    Éndjin: "
-
-#: mini-utils/guname/moreinfo.c:328
-msgid "    Filesystem Type: "
-msgstr "    Sôrte di Sistinme di Fitchîs: "
-
-#: mini-utils/guname/moreinfo.c:341
-#, c-format
-msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-msgstr "%ld megaoctets, %ld libe (%ld maisse ûzeu); %ld inodes, %ld libe."
-
-#: mini-utils/guname/moreinfo.c:353
-msgid "%2d%% full "
-msgstr "Plin a %2d%%"
-
-#: mini-utils/gw/gw.c:141
-msgid ""
-"Couldn't find the \"w\" command in your path.\n"
-"This command is needed for the program to work."
-msgstr ""
+#~ msgid "Unknown"
+#~ msgstr "Nén cnoxhu"
 
-#: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "Scrire l' informåcion èl plake"
+#~ msgid "Unknown filesystem"
+#~ msgstr "Sistinme di fitchîs nén cnoxhu"
 
-#: mini-utils/gw/gw.c:174
-msgid "_Save..."
-msgstr "_Schaper..."
+#~ msgid "No information for this filesystem."
+#~ msgstr "Nole informåcion po ci sistinme di fitchî chal."
 
-#: mini-utils/gw/gw.c:202
-msgid "Active User Listing"
-msgstr ""
+#~ msgid "Kilobytes"
+#~ msgstr "Kilo-octets"
 
-#: mini-utils/gw/gw.c:219
-msgid "Update Information"
-msgstr "Mete a djo^l' informåcion"
-
-#: mini-utils/gw/gw.c:466
-msgid "Save not implemented yet\n"
-msgstr "Schaper n' overe nén co\n"
-
-#: mini-utils/gw/gw.c:479
-msgid "Command Line"
-msgstr "Roye di comande"
-
-#. Create everything.
-#: mini-utils/gw/gw.c:487
-msgid "Add some defaults"
-msgstr "Radjouter sacwantès prémetuwes"
-
-#: mini-utils/gw/gw.c:489
-msgid "Delete"
-msgstr "Disfacer"
-
-#: mini-utils/gw/gw.c:507
-msgid "Command Editor"
-msgstr "Aspougneu di Comandes"
-
-#: mini-utils/gw/gw.c:517
-msgid ""
-"You can configure the commands on the popup menus.\n"
-"Just enter the name you want to appear on the \n"
-"menu, and the command to execute.\n"
-"In the command, you can use %u to represent the\n"
-"currently selected username, and %t for the tty."
-msgstr ""
+#~ msgid "Memory"
+#~ msgstr "Memwere"
 
-#: mini-utils/gw/gw.c:524
-msgid ""
-"Click this button to add\n"
-"some sample commands."
-msgstr ""
+#~ msgid "%ld%% memory used."
+#~ msgstr "%ld%% di memwere eployieye."
 
-#: mini-utils/gw/gw.c:532
-msgid "Menu items"
-msgstr ""
+#~ msgid "CPU %d"
+#~ msgstr "CPU %d"
 
-#: mini-utils/gw/gw.c:560
-msgid "Command"
-msgstr "Comande"
+#~ msgid "Disk Information"
+#~ msgstr "Informåcion sol Deure Plake"
 
-#: mini-utils/gw/gw.c:947
-#, c-format
-msgid "Running: %s\n"
-msgstr ""
+#~ msgid "Memory Information"
+#~ msgstr "Informåcion sol Memwere"
 
-#: mini-utils/idetool/idetool.c:20
-msgid "16-bit"
-msgstr "16-bit"
+#~ msgid "CPU Information"
+#~ msgstr "Informåcion sol Processeu"
 
-#: mini-utils/idetool/idetool.c:21
-msgid "32-bit"
-msgstr "32-bit"
+#~ msgid "Mount Point: "
+#~ msgstr "Pont di Montaedje: "
 
-#: mini-utils/idetool/idetool.c:22
-msgid "32-bit w/sync"
-msgstr "32-bit avou sync"
+#~ msgid "    Device: "
+#~ msgstr "    Éndjin: "
 
-#: mini-utils/idetool/idetool.c:27
-msgid "Sleeping"
-msgstr "Doirmant"
+#~ msgid "    Filesystem Type: "
+#~ msgstr "    Sôrte di Sistinme di Fitchîs: "
 
-#: mini-utils/idetool/idetool.c:28
-msgid "Active/Idle"
-msgstr ""
+#~ msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
+#~ msgstr "%ld megaoctets, %ld libe (%ld maisse ûzeu); %ld inodes, %ld libe."
 
-#: mini-utils/idetool/idetool.c:29
-msgid "Standby"
-msgstr ""
+#~ msgid "%2d%% full "
+#~ msgstr "Plin a %2d%%"
 
-#: mini-utils/idetool/idetool.c:42
-msgid "Unable to access the drive."
-msgstr ""
+#~ msgid "Write information to disk"
+#~ msgstr "Scrire l' informåcion èl plake"
 
-#: mini-utils/idetool/idetool.c:59 mini-utils/idetool/idetool.c:71
-msgid "The DMA setting for this drive cannot be changed."
-msgstr "Les apontiaedjes DMA po ci mineu chal ni polèt nén esse candjis."
+#~ msgid "_Save..."
+#~ msgstr "_Schaper..."
 
-#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
-#: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr ""
+#~ msgid "Update Information"
+#~ msgstr "Mete a djo^l' informåcion"
 
-#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
-#: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr ""
+#~ msgid "Save not implemented yet\n"
+#~ msgstr "Schaper n' overe nén co\n"
 
-#: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
-msgid "The IRQ unmask setting for this drive cannot be changed."
-msgstr ""
+#~ msgid "Command Line"
+#~ msgstr "Roye di comande"
 
-#: mini-utils/idetool/idetool.c:122 mini-utils/idetool/idetool.c:134
-msgid "The drive refused to keep its settings."
-msgstr ""
+#~ msgid "Add some defaults"
+#~ msgstr "Radjouter sacwantès prémetuwes"
 
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
-msgid "Keep settings"
-msgstr "Wårder les apontiaedjes"
+#~ msgid "Delete"
+#~ msgstr "Disfacer"
 
-#: mini-utils/idetool/idetool.c:207
-msgid "None"
-msgstr "Nole"
+#~ msgid "Command Editor"
+#~ msgstr "Aspougneu di Comandes"
 
-#: mini-utils/idetool/idetool.c:211
-msgid "(1 Sector)"
-msgstr "(1 secteu)"
+#~ msgid "Command"
+#~ msgstr "Comande"
 
-#: mini-utils/idetool/idetool.c:213
-msgid "(Dual Port)"
-msgstr ""
+#~ msgid "16-bit"
+#~ msgstr "16-bit"
 
-#: mini-utils/idetool/idetool.c:215
-msgid "(Dual Port Cache)"
-msgstr ""
+#~ msgid "32-bit"
+#~ msgstr "32-bit"
 
-#: mini-utils/idetool/idetool.c:243
-msgid "No"
-msgstr "Neni"
-
-#: mini-utils/idetool/idetool.c:245
-#, c-format
-msgid "Yes (%d sector)"
-msgstr "Oyi (%d secteu)"
-
-#: mini-utils/idetool/idetool.c:247
-#, c-format
-msgid "Yes (%d sectors)"
-msgstr "Oyi (%d secteus)"
-
-#: mini-utils/idetool/idetool.c:310 mini-utils/idetool/idetool.c:320
-msgid "Model"
-msgstr ""
+#~ msgid "32-bit w/sync"
+#~ msgstr "32-bit avou sync"
 
-#: mini-utils/idetool/idetool.c:311
-msgid "Firmware"
-msgstr ""
+#~ msgid "Sleeping"
+#~ msgstr "Doirmant"
 
-#: mini-utils/idetool/idetool.c:312
-msgid "Serial No."
-msgstr "Lº di série"
+#~ msgid "The DMA setting for this drive cannot be changed."
+#~ msgstr "Les apontiaedjes DMA po ci mineu chal ni polèt nén esse candjis."
 
-#. do config here
-#: mini-utils/idetool/idetool.c:314
-msgid "Geometry"
-msgstr "Djeometreye"
+#~ msgid "Keep settings"
+#~ msgstr "Wårder les apontiaedjes"
 
-#: mini-utils/idetool/idetool.c:315
-msgid "Cache"
-msgstr "Muchete"
+#~ msgid "None"
+#~ msgstr "Nole"
 
-#: mini-utils/idetool/idetool.c:316
-msgid "Status"
-msgstr ""
+#~ msgid "(1 Sector)"
+#~ msgstr "(1 secteu)"
 
-#: mini-utils/idetool/idetool.c:320
-msgid "Legacy MFM/RLL drive"
-msgstr "Vîlè plake MFM/RLL"
+#~ msgid "No"
+#~ msgstr "Neni"
 
-#: mini-utils/idetool/idetool.c:323
-msgid "DMA Mode"
-msgstr "Môde DMA"
+#~ msgid "Yes (%d sector)"
+#~ msgstr "Oyi (%d secteu)"
 
-#: mini-utils/idetool/idetool.c:324
-msgid "IO Mode"
-msgstr "Môde I/R"
+#~ msgid "Yes (%d sectors)"
+#~ msgstr "Oyi (%d secteus)"
 
-#: mini-utils/idetool/idetool.c:325
-msgid "IRQ Unmask"
-msgstr ""
+#~ msgid "Serial No."
+#~ msgstr "Lº di série"
 
-#: mini-utils/idetool/idetool.c:326
-msgid "Multisector"
-msgstr ""
+#~ msgid "Geometry"
+#~ msgstr "Djeometreye"
 
-#: mini-utils/idetool/idetool.c:327
-msgid "On Reset"
-msgstr ""
+#~ msgid "Cache"
+#~ msgstr "Muchete"
 
-#.
-#. *	Set up the outer display first
-#.
-#: mini-utils/idetool/idetool.c:353
-msgid "IDE Status"
-msgstr ""
+#~ msgid "Legacy MFM/RLL drive"
+#~ msgstr "Vîlè plake MFM/RLL"
 
-#: mini-utils/idetool/idetool.c:366
-msgid "Disk Logo Not Found"
-msgstr ""
+#~ msgid "DMA Mode"
+#~ msgstr "Môde DMA"
 
-#: mini-utils/idetool/idetool.c:417
-msgid "Only the superuser can use this tool"
-msgstr "Seulmint li super ûzeu pout eployi ciste usteye chal"
+#~ msgid "IO Mode"
+#~ msgstr "Môde I/R"
 
-#: mini-utils/idetool/idetool.c:428
-msgid "You appear to have no IDE drives"
-msgstr ""
+#~ msgid "Only the superuser can use this tool"
+#~ msgstr "Seulmint li super ûzeu pout eployi ciste usteye chal"

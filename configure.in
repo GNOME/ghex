@@ -1,0 +1,42 @@
+AC_INIT(ghex.desktop)
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(ghex, 1.1.0)
+
+AM_MAINTAINER_MODE
+
+AM_ACLOCAL_INCLUDE(macros)
+
+GNOME_INIT()
+
+AC_ISC_POSIX
+AC_PROG_CC
+dnl AC_PROG_CPP
+AC_STDC_HEADERS
+dnl AC_ARG_PROGRAM
+dnl AM_PROG_LIBTOOL
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+GNOME_COMPILE_WARNINGS
+
+GNOME_X_CHECKS
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+ALL_LINGUAS="ca cs da de el en_GB es et fi fr ga hu it ja ko no pl pt pt_BR ru sv uk wa zh_TW.Big5 zh_CN.GB2312"
+AM_GNOME_GETTEXT
+
+AC_SUBST(CFLAGS)
+AC_SUBST(CPPFLAGS)
+AC_SUBST(LDFLAGS)
+
+AC_OUTPUT([
+Makefile
+po/Makefile.in
+intl/Makefile
+macros/Makefile
+src/Makefile
+help/Makefile
+help/C/Makefile
+help/es/Makefile
+help/sv/Makefile])

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-util-1.0.1\n"
-"POT-Creation-Date: 2000-01-03 19:30-0400\n"
+"POT-Creation-Date: 2000-03-07 21:58+0100\n"
 "PO-Revision-Date: 2000-01-03 19:30-0400\n"
 "Last-Translator: Sergey Panov <sipan@mit.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -14,210 +14,189 @@ msgstr ""
 "Content-Type: text/plain; charset=KOI8-r\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: gcalc/gcalc.c:30
-msgid "The Gnome Calculator"
-msgstr "Калькулятор Gnome"
-
-#: gcalc/gcalc.c:33
-msgid "Simple double precision calculator similiar to xcalc"
-msgstr "Простой калькулятор с двойной точностью наподобие xcalc"
-
-#: gcalc/gcalc.c:124
-msgid "Gnome Calculator"
-msgstr "Калькулятор Gnome"
-
-#: gdiskfree/df.c:212
-msgid ""
-"A quick hack to show the amount of space free on mounted file systems "
-"uitilizing a dial."
-msgstr ""
-"Это быстрый хак показывающий размер свободного пространства на "
-"подсоединенной файловой системе, с использованием циферблата"
-
-#: ghex/converter.c:41
+#: src/converter.c:44
 msgid "GHex: Converter"
 msgstr "GHex: Преобразователь"
 
-#: ghex/converter.c:50
+#: src/chartable.c:72 src/converter.c:53
 msgid "Binary"
 msgstr "Двоичный"
 
-#: ghex/converter.c:60 ghex/preferences.c:110
+#: src/chartable.c:71 src/converter.c:63 src/preferences.c:113
 msgid "Decimal"
 msgstr "Десятичный"
 
-#: ghex/converter.c:70
+#: src/chartable.c:71 src/converter.c:73
 msgid "Hex"
 msgstr "Шестнадц."
 
-#: ghex/converter.c:80
+#: src/chartable.c:71 src/converter.c:83
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ghex/converter.c:90
+#: src/converter.c:93
 msgid "Get cursor value"
 msgstr "Задать положение курсора"
 
-#: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:596
+#: src/converter.c:99
 msgid "Close"
 msgstr "Закрыть"
 
-#: ghex/converter.c:189
+#: src/converter.c:194
 msgid "ERROR"
 msgstr "ОШИБКА"
 
-#: ghex/findreplace.c:51 ghex/main.c:83
+#: src/findreplace.c:58 src/main.c:96
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): поиск данных"
 
-#: ghex/findreplace.c:60
+#: src/findreplace.c:67
 #, c-format
 msgid "Search for %s"
 msgstr "Поиск %s"
 
-#: ghex/findreplace.c:76
+#: src/findreplace.c:83
 msgid "Find Next"
 msgstr "Найти следующее"
 
-#: ghex/findreplace.c:83
+#: src/findreplace.c:90
 msgid "Find Previous"
 msgstr "Найти предыдущее"
 
-#: ghex/findreplace.c:111 ghex/main.c:84
+#: src/findreplace.c:124 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): найти и заменить данные"
 
-#: ghex/findreplace.c:125
+#: src/findreplace.c:138
 #, c-format
 msgid "Replace %s"
 msgstr "Заменить %s"
 
-#: ghex/findreplace.c:141
+#: src/findreplace.c:154
 msgid "Find next"
 msgstr "Найти следующее"
 
-#: ghex/findreplace.c:148
+#: src/findreplace.c:161
 msgid "Replace"
 msgstr "Заменить"
 
-#: ghex/findreplace.c:155
+#: src/findreplace.c:168
 msgid "Replace All"
 msgstr "Заменить все"
 
-#: ghex/findreplace.c:179 ghex/main.c:85
+#: src/findreplace.c:199 src/main.c:100
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): перескочить к байту"
 
-#: ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
+#: src/findreplace.c:286 src/findreplace.c:310 src/findreplace.c:365
 msgid "There is no active buffer to search!"
 msgstr "Нет действующих буферов для поиска!"
 
-#: ghex/findreplace.c:268 ghex/findreplace.c:291 ghex/findreplace.c:344
+#: src/findreplace.c:294 src/findreplace.c:318 src/findreplace.c:373
 msgid "There seems to be no string to search for!"
 msgstr "Это означает, что нет строки для поиска!"
 
-#: ghex/findreplace.c:274 ghex/findreplace.c:351
+#: src/findreplace.c:300 src/findreplace.c:380
 msgid "End Of File reached"
 msgstr "Достигнут конец файла"
 
-#: ghex/findreplace.c:298
+#: src/findreplace.c:325
 msgid "Beginning Of File reached"
 msgstr "Достигнуто начало файла"
 
-#: ghex/findreplace.c:306
+#: src/findreplace.c:334
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Нет действующих буферов для перемещения курсора!"
 
-#: ghex/findreplace.c:311
+#: src/findreplace.c:339
 msgid "No offset has been specified!"
 msgstr "Не было указано смещение!"
 
-#: ghex/findreplace.c:318
+#: src/findreplace.c:346
 msgid "The offset must be a positive integer value!"
 msgstr "Смещение должно быть положительным целым числом!"
 
-#: ghex/findreplace.c:323
+#: src/findreplace.c:351
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Невозможно установить курсор дальше конца файла!"
 
-#: ghex/findreplace.c:361 ghex/findreplace.c:400
+#: src/findreplace.c:391 src/findreplace.c:431
 msgid "There is no active buffer to replace data in!"
 msgstr "Нет действующих буферов для замены данных!"
 
-#: ghex/findreplace.c:372 ghex/findreplace.c:411
+#: src/findreplace.c:402 src/findreplace.c:442
 msgid "Strange find or replace string!"
 msgstr "Странная строка для поиска или замены!"
 
-#: ghex/findreplace.c:377 ghex/findreplace.c:416
+#: src/findreplace.c:407 src/findreplace.c:447
 msgid "Both strings must be of the same length!"
 msgstr "Обе строки должны быть одинаковой длины!"
 
-#: ghex/findreplace.c:390
+#: src/findreplace.c:420
 msgid "End Of File reached!"
 msgstr "Достигнут конец файла!"
 
-#: ghex/findreplace.c:431
+#: src/findreplace.c:462
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Заменено %d вхождений."
 
-#: ghex/hex-document.c:59
+#: src/hex-document.c:59
 msgid "_Bytes"
 msgstr "Байты"
 
-#: ghex/hex-document.c:60
+#: src/hex-document.c:60
 msgid "Group data by 8 bits"
 msgstr "Группировать данные по 8 бит"
 
-#: ghex/hex-document.c:61
+#: src/hex-document.c:61
 msgid "_Words"
 msgstr "Слова"
 
-#: ghex/hex-document.c:62
+#: src/hex-document.c:62
 msgid "Group data by 16 bits"
 msgstr "Группировать данные по 16 бит"
 
-#: ghex/hex-document.c:63
+#: src/hex-document.c:63
 msgid "_Longwords"
 msgstr "Двойные слова"
 
-#: ghex/hex-document.c:64
+#: src/hex-document.c:64
 msgid "Group data by 32 bits"
 msgstr "Группировать данные по 32 бита"
 
-#: ghex/hex-document.c:80
+#: src/hex-document.c:80
 msgid "_Goto Byte..."
 msgstr "Перейти к байту..."
 
-#: ghex/hex-document.c:80
+#: src/hex-document.c:80
 msgid "Jump to a certain position"
 msgstr "Перескочить в указанную позицию"
 
-#: ghex/hex-document.c:83
+#: src/hex-document.c:83
 msgid "_Group Data As"
 msgstr "Группировать данные как..."
 
-#: ghex/hex-document.c:88
+#: src/hex-document.c:88
 msgid "_Add view"
 msgstr "Добавить окно просмотра"
 
-#: ghex/hex-document.c:89
+#: src/hex-document.c:89
 msgid "Add a new view of the buffer"
 msgstr "Добавить новое окно просмотра буфера"
 
-#: ghex/hex-document.c:90
+#: src/hex-document.c:90
 msgid "_Remove view"
 msgstr "Удалить окно просмотра"
 
-#: ghex/hex-document.c:91
+#: src/hex-document.c:91
 msgid "Remove the current view of the buffer"
 msgstr "Удалить текущее окно просмотра буфера"
 
-#: ghex/main.c:51
+#: src/main.c:51
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -226,1835 +205,1454 @@ msgstr ""
 "Файл %s был изменен со времени последнего сохранения.\n"
 "Сохранить изменения?"
 
-#: ghex/main.c:170
+#: src/main.c:185
 #, c-format
 msgid "Offset: %s"
 msgstr "Отступ: %s"
 
-#: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
+#: src/preferences.c:50
 msgid "Default"
 msgstr "По умолчанию"
 
-#: ghex/preferences.c:51
+#: src/preferences.c:51
 msgid "Notebook"
 msgstr "Блокнот"
 
-#: ghex/preferences.c:52
+#: src/preferences.c:52
 msgid "Toplevel"
 msgstr "Верхний уровень"
 
-#: ghex/preferences.c:53
+#: src/preferences.c:53
 msgid "Modal"
 msgstr "Модальный"
 
-#: ghex/preferences.c:82
+#: src/preferences.c:85
 msgid "Maximum number of undo levels"
 msgstr "Максимальное число уровней отмены"
 
-#: ghex/preferences.c:96
+#: src/preferences.c:99
 msgid "Show cursor offset in statusbar as"
 msgstr "Формат позиции указателя в панели состояния"
 
-#: ghex/preferences.c:115
+#: src/preferences.c:118
 msgid "Hexadecimal"
 msgstr "Шестнадцатиричный"
 
-#: ghex/preferences.c:121
+#: src/preferences.c:124
 msgid "Custom"
 msgstr "Нестандартный"
 
-#: ghex/preferences.c:131
+#: src/preferences.c:134
 msgid "Show offsets column"
 msgstr "Колонка отступов"
 
-#: ghex/preferences.c:136
+#: src/preferences.c:139
 msgid "Editing"
 msgstr "Редактирование"
 
-#: ghex/preferences.c:143
+#: src/preferences.c:146
 msgid "Font"
 msgstr "Шрифт"
 
-#: ghex/preferences.c:159
+#: src/preferences.c:162
 msgid "Browse..."
 msgstr "Просмотр..."
 
-#: ghex/preferences.c:178
+#: src/preferences.c:181
 msgid "Default Group Type"
 msgstr "Тип группирования по умолчанию"
 
-#: ghex/preferences.c:194 gtt/options.c:186
+#: src/preferences.c:197
 msgid "Display"
 msgstr "Представление"
 
-#: ghex/preferences.c:201
+#: src/preferences.c:204
 msgid "MDI Mode"
 msgstr "Режим MDI"
 
-#: ghex/preferences.c:218
+#: src/preferences.c:221
 msgid "MDI"
 msgstr "MDI"
 
-#: ghex/preferences.c:365
+#: src/preferences.c:354
+msgid ""
+"The offset format string contains format specifier other than 'x', 'd' or "
+"'o'!"
+msgstr ""
+
+#: src/preferences.c:390
 msgid "Can not open desired font!"
 msgstr "Не удалось загрузить желаемый шрифт!"
 
-#: ghex/ui.c:51
-msgid "Open Con_verter..."
+#: src/ui.c:53
+msgid "Export as HTML..."
+msgstr ""
+
+#: src/ui.c:53
+msgid "Export data to HTML source"
+msgstr ""
+
+#: src/ui.c:67
+#, fuzzy
+msgid "Con_verter..."
 msgstr "Открыть преобразователь..."
 
-#: ghex/ui.c:52
+#: src/ui.c:68
 msgid "Open base conversion dialog"
 msgstr "Открыть основной диалог преобразования"
 
-#: ghex/ui.c:89
+#: src/ui.c:69
+msgid "Character Table..."
+msgstr ""
+
+#: src/ui.c:70
+msgid "Show the character table"
+msgstr ""
+
+#: src/ui.c:87
+#, fuzzy
+msgid "Tools"
+msgstr "Панель инструментов"
+
+#: src/ui.c:101
 msgid "Bytes"
 msgstr "Байты"
 
-#: ghex/ui.c:90
+#: src/ui.c:102
 msgid "Words"
 msgstr "Слова"
 
-#: ghex/ui.c:91
+#: src/ui.c:103
 msgid "Longwords"
 msgstr "Двойные слова"
 
-#: ghex/ui.c:96
+#: src/ui.c:108
 msgid "hex data"
 msgstr "шестнадцатиричные данные"
 
-#: ghex/ui.c:97
+#: src/ui.c:109
 msgid "ASCII data"
 msgstr "ASCII-данные"
 
-#: ghex/ui.c:175
+#: src/ui.c:192
 msgid "GHex, a binary file editor"
 msgstr "GHex, редактор двоичных файлов"
 
-#: ghex/ui.c:177
+#: src/ui.c:194
 msgid "Released under the terms of GNU Public License"
 msgstr "Распространяется на условиях GNU Public License"
 
-#: ghex/ui.c:194 ghex/ui.c:345
+#: src/ui.c:218 src/ui.c:453
 msgid "Error saving file!"
 msgstr "Ошибка сохранения файла!"
 
-#: ghex/ui.c:198 ghex/ui.c:340
+#: src/ui.c:222 src/ui.c:448
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Сохранить буфер в файле %s"
 
-#: ghex/ui.c:207
+#: src/ui.c:236
 msgid "Select a file to open"
 msgstr "Выбрать файл для открытия"
 
-#: ghex/ui.c:225
+#: src/ui.c:263
 msgid "Select a file to save buffer as"
 msgstr "Выбрать файл для сохранения буфера"
 
-#: ghex/ui.c:273
+#: src/ui.c:285
+msgid "Select path and file name HTML source to"
+msgstr ""
+
+#: src/ui.c:382
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Действительно вернуть файл %s?"
 
-#: ghex/ui.c:286
+#: src/ui.c:395
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Восстановленный буфер из файла %s"
 
-#: ghex/ui.c:301
+#: src/ui.c:411
 #, c-format
 msgid "Loaded file %s"
 msgstr "Загрузка файла %s"
 
-#: ghex/ui.c:306
+#: src/ui.c:416
 msgid "Can not open file!"
 msgstr "Не удалось открыть файл!"
 
-#: ghex/ui.c:349
+#: src/ui.c:457
 msgid "Can't open file for writing!"
 msgstr "Не удалось открыть файл для записи!"
 
-#: gsearchtool/gsearchtool.c:25
-msgid "File name"
-msgstr "Имя файла"
-
-#: gsearchtool/gsearchtool.c:27
-msgid "Don't search subdirectories"
-msgstr "Не искать в подкаталогах"
-
-#: gsearchtool/gsearchtool.c:28
-msgid "File owner"
-msgstr "Владелец файла"
-
-#: gsearchtool/gsearchtool.c:29
-msgid "File owner group"
-msgstr "Группа владельцев файла"
-
-#: gsearchtool/gsearchtool.c:30
-msgid "Last modification time"
-msgstr "Время последнего изменения"
-
-#: gsearchtool/gsearchtool.c:32
-msgid "Don't search mounted filesystems"
-msgstr "Не искать на присоединенных файловых системах"
-
-#: gsearchtool/gsearchtool.c:34
-msgid "Empty file"
-msgstr "Пустой файл"
-
-#: gsearchtool/gsearchtool.c:36
-msgid "Invalid user or group"
-msgstr "Несуществующий пользователь или группа"
-
-#: gsearchtool/gsearchtool.c:37
-msgid "Filenames except"
-msgstr "Исключить файлы"
-
-#: gsearchtool/gsearchtool.c:39
-msgid "Follow symbolic links"
-msgstr "Включая символические ссылки"
-
-#: gsearchtool/gsearchtool.c:40
-msgid "Simple substring search"
-msgstr "Поиск простой подстроки"
-
-#: gsearchtool/gsearchtool.c:41
-msgid "Regular expression search"
-msgstr "Поиск регулярного выражения"
-
-#: gsearchtool/gsearchtool.c:43
-msgid "Extended regular expression search"
-msgstr "Поиск расширенного регулярного выражения"
-
-#: gsearchtool/gsearchtool.c:102 gsearchtool/gsearchtool.c:158
-msgid "grep options found in find list bad bad!"
-msgstr "ключи grep из списка find"
-
-#: gsearchtool/gsearchtool.c:173
-msgid "non-grep option found in grep list, bad bad!"
-msgstr "не-grep ключи из списка grep"
-
-#. create the results box
-#. FIXME: add an option to autoclear result box and pass TRUE in that
-#. case
-#: gsearchtool/gsearchtool.c:214
-msgid "Search Results"
-msgstr "Результаты поиска"
-
-#: gsearchtool/gsearchtool.c:483
-msgid "Enable"
-msgstr "Включить"
-
-#: gsearchtool/gsearchtool.c:490
-msgid "Remove"
-msgstr "Удалить"
-
-#: gsearchtool/gsearchtool.c:542
-msgid "Start in directory:"
-msgstr "Начать с каталога:"
-
-#: gsearchtool/gsearchtool.c:560 mini-utils/gw/gw.c:488
-msgid "Add"
-msgstr "Добавить"
-
-#: gsearchtool/gsearchtool.c:571
-msgid "Start"
-msgstr "Старт"
-
-#: gsearchtool/gsearchtool.c:572
-msgid "Stop"
-msgstr "Стоп"
-
-#: gsearchtool/gsearchtool.c:590
-msgid "This is not yet implemented"
-msgstr "Это пока не реализовано"
-
-#: gsearchtool/gsearchtool.c:603
-msgid "Full find (find)"
-msgstr "Полный поиск (find)"
-
-#: gsearchtool/gsearchtool.c:606
-msgid "Quick find (locate)"
-msgstr "Быстрый поиск (locate)"
-
-#: gsearchtool/gsearchtool.c:621
-msgid "The Gnome Search Tool"
-msgstr "Искатель Gnome"
-
-#: gsearchtool/gsearchtool.c:622
-msgid "(C) 1998 the Free Software Foundation"
-msgstr "(C) 1998 the Free Software Foundation"
-
-#: gsearchtool/gsearchtool.c:624
-msgid "Frontend to the unix find/grep/locate commands"
-msgstr "Оболочка для UNIX-команд find/grep/locate"
-
-#: gsearchtool/gsearchtool.c:666
-msgid "Gnome Search Tool"
-msgstr "Искатель Gnome"
-
-#: gstripchart/gstripchart.c:434
-msgid "rparen expected"
-msgstr "ожидается rparen"
-
-#: gstripchart/gstripchart.c:451
-#, c-format
-msgid "no such field: %d"
-msgstr "нет такого поля: %d"
-
-#: gstripchart/gstripchart.c:479
-msgid "missing variable identifer"
-msgstr "отсутствует идентификатор переменной"
-
-#: gstripchart/gstripchart.c:481
-#, c-format
-msgid "invalid variable identifer: %s"
-msgstr "неправильный идентификатор переменной: %s"
-
-#: gstripchart/gstripchart.c:485
-msgid "number expected"
-msgstr "ожидается число"
-
-#: gstripchart/gstripchart.c:563
-#, c-format
-msgid "extra gunk at end: \"%s\""
-msgstr "дополнительный кусок в конце: \"%s\""
-
-#: gstripchart/gstripchart.c:645
-#, c-format
-msgid "%s, line %d: "
-msgstr "%s, строка %d: "
-
-#: gstripchart/gstripchart.c:726
-#, c-format
-msgid "can't open config file \"%s\""
-msgstr "не удалось открыть конфигурационный файл \"%s\""
-
-#: gstripchart/gstripchart.c:753
-#, c-format
-msgid ""
-"can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-msgstr ""
-"не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", "
-"\"%s\", or \"%s\""
-
-#: gstripchart/gstripchart.c:758
-#, c-format
-msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr ""
-"не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", or "
-"\"%s\""
-
-#: gstripchart/gstripchart.c:836
-msgid "identifier or begin must be first"
-msgstr "в начале должен быть идентификатор или begin"
-
-#: gstripchart/gstripchart.c:844 gstripchart/gstripchart.c:861
-#, c-format
-msgid "unrecognized color: %s"
-msgstr "нераспознаваемый цвет: %s"
-
-#: gstripchart/gstripchart.c:876
-msgid "scale must be either \"log\" or \"linear\""
-msgstr "шкала должна быть \"log\" или \"linear\""
-
-#: gstripchart/gstripchart.c:891
-msgid "no equation found"
-msgstr "упавнение не найдено"
-
-#: gstripchart/gstripchart.c:908
-#, c-format
-msgid "invalid option: \"%s\""
-msgstr "неправильный ключ: \"%s\""
-
-#: gstripchart/gstripchart.c:1471
-msgid "E_xit"
-msgstr "Выход"
-
-#: gstripchart/gstripchart.c:1471
-msgid "Terminate the stripchart program"
-msgstr "Прервать самописец"
-
-#: gstripchart/gstripchart.c:1487
-msgid "Copyright 1998,99 John Kodis"
-msgstr "Авторское право 1998,99 John Kodis"
-
-#: gstripchart/gstripchart.c:1489
-msgid ""
-"The GNOME stripchart program plots various user-specified parameters as a "
-"function of time.  Its main use is to chart system performance parameters "
-"such as CPU load, CPU utilization, network traffic levels, and the like.  "
-"Other more ingenious uses are left as an exercise for the interested user."
-msgstr ""
-"GNOME самописец записывает различные заданные пользователем параметры как "
-"функцию времени. Его основное назначение это запись системных параметров, "
-"таких как нагрузка CPU, утилизация CPU, сетевая нагрузка, и т.д.. Другие "
-"применения оставлены в качестве упражнения для заинтересованного "
-"пользователя."
-
-#: gstripchart/gstripchart.c:1502
-msgid "_About"
-msgstr "О программе"
-
-#: gstripchart/gstripchart.c:1502
-msgid "Info about the striphart program"
-msgstr "Информация о самописце"
-
-#: gstripchart/gstripchart.c:1513
-msgid "_File"
-msgstr "Файл"
-
-#: gstripchart/gstripchart.c:1514
-msgid "_Help"
-msgstr "Помощь"
-
-#: gstripchart/gstripchart.c:1578 gstripchart/gstripchart.c:1716
-msgid "Param"
-msgstr "Парам"
-
-#: gstripchart/gstripchart.c:1578 mini-utils/gcolorsel/gcolorsel.c:156
-#: mini-utils/guname/moreinfo.c:227
-msgid "Value"
-msgstr "Значение"
-
-#: gstripchart/gstripchart.c:1582
-msgid "Identifier"
-msgstr "Идентификатор"
-
-#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/gcolorsel.c:155
-msgid "Color"
-msgstr "Цвет"
-
-#: gstripchart/gstripchart.c:1586
-msgid "Filename"
-msgstr "Имя файла"
-
-#: gstripchart/gstripchart.c:1588
-msgid "Pattern"
-msgstr "Тип"
-
-#: gstripchart/gstripchart.c:1590
-msgid "Equation"
-msgstr "Уравнение"
-
-#: gstripchart/gstripchart.c:1592
-msgid "Expected range"
-msgstr "Ожидаемый диапазон"
-
-#: gstripchart/gstripchart.c:1596
-msgid "Displayed range"
-msgstr "Используемый диапазон"
-
-#: gstripchart/gstripchart.c:1600
-msgid "Current value"
-msgstr "Текущее значение"
-
-#: gstripchart/gstripchart.c:1607
-msgid "Active"
-msgstr "Задействован"
-
-#: gstripchart/gstripchart.c:1623
-msgid "Stripchart Parameters"
-msgstr "Параметры самописца"
-
-#: gstripchart/gstripchart.c:1717
-msgid "Current"
-msgstr "Текущее"
-
-#: gstripchart/gstripchart.c:1718
-msgid "Top"
-msgstr "Верхнее"
-
-#: gstripchart/gstripchart.c:1719
-msgid "Scale"
+#: src/chartable.c:72
+#, fuzzy
+msgid "Octal"
 msgstr "Шкала"
 
-#: gstripchart/gstripchart.c:1756 gstripchart/gstripchart.c:2035
-msgid "Help"
-msgstr "Справка"
-
-#: gstripchart/gstripchart.c:1762 gstripchart/gstripchart.c:2038
-#: mini-utils/gshutdown/gshutdown.c:318
-msgid "About"
-msgstr "О программе"
-
-#: gstripchart/gstripchart.c:1768
-msgid "Params"
-msgstr "Параметры"
-
-#: gstripchart/gstripchart.c:1774
-msgid "Exit"
-msgstr "Выход"
-
-#. Create a top-level application window. Set minimum size (_usize),
-#. initial size (_default_size), and establish delete and destroy
-#. event handlers.
-#: gstripchart/gstripchart.c:1880
-msgid "gstripchart"
-msgstr "самописец"
-
-#: gstripchart/gstripchart.c:1880
-msgid "Stripchart Viewer"
-msgstr "Самописец визуализатор"
-
-#: gstripchart/gstripchart.c:2041
-msgid "Params..."
-msgstr "Параметры..."
-
-#: gstripchart/gstripchart.c:2086
-#, c-format
-msgid "invalid display type: %s\n"
-msgstr "неправильный тип дисплея: %s\n"
-
-#: gstripchart/gstripchart.c:2111
-msgid "Geometry string: WxH+X+Y"
-msgstr "Описание геометрии: WxH+X+Y"
-
-#: gstripchart/gstripchart.c:2111
-msgid "GEO"
-msgstr "ГЕОМ"
-
-#: gstripchart/gstripchart.c:2113
-msgid "Configuration file name"
-msgstr "Имя конфигурационного файла"
-
-#: gstripchart/gstripchart.c:2113
-msgid "FILE"
-msgstr "ФАЙЛ"
-
-#: gstripchart/gstripchart.c:2115
-msgid "Chart update interval"
-msgstr "Интервал обновления диаграммы"
-
-#: gstripchart/gstripchart.c:2115 gstripchart/gstripchart.c:2117
-#: gstripchart/gstripchart.c:2119 gstripchart/gstripchart.c:2121
-msgid "SECS"
-msgstr "СЕКУНДЫ"
-
-#: gstripchart/gstripchart.c:2117
-msgid "Chart low-pass filter time constant"
-msgstr "Константа времени сглаживания диаграммы"
-
-#: gstripchart/gstripchart.c:2119
-msgid "Slider update interval"
-msgstr "Интервал обновления ползунка"
-
-#: gstripchart/gstripchart.c:2121
-msgid "Slider low-pass filter time constant"
-msgstr "Константа времени сглаживания ползунка"
-
-#: gstripchart/gstripchart.c:2123
-msgid "Adds a menubar to the main window"
-msgstr "Добавляет к главному окну панель меню"
-
-#: gstripchart/gstripchart.c:2125
-msgid "Omits slider window"
-msgstr "Пропускает окно ползунка"
-
-#: gstripchart/gstripchart.c:2128
-msgid "TYPE is one of gtk, applet, text, or none"
-msgstr "ТИП это либо gtk, applet, text или none"
-
-#: gstripchart/gstripchart.c:2128 gstripchart/gstripchart.c:2130
-msgid "TYPE"
-msgstr "ТИП"
-
-#: gstripchart/gstripchart.c:2130
-msgid "TYPE is one of gtk, text, or none"
-msgstr "ТИП это либо gtk, text или none"
-
-#: gstripchart/gstripchart.c:2281
-msgid "white"
-msgstr "белый"
-
-#: gstripchart/gstripchart.c:2281
-msgid "black"
-msgstr "черный"
-
-#: gstripchart/gstripchart.c:2281
-msgid "red"
-msgstr "красный"
-
-#: gstripchart/gstripchart.c:2281
-msgid "yellow"
-msgstr "желтый"
-
-#: gstripchart/gstripchart.c:2282
-msgid "blue"
-msgstr "голубой"
-
-#: gstripchart/gstripchart.c:2282
-msgid "green"
-msgstr "зеленый"
-
-#: gstripchart/gstripchart.c:2282
-msgid "cyan"
-msgstr "голубой"
-
-#: gstripchart/gstripchart.c:2282
-msgid "magenta"
-msgstr "фиолетовый"
-
-#: gstripchart/gstripchart.c:2283
-msgid "Busy"
-msgstr "Занятость"
-
-#: gstripchart/gstripchart.c:2283
-msgid "Load"
-msgstr "Нагрузка"
-
-#: gstripchart/gstripchart.c:2283
-msgid "Swap"
-msgstr "Подкачка"
-
-#: gstripchart/gstripchart.c:2283
-msgid "Battery"
-msgstr "Батарея"
-
-#: gstripchart/gstripchart.c:2284
-msgid "Net In"
-msgstr "Сеть, в"
-
-#: gstripchart/gstripchart.c:2284
-msgid "Net Out"
-msgstr "Сеть, из"
-
-#: gstripchart/gstripchart.c:2284
-msgid "ppp"
-msgstr "ppp"
-
-#: gtt/app.c:117 gtt/app.c:223
-msgid "no project selected"
-msgstr "проект не выбран"
-
-#: gtt/app.c:212
-msgid "00:00"
-msgstr "00:00"
-
-#: gtt/app.c:251 mini-utils/gless/gless.c:424
-msgid ""
-"Couldn't understand geometry (position and size)\n"
-" specified on command line"
-msgstr ""
-"Непонятная геометрия (позиция и размер)\n"
-"указана в командной строке"
-
-#: gtt/clist.c:169
-msgid "Total"
-msgstr "Всего"
-
-#: gtt/clist.c:170
-msgid "Today"
-msgstr "Сегодня"
-
-#: gtt/clist.c:171
-msgid "Project Title"
-msgstr "Название проекта"
-
-#: gtt/clist.c:172
-msgid "Description"
-msgstr "Описание"
-
-#: gtt/log.c:64 gtt/log.c:216
-msgid "program started"
-msgstr "программа запущена"
-
-#: gtt/log.c:82
-msgid "no description"
-msgstr "нет описания"
-
-#: gtt/log.c:208
-msgid "program exited"
-msgstr "программа завершена"
-
-#: gtt/main.c:77
-msgid ""
-"There seems to be another GTimeTracker running.\n"
-"Press OK to start GTimeTracker anyway, or press Cancel to quit."
-msgstr ""
-"Это означает, что уже запущен другой GTimeTracker.\n"
-"Нажмите \"OK\" чтобы все равно запустить его, или нажмите \"Отмена\" для "
-"выхода."
-
-#: gtt/main.c:121
-msgid "Error"
-msgstr "Ошибка"
-
-#: gtt/main.c:122
-msgid ""
-"An error occured while reading the configuration file.\n"
-"Shall I setup a new configuration?"
-msgstr ""
-"При чтении конфигурационного файла возникла ошибка.\n"
-"Установить новую конфигурацию?"
-
-#: gtt/main.c:204
-msgid "Specify geometry"
-msgstr "Указать геометрию"
-
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "ГЕОМЕТРИЯ"
-
-#: gtt/main.c:206
-msgid "Select a project on startup"
-msgstr "Выбрать проект при запуске"
-
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "ПРОЕКТ"
-
-#: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
-msgid "Warning"
-msgstr "Внимание"
-
-#: gtt/menucmd.c:32 gtt/menucmd.c:155
-msgid "I could not write the configuration file!"
-msgstr "Не удалось записать файл конфигурации!"
-
-#: gtt/menucmd.c:85 gtt/toolbar.c:146
-msgid "New Project..."
-msgstr "Новый проект..."
-
-#: gtt/menucmd.c:89
-msgid "Please enter the name of the new project:"
-msgstr "Введите название нового проекта:"
-
-#: gtt/menucmd.c:123
-msgid "I could not read the configuration file"
-msgstr "Не удалось прочесть файл конфигурации!"
-
-#: gtt/menucmd.c:137 gtt/toolbar.c:153
-msgid "Reload Configuration File"
-msgstr "Перезагрузить файл конфигурации"
-
-#: gtt/menucmd.c:138
-msgid ""
-"This will overwrite your current set of projects.\n"
-"Do you really want to reload the configuration file?"
-msgstr ""
-"Это действие перепишет все текущие установки проекта.\n"
-"Вы действительно хотите перезагрузить файл конфигурации?"
-
-#: gtt/menus.c:27
-msgid "_New Project..."
-msgstr "Новый проект..."
-
-#: gtt/menus.c:30
-msgid "_Reload Configuration File"
-msgstr "Перезагрузить файл конфигурации"
-
-#: gtt/menus.c:34
-msgid "_Save Configuration File"
-msgstr "Сохранить файл конфигурации"
-
-#: gtt/menus.c:59 gtt/menus.c:115
-msgid "Clear _Daily Counter"
-msgstr "Очистить счетчик дней"
-
-#: gtt/menus.c:71
-msgid "St_art"
-msgstr "Старт"
-
-#: gtt/menus.c:75
-msgid "Sto_p"
-msgstr "Стоп"
-
-#: gtt/menus.c:80
-msgid "_Timer Running"
-msgstr "Таймер запущен"
-
-#: gtt/menus.c:99
-msgid "_Timer"
-msgstr "Таймер"
-
-#: gtt/options.c:194
-msgid "Show Seconds"
-msgstr "Показывать секунды"
-
-#: gtt/options.c:200
-msgid "Show Status Bar"
-msgstr "Показывать строку состояния"
-
-#: gtt/options.c:206
-msgid "Show Table Header"
-msgstr "Показывать заголовок таблицы"
-
-#: gtt/options.c:220 gtt/options.c:518
-msgid "Toolbar"
-msgstr "Панель инструментов"
-
-#: gtt/options.c:228
-msgid "Show Toolbar Icons"
-msgstr "Показывать пиктограммы на панели инструментов"
-
-#: gtt/options.c:234
-msgid "Show Toolbar Texts"
-msgstr "Показывать надписи на панели инструментов"
-
-#: gtt/options.c:240
-msgid "Show Tooltips"
-msgstr "Показывать подсказки"
-
-#: gtt/options.c:246
-msgid "Toolbar Segments"
-msgstr "Элементы панели инструментов"
-
-#: gtt/options.c:254
-msgid "Show `New'"
-msgstr "Показывать `Новый'"
-
-#: gtt/options.c:260
-msgid "Show `Save', `Reload'"
-msgstr "Показывать `Сохранить', `Перезагрузить'"
-
-#: gtt/options.c:266
-msgid "Show `Cut', `Copy', `Paste'"
-msgstr "Показывать `Вырезать', `Скопировать', `Вставить'"
-
-#: gtt/options.c:272
-msgid "Show `Properties'"
-msgstr "Показывать `Свойства'"
-
-#: gtt/options.c:278
-msgid "Show `Timer'"
-msgstr "Показывать `Таймер'"
-
-#: gtt/options.c:284
-msgid "Show `Preferences'"
-msgstr "Показывать `Настройки'"
-
-#: gtt/options.c:290
-msgid "Show `Help'"
-msgstr "Показывать `Помощь'"
-
-#: gtt/options.c:296
-msgid "Show `Quit'"
-msgstr "Показывать `Выход'"
-
-#: gtt/options.c:310
-msgid "Shell Commands"
-msgstr "Команды оболочки"
-
-#: gtt/options.c:318
-msgid "Switch Project Command:"
-msgstr "Команда переключения проекта:"
-
-#: gtt/options.c:329
-msgid "No Project Command:"
-msgstr "Команда отсутствия проекта:"
-
-#: gtt/options.c:363
-msgid "Logfile"
-msgstr "Файл регистрации"
-
-#: gtt/options.c:371
-msgid "Use Logfile"
-msgstr "Использовать файл регистрации"
-
-#: gtt/options.c:380
-msgid "Filename:"
-msgstr "Имя файла:"
-
-#: gtt/options.c:394
-msgid "Entry Start:"
-msgstr "Точка старта:"
-
-#: gtt/options.c:408
-msgid "Entry Stop:"
-msgstr "Точка остановки:"
-
-#: gtt/options.c:422
-msgid "Timeout in secs:"
-msgstr "Время ожидания в секундах:"
-
-#. Fixme these should be stock buttons
-#: gtt/options.c:499 mini-utils/gshutdown/gshutdown.c:313
-msgid "Preferences"
-msgstr "Настройки"
-
-#: gtt/options.c:505
-msgid "Misc"
-msgstr "Разное"
-
-#: gtt/proj.c:461
-msgid "project %t started"
-msgstr "проект \"%t\" запущен"
-
-#: gtt/proj.c:464
-msgid "stopped project %t"
-msgstr "проект \"%t\" остановлен"
-
-#: gtt/prop.c:55
-msgid "empty"
-msgstr "пусто"
-
-#: gtt/prop.c:171
-msgid "Properties"
-msgstr "Свойства"
-
-#: gtt/prop.c:178
-msgid "Project"
-msgstr "Проект"
-
-#: gtt/prop.c:197
-msgid "Project Title:"
-msgstr "Название проекта:"
-
-#: gtt/prop.c:209
-msgid "Project Description:"
-msgstr "Описание проекта:"
-
-#: gtt/prop.c:221
-msgid "Project Time today:"
-msgstr "Время работы над проектом, сегодня:"
-
-#: gtt/prop.c:237 gtt/prop.c:275
-msgid "hours"
-msgstr "часы"
-
-#: gtt/prop.c:248 gtt/prop.c:286
-msgid "mins"
-msgstr "минуты"
-
-#: gtt/prop.c:259 gtt/prop.c:297
-msgid "secs"
-msgstr "секунды"
-
-#: gtt/prop.c:263
-msgid "Project Time ever:"
-msgstr "Время работы над проектом, полное:"
-
-#. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:145
-msgid "[GTT]New"
-msgstr "[GTT]Новый"
-
-#: gtt/toolbar.c:152
-msgid "Reload"
-msgstr "Перезагрузить"
-
-#: gtt/toolbar.c:156
-msgid "Save"
-msgstr "Сохранить"
-
-#: gtt/toolbar.c:157
-msgid "Save Configuration File"
-msgstr "Сохранить файл конфигурации"
-
-#: gtt/toolbar.c:163
-msgid "Cut"
-msgstr "Вырезать"
-
-#: gtt/toolbar.c:164
-msgid "Cut Selected Project"
-msgstr "Вырезать выбранный проект"
-
-#: gtt/toolbar.c:167
-msgid "Copy"
-msgstr "Скопировать"
-
-#: gtt/toolbar.c:168
-msgid "Copy Selected Project"
-msgstr "Скопировать выбранный проект"
-
-#: gtt/toolbar.c:171
-msgid "Paste"
-msgstr "Вставить"
-
-#: gtt/toolbar.c:172
-msgid "Paste Project"
-msgstr "Вставить проект"
-
-#: gtt/toolbar.c:178
-msgid "Props"
-msgstr "Свойства"
-
-#: gtt/toolbar.c:179
-msgid "Edit Properties..."
-msgstr "Редактировать свойства..."
-
-#: gtt/toolbar.c:183
-msgid "Timer"
-msgstr "Таймер"
-
-#: gtt/toolbar.c:184
-msgid "Start/Stop Timer"
-msgstr "Таймер Старт/Стоп"
-
-#: gtt/toolbar.c:193
-msgid "Prefs"
-msgstr "Настройки"
-
-#: gtt/toolbar.c:194
-msgid "Edit Preferences..."
-msgstr "Редактировать настройки..."
-
-#: gtt/toolbar.c:198
-msgid "Manual"
-msgstr "Руководство"
-
-#: gtt/toolbar.c:198
-msgid "Manual..."
-msgstr "Руководство..."
-
-#: gtt/toolbar.c:203
-msgid "Quit"
-msgstr "Выход"
-
-#: gtt/toolbar.c:203
-msgid "Quit GTimeTracker"
-msgstr "Выход из GTimeTracker"
-
-#: mini-utils/gcolorsel/gcolorsel.c:65 mini-utils/gcolorsel/gcolorsel.c:67
-#: mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:369
-msgid "Gnome Color Browser"
-msgstr "Демонстратор цветов Gnome"
-
-#: mini-utils/gcolorsel/gcolorsel.c:79
-msgid "Format Style:"
-msgstr "Формат:"
-
-#: mini-utils/gcolorsel/gcolorsel.c:89
-msgid "Color Name:"
-msgstr "Название цвета:"
-
-#: mini-utils/gcolorsel/gcolorsel.c:96
-msgid "Color Values:"
-msgstr "Цветовые значения:"
-
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:225
-#: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
-msgid "Name"
-msgstr "Название"
-
-#: mini-utils/gcolorsel/gcolorsel.c:234
-msgid "Error, cannot find the file 'rgb.txt' on your system!"
-msgstr "Ошибка, не удалось найти файл 'rgb.txt' на Вашей системе!"
-
-#: mini-utils/gcolorsel/gcolorsel.c:247
-msgid "Parsing Colors"
-msgstr "Синтаксический анализ описания цветов"
-
-#: mini-utils/gcolorsel/gcolorsel.c:316
-msgid "Decimal (8 bit)"
-msgstr "Десятичное (8 бит)"
-
-#: mini-utils/gcolorsel/gcolorsel.c:317
-msgid "Decimal (16 bit)"
-msgstr "Десятичное (16 бит)"
-
-#: mini-utils/gcolorsel/gcolorsel.c:318
-msgid "Hex (8 bit)"
-msgstr "Шестнадцатеричное (8 бит)"
-
-#: mini-utils/gcolorsel/gcolorsel.c:319
-msgid "Hex (16 bit)"
-msgstr "Шестнадцатеричное (16 бит)"
-
-#: mini-utils/gcolorsel/gcolorsel.c:320
-msgid "Float"
-msgstr "С плавающей точкой"
-
-#: mini-utils/gcolorsel/gcolorsel.c:373
-msgid "Small utility to browse available X11 colors."
-msgstr "Маленькая утилита для просмотра доступных X11 цветов."
-
-#: mini-utils/gfontsel/gfontsel.c:145
-msgid "Font Selector"
-msgstr "Переключатель шрифтов"
-
-#: mini-utils/gfontsel/gfontsel.c:170
-msgid "Selection:"
-msgstr "Выделение:"
-
-#: mini-utils/gfontsel/gfontsel.c:253
-msgid "Font to load"
-msgstr "Шрифт для загрузки"
-
-#: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "ШРИФТ"
-
-#: mini-utils/gfontsel/gfontsel.c:254
-msgid "Print selected font name on exit"
-msgstr "Напечатать название выделенного шрифта при выходе"
-
-#: mini-utils/gfontsel/gfontsel.c:255
-msgid "Inhibit remembering selected font for next run"
-msgstr "Отключить запоминание выделенного шрифта для следующего запуска"
-
-#: mini-utils/gfontsel/gfontsel.c:256
-msgid "Inhibit loading of last font"
-msgstr "Отключить загрузку последнего шрифта"
-
-#: mini-utils/gless/gless.c:29
-msgid "Copyright 1998, under the GNU General Public License."
-msgstr "Copyright 1998, на условиях GNU General Public License."
-
-#: mini-utils/gless/gless.c:116
-#, c-format
-msgid "Reason %d\n"
-msgstr "Причина %d\n"
-
-#: mini-utils/gless/gless.c:131
-msgid "Where to put the window, and its size"
-msgstr "Положение окна и его размер"
-
-#: mini-utils/gless/gless.c:132
-msgid "Ignore standard input; may be needed in some cases."
-msgstr ""
-"Игнорировать стандартный ввод; это может быть необходимо в некоторых случаях"
-
-#: mini-utils/gless/gless.c:294
-msgid "_New Window"
-msgstr "Новое окно"
-
-#: mini-utils/gless/gless.c:295
-msgid "New text viewer window"
-msgstr "Новое окно просмотра текста"
-
-#: mini-utils/gless/gless.c:313
-msgid "_Fixed Font"
-msgstr "Фиксированный шрифт"
-
-#: mini-utils/gless/gless.c:314
-msgid "Display text with a fixed font"
-msgstr "Показывать текст фиксированным шрифтом"
-
-#: mini-utils/gless/gless.c:352
-msgid "Text File Viewer"
-msgstr "Программа просмотра текстовых файлов"
-
-#: mini-utils/gless/gless.c:460
-msgid "Find string"
-msgstr "Поиск строки"
-
-#: mini-utils/gless/gless.c:461
-msgid "Find"
-msgstr "Поиск"
-
-#: mini-utils/gless/gless.c:498
-msgid "Loading..."
-msgstr "Загрузка..."
-
-#: mini-utils/gless/gless.c:502
-#, c-format
-msgid ""
-"No such file or directory:\n"
-"%s"
-msgstr ""
-"Нет такого файла или каталога:\n"
-"%s"
-
-#: mini-utils/gless/gless.c:520
-#, c-format
-msgid ""
-"Failed to decompress and display the file:\n"
-"%s\n"
-"%s"
-msgstr ""
-"Не удалось распаковать и показать файл:\n"
-"%s\n"
-"%s"
-
-#: mini-utils/gless/gless.c:533
-msgid ""
-"Unable to display compressed file.\n"
-"zcat not found in your path."
-msgstr ""
-"Не удалось показать сжатый файл.\n"
-"не найден zcat в пути поиска команд."
-
-#: mini-utils/gless/gless.c:541
-#, c-format
-msgid ""
-"Error loading file:\n"
-"%s\n"
-"%s"
-msgstr ""
-"Ошибка загрузки файла:\n"
-"%s\n"
-"%s"
-
-#: mini-utils/gless/gless.c:599
-msgid "Saving..."
-msgstr "Сохранение..."
-
-#: mini-utils/gless/gless.c:610
-#, c-format
-msgid ""
-"Failed to write file:\n"
-"%s\n"
-"%s"
-msgstr ""
-"Ошибка при записи файла:\n"
-"%s\n"
-"%s"
-
-#: mini-utils/gless/gless.c:660
-msgid "Save Text As..."
-msgstr "Сохранить текст как..."
-
-#: mini-utils/gless/gless.c:700
-msgid "Open Text File..."
-msgstr "Открыть текстовый файл..."
-
-#: mini-utils/gless/gless.c:764
-msgid "Sorry, no preferences yet."
-msgstr "Еще не настраивается"
-
-#: mini-utils/gless/gless.c:851
-msgid "Searching..."
-msgstr "Поиск..."
-
-#: mini-utils/gless/gless.c:862
-msgid "No search string was specified!"
-msgstr "Искомая строка не задана!"
-
-#: mini-utils/gnome-run/gnome-run.c:48
-#, c-format
-msgid ""
-"Failed to execute command:\n"
-"%s\n"
-"%s"
-msgstr ""
-"Не удалось выполнить команду:\n"
-"%s\n"
-"%s"
-
-#: mini-utils/gnome-run/gnome-run.c:69
-msgid "Run Program"
-msgstr "Запустить программу"
-
-#: mini-utils/gnome-run/gnome-run.c:70
-msgid "Run"
-msgstr "Запуск"
-
-#: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Отмена"
-
-#: mini-utils/gnome-run/gnome-run.c:81
-msgid "Select a program to run"
-msgstr "Выбрать программу для запуска"
-
-#: mini-utils/gshutdown/gshutdown.c:86
-msgid "Shut Down"
-msgstr "Выключение"
-
-#: mini-utils/gshutdown/gshutdown.c:87
-msgid "Single User Mode"
-msgstr "Однопользовательский режим"
-
-#: mini-utils/gshutdown/gshutdown.c:88
-msgid "Runlevel 2"
-msgstr "Уровень выполнения 2"
-
-#: mini-utils/gshutdown/gshutdown.c:89
-msgid "Runlevel 3"
-msgstr "Уровень выполнения 3"
-
-#: mini-utils/gshutdown/gshutdown.c:90
-msgid "Runlevel 4"
-msgstr "Уровень выполнения 4"
-
-#: mini-utils/gshutdown/gshutdown.c:91
-msgid "Runlevel 5"
-msgstr "Уровень выполнения 5"
-
-#: mini-utils/gshutdown/gshutdown.c:92
-msgid "Reboot"
-msgstr "Перезагрузка"
-
-#: mini-utils/gshutdown/gshutdown.c:98
-msgid "Are you sure you want to shut down the computer?"
-msgstr "Вы уверены, в том что хотите выключить компьютер?"
-
-#: mini-utils/gshutdown/gshutdown.c:99
-msgid "Are you sure you want to switch to single user mode?"
-msgstr ""
-"Вы уверены, в том что хотите переключиться в режим одного пользователя?"
-
-#: mini-utils/gshutdown/gshutdown.c:100
-msgid "Are you sure you want to switch to runlevel 2?"
-msgstr "Вы уверены, в том что хотите переключиться на runlevel 2?"
-
-#: mini-utils/gshutdown/gshutdown.c:101
-msgid "Are you sure you want to switch to runlevel 3?"
-msgstr "Вы уверены, в том что хотите переключиться на runlevel 3?"
-
-#: mini-utils/gshutdown/gshutdown.c:102
-msgid "Are you sure you want to switch to runlevel 4?"
-msgstr "Вы уверены, в том что хотите переключиться на runlevel 4?"
-
-#: mini-utils/gshutdown/gshutdown.c:103
-msgid "Are you sure you want to switch to runlevel 5?"
-msgstr "Вы уверены, в том что хотите переключиться на runlevel 5?"
-
-#: mini-utils/gshutdown/gshutdown.c:104
-msgid "Are you sure you want to reboot the system?"
-msgstr "Вы уверены, в том что хотите перезагрузить систему?"
-
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:593
-msgid "You must be the super-user (root) to shut down or restart the computer."
-msgstr ""
-"Необходимо обладать правами администратора (root) для выключения или "
-"перезагрузки компьютера."
-
-#. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:186
-msgid "Shutdown or Reboot"
-msgstr "Выключение или перезагрузка"
-
-#: mini-utils/gshutdown/gshutdown.c:203 mini-utils/gshutdown/gshutdown.c:204
-msgid "Easy"
-msgstr "Простое"
-
-#: mini-utils/gshutdown/gshutdown.c:208 mini-utils/gshutdown/gshutdown.c:209
-msgid "Advanced"
-msgstr "Сложное"
-
-#: mini-utils/gshutdown/gshutdown.c:241
-msgid ""
-"Click OK to shutdown or reboot. You will lose\n"
-"any unsaved information in open applications."
-msgstr ""
-"Нажмите \"OK\" для выключения или перезагрузки. Вы потеряете\n"
-"всю не сохраненную информацию в открытых приложениях."
-
-#. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:368
-msgid "Revert to Defaults"
-msgstr "Вернуть значения по умолчанию"
-
-#: mini-utils/gshutdown/gshutdown.c:378
-msgid "Commands"
-msgstr "Команды"
-
-#: mini-utils/gshutdown/gshutdown.c:383
-msgid "Confirm before shutdown?"
-msgstr "Подтверждать перед выключением?"
-
-#: mini-utils/gshutdown/gshutdown.c:395
-msgid "General"
-msgstr "Общие"
-
-#: mini-utils/gshutdown/gshutdown.c:448
-#, c-format
-msgid ""
-"%s\n"
-"You will lose any unsaved work."
-msgstr ""
-"%s\n"
-"Вся не сохраненная информация будет потеряна."
-
-#: mini-utils/gshutdown/gshutdown.c:458
-msgid "Don't ask next time."
-msgstr "Не спрашивать в следующий раз."
-
-#: mini-utils/gshutdown/gshutdown.c:691
-msgid "Command execution failed: fork failed"
-msgstr "Не удалось исполнить команду: отпочкование не состоялось"
-
-#: mini-utils/guname/guname.c:51
-msgid "Make guname act as a control center applet"
-msgstr "Превратить guname апплет центра управления"
-
-#: mini-utils/guname/guname.c:117
-msgid "an initialization error occurred while starting 'guname-capplet'."
-msgstr "ошибка инициализации при запуске 'guname-capplet'."
-
-#: mini-utils/guname/guname.c:427
-msgid "System Information"
-msgstr "Информация о системе"
-
-#: mini-utils/guname/guname.c:509
-msgid "Logo file not found"
-msgstr "Файл логотипа не найден"
-
-#. Up here so it uses the default font
-#: mini-utils/guname/guname.c:513
-msgid "GNOME contributors:"
-msgstr "Участники проекта GNOME:"
-
-#: mini-utils/guname/guname.c:516
-msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-koi8-*"
-
-#: mini-utils/guname/guname.c:527
-msgid "GNOME: The GNU Network Object Model Environment"
-msgstr "GNOME: The GNU Network Object Model Environment"
-
-#: mini-utils/guname/guname.c:551
-msgid "Email Information..."
-msgstr "Передать по электронной почте..."
-
-#: mini-utils/guname/guname.c:564
-msgid "Save Information to File..."
-msgstr "Сохранить информацию в файле..."
-
-#: mini-utils/guname/guname.c:576 mini-utils/guname/guname.c:646
-msgid "Detailed Information..."
-msgstr "Подробная информация..."
-
-#: mini-utils/guname/guname.c:591
-msgid "Category"
-msgstr "Категория"
-
-#: mini-utils/guname/guname.c:591
-msgid "Your System"
-msgstr "Ваша система"
-
-#: mini-utils/guname/guname.c:632
-msgid "Save As..."
-msgstr "Сохранить как..."
-
-#: mini-utils/guname/guname.c:638
-msgid "Mail To..."
-msgstr "Отправить почту..."
-
-#: mini-utils/guname/guname.c:686
-#, c-format
-msgid ""
-"Error closing file `%s': \n"
-"%s\n"
-"Some or all data may not have been written."
-msgstr ""
-"Ошибка при закрытии файла`%s': \n"
-"%s\n"
-"Все или часть данных могут быть не записаны."
-
-#: mini-utils/guname/guname.c:698
-#, c-format
-msgid "Couldn't open file `%s': %s"
-msgstr "Не удалось открыть файл `%s': %s"
-
-#: mini-utils/guname/guname.c:713
-msgid "Save System Information As..."
-msgstr "Сохранить информацию о системе как..."
-
-#. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:759
-#, c-format
-msgid "Command failed ` %s ': %s"
-msgstr "Ошибка в команде ` %s ': %s"
-
-#: mini-utils/guname/guname.c:767
-#, c-format
-msgid "Couldn't run command ` %s ': %s"
-msgstr "Не удалось выполнить команду ` %s ': %s"
-
-#: mini-utils/guname/guname.c:791
-#, c-format
-msgid ""
-"The following mail will be sent to %s.\n"
-" Are you sure you want to mail this information?"
-msgstr ""
-"Это письмо будет отправлено по адресу %s.\n"
-"Вы уверены, в том что хотите послать эту информацию?"
-
-#: mini-utils/guname/guname.c:802
-msgid "Are you sure?"
-msgstr "Вы уверены?"
-
-#: mini-utils/guname/guname.c:836
-msgid "Address to mail to:"
-msgstr "Адрес для отправки:"
-
-#: mini-utils/guname/info.c:40
-msgid "Distribution:"
-msgstr "Дистрибутив:"
-
-#: mini-utils/guname/info.c:41
-msgid "Operating System:"
-msgstr "Операционная система:"
-
-#: mini-utils/guname/info.c:42
-msgid "Distribution Version:"
-msgstr "Версия дистрибутива:"
-
-#: mini-utils/guname/info.c:43
-msgid "Operating System Version:"
-msgstr "Версия операционной системы:"
-
-#: mini-utils/guname/info.c:44
-msgid "Operating System Release:"
-msgstr "Выпуск операционной системы:"
-
-#: mini-utils/guname/info.c:45
-msgid "Processor Type:"
-msgstr "Тип процессора:"
-
-#: mini-utils/guname/info.c:46
-msgid "Processor Speed:"
-msgstr "Скорость процессора:"
-
-#: mini-utils/guname/info.c:47
-msgid "Host Name:"
-msgstr "Имя хоста:"
-
-#: mini-utils/guname/info.c:48
-msgid "Domain Name:"
-msgstr "Доменное имя:"
-
-#: mini-utils/guname/info.c:49
-msgid "User Name:"
-msgstr "Имя пользователя:"
-
-#: mini-utils/guname/info.c:50
-msgid "X Display Name:"
-msgstr "Имя X-дисплея"
-
-#: mini-utils/guname/info.c:51
-msgid "System Status:"
-msgstr "Состояние системы:"
-
-#: mini-utils/guname/info.c:52
-msgid "Real Memory:"
-msgstr "Память:"
-
-#: mini-utils/guname/info.c:53
-msgid "Swap Space (\"virtual memory\"):"
-msgstr "Подкачка (\"виртуальная память\"):"
-
-#: mini-utils/guname/info.c:54
-msgid "Total Memory:"
-msgstr "Всего памяти:"
-
-#: mini-utils/guname/info.c:55
-msgid "Free Memory:"
-msgstr "Свободная память:"
-
-#: mini-utils/guname/info.c:60
-msgid "Device"
-msgstr "Устройство"
-
-#: mini-utils/guname/info.c:61
-msgid "Size"
-msgstr "Размер"
-
-#: mini-utils/guname/info.c:62
-msgid "Used space"
-msgstr "Используемое пространство"
-
-#: mini-utils/guname/info.c:63
-msgid "Free space"
-msgstr "Свободное пространство"
-
-#: mini-utils/guname/info.c:64
-msgid "Percent free"
-msgstr "Процент свободного"
-
-#: mini-utils/guname/info.c:65
-msgid "Mount point"
-msgstr "Точка подсоединения"
-
-#. This is about the only case where we'll put Unknown instead
-#. of simply not showing the info.
-#: mini-utils/guname/info.c:207 mini-utils/idetool/idetool.c:26
-msgid "Unknown"
-msgstr "Неизвестно"
-
-#: mini-utils/guname/moreinfo.c:82
-msgid "Unknown filesystem"
-msgstr "Неизвестная файловая система"
-
-#: mini-utils/guname/moreinfo.c:104
-msgid "No information for this filesystem."
-msgstr "Нет сведений об этой файловой системе."
-
-#: mini-utils/guname/moreinfo.c:161
-msgid "Memory"
-msgstr "Память"
-
-#: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "Килобайты"
-
-#: mini-utils/guname/moreinfo.c:186
-msgid "%ld%% memory used."
-msgstr "использованно %ld%% памяти."
-
-#: mini-utils/guname/moreinfo.c:197
-msgid "%ld%% swap used."
-msgstr "использованно %ld%% подкачки"
-
-#: mini-utils/guname/moreinfo.c:222
-#, c-format
-msgid "CPU %d"
-msgstr "ЦПУ %d"
-
-#: mini-utils/guname/moreinfo.c:276
-msgid "Detailed System Information"
-msgstr "Подробная информация о системе"
-
-#: mini-utils/guname/moreinfo.c:289
-msgid "Disk Information"
-msgstr "Информация о дисках"
-
-#: mini-utils/guname/moreinfo.c:291
-msgid "Memory Information"
-msgstr "Информация о памяти"
-
-#: mini-utils/guname/moreinfo.c:294
-msgid "CPU Information"
-msgstr "Информация о ЦПУ"
-
-#: mini-utils/guname/moreinfo.c:326
-msgid "Mount Point: "
-msgstr "Точка подсоединения:"
-
-#: mini-utils/guname/moreinfo.c:327
-msgid "    Device: "
-msgstr "    Устройство: "
-
-#: mini-utils/guname/moreinfo.c:328
-msgid "    Filesystem Type: "
-msgstr "    Тип файловой системы: "
-
-#: mini-utils/guname/moreinfo.c:341
-#, c-format
-msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-msgstr "%ld мегабайт, %ld свободно (%ld superuser); %ld inodes, %ld свободно."
-
-#: mini-utils/guname/moreinfo.c:353
-msgid "%2d%% full "
-msgstr "заполнен на %2d%%"
-
-#: mini-utils/gw/gw.c:141
-msgid ""
-"Couldn't find the \"w\" command in your path.\n"
-"This command is needed for the program to work."
-msgstr ""
-"Не удалось найти команду \"w\".\n"
-"Эта команда необходима для работы программы."
-
-#: mini-utils/gw/gw.c:174
-msgid "_Save..."
-msgstr "Сохранить..."
-
-#: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "Записать информацию на диск"
-
-#: mini-utils/gw/gw.c:202
-msgid "Active User Listing"
-msgstr "Список пользователей"
-
-#: mini-utils/gw/gw.c:219
-msgid "Update Information"
-msgstr "Обновить информацию"
-
-#: mini-utils/gw/gw.c:466
-msgid "Save not implemented yet\n"
-msgstr "Это пока не реализовано\n"
-
-#: mini-utils/gw/gw.c:479
-msgid "Command Line"
-msgstr "Командная строка"
-
-#. Create everything.
-#: mini-utils/gw/gw.c:487
-msgid "Add some defaults"
-msgstr "Добавить несколько значений по умолчанию"
-
-#: mini-utils/gw/gw.c:489
-msgid "Delete"
-msgstr "Удалить"
-
-#: mini-utils/gw/gw.c:507
-msgid "Command Editor"
-msgstr "Редактор команд"
-
-#: mini-utils/gw/gw.c:517
-msgid ""
-"You can configure the commands on the popup menus.\n"
-"Just enter the name you want to appear on the \n"
-"menu, and the command to execute.\n"
-"In the command, you can use %u to represent the\n"
-"currently selected username, and %t for the tty."
-msgstr ""
-"Вы можете сконфигурировать команды для всплывающих меню.\n"
-"Просто введите название, которое должно возникать в меню и\n"
-"выполняемую команду. В этой команде Вы можете\n"
-"использовать %u для представления выбранного в настоящий момент\n"
-"имени пользователя и %t для tty."
-
-#: mini-utils/gw/gw.c:524
-msgid ""
-"Click this button to add\n"
-"some sample commands."
-msgstr ""
-"Нажмите на эту кнопку, чтобы\n"
-"добавить несколько примеров команд."
-
-#: mini-utils/gw/gw.c:532
-msgid "Menu items"
-msgstr "Пункт меню"
-
-#: mini-utils/gw/gw.c:560
-msgid "Command"
-msgstr "Команда"
-
-#: mini-utils/gw/gw.c:947
-#, c-format
-msgid "Running: %s\n"
-msgstr "Исполняется: %s\n"
-
-#: mini-utils/idetool/idetool.c:20
-msgid "16-bit"
-msgstr "16-bit"
-
-#: mini-utils/idetool/idetool.c:21
-msgid "32-bit"
-msgstr "32-bit"
-
-#: mini-utils/idetool/idetool.c:22
-msgid "32-bit w/sync"
-msgstr "32-bit синх"
-
-#: mini-utils/idetool/idetool.c:27
-msgid "Sleeping"
-msgstr "В спячке"
-
-#: mini-utils/idetool/idetool.c:28
-msgid "Active/Idle"
-msgstr "Задействован/Не задействован"
-
-#: mini-utils/idetool/idetool.c:29
-msgid "Standby"
-msgstr "В ожидании"
-
-#: mini-utils/idetool/idetool.c:42
-msgid "Unable to access the drive."
-msgstr "Нет доступа к диску."
-
-#: mini-utils/idetool/idetool.c:59 mini-utils/idetool/idetool.c:71
-msgid "The DMA setting for this drive cannot be changed."
-msgstr "Установки DMA для этого диска не могут быть изменены."
-
-#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
-#: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Вкл."
-
-#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
-#: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Выкл."
-
-#: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
-msgid "The IRQ unmask setting for this drive cannot be changed."
-msgstr "Установки размаскирования IRQ этого диска изменить нельзя."
-
-#: mini-utils/idetool/idetool.c:122 mini-utils/idetool/idetool.c:134
-msgid "The drive refused to keep its settings."
-msgstr "Диск не в состоянии сохранить установки."
-
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
-msgid "Keep settings"
-msgstr "Сохранить установки"
-
-#: mini-utils/idetool/idetool.c:207
-msgid "None"
-msgstr "Нет"
-
-#: mini-utils/idetool/idetool.c:211
-msgid "(1 Sector)"
-msgstr "(1 Сектор)"
-
-#: mini-utils/idetool/idetool.c:213
-msgid "(Dual Port)"
-msgstr "(Двойной порт)"
-
-#: mini-utils/idetool/idetool.c:215
-msgid "(Dual Port Cache)"
-msgstr "(Кэше двойного порта)"
-
-#: mini-utils/idetool/idetool.c:243
-msgid "No"
-msgstr "Нет"
-
-#: mini-utils/idetool/idetool.c:245
-#, c-format
-msgid "Yes (%d sector)"
-msgstr "Да (%d сектор)"
-
-#: mini-utils/idetool/idetool.c:247
-#, c-format
-msgid "Yes (%d sectors)"
-msgstr "Да (%d секторов)"
-
-#: mini-utils/idetool/idetool.c:310 mini-utils/idetool/idetool.c:320
-msgid "Model"
-msgstr "Модель"
-
-#: mini-utils/idetool/idetool.c:311
-msgid "Firmware"
-msgstr "Производитель"
-
-#: mini-utils/idetool/idetool.c:312
-msgid "Serial No."
-msgstr "Серийный номер"
-
-#. do config here
-#: mini-utils/idetool/idetool.c:314
-msgid "Geometry"
-msgstr "Геометрия"
-
-#: mini-utils/idetool/idetool.c:315
-msgid "Cache"
-msgstr "Кэше"
-
-#: mini-utils/idetool/idetool.c:316
-msgid "Status"
-msgstr "Состояние"
-
-#: mini-utils/idetool/idetool.c:320
-msgid "Legacy MFM/RLL drive"
-msgstr "Устаревший MFM/RLL диск"
-
-#: mini-utils/idetool/idetool.c:323
-msgid "DMA Mode"
-msgstr "Режим DMA"
-
-#: mini-utils/idetool/idetool.c:324
-msgid "IO Mode"
-msgstr "Режим IO"
-
-#: mini-utils/idetool/idetool.c:325
-msgid "IRQ Unmask"
-msgstr "Размаск. IRQ"
-
-#: mini-utils/idetool/idetool.c:326
-msgid "Multisector"
-msgstr "Многосектор."
-
-#: mini-utils/idetool/idetool.c:327
-msgid "On Reset"
-msgstr "При перезапуске"
-
-#.
-#. *	Set up the outer display first
-#.
-#: mini-utils/idetool/idetool.c:353
-msgid "IDE Status"
-msgstr "Состояние IDE"
-
-#: mini-utils/idetool/idetool.c:366
-msgid "Disk Logo Not Found"
-msgstr "Логотип диска не найден"
-
-#: mini-utils/idetool/idetool.c:417
-msgid "Only the superuser can use this tool"
-msgstr "Только администратор может использовать этот инструмент"
-
-#: mini-utils/idetool/idetool.c:428
-msgid "You appear to have no IDE drives"
-msgstr "Кажется у Вас нет IDE дисков"
+#: src/chartable.c:78
+#, fuzzy
+msgid "GHex: Character table"
+msgstr "GHex: Преобразователь"
+
+#~ msgid "The Gnome Calculator"
+#~ msgstr "Калькулятор Gnome"
+
+#~ msgid "Simple double precision calculator similiar to xcalc"
+#~ msgstr "Простой калькулятор с двойной точностью наподобие xcalc"
+
+#~ msgid "Gnome Calculator"
+#~ msgstr "Калькулятор Gnome"
+
+#~ msgid ""
+#~ "A quick hack to show the amount of space free on mounted file systems "
+#~ "uitilizing a dial."
+#~ msgstr ""
+#~ "Это быстрый хак показывающий размер свободного пространства на "
+#~ "подсоединенной файловой системе, с использованием циферблата"
+
+#~ msgid "File name"
+#~ msgstr "Имя файла"
+
+#~ msgid "Don't search subdirectories"
+#~ msgstr "Не искать в подкаталогах"
+
+#~ msgid "File owner"
+#~ msgstr "Владелец файла"
+
+#~ msgid "File owner group"
+#~ msgstr "Группа владельцев файла"
+
+#~ msgid "Last modification time"
+#~ msgstr "Время последнего изменения"
+
+#~ msgid "Don't search mounted filesystems"
+#~ msgstr "Не искать на присоединенных файловых системах"
+
+#~ msgid "Empty file"
+#~ msgstr "Пустой файл"
+
+#~ msgid "Invalid user or group"
+#~ msgstr "Несуществующий пользователь или группа"
+
+#~ msgid "Filenames except"
+#~ msgstr "Исключить файлы"
+
+#~ msgid "Follow symbolic links"
+#~ msgstr "Включая символические ссылки"
+
+#~ msgid "Simple substring search"
+#~ msgstr "Поиск простой подстроки"
+
+#~ msgid "Regular expression search"
+#~ msgstr "Поиск регулярного выражения"
+
+#~ msgid "Extended regular expression search"
+#~ msgstr "Поиск расширенного регулярного выражения"
+
+#~ msgid "grep options found in find list bad bad!"
+#~ msgstr "ключи grep из списка find"
+
+#~ msgid "non-grep option found in grep list, bad bad!"
+#~ msgstr "не-grep ключи из списка grep"
+
+#~ msgid "Search Results"
+#~ msgstr "Результаты поиска"
+
+#~ msgid "Enable"
+#~ msgstr "Включить"
+
+#~ msgid "Remove"
+#~ msgstr "Удалить"
+
+#~ msgid "Start in directory:"
+#~ msgstr "Начать с каталога:"
+
+#~ msgid "Add"
+#~ msgstr "Добавить"
+
+#~ msgid "Start"
+#~ msgstr "Старт"
+
+#~ msgid "Stop"
+#~ msgstr "Стоп"
+
+#~ msgid "This is not yet implemented"
+#~ msgstr "Это пока не реализовано"
+
+#~ msgid "Full find (find)"
+#~ msgstr "Полный поиск (find)"
+
+#~ msgid "Quick find (locate)"
+#~ msgstr "Быстрый поиск (locate)"
+
+#~ msgid "The Gnome Search Tool"
+#~ msgstr "Искатель Gnome"
+
+#~ msgid "(C) 1998 the Free Software Foundation"
+#~ msgstr "(C) 1998 the Free Software Foundation"
+
+#~ msgid "Frontend to the unix find/grep/locate commands"
+#~ msgstr "Оболочка для UNIX-команд find/grep/locate"
+
+#~ msgid "Gnome Search Tool"
+#~ msgstr "Искатель Gnome"
+
+#~ msgid "rparen expected"
+#~ msgstr "ожидается rparen"
+
+#~ msgid "no such field: %d"
+#~ msgstr "нет такого поля: %d"
+
+#~ msgid "missing variable identifer"
+#~ msgstr "отсутствует идентификатор переменной"
+
+#~ msgid "invalid variable identifer: %s"
+#~ msgstr "неправильный идентификатор переменной: %s"
+
+#~ msgid "number expected"
+#~ msgstr "ожидается число"
+
+#~ msgid "extra gunk at end: \"%s\""
+#~ msgstr "дополнительный кусок в конце: \"%s\""
+
+#~ msgid "%s, line %d: "
+#~ msgstr "%s, строка %d: "
+
+#~ msgid "can't open config file \"%s\""
+#~ msgstr "не удалось открыть конфигурационный файл \"%s\""
+
+#~ msgid ""
+#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", "
+#~ "\"%s\", or \"%s\""
+
+#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", or "
+#~ "\"%s\""
+
+#~ msgid "identifier or begin must be first"
+#~ msgstr "в начале должен быть идентификатор или begin"
+
+#~ msgid "unrecognized color: %s"
+#~ msgstr "нераспознаваемый цвет: %s"
+
+#~ msgid "scale must be either \"log\" or \"linear\""
+#~ msgstr "шкала должна быть \"log\" или \"linear\""
+
+#~ msgid "no equation found"
+#~ msgstr "упавнение не найдено"
+
+#~ msgid "invalid option: \"%s\""
+#~ msgstr "неправильный ключ: \"%s\""
+
+#~ msgid "E_xit"
+#~ msgstr "Выход"
+
+#~ msgid "Terminate the stripchart program"
+#~ msgstr "Прервать самописец"
+
+#~ msgid "Copyright 1998,99 John Kodis"
+#~ msgstr "Авторское право 1998,99 John Kodis"
+
+#~ msgid ""
+#~ "The GNOME stripchart program plots various user-specified parameters as a "
+#~ "function of time.  Its main use is to chart system performance parameters "
+#~ "such as CPU load, CPU utilization, network traffic levels, and the like.  "
+#~ "Other more ingenious uses are left as an exercise for the interested user."
+#~ msgstr ""
+#~ "GNOME самописец записывает различные заданные пользователем параметры как "
+#~ "функцию времени. Его основное назначение это запись системных параметров, "
+#~ "таких как нагрузка CPU, утилизация CPU, сетевая нагрузка, и т.д.. Другие "
+#~ "применения оставлены в качестве упражнения для заинтересованного "
+#~ "пользователя."
+
+#~ msgid "_About"
+#~ msgstr "О программе"
+
+#~ msgid "Info about the striphart program"
+#~ msgstr "Информация о самописце"
+
+#~ msgid "_File"
+#~ msgstr "Файл"
+
+#~ msgid "_Help"
+#~ msgstr "Помощь"
+
+#~ msgid "Param"
+#~ msgstr "Парам"
+
+#~ msgid "Value"
+#~ msgstr "Значение"
+
+#~ msgid "Identifier"
+#~ msgstr "Идентификатор"
+
+#~ msgid "Color"
+#~ msgstr "Цвет"
+
+#~ msgid "Filename"
+#~ msgstr "Имя файла"
+
+#~ msgid "Pattern"
+#~ msgstr "Тип"
+
+#~ msgid "Equation"
+#~ msgstr "Уравнение"
+
+#~ msgid "Expected range"
+#~ msgstr "Ожидаемый диапазон"
+
+#~ msgid "Displayed range"
+#~ msgstr "Используемый диапазон"
+
+#~ msgid "Current value"
+#~ msgstr "Текущее значение"
+
+#~ msgid "Active"
+#~ msgstr "Задействован"
+
+#~ msgid "Stripchart Parameters"
+#~ msgstr "Параметры самописца"
+
+#~ msgid "Current"
+#~ msgstr "Текущее"
+
+#~ msgid "Top"
+#~ msgstr "Верхнее"
+
+#~ msgid "Help"
+#~ msgstr "Справка"
+
+#~ msgid "About"
+#~ msgstr "О программе"
+
+#~ msgid "Params"
+#~ msgstr "Параметры"
+
+#~ msgid "Exit"
+#~ msgstr "Выход"
+
+#~ msgid "gstripchart"
+#~ msgstr "самописец"
+
+#~ msgid "Stripchart Viewer"
+#~ msgstr "Самописец визуализатор"
+
+#~ msgid "Params..."
+#~ msgstr "Параметры..."
+
+#~ msgid "invalid display type: %s\n"
+#~ msgstr "неправильный тип дисплея: %s\n"
+
+#~ msgid "Geometry string: WxH+X+Y"
+#~ msgstr "Описание геометрии: WxH+X+Y"
+
+#~ msgid "GEO"
+#~ msgstr "ГЕОМ"
+
+#~ msgid "Configuration file name"
+#~ msgstr "Имя конфигурационного файла"
+
+#~ msgid "FILE"
+#~ msgstr "ФАЙЛ"
+
+#~ msgid "Chart update interval"
+#~ msgstr "Интервал обновления диаграммы"
+
+#~ msgid "SECS"
+#~ msgstr "СЕКУНДЫ"
+
+#~ msgid "Chart low-pass filter time constant"
+#~ msgstr "Константа времени сглаживания диаграммы"
+
+#~ msgid "Slider update interval"
+#~ msgstr "Интервал обновления ползунка"
+
+#~ msgid "Slider low-pass filter time constant"
+#~ msgstr "Константа времени сглаживания ползунка"
+
+#~ msgid "Adds a menubar to the main window"
+#~ msgstr "Добавляет к главному окну панель меню"
+
+#~ msgid "Omits slider window"
+#~ msgstr "Пропускает окно ползунка"
+
+#~ msgid "TYPE is one of gtk, applet, text, or none"
+#~ msgstr "ТИП это либо gtk, applet, text или none"
+
+#~ msgid "TYPE"
+#~ msgstr "ТИП"
+
+#~ msgid "TYPE is one of gtk, text, or none"
+#~ msgstr "ТИП это либо gtk, text или none"
+
+#~ msgid "white"
+#~ msgstr "белый"
+
+#~ msgid "black"
+#~ msgstr "черный"
+
+#~ msgid "red"
+#~ msgstr "красный"
+
+#~ msgid "yellow"
+#~ msgstr "желтый"
+
+#~ msgid "blue"
+#~ msgstr "голубой"
+
+#~ msgid "green"
+#~ msgstr "зеленый"
+
+#~ msgid "cyan"
+#~ msgstr "голубой"
+
+#~ msgid "magenta"
+#~ msgstr "фиолетовый"
+
+#~ msgid "Busy"
+#~ msgstr "Занятость"
+
+#~ msgid "Load"
+#~ msgstr "Нагрузка"
+
+#~ msgid "Swap"
+#~ msgstr "Подкачка"
+
+#~ msgid "Battery"
+#~ msgstr "Батарея"
+
+#~ msgid "Net In"
+#~ msgstr "Сеть, в"
+
+#~ msgid "Net Out"
+#~ msgstr "Сеть, из"
+
+#~ msgid "ppp"
+#~ msgstr "ppp"
+
+#~ msgid "no project selected"
+#~ msgstr "проект не выбран"
+
+#~ msgid "00:00"
+#~ msgstr "00:00"
+
+#~ msgid ""
+#~ "Couldn't understand geometry (position and size)\n"
+#~ " specified on command line"
+#~ msgstr ""
+#~ "Непонятная геометрия (позиция и размер)\n"
+#~ "указана в командной строке"
+
+#~ msgid "Total"
+#~ msgstr "Всего"
+
+#~ msgid "Today"
+#~ msgstr "Сегодня"
+
+#~ msgid "Project Title"
+#~ msgstr "Название проекта"
+
+#~ msgid "Description"
+#~ msgstr "Описание"
+
+#~ msgid "program started"
+#~ msgstr "программа запущена"
+
+#~ msgid "no description"
+#~ msgstr "нет описания"
+
+#~ msgid "program exited"
+#~ msgstr "программа завершена"
+
+#~ msgid ""
+#~ "There seems to be another GTimeTracker running.\n"
+#~ "Press OK to start GTimeTracker anyway, or press Cancel to quit."
+#~ msgstr ""
+#~ "Это означает, что уже запущен другой GTimeTracker.\n"
+#~ "Нажмите \"OK\" чтобы все равно запустить его, или нажмите \"Отмена\" для "
+#~ "выхода."
+
+#~ msgid "Error"
+#~ msgstr "Ошибка"
+
+#~ msgid ""
+#~ "An error occured while reading the configuration file.\n"
+#~ "Shall I setup a new configuration?"
+#~ msgstr ""
+#~ "При чтении конфигурационного файла возникла ошибка.\n"
+#~ "Установить новую конфигурацию?"
+
+#~ msgid "Specify geometry"
+#~ msgstr "Указать геометрию"
+
+#~ msgid "GEOMETRY"
+#~ msgstr "ГЕОМЕТРИЯ"
+
+#~ msgid "Select a project on startup"
+#~ msgstr "Выбрать проект при запуске"
+
+#~ msgid "PROJECT"
+#~ msgstr "ПРОЕКТ"
+
+#~ msgid "Warning"
+#~ msgstr "Внимание"
+
+#~ msgid "I could not write the configuration file!"
+#~ msgstr "Не удалось записать файл конфигурации!"
+
+#~ msgid "New Project..."
+#~ msgstr "Новый проект..."
+
+#~ msgid "Please enter the name of the new project:"
+#~ msgstr "Введите название нового проекта:"
+
+#~ msgid "I could not read the configuration file"
+#~ msgstr "Не удалось прочесть файл конфигурации!"
+
+#~ msgid "Reload Configuration File"
+#~ msgstr "Перезагрузить файл конфигурации"
+
+#~ msgid ""
+#~ "This will overwrite your current set of projects.\n"
+#~ "Do you really want to reload the configuration file?"
+#~ msgstr ""
+#~ "Это действие перепишет все текущие установки проекта.\n"
+#~ "Вы действительно хотите перезагрузить файл конфигурации?"
+
+#~ msgid "_New Project..."
+#~ msgstr "Новый проект..."
+
+#~ msgid "_Reload Configuration File"
+#~ msgstr "Перезагрузить файл конфигурации"
+
+#~ msgid "_Save Configuration File"
+#~ msgstr "Сохранить файл конфигурации"
+
+#~ msgid "Clear _Daily Counter"
+#~ msgstr "Очистить счетчик дней"
+
+#~ msgid "St_art"
+#~ msgstr "Старт"
+
+#~ msgid "Sto_p"
+#~ msgstr "Стоп"
+
+#~ msgid "_Timer Running"
+#~ msgstr "Таймер запущен"
+
+#~ msgid "_Timer"
+#~ msgstr "Таймер"
+
+#~ msgid "Show Seconds"
+#~ msgstr "Показывать секунды"
+
+#~ msgid "Show Status Bar"
+#~ msgstr "Показывать строку состояния"
+
+#~ msgid "Show Table Header"
+#~ msgstr "Показывать заголовок таблицы"
+
+#~ msgid "Show Toolbar Icons"
+#~ msgstr "Показывать пиктограммы на панели инструментов"
+
+#~ msgid "Show Toolbar Texts"
+#~ msgstr "Показывать надписи на панели инструментов"
+
+#~ msgid "Show Tooltips"
+#~ msgstr "Показывать подсказки"
+
+#~ msgid "Toolbar Segments"
+#~ msgstr "Элементы панели инструментов"
+
+#~ msgid "Show `New'"
+#~ msgstr "Показывать `Новый'"
+
+#~ msgid "Show `Save', `Reload'"
+#~ msgstr "Показывать `Сохранить', `Перезагрузить'"
+
+#~ msgid "Show `Cut', `Copy', `Paste'"
+#~ msgstr "Показывать `Вырезать', `Скопировать', `Вставить'"
+
+#~ msgid "Show `Properties'"
+#~ msgstr "Показывать `Свойства'"
+
+#~ msgid "Show `Timer'"
+#~ msgstr "Показывать `Таймер'"
+
+#~ msgid "Show `Preferences'"
+#~ msgstr "Показывать `Настройки'"
+
+#~ msgid "Show `Help'"
+#~ msgstr "Показывать `Помощь'"
+
+#~ msgid "Show `Quit'"
+#~ msgstr "Показывать `Выход'"
+
+#~ msgid "Shell Commands"
+#~ msgstr "Команды оболочки"
+
+#~ msgid "Switch Project Command:"
+#~ msgstr "Команда переключения проекта:"
+
+#~ msgid "No Project Command:"
+#~ msgstr "Команда отсутствия проекта:"
+
+#~ msgid "Logfile"
+#~ msgstr "Файл регистрации"
+
+#~ msgid "Use Logfile"
+#~ msgstr "Использовать файл регистрации"
+
+#~ msgid "Filename:"
+#~ msgstr "Имя файла:"
+
+#~ msgid "Entry Start:"
+#~ msgstr "Точка старта:"
+
+#~ msgid "Entry Stop:"
+#~ msgstr "Точка остановки:"
+
+#~ msgid "Timeout in secs:"
+#~ msgstr "Время ожидания в секундах:"
+
+#~ msgid "Preferences"
+#~ msgstr "Настройки"
+
+#~ msgid "Misc"
+#~ msgstr "Разное"
+
+#~ msgid "project %t started"
+#~ msgstr "проект \"%t\" запущен"
+
+#~ msgid "stopped project %t"
+#~ msgstr "проект \"%t\" остановлен"
+
+#~ msgid "empty"
+#~ msgstr "пусто"
+
+#~ msgid "Properties"
+#~ msgstr "Свойства"
+
+#~ msgid "Project"
+#~ msgstr "Проект"
+
+#~ msgid "Project Title:"
+#~ msgstr "Название проекта:"
+
+#~ msgid "Project Description:"
+#~ msgstr "Описание проекта:"
+
+#~ msgid "Project Time today:"
+#~ msgstr "Время работы над проектом, сегодня:"
+
+#~ msgid "hours"
+#~ msgstr "часы"
+
+#~ msgid "mins"
+#~ msgstr "минуты"
+
+#~ msgid "secs"
+#~ msgstr "секунды"
+
+#~ msgid "Project Time ever:"
+#~ msgstr "Время работы над проектом, полное:"
+
+#~ msgid "[GTT]New"
+#~ msgstr "[GTT]Новый"
+
+#~ msgid "Reload"
+#~ msgstr "Перезагрузить"
+
+#~ msgid "Save"
+#~ msgstr "Сохранить"
+
+#~ msgid "Save Configuration File"
+#~ msgstr "Сохранить файл конфигурации"
+
+#~ msgid "Cut"
+#~ msgstr "Вырезать"
+
+#~ msgid "Cut Selected Project"
+#~ msgstr "Вырезать выбранный проект"
+
+#~ msgid "Copy"
+#~ msgstr "Скопировать"
+
+#~ msgid "Copy Selected Project"
+#~ msgstr "Скопировать выбранный проект"
+
+#~ msgid "Paste"
+#~ msgstr "Вставить"
+
+#~ msgid "Paste Project"
+#~ msgstr "Вставить проект"
+
+#~ msgid "Props"
+#~ msgstr "Свойства"
+
+#~ msgid "Edit Properties..."
+#~ msgstr "Редактировать свойства..."
+
+#~ msgid "Timer"
+#~ msgstr "Таймер"
+
+#~ msgid "Start/Stop Timer"
+#~ msgstr "Таймер Старт/Стоп"
+
+#~ msgid "Prefs"
+#~ msgstr "Настройки"
+
+#~ msgid "Edit Preferences..."
+#~ msgstr "Редактировать настройки..."
+
+#~ msgid "Manual"
+#~ msgstr "Руководство"
+
+#~ msgid "Manual..."
+#~ msgstr "Руководство..."
+
+#~ msgid "Quit"
+#~ msgstr "Выход"
+
+#~ msgid "Quit GTimeTracker"
+#~ msgstr "Выход из GTimeTracker"
+
+#~ msgid "Gnome Color Browser"
+#~ msgstr "Демонстратор цветов Gnome"
+
+#~ msgid "Format Style:"
+#~ msgstr "Формат:"
+
+#~ msgid "Color Name:"
+#~ msgstr "Название цвета:"
+
+#~ msgid "Color Values:"
+#~ msgstr "Цветовые значения:"
+
+#~ msgid "Name"
+#~ msgstr "Название"
+
+#~ msgid "Error, cannot find the file 'rgb.txt' on your system!"
+#~ msgstr "Ошибка, не удалось найти файл 'rgb.txt' на Вашей системе!"
+
+#~ msgid "Parsing Colors"
+#~ msgstr "Синтаксический анализ описания цветов"
+
+#~ msgid "Decimal (8 bit)"
+#~ msgstr "Десятичное (8 бит)"
+
+#~ msgid "Decimal (16 bit)"
+#~ msgstr "Десятичное (16 бит)"
+
+#~ msgid "Hex (8 bit)"
+#~ msgstr "Шестнадцатеричное (8 бит)"
+
+#~ msgid "Hex (16 bit)"
+#~ msgstr "Шестнадцатеричное (16 бит)"
+
+#~ msgid "Float"
+#~ msgstr "С плавающей точкой"
+
+#~ msgid "Small utility to browse available X11 colors."
+#~ msgstr "Маленькая утилита для просмотра доступных X11 цветов."
+
+#~ msgid "Font Selector"
+#~ msgstr "Переключатель шрифтов"
+
+#~ msgid "Selection:"
+#~ msgstr "Выделение:"
+
+#~ msgid "Font to load"
+#~ msgstr "Шрифт для загрузки"
+
+#~ msgid "FONTSPEC"
+#~ msgstr "ШРИФТ"
+
+#~ msgid "Print selected font name on exit"
+#~ msgstr "Напечатать название выделенного шрифта при выходе"
+
+#~ msgid "Inhibit remembering selected font for next run"
+#~ msgstr "Отключить запоминание выделенного шрифта для следующего запуска"
+
+#~ msgid "Inhibit loading of last font"
+#~ msgstr "Отключить загрузку последнего шрифта"
+
+#~ msgid "Copyright 1998, under the GNU General Public License."
+#~ msgstr "Copyright 1998, на условиях GNU General Public License."
+
+#~ msgid "Reason %d\n"
+#~ msgstr "Причина %d\n"
+
+#~ msgid "Where to put the window, and its size"
+#~ msgstr "Положение окна и его размер"
+
+#~ msgid "Ignore standard input; may be needed in some cases."
+#~ msgstr ""
+#~ "Игнорировать стандартный ввод; это может быть необходимо в некоторых случаях"
+
+#~ msgid "_New Window"
+#~ msgstr "Новое окно"
+
+#~ msgid "New text viewer window"
+#~ msgstr "Новое окно просмотра текста"
+
+#~ msgid "_Fixed Font"
+#~ msgstr "Фиксированный шрифт"
+
+#~ msgid "Display text with a fixed font"
+#~ msgstr "Показывать текст фиксированным шрифтом"
+
+#~ msgid "Text File Viewer"
+#~ msgstr "Программа просмотра текстовых файлов"
+
+#~ msgid "Find string"
+#~ msgstr "Поиск строки"
+
+#~ msgid "Find"
+#~ msgstr "Поиск"
+
+#~ msgid "Loading..."
+#~ msgstr "Загрузка..."
+
+#~ msgid ""
+#~ "No such file or directory:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Нет такого файла или каталога:\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Failed to decompress and display the file:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Не удалось распаковать и показать файл:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Unable to display compressed file.\n"
+#~ "zcat not found in your path."
+#~ msgstr ""
+#~ "Не удалось показать сжатый файл.\n"
+#~ "не найден zcat в пути поиска команд."
+
+#~ msgid ""
+#~ "Error loading file:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ошибка загрузки файла:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid "Saving..."
+#~ msgstr "Сохранение..."
+
+#~ msgid ""
+#~ "Failed to write file:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ошибка при записи файла:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid "Save Text As..."
+#~ msgstr "Сохранить текст как..."
+
+#~ msgid "Open Text File..."
+#~ msgstr "Открыть текстовый файл..."
+
+#~ msgid "Sorry, no preferences yet."
+#~ msgstr "Еще не настраивается"
+
+#~ msgid "Searching..."
+#~ msgstr "Поиск..."
+
+#~ msgid "No search string was specified!"
+#~ msgstr "Искомая строка не задана!"
+
+#~ msgid ""
+#~ "Failed to execute command:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Не удалось выполнить команду:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid "Run Program"
+#~ msgstr "Запустить программу"
+
+#~ msgid "Run"
+#~ msgstr "Запуск"
+
+#~ msgid "Cancel"
+#~ msgstr "Отмена"
+
+#~ msgid "Select a program to run"
+#~ msgstr "Выбрать программу для запуска"
+
+#~ msgid "Shut Down"
+#~ msgstr "Выключение"
+
+#~ msgid "Single User Mode"
+#~ msgstr "Однопользовательский режим"
+
+#~ msgid "Runlevel 2"
+#~ msgstr "Уровень выполнения 2"
+
+#~ msgid "Runlevel 3"
+#~ msgstr "Уровень выполнения 3"
+
+#~ msgid "Runlevel 4"
+#~ msgstr "Уровень выполнения 4"
+
+#~ msgid "Runlevel 5"
+#~ msgstr "Уровень выполнения 5"
+
+#~ msgid "Reboot"
+#~ msgstr "Перезагрузка"
+
+#~ msgid "Are you sure you want to shut down the computer?"
+#~ msgstr "Вы уверены, в том что хотите выключить компьютер?"
+
+#~ msgid "Are you sure you want to switch to single user mode?"
+#~ msgstr ""
+#~ "Вы уверены, в том что хотите переключиться в режим одного пользователя?"
+
+#~ msgid "Are you sure you want to switch to runlevel 2?"
+#~ msgstr "Вы уверены, в том что хотите переключиться на runlevel 2?"
+
+#~ msgid "Are you sure you want to switch to runlevel 3?"
+#~ msgstr "Вы уверены, в том что хотите переключиться на runlevel 3?"
+
+#~ msgid "Are you sure you want to switch to runlevel 4?"
+#~ msgstr "Вы уверены, в том что хотите переключиться на runlevel 4?"
+
+#~ msgid "Are you sure you want to switch to runlevel 5?"
+#~ msgstr "Вы уверены, в том что хотите переключиться на runlevel 5?"
+
+#~ msgid "Are you sure you want to reboot the system?"
+#~ msgstr "Вы уверены, в том что хотите перезагрузить систему?"
+
+#~ msgid ""
+#~ "You must be the super-user (root) to shut down or restart the computer."
+#~ msgstr ""
+#~ "Необходимо обладать правами администратора (root) для выключения или "
+#~ "перезагрузки компьютера."
+
+#~ msgid "Shutdown or Reboot"
+#~ msgstr "Выключение или перезагрузка"
+
+#~ msgid "Easy"
+#~ msgstr "Простое"
+
+#~ msgid "Advanced"
+#~ msgstr "Сложное"
+
+#~ msgid ""
+#~ "Click OK to shutdown or reboot. You will lose\n"
+#~ "any unsaved information in open applications."
+#~ msgstr ""
+#~ "Нажмите \"OK\" для выключения или перезагрузки. Вы потеряете\n"
+#~ "всю не сохраненную информацию в открытых приложениях."
+
+#~ msgid "Revert to Defaults"
+#~ msgstr "Вернуть значения по умолчанию"
+
+#~ msgid "Commands"
+#~ msgstr "Команды"
+
+#~ msgid "Confirm before shutdown?"
+#~ msgstr "Подтверждать перед выключением?"
+
+#~ msgid "General"
+#~ msgstr "Общие"
+
+#~ msgid ""
+#~ "%s\n"
+#~ "You will lose any unsaved work."
+#~ msgstr ""
+#~ "%s\n"
+#~ "Вся не сохраненная информация будет потеряна."
+
+#~ msgid "Don't ask next time."
+#~ msgstr "Не спрашивать в следующий раз."
+
+#~ msgid "Command execution failed: fork failed"
+#~ msgstr "Не удалось исполнить команду: отпочкование не состоялось"
+
+#~ msgid "Make guname act as a control center applet"
+#~ msgstr "Превратить guname апплет центра управления"
+
+#~ msgid "an initialization error occurred while starting 'guname-capplet'."
+#~ msgstr "ошибка инициализации при запуске 'guname-capplet'."
+
+#~ msgid "System Information"
+#~ msgstr "Информация о системе"
+
+#~ msgid "Logo file not found"
+#~ msgstr "Файл логотипа не найден"
+
+#~ msgid "GNOME contributors:"
+#~ msgstr "Участники проекта GNOME:"
+
+#~ msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
+#~ msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-koi8-*"
+
+#~ msgid "GNOME: The GNU Network Object Model Environment"
+#~ msgstr "GNOME: The GNU Network Object Model Environment"
+
+#~ msgid "Email Information..."
+#~ msgstr "Передать по электронной почте..."
+
+#~ msgid "Save Information to File..."
+#~ msgstr "Сохранить информацию в файле..."
+
+#~ msgid "Detailed Information..."
+#~ msgstr "Подробная информация..."
+
+#~ msgid "Category"
+#~ msgstr "Категория"
+
+#~ msgid "Your System"
+#~ msgstr "Ваша система"
+
+#~ msgid "Save As..."
+#~ msgstr "Сохранить как..."
+
+#~ msgid "Mail To..."
+#~ msgstr "Отправить почту..."
+
+#~ msgid ""
+#~ "Error closing file `%s': \n"
+#~ "%s\n"
+#~ "Some or all data may not have been written."
+#~ msgstr ""
+#~ "Ошибка при закрытии файла`%s': \n"
+#~ "%s\n"
+#~ "Все или часть данных могут быть не записаны."
+
+#~ msgid "Couldn't open file `%s': %s"
+#~ msgstr "Не удалось открыть файл `%s': %s"
+
+#~ msgid "Save System Information As..."
+#~ msgstr "Сохранить информацию о системе как..."
+
+#~ msgid "Command failed ` %s ': %s"
+#~ msgstr "Ошибка в команде ` %s ': %s"
+
+#~ msgid "Couldn't run command ` %s ': %s"
+#~ msgstr "Не удалось выполнить команду ` %s ': %s"
+
+#~ msgid ""
+#~ "The following mail will be sent to %s.\n"
+#~ " Are you sure you want to mail this information?"
+#~ msgstr ""
+#~ "Это письмо будет отправлено по адресу %s.\n"
+#~ "Вы уверены, в том что хотите послать эту информацию?"
+
+#~ msgid "Are you sure?"
+#~ msgstr "Вы уверены?"
+
+#~ msgid "Address to mail to:"
+#~ msgstr "Адрес для отправки:"
+
+#~ msgid "Distribution:"
+#~ msgstr "Дистрибутив:"
+
+#~ msgid "Operating System:"
+#~ msgstr "Операционная система:"
+
+#~ msgid "Distribution Version:"
+#~ msgstr "Версия дистрибутива:"
+
+#~ msgid "Operating System Version:"
+#~ msgstr "Версия операционной системы:"
+
+#~ msgid "Operating System Release:"
+#~ msgstr "Выпуск операционной системы:"
+
+#~ msgid "Processor Type:"
+#~ msgstr "Тип процессора:"
+
+#~ msgid "Processor Speed:"
+#~ msgstr "Скорость процессора:"
+
+#~ msgid "Host Name:"
+#~ msgstr "Имя хоста:"
+
+#~ msgid "Domain Name:"
+#~ msgstr "Доменное имя:"
+
+#~ msgid "User Name:"
+#~ msgstr "Имя пользователя:"
+
+#~ msgid "X Display Name:"
+#~ msgstr "Имя X-дисплея"
+
+#~ msgid "System Status:"
+#~ msgstr "Состояние системы:"
+
+#~ msgid "Real Memory:"
+#~ msgstr "Память:"
+
+#~ msgid "Swap Space (\"virtual memory\"):"
+#~ msgstr "Подкачка (\"виртуальная память\"):"
+
+#~ msgid "Total Memory:"
+#~ msgstr "Всего памяти:"
+
+#~ msgid "Free Memory:"
+#~ msgstr "Свободная память:"
+
+#~ msgid "Device"
+#~ msgstr "Устройство"
+
+#~ msgid "Size"
+#~ msgstr "Размер"
+
+#~ msgid "Used space"
+#~ msgstr "Используемое пространство"
+
+#~ msgid "Free space"
+#~ msgstr "Свободное пространство"
+
+#~ msgid "Percent free"
+#~ msgstr "Процент свободного"
+
+#~ msgid "Mount point"
+#~ msgstr "Точка подсоединения"
+
+#~ msgid "Unknown"
+#~ msgstr "Неизвестно"
+
+#~ msgid "Unknown filesystem"
+#~ msgstr "Неизвестная файловая система"
+
+#~ msgid "No information for this filesystem."
+#~ msgstr "Нет сведений об этой файловой системе."
+
+#~ msgid "Memory"
+#~ msgstr "Память"
+
+#~ msgid "Kilobytes"
+#~ msgstr "Килобайты"
+
+#~ msgid "%ld%% memory used."
+#~ msgstr "использованно %ld%% памяти."
+
+#~ msgid "%ld%% swap used."
+#~ msgstr "использованно %ld%% подкачки"
+
+#~ msgid "CPU %d"
+#~ msgstr "ЦПУ %d"
+
+#~ msgid "Detailed System Information"
+#~ msgstr "Подробная информация о системе"
+
+#~ msgid "Disk Information"
+#~ msgstr "Информация о дисках"
+
+#~ msgid "Memory Information"
+#~ msgstr "Информация о памяти"
+
+#~ msgid "CPU Information"
+#~ msgstr "Информация о ЦПУ"
+
+#~ msgid "Mount Point: "
+#~ msgstr "Точка подсоединения:"
+
+#~ msgid "    Device: "
+#~ msgstr "    Устройство: "
+
+#~ msgid "    Filesystem Type: "
+#~ msgstr "    Тип файловой системы: "
+
+#~ msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
+#~ msgstr ""
+#~ "%ld мегабайт, %ld свободно (%ld superuser); %ld inodes, %ld свободно."
+
+#~ msgid "%2d%% full "
+#~ msgstr "заполнен на %2d%%"
+
+#~ msgid ""
+#~ "Couldn't find the \"w\" command in your path.\n"
+#~ "This command is needed for the program to work."
+#~ msgstr ""
+#~ "Не удалось найти команду \"w\".\n"
+#~ "Эта команда необходима для работы программы."
+
+#~ msgid "_Save..."
+#~ msgstr "Сохранить..."
+
+#~ msgid "Write information to disk"
+#~ msgstr "Записать информацию на диск"
+
+#~ msgid "Active User Listing"
+#~ msgstr "Список пользователей"
+
+#~ msgid "Update Information"
+#~ msgstr "Обновить информацию"
+
+#~ msgid "Save not implemented yet\n"
+#~ msgstr "Это пока не реализовано\n"
+
+#~ msgid "Command Line"
+#~ msgstr "Командная строка"
+
+#~ msgid "Add some defaults"
+#~ msgstr "Добавить несколько значений по умолчанию"
+
+#~ msgid "Delete"
+#~ msgstr "Удалить"
+
+#~ msgid "Command Editor"
+#~ msgstr "Редактор команд"
+
+#~ msgid ""
+#~ "You can configure the commands on the popup menus.\n"
+#~ "Just enter the name you want to appear on the \n"
+#~ "menu, and the command to execute.\n"
+#~ "In the command, you can use %u to represent the\n"
+#~ "currently selected username, and %t for the tty."
+#~ msgstr ""
+#~ "Вы можете сконфигурировать команды для всплывающих меню.\n"
+#~ "Просто введите название, которое должно возникать в меню и\n"
+#~ "выполняемую команду. В этой команде Вы можете\n"
+#~ "использовать %u для представления выбранного в настоящий момент\n"
+#~ "имени пользователя и %t для tty."
+
+#~ msgid ""
+#~ "Click this button to add\n"
+#~ "some sample commands."
+#~ msgstr ""
+#~ "Нажмите на эту кнопку, чтобы\n"
+#~ "добавить несколько примеров команд."
+
+#~ msgid "Menu items"
+#~ msgstr "Пункт меню"
+
+#~ msgid "Command"
+#~ msgstr "Команда"
+
+#~ msgid "Running: %s\n"
+#~ msgstr "Исполняется: %s\n"
+
+#~ msgid "16-bit"
+#~ msgstr "16-bit"
+
+#~ msgid "32-bit"
+#~ msgstr "32-bit"
+
+#~ msgid "32-bit w/sync"
+#~ msgstr "32-bit синх"
+
+#~ msgid "Sleeping"
+#~ msgstr "В спячке"
+
+#~ msgid "Active/Idle"
+#~ msgstr "Задействован/Не задействован"
+
+#~ msgid "Standby"
+#~ msgstr "В ожидании"
+
+#~ msgid "Unable to access the drive."
+#~ msgstr "Нет доступа к диску."
+
+#~ msgid "The DMA setting for this drive cannot be changed."
+#~ msgstr "Установки DMA для этого диска не могут быть изменены."
+
+#~ msgid "Enabled"
+#~ msgstr "Вкл."
+
+#~ msgid "Disabled"
+#~ msgstr "Выкл."
+
+#~ msgid "The IRQ unmask setting for this drive cannot be changed."
+#~ msgstr "Установки размаскирования IRQ этого диска изменить нельзя."
+
+#~ msgid "The drive refused to keep its settings."
+#~ msgstr "Диск не в состоянии сохранить установки."
+
+#~ msgid "Keep settings"
+#~ msgstr "Сохранить установки"
+
+#~ msgid "None"
+#~ msgstr "Нет"
+
+#~ msgid "(1 Sector)"
+#~ msgstr "(1 Сектор)"
+
+#~ msgid "(Dual Port)"
+#~ msgstr "(Двойной порт)"
+
+#~ msgid "(Dual Port Cache)"
+#~ msgstr "(Кэше двойного порта)"
+
+#~ msgid "No"
+#~ msgstr "Нет"
+
+#~ msgid "Yes (%d sector)"
+#~ msgstr "Да (%d сектор)"
+
+#~ msgid "Yes (%d sectors)"
+#~ msgstr "Да (%d секторов)"
+
+#~ msgid "Model"
+#~ msgstr "Модель"
+
+#~ msgid "Firmware"
+#~ msgstr "Производитель"
+
+#~ msgid "Serial No."
+#~ msgstr "Серийный номер"
+
+#~ msgid "Geometry"
+#~ msgstr "Геометрия"
+
+#~ msgid "Cache"
+#~ msgstr "Кэше"
+
+#~ msgid "Status"
+#~ msgstr "Состояние"
+
+#~ msgid "Legacy MFM/RLL drive"
+#~ msgstr "Устаревший MFM/RLL диск"
+
+#~ msgid "DMA Mode"
+#~ msgstr "Режим DMA"
+
+#~ msgid "IO Mode"
+#~ msgstr "Режим IO"
+
+#~ msgid "IRQ Unmask"
+#~ msgstr "Размаск. IRQ"
+
+#~ msgid "Multisector"
+#~ msgstr "Многосектор."
+
+#~ msgid "On Reset"
+#~ msgstr "При перезапуске"
+
+#~ msgid "IDE Status"
+#~ msgstr "Состояние IDE"
+
+#~ msgid "Disk Logo Not Found"
+#~ msgstr "Логотип диска не найден"
+
+#~ msgid "Only the superuser can use this tool"
+#~ msgstr "Только администратор может использовать этот инструмент"
+
+#~ msgid "You appear to have no IDE drives"
+#~ msgstr "Кажется у Вас нет IDE дисков"
 
 #~ msgid "invalid display type: %s"
 #~ msgstr "неправильный тип дисплея: %s"
