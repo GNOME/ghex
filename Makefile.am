@@ -1,8 +1,9 @@
-SUBDIRS = po intl macros src help
+SUBDIRS = po intl macros src help omf-install
 
 EXTRA_DIST =		\
 	ghex.spec.in	\
 	ghex.desktop	\
+	app-docs.make   \
 	$(appicon_DATA)
 
 dist-hook: ghex.spec

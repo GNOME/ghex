@@ -1,3 +1,22 @@
+2001-02-28 John Fleck <jfleck@inkstain.net>
+
+	* add omf-install/Makefile.am
+	app-docs.make
+	help/C/ghex-C.omf
+
+	app-docs.make is a standard template for docs makefiles, which is
+	called from within help/C/Makefile.am. It includes
+	ScrollKeeper/omf support
+
+	help/C/ghex-C.omf is the omf file, which holds metadata about
+	C/ghex.sgml needed by ScrollKeeper to build a library of docs
+
+	omf-install is a directory used by ScrollKeeper/omf in the build
+	process.
+
+	Also, updated help/C/Makefile.am, Makefile.am and configure.in to
+	handle all the new stuff.
+
 2001-02-23  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/ui.c (export_html_selected_file, save_selected_file): destroy
