@@ -9,21 +9,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2002-07-23 13:52+0200\n"
-"PO-Revision-Date: 2002-07-23 13:53+0200\n"
+"POT-Creation-Date: 2002-08-20 08:44+0200\n"
+"PO-Revision-Date: 2002-08-20 08:45+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ghex.desktop.in.h:1 src/ghex-window.c:389
-msgid "GHex"
-msgstr "GHex"
+#: ghex.desktop.in.h:1
+msgid "GNOME Hexadecimal Editor"
+msgstr "Hexadecimalredigerare för GNOME"
 
 #: ghex.desktop.in.h:2
-msgid "Gnome Hexadecimal Editor"
-msgstr "Hexadecimalredigerare för Gnome"
+msgid "Hex Editor"
+msgstr "Hexadecimalredigerare"
 
 #: src/chartable.c:114
 msgid "ASCII"
@@ -33,7 +33,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Hexadecimalt"
 
-#: src/chartable.c:114 src/preferences.c:171
+#: src/chartable.c:114 src/preferences.c:174
 msgid "Decimal"
 msgstr "Decimalt"
 
@@ -93,7 +93,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "FEL"
 
-#: src/findreplace.c:60 src/ui.c:872
+#: src/findreplace.c:60 src/ui.c:871
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Sök data"
@@ -139,7 +139,7 @@ msgstr "Avbryt"
 msgid "Closes find data window"
 msgstr "Stänger datasökningsfönstret"
 
-#: src/findreplace.c:140 src/ui.c:870
+#: src/findreplace.c:140 src/ui.c:869
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Sök och ersätt data"
@@ -181,7 +181,7 @@ msgstr "Ersätter alla förekomster av söksträngen med ersättningssträngen"
 msgid "Closes find and replace data window"
 msgstr "Stänger datasöknings- och dataersättningsfönstret"
 
-#: src/findreplace.c:231 src/ui.c:868
+#: src/findreplace.c:231 src/ui.c:867
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hoppa till byte"
@@ -587,17 +587,21 @@ msgstr "_Fönster"
 msgid "_Words"
 msgstr "_Ord"
 
-#: src/ghex-window.c:498
+#: src/ghex-window.c:387
+msgid "GHex"
+msgstr "GHex"
+
+#: src/ghex-window.c:496
 #, c-format
 msgid "Offset: %s"
 msgstr "Avstånd: %s"
 
-#: src/ghex-window.c:633
+#: src/ghex-window.c:631
 #, c-format
 msgid "Activate file %s"
 msgstr "Aktivera filen %s"
 
-#: src/ghex-window.c:672
+#: src/ghex-window.c:670
 #, c-format
 msgid "GHex - %s"
 msgstr "GHex - %s"
@@ -648,120 +652,120 @@ msgstr "Kunde inte initiera Bonobo!\n"
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Ogiltig geometristräng \"%s\"\n"
 
-#: src/preferences.c:92
+#: src/preferences.c:91
 msgid "GHex Preferences"
 msgstr "Inställningar för GHex"
 
-#: src/preferences.c:133
+#: src/preferences.c:136
 msgid "_Maximum number of undo levels:"
 msgstr "_Maximalt antal ångrasteg"
 
-#: src/preferences.c:153
+#: src/preferences.c:156
 msgid "Undo levels"
 msgstr "Ångrasteg"
 
-#: src/preferences.c:153
+#: src/preferences.c:156
 msgid "Select maximum number of undo levels"
 msgstr "Välj maximalt antal ångrasteg"
 
-#: src/preferences.c:157
+#: src/preferences.c:160
 msgid "Show cursor offset in statusbar as:"
 msgstr "Visa markörpositionen i statusraden som:"
 
-#: src/preferences.c:176
+#: src/preferences.c:179
 msgid "Hexadecimal"
 msgstr "Hexadecimalt"
 
-#: src/preferences.c:182
+#: src/preferences.c:185
 msgid "Custom"
 msgstr "Anpassad"
 
-#: src/preferences.c:193
+#: src/preferences.c:196
 msgid "Enter the cursor offset format"
 msgstr "Ange markörpositionsformatet"
 
-#: src/preferences.c:194
+#: src/preferences.c:197
 msgid "Select the cursor offset format"
 msgstr "Välj markörpositionsformatet"
 
 #. show offsets check button
-#: src/preferences.c:204
+#: src/preferences.c:207
 msgid "Show offsets column"
 msgstr "Visa avståndskolumn"
 
-#: src/preferences.c:209
+#: src/preferences.c:212
 msgid "Editing"
 msgstr "Redigerar"
 
 #. display font
-#: src/preferences.c:218
+#: src/preferences.c:221
 msgid "Font"
 msgstr "Typsnitt"
 
 #. default group type
-#: src/preferences.c:246
+#: src/preferences.c:249
 msgid "Default Group Type"
 msgstr "Standardgrupptyp"
 
-#: src/preferences.c:262
+#: src/preferences.c:265
 msgid "Display"
 msgstr "Utseende"
 
 #. paper selection
-#: src/preferences.c:271
+#: src/preferences.c:274
 msgid "Paper size"
 msgstr "Pappersstorlek"
 
 #. data & header font selection
-#: src/preferences.c:276
+#: src/preferences.c:279
 msgid "Fonts"
 msgstr "Typsnitt"
 
-#: src/preferences.c:282
+#: src/preferences.c:285
 msgid "_Data font:"
 msgstr "_Datatypsnitt:"
 
-#: src/preferences.c:300
+#: src/preferences.c:303
 msgid "Data font"
 msgstr "Datatypsnitt"
 
-#: src/preferences.c:300
+#: src/preferences.c:303
 msgid "Select the data font"
 msgstr "Välj datatypsnittet"
 
-#: src/preferences.c:314
+#: src/preferences.c:317
 msgid "Header fo_nt:"
 msgstr "_Rubriktypsnitt:"
 
-#: src/preferences.c:331
+#: src/preferences.c:334
 msgid "Header font"
 msgstr "Rubriktypsnitt"
 
-#: src/preferences.c:331
+#: src/preferences.c:334
 msgid "Select the header font"
 msgstr "Välj rubriktypsnittet"
 
-#: src/preferences.c:359
+#: src/preferences.c:362
 msgid "_Print shaded box over:"
 msgstr "_Skriv skuggad ruta över:"
 
-#: src/preferences.c:371
+#: src/preferences.c:374
 msgid "Box size"
 msgstr "Rutstorlek"
 
-#: src/preferences.c:371
+#: src/preferences.c:374
 msgid "Select size of box (in number of lines)"
 msgstr "Välj storleken på rutan (i antal rader)"
 
-#: src/preferences.c:375
+#: src/preferences.c:378
 msgid "lines (0 for no box)"
 msgstr "rader (0 för ingen ruta)"
 
-#: src/preferences.c:382
+#: src/preferences.c:385
 msgid "Printing"
 msgstr "Skriver ut"
 
-#: src/preferences.c:520
+#: src/preferences.c:527
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -769,7 +773,7 @@ msgstr ""
 "Avståndsformateringssträngen innehåller ogiltiga formatspecificerare.\n"
 "Endast \"x\", \"X\", \"p\", \"P\", \"d\" och \"o\" är tillåtna."
 
-#: src/preferences.c:552
+#: src/preferences.c:559
 msgid "Can not open desired font!"
 msgstr "Kan inte öppna det önskade typsnittet!"
 
@@ -820,11 +824,11 @@ msgstr ""
 "Det inträffade ett fel vid visande av hjälp:\n"
 "%s"
 
-#: src/ui.c:292 src/ui.c:683
+#: src/ui.c:292 src/ui.c:682
 msgid "Error saving file!"
 msgstr "Fel vid sparande av fil!"
 
-#: src/ui.c:296 src/ui.c:678
+#: src/ui.c:296 src/ui.c:677
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Sparade bufferten till filen %s"
@@ -841,38 +845,38 @@ msgstr "Välj en fil att spara bufferten som"
 msgid "Select path and file name for the HTML source"
 msgstr "Ange sökväg och filnamn för HTML-koden"
 
-#: src/ui.c:586
+#: src/ui.c:585
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Vill du verkligen återställa filen %s?"
 
-#: src/ui.c:600
+#: src/ui.c:599
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Återställde buffert från filen %s"
 
-#: src/ui.c:629
+#: src/ui.c:628
 #, c-format
 msgid "Loaded file %s"
 msgstr "Läste in filen %s"
 
-#: src/ui.c:637
+#: src/ui.c:636
 msgid "Can not open file!"
 msgstr "Kan inte öppna filen!"
 
-#: src/ui.c:687
+#: src/ui.c:686
 msgid "Can't open file for writing!"
 msgstr "Kan inte öppna filen för skrivning!"
 
-#: src/ui.c:759
+#: src/ui.c:758
 msgid "Print Hex Document"
 msgstr "Skriv ut hexadecimalt dokument"
 
-#: src/ui.c:764
+#: src/ui.c:763
 msgid "Pages"
 msgstr "Sidor"
 
-#: src/ui.c:810
+#: src/ui.c:809
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Förhandsgranskning"
