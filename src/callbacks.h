@@ -28,8 +28,8 @@
 typedef struct _ReplaceCBData ReplaceCBData;
 
 struct _ReplaceCBData {
-  GtkEntry *find;
-  GtkEntry *replace;
+	GtkEntry *find;
+	GtkEntry *replace;
 };
 
 void select_buffer_cb();
