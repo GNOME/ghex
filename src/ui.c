@@ -24,12 +24,16 @@
 #include <config.h>
 #include <gnome.h>
 #include <libgnomeprint/gnome-print.h>
-#include <libgnomeprint/gnome-printer-dialog.h>
+#include <libgnomeprint/gnome-print-dialog.h>
+#include <libgnomeprint/gnome-print-master-preview.h>
 #include "ghex.h"
 
 static void open_selected_file(GtkWidget *);
 static void save_selected_file(GtkWidget *, GtkWidget *view);
 static void export_html_selected_file(GtkWidget *w, GtkHex *view);
+static void ghex_print(gboolean preview);
+static gboolean ghex_print_run_dialog(GHexPrintJobInfo *pji);
+static void ghex_print_preview_real(GHexPrintJobInfo *pji);
 
 /* callbacks to nullify widget pointer after a delete event */
 static void about_destroy_cb(GtkObject *, GtkWidget **);
@@ -299,62 +303,14 @@ static void save_as_cb(GtkWidget *w)
 	gtk_widget_show (file_sel);
 }
 
-static void print_dialog_clicked_cb(GtkWidget *widget, gint button, gpointer data)
-{
-	if(button == 0) {
-		GnomePrinter *printer;
-		GnomePrinterDialog *dialog = GNOME_PRINTER_DIALOG(widget);
-		HexDocument *doc = (HexDocument *)data;
-
-		printer = gnome_printer_dialog_get_printer(dialog);
-
-		if(printer) {
-			GtkWidget *active_view;
-			guint group_type = 1;
-
-			active_view = gnome_mdi_get_active_view(mdi);
-			if(active_view)
-				group_type = GTK_HEX(active_view)->group_type;
-
-			print_document(doc, group_type, printer);
-		}
-    }
-  
-	gnome_dialog_close(GNOME_DIALOG(widget));
-}
-
 static void print_cb(GtkWidget *w)
 {
-	HexDocument *doc;
-	GtkWidget *dialog;
-
-	if(gnome_mdi_get_active_child(mdi) == NULL)
-		return;
-	
-	doc = HEX_DOCUMENT(gnome_mdi_get_active_child(mdi));
-
-	dialog = gnome_printer_dialog_new ();
-
-	gnome_dialog_set_parent(GNOME_DIALOG(dialog),
-							GTK_WINDOW(mdi->active_window));
-	gtk_signal_connect(GTK_OBJECT(dialog), "clicked",
-					   (GtkSignalFunc)print_dialog_clicked_cb, doc);
-	gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);
-	gtk_widget_show_all(dialog);
+	ghex_print(FALSE);
 }
 
 static void print_preview_cb(GtkWidget *w)
 {
-	GtkWidget *active_view;
-	HexDocument *doc;
-
-	active_view = gnome_mdi_get_active_view(mdi);
-	if(!active_view)
-		return;
-
-	doc = HEX_DOCUMENT(gnome_mdi_get_child_from_view(active_view));
-
-	print_document(doc, GTK_HEX(active_view)->group_type, NULL);
+	ghex_print(TRUE);
 }
 
 static void export_html_cb(GtkWidget *w)
@@ -556,3 +512,121 @@ static void save_selected_file(GtkWidget *w, GtkWidget *view)
 	gtk_widget_destroy(GTK_WIDGET(file_sel));
 	file_sel = NULL;
 }
+
+/**
+ * ghex_print
+ * @preview: Indicates whether to show only a print preview (TRUE) or
+to display the print dialog.
+ *
+ * Prints or previews the current document.
+ **/
+static void
+ghex_print(gboolean preview)
+{
+	GHexPrintJobInfo *pji;
+	HexDocument *doc;
+	GtkWidget *active_view;
+	gboolean cancel = FALSE;
+
+	if (!gnome_mdi_get_active_child(mdi))
+		return;
+
+	doc = HEX_DOCUMENT(gnome_mdi_get_active_child(mdi));
+	active_view = gnome_mdi_get_active_view(mdi);
+	if (!active_view || !doc)
+		return;
+
+	pji = ghex_print_job_info_new(doc, GTK_HEX(active_view)->group_type);
+
+	if (!pji)
+		return;
+
+	pji->preview = preview;
+
+	if (!pji->preview)
+		cancel = ghex_print_run_dialog(pji);
+
+	/* Cancel clicked */
+	if (cancel) {
+		ghex_print_job_info_destroy(pji);
+		return;
+	}
+
+	ghex_print_job_execute(pji);
+
+	if (pji->preview)
+		ghex_print_preview_real(pji);
+	else
+		gnome_print_master_print(pji->master);
+
+	ghex_print_job_info_destroy(pji);
+}
+
+/**
+ * ghex_print_run_dialog
+ * @pji: Pointer to a GHexPrintJobInfo object.
+ *
+ * Return value: TRUE if cancel was clicked, FALSE otherwise.
+ *
+ * Runs the GHex print dialog.
+ **/
+static gboolean
+ghex_print_run_dialog(GHexPrintJobInfo *pji)
+{
+	GnomeDialog *dialog;
+
+	dialog = (GnomeDialog *) gnome_print_dialog_new(
+			(const char *) _("Print Hex Document"),
+			GNOME_PRINT_DIALOG_RANGE);
+
+	gnome_print_dialog_construct_range_page((GnomePrintDialog *)dialog,
+			GNOME_PRINT_RANGE_ALL | GNOME_PRINT_RANGE_RANGE,
+			1, pji->pages, "A", _("Pages"));
+
+	switch(gnome_dialog_run(GNOME_DIALOG(dialog))) {
+		case GNOME_PRINT_PRINT:
+			break;
+		case GNOME_PRINT_PREVIEW:
+			pji->preview = TRUE;
+			break;
+		case -1:
+			return TRUE;
+		default:
+			gnome_dialog_close(GNOME_DIALOG(dialog));
+			return TRUE;
+	};
+
+	pji->printer = gnome_print_dialog_get_printer(
+			GNOME_PRINT_DIALOG(dialog));
+
+	if (pji->printer && !pji->preview)
+		gnome_print_master_set_printer(pji->master, pji->printer);
+
+	pji->range = gnome_print_dialog_get_range_page(
+			GNOME_PRINT_DIALOG(dialog),
+			&pji->page_first, &pji->page_last);
+
+	gnome_dialog_close(GNOME_DIALOG(dialog));
+	return FALSE;
+}
+
+/**
+ * ghex_print_preview_real:
+ * @pji: Pointer to a GHexPrintJobInfo object.
+ *
+ * Previews the print job.
+ **/
+static void
+ghex_print_preview_real(GHexPrintJobInfo *pji)
+{
+	GnomePrintMasterPreview *preview;
+	gchar *title;
+
+	title = g_strdup_printf(_("GHex (%s): Print Preview"),
+			pji->doc->file_name);
+	preview = gnome_print_master_preview_new(pji->master, title);
+	g_free(title);
+
+	gtk_widget_show(GTK_WIDGET(preview));
+}
+

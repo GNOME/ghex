@@ -107,10 +107,14 @@ typedef struct _Converter {
 typedef struct {
 	GnomePrintMaster *master;
 	GnomePrintContext *pc;
+	GnomePrinter *printer;
 	GnomeFont *d_font, *h_font;
 	HexDocument *doc;
 
 	int   pages;
+	gint range;
+	gint page_first;
+	gint page_last;
 	float page_width, page_height;
 	float margin_top, margin_bottom, margin_left, margin_right;
 	float printable_width, printable_height;
@@ -124,6 +128,7 @@ typedef struct {
 	float pad_size;
 	int   offset_chars ; /* How many chars are used in the offset window */
 	int   gt;            /* group_type */
+	gboolean preview;
 } GHexPrintJobInfo;
 
 extern int restarted;
@@ -176,8 +181,9 @@ gint ask_user              (GnomeMessageBox *);
 GtkWidget *create_button   (GtkWidget *, const gchar *, gchar *);
 
 /* printing */
-void print_document        (HexDocument *doc, guint group_type,
-							GnomePrinter *printer);
+void ghex_print_job_execute(GHexPrintJobInfo *pji);
+GHexPrintJobInfo *ghex_print_job_info_new(HexDocument *doc, guint group_type);
+void ghex_print_job_info_destroy(GHexPrintJobInfo *pji);
 
 /* config stuff */
 void save_configuration    (void);

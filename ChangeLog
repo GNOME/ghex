@@ -1,3 +1,32 @@
+2001-04-15  Nathan Cullen <furyu@fuse.net>
+
+	* src/ghex.h broke up print_document into smaller functions
+	(print_document): deleted declaration
+	(ghex_print_job_info_new): added delcaration
+	(ghex_print_job_info_destroy): added declaration
+	(ghex_print_job_execute): added declaration
+	(GHexPrintJobInfo): added printing range, preview flag, printer
+	* src/print.c refactored print_document, merged changes with AleX's
+	patch.
+	(preview_destroy_cb): deleted, functionality moved to ui.c
+	(print_document): deleted, refactored
+	(start_job): delted empty function
+	(end_job): delted empty function
+	(print_header): replaced spaces with tabs
+	(ghex_print_job_info_new): creates a new GHexPrintJobInfo object
+	(ghex_print_job_info_destroy): deallocates a GHexPrintJobInfo object
+	(ghex_print_job_execute): executes the job described by a GHexPrintJob
+	Info object
+	* src/ui.c added print range and preview button to print dialog
+	(print_dialog_clicked_cb): deleted, functionality in
+	ghex_print_run_dialog
+	(print_cb): modified to call ghex_print
+	(print_preview_cb): modified to call ghex_print
+	(ghex_print): added function. prints or previews current document
+	(ghex_print_run_dialog): added function.  runs the print dialog with
+	a new preview button and a print range
+	(ghex_print_preview_real): added function.  previews a print job
+
 2001-04-14  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/gtkhex.c (scroll_timeout_handler): return TRUE.
