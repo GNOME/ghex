@@ -200,11 +200,11 @@ msgstr "Detiene"
 msgid "Timer Running"
 msgstr "Cronómetro corriendo"
 
-#: genius/genius.c:478 ghex/ui.c:412 gtop/main.c:129 gtt/menus.c:103
+#: gcalc/gcalc.c:46 genius/genius.c:478 ghex/ui.c:412 gtop/main.c:129 gtt/menus.c:103
 msgid "About..."
 msgstr "Acerca de..."
 
-#: ghex/ui.c:331 gtop/main.c:148 gtt/menus.c:113
+#: ghex/ui.c:331 gncal/main.c:309 gtop/main.c:148 gtt/menus.c:113
 msgid "File"
 msgstr "Archivo"
 
@@ -212,7 +212,7 @@ msgstr "Archivo"
 msgid "Edit"
 msgstr "Edición"
 
-#: genius/genius.c:491 ghex/ui.c:430 gtop/main.c:152 gtt/menus.c:120
+#: gcalc/gcalc.c:56 genius/genius.c:491 ghex/ui.c:430 gncal/main.c:311 gtop/main.c:152 gtt/menus.c:120
 msgid "Help"
 msgstr "Ayuda"
 
@@ -268,7 +268,7 @@ msgstr "programa terminado"
 msgid "program started"
 msgstr "programa iniciado"
 
-#: genius/genius.c:604 gtt/options.c:197
+#: genius/genius.c:604 gncal/eventedit.c:391 gtt/options.c:197
 msgid "Display"
 msgstr "Despliegue"
 
@@ -412,7 +412,7 @@ msgstr "Tiempo total del proyecto:"
 msgid "Total"
 msgstr "Total"
 
-#: gtt/clist.c:98
+#: gncal/main.c:322 gtt/clist.c:98
 msgid "Today"
 msgstr "Hoy"
 
@@ -450,7 +450,7 @@ msgstr "item 2"
 msgid "item 3"
 msgstr "item 3"
 
-#: genius/genius.c:461 gtop/main.c:142
+#: gcalc/gcalc.c:37 genius/genius.c:461 gncal/main.c:290 gtop/main.c:142
 msgid "Exit"
 msgstr "Salir"
 
@@ -474,138 +474,141 @@ msgstr "Iniciar/Detener muestreo"
 msgid "GNOME System Monitor"
 msgstr "Monitor del sistema de GNOME"
 
-#: gtop/procview.c:163
+#: gtop/procview.c:164
 msgid "Process ID"
 msgstr "ID del proceso"
 
-#: gtop/procview.c:165
+#: gtop/procview.c:166
 msgid "User name"
 msgstr "Nombre de usuario"
 
-#: gtop/procview.c:167
+#: gtop/procview.c:168
 msgid "Priority"
 msgstr "Prioridad"
 
-#: gtop/procview.c:169
+#: gtop/procview.c:170
 msgid "Nice"
 msgstr "Nice"
 
-#: gtop/procview.c:171
+#: gtop/procview.c:172
 msgid "Used memory size"
 msgstr "Memoria en uso"
 
-#: gtop/procview.c:173
+#: gtop/procview.c:174
 msgid "Resident memory set size"
 msgstr "Tamaño de la memoria residente"
 
-#: gtop/procview.c:175
+#: gtop/procview.c:176
 msgid "Shared memory size"
 msgstr "Memoria compartida"
 
-#: gtop/procview.c:177
+#: gtop/procview.c:178
 msgid "Process state"
 msgstr "Estado del proceso"
 
-#: gtop/procview.c:179
+#: gtop/procview.c:180
 msgid "Percent CPU usage"
 msgstr "Porcentage de uso del CPU"
 
-#: gtop/procview.c:181
+#: gtop/procview.c:182
 msgid "Percent memory usage"
 msgstr "Porcentage de uso de la memoria"
 
-#: gtop/procview.c:183
+#: gtop/procview.c:184
 msgid "Time consumed"
 msgstr "Tiempo consumido"
 
-#: gtop/procview.c:185
+#: gtop/procview.c:186
 msgid "User time consumed"
 msgstr "Tiempo de usuario consumido"
 
-#: gtop/procview.c:187
+#: gtop/procview.c:188
 msgid "System time consumed"
 msgstr "Tiempo de sistema consumido"
 
-#: gtop/procview.c:189
+#: gtop/procview.c:190
 msgid "Command"
 msgstr "Comando"
 
-#: gtop/procview.c:191
+#: gtop/procview.c:192
 msgid "Resident memory size"
 msgstr "Memoria residente en uso"
 
-#: gtop/procview.c:301
+#: gtop/procview.c:302
 msgid "All processes"
 msgstr "Todos los procesos"
 
-#: gtop/procview.c:303
+#: gtop/procview.c:304
 msgid "User processes"
 msgstr "Procesos de usuario"
 
-#: gtop/procview.c:305
+#: gtop/procview.c:306
 msgid "TTY processes"
 msgstr "Procesos con terminal"
 
-#: gtop/procview.c:391
+#: gtop/procview.c:392
 msgid "Processes"
 msgstr "Procesos"
 
-#: gtop/procview.c:577
+#: gtop/procview.c:585
 msgid "Send"
 msgstr "Enviar"
 
-#: gtop/procview.c:598
+#: gtop/procview.c:606
 msgid "More ..."
 msgstr "Más..."
 
-#: gtop/procview.c:612
+#: gtop/procview.c:620
 msgid "SIGTERM"
 msgstr ""
 
-#: gtop/procview.c:619
+#: gtop/procview.c:627
 msgid "SIGKILL"
 msgstr ""
 
-#: gtop/procview.c:631
+#: gtop/procview.c:639
 msgid "Details ..."
 msgstr "Detalles..."
 
-#: gtop/memusage.c:26
+#: gtop/memusage.c:36
 msgid "Resident"
 msgstr "Residente"
 
-#: gtop/memusage.c:28
+#: gtop/memusage.c:38
 msgid "Shared"
 msgstr "Compartida"
 
-#: gtop/memusage.c:30
+#: gtop/memusage.c:40
 msgid "Size"
 msgstr "Tamaño"
 
-#: gtop/memusage.c:76
+#: gtop/memusage.c:90
 msgid "Memory usage"
 msgstr "Uso de la memoria"
 
-#: gtop/memusage.c:175
-msgid "Physical Memory Breakdown"
-msgstr "Detalle sobre el uso de la memoria física"
+#: gtop/memusage.c:164
+msgid "Resident Sizes of Processes"
+msgstr "Tamaño residente del proceso"
 
-#: gtop/memusage.c:179
-msgid "Total Physical Memory %ldk (%ldk used)"
-msgstr "Total de memoria física %ldk (%ldk usada)"
+#: gtop/memusage.c:165
+msgid "Sum of Resident Sizes: %ldk"
+msgstr "Suma de los tamaños residentes: %ldk"
 
-#: gtop/memusage.c:272
-msgid "Free"
-msgstr "Libre"
+#: gtop/memusage.c:168
+msgid "Shared Sizes of Processes"
+msgstr "Tamaño del espacio compartido por los procesos"
 
-#. the Buffers menu
-#: ghex/ui.c:404 gtop/memusage.c:281
-msgid "Buffers"
-msgstr "Buffers"
+#: gtop/memusage.c:169
+msgid "Sum of Shared Sizes: %ldk"
+msgstr "Suma de la memoria compartida: %ldk"
 
-#: gtop/memusage.c:285
-msgid "Kernel"
-msgstr "Núcleo (kernel)"
+#: gtop/memusage.c:172
+msgid "Total Sizes of Processes"
+msgstr "Tamaños totales de los procesos"
+
+#: gtop/memusage.c:173
+msgid "Sum of Total Sizes: %ldk"
+msgstr "Suma de los totales: %ldk"
 
 #: ghex/ui.c:270 ghex/ui.c:313 gtop/details.c:47
 msgid "Close"
@@ -741,7 +744,7 @@ msgstr "Tablero de números"
 msgid "Scientific"
 msgstr "Científica"
 
-#: genius/genius.c:485
+#: gcalc/gcalc.c:53 genius/genius.c:485
 msgid "Calculator"
 msgstr "Calculadora"
 
@@ -952,6 +955,11 @@ msgstr "Guardar la configuración al terminar"
 msgid "Options"
 msgstr "Opciones"
 
+#. the Buffers menu
+#: ghex/ui.c:404
+msgid "Buffers"
+msgstr "Buffers"
+
 #: ghex/ui.c:424
 msgid "Help..."
 msgstr "Ayuda..."
@@ -988,6 +996,617 @@ msgstr "Remplazar todos"
 #: ghex/ui.c:550
 msgid "Jump To Byte"
 msgstr "Saltar al byte"
+
+#: gncal/eventedit.c:226
+msgid "Time"
+msgstr "Tiempo"
+
+#: gncal/eventedit.c:240
+msgid "Start time:"
+msgstr "Tiempo inicial:"
+
+#: gncal/eventedit.c:256
+msgid "End time:"
+msgstr "Tiempo final:"
+
+#: gncal/eventedit.c:266
+msgid "All day event"
+msgstr "El evento dura todo el dia"
+
+#. 4. Recurring event checkbox
+#: gncal/eventedit.c:276
+msgid "Recurring event"
+msgstr "El evento se repite"
+
+#: gncal/eventedit.c:289
+msgid "Minutes"
+msgstr "Minutos"
+
+#: gncal/eventedit.c:289
+msgid "Hours"
+msgstr "HOras"
+
+#: gncal/eventedit.c:289
+msgid "Days"
+msgstr "Dias"
+
+#: gncal/eventedit.c:350 gncal/eventedit.c:388
+msgid "Mail to:"
+msgstr "Mandar correo a:"
+
+#: gncal/eventedit.c:359
+msgid "Run program:"
+msgstr "Ejecutar programa; "
+
+#: gncal/eventedit.c:362
+msgid "Select program to run at alarm time"
+msgstr "Seleccione el programa que desea ejecutar cuando se dispare la alarma"
+
+#: gncal/eventedit.c:380
+msgid "Alarms"
+msgstr "Alarmas"
+
+#: gncal/eventedit.c:392
+msgid "Audio"
+msgstr "Audio"
+
+#: gncal/eventedit.c:393
+msgid "Program"
+msgstr "Programa"
+
+#: gncal/eventedit.c:394
+msgid "Mail"
+msgstr "Correo"
+
+#: gncal/eventedit.c:405
+msgid "Classification"
+msgstr "Clasificación"
+
+#: gncal/eventedit.c:411
+msgid "Public"
+msgstr "Público"
+
+#: gncal/eventedit.c:412
+msgid "Private"
+msgstr "Privado"
+
+#: gncal/eventedit.c:413
+msgid "Confidential"
+msgstr "Confidencial"
+
+#: gncal/eventedit.c:781
+msgid "General"
+msgstr "General"
+
+#: gncal/eventedit.c:790
+msgid "Owner:"
+msgstr "Dueño:"
+
+#: gncal/eventedit.c:793
+msgid "?"
+msgstr "?"
+
+#: gncal/eventedit.c:797
+msgid "Summary:"
+msgstr "Resumen:"
+
+#: gncal/eventedit.c:847
+msgid "Daily"
+msgstr "Diario"
+
+#: gncal/eventedit.c:848
+msgid "Weekly"
+msgstr "Semanal"
+
+#: gncal/eventedit.c:849
+msgid "Monthly"
+msgstr "Mensual"
+
+#: gncal/eventedit.c:850
+msgid "Yearly"
+msgstr "Anual"
+
+#: gncal/eventedit.c:872
+msgid "1st"
+msgstr "Primero"
+
+#: gncal/eventedit.c:873
+msgid "2nd"
+msgstr "Segundo"
+
+#: gncal/eventedit.c:874
+msgid "3rd"
+msgstr "Tercero"
+
+#: gncal/eventedit.c:875
+msgid "4th"
+msgstr "Cuarto"
+
+#: gncal/eventedit.c:876
+msgid "5th"
+msgstr "Quinto"
+
+#: gncal/eventedit.c:881
+msgid "Monday"
+msgstr "Lunes"
+
+#: gncal/eventedit.c:882
+msgid "Tuesday"
+msgstr "Martes"
+
+#: gncal/eventedit.c:883
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#: gncal/eventedit.c:884
+msgid "Thursday"
+msgstr "Jueves"
+
+#: gncal/eventedit.c:885
+msgid "Friday"
+msgstr "Viernes"
+
+#: gncal/eventedit.c:886
+msgid "Saturday"
+msgstr "Sábado"
+
+#: gncal/eventedit.c:887
+msgid "Sunday"
+msgstr "Domingo"
+
+#: gncal/eventedit.c:934
+msgid "Mon"
+msgstr "Lun"
+
+#: gncal/eventedit.c:934
+msgid "Tue"
+msgstr "Mar"
+
+#: gncal/eventedit.c:934
+msgid "Wed"
+msgstr "Mie"
+
+#: gncal/eventedit.c:934
+msgid "Thu"
+msgstr "Jue"
+
+#: gncal/eventedit.c:934
+msgid "Fri"
+msgstr "Vie"
+
+#: gncal/eventedit.c:934
+msgid "Sat"
+msgstr "Sab"
+
+#: gncal/eventedit.c:934
+msgid "Sun"
+msgstr "Dom"
+
+#: gncal/eventedit.c:947
+msgid "Recurrence rule"
+msgstr "Regla de repetición"
+
+#: gncal/eventedit.c:1039 gncal/eventedit.c:1053 gncal/eventedit.c:1098 gncal/eventedit.c:1120
+msgid "Every"
+msgstr "Cada"
+
+#: gncal/eventedit.c:1041
+msgid "day(s)"
+msgstr "dia(s)"
+
+#: gncal/eventedit.c:1055
+msgid "week(s)"
+msgstr "semana(s)"
+
+#: gncal/eventedit.c:1076 gncal/eventedit.c:1088
+msgid "Recur on the"
+msgstr "Repetir en el"
+
+#: gncal/eventedit.c:1078
+msgid "th day of the month"
+msgstr "dia del mes"
+
+#: gncal/eventedit.c:1103
+msgid "month(s)"
+msgstr "mes(es)"
+
+#: gncal/eventedit.c:1122
+msgid "year(s)"
+msgstr "año(s)"
+
+#: gncal/eventedit.c:1163
+msgid "Ending date"
+msgstr "Fecha final"
+
+#: gncal/eventedit.c:1176
+msgid "Repeat forever"
+msgstr "Repetir para siempre"
+
+#: gncal/eventedit.c:1185
+msgid "End on"
+msgstr "Terminar el"
+
+#: gncal/eventedit.c:1211
+msgid "End after"
+msgstr "Terminar después de"
+
+#: gncal/eventedit.c:1226
+msgid "occurrence(s)"
+msgstr "ocurrencias"
+
+#: gncal/eventedit.c:1350
+msgid "Exceptions"
+msgstr "Excepciones"
+
+#: gncal/eventedit.c:1362
+msgid "Add exception"
+msgstr "Añadir excepción"
+
+#: gncal/eventedit.c:1372
+msgid "Change selected"
+msgstr "Cambiar el seleccionado"
+
+#: gncal/eventedit.c:1378
+msgid "Delete selected"
+msgstr "Borrar el seleccionado"
+
+#: gncal/eventedit.c:1407
+msgid "Recurrence"
+msgstr "Repeticiones"
+
+#: gncal/gncal-full-day.c:388
+msgid "Edit this appointment..."
+msgstr "Edita esta cita..."
+
+#: gncal/gncal-full-day.c:389
+msgid "Delete this appointment"
+msgstr "Borra esta cita"
+
+#: gncal/gncal-full-day.c:391 gncal/gncal-full-day.c:1502
+msgid "New appointment..."
+msgstr "Nueva cita..."
+
+#: gncal/gnome-cal.c:121
+msgid "Day View"
+msgstr "Dia"
+
+#: gncal/gnome-cal.c:122
+msgid "Week View"
+msgstr "Semana"
+
+#: gncal/gnome-cal.c:123
+msgid "Year View"
+msgstr "Año"
+
+#: gncal/gnome-cal.c:361 gncal/gnome-cal.c:376
+msgid "Reminder of your appointment at "
+msgstr "Recordatorio de su cita a las "
+
+#: gncal/main.c:121
+msgid "Gnome Calendar"
+msgstr ""
+
+#: gncal/main.c:124
+msgid "The GNOME personal calendar and schedule manager."
+msgstr ""
+
+#: gncal/main.c:204
+msgid "Open calendar"
+msgstr "Abre un calendario"
+
+#: gncal/main.c:244
+msgid "Save calendar"
+msgstr "Guarda el calendario"
+
+#: gncal/main.c:274
+msgid "New calendar"
+msgstr "Nuevo calendario"
+
+#: gncal/main.c:277
+msgid "Open calendar..."
+msgstr "Abrir calendario..."
+
+#: gncal/main.c:280
+msgid "Save calendar..."
+msgstr "Guardar el calendario..."
+
+#: gncal/main.c:283
+msgid "Save calendar as..."
+msgstr "Guardar el calendario como..."
+
+#: gncal/main.c:287
+msgid "Close this calendar"
+msgstr "Cerrar este calendario"
+
+#: gncal/main.c:297
+msgid "About"
+msgstr "Acerca"
+
+#: gncal/main.c:304
+msgid "New appointment"
+msgstr "Nueva cita"
+
+#: gncal/main.c:310
+msgid "Calendar"
+msgstr "Calendario"
+
+#: gncal/main.c:316
+msgid "New"
+msgstr "Nuevo"
+
+#: gncal/main.c:319
+msgid "Prev"
+msgstr "Ant"
+
+#: gncal/main.c:325
+msgid "Next"
+msgstr "Sig"
+
+#: gncal/main.c:382
+msgid "Show events and quit"
+msgstr "Muestra eventos y termina"
+
+#: gncal/main.c:383
+msgid "FROM"
+msgstr "DE"
+
+#: gncal/main.c:383
+msgid "Specifies start date [for --events]"
+msgstr "Especifica la fecha inicial [para --events]"
+
+#: gncal/main.c:384
+msgid "FILE"
+msgstr "ARCHIVO"
+
+#: gncal/main.c:384
+msgid "File to load calendar from"
+msgstr "Archivo del cual se carga el calendario"
+
+#: gncal/main.c:385
+msgid "TO"
+msgstr "A"
+
+#: gncal/main.c:385
+msgid "Specifies ending date [for --events]"
+msgstr "Especifica la fecha final [para --events]"
+
+#: gncal/timeutil.c:83
+msgid "am"
+msgstr "am"
+
+#: gncal/timeutil.c:83
+msgid "pm"
+msgstr "pm"
+
+#: gncal/timeutil.c:85
+msgid "h"
+msgstr "h"
+
+#. Month and day table.
+#: gncal/getdate.y:391
+msgid "january"
+msgstr "enero"
+
+#: gncal/getdate.y:392
+msgid "february"
+msgstr "febrero"
+
+#: gncal/getdate.y:393
+msgid "march"
+msgstr "marzo"
+
+#: gncal/getdate.y:394
+msgid "april"
+msgstr "abril"
+
+#: gncal/getdate.y:395
+msgid "may"
+msgstr "mayo"
+
+#: gncal/getdate.y:396
+msgid "june"
+msgstr "junio"
+
+#: gncal/getdate.y:397
+msgid "july"
+msgstr "julio"
+
+#: gncal/getdate.y:398
+msgid "august"
+msgstr "agosto"
+
+#: gncal/getdate.y:399
+msgid "september"
+msgstr "septiembre"
+
+#: gncal/getdate.y:400
+msgid "sept"
+msgstr "sept"
+
+#: gncal/getdate.y:401
+msgid "october"
+msgstr "octubre"
+
+#: gncal/getdate.y:402
+msgid "november"
+msgstr "noviembre"
+
+#: gncal/getdate.y:403
+msgid "december"
+msgstr "diciembre"
+
+#: gncal/getdate.y:404
+msgid "sunday"
+msgstr "domnigo"
+
+#: gncal/getdate.y:405
+msgid "monday"
+msgstr "lunes"
+
+#: gncal/getdate.y:406
+msgid "tuesday"
+msgstr "martes"
+
+#: gncal/getdate.y:407
+msgid "tues"
+msgstr "mar"
+
+#: gncal/getdate.y:408
+msgid "wednesday"
+msgstr "miercoles"
+
+#: gncal/getdate.y:409
+msgid "wednes"
+msgstr "mie"
+
+#: gncal/getdate.y:410
+msgid "thursday"
+msgstr "jueves"
+
+#: gncal/getdate.y:411
+msgid "thur"
+msgstr "jue"
+
+#: gncal/getdate.y:412
+msgid "thurs"
+msgstr "jueves"
+
+#: gncal/getdate.y:413
+msgid "friday"
+msgstr "viernes"
+
+#: gncal/getdate.y:414
+msgid "saturday"
+msgstr "sabado"
+
+#: gncal/getdate.y:420
+msgid "year"
+msgstr "año"
+
+#: gncal/getdate.y:421
+msgid "month"
+msgstr "mes"
+
+#: gncal/getdate.y:422
+msgid "fortnight"
+msgstr "anteanoche"
+
+#: gncal/getdate.y:423
+msgid "week"
+msgstr "semana"
+
+#: gncal/getdate.y:424
+msgid "day"
+msgstr "dia"
+
+#: gncal/getdate.y:425
+msgid "hour"
+msgstr "hora"
+
+#: gncal/getdate.y:426
+msgid "minute"
+msgstr "minuto"
+
+#: gncal/getdate.y:427
+msgid "min"
+msgstr "min"
+
+#: gncal/getdate.y:428
+msgid "second"
+msgstr "segundo"
+
+#: gncal/getdate.y:429
+msgid "sec"
+msgstr "seg"
+
+#: gncal/getdate.y:435
+msgid "tomorrow"
+msgstr "mañana"
+
+#: gncal/getdate.y:436
+msgid "yesterday"
+msgstr "ayer"
+
+#: gncal/getdate.y:437
+msgid "today"
+msgstr "hoy"
+
+#: gncal/getdate.y:438
+msgid "now"
+msgstr "ahora"
+
+#: gncal/getdate.y:439
+msgid "last"
+msgstr "último"
+
+#: gncal/getdate.y:440
+msgid "this"
+msgstr "este"
+
+#: gncal/getdate.y:441
+msgid "next"
+msgstr "siguiente"
+
+#: gncal/getdate.y:442
+msgid "first"
+msgstr "primer"
+
+#. { N_("second"),		tUNUMBER,	2 },
+#: gncal/getdate.y:444
+msgid "third"
+msgstr "tercer"
+
+#: gncal/getdate.y:445
+msgid "fourth"
+msgstr "cuarto"
+
+#: gncal/getdate.y:446
+msgid "fifth"
+msgstr "quinto"
+
+#: gncal/getdate.y:447
+msgid "sixth"
+msgstr "sexto"
+
+#: gncal/getdate.y:448
+msgid "seventh"
+msgstr "séptimo"
+
+#: gncal/getdate.y:449
+msgid "eighth"
+msgstr "octavo"
+
+#: gncal/getdate.y:450
+msgid "ninth"
+msgstr "noveno"
+
+#: gncal/getdate.y:451
+msgid "tenth"
+msgstr "décimo"
+
+#: gncal/getdate.y:452
+msgid "eleventh"
+msgstr "onceavo"
+
+#: gncal/getdate.y:453
+msgid "twelfth"
+msgstr "doceavo"
+
+#: gncal/getdate.y:454
+msgid "ago"
+msgstr ""
+# msgid "Total Physical Memory %ldk (%ldk used)"
+# msgstr "Total de memoria física %ldk (%ldk usada)"
+# 
+# msgid "Physical Memory Breakdown"
+# msgstr "Detalle sobre el uso de la memoria física"
+# 
+# msgid "Kernel"
+# msgstr "Núcleo (kernel)"
+# 
+# msgid "Free"
+# msgstr "Libre"
+# 
 # msgid "View/<check>Options"
 # msgstr "Ver/<check>Opciones"
 # 
