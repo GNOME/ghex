@@ -25,7 +25,6 @@
 #define GNOME_SUPPORT_H
 
 #include <gnome.h>
-#include <getopt.h>
 
 extern int restarted;
 extern const struct poptOption options[];

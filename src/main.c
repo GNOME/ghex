@@ -23,8 +23,6 @@
 
 #include <config.h>
 #include <gnome.h>
-#include <getopt.h>
-
 #include "gnome-support.h"
 #include "ghex.h"
 #include "callbacks.h"
