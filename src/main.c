@@ -1,23 +1,26 @@
-/*
- * main.c - genesis of a GHex application
- * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- * For more details see the file COPYING.
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* main.c - genesis of a GHex application
+
+   Copyright (C) 1997, 1998 Free Software Foundation
+
+   The Gnome Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Library General Public License as
+   published by the Free Software Foundation; either version 2 of the
+   License, or (at your option) any later version.
+
+   The Gnome Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Library General Public License for more details.
+
+   You should have received a copy of the GNU Library General Public
+   License along with the Gnome Library; see the file COPYING.LIB.  If not,
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
+
+   Author: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
+
 #include <config.h>
 #include <gnome.h>
 #include <getopt.h>
@@ -31,74 +34,69 @@ GnomeMDI *mdi;
 gint mdi_mode = GNOME_MDI_DEFAULT_MODE;
 
 int main(int argc, char **argv) {
-  GnomeClient *client;
-  HexDocument *doc;
-
-  argp_program_version = VERSION;
-
-  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-  textdomain(PACKAGE);
-
-  gnome_init("ghex", &parser, argc, argv, 0, NULL);
-
-  client = gnome_master_client();
-
-  gtk_signal_connect (GTK_OBJECT (client), "save_yourself",
-		      GTK_SIGNAL_FUNC (save_state), (gpointer) argv[0]);
-
-  if(!just_exit) {
-    mdi = GNOME_MDI(gnome_mdi_new("ghex", "GHex"));
-
-    /* set up MDI menus */
-    gnome_mdi_set_menu_template(mdi, main_menu);
-
-    /* and document menu and document list paths */
-    gnome_mdi_set_child_menu_path(mdi, _("File"));
-    gnome_mdi_set_child_list_path(mdi, _("Files/"));
-
-    /* connect signals */
-    gtk_signal_connect(GTK_OBJECT(mdi), "remove_child", GTK_SIGNAL_FUNC(remove_doc_cb), NULL);
-    gtk_signal_connect(GTK_OBJECT(mdi), "destroy", GTK_SIGNAL_FUNC(cleanup_cb), NULL);
-    gtk_signal_connect(GTK_OBJECT(mdi), "view_changed", GTK_SIGNAL_FUNC(view_changed_cb), NULL);
-
-    /* load preferences */
-    load_configuration();
-
-    /* set MDI mode */
-    gnome_mdi_set_mode(mdi, mdi_mode);
-
-    /* restore state from previous session */
-    if (GNOME_CLIENT_CONNECTED (client)) {
-      /* Get the client, that may hold the configuration for this
-         program.  */
-      GnomeClient *cloned= gnome_cloned_client ();
-
-      if (cloned) {
-        restarted = 1;
-
-        gnome_config_push_prefix (gnome_client_get_config_prefix (cloned));
-        gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreate)hex_document_new_from_config);
-        gnome_config_pop_prefix ();
-      }
-    }
-
-    while(cl_files) {
-      doc = hex_document_new((char *)cl_files->data);
-      if(doc) {
-        gnome_mdi_add_child(mdi, doc);
-        gnome_mdi_add_view(mdi, doc);
-      }
-      cl_files = g_slist_remove(cl_files, cl_files->data);
-    }
-
-    /* and here we go... */
-    gtk_main();
-  }
-
-  return 0;
+	GnomeClient *client;
+	HexDocument *doc;
+	
+	argp_program_version = VERSION;
+	
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	textdomain(PACKAGE);
+	
+	gnome_init("ghex", &parser, argc, argv, 0, NULL);
+	
+	client = gnome_master_client();
+	
+	gtk_signal_connect (GTK_OBJECT (client), "save_yourself",
+						GTK_SIGNAL_FUNC (save_state), (gpointer) argv[0]);
+	
+	if(!just_exit) {
+		mdi = GNOME_MDI(gnome_mdi_new("ghex", "GHex"));
+		
+		/* set up MDI menus */
+		gnome_mdi_set_menu_template(mdi, main_menu);
+		
+		/* and document menu and document list paths */
+		gnome_mdi_set_child_menu_path(mdi, _("File"));
+		gnome_mdi_set_child_list_path(mdi, _("Files/"));
+		
+		/* connect signals */
+		gtk_signal_connect(GTK_OBJECT(mdi), "remove_child", GTK_SIGNAL_FUNC(remove_doc_cb), NULL);
+		gtk_signal_connect(GTK_OBJECT(mdi), "destroy", GTK_SIGNAL_FUNC(cleanup_cb), NULL);
+		gtk_signal_connect(GTK_OBJECT(mdi), "view_changed", GTK_SIGNAL_FUNC(view_changed_cb), NULL);
+		
+		/* load preferences */
+		load_configuration();
+		
+		/* set MDI mode */
+		gnome_mdi_set_mode(mdi, mdi_mode);
+		
+		/* restore state from previous session */
+		if (GNOME_CLIENT_CONNECTED (client)) {
+			/* Get the client, that may hold the configuration for this
+			   program.  */
+			GnomeClient *cloned= gnome_cloned_client ();
+			
+			if (cloned) {
+				restarted = 1;
+				
+				gnome_config_push_prefix (gnome_client_get_config_prefix (cloned));
+				gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreate)hex_document_new_from_config);
+				gnome_config_pop_prefix ();
+			}
+		}
+		
+		while(cl_files) {
+			doc = hex_document_new((char *)cl_files->data);
+			if(doc) {
+				gnome_mdi_add_child(mdi, GNOME_MDI_CHILD(doc));
+				gnome_mdi_add_view(mdi, GNOME_MDI_CHILD(doc));
+			}
+			cl_files = g_slist_remove(cl_files, cl_files->data);
+		}
+		
+		/* and here we go... */
+		gtk_main();
+	}
+	
+	return 0;
 }
-
-
-
-
-
