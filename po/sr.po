@@ -1,0 +1,968 @@
+# Serbian translation of ghex
+# Courtesy of Prevod.org team (http://www.prevod.org/) -- 2003.
+# 
+# This file is distributed under the same license as the ghex package.
+# 
+# Maintainer: Слободан Средојевић <ssl@uns.ns.ac.yu>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 2.2.1\n"
+"POT-Creation-Date: 2003-05-28 10:55+0200\n"
+"PO-Revision-Date: 2003-05-24 18:37+0200\n"
+"Last-Translator: Слободан Средојевић <ssl@uns.ns.ac.yu>\n"
+"Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ghex.desktop.in.h:1
+msgid "GNOME Hexadecimal Editor"
+msgstr "Гном(GNOME) Хексадецимални Уредник"
+
+#: ghex.desktop.in.h:2
+msgid "Hex Editor"
+msgstr "Хексадецимални уредник"
+
+#: src/chartable.c:140
+msgid "ASCII"
+msgstr "(аски)ASCII"
+
+#: src/chartable.c:140
+msgid "Hex"
+msgstr "Хексадецимално"
+
+#: src/chartable.c:140 src/preferences.c:164
+msgid "Decimal"
+msgstr "Децимално"
+
+#: src/chartable.c:141
+msgid "Octal"
+msgstr "Октално"
+
+#: src/chartable.c:141
+msgid "Binary"
+msgstr "Бинарно"
+
+#: src/chartable.c:157
+msgid "Character table"
+msgstr "Таблела знакова"
+
+#: src/converter.c:209
+msgid "Base Converter"
+msgstr "Основни претварач"
+
+#. entries
+#: src/converter.c:228
+msgid "_Binary:"
+msgstr "_Бинарно:"
+
+#: src/converter.c:230
+msgid "_Octal:"
+msgstr "_Октално:"
+
+#: src/converter.c:232
+msgid "_Decimal:"
+msgstr "_Децимално:"
+
+#: src/converter.c:234
+msgid "_Hex:"
+msgstr "_Хексадецимално:"
+
+#: src/converter.c:236
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+#. get cursor button
+#: src/converter.c:240
+msgid "_Get cursor value"
+msgstr "Податак под _курсором"
+
+#: src/converter.c:254
+msgid "Get cursor value"
+msgstr "Податас под курсором"
+
+#: src/converter.c:254
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"Прихвати вредност приказану на месту курсора као бинарну, децималну,"
+"хексадецималну и аски(ASCII)"
+
+#: src/converter.c:387
+msgid "ERROR"
+msgstr "ГРЕШКА"
+
+#: src/findreplace.c:60 src/ui.c:891
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr "Гхекс(GHex) (%s): пронађи податак"
+
+#: src/findreplace.c:69
+#, c-format
+msgid "Search for %s"
+msgstr "Пронађи %s"
+
+#: src/findreplace.c:86
+msgid "Find _Next"
+msgstr "Тражи _следећи"
+
+#: src/findreplace.c:94
+msgid "Find _Previous"
+msgstr "Тражи п_ретходни"
+
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Find Data"
+msgstr "Пронађи податак"
+
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Задајте хексадецимални или Аски(ASCII) низ знакова који тражите"
+
+#: src/findreplace.c:119
+msgid "Find Next"
+msgstr "Тражи следећи"
+
+#: src/findreplace.c:119 src/findreplace.c:212
+msgid "Finds the next occurrence of the search string"
+msgstr "Тражи следећу појаву задатог низа знакова"
+
+#: src/findreplace.c:120
+msgid "Find previous"
+msgstr "Тражи претходни"
+
+#: src/findreplace.c:120
+msgid "Finds the previous occurrence of the search string "
+msgstr "Тражи претходно појављивање зататог низа знакова"
+
+#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
+msgid "Cancel"
+msgstr "Поништи"
+
+#: src/findreplace.c:121
+msgid "Closes find data window"
+msgstr "Затвори прозор за претрагу"
+
+#: src/findreplace.c:140 src/ui.c:889
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "Гхекс(GHex) (%s): пронађи и замени податак"
+
+#: src/findreplace.c:155
+#, c-format
+msgid "Replace %s"
+msgstr "Замени %s"
+
+#: src/findreplace.c:172
+msgid "Find _next"
+msgstr "Пр_онађи следећи"
+
+#: src/findreplace.c:180 src/ghex-ui.xml.h:84
+msgid "_Replace"
+msgstr "_Замени"
+
+#: src/findreplace.c:188
+msgid "Replace _All"
+msgstr "За_мени све"
+
+#: src/findreplace.c:211
+msgid "Replace Data"
+msgstr "Замени податак"
+
+#: src/findreplace.c:211
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Задајте хексадецималну или аски(ASCII) вредност коју замењујете"
+
+#: src/findreplace.c:212
+msgid "Find next"
+msgstr "Пронађи следећи"
+
+#: src/findreplace.c:213 src/ghex-ui.xml.h:48
+msgid "Replace"
+msgstr "Замени"
+
+#: src/findreplace.c:213
+msgid "Replaces the search string with the replace string"
+msgstr "Врши замену два низа знакова"
+
+#: src/findreplace.c:214
+msgid "Replace All"
+msgstr "Замени све"
+
+#: src/findreplace.c:214
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Врши замену два низа знакова на нивоу целог документа"
+
+#: src/findreplace.c:215
+msgid "Closes find and replace data window"
+msgstr "Затвара пронажи и замени прозор"
+
+#: src/findreplace.c:231 src/ui.c:887
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr "Гхекс(GHex) (%s): Скочи на бајт"
+
+#: src/findreplace.c:261
+msgid "Jump to byte"
+msgstr "Скочи на бајт"
+
+#: src/findreplace.c:261
+msgid "Enter the byte to jump to"
+msgstr "Задајте на који бајт треба померити курсор"
+
+#: src/findreplace.c:262
+msgid "OK"
+msgstr "У реду"
+
+#: src/findreplace.c:262
+msgid "Jumps to the specified byte"
+msgstr "Премешта курсор на задани бајт"
+
+#: src/findreplace.c:263
+msgid "Closes jump to byte window"
+msgstr "Затвара прозор „Скочи на бајт“"
+
+#: src/findreplace.c:329 src/findreplace.c:357 src/findreplace.c:413
+msgid "There is no active document to search!"
+msgstr "Нема активног документа за радњу претрага!"
+
+#: src/findreplace.c:337 src/findreplace.c:365
+msgid "The string is not appropriate for the selected data type!"
+msgstr "Неодоварајући низ знакова за изабрани тип података!"
+
+#: src/findreplace.c:344 src/findreplace.c:430
+msgid "End Of File reached"
+msgstr "Достигнут је крај датотеке"
+
+#: src/findreplace.c:345 src/findreplace.c:374 src/findreplace.c:429
+msgid "String was not found!\n"
+msgstr "Низ знакова није пронађен!\n"
+
+#: src/findreplace.c:373
+msgid "Beginning Of File reached"
+msgstr "Достигнут је почетак датотеке"
+
+#: src/findreplace.c:385
+msgid "There is no active document to move the cursor in!"
+msgstr "Нема активног документа за радњу премештање курсора"
+
+#: src/findreplace.c:390
+msgid "No offset has been specified!"
+msgstr "Није задат померај!"
+
+#: src/findreplace.c:397
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "Курсор се не може преместити иза краја датотеке"
+
+#: src/findreplace.c:402
+msgid "The offset must be a positive integer value!"
+msgstr "Померај мора бити позитиван цео број!"
+
+#: src/findreplace.c:421
+msgid "There seems to be no string to search for!"
+msgstr "Изгледа да нисте задали низ знакова за претрагу!"
+
+#: src/findreplace.c:443
+msgid "There is no active buffer to replace data in!"
+msgstr "Нема активног бафера за замену низова у њему!"
+
+#: src/findreplace.c:455 src/findreplace.c:496
+msgid "Strings are not appropriate for the selected data type!"
+msgstr "Неодговарајући низови знакова за изабрани тип података!"
+
+#: src/findreplace.c:470 src/findreplace.c:471
+msgid "End Of File reached!"
+msgstr "Достигнут је крај датотеке"
+
+#: src/findreplace.c:484
+msgid "There is no active document to replace data in!"
+msgstr "Нема активног документа за замену података у њему!"
+
+#: src/findreplace.c:516
+msgid "No occurences were found."
+msgstr "Није пронађен такав низ знакова."
+
+# bug
+#: src/findreplace.c:519
+#, c-format
+msgid "Replaced %d occurencies."
+msgstr "Број пронађених и замењених низова знакова: %d ."
+
+#: src/ghex-ui.xml.h:1
+msgid "About this application"
+msgstr "О програму"
+
+#: src/ghex-ui.xml.h:2
+msgid "Add View"
+msgstr "Нови прозор"
+
+#: src/ghex-ui.xml.h:3
+msgid "Add a new view to the buffer"
+msgstr "Прикажи бафер у новом прозору"
+
+#: src/ghex-ui.xml.h:4 src/ui.c:64
+msgid "Bytes"
+msgstr "Бајти (1 бајт)"
+
+#: src/ghex-ui.xml.h:5
+msgid "C_ut"
+msgstr "_Исеци"
+
+#: src/ghex-ui.xml.h:6
+msgid "Character Table..."
+msgstr "Табела знакова..."
+
+#: src/ghex-ui.xml.h:7
+msgid "Character _Table..."
+msgstr "Табела _знакова..."
+
+#: src/ghex-ui.xml.h:8
+msgid "Close"
+msgstr "Затвори"
+
+#: src/ghex-ui.xml.h:9
+msgid "Close the current file"
+msgstr "Затвара текућу датотеку"
+
+#: src/ghex-ui.xml.h:10
+msgid "Configure the application"
+msgstr "Подесите програм"
+
+#: src/ghex-ui.xml.h:11
+msgid "Contents"
+msgstr "Садржај"
+
+#: src/ghex-ui.xml.h:12
+msgid "Converter..."
+msgstr "Претварач..."
+
+#: src/ghex-ui.xml.h:13
+msgid "Copy"
+msgstr "Умножи"
+
+#: src/ghex-ui.xml.h:14
+msgid "Copy selection to clipboard"
+msgstr "Пренеси означено на списак исечака"
+
+#: src/ghex-ui.xml.h:15
+msgid "Cut"
+msgstr "Исеци"
+
+#: src/ghex-ui.xml.h:16
+msgid "Cut selection"
+msgstr "Исеци означено"
+
+#: src/ghex-ui.xml.h:17
+msgid "E_xit"
+msgstr "_Крај рада"
+
+#: src/ghex-ui.xml.h:18
+msgid "Exit"
+msgstr "Крај рада"
+
+#: src/ghex-ui.xml.h:19
+msgid "Exit the program"
+msgstr "Крај рада"
+
+#: src/ghex-ui.xml.h:20
+msgid "Export data to HTML source"
+msgstr "Извези податке у изворну HTML датотеку"
+
+#: src/ghex-ui.xml.h:21
+msgid "Export to HTML..."
+msgstr "Извези у HTML..."
+
+#: src/ghex-ui.xml.h:22
+msgid "Find"
+msgstr "Пронађи"
+
+#: src/ghex-ui.xml.h:23
+msgid "Goto Byte"
+msgstr "Пређи на бајт"
+
+#: src/ghex-ui.xml.h:24
+msgid "Group data by 16 bits"
+msgstr "Групиши податке у 16 бита"
+
+#: src/ghex-ui.xml.h:25
+msgid "Group data by 32 bits"
+msgstr "Групиши податке у 32 бита"
+
+#: src/ghex-ui.xml.h:26
+msgid "Group data by 8 bits"
+msgstr "Групиши податке у 8 бита"
+
+#: src/ghex-ui.xml.h:27
+msgid "Help Chat"
+msgstr ""
+
+#: src/ghex-ui.xml.h:28
+msgid "Help on this application"
+msgstr "Упутство за коришћење програма"
+
+#: src/ghex-ui.xml.h:29
+msgid "Insert Mode"
+msgstr "Директан унос"
+
+#: src/ghex-ui.xml.h:30
+msgid "Insert/overwrite data"
+msgstr "Директно унесите податак"
+
+#: src/ghex-ui.xml.h:31
+msgid "Jump to a certain position"
+msgstr "Скочи на одређено место"
+
+#: src/ghex-ui.xml.h:32 src/ui.c:66
+msgid "Longwords"
+msgstr "Дуге речи (4 бајта)"
+
+#: src/ghex-ui.xml.h:33
+msgid "Open"
+msgstr "Отвори"
+
+#: src/ghex-ui.xml.h:34
+msgid "Open a file"
+msgstr "Отвори датотеку"
+
+#: src/ghex-ui.xml.h:35
+msgid "Open base conversion dialog"
+msgstr "Отвори прозорче за основно претварање"
+
+#: src/ghex-ui.xml.h:36
+msgid "Paste"
+msgstr "Убаци"
+
+#: src/ghex-ui.xml.h:37
+msgid "Paste data from clipboard"
+msgstr "Убаци последњу ставку са списка исечака"
+
+#: src/ghex-ui.xml.h:38
+msgid "Preferences"
+msgstr "Поставке"
+
+#: src/ghex-ui.xml.h:39
+msgid "Preview printed data"
+msgstr "Приказ пре штампања"
+
+#: src/ghex-ui.xml.h:40
+msgid "Print"
+msgstr "Одштампај"
+
+#: src/ghex-ui.xml.h:41
+msgid "Print Previe_w..."
+msgstr "Приказ _пре штампања..."
+
+#: src/ghex-ui.xml.h:42
+msgid "Print Preview..."
+msgstr "Приказује документ како ће бити одштампан..."
+
+#: src/ghex-ui.xml.h:43
+msgid "Print the current file"
+msgstr "Одштампај текућу датотеку"
+
+#: src/ghex-ui.xml.h:44
+msgid "Redo"
+msgstr "Понови"
+
+#: src/ghex-ui.xml.h:45
+msgid "Redo the undone action"
+msgstr "Понови последњу поништену радњу"
+
+#: src/ghex-ui.xml.h:46
+msgid "Remove View"
+msgstr "Уклони прозор"
+
+#: src/ghex-ui.xml.h:47
+msgid "Remove the current view of the buffer"
+msgstr "Уклони текући приказ бафера"
+
+#: src/ghex-ui.xml.h:49
+msgid "Replace a string"
+msgstr "Замени низ знакова"
+
+#: src/ghex-ui.xml.h:50
+msgid "Revert"
+msgstr "Врати"
+
+#: src/ghex-ui.xml.h:51
+msgid "Revert to a saved version of the file"
+msgstr "Поново учитај снимљену верзију датотеке"
+
+#: src/ghex-ui.xml.h:52
+msgid "Save"
+msgstr "Сачувај"
+
+#: src/ghex-ui.xml.h:53
+msgid "Save As"
+msgstr "Сачувај као"
+
+#: src/ghex-ui.xml.h:54
+msgid "Save As _HTML..."
+msgstr "Сачувај као HTML..."
+
+#: src/ghex-ui.xml.h:55
+msgid "Save _As..."
+msgstr "_Сачувај као..."
+
+#: src/ghex-ui.xml.h:56
+msgid "Save the current file"
+msgstr "Сачувај текућу датотеку"
+
+#: src/ghex-ui.xml.h:57
+msgid "Save the current file with a different name"
+msgstr "Сачувај текућу датотеку под другим именом"
+
+#: src/ghex-ui.xml.h:58
+msgid "Search for a string"
+msgstr "Тражи низ знакова"
+
+#: src/ghex-ui.xml.h:59
+msgid "Show the character table"
+msgstr "Прикажи табелу знакова"
+
+#: src/ghex-ui.xml.h:60
+msgid "Undo"
+msgstr "Поништи"
+
+#: src/ghex-ui.xml.h:61
+msgid "Undo the last action"
+msgstr "Опозови последњу радњу"
+
+#: src/ghex-ui.xml.h:62 src/ui.c:65
+msgid "Words"
+msgstr "Речи (2 бајта)"
+
+#: src/ghex-ui.xml.h:63
+msgid "_About"
+msgstr "_О програму"
+
+#: src/ghex-ui.xml.h:64
+msgid "_Add View"
+msgstr "_Нови приказ"
+
+#: src/ghex-ui.xml.h:65
+msgid "_Base Converter"
+msgstr "_Основни претварач"
+
+#: src/ghex-ui.xml.h:66
+msgid "_Bytes"
+msgstr "Ба_јте (1 бајт)"
+
+#: src/ghex-ui.xml.h:67
+msgid "_Close"
+msgstr "_Затвори"
+
+#: src/ghex-ui.xml.h:68
+msgid "_Contents"
+msgstr "_Садржај"
+
+#: src/ghex-ui.xml.h:69
+msgid "_Copy"
+msgstr "_Умножи"
+
+#: src/ghex-ui.xml.h:70
+msgid "_Edit"
+msgstr "_Уреди"
+
+#: src/ghex-ui.xml.h:71
+msgid "_File"
+msgstr "_Датотека"
+
+#: src/ghex-ui.xml.h:72
+msgid "_Find"
+msgstr "_Пронађи"
+
+#: src/ghex-ui.xml.h:73
+msgid "_Goto Byte..."
+msgstr "_Скочи на бајт..."
+
+#: src/ghex-ui.xml.h:74
+msgid "_Group Data As"
+msgstr "_Групиши податке у"
+
+#: src/ghex-ui.xml.h:75
+msgid "_Help"
+msgstr "По_моћ"
+
+#: src/ghex-ui.xml.h:76
+msgid "_Insert Mode"
+msgstr "_Директан унос"
+
+#: src/ghex-ui.xml.h:77
+msgid "_Longwords"
+msgstr "_Дуге речи (4 бајта)"
+
+#: src/ghex-ui.xml.h:78
+msgid "_Open..."
+msgstr "_Отвори..."
+
+#: src/ghex-ui.xml.h:79
+msgid "_Paste"
+msgstr "_Убаци"
+
+#: src/ghex-ui.xml.h:80
+msgid "_Preferences"
+msgstr "_Поставке"
+
+#: src/ghex-ui.xml.h:81
+msgid "_Print"
+msgstr "_Одштампај"
+
+#: src/ghex-ui.xml.h:82
+msgid "_Redo"
+msgstr "_Понови"
+
+#: src/ghex-ui.xml.h:83
+msgid "_Remove View"
+msgstr "_Уклони приказ"
+
+#: src/ghex-ui.xml.h:85
+msgid "_Revert"
+msgstr "_Врати"
+
+#: src/ghex-ui.xml.h:86
+msgid "_Save"
+msgstr "_Сачувај"
+
+#: src/ghex-ui.xml.h:87
+msgid "_Undo"
+msgstr "_Поништи"
+
+#: src/ghex-ui.xml.h:88
+msgid "_View"
+msgstr "_Приказ"
+
+#: src/ghex-ui.xml.h:89
+msgid "_Windows"
+msgstr "П_розори"
+
+#: src/ghex-ui.xml.h:90
+msgid "_Words"
+msgstr "_Речи (2 бајта)"
+
+#: src/ghex-window.c:438 src/ghex-window.c:816
+msgid "GHex"
+msgstr "ГХЕКС(GHex)"
+
+#: src/ghex-window.c:571
+#, c-format
+msgid "Offset: %s"
+msgstr "Померај: %s"
+
+#: src/ghex-window.c:770
+#, c-format
+msgid "Activate file %s"
+msgstr "Активирај датотеку %s"
+
+#: src/ghex-window.c:812
+#, c-format
+msgid "GHex - %s"
+msgstr "ГХекс(GHex) - %s"
+
+#: src/ghex-window.c:944
+msgid "Select a file to save buffer as"
+msgstr "Изаберите име за датотеку у коју се уписује бафер"
+
+#: src/ghex-window.c:974
+#, c-format
+msgid ""
+"File %s exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"Датотека %s постоји.\n"
+"Да ли желите да је препишете?"
+
+#: src/ghex-window.c:1009 src/ui.c:356
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "Бафер је забележен у датотеку %s"
+
+#: src/ghex-window.c:1015
+msgid "Error saving file!"
+msgstr "Грешка при снимању датотеке"
+
+#: src/ghex-window.c:1021
+msgid "Can't open file for writing!"
+msgstr "Не могу отворити датотеку за писање"
+
+#: src/ghex-window.c:1048
+#, c-format
+msgid ""
+"File %s has changed since last save.\n"
+"Do you want to save changes?"
+msgstr ""
+"Датотека %s је промењена од последњег уписа.\n"
+"Да ли желите да сачувате промене?"
+
+#: src/ghex-window.c:1058
+msgid "Do_n't save"
+msgstr "Не сним_ај"
+
+#: src/ghex-window.c:1078 src/ui.c:344
+msgid "You don't have the permissions to save the file!"
+msgstr "Немате права да снимите датотеку!"
+
+#: src/ghex-window.c:1082 src/ui.c:349
+msgid "An error occured while saving file!"
+msgstr "Догодила се грешка приликом снимања датотеке"
+
+#: src/hex-document.c:746
+msgid "Page"
+msgstr "Страница"
+
+#: src/hex-document.c:752 src/hex-document.c:877
+msgid "Hex dump generated by"
+msgstr ""
+
+#: src/hex-document.c:762
+msgid "Saving to HTML..."
+msgstr "Бележим датотеку као HTML..."
+
+#: src/hex-document.c:800
+msgid "Previous page"
+msgstr "Претходна страна"
+
+#: src/hex-document.c:815
+msgid "Next page"
+msgstr "Следећа страна"
+
+#: src/main.c:49
+msgid "The gnome binary editor"
+msgstr "Гном(Gnome) програм за уређење бинарних датотека"
+
+#: src/main.c:64
+msgid "Could not initialize Bonobo!\n"
+msgstr "Не могу поставити и покренути Бонобо(Bonobo)!\n"
+
+#: src/main.c:88 src/main.c:101
+#, c-format
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "Нетачан геометријски низ знакова „%s“\n"
+
+#: src/preferences.c:94
+msgid "GHex Preferences"
+msgstr "Гхекс(GHex) поставке"
+
+#: src/preferences.c:126
+msgid "_Maximum number of undo levels:"
+msgstr "_Максимални број поништавања:"
+
+#: src/preferences.c:146
+msgid "Undo levels"
+msgstr "Број поништавања"
+
+#: src/preferences.c:146
+msgid "Select maximum number of undo levels"
+msgstr "Изаберите максимални број поништавања"
+
+#: src/preferences.c:150
+msgid "Show cursor offset in statusbar as:"
+msgstr "Померај курсора је изражен:"
+
+#: src/preferences.c:169
+msgid "Hexadecimal"
+msgstr "Хексадецимално"
+
+#: src/preferences.c:175
+msgid "Custom"
+msgstr "Произвољно"
+
+#: src/preferences.c:187
+msgid "Enter the cursor offset format"
+msgstr "Задајте формат помераја курсора"
+
+#: src/preferences.c:188
+msgid "Select the cursor offset format"
+msgstr "Изаберите формат помераја курсора"
+
+#. show offsets check button
+#: src/preferences.c:198
+msgid "Show offsets column"
+msgstr "Прикажи померај колону"
+
+#: src/preferences.c:203
+msgid "Editing"
+msgstr "Уређивање"
+
+#. display font
+#: src/preferences.c:212
+msgid "Font"
+msgstr "Слово"
+
+#. default group type
+#: src/preferences.c:240
+msgid "Default Group Type"
+msgstr "Подразумевани начин груписања"
+
+#: src/preferences.c:256
+msgid "Display"
+msgstr "Приказ"
+
+#. paper selection
+#: src/preferences.c:265
+msgid "Paper size"
+msgstr "Величина папира"
+
+#. data & header font selection
+#: src/preferences.c:270
+msgid "Fonts"
+msgstr "Слова"
+
+#: src/preferences.c:276
+msgid "_Data font:"
+msgstr "_Слова за податке:"
+
+#: src/preferences.c:295
+msgid "Data font"
+msgstr "Врста слова са којима су приказани подаци"
+
+#: src/preferences.c:295
+msgid "Select the data font"
+msgstr "Изаберите слова за податке"
+
+#: src/preferences.c:309
+msgid "Header fo_nt:"
+msgstr "Слова за заглавље:"
+
+#: src/preferences.c:327
+msgid "Header font"
+msgstr "Слова за заглавље"
+
+#: src/preferences.c:327
+msgid "Select the header font"
+msgstr "Изаберите слова за заглавље"
+
+#: src/preferences.c:353
+msgid "_Print shaded box over:"
+msgstr "Осенчи сваких других:"
+
+#: src/preferences.c:365
+msgid "Box size"
+msgstr "Осенчена област"
+
+#: src/preferences.c:365
+msgid "Select size of box (in number of lines)"
+msgstr "Осенчена област (изражена у линијама)"
+
+#: src/preferences.c:369
+msgid "lines (0 for no box)"
+msgstr "линија (0 искључује ову могућност)"
+
+#: src/preferences.c:376
+msgid "Printing"
+msgstr "Штампање"
+
+#: src/preferences.c:531
+msgid "Can not open desired font!"
+msgstr "Не могу отворити жељено слово!"
+
+#: src/preferences.c:581
+msgid ""
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"Форматни низ знакова помераја садржи нетачан спецификатор.\n"
+"Једино су дозвољена слова 'x', 'X', 'p', 'P', 'd' and 'o'"
+
+#: src/print.c:53
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Страна: %i/%i"
+
+#: src/print.c:204 src/print.c:218
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"Гхекс(GHex) није могао пронаћи слова „%s“.\n"
+"Без ових слова, Гхекс(GHex) не може штампати"
+
+#: src/session.c:29
+msgid "X geometry specification (see \"X\" man page)."
+msgstr ""
+"Икс(X) спецификација геометрије (погледајте „X“ страницу са упутствима)."
+
+#: src/session.c:30
+msgid "GEOMETRY"
+msgstr "ГЕОМЕТРИЈА"
+
+#: src/ui.c:71
+msgid "hex data"
+msgstr "хексадецимални податак"
+
+#: src/ui.c:72
+msgid "ASCII data"
+msgstr "аски(ASCII) податак"
+
+#: src/ui.c:243
+msgid "GHex, a binary file editor"
+msgstr "Гхекс(GHex),бинарно уређивање датотека"
+
+#: src/ui.c:245
+msgid "Released under the terms of GNU Public License"
+msgstr "Издато под условима ГНУ Опште Јавне Лиценце"
+
+#: src/ui.c:268
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Догодила се грешка при приказу помоћи: \n"
+"%s"
+
+#: src/ui.c:376
+msgid "Select a file to open"
+msgstr "Изаберите датотеку"
+
+#: src/ui.c:414
+#, c-format
+msgid "Loaded file %s"
+msgstr "Учитана датотека %s"
+
+#: src/ui.c:422
+msgid "Can not open file!"
+msgstr "Не могу отворити датотеку"
+
+#: src/ui.c:486
+msgid "Select path and file name for the HTML source"
+msgstr "Изаберите путању и име датотеке за изворну HTML датотеку"
+
+#: src/ui.c:521
+msgid "You need to specify a base name for the HTML files."
+msgstr "Морате задати основно име за HTML датотеке."
+
+#: src/ui.c:532 src/ui.c:554
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "Немате дозволу уписа за наведену путању.\n"
+
+#: src/ui.c:538
+msgid ""
+"Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr ""
+"Снимањем HTML датотеке неке датотеке ће бити преписане.\n"
+"Да ли желите да наставите?"
+
+#: src/ui.c:686
+#, c-format
+msgid "Really revert file %s?"
+msgstr "Заиста желите да поново учитате датотеку %s?"
+
+#: src/ui.c:704
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "Бафер је враћен из датотеке %s"
+
+#: src/ui.c:778
+msgid "Print Hex Document"
+msgstr "Одштампај хексадецимални документ"
+
+#: src/ui.c:783
+msgid "Pages"
+msgstr "Странице"
+
+#: src/ui.c:829
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "Гхекс(GHex) (%s): Приказ пре штампања"
