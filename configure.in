@@ -77,6 +77,11 @@ dnl AM_PATH_GNOME_PRINT(0.32.0) -- SnM
 dnl added AM_GLIB_GNU_GETTEXT -- SnM
 AM_GLIB_GNU_GETTEXT
 
+AC_CHECK_LIB(popt, poptGetArgs, [POPT_LIBS="-lpopt"],
+AC_MSG_ERROR([popt is required to build ghex.
+You can download the latest version from ftp://ftp.rpm.org/pub/rpm/dist/rpm-4.0.x/]))
+AC_SUBST(POPT_LIBS)
+
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)

@@ -41,6 +41,7 @@ EXTRA_DIST =	\
 #             $(GNOME_PRINT_LIBS)
 
 LDADD =	\
+	$(POPT_LIBS)		\
 	$(GHEX_LIBS)
 
 CLEAN_FILES = $(BUILT_SOURCES)
