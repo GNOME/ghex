@@ -165,8 +165,6 @@ static void
 close_converter(GtkWidget *button, GnomeDialog *dialog)
 {
 	gnome_dialog_close(dialog);
-	/* We have to do this. Accessed in ui.c:close_cb */
-	get = NULL;
 }
 
 Converter *

@@ -614,6 +614,13 @@ static void open_selected_file(GtkWidget *w)
 		flash = g_strdup_printf(_("Loaded file %s"), new_doc->file_name);
 		bonobo_window_flash(bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), flash);
 		g_free(flash);
+
+		/* If we have created the converter window enable the 
+	 	 * "Get cursor value" button
+	 	 */
+		if (get)
+			gtk_widget_set_sensitive(get, TRUE);
+	
 	}
 	else
 		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Can not open file!"));
