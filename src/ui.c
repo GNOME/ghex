@@ -503,6 +503,7 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	while(window_list) {
 		win = GHEX_WINDOW(window_list->data);
 		window_list = window_list->next;
+		ghex_window_remove_doc_from_list(win, doc);
 		if(win->gh && win->gh->document == doc)
 			gtk_widget_destroy(GTK_WIDGET(win));
 	}
@@ -769,6 +770,7 @@ ghex_print(GtkHex *gh, gboolean preview)
 
 	ghex_print_update_page_size_and_margins (doc, pji);
 	ghex_print_job_execute(pji);
+	gnome_print_master_close (pji->master);
 
 	if (pji->preview)
 		ghex_print_preview_real(pji);

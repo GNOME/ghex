@@ -104,14 +104,14 @@ ghex_window_close(GHexWindow *win)
 			return;
 	}	
 
-    if(doc->views == NULL) {
+    /* We dont have to unref the document if the view is the only one */
+    if(doc->views->next == NULL) {
         window_list = ghex_window_get_list();
         while(window_list) {
             ghex_window_remove_doc_from_list(GHEX_WINDOW(window_list->data),
                                              win->gh->document);
             window_list = window_list->next;
         }
-        g_object_unref(G_OBJECT(doc));
     }
 
 	/* If we have created the converter window disable the 

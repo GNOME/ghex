@@ -318,7 +318,7 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 	pji->d_font = d_font;
 	pji->gt = group_type;
 
-	pji->master = gnome_print_master_new();
+	pji->master = NULL;
 
 	pji->doc = doc;
 
@@ -419,6 +419,5 @@ ghex_print_job_execute(GHexPrintJobInfo *pji)
 		}
 		end_page(pji->pc);
 	}
-	gnome_print_context_close(pji->pc);
 }
 

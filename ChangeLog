@@ -1,3 +1,20 @@
+2002-07-18  Shivram U  <shivaram.upadhyayula@wipro.com>
+
+	* src/print.c (ghex_print_job_info_new): We dont have to create a new
+	GnomePrintMaster here. Its anyway created from the Print Context in
+	ui.c (ghex_print).
+	* src/print.c (ghex_print_job_execute): Dont close the Print Context.
+	Closing the Print Master anyway does that.
+	* src/ui.c : Close the Print Master (gnome_print_master_close) before
+	preview or print. Fix for bug #85147
+
+2002-07-17  Shivram U  <shivaram.upadhyayula@wipro.com>
+
+	* src/ui.c (close_cb): Remove the document from the Files list on close.
+	* src/ghex-window.c (ghex_document_close): Remove the document from the
+	Files list if the next view is NULL. Also not doing an unref on the 
+	document, if it the last view. Its not needed. Fix for #88013
+
 2002-07-10  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/ui.c (export_html_cb): give GtkHex not GHexWindow as user data
