@@ -4,8 +4,6 @@ INCLUDES = -I$(includedir) 					\
 	-DGNOMEICONDIR=\""$(datadir)/pixmaps"\"			\
 	-DGNOMELOCALEDIR=\""${prefix}/${DATADIRNAME}/locale"\" 	\
 	-DLOCALEDIR=\"${prefix}/${DATADIRNAME}/locale\"		\
-	-DGHEX_UI_DIR=\""$(datadir)/ghex2/ui/"\"		\
-	-DGHEX_GLADEDIR=\""$(datadir)/ghex2/glade/"\"		\
 	-DDATADIR=\""$(datadir)"\"				\
 	$(GHEX_CFLAGS) $(GAILUTIL_CFLAGS)
 
