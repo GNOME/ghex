@@ -1,3 +1,13 @@
+2002-04-26  Shivram U  <shivaram.upadhyayula@wipro.com>
+
+	* src/ghex-ui.xml: Fixed Help menu as per usability issues mentioned
+	in #79251.
+	* src/main.c: Fixed the name of the program passed in gnome_program_init
+	It was "ghex" in the help patch. Changed to "ghex2" as the executable
+	name is "ghex2". This was eariler causing a problem for restoring a 
+	session.
+	* help/(lang)/Makefile.am: Renamed app to ghex2. Added ghex2.sgml files
+
 2002-04-24  Satyajit K  <satyajit.kanungo@wipro.com>
 
 	Reviewed by Shivram U  <shivaram.upadhyayula@wipro.com>

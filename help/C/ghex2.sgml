@@ -1,0 +1,700 @@
+<!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
+<!ENTITY version "1.1.4">
+]>
+
+
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 1.0.3
+  Template last modified: Nov 16, 2000
+-->
+
+
+<!-- =============Document Header ============================= -->
+
+<article id="index"> <!-- please do not change the id -->
+
+  <artheader>
+    <title>GHex Manual</title>
+    <copyright>
+      <year>1998, 1999, 2000</year>
+      <holder>Jaka Mocnik</holder>
+    </copyright>
+
+  <!-- translators: uncomment this:
+
+  <copyright>
+   <year>2000</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+
+ 
+
+  <!-- Use this legal notice for online documents which depend on -->
+  <!-- core GNOME packages.                                       -->
+  <legalnotice id="legalnotice">
+   <para>
+    Permission is granted to copy, distribute and/or modify this document
+    under the terms of the <ulink type="help" 
+    url="gnome-help:fdl"><citetitle>GNU Free Documentation
+    License</citetitle></ulink>, Version 1.1 or any later version 
+    published by the Free Software Foundation with no Invariant Sections, 
+    no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license
+    can be found <ulink type="help" url="gnome-help:fdl">here</ulink>.
+   </para>
+   <para>
+    Many of the names used by companies to distinguish their products and
+    services are claimed as trademarks. Where those names appear in any
+    GNOME documentation, and those trademarks are made aware to the members
+    of the GNOME Documentation Project, the names have been printed in caps
+    or initial caps.
+   </para>
+  </legalnotice>
+
+  
+
+  <!-- This is the manual version, not application version. --> 
+    <releaseinfo>
+       This is version 1.0 of GHex manual.
+    </releaseinfo>
+
+  </artheader>
+
+ <!-- ============= Document Body ============================= -->
+
+ <!-- ============= Introduction ============================== -->
+  <sect1 id="intro">
+    <title>Introduction</title>
+
+    <para>
+      <application>GHex </application> (the <acronym>GNOME</acronym> Hex Editor)
+      is a small tool that enables you, its user, to view and edit contents of
+      any file in hex and as ASCII text. It is supposed to be a part of the
+      <acronym>GNOME</acronym> desktop environment and tries to nicely integrate
+      with its other components and conform to the general guidelines for
+      <acronym>GNOME</acronym> applications.
+    </para>
+    
+
+    <para>
+      To run <application>GHex</application>, select
+      <menuchoice>
+	<guisubmenu>Applications</guisubmenu>
+	<guimenuitem>GHex</guimenuitem>
+      </menuchoice>
+      from the <guimenu>Main Menu</guimenu>, or type
+      <command>ghex</command> on the command line.
+  </para>
+
+    <para>This document describes version
+      &version; of <application>GHex</application>.
+    </para>
+  </sect1>
+
+
+ <!-- ================ Usage ================================ -->
+ <!-- This section should describe basic usage of the application. -->
+
+  <sect1 id="usage">
+    <title>Using GHex</title>
+    <para>When starting <application>GHex</application>, it will pop up a window
+    with nothing but a menubar.
+
+        <!-- ==== Figure ==== -->
+        <figure id="ghexmenubar-fig">
+	  <title>GHex Main Window</title>
+	  <screenshot>
+	  <screeninfo><application>GHex</application> Menubar Window</screeninfo>
+	    <graphic fileref="ghexmenubar" format="png" srccredit="John Fleck">
+            </graphic>
+	  </screenshot>
+	</figure>
+    <!-- ==== End of Figure ==== -->
+      </para> 
+    <para>When a file is loaded, its contents will be displayed below the
+      menubar in an area that will occupy the largest part of the window. The
+      contents are displayed in both hex and ascii at once, with hexadecimal
+      values on the left and the corresponding ascii representation of those
+      bytes on the right-hand side of the display.
+      <figure id="ghexfullwindow-fig">
+	  <title>GHex Main Window</title>
+	  <screenshot>
+	  <screeninfo><application>GHex</application> Full Window</screeninfo>
+	    <graphic fileref="ghexfullwindow" format="png" srccredit="John Fleck">
+            </graphic>
+	  </screenshot>
+	</figure>
+    </para>
+  </sect1>
+  <sect1 id="ghexmenues">
+      
+
+      <title>Menus</title>
+      <para>
+	The menu bar, located at the top of the <interface>Main
+Window</interface>, contains the following menus:
+       </para>
+      <variablelist>
+	<varlistentry>
+	  <term><guimenu>File</guimenu></term>
+	  <listitem>
+	    <para>
+	       This menu contains:
+	       <itemizedlist>
+		<listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycap>F3</keycap>
+		      </shortcut>
+		      <guimenuitem>Open</guimenuitem>
+		     </menuchoice>
+		  &mdash; lets you select a file and opens it, reading its
+		  contents to a buffer and displaying it immediately in a view. 
+	           </para>
+		</listitem>
+		<listitem>
+		  <para>
+	             <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>S</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>Save</guimenuitem>
+		    </menuchoice>
+	            &mdash; writes the contents of the buffer to the file with
+		  the same name.
+		  <warning>
+		    <para>Be careful with this since you can easily
+		      corrupt many files that correspond to a given format.</para>
+		  </warning>
+	          </para>
+		</listitem>
+	      <listitem>
+		<para>
+		  <menuchoice>
+		    <guimenuitem>Save As</guimenuitem>
+		  </menuchoice>
+		  &mdash; lets you select a new filename and then saves the contents
+		  of the buffer to a file with this name.
+		</para>
+	      </listitem>
+	      <listitem>
+		<para>
+		  <menuchoice>
+		    <guimenuitem>Export to HTML</guimenuitem>
+		  </menuchoice>
+		  &mdash; generate a package of html files documenting the
+		  hexadecimal contents of the open file.
+		</para>
+	      </listitem>
+	      <listitem>
+		<para>
+		  <menuchoice>
+		    <guimenuitem>Revert</guimenuitem>
+		  </menuchoice>
+		  &mdash; Removes any changes you made since the last time
+		  the file was saved.
+		</para>
+	      </listitem>
+
+	      <listitem>
+		<para>
+		  <menuchoice>
+		    <guimenuitem>Print</guimenuitem>
+		  </menuchoice>
+		  &mdash; Prints a page or pages showing the hexadecimal
+		  contents of the open file.
+		</para>
+	      </listitem>
+	      <listitem>
+		<para>
+		  <menuchoice>
+		    <guimenuitem>Print preview</guimenuitem>
+		  </menuchoice>
+		  &mdash; Displays a screen version of the page as it will be
+		  printed.
+		</para>
+	      </listitem>
+		<listitem>
+		  <para>
+	             <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>W</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>Close</guimenuitem>
+		    </menuchoice>
+	            &mdash; This closes your file.
+	          </para>
+		</listitem>
+		<listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>Q</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>Exit</guimenuitem>
+		    </menuchoice>
+	            &mdash; This quits the application.
+	          </para>
+		</listitem>
+	      </itemizedlist>
+	  </para>
+	  </listitem>
+	</varlistentry>
+	
+	<varlistentry>
+	  <term><guimenu>Edit</guimenu></term>
+	  <listitem>
+	    <para>
+	   This menu contains:
+	   <itemizedlist>
+	      <listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>Z</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>Undo</guimenuitem>
+		    </menuchoice>
+	            &mdash; undoes the last action.
+	          </para>
+		</listitem>
+	      <listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>R</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>Redo</guimenuitem>
+		    </menuchoice>
+	            &mdash; redoes the last undone action.
+	          </para>
+		</listitem>
+		
+		<listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>F6</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>Find</guimenuitem>
+		    </menuchoice>
+		  &mdash; opens the<link
+		  linkend="ghexfindreplace">Find Dialog</link>
+	          </para>
+		</listitem>
+		
+		<listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>F7</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>Replace</guimenuitem>
+		    </menuchoice>
+		  &mdash; opens the <link linkend="ghexfindreplace">Find &amp; Replace Dialog</link>
+	          </para>
+		</listitem>
+		 <listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>J</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>Goto Byte</guimenuitem>
+		    </menuchoice>
+	            &mdash; opens the Jump To Byte Dialog. You can enter the
+	            offset of the cursor in decimal or in hex (preceeded by "0x").
+	          </para>
+		</listitem>
+		<listitem>
+		  <para>
+	            <menuchoice>
+		      <guimenuitem>Insert mode</guimenuitem>
+		    </menuchoice>
+	            &mdash; selects inserting data rather than overwriting it.
+	          </para>
+		</listitem>
+	      </itemizedlist>
+	    </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><guimenu>View</guimenu></term>
+	  <listitem>
+	    <para>
+	   This menu contains:
+	   <itemizedlist>
+		<listitem>
+		  <para>
+	      <guimenuitem>Add View</guimenuitem>
+	       &mdash;  adds another view of the currently edited file.
+	     </para>
+		</listitem>
+		<listitem>
+		  <para>
+	            <guimenuitem>Remove View</guimenuitem> &mdash; removes the
+		  active view. Even if this is the last view of the
+		  corresponding file, the file will not be closed and will
+		  remain accessible through the Files menu.
+    	    	   </para>
+		</listitem>
+	      </itemizedlist>
+	    </para>
+	  </listitem>
+	</varlistentry>
+
+      <varlistentry>
+	  <term><guimenu>Tools</guimenu></term>
+	  <listitem>
+	    <para>
+	   This menu contains:
+	   <itemizedlist>
+		<listitem>
+		  <para>
+	      <guimenuitem>Converter </guimenuitem>
+		  &mdash; opens the Base Conversion
+		    Dialog. ADD LINK 
+	     </para>
+		</listitem>
+		<listitem>
+		  <para>
+	            <guimenuitem>Character Table</guimenuitem> &mdash;
+		  shows a table with ASCII description, a hexadecimal, decimal,
+		  octal and binary representation of each value from 0 to 255. A
+		  double click on a row will set the byte at the cursor position
+		  in the active view to the value of the row.
+    	    	   </para>
+		</listitem>
+	      </itemizedlist>
+	    </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><guimenu>Settings</guimenu></term>
+	  <listitem>
+	    <para>
+	   This menu contains:
+	   <itemizedlist>
+		<listitem>
+		  <para>
+	      <guimenuitem>Preferences&hellip;</guimenuitem>
+	       &mdash; This opens the <link
+	       linkend="prefs"><interface>Preferences
+	       Dialog</interface></link>, which allows you to configure
+	       many settings.
+	     </para>
+
+		</listitem>
+		
+	    </itemizedlist>
+	  </para>
+	</listitem>
+	</varlistentry>
+	
+	<varlistentry>
+	  <term><guimenu>Files</guimenu></term>
+	  <listitem>
+	    <para>
+	      Displays names of all the open files. You can access any of them
+	    by simply picking them from this menu.</para>
+		</listitem>
+	      
+          
+	</varlistentry>
+<varlistentry>
+	  <term><guimenu>Help</guimenu></term>
+	  <listitem>
+	    <para>
+	      This menu contains:
+	       <itemizedlist>
+		<listitem>
+		  <para>
+	             <guimenuitem>Help</guimenuitem> &mdash; This
+    	              opens the designated <application>Help
+    	              Browser</application> and displays this manual.
+	          </para>
+		</listitem>
+		
+		<listitem>
+		  <para>
+	            <guimenuitem>About</guimenuitem> &mdash; This
+    	            opens the <interface>About</interface> dialog
+    	            which shows basic information about
+    	            <application>GHex</application>, such as
+    	            the author's name, the application version number,
+    	            and the URL for the application's Web page if one
+    	            exists.
+	          </para>
+		</listitem>
+	      </itemizedlist>
+            </para>
+	  </listitem>
+	</varlistentry>
+
+      </variablelist>
+    
+  </sect1>
+
+  <sect1 id="ghexediting">
+    <title>Editing a File</title>
+    <para>You can move around the file using the arrow keys, the numeric keypad,
+      the scrollbar on the left of the buffer display or by clicking into display
+      with a mouse. Clicking into the hex or ascii display will activate hex
+      or ascii editing mode. The active display is indicated by a full cursor,
+      while the other one displays cursor as an outline.
+    </para>
+    <para>In ascii mode, you can edit the file pretty much as with any text editor.
+      In hex mode, you can change the value of the nibble (four bits, a half of a
+      byte) under the cursor with keys '0' .. '9' and 'a' .. 'f', representing the
+      hex digits.
+    </para>
+  </sect1>
+
+  <sect1 id="ghexfindreplace">
+    <title>Find and Replace</title>
+    <para>Selecting <guimenuitem>Find</guimenuitem> from the <guimenu>Edit
+    menu</guimenu> will bring up the <interface>Find Dialog</interface>.
+
+      <figure id="ghexfind-fig">
+	  <title>GHex Find Dialog</title>
+	  <screenshot>
+	  <screeninfo><application>GHex</application> Find Dialog</screeninfo>
+	    <graphic fileref="ghexfind" format="png" srccredit="John Fleck">
+            </graphic>
+	  </screenshot>
+	</figure>
+      It allows you to search the file for a string that you can enter in either hex
+      or ascii. To find an <acronym>ASCII</acronym> string, simply enter it into the
+      entry widget and click on the Find Next or Find Previous button. You can
+      choose in which form (either hex or <acronym>ASCII</acronym>) you wish to
+      enter the search string with the two radio buttons below the entry widget.
+    </para>
+    <para>Replacing data is much alike, except that you have to enter both a
+      string to be found and a string that will replace the found
+      value. Selecting <guimenuitem>Replace</guimenuitem> from the
+      <guimenu>Edit</guimenu> menu brings up the <interface>Find/Replace
+      Dialog</interface>.
+      <figure id="ghexfindreplace-fig">
+	  <title>GHex Find/Replace Dialog</title>
+	  <screenshot>
+	  <screeninfo><application>GHex</application> Find/Replace Dialog</screeninfo>
+	    <graphic fileref="ghexfindreplace" format="png" srccredit="John Fleck">
+            </graphic>
+	  </screenshot>
+	</figure>
+
+      The
+      <guibutton>Find Next</guibutton> button will search for the next occurence
+      of the string from the first entry widget, the <guibutton>Replace</guibutton> button
+      will replace the data if the cursor is on the beginning of a string that
+      equals to the searched-for one and then search for the next occurence, if
+      the cursor is not positioned on the beginning of the searched-for string,
+      it will try to find the next occurence of it, but will not replace that
+      one. Finally, the <guibutton>Replace All</guibutton> button will replace
+      all occurences of the searched-for string from the current cursor position
+      to the end of the file.
+    </para>
+  </sect1>
+
+  <sect1 id="ghexconversion">
+    <title>Base Conversion Dialog</title>
+    <para>Shows you up to four bytes of data as their binary, decimal, hexadecimal
+      and <acronym>ASCII</acronym> representation.
+
+ <figure id="ghexconverter-fig">
+	  <title>GHex Converter Dialog</title>
+	  <screenshot>
+	  <screeninfo><application>GHex</application> Converter Dialog</screeninfo>
+	    <graphic fileref="ghexconverter" format="png" srccredit="John Fleck">
+            </graphic>
+	  </screenshot>
+	</figure>
+      The values automatically
+    update when you change data in any entry. 'Get cursor value' button grabs
+    the value of the data under the cursor (either byte, word or long word,
+    depending on the grouping setting).
+    </para>
+  </sect1>
+ <!-- ============= Customization ============================= -->
+
+ <sect1 id="prefs">
+  <title>Customization</title>
+  <para>
+   To change the application settings, select
+   <menuchoice>
+    <guimenu>Settings</guimenu>
+    <guimenuitem>Preferences...</guimenuitem>
+   </menuchoice>.  This opens the
+   <interface>Preferences</interface> dialog.
+  </para>
+    <para>Editing Settings:
+
+
+  <figure id="ghexprefedit-fig">
+   <title>GHex Preferences Editing Dialog</title>
+   <screenshot>
+    <screeninfo>GHex Preferences Editing Dialog</screeninfo>
+    <graphic fileref="ghexprefedit" format="png"
+     srccredit="John Fleck">
+    </graphic>
+   </screenshot>
+  </figure>
+      Here you can set the maximum number of changes that can be undone and pick
+      the format the the cursor offset will be shown at. This format can be
+      either decimal or hexadecimal or a custom printf style string containing
+      no other format specifiers but 'x', 'o' and 's'. You can also set whether
+      the hex editing widget will show an extra column with the offsets of
+      beginning of lines on the left.
+    </para>
+    <para>Display settings:
+ <figure id="ghexdisplaypref-fig">
+   <title>GHex Preferences Display Dialog</title>
+   <screenshot>
+    <screeninfo>GHex Preferences Display Dialog</screeninfo>
+    <graphic fileref="ghexdisplaypref" format="png"
+     srccredit="John Fleck">
+    </graphic>
+   </screenshot>
+  </figure>
+      Here you can set the default data grouping type and the
+      display font.
+    </para>
+
+    <para>MDI Settings:
+<figure id="ghexmdipref-fig">
+   <title>GHex Preferences MDI Dialog</title>
+   <screenshot>
+    <screeninfo>GHex Preferences MDI Dialog</screeninfo>
+    <graphic fileref="ghexmdiprefs" format="png"
+     srccredit="John Fleck">
+    </graphic>
+   </screenshot>
+  </figure>
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    Default: mode chosen by the user with Look and Feel properties.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>Notebook: displays views in notebook pages, enabling user to
+	  create a new toplevel window from each notebook page by dragging it to
+	  the root window. 
+	 </para>
+	</listitem>
+	<listitem>
+	  <para>Toplevel: displays each view in its own toplevel window.</para>
+	</listitem>
+	<listitem>
+	  <para>Modal: only displays one view at a time, allowing user to select
+	  a document from the Files menu.</para>
+	</listitem>
+      </itemizedlist>
+    </para>
+
+    <para>Printing settings:
+      <figure id="ghexprintpref-fig">
+   <title>GHex Print Preferences Dialog</title>
+   <screenshot>
+    <screeninfo>GHex Print Preferences Dialog</screeninfo>
+    <graphic fileref="ghexprintprefs" format="png"
+     srccredit="John Fleck">
+    </graphic>
+   </screenshot>
+  </figure>
+      You can select the paper size, font for the data
+      and the header and whether parts of the output should be shaded.
+    </para>    
+  </sect1>
+
+
+<!-- ============= Authors ================================ -->
+
+ <sect1 id="authors">
+  <title>Authors</title>
+  <para>
+   <application>GHex</application> was written by Jaka Mocnik
+   (<email>jaka@gnu.org</email>). To find more information about
+   <application>GHex</application>, please visit the <ulink
+   url="http://pluton.ijs.si/~jaka/gnome.html#GHEX" type="http">GHex Web
+   page</ulink>.  Please send all comments, suggestions, and bug
+   reports to the <ulink url="http://bugzilla.gnome.org" type="http">GNOME
+   bug tracking database</ulink>. You can also use <application>Bug Report
+   Tool</application> (<command>bug-buddy</command>), available in the
+   <guisubmenu>Utilities</guisubmenu> submenu of <guimenu>Main
+   Menu</guimenu>, for submitting bug reports.
+  </para>
+
+  <para>
+   This manual was written by Jaka Mocnik
+   (<email>jaka@gnu.org</email>). Please send all comments and
+   suggestions regarding this manual to the <ulink type="http"
+   url="http://developer.gnome.org/projects/gdp">GNOME Documentation
+   Project</ulink> by sending an email to
+   <email>docs@gnome.org</email>. You can also add your comments
+   online by using the <ulink type="http"
+   url="http://developer.gnome.org/projects/gdp/doctable/">GNOME
+   Documentation Status Table</ulink>.
+  </para>
+
+  <!-- For translations: uncomment this:
+
+  <para>
+   Latin translation was done by ME
+   (<email>MYNAME@MYADDRESS</email>). Please send all  comments  and
+   suggestions regarding this translation to SOMEWHERE.
+  </para>
+
+  -->
+
+ </sect1>
+
+
+ <!-- ============= Application License ============================= -->
+
+ <sect1 id="license">
+  <title>License</title>
+  <para>
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the  <ulink type="help" url="gnome-help:gpl">
+    <citetitle>GNU General Public License</citetitle></ulink> as
+   published by the Free Software Foundation; 
+   either version 2 of the License, or (at your option) any later
+   version.
+  </para>
+  <para>
+   This program is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   <citetitle>GNU General Public License</citetitle> for more details.
+  </para>
+  <para>
+   A copy of the <citetitle>GNU General Public License</citetitle> is
+   included as an appendix to the <citetitle>GNOME Users
+   Guide</citetitle>.  You may also obtain a copy of the
+   <citetitle>GNU General Public License</citetitle> from the Free
+   Software Foundation by visiting <ulink type="http"
+   url="http://www.fsf.org">their Web site</ulink> or by writing to
+   <address>
+    Free Software Foundation, Inc.
+    <street>59 Temple Place</street> - Suite 330
+    <city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>
+    <country>USA</country>
+   </address>
+  </para>
+ </sect1>
+</article>
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@ figs = \
 	ghexfind.png \
 	ghexmdiprefs.png \
 	ghexprintprefs.png
-app = ghex
+app = ghex2
 lang = C
 omffiles=ghex-C.omf
 include $(top_srcdir)/app-docs.make

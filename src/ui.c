@@ -259,7 +259,7 @@ static void help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar *ve
 {
 	GError *error = NULL;
 
-	gnome_help_display ("ghex", NULL, &error);
+	gnome_help_display ("ghex2", NULL, &error);
 }
 
 /* Changed the function parameters -- SnM */
