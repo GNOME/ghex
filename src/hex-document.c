@@ -229,7 +229,7 @@ HexDocument *hex_document_new(const gchar *name) {
     }
   }
   
-  return document;
+  return NULL;
 }
 
 gint hex_document_read(HexDocument *doc) {

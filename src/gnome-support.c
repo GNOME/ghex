@@ -24,10 +24,10 @@ struct argp parser =
 {
   arguments,			/* Options.  */
   parse_an_arg,			/* The parser function.  */
-  NULL,				/* Some docs.  */
+  "[FILE]...",				/* Some docs.  */
   NULL,				/* Some more docs.  */
   NULL,				/* Child arguments -- gnome_init fills
-				   this in for us.  */
+                 this in for us.  */
   NULL,				/* Help filter.  */
   NULL				/* Translation domain; for the app it
 				   can always be NULL.  */
@@ -35,19 +35,26 @@ struct argp parser =
 
 int restarted = 0, just_exit = FALSE;
 
-gchar *open_files = NULL;
+/* a list of files specifed on the command line */
+GSList *cl_files = NULL;
 
 static error_t
 parse_an_arg (int key, char *arg, struct argp_state *state)
 {
-  if (key == DISCARD_KEY) {
+  switch(key) {
+  case ARGP_KEY_ARG:
+    cl_files = g_slist_append(cl_files, arg);
+    break;
+  case DISCARD_KEY:
     discard_session(arg);
     just_exit = 1;
-    return 0;
+    break;
+  default:
+    /* We didn't recognize it.  */
+    return ARGP_ERR_UNKNOWN;
   }
 
-  /* We didn't recognize it.  */
-  return ARGP_ERR_UNKNOWN;
+  return 0;
 }
 
 /* Session management */

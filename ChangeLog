@@ -1,11 +1,19 @@
 1998-10-29  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
+	* gnome-support.c (parse_an_arg): add support for opening files
+	specified on the command line.
+	* hex-document.c (hex_document_new): return NULL if file can't be
+	opened.
+	* main.c (main): open files specified on the command line.
+	
+1998-10-29  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
 	* gtkhex.[ch]: implemented scrolling when mouse pointer is
 	dragged outside the widget.
 	* callbacks.c (revert_cb): ask user if (s)he really wants to
 	revert.
 	
-1998-10-18  Ville Pätsi <drc@zoo-gate.fi
+1998-10-18  Ville Pätsi  <drc@zoo-gate.fi>
 
 	* Makefile.am: Added icon installation
 	* ghex.desktop: Icon added

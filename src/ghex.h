@@ -91,7 +91,7 @@ extern gchar *mdi_type_label[NUM_MDI_MODES];
 extern guint search_type;
 extern gchar *search_type_label[2];
 
-extern gchar *open_files;
+extern GSList *cl_files;
 
 void create_find_dialog(FindDialog *);
 void create_replace_dialog(ReplaceDialog *);

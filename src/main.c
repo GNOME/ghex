@@ -32,6 +32,7 @@ gint mdi_mode = GNOME_MDI_DEFAULT_MODE;
 
 int main(int argc, char **argv) {
   GnomeClient *client;
+  HexDocument *doc;
 
   argp_program_version = VERSION;
 
@@ -66,7 +67,7 @@ int main(int argc, char **argv) {
     /* set MDI mode */
     gnome_mdi_set_mode(mdi, mdi_mode);
 
-    /* open documents from previous session if there are any */
+    /* restore state from previous session */
     if (GNOME_CLIENT_CONNECTED (client)) {
       /* Get the client, that may hold the configuration for this
          program.  */
@@ -79,6 +80,15 @@ int main(int argc, char **argv) {
         gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreate)hex_document_new_from_config);
         gnome_config_pop_prefix ();
       }
+    }
+
+    while(cl_files) {
+      doc = hex_document_new((char *)cl_files->data);
+      if(doc) {
+        gnome_mdi_add_child(mdi, doc);
+        gnome_mdi_add_view(mdi, doc);
+      }
+      cl_files = g_slist_remove(cl_files, cl_files->data);
     }
 
     /* and here we go... */
