@@ -41,6 +41,9 @@ static void set_word_cb (GtkWidget *);
 static void set_long_cb (GtkWidget *);
 static void undo_cb     (GtkWidget *, gpointer);
 static void redo_cb     (GtkWidget *, gpointer);
+static void cut_cb      (GtkWidget *, gpointer);
+static void copy_cb     (GtkWidget *, gpointer);
+static void paste_cb    (GtkWidget *, gpointer);
 static void add_view_cb    (GtkWidget *, gpointer);
 static void remove_view_cb (GtkWidget *, gpointer);
 static void insert_cb      (GtkWidget *w);
@@ -67,6 +70,10 @@ static GnomeUIInfo edit_menu[] =
 {
 	GNOMEUIINFO_MENU_UNDO_ITEM(undo_cb,NULL),
 	GNOMEUIINFO_MENU_REDO_ITEM(redo_cb,NULL),
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_MENU_CUT_ITEM(cut_cb, NULL),
+	GNOMEUIINFO_MENU_COPY_ITEM(copy_cb, NULL),
+	GNOMEUIINFO_MENU_PASTE_ITEM(paste_cb, NULL),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_FIND_ITEM(find_cb,NULL),
 	GNOMEUIINFO_MENU_REPLACE_ITEM(replace_cb,NULL),
@@ -213,6 +220,27 @@ static void redo_cb(GtkWidget *w, gpointer user_data) {
 		gtk_hex_set_cursor(GTK_HEX(mdi->active_view), cd->start);
 		gtk_hex_set_nibble(GTK_HEX(mdi->active_view), cd->lower_nibble);
 	}
+}
+
+static void cut_cb(GtkWidget *w, gpointer user_data) {
+	if(mdi->active_view == NULL)
+		return;
+
+	gtk_signal_emit_by_name(GTK_OBJECT(mdi->active_view), "cut_clipboard");
+}
+
+static void copy_cb(GtkWidget *w, gpointer user_data) {
+	if(mdi->active_view == NULL)
+		return;
+
+	gtk_signal_emit_by_name(GTK_OBJECT(mdi->active_view), "copy_clipboard");
+}
+
+static void paste_cb(GtkWidget *w, gpointer user_data) {
+	if(mdi->active_view == NULL)
+		return;
+
+	gtk_signal_emit_by_name(GTK_OBJECT(mdi->active_view), "paste_clipboard");
 }
 
 static void add_view_cb(GtkWidget *w, gpointer user_data) {

@@ -111,7 +111,7 @@ guint gtk_hex_get_type(void);
 
 GtkWidget *gtk_hex_new(HexDocument *);
 
-void gtk_hex_set_cursor(GtkHex *, gint);
+void gtk_hex_set_cursor(GtkHex *, guint);
 void gtk_hex_set_cursor_xy(GtkHex *, gint, gint);
 void gtk_hex_set_nibble(GtkHex *, gint);
 
@@ -126,6 +126,8 @@ void gtk_hex_set_font(GtkHex *, GdkFont *);
 void gtk_hex_set_insert_mode(GtkHex *, gboolean);
 
 void gtk_hex_claim_selection (GtkHex *gh, gboolean claim, guint32 time);
+void gtk_hex_delete_selection(GtkHex *gh);
+void gtk_hex_select_region (GtkHex *gh, guint start, guint end);
 
 #ifdef __cplusplus
 }
