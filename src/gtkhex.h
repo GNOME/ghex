@@ -105,8 +105,6 @@ struct _GtkHexClass
 	GtkFixedClass parent_class;
 
 	GtkClipboard *clipboard, *primary;
-	GdkColormap *cmap;
-	GdkColor cl_cursor_p, cl_cursor_a;
 	
 	void (*cursor_moved)(GtkHex *);
 	void (*data_changed)(GtkHex *, gpointer);

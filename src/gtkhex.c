@@ -43,9 +43,6 @@
 #  define is_displayable(c) (((c) >= 0x20) && ((c) <= 0x7f))
 #endif /* 0 */
 
-static GdkColor cl_cursor_a = { 0, 0xFFFF, 0, 0 };
-static GdkColor cl_cursor_p = { 0, 0xFFFF, 0x7F00, 0x7F00 };
-
 typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 
 enum {
@@ -358,10 +355,10 @@ static void render_ac(GtkHex *gh) {
 			c[0] = '.';
 
 		if(gh->active_view == VIEW_ASCII) {
-			gdk_gc_set_foreground(gh->adisp_gc, &klass->cl_cursor_a);
+			gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_ACTIVE]);
 		}
 		else {
-			gdk_gc_set_foreground(gh->adisp_gc, &klass->cl_cursor_p);
+			gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->fg[GTK_STATE_INSENSITIVE]);
 		}
 
 		gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc,
@@ -393,10 +390,10 @@ static void render_xc(GtkHex *gh) {
 		}
 
 		if(gh->active_view == VIEW_HEX) {
-			gdk_gc_set_foreground(gh->xdisp_gc, &klass->cl_cursor_a);
+			gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_ACTIVE]);
 		}
 		else {
-			gdk_gc_set_foreground(gh->xdisp_gc, &klass->cl_cursor_p);
+			gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->fg[GTK_STATE_INSENSITIVE]);
 		}
 
 		gdk_draw_rectangle(GTK_WIDGET(gh->xdisp)->window, gh->xdisp_gc,
@@ -483,7 +480,7 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 				len = len - cursor_off;
 				if(len > 0)
 					gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
-								 GTK_STATE_SELECTED, GTK_SHADOW_NONE,
+								 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
 								 cursor_off*gh->char_width, i*gh->char_height,
 								 len*gh->char_width, gh->char_height);
 			}
@@ -491,13 +488,13 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 				cursor_off = 2*(end%gh->cpl + 1) + (end%gh->cpl)/gh->group_type;
 				if(cursor_off > 0)
 					gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
-								 GTK_STATE_SELECTED, GTK_SHADOW_NONE,
+								 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
 								 0, i*gh->char_height,
 								 cursor_off*gh->char_width, gh->char_height);
 			}
 			else if(i > sl && i < el) {
 				gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
-							 GTK_STATE_SELECTED, GTK_SHADOW_NONE,
+							 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
 							 0, i*gh->char_height,
 							 xcpl*gh->char_width, gh->char_height);
 			}
@@ -560,7 +557,7 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 					len = gh->cpl - cursor_off;
 				if(len > 0)
 					gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window,
-								 GTK_STATE_SELECTED, GTK_SHADOW_NONE,
+								 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
 								 cursor_off*gh->char_width, i*gh->char_height,
 								 len*gh->char_width, gh->char_height);
 			}
@@ -568,13 +565,13 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 				cursor_off = end%gh->cpl + 1;
 				if(cursor_off > 0)
 					gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window,
-								 GTK_STATE_SELECTED, GTK_SHADOW_NONE,
+								 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
 								 0, i*gh->char_height,
 								 cursor_off*gh->char_width, gh->char_height);
 			}
 			else if(i > sl && i < el) {
 				gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window,
-							 GTK_STATE_SELECTED, GTK_SHADOW_NONE,
+							 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
 							 0, i*gh->char_height,
 							 gh->cpl*gh->char_width, gh->char_height);
 			}
@@ -1571,13 +1568,6 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 
 	/* Changed in Gnome 2.0 -- SnM */
 	G_OBJECT_CLASS(klass)->finalize = gtk_hex_finalize;
-
-	klass->cmap = gdk_colormap_get_system();
-	
-	memcpy(&klass->cl_cursor_p, &cl_cursor_p, sizeof(GdkColor));
-	memcpy(&klass->cl_cursor_a, &cl_cursor_a, sizeof(GdkColor));
-	gdk_colormap_alloc_color(klass->cmap, &klass->cl_cursor_p, FALSE, TRUE);
-	gdk_colormap_alloc_color(klass->cmap, &klass->cl_cursor_a, FALSE, TRUE);
 
 	parent_class = gtk_type_class (gtk_fixed_get_type ());
 }
