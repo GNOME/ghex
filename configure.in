@@ -1,7 +1,7 @@
 AC_PREREQ(2.53)
-AC_INIT(ghex, 2.5.2, http://bugzilla.gnome.org/enter_bug.cgi?product=ghex)
+AC_INIT(ghex, 2.5.3, http://bugzilla.gnome.org/enter_bug.cgi?product=ghex)
 AC_CONFIG_SRCDIR(src/ghex-window.c)
-AM_INIT_AUTOMAKE(ghex, 2.5.2)
+AM_INIT_AUTOMAKE(ghex, 2.5.3)
 AM_CONFIG_HEADER(config.h)
 
 AM_MAINTAINER_MODE
@@ -9,7 +9,7 @@ AM_MAINTAINER_MODE
 dnl The following line will have to be removed -- SnM
 GNOME_COMMON_INIT
 
-AC_PROG_INTLTOOL
+AC_PROG_INTLTOOL([0.28])
 
 AC_ISC_POSIX
 AC_PROG_CC
@@ -37,8 +37,8 @@ AC_SUBST(LIBGTKHEX_CFLAGS)
 
 PKG_CHECK_MODULES(GHEX,
 		  gtk+-2.0 >= 2.3.0 		\
-		  libgnomeui-2.0 >= 2.0.0	\
-		  libglade-2.0 >= 2.0.0		\
+		  libgnomeui-2.0 >= 2.5.0	\
+		  libglade-2.0 >= 2.3.0		\
 		  libgnomeprintui-2.2)
 
 GHEX_CFLAGS="$GHEX_CFLAGS"
