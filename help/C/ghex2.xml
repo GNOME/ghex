@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "1.99.0.1">
-  <!ENTITY manrevision "2.3">
-  <!ENTITY date "August 2002">
+  <!ENTITY appversion "1.99.1">
+  <!ENTITY manrevision "2.4">
+  <!ENTITY date "April 2003">
   <!ENTITY app "GHex">
 ]>
 
@@ -24,13 +24,11 @@
     <title>&app; Manual V&manrevision;</title>       
 
     <copyright> 
-      <year>2002</year> 
+      <year>2002-2003</year> 
       <holder>Sun Microsystems</holder> 
     </copyright> 
     <copyright> 
-      <year>1998</year>	
-      <year>1999</year> 
-      <year>2000</year> 
+      <year>1998-2000</year>	 
       <holder>Jaka Mocnik</holder> 
     </copyright>
 	<!-- translators: uncomment this:
@@ -54,8 +52,8 @@
 		<firstname>Sun</firstname> 
 		<surname>GNOME Documentation Team</surname> 
 		<affiliation> 
-	  		<orgname>Sun Microsystems</orgname> 
-	  		<address> <email>gdocteam@sun.com</email> </address> 
+	  		<orgname>Sun Microsystems</orgname>
+	  		<address></address> 
 		</affiliation> 
       </author> 
       <author> 
@@ -85,19 +83,23 @@
 			<revnumber>&app; Manual V&manrevision;</revnumber> 
 			<date>&date;</date> 
 			<revdescription> 
-	  			<para role="author">Sun GNOME Documentation Team
-	    		<email>gdocteam@sun.com</email>
-	  			</para>
+	  			<para role="author">Sun GNOME Documentation Team</para>
 	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision> 
       <revision> 
+			<revnumber>GHex Manual V2.3</revnumber> 
+			<date>August 2002</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
+      </revision>
+      <revision> 
 			<revnumber>GHex Manual V2.2</revnumber> 
 			<date>August 2002</date> 
 			<revdescription> 
-	  			<para role="author">Sun GNOME Documentation Team
-	    		<email>gdocteam@sun.com</email>
-	  			</para>
+	  			<para role="author">Sun GNOME Documentation Team</para>
 	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision>
@@ -105,9 +107,7 @@
 			<revnumber>GHex Manual V2.1</revnumber> 
 			<date>July 2002</date> 
 			<revdescription> 
-	  			<para role="author">Sun GNOME Documentation Team
-	    		<email>gdocteam@sun.com</email>
-	  			</para>
+	  			<para role="author">Sun GNOME Documentation Team</para>
 	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision> 
@@ -115,9 +115,7 @@
 			<revnumber>GHex Manual V2.0</revnumber> 
 			<date>March 2002</date> 
 			<revdescription> 
-	  			<para role="author">Sun GNOME Documentation Team
-	    		<email>gdocteam@sun.com</email>
-	  			</para>
+	  			<para role="author">Sun GNOME Documentation Team</para>
 	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision> 
@@ -291,7 +289,8 @@ By default, <application>&app;</application> displays the cursor offsets column 
 <title>To Edit a File</title>
 <para>To edit a file, perform the following steps: </para>
 <orderedlist>
-<listitem><para>Click in the hexadecimal or ASCII view of the file. The view in which the cursor is active displays a full cursor. The view in which the cursor is not active displays an outline of the cursor. </para>
+<listitem><para>Click in the hexadecimal or ASCII view of the file. The view in which the cursor is active 
+displays a full cursor. The view in which the cursor is not active displays an outline of the cursor. </para>
 </listitem>
 <listitem><para>Use any of the following methods to move the cursor around the file:</para>
 <itemizedlist>
@@ -300,17 +299,29 @@ By default, <application>&app;</application> displays the cursor offsets column 
 <listitem><para>Choose <menuchoice>
 <guimenu>Edit</guimenu>
 <guimenuitem>Goto Byte</guimenuitem>
-</menuchoice>, type the cursor offset as a decimal or hexadecimal value, then click <guibutton>OK</guibutton>. The format of the hexadecimal value must be 0x followed by the offset, for example 0x3.</para>
+</menuchoice>, type the cursor offset as a decimal or hexadecimal value, then click <guibutton>OK</guibutton>. 
+The format of the hexadecimal value must be 0x followed by the offset, for example 0x3.</para>
 </listitem>
 </itemizedlist>
 </listitem>
-<listitem><para>Edit the ASCII format in the same way you edit a normal text file. Edit the hexadecimal format using the values 0 to 9 and a to f.</para>
+<listitem><para>Edit the ASCII format in the same way you edit a normal text file. Edit the hexadecimal 
+format using the values 0 to 9 and a to f.</para>
 </listitem>
 </orderedlist>
 <para>To insert data without overwriting existing data, choose <menuchoice>
 <guimenu>Edit</guimenu>
 <guimenuitem>Insert Mode</guimenuitem>
 </menuchoice>.</para>
+<para>To undo an edit, choose <menuchoice>
+<guimenu>Edit</guimenu>
+<guimenuitem>Undo</guimenuitem>
+</menuchoice>. To redo an edit, choose <menuchoice>
+<guimenu>Edit</guimenu>
+<guimenuitem>Redo</guimenuitem>
+</menuchoice>. The number of previous edits that you can undo is determined by the <guilabel>Maximum 
+number of undo levels</guilabel> setting in the <xref linkend="ghex-prefs-editing"/> tabbed section of the 
+<guilabel>Preferences</guilabel> dialog. 
+</para>
 </sect2>
 
 <!-- ============= To Save a File ============================== -->
@@ -327,11 +338,23 @@ By default, <application>&app;</application> displays the cursor offsets column 
 <listitem><para>To save the current file under a new filename, choose <menuchoice>
 <guimenu>File</guimenu>
 <guimenuitem>Save As</guimenuitem>
-</menuchoice>. Enter a name for the file in the <guilabel>Select a file to save buffer as</guilabel> dialog, then click <guibutton>OK</guibutton>.</para>
+</menuchoice>. Enter a name for the file in the <guilabel>Select a file to save buffer as</guilabel> dialog, then 
+click <guibutton>OK</guibutton>.</para>
 </listitem>
 </itemizedlist>
 </sect2>
 
+<!-- ============= To Revert a File ===================== -->
+
+<sect2 id="ghex-revert">
+<title>To Revert to the Last Saved Version of a File</title>
+<para>To revert to the last version of the current file that you saved and undo all of the edits that you made
+to the file since you last saved the file, choose <menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Revert</guimenuitem>
+</menuchoice>, then click <guibutton>Yes</guibutton> in the <guilabel>Question</guilabel> dialog.</para>
+</sect2>
+
 <!-- ============= To Find Data in a File ============================== -->
 
 <sect2 id="ghex-find-data">
@@ -465,13 +488,13 @@ By default, <application>&app;</application> displays the cursor offsets column 
 <para>To print a file, choose <menuchoice>
 <guimenu>File</guimenu>
 <guimenuitem>Print</guimenuitem>
-</menuchoice>. Select the print options that you require in the <guilabel>Print</guilabel> dialog, then click <guibutton>OK</guibutton>. </para>
+</menuchoice>. Select the print options that you require in the <guilabel>Print</guilabel> dialog, then 
+click <guibutton>OK</guibutton>. </para>
 <para>To preview a printed copy of the file, choose <menuchoice>
 <guimenu>File</guimenu>
 <guimenuitem>Print Preview</guimenuitem>
 </menuchoice>.</para>
 </sect2>
-
 
 </sect1>
 
@@ -500,22 +523,23 @@ By default, <application>&app;</application> displays the cursor offsets column 
 <varlistentry>
 <term><guilabel>Maximum number of undo levels</guilabel> </term>
 <listitem>
-<para>Use this spin box to specify the maximum number of edits that you can undo using the <guimenuitem>Undo</guimenuitem> menu item on the <guimenu>Edit</guimenu> menu. </para>
-<!-- <para>Default: 100.</para> -->
+<para>Use this spin box to specify the maximum number of edits that you can undo using the 
+<guimenuitem>Undo</guimenuitem> menu item on the <guimenu>Edit</guimenu> menu. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
 <term><guilabel>Show cursor offset in statusbar as</guilabel> </term>
 <listitem>
-<para>Use this drop-down list box to select the format in which the cursor offset is displayed. The format can be decimal, hexadecimal, or a custom print style string that only contains the format specifiers x, o, and s. </para>
-<!-- <para>Default: <guilabel>Hexadecimal</guilabel>.</para> -->
+<para>Use this drop-down list box to select the format in which the cursor offset is displayed. The 
+format can be decimal, hexadecimal, or a custom print style string that only contains the format 
+specifiers x, o, and s. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
 <term><guilabel>Show offsets column</guilabel> </term>
 <listitem>
-<para>Select this option to display the cursor offsets in a column to the left of the hexadecimal view of the <application>&app;</application> window. </para>
-<!-- <para>Default: selected.</para> -->
+<para>Select this option to display the cursor offsets in a column to the left of the hexadecimal 
+view of the <application>&app;</application> window. </para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -529,14 +553,18 @@ By default, <application>&app;</application> displays the cursor offsets column 
 <varlistentry>
 <term><guilabel>Font</guilabel> </term>
 <listitem>
-<para>Click on this button to display the font selector dialog. Use the font selector dialog to edit the existing font information or type new font information. Specify a font type, style, and size for displaying the contents of files in <application>&app;</application>, then click <guibutton>OK</guibutton>. The font information that you specify is displayed on the <guilabel>Font</guilabel> button. </para>
-<!-- <para>Default: <guilabel>Courier 12</guilabel></para> -->
+<para>Click on this button to display the font selector dialog. Use the font selector dialog to 
+edit the existing font information or type new font information. Specify a font type, style, and 
+size for displaying the contents of files in <application>&app;</application>, then click 
+<guibutton>OK</guibutton>. The font information that you specify is displayed on the 
+<guilabel>Font</guilabel> button. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
 <term><guilabel>Default Group Type</guilabel> </term>
 <listitem>
-<para>Select how the application displays the hexadecimal content of a file in the <application>&app;</application> window. The options are as follows: </para>
+<para>Select how the application displays the hexadecimal content of a file in the 
+<application>&app;</application> window. The options are as follows: </para>
 <itemizedlist>
 <listitem><para><guilabel>Bytes</guilabel> - single bytes.</para>
 </listitem>
@@ -545,7 +573,6 @@ By default, <application>&app;</application> displays the cursor offsets column 
 <listitem><para><guilabel>Longwords</guilabel> - groups of four bytes. </para>
 </listitem>
 </itemizedlist>
-<!-- <para>Default: <guilabel>Bytes</guilabel>.</para> -->
 </listitem>
 </varlistentry>
 </variablelist>
@@ -559,22 +586,24 @@ By default, <application>&app;</application> displays the cursor offsets column 
 <varlistentry>
 <term><guilabel>Data font</guilabel> </term>
 <listitem>
-<para>Click on the <guibutton>Data font</guibutton> button to specify the size of the font to use to print the data contained in a file. </para>
-<!-- <para>Default: <guilabel>Courier 10.0</guilabel>.</para> -->
+<para>Click on the <guibutton>Data font</guibutton> button to specify the size of the font 
+to use to print the data contained in a file. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
 <term><guilabel>Header font</guilabel> </term>
 <listitem>
-<para>Click on the <guibutton>Header font</guibutton> button to specify the size of the font to use to print the header information that is contained in the file. </para>
-<!-- <para>Default: <guilabel>Helvetica 12.0</guilabel>.</para> -->
+<para>Click on the <guibutton>Header font</guibutton> button to specify the size of the font 
+to use to print the header information that is contained in the file. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
 <term><guilabel>Print shaded box over</guilabel> </term>
 <listitem>
-<para>Use this spin box to specify the number of lines that <application>&app;</application> prints with a surrounding shaded box. If the value of the spin box is 10, <application>&app;</application> prints the first 10 lines of the file within a shaded box. </para>
-<!-- <para>Default: 0.</para> -->
+<para>Use this spin box to specify the number of lines that <application>&app;</application> 
+alternately prints with a surrounding shaded box. If the value of the spin box is 10, 
+<application>&app;</application> prints the first 10 lines of the file without a shaded box, the next 
+10 lines with a shaded box, and so on. </para>
 </listitem>
 </varlistentry>
 </variablelist>
