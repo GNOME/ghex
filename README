@@ -1,0 +1,82 @@
+Copyright
+=========
+
+   GHex - a binary editor
+   Copyright (C) 1998, Jaka Mocnik
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+   For more details see the file COPYING.
+
+
+What is GHex
+============
+
+GHex allows the user to load data from any file, view and edit it in either hex or
+ascii. A must for anyone playing games that use non-ascii format for saving.
+
+
+System Requirements
+===================
+
+GHex should build on (I guess) most unices. It needs the X11R6 libraries, the GTK/GDK
+libraries and GNOME libraries. I believe the ones from the Gnome-0.13 and Gtk+-0.99.5
+distributions should do, but I haven't tried them: if you have problems building ghex
+(unresolved symbols, wrong numbers of arguments, etc.) get the gnome-libs and gtk+
+modules from the Gnome CVS.
+
+
+Installation
+============
+
+Well, since I haven't been good enough to get to know the GNU auto**** stuff,
+you'll have to manually adjust the Makefile to your system (you need the GTK/GDK
+and GNOME includes and libs in your include and library paths) and then simply type
+'make'. If all goes well, this will leave you with an executable called 'ghex' in
+your working directory and you can play with it.
+
+
+Use
+===
+
+Read the documentation: ghex.html
+
+
+Invitation :)
+=============
+
+If anyone (surprisingly) wishes to improve GHex, have a look at the TODO list,
+but don't limit yourself to what is described therein. Send patches to my email
+address.
+
+
+Author
+======
+
+GHex is being maintained by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>. If you are
+having trouble installing and/or running GHex, feel free to e-mail me.
+
+You can check on the current status of GHex via www at: 
+	http://www.kiss.uni-lj.si/~k4fe0026/soft.html#GHEX
+
+Comments, ideas and (most of all) bug reports (and especially patches) are very welcome.
+
+
+
+
+
+
+
+

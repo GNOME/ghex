@@ -1,0 +1,186 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Keywords" CONTENT="GHex, ghex, GNOME, Hex Editor">
+   <META NAME="Author" CONTENT="Jaka Mocnik">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.1.87 i586) [Netscape]">
+   <TITLE>GNOME Hex Editor Documentation</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
+
+<H1>
+GNOME Hex Editor Documentation</H1>
+Copyright (C) 1998, Jaka Mocnik
+
+<P>This program and the documentation are free software; you can redistribute
+it and/or modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of the License,
+or (at your option) any later version. This program is distributed in the
+hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;
+See the GNU General Public License for more details.
+
+<P>You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+59 Temple Place, Suite 330, Boston, MA&nbsp; 02111-1307&nbsp; USA
+
+<P>For more details see the file COPYING.
+<BR>&nbsp;
+<H2>
+<A NAME="toc"></A>1. Table of contents</H2>
+
+<OL>
+<LI>
+<A HREF="#toc">Table of contents</A></LI>
+
+<LI>
+<A HREF="#introduction">Introduction</A></LI>
+
+<LI>
+<A HREF="#use">Use</A></LI>
+
+<LI>
+<A HREF="#feedback">Feedback</A></LI>
+</OL>
+&nbsp;
+<H2>
+<A NAME="introduction"></A>2. Introduction</H2>
+GHex (the <B>G</B>NOME <B>Hex </B>Editor) is a small tool that enables
+you, its user, to view and edit contents of any file in hex and as ASCII
+text. It is supposed to be a part of the GNOME project and tries to nicely
+integrate with its other components and conform to the general guidelines
+for GNOME applications.
+<BR>&nbsp;
+<H2>
+<A NAME="use"></A>3. Use</H2>
+When starting GHex, it will pop up a window with a <A HREF="#menubar">menubar</A>,
+a <A HREF="#toolbar">toolbar</A> and a <A HREF="#statusbar">statusbar</A>
+at the bottom. When a file is loaded, its contents will be displayed between
+the statusbar and the toolbar in an area that will occupy the largest part
+of the window. The contents are displayed in both hex and ascii at once,
+with hexadecimal values on the left and the corresponding ascii representation
+of those bytes on the right-hand side of the display.
+<H4>
+<A NAME="menubar"></A>The menubar</H4>
+Menu <I>File</I>
+<UL>
+<LI>
+<I>Open </I>lets you select a file and opens it, reading its contents to
+a buffer and displaying it immediately. If you have previously been editing
+another file, its contents are still left in the memory and you can return
+to it at any time by choosing it from the <I>Buffers</I> menu.</LI>
+
+<LI>
+<I>Save </I>writes the contents of the buffer to the file with the same
+name. Be careful with this since you can easily corrupt many files that
+correspond to a given format.</LI>
+
+<LI>
+<I>Save As </I>lets you select a filename and then saves the contents of
+the buffer to a file with this name.</LI>
+
+<LI>
+<I>Revert </I>reloads the contents of the buffer from the file.</LI>
+
+<LI>
+<I>Close </I>removes the buffer from the memory.</LI>
+
+<LI>
+<I>Quit </I>should be obvious: it quits GHex.</LI>
+</UL>
+Menu <I>Edit</I>
+<UL>
+<LI>
+<I>Find </I>opens the <A HREF="#findnreplace">Find Dialog</A></LI>
+
+<LI>
+<I>Replace </I>opens the <A HREF="#findnreplace">Find &amp; Replace Dialog</A></LI>
+
+<LI>
+<I>Goto Byte </I>opens the Jump To Byte Dialog</LI>
+</UL>
+Menu <I>Options</I>
+<UL>
+<LI>
+<I>Group Data As </I>offers three different ways how the bytes in the hex
+display are grouped: either as single bytes or in groups of two bytes (words)
+or four bytes (long words).</LI>
+
+<LI>
+<I>Select Font </I>lets you select the font that will be used to display
+data. The display won't work correctly unless this is a monospaced font
+(a font where all the characters have the same width). Examples of a monospaced
+font are Courier or Fixed that should appear on most X Window systems.</LI>
+</UL>
+Menu <I>Buffers</I>
+<UL>
+<LI>
+Displays names of all the files that are still open. You can access any
+of them by simply picking them from this menu.</LI>
+</UL>
+Menu <I>Help</I>
+<UL>
+<LI>
+<I>About </I>shows you what GHex is and who is responsible for it.</LI>
+</UL>
+
+<H4>
+<A NAME="toolbar"></A>The toolbar</H4>
+contains just four buttons, that serve the same purpose as the corresponding
+menu items: <I>Open, Save, Revert </I>and <I>Close</I>
+<H4>
+<A NAME="statusbar"></A>The statusbar</H4>
+is divided in three parts. The leftmost label displays the name of the
+file that you are currently editing, the middle one displays the cursor
+position in bytes and the size of the edited file and the rightmost label
+displays the decimal value of the byte, word and longword that the cursor
+is on.
+<H4>
+Editing a file</H4>
+You can move around the file using the arrow keys, the numeric keypad,
+the scrollbar on the left of the buffer display or by clicking into display
+with a mouse. Clicking into the hex or ascii display will activate hex
+or ascii editing mode. The active display is indicated by a full cursor,
+while the other one displays cursor as an outline. In ascii mode, you can
+edit the file pretty much as with any text editor except that GHex will
+not let you insert any data but only overwrite it. In hex mode, you can
+change the value of the nibble (four bits, a half of a byte) under the
+cursor with keys '0' .. '9' and 'a' .. 'f'.
+<H4>
+<A NAME="findnreplace"></A>Finding and replacing data</H4>
+Selecting <I>Find </I>from the <I>Edit </I>menu will bring up the Find
+Dialog. It allows you to search the file for a string that you can enter
+in either hex or ascii. To find an ascii string, simply enter it into the
+entry widget and click on the <I>Find Next </I>or <I>Find Previous</I>
+button. You can specify the value to be found in hex if you begin the string
+with a <I>$</I>: searching for "$474e55" is the same as searching for "GNU".
+If you really need to search for an ascii string beginning with a <I>$</I>
+character, you can escape the leading <I>$</I> with <I>$$</I>: "$$GNU"
+represents string "$GNU".
+<BR>Replacing data is much alike, except that you have to enter both a
+string to be found and a string that will replace the found value. Both
+strings must be of the same length (because GHex allows only overwriting
+of data and no insertion). The <I>Find Next </I>button will search for
+the next occurence of the string from the first entry widget, the <I>Replace
+</I>button will replace the data if the cursor is on the beginning of a
+string that equals to the searched-for one and then search for the next
+occurence, if the cursor is not positioned on the beginning of the searched-for
+string, it will try to find the next occurence of it, but will not replace
+that one. Finally, the <I>Replace All </I>button will replace all occurences
+of the searched-for string from the current cursor position to the end
+of the file.
+<BR>&nbsp;
+<H2>
+<A NAME="feedback"></A>4. Feedback</H2>
+GHex is being maintained by <A HREF="mailto:jaka.mocnik@kiss.uni-lj.si">Jaka
+Mocnik &lt;jaka.mocnik@kiss.uni-lj.si></A>. If you are having trouble installing
+and/or running GHex, feel free to e-mail me.
+
+<P>You can check the current status of GHex via WWW at <A HREF="http://www.kiss.uni-lj.si/~k4fe0026/soft.html#GHEX">this
+page.</A>
+
+<P>Comments, ideas and (most of all) bug reports (and especially patches)
+are very welcome at the above e-mail address.
+<BR>&nbsp;
+</BODY>
+</HTML>
