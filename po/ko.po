@@ -1,469 +1,919 @@
 # ghex ko.po
-# Copyright (C) 1998, 1999 Free Software Foundation, Inc.
-# Changwoo Ryu <cwryu@adam.kaist.ac.kr>, 1998
+# Changwoo Ryu <cwryu@debian.org>, 1998
 # Updated by Chideok, Hwang <hwang@mizi.co.kr> 2001.
+# Changwoo Ryu <cwryu@debian.org>, 2002
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex 1.2-beta3\n"
-"POT-Creation-Date: 2001-03-08 19:39+0100\n"
-"PO-Revision-Date: 2001-03-07 23:24+0900\n"
-"Last-Translator: ChiDeok, Hwang <hwang@mizi.co.kr>\n"
+"POT-Creation-Date: 2002-06-11 12:06+0900\n"
+"PO-Revision-Date: 2002-06-11 14:51+0900\n"
+"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=euc-kr\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/converter.c:44
-msgid "GHex: Converter"
-msgstr "GHex: º¯È¯±â"
+#: ghex.desktop.in.h:1
+msgid "GHex"
+msgstr "GHex"
 
-#: src/chartable.c:91 src/converter.c:53
-msgid "Binary"
-msgstr "ÀÌÁø"
+#: ghex.desktop.in.h:2
+msgid "Gnome Hexadecimal Editor"
+msgstr "ê·¸ë†ˆ ì‹­ìœ¡ì§„ ì—ë””í„°"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:161
-msgid "Decimal"
-msgstr "½ÊÁø¼ö"
+#: src/bonobo-mdi.c:494 src/bonobo-mdi.c:570 src/bonobo-mdi.c:1886
+#, c-format
+msgid "Activate %s"
+msgstr "%s í™œì„±í™”"
 
-#: src/chartable.c:90 src/converter.c:73
-msgid "Hex"
-msgstr "½ÊÀ°Áø¼ö"
-
-#: src/chartable.c:90 src/converter.c:83
+#: src/chartable.c:115
 msgid "ASCII"
-msgstr "¾Æ½ºÅ°"
+msgstr "ì•„ìŠ¤í‚¤"
 
-#: src/converter.c:93
+#: src/chartable.c:115
+msgid "Hex"
+msgstr "ì‹­ìœ¡ì§„ìˆ˜"
+
+#: src/chartable.c:115 src/preferences.c:214
+msgid "Decimal"
+msgstr "ì‹­ì§„ìˆ˜"
+
+#: src/chartable.c:116
+msgid "Octal"
+msgstr "íŒ”ì§„ë²•"
+
+#: src/chartable.c:116
+msgid "Binary"
+msgstr "ì´ì§„"
+
+#: src/chartable.c:128
+msgid "Character table"
+msgstr "ë¬¸ì í…Œì´ë¸”"
+
+#: src/converter.c:190
+msgid "Base Converter"
+msgstr "ì§„ë²• ë³€í™˜ê¸°"
+
+#. entries
+#: src/converter.c:209
+msgid "_Binary:"
+msgstr "ì´ì§„ìˆ˜(_B):"
+
+#: src/converter.c:211
+msgid "_Octal:"
+msgstr "íŒ”ì§„ìˆ˜(_O):"
+
+#: src/converter.c:213
+msgid "_Decimal:"
+msgstr "ì‹­ì§„ìˆ˜(_D):"
+
+#: src/converter.c:215
+msgid "_Hex:"
+msgstr "ì‹­ìœ¡ì§„ìˆ˜(_H):"
+
+#: src/converter.c:217
+msgid "_ASCII:"
+msgstr "ì•„ìŠ¤í‚¤(_A):"
+
+#. get cursor button
+#: src/converter.c:221
+msgid "_Get cursor value"
+msgstr "ì»¤ì„œ ê°’ ì•Œì•„ë‚´ê¸°(_G)"
+
+#: src/converter.c:231
 msgid "Get cursor value"
-msgstr "Ä¿¼­ °ª ¾Ë¾Æ³»±â"
+msgstr "ì»¤ì„œ ê°’ ì•Œì•„ë‚´ê¸°"
 
-#: src/converter.c:99
-msgid "Close"
-msgstr "´İ±â"
+#: src/converter.c:231
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr "ì»¤ì„œê°€ ìˆëŠ” ìœ„ì¹˜ì˜ ê°’ì„ ì´ì§„ìˆ˜, íŒ”ì§„ìˆ˜, ì‹­ì§„ìˆ˜, ì‹­ìœ¡ì§„ìˆ˜, ê·¸ë¦¬ê³  ASCII ê°’ìœ¼ë¡œ ì•Œì•„ë‚´ê¸°"
 
-#: src/converter.c:194
+#: src/converter.c:358
 msgid "ERROR"
-msgstr "¿À·ù"
+msgstr "ì˜¤ë¥˜"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:60 src/main.c:118
 #, c-format
 msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): ÀÚ·á Ã£±â"
+msgstr "GHex (%s): ìë£Œ ì°¾ê¸°"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:69
 #, c-format
 msgid "Search for %s"
-msgstr "%s Ã£±â"
+msgstr "%s ì°¾ê¸°"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:86 src/findreplace.c:119
 msgid "Find Next"
-msgstr "´ÙÀ½ Ã£±â"
+msgstr "ë‹¤ìŒ ì°¾ê¸°"
 
-#: src/findreplace.c:91
+#: src/findreplace.c:94
 msgid "Find Previous"
-msgstr "ÀÌÀü Ã£±â"
+msgstr "ì´ì „ ì°¾ê¸°"
 
-#: src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Find Data"
+msgstr "ë°ì´íƒ€ ì°¾ê¸°"
+
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "ì°¾ì„ ì‹­ìœ¡ì§„ ë°ì´íƒ€ í˜¹ì€ ì•„ìŠ¤í‚¤ ë°ì´íƒ€ë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤"
+
+#: src/findreplace.c:119 src/findreplace.c:212
+msgid "Finds the next occurrence of the search string"
+msgstr "ì°¾ì„ ë¬¸ìì—´ì´ ë‹¤ìŒì— ë‚˜íƒ€ë‚˜ëŠ” ìœ„ì¹˜ë¥¼ ì°¾ìŠµë‹ˆë‹¤"
+
+#: src/findreplace.c:120
+msgid "Find previous"
+msgstr "ì´ì „ ì°¾ê¸°"
+
+#: src/findreplace.c:120
+msgid "Finds the previous occurrence of the search string "
+msgstr "ì°¾ì„ ë¬¸ìì—´ì´ ì´ì „ì— ë‚˜íƒ€ë‚˜ëŠ” ìœ„ì¹˜ë¥¼ ì°¾ìŠµë‹ˆë‹¤"
+
+#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
+msgid "Cancel"
+msgstr "ì·¨ì†Œ"
+
+#: src/findreplace.c:121
+msgid "Closes find data window"
+msgstr "ë°ì´íƒ€ ì°¾ê¸° ì°½ì„ ë‹«ìŠµë‹ˆë‹¤"
+
+#: src/findreplace.c:140 src/main.c:120
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): ÀÚ·á¸¦ Ã£¾Æ¼­ ¹Ù²Ù±â"
+msgstr "GHex (%s): ìë£Œë¥¼ ì°¾ì•„ì„œ ë°”ê¾¸ê¸°"
 
-#: src/findreplace.c:141
+#: src/findreplace.c:155
 #, c-format
 msgid "Replace %s"
-msgstr "%s Ä¡È¯"
+msgstr "%s ë°”ê¾¸ê¸°"
 
-#: src/findreplace.c:157
+#: src/findreplace.c:172 src/findreplace.c:212
 msgid "Find next"
-msgstr "´ÙÀ½ Ã£±â"
+msgstr "ë‹¤ìŒ ì°¾ê¸°"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:180 src/findreplace.c:213 src/ghex-ui.xml.h:43
 msgid "Replace"
-msgstr "Ä¡È¯"
+msgstr "ë°”ê¾¸ê¸°"
 
-#: src/findreplace.c:173
+#: src/findreplace.c:188 src/findreplace.c:214
 msgid "Replace All"
-msgstr "¸ğµÎ Ä¡È¯"
+msgstr "ëª¨ë‘ ë°”ê¾¸ê¸°"
 
-#: src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:211
+msgid "Replace Data"
+msgstr "ë°”ê¾¸ê¸° ë°ì´íƒ€"
+
+#: src/findreplace.c:211
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "ì‹­ìœ¡ì§„ ë°ì´íƒ€ í˜¹ì€ ì•„ìŠ¤í‚¤ ë°ì´íƒ€ë¥¼ ë¬´ì—‡ìœ¼ë¡œ ë°”ê¿€ì§€ ì…ë ¥í•©ë‹ˆë‹¤"
+
+#: src/findreplace.c:213
+msgid "Replaces the search string with the replace string"
+msgstr "ì°¾ì€ ë¬¸ìì—´ì„ ë°”ê¾¸ê¸° ë°ì´íƒ€ë¡œ ë°”ê¿‰ë‹ˆë‹¤"
+
+#: src/findreplace.c:214
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "ì°¾ì€ ëª¨ë“  ë¬¸ìì—´ì„ ë°”ê¾¸ê¸° ë¬¸ìì—´ë¡œ ë°”ê¿‰ë‹ˆë‹¤"
+
+#: src/findreplace.c:215
+msgid "Closes find and replace data window"
+msgstr "ì°¾ê¸° ë° ë°”ê¾¸ê¸° ë°ì´íƒ€ ì°½ì„ ë‹«ìŠµë‹ˆë‹¤"
+
+#: src/findreplace.c:231 src/main.c:122
 #, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): ¹ÙÀÌÆ®·Î ÀÌµ¿"
+msgstr "GHex (%s): ë°”ì´íŠ¸ë¡œ ì´ë™"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:261
+msgid "Jump to byte"
+msgstr "ë°”ì´íŠ¸ë¡œ ì´ë™"
+
+#: src/findreplace.c:261
+msgid "Enter the byte to jump to"
+msgstr "ì´ë™í•  ë°”ì´íŠ¸ë¥¼ ì…ë ¥í•©ë‹ˆë‹¤"
+
+#: src/findreplace.c:262
+msgid "OK"
+msgstr "í™•ì¸"
+
+#: src/findreplace.c:262
+msgid "Jumps to the specified byte"
+msgstr "ì§€ì •í•œ ë°”ì´íŠ¸ë¡œ ì´ë™í•©ë‹ˆë‹¤"
+
+#: src/findreplace.c:263
+msgid "Closes jump to byte window"
+msgstr "ë°”ì´íŠ¸ë¡œ ì´ë™ ì°½ì„ ë‹«ìŠµë‹ˆë‹¤"
+
+#: src/findreplace.c:328 src/findreplace.c:354 src/findreplace.c:407
 msgid "There is no active buffer to search!"
-msgstr "Ã£±â¸¦ ÇÒ ¹öÆÛ°¡ ¾ø½À´Ï´Ù!"
+msgstr "ì°¾ê¸°ë¥¼ í•  ë²„í¼ê°€ ì—†ìŠµë‹ˆë‹¤!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:336 src/findreplace.c:362 src/findreplace.c:415
 msgid "There seems to be no string to search for!"
-msgstr "Ã£À» ¹®ÀÚ¿­ÀÌ ¾ø½À´Ï´Ù!"
+msgstr "ì°¾ì„ ë¬¸ìì—´ì´ ì—†ìŠµë‹ˆë‹¤!"
 
-#: src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:343 src/findreplace.c:423
 msgid "End Of File reached"
-msgstr "ÆÄÀÏÀÇ ³¡ÀÔ´Ï´Ù"
+msgstr "íŒŒì¼ì˜ ëì…ë‹ˆë‹¤"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:370
 msgid "Beginning Of File reached"
-msgstr "ÆÄÀÏÀÇ Ã³À½ÀÔ´Ï´Ù"
+msgstr "íŒŒì¼ì˜ ì²˜ìŒì…ë‹ˆë‹¤"
 
-#: src/findreplace.c:345
+#: src/findreplace.c:380
 msgid "There is no active buffer to move the cursor in!"
-msgstr "Ä¿¼­¸¦ ÀÌµ¿ÇÒ ¹öÆÛ°¡ ¾ø½À´Ï´Ù!"
+msgstr "ì»¤ì„œë¥¼ ì´ë™í•  ë²„í¼ê°€ ì—†ìŠµë‹ˆë‹¤!"
 
-#: src/findreplace.c:350
+#: src/findreplace.c:385
 msgid "No offset has been specified!"
-msgstr "¿ÀÇÁ¼ÂÀÌ ÁöÁ¤µÇÁö ¾Ê¾Ò½À´Ï´Ù!"
+msgstr "ì˜¤í”„ì…‹ì´ ì§€ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤!"
 
-#: src/findreplace.c:357
+#: src/findreplace.c:392
 msgid "Can not position cursor beyond the End Of File!"
-msgstr "ÆÄÀÏÀÇ ³¡º¸´Ù µÚ¿¡ Ä¿¼­¸¦ À§Ä¡ÇÒ ¼ö´Â ¾ø½À´Ï´Ù!"
+msgstr "íŒŒì¼ì˜ ëë³´ë‹¤ ë’¤ì— ì»¤ì„œë¥¼ ìœ„ì¹˜í•  ìˆ˜ëŠ” ì—†ìŠµë‹ˆë‹¤!"
 
-#: src/findreplace.c:362
+#: src/findreplace.c:397
 msgid "The offset must be a positive integer value!"
-msgstr "¿ÀÇÁ¼ÂÀº 0º¸´Ù Å« Á¤¼ö°ªÀÌ¾î¾ß ÇÕ´Ï´Ù!"
+msgstr "ì˜¤í”„ì…‹ì€ 0ë³´ë‹¤ í° ì •ìˆ˜ê°’ì´ì–´ì•¼ í•©ë‹ˆë‹¤!"
 
-#: src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:435 src/findreplace.c:473
 msgid "There is no active buffer to replace data in!"
-msgstr "µ¥ÀÌÅ¸¸¦ Ä¡È¯ÇÒ ¹öÆÛ°¡ ¾ø½À´Ï´Ù!"
+msgstr "ë°ì´íƒ€ë¥¼ ì¹˜í™˜í•  ë²„í¼ê°€ ì—†ìŠµë‹ˆë‹¤!"
 
-#: src/findreplace.c:410 src/findreplace.c:447
+#: src/findreplace.c:446 src/findreplace.c:484
 msgid "Strange find or replace string!"
-msgstr "Ã£±â È¤Àº Ä¡È¯ ¹®ÀÚ¿­ÀÌ ÀÌ»óÇÕ´Ï´Ù!"
+msgstr "ì°¾ê¸° í˜¹ì€ ì¹˜í™˜ ë¬¸ìì—´ì´ ì´ìƒí•©ë‹ˆë‹¤!"
 
-#: src/findreplace.c:425
+#: src/findreplace.c:461
 msgid "End Of File reached!"
-msgstr "ÆÄÀÏÀÇ ³¡ÀÔ´Ï´Ù!"
+msgstr "íŒŒì¼ì˜ ëì…ë‹ˆë‹¤!"
 
-#: src/findreplace.c:463
+#: src/findreplace.c:500
 #, c-format
 msgid "Replaced %d occurencies."
-msgstr "%d¹ø Ä¡È¯."
+msgstr "%dë²ˆ ë°”ê¾¸ê¸°."
 
-#: src/hex-document.c:707
-msgid "Page"
-msgstr "ÆäÀÌÁö"
+#: src/ghex-mdi.c:490
+#, c-format
+msgid ""
+"Do you want to save the changes you made to the document ``%s''? \n"
+"\n"
+"Your changes will be lost if you don't save them."
+msgstr ""
+"``%s''ë¬¸ì„œì— ëŒ€í•´ ë³€ê²½ëœ ì‚¬í•­ì„ ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ? \n"
+"\n"
+"ì €ì¥í•˜ì§€ ì•Šìœ¼ë©´ ë³€ê²½í•œ ì‚¬í•­ì„ ìƒì–´ë²„ë¦´ ê²ƒì…ë‹ˆë‹¤."
 
-#: src/hex-document.c:713 src/hex-document.c:814
-msgid "Hex dump generated by"
-msgstr "ÀÌÁø Ãâ·Â by"
+#: src/ghex-mdi.c:495
+msgid "_Don't save"
+msgstr "ì €ì¥ ì•ˆ í•¨(_D)"
 
-#: src/hex-document.c:737
-msgid "Previous page"
-msgstr "ÀÌÀü ÂÊ"
+#: src/ghex-mdi.c:573
+msgid "(modified)"
+msgstr "(ë³€ê²½ë¨)"
 
-#: src/hex-document.c:752
-msgid "Next page"
-msgstr "´ÙÀ½ ÂÊ"
+#: src/ghex-mdi.c:579
+msgid "(readonly)"
+msgstr "(ì½ê¸° ì „ìš©)"
 
-#: src/hex-document-ui.c:50
-msgid "_Bytes"
-msgstr "¹ÙÀÌÆ®(_B)"
+#: src/ghex-mdi.c:887 src/main.c:239
+#, c-format
+msgid "Offset: %s"
+msgstr "ì˜¤í”„ì…‹: %s"
 
-#: src/hex-document-ui.c:51
-msgid "Group data by 8 bits"
-msgstr "µ¥ÀÌÅ¸¸¦ 8 ºñÆ®´ÜÀ§·Î ¸ğÀ½"
+#: src/ghex-ui.xml.h:1
+msgid "About this application"
+msgstr "ì´ í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ì •ë³´"
 
-#: src/hex-document-ui.c:52
-msgid "_Words"
-msgstr "¿öµå(_W)"
+#: src/ghex-ui.xml.h:2
+msgid "About..."
+msgstr "ì •ë³´..."
 
-#: src/hex-document-ui.c:53
+#: src/ghex-ui.xml.h:3
+msgid "Add View"
+msgstr "ë³´ê¸° ì¶”ê°€"
+
+#: src/ghex-ui.xml.h:4
+msgid "Add a new view to the buffer"
+msgstr "ë²„í¼ì— ìƒˆë¡œìš´ view ì¶”ê°€"
+
+#: src/ghex-ui.xml.h:5 src/ui.c:119
+msgid "Bytes"
+msgstr "ë°”ì´íŠ¸"
+
+#: src/ghex-ui.xml.h:6
+msgid "Character Table..."
+msgstr "ë¬¸ì í…Œì´ë¸”..."
+
+#: src/ghex-ui.xml.h:7 src/ui.c:85
+msgid "Character _Table..."
+msgstr "ë¬¸ì í…Œì´ë¸”(_T)..."
+
+#: src/ghex-ui.xml.h:8
+msgid "Close"
+msgstr "ë‹«ê¸°"
+
+#: src/ghex-ui.xml.h:9
+msgid "Close the current file"
+msgstr "í˜„ì¬ íŒŒì¼ ë‹«ê¸°"
+
+#: src/ghex-ui.xml.h:10
+msgid "Configure the application"
+msgstr "í”„ë¡œê·¸ë¨ ì„¤ì •"
+
+#: src/ghex-ui.xml.h:11
+msgid "Contents"
+msgstr "ì°¨ë¡€"
+
+#: src/ghex-ui.xml.h:12
+msgid "Converter..."
+msgstr "ë³€í™˜ê¸°..."
+
+#: src/ghex-ui.xml.h:13
+msgid "E_xit"
+msgstr "ëë‚´ê¸°(_X)"
+
+#: src/ghex-ui.xml.h:14
+msgid "Exit"
+msgstr "ëë‚´ê¸°"
+
+#: src/ghex-ui.xml.h:15
+msgid "Exit the program"
+msgstr "í”„ë¡œê·¸ë¨ ëë‚´ê¸°"
+
+#: src/ghex-ui.xml.h:16 src/ui.c:66
+msgid "Export data to HTML source"
+msgstr "ë°ì´íƒ€ë¥¼ HTMLë¡œ ë§Œë“­ë‹ˆë‹¤"
+
+#: src/ghex-ui.xml.h:17
+msgid "Export to HTML..."
+msgstr "HTMLë¡œ ë³€í™˜..."
+
+#: src/ghex-ui.xml.h:18
+msgid "Fi_les"
+msgstr "íŒŒì¼(_L)"
+
+#: src/ghex-ui.xml.h:19
+msgid "Find"
+msgstr "ì°¾ê¸°"
+
+#: src/ghex-ui.xml.h:20
+msgid "Goto Byte"
+msgstr "ë°”ì´íŠ¸ë¡œ ì´ë™"
+
+#: src/ghex-ui.xml.h:21
 msgid "Group data by 16 bits"
-msgstr "µ¥ÀÌÅ¸¸¦ 16 ºñÆ®´ÜÀ§·Î ¸ğÀ½"
+msgstr "ë°ì´íƒ€ë¥¼ 16 ë¹„íŠ¸ë‹¨ìœ„ë¡œ ëª¨ìŒ"
 
-#: src/hex-document-ui.c:54
-msgid "_Longwords"
-msgstr "±ä ´Ü¾î(_L)"
-
-#: src/hex-document-ui.c:55
+#: src/ghex-ui.xml.h:22
 msgid "Group data by 32 bits"
-msgstr "µ¥ÀÌÅ¸¸¦ 32 ºñÆ®´ÜÀ§·Î ¸ğÀ½"
+msgstr "ë°ì´íƒ€ë¥¼ 32 ë¹„íŠ¸ë‹¨ìœ„ë¡œ ëª¨ìŒ"
 
-#: src/hex-document-ui.c:74
-msgid "_Goto Byte..."
-msgstr "¹ÙÀÌÆ®·Î °¡±â(_G)..."
+#: src/ghex-ui.xml.h:23
+msgid "Group data by 8 bits"
+msgstr "ë°ì´íƒ€ë¥¼ 8 ë¹„íŠ¸ë‹¨ìœ„ë¡œ ëª¨ìŒ"
 
-#: src/hex-document-ui.c:74
-msgid "Jump to a certain position"
-msgstr "Æ¯Á¤ À§Ä¡·Î ÀÌµ¿"
+#: src/ghex-ui.xml.h:24
+msgid "Help Chat"
+msgstr "ë„ì›€ë§ ëŒ€í™”"
 
-#: src/hex-document-ui.c:78
-msgid "_Insert mode"
-msgstr "»ğÀÔ ¸ğµå(_I)"
+#: src/ghex-ui.xml.h:25
+msgid "Help on this application"
+msgstr "ì´ í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ë„ì›€ë§"
 
-#: src/hex-document-ui.c:78
+#: src/ghex-ui.xml.h:26
+msgid "Insert Mode"
+msgstr "ì‚½ì… ëª¨ë“œ"
+
+#: src/ghex-ui.xml.h:27
 msgid "Insert/overwrite data"
-msgstr "µ¥ÀÌÅ¸¸¦ »ğÀÔ/°ãÃÄ¾²±â"
+msgstr "ë°ì´íƒ€ë¥¼ ì‚½ì…/ê²¹ì³ì“°ê¸°"
 
-#: src/hex-document-ui.c:81
-msgid "_Group Data As"
-msgstr "µ¥ÀÌÅ¸¸¦ ¸ğÀ¸±â(_G)"
+#: src/ghex-ui.xml.h:28
+msgid "Jump to a certain position"
+msgstr "íŠ¹ì • ìœ„ì¹˜ë¡œ ì´ë™"
 
-#: src/hex-document-ui.c:87
-msgid "_Add view"
-msgstr "º¸±â Ãß°¡(_A)"
+#: src/ghex-ui.xml.h:29 src/ui.c:121
+msgid "Longwords"
+msgstr "ê¸´ ë‹¨ì–´"
 
-#: src/hex-document-ui.c:88
-msgid "Add a new view of the buffer"
-msgstr "¹öÆÛÀÇ »õ·Î¿î view Ãß°¡"
+#: src/ghex-ui.xml.h:30
+msgid "Open"
+msgstr "ì—´ê¸°"
 
-#: src/hex-document-ui.c:89
-msgid "_Remove view"
-msgstr "º¸±â »èÁ¦(_R)"
+#: src/ghex-ui.xml.h:31
+msgid "Open a file"
+msgstr "íŒŒì¼ ì—´ê¸°"
 
-#: src/hex-document-ui.c:90
+#: src/ghex-ui.xml.h:32 src/ui.c:84
+msgid "Open base conversion dialog"
+msgstr "ê¸°ë³¸ ë³€í™˜ ëŒ€í™”ì°½ ì—´ê¸°"
+
+#: src/ghex-ui.xml.h:33
+msgid "Preferences"
+msgstr "ê¸°ë³¸ ì„¤ì •"
+
+#: src/ghex-ui.xml.h:34 src/ui.c:70
+msgid "Preview printed data"
+msgstr "ì¸ì‡„ë  ëª¨ìŠµì„ ë¯¸ë¦¬ ë´…ë‹ˆë‹¤"
+
+#: src/ghex-ui.xml.h:35
+msgid "Print"
+msgstr "ì¸ì‡„"
+
+#: src/ghex-ui.xml.h:36
+msgid "Print Previe_w..."
+msgstr "ì¸ì‡„ ë¯¸ë¦¬ ë³´ê¸°(_W)..."
+
+#: src/ghex-ui.xml.h:37
+msgid "Print Preview..."
+msgstr "ì¸ì‡„ ë¯¸ë¦¬ ë³´ê¸°..."
+
+#: src/ghex-ui.xml.h:38
+msgid "Print the current file"
+msgstr "í˜„ì¬ íŒŒì¼ ì¸ì‡„"
+
+#: src/ghex-ui.xml.h:39
+msgid "Redo"
+msgstr "ë‹¤ì‹œ ì‹¤í–‰"
+
+#: src/ghex-ui.xml.h:40
+msgid "Redo the undone action"
+msgstr "ì‹¤í–‰ ì·¨ì†Œí•œ ì‘ì—… ë‹¤ì‹œ ì‹¤í–‰"
+
+#: src/ghex-ui.xml.h:41
+msgid "Remove View"
+msgstr "ë³´ê¸° ì‚­ì œ"
+
+#: src/ghex-ui.xml.h:42
 msgid "Remove the current view of the buffer"
-msgstr "¹öÆÛÀÇ ÇöÀç view »èÁ¦"
+msgstr "ë²„í¼ì˜ í˜„ì¬ view ì‚­ì œ"
 
-#: src/main.c:51
+#: src/ghex-ui.xml.h:44
+msgid "Replace a string"
+msgstr "ë¬¸ìì—´ ë°”ê¾¸ê¸°"
+
+#: src/ghex-ui.xml.h:45
+msgid "Revert"
+msgstr "ë˜ëŒë¦¬ê¸°"
+
+#: src/ghex-ui.xml.h:46
+msgid "Revert to a saved version of the file"
+msgstr "íŒŒì¼ì˜ ì €ì¥ëœ ë²„ì „ìœ¼ë¡œ ë˜ëŒë¦¬ê¸°"
+
+#: src/ghex-ui.xml.h:47
+msgid "Save"
+msgstr "ì €ì¥"
+
+#: src/ghex-ui.xml.h:48
+msgid "Save As"
+msgstr "ë‹¤ë¥¸ ì´ë¦„ìœ¼ë¡œ ì €ì¥"
+
+#: src/ghex-ui.xml.h:49
+msgid "Save As _HTML..."
+msgstr "HTMLë¡œ ì €ì¥(_H)..."
+
+#: src/ghex-ui.xml.h:50
+msgid "Save _As..."
+msgstr "ë‹¤ë¥¸ ì´ë¦„ìœ¼ë¡œ ì €ì¥(_A)..."
+
+#: src/ghex-ui.xml.h:51
+msgid "Save the current file"
+msgstr "í˜„ì¬ íŒŒì¼ ì €ì¥"
+
+#: src/ghex-ui.xml.h:52
+msgid "Save the current file with a different name"
+msgstr "í˜„ì¬ íŒŒì¼ì„ ë‹¤ë¥¸ ì´ë¦„ìœ¼ë¡œ ì €ì¥"
+
+#: src/ghex-ui.xml.h:53
+msgid "Search for a string"
+msgstr "ë¬¸ìì—´ ì°¾ê¸°"
+
+#: src/ghex-ui.xml.h:54 src/ui.c:86
+msgid "Show the character table"
+msgstr "ë¬¸ì í…Œì´ë¸” ë³´ê¸°"
+
+#: src/ghex-ui.xml.h:55
+msgid "Undo"
+msgstr "ì‹¤í–‰ ì·¨ì†Œ"
+
+#: src/ghex-ui.xml.h:56
+msgid "Undo the last action"
+msgstr "ë§ˆì§€ë§‰ ì‘ì—… ì‹¤í–‰ ì·¨ì†Œ"
+
+#: src/ghex-ui.xml.h:57 src/ui.c:120
+msgid "Words"
+msgstr "ì›Œë“œ"
+
+#: src/ghex-ui.xml.h:58
+msgid "_About..."
+msgstr "ì •ë³´(_A)..."
+
+#: src/ghex-ui.xml.h:59
+msgid "_Add View"
+msgstr "ë³´ê¸° ì¶”ê°€(_A)"
+
+#: src/ghex-ui.xml.h:60
+msgid "_Base Converter"
+msgstr "ì§„ë²• ë³€í™˜ê¸°(_B)"
+
+#: src/ghex-ui.xml.h:61
+msgid "_Bytes"
+msgstr "ë°”ì´íŠ¸(_B)"
+
+#: src/ghex-ui.xml.h:62
+msgid "_Close"
+msgstr "ë‹«ê¸°(_C)"
+
+#: src/ghex-ui.xml.h:63
+msgid "_Contents"
+msgstr "ì°¨ë¡€(_C)"
+
+#: src/ghex-ui.xml.h:64
+msgid "_Edit"
+msgstr "í¸ì§‘(_E)"
+
+#: src/ghex-ui.xml.h:65
+msgid "_File"
+msgstr "íŒŒì¼(_F)"
+
+#: src/ghex-ui.xml.h:66
+msgid "_Find"
+msgstr "ì°¾ê¸°(_F)"
+
+#: src/ghex-ui.xml.h:67
+msgid "_Goto Byte..."
+msgstr "ë°”ì´íŠ¸ë¡œ ê°€ê¸°(_G)..."
+
+#: src/ghex-ui.xml.h:68
+msgid "_Group Data As"
+msgstr "ë°ì´íƒ€ë¥¼ ëª¨ìœ¼ê¸°(_G)"
+
+#: src/ghex-ui.xml.h:69
+msgid "_Help"
+msgstr "ë„ì›€ë§(_H)"
+
+#: src/ghex-ui.xml.h:70
+msgid "_Insert Mode"
+msgstr "ì‚½ì… ëª¨ë“œ(_I)"
+
+#: src/ghex-ui.xml.h:71
+msgid "_Longwords"
+msgstr "ê¸´ ë‹¨ì–´(_L)"
+
+#: src/ghex-ui.xml.h:72
+msgid "_Open..."
+msgstr "ì—´ê¸°(_O)..."
+
+#: src/ghex-ui.xml.h:73
+msgid "_Preferences"
+msgstr "ê¸°ë³¸ ì„¤ì •(_P)"
+
+#: src/ghex-ui.xml.h:74
+msgid "_Print"
+msgstr "ì¸ì‡„(_P)"
+
+#: src/ghex-ui.xml.h:75
+msgid "_Redo"
+msgstr "ë‹¤ì‹œ ì‹¤í–‰(_R)"
+
+#: src/ghex-ui.xml.h:76
+msgid "_Remove View"
+msgstr "ë³´ê¸° ì‚­ì œ(_R)"
+
+#: src/ghex-ui.xml.h:77
+msgid "_Replace"
+msgstr "ë°”ê¾¸ê¸°(_R)"
+
+#: src/ghex-ui.xml.h:78
+msgid "_Revert"
+msgstr "ë˜ëŒë¦¬ê¸°(_R)"
+
+#: src/ghex-ui.xml.h:79
+msgid "_Save"
+msgstr "ì €ì¥(_S)"
+
+#: src/ghex-ui.xml.h:80 src/ui.c:103
+msgid "_Tools"
+msgstr "ë„êµ¬(_T)"
+
+#: src/ghex-ui.xml.h:81
+msgid "_Undo"
+msgstr "ì‹¤í–‰ ì·¨ì†Œ(_U)"
+
+#: src/ghex-ui.xml.h:82
+msgid "_View"
+msgstr "ë³´ê¸°(_V)"
+
+#: src/ghex-ui.xml.h:83
+msgid "_Words"
+msgstr "ì›Œë“œ(_W)"
+
+#: src/hex-document.c:749
+msgid "Page"
+msgstr "í˜ì´ì§€"
+
+#: src/hex-document.c:755 src/hex-document.c:856
+msgid "Hex dump generated by"
+msgstr "ì´ì§„ ì¶œë ¥ by"
+
+#: src/hex-document.c:779
+msgid "Previous page"
+msgstr "ì´ì „ ìª½"
+
+#: src/hex-document.c:794
+msgid "Next page"
+msgstr "ë‹¤ìŒ ìª½"
+
+#: src/main.c:56
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
-"¹®¼­ %s°¡ ¸¶Áö¸· ÀúÀåµÈ ÈÄ·Î ¹Ù²î¾ú½À´Ï´Ù.\n"
-"¹Ù²ï ³»¿ëÀ» ÀúÀåÇÒ±î¿ä?"
+"ë¬¸ì„œ %sê°€ ë§ˆì§€ë§‰ ì €ì¥ëœ í›„ë¡œ ë°”ë€Œì—ˆìŠµë‹ˆë‹¤.\n"
+"ë°”ë€ ë‚´ìš©ì„ ì €ì¥í• ê¹Œìš”?"
 
-#: src/main.c:202
-#, c-format
-msgid "Offset: %s"
-msgstr "¿ÀÇÁ¼Â: %s"
+#: src/main.c:67
+msgid "Do_n't save"
+msgstr "ì €ì¥ ì•ˆ í•¨(_N)"
 
-#: src/preferences.c:52
+#: src/main.c:352
+msgid "The gnome binary editor"
+msgstr "ê·¸ë†ˆ ì´ì§„ íŒŒì¼ í¸ì§‘ê¸°"
+
+#: src/preferences.c:57
 msgid "Default"
-msgstr "±âº»°ª"
+msgstr "ê¸°ë³¸ê°’"
 
-#: src/preferences.c:53
+#: src/preferences.c:58
 msgid "Notebook"
-msgstr "³ëÆ®ºÏ"
+msgstr "ë…¸íŠ¸ë¶"
 
-#: src/preferences.c:54
+#: src/preferences.c:59
 msgid "Toplevel"
-msgstr "ÃÖ°í´Ü°è Ã¢"
+msgstr "ìµœê³ ë‹¨ê³„ ì°½"
 
-#: src/preferences.c:55
+#: src/preferences.c:60
 msgid "Modal"
-msgstr "¸ğ´Ş"
+msgstr "ëª¨ë‹¬"
 
-#: src/preferences.c:77
+#: src/preferences.c:92
 msgid "Select font"
-msgstr "±Û²Ã ¼±ÅÃ"
+msgstr "ê¸€ê¼´ ì„ íƒ"
 
-#: src/preferences.c:132
-msgid "Maximum number of undo levels"
-msgstr "½ÇÇà Ãë¼Ò ÃÖ´ë È½¼ö"
+#: src/preferences.c:148
+msgid "GHex Preferences"
+msgstr "GHex ê¸°ë³¸ ì„¤ì •"
 
-#: src/preferences.c:147
-msgid "Show cursor offset in statusbar as"
-msgstr "»óÅÂ ¸·´ë¿¡¼­ Ä¿¼­ ¿ÀÇÁ¼ÂÀ» º¸¿©ÁÖ´Â ¹æ¹ı:"
+#: src/preferences.c:176
+msgid "_Maximum number of undo levels:"
+msgstr "ì‹¤í–‰ ì·¨ì†Œ ìµœëŒ€ íšŒìˆ˜(_M)"
 
-#: src/preferences.c:166
+#: src/preferences.c:196
+msgid "Undo levels"
+msgstr "ì‹¤í–‰ ì·¨ì†Œ ë‹¨ê³„"
+
+#: src/preferences.c:196
+msgid "Select maximum number of undo levels"
+msgstr "ì‹¤í–‰ ì·¨ì†Œ ë‹¨ê³„ ìµœëŒ€ íšŒìˆ˜"
+
+#: src/preferences.c:200
+msgid "Show cursor offset in statusbar as:"
+msgstr "ìƒíƒœ í‘œì‹œì¤„ì—ì„œ ì»¤ì„œ ì˜¤í”„ì…‹ì„ ë³´ì—¬ì£¼ëŠ” ë°©ë²•:"
+
+#: src/preferences.c:219
 msgid "Hexadecimal"
-msgstr "½ÊÀ°Áø¼ö"
+msgstr "ì‹­ìœ¡ì§„ìˆ˜"
 
-#: src/preferences.c:172
+#: src/preferences.c:225
 msgid "Custom"
-msgstr "¸ÂÃãÇü"
+msgstr "ë§ì¶¤í˜•"
+
+#: src/preferences.c:236
+msgid "format_entry"
+msgstr "í˜•ì‹_ì—”íŠ¸ë¦¬"
+
+#: src/preferences.c:236
+msgid "Enter the cursor offset format"
+msgstr "ì»¤ì„œ ì˜¤í”„ì…‹ í˜•ì‹ì„ ì…ë ¥í•©ë‹ˆë‹¤"
+
+#: src/preferences.c:237
+msgid "format_optionmenu"
+msgstr "í˜•ì‹_ì˜µì…˜ë©”ë‰´"
+
+#: src/preferences.c:237
+msgid "Select the cursor offset format"
+msgstr "ì»¤ì„œ ì˜¤í”„ì…‹ í˜•ì‹ì„ ì„ íƒí•©ë‹ˆë‹¤"
 
 #. show offsets check button
-#: src/preferences.c:183
+#: src/preferences.c:247
 msgid "Show offsets column"
-msgstr "¿ÀÇÁ¼Â ¿­ º¸¿©ÁÖ±â"
+msgstr "ì˜¤í”„ì…‹ ì—´ ë³´ì—¬ì£¼ê¸°"
 
-#: src/preferences.c:188
+#: src/preferences.c:252
 msgid "Editing"
-msgstr "ÆíÁı"
+msgstr "í¸ì§‘"
 
 #. display font
-#: src/preferences.c:197
+#: src/preferences.c:261
 msgid "Font"
-msgstr "±Û²Ã"
+msgstr "ê¸€ê¼´"
 
-#: src/preferences.c:213
+#: src/preferences.c:283
 msgid "Browse..."
-msgstr "Ã£¾Æº¸±â..."
+msgstr "ì°¾ì•„ë³´ê¸°..."
 
 #. default group type
-#: src/preferences.c:233
+#: src/preferences.c:312
 msgid "Default Group Type"
-msgstr "±âº» ±×·ì Å¸ÀÔ"
+msgstr "ê¸°ë³¸ ê·¸ë£¹ íƒ€ì…"
 
-#: src/preferences.c:249
+#: src/preferences.c:328
 msgid "Display"
-msgstr "Ç¥½Ã"
+msgstr "í‘œì‹œ"
 
 #. mdi modes
-#: src/preferences.c:258
+#: src/preferences.c:337
 msgid "MDI Mode"
-msgstr "MDI ¸ğµå"
+msgstr "MDI ëª¨ë“œ"
 
-#: src/preferences.c:275
+#: src/preferences.c:354
 msgid "MDI"
 msgstr "MDI"
 
 #. paper selection
-#: src/preferences.c:284
+#: src/preferences.c:363
 msgid "Paper size"
-msgstr "Á¾ÀÌ Å©±â"
+msgstr "ì¢…ì´ í¬ê¸°"
 
 #. data & header font selection
-#: src/preferences.c:298
+#: src/preferences.c:379
 msgid "Fonts"
-msgstr "±Û²Ã"
+msgstr "ê¸€ê¼´"
 
-#: src/preferences.c:304
+#: src/preferences.c:385
+msgid "_Data font:"
+msgstr "ë°ì´íƒ€ ê¸€ê¼´(_D):"
+
+#: src/preferences.c:403
 msgid "Data font"
-msgstr "µ¥ÀÌÅ¸ ±Û²Ã"
+msgstr "ë°ì´íƒ€ ê¸€ê¼´"
 
-#: src/preferences.c:319
+#: src/preferences.c:403
+msgid "Select the data font"
+msgstr "ë°ì´íƒ€ ê¸€ê¼´ ì„ íƒ"
+
+#: src/preferences.c:424
+msgid "Header fo_nt:"
+msgstr "í—¤ë” ê¸€ê¼´(_N):"
+
+#: src/preferences.c:444
 msgid "Header font"
-msgstr "Çì´õ ±Û²Ã"
+msgstr "í—¤ë” ê¸€ê¼´"
 
-#: src/preferences.c:345
-msgid "Print shaded box over"
-msgstr "Å×µÎ¸® ±×¸®±â"
+#: src/preferences.c:444
+msgid "Select the header font"
+msgstr "í—¤ë” ê¸€ê¼´ ì„ íƒ"
 
-#: src/preferences.c:354
+#: src/preferences.c:476
+msgid "_Print shaded box over:"
+msgstr "ê·¸ë¦¼ìì§„ ìƒìë¥¼ ìœ„ì— ì¸ì‡„(_P):"
+
+#: src/preferences.c:488
+msgid "Box size"
+msgstr "ìƒì í¬ê¸°"
+
+#: src/preferences.c:488
+msgid "Select size of box (in number of lines)"
+msgstr "ìƒìì˜ í¬ê¸° (ì¤„ ê°œìˆ˜)"
+
+#: src/preferences.c:492
 msgid "lines (0 for no box)"
-msgstr "ÁÙ¸¶´Ù(0Àº Å×µÎ¸® ¾øÀ½)"
+msgstr "ì¤„ë§ˆë‹¤(0ì€ í…Œë‘ë¦¬ ì—†ìŒ)"
 
-#: src/preferences.c:361
+#: src/preferences.c:499
 msgid "Printing"
-msgstr "ÀÎ¼â"
+msgstr "ì¸ì‡„"
 
-#: src/preferences.c:534
+#: src/preferences.c:614 src/ui.c:270
+#, c-format
 msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
-msgstr "¿É¼Â Çü½Ä¿¡ 'x', 'd', 'o'¿ÜÀÇ Çü½Ä ÁöÁ¤ÀÚ°¡ µé¾îÀÖ½À´Ï´Ù!"
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"ë„ì›€ë§ì„ í‘œì‹œí•˜ëŠ” ë° ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤: \n"
+"%s"
 
-#: src/preferences.c:570
+#: src/preferences.c:717
+msgid ""
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"ì˜µì…‹ í˜•ì‹ ë¬¸ìì—´ì— ì˜ëª»ëœ í˜•ì‹ ì§€ì •ìê°€ ë“¤ì–´ ìˆìŠµë‹ˆë‹¤.\n"
+"ì˜µì…‹ í˜•ì‹ì— 'x', 'X', 'p', 'P', 'd', ê·¸ë¦¬ê³  'o'ë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤"
+
+#: src/preferences.c:760
 msgid "Can not open desired font!"
-msgstr "¼±ÅÃÇÑ ±Û²ÃÀ» ¿­ ¼ö ¾ø½À´Ï´Ù!"
+msgstr "ì„ íƒí•œ ê¸€ê¼´ì„ ì—´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤!"
 
-#: src/ui.c:57
-msgid "Export to HTML..."
-msgstr "HTML·Î º¯È¯..."
-
-#: src/ui.c:57
-msgid "Export data to HTML source"
-msgstr "µ¥ÀÌÅ¸¸¦ HTML·Î ¸¸µì´Ï´Ù"
-
-#: src/ui.c:61
-msgid "Print preview..."
-msgstr "ÀÎ¼â ¹Ì¸®º¸±â..."
-
-#: src/ui.c:61
-msgid "Preview printed data"
-msgstr "ÀÎ¼âµÉ ¸ğ½ÀÀ» ¹Ì¸® º¾´Ï´Ù"
-
-#: src/ui.c:74
-msgid "Con_verter..."
-msgstr "º¯È¯±â(_v)..."
-
-#: src/ui.c:75
-msgid "Open base conversion dialog"
-msgstr "±âº» º¯È¯ ´ëÈ­Ã¢ ¿­±â"
-
-#: src/ui.c:76
-msgid "Character Table..."
-msgstr "¹®ÀÚ Å×ÀÌºí..."
-
-#: src/ui.c:77
-msgid "Show the character table"
-msgstr "¹®ÀÚ Å×ÀÌºí º¸±â"
-
-#: src/ui.c:94
-msgid "Tools"
-msgstr "µµ±¸¸·´ë"
-
-#: src/ui.c:108
-msgid "Bytes"
-msgstr "¹ÙÀÌÆ®"
-
-#: src/ui.c:109
-msgid "Words"
-msgstr "¿öµå"
-
-#: src/ui.c:110
-msgid "Longwords"
-msgstr "±ä ´Ü¾î"
-
-#: src/ui.c:115
-msgid "hex data"
-msgstr "½ÊÀ°Áø ÀÚ·á"
-
-#: src/ui.c:116
-msgid "ASCII data"
-msgstr "¾Æ½ºÅ° ÀÚ·á"
-
-#: src/ui.c:200
-msgid "GHex, a binary file editor"
-msgstr "GHex, ÀÌÁø ÆÄÀÏ ÆíÁı±â"
-
-#: src/ui.c:202
-msgid "Released under the terms of GNU Public License"
-msgstr "GNU Public License¿¡ ÀÇ°ÅÇÏ¿© °ø°³"
-
-#: src/ui.c:226 src/ui.c:548
-msgid "Error saving file!"
-msgstr "ÆÄÀÏ ÀúÀå ¿¡·¯!"
-
-#: src/ui.c:230 src/ui.c:543
-#, c-format
-msgid "Saved buffer to file %s"
-msgstr "¹öÆÛ¸¦ ÆÄÀÏ %s ¿¡ ÀúÀå"
-
-#: src/ui.c:251
-msgid "Select a file to open"
-msgstr "¿­±â À§ÇÑ ÆÄÀÏ ¼±ÅÃ"
-
-#: src/ui.c:286
-msgid "Select a file to save buffer as"
-msgstr "¹öÆÛ¸¦ ÀúÀåÇÒ ÆÄÀÏ ¼±ÅÃ"
-
-#: src/ui.c:375
-msgid "Select path and file name for the HTML source"
-msgstr "HTML ¼Ò½º¸¦À§ÇÑ °æ·Î¿Í ÆÄÀÏ ÀÌ¸§À» °í¸£¼¼¿ä"
-
-#: src/ui.c:475
-#, c-format
-msgid "Really revert file %s?"
-msgstr "Á¤¸»·Î %s ÆÄÀÏÀ» ¿ø»óº¹±¸ÇÒ±î¿ä?"
-
-#: src/ui.c:488
-#, c-format
-msgid "Reverted buffer from file %s"
-msgstr "ÆÄÀÏ %s ¿¡¼­ ¹öÆÛ º¹±¸"
-
-#: src/ui.c:504
-#, c-format
-msgid "Loaded file %s"
-msgstr "ÆÄÀÏ %s ÀĞ¾îµéÀÓ"
-
-#: src/ui.c:509
-msgid "Can not open file!"
-msgstr "ÆÄÀÏÀ» ¿­ ¼ö ¾ø½À´Ï´Ù!"
-
-#: src/ui.c:552
-msgid "Can't open file for writing!"
-msgstr "¾²±âÀ§ÇØ ÆÄÀÏÀ» ¿­ ¼ö ¾ø½À´Ï´Ù!"
-
-#: src/chartable.c:91
-msgid "Octal"
-msgstr "ÆÈÁø¹ı"
-
-#: src/chartable.c:98
-msgid "GHex: Character table"
-msgstr "GHex: ¹®ÀÚ Å×ÀÌºí"
-
-#: src/print.c:171
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): ÀÎ¼â ¹Ì¸®º¸±â"
-
-#: src/print.c:187
+#: src/print.c:57
 #, c-format
 msgid "Page: %i/%i"
-msgstr "ÂÊ: %i/%i"
+msgstr "ìª½: %i/%i"
+
+#: src/print.c:208 src/print.c:222
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"GHexê°€ \"%s\" ê¸€ê¼´ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n"
+"GHexëŠ” ì´ ê¸€ê¼´ì´ ì„¤ì¹˜ë˜ì–´ ìˆì§€ ì•Šìœ¼ë©´ ì¸ì‡„í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
+
+#: src/ui.c:66
+msgid "Export to _HTML..."
+msgstr "HTMLë¡œ ë‚´ë³´ë‚´ê¸°(_H)..."
+
+#: src/ui.c:70
+msgid "Print pre_view..."
+msgstr "ì¸ì‡„ ë¯¸ë¦¬ë³´ê¸°(_V)..."
+
+#: src/ui.c:83
+msgid "Con_verter..."
+msgstr "ë³€í™˜ê¸°(_v)..."
+
+#: src/ui.c:126
+msgid "hex data"
+msgstr "ì‹­ìœ¡ì§„ ìë£Œ"
+
+#: src/ui.c:127
+msgid "ASCII data"
+msgstr "ì•„ìŠ¤í‚¤ ìë£Œ"
+
+#: src/ui.c:246
+msgid "GHex, a binary file editor"
+msgstr "GHex, ì´ì§„ íŒŒì¼ í¸ì§‘ê¸°"
+
+#: src/ui.c:248
+msgid "Released under the terms of GNU Public License"
+msgstr "GNU Public Licenseì— ì˜ê±°í•˜ì—¬ ê³µê°œ"
+
+#: src/ui.c:322 src/ui.c:683
+msgid "Error saving file!"
+msgstr "íŒŒì¼ ì €ì¥ ì—ëŸ¬!"
+
+#: src/ui.c:326 src/ui.c:678
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "ë²„í¼ë¥¼ íŒŒì¼ %s ì— ì €ì¥"
+
+#: src/ui.c:350
+msgid "Select a file to open"
+msgstr "ì—´ê¸° ìœ„í•œ íŒŒì¼ ì„ íƒ"
+
+#: src/ui.c:387
+msgid "Select a file to save buffer as"
+msgstr "ë²„í¼ë¥¼ ì €ì¥í•  íŒŒì¼ ì„ íƒ"
+
+#: src/ui.c:431
+msgid "Select path and file name for the HTML source"
+msgstr "HTML ì†ŒìŠ¤ë¥¼ìœ„í•œ ê²½ë¡œì™€ íŒŒì¼ ì´ë¦„ì„ ê³ ë¥´ì„¸ìš”"
+
+#: src/ui.c:602
+#, c-format
+msgid "Really revert file %s?"
+msgstr "ì •ë§ë¡œ %s íŒŒì¼ì„ ì›ìƒë³µêµ¬í• ê¹Œìš”?"
+
+#: src/ui.c:616
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "íŒŒì¼ %s ì—ì„œ ë²„í¼ ë³µêµ¬"
+
+#: src/ui.c:632
+#, c-format
+msgid "Loaded file %s"
+msgstr "íŒŒì¼ %s ì½ì–´ë“¤ì„"
+
+#: src/ui.c:644
+msgid "Can not open file!"
+msgstr "íŒŒì¼ì„ ì—´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤!"
+
+#: src/ui.c:687
+msgid "Can't open file for writing!"
+msgstr "ì“°ê¸°ìœ„í•´ íŒŒì¼ì„ ì—´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤!"
+
+#: src/ui.c:766
+msgid "Print Hex Document"
+msgstr "ì‹­ìœ¡ì§„ ë¬¸ì„œ ì¸ì‡„"
+
+#: src/ui.c:771
+msgid "Pages"
+msgstr "í˜ì´ì§€"
+
+#: src/ui.c:817
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): ì¸ì‡„ ë¯¸ë¦¬ë³´ê¸°"
