@@ -1,14 +1,14 @@
 # gnome-utils fr.po
 # Copyright (C) 1998 Free Software Foundation, Inc.
-# Vincent Renardias <vincent@waw.com>, 1998.
+# Vincent Renardias <vincent@ldsol.com>, 1998, 1999.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 1999-01-28 18:52-0600\n"
+"POT-Creation-Date: 1999-02-06 18:13+0100\n"
 "PO-Revision-Date: 1998-02-28 19:57+0100\n"
-"Last-Translator: Vincent Renardias <vincent@waw.com>\n"
-"Language-Team: Vincent Renardias <vincent@waw.com>\n"
+"Last-Translator: Vincent Renardias <vincent@ldsol.com>\n"
+"Language-Team: Vincent Renardias <vincent@ldsol.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,6 +30,132 @@ msgid ""
 "A quick hack to show the amount of space free on mounted file systems "
 "uitilizing a dial."
 msgstr ""
+
+#: ghex/converter.c:39
+msgid "GHex: Converter"
+msgstr "GHex: Convertisseur"
+
+#: ghex/converter.c:46
+msgid "Binary"
+msgstr "Binaire"
+
+#: ghex/converter.c:56
+msgid "Decimal"
+msgstr "Décimal"
+
+#: ghex/converter.c:66
+msgid "Hex"
+msgstr "Hex"
+
+#: ghex/converter.c:76
+msgid "ASCII"
+msgstr "ASCII"
+
+#: ghex/converter.c:86 mini-utils/gshutdown/gshutdown.c:149
+msgid "Close"
+msgstr "Fermer"
+
+#: ghex/converter.c:134
+msgid "ERROR"
+msgstr ""
+
+#: ghex/findreplace.c:51 ghex/main.c:68
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr "GHex (%s): Trouver Données"
+
+#: ghex/findreplace.c:60
+#, c-format
+msgid "Search for %s"
+msgstr "Rechercher %s"
+
+#: ghex/findreplace.c:76
+msgid "Find Next"
+msgstr "Trouver le suivant"
+
+#: ghex/findreplace.c:83
+msgid "Find Previous"
+msgstr "Trouver le précédent"
+
+#: ghex/findreplace.c:111 ghex/main.c:69
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "GHex (%s): Rechercher & Remplacer données"
+
+#: ghex/findreplace.c:125
+#, c-format
+msgid "Replace %s"
+msgstr "Remplacer %s"
+
+#: ghex/findreplace.c:141
+msgid "Find next"
+msgstr "Trouver le suivant"
+
+#: ghex/findreplace.c:148
+msgid "Replace"
+msgstr "Remplacer"
+
+#: ghex/findreplace.c:155
+msgid "Replace All"
+msgstr "Remplacer Tout"
+
+#: ghex/findreplace.c:179 ghex/main.c:70
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr "GHex (%s): Aller à l'Octet"
+
+#: ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
+msgid "There is no active buffer to search!"
+msgstr "Il n'y a pas de tampon actif pour rechercher!"
+
+#: ghex/findreplace.c:268 ghex/findreplace.c:291 ghex/findreplace.c:344
+msgid "There seems to be no string to search for!"
+msgstr "Il semble qu'il n'y ait pas de chaine à rechercher!"
+
+#: ghex/findreplace.c:274 ghex/findreplace.c:351
+msgid "End Of File reached"
+msgstr "Fin du fichier atteinte"
+
+#: ghex/findreplace.c:298
+msgid "Beginning Of File reached"
+msgstr "Début du fichier atteint"
+
+#: ghex/findreplace.c:306
+msgid "There is no active buffer to move the cursor in!"
+msgstr "Il n'y a pas de tampon actif pour y déplacer le curseur!"
+
+#: ghex/findreplace.c:311
+msgid "No offset has been specified!"
+msgstr "Le déplacement n'a pas été spécifié!"
+
+#: ghex/findreplace.c:318
+msgid "The offset must be a positive integer value!"
+msgstr "Le déplacement doit etre une valeur positive et entière!"
+
+#: ghex/findreplace.c:323
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "Impossible de positionner le curseur après la fin du fichier!"
+
+#: ghex/findreplace.c:361 ghex/findreplace.c:400
+msgid "There is no active buffer to replace data in!"
+msgstr "Il n'y a pas de tampon actif dans lequel remplacer des données!"
+
+#: ghex/findreplace.c:372 ghex/findreplace.c:411
+msgid "Strange find or replace string!"
+msgstr "Chaine recherchée bizarre!"
+
+#: ghex/findreplace.c:377 ghex/findreplace.c:416
+msgid "Both strings must be of the same length!"
+msgstr "Les deux chaines doivent avoir la meme longueur!"
+
+#: ghex/findreplace.c:390
+msgid "End Of File reached!"
+msgstr "Fin du fichier atteinte!"
+
+#: ghex/findreplace.c:431
+#, c-format
+msgid "Replaced %d occurencies."
+msgstr "%d occurences remplacées."
 
 #: ghex/hex-document.c:57
 msgid "_Bytes"
@@ -92,25 +218,62 @@ msgstr ""
 "Le document %s a changé depuis son dernier enregistrement.\n"
 "Voulez-vous enregistrer les changements?"
 
-#: ghex/main.c:68
-#, fuzzy, c-format
-msgid "GHex (%s): Find Data"
-msgstr "GHex: Trouver Données"
+#: ghex/preferences.c:48 mini-utils/idetool/idetool.c:142
+#: mini-utils/idetool/idetool.c:325
+msgid "Default"
+msgstr "Défaut"
 
-#: ghex/main.c:69
-#, fuzzy, c-format
-msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex: Rechercher & Remplacer données"
+#: ghex/preferences.c:49
+msgid "Notebook"
+msgstr "Carnet"
 
-#: ghex/main.c:70
-#, fuzzy, c-format
-msgid "GHex (%s): Jump To Byte"
-msgstr "GHex: Aller à l'Octet"
+#: ghex/preferences.c:50
+msgid "Toplevel"
+msgstr ""
+
+#: ghex/preferences.c:51
+msgid "Modal"
+msgstr "Modal"
+
+#: ghex/preferences.c:79
+msgid "Maximum number of undo levels"
+msgstr ""
+
+#: ghex/preferences.c:90
+msgid "Editing"
+msgstr "Edition en cours"
+
+#: ghex/preferences.c:97
+msgid "Font"
+msgstr "Police"
+
+#: ghex/preferences.c:113
+msgid "Browse..."
+msgstr "Naviguer..."
+
+#: ghex/preferences.c:132
+msgid "Default Group Type"
+msgstr "Type du groupe par défaut"
+
+#: ghex/preferences.c:148 gtt/options.c:184
+msgid "Display"
+msgstr "Affichage"
+
+#: ghex/preferences.c:155
+msgid "MDI Mode"
+msgstr "Mode MDI"
+
+#: ghex/preferences.c:172
+msgid "MDI"
+msgstr "MDI"
+
+#: ghex/preferences.c:281
+msgid "Can not open desired font!"
+msgstr "Impossible d'utiliser la police spécifiée!"
 
 #: ghex/ui.c:51
-#, fuzzy
 msgid "Open Con_verter..."
-msgstr "Ouvrir _Convertisseur..."
+msgstr "Ouvrir Con_vertisseur..."
 
 #: ghex/ui.c:52
 msgid "Open base conversion dialog"
@@ -149,9 +312,8 @@ msgid "Error saving file!"
 msgstr "Erreur lors de la sauvegarde du fichier!"
 
 #: ghex/ui.c:197 ghex/ui.c:339
-#, fuzzy, c-format
 msgid "Saved buffer to file %s"
-msgstr "Enregistrer le fichier sur le disque"
+msgstr "Enregistrer le tampon dans le fichier %s"
 
 #: ghex/ui.c:206
 msgid "Select a file to open"
@@ -184,6 +346,130 @@ msgstr "Impossible d'ouvrir le fichier!"
 msgid "Can't open file for writing!"
 msgstr "Impossible d'ouvrir le fichier en écriture!"
 
+#: gnome-find/gnome-find.c:42
+msgid "New search"
+msgstr "Nouvelle recherche"
+
+#: gnome-find/gnome-find.c:43
+msgid "Open search spec"
+msgstr ""
+
+#: gnome-find/gnome-find.c:44
+msgid "Save search spec"
+msgstr ""
+
+#: gnome-find/gnome-find.c:45
+#, fuzzy
+msgid "Save search spec as..."
+msgstr "S_auver le calendrier sous..."
+
+#: gnome-find/gnome-find.c:49
+msgid "Exit"
+msgstr "Quitter"
+
+#: gnome-find/gnome-find.c:55
+msgid "Preferences..."
+msgstr "Préférences..."
+
+#: gnome-find/gnome-find.c:61
+msgid "Add condition"
+msgstr "Ajouter condition"
+
+#: gnome-find/gnome-find.c:61 gnome-find/gnome-find.c:100
+msgid "Add a search condition"
+msgstr ""
+
+#: gnome-find/gnome-find.c:62
+msgid "Remove condition"
+msgstr "Enlever condition"
+
+#: gnome-find/gnome-find.c:62 gnome-find/gnome-find.c:102
+msgid "Remove last search condition"
+msgstr ""
+
+#: gnome-find/gnome-find.c:64 gnome-find/gnome-find.c:65
+#: gnome-find/gnome-find.c:103
+msgid "Show advanced options"
+msgstr ""
+
+#: gnome-find/gnome-find.c:70
+msgid "Start search"
+msgstr "Démarrer la recherche"
+
+#: gnome-find/gnome-find.c:77
+msgid "About Gnome Find..."
+msgstr "A Propos de Gnome Find..."
+
+#: gnome-find/gnome-find.c:86
+msgid "File"
+msgstr "Fichier"
+
+#: gnome-find/gnome-find.c:87
+msgid "Edit"
+msgstr "Editer"
+
+#: gnome-find/gnome-find.c:88 gnome-find/gnome-find.c:109
+msgid "Search"
+msgstr "Recherche"
+
+#: gnome-find/gnome-find.c:89
+msgid "Help"
+msgstr "Aide"
+
+#: gnome-find/gnome-find.c:95
+msgid "New"
+msgstr "Nouveau"
+
+#: gnome-find/gnome-find.c:95
+#, fuzzy
+msgid "Clear the search window"
+msgstr "Nouvelle fenetre de texte"
+
+#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:506
+#: mini-utils/gw/gw.c:454
+msgid "Add"
+msgstr "Ajouter"
+
+#: gnome-find/gnome-find.c:102
+msgid "Remove"
+msgstr "Enlever"
+
+#: gnome-find/gnome-find.c:103 mini-utils/gshutdown/gshutdown.c:205
+#: mini-utils/gshutdown/gshutdown.c:206
+msgid "Advanced"
+msgstr "Avancé"
+
+#: gnome-find/gnome-find.c:109
+#, fuzzy
+msgid "Start the current search"
+msgstr "Heure de début:"
+
+#: gnome-find/gnome-find.c:180
+msgid "Find Files"
+msgstr "Trouver Fichiers"
+
+#: gnome-find/gnome-find.c:182
+msgid "Directory:"
+msgstr "Répertoire:"
+
+#: gnome-find/gnome-find.c:184
+msgid "Directory to Search"
+msgstr ""
+
+#: gnome-find/gnome-find.c:426
+msgid "GNOME Find"
+msgstr ""
+
+#. copyright notice
+#: gnome-find/gnome-find.c:428
+msgid "(C) 1998 the Free Software Foundation"
+msgstr ""
+
+#. another comments
+#: gnome-find/gnome-find.c:431
+msgid "GNOME Find is a fast, flexible file search tool."
+msgstr ""
+
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
@@ -194,10 +480,6 @@ msgstr ""
 #: gsearchtool/gsearchtool.c:488
 msgid "Start in directory:"
 msgstr "Démarrer dans ce répertoire:"
-
-#: gsearchtool/gsearchtool.c:506 mini-utils/gw/gw.c:454
-msgid "Add"
-msgstr "Ajouter"
 
 #: gsearchtool/gsearchtool.c:517
 msgid "Start"
@@ -231,13 +513,109 @@ msgstr ""
 msgid "Gnome Search Tool"
 msgstr "Outil de Recherche Gnome"
 
-#: gtt/app.c:110 gtt/app.c:209
+#: gstripchart/gstripchart.c:1249
+msgid "Params"
+msgstr "Params"
+
+#: gstripchart/gstripchart.c:1249
+msgid "Examine and adjust parameters"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1255
+msgid "E_xit"
+msgstr "_Quitter"
+
+#: gstripchart/gstripchart.c:1255
+msgid "Terminate the stripchart program"
+msgstr "Terminer le programme stripchart"
+
+#: gstripchart/gstripchart.c:1271
+msgid "Copyright 1998 John Kodis"
+msgstr "Copyright 1998 John Kodis"
+
+#: gstripchart/gstripchart.c:1286
+msgid "_About"
+msgstr "_A Propos"
+
+#: gstripchart/gstripchart.c:1286
+msgid "Info about the striphart program"
+msgstr "Informations sur le programme stripchart"
+
+#: gstripchart/gstripchart.c:1297
+msgid "_File"
+msgstr "_Fichier"
+
+#: gstripchart/gstripchart.c:1298
+msgid "_Help"
+msgstr "_Aide"
+
+#: gstripchart/gstripchart.c:1706
+msgid "GEO"
+msgstr "GEO"
+
+#: gstripchart/gstripchart.c:1706
+msgid "geometry"
+msgstr "géométrie"
+
+#: gstripchart/gstripchart.c:1708
+msgid "FILE"
+msgstr "FICHIER"
+
+#: gstripchart/gstripchart.c:1708
+msgid "configuration file"
+msgstr "fichier de configuration"
+
+#: gstripchart/gstripchart.c:1710 gstripchart/gstripchart.c:1712
+#: gstripchart/gstripchart.c:1714 gstripchart/gstripchart.c:1716
+msgid "SECS"
+msgstr "SECS"
+
+#: gstripchart/gstripchart.c:1710
+msgid "chart update interval"
+msgstr "intervalle de mise à jour"
+
+#: gstripchart/gstripchart.c:1712
+msgid "chart LP filter TC"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1714
+#, fuzzy
+msgid "slider update interval"
+msgstr "intervalle de mise à jour"
+
+#: gstripchart/gstripchart.c:1716
+msgid "slider LP filter TC"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1718
+msgid "add menubar"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1720
+msgid "omit slider"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1722
+msgid "TYPE"
+msgstr "TYPE"
+
+#: gstripchart/gstripchart.c:1722
+msgid "gtk|text|graph|none"
+msgstr ""
+
+#: gtt/app.c:110 gtt/app.c:210
 msgid "no project selected"
 msgstr "pas de projet sélectionné"
 
-#: gtt/app.c:198
+#: gtt/app.c:199
 msgid "00:00"
 msgstr "00:00"
+
+#: gtt/app.c:239 mini-utils/gless/gless.c:383
+msgid ""
+"Couldn't understand geometry (position and size)\n"
+" specified on command line"
+msgstr ""
 
 #: gtt/clist.c:169
 msgid "Total"
@@ -288,24 +666,19 @@ msgstr ""
 "Une erreur est survenue durant la lecture du fichier de configuration.\n"
 "Dois-je installer une nouvelle configuration?"
 
-#: gtt/main.c:215 gtt/main.c:231 gtt/main.c:242 gtt/main.c:248
-#, c-format
-msgid "error in geometry string \"%s\"\n"
-msgstr "erreur dans la chaine de géométrie \"%s\"\n"
-
-#: gtt/main.c:267
+#: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "Spécifier la géométrie"
 
-#: gtt/main.c:267 mini-utils/gless/gless.c:115
+#: gtt/main.c:204 mini-utils/gless/gless.c:115
 msgid "GEOMETRY"
 msgstr "GEOMETRIE"
 
-#: gtt/main.c:269
+#: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "Choisir un projet au lancement de l'application"
 
-#: gtt/main.c:269
+#: gtt/main.c:206
 msgid "PROJECT"
 msgstr "PROJET"
 
@@ -372,10 +745,6 @@ msgstr "Chronomé_tre Lancé"
 #: gtt/menus.c:99
 msgid "_Timer"
 msgstr "Chronomé_tre"
-
-#: gtt/options.c:184
-msgid "Display"
-msgstr "Affichage"
 
 #: gtt/options.c:192
 msgid "Show Seconds"
@@ -714,18 +1083,16 @@ msgid "Ignore standard input; may be needed in some cases."
 msgstr "Ignorer l'entrée standrad; peut etre utile dans certains cas."
 
 #: mini-utils/gless/gless.c:278
-#, fuzzy
 msgid "_New Window"
-msgstr "Nouvelle Fenetre"
+msgstr "_Nouvelle Fenetre"
 
 #: mini-utils/gless/gless.c:279
 msgid "New text viewer window"
 msgstr "Nouvelle fenetre de texte"
 
 #: mini-utils/gless/gless.c:291
-#, fuzzy
 msgid "_Fixed Font"
-msgstr "Police Fixe"
+msgstr "Police _Fixe"
 
 #: mini-utils/gless/gless.c:292
 msgid "Display text with a fixed font"
@@ -733,12 +1100,6 @@ msgstr "Affiche le texte avec une police fixe"
 
 #: mini-utils/gless/gless.c:321
 msgid "Text File Viewer"
-msgstr ""
-
-#: mini-utils/gless/gless.c:383
-msgid ""
-"Couldn't understand geometry (position and size)\n"
-" specified on command line"
 msgstr ""
 
 #: mini-utils/gless/gless.c:424
@@ -786,24 +1147,20 @@ msgid "Failed to execute command:\n"
 msgstr "Echec de l'éxecution de la commande:\n"
 
 #: mini-utils/gnome-run/gnome-run.c:68
-#, fuzzy
 msgid "Run Program"
-msgstr "Lancer le programme:"
+msgstr "Exécuter un Programme"
 
 #: mini-utils/gnome-run/gnome-run.c:69
-#, fuzzy
 msgid "Run"
-msgstr "Dim"
+msgstr "Exécuter"
 
 #: mini-utils/gnome-run/gnome-run.c:69
-#, fuzzy
 msgid "Cancel"
-msgstr "Cache"
+msgstr "Annuler"
 
 #: mini-utils/gnome-run/gnome-run.c:80
-#, fuzzy
 msgid "Select a program to run"
-msgstr "Sélectionnez le programme à lancer à l'heure de l'alarme"
+msgstr "Choisissez un programme a exécuter"
 
 #: mini-utils/gshutdown/gshutdown.c:83
 msgid "Shut Down"
@@ -866,10 +1223,6 @@ msgstr "Etes-vous sur de vouloir redémarrer l'ordinateur?"
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr "Etes-vous sur de vouloir éteindre l'ordinateur?"
 
-#: mini-utils/gshutdown/gshutdown.c:149
-msgid "Close"
-msgstr "Fermer"
-
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:183
 msgid "Shutdown or Reboot"
@@ -878,10 +1231,6 @@ msgstr "Eteindre ou Redémarrer"
 #: mini-utils/gshutdown/gshutdown.c:200 mini-utils/gshutdown/gshutdown.c:201
 msgid "Easy"
 msgstr "Facile"
-
-#: mini-utils/gshutdown/gshutdown.c:205 mini-utils/gshutdown/gshutdown.c:206
-msgid "Advanced"
-msgstr "Avancé"
 
 #: mini-utils/gshutdown/gshutdown.c:238
 msgid ""
@@ -912,6 +1261,128 @@ msgstr "Général"
 #: mini-utils/gshutdown/gshutdown.c:454
 msgid "Don't ask next time."
 msgstr "Ne pas demander la prochaine fois."
+
+#: mini-utils/gsu/gsu.c:210
+msgid "virtual memory exhausted"
+msgstr "mémoire virtuelle épuisée"
+
+#: mini-utils/gsu/gsu.c:394
+#, c-format
+msgid "Cannot set groups: %s"
+msgstr "Impossible de positionner les groupes: %s"
+
+#: mini-utils/gsu/gsu.c:398
+#, c-format
+msgid "Cannot set group id: %s"
+msgstr "Impossible de positionner l'ID groupe: %s"
+
+#: mini-utils/gsu/gsu.c:400
+#, c-format
+msgid "Cannot set user id: %s"
+msgstr "Impossible de positionner l'ID utilisateur: %s"
+
+#: mini-utils/gsu/gsu.c:444
+#, c-format
+msgid "cannot run %s"
+msgstr "impossible de lancer %s"
+
+#: mini-utils/gsu/gsu.c:472
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr "Essayez `%s --help' pour avoir plus d'informations.\n"
+
+#: mini-utils/gsu/gsu.c:476
+#, c-format
+msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
+msgstr "Usage: %s [OPTION]... [-] [UTILISATEUR [ARG]...]\n"
+
+#: mini-utils/gsu/gsu.c:477
+msgid ""
+"Change the effective user id and group id to that of USER.\n"
+"\n"
+"  -, -l, --login               make the shell a login shell\n"
+"  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
+"  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
+"  -m, --preserve-environment   do not reset environment variables\n"
+"  -p                           same as -m\n"
+"  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
+"      --help                   display this help and exit\n"
+"      --version                output version information and exit\n"
+"\n"
+"A mere - implies -l.   If USER not given, assume root.\n"
+msgstr ""
+"Remplace les utilisateur et groupe effectifs par ceux d'UTILISATEUR\n"
+"  -, -l, --login               utilise un shell de login\n"
+"  -c, --commmand=COMMANDE      passe une seule COMMANDE au shell avec -c\n"
+"  -f, --fast                   passe l'argument -f au shell (pour csh ou "
+"tcsh)\n"
+"  -m, --preserve-environment   ne réinitialise pas les variables "
+"d'environnement\n"
+"  -p                           pareil que -m\n"
+"  -s, --shell=SHELL            utilise SHELL si /etc/shells le permet\n"
+"      --help                   affiche ce message d'aide et quitte\n"
+"      --version                affiche la version du programme et quitte\n"
+"\n"
+"Un simple - équivaut à -l. Si UTILISATEUR est omit, root est utilisé.\n"
+
+#: mini-utils/gsu/gsu.c:491
+msgid ""
+"\n"
+"Report bugs to sh-utils-bugs@gnu.ai.mit.edu"
+msgstr ""
+"\n"
+"Rapportez les bugs à sh-utils-bugs@gnu.ai.mit.edu (en Anglais)"
+
+#: mini-utils/gsu/gsu.c:577
+#, c-format
+msgid "user %s does not exist"
+msgstr "l'utilisateur %s n'existe pas"
+
+#. wait for dialog to die, then quit
+#: mini-utils/gsu/gsu.c:602
+msgid "incorrect password"
+msgstr "mot de passe incorrect"
+
+#. The user being su'd to has a nonstandard shell, and so is
+#. probably a uucp account or has restricted access.  Don't
+#. compromise the account by allowing access with a standard
+#. shell.
+#: mini-utils/gsu/gsu.c:621
+#, c-format
+msgid "using restricted shell %s"
+msgstr "utilisation du shell restreind %s"
+
+#. error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir);
+#: mini-utils/gsu/gsu.c:634
+#, c-format
+msgid "Cannot change directory to %s"
+msgstr "Impossible de changer de répertoire vers %s"
+
+#: mini-utils/gsu/gsu.c:666
+msgid "Root password request"
+msgstr "Mot de passe de Root demandé"
+
+#: mini-utils/gsu/gsu.c:676
+msgid ""
+"You are trying to do something which requires\n"
+"root (system administrator) privileges.\n"
+"To do this, you must give the root password.\n"
+"Please enter the root password now, or choose\n"
+"Cancel if you do not know it."
+msgstr ""
+"Vous avez choisi de faire quelque chose qui\n"
+"nécessite les priviléges de root (administrateur système)\n"
+"Pour cela, vous devez donner le mot de passe de root.\n"
+"Entrez le mot de passe de root maintenant, ou choisissez\n"
+"Annuler si vous ne le connaissez pas."
+
+#: mini-utils/gsu/gsu.c:683
+msgid ""
+"You are trying to change your user identity.\n"
+"Please enter the password for user `"
+msgstr ""
+"Vous etes en train d'essayer de changer votre identité.\n"
+"Veillez entrer le mot de passe de l'utilisateur `"
 
 #: mini-utils/guname/guname.c:327
 msgid "System Information"
@@ -1183,9 +1654,8 @@ msgstr ""
 "Cette commande est nécessaire pour que cette application puisse fonctionner."
 
 #: mini-utils/gw/gw.c:177
-#, fuzzy
 msgid "_Save..."
-msgstr "Enregistrer..."
+msgstr "Enregi_strer..."
 
 #: mini-utils/gw/gw.c:177
 msgid "Write information to disk"
@@ -1271,10 +1741,6 @@ msgstr ""
 msgid "Keep settings"
 msgstr "Conserver les paramétres"
 
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
-msgid "Default"
-msgstr "Défaut"
-
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr "(1 Secteur)"
@@ -1355,1308 +1821,8 @@ msgstr "Seulement le superutilisateur peux utiliser cet outil"
 msgid "You appear to have no IDE drives"
 msgstr "Il semble que vous n'ayez pas de disque IDE"
 
-#~ msgid "There is no active buffer to search!"
-#~ msgstr "Il n'y a pas de tampon actif pour rechercher!"
-
-#~ msgid "There seems to be no string to search for!"
-#~ msgstr "Il semble qu'il n'y ait pas de chaine à rechercher!"
-
-#~ msgid "End Of File reached"
-#~ msgstr "Fin du fichier atteinte"
-
-#~ msgid "Beginning Of File reached"
-#~ msgstr "Début du fichier atteint"
-
-#~ msgid "There is no active buffer to move the cursor in!"
-#~ msgstr "Il n'y a pas de tampon actif pour y déplacer le curseur!"
-
-#~ msgid "No offset has been specified!"
-#~ msgstr "Le déplacement n'a pas été spécifié!"
-
-#~ msgid "The offset must be a positive integer value!"
-#~ msgstr "Le déplacement doit etre une valeur positive et entière!"
-
-#~ msgid "Can not position cursor beyond the End Of File!"
-#~ msgstr "Impossible de positionner le curseur après la fin du fichier!"
-
-#~ msgid "There is no active buffer to replace data in!"
-#~ msgstr "Il n'y a pas de tampon actif dans lequel remplacer des données!"
-
-#, fuzzy
-#~ msgid "Strange find or replace string!"
-#~ msgstr "Chaine de recherche erronnée!"
-
-#~ msgid "Both strings must be of the same length!"
-#~ msgstr "Les deux chaines doivent avoir la meme longueur!"
-
-#~ msgid "End Of File reached!"
-#~ msgstr "Fin du fichier atteinte!"
-
-#~ msgid "Replaced %d occurencies."
-#~ msgstr "%d occurences remplacées."
-
-#~ msgid "Can not open desired font!"
-#~ msgstr "Impossible d'utiliser la police spécifiée!"
-
-#~ msgid "Notebook"
-#~ msgstr "Carnet"
-
-#~ msgid "Modal"
-#~ msgstr "Modal"
-
-#~ msgid "Search for %s"
-#~ msgstr "Rechercher %s"
-
-#~ msgid "Find Next"
-#~ msgstr "Trouver le suivant"
-
-#~ msgid "Find Previous"
-#~ msgstr "Trouver le précédent"
-
-#~ msgid "Replace %s"
-#~ msgstr "Remplacer %s"
-
-#~ msgid "Find next"
-#~ msgstr "Trouver le suivant"
-
-#~ msgid "Replace"
-#~ msgstr "Remplacer"
-
-#~ msgid "Replace All"
-#~ msgstr "Remplacer Tout"
-
-#~ msgid "GHex: Converter"
-#~ msgstr "GHex: Convertisseur"
-
-#~ msgid "Binary"
-#~ msgstr "Binaire"
-
-#~ msgid "Decimal"
-#~ msgstr "Décimal"
-
-#~ msgid "Hex"
-#~ msgstr "Hex"
-
-#~ msgid "ASCII"
-#~ msgstr "ASCII"
-
-#~ msgid "Font"
-#~ msgstr "Police"
-
-#~ msgid "Default Group Type"
-#~ msgstr "Type du groupe par défaut"
-
-#~ msgid "MDI Mode"
-#~ msgstr "Mode MDI"
-
-#~ msgid "MDI"
-#~ msgstr "MDI"
+#~ msgid "error in geometry string \"%s\"\n"
+#~ msgstr "erreur dans la chaine de géométrie \"%s\"\n"
 
 #~ msgid "PIO Mode"
 #~ msgstr "Mode PIO"
-
-#~ msgid "E_xit"
-#~ msgstr "_Quiter"
-
-#~ msgid "_About..."
-#~ msgstr "_A Propos..."
-
-#~ msgid "_Copy"
-#~ msgstr "_Couper"
-
-#~ msgid "_Calculator"
-#~ msgstr "_Calculatrice"
-
-#~ msgid "_Edit"
-#~ msgstr "_Editer"
-
-#~ msgid "_Help"
-#~ msgstr "_Aide"
-
-#~ msgid "_File"
-#~ msgstr "_Fichier"
-
-#~ msgid "_Find..."
-#~ msgstr "_Chercher..."
-
-#, fuzzy
-#~ msgid "Search for a string"
-#~ msgstr "Rechercher %s"
-
-#~ msgid "_Replace..."
-#~ msgstr "_Remplacer..."
-
-#, fuzzy
-#~ msgid "Replace a string"
-#~ msgstr "Remplacer %s"
-
-#~ msgid "_Open"
-#~ msgstr "_Ouvrir"
-
-#, fuzzy
-#~ msgid "Open a file"
-#~ msgstr "Ouvrir un fichier"
-
-#~ msgid "_Save"
-#~ msgstr "_Sauver"
-
-#, fuzzy
-#~ msgid "Save _As..."
-#~ msgstr "Enregistrer sous..."
-
-#~ msgid "_Close"
-#~ msgstr "_Fermer"
-
-#, fuzzy
-#~ msgid "Close file"
-#~ msgstr "Fermer"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Préférences"
-
-#, fuzzy
-#~ msgid "Set user preferences"
-#~ msgstr "Préférences"
-
-#, fuzzy
-#~ msgid "Exit GHex"
-#~ msgstr "Quitter"
-
-#, fuzzy
-#~ msgid "About GHex"
-#~ msgstr "A Propos"
-
-#~ msgid "_View"
-#~ msgstr "_Vue"
-
-#~ msgid "File_s"
-#~ msgstr "Fichier_s"
-
-#~ msgid "_Preferences..."
-#~ msgstr "_Préférences..."
-
-#~ msgid "C_ut"
-#~ msgstr "Co_uper"
-
-#~ msgid "_Paste"
-#~ msgstr "_Coller"
-
-#, fuzzy
-#~ msgid "P_roperties..."
-#~ msgstr "Propriétés..."
-
-#~ msgid "Clear Daily Counter"
-#~ msgstr "Réinitialiser le compteur journalier"
-
-#, fuzzy
-#~ msgid "_About"
-#~ msgstr "A Propos"
-
-#~ msgid "_Program"
-#~ msgstr "_Programme"
-
-#~ msgid "Tell about this application"
-#~ msgstr "A propos de cette application"
-
-#, fuzzy
-#~ msgid "_Open..."
-#~ msgstr "Ouvrir..."
-
-#~ msgid "Open a new file in this window"
-#~ msgstr "Ouvrir un nouveau fichier dans cette fenetre"
-
-#~ msgid "Save file to disk"
-#~ msgstr "Enregistrer le fichier sur le disque"
-
-#~ msgid "Close this window"
-#~ msgstr "Fermer cette fenetre"
-
-#~ msgid "Change application preferences"
-#~ msgstr "Change les préférences de l'application"
-
-#~ msgid "Quit the application"
-#~ msgstr "Quitter cette application"
-
-#~ msgid "Setting"
-#~ msgstr "Paramétre"
-
-#~ msgid "Exit"
-#~ msgstr "Quitter"
-
-#~ msgid "About..."
-#~ msgstr "A Propos..."
-
-#~ msgid "File"
-#~ msgstr "Fichier"
-
-#~ msgid "Help"
-#~ msgstr "Aide"
-
-#~ msgid "Discard session"
-#~ msgstr "Ne pas sauver la session"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#, fuzzy
-#~ msgid "File_s/"
-#~ msgstr "Fichiers/"
-
-#~ msgid "Save _as..."
-#~ msgstr "_Enregistrer sous..."
-
-#, fuzzy
-#~ msgid "_Exit"
-#~ msgstr "Quitter"
-
-#~ msgid "_Quit"
-#~ msgstr "_Quiter"
-
-#~ msgid "Pr_operties..."
-#~ msgstr "Pr_opriétés..."
-
-#~ msgid "Preferences..."
-#~ msgstr "Préférences..."
-
-#~ msgid "View"
-#~ msgstr "Voir"
-
-#~ msgid "Mounted filesystems"
-#~ msgstr "Systèmes de fichiers montés"
-
-#~ msgid "Quit the application without saving"
-#~ msgstr "Quitter l'application sans enregistrer"
-
-#~ msgid "ERRONEUS STRING"
-#~ msgstr "CHAINE ERRONEE"
-
-#~ msgid "Can not open configured font!"
-#~ msgstr "Impossible d'ouvrir la police utilisée!"
-
-#~ msgid "Appointment"
-#~ msgstr "Rendez-vous"
-
-#~ msgid "Time"
-#~ msgstr "Temps"
-
-#~ msgid "Start time:"
-#~ msgstr "Heure de début:"
-
-#~ msgid "End time:"
-#~ msgstr "Heure de fin:"
-
-#~ msgid "All day event"
-#~ msgstr "Toute la journée"
-
-#~ msgid "Minutes"
-#~ msgstr "Minutes"
-
-#~ msgid "Hours"
-#~ msgstr "Heures"
-
-#~ msgid "Days"
-#~ msgstr "Jours"
-
-#~ msgid "Mail to:"
-#~ msgstr "Mail à:"
-
-#~ msgid "Alarms"
-#~ msgstr "Alarmes"
-
-#~ msgid "Audio"
-#~ msgstr "Audio"
-
-#~ msgid "Program"
-#~ msgstr "Program"
-
-#~ msgid "Mail"
-#~ msgstr "Mail"
-
-#~ msgid "Classification"
-#~ msgstr "Classification"
-
-#~ msgid "Public"
-#~ msgstr "Public"
-
-#~ msgid "Private"
-#~ msgstr "Privé"
-
-#~ msgid "Confidential"
-#~ msgstr "Confidentiel"
-
-#~ msgid "Owner:"
-#~ msgstr "Propriétaire:"
-
-#~ msgid "?"
-#~ msgstr "?"
-
-#~ msgid "Summary:"
-#~ msgstr "Résumé:"
-
-#~ msgid "None"
-#~ msgstr "Aucun"
-
-#~ msgid "Daily"
-#~ msgstr "Journalier"
-
-#~ msgid "Weekly"
-#~ msgstr "Hebdomadaire"
-
-#~ msgid "Monthly"
-#~ msgstr "Mensuel"
-
-#~ msgid "Yearly"
-#~ msgstr "Annuel"
-
-#~ msgid "1st"
-#~ msgstr "1er"
-
-#~ msgid "2nd"
-#~ msgstr "2"
-
-#~ msgid "3rd"
-#~ msgstr "3"
-
-#~ msgid "4th"
-#~ msgstr "4"
-
-#~ msgid "5th"
-#~ msgstr "5"
-
-#~ msgid "Monday"
-#~ msgstr "Lundi"
-
-#~ msgid "Tuesday"
-#~ msgstr "Mardi"
-
-#~ msgid "Wednesday"
-#~ msgstr "Mercredi"
-
-#~ msgid "Thursday"
-#~ msgstr "Jeudi"
-
-#~ msgid "Friday"
-#~ msgstr "Vendredi"
-
-#~ msgid "Saturday"
-#~ msgstr "Samedi"
-
-#~ msgid "Sunday"
-#~ msgstr "Dimanche"
-
-#~ msgid "Mon"
-#~ msgstr "Lun"
-
-#~ msgid "Tue"
-#~ msgstr "Mar"
-
-#~ msgid "Wed"
-#~ msgstr "Mer"
-
-#~ msgid "Thu"
-#~ msgstr "Jeu"
-
-#~ msgid "Fri"
-#~ msgstr "Ven"
-
-#~ msgid "Sat"
-#~ msgstr "Sam"
-
-#~ msgid "Recurrence rule"
-#~ msgstr "Régle Récurrente"
-
-#~ msgid "Every"
-#~ msgstr "Tout les"
-
-#~ msgid "day(s)"
-#~ msgstr "jour(s)"
-
-#~ msgid "week(s)"
-#~ msgstr "semaine(s)"
-
-#~ msgid "Recur on the"
-#~ msgstr "A nouveau le"
-
-#~ msgid "th day of the month"
-#~ msgstr "ème jour du mois"
-
-#~ msgid "month(s)"
-#~ msgstr "mois"
-
-#~ msgid "year(s)"
-#~ msgstr "an(s)"
-
-#~ msgid "Ending date"
-#~ msgstr "Date de fin"
-
-#~ msgid "Repeat forever"
-#~ msgstr "Répéter à l'infini"
-
-#~ msgid "End on"
-#~ msgstr "Finir en"
-
-#~ msgid "End after"
-#~ msgstr "Terminer après"
-
-#~ msgid "occurrence(s)"
-#~ msgstr "occurence(s)"
-
-#~ msgid "Exceptions"
-#~ msgstr "Exceptions"
-
-#~ msgid "Add exception"
-#~ msgstr "Ajouter Exception"
-
-#~ msgid "Change selected"
-#~ msgstr "Changement de la Sélection"
-
-#~ msgid "Delete selected"
-#~ msgstr "Effacement de la Sélection"
-
-#~ msgid "Recurrence"
-#~ msgstr "Récurrence"
-
-#~ msgid "january"
-#~ msgstr "janvier"
-
-#~ msgid "february"
-#~ msgstr "février"
-
-#~ msgid "march"
-#~ msgstr "mars"
-
-#~ msgid "april"
-#~ msgstr "avril"
-
-#~ msgid "may"
-#~ msgstr "mai"
-
-#~ msgid "june"
-#~ msgstr "juin"
-
-#~ msgid "july"
-#~ msgstr "juillet"
-
-#~ msgid "august"
-#~ msgstr "aout"
-
-#~ msgid "september"
-#~ msgstr "septembre"
-
-#~ msgid "sept"
-#~ msgstr "sept"
-
-#~ msgid "october"
-#~ msgstr "octobre"
-
-#~ msgid "november"
-#~ msgstr "novembre"
-
-#~ msgid "december"
-#~ msgstr "décembre"
-
-#~ msgid "sunday"
-#~ msgstr "dimanche"
-
-#~ msgid "monday"
-#~ msgstr "lundi"
-
-#~ msgid "tuesday"
-#~ msgstr "mardi"
-
-#~ msgid "tues"
-#~ msgstr "mard"
-
-#~ msgid "wednesday"
-#~ msgstr "mercredi"
-
-#~ msgid "wednes"
-#~ msgstr "mercre"
-
-#~ msgid "thursday"
-#~ msgstr "jeudi"
-
-#~ msgid "thur"
-#~ msgstr "jeud"
-
-#~ msgid "thurs"
-#~ msgstr "jeudi"
-
-#~ msgid "friday"
-#~ msgstr "vendredi"
-
-#~ msgid "saturday"
-#~ msgstr "samedi"
-
-#~ msgid "year"
-#~ msgstr "année"
-
-#~ msgid "month"
-#~ msgstr "mois"
-
-#~ msgid "fortnight"
-#~ msgstr "quinzaine"
-
-#~ msgid "week"
-#~ msgstr "semaine"
-
-#~ msgid "day"
-#~ msgstr "jour"
-
-#~ msgid "hour"
-#~ msgstr "heure"
-
-#~ msgid "minute"
-#~ msgstr "minute"
-
-#~ msgid "min"
-#~ msgstr "min"
-
-#~ msgid "second"
-#~ msgstr "seconde"
-
-#~ msgid "sec"
-#~ msgstr "sec"
-
-#~ msgid "tomorrow"
-#~ msgstr "demain"
-
-#~ msgid "yesterday"
-#~ msgstr "hier"
-
-#~ msgid "today"
-#~ msgstr "aujourd'hui"
-
-#~ msgid "now"
-#~ msgstr "maintenant"
-
-#~ msgid "last"
-#~ msgstr "dernier"
-
-#~ msgid "this"
-#~ msgstr "ce"
-
-#~ msgid "next"
-#~ msgstr "suivant"
-
-#~ msgid "first"
-#~ msgstr "permier"
-
-#~ msgid "third"
-#~ msgstr "troisième"
-
-#~ msgid "fourth"
-#~ msgstr "quatrième"
-
-#~ msgid "fifth"
-#~ msgstr "cinquième"
-
-#~ msgid "sixth"
-#~ msgstr "sixième"
-
-#~ msgid "seventh"
-#~ msgstr "septième"
-
-#~ msgid "eighth"
-#~ msgstr "huitième"
-
-#~ msgid "ninth"
-#~ msgstr "neuvième"
-
-#~ msgid "tenth"
-#~ msgstr "dixième"
-
-#~ msgid "eleventh"
-#~ msgstr "onzième"
-
-#~ msgid "twelfth"
-#~ msgstr "douzième"
-
-#~ msgid "ago"
-#~ msgstr "il y a"
-
-#~ msgid "New appointment..."
-#~ msgstr "Nouveau rendez-vous..."
-
-#~ msgid "Make this appointment movable"
-#~ msgstr "Rendre ce rendez-vous déplaçable"
-
-#~ msgid "Edit this appointment..."
-#~ msgstr "Editer ce rendez-vous..."
-
-#~ msgid "Delete this appointment"
-#~ msgstr "Effacer ce rendez-vous"
-
-#~ msgid "Create to-do item"
-#~ msgstr "Créér une entrée ``A Faire''"
-
-#~ msgid "Edit to-do item"
-#~ msgstr "Editer l'entrée ``A Faire''"
-
-#~ msgid "Add to-do item..."
-#~ msgstr "Ajouter une entrée ``A Faire''"
-
-#~ msgid "Edit this item..."
-#~ msgstr "Editer cette entrée..."
-
-#~ msgid "Delete this item"
-#~ msgstr "Effacer cette entrée"
-
-#~ msgid "To-do list"
-#~ msgstr "Liste ``A Faire''"
-
-#~ msgid "Add..."
-#~ msgstr "Ajouter..."
-
-#~ msgid "Edit..."
-#~ msgstr "Editer..."
-
-#~ msgid "Day View"
-#~ msgstr "Vue par Jour"
-
-#~ msgid "Week View"
-#~ msgstr "Vue par Semaine"
-
-#~ msgid "Year View"
-#~ msgstr "Vue par An"
-
-#~ msgid "Reminder of your appointment at "
-#~ msgstr "Rappel de votre rendez-vous à "
-
-#~ msgid "Home"
-#~ msgstr "Perso"
-
-#~ msgid "Work"
-#~ msgstr "Travail"
-
-#~ msgid "Postal Box"
-#~ msgstr "Boite Postale"
-
-#~ msgid "Domestic"
-#~ msgstr "Personnelle"
-
-#~ msgid "International"
-#~ msgstr "International"
-
-#~ msgid "Address"
-#~ msgstr "Adresse"
-
-#~ msgid "Select address:"
-#~ msgstr "Choisissez une adresse:"
-
-#~ msgid "Street 1:"
-#~ msgstr "Rue 1:"
-
-#~ msgid "Street 2:"
-#~ msgstr "Rue 2:"
-
-#~ msgid "City:"
-#~ msgstr "Ville:"
-
-#~ msgid "State:"
-#~ msgstr "Etat:"
-
-#~ msgid "Zip Code:"
-#~ msgstr "Code Postal:"
-
-#~ msgid "Country:"
-#~ msgstr "Pays:"
-
-#~ msgid "America On-Line"
-#~ msgstr "America On-Line"
-
-#~ msgid "Apple Link"
-#~ msgstr "Apple Link"
-
-#~ msgid "AT&T"
-#~ msgstr "AT&T"
-
-#~ msgid "CIS"
-#~ msgstr "CIS"
-
-#~ msgid "e-World"
-#~ msgstr "e-World"
-
-#~ msgid "Internet"
-#~ msgstr "Internet"
-
-#~ msgid "IBM"
-#~ msgstr "IBM"
-
-#~ msgid "MCI"
-#~ msgstr "MCI"
-
-#~ msgid "Power Share"
-#~ msgstr "Power Share"
-
-#~ msgid "Prodigy"
-#~ msgstr "Prodigy"
-
-#~ msgid "TLX"
-#~ msgstr "TLX"
-
-#~ msgid "X400"
-#~ msgstr "X400"
-
-#~ msgid "Identity"
-#~ msgstr "Identité"
-
-#~ msgid "Take from Name"
-#~ msgstr "Prendre dans le Nom"
-
-#~ msgid "First:"
-#~ msgstr "Prénom:"
-
-#~ msgid "Middle:"
-#~ msgstr "2è prénom:"
-
-#~ msgid "Last:"
-#~ msgstr "Nom:"
-
-#~ msgid "Prefix:"
-#~ msgstr "Préfix:"
-
-#~ msgid "Suffix:"
-#~ msgstr "Suffixe:"
-
-#~ msgid "Organization"
-#~ msgstr "Organisation"
-
-#~ msgid "Name:"
-#~ msgstr "Nom:"
-
-#~ msgid "Title:"
-#~ msgstr "Titre:"
-
-#~ msgid "Internet Info"
-#~ msgstr "Info Internet"
-
-#~ msgid "Email Address:"
-#~ msgstr "Adresses E-mail:"
-
-#~ msgid "Addresses"
-#~ msgstr "Adresses:"
-
-#~ msgid "Phone"
-#~ msgstr "Téléphone"
-
-#~ msgid "Time Zone"
-#~ msgstr "Fuseau Horaire"
-
-#~ msgid "hrs."
-#~ msgstr "hrs."
-
-#~ msgid "mins."
-#~ msgstr "mins."
-
-#~ msgid "Geographic Position"
-#~ msgstr "Position Géographique"
-
-#~ msgid "lat, "
-#~ msgstr "lat, "
-
-#~ msgid "lon."
-#~ msgstr "lon."
-
-#~ msgid "Comment:"
-#~ msgstr "Commentaire:"
-
-#~ msgid "Last Revision:"
-#~ msgstr "Dernière Modification:"
-
-#~ msgid "Security"
-#~ msgstr "Sécurité"
-
-#~ msgid "Public Key:"
-#~ msgstr "Clé Publique:"
-
-#~ msgid "PGP"
-#~ msgstr "PGP"
-
-#~ msgid "X509"
-#~ msgstr "X509"
-
-#~ msgid "Layout"
-#~ msgstr "Présentation"
-
-#~ msgid "Column Display"
-#~ msgstr "Affichage en colonnes"
-
-#~ msgid "E-mail type:"
-#~ msgstr "Type de E-mail:"
-
-#~ msgid "Add Telephone Number for "
-#~ msgstr "Ajouter un numéro de téléphone pour "
-
-#~ msgid "Add Telephone Number for %s"
-#~ msgstr "Ajouter un numéro de téléphone pour %s"
-
-#~ msgid "Address type:"
-#~ msgstr "Type d'adresse:"
-
-#~ msgid "Wrong file format."
-#~ msgstr "Mauvais format de fichier."
-
-#~ msgid "Append GnomeCard File"
-#~ msgstr "Concatener un fichier GnomeCard"
-
-#~ msgid "Open GnomeCard File"
-#~ msgstr "Ouvrir un fichier GnomeCard"
-
-#~ msgid "Save GnomeCard File As..."
-#~ msgstr "Enregistrer le fichier GnomeCard sous..."
-
-#~ msgid "GnomeCard"
-#~ msgstr "GnomeCard"
-
-#~ msgid "No matching record found."
-#~ msgstr "Aucun enregistrement correspondant trouvé."
-
-#~ msgid "Find Card"
-#~ msgstr "Chercher Carte"
-
-#~ msgid "Find"
-#~ msgstr "Rechercher"
-
-#~ msgid "Find:"
-#~ msgstr "Rechercher:"
-
-#~ msgid " changed. Save?"
-#~ msgstr " changé. Enregistrer?"
-
-#~ msgid "New Gnomecard"
-#~ msgstr "Nouveau GnomeCard"
-
-#~ msgid "New"
-#~ msgstr "Nouveau"
-
-#~ msgid "Create new Card File."
-#~ msgstr "Creér un nouveau fichier."
-
-#, fuzzy
-#~ msgid "Open a Card File."
-#~ msgstr "Ouvrir un fichier"
-
-#~ msgid "Append..."
-#~ msgstr "Concatener..."
-
-#~ msgid "Save current changes."
-#~ msgstr "Enregistrer les changements."
-
-#~ msgid "Save as..."
-#~ msgstr "Enregistrer sous..."
-
-#~ msgid "Appereance, customizations..."
-#~ msgstr "Apparence, personnalisation..."
-
-#~ msgid "Close the program."
-#~ msgstr "Fermer le programme."
-
-#~ msgid "First"
-#~ msgstr "Premier"
-
-#~ msgid "Prev"
-#~ msgstr "Préc"
-
-#~ msgid "Previous card"
-#~ msgstr "Carte précédente"
-
-#~ msgid "Next"
-#~ msgstr "Suivant"
-
-#~ msgid "Next card"
-#~ msgstr "Carte suivante"
-
-#~ msgid "Last"
-#~ msgstr "Dernière"
-
-#~ msgid "Last card"
-#~ msgstr "Dernière carte"
-
-#~ msgid "By Card Name"
-#~ msgstr "Par Nom de Carte"
-
-#~ msgid "By Name"
-#~ msgstr "Par Nom"
-
-#~ msgid "By E-mail"
-#~ msgstr "Par E-mail"
-
-#~ msgid "By Organization"
-#~ msgstr "Par Organisation"
-
-#~ msgid "Card"
-#~ msgstr "Carte"
-
-#~ msgid "Edit card"
-#~ msgstr "Editer carte"
-
-#~ msgid "Delete element"
-#~ msgstr "Effacer élément"
-
-#~ msgid "Go"
-#~ msgstr "Aller à"
-
-#~ msgid "Change current card"
-#~ msgstr "Changer la carte courante"
-
-#~ msgid "Search card"
-#~ msgstr "Rechercher une carte"
-
-#~ msgid "Sort"
-#~ msgstr "Trier"
-
-#~ msgid "Set sort criteria"
-#~ msgstr "Choix de la méthode de tri"
-
-#~ msgid "Tree"
-#~ msgstr "Arbre"
-
-#~ msgid "Version, credits, etc."
-#~ msgstr "Version, auteurs, etc."
-
-#~ msgid "Edit"
-#~ msgstr "Editer"
-
-#~ msgid "New file"
-#~ msgstr "Nouveau fichier"
-
-#~ msgid "Open"
-#~ msgstr "Ouvrir"
-
-#~ msgid "Save changes"
-#~ msgstr "Enregistrer les changements"
-
-#~ msgid "Create new card"
-#~ msgstr "Créér une nouvelle carte"
-
-#~ msgid "Del"
-#~ msgstr "Effacer"
-
-#~ msgid "Delete card"
-#~ msgstr "Effacer carte"
-
-#~ msgid "Preferred"
-#~ msgstr "Préféré"
-
-#~ msgid "Voice"
-#~ msgstr "Voix"
-
-#~ msgid "Fax"
-#~ msgstr "Fax"
-
-#~ msgid "Message Recorder"
-#~ msgstr "Répondeur"
-
-#~ msgid "Cellular"
-#~ msgstr "Mobile"
-
-#~ msgid "Pager"
-#~ msgstr "Pageur"
-
-#~ msgid "Modem"
-#~ msgstr "Modem"
-
-#~ msgid "Car"
-#~ msgstr "Voiture"
-
-#~ msgid "ISDN"
-#~ msgstr "Numéris"
-
-#~ msgid "Video"
-#~ msgstr "Vidéo"
-
-#~ msgid "Phone # Type:"
-#~ msgstr "Type du numéro de téléphone:"
-
-#~ msgid "Phone Number:"
-#~ msgstr "Numéro de Téléphone:"
-
-#~ msgid "Birth Date"
-#~ msgstr "Date de Naissance"
-
-#~ msgid "Geo. Position"
-#~ msgstr "Position Géographique"
-
-#~ msgid "Title"
-#~ msgstr "Titre"
-
-#~ msgid "Role"
-#~ msgstr "Rôle"
-
-#~ msgid "Unit 1"
-#~ msgstr "Unité 1"
-
-#~ msgid "Unit 2"
-#~ msgstr "Unité 2"
-
-#~ msgid "Unit 3"
-#~ msgstr "Unité 3"
-
-#~ msgid "Unit 4"
-#~ msgstr "Unité 4"
-
-#~ msgid "Comment"
-#~ msgstr "Commentaire"
-
-#~ msgid "URL"
-#~ msgstr "URL"
-
-#~ msgid "Telephone Numbers"
-#~ msgstr "Numéro de Téléphone"
-
-#~ msgid "E-mail Addresses"
-#~ msgstr "Adresses E-mail"
-
-#~ msgid "Delivery Addresses"
-#~ msgstr "Adresses de livraison:"
-
-#~ msgid "Year:"
-#~ msgstr "Année:"
-
-#~ msgid "Go to date"
-#~ msgstr "Aller à la date"
-
-#~ msgid "Gnome Calendar"
-#~ msgstr "Calendrier Gnome"
-
-#~ msgid "The GNOME personal calendar and schedule manager."
-#~ msgstr "Le calendrier et agenda personnel GNOME."
-
-#~ msgid "Open calendar"
-#~ msgstr "Ouvrir calendrier"
-
-#~ msgid "Save calendar"
-#~ msgstr "Sauver le calendrier"
-
-#~ msgid "_New calendar"
-#~ msgstr "_Nouveau calendrier"
-
-#~ msgid "_Open calendar..."
-#~ msgstr "_Ouvrir calendrier..."
-
-#~ msgid "_Save calendar"
-#~ msgstr "_Sauver le calendrier"
-
-#~ msgid "Save calendar _as..."
-#~ msgstr "S_auver le calendrier sous..."
-
-#~ msgid "P_references..."
-#~ msgstr "P_références..."
-
-#~ msgid "_Close this calendar"
-#~ msgstr "_Fermer ce calendrier"
-
-#~ msgid "_New appointment..."
-#~ msgstr "_Nouveau rendez-vous..."
-
-#~ msgid "New appointment for _today..."
-#~ msgstr "Nouveau rendez-vous pour au_jourd'hui..."
-
-#~ msgid "_About Gnomecal..."
-#~ msgstr "_A Propos de Gnomecal..."
-
-#~ msgid "Create a new appointment"
-#~ msgstr "Nouveau rendez-vous"
-
-#~ msgid "Go back in time"
-#~ msgstr "Passé..."
-
-#~ msgid "Go to present time"
-#~ msgstr "Présent..."
-
-#~ msgid "Go forward in time"
-#~ msgstr "Futur..."
-
-#~ msgid "%s%s"
-#~ msgstr "%2$s%1$s"
-
-#~ msgid "'s calendar"
-#~ msgstr "Calendrier appartenant à"
-
-#~ msgid "Show events and quit"
-#~ msgstr "Afficher les événements et quitter"
-
-#~ msgid "Specifies start date [for --events]"
-#~ msgstr "Spécifie la date de départ [pour --events]"
-
-#~ msgid "DATE"
-#~ msgstr "DATE"
-
-#~ msgid "File to load calendar from"
-#~ msgstr "Fichier à partir duquel sera chargé le calendrier"
-
-#~ msgid "FILE"
-#~ msgstr "FICHIER"
-
-#~ msgid "Load the user calendar"
-#~ msgstr "Changer le calendrier utilisateur"
-
-#~ msgid "Geometry for starting up"
-#~ msgstr "Géométrie initiale"
-
-#~ msgid "VIEW"
-#~ msgstr "VUE"
-
-#~ msgid "Specifies ending date [for --events]"
-#~ msgstr "Spécifie la date de fin [pour --events]"
-
-#~ msgid "_New appointment in this day..."
-#~ msgstr "_Nouveau rendez-vous pour aujourd'hui..."
-
-#~ msgid "Time display"
-#~ msgstr "Affichage de l'heure"
-
-#~ msgid "Time format"
-#~ msgstr "Format de l'heure"
-
-#~ msgid "12-hour (AM/PM)"
-#~ msgstr "12 heures (AM/PM)"
-
-#~ msgid "24-hour"
-#~ msgstr "24 heures"
-
-#~ msgid "Weeks start on"
-#~ msgstr "Semaines commençant le"
-
-#~ msgid "Day start:"
-#~ msgstr "Début des journées:"
-
-#~ msgid "Day end:"
-#~ msgstr "Fin des journées:"
-
-#~ msgid "Colors for months"
-#~ msgstr "Couleurs par mois"
-
-#~ msgid "Colors"
-#~ msgstr "Couleurs"
-
-#~ msgid "No appointments for this day"
-#~ msgstr "Pas de rendez-vous pour aujourd'hui..."
-
-#~ msgid "am"
-#~ msgstr "am"
-
-#~ msgid "pm"
-#~ msgstr "pm"
-
-#~ msgid "h"
-#~ msgstr "h"
-
-#~ msgid "Terminate the stripchart program"
-#~ msgstr "Terminer le programme stripchart"
-
-#~ msgid "Copyright 1998 John Kodis"
-#~ msgstr "Copyright 1998 John Kodis"
-
-#~ msgid "Info about the striphart program"
-#~ msgstr "Informations sur le programme stripchart"
-
-#~ msgid "configuration file"
-#~ msgstr "fichier de configuration"
-
-#~ msgid "SECS"
-#~ msgstr "SECS"
-
-#~ msgid "chart update interval"
-#~ msgstr "intervalle de mise à jour"
-
-#~ msgid "TYPE"
-#~ msgstr "TYPE"
-
-#~ msgid "type of display"
-#~ msgstr "type d'affichage"
-
-#~ msgid "Enter a command to execute:"
-#~ msgstr "Entrez une commande à éxecuter:"
-
-#~ msgid "virtual memory exhausted"
-#~ msgstr "mémoire virtuelle épuisée"
-
-#~ msgid "Cannot set groups: %s"
-#~ msgstr "Impossible de positionner les groupes: %s"
-
-#~ msgid "Cannot set group id: %s"
-#~ msgstr "Impossible de positionner l'ID groupe: %s"
-
-#~ msgid "Cannot set user id: %s"
-#~ msgstr "Impossible de positionner l'ID utilisateur: %s"
-
-#~ msgid "cannot run %s"
-#~ msgstr "impossible de lancer %s"
-
-#~ msgid "Try `%s --help' for more information.\n"
-#~ msgstr "Essayez `%s --help' pour avoir plus d'informations.\n"
-
-#~ msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
-#~ msgstr "Usage: %s [OPTION]... [-] [UTILISATEUR [ARG]...]\n"
-
-#~ msgid ""
-#~ "Change the effective user id and group id to that of USER.\n"
-#~ "\n"
-#~ "  -, -l, --login               make the shell a login shell\n"
-#~ "  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
-#~ "  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
-#~ "  -m, --preserve-environment   do not reset environment variables\n"
-#~ "  -p                           same as -m\n"
-#~ "  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
-#~ "      --help                   display this help and exit\n"
-#~ "      --version                output version information and exit\n"
-#~ "\n"
-#~ "A mere - implies -l.   If USER not given, assume root.\n"
-#~ msgstr ""
-#~ "Remplace les utilisateur et groupe effectifs par ceux d'UTILISATEUR\n"
-#~ "  -, -l, --login               utilise un shell de login\n"
-#~ "  -c, --commmand=COMMANDE      passe une seule COMMANDE au shell avec -c\n"
-#~ "  -f, --fast                   passe l'argument -f au shell (pour csh ou "
-#~ "tcsh)\n"
-#~ "  -m, --preserve-environment   ne réinitialise pas les variables "
-#~ "d'environnement\n"
-#~ "  -p                           pareil que -m\n"
-#~ "  -s, --shell=SHELL            utilise SHELL si /etc/shells le permet\n"
-#~ "      --help                   affiche ce message d'aide et quitte\n"
-#~ "      --version                affiche la version du programme et quitte\n"
-#~ "\n"
-#~ "Un simple - équivaut à -l. Si UTILISATEUR est omit, root est utilisé.\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Report bugs to sh-utils-bugs@gnu.ai.mit.edu"
-#~ msgstr ""
-#~ "\n"
-#~ "Rapportez les bugs à sh-utils-bugs@gnu.ai.mit.edu (en Anglais)"
-
-#~ msgid "user %s does not exist"
-#~ msgstr "l'utilisateur %s n'existe pas"
-
-#~ msgid "incorrect password"
-#~ msgstr "mot de passe incorrect"
-
-#~ msgid "using restricted shell %s"
-#~ msgstr "utilisation du shell restreind %s"
-
-#~ msgid "Cannot change directory to %s"
-#~ msgstr "Impossible de changer de répertoire vers %s"
-
-#~ msgid "Root password request"
-#~ msgstr "Mot de passe de Root demandé"
-
-#~ msgid ""
-#~ "You are trying to do something which requires\n"
-#~ "root (system administrator) privileges.\n"
-#~ "To do this, you must give the root password.\n"
-#~ "Please enter the root password now, or choose\n"
-#~ "Cancel if you do not know it."
-#~ msgstr ""
-#~ "Vous avez choisi de faire quelque chose qui\n"
-#~ "nécessite les priviléges de root (administrateur système)\n"
-#~ "Pour cela, vous devez donner le mot de passe de root.\n"
-#~ "Entrez le mot de passe de root maintenant, ou choisissez\n"
-#~ "Annuler si vous ne le connaissez pas."
-
-#~ msgid ""
-#~ "You are trying to change your user identity.\n"
-#~ "Please enter the password for user `"
-#~ msgstr ""
-#~ "Vous etes en train d'essayer de changer votre identité.\n"
-#~ "Veillez entrer le mot de passe de l'utilisateur `"
