@@ -1,8 +1,8 @@
 #!/bin/sh
 
-xgettext --default-domain=gnome-utils --directory=.. \
+xgettext --default-domain=ghex --directory=.. \
   --add-comments --keyword=_ --keyword=N_ \
   --files-from=./POTFILES.in \
-&& test ! -f gnome-utils.po \
-   || ( rm -f ./gnome-utils.pot \
-    && mv gnome-utils.po ./gnome-utils.pot )
+&& test ! -f ghex.po \
+   || ( rm -f ./ghex.pot \
+    && mv ghex.po ./ghex.pot )
