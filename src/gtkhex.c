@@ -42,12 +42,7 @@
 
 #define DEFAULT_FONT "Monospace 12"
 
-/* jaKa: this causes trouble to pango */
-#if 0 
-#  define is_displayable(c) ((char_widths[(guchar)c])?1:0)
-#else 
-#  define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
-#endif /* 0 */
+#define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
 
 typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 
@@ -807,16 +802,18 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	if(gh->cpl == 0)
 		return;
 
-	gh->lines = gh->document->file_size / gh->cpl;
-	if(gh->document->file_size % gh->cpl)
-		gh->lines++;
-	
+	if(gh->document->file_size == 0)
+		gh->lines = 1;
+	else {
+		gh->lines = gh->document->file_size / gh->cpl;
+		if(gh->document->file_size % gh->cpl)
+			gh->lines++;
+	}
+
 	gh->vis_lines = ( (gint) (height - 2*GTK_CONTAINER(gh)->border_width - 2*widget_get_yt(GTK_WIDGET(gh))) ) / ( (gint) gh->char_height );
 
 	gh->adisp_width = gh->cpl*gh->char_width + 1;
-	xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
-	if(gh->cpl % gh->group_type == 0)
-		xcpl--;
+	xcpl = gh->cpl*2 + (gh->cpl - 1)/gh->group_type;
 	gh->xdisp_width = xcpl*gh->char_width + 1;
 
 	if(gh->disp_buffer)
@@ -1241,7 +1238,7 @@ static void primary_get_cb(GtkClipboard *clipboard,
 		end_pos = MAX(gh->selection.start, gh->selection.end);
  
 		text = hex_document_get_data(gh->document, start_pos,
-											 end_pos - start_pos);
+									 end_pos - start_pos);
 		gtk_selection_data_set_text(data, text, end_pos - start_pos);
 		g_free(text);
 	}
@@ -2257,8 +2254,10 @@ void gtk_hex_set_insert_mode(GtkHex *gh, gboolean insert)
 
 	gh->insert = insert;
 
-	if(gh->cursor_pos >= gh->document->file_size)
-		gh->cursor_pos = gh->document->file_size - 1;
+	if(!gh->insert && gh->cursor_pos > 0) {
+		if(gh->cursor_pos >= gh->document->file_size)
+			gh->cursor_pos = gh->document->file_size - 1;
+	}
 }
 
 PangoFontMetrics* gtk_hex_load_font (const char *font_name)
@@ -2331,6 +2330,28 @@ void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl)
 	g_free(ahl);
 }
 
+void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines)
+{
+	gint width, height, xcpl;
+	GtkRequisition req;
+
+	gtk_widget_size_request(gh->scrollbar, &req);
+
+	if(cpl <= 0 || vis_lines <= 0)
+		return;
+
+	xcpl = 2*cpl + (cpl - 1)/gh->group_type;
+	width = xcpl*gh->char_width + cpl*gh->char_width;
+	width += 2*GTK_CONTAINER(gh)->border_width + 4*widget_get_xt(GTK_WIDGET(gh)) +
+		req.width;
+	if(gh->show_offsets)
+		width += 2*widget_get_xt(GTK_WIDGET(gh)) + 8*gh->char_width;
+
+	height = vis_lines*gh->char_height;
+	height += 2*GTK_CONTAINER(gh)->border_width + 2*widget_get_yt(GTK_WIDGET(gh));
+
+	gtk_widget_set_size_request(GTK_WIDGET(gh), width, height);
+}
 
 void add_atk_namedesc (GtkWidget *widget, const gchar *name, const gchar *desc)
 {

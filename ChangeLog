@@ -1,3 +1,16 @@
+2004-10-09  Jaka Mocnik  <jaka@gnu.org>
+
+	* configure.in: bumped version to 2.8.0: now we have a reason to.
+	* src/findreplace.c: changed all GtkEntries to GtkHex widgets which allow for
+	mixed hex/ascii editing of search and replace strings. removed the search type
+	selection radio buttons as they are not needed anymore.
+	* src/hex-document.[ch]: renamed hex_document_new() to hex_document_new_from_file()
+	and added hex_document_new() that creates an empty document. fixed all code to
+	respect this.
+	* src/gtkhex.[ch]: new function gtk_hex_set_geometry() that allows user to set the
+	GtkHex widget dimensions by number of characters per line and number of visible lines.
+	* src/gtkhex.c: misc bugfixes.
+
 2004-10-07  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/ghex-window.c (ghex_window_load): fixed padding and border of window vbox.

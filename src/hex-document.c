@@ -440,7 +440,7 @@ hex_document_new()
 	doc->gap_size = 100;
 	doc->file_size = 0;
 	doc->buffer_size = doc->file_size + doc->gap_size;
-	doc->buffer = (guchar *)g_malloc(doc->buffer_size);
+	doc->gap_pos = doc->buffer = (guchar *)g_malloc(doc->buffer_size);
 
 	doc->path_end = g_strdup(_("New document"));
 

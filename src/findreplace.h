@@ -45,13 +45,11 @@ typedef struct _ReplaceDialog ReplaceDialog;
 
 struct _ReplaceDialog {
 	GtkWidget *window;
-	GtkWidget *f_string, *r_string;
+	GtkWidget *f_gh, *r_gh;
+	HexDocument *f_doc, *r_doc;
 	GtkWidget *replace, *replace_all, *next, *close;
-	GtkWidget *type_button[2];
 	
 	GtkHex_AutoHighlight *auto_highlight;
-	
-	gint search_type;
 }; 
 
 struct _FindDialog {
@@ -59,13 +57,11 @@ struct _FindDialog {
 	GtkWidget *frame;
 	GtkWidget *vbox;
 	GtkWidget *hbox;
-	GtkWidget *f_string;
+	HexDocument *f_doc;
+	GtkWidget *f_gh;
 	GtkWidget *f_next, *f_prev, *f_close;
-	GtkWidget *type_button[2];
 	
 	GtkHex_AutoHighlight *auto_highlight;
-	
-	gint search_type;
 };
 
 typedef struct _AdvancedFindDialog AdvancedFindDialog;
@@ -83,21 +79,16 @@ struct _AdvancedFindDialog {
 	GtkWidget *f_next, *f_prev;
 	GtkWidget *f_new, *f_remove;
 	GtkWidget *f_close;
-
-	gint search_type;
 };
 
 struct _AdvancedFind_AddDialog {
 	AdvancedFindDialog *parent;
+  
 	GtkWidget *window;
-	GtkWidget *f_string;
-	GtkWidget *type_button[2];
+	GtkWidget *f_gh;
+	HexDocument *f_doc;
 	GtkWidget *colour;
 };
-
-/* global vars */
-extern guint search_type;
-extern gchar *search_type_label[2];
 
 extern FindDialog     *find_dialog;
 extern ReplaceDialog  *replace_dialog;

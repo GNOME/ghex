@@ -145,6 +145,8 @@ void gtk_hex_set_font(GtkHex *, PangoFontMetrics *, PangoFontDescription *);
 
 void gtk_hex_set_insert_mode(GtkHex *, gboolean);
 
+void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines);
+
 PangoFontMetrics* gtk_hex_load_font (const char *font_name); 
 
 void gtk_hex_copy_to_clipboard(GtkHex *gh);

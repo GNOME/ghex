@@ -81,7 +81,7 @@ ghex_window_drag_data_received(GtkWidget *widget,
         else
             newwin = NULL;
         while(*uri) {
-            GError *err;
+            GError *err = NULL;
             gchar *filename = g_filename_from_uri(*uri, NULL, &err);
 
             uri++;
