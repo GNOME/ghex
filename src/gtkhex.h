@@ -28,7 +28,6 @@
 #include <gdk/gdk.h>
 
 #include <hex-document.h>
-#include <hex-dialog.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -57,9 +56,6 @@ typedef struct _GtkHexClass GtkHexClass;
 typedef struct _GtkHexChangeData GtkHexChangeData;
 
 typedef struct _GtkHex_Highlight GtkHex_Highlight;
-
-typedef struct _AdvancedFindDialog AdvancedFindDialog;
-typedef struct _AdvancedFind_AddDialog AdvancedFind_AddDialog;
 
 /* start_line and end_line only have to be set (and valid) of
  * valid is set to TRUE. */

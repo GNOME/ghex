@@ -32,7 +32,7 @@
 #include "gtkhex.h"
 
 void
-hex_document_set_menu_sensitivity(HexDocument *doc)
+set_doc_menu_sensitivity(HexDocument *doc)
 {
 	GList *view_node;
 	GtkWidget *view;
@@ -71,8 +71,6 @@ hex_document_set_menu_sensitivity(HexDocument *doc)
 	}
 
 }
-
-
 
 void
 find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)

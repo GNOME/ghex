@@ -107,6 +107,9 @@ typedef struct _FindDialog {
 	gint search_type;
 } FindDialog;
 
+typedef struct _AdvancedFindDialog AdvancedFindDialog;
+typedef struct _AdvancedFind_AddDialog AdvancedFind_AddDialog;
+
 struct _AdvancedFindDialog {
 	GHexWindow *parent;
 	AdvancedFind_AddDialog *addDialog;
@@ -205,14 +208,14 @@ extern gchar *geometry;
 extern GConfClient *gconf_client;
 
 /* creation of dialogs */
-FindDialog              *create_find_dialog               (void);
-ReplaceDialog           *create_replace_dialog            (void);
-JumpDialog              *create_jump_dialog               (void);
-Converter               *create_converter                 (void);
-GtkWidget               *create_char_table                (void);
-PropertyUI              *create_prefs_dialog              (void);
-AdvancedFindDialog      *create_advanced_find_dialog      (GHexWindow *parent);
-void             delete_advanced_find_dialog      (AdvancedFindDialog *dialog);
+FindDialog         *create_find_dialog         (void);
+ReplaceDialog      *create_replace_dialog      (void);
+JumpDialog         *create_jump_dialog         (void);
+Converter          *create_converter           (void);
+GtkWidget          *create_char_table          (void);
+PropertyUI         *create_prefs_dialog        (void);
+AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent);
+void               delete_advanced_find_dialog (AdvancedFindDialog *dialog);
 
 /* various ui convenience functions */
 void create_dialog_title   (GtkWidget *, gchar *);
@@ -269,6 +272,8 @@ void remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* ve
 void insert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 void quit_app_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 void file_list_activated_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+
+void set_doc_menu_sensitivity(HexDocument *doc);
 
 void display_error_dialog (GHexWindow *win, const gchar *msg);
 void display_info_dialog (GHexWindow *win, const gchar *msg, ...);

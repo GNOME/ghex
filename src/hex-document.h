@@ -80,6 +80,9 @@ struct _HexDocumentClass
 	GObjectClass parent_class;
 
 	void (*document_changed)(HexDocument *, gpointer, gboolean);
+	void (*undo)(HexDocument *);
+	void (*redo)(HexDocument *);
+	void (*undo_stack_forget)(HexDocument *);
 };
 
 GType       hex_document_get_type(void);
@@ -115,7 +118,6 @@ gint        hex_document_find_forward(HexDocument *doc, guint start,
 									  guchar *what, gint len, guint *found);
 gint        hex_document_find_backward(HexDocument *doc, guint start,
 									   guchar *what, gint len, guint *found);
-void        hex_document_set_menu_sensitivity(HexDocument *doc);
 void        hex_document_remove_view(HexDocument *doc, GtkWidget *view);
 GtkWidget   *hex_document_add_view(HexDocument *doc);
 const GList *hex_document_get_list(void);

@@ -20,6 +20,7 @@
 
 #include "ghex-window.h"
 #include "ghex.h"
+#include "hex-dialog.h"
 
 #define GHEX_WINDOW_DEFAULT_WIDTH 320
 #define GHEX_WINDOW_DEFAULT_HEIGHT 256
@@ -650,6 +651,12 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     gtk_hex_show_offsets(GTK_HEX(gh), show_offsets_column);
     g_signal_connect(G_OBJECT(doc), "document_changed",
                      G_CALLBACK(ghex_window_doc_changed), win);
+    g_signal_connect(G_OBJECT(doc), "undo",
+                     G_CALLBACK(set_doc_menu_sensitivity), win);;
+    g_signal_connect(G_OBJECT(doc), "redo",
+                     G_CALLBACK(set_doc_menu_sensitivity), win);;
+    g_signal_connect(G_OBJECT(doc), "undo_stack_forget",
+                     G_CALLBACK(set_doc_menu_sensitivity), win);;
     g_signal_connect(G_OBJECT(gh), "cursor_moved",
                      G_CALLBACK(cursor_moved_cb), win);
     gtk_widget_show(gh);
