@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
     mdi = GNOME_MDI(gnome_mdi_new("ghex", "GHex"));
 
     /* set up MDI menus */
-    gnome_mdi_set_menu_template(mdi, main_menu);
+    gnome_mdi_set_menu_template(mdi, main_menu, TRUE);
 
     /* and document menu and document list paths */
     gnome_mdi_set_child_menu_path(mdi, _("File"));
