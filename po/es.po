@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.12\n"
-"POT-Creation-Date: 1999-09-08 14:44-0400\n"
+"POT-Creation-Date: 1999-09-11 18:41+0200\n"
 "PO-Revision-Date: 1999-01-13 14:09+0100\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Language-Team: \n"
@@ -192,12 +192,12 @@ msgid "Group data by 32 bits"
 msgstr "Grupar datos por 32 bits"
 
 #: ghex/hex-document.c:78
-msgid "_Goto Byte..."
-msgstr "_Ir al Byte..."
-
-#: ghex/hex-document.c:78
 msgid "Jump to a certain position"
 msgstr "Saltar a una posición dada"
+
+#: ghex/hex-document.c:78
+msgid "_Goto Byte..."
+msgstr "_Ir al Byte..."
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -593,12 +593,12 @@ msgstr ""
 "interesado en ello."
 
 #: gstripchart/gstripchart.c:1440
-msgid "_About"
-msgstr "_Acerca"
-
-#: gstripchart/gstripchart.c:1440
 msgid "Info about the striphart program"
 msgstr "Información acerca del programa stripchart"
+
+#: gstripchart/gstripchart.c:1440
+msgid "_About"
+msgstr "_Acerca"
 
 #: gstripchart/gstripchart.c:1451
 msgid "_File"
@@ -663,7 +663,7 @@ msgstr "Actual"
 
 #: gstripchart/gstripchart.c:1629
 msgid "Top"
-msgstr ""
+msgstr "Máximo"
 
 #: gstripchart/gstripchart.c:1657
 msgid "Help"
@@ -681,6 +681,10 @@ msgstr "Parám."
 msgid "Exit"
 msgstr "Salir"
 
+#: gstripchart/gstripchart.c:1777
+msgid "Gnome stripchart viewer"
+msgstr "Visualizador de gráficos sistema de Gnome"
+
 #. Create a top-level window. Set the title, minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
@@ -688,22 +692,18 @@ msgstr "Salir"
 msgid "gstripchart"
 msgstr "gstripchart"
 
-#: gstripchart/gstripchart.c:1777
-msgid "Gnome stripchart viewer"
-msgstr "Visualizador de gráficos sistema de Gnome"
-
 #: gstripchart/gstripchart.c:1856
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "tipo de afichage inválido: %s\n"
 
 #: gstripchart/gstripchart.c:1883
-msgid "Geometry string: WxH+X+Y"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1883
 msgid "GEO"
 msgstr "GEO"
+
+#: gstripchart/gstripchart.c:1883
+msgid "Geometry string: WxH+X+Y"
+msgstr "Geometría: AxL+X+Y"
 
 #: gstripchart/gstripchart.c:1885
 msgid "Configuration file name"
@@ -724,32 +724,31 @@ msgstr "SEG"
 
 #: gstripchart/gstripchart.c:1889
 msgid "Chart low-pass filter time constant"
-msgstr ""
+msgstr "Constante de tiempo del filtro pasa-bajo del grafo"
 
 #: gstripchart/gstripchart.c:1891
-#, fuzzy
 msgid "Slider update interval"
-msgstr "intervalo de actualización del grafo"
+msgstr "intervalo de actualización de la aguja"
 
 #: gstripchart/gstripchart.c:1893
 msgid "Slider low-pass filter time constant"
-msgstr ""
+msgstr "Constante de tiempo del filtro pasa-bajo de la aguja"
 
 #: gstripchart/gstripchart.c:1895
 msgid "Adds a menubar to the main window"
-msgstr ""
+msgstr "Añadir una barra de menú a la ventana principal"
 
 #: gstripchart/gstripchart.c:1897
 msgid "Omits slider window"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1899
-msgid "TYPE is one of gtk, text, graph, or none"
-msgstr ""
+msgstr "No mostrar las agujas"
 
 #: gstripchart/gstripchart.c:1899
 msgid "TYPE"
 msgstr "TIPO"
+
+#: gstripchart/gstripchart.c:1899
+msgid "TYPE is one of gtk, text, graph, or none"
+msgstr "TIPO es uno de gtk, texto, grafo o 'none'"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -815,21 +814,21 @@ msgstr ""
 "Un error ha ocurrido al cargar el archivo de configuración\n"
 "¿Desea que instale una nueva configuración?"
 
-#: gtt/main.c:204
-msgid "Specify geometry"
-msgstr "Especificar la geometría"
-
 #: gtt/main.c:204 mini-utils/gless/gless.c:131
 msgid "GEOMETRY"
 msgstr "GEOMETRÍA"
 
-#: gtt/main.c:206
-msgid "Select a project on startup"
-msgstr "Seleccionar un proyecto al arrancar"
+#: gtt/main.c:204
+msgid "Specify geometry"
+msgstr "Especificar la geometría"
 
 #: gtt/main.c:206
 msgid "PROJECT"
 msgstr "PROYECTO"
+
+#: gtt/main.c:206
+msgid "Select a project on startup"
+msgstr "Seleccionar un proyecto al arrancar"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1198,12 +1197,12 @@ msgid "Selection:"
 msgstr "Selección:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "Font to load"
-msgstr "Fuente a cargar"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "FONTSPEC"
 msgstr "FONTSPEC"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "Font to load"
+msgstr "Fuente a cargar"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1356,12 +1355,12 @@ msgid "Run Program"
 msgstr "Lanzar un Programa"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Run"
-msgstr "Lanzar"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Cancel"
 msgstr "Cancelar"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Run"
+msgstr "Lanzar"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1692,12 +1691,12 @@ msgid "No information for this filesystem."
 msgstr "No hay información sobre este sistema de archivos."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Memory"
-msgstr "Memoria"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Kilobytes"
 msgstr "Kilobytes"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Memory"
+msgstr "Memoria"
 
 #: mini-utils/guname/moreinfo.c:214
 #, c-format
@@ -1746,12 +1745,12 @@ msgstr ""
 "Este comando es necesario para el funcionamiento del programa."
 
 #: mini-utils/gw/gw.c:174
-msgid "_Save..."
-msgstr "_Guardar..."
-
-#: mini-utils/gw/gw.c:174
 msgid "Write information to disk"
 msgstr "Escribir la información al disco"
+
+#: mini-utils/gw/gw.c:174
+msgid "_Save..."
+msgstr "_Guardar..."
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1852,13 +1851,13 @@ msgstr "La configuración DMA de este disco no puede cambiarse."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Activado"
+msgid "Disabled"
+msgstr "Desactivado"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Desactivado"
+msgid "Enabled"
+msgstr "Activado"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
@@ -1970,62 +1969,62 @@ msgstr "Solamente el superusuario puede usar esta herramienta"
 msgid "You appear to have no IDE drives"
 msgstr "Al parecer Vd. no tiene discos IDE"
 
-#~ msgid "gtk|text|graph|none"
-#~ msgstr "gtk|texto|grafo|ninguno"
-
-#~ msgid "add menubar"
-#~ msgstr "añadir barra de menú"
-
-#~ msgid "geometry"
-#~ msgstr "geometría"
-
-#~ msgid "Swap"
-#~ msgstr "Swap"
-
-#~ msgid "PPP Out"
-#~ msgstr "Salidas PPP"
-
-#~ msgid "PPP In"
-#~ msgstr "Entradas PPP"
-
-#~ msgid "Load"
-#~ msgstr "Cargar"
-
-#~ msgid "Busy"
-#~ msgstr "Ocupado"
-
-#~ msgid "yellow"
-#~ msgstr "amarillo"
-
-#~ msgid "white"
-#~ msgstr "blanco"
-
-#~ msgid "red"
-#~ msgstr "rojo"
-
-#~ msgid "green"
-#~ msgstr "verde"
-
-#~ msgid "blue"
-#~ msgstr "azúl"
-
-#~ msgid "Error closing file `"
-#~ msgstr "Error al cerrar el archivo '"
-
-#~ msgid " ': "
-#~ msgstr " ': "
-
-#~ msgid "The following mail will be sent to "
-#~ msgstr "El correo siguiente será enviado a "
-
-#~ msgid "%ld%% %s used."
-#~ msgstr "%ld%% %s usada."
-
-#~ msgid "memory"
-#~ msgstr "memoria"
+#~ msgid "%2d%% full "
+#~ msgstr "lleno a %2d%%"
 
 #~ msgid "swap"
 #~ msgstr "swap"
 
-#~ msgid "%2d%% full "
-#~ msgstr "lleno a %2d%%"
+#~ msgid "memory"
+#~ msgstr "memoria"
+
+#~ msgid "%ld%% %s used."
+#~ msgstr "%ld%% %s usada."
+
+#~ msgid "The following mail will be sent to "
+#~ msgstr "El correo siguiente será enviado a "
+
+#~ msgid " ': "
+#~ msgstr " ': "
+
+#~ msgid "Error closing file `"
+#~ msgstr "Error al cerrar el archivo '"
+
+#~ msgid "blue"
+#~ msgstr "azúl"
+
+#~ msgid "green"
+#~ msgstr "verde"
+
+#~ msgid "red"
+#~ msgstr "rojo"
+
+#~ msgid "white"
+#~ msgstr "blanco"
+
+#~ msgid "yellow"
+#~ msgstr "amarillo"
+
+#~ msgid "Busy"
+#~ msgstr "Ocupado"
+
+#~ msgid "Load"
+#~ msgstr "Cargar"
+
+#~ msgid "PPP In"
+#~ msgstr "Entradas PPP"
+
+#~ msgid "PPP Out"
+#~ msgstr "Salidas PPP"
+
+#~ msgid "Swap"
+#~ msgstr "Swap"
+
+#~ msgid "geometry"
+#~ msgstr "geometría"
+
+#~ msgid "add menubar"
+#~ msgstr "añadir barra de menú"
+
+#~ msgid "gtk|text|graph|none"
+#~ msgstr "gtk|texto|grafo|ninguno"
