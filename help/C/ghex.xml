@@ -3,8 +3,8 @@
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
   <!ENTITY appversion "1.99.0">
-  <!ENTITY manrevision "2.1">
-  <!ENTITY date "July 2002">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY date "August 2002">
   <!ENTITY app "GHex">
 ]>
 
@@ -14,6 +14,7 @@
   http://developer.gnome.org/projects/gdp
   Template version: 2.0 beta
   Template last modified Feb 12, 2002
+  
 -->
 <!-- =============Document Header ============================= -->
 <article id="index" lang="en">
@@ -83,6 +84,16 @@
       <revision> 
 			<revnumber>&app; Manual V&manrevision;</revnumber> 
 			<date>&date;</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
+      </revision> 
+      <revision> 
+			<revnumber>GHex Manual V2.1</revnumber> 
+			<date>July 2002</date> 
 			<revdescription> 
 	  			<para role="author">Sun GNOME Documentation Team
 	    		<email>gdocteam@sun.com</email>
@@ -192,7 +203,7 @@
      <imagedata fileref="figures/ghex_window_empty.png" format="PNG"/>
    </imageobject>
  <textobject>
-   <phrase>Screenshot of the GHex main window before you open a file.</phrase>
+   <phrase>Shows GHex main window before you open a file.</phrase>
  </textobject>
  </mediaobject>
 </screenshot>
@@ -221,7 +232,7 @@
      <imagedata fileref="figures/ghex_window_open.png" format="PNG"/>
    </imageobject>
  <textobject>
-   <phrase>Screenshot of main window with an open file</phrase>
+   <phrase>Shows GHex main window with an open file</phrase>
  </textobject>
  </mediaobject>
 </screenshot>
@@ -230,31 +241,32 @@
 
 <para>The <application>&app;</application> window contains the following elements: </para>
 <itemizedlist>
-<listitem><para>A menubar. The menus on the menubar contain all the commands that you need to work with files in <application>&app;</application>.</para>
+<listitem><para>The menubar contains all the commands that you need to work with files in <application>&app;</application>.</para>
 </listitem>
-<listitem><para>A display pane on the left side of the window. This pane displays a hexadecimal view of the file.</para>
+<listitem><para>The display pane on the left side of the window displays a hexadecimal view of the file.</para>
 </listitem>
-<listitem><para>A display pane on the right side of the window. This pane displays an ASCII view of the file.</para>
+<listitem><para>The display pane on the right side of the window displays an ASCII view of the file.</para>
 </listitem>
-<listitem><para>A cursor offsets column. The cursor offset is the distance between the beginning of the file and the first byte in each line. By default, <application>&app;</application> displays the cursor offsets column to the left of the hexadecimal view.</para>
+<listitem><para>The cursor offsets column. The cursor offset is the distance between the beginning of the file and the first byte in each line. 
+By default, <application>&app;</application> displays the cursor offsets column to the left of the hexadecimal view.</para>
 </listitem>
 </itemizedlist>
 <para>You can open multiple files in <application>&app;</application>. The way in which <application>&app;</application> displays multiple files depends on the Multiple Document Interface (MDI) setting in the <guilabel>Preferences </guilabel> dialog. GNOME supports the following MDI modes:</para>
 <variablelist>
 <varlistentry>
-<term>Notebook. </term>
+<term>Notebook </term>
 <listitem>
 <para>This mode displays one file at a time in the application window. The application adds a tab for each open file to the window. To display another open file, click on the tab that corresponds to the file. To create a new <application>&app;</application> window for each file that is open, drag the tab corresponding to each file to the desktop.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
-<term>Toplevel. </term>
+<term>Toplevel </term>
 <listitem>
 <para> This mode starts a new window for each file that you open and layers the windows on the desktop.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
-<term>Modal. </term>
+<term>Modal </term>
 <listitem>
 <para>This mode displays one file at a time in the application window. To display another open file in the window, choose <menuchoice>
 <guimenu>File</guimenu>
@@ -263,7 +275,7 @@
 </listitem>
 </varlistentry>
 </variablelist>
-<para>See <link linkend="ghex-prefs">Settings</link> for more information about how to set the MDI mode for <application>&app;</application>.</para>
+<para>See <xref linkend="ghex-prefs"/> for more information about how to set the MDI mode for <application>&app;</application>.</para>
 </sect2>
 </sect1>
 
@@ -439,12 +451,11 @@
 <!-- ============= Customization ============================== -->
 
 <sect1 id="ghex-prefs">
-<title>Settings</title>
+<title>Preferences</title>
 <para>To configure <application>&app;</application>, choose <menuchoice>
-<guimenu>Settings</guimenu>
+<guimenu>Edit</guimenu>
 <guimenuitem>Preferences</guimenuitem>
-</menuchoice>.</para>
-<para>The <guilabel>Preferences</guilabel> dialog contains the following tabbed sections:</para>
+</menuchoice>. The <guilabel>Preferences</guilabel> dialog contains the following tabbed sections:</para>
 <itemizedlist>
 <listitem><para><link linkend="ghex-prefs-editing"><guilabel>Editing</guilabel></link></para>
 </listitem>
@@ -526,7 +537,7 @@
 <para>Select the MDI mode in which to display multiple files in <application>&app;</application>. The options are as follows:</para>
 <itemizedlist>
 <listitem><para><guilabel>Default</guilabel> </para>
-<para>Select this option to use the MDI mode that is specified in the <application> Control Center</application> as the MDI mode for <application>&app;</application>. The default MDI mode can be any one of the MDI modes that GNOME supports. </para>
+<para>Select this option to use the default GNOME MDI mode for <application>&app;</application>. The default MDI mode can be any one of the MDI modes that GNOME supports. </para>
 </listitem>
 <listitem><para><guilabel>Notebook</guilabel> </para>
 </listitem>
