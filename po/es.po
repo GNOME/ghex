@@ -1,13 +1,14 @@
-# 
+# GHex Spanish translation
 # Copyright (C) 2002, Free Software Foundation
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Lucas 'Basurero' Vieites <basurero@jazzfree.com>, 2002.
+# Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
+# QA por Carlos Perelló Marín <carlos@gnome-db.org>, 2002
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2002-05-30 13:13+0200\n"
-"PO-Revision-Date: 2002-05-31 10:51+0100\n"
+"Project-Id-Version: ghex 2.0\n"
+"POT-Creation-Date: 2002-06-08 14:43+0200\n"
+"PO-Revision-Date: 2002-06-08 14:42+0200\n"
 "Last-Translator: Lucas 'Basurero' Vieites <basurero@jazzfree.com>\n"
 "Language-Team: gnome-es <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +21,9 @@ msgstr "GHex"
 
 #: ghex.desktop.in.h:2
 msgid "Gnome Hexadecimal Editor"
-msgstr "Editor Hexadecimal GNOME"
+msgstr "Editor hexadecimal GNOME"
 
-#: src/bonobo-mdi.c:494
-#: src/bonobo-mdi.c:570
-#: src/bonobo-mdi.c:1886
+#: src/bonobo-mdi.c:494 src/bonobo-mdi.c:570 src/bonobo-mdi.c:1886
 #, c-format
 msgid "Activate %s"
 msgstr "Activar %s"
@@ -35,10 +34,9 @@ msgstr "ASCII"
 
 #: src/chartable.c:115
 msgid "Hex"
-msgstr "Hex"
+msgstr "Hexadecimal"
 
-#: src/chartable.c:115
-#: src/preferences.c:214
+#: src/chartable.c:115 src/preferences.c:214
 msgid "Decimal"
 msgstr "Decimal"
 
@@ -82,11 +80,11 @@ msgstr "_ASCII"
 #. get cursor button
 #: src/converter.c:221
 msgid "_Get cursor value"
-msgstr "O_btener valor de cursor"
+msgstr "O_btener el valor del cursor"
 
 #: src/converter.c:231
 msgid "Get cursor value"
-msgstr "O_btener valor de cursor"
+msgstr "Obtiene el valor del cursor"
 
 #: src/converter.c:231
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
@@ -96,8 +94,7 @@ msgstr "Obtiene el valor del cursor en binario, octal, decimal, hex y ASCII."
 msgid "ERROR"
 msgstr "ERROR"
 
-#: src/findreplace.c:60
-#: src/main.c:118
+#: src/findreplace.c:60 src/main.c:118
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Buscar datos"
@@ -107,8 +104,7 @@ msgstr "GHex (%s): Buscar datos"
 msgid "Search for %s"
 msgstr "Buscar %s"
 
-#: src/findreplace.c:86
-#: src/findreplace.c:119
+#: src/findreplace.c:86 src/findreplace.c:119
 msgid "Find Next"
 msgstr "Buscar siguiente"
 
@@ -116,18 +112,15 @@ msgstr "Buscar siguiente"
 msgid "Find Previous"
 msgstr "Buscar anterior"
 
-#: src/findreplace.c:118
-#: src/findreplace.c:210
+#: src/findreplace.c:118 src/findreplace.c:210
 msgid "Find Data"
 msgstr "Buscar datos"
 
-#: src/findreplace.c:118
-#: src/findreplace.c:210
+#: src/findreplace.c:118 src/findreplace.c:210
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Introduzca los datos hex o ASCII que desea encontrar"
 
-#: src/findreplace.c:119
-#: src/findreplace.c:212
+#: src/findreplace.c:119 src/findreplace.c:212
 msgid "Finds the next occurrence of the search string"
 msgstr "Busca la siguiente coincidencia de la cadena de búsqueda"
 
@@ -139,9 +132,7 @@ msgstr "Buscar anterior"
 msgid "Finds the previous occurrence of the search string "
 msgstr "Busca la coincidencia anterior de la cadena de búsqueda"
 
-#: src/findreplace.c:121
-#: src/findreplace.c:215
-#: src/findreplace.c:263
+#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -149,8 +140,7 @@ msgstr "Cancelar"
 msgid "Closes find data window"
 msgstr "Cierra la ventana buscar datos"
 
-#: src/findreplace.c:140
-#: src/main.c:120
+#: src/findreplace.c:140 src/main.c:120
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Buscar y reemplazar datos"
@@ -160,19 +150,15 @@ msgstr "GHex (%s): Buscar y reemplazar datos"
 msgid "Replace %s"
 msgstr "Reemplazar %s"
 
-#: src/findreplace.c:172
-#: src/findreplace.c:212
+#: src/findreplace.c:172 src/findreplace.c:212
 msgid "Find next"
 msgstr "Buscar siguiente"
 
-#: src/findreplace.c:180
-#: src/findreplace.c:213
-#: src/ghex-ui.xml.h:43
+#: src/findreplace.c:180 src/findreplace.c:213 src/ghex-ui.xml.h:43
 msgid "Replace"
 msgstr "Reemplazar"
 
-#: src/findreplace.c:188
-#: src/findreplace.c:214
+#: src/findreplace.c:188 src/findreplace.c:214
 msgid "Replace All"
 msgstr "Reemplazar todos"
 
@@ -190,17 +176,18 @@ msgstr "Reemplaza la cadena de búsqueda con la cadena de reemplazo"
 
 #: src/findreplace.c:214
 msgid "Replaces all occurrences of the search string with the replace string"
-msgstr "Reemplaza todas las coincidencias de la cadena de búsqueda con la cadena de reemplazo"
+msgstr ""
+"Reemplaza todas las coincidencias de la cadena de búsqueda con la cadena de "
+"reemplazo"
 
 #: src/findreplace.c:215
 msgid "Closes find and replace data window"
 msgstr "Cierra la ventana buscar y reemplazar"
 
-#: src/findreplace.c:231
-#: src/main.c:122
+#: src/findreplace.c:231 src/main.c:122
 #, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): Saltar a byte"
+msgstr "GHex (%s): Saltar al byte"
 
 #: src/findreplace.c:261
 msgid "Jump to byte"
@@ -222,20 +209,15 @@ msgstr "Salta al byte especificado."
 msgid "Closes jump to byte window"
 msgstr "Cierra la ventana saltar a byte"
 
-#: src/findreplace.c:328
-#: src/findreplace.c:354
-#: src/findreplace.c:407
+#: src/findreplace.c:328 src/findreplace.c:354 src/findreplace.c:407
 msgid "There is no active buffer to search!"
-msgstr "No hay bÃºfer activo para buscar."
+msgstr "No hay un búfer activo para buscar"
 
-#: src/findreplace.c:336
-#: src/findreplace.c:362
-#: src/findreplace.c:415
+#: src/findreplace.c:336 src/findreplace.c:362 src/findreplace.c:415
 msgid "There seems to be no string to search for!"
-msgstr "Parece que no hay cadena de bÃºsqueda."
+msgstr "No parece existir la cadena que se desea buscar"
 
-#: src/findreplace.c:343
-#: src/findreplace.c:423
+#: src/findreplace.c:343 src/findreplace.c:423
 msgid "End Of File reached"
 msgstr "Se ha alcanzado el fin del archivo (EOF)."
 
@@ -245,29 +227,27 @@ msgstr "Se ha alcanzado el inicio del archivo (BOF)."
 
 #: src/findreplace.c:380
 msgid "There is no active buffer to move the cursor in!"
-msgstr "No hay bÃºfer activo en el que mover el cursor."
+msgstr "No hay búfer activo para mover el cursor."
 
 #: src/findreplace.c:385
 msgid "No offset has been specified!"
-msgstr "No se ha especificado offset."
+msgstr "No se ha especificado el desplazamiento"
 
 #: src/findreplace.c:392
 msgid "Can not position cursor beyond the End Of File!"
-msgstr "No se puede posicionar el cursor mÃ¡s allÃ¡ del fin del archivo."
+msgstr "No se puede ir más allá del fin del archivo"
 
 #: src/findreplace.c:397
 msgid "The offset must be a positive integer value!"
-msgstr "Offset debe ser un valor entero positivo."
+msgstr "El desplazamiento debe de ser un número entero positivo"
 
-#: src/findreplace.c:435
-#: src/findreplace.c:473
+#: src/findreplace.c:435 src/findreplace.c:473
 msgid "There is no active buffer to replace data in!"
-msgstr "No hay bÃºfer activo en el que reemplazar datos."
+msgstr "No existe un búfer activo en el cual reemplazar los datos"
 
-#: src/findreplace.c:446
-#: src/findreplace.c:484
+#: src/findreplace.c:446 src/findreplace.c:484
 msgid "Strange find or replace string!"
-msgstr "ExtraÃ±a cadena de buscar o reemplazar."
+msgstr "Cadena de búsqueda o de reemplazo extraña"
 
 #: src/findreplace.c:461
 msgid "End Of File reached!"
@@ -285,13 +265,13 @@ msgid ""
 "\n"
 "Your changes will be lost if you don't save them."
 msgstr ""
-"Â¿Desea guardar los cambios que ha hecho al documento \"%s\"?\n"
+"¿Desea guardar los cambios efectuados en el documento \"%s\"?\n"
 "\n"
-"Si no los guarda se perderÃ¡n los cambios."
+"Si no los guarda, los cambios se perderán."
 
 #: src/ghex-mdi.c:495
 msgid "_Don't save"
-msgstr "No guar_dar"
+msgstr "_No guardar"
 
 #: src/ghex-mdi.c:573
 msgid "(modified)"
@@ -299,17 +279,16 @@ msgstr "(modificado)"
 
 #: src/ghex-mdi.c:579
 msgid "(readonly)"
-msgstr "(sÃ³lo lectura)"
+msgstr "(sólo lectura)"
 
-#: src/ghex-mdi.c:887
-#: src/main.c:239
+#: src/ghex-mdi.c:887 src/main.c:239
 #, c-format
 msgid "Offset: %s"
 msgstr "Offset: %s"
 
 #: src/ghex-ui.xml.h:1
 msgid "About this application"
-msgstr "Acerca de esta aplicaciÃ³n"
+msgstr "Acerca de esta aplicación"
 
 #: src/ghex-ui.xml.h:2
 msgid "About..."
@@ -317,14 +296,13 @@ msgstr "Acerca de..."
 
 #: src/ghex-ui.xml.h:3
 msgid "Add View"
-msgstr "AÃ±adir vista"
+msgstr "Añadir vista"
 
 #: src/ghex-ui.xml.h:4
 msgid "Add a new view to the buffer"
-msgstr "AÃ±adir una nueva vista al bÃºfer"
+msgstr "Añade una nueva vista al búfer"
 
-#: src/ghex-ui.xml.h:5
-#: src/ui.c:119
+#: src/ghex-ui.xml.h:5 src/ui.c:119
 msgid "Bytes"
 msgstr "Bytes"
 
@@ -332,8 +310,7 @@ msgstr "Bytes"
 msgid "Character Table..."
 msgstr "Tabla de caracteres..."
 
-#: src/ghex-ui.xml.h:7
-#: src/ui.c:85
+#: src/ghex-ui.xml.h:7 src/ui.c:85
 msgid "Character _Table..."
 msgstr "_Tabla de caracteres..."
 
@@ -369,10 +346,9 @@ msgstr "Salir"
 msgid "Exit the program"
 msgstr "Salir del programa"
 
-#: src/ghex-ui.xml.h:16
-#: src/ui.c:66
+#: src/ghex-ui.xml.h:16 src/ui.c:66
 msgid "Export data to HTML source"
-msgstr "Exportar datos a cÃ³digo HTML"
+msgstr "Exportar los datos a código HTML"
 
 #: src/ghex-ui.xml.h:17
 msgid "Export to HTML..."
@@ -380,7 +356,7 @@ msgstr "Exportar a HTML..."
 
 #: src/ghex-ui.xml.h:18
 msgid "Fi_les"
-msgstr "Arc_hivos"
+msgstr "A_rchivos"
 
 #: src/ghex-ui.xml.h:19
 msgid "Find"
@@ -388,7 +364,7 @@ msgstr "Buscar"
 
 #: src/ghex-ui.xml.h:20
 msgid "Goto Byte"
-msgstr "Ir a byte"
+msgstr "Ir al byte"
 
 #: src/ghex-ui.xml.h:21
 msgid "Group data by 16 bits"
@@ -420,10 +396,9 @@ msgstr "Insertar/sobrescribir datos"
 
 #: src/ghex-ui.xml.h:28
 msgid "Jump to a certain position"
-msgstr "Saltar a una posiciÃ³n"
+msgstr "Saltar a una posición dada"
 
-#: src/ghex-ui.xml.h:29
-#: src/ui.c:121
+#: src/ghex-ui.xml.h:29 src/ui.c:121
 msgid "Longwords"
 msgstr "Palabras largas"
 
@@ -435,17 +410,15 @@ msgstr "Abrir"
 msgid "Open a file"
 msgstr "Abrir un archivo"
 
-#: src/ghex-ui.xml.h:32
-#: src/ui.c:84
+#: src/ghex-ui.xml.h:32 src/ui.c:84
 msgid "Open base conversion dialog"
-msgstr "Abrir diÃ¡logo de conversiÃ³n bÃ¡sico"
+msgstr "Abrir diálogo de conversión de base"
 
 #: src/ghex-ui.xml.h:33
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: src/ghex-ui.xml.h:34
-#: src/ui.c:70
+#: src/ghex-ui.xml.h:34 src/ui.c:70
 msgid "Preview printed data"
 msgstr "Previsualizar datos impresos"
 
@@ -455,11 +428,11 @@ msgstr "Imprimir"
 
 #: src/ghex-ui.xml.h:36
 msgid "Print Previe_w..."
-msgstr "Pre_visualización de impresión"
+msgstr "Vista prelimina_r de impresión..."
 
 #: src/ghex-ui.xml.h:37
 msgid "Print Preview..."
-msgstr "PrevisualizaciÃ³n de impresiÃ³n..."
+msgstr "Vista preliminar de impresión..."
 
 #: src/ghex-ui.xml.h:38
 msgid "Print the current file"
@@ -471,7 +444,7 @@ msgstr "Rehacer"
 
 #: src/ghex-ui.xml.h:40
 msgid "Redo the undone action"
-msgstr "Rehacer la acciÃ³n deshecha"
+msgstr "Rehace la acción deshecha"
 
 #: src/ghex-ui.xml.h:41
 msgid "Remove View"
@@ -479,7 +452,7 @@ msgstr "Eliminar vista"
 
 #: src/ghex-ui.xml.h:42
 msgid "Remove the current view of the buffer"
-msgstr "Eliminar la vista actual del bÃºfer"
+msgstr "Elimina la vista actual del búfer"
 
 #: src/ghex-ui.xml.h:44
 msgid "Replace a string"
@@ -491,7 +464,7 @@ msgstr "Revertir"
 
 #: src/ghex-ui.xml.h:46
 msgid "Revert to a saved version of the file"
-msgstr "Volver a una versiÃ³n guardada del archivo"
+msgstr "Volver a una versión guardada del archivo"
 
 #: src/ghex-ui.xml.h:47
 msgid "Save"
@@ -507,22 +480,21 @@ msgstr "Guardar como _HTML..."
 
 #: src/ghex-ui.xml.h:50
 msgid "Save _As..."
-msgstr "Gu_ardar como..."
+msgstr "G_uardar como..."
 
 #: src/ghex-ui.xml.h:51
 msgid "Save the current file"
-msgstr "Guardar el archivo actual"
+msgstr "Guarda el archivo actual"
 
 #: src/ghex-ui.xml.h:52
 msgid "Save the current file with a different name"
-msgstr "Guardar el archivo actual con otro nombre"
+msgstr "Guarda el archivo actual con un nombre distinto"
 
 #: src/ghex-ui.xml.h:53
 msgid "Search for a string"
 msgstr "Buscar una cadena"
 
-#: src/ghex-ui.xml.h:54
-#: src/ui.c:86
+#: src/ghex-ui.xml.h:54 src/ui.c:86
 msgid "Show the character table"
 msgstr "Mostrar la tabla de caracteres"
 
@@ -532,10 +504,9 @@ msgstr "Deshacer"
 
 #: src/ghex-ui.xml.h:56
 msgid "Undo the last action"
-msgstr "Deshacer la Ãºltima acciÃ³n"
+msgstr "Deshacer la última acción"
 
-#: src/ghex-ui.xml.h:57
-#: src/ui.c:120
+#: src/ghex-ui.xml.h:57 src/ui.c:120
 msgid "Words"
 msgstr "Palabras"
 
@@ -545,7 +516,7 @@ msgstr "_Acerca de..."
 
 #: src/ghex-ui.xml.h:59
 msgid "_Add View"
-msgstr "_AÃ±adir vista"
+msgstr "_Añadir vista"
 
 #: src/ghex-ui.xml.h:60
 msgid "_Base Converter"
@@ -577,7 +548,7 @@ msgstr "_Buscar"
 
 #: src/ghex-ui.xml.h:67
 msgid "_Goto Byte..."
-msgstr "_Ir a byte..."
+msgstr "_Ir al byte..."
 
 #: src/ghex-ui.xml.h:68
 msgid "_Group Data As"
@@ -585,11 +556,11 @@ msgstr "A_grupar datos como"
 
 #: src/ghex-ui.xml.h:69
 msgid "_Help"
-msgstr "_Ayuda"
+msgstr "A_yuda"
 
 #: src/ghex-ui.xml.h:70
 msgid "_Insert Mode"
-msgstr "Modo _inserciÃ³n"
+msgstr "Modo _insertar"
 
 #: src/ghex-ui.xml.h:71
 msgid "_Longwords"
@@ -605,7 +576,7 @@ msgstr "_Preferencias"
 
 #: src/ghex-ui.xml.h:74
 msgid "_Print"
-msgstr "Im_primir"
+msgstr "_Imprimir"
 
 #: src/ghex-ui.xml.h:75
 msgid "_Redo"
@@ -613,7 +584,7 @@ msgstr "_Rehacer"
 
 #: src/ghex-ui.xml.h:76
 msgid "_Remove View"
-msgstr "Elimina_r vista"
+msgstr "_Eliminar vista"
 
 #: src/ghex-ui.xml.h:77
 msgid "_Replace"
@@ -627,8 +598,7 @@ msgstr "_Revertir"
 msgid "_Save"
 msgstr "_Guardar"
 
-#: src/ghex-ui.xml.h:80
-#: src/ui.c:103
+#: src/ghex-ui.xml.h:80 src/ui.c:103
 msgid "_Tools"
 msgstr "Herramien_tas"
 
@@ -646,27 +616,28 @@ msgstr "_Palabras"
 
 #: src/hex-document.c:749
 msgid "Page"
-msgstr "PÃ¡gina"
+msgstr "Página"
 
-#: src/hex-document.c:755
-#: src/hex-document.c:856
+#: src/hex-document.c:755 src/hex-document.c:856
 msgid "Hex dump generated by"
-msgstr "Volcado hex generado por"
+msgstr "Volcado hexadecimal generado por"
 
 #: src/hex-document.c:779
 msgid "Previous page"
-msgstr "PÃ¡gina anterior"
+msgstr "Página anterior"
 
 #: src/hex-document.c:794
 msgid "Next page"
-msgstr "PÃ¡gina siguiente"
+msgstr "Página siguiente"
 
 #: src/main.c:56
 #, c-format
-msgid "File %s has changed since last save.\n"
+msgid ""
+"File %s has changed since last save.\n"
 "Do you want to save changes?"
-msgstr "El archivo %s ha cambiado desde la Ãºltima vez que se guardÃ³.\n"
-"Â¿Desea guardar los cambios?"
+msgstr ""
+"El archivo %s ha cambiado desde la última vez que se guardó.\n"
+"¿Desea guardar los cambios?"
 
 #: src/main.c:67
 msgid "Do_n't save"
@@ -686,7 +657,7 @@ msgstr "Bloc de notas"
 
 #: src/preferences.c:59
 msgid "Toplevel"
-msgstr "Nivel superior"
+msgstr "Primer plano"
 
 #: src/preferences.c:60
 msgid "Modal"
@@ -714,7 +685,7 @@ msgstr "Seleccione el número máximo de niveles de deshacer"
 
 #: src/preferences.c:200
 msgid "Show cursor offset in statusbar as:"
-msgstr "Mostrar offset del cursor en la barra de estado como:"
+msgstr "Mostrar desplazamiento del cursor en la barra de estado como:"
 
 #: src/preferences.c:219
 msgid "Hexadecimal"
@@ -730,7 +701,7 @@ msgstr "format_entry"
 
 #: src/preferences.c:236
 msgid "Enter the cursor offset format"
-msgstr "Introduzca el formato del offset del cursor"
+msgstr "Introduzca el formato del desplazamiento del cursor"
 
 #: src/preferences.c:237
 msgid "format_optionmenu"
@@ -738,12 +709,12 @@ msgstr "format_optionmenu"
 
 #: src/preferences.c:237
 msgid "Select the cursor offset format"
-msgstr "Seleccione el formato de offset del cursor"
+msgstr "Seleccione el formato de desplazamiento del cursor"
 
 #. show offsets check button
 #: src/preferences.c:247
 msgid "Show offsets column"
-msgstr "Mostrar columna de offsets"
+msgstr "Mostrar columna de los desplazamientos"
 
 #: src/preferences.c:252
 msgid "Editing"
@@ -779,87 +750,92 @@ msgstr "MDI"
 #. paper selection
 #: src/preferences.c:363
 msgid "Paper size"
-msgstr "TamaÃ±o del papel"
+msgstr "Tamaño del papel"
 
 #. data & header font selection
 #: src/preferences.c:379
 msgid "Fonts"
-msgstr "Fuentes"
+msgstr "Tipografía"
 
 #: src/preferences.c:385
 msgid "_Data font:"
-msgstr "Fuente de datos"
+msgstr "Tipografía de los _datos:"
 
 #: src/preferences.c:403
 msgid "Data font"
-msgstr "Fuente de datos"
+msgstr "Tipografía de los datos"
 
 #: src/preferences.c:403
 msgid "Select the data font"
-msgstr "Seleccione la fuente de datos"
+msgstr "Selecciona la tipografía de los datos"
 
 #: src/preferences.c:424
 msgid "Header fo_nt:"
-msgstr "F_uente de cabecera"
+msgstr "Tipografía de las _cabeceras"
 
 #: src/preferences.c:444
 msgid "Header font"
-msgstr "Fuente de cabecera"
+msgstr "Tipografía de las cabeceras"
 
 #: src/preferences.c:444
 msgid "Select the header font"
-msgstr "Seleccione la fuente de cabeceras"
+msgstr "Selecciona la tipografía de las cabeceras"
 
 #: src/preferences.c:476
 msgid "_Print shaded box over:"
-msgstr "Im_primir caja oscura sobre:"
+msgstr "Sobreim_primir un recuadro sombreado:"
 
 #: src/preferences.c:488
 msgid "Box size"
-msgstr "Tamaño de caja"
+msgstr "Tamaño del recuadro"
 
 #: src/preferences.c:488
 msgid "Select size of box (in number of lines)"
-msgstr "Seleccione el tamaño de la caja (cantidad de líneas)"
+msgstr "Seleccione el tamaño del recuadro (cantidad de líneas)"
 
 #: src/preferences.c:492
 msgid "lines (0 for no box)"
-msgstr "lÃ­neas (0 para omitir caja)"
+msgstr "líneas (0 significa sin recuadro)"
 
 #: src/preferences.c:499
 msgid "Printing"
 msgstr "Imprimiendo"
 
-#: src/preferences.c:614
-#: src/ui.c:270
+#: src/preferences.c:614 src/ui.c:270
 #, c-format
-msgid "There was an error displaying help: \n"
+msgid ""
+"There was an error displaying help: \n"
 "%s"
-msgstr "Ha ocurrido un error al mostrar ayuda: \n"
+msgstr ""
+"Ha ocurrido un error al mostrar ayuda: \n"
 "%s"
 
 #: src/preferences.c:717
-msgid "The offset format string contains invalid format specifier.\n"
+msgid ""
+"The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
-msgstr "La cadena de formato de offset contiene un especificador de formato invÃ¡lido.\n"
-"Solamente se permiten 'x', 'X', 'p', 'P', 'd' y 'o'."
+msgstr ""
+"La cadena de formato del desplazamiento contiene un especificador de formato "
+"inválido.\n"
+"Solo se permiten 'x', 'X', 'p', 'P', 'd' y 'o'."
 
 #: src/preferences.c:760
 msgid "Can not open desired font!"
-msgstr "No se puede abrir la fuente deseada."
+msgstr "No se puede abrir la tipografía deseada."
 
 #: src/print.c:57
 #, c-format
 msgid "Page: %i/%i"
-msgstr "PÃ¡gina: %i/%i"
+msgstr "Página: %i/%i"
 
-#: src/print.c:208
-#: src/print.c:222
+#: src/print.c:208 src/print.c:222
 #, c-format
-msgid "GHex could not find the font \"%s\".\n"
+msgid ""
+"GHex could not find the font \"%s\".\n"
 "GHex is unable to print without this font installed."
-msgstr "Ghex no pudo encontrar la fuente \"%s\".\n"
-"Ghex es incapaz de imprimir si esta fuente no estÃ¡ instalada."
+msgstr ""
+"Ghex no pudo encontrar la tipografía «%s».\n"
+"Ghex es incapaz de imprimir si esta tipografía no está instalada."
 
 #: src/ui.c:66
 msgid "Export to _HTML..."
@@ -867,7 +843,7 @@ msgstr "Exportar a _HTML..."
 
 #: src/ui.c:70
 msgid "Print pre_view..."
-msgstr "Pre_visualizaciÃ³n de impresiÃ³n..."
+msgstr "Vista prelimina_r de la impresión..."
 
 #: src/ui.c:83
 msgid "Con_verter..."
@@ -875,7 +851,7 @@ msgstr "Con_versor..."
 
 #: src/ui.c:126
 msgid "hex data"
-msgstr "datos hex"
+msgstr "datos hexadecimales"
 
 #: src/ui.c:127
 msgid "ASCII data"
@@ -883,39 +859,37 @@ msgstr "datos ASCII"
 
 #: src/ui.c:246
 msgid "GHex, a binary file editor"
-msgstr "GHex, un editor de archivos binarios"
+msgstr "GHex, un editor binario de archivos"
 
 #: src/ui.c:248
 msgid "Released under the terms of GNU Public License"
-msgstr "Liberado bajo licencia pÃºblica GNU (GPL)"
+msgstr "Liberado bajo los términos de la licencia GPL de GNU"
 
-#: src/ui.c:322
-#: src/ui.c:683
+#: src/ui.c:322 src/ui.c:683
 msgid "Error saving file!"
-msgstr "Error al guardar el archivo."
+msgstr "Error al guardar el archivo"
 
-#: src/ui.c:326
-#: src/ui.c:678
+#: src/ui.c:326 src/ui.c:678
 #, c-format
 msgid "Saved buffer to file %s"
-msgstr "Buffer guardado en el archivo %s."
+msgstr "Buffer guardado en el archivo %s"
 
 #: src/ui.c:350
 msgid "Select a file to open"
-msgstr "Seleccione un archivo para abrir."
+msgstr "Seleccione un archivo para abrir"
 
 #: src/ui.c:387
 msgid "Select a file to save buffer as"
-msgstr "Seleccione un archivo en el que guardar el buffer."
+msgstr "Seleccione un archivo en el que guardar el buffer actual"
 
 #: src/ui.c:431
 msgid "Select path and file name for the HTML source"
-msgstr "Seleccione ruta y nombre de archivo para el cÃ³digo HTML."
+msgstr "Seleccione la ruta y nombre del archivo para el código HTML."
 
 #: src/ui.c:602
 #, c-format
 msgid "Really revert file %s?"
-msgstr "Â¿Desea realmente revertir el archivo %s?"
+msgstr "¿Desea realmente revertir los cambios del archivo %s?"
 
 #: src/ui.c:616
 #, c-format
@@ -925,15 +899,15 @@ msgstr "Se ha revertido el buffer desde el archivo %s."
 #: src/ui.c:632
 #, c-format
 msgid "Loaded file %s"
-msgstr "Se ha cargado el archivo %s."
+msgstr "Se ha cargado el archivo %s"
 
 #: src/ui.c:644
 msgid "Can not open file!"
-msgstr "No se puede abrir el archivo."
+msgstr "No se puede abrir el archivo"
 
 #: src/ui.c:687
 msgid "Can't open file for writing!"
-msgstr "No se puede abrir el archivo para escritura."
+msgstr "No se puede abrir el archivo para escritura"
 
 #: src/ui.c:766
 msgid "Print Hex Document"
@@ -941,10 +915,9 @@ msgstr "Imprimir documento hexadecimal"
 
 #: src/ui.c:771
 msgid "Pages"
-msgstr "PÃ¡ginas"
+msgstr "Páginas"
 
 #: src/ui.c:817
 #, c-format
 msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Vista previa"
-
+msgstr "GHex (%s): Vista preliminar"
