@@ -1,3 +1,16 @@
+2003-12-29  Jaka Mocnik  <jaka@gnu.org>
+
+	* configure.in: added --enable-deprecations parameter to allow for
+	configurable inclusion of *_DISABLE_DEPRECATED defines.
+	bumped version to 2.5.2; tagged as GHEX_2_5_2; released a tarball
+	* src/Makefile.am: respect the above.
+
+2003-12-19  Shakti Sen <shakti.sen@wipro.com>
+
+        * src/ui.c (close_cb):
+        Unreferenced the object (doc) only after destroying the window.
+        Fixes the bug #129674
+
 2003-12-14  Jaka Mocnik  <jaka@gnu.org>
 
 	* configure.in: removed -Wall in order to allow non-gcc builds.

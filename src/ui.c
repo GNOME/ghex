@@ -592,8 +592,6 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 			gtk_widget_destroy(GTK_WIDGET(other_win));
 	}
 
-	/* this implicitly destroys all views including this one */
-	g_object_unref(G_OBJECT(doc));
 
 	/* If we have created the converter window disable the 
 	 * "Get cursor value" button
@@ -609,6 +607,9 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
     }
     else
         gtk_widget_destroy(GTK_WIDGET(win));	
+
+    /* this implicitly destroys all views including this one */
+    g_object_unref(G_OBJECT(doc));
 }
 
 void
