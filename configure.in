@@ -64,10 +64,6 @@ AC_MSG_ERROR([popt is required to build ghex.
 You can download the latest version from ftp://ftp.rpm.org/pub/rpm/dist/rpm-4.0.x/]))
 AC_SUBST(POPT_LIBS)
 
-AC_SUBST(CFLAGS)
-AC_SUBST(CPPFLAGS)
-AC_SUBST(LDFLAGS)
-
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
 dnl A switch to enable *_DISABLE__DEPRECATED flags
