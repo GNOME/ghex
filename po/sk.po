@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sk\n"
-"POT-Creation-Date: 2002-05-11 15:50+0200\n"
-"PO-Revision-Date: 2002-05-11 15:51+0200\n"
-"Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
+"POT-Creation-Date: 2002-05-16 14:37+0200\n"
+"PO-Revision-Date: 2002-05-16 14:43+0200\n"
+"Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0beta1\n"
+"X-Generator: KBabel 0.9.6\n"
 
 #: ghex.desktop.in.h:1
 msgid "GHex"
@@ -28,61 +28,71 @@ msgstr "Hexadecimálny editor pre GNOME"
 msgid "Activate %s"
 msgstr "Aktivovať %s"
 
-#: src/chartable.c:106
+#: src/chartable.c:115
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:106
+#: src/chartable.c:115
 msgid "Hex"
 msgstr "Šestnástkové"
 
-#: src/chartable.c:106 src/preferences.c:203
+#: src/chartable.c:115 src/preferences.c:214
 msgid "Decimal"
 msgstr "Desiatkové"
 
-#: src/chartable.c:107
+#: src/chartable.c:116
 msgid "Octal"
 msgstr "Osmičkové"
 
-#: src/chartable.c:107
+#: src/chartable.c:116
 msgid "Binary"
 msgstr "Dvojkové"
 
-#: src/chartable.c:119
+#: src/chartable.c:128
 msgid "Character table"
 msgstr "Tabuľka znakov"
 
-#: src/converter.c:179
+#: src/converter.c:190
 msgid "Base Converter"
 msgstr "Prevádzač číselných sústav"
 
 #. entries
-#: src/converter.c:198
-msgid "_Binary"
-msgstr "_Dvojkové"
+#: src/converter.c:209
+msgid "_Binary:"
+msgstr "_Dvojkové:"
 
-#: src/converter.c:200
-msgid "_Octal"
-msgstr "_Osmičkové"
+#: src/converter.c:211
+msgid "_Octal:"
+msgstr "_Osmičkové:"
 
-#: src/converter.c:202
-msgid "_Decimal"
-msgstr "_Desiatkové"
+#: src/converter.c:213
+msgid "_Decimal:"
+msgstr "_Desiatkové:"
 
-#: src/converter.c:204
-msgid "_Hex"
-msgstr "_Hexadecimálne"
+#: src/converter.c:215
+msgid "_Hex:"
+msgstr "_Hexadecimálne:"
 
-#: src/converter.c:206
-msgid "_ASCII"
-msgstr "_ASCII"
+#: src/converter.c:217
+msgid "_ASCII:"
+msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:210
+#: src/converter.c:221
 msgid "_Get cursor value"
-msgstr "Vložiť pozíciu _kurzoru"
+msgstr "Vložiť z pozície _kurzoru"
 
-#: src/converter.c:339
+#: src/converter.c:231
+msgid "Get cursor value"
+msgstr "Vložiť z pozície kurzoru"
+
+#: src/converter.c:231
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"Získa hodnotu pod kurzorom v binárnej, osmičkovej, desiatkovej "
+"šestnástkovej sústave a v ASCII"
+
+#: src/converter.c:358
 msgid "ERROR"
 msgstr "CHYBA"
 
@@ -96,7 +106,7 @@ msgstr "GHex (%s): Nájsť dáta"
 msgid "Search for %s"
 msgstr "Hľadám %s"
 
-#: src/findreplace.c:86
+#: src/findreplace.c:86 src/findreplace.c:119
 msgid "Find Next"
 msgstr "Hľadať následujúce"
 
@@ -104,78 +114,146 @@ msgstr "Hľadať následujúce"
 msgid "Find Previous"
 msgstr "Hľadať predchádzajúce"
 
-#: src/findreplace.c:133 src/main.c:120
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Find Data"
+msgstr "Hľadať dáta"
+
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Zadajte hexadecimálne alebo ASCII dáta, ktoré chcete nájsť"
+
+#: src/findreplace.c:119 src/findreplace.c:212
+msgid "Finds the next occurrence of the search string"
+msgstr "Nájde nasledujúci výskyt hľadaného reťazca"
+
+#: src/findreplace.c:120
+msgid "Find previous"
+msgstr "Hľadať predchádzajúce"
+
+#: src/findreplace.c:120
+msgid "Finds the previous occurrence of the search string "
+msgstr "Nájde predchádzajúci výskyt hľadaného reťazca"
+
+#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: src/findreplace.c:121
+msgid "Closes find data window"
+msgstr "Zavrie okno pre hľadanie dát"
+
+#: src/findreplace.c:140 src/main.c:120
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Nájsť & Nahradiť dáta"
 
-#: src/findreplace.c:148
+#: src/findreplace.c:155
 #, c-format
 msgid "Replace %s"
 msgstr "Nahradiť %s"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:172 src/findreplace.c:212
 msgid "Find next"
 msgstr "Hľadať následujúce"
 
-#: src/findreplace.c:173 src/ghex-ui.xml.h:43
+#: src/findreplace.c:180 src/findreplace.c:213 src/ghex-ui.xml.h:43
 msgid "Replace"
 msgstr "Nahradiť"
 
-#: src/findreplace.c:181
+#: src/findreplace.c:188 src/findreplace.c:214
 msgid "Replace All"
 msgstr "Nahradiť všetky"
 
-#: src/findreplace.c:215 src/main.c:122
+#: src/findreplace.c:211
+msgid "Replace Data"
+msgstr "Nahradiť dáta"
+
+#: src/findreplace.c:211
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Zadajte hexadecimálne alebo ASCII dáta, ktorými chcete nahradiť"
+
+#: src/findreplace.c:213
+msgid "Replaces the search string with the replace string"
+msgstr "Nahradí hľadaný reťazec iným zadaným reťazcom"
+
+#: src/findreplace.c:214
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Nahradí všetky výskyty hľadaného reťazca iným zadaným reťazcom"
+
+#: src/findreplace.c:215
+msgid "Closes find and replace data window"
+msgstr "Zavrie okno pre hľadanie a náhradu dát"
+
+#: src/findreplace.c:231 src/main.c:122
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Prejsť na bajt"
 
-#: src/findreplace.c:306 src/findreplace.c:332 src/findreplace.c:385
+#: src/findreplace.c:261
+msgid "Jump to byte"
+msgstr "Prejsť na bajt"
+
+#: src/findreplace.c:261
+msgid "Enter the byte to jump to"
+msgstr "Zadajte bajt, na ktorý chcete prejsť"
+
+#: src/findreplace.c:262
+msgid "OK"
+msgstr "OK"
+
+#: src/findreplace.c:262
+msgid "Jumps to the specified byte"
+msgstr "Prejde na zadaný bajt"
+
+#: src/findreplace.c:263
+msgid "Closes jump to byte window"
+msgstr "Zavrie okno pre prechod na daný bajt"
+
+#: src/findreplace.c:328 src/findreplace.c:354 src/findreplace.c:407
 msgid "There is no active buffer to search!"
 msgstr "Nie je žiadny aktívny bufer pre hľadanie!"
 
-#: src/findreplace.c:314 src/findreplace.c:340 src/findreplace.c:393
+#: src/findreplace.c:336 src/findreplace.c:362 src/findreplace.c:415
 msgid "There seems to be no string to search for!"
 msgstr "Vyzerá to, že nie je čo hľadať!"
 
-#: src/findreplace.c:321 src/findreplace.c:401
+#: src/findreplace.c:343 src/findreplace.c:423
 msgid "End Of File reached"
 msgstr "Dosiahnutý koniec súboru"
 
-#: src/findreplace.c:348
+#: src/findreplace.c:370
 msgid "Beginning Of File reached"
 msgstr "Dosiahnutý začiatok súboru"
 
-#: src/findreplace.c:358
+#: src/findreplace.c:380
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Nie je žiadny aktívny bufer pre presun!"
 
-#: src/findreplace.c:363
+#: src/findreplace.c:385
 msgid "No offset has been specified!"
 msgstr "Neuvedený posun!"
 
-#: src/findreplace.c:370
+#: src/findreplace.c:392
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Nie je možné umiestniť kurzor za koniec súboru!"
 
-#: src/findreplace.c:375
+#: src/findreplace.c:397
 msgid "The offset must be a positive integer value!"
 msgstr "Posun musí byť kladné celé číslo!"
 
-#: src/findreplace.c:413 src/findreplace.c:451
+#: src/findreplace.c:435 src/findreplace.c:473
 msgid "There is no active buffer to replace data in!"
 msgstr "Nie je žiadny aktívny bufer pre nahradzovanie!"
 
-#: src/findreplace.c:424 src/findreplace.c:462
+#: src/findreplace.c:446 src/findreplace.c:484
 msgid "Strange find or replace string!"
 msgstr "Divný hľadaný alebo nahradzovaný reťazec!"
 
-#: src/findreplace.c:439
+#: src/findreplace.c:461
 msgid "End Of File reached!"
 msgstr "Dosiahnutý koniec súboru!"
 
-#: src/findreplace.c:478
+#: src/findreplace.c:500
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d nahradení."
@@ -589,93 +667,141 @@ msgstr "Modálne"
 msgid "Select font"
 msgstr "Vybrať písmo"
 
-#: src/preferences.c:146
+#: src/preferences.c:148
 msgid "GHex Preferences"
 msgstr "GHex: Nastavenia"
 
-#: src/preferences.c:174
-msgid "Maximum number of undo levels"
-msgstr "Maximálny počet úrovní vrátenia späť"
+#: src/preferences.c:176
+msgid "_Maximum number of undo levels:"
+msgstr "Ma_ximálny počet úrovní vrátenia späť:"
 
-#: src/preferences.c:189
-msgid "Show cursor offset in statusbar as"
-msgstr "Zobraziť pozíciu kurzoru v stavovom riadku ako"
+#: src/preferences.c:196
+msgid "Undo levels"
+msgstr "Krokov vrátenia:"
 
-#: src/preferences.c:208
+#: src/preferences.c:196
+msgid "Select maximum number of undo levels"
+msgstr "Vyberte maximálny počet krokov vrátenia späť"
+
+#: src/preferences.c:200
+msgid "Show cursor offset in statusbar as:"
+msgstr "Zobraziť pozíciu kurzoru v stavovom riadku ako:"
+
+#: src/preferences.c:219
 msgid "Hexadecimal"
 msgstr "Šestnástková"
 
-#: src/preferences.c:214
+#: src/preferences.c:225
 msgid "Custom"
 msgstr "Vlastné"
 
+#: src/preferences.c:236
+msgid "format_entry"
+msgstr "format_entry"
+
+#: src/preferences.c:236
+msgid "Enter the cursor offset format"
+msgstr "Zadajte formát pre pozíciu kurzoru"
+
+#: src/preferences.c:237
+msgid "format_optionmenu"
+msgstr "format_optionmenu"
+
+#: src/preferences.c:237
+msgid "Select the cursor offset format"
+msgstr "Vyberte formát pre pozíciu kurzoru"
+
 #. show offsets check button
-#: src/preferences.c:225
+#: src/preferences.c:247
 msgid "Show offsets column"
 msgstr "Zobraziť stĺpec posunu"
 
-#: src/preferences.c:230
+#: src/preferences.c:252
 msgid "Editing"
 msgstr "Úpravy"
 
 #. display font
-#: src/preferences.c:239
+#: src/preferences.c:261
 msgid "Font"
 msgstr "Písmo"
 
-#: src/preferences.c:261
+#: src/preferences.c:283
 msgid "Browse..."
 msgstr "Prechádzať..."
 
 #. default group type
-#: src/preferences.c:290
+#: src/preferences.c:312
 msgid "Default Group Type"
 msgstr "Štandardný typ zoskupovania"
 
-#: src/preferences.c:306
+#: src/preferences.c:328
 msgid "Display"
 msgstr "Zobrazenie"
 
 #. mdi modes
-#: src/preferences.c:315
+#: src/preferences.c:337
 msgid "MDI Mode"
 msgstr "Mód MDI"
 
-#: src/preferences.c:332
+#: src/preferences.c:354
 msgid "MDI"
 msgstr "MDI"
 
 #. paper selection
-#: src/preferences.c:341
+#: src/preferences.c:363
 msgid "Paper size"
 msgstr "Papier"
 
 #. data & header font selection
-#: src/preferences.c:357
+#: src/preferences.c:379
 msgid "Fonts"
 msgstr "Písma"
 
-#: src/preferences.c:363
+#: src/preferences.c:385
+msgid "_Data font:"
+msgstr "Písmo _dát:"
+
+#: src/preferences.c:403
 msgid "Data font"
 msgstr "Písmo dát"
 
-#: src/preferences.c:396
+#: src/preferences.c:403
+msgid "Select the data font"
+msgstr "Vyberte písmo dát"
+
+#: src/preferences.c:424
+msgid "Header fo_nt:"
+msgstr "Písmo _hlavičky:"
+
+#: src/preferences.c:444
 msgid "Header font"
 msgstr "Písmo hlavičky"
 
-#: src/preferences.c:441
-msgid "Print shaded box over"
-msgstr "Tlačiť tieňovanú plochu cez"
+#: src/preferences.c:444
+msgid "Select the header font"
+msgstr "Vyberte písmo hlavičky"
 
-#: src/preferences.c:450
+#: src/preferences.c:476
+msgid "_Print shaded box over:"
+msgstr "Tlačiť _tieňovanú plochu cez:"
+
+#: src/preferences.c:488
+msgid "Box size"
+msgstr "Veľkosť plochy"
+
+#: src/preferences.c:488
+msgid "Select size of box (in number of lines)"
+msgstr "Vyberte veľkosť plochy (v počte riadkov)"
+
+#: src/preferences.c:492
 msgid "lines (0 for no box)"
 msgstr "riadkov (0 pre žiadnu)"
 
-#: src/preferences.c:457
+#: src/preferences.c:499
 msgid "Printing"
 msgstr "Tlač"
 
-#: src/preferences.c:657
+#: src/preferences.c:699
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -683,7 +809,7 @@ msgstr ""
 "Formátovací reťazec pre pozíciu obsahuje neplatný špecifikátor formátu.\n"
 "Povolené sú iba 'x', 'X', 'p', 'P', 'd' a 'o'."
 
-#: src/preferences.c:700
+#: src/preferences.c:742
 msgid "Can not open desired font!"
 msgstr "Nie je možné otvoriť požadované písmo!"
 
