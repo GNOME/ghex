@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* hex-document-ui.c - menu definitions and callbacks for hex-document MDI child
 
-   Copyright (C) 1998 - 2001 Free Software Foundation
+   Copyright (C) 1998 - 2002 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -26,29 +26,30 @@
 #include <gdk/gdk.h>
 #include <gnome.h>
 
-#include <hex-document.h>
-
+#include "hex-document.h"
+#include "ghex-window.h"
 #include "ghex.h"
 #include "gtkhex.h"
 
-void hex_document_set_menu_sensitivity(HexDocument *doc)
+void
+hex_document_set_menu_sensitivity(HexDocument *doc)
 {
 	GList *view_node;
 	GtkWidget *view;
 	gboolean sensitive;
-	BonoboWindow *win;
+	GHexWindow *win;
 	BonoboUIComponent *uic;
 
-	view_node = bonobo_mdi_child_get_views (BONOBO_MDI_CHILD (doc));
+	view_node = doc->views;
 
 	while (view_node) {
 		view = GTK_WIDGET(view_node->data);
 
-		win = bonobo_mdi_get_window_from_view (view);
+		win = GHEX_WINDOW(gtk_widget_get_toplevel(view));
 
 		g_return_if_fail (win != NULL);
  
-		uic = bonobo_mdi_get_ui_component_from_window(win);
+		uic = ghex_window_get_ui_component(win);
 
 		g_return_if_fail (uic != NULL);
 
@@ -73,8 +74,8 @@ void hex_document_set_menu_sensitivity(HexDocument *doc)
 
 
 
-/* Changed the function parameters -- SnM */
-void find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	if(!find_dialog)
 		find_dialog = create_find_dialog();
@@ -87,8 +88,8 @@ void find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	gdk_window_raise(find_dialog->window->window);
 }
 
-/* Changed the function parameters -- SnM */
-void replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	if(!replace_dialog)
 		replace_dialog = create_replace_dialog();
@@ -101,8 +102,8 @@ void replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbna
 	gdk_window_raise(replace_dialog->window->window);
 }
 
-/* Changed the function parameters -- SnM */
-void jump_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+jump_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	if(!jump_dialog)
 		jump_dialog = create_jump_dialog();
@@ -115,68 +116,58 @@ void jump_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	gdk_window_raise(jump_dialog->window->window);
 }
 
-/* Changed the function parameters -- SnM */
-void undo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+undo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	HexDocument *doc = HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)));
+	GHexWindow *win = GHEX_WINDOW(user_data);
+	HexDocument *doc;
 	HexChangeData *cd;
+
+	if(win->gh == NULL)
+		return;
+
+	doc = win->gh->document;
 
 	if(doc->undo_top) {
 		cd = (HexChangeData *)doc->undo_top->data;
 
 		hex_document_undo(doc);
 
-		gtk_hex_set_cursor(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), cd->start);
-		gtk_hex_set_nibble(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), cd->lower_nibble);
+		gtk_hex_set_cursor(win->gh, cd->start);
+		gtk_hex_set_nibble(win->gh, cd->lower_nibble);
 	}
 }
 
-/* Changed the function parameters -- SnM */
-void redo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+redo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	HexDocument *doc = HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)));
+	GHexWindow *win = GHEX_WINDOW(user_data);
+	HexDocument *doc;
 	HexChangeData *cd;
+
+	if(win->gh == NULL)
+		return;
+
+	doc = win->gh->document;
 
 	if(doc->undo_stack && doc->undo_top != doc->undo_stack) {
 		hex_document_redo(doc);
 
 		cd = (HexChangeData *)doc->undo_top->data;
 
-		gtk_hex_set_cursor(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), cd->start);
-		gtk_hex_set_nibble(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), cd->lower_nibble);
+		gtk_hex_set_cursor(win->gh, cd->start);
+		gtk_hex_set_nibble(win->gh, cd->lower_nibble);
 	}
 }
 
-/* Changed the function parameters -- SnM */
-void add_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+add_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-#ifdef SNM
-	BonoboMDIChild *child = BONOBO_MDI_CHILD(user_data);
-#endif
-
-	bonobo_mdi_add_view( BONOBO_MDI (mdi), bonobo_mdi_get_active_child (BONOBO_MDI (mdi)));
+	/* TODO: implement this */
 }
 
-/* Changed the function parameters -- SnM */
-void remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
-		bonobo_mdi_remove_view( BONOBO_MDI (mdi), bonobo_mdi_get_active_view (BONOBO_MDI (mdi)), FALSE);
-	
-	if ( NULL == bonobo_mdi_get_active_child (BONOBO_MDI (mdi))) {
-		BonoboUIComponent *uic;
-		BonoboWindow *active_window;
-
-		active_window = bonobo_mdi_get_active_window (BONOBO_MDI (mdi));
-
-		g_return_if_fail (active_window != NULL);
-
-		uic = bonobo_mdi_get_ui_component_from_window(active_window);
-
-		bonobo_ui_component_freeze (uic, NULL);
-
-		ghex_menus_set_verb_list_sensitive (uic, FALSE);
-	
-		bonobo_ui_component_thaw (uic, NULL);
-	}
+	/* TODO: implement this */
 }

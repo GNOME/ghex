@@ -13,7 +13,7 @@ INCLUDES = -I$(includedir) 				\
 
 bin_PROGRAMS = ghex2
 
-uidir = $(datadir)/ghex2/ui/
+uidir = $(datadir)/gnome-2.0/ui/
 
 BUILT_SOURCES = \
 	ghex-marshal.c	\
@@ -21,10 +21,8 @@ BUILT_SOURCES = \
 
 ghex2_SOURCES = hex-document.c hex-document.h hex-document-ui.c		\
 	preferences.c findreplace.c converter.c config.c ghex.h		\
-	gtkhex.c gtkhex.h main.c ui.c session.c chartable.c		\
-	print.c bonobo-mdi.c bonobo-mdi.h bonobo-mdi-child.c		\
-	bonobo-mdi-child.h ghex-mdi.c ghex-mdi.h			\
-	bonobo-mdi-session.c bonobo-mdi-session.h			\
+	gtkhex.c gtkhex.h main.c ui.c chartable.c session.c		\
+	print.c ghex-window.c ghex-window.h				\
 	$(BUILT_SOURCES)
 
 ghex-marshal.h: ghex-marshal.list $(GLIB_GENMARSHAL)

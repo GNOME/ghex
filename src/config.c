@@ -29,7 +29,6 @@
 #include <gconf/gconf-client.h>
 
 #define GHEX_BASE_KEY                "/apps/ghex2"
-#define GHEX_PREF_MDI_MODE           "/mdi-mode"
 #define GHEX_PREF_FONT               "/font"
 #define GHEX_PREF_GROUP              "/group"
 #define GHEX_PREF_MAX_UNDO_DEPTH     "/maxundodepth"   
@@ -63,12 +62,6 @@ void save_configuration () {
 	gconf_client_set_int (gconf_client,
 				GHEX_BASE_KEY GHEX_PREF_GROUP,
 				def_group_type,
-				NULL);
-
-	/* Set the MDI Mode -- SnM */
-	gconf_client_set_int (gconf_client,
-				GHEX_BASE_KEY GHEX_PREF_MDI_MODE,
-				mdi_mode,
 				NULL);
 
 	/* Set the max undo depth -- SnM */
@@ -138,8 +131,6 @@ void save_configuration() {
 		gnome_config_clean_key("/ghex/Display/Font");
 	
 	gnome_config_set_int("/ghex/Display/Group", def_group_type);
-	
-	gnome_config_set_int("/ghex/MDI/Mode", mdi_mode);
 	
 	gnome_config_set_int("/ghex/Editing/MaxUndoDepth", max_undo_depth);
 
@@ -235,11 +226,6 @@ void load_configuration () {
 	if (NULL==offset_fmt) {
 		offset_fmt = g_strdup("%X"); 
 	}
-
-	/* Get the MDI mode -- SnM */
-	mdi_mode = gconf_client_get_int (gconf_client,
-					GHEX_BASE_KEY GHEX_PREF_MDI_MODE,
-					NULL);
 
 	/* Get the show offsets column value -- SnM */
 	show_offsets_column = gconf_client_get_bool (gconf_client,
@@ -358,8 +344,6 @@ void load_configuration() {
 		g_free(offset_fmt);
 
 	offset_fmt = gnome_config_get_string("/ghex/Editing/OffsetFormat=%X");
-
-	mdi_mode = gnome_config_get_int("/ghex/MDI/Mode=2");
 
 	show_offsets_column = gnome_config_get_bool("/ghex/Editing/OffsetsColumn=true");
 

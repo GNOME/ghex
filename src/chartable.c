@@ -68,7 +68,7 @@ static char *ascii_non_printable_label[] = {
 
 static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *event, GtkTreeModel *model)
 {
-	GtkWidget *active_view;
+	GHexWindow *win;
 	GtkTreeIter iter;
 	GtkTreeSelection *selection;
 	GValue value = {0, };
@@ -81,12 +81,11 @@ static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *e
 	gtk_tree_model_get_value(model, &iter, 2, &value);
 
 	if(selection == sel_row && event->type == GDK_2BUTTON_PRESS) {
-		active_view = bonobo_mdi_get_active_view (BONOBO_MDI (mdi));
-		if(active_view) {
-			GtkHex *gh = GTK_HEX(active_view);
-			hex_document_set_byte(gh->document, (guchar)atoi(g_value_get_string(&value)), gh->cursor_pos,
-								  gh->insert, TRUE);
-			gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+		win = ghex_window_get_active();
+		if(win->gh) {
+			hex_document_set_byte(win->gh->document, (guchar)atoi(g_value_get_string(&value)), win->gh->cursor_pos,
+								  win->gh->insert, TRUE);
+			gtk_hex_set_cursor(win->gh, win->gh->cursor_pos + 1);
 		}
 	}
 	g_value_unset(&value);

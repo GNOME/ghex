@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* preferences.c - setting the preferences
 
-   Copyright (C) 1998 - 2001 Free Software Foundation
+   Copyright (C) 1998 - 2002 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -45,20 +45,6 @@ PangoFontDescription *def_font_desc = NULL;
 
 gchar *def_font_name = NULL;
 gboolean show_offsets_column = TRUE;
-
-guint mdi_type[NUM_MDI_MODES] = {
-	BONOBO_MDI_DEFAULT_MODE,
-	BONOBO_MDI_NOTEBOOK,
-	BONOBO_MDI_TOPLEVEL,
-	BONOBO_MDI_MODAL
-};
-
-gchar *mdi_type_label[NUM_MDI_MODES] = {
-	N_("Default"),
-	N_("Notebook"),
-	N_("Toplevel"),
-	N_("Modal"),
-};
 
 static char* get_font_name (const gchar *name, int size) {
 	gchar *caption;
@@ -121,18 +107,12 @@ static void font_button_clicked(GtkWidget *button, GnomeFont **font) {
  * Look at dialogs/ghex-preferences-dialog.[ch]
  */
 
-PropertyUI *create_prefs_dialog() {
-
-#ifdef SNM
-	static GnomeHelpMenuEntry help_entry = { "ghex", "prefs.html" };
-#endif
-
+PropertyUI *
+create_prefs_dialog()
+{
 	GtkWidget *vbox, *label, *frame, *box, *entry, *fbox, *flabel, *table;
 	GtkWidget *menu, *item;
 	GtkAdjustment *undo_adj, *box_adj;
-#ifdef SNM
-	GnomePaperSelector *paper_sel;
-#endif
 
 	GSList *group;
 	PropertyUI *pui;
@@ -233,8 +213,8 @@ PropertyUI *create_prefs_dialog() {
 	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, GNOME_PAD_SMALL);
 
 	if (gail_up) {
-		add_atk_namedesc (pui->format, _("format_entry"), _("Enter the cursor offset format"));
-		add_atk_namedesc (menu, _("format_optionmenu"), _("Select the cursor offset format"));
+		add_atk_namedesc (pui->format, "format_entry", _("Enter the cursor offset format"));
+		add_atk_namedesc (menu, "format_optionmenu", _("Select the cursor offset format"));
 		add_atk_relation (label, pui->format, ATK_RELATION_LABEL_FOR);
 		add_atk_relation (pui->format, label, ATK_RELATION_LABELLED_BY);
 		add_atk_relation (label, pui->offset_menu, ATK_RELATION_LABEL_FOR);
@@ -328,32 +308,6 @@ PropertyUI *create_prefs_dialog() {
 	label = gtk_label_new(_("Display"));
 	gtk_widget_show(label);
 	gtk_notebook_append_page (GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
-	
-	/* MDI page */
-	vbox = gtk_vbox_new(FALSE, 0);
-	gtk_widget_show(vbox);
-
-	/* mdi modes */
-	frame = gtk_frame_new(_("MDI Mode"));
-	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
-	gtk_widget_show(frame);
-
-	box = gtk_vbox_new(FALSE, 0);
-	gtk_widget_show(box);
-	group = NULL;
-	for(i = 0; i < NUM_MDI_MODES; i++) {
-		pui->mdi_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, _(mdi_type_label[i])));
-		gtk_widget_show(GTK_WIDGET(pui->mdi_type[i]));
-		gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->mdi_type[i]), TRUE, TRUE, GNOME_PAD_SMALL);
-		group = gtk_radio_button_group (pui->mdi_type[i]);
-	}
-	
-	gtk_container_add(GTK_CONTAINER(frame), box);
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, GNOME_PAD_SMALL);  
-	
-	label = gtk_label_new(_("MDI"));
-	gtk_widget_show(label);
-	gtk_notebook_append_page(GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
 	
 	/* printing page */
 	vbox = gtk_vbox_new(FALSE, 0);
@@ -504,10 +458,6 @@ PropertyUI *create_prefs_dialog() {
 	
 	/* signals have to be connected after set_prefs(), otherwise
 	   a gnome_property_box_changed() is called */
-   	for(i = 0; i < NUM_MDI_MODES; i++)
-		gtk_signal_connect(GTK_OBJECT(pui->mdi_type[i]), "clicked",
-						   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
-
 	for(i = 0; i < 3; i++)
 		gtk_signal_connect(GTK_OBJECT(pui->group_type[i]), "clicked",
 						   GTK_SIGNAL_FUNC(properties_modified_cb), pui->pbox);
@@ -542,12 +492,6 @@ static void set_prefs(PropertyUI *pui) {
 			break;
 		}
 	
-	for(i = 0; i < NUM_MDI_MODES; i++)
-		if(mdi_mode == mdi_type[i]) {
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->mdi_type[i]), TRUE);
-			break;
-		}
-
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->offsets_col), show_offsets_column);
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(pui->undo_spin), (gfloat)max_undo_depth);
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(pui->box_size_spin), (gfloat)shaded_box_size);
@@ -627,7 +571,7 @@ static void help_cb(GnomePropertyBox *pbox, gint page, gpointer *data) {
 static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
 
 	int i, len;
-	GList *child, *view;
+	const GList *winn, *docn;
 	PangoFontMetrics *new_metrics; /* Changes for Gnome 2.0 */
 	PangoFontDescription *new_desc;
 
@@ -643,54 +587,30 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 	show_off = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(pui->offsets_col));
 	if(show_off != show_offsets_column) {
 		show_offsets_column = show_off;
-		child = bonobo_mdi_get_children (BONOBO_MDI (mdi));
-			
-		while(child) {
-			view = bonobo_mdi_child_get_views (BONOBO_MDI_CHILD(child->data));
-			while(view) {
-				gtk_hex_show_offsets(GTK_HEX(view->data), show_off);
-				view = g_list_next(view);
-			}
-			child = g_list_next(child);
+		winn = ghex_window_get_list();
+		while(winn) {
+			if(GHEX_WINDOW(winn->data)->gh)
+				gtk_hex_show_offsets(GHEX_WINDOW(winn->data)->gh, show_off);
+			winn = g_list_next(winn);
 		}
 	}
-		
 
 	for(i = 0; i < 3; i++)
 		if(GTK_TOGGLE_BUTTON(pui->group_type[i])->active) {
 			def_group_type = group_type[i];
 #if 0 /* FIXME : Should we update the view */
-			child = bonobo_mdi_get_children (BONOBO_MDI (mdi));
-			
-			while(child) {
-				view = bonobo_mdi_child_get_views (BONOBO_MDI_CHILD(child->data));
-				while(view) {
-					gtk_hex_set_group_type(GTK_HEX(view->data), def_group_type);
-					view = g_list_next(view);
-				}
-				child = g_list_next(child);
-			}
 #endif
 			break;
 		}
 	
-	for(i = 0; i < NUM_MDI_MODES; i++)
-		if(GTK_TOGGLE_BUTTON(pui->mdi_type[i])->active) {
-			if(mdi_mode != mdi_type[i]) {
-				mdi_mode = mdi_type[i];
-				bonobo_mdi_set_mode( BONOBO_MDI(mdi), mdi_mode);
-			}
-			break;
-		}
-
 	new_undo_max = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(pui->undo_spin));
 	if(new_undo_max != max_undo_depth) {
 		max_undo_depth = new_undo_max;
 
-		child = bonobo_mdi_get_children (BONOBO_MDI (mdi));
-		while(child) {
-			hex_document_set_max_undo(HEX_DOCUMENT(child->data), max_undo_depth);
-			child = child->next;
+		docn = hex_document_get_list();
+		while(docn) {
+			hex_document_set_max_undo(HEX_DOCUMENT(docn->data), max_undo_depth);
+			docn = g_list_next(docn);
 		}
 	}
 
@@ -730,20 +650,16 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 		if((new_metrics = gtk_hex_load_font(gnome_font_picker_get_font_name
 									 (GNOME_FONT_PICKER(pui->font_button)))) != NULL) {
 			new_desc = pango_font_description_from_string (gnome_font_picker_get_font_name (GNOME_FONT_PICKER (pui->font_button)));
-			child = bonobo_mdi_get_children (BONOBO_MDI (mdi));
-			
-			while(child) {
-				view = bonobo_mdi_child_get_views (BONOBO_MDI_CHILD(child->data));
-				while(view) {
-					gtk_hex_set_font(GTK_HEX(view->data), new_metrics, new_desc);
-					view = g_list_next(view);
-				}
-				child = g_list_next(child);
+			winn = ghex_window_get_list();
+			while(winn) {
+				if(GHEX_WINDOW(winn->data)->gh)
+					gtk_hex_set_font(GHEX_WINDOW(winn->data)->gh, new_metrics, new_desc);
+				winn = g_list_next(winn);
 			}
 		
 			if (def_metrics)
 				pango_font_metrics_unref (def_metrics);
-
+			
 			if (def_font_desc)
 				pango_font_description_free (def_font_desc);
 
@@ -757,7 +673,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 			def_font_desc = pango_font_description_from_string (def_font_name);
 		}
 		else
-			display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Can not open desired font!"));
+			display_error_dialog (ghex_window_get_active(), _("Can not open desired font!"));
 	} 
 
 

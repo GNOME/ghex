@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* hex-document.h
 
-   Copyright (C) 1998, 1999, 2000 Free Software Foundation
+   Copyright (C) 1998 - 2002 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -31,19 +31,16 @@
 
 #include <gnome.h>
 
-/* Added for bonobo_mdi classes -- SnM */
-#include "bonobo-mdi.h"
-
-#define HEX_DOCUMENT(obj)          GTK_CHECK_CAST (obj, hex_document_get_type (), HexDocument)
-#define HEX_DOCUMENT_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, hex_document_get_type (), HexDocumentClass)
-#define IS_HEX_DOCUMENT(obj)       GTK_CHECK_TYPE (obj, hex_document_get_type ())
+#define HEX_DOCUMENT_TYPE          (hex_document_get_type())
+#define HEX_DOCUMENT(obj)          G_TYPE_CHECK_INSTANCE_CAST (obj, hex_document_get_type (), HexDocument)
+#define HEX_DOCUMENT_CLASS(klass)  G_TYPE_CHECK_CLASS_CAST (klass, hex_document_get_type (), HexDocumentClass)
+#define IS_HEX_DOCUMENT(obj)       G_CHECK_INSTANCE_TYPE (obj, hex_document_get_type ())
 
 typedef struct _HexDocument       HexDocument;
 typedef struct _HexDocumentClass  HexDocumentClass;
 typedef struct _HexChangeData     HexChangeData;
 
-typedef enum
-{
+typedef enum {
 	HEX_CHANGE_STRING,
 	HEX_CHANGE_BYTE
 } HexChangeType;
@@ -60,7 +57,9 @@ struct _HexChangeData
 
 struct _HexDocument
 {
-	BonoboMDIChild mdi_child;
+	GObject object;
+
+	GList *views;      /* a list of GtkHex widgets showing this document */
 	
 	gchar *file_name;
 	gchar *path_end;
@@ -81,14 +80,13 @@ struct _HexDocument
 
 struct _HexDocumentClass
 {
-	BonoboMDIChildClass parent_class;
+	GObjectClass parent_class;
 
 	void (*document_changed)(HexDocument *, gpointer, gboolean);
 };
 
-GtkType     hex_document_get_type(void);
+GType       hex_document_get_type(void);
 HexDocument *hex_document_new(const gchar *name);
-
 void        hex_document_set_data(HexDocument *doc, guint offset,
 								  guint len, guint rep_len, guchar *data,
 								  gboolean undoable);
@@ -101,7 +99,6 @@ guchar      hex_document_get_byte(HexDocument *doc, guint offset);
 guchar      *hex_document_get_data(HexDocument *doc, guint offset, guint len);
 void        hex_document_delete_data(HexDocument *doc, guint offset,
 									 guint len, gboolean undoable);
-
 gint        hex_document_read(HexDocument *doc);
 gint        hex_document_write(HexDocument *doc);
 gint        hex_document_write_to_file(HexDocument *doc, FILE *file);
@@ -109,24 +106,21 @@ gint        hex_document_export_html(HexDocument *doc,
 									 gchar *html_path, gchar *base_name,
 									 guint start, guint end,
 									 guint cpl, guint lpp, guint cpw);
-
 gboolean    hex_document_has_changed(HexDocument *doc);
 void        hex_document_changed(HexDocument *doc, gpointer change_data,
 								 gboolean push_undo);
-
 void        hex_document_set_max_undo(HexDocument *doc, guint max_undo);
 gboolean    hex_document_undo(HexDocument *doc);
 gboolean    hex_document_redo(HexDocument *doc);
-
 gint        hex_document_compare_data(HexDocument *doc, guchar *s2,
 									  gint pos, gint len);
 gint        hex_document_find_forward(HexDocument *doc, guint start,
 									  guchar *what, gint len, guint *found);
 gint        hex_document_find_backward(HexDocument *doc, guint start,
 									   guchar *what, gint len, guint *found);
-
-BonoboMDIChild *hex_document_new_from_config(const gchar *);
-
 void        hex_document_set_menu_sensitivity(HexDocument *doc);
+void        hex_document_remove_view(HexDocument *doc, GtkWidget *view);
+GtkWidget   *hex_document_add_view(HexDocument *doc);
+const GList *hex_document_get_list(void);
 
 #endif /* __HEX_DOCUMENT_H__ */

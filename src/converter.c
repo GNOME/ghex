@@ -241,8 +241,14 @@ create_converter()
 static void
 get_cursor_val_cb(GtkButton *button, Converter *conv)
 {
-	GtkWidget *view = bonobo_mdi_get_active_view ( BONOBO_MDI (mdi));
+	GtkWidget *view;
 	guint val, start;
+	GHexWindow *win = ghex_window_get_active();
+
+	if(win == NULL || win->gh == NULL)
+		return;
+
+	view = GTK_WIDGET(win->gh);
 
 	if(view) {
 		start = gtk_hex_get_cursor(GTK_HEX(view));

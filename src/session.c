@@ -29,46 +29,37 @@ const struct poptOption options[] = {
 };
 
 /* Session management */
-
-int save_state (GnomeClient        *client,
-                gint                phase,
-                GnomeRestartStyle   save_style,
-                gint                shutdown,
-                GnomeInteractStyle  interact_style,
-                gint                fast,
-                gpointer            client_data) {
-	const gchar *prefix= gnome_client_get_config_prefix (client);
-	gchar *argv[]= { "rm", "-r", NULL };
-	
-	/* Save the state using gnome-config stuff. */
-	gnome_config_push_prefix (prefix);
-	
-	bonobo_mdi_save_state(BONOBO_MDI(mdi), "Session");
-	
-	gnome_config_pop_prefix();
-	gnome_config_sync();
-	
-	/* Here is the real SM code. We set the argv to the parameters needed
-	   to restart/discard the session that we've just saved and call
-	   the gnome_session_set_*_command to tell the session manager it. */
-	argv[2] = gnome_config_get_real_path (prefix);
-	gnome_client_set_discard_command (client, 3, argv);
-	
-	/* Set commands to clone and restart this application.  Note that we
-	   use the same values for both -- the session management code will
-	   automatically add whatever magic option is required to set the
-	   session id on startup.  */
-	argv[0] = (char*) client_data;
-	gnome_client_set_clone_command (client, 1, argv);
-	gnome_client_set_restart_command (client, 1, argv);
-	
-	return TRUE;
+void
+client_die(GnomeClient *client, gpointer data)
+{
+	bonobo_main_quit ();
 }
 
 gint
-client_die (GnomeClient *client, gpointer client_data)
+save_session(GnomeClient        *client,
+             gint                phase,
+             GnomeRestartStyle   save_style,
+             gint                shutdown,
+             GnomeInteractStyle  interact_style,
+             gint                fast,
+             gpointer            client_data)
 {
-	gtk_exit (0);
+	gchar *argv[128];
+	gint argc;
+	const GList *node;
+	GHexWindow *win;
+
+	argv[0] = (gchar *)client_data;
+	argc = 1;
+	node = ghex_window_get_list();
+	while(node) {
+		win = GHEX_WINDOW(node->data);
+		if(win->gh)
+			argv[argc++] = win->gh->document->file_name;
+		node = node->next;
+	}
+	gnome_client_set_clone_command(client, argc, argv);
+	gnome_client_set_restart_command(client, argc, argv);
 	
-	return FALSE;
+	return TRUE;
 }

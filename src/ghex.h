@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ghex.h - defines GHex ;)
 
-   Copyright (C) 1998 - 2001 Free Software Foundation
+   Copyright (C) 1998 - 2002 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -21,17 +21,13 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef GHEX_H
-#define GHEX_H
+#ifndef __GHEX_H__
+#define __GHEX_H__
+
 #include <config.h>
 #include <gnome.h>
 
 #include <libgnomeprint/gnome-print.h>
-
-#ifdef SNM /* No longer present -- SnM */
-#include <libgnomeprint/gnome-printer.h>
-#include <libgnomeprint/gnome-print-preview.h>
-#endif
 
 #include <libgnomeprint/gnome-print-master.h>
 
@@ -39,11 +35,10 @@
 
 #include "hex-document.h"
 #include "gtkhex.h"
-#include "bonobo-mdi.h"
-#include "bonobo-mdi-child.h"
-#include "ghex-mdi.h"
 #include "ghex-marshal.h"
-#include "bonobo-mdi-session.h"
+#include "ghex-window.h"
+
+G_BEGIN_DECLS
 
 #define NO_BUFFER_LABEL "No buffer"
 
@@ -51,24 +46,15 @@
 
 #define MESSAGE_LEN 512
 
-extern GnomeUIInfo help_menu[], file_menu[], view_menu[],
-	               main_menu[], tools_menu[];
-
 #define DATA_TYPE_HEX   0
 #define DATA_TYPE_ASCII 1
 
 #define NUM_MDI_MODES 4
 
-#define CHILD_MENU_PATH      "_File"
-#define CHILD_LIST_PATH      "Fi_les/"
-#define GROUP_MENU_PATH      "_Edit/_Group Data As/"
-#define OVERWRITE_ITEM_PATH  "_Edit/_Insert mode"
-
 #define GHEX_URL "http://pluton.ijs.si/~jaka/gnome.html#GHEX"
 
 typedef struct _PropertyUI {
 	GnomePropertyBox *pbox;
-	GtkRadioButton *mdi_type[NUM_MDI_MODES];
 	GtkRadioButton *group_type[3];
 	GtkWidget *font_button, *undo_spin, *box_size_spin;
 	GtkWidget *offset_menu, *offset_choice[3];
@@ -147,8 +133,6 @@ extern int restarted;
 extern const struct poptOption options[];
 extern GSList *cl_files;
 
-extern GhexMDI        *mdi; /* We shall use the bonobo-mdi instead -- SnM */
-
 extern GtkWidget      *file_sel;
 extern FindDialog     *find_dialog;
 extern ReplaceDialog  *replace_dialog;
@@ -159,9 +143,6 @@ extern PropertyUI     *prefs_ui;
 
 /* our preferred settings; as only one copy of them is required,
    we'll make them global vars, although this is a bit ugly */
-#if 0
-extern GdkFont    *def_font;
-#endif
 extern PangoFontMetrics *def_metrics;
 extern PangoFontDescription *def_font_desc;
 
@@ -172,20 +153,13 @@ extern guint      max_undo_depth;
 extern gchar      *offset_fmt;
 extern gboolean   show_offsets_column;
 
-#ifdef SNM /* GnomePaper no longer present -- SnM */
-extern const GnomePaper *def_paper;
-#endif 
-extern const guchar *def_paper; /* Changed to guchar -- SnM */
+extern const guchar *def_paper;
 
 extern gint       shaded_box_size;
 extern gint       def_group_type;
-extern gint       mdi_mode;
 
 extern guint group_type[3];
 extern gchar *group_type_label[3];
-
-extern guint mdi_type[NUM_MDI_MODES];
-extern gchar *mdi_type_label[NUM_MDI_MODES];
 
 extern guint search_type;
 extern gchar *search_type_label[2];
@@ -219,17 +193,16 @@ gint delete_event_cb(GtkWidget *, GdkEventAny *);
 void cancel_cb(GtkWidget *, GtkWidget *);
 
 /* session managment */
-int save_state      (GnomeClient        *client,
-                     gint                phase,
-                     GnomeRestartStyle   save_style,
-                     gint                shutdown,
-                     GnomeInteractStyle  interact_style,
-                     gint                fast,
-                     gpointer            client_data);
+gint
+save_session    (GnomeClient        *client,
+				 gint                phase,
+				 GnomeRestartStyle   save_style,
+				 gint                shutdown,
+				 GnomeInteractStyle  interact_style,
+				 gint                fast,
+				 gpointer            client_data);
+void client_die (GnomeClient *client, gpointer client_data);
 
-gint client_die     (GnomeClient *client, gpointer client_data);
-
-/* The ghex menu verbs -- SnM */
 extern BonoboUIVerb ghex_verbs [];
 
 /* Initializes the gconf client */
@@ -248,11 +221,9 @@ void remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* ve
 void insert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 void quit_app_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 
-void display_error_dialog (BonoboWindow *win, const gchar *msg);
+void display_error_dialog (GHexWindow *win, const gchar *msg);
+void update_dialog_titles (void);
 
-void ghex_menus_set_verb_list_sensitive (BonoboUIComponent *uic, gboolean allmenus);
+G_END_DECLS
 
-gint remove_doc_cb (BonoboMDI *mdi, HexDocument *doc);
-void cleanup_cb (BonoboMDI *mdi);
-
-#endif
+#endif /* __GHEX_H__ */

@@ -55,7 +55,8 @@ typedef struct _GtkHex GtkHex;
 typedef struct _GtkHexClass GtkHexClass;
 typedef struct _GtkHexChangeData GtkHexChangeData;
 
-struct _GtkHex {
+struct _GtkHex
+{
 	GtkFixed fixed;
 	
 	HexDocument *document;
@@ -67,9 +68,6 @@ struct _GtkHex {
 
 	GtkAdjustment *adj;
 
-#if 0	
-	GdkFont *disp_font;
-#endif
 	PangoFontMetrics *disp_font_metrics;
 	PangoFontDescription *font_desc;
 
@@ -106,7 +104,8 @@ struct _GtkHex {
 	guint clipboard_data_len;
 };
 
-struct _GtkHexClass {
+struct _GtkHexClass
+{
 	GtkFixedClass parent_class;
 	
 	void (*cursor_moved)(GtkHex *);

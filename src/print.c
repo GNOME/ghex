@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* print.c - print a HexDocument
 
-   Copyright (C) 1998 - 2001 Free Software Foundation
+   Copyright (C) 1998 - 2002 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -208,7 +208,7 @@ static gboolean print_verify_fonts()
 		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
 										  "GHex is unable to print without this font installed."),
 										test_font_name);
-		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), errstr);
+		display_error_dialog (ghex_window_get_active(), errstr);
 		g_free(errstr);
 		return FALSE;
 	}
@@ -222,7 +222,7 @@ static gboolean print_verify_fonts()
 		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
 										  "GHex is unable to print without this font installed."),
 										test_font_name);
-		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), errstr);
+		display_error_dialog (ghex_window_get_active(), errstr);
 		g_free(errstr);
 		return FALSE;
 	}

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ui.c - main menus and callbacks; utility functions
 
-   Copyright (C) 1998 - 2001 Free Software Foundation
+   Copyright (C) 1998 - 2002 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -23,25 +23,22 @@
 
 #include <config.h>
 #include <gnome.h>
+
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprintui/gnome-print-dialog.h>
 #include <libgnomeprintui/gnome-print-master-preview.h>
+
 #include "ghex.h"
 
-static void open_selected_file(GtkWidget *);
-static void save_selected_file(GtkWidget *, GtkWidget *view);
+static void open_selected_file(GtkWidget *w, gpointer user_data);
+static void save_selected_file(GtkWidget *w, GHexWindow *win);
 static void export_html_selected_file(GtkWidget *w, GtkHex *view);
-static void ghex_print(gboolean preview);
+static void ghex_print(GtkHex *gh, gboolean preview);
 static gboolean ghex_print_run_dialog(GHexPrintJobInfo *pji);
 static void ghex_print_preview_real(GHexPrintJobInfo *pji);
 
 /* callbacks to nullify widget pointer after a delete event */
 static void about_destroy_cb(GtkObject *, GtkWidget **);
-
-/* callbacks for global menus */
-#ifdef SNM
-static void quit_app_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-#endif
 
 static void open_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
@@ -56,58 +53,8 @@ static void converter_cb (BonoboUIComponent *uic, gpointer user_data, const gcha
 static void char_table_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-
-#if 0
-GnomeUIInfo file_menu[] = {
-	GNOMEUIINFO_MENU_OPEN_ITEM(open_cb, NULL),
-	/* keep in sync: main.c/child_changed_cb: setting sensitivity of items 1 - 3 */
-	GNOMEUIINFO_MENU_SAVE_ITEM(save_cb, NULL),
-	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb, NULL),
-	GNOMEUIINFO_ITEM(N_("Export to _HTML..."), N_("Export data to HTML source"), export_html_cb, NULL),
-	GNOMEUIINFO_MENU_REVERT_ITEM(revert_cb, NULL),
-	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_MENU_PRINT_ITEM(print_cb, NULL),
-	GNOMEUIINFO_ITEM(N_("Print pre_view..."), N_("Preview printed data"), print_preview_cb, NULL),
-	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_MENU_CLOSE_ITEM(close_cb, NULL),
-	GNOMEUIINFO_MENU_EXIT_ITEM(quit_app_cb, NULL),
-	GNOMEUIINFO_END
-};
-
-GnomeUIInfo settings_menu[] = {
-	GNOMEUIINFO_MENU_PREFERENCES_ITEM(prefs_cb,NULL),
-	GNOMEUIINFO_END
-};
-
-GnomeUIInfo tools_menu[] = {
-	GNOMEUIINFO_ITEM_NONE(N_("Con_verter..."),
-						  N_("Open base conversion dialog"), converter_cb),
-	GNOMEUIINFO_ITEM_NONE(N_("Character _Table..."),
-						  N_("Show the character table"), char_table_cb),
-	GNOMEUIINFO_END
-};
-
-
-GnomeUIInfo empty_menu[] = {
-	GNOMEUIINFO_END
-};
-
-GnomeUIInfo help_menu[] = {
-	GNOMEUIINFO_HELP("ghex"),
-	GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb,NULL),
-	GNOMEUIINFO_END
-};
-
-GnomeUIInfo main_menu[] = {
-	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
-	GNOMEUIINFO_SUBTREE(N_("_Tools"), tools_menu),
-	GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menu),
-	GNOMEUIINFO_MENU_FILES_TREE(empty_menu),
-	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
-	GNOMEUIINFO_END
-};
-
-#endif
+static void DnDNewWindow_cb(BonoboUIComponent *uic, gpointer user_data, const char *cname);
+static void DnDCancel_cb(BonoboUIComponent *uic, gpointer user_data, const char *cname);
 
 guint group_type[3] = {
 	GROUP_BYTE,
@@ -129,8 +76,6 @@ gchar *search_type_label[] = {
 
 GtkWidget *file_sel = NULL;
 
-
-/* Changes for Gnome 2.0 -- SnM */
 BonoboUIVerb ghex_verbs [] = {
 	BONOBO_UI_VERB ("FileOpen", open_cb),
 	BONOBO_UI_VERB ("FileSave", save_cb),
@@ -153,42 +98,70 @@ BonoboUIVerb ghex_verbs [] = {
 	BONOBO_UI_VERB ("Preferences", prefs_cb),
 	BONOBO_UI_VERB ("About", about_cb),
 	BONOBO_UI_VERB ("Help", help_cb),
+	BONOBO_UI_VERB ("DnDNewWindow", DnDNewWindow_cb),
+	BONOBO_UI_VERB ("DnDCancel", DnDCancel_cb),
 	BONOBO_UI_VERB_END
 };
 
-void cancel_cb(GtkWidget *w, GtkWidget *me)
+static void
+DnDNewWindow_cb(BonoboUIComponent *uic, gpointer user_data, const char *cname)
+{
+	GHexWindow *win = GHEX_WINDOW(user_data);
+	gchar **uri;
+
+	uri = win->uris_to_open;
+	while(*uri) {
+		GtkWidget *newwin;
+		if(!g_ascii_strncasecmp("file:", *uri, 5)) {
+			newwin = ghex_window_new_from_file((*uri) + 5);
+			gtk_widget_show(newwin);
+		}
+		uri++;
+	}
+	g_strfreev(win->uris_to_open);
+	win->uris_to_open = NULL;
+}
+
+static void
+DnDCancel_cb(BonoboUIComponent *uic, gpointer user_data, const char *cname)
+{
+        GHexWindow *win = GHEX_WINDOW(user_data);
+        g_strfreev(win->uris_to_open);
+        win->uris_to_open = NULL;	
+}
+
+void
+cancel_cb(GtkWidget *w, GtkWidget *me)
 {
 	gtk_widget_hide(me);
 }
 
-gint delete_event_cb(GtkWidget *w, GdkEventAny *e)
+gint
+delete_event_cb(GtkWidget *w, GdkEventAny *e)
 {
 	gtk_widget_hide(w);
 	
 	return TRUE;
 }
 
-gint ask_user(GnomeMessageBox *message_box)
+gint
+ask_user(GnomeMessageBox *message_box)
 {
 	gtk_window_set_modal(GTK_WINDOW(message_box), TRUE);	
 
 	return gnome_dialog_run_and_close(GNOME_DIALOG(message_box));
 }
 
-GtkWidget *create_button(GtkWidget *window, const gchar *type, gchar *text)
+GtkWidget *
+create_button(GtkWidget *window, const gchar *type, gchar *text)
 {
 	GtkWidget *button, *pixmap, *label, *hbox;
 	
 	hbox = gtk_hbox_new(FALSE, 2);
 	
-#ifdef SNM
-	pixmap = gnome_stock_pixmap_widget(window, type);
-	gtk_box_pack_start(GTK_BOX(hbox), pixmap, FALSE, FALSE, 1);
-#endif	
-
 	label = gtk_label_new_with_mnemonic(text);
 
-	pixmap = gtk_image_new_from_stock (type, GTK_ICON_SIZE_BUTTON );
+	pixmap = gtk_image_new_from_stock (type, GTK_ICON_SIZE_BUTTON);
 
 	gtk_box_pack_start(GTK_BOX(hbox), pixmap, FALSE, FALSE, 1);
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 1);
@@ -204,15 +177,19 @@ GtkWidget *create_button(GtkWidget *window, const gchar *type, gchar *text)
 	return button;
 }
 
-void create_dialog_title(GtkWidget *window, gchar *title)
+void
+create_dialog_title(GtkWidget *window, gchar *title)
 {
 	gchar *full_title;
+	GHexWindow *win;
 
 	if(!window)
 		return;
 
-	if(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)))
-		full_title = g_strdup_printf(title, bonobo_mdi_child_get_name (bonobo_mdi_get_active_child (BONOBO_MDI (mdi))));
+	win = ghex_window_get_active();
+
+	if(win != NULL && win->gh != NULL)
+		full_title = g_strdup_printf(title, win->gh->document->path_end);
 	else
 		full_title = g_strdup_printf(title, "");
 
@@ -225,13 +202,14 @@ void create_dialog_title(GtkWidget *window, gchar *title)
 /*
  * callbacks for global menus
  */
-static void about_destroy_cb(GtkObject *obj, GtkWidget **about)
+static void
+about_destroy_cb(GtkObject *obj, GtkWidget **about)
 {
 	*about = NULL;
 }
 
-/* Changed the function parameters -- SnM */
-static void about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+static void
+about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	static GtkWidget *about = NULL;
 	
@@ -255,7 +233,8 @@ static void about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* v
 		gdk_window_raise(GTK_WIDGET(about)->window);
 }
 
-static void help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar *verbname)
+static void
+help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar *verbname)
 {
 	GError *error = NULL;
 
@@ -280,61 +259,52 @@ static void help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar *ve
 	}
 }
 
-/* Changed the function parameters -- SnM */
-void quit_app_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+quit_app_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	gboolean ret;
-
-	if (!bonobo_mdi_remove_all (BONOBO_MDI (mdi), FALSE)) {
-		return;
-	}
-
-	/* Got this from gedit2. 
-	 * We need to disconnect the signal because mdi "destroy" event is
-	 * connected to quit_app_cb.
-	 * 18th Jan 2001 -- SnM
-	 */
-	gtk_signal_disconnect_by_func (GTK_OBJECT (mdi),
-			GTK_SIGNAL_FUNC (quit_app_cb), NULL);
-
-	save_configuration();
-
-	g_object_unref (G_OBJECT (mdi));
-	gtk_main_quit();
-
-#ifdef SNM 
-	if(bonobo_mdi_remove_all(mdi, FALSE))
-		gtk_object_destroy(GTK_OBJECT(mdi));
-#endif
-
+	/* TODO: need to kill all windows */
+	bonobo_main_quit();
 }
 
-/* Changed the function parameters -- SnM */
-static void save_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+static void
+save_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
+	GHexWindow *win = GHEX_WINDOW(user_data);
 	HexDocument *doc;
 
-	if (bonobo_mdi_get_active_child ( BONOBO_MDI (mdi)) == NULL)
+	if(win->gh)
+		doc = win->gh->document;
+	else
+		doc = NULL;
+
+	if(doc == NULL)
 		return;
 
-	doc = HEX_DOCUMENT (bonobo_mdi_get_active_child ( BONOBO_MDI (mdi)));
 	if(!hex_document_write(doc))
-		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Error saving file!"));
+		display_error_dialog (win, _("Error saving file!"));
 	else {
 		gchar *flash;
 		
 		flash = g_strdup_printf(_("Saved buffer to file %s"), doc->file_name);
 
-		bonobo_window_flash (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), flash);
+		ghex_window_flash (win, flash);
 
 		g_free(flash);
 	}
 }
 
-/* Changed the function parameters -- SnM */
-static void open_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+static void
+open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
+	GHexWindow *win;
 	HexDocument *doc;
+
+	win = GHEX_WINDOW(user_data);
+
+	if(win->gh)
+		doc = win->gh->document;
+	else
+		doc = NULL;
 
 	if(file_sel && GTK_WIDGET_VISIBLE(file_sel))
 		return;
@@ -342,16 +312,15 @@ static void open_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* ve
 	if(file_sel == NULL)
 		file_sel = gtk_file_selection_new(NULL);
 
-	if (bonobo_mdi_get_active_child (BONOBO_MDI (mdi)) != NULL) {
-		doc = HEX_DOCUMENT (bonobo_mdi_get_active_child (BONOBO_MDI (mdi)));
-		gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel), doc->file_name);
-	}
+	if(doc)
+		gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel),
+										doc->file_name);
 
 	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to open"));
 	
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
 						"clicked", GTK_SIGNAL_FUNC(open_selected_file),
-						NULL);
+						win);
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
 						file_sel);
@@ -368,21 +337,28 @@ static void open_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* ve
 
 }
 
-/* Changed the function parameters -- SnM */
-static void save_as_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+static void
+save_as_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
+	GHexWindow *win = GHEX_WINDOW(user_data);
 	HexDocument *doc;
 
-	if (bonobo_mdi_get_active_child (BONOBO_MDI (mdi)) == NULL  ||
-	   (file_sel && GTK_WIDGET_VISIBLE(file_sel)))
+	if(win->gh)
+		doc = win->gh->document;
+	else
+		doc = NULL;
+
+	if(doc == NULL)
+		return;
+
+	if (file_sel && GTK_WIDGET_VISIBLE(file_sel))
 		return;
 	
-	doc = HEX_DOCUMENT (bonobo_mdi_get_active_child (BONOBO_MDI(mdi)));
-
 	if(file_sel == NULL)
 		file_sel = gtk_file_selection_new(NULL);
 
-	gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel), doc->file_name);
+	gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel),
+									doc->file_name);
 
 	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to save buffer as"));
 	
@@ -390,7 +366,7 @@ static void save_as_cb (BonoboUIComponent *uic, gpointer user_data, const gchar*
 	
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
 						"clicked", GTK_SIGNAL_FUNC(save_selected_file),
-						bonobo_mdi_get_active_view (BONOBO_MDI (mdi)));
+						win);
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
 						file_sel);
@@ -400,28 +376,41 @@ static void save_as_cb (BonoboUIComponent *uic, gpointer user_data, const gchar*
 	gtk_widget_show (file_sel);
 }
 
-/* Changed the function parameters -- SnM */
-static void print_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+static void
+print_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	ghex_print(FALSE);
-}
+	GHexWindow *win = GHEX_WINDOW(user_data);
 
-/* Changed the function parameters -- SnM */
-static void print_preview_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
-{
-	ghex_print(TRUE);
-}
-
-/* Changed the function parameters -- SnM */
-static void export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
-{
-	HexDocument *doc;
-
-	if (bonobo_mdi_get_active_child (BONOBO_MDI(mdi)) == NULL ||
-	   (file_sel && GTK_WIDGET_VISIBLE(file_sel)))
+	if(win->gh == NULL)
 		return;
 
-	doc = HEX_DOCUMENT (bonobo_mdi_get_active_child (BONOBO_MDI(mdi)));
+	ghex_print(win->gh, FALSE);
+}
+
+static void
+print_preview_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	GHexWindow *win = GHEX_WINDOW(user_data);
+
+	if(win->gh == NULL)
+		return;
+
+	ghex_print(win->gh, TRUE);
+}
+
+static void
+export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	GHexWindow *win = GHEX_WINDOW(user_data);
+	HexDocument *doc;
+
+	if(win->gh)
+		doc = win->gh->document;
+	else
+		doc = NULL;
+
+	if(doc == NULL)
+		return;
 
 	if(file_sel == NULL)
 		file_sel = gtk_file_selection_new(NULL);
@@ -434,7 +423,7 @@ static void export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gc
 	
 	gtk_signal_connect(GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
 						"clicked", GTK_SIGNAL_FUNC(export_html_selected_file),
-						bonobo_mdi_get_active_view (BONOBO_MDI(mdi)));
+						win);
 	gtk_signal_connect(GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
 						file_sel);
@@ -442,7 +431,8 @@ static void export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gc
 	gtk_widget_show(file_sel);
 }
 
-static void export_html_selected_file(GtkWidget *w, GtkHex *view)
+static void
+export_html_selected_file(GtkWidget *w, GtkHex *view)
 {
 	gchar *html_path = g_strdup(gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel)));
 	gchar *sep, *base_name;
@@ -465,7 +455,7 @@ static void export_html_selected_file(GtkWidget *w, GtkHex *view)
 		return;
 	}
 
-	doc = HEX_DOCUMENT(bonobo_mdi_get_child_from_view(GTK_WIDGET(view)));
+	doc = view->document;
 
 	hex_document_export_html(doc, html_path, base_name, 0, doc->file_size,
 							 view->cpl, view->vis_lines, view->group_type);
@@ -478,35 +468,66 @@ static void export_html_selected_file(GtkWidget *w, GtkHex *view)
 /* Defined in converter.c: used by close_cb and converter_cb */
 
 extern GtkWidget *get;
-/* Changed the function parameters -- SnM */
-static void close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+
+static void
+close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	BonoboWindow *win;
+	GHexWindow *win = GHEX_WINDOW(user_data);
+	static char msg[MESSAGE_LEN + 1];
+	GtkWidget *mbox;
+	gint reply;
+	GtkWidget *save_btn;
+	HexDocument *doc;
 
-	if(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)) == NULL)
+	if(win->gh == NULL) {
+		gtk_widget_destroy(GTK_WIDGET(win));
 		return;
+	}
 
-	bonobo_mdi_remove_child( BONOBO_MDI (mdi), bonobo_mdi_get_active_child (BONOBO_MDI (mdi)), FALSE);
+	doc = win->gh->document;
+	
+	g_snprintf(msg, MESSAGE_LEN,
+			   _("File %s has changed since last save.\n"
+				 "Do you want to save changes?"),
+			   doc->path_end);
+	
+	if(hex_document_has_changed(doc)) {
+		mbox = gtk_message_dialog_new(GTK_WINDOW(win),
+				GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
+				GTK_MESSAGE_QUESTION,
+				GTK_BUTTONS_NONE,
+				msg);
+		
+		save_btn = create_button(mbox, GTK_STOCK_NO, _("Do_n't save"));
+		gtk_widget_show (save_btn);
+		gtk_dialog_add_action_widget(GTK_DIALOG(mbox), save_btn, GTK_RESPONSE_NO);
+		gtk_dialog_add_button(GTK_DIALOG(mbox), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+		gtk_dialog_add_button(GTK_DIALOG(mbox), GTK_STOCK_SAVE, GTK_RESPONSE_YES);
+		gtk_dialog_set_default_response(GTK_DIALOG(mbox), GTK_RESPONSE_YES);
+		gtk_window_set_resizable(GTK_WINDOW(mbox), FALSE);
 
-	/* Added on 18th Jan 2001 -- SnM */
-	ghex_mdi_set_active_window_verbs_sensitivity (BONOBO_MDI (mdi));
+		reply = gtk_dialog_run(GTK_DIALOG(mbox));
 
-	win = bonobo_mdi_get_active_window (BONOBO_MDI (mdi));
+		gtk_widget_destroy(mbox);
+		
+		if(reply == GTK_RESPONSE_YES)
+			hex_document_write(doc);
+		else if(reply == GTK_RESPONSE_CANCEL)
+			return;
+	}	
 
-	if (win)
-		bonobo_window_show_status (win, " ");
+	/* this implicitly destroys all views including this one */
+	g_object_unref(G_OBJECT(doc));
 
 	/* If we have created the converter window disable the 
 	 * "Get cursor value" button
 	 */
 	if (get)
 		gtk_widget_set_sensitive(get, FALSE);
-	
-
 }
 
-/* Changed the function parameters -- SnM */
-static void converter_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+static void
+converter_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	if(!converter)
 		converter = create_converter();
@@ -517,14 +538,14 @@ static void converter_cb (BonoboUIComponent *uic, gpointer user_data, const gcha
 	}
 	gdk_window_raise(converter->window->window);
 
-	if (!bonobo_mdi_get_active_view(BONOBO_MDI(mdi)))
+	if (!ghex_window_get_active())
 		gtk_widget_set_sensitive(get, FALSE);
 	else
 		gtk_widget_set_sensitive(get, TRUE);
 }
 
-/* Changed the function parameters -- SnM */
-static void char_table_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+static void
+char_table_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	if(!char_table)
 		char_table = create_char_table();
@@ -537,43 +558,11 @@ static void char_table_cb (BonoboUIComponent *uic, gpointer user_data, const gch
 }
 
 
-#ifdef SNM
 /* Changed the function parameters -- SnM */
 static
 void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	GtkWidget *dlg;
-	gint ret;
-
-	dlg = ghex_preferences_dialog_new (
-			GTK_WINDOW (bonobo_mdi_get_active_window (BONOBO_MDI (mdi))));
-
-	do
-	{
-		ret = gtk_dialog_run (GTK_DIALOG (dlg));
-
-		switch (ret)
-		{
-			case GTK_RESPONSE_OK:
-				break;
-			case GTK_RESPONSE_HELP:
-				/* FIXME -- SnM */
-				break;
-			default:
-				gtk_widget_hide (dlg);
-		}
-
-	} while (GTK_WIDGET_VISIBLE (dlg));
-
-	gtk_widget_destroy (dlg);	
-}
-#endif
-
-
-/* Changed the function parameters -- SnM */
-static
-void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
-{
+	/* TODO: why this? */
 //	if(!prefs_ui)
 		prefs_ui = create_prefs_dialog();
 
@@ -586,76 +575,99 @@ void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 }
 
 
-/* Changed the function parameters -- SnM */
-static void revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+static void
+revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	static gchar msg[MESSAGE_LEN + 1];
-	
-	HexDocument *doc;
+	GHexWindow *win;
+   	HexDocument *doc;
 	GnomeMessageBox *mbox;
 	gint reply;
 	
-	if(bonobo_mdi_get_active_child (BONOBO_MDI (mdi))) {
-		doc = HEX_DOCUMENT (bonobo_mdi_get_active_child (BONOBO_MDI (mdi)));
-		if(doc->changed) {
-			g_snprintf(msg, MESSAGE_LEN,
-					   _("Really revert file %s?"),
-					   bonobo_mdi_child_get_name (BONOBO_MDI_CHILD (doc)));
-			mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(msg,
-														   GNOME_MESSAGE_BOX_QUESTION,
-														   GNOME_STOCK_BUTTON_YES,
-														   GNOME_STOCK_BUTTON_NO,
-														   NULL));
-			gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
-			reply = ask_user(mbox);
-			
-			if(reply == 0) {
-				gchar *flash;
+	win = GHEX_WINDOW(user_data);
+	if(win->gh)
+		doc = win->gh->document;
+	else
+		doc = NULL;
 
-				hex_document_read(doc);
-				flash = g_strdup_printf(_("Reverted buffer from file %s"), HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)))->file_name);
-				bonobo_window_flash(bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), flash);
-				g_free(flash);
-			}
+	if(doc == NULL)
+		return;
+
+	if(doc->changed) {
+		g_snprintf(msg, MESSAGE_LEN,
+				   _("Really revert file %s?"),
+				   doc->path_end);
+		mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(msg,
+													   GNOME_MESSAGE_BOX_QUESTION,
+													   GNOME_STOCK_BUTTON_YES,
+													   GNOME_STOCK_BUTTON_NO,
+													   NULL));
+		gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
+		reply = ask_user(mbox);
+		
+		if(reply == 0) {
+			gchar *flash;
+
+			hex_document_read(doc);
+			flash = g_strdup_printf(_("Reverted buffer from file %s"), doc->file_name);
+			ghex_window_flash(win, flash);
+			ghex_window_set_sensitivity(win);
+			g_free(flash);
 		}
 	}
 }
 
-static void open_selected_file(GtkWidget *w)
+static void
+open_selected_file(GtkWidget *w, gpointer user_data)
 {
 	HexDocument *new_doc;
+	GtkWidget *win;
 	gchar *flash;
-	
-	if((new_doc = hex_document_new((gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel))))) != NULL) {
-		bonobo_mdi_add_child(BONOBO_MDI (mdi), BONOBO_MDI_CHILD(new_doc));
-		bonobo_mdi_add_view(BONOBO_MDI (mdi), BONOBO_MDI_CHILD(new_doc));
-		flash = g_strdup_printf(_("Loaded file %s"), new_doc->file_name);
-		bonobo_window_flash(bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), flash);
-		g_free(flash);
 
-		/* If we have created the converter window enable the 
-	 	 * "Get cursor value" button
-	 	 */
+	win = GTK_WIDGET(user_data);
+	
+	if(GHEX_WINDOW(win)->gh != NULL) {
+		win = ghex_window_new_from_file(gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel)));
+		if(win != NULL)
+			gtk_widget_show(win);
+	}
+	else {
+		if(!ghex_window_load(GHEX_WINDOW(win),
+							 gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel))))
+			win = NULL;
+	}
+
+	if(win != NULL) {
+		flash = g_strdup_printf(_("Loaded file %s"),
+								GHEX_WINDOW(win)->gh->document->file_name);
+		ghex_window_flash(GHEX_WINDOW(win), flash);
+		g_free(flash);
 		if (get)
 			gtk_widget_set_sensitive(get, TRUE);
-	
 	}
 	else
-		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Can not open file!"));
+		display_error_dialog (ghex_window_get_active(), _("Can not open file!"));
 
 	gtk_widget_destroy(GTK_WIDGET(file_sel));
 	file_sel = NULL;
 }
 
-static void save_selected_file(GtkWidget *w, GtkWidget *view)
+static void
+save_selected_file(GtkWidget *w, GHexWindow *win)
 {
 	HexDocument *doc;
 	FILE *file;
 	const gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
 	gchar *flash;
 	int i;
+
+	if(win->gh)
+		doc = win->gh->document;
+	else
+		doc = NULL;
 	
-	doc = HEX_DOCUMENT(bonobo_mdi_get_child_from_view(view));
+	if(doc == NULL)
+		return;
 	
 	if((file = fopen(filename, "w")) != NULL) {
 		if(hex_document_write_to_file(doc, file)) {
@@ -673,18 +685,18 @@ static void save_selected_file(GtkWidget *w, GtkWidget *view)
 			else
 				doc->path_end = doc->file_name;
 			
-			bonobo_mdi_child_set_name(BONOBO_MDI_CHILD(doc), doc->path_end);
+			ghex_window_set_doc_name(win, doc->path_end);
 
-			flash = g_strdup_printf(_("Saved buffer to file %s"), HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)))->file_name);
-			bonobo_window_flash(bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), flash);
+			flash = g_strdup_printf(_("Saved buffer to file %s"), doc->file_name);
+			ghex_window_flash(win, flash);
 			g_free(flash);
 		}
 		else
-			display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Error saving file!"));
+			display_error_dialog (win, _("Error saving file!"));
 		fclose(file);
 	}
 	else
-		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Can't open file for writing!"));
+		display_error_dialog (win, _("Can't open file for writing!"));
 	
 	gtk_widget_destroy(GTK_WIDGET(file_sel));
 	file_sel = NULL;
@@ -698,22 +710,15 @@ to display the print dialog.
  * Prints or previews the current document.
  **/
 static void
-ghex_print(gboolean preview)
+ghex_print(GtkHex *gh, gboolean preview)
 {
 	GHexPrintJobInfo *pji;
 	HexDocument *doc;
-	GtkWidget *active_view;
 	gboolean cancel = FALSE;
 
-	if (!bonobo_mdi_get_active_child(BONOBO_MDI(mdi)))
-		return;
+	doc = gh->document;
 
-	doc = HEX_DOCUMENT(bonobo_mdi_get_active_child(BONOBO_MDI(mdi)));
-	active_view = bonobo_mdi_get_active_view (BONOBO_MDI (mdi));
-	if (!active_view || !doc)
-		return;
-
-	pji = ghex_print_job_info_new(doc, GTK_HEX(active_view)->group_type);
+	pji = ghex_print_job_info_new(doc, gh->group_type);
 
 	if (!pji)
 		return;
@@ -745,7 +750,6 @@ ghex_print(gboolean preview)
 		gnome_print_master_print(pji->master);
 
 	ghex_print_job_info_destroy(pji);
-
 }
 
 /**
@@ -762,9 +766,9 @@ ghex_print_run_dialog(GHexPrintJobInfo *pji)
 	GtkWidget *dialog;
 	gint res;
 
-	dialog = (GnomeDialog *) gnome_print_dialog_new(
-			(const char *) _("Print Hex Document"),
-			GNOME_PRINT_DIALOG_RANGE);
+	dialog = gnome_print_dialog_new(
+			     (const char *) _("Print Hex Document"),
+			     GNOME_PRINT_DIALOG_RANGE);
 
 	gnome_print_dialog_construct_range_page((GnomePrintDialog *)dialog,
 			GNOME_PRINT_RANGE_ALL | GNOME_PRINT_RANGE_RANGE,
@@ -811,7 +815,7 @@ ghex_print_run_dialog(GHexPrintJobInfo *pji)
 static void
 ghex_print_preview_real(GHexPrintJobInfo *pji)
 {
-	GnomePrintMasterPreview *preview;
+	GtkWidget *preview;
 	gchar *title;
 
 	title = g_strdup_printf(_("GHex (%s): Print Preview"),
@@ -819,15 +823,11 @@ ghex_print_preview_real(GHexPrintJobInfo *pji)
 	preview = gnome_print_master_preview_new(pji->master, title);
 	g_free(title);
 
-	gtk_widget_show(GTK_WIDGET(preview));
+	gtk_widget_show(preview);
 }
 
-/*
- * Use this instead of gnome_app_error
- * Jan 19th 2001 -- SnM
- */
-
-void display_error_dialog (BonoboWindow *win, const gchar *msg)
+void
+display_error_dialog (GHexWindow *win, const gchar *msg)
 {
 	GtkWidget *error_dlg;
 
@@ -844,4 +844,15 @@ void display_error_dialog (BonoboWindow *win, const gchar *msg)
 	gtk_window_set_resizable (GTK_WINDOW (error_dlg), FALSE);
 	gtk_dialog_run (GTK_DIALOG (error_dlg));
 	gtk_widget_destroy (error_dlg);
+}
+
+void
+update_dialog_titles()
+{
+	if(jump_dialog)
+		create_dialog_title(jump_dialog->window, _("GHex (%s): Jump To Byte"));
+	if(replace_dialog)
+      	create_dialog_title(replace_dialog->window, _("GHex (%s): Find & Replace Data")); 
+	if(find_dialog)
+		create_dialog_title(find_dialog->window, _("GHex (%s): Find Data"));
 }
