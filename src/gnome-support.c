@@ -25,13 +25,9 @@
 #include "ghex.h"
 
 int restarted = 0;
-char *just_exit = NULL;
 const struct poptOption options[] = {
-  {"discard-session", '\0', POPT_ARG_STRING, &just_exit, 0, N_("Discard session"), N_("ID")},
   {NULL, '\0', 0, NULL, 0}
 };
-
-gchar *open_files = NULL;
 
 /* Session management */
 
@@ -42,17 +38,14 @@ int save_state (GnomeClient        *client,
                 GnomeInteractStyle  interact_style,
                 gint                fast,
                 gpointer            client_data) {
-	gchar *session_id;
-	gchar files[2048];       /* I hope this does for most requirements, one could overflow it, however */
-	gchar *argv[3];
-	gint x, y, w, h;
-	
-	session_id = gnome_client_get_id (client);
+	gchar *prefix= gnome_client_get_config_prefix (client);
+	gchar *argv[]= { "rm", "-r", NULL };
 	
 	/* Save the state using gnome-config stuff. */
-	gnome_config_push_prefix (gnome_client_get_config_prefix (client));
+	gnome_config_push_prefix (prefix);
 	
 	gnome_mdi_save_state(mdi, "Session");
+	gnome_config_set_bool ("General/saved_session", TRUE);
 	
 	gnome_config_pop_prefix();
 	gnome_config_sync();
@@ -60,29 +53,24 @@ int save_state (GnomeClient        *client,
 	/* Here is the real SM code. We set the argv to the parameters needed
 	   to restart/discard the session that we've just saved and call
 	   the gnome_session_set_*_command to tell the session manager it. */
-	argv[0] = (char*) client_data;
-	argv[1] = "--discard-session";
-	argv[2] = gnome_client_get_config_prefix (client);
+	argv[2] = gnome_config_get_real_path (prefix);
 	gnome_client_set_discard_command (client, 3, argv);
 	
 	/* Set commands to clone and restart this application.  Note that we
 	   use the same values for both -- the session management code will
 	   automatically add whatever magic option is required to set the
 	   session id on startup.  */
+	argv[0] = (char*) client_data;
 	gnome_client_set_clone_command (client, 1, argv);
 	gnome_client_set_restart_command (client, 1, argv);
 	
 	return TRUE;
 }
 
-void
-discard_session (gchar *arg)
+gint
+client_die (GnomeClient *client, gpointer client_data)
 {
-    /* This discards the saved information about this client.  */
-    gnome_config_clean_file (arg);
-    gnome_config_sync ();
-    
-    /* We really need not connect, because we just exit after the
-       gnome_init call.  */
-    gnome_client_disable_master_connection ();
+	gtk_exit (0);
+	
+	return FALSE;
 }

@@ -1,3 +1,15 @@
+1998-12-30  Carsten Schaar  <nhadcasc@fs-maphy.uni-hannover.de>
+
+	* main.c (main): Added master client's connection to 'die' signal.
+	Changed how saved sessions are restored.
+
+	* gnome-support.h: Removed unused declarations.
+
+	* gnome-support.c: Removed unused stuff.  Uses 'rm' to discard
+ 	session information.
+	(client_die): New function.
+
+
 1998-12-26  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* gtkhex.c (gtk_hex_destroy): make it gtk_hex_finalize().

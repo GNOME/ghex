@@ -34,25 +34,23 @@ GnomeMDI *mdi;
 gint mdi_mode = GNOME_MDI_DEFAULT_MODE;
 
 int main(int argc, char **argv) {
-  GnomeClient *client;
-  HexDocument *doc;
-  char **cl_files;
-  poptContext ctx;
-  int i;
+	GnomeClient *client;
+	HexDocument *doc;
+	char **cl_files;
+	poptContext ctx;
 
-  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-  textdomain(PACKAGE);
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	textdomain(PACKAGE);
 
-  gnome_init_with_popt_table("ghex", VERSION, argc, argv, options, 0, &ctx);
+	gnome_init_with_popt_table("ghex", VERSION, argc, argv, options, 0, &ctx);
 
-  client = gnome_master_client();
+	client = gnome_master_client();
 
-  gtk_signal_connect (GTK_OBJECT (client), "save_yourself",
-		      GTK_SIGNAL_FUNC (save_state), (gpointer) argv[0]);
+	gtk_signal_connect (GTK_OBJECT (client), "save_yourself",
+						GTK_SIGNAL_FUNC (save_state), (gpointer) argv[0]);
+	gtk_signal_connect (GTK_OBJECT (client), "die",
+						GTK_SIGNAL_FUNC (client_die), NULL);
 
-  if(just_exit) {
-    discard_session(just_exit);
-  } else {
     mdi = GNOME_MDI(gnome_mdi_new("ghex", "GHex"));
 
     /* set up MDI menus */
@@ -76,21 +74,19 @@ int main(int argc, char **argv) {
 
     /* restore state from previous session */
     if (GNOME_CLIENT_CONNECTED (client)) {
-      /* Get the client, that may hold the configuration for this
-         program.  */
-      GnomeClient *cloned= gnome_cloned_client ();
 
-      if (cloned) {
-        restarted = 1;
+		gnome_config_push_prefix (gnome_client_get_config_prefix (client));
 
-        gnome_config_push_prefix (gnome_client_get_config_prefix (cloned));
-        gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreator)hex_document_new_from_config);
-        gnome_config_pop_prefix ();
-      }
-    }
+		restarted= gnome_config_get_bool ("General/saved_session=0");
+		
+		if (restarted)
+			gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreator)hex_document_new_from_config);
 
-	if(!restarted)
-		  gnome_mdi_open_toplevel(mdi);
+		gnome_config_pop_prefix ();
+	}
+
+	if (!restarted)
+		gnome_mdi_open_toplevel(mdi);
 	
     cl_files = poptGetArgs(ctx);
 	
@@ -106,7 +102,6 @@ int main(int argc, char **argv) {
 	
     /* and here we go... */
     gtk_main();
-  }
 
-  return 0;
+	return 0;
 }

@@ -28,8 +28,6 @@
 #include <getopt.h>
 
 extern int restarted;
-extern char *just_exit;
-extern int os_x, os_y, os_w, os_h;
 extern const struct poptOption options[];
 
 int save_state      (GnomeClient        *client,
@@ -39,10 +37,7 @@ int save_state      (GnomeClient        *client,
                      GnomeInteractStyle  interact_style,
                      gint                fast,
                      gpointer            client_data);
-void connect_client (GnomeClient *client, 
-                     gint         was_restarted, 
-                     gpointer     client_data);
 
-void discard_session (gchar *id);
+gint client_die     (GnomeClient *client, gpointer client_data);
 
 #endif
