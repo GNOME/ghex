@@ -148,8 +148,8 @@ GtkWidget *create_button   (GtkWidget *, const gchar *, gchar *);
 void save_configuration    (void);
 void load_configuration    (void);
 
-/* hide the widget passed as user data after delete event or click on a cancel button */
-gint delete_event_cb(GtkWidget *, gpointer, GtkWidget *);
+/* hiding widgets on cancel or delete_event */
+gint delete_event_cb(GtkWidget *, GdkEventAny *);
 void cancel_cb(GtkWidget *, GtkWidget *);
 
 /* session managment */

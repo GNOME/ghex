@@ -116,9 +116,9 @@ void cancel_cb(GtkWidget *w, GtkWidget *me)
 	gtk_widget_hide(me);
 }
 
-gint delete_event_cb(GtkWidget *w, gpointer who_cares, GtkWidget *me)
+gint delete_event_cb(GtkWidget *w, GdkEventAny *e)
 {
-	gtk_widget_hide(me);
+	gtk_widget_hide(w);
 	
 	return TRUE;
 }
@@ -378,6 +378,7 @@ static void prefs_cb(GtkWidget *w)
 	if(!prefs_ui)
 		prefs_ui = create_prefs_dialog();
 
+	gnome_dialog_set_default(GNOME_DIALOG(prefs_ui->pbox), 2);
 	if(!GTK_WIDGET_VISIBLE(prefs_ui->pbox)) {
 		gtk_window_position (GTK_WINDOW(prefs_ui->pbox), GTK_WIN_POS_MOUSE);
 		gtk_widget_show(GTK_WIDGET(prefs_ui->pbox));

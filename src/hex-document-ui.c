@@ -157,6 +157,7 @@ static void find_cb(GtkWidget *w) {
 
 	if(!GTK_WIDGET_VISIBLE(find_dialog->window)) {
 		gtk_window_position (GTK_WINDOW(find_dialog->window), GTK_WIN_POS_MOUSE);
+		gtk_window_set_default(GTK_WINDOW(find_dialog->window), find_dialog->f_next);
 		gtk_widget_show(find_dialog->window);
 	}
 	gdk_window_raise(find_dialog->window->window);
@@ -168,6 +169,7 @@ static void replace_cb(GtkWidget *w) {
 
 	if(!GTK_WIDGET_VISIBLE(replace_dialog->window)) {
 		gtk_window_position (GTK_WINDOW(replace_dialog->window), GTK_WIN_POS_MOUSE);
+		gtk_window_set_default(GTK_WINDOW(replace_dialog->window), replace_dialog->next);
 		gtk_widget_show(replace_dialog->window);
 	}
 	gdk_window_raise(replace_dialog->window->window);
@@ -179,6 +181,7 @@ static void jump_cb(GtkWidget *w) {
 
 	if(!GTK_WIDGET_VISIBLE(jump_dialog->window)) {
 		gtk_window_position (GTK_WINDOW(jump_dialog->window), GTK_WIN_POS_MOUSE);
+		gtk_window_set_default(GTK_WINDOW(jump_dialog->window), jump_dialog->ok);
 		gtk_widget_show(jump_dialog->window);
 	}
 	gdk_window_raise(jump_dialog->window->window);

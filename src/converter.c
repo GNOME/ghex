@@ -39,7 +39,7 @@ Converter *create_converter() {
 
 	conv->window = gtk_dialog_new();
 	gtk_signal_connect(GTK_OBJECT(conv->window), "delete_event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), &conv->window);
+					   GTK_SIGNAL_FUNC(delete_event_cb), conv->window);
 	
 	gtk_window_set_title(GTK_WINDOW(conv->window), _("GHex: Converter"));
 	

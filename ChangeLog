@@ -1,3 +1,14 @@
+2000-03-19  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* preferences.c (create_prefs_dialog): set close_hides; don't connect
+	a callback to the destroy signal.
+	(prop_destroyed_cb): removed.
+	* ui.c (delete_event_cb): hide the widget on which the event occured
+	not the one passed as user data.
+	* *.c: adapt use of delete_event_cb to above.
+	* ui.c, hex-document-ui.c: set default dialog buttons.
+	* released version 1.1.1.
+
 2000-03-16  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* gtkhex.c (gtk_hex_key_press): added support for backspace

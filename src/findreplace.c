@@ -53,7 +53,7 @@ FindDialog *create_find_dialog()
 
 	dialog->window = gtk_dialog_new();
 	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
+					   GTK_SIGNAL_FUNC(delete_event_cb), dialog->window);
 	
 	create_dialog_title(dialog->window, _("GHex (%s): Find Data"));
 	
@@ -86,6 +86,7 @@ FindDialog *create_find_dialog()
 						dialog->f_string);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_next,
 					   TRUE, TRUE, 0);
+	GTK_WIDGET_SET_FLAGS(dialog->f_next, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_next);
 	dialog->f_prev = create_button(dialog->window, GNOME_STOCK_PIXMAP_BACK, _("Find Previous"));
 	gtk_signal_connect (GTK_OBJECT (dialog->f_prev),
@@ -93,6 +94,7 @@ FindDialog *create_find_dialog()
 						dialog->f_string);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_prev,
 					   TRUE, TRUE, 0);
+	GTK_WIDGET_SET_FLAGS(dialog->f_prev, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_prev);
 	dialog->f_close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
 	gtk_signal_connect (GTK_OBJECT (dialog->f_close),
@@ -100,6 +102,7 @@ FindDialog *create_find_dialog()
 						dialog->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_close,
 					   TRUE, TRUE, 0);
+	GTK_WIDGET_SET_FLAGS(dialog->f_close, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_close);
 	
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
@@ -119,7 +122,7 @@ ReplaceDialog *create_replace_dialog()
 
 	dialog->window = gtk_dialog_new();
 	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
+					   GTK_SIGNAL_FUNC(delete_event_cb), dialog->window);
 	
 	create_dialog_title(dialog->window, _("GHex (%s): Find & Replace Data"));
 	
@@ -157,6 +160,7 @@ ReplaceDialog *create_replace_dialog()
 						dialog->f_string);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->next,
 					   TRUE, TRUE, 0);
+	GTK_WIDGET_SET_FLAGS(dialog->next, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->next);
 	dialog->replace = gtk_button_new_with_label(_("Replace"));
 	gtk_signal_connect (GTK_OBJECT (dialog->replace),
@@ -164,6 +168,7 @@ ReplaceDialog *create_replace_dialog()
 						NULL);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->replace,
 					   TRUE, TRUE, 0);
+	GTK_WIDGET_SET_FLAGS(dialog->replace, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->replace);
 	dialog->replace_all= gtk_button_new_with_label(_("Replace All"));
 	gtk_signal_connect (GTK_OBJECT (dialog->replace_all),
@@ -171,6 +176,7 @@ ReplaceDialog *create_replace_dialog()
 						NULL);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->replace_all,
 					   TRUE, TRUE, 0);
+	GTK_WIDGET_SET_FLAGS(dialog->replace_all, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->replace_all);
 	dialog->close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
 	gtk_signal_connect (GTK_OBJECT (dialog->close),
@@ -178,6 +184,7 @@ ReplaceDialog *create_replace_dialog()
 						dialog->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->close,
 					   TRUE, TRUE, 0);
+	GTK_WIDGET_SET_FLAGS(dialog->close, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->close);
 	
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
@@ -194,7 +201,7 @@ JumpDialog *create_jump_dialog()
 
 	dialog->window = gtk_dialog_new();
 	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
+					   GTK_SIGNAL_FUNC(delete_event_cb), dialog->window);
 	
 	create_dialog_title(dialog->window, _("GHex (%s): Jump To Byte"));
 	
@@ -209,6 +216,7 @@ JumpDialog *create_jump_dialog()
 						dialog->int_entry);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->ok,
 					   TRUE, TRUE, 0);
+	GTK_WIDGET_SET_FLAGS(dialog->ok, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->ok);
 	dialog->cancel = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
 	gtk_signal_connect (GTK_OBJECT (dialog->cancel),
@@ -216,6 +224,7 @@ JumpDialog *create_jump_dialog()
 						dialog->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->cancel,
 					   TRUE, TRUE, 0);
+	GTK_WIDGET_SET_FLAGS(dialog->cancel, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->cancel);
 	
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);

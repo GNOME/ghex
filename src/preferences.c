@@ -30,7 +30,6 @@ static void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox);
 static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui);
 static void max_undo_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox);
 static void properties_modified_cb(GtkWidget *w, GnomePropertyBox *pbox);
-static void prop_destroy_cb(GtkWidget *w, PropertyUI *data);
 static void offset_cb(GtkWidget *w, PropertyUI *pui);
 
 PropertyUI *prefs_ui = NULL;
@@ -66,10 +65,9 @@ PropertyUI *create_prefs_dialog() {
 	
 	pui->pbox = GNOME_PROPERTY_BOX(gnome_property_box_new());
 	
-	gtk_signal_connect(GTK_OBJECT(pui->pbox), "destroy",
-					   GTK_SIGNAL_FUNC(prop_destroy_cb), pui);
 	gtk_signal_connect(GTK_OBJECT(pui->pbox), "apply",
 					   GTK_SIGNAL_FUNC(apply_changes_cb), pui);
+	gnome_dialog_close_hides(GNOME_DIALOG(pui->pbox), TRUE);
 	
 	vbox = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(vbox);
@@ -274,10 +272,6 @@ static void set_prefs(PropertyUI *pui) {
  */
 static void properties_modified_cb(GtkWidget *w, GnomePropertyBox *pbox) {
 	gnome_property_box_changed(pbox);
-}
-
-static void prop_destroy_cb(GtkWidget *w, PropertyUI *data) {
-	data->pbox = NULL;
 }
 
 static void max_undo_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox) {

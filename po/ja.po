@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 2000-03-16 22:39+0100\n"
+"POT-Creation-Date: 2000-03-19 09:40+0100\n"
 "PO-Revision-Date: 1999-09-17 03:46+09:00\n"
 "Last-Translator: Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
 "Language-Team: <gnome@lists.hypercore.co.jp>\n"
@@ -21,7 +21,7 @@ msgstr "GHex: 変換器"
 msgid "Binary"
 msgstr "バイナリ"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:113
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:111
 msgid "Decimal"
 msgstr "10進"
 
@@ -59,82 +59,82 @@ msgstr "%sを探す"
 msgid "Find Next"
 msgstr "grep gnome_mdi_get_menubar *.[ch"
 
-#: src/findreplace.c:90
+#: src/findreplace.c:91
 msgid "Find Previous"
 msgstr "以前を検索"
 
-#: src/findreplace.c:124 src/main.c:98
+#: src/findreplace.c:127 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): 検索およびデータの置換"
 
-#: src/findreplace.c:138
+#: src/findreplace.c:141
 #, c-format
 msgid "Replace %s"
 msgstr "%sを置換"
 
-#: src/findreplace.c:154
+#: src/findreplace.c:157
 msgid "Find next"
 msgstr "以降を検索"
 
-#: src/findreplace.c:161
+#: src/findreplace.c:165
 msgid "Replace"
 msgstr "置換"
 
-#: src/findreplace.c:168
+#: src/findreplace.c:173
 msgid "Replace All"
 msgstr "全て置換"
 
-#: src/findreplace.c:199 src/main.c:100
+#: src/findreplace.c:206 src/main.c:100
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): nバイト目にジャンプ"
 
-#: src/findreplace.c:286 src/findreplace.c:311 src/findreplace.c:367
+#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:376
 msgid "There is no active buffer to search!"
 msgstr "検索対象バッファの指定がありません!"
 
-#: src/findreplace.c:294 src/findreplace.c:319 src/findreplace.c:375
+#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:384
 msgid "There seems to be no string to search for!"
 msgstr "検索すべき文字列はないみたいです!"
 
-#: src/findreplace.c:301 src/findreplace.c:383
+#: src/findreplace.c:310 src/findreplace.c:392
 msgid "End Of File reached"
 msgstr "ファイル終端に到達"
 
-#: src/findreplace.c:327
+#: src/findreplace.c:336
 msgid "Beginning Of File reached"
 msgstr "ファイル先頭に到達"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:345
 msgid "There is no active buffer to move the cursor in!"
 msgstr "カーソルを動かすべきアクティブなバッファがありません!"
 
-#: src/findreplace.c:341
+#: src/findreplace.c:350
 msgid "No offset has been specified!"
 msgstr "オフセットが指定されていません!"
 
-#: src/findreplace.c:348
+#: src/findreplace.c:357
 msgid "The offset must be a positive integer value!"
 msgstr "オフセットは正の数でなければいけません!"
 
-#: src/findreplace.c:353
+#: src/findreplace.c:362
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "ファイルの終端より先にはカーソルを移動できません!"
 
-#: src/findreplace.c:394 src/findreplace.c:431
+#: src/findreplace.c:403 src/findreplace.c:440
 msgid "There is no active buffer to replace data in!"
 msgstr "置換を行なうべきアクティブなバッファがありません!"
 
-#: src/findreplace.c:405 src/findreplace.c:442
+#: src/findreplace.c:414 src/findreplace.c:451
 msgid "Strange find or replace string!"
 msgstr "検索・置換文字列が変です!"
 
-#: src/findreplace.c:420
+#: src/findreplace.c:429
 msgid "End Of File reached!"
 msgstr "ファイル終端に到達!"
 
-#: src/findreplace.c:458
+#: src/findreplace.c:467
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d箇所置き換えました。"
@@ -171,78 +171,78 @@ msgstr ""
 msgid "Offset: %s"
 msgstr "オフセット: %s"
 
-#: src/preferences.c:50
+#: src/preferences.c:49
 msgid "Default"
 msgstr "デフォルト"
 
-#: src/preferences.c:51
+#: src/preferences.c:50
 msgid "Notebook"
 msgstr ""
 
-#: src/preferences.c:52
+#: src/preferences.c:51
 msgid "Toplevel"
 msgstr ""
 
-#: src/preferences.c:53
+#: src/preferences.c:52
 #, fuzzy
 msgid "Modal"
 msgstr "モデル"
 
-#: src/preferences.c:85
+#: src/preferences.c:83
 msgid "Maximum number of undo levels"
 msgstr "やり直しの最大回数"
 
-#: src/preferences.c:99
+#: src/preferences.c:97
 msgid "Show cursor offset in statusbar as"
 msgstr "ステータスバーにカーソルのオフセット表示を"
 
-#: src/preferences.c:118
+#: src/preferences.c:116
 msgid "Hexadecimal"
 msgstr "16進"
 
-#: src/preferences.c:124
+#: src/preferences.c:122
 msgid "Custom"
 msgstr "オリジナル"
 
-#: src/preferences.c:134
+#: src/preferences.c:132
 msgid "Show offsets column"
 msgstr "オフセットカラムの表示"
 
-#: src/preferences.c:139
+#: src/preferences.c:137
 msgid "Editing"
 msgstr "編集"
 
-#: src/preferences.c:146
+#: src/preferences.c:144
 msgid "Font"
 msgstr "フォント"
 
-#: src/preferences.c:162
+#: src/preferences.c:160
 msgid "Browse..."
 msgstr "参照..."
 
-#: src/preferences.c:181
+#: src/preferences.c:179
 msgid "Default Group Type"
 msgstr "デフォルトのデータ表示"
 
-#: src/preferences.c:197
+#: src/preferences.c:195
 msgid "Display"
 msgstr "表示"
 
-#: src/preferences.c:204
+#: src/preferences.c:202
 msgid "MDI Mode"
 msgstr "MDIモード"
 
-#: src/preferences.c:221
+#: src/preferences.c:219
 msgid "MDI"
 msgstr ""
 
-#: src/preferences.c:356
+#: src/preferences.c:350
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
 msgstr ""
 
-#: src/preferences.c:392
+#: src/preferences.c:386
 msgid "Can not open desired font!"
 msgstr "お望みのフォントを読めません!"
 
@@ -306,11 +306,11 @@ msgstr "GHex、バイナリファイルエディタ"
 msgid "Released under the terms of GNU Public License"
 msgstr "GNU一般許諾使用書に基づいてリリースされています"
 
-#: src/ui.c:218 src/ui.c:472
+#: src/ui.c:218 src/ui.c:473
 msgid "Error saving file!"
 msgstr "ファイル書き込みにエラー!"
 
-#: src/ui.c:222 src/ui.c:467
+#: src/ui.c:222 src/ui.c:468
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "バッファを%sファイルに保存しました"
@@ -327,26 +327,26 @@ msgstr "バッファを書き込むファイル名は"
 msgid "Select path and file name for the HTML source"
 msgstr ""
 
-#: src/ui.c:399
+#: src/ui.c:400
 #, c-format
 msgid "Really revert file %s?"
 msgstr "本当にファイル %s を元に戻しますか?"
 
-#: src/ui.c:412
+#: src/ui.c:413
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "ファイル%sを使ってバッファをもとに戻しました"
 
-#: src/ui.c:428
+#: src/ui.c:429
 #, c-format
 msgid "Loaded file %s"
 msgstr "%sファイルの読み込み完了"
 
-#: src/ui.c:433
+#: src/ui.c:434
 msgid "Can not open file!"
 msgstr "ファイルが開けません!"
 
-#: src/ui.c:476
+#: src/ui.c:477
 msgid "Can't open file for writing!"
 msgstr "ファイルに書き込めません!"
 
