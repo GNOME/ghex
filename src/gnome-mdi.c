@@ -871,8 +871,10 @@ static void app_set_active_view(GnomeMDI *mdi, GnomeApp *app, GtkWidget *view) {
 
   app_set_title(mdi, app);
 
-  if(ui_info = gtk_object_get_data(GTK_OBJECT(app), "DocumentMenuUIInfo"))
+  if(ui_info = gtk_object_get_data(GTK_OBJECT(app), "DocumentMenuUIInfo")) {
     free_ui_info_tree(ui_info);
+    gtk_object_set_data(GTK_OBJECT(app), "DocumentMenuUIInfo", NULL);
+  }
   ui_info = NULL;
 
   /* this is still a bit ghex specific */
