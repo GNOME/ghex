@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.1\n"
-"POT-Creation-Date: 1999-07-29 14:24-0400\n"
-"PO-Revision-Date: 1999-07-19 00:44+02:00\n"
+"POT-Creation-Date: 1999-07-30 04:41+0200\n"
+"PO-Revision-Date: 1999-07-30 04:52+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -224,9 +224,9 @@ msgstr ""
 "Vil du lagre endringene?"
 
 #: ghex/main.c:173
-#, fuzzy, c-format
+#, c-format
 msgid "Offset: %s"
-msgstr "Avstand: "
+msgstr "Avstand: %s"
 
 #: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
 #: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
@@ -563,6 +563,11 @@ msgid ""
 "such as CPU load, CPU utilization, network traffic levels, and the like.  "
 "Other more ingenious uses are left as an exercise for the interested user."
 msgstr ""
+"GNOME Stripchart programmet plotter forskjellige brukerbestemte parametere \n"
+"som en funksjon av tiden. Dens hovedvirkeområde er å plotte systemytelse-\n"
+"parametere slik som CPU-belastning, nivå for nettverkstrafikk og lignende.\n"
+"Andre mer oppfinnsomme bruksområder overlates som en øvelse for den som\n"
+"bruker programmet."
 
 #: gstripchart/gstripchart.c:1375
 msgid "_About"
@@ -1225,7 +1230,7 @@ msgstr "Copyright 1998, under the GNU General Public License."
 #: mini-utils/gless/gless.c:116
 #, c-format
 msgid "Reason %d\n"
-msgstr ""
+msgstr "Årsak %d\n"
 
 #: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
@@ -1268,19 +1273,24 @@ msgid "Loading..."
 msgstr "Laster..."
 
 #: mini-utils/gless/gless.c:502
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "No such file or directory:\n"
 "%s"
-msgstr "Ikke en fil eller en katalog:\n"
+msgstr ""
+"Ingen slik fil eller en katalog:\n"
+"%s"
 
 #: mini-utils/gless/gless.c:520
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to decompress and display the file:\n"
 "%s\n"
 "%s"
-msgstr "Klarte ikke å dekomprimere og vise filen:\n"
+msgstr ""
+"Klarte ikke å dekomprimere og vise filen:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:533
 msgid ""
@@ -1291,24 +1301,30 @@ msgstr ""
 "zcat ble ikke funnet i søkestien."
 
 #: mini-utils/gless/gless.c:541
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error loading file:\n"
 "%s\n"
 "%s"
-msgstr "Feil under lasting av fil:\n"
+msgstr ""
+"Feil under lasting av fil:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:599
 msgid "Saving..."
 msgstr "Lagrer..."
 
 #: mini-utils/gless/gless.c:610
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to write file:\n"
 "%s\n"
 "%s"
-msgstr "Feil under skriving av fil:\n"
+msgstr ""
+"Feil under skriving av fil:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:660
 msgid "Save Text As..."
@@ -1320,7 +1336,7 @@ msgstr "Åpne tekstfil..."
 
 #: mini-utils/gless/gless.c:764
 msgid "Sorry, no preferences yet."
-msgstr ""
+msgstr "Beklager, ingen preferanser ennå."
 
 #: mini-utils/gless/gless.c:851
 msgid "Searching..."
@@ -1331,12 +1347,15 @@ msgid "No search string was specified!"
 msgstr "Ingen søkestreng ble spesifisert!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to execute command:\n"
 "%s\n"
 "%s"
-msgstr "Feil under kjøring av kommando:\n"
+msgstr ""
+"Feil under kjøring av kommando:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run Program"
@@ -1459,6 +1478,8 @@ msgid ""
 "%s\n"
 "You will lose any unsaved work."
 msgstr ""
+"%s\n"
+"Du vil miste ulagret arbeid."
 
 #: mini-utils/gshutdown/gshutdown.c:458
 msgid "Don't ask next time."
@@ -1466,15 +1487,15 @@ msgstr "Ikke spør neste gang."
 
 #: mini-utils/gshutdown/gshutdown.c:685
 msgid "Command execution failed: fork failed"
-msgstr ""
+msgstr "Kommandokjøringen feilet: fork feilet"
 
 #: mini-utils/guname/guname.c:51
 msgid "Make guname act as a control center applet"
-msgstr ""
+msgstr "La guname virke som en kontrollsenter applet"
 
 #: mini-utils/guname/guname.c:114
 msgid "an initialization error occurred while starting 'guname-capplet'."
-msgstr ""
+msgstr "en initialiseringsfeil oppstod under start av 'guname-capplet'."
 
 #: mini-utils/guname/guname.c:424
 msgid "System Information"
@@ -1491,7 +1512,7 @@ msgstr "GNOME hjelpere:"
 
 #: mini-utils/guname/guname.c:513
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-msgstr ""
+msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
 #: mini-utils/guname/guname.c:524
 msgid "GNOME: The GNU Network Object Model Environment"
@@ -1526,19 +1547,20 @@ msgid "Mail To..."
 msgstr "Send til..."
 
 #: mini-utils/guname/guname.c:680
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error closing file `%s': \n"
 "%s\n"
 "Some or all data may not have been written."
 msgstr ""
-"\n"
+"Feil under lukking av filen `%s': \n"
+"%s\n"
 "Deler av, eller alle data ble kanskje ikke skrevet."
 
 #: mini-utils/guname/guname.c:692
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't open file `%s': %s"
-msgstr "Kan ikke åpne filen!"
+msgstr "Kan ikke åpne filen `%s': %s"
 
 #: mini-utils/guname/guname.c:707
 msgid "Save System Information As..."
@@ -1546,22 +1568,22 @@ msgstr "Lagre systeminformasjonen som..."
 
 #. I don't think the error_string() will reliably mean anything.
 #: mini-utils/guname/guname.c:753
-#, fuzzy, c-format
+#, c-format
 msgid "Command failed ` %s ': %s"
-msgstr "Kommandoen feilet ` "
+msgstr "Kommandoen feilet ` %s ': %s "
 
 #: mini-utils/guname/guname.c:761
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't run command ` %s ': %s"
-msgstr "Kunne ikke kjøre kommandoen ` "
+msgstr "Kunne ikke kjøre kommandoen ` %s ': %s "
 
 #: mini-utils/guname/guname.c:785
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
-".\n"
+"Den følgende meldingen vil bli sendt til %s.\n"
 " Er du sikker på at du vil sende denne informasjonen?"
 
 #: mini-utils/guname/guname.c:796
@@ -1745,9 +1767,8 @@ msgid "Update Information"
 msgstr "Oppdater informasjonen"
 
 #: mini-utils/gw/gw.c:466
-#, fuzzy
 msgid "Save not implemented yet\n"
-msgstr "Dette er ennå ikke implementert"
+msgstr "Lagre er ennå ikke implementert\n"
 
 #: mini-utils/gw/gw.c:479
 msgid "Command Line"
@@ -1799,32 +1820,31 @@ msgstr "Kommando"
 #: mini-utils/gw/gw.c:947
 #, c-format
 msgid "Running: %s\n"
-msgstr ""
+msgstr "Kjører: %s\n"
 
 #: mini-utils/idetool/idetool.c:20
 msgid "16-bit"
-msgstr ""
+msgstr "16-bit"
 
 #: mini-utils/idetool/idetool.c:21
 msgid "32-bit"
-msgstr ""
+msgstr "32-bit"
 
 #: mini-utils/idetool/idetool.c:22
 msgid "32-bit w/sync"
-msgstr ""
+msgstr "32-bit m/synk"
 
 #: mini-utils/idetool/idetool.c:27
 msgid "Sleeping"
-msgstr ""
+msgstr "Sovende"
 
 #: mini-utils/idetool/idetool.c:28
-#, fuzzy
 msgid "Active/Idle"
-msgstr "Aktiv"
+msgstr "Aktiv/Inaktiv"
 
 #: mini-utils/idetool/idetool.c:29
 msgid "Standby"
-msgstr ""
+msgstr "Vent"
 
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
@@ -1858,7 +1878,7 @@ msgstr "Behold innstillingene"
 
 #: mini-utils/idetool/idetool.c:207
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
@@ -1875,11 +1895,11 @@ msgstr "(Dual Port Cache)"
 #: mini-utils/idetool/idetool.c:243
 #, c-format
 msgid "Yes (%d sector%s)"
-msgstr ""
+msgstr "Ja (%d sektor%s)"
 
 #: mini-utils/idetool/idetool.c:245
 msgid "No"
-msgstr ""
+msgstr "Nei"
 
 #: mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
 msgid "Model"
@@ -1948,30 +1968,3 @@ msgstr "Bare superbruker kan bruke dette verktøyet"
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "Det ser ut til at du ikke har noen IDE disker"
-
-#~ msgid "Error closing file `"
-#~ msgstr "Feil under lukking av fil `"
-
-#~ msgid " ': "
-#~ msgstr " ': "
-
-#~ msgid "The following mail will be sent to "
-#~ msgstr "Følgende e-post vil bli sent til "
-
-#~ msgid "%ld%% %s used."
-#~ msgstr "%ld%% %s brukt."
-
-#~ msgid "memory"
-#~ msgstr "minne"
-
-#~ msgid "swap"
-#~ msgstr "swap"
-
-#~ msgid "%2d%% full "
-#~ msgstr "%2d%% full "
-
-#~ msgid "Examine and adjust parameters"
-#~ msgstr "Undersøk og tilpass parameterene"
-
-#~ msgid "Using command:"
-#~ msgstr "Ved bruk av kommando:"
