@@ -20,6 +20,6 @@ ghex_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
 EXTRA_DIST = ghex.desktop $(appicon_DATA)
 
-sysdir   = $(datadir)/apps/Applications
+sysdir   = $(datadir)/gnome/apps/Applications
 sys_DATA = ghex.desktop
 
