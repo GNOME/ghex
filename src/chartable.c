@@ -94,7 +94,7 @@ GtkWidget *create_char_table()
 			row[col] = label;
 		}
 		for(col = 0; col < 8; col++) {
-			bin_label[col] = (i & (1L << col))?'1':'0';
+			bin_label[7-col] = (i & (1L << col))?'1':'0';
 			row[4] = bin_label;
 		}
 		gtk_clist_append(GTK_CLIST(cl), row);
