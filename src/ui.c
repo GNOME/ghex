@@ -11,28 +11,28 @@
 #include "ghex.h"
 
 GnomeUIInfo file_menu[] = {
-  { GNOME_APP_UI_ITEM, N_("Open"), NULL, open_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("_Open"), NULL, open_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'O', GDK_CONTROL_MASK, NULL },
-  { GNOME_APP_UI_ITEM, N_("Save"), NULL, save_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("_Save"), NULL, save_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 'S', GDK_CONTROL_MASK, NULL },
-  { GNOME_APP_UI_ITEM, N_("Save as..."), NULL, save_as_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Save _as..."), NULL, save_as_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE_AS, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, N_("Revert"), NULL, revert_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("_Revert"), NULL, revert_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_REVERT, 'R', GDK_CONTROL_MASK, NULL },
-  { GNOME_APP_UI_ITEM, N_("Close"), NULL, close_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("_Close"), NULL, close_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CLOSE, 0, 0, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, N_("Open Converter..."), NULL, converter_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("Open _Converter..."), NULL, converter_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, N_("Preferences"), NULL, prefs_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("_Preferences"), NULL, prefs_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'P', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, N_("Exit"), NULL, quit_app_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'X', GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_ITEM, N_("_Quit"), NULL, quit_app_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'Q', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
 
@@ -41,32 +41,32 @@ GnomeUIInfo empty_menu[] = {
 };
 
 GnomeUIInfo view_menu[] = {
-  { GNOME_APP_UI_ITEM, N_("Add view"), NULL, add_view_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("_Add view"), NULL, add_view_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0,
     0, NULL },
-  { GNOME_APP_UI_ITEM, N_("Remove view"), NULL, remove_view_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("_Remove view"), NULL, remove_view_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
 
 GnomeUIInfo help_menu[] = {
-  { GNOME_APP_UI_HELP, NULL, NULL, NULL, NULL, NULL,
+  { GNOME_APP_UI_HELP, NULL, NULL, "ghex", NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_ITEM, N_("About..."), NULL, about_cb, NULL, NULL,
+  { GNOME_APP_UI_ITEM, N_("_About..."), NULL, about_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
 
 GnomeUIInfo main_menu[] = {
-  { GNOME_APP_UI_SUBTREE, N_("File"), NULL, file_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, N_("_File"), NULL, file_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_SUBTREE, N_("View"), NULL, view_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, N_("_View"), NULL, view_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_SUBTREE, N_("Files"), NULL, empty_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, N_("File_s"), NULL, empty_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, N_("_Help"), NULL, help_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
