@@ -23,12 +23,17 @@
    Chema Celorio <chema@gnome.org>
 */
 
-#include <config.h>
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif /* HAVE_CONFIG_H */
+
 #include <gnome.h>
 #include <ctype.h>      /* for isdigit */
 #include <string.h>     /* for strncpy */
 
-#include "ghex.h"
+#include "gtkhex.h"
+#include "converter.h"
+#include "ghex-window.h"
 
 static void conv_entry_cb(GtkEntry *, gint);
 static void get_cursor_val_cb(GtkButton *button, Converter *conv);

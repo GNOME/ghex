@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex-private.h - private GtkHex API; used by accessibility code
+/* session.h - session management
 
-   Copyright (C) 1997 - 2004 Free Software Foundation
+   Copyright (C) 2004 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -21,16 +21,24 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef __GTKHEX_PRIVATE_H__
-#define __GTKHEX_PRIVATE_H__
+#ifndef __GHEX_SESSION_H__
+#define __GHEX_SESSION_H__
 
-#include "gtkhex.h"
+#include <gnome.h>
 
-#define VIEW_HEX 1
-#define VIEW_ASCII 2
+G_BEGIN_DECLS
 
-gint format_ablock(GtkHex *gh, gchar *out, guint start, guint end);
-gint format_xblock(GtkHex *gh, gchar *out, guint start, guint end);
-void format_xbyte(GtkHex *gh, gint pos, gchar buf[2]);
+/* session managment */
+gint
+save_session    (GnomeClient        *client,
+				 gint                phase,
+				 GnomeRestartStyle   save_style,
+				 gint                shutdown,
+				 GnomeInteractStyle  interact_style,
+				 gint                fast,
+				 gpointer            client_data);
+void client_die (GnomeClient *client, gpointer client_data);
 
-#endif /* __GTKHEX_PRIVATE_H__ */
+G_END_DECLS
+
+#endif /* __GHEX_SESSION_H__ */

@@ -1,5 +1,31 @@
+2004-10-07  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/ghex-window.c (ghex_window_load): fixed padding and border of window vbox.
+	* src/preferences.c (offset_fmt_update_from_entry): new function for updating format
+	string with contents from prefs dialog entry.
+	(format_focus_out_event_cb): update format string.
+	* ghex2.schemas: removed unused gconf keys for print font sizes.
+	* major cleanup: contents of ghex.h moved to separate header file for each module
+	making up ghex; removed unused #defines and variables left over after more than
+	6 years of occasional coding on ghex.
+
+2004-10-06  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/gtkhex.[ch]: renamed gtk_hex_[copy|cut]_clipboard() to
+	gtk_hex_[copy|cut]_to_clipboard().
+	* src/gtkhex.[ch]: added gtk_hex_clear_selection() and gtk_hex_get_selection(),
+	made gtk_hex_set_selection() and gtk_hex_delete_selection() public.
+	* src/ghex-window.[ch]: added ghex_window_update_status_message() and use it
+	throughout the source.
+	* src/ghex-window.c: added selection interval and selection size to status message;
+	fixes #151848.
+	* src/preferences.c: update the status message after offset format changes;
+	fixes #154690.
+
 2004-10-04  Jaka Mocnik  <jaka@gnu.org>
 
+	* src/ghex-window.c (ghex_window_drag_data_received): use g_filename_from_uri() as
+	suggested by Fredrik Noring.
 	* configure.in: set version back to 2.6.3; there really hasn't been anything that
 	new that would require a new minor version...
 	* src/gtkhex.c: added hex_scroll_cb() and ascii_scroll_cb() that propagate the event

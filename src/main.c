@@ -22,10 +22,24 @@
 */
 
 #include <config.h>
-#include <gnome.h>
-#include "ghex.h"
 
+#include <gnome.h>
+
+#include "session.h"
 #include "factory.h"
+#include "ghex-window.h"
+
+static GSList *cl_files;
+
+static gchar *geometry = NULL;
+
+static const struct poptOption options[] = {
+  { "geometry", '\0', POPT_ARG_STRING, &geometry, 0,
+    N_("X geometry specification (see \"X\" man page)."),
+    N_("GEOMETRY")
+  },
+  {NULL, '\0', 0, NULL, 0}
+};
 
 int
 main(int argc, char **argv)
@@ -57,8 +71,9 @@ main(int argc, char **argv)
 	gnome_window_icon_set_default_from_file (GNOMEICONDIR "/gnome-ghex.png");
 
 	/* load preferences */
-	ghex_prefs_init();
-	load_configuration();
+	ghex_init_configuration();
+	ghex_load_configuration();
+
 	/* accessibility setup */
 	setup_factory();
 

@@ -22,11 +22,14 @@
 */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#  include <config.h>
+#endif /* HAVE_CONFIG_H */
 
-#include <gnome.h>
-#include "ghex.h"
+#include <gtk/gtk.h>
+
+#include "chartable.h"
+#include "ghex-window.h"
+#include "ui.h"
 
 GtkWidget *char_table = NULL;
 static GtkTreeSelection *sel_row = NULL;

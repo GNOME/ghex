@@ -28,8 +28,8 @@
 
 #include "hex-document.h"
 #include "ghex-window.h"
-#include "ghex.h"
 #include "gtkhex.h"
+#include "findreplace.h"
 
 void
 set_doc_menu_sensitivity(HexDocument *doc)

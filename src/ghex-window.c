@@ -7,19 +7,29 @@
  * Author: Jaka Mocnik  <jaka@gnu.org>
  */
 
-#include <config.h>
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif /* HAVE_CONFIG_H */
 
 #include <gnome.h>
+
 #include <bonobo-activation/bonobo-activation.h>
+
 #include <libgnomeui/gnome-window-icon.h>
+
 #include <bonobo.h>
 #include <bonobo/bonobo-ui-main.h>
+
 #include <libgnomevfs/gnome-vfs-ops.h>
+
 #include <math.h>
 #include <ctype.h>
 
 #include "ghex-window.h"
-#include "ghex.h"
+#include "ui.h"
+#include "converter.h"
+#include "chartable.h"
+#include "configuration.h"
 #include "hex-dialog.h"
 
 #define GHEX_WINDOW_DEFAULT_WIDTH 320
@@ -628,6 +638,11 @@ ghex_window_update_status_message(GHexWindow *win)
     gint current_pos;
     gint ss, se, len;
 
+    if(NULL == win->gh) {
+        ghex_window_show_status(win, " ");
+        return;
+    }
+
     current_pos = gtk_hex_get_cursor(win->gh);
     if(g_snprintf(fmt, FMT_LEN, _("Offset: %s"), offset_fmt) < FMT_LEN) {
         g_snprintf(status, STATUS_LEN, fmt, current_pos);
@@ -689,7 +704,7 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     else
         full_path = g_strdup(filename);
     
-    doc = hex_document_new(full_path);
+    doc = hex_document_new_from_file(full_path);
     g_free(full_path);
     if(!doc)
         return FALSE;
@@ -709,12 +724,13 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     gtk_widget_show(gh);
 
     vbox = gtk_vbox_new(FALSE, 0);
+    gtk_container_set_border_width(GTK_CONTAINER(win), GNOME_PAD_SMALL);
     gtk_widget_show(vbox);
-    gtk_box_pack_start(GTK_BOX(vbox), gh, TRUE, TRUE, GNOME_PAD);
+    gtk_box_pack_start(GTK_BOX(vbox), gh, TRUE, TRUE, GNOME_PAD_SMALL);
 
     win->dialog = hex_dialog_new();
     win->dialog_widget = hex_dialog_getview(win->dialog);
-    gtk_box_pack_start(GTK_BOX(vbox), win->dialog_widget, FALSE, FALSE, GNOME_PAD);
+    gtk_box_pack_start(GTK_BOX(vbox), win->dialog_widget, FALSE, FALSE, GNOME_PAD_SMALL);
     state = bonobo_ui_component_get_prop (win->uic, "/commands/TypeDialog", "state", NULL);
     if ((state && atoi(state)) || !state)
     {

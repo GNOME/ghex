@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex-private.h - private GtkHex API; used by accessibility code
+/* chartable.h - character table dialog
 
-   Copyright (C) 1997 - 2004 Free Software Foundation
+   Copyright (C) 2004 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -21,16 +21,17 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef __GTKHEX_PRIVATE_H__
-#define __GTKHEX_PRIVATE_H__
+#ifndef __GHEX_CHARTABLE_H__
+#define __GHEX_CHARTABLE_H__
 
-#include "gtkhex.h"
+#include <gtk/gtk.h>
 
-#define VIEW_HEX 1
-#define VIEW_ASCII 2
+G_BEGIN_DECLS
 
-gint format_ablock(GtkHex *gh, gchar *out, guint start, guint end);
-gint format_xblock(GtkHex *gh, gchar *out, guint start, guint end);
-void format_xbyte(GtkHex *gh, gint pos, gchar buf[2]);
+GtkWidget *create_char_table(void);
 
-#endif /* __GTKHEX_PRIVATE_H__ */
+extern GtkWidget *char_table;
+
+G_END_DECLS
+
+#endif /* !__GHEX_CHARTABLE_H__ */

@@ -22,11 +22,16 @@
 */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#  include <config.h>
 #endif
 
-#include <gnome.h>
-#include "ghex.h"
+#include <gtk/gtk.h>
+
+#include "findreplace.h"
+#include "ui.h"
+
+#define DATA_TYPE_HEX   0
+#define DATA_TYPE_ASCII 1
 
 static gint find_delete_event_cb(GtkWidget *w, GdkEventAny *e,
 								 FindDialog *dialog);

@@ -21,13 +21,20 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#include <config.h>
-#include <gnome.h>
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif /* HAVE_CONFIG_H */
+
+#include <gtk/gtk.h>
 
 #include <libgnomeprintui/gnome-font-dialog.h>
 
-#include "ghex.h"
 #include "gnome-print-font-picker.h"
+#include "preferences.h"
+#include "configuration.h"
+#include "ghex-window.h"
+
+#define MAX_MAX_UNDO_DEPTH 100000
 
 static void select_font_cb(GtkWidget *w, const gchar *font_name,
 						   PropertyUI *pui);
@@ -39,6 +46,8 @@ static void prefs_response_cb(GtkDialog *dlg, gint response, PropertyUI *pui);
 static void offsets_col_cb(GtkToggleButton *tb, PropertyUI *pui);
 static void group_type_cb(GtkRadioButton *rd, PropertyUI *pui);
 static void format_activated_cb(GtkEntry *entry, PropertyUI *pui);
+static gboolean format_focus_out_event_cb(GtkEntry *entry, GdkEventFocus *event,
+										  PropertyUI *pui);
 
 PropertyUI *prefs_ui = NULL;
 
@@ -123,6 +132,8 @@ create_prefs_dialog()
 	pui->format = gtk_entry_new();
 	g_signal_connect(G_OBJECT(pui->format), "activate",
 					 G_CALLBACK(format_activated_cb), pui);
+	g_signal_connect(G_OBJECT(pui->format), "focus_out_event",
+					 G_CALLBACK(format_focus_out_event_cb), pui);
 	gtk_box_pack_start (GTK_BOX(box), pui->format, TRUE, TRUE, GNOME_PAD);
 	gtk_widget_show(pui->format);
 
@@ -344,7 +355,7 @@ create_prefs_dialog()
 }
 
 
-void set_prefs(PropertyUI *pui) {
+void set_current_prefs(PropertyUI *pui) {
 	int i;
 
 	for(i = 0; i < 3; i++)
@@ -530,12 +541,12 @@ select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui)
 }
 
 static void
-format_activated_cb(GtkEntry *entry, PropertyUI *pui)
+update_offset_fmt_from_entry(GtkEntry *entry, PropertyUI *pui)
 {
 	int i, len;
 	gchar *old_offset_fmt;
 	gboolean expect_spec;
-	GList *win_list;
+	const GList *win_list;
 
 	old_offset_fmt = offset_fmt;
 	offset_fmt = g_strdup(gtk_entry_get_text(GTK_ENTRY(pui->format)));
@@ -567,7 +578,7 @@ format_activated_cb(GtkEntry *entry, PropertyUI *pui)
 											 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."));
 				gtk_dialog_run(GTK_DIALOG(msg_dialog));
 				gtk_widget_destroy(msg_dialog);
-				gtk_window_set_focus(GTK_WINDOW(pui->pbox), pui->format);
+				gtk_widget_grab_focus(pui->format);
 				break;
 			}
 		}
@@ -583,6 +594,19 @@ format_activated_cb(GtkEntry *entry, PropertyUI *pui)
 		ghex_window_update_status_message((GHexWindow *)win_list->data);
 		win_list = win_list->next;
 	}
+}
+
+static gboolean
+format_focus_out_event_cb(GtkEntry *entry, GdkEventFocus *event, PropertyUI *pui)
+{
+	update_offset_fmt_from_entry(entry, pui);
+	return FALSE;
+}
+
+static void
+format_activated_cb(GtkEntry *entry, PropertyUI *pui)
+{
+	update_offset_fmt_from_entry(entry, pui);
 }
 
 static void
@@ -603,5 +627,5 @@ offset_cb(GtkWidget *w, PropertyUI *pui)
 		gtk_widget_set_sensitive(pui->format, TRUE);
 		break;
 	}
-	format_activated_cb(GTK_ENTRY(pui->format), pui);
+	update_offset_fmt_from_entry(GTK_ENTRY(pui->format), pui);
 }

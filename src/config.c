@@ -21,12 +21,20 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#include <string.h>
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif /* HAVE_CONFIG_H */
 
-#include "ghex.h"
+#include <string.h>
 
 #include <gconf/gconf-client.h>
 #include <gconf/gconf-value.h>
+
+#include "configuration.h"
+#include "gtkhex.h"
+#include "ghex-window.h"
+
+#define DEFAULT_FONT "Monospace 12"
 
 GConfClient *gconf_client = NULL;
 
@@ -38,7 +46,7 @@ PangoFontDescription *def_font_desc = NULL;
 gchar *def_font_name = NULL;
 gboolean show_offsets_column = TRUE;
 
-void load_configuration () {
+void ghex_load_configuration () {
 	gchar *font_name;
 	PangoFontMetrics *new_metrics;
 
@@ -244,7 +252,7 @@ static void ghex_prefs_notify_cb (GConfClient *gconf_client,
 	}
 }
 
-void ghex_prefs_init ()
+void ghex_init_configuration ()
 {
 	gconf_client = gconf_client_get_default ();
 

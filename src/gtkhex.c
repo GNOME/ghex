@@ -21,13 +21,17 @@
    Author: Jaka Mocnik <jaka@gnu.org>
  */
 
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif /* HAVE_CONFIG_H */
+
 #include <gnome.h>
 #include <gdk/gdkkeysyms.h>
 
-#include <hex-document.h>
-#include <gtkhex.h>
-
-#include <ghex-marshal.h>
+#include "hex-document.h"
+#include "gtkhex.h"
+#include "gtkhex-private.h"
+#include "ghex-marshal.h"
 
 #define DISPLAY_BORDER 4
 
@@ -35,6 +39,8 @@
 #define DEFAULT_LINES 16
 
 #define SCROLL_TIMEOUT 100
+
+#define DEFAULT_FONT "Monospace 12"
 
 /* jaKa: this causes trouble to pango */
 #if 0 

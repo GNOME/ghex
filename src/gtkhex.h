@@ -29,23 +29,15 @@
 
 #include <hex-document.h>
 
-#ifdef __cplusplus
-extern "C" {
-#pragma }
-#endif /* __cplusplus */
+G_BEGIN_DECLS
 
 /* how to group bytes? */
 #define GROUP_BYTE 1
 #define GROUP_WORD 2
 #define GROUP_LONG 4
 
-#define VIEW_HEX 1
-#define VIEW_ASCII 2
-
 #define LOWER_NIBBLE TRUE
 #define UPPER_NIBBLE FALSE
-
-#define DEFAULT_FONT "Courier Medium 12"
 
 #define GTK_HEX(obj)          GTK_CHECK_CAST (obj, gtk_hex_get_type (), GtkHex)
 #define GTK_HEX_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, gtk_hex_get_type (), GtkHexClass)
@@ -173,8 +165,6 @@ GtkHex_AutoHighlight *gtk_hex_insert_autohighlight(GtkHex *gh,
                                                    const gchar *colour);
 void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl);
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
+G_BEGIN_DECLS
 
 #endif

@@ -29,8 +29,12 @@
 #include <libgnomeprintui/gnome-print-dialog.h>
 #include <libgnomeprintui/gnome-print-job-preview.h>
 
-#include "ghex.h"
+#include "ui.h"
 #include "ghex-window.h"
+#include "findreplace.h"
+#include "converter.h"
+#include "print.h"
+#include "chartable.h"
 
 static void ghex_print(GtkHex *gh, gboolean preview);
 static void ghex_print_run_dialog(GHexPrintJobInfo *pji);
@@ -636,7 +640,7 @@ void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 	if(!prefs_ui)
 		prefs_ui = create_prefs_dialog();
 
-	set_prefs(prefs_ui);
+	set_current_prefs(prefs_ui);
 
 	if(ghex_window_get_active() != NULL)
 		gtk_window_set_transient_for(GTK_WINDOW(prefs_ui->pbox),

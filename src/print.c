@@ -23,9 +23,16 @@
    Printing module by: Chema Celorio <chema@celorio.com>
 */
 
-#include "ghex.h"
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif /* HAVE_CONFIG_H */
+
+#include <gnome.h>
+
+#include <libgnomeprintui/gnome-print-dialog.h>
+
+#include "print.h"
 #include "gtkhex.h"
-#include <libgnomeprintui/gnome-print-dialog.h> /* Added for Gnome 2 -- SnM */
 
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0x7F))?1:0)
 

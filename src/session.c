@@ -21,16 +21,13 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#include "ghex.h"
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif /* HAVE_CONFIG_H */
 
-gchar *geometry = NULL;
-const struct poptOption options[] = {
-  { "geometry", '\0', POPT_ARG_STRING, &geometry, 0,
-    N_("X geometry specification (see \"X\" man page)."),
-    N_("GEOMETRY")
-  },
-  {NULL, '\0', 0, NULL, 0}
-};
+#include "session.h"
+#include "ghex-window.h"
+#include "hex-document.h"
 
 /* Session management */
 void

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex-private.h - private GtkHex API; used by accessibility code
+/* gtkhex.h - definition of a GtkHex widget, modified for use with GnomeMDI
 
-   Copyright (C) 1997 - 2004 Free Software Foundation
+   Copyright (C) 2004 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -21,16 +21,28 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef __GTKHEX_PRIVATE_H__
-#define __GTKHEX_PRIVATE_H__
+#ifndef __GHEX_CONVERTER_H__
+#define __GHEX_CONVERTER_H__
 
-#include "gtkhex.h"
+#include <gtk/gtk.h>
 
-#define VIEW_HEX 1
-#define VIEW_ASCII 2
+G_BEGIN_DECLS
 
-gint format_ablock(GtkHex *gh, gchar *out, guint start, guint end);
-gint format_xblock(GtkHex *gh, gchar *out, guint start, guint end);
-void format_xbyte(GtkHex *gh, gint pos, gchar buf[2]);
+typedef struct _Converter {
+	GtkWidget *window;
+	GtkWidget *entry[5];
+	GtkWidget *close;
+	GtkWidget *get;
 
-#endif /* __GTKHEX_PRIVATE_H__ */
+	gulong value;
+} Converter;
+
+/* Defined in converter.c: used by close_cb and converter_cb */
+extern GtkWidget *converter_get;
+extern Converter *converter;
+
+Converter *create_converter(void);
+
+G_END_DECLS
+
+#endif /* !__GHEX_CONVERTER_H__ */

@@ -195,6 +195,9 @@ get_document_attributes(HexDocument *doc)
 {
 	static struct stat stats;
 
+	if(doc->file_name == NULL)
+		return FALSE;
+
 	if(!stat(doc->file_name, &stats) &&
 	   S_ISREG(stats.st_mode) &&
 	   stats.st_size > 0) {
@@ -423,7 +426,30 @@ hex_document_get_type (void)
 
 
 HexDocument *
-hex_document_new(const gchar *name)
+hex_document_new()
+{
+	HexDocument *doc;
+	gchar *path_end;
+	int i;
+
+	doc = HEX_DOCUMENT (g_object_new (hex_document_get_type(), NULL));
+	g_return_val_if_fail (doc != NULL, NULL);
+
+	doc->file_name = NULL;
+
+	doc->gap_size = 100;
+	doc->file_size = 0;
+	doc->buffer_size = doc->file_size + doc->gap_size;
+	doc->buffer = (guchar *)g_malloc(doc->buffer_size);
+
+	doc->path_end = g_strdup(_("New document"));
+
+	doc_list = g_list_append(doc_list, doc);
+	return doc;
+}
+
+HexDocument *
+hex_document_new_from_file(const gchar *name)
 {
 	HexDocument *doc;
 	gchar *path_end;
@@ -627,14 +653,6 @@ void
 hex_document_delete_data(HexDocument *doc, guint offset, guint len, gboolean undoable)
 {
 	hex_document_set_data(doc, offset, 0, len, NULL, undoable);
-#if 0
-	/* TODO: add undo capabilities */
-
-	move_gap_to(doc, MIN(offset + len, doc->file_size), 1);
-	doc->gap_pos -= len;
-	doc->gap_size += len;
-	doc->file_size -= len;
-#endif
 }
 
 gint
@@ -642,6 +660,9 @@ hex_document_read(HexDocument *doc)
 {
 	FILE *file;
 	static HexChangeData change_data;
+
+	if(doc->file_name == NULL)
+		return FALSE;
 
 	if(!get_document_attributes(doc))
 		return FALSE;
@@ -688,6 +709,9 @@ hex_document_write(HexDocument *doc)
 {
 	FILE *file;
 	gint ret = FALSE;
+
+	if(doc->file_name == NULL)
+		return FALSE;
 
 	if((file = fopen(doc->file_name, "w")) != NULL) {
 		ret = hex_document_write_to_file(doc, file);
@@ -764,7 +788,8 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 
 	fprintf(file, "<CENTER>");
 	fprintf(file, "<TABLE BORDER=\"0\" CELLSPACING=\"0\" CELLPADDING=\"0\">\n");
-	fprintf(file, "<TR>\n<TD COLSPAN=\"3\"><B>%s</B></TD>\n</TR>\n", doc->file_name);
+	fprintf(file, "<TR>\n<TD COLSPAN=\"3\"><B>%s</B></TD>\n</TR>\n",
+			doc->file_name?doc->file_name:doc->path_end);
 	fprintf(file, "<TR>\n<TD COLSPAN=\"3\">&nbsp;</TD>\n</TR>\n");
 	for(page = 0; page < pages; page++) {
 		fprintf(file, "<TR>\n<TD>\n<A HREF=\"%s%08d.html\"><PRE>", base_name, page);

@@ -86,7 +86,8 @@ struct _HexDocumentClass
 };
 
 GType       hex_document_get_type(void);
-HexDocument *hex_document_new(const gchar *name);
+HexDocument *hex_document_new(void);
+HexDocument *hex_document_new_from_file(const gchar *name);
 void        hex_document_set_data(HexDocument *doc, guint offset,
 								  guint len, guint rep_len, guchar *data,
 								  gboolean undoable);
