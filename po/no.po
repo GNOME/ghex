@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 0.30\n"
-"POT-Creation-Date: 1998-10-25 02:45+0200\n"
-"PO-Revision-Date: 1998-10-25 02:47+0100\n"
+"POT-Creation-Date: 1998-11-07 00:35+0100\n"
+"PO-Revision-Date: 1998-11-07 00:40+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@fib.hl.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr "Gnome Kalkulator"
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Enkel dobbelpresisjonskalkulator lik xcalc"
 
-#: gcalc/gcalc.c:43 ghex/ui.c:57 gtt/menus.c:103
+#: gcalc/gcalc.c:43 ghex/ui.c:75 gtt/menus.c:103
 msgid "_About..."
 msgstr "_Om..."
 
-#: gcalc/gcalc.c:48 ghex/ui.c:34 gtt/menus.c:45
+#: gcalc/gcalc.c:48 ghex/ui.c:52 gtt/menus.c:45
 msgid "_Quit"
 msgstr "_Avslutt"
 
@@ -37,363 +37,372 @@ msgstr "_Kopier"
 msgid "_Program"
 msgstr "_Program"
 
-#: gcalc/gcalc.c:68 ghex/hex-document.c:62 gncal/main.c:439 gtt/menus.c:115
+#: gcalc/gcalc.c:68 ghex/hex-document.c:85 gncal/main.c:439 gtt/menus.c:115
 msgid "_Edit"
 msgstr "_Rediger"
 
-#: gcalc/gcalc.c:88
+#: gcalc/gcalc.c:86
 msgid "Gnome Calculator"
 msgstr "Gnome Kalkulator"
 
-#: gdiskfree/df.c:135 gncal/gnomecard/gnomecard.c:411
-#: gsearchtool/gsearchtool.c:579 mini-utils/gless/gless.c:330
-#: mini-utils/gw/gw.c:187
+#: gdiskfree/df.c:128 gncal/gnomecard/gnomecard.c:440
+#: gsearchtool/gsearchtool.c:579 mini-utils/gless/gless.c:306
+#: mini-utils/gw/gw.c:185
 msgid "Exit"
 msgstr "Avslutt"
 
-#: gdiskfree/df.c:144 gncal/gnomecard/gnomecard.c:527
-#: gsearchtool/gsearchtool.c:588 mini-utils/gless/gless.c:301
-#: mini-utils/gw/gw.c:173
+#: gdiskfree/df.c:137 gncal/gnomecard/gnomecard.c:559
+#: gsearchtool/gsearchtool.c:588 mini-utils/gless/gless.c:277
+#: mini-utils/gw/gw.c:171
 msgid "About..."
 msgstr "Om..."
 
 #. and document menu and document list paths
-#: gdiskfree/df.c:151 ghex/main.c:55 gncal/gnomecard/gnomecard.c:535
-#: gsearchtool/gsearchtool.c:595 mini-utils/gless/gless.c:357
-#: mini-utils/gw/gw.c:205
+#: gdiskfree/df.c:144 ghex/main.c:62 gncal/gnomecard/gnomecard.c:567
+#: gsearchtool/gsearchtool.c:595 mini-utils/gless/gless.c:333
+#: mini-utils/gw/gw.c:203
 msgid "File"
 msgstr "Fil"
 
-#: gdiskfree/df.c:153 gncal/gnomecard/gnomecard.c:549
-#: gsearchtool/gsearchtool.c:598 mini-utils/gless/gless.c:365
-#: mini-utils/gw/gw.c:208
+#: gdiskfree/df.c:146 gncal/gnomecard/gnomecard.c:581
+#: gsearchtool/gsearchtool.c:598 mini-utils/gless/gless.c:341
+#: mini-utils/gw/gw.c:206
 msgid "Help"
 msgstr "Hjelp"
 
-#: gdiskfree/df.c:209
+#: gdiskfree/df.c:219
 msgid ""
 "A quick hack to show the amount of space free on mounted file systems "
 "uitilizing a dial."
 msgstr "Et raskt hack for å vise ledig plass på monterte filsystemer "
 
-#: ghex/callbacks.c:20
+#: ghex/callbacks.c:39
 msgid "GHex, a binary file editor"
 msgstr "GHex, en binærfileditor"
 
-#: ghex/callbacks.c:22
+#: ghex/callbacks.c:41
 msgid "Released under the terms of GNU Public License"
 msgstr "Utgitt under vilkårene gitt i GNU Public License"
 
-#: ghex/callbacks.c:48 ghex/callbacks.c:98
+#: ghex/callbacks.c:67 ghex/callbacks.c:137
 msgid "Error saving file!"
 msgstr "Feil under lagring av fil!"
 
-#: ghex/callbacks.c:64
+#: ghex/callbacks.c:80
+#, c-format
+msgid "Really revert file %s?"
+msgstr ""
+
+#: ghex/callbacks.c:103
 msgid "Can not open file!"
 msgstr "Kan ikke åpne filen!"
 
-#: ghex/callbacks.c:102
+#: ghex/callbacks.c:141
 msgid "Can't open file for writing!"
 msgstr "Kan ikke åpne filen for skriving!"
 
-#: ghex/callbacks.c:126
+#: ghex/callbacks.c:165
 msgid "Select a file to open"
 msgstr "Velg en fil å åpne"
 
-#: ghex/callbacks.c:144
+#: ghex/callbacks.c:183
 msgid "Select a file to save buffer as"
 msgstr "Velg en fil for lagring av buffer"
 
-#: ghex/callbacks.c:238 ghex/callbacks.c:262 ghex/callbacks.c:315
+#: ghex/callbacks.c:277 ghex/callbacks.c:301 ghex/callbacks.c:354
 msgid "There seems to be no string to search for!"
 msgstr "Ingen streng å søke etter!"
 
-#: ghex/callbacks.c:243 ghex/callbacks.c:267 ghex/callbacks.c:320
+#: ghex/callbacks.c:282 ghex/callbacks.c:306 ghex/callbacks.c:359
 msgid "There is no active buffer to search!"
 msgstr "Ingen aktiv buffer for søk!"
 
-#: ghex/callbacks.c:252 ghex/callbacks.c:329
+#: ghex/callbacks.c:291 ghex/callbacks.c:368
 msgid "End Of File reached"
 msgstr "Slutten på filen nådd"
 
-#: ghex/callbacks.c:276
+#: ghex/callbacks.c:315
 msgid "Beginning Of File reached"
 msgstr "Begynnelsen på filen nådd"
 
-#: ghex/callbacks.c:284
+#: ghex/callbacks.c:323
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Ingen aktiv buffer å bevege markøren i!"
 
-#: ghex/callbacks.c:289
+#: ghex/callbacks.c:328
 msgid "No offset has been specified!"
 msgstr "Ingen posisjon har blitt spesifisert!"
 
-#: ghex/callbacks.c:296
+#: ghex/callbacks.c:335
 msgid "The offset must be a positive integer value!"
 msgstr "Posisjonen må være et positivt heltall"
 
-#: ghex/callbacks.c:301
+#: ghex/callbacks.c:340
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Kan ikke plassere markøren forbi filens slutt!"
 
-#: ghex/callbacks.c:339 ghex/callbacks.c:378
+#: ghex/callbacks.c:378 ghex/callbacks.c:417
 msgid "There is no active buffer to replace data in!"
 msgstr "Ingen aktiv buffer å erstatte data i!"
 
-#: ghex/callbacks.c:350 ghex/callbacks.c:389
+#: ghex/callbacks.c:389 ghex/callbacks.c:428
 msgid "Erroneous find or replace string!"
 msgstr "Ugyldig søk eller erstatt-streng!"
 
-#: ghex/callbacks.c:355 ghex/callbacks.c:394
+#: ghex/callbacks.c:394 ghex/callbacks.c:433
 msgid "Both strings must be of the same length!"
 msgstr "Begge strengene må være av samme lengde!"
 
-#: ghex/callbacks.c:368
+#: ghex/callbacks.c:407
 msgid "End Of File reached!"
 msgstr "Filslutt nådd!"
 
-#: ghex/callbacks.c:409
+#: ghex/callbacks.c:448
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Byttet ut %d forekomster."
 
-#: ghex/callbacks.c:469
+#: ghex/callbacks.c:514
 msgid "Can not open desired font!"
 msgstr "Kan ikke åpne ønsket skrifttype!"
 
-#: ghex/callbacks.c:488
+#: ghex/callbacks.c:533
 #, c-format
 msgid ""
-"The document %s has changed since last save.\n"
+"File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
-"Dokumentet %s er endret siden forrige lagring.\n"
+"Filen %s er endret siden forrige lagring.\n"
 "Vil du lagre endringene?"
 
-#: ghex/callbacks.c:519
+#: ghex/callbacks.c:564
 msgid "Edit/Group Data As/"
 msgstr "Rediger/Grupper data som/"
 
-#: ghex/callbacks.c:562
+#: ghex/callbacks.c:607
 msgid "ERRONEUS STRING"
 msgstr "FEILAKTIG TEKSTSTRENG"
 
-#: ghex/config.c:40
+#: ghex/config.c:59
 msgid "Can not open configured font!"
 msgstr "Kan ikke åpne konfigurert font!"
 
-#: ghex/gnome-support.c:13
-msgid "ID"
-msgstr "ID"
-
-#: ghex/gnome-support.c:13
+#: ghex/gnome-support.c:30
 msgid "Discard session"
 msgstr "Steng sesjon"
 
-#: ghex/hex-document.c:31
+#: ghex/gnome-support.c:30
+msgid "ID"
+msgstr "ID"
+
+#: ghex/hex-document.c:54
 msgid "_Bytes"
 msgstr "_Bytes"
 
-#: ghex/hex-document.c:33
+#: ghex/hex-document.c:56
 msgid "_Words"
 msgstr "_Ord"
 
-#: ghex/hex-document.c:35
+#: ghex/hex-document.c:58
 msgid "_Longwords"
 msgstr "_Lange ord"
 
-#: ghex/hex-document.c:46
+#: ghex/hex-document.c:69
 msgid "_Find..."
 msgstr "_Finn..."
 
-#: ghex/hex-document.c:48
+#: ghex/hex-document.c:71
 msgid "_Replace..."
 msgstr "_Erstatt"
 
-#: ghex/hex-document.c:52
+#: ghex/hex-document.c:75
 msgid "_Goto Byte..."
 msgstr "_Gå til byte..."
 
-#: ghex/hex-document.c:56
+#: ghex/hex-document.c:79
 msgid "_Group Data As"
 msgstr "_Grupper data som"
 
-#: ghex/main.c:56
+#: ghex/main.c:63
 msgid "Files/"
 msgstr "Filer/"
 
-#: ghex/ui.c:14
+#: ghex/ui.c:32
 msgid "_Open"
 msgstr "_Åpne"
 
-#: ghex/ui.c:16
+#: ghex/ui.c:34
 msgid "_Save"
 msgstr "_Lagre"
 
-#: ghex/ui.c:18
+#: ghex/ui.c:36
 msgid "Save _as..."
 msgstr "Lagre _som..."
 
-#: ghex/ui.c:20
+#: ghex/ui.c:38
 msgid "_Revert"
 msgstr "_Gå tilbake"
 
-#: ghex/ui.c:22
+#: ghex/ui.c:40
 msgid "_Close"
 msgstr "_Lukk"
 
-#: ghex/ui.c:26
+#: ghex/ui.c:44
 msgid "Open _Converter..."
 msgstr "Åpne _konverterer..."
 
-#: ghex/ui.c:30
+#: ghex/ui.c:48
 msgid "_Preferences"
 msgstr "_Innstillinger"
 
-#: ghex/ui.c:44
+#: ghex/ui.c:62
 msgid "_Add view"
 msgstr "_Legg til visning"
 
-#: ghex/ui.c:47
+#: ghex/ui.c:65
 msgid "_Remove view"
 msgstr "Fjern visning"
 
-#: ghex/ui.c:63 gncal/main.c:438 gtt/menus.c:113
+#: ghex/ui.c:81 gncal/main.c:438 gtt/menus.c:113
 msgid "_File"
 msgstr "_Fil"
 
-#: ghex/ui.c:65
+#: ghex/ui.c:83
 msgid "_View"
 msgstr "_Vis"
 
-#: ghex/ui.c:67
+#: ghex/ui.c:85
 msgid "File_s"
 msgstr "Fil_er"
 
-#: ghex/ui.c:69 gncal/main.c:440 gtt/menus.c:120
+#: ghex/ui.c:87 gncal/main.c:440 gtt/menus.c:120
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: ghex/ui.c:81
+#: ghex/ui.c:99
 msgid "Bytes"
 msgstr "Bytes"
 
-#: ghex/ui.c:82
+#: ghex/ui.c:100
 msgid "Words"
 msgstr "Ord"
 
-#: ghex/ui.c:83
+#: ghex/ui.c:101
 msgid "Longwords"
 msgstr "Lange ord"
 
-#: ghex/ui.c:107 mini-utils/idetool/idetool.c:140
-#: mini-utils/idetool/idetool.c:322
+#: ghex/ui.c:125 mini-utils/idetool/idetool.c:141
+#: mini-utils/idetool/idetool.c:323
 msgid "Default"
 msgstr "Standard"
 
-#: ghex/ui.c:108
+#: ghex/ui.c:126
 msgid "Notebook"
 msgstr "Notisblokk"
 
-#: ghex/ui.c:109
+#: ghex/ui.c:127
 msgid "Toplevel"
 msgstr "Toppnivå"
 
-#: ghex/ui.c:110
+#: ghex/ui.c:128
 msgid "Modal"
 msgstr "Modulær"
 
-#: ghex/ui.c:115
+#: ghex/ui.c:133
 msgid "hex data"
 msgstr "heksadesimale data"
 
-#: ghex/ui.c:116
+#: ghex/ui.c:134
 msgid "ASCII data"
 msgstr "ASCII data"
 
-#: ghex/ui.c:193
+#: ghex/ui.c:211
 msgid "GHex: Find Data"
 msgstr "GHex: Finn data"
 
-#: ghex/ui.c:202
+#: ghex/ui.c:220
 #, c-format
 msgid "Search for %s"
 msgstr "Søk etter %s"
 
-#: ghex/ui.c:218
+#: ghex/ui.c:236
 msgid "Find Next"
 msgstr "Finn neste"
 
-#: ghex/ui.c:225
+#: ghex/ui.c:243
 msgid "Find Previous"
 msgstr "Finn forrige"
 
-#: ghex/ui.c:253
+#: ghex/ui.c:271
 msgid "GHex: Find & Replace Data"
 msgstr "GHex: Søk og erstatt data"
 
-#: ghex/ui.c:267
+#: ghex/ui.c:285
 #, c-format
 msgid "Replace %s"
 msgstr "Erstatt %s"
 
-#: ghex/ui.c:283
+#: ghex/ui.c:301
 msgid "Find next"
 msgstr "Finn neste"
 
-#: ghex/ui.c:290
+#: ghex/ui.c:308
 msgid "Replace"
 msgstr "Erstatt"
 
-#: ghex/ui.c:297
+#: ghex/ui.c:315
 msgid "Replace All"
 msgstr "Erstatt alle"
 
-#: ghex/ui.c:321
+#: ghex/ui.c:339
 msgid "GHex: Jump To Byte"
 msgstr "GHex: Hopp til byte"
 
-#: ghex/ui.c:354
+#: ghex/ui.c:372
 msgid "GHex: Converter"
 msgstr "GHex: Konvertering"
 
-#: ghex/ui.c:361
+#: ghex/ui.c:379
 msgid "Binary"
 msgstr "Binær"
 
-#: ghex/ui.c:371
+#: ghex/ui.c:389
 msgid "Decimal"
 msgstr "Desimal"
 
-#: ghex/ui.c:381
+#: ghex/ui.c:399
 msgid "Hex"
 msgstr "Heksadesimal"
 
-#: ghex/ui.c:391
+#: ghex/ui.c:409
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ghex/ui.c:401 mini-utils/gless/gless.c:324
+#: ghex/ui.c:419 mini-utils/gless/gless.c:300
 msgid "Close"
 msgstr "Lukk"
 
-#: ghex/ui.c:445
+#: ghex/ui.c:463
 msgid "Font"
 msgstr "Skrifttype"
 
-#: ghex/ui.c:455
+#: ghex/ui.c:479
+msgid "Browse..."
+msgstr ""
+
+#: ghex/ui.c:498
 msgid "Default Group Type"
 msgstr "Standard gruppetype"
 
-#: ghex/ui.c:471 gncal/eventedit.c:379 gtt/options.c:195
+#: ghex/ui.c:514 gncal/eventedit.c:379 gtt/options.c:195
 msgid "Display"
 msgstr "Skjerm"
 
-#: ghex/ui.c:478
+#: ghex/ui.c:521
 msgid "MDI Mode"
 msgstr "MDI-modus"
 
-#: ghex/ui.c:495
+#: ghex/ui.c:538
 msgid "MDI"
 msgstr "MDI"
 
@@ -474,7 +483,7 @@ msgstr "Privat"
 msgid "Confidential"
 msgstr "Konfidensiell"
 
-#: gncal/eventedit.c:779 mini-utils/gshutdown/gshutdown.c:384
+#: gncal/eventedit.c:779 mini-utils/gshutdown/gshutdown.c:382
 msgid "General"
 msgstr "Generelt"
 
@@ -902,7 +911,7 @@ msgstr "Rediger to-do oppføring"
 msgid "Add to-do item..."
 msgstr "Legg til to-do oppføring"
 
-#: gncal/gncal-todo.c:198
+#: gncal/gncal-todo.c:198 gncal/gnomecard/gnomecard.c:181
 msgid "Edit this item..."
 msgstr "Rediger denne avtalen..."
 
@@ -926,8 +935,8 @@ msgid "Edit..."
 msgstr "Rediger..."
 
 #. Delete
-#: gncal/gncal-todo.c:286 gncal/gnomecard/gnomecard.c:467
-#: mini-utils/gw/gw.c:466
+#: gncal/gncal-todo.c:286 gncal/gnomecard/gnomecard.c:496
+#: mini-utils/gw/gw.c:464
 msgid "Delete"
 msgstr "Slett"
 
@@ -951,245 +960,212 @@ msgstr "Årsoversikt"
 msgid "Reminder of your appointment at "
 msgstr "Påminnelse om avtale ved"
 
-#: gncal/gnomecard/gnomecard.c:165
+#: gncal/gnomecard/gnomecard.c:167
 msgid "No cards, yet."
 msgstr "Ingen kort, ennå."
 
-#: gncal/gnomecard/gnomecard.c:261
+#: gncal/gnomecard/gnomecard.c:291
 msgid " changed. Save?"
 msgstr " endret. Lagre?"
 
-#: gncal/gnomecard/gnomecard.c:369
+#: gncal/gnomecard/gnomecard.c:398
 msgid "A new Gnomecard could not be spawned. Maybe it is not in your path."
 msgstr "Et nytt Gnomekort kunne ikke opprettes. Kanskje det ikke er i stien."
 
-#: gncal/gnomecard/gnomecard.c:380
+#: gncal/gnomecard/gnomecard.c:409
 msgid "New Gnomecard"
 msgstr "Nytt Gnomekort"
 
-#: gncal/gnomecard/gnomecard.c:380
+#: gncal/gnomecard/gnomecard.c:409
 msgid "Spawn a new Card Manager."
 msgstr "Opprett ny kortbehandler."
 
-#: gncal/gnomecard/gnomecard.c:386 gncal/gnomecard/gnomecard.c:556
+#: gncal/gnomecard/gnomecard.c:415 gncal/gnomecard/gnomecard.c:588
 #: gncal/main.c:445
 msgid "New"
 msgstr "Ny"
 
-#: gncal/gnomecard/gnomecard.c:386
+#: gncal/gnomecard/gnomecard.c:415
 msgid "Create new Card File."
 msgstr "Lag en ny kortfil."
 
-#: gncal/gnomecard/gnomecard.c:390 mini-utils/gless/gless.c:315
+#: gncal/gnomecard/gnomecard.c:419 mini-utils/gless/gless.c:291
 msgid "Open..."
 msgstr "Åpne..."
 
-#: gncal/gnomecard/gnomecard.c:390
+#: gncal/gnomecard/gnomecard.c:419
 msgid "Open a Card File."
 msgstr "Åpne en kortfil."
 
-#: gncal/gnomecard/gnomecard.c:394
+#: gncal/gnomecard/gnomecard.c:423
 msgid "Append..."
 msgstr "Legg til..."
 
-#: gncal/gnomecard/gnomecard.c:394
+#: gncal/gnomecard/gnomecard.c:423
 msgid "Add the contents of another Card File."
 msgstr ""
 
-#: gncal/gnomecard/gnomecard.c:398 gncal/gnomecard/gnomecard.c:564
+#: gncal/gnomecard/gnomecard.c:427 gncal/gnomecard/gnomecard.c:596
 #: gtt/toolbar.c:152
 msgid "Save"
 msgstr "Lagre"
 
-#: gncal/gnomecard/gnomecard.c:398
+#: gncal/gnomecard/gnomecard.c:427
 msgid "Save current changes."
 msgstr "Lagre endringer."
 
-#: gncal/gnomecard/gnomecard.c:402
+#: gncal/gnomecard/gnomecard.c:431
 msgid "Save as..."
 msgstr "Lagre som..."
 
-#: gncal/gnomecard/gnomecard.c:402
+#: gncal/gnomecard/gnomecard.c:431
 msgid "Save current changes, choosing file name."
 msgstr "Lagre nåværende endringer, og velg filnavn."
 
-#: gncal/gnomecard/gnomecard.c:408 gtt/menus.c:128
+#: gncal/gnomecard/gnomecard.c:437 gtt/menus.c:128
 msgid "Properties..."
 msgstr "Egenskaper..."
 
-#: gncal/gnomecard/gnomecard.c:408
+#: gncal/gnomecard/gnomecard.c:437
 msgid "Appereance, customizations..."
 msgstr "Utseende, egeninnstillinger..."
 
-#: gncal/gnomecard/gnomecard.c:411
+#: gncal/gnomecard/gnomecard.c:440
 msgid "Close the program."
 msgstr "Lukk programmet."
 
-#: gncal/gnomecard/gnomecard.c:419 gncal/gnomecard/gnomecard.c:584
+#: gncal/gnomecard/gnomecard.c:448 gncal/gnomecard/gnomecard.c:616
 msgid "First"
 msgstr "Første"
 
-#: gncal/gnomecard/gnomecard.c:419 gncal/gnomecard/gnomecard.c:584
+#: gncal/gnomecard/gnomecard.c:448 gncal/gnomecard/gnomecard.c:616
 msgid "First card"
 msgstr "Første kort"
 
-#: gncal/gnomecard/gnomecard.c:423 gncal/gnomecard/gnomecard.c:588
+#: gncal/gnomecard/gnomecard.c:452 gncal/gnomecard/gnomecard.c:620
 #: gncal/main.c:449
 msgid "Prev"
 msgstr "Forrige"
 
-#: gncal/gnomecard/gnomecard.c:423 gncal/gnomecard/gnomecard.c:588
+#: gncal/gnomecard/gnomecard.c:452 gncal/gnomecard/gnomecard.c:620
 msgid "Previous card"
 msgstr "Forrige kort"
 
-#: gncal/gnomecard/gnomecard.c:427 gncal/gnomecard/gnomecard.c:592
+#: gncal/gnomecard/gnomecard.c:456 gncal/gnomecard/gnomecard.c:624
 #: gncal/main.c:451
 msgid "Next"
 msgstr "Neste"
 
-#: gncal/gnomecard/gnomecard.c:427 gncal/gnomecard/gnomecard.c:592
+#: gncal/gnomecard/gnomecard.c:456 gncal/gnomecard/gnomecard.c:624
 msgid "Next card"
 msgstr "Neste kort"
 
-#: gncal/gnomecard/gnomecard.c:431 gncal/gnomecard/gnomecard.c:596
+#: gncal/gnomecard/gnomecard.c:460 gncal/gnomecard/gnomecard.c:628
 msgid "Last"
 msgstr "Siste"
 
-#: gncal/gnomecard/gnomecard.c:431 gncal/gnomecard/gnomecard.c:596
+#: gncal/gnomecard/gnomecard.c:460 gncal/gnomecard/gnomecard.c:628
 msgid "Last card"
 msgstr "Siste kort"
 
-#: gncal/gnomecard/gnomecard.c:440
+#: gncal/gnomecard/gnomecard.c:469
 msgid "By Card Name"
 msgstr "Etter kortnavn"
 
-#: gncal/gnomecard/gnomecard.c:444
+#: gncal/gnomecard/gnomecard.c:473
 msgid "By Name"
 msgstr "Etter navn"
 
-#: gncal/gnomecard/gnomecard.c:448
+#: gncal/gnomecard/gnomecard.c:477
 msgid "By E-mail"
 msgstr "Etter e-post"
 
-#: gncal/gnomecard/gnomecard.c:463 gncal/gnomecard/gnomecard.c:489
-#: gncal/gnomecard/gnomecard.c:515
+#: gncal/gnomecard/gnomecard.c:492 gncal/gnomecard/gnomecard.c:545
 msgid "Card"
 msgstr "Kort"
 
-#: gncal/gnomecard/gnomecard.c:463 gncal/gnomecard/gnomecard.c:574
+#: gncal/gnomecard/gnomecard.c:492 gncal/gnomecard/gnomecard.c:606
 msgid "Edit card"
 msgstr "Rediger kort"
 
-#: gncal/gnomecard/gnomecard.c:467
+#: gncal/gnomecard/gnomecard.c:496
 msgid "Delete element"
 msgstr "Slett element"
 
-#: gncal/gnomecard/gnomecard.c:473
+#: gncal/gnomecard/gnomecard.c:502
 msgid "Go"
 msgstr "Start"
 
-#: gncal/gnomecard/gnomecard.c:473
+#: gncal/gnomecard/gnomecard.c:502
 msgid "Change current card"
 msgstr "Skift nåværende kort"
 
-#: gncal/gnomecard/gnomecard.c:478 gncal/gnomecard/gnomecard.c:602
+#: gncal/gnomecard/gnomecard.c:507 gncal/gnomecard/gnomecard.c:634
 msgid "Find"
 msgstr "Finn"
 
-#: gncal/gnomecard/gnomecard.c:478 gncal/gnomecard/gnomecard.c:602
+#: gncal/gnomecard/gnomecard.c:507 gncal/gnomecard/gnomecard.c:634
 msgid "Search card"
 msgstr "Søk etter kort"
 
-#: gncal/gnomecard/gnomecard.c:482
+#: gncal/gnomecard/gnomecard.c:511
 msgid "Sort"
 msgstr "Sorter"
 
-#: gncal/gnomecard/gnomecard.c:482
+#: gncal/gnomecard/gnomecard.c:511
 msgid "Set sort criteria"
 msgstr "Sett sorteringskriterie"
 
-#: gncal/gnomecard/gnomecard.c:489 gncal/gnomecard/gnomecard.c:570
-msgid "Create new card"
-msgstr "Lag et nytt kort"
-
-#: gncal/gnomecard/gnomecard.c:495
-msgid "E-mail"
-msgstr "E-post"
-
-#: gncal/gnomecard/gnomecard.c:495
-msgid "Add Electronic Address"
-msgstr "Legg til elektronisk adresse"
-
-#: gncal/gnomecard/gnomecard.c:499
-msgid "Phone"
-msgstr "Telefon"
-
-#: gncal/gnomecard/gnomecard.c:499
-msgid "Add Telephone Number"
-msgstr "Legg til telefonnummer"
-
-#: gncal/gnomecard/gnomecard.c:503
-msgid "Address"
-msgstr "Adresse"
-
-#: gncal/gnomecard/gnomecard.c:503
-msgid "Add Delivery Address"
-msgstr "Legg til leveringsadresse"
-
-#: gncal/gnomecard/gnomecard.c:507
-msgid "Address Label"
-msgstr "Adresse-etikett"
-
-#: gncal/gnomecard/gnomecard.c:507
-msgid "Add Delivery Address Label"
-msgstr "Legg til etikett for leveringsadresse"
-
-#: gncal/gnomecard/gnomecard.c:515
+#: gncal/gnomecard/gnomecard.c:545
 msgid "Toggle Card View"
 msgstr "Slå av/på kortvisning"
 
-#: gncal/gnomecard/gnomecard.c:519
+#: gncal/gnomecard/gnomecard.c:550
 msgid "Tree"
 msgstr "Tre"
 
-#: gncal/gnomecard/gnomecard.c:519
+#: gncal/gnomecard/gnomecard.c:550
 msgid "Toggle Tree View"
 msgstr "Slå av/på trevisning"
 
-#: gncal/gnomecard/gnomecard.c:527
+#: gncal/gnomecard/gnomecard.c:559
 msgid "Version, credits, etc."
 msgstr "Versjon, kreditter, osv."
 
-#: gncal/gnomecard/gnomecard.c:538 gncal/gnomecard/gnomecard.c:574
+#: gncal/gnomecard/gnomecard.c:570 gncal/gnomecard/gnomecard.c:606
 msgid "Edit"
 msgstr "Rediger"
 
-#: gncal/gnomecard/gnomecard.c:541 gncal/gnomecard/gnomecard.c:570
-#: gsearchtool/gsearchtool.c:504 mini-utils/gw/gw.c:465
-msgid "Add"
-msgstr "Legg til"
-
-#: gncal/gnomecard/gnomecard.c:556
+#: gncal/gnomecard/gnomecard.c:588
 msgid "New file"
 msgstr "Ny fil"
 
-#: gncal/gnomecard/gnomecard.c:560
+#: gncal/gnomecard/gnomecard.c:592
 msgid "Open"
 msgstr "Åpne"
 
-#: gncal/gnomecard/gnomecard.c:560
+#: gncal/gnomecard/gnomecard.c:592
 msgid "Open file"
 msgstr "Åpne en fil"
 
-#: gncal/gnomecard/gnomecard.c:564
+#: gncal/gnomecard/gnomecard.c:596
 msgid "Save changes"
 msgstr "Lagre endringer"
 
-#: gncal/gnomecard/gnomecard.c:578
+#: gncal/gnomecard/gnomecard.c:602 gsearchtool/gsearchtool.c:504
+#: mini-utils/gw/gw.c:463
+msgid "Add"
+msgstr "Legg til"
+
+#: gncal/gnomecard/gnomecard.c:602
+msgid "Create new card"
+msgstr "Lag et nytt kort"
+
+#: gncal/gnomecard/gnomecard.c:610
 msgid "Del"
 msgstr "Slett"
 
-#: gncal/gnomecard/gnomecard.c:578
+#: gncal/gnomecard/gnomecard.c:610
 msgid "Delete card"
 msgstr "Slett kort"
 
@@ -1311,49 +1287,47 @@ msgstr "%s%s"
 msgid "'s calendar"
 msgstr "s kalender"
 
-#: gncal/main.c:527
+#: gncal/main.c:632
 msgid "Show events and quit"
 msgstr "Vis hendelser og avslutt"
 
-#: gncal/main.c:528 gncal/main.c:533
-msgid "DATE"
-msgstr "DATO"
-
-#: gncal/main.c:528
+#: gncal/main.c:634
 msgid "Specifies start date [for --events]"
 msgstr "Spesifiserer startdato [for --events]"
 
-#: gncal/main.c:529
-msgid "FILE"
-msgstr "FIL"
+#: gncal/main.c:634 gncal/main.c:639
+msgid "DATE"
+msgstr "DATO"
 
-#: gncal/main.c:529
+#: gncal/main.c:635
 msgid "File to load calendar from"
 msgstr "Fil kalender skal leses fra"
 
-#: gncal/main.c:530
+#: gncal/main.c:635
+msgid "FILE"
+msgstr "FIL"
+
+#: gncal/main.c:636
 msgid "Load the user calendar"
 msgstr "Les brukerkalenderen"
 
-#. name
-#. key
-#: gncal/main.c:531 mini-utils/gless/gless.c:99
-msgid "GEOMETRY"
-msgstr "GEOMETRI"
-
-#: gncal/main.c:531
+#: gncal/main.c:637
 msgid "Geometry for starting up"
 msgstr "Geometri for oppstart"
 
-#: gncal/main.c:532
-msgid "VIEW"
-msgstr "VISNING"
+#: gncal/main.c:637 gtt/main.c:255 mini-utils/gless/gless.c:115
+msgid "GEOMETRY"
+msgstr "GEOMETRI"
 
-#: gncal/main.c:532
+#: gncal/main.c:638
 msgid "The startup view mode"
 msgstr "Visningsmodues ved oppstart"
 
-#: gncal/main.c:533
+#: gncal/main.c:638
+msgid "VIEW"
+msgstr "VISNING"
+
+#: gncal/main.c:639
 msgid "Specifies ending date [for --events]"
 msgstr "Spesifiser sluttdato [for --events]"
 
@@ -1411,8 +1385,8 @@ msgstr "Farge for måneder"
 msgid "Colors"
 msgstr "Farger"
 
-#: gncal/prop.c:505 gtt/options.c:508 mini-utils/gless/gless.c:359
-#: mini-utils/gw/gw.c:206
+#: gncal/prop.c:505 gtt/options.c:508 mini-utils/gless/gless.c:335
+#: mini-utils/gw/gw.c:204
 msgid "Preferences"
 msgstr "Innstillinger"
 
@@ -1467,7 +1441,7 @@ msgstr "Gnome søkeverktøy"
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Grensesnitt mot UNIXs find/grep/locate kommandoer"
 
-#: gsearchtool/gsearchtool.c:619
+#: gsearchtool/gsearchtool.c:617
 msgid "Gnome Search Tool"
 msgstr "Gnome søkeverktøy"
 
@@ -1503,11 +1477,11 @@ msgstr "ingen beskrivelse"
 msgid "program exited"
 msgstr "program avsluttet"
 
-#: gtt/main.c:74 gtt/main.c:116
+#: gtt/main.c:75 gtt/main.c:117
 msgid "Error"
 msgstr "Feil"
 
-#: gtt/main.c:74
+#: gtt/main.c:75
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Please remove the pid file, if that is not correct."
@@ -1515,7 +1489,7 @@ msgstr ""
 "Det ser ut som om GtimeTracker allerede kjører.\n"
 "Vær så snill å fjerne pid-filen hvis dette ikke er tilfelle."
 
-#: gtt/main.c:117
+#: gtt/main.c:118
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -1523,18 +1497,22 @@ msgstr ""
 "En feil oppstod under lesing av konfigurasjonsfilen.\n"
 "Skal jeg lage en ny konfigurasjon?"
 
-#: gtt/main.c:210 gtt/main.c:225 gtt/main.c:236 gtt/main.c:242
+#: gtt/main.c:209 gtt/main.c:224 gtt/main.c:235 gtt/main.c:241
 #, c-format
 msgid "error in geometry string \"%s\"\n"
 msgstr "feil i geometri-strengen \"%s\"\n"
 
-#: gtt/main.c:259
-msgid "specify geometry"
-msgstr "spesifiser geometri"
+#: gtt/main.c:255
+msgid "Specify geometry"
+msgstr "Spesifiser geometri"
 
-#: gtt/main.c:261
-msgid "select a project on startup"
-msgstr "velg et prosjekt ved oppstart"
+#: gtt/main.c:256
+msgid "Select a project on startup"
+msgstr "Velg et prosjekt ved oppstart"
+
+#: gtt/main.c:256
+msgid "PROJECT"
+msgstr "PROSJEKT"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1867,12 +1845,12 @@ msgid "Color"
 msgstr "Farge"
 
 #: mini-utils/gcolorsel/gcolorsel.c:153 mini-utils/guname/moreinfo.c:218
-#: mini-utils/idetool/idetool.c:257
+#: mini-utils/idetool/idetool.c:258
 msgid "Value"
 msgstr "Verdi"
 
 #: mini-utils/gcolorsel/gcolorsel.c:154 mini-utils/guname/moreinfo.c:217
-#: mini-utils/gw/gw.c:456 mini-utils/gw/gw.c:528
+#: mini-utils/gw/gw.c:454 mini-utils/gw/gw.c:526
 msgid "Name"
 msgstr "Navn"
 
@@ -1916,93 +1894,91 @@ msgstr "Skrifttypevelger"
 msgid "Selection:"
 msgstr "Valg:"
 
-#: mini-utils/gfontsel/gfontsel.c:263
-msgid "font to load"
-msgstr "skrifttype som skal lastes"
+#: mini-utils/gfontsel/gfontsel.c:251
+msgid "Font to load"
+msgstr "Skrifttype som skal lastes"
 
-#: mini-utils/gfontsel/gfontsel.c:266
-msgid "print selected font name on exit"
-msgstr "skriv ut navn på valgte skrifttype og avslutt"
+#: mini-utils/gfontsel/gfontsel.c:251
+msgid "FONTSPEC"
+msgstr "FONTSPEC"
 
-#: mini-utils/gfontsel/gfontsel.c:269
-msgid "inhibit remembering selected font for next run"
-msgstr "hindre husking av valgt skrifttype for neste kjøring"
+#: mini-utils/gfontsel/gfontsel.c:252
+msgid "Print selected font name on exit"
+msgstr "Skriv ut navn på valgte skrifttype ved avslutning"
 
-#: mini-utils/gfontsel/gfontsel.c:272
-msgid "inhibit loading of last font"
-msgstr "hindre lasting av forrige skrifttype"
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "Inhibit remembering selected font for next run"
+msgstr "Hindre husking av valgt skrifttype for neste kjøring"
 
-#. name of argument to option
-#. flags
-#: mini-utils/gless/gless.c:101
+#: mini-utils/gfontsel/gfontsel.c:254
+msgid "Inhibit loading of last font"
+msgstr "Hindre lasting av forrige skrifttype"
+
+#: mini-utils/gless/gless.c:115
 msgid "Where to put the window, and its size"
 msgstr "Hvor vinduet skal plasseres, og størrelsen på det"
 
-#. name
-#. key
-#. name of argument to option
-#. flags
-#: mini-utils/gless/gless.c:109
+#: mini-utils/gless/gless.c:116
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "Ignorer standard inndata; behøves i noen tilfeller."
 
-#: mini-utils/gless/gless.c:302 mini-utils/gw/gw.c:174
+#: mini-utils/gless/gless.c:278 mini-utils/gw/gw.c:172
 msgid "Tell about this application"
 msgstr "Fortell om denne applikasjonen"
 
-#: mini-utils/gless/gless.c:310
+#: mini-utils/gless/gless.c:286
 msgid "New Window"
 msgstr "Nytt vindu"
 
-#: mini-utils/gless/gless.c:310
+#: mini-utils/gless/gless.c:286
 msgid "New text viewer window"
 msgstr "Nytt tekstvisningsvindu"
 
-#: mini-utils/gless/gless.c:315
+#: mini-utils/gless/gless.c:291
 msgid "Open a new file in this window"
 msgstr "Åpne en ny fil i dette vinduet"
 
-#: mini-utils/gless/gless.c:320 mini-utils/guname/guname.c:523
+#: mini-utils/gless/gless.c:296 mini-utils/guname/guname.c:521
 msgid "Save As..."
 msgstr "Lagre som..."
 
-#: mini-utils/gless/gless.c:320
+#: mini-utils/gless/gless.c:296
 msgid "Save file to disk"
 msgstr "Lagre fil til disk"
 
-#: mini-utils/gless/gless.c:325
+#: mini-utils/gless/gless.c:301
 msgid "Close this window"
 msgstr "Lukk dette vinduet"
 
-#: mini-utils/gless/gless.c:331
+#: mini-utils/gless/gless.c:307
 msgid "Quit the application"
 msgstr "Avslutt applikasjonen"
 
-#: mini-utils/gless/gless.c:339
+#: mini-utils/gless/gless.c:315
 msgid "Fixed Font"
 msgstr "Låst skrifttype"
 
-#: mini-utils/gless/gless.c:340
+#: mini-utils/gless/gless.c:316
 msgid "Display text with a fixed font"
 msgstr "Vis teksten med en låst skrifttype"
 
-#: mini-utils/gless/gless.c:348 mini-utils/gw/gw.c:196
+#: mini-utils/gless/gless.c:324 mini-utils/gw/gw.c:194
 msgid "Preferences..."
 msgstr "Innstillinger..."
 
-#: mini-utils/gless/gless.c:349 mini-utils/gw/gw.c:197
+#: mini-utils/gless/gless.c:325 mini-utils/gw/gw.c:195
 msgid "Change application preferences"
 msgstr "Endre applikasjonens innstillinger"
 
-#: mini-utils/gless/gless.c:358
+#: mini-utils/gless/gless.c:334
 msgid "View"
 msgstr "Vis"
 
-#: mini-utils/gless/gless.c:380
+#: mini-utils/gless/gless.c:356
 msgid "Text File Viewer"
 msgstr "Tekstfilvisning"
 
-#: mini-utils/gless/gless.c:440
+#: mini-utils/gless/gless.c:416
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -2010,19 +1986,19 @@ msgstr ""
 "Kunne ikke forstå geometrien (posisjonen og størrelsen)\n"
 " spesifisert på kommandolinjen"
 
-#: mini-utils/gless/gless.c:481
+#: mini-utils/gless/gless.c:457
 msgid "Loading..."
 msgstr "Laster..."
 
-#: mini-utils/gless/gless.c:486
+#: mini-utils/gless/gless.c:462
 msgid "No such file or directory:\n"
 msgstr "Ikke en fil eller en katalog:\n"
 
-#: mini-utils/gless/gless.c:503
+#: mini-utils/gless/gless.c:479
 msgid "Failed to decompress and display the file:\n"
 msgstr "Klarte ikke å dekomprimere og vise filen:\n"
 
-#: mini-utils/gless/gless.c:514
+#: mini-utils/gless/gless.c:490
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -2030,27 +2006,27 @@ msgstr ""
 "Ute av stand til å vise den komprimerte filen.\n"
 "zcat ble ikke funnet i søkestien."
 
-#: mini-utils/gless/gless.c:522
+#: mini-utils/gless/gless.c:498
 msgid "Error loading file:\n"
 msgstr "Feil under lasting av fil:\n"
 
-#: mini-utils/gless/gless.c:576
+#: mini-utils/gless/gless.c:552
 msgid "Saving..."
 msgstr "Lagrer..."
 
-#: mini-utils/gless/gless.c:587
+#: mini-utils/gless/gless.c:563
 msgid "Failed to write file:\n"
 msgstr "Feil under skriving av fil:\n"
 
-#: mini-utils/gless/gless.c:634
+#: mini-utils/gless/gless.c:610
 msgid "Save Text As..."
 msgstr "Lagre teksten som..."
 
-#: mini-utils/gless/gless.c:674
+#: mini-utils/gless/gless.c:650
 msgid "Open Text File..."
 msgstr "Åpne tekstfil..."
 
-#: mini-utils/gnome-run/gnome-run.c:36
+#: mini-utils/gnome-run/gnome-run.c:37
 msgid "Failed to execute command:\n"
 msgstr "Feil under kjøring av kommando:\n"
 
@@ -2115,19 +2091,19 @@ msgid "Are you sure you want to reboot the system?"
 msgstr "Er du sikker på at du vil starte maskinen på nytt?"
 
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:175
+#: mini-utils/gshutdown/gshutdown.c:173
 msgid "Shutdown or Reboot"
 msgstr "Slå av maskinen eller start på nytt"
 
-#: mini-utils/gshutdown/gshutdown.c:192 mini-utils/gshutdown/gshutdown.c:193
+#: mini-utils/gshutdown/gshutdown.c:190 mini-utils/gshutdown/gshutdown.c:191
 msgid "Easy"
 msgstr "Enkel"
 
-#: mini-utils/gshutdown/gshutdown.c:197 mini-utils/gshutdown/gshutdown.c:198
+#: mini-utils/gshutdown/gshutdown.c:195 mini-utils/gshutdown/gshutdown.c:196
 msgid "Advanced"
 msgstr "Avansert"
 
-#: mini-utils/gshutdown/gshutdown.c:230
+#: mini-utils/gshutdown/gshutdown.c:228
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
@@ -2136,68 +2112,68 @@ msgstr ""
 "Du vil miste data som ikke er lagret i åpne applikasjoner."
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:357
+#: mini-utils/gshutdown/gshutdown.c:355
 msgid "Revert to Defaults"
 msgstr "Gå tilbake til standardverdier"
 
-#: mini-utils/gshutdown/gshutdown.c:367
+#: mini-utils/gshutdown/gshutdown.c:365
 msgid "Commands"
 msgstr "Kommandoer"
 
-#: mini-utils/gshutdown/gshutdown.c:372
+#: mini-utils/gshutdown/gshutdown.c:370
 msgid "Confirm before shutdown?"
 msgstr "Bekreft før nedstenging?"
 
-#: mini-utils/gshutdown/gshutdown.c:446
+#: mini-utils/gshutdown/gshutdown.c:444
 msgid "Don't ask next time."
 msgstr "Ikke spør neste gang."
 
-#: mini-utils/guname/guname.c:328
+#: mini-utils/guname/guname.c:326
 msgid "System Information"
 msgstr "Systeminformasjon"
 
-#: mini-utils/guname/guname.c:412
+#: mini-utils/guname/guname.c:410
 msgid "Logo file not found"
-msgstr "Logo filen ble ikke funnet"
+msgstr "Logofilen ble ikke funnet"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:416
+#: mini-utils/guname/guname.c:414
 msgid "GNOME contributors:"
 msgstr "GNOME hjelpere:"
 
-#: mini-utils/guname/guname.c:430
+#: mini-utils/guname/guname.c:428
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME: The GNU Network Object Model Environment"
 
-#: mini-utils/guname/guname.c:454
+#: mini-utils/guname/guname.c:452
 msgid "Email Information..."
 msgstr "Send informasjon..."
 
-#: mini-utils/guname/guname.c:465
+#: mini-utils/guname/guname.c:463
 msgid "Save Information to File..."
 msgstr "Lagre informasjonen til en fil..."
 
-#: mini-utils/guname/guname.c:477 mini-utils/guname/guname.c:537
+#: mini-utils/guname/guname.c:475 mini-utils/guname/guname.c:535
 msgid "Detailed Information..."
 msgstr "Detaljert informasjon..."
 
-#: mini-utils/guname/guname.c:491
+#: mini-utils/guname/guname.c:489
 msgid "Category"
 msgstr "Kategori"
 
-#: mini-utils/guname/guname.c:491
+#: mini-utils/guname/guname.c:489
 msgid "Your System"
 msgstr "Ditt system"
 
-#: mini-utils/guname/guname.c:529
+#: mini-utils/guname/guname.c:527
 msgid "Mail To..."
 msgstr "Send til..."
 
-#: mini-utils/guname/guname.c:577
+#: mini-utils/guname/guname.c:575
 msgid "Error closing file `"
 msgstr "Feil under lukking av fil `"
 
-#: mini-utils/guname/guname.c:579
+#: mini-utils/guname/guname.c:577
 msgid ""
 "\n"
 "Some or all data may not have been written."
@@ -2205,32 +2181,32 @@ msgstr ""
 "\n"
 "Deler av, eller alle data ble kanskje ikke skrevet."
 
-#: mini-utils/guname/guname.c:588
+#: mini-utils/guname/guname.c:586
 msgid "Couldn't open file `"
 msgstr "Kan ikke åpne filen!"
 
-#: mini-utils/guname/guname.c:602
+#: mini-utils/guname/guname.c:600
 msgid "Save System Information As..."
 msgstr "Lagre systeminformasjonen som..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:648
+#: mini-utils/guname/guname.c:646
 msgid "Command failed ` "
 msgstr "Kommandoen feilet ` "
 
-#: mini-utils/guname/guname.c:648 mini-utils/guname/guname.c:655
+#: mini-utils/guname/guname.c:646 mini-utils/guname/guname.c:653
 msgid " ': "
 msgstr " ': "
 
-#: mini-utils/guname/guname.c:655
+#: mini-utils/guname/guname.c:653
 msgid "Couldn't run command ` "
 msgstr "Kunne ikke kjøre kommandoen ` "
 
-#: mini-utils/guname/guname.c:678
+#: mini-utils/guname/guname.c:676
 msgid "The following mail will be sent to "
 msgstr "Følgende e-post vil bli sent til "
 
-#: mini-utils/guname/guname.c:680
+#: mini-utils/guname/guname.c:678
 msgid ""
 ".\n"
 " Are you sure you want to mail this information?"
@@ -2238,11 +2214,11 @@ msgstr ""
 ".\n"
 " Er du sikker på at du vil sende denne informasjonen?"
 
-#: mini-utils/guname/guname.c:689
+#: mini-utils/guname/guname.c:687
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
-#: mini-utils/guname/guname.c:722
+#: mini-utils/guname/guname.c:720
 msgid "Address to mail to:"
 msgstr "Adresse for sending:"
 
@@ -2414,7 +2390,7 @@ msgstr "    Enhet: "
 msgid "    Filesystem Type: "
 msgstr "    Filsystemtype: "
 
-#: mini-utils/gw/gw.c:146
+#: mini-utils/gw/gw.c:144
 msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
@@ -2422,40 +2398,40 @@ msgstr ""
 "Kunne ikke finne \"w\" kommandoen i stien.\n"
 "Denne kommandoen er nødvendig for at dette programmet skal virke."
 
-#: mini-utils/gw/gw.c:182
+#: mini-utils/gw/gw.c:180
 msgid "Save..."
 msgstr "Lagre..."
 
-#: mini-utils/gw/gw.c:182
+#: mini-utils/gw/gw.c:180
 msgid "Write information to disk"
 msgstr "Skriv informasjonen tili disk"
 
-#: mini-utils/gw/gw.c:188
+#: mini-utils/gw/gw.c:186
 msgid "Quit the application without saving"
 msgstr "Avslutt applikasjonen uten å lagre"
 
-#: mini-utils/gw/gw.c:218
+#: mini-utils/gw/gw.c:216
 msgid "User Listing"
 msgstr "Brukerliste"
 
-#: mini-utils/gw/gw.c:237
+#: mini-utils/gw/gw.c:235
 msgid "Update Information"
 msgstr "Oppdater informasjonen"
 
-#: mini-utils/gw/gw.c:456
+#: mini-utils/gw/gw.c:454
 msgid "Command Line"
 msgstr "Kommandolinje"
 
 #. Create everything.
-#: mini-utils/gw/gw.c:464
+#: mini-utils/gw/gw.c:462
 msgid "Add some defaults"
 msgstr "Legg til noen standardverdier"
 
-#: mini-utils/gw/gw.c:481
+#: mini-utils/gw/gw.c:479
 msgid "Command Editor"
 msgstr "Kommandoredigering"
 
-#: mini-utils/gw/gw.c:491
+#: mini-utils/gw/gw.c:489
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -2469,7 +2445,7 @@ msgstr ""
 "I kommandoen kan du bruke %u for å representere\n"
 "valgte brukernavn, og %t for tty'en."
 
-#: mini-utils/gw/gw.c:498
+#: mini-utils/gw/gw.c:496
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -2477,129 +2453,129 @@ msgstr ""
 "Klikk på denne knappen for å legge til\n"
 "noen eksempel-kommandoer."
 
-#: mini-utils/gw/gw.c:506
+#: mini-utils/gw/gw.c:504
 msgid "Menu items"
 msgstr "Menyvalg"
 
-#: mini-utils/gw/gw.c:534
+#: mini-utils/gw/gw.c:532
 msgid "Command"
 msgstr "Kommando"
 
-#: mini-utils/idetool/idetool.c:40
+#: mini-utils/idetool/idetool.c:41
 msgid "Unable to access the drive."
 msgstr "Får ikke tilgang til disken."
 
-#: mini-utils/idetool/idetool.c:57 mini-utils/idetool/idetool.c:69
+#: mini-utils/idetool/idetool.c:58 mini-utils/idetool/idetool.c:70
 msgid "The DMA setting for this drive cannot be changed."
 msgstr "DMA instillingene for denne disken kan ikke endres."
 
-#: mini-utils/idetool/idetool.c:77 mini-utils/idetool/idetool.c:109
-#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:319 mini-utils/idetool/idetool.c:321
 msgid "Enabled"
 msgstr "Slått på"
 
-#: mini-utils/idetool/idetool.c:77 mini-utils/idetool/idetool.c:109
-#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:319 mini-utils/idetool/idetool.c:321
 msgid "Disabled"
 msgstr "Slått av"
 
-#: mini-utils/idetool/idetool.c:89 mini-utils/idetool/idetool.c:101
+#: mini-utils/idetool/idetool.c:90 mini-utils/idetool/idetool.c:102
 msgid "The IRQ unmask setting for this drive cannot be changed."
 msgstr "IRQ unmask innstillingen for denne disken kan ikke endres."
 
-#: mini-utils/idetool/idetool.c:120 mini-utils/idetool/idetool.c:132
+#: mini-utils/idetool/idetool.c:121 mini-utils/idetool/idetool.c:133
 msgid "The drive refused to keep its settings."
 msgstr "Disken nekter å beholde instillingene."
 
-#: mini-utils/idetool/idetool.c:140 mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:323
 msgid "Keep settings"
 msgstr "Behold innstillingene"
 
 #. IO
-#: mini-utils/idetool/idetool.c:167
+#: mini-utils/idetool/idetool.c:168
 msgid "PIO Mode"
 msgstr "PIO-modus"
 
-#: mini-utils/idetool/idetool.c:210
+#: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr "(1 sektor)"
 
-#: mini-utils/idetool/idetool.c:212
+#: mini-utils/idetool/idetool.c:213
 msgid "(Dual Port)"
 msgstr "(Toveis port)"
 
-#: mini-utils/idetool/idetool.c:214
+#: mini-utils/idetool/idetool.c:215
 msgid "(Dual Port Cache)"
 msgstr "(Dual Port Cache)"
 
-#: mini-utils/idetool/idetool.c:257
+#: mini-utils/idetool/idetool.c:258
 msgid "Setting"
 msgstr "Innstilling"
 
-#: mini-utils/idetool/idetool.c:305 mini-utils/idetool/idetool.c:315
+#: mini-utils/idetool/idetool.c:306 mini-utils/idetool/idetool.c:316
 msgid "Model"
 msgstr "Modell"
 
-#: mini-utils/idetool/idetool.c:306
+#: mini-utils/idetool/idetool.c:307
 msgid "Firmware"
 msgstr "Firmware"
 
-#: mini-utils/idetool/idetool.c:307
+#: mini-utils/idetool/idetool.c:308
 msgid "Serial No."
 msgstr "Serienummer"
 
 #. do config here
-#: mini-utils/idetool/idetool.c:309
+#: mini-utils/idetool/idetool.c:310
 msgid "Geometry"
 msgstr "Geometri"
 
-#: mini-utils/idetool/idetool.c:310
+#: mini-utils/idetool/idetool.c:311
 msgid "Cache"
 msgstr "Buffer"
 
-#: mini-utils/idetool/idetool.c:311
+#: mini-utils/idetool/idetool.c:312
 msgid "Status"
 msgstr "Status"
 
-#: mini-utils/idetool/idetool.c:315
+#: mini-utils/idetool/idetool.c:316
 msgid "Legacy MFM/RLL drive"
 msgstr "Gammel MFM/RLL disk"
 
-#: mini-utils/idetool/idetool.c:318
+#: mini-utils/idetool/idetool.c:319
 msgid "DMA Mode"
 msgstr "DMA-modus"
 
-#: mini-utils/idetool/idetool.c:319
+#: mini-utils/idetool/idetool.c:320
 msgid "IO Mode"
 msgstr "IO-modus"
 
-#: mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:321
 msgid "IRQ Unmask"
 msgstr "IRQ unmask"
 
-#: mini-utils/idetool/idetool.c:321
+#: mini-utils/idetool/idetool.c:322
 msgid "Multisector"
 msgstr "Multisektor"
 
-#: mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:323
 msgid "On Reset"
 msgstr "Ved omstart"
 
 #.
 #. *	Set up the outer display first
 #.
-#: mini-utils/idetool/idetool.c:347
+#: mini-utils/idetool/idetool.c:348
 msgid "IDE Status"
 msgstr "IDE status"
 
-#: mini-utils/idetool/idetool.c:360
+#: mini-utils/idetool/idetool.c:361
 msgid "Disk Logo Not Found"
 msgstr "Disk logo ikke funnet"
 
-#: mini-utils/idetool/idetool.c:413
+#: mini-utils/idetool/idetool.c:412
 msgid "Only the superuser can use this tool"
 msgstr "Bare superbruker kan bruke dette verktøyet"
 
-#: mini-utils/idetool/idetool.c:424
+#: mini-utils/idetool/idetool.c:423
 msgid "You appear to have no IDE drives"
 msgstr "Det ser ut til at du ikke har noen IDE disker"
