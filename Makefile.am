@@ -5,7 +5,8 @@
 #SUBDIRS = po src help omf-install
 SUBDIRS = po src help
 
-GHEX_SCHEMA = ghex2.schemas
+schemadir = $(sysconfdir)/gconf/schemas
+schema_DATA = ghex2.schemas
 
 EXTRA_DIST =			\
 	ghex.spec.in		\
@@ -15,7 +16,7 @@ EXTRA_DIST =			\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in	\
-	$(GHEX_SCHEMA)
+	$(schema_DATA)
 #	$(appicon_DATA)
 
 dist-hook: ghex.spec
@@ -39,4 +40,4 @@ pixmaps_DATA =
 
 #Install the ghex2 schema file
 install-data-local:
-	gconftool-2 --install-schema-file $(srcdir)/$(GHEX_SCHEMA)
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
