@@ -445,9 +445,24 @@ group_type_cb(GtkRadioButton *rd, PropertyUI *pui)
 static void
 prefs_response_cb(GtkDialog *dlg, gint response, PropertyUI *pui)
 {
+	GError *error = NULL;
+
 	switch(response) {
 	case GTK_RESPONSE_HELP:
-		/* TODO: display help */
+		gnome_help_display("ghex2.xml", "ghex-prefs", &error);
+		if(NULL != error) {
+			GtkWidget *dialog;
+			dialog = gtk_message_dialog_new
+				(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+				 _("There was an error displaying help: \n%s"),
+				 error->message);
+			g_signal_connect(G_OBJECT (dialog), "response",
+							 G_CALLBACK (gtk_widget_destroy),
+							 NULL);
+			gtk_window_set_resizable(GTK_WINDOW (dialog), FALSE);
+			gtk_widget_show(dialog);
+			g_error_free(error);
+		}
 		break;
 	case GTK_RESPONSE_CLOSE:
 		gtk_widget_hide(pui->pbox);
