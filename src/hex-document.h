@@ -90,6 +90,7 @@ gint hex_document_write(HexDocument *doc);
 gboolean hex_document_has_changed(HexDocument *doc);
 void hex_document_changed(HexDocument *doc, gpointer change_data, gboolean push_undo);
 GnomeMDIChild *hex_document_new_from_config(const gchar *);
+void hex_document_set_max_undo(HexDocument *doc, guint max_undo);
 gint find_string_forward(HexDocument *doc, guint start, guchar *what, gint len, guint *found);
 gint find_string_backward(HexDocument *doc, guint start, guchar *what, gint len, guint *found);
 

@@ -189,12 +189,19 @@ static gint undo_stack_push(HexDocument *doc, HexChangeData *change_data) {
 		}
 
 		doc->undo_depth++;
+#ifdef GNOME_ENABLE_DEBUG
+		g_message("depth at: %d", doc->undo_depth);
+#endif
 
 		if(doc->undo_depth == 1)
 			set_sensitivity(doc, HEX_DOC_UNDO, TRUE);
 
 		if(doc->undo_depth > doc->undo_max) {
 			GList *last;
+
+#ifdef GNOME_ENABLE_DEBUG
+			g_message("forget last undo");
+#endif
 
 			last = g_list_last(doc->undo_stack);
 			doc->undo_stack = g_list_remove_link(doc->undo_stack, last);
@@ -221,6 +228,9 @@ static void undo_stack_descend(HexDocument *doc) {
 	set_sensitivity(doc, HEX_DOC_REDO, TRUE);
 	doc->undo_top = doc->undo_top->next;
 	doc->undo_depth--;
+#ifdef GNOME_ENABLE_DEBUG
+	g_message("undo depth at: %d", doc->undo_depth);
+#endif
 	if(doc->undo_top == NULL)
 		set_sensitivity(doc, HEX_DOC_UNDO, FALSE);
 }
@@ -249,6 +259,9 @@ static void undo_stack_free(HexDocument *doc) {
 #ifdef GNOME_ENABLE_DEBUG
 	g_message("undo_stack_free");
 #endif
+
+	if(doc->undo_stack == NULL)
+		return;
 
 	free_stack(doc->undo_stack);
 	doc->undo_stack = NULL;
@@ -395,7 +408,7 @@ static void hex_document_init (HexDocument *document) {
 	document->undo_stack = NULL;
 	document->undo_top = NULL;
 	document->undo_depth = 0;
-	document->undo_max = 100;
+	document->undo_max = max_undo_depth;
 	gnome_mdi_child_set_menu_template(GNOME_MDI_CHILD(document), doc_menu);
 }
 
@@ -467,6 +480,7 @@ gint hex_document_write(HexDocument *doc) {
 		fwrite(doc->buffer, 1, doc->buffer_size, doc->file);
 		fclose(doc->file);
 		doc->file = 0;
+		undo_stack_free(doc);
 		return 0;
 	}
 	return 1;
@@ -509,6 +523,14 @@ void hex_document_changed(HexDocument *doc, gpointer change_data, gboolean push_
 
 gboolean hex_document_has_changed(HexDocument *doc) {
 	return doc->changed;
+}
+
+void hex_document_set_max_undo(HexDocument *doc, guint max_undo) {
+	if(doc->undo_max != max_undo) {
+		if(doc->undo_max > max_undo)
+			undo_stack_free(doc);
+		doc->undo_max = max_undo;
+	}
 }
 
 gint compare_data(guchar *s1, guchar *s2, gint len) {
@@ -638,9 +660,6 @@ static void undo_cb(GtkWidget *w, gpointer user_data) {
 	gtk_hex_set_nibble(GTK_HEX(mdi->active_view), cd->lower_nibble);
 
 	undo_stack_descend(doc);
-
-	/* if(doc->undo_top == NULL)
-	   gtk_widget_set_sensitive(w, FALSE); */
 }
 
 static void redo_cb(GtkWidget *w, gpointer user_data) {
@@ -679,9 +698,6 @@ static void redo_cb(GtkWidget *w, gpointer user_data) {
 
 	gtk_hex_set_cursor(GTK_HEX(mdi->active_view), cd->start);
 	gtk_hex_set_nibble(GTK_HEX(mdi->active_view), cd->lower_nibble);
-
-	/* if(doc->undo_top == NULL)
-	   gtk_widget_set_sensitive(w, FALSE); */
 }
 
 void add_view_cb(GtkWidget *w, gpointer user_data) {

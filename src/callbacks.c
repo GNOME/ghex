@@ -496,12 +496,17 @@ void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {
 	}
 }
 
+void max_undo_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox) {
+	if((guint)adj->value != max_undo_depth)
+		gnome_property_box_changed(pbox);
+}
 
 void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
 	int i;
 	GList *child, *view;
 	GdkFont *new_font;
-	
+	guint new_undo_max;
+
 	if ( page != -1 ) return; /* Only do something on global apply */
 	
 	for(i = 0; i < 3; i++)
@@ -512,11 +517,24 @@ void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
 	
 	for(i = 0; i < NUM_MDI_MODES; i++)
 		if(GTK_TOGGLE_BUTTON(pui->mdi_type[i])->active) {
-			mdi_mode = mdi_type[i];
-			gnome_mdi_set_mode(mdi, mdi_mode);
+			if(mdi->mode != mdi_type[i]) {
+				mdi_mode = mdi_type[i];
+				gnome_mdi_set_mode(mdi, mdi_mode);
+			}
 			break;
 		}
-	
+
+	new_undo_max = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(pui->spin));
+	if(new_undo_max != max_undo_depth) {
+		max_undo_depth = new_undo_max;
+
+		child = mdi->children;
+		while(child) {
+			hex_document_set_max_undo(HEX_DOCUMENT(child->data), max_undo_depth);
+			child = child->next;
+		}
+	}
+
 	if(strcmp(gnome_font_picker_get_font_name(GNOME_FONT_PICKER
 											  (pui->font_button)), def_font_name) != 0) {
 		if((new_font = gdk_font_load(gnome_font_picker_get_font_name

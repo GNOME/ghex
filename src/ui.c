@@ -401,6 +401,7 @@ static void set_prefs(PropertyUI *pui) {
 
 void create_prefs_dialog(PropertyUI *pui) {
 	GtkWidget *vbox, *label, *frame, *box, *entry, *fbox, *flabel;
+	GtkAdjustment *undo_adj;
 	GSList *group;
 	
 	int i;
@@ -411,6 +412,32 @@ void create_prefs_dialog(PropertyUI *pui) {
 					   GTK_SIGNAL_FUNC(prop_destroy_cb), pui);
 	gtk_signal_connect(GTK_OBJECT(pui->pbox), "apply",
 					   GTK_SIGNAL_FUNC(apply_changes_cb), pui);
+	
+	vbox = gtk_vbox_new(FALSE, 0);
+	gtk_widget_show(vbox);
+
+	undo_adj = GTK_ADJUSTMENT(gtk_adjustment_new(MIN(max_undo_depth, MAX_MAX_UNDO_DEPTH),
+												 0, MAX_MAX_UNDO_DEPTH, 1, 10, 0));
+	gtk_signal_connect(GTK_OBJECT(undo_adj), "value_changed",
+					   GTK_SIGNAL_FUNC(max_undo_changed_cb), pui->pbox);
+
+	box = gtk_hbox_new(FALSE, 0);
+	gtk_widget_show(box);
+
+	label = gtk_label_new(_("Maximum number of undo levels"));
+	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
+	gtk_widget_show(label);
+						  
+	pui->spin = gtk_spin_button_new(undo_adj, 1, 0);
+	gtk_box_pack_end (GTK_BOX(box), GTK_WIDGET(pui->spin), FALSE, TRUE, GNOME_PAD);
+	gtk_widget_show(pui->spin);
+
+	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 2);
+
+	label = gtk_label_new(_("Editing"));
+	gtk_widget_show(label);
+	gtk_notebook_append_page (GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
 	
 	vbox = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(vbox);
@@ -472,7 +499,7 @@ void create_prefs_dialog(PropertyUI *pui) {
 	
 	vbox = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(vbox);
-	
+
 	frame = gtk_frame_new(_("MDI Mode"));
 	gtk_container_border_width(GTK_CONTAINER(frame), 4);
 	gtk_widget_show(frame);

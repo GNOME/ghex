@@ -1,3 +1,19 @@
+1991-01-23  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* ghex.h, config.c (guint max_undo_depth): global max undo depth
+	for edited files.
+	* ui.c (open_prefs_dialog): added max_undo_depth setting to
+	preferences dialog.
+	* callbacks.[ch] (max_undo_changed_cb): called when the prefs
+	settings changes.
+	(apply_changes_cb): apply changes to max_undo_depth. also don't
+	reset mdi_mode if it hasn't changed.
+	* hex-document.[ch] (hex_document_set_max_undo): new public
+	function for setting the undo_max member.
+	(hex_document_init): set undo_max member to max_undo_depth.
+	* config.c (load_configuration, save_configuration): save
+	max_undo_depth setting.
+
 1999-01-20  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* ui.c: removed view_menu from global menus.

@@ -35,6 +35,7 @@
 
 #define NO_BUFFER_LABEL "No buffer"
 #define DEFAULT_FONT    "-adobe-courier-medium-r-normal--12-*-*-*-*-*-*-*"
+#define MAX_MAX_UNDO_DEPTH 100000
 
 extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[];
 
@@ -51,7 +52,7 @@ typedef struct _PropertyUI {
 	GnomePropertyBox *pbox;
 	GtkRadioButton *mdi_type[NUM_MDI_MODES];
 	GtkRadioButton *group_type[3];
-	GtkWidget *font_button;
+	GtkWidget *font_button, *spin;
 } PropertyUI;
 
 typedef struct _JumpDialog {
@@ -102,6 +103,8 @@ extern GtkCheckMenuItem *save_config_item;
 
 extern GdkFont *def_font;
 extern gchar *def_font_name;
+
+extern guint max_undo_depth;
 
 extern gint def_group_type;
 extern guint group_type[3];

@@ -37,6 +37,7 @@ void cancel_cb(GtkWidget *, GtkWidget **);
 gint delete_event_cb(GtkWidget *, gpointer, GtkWidget **);
 void prop_destroy_cb(GtkWidget *, PropertyUI *);
 void select_font_cb(GtkWidget *, GnomePropertyBox *);
+void max_undo_changed_cb(GtkAdjustment *, GnomePropertyBox *);
 void apply_changes_cb(GnomePropertyBox *, gint, PropertyUI *);
 
 gint remove_doc_cb(GnomeMDI *, HexDocument *);

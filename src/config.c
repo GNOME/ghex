@@ -26,6 +26,7 @@
 #include "ghex.h"
 
 gint def_group_type = GROUP_BYTE;
+guint max_undo_depth;
 
 void save_configuration() {
 	if(def_font)
@@ -37,6 +38,8 @@ void save_configuration() {
 	
 	gnome_config_set_int("/ghex/MDI/Mode", mdi_mode);
 	
+	gnome_config_set_int("/ghex/Editing/MaxUndoDepth", max_undo_depth);
+
 	gnome_config_sync();
 }
 
@@ -57,6 +60,8 @@ void load_configuration() {
 	}
 	
 	def_group_type = gnome_config_get_int("/ghex/Display/Group=1");
+
+	max_undo_depth = gnome_config_get_int("/ghex/Editing/MaxUndoDepth=100");
 	
 	mdi_mode = gnome_config_get_int("/ghex/MDI/Mode=2");
 }
