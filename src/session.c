@@ -23,8 +23,12 @@
 
 #include "ghex.h"
 
-int restarted = 0;
+gchar *geometry = NULL;
 const struct poptOption options[] = {
+  { "geometry", '\0', POPT_ARG_STRING, &geometry, 0,
+    N_("X geometry specification (see \"X\" man page)."),
+    N_("GEOMETRY")
+  },
   {NULL, '\0', 0, NULL, 0}
 };
 

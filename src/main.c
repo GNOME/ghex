@@ -70,7 +70,6 @@ main(int argc, char **argv)
 	gtk_signal_connect (GTK_OBJECT (client), "die",
 						GTK_SIGNAL_FUNC (client_die), NULL);
 
-
 	/* Parse args and build the list of files to be loaded at startup */
 	g_value_init (&value, G_TYPE_POINTER);
 	g_object_get_property (G_OBJECT (program), GNOME_PARAM_POPT_CONTEXT, &value);
@@ -83,6 +82,11 @@ main(int argc, char **argv)
 
 	while(cl_files && *cl_files) {
 		win = ghex_window_new_from_file(*cl_files);
+		if(geometry) {
+			if(!gtk_window_parse_geometry(GTK_WINDOW(win), geometry))
+				g_warning(_("Invalid geometry string \"%s\"\n"), geometry);
+			geometry = NULL;
+		}
 		gtk_widget_show(win);
 		cl_files++;
 	}
@@ -90,14 +94,17 @@ main(int argc, char **argv)
 
 	if(ghex_window_get_list() == NULL) {
 		win = ghex_window_new();
+		if(geometry) {
+			if(!gtk_window_parse_geometry(GTK_WINDOW(win), geometry))
+				g_warning(_("Invalid geometry string \"%s\"\n"), geometry);
+			geometry = NULL;
+		}
 		gtk_widget_show(win);
 	}
+	else win = GTK_WIDGET(ghex_window_get_list()->data);
 
-#if 0		
-	gtk_main();
-#else
+
 	bonobo_main();
-#endif /* 0/1 */
 
 	return 0;
 }

@@ -162,6 +162,8 @@ extern gchar *group_type_label[3];
 extern guint search_type;
 extern gchar *search_type_label[2];
 
+extern gchar *geometry;
+
 /* creation of dialogs */
 FindDialog    *create_find_dialog    (void);
 ReplaceDialog *create_replace_dialog (void);
