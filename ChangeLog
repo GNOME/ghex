@@ -1,3 +1,12 @@
+1998-12-17  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* callbacks.c (view_changed_cb): add accelerator labels
+ 	to menu paths. also fix group type item activation code
+	to work in a cleaner way and respect possible tear off
+	item.
+	* main.c (main): add accelerator labels to menu paths.
+	* gtkhex.[ch]: small fixes.
+	
 1998-12-13  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* main.c, hex_document.c: fixed some cast warnings.

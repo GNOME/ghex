@@ -425,6 +425,8 @@ static void hex_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
 	imax = (event->area.y + event->area.height) / gh->char_height;
 	if((event->area.y + event->area.height) % gh->char_height)
 		imax++;
+
+	imax = MAX(imax, gh->vis_lines);
 	
 	render_hex_lines(gh, imin, imax);
 }
@@ -437,6 +439,8 @@ static void ascii_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
 	if((event->area.y + event->area.height) % gh->char_height)
 		imax++;
 	
+	imax = MAX(imax, gh->vis_lines);
+
 	render_ascii_lines(gh, imin, imax);
 }
 
@@ -976,6 +980,7 @@ static void gtk_hex_class_init(GtkHexClass *klass) {
 	
 	GTK_WIDGET_CLASS(klass)->draw = gtk_hex_draw;
 	GTK_WIDGET_CLASS(klass)->size_allocate = gtk_hex_size_allocate;
+	GTK_WIDGET_CLASS(klass)->size_request = gtk_hex_size_request;
 	GTK_WIDGET_CLASS(klass)->expose_event = gtk_hex_expose;
 	GTK_WIDGET_CLASS(klass)->key_press_event = gtk_hex_key_press;
 	GTK_WIDGET_CLASS(klass)->realize = gtk_hex_realize;
@@ -1163,12 +1168,8 @@ guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
  * sets data group type (see GROUP_* defines in gtkhex.h)
  */
 void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
-	GtkAllocation alloc;
-	
-	memcpy(&alloc, &(GTK_WIDGET(gh)->allocation), sizeof(GtkAllocation));
-	
 	gh->group_type = gt;
-	gtk_signal_emit_by_name(GTK_OBJECT(gh), "size_allocate", &alloc);
+	gtk_widget_queue_resize(GTK_WIDGET(gh));
 }
 
 void gtk_hex_data_changed(GtkHex *gh, gint start, gint end) {

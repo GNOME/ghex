@@ -47,7 +47,7 @@ extern "C" {
 
 #define GTK_HEX(obj)          GTK_CHECK_CAST (obj, gtk_hex_get_type (), GtkHex)
 #define GTK_HEX_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, gtk_hex_get_type (), GtkHexClass)
-#define IS_GTK_HEX(obj)       GTK_CHECK_TYPE (obj, gtk_hex_get_type ())
+#define GTK_IS_HEX(obj)       GTK_CHECK_TYPE (obj, gtk_hex_get_type ())
 
 typedef struct _GtkHex GtkHex;
 typedef struct _GtkHexClass GtkHexClass;
