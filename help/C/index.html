@@ -10,7 +10,7 @@
 
 <H1>
 GNOME Hex Editor Documentation</H1>
-Copyright (C) 1998, Jaka Mocnik
+Copyright (C) 1998, 1999 Jaka Mocnik
 
 <P>This program and the documentation are free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public License as
@@ -92,8 +92,12 @@ Dialog</A></LI>
 <LI>
 <I>Quit </I>should be obvious: it quits GHex.</LI>
 </UL>
-Menu <I>Edit</I> (is shown only when a file is being edited)
+Menu <I>Edit</I> (only when a file is open)
 <UL>
+<LI>
+<I>Undo </I>undoes the last action.</LI>
+<LI>
+<I>Redo </I>redoes the last undone action.</LI>
 <LI>
 <I>Find </I>opens the <A HREF="#findnreplace">Find Dialog</A></LI>
 
@@ -108,7 +112,7 @@ Menu <I>Edit</I> (is shown only when a file is being edited)
 display are grouped: either as single bytes or in groups of two bytes (words)
 or four bytes (long words).</LI>
 </UL>
-Menu <I>View</I>
+Menu <I>View</I> (only when a file is open)
 <UL>
 <LI>
 <I>Add view</I> adds another view of the currently edited file.</LI>

@@ -38,8 +38,6 @@ gint delete_event_cb(GtkWidget *, gpointer, GtkWidget **);
 void prop_destroy_cb(GtkWidget *, PropertyUI *);
 void select_font_cb(GtkWidget *, GnomePropertyBox *);
 void apply_changes_cb(GnomePropertyBox *, gint, PropertyUI *);
-void add_view_cb(GtkWidget *);
-void remove_view_cb(GtkWidget *);
 
 gint remove_doc_cb(GnomeMDI *, HexDocument *);
 void view_changed_cb(GnomeMDI *, GtkHex *);

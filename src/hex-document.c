@@ -51,6 +51,8 @@ static void set_word_cb (GtkWidget *);
 static void set_long_cb (GtkWidget *);
 static void undo_cb     (GtkWidget *, gpointer);
 static void redo_cb     (GtkWidget *, gpointer);
+static void add_view_cb    (GtkWidget *, gpointer);
+static void remove_view_cb (GtkWidget *, gpointer);
 
 GnomeUIInfo group_radio_items[] = {
 	GNOMEUIINFO_ITEM_NONE(N_("_Bytes"),
@@ -81,8 +83,18 @@ GnomeUIInfo edit_menu[] = {
 	GNOMEUIINFO_END
 };
 
+GnomeUIInfo view_menu[] = {
+	GNOMEUIINFO_ITEM_NONE(N_("_Add view"),
+			      N_("Add a new view of the buffer"), add_view_cb),
+	GNOMEUIINFO_ITEM_NONE(N_("_Remove view"),
+			      N_("Remove the current view of the buffer"),
+			      remove_view_cb),
+	GNOMEUIINFO_END
+};
+
 GnomeUIInfo doc_menu[] = {
 	GNOMEUIINFO_MENU_EDIT_TREE(edit_menu),
+	GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
 	GNOMEUIINFO_END
 };
 
@@ -670,4 +682,15 @@ static void redo_cb(GtkWidget *w, gpointer user_data) {
 
 	/* if(doc->undo_top == NULL)
 	   gtk_widget_set_sensitive(w, FALSE); */
+}
+
+void add_view_cb(GtkWidget *w, gpointer user_data) {
+	GnomeMDIChild *child = GNOME_MDI_CHILD(user_data);
+
+	gnome_mdi_add_view(mdi, child);
+}
+
+void remove_view_cb(GtkWidget *w, gpointer user_data) {
+	if(mdi->active_view)
+		gnome_mdi_remove_view(mdi, mdi->active_view, FALSE);
 }

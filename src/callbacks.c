@@ -547,16 +547,6 @@ void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
 	} 
 }
 
-void add_view_cb(GtkWidget *w) {
-	if(mdi->active_child)
-		gnome_mdi_add_view(mdi, mdi->active_child);
-}
-
-void remove_view_cb(GtkWidget *w) {
-	if(mdi->active_view)
-		gnome_mdi_remove_view(mdi, mdi->active_view, FALSE);
-}
-
 gint remove_doc_cb(GnomeMDI *mdi, HexDocument *doc) {
 	static char msg[512];
 	GnomeMessageBox *mbox;

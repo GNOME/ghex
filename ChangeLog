@@ -1,5 +1,13 @@
 1999-01-20  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
+	* ui.c: removed view_menu from global menus.
+	* hex-document.c: added view_menu to child menus.
+	* callbacks.[ch] (add_view_cb, remove_view_cb): moved to
+	hex-document.c.
+	* help/C/index.html: describe undo/redo.
+	
+1999-01-20  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
 	* gtkhex.c (is_printable): fix a casting problem.
 	* hex-document.c: removed GNOME_ENABLE_DEBUG.
 	

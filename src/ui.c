@@ -51,15 +51,6 @@ GnomeUIInfo empty_menu[] = {
 	GNOMEUIINFO_END
 };
 
-GnomeUIInfo view_menu[] = {
-	GNOMEUIINFO_ITEM_NONE(N_("_Add view"),
-			      N_("Add a new view of the buffer"), add_view_cb),
-	GNOMEUIINFO_ITEM_NONE(N_("_Remove view"),
-			      N_("Remove the current view of the buffer"),
-			      remove_view_cb),
-	GNOMEUIINFO_END
-};
-
 GnomeUIInfo help_menu[] = {
 	GNOMEUIINFO_HELP("ghex"),
 	GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb,NULL),
@@ -68,7 +59,6 @@ GnomeUIInfo help_menu[] = {
 
 GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
-	GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
 	GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menu),
 	GNOMEUIINFO_MENU_FILES_TREE(empty_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
