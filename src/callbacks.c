@@ -508,13 +508,13 @@ void cleanup_cb(GnomeMDI *mdi) {
   gtk_main_quit();
 }
 
-void conv_entry_cb(GtkWidget *entry, gint base) {
+void conv_entry_cb(GtkEntry *entry, gint base) {
   guchar buffer[33];
   gchar *text, *endptr;
   gulong val;
   int i, len;
 
-  text = gtk_entry_get_text(GTK_ENTRY(entry));
+  text = gtk_entry_get_text(entry);
 
   switch(base) {
   case 0:
@@ -541,8 +541,13 @@ void conv_entry_cb(GtkWidget *entry, gint base) {
 
   if(base != 0) {
     val = strtoul(buffer, &endptr, base);
-    if(*endptr != 0)
-      val = 0;
+    if(*endptr != 0) {
+      converter.value = 0;
+      for(i = 0; i < 4; i++)
+        gtk_entry_set_text(GTK_ENTRY(converter.entry[i]), _("ERRONEUS STRING"));
+      gtk_entry_select_region(entry, 0, -1);
+      return;
+    }
   }
 
   if(val == converter.value)
@@ -553,13 +558,13 @@ void conv_entry_cb(GtkWidget *entry, gint base) {
   for(i = 0; i < 32; i++)
     buffer[i] = ((val & (1L << (31 - i)))?'1':'0');
   buffer[i] = 0;
-  gtk_entry_set_text(GTK_ENTRY(converter.b_entry), buffer);
+  gtk_entry_set_text(GTK_ENTRY(converter.entry[0]), buffer);
 
   sprintf(buffer, "%lu", val);
-  gtk_entry_set_text(GTK_ENTRY(converter.d_entry), buffer);
+  gtk_entry_set_text(GTK_ENTRY(converter.entry[1]), buffer);
 
   sprintf(buffer, "%08x", val);
-  gtk_entry_set_text(GTK_ENTRY(converter.x_entry), buffer);
+  gtk_entry_set_text(GTK_ENTRY(converter.entry[2]), buffer);
 
   for(i = 0; i < 4; i++) {
     buffer[i] = (val & (0xFF << (3 - i)*8)) >> (3 - i)*8;
@@ -567,7 +572,7 @@ void conv_entry_cb(GtkWidget *entry, gint base) {
       buffer[i] = '_';
   }
   buffer[i] = 0;
-  gtk_entry_set_text(GTK_ENTRY(converter.a_entry), buffer);
+  gtk_entry_set_text(GTK_ENTRY(converter.entry[3]), buffer);
 }
 
 

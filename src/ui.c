@@ -357,41 +357,41 @@ void create_converter(Converter *conv) {
   gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
   gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 0, 1);
   gtk_widget_show(label);
-  conv->b_entry = gtk_entry_new();
-  gtk_signal_connect(GTK_OBJECT(conv->b_entry), "activate",
+  conv->entry[0] = gtk_entry_new();
+  gtk_signal_connect(GTK_OBJECT(conv->entry[0]), "activate",
 		     GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)2);
-  gtk_table_attach_defaults(GTK_TABLE(table), conv->b_entry, 1, 2, 0, 1);
-  gtk_widget_show(conv->b_entry);
+  gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[0], 1, 2, 0, 1);
+  gtk_widget_show(conv->entry[0]);
 
   label = gtk_label_new(_("Decimal"));
   gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
   gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 1, 2);
   gtk_widget_show(label);
-  conv->d_entry = gtk_entry_new();
-  gtk_signal_connect(GTK_OBJECT(conv->d_entry), "activate",
+  conv->entry[1] = gtk_entry_new();
+  gtk_signal_connect(GTK_OBJECT(conv->entry[1]), "activate",
 		     GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)10);
-  gtk_table_attach_defaults(GTK_TABLE(table), conv->d_entry, 1, 2, 1, 2);
-  gtk_widget_show(conv->d_entry);
+  gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[1], 1, 2, 1, 2);
+  gtk_widget_show(conv->entry[1]);
 
   label = gtk_label_new(_("Hex"));
   gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
   gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 2, 3);
   gtk_widget_show(label);
-  conv->x_entry = gtk_entry_new();
-  gtk_signal_connect(GTK_OBJECT(conv->x_entry), "activate",
+  conv->entry[2] = gtk_entry_new();
+  gtk_signal_connect(GTK_OBJECT(conv->entry[2]), "activate",
 		     GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)16);
-  gtk_table_attach_defaults(GTK_TABLE(table), conv->x_entry, 1, 2, 2, 3);
-  gtk_widget_show(conv->x_entry);
+  gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[2], 1, 2, 2, 3);
+  gtk_widget_show(conv->entry[2]);
 
   label = gtk_label_new(_("ASCII"));
   gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
   gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 3, 4);
   gtk_widget_show(label);
-  conv->a_entry = gtk_entry_new();
-  gtk_signal_connect(GTK_OBJECT(conv->a_entry), "activate",
+  conv->entry[3] = gtk_entry_new();
+  gtk_signal_connect(GTK_OBJECT(conv->entry[3]), "activate",
 		     GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)0);
-  gtk_table_attach_defaults(GTK_TABLE(table), conv->a_entry, 1, 2, 3, 4);
-  gtk_widget_show(conv->a_entry);
+  gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[3], 1, 2, 3, 4);
+  gtk_widget_show(conv->entry[3]);
 
   close = gtk_button_new_with_label(_("Close"));
   gtk_signal_connect (GTK_OBJECT (close),

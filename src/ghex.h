@@ -56,7 +56,7 @@ typedef struct _FindDialog {
 
 typedef struct _Converter {
   GtkWidget *window;
-  GtkWidget *x_entry, *d_entry, *b_entry, *a_entry;
+  GtkWidget *entry[4];
   GtkWidget *close;
 
   gulong value;
