@@ -1,684 +1,1087 @@
 # Czech message catalog for ghex.
 # Copyright (C) 1999 Free Software Foundation, Inc.
-# David Sauer <davids@penguin.cz>, 1999.
+# David Sauer <davids@penguin.cz>, 1999
+# Michal Bukovjan <bukm@centrum.cz>, 2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 1.0.50\n"
-"POT-Creation-Date: 2001-04-19 00:41-0700\n"
-"PO-Revision-Date: 1999-10-22 15:18+02:00\n"
-"Last-Translator: David Sauer <davids@penguin.cz>\n"
-"Language-Team: czech <cs@li.org>\n"
+"Project-Id-Version: ghex HEAD\n"
+"POT-Creation-Date: 2002-10-14 05:32+0200\n"
+"PO-Revision-Date: 2002-10-14 17:55GMT\n"
+"Last-Translator: Michal Bukovjan <bukm@centrum.cz>\n"
+"Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.6\n"
 
-#: src/converter.c:176
-msgid "GHex: Converter"
-msgstr "GHex: Konverze"
+#: ghex.desktop.in.h:1
+msgid "GNOME Hexadecimal Editor"
+msgstr "Editor hexadecimÃ¡lnÃ­ch ÄÃ­sel pro GNOME"
+
+#: ghex.desktop.in.h:2
+msgid "Hex Editor"
+msgstr "Editor hexadecimÃ¡lnÃ­ch ÄÃ­sel"
+
+#: src/chartable.c:122
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:122
+msgid "Hex"
+msgstr "Hex"
+
+#: src/chartable.c:122 src/preferences.c:174
+msgid "Decimal"
+msgstr "DesÃ­tkovÄ›"
+
+#: src/chartable.c:123
+msgid "Octal"
+msgstr "OsmiÄkovÄ›"
+
+#: src/chartable.c:123
+msgid "Binary"
+msgstr "BinÃ¡rnÄ›"
+
+#: src/chartable.c:137
+msgid "Character table"
+msgstr "Tabulka znakÅ¯"
+
+#: src/converter.c:198
+msgid "Base Converter"
+msgstr "ZÃ¡klad konverze"
 
 #. entries
-#: src/converter.c:195
-msgid "_Binary"
-msgstr "_Binární"
+#: src/converter.c:217
+msgid "_Binary:"
+msgstr "_BinÃ¡rnÃ­:"
 
-#: src/converter.c:197
-msgid "_Octal"
-msgstr "_Osmièkovı"
+#: src/converter.c:219
+msgid "_Octal:"
+msgstr "_OsmiÄkovÃ½:"
 
-#: src/converter.c:199
-msgid "_Decimal"
-msgstr "_Desítkovì"
+#: src/converter.c:221
+msgid "_Decimal:"
+msgstr "_DesÃ­tkovÃ½:"
 
-#: src/converter.c:201
-msgid "_Hex"
-msgstr "_Hexa"
+#: src/converter.c:223
+msgid "_Hex:"
+msgstr "_HexadecimÃ¡lnÃ­:"
 
-#: src/converter.c:203
-msgid "_ASCII"
-msgstr "_ASCII"
+#: src/converter.c:225
+msgid "_ASCII:"
+msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:207
+#: src/converter.c:229
 msgid "_Get cursor value"
-msgstr "_Naèíst hodnotu pod kurzorem"
+msgstr "_NaÄÃ­st hodnotu pod kurzorem"
 
-#: src/converter.c:323
+#: src/converter.c:241
+msgid "Get cursor value"
+msgstr "NaÄÃ­st hodnotu pod kurzorem"
+
+#: src/converter.c:241
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr "NaÄte hodnotu pod kurzorem v binÃ¡rnÃ­m, osmiÄkovÃ©m, desÃ­tkovÃ©m, hexadecimÃ¡lnÃ­m nebo ASCII tvaru"
+
+#: src/converter.c:374
 msgid "ERROR"
 msgstr "CHYBA"
 
-#: src/findreplace.c:60 src/main.c:98
+#: src/findreplace.c:60 src/ui.c:913
 #, c-format
 msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): Najít data"
+msgstr "GHex (%s): NajÃ­t data"
 
 #: src/findreplace.c:69
 #, c-format
 msgid "Search for %s"
 msgstr "Hledat %s"
 
-#: src/findreplace.c:86
+#: src/findreplace.c:86 src/findreplace.c:119
 msgid "Find Next"
-msgstr "Najít Dal¹í"
+msgstr "NajÃ­t dalÅ¡Ã­"
 
 #: src/findreplace.c:94
 msgid "Find Previous"
-msgstr "Najít Pøedchozí"
+msgstr "NajÃ­t pÅ™edchozÃ­"
 
-#: src/findreplace.c:130 src/main.c:100
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Find Data"
+msgstr "NajÃ­t data"
+
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Zadejte data v hexadecimÃ¡lnÃ­m nebo ASCII tvaru, kterÃ¡ se majÃ­ hledat"
+
+#: src/findreplace.c:119 src/findreplace.c:212
+msgid "Finds the next occurrence of the search string"
+msgstr "Nalezne dalÅ¡Ã­ vÃ½skyt hledanÃ©ho Å™etÄ›zce"
+
+#: src/findreplace.c:120
+msgid "Find previous"
+msgstr "NajÃ­t pÅ™edchozÃ­"
+
+#: src/findreplace.c:120
+msgid "Finds the previous occurrence of the search string "
+msgstr "Nalezne pÅ™edchozÃ­ vÃ½skyt hledanÃ©ho Å™etÄ›zce"
+
+#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
+msgid "Cancel"
+msgstr "ZruÅ¡it"
+
+#: src/findreplace.c:121
+msgid "Closes find data window"
+msgstr "ZavÅ™e okno pro hledÃ¡nÃ­ dat"
+
+#: src/findreplace.c:140 src/ui.c:911
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): Nahradit data"
+msgstr "GHex (%s): NajÃ­t a nahradit data"
 
-#: src/findreplace.c:144
+#: src/findreplace.c:155
 #, c-format
 msgid "Replace %s"
 msgstr "Nahradit %s"
 
-#: src/findreplace.c:161
+#: src/findreplace.c:172 src/findreplace.c:212
 msgid "Find next"
-msgstr "Najít dal¹í"
+msgstr "NajÃ­t dalÅ¡Ã­"
 
-#: src/findreplace.c:169
+#: src/findreplace.c:180 src/findreplace.c:213 src/ghex-ui.xml.h:49
 msgid "Replace"
 msgstr "Nahradit"
 
-#: src/findreplace.c:177
+#: src/findreplace.c:188 src/findreplace.c:214
 msgid "Replace All"
-msgstr "Nahradit v¹e"
+msgstr "Nahradit vÅ¡e"
 
-#: src/findreplace.c:210 src/main.c:102
+#: src/findreplace.c:211
+msgid "Replace Data"
+msgstr "Nahradit data"
+
+#: src/findreplace.c:211
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Zadejte data v hexadecimÃ¡lnÃ­m nebo ASCII tvaru, kterÃ½mi se mÃ¡ nahrazovat"
+
+#: src/findreplace.c:213
+msgid "Replaces the search string with the replace string"
+msgstr "NahradÃ­ hledanÃ½ Å™etÄ›zec Å™etÄ›zcem pro nahrazenÃ­"
+
+#: src/findreplace.c:214
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "NahradÃ­ vÅ¡echny vÃ½skyty hledanÃ©ho Å™etÄ›zce Å™etÄ›zcem pro nahrazenÃ­"
+
+#: src/findreplace.c:215
+msgid "Closes find and replace data window"
+msgstr "ZavÅ™e okno pro hledÃ¡nÃ­ a nahrazovÃ¡nÃ­ dat"
+
+#: src/findreplace.c:231 src/ui.c:909
 #, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): Jdi na bajt"
+msgstr "GHex (%s): PÅ™eskoÄit na bajt"
 
-#: src/findreplace.c:299 src/findreplace.c:324 src/findreplace.c:376
-msgid "There is no active buffer to search!"
-msgstr "Není ¾ádnı aktivní buffer na hledání!"
+#: src/findreplace.c:261
+msgid "Jump to byte"
+msgstr "SkoÄÃ­ na bajt"
 
-#: src/findreplace.c:307 src/findreplace.c:332 src/findreplace.c:384
-msgid "There seems to be no string to search for!"
-msgstr "Nevidím ¾ádnı øetìzec kterı hledat!"
+#: src/findreplace.c:261
+msgid "Enter the byte to jump to"
+msgstr "Zadejte bajt, na kterÃ½ se mÃ¡ pÅ™eskoÄit"
 
-#: src/findreplace.c:314 src/findreplace.c:392
+#: src/findreplace.c:262
+msgid "OK"
+msgstr "OK"
+
+#: src/findreplace.c:262
+msgid "Jumps to the specified byte"
+msgstr "SkoÄÃ­ na zadanÃ½ bajt"
+
+#: src/findreplace.c:263
+msgid "Closes jump to byte window"
+msgstr "ZavÅ™e okno pro pÅ™eskoÄenÃ­ na bajt"
+
+#: src/findreplace.c:329 src/findreplace.c:357 src/findreplace.c:413
+msgid "There is no active document to search!"
+msgstr "Pro hledÃ¡nÃ­ nenÃ­ k dispozici Å¾Ã¡dnÃ½ aktivnÃ­ dokument!"
+
+#: src/findreplace.c:337 src/findreplace.c:365
+msgid "The string is not appropriate for the selected data type!"
+msgstr "Å˜etÄ›zec neodpovÃ­dÃ¡ vybranÃ©mu datovÃ©mu typu!"
+
+#: src/findreplace.c:344 src/findreplace.c:430
 msgid "End Of File reached"
-msgstr "Dosa¾eno konce souboru"
+msgstr "DosaÅ¾eno konce souboru"
 
-#: src/findreplace.c:340
+#: src/findreplace.c:373
 msgid "Beginning Of File reached"
-msgstr "Dosa¾eno zaèátku souboru"
+msgstr "DosaÅ¾eno zaÄÃ¡tku souboru"
 
-#: src/findreplace.c:349
-msgid "There is no active buffer to move the cursor in!"
-msgstr "Není ¾ádnı aktivní buffer na pohyb kurzoru!"
+#: src/findreplace.c:385
+msgid "There is no active document to move the cursor in!"
+msgstr "Pro pÅ™emÃ­stÄ›nÃ­ kurzoru nenÃ­ k dispozici Å¾Ã¡dnÃ½ aktivnÃ­ dokument!"
 
-#: src/findreplace.c:354
+#: src/findreplace.c:390
 msgid "No offset has been specified!"
-msgstr "Posunutí nebylo zadáno"
+msgstr "Nebylo zadÃ¡no Å¾Ã¡dnÃ© posunutÃ­!"
 
-#: src/findreplace.c:361
+#: src/findreplace.c:397
 msgid "Can not position cursor beyond the End Of File!"
-msgstr "Nelze dát kurzor za konec souboru"
+msgstr "Nelze umÃ­stit kurzor za konec souboru!"
 
-#: src/findreplace.c:366
+#: src/findreplace.c:402
 msgid "The offset must be a positive integer value!"
-msgstr "Posunutí musí bıt celá kladná hodnota!"
+msgstr "PosunutÃ­ musÃ­ bÃ½t celoÄÃ­selnÃ¡ kladnÃ¡ hodnota!"
 
-#: src/findreplace.c:403 src/findreplace.c:440
+#: src/findreplace.c:421
+msgid "There seems to be no string to search for!"
+msgstr "ZdÃ¡ se, Å¾e chybÃ­ Å™etÄ›zec, kterÃ½ se mÃ¡ hledat!"
+
+#: src/findreplace.c:443
 msgid "There is no active buffer to replace data in!"
-msgstr "Není ¾ádnı aktivní buffer na zmìnu dat!"
+msgstr "Pro nahrazovÃ¡nÃ­ dat nenÃ­ k dispozici Å¾Ã¡dnÃ½ aktivnÃ­ buffer!"
 
-#: src/findreplace.c:414 src/findreplace.c:451
-msgid "Strange find or replace string!"
-msgstr "Divnı øetìzec na hledání èi zamìnìní!"
+#: src/findreplace.c:455 src/findreplace.c:496
+msgid "Strings are not approprate for the selected data type!"
+msgstr "Å˜etÄ›zce nejsou pro vybranÃ½ typ dat odpovÃ­dajÃ­cÃ­!"
 
-#: src/findreplace.c:429
+#: src/findreplace.c:471
 msgid "End Of File reached!"
-msgstr "Dosa¾eno konce souboru!"
+msgstr "DosaÅ¾eno konce souboru!"
 
-#: src/findreplace.c:467
+#: src/findreplace.c:484
+msgid "There is no active document to replace data in!"
+msgstr "Pro nahrazovÃ¡nÃ­ dat nenÃ­ k dispozici Å¾Ã¡dnÃ½ aktivnÃ­ dokument!"
+
+#: src/findreplace.c:515
 #, c-format
 msgid "Replaced %d occurencies."
-msgstr "Nahrezeno %d vıskytù."
+msgstr "Nahrazeno %d vÃ½skytÅ¯."
 
-#: src/hex-document.c:707
-msgid "Page"
-msgstr "Stránka"
+#: src/ghex-ui.xml.h:1
+msgid "About this application"
+msgstr "O tÃ©to aplikaci"
 
-#: src/hex-document.c:713 src/hex-document.c:814
-msgid "Hex dump generated by"
-msgstr "Hexa vıpis generovanı"
+#: src/ghex-ui.xml.h:2
+msgid "About..."
+msgstr "O programu..."
 
-#: src/hex-document.c:737
-msgid "Previous page"
-msgstr "Pøedchozí stránka"
+#: src/ghex-ui.xml.h:3
+msgid "Add View"
+msgstr "PÅ™idat pohled"
 
-#: src/hex-document.c:752
-msgid "Next page"
-msgstr "Následující stránka"
+#: src/ghex-ui.xml.h:4
+msgid "Add a new view to the buffer"
+msgstr "PÅ™idat novÃ½ pohled na buffer"
 
-#: src/hex-document-ui.c:50
-msgid "_Bytes"
-msgstr "_Bajtù"
+#: src/ghex-ui.xml.h:5 src/ui.c:67
+msgid "Bytes"
+msgstr "BajtÅ¯"
 
-#: src/hex-document-ui.c:51
+#: src/ghex-ui.xml.h:6
+msgid "C_ut"
+msgstr "Vyjmou_t"
+
+#: src/ghex-ui.xml.h:7
+msgid "Character Table..."
+msgstr "Tabulka znakÅ¯..."
+
+#: src/ghex-ui.xml.h:8
+msgid "Character _Table..."
+msgstr "_Tabulka znakÅ¯..."
+
+#: src/ghex-ui.xml.h:9
+msgid "Close"
+msgstr "ZavÅ™Ã­t"
+
+#: src/ghex-ui.xml.h:10
+msgid "Close the current file"
+msgstr "ZavÅ™Ã­t aktuÃ¡lnÃ­ soubor"
+
+#: src/ghex-ui.xml.h:11
+msgid "Configure the application"
+msgstr "NastavenÃ­ aplikace"
+
+#: src/ghex-ui.xml.h:12
+msgid "Contents"
+msgstr "Obsah"
+
+#: src/ghex-ui.xml.h:13
+msgid "Converter..."
+msgstr "Konvertor..."
+
+#: src/ghex-ui.xml.h:14
+msgid "Copy"
+msgstr "KopÃ­rovat"
+
+#: src/ghex-ui.xml.h:15
+msgid "Copy selection to clipboard"
+msgstr "KopÃ­rovat vÃ½bÄ›r do schrÃ¡nky"
+
+#: src/ghex-ui.xml.h:16
+msgid "Cut"
+msgstr "Vyjmout"
+
+#: src/ghex-ui.xml.h:17
+msgid "Cut selection"
+msgstr "Vyjmout vÃ½bÄ›r"
+
+#: src/ghex-ui.xml.h:18
+msgid "E_xit"
+msgstr "_Konec"
+
+#: src/ghex-ui.xml.h:19
+msgid "Exit"
+msgstr "Konec"
+
+#: src/ghex-ui.xml.h:20
+msgid "Exit the program"
+msgstr "UkonÄenÃ­ programu"
+
+#: src/ghex-ui.xml.h:21
+msgid "Export data to HTML source"
+msgstr "Export dat do HTML zdroje"
+
+#: src/ghex-ui.xml.h:22
+msgid "Export to HTML..."
+msgstr "Export do HTML..."
+
+#: src/ghex-ui.xml.h:23
+msgid "Find"
+msgstr "NajÃ­t"
+
+#: src/ghex-ui.xml.h:24
+msgid "Goto Byte"
+msgstr "PÅ™eskoÄit na bajt..."
+
+#: src/ghex-ui.xml.h:25
+msgid "Group data by 16 bits"
+msgstr "Data do skupin po 16 bitech"
+
+#: src/ghex-ui.xml.h:26
+msgid "Group data by 32 bits"
+msgstr "Data do skupin po 32 bitech"
+
+#: src/ghex-ui.xml.h:27
 msgid "Group data by 8 bits"
-msgstr "Data do skupin po 8-mi bitech"
+msgstr "Data do skupin po 8 bitech"
 
-#: src/hex-document-ui.c:52
+#: src/ghex-ui.xml.h:28
+msgid "Help Chat"
+msgstr "Rozhovor s pomocÃ­"
+
+#: src/ghex-ui.xml.h:29
+msgid "Help on this application"
+msgstr "NÃ¡povÄ›da pro tuto aplikaci"
+
+#: src/ghex-ui.xml.h:30
+msgid "Insert Mode"
+msgstr "ReÅ¾im vklÃ¡dÃ¡nÃ­"
+
+#: src/ghex-ui.xml.h:31
+msgid "Insert/overwrite data"
+msgstr "VklÃ¡dat/pÅ™episovat data"
+
+#: src/ghex-ui.xml.h:32
+msgid "Jump to a certain position"
+msgstr "PÅ™eskoÄit na urÄitou pozici"
+
+#: src/ghex-ui.xml.h:33 src/ui.c:69
+msgid "Longwords"
+msgstr "DlouhÃ¡ slova"
+
+#: src/ghex-ui.xml.h:34
+msgid "Open"
+msgstr "OtevÅ™Ã­t"
+
+#: src/ghex-ui.xml.h:35
+msgid "Open a file"
+msgstr "OtevÅ™Ã­t soubor"
+
+#: src/ghex-ui.xml.h:36
+msgid "Open base conversion dialog"
+msgstr "OtevÅ™Ã­t dialog konverze ÄÃ­sel"
+
+#: src/ghex-ui.xml.h:37
+msgid "Paste"
+msgstr "VloÅ¾it"
+
+#: src/ghex-ui.xml.h:38
+msgid "Paste data from clipboard"
+msgstr "VloÅ¾enÃ­ dat ze schrÃ¡nky"
+
+#: src/ghex-ui.xml.h:39
+msgid "Preferences"
+msgstr "NastavenÃ­"
+
+#: src/ghex-ui.xml.h:40
+msgid "Preview printed data"
+msgstr "NÃ¡hled na tiÅ¡tÄ›nÃ¡ data"
+
+#: src/ghex-ui.xml.h:41
+msgid "Print"
+msgstr "Tisk"
+
+#: src/ghex-ui.xml.h:42
+msgid "Print Previe_w..."
+msgstr "NÃ¡hled t_isku..."
+
+#: src/ghex-ui.xml.h:43
+msgid "Print Preview..."
+msgstr "NÃ¡hled tisku..."
+
+#: src/ghex-ui.xml.h:44
+msgid "Print the current file"
+msgstr "Tisknout aktuÃ¡lnÃ­ dokument"
+
+#: src/ghex-ui.xml.h:45
+msgid "Redo"
+msgstr "Znovu"
+
+#: src/ghex-ui.xml.h:46
+msgid "Redo the undone action"
+msgstr "Znovu provede vrÃ¡cenou akci"
+
+#: src/ghex-ui.xml.h:47
+msgid "Remove View"
+msgstr "Odstranit pohled"
+
+#: src/ghex-ui.xml.h:48
+msgid "Remove the current view of the buffer"
+msgstr "OdstranÃ­ aktuÃ¡lnÃ­ pohled na buffer"
+
+#: src/ghex-ui.xml.h:50
+msgid "Replace a string"
+msgstr "Nahradit Å™etÄ›zec"
+
+#: src/ghex-ui.xml.h:51
+msgid "Revert"
+msgstr "VrÃ¡tit"
+
+#: src/ghex-ui.xml.h:52
+msgid "Revert to a saved version of the file"
+msgstr "NÃ¡vrat k uloÅ¾enÃ© verzi souboru"
+
+#: src/ghex-ui.xml.h:53
+msgid "Save"
+msgstr "UloÅ¾it"
+
+#: src/ghex-ui.xml.h:54
+msgid "Save As"
+msgstr "UloÅ¾it jako"
+
+#: src/ghex-ui.xml.h:55
+msgid "Save As _HTML..."
+msgstr "UloÅ¾it jako _HTML..."
+
+#: src/ghex-ui.xml.h:56
+msgid "Save _As..."
+msgstr "UloÅ¾it j_ako..."
+
+#: src/ghex-ui.xml.h:57
+msgid "Save the current file"
+msgstr "UloÅ¾enÃ­ aktuÃ¡lnÃ­ho souboru"
+
+#: src/ghex-ui.xml.h:58
+msgid "Save the current file with a different name"
+msgstr "UloÅ¾enÃ­ aktuÃ¡lnÃ­ho souboru pod jinÃ½m nÃ¡zvem"
+
+#: src/ghex-ui.xml.h:59
+msgid "Search for a string"
+msgstr "Hledat Å™etÄ›zec"
+
+#: src/ghex-ui.xml.h:60
+msgid "Show the character table"
+msgstr "UkÃ¡zat tabulku znakÅ¯"
+
+#: src/ghex-ui.xml.h:61
+msgid "Undo"
+msgstr "ZpÄ›t"
+
+#: src/ghex-ui.xml.h:62
+msgid "Undo the last action"
+msgstr "VrÃ¡cenÃ­ poslednÃ­ akce"
+
+#: src/ghex-ui.xml.h:63 src/ui.c:68
+msgid "Words"
+msgstr "Slova"
+
+#: src/ghex-ui.xml.h:64
+msgid "_About..."
+msgstr "_O programu..."
+
+#: src/ghex-ui.xml.h:65
+msgid "_Add View"
+msgstr "PÅ™id_at pohled"
+
+#: src/ghex-ui.xml.h:66
+msgid "_Base Converter"
+msgstr "_BÃ¡ze konverze"
+
+#: src/ghex-ui.xml.h:67
+msgid "_Bytes"
+msgstr "_BajtÅ¯"
+
+#: src/ghex-ui.xml.h:68
+msgid "_Close"
+msgstr "_ZavÅ™Ã­t"
+
+#: src/ghex-ui.xml.h:69
+msgid "_Contents"
+msgstr "O_bsah"
+
+#: src/ghex-ui.xml.h:70
+msgid "_Copy"
+msgstr "_KopÃ­rovat"
+
+#: src/ghex-ui.xml.h:71
+msgid "_Edit"
+msgstr "Ãš_pravy"
+
+#: src/ghex-ui.xml.h:72
+msgid "_File"
+msgstr "_Soubor"
+
+#: src/ghex-ui.xml.h:73
+msgid "_Find"
+msgstr "_NajÃ­t"
+
+#: src/ghex-ui.xml.h:74
+msgid "_Goto Byte..."
+msgstr "_PÅ™eskoÄit na bajt..."
+
+#: src/ghex-ui.xml.h:75
+msgid "_Group Data As"
+msgstr "_Seskupit data"
+
+#: src/ghex-ui.xml.h:76
+msgid "_Help"
+msgstr "_NÃ¡povÄ›da"
+
+#: src/ghex-ui.xml.h:77
+msgid "_Insert Mode"
+msgstr "ReÅ¾_im vklÃ¡dÃ¡nÃ­"
+
+#: src/ghex-ui.xml.h:78
+msgid "_Longwords"
+msgstr "D_louhÃ¡ slova"
+
+#: src/ghex-ui.xml.h:79
+msgid "_Open..."
+msgstr "_OtevÅ™Ã­t..."
+
+#: src/ghex-ui.xml.h:80
+msgid "_Paste"
+msgstr "V_loÅ¾it"
+
+#: src/ghex-ui.xml.h:81
+msgid "_Preferences"
+msgstr "Nastav_enÃ­"
+
+#: src/ghex-ui.xml.h:82
+msgid "_Print"
+msgstr "_Tisk"
+
+#: src/ghex-ui.xml.h:83
+msgid "_Redo"
+msgstr "Zn_ovu"
+
+#: src/ghex-ui.xml.h:84
+msgid "_Remove View"
+msgstr "Odst_ranit pohled"
+
+#: src/ghex-ui.xml.h:85
+msgid "_Replace"
+msgstr "Na_hradit"
+
+#: src/ghex-ui.xml.h:86
+msgid "_Revert"
+msgstr "V_rÃ¡tit"
+
+#: src/ghex-ui.xml.h:87
+msgid "_Save"
+msgstr "_UloÅ¾it"
+
+#: src/ghex-ui.xml.h:88
+msgid "_Undo"
+msgstr "_ZpÄ›t"
+
+#: src/ghex-ui.xml.h:89
+msgid "_View"
+msgstr "_Zobrazit"
+
+#: src/ghex-ui.xml.h:90
+msgid "_Windows"
+msgstr "_Okna"
+
+#: src/ghex-ui.xml.h:91
 msgid "_Words"
 msgstr "_Slova"
 
-#: src/hex-document-ui.c:53
-msgid "Group data by 16 bits"
-msgstr "Data do skupin po 16-ti bitech"
+#: src/ghex-window.c:427
+msgid "GHex"
+msgstr "GHex"
 
-#: src/hex-document-ui.c:54
-msgid "_Longwords"
-msgstr "_Dlouhá slova"
+#: src/ghex-window.c:546
+#, c-format
+msgid "Offset: %s"
+msgstr "Posun: %s"
 
-#: src/hex-document-ui.c:55
-msgid "Group data by 32 bits"
-msgstr "Data do skupin po 32-ti bitech"
+#: src/ghex-window.c:681
+#, c-format
+msgid "Activate file %s"
+msgstr "Aktivovat soubor %s"
 
-#: src/hex-document-ui.c:74
-msgid "_Goto Byte..."
-msgstr "_Pøeskoèit na bajt..."
+#: src/ghex-window.c:720
+#, c-format
+msgid "GHex - %s"
+msgstr "GHex - %s"
 
-#: src/hex-document-ui.c:74
-msgid "Jump to a certain position"
-msgstr "Pøeskoèit na urèitou pozici"
-
-#: src/hex-document-ui.c:78
-msgid "_Insert mode"
-msgstr "Mód _vkládání"
-
-#: src/hex-document-ui.c:78
-msgid "Insert/overwrite data"
-msgstr "Vkládat/pøepisovat data"
-
-#: src/hex-document-ui.c:81
-msgid "_Group Data As"
-msgstr "_Seskupovat data"
-
-#: src/hex-document-ui.c:87
-msgid "_Add view"
-msgstr "_Pøidat pohled"
-
-#: src/hex-document-ui.c:88
-msgid "Add a new view of the buffer"
-msgstr "Pøidat novı pohled na bufer"
-
-#: src/hex-document-ui.c:89
-msgid "_Remove view"
-msgstr "_Odstranit pohled"
-
-#: src/hex-document-ui.c:90
-msgid "Remove the current view of the buffer"
-msgstr "Odstranit aktuální pohled na bufer"
-
-#: src/main.c:52
+#: src/hex-document-ui.c:178
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
-"Soubor %s se od posledního ulo¾ení zmìnit.\n"
-"Chceto tyto zmìny ulo¾ít ?"
+"Soubor %s se od poslednÃ­ho uloÅ¾enÃ­ zmÄ›nil.\n"
+"Chcete tyto zmÄ›ny uloÅ¾it?"
 
-#: src/main.c:204
+#: src/hex-document-ui.c:188
+msgid "Do_n't save"
+msgstr "_NeuklÃ¡dat"
+
+#: src/hex-document.c:741
+msgid "Page"
+msgstr "StrÃ¡nka"
+
+#: src/hex-document.c:747 src/hex-document.c:872
+msgid "Hex dump generated by"
+msgstr "HexadecimÃ¡lnÃ­ vÃ½pis generovanÃ½"
+
+#: src/hex-document.c:757
+msgid "Saving to HTML..."
+msgstr "UklÃ¡dÃ¡nÃ­ do HTML..."
+
+#: src/hex-document.c:795
+msgid "Previous page"
+msgstr "PÅ™edchozÃ­ strÃ¡nka"
+
+#: src/hex-document.c:810
+msgid "Next page"
+msgstr "NÃ¡sledujÃ­cÃ­ strÃ¡nka"
+
+#: src/main.c:49
+msgid "The gnome binary editor"
+msgstr "Editor binÃ¡rnÃ­ch souborÅ¯ pro GNOME"
+
+#: src/main.c:64
+msgid "Could not initialize Bonobo!\n"
+msgstr "Nelze inicializovat Bonobo!\n"
+
+#: src/main.c:87 src/main.c:99
 #, c-format
-msgid "Offset: %s"
-msgstr "Posun: %s"
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "NeplatnÃ½ Å™etÄ›zec s geometriÃ­ \"%s\"\n"
 
-#: src/preferences.c:52
-msgid "Default"
-msgstr "Standardní"
+#: src/preferences.c:91
+msgid "GHex Preferences"
+msgstr "NastavenÃ­ programu GHex"
 
-#: src/preferences.c:53
-msgid "Notebook"
-msgstr "Zálo¾ky"
+#: src/preferences.c:136
+msgid "_Maximum number of undo levels:"
+msgstr "_MaximÃ¡lnÃ­ poÄet vrÃ¡cenÃ½ch akcÃ­:"
 
-#: src/preferences.c:54
-msgid "Toplevel"
-msgstr "Samostatné okna"
+#: src/preferences.c:156
+msgid "Undo levels"
+msgstr "PoÄet vrÃ¡cenÃ½ch akcÃ­"
 
-#: src/preferences.c:55
-msgid "Modal"
-msgstr "Modální"
+#: src/preferences.c:156
+msgid "Select maximum number of undo levels"
+msgstr "Vyberte maximÃ¡lnÃ­ poÄet vrÃ¡cenÃ½ch akcÃ­"
 
-#: src/preferences.c:77
-msgid "Select font"
-msgstr "Vybrat písmo"
+#: src/preferences.c:160
+msgid "Show cursor offset in statusbar as:"
+msgstr "Ukazovat pozici kurzoru ve stavovÃ©m Å™Ã¡dku ve tvaru:"
 
-#: src/preferences.c:132
-msgid "Maximum number of undo levels"
-msgstr "Maximální poèet vrácenıch akcí"
-
-#: src/preferences.c:147
-msgid "Show cursor offset in statusbar as"
-msgstr "Ukázat pozici kurzoru ve statusovém øádku jako"
-
-#: src/chartable.c:90 src/preferences.c:161
-msgid "Decimal"
-msgstr "Desítkovì"
-
-#: src/preferences.c:166
+#: src/preferences.c:179
 msgid "Hexadecimal"
-msgstr "Hexadecimálnì"
+msgstr "HexadecimÃ¡lnÃ­m"
 
-#: src/preferences.c:172
+#: src/preferences.c:185
 msgid "Custom"
-msgstr "Vlastní"
+msgstr "VlastnÃ­m"
+
+#: src/preferences.c:196
+msgid "Enter the cursor offset format"
+msgstr "Zadejte vlastnÃ­ tvar pozice kurzoru"
+
+#: src/preferences.c:197
+msgid "Select the cursor offset format"
+msgstr "Vyberte tvar pozice kurzoru"
 
 #. show offsets check button
-#: src/preferences.c:183
+#: src/preferences.c:207
 msgid "Show offsets column"
-msgstr "Ukázat slopec s ofsety"
+msgstr "UkÃ¡zat sloupec s posunutÃ­m"
 
-#: src/preferences.c:188
+#: src/preferences.c:212
 msgid "Editing"
-msgstr "Úpravy"
+msgstr "Ãšpravy"
 
 #. display font
-#: src/preferences.c:197
+#: src/preferences.c:221
 msgid "Font"
-msgstr "Font"
-
-#: src/preferences.c:213
-msgid "Browse..."
-msgstr "Procházet..."
+msgstr "PÃ­smo"
 
 #. default group type
-#: src/preferences.c:233
-msgid "Default Group Type"
-msgstr "Standartní typ seskupování"
-
 #: src/preferences.c:249
+msgid "Default Group Type"
+msgstr "VÃ½chozÃ­ typ seskupovÃ¡nÃ­"
+
+#: src/preferences.c:265
 msgid "Display"
 msgstr "Zobrazit"
 
-#. mdi modes
-#: src/preferences.c:258
-msgid "MDI Mode"
-msgstr "MDI re¾im"
-
-#: src/preferences.c:275
-msgid "MDI"
-msgstr "MDI"
-
 #. paper selection
-#: src/preferences.c:284
+#: src/preferences.c:274
 msgid "Paper size"
-msgstr "Velikost papíru"
+msgstr "Velikost papÃ­ru"
 
 #. data & header font selection
-#: src/preferences.c:298
+#: src/preferences.c:279
 msgid "Fonts"
-msgstr "Písma"
+msgstr "PÃ­sma"
 
-#: src/preferences.c:304
+#: src/preferences.c:285
+msgid "_Data font:"
+msgstr "PÃ­smo _dat:"
+
+#: src/preferences.c:303
 msgid "Data font"
-msgstr "Písmo dat"
+msgstr "PÃ­smo dat"
 
-#: src/preferences.c:319
+#: src/preferences.c:303
+msgid "Select the data font"
+msgstr "Vyberte pÃ­smo dat"
+
+#: src/preferences.c:317
+msgid "Header fo_nt:"
+msgstr "PÃ­s_mo hlaviÄky:"
+
+#: src/preferences.c:334
 msgid "Header font"
-msgstr "Písmo hlavièky"
+msgstr "PÃ­smo hlaviÄky"
 
-#: src/preferences.c:345
-msgid "Print shaded box over"
-msgstr "Zobrazit tmavou plochu pøes"
+#: src/preferences.c:334
+msgid "Select the header font"
+msgstr "Vyberte pÃ­smo hlaviÄky"
 
-#: src/preferences.c:354
+#: src/preferences.c:362
+msgid "_Print shaded box over:"
+msgstr "Tisk stÃ­novanÃ© _plochy pÅ™es:"
+
+#: src/preferences.c:374
+msgid "Box size"
+msgstr "Velikost plochy"
+
+#: src/preferences.c:374
+msgid "Select size of box (in number of lines)"
+msgstr "Vyberte velikost plochy (v poÄtu Å™Ã¡dkÅ¯)"
+
+#: src/preferences.c:378
 msgid "lines (0 for no box)"
-msgstr "øádek (0 pro ¾ádnou)"
+msgstr "Å™Ã¡dkÅ¯ (0 pro Å¾Ã¡dnou)"
 
-#: src/preferences.c:361
+#: src/preferences.c:385
 msgid "Printing"
 msgstr "Tisk"
 
-#: src/preferences.c:536
+#: src/preferences.c:527
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
-"Formátovı øetìzec ofsetu obsahuje neplatnı specifikátor formátu.\n"
-"Jen 'x', 'X', 'p', 'P', 'd' a 'o' jsou povoleny."
+"Å˜etÄ›zec s formÃ¡tem posunutÃ­ obsahuje neplatnÃ½ specifikÃ¡tor formÃ¡tu.\n"
+"Jsou povoleny pouze 'x', 'X', 'p', 'P', 'd' a 'o' ."
 
-#: src/preferences.c:573
+#: src/preferences.c:559
 msgid "Can not open desired font!"
-msgstr "Nelze otevøít po¾adovanı font!"
+msgstr "Nelze otevÅ™Ã­t poÅ¾adovanÃ© pÃ­smo!"
 
-#: src/ui.c:61
-msgid "Export to _HTML..."
-msgstr "Export do _HTML..."
-
-#: src/ui.c:61
-msgid "Export data to HTML source"
-msgstr "Export data do HTML zdroje"
-
-#: src/ui.c:65
-msgid "Print pre_view..."
-msgstr "Ukázka pøed tiskem..."
-
-#: src/ui.c:65
-msgid "Preview printed data"
-msgstr "Ukázat tisknuté data"
-
-#: src/ui.c:78
-msgid "Con_verter..."
-msgstr "_Konvertor..."
-
-#: src/ui.c:79
-msgid "Open base conversion dialog"
-msgstr "Otevøít dialog konverze èísel"
-
-#: src/ui.c:80
-msgid "Character _Table..."
-msgstr "_Tabulka znakù"
-
-#: src/ui.c:81
-msgid "Show the character table"
-msgstr "Ukázat tabulku znakù"
-
-#: src/ui.c:98
-msgid "_Tools"
-msgstr "Nás_toje"
-
-#: src/ui.c:112
-msgid "Bytes"
-msgstr "Bajtù"
-
-#: src/ui.c:113
-msgid "Words"
-msgstr "Slova"
-
-#: src/ui.c:114
-msgid "Longwords"
-msgstr "Dlouhé slova"
-
-#: src/ui.c:119
-msgid "hex data"
-msgstr "hexa data"
-
-#: src/ui.c:120
-msgid "ASCII data"
-msgstr "ASCII data"
-
-#: src/ui.c:204
-msgid "GHex, a binary file editor"
-msgstr "GHex, editor binárních souborù"
-
-#: src/ui.c:206
-msgid "Released under the terms of GNU Public License"
-msgstr "Distribuováno pod Veøejnou licencí GNU"
-
-#: src/ui.c:230 src/ui.c:506
-msgid "Error saving file!"
-msgstr "Chyba ukládání souboru!"
-
-#: src/ui.c:234 src/ui.c:501
-#, c-format
-msgid "Saved buffer to file %s"
-msgstr "Buffer ulo¾en do souboru %s"
-
-#: src/ui.c:255
-msgid "Select a file to open"
-msgstr "Vyber soubor na otevøení"
-
-#: src/ui.c:290
-msgid "Select a file to save buffer as"
-msgstr "Vyber soubor na ulo¾ení bufferu"
-
-#: src/ui.c:331
-msgid "Select path and file name for the HTML source"
-msgstr "Vyber cestu a jméno pro HTML zdroj"
-
-#: src/ui.c:432
-#, c-format
-msgid "Really revert file %s?"
-msgstr "Opravdu vrá»it soubor %s do pùvodní podoby?"
-
-#: src/ui.c:446
-#, c-format
-msgid "Reverted buffer from file %s"
-msgstr "Buffer vrácen ze souboru %s"
-
-#: src/ui.c:462
-#, c-format
-msgid "Loaded file %s"
-msgstr "Naèten soubor %s"
-
-#: src/ui.c:467
-msgid "Can not open file!"
-msgstr "Soubor nelze otevøít!"
-
-#: src/ui.c:510
-msgid "Can't open file for writing!"
-msgstr "Soubor nelze otevøít pro zápis!"
-
-#: src/ui.c:579
-msgid "Print Hex Document"
-msgstr "Tisknout hexa dokument"
-
-#: src/ui.c:584
-msgid "Pages"
-msgstr "Stránek"
-
-#: src/ui.c:625
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Ukázka pøed tiskem"
-
-#: src/chartable.c:90
-msgid "ASCII"
-msgstr "ASCII"
-
-#: src/chartable.c:90
-msgid "Hex"
-msgstr "Hex"
-
-#: src/chartable.c:91
-msgid "Octal"
-msgstr "Osmièkovì"
-
-#: src/chartable.c:91
-msgid "Binary"
-msgstr "Binárnì"
-
-#: src/chartable.c:98
-msgid "GHex: Character table"
-msgstr "GHex: Tabulka znakù"
-
-#: src/print.c:47
+#: src/print.c:54
 #, c-format
 msgid "Page: %i/%i"
-msgstr "Stránka: %i/%i"
+msgstr "StrÃ¡nka: %i/%i"
 
-#: src/print.c:197 src/print.c:211
+#: src/print.c:205 src/print.c:219
 #, c-format
 msgid ""
 "GHex could not find the font \"%s\".\n"
 "GHex is unable to print without this font installed."
 msgstr ""
-"GHex nemohl najít písmo \"%s\".\n"
-"GHex nemù¾e tisknout bez tohoto písma nainstalovaného."
+"GHex nemohl najÃ­t pÃ­smo \"%s\".\n"
+"GHex nemÅ¯Å¾e tisknout, pokud nenÃ­ toto pÃ­smo nainstalovÃ¡no."
 
-#~ msgid "Close"
-#~ msgstr "Zavøít"
+#: src/session.c:29
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "Specifikace geometrie X (viz manuÃ¡lovÃ¡ strÃ¡nka \"X\")."
+
+#: src/session.c:30
+msgid "GEOMETRY"
+msgstr "GEOMETRIE"
+
+#: src/ui.c:74
+msgid "hex data"
+msgstr "hexa data"
+
+#: src/ui.c:75
+msgid "ASCII data"
+msgstr "ASCII data"
+
+#: src/ui.c:226
+msgid "GHex, a binary file editor"
+msgstr "GHex, editor binÃ¡rnÃ­ch souborÅ¯"
+
+#: src/ui.c:228
+msgid "Released under the terms of GNU Public License"
+msgstr "Å Ã­Å™eno za podmÃ­nek VeÅ™ejnÃ© licence GNU"
+
+#: src/ui.c:251
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"PÅ™i zobrazovÃ¡nÃ­ nÃ¡povÄ›dy nastala chyba:\n"
+"%s"
+
+#: src/ui.c:328 src/ui.c:724
+msgid "Error saving file!"
+msgstr "Chyba pÅ™i uklÃ¡dÃ¡nÃ­ souboru!"
+
+#: src/ui.c:332 src/ui.c:719
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "Buffer uloÅ¾en do souboru %s"
+
+#: src/ui.c:363
+msgid "Select a file to open"
+msgstr "Vyberte soubor pro otevÅ™enÃ­"
+
+#: src/ui.c:407
+msgid "Select a file to save buffer as"
+msgstr "Vyberte soubor pro uloÅ¾enÃ­ bufferu"
+
+#: src/ui.c:464
+msgid "Select path and file name for the HTML source"
+msgstr "Vyber cestu a nÃ¡zev souboru pro HTML zdroj"
+
+#: src/ui.c:625
+#, c-format
+msgid "Really revert file %s?"
+msgstr "Opravdu vrÃ¡tit soubor %s do pÅ¯vodnÃ­ podoby?"
+
+#: src/ui.c:640
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "Buffer vrÃ¡cen ze souboru %s"
+
+#: src/ui.c:669
+#, c-format
+msgid "Loaded file %s"
+msgstr "NaÄten soubor %s"
+
+#: src/ui.c:677
+msgid "Can not open file!"
+msgstr "Soubor nelze otevÅ™Ã­t!"
+
+#: src/ui.c:728
+msgid "Can't open file for writing!"
+msgstr "Soubor nelze otevÅ™Ã­t pro zÃ¡pis!"
+
+#: src/ui.c:800
+msgid "Print Hex Document"
+msgstr "Tisknout hexadecimÃ¡lnÃ­ dokument"
+
+#: src/ui.c:805
+msgid "Pages"
+msgstr "StrÃ¡nek"
+
+#: src/ui.c:851
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): UkÃ¡zka pÅ™ed tiskem"
+
+#~ msgid "Strange find or replace string!"
+#~ msgstr "DivnÃ½ Å™etÄ›zec na hledÃ¡nÃ­ Äi zamÄ›nÄ›nÃ­!"
+
+#~ msgid "Default"
+#~ msgstr "StandardnÃ­"
+
+#~ msgid "Notebook"
+#~ msgstr "ZÃ¡loÅ¾ky"
+
+#~ msgid "Modal"
+#~ msgstr "ModÃ¡lnÃ­"
+
+#~ msgid "Browse..."
+#~ msgstr "ProchÃ¡zet..."
+
+#~ msgid "MDI Mode"
+#~ msgstr "MDI reÅ¾im"
+
+#~ msgid "MDI"
+#~ msgstr "MDI"
+
+#~ msgid "_Tools"
+#~ msgstr "NÃ¡s_toje"
 
 #~ msgid "Both strings must be of the same length!"
-#~ msgstr "Oba øetìzce musí mít stejnou délku!"
+#~ msgstr "Oba Å™etÄ›zce musÃ­ mÃ­t stejnou dÃ©lku!"
 
 #~ msgid "The Gnome Calculator"
-#~ msgstr "Kalkulátor Gnome"
+#~ msgstr "KalkulÃ¡tor Gnome"
 
 #~ msgid "Simple double precision calculator similiar to xcalc"
-#~ msgstr "Jednoduchı kalkulátor s dvojitou pøesností"
+#~ msgstr "JednoduchÃ½ kalkulÃ¡tor s dvojitou pÅ™esnostÃ­"
 
 #~ msgid "Gnome Calculator"
-#~ msgstr "Kalkulátor Gnome"
+#~ msgstr "KalkulÃ¡tor Gnome"
 
 #~ msgid ""
 #~ "A quick hack to show the amount of space free on mounted file systems "
 #~ "uitilizing a dial."
 #~ msgstr ""
-#~ "Rychle napsanı program zobrazující mno¾ství pamìti na pøipojenıch discích "
-#~ "vyuívající 'tachometr'."
+#~ "Rychle napsanÃ½ program zobrazujÃ­cÃ­ mnoÅ¾stvÃ­ pamÄ›ti na pÅ™ipojenÃ½ch discÃ­ch "
+#~ "vyuÃ­vajÃ­cÃ­ 'tachometr'."
 
 #~ msgid "File name"
-#~ msgstr "Jméno souboru"
+#~ msgstr "JmÃ©no souboru"
 
 #~ msgid "Don't search subdirectories"
-#~ msgstr "Neprohledávat podadresáøe"
+#~ msgstr "NeprohledÃ¡vat podadresÃ¡Å™e"
 
 #~ msgid "File owner"
-#~ msgstr "Vlastník souboru"
+#~ msgstr "VlastnÃ­k souboru"
 
 #~ msgid "File owner group"
-#~ msgstr "Skupina vlastnící soubor"
+#~ msgstr "Skupina vlastnÃ­cÃ­ soubor"
 
 #~ msgid "Last modification time"
-#~ msgstr "Èas poslední modifikace"
+#~ msgstr "ÄŒas poslednÃ­ modifikace"
 
 #~ msgid "Empty file"
-#~ msgstr "Prázdnı soubor"
+#~ msgstr "PrÃ¡zdnÃ½ soubor"
 
 #~ msgid "Invalid user or group"
-#~ msgstr "Chybnı u¾ivatel nebo skupina"
+#~ msgstr "ChybnÃ½ uÅ¾ivatel nebo skupina"
 
 #~ msgid "Filenames except"
-#~ msgstr "Jména kromì"
+#~ msgstr "JmÃ©na kromÄ›"
 
 #~ msgid "Simple substring search"
-#~ msgstr "Jednoduché hledání podøetìzce"
+#~ msgstr "JednoduchÃ© hledÃ¡nÃ­ podÅ™etÄ›zce"
 
 #~ msgid "Regular expression search"
-#~ msgstr "Vyhledání podle regulárního vırazu"
+#~ msgstr "VyhledÃ¡nÃ­ podle regulÃ¡rnÃ­ho vÃ½razu"
 
 #~ msgid "Extended regular expression search"
-#~ msgstr "Vyhledání podle roz¹íøeného regulárního vırazu"
+#~ msgstr "VyhledÃ¡nÃ­ podle rozÅ¡Ã­Å™enÃ©ho regulÃ¡rnÃ­ho vÃ½razu"
 
 #~ msgid "Search Results"
-#~ msgstr "Vısledky hledání"
-
-#~ msgid "Remove"
-#~ msgstr "Zru¹it"
+#~ msgstr "VÃ½sledky hledÃ¡nÃ­"
 
 #~ msgid "Start in directory:"
-#~ msgstr "Zaèít v adresáøi:"
+#~ msgstr "ZaÄÃ­t v adresÃ¡Å™i:"
 
 #~ msgid "Add"
-#~ msgstr "Pøidat"
+#~ msgstr "PÅ™idat"
 
 #~ msgid "Start"
-#~ msgstr "Zaèít"
+#~ msgstr "ZaÄÃ­t"
 
 #~ msgid "Stop"
 #~ msgstr "Zastavit"
 
 #~ msgid "This is not yet implemented"
-#~ msgstr "Je¹tì není implementováno"
+#~ msgstr "JeÅ¡tÄ› nenÃ­ implementovÃ¡no"
 
 #~ msgid "Full find (find)"
-#~ msgstr "Plné hledání (find)"
+#~ msgstr "PlnÃ© hledÃ¡nÃ­ (find)"
 
 #~ msgid "Quick find (locate)"
-#~ msgstr "Rychlé hledání (locate)"
+#~ msgstr "RychlÃ© hledÃ¡nÃ­ (locate)"
 
 #~ msgid "The Gnome Search Tool"
-#~ msgstr "Vyhledávací program Gnome"
+#~ msgstr "VyhledÃ¡vacÃ­ program Gnome"
 
 #~ msgid "(C) 1998 the Free Software Foundation"
-#~ msgstr "(C) 1998 Nadace free softwéru"
+#~ msgstr "(C) 1998 Nadace free softwÃ©ru"
 
 #~ msgid "number expected"
-#~ msgstr "oèekáváno èíslo"
+#~ msgstr "oÄekÃ¡vÃ¡no ÄÃ­slo"
 
 #~ msgid "%s, line %d: "
-#~ msgstr "%s, øádka %d: "
+#~ msgstr "%s, Å™Ã¡dka %d: "
 
 #~ msgid "unrecognized color: %s"
-#~ msgstr "neznámá barva: %s"
-
-#~ msgid "E_xit"
-#~ msgstr "_Konec"
+#~ msgstr "neznÃ¡mÃ¡ barva: %s"
 
 #, fuzzy
 #~ msgid "Copyright 1998,99 John Kodis"
 #~ msgstr "(C) 1998 John Kodis"
 
-#~ msgid "_About"
-#~ msgstr "O _programu ..."
-
-#~ msgid "_File"
-#~ msgstr "_Soubor"
-
-#~ msgid "_Help"
-#~ msgstr "_Nápovìda"
-
 #~ msgid "Value"
 #~ msgstr "Hodnota"
 
 #~ msgid "Identifier"
-#~ msgstr "Identifikátor"
+#~ msgstr "IdentifikÃ¡tor"
 
 #~ msgid "Color"
 #~ msgstr "Barva"
 
 #~ msgid "Filename"
-#~ msgstr "Jméno souboru"
-
-#~ msgid "Pattern"
-#~ msgstr "Vzorek"
+#~ msgstr "JmÃ©no souboru"
 
 #~ msgid "Equation"
 #~ msgstr "Rovnice"
 
 #~ msgid "Expected range"
-#~ msgstr "Oèekávanı rozsah"
+#~ msgstr "OÄekÃ¡vanÃ½ rozsah"
 
 #~ msgid "Displayed range"
-#~ msgstr "Zobrazovanı rozsah"
+#~ msgstr "ZobrazovanÃ½ rozsah"
 
 #~ msgid "Current value"
-#~ msgstr "Aktuální hodnota"
+#~ msgstr "AktuÃ¡lnÃ­ hodnota"
 
 #~ msgid "Active"
-#~ msgstr "Aktivní"
+#~ msgstr "AktivnÃ­"
 
 #~ msgid "Current"
-#~ msgstr "Aktuální"
-
-#~ msgid "Help"
-#~ msgstr "Nápovìda"
-
-#~ msgid "About"
-#~ msgstr "O programu"
+#~ msgstr "AktuÃ¡lnÃ­"
 
 #~ msgid "Params"
 #~ msgstr "Parametry"
-
-#~ msgid "Exit"
-#~ msgstr "Konec"
 
 #~ msgid "Params..."
 #~ msgstr "Parametry..."
 
 #~ msgid "Configuration file name"
-#~ msgstr "Jméno konfiguraèního souboru"
+#~ msgstr "JmÃ©no konfiguraÄnÃ­ho souboru"
 
 #~ msgid "FILE"
 #~ msgstr "SOUBOR"
 
 #~ msgid "Chart update interval"
-#~ msgstr "Interval obnovení zobrazení"
+#~ msgstr "Interval obnovenÃ­ zobrazenÃ­"
 
 #~ msgid "SECS"
 #~ msgstr "SEK."
 
 #~ msgid "Adds a menubar to the main window"
-#~ msgstr "Do hlavního okna pøidat menu"
+#~ msgstr "Do hlavnÃ­ho okna pÅ™idat menu"
 
 #~ msgid "TYPE"
 #~ msgstr "TYP"
@@ -687,28 +1090,28 @@ msgstr ""
 #~ msgstr "TYP je jedna hodnota z `gtk', `text', `graph', nebo `none'"
 
 #~ msgid "black"
-#~ msgstr "èerná"
+#~ msgstr "ÄernÃ¡"
 
 #~ msgid "blue"
-#~ msgstr "modrá"
+#~ msgstr "modrÃ¡"
 
 #~ msgid "red"
-#~ msgstr "èervená"
+#~ msgstr "ÄervenÃ¡"
 
 #~ msgid "white"
-#~ msgstr "bílá"
+#~ msgstr "bÃ­lÃ¡"
 
 #~ msgid "yellow"
-#~ msgstr "¾lutá"
+#~ msgstr "Å¾lutÃ¡"
 
 #~ msgid "Load"
-#~ msgstr "Naèíst"
+#~ msgstr "NaÄÃ­st"
 
 #~ msgid "green"
-#~ msgstr "zelená"
+#~ msgstr "zelenÃ¡"
 
 #~ msgid "no project selected"
-#~ msgstr "¾ádnı projekt nebyl vybrán"
+#~ msgstr "Å¾Ã¡dnÃ½ projekt nebyl vybrÃ¡n"
 
 #~ msgid "00:00"
 #~ msgstr "00:00"
@@ -717,59 +1120,56 @@ msgstr ""
 #~ msgstr "Dnes"
 
 #~ msgid "Project Title"
-#~ msgstr "Název projektu"
+#~ msgstr "NÃ¡zev projektu"
 
 #~ msgid "Description"
 #~ msgstr "Popis"
 
 #~ msgid "program started"
-#~ msgstr "program odstartován"
+#~ msgstr "program odstartovÃ¡n"
 
 #~ msgid "no description"
 #~ msgstr "bez popisu"
 
 #~ msgid "program exited"
-#~ msgstr "program ukonèen"
+#~ msgstr "program ukonÄen"
 
 #~ msgid ""
 #~ "There seems to be another GTimeTracker running.\n"
 #~ "Press OK to start GTimeTracker anyway, or press Cancel to quit."
 #~ msgstr ""
-#~ "Pravdìpodobnì ji¾ bì¾í jinı expampláø tohoto programu.\n"
-#~ "Stisknìte OK pro start program nebo Zru¹it k ukonèení."
+#~ "PravdÄ›podobnÄ› jiÅ¾ bÄ›Å¾Ã­ jinÃ½ expamplÃ¡Å™ tohoto programu.\n"
+#~ "StisknÄ›te OK pro start program nebo ZruÅ¡it k ukonÄenÃ­."
 
 #~ msgid "Error"
 #~ msgstr "Chyba"
-
-#~ msgid "GEOMETRY"
-#~ msgstr "GEOMETRIE"
 
 #~ msgid "PROJECT"
 #~ msgstr "PROJEKT"
 
 #~ msgid "Select a project on startup"
-#~ msgstr "Vybrat projekt pøi startu"
+#~ msgstr "Vybrat projekt pÅ™i startu"
 
 #~ msgid "Warning"
-#~ msgstr "Varování"
+#~ msgstr "VarovÃ¡nÃ­"
 
 #~ msgid "I could not write the configuration file!"
-#~ msgstr "Nelze zapsat konfiguraèní soubor!"
+#~ msgstr "Nelze zapsat konfiguraÄnÃ­ soubor!"
 
 #~ msgid "New Project..."
-#~ msgstr "Novı projekt..."
+#~ msgstr "NovÃ½ projekt..."
 
 #~ msgid "Please enter the name of the new project:"
-#~ msgstr "Zadejte prosím jméno nového projektu:"
+#~ msgstr "Zadejte prosÃ­m jmÃ©no novÃ©ho projektu:"
 
 #~ msgid "I could not read the configuration file"
-#~ msgstr "Nelze pøeèíst konfiguraèní soubor"
+#~ msgstr "Nelze pÅ™eÄÃ­st konfiguraÄnÃ­ soubor"
 
 #~ msgid "_New Project..."
-#~ msgstr "_Novı projekt..."
+#~ msgstr "_NovÃ½ projekt..."
 
 #~ msgid "Clear _Daily Counter"
-#~ msgstr "Smazar _denní poèítadlo"
+#~ msgstr "Smazar _dennÃ­ poÄÃ­tadlo"
 
 #~ msgid "St_art"
 #~ msgstr "St_art"
@@ -778,88 +1178,85 @@ msgstr ""
 #~ msgstr "Sto_p"
 
 #~ msgid "_Timer Running"
-#~ msgstr "Èasovaè _bì¾í"
+#~ msgstr "ÄŒasovaÄ _bÄ›Å¾Ã­"
 
 #~ msgid "_Timer"
-#~ msgstr "Èa_sovaè"
+#~ msgstr "ÄŒa_sovaÄ"
 
 #~ msgid "Show Seconds"
-#~ msgstr "Zobrazit vteøiny"
+#~ msgstr "Zobrazit vteÅ™iny"
 
 #~ msgid "Show Status Bar"
 #~ msgstr "Zobrazit statusbar"
 
 #~ msgid "Show Table Header"
-#~ msgstr "Zobrazit hlavièku tabulek"
+#~ msgstr "Zobrazit hlaviÄku tabulek"
 
 #~ msgid "Show Toolbar Icons"
-#~ msgstr "Ikony nástrojové li¹ty"
+#~ msgstr "Ikony nÃ¡strojovÃ© liÅ¡ty"
 
 #~ msgid "Show Tooltips"
 #~ msgstr "Ukazovat tipy"
 
 #~ msgid "Show `New'"
-#~ msgstr "Ukazovat 'Novı'"
+#~ msgstr "Ukazovat 'NovÃ½'"
 
 #~ msgid "Show `Save', `Reload'"
-#~ msgstr "Ukazovat 'Ulo¾it', 'Naèíst znovu'"
+#~ msgstr "Ukazovat 'UloÅ¾it', 'NaÄÃ­st znovu'"
 
 #~ msgid "Show `Properties'"
 #~ msgstr "Ukazovat 'Vlastnosti'"
 
 #~ msgid "Show `Timer'"
-#~ msgstr "Ukazovat 'Èasovaè'"
+#~ msgstr "Ukazovat 'ÄŒasovaÄ'"
 
 #~ msgid "Show `Preferences'"
-#~ msgstr "Ukazaovat 'Natsavení'"
+#~ msgstr "Ukazaovat 'NatsavenÃ­'"
 
 #~ msgid "Show `Help'"
-#~ msgstr "Ukazovat 'Nápovìda'"
+#~ msgstr "Ukazovat 'NÃ¡povÄ›da'"
 
 #~ msgid "Show `Quit'"
 #~ msgstr "Ukozovat 'Konec'"
 
 #~ msgid "Shell Commands"
-#~ msgstr "Pøíkazy shellu"
+#~ msgstr "PÅ™Ã­kazy shellu"
 
 #~ msgid "Switch Project Command:"
-#~ msgstr "Pøíkaz pøi zmìnì projektu:"
+#~ msgstr "PÅ™Ã­kaz pÅ™i zmÄ›nÄ› projektu:"
 
 #~ msgid "Filename:"
-#~ msgstr "Jméno souboru:"
+#~ msgstr "JmÃ©no souboru:"
 
 #~ msgid "Entry Start:"
-#~ msgstr "Polo¾ka Start:"
+#~ msgstr "PoloÅ¾ka Start:"
 
 #~ msgid "Entry Stop:"
-#~ msgstr "Polo¾ka Stop:"
-
-#~ msgid "Preferences"
-#~ msgstr "Nastavení"
+#~ msgstr "PoloÅ¾ka Stop:"
 
 #~ msgid "Misc"
-#~ msgstr "Rùzné"
+#~ msgstr "RÅ¯znÃ©"
 
 #~ msgid "project %t started"
-#~ msgstr "projekt %t odstartován"
+#~ msgstr "projekt %t odstartovÃ¡n"
 
 #~ msgid "stopped project %t"
 #~ msgstr "zastaven prjekt %t"
 
 #~ msgid "empty"
-#~ msgstr "prázdnı"
+#~ msgstr "prÃ¡zdnÃ½"
 
 #~ msgid "Project"
 #~ msgstr "Projekt"
 
 #~ msgid "Project Title:"
-#~ msgstr "Název projektu"
+#~ msgstr "NÃ¡zev projektu"
 
 #~ msgid "Project Description:"
 #~ msgstr "Popis projektu:"
 
 #~ msgid "Project Time today:"
-#~ msgstr "Èas na projektu dnes:"
+#~ msgstr "ÄŒas na projektu dnes:"
 
 #~ msgid "hours"
 #~ msgstr "hodin"
@@ -871,159 +1268,138 @@ msgstr ""
 #~ msgstr "sek."
 
 #~ msgid "Project Time ever:"
-#~ msgstr "Celkovı èas projektu:"
+#~ msgstr "CelkovÃ½ Äas projektu:"
 
 #~ msgid "[GTT]New"
-#~ msgstr "[GTT]Novı"
+#~ msgstr "[GTT]NovÃ½"
 
 #~ msgid "Reload"
-#~ msgstr "Naèíst"
-
-#~ msgid "Save"
-#~ msgstr "Ulo¾it"
+#~ msgstr "NaÄÃ­st"
 
 #~ msgid "Save Configuration File"
-#~ msgstr "Ulo¾it konfiguraèní soubor"
-
-#~ msgid "Cut"
-#~ msgstr "Vyjmout"
+#~ msgstr "UloÅ¾it konfiguraÄnÃ­ soubor"
 
 #~ msgid "Cut Selected Project"
-#~ msgstr "Vyjmout vybranı projekt"
-
-#~ msgid "Copy"
-#~ msgstr "Zkopírovat"
+#~ msgstr "Vyjmout vybranÃ½ projekt"
 
 #~ msgid "Copy Selected Project"
-#~ msgstr "Zkopírovat vybranı projekt"
+#~ msgstr "ZkopÃ­rovat vybranÃ½ projekt"
 
 #~ msgid "Paste Project"
-#~ msgstr "Vlo¾it projekt"
+#~ msgstr "VloÅ¾it projekt"
 
 #~ msgid "Props"
 #~ msgstr "Vlast."
 
 #~ msgid "Edit Properties..."
-#~ msgstr "Úprava vlastností..."
+#~ msgstr "Ãšprava vlastnostÃ­..."
 
 #~ msgid "Timer"
-#~ msgstr "Èasovaè"
+#~ msgstr "ÄŒasovaÄ"
 
 #~ msgid "Start/Stop Timer"
-#~ msgstr "Spustit/Zastavit èasovaè"
+#~ msgstr "Spustit/Zastavit ÄasovaÄ"
 
 #~ msgid "Prefs"
-#~ msgstr "Nastavení"
+#~ msgstr "NastavenÃ­"
 
 #~ msgid "Edit Preferences..."
-#~ msgstr "Úprava nastavení..."
+#~ msgstr "Ãšprava nastavenÃ­..."
 
 #~ msgid "Manual"
-#~ msgstr "Manuál"
+#~ msgstr "ManuÃ¡l"
 
 #~ msgid "Manual..."
-#~ msgstr "Manuál..."
+#~ msgstr "ManuÃ¡l..."
 
 #~ msgid "Quit"
 #~ msgstr "Konec"
 
 #~ msgid "Quit GTimeTracker"
-#~ msgstr "Ukonèit GTimeTracker"
+#~ msgstr "UkonÄit GTimeTracker"
 
 #~ msgid "Gnome Color Browser"
-#~ msgstr "Prohlí¾eè barev Gnome"
+#~ msgstr "ProhlÃ­Å¾eÄ barev Gnome"
 
 #~ msgid "Format Style:"
-#~ msgstr "Zpùsob zobrazení:"
+#~ msgstr "ZpÅ¯sob zobrazenÃ­:"
 
 #~ msgid "Color Name:"
-#~ msgstr "Jméno barvy:"
+#~ msgstr "JmÃ©no barvy:"
 
 #~ msgid "Color Values:"
 #~ msgstr "Hodnoty barvy:"
 
 #~ msgid "Name"
-#~ msgstr "Jméno"
+#~ msgstr "JmÃ©no"
 
 #~ msgid "Error, cannot find the file 'rgb.txt' on your system!"
-#~ msgstr "Chyba, v systému nelze najít soubor rgb.txt!"
+#~ msgstr "Chyba, v systÃ©mu nelze najÃ­t soubor rgb.txt!"
 
 #~ msgid "Parsing Colors"
-#~ msgstr "Zpracování barev"
+#~ msgstr "ZpracovÃ¡nÃ­ barev"
 
 #~ msgid "Decimal (8 bit)"
-#~ msgstr "Desítkovì (8 bitù)"
+#~ msgstr "DesÃ­tkovÄ› (8 bitÅ¯)"
 
 #~ msgid "Decimal (16 bit)"
-#~ msgstr "Desítkovì (16 bitù)"
+#~ msgstr "DesÃ­tkovÄ› (16 bitÅ¯)"
 
 #~ msgid "Small utility to browse available X11 colors."
-#~ msgstr "Program k prohlí¾ení dostupnıch barev."
-
-#~ msgid "Font Selector"
-#~ msgstr "Vıbìr fontu"
+#~ msgstr "Program k prohlÃ­Å¾enÃ­ dostupnÃ½ch barev."
 
 #~ msgid "FONTSPEC"
 #~ msgstr "FONTSPEC"
 
 #~ msgid "Font to load"
-#~ msgstr "Naèíst font"
+#~ msgstr "NaÄÃ­st font"
 
 #~ msgid "Copyright 1998, under the GNU General Public License."
-#~ msgstr "Copyright 1998, pod Obecnou veøejnou licencí GNU."
+#~ msgstr "Copyright 1998, pod Obecnou veÅ™ejnou licencÃ­ GNU."
 
 #~ msgid "Reason %d\n"
-#~ msgstr "Dùvod %d\n"
+#~ msgstr "DÅ¯vod %d\n"
 
 #~ msgid "Where to put the window, and its size"
-#~ msgstr "Kde se okno zobrazí a jeho rozmìry"
+#~ msgstr "Kde se okno zobrazÃ­ a jeho rozmÄ›ry"
 
 #~ msgid "Ignore standard input; may be needed in some cases."
-#~ msgstr "Ignorovat standardní vstup; mo¾ná nutné v nìkterıch pøípadech."
-
-#~ msgid "_New Window"
-#~ msgstr "_Nové okno"
+#~ msgstr "Ignorovat standardnÃ­ vstup; moÅ¾nÃ¡ nutnÃ© v nÄ›kterÃ½ch pÅ™Ã­padech."
 
 #~ msgid "New text viewer window"
-#~ msgstr "Nové okno prohlí¾eèe souborù"
+#~ msgstr "NovÃ© okno prohlÃ­Å¾eÄe souborÅ¯"
 
 #~ msgid "Text File Viewer"
-#~ msgstr "Prohlí¾eè textovıch souborù"
+#~ msgstr "ProhlÃ­Å¾eÄ textovÃ½ch souborÅ¯"
 
 #~ msgid "Find string"
-#~ msgstr "Najít øetìzec"
-
-#~ msgid "Find"
-#~ msgstr "Najít"
+#~ msgstr "NajÃ­t Å™etÄ›zec"
 
 #~ msgid "Loading..."
-#~ msgstr "Naèítání..."
+#~ msgstr "NaÄÃ­tÃ¡nÃ­..."
 
 #~ msgid ""
 #~ "No such file or directory:\n"
 #~ "%s"
 #~ msgstr ""
-#~ "Soubor nebo adresáø neexistuje:\n"
+#~ "Soubor nebo adresÃ¡Å™ neexistuje:\n"
 #~ "%s"
 
 #~ msgid ""
 #~ "Unable to display compressed file.\n"
 #~ "zcat not found in your path."
 #~ msgstr ""
-#~ "Nelze zobrazit komprimovanı soubor.\n"
-#~ "Nelze nalézt program `zcat'."
+#~ "Nelze zobrazit komprimovanÃ½ soubor.\n"
+#~ "Nelze nalÃ©zt program `zcat'."
 
 #~ msgid ""
 #~ "Error loading file:\n"
 #~ "%s\n"
 #~ "%s"
 #~ msgstr ""
-#~ "Chyba pøi naèítání souboru:\n"
+#~ "Chyba pÅ™i naÄÃ­tÃ¡nÃ­ souboru:\n"
 #~ "%s\n"
 #~ "%s"
-
-#~ msgid "Saving..."
-#~ msgstr "Ukládání..."
 
 #~ msgid ""
 #~ "Failed to write file:\n"
@@ -1035,96 +1411,91 @@ msgstr ""
 #~ "%s"
 
 #~ msgid "Save Text As..."
-#~ msgstr "Ulo¾it text jako ..."
+#~ msgstr "UloÅ¾it text jako ..."
 
 #~ msgid "Searching..."
-#~ msgstr "Hledání..."
+#~ msgstr "HledÃ¡nÃ­..."
 
 #~ msgid "No search string was specified!"
-#~ msgstr "®ádnı hledanı øetìzec nebyl zadán!"
+#~ msgstr "Å½Ã¡dnÃ½ hledanÃ½ Å™etÄ›zec nebyl zadÃ¡n!"
 
 #~ msgid "Run Program"
 #~ msgstr "Spustit program"
-
-#~ msgid "Cancel"
-#~ msgstr "Zru¹it"
 
 #~ msgid "Run"
 #~ msgstr "Spustit"
 
 #~ msgid "Select a program to run"
-#~ msgstr "Vyber spou¹tìnı program"
+#~ msgstr "Vyber spouÅ¡tÄ›nÃ½ program"
 
 #~ msgid "Single User Mode"
-#~ msgstr "Re¾im jednoho u¾ivatele"
-
-#~ msgid "Reboot"
-#~ msgstr "Restart"
+#~ msgstr "ReÅ¾im jednoho uÅ¾ivatele"
 
 #~ msgid "Are you sure you want to shut down the computer?"
-#~ msgstr "Opravdu chcete ukonèit èinnost poèítaèe?"
+#~ msgstr "Opravdu chcete ukonÄit Äinnost poÄÃ­taÄe?"
 
 #~ msgid "Are you sure you want to switch to single user mode?"
-#~ msgstr "Opravdu chcete pøepnou na re¾im jednoho u¾ivatele?"
+#~ msgstr "Opravdu chcete pÅ™epnou na reÅ¾im jednoho uÅ¾ivatele?"
 
 #~ msgid "Are you sure you want to reboot the system?"
-#~ msgstr "Skuteènì chcete restartovat systém?"
+#~ msgstr "SkuteÄnÄ› chcete restartovat systÃ©m?"
 
 #~ msgid ""
 #~ "You must be the super-user (root) to shut down or restart the computer."
 #~ msgstr ""
-#~ "K provedení restartu nebo ukonèení èinnosti systému musíte bıt superu¾ivatel."
+#~ "K provedenÃ­ restartu nebo ukonÄenÃ­ Äinnosti systÃ©mu musÃ­te bÃ½t "
+#~ "superuÅ¾ivatel."
 
 #~ msgid "Shutdown or Reboot"
-#~ msgstr "Ukonèení nebo restart systému"
+#~ msgstr "UkonÄenÃ­ nebo restart systÃ©mu"
 
 #~ msgid "Easy"
-#~ msgstr "Jednoduché"
+#~ msgstr "JednoduchÃ©"
 
 #~ msgid ""
 #~ "Click OK to shutdown or reboot. You will lose\n"
 #~ "any unsaved information in open applications."
 #~ msgstr ""
-#~ "Stisknìte OK k ukonèení nebo restartu systému.\n"
-#~ "Ztratíte v¹echa neulo¾ená data v otevøenıch \n"
-#~ "aplikacích."
+#~ "StisknÄ›te OK k ukonÄenÃ­ nebo restartu systÃ©mu.\n"
+#~ "ZtratÃ­te vÅ¡echa neuloÅ¾enÃ¡ data v otevÅ™enÃ½ch \n"
+#~ "aplikacÃ­ch."
 
 #~ msgid "Revert to Defaults"
-#~ msgstr "Vrátit standardní hodnoty"
+#~ msgstr "VrÃ¡tit standardnÃ­ hodnoty"
 
 #~ msgid "Commands"
-#~ msgstr "Pøíkazy"
+#~ msgstr "PÅ™Ã­kazy"
 
 #~ msgid "Confirm before shutdown?"
-#~ msgstr "Potvrzení pøed ukonèením systému?"
+#~ msgstr "PotvrzenÃ­ pÅ™ed ukonÄenÃ­m systÃ©mu?"
 
 #~ msgid "General"
-#~ msgstr "Obecné"
+#~ msgstr "ObecnÃ©"
 
 #~ msgid ""
 #~ "%s\n"
 #~ "You will lose any unsaved work."
 #~ msgstr ""
 #~ "%s\n"
-#~ "Ztratíte takto v¹echna neulo¾enou práci."
+#~ "ZtratÃ­te takto vÅ¡echna neuloÅ¾enou prÃ¡ci."
 
 #~ msgid "Don't ask next time."
-#~ msgstr "Pøístì se neptat."
+#~ msgstr "PÅ™Ã­stÄ› se neptat."
 
 #~ msgid "Command execution failed: fork failed"
-#~ msgstr "Nelze spustit pøíkaz: volání fork() selhalo"
+#~ msgstr "Nelze spustit pÅ™Ã­kaz: volÃ¡nÃ­ fork() selhalo"
 
 #~ msgid "an initialization error occurred while starting 'guname-capplet'."
-#~ msgstr "chyba inicializace pøi startu konf. apletu 'guname-capplet'."
+#~ msgstr "chyba inicializace pÅ™i startu konf. apletu 'guname-capplet'."
 
 #~ msgid "System Information"
-#~ msgstr "Informace o systému"
+#~ msgstr "Informace o systÃ©mu"
 
 #~ msgid "Logo file not found"
 #~ msgstr "Soubor s logem nebyl nalezen"
 
 #~ msgid "GNOME contributors:"
-#~ msgstr "Spoluautoøi GNOME:"
+#~ msgstr "SpoluautoÅ™i GNOME:"
 
 #~ msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 #~ msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
@@ -1136,7 +1507,7 @@ msgstr ""
 #~ msgstr "Poslat informace..."
 
 #~ msgid "Save Information to File..."
-#~ msgstr "Ulo¾it informace do souboru..."
+#~ msgstr "UloÅ¾it informace do souboru..."
 
 #~ msgid "Detailed Information..."
 #~ msgstr "Detaily..."
@@ -1145,10 +1516,7 @@ msgstr ""
 #~ msgstr "Kategorie"
 
 #~ msgid "Your System"
-#~ msgstr "Vá¹ systém"
-
-#~ msgid "Save As..."
-#~ msgstr "Ulo¾it jako ..."
+#~ msgstr "VÃ¡Å¡ systÃ©m"
 
 #~ msgid "Mail To..."
 #~ msgstr "Odeslat(komu) ..."
@@ -1158,18 +1526,18 @@ msgstr ""
 #~ "%s\n"
 #~ "Some or all data may not have been written."
 #~ msgstr ""
-#~ "Chyba pøi uzavøení souboru `%s': \n"
+#~ "Chyba pÅ™i uzavÅ™enÃ­ souboru `%s': \n"
 #~ "%s\n"
-#~ "Nìkterá data nemusí bıt ulo¾ena."
+#~ "NÄ›kterÃ¡ data nemusÃ­ bÃ½t uloÅ¾ena."
 
 #~ msgid "Couldn't open file `%s': %s"
-#~ msgstr "Nelze otevøít soubor `%s': %s"
+#~ msgstr "Nelze otevÅ™Ã­t soubor `%s': %s"
 
 #~ msgid "Save System Information As..."
 #~ msgstr "Ulo6it informace jako..."
 
 #~ msgid "Command failed ` %s ': %s"
-#~ msgstr "Pøíkaz selhal: ` %s ': %s"
+#~ msgstr "PÅ™Ã­kaz selhal: ` %s ': %s"
 
 #~ msgid "Couldn't run command ` %s ': %s"
 #~ msgstr "Nelze spustit program ` %s ': %s"
@@ -1178,26 +1546,26 @@ msgstr ""
 #~ "The following mail will be sent to %s.\n"
 #~ " Are you sure you want to mail this information?"
 #~ msgstr ""
-#~ "Následující dopis bude odeslán na %s.\n"
+#~ "NÃ¡sledujÃ­cÃ­ dopis bude odeslÃ¡n na %s.\n"
 #~ " Opravdu chcete tyto informace odeslat?"
 
 #~ msgid "Are you sure?"
 #~ msgstr "Jste si jist?"
 
 #~ msgid "Address to mail to:"
-#~ msgstr "Adresát:"
+#~ msgstr "AdresÃ¡t:"
 
 #~ msgid "Distribution:"
 #~ msgstr "Distribuce:"
 
 #~ msgid "Operating System:"
-#~ msgstr "Operaèní systém:"
+#~ msgstr "OperaÄnÃ­ systÃ©m:"
 
 #~ msgid "Distribution Version:"
 #~ msgstr "Verze distribuce:"
 
 #~ msgid "Operating System Version:"
-#~ msgstr "Verze operaèního systému:"
+#~ msgstr "Verze operaÄnÃ­ho systÃ©mu:"
 
 #~ msgid "Processor Type:"
 #~ msgstr "Typ procesoru:"
@@ -1206,120 +1574,117 @@ msgstr ""
 #~ msgstr "Rychlost procesoru:"
 
 #~ msgid "Host Name:"
-#~ msgstr "Jméno poèítaèe:"
+#~ msgstr "JmÃ©no poÄÃ­taÄe:"
 
 #~ msgid "Domain Name:"
-#~ msgstr "Jméno domény:"
+#~ msgstr "JmÃ©no domÃ©ny:"
 
 #~ msgid "User Name:"
-#~ msgstr "Jméno u¾ivatele:"
+#~ msgstr "JmÃ©no uÅ¾ivatele:"
 
 #~ msgid "X Display Name:"
-#~ msgstr "Jméno displeje X:"
+#~ msgstr "JmÃ©no displeje X:"
 
 #~ msgid "System Status:"
-#~ msgstr "Stav systému:"
+#~ msgstr "Stav systÃ©mu:"
 
 #~ msgid "Total Memory:"
-#~ msgstr "Celková pamì»"
+#~ msgstr "CelkovÃ¡ pamÄ›Å¥"
 
 #~ msgid "Free Memory:"
-#~ msgstr "Volná pamì»"
+#~ msgstr "VolnÃ¡ pamÄ›Å¥"
 
 #~ msgid "Device"
-#~ msgstr "Zaøízení"
+#~ msgstr "ZaÅ™Ã­zenÃ­"
 
 #~ msgid "Size"
 #~ msgstr "Velikost"
 
 #~ msgid "Used space"
-#~ msgstr "Pou¾íté místo"
+#~ msgstr "PouÅ¾Ã­tÃ© mÃ­sto"
 
 #~ msgid "Free space"
-#~ msgstr "Volné místo"
+#~ msgstr "VolnÃ© mÃ­sto"
 
 #~ msgid "Percent free"
 #~ msgstr "Volno v procentech"
 
 #~ msgid "Mount point"
-#~ msgstr "Pøípojné místo"
+#~ msgstr "PÅ™Ã­pojnÃ© mÃ­sto"
 
 #~ msgid "Unknown"
-#~ msgstr "Neznámo"
+#~ msgstr "NeznÃ¡mo"
 
 #~ msgid "Unknown filesystem"
-#~ msgstr "Neznámı systém souborù"
+#~ msgstr "NeznÃ¡mÃ½ systÃ©m souborÅ¯"
 
 #~ msgid "No information for this filesystem."
-#~ msgstr "Pro tento systém souborù nelze zjistit informace."
+#~ msgstr "Pro tento systÃ©m souborÅ¯ nelze zjistit informace."
 
 #~ msgid "Kilobytes"
-#~ msgstr "kilobajtù"
+#~ msgstr "kilobajtÅ¯"
 
 #~ msgid "Memory"
-#~ msgstr "Pamì»"
+#~ msgstr "PamÄ›Å¥"
 
 #~ msgid "CPU %d"
 #~ msgstr "Procesor %d"
 
 #~ msgid "Detailed System Information"
-#~ msgstr "Detilní informace o systému"
+#~ msgstr "DetilnÃ­ informace o systÃ©mu"
 
 #~ msgid "Disk Information"
-#~ msgstr "Informace o discích"
+#~ msgstr "Informace o discÃ­ch"
 
 #~ msgid "Memory Information"
-#~ msgstr "Informace o pamìti"
+#~ msgstr "Informace o pamÄ›ti"
 
 #~ msgid "CPU Information"
 #~ msgstr "Informace o procesoru"
 
 #~ msgid "Mount Point: "
-#~ msgstr "Bod pøipojení: "
+#~ msgstr "Bod pÅ™ipojenÃ­: "
 
 #~ msgid "    Device: "
-#~ msgstr "  Zaøízení: "
+#~ msgstr "  ZaÅ™Ã­zenÃ­: "
 
 #~ msgid "    Filesystem Type: "
-#~ msgstr "Typ systému souborù: "
+#~ msgstr "Typ systÃ©mu souborÅ¯: "
 
 #~ msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-#~ msgstr "%ld MB, %ld volno (%ld superu¾ivatel); %ld i-uzlù, %ld volnıch."
+#~ msgstr "%ld MB, %ld volno (%ld superuÅ¾ivatel); %ld i-uzlÅ¯, %ld volnÃ½ch."
 
 #~ msgid ""
 #~ "Couldn't find the \"w\" command in your path.\n"
 #~ "This command is needed for the program to work."
 #~ msgstr ""
-#~ "V prohledávanıch adresáøích ($PATH) nelze najít\n"
-#~ "pøíkaz \"w\". Tento pøíkaz je programem pou¾íván\n"
-#~ "a bez nìj nefunguje."
+#~ "V prohledÃ¡vanÃ½ch adresÃ¡Å™Ã­ch ($PATH) nelze najÃ­t\n"
+#~ "pÅ™Ã­kaz \"w\". Tento pÅ™Ã­kaz je programem pouÅ¾Ã­vÃ¡n\n"
+#~ "a bez nÄ›j nefunguje."
 
 #~ msgid "Write information to disk"
 #~ msgstr "Zapsat informace na disk"
 
-#~ msgid "_Save..."
-#~ msgstr "_Ulo¾it ..."
-
 #~ msgid "Active User Listing"
-#~ msgstr "Seznam aktivních u¾ivatelù"
+#~ msgstr "Seznam aktivnÃ­ch uÅ¾ivatelÅ¯"
 
 #~ msgid "Update Information"
 #~ msgstr "Obnovit informace"
 
 #~ msgid "Save not implemented yet\n"
-#~ msgstr "Ulo¾ení není zatím implementováno\n"
+#~ msgstr "UloÅ¾enÃ­ nenÃ­ zatÃ­m implementovÃ¡no\n"
 
 #~ msgid "Command Line"
-#~ msgstr "Pøíkazová øádka"
+#~ msgstr "PÅ™Ã­kazovÃ¡ Å™Ã¡dka"
 
 #~ msgid "Add some defaults"
-#~ msgstr "Pøidat standardní"
+#~ msgstr "PÅ™idat standardnÃ­"
 
 #~ msgid "Delete"
 #~ msgstr "Smazat"
 
 #~ msgid "Command Editor"
-#~ msgstr "Editor pøíkazù"
+#~ msgstr "Editor pÅ™Ã­kazÅ¯"
 
 #~ msgid ""
 #~ "You can configure the commands on the popup menus.\n"
@@ -1328,56 +1693,56 @@ msgstr ""
 #~ "In the command, you can use %u to represent the\n"
 #~ "currently selected username, and %t for the tty."
 #~ msgstr ""
-#~ "Zde mù¾ete konfigurovat pøíkazy, které se zobrazí\n"
-#~ "v kontextovém menu (3. tl. my¹i). Jednodu¹e zadejte\n"
-#~ "název pøíkazu (objeví se v menu) a pøíkaz, kterı\n"
-#~ "se má spustit.\n"
-#~ "V pøíkazu mù¾ete pou¾ít %u pro jméno právì vybraného\n"
-#~ "u¾ivatele a %t pro jméno jeho terminálu."
+#~ "Zde mÅ¯Å¾ete konfigurovat pÅ™Ã­kazy, kterÃ© se zobrazÃ­\n"
+#~ "v kontextovÃ©m menu (3. tl. myÅ¡i). JednoduÅ¡e zadejte\n"
+#~ "nÃ¡zev pÅ™Ã­kazu (objevÃ­ se v menu) a pÅ™Ã­kaz, kterÃ½\n"
+#~ "se mÃ¡ spustit.\n"
+#~ "V pÅ™Ã­kazu mÅ¯Å¾ete pouÅ¾Ã­t %u pro jmÃ©no prÃ¡vÄ› vybranÃ©ho\n"
+#~ "uÅ¾ivatele a %t pro jmÃ©no jeho terminÃ¡lu."
 
 #~ msgid ""
 #~ "Click this button to add\n"
 #~ "some sample commands."
 #~ msgstr ""
-#~ "Stisknutím tohoto tlaèítka\n"
-#~ "pøidáte nìkteré standardní\n"
-#~ "pøíkazy."
+#~ "StisknutÃ­m tohoto tlaÄÃ­tka\n"
+#~ "pÅ™idÃ¡te nÄ›kterÃ© standardnÃ­\n"
+#~ "pÅ™Ã­kazy."
 
 #~ msgid "Menu items"
-#~ msgstr "Polo¾ky menu"
+#~ msgstr "PoloÅ¾ky menu"
 
 #~ msgid "Command"
-#~ msgstr "Pøíkaz"
+#~ msgstr "PÅ™Ã­kaz"
 
 #~ msgid "16-bit"
-#~ msgstr "16-bitù"
+#~ msgstr "16-bitÅ¯"
 
 #~ msgid "32-bit"
-#~ msgstr "32-bitù"
+#~ msgstr "32-bitÅ¯"
 
 #~ msgid "32-bit w/sync"
-#~ msgstr "32-bitù w/sync"
+#~ msgstr "32-bitÅ¯ w/sync"
 
 #~ msgid "Unable to access the drive."
-#~ msgstr "K jednotce není pøístup."
+#~ msgstr "K jednotce nenÃ­ pÅ™Ã­stup."
 
 #~ msgid "Disabled"
-#~ msgstr "Neaktivní"
+#~ msgstr "NeaktivnÃ­"
 
 #~ msgid "Enabled"
-#~ msgstr "Aktivní"
+#~ msgstr "AktivnÃ­"
 
 #~ msgid "The IRQ unmask setting for this drive cannot be changed."
-#~ msgstr "Odmaskování IRQ pro tuto jednotku nemohlo bıt zmìnìno."
+#~ msgstr "OdmaskovÃ¡nÃ­ IRQ pro tuto jednotku nemohlo bÃ½t zmÄ›nÄ›no."
 
 #~ msgid "The drive refused to keep its settings."
-#~ msgstr "Jednotka odmítla zachovávat nastavení."
+#~ msgstr "Jednotka odmÃ­tla zachovÃ¡vat nastavenÃ­."
 
 #~ msgid "Keep settings"
-#~ msgstr "Zachovat nastavení"
+#~ msgstr "Zachovat nastavenÃ­"
 
 #~ msgid "None"
-#~ msgstr "®ádnı"
+#~ msgstr "Å½Ã¡dnÃ½"
 
 #~ msgid "(1 Sector)"
 #~ msgstr "(1 Sektor)"
@@ -1389,7 +1754,7 @@ msgstr ""
 #~ msgstr "Ano (%d sektor)"
 
 #~ msgid "Yes (%d sectors)"
-#~ msgstr "Ano (%d sektorù)"
+#~ msgstr "Ano (%d sektorÅ¯)"
 
 #~ msgid "Model"
 #~ msgstr "Model"
@@ -1398,22 +1763,22 @@ msgstr ""
 #~ msgstr "Firmware"
 
 #~ msgid "Serial No."
-#~ msgstr "Seriové èíslo"
+#~ msgstr "SeriovÃ© ÄÃ­slo"
 
 #~ msgid "Geometry"
 #~ msgstr "Geometrie"
 
 #~ msgid "Cache"
-#~ msgstr "Ke¹"
+#~ msgstr "KeÅ¡"
 
 #~ msgid "Status"
 #~ msgstr "Stav"
 
 #~ msgid "DMA Mode"
-#~ msgstr "Re¾im DMA"
+#~ msgstr "ReÅ¾im DMA"
 
 #~ msgid "IO Mode"
-#~ msgstr "V/V re¾im"
+#~ msgstr "V/V reÅ¾im"
 
 #~ msgid "IRQ Unmask"
 #~ msgstr "IRQ odmaskovat"
@@ -1422,7 +1787,7 @@ msgstr ""
 #~ msgstr "Multisektor"
 
 #~ msgid "On Reset"
-#~ msgstr "Pøi resetu"
+#~ msgstr "PÅ™i resetu"
 
 #~ msgid "IDE Status"
 #~ msgstr "Stav IDE"
@@ -1431,7 +1796,8 @@ msgstr ""
 #~ msgstr "Logo disku nebylo nalezeno"
 
 #~ msgid "Only the superuser can use this tool"
-#~ msgstr "Tento nástroj mù¾e pou¾ívat jen superu¾ivatel"
+#~ msgstr "Tento nÃ¡stroj mÅ¯Å¾e pouÅ¾Ã­vat jen superuÅ¾ivatel"
 
 #~ msgid "You appear to have no IDE drives"
-#~ msgstr "Zdá se, ¾e poèítaè neobsahuje ¾ádné IDE jednotky"
+#~ msgstr "ZdÃ¡ se, Å¾e poÄÃ­taÄ neobsahuje Å¾Ã¡dnÃ© IDE jednotky"
+
