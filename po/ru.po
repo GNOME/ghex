@@ -226,9 +226,9 @@ msgstr ""
 "Сохранить изменения?"
 
 #: ghex/main.c:173
-#, fuzzy, c-format
+#, c-format
 msgid "Offset: %s"
-msgstr "Отступ: "
+msgstr "Отступ: %s"
 
 #: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
 #: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
@@ -1233,7 +1233,7 @@ msgstr "Copyright 1998, на условиях GNU General Public License."
 #: mini-utils/gless/gless.c:116
 #, c-format
 msgid "Reason %d\n"
-msgstr ""
+msgstr "Причина %d\n"
 
 #: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
@@ -1277,19 +1277,22 @@ msgid "Loading..."
 msgstr "Загрузка..."
 
 #: mini-utils/gless/gless.c:502
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "No such file or directory:\n"
 "%s"
 msgstr "Нет такого файла или каталога:\n"
+"%s"
 
 #: mini-utils/gless/gless.c:520
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to decompress and display the file:\n"
 "%s\n"
 "%s"
 msgstr "Не удалось распаковать и показать файл:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:533
 msgid ""
@@ -1300,24 +1303,28 @@ msgstr ""
 "не найден zcat в пути поиска команд."
 
 #: mini-utils/gless/gless.c:541
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error loading file:\n"
 "%s\n"
 "%s"
 msgstr "Ошибка загрузки файла:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:599
 msgid "Saving..."
 msgstr "Сохранение..."
 
 #: mini-utils/gless/gless.c:610
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to write file:\n"
 "%s\n"
 "%s"
 msgstr "Ошибка при записи файла:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:660
 msgid "Save Text As..."
@@ -1329,7 +1336,7 @@ msgstr "Открыть текстовый файл..."
 
 #: mini-utils/gless/gless.c:764
 msgid "Sorry, no preferences yet."
-msgstr ""
+msgstr "Еще не настраивается"
 
 #: mini-utils/gless/gless.c:851
 msgid "Searching..."
@@ -1340,12 +1347,14 @@ msgid "No search string was specified!"
 msgstr "Искомая строка не задана!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to execute command:\n"
 "%s\n"
 "%s"
 msgstr "Не удалось выполнить команду:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run Program"
@@ -1470,6 +1479,8 @@ msgid ""
 "%s\n"
 "You will lose any unsaved work."
 msgstr ""
+"%s\n"
+"Вся не сохраненная информация будет потеряна."
 
 #: mini-utils/gshutdown/gshutdown.c:458
 msgid "Don't ask next time."
@@ -1477,7 +1488,7 @@ msgstr "Не спрашивать в следующий раз."
 
 #: mini-utils/gshutdown/gshutdown.c:685
 msgid "Command execution failed: fork failed"
-msgstr ""
+msgstr "Не удалось исполнить команду: отпочкование не состоялось"
 
 #: mini-utils/guname/guname.c:51
 msgid "Make guname act as a control center applet"
@@ -1485,7 +1496,7 @@ msgstr "Превратить guname апплет центра управления"
 
 #: mini-utils/guname/guname.c:114
 msgid "an initialization error occurred while starting 'guname-capplet'."
-msgstr ""
+msgstr "ошибка инициализации про запуске 'guname-capplet'."
 
 #: mini-utils/guname/guname.c:424
 msgid "System Information"
@@ -1502,7 +1513,7 @@ msgstr "Участники проекта GNOME:"
 
 #: mini-utils/guname/guname.c:513
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-msgstr ""
+msgstr "-Adobe-Helvetica-Medium-R-Normal--14-*-*-*-*-*-koi8-*"
 
 #: mini-utils/guname/guname.c:524
 msgid "GNOME: The GNU Network Object Model Environment"
@@ -1537,19 +1548,20 @@ msgid "Mail To..."
 msgstr "Отправить почту..."
 
 #: mini-utils/guname/guname.c:680
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error closing file `%s': \n"
 "%s\n"
 "Some or all data may not have been written."
 msgstr ""
-"\n"
+"Ошибка при закрытии файла`%s': \n"
+"%s\n"
 "Все или часть данных могут быть не записаны."
 
 #: mini-utils/guname/guname.c:692
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't open file `%s': %s"
-msgstr "Не удалось открыть файл `"
+msgstr "Не удалось открыть файл `%s': %s"
 
 #: mini-utils/guname/guname.c:707
 msgid "Save System Information As..."
@@ -1557,22 +1569,22 @@ msgstr "Сохранить информацию о системе как..."
 
 #. I don't think the error_string() will reliably mean anything.
 #: mini-utils/guname/guname.c:753
-#, fuzzy, c-format
+#, c-format
 msgid "Command failed ` %s ': %s"
-msgstr "Ошибка в команде ` "
+msgstr "Ошибка в команде ` %s ': %s"
 
 #: mini-utils/guname/guname.c:761
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't run command ` %s ': %s"
-msgstr "Не удалось выполнить команду ` "
+msgstr "Не удалось выполнить команду ` %s ': %s"
 
 #: mini-utils/guname/guname.c:785
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
-".\n"
+"Это письмо будет отправлено по адресу %s.\n"
 "Вы уверены, в том что хотите послать эту информацию?"
 
 #: mini-utils/guname/guname.c:796
@@ -1756,9 +1768,8 @@ msgid "Update Information"
 msgstr "Обновить информацию"
 
 #: mini-utils/gw/gw.c:466
-#, fuzzy
 msgid "Save not implemented yet\n"
-msgstr "Это пока не реализовано"
+msgstr "Это пока не реализовано\n"
 
 #: mini-utils/gw/gw.c:479
 msgid "Command Line"
@@ -1810,32 +1821,31 @@ msgstr "Команда"
 #: mini-utils/gw/gw.c:947
 #, c-format
 msgid "Running: %s\n"
-msgstr ""
+msgstr "Исполняется: %s\n"
 
 #: mini-utils/idetool/idetool.c:20
 msgid "16-bit"
-msgstr ""
+msgstr "16-bit"
 
 #: mini-utils/idetool/idetool.c:21
 msgid "32-bit"
-msgstr ""
+msgstr "32-bit"
 
 #: mini-utils/idetool/idetool.c:22
 msgid "32-bit w/sync"
-msgstr ""
+msgstr "32-bit синх"
 
 #: mini-utils/idetool/idetool.c:27
 msgid "Sleeping"
-msgstr ""
+msgstr "В спячке"
 
 #: mini-utils/idetool/idetool.c:28
-#, fuzzy
 msgid "Active/Idle"
-msgstr "Задействован"
+msgstr "Задействован/Не задействован"
 
 #: mini-utils/idetool/idetool.c:29
 msgid "Standby"
-msgstr ""
+msgstr "В ожидании"
 
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
@@ -1869,7 +1879,7 @@ msgstr "Сохранить установки"
 
 #: mini-utils/idetool/idetool.c:207
 msgid "None"
-msgstr ""
+msgstr "Нет"
 
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
@@ -1886,11 +1896,11 @@ msgstr "(Кэше двойного порта)"
 #: mini-utils/idetool/idetool.c:243
 #, c-format
 msgid "Yes (%d sector%s)"
-msgstr ""
+msgstr "Да (%d сектор%s)"
 
 #: mini-utils/idetool/idetool.c:245
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
 msgid "Model"
