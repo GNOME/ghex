@@ -316,7 +316,7 @@ static void hex_document_real_changed(HexDocument *doc, gpointer change_data, gb
 	
 	child = BONOBO_MDI_CHILD(doc);
 
-	if(push_undo)
+	if(push_undo && doc->undo_max > 0)
 		undo_stack_push(doc, change_data);
 
 #ifdef SNM
