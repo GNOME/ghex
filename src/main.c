@@ -24,14 +24,11 @@
 
 #include "gnome-support.h"
 #include "ghex.h"
+#include "callbacks.h"
 
 GnomeMDI *mdi;
 
 gint mdi_mode = GNOME_MDI_NOTEBOOK;
-
-static void cleanup(GtkObject *obj) {
-  save_configuration();
-}
 
 int main(int argc, char **argv) {
   GnomeClient *client;
@@ -54,7 +51,8 @@ int main(int argc, char **argv) {
     mdi = gnome_mdi_new("ghex", "GNOME hex editor");
 
     gtk_signal_connect(GTK_OBJECT(mdi), "create_menus", GTK_SIGNAL_FUNC(create_mdi_menus), NULL);  
-    gtk_signal_connect(GTK_OBJECT(mdi), "destroy", GTK_SIGNAL_FUNC(cleanup), NULL);
+    gtk_signal_connect(GTK_OBJECT(mdi), "remove_document", GTK_SIGNAL_FUNC(remove_doc_cb), NULL);
+    gtk_signal_connect(GTK_OBJECT(mdi), "destroy", GTK_SIGNAL_FUNC(cleanup_cb), NULL);
 
     load_configuration();
 

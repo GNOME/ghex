@@ -3,7 +3,7 @@
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
    <META NAME="Keywords" CONTENT="GHex, ghex, GNOME, Hex Editor">
    <META NAME="Author" CONTENT="Jaka Mocnik">
-   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.1.87 i586) [Netscape]">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (X11; I; Linux 2.1.98 i586) [Netscape]">
    <TITLE>GNOME Hex Editor Documentation</TITLE>
 </HEAD>
 <BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
@@ -53,22 +53,19 @@ for GNOME applications.
 <BR>&nbsp;
 <H2>
 <A NAME="use"></A>3. Use</H2>
-When starting GHex, it will pop up a window with a <A HREF="#menubar">menubar</A>,
-a <A HREF="#toolbar">toolbar</A> and a <A HREF="#statusbar">statusbar</A>
-at the bottom. When a file is loaded, its contents will be displayed between
-the statusbar and the toolbar in an area that will occupy the largest part
-of the window. The contents are displayed in both hex and ascii at once,
-with hexadecimal values on the left and the corresponding ascii representation
-of those bytes on the right-hand side of the display.
+When starting GHex, it will pop up a window with nothing but a <A HREF="#menubar">menubar</A>.
+When a file is loaded, its contents will be displayed below the menubar
+in an area that will occupy the largest part of the window. The contents
+are displayed in both hex and ascii at once, with hexadecimal values on
+the left and the corresponding ascii representation of those bytes on the
+right-hand side of the display.
 <H4>
 <A NAME="menubar"></A>The menubar</H4>
 Menu <I>File</I>
 <UL>
 <LI>
 <I>Open </I>lets you select a file and opens it, reading its contents to
-a buffer and displaying it immediately. If you have previously been editing
-another file, its contents are still left in the memory and you can return
-to it at any time by choosing it from the <I>Buffers</I> menu.</LI>
+a buffer and displaying it immediately in a view.</LI>
 
 <LI>
 <I>Save </I>writes the contents of the buffer to the file with the same
@@ -80,15 +77,18 @@ correspond to a given format.</LI>
 the buffer to a file with this name.</LI>
 
 <LI>
-<I>Revert </I>reloads the contents of the buffer from the file.</LI>
+<I>Revert </I>reloads the contents of the file.</LI>
 
 <LI>
-<I>Close </I>removes the buffer from the memory.</LI>
+<I>Close </I>closes all views and removes the file from the memory.</LI>
+
+<LI>
+<I>Preferences</I> brings up the <A HREF="#prefs">Preferences Dialog</A></LI>
 
 <LI>
 <I>Quit </I>should be obvious: it quits GHex.</LI>
 </UL>
-Menu <I>Edit</I>
+Menu <I>Edit</I> (is shown only when a file is being edited)
 <UL>
 <LI>
 <I>Find </I>opens the <A HREF="#findnreplace">Find Dialog</A></LI>
@@ -98,43 +98,35 @@ Menu <I>Edit</I>
 
 <LI>
 <I>Goto Byte </I>opens the Jump To Byte Dialog</LI>
-</UL>
-Menu <I>Options</I>
+
+<BR><I>Group Data As </I>offers three different ways how the bytes in the
+hex display are grouped: either as single bytes or in groups of two bytes
+(words) or four bytes (long words).</UL>
+Menu <I>View</I>
 <UL>
 <LI>
-<I>Group Data As </I>offers three different ways how the bytes in the hex
-display are grouped: either as single bytes or in groups of two bytes (words)
-or four bytes (long words).</LI>
+<I>Add view</I> adds another view of the currently edited file.</LI>
 
 <LI>
-<I>Select Font </I>lets you select the font that will be used to display
-data. The display won't work correctly unless this is a monospaced font
-(a font where all the characters have the same width). Examples of a monospaced
-font are Courier or Fixed that should appear on most X Window systems.</LI>
+<I>Remove view</I> removes the active view. Even if this is the last view
+of the corresponding file, the file will not be closed and will remain
+accessible through the <I>Documents</I> menu</LI>
 </UL>
-Menu <I>Buffers</I>
+Menu <I>Documents</I>
 <UL>
 <LI>
-Displays names of all the files that are still open. You can access any
-of them by simply picking them from this menu.</LI>
+Displays names of all the open documents. You can access any of them by
+simply picking them from this menu.</LI>
 </UL>
 Menu <I>Help</I>
 <UL>
 <LI>
 <I>About </I>shows you what GHex is and who is responsible for it.</LI>
+
+<LI>
+<I>Help </I>brings up the Gnome help browser with this very file.</LI>
 </UL>
 
-<H4>
-<A NAME="toolbar"></A>The toolbar</H4>
-contains just four buttons, that serve the same purpose as the corresponding
-menu items: <I>Open, Save, Revert </I>and <I>Close</I>
-<H4>
-<A NAME="statusbar"></A>The statusbar</H4>
-is divided in three parts. The leftmost label displays the name of the
-file that you are currently editing, the middle one displays the cursor
-position in bytes and the size of the edited file and the rightmost label
-displays the decimal value of the byte, word and longword that the cursor
-is on.
 <H4>
 Editing a file</H4>
 You can move around the file using the arrow keys, the numeric keypad,
@@ -169,7 +161,35 @@ string, it will try to find the next occurence of it, but will not replace
 that one. Finally, the <I>Replace All </I>button will replace all occurences
 of the searched-for string from the current cursor position to the end
 of the file.
-<BR>&nbsp;
+<H4>
+<A NAME="prefs"></A>Setting user preferences</H4>
+
+<UL>
+<LI>
+Display settings: here you can set the default data grouping type and the
+display font</LI>
+
+<LI>
+MDI settings: lets user select preferred interface type. Currently supported
+options are:</LI>
+
+<UL>
+<LI>
+Notebook: displays views in notebook pages, enabling user to create a new
+toplevel window from each notebook page by dragging it to the root window</LI>
+
+<LI>
+Toplevel: displays each view in its own toplevel window</LI>
+
+<LI>
+Modal: only displays one view at a time, allowing user to select a document
+from the <I>Documents </I>menu</LI>
+</UL>
+</UL>
+
+<H2>
+</H2>
+
 <H2>
 <A NAME="feedback"></A>4. Feedback</H2>
 GHex is being maintained by <A HREF="mailto:jaka.mocnik@kiss.uni-lj.si">Jaka
@@ -177,7 +197,8 @@ Mocnik &lt;jaka.mocnik@kiss.uni-lj.si></A>. If you are having trouble installing
 and/or running GHex, feel free to e-mail me.
 
 <P>You can check the current status of GHex via WWW at <A HREF="http://www.kiss.uni-lj.si/~k4fe0026/soft.html#GHEX">this
-page.</A>
+page.</A>&nbsp; The most recent version is also available at the Gnome
+CVS repository in module gnome-utils.
 
 <P>Comments, ideas and (most of all) bug reports (and especially patches)
 are very welcome at the above e-mail address.

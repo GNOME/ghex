@@ -771,9 +771,8 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	break;
       default:
 	if((event->keyval >= '0')&&(event->keyval <= '9')) {
-	  gh->document->buffer[gh->cursor_pos] = (gh->document->buffer[gh->cursor_pos] &
-					(0x0F << 4*gh->lower_nibble)) |
-	    ((event->keyval - '0') << ((gh->lower_nibble)?0:4));
+	  hex_document_set_byte(gh->document, (gh->document->buffer[gh->cursor_pos] & (0x0F << 4*gh->lower_nibble)) |
+				              ((event->keyval - '0') << ((gh->lower_nibble)?0:4)), gh->cursor_pos);
 	  render_byte(gh, gh->cursor_pos);
 	  gh->lower_nibble = !gh->lower_nibble;
 	  if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
@@ -781,9 +780,8 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	  gtk_hex_data_changed(gh, old_cp, old_cp);
 	}
 	if((event->keyval >= 'A')&&(event->keyval <= 'F')) {
-	  gh->document->buffer[gh->cursor_pos] = (gh->document->buffer[gh->cursor_pos] &
-					(0x0F << 4*gh->lower_nibble)) | 
-	    ((event->keyval - 'A' + 10) << ((gh->lower_nibble)?0:4));
+	  hex_document_set_byte(gh->document, (gh->document->buffer[gh->cursor_pos] & (0x0F << 4*gh->lower_nibble)) |
+				              ((event->keyval - 'A' + 10) << ((gh->lower_nibble)?0:4)), gh->cursor_pos);
 	  render_byte(gh, gh->cursor_pos);
 	  gh->lower_nibble = !gh->lower_nibble;
 	  if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
@@ -791,9 +789,8 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	  gtk_hex_data_changed(gh, old_cp, old_cp);
 	}
 	if((event->keyval >= 'a')&&(event->keyval <= 'f')) {
-	  gh->document->buffer[gh->cursor_pos] = (gh->document->buffer[gh->cursor_pos] &
-					(0x0F << 4*gh->lower_nibble)) | 
-	    ((event->keyval - 'a' + 10) << ((gh->lower_nibble)?0:4));
+	  hex_document_set_byte(gh->document, (gh->document->buffer[gh->cursor_pos] & (0x0F << 4*gh->lower_nibble)) |
+				              ((event->keyval - 'a' + 10) << ((gh->lower_nibble)?0:4)), gh->cursor_pos);
 	  render_byte(gh, gh->cursor_pos);
 	  gh->lower_nibble = !gh->lower_nibble;
 	  if((!gh->lower_nibble) && (gh->cursor_pos < gh->document->buffer_size-1))
@@ -814,7 +811,7 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	break;
       default:
 	if(is_printable(event->keyval)) {
-	  gh->document->buffer[gh->cursor_pos] = event->keyval;
+	  hex_document_set_byte(gh->document, event->keyval, gh->cursor_pos);
 	  render_byte(gh, gh->cursor_pos);
 	  old_cp = gh->cursor_pos;
 	  gtk_hex_set_cursor(gh, gh->cursor_pos + 1);

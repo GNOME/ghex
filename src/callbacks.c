@@ -14,7 +14,7 @@ void about_cb (GtkWidget *widget) {
   gchar *authors[] = {
 	  "Jaka Mocnik",
           NULL
-          };
+  };
 
   about = gnome_about_new ( _("GHex, a binary file editor"), VERSION,
 			    "(C) 1998 Jaka Mocnik", authors,
@@ -26,8 +26,8 @@ void about_cb (GtkWidget *widget) {
 }
 
 void quit_app_cb (GtkWidget *widget) {
-  gtk_object_destroy(GTK_OBJECT(mdi));
-  gtk_main_quit();
+  if(gnome_mdi_remove_all_documents(mdi))
+    gtk_object_destroy(GTK_OBJECT(mdi));
 }
 
 void show_help_cb (GtkWidget *widget) {
@@ -479,3 +479,38 @@ void remove_view_cb(GtkWidget *w) {
   if(mdi->active_view)
     gnome_mdi_remove_view(mdi, mdi->active_view);
 }
+
+gint remove_doc_cb(GnomeMDI *mdi, GnomeDocument *doc) {
+  GnomeMessageBox *mbox;
+  gint reply;
+
+  if(gnome_document_has_changed(doc)) {
+    mbox = GNOME_MESSAGE_BOX(gnome_message_box_new( _("The document has changed since last save.\n"
+						      "Do you want to save changes?"),
+						    GNOME_MESSAGE_BOX_QUESTION, GNOME_STOCK_BUTTON_YES,
+						    GNOME_STOCK_BUTTON_NO, GNOME_STOCK_BUTTON_CANCEL, NULL));
+    gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
+    reply = ask_user(mbox);
+
+    if(reply == 0)
+      hex_document_write(HEX_DOCUMENT(doc));
+    else if(reply == 2)
+      return FALSE;
+  }
+
+  return TRUE;
+}
+
+void cleanup_cb(GnomeMDI *mdi) {
+  save_configuration();
+  gtk_main_quit();
+}
+
+
+
+
+
+
+
+
+

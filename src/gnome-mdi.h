@@ -71,6 +71,7 @@ void gnome_mdi_add_view(GnomeMDI *, GnomeDocument *);
 void gnome_mdi_remove_view(GnomeMDI *, GtkWidget *);
 void gnome_mdi_menu_place(GnomeMDI *, gint);
 GnomeDocument *gnome_mdi_active_document(GnomeMDI*);
+gboolean gnome_mdi_remove_all_documents(GnomeMDI *);
 
 #endif /* __GNOME_MDI_H__ */
 

@@ -40,7 +40,7 @@ void load_configuration() {
       report_error(_("Can not open configured font!"));
   }
 
-  def_group_type = gnome_config_get_int("/ghex/Display/Group=0");
+  def_group_type = gnome_config_get_int("/ghex/Display/Group=1");
 
   mdi_mode = gnome_config_get_int("/ghex/MDI/Mode=2");
 }

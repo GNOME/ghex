@@ -31,6 +31,9 @@ void apply_changes_cb();
 void add_view_cb();
 void remove_view_cb();
 
+gint remove_doc_cb();
+void cleanup_cb();
+
 void prefs_cb();
 void find_cb();
 void replace_cb();

@@ -188,6 +188,10 @@ void gnome_document_changed(GnomeDocument *doc, gpointer change_data) {
   gtk_signal_emit(GTK_OBJECT(doc), document_signals[DOCUMENT_CHANGED], change_data);
 }
 
+gboolean gnome_document_has_changed(GnomeDocument *doc) {
+  return doc->changed;
+}
+
 
 
 

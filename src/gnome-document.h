@@ -58,6 +58,7 @@ GtkWidget *gnome_document_add_view(GnomeDocument *);
 void gnome_document_remove_view(GnomeDocument *, GtkWidget *view);
 void gnome_document_changed(GnomeDocument *, gpointer);
 void gnome_document_set_title(GnomeDocument *, gchar *);
+gboolean gnome_document_has_changed(GnomeDocument *);
 
 #endif /* __GNOME_DOCUMENT_H__ */
 

@@ -189,6 +189,8 @@ void hex_document_changed(GnomeDocument *doc, gpointer change_data) {
 }
 
 void hex_document_set_byte(HexDocument *document, guchar val, guint offset) {
+  GNOME_DOCUMENT(document)->changed = TRUE;
+
   if((offset >= 0) && (offset < document->buffer_size))
     document->buffer[offset] = val;
 
@@ -200,6 +202,8 @@ void hex_document_set_byte(HexDocument *document, guchar val, guint offset) {
 
 void hex_document_set_data(HexDocument *document, guint offset, guint len, guchar *data) {
   guint i;
+
+  GNOME_DOCUMENT(document)->changed = TRUE;
 
   for(i = 0; (offset < document->buffer_size) && (i < len); offset++, i++)
     document->buffer[offset] = data[i];
