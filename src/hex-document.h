@@ -52,6 +52,7 @@ struct _HexChangeData
 {
 	guint start, end, rep_len;
 	gboolean lower_nibble;
+	gboolean insert;
 	HexChangeType type;
 	gchar *v_string;
 	gchar v_byte;

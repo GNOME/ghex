@@ -495,6 +495,7 @@ void hex_document_set_nibble(HexDocument *doc, guchar val, guint offset,
 		change_data.v_string = NULL;
 		change_data.type = HEX_CHANGE_BYTE;
 		change_data.lower_nibble = lower_nibble;
+		change_data.insert = insert;
 		if(!lower_nibble && insert) {
 			move_gap_to(doc, offset, 1);
 			doc->gap_size--;
@@ -533,6 +534,7 @@ void hex_document_set_byte(HexDocument *doc, guchar val, guint offset,
 		change_data.v_string = NULL;
 		change_data.type = HEX_CHANGE_BYTE;
 		change_data.lower_nibble = FALSE;
+		change_data.insert = insert;
 		if(insert) {
 			move_gap_to(doc, offset, 1);
 			doc->gap_size--;
@@ -970,12 +972,15 @@ gboolean hex_document_redo(HexDocument *doc)
 
 	switch(cd->type) {
 	case HEX_CHANGE_BYTE:
-		if(cd->start >= 0 && cd->end < doc->file_size) {
+		if(cd->start >= 0 && cd->end <= doc->file_size) {
 			c_val = hex_document_get_byte(doc, cd->start);
 			if(cd->rep_len > 0)
 				hex_document_set_byte(doc, cd->v_byte, cd->start, FALSE, FALSE);
 			else if(cd->rep_len == 0)
+				hex_document_set_byte(doc, cd->v_byte, cd->start, cd->insert, FALSE);
+#if 0
 				hex_document_delete_data(doc, cd->start, 1, FALSE);
+#endif
 			else
 				hex_document_set_byte(doc, cd->v_byte, cd->start, TRUE, FALSE);
 			cd->v_byte = c_val;

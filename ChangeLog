@@ -1,3 +1,10 @@
+2002-05-22  Shivram U  <shivaram.upadhyayula@wipro.com>
+
+	* src/hex-document.h: Added a new member 'gboolean insert' for struct
+	HexChangeData.
+	* src/hex-document.c (hex_document_set_byte), (hex_document_set_nibble),
+	(hex_document_redo) Fix for bug #76209
+
 2002-05-17  Muktha  <muktha.narayan@wipro.com>
 
 	* src/gtkhex.c: Enable selection through keyboard.
