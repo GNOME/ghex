@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 1998-07-16 19:30+0200\n"
+"POT-Creation-Date: 1998-07-29 18:49+0200\n"
 "PO-Revision-Date: 1998-02-28 19:57+0100\n"
 "Last-Translator: Vincent Renardias <vincent@waw.com>\n"
 "Language-Team: Vincent Renardias <vincent@waw.com>\n"
@@ -39,7 +39,7 @@ msgstr "Recharger"
 msgid "Reload Configuration File"
 msgstr "Recharger le fichier de configuration"
 
-#: edit-menus/edit-menus.c:149 gedit/menus.c:284 gtt/toolbar.c:152
+#: edit-menus/edit-menus.c:149 gedit/menus.c:299 gtt/toolbar.c:152
 msgid "Save"
 msgstr "Sauver"
 
@@ -47,7 +47,7 @@ msgstr "Sauver"
 msgid "Save Configuration File"
 msgstr "Sauver le fichier de configuration"
 
-#: edit-menus/edit-menus.c:179 gedit/menus.c:304 gtt/menus.c:55
+#: edit-menus/edit-menus.c:179 gedit/menus.c:319 gtt/menus.c:55
 #: gtt/menus.c:134 gtt/toolbar.c:159
 msgid "Cut"
 msgstr "Couper"
@@ -56,7 +56,7 @@ msgstr "Couper"
 msgid "Cut Selected Project"
 msgstr "Couper le projet sélectionné"
 
-#: gedit/menus.c:307 gtt/menus.c:59 gtt/menus.c:139 gtt/toolbar.c:163
+#: gedit/menus.c:322 gtt/menus.c:59 gtt/menus.c:139 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Couper"
 
@@ -64,7 +64,7 @@ msgstr "Couper"
 msgid "Copy Selected Project"
 msgstr "Copier le projet sélectionné"
 
-#: edit-menus/edit-menus.c:182 gedit/menus.c:310 gtt/menus.c:64
+#: edit-menus/edit-menus.c:182 gedit/menus.c:325 gtt/menus.c:64
 #: gtt/menus.c:144 gtt/toolbar.c:167
 msgid "Paste"
 msgstr "Coller"
@@ -105,7 +105,7 @@ msgstr "Manuel"
 msgid "Manual..."
 msgstr "Manuel..."
 
-#: gedit/menus.c:297 gtt/menus.c:45 gtt/toolbar.c:198
+#: gedit/menus.c:312 gtt/menus.c:45 gtt/toolbar.c:198
 msgid "Quit"
 msgstr "Quitter"
 
@@ -196,24 +196,25 @@ msgid "Timer Running"
 msgstr "Chronométre lancé"
 
 #: edit-menus/edit-menus.c:140 gcalc/gcalc.c:46 gdiskfree/df.c:139
-#: gedit/menus.c:371 genius/genius.c:482 gncal/main.c:340 gtop/main.c:146
+#: gedit/menus.c:399 genius/genius.c:482 gncal/main.c:340 gtop/main.c:146
 #: gtt/menus.c:103 mini-utils/gless/gless.c:301 mini-utils/gw/gw.c:173
 msgid "About..."
 msgstr "A Propos..."
 
-#: edit-menus/edit-menus.c:172 gdiskfree/df.c:146 gedit/menus.c:394
-#: gncal/main.c:357 gstripchart/gstripchart.c:804 gtop/main.c:168
-#: gtt/menus.c:113 mini-utils/gless/gless.c:357 mini-utils/gw/gw.c:205
+#: edit-menus/edit-menus.c:172 gdiskfree/df.c:146 gedit/commands.c:1375
+#: gedit/commands.c:1376 gedit/menus.c:413 gncal/main.c:357
+#: gstripchart/gstripchart.c:804 gtop/main.c:168 gtt/menus.c:113
+#: mini-utils/gless/gless.c:357 mini-utils/gw/gw.c:205
 msgid "File"
 msgstr "Fichier"
 
 #. Edit should have a stock pixmap, oh well, using properties
-#: edit-menus/edit-menus.c:191 gedit/menus.c:396 gtt/menus.c:115
+#: edit-menus/edit-menus.c:191 gedit/menus.c:415 gtt/menus.c:115
 msgid "Edit"
 msgstr "Editer"
 
 #: edit-menus/edit-menus.c:174 gcalc/gcalc.c:56 gdiskfree/df.c:148
-#: gedit/menus.c:406 genius/genius.c:495 gncal/main.c:359
+#: gedit/menus.c:427 genius/genius.c:495 gncal/main.c:359
 #: gstripchart/gstripchart.c:805 gtop/main.c:172 gtt/menus.c:120
 #: mini-utils/gless/gless.c:365 mini-utils/gw/gw.c:208
 msgid "Help"
@@ -231,7 +232,7 @@ msgstr "programme terminé"
 msgid "program started"
 msgstr "program lancé"
 
-#: genius/genius.c:618 ghex/ui.c:470 gncal/eventedit.c:379 gtt/options.c:193
+#: genius/genius.c:618 ghex/ui.c:468 gncal/eventedit.c:379 gtt/options.c:193
 msgid "Display"
 msgstr "Affichage"
 
@@ -247,7 +248,7 @@ msgstr "Afficher la barre d'état"
 msgid "Show Table Header"
 msgstr "Afficher les entetes de table"
 
-#: gedit/menus.c:361 gtt/options.c:227 gtt/options.c:495
+#: gedit/menus.c:376 gtt/options.c:227 gtt/options.c:495
 msgid "Toolbar"
 msgstr "Barre d'outils"
 
@@ -959,85 +960,85 @@ msgstr "ID"
 msgid "Discard session"
 msgstr "Ne pas sauver la session"
 
-#: ghex/ui.c:192
+#: ghex/ui.c:190
 msgid "GHex: Find Data"
 msgstr "GHex: Trouver Données"
 
-#: ghex/ui.c:201
+#: ghex/ui.c:199
 #, c-format
 msgid "Search for %s"
 msgstr "Rechercher %s"
 
-#: ghex/ui.c:217
+#: ghex/ui.c:215
 msgid "Find Next"
 msgstr "Trouver le suivant"
 
-#: ghex/ui.c:224
+#: ghex/ui.c:222
 msgid "Find Previous"
 msgstr "Trouver le précédent"
 
-#: ghex/ui.c:252
+#: ghex/ui.c:250
 msgid "GHex: Find & Replace Data"
 msgstr "GHex: Rechercher & Remplacer données"
 
-#: ghex/ui.c:266
+#: ghex/ui.c:264
 #, c-format
 msgid "Replace %s"
 msgstr "Remplacer %s"
 
-#: ghex/ui.c:282
+#: ghex/ui.c:280
 msgid "Find next"
 msgstr "Trouver le suivant"
 
-#: ghex/ui.c:289
+#: ghex/ui.c:287
 msgid "Replace"
 msgstr "Remplacer"
 
-#: ghex/ui.c:296
+#: ghex/ui.c:294
 msgid "Replace All"
 msgstr "Remplacer Tout"
 
-#: ghex/ui.c:320
+#: ghex/ui.c:318
 msgid "GHex: Jump To Byte"
 msgstr "GHex: Aller à l'Octet"
 
-#: ghex/ui.c:353
+#: ghex/ui.c:351
 msgid "GHex: Converter"
 msgstr "GHex: Convertisseur"
 
-#: ghex/ui.c:360
+#: ghex/ui.c:358
 msgid "Binary"
 msgstr "Binaire"
 
-#: ghex/ui.c:370
+#: ghex/ui.c:368
 msgid "Decimal"
 msgstr "Décimal"
 
-#: ghex/ui.c:380
+#: ghex/ui.c:378
 msgid "Hex"
 msgstr "Hex"
 
-#: ghex/ui.c:390
+#: ghex/ui.c:388
 msgid "ASCII"
 msgstr "ASCII"
 
-#: gedit/menus.c:291 ghex/ui.c:400 mini-utils/gless/gless.c:324
+#: gedit/menus.c:306 ghex/ui.c:398 mini-utils/gless/gless.c:324
 msgid "Close"
 msgstr "Fermer"
 
-#: ghex/ui.c:444
+#: ghex/ui.c:442
 msgid "Font"
 msgstr "Police"
 
-#: ghex/ui.c:454
+#: ghex/ui.c:452
 msgid "Default Group Type"
 msgstr "Type du groupe par défaut"
 
-#: ghex/ui.c:477
+#: ghex/ui.c:475
 msgid "MDI Mode"
 msgstr "Mode MDI"
 
-#: ghex/ui.c:494
+#: ghex/ui.c:492
 msgid "MDI"
 msgstr "MDI"
 
@@ -1130,7 +1131,7 @@ msgstr "Propriétaire:"
 msgid "?"
 msgstr "?"
 
-#: gncal/eventedit.c:790
+#: gncal/eventedit.c:790 gncal/gncal-todo.c:108
 msgid "Summary:"
 msgstr "Résumé:"
 
@@ -1376,7 +1377,7 @@ msgstr "Nouveau rendez-vous pour aujourd'hui..."
 msgid "Calendar"
 msgstr "Calendrier"
 
-#: edit-menus/edit-menus.c:186 gedit/menus.c:276 gncal/main.c:364
+#: edit-menus/edit-menus.c:186 gedit/menus.c:293 gncal/main.c:364
 msgid "New"
 msgstr "Nouveau"
 
@@ -1675,197 +1676,265 @@ msgstr "douzième"
 msgid "ago"
 msgstr "il y a"
 
+#: gncal/gncal-todo.c:98
+msgid "Create to-do item"
+msgstr "Créér une entrée ``A Faire''"
+
+#: gncal/gncal-todo.c:98
+msgid "Edit to-do item"
+msgstr "Editer l'entrée ``A Faire''"
+
+#: gncal/gncal-todo.c:197
+msgid "Add to-do item..."
+msgstr "Ajouter une entrée ``A Faire''"
+
+#: gncal/gncal-todo.c:198
+msgid "Edit this item..."
+msgstr "Editer cette entrée..."
+
+#: gncal/gncal-todo.c:199
+msgid "Delete this item"
+msgstr "Effacer cette entrée"
+
+#. Label
+#: gncal/gncal-todo.c:235
+msgid "To-do list"
+msgstr "Liste ``A Faire''"
+
+#. Add
+#: gncal/gncal-todo.c:263
+msgid "Add..."
+msgstr "Ajouter..."
+
+#. Edit
+#: gncal/gncal-todo.c:272
+msgid "Edit..."
+msgstr "Editer..."
+
+#. Delete
+#: gncal/gncal-todo.c:283 mini-utils/gw/gw.c:466
+msgid "Delete"
+msgstr "Effacer"
+
 #: gedit/gE_about.c:158
 msgid "gEdit is a small and lightweight text editor for GNOME/Gtk+"
 msgstr "gEdit est un petit éditeur de texte pour GNOME/Gtk+"
 
-#: gedit/menus.c:279 mini-utils/gless/gless.c:310
-msgid "New Window"
-msgstr "Nouvelle Fenetre"
+#: gedit/gedit.c:107
+msgid "Plugin Name"
+msgstr "Nom du Plugin"
 
-#: gedit/menus.c:281
+#: gedit/gedit.c:107
+msgid "Launch a plugin at startup"
+msgstr "Lancer un plugin au démarrage"
+
+#: gedit/menus.c:296
 msgid "Open"
 msgstr "Ouvrir"
 
-#: gedit/menus.c:287
+#: gedit/menus.c:302
 msgid "Save as"
 msgstr "Enregistrer sous"
 
-#: gedit/menus.c:289
+#: gedit/menus.c:304
 msgid "Print"
 msgstr "Imprimer"
 
-#: gedit/menus.c:294
-msgid "Close Window"
-msgstr "Fermer Fenetre"
+#: gedit/menus.c:309
+msgid "Close All"
+msgstr "Tout Fermer"
 
-#: gedit/menus.c:314
+#: gedit/menus.c:329
 msgid "Select All"
 msgstr "Tout Sélectionner"
 
-#: gedit/menus.c:320 gedit/menus.c:398
+#: gedit/menus.c:335 gedit/menus.c:417
 msgid "Search"
 msgstr "Rechercher"
 
-#: gedit/menus.c:322
+#: gedit/menus.c:337
 msgid "Search and Replace"
 msgstr "Rechercher et Remplacer"
 
-#: gedit/menus.c:325
+#: gedit/menus.c:340
 msgid "Search Again"
 msgstr "Rechercher a nouveau"
 
-#: gedit/menus.c:331
+#: gedit/menus.c:346
 msgid "Top"
 msgstr "Haut"
 
-#: gedit/menus.c:332
+#: gedit/menus.c:347
 msgid "Bottom"
 msgstr "Bas"
 
-#: gedit/menus.c:333
+#: gedit/menus.c:348
 msgid "Left"
 msgstr "Gauche"
 
-#: gedit/menus.c:334
+#: gedit/menus.c:349
 msgid "Right"
 msgstr "Droite"
 
-#: gedit/menus.c:336
+#: gedit/menus.c:351
 msgid "Toggle"
 msgstr "Echanger"
 
-#: gedit/menus.c:341
+#: gedit/menus.c:356
 msgid "Show Toolbar"
 msgstr "Afficher la barre d'outils"
 
-#: gedit/menus.c:342
+#: gedit/menus.c:357
 msgid "Hide Toolbar"
 msgstr "Masquer la barre d'outils"
 
-#: gedit/menus.c:344
+#: gedit/menus.c:359
 msgid "Pictures and Text"
 msgstr "Icones et Texte"
 
-#: gedit/menus.c:345
+#: gedit/menus.c:360
 msgid "Pictures only"
 msgstr "Icones seulement"
 
-#: gedit/menus.c:346
+#: gedit/menus.c:361
 msgid "Text only"
 msgstr "Texte seulement"
 
-#: gedit/menus.c:348
+#: gedit/menus.c:363
 msgid "Tooltips On"
 msgstr "Activer les Bulles d'Aide"
 
-#: gedit/menus.c:349
+#: gedit/menus.c:364
 msgid "Tooltips Off"
 msgstr "désactiver les Bulles d'Aide"
 
-#: gedit/menus.c:354
+#: gedit/menus.c:369
 msgid "Text Font..."
 msgstr "Sélectionner une police..."
 
-#: gedit/menus.c:356
+#: gedit/menus.c:371
 msgid "Toggle Autoindent"
 msgstr "Activer/Désactiver l'auto-indentation"
 
-#: gedit/menus.c:357
+#: gedit/menus.c:372
 msgid "Toggle Statusbar"
 msgstr "AfficherMasquer la barre d'état"
 
-#: gedit/menus.c:358
+#: gedit/menus.c:373
 msgid "Toggle Wordwrap"
 msgstr "Activer/Désactiver le retour à la ligne automatique"
 
-#: gedit/menus.c:360
+#: gedit/menus.c:375
 msgid "Document Tabs"
 msgstr "Tabulations du document"
 
-#: gedit/menus.c:363
+#: gedit/menus.c:378
 msgid "Save Settings"
 msgstr "Enregistrer la configuration"
 
-#: gedit/menus.c:400
+#: gedit/menus.c:383 mini-utils/gless/gless.c:310
+msgid "New Window"
+msgstr "Nouvelle Fenetre"
+
+#: gedit/menus.c:385
+msgid "Close Window"
+msgstr "Fermer Fenetre"
+
+#: gedit/menus.c:388
+msgid "Document List"
+msgstr "Liste des documents"
+
+#: gedit/menus.c:391
+msgid "Message Box"
+msgstr "Liste de Messages"
+
+#: gedit/menus.c:419
 msgid "Options"
 msgstr "Options"
 
-#: gedit/menus.c:403
+#: gedit/menus.c:422
 msgid "Plugins"
 msgstr "Plugins"
 
-#: gedit/toolbar.c:78
+#: gedit/menus.c:425
+msgid "Window"
+msgstr "Fenetre"
+
+#: gedit/toolbar.c:81
 msgid " New "
 msgstr " Nouveau "
 
-#: gedit/toolbar.c:78
+#: gedit/toolbar.c:81
 msgid "Start a new file"
 msgstr "Commencer un nouveau fichier"
 
-#: gedit/toolbar.c:80
+#: gedit/toolbar.c:83
 msgid " Open "
 msgstr " Ouvrir "
 
-#: gedit/toolbar.c:80
+#: gedit/toolbar.c:83
 msgid "Open a file"
 msgstr "Ouvrir un fichier"
 
-#: gedit/toolbar.c:82
+#: gedit/toolbar.c:85 gedit/toolbar.c:120
 msgid " Save "
 msgstr " Enregistrer "
 
-#: gedit/toolbar.c:82
+#: gedit/toolbar.c:85
 msgid "Save file"
 msgstr "Sauver fichier"
 
-#: gedit/toolbar.c:84
+#: gedit/toolbar.c:87 gedit/toolbar.c:122
 msgid " Close "
 msgstr " Fermer "
 
-#: gedit/toolbar.c:84
+#: gedit/toolbar.c:87
 msgid "Close the current file"
 msgstr "Fermer le fichier courant"
 
-#: gedit/toolbar.c:86
+#: gedit/toolbar.c:89 gedit/toolbar.c:124
 msgid " Print "
 msgstr " Imprimer "
 
-#: gedit/toolbar.c:86
+#: gedit/toolbar.c:89
 msgid "Print file"
 msgstr "Imprimer le fichier"
 
-#: gedit/toolbar.c:89
+#: gedit/toolbar.c:92
 msgid " Cut "
 msgstr " Couper "
 
-#: gedit/toolbar.c:89
+#: gedit/toolbar.c:92
 msgid "Cut text"
 msgstr "Couper le texte"
 
-#: gedit/toolbar.c:91
+#: gedit/toolbar.c:94
 msgid " Copy "
 msgstr " Copier "
 
-#: gedit/toolbar.c:91
+#: gedit/toolbar.c:94
 msgid "Copy text"
 msgstr "Copier texte"
 
-#: gedit/toolbar.c:93
+#: gedit/toolbar.c:96
 msgid " Paste "
 msgstr " Coller "
 
-#: gedit/toolbar.c:93
+#: gedit/toolbar.c:96
 msgid "Paste text"
 msgstr "Coller le texte"
 
-#: gedit/toolbar.c:95
+#: gedit/toolbar.c:98
 msgid " Search "
 msgstr " Rechercher "
 
-#: gedit/toolbar.c:95
+#: gedit/toolbar.c:98
 msgid "Search for text"
 msgstr "Rechercher le texte"
+
+#: gedit/toolbar.c:127
+msgid " OK "
+msgstr " OK "
 
 #: mini-utils/gsu/gsu.c:210
 msgid "virtual memory exhausted"
@@ -2088,7 +2157,7 @@ msgstr "Ne pas demander la prochaine fois."
 #. flags
 #: mini-utils/gless/gless.c:101
 msgid "Where to put the window, and its size"
-msgstr ""
+msgstr "Taille et position de la fenetre"
 
 #. name
 #. key
@@ -2096,7 +2165,7 @@ msgstr ""
 #. flags
 #: mini-utils/gless/gless.c:109
 msgid "Ignore standard input; may be needed in some cases."
-msgstr ""
+msgstr "Ignorer l'entrée standrad; peut etre utile dans certains cas."
 
 #: edit-menus/edit-menus.c:141 mini-utils/gless/gless.c:302
 #: mini-utils/gw/gw.c:174
@@ -2170,7 +2239,8 @@ msgstr "Echec lors de la décompression et de l'affichage du fichier:\n"
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
-msgstr "Impossible d'afficher le fichier compressé.\n"
+msgstr ""
+"Impossible d'afficher le fichier compressé.\n"
 "zcat n'est pas dans votre chemin."
 
 #: mini-utils/gless/gless.c:522
@@ -2400,7 +2470,8 @@ msgstr "%2d%% plein "
 #: mini-utils/guname/moreinfo.c:251
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-msgstr "%ld mégaoctets, %ld libre (%ld super-utilisateur); %ld i-noeuds, %ld libre."
+msgstr ""
+"%ld mégaoctets, %ld libre (%ld super-utilisateur); %ld i-noeuds, %ld libre."
 
 #: mini-utils/guname/moreinfo.c:265
 msgid "Mount Point: "
@@ -2418,7 +2489,8 @@ msgstr "Type du système de fichiers: "
 msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
-msgstr "Impossible de trouver la commande \"w\" dans votre chemin.\n"
+msgstr ""
+"Impossible de trouver la commande \"w\" dans votre chemin.\n"
 "Cette commande est nécessaire pour que cette application puisse fonctionner."
 
 #: mini-utils/gw/gw.c:182
@@ -2459,10 +2531,6 @@ msgstr "Ajouter des défauts"
 msgid "Add"
 msgstr "Ajouter"
 
-#: mini-utils/gw/gw.c:466
-msgid "Delete"
-msgstr "Effacer"
-
 #: mini-utils/gw/gw.c:481
 msgid "Command Editor"
 msgstr "Editeur de commande"
@@ -2480,7 +2548,8 @@ msgstr ""
 msgid ""
 "Click this button to add\n"
 "some sample commands."
-msgstr "Cliquer sur ce bouton\n"
+msgstr ""
+"Cliquer sur ce bouton\n"
 "pour ajouter des exemples de commandes."
 
 #: mini-utils/gw/gw.c:506
@@ -2540,10 +2609,6 @@ msgid ""
 "A quick hack to show the amount of space free on mounted file systems "
 "uitilizing a dial."
 msgstr ""
-
-#: gdiskfree/error.c:102
-msgid "Unknown system error"
-msgstr "Erreur système inconnue"
 
 #: edit-menus/edit-menus.c:149
 msgid "Write menu to disk"
@@ -2619,7 +2684,8 @@ msgstr "Il y a des changements non sauvés. Quitter?"
 
 #: edit-menus/edit-menus.c:676
 msgid "You must select a menu item before performing this operation."
-msgstr "Vous devez sélectionner un item de menu avant d'effectuer cette opération."
+msgstr ""
+"Vous devez sélectionner un item de menu avant d'effectuer cette opération."
 
 #: edit-menus/edit-menus.c:682
 msgid "You must name your menu item."
@@ -2636,3 +2702,6 @@ msgstr "Nouvelle commande"
 #: edit-menus/edit-menus.c:730
 msgid "New Folder"
 msgstr "Nouveau dossier"
+
+#~ msgid "Unknown system error"
+#~ msgstr "Erreur système inconnue"
