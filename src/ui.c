@@ -469,8 +469,8 @@ void create_prefs_dialog(PropertyUI *pui) {
   gtk_widget_show(entry);
 
   gtk_container_border_width(GTK_CONTAINER(fbox), 4);
-  gtk_box_pack_start (GTK_BOX (fbox), entry, 1, 1, 0);
-  gtk_box_pack_end (GTK_BOX (fbox), GTK_WIDGET(pui->font_button), 0, 1, 0);
+  gtk_box_pack_start (GTK_BOX (fbox), entry, 1, 1, GNOME_PAD);
+  gtk_box_pack_end (GTK_BOX (fbox), GTK_WIDGET(pui->font_button), 0, 1, GNOME_PAD);
 
   gtk_widget_show(fbox);
   gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(fbox));
