@@ -74,7 +74,6 @@ struct _GtkHexClass {
   void (*data_changed)(GtkHex *, gpointer);
 };
 
-void gtk_hex_init(GtkHex *);
 guint gtk_hex_get_type(void);
 
 GtkWidget *gtk_hex_new(HexDocument *);

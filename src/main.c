@@ -38,8 +38,6 @@ int main(int argc, char **argv) {
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain(PACKAGE);
 
-  printf("starting ghex\n");
-
   gnome_init("ghex", &parser, argc, argv, 0, NULL);
 
   client = gnome_master_client();

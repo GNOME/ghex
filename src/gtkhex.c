@@ -6,8 +6,7 @@
 #include <gnome.h>
 #include <gdk/gdkkeysyms.h>
 
-#include <hex-document.h>
-
+#include "hex-document.h"
 #include "gtkhex.h"
 
 #define DISPLAY_BORDER 4
@@ -20,8 +19,6 @@
 #define BOTTOM_SCROLL_BORDER 2
 
 #define is_printable(c) (((c>=0x20) && (c<=0xFF))?1:0)
-
-#define DEBUG
 
 typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 
@@ -274,7 +271,6 @@ static void hide_cursor(GtkHex *gh) {
 /*
  * renders a byte at offset pos in both displays
  */ 
-
 static void render_byte(GtkHex *gh, gint pos) {
   gint cx, cy;
   gchar buf[2];
@@ -343,16 +339,13 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 
   cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 
-  imax = MIN(imax, gh->vis_lines);
-
-  /* gdk_window_clear_area (w->window, 0, imin*gh->char_height,
-                            w->allocation.width,
-			    (imax - imin + 1)*gh->char_height); */
-
   gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
   gdk_draw_rectangle(w->window, gh->xdisp_gc, TRUE,
 		     0, imin*gh->char_height, w->allocation.width,
 		     (imax - imin + 1)*gh->char_height);
+
+  imax = MIN(imax, gh->vis_lines);
+
   gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 
   frm_len = format_xblock(gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
@@ -387,15 +380,13 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 
   cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 
-  imax = MIN(imax, gh->vis_lines);
-
-  /* gdk_window_clear_area (w->window, 0, imin*gh->char_height, w->allocation.width,
-			 (imax - imin + 1)*gh->char_height); */
-
   gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
   gdk_draw_rectangle(w->window, gh->xdisp_gc, TRUE,
 		     0, imin*gh->char_height, w->allocation.width,
 		     (imax - imin + 1)*gh->char_height);
+
+  imax = MIN(imax, gh->vis_lines);
+
   gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 
   frm_len = format_ablock(gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
@@ -556,9 +547,6 @@ static void resize_displays(GtkWidget *w, GtkAllocation *alloc) {
   my_alloc.height = alloc->height - 2*GTK_CONTAINER(gh)->border_width - 2*SHADOW_WIDTH;
   my_alloc.width = gh->xdisp_width;
   gtk_signal_emit_by_name(GTK_OBJECT(gh->xdisp), "size_allocate", &my_alloc);
-  /*  my_alloc.x += my_alloc.width + DISPLAY_SPACING;
-      my_alloc.width = gh->separator->allocation.width;
-      gtk_signal_emit_by_name(GTK_OBJECT(gh->separator), "size_allocate", &my_alloc); */
   my_alloc.x += my_alloc.width + 2*SHADOW_WIDTH + DISPLAY_SPACING;
   my_alloc.width = gh->adisp_width;
   gtk_signal_emit_by_name(GTK_OBJECT(gh->adisp), "size_allocate", &my_alloc);
@@ -736,10 +724,6 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 static void gtk_hex_destroy(GtkObject *o) {
   GtkHex *gh = GTK_HEX(o);
 
-#ifdef DEBUG
-  printf("GtkHex: destroying!\n");
-#endif
-
   if(gh->disp_buffer)
     free(gh->disp_buffer);
 }
@@ -884,6 +868,8 @@ static void gtk_hex_init(GtkHex *gh) {
   gtk_container_border_width(GTK_CONTAINER(gh), DISPLAY_BORDER);
   gtk_signal_connect(GTK_OBJECT(gh), "expose_event",
 		     GTK_SIGNAL_FUNC(draw_shadow), NULL);
+  gtk_signal_connect(GTK_OBJECT(gh), "draw",
+		     GTK_SIGNAL_FUNC(draw_shadow), NULL);
   gtk_signal_connect(GTK_OBJECT(gh), "size_allocate",
 		     GTK_SIGNAL_FUNC(resize_displays), NULL);
   
@@ -1010,10 +996,6 @@ guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
  */
 void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
   GtkAllocation alloc;
-
-#ifdef DEBUG
-  printf("GtkHex: setting group type!\n");
-#endif
 
   memcpy(&alloc, &(GTK_WIDGET(gh)->allocation), sizeof(GtkAllocation));
 

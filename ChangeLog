@@ -3,6 +3,16 @@
 	* gtkhex.c (draw_shadow): set backing pixmap and clear
 	window area of the whole widget. this makes it look prettier
 	with pixmap themes ;)
+	(render_hex_lines, render_ascii_lines): clear background before
+	minimizing displayed lines to at most gh->vis_lines: this way
+	the whole display's background is always white.
+	(gtk_hex_init): connect draw_shadow() to gtkhex's draw signal.
+	unless this is done the shadows arent drawn after, say, changing
+	notebook tabs containing gtkhex widgets.
+	* gtkhex.c: removed debugging info.
+	* gtkhex.h: remove public declaration of gtk_hex_init().
+	* main.c: removed the nasty printf() at startup. god knows a
+	remainder of what this was...
 	
 1998-08-06  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
