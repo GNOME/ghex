@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex 1.0.x\n"
-"POT-Creation-Date: 2001-03-08 19:39+0100\n"
+"POT-Creation-Date: 2001-03-21 16:09+0100\n"
 "PO-Revision-Date: 2000-04-20 18:12+0200\n"
 "Last-Translator: Andreas Hyden <a.hyden@cyberpoint.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -22,120 +22,124 @@ msgstr "GHex: Konverterare"
 msgid "Binary"
 msgstr "Binär"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:161
+#: src/chartable.c:91 src/converter.c:63
+msgid "Octal"
+msgstr "Oktal"
+
+#: src/chartable.c:90 src/converter.c:73 src/preferences.c:161
 msgid "Decimal"
 msgstr "Decimal"
 
-#: src/chartable.c:90 src/converter.c:73
+#: src/chartable.c:90 src/converter.c:83
 msgid "Hex"
 msgstr "Hex"
 
-#: src/chartable.c:90 src/converter.c:83
+#: src/chartable.c:90 src/converter.c:93
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/converter.c:93
+#: src/converter.c:103
 msgid "Get cursor value"
 msgstr "Hämta värde vid markör"
 
-#: src/converter.c:99
+#: src/converter.c:109
 msgid "Close"
 msgstr "Stäng"
 
-#: src/converter.c:194
+#: src/converter.c:213
 msgid "ERROR"
 msgstr "FEL"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:60 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Sök data"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:69
 #, c-format
 msgid "Search for %s"
 msgstr "Sök efter %s"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:86
 msgid "Find Next"
 msgstr "Sök nästa"
 
-#: src/findreplace.c:91
+#: src/findreplace.c:94
 msgid "Find Previous"
 msgstr "Sök föregående"
 
-#: src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:130 src/main.c:100
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Sök och ersätt data"
 
-#: src/findreplace.c:141
+#: src/findreplace.c:144
 #, c-format
 msgid "Replace %s"
 msgstr "Ersätt %s"
 
-#: src/findreplace.c:157
+#: src/findreplace.c:161
 msgid "Find next"
 msgstr "Sök nästa"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:169
 msgid "Replace"
 msgstr "Ersätt"
 
-#: src/findreplace.c:173
+#: src/findreplace.c:177
 msgid "Replace All"
 msgstr "Ersätt alla"
 
-#: src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:210 src/main.c:102
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hoppa till byte"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:299 src/findreplace.c:324 src/findreplace.c:376
 msgid "There is no active buffer to search!"
 msgstr "Det finns ingen aktiv buffer att söka i!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:307 src/findreplace.c:332 src/findreplace.c:384
 msgid "There seems to be no string to search for!"
 msgstr "Det verkar inte finnas någon sträng att söka efter!"
 
-#: src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:314 src/findreplace.c:392
 msgid "End Of File reached"
 msgstr "Slutet på filen nådd"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:340
 msgid "Beginning Of File reached"
 msgstr "Början av filen nådd"
 
-#: src/findreplace.c:345
+#: src/findreplace.c:349
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Finns ingen aktiv buffer att flytta markören i!"
 
-#: src/findreplace.c:350
+#: src/findreplace.c:354
 msgid "No offset has been specified!"
 msgstr "Ingen offset har specificerats!"
 
-#: src/findreplace.c:357
+#: src/findreplace.c:361
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Kan ej positionera markören efter filens slut!"
 
-#: src/findreplace.c:362
+#: src/findreplace.c:366
 msgid "The offset must be a positive integer value!"
 msgstr "Offsetten måste vara ett positivt heltal!"
 
-#: src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:403 src/findreplace.c:440
 msgid "There is no active buffer to replace data in!"
 msgstr "Det finns ingen aktiv buffer att ersätta data i!"
 
-#: src/findreplace.c:410 src/findreplace.c:447
+#: src/findreplace.c:414 src/findreplace.c:451
 msgid "Strange find or replace string!"
 msgstr "Konstig sök- eller ersätt-sträng!"
 
-#: src/findreplace.c:425
+#: src/findreplace.c:429
 msgid "End Of File reached!"
 msgstr "Slutet på filen nådd!"
 
-#: src/findreplace.c:463
+#: src/findreplace.c:467
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Bytte ut %d förekomster"
@@ -216,7 +220,7 @@ msgstr "_Ta bort vy"
 msgid "Remove the current view of the buffer"
 msgstr "Ta bort nyvarande vy av bufferten"
 
-#: src/main.c:51
+#: src/main.c:52
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -225,7 +229,7 @@ msgstr ""
 "Filen %s har ändrats sen den sparades senast.\n"
 "Vill du spara ändringarna?"
 
-#: src/main.c:202
+#: src/main.c:204
 #, c-format
 msgid "Offset: %s"
 msgstr "Offset: %s"
@@ -332,15 +336,16 @@ msgstr "rader (0 för ingen ruta)"
 msgid "Printing"
 msgstr "Skriver ut"
 
-#: src/preferences.c:534
+#: src/preferences.c:536
 msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
-"Offsetformateringssträngen innehåller formatspecificerare som inte är 'x', "
-"'d', eller 'o'!"
+"Offsetformateringssträngen innehåller ogiltiga formatspecificerare.\n
+"Endast 'x', 'X', 'p', 'P', 'd' och 'o' är tillåtna."
 
-#: src/preferences.c:570
+
+#: src/preferences.c:573
 msgid "Can not open desired font!"
 msgstr "Kan inte öppna det önskade typsnittet!"
 
@@ -408,11 +413,11 @@ msgstr "GHex, en binärfilsredigerare"
 msgid "Released under the terms of GNU Public License"
 msgstr "Släppt under GNU Public License"
 
-#: src/ui.c:226 src/ui.c:548
+#: src/ui.c:226 src/ui.c:550
 msgid "Error saving file!"
 msgstr "Fel vid sparning av fil!"
 
-#: src/ui.c:230 src/ui.c:543
+#: src/ui.c:230 src/ui.c:545
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Spara bufferten till fil %s"
@@ -429,32 +434,28 @@ msgstr "Välj en fil att spara bufferten som"
 msgid "Select path and file name for the HTML source"
 msgstr "Ange sökväg och filnamn för HTML-koden"
 
-#: src/ui.c:475
+#: src/ui.c:476
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Vill du verkligen återställa filen %s?"
 
-#: src/ui.c:488
+#: src/ui.c:490
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Återställde buffert från filen %s"
 
-#: src/ui.c:504
+#: src/ui.c:506
 #, c-format
 msgid "Loaded file %s"
 msgstr "Laddade in filen %s"
 
-#: src/ui.c:509
+#: src/ui.c:511
 msgid "Can not open file!"
 msgstr "Kan inte öppna fil!"
 
-#: src/ui.c:552
+#: src/ui.c:554
 msgid "Can't open file for writing!"
 msgstr "Kan inte öppna fil för skrivning!"
-
-#: src/chartable.c:91
-msgid "Octal"
-msgstr "Oktal"
 
 #: src/chartable.c:98
 msgid "GHex: Character table"
