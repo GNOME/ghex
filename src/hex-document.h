@@ -48,12 +48,13 @@ struct _HexDocumentClass
   void (*document_changed)(HexDocument *, gpointer);
 };
 
-HexDocument *hex_document_new(gchar *);
+HexDocument *hex_document_new(const gchar *);
 void hex_document_set_data(HexDocument *, guint, guint, guchar *);
 void hex_document_set_byte(HexDocument *, guchar, guint);
 gint hex_document_read(HexDocument *doc);
 gint hex_document_write(HexDocument *doc);
 void hex_document_changed(HexDocument *doc, gpointer change_data);
+GnomeMDIChild *hex_document_new_from_config(const gchar *);
 gint find_string_forward(HexDocument *doc, guint start, guchar *what, gint len, guint *found);
 gint find_string_backward(HexDocument *doc, guint start, guchar *what, gint len, guint *found);
 

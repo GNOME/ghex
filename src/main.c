@@ -76,33 +76,8 @@ int main(int argc, char **argv) {
         restarted = 1;
 
         gnome_config_push_prefix (gnome_client_get_config_prefix (cloned));
-        open_files = gnome_config_get_string("Files/files");
+        gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreate)hex_document_new_from_config);
         gnome_config_pop_prefix ();
-
-        printf("open: %s\n", open_files);
-        if(open_files) {
-          HexDocument *doc;
-          gchar file_name[256], *c;
-          int i;
-          
-          c = open_files;
-          while(*c != '\0') {
-            for(i = 0; *c != ':'; i++, c++)
-              file_name[i] = *c;
-            file_name[i] = '\0';
-            c++;
-            printf("file: %s\n", file_name);
-            if((doc = hex_document_new(file_name)) != NULL) {
-              gnome_mdi_add_child(mdi, GNOME_MDI_CHILD(doc));
-              gnome_mdi_add_view(mdi, GNOME_MDI_CHILD(doc));
-            }
-            else
-              report_error(_("Can not open file!"));
-          }
-          
-          g_free(open_files);
-          open_files = NULL;
-        }
       }
     }
 

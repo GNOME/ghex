@@ -64,9 +64,6 @@ int save_state (GnomeClient        *client,
   gchar *argv[3];
   gint x, y, w, h;
 
-  GList *child;
-  HexDocument *doc;
-
   printf("saving session...\n");
 
   session_id = gnome_client_get_id (client);
@@ -74,19 +71,7 @@ int save_state (GnomeClient        *client,
   /* Save the state using gnome-config stuff. */
   gnome_config_push_prefix (gnome_client_get_config_prefix (client));
 
-  files[0] = '\0';
-  child = mdi->children;
-  while(child) {
-    doc = HEX_DOCUMENT(child->data);
-    strcat(files, doc->file_name);
-    strcat(files, ":");
-    child = g_list_next(child);
-  }
-
-  if(mdi->children)
-    gnome_config_set_string("Files/files", files);
-  else
-    gnome_config_clean_key("Files/files");
+  gnome_mdi_save_state(mdi, "Session");
 
   gnome_config_pop_prefix();
   gnome_config_sync();

@@ -13,11 +13,12 @@
 #include <sys/stat.h>
 #include <string.h>
 
-static void       hex_document_class_init   (HexDocumentClass *);
-static void       hex_document_init         (HexDocument *);
-static GtkWidget *hex_document_create_view  (GnomeMDIChild *);
-static void       hex_document_destroy      (GtkObject *);
-static void       hex_document_real_changed (HexDocument *, gpointer);
+static void       hex_document_class_init        (HexDocumentClass *);
+static void       hex_document_init              (HexDocument *);
+static GtkWidget *hex_document_create_view       (GnomeMDIChild *);
+static void       hex_document_destroy           (GtkObject *);
+static void       hex_document_real_changed      (HexDocument *, gpointer);
+static gchar     *hex_document_get_config_string (GnomeMDIChild *);
 
 static void find_cb();
 static void replace_cb();
@@ -75,9 +76,9 @@ typedef void (*HexDocumentSignal) (GtkObject *, gpointer, gpointer);
 static GnomeMDIChildClass *parent_class = NULL;
 
 static void hex_document_marshal (GtkObject	    *object,
-				  GtkSignalFunc     func,
-				  gpointer	    func_data,
-				  GtkArg	    *args) {
+                                  GtkSignalFunc     func,
+                                  gpointer	    func_data,
+                                  GtkArg	    *args) {
   HexDocumentSignal rfunc;
   
   rfunc = (HexDocumentSignal) func;
@@ -151,6 +152,7 @@ static void hex_document_class_init (HexDocumentClass *class) {
   object_class->destroy = hex_document_destroy;
 
   child_class->create_view = hex_document_create_view;
+  child_class->get_config_string = hex_document_get_config_string;
 
   class->document_changed = hex_document_real_changed;
 
@@ -190,9 +192,9 @@ static void hex_document_init (HexDocument *document) {
   gnome_mdi_child_set_menu_template(GNOME_MDI_CHILD(document), doc_menu);
 }
 
-HexDocument *hex_document_new(gchar *name) {
+HexDocument *hex_document_new(const gchar *name) {
   HexDocument *document;
-
+  
   struct stat stats;
   int i;
 
@@ -201,35 +203,35 @@ HexDocument *hex_document_new(gchar *name) {
   if(!stat(name, &stats)) {
     if(document = gtk_type_new (hex_document_get_type ())) {
       document->buffer_size = stats.st_size;
-
+      
       if((document->buffer = (guchar *)malloc(document->buffer_size)) != NULL) {
-	if((document->file_name = (gchar *)strdup(name)) != NULL) {
-	  for(i = strlen(document->file_name); (i >= 0) && (document->file_name[i] != '/'); i--)
-	    ;
-
-	  if(document->file_name[i] == '/')
-	    document->path_end = &document->file_name[i+1];
-	  else
-	    document->path_end = document->file_name;
-
-	  if((document->file = fopen(name, "r")) != NULL) {
-	    document->buffer_size = fread(document->buffer, 1, document->buffer_size, document->file);
-	    gnome_mdi_child_set_name(GNOME_MDI_CHILD(document), document->path_end);
-	    fclose(document->file);
-	    document->file = 0;
-	    return document;
-	  }
-	  free(document->file_name);
-	}
-	free(document->buffer);
+        if((document->file_name = (gchar *)strdup(name)) != NULL) {
+          for(i = strlen(document->file_name); (i >= 0) && (document->file_name[i] != '/'); i--)
+            ;
+          
+          if(document->file_name[i] == '/')
+            document->path_end = &document->file_name[i+1];
+          else
+            document->path_end = document->file_name;
+          
+          if((document->file = fopen(name, "r")) != NULL) {
+            document->buffer_size = fread(document->buffer, 1, document->buffer_size, document->file);
+            gnome_mdi_child_set_name(GNOME_MDI_CHILD(document), document->path_end);
+            fclose(document->file);
+            document->file = 0;
+            return document;
+          }
+          free(document->file_name);
+        }
+        free(document->buffer);
       }
       gtk_object_destroy(GTK_OBJECT(document));
     }
   }
-
+  
   return document;
 }
-  
+
 gint hex_document_read(HexDocument *doc) {
   if((doc->file = fopen(doc->file_name, "r")) != NULL) {
     doc->buffer_size = fread(doc->buffer, 1, doc->buffer_size, doc->file);
@@ -267,6 +269,21 @@ static void hex_document_real_changed(HexDocument *doc, gpointer change_data) {
     gtk_signal_emit_by_name(GTK_OBJECT(view->data), "data_changed", change_data);
     view = g_list_next(view);
   }
+}
+
+static gchar *hex_document_get_config_string(GnomeMDIChild *child) {
+  return g_strdup(HEX_DOCUMENT(child)->file_name);
+}
+
+GnomeMDIChild *hex_document_new_from_config(const gchar *cfg) {
+  HexDocument *doc;
+
+  /* our config string is simply a file name */
+  doc = hex_document_new(cfg);
+  if(doc)
+    hex_document_read(doc);
+
+  return GNOME_MDI_CHILD(doc);
 }
 
 void hex_document_changed(HexDocument *doc, gpointer change_data) {
