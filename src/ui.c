@@ -95,16 +95,18 @@ PropertyUI prefs_ui = { NULL };
 GdkFont *def_font = NULL;
 gchar *def_font_name = NULL;
 
-guint mdi_type[3] = {
+guint mdi_type[NUM_MDI_MODES] = {
+  GNOME_MDI_DEFAULT_MODE,
   GNOME_MDI_NOTEBOOK,
-  GNOME_MDI_MODAL,
   GNOME_MDI_TOPLEVEL,
+  GNOME_MDI_MODAL
 };
 
-gchar *mdi_type_label[3] = {
+gchar *mdi_type_label[NUM_MDI_MODES] = {
+  "Default",
   "Notebook",
-  "Modal",
   "Toplevel",
+  "Modal",
 };
 
 guint search_type = 0;
@@ -479,7 +481,7 @@ void create_prefs_dialog(PropertyUI *pui) {
   box = gtk_vbox_new(FALSE, 0);
   gtk_widget_show(box);
   group = NULL;
-  for(i = 0; i < 3; i++) {
+  for(i = 0; i < NUM_MDI_MODES; i++) {
     pui->mdi_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, mdi_type_label[i]));
     gtk_widget_show(GTK_WIDGET(pui->mdi_type[i]));
     gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->mdi_type[i]), TRUE, TRUE, 2);
@@ -498,7 +500,7 @@ void create_prefs_dialog(PropertyUI *pui) {
   /* signals have to be connected after set_prefs(), otherwise
      a gnome_property_box_changed() is called */
 
-  for(i = 0; i < 3; i++) {
+  for(i = 0; i < NUM_MDI_MODES; i++) {
     gtk_signal_connect(GTK_OBJECT(pui->mdi_type[i]), "clicked",
 		       properties_modified_cb, pui->pbox);
     gtk_signal_connect(GTK_OBJECT(pui->group_type[i]), "clicked",

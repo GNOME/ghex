@@ -28,7 +28,7 @@
 
 GnomeMDI *mdi;
 
-gint mdi_mode = GNOME_MDI_NOTEBOOK;
+gint mdi_mode = GNOME_MDI_DEFAULT_MODE;
 
 int main(int argc, char **argv) {
   GnomeClient *client;

@@ -23,6 +23,8 @@ extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[];
 #define DATA_TYPE_HEX   0
 #define DATA_TYPE_ASCII 1
 
+#define NUM_MDI_MODES 4
+
 typedef struct _PropertyUI {
   GnomePropertyBox *pbox;
   GtkRadioButton *mdi_type[3];
@@ -83,8 +85,8 @@ extern gint def_group_type;
 extern guint group_type[3];
 extern gchar *group_type_label[3];
 
-extern guint mdi_type[3];
-extern gchar *mdi_type_label[3];
+extern guint mdi_type[NUM_MDI_MODES];
+extern gchar *mdi_type_label[NUM_MDI_MODES];
 
 extern guint search_type;
 extern gchar *search_type_label[2];
