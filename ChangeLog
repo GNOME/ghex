@@ -1,3 +1,8 @@
+1999-02-21  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* hex-document.c (hex_document_new): leave freeing stuff to
+	destroy handler. thanx to Pavel Machek for reporting this.
+	
 1999-02-20  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* hex-document.c (hex_document_new): only create a new document

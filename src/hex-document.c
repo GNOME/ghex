@@ -440,9 +440,7 @@ HexDocument *hex_document_new(const gchar *name) {
 						document->file = 0;
 						return document;
 					}
-					g_free(document->file_name);
 				}
-				g_free(document->buffer);
 			}
 			gtk_object_destroy(GTK_OBJECT(document));
 		}
