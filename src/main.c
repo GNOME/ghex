@@ -25,6 +25,10 @@
 #include <gnome.h>
 #include "ghex.h"
 
+enum {
+		TARGET_URI_LIST,
+};
+
 /* callbacks for MDI signals */
 static gint remove_doc_cb(GnomeMDI *, HexDocument *);
 static void view_changed_cb(GnomeMDI *, GtkHex *);
@@ -104,8 +108,46 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	g_free(p);
 }
 
+static void app_drop_cb(GtkWidget *widget, GdkDragContext *context,
+		        gint x, gint y, GtkSelectionData *selection_data,
+			guint info, guint time, gpointer data) {
+	GList *names, *list;
+
+	switch (info) {
+	case TARGET_URI_LIST:
+		list = names = gnome_uri_list_extract_filenames (selection_data->data);
+		while (names) {
+			HexDocument *doc;
+
+			printf("dragged %s\n", names->data);
+			doc = hex_document_new((gchar *)names->data);
+			if(doc) {
+				gnome_mdi_add_child(mdi, GNOME_MDI_CHILD(doc));
+				gnome_mdi_add_view(mdi, GNOME_MDI_CHILD(doc));
+			}
+			names = names->next;
+		}
+		gnome_uri_list_free_strings (list);
+		break;
+	default:
+	}
+}
+
 void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
 	GtkWidget *bar;
+	static GtkTargetEntry drop_types [] = {
+		{ "text/uri-list", 0, TARGET_URI_LIST}
+	};
+	static gint n_drop_types = sizeof (drop_types) / sizeof(drop_types[0]);
+
+	gtk_drag_dest_set (GTK_WIDGET (app),
+	                   GTK_DEST_DEFAULT_MOTION |
+			   GTK_DEST_DEFAULT_HIGHLIGHT |
+			   GTK_DEST_DEFAULT_DROP,
+			   drop_types, n_drop_types,
+			   GDK_ACTION_COPY);
+        gtk_signal_connect (GTK_OBJECT (app), "drag_data_received",
+			    GTK_SIGNAL_FUNC(app_drop_cb), NULL);
 
 	bar = gnome_appbar_new(FALSE, TRUE, GNOME_PREFERENCES_USER);
 	gnome_app_set_statusbar(app, bar);
