@@ -65,6 +65,9 @@ struct _GtkHex {
   /* buffer for storing formatted data for rendering.
      dynamically adjusts its size to the display size */
   guchar *disp_buffer;
+
+  gint scroll_dir;
+  guint scroll_timeout;
 };
 
 struct _GtkHexClass {

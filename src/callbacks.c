@@ -49,8 +49,28 @@ void save_cb(GtkWidget *w) {
 }
 
 void revert_cb(GtkWidget *w) {
-  if(mdi->active_child)
-    hex_document_read(HEX_DOCUMENT(mdi->active_child));
+  static gchar msg[512];
+
+  HexDocument *doc;
+  GnomeMessageBox *mbox;
+  gint reply;
+
+  if(mdi->active_child) {
+    doc = HEX_DOCUMENT(mdi->active_child);
+    if(doc->changed) {
+      sprintf(msg, _("Really revert file %s?"), GNOME_MDI_CHILD(doc)->name);
+      mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(msg,
+                                                     GNOME_MESSAGE_BOX_QUESTION,
+                                                     GNOME_STOCK_BUTTON_YES,
+                                                     GNOME_STOCK_BUTTON_NO,
+                                                     NULL));
+      gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
+      reply = ask_user(mbox);
+
+      if(reply == 0)
+        hex_document_read(doc);
+    }
+  }
 }
 
 void open_selected_file(GtkWidget *w) {
@@ -485,7 +505,7 @@ gint remove_doc_cb(GnomeMDI *mdi, HexDocument *doc) {
   GnomeMessageBox *mbox;
   gint reply;
 
-  sprintf(msg, _("The document %s has changed since last save.\n"
+  sprintf(msg, _("File %s has changed since last save.\n"
                  "Do you want to save changes?"), GNOME_MDI_CHILD(doc)->name);
 
   if(hex_document_has_changed(doc)) {
@@ -589,10 +609,3 @@ void conv_entry_cb(GtkEntry *entry, gint base) {
   buffer[i] = 0;
   gtk_entry_set_text(GTK_ENTRY(converter.entry[3]), buffer);
 }
-
-
-
-
-
-
-

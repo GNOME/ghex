@@ -15,8 +15,7 @@
 
 #define DEFAULT_FONT "-*-courier-medium-r-normal--12-*-*-*-*-*-*-*"
 
-#define TOP_SCROLL_BORDER 2
-#define BOTTOM_SCROLL_BORDER 2
+#define SCROLL_TIMEOUT 100
 
 #define is_printable(c) (((c>=0x20) && (c<=0xFF))?1:0)
 
@@ -62,12 +61,7 @@ static void redraw_widget(GtkWidget *w) {
 static void hex_to_pointer(GtkHex *gh, guint mx, guint my) {
   guint cx, cy, x;
 
-  if(my < TOP_SCROLL_BORDER)
-    cy = MAX(0, gh->top_line - 1);
-  else if(gh->xdisp->allocation.height - my < BOTTOM_SCROLL_BORDER)
-    cy = MIN(gh->lines, gh->top_line + gh->vis_lines) + 1;
-  else
-    cy = gh->top_line + my/gh->char_height;
+  cy = gh->top_line + my/gh->char_height;
   
   cx = 0; x = 0;
   while(cx < 2*gh->cpl) {
@@ -90,12 +84,7 @@ static void hex_to_pointer(GtkHex *gh, guint mx, guint my) {
 static void ascii_to_pointer(GtkHex *gh, gint mx, gint my) {
   int cy;
 
-  if(my < TOP_SCROLL_BORDER)
-    cy = MAX(0, gh->top_line - 1);
-  else if(gh->xdisp->allocation.height - my < BOTTOM_SCROLL_BORDER)
-    cy = MIN(gh->lines, gh->top_line + gh->vis_lines + 1);
-  else
-    cy = gh->top_line + my/gh->char_height;
+  cy = gh->top_line + my/gh->char_height;
 
   gtk_hex_set_cursor_xy(gh, mx/gh->char_width, cy);
 }
@@ -645,10 +634,24 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 /*
  * mouse signal handlers (button 1 and motion) for both displays
  */
+static void scroll_timeout_handler(GtkHex *gh) {
+  if(gh->scroll_dir < 0)
+    gtk_hex_set_cursor(gh, MAX(0, (int)(gh->cursor_pos - gh->cpl)));
+  else if(gh->scroll_dir > 0)
+    gtk_hex_set_cursor(gh, MIN(gh->document->buffer_size-1, gh->cursor_pos + gh->cpl));    
+}
+
 static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
   guint mx, my, cx, cy, x;
 
-  if((event->type == GDK_BUTTON_PRESS) && (event->button == 1)) {
+  if( (event->type == GDK_BUTTON_RELEASE) &&
+      (event->button == 1) &&
+      (gh->scroll_timeout != -1) ) {
+    gtk_timeout_remove(gh->scroll_timeout);
+    gh->scroll_timeout = -1;
+    gh->button = 0;
+  }
+  else if((event->type == GDK_BUTTON_PRESS) && (event->button == 1)) {
     if (!GTK_WIDGET_HAS_FOCUS (gh))
       gtk_widget_grab_focus (GTK_WIDGET(gh));
 
@@ -662,18 +665,43 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
       show_cursor(gh);
     }
   }
+  else
+    gh->button = 0;
 }
 
 static void hex_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
-  if((gh->active_view == VIEW_HEX) && (gh->button == 1))
-    hex_to_pointer(gh, event->x, event->y);
+  if((gh->active_view == VIEW_HEX) && (gh->button == 1)) {
+    if( (event->y <= w->allocation.height) && (event->y >= 0) ) {
+      if(gh->scroll_timeout != -1) {
+        gtk_timeout_remove(gh->scroll_timeout);
+        gh->scroll_timeout = -1;
+      }
+      hex_to_pointer(gh, event->x, event->y);
+    }
+    else {
+      if(event->y < 0)
+        gh->scroll_dir = -1;
+      else
+        gh->scroll_dir = 1;
+
+      if(gh->scroll_timeout == -1)
+        gh->scroll_timeout = gtk_timeout_add(SCROLL_TIMEOUT, scroll_timeout_handler, gh);
+    }
+  }
 }
 
 static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
-  if((event->type == GDK_BUTTON_PRESS) && (event->button == 1)) {
+  if( (event->type == GDK_BUTTON_RELEASE) &&
+      (event->button == 1) &&
+      (gh->scroll_timeout != -1) ) {
+    gtk_timeout_remove(gh->scroll_timeout);
+    gh->scroll_timeout = -1;
+    gh->button = 0;
+  }
+  else if( (event->type == GDK_BUTTON_PRESS) && (event->button == 1) ) {
     if (!GTK_WIDGET_HAS_FOCUS (gh))
       gtk_widget_grab_focus (GTK_WIDGET(gh));
-
+    
     gh->button = event->button;
     if(gh->active_view == VIEW_ASCII)
       ascii_to_pointer(gh, event->x, event->y);
@@ -683,11 +711,29 @@ static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
       show_cursor(gh);
     }
   }
+  else
+    gh->button = 0;
 }
 
 static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
-  if((gh->active_view == VIEW_ASCII) && (gh->button == 1))
-    ascii_to_pointer(gh, event->x, event->y);
+  if((gh->active_view == VIEW_ASCII) && (gh->button == 1)) {
+    if( (event->y <= w->allocation.height) && (event->y >= 0) ) {
+      if(gh->scroll_timeout != -1) {
+        gtk_timeout_remove(gh->scroll_timeout);
+        gh->scroll_timeout = -1;
+      }
+      ascii_to_pointer(gh, event->x, event->y);
+    }
+    else {
+      if(event->y < 0)
+        gh->scroll_dir = -1;
+      else
+        gh->scroll_dir = 1;
+
+      if(gh->scroll_timeout == -1)
+        gh->scroll_timeout = gtk_timeout_add(SCROLL_TIMEOUT, scroll_timeout_handler, gh);
+    }
+  }
 }
 
 /*
@@ -833,6 +879,8 @@ static void gtk_hex_class_init(GtkHexClass *class) {
 static void gtk_hex_init(GtkHex *gh) {
   GtkWidget *widget = GTK_WIDGET(gh);
 
+  gh->scroll_timeout = -1;
+
   gh->disp_buffer = NULL;
   gh->document = NULL;
 
@@ -865,10 +913,12 @@ static void gtk_hex_init(GtkHex *gh) {
 
   gh->xdisp = gtk_drawing_area_new();
   gtk_widget_set_events (gh->xdisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
-			            GDK_BUTTON_MOTION_MASK);
+                         GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK);
   gtk_signal_connect(GTK_OBJECT(gh->xdisp), "expose_event",
 		     GTK_SIGNAL_FUNC(hex_expose), gh);
   gtk_signal_connect(GTK_OBJECT(gh->xdisp), "button_press_event",
+		     GTK_SIGNAL_FUNC(hex_button_cb), gh);
+  gtk_signal_connect(GTK_OBJECT(gh->xdisp), "button_release_event",
 		     GTK_SIGNAL_FUNC(hex_button_cb), gh);
   gtk_signal_connect(GTK_OBJECT(gh->xdisp), "motion_notify_event",
 		     GTK_SIGNAL_FUNC(hex_motion_cb), gh);
@@ -877,10 +927,12 @@ static void gtk_hex_init(GtkHex *gh) {
 
   gh->adisp = gtk_drawing_area_new();
   gtk_widget_set_events (gh->adisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
-			            GDK_BUTTON_MOTION_MASK);
+                         GDK_BUTTON_RELEASE_MASK |GDK_BUTTON_MOTION_MASK);
   gtk_signal_connect(GTK_OBJECT(gh->adisp), "expose_event",
 		     GTK_SIGNAL_FUNC(ascii_expose), gh);
   gtk_signal_connect(GTK_OBJECT(gh->adisp), "button_press_event",
+		     GTK_SIGNAL_FUNC(ascii_button_cb), gh);
+  gtk_signal_connect(GTK_OBJECT(gh->adisp), "button_release_event",
 		     GTK_SIGNAL_FUNC(ascii_button_cb), gh);
   gtk_signal_connect(GTK_OBJECT(gh->adisp), "motion_notify_event",
 		     GTK_SIGNAL_FUNC(ascii_motion_cb), gh);
