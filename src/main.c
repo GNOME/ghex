@@ -78,7 +78,8 @@ int main(int argc, char **argv) {
 		restarted= gnome_config_get_bool ("General/saved_session=0");
 		
 		if (restarted)
-			gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreator)hex_document_new_from_config);
+			restarted = gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreator)hex_document_new_from_config);
+				
 
 		gnome_config_pop_prefix ();
 	}
