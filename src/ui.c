@@ -26,7 +26,6 @@
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprint/gnome-printer-dialog.h>
 #include "ghex.h"
-#include "print.h"
 
 static void open_selected_file(GtkWidget *);
 static void save_selected_file(GtkWidget *, GtkWidget *view);

@@ -24,7 +24,6 @@
 
 #include "ghex.h"
 #include "gtkhex.h"
-#include "print.h"
 
 #include <libgnomeprint/gnome-print.h>
 
