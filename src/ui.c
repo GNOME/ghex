@@ -33,7 +33,7 @@ GnomeUIInfo file_menu[] = {
 	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'O', GDK_CONTROL_MASK, NULL },
 	{ GNOME_APP_UI_ITEM, N_("_Save"), N_("Save buffer "), save_cb, NULL, NULL,
 	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 'S', GDK_CONTROL_MASK, NULL },
-	{ GNOME_APP_UI_ITEM, N_("Save _as..."), N_("Save buffer under a different file name"), save_as_cb, NULL, NULL,
+	{ GNOME_APP_UI_ITEM, N_("Save _As..."), N_("Save buffer under a different file name"), save_as_cb, NULL, NULL,
 	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE_AS, 0, 0, NULL },
 	{ GNOME_APP_UI_ITEM, N_("_Revert"), N_("Revert buffer"), revert_cb, NULL, NULL,
 	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_REVERT, 'R', GDK_CONTROL_MASK, NULL },
@@ -41,7 +41,7 @@ GnomeUIInfo file_menu[] = {
 	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CLOSE, 0, 0, NULL },
 	{ GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
 	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ITEM, N_("Open _Converter..."), N_("Open base conversion dialog"), converter_cb, NULL, NULL,
+	{ GNOME_APP_UI_ITEM, N_("Open Con_verter..."), N_("Open base conversion dialog"), converter_cb, NULL, NULL,
 	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
 	{ GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
 	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
@@ -49,8 +49,8 @@ GnomeUIInfo file_menu[] = {
 	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'P', GDK_CONTROL_MASK, NULL },
 	{ GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
 	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ITEM, N_("_Exit"), N_("Exit GHex"), quit_app_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'Q', GDK_CONTROL_MASK, NULL },
+	{ GNOME_APP_UI_ITEM, N_("E_xit"), N_("Exit GHex"), quit_app_cb, NULL, NULL,
+	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'x', GDK_CONTROL_MASK, NULL },
 	{ GNOME_APP_UI_ENDOFINFO }
 };
 
