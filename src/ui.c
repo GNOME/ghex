@@ -117,12 +117,13 @@ gint ask_user(GnomeMessageBox *message_box) {
 	return gnome_dialog_run_and_close(GNOME_DIALOG(message_box));
 }
 
-GtkWidget *create_button(GtkWidget *window, gchar *type, gchar *text) {
+GtkWidget *create_button(GtkWidget *window, const gchar *type, gchar *text) {
 	GtkWidget *button, *pixmap, *label, *hbox;
 	
 	hbox = gtk_hbox_new(FALSE, 2);
 	
 	label = gtk_label_new(text);
+
 	pixmap = gnome_stock_pixmap_widget(window, type);
 	
 	gtk_box_pack_start(GTK_BOX(hbox), pixmap, FALSE, FALSE, 1);

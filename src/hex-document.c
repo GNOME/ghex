@@ -42,6 +42,8 @@ static void       hex_document_destroy           (GtkObject *);
 static void       hex_document_real_changed      (HexDocument *, gpointer, gboolean);
 static gchar     *hex_document_get_config_string (GnomeMDIChild *);
 
+static gint compare_data(guchar *s1, guchar *s2, gint len); 
+
 static void find_cb     (GtkWidget *);
 static void replace_cb  (GtkWidget *);
 static void jump_cb     (GtkWidget *);
@@ -180,7 +182,7 @@ static gint undo_stack_push(HexDocument *doc, HexChangeData *change_data) {
 		free_stack(stack_rest);
 	}
 
-	if(cd = g_new(HexChangeData, 1)) {
+	if((cd = g_new(HexChangeData, 1)) != NULL) {
 		memcpy(cd, change_data, sizeof(HexChangeData));
 		if(change_data->v_string) {
 			cd->v_string = g_malloc(cd->end - cd->start + 1);
@@ -377,7 +379,6 @@ void hex_document_set_byte(HexDocument *document, guchar val, guint offset) {
 
 void hex_document_set_data(HexDocument *document, guint offset, guint len, guchar *data) {
 	guint i;
-	gchar *old_data;
 	
 	if(offset >= 0 && offset < document->buffer_size)
 		document->changed = TRUE;
@@ -531,7 +532,7 @@ void hex_document_set_max_undo(HexDocument *doc, guint max_undo) {
 	}
 }
 
-gint compare_data(guchar *s1, guchar *s2, gint len) {
+static gint compare_data(guchar *s1, guchar *s2, gint len) {
 	while(len > 0) {
 		if((*s1) != (*s2))
 			return ((*s1) - (*s2));

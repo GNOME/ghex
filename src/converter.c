@@ -107,8 +107,7 @@ void create_converter(Converter *conv) {
 
 static void get_cursor_val_cb(GtkButton *button, Converter *conv) {
 	GtkWidget *view = gnome_mdi_get_active_view(mdi);
-	gchar *val_str;
-	guint val, start, i;
+	guint val, start;
 
 	if(view) {
 		start = gtk_hex_get_cursor(GTK_HEX(view));
@@ -154,7 +153,7 @@ static void set_values(Converter *conv, gulong val) {
 static void conv_entry_cb(GtkEntry *entry, gint base) {
 	guchar buffer[33];
 	gchar *text, *endptr;
-	gulong val;
+	gulong val = converter.value;
 	int i, len;
 	
 	text = gtk_entry_get_text(entry);

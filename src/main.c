@@ -150,12 +150,12 @@ void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
 
 	gtk_drag_dest_set (GTK_WIDGET (app),
 	                   GTK_DEST_DEFAULT_MOTION |
-			   GTK_DEST_DEFAULT_HIGHLIGHT |
-			   GTK_DEST_DEFAULT_DROP,
-			   drop_types, n_drop_types,
-			   GDK_ACTION_COPY);
-        gtk_signal_connect (GTK_OBJECT (app), "drag_data_received",
-			    GTK_SIGNAL_FUNC(app_drop_cb), NULL);
+					   GTK_DEST_DEFAULT_HIGHLIGHT |
+					   GTK_DEST_DEFAULT_DROP,
+					   drop_types, n_drop_types,
+					   GDK_ACTION_COPY);
+	gtk_signal_connect (GTK_OBJECT (app), "drag_data_received",
+						GTK_SIGNAL_FUNC(app_drop_cb), NULL);
 
 	bar = gnome_appbar_new(FALSE, TRUE, GNOME_PREFERENCES_USER);
 	gnome_app_set_statusbar(app, bar);
@@ -167,8 +167,8 @@ void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
 static void cursor_moved_cb(GtkHex *gtkhex) {
 	static gchar *cursor_pos, *format;
 
-	if(format = g_strdup_printf(_("Offset: %s"), offset_fmt)) {
-		if(cursor_pos = g_strdup_printf(format, gtk_hex_get_cursor(gtkhex))) {
+	if((format = g_strdup_printf(_("Offset: %s"), offset_fmt)) != NULL) {
+		if((cursor_pos = g_strdup_printf(format, gtk_hex_get_cursor(gtkhex))) != NULL) {
 			gnome_appbar_set_status(GNOME_APPBAR(gnome_mdi_get_app_from_view(GTK_WIDGET(gtkhex))->statusbar),
 									cursor_pos);
 			g_free(cursor_pos);
@@ -221,7 +221,7 @@ int main(int argc, char **argv) {
     if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
 
 		gnome_config_push_prefix (gnome_client_get_config_prefix (client));
-		
+
 		restarted= gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreator)hex_document_new_from_config);		
 		
 		gnome_config_pop_prefix ();
@@ -230,7 +230,7 @@ int main(int argc, char **argv) {
 	if (!restarted)
 		gnome_mdi_open_toplevel(mdi);
 	
-    cl_files = poptGetArgs(ctx);
+    cl_files = (char **)poptGetArgs(ctx);
 	
     while(cl_files && *cl_files) {
 		doc = hex_document_new(*cl_files);

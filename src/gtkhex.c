@@ -432,7 +432,7 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 
 static void render_offsets(GtkHex *gh, gint imin, gint imax) {
 	GtkWidget *w = gh->offsets;
-	gint i, cursor_line;
+	gint i;
 	gchar offstr[9];
 
 	if(!GTK_WIDGET_REALIZED(gh))
@@ -869,16 +869,18 @@ static void hide_offsets_widget(GtkHex *gh) {
 static gint hex_map_event(GtkWidget *widget, GdkEventAny *event, GtkHex *gh) {
 	gh->xdisp_gc = gdk_gc_new(gh->xdisp->window);
 	gdk_gc_set_exposures(gh->xdisp_gc, TRUE);
+
+	return FALSE;
 }
 	
 static gint ascii_map_event(GtkWidget *widget, GdkEventAny *event, GtkHex *gh) {
 	gh->adisp_gc = gdk_gc_new(gh->adisp->window);
 	gdk_gc_set_exposures(gh->adisp_gc, TRUE);
+
+	return FALSE;
 }
 
 static void gtk_hex_realize(GtkWidget *widget) {
-	GtkHex *gh = GTK_HEX(widget);
-
 	if(GTK_WIDGET_CLASS(parent_class)->realize)
 		(* GTK_WIDGET_CLASS(parent_class)->realize)(widget);  	
 
