@@ -877,7 +877,7 @@ void
 ghex_window_set_doc_name(GHexWindow *win, const gchar *name)
 {
     if(name != NULL) {
-        gchar *title = g_strdup_printf(_("GHex - %s"), name);
+        gchar *title = g_strdup_printf(_("%s - GHex"), name);
         gtk_window_set_title(GTK_WINDOW(win), title);
         g_free(title);
     }
@@ -1084,7 +1084,7 @@ ghex_window_save_as(GHexWindow *win)
                     doc->file_name = g_strdup(filename);
                     doc->changed = FALSE;
                     win->changed = FALSE;
-                    
+
                     for(i = strlen(doc->file_name);
                         (i >= 0) && (doc->file_name[i] != '/');
                         i--)
