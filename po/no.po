@@ -1,12 +1,12 @@
 # Norwegian (bokmål dialect) translation of the gnome-utils module
 # Copyright (C) 1998 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@fib.hl.no>, 1998.
+# Kjartan Maraas <kmaraas@fib.hl.no>, 1998,1999.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 0.30\n"
-"POT-Creation-Date: 1999-01-18 14:54-0500\n"
-"PO-Revision-Date: 1998-11-21 12:34+0100\n"
+"Project-Id-Version: gnome-utils 0.99.3\n"
+"POT-Creation-Date: 1999-01-26 00:15-0500\n"
+"PO-Revision-Date: 1999-01-26 00:20+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@fib.hl.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -132,11 +132,11 @@ msgstr "Filslutt nådd!"
 msgid "Replaced %d occurencies."
 msgstr "Byttet ut %d forekomster."
 
-#: ghex/callbacks.c:546
+#: ghex/callbacks.c:564
 msgid "Can not open desired font!"
 msgstr "Kan ikke åpne ønsket skrifttype!"
 
-#: ghex/callbacks.c:565
+#: ghex/callbacks.c:573
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -145,60 +145,76 @@ msgstr ""
 "Filen %s er endret siden forrige lagring.\n"
 "Vil du lagre endringene?"
 
-#: ghex/callbacks.c:589 ghex/ui.c:159
+#: ghex/callbacks.c:597 ghex/ui.c:149
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Finn data"
 
-#: ghex/callbacks.c:590 ghex/ui.c:219
+#: ghex/callbacks.c:598 ghex/ui.c:209
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Søk og erstatt data"
 
-#: ghex/callbacks.c:591 ghex/ui.c:304
+#: ghex/callbacks.c:599 ghex/ui.c:294
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hopp til byte"
 
-#: ghex/callbacks.c:673
+#: ghex/callbacks.c:682
 msgid "ERROR"
 msgstr "FEIL"
 
-#: ghex/hex-document.c:55
+#: ghex/hex-document.c:58
 msgid "_Bytes"
 msgstr "Bytes"
 
-#: ghex/hex-document.c:56
+#: ghex/hex-document.c:59
 msgid "Group data by 8 bits"
 msgstr "Grupper data i 8 bits grupper"
 
-#: ghex/hex-document.c:57
+#: ghex/hex-document.c:60
 msgid "_Words"
 msgstr "Ord"
 
-#: ghex/hex-document.c:58
+#: ghex/hex-document.c:61
 msgid "Group data by 16 bits"
 msgstr "Grupper data i 16 bits grupper"
 
-#: ghex/hex-document.c:59
+#: ghex/hex-document.c:62
 msgid "_Longwords"
 msgstr "Lange ord"
 
-#: ghex/hex-document.c:60
+#: ghex/hex-document.c:63
 msgid "Group data by 32 bits"
 msgstr "_Grupper data i 32 bits grupper"
 
-#: ghex/hex-document.c:75
+#: ghex/hex-document.c:79
 msgid "_Goto Byte..."
 msgstr "Gå til byte..."
 
-#: ghex/hex-document.c:75
+#: ghex/hex-document.c:79
 msgid "Jump to a certain position"
 msgstr "Hopp til en bestemt posisjon"
 
-#: ghex/hex-document.c:78
+#: ghex/hex-document.c:82
 msgid "_Group Data As"
 msgstr "Grupper data som"
+
+#: ghex/hex-document.c:87
+msgid "_Add view"
+msgstr "Legg til visning"
+
+#: ghex/hex-document.c:88
+msgid "Add a new view of the buffer"
+msgstr "Legg til en ny visning av bufferen"
+
+#: ghex/hex-document.c:89
+msgid "_Remove view"
+msgstr "Fjern visning"
+
+#: ghex/hex-document.c:90
+msgid "Remove the current view of the buffer"
+msgstr "Fjern nåværende visning av bufferen"
 
 #: ghex/ui.c:37
 msgid "Open Con_verter..."
@@ -208,134 +224,126 @@ msgstr "Åpne konverterer..."
 msgid "Open base conversion dialog"
 msgstr "Åpne dialog for konvertering"
 
-#: ghex/ui.c:55
-msgid "_Add view"
-msgstr "Legg til visning"
-
-#: ghex/ui.c:56
-msgid "Add a new view of the buffer"
-msgstr "Legg til en ny visning av bufferen"
-
-#: ghex/ui.c:57
-msgid "_Remove view"
-msgstr "Fjern visning"
-
-#: ghex/ui.c:58
-msgid "Remove the current view of the buffer"
-msgstr "Fjern nåværende visning av bufferen"
-
-#: ghex/ui.c:85
+#: ghex/ui.c:75
 msgid "Bytes"
 msgstr "Bytes"
 
-#: ghex/ui.c:86
+#: ghex/ui.c:76
 msgid "Words"
 msgstr "Ord"
 
-#: ghex/ui.c:87
+#: ghex/ui.c:77
 msgid "Longwords"
 msgstr "Lange ord"
 
-#: ghex/ui.c:111 mini-utils/idetool/idetool.c:142
+#: ghex/ui.c:101 mini-utils/idetool/idetool.c:142
 #: mini-utils/idetool/idetool.c:325
 msgid "Default"
 msgstr "Standard"
 
-#: ghex/ui.c:112
+#: ghex/ui.c:102
 msgid "Notebook"
 msgstr "Notisblokk"
 
-#: ghex/ui.c:113
+#: ghex/ui.c:103
 msgid "Toplevel"
 msgstr "Toppnivå"
 
-#: ghex/ui.c:114
+#: ghex/ui.c:104
 msgid "Modal"
 msgstr "Modal"
 
-#: ghex/ui.c:119
+#: ghex/ui.c:109
 msgid "hex data"
 msgstr "heksadesimale data"
 
-#: ghex/ui.c:120
+#: ghex/ui.c:110
 msgid "ASCII data"
 msgstr "ASCII data"
 
-#: ghex/ui.c:168
+#: ghex/ui.c:158
 #, c-format
 msgid "Search for %s"
 msgstr "Søk etter %s"
 
-#: ghex/ui.c:184
+#: ghex/ui.c:174
 msgid "Find Next"
 msgstr "Finn neste"
 
-#: ghex/ui.c:191
+#: ghex/ui.c:181
 msgid "Find Previous"
 msgstr "Finn forrige"
 
-#: ghex/ui.c:233
+#: ghex/ui.c:223
 #, c-format
 msgid "Replace %s"
 msgstr "Erstatt %s"
 
-#: ghex/ui.c:249
+#: ghex/ui.c:239
 msgid "Find next"
 msgstr "Finn neste"
 
-#: ghex/ui.c:256
+#: ghex/ui.c:246
 msgid "Replace"
 msgstr "Erstatt"
 
-#: ghex/ui.c:263
+#: ghex/ui.c:253
 msgid "Replace All"
 msgstr "Erstatt alle"
 
-#: ghex/ui.c:337
+#: ghex/ui.c:327
 msgid "GHex: Converter"
 msgstr "GHex: Konvertering"
 
-#: ghex/ui.c:344
+#: ghex/ui.c:334
 msgid "Binary"
 msgstr "Binær"
 
-#: ghex/ui.c:354
+#: ghex/ui.c:344
 msgid "Decimal"
 msgstr "Desimal"
 
-#: ghex/ui.c:364
+#: ghex/ui.c:354
 msgid "Hex"
 msgstr "Heksadesimal"
 
-#: ghex/ui.c:374
+#: ghex/ui.c:364
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ghex/ui.c:384
+#: ghex/ui.c:374 mini-utils/gshutdown/gshutdown.c:149
 msgid "Close"
 msgstr "Lukk"
 
-#: ghex/ui.c:428
+#: ghex/ui.c:427
+msgid "Maximum number of undo levels"
+msgstr "Maksimalt angrenivå"
+
+#: ghex/ui.c:438
+msgid "Editing"
+msgstr "Redigering"
+
+#: ghex/ui.c:445
 msgid "Font"
 msgstr "Skrifttype"
 
-#: ghex/ui.c:444
+#: ghex/ui.c:461
 msgid "Browse..."
 msgstr "Se på..."
 
-#: ghex/ui.c:463
+#: ghex/ui.c:480
 msgid "Default Group Type"
 msgstr "Standard gruppetype"
 
-#: ghex/ui.c:479 gtt/options.c:195
+#: ghex/ui.c:496 gtt/options.c:184
 msgid "Display"
 msgstr "Skjerm"
 
-#: ghex/ui.c:486
+#: ghex/ui.c:503
 msgid "MDI Mode"
 msgstr "MDI-modus"
 
-#: ghex/ui.c:503
+#: ghex/ui.c:520
 msgid "MDI"
 msgstr "MDI"
 
@@ -423,13 +431,12 @@ msgid "program exited"
 msgstr "program avsluttet"
 
 #: gtt/main.c:77
-#, fuzzy
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
 msgstr ""
 "Det ser ut som om GtimeTracker allerede kjører.\n"
-"Vær så snill å fjerne pid-filen hvis dette ikke er tilfelle."
+"Trykk OK for å starte GTimeTracker likevel, eller avbryt for å avslutte."
 
 #: gtt/main.c:121
 msgid "Error"
@@ -528,111 +535,111 @@ msgstr "Klokken kjører"
 msgid "_Timer"
 msgstr "Klokke"
 
-#: gtt/options.c:203
+#: gtt/options.c:192
 msgid "Show Seconds"
 msgstr "Vis sekunder"
 
-#: gtt/options.c:209
+#: gtt/options.c:198
 msgid "Show Status Bar"
 msgstr "Vis statuslinje"
 
-#: gtt/options.c:215
+#: gtt/options.c:204
 msgid "Show Table Header"
 msgstr "Vis tabelloverskrift"
 
-#: gtt/options.c:229 gtt/options.c:527
+#: gtt/options.c:218 gtt/options.c:516
 msgid "Toolbar"
 msgstr "Verktøylinje"
 
-#: gtt/options.c:237
+#: gtt/options.c:226
 msgid "Show Toolbar Icons"
 msgstr "Vis ikoner på verktøylinjen"
 
-#: gtt/options.c:243
+#: gtt/options.c:232
 msgid "Show Toolbar Texts"
 msgstr "Vis tekst på verktøylinjen"
 
-#: gtt/options.c:249
+#: gtt/options.c:238
 msgid "Show Tooltips"
 msgstr "Vis verktøytips"
 
-#: gtt/options.c:255
+#: gtt/options.c:244
 msgid "Toolbar Segments"
 msgstr "Verktøylinjesegmenter"
 
-#: gtt/options.c:263
+#: gtt/options.c:252
 msgid "Show `New'"
 msgstr "Vis `Ny'"
 
-#: gtt/options.c:269
+#: gtt/options.c:258
 msgid "Show `Save', `Reload'"
 msgstr "Vis `Lagre',`Les på nytt'"
 
-#: gtt/options.c:275
+#: gtt/options.c:264
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Vis `Klipp ut',`Kopier',`Lim inn'"
 
-#: gtt/options.c:281
+#: gtt/options.c:270
 msgid "Show `Properties'"
 msgstr "Vis `Egenskaper'"
 
-#: gtt/options.c:287
+#: gtt/options.c:276
 msgid "Show `Timer'"
 msgstr "Vis `Klokke'"
 
-#: gtt/options.c:293
+#: gtt/options.c:282
 msgid "Show `Preferences'"
 msgstr "Vis `Preferanser'"
 
-#: gtt/options.c:299
+#: gtt/options.c:288
 msgid "Show `Help'"
 msgstr "Vis `Hjelp'"
 
-#: gtt/options.c:305
+#: gtt/options.c:294
 msgid "Show `Quit'"
 msgstr "Vis `Avslutt'"
 
-#: gtt/options.c:319
+#: gtt/options.c:308
 msgid "Shell Commands"
 msgstr "Skallkommandoer"
 
-#: gtt/options.c:327
+#: gtt/options.c:316
 msgid "Switch Project Command:"
 msgstr "Bytt prosjektkommando:"
 
-#: gtt/options.c:338
+#: gtt/options.c:327
 msgid "No Project Command:"
 msgstr "Ingen prosjektkommando:"
 
-#: gtt/options.c:372
+#: gtt/options.c:361
 msgid "Logfile"
 msgstr "Loggfil"
 
-#: gtt/options.c:380
+#: gtt/options.c:369
 msgid "Use Logfile"
 msgstr "Bruk loggfil"
 
-#: gtt/options.c:389
+#: gtt/options.c:378
 msgid "Filename:"
 msgstr "Filnavn:"
 
-#: gtt/options.c:403
+#: gtt/options.c:392
 msgid "Entry Start:"
 msgstr "Innleggets start:"
 
-#: gtt/options.c:417
+#: gtt/options.c:406
 msgid "Entry Stop:"
 msgstr "Innleggets slutt:"
 
-#: gtt/options.c:431
+#: gtt/options.c:420
 msgid "Timeout in secs:"
 msgstr "Tidsavbrudd i sek:"
 
-#: gtt/options.c:508
+#: gtt/options.c:497
 msgid "Preferences"
 msgstr "Innstillinger"
 
-#: gtt/options.c:514
+#: gtt/options.c:503
 msgid "Misc"
 msgstr "Forskjellig"
 
@@ -644,43 +651,43 @@ msgstr "prosjekt %t startet"
 msgid "stopped project %t"
 msgstr "stoppet prosjekt %t"
 
-#: gtt/prop.c:60
+#: gtt/prop.c:55
 msgid "empty"
 msgstr "tom"
 
-#: gtt/prop.c:175
+#: gtt/prop.c:171
 msgid "Properties"
 msgstr "Egenskaper"
 
-#: gtt/prop.c:182
+#: gtt/prop.c:178
 msgid "Project"
 msgstr "Prosjekt"
 
-#: gtt/prop.c:202
+#: gtt/prop.c:197
 msgid "Project Title:"
 msgstr "Prosjekttittel:"
 
-#: gtt/prop.c:214
+#: gtt/prop.c:209
 msgid "Project Description:"
 msgstr "Prosjektbeskrivelse:"
 
-#: gtt/prop.c:226
+#: gtt/prop.c:221
 msgid "Project Time today:"
 msgstr "Prosjekttid idag:"
 
-#: gtt/prop.c:242 gtt/prop.c:280
+#: gtt/prop.c:237 gtt/prop.c:275
 msgid "hours"
 msgstr "timer"
 
-#: gtt/prop.c:253 gtt/prop.c:291
+#: gtt/prop.c:248 gtt/prop.c:286
 msgid "mins"
 msgstr "minutter"
 
-#: gtt/prop.c:264 gtt/prop.c:302
+#: gtt/prop.c:259 gtt/prop.c:297
 msgid "secs"
 msgstr "sekunder"
 
-#: gtt/prop.c:268
+#: gtt/prop.c:263
 msgid "Project Time ever:"
 msgstr "Prosjekttid noensinne:"
 
@@ -772,7 +779,7 @@ msgstr "Gnome fargevisning"
 
 #: mini-utils/gcolorsel/gcolorsel.c:71
 msgid "Format Style:"
-msgstr ""
+msgstr "Formatstil:"
 
 #: mini-utils/gcolorsel/gcolorsel.c:81
 msgid "Color Name:"
@@ -951,76 +958,80 @@ msgstr "Avbryt"
 msgid "Select a program to run"
 msgstr "Velg et program som skal kjøres"
 
-#: mini-utils/gshutdown/gshutdown.c:82
+#: mini-utils/gshutdown/gshutdown.c:83
 msgid "Shut Down"
 msgstr "Slå av maskinen"
 
-#: mini-utils/gshutdown/gshutdown.c:83
+#: mini-utils/gshutdown/gshutdown.c:84
 msgid "Single User Mode"
 msgstr "Enbrukermodus"
 
-#: mini-utils/gshutdown/gshutdown.c:84
+#: mini-utils/gshutdown/gshutdown.c:85
 msgid "Runlevel 2"
 msgstr "Kjøringsnivå 2"
 
-#: mini-utils/gshutdown/gshutdown.c:85
+#: mini-utils/gshutdown/gshutdown.c:86
 msgid "Runlevel 3"
 msgstr "Kjøringsnivå 3"
 
-#: mini-utils/gshutdown/gshutdown.c:86
+#: mini-utils/gshutdown/gshutdown.c:87
 msgid "Runlevel 4"
 msgstr "Kjøringsnivå 4"
 
-#: mini-utils/gshutdown/gshutdown.c:87
+#: mini-utils/gshutdown/gshutdown.c:88
 msgid "Runlevel 5"
 msgstr "Kjøringsnivå 5"
 
-#: mini-utils/gshutdown/gshutdown.c:88
+#: mini-utils/gshutdown/gshutdown.c:89
 msgid "Reboot"
 msgstr "Omstart"
 
-#: mini-utils/gshutdown/gshutdown.c:94
+#: mini-utils/gshutdown/gshutdown.c:95
 msgid "Are you sure you want to shut down the computer?"
 msgstr "Er du sikker på at du vil slå av maskinen?"
 
-#: mini-utils/gshutdown/gshutdown.c:95
+#: mini-utils/gshutdown/gshutdown.c:96
 msgid "Are you sure you want to switch to single user mode?"
 msgstr "Er du sikker på at du vil bytte til enbrukermodus?"
 
-#: mini-utils/gshutdown/gshutdown.c:96
+#: mini-utils/gshutdown/gshutdown.c:97
 msgid "Are you sure you want to switch to runlevel 2?"
 msgstr "Er du sikker på at du vil bytte til kjøringsnivå 2"
 
-#: mini-utils/gshutdown/gshutdown.c:97
+#: mini-utils/gshutdown/gshutdown.c:98
 msgid "Are you sure you want to switch to runlevel 3?"
 msgstr "Er du sikker på at du vil bytte til kjøringsnivå 3"
 
-#: mini-utils/gshutdown/gshutdown.c:98
+#: mini-utils/gshutdown/gshutdown.c:99
 msgid "Are you sure you want to switch to runlevel 4?"
 msgstr "Er du sikker på at du vil bytte til kjøringsnivå 4?"
 
-#: mini-utils/gshutdown/gshutdown.c:99
+#: mini-utils/gshutdown/gshutdown.c:100
 msgid "Are you sure you want to switch to runlevel 5?"
 msgstr "Er du sikker på at du vil bytte til kjøringsnivå 5?"
 
-#: mini-utils/gshutdown/gshutdown.c:100
+#: mini-utils/gshutdown/gshutdown.c:101
 msgid "Are you sure you want to reboot the system?"
 msgstr "Er du sikker på at du vil starte maskinen på nytt?"
 
+#: mini-utils/gshutdown/gshutdown.c:147
+msgid "You must be the super-user (root) to shut down or restart the computer."
+msgstr "Du må være superbruker (root) for å slå av eller starte maskinen på nytt."
+
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:173
+#: mini-utils/gshutdown/gshutdown.c:183
 msgid "Shutdown or Reboot"
 msgstr "Slå av maskinen eller start på nytt"
 
-#: mini-utils/gshutdown/gshutdown.c:190 mini-utils/gshutdown/gshutdown.c:191
+#: mini-utils/gshutdown/gshutdown.c:200 mini-utils/gshutdown/gshutdown.c:201
 msgid "Easy"
 msgstr "Enkel"
 
-#: mini-utils/gshutdown/gshutdown.c:195 mini-utils/gshutdown/gshutdown.c:196
+#: mini-utils/gshutdown/gshutdown.c:205 mini-utils/gshutdown/gshutdown.c:206
 msgid "Advanced"
 msgstr "Avansert"
 
-#: mini-utils/gshutdown/gshutdown.c:228
+#: mini-utils/gshutdown/gshutdown.c:238
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
@@ -1029,23 +1040,23 @@ msgstr ""
 "Du vil miste data som ikke er lagret i åpne applikasjoner."
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:355
+#: mini-utils/gshutdown/gshutdown.c:365
 msgid "Revert to Defaults"
 msgstr "Gå tilbake til standardverdier"
 
-#: mini-utils/gshutdown/gshutdown.c:365
+#: mini-utils/gshutdown/gshutdown.c:375
 msgid "Commands"
 msgstr "Kommandoer"
 
-#: mini-utils/gshutdown/gshutdown.c:370
+#: mini-utils/gshutdown/gshutdown.c:380
 msgid "Confirm before shutdown?"
 msgstr "Bekreft før nedstenging?"
 
-#: mini-utils/gshutdown/gshutdown.c:382
+#: mini-utils/gshutdown/gshutdown.c:392
 msgid "General"
 msgstr "Generelt"
 
-#: mini-utils/gshutdown/gshutdown.c:444
+#: mini-utils/gshutdown/gshutdown.c:454
 msgid "Don't ask next time."
 msgstr "Ikke spør neste gang."
 
@@ -1412,11 +1423,6 @@ msgstr "Disken nekter å beholde instillingene."
 msgid "Keep settings"
 msgstr "Behold innstillingene"
 
-#. IO
-#: mini-utils/idetool/idetool.c:168
-msgid "PIO Mode"
-msgstr "PIO-modus"
-
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr "(1 sektor)"
@@ -1497,6 +1503,9 @@ msgstr "Bare superbruker kan bruke dette verktøyet"
 msgid "You appear to have no IDE drives"
 msgstr "Det ser ut til at du ikke har noen IDE disker"
 
+#~ msgid "PIO Mode"
+#~ msgstr "PIO-modus"
+
 #~ msgid "E_xit"
 #~ msgstr "Avslutt"
 
@@ -1508,9 +1517,6 @@ msgstr "Det ser ut til at du ikke har noen IDE disker"
 
 #~ msgid "_Calculator"
 #~ msgstr "Kalkulator"
-
-#~ msgid "_Edit"
-#~ msgstr "Rediger"
 
 #~ msgid "_Help"
 #~ msgstr "Hjelp"
