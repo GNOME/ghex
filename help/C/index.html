@@ -80,18 +80,17 @@ the buffer to a file with this name.</LI>
 <I>Revert </I>reloads the contents of the file.</LI>
 
 <LI>
+<I>Open Converter... </I>opens the <A HREF="#converter">Base Conversion
+Dialog</A>.</LI>
+
+<LI>
 <I>Close </I>closes all views and removes the file from the memory.</LI>
 
 <LI>
-<I>Open Converter... </I>opens the <A HREF="#converter">Base Conversion
-Dialog</A></LI>
+<I>Exit </I>should be obvious: it exits GHex.</LI>
 
-<LI>
-<I>Preferences</I> brings up the <A HREF="#prefs">Preferences Dialog</A></LI>
-
-<LI>
-<I>Quit </I>should be obvious: it quits GHex.</LI>
 </UL>
+
 Menu <I>Edit</I> (only when a file is open)
 <UL>
 <LI>
@@ -99,13 +98,13 @@ Menu <I>Edit</I> (only when a file is open)
 <LI>
 <I>Redo </I>redoes the last undone action.</LI>
 <LI>
-<I>Find </I>opens the <A HREF="#findnreplace">Find Dialog</A></LI>
+<I>Find </I>opens the <A HREF="#findnreplace">Find Dialog</A>.</LI>
 
 <LI>
-<I>Replace </I>opens the <A HREF="#findnreplace">Find &amp; Replace Dialog</A></LI>
+<I>Replace </I>opens the <A HREF="#findnreplace">Find &amp; Replace Dialog</A>.</LI>
 
 <LI>
-<I>Goto Byte </I>opens the Jump To Byte Dialog</LI>
+<I>Goto Byte </I>opens the Jump To Byte Dialog.</LI>
 
 <LI>
 <I>Group Data As </I>offers three different ways how the bytes in the hex
@@ -120,8 +119,15 @@ Menu <I>View</I> (only when a file is open)
 <LI>
 <I>Remove view</I> removes the active view. Even if this is the last view
 of the corresponding file, the file will not be closed and will remain
-accessible through the <I>Files</I> menu</LI>
+accessible through the <I>Files</I> menu.</LI>
 </UL>
+
+Menu <I>Settings</I>
+<UL>
+<LI>
+<I>Preferences</I> brings up the <A HREF="#prefs">Preferences Dialog</A>.</LI>
+</UL>
+
 Menu <I>Files</I>
 <UL>
 <LI>
@@ -177,8 +183,12 @@ change data in any entry.
 
 <UL>
 <LI>
+Editing settings: here you can set the maximum number of changes that can be
+undone and pick the format the the cursor offset will be shown at. This format
+can be either decimal or hexadecimal or a custom printf style string.</LI>
+<LI>
 Display settings: here you can set the default data grouping type and the
-display font</LI>
+display font.</LI>
 
 <LI>
 MDI settings: lets user select preferred interface type. Currently supported
@@ -189,14 +199,14 @@ options are:</LI>
 Default: mode chosen by the user with Look and Feel properties.
 <LI>
 Notebook: displays views in notebook pages, enabling user to create a new
-toplevel window from each notebook page by dragging it to the root window</LI>
+toplevel window from each notebook page by dragging it to the root window.</LI>
 
 <LI>
-Toplevel: displays each view in its own toplevel window</LI>
+Toplevel: displays each view in its own toplevel window.</LI>
 
 <LI>
 Modal: only displays one view at a time, allowing user to select a document
-from the <I>Files</I>menu</LI>
+from the <I>Files</I> menu.</LI>
 </UL>
 </UL>
 
