@@ -27,9 +27,10 @@
 #include <gnome.h>
 #include <getopt.h>
 
-extern int restarted, just_exit;
+extern int restarted;
+extern char *just_exit;
 extern int os_x, os_y, os_w, os_h;
-extern struct argp parser;
+extern const struct poptOption options[];
 
 int save_state      (GnomeClient        *client,
                      gint                phase,

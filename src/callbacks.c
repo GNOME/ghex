@@ -31,7 +31,7 @@
 void about_cb (GtkWidget *widget) {
 	GtkWidget *about;
 	
-	gchar *authors[] = {
+	static const gchar *authors[] = {
 		"Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>",
 		NULL
 	};

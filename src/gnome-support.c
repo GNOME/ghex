@@ -24,56 +24,14 @@
 #include "gnome-support.h"
 #include "ghex.h"
 
-/* These are the arguments that our application supports.  */
-static struct argp_option arguments[] =
-{
-#define DISCARD_KEY -1
-	{ "discard-session", DISCARD_KEY, N_("ID"), 0, N_("Discard session"), 1 },
-	{ NULL, 0, NULL, 0, NULL, 0 }
+int restarted = 0;
+char *just_exit = NULL;
+const struct poptOption options[] = {
+  {"discard-session", '\0', POPT_ARG_STRING, &just_exit, 0, N_("Discard session"), N_("ID")},
+  {NULL, '\0', 0, NULL, 0}
 };
 
-/* Forward declaration of the function that gets called when one of
-   our arguments is recognized.  */
-static error_t parse_an_arg (int key, char *arg, struct argp_state *state);
-
-/* This structure defines our parser.  It can be used to specify some
-   options for how our parsing function should be called.  */
-struct argp parser =
-{
-	arguments,			/* Options.  */
-	parse_an_arg,			/* The parser function.  */
-	"[FILE]...",				/* Some docs.  */
-	NULL,				/* Some more docs.  */
-	NULL,				/* Child arguments -- gnome_init fills
-						   this in for us.  */
-	NULL,				/* Help filter.  */
-	NULL				/* Translation domain; for the app it
-						   can always be NULL.  */
-};
-
-int restarted = 0, just_exit = FALSE;
-
-/* a list of files specifed on the command line */
-GSList *cl_files = NULL;
-
-static error_t
-parse_an_arg (int key, char *arg, struct argp_state *state)
-{
-	switch(key) {
-	case ARGP_KEY_ARG:
-		cl_files = g_slist_append(cl_files, arg);
-		break;
-	case DISCARD_KEY:
-		discard_session(arg);
-		just_exit = 1;
-		break;
-	default:
-		/* We didn't recognize it.  */
-		return ARGP_ERR_UNKNOWN;
-	}
-	
-	return 0;
-}
+gchar *open_files = NULL;
 
 /* Session management */
 
