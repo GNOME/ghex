@@ -48,6 +48,8 @@ void save_configuration() {
 
 	gnome_config_set_string("/ghex/Printing/Paper", gnome_paper_name(def_paper));
 
+	gnome_config_set_int("/ghex/Printing/BoxSize", shaded_box_size);
+
 	gnome_config_sync();
 }
 
@@ -88,4 +90,6 @@ void load_configuration() {
 		def_paper_name = gnome_paper_name_default();
 		def_paper = gnome_paper_with_name(def_paper_name);
 	}
+
+	shaded_box_size = gnome_config_get_int("/ghex/Printing/BoxSize=0");
 }

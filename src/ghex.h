@@ -61,7 +61,7 @@ typedef struct _PropertyUI {
 	GnomePropertyBox *pbox;
 	GtkRadioButton *mdi_type[NUM_MDI_MODES];
 	GtkRadioButton *group_type[3];
-	GtkWidget *font_button, *spin;
+	GtkWidget *font_button, *undo_spin, *box_size_spin;
 	GtkWidget *offset_menu, *offset_choice[3];
 	GtkWidget *format, *offsets_col;
 	GtkWidget *paper_sel;
@@ -142,6 +142,7 @@ extern guint      max_undo_depth;
 extern gchar      *offset_fmt;
 extern gboolean   show_offsets_column;
 extern GnomePaper *def_paper;
+extern gint       shaded_box_size;
 extern gint       def_group_type;
 extern gint       mdi_mode;
 

@@ -1,3 +1,26 @@
+2000-04-02  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* src/print.c: gified some ints and floats; formatting changes;
+	made shaded box size user-configurable.
+	* src/preferences.c (create_prefs_dialog): UI for setting shaded box
+	size.
+	(box_size_changed_cb): new callback for setting propertybox to
+	"changed" state after modifying shaded box size.
+	* src/ghex.h (struct _PropertyUI): added members for above.
+	(shaded_box_size): declare.
+	* config.c (load_configuration, save_configuration): save settings
+	for shaded box printing.
+	* po/*.po: made an update-po.
+
+2000-03-27  Chema Celorio  <chema@celorio.com>
+
+	* src/print.c : Format improvement for
+	small horizontal chars displays.
+	(print_shaded_boxes): new funtion
+	(print_shaded_box): new function
+	(print_document): call print_shaded_boxes after
+	calling print_header.
+
 2000-03-26  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* src/ghex.h (struct _PreviewWindow): removed.

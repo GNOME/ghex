@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GHex 1.1.2\n"
-"POT-Creation-Date: 2000-03-26 20:34+0200\n"
+"POT-Creation-Date: 2000-04-05 09:13+0200\n"
 "PO-Revision-Date: 2000-03-23 00:00+0100\n"
 "Last-Translator: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>\n"
 "Language-Team: Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>\n"
@@ -22,7 +22,7 @@ msgstr "GHex: Pretvornik"
 msgid "Binary"
 msgstr "Binarno"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:113
+#: src/chartable.c:90 src/converter.c:63 src/preferences.c:114
 msgid "Decimal"
 msgstr "Deseti¹ko"
 
@@ -230,81 +230,89 @@ msgstr ""
 msgid "Offset: %s"
 msgstr "Odmik: %s"
 
-#: src/preferences.c:49
+#: src/preferences.c:50
 msgid "Default"
 msgstr "Globalna nastavitev"
 
-#: src/preferences.c:50
+#: src/preferences.c:51
 msgid "Notebook"
 msgstr "Blok"
 
-#: src/preferences.c:51
+#: src/preferences.c:52
 msgid "Toplevel"
 msgstr "Veè oken"
 
-#: src/preferences.c:52
+#: src/preferences.c:53
 msgid "Modal"
 msgstr "En sam dokument"
 
-#: src/preferences.c:85
+#: src/preferences.c:86
 msgid "Maximum number of undo levels"
 msgstr "Najveèje ¹tevilo dejanj, ki jih lahko razveljavi¹"
 
-#: src/preferences.c:99
+#: src/preferences.c:100
 msgid "Show cursor offset in statusbar as"
 msgstr "Prika¾i odmik kurzorja"
 
-#: src/preferences.c:118
+#: src/preferences.c:119
 msgid "Hexadecimal"
 msgstr "©estnajsti¹ko"
 
-#: src/preferences.c:124
+#: src/preferences.c:125
 msgid "Custom"
 msgstr "Po meri"
 
-#: src/preferences.c:134
+#: src/preferences.c:135
 msgid "Show offsets column"
 msgstr "Prika¾i stolpec z odmiki"
 
-#: src/preferences.c:139
+#: src/preferences.c:140
 msgid "Editing"
 msgstr "Urejanje"
 
-#: src/preferences.c:146
+#: src/preferences.c:147
 msgid "Font"
 msgstr "Tip èrk"
 
-#: src/preferences.c:162
+#: src/preferences.c:163
 msgid "Browse..."
 msgstr "Poi¹èi..."
 
-#: src/preferences.c:181
+#: src/preferences.c:182
 msgid "Default Group Type"
 msgstr "Grupiranje podatkov"
 
-#: src/preferences.c:197
+#: src/preferences.c:198
 msgid "Display"
 msgstr "Prikaz"
 
-#: src/preferences.c:204
+#: src/preferences.c:205
 msgid "MDI Mode"
 msgstr "Prikaz MDI"
 
-#: src/preferences.c:221
+#: src/preferences.c:222
 msgid "MDI"
 msgstr "MDI"
 
-#: src/preferences.c:231
+#: src/preferences.c:243
+msgid "Print shaded box over"
+msgstr "Osenèi"
+
+#: src/preferences.c:252
+msgid "lines (0 for no box)"
+msgstr "vrstic (0 za neosenèen izpis)"
+
+#: src/preferences.c:259
 msgid "Printing"
 msgstr "Tiskanje"
 
-#: src/preferences.c:373
+#: src/preferences.c:411
 msgid ""
 "The offset format string contains format specifier other than 'x', 'd' or "
 "'o'!"
 msgstr "format za odmik lahko vsebuje le formatna doloèila 'x', 'd' ali 'o'!"
 
-#: src/preferences.c:409
+#: src/preferences.c:447
 msgid "Can not open desired font!"
 msgstr "Ne najdem ¾eljenega tipa èrk"
 
@@ -424,12 +432,12 @@ msgstr "Osmi¹ko"
 msgid "GHex: Character table"
 msgstr "GHex: Tabela znakov"
 
-#: src/print.c:121
+#: src/print.c:143
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Predogled"
 
-#: src/print.c:137
+#: src/print.c:159
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Stran: %i/%i"

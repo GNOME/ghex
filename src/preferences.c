@@ -29,6 +29,7 @@ static void set_prefs(PropertyUI *pui);
 static void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox);
 static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui);
 static void max_undo_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox);
+static void box_size_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox);
 static void properties_modified_cb(GtkWidget *w, GnomePropertyBox *pbox);
 static void offset_cb(GtkWidget *w, PropertyUI *pui);
 
@@ -55,7 +56,7 @@ gchar *mdi_type_label[NUM_MDI_MODES] = {
 PropertyUI *create_prefs_dialog() {
 	GtkWidget *vbox, *label, *frame, *box, *entry, *fbox, *flabel;
 	GtkWidget *menu, *item;
-	GtkAdjustment *undo_adj;
+	GtkAdjustment *undo_adj, *box_adj;
 	GnomePaperSelector *paper_sel;
 	GSList *group;
 	PropertyUI *pui;
@@ -87,9 +88,9 @@ PropertyUI *create_prefs_dialog() {
 	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD_SMALL);
 	gtk_widget_show(label);
 						  
-	pui->spin = gtk_spin_button_new(undo_adj, 1, 0);
-	gtk_box_pack_end (GTK_BOX(box), GTK_WIDGET(pui->spin), FALSE, TRUE, GNOME_PAD);
-	gtk_widget_show(pui->spin);
+	pui->undo_spin = gtk_spin_button_new(undo_adj, 1, 0);
+	gtk_box_pack_end (GTK_BOX(box), GTK_WIDGET(pui->undo_spin), FALSE, TRUE, GNOME_PAD);
+	gtk_widget_show(pui->undo_spin);
 
 	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, GNOME_PAD_SMALL);
 
@@ -222,15 +223,42 @@ PropertyUI *create_prefs_dialog() {
 	gtk_widget_show(label);
 	gtk_notebook_append_page(GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
 	
+	vbox = gtk_vbox_new(FALSE, 0);
+	gtk_widget_show(vbox);
+
 	pui->paper_sel = gnome_paper_selector_new();
 	paper_sel = GNOME_PAPER_SELECTOR(pui->paper_sel);
 	paper_name = gnome_paper_name(def_paper);
 	gnome_paper_selector_set_name(paper_sel, paper_name);
 	gtk_widget_show(pui->paper_sel);
+	gtk_box_pack_start(GTK_BOX(vbox), pui->paper_sel, TRUE, TRUE, GNOME_PAD_SMALL);  
+
+	box_adj = GTK_ADJUSTMENT(gtk_adjustment_new(0, 0, 1000, 1, 10, 0));
+	gtk_signal_connect(GTK_OBJECT(box_adj), "value_changed",
+					   GTK_SIGNAL_FUNC(box_size_changed_cb), pui->pbox);
+
+	box = gtk_hbox_new(FALSE, 0);
+	gtk_widget_show(box);
+
+	label = gtk_label_new(_("Print shaded box over"));
+	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD_SMALL);
+	gtk_widget_show(label);
+						  
+	pui->box_size_spin = gtk_spin_button_new(box_adj, 1, 0);
+	gtk_box_pack_start (GTK_BOX(box), GTK_WIDGET(pui->box_size_spin), FALSE, TRUE, GNOME_PAD);
+	gtk_widget_show(pui->box_size_spin);
+
+	label = gtk_label_new(_("lines (0 for no box)"));
+	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD_SMALL);
+	gtk_widget_show(label);
+
+	gtk_box_pack_start(GTK_BOX(vbox), box, TRUE, TRUE, GNOME_PAD_SMALL);  
 
 	label = gtk_label_new(_("Printing"));
 	gtk_widget_show(label);
-	gtk_notebook_append_page(GTK_NOTEBOOK(pui->pbox->notebook), pui->paper_sel, label);
+	gtk_notebook_append_page(GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
 
 	set_prefs(pui);
 	
@@ -273,6 +301,8 @@ static void set_prefs(PropertyUI *pui) {
 		}
 
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->offsets_col), show_offsets_column);
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(pui->undo_spin), (gfloat)max_undo_depth);
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(pui->box_size_spin), (gfloat)shaded_box_size);
 
 	gtk_widget_set_sensitive(pui->format, FALSE);
 	gtk_entry_set_text(GTK_ENTRY(pui->format), offset_fmt);
@@ -298,6 +328,12 @@ static void properties_modified_cb(GtkWidget *w, GnomePropertyBox *pbox) {
 
 static void max_undo_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox) {
 	if((guint)adj->value != max_undo_depth)
+		gnome_property_box_changed(pbox);
+}
+
+
+static void box_size_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox) {
+	if((guint)adj->value != shaded_box_size)
 		gnome_property_box_changed(pbox);
 }
 
@@ -343,7 +379,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 			break;
 		}
 
-	new_undo_max = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(pui->spin));
+	new_undo_max = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(pui->undo_spin));
 	if(new_undo_max != max_undo_depth) {
 		max_undo_depth = new_undo_max;
 
@@ -353,6 +389,8 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 			child = child->next;
 		}
 	}
+
+	shaded_box_size = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(pui->box_size_spin));
 
 	old_offset_fmt = offset_fmt;
 	offset_fmt = g_strdup(gtk_entry_get_text(GTK_ENTRY(pui->format)));
