@@ -1,7 +1,7 @@
 AC_INIT(ghex.desktop)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(ghex, 1.1.3)
+AM_INIT_AUTOMAKE(ghex, 1.1.4)
 
 AM_MAINTAINER_MODE
 
@@ -25,14 +25,14 @@ GNOME_X_CHECKS
 dnl ******************************
 dnl GnomePrint checking
 dnl ******************************
-AC_MSG_CHECKING(for GnomePrint libraries >= 0.22)
+AC_MSG_CHECKING(for GnomePrint libraries >= 0.24)
 if gnome-config --libs print > /dev/null 2>&1; then 
     vers=`gnome-config --modversion print | sed -e "s/gnome-print-//" -e 's/cvs$//' -e 's/pre$//' | \
         awk 'BEGIN { FS = "."; } { print $1 * 1000 + $2;}'`
-    if test "$vers" -ge 22; then
+    if test "$vers" -ge 24; then
         AC_MSG_RESULT(found)
     else
-        AC_MSG_ERROR(You need at least GNOME print 0.22 for this version of ghex)
+        AC_MSG_ERROR(You need at least GNOME print 0.24 for this version of ghex)
     fi
 else
     AC_MSG_ERROR(Did not find GnomePrint installed)
@@ -41,7 +41,7 @@ fi
 dnl Checks for typedefs, structures, and compiler characteristics.
 ALL_LINGUAS="ca cs da de el en_GB es et fi fr ga gl hu it ja ko nl no pl pt pt_BR ro ru sl sv uk wa zh_TW.Big5 zh_CN.GB2312"
 AM_GNOME_GETTEXT
-AM_PATH_GNOME_PRINT
+AM_PATH_GNOME_PRINT(0.24.0)
 
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)

@@ -91,7 +91,7 @@ static void font_button_clicked(GtkWidget *button, GnomeFont **font) {
 			gtk_object_unref(GTK_OBJECT(*font));
 		*font = disp_font;
 		f_name = gnome_font_get_name(*font);
-		f_size = gnome_font_selection_get_size (GNOME_FONT_SELECTION (fontsel));
+		f_size = gnome_font_get_size(*font);
 		gtk_container_remove(GTK_CONTAINER(button), GTK_BIN(button)->child);
 		gtk_container_add(GTK_CONTAINER(button), get_font_label(f_name, f_size));
 	}
@@ -577,13 +577,13 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 		if(data_font_name)
 			g_free(data_font_name);
 		data_font_name = g_strdup(gnome_font_get_name(GNOME_FONT(pui->data_font)));
-		data_font_size = gnome_font_get_size (GNOME_FONT(pui->data_font));
+		data_font_size = gnome_font_get_size(GNOME_FONT(pui->data_font));
 	}
 	if(pui->header_font) {
 		if(header_font_name)
 			g_free(header_font_name);
 		header_font_name = g_strdup(gnome_font_get_name(GNOME_FONT(pui->header_font)));
-		header_font_size = gnome_font_get_size (GNOME_FONT(pui->header_font));
+		header_font_size = gnome_font_get_size(GNOME_FONT(pui->header_font));
 	}
 }
 
