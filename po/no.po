@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 0.30\n"
-"POT-Creation-Date: 1998-12-20 13:20-0500\n"
+"POT-Creation-Date: 1998-12-26 13:49+0100\n"
 "PO-Revision-Date: 1998-11-21 12:34+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@fib.hl.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -21,58 +21,55 @@ msgstr "Gnome Kalkulator"
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Enkel dobbelpresisjonskalkulator lik xcalc"
 
-#: gcalc/gcalc.c:85 gsearchtool/gsearchtool.c:579
-#: mini-utils/gcolorsel/gcolorsel.c:371
+#: gcalc/gcalc.c:85 gdiskfree/df.c:128 ghex/ui.c:52
+#: gsearchtool/gsearchtool.c:582 gtt/menus.c:45
+#: mini-utils/gcolorsel/gcolorsel.c:371 mini-utils/gless/gless.c:314
+#: mini-utils/gw/gw.c:190
 msgid "E_xit"
 msgstr "Avslutt"
 
-#: gcalc/gcalc.c:92 ghex/ui.c:75 gtt/menus.c:103
+#: gcalc/gcalc.c:92 gdiskfree/df.c:137 ghex/ui.c:75
+#: gsearchtool/gsearchtool.c:591 gtt/menus.c:103 mini-utils/gless/gless.c:278
+#: mini-utils/gw/gw.c:171
 msgid "_About..."
 msgstr "Om..."
 
-#: gcalc/gcalc.c:98 gtt/menus.c:59
+#: gcalc/gcalc.c:98 gtt/menus.c:59 gtt/menus.c:139
 msgid "_Copy"
 msgstr "Kopier"
 
-#: gcalc/gcalc.c:104
+#: gcalc/gcalc.c:105
 msgid "_Calculator"
 msgstr "Kalkulator"
 
-#: gcalc/gcalc.c:106 ghex/hex-document.c:85 gtt/menus.c:115
+#: gcalc/gcalc.c:107 ghex/hex-document.c:85 gtt/menus.c:115
 msgid "_Edit"
 msgstr "Rediger"
 
-#: gcalc/gcalc.c:108 ghex/ui.c:87 gsearchtool/gsearchtool.c:598
-#: gtt/menus.c:120 mini-utils/gcolorsel/gcolorsel.c:378
+#: gcalc/gcalc.c:109 gdiskfree/df.c:146 ghex/ui.c:87
+#: gsearchtool/gsearchtool.c:601 gtt/menus.c:120
+#: mini-utils/gcolorsel/gcolorsel.c:379 mini-utils/gless/gless.c:334
+#: mini-utils/gw/gw.c:201
 msgid "_Help"
 msgstr "Hjelp"
 
-#: gcalc/gcalc.c:130
+#: gcalc/gcalc.c:131
 msgid "Gnome Calculator"
 msgstr "Gnome Kalkulator"
 
-#: gdiskfree/df.c:128 mini-utils/gless/gless.c:307 mini-utils/gw/gw.c:185
-msgid "Exit"
-msgstr "Avslutt"
-
-#: gdiskfree/df.c:137 gsearchtool/gsearchtool.c:588
-#: mini-utils/gless/gless.c:278 mini-utils/gw/gw.c:171
-msgid "About..."
-msgstr "Om..."
-
-#: gdiskfree/df.c:144 mini-utils/gless/gless.c:334 mini-utils/gw/gw.c:203
-msgid "File"
+#. and document menu and document list paths
+#: gdiskfree/df.c:144 ghex/main.c:62 ghex/ui.c:81
+#: gsearchtool/gsearchtool.c:598 gtt/menus.c:113 mini-utils/gless/gless.c:332
+#: mini-utils/gw/gw.c:199
+msgid "_File"
 msgstr "Fil"
-
-#: gdiskfree/df.c:146 mini-utils/gless/gless.c:337 mini-utils/gw/gw.c:206
-msgid "Help"
-msgstr "Hjelp"
 
 #: gdiskfree/df.c:219
 msgid ""
 "A quick hack to show the amount of space free on mounted file systems "
 "uitilizing a dial."
-msgstr "Et raskt hack for å vise ledig plass på monterte filsystemer "
+msgstr ""
+"Et raskt hack for å vise ledig plass på monterte filsystemer "
 
 #: ghex/callbacks.c:44
 msgid "GHex, a binary file editor"
@@ -271,11 +268,6 @@ msgstr "Hopp til en bestemt posisjon"
 msgid "_Group Data As"
 msgstr "Grupper data som"
 
-#. and document menu and document list paths
-#: ghex/main.c:62 ghex/ui.c:81 gsearchtool/gsearchtool.c:595 gtt/menus.c:113
-msgid "_File"
-msgstr "Fil"
-
 #: ghex/main.c:63
 msgid "File_s/"
 msgstr "Filer/"
@@ -296,8 +288,8 @@ msgstr "Lagre"
 msgid "Save buffer "
 msgstr "Lagre buffer "
 
-#: ghex/ui.c:36
-msgid "Save _as..."
+#: ghex/ui.c:36 mini-utils/gless/gless.c:297
+msgid "Save _As..."
 msgstr "Lagre som..."
 
 #: ghex/ui.c:36
@@ -312,7 +304,7 @@ msgstr "Forkast"
 msgid "Revert buffer"
 msgstr "Forkast buffer"
 
-#: ghex/ui.c:40
+#: ghex/ui.c:40 mini-utils/gless/gless.c:301
 msgid "_Close"
 msgstr "Lukk"
 
@@ -321,7 +313,7 @@ msgid "Close file"
 msgstr "Lukk fil"
 
 #: ghex/ui.c:44
-msgid "Open _Converter..."
+msgid "Open Con_verter..."
 msgstr "Åpne konverterer..."
 
 #: ghex/ui.c:44
@@ -335,10 +327,6 @@ msgstr "Innstillinger"
 #: ghex/ui.c:48
 msgid "Set user preferences"
 msgstr "Lagre brukerinnstillinger"
-
-#: ghex/ui.c:52
-msgid "_Exit"
-msgstr "Avslutt"
 
 #: ghex/ui.c:52
 msgid "Exit GHex"
@@ -364,7 +352,7 @@ msgstr "Fjern nåværende visning av bufferen"
 msgid "About GHex"
 msgstr "Om GHex"
 
-#: ghex/ui.c:83
+#: ghex/ui.c:83 mini-utils/gless/gless.c:333
 msgid "_View"
 msgstr "Vis"
 
@@ -459,7 +447,7 @@ msgstr "Heksadesimal"
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ghex/ui.c:400 mini-utils/gless/gless.c:301
+#: ghex/ui.c:400
 msgid "Close"
 msgstr "Lukk"
 
@@ -490,47 +478,47 @@ msgstr "MDI"
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
-#: gsearchtool/gsearchtool.c:200
+#: gsearchtool/gsearchtool.c:201
 msgid "Search Results"
 msgstr "Søkeresultater"
 
-#: gsearchtool/gsearchtool.c:486
+#: gsearchtool/gsearchtool.c:487
 msgid "Start in directory:"
 msgstr "Start i katalog:"
 
-#: gsearchtool/gsearchtool.c:504 mini-utils/gw/gw.c:467
+#: gsearchtool/gsearchtool.c:505 mini-utils/gw/gw.c:463
 msgid "Add"
 msgstr "Legg til"
 
-#: gsearchtool/gsearchtool.c:515
+#: gsearchtool/gsearchtool.c:516
 msgid "Start"
 msgstr "Start"
 
-#: gsearchtool/gsearchtool.c:516
+#: gsearchtool/gsearchtool.c:517
 msgid "Stop"
 msgstr "Stopp"
 
-#: gsearchtool/gsearchtool.c:533
+#: gsearchtool/gsearchtool.c:534
 msgid "This is not yet implemented"
 msgstr "Dette er ennå ikke implementert"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:546
 msgid "Full find (find)"
 msgstr "Utvidet søk (find)"
 
-#: gsearchtool/gsearchtool.c:547
+#: gsearchtool/gsearchtool.c:549
 msgid "Quick find (locate)"
 msgstr "Hurtigsøk (locate)"
 
-#: gsearchtool/gsearchtool.c:561
+#: gsearchtool/gsearchtool.c:564
 msgid "The Gnome Search Tool"
 msgstr "Gnome søkeverktøy"
 
-#: gsearchtool/gsearchtool.c:564
+#: gsearchtool/gsearchtool.c:567
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Grensesnitt mot UNIXs find/grep/locate kommandoer"
 
-#: gsearchtool/gsearchtool.c:617
+#: gsearchtool/gsearchtool.c:620
 msgid "Gnome Search Tool"
 msgstr "Gnome søkeverktøy"
 
@@ -655,19 +643,15 @@ msgstr "Les konfigurasjonsfilen på nytt"
 msgid "_Save Configuration File"
 msgstr "Lagre konfigurasjonsfilen"
 
-#: gtt/menus.c:40
+#: gtt/menus.c:40 mini-utils/gless/gless.c:308 mini-utils/gw/gw.c:185
 msgid "_Preferences..."
 msgstr "Innstillinger..."
 
-#: gtt/menus.c:45
-msgid "_Quit"
-msgstr "Avslutt"
-
-#: gtt/menus.c:55
+#: gtt/menus.c:55 gtt/menus.c:134
 msgid "C_ut"
 msgstr "Klipp ut"
 
-#: gtt/menus.c:64
+#: gtt/menus.c:64 gtt/menus.c:144
 msgid "_Paste"
 msgstr "Lim inn"
 
@@ -675,8 +659,8 @@ msgstr "Lim inn"
 msgid "Clear _Daily Counter"
 msgstr "Tøm daglig teller"
 
-#: gtt/menus.c:75
-msgid "Pr_operties..."
+#: gtt/menus.c:75 gtt/menus.c:128
+msgid "P_roperties..."
 msgstr "Egenskaper..."
 
 #: gtt/menus.c:85
@@ -694,22 +678,6 @@ msgstr "Klokken kjører"
 #: gtt/menus.c:117
 msgid "_Timer"
 msgstr "Klokke"
-
-#: gtt/menus.c:128
-msgid "Properties..."
-msgstr "Egenskaper..."
-
-#: gtt/menus.c:134 gtt/toolbar.c:159
-msgid "Cut"
-msgstr "Klipp ut"
-
-#: gtt/menus.c:139 gtt/toolbar.c:163
-msgid "Copy"
-msgstr "Kopiér"
-
-#: gtt/menus.c:144 gtt/toolbar.c:167
-msgid "Paste"
-msgstr "Lim inn"
 
 #: gtt/menus.c:149
 msgid "Clear Daily Counter"
@@ -815,7 +783,7 @@ msgstr "Innleggets slutt:"
 msgid "Timeout in secs:"
 msgstr "Tidsavbrudd i sek:"
 
-#: gtt/options.c:508 mini-utils/gless/gless.c:336 mini-utils/gw/gw.c:204
+#: gtt/options.c:508
 msgid "Preferences"
 msgstr "Innstillinger"
 
@@ -888,13 +856,25 @@ msgstr "Lagre"
 msgid "Save Configuration File"
 msgstr "Lagre konfigurasjonsfilen"
 
+#: gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Klipp ut"
+
 #: gtt/toolbar.c:160
 msgid "Cut Selected Project"
 msgstr "Klipp ut valgte prosjekt"
 
+#: gtt/toolbar.c:163
+msgid "Copy"
+msgstr "Kopiér"
+
 #: gtt/toolbar.c:164
 msgid "Copy Selected Project"
 msgstr "Kopier valgte prosjekt"
+
+#: gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Lim inn"
 
 #: gtt/toolbar.c:168
 msgid "Paste Project"
@@ -957,13 +937,13 @@ msgstr "Fargeverdier:"
 msgid "Color"
 msgstr "Farge"
 
-#: mini-utils/gcolorsel/gcolorsel.c:148 mini-utils/guname/moreinfo.c:218
+#: mini-utils/gcolorsel/gcolorsel.c:148 mini-utils/guname/moreinfo.c:220
 #: mini-utils/idetool/idetool.c:258
 msgid "Value"
 msgstr "Verdi"
 
-#: mini-utils/gcolorsel/gcolorsel.c:149 mini-utils/guname/moreinfo.c:217
-#: mini-utils/gw/gw.c:458 mini-utils/gw/gw.c:533
+#: mini-utils/gcolorsel/gcolorsel.c:149 mini-utils/guname/moreinfo.c:219
+#: mini-utils/gw/gw.c:454 mini-utils/gw/gw.c:529
 msgid "Name"
 msgstr "Navn"
 
@@ -1003,7 +983,7 @@ msgstr "Lite verktøy for å se på tilgjengelige X11 farger."
 msgid "_About"
 msgstr "Om..."
 
-#: mini-utils/gcolorsel/gcolorsel.c:377
+#: mini-utils/gcolorsel/gcolorsel.c:378
 msgid "_Program"
 msgstr "_Program"
 
@@ -1048,7 +1028,7 @@ msgid "Tell about this application"
 msgstr "Fortell om denne applikasjonen"
 
 #: mini-utils/gless/gless.c:287
-msgid "New Window"
+msgid "_New Window"
 msgstr "Nytt vindu"
 
 #: mini-utils/gless/gless.c:287
@@ -1056,16 +1036,12 @@ msgid "New text viewer window"
 msgstr "Nytt tekstvisningsvindu"
 
 #: mini-utils/gless/gless.c:292
-msgid "Open..."
+msgid "_Open..."
 msgstr "Åpne..."
 
 #: mini-utils/gless/gless.c:292
 msgid "Open a new file in this window"
 msgstr "Åpne en ny fil i dette vinduet"
-
-#: mini-utils/gless/gless.c:297 mini-utils/guname/guname.c:526
-msgid "Save As..."
-msgstr "Lagre som..."
 
 #: mini-utils/gless/gless.c:297
 msgid "Save file to disk"
@@ -1075,35 +1051,27 @@ msgstr "Lagre fil til disk"
 msgid "Close this window"
 msgstr "Lukk dette vinduet"
 
-#: mini-utils/gless/gless.c:308
-msgid "Quit the application"
-msgstr "Avslutt applikasjonen"
-
-#: mini-utils/gless/gless.c:316
-msgid "Fixed Font"
-msgstr "Låst skrifttype"
-
-#: mini-utils/gless/gless.c:317
-msgid "Display text with a fixed font"
-msgstr "Vis teksten med en låst skrifttype"
-
-#: mini-utils/gless/gless.c:325 mini-utils/gw/gw.c:194
-msgid "Preferences..."
-msgstr "Innstillinger..."
-
-#: mini-utils/gless/gless.c:326 mini-utils/gw/gw.c:195
+#: mini-utils/gless/gless.c:309 mini-utils/gw/gw.c:186
 msgid "Change application preferences"
 msgstr "Endre applikasjonens innstillinger"
 
-#: mini-utils/gless/gless.c:335
-msgid "View"
-msgstr "Vis"
+#: mini-utils/gless/gless.c:315 mini-utils/gw/gw.c:191
+msgid "Quit the application"
+msgstr "Avslutt applikasjonen"
 
-#: mini-utils/gless/gless.c:352
+#: mini-utils/gless/gless.c:323
+msgid "_Fixed Font"
+msgstr "Låst skrifttype"
+
+#: mini-utils/gless/gless.c:324
+msgid "Display text with a fixed font"
+msgstr "Vis teksten med en låst skrifttype"
+
+#: mini-utils/gless/gless.c:349
 msgid "Text File Viewer"
 msgstr "Tekstfilvisning"
 
-#: mini-utils/gless/gless.c:412
+#: mini-utils/gless/gless.c:409
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -1111,19 +1079,19 @@ msgstr ""
 "Kunne ikke forstå geometrien (posisjonen og størrelsen)\n"
 " spesifisert på kommandolinjen"
 
-#: mini-utils/gless/gless.c:453
+#: mini-utils/gless/gless.c:450
 msgid "Loading..."
 msgstr "Laster..."
 
-#: mini-utils/gless/gless.c:458
+#: mini-utils/gless/gless.c:455
 msgid "No such file or directory:\n"
 msgstr "Ikke en fil eller en katalog:\n"
 
-#: mini-utils/gless/gless.c:475
+#: mini-utils/gless/gless.c:472
 msgid "Failed to decompress and display the file:\n"
 msgstr "Klarte ikke å dekomprimere og vise filen:\n"
 
-#: mini-utils/gless/gless.c:486
+#: mini-utils/gless/gless.c:483
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1131,43 +1099,43 @@ msgstr ""
 "Ute av stand til å vise den komprimerte filen.\n"
 "zcat ble ikke funnet i søkestien."
 
-#: mini-utils/gless/gless.c:494
+#: mini-utils/gless/gless.c:491
 msgid "Error loading file:\n"
 msgstr "Feil under lasting av fil:\n"
 
-#: mini-utils/gless/gless.c:548
+#: mini-utils/gless/gless.c:545
 msgid "Saving..."
 msgstr "Lagrer..."
 
-#: mini-utils/gless/gless.c:559
+#: mini-utils/gless/gless.c:556
 msgid "Failed to write file:\n"
 msgstr "Feil under skriving av fil:\n"
 
-#: mini-utils/gless/gless.c:606
+#: mini-utils/gless/gless.c:603
 msgid "Save Text As..."
 msgstr "Lagre teksten som..."
 
-#: mini-utils/gless/gless.c:646
+#: mini-utils/gless/gless.c:643
 msgid "Open Text File..."
 msgstr "Åpne tekstfil..."
 
-#: mini-utils/gnome-run/gnome-run.c:43
+#: mini-utils/gnome-run/gnome-run.c:48
 msgid "Failed to execute command:\n"
 msgstr "Feil under kjøring av kommando:\n"
 
-#: mini-utils/gnome-run/gnome-run.c:63
+#: mini-utils/gnome-run/gnome-run.c:68
 msgid "Run Program"
 msgstr "Kjør program"
 
-#: mini-utils/gnome-run/gnome-run.c:64
+#: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run"
 msgstr "Kjør"
 
-#: mini-utils/gnome-run/gnome-run.c:64
+#: mini-utils/gnome-run/gnome-run.c:69
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: mini-utils/gnome-run/gnome-run.c:75
+#: mini-utils/gnome-run/gnome-run.c:80
 msgid "Select a program to run"
 msgstr "Velg et program som skal kjøres"
 
@@ -1305,6 +1273,10 @@ msgstr "Kategori"
 #: mini-utils/guname/guname.c:491
 msgid "Your System"
 msgstr "Ditt system"
+
+#: mini-utils/guname/guname.c:526
+msgid "Save As..."
+msgstr "Lagre som..."
 
 #: mini-utils/guname/guname.c:532
 msgid "Mail To..."
@@ -1465,69 +1437,65 @@ msgstr "Ukjent filsystem"
 msgid "No information for this filesystem."
 msgstr "Ingen informasjon for dette filsystemet."
 
-#: mini-utils/guname/moreinfo.c:119
-msgid "Mounted filesystems"
-msgstr "Monterte filsystemer"
-
-#: mini-utils/guname/moreinfo.c:155
+#: mini-utils/guname/moreinfo.c:160
 msgid "Memory"
 msgstr "Minne"
 
-#: mini-utils/guname/moreinfo.c:155
+#: mini-utils/guname/moreinfo.c:160
 msgid "Kilobytes"
 msgstr "Kilobytes"
 
-#: mini-utils/guname/moreinfo.c:158
+#: mini-utils/guname/moreinfo.c:163
 msgid "%ld%% %s used."
 msgstr "%ld%% %s brukt."
 
-#: mini-utils/guname/moreinfo.c:174
+#: mini-utils/guname/moreinfo.c:179
 msgid "memory"
 msgstr "minne"
 
-#: mini-utils/guname/moreinfo.c:188
+#: mini-utils/guname/moreinfo.c:193
 msgid "swap"
 msgstr "swap"
 
-#: mini-utils/guname/moreinfo.c:214
+#: mini-utils/guname/moreinfo.c:216
 #, c-format
 msgid "CPU %d"
 msgstr "CPU %d"
 
-#: mini-utils/guname/moreinfo.c:255
+#: mini-utils/guname/moreinfo.c:262
 msgid "Detailed System Information"
 msgstr "Detaljert systeminformasjon"
 
-#: mini-utils/guname/moreinfo.c:268
+#: mini-utils/guname/moreinfo.c:275
 msgid "Disk Information"
 msgstr "Diskinformasjon"
 
-#: mini-utils/guname/moreinfo.c:270
+#: mini-utils/guname/moreinfo.c:277
 msgid "Memory Information"
 msgstr "Minneinformasjon"
 
-#: mini-utils/guname/moreinfo.c:273
+#: mini-utils/guname/moreinfo.c:280
 msgid "CPU Information"
 msgstr "CPU informasjon"
 
-#: mini-utils/guname/moreinfo.c:294
+#: mini-utils/guname/moreinfo.c:301
 msgid "%2d%% full "
 msgstr "%2d%% full "
 
-#: mini-utils/guname/moreinfo.c:296
+#: mini-utils/guname/moreinfo.c:303
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr "%ld megabytes, %ld ledig (%ld superbruker); %ld inoder, %ld ledig."
 
-#: mini-utils/guname/moreinfo.c:310
+#: mini-utils/guname/moreinfo.c:317
 msgid "Mount Point: "
 msgstr "Monteringspunkt: "
 
-#: mini-utils/guname/moreinfo.c:311
+#: mini-utils/guname/moreinfo.c:318
 msgid "    Device: "
 msgstr "    Enhet: "
 
-#: mini-utils/guname/moreinfo.c:312
+#: mini-utils/guname/moreinfo.c:319
 msgid "    Filesystem Type: "
 msgstr "    Filsystemtype: "
 
@@ -1540,43 +1508,39 @@ msgstr ""
 "Denne kommandoen er nødvendig for at dette programmet skal virke."
 
 #: mini-utils/gw/gw.c:180
-msgid "Save..."
+msgid "_Save..."
 msgstr "Lagre..."
 
 #: mini-utils/gw/gw.c:180
 msgid "Write information to disk"
 msgstr "Skriv informasjonen tili disk"
 
-#: mini-utils/gw/gw.c:186
-msgid "Quit the application without saving"
-msgstr "Avslutt applikasjonen uten å lagre"
-
-#: mini-utils/gw/gw.c:217
+#: mini-utils/gw/gw.c:212
 msgid "User Listing"
 msgstr "Brukerliste"
 
-#: mini-utils/gw/gw.c:236
+#: mini-utils/gw/gw.c:231
 msgid "Update Information"
 msgstr "Oppdater informasjonen"
 
-#: mini-utils/gw/gw.c:458
+#: mini-utils/gw/gw.c:454
 msgid "Command Line"
 msgstr "Kommandolinje"
 
 #. Create everything.
-#: mini-utils/gw/gw.c:466
+#: mini-utils/gw/gw.c:462
 msgid "Add some defaults"
 msgstr "Legg til noen standardverdier"
 
-#: mini-utils/gw/gw.c:468
+#: mini-utils/gw/gw.c:464
 msgid "Delete"
 msgstr "Slett"
 
-#: mini-utils/gw/gw.c:486
+#: mini-utils/gw/gw.c:482
 msgid "Command Editor"
 msgstr "Kommandoredigering"
 
-#: mini-utils/gw/gw.c:496
+#: mini-utils/gw/gw.c:492
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -1590,7 +1554,7 @@ msgstr ""
 "I kommandoen kan du bruke %u for å representere\n"
 "valgte brukernavn, og %t for tty'en."
 
-#: mini-utils/gw/gw.c:503
+#: mini-utils/gw/gw.c:499
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -1598,11 +1562,11 @@ msgstr ""
 "Klikk på denne knappen for å legge til\n"
 "noen eksempel-kommandoer."
 
-#: mini-utils/gw/gw.c:511
+#: mini-utils/gw/gw.c:507
 msgid "Menu items"
 msgstr "Menyvalg"
 
-#: mini-utils/gw/gw.c:539
+#: mini-utils/gw/gw.c:535
 msgid "Command"
 msgstr "Kommando"
 
@@ -1724,6 +1688,42 @@ msgstr "Bare superbruker kan bruke dette verktøyet"
 #: mini-utils/idetool/idetool.c:427
 msgid "You appear to have no IDE drives"
 msgstr "Det ser ut til at du ikke har noen IDE disker"
+
+#~ msgid "Exit"
+#~ msgstr "Avslutt"
+
+#~ msgid "About..."
+#~ msgstr "Om..."
+
+#~ msgid "File"
+#~ msgstr "Fil"
+
+#~ msgid "Help"
+#~ msgstr "Hjelp"
+
+#~ msgid "Save _as..."
+#~ msgstr "Lagre som..."
+
+#~ msgid "_Exit"
+#~ msgstr "Avslutt"
+
+#~ msgid "_Quit"
+#~ msgstr "Avslutt"
+
+#~ msgid "Pr_operties..."
+#~ msgstr "Egenskaper..."
+
+#~ msgid "Preferences..."
+#~ msgstr "Innstillinger..."
+
+#~ msgid "View"
+#~ msgstr "Vis"
+
+#~ msgid "Mounted filesystems"
+#~ msgstr "Monterte filsystemer"
+
+#~ msgid "Quit the application without saving"
+#~ msgstr "Avslutt applikasjonen uten å lagre"
 
 #~ msgid "ERRONEUS STRING"
 #~ msgstr "FEILAKTIG TEKSTSTRENG"
