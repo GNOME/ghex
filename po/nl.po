@@ -1,20 +1,30 @@
 # GHEX
 # Copyright (C) 2000 Free Software Foundation, Inc.
 # Dennis Smit <synap@area101.penguin.nl>,2000.
+# Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2002-03-07 19:50-0500\n"
-"PO-Revision-Date: 2002-03-11 00:27GMT+1\n"
-"Last-Translator: DeXteR <dexter@platypusnet.nl>\n"
+"POT-Creation-Date: 2002-04-14 19:40-0400\n"
+"PO-Revision-Date: 2002-04-17 16:39+0100\n"
+"Last-Translator: Ronald Hummelink <ronald@hummelink.xs4all.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.5\n"
 
-#: src/bonobo-mdi.c:490 src/bonobo-mdi.c:566 src/bonobo-mdi.c:1917
+#: ghex.desktop.in.h:1
+msgid "GHex"
+msgstr "GHex"
+
+#: ghex.desktop.in.h:2
+msgid "Gnome Hexadecimal Editor"
+msgstr "Gnome Hexadecimale Editor"
+
+#: src/bonobo-mdi.c:494
+#: src/bonobo-mdi.c:570
+#: src/bonobo-mdi.c:1886
 #, c-format
 msgid "Activate %s"
 msgstr "Actieveer %s"
@@ -27,7 +37,8 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Hex"
 
-#: src/chartable.c:90 src/preferences.c:198
+#: src/chartable.c:90
+#: src/preferences.c:198
 msgid "Decimal"
 msgstr "Decimaal"
 
@@ -73,11 +84,12 @@ msgstr "_ASCII"
 msgid "_Get cursor value"
 msgstr "_Verkrijg cursor waarde"
 
-#: src/converter.c:324
+#: src/converter.c:336
 msgid "ERROR"
 msgstr "FOUT"
 
-#: src/findreplace.c:60 src/main.c:104
+#: src/findreplace.c:60
+#: src/main.c:104
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Vind Data"
@@ -95,7 +107,8 @@ msgstr "Zoek volgende"
 msgid "Find Previous"
 msgstr "Zoek vorige"
 
-#: src/findreplace.c:133 src/main.c:106
+#: src/findreplace.c:133
+#: src/main.c:106
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Zoek & Vervang Data"
@@ -109,7 +122,8 @@ msgstr "Vervang %s"
 msgid "Find next"
 msgstr "Zoek volgende"
 
-#: src/findreplace.c:173 src/ghex-ui.xml.h:44
+#: src/findreplace.c:173
+#: src/ghex-ui.xml.h:44
 msgid "Replace"
 msgstr "Vervang"
 
@@ -117,20 +131,26 @@ msgstr "Vervang"
 msgid "Replace All"
 msgstr "Vervang Alles"
 
-#: src/findreplace.c:215 src/main.c:108
+#: src/findreplace.c:215
+#: src/main.c:108
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Spring Naar Byte"
 
-#: src/findreplace.c:306 src/findreplace.c:332 src/findreplace.c:385
+#: src/findreplace.c:306
+#: src/findreplace.c:332
+#: src/findreplace.c:385
 msgid "There is no active buffer to search!"
 msgstr "Er is geen actieve buffer om te zoeken!"
 
-#: src/findreplace.c:314 src/findreplace.c:340 src/findreplace.c:393
+#: src/findreplace.c:314
+#: src/findreplace.c:340
+#: src/findreplace.c:393
 msgid "There seems to be no string to search for!"
 msgstr "Het lijkt erop dat er geen string is om naar te zoeken!"
 
-#: src/findreplace.c:321 src/findreplace.c:401
+#: src/findreplace.c:321
+#: src/findreplace.c:401
 msgid "End Of File reached"
 msgstr "Einde van bestand bereikt"
 
@@ -154,11 +174,13 @@ msgstr "Kan cursor niet buiten het einde van het bestand zetten!"
 msgid "The offset must be a positive integer value!"
 msgstr "Een offset moet een positieve integer waarde zijn!"
 
-#: src/findreplace.c:413 src/findreplace.c:451
+#: src/findreplace.c:413
+#: src/findreplace.c:451
 msgid "There is no active buffer to replace data in!"
 msgstr "Er is geen actieve buffer om data in te vervangen!"
 
-#: src/findreplace.c:424 src/findreplace.c:462
+#: src/findreplace.c:424
+#: src/findreplace.c:462
 msgid "Strange find or replace string!"
 msgstr "Vreemde zoek / vervang string!"
 
@@ -171,7 +193,7 @@ msgstr "Einde Van Bestand bereikt!"
 msgid "Replaced %d occurencies."
 msgstr "%d vervangen."
 
-#: src/ghex-mdi.c:501
+#: src/ghex-mdi.c:479
 #, c-format
 msgid ""
 "Do you want to save the changes you made to the document ``%s''? \n"
@@ -182,19 +204,20 @@ msgstr ""
 "\n"
 "Uw wijzigingen gaan verloren als u ze niet bewaard."
 
-#: src/ghex-mdi.c:506
+#: src/ghex-mdi.c:484
 msgid "_Don't save"
 msgstr "_Niet opslaan."
 
-#: src/ghex-mdi.c:584
+#: src/ghex-mdi.c:562
 msgid "(modified)"
 msgstr "(aangepast)"
 
-#: src/ghex-mdi.c:590
+#: src/ghex-mdi.c:568
 msgid "(readonly)"
 msgstr "(alleen lezen)"
 
-#: src/ghex-mdi.c:843 src/main.c:225
+#: src/ghex-mdi.c:876
+#: src/main.c:225
 #, c-format
 msgid "Offset: %s"
 msgstr "Offset: %s"
@@ -215,7 +238,8 @@ msgstr "Voeg View Toe"
 msgid "Add a new view to the buffer"
 msgstr "Voeg een nieuwe view aan de buffer toe"
 
-#: src/ghex-ui.xml.h:5 src/ui.c:118
+#: src/ghex-ui.xml.h:5
+#: src/ui.c:118
 msgid "Bytes"
 msgstr "Bytes"
 
@@ -223,7 +247,8 @@ msgstr "Bytes"
 msgid "Character Table..."
 msgstr "Karakter Tabel..."
 
-#: src/ghex-ui.xml.h:7 src/ui.c:84
+#: src/ghex-ui.xml.h:7
+#: src/ui.c:84
 msgid "Character _Table..."
 msgstr "Karakter _Tabel..."
 
@@ -259,7 +284,8 @@ msgstr "Afsluiten"
 msgid "Exit the program"
 msgstr "Sluit het progamma af."
 
-#: src/ghex-ui.xml.h:16 src/ui.c:65
+#: src/ghex-ui.xml.h:16
+#: src/ui.c:65
 msgid "Export data to HTML source"
 msgstr "Exporteer data naar HTML bron"
 
@@ -267,7 +293,8 @@ msgstr "Exporteer data naar HTML bron"
 msgid "Export to HTML..."
 msgstr "Exporteer naar HTML..."
 
-#: src/ghex-ui.xml.h:18 src/ui.c:65
+#: src/ghex-ui.xml.h:18
+#: src/ui.c:65
 msgid "Export to _HTML..."
 msgstr "Exporteer naar _HTML..."
 
@@ -315,7 +342,8 @@ msgstr "Insert/overschrijf data"
 msgid "Jump to a certain position"
 msgstr "Spring naar een zekere positie"
 
-#: src/ghex-ui.xml.h:30 src/ui.c:120
+#: src/ghex-ui.xml.h:30
+#: src/ui.c:120
 msgid "Longwords"
 msgstr "Longwords"
 
@@ -327,7 +355,8 @@ msgstr "Openen"
 msgid "Open a file"
 msgstr "Open een bestand"
 
-#: src/ghex-ui.xml.h:33 src/ui.c:83
+#: src/ghex-ui.xml.h:33
+#: src/ui.c:83
 msgid "Open base conversion dialog"
 msgstr "Open basis omzet dialoog"
 
@@ -335,7 +364,8 @@ msgstr "Open basis omzet dialoog"
 msgid "Preferences"
 msgstr "Instellingen"
 
-#: src/ghex-ui.xml.h:35 src/ui.c:69
+#: src/ghex-ui.xml.h:35
+#: src/ui.c:69
 msgid "Preview printed data"
 msgstr "Preview geprinte data"
 
@@ -347,7 +377,8 @@ msgstr "Print"
 msgid "Print Preview..."
 msgstr "Afdrukvoorbeeld..."
 
-#: src/ghex-ui.xml.h:38 src/ui.c:69
+#: src/ghex-ui.xml.h:38
+#: src/ui.c:69
 msgid "Print pre_view..."
 msgstr "Print pre_view..."
 
@@ -407,7 +438,8 @@ msgstr "Sla het bestand onder een anders naam op"
 msgid "Search for a string"
 msgstr "Zoek naar een string"
 
-#: src/ghex-ui.xml.h:54 src/ui.c:85
+#: src/ghex-ui.xml.h:54
+#: src/ui.c:85
 msgid "Show the character table"
 msgstr "Laat karakter tabel zien"
 
@@ -419,7 +451,8 @@ msgstr "Herstellen"
 msgid "Undo the last action"
 msgstr "De laatste actie ongedaan maken"
 
-#: src/ghex-ui.xml.h:57 src/ui.c:119
+#: src/ghex-ui.xml.h:57
+#: src/ui.c:119
 msgid "Words"
 msgstr "Woorden"
 
@@ -507,7 +540,8 @@ msgstr "_Opslaan"
 msgid "_Settings"
 msgstr "_Instellingen"
 
-#: src/ghex-ui.xml.h:79 src/ui.c:102
+#: src/ghex-ui.xml.h:79
+#: src/ui.c:102
 msgid "_Tools"
 msgstr "_Gereedschapen"
 
@@ -527,7 +561,8 @@ msgstr "_Woorden"
 msgid "Page"
 msgstr "Pagina"
 
-#: src/hex-document.c:753 src/hex-document.c:854
+#: src/hex-document.c:753
+#: src/hex-document.c:854
 msgid "Hex dump generated by"
 msgstr "Hex dump gegenereerd door"
 
@@ -541,14 +576,12 @@ msgstr "Volgende pagina"
 
 #: src/main.c:55
 #, c-format
-msgid ""
-"File %s has changed since last save.\n"
+msgid "File %s has changed since last save.\n"
 "Do you want to save changes?"
-msgstr ""
-"Bestand %s is veranderd sinds laatste keer opslaan.\n"
+msgstr "Bestand %s is veranderd sinds laatste keer opslaan.\n"
 "Wilt u de veranderingen bewaren?"
 
-#: src/main.c:334
+#: src/main.c:338
 msgid "The gnome binary editor"
 msgstr "Gnome Hex editor"
 
@@ -654,15 +687,12 @@ msgstr "lijnen (0 voor geen hok)"
 msgid "Printing"
 msgstr "Aan het printen"
 
-#: src/preferences.c:627
-msgid ""
-"The offset format string contains invalid format specifier.\n"
+#: src/preferences.c:629
+msgid "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
-msgstr ""
-"Het offset formaat string bevat formaat specificaties. Alleen 'x', 'X', 'p', "
-"'P', 'd' en 'o' zijn toegestaan."
+msgstr "Het offset formaat string bevat formaat specificaties. Alleen 'x', 'X', 'p', 'P', 'd' en 'o' zijn toegestaan."
 
-#: src/preferences.c:670
+#: src/preferences.c:672
 msgid "Can not open desired font!"
 msgstr "Kan het gewenste lettertype niet openen!"
 
@@ -671,13 +701,12 @@ msgstr "Kan het gewenste lettertype niet openen!"
 msgid "Page: %i/%i"
 msgstr "Pagina: %i/%i"
 
-#: src/print.c:208 src/print.c:222
+#: src/print.c:208
+#: src/print.c:222
 #, c-format
-msgid ""
-"GHex could not find the font \"%s\".\n"
+msgid "GHex could not find the font \"%s\".\n"
 "GHex is unable to print without this font installed."
-msgstr ""
-"GHex kan lettertype \"%s\" niet vinden.\n"
+msgstr "GHex kan lettertype \"%s\" niet vinden.\n"
 "GHex kan niet printen zonder dat lettertype."
 
 #: src/ui.c:82
@@ -700,11 +729,13 @@ msgstr "GHex, een binaire bestandsbewerker"
 msgid "Released under the terms of GNU Public License"
 msgstr "Uitgebracht onder de voorwaarden van de GNU Public License"
 
-#: src/ui.c:294 src/ui.c:625
+#: src/ui.c:294
+#: src/ui.c:625
 msgid "Error saving file!"
 msgstr "Fout bij bewaren bestand!"
 
-#: src/ui.c:298 src/ui.c:620
+#: src/ui.c:298
+#: src/ui.c:620
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Buffer naar bestand %s geschreven"
@@ -744,17 +775,16 @@ msgstr "Kan bestand niet openen!"
 msgid "Can't open file for writing!"
 msgstr "Kan bestand niet openen om te schrijven!"
 
-#: src/ui.c:707
+#: src/ui.c:708
 msgid "Print Hex Document"
 msgstr "Print Hex Document"
 
-#: src/ui.c:712
+#: src/ui.c:713
 msgid "Pages"
 msgstr "Pagina's"
 
-#: src/ui.c:758
+#: src/ui.c:759
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Afdrukvoorbeeld"
-
 
