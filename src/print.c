@@ -24,7 +24,6 @@
 
 #include "ghex.h"
 #include "gtkhex.h"
-
 #include <libgnomeprint/gnome-print-master-preview.h>
 
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0x7F))?1:0)
@@ -44,6 +43,7 @@ static void format_hex(HexDocument *doc, guint gt, gchar *out, guint start, guin
 static void format_ascii(HexDocument *doc, gchar *out, guint start, guint end);
 static void print_shaded_boxes( GHexPrintJobInfo *pji, guint page, guint max_row);
 static void print_shaded_box( GHexPrintJobInfo *pji, guint row, guint rows);
+static gboolean print_verify_fonts (void);
 
 static void preview_destroy_cb(GtkObject *obj, GHexPrintJobInfo *job)
 {
@@ -51,6 +51,11 @@ static void preview_destroy_cb(GtkObject *obj, GHexPrintJobInfo *job)
 	g_free(job);
 }
 
+/**
+ * print_document:
+ * 
+ * The main printing function.
+ **/
 void print_document(HexDocument *doc, guint gt, GnomePrinter *printer)
 {
 	gint i, j;
@@ -59,18 +64,25 @@ void print_document(HexDocument *doc, guint gt, GnomePrinter *printer)
 	guint32 glyph;
 	ArtPoint point;
 
+	/* -- Added to verify fonts (Extract from Gedit) --*/
+	if(!print_verify_fonts ())
+		return;
+
 	d_font = gnome_font_new(data_font_name, data_font_size);
 	if(!d_font)
 		return;
+
 	h_font = gnome_font_new(header_font_name, header_font_size);
-	if(!h_font) {
+	if(!h_font){
 		gtk_object_unref(GTK_OBJECT(d_font));
 		return;
 	}
-
+  	
+	/* Create Printing Job */
 	pji = g_new0(GHexPrintJobInfo, 1);
 	pji->h_font = h_font;
 	pji->d_font = d_font;
+	
 	pji->gt = gt;
 	pji->master = gnome_print_master_new();
 	gnome_print_master_set_paper(pji->master, def_paper);
@@ -330,7 +342,41 @@ static void print_shaded_box(GHexPrintJobInfo *pji, guint row, guint rows)
 	gnome_print_setrgbcolor(pji->pc, 0.0, 0.0, 0.0);
 }
 
+gboolean print_verify_fonts()
+{
+	GnomeFont *test_font;
+	guchar *test_font_name;
 
+	test_font_name = g_strdup(data_font_name); 
+	test_font = gnome_font_new(test_font_name, 10);
+	if(test_font==NULL)
+	{
+		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
+										  "GHex is unable to print without this font installed."),
+										test_font_name);
+		gnome_app_error(mdi->active_window, errstr);
+		g_free(errstr);
+		return FALSE;
+	}
+	gnome_font_unref(test_font);
+	g_free(test_font_name);
+	
+	test_font_name = g_strdup(header_font_name);
+	test_font = gnome_font_new(test_font_name, 10);
+	if(test_font==NULL)
+	{
+		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
+										  "GHex is unable to print without this font installed."),
+										test_font_name);
+		gnome_app_error(mdi->active_window, errstr);
+		g_free(errstr);
+		return FALSE;
+	}
+	gnome_font_unref(test_font);
+	g_free(test_font_name);	
+ 
+	return TRUE;
+}
 
 
 
