@@ -1,0 +1,701 @@
+<!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
+<!ENTITY version "1.1.4">
+]>
+
+
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 1.0.3
+  Template last modified: Nov 16, 2000
+-->
+
+
+<!-- =============Document Header ============================= -->
+
+<article id="index"> <!-- please do not change the id -->
+
+  <artheader>
+    <title>GNOME16進エディタユーザドキュメント </title>
+    <copyright>
+      <year>1998, 1999, 2000</year>
+      <holder>Jaka Mocnik</holder>
+    </copyright>
+
+
+  <copyright>
+   <year>2001</year>
+   <holder>小松崎章仁(邦訳)</holder>
+  </copyright>
+
+ 
+
+  <!-- Use this legal notice for online documents which depend on -->
+  <!-- core GNOME packages.                                       -->
+  <legalnotice id="legalnotice">
+   <para>
+    Permission is granted to copy, distribute and/or modify this document
+    under the terms of the <ulink type="help" 
+    url="gnome-help:fdl"><citetitle>GNU Free Documentation
+    License</citetitle></ulink>, Version 1.1 or any later version 
+    published by the Free Software Foundation with no Invariant Sections, 
+    no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license
+    can be found <ulink type="help" url="gnome-help:fdl">here</ulink>.
+   </para>
+
+   <para>
+    Many of the names used by companies to distinguish their products and
+    services are claimed as trademarks. Where those names appear in any
+    GNOME documentation, and those trademarks are made aware to the members
+    of the GNOME Documentation Project, the names have been printed in caps
+    or initial caps.
+   </para>
+<para>
+   あなたはフリーソフトウェア財団発行の<ulink type="help"
+	url="gnome-help:fdl"><citetitle>フリー文書利用許諾契約書
+	</citetitle></ulink> 
+	第1.1版もしくはそれ以降の下にこの文書を複製、配布、可変が認められています。
+	変更不可部分、表表紙部分、裏表紙部分は特に指定しません。
+	あなたは<ulink type="help"
+      url="gnome-help:fdl">ここ</ulink>でライセンスをみつけることがで
+	きます。</para>
+
+   <para>多くの名称は企業により製品を区別するために使用され，商標
+	とされています。GNOMEドキュメントの様々な箇所にこれらの名称が
+	表れます．これらの商標は大文字か頭文字が大文字かで示しています。
+	</para>
+  </legalnotice>
+
+  
+
+  <!-- This is the manual version, not application version. --> 
+    <releaseinfo>
+       本文書はGNOME16進エディタの第1.0版マニュアルです。
+    </releaseinfo>
+
+  </artheader>
+
+ <!-- ============= Document Body ============================= -->
+
+ <!-- ============= Introduction ============================== -->
+  <sect1 id="intro">
+    <title>はじめに</title>
+
+    <para>
+      <application>GHex </application> (<acronym>GNOME</acronym> 16進エディタ)
+      は16進数やASCIIファイルなど，すべてのファイルを表示し，編集する
+      ことができる小さなツールです．
+			<acronym>GNOME</acronym>一般アプリケーションガイドラインに従い、
+			<acronym>GNOME</acronym>統合デスクトップ環境の一員として，
+      他のコンポネートと統合的な環境を提供します．
+    </para>
+    
+
+    <para>
+      <application>GHex</application>を起動するには
+<guimenu>メインメニュー</guimenu>から
+<menuchoice>
+<guisubmenu>アプリケーション</guisubmenu>
+<guimenuitem>GHex</guimenuitem>
+</menuchoice>
+と選択するか，
+      コマンドラインから <command>ghex</command>と入力します．
+  </para>
+
+    <para>本マニュアルは <application>GHex</application>の&version;に
+    ついての説明です．
+    </para>
+  </sect1>
+
+
+ <!-- ================ USAGE ================================ -->
+ <!-- THIS SECTION SHOULD DESCRIBE BASIC USAGE OF THE APPLICATION. -->
+
+  <sect1 id="usage">
+    <title>GHexの使い方</title>
+    <para><application>GHex</application>を起動すると，メニューバだけ
+    のウィンドウが表示されます．
+        <!-- ==== fighure ====== -->
+        <figure id="ghexmenubar-fig">
+	  <title>GHex メインウィンドウ</title>
+	  <screenshot>
+	  <screeninfo><application>GHex</application> メニューバウィンドウ</screeninfo>
+	    <graphic fileref="ghexmenubar" format="png" srccredit="John Fleck">
+            </graphic>
+	  </screenshot>
+	</figure>
+    <!-- ==== End of Figure ==== -->
+      </para> 
+    <para>
+	ファイルを読み込むと，一番広い部分にファイルの中身が表示されます。
+	16進数とASCIIの両方で表示され、左側の16進数のバイト列に対応したASCII
+	コードが右側に表示されます。
+
+      <figure id="ghexfullwindow-fig">
+	  <title>GHexメインウィンドウ</title>
+	  <screenshot>
+	  <screeninfo><application>GHex</application>フルウィンドウ</screeninfo>
+	    <graphic fileref="ghexfullwindow" format="png" srccredit="John Fleck">
+            </graphic>
+	  </screenshot>
+	</figure>
+    </para>
+  </sect1>
+  <sect1 id="ghexmenues">
+      
+
+      <title>メニュー</title>
+      <para>
+	メニューバは、<interface>メインウィンドウ</interface>の上にあり、
+	以下のものがあります。
+       </para>
+      <variablelist>
+	<varlistentry>
+	  <term><guimenu>ファイル</guimenu></term>
+	  <listitem>
+	    <para>
+	       ファイルメニューには以下のものがあります。
+	       <itemizedlist>
+		<listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycap>F3</keycap>
+		      </shortcut>
+		      <guimenuitem>開く</guimenuitem>
+		     </menuchoice>
+		  &mdash; 開くファイルを選択し、バッファに読み込んで、ビューに表示します。
+	           </para>
+		</listitem>
+		<listitem>
+		  <para>
+	             <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>S</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>保存</guimenuitem>
+		    </menuchoice>
+	            &mdash; バッファの内容を同じ名前で保存します。
+		  <warning>
+		    <para>これは、容易にフォーマットを破壊する恐れがありますので、注意してください。</para>
+		  </warning>
+	          </para>
+		</listitem>
+	      <listitem>
+		<para>
+		  <menuchoice>
+		    <guimenuitem>名前を付けて保存</guimenuitem>
+		  </menuchoice>
+		  &mdash; バッファの内容を、名前を付けて保存します。
+		</para>
+	      </listitem>
+	      <listitem>
+		<para>
+		  <menuchoice>
+		    <guimenuitem>HTMLに変換</guimenuitem>
+		  </menuchoice>
+		  &mdash; 表示中の16進数の内容ををHTML形式で出力します。
+		</para>
+	      </listitem>
+	      <listitem>
+		<para>
+		  <menuchoice>
+		    <guimenuitem>戻す</guimenuitem>
+		  </menuchoice>
+		  &mdash; 変更を破棄して、最後に保存した状態に戻します。
+		</para>
+	      </listitem>
+
+	      <listitem>
+		<para>
+		  <menuchoice>
+		    <guimenuitem>印刷</guimenuitem>
+		  </menuchoice>
+		  &mdash; 表示中の16進数の内容を印刷します。
+		</para>
+	      </listitem>
+	      <listitem>
+		<para>
+		  <menuchoice>
+		    <guimenuitem>印刷プレビュー</guimenuitem>
+		  </menuchoice>
+		  &mdash; どのように印刷されるかを表示します。
+		</para>
+	      </listitem>
+		<listitem>
+		  <para>
+	             <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>W</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>閉じる</guimenuitem>
+		    </menuchoice>
+	            &mdash; ファイルを閉じます。
+	          </para>
+		</listitem>
+		<listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>Q</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>終了</guimenuitem>
+		    </menuchoice>
+	            &mdash; アプリケーションを終了します。
+	          </para>
+		</listitem>
+	      </itemizedlist>
+	  </para>
+	  </listitem>
+	</varlistentry>
+	
+	<varlistentry>
+	  <term><guimenu>編集</guimenu></term>
+	  <listitem>
+	    <para>
+	   編集メニューには以下のものがありあます。
+	   <itemizedlist>
+	      <listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>Z</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>元に戻す</guimenuitem>
+		    </menuchoice>
+	            &mdash; 直前の操作を取り消します。
+	          </para>
+		</listitem>
+	      <listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>R</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>やり直し</guimenuitem>
+		    </menuchoice>
+	            &mdash; 最後の“元に戻す”操作を取り消します。
+	          </para>
+		</listitem>
+		
+		<listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>F6</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>検索</guimenuitem>
+		    </menuchoice>
+		  &mdash; <link
+		  linkend="ghexfindreplace">検索ダイアログ</link>を開きます。
+	          </para>
+		</listitem>
+		
+		<listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>F7</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>置換</guimenuitem>
+		    </menuchoice>
+		  &mdash; <link linkend="ghexfindreplace">検索およびデータの置換ダイアログ</link>を
+	開きます。
+	          </para>
+		</listitem>
+		 <listitem>
+		  <para>
+	            <menuchoice>
+		      <shortcut>
+			<keycombo><keycap>Ctrl</keycap><keycap>J</keycap></keycombo>
+		      </shortcut>
+		      <guimenuitem>nバイト目にジャンプ</guimenuitem>
+		    </menuchoice>
+	            &mdash; “nバイト目にジャンプ”ダイアログを開きます。
+		10進数か16進数（0xを付ける）で指定します。
+	          </para>
+		</listitem>
+		<listitem>
+		  <para>
+	            <menuchoice>
+		      <guimenuitem>挿入モード</guimenuitem>
+		    </menuchoice>
+	            &mdash; データを上書きせず、挿入します。
+	          </para>
+		</listitem>
+	      </itemizedlist>
+	    </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><guimenu>表示</guimenu></term>
+	  <listitem>
+	    <para>
+	   表示メニューには以下のものがあります。
+	   <itemizedlist>
+		<listitem>
+		  <para>
+	      <guimenuitem>ビューを追加</guimenuitem>
+	       &mdash; 編集中のファイルを新しいウィンドウでさらに開きます。
+	     </para>
+		</listitem>
+		<listitem>
+		  <para>
+	            <guimenuitem>ビューを削除</guimenuitem> &mdash;現在のビューを削除します。
+		最後の対応ファイルのビューでも、ファイルは閉じません。
+		ファイルメニューからアクセスすることができます。
+    	    	   </para>
+		</listitem>
+	      </itemizedlist>
+	    </para>
+	  </listitem>
+	</varlistentry>
+
+      <varlistentry>
+	  <term><guimenu>ツール</guimenu></term>
+	  <listitem>
+	    <para>
+	   ツールメニューには以下のものがあります。
+	   <itemizedlist>
+		<listitem>
+		  <para>
+	      <guimenuitem>基底変換ツールを開く </guimenuitem>
+		  &mdash; 基底変換ツールを開きます。
+	     </para>
+		</listitem>
+		<listitem>
+		  <para>
+	            <guimenuitem>キャラクタテーブル</guimenuitem> &mdash;
+		0から255までの値をASCII文字、16進数、10進数、8進数の一覧で表示します。
+		下側でダブルクリックすると、そのバイト値を選択しているビューの
+		カーソルの位置にセットします。
+    	    	   </para>
+		</listitem>
+	      </itemizedlist>
+	    </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term><guimenu>設定</guimenu></term>
+	  <listitem>
+	    <para>
+	   設定メニューには以下のものがあります。
+	   <itemizedlist>
+		<listitem>
+		  <para>
+	      <guimenuitem>設定&hellip;</guimenuitem>
+	       &mdash; <link
+	       linkend="prefs"><interface>設定</interface>ダイアログを開きます。
+	       </link>
+	     </para>
+
+		</listitem>
+		
+	    </itemizedlist>
+	  </para>
+	</listitem>
+	</varlistentry>
+	
+	<varlistentry>
+	  <term><guimenu>ファイル</guimenu></term>
+	  <listitem>
+	    <para>
+	      開いているファイルが表示されます。クリックするとファイルにアクセスできます。</para>
+		</listitem>
+	</varlistentry>
+<varlistentry>
+	  <term><guimenu>ヘルプ</guimenu></term>
+	  <listitem>
+	    <para>
+	      ヘルプメニューには次のものがあります。
+	       <itemizedlist>
+		<listitem>
+		  <para>
+	             <guimenuitem>ヘルプ</guimenuitem> &mdash;<application>ヘルプ
+    	              ブラウザ</application>を開いてこのマニュアルを表示します。
+	          </para>
+		</listitem>
+		
+		<listitem>
+		  <para>
+	            <guimenuitem>情報</guimenuitem> &mdash; 
+    	             <interface>情報</interface>
+    	            <application>GHex</application>の作者やバージョン、
+    	             ウェブページなどの基本的な情報を表示します。
+	          </para>
+		</listitem>
+	      </itemizedlist>
+            </para>
+	  </listitem>
+	</varlistentry>
+
+      </variablelist>
+    
+  </sect1>
+
+  <sect1 id="ghexediting">
+    <title>ファイルの編集</title>
+    <para>十字キーやテンキー、バッファの左にあるスクロールバーマウスクリックによってファイルの中を移動することができます。16進数の部分、ASCIIの部分をクリックすることによって
+それぞれの編集モードになります。
+    </para>
+    <para>ASCIIモードでは、多くのテキストエディタのように編集することができます。
+	16進モードでは、0から9とaからfキーで1単位（4ビット、半バイト）ずつ
+	カーソル位置の値を編集することができます。
+    </para>
+  </sect1>
+
+  <sect1 id="ghexfindreplace">
+    <title>検索・置換</title>
+<para><guimenu>編集</guimenu>メニューから<guimenuitem>検索</guimenuitem>を
+選択すると、<interface>検索ダイアログボックス</interface>が開かれます。
+      <figure id="ghexfind-fig">
+	  <title>GHex検索ダイアログ</title>
+	  <screenshot>
+	  <screeninfo><application>GHex</application>検索ダイアログ</screeninfo>
+	    <graphic fileref="ghexfind" format="png" srccredit="John Fleck">
+            </graphic>
+	  </screenshot>
+	</figure>
+検索ダイアログボックスでは16進数、
+<acronym>ASCII</acronym>のどちらでも入力した文字列を検索することができます。
+検索するには、単に、欄に文字列を入力し、“次を検索”か“前を検索”ボタンを
+クリックするだけです。下のラジオボタンで16進数かASCIIのどちらを検索するかを
+選択することができます。
+    </para>
+    <para>置換も、検索する語と置換する語の両方を入力する必要があること以外は、
+検索と同様です。<guimenu>編集</guimenu>から<guimenuitem>置換</guimenuitem>
+を選択し、<interface>検索／置換ダイアログ</interface>を開きます。
+      <figure id="ghexfindreplace-fig">
+	  <title>GHex検索／置換ダイアログ</title>
+	  <screenshot>
+	  <screeninfo><application>GHex</application> Find/Replace Dialog</screeninfo>
+	    <graphic fileref="ghexfindreplace" format="png" srccredit="John Fleck">
+            </graphic>
+	  </screenshot>
+	</figure>
+	<guibutton>次を検索</guibutton>ボタンは1つ目のテキスト入力部分と
+一致する次の部分を検索します。
+<guibutton>置換</guibutton>ボタンは検索された文字列の先頭にカーソルがある場合は置換を行い、
+検索された文字列の先頭に内場合は、次の一致する文字列の検索を試みます。
+最後に。<guibutton>すべて置換</guibutton>ボタンは
+カーソル位置からファイルの終端までの一致するすべての語を置換します。
+    </para>
+  </sect1>
+
+  <sect1 id="ghexconversion">
+    <title>基底変換ダイアログ</title>
+    <para>ある4バイトのデータをそれに対応するバイナリ、10進数、16進数、<acronym>ASCII</acronym>文字で表示します。
+
+ <figure id="ghexconverter-fig">
+	  <title>GHex基底変換ダイアログ</title>
+	  <screenshot>
+	  <screeninfo><application>GHex</application>基底変換ダイアログ</screeninfo>
+	    <graphic fileref="ghexconverter" format="png" srccredit="John Fleck">
+            </graphic>
+	  </screenshot>
+	</figure>
+“カーソルの値を取得”で値を取得すると、自動的に値が更新されます。
+（バイトか文字か幅広文字かはグループ設定に依存します）
+    </para>
+  </sect1>
+ <!-- ============= Customization ============================= -->
+
+ <sect1 id="prefs">
+  <title>カスタマイズ</title>
+  <para>
+   アプリケーションの設定を変更するには
+   <menuchoice>
+    <guimenu>設定</guimenu>
+    <guimenuitem>環境設定...</guimenuitem>
+   </menuchoice>
+を選択します。
+   <interface>環境設定</interface>ダイアログを開きます。
+  </para>
+    <para>編集設定：
+
+
+  <figure id="ghexprefedit-fig">
+   <title>GHex環境設定ダイアログ</title>
+   <screenshot>
+    <screeninfo>GHex環境設定ダイアログ</screeninfo>
+    <graphic fileref="ghexprefedit" format="png"
+     srccredit="John Fleck">
+    </graphic>
+   </screenshot>
+  </figure>
+     環境設定ダイアログでは元に戻すことができる最大回数の設定と、表示
+     されるカーソルオフセットの形式を選択することができます。表示され
+     るオフセットの形式は、x,o,s以外に、オリジナルのものも設定すること
+     ができます。また、オフセットの行頭を左側に表示するかどうかもまた設定
+     することができます。
+    </para>
+    <para>表示設定
+ <figure id="ghexdisplaypref-fig">
+   <title>GHex環境設定ダイアログ</title>
+   <screenshot>
+    <screeninfo>GHex環境設定表示ダイアログ</screeninfo>
+    <graphic fileref="ghexdisplaypref" format="png"
+     srccredit="John Fleck">
+    </graphic>
+   </screenshot>
+  </figure>
+      ここでは、データグループの形式の初期値と、表示に使用するフォント
+を指定することができます。
+    </para>
+
+    <para>MDI Settings:
+<figure id="ghexmdipref-fig">
+   <title>GHex環境設定MDIダイアログ</title>
+   <screenshot>
+    <screeninfo>GHex環境設定MDIダイアログ</screeninfo>
+    <graphic fileref="ghexmdiprefs" format="png"
+     srccredit="John Fleck">
+    </graphic>
+   </screenshot>
+  </figure>
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    デフォルト: ユーザがルック＆フィールプロパティで設定しているモードを使用します。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>ノートブック: ノートのページ形式で表示します。
+ルートウィンドウにドラッグすると、
+トップレベルウィンドウを作成できます。
+	 </para>
+	</listitem>
+	<listitem>
+	  <para>トップレベル: それぞれトップレベルのウィンドウで表示します。</para>
+	</listitem>
+	<listitem>
+	  <para>モダル: １つのウィンドウのみ表示します。
+	ファイルメニューから他のドキュメントを選択することができます。
+	</para>
+	</listitem>
+      </itemizedlist>
+    </para>
+
+    <para>プリント設定
+      <figure id="ghexprintpref-fig">
+   <title>GHex出力設定ダイアログ</title>
+   <screenshot>
+    <screeninfo>GHex出力設定ダイアログ</screeninfo>
+    <graphic fileref="ghexprintprefs" format="png"
+     srccredit="John Fleck">
+    </graphic>
+   </screenshot>
+  </figure>
+		用紙の大きさやフォント、ヘッダ、どの部分を影付きにするかを選択すること
+      ができます。 
+    </para>    
+  </sect1>
+
+
+<!-- ============= Authors ================================ -->
+
+ <sect1 id="authors">
+  <title>作者</title>
+  <para>
+   <application>GHex</application>の制作者はJaka
+   Mocnik(<email>jaka.mocnik@kiss.uni-lj.si</email>)です。 
+   <application>GHex</application>の詳しい情報を手に入れるには<ulink
+   url="http://pluton.ijs.si/~jaka/gnome.html#GHEX" type="http">GHexウェ
+   ブページ</ulink>を見てください。すべてのコメントや提案、バグ報告は
+   <ulink url="http://bugzilla.gnome.org" type="http">GNOME
+   バグ追跡データベース</ulink>に送ってください。また、
+<guimenu>メインメニュー</guimenu>内の<guisubmenu>ユーティリティ
+   </guisubmenu>から<application>バグ報告ツール</application>
+   (<command>bug-buddy</command>)を使って送ることもできます。
+  </para>
+
+  <para>
+   このマニュアルの著者はJaka
+   Mocnik(<email>jaka.mocnik@kiss.uni-lj.si</email>)です。
+提案などこのマニュアルに関することは
+<ulink type="http"
+   url="http://developer.gnome.org/projects/gdp">GNOME Documentation
+   Project</ulink><email>docs@gnome.org</email>に送ってください。また、
+ <ulink type="http"
+   url="http://developer.gnome.org/projects/gdp/doctable/">GNOME
+   Documentation Status Table</ulink>にて送ることもできます。
+  </para>
+
+  <para>
+日本語訳は小松崎章仁(<email>komatsu@gnome.gr.jp</email>)が行いました。
+	誤訳や誤植、コメントなどがありましたら、ご連絡ください。
+  </para>
+ </sect1>
+
+
+ <!-- ============= Application License ============================= -->
+
+ <sect1 id="license">
+  <title>License</title>
+  <para>
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the  <ulink type="help" url="gnome-help:gpl">
+    <citetitle>GNU General Public License</citetitle></ulink> as
+   published by the Free Software Foundation; 
+   either version 2 of the License, or (at your option) any later
+   version.
+  </para>
+
+
+  <para>
+   This program is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   <citetitle>GNU General Public License</citetitle> for more details.
+  </para>
+  <para>
+   A copy of the <citetitle>GNU General Public License</citetitle> is
+   included as an appendix to the <citetitle>GNOME Users
+   Guide</citetitle>.  You may also obtain a copy of the
+   <citetitle>GNU General Public License</citetitle> from the Free
+   Software Foundation by visiting <ulink type="http"
+   url="http://www.fsf.org">their Web site</ulink> or by writing to
+   <address>
+    Free Software Foundation, Inc.
+    <street>59 Temple Place</street> - Suite 330
+    <city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>
+    <country>USA</country>
+   </address>
+  </para>
+
+  <para>
+  このプログラムはフリーソフトウェアです。<citetitle>GNU 一般公有使用許諾誓約書</citetitle>
+  第二版（とあなたのオプション）、もしくはそれ以降
+  に基づく再配布、変造ができます。
+  </para>
+  <para>
+このプログラムは役に立つことを望んで配布されていますが、いかなる保証もありません。
+商用や特殊な目的での使用は暗黙の保証もありません。さらに詳しくは
+<citetitle>GNU 一般公有使用許諾契約書</citetitle>を見てください。
+  </para>
+  <para>
+<citetitle>GNU 一般公有使用許諾契約書</citetitle>の写しが
+<citetitle>GNOME ユーザガイド</citetitle>の付録に含まれています。
+また、<citetitle>GNU 一般公有使用許諾契約書</citetitle>の写し
+を<ulink type="http"
+   url="http://www.fsf.org">Web サイト</ulink>を見るか、以下の住所に連
+絡することによって入手することができます。
+   <address>
+    Free Software Foundation, Inc.
+    <street>59 Temple Place</street> - Suite 330
+    <city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>
+    <country>USA</country>
+   </address>
+  </para>
+ </sect1>
+</article>
+
+
+
+
+
+
+
+
+
