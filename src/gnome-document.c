@@ -94,19 +94,19 @@ static void gnome_document_class_init (GnomeDocumentClass *class) {
   object_class->destroy = gnome_document_destroy;
 
   document_signals[CREATE_VIEW] = gtk_signal_new ("create_view",
-						  GTK_RUN_FIRST,
+						  GTK_RUN_LAST,
 						  object_class->type,
 						  GTK_SIGNAL_OFFSET (GnomeDocumentClass, create_view),
 						  gnome_document_marshal_1,
 						  GTK_TYPE_POINTER, 0);
   document_signals[CREATE_MENUS] = gtk_signal_new ("create_menus",
-						  GTK_RUN_FIRST,
+						  GTK_RUN_LAST,
 						  object_class->type,
 						  GTK_SIGNAL_OFFSET (GnomeDocumentClass, create_menus),
 						  gnome_document_marshal_3,
 						  GTK_TYPE_POINTER, 1, GTK_TYPE_POINTER);
   document_signals[DOCUMENT_CHANGED] = gtk_signal_new ("document_changed",
-						       GTK_RUN_FIRST,
+						       GTK_RUN_LAST,
 						       object_class->type,
 						       GTK_SIGNAL_OFFSET (GnomeDocumentClass, document_changed),
 						       gnome_document_marshal_2,
