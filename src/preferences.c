@@ -283,7 +283,7 @@ create_prefs_dialog()
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_widget_show(label);
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
-					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
+					 GTK_FILL, GTK_FILL,
 					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
 	pui->df_button = gnome_font_picker_new();
@@ -315,7 +315,7 @@ create_prefs_dialog()
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_widget_show(label);
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
-					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
+					 GTK_FILL, GTK_FILL,
 					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 	pui->hf_button = gnome_font_picker_new();
 	gnome_font_picker_set_mode (GNOME_FONT_PICKER (pui->hf_button),

@@ -1,3 +1,16 @@
+2002-07-20  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/Makefile.am (INCLUDES): fixed locale paths.
+	* src/hex-document.c (hex_document_export_html): show a progress
+	indicator during exporting.
+	* src/preferences.c (create_prefs_dialog): slightly fixed layout.
+	* src/ghex-window.c, src/ghex-ui.xml, src/ui.c: reorganized ui.
+	Files menu has been renamed to Windows and Character table and
+	Converter items have also been moved to Windows menu.
+	* src/findreplace.c: display a dialog when a string is not found.
+	* src/ui.c (display_info_dialog): format a message and display it in
+	an info dialog.
+
 2002-07-18  Shivram U  <shivaram.upadhyayula@wipro.com>
 
 	* src/print.c (ghex_print_job_info_new): We dont have to create a new

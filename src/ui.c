@@ -49,8 +49,6 @@ static void print_preview_cb (BonoboUIComponent *uic, gpointer user_data, const 
 static void export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void converter_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-static void char_table_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void DnDNewWindow_cb(BonoboUIComponent *uic, gpointer user_data, const char *cname);
@@ -86,8 +84,6 @@ BonoboUIVerb ghex_verbs [] = {
 	BONOBO_UI_VERB ("FilePrintPreview", print_preview_cb),
 	BONOBO_UI_VERB ("FileClose", close_cb),
 	BONOBO_UI_VERB ("FileExit", quit_app_cb),
-	BONOBO_UI_VERB ("Converter", converter_cb),
-	BONOBO_UI_VERB ("CharacterTable", char_table_cb),
 	BONOBO_UI_VERB ("EditUndo", undo_cb),
 	BONOBO_UI_VERB ("EditRedo", redo_cb),
 	BONOBO_UI_VERB ("Find", find_cb),
@@ -477,9 +473,6 @@ export_html_selected_file(GtkWidget *w, GtkHex *view)
 	g_free(html_path);
 }
 
-/* Defined in converter.c: used by close_cb and converter_cb */
-extern GtkWidget *get;
-
 static void
 close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
@@ -514,8 +507,8 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	/* If we have created the converter window disable the 
 	 * "Get cursor value" button
 	 */
-	if (get)
-		gtk_widget_set_sensitive(get, FALSE);
+	if (converter_get)
+		gtk_widget_set_sensitive(converter_get, FALSE);
 }
 
 void
@@ -548,38 +541,6 @@ file_list_activated_cb (BonoboUIComponent *uic, gpointer user_data, const gchar*
 		raise_and_focus_widget(GTK_WIDGET(win));
 	}
 }
-
-static void
-converter_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
-{
-	if(!converter)
-		converter = create_converter();
-
-	if(!GTK_WIDGET_VISIBLE(converter->window)) {
-		gtk_window_position(GTK_WINDOW(converter->window), GTK_WIN_POS_MOUSE);
-		gtk_widget_show(converter->window);
-	}
-	raise_and_focus_widget(converter->window);
-
-	if (!ghex_window_get_active())
-		gtk_widget_set_sensitive(get, FALSE);
-	else
-		gtk_widget_set_sensitive(get, TRUE);
-}
-
-static void
-char_table_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
-{
-	if(!char_table)
-		char_table = create_char_table();
-
-	if(!GTK_WIDGET_VISIBLE(char_table)) {
-		gtk_window_position(GTK_WINDOW(char_table), GTK_WIN_POS_MOUSE);
-		gtk_widget_show(char_table);
-	}
-	raise_and_focus_widget(char_table);
-}
-
 
 /* Changed the function parameters -- SnM */
 static
@@ -669,8 +630,8 @@ open_selected_file(GtkWidget *w, gpointer user_data)
 								GHEX_WINDOW(win)->gh->document->file_name);
 		ghex_window_flash(GHEX_WINDOW(win), flash);
 		g_free(flash);
-		if (get)
-			gtk_widget_set_sensitive(get, TRUE);
+		if (converter_get)
+			gtk_widget_set_sensitive(converter_get, TRUE);
 	}
 	else
 		display_error_dialog (ghex_window_get_active(), _("Can not open file!"));
@@ -872,6 +833,32 @@ display_error_dialog (GHexWindow *win, const gchar *msg)
 	gtk_window_set_resizable (GTK_WINDOW (error_dlg), FALSE);
 	gtk_dialog_run (GTK_DIALOG (error_dlg));
 	gtk_widget_destroy (error_dlg);
+}
+
+void
+display_info_dialog (GHexWindow *win, const gchar *msg, ...)
+{
+	GtkWidget *info_dlg;
+	gchar *real_msg;
+	va_list args;
+
+	g_return_if_fail (win != NULL);
+	g_return_if_fail (msg != NULL);
+	va_start(args, msg);
+	real_msg = g_strdup_vprintf(msg, args);
+	va_end(msg);
+	info_dlg = gtk_message_dialog_new (
+			GTK_WINDOW (win),
+			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+			GTK_MESSAGE_ERROR,
+			GTK_BUTTONS_OK,
+			real_msg);
+	g_free(real_msg);
+
+	gtk_dialog_set_default_response (GTK_DIALOG (info_dlg), GTK_RESPONSE_OK);
+	gtk_window_set_resizable (GTK_WINDOW (info_dlg), FALSE);
+	gtk_dialog_run (GTK_DIALOG (info_dlg));
+	gtk_widget_destroy (info_dlg);
 }
 
 void

@@ -696,6 +696,12 @@ hex_document_set_max_undo(HexDocument *doc, guint max_undo)
 	}
 }
 
+static gboolean
+ignore_cb(GtkWidget *w, GdkEventAny *e, gpointer user_data)
+{
+	return TRUE;
+}
+
 gint
 hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 						 guint start, guint end, guint cpl, guint lpp,
@@ -704,6 +710,9 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 	FILE *file;
 	int page, line, pos, lines, pages, c;
 	gchar *page_name, b;
+	GtkWidget *progress_dialog, *progress_bar;
+	gint update_pages;
+	gchar *progress_str;
 
 	lines = (end - start)/cpl;
 	if((end - start)%cpl != 0)
@@ -711,6 +720,7 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 	pages = lines/lpp;
 	if(lines%lpp != 0)
 		pages++;
+	update_pages = pages/1000 + 1;
 
 	/* top page */
 	page_name = g_strdup_printf("%s/%s.html", html_path, base_name);
@@ -740,15 +750,39 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 	fprintf(file, "</BODY>\n</HTML>\n");
 	fclose(file);
 
+	progress_dialog = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_resizable(GTK_WINDOW(progress_dialog), FALSE);
+	g_signal_connect(G_OBJECT(progress_dialog), "delete-event",
+					 G_CALLBACK(ignore_cb), NULL);
+	gtk_window_set_title(GTK_WINDOW(progress_dialog),
+						 _("Saving to HTML..."));
+	gtk_container_set_border_width(GTK_CONTAINER(progress_dialog), 8);
+	progress_bar = gtk_progress_bar_new();
+	gtk_widget_show(progress_bar);
+	gtk_container_add(GTK_CONTAINER(progress_dialog), progress_bar);
+	gtk_widget_show(progress_dialog);
+
 	pos = start;
+	g_object_ref(G_OBJECT(doc));
 	for(page = 0; page < pages; page++) {
+		if((page%update_pages) == 0) {
+			gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(progress_bar),
+										  (gdouble)page/(gdouble)pages);
+			progress_str = g_strdup_printf("%d%%",
+										   (gint)((gdouble)page/(gdouble)pages*100));
+			gtk_progress_bar_set_text(GTK_PROGRESS_BAR(progress_bar),
+									  progress_str);
+			g_free(progress_str);
+			while(gtk_events_pending())
+				gtk_main_iteration();
+		}
 		/* write page header */
 		page_name = g_strdup_printf("%s/%s%08d.html",
 									html_path, base_name, page);
 		file = fopen(page_name, "w");
 		g_free(page_name);
 		if(!file)
-			return FALSE;
+			break;
 		/* write header */
 		fprintf(file, "<HTML>\n<HEAD>\n");
 		fprintf(file, "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n");
@@ -841,6 +875,9 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 		fprintf(file, "</BODY>\n</HTML>\n");
 		fclose(file);
 	}
+	g_object_unref(G_OBJECT(doc));
+	gtk_widget_destroy(progress_dialog);
+
 	return TRUE;
 }
 

@@ -83,9 +83,6 @@ ghex_window_drag_data_received(GtkWidget *widget,
     }
 }
 
-/* Defined in converter.c: used by close_cb and converter_cb */
-extern GtkWidget *get;
-
 gboolean
 ghex_window_close(GHexWindow *win)
 {
@@ -117,8 +114,8 @@ ghex_window_close(GHexWindow *win)
 	/* If we have created the converter window disable the 
 	 * "Get cursor value" button
 	 */
-	if (get)
-		gtk_widget_set_sensitive(get, FALSE);
+	if (converter_get)
+		gtk_widget_set_sensitive(converter_get, FALSE);
 
     gtk_widget_destroy(GTK_WIDGET(win));
 }
@@ -323,7 +320,43 @@ ghex_window_listener (BonoboUIComponent           *uic,
 		gtk_hex_set_insert_mode(win->gh, *state == '1');
 		return;
 	}
+    else if(!strcmp (path, "Converter")) {
+        if(!converter)
+            converter = create_converter();
 
+        if(state && atoi(state)) {
+            if(!GTK_WIDGET_VISIBLE(converter->window)) {
+                gtk_window_position(GTK_WINDOW(converter->window), GTK_WIN_POS_MOUSE);
+                gtk_widget_show(converter->window);
+            }
+            raise_and_focus_widget(converter->window);
+
+            if (!ghex_window_get_active() && converter_get)
+                gtk_widget_set_sensitive(converter_get, FALSE);
+            else
+                gtk_widget_set_sensitive(converter_get, TRUE);
+        }
+        else {
+            gtk_widget_hide(converter->window);
+        }
+        return;
+    }
+    else if(!strcmp (path, "CharacterTable")) {
+        if(!char_table)
+            char_table = create_char_table();
+
+        if(state && atoi(state)) {
+            if(!GTK_WIDGET_VISIBLE(char_table)) {
+                gtk_window_position(GTK_WINDOW(char_table), GTK_WIN_POS_MOUSE);
+                gtk_widget_show(char_table);
+            }
+            raise_and_focus_widget(char_table);
+        }
+        else {
+            gtk_widget_hide(GTK_WIDGET(char_table));
+        }
+        return;
+    }
 	if (!state || !atoi (state))
 		return;
 
@@ -378,6 +411,10 @@ ghex_window_new(void)
 	bonobo_ui_component_add_listener (uic, "Longwords",
                                       ghex_window_listener, win);
 	bonobo_ui_component_add_listener (uic, "InsertMode",
+                                      ghex_window_listener, win);
+	bonobo_ui_component_add_listener (uic, "Converter",
+                                      ghex_window_listener, win);
+	bonobo_ui_component_add_listener (uic, "CharacterTable",
                                       ghex_window_listener, win);
 	bonobo_ui_component_set_prop (uic, "/status", "hidden", "0", NULL);
 
@@ -572,7 +609,7 @@ void
 ghex_window_remove_doc_from_list(GHexWindow *win, HexDocument *doc)
 {
     gchar *verb_name = g_strdup_printf("FilesFile_%p", doc);
-    gchar *menu_path = g_strdup_printf("/menu/Files/%s", verb_name);
+    gchar *menu_path = g_strdup_printf("/menu/Windows/OpenDocuments/%s", verb_name);
     gchar *cmd_path = g_strdup_printf("/commands/%s", verb_name);
 
     bonobo_ui_component_remove_verb(win->uic, verb_name);
@@ -602,7 +639,7 @@ ghex_window_add_doc_to_list(GHexWindow *win, HexDocument *doc)
     g_free(tip);
     g_free(escaped_name);
 
-    bonobo_ui_component_set_translate(win->uic, "/menu/Files/", menu, NULL);
+    bonobo_ui_component_set_translate(win->uic, "/menu/Windows/OpenDocuments", menu, NULL);
     bonobo_ui_component_set_translate(win->uic, "/commands/", cmd, NULL);
     bonobo_ui_component_add_verb(win->uic, verb_name, file_list_activated_cb, doc);
 

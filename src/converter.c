@@ -169,7 +169,7 @@ create_converter_button(const gchar *name, GtkAccelGroup *accel_group)
 }    
 
 /* Made global. We need to access this in ui.c */
-GtkWidget *get = NULL;
+GtkWidget *converter_get = NULL;
 
 static void
 close_converter(GtkWidget *button, GnomeDialog *dialog)
@@ -218,20 +218,20 @@ create_converter()
 											 accel_group, 4, 0);
 
 	/* get cursor button */
-	get = create_converter_button(_("_Get cursor value"), accel_group);
+	converter_get = create_converter_button(_("_Get cursor value"), accel_group);
 
-	gtk_signal_connect(GTK_OBJECT(get), "clicked",
+	gtk_signal_connect(GTK_OBJECT(converter_get), "clicked",
 						GTK_SIGNAL_FUNC(get_cursor_val_cb), conv);
-	gtk_table_attach_defaults(GTK_TABLE(table), get, 0, 2, 5, 6);
+	gtk_table_attach_defaults(GTK_TABLE(table), converter_get, 0, 2, 5, 6);
 
 	/* add the accelerators */
 	gtk_window_add_accel_group(GTK_WINDOW(conv->window), accel_group);
 
-	if (GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(get))) {
-		add_atk_namedesc (get, _("Get cursor value"), _("Gets the value at cursor in binary, octal, decimal, hex and ASCII"));
+	if (GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(converter_get))) {
+		add_atk_namedesc (converter_get, _("Get cursor value"), _("Gets the value at cursor in binary, octal, decimal, hex and ASCII"));
 		for (i=0; i<5; i++) {
-			add_atk_relation (conv->entry[i], get, ATK_RELATION_CONTROLLED_BY);
-			add_atk_relation (get, conv->entry[i], ATK_RELATION_CONTROLLER_FOR);
+			add_atk_relation (conv->entry[i], converter_get, ATK_RELATION_CONTROLLED_BY);
+			add_atk_relation (converter_get, conv->entry[i], ATK_RELATION_CONTROLLER_FOR);
 		}
 	}
 

@@ -4,8 +4,8 @@ SUBDIRS = access
 
 INCLUDES = -I$(includedir) 				\
 	-DGNOMEICONDIR=\""$(datadir)/pixmaps"\"		\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
-	-DLOCALEDIR=\"$(datadir)/locale\"		\
+	-DGNOMELOCALEDIR=\""${prefix}/${DATADIRNAME}/locale"\" 	\
+	-DLOCALEDIR=\"${prefix}/${DATADIRNAME}/locale\"		\
 	-DGHEX_UI_DIR=\""$(datadir)/ghex2/ui/"\"		\
 	-DGHEX_GLADEDIR=\""$(datadir)/ghex2/glade/"\"	\
 	-DDATADIR=\""$(datadir)"\"			\

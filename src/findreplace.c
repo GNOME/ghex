@@ -334,7 +334,7 @@ static void find_next_cb(GtkWidget *w)
 	
 	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog->f_string)), str,
 									find_dialog->search_type)) == 0) {
-		display_error_dialog (win, _("There seems to be no string to search for!"));
+		display_error_dialog (win, _("The string is not appropriate for the selected data type!"));
 		return;
 	}
    	if(hex_document_find_forward(gh->document,
@@ -342,6 +342,7 @@ static void find_next_cb(GtkWidget *w)
 		gtk_hex_set_cursor(gh, offset);
 	else {
 		ghex_window_flash(win, _("End Of File reached"));
+		display_info_dialog(win, "String was not found!\n");
 	}
 }
 
@@ -361,7 +362,7 @@ static void find_prev_cb(GtkWidget *w)
 	
 	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog->f_string)), str,
 									find_dialog->search_type)) == 0) {
-		display_error_dialog (win, _("There seems to be no string to search for!"));
+		display_error_dialog (win, _("The string is not appropriate for the selected data type!"));
 		return;
 	}
 
@@ -370,6 +371,7 @@ static void find_prev_cb(GtkWidget *w)
 		gtk_hex_set_cursor(gh, offset);
 	else {
 		ghex_window_flash(win, _("Beginning Of File reached"));
+		display_info_dialog(win, "String was not found!\n");
 	}
 }
 
@@ -424,6 +426,7 @@ static void replace_next_cb(GtkWidget *w)
 								 gh->cursor_pos+1, str, str_len, &offset))
 		gtk_hex_set_cursor(gh, offset);
 	else {
+		display_info_dialog(win, "String was not found!\n");
 		ghex_window_flash(win, _("End Of File reached"));
 	}
 }
@@ -449,7 +452,7 @@ static void replace_one_cb(GtkWidget *w)
 									   replace_dialog->search_type)) == 0) ||
 		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->r_string)), rep_str,
 									  replace_dialog->search_type)) == 0)) {
-		display_error_dialog (win, _("Strange find or replace string!"));
+		display_error_dialog (win, _("Strings are not approprate for the selected data type!"));
 		return;
 	}
 	
@@ -464,6 +467,7 @@ static void replace_one_cb(GtkWidget *w)
 								 &offset))
 		gtk_hex_set_cursor(gh, offset);
 	else {
+		display_info_dialog(win, "String was not found!\n");
 		ghex_window_flash(win, _("End Of File reached!"));
 	}
 }
@@ -489,7 +493,7 @@ static void replace_all_cb(GtkWidget *w)
 									   replace_dialog->search_type)) == 0) ||
 		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->r_string)), rep_str,
 									  replace_dialog->search_type)) == 0)) {
-		display_error_dialog (win, _("Strange find or replace string!"));
+		display_error_dialog (win, _("Strings are not approprate for the selected data type!"));
 		return;
 	}
 	

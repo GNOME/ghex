@@ -34,9 +34,9 @@
         <cmd name="FileExit" _label="Exit" _tip="Exit the program"
            pixtype="stock" pixname="gtk-quit" accel="*Control*Q"/>
 
-	<cmd name="Converter" _label="Converter..." _tip="Open base conversion dialog"/>
+	<cmd name="Converter" type="toggle" _label="Converter..." _tip="Open base conversion dialog"/>
 
-	<cmd name="CharacterTable" _label="Character Table..." _tip="Show the character table"/>
+	<cmd name="CharacterTable" type="toggle" _label="Character Table..." _tip="Show the character table"/>
 
 	<cmd name="EditUndo" _label="Undo" _tip="Undo the last action"
 	pixtype="stock" pixname="gtk-undo" accel="*Control*Z"/>
@@ -162,19 +162,14 @@
 
 </submenu>
 
+<submenu name="Windows" _label="_Windows">
+	<placeholder delimit="bottom" name="OpenDocuments" />
 
-<submenu name="Tools" _label="_Tools">
+	<separator/>
 
-	<menuitem name="CharacterTable" verb="" _label="Character _Table..."/>
+	<menuitem name="CharacterTable" type="toggle" verb="" _label="Character _Table..."/>
 
-	<menuitem name="Converter" verb="" _label="_Base Converter"/>
-
-</submenu>
-
-<submenu name="Files" _label="Fi_les">
-
-	<placeholder name="OpenDocuments" />
-
+	<menuitem name="Converter" type="toggle" verb="" _label="_Base Converter"/>
 </submenu>
 
 <submenu name="Help" _label="_Help">

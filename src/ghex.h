@@ -203,6 +203,9 @@ void client_die (GnomeClient *client, gpointer client_data);
 
 extern BonoboUIVerb ghex_verbs [];
 
+/* Defined in converter.c: used by close_cb and converter_cb */
+extern GtkWidget *converter_get;
+
 /* Initializes the gconf client */
 void ghex_prefs_init (void);
 
@@ -221,6 +224,7 @@ void quit_app_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbn
 void file_list_activated_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 
 void display_error_dialog (GHexWindow *win, const gchar *msg);
+void display_info_dialog (GHexWindow *win, const gchar *msg, ...);
 void update_dialog_titles (void);
 void raise_and_focus_widget(GtkWidget *);
 
