@@ -6,137 +6,139 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 1.0.5x\n"
-"POT-Creation-Date: 2001-03-08 19:39+0100\n"
-"PO-Revision-Date: 2000-04-14 17:24+02:00\n"
+"Project-Id-Version: ghex\n"
+"POT-Creation-Date: 2001-09-21 05:38-0400\n"
+"PO-Revision-Date: 2001-09-25 17:24+02:00\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/converter.c:44
+#: src/converter.c:176
 msgid "GHex: Converter"
 msgstr "GHex: Konverteringsprogram"
 
-#: src/chartable.c:91 src/converter.c:53
-msgid "Binary"
-msgstr "Binær"
+#. entries
+#: src/converter.c:195
+msgid "_Binary"
+msgstr "_Binær"
 
-#: src/chartable.c:90 src/converter.c:63 src/preferences.c:161
-msgid "Decimal"
-msgstr "Decimal"
+#: src/converter.c:197
+msgid "_Octal"
+msgstr "_Oktalt"
 
-#: src/chartable.c:90 src/converter.c:73
-msgid "Hex"
-msgstr "Hex"
+#: src/converter.c:199
+msgid "_Decimal"
+msgstr "_Decimal"
 
-#: src/chartable.c:90 src/converter.c:83
-msgid "ASCII"
-msgstr "ASCII"
+#: src/converter.c:201
+msgid "_Hex"
+msgstr "_Hex"
 
-#: src/converter.c:93
-msgid "Get cursor value"
-msgstr "Skaf markørværdi"
+#: src/converter.c:203
+msgid "_ASCII"
+msgstr "_ASCII"
 
-#: src/converter.c:99
-msgid "Close"
-msgstr "Luk"
+#. get cursor button
+#: src/converter.c:207
+msgid "_Get cursor value"
+msgstr "_Skaf markørværdi"
 
-#: src/converter.c:194
+#: src/converter.c:323
 msgid "ERROR"
 msgstr "ERROR"
 
-#: src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:60 src/main.c:98
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Find data"
 
-#: src/findreplace.c:67
+#: src/findreplace.c:69
 #, c-format
 msgid "Search for %s"
 msgstr "Søg efter %s"
 
-#: src/findreplace.c:83
+#: src/findreplace.c:86
 msgid "Find Next"
 msgstr "Find næste"
 
-#: src/findreplace.c:91
+#: src/findreplace.c:94
 msgid "Find Previous"
 msgstr "Find forrige"
 
-#: src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:130 src/main.c:100
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Find og erstat data"
 
-#: src/findreplace.c:141
+#: src/findreplace.c:144
 #, c-format
 msgid "Replace %s"
 msgstr "Erstat %s"
 
-#: src/findreplace.c:157
+#: src/findreplace.c:161
 msgid "Find next"
 msgstr "Find næste"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:169
 msgid "Replace"
 msgstr "Erstat"
 
-#: src/findreplace.c:173
+#: src/findreplace.c:177
 msgid "Replace All"
 msgstr "Erstat alle"
 
-#: src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:210 src/main.c:102
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hop til byte"
 
-#: src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:299 src/findreplace.c:324 src/findreplace.c:376
 msgid "There is no active buffer to search!"
 msgstr "Der er ingen aktiv buffer at søge i!"
 
-#: src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:307 src/findreplace.c:332 src/findreplace.c:384
 msgid "There seems to be no string to search for!"
 msgstr "Der er vist ingen tekst-streng at søge efter!"
 
-#: src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:314 src/findreplace.c:392
 msgid "End Of File reached"
 msgstr "Du er ved slutningen af filen"
 
-#: src/findreplace.c:336
+#: src/findreplace.c:340
 msgid "Beginning Of File reached"
 msgstr "Du er ved begyndelsen af filen"
 
-#: src/findreplace.c:345
+#: src/findreplace.c:349
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Der er ingen aktiv buffer at flytte markøren i!"
 
-#: src/findreplace.c:350
+#: src/findreplace.c:354
 msgid "No offset has been specified!"
 msgstr "Der er ikke blevet angivet en afstand!"
 
-#: src/findreplace.c:357
+#: src/findreplace.c:361
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Kan ikke placere markøren efter slutningen af filen!"
 
-#: src/findreplace.c:362
+#: src/findreplace.c:366
 msgid "The offset must be a positive integer value!"
 msgstr "Afstanden skal have en positiv integerværdi!"
 
-#: src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:403 src/findreplace.c:440
 msgid "There is no active buffer to replace data in!"
 msgstr "Der er ingen aktiv buffer at erstatte data i!"
 
-#: src/findreplace.c:410 src/findreplace.c:447
+#: src/findreplace.c:414 src/findreplace.c:451
 msgid "Strange find or replace string!"
 msgstr "Mærkelig søg og erstat tekst-streng!"
 
-#: src/findreplace.c:425
+#: src/findreplace.c:429
 msgid "End Of File reached!"
 msgstr "Filens slutning er nået!"
 
-#: src/findreplace.c:463
+#: src/findreplace.c:467
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Erstattede %d forekomster."
@@ -171,7 +173,7 @@ msgstr "_Ord"
 
 #: src/hex-document-ui.c:53
 msgid "Group data by 16 bits"
-msgstr "Gruppér data pr. 16 bits"
+msgstr "Gruppér data pr. 16 bit"
 
 #: src/hex-document-ui.c:54
 msgid "_Longwords"
@@ -217,7 +219,7 @@ msgstr "_Fjern visning"
 msgid "Remove the current view of the buffer"
 msgstr "Fjern dem aktuelle visning af bufferen"
 
-#: src/main.c:51
+#: src/main.c:52
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -226,7 +228,7 @@ msgstr ""
 "Filen %s har ændret sig siden sidste gemning.\n"
 "Ønsker du at gemme ændringerne?"
 
-#: src/main.c:202
+#: src/main.c:204
 #, c-format
 msgid "Offset: %s"
 msgstr "Afstand: %s"
@@ -258,6 +260,10 @@ msgstr "Maksimum antal af fortrydninger?"
 #: src/preferences.c:147
 msgid "Show cursor offset in statusbar as"
 msgstr "Vis markørafstand i statusbaren som"
+
+#: src/chartable.c:90 src/preferences.c:161
+msgid "Decimal"
+msgstr "Decimal"
 
 #: src/preferences.c:166
 msgid "Hexadecimal"
@@ -333,140 +339,169 @@ msgstr "linier (0 for ingen kasse)"
 msgid "Printing"
 msgstr "Udskriver"
 
-#: src/preferences.c:534
+#: src/preferences.c:536
 msgid ""
-"The offset format string contains format specifier other than 'x', 'd' or "
-"'o'!"
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
-"Afstands-formatstrengen indeholder formatangiver forskellig fra 'x', "
-"'d'eller 'o'!"
+"Afstands-formatstrengen indeholder en ugyldig formatangiver.\n"
+"Kun 'x', 'X', 'p', 'P', 'd' og 'o' er tilladte."
 
-#: src/preferences.c:570
+#: src/preferences.c:573
 msgid "Can not open desired font!"
 msgstr "Kan ikke åbne den ønskede skrifttype!"
 
-#: src/ui.c:57
-msgid "Export to HTML..."
-msgstr "Eksportér til HTML"
+#: src/ui.c:61
+msgid "Export to _HTML..."
+msgstr "Eksportér til _HTML..."
 
-#: src/ui.c:57
+#: src/ui.c:61
 msgid "Export data to HTML source"
 msgstr "Eksportér data til HTML-kilde"
 
-#: src/ui.c:61
-msgid "Print preview..."
-msgstr "Udskriv kladde..."
+#: src/ui.c:65
+msgid "Print pre_view..."
+msgstr "Udskriv _kladde..."
 
-#: src/ui.c:61
+#: src/ui.c:65
 msgid "Preview printed data"
 msgstr "Kladde udskrevet data"
 
-#: src/ui.c:74
+#: src/ui.c:78
 msgid "Con_verter..."
 msgstr "_konverteringsprogram"
 
-#: src/ui.c:75
+#: src/ui.c:79
 msgid "Open base conversion dialog"
 msgstr "Åbn standard-konverteringsdialog"
 
-#: src/ui.c:76
-msgid "Character Table..."
-msgstr "Tegntabel..."
+#: src/ui.c:80
+msgid "Character _Table..."
+msgstr "Tegn_tabel..."
 
-#: src/ui.c:77
+#: src/ui.c:81
 msgid "Show the character table"
 msgstr "Vis tegntabellen"
 
-#: src/ui.c:94
-msgid "Tools"
-msgstr "Værktøjer"
+#: src/ui.c:98
+msgid "_Tools"
+msgstr "_Værktøjer"
 
-#: src/ui.c:108
+#: src/ui.c:112
 msgid "Bytes"
 msgstr "Byte"
 
-#: src/ui.c:109
+#: src/ui.c:113
 msgid "Words"
 msgstr "Ord"
 
-#: src/ui.c:110
+#: src/ui.c:114
 msgid "Longwords"
 msgstr "Lange ord"
 
-#: src/ui.c:115
+#: src/ui.c:119
 msgid "hex data"
 msgstr "hex data"
 
-#: src/ui.c:116
+#: src/ui.c:120
 msgid "ASCII data"
 msgstr "ASCII data"
 
-#: src/ui.c:200
+#: src/ui.c:204
 msgid "GHex, a binary file editor"
 msgstr "GHex, en editor til binære filer"
 
-#: src/ui.c:202
+#: src/ui.c:206
 msgid "Released under the terms of GNU Public License"
-msgstr "Udgivet under GNU Public Licence (GPL)"
+msgstr "Udgivet under GNU Public License (GPL)"
 
-#: src/ui.c:226 src/ui.c:548
+#: src/ui.c:230 src/ui.c:506
 msgid "Error saving file!"
 msgstr "Fejl under gemning af fil!"
 
-#: src/ui.c:230 src/ui.c:543
+#: src/ui.c:234 src/ui.c:501
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Gemte buffer til filen %s"
 
-#: src/ui.c:251
+#: src/ui.c:255
 msgid "Select a file to open"
 msgstr "Vælg en fil der skal åbnes"
 
-#: src/ui.c:286
+#: src/ui.c:290
 msgid "Select a file to save buffer as"
 msgstr "Vælg en fil at gemme bufferen som"
 
-#: src/ui.c:375
+#: src/ui.c:331
 msgid "Select path and file name for the HTML source"
 msgstr "Vælg sti og filnavn for HTML inddata"
 
-#: src/ui.c:475
+#: src/ui.c:432
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Vil du gerne gendanne filen %s?"
 
-#: src/ui.c:488
+#: src/ui.c:446
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Gendannede buffer fra filen %s"
 
-#: src/ui.c:504
+#: src/ui.c:462
 #, c-format
 msgid "Loaded file %s"
 msgstr "Åbnede filen %s"
 
-#: src/ui.c:509
+#: src/ui.c:467
 msgid "Can not open file!"
 msgstr "Kan ikke åbne fil!"
 
-#: src/ui.c:552
+#: src/ui.c:510
 msgid "Can't open file for writing!"
 msgstr "Kan ikke åbne fil for skrivning"
+
+#: src/ui.c:579
+msgid "Print Hex Document"
+msgstr "Udskriv hex-dokument"
+
+#: src/ui.c:584
+msgid "Pages"
+msgstr "Sider"
+
+#: src/ui.c:625
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): Udskriv Kladde"
+
+#: src/chartable.c:90
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:90
+msgid "Hex"
+msgstr "Hex"
 
 #: src/chartable.c:91
 msgid "Octal"
 msgstr "Oktalt"
 
+#: src/chartable.c:91
+msgid "Binary"
+msgstr "Binær"
+
 #: src/chartable.c:98
 msgid "GHex: Character table"
 msgstr "GHex: Tegntabel"
 
-#: src/print.c:171
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Udskriv Kladde"
-
-#: src/print.c:187
+#: src/print.c:48
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Side: %i/%i"
+
+#: src/print.c:198 src/print.c:212
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"GHex kunne ikke finde skrifttypen '%s'.\n"
+"GHex kan ikke udskrive uden denne font er installeret."
