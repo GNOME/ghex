@@ -112,6 +112,10 @@ create_prefs_dialog()
 	g_signal_connect(G_OBJECT(pui->pbox), "response",
 					 G_CALLBACK(prefs_response_cb), pui);
 
+	g_signal_connect(G_OBJECT(pui->pbox), "delete-event",
+					 G_CALLBACK (gtk_widget_hide_on_delete),
+					 NULL);
+
 	notebook = gtk_notebook_new();
 	gtk_widget_show(notebook);
 	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(pui->pbox)->vbox), notebook);
