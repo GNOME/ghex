@@ -174,6 +174,7 @@ GtkWidget *converter_get = NULL;
 static void
 close_converter(GtkWidget *button, GnomeDialog *dialog)
 {
+	ghex_window_sync_converter_item(NULL, FALSE);
 	gnome_dialog_close(dialog);
 }
 

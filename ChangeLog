@@ -1,5 +1,8 @@
 2003-02-15  Jaka Mocnik  <jaka@gnu.org>
 
+	* src/chartable.c (hide_chartable_cb): sync chartable item.
+	* src/converter.c (close_converter): sync converter item.
+	* src/print.c (print_header): convert filename to utf8.
 	* src/session.c: applied a patch from Pasupathi Duraisamy that
 	prompts the user if logout is performed when changed files are
 	still open.

@@ -101,6 +101,7 @@ static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *e
 
 static void hide_chartable_cb (GtkWidget *widget, GtkWidget *win)
 {
+	ghex_window_sync_char_table_item(NULL, FALSE);
 	gtk_widget_hide(win);
 }
 

@@ -50,7 +50,7 @@ static gboolean print_verify_fonts (void);
 
 static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 {
-	guchar* text1 = g_strdup(pji->doc->file_name);
+	guchar* text1 = g_filename_to_utf8(pji->doc->file_name, -1, NULL, NULL, NULL);
 	guchar* text2 = g_strdup_printf(_("Page: %i/%i"),page,pji->pages);
 	guchar* pagetext = g_strdup_printf("%d", page);
 	gfloat x, y, len;
