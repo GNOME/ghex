@@ -72,6 +72,7 @@ struct _GtkHex {
 	guint button;
 	
 	guint cursor_pos;
+	guint sel_start, sel_end;
 	gint lower_nibble;
 	
 	guint group_type;
@@ -89,6 +90,11 @@ struct _GtkHex {
 	guint scroll_timeout;
 	gboolean show_offsets;
 	gboolean insert;
+	gboolean has_selection;
+	gboolean selecting;
+
+	guchar *clipboard_data;
+	guint clipboard_data_len;
 };
 
 struct _GtkHexClass {
@@ -96,6 +102,9 @@ struct _GtkHexClass {
 	
 	void (*cursor_moved)(GtkHex *);
 	void (*data_changed)(GtkHex *, gpointer);
+	void (*cut_clipboard)(GtkHex *);
+	void (*copy_clipboard)(GtkHex *);
+	void (*paste_clipboard)(GtkHex *);
 };
 
 guint gtk_hex_get_type(void);
@@ -115,6 +124,8 @@ void gtk_hex_show_offsets(GtkHex *, gboolean);
 void gtk_hex_set_font(GtkHex *, GdkFont *);
 
 void gtk_hex_set_insert_mode(GtkHex *, gboolean);
+
+void gtk_hex_claim_selection (GtkHex *gh, gboolean claim, guint32 time);
 
 #ifdef __cplusplus
 }

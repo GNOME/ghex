@@ -45,8 +45,10 @@ static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 {
 	guchar* text1 = g_strdup(pji->doc->file_name);
 	guchar* text2 = g_strdup_printf(_("Page: %i/%i"),page,pji->pages);
+	guchar* pagetext = g_strdup_printf("%d", page);
 	gfloat x, y, len;
 	
+	gnome_print_beginpage(pji->pc, pagetext);
 	gnome_print_setfont(pji->pc, pji->h_font);
 	/* Print the file name */
 	y = pji->page_height - pji->margin_top -
@@ -56,7 +58,6 @@ static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 	x = pji->page_width/2 - len/2;
 	gnome_print_moveto(pji->pc, x, y);
 	gnome_print_show(pji->pc, text1);
-	gnome_print_stroke(pji->pc);
 
 	/* Print the page/pages  */
 	y = pji->page_height - pji->margin_top -
@@ -65,7 +66,10 @@ static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 	x = pji->page_width - len - 36;
 	gnome_print_moveto(pji->pc, x, y);
 	gnome_print_show(pji->pc, text2);
-	gnome_print_stroke(pji->pc); 
+
+	g_free(text1);
+	g_free(text2);
+	g_free(pagetext);
 }
 
 #define TEMP_LEN 256
@@ -84,7 +88,6 @@ static void print_row(GHexPrintJobInfo *pji, unsigned int offset, unsigned int b
 	gnome_print_moveto(pji->pc, x , y);
 	g_snprintf(temp, TEMP_LEN, "%08X", offset);
 	gnome_print_show(pji->pc, temp);
-	gnome_print_stroke(pji->pc);
 	/* Print Hex */
 	x = pji->margin_left +
 		pji->font_char_width*pji->offset_chars +
@@ -92,14 +95,12 @@ static void print_row(GHexPrintJobInfo *pji, unsigned int offset, unsigned int b
 	gnome_print_moveto(pji->pc, x, y);
 	format_hex(pji->doc, pji->gt, temp, offset, offset + bytes);
 	gnome_print_show(pji->pc, temp);
-	gnome_print_stroke(pji->pc);
 	/* Print Ascii */
 	x = 2*pji->pad_size + pji->margin_left + pji->font_char_width*
 		(pji->offset_chars + pji->bytes_per_row*(2 + (1/((float)pji->gt))));
 	gnome_print_moveto(pji->pc, x, y);
 	format_ascii(pji->doc, temp, offset, offset + bytes);
 	gnome_print_show(pji->pc, temp);
-	gnome_print_stroke(pji->pc);
 
 	g_free(temp);
 }
