@@ -295,10 +295,6 @@ static void render_byte(GtkHex *gh, gint pos) {
 		     cx, cy, 2*gh->char_width, gh->char_height);
   gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 
-  /*  gdk_window_clear_area (gh->xdisp->window,
-      cx, cy,
-      2*gh->char_width, gh->char_height); */
-
   gdk_draw_text(gh->xdisp->window, gh->disp_font, gh->xdisp_gc,
 		cx, cy + gh->disp_font->ascent, buf, 2);
 
@@ -308,10 +304,6 @@ static void render_byte(GtkHex *gh, gint pos) {
   gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc, TRUE,
 		     cx, cy, gh->char_width, gh->char_height);
   gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
-
-  /*  gdk_window_clear_area (gh->adisp->window,
-      cx, cy,
-      gh->char_width, gh->char_height); */
 
   gdk_draw_text(gh->adisp->window, gh->disp_font, gh->adisp_gc,
 		cx, cy + gh->disp_font->ascent, &gh->document->buffer[pos], 1);
@@ -413,8 +405,6 @@ static void hex_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
   gint imin, imax;
 
   imin = (event->area.y) / gh->char_height;
-  if(imin > gh->vis_lines)
-    return;
   imax = (event->area.y + event->area.height) / gh->char_height;
   if((event->area.y + event->area.height) % gh->char_height)
     imax++;
@@ -426,8 +416,6 @@ static void ascii_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
   gint imin, imax;
 
   imin = (event->area.y) / gh->char_height;
-  if(imin > gh->vis_lines)
-    return;
   imax = (event->area.y + event->area.height) / gh->char_height;
   if((event->area.y + event->area.height) % gh->char_height)
     imax++;
