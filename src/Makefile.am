@@ -23,6 +23,8 @@ ghex2_SOURCES = hex-document.c hex-document.h hex-document-ui.c		\
 	preferences.c findreplace.c converter.c config.c ghex.h		\
 	gtkhex.c gtkhex.h main.c ui.c chartable.c session.c		\
 	print.c ghex-window.c ghex-window.h				\
+	gnome-print-font-dialog.c gnome-print-font-dialog.h		\
+	gnome-print-font-picker.c gnome-print-font-picker.h		\
 	$(BUILT_SOURCES)
 
 ghex-marshal.h: ghex-marshal.list $(GLIB_GENMARSHAL)
