@@ -15,11 +15,11 @@ GnomeUIInfo file_menu[] = {
   { GNOME_APP_UI_ITEM, "Save", NULL, save_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 'S', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_ITEM, "Save as...", NULL, save_as_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE_AS, 0, 0, NULL },
   { GNOME_APP_UI_ITEM, "Revert", NULL, revert_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL, 'R', GDK_CONTROL_MASK, NULL },
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_REVERT, 'R', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_ITEM, "Close", NULL, close_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CLOSE, 0, 0, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ITEM, "Open Converter...", NULL, converter_cb, NULL, NULL,
@@ -182,8 +182,6 @@ void create_find_dialog(FindDialog *dialog) {
   gint i;
   GSList *group;
   gchar type_label[256];
-
-  g_warning("creating find dialog");
 
   dialog->window = gtk_dialog_new();
   gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
@@ -469,7 +467,7 @@ void create_prefs_dialog(PropertyUI *pui) {
   
   label = gtk_label_new(_("Display"));
   gtk_widget_show(label);
-  gnome_property_box_append_page(pui->pbox, vbox, label);
+  gtk_notebook_append_page (GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
 
   vbox = gtk_vbox_new(FALSE, 0);
   gtk_widget_show(vbox);
@@ -493,7 +491,7 @@ void create_prefs_dialog(PropertyUI *pui) {
 
   label = gtk_label_new(_("MDI"));
   gtk_widget_show(label);
-  gnome_property_box_append_page(pui->pbox, vbox, label);
+  gtk_notebook_append_page(GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
 
   set_prefs(pui);
 
