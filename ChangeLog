@@ -1,3 +1,15 @@
+1998-12-10  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* main.c (main): fix arg parsing code. it actually works now.
+	* ui.c, ghex.h (report_error, show_message): removed.
+	* callbacks.c (customize_app_cb): use gnome-appbar instead of
+	gtkstatusbar.
+	also converted all report_error()s to gnome_app_error()s and
+	show_message()s to gnome_app_flash()es.
+	* config.c (load_configuration): removed error report about
+	not being able to load the font, as we might have no windows
+	at the time this is called.
+	
 1998-12-08  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* ui.c, hex-document.c: add hint strings to menu descriptions.

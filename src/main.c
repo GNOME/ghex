@@ -92,16 +92,17 @@ int main(int argc, char **argv) {
 		  gnome_mdi_open_toplevel(mdi);
 	
     cl_files = poptGetArgs(ctx);
-    while(cl_files) {
-      doc = hex_document_new(*cl_files);
-      if(doc) {
-        gnome_mdi_add_child(mdi, doc);
-        gnome_mdi_add_view(mdi, doc);
-      }
-      cl_files++;
+	
+    while(cl_files && *cl_files) {
+		doc = hex_document_new(*cl_files);
+		if(doc) {
+			gnome_mdi_add_child(mdi, doc);
+			gnome_mdi_add_view(mdi, doc);
+		}
+		cl_files++;
     }
     poptFreeContext(ctx);
-
+	
     /* and here we go... */
     gtk_main();
   }

@@ -62,9 +62,21 @@ void properties_modified_cb(GtkWidget *w, GnomePropertyBox *pbox) {
 }
 
 void save_cb(GtkWidget *w) {
-	if(mdi->active_child)
+	if(mdi->active_child) {
+		GnomeApp *app;
+
+		app = gnome_mdi_get_app_from_view(mdi->active_view);
+
 		if(hex_document_write(HEX_DOCUMENT(mdi->active_child)))
-			report_error(_("Error saving file!")); 
+			gnome_app_error(app, _("Error saving file!"));
+		else {
+			gchar *flash;
+
+			flash = g_strdup_printf(_("Saved buffer to file %s"), HEX_DOCUMENT(mdi->active_child)->file_name);
+			gnome_app_flash(app, flash);
+			g_free(flash);
+		}
+	}
 }
 
 void revert_cb(GtkWidget *w) {
@@ -86,21 +98,31 @@ void revert_cb(GtkWidget *w) {
 			gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
 			reply = ask_user(mbox);
 			
-			if(reply == 0)
+			if(reply == 0) {
+				gchar *flash;
+
 				hex_document_read(doc);
+				flash = g_strdup_printf(_("Reverted buffer from file %s"), HEX_DOCUMENT(mdi->active_child)->file_name);
+				gnome_app_flash(gnome_mdi_get_app_from_view(mdi->active_view), flash);
+				g_free(flash);
+			}
 		}
 	}
 }
 
 void open_selected_file(GtkWidget *w) {
 	HexDocument *new_doc;
+	gchar *flash;
 	
 	if((new_doc = hex_document_new((gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel))))) != NULL) {
 		gnome_mdi_add_child(mdi, GNOME_MDI_CHILD(new_doc));
 		gnome_mdi_add_view(mdi, GNOME_MDI_CHILD(new_doc));
+		flash = g_strdup_printf(_("Loaded file %s"), new_doc->file_name);
+		gnome_app_flash(mdi->active_window, flash);
+		g_free(flash);
 	}
 	else
-		report_error(_("Can not open file!"));
+		gnome_app_error(mdi->active_window, _("Can not open file!"));
 	
 	gtk_widget_destroy(GTK_WIDGET(file_sel));
 	file_sel = NULL;
@@ -109,6 +131,7 @@ void open_selected_file(GtkWidget *w) {
 void save_selected_file(GtkWidget *w) {
 	HexDocument *doc;
 	gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
+	gchar *flash;
 	int i;
 	
 	if(mdi->active_child == NULL)
@@ -132,13 +155,17 @@ void save_selected_file(GtkWidget *w) {
 				doc->path_end = doc->file_name;
 			
 			gnome_mdi_child_set_name(GNOME_MDI_CHILD(doc), doc->path_end);
+
+			flash = g_strdup_printf(_("Saved buffer to file %s"), HEX_DOCUMENT(mdi->active_child)->file_name);
+			gnome_app_flash(gnome_mdi_get_app_from_view(mdi->active_view), flash);
+			g_free(flash);
 		}
 		else
-			report_error(_("Error saving file!"));
+			gnome_app_error(gnome_mdi_get_app_from_view(mdi->active_view), _("Error saving file!"));
 		fclose(doc->file);
 	}
 	else
-		report_error(_("Can't open file for writing!"));
+		gnome_app_error(mdi->active_window, _("Can't open file for writing!"));
 	
 	gtk_widget_destroy(GTK_WIDGET(file_sel));
 	file_sel = NULL;
@@ -269,50 +296,53 @@ void set_replace_type_cb(GtkWidget *w, gint type) {
 
 void find_next_cb(GtkWidget *w) {
 	GtkHex *gh;
+	GnomeApp *app;
 	guint offset, str_len;
 	gchar str[256];
 	
-	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog.f_string)), str,
-									find_dialog.search_type)) == 0) {
-		report_error(_("There seems to be no string to search for!"));
-		return;
-	}
-	
 	if(mdi->active_child == NULL) {
-		report_error(_("There is no active buffer to search!"));
+		gnome_app_error(mdi->active_window, _("There is no active buffer to search!"));
 		return;
 	}
 	
 	gh = GTK_HEX(mdi->active_view);
+	app = gnome_mdi_get_app_from_view(mdi->active_view);
 	
-	if(find_string_forward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos+1, str, str_len, &offset) == 0)
+	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog.f_string)), str,
+									find_dialog.search_type)) == 0) {
+		gnome_app_error(app, _("There seems to be no string to search for!"));
+		return;
+	}
+   	if(find_string_forward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos+1, str, str_len, &offset) == 0)
 		gtk_hex_set_cursor(gh, offset);
 	else
-		show_message(_("End Of File reached"));
+		gnome_app_flash(app, _("End Of File reached"));
 }
 
 void find_prev_cb(GtkWidget *w) {
 	GtkHex *gh;
+	GnomeApp *app;
 	guint offset, str_len;
 	gchar str[256];
-	
-	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog.f_string)), str,
-									find_dialog.search_type)) == 0) {
-		report_error(_("There seems to be no string to search for!"));
-		return;
-	}
-	
+		
 	if(mdi->active_child == NULL) {
-		report_error(_("There is no active buffer to search!"));
+		gnome_app_error(mdi->active_window, _("There is no active buffer to search!"));
 		return;
 	}
 	
 	gh = GTK_HEX(mdi->active_view);
+	app = gnome_mdi_get_app_from_view(mdi->active_view);
 	
+	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog.f_string)), str,
+									find_dialog.search_type)) == 0) {
+		gnome_app_error(app, _("There seems to be no string to search for!"));
+		return;
+	}
+
 	if(find_string_backward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos-1, str, str_len, &offset) == 0)
 		gtk_hex_set_cursor(gh, offset);
 	else
-		show_message(_("Beginning Of File reached"));
+		gnome_app_flash(app, _("Beginning Of File reached"));
 }
 
 void goto_byte_cb(GtkWidget *w) {
@@ -320,24 +350,24 @@ void goto_byte_cb(GtkWidget *w) {
 	gchar *byte_str = gtk_entry_get_text(GTK_ENTRY(jump_dialog.int_entry)), *endptr;
 	
 	if(mdi->active_child == NULL) {
-		report_error(_("There is no active buffer to move the cursor in!"));
+		gnome_app_error(mdi->active_window, _("There is no active buffer to move the cursor in!"));
 		return;
 	}
-	
+
 	if(strlen(byte_str) == 0) {
-		report_error(_("No offset has been specified!"));
+		gnome_app_error(mdi->active_window, _("No offset has been specified!"));
 		return;
 	}
 	
 	byte = strtoul(byte_str, &endptr, 10);
 	
 	if(*endptr != '\0') {
-		report_error(_("The offset must be a positive integer value!"));
+		gnome_app_error(mdi->active_window, _("The offset must be a positive integer value!"));
 		return;
 	}
 	
 	if(byte >= HEX_DOCUMENT(mdi->active_child)->buffer_size) {
-		report_error(_("Can not position cursor beyond the End Of File!"));
+		gnome_app_error(mdi->active_window,_("Can not position cursor beyond the End Of File!"));
 		return;
 	}
 	
@@ -346,52 +376,56 @@ void goto_byte_cb(GtkWidget *w) {
 
 void replace_next_cb(GtkWidget *w) {
 	GtkHex *gh;
+	GnomeApp *app;
 	guint offset, str_len;
 	gchar str[256];
-	
-	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.f_string)), str,
-									replace_dialog.search_type)) == 0) {
-		report_error(_("There seems to be no string to search for!"));
-		return;
-	}
-	
+		
 	if(mdi->active_child == NULL) {
-		report_error(_("There is no active buffer to search!"));
+		gnome_app_error(mdi->active_window, _("There is no active buffer to search!"));
 		return;
 	}
 	
 	gh = GTK_HEX(mdi->active_view);
-	
+	app = gnome_mdi_get_app_from_view(mdi->active_view);
+
+	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.f_string)), str,
+									replace_dialog.search_type)) == 0) {
+		gnome_app_error(app, _("There seems to be no string to search for!"));
+		return;
+	}
+
 	if(find_string_forward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos+1, str, str_len, &offset) == 0)
 		gtk_hex_set_cursor(gh, offset);
 	else
-		show_message(_("End Of File reached"));
+		gnome_app_flash(app, _("End Of File reached"));
 }
 
 void replace_one_cb(GtkWidget *w) {
 	gchar find_str[256], rep_str[256];
 	guint find_len, rep_len, offset;
 	GtkHex *gh;
+	GnomeApp *app;
 	HexDocument *doc;
 	
 	if(mdi->active_child == NULL) {
-		report_error(_("There is no active buffer to replace data in!"));
+		gnome_app_error(mdi->active_window, _("There is no active buffer to replace data in!"));
 		return;
 	}
 	
 	gh = GTK_HEX(mdi->active_view);
+	app = gnome_mdi_get_app_from_view(mdi->active_view);
 	doc = HEX_DOCUMENT(mdi->active_child);
 	
 	if( ((find_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.f_string)), find_str,
 									   replace_dialog.search_type)) == 0) ||
 		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.r_string)), rep_str,
 									  replace_dialog.search_type)) == 0)) {
-		report_error(_("Erroneous find or replace string!"));
+		gnome_app_error(app, _("Erroneous find or replace string!"));
 		return;
 	}
 	
 	if(find_len != rep_len) {
-		report_error(_("Both strings must be of the same length!"));
+		gnome_app_error(app, _("Both strings must be of the same length!"));
 		return;
 	}
 	
@@ -404,33 +438,35 @@ void replace_one_cb(GtkWidget *w) {
 	if(find_string_forward(doc, gh->cursor_pos+1, find_str, find_len, &offset) == 0)
 		gtk_hex_set_cursor(gh, offset);
 	else
-		show_message(_("End Of File reached!"));
+		gnome_app_flash(app, _("End Of File reached!"));
 }
 
 void replace_all_cb(GtkWidget *w) {
-	gchar find_str[256], rep_str[256];
+	gchar find_str[256], rep_str[256], *flash;
 	guint find_len, rep_len, offset, count;
 	GtkHex *gh;
+	GnomeApp *app;
 	HexDocument *doc;
 	
 	if(mdi->active_child == NULL) {
-		report_error(_("There is no active buffer to replace data in!"));
+		gnome_app_error(mdi->active_window, _("There is no active buffer to replace data in!"));
 		return;
 	}
 	
 	gh = GTK_HEX(mdi->active_view);
+	app = gnome_mdi_get_app_from_view(mdi->active_view);
 	doc = HEX_DOCUMENT(mdi->active_child);
 	
 	if( ((find_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.f_string)), find_str,
 									   replace_dialog.search_type)) == 0) ||
 		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.r_string)), rep_str,
 									  replace_dialog.search_type)) == 0)) {
-		report_error(_("Erroneous find or replace string!"));
+		gnome_app_error(app, _("Erroneous find or replace string!"));
 		return;
 	}
 	
 	if(find_len != rep_len) {
-		report_error(_("Both strings must be of the same length!"));
+		gnome_app_error(app, _("Both strings must be of the same length!"));
 		return;
 	}
 	
@@ -445,8 +481,9 @@ void replace_all_cb(GtkWidget *w) {
 	
 	gtk_hex_set_cursor(gh, offset);  
 	
-	sprintf(find_str, _("Replaced %d occurencies."), count);
-	show_message(find_str);
+	flash = g_strdup_printf(_("Replaced %d occurencies."), count);
+	gnome_app_flash(app, flash);
+	g_free(flash);
 }
 
 void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {
@@ -511,7 +548,7 @@ void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
 									 (GNOME_FONT_PICKER(pui->font_button)));
 		}
 		else
-			report_error(_("Can not open desired font!"));
+			gnome_app_error(mdi->active_window, _("Can not open desired font!"));
 	} 
 }
 
@@ -575,7 +612,7 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
 	GtkWidget *bar;
 
-	bar = gtk_statusbar_new();
+	bar = gnome_appbar_new(FALSE, TRUE, GNOME_PREFERENCES_USER);
 	gnome_app_set_statusbar(app, bar);
 	gtk_widget_show(bar);
 

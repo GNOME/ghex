@@ -55,8 +55,6 @@ void load_configuration() {
 			
 			def_font_name = strdup(font_desc);
 		}
-		else
-			report_error(_("Can not open configured font!"));
 	}
 	
 	def_group_type = gnome_config_get_int("/ghex/Display/Group=1");

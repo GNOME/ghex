@@ -134,48 +134,12 @@ gchar *search_type_label[] = {
 	N_("ASCII data"),
 };
 
-void show_message(gchar *msg) {
-	GtkWidget *message_box;
-	
-	message_box = gnome_message_box_new(msg, GNOME_MESSAGE_BOX_INFO, GNOME_STOCK_BUTTON_OK, NULL);
-	gnome_message_box_set_modal(GNOME_MESSAGE_BOX(message_box));
-	gtk_window_position (GTK_WINDOW (message_box), GTK_WIN_POS_MOUSE);
-	gtk_widget_show(message_box);
-}
-
-void report_error(gchar *msg) {
-	GtkWidget *message_box;
-	
-	message_box = gnome_message_box_new(msg, GNOME_MESSAGE_BOX_ERROR, GNOME_STOCK_BUTTON_OK, NULL);
-	gnome_message_box_set_modal(GNOME_MESSAGE_BOX(message_box));
-	gtk_window_position (GTK_WINDOW (message_box), GTK_WIN_POS_MOUSE);
-	gtk_widget_show(message_box);
-}
-
-static void question_click_cb(GtkWidget *w, gint button, gint *reply) {
-	*reply = button;
-}  
-
-static void question_destroy_cb(GtkObject *obj) {
-	gtk_main_quit();
-}
-
 gint ask_user(GnomeMessageBox *message_box) {
 	gint reply;
 	
-	gnome_dialog_set_close(GNOME_DIALOG(message_box), TRUE);
-	gtk_window_set_modal(GTK_WINDOW(message_box), TRUE);
-	gtk_signal_connect(GTK_OBJECT(message_box), "clicked",
-					   GTK_SIGNAL_FUNC(question_click_cb), &reply);
-	gtk_signal_connect(GTK_OBJECT(message_box), "destroy",
-					   GTK_SIGNAL_FUNC(question_destroy_cb), NULL);
-	gtk_window_position (GTK_WINDOW (message_box), GTK_WIN_POS_MOUSE);
-	gtk_widget_show(GTK_WIDGET(message_box));
-	/* I hope increasing main_level is the proper way to stop ghex until
-	   user had replied to this question... */
-	gtk_main();
-	
-	return reply;
+	gtk_window_set_modal(GTK_WINDOW(message_box), TRUE);	
+
+	return gnome_dialog_run_and_close(GNOME_DIALOG(message_box));
 }
 
 GtkWidget *create_button(GtkWidget *window, gchar *type, gchar *text) {

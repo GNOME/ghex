@@ -117,8 +117,6 @@ void create_jump_dialog(JumpDialog *);
 void create_converter(Converter *);
 void create_prefs_dialog(PropertyUI *);
 
-void show_message(gchar *);
-void report_error(gchar *);
 gint ask_user(GnomeMessageBox *);
 
 /* config stuff */
