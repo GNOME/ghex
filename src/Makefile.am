@@ -1,5 +1,7 @@
 ## Process this file with automake to create Makefile.in.
 
+SUBDIRS = access
+
 INCLUDES = -I$(includedir) 				\
 	-DGNOMEICONDIR=\""$(datadir)/pixmaps"\"		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
@@ -33,12 +35,16 @@ ghex-marshal.c: ghex-marshal.list $(GLIB_GENMARSHAL)
 
 ui_DATA = ghex-ui.xml
 
+ACCESS_LT_LIB = $(top_builddir)/src/access/libgtkhexaccess.la
+
 EXTRA_DIST =	\
 	$(ui_DATA)	\
 	ghex-marshal.list
 
 LDADD =	\
 	$(POPT_LIBS)		\
-	$(GHEX_LIBS)
+	$(GHEX_LIBS)		\
+	$(ACCESS_LT_LIB)	\
+	$(GAILUTIL_LIBS)
 
 CLEAN_FILES = $(BUILT_SOURCES)

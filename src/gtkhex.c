@@ -199,7 +199,7 @@ static guint get_max_char_width(GtkHex *gh, PangoFontMetrics *font_metrics) {
 	return maxwidth;
 }
 
-static void format_xbyte(GtkHex *gh, gint pos, gchar buf[2]) {
+void format_xbyte(GtkHex *gh, gint pos, gchar buf[2]) {
 	guint low, high;
 	guchar c;
 
@@ -215,7 +215,7 @@ static void format_xbyte(GtkHex *gh, gint pos, gchar buf[2]) {
  * format_[x|a]block() formats contents of the buffer
  * into displayable text in hex or ascii, respectively
  */
-static gint format_xblock(GtkHex *gh, gchar *out, guint start, guint end) {
+gint format_xblock(GtkHex *gh, gchar *out, guint start, guint end) {
 	int i, j, low, high;
 	guchar c;
 
@@ -234,7 +234,7 @@ static gint format_xblock(GtkHex *gh, gchar *out, guint start, guint end) {
 	return j;
 }
 
-static gint format_ablock(GtkHex *gh, gchar *out, guint start, guint end) {
+gint format_ablock(GtkHex *gh, gchar *out, guint start, guint end) {
 	int i, j;
 	guchar c;
 
@@ -1432,6 +1432,7 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	GtkHex *gh = GTK_HEX(w);
 	guint old_cp = gh->cursor_pos;
 	gint ret = TRUE;
+	gint cx, cy;
 
 	hide_cursor(gh);
 
@@ -1443,6 +1444,21 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 			gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
 		}
 		break;
+	case GDK_Tab:
+	case GDK_KP_Tab:
+			if (event->state & GDK_CONTROL_MASK) {
+				if (gh->active_view == VIEW_ASCII) {
+					get_acoords(gh, gh->cursor_pos, &cx, &cy);
+					gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window, GTK_STATE_NORMAL, GTK_SHADOW_IN, cx, cy, gh->char_width, gh->char_height-1);
+					gh->active_view = VIEW_HEX;
+				}
+				else {
+					get_xcoords(gh, gh->cursor_pos, &cx, &cy);
+					gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window, GTK_STATE_NORMAL, GTK_SHADOW_IN, cx, cy, gh->char_width, gh->char_height-1);
+					gh->active_view = VIEW_ASCII;
+				}
+			}
+			break;
 	case GDK_Delete:
 		if(gh->cursor_pos < gh->document->file_size) {
 			hex_document_set_data(gh->document, gh->cursor_pos,
@@ -1809,12 +1825,12 @@ guint gtk_hex_get_type() {
 			sizeof (GtkHexClass),
 			NULL,		/* base_init */
 			NULL,		/* base_finalize */
-			gtk_hex_class_init,
+			(GClassInitFunc) gtk_hex_class_init,
 			NULL,		/* class_finalize */
 			NULL,		/* class_data */
 			sizeof (GtkHex),
 			0,
-			gtk_hex_init	
+			(GInstanceInitFunc) gtk_hex_init	
 		};
 	
 		gh_type = g_type_register_static (gtk_fixed_get_type(),
@@ -2089,3 +2105,38 @@ PangoFontMetrics* gtk_hex_load_font (const char *font_name)
 
 	return new_metrics;
 }
+
+void add_atk_namedesc (GtkWidget *widget, const gchar *name, const gchar *desc)
+{
+        AtkObject *atk_widget;
+
+        g_return_if_fail (GTK_IS_WIDGET (widget));
+        atk_widget = gtk_widget_get_accessible (widget);
+
+        if (name)
+                atk_object_set_name (atk_widget, name);
+        if (desc)
+                atk_object_set_description (atk_widget, desc);
+}
+
+void add_atk_relation (GtkWidget *obj1, GtkWidget *obj2, AtkRelationType type)
+{
+
+        AtkObject *atk_obj1, *atk_obj2;
+        AtkRelationSet *relation_set;
+        AtkRelation *relation;
+
+        g_return_if_fail (GTK_IS_WIDGET (obj1));
+        g_return_if_fail (GTK_IS_WIDGET (obj2));
+
+        atk_obj1 = gtk_widget_get_accessible (obj1);
+        atk_obj2 = gtk_widget_get_accessible (obj2);
+
+        relation_set = atk_object_ref_relation_set (atk_obj1);
+        relation = atk_relation_new (&atk_obj2, 1, type);
+        atk_relation_set_add (relation_set, relation);
+        g_object_unref (G_OBJECT (relation));
+
+}
+
+

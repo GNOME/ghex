@@ -64,6 +64,10 @@ PKG_CHECK_MODULES(GHEX,
 AC_SUBST(GHEX_CFLAGS)
 AC_SUBST(GHEX_LIBS)
 
+PKG_CHECK_MODULES(GAILUTIL, gail >= 0.0.3)
+AC_SUBST(GAILUTIL_CFLAGS)
+AC_SUBST(GAILUTIL_LIBS)
+
 dnl Checks for typedefs, structures, and compiler characteristics.
 
 dnl removed the following lines -- SnM
@@ -109,6 +113,7 @@ AC_OUTPUT([
 Makefile
 po/Makefile.in
 src/Makefile
+src/access/Makefile
 help/Makefile
 help/C/Makefile
 help/ja/Makefile

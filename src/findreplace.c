@@ -114,6 +114,13 @@ FindDialog *create_find_dialog()
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
 
+	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (dialog->f_string))) {
+		add_atk_namedesc (dialog->f_string, _("Find Data"), _("Enter the hex data or ASCII data to search for"));
+		add_atk_namedesc (dialog->f_next, _("Find Next"), _("Finds the next occurrence of the search string"));
+		add_atk_namedesc (dialog->f_prev, _("Find previous"), _("Finds the previous occurrence of the search string "));
+		add_atk_namedesc (dialog->f_close, _("Cancel"), _("Closes find data window"));
+	}
+
 	return dialog;
 }
 
@@ -199,6 +206,15 @@ ReplaceDialog *create_replace_dialog()
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
 
+	if (GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(dialog->f_string))) {
+		add_atk_namedesc (dialog->f_string, _("Find Data"), _("Enter the hex data or ASCII data to search for"));
+		add_atk_namedesc (dialog->r_string, _("Replace Data"), _("Enter the hex data or ASCII data to replace with"));
+		add_atk_namedesc (dialog->next, _("Find next"), _("Finds the next occurrence of the search string"));
+		add_atk_namedesc (dialog->replace, _("Replace"), _("Replaces the search string with the replace string"));
+		add_atk_namedesc (dialog->replace_all, _("Replace All"), _("Replaces all occurrences of the search string with the replace string"));
+		add_atk_namedesc (dialog->close, _("Cancel"), _("Closes find and replace data window"));
+	}
+
 	return dialog;
 }
 
@@ -240,6 +256,12 @@ JumpDialog *create_jump_dialog()
 	
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
+
+	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible(dialog->int_entry))) {
+		add_atk_namedesc (dialog->int_entry, _("Jump to byte"), _("Enter the byte to jump to"));
+		add_atk_namedesc (dialog->ok, _("OK"), _("Jumps to the specified byte"));
+		add_atk_namedesc (dialog->cancel, _("Cancel"), _("Closes jump to byte window"));
+	}
 
 	return dialog;
 }

@@ -138,6 +138,9 @@ void gtk_hex_claim_selection (GtkHex *gh, gboolean claim, guint32 time);
 
 PangoFontMetrics* gtk_hex_load_font (const char *font_name); 
 
+void add_atk_namedesc(GtkWidget *widget, const gchar *name, const gchar *desc);
+void add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType type);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

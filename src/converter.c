@@ -107,6 +107,8 @@ entry_key_press_event_cb(GtkWidget *widget, GdkEventKey *event,
 	return FALSE;
 }
 
+#define BUFFER_LEN 40
+
 static GtkWidget *
 create_converter_entry(const gchar *name, GtkWidget *table,
 						GtkAccelGroup *accel_group, gint pos, gint base)
@@ -114,6 +116,8 @@ create_converter_entry(const gchar *name, GtkWidget *table,
 	GtkWidget *label;
     GtkWidget *entry;
     gint accel_key;
+
+    gchar str[BUFFER_LEN + 1];
 
 	/* label */
 	label = gtk_label_new(name);
@@ -134,6 +138,12 @@ create_converter_entry(const gchar *name, GtkWidget *table,
 							   GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
 	gtk_table_attach_defaults(GTK_TABLE(table), entry, 1, 2, pos, pos+1);
 	gtk_widget_show(entry);
+
+	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (entry))) {
+		g_snprintf (str, BUFFER_LEN, "Displays the value at cursor in %s", name+1);
+		add_atk_namedesc (entry, name+1, str);
+		add_atk_relation (entry, label, ATK_RELATION_LABELLED_BY);
+	}
        
 	return entry;
 }
@@ -173,6 +183,7 @@ create_converter()
 	Converter *conv;
 	GtkWidget *table;
 	GtkAccelGroup *accel_group;
+	gint i;
  
 	conv = g_new0(Converter, 1);
 
@@ -195,15 +206,15 @@ create_converter()
 	accel_group = gtk_accel_group_new();
 
 	/* entries */
-	conv->entry[0] = create_converter_entry(_("_Binary"), table,
+	conv->entry[0] = create_converter_entry(_("_Binary:"), table,
 											 accel_group, 0, 2);
-	conv->entry[1] = create_converter_entry(_("_Octal"), table,
+	conv->entry[1] = create_converter_entry(_("_Octal:"), table,
 											 accel_group, 1, 8);
-	conv->entry[2] = create_converter_entry(_("_Decimal"), table,
+	conv->entry[2] = create_converter_entry(_("_Decimal:"), table,
 											 accel_group, 2, 10);
-	conv->entry[3] = create_converter_entry(_("_Hex"), table,
+	conv->entry[3] = create_converter_entry(_("_Hex:"), table,
 											 accel_group, 3, 16);
-	conv->entry[4] = create_converter_entry(_("_ASCII"), table,
+	conv->entry[4] = create_converter_entry(_("_ASCII:"), table,
 											 accel_group, 4, 0);
 
 	/* get cursor button */
@@ -215,6 +226,14 @@ create_converter()
 
 	/* add the accelerators */
 	gtk_window_add_accel_group(GTK_WINDOW(conv->window), accel_group);
+
+	if (GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(get))) {
+		add_atk_namedesc (get, _("Get cursor value"), _("Gets the value at cursor in binary, octal, decimal, hex and ASCII"));
+		for (i=0; i<5; i++) {
+			add_atk_relation (conv->entry[i], get, ATK_RELATION_CONTROLLED_BY);
+			add_atk_relation (get, conv->entry[i], ATK_RELATION_CONTROLLER_FOR);
+		}
+	}
 
 	return conv;
 }

@@ -100,6 +100,15 @@ static void hide_chartable_cb (GtkWidget *widget, GtkWidget *win)
 	gtk_widget_hide(win);
 }
 
+gint key_press_cb (GtkWidget *w, GdkEventKey *e)
+{
+	if (e->keyval == GDK_Escape) {
+		gtk_widget_hide(w);
+		return TRUE;
+	}
+	return FALSE;
+}
+
 GtkWidget *create_char_table()
 {
 	static gchar *fmt[] = { NULL, "%02X", "%03d", "%03o" };
@@ -169,6 +178,9 @@ GtkWidget *create_char_table()
 					   GTK_SIGNAL_FUNC(delete_event_cb), ct);
 	g_signal_connect(G_OBJECT(ctv), "button_press_event",
 					   G_CALLBACK(select_chartable_row_cb), GTK_TREE_MODEL(store));
+
+	g_signal_connect(G_OBJECT(ct), "key_press_event",
+					  G_CALLBACK(key_press_cb), ct);
 
 	cbtn = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
 	gtk_widget_show(cbtn);

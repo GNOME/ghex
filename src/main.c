@@ -361,6 +361,8 @@ main(int argc, char **argv)
 	ghex_prefs_init();
 	load_configuration();
 
+	setup_factory();
+
 	client = gnome_master_client();
 
 	gtk_signal_connect (GTK_OBJECT (client), "save_yourself",

@@ -140,6 +140,8 @@ PropertyUI *create_prefs_dialog() {
 
 	int i;
 
+	gboolean gail_up;
+
 	pui = g_new0(PropertyUI, 1);
 	
 	pui->pbox = GNOME_PROPERTY_BOX(gnome_property_box_new());
@@ -171,7 +173,7 @@ PropertyUI *create_prefs_dialog() {
 	box = gtk_hbox_new(FALSE, 0);
 	gtk_widget_show(box);
 
-	label = gtk_label_new(_("Maximum number of undo levels"));
+	label = gtk_label_new_with_mnemonic(_("_Maximum number of undo levels:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
 	gtk_widget_show(label);
@@ -186,7 +188,16 @@ PropertyUI *create_prefs_dialog() {
 	box = gtk_hbox_new(FALSE, 0);
 	gtk_widget_show(box);
 
-	label = gtk_label_new(_("Show cursor offset in statusbar as"));
+	gtk_label_set_mnemonic_widget(GTK_LABEL(label), pui->undo_spin);
+
+	gail_up = GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(label)) ;
+
+	if (gail_up) {
+		add_atk_namedesc (pui->undo_spin, _("Undo levels"), _("Select maximum number of undo levels"));
+		add_atk_relation (pui->undo_spin, label, ATK_RELATION_LABELLED_BY);
+	}
+
+	label = gtk_label_new(_("Show cursor offset in statusbar as:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
 	gtk_widget_show(label);
@@ -220,6 +231,17 @@ PropertyUI *create_prefs_dialog() {
 	gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(pui->offset_menu), FALSE, TRUE, GNOME_PAD);
 
 	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, GNOME_PAD_SMALL);
+
+	if (gail_up) {
+		add_atk_namedesc (pui->format, _("format_entry"), _("Enter the cursor offset format"));
+		add_atk_namedesc (menu, _("format_optionmenu"), _("Select the cursor offset format"));
+		add_atk_relation (label, pui->format, ATK_RELATION_LABEL_FOR);
+		add_atk_relation (pui->format, label, ATK_RELATION_LABELLED_BY);
+		add_atk_relation (label, pui->offset_menu, ATK_RELATION_LABEL_FOR);
+		add_atk_relation (pui->offset_menu, label, ATK_RELATION_LABELLED_BY);
+		add_atk_relation (pui->format, pui->offset_menu, ATK_RELATION_CONTROLLED_BY);
+		add_atk_relation (pui->offset_menu, pui->format, ATK_RELATION_CONTROLLER_FOR);
+	}
 
 	/* show offsets check button */
 	pui->offsets_col = gtk_check_button_new_with_label(_("Show offsets column"));
@@ -360,7 +382,7 @@ PropertyUI *create_prefs_dialog() {
 
 	table = gtk_table_new(2, 3, TRUE);
 	gtk_widget_show(table);
-	label = gtk_label_new(_("Data font"));
+	label = gtk_label_new_with_mnemonic(_("_Data font:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_widget_show(label);
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
@@ -374,7 +396,13 @@ PropertyUI *create_prefs_dialog() {
 	gnome_font_picker_fi_set_show_size (GNOME_FONT_PICKER (pui->df_button), TRUE);
 	pui->df_label = gtk_label_new("");
 	gtk_label_set_mnemonic_widget (GTK_LABEL (pui->df_label), pui->df_button);
-	
+
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pui->df_button);
+
+	if (gail_up) {
+		add_atk_namedesc (pui->df_button, _("Data font"), _("Select the data font"));
+		add_atk_relation (pui->df_button, label, ATK_RELATION_LABELLED_BY);
+	}	
 	
 #if 0
 	pui->df_button = gtk_button_new();
@@ -393,7 +421,7 @@ PropertyUI *create_prefs_dialog() {
 					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
 					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
-	label = gtk_label_new(_("Header font"));
+	label = gtk_label_new_with_mnemonic(_("Header fo_nt:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_widget_show(label);
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
@@ -409,6 +437,13 @@ PropertyUI *create_prefs_dialog() {
 	gnome_font_picker_fi_set_show_size (GNOME_FONT_PICKER (pui->hf_button), TRUE);
 	pui->hf_label = gtk_label_new("");
 	gtk_label_set_mnemonic_widget (GTK_LABEL (pui->hf_label), pui->hf_button);
+
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pui->hf_button);
+
+	if (gail_up) {
+		add_atk_namedesc (pui->hf_button, _("Header font"), _("Select the header font"));
+		add_atk_relation (pui->hf_button, label, ATK_RELATION_LABELLED_BY);
+	}
 
 #if 0	
 	gtk_signal_connect(GTK_OBJECT(pui->hf_button), "clicked",
@@ -438,7 +473,7 @@ PropertyUI *create_prefs_dialog() {
 	box = gtk_hbox_new(FALSE, 0);
 	gtk_widget_show(box);
 
-	label = gtk_label_new(_("Print shaded box over"));
+	label = gtk_label_new_with_mnemonic(_("_Print shaded box over:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 1.0, 0.5);
 	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD_SMALL);
 	gtk_widget_show(label);
@@ -446,6 +481,13 @@ PropertyUI *create_prefs_dialog() {
 	pui->box_size_spin = gtk_spin_button_new(box_adj, 1, 0);
 	gtk_box_pack_start (GTK_BOX(box), GTK_WIDGET(pui->box_size_spin), FALSE, TRUE, GNOME_PAD);
 	gtk_widget_show(pui->box_size_spin);
+
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pui->box_size_spin);
+
+	if (gail_up) {
+		add_atk_namedesc (pui->box_size_spin, _("Box size"), _("Select size of box (in number of lines)"));
+		add_atk_relation (pui->box_size_spin, label, ATK_RELATION_LABELLED_BY);
+	}
 
 	label = gtk_label_new(_("lines (0 for no box)"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
