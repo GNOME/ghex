@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ghex.h - defines GHex ;)
 
-   Copyright (C) 1998 - 2002 Free Software Foundation
+   Copyright (C) 1998 - 2003 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -28,8 +28,8 @@
 #include <gnome.h>
 
 #include <libgnomeprint/gnome-print.h>
-
 #include <libgnomeprint/gnome-print-job.h>
+#include <gconf/gconf-client.h>
 
 #include <stdio.h>
 
@@ -51,7 +51,18 @@ G_BEGIN_DECLS
 
 #define NUM_MDI_MODES 4
 
-#define GHEX_URL "http://pluton.ijs.si/~jaka/gnome.html#GHEX"
+#define GHEX_URL "http://fish.homeunix.org/soft.html"
+
+#define GHEX_BASE_KEY                "/apps/ghex2"
+#define GHEX_PREF_FONT               "/font"
+#define GHEX_PREF_GROUP              "/group"
+#define GHEX_PREF_MAX_UNDO_DEPTH     "/maxundodepth"   
+#define GHEX_PREF_OFFSET_FORMAT      "/offsetformat"
+#define GHEX_PREF_OFFSETS_COLUMN     "/offsetscolumn"
+#define GHEX_PREF_PAPER              "/paper"
+#define GHEX_PREF_BOX_SIZE           "/boxsize"
+#define GHEX_PREF_DATA_FONT          "/datafont"
+#define GHEX_PREF_HEADER_FONT        "/headerfont"
 
 typedef struct _PropertyUI {
 	GtkWidget *pbox;
@@ -163,6 +174,8 @@ extern gchar *search_type_label[2];
 
 extern gchar *geometry;
 
+extern GConfClient *gconf_client;
+
 /* creation of dialogs */
 FindDialog    *create_find_dialog    (void);
 ReplaceDialog *create_replace_dialog (void);
@@ -184,7 +197,6 @@ GHexPrintJobInfo *ghex_print_job_info_new(HexDocument *doc, guint group_type);
 void ghex_print_job_info_destroy(GHexPrintJobInfo *pji);
 
 /* config stuff */
-void save_configuration    (void);
 void load_configuration    (void);
 
 /* hiding widgets on cancel or delete_event */

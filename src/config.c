@@ -1,7 +1,7 @@
 /* -*- mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* config.c - configuration loading/saving via gnome-config routines
 
-   Copyright (C) 1997 - 2002 Free Software Foundation
+   Copyright (C) 1997 - 2003 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -28,92 +28,12 @@
 #include <gconf/gconf-client.h>
 #include <gconf/gconf-value.h>
 
-#define GHEX_BASE_KEY                "/apps/ghex2"
-#define GHEX_PREF_FONT               "/font"
-#define GHEX_PREF_GROUP              "/group"
-#define GHEX_PREF_MAX_UNDO_DEPTH     "/maxundodepth"   
-#define GHEX_PREF_OFFSET_FORMAT      "/offsetformat"
-#define GHEX_PREF_OFFSETS_COLUMN     "/offsetscolumn"
-#define GHEX_PREF_PAPER              "/paper"
-#define GHEX_PREF_BOX_SIZE           "/boxsize"
-#define GHEX_PREF_DATA_FONT          "/datafont"
-#define GHEX_PREF_DATA_FONT_SIZE     "/datafontsize"
-#define GHEX_PREF_HEADER_FONT        "/headerfont"
-#define GHEX_PREF_HEADER_FONT_SIZE   "/headerfontsize"
-
-static GConfClient *gconf_client = NULL;
+GConfClient *gconf_client = NULL;
 
 gint def_group_type = GROUP_BYTE;
 guint max_undo_depth;
 gchar *offset_fmt = NULL;
 gboolean show_offsets_column;
-
-void save_configuration () {
-
-	/* Set the default font name -- SnM */
-	if (def_metrics) {
-		gconf_client_set_string (gconf_client,
-								 GHEX_BASE_KEY GHEX_PREF_FONT,
-								 def_font_name,
-								 NULL);
-	}
-
-	/* Set group type -- SnM */
-	gconf_client_set_int (gconf_client,
-						  GHEX_BASE_KEY GHEX_PREF_GROUP,
-						  def_group_type,
-						  NULL);
-
-	/* Set the max undo depth -- SnM */
-	gconf_client_set_int (gconf_client,
-						  GHEX_BASE_KEY GHEX_PREF_MAX_UNDO_DEPTH,
-						  max_undo_depth,
-						  NULL);
-
-	/* Set the offset format -- SnM */
-	gconf_client_set_string (gconf_client,
-							 GHEX_BASE_KEY GHEX_PREF_OFFSET_FORMAT,
-							 offset_fmt,
-							 NULL);
-
-	/* Set show offsets column -- SnM */
-	gconf_client_set_bool (gconf_client,
-						   GHEX_BASE_KEY GHEX_PREF_OFFSETS_COLUMN,
-						   show_offsets_column,
-						   NULL);	
-
-	/* Set the box size  -- SnM */
-	gconf_client_set_int (gconf_client,
-						  GHEX_BASE_KEY GHEX_PREF_BOX_SIZE,
-						  shaded_box_size,
-						  NULL);
-
-	/* Set the data font -- SnM */
-	gconf_client_set_string (gconf_client,
-							 GHEX_BASE_KEY GHEX_PREF_DATA_FONT,
-							 data_font_name,
-							 NULL);
-
-	/* Set the data font size -- SnM */
-	gconf_client_set_float (gconf_client,
-							GHEX_BASE_KEY GHEX_PREF_DATA_FONT_SIZE,
-							data_font_size,
-							NULL);
-
-	/* Set the header font -- SnM */
-	gconf_client_set_string (gconf_client,
-							 GHEX_BASE_KEY GHEX_PREF_HEADER_FONT,
-							 header_font_name,
-							 NULL);
-
-	/* Set the header font size -- SnM */
-	gconf_client_set_float (gconf_client,
-							GHEX_BASE_KEY GHEX_PREF_HEADER_FONT_SIZE,
-							header_font_size,
-							NULL);
-
-	gconf_client_suggest_sync (gconf_client, NULL);
-} 
 
 void load_configuration () {
 	gchar *font_name;
@@ -205,18 +125,6 @@ void load_configuration () {
 		data_font_name = g_strdup ("Courier 10");
 	}
 
-	/* Get the data font size -- SnM */
-	data_font_size = gconf_client_get_float (gconf_client,
-											 GHEX_BASE_KEY GHEX_PREF_DATA_FONT_SIZE,
-											 NULL);
-
-	/* Check if the data_font_size is 0.0. Should not happen if we get the
-	 * default value from the gconf client -- SnM
-	 */
-	if (0.0 == data_font_size) {
-		data_font_size = 10.0;
-	}
-
 	/* Get the header font name -- SnM */
 	header_font_name = gconf_client_get_string (gconf_client,
 												GHEX_BASE_KEY GHEX_PREF_HEADER_FONT,
@@ -229,19 +137,6 @@ void load_configuration () {
 	if(NULL == header_font_name) {
 		header_font_name = g_strdup ("Helvetica 12");
 	}
-
-	/* Get the header font size -- SnM */
-	header_font_size = gconf_client_get_float (gconf_client,
-											   GHEX_BASE_KEY GHEX_PREF_HEADER_FONT_SIZE,
-											   NULL);
-
-	/* Check if the header_font_size is 0.0. Should not happen if we get
-	 * the default value from the gconf client -- SnM
-	 */
-
-	if (0.0 == header_font_size) {
-		header_font_size = 12.0;
-	}	
 }
 
 static void ghex_prefs_notify_cb (GConfClient *gconf_client,
@@ -342,16 +237,10 @@ static void ghex_prefs_notify_cb (GConfClient *gconf_client,
 			g_free(data_font_name);
 		data_font_name = g_strdup (gconf_value_get_string(entry->value));
 	}
-	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_DATA_FONT_SIZE)) {
-		data_font_size = gconf_value_get_float(entry->value);
-	}
 	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_HEADER_FONT)) {
 		if(header_font_name)
 			g_free(header_font_name);
 		header_font_name = g_strdup (gconf_value_get_string(entry->value));
-	}
-	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_HEADER_FONT_SIZE)) {
-		header_font_size = gconf_value_get_float(entry->value);
 	}
 }
 

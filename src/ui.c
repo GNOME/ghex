@@ -760,7 +760,6 @@ ghex_print(GtkHex *gh, gboolean preview)
 
 	ghex_print_update_page_size_and_margins (doc, pji);
 	ghex_print_job_execute(pji);
-	gnome_print_job_close (pji->master);
 
 	if (pji->preview)
 		ghex_print_preview_real(pji);

@@ -1,3 +1,9 @@
+2003-04-29  Jaka Mocnik  <jaka@gnu.org>
+
+	* made prefs dialog instant-apply.
+	* src/ui.c: don't explicitly call gnome_print_job_close(), since
+	it is called in ghex_print_job_info_destroy().
+
 2003-04-14  Mike Lei <mike.lei@sun.com>
 	
 	* configure.in: Added Makefile support for de es fr it sv ko zh_CN zh_TW
@@ -15,6 +21,7 @@
 	if a document was created. patch by Pasupathi Duraisamy.
 	* src/main.c (main): only attempt to open a file that exists. patch
 	by Pasupathi Duraisamy.
+	* tagged as GHEX_2_3_0. tarball released.
 
 2003-03-03  Dmitry G. Mastrukov  <dmitry@taurussoft.org>
 

@@ -36,7 +36,6 @@
 const guchar *def_paper; /* Using guchar instead -- SnM */
 
 gchar *data_font_name, *header_font_name;
-gdouble data_font_size, header_font_size;
 gint shaded_box_size;
 
 static void print_header(GHexPrintJobInfo *pji, unsigned int page);
