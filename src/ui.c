@@ -35,6 +35,10 @@ GnomeUIInfo file_menu[] = {
   { GNOME_APP_UI_ENDOFINFO }
 };
 
+GnomeUIInfo empty_menu[] = {
+  { GNOME_APP_UI_ENDOFINFO },
+};
+
 GnomeUIInfo view_menu[] = {
   { GNOME_APP_UI_ITEM, "Add view", NULL, add_view_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0,
@@ -55,13 +59,13 @@ GnomeUIInfo help_menu[] = {
 };
 
 GnomeUIInfo main_menu[] = {
-  { GNOME_APP_UI_SUBTREE, ("File"), NULL, file_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, "File", NULL, file_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_SUBTREE, ("View"), NULL, view_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, "View", NULL, view_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_JUSTIFY_RIGHT, NULL, NULL, NULL, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, "Files", NULL, empty_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_SUBTREE, ("Help"), NULL, help_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, "Help", NULL, help_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };

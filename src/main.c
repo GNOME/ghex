@@ -55,10 +55,7 @@ int main(int argc, char **argv) {
 
     /* and document menu and document list paths */
     gnome_mdi_set_child_menu_path(mdi, _("File"));
-    gnome_mdi_set_child_list_path(mdi, _("View"));
-
-    /* set the child menu label (defaults to Children) */
-    gnome_mdi_set_child_menu_label(mdi, _("Files"));
+    gnome_mdi_set_child_list_path(mdi, _("Files/"));
 
     /* connect signals */
     gtk_signal_connect(GTK_OBJECT(mdi), "remove_child", GTK_SIGNAL_FUNC(remove_doc_cb), NULL);
