@@ -57,7 +57,7 @@ dnl =================================================================
 GETTEXT_PACKAGE=ghex-2.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext package name.])
-ALL_LINGUAS="am az be bg ca cs da de el en_CA en_GB es et eu fi fr ga gl hr hu id it ja ko ml ms nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv tr uk vi wa zh_CN zh_TW"
+ALL_LINGUAS="am az be bg ca cs da de el en_CA en_GB es et eu fi fr ga gl hr hu id it ja ko ml ms nl nn no pa pl pt pt_BR ro ru rw sk sl sq sr sr@Latn sv tr uk vi wa zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 
 AC_CHECK_LIB(popt, poptGetArgs, [POPT_LIBS="-lpopt"],
