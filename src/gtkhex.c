@@ -1422,10 +1422,10 @@ static void gtk_hex_finalize(GObject *o) {
 		g_object_unref (G_OBJECT (gh->xlayout));
 	
 	if (gh->alayout)
-		g_object_unref (G_OBJECT (gh->xlayout));
+		g_object_unref (G_OBJECT (gh->alayout));
 	
 	if (gh->olayout)
-		g_object_unref (G_OBJECT (gh->xlayout));
+		g_object_unref (G_OBJECT (gh->olayout));
 	
 	/* Changes for Gnome 2.0 -- SnM */	
 	if(G_OBJECT_CLASS(parent_class)->finalize)

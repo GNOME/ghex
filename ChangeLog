@@ -1,3 +1,10 @@
+2002-03-05  Shivram U  <shivaram.upadhyayula@wipro.com>
+	* src/bonobo-mdi.c : (bonobo_mdi_show_status) Now using 
+	bonobo_ui_component_set_status() to set the status.
+	(bonobo_mdi_flash), (remove_message_timeout) Using 
+	bonobo_mdi_show_status to flash the message.
+	* src/gtkhex.c : (gtk_hex_finalize) fixed wrong unref of GObjects.
+
 2002-03-04  Shivram U  <shivaram.upadhyayula@wipro.com>
 	* enabled the print functionality.
 	* changed from using GdkFont to PangoFont.

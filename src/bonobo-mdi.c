@@ -2420,15 +2420,11 @@ bonobo_mdi_get_ui_component_from_window (BonoboWindow* win)
 static gint
 remove_message_timeout (MessageInfo * mi)
 {
-	BonoboUIEngine *ui_engine;
-
 	GDK_THREADS_ENTER ();
 
-	ui_engine = bonobo_window_get_ui_engine (mi->win);
-	g_return_val_if_fail (ui_engine != NULL, FALSE);
-
-	bonobo_ui_engine_remove_hint (ui_engine);
-
+	/* Remove the status message */
+	/* NOTE : Use space ' ' not an empty string '' */
+	bonobo_window_show_status (mi->win, " ");
 	g_free (mi);
 
 	GDK_THREADS_LEAVE ();
@@ -2461,23 +2457,17 @@ static const guint32 flash_length = 3000; /* 3 seconds, I hope */
 void
 bonobo_window_show_status (BonoboWindow *win, const gchar *msg)
 {
-	BonoboUIEngine *ui_engine;
+	BonoboUIComponent *ui_component;
+
 	g_return_if_fail (win != NULL);
 	g_return_if_fail (BONOBO_IS_WINDOW (win));
 	g_return_if_fail (msg != NULL);
 
-	ui_engine = bonobo_window_get_ui_engine (win);
-	g_return_if_fail (ui_engine != NULL);
+	ui_component = BONOBO_UI_COMPONENT (
+			gtk_object_get_data (GTK_OBJECT (win), UI_COMPONENT_KEY));
+	g_return_if_fail (ui_component != NULL);			
 
-	if (bonobo_ui_engine_xml_node_exists (ui_engine, "/status"))
-	{
-		bonobo_ui_engine_remove_hint (ui_engine);
-		bonobo_ui_engine_add_hint (ui_engine, msg);
-	}
-
-	/* Update UI */
-	while (gtk_events_pending ())
-		gtk_main_iteration ();
+	bonobo_ui_component_set_status (ui_component, msg, NULL);
 }
 
 
@@ -2496,38 +2486,27 @@ bonobo_window_show_status (BonoboWindow *win, const gchar *msg)
 void
 bonobo_window_flash (BonoboWindow * win, const gchar * flash)
 {
-	BonoboUIEngine *ui_engine;
+	MessageInfo * mi;
 	g_return_if_fail (win != NULL);
 	g_return_if_fail (BONOBO_IS_WINDOW (win));
 	g_return_if_fail (flash != NULL);
 
-	ui_engine = bonobo_window_get_ui_engine (win);
-	g_return_if_fail (ui_engine != NULL);
 
-	if (bonobo_ui_engine_xml_node_exists (ui_engine, "/status"))
-	{
-		MessageInfo * mi;
+	mi = g_new (MessageInfo, 1);
 
-		mi = g_new (MessageInfo, 1);
+	bonobo_window_show_status (win, flash);
 
-		bonobo_ui_engine_remove_hint (ui_engine);
-		bonobo_ui_engine_add_hint (ui_engine, flash);
-
-		mi->timeoutid =
-			gtk_timeout_add (flash_length,
+	mi->timeoutid =
+		gtk_timeout_add (flash_length,
 				(GtkFunction) remove_message_timeout,
 				mi);
 
-		mi->handlerid =
-			gtk_signal_connect (GTK_OBJECT(win),
+	mi->handlerid =
+		gtk_signal_connect (GTK_OBJECT(win),
 				"destroy",
 				GTK_SIGNAL_FUNC (remove_timeout_cb),
 				mi );
 
-		mi->win       = win;
-	}
+	mi->win       = win;
 
-	/* Update UI */
-	while (gtk_events_pending ())
-		gtk_main_iteration ();
 }
