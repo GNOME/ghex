@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2002-03-20 20:44+0100\n"
-"PO-Revision-Date: 2002-03-20 20:46+0100\n"
+"POT-Creation-Date: 2002-04-26 10:54+0200\n"
+"PO-Revision-Date: 2002-04-26 10:56+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -51,12 +51,12 @@ msgid "Binary"
 msgstr "Binarnie"
 
 #: src/chartable.c:1
-msgid "GHex: Character table"
-msgstr "GHex: Tablica znaków"
+msgid "Character table"
+msgstr "Tablica znaków"
 
 #: src/converter.c:1
-msgid "GHex: Converter"
-msgstr "GHex: Konwerter"
+msgid "Base Converter"
+msgstr "Konwerter zapisu liczb"
 
 #. entries
 #: src/converter.c:1
@@ -247,12 +247,12 @@ msgid "Close the current file"
 msgstr "Zamyka bieżący plik"
 
 #: src/ghex-ui.xml.h:1
-msgid "Con_verter"
-msgstr "_Konwerter..."
-
-#: src/ghex-ui.xml.h:1
 msgid "Configure the application"
 msgstr "Konfiguruje aplikację"
+
+#: src/ghex-ui.xml.h:1
+msgid "Contents"
+msgstr "Zawartość"
 
 #: src/ghex-ui.xml.h:1
 msgid "Converter..."
@@ -277,10 +277,6 @@ msgstr "Eksportuje dane do pliku w HTML-u"
 #: src/ghex-ui.xml.h:1
 msgid "Export to HTML..."
 msgstr "Wyeksportuj do formatu HTML..."
-
-#: src/ghex-ui.xml.h:1 src/ui.c:1
-msgid "Export to _HTML..."
-msgstr "Wyeksportuj do formatu _HTML..."
 
 #: src/ghex-ui.xml.h:1
 msgid "Fi_les"
@@ -307,12 +303,12 @@ msgid "Group data by 8 bits"
 msgstr "Grupuje dane po 8 bitów"
 
 #: src/ghex-ui.xml.h:1
-msgid "Help"
-msgstr "Pomoc"
-
-#: src/ghex-ui.xml.h:1
 msgid "Help Chat"
 msgstr "Pomoc interaktywna"
+
+#: src/ghex-ui.xml.h:1
+msgid "Help on this application"
+msgstr "Pomoc na temat aplikacji"
 
 #: src/ghex-ui.xml.h:1
 msgid "Insert Mode"
@@ -355,12 +351,12 @@ msgid "Print"
 msgstr "Wydrukuj"
 
 #: src/ghex-ui.xml.h:1
+msgid "Print Previe_w..."
+msgstr "Podgląd _wydruku..."
+
+#: src/ghex-ui.xml.h:1
 msgid "Print Preview..."
 msgstr "Podgląd wydruku..."
-
-#: src/ghex-ui.xml.h:1 src/ui.c:1
-msgid "Print pre_view..."
-msgstr "Po_dgląd wydruku..."
 
 #: src/ghex-ui.xml.h:1
 msgid "Print the current file"
@@ -403,6 +399,10 @@ msgid "Save As"
 msgstr "Zapisz jako"
 
 #: src/ghex-ui.xml.h:1
+msgid "Save As _HTML..."
+msgstr "Zapisz w formacie _HTML..."
+
+#: src/ghex-ui.xml.h:1
 msgid "Save _As..."
 msgstr "Z_apisz jako..."
 
@@ -443,12 +443,20 @@ msgid "_Add View"
 msgstr "_Dodaj widok"
 
 #: src/ghex-ui.xml.h:1
+msgid "_Base Converter"
+msgstr "Konwerter _zapisu liczb"
+
+#: src/ghex-ui.xml.h:1
 msgid "_Bytes"
 msgstr "_Bajty"
 
 #: src/ghex-ui.xml.h:1
 msgid "_Close"
 msgstr "Za_mknij"
+
+#: src/ghex-ui.xml.h:1
+msgid "_Contents"
+msgstr "_Zawartość"
 
 #: src/ghex-ui.xml.h:1
 msgid "_Edit"
@@ -514,10 +522,6 @@ msgstr "_Przywróć"
 msgid "_Save"
 msgstr "_Zapisz"
 
-#: src/ghex-ui.xml.h:1
-msgid "_Settings"
-msgstr "_Ustawienia"
-
 #: src/ghex-ui.xml.h:1 src/ui.c:1
 msgid "_Tools"
 msgstr "_Narzędzia"
@@ -560,6 +564,10 @@ msgstr ""
 "Czy chcesz zapisać zmiany?"
 
 #: src/main.c:1
+msgid "Do_n't save"
+msgstr "_Nie zapisuj"
+
+#: src/main.c:1
 msgid "The gnome binary editor"
 msgstr "Edytor plików binarnych dla GNOME"
 
@@ -582,6 +590,10 @@ msgstr "Modalne"
 #: src/preferences.c:1
 msgid "Select font"
 msgstr "Wybór czcionki"
+
+#: src/preferences.c:1
+msgid "GHex Preferences"
+msgstr "GHex - Preferencje"
 
 #: src/preferences.c:1
 msgid "Maximum number of undo levels"
@@ -690,6 +702,14 @@ msgid ""
 msgstr ""
 "Nie można odnaleźć czcionki \"%s\".\n"
 "Bez tej czcionki nie można wydrukować danych z programu GHex."
+
+#: src/ui.c:1
+msgid "Export to _HTML..."
+msgstr "Wyeksportuj do formatu _HTML..."
+
+#: src/ui.c:1
+msgid "Print pre_view..."
+msgstr "Po_dgląd wydruku..."
 
 #: src/ui.c:1
 msgid "Con_verter..."
