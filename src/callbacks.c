@@ -19,9 +19,7 @@ void about_cb (GtkWidget *widget) {
 
   about = gnome_about_new ( _("GHex, a binary file editor"), VERSION,
 			    "(C) 1998 Jaka Mocnik", authors,
-			    _("A small contribution to the GNOME project.\n"
-			      "Send bug reports (patches preferred ;)) to:\n"
-			      "<jaka.mocnik@kiss.uni-lj.si>"), NULL);
+			    _("Released under the terms of GNU Public License"), NULL);
 
   gtk_widget_show (about);
 }
@@ -124,9 +122,8 @@ gint delete_event_cb(GtkWidget *w, gpointer who_cares, GtkWidget **me) {
   return TRUE;  /* stop default delete_event handlers */
 }
 
-void prop_destroy_cb(GtkWidget *w, PropertyUI **data) {
-  g_free(*data);
-  *data = NULL;
+void prop_destroy_cb(GtkWidget *w, PropertyUI *data) {
+  data->pbox = NULL;
 }
 
 void open_cb(GtkWidget *w) {
@@ -196,13 +193,22 @@ void jump_cb(GtkWidget *w) {
   gtk_widget_show(jump_dialog.window);
 }
 
+void converter_cb(GtkWidget *w) {
+  if(converter.window == NULL)
+    create_converter(&converter);
+
+  gtk_window_position (GTK_WINDOW(converter.window), GTK_WIN_POS_MOUSE);
+
+  gtk_widget_show(converter.window);
+}
+
 void prefs_cb(GtkWidget *w) {
-  if(prefs_ui == NULL)
+  if(prefs_ui.pbox == NULL)
     create_prefs_dialog(&prefs_ui);
 
-  gtk_window_position (GTK_WINDOW(prefs_ui->pbox), GTK_WIN_POS_MOUSE);
+  gtk_window_position (GTK_WINDOW(prefs_ui.pbox), GTK_WIN_POS_MOUSE);
 
-  gtk_widget_show(GTK_WIDGET(prefs_ui->pbox));
+  gtk_widget_show(GTK_WIDGET(prefs_ui.pbox));
 }
 
 static gint get_search_string(gchar *str, gchar *buf, gint type) {
@@ -259,7 +265,7 @@ void find_next_cb(GtkWidget *w) {
   guint offset, str_len;
   gchar str[256];
 
-  if((str_len = get_search_string(gtk_entry_get_text(find_dialog.f_string), str,
+  if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog.f_string)), str,
 				  find_dialog.search_type)) == 0) {
     report_error(_("There seems to be no string to search for!"));
     return;
@@ -283,7 +289,7 @@ void find_prev_cb(GtkWidget *w) {
   guint offset, str_len;
   gchar str[256];
 
-  if((str_len = get_search_string(gtk_entry_get_text(find_dialog.f_string), str,
+  if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog.f_string)), str,
 				  find_dialog.search_type)) == 0) {
     report_error(_("There seems to be no string to search for!"));
     return;
@@ -336,7 +342,7 @@ void replace_next_cb(GtkWidget *w) {
   guint offset, str_len;
   gchar str[256];
 
-  if((str_len = get_search_string(gtk_entry_get_text(replace_dialog.f_string), str,
+  if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.f_string)), str,
 				  replace_dialog.search_type)) == 0) {
     report_error(_("There seems to be no string to search for!"));
     return;
@@ -534,14 +540,67 @@ void cleanup_cb(GnomeMDI *mdi) {
   gtk_main_quit();
 }
 
-void app_created_cb(GnomeMDI *mdi, GnomeApp *app) {
-  GtkWidget *sb;
+void conv_entry_cb(GtkWidget *entry, gint base) {
+  guchar buffer[33];
+  gchar *text, *endptr;
+  gulong val;
+  int i, len;
 
-  sb = gtk_statusbar_new();
-  gnome_app_set_statusbar(app, sb);
+  text = gtk_entry_get_text(GTK_ENTRY(entry));
+
+  switch(base) {
+  case 0:
+    strncpy(buffer, text, 4);
+    buffer[4] = 0;
+    for(val = 0, i = 0, len = strlen(buffer); i < len; i++) {
+      val <<= 8;
+      val |= text[i];
+    }
+    break;
+  case 2:
+    strncpy(buffer, text, 32);
+    buffer[32] = 0;
+    break;
+  case 10:
+    strncpy(buffer, text, 10);
+    buffer[10] = 0;
+    break;
+  case 16:
+    strncpy(buffer, text, 8);
+    buffer[8] = 0;
+    break;
+  }
+
+  if(base != 0) {
+    val = strtoul(buffer, &endptr, base);
+    if(*endptr != 0)
+      val = 0;
+  }
+
+  if(val == converter.value)
+    return;
+
+  converter.value = val;
+
+  for(i = 0; i < 32; i++)
+    buffer[i] = ((val & (1L << i))?'1':'0');
+  buffer[i] = 0;
+  gtk_entry_set_text(GTK_ENTRY(converter.b_entry), buffer);
+
+  sprintf(buffer, "%lu", val);
+  gtk_entry_set_text(GTK_ENTRY(converter.d_entry), buffer);
+
+  sprintf(buffer, "%lx", val);
+  gtk_entry_set_text(GTK_ENTRY(converter.x_entry), buffer);
+
+  for(i = 0; i < 4; i++) {
+    buffer[i] = (val & (0xFF << (3 - i)*8)) >> (3 - i)*8;
+    if(buffer[i] < ' ')
+      buffer[i] = '_';
+  }
+  buffer[i] = 0;
+  gtk_entry_set_text(GTK_ENTRY(converter.a_entry), buffer);
 }
-
-
 
 
 

@@ -33,12 +33,12 @@ void remove_view_cb();
 
 gint remove_doc_cb();
 void cleanup_cb();
-void app_created_cb();
 
 void prefs_cb();
 void find_cb();
 void replace_cb();
 void jump_cb();
+void converter_cb();
 void find_next_cb();
 void find_prev_cb();
 void replace_next_cb();
@@ -47,6 +47,7 @@ void replace_all_cb();
 void goto_byte_cb();
 void set_find_type_cb();
 void set_replace_type_cb();
+void conv_entry_cb();
 
 void open_selected_file();
 void save_selected_file();

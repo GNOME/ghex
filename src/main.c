@@ -51,11 +51,7 @@ int main(int argc, char **argv) {
     mdi = gnome_mdi_new("ghex", "GNOME hex editor");
 
     /* set up MDI menus */
-#ifdef USE_APP_HELPER
     gnome_mdi_set_menu_template(mdi, main_menu);
-#else
-    gtk_signal_connect(GTK_OBJECT(mdi), "create_menus", GTK_SIGNAL_FUNC(create_mdi_menus), NULL);
-#endif
 
     /* and document menu and document list paths */
     gnome_mdi_set_child_menu_path(mdi, "File");

@@ -9,32 +9,29 @@
 #include "callbacks.h"
 #include "ghex.h"
 
-#ifdef USE_APP_HELPER
 GnomeUIInfo file_menu[] = {
   { GNOME_APP_UI_ITEM, "Open", NULL, open_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'O',
-    GDK_CONTROL_MASK, NULL },
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'O', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_ITEM, "Save", NULL, save_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 'S',
-    GDK_CONTROL_MASK, NULL },
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 'S', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_ITEM, "Save as...", NULL, save_as_cb, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ITEM, "Revert", NULL, revert_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL, 'S',
-    GDK_CONTROL_MASK, NULL },
+    GNOME_APP_PIXMAP_NONE, NULL, 'S', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_ITEM, "Close", NULL, close_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL, 'S',
-    GDK_CONTROL_MASK, NULL },
+    GNOME_APP_PIXMAP_NONE, NULL, 'S', GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_ITEM, "Open Converter...", NULL, converter_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ITEM, "Preferences", NULL, prefs_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'P',
-    GDK_CONTROL_MASK, NULL },
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'P', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ITEM, "Exit", NULL, quit_app_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'X',
-    GDK_CONTROL_MASK, NULL },
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'X', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
 
@@ -66,15 +63,16 @@ GnomeUIInfo main_menu[] = {
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
-#endif
 
 static void set_prefs(PropertyUI *);
 
 GtkWidget *file_sel = NULL;
+
 FindDialog find_dialog = { NULL };
 ReplaceDialog replace_dialog = { NULL };
 JumpDialog jump_dialog = { NULL };
-PropertyUI *prefs_ui = NULL;
+Converter converter = { NULL };
+PropertyUI prefs_ui = { NULL };
 
 GdkFont *def_font = NULL;
 gchar *def_font_name = NULL;
@@ -162,157 +160,6 @@ GtkWidget *create_button(GtkWidget *window, gchar *type, gchar *text) {
   return button;
 }
 
-#if 0
-void create_toolbar() {
-  tbar = gtk_toolbar_new(GTK_ORIENTATION_HORIZONTAL, GTK_TOOLBAR_BOTH);
-  gtk_container_border_width(GTK_CONTAINER(tbar), 2);
-  gtk_widget_show(tbar);
-
-  gtk_toolbar_append_item (GTK_TOOLBAR (tbar),
-			   _("Open"), _("Open a file"), NULL,
-			   gnome_stock_pixmap_widget(app, GNOME_STOCK_PIXMAP_OPEN),
-			   GTK_SIGNAL_FUNC(open_cb), NULL);
-  gtk_toolbar_append_item (GTK_TOOLBAR (tbar),
-			   _("Save"), _("Save file"), NULL,
-			   gnome_stock_pixmap_widget(app, GNOME_STOCK_PIXMAP_SAVE),
-			   GTK_SIGNAL_FUNC(save_cb), NULL);
-  gtk_toolbar_append_item (GTK_TOOLBAR (tbar),
-			   _("Revert"), _("Revert file"), NULL,
-			   NULL, GTK_SIGNAL_FUNC(revert_cb), NULL);
-  gtk_toolbar_append_item (GTK_TOOLBAR (tbar),
-			   _("Close"), _("Close file"), NULL,
-			   NULL, GTK_SIGNAL_FUNC(close_cb), NULL);
-
-  gtk_toolbar_append_space(GTK_TOOLBAR(tbar));
-}
-#endif
-
-#ifndef USE_APP_HELPER
-GtkMenuBar *create_mdi_menus(GnomeMDI *mdi) {
-  GtkWidget *w, *menu;
-  GtkMenuBar *menubar;
-  GtkAcceleratorTable *accel = NULL;
-
-  menubar = GTK_WIDGET(gtk_menu_bar_new());
-
-  menu = gtk_menu_new();
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_NEW, _("Open..."));
-  gtk_widget_show(w);
-  gtk_widget_install_accelerator(w, accel, "activate",
-                                       'O', GDK_CONTROL_MASK);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(open_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_OPEN, _("Save"));
-  gtk_widget_show(w);
-  gtk_widget_install_accelerator(w, accel, "activate",
-				 'S', GDK_CONTROL_MASK);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(save_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_SAVE_AS, _("Save as..."));
-  gtk_widget_show(w);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(save_as_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK, _("Revert"));
-  gtk_widget_show(w);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(revert_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK, _("Close"));
-  gtk_widget_show(w);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(close_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_menu_item_new();
-  gtk_widget_show(w);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_PREF, _("Preferences"));
-  gtk_widget_show(w);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(prefs_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_menu_item_new();
-  gtk_widget_show(w);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_QUIT, _("Quit"));
-  gtk_widget_show(w);
-  gtk_widget_install_accelerator(w, accel, "activate",
-				 'Q', GDK_CONTROL_MASK);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(quit_app_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_menu_item_new_with_label(_("File"));
-  gtk_widget_show(w);
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
-  
-  gtk_menu_bar_append(menubar, w);
-
-  /* the View menu */
-  menu = gtk_menu_new();
-
-  w = gtk_menu_item_new_with_label(_("Add"));
-  gtk_widget_show(w);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(add_view_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-  
-  w = gtk_menu_item_new_with_label(_("Remove"));
-  gtk_widget_show(w);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(remove_view_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_menu_item_new_with_label(_("View"));
-  gtk_widget_show(w);
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
-
-  gtk_menu_bar_append(menubar, w);
-
-  /* the Help menu */
-  menu = gtk_menu_new();
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_ABOUT, _("About..."));
-  gtk_widget_show(w);
-  gtk_widget_install_accelerator(w, accel, "activate",
-				 'A', GDK_CONTROL_MASK);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(about_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gtk_menu_item_new();
-  gtk_widget_show(w);
-  gtk_menu_append(GTK_MENU(menu), w);
-
-  w = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK, _("Help..."));
-  gtk_widget_show(w);
-  gtk_signal_connect(GTK_OBJECT(w), "activate",
-		     GTK_SIGNAL_FUNC(show_help_cb), NULL);
-  gtk_menu_append(GTK_MENU(menu), w);  
-
-  w = gtk_menu_item_new_with_label(_("Help"));
-  gtk_widget_show(w);
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
-  gtk_menu_item_right_justify(GTK_MENU_ITEM(w));
-  gtk_object_set_data(GTK_OBJECT(w), "MDIDocumentList", (gpointer)TRUE);
-
-  gtk_menu_bar_append(menubar, w);
-
-  return menubar;
-}
-#endif
-
 void create_find_dialog(FindDialog *dialog) {
   gint i;
   GSList *group;
@@ -324,7 +171,7 @@ void create_find_dialog(FindDialog *dialog) {
   gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
 		     GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
 
-  gtk_window_set_title(GTK_WINDOW(dialog->window), _("Find Data"));
+  gtk_window_set_title(GTK_WINDOW(dialog->window), _("GHex: Find Data"));
 
   dialog->f_string = gtk_entry_new();
   gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->f_string,
@@ -384,7 +231,7 @@ void create_replace_dialog(ReplaceDialog *dialog) {
   gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
 		     GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
 
-  gtk_window_set_title(GTK_WINDOW(dialog->window), _("Find & Replace Data"));
+  gtk_window_set_title(GTK_WINDOW(dialog->window), _("GHex: Find & Replace Data"));
 
   dialog->f_string = gtk_entry_new();
   gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->f_string,
@@ -452,7 +299,7 @@ void create_jump_dialog(JumpDialog *dialog) {
   gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
 		     GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
 
-  gtk_window_set_title(GTK_WINDOW(dialog->window), _("Jump To Byte"));
+  gtk_window_set_title(GTK_WINDOW(dialog->window), _("GHex: Jump To Byte"));
 
   dialog->int_entry = gtk_entry_new();
   gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->int_entry,
@@ -478,6 +325,72 @@ void create_jump_dialog(JumpDialog *dialog) {
   gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
 }
 
+void create_converter(Converter *conv) {
+  GtkWidget *table, *label, *close;
+
+  conv->window = gtk_dialog_new();
+  gtk_signal_connect(GTK_OBJECT(conv->window), "delete_event",
+		     GTK_SIGNAL_FUNC(delete_event_cb), &conv->window);
+
+  gtk_window_set_title(GTK_WINDOW(conv->window), _("GHex: Converter"));
+
+  table = gtk_table_new(4, 2, FALSE);
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(conv->window)->vbox), table,
+		     TRUE, TRUE, 0);
+  gtk_widget_show(table);
+
+  label = gtk_label_new(_("Binary"));
+  gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+  gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 0, 1);
+  gtk_widget_show(label);
+  conv->b_entry = gtk_entry_new();
+  gtk_signal_connect(GTK_OBJECT(conv->b_entry), "activate",
+		     GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)2);
+  gtk_table_attach_defaults(GTK_TABLE(table), conv->b_entry, 1, 2, 0, 1);
+  gtk_widget_show(conv->b_entry);
+
+  label = gtk_label_new(_("Decimal"));
+  gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+  gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 1, 2);
+  gtk_widget_show(label);
+  conv->d_entry = gtk_entry_new();
+  gtk_signal_connect(GTK_OBJECT(conv->d_entry), "activate",
+		     GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)10);
+  gtk_table_attach_defaults(GTK_TABLE(table), conv->d_entry, 1, 2, 1, 2);
+  gtk_widget_show(conv->d_entry);
+
+  label = gtk_label_new(_("Hex"));
+  gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+  gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 2, 3);
+  gtk_widget_show(label);
+  conv->x_entry = gtk_entry_new();
+  gtk_signal_connect(GTK_OBJECT(conv->x_entry), "activate",
+		     GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)16);
+  gtk_table_attach_defaults(GTK_TABLE(table), conv->x_entry, 1, 2, 2, 3);
+  gtk_widget_show(conv->x_entry);
+
+  label = gtk_label_new(_("ASCII"));
+  gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+  gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 3, 4);
+  gtk_widget_show(label);
+  conv->a_entry = gtk_entry_new();
+  gtk_signal_connect(GTK_OBJECT(conv->a_entry), "activate",
+		     GTK_SIGNAL_FUNC(conv_entry_cb), (gpointer)0);
+  gtk_table_attach_defaults(GTK_TABLE(table), conv->a_entry, 1, 2, 3, 4);
+  gtk_widget_show(conv->a_entry);
+
+  close = gtk_button_new_with_label(_("Close"));
+  gtk_signal_connect (GTK_OBJECT (close),
+		      "clicked", GTK_SIGNAL_FUNC(cancel_cb),
+		      &conv->window);
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(conv->window)->action_area), close,
+		     TRUE, TRUE, 0);
+  gtk_widget_show(close);
+
+  gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(conv->window)->vbox), 2);
+  gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(conv->window)->vbox), 2);
+}
+
 static void set_prefs(PropertyUI *pui) {
   int i;
 
@@ -494,19 +407,16 @@ static void set_prefs(PropertyUI *pui) {
     }
 }
 
-void create_prefs_dialog(PropertyUI **prop_data) {
+void create_prefs_dialog(PropertyUI *pui) {
   GtkWidget *vbox, *label, *frame, *box;
   GSList *group;
-  PropertyUI *pui;
   
   int i;
-
-  pui = g_malloc(sizeof(PropertyUI));
 
   pui->pbox = GNOME_PROPERTY_BOX(gnome_property_box_new());
 
   gtk_signal_connect(GTK_OBJECT(pui->pbox), "destroy",
-		     GTK_SIGNAL_FUNC(prop_destroy_cb), prop_data);
+		     GTK_SIGNAL_FUNC(prop_destroy_cb), pui);
   gtk_signal_connect(GTK_OBJECT(pui->pbox), "apply",
 		     GTK_SIGNAL_FUNC(apply_changes_cb), pui);
 
@@ -578,7 +488,5 @@ void create_prefs_dialog(PropertyUI **prop_data) {
     gtk_signal_connect(GTK_OBJECT(pui->group_type[i]), "clicked",
 		       properties_modified_cb, pui->pbox);
   } 
-
-  *prop_data = pui;
 }
 
