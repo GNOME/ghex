@@ -678,11 +678,7 @@ ghex_print(gboolean preview)
 	pji->master = gnome_print_master_new_from_config (pji->config);
 	g_return_if_fail (pji->master != NULL);
 
-	pji->pc = gnome_print_master_get_context (pji->master);
-	g_return_if_fail (pji->pc != NULL);
-
 	ghex_print_job_execute(pji);
-	gnome_print_master_close (pji->master);
 
 	if (pji->preview)
 		ghex_print_preview_real(pji);

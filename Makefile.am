@@ -16,17 +16,25 @@ EXTRA_DIST =			\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in	\
-	$(schema_DATA)
-#	$(appicon_DATA)
+	$(schema_DATA)		\
+	$(appicon_DATA)
 
 dist-hook: ghex.spec
 	cp ghex.spec $(distdir)
 
-#appicondir = $(datadir)/pixmaps
-pixmapsdir = $(datadir)/pixmaps
-pixmaps_DATA =
+#pixmapsdir = $(datadir)/pixmaps
+#pixmaps_DATA =
 
-#appicon_DATA = gnome-ghex.png
+
+desktopdir = $(datadir)/applications
+desktop_in_files = ghex.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+
+@INTLTOOL_DESKTOP_RULE@
+
+appicondir = $(datadir)/pixmaps
+appicon_DATA = gnome-ghex.png
+
 
 #sysdir   = $(datadir)/gnome/apps/Applications
 #sys_DATA = ghex.desktop

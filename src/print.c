@@ -28,7 +28,8 @@
 
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0x7F))?1:0)
 
-/* Stolen from gedit SnM */
+/* Taken from gedit SnM */
+#define CM(v) ((v) * 72.0 / 2.54)
 #define A4_WIDTH (210.0 * 72 / 25.4)
 #define A4_HEIGHT (297.0 * 72 / 25.4)
 
@@ -270,7 +271,9 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 
 	pji->master = gnome_print_master_new();
 
+#if 0
 	gnome_print_master_set_paper(pji->master, def_paper);
+#endif
 
 	pji->doc = doc;
 
@@ -281,6 +284,7 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 	pji->page_width = A4_WIDTH;
 	pji->page_height = A4_HEIGHT;
 
+#if 0
 	/* Convert inches to ps points */
 	pji->margin_top = .75 * 72; /* Printer margins, not page margins */
 	pji->margin_bottom = .75 * 72;
@@ -288,6 +292,12 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 	pji->margin_right = .75 * 72;
 	pji->header_height = 2.2*(gnome_font_get_ascender(GNOME_FONT(h_font)) +
 		gnome_font_get_descender(GNOME_FONT(h_font)));
+#endif
+	pji->margin_top = CM (1);
+	pji->margin_bottom = CM (1);
+	pji->margin_left = CM (1);
+	pji->margin_right = CM (1);
+	pji->header_height = 2.5 * gnome_font_get_size (pji->h_font);
 
 	/* Get font character width */
 	glyph = ' ';
