@@ -1,3 +1,10 @@
+2004-10-17  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/Makefile.am (INCLUDES): removed -I$(includedir): apparently it breaks 
+	builds for some people.
+	* src/converter.c: fixed a bug in set_values().
+	* configure.in: version 2.8.1; released a tarball; tagged as GHEX_2_8_1.
+
 2004-10-11  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/ui.c: '(C)' -> 'Copyright'.

@@ -1,6 +1,6 @@
 ## Process this file with automake to create Makefile.in.
 
-INCLUDES = -I$(includedir) 					\
+INCLUDES = \
 	-DGNOMEICONDIR=\""$(datadir)/pixmaps"\"			\
 	-DGNOMELOCALEDIR=\""${prefix}/${DATADIRNAME}/locale"\" 	\
 	-DLOCALEDIR=\"${prefix}/${DATADIRNAME}/locale\"		\

@@ -37,7 +37,7 @@
 
 static void conv_entry_cb(GtkEntry *, gint);
 static void get_cursor_val_cb(GtkButton *button, Converter *conv);
-static void set_values(Converter *conv, gulong val, guint group);
+static void set_values(Converter *conv, gulong val);
 
 Converter *converter = NULL;
 
@@ -307,7 +307,7 @@ get_cursor_val_cb(GtkButton *button, Converter *conv)
 		} while((start % GTK_HEX(view)->group_type != 0) &&
 				(start < GTK_HEX(view)->document->file_size) );
 
-		set_values(conv, val, GTK_HEX(view)->group_type);
+		set_values(conv, val);
 	}
 }
 
@@ -322,19 +322,20 @@ clean(guchar *ptr)
 #define CONV_BUFFER_LEN 32
 
 static void
-set_values(Converter *conv, gulong val, guint group)
+set_values(Converter *conv, gulong val)
 {
 	guchar buffer[CONV_BUFFER_LEN + 1];
-	gint i;
+	gint i, nhex, nbytes;
+	gulong tmp = val;
 
-	if(group == 0) {
-		if(val > 0xFFFF)
-			group = 4;
-		else if(val > 0xFF)
-			group = 2;
-		else
-			group = 1;
+	nhex = 0;
+	while(tmp > 0) {
+		tmp = tmp >> 4;
+		nhex++;
 	}
+	if(nhex == 0)
+		nhex = 1;
+	nbytes = nhex/2; 
 
 	conv->value = val;
 	
@@ -348,17 +349,23 @@ set_values(Converter *conv, gulong val, guint group)
 	
 	g_snprintf(buffer, CONV_BUFFER_LEN, "%lu", val);
 	gtk_entry_set_text(GTK_ENTRY(conv->entry[2]), buffer);
-	
-	for(i = 0; i < group; i++) {
-		g_snprintf(buffer + 2*i, CONV_BUFFER_LEN - 2*i,
-				   "%02x", (guint8)((val & (0xFF << ((group - 1 - i)*8)))) >> (group - 1 - i)*8);
+
+	for(i = 0, tmp = val; i < nhex; i++) {
+		buffer[nhex - i - 1] = (tmp & 0x0000000FL);
+		if(buffer[nhex - i - 1] < 10)
+			buffer[nhex - i - 1] += '0';
+		else
+			buffer[nhex - i - 1] += 'A' - 10;
+		tmp = tmp >> 4;
 	}
+	buffer[i] = '\0';
 	gtk_entry_set_text(GTK_ENTRY(conv->entry[3]), buffer);
 	
-	for(i = 0; i < group; i++) {
-		buffer[i] = ((val & (0xFF << ((group - 1 - i)*8)))) >> (group - 1 - i)*8;
-		if(buffer[i] < ' ')
-			buffer[i] = '_';
+	for(i = 0, tmp = val; i < nbytes; i++) {
+		buffer[nbytes - i - 1] = tmp & 0x000000FF;
+		if(buffer[nbytes - i - 1] < 0x20 || buffer[nbytes - i - 1] >= 0x7F)
+			buffer[nbytes - i - 1] = '_';
+		tmp = tmp >> 8;
 	}
 	buffer[i] = 0;
 	gtk_entry_set_text(GTK_ENTRY(conv->entry[4]), buffer);
@@ -416,5 +423,5 @@ conv_entry_cb(GtkEntry *entry, gint base)
 	if(val == converter->value)
 		return;
 	
-	set_values(converter, val, 0);
+	set_values(converter, val);
 }
