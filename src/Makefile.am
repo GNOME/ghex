@@ -18,8 +18,9 @@ BUILT_SOURCES = \
 ghex2_SOURCES = hex-document.c hex-document.h hex-document-ui.c		\
 	preferences.c findreplace.c converter.c config.c ghex.h		\
 	gtkhex.c gtkhex.h main.c ui.c session.c chartable.c		\
-	print.c bonobo-mdi.c bonobo-mdi-child.c				\
-	ghex-mdi.c bonobo-mdi-session.c bonobo-mdi-session.h	\
+	print.c bonobo-mdi.c bonobo-mdi.h bonobo-mdi-child.c		\
+	bonobo-mdi-child.h ghex-mdi.c ghex-mdi.h			\
+	bonobo-mdi-session.c bonobo-mdi-session.h			\
 	$(BUILT_SOURCES)
 
 ghex-marshal.h: ghex-marshal.list $(GLIB_GENMARSHAL)
