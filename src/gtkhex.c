@@ -1175,8 +1175,10 @@ guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
  * sets data group type (see GROUP_* defines in gtkhex.h)
  */
 void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
+	hide_cursor(gh);
 	gh->group_type = gt;
 	gtk_widget_queue_resize(GTK_WIDGET(gh));
+	show_cursor(gh);
 }
 
 /*

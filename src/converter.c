@@ -26,11 +26,13 @@
 #include "ghex.h"
 
 static void conv_entry_cb(GtkEntry *, gint);
+static void get_cursor_val_cb(GtkButton *button, Converter *conv);
+static void set_values(Converter *conv, gulong val);
 
 Converter converter = { NULL };
 
 void create_converter(Converter *conv) {
-	GtkWidget *table, *label, *close;
+	GtkWidget *table, *label, *close, *get;
 	
 	conv->window = gtk_dialog_new();
 	gtk_signal_connect(GTK_OBJECT(conv->window), "delete_event",
@@ -38,7 +40,9 @@ void create_converter(Converter *conv) {
 	
 	gtk_window_set_title(GTK_WINDOW(conv->window), _("GHex: Converter"));
 	
-	table = gtk_table_new(4, 2, FALSE);
+	table = gtk_table_new(5, 2, FALSE);
+	gtk_table_set_row_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
+	gtk_table_set_col_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(conv->window)->vbox), table,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(table);
@@ -83,7 +87,13 @@ void create_converter(Converter *conv) {
 	gtk_table_attach_defaults(GTK_TABLE(table), conv->entry[3], 1, 2, 3, 4);
 	gtk_widget_show(conv->entry[3]);
 	
-	close = gtk_button_new_with_label(_("Close"));
+	conv->get = get = gtk_button_new_with_label(_("Get cursor value"));
+	gtk_signal_connect (GTK_OBJECT (get), "clicked",
+						GTK_SIGNAL_FUNC(get_cursor_val_cb), conv);
+	gtk_table_attach_defaults(GTK_TABLE(table), get, 0, 2, 4, 5);
+	gtk_widget_show(get);
+
+	conv->close = close = gtk_button_new_with_label(_("Close"));
 	gtk_signal_connect (GTK_OBJECT (close),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
 						&conv->window);
@@ -93,6 +103,52 @@ void create_converter(Converter *conv) {
 	
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(conv->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(conv->window)->vbox), 2);
+}
+
+static void get_cursor_val_cb(GtkButton *button, Converter *conv) {
+	GtkWidget *view = gnome_mdi_get_active_view(mdi);
+	gchar *val_str;
+	guint val, start, i;
+
+	if(view) {
+		start = gtk_hex_get_cursor(GTK_HEX(view));
+		start = start - start % GTK_HEX(view)->group_type;
+		val = 0;
+		do {
+			val <<= 8;
+			val |= gtk_hex_get_byte(GTK_HEX(view), start);
+			start++;
+		} while( (start % GTK_HEX(view)->group_type != 0) &&
+				 (start < GTK_HEX(view)->document->buffer_size) );
+
+		set_values(conv, val);
+	}
+}
+
+static void set_values(Converter *conv, gulong val) {
+	guchar buffer[33];
+	gint i;
+
+	conv->value = val;
+	
+	for(i = 0; i < 32; i++)
+		buffer[i] = ((val & (1L << (31 - i)))?'1':'0');
+	buffer[i] = 0;
+	gtk_entry_set_text(GTK_ENTRY(conv->entry[0]), buffer);
+	
+	sprintf(buffer, "%lu", val);
+	gtk_entry_set_text(GTK_ENTRY(conv->entry[1]), buffer);
+	
+	sprintf(buffer, "%08lX", val);
+	gtk_entry_set_text(GTK_ENTRY(conv->entry[2]), buffer);
+	
+	for(i = 0; i < 4; i++) {
+		buffer[i] = (val & (0xFF << (3 - i)*8)) >> (3 - i)*8;
+		if(buffer[i] < ' ')
+			buffer[i] = '_';
+	}
+	buffer[i] = 0;
+	gtk_entry_set_text(GTK_ENTRY(conv->entry[3]), buffer);
 }
 
 static void conv_entry_cb(GtkEntry *entry, gint base) {
@@ -136,28 +192,9 @@ static void conv_entry_cb(GtkEntry *entry, gint base) {
 			return;
 		}
 	}
-	
+
 	if(val == converter.value)
 		return;
 	
-	converter.value = val;
-	
-	for(i = 0; i < 32; i++)
-		buffer[i] = ((val & (1L << (31 - i)))?'1':'0');
-	buffer[i] = 0;
-	gtk_entry_set_text(GTK_ENTRY(converter.entry[0]), buffer);
-	
-	sprintf(buffer, "%lu", val);
-	gtk_entry_set_text(GTK_ENTRY(converter.entry[1]), buffer);
-	
-	sprintf(buffer, "%08lx", val);
-	gtk_entry_set_text(GTK_ENTRY(converter.entry[2]), buffer);
-	
-	for(i = 0; i < 4; i++) {
-		buffer[i] = (val & (0xFF << (3 - i)*8)) >> (3 - i)*8;
-		if(buffer[i] < ' ')
-			buffer[i] = '_';
-	}
-	buffer[i] = 0;
-	gtk_entry_set_text(GTK_ENTRY(converter.entry[3]), buffer);
+	set_values(&converter, val);
 }

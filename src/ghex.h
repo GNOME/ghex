@@ -90,7 +90,8 @@ typedef struct _Converter {
 	GtkWidget *window;
 	GtkWidget *entry[4];
 	GtkWidget *close;
-	
+	GtkWidget *get;
+
 	gulong value;
 } Converter;
 
