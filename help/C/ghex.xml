@@ -2,11 +2,10 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "1.2">
-  <!ENTITY manrevision "2.0">
-  <!ENTITY date "March 2002">
+  <!ENTITY appversion "1.99.0">
+  <!ENTITY manrevision "2.1">
+  <!ENTITY date "July 2002">
   <!ENTITY app "GHex">
-
 ]>
 
 <!-- 
@@ -33,14 +32,12 @@
       <year>2000</year> 
       <holder>Jaka Mocnik</holder> 
     </copyright>
-<!-- translators: uncomment this:
-
-  <copyright>
-   <year>2002</year>
-   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
-  </copyright>
-
-   -->
+	<!-- translators: uncomment this:
+  	<copyright>
+   	  <year>2002</year>
+      <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  	</copyright>
+   	-->
 
     <publisher> 
       <publishername> GNOME Documentation Project </publishername> 
@@ -53,55 +50,65 @@
 
     <authorgroup> 
       <author> 
-	<firstname>Sun</firstname> 
-	<surname>GNOME Documentation Team</surname> 
-	<affiliation> 
-	  <orgname>Sun Microsystems</orgname> 
-	  <address> <email>gdocteam@sun.com</email> </address> 
-	</affiliation> 
+		<firstname>Sun</firstname> 
+		<surname>GNOME Documentation Team</surname> 
+		<affiliation> 
+	  		<orgname>Sun Microsystems</orgname> 
+	  		<address> <email>gdocteam@sun.com</email> </address> 
+		</affiliation> 
       </author> 
       <author> 
-	<firstname>Jaka</firstname> 
-	<surname>Mocnik</surname> 
-	<affiliation> 
-	  <orgname>GNOME Documentation Project</orgname> 
-	  <address> <email>jaka@gnu.org</email> </address> 
-	</affiliation> 
+		<firstname>Jaka</firstname> 
+		<surname>Mocnik</surname> 
+		<affiliation> 
+	  		<orgname>GNOME Documentation Project</orgname> 
+	  		<address> <email>jaka@gnu.org</email> </address> 
+		</affiliation> 
       </author> 
 <!-- This is appropriate place for other contributors: translators,
       maintainers,  etc. Commented out by default.
-       <othercredit role="translator">
-	<firstname>Latin</firstname> 
-	<surname>Translator 1</surname> 
-	<affiliation> 
-	  <orgname>Latin Translation Team</orgname> 
-	  <address> <email>translator@gnome.org</email> </address> 
-	</affiliation>
-	<contrib>Latin translation</contrib>
+      <othercredit role="translator">
+		<firstname>Latin</firstname> 
+		<surname>Translator 1</surname> 
+		<affiliation> 
+	 		<orgname>Latin Translation Team</orgname> 
+	  		<address> <email>translator@gnome.org</email> </address> 
+		</affiliation>
+		<contrib>Latin translation</contrib>
       </othercredit>
 -->
     </authorgroup>
  
     <revhistory>
       <revision> 
-	<revnumber>&app; Manual V&manrevision;</revnumber> 
-	<date>&date;</date> 
-	<revdescription> 
-	  <para role="author">Sun GNOME Documentation Team
-	    <email>gdocteam@sun.com</email>
-	  </para>
-	  <para role="publisher">GNOME Documentation Project</para>
-	</revdescription> 
+			<revnumber>&app; Manual V&manrevision;</revnumber> 
+			<date>&date;</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
       </revision> 
       <revision> 
-	<revnumber>GHex Manual V1.0</revnumber> 
-	<date>2000</date> 
-	<revdescription> 
-	  <para role="author">Jaka Mocnik
-	    <email>jaka@gnu.org</email>
-	  </para>
-	  <para role="publisher">GNOME Documentation Project</para>
-	</revdescription> 
+			<revnumber>GHex Manual V2.0</revnumber> 
+			<date>March 2002</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team
+	    		<email>gdocteam@sun.com</email>
+	  			</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
+      </revision> 
+      <revision> 
+			<revnumber>GHex Manual V1.0</revnumber> 
+			<date>2000</date> 
+			<revdescription> 
+	  			<para role="author">Jaka Mocnik
+	    		<email>jaka@gnu.org</email>
+	  			</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
       </revision> 
     </revhistory> 
 
@@ -155,8 +162,8 @@
 <listitem>
 <para>Choose 
 <menuchoice>
-<guisubmenu>Applications </guisubmenu>
-<guimenuitem> &app;</guimenuitem>
+<guisubmenu>Accessories</guisubmenu>
+<guimenuitem>Hexadecimal Editor</guimenuitem>
 </menuchoice>. </para>
 </listitem>
 </varlistentry>
@@ -374,11 +381,11 @@
 <title>To Add or Remove Additional Views of a File</title>
 <para>To add another view of the current file to your <application>&app;</application> window or to the desktop, choose <menuchoice>
 <guimenu>View</guimenu>
-<guimenuitem>Add view</guimenuitem>
-</menuchoice>. This option is only available if the Multiple Document Interface (MDI) setting in the <guilabel>Preferences</guilabel> dialog is <guilabel> Notebook</guilabel> or <guilabel>Toplevel</guilabel>. See <link linkend="ghex-prefs"> Settings</link> for more information about the <guilabel>Preferences</guilabel> dialog.</para>
+<guimenuitem>Add View</guimenuitem>
+</menuchoice>. This option is only available if the Multiple Document Interface (MDI) setting in the <guilabel>Preferences</guilabel> dialog is <guilabel>Notebook</guilabel> or <guilabel>Toplevel</guilabel>. See <link linkend="ghex-prefs"> Settings</link> for more information about the <guilabel>Preferences</guilabel> dialog.</para>
 <para>To remove a view of the current file, choose <menuchoice>
 <guimenu>View</guimenu>
-<guimenuitem>Remove view</guimenuitem>
+<guimenuitem>Remove View</guimenuitem>
 </menuchoice>. If you remove the last view of the file, choose <menuchoice>
 <guimenu>Files</guimenu>
 <guimenuitem><replaceable>filename</replaceable></guimenuitem>
@@ -391,7 +398,7 @@
 <title>To Export the &app; Display to HTML</title>
 <para>To export the data contained in the <application>&app;</application> window to HTML, choose <menuchoice>
 <guimenu>File</guimenu>
-<guimenuitem>Export to HTML</guimenuitem>
+<guimenuitem>Save As HTML</guimenuitem>
 </menuchoice>. Choose a directory and specify a file name for the HTML file, then click <guibutton>OK</guibutton>. <application>&app;</application> implements the following actions: <itemizedlist>
 <listitem><para>Creates a separate HTML file for each page of data that is displayed in the <application>&app;</application> window.</para>
 </listitem>
@@ -410,10 +417,10 @@
 <orderedlist>
 <listitem><para>Choose <menuchoice>
 <guimenu>Tools</guimenu>
-<guimenuitem>Converter</guimenuitem>
+<guimenuitem>Base Converter</guimenuitem>
 </menuchoice>.</para>
 </listitem>
-<listitem><para>Type the data that you want to convert in one of the fields in the <guilabel>Converter</guilabel> dialog and press <keycap>Return</keycap>. <application>&app;</application> updates the values of the other fields to display the data conversions. Alternatively, to display the conversions for the data at the cursor position in the current file, click on the <guibutton> Get cursor value</guibutton> button.</para>
+<listitem><para>Type the data that you want to convert in one of the fields in the <guilabel>Base Converter</guilabel> dialog and press <keycap>Return</keycap>. <application>&app;</application> updates the values of the other fields to display the data conversions. Alternatively, to display the conversions for the data at the cursor position in the current file, click on the <guibutton> Get cursor value</guibutton> button.</para>
 </listitem>
 </orderedlist>
 </sect2>
@@ -486,8 +493,8 @@
 <varlistentry>
 <term><guilabel>Font</guilabel> </term>
 <listitem>
-<para>Use this field to edit the existing font information or type new font information. Alternatively, click <guibutton>Browse</guibutton> to display the font selector dialog. Use the font selector dialog to specify a font type, style, and size for displaying the contents of files in <application>&app;</application>, then click <guibutton>OK</guibutton>. The font information that you specify is displayed in the <guilabel>Font</guilabel> field. </para>
-<para>Default: -adobe-courier-medium-r-normal-12-*-*-*-*-*-*-*</para>
+<para>Click on this button to display the font selector dialog. Use the font selector dialog to edit the existing font information or type new font information. Specify a font type, style, and size for displaying the contents of files in <application>&app;</application>, then click <guibutton>OK</guibutton>. The font information that you specify is displayed on the <guilabel>Font</guilabel> button. </para>
+<para>Default: <guilabel>Courier 12</guilabel></para>
 </listitem>
 </varlistentry>
 <varlistentry>
