@@ -30,6 +30,8 @@
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0x7F))?1:0)
 
 GnomePaper *def_paper;
+gchar *def_print_font_name;
+gdouble def_print_font_size;
 gint shaded_box_size;
 
 static void preview_destroy_cb(GtkObject *obj, GHexPrintJobInfo *job);
@@ -53,10 +55,17 @@ void print_document(HexDocument *doc, guint gt, GnomePrinter *printer)
 {
 	gint i, j;
 	GHexPrintJobInfo *pji;
+	GnomeFont *font;
+
+	font = gnome_font_new(def_print_font_name, def_print_font_size);
+
+	if(!font)
+		return;
 
 	pji = g_new0(GHexPrintJobInfo, 1);
 
 	pji->gt = gt;
+	pji->font = font;
 	pji->master = gnome_print_master_new();
 	gnome_print_master_set_paper(pji->master, def_paper);
 
@@ -78,8 +87,11 @@ void print_document(HexDocument *doc, guint gt, GnomePrinter *printer)
     pji->margin_left = .75 * 72;
     pji->margin_right = .75 * 72;
     pji->header_height = 1 * 72;
-    pji->font_char_width = 0.0808 * 72;
-    pji->font_char_height = .14 * 72;
+    pji->font_char_width = gnome_font_get_width(GNOME_FONT(font), ' ');
+    pji->font_char_height = gnome_font_get_ascender(GNOME_FONT(font)) +
+		gnome_font_get_descender(GNOME_FONT(font));
+	/* add 10% for spacing between lines */
+	pji->font_char_height *= 1.1;
     pji->pad_size = .5 * 72;   
     pji->offset_chars = 8;
 
@@ -103,13 +115,14 @@ void print_document(HexDocument *doc, guint gt, GnomePrinter *printer)
 	for(i = 1; i <= pji->pages; i++)
 	{
 		int max_row;
+		gnome_print_setfont(pji->pc, font);
 		print_header(pji, i);
 		max_row   = ( pji->bytes_per_row*pji->rows_per_page*(i) >
 				      doc->file_size ?
 				      (int)((doc->file_size-1)-(pji->bytes_per_row*pji->rows_per_page*(i-1)))/
 					  pji->bytes_per_row+1:
 				      pji->rows_per_page);
-		print_shaded_boxes( pji, i, max_row);
+		print_shaded_boxes(pji, i, max_row);
 		for(j = 1; j <= pji->rows_per_page; j++)
 		{
 			int file_offset = pji->bytes_per_row*(j - 1) +
@@ -157,15 +170,11 @@ static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 {
     guchar* text1 = g_strdup(pji->doc->file_name);
     guchar* text2 = g_strdup_printf(_("Page: %i/%i"),page,pji->pages);
-	GnomeFont *font;
 	gfloat x, y, len;
 	
-	font = gnome_font_new("Helvetica", 12);
-	gnome_print_setfont(pji->pc, font);
-
 	/* Print the file name */
 	y = pji->page_height - pji->margin_top - pji->header_height/2;
-    len = gnome_font_get_width_string (font, text1);
+    len = gnome_font_get_width_string (pji->font, text1);
 	x = pji->page_width/2 - len/2;
 	gnome_print_moveto(pji->pc, x, y);
 	gnome_print_show(pji->pc, text1);
@@ -173,15 +182,11 @@ static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 
 	/* Print the page/pages  */
 	y = pji->page_height - pji->margin_top - pji->header_height/4;
-    len = gnome_font_get_width_string (font, text2);
+    len = gnome_font_get_width_string (pji->font, text2);
 	x = pji->page_width - len - 36;
 	gnome_print_moveto(pji->pc, x, y);
 	gnome_print_show(pji->pc, text2);
 	gnome_print_stroke(pji->pc); 
-
-	/* Set the font for the rest of the page */
-	font = gnome_font_new("Courier", 10);
-	gnome_print_setfont(pji->pc, font);
 }
 
 static void print_row(GHexPrintJobInfo *pji, unsigned int offset, unsigned int bytes, int row)
@@ -220,7 +225,7 @@ static void print_row(GHexPrintJobInfo *pji, unsigned int offset, unsigned int b
 
 static void end_page(GnomePrintContext *pc)
 {
-	gnome_print_showpage (pc);
+	gnome_print_showpage(pc);
 }
 
 static void end_job(GnomePrintContext *pc)

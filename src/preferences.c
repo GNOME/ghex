@@ -23,6 +23,8 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnomeprint/gnome-font-dialog.h>
+
 #include "ghex.h"
 
 static void set_prefs(PropertyUI *pui);
@@ -36,6 +38,7 @@ static void offset_cb(GtkWidget *w, PropertyUI *pui);
 PropertyUI *prefs_ui = NULL;
 
 GdkFont *def_font = NULL;
+GnomeFont *def_print_font = NULL;
 gchar *def_font_name = NULL;
 gboolean show_offsets_column = TRUE;
 
@@ -72,9 +75,11 @@ PropertyUI *create_prefs_dialog() {
 					   GTK_SIGNAL_FUNC(apply_changes_cb), pui);
 	gnome_dialog_close_hides(GNOME_DIALOG(pui->pbox), TRUE);
 	
+	/* editing page */
 	vbox = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(vbox);
 
+	/* max undo levels */
 	undo_adj = GTK_ADJUSTMENT(gtk_adjustment_new(MIN(max_undo_depth, MAX_MAX_UNDO_DEPTH),
 												 0, MAX_MAX_UNDO_DEPTH, 1, 10, 0));
 	gtk_signal_connect(GTK_OBJECT(undo_adj), "value_changed",
@@ -94,6 +99,7 @@ PropertyUI *create_prefs_dialog() {
 
 	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, GNOME_PAD_SMALL);
 
+	/* cursor offset format */
 	box = gtk_hbox_new(FALSE, 0);
 	gtk_widget_show(box);
 
@@ -132,6 +138,7 @@ PropertyUI *create_prefs_dialog() {
 
 	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, GNOME_PAD_SMALL);
 
+	/* show offsets check button */
 	pui->offsets_col = gtk_check_button_new_with_label(_("Show offsets column"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->offsets_col), show_offsets_column);
 	gtk_box_pack_start(GTK_BOX(vbox), pui->offsets_col, FALSE, TRUE, GNOME_PAD_SMALL);
@@ -140,10 +147,12 @@ PropertyUI *create_prefs_dialog() {
 	label = gtk_label_new(_("Editing"));
 	gtk_widget_show(label);
 	gtk_notebook_append_page (GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
-	
+
+	/* display page */
 	vbox = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(vbox);
 	
+	/* display font */
 	frame = gtk_frame_new(_("Font"));
 	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
@@ -179,10 +188,11 @@ PropertyUI *create_prefs_dialog() {
 	
 	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, GNOME_PAD_SMALL);
 	
+	/* default group type */
 	frame = gtk_frame_new(_("Default Group Type"));
 	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
-	
+
 	box = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(box);
 	group = NULL;
@@ -199,13 +209,15 @@ PropertyUI *create_prefs_dialog() {
 	gtk_widget_show(label);
 	gtk_notebook_append_page (GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
 	
+	/* MDI page */
 	vbox = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(vbox);
 
+	/* mdi modes */
 	frame = gtk_frame_new(_("MDI Mode"));
 	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
-	
+
 	box = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(box);
 	group = NULL;
@@ -223,20 +235,30 @@ PropertyUI *create_prefs_dialog() {
 	gtk_widget_show(label);
 	gtk_notebook_append_page(GTK_NOTEBOOK(pui->pbox->notebook), vbox, label);
 	
+	/* printing page */
 	vbox = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(vbox);
 
+	/* paper selection */
 	pui->paper_sel = gnome_paper_selector_new();
 	paper_sel = GNOME_PAPER_SELECTOR(pui->paper_sel);
 	paper_name = gnome_paper_name(def_paper);
 	gnome_paper_selector_set_name(paper_sel, paper_name);
 	gtk_widget_show(pui->paper_sel);
-	gtk_box_pack_start(GTK_BOX(vbox), pui->paper_sel, TRUE, TRUE, GNOME_PAD_SMALL);  
+	gtk_box_pack_start(GTK_BOX(vbox), pui->paper_sel, TRUE, TRUE,
+					   GNOME_PAD_SMALL);  
 
 	box_adj = GTK_ADJUSTMENT(gtk_adjustment_new(0, 0, 1000, 1, 10, 0));
 	gtk_signal_connect(GTK_OBJECT(box_adj), "value_changed",
 					   GTK_SIGNAL_FUNC(box_size_changed_cb), pui->pbox);
 
+	/* print font selection */
+	pui->print_font_sel = gnome_font_selection_new();
+	gtk_widget_show(pui->print_font_sel);
+	gtk_box_pack_start(GTK_BOX(vbox), pui->print_font_sel, TRUE, TRUE,
+					   GNOME_PAD_SMALL);  
+
+	/* shaded box entry */
 	box = gtk_hbox_new(FALSE, 0);
 	gtk_widget_show(box);
 
@@ -287,7 +309,8 @@ PropertyUI *create_prefs_dialog() {
 
 static void set_prefs(PropertyUI *pui) {
 	int i;
-	
+	GnomeFont *print_font;
+
 	for(i = 0; i < 3; i++)
 		if(def_group_type == group_type[i]) {
 			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->group_type[i]), TRUE);
@@ -315,8 +338,15 @@ static void set_prefs(PropertyUI *pui) {
 		gtk_widget_set_sensitive(pui->format, TRUE);
 	}
 
-	gnome_paper_selector_set_name(GNOME_PAPER_SELECTOR(pui->paper_sel),
-								  gnome_paper_name(def_paper));
+	if(def_paper)
+		gnome_paper_selector_set_name(GNOME_PAPER_SELECTOR(pui->paper_sel),
+									  gnome_paper_name(def_paper));
+	print_font = gnome_font_new(def_print_font_name, def_print_font_size);
+	if(print_font) {
+		gnome_font_selection_set_font(GNOME_FONT_SELECTION(pui->print_font_sel),
+									  print_font);
+		gtk_object_unref(print_font);
+	}
 }
 
 /*
@@ -345,6 +375,8 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 	gboolean show_off, expect_spec;
 	gchar *old_offset_fmt;
 	gchar *new_paper_name;
+	GnomeDisplayFont *disp_font;
+	GnomeFont *print_font;
 
 	if ( page != -1 ) return; /* Only do something on global apply */
 	
@@ -449,6 +481,11 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 
 	new_paper_name = gnome_paper_selector_get_name(GNOME_PAPER_SELECTOR(pui->paper_sel));
 	def_paper = gnome_paper_with_name(new_paper_name);
+
+	disp_font = gnome_font_selection_get_font(GNOME_FONT_SELECTION(pui->print_font_sel));
+	print_font = disp_font->gnome_font;
+	def_print_font_name = gnome_font_get_name(GNOME_FONT(print_font));
+	def_print_font_size = GNOME_FONT(print_font)->size;
 }
 
 static void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {
@@ -459,7 +496,7 @@ static void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {
 		font_desc = gnome_font_picker_get_font_name (GNOME_FONT_PICKER(w));
 		peer = gtk_object_get_user_data (GTK_OBJECT(w));
 		gtk_entry_set_text (GTK_ENTRY(peer), font_desc);
-	} 
+	}
 	else {
 		font_desc = gtk_entry_get_text (GTK_ENTRY(w));
 		peer = gtk_object_get_user_data (GTK_OBJECT(w));

@@ -1,3 +1,20 @@
+2000-05-08  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* src/main.c: set the default window icon.
+	* src/preferences.c (create_prefs_dialog): add a font selector
+	for printing.
+	(set_prefs): set the printing font to the font selection.
+	(apply_changes_cb): set the printing font.
+	* src/config.c (load_configuration): load printing font settings.
+	(save_configuration): save printing font settings.
+	* src/print.c (print_document): get font width and height from the
+	selected printing font (we pressume the user chose a monospaced
+	font so we measure the width of the space character).
+	(print_header): don't use a separate font for header. perhaps once
+	when somebody implements its configuration as well.
+	* src/ghex.h: added declarations of new setting variables.
+	* ghex.desktop: Added Slovene entry.
+
 2000-05-01  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* src/findreplace.c (goto_byte_cb): can now handle offsets

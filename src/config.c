@@ -50,12 +50,17 @@ void save_configuration() {
 
 	gnome_config_set_int("/ghex/Printing/BoxSize", shaded_box_size);
 
+	gnome_config_set_string("/ghex/Printing/Font", def_print_font_name);
+
+	gnome_config_set_float("/ghex/Printing/FontSize", def_print_font_size);
+
 	gnome_config_sync();
 }
 
 void load_configuration() {
 	gchar *font_desc;
 	GdkFont *new_font;
+	GnomeFont *print_font;
 	gchar *def_paper_name;
 
 	if((font_desc = gnome_config_get_string("/ghex/Display/Font=" DEFAULT_FONT)) != NULL) {
@@ -92,4 +97,14 @@ void load_configuration() {
 	}
 
 	shaded_box_size = gnome_config_get_int("/ghex/Printing/BoxSize=0");
+
+	def_print_font_name = gnome_config_get_string("/ghex/Printing/Font=Courier");
+	def_print_font_size = gnome_config_get_float("/ghex/Printing/FontSize=10");
+	print_font = gnome_font_new(def_print_font_name, def_print_font_size);
+	if(!print_font) {
+		def_print_font_name = "Courier";
+		def_print_font_size = 10.0;
+	}
+	else
+		gtk_object_unref(print_font);
 }

@@ -64,7 +64,7 @@ typedef struct _PropertyUI {
 	GtkWidget *font_button, *undo_spin, *box_size_spin;
 	GtkWidget *offset_menu, *offset_choice[3];
 	GtkWidget *format, *offsets_col;
-	GtkWidget *paper_sel;
+	GtkWidget *paper_sel, *print_font_sel;
 } PropertyUI;
 
 typedef struct _JumpDialog {
@@ -103,6 +103,7 @@ typedef struct _Converter {
 typedef struct {
 	GnomePrintMaster *master;
 	GnomePrintContext *pc;
+	GnomeFont *font;
 	HexDocument *doc;
 
 	int   pages;
@@ -138,6 +139,8 @@ extern PropertyUI     *prefs_ui;
    we'll make them global vars, although this is a bit ugly */
 extern GdkFont    *def_font;
 extern gchar      *def_font_name;
+extern gchar      *def_print_font_name;
+extern gdouble    def_print_font_size;    
 extern guint      max_undo_depth;
 extern gchar      *offset_fmt;
 extern gboolean   show_offsets_column;
