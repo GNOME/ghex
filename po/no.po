@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 2002-11-15 23:33+0100\n"
-"PO-Revision-Date: 2002-11-15 23:35+0100\n"
+"POT-Creation-Date: 2003-03-17 00:16+0100\n"
+"PO-Revision-Date: 2003-03-17 00:16+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,74 +21,74 @@ msgstr "GNOME hex-editor"
 msgid "Hex Editor"
 msgstr "Hex-editor"
 
-#: src/chartable.c:133
+#: src/chartable.c:140
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:133
+#: src/chartable.c:140
 msgid "Hex"
 msgstr "Heksadesimal"
 
-#: src/chartable.c:133 src/preferences.c:174
+#: src/chartable.c:140 src/preferences.c:175
 msgid "Decimal"
 msgstr "Desimal"
 
-#: src/chartable.c:134
+#: src/chartable.c:141
 msgid "Octal"
 msgstr "Oktal"
 
-#: src/chartable.c:134
+#: src/chartable.c:141
 msgid "Binary"
 msgstr "Binær"
 
-#: src/chartable.c:148
+#: src/chartable.c:157
 msgid "Character table"
 msgstr "Tegntabell"
 
-#: src/converter.c:198
+#: src/converter.c:209
 msgid "Base Converter"
 msgstr "Basiskonvertering"
 
 #. entries
-#: src/converter.c:217
+#: src/converter.c:228
 msgid "_Binary:"
 msgstr "_Binær:"
 
-#: src/converter.c:219
+#: src/converter.c:230
 msgid "_Octal:"
 msgstr "_Oktal:"
 
-#: src/converter.c:221
+#: src/converter.c:232
 msgid "_Decimal:"
 msgstr "_Desimal:"
 
-#: src/converter.c:223
+#: src/converter.c:234
 msgid "_Hex:"
 msgstr "_Heksadesimal:"
 
-#: src/converter.c:225
+#: src/converter.c:236
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:229
+#: src/converter.c:240
 msgid "_Get cursor value"
 msgstr "_Hent markørverdi"
 
-#: src/converter.c:241
+#: src/converter.c:254
 msgid "Get cursor value"
 msgstr "Hent markørverdi"
 
-#: src/converter.c:241
+#: src/converter.c:254
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr ""
 "Henter verdien ved markøren i binær, oktal, desimal, heksadesimal og ASCII"
 
-#: src/converter.c:374
+#: src/converter.c:387
 msgid "ERROR"
 msgstr "FEIL"
 
-#: src/findreplace.c:60 src/ui.c:889
+#: src/findreplace.c:60 src/ui.c:901
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Finn data"
@@ -138,7 +138,7 @@ msgstr "Avbryt"
 msgid "Closes find data window"
 msgstr "Lukker «finn data»-vinduet"
 
-#: src/findreplace.c:140 src/ui.c:887
+#: src/findreplace.c:140 src/ui.c:899
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Søk og erstatt data"
@@ -192,7 +192,7 @@ msgstr "Erstatter alle instanser av søkestrengen med erstatningsstrengen"
 msgid "Closes find and replace data window"
 msgstr "Lukker «finn og erstatt data»-vinduet"
 
-#: src/findreplace.c:231 src/ui.c:885
+#: src/findreplace.c:231 src/ui.c:897
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hopp til byte"
@@ -228,6 +228,10 @@ msgstr "Strengen er ikke korrekt for valgt datatype!"
 #: src/findreplace.c:344 src/findreplace.c:430
 msgid "End Of File reached"
 msgstr "Slutten på filen nådd"
+
+#: src/findreplace.c:345 src/findreplace.c:374 src/findreplace.c:429
+msgid "String was not found!\n"
+msgstr "Strengen ble ikke funnet!\n"
 
 #: src/findreplace.c:373
 msgid "Beginning Of File reached"
@@ -630,30 +634,30 @@ msgstr "_Vinduer"
 msgid "_Words"
 msgstr "Ord"
 
-#: src/ghex-window.c:435
+#: src/ghex-window.c:438 src/ghex-window.c:816
 msgid "GHex"
 msgstr "GHex"
 
-#: src/ghex-window.c:554
+#: src/ghex-window.c:571
 #, c-format
 msgid "Offset: %s"
 msgstr "Avstand: %s"
 
-#: src/ghex-window.c:752
+#: src/ghex-window.c:770
 #, c-format
 msgid "Activate file %s"
 msgstr "Aktiver fil %s"
 
-#: src/ghex-window.c:793
+#: src/ghex-window.c:812
 #, c-format
 msgid "GHex - %s"
 msgstr "GHex - %s"
 
-#: src/ghex-window.c:922
+#: src/ghex-window.c:944
 msgid "Select a file to save buffer as"
 msgstr "Velg en fil for lagring av buffer"
 
-#: src/ghex-window.c:948
+#: src/ghex-window.c:974
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -662,20 +666,20 @@ msgstr ""
 "Filen %s eksisterer.\n"
 "Vil du overskrive den?"
 
-#: src/ghex-window.c:980 src/ui.c:353
+#: src/ghex-window.c:1009 src/ui.c:356
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Lagret buffer til fil %s"
 
-#: src/ghex-window.c:985
+#: src/ghex-window.c:1015
 msgid "Error saving file!"
 msgstr "Feil under lagring av fil!"
 
-#: src/ghex-window.c:991
+#: src/ghex-window.c:1021
 msgid "Can't open file for writing!"
 msgstr "Kan ikke åpne filen for skriving!"
 
-#: src/ghex-window.c:1018
+#: src/ghex-window.c:1048
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -684,35 +688,35 @@ msgstr ""
 "Filen %s er endret siden forrige lagring.\n"
 "Vil du lagre endringene?"
 
-#: src/ghex-window.c:1028
+#: src/ghex-window.c:1058
 msgid "Do_n't save"
 msgstr "I_kke lagre"
 
-#: src/ghex-window.c:1048 src/ui.c:344
+#: src/ghex-window.c:1078 src/ui.c:344
 msgid "You don't have the permissions to save the file!"
 msgstr "Du har ikke tilgang til å lagre filen!"
 
-#: src/ghex-window.c:1052 src/ui.c:349
+#: src/ghex-window.c:1082 src/ui.c:349
 msgid "An error occured while saving file!"
 msgstr "En feil oppsto under lagring av fil!"
 
-#: src/hex-document.c:740
+#: src/hex-document.c:746
 msgid "Page"
 msgstr "Side"
 
-#: src/hex-document.c:746 src/hex-document.c:871
+#: src/hex-document.c:752 src/hex-document.c:877
 msgid "Hex dump generated by"
 msgstr "Hex dump generert av"
 
-#: src/hex-document.c:756
+#: src/hex-document.c:762
 msgid "Saving to HTML..."
 msgstr "Lagrer som HTML..."
 
-#: src/hex-document.c:794
+#: src/hex-document.c:800
 msgid "Previous page"
 msgstr "Forrige side"
 
-#: src/hex-document.c:809
+#: src/hex-document.c:815
 msgid "Next page"
 msgstr "Neste side"
 
@@ -729,76 +733,76 @@ msgstr "Kunne ikke initiere Bonobo!\n"
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Ugyldig geometristreng «%s»\n"
 
-#: src/preferences.c:91
+#: src/preferences.c:92
 msgid "GHex Preferences"
 msgstr "Brukervalg for GHex"
 
-#: src/preferences.c:136
+#: src/preferences.c:137
 msgid "_Maximum number of undo levels:"
 msgstr "_Maksimalt antall angrenivåer:"
 
-#: src/preferences.c:156
+#: src/preferences.c:157
 msgid "Undo levels"
 msgstr "Angrenivåer"
 
-#: src/preferences.c:156
+#: src/preferences.c:157
 msgid "Select maximum number of undo levels"
 msgstr "Velg maksimalt antall angrenivå"
 
-#: src/preferences.c:160
+#: src/preferences.c:161
 msgid "Show cursor offset in statusbar as:"
 msgstr "Vis markøravstand på statuslinjen som:"
 
-#: src/preferences.c:179
+#: src/preferences.c:180
 msgid "Hexadecimal"
 msgstr "Heksadesimal"
 
-#: src/preferences.c:185
+#: src/preferences.c:186
 msgid "Custom"
 msgstr "Egendefinert"
 
-#: src/preferences.c:196
+#: src/preferences.c:197
 msgid "Enter the cursor offset format"
 msgstr "Skriv inn format for markøravstand"
 
-#: src/preferences.c:197
+#: src/preferences.c:198
 msgid "Select the cursor offset format"
 msgstr "Velg format for markøravstand"
 
 #. show offsets check button
-#: src/preferences.c:207
+#: src/preferences.c:208
 msgid "Show offsets column"
 msgstr "Vis kolonne for markøravstand"
 
-#: src/preferences.c:212
+#: src/preferences.c:213
 msgid "Editing"
 msgstr "Redigering"
 
 #. display font
-#: src/preferences.c:221
+#: src/preferences.c:222
 msgid "Font"
 msgstr "Skrifttype"
 
 #. default group type
-#: src/preferences.c:249
+#: src/preferences.c:250
 msgid "Default Group Type"
 msgstr "Standard gruppetype"
 
-#: src/preferences.c:265
+#: src/preferences.c:266
 msgid "Display"
 msgstr "Skjerm"
 
 #. paper selection
-#: src/preferences.c:274
+#: src/preferences.c:275
 msgid "Paper size"
 msgstr "Papirstørrelse"
 
 #. data & header font selection
-#: src/preferences.c:279
+#: src/preferences.c:280
 msgid "Fonts"
 msgstr "Skrifttyper"
 
-#: src/preferences.c:285
+#: src/preferences.c:286
 msgid "_Data font:"
 msgstr "_Skrift for data:"
 
@@ -814,35 +818,35 @@ msgstr "Velg skrift for data"
 msgid "Header fo_nt:"
 msgstr "Skrift for _topptekst:"
 
-#: src/preferences.c:338
+#: src/preferences.c:337
 msgid "Header font"
 msgstr "Skrifttype for topptekst"
 
-#: src/preferences.c:338
+#: src/preferences.c:337
 msgid "Select the header font"
 msgstr "Velg skrift for topptekst"
 
-#: src/preferences.c:366
+#: src/preferences.c:365
 msgid "_Print shaded box over:"
 msgstr "S_kriv ut skyggelagt boks over:"
 
-#: src/preferences.c:378
+#: src/preferences.c:377
 msgid "Box size"
 msgstr "Størrelse på boks"
 
-#: src/preferences.c:378
+#: src/preferences.c:377
 msgid "Select size of box (in number of lines)"
 msgstr "Velg størrelse på boksen (antall linjer)"
 
-#: src/preferences.c:382
+#: src/preferences.c:381
 msgid "lines (0 for no box)"
 msgstr "linjer (0 for ingen boks)"
 
-#: src/preferences.c:389
+#: src/preferences.c:388
 msgid "Printing"
 msgstr "Utskrift"
 
-#: src/preferences.c:531
+#: src/preferences.c:534
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -850,7 +854,7 @@ msgstr ""
 "Formatstrengen for avstand inneholder en ugyldig formatspesifikatorer.\n"
 "Kun 'x', 'X', 'p', 'P', 'd' eller 'o' er tillat."
 
-#: src/preferences.c:563
+#: src/preferences.c:566
 msgid "Can not open desired font!"
 msgstr "Kan ikke åpne ønsket skrifttype!"
 
@@ -901,32 +905,32 @@ msgstr ""
 "Det oppsto en feil under visning av hjelp: \n"
 "%s"
 
-#: src/ui.c:382
+#: src/ui.c:385
 msgid "Select a file to open"
 msgstr "Velg en fil å åpne"
 
-#: src/ui.c:416
+#: src/ui.c:423
 #, c-format
 msgid "Loaded file %s"
 msgstr "Lastet fil %s"
 
-#: src/ui.c:424
+#: src/ui.c:431
 msgid "Can not open file!"
 msgstr "Kan ikke åpne filen!"
 
-#: src/ui.c:488
+#: src/ui.c:495
 msgid "Select path and file name for the HTML source"
 msgstr "Velg sti og filnavn for HTML kilden"
 
-#: src/ui.c:523
+#: src/ui.c:530
 msgid "You need to specify a base name for the HTML files."
 msgstr "Du må spesifisere et basisnavn for HTML filene."
 
-#: src/ui.c:534 src/ui.c:556
+#: src/ui.c:541 src/ui.c:563
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Du har ikke tilgang til å skrive til valgt sti.\n"
 
-#: src/ui.c:540
+#: src/ui.c:547
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -934,28 +938,25 @@ msgstr ""
 "Lagring av HTML vil overskrive noen filer.\n"
 "Vil du fortsette?"
 
-#: src/ui.c:687
+#: src/ui.c:695
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Virkelig forkaste filen %s?"
 
-#: src/ui.c:702
+#: src/ui.c:713
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Forkastet buffer fra fil %s"
 
-#: src/ui.c:776
+#: src/ui.c:788
 msgid "Print Hex Document"
 msgstr "Skriv ut Hex dokument"
 
-#: src/ui.c:781
+#: src/ui.c:793
 msgid "Pages"
 msgstr "Sider"
 
-#: src/ui.c:827
+#: src/ui.c:839
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Forhåndsvisning av utskrift"
-
-#~ msgid "About..."
-#~ msgstr "Om..."
