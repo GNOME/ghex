@@ -404,13 +404,15 @@ void set_prefs(PropertyUI *pui) {
 	}
 
 	if(header_font_name)
-		gtk_font_selection_set_font_name(GNOME_PRINT_FONT_PICKER(pui->hf_button),
-										 header_font_name);
+		gnome_print_font_picker_set_font_name
+			(GNOME_PRINT_FONT_PICKER(pui->hf_button),
+			 header_font_name);
 	if(data_font_name)
-		gtk_font_selection_set_font_name(GNOME_PRINT_FONT_PICKER(pui->df_button),
-										 data_font_name);
+		gnome_print_font_picker_set_font_name
+			(GNOME_PRINT_FONT_PICKER(pui->df_button),
+			 data_font_name);
 	if(def_font_name)
-		gtk_font_selection_set_font_name(GNOME_PRINT_FONT_PICKER(pui->font_button),
+		gtk_font_selection_set_font_name(GTK_FONT_SELECTION(pui->font_button),
 										 def_font_name);
 
 	gtk_dialog_set_default_response(GTK_DIALOG(pui->pbox), GTK_RESPONSE_CLOSE);

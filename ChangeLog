@@ -1,12 +1,13 @@
 2003-10-25  Jaka Mocnik  <jaka@gnu.org>
 
+	replaced deprecated functions all over the code. this will probably
+	cause some things not to work;)
 	* src/findreplace.c: Use GtkColorSelection.
 	* src/preferences.c: Use GtkFontSelection.
 	* src/converter.c: GnomeDialog -> GtkDialog.
 	* src/gtkhex.c (gtk_hex_class_init): gtk_signal_new -> g_signal_new.
 	* src/ghex-window.c, src/ui.c: GnomeMessageBox -> GtkMessageDialog.
-	replaced deprecated functions all over the code. this will probably
-	cause some things not to work;)
+	* configure.in: version 2.5.1; tag GHEX_2_5_1.
 
 2003-10-10  Jaka Mocnik  <jaka@gnu.org>
 

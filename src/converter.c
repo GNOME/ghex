@@ -166,7 +166,7 @@ create_converter_button(const gchar *name, GtkAccelGroup *accel_group)
 #endif /* 0/1 */
 
 	button = gtk_button_new();
-    label = gtk_label_new(name);
+    label = gtk_label_new_with_mnemonic(name);
 	gtk_misc_set_alignment(GTK_MISC(label), 0.5, 0.5);
 #if 0
 	accel_key = gtk_label_parse_uline(GTK_LABEL(label), name);
