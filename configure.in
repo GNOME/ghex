@@ -23,7 +23,7 @@ AC_PROG_MAKE_SET
 PKG_CHECK_MODULES(GHEX,
 		  libgnomeui-2.0 >= 2.0.0	\
 		  libglade-2.0 >= 2.0.0	\
-		  libgnomeprintui-2.2 >= 1.116.0)
+		  libgnomeprintui-2.2)
 
 AC_SUBST(GHEX_CFLAGS)
 AC_SUBST(GHEX_LIBS)
@@ -38,7 +38,7 @@ dnl =================================================================
 GETTEXT_PACKAGE=ghex-2.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
-ALL_LINGUAS="am az bg ca cs da de el en_GB es et eu fi fr ga gl hr hu it ja ko ms nl nn no pl pt pt_BR ro ru sk sl sv tr uk vi wa zh_TW zh_CN"
+ALL_LINGUAS="am ar az bg ca cs da de el en_GB es et eu fi fr ga gl hr hu it ja ko ms nl nn no pl pt pt_BR ro ru sk sl sv tr uk vi wa zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 
 AC_CHECK_LIB(popt, poptGetArgs, [POPT_LIBS="-lpopt"],
