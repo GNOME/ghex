@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.4\n"
 "Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
-"POT-Creation-Date: 2003-08-26 03:55+0100\n"
-"PO-Revision-Date: 2003-08-26 03:58+0100\n"
+"POT-Creation-Date: 2003-11-13 23:28+0000\n"
+"PO-Revision-Date: 2003-11-14 00:30+0100\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -439,7 +439,7 @@ msgstr "Preferências"
 
 #: src/ghex-ui.xml.h:39
 msgid "Preview printed data"
-msgstr "Prever dados impressos"
+msgstr "Antever dados impressos"
 
 #: src/ghex-ui.xml.h:40
 msgid "Print"
@@ -447,11 +447,11 @@ msgstr "Imprimir"
 
 #: src/ghex-ui.xml.h:41
 msgid "Print Previe_w..."
-msgstr "Pre_ver Impressão..."
+msgstr "Ante_ver Impressão..."
 
 #: src/ghex-ui.xml.h:42
 msgid "Print Preview..."
-msgstr "Pre_ver Impressão..."
+msgstr "Antever Impressão..."
 
 #: src/ghex-ui.xml.h:43
 msgid "Print the current file"
@@ -669,20 +669,20 @@ msgstr ""
 "Ficheiro %s existe.\n"
 "Deseja sobrepo-lo?"
 
-#: src/ghex-window.c:1032 src/ui.c:356
+#: src/ghex-window.c:1035 src/ui.c:356
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Documento gravado para o ficheiro %s"
 
-#: src/ghex-window.c:1038
+#: src/ghex-window.c:1041
 msgid "Error saving file!"
 msgstr "Erro a gravar ficheiro!"
 
-#: src/ghex-window.c:1044
+#: src/ghex-window.c:1047
 msgid "Can't open file for writing!"
 msgstr "Incapaz de abrir ficheiro para escrita!"
 
-#: src/ghex-window.c:1071
+#: src/ghex-window.c:1090
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -691,15 +691,15 @@ msgstr ""
 "Ficheiro %s foi modificado desde a última gravação.\n"
 "Deseja gravar as modificações?"
 
-#: src/ghex-window.c:1081
+#: src/ghex-window.c:1100
 msgid "Do_n't save"
 msgstr "_Não gravar"
 
-#: src/ghex-window.c:1101 src/ui.c:344
+#: src/ghex-window.c:1120 src/ui.c:344
 msgid "You don't have the permissions to save the file!"
 msgstr "Não possui permissões para gravar o ficheiro!"
 
-#: src/ghex-window.c:1105 src/ui.c:349
+#: src/ghex-window.c:1124 src/ui.c:349
 msgid "An error occured while saving file!"
 msgstr "Ocorreu um erro ao gravar ficheiro!"
 
@@ -762,7 +762,7 @@ msgstr "Hexadecimal"
 
 #: src/preferences.c:175
 msgid "Custom"
-msgstr "Costumizado"
+msgstr "Personalizado"
 
 #: src/preferences.c:187
 msgid "Enter the cursor offset format"
@@ -782,7 +782,7 @@ msgid "Editing"
 msgstr "Edição"
 
 #. display font
-#: src/preferences.c:212
+#: src/preferences.c:212 src/gnome-print-font-picker.c:1017
 msgid "Font"
 msgstr "Fonte"
 
@@ -963,7 +963,87 @@ msgstr "Páginas"
 #: src/ui.c:829
 #, c-format
 msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Prever Impressão"
+msgstr "GHex (%s): Antever Impressão"
+
+#: src/gnome-print-font-dialog.c:111
+msgid "_Insert a new preview phrase."
+msgstr "_Inserir uma nova frase de antevisão."
+
+#: src/gnome-print-font-dialog.c:117
+msgid "Modify preview phrase..."
+msgstr "Alterar frase de antevisão..."
+
+#: src/gnome-print-font-dialog.c:171
+msgid "Preview"
+msgstr "Antever"
+
+#: src/gnome-print-font-dialog.c:184
+msgid "_Modify preview phrase..."
+msgstr "_Alterar frase de antevisão"
+
+#: src/gnome-print-font-dialog.c:247
+msgid "Font Selection"
+msgstr "Selecção Fonte"
+
+#: src/gnome-print-font-picker.c:91
+msgid "Sans Regular 12"
+msgstr "Sans Regular 12"
+
+#: src/gnome-print-font-picker.c:92
+msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+
+#: src/gnome-print-font-picker.c:93
+msgid "Pick a Font"
+msgstr "Seleccione uma Fonte"
+
+#: src/gnome-print-font-picker.c:178
+msgid "Title"
+msgstr "Título"
+
+#: src/gnome-print-font-picker.c:179
+msgid "The title of the selection dialog box"
+msgstr "O título da caixa de diálogo de selecção"
+
+#: src/gnome-print-font-picker.c:199
+msgid "Font name"
+msgstr "Nome fonte"
+
+#: src/gnome-print-font-picker.c:200
+msgid "Name of the selected font"
+msgstr "Nome da fonte seleccionada"
+
+#: src/gnome-print-font-picker.c:208
+msgid "Preview text"
+msgstr "Antever texto"
+
+#: src/gnome-print-font-picker.c:209
+msgid "Preview text shown in the dialog"
+msgstr "Antever texto apresentado no diálogo"
+
+#: src/gnome-print-font-picker.c:217
+msgid "Use font in label"
+msgstr "Utilizar fonte na etiqueta"
+
+#: src/gnome-print-font-picker.c:218
+msgid "Use font in the label in font info mode"
+msgstr "Utilizar fonte na etiqueta em modo de info de fonte"
+
+#: src/gnome-print-font-picker.c:226
+msgid "Font size for label"
+msgstr "Tamanho de fonte para etiqueta"
+
+#: src/gnome-print-font-picker.c:227
+msgid "Font size for label in font info mode"
+msgstr "Tamanho de fonte para etiqueta em modo de info de fonte"
+
+#: src/gnome-print-font-picker.c:237
+msgid "Show size"
+msgstr "Mostrar tamanho"
+
+#: src/gnome-print-font-picker.c:238
+msgid "Show size in font info mode"
+msgstr "Mostrar tamanho em modo de info de fonte"
 
 #~ msgid "About..."
 #~ msgstr "Sobre..."
