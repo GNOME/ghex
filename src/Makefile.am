@@ -1,5 +1,7 @@
 ## Process this file with automake to create Makefile.in.
 
+SUBDIRS = help
+
 appicondir = $(datadir)/pixmaps
 
 appicon_DATA = gnome-ghex.png
