@@ -36,7 +36,7 @@
 
 #define SCROLL_TIMEOUT 100
 
-#define is_printable(c) (((((guint)c)>=0x20) && (((guint)c)<=0xFF))?1:0)
+#define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0xFF))?1:0)
 
 typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 
@@ -253,8 +253,12 @@ static void render_byte(GtkHex *gh, gint pos) {
 					   cx, cy, gh->char_width, gh->char_height);
 	gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 
+	buf[0] = gh->document->buffer[pos];
+	if(!is_printable(buf[0]))
+		buf[0] = '.';
+
 	gdk_draw_text(gh->adisp->window, gh->disp_font, gh->adisp_gc,
-				  cx, cy + gh->disp_font->ascent, &gh->document->buffer[pos], 1);
+				  cx, cy + gh->disp_font->ascent, buf, 1);
 }
 
 /*
@@ -264,24 +268,30 @@ static void render_ac(GtkHex *gh) {
 	gint cx, cy;
 	static guchar c[2] = "\0\0";
 	GtkStateType state;
+	GtkShadowType shadow;
 
 	if(!GTK_WIDGET_REALIZED(gh->adisp))
 		return;
 	
 	if(get_acoords(gh, gh->cursor_pos, &cx, &cy)) {
 		c[0] = gh->document->buffer[gh->cursor_pos];
+		if(!is_printable(c[0]))
+			c[0] = '.';
 
-		if(gh->active_view == VIEW_ASCII)
+		if(gh->active_view == VIEW_ASCII) {
 			state = GTK_STATE_SELECTED;
-		else
-			state = GTK_STATE_INSENSITIVE;
+			shadow = GTK_SHADOW_NONE;
+		}
+		else {
+			state = GTK_STATE_NORMAL;
+			shadow = GTK_SHADOW_IN;
+		}
 
 		gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window,
-					 state, GTK_SHADOW_NONE,
+					 state, shadow,
 					 cx, cy, gh->char_width, gh->char_height - 1);
 		gtk_draw_string(GTK_WIDGET(gh)->style, gh->adisp->window,
-						state,
-						cx, cy + gh->disp_font->ascent, c);
+						state, cx, cy + gh->disp_font->ascent, c);
 	}
 }
 
@@ -289,6 +299,7 @@ static void render_xc(GtkHex *gh) {
 	gint cx, cy, i;
 	static guchar c[3];
 	GtkStateType state;
+	GtkShadowType shadow;
 
 	if(!GTK_WIDGET_REALIZED(gh->xdisp))
 		return;
@@ -304,17 +315,20 @@ static void render_xc(GtkHex *gh) {
 			i = 0;
 		}
 
-		if(gh->active_view == VIEW_HEX)
+		if(gh->active_view == VIEW_HEX) {
 			state = GTK_STATE_SELECTED;
-		else
-			state = GTK_STATE_INSENSITIVE;
+			shadow = GTK_SHADOW_NONE;
+		}
+		else {
+			state = GTK_STATE_NORMAL;
+			shadow = GTK_SHADOW_IN;
+		}
 
 		gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
-					 state, GTK_SHADOW_NONE,
+					 state, shadow,
 					 cx, cy, gh->char_width, gh->char_height - 1);
 		gtk_draw_string(GTK_WIDGET(gh)->style, gh->xdisp->window,
-						state,
-						cx, cy + gh->disp_font->ascent, &c[i]);
+						state, cx, cy + gh->disp_font->ascent, &c[i]);
 	}
 }
 

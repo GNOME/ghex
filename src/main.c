@@ -92,15 +92,13 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	HexDocument *doc;
 	gint pos;
 	gint group_item;
-	char *p;
 
 	if(mdi->active_view == NULL)
 		return;
 
 	app = gnome_mdi_get_app_from_view(mdi->active_view);
 	
-	GROUP_MENU_PATH(p);
-	shell = gnome_app_find_menu_pos(app->menubar, p, &pos);
+	shell = gnome_app_find_menu_pos(app->menubar, GROUP_MENU_PATH, &pos);
 	if (shell) {
 		group_item = GTK_HEX(mdi->active_view)->group_type / 2;
 		shell = gnome_app_find_menu_pos(shell, _(group_type_label[group_item]), &pos);
@@ -116,7 +114,6 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	gtk_widget_set_sensitive(uiinfo[1].widget, doc->undo_top != doc->undo_stack);
 
 	gnome_app_install_menu_hints(app, gnome_mdi_get_child_menu_info(app));
-	g_free(p);
 }
 
 static void app_drop_cb(GtkWidget *widget, GdkDragContext *context,
@@ -130,7 +127,6 @@ static void app_drop_cb(GtkWidget *widget, GdkDragContext *context,
 		while (names) {
 			HexDocument *doc;
 
-			printf("dragged %s\n", names->data);
 			doc = hex_document_new((gchar *)names->data);
 			if(doc) {
 				gnome_mdi_add_child(mdi, GNOME_MDI_CHILD(doc));

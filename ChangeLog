@@ -1,3 +1,13 @@
+1999-11-28  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* ghex.h: changed GROUP_MENU_PATH as libgnomeui does translating
+	on the fly.
+	* main.c (view_changed_cb): comply to the above.
+	* gtkhex.c (render_byte, render_ac): properly show a dot if a
+	non-printable char is to be rendered.
+	(render_ac, render_xc): use GTK_STATE_NORMAL and GTK_SHADOW_IN for
+	the non-active view's cursor.
+
 1999-09-05  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* help/sv/*, help/Makefile.am: added Swedish translation of
