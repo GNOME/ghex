@@ -55,6 +55,7 @@ static void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* v
 static void converter_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void char_table_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+static void help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 
 #if 0
 GnomeUIInfo file_menu[] = {
@@ -151,6 +152,7 @@ BonoboUIVerb ghex_verbs [] = {
 	BONOBO_UI_VERB ("RemoveView", remove_view_cb),
 	BONOBO_UI_VERB ("Preferences", prefs_cb),
 	BONOBO_UI_VERB ("About", about_cb),
+	BONOBO_UI_VERB ("Help", help_cb),
 	BONOBO_UI_VERB_END
 };
 
@@ -251,6 +253,13 @@ static void about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* v
 	}
 	else
 		gdk_window_raise(GTK_WIDGET(about)->window);
+}
+
+static void help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar *verbname)
+{
+	GError *error = NULL;
+
+	gnome_help_display ("ghex", NULL, &error);
 }
 
 /* Changed the function parameters -- SnM */

@@ -72,11 +72,11 @@
         <cmd name="Preferences" _label="Preferences" _tip="Configure the application"
 	  pixtype="stock" pixname="gtk-preferences"/>
 
-	<cmd name="Help" _label="Help" _tip=""/>
-
 	<cmd name="HelpChat..." _label="Help Chat" _tip=""/>
 
         <cmd name="About" _label="About..." _tip="About this application"/>
+
+	<cmd name="Help" _label="HelpContents" _tip="Help on this application"/>
 
 </commands>
 
@@ -182,6 +182,8 @@
 	<placeholder name="BuiltMenuItems"/>
 
         <menuitem name="About" verb="" _label="_About..."/>
+
+	<menuitem name="Help" verb="" _label="_Help Contents"/>
 
 </submenu>
 

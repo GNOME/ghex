@@ -6,6 +6,7 @@ INCLUDES = -I$(includedir) 				\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
 	-DGHEX_UI_DIR=\""$(datadir)/ghex2/ui/"\"		\
 	-DGHEX_GLADEDIR=\""$(datadir)/ghex2/glade/"\"	\
+	-DDATADIR=\""$(datadir)"\"			\
 	$(GHEX_CFLAGS)
 
 bin_PROGRAMS = ghex2

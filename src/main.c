@@ -345,11 +345,12 @@ main(int argc, char **argv)
 	textdomain (GETTEXT_PACKAGE);
 
         /* Initialize gnome program */
-	program = gnome_program_init ("ghex2", VERSION,
+	program = gnome_program_init ("ghex", VERSION,
 				LIBGNOMEUI_MODULE, argc, argv,
 				GNOME_PARAM_POPT_TABLE, options,
 				GNOME_PARAM_HUMAN_READABLE_NAME,
 				_("The gnome binary editor"),
+				GNOME_PARAM_APP_DATADIR, DATADIR,
 				NULL);
 
 	/* FIXME - Couldnt find gnome-ghex.png in the sources directory */
