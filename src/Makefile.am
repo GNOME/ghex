@@ -1,6 +1,7 @@
 ## Process this file with automake to create Makefile.in.
 
 INCLUDES = -I$(includedir) 				\
+	-DGNOMEICONDIR=\""$(datadir)/pixmaps"\"		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
 	-DGHEX_UI_DIR=\""$(datadir)/ghex2/ui/"\"		\

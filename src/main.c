@@ -340,7 +340,7 @@ main(int argc, char **argv)
 
 	/* FIXME - Couldnt find gnome-ghex.png in the sources directory */
 	/* Set default window icon */
-	gnome_window_icon_set_default_from_file ("gnome-ghex.png");
+	gnome_window_icon_set_default_from_file (GNOMEICONDIR "/gnome-ghex.png");
 
 	/* load preferences */
 	ghex_prefs_init();
