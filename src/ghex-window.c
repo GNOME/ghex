@@ -600,10 +600,10 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
         full_path = g_strdup(filename);
     
     doc = hex_document_new(full_path);
-    hex_document_set_max_undo(doc, max_undo_depth);
     g_free(full_path);
     if(!doc)
         return FALSE;
+    hex_document_set_max_undo(doc, max_undo_depth);
     gh = create_document_view(doc);
     gtk_hex_show_offsets(GTK_HEX(gh), show_offsets_column);
     g_signal_connect(G_OBJECT(doc), "document_changed",

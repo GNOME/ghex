@@ -1,3 +1,16 @@
+2003-04-11  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/gtkhex.c: Deactivate selection for keys other then
+	Arrows and PgUp/PgDown.	Fixes bug 109397. patch by Rajkumar
+	Sivasamy.
+	* src/gtkhex.c: draw highlight in secondary view with the color
+	for insensitive state. fixes bug 108756.
+	* src/chartable.c: fixed keybindings. fixes 107188.
+	* src/ghex-window.c (ghex_window_load): set max undo depth only
+	if a document was created. patch by Pasupathi Duraisamy.
+	* src/main.c (main): only attempt to open a file that exists. patch
+	by Pasupathi Duraisamy.
+
 2003-03-03  Dmitry G. Mastrukov  <dmitry@taurussoft.org>
 
 	* configure.in: Added Belarusian to ALL_LINGUAS.
