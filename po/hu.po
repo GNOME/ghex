@@ -6,21 +6,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex VERSION\n"
-"POT-Creation-Date: 2002-08-14 10:40+0200\n"
-"PO-Revision-Date: 2002-08-14 10:46+0200\n"
+"POT-Creation-Date: 2002-08-24 20:35+0200\n"
+"PO-Revision-Date: 2002-08-24 20:37+0200\n"
 "Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ghex.desktop.in.h:1 src/ghex-window.c:387
-msgid "GHex"
-msgstr "GHex"
+#: ghex.desktop.in.h:1
+msgid "GNOME Hexadecimal Editor"
+msgstr "GNOME Hexadecimális Szerkesztő"
 
 #: ghex.desktop.in.h:2
-msgid "Gnome Hexadecimal Editor"
-msgstr "Gnome Hexadecimális Szerkesztő"
+msgid "Hex Editor"
+msgstr "Hexadecimális Szerkesztő"
 
 #: src/chartable.c:114
 msgid "ASCII"
@@ -30,7 +30,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Hexadecimális"
 
-#: src/chartable.c:114 src/preferences.c:170
+#: src/chartable.c:114 src/preferences.c:174
 msgid "Decimal"
 msgstr "Decimális"
 
@@ -587,6 +587,10 @@ msgstr "_Ablakok"
 msgid "_Words"
 msgstr "_Szavak"
 
+#: src/ghex-window.c:387
+msgid "GHex"
+msgstr "GHex"
+
 #: src/ghex-window.c:496
 #, c-format
 msgid "Offset: %s"
@@ -652,116 +656,116 @@ msgstr "Érvénytelen geometria-karakterlánc: \"%s\"\n"
 msgid "GHex Preferences"
 msgstr "GHex beállítások"
 
-#: src/preferences.c:132
+#: src/preferences.c:136
 msgid "_Maximum number of undo levels:"
 msgstr "_Visszavonások maximális száma:"
 
-#: src/preferences.c:152
+#: src/preferences.c:156
 msgid "Undo levels"
 msgstr "Visszavonások száma"
 
-#: src/preferences.c:152
+#: src/preferences.c:156
 msgid "Select maximum number of undo levels"
 msgstr "Add meg a visszavonások maximális számát"
 
-#: src/preferences.c:156
+#: src/preferences.c:160
 msgid "Show cursor offset in statusbar as:"
 msgstr "A kurzor eltolásának megjelenítése az állapotsorban:"
 
-#: src/preferences.c:175
+#: src/preferences.c:179
 msgid "Hexadecimal"
 msgstr "Hexadecimális"
 
-#: src/preferences.c:181
+#: src/preferences.c:185
 msgid "Custom"
 msgstr "Megadott"
 
-#: src/preferences.c:192
+#: src/preferences.c:196
 msgid "Enter the cursor offset format"
 msgstr "Add meg a kurzoreltolás formátumát"
 
-#: src/preferences.c:193
+#: src/preferences.c:197
 msgid "Select the cursor offset format"
 msgstr "Válaszd ki a kurzoreltolás formátumát"
 
 #. show offsets check button
-#: src/preferences.c:203
+#: src/preferences.c:207
 msgid "Show offsets column"
 msgstr "Eltolás oszlopok mutatása"
 
-#: src/preferences.c:208
+#: src/preferences.c:212
 msgid "Editing"
 msgstr "Szerkesztés"
 
 #. display font
-#: src/preferences.c:217
+#: src/preferences.c:221
 msgid "Font"
 msgstr "Betűkészlet"
 
 #. default group type
-#: src/preferences.c:245
+#: src/preferences.c:249
 msgid "Default Group Type"
 msgstr "Alapértelmezett csoporttípus"
 
-#: src/preferences.c:261
+#: src/preferences.c:265
 msgid "Display"
 msgstr "Képernyő"
 
 #. paper selection
-#: src/preferences.c:270
+#: src/preferences.c:274
 msgid "Paper size"
 msgstr "Papírméret"
 
 #. data & header font selection
-#: src/preferences.c:275
+#: src/preferences.c:279
 msgid "Fonts"
 msgstr "Betűkészletek"
 
-#: src/preferences.c:281
+#: src/preferences.c:285
 msgid "_Data font:"
 msgstr "_Adat betűtípusa:"
 
-#: src/preferences.c:299
+#: src/preferences.c:303
 msgid "Data font"
 msgstr "Adat betűtípusa"
 
-#: src/preferences.c:299
+#: src/preferences.c:303
 msgid "Select the data font"
 msgstr "Adat betűtípusának kiválasztása"
 
-#: src/preferences.c:313
+#: src/preferences.c:317
 msgid "Header fo_nt:"
 msgstr "_Fejléc betűtípusa:"
 
-#: src/preferences.c:330
+#: src/preferences.c:334
 msgid "Header font"
 msgstr "Fejléc betűtípusa"
 
-#: src/preferences.c:330
+#: src/preferences.c:334
 msgid "Select the header font"
 msgstr "Fejléc betűtípusának kiválasztása"
 
-#: src/preferences.c:358
+#: src/preferences.c:362
 msgid "_Print shaded box over:"
 msgstr "_Árnyékolt doboz megjelenítése:"
 
-#: src/preferences.c:370
+#: src/preferences.c:374
 msgid "Box size"
 msgstr "Dobozméret"
 
-#: src/preferences.c:370
+#: src/preferences.c:374
 msgid "Select size of box (in number of lines)"
 msgstr "Add meg a doboz méretét (sorok száma)"
 
-#: src/preferences.c:374
+#: src/preferences.c:378
 msgid "lines (0 for no box)"
 msgstr "soronként (0 = nincs doboz)"
 
-#: src/preferences.c:381
+#: src/preferences.c:385
 msgid "Printing"
 msgstr "Nyomtatás"
 
-#: src/preferences.c:523
+#: src/preferences.c:527
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -771,7 +775,7 @@ msgstr ""
 "Csak  'x', 'X', 'p', 'P', 'd' és 'o' megengedett."
 
 # src/preferences.c:567
-#: src/preferences.c:555
+#: src/preferences.c:559
 msgid "Can not open desired font!"
 msgstr "Nem sikerült a kívánt betűkészletet megnyitni!"
 
