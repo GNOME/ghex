@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.12\n"
-"POT-Creation-Date: 1999-09-01 15:44+0200\n"
+"POT-Creation-Date: 1999-09-08 14:44-0400\n"
 "PO-Revision-Date: 1999-01-13 14:09+0100\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Language-Team: \n"
@@ -61,7 +61,7 @@ msgid "Get cursor value"
 msgstr "Recuperar valor del cursor"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:595
+#: mini-utils/gshutdown/gshutdown.c:596
 msgid "Close"
 msgstr "Cerrar"
 
@@ -192,12 +192,12 @@ msgid "Group data by 32 bits"
 msgstr "Grupar datos por 32 bits"
 
 #: ghex/hex-document.c:78
-msgid "Jump to a certain position"
-msgstr "Saltar a una posición dada"
-
-#: ghex/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr "_Ir al Byte..."
+
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "Saltar a una posición dada"
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -537,12 +537,15 @@ msgstr "no puedo abrir el archivo de configuración \"%s\""
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
 msgstr ""
-"no puedo abrir el archivo de configuración \"./gstripchart.conf\",\"%s\", \"%s\", o \"%s\""
+"no puedo abrir el archivo de configuración \"./gstripchart.conf\",\"%s\", "
+"\"%s\", o \"%s\""
 
 #: gstripchart/gstripchart.c:739
+#, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
 msgstr ""
-"no puedo abrir el archivo de configuración \"./gstripchart.conf\", \"%s\", o \"%s\""
+"no puedo abrir el archivo de configuración \"./gstripchart.conf\", \"%s\", o "
+"\"%s\""
 
 #: gstripchart/gstripchart.c:796
 #, c-format
@@ -590,12 +593,12 @@ msgstr ""
 "interesado en ello."
 
 #: gstripchart/gstripchart.c:1440
-msgid "Info about the striphart program"
-msgstr "Información acerca del programa stripchart"
-
-#: gstripchart/gstripchart.c:1440
 msgid "_About"
 msgstr "_Acerca"
+
+#: gstripchart/gstripchart.c:1440
+msgid "Info about the striphart program"
+msgstr "Información acerca del programa stripchart"
 
 #: gstripchart/gstripchart.c:1451
 msgid "_File"
@@ -678,10 +681,6 @@ msgstr "Parám."
 msgid "Exit"
 msgstr "Salir"
 
-#: gstripchart/gstripchart.c:1777
-msgid "Gnome stripchart viewer"
-msgstr "Visualizador de gráficos sistema de Gnome"
-
 #. Create a top-level window. Set the title, minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
@@ -689,18 +688,22 @@ msgstr "Visualizador de gráficos sistema de Gnome"
 msgid "gstripchart"
 msgstr "gstripchart"
 
+#: gstripchart/gstripchart.c:1777
+msgid "Gnome stripchart viewer"
+msgstr "Visualizador de gráficos sistema de Gnome"
+
 #: gstripchart/gstripchart.c:1856
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "tipo de afichage inválido: %s\n"
 
 #: gstripchart/gstripchart.c:1883
-msgid "GEO"
-msgstr "GEO"
-
-#: gstripchart/gstripchart.c:1883
 msgid "Geometry string: WxH+X+Y"
 msgstr ""
+
+#: gstripchart/gstripchart.c:1883
+msgid "GEO"
+msgstr "GEO"
 
 #: gstripchart/gstripchart.c:1885
 msgid "Configuration file name"
@@ -741,12 +744,12 @@ msgid "Omits slider window"
 msgstr ""
 
 #: gstripchart/gstripchart.c:1899
-msgid "TYPE"
-msgstr "TIPO"
-
-#: gstripchart/gstripchart.c:1899
 msgid "TYPE is one of gtk, text, graph, or none"
 msgstr ""
+
+#: gstripchart/gstripchart.c:1899
+msgid "TYPE"
+msgstr "TIPO"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -812,21 +815,21 @@ msgstr ""
 "Un error ha ocurrido al cargar el archivo de configuración\n"
 "¿Desea que instale una nueva configuración?"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "GEOMETRÍA"
-
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "Especificar la geometría"
 
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "PROYECTO"
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
+msgid "GEOMETRY"
+msgstr "GEOMETRÍA"
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "Seleccionar un proyecto al arrancar"
+
+#: gtt/main.c:206
+msgid "PROJECT"
+msgstr "PROYECTO"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1195,12 +1198,12 @@ msgid "Selection:"
 msgstr "Selección:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "FONTSPEC"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
 msgstr "Fuente a cargar"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr "FONTSPEC"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1353,12 +1356,12 @@ msgid "Run Program"
 msgstr "Lanzar un Programa"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "Lanzar"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Cancel"
+msgstr "Cancelar"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1420,7 +1423,7 @@ msgstr "¿Está seguro que quiere cambiar a runlevel 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "¿Está seguro que quiere reiniciar la computadora?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:592
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:593
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Vd. tiene que ser el super usuario (root) para poder apagar o reiniciar el "
@@ -1477,7 +1480,7 @@ msgstr ""
 msgid "Don't ask next time."
 msgstr "No preguntar la próxima vez."
 
-#: mini-utils/gshutdown/gshutdown.c:685
+#: mini-utils/gshutdown/gshutdown.c:691
 msgid "Command execution failed: fork failed"
 msgstr "Falló la ejecución del comando: falló el fork"
 
@@ -1689,12 +1692,12 @@ msgid "No information for this filesystem."
 msgstr "No hay información sobre este sistema de archivos."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "Kilobytes"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "Memoria"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Kilobytes"
+msgstr "Kilobytes"
 
 #: mini-utils/guname/moreinfo.c:214
 #, c-format
@@ -1743,12 +1746,12 @@ msgstr ""
 "Este comando es necesario para el funcionamiento del programa."
 
 #: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "Escribir la información al disco"
-
-#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "_Guardar..."
+
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "Escribir la información al disco"
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1849,13 +1852,13 @@ msgstr "La configuración DMA de este disco no puede cambiarse."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Desactivado"
+msgid "Enabled"
+msgstr "Activado"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Activado"
+msgid "Disabled"
+msgstr "Desactivado"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-util-1.0.1\n"
-"POT-Creation-Date: 1999-09-01 15:44+0200\n"
+"POT-Creation-Date: 1999-09-08 14:44-0400\n"
 "PO-Revision-Date: 1999-03-10 HO:MI+ZONE\n"
 "Last-Translator: Sergey Panov <sipan@mit.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -58,7 +58,7 @@ msgid "Get cursor value"
 msgstr "Задать положение курсора"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:595
+#: mini-utils/gshutdown/gshutdown.c:596
 msgid "Close"
 msgstr "Закрыть"
 
@@ -189,12 +189,12 @@ msgid "Group data by 32 bits"
 msgstr "Группировать данные по 32 бита"
 
 #: ghex/hex-document.c:78
-msgid "Jump to a certain position"
-msgstr "Перескочить в указанную позицию"
-
-#: ghex/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr "Перейти к байту..."
+
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "Перескочить в указанную позицию"
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -583,12 +583,12 @@ msgstr ""
 "пользователя."
 
 #: gstripchart/gstripchart.c:1440
-msgid "Info about the striphart program"
-msgstr "Информация о самописце"
-
-#: gstripchart/gstripchart.c:1440
 msgid "_About"
 msgstr "О программе"
+
+#: gstripchart/gstripchart.c:1440
+msgid "Info about the striphart program"
+msgstr "Информация о самописце"
 
 #: gstripchart/gstripchart.c:1451
 msgid "_File"
@@ -672,10 +672,6 @@ msgstr "Параметры"
 msgid "Exit"
 msgstr "Выход"
 
-#: gstripchart/gstripchart.c:1777
-msgid "Gnome stripchart viewer"
-msgstr "Gnome самописец"
-
 #. Create a top-level window. Set the title, minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
@@ -683,18 +679,22 @@ msgstr "Gnome самописец"
 msgid "gstripchart"
 msgstr "самописец"
 
+#: gstripchart/gstripchart.c:1777
+msgid "Gnome stripchart viewer"
+msgstr "Gnome самописец"
+
 #: gstripchart/gstripchart.c:1856
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "неправильный тип дисплея: %s\n"
 
 #: gstripchart/gstripchart.c:1883
-msgid "GEO"
-msgstr "ГЕОМ"
-
-#: gstripchart/gstripchart.c:1883
 msgid "Geometry string: WxH+X+Y"
 msgstr ""
+
+#: gstripchart/gstripchart.c:1883
+msgid "GEO"
+msgstr "ГЕОМ"
 
 #: gstripchart/gstripchart.c:1885
 #, fuzzy
@@ -738,12 +738,12 @@ msgid "Omits slider window"
 msgstr "пропустить ползунок"
 
 #: gstripchart/gstripchart.c:1899
-msgid "TYPE"
-msgstr "ТИП"
-
-#: gstripchart/gstripchart.c:1899
 msgid "TYPE is one of gtk, text, graph, or none"
 msgstr ""
+
+#: gstripchart/gstripchart.c:1899
+msgid "TYPE"
+msgstr "ТИП"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -810,21 +810,21 @@ msgstr ""
 "При чтении конфигурационного файла возникла ошибка.\n"
 "Установить новую конфигурацию?"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "ГЕОМЕТРИЯ"
-
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "Указать геометрию"
 
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "ПРОЕКТ"
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
+msgid "GEOMETRY"
+msgstr "ГЕОМЕТРИЯ"
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "Выбрать проект при запуске"
+
+#: gtt/main.c:206
+msgid "PROJECT"
+msgstr "ПРОЕКТ"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1191,12 +1191,12 @@ msgid "Selection:"
 msgstr "Выделение:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "ШРИФТ"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
 msgstr "Шрифт для загрузки"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr "ШРИФТ"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1350,12 +1350,12 @@ msgid "Run Program"
 msgstr "Запустить программу"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Отмена"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "Запуск"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Cancel"
+msgstr "Отмена"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1418,7 +1418,7 @@ msgstr "Вы уверены, в том что хотите переключиться на runlevel 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Вы уверены, в том что хотите перезагрузить систему?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:592
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:593
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Необходимо обладать правами администратора (root) для выключения или "
@@ -1475,7 +1475,7 @@ msgstr ""
 msgid "Don't ask next time."
 msgstr "Не спрашивать в следующий раз."
 
-#: mini-utils/gshutdown/gshutdown.c:685
+#: mini-utils/gshutdown/gshutdown.c:691
 msgid "Command execution failed: fork failed"
 msgstr "Не удалось исполнить команду: отпочкование не состоялось"
 
@@ -1687,12 +1687,12 @@ msgid "No information for this filesystem."
 msgstr "Нет сведений об этой файловой системе."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "Килобайты"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "Память"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Kilobytes"
+msgstr "Килобайты"
 
 #: mini-utils/guname/moreinfo.c:214
 #, c-format
@@ -1741,12 +1741,12 @@ msgstr ""
 "Эта команда необходима для работы программы."
 
 #: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "Записать информацию на диск"
-
-#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "Сохранить..."
+
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "Записать информацию на диск"
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1846,13 +1846,13 @@ msgstr "Установки DMA для этого диска не могут быть изменены."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Выкл."
+msgid "Enabled"
+msgstr "Вкл."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Вкл."
+msgid "Disabled"
+msgstr "Выкл."
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-0.99.6\n"
-"POT-Creation-Date: 1999-09-01 15:44+0200\n"
+"POT-Creation-Date: 1999-09-08 14:44-0400\n"
 "PO-Revision-Date: 1999-02-20 08:00+0800\n"
 "Last-Translator: Ming-Yen Hsu <myhsu@cyberdude.com>\n"
 "Language-Team: Chinese <zh@li.org>\n"
@@ -56,7 +56,7 @@ msgid "Get cursor value"
 msgstr "獲得游標位置"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:595
+#: mini-utils/gshutdown/gshutdown.c:596
 msgid "Close"
 msgstr "關閉"
 
@@ -187,12 +187,12 @@ msgid "Group data by 32 bits"
 msgstr "Group data by 32 bits"
 
 #: ghex/hex-document.c:78
-msgid "Jump to a certain position"
-msgstr "跳至一特定的位置"
-
-#: ghex/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr "跳至 _G Byte..."
+
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "跳至一特定的位置"
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -579,12 +579,12 @@ msgstr ""
 "p CPU 的使用率、網路負載狀況... 等等。 有興趣的使用者可以找出其他巧妙的應用。"
 
 #: gstripchart/gstripchart.c:1440
-msgid "Info about the striphart program"
-msgstr "關於條形圖程式的訊息"
-
-#: gstripchart/gstripchart.c:1440
 msgid "_About"
 msgstr "開於 _A"
+
+#: gstripchart/gstripchart.c:1440
+msgid "Info about the striphart program"
+msgstr "關於條形圖程式的訊息"
 
 #: gstripchart/gstripchart.c:1451
 msgid "_File"
@@ -668,10 +668,6 @@ msgstr "參數"
 msgid "Exit"
 msgstr "退出"
 
-#: gstripchart/gstripchart.c:1777
-msgid "Gnome stripchart viewer"
-msgstr "Gnome 條形圖程式"
-
 #. Create a top-level window. Set the title, minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
@@ -679,18 +675,22 @@ msgstr "Gnome 條形圖程式"
 msgid "gstripchart"
 msgstr "條形圖程式"
 
+#: gstripchart/gstripchart.c:1777
+msgid "Gnome stripchart viewer"
+msgstr "Gnome 條形圖程式"
+
 #: gstripchart/gstripchart.c:1856
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "無效的顯示格式: %s\n"
 
 #: gstripchart/gstripchart.c:1883
-msgid "GEO"
-msgstr "GEO"
-
-#: gstripchart/gstripchart.c:1883
 msgid "Geometry string: WxH+X+Y"
 msgstr ""
+
+#: gstripchart/gstripchart.c:1883
+msgid "GEO"
+msgstr "GEO"
 
 #: gstripchart/gstripchart.c:1885
 #, fuzzy
@@ -734,12 +734,12 @@ msgid "Omits slider window"
 msgstr "omit slider"
 
 #: gstripchart/gstripchart.c:1899
-msgid "TYPE"
-msgstr "TYPE"
-
-#: gstripchart/gstripchart.c:1899
 msgid "TYPE is one of gtk, text, graph, or none"
 msgstr ""
+
+#: gstripchart/gstripchart.c:1899
+msgid "TYPE"
+msgstr "TYPE"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -805,21 +805,21 @@ msgstr ""
 "讀取設定檔時發生錯誤.\n"
 "是否開始一個新的設定檔?"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "GEOMETRY"
-
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "指定 geometry"
 
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "計劃"
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
+msgid "GEOMETRY"
+msgstr "GEOMETRY"
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "在啟動時選取一個計劃"
+
+#: gtt/main.c:206
+msgid "PROJECT"
+msgstr "計劃"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1186,12 +1186,12 @@ msgid "Selection:"
 msgstr "選擇:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "FONTSPEC"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
 msgstr "欲載入字形"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr "FONTSPEC"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1330,12 +1330,12 @@ msgid "Run Program"
 msgstr "執行程式"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "取消"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "執行"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Cancel"
+msgstr "取消"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1397,7 +1397,7 @@ msgstr "你確定要切換至 runlevel 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "你確定要重新啟動系統?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:592
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:593
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr "你必需有 super-user (root) 的權限才可以關閉或重新啟動電腦."
 
@@ -1450,7 +1450,7 @@ msgstr ""
 msgid "Don't ask next time."
 msgstr "下次別問了."
 
-#: mini-utils/gshutdown/gshutdown.c:685
+#: mini-utils/gshutdown/gshutdown.c:691
 msgid "Command execution failed: fork failed"
 msgstr ""
 
@@ -1665,12 +1665,12 @@ msgid "No information for this filesystem."
 msgstr "沒有關於這個檔案系統的資訊."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "千位元組"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "記憶體"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Kilobytes"
+msgstr "千位元組"
 
 #: mini-utils/guname/moreinfo.c:214
 #, c-format
@@ -1719,12 +1719,12 @@ msgstr ""
 "這個指令必需存在以供程式執行."
 
 #: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "將訊息寫回磁碟"
-
-#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "儲存 _S..."
+
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "將訊息寫回磁碟"
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1826,13 +1826,13 @@ msgstr "這個磁碟機的 DMA 設定值不能改變."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "關閉"
+msgid "Enabled"
+msgstr "啟動"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "啟動"
+msgid "Disabled"
+msgstr "關閉"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."

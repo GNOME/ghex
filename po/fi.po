@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.5\n"
-"POT-Creation-Date: 1999-09-01 15:44+0200\n"
+"POT-Creation-Date: 1999-09-08 14:44-0400\n"
 "PO-Revision-Date: 1999-08-13 23:03+0200\n"
 "Last-Translator: Mikko Rauhala <mjr@iki.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -58,7 +58,7 @@ msgid "Get cursor value"
 msgstr "Hae kursorin arvo"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:595
+#: mini-utils/gshutdown/gshutdown.c:596
 msgid "Close"
 msgstr "Sulje"
 
@@ -189,12 +189,12 @@ msgid "Group data by 32 bits"
 msgstr "Ryhmittele data 32 bitin ryhmiin"
 
 #: ghex/hex-document.c:78
-msgid "Jump to a certain position"
-msgstr "Hypp‰‰ tiettyyn sijaintiin"
-
-#: ghex/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr "_Mene tavuun..."
+
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "Hypp‰‰ tiettyyn sijaintiin"
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -583,12 +583,12 @@ msgstr ""
 "harjoitusteht‰v‰ksi."
 
 #: gstripchart/gstripchart.c:1440
-msgid "Info about the striphart program"
-msgstr "Tietoja ohjelmasta"
-
-#: gstripchart/gstripchart.c:1440
 msgid "_About"
 msgstr "_Tietoja"
+
+#: gstripchart/gstripchart.c:1440
+msgid "Info about the striphart program"
+msgstr "Tietoja ohjelmasta"
 
 #: gstripchart/gstripchart.c:1451
 msgid "_File"
@@ -672,10 +672,6 @@ msgstr "Parametrit"
 msgid "Exit"
 msgstr "Lopeta"
 
-#: gstripchart/gstripchart.c:1777
-msgid "Gnome stripchart viewer"
-msgstr "GNOME-j‰rjestelm‰k‰yr‰piirturi"
-
 #. Create a top-level window. Set the title, minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
@@ -683,18 +679,22 @@ msgstr "GNOME-j‰rjestelm‰k‰yr‰piirturi"
 msgid "gstripchart"
 msgstr "gstripchart"
 
+#: gstripchart/gstripchart.c:1777
+msgid "Gnome stripchart viewer"
+msgstr "GNOME-j‰rjestelm‰k‰yr‰piirturi"
+
 #: gstripchart/gstripchart.c:1856
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "kelvoton n‰yttˆtyyppi: %s\n"
 
 #: gstripchart/gstripchart.c:1883
-msgid "GEO"
-msgstr "GEO"
-
-#: gstripchart/gstripchart.c:1883
 msgid "Geometry string: WxH+X+Y"
 msgstr ""
+
+#: gstripchart/gstripchart.c:1883
+msgid "GEO"
+msgstr "GEO"
 
 #: gstripchart/gstripchart.c:1885
 #, fuzzy
@@ -738,12 +738,12 @@ msgid "Omits slider window"
 msgstr "j‰t‰ liu'utin pois"
 
 #: gstripchart/gstripchart.c:1899
-msgid "TYPE"
-msgstr "TYYPPI"
-
-#: gstripchart/gstripchart.c:1899
 msgid "TYPE is one of gtk, text, graph, or none"
 msgstr ""
+
+#: gstripchart/gstripchart.c:1899
+msgid "TYPE"
+msgstr "TYYPPI"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -810,21 +810,21 @@ msgstr ""
 "Tapahtui virhe luettaessa asetustiedostoa.\n"
 "M‰‰rit‰nkˆ uudet asetukset?"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "GEOMETRIA"
-
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "M‰‰rit‰ geometria"
 
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "PROJEKTI"
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
+msgid "GEOMETRY"
+msgstr "GEOMETRIA"
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "Valitse projekti k‰ynnistett‰ess‰"
+
+#: gtt/main.c:206
+msgid "PROJECT"
+msgstr "PROJEKTI"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1191,12 +1191,12 @@ msgid "Selection:"
 msgstr "Valinta:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "KIRJLAJI"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
 msgstr "Ladattava kirjasinlaji"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr "KIRJLAJI"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1349,12 +1349,12 @@ msgid "Run Program"
 msgstr "Suorita ohjelma"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Peruuta"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "Suorita"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Cancel"
+msgstr "Peruuta"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1416,7 +1416,7 @@ msgstr "Oletko varma ett‰ haluat siirt‰‰ j‰rjestelm‰n suoritustasolle 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Oletko varma ett‰ haluat uudelleenk‰ynnist‰‰ j‰rjestelm‰n?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:592
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:593
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Sinun t‰ytyy olla p‰‰k‰ytt‰j‰ (root) sammuttaaksesi tietokoneen\n"
@@ -1473,7 +1473,7 @@ msgstr ""
 msgid "Don't ask next time."
 msgstr "ƒl‰ kysy ensi kerralla"
 
-#: mini-utils/gshutdown/gshutdown.c:685
+#: mini-utils/gshutdown/gshutdown.c:691
 msgid "Command execution failed: fork failed"
 msgstr "Komennon suoritus ep‰onnistui: fork ep‰onnistui"
 
@@ -1685,12 +1685,12 @@ msgid "No information for this filesystem."
 msgstr "Ei tietoja t‰lle tiedostoj‰rjestelm‰lle."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "Kilotavua"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "Muisti"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Kilobytes"
+msgstr "Kilotavua"
 
 #: mini-utils/guname/moreinfo.c:214
 #, c-format
@@ -1740,12 +1740,12 @@ msgstr ""
 "Komentoa tarvitaan, jotta t‰m‰ ohjelma toimisi."
 
 #: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "Kirjoita tiedot levylle"
-
-#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "_Tallenna..."
+
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "Kirjoita tiedot levylle"
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1845,13 +1845,13 @@ msgstr "T‰m‰n aseman DMA-asetuksia ei voida muuttaa."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Estetty"
+msgid "Enabled"
+msgstr "Sallittu"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Sallittu"
+msgid "Disabled"
+msgstr "Estetty"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."

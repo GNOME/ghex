@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.12\n"
-"POT-Creation-Date: 1999-09-01 15:44+0200\n"
+"POT-Creation-Date: 1999-09-08 14:44-0400\n"
 "PO-Revision-Date: 1999-09-01 15:44+0200\n"
 "Last-Translator: KIM SCHULZ <KIM@SCHULZ.DK>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -56,7 +56,7 @@ msgid "Get cursor value"
 msgstr "Få cursor værdi"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:595
+#: mini-utils/gshutdown/gshutdown.c:596
 msgid "Close"
 msgstr "Luk"
 
@@ -187,12 +187,12 @@ msgid "Group data by 32 bits"
 msgstr "Gruppér data pr. 32 bits"
 
 #: ghex/hex-document.c:78
-msgid "Jump to a certain position"
-msgstr "Hop til bestemt position"
-
-#: ghex/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr "_Gå til Byte..."
+
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "Hop til bestemt position"
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -581,12 +581,12 @@ msgstr ""
 " "
 
 #: gstripchart/gstripchart.c:1440
-msgid "Info about the striphart program"
-msgstr "Information om striphart programmet"
-
-#: gstripchart/gstripchart.c:1440
 msgid "_About"
 msgstr "Om"
+
+#: gstripchart/gstripchart.c:1440
+msgid "Info about the striphart program"
+msgstr "Information om striphart programmet"
 
 #: gstripchart/gstripchart.c:1451
 msgid "_File"
@@ -670,10 +670,6 @@ msgstr "Paramet."
 msgid "Exit"
 msgstr "Afslut"
 
-#: gstripchart/gstripchart.c:1777
-msgid "Gnome stripchart viewer"
-msgstr "Gnome Stripchart viser"
-
 #. Create a top-level window. Set the title, minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
@@ -681,18 +677,22 @@ msgstr "Gnome Stripchart viser"
 msgid "gstripchart"
 msgstr "gstripchart"
 
+#: gstripchart/gstripchart.c:1777
+msgid "Gnome stripchart viewer"
+msgstr "Gnome Stripchart viser"
+
 #: gstripchart/gstripchart.c:1856
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "Forkert fremvisertype: %s\n"
 
 #: gstripchart/gstripchart.c:1883
-msgid "GEO"
-msgstr "GEO"
-
-#: gstripchart/gstripchart.c:1883
 msgid "Geometry string: WxH+X+Y"
 msgstr ""
+
+#: gstripchart/gstripchart.c:1883
+msgid "GEO"
+msgstr "GEO"
 
 #: gstripchart/gstripchart.c:1885
 #, fuzzy
@@ -736,12 +736,12 @@ msgid "Omits slider window"
 msgstr "udelad slider"
 
 #: gstripchart/gstripchart.c:1899
-msgid "TYPE"
-msgstr "TYPE"
-
-#: gstripchart/gstripchart.c:1899
 msgid "TYPE is one of gtk, text, graph, or none"
 msgstr ""
+
+#: gstripchart/gstripchart.c:1899
+msgid "TYPE"
+msgstr "TYPE"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -808,21 +808,21 @@ msgstr ""
 "En fejl kom under læsningen af konfigurationsfilen.\n"
 "Skal der sættes en ny op??"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "GEOMETRI"
-
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "Specificer geometrien"
 
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "PROJEKT"
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
+msgid "GEOMETRY"
+msgstr "GEOMETRI"
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "Vælg projekt ved opstart"
+
+#: gtt/main.c:206
+msgid "PROJECT"
+msgstr "PROJEKT"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1189,12 +1189,12 @@ msgid "Selection:"
 msgstr "Valg:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "FONTSPEC"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
 msgstr "Font der skal åbnes"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr "FONTSPEC"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1347,12 +1347,12 @@ msgid "Run Program"
 msgstr "Kør program"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Annuller"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "Kør"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Cancel"
+msgstr "Annuller"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1414,7 +1414,7 @@ msgstr "Er du sikker på at du vil skifte til runlevel 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Er du sikker på at du vil genstarte computeren?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:592
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:593
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Du skal være superbruger (root) for at lukke computeren ned eller genstarte "
@@ -1471,7 +1471,7 @@ msgstr ""
 msgid "Don't ask next time."
 msgstr "Spørg ikke næste gang."
 
-#: mini-utils/gshutdown/gshutdown.c:685
+#: mini-utils/gshutdown/gshutdown.c:691
 msgid "Command execution failed: fork failed"
 msgstr "Kørdsel af kommando fejlede: Fork Fejlede"
 
@@ -1683,12 +1683,12 @@ msgid "No information for this filesystem."
 msgstr "ingen information for dette filsystem."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr ""
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "Hukommelse"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Kilobytes"
+msgstr ""
 
 #: mini-utils/guname/moreinfo.c:214
 #, c-format
@@ -1737,12 +1737,12 @@ msgstr ""
 "Denne kommando er krævet for at få dette program til at køre."
 
 #: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "Skriv information til disk"
-
-#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "Gem..."
+
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "Skriv information til disk"
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1842,13 +1842,13 @@ msgstr "DMA opsætningen for dette drev kan ikke ændres."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Slå fra"
+msgid "Enabled"
+msgstr "Slå til"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Slå til"
+msgid "Disabled"
+msgstr "Slå fra"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
