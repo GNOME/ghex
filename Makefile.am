@@ -10,7 +10,7 @@ schema_DATA = ghex2.schemas
 
 EXTRA_DIST =			\
 	ghex.spec.in		\
-	ghex.desktop		\
+	ghex.desktop.in		\
 	app-docs.make   	\
 	COPYING-DOCS    	\
 	intltool-extract.in	\
