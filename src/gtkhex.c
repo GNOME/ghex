@@ -182,9 +182,13 @@ static guint get_max_char_width(GtkHex *gh, PangoFontMetrics *font_metrics) {
 	pango_layout_set_font_description (layout, gh->font_desc);
 
 	for(i = 1; i < 0x100; i++) {
-		sprintf (str, "%c", (gchar)i);
-		pango_layout_set_text(layout, str, -1);
-		pango_layout_get_pixel_extents (layout, NULL, &logical_rect);
+		logical_rect.width = 0;
+		/* Check if the char is displayable. Caused trouble to pango */
+		if (is_displayable((gchar)i)) {
+			sprintf (str, "%c", (gchar)i);
+			pango_layout_set_text(layout, str, -1);
+			pango_layout_get_pixel_extents (layout, NULL, &logical_rect);
+		}
 		char_widths[i] = logical_rect.width;
 	}
 
