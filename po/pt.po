@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
-"POT-Creation-Date: 2002-04-30 00:33+0100\n"
-"PO-Revision-Date: 2002-04-30 00:48+0000\n"
+"POT-Creation-Date: 2002-05-16 01:44+0100\n"
+"PO-Revision-Date: 2002-05-16 01:48+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -27,61 +27,69 @@ msgstr "Editor Hexadecimal Gnome"
 msgid "Activate %s"
 msgstr "Activar %s"
 
-#: src/chartable.c:106
+#: src/chartable.c:115
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:106
+#: src/chartable.c:115
 msgid "Hex"
 msgstr "Hex"
 
-#: src/chartable.c:106 src/preferences.c:199
+#: src/chartable.c:115 src/preferences.c:214
 msgid "Decimal"
 msgstr "Decimal"
 
-#: src/chartable.c:107
+#: src/chartable.c:116
 msgid "Octal"
 msgstr "Octal"
 
-#: src/chartable.c:107
+#: src/chartable.c:116
 msgid "Binary"
 msgstr "Binário"
 
-#: src/chartable.c:119
+#: src/chartable.c:128
 msgid "Character table"
 msgstr "Tabela caracteres"
 
-#: src/converter.c:179
+#: src/converter.c:190
 msgid "Base Converter"
 msgstr "Conversori Bases"
 
 #. entries
-#: src/converter.c:198
-msgid "_Binary"
-msgstr "_Binário"
+#: src/converter.c:209
+msgid "_Binary:"
+msgstr "_Binário:"
 
-#: src/converter.c:200
-msgid "_Octal"
-msgstr "_Octal"
+#: src/converter.c:211
+msgid "_Octal:"
+msgstr "_Octal:"
 
-#: src/converter.c:202
-msgid "_Decimal"
-msgstr "_Decimal"
+#: src/converter.c:213
+msgid "_Decimal:"
+msgstr "_Decimal:"
 
-#: src/converter.c:204
-msgid "_Hex"
-msgstr "_Hex"
+#: src/converter.c:215
+msgid "_Hex:"
+msgstr "_Hex:"
 
-#: src/converter.c:206
-msgid "_ASCII"
-msgstr "_ASCII"
+#: src/converter.c:217
+msgid "_ASCII:"
+msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:210
+#: src/converter.c:221
 msgid "_Get cursor value"
 msgstr "_Obter valor cursor"
 
-#: src/converter.c:339
+#: src/converter.c:231
+msgid "Get cursor value"
+msgstr "Obter valor cursor"
+
+#: src/converter.c:231
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr "Obtém o valor no cursor em binário, octal, decimal, hex e ASCII"
+
+#: src/converter.c:358
 msgid "ERROR"
 msgstr "ERRO"
 
@@ -95,7 +103,7 @@ msgstr "GHex (%s): Procurar Dados"
 msgid "Search for %s"
 msgstr "Procurar %s"
 
-#: src/findreplace.c:86
+#: src/findreplace.c:86 src/findreplace.c:119
 msgid "Find Next"
 msgstr "Procurar Seguinte"
 
@@ -103,78 +111,146 @@ msgstr "Procurar Seguinte"
 msgid "Find Previous"
 msgstr "Procurar Anterior"
 
-#: src/findreplace.c:133 src/main.c:120
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Find Data"
+msgstr "Procurar Dados"
+
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Introduza os dados hex ou ASCII a procurar"
+
+#: src/findreplace.c:119 src/findreplace.c:212
+msgid "Finds the next occurrence of the search string"
+msgstr "Encontra a próxima ocorrência da expressão de procura"
+
+#: src/findreplace.c:120
+msgid "Find previous"
+msgstr "Procurar anterior"
+
+#: src/findreplace.c:120
+msgid "Finds the previous occurrence of the search string "
+msgstr "Encontra a ocorrência anterior da expressão de procura "
+
+#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/findreplace.c:121
+msgid "Closes find data window"
+msgstr "Fechar janela de procura de dados"
+
+#: src/findreplace.c:140 src/main.c:120
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Procurar & Substituir Dados"
 
-#: src/findreplace.c:148
+#: src/findreplace.c:155
 #, c-format
 msgid "Replace %s"
 msgstr "Substituir %s"
 
-#: src/findreplace.c:165
+#: src/findreplace.c:172 src/findreplace.c:212
 msgid "Find next"
 msgstr "Procurar seguinte"
 
-#: src/findreplace.c:173 src/ghex-ui.xml.h:43
+#: src/findreplace.c:180 src/findreplace.c:213 src/ghex-ui.xml.h:43
 msgid "Replace"
 msgstr "Substituir"
 
-#: src/findreplace.c:181
+#: src/findreplace.c:188 src/findreplace.c:214
 msgid "Replace All"
 msgstr "Substituir Todas"
 
-#: src/findreplace.c:215 src/main.c:122
+#: src/findreplace.c:211
+msgid "Replace Data"
+msgstr "Substituir Dados"
+
+#: src/findreplace.c:211
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Introduza os dados hex ou ASCII com os quais substituir"
+
+#: src/findreplace.c:213
+msgid "Replaces the search string with the replace string"
+msgstr "Substitui a expressão de procura pela de substituição"
+
+#: src/findreplace.c:214
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Substitui todas as ocorrências da expressão de procura com a de substituição"
+
+#: src/findreplace.c:215
+msgid "Closes find and replace data window"
+msgstr "Fecha a janela de procura e substituição"
+
+#: src/findreplace.c:231 src/main.c:122
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Ir Para Byte"
 
-#: src/findreplace.c:306 src/findreplace.c:332 src/findreplace.c:385
+#: src/findreplace.c:261
+msgid "Jump to byte"
+msgstr "Ir para byte"
+
+#: src/findreplace.c:261
+msgid "Enter the byte to jump to"
+msgstr "Introduza o byte para onde ir"
+
+#: src/findreplace.c:262
+msgid "OK"
+msgstr "OK"
+
+#: src/findreplace.c:262
+msgid "Jumps to the specified byte"
+msgstr "Vai para o byte especificado"
+
+#: src/findreplace.c:263
+msgid "Closes jump to byte window"
+msgstr "Fecha a janela de ir para byte"
+
+#: src/findreplace.c:328 src/findreplace.c:354 src/findreplace.c:407
 msgid "There is no active buffer to search!"
 msgstr "Não existe nenhum documento activo para procurar!"
 
-#: src/findreplace.c:314 src/findreplace.c:340 src/findreplace.c:393
+#: src/findreplace.c:336 src/findreplace.c:362 src/findreplace.c:415
 msgid "There seems to be no string to search for!"
 msgstr "Não parece existir uma expressão para procurar!"
 
-#: src/findreplace.c:321 src/findreplace.c:401
+#: src/findreplace.c:343 src/findreplace.c:423
 msgid "End Of File reached"
 msgstr "Fim de Ficheiro"
 
-#: src/findreplace.c:348
+#: src/findreplace.c:370
 msgid "Beginning Of File reached"
 msgstr "Início de Ficheiro"
 
-#: src/findreplace.c:358
+#: src/findreplace.c:380
 msgid "There is no active buffer to move the cursor in!"
 msgstr "Não existe nenhum documento activo onde mover o cursor."
 
-#: src/findreplace.c:363
+#: src/findreplace.c:385
 msgid "No offset has been specified!"
 msgstr "Deslocamento não foi especificado!"
 
-#: src/findreplace.c:370
+#: src/findreplace.c:392
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Não é possível posicionar o cursor após o Fim de Ficheiro!"
 
-#: src/findreplace.c:375
+#: src/findreplace.c:397
 msgid "The offset must be a positive integer value!"
 msgstr "O deslocamento tem de ser um valor inteiro positivo!"
 
-#: src/findreplace.c:413 src/findreplace.c:451
+#: src/findreplace.c:435 src/findreplace.c:473
 msgid "There is no active buffer to replace data in!"
 msgstr "Não existe nenhum documento activo onde substituir a expressão!"
 
-#: src/findreplace.c:424 src/findreplace.c:462
+#: src/findreplace.c:446 src/findreplace.c:484
 msgid "Strange find or replace string!"
 msgstr "Expressão estranha para procura ou substituição!"
 
-#: src/findreplace.c:439
+#: src/findreplace.c:461
 msgid "End Of File reached!"
 msgstr "Fim de Ficheiro!"
 
-#: src/findreplace.c:478
+#: src/findreplace.c:500
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "%d ocorrências substituidas."
@@ -568,113 +644,161 @@ msgstr "_Não gravar"
 msgid "The gnome binary editor"
 msgstr "O editor binário do gnome"
 
-#: src/preferences.c:56
+#: src/preferences.c:57
 msgid "Default"
 msgstr "Defeito"
 
-#: src/preferences.c:57
+#: src/preferences.c:58
 msgid "Notebook"
 msgstr "Separadores"
 
-#: src/preferences.c:58
+#: src/preferences.c:59
 msgid "Toplevel"
 msgstr "Nivel topo"
 
-#: src/preferences.c:59
+#: src/preferences.c:60
 msgid "Modal"
 msgstr "Modal"
 
-#: src/preferences.c:91
+#: src/preferences.c:92
 msgid "Select font"
 msgstr "Seleccionar fonte"
 
-#: src/preferences.c:145
+#: src/preferences.c:148
 msgid "GHex Preferences"
 msgstr "Preferências GHex"
 
-#: src/preferences.c:170
-msgid "Maximum number of undo levels"
-msgstr "Número máximo de níveis de desfazer"
+#: src/preferences.c:176
+msgid "_Maximum number of undo levels:"
+msgstr "Número _máximo de níveis de desfazer:"
 
-#: src/preferences.c:185
-msgid "Show cursor offset in statusbar as"
-msgstr "Mostrar deslocamento do cursos na barra de estados como"
+#: src/preferences.c:196
+msgid "Undo levels"
+msgstr "Níveis desfazer"
 
-#: src/preferences.c:204
+#: src/preferences.c:196
+msgid "Select maximum number of undo levels"
+msgstr "Seleccione o número máximo de níveis de desfazer"
+
+#: src/preferences.c:200
+msgid "Show cursor offset in statusbar as:"
+msgstr "Mostrar deslocamento do cursos na barra de estados como:"
+
+#: src/preferences.c:219
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
 
-#: src/preferences.c:210
+#: src/preferences.c:225
 msgid "Custom"
 msgstr "Customizado"
 
+#: src/preferences.c:236
+msgid "format_entry"
+msgstr "formato_entrada"
+
+#: src/preferences.c:236
+msgid "Enter the cursor offset format"
+msgstr "Introduza o formato de deslocamento do cursor"
+
+#: src/preferences.c:237
+msgid "format_optionmenu"
+msgstr "menuopcoes_formato"
+
+#: src/preferences.c:237
+msgid "Select the cursor offset format"
+msgstr "Seleccione o formato do deslocamento do cursor"
+
 #. show offsets check button
-#: src/preferences.c:221
+#: src/preferences.c:247
 msgid "Show offsets column"
 msgstr "Mostrar coluna do deslocamento"
 
-#: src/preferences.c:226
+#: src/preferences.c:252
 msgid "Editing"
 msgstr "Edição"
 
 #. display font
-#: src/preferences.c:235
+#: src/preferences.c:261
 msgid "Font"
 msgstr "Fonte"
 
-#: src/preferences.c:257
+#: src/preferences.c:283
 msgid "Browse..."
 msgstr "Procurar..."
 
 #. default group type
-#: src/preferences.c:286
+#: src/preferences.c:312
 msgid "Default Group Type"
 msgstr "Tipo de Grupo Defeito"
 
-#: src/preferences.c:302
+#: src/preferences.c:328
 msgid "Display"
 msgstr "Ecrã"
 
 #. mdi modes
-#: src/preferences.c:311
+#: src/preferences.c:337
 msgid "MDI Mode"
 msgstr "Modo MDI"
 
-#: src/preferences.c:328
+#: src/preferences.c:354
 msgid "MDI"
 msgstr "MDI"
 
 #. paper selection
-#: src/preferences.c:337
+#: src/preferences.c:363
 msgid "Paper size"
 msgstr "Tamanho papel"
 
 #. data & header font selection
-#: src/preferences.c:353
+#: src/preferences.c:379
 msgid "Fonts"
 msgstr "Fontes"
 
-#: src/preferences.c:359
+#: src/preferences.c:385
+msgid "_Data font:"
+msgstr "Fonte _dados:"
+
+#: src/preferences.c:403
 msgid "Data font"
 msgstr "Fonte dados"
 
-#: src/preferences.c:392
+#: src/preferences.c:403
+msgid "Select the data font"
+msgstr "Seleccionar fonte dados"
+
+#: src/preferences.c:424
+msgid "Header fo_nt:"
+msgstr "Fo_nte cabeçalho:"
+
+#: src/preferences.c:444
 msgid "Header font"
 msgstr "Fonte cabeçalho"
 
-#: src/preferences.c:437
-msgid "Print shaded box over"
-msgstr "Imprimir caixa sombreada sobre"
+#: src/preferences.c:444
+msgid "Select the header font"
+msgstr "Seleccionar fonte de cabeçalho"
 
-#: src/preferences.c:446
+#: src/preferences.c:476
+msgid "_Print shaded box over:"
+msgstr "Im_primir caixa sombreada sobre:"
+
+#: src/preferences.c:488
+msgid "Box size"
+msgstr "Tamanho caixa"
+
+#: src/preferences.c:488
+msgid "Select size of box (in number of lines)"
+msgstr "Seleccionar tamanho da caixa (em número de linhas)"
+
+#: src/preferences.c:492
 msgid "lines (0 for no box)"
 msgstr "linhas (0 para sem caixa)"
 
-#: src/preferences.c:453
+#: src/preferences.c:499
 msgid "Printing"
 msgstr "A imprimir"
 
-#: src/preferences.c:643
+#: src/preferences.c:699
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -683,7 +807,7 @@ msgstr ""
 "formatação inválidos.\n"
 "Apenas são permitidos 'x', 'X', 'p', 'P', 'd' e 'o'."
 
-#: src/preferences.c:686
+#: src/preferences.c:742
 msgid "Can not open desired font!"
 msgstr "Incapaz de abrir fonte desejada!"
 
