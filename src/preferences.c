@@ -32,6 +32,7 @@
 static void set_prefs(PropertyUI *pui);
 static void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox);
 static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui);
+static void help_cb(GnomePropertyBox *pbox, gint page, gpointer *data); 
 static void max_undo_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox);
 static void box_size_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox);
 static void properties_modified_cb(GtkWidget *w, GnomePropertyBox *pbox);
@@ -146,6 +147,9 @@ PropertyUI *create_prefs_dialog() {
 	
 	gtk_signal_connect(GTK_OBJECT(pui->pbox), "apply",
 					   GTK_SIGNAL_FUNC(apply_changes_cb), pui);
+
+	g_signal_connect(G_OBJECT(pui->pbox), "help",
+					G_CALLBACK(help_cb), NULL);
 
 #ifdef SNM
 	gtk_signal_connect (GTK_OBJECT (pui->pbox), "help",
@@ -549,6 +553,16 @@ static void box_size_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox) {
 	if((guint)adj->value != shaded_box_size)
 		gnome_property_box_changed(pbox);
 }
+
+/*
+ * FIXME: This should actually display the preferences section of the help.
+ * Right now this would display the main help page.
+ */
+static void help_cb(GnomePropertyBox *pbox, gint page, gpointer *data) {
+	GError *error = NULL;
+
+	gnome_help_display("ghex2", NULL, &error);
+ }
 
 static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
 

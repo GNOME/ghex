@@ -1,4 +1,11 @@
-2002-04-09  Shivram U  <shivaram.upadhyayula@wipro.com>
+2002-05-03  Shivram U  <shivaram.upadhyayula@wipro.com>
+
+	* src/preference.c : Enabled "Help" button in the preferences dialog.
+	On clicking the "Help" button the main help page for Ghex will be
+	displayed. This has to be fixed to display the preferences section in
+	the Help. Partial fix for #71456.
+
+2002-04-29  Shivram U  <shivaram.upadhyayula@wipro.com>
 
 	* src/gtkhex.c (get_max_char_width): Only displayable characters are
 	used for calculating max char width. Fixes the pango warnings 
