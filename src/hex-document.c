@@ -477,6 +477,7 @@ gint hex_document_write(HexDocument *doc) {
 		fwrite(doc->buffer, 1, doc->buffer_size, doc->file);
 		fclose(doc->file);
 		doc->file = 0;
+		doc->changed = FALSE;
 		undo_stack_free(doc);
 		return 0;
 	}
