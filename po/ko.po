@@ -1,12 +1,13 @@
 # gnome-utils ko.po
-# Copyright (C) 1998 Free Software Foundation, Inc.
+# Copyright (C) 1998, 1999 Free Software Foundation, Inc.
 # Changwoo Ryu <cwryu@adam.kaist.ac.kr>, 1998
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: GNOME-utils 0.30\n"
+"Project-Id-Version: gnome-utils 1.0.0\n"
 "POT-Creation-Date: 1999-02-25 08:58+0100\n"
-"PO-Revision-Date: 1999-02-04 14:57:58+0900\n"
-"Last-Translator: Sung-Hyun Nam <namsh@lgic.co.kr>\n"
+"PO-Revision-Date: 1999-02-26 05:57:58+0900\n"
+"Last-Translator: Changwoo Ryu <cwryu@adam.kaist.ac.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=euc-kr\n"
@@ -33,27 +34,24 @@ msgstr ""
 "해킹판"
 
 #: ghex/converter.c:39
-#, fuzzy
 msgid "GHex: Converter"
-msgstr "변환기 열기(_N)..."
+msgstr "GHex: 변환기"
 
 #: ghex/converter.c:46
 msgid "Binary"
-msgstr ""
+msgstr "이진"
 
 #: ghex/converter.c:56
-#, fuzzy
 msgid "Decimal"
-msgstr "십진 (8 비트)"
+msgstr "십진수"
 
 #: ghex/converter.c:66
 msgid "Hex"
-msgstr ""
+msgstr "십육진수"
 
 #: ghex/converter.c:76
-#, fuzzy
 msgid "ASCII"
-msgstr "아스키 자료"
+msgstr "아스키"
 
 #: ghex/converter.c:86 mini-utils/gshutdown/gshutdown.c:152
 #: mini-utils/gshutdown/gshutdown.c:594
@@ -62,7 +60,7 @@ msgstr "닫기"
 
 #: ghex/converter.c:134
 msgid "ERROR"
-msgstr ""
+msgstr "오류"
 
 #: ghex/findreplace.c:51 ghex/main.c:72
 #, c-format
@@ -72,15 +70,15 @@ msgstr "GHex (%s): 자료 찾기"
 #: ghex/findreplace.c:60
 #, c-format
 msgid "Search for %s"
-msgstr ""
+msgstr "%s 찾기"
 
 #: ghex/findreplace.c:76
 msgid "Find Next"
-msgstr ""
+msgstr "다음 찾기"
 
 #: ghex/findreplace.c:83
 msgid "Find Previous"
-msgstr ""
+msgstr "이전 찾기"
 
 #: ghex/findreplace.c:111 ghex/main.c:73
 #, c-format
@@ -90,21 +88,19 @@ msgstr "GHex (%s): 자료를 찾아서 바꾸기"
 #: ghex/findreplace.c:125
 #, c-format
 msgid "Replace %s"
-msgstr ""
+msgstr "%s 치환"
 
 #: ghex/findreplace.c:141
-#, fuzzy
 msgid "Find next"
-msgstr "고정폭 글꼴(_F)"
+msgstr "다음 찾기"
 
 #: ghex/findreplace.c:148
-#, fuzzy
 msgid "Replace"
-msgstr "다시 읽기"
+msgstr "치환"
 
 #: ghex/findreplace.c:155
 msgid "Replace All"
-msgstr ""
+msgstr "모두 치환"
 
 #: ghex/findreplace.c:179 ghex/main.c:74
 #, c-format
@@ -113,56 +109,56 @@ msgstr "GHex (%s): 바이트로 이동"
 
 #: ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
 msgid "There is no active buffer to search!"
-msgstr ""
+msgstr "찾기를 할 버퍼가 없습니다!"
 
 #: ghex/findreplace.c:268 ghex/findreplace.c:291 ghex/findreplace.c:344
 msgid "There seems to be no string to search for!"
-msgstr ""
+msgstr "찾을 문자열이 없습니다!"
 
 #: ghex/findreplace.c:274 ghex/findreplace.c:351
 msgid "End Of File reached"
-msgstr ""
+msgstr "파일의 끝입니다"
 
 #: ghex/findreplace.c:298
 msgid "Beginning Of File reached"
-msgstr ""
+msgstr "파일의 처음입니다"
 
 #: ghex/findreplace.c:306
 msgid "There is no active buffer to move the cursor in!"
-msgstr ""
+msgstr "커서를 이동할 버퍼가 없습니다!"
 
 #: ghex/findreplace.c:311
 msgid "No offset has been specified!"
-msgstr ""
+msgstr "오프셋이 지정되지 않았습니다!"
 
 #: ghex/findreplace.c:318
 msgid "The offset must be a positive integer value!"
-msgstr ""
+msgstr "오프셋은 0보다 큰 정수값이어야 합니다!"
 
 #: ghex/findreplace.c:323
 msgid "Can not position cursor beyond the End Of File!"
-msgstr ""
+msgstr "파일의 끝보다 뒤에 커서를 위치할 수는 없습니다!"
 
 #: ghex/findreplace.c:361 ghex/findreplace.c:400
 msgid "There is no active buffer to replace data in!"
-msgstr ""
+msgstr "데이타를 치환할 버퍼가 없습니다!"
 
 #: ghex/findreplace.c:372 ghex/findreplace.c:411
 msgid "Strange find or replace string!"
-msgstr ""
+msgstr "찾기 혹은 치환 문자열이 이상합니다!"
 
 #: ghex/findreplace.c:377 ghex/findreplace.c:416
 msgid "Both strings must be of the same length!"
-msgstr ""
+msgstr "두 문자열은 같은 길이어야 합니다!"
 
 #: ghex/findreplace.c:390
 msgid "End Of File reached!"
-msgstr ""
+msgstr "파일의 끝입니다!"
 
 #: ghex/findreplace.c:431
 #, c-format
 msgid "Replaced %d occurencies."
-msgstr ""
+msgstr "%d번 치환."
 
 #: ghex/hex-document.c:57
 msgid "_Bytes"
@@ -232,55 +228,51 @@ msgstr "기본 사항"
 
 #: ghex/preferences.c:49
 msgid "Notebook"
-msgstr ""
+msgstr "노트북"
 
 #: ghex/preferences.c:50
 msgid "Toplevel"
-msgstr ""
+msgstr "상위 윈도우"
 
 #: ghex/preferences.c:51
-#, fuzzy
 msgid "Modal"
-msgstr "모델"
+msgstr "모달"
 
 #: ghex/preferences.c:79
 msgid "Maximum number of undo levels"
-msgstr ""
+msgstr "실행 취소 최대 횟수"
 
 #: ghex/preferences.c:90
 msgid "Editing"
-msgstr ""
+msgstr "편집"
 
 #: ghex/preferences.c:97
-#, fuzzy
 msgid "Font"
-msgstr "부동소수점"
+msgstr "글꼴"
 
 #: ghex/preferences.c:113
 msgid "Browse..."
-msgstr ""
+msgstr "찾아보기..."
 
 #: ghex/preferences.c:132
 msgid "Default Group Type"
-msgstr ""
+msgstr "기본 그룹 타입"
 
 #: ghex/preferences.c:148 gtt/options.c:187
 msgid "Display"
 msgstr "표시"
 
 #: ghex/preferences.c:155
-#, fuzzy
 msgid "MDI Mode"
-msgstr "입출력 모드"
+msgstr "MDI 모드"
 
 #: ghex/preferences.c:172
 msgid "MDI"
-msgstr ""
+msgstr "MDI"
 
 #: ghex/preferences.c:281
-#, fuzzy
 msgid "Can not open desired font!"
-msgstr "파일을 열 수 없습니다!"
+msgstr "선택한 글꼴을 열 수 없습니다!"
 
 #: ghex/ui.c:51
 msgid "Open Con_verter..."
@@ -359,63 +351,60 @@ msgid "Can't open file for writing!"
 msgstr "쓰기위해 파일을 열 수 없습니다!"
 
 #: gsearchtool/gsearchtool.c:21
-#, fuzzy
 msgid "File name"
-msgstr "파일이름:"
+msgstr "파일 이름"
 
 #: gsearchtool/gsearchtool.c:23
 msgid "Don't search subdirectories"
-msgstr ""
+msgstr "아래 디렉토리는 찾지 않음"
 
 #: gsearchtool/gsearchtool.c:24
-#, fuzzy
 msgid "File owner"
-msgstr "파일이름:"
+msgstr "파일 소유자"
 
 #: gsearchtool/gsearchtool.c:25
 msgid "File owner group"
-msgstr ""
+msgstr "파일 소유 그룹"
 
 #: gsearchtool/gsearchtool.c:26
 msgid "Last modification time"
-msgstr ""
+msgstr "마지막 수정 시각"
 
 #: gsearchtool/gsearchtool.c:28
 msgid "Don't search mounted filesystems"
-msgstr ""
+msgstr "마운트된 파일시스템을 찾지 않음"
 
 #: gsearchtool/gsearchtool.c:30
 msgid "Empty file"
-msgstr ""
+msgstr "비어있는 파일"
 
 #: gsearchtool/gsearchtool.c:32
 msgid "Invalid user or group"
-msgstr ""
+msgstr "잘못된 사용자 혹은 그룹"
 
 #: gsearchtool/gsearchtool.c:33
-#, fuzzy
 msgid "Filenames except"
-msgstr "파일이름:"
+msgstr "특정 파일이름을 제외"
 
 #: gsearchtool/gsearchtool.c:34
 msgid "Simple substring search"
-msgstr ""
+msgstr "간단한 부분 문자열 찾기"
 
 #: gsearchtool/gsearchtool.c:35
 msgid "Regular expression search"
-msgstr ""
+msgstr "정규식 찾기"
 
 #: gsearchtool/gsearchtool.c:37
 msgid "Extended regular expression search"
-msgstr ""
+msgstr "확장된 정규식 찾기"
 
 #: gsearchtool/gsearchtool.c:94 gsearchtool/gsearchtool.c:149
 msgid "grep options found in find list bad bad!"
-msgstr ""
+msgstr "찾기 리스트에 나타난 grep 옵션이 틀렸습니다!"
 
 #: gsearchtool/gsearchtool.c:163
 msgid "non-grep option found in grep list, bad bad!"
-msgstr ""
+msgstr "grep 리스트에 나타난 grep이 아닌 옵션이 틀렸습니다!"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
@@ -426,17 +415,15 @@ msgstr "찾은 결과"
 
 #: gsearchtool/gsearchtool.c:209
 msgid "Using command:"
-msgstr ""
+msgstr "사용할 명령어:"
 
 #: gsearchtool/gsearchtool.c:429
-#, fuzzy
 msgid "Enable"
 msgstr "사용하기"
 
 #: gsearchtool/gsearchtool.c:436
-#, fuzzy
 msgid "Remove"
-msgstr "보기 삭제(_R)"
+msgstr "지우기"
 
 #: gsearchtool/gsearchtool.c:488
 msgid "Start in directory:"
@@ -472,7 +459,7 @@ msgstr "그놈 찾기 도구"
 
 #: gsearchtool/gsearchtool.c:568
 msgid "(C) 1998 the Free Software Foundation"
-msgstr ""
+msgstr "(C) 1998 the Free Software Foundation"
 
 #: gsearchtool/gsearchtool.c:570
 msgid "Frontend to the unix find/grep/locate commands"
@@ -484,94 +471,92 @@ msgstr "그놈 찾기 도구"
 
 #: gstripchart/gstripchart.c:1249
 msgid "Params"
-msgstr ""
+msgstr "파라미터"
 
 #: gstripchart/gstripchart.c:1249
 msgid "Examine and adjust parameters"
-msgstr ""
+msgstr "파라미터 검사 및 조정"
 
 #: gstripchart/gstripchart.c:1255
 msgid "E_xit"
-msgstr ""
+msgstr "끝내기(_X)"
 
 #: gstripchart/gstripchart.c:1255
 msgid "Terminate the stripchart program"
-msgstr ""
+msgstr "스트립차트 프로그램 끝내기"
 
 #: gstripchart/gstripchart.c:1271
 msgid "Copyright 1998 John Kodis"
-msgstr ""
+msgstr "Copyright 1998 John Kodis"
 
 #: gstripchart/gstripchart.c:1286
 msgid "_About"
-msgstr ""
+msgstr "이 프로그램은(_A)"
 
 #: gstripchart/gstripchart.c:1286
 msgid "Info about the striphart program"
-msgstr ""
+msgstr "스트립차트 프로그램 정보"
 
 #: gstripchart/gstripchart.c:1297
 msgid "_File"
-msgstr ""
+msgstr "파일(_F)"
 
 #: gstripchart/gstripchart.c:1298
 msgid "_Help"
-msgstr ""
+msgstr "도움말(_H)"
 
 #: gstripchart/gstripchart.c:1706
 msgid "GEO"
-msgstr ""
+msgstr "위치"
 
 #: gstripchart/gstripchart.c:1706
-#, fuzzy
 msgid "geometry"
-msgstr "사양"
+msgstr "위치 및 크기"
 
 #: gstripchart/gstripchart.c:1708
 msgid "FILE"
-msgstr ""
+msgstr "파일"
 
 #: gstripchart/gstripchart.c:1708
-#, fuzzy
 msgid "configuration file"
-msgstr "컨피그 파일 저장"
+msgstr "설정 파일"
 
 #: gstripchart/gstripchart.c:1710 gstripchart/gstripchart.c:1712
 #: gstripchart/gstripchart.c:1714 gstripchart/gstripchart.c:1716
 msgid "SECS"
-msgstr ""
+msgstr "초"
 
 #: gstripchart/gstripchart.c:1710
 msgid "chart update interval"
-msgstr ""
+msgstr "차트 갱신 간격"
 
 #: gstripchart/gstripchart.c:1712
 msgid "chart LP filter TC"
-msgstr ""
+msgstr "차트 LP 필터 TC"
 
 #: gstripchart/gstripchart.c:1714
 msgid "slider update interval"
-msgstr ""
+msgstr "슬라이더 갱신 간격"
 
 #: gstripchart/gstripchart.c:1716
 msgid "slider LP filter TC"
-msgstr ""
+msgstr "슬라이더 LP 필터 TC"
 
 #: gstripchart/gstripchart.c:1718
 msgid "add menubar"
-msgstr ""
+msgstr "메뉴바 추가"
 
 #: gstripchart/gstripchart.c:1720
 msgid "omit slider"
-msgstr ""
+msgstr "슬라이더 없음"
 
 #: gstripchart/gstripchart.c:1722
 msgid "TYPE"
-msgstr ""
+msgstr "타입"
 
 #: gstripchart/gstripchart.c:1722
 msgid "gtk|text|graph|none"
-msgstr ""
+msgstr "gtk|text|graph|none"
 
 #: gtt/app.c:110 gtt/app.c:212
 msgid "no project selected"
@@ -987,7 +972,7 @@ msgstr "성명"
 
 #: mini-utils/gcolorsel/gcolorsel.c:234
 msgid "Error, cannot find the file 'rgb.txt' on your system!"
-msgstr ""
+msgstr "오류, 시스템에서 'rgb.txt' 파일을 찾을 수 없습니다!"
 
 #: mini-utils/gcolorsel/gcolorsel.c:247
 msgid "Parsing Colors"
@@ -1047,7 +1032,7 @@ msgstr "마지막 폰트 읽기"
 
 #: mini-utils/gless/gless.c:29
 msgid "Copyright 1998, under the GNU General Public License."
-msgstr ""
+msgstr "Copyright 1998, under the GNU General Public License."
 
 #: mini-utils/gless/gless.c:115
 msgid "Where to put the window, and its size"
@@ -1682,29 +1667,3 @@ msgstr "수퍼유저만이 이 툴을 사용할 수 있습니다"
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "IDE 드라이브를 찾을 수 없습니다"
-
-#, fuzzy
-#~ msgid "Preferences..."
-#~ msgstr "설정"
-
-#, fuzzy
-#~ msgid "File"
-#~ msgstr "파일이름:"
-
-#, fuzzy
-#~ msgid "Search"
-#~ msgstr "찾은 결과"
-
-#, fuzzy
-#~ msgid "Clear the search window"
-#~ msgstr "새 텍스트 보기 창"
-
-#, fuzzy
-#~ msgid "Directory:"
-#~ msgstr "시작 자료방:"
-
-#~ msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
-#~ msgstr "에러, /usr/X11R6/lib/X11/rgb.txt를 열 수 없음.\n"
-
-#~ msgid "error in geometry string \"%s\"\n"
-#~ msgstr "geometry 문자열에 오류 \"%s\"\n"
