@@ -1,5 +1,9 @@
 ## Process this file with automake to create Makefile.in.
 
+appicondir = $(datadir)/pixmaps
+
+appicon_DATA = gnome-ghex.png
+
 INCLUDES = -I$(includedir) 				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
@@ -12,7 +16,7 @@ ghex_SOURCES = hex-document.c hex-document.h \
 	gnome-support.h gtkhex.c gtkhex.h main.c ui.c
 ghex_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
-EXTRA_DIST = index.html ghex.desktop ghex-topic.dat
+EXTRA_DIST = index.html ghex.desktop ghex-topic.dat $(appicon_DATA)
 
 ghex_helpdir = $(datadir)/gnome/help/ghex/C
 
