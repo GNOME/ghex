@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-16 14:45+0200\n"
-"PO-Revision-Date: 2004-04-16 16:54+0200\n"
+"POT-Creation-Date: 2004-04-20 14:52+0200\n"
+"PO-Revision-Date: 2004-04-20 20:34+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -758,6 +758,151 @@ msgstr "Nemáte oprávnění pro uložení souboru!"
 msgid "An error occured while saving file!"
 msgstr "Při ukládání souboru se vyskytla chyba!"
 
+#: src/gnome-print-font-dialog.c:111
+msgid "_Insert a new preview phrase."
+msgstr "_Vložit novou frázi náhledu."
+
+#: src/gnome-print-font-dialog.c:117
+msgid "Modify preview phrase..."
+msgstr "Upravit frázi náhledu..."
+
+#: src/gnome-print-font-dialog.c:171
+msgid "Preview"
+msgstr "Náhled"
+
+#: src/gnome-print-font-dialog.c:184
+msgid "_Modify preview phrase..."
+msgstr "_Upravit frázi náhledu"
+
+#: src/gnome-print-font-dialog.c:247
+msgid "Font Selection"
+msgstr "Výběr písma"
+
+#: src/gnome-print-font-picker.c:91
+msgid "Sans Regular 12"
+msgstr "Sans Regular 12"
+
+#: src/gnome-print-font-picker.c:92
+msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+
+#: src/gnome-print-font-picker.c:93
+msgid "Pick a Font"
+msgstr "Vyberte písmo"
+
+#: src/gnome-print-font-picker.c:178
+msgid "Title"
+msgstr "Název"
+
+#: src/gnome-print-font-picker.c:179
+msgid "The title of the selection dialog box"
+msgstr "Název dialogového okna výběru"
+
+#: src/gnome-print-font-picker.c:199
+msgid "Font name"
+msgstr "Název písma"
+
+#: src/gnome-print-font-picker.c:200
+msgid "Name of the selected font"
+msgstr "Název vybraného písma"
+
+#: src/gnome-print-font-picker.c:208
+msgid "Preview text"
+msgstr "Text náhledu"
+
+#: src/gnome-print-font-picker.c:209
+msgid "Preview text shown in the dialog"
+msgstr "Text náhledu zobrazovaného v dialogu"
+
+#: src/gnome-print-font-picker.c:217
+msgid "Use font in label"
+msgstr "Používat písmo v popisku"
+
+#: src/gnome-print-font-picker.c:218
+msgid "Use font in the label in font info mode"
+msgstr "Používat písmo v popisku v režimu informací o písmu"
+
+#: src/gnome-print-font-picker.c:226
+msgid "Font size for label"
+msgstr "Velikost písma v popisku"
+
+#: src/gnome-print-font-picker.c:227
+msgid "Font size for label in font info mode"
+msgstr "Velikost písma v popisku v režimu informací o písmu"
+
+#: src/gnome-print-font-picker.c:237
+msgid "Show size"
+msgstr "Zobrazovat velikost"
+
+#: src/gnome-print-font-picker.c:238
+msgid "Show size in font info mode"
+msgstr "Zobrazovat velikost v režimu informací o písmu"
+
+#. display font
+#: src/gnome-print-font-picker.c:1017 src/preferences.c:202
+msgid "Font"
+msgstr "Písmo"
+
+#: src/hex-dialog.c:56
+msgid "Signed 8 bit:"
+msgstr "8 bitů signed:"
+
+#: src/hex-dialog.c:57
+msgid "Unsigned 8 bit:"
+msgstr "8 bitů unsigned:"
+
+#: src/hex-dialog.c:58
+msgid "Signed 16 bit:"
+msgstr "16 bitů signed:"
+
+#: src/hex-dialog.c:59
+msgid "Unsigned 16 bit:"
+msgstr "16 bitů unsigned:"
+
+#: src/hex-dialog.c:60
+msgid "Signed 32 bit:"
+msgstr "32 bitů signed:"
+
+#: src/hex-dialog.c:61
+msgid "Unsigned 32 bit:"
+msgstr "32 bitů unsigned:"
+
+#: src/hex-dialog.c:62
+msgid "32 bit float:"
+msgstr "32 bitů float:"
+
+#: src/hex-dialog.c:63
+msgid "64 bit float:"
+msgstr "64 bitů float:"
+
+#: src/hex-dialog.c:64
+msgid "Hexadecimal:"
+msgstr "Hexadecimálně:"
+
+#: src/hex-dialog.c:65
+msgid "Octal:"
+msgstr "Osmičkově:"
+
+#: src/hex-dialog.c:66
+msgid "Binary:"
+msgstr "Binárně:"
+
+#: src/hex-dialog.c:195
+msgid "Show little endian decoding"
+msgstr "Zobrazovat kódování little endian"
+
+#: src/hex-dialog.c:202
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Zobrazovat bez znaménka a float šestnáctkově"
+
+#: src/hex-dialog.c:208
+msgid "Stream Length:"
+msgstr "Délka proudu:"
+
+#: src/hex-dialog.c:230
+msgid "FIXME: no conversion function"
+msgstr "FIXME: chybí funkce pro převod"
+
 #: src/hex-document.c:746
 #, c-format
 msgid "Page"
@@ -839,11 +984,6 @@ msgstr "Zobrazit sloupec s posunutím"
 #: src/preferences.c:193
 msgid "Editing"
 msgstr "Úpravy"
-
-#. display font
-#: src/preferences.c:202 src/gnome-print-font-picker.c:1017
-msgid "Font"
-msgstr "Písmo"
 
 #. default group type
 #: src/preferences.c:228
@@ -1022,83 +1162,3 @@ msgstr "Stránek"
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Náhled před tiskem"
-
-#: src/gnome-print-font-dialog.c:111
-msgid "_Insert a new preview phrase."
-msgstr "_Vložit novou frázi náhledu."
-
-#: src/gnome-print-font-dialog.c:117
-msgid "Modify preview phrase..."
-msgstr "Upravit frázi náhledu..."
-
-#: src/gnome-print-font-dialog.c:171
-msgid "Preview"
-msgstr "Náhled"
-
-#: src/gnome-print-font-dialog.c:184
-msgid "_Modify preview phrase..."
-msgstr "_Upravit frázi náhledu"
-
-#: src/gnome-print-font-dialog.c:247
-msgid "Font Selection"
-msgstr "Výběr písma"
-
-#: src/gnome-print-font-picker.c:91
-msgid "Sans Regular 12"
-msgstr "Sans Regular 12"
-
-#: src/gnome-print-font-picker.c:92
-msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-
-#: src/gnome-print-font-picker.c:93
-msgid "Pick a Font"
-msgstr "Vyberte písmo"
-
-#: src/gnome-print-font-picker.c:178
-msgid "Title"
-msgstr "Název"
-
-#: src/gnome-print-font-picker.c:179
-msgid "The title of the selection dialog box"
-msgstr "Název dialogového okna výběru"
-
-#: src/gnome-print-font-picker.c:199
-msgid "Font name"
-msgstr "Název písma"
-
-#: src/gnome-print-font-picker.c:200
-msgid "Name of the selected font"
-msgstr "Název vybraného písma"
-
-#: src/gnome-print-font-picker.c:208
-msgid "Preview text"
-msgstr "Text náhledu"
-
-#: src/gnome-print-font-picker.c:209
-msgid "Preview text shown in the dialog"
-msgstr "Text náhledu zobrazovaného v dialogu"
-
-#: src/gnome-print-font-picker.c:217
-msgid "Use font in label"
-msgstr "Používat písmo v popisku"
-
-#: src/gnome-print-font-picker.c:218
-msgid "Use font in the label in font info mode"
-msgstr "Používat písmo v popisku v režimu informací o písmu"
-
-#: src/gnome-print-font-picker.c:226
-msgid "Font size for label"
-msgstr "Velikost písma v popisku"
-
-#: src/gnome-print-font-picker.c:227
-msgid "Font size for label in font info mode"
-msgstr "Velikost písma v popisku v režimu informací o písmu"
-
-#: src/gnome-print-font-picker.c:237
-msgid "Show size"
-msgstr "Zobrazovat velikost"
-
-#: src/gnome-print-font-picker.c:238
-msgid "Show size in font info mode"
-msgstr "Zobrazovat velikost v režimu informací o písmu"
