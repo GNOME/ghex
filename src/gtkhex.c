@@ -43,6 +43,9 @@
 #  define is_displayable(c) (((c) >= 0x20) && ((c) <= 0x7f))
 #endif /* 0 */
 
+static GdkColor cl_cursor_a = { 0, 0xFFFF, 0, 0 };
+static GdkColor cl_cursor_p = { 0, 0xFFFF, 0x7F00, 0x7F00 };
+
 typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 
 enum {
@@ -59,8 +62,6 @@ enum {
 };
 
 static gint gtkhex_signals[LAST_SIGNAL] = { 0 };
-
-static GdkAtom clipboard_atom = GDK_NONE;
 
 static GtkFixedClass *parent_class = NULL;
 static gchar *char_widths = NULL;
@@ -181,7 +182,7 @@ static guint get_max_char_width(GtkHex *gh, PangoFontMetrics *font_metrics) {
 	for(i = 1; i < 0x100; i++) {
 		logical_rect.width = 0;
 		/* Check if the char is displayable. Caused trouble to pango */
-		if (is_displayable((gchar)i)) {
+		if (is_displayable((guchar)i)) {
 			sprintf (str, "%c", (gchar)i);
 			pango_layout_set_text(layout, str, -1);
 			pango_layout_get_pixel_extents (layout, NULL, &logical_rect);
@@ -331,7 +332,7 @@ static void render_byte(GtkHex *gh, gint pos) {
 	if(pos < gh->document->file_size) {
 		gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 		buf[0] = gtk_hex_get_byte(gh, pos);
-		if(!is_displayable(buf[0]))
+		if(!is_displayable((guchar)buf[0]))
 			buf[0] = '.';
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->alayout, buf, 1);
@@ -346,9 +347,8 @@ static void render_byte(GtkHex *gh, gint pos) {
 static void render_ac(GtkHex *gh) {
 	gint cx, cy;
 	static guchar c[2] = "\0\0";
-	GtkStateType state;
-	GtkShadowType shadow;
-
+	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
+	
 	if(!GTK_WIDGET_REALIZED(gh->adisp))
 		return;
 	
@@ -358,17 +358,15 @@ static void render_ac(GtkHex *gh) {
 			c[0] = '.';
 
 		if(gh->active_view == VIEW_ASCII) {
-			state = GTK_STATE_SELECTED;
-			shadow = GTK_SHADOW_NONE;
+			gdk_gc_set_foreground(gh->adisp_gc, &klass->cl_cursor_a);
 		}
 		else {
-			state = GTK_STATE_NORMAL;
-			shadow = GTK_SHADOW_IN;
+			gdk_gc_set_foreground(gh->adisp_gc, &klass->cl_cursor_p);
 		}
 
-		gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window,
-					 state, shadow,
-					 cx, cy, gh->char_width, gh->char_height - 1);
+		gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc,
+						   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
+		gdk_gc_set_foreground(gh->adisp_gc, &(GTK_WIDGET(gh)->style->black));
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->alayout, c, 1);
 		gdk_draw_layout (gh->adisp->window, gh->adisp_gc, cx, cy, gh->alayout);
@@ -378,8 +376,7 @@ static void render_ac(GtkHex *gh) {
 static void render_xc(GtkHex *gh) {
 	gint cx, cy, i;
 	static guchar c[2];
-	GtkStateType state;
-	GtkShadowType shadow;
+	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 
 	if(!GTK_WIDGET_REALIZED(gh->xdisp))
 		return;
@@ -396,17 +393,15 @@ static void render_xc(GtkHex *gh) {
 		}
 
 		if(gh->active_view == VIEW_HEX) {
-			state = GTK_STATE_SELECTED;
-			shadow = GTK_SHADOW_NONE;
+			gdk_gc_set_foreground(gh->xdisp_gc, &klass->cl_cursor_a);
 		}
 		else {
-			state = GTK_STATE_NORMAL;
-			shadow = GTK_SHADOW_IN;
+			gdk_gc_set_foreground(gh->xdisp_gc, &klass->cl_cursor_p);
 		}
 
-		gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
-					 state, shadow,
-					 cx, cy, gh->char_width, gh->char_height - 1);
+		gdk_draw_rectangle(GTK_WIDGET(gh->xdisp)->window, gh->xdisp_gc,
+						   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
+		gdk_gc_set_foreground(gh->xdisp_gc, &(GTK_WIDGET(gh)->style->black));
 		pango_layout_set_text (gh->xlayout, &c[i], 1);
 		gdk_draw_layout (gh->xdisp->window, gh->xdisp_gc, cx, cy, gh->xlayout);
 	}
@@ -456,6 +451,7 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 		start = end;
 		end = tmp;
 	}
+	end--;
 	sl = start/gh->cpl - gh->top_line;
 	el = end/gh->cpl - gh->top_line;
 
@@ -533,6 +529,7 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 		start = end;
 		end = tmp;
 	}
+	end--;
 	sl = start/gh->cpl - gh->top_line;
 	el = end/gh->cpl - gh->top_line;
 
@@ -558,7 +555,7 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 			if(i == sl) {
 				cursor_off = start%gh->cpl;
 				if(i == el)
-					len = end - start;
+					len = end - start + 1;
 				else
 					len = gh->cpl - cursor_off;
 				if(len > 0)
@@ -900,9 +897,7 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 
 			if(!gh->selecting) {
 				gh->selecting = TRUE;
-				gh->has_selection = TRUE;
 				gtk_hex_set_selection(gh, gh->cursor_pos, gh->cursor_pos);
-				gtk_hex_claim_selection (gh, TRUE, event->time);
 			}
 		}
 		else {
@@ -969,9 +964,7 @@ static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 			ascii_to_pointer(gh, event->x, event->y);
 			if(!gh->selecting) {
 				gh->selecting = TRUE;
-				gh->has_selection = TRUE;
 				gtk_hex_set_selection(gh, gh->cursor_pos, gh->cursor_pos);
-				gtk_hex_claim_selection (gh, TRUE, event->time);
 			}
 		}
 		else {
@@ -1123,49 +1116,76 @@ static void bytes_changed(GtkHex *gh, gint start, gint end)
 	render_ascii_lines(gh, start_line, end_line);
 }
 
-static gint gtk_hex_selection_clear (GtkWidget *widget,
-									 GdkEventSelection *event) {
-	GtkHex *gh;
-  
-	g_message("selection_clear");
+static void primary_get_cb(GtkClipboard *clipboard,
+						   GtkSelectionData *data, guint info,
+						   gpointer user_data) {
+	GtkHex *gh = GTK_HEX(user_data);
+	if(gh->sel_start != gh->sel_end) {
+		gint start_pos; 
+		gint end_pos;
+		guchar *text;
+		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 
-	/* Let the selection handling code know that the selection
-	 * has been changed, since we've overriden the default handler */
-	if(!gtk_selection_clear(widget, event))
-		return FALSE;
-  
-	gh = GTK_HEX(widget);
-  
-	if(event->selection == GDK_SELECTION_PRIMARY) {
-		if(gh->has_selection) {
-			gh->has_selection = FALSE;
-			bytes_changed(gh, gh->sel_start, gh->sel_end);
-		}
-    }
-	else if(event->selection == clipboard_atom && gh->clipboard_data) {
-      g_free(gh->clipboard_data);
-	  gh->clipboard_data_len = 0;
-      gh->clipboard_data = NULL;
-    }
-  
-  return TRUE;
+		g_message("copy_primary");
+
+		start_pos = MIN(gh->sel_start, gh->sel_end);
+		end_pos = MAX(gh->sel_start, gh->sel_end);
+ 
+		text = hex_document_get_data(gh->document, start_pos,
+											 end_pos - start_pos);
+		gtk_selection_data_set_text(data, text, end_pos - start_pos);
+		g_free(text);
+	}
+}
+
+static void primary_clear_cb(GtkClipboard *clipboard,
+							 gpointer user_data_or_owner) {
 }
 
 static void gtk_hex_set_selection(GtkHex *gh, gint start, gint end)
 {
 	gint length = gh->document->file_size;
-	gint oe, os;
-	g_message("set_selection_");
+	gint oe, os, ne, ns;
+	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
+
+	static const GtkTargetEntry targets[] = {
+		{ "STRING", 0, TARGET_STRING }
+	};
+	static const gint n_targets = sizeof(targets) / sizeof(targets[0]);
 
 	if (end < 0)
 		end = length;
+
+	if(gh->sel_start != gh->sel_end)
+		gtk_clipboard_clear(klass->primary);
 
 	os = MIN(gh->sel_start, gh->sel_end);
 	oe = MAX(gh->sel_start, gh->sel_end);
 	gh->sel_start = CLAMP(start, 0, length);
 	gh->sel_end = MIN(end, length);
-	bytes_changed(gh, os, oe);
-	bytes_changed(gh, gh->sel_start, gh->sel_end);
+	ns = MIN(gh->sel_start, gh->sel_end);
+	ne = MAX(gh->sel_start, gh->sel_end);
+	if(ns != os && ne != oe) {
+		bytes_changed(gh, MIN(ns, os), MAX(ne, oe));
+	}
+	else if(ne != oe) {
+		bytes_changed(gh, MIN(ne, oe), MAX(ne, oe));
+	}
+	else if(ns != os) {
+		bytes_changed(gh, MIN(ns, os), MAX(ns, os));		
+	}
+
+	if(gh->sel_start != gh->sel_end)
+		gtk_clipboard_set_with_data(klass->primary, targets, n_targets,
+									primary_get_cb, primary_clear_cb,
+									gh);
+}
+
+void gtk_hex_select_region (GtkHex *gh,
+							gint         start,
+							gint         end) {
+	
+	gtk_hex_set_selection(gh, start, end);
 }
 
 void gtk_hex_delete_selection(GtkHex *gh)
@@ -1173,152 +1193,28 @@ void gtk_hex_delete_selection(GtkHex *gh)
 	guint start;
 	guint end;
 
-	g_message("delete_selection_");
+	start = MIN(gh->sel_start, gh->sel_end);
+	end = MAX(gh->sel_end, gh->sel_start);
 
-	start = gh->sel_start;
-	end = gh->sel_end;
-
-	gh->sel_start = 0;
-	gh->sel_end = 0;
+	gtk_hex_select_region(gh, 0, 0);
 
 	if(start != end)
-		hex_document_delete_data(gh->document, MIN(start, end), ABS(start - end) + 1, TRUE);
-	
-	if(gh->has_selection) {
-		gh->has_selection = FALSE;
-		if(gdk_selection_owner_get(GDK_SELECTION_PRIMARY) == GTK_WIDGET(gh)->window)
-			gtk_selection_owner_set (NULL, GDK_SELECTION_PRIMARY, GDK_CURRENT_TIME);
-    }
+		hex_document_delete_data(gh->document, MIN(start, end), end - start, TRUE);
 }
 
-void gtk_hex_claim_selection (GtkHex *gh, 
-							  gboolean  claim, 
-							  guint32   time) {
-	gh->has_selection = FALSE;
-
-	g_message("claim_selection_");
-  
-	if(claim) {
-		if(gtk_selection_owner_set(GTK_WIDGET(gh), GDK_SELECTION_PRIMARY, time))
-			gh->has_selection = TRUE;
-	}
-	else {
-		if(gdk_selection_owner_get (GDK_SELECTION_PRIMARY) == 
-		   GTK_WIDGET(gh)->window)
-			gtk_selection_owner_set (NULL, GDK_SELECTION_PRIMARY, time);
-	}
-}
-
-void gtk_hex_select_region (GtkHex *gh,
-							gint         start,
-							gint         end) {
-	if(GTK_WIDGET_REALIZED(gh))
-		gtk_hex_claim_selection(gh, start != end, GDK_CURRENT_TIME);
-
-	g_message("select_region");
-  
-	gtk_hex_set_selection(gh, start, end);
-}
-
-static void gtk_hex_selection_get(GtkWidget        *widget,
-								  GtkSelectionData *selection_data,
-								  guint             info,
-								  guint             time)
+void gtk_hex_copy_clipboard(GtkHex *gh)
 {
-	GtkHex *gh;
-	gint selection_start_pos;
-	gint selection_end_pos;
-
-	guchar *str;
-	gint length = 0;
-
-	g_message("selection_get");
-
-	gh = GTK_HEX(widget);
-
-	if(selection_data->selection == GDK_SELECTION_PRIMARY) {
-		selection_start_pos = MIN(gh->sel_start, gh->sel_end);
-		selection_end_pos = MAX(gh->sel_start, gh->sel_end);
-		str = hex_document_get_data(gh->document, selection_start_pos,
-									-selection_start_pos + selection_end_pos + 1);
-		if(!str)
-			return;	/* Refuse */
-		length = selection_end_pos - selection_start_pos + 1;
-	}
-	else	{ /* clipboard */
-		if (!gh->clipboard_data)
-			return;	/* Refuse */
-		str = gh->clipboard_data;
-		length = gh->clipboard_data_len;
-	}
-	
-	if(info == TARGET_STRING) {
-		gtk_selection_data_set(selection_data,
-							   GDK_SELECTION_TYPE_STRING,
-							   8*sizeof(gchar), (guchar *)str, length);
-	}
-	
-	if (str != gh->clipboard_data)
-		g_free(str);
+	gtk_signal_emit_by_name(GTK_OBJECT(gh), "copy_clipboard");
 }
 
-static void gtk_hex_selection_received (GtkWidget         *widget,
-										GtkSelectionData  *selection_data,
-										guint              time)
+void gtk_hex_cut_clipboard(GtkHex *gh)
 {
-	GtkHex *gh;
-	gint reselect;
-	gint old_pos;
-	gint tmp_pos;
-	enum {INVALID, STRING} type;
+	gtk_signal_emit_by_name(GTK_OBJECT(gh), "cut_clipboard");
+}
 
-	g_message("selection_received");
-
-	gh = GTK_HEX(widget);
-
-	if(selection_data->type == GDK_TARGET_STRING)
-		type = STRING;
-	else
-		type = INVALID;
-
-	if(type == INVALID || selection_data->length < 0) {
-		/* avoid infinite loop */
-		if(selection_data->target != GDK_TARGET_STRING)
-			gtk_selection_convert(widget, selection_data->selection,
-								  GDK_TARGET_STRING, time);
-		return;
-	}
-
-	reselect = FALSE;
-
-	if((gh->sel_start != gh->sel_end) && 
-	   (!gh->has_selection || 
-		(selection_data->selection == clipboard_atom))) {
-		reselect = TRUE;
-
-		if (gh->has_selection) {
-			hex_document_delete_data(gh->document,
-									 MIN(gh->sel_start, gh->sel_end),
-									 ABS(gh->sel_start - gh->sel_end) + 1,
-									 TRUE);
-		}
-		else
-			gtk_hex_delete_selection(gh);
-	}
-
-	tmp_pos = old_pos = gh->cursor_pos;
-
-	switch(type) {
-	case STRING:
-		hex_document_set_data(gh->document, gh->cursor_pos, selection_data->length, 0,
-							  (guchar *)selection_data->data, TRUE);
-		gh->cursor_pos += selection_data->length;
-		break;
-	case INVALID:		/* quiet compiler */
-		break;
-	}
-	if(reselect)
-		gtk_hex_set_selection(gh, old_pos, gh->cursor_pos);
+void gtk_hex_paste_clipboard(GtkHex *gh)
+{
+	gtk_signal_emit_by_name(GTK_OBJECT(gh), "paste_clipboard");
 }
 
 static void gtk_hex_real_copy_clipboard(GtkHex *gh)
@@ -1326,16 +1222,17 @@ static void gtk_hex_real_copy_clipboard(GtkHex *gh)
 	guint32 time;
 	gint start_pos; 
 	gint end_pos;
+	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 
-	time = get_event_time();
+	g_message("copy_clipboard");
 	start_pos = MIN(gh->sel_start, gh->sel_end);
 	end_pos = MAX(gh->sel_start, gh->sel_end);
  
-	g_message("copy_clipboard");
-
 	if(start_pos != end_pos) {
-		if(gtk_selection_owner_set(GTK_WIDGET(gh), clipboard_atom, time))
-			gh->clipboard_data = hex_document_get_data(gh->document, start_pos, end_pos - start_pos + 1);
+		guchar *text = hex_document_get_data(gh->document, start_pos,
+											 end_pos - start_pos);
+		gtk_clipboard_set_text(klass->clipboard, text, end_pos - start_pos);
+		g_free(text);
 	}
 }
 
@@ -1345,21 +1242,23 @@ static void gtk_hex_real_cut_clipboard(GtkHex *gh)
 
 	if(gh->sel_start != -1 && gh->sel_end != -1) {
 		gtk_hex_real_copy_clipboard(gh);
-		hex_document_delete_data(gh->document, gh->sel_start, gh->sel_end, TRUE);
+		gtk_hex_delete_selection(gh);
 	}
 }
 
 static void gtk_hex_real_paste_clipboard(GtkHex *gh)
 {
-	guint32 time;
+	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
+	gchar *text;
 
 	g_message("paste_clipboard");
 
-	time = get_event_time();
-    gtk_selection_convert(GTK_WIDGET(gh), 
-						  clipboard_atom, 
-						  gdk_atom_intern("STRING", FALSE),
-						  time);
+	text = gtk_clipboard_wait_for_text(klass->clipboard);
+	if(text) {
+		hex_document_set_data(gh->document, gh->cursor_pos,
+							  strlen(text), 0, text, TRUE);
+		g_free(text);
+	}
 }
 
 static void gtk_hex_finalize(GObject *o) {
@@ -1388,15 +1287,6 @@ static void gtk_hex_finalize(GObject *o) {
 		(* G_OBJECT_CLASS(parent_class)->finalize)(G_OBJECT(o));  
 }
 
-static void gtk_hex_call_selection(GtkHex *gh, GdkEventKey *event) {
-	if(!gh->selecting) {
-		gh->selecting = TRUE;
-		gh->has_selection = TRUE;
-		gtk_hex_set_selection(gh, gh->cursor_pos, gh->cursor_pos);
-		gtk_hex_claim_selection(gh, TRUE, event->time);
-	}
-}
-
 static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	GtkHex *gh = GTK_HEX(w);
 	guint old_cp = gh->cursor_pos;
@@ -1407,7 +1297,9 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 
 	if(!(event->state & GDK_SHIFT_MASK)) {
 		gh->selecting = FALSE;
-		gh->has_selection = FALSE;
+	}
+	else {
+		gh->selecting = TRUE;
 	}
 	switch(event->keyval) {
 	case GDK_BackSpace:
@@ -1440,24 +1332,16 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 		break;
 	case GDK_Up:
 	case GDK_KP_8:
-		if(event->state & GDK_SHIFT_MASK)
-			gtk_hex_call_selection(gh, event);
 		gtk_hex_set_cursor(gh, gh->cursor_pos - gh->cpl);
 		break;
 	case GDK_Down:
 	case GDK_KP_2:
-		if(event->state & GDK_SHIFT_MASK)
-			gtk_hex_call_selection(gh, event);
 		gtk_hex_set_cursor(gh, gh->cursor_pos + gh->cpl);
 		break;
 	case GDK_Page_Up:
-		if(event->state & GDK_SHIFT_MASK)
-			gtk_hex_call_selection(gh, event);
 		gtk_hex_set_cursor(gh, MAX(0, (gint)gh->cursor_pos - gh->vis_lines*gh->cpl));
 		break;
 	case GDK_Page_Down:
-		if(event->state & GDK_SHIFT_MASK)
-			gtk_hex_call_selection(gh, event);
 		gtk_hex_set_cursor(gh, MIN((gint)gh->document->file_size, (gint)gh->cursor_pos + gh->vis_lines*gh->cpl));
 		break;
 	default:
@@ -1475,7 +1359,6 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 						gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
 				}
 				else {
-					gtk_hex_call_selection(gh, event);
 					gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
 				}
 				break;
@@ -1489,7 +1372,6 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
 				else {
-					gtk_hex_call_selection(gh, event);
 					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
 				break;
@@ -1529,14 +1411,10 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 			switch(event->keyval) {
 			case GDK_Left:
 			case GDK_KP_4:
-				if(event->state & GDK_SHIFT_MASK)
-					gtk_hex_call_selection(gh, event);
 				gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
 				break;
 			case GDK_Right:
 			case GDK_KP_6:
-				if(event->state & GDK_SHIFT_MASK)
-					gtk_hex_call_selection(gh, event);
 				gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				break;
 			default:
@@ -1682,6 +1560,9 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 	klass->copy_clipboard = gtk_hex_real_copy_clipboard;
 	klass->paste_clipboard = gtk_hex_real_paste_clipboard;
 
+	klass->primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
+	klass->clipboard = gtk_clipboard_get(GDK_NONE);
+
 	GTK_WIDGET_CLASS(klass)->size_allocate = gtk_hex_size_allocate;
 	GTK_WIDGET_CLASS(klass)->size_request = gtk_hex_size_request;
 	GTK_WIDGET_CLASS(klass)->expose_event = gtk_hex_expose;
@@ -1691,19 +1572,17 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 	/* Changed in Gnome 2.0 -- SnM */
 	G_OBJECT_CLASS(klass)->finalize = gtk_hex_finalize;
 
-	GTK_WIDGET_CLASS(klass)->selection_clear_event = gtk_hex_selection_clear;
-	GTK_WIDGET_CLASS(klass)->selection_received = gtk_hex_selection_received;
-	GTK_WIDGET_CLASS(klass)->selection_get = gtk_hex_selection_get;
+	klass->cmap = gdk_colormap_get_system();
 	
+	memcpy(&klass->cl_cursor_p, &cl_cursor_p, sizeof(GdkColor));
+	memcpy(&klass->cl_cursor_a, &cl_cursor_a, sizeof(GdkColor));
+	gdk_colormap_alloc_color(klass->cmap, &klass->cl_cursor_p, FALSE, TRUE);
+	gdk_colormap_alloc_color(klass->cmap, &klass->cl_cursor_a, FALSE, TRUE);
+
 	parent_class = gtk_type_class (gtk_fixed_get_type ());
 }
 
 static void gtk_hex_init(GtkHex *gh, gpointer klass) {
-	static const GtkTargetEntry targets[] = {
-		{ "STRING", 0, TARGET_STRING }
-	};
-	static const gint n_targets = sizeof(targets) / sizeof(targets[0]);
-
 	gh->scroll_timeout = -1;
 
 	gh->disp_buffer = NULL;
@@ -1720,7 +1599,6 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	gh->button = 0;
 	gh->insert = FALSE; /* default to overwrite mode */
 	gh->selecting = FALSE;
-
 
 	/* get ourselves a decent monospaced font for rendering text */
 	gh->disp_font_metrics = gtk_hex_load_font (DEFAULT_FONT);
@@ -1787,14 +1665,6 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	gh->scrollbar = gtk_vscrollbar_new(gh->adj);
 	gtk_fixed_put(GTK_FIXED(gh), gh->scrollbar, 0, 0);
 	gtk_widget_show(gh->scrollbar);
-
-	if(!clipboard_atom)
-		clipboard_atom = gdk_atom_intern("CLIPBOARD", FALSE);
-
-	gtk_selection_add_targets(GTK_WIDGET(gh), GDK_SELECTION_PRIMARY,
-							  targets, n_targets);
-	gtk_selection_add_targets(GTK_WIDGET(gh), clipboard_atom,
-							  targets, n_targets);
 }
 
 guint gtk_hex_get_type() {
@@ -1900,7 +1770,7 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 		gtk_signal_emit_by_name(GTK_OBJECT(gh), "cursor_moved");
 
 		if(gh->selecting) {
-			gh->sel_end = gh->cursor_pos;
+			gtk_hex_set_selection(gh, gh->sel_start, gh->cursor_pos);
 			bytes_changed(gh, MIN(gh->cursor_pos, old_pos), MAX(gh->cursor_pos, old_pos));
 		}
 		else if(gh->sel_end != gh->sel_start) {
@@ -1947,7 +1817,7 @@ void gtk_hex_set_cursor_xy(GtkHex *gh, gint x, gint y) {
 		gtk_signal_emit_by_name(GTK_OBJECT(gh), "cursor_moved");
 		
 		if(gh->selecting) {
-			gh->sel_end = gh->cursor_pos;
+			gtk_hex_set_selection(gh, gh->sel_start, gh->cursor_pos);
 			bytes_changed(gh, MIN(gh->cursor_pos, old_pos), MAX(gh->cursor_pos, old_pos));
 		}
 		else if(gh->sel_end != gh->sel_start) {

@@ -44,6 +44,15 @@
 	<cmd name="EditRedo" _label="Redo" _tip="Redo the undone action"
 	pixtype="stock" pixname="gtk-redo" accel="*Shift**Control*Z"/>
 
+        <cmd name="EditPaste" _label="Paste" _tip="Paste data from clipboard"
+        pixtype="stock" pixname="gtk-paste" accel="*Control*V"/>
+
+        <cmd name="EditCopy" _label="Copy" _tip="Copy selection to clipboard"
+        pixtype="stock" pixname="gtk-copy" accel="*Control*C"/>
+
+        <cmd name="EditCut" _label="Cut" _tip="Cut selection"
+        pixtype="stock" pixname="gtk-cut" accel="*Control*X"/>
+
 	<cmd name="Find" _label="Find" _tip="Search for a string"
 	pixtype="stock" pixname="gtk-find" accel="*Control*F"/>
 
@@ -117,6 +126,12 @@
         <menuitem name="EditUndo" verb="" _label="_Undo"/>
 
 	<menuitem name="EditRedo" verb="" _label="_Redo"/>
+
+	<separator/>
+
+	<menuitem name="EditCopy" verb="" _label="_Copy"/>
+	<menuitem name="EditCut" verb="" _label="C_ut"/>
+        <menuitem name="EditPaste" verb="" _label="_Paste"/>
 
 	<separator/>
 

@@ -97,16 +97,16 @@ struct _GtkHex
 	guint scroll_timeout;
 	gboolean show_offsets;
 	gboolean insert;
-	gboolean has_selection;
 	gboolean selecting;
-
-	guchar *clipboard_data;
-	guint clipboard_data_len;
 };
 
 struct _GtkHexClass
 {
 	GtkFixedClass parent_class;
+
+	GtkClipboard *clipboard, *primary;
+	GdkColormap *cmap;
+	GdkColor cl_cursor_p, cl_cursor_a;
 	
 	void (*cursor_moved)(GtkHex *);
 	void (*data_changed)(GtkHex *, gpointer);
@@ -133,9 +133,11 @@ void gtk_hex_set_font(GtkHex *, PangoFontMetrics *, PangoFontDescription *);
 
 void gtk_hex_set_insert_mode(GtkHex *, gboolean);
 
-void gtk_hex_claim_selection (GtkHex *gh, gboolean claim, guint32 time);
-
 PangoFontMetrics* gtk_hex_load_font (const char *font_name); 
+
+void gtk_hex_copy_clipboard(GtkHex *gh);
+void gtk_hex_cut_clipboard(GtkHex *gh);
+void gtk_hex_paste_clipboard(GtkHex *gh);
 
 void add_atk_namedesc(GtkWidget *widget, const gchar *name, const gchar *desc);
 void add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType type);

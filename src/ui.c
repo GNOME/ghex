@@ -50,6 +50,9 @@ static void export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gc
 static void revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+static void cut_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+static void copy_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+static void paste_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 static void DnDNewWindow_cb(BonoboUIComponent *uic, gpointer user_data, const char *cname);
 static void DnDCancel_cb(BonoboUIComponent *uic, gpointer user_data, const char *cname);
@@ -86,6 +89,9 @@ BonoboUIVerb ghex_verbs [] = {
 	BONOBO_UI_VERB ("FileExit", quit_app_cb),
 	BONOBO_UI_VERB ("EditUndo", undo_cb),
 	BONOBO_UI_VERB ("EditRedo", redo_cb),
+	BONOBO_UI_VERB ("EditCut", cut_cb),
+	BONOBO_UI_VERB ("EditCopy", copy_cb),
+	BONOBO_UI_VERB ("EditPaste", paste_cb),
 	BONOBO_UI_VERB ("Find", find_cb),
 	BONOBO_UI_VERB ("Replace", replace_cb),
 	BONOBO_UI_VERB ("GoToByte", jump_cb),
@@ -253,6 +259,36 @@ help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar *verbname)
 		gtk_widget_show (dialog);
 		g_error_free (error);
 	}
+}
+
+void 
+paste_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	GHexWindow *win = GHEX_WINDOW(user_data);
+	HexDocument *doc;
+
+	if(win->gh)
+		gtk_hex_paste_clipboard(win->gh);
+}
+
+void 
+copy_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	GHexWindow *win = GHEX_WINDOW(user_data);
+	HexDocument *doc;
+
+	if(win->gh)
+		gtk_hex_copy_clipboard(win->gh);
+}
+
+void 
+cut_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	GHexWindow *win = GHEX_WINDOW(user_data);
+	HexDocument *doc;
+
+	if(win->gh)
+		gtk_hex_cut_clipboard(win->gh);
 }
 
 void
