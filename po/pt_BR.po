@@ -1,96 +1,96 @@
-# totem: translation to Brazilian Portuguese (pt_BR)
+# Brazilian Portuguese translation of ghex
 # Copyright (C) 2000-2003 Free Software Foundation, Inc.
-# This file is distributed under the same license as the totem package.
-# Alexandre Folle de Menezes <afmenez@terra.com.br>, 2002-2003.
-# based on the previous translation to pt_BR (1.0.13) by
+# This file is distributed under the same license as the ghex package.
 # Edson A. Tacão <tacao@conectiva.com.br>, 2000.
+# Alexandre Folle de Menezes <afmenez@terra.com.br>, 2002-2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.0\n"
-"POT-Creation-Date: 2003-02-20 04:46-0300\n"
-"PO-Revision-Date: 2003-02-20 03:00-0300\n"
-"Last-Translator: Alexandre Folle de Menezes <afmenez@terra.com.br>\n"
-"Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
+"Project-Id-Version: ghex 2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-20 19:45+0100\n"
+"PO-Revision-Date: 2004-03-21 09:53-0300\n"
+"Last-Translator: Raphael Higino <raphaelh@uai.com.br>\n"
+"Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>, <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ghex.desktop.in.h:1
 msgid "GNOME Hexadecimal Editor"
-msgstr "Editor Hexadecimal GNOME"
+msgstr "Editor Hexadecimal do GNOME"
 
 #: ghex.desktop.in.h:2
 msgid "Hex Editor"
 msgstr "Editor Hexadecimal"
 
-#: src/chartable.c:134
+#: src/chartable.c:140
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:134
+#: src/chartable.c:140
 msgid "Hex"
-msgstr "Hex"
+msgstr "Hexa"
 
-#: src/chartable.c:134 src/preferences.c:175
+#: src/chartable.c:140 src/preferences.c:164
 msgid "Decimal"
 msgstr "Decimal"
 
-#: src/chartable.c:135
+#: src/chartable.c:141
 msgid "Octal"
 msgstr "Octal"
 
-#: src/chartable.c:135
+#: src/chartable.c:141
 msgid "Binary"
 msgstr "Binário"
 
-#: src/chartable.c:149
+#: src/chartable.c:157
 msgid "Character table"
-msgstr "Tabela de Caracteres"
+msgstr "Tabela de caracteres"
 
-#: src/converter.c:199
+#: src/converter.c:209
 msgid "Base Converter"
 msgstr "Conversor de Bases"
 
 #. entries
-#: src/converter.c:218
+#: src/converter.c:228
 msgid "_Binary:"
 msgstr "_Binário:"
 
-#: src/converter.c:220
+#: src/converter.c:230
 msgid "_Octal:"
 msgstr "_Octal:"
 
-#: src/converter.c:222
+#: src/converter.c:232
 msgid "_Decimal:"
 msgstr "_Decimal:"
 
-#: src/converter.c:224
+#: src/converter.c:234
 msgid "_Hex:"
-msgstr "_Hex:"
+msgstr "_Hexa:"
 
-#: src/converter.c:226
+#: src/converter.c:236
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:230
+#: src/converter.c:240
 msgid "_Get cursor value"
 msgstr "_Captura valor do cursor"
 
-#: src/converter.c:242
+#: src/converter.c:254
 msgid "Get cursor value"
 msgstr "Captura valor do cursor"
 
-#: src/converter.c:242
+#: src/converter.c:254
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr "Pega o valor no cursor em binário, octal, decimal, hexa e ASCII"
 
-#: src/converter.c:375
+#: src/converter.c:387
 msgid "ERROR"
 msgstr "ERRO"
 
-#: src/findreplace.c:60 src/ui.c:901
+#: src/findreplace.c:60 src/ui.c:891
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Procurar Dados"
@@ -140,7 +140,7 @@ msgstr "Cancelar"
 msgid "Closes find data window"
 msgstr "Fecha a janela de busca"
 
-#: src/findreplace.c:140 src/ui.c:899
+#: src/findreplace.c:140 src/ui.c:889
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Procurar & Substituir Dados"
@@ -196,7 +196,7 @@ msgstr ""
 msgid "Closes find and replace data window"
 msgstr "Fecha a janela de substituição de dados"
 
-#: src/findreplace.c:231 src/ui.c:897
+#: src/findreplace.c:231 src/ui.c:887
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Ir para Byte"
@@ -638,30 +638,30 @@ msgstr "_Janelas"
 msgid "_Words"
 msgstr "_Palavras"
 
-#: src/ghex-window.c:435 src/ghex-window.c:798
+#: src/ghex-window.c:438 src/ghex-window.c:816
 msgid "GHex"
 msgstr "GHex"
 
-#: src/ghex-window.c:554
+#: src/ghex-window.c:571
 #, c-format
 msgid "Offset: %s"
 msgstr "Offset: %s"
 
-#: src/ghex-window.c:752
+#: src/ghex-window.c:770
 #, c-format
 msgid "Activate file %s"
 msgstr "Ativar Arquivo %s"
 
-#: src/ghex-window.c:794
+#: src/ghex-window.c:812
 #, c-format
 msgid "GHex - %s"
 msgstr "GHex - %s"
 
-#: src/ghex-window.c:926
+#: src/ghex-window.c:946
 msgid "Select a file to save buffer as"
 msgstr "Escolha um arquivo para gravar o buffer como"
 
-#: src/ghex-window.c:956
+#: src/ghex-window.c:997
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -670,20 +670,20 @@ msgstr ""
 "O arquivo %s já existe.\n"
 "Você quer sobrescrevê-lo?"
 
-#: src/ghex-window.c:991 src/ui.c:356
+#: src/ghex-window.c:1035 src/ui.c:356
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Buffer gravado no arquivo %s"
 
-#: src/ghex-window.c:997
+#: src/ghex-window.c:1041
 msgid "Error saving file!"
 msgstr "Erro gravando o arquivo!"
 
-#: src/ghex-window.c:1003
+#: src/ghex-window.c:1047
 msgid "Can't open file for writing!"
 msgstr "Não pude abrir o arquivo para escrita!"
 
-#: src/ghex-window.c:1030
+#: src/ghex-window.c:1090
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -692,35 +692,39 @@ msgstr ""
 "O arquivo %s foi modificado desde a última gravação.\n"
 "Você quer salvar as mudanças?"
 
-#: src/ghex-window.c:1040
+#: src/ghex-window.c:1100
 msgid "Do_n't save"
 msgstr "_Não salvar"
 
-#: src/ghex-window.c:1060 src/ui.c:344
+#: src/ghex-window.c:1120 src/ui.c:344
 msgid "You don't have the permissions to save the file!"
 msgstr "Você não tem as permissões para salvar o arquivo!"
 
-#: src/ghex-window.c:1064 src/ui.c:349
+#: src/ghex-window.c:1124 src/ui.c:349
 msgid "An error occured while saving file!"
 msgstr "Ocorreu um erro enquanto o arquivo era salvado!"
 
-#: src/hex-document.c:744
+#: src/hex-document.c:746
+#, c-format
 msgid "Page"
 msgstr "Página"
 
-#: src/hex-document.c:750 src/hex-document.c:875
+#: src/hex-document.c:752 src/hex-document.c:877
+#, c-format
 msgid "Hex dump generated by"
 msgstr "Despejo hexa gerado por"
 
-#: src/hex-document.c:760
+#: src/hex-document.c:762
 msgid "Saving to HTML..."
 msgstr "Salvando para HTML..."
 
-#: src/hex-document.c:798
+#: src/hex-document.c:800
+#, c-format
 msgid "Previous page"
 msgstr "Página anterior"
 
-#: src/hex-document.c:813
+#: src/hex-document.c:815
+#, c-format
 msgid "Next page"
 msgstr "Próxima página"
 
@@ -732,125 +736,129 @@ msgstr "O editor binário gnome"
 msgid "Could not initialize Bonobo!\n"
 msgstr "Impossível inicializar o Bonobo!\n"
 
-#: src/main.c:87 src/main.c:99
+#: src/main.c:89 src/main.c:103
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "String de geometria inválida: \"%s\"\n"
 
-#: src/preferences.c:92
+#: src/preferences.c:94
 msgid "GHex Preferences"
 msgstr "Preferências GHex"
 
-#: src/preferences.c:137
+#: src/preferences.c:126
 msgid "_Maximum number of undo levels:"
 msgstr "Número _máximo de níveis a desfazer:"
 
-#: src/preferences.c:157
+#: src/preferences.c:146
 msgid "Undo levels"
 msgstr "Níveis de desfazer"
 
-#: src/preferences.c:157
+#: src/preferences.c:146
 msgid "Select maximum number of undo levels"
 msgstr "Selecione o número máximo de níveis a desfazer"
 
-#: src/preferences.c:161
+#: src/preferences.c:150
 msgid "Show cursor offset in statusbar as:"
 msgstr "Mostra offset do cursor na barra de status como:"
 
-#: src/preferences.c:180
+#: src/preferences.c:169
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
 
-#: src/preferences.c:186
+#: src/preferences.c:175
 msgid "Custom"
 msgstr "Personalizado"
 
-#: src/preferences.c:197
+#: src/preferences.c:187
 msgid "Enter the cursor offset format"
 msgstr "Digite o formato do deslocamento do cursor"
 
-#: src/preferences.c:198
+#: src/preferences.c:188
 msgid "Select the cursor offset format"
 msgstr "Selecione o formato do deslocamento do cursor"
 
 #. show offsets check button
-#: src/preferences.c:208
+#: src/preferences.c:198
 msgid "Show offsets column"
 msgstr "Mostra coluna de offsets"
 
-#: src/preferences.c:213
+#: src/preferences.c:203
 msgid "Editing"
 msgstr "Editando"
 
 #. display font
-#: src/preferences.c:222
+#: src/preferences.c:212 src/gnome-print-font-picker.c:1017
 msgid "Font"
 msgstr "Fonte"
 
 #. default group type
-#: src/preferences.c:250
+#: src/preferences.c:240
 msgid "Default Group Type"
 msgstr "Tipo Padrão de Grupo"
 
-#: src/preferences.c:266
+#: src/preferences.c:256
 msgid "Display"
 msgstr "Mostrar"
 
 #. paper selection
-#: src/preferences.c:275
+#: src/preferences.c:265
 msgid "Paper size"
 msgstr "Tamanho do papel"
 
 #. data & header font selection
-#: src/preferences.c:280
+#: src/preferences.c:270
 msgid "Fonts"
 msgstr "Fontes"
 
-#: src/preferences.c:286
+#: src/preferences.c:276
 msgid "_Data font:"
 msgstr "Fonte de _dados:"
 
-#: src/preferences.c:305
+#: src/preferences.c:295
 msgid "Data font"
 msgstr "Fonte para os dados"
 
-#: src/preferences.c:305
+#: src/preferences.c:295
 msgid "Select the data font"
 msgstr "Selecione fonte de dados"
 
-#: src/preferences.c:319
+#: src/preferences.c:309
 msgid "Header fo_nt:"
 msgstr "Fo_nte para o cabeçalho"
 
-#: src/preferences.c:337
+#: src/preferences.c:327
 msgid "Header font"
 msgstr "Fonte para o cabeçalho"
 
-#: src/preferences.c:337
+#: src/preferences.c:327
 msgid "Select the header font"
 msgstr "Selecione a fonte para o cabeçalho"
 
-#: src/preferences.c:365
+#: src/preferences.c:353
 msgid "_Print shaded box over:"
 msgstr "Im_primir caixa sobreada sobre:"
 
-#: src/preferences.c:377
+#: src/preferences.c:365
 msgid "Box size"
 msgstr "Tamanho da caixa"
 
-#: src/preferences.c:377
+#: src/preferences.c:365
 msgid "Select size of box (in number of lines)"
 msgstr "Selecione o tamanho da caixa (número de linhas)"
 
-#: src/preferences.c:381
+#: src/preferences.c:369
 msgid "lines (0 for no box)"
 msgstr "linhas (0 para nenhuma caixa)"
 
-#: src/preferences.c:388
+#: src/preferences.c:376
 msgid "Printing"
 msgstr "Imprimindo"
 
-#: src/preferences.c:534
+#: src/preferences.c:531
+msgid "Can not open desired font!"
+msgstr "Não pude abrir a fonte desejada!"
+
+#: src/preferences.c:581
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -858,16 +866,12 @@ msgstr ""
 "A string de offset do formato contém especificadores de formato inválidos.\n"
 "Apenas 'x', 'X', 'p', 'P', 'd' e 'o' são permitidos."
 
-#: src/preferences.c:566
-msgid "Can not open desired font!"
-msgstr "Não pude abrir a fonte desejada!"
-
-#: src/print.c:54
+#: src/print.c:53
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Página: %i%i"
 
-#: src/print.c:205 src/print.c:219
+#: src/print.c:204 src/print.c:218
 #, c-format
 msgid ""
 "GHex could not find the font \"%s\".\n"
@@ -886,7 +890,7 @@ msgstr "GEOMETRIA"
 
 #: src/ui.c:71
 msgid "hex data"
-msgstr "dado hexa"
+msgstr "dados em hexa"
 
 #: src/ui.c:72
 msgid "ASCII data"
@@ -898,7 +902,7 @@ msgstr "GHex, um editor binário de arquivos"
 
 #: src/ui.c:245
 msgid "Released under the terms of GNU Public License"
-msgstr "Licensiado sob os termos da Licensa Pública GNU"
+msgstr "Liberado sob os termos da Licensa Pública GNU"
 
 #: src/ui.c:268
 #, c-format
@@ -909,32 +913,32 @@ msgstr ""
 "Houve um erro mostrando a ajuda: \n"
 "%s"
 
-#: src/ui.c:385
+#: src/ui.c:376
 msgid "Select a file to open"
 msgstr "Escolha um arquivo a abrir"
 
-#: src/ui.c:423
+#: src/ui.c:414
 #, c-format
 msgid "Loaded file %s"
 msgstr "Arquivo %s carregado"
 
-#: src/ui.c:431
+#: src/ui.c:422
 msgid "Can not open file!"
 msgstr "Não pude abrir o arquivo!"
 
-#: src/ui.c:495
+#: src/ui.c:486
 msgid "Select path and file name for the HTML source"
 msgstr "Selecione caminho e nome do arquivo para a fonte HTML"
 
-#: src/ui.c:530
+#: src/ui.c:521
 msgid "You need to specify a base name for the HTML files."
 msgstr "É preciso especificar o nome base para arquivos HTML."
 
-#: src/ui.c:541 src/ui.c:563
+#: src/ui.c:532 src/ui.c:554
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Você não tem permissão para gravar no caminho especificado.\n"
 
-#: src/ui.c:547
+#: src/ui.c:538
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -942,25 +946,105 @@ msgstr ""
 "Salvar para HTML vai sobrescrever alguns arquivos.\n"
 "Você quer continuar?"
 
-#: src/ui.c:695
+#: src/ui.c:686
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Deseja reverter o arquivo %s?"
 
-#: src/ui.c:713
+#: src/ui.c:704
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Buffer revertido do arquivo %s"
 
-#: src/ui.c:788
+#: src/ui.c:778
 msgid "Print Hex Document"
 msgstr "Imprimir Documento Hexadecimal"
 
-#: src/ui.c:793
+#: src/ui.c:783
 msgid "Pages"
 msgstr "Páginas"
 
-#: src/ui.c:839
+#: src/ui.c:829
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Visualizar Impressão"
+
+#: src/gnome-print-font-dialog.c:111
+msgid "_Insert a new preview phrase."
+msgstr "_Inserir uma nova frase de visualização."
+
+#: src/gnome-print-font-dialog.c:117
+msgid "Modify preview phrase..."
+msgstr "Modificar frase de visualização..."
+
+#: src/gnome-print-font-dialog.c:171
+msgid "Preview"
+msgstr "Visualizar"
+
+#: src/gnome-print-font-dialog.c:184
+msgid "_Modify preview phrase..."
+msgstr "_Modificar frase de visualização..."
+
+#: src/gnome-print-font-dialog.c:247
+msgid "Font Selection"
+msgstr "Seleção de Fonte"
+
+#: src/gnome-print-font-picker.c:91
+msgid "Sans Regular 12"
+msgstr "Sans Regular 12"
+
+#: src/gnome-print-font-picker.c:92
+msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+
+#: src/gnome-print-font-picker.c:93
+msgid "Pick a Font"
+msgstr "Escolha uma Fonte"
+
+#: src/gnome-print-font-picker.c:178
+msgid "Title"
+msgstr "Título"
+
+#: src/gnome-print-font-picker.c:179
+msgid "The title of the selection dialog box"
+msgstr "O título da caixa de diálogo de seleção"
+
+#: src/gnome-print-font-picker.c:199
+msgid "Font name"
+msgstr "Nome da fonte"
+
+#: src/gnome-print-font-picker.c:200
+msgid "Name of the selected font"
+msgstr "Nome da fonte selecionada"
+
+#: src/gnome-print-font-picker.c:208
+msgid "Preview text"
+msgstr "Texto de visualização"
+
+#: src/gnome-print-font-picker.c:209
+msgid "Preview text shown in the dialog"
+msgstr "Texto de visualização mostrado na caixa de diálogo"
+
+#: src/gnome-print-font-picker.c:217
+msgid "Use font in label"
+msgstr "Usar fonte no rótulo"
+
+#: src/gnome-print-font-picker.c:218
+msgid "Use font in the label in font info mode"
+msgstr "Usa a fonte no rótulo em modo de informação de fonte"
+
+#: src/gnome-print-font-picker.c:226
+msgid "Font size for label"
+msgstr "Tamanho da fonte para o rótulo"
+
+#: src/gnome-print-font-picker.c:227
+msgid "Font size for label in font info mode"
+msgstr "Tamanho da fonte para o rótulo em modo de informação de fonte"
+
+#: src/gnome-print-font-picker.c:237
+msgid "Show size"
+msgstr "Mostrar tamanho"
+
+#: src/gnome-print-font-picker.c:238
+msgid "Show size in font info mode"
+msgstr "Mostrar o tamanho em modo de informação de fonte"
