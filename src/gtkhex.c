@@ -344,15 +344,15 @@ static void render_ac(GtkHex *gh) {
 		if(!is_displayable(c[0]))
 			c[0] = '.';
 
-		if(gh->active_view == VIEW_ASCII) {
 			gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_ACTIVE]);
+		if(gh->active_view == VIEW_ASCII) {
+			gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc,
+							   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
 		else {
-			gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->fg[GTK_STATE_INSENSITIVE]);
+			gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc,
+							   FALSE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
-
-		gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc,
-						   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
 		gdk_gc_set_foreground(gh->adisp_gc, &(GTK_WIDGET(gh)->style->black));
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->alayout, c, 1);
@@ -378,15 +378,15 @@ static void render_xc(GtkHex *gh) {
 			i = 0;
 		}
 
+		gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_ACTIVE]);
 		if(gh->active_view == VIEW_HEX) {
-			gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_ACTIVE]);
+			gdk_draw_rectangle(GTK_WIDGET(gh->xdisp)->window, gh->xdisp_gc,
+							   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
 		else {
-			gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->fg[GTK_STATE_INSENSITIVE]);
+			gdk_draw_rectangle(GTK_WIDGET(gh->xdisp)->window, gh->xdisp_gc,
+							   FALSE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
-
-		gdk_draw_rectangle(GTK_WIDGET(gh->xdisp)->window, gh->xdisp_gc,
-						   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
 		gdk_gc_set_foreground(gh->xdisp_gc, &(GTK_WIDGET(gh)->style->black));
 		pango_layout_set_text (gh->xlayout, &c[i], 1);
 		gdk_draw_layout (gh->xdisp->window, gh->xdisp_gc, cx, cy, gh->xlayout);
