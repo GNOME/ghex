@@ -1,63 +1,112 @@
-# ---------------------------------------------------------
-# Copyright (C) 2001 Free Software Foundation, Inc.
+# Turkish translation of ghex.
+# Copyright (C) 2001-2003 Free Software Foundation, Inc.
 # Murat SULUHAN <murat.suluhan@tesam.com.tr>, 2000-2001.
-# Ömer Fadýl USTA <omer_fad@hotmail.com>, 2000.
+# Ã–mer FadÄ±l USTA <omer_fad@hotmail.com>, 2000.
+# Arman Aksoy (Armish) <armish@linux-sevenler.de>, 2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 1.3.0\n"
-"POT-Creation-Date: 2001-01-26 18:56+0200\n"
-"PO-Revision-Date: 2001-05-17 01:34+0100\n"
-"Last-Translator: Ömer Fadýl USTA <omer_fad@hotmail.com >\n"
-"Language-Team: GNOME Turk <gnome-turk@gnome.org>\n"
+"Project-Id-Version: ghex\n"
+"POT-Creation-Date: 2003-02-01 04:05+0100\n"
+"PO-Revision-Date: 2003-02-01 18:36+0200\n"
+"Last-Translator: Arman Aksoy (Armish) <armish@linux-sevenler.de>\n"
+"Language-Team: Turkish <gnome-turk@gnome.org\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-9\n"
+"Content-Type: text/plain; charset=ISO-8859-9\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+# src/preferences.c:166
+#: ghex.desktop.in.h:1
+msgid "GNOME Hexadecimal Editor"
+msgstr "GNOME OnaltÄ±lÄ±k DÃ¼zenleyici"
+
+#: ghex.desktop.in.h:2
+msgid "Hex Editor"
+msgstr "OnaltÄ±lÄ± DÃ¼zenliyici"
+
+# src/chartable.c:90 src/converter.c:83
+#: src/chartable.c:133
+msgid "ASCII"
+msgstr "ASCII"
+
+# src/chartable.c:90 src/converter.c:73
+#: src/chartable.c:133
+msgid "Hex"
+msgstr "OnaltÄ±lÄ±k"
+
+# src/chartable.c:90 src/converter.c:63 src/preferences.c:161
+#: src/chartable.c:133 src/preferences.c:175
+msgid "Decimal"
+msgstr "OndalÄ±k"
+
+# src/chartable.c:91
+#: src/chartable.c:134
+msgid "Octal"
+msgstr "Sekizlik"
+
+# src/chartable.c:91 src/converter.c:53
+#: src/chartable.c:134
+msgid "Binary"
+msgstr "Ä°kili"
+
+# src/chartable.c:97
+#: src/chartable.c:148
+msgid "Character table"
+msgstr "Karakter tablosu"
+
 # src/converter.c:44
-#: src/converter.c:176
-msgid "GHex: Converter"
-msgstr "GHex: Dönüþtürücü"
+#: src/converter.c:198
+msgid "Base Converter"
+msgstr "Temel Ã‡evirici"
 
 # src/chartable.c:91 src/converter.c:53
 #. entries
-#: src/converter.c:195
-msgid "_Binary"
-msgstr "Ýkil_i"
+#: src/converter.c:217
+msgid "_Binary:"
+msgstr "Ä°kil_i:"
 
 # src/chartable.c:91
-#: src/converter.c:197
-msgid "_Octal"
-msgstr "_Sekizli"
+#: src/converter.c:219
+msgid "_Octal:"
+msgstr "_Sekizli:"
 
 # src/chartable.c:90 src/converter.c:63 src/preferences.c:161
-#: src/converter.c:199
-msgid "_Decimal"
-msgstr "_Ondalýk"
+#: src/converter.c:221
+msgid "_Decimal:"
+msgstr "_OndalÄ±k:"
 
 # src/chartable.c:90 src/converter.c:73
-#: src/converter.c:201
-msgid "_Hex"
-msgstr "Onal_týlýk"
+#: src/converter.c:223
+msgid "_Hex:"
+msgstr "Onal_tÄ±lÄ±k:"
 
 # src/chartable.c:90 src/converter.c:83
-#: src/converter.c:203
-msgid "_ASCII"
-msgstr "_ASCII"
+#: src/converter.c:225
+msgid "_ASCII:"
+msgstr "_ASCII:"
 
 # src/converter.c:93
 #. get cursor button
-#: src/converter.c:207
+#: src/converter.c:229
 msgid "_Get cursor value"
-msgstr "_Kursor koordinatlarýný al"
+msgstr "_Kursor koordinatlarÄ±nÄ± al"
+
+# src/converter.c:93
+#: src/converter.c:241
+msgid "Get cursor value"
+msgstr "Kursor koordinatlarÄ±nÄ± al"
+
+#: src/converter.c:241
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr "Kursorda ikilik, ondalÄ±k, sekizlik, onaltÄ±lÄ±k ve ASCII deÄŸerleri alÄ±r"
 
 # src/converter.c:194
-#: src/converter.c:323
+#: src/converter.c:374
 msgid "ERROR"
 msgstr "HATA"
 
 # src/findreplace.c:58 src/main.c:96
-#: src/findreplace.c:60 src/main.c:98
+#: src/findreplace.c:60 src/ui.c:901
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Veri bul"
@@ -70,552 +119,1022 @@ msgstr "%s'i ara"
 
 # src/findreplace.c:83
 #: src/findreplace.c:86
-msgid "Find Next"
-msgstr "Bir Sonrakini Bul"
+msgid "Find _Next"
+msgstr "So_nrakini Bul"
 
 # src/findreplace.c:91
 #: src/findreplace.c:94
-msgid "Find Previous"
-msgstr "Bir Öncekini Bul"
-
-# src/findreplace.c:127 src/main.c:98
-#: src/findreplace.c:130 src/main.c:100
-#, c-format
-msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): Veriyi Bul & Deðiþtir"
-
-# src/findreplace.c:141
-#: src/findreplace.c:144
-#, c-format
-msgid "Replace %s"
-msgstr "%s ile deðiþtir"
+msgid "Find _Previous"
+msgstr "_Ã–ncekini Bul"
 
 # src/findreplace.c:157
-#: src/findreplace.c:161
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Find Data"
+msgstr "Veri Bul"
+
+#: src/findreplace.c:118 src/findreplace.c:210
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "AranÄ±lacak onaltÄ±lÄ±k veya ASCII verisini giriniz"
+
+# src/findreplace.c:83
+#: src/findreplace.c:119
+msgid "Find Next"
+msgstr "Sonrakini Bul"
+
+#: src/findreplace.c:119 src/findreplace.c:212
+msgid "Finds the next occurrence of the search string"
+msgstr "Sonraki bulunan sonucu gÃ¶sterir"
+
+# src/findreplace.c:91
+#: src/findreplace.c:120
+msgid "Find previous"
+msgstr "Ã–ncekini bul"
+
+#: src/findreplace.c:120
+msgid "Finds the previous occurrence of the search string "
+msgstr "Ã–nceki bulunan sonucu gÃ¶sterir"
+
+#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
+msgid "Cancel"
+msgstr "Ä°ptal"
+
+#: src/findreplace.c:121
+msgid "Closes find data window"
+msgstr "Veri bul penceresini kapatÄ±r"
+
+# src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:140 src/ui.c:899
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "GHex (%s): Veriyi Bul & DeÄŸiÅŸtir"
+
+# src/findreplace.c:141
+#: src/findreplace.c:155
+#, c-format
+msgid "Replace %s"
+msgstr "%s ile deÄŸiÅŸtir"
+
+# src/findreplace.c:157
+#: src/findreplace.c:172
+msgid "Find _next"
+msgstr "Sonraki_ni bul"
+
+# src/findreplace.c:165
+#: src/findreplace.c:180 src/ghex-ui.xml.h:84
+msgid "_Replace"
+msgstr "DeÄŸiÅŸti_r"
+
+# src/findreplace.c:173
+#: src/findreplace.c:188
+msgid "Replace _All"
+msgstr "_Hepsini DeÄŸiÅŸtir"
+
+# src/findreplace.c:165
+#: src/findreplace.c:211
+msgid "Replace Data"
+msgstr "Veriyi DeÄŸiÅŸtir"
+
+#: src/findreplace.c:211
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "DeÄŸiÅŸtirilecek onaltÄ±lÄ±k veya ASCII veriyi girin"
+
+# src/findreplace.c:157
+#: src/findreplace.c:212
 msgid "Find next"
 msgstr "Sonrakini bul"
 
 # src/findreplace.c:165
-#: src/findreplace.c:169
+#: src/findreplace.c:213 src/ghex-ui.xml.h:48
 msgid "Replace"
-msgstr "Deðiþtir"
+msgstr "DeÄŸiÅŸtir"
+
+#: src/findreplace.c:213
+msgid "Replaces the search string with the replace string"
+msgstr "Bulunan dizileri verilen deÄŸerle deÄŸÅŸitir"
 
 # src/findreplace.c:173
-#: src/findreplace.c:177
+#: src/findreplace.c:214
 msgid "Replace All"
-msgstr "Hepsini Deðiþtir"
+msgstr "Hepsini DeÄŸiÅŸtir"
+
+#: src/findreplace.c:214
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Arama sonuÃ§larÄ±nÄ±n hepsini verilen deÄŸerlerle deÄŸiÅŸtirir"
+
+#: src/findreplace.c:215
+msgid "Closes find and replace data window"
+msgstr "Bul ve deÄŸiÅŸtir penceresini kapatÄ±r"
 
 # src/findreplace.c:206 src/main.c:100
-#: src/findreplace.c:210 src/main.c:102
+#: src/findreplace.c:231 src/ui.c:897
 #, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): Byte'a Git"
+msgstr "GHex (%s): Bayt'a Git"
+
+#: src/findreplace.c:261
+msgid "Jump to byte"
+msgstr "Bayt'a Git"
+
+#: src/findreplace.c:261
+msgid "Enter the byte to jump to"
+msgstr "Gidilecek baytÄ± giriniz"
+
+#: src/findreplace.c:262
+msgid "OK"
+msgstr "Tamam"
+
+#: src/findreplace.c:262
+msgid "Jumps to the specified byte"
+msgstr "Belirtilen bayt'a gider"
+
+#: src/findreplace.c:263
+msgid "Closes jump to byte window"
+msgstr "Bayt'a git pencersini kapatÄ±r"
 
 # src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
-#: src/findreplace.c:299 src/findreplace.c:324 src/findreplace.c:376
-msgid "There is no active buffer to search!"
-msgstr "Tampon bellekte üzerinde arama yapýlabilecek bir veri yok!"
-
-# src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
-#: src/findreplace.c:307 src/findreplace.c:332 src/findreplace.c:384
-msgid "There seems to be no string to search for!"
-msgstr "Aranacak dizi yok gibi görünüyor!"
-
-# src/findreplace.c:310 src/findreplace.c:388
-#: src/findreplace.c:314 src/findreplace.c:392
-msgid "End Of File reached"
-msgstr "Dosya sonuna ulaþýldý"
-
-# src/findreplace.c:336
-#: src/findreplace.c:340
-msgid "Beginning Of File reached"
-msgstr "Dosya baþýna ulaþýldý"
-
-# src/findreplace.c:345
-#: src/findreplace.c:349
-msgid "There is no active buffer to move the cursor in!"
-msgstr "Tampon bellekte üzerinde kursoru hareket ettirecek bir veri yok"
-
-# src/findreplace.c:350
-#: src/findreplace.c:354
-msgid "No offset has been specified!"
-msgstr "Offset tanýmlanmadý!"
-
-# src/findreplace.c:357
-#: src/findreplace.c:361
-msgid "Can not position cursor beyond the End Of File!"
-msgstr "Kursor dosya sonundan ileri konumlandýrýlamaz!"
-
-# src/findreplace.c:362
-#: src/findreplace.c:366
-msgid "The offset must be a positive integer value!"
-msgstr "Offset pozitif tamsayý olmalýdýr!"
+#: src/findreplace.c:329 src/findreplace.c:357 src/findreplace.c:413
+msgid "There is no active document to search!"
+msgstr "AranÄ±lacak etkin bir dÃ¶kÃ¼man bulunamadÄ±!"
 
 # src/findreplace.c:399 src/findreplace.c:436
-#: src/findreplace.c:403 src/findreplace.c:440
-msgid "There is no active buffer to replace data in!"
-msgstr "Tampon bellekte deðiþtirme iþlemi için kullanýlabilecek veri yok!"
+#: src/findreplace.c:337 src/findreplace.c:365
+msgid "The string is not appropriate for the selected data type!"
+msgstr "Dizi, seÃ§ilen veri tipi iÃ§in uygun deÄŸil"
 
-# src/findreplace.c:410 src/findreplace.c:447
-#: src/findreplace.c:414 src/findreplace.c:451
-msgid "Strange find or replace string!"
-msgstr "Aranmak veya deðiþtirilmek istenen dizi tanýmlanamadý!"
+# src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:344 src/findreplace.c:430
+msgid "End Of File reached"
+msgstr "Dosya sonuna ulaÅŸÄ±ldÄ±"
+
+# src/findreplace.c:336
+#: src/findreplace.c:373
+msgid "Beginning Of File reached"
+msgstr "Dosya baÅŸÄ±na ulaÅŸÄ±ldÄ±"
+
+# src/findreplace.c:345
+#: src/findreplace.c:385
+msgid "There is no active document to move the cursor in!"
+msgstr "Kursoru taÅŸÄ±mak iÃ§in etkin dÃ¶kÃ¼man yok!"
+
+# src/findreplace.c:350
+#: src/findreplace.c:390
+msgid "No offset has been specified!"
+msgstr "Offset tanÄ±mlanmadÄ±!"
+
+# src/findreplace.c:357
+#: src/findreplace.c:397
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "Kursor dosya sonundan ileri konumlandÄ±rÄ±lamaz!"
+
+# src/findreplace.c:362
+#: src/findreplace.c:402
+msgid "The offset must be a positive integer value!"
+msgstr "Offset pozitif tamsayÄ± olmalÄ±dÄ±r!"
+
+# src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:421
+msgid "There seems to be no string to search for!"
+msgstr "Aranacak dizi yok gibi gÃ¶rÃ¼nÃ¼yor!"
+
+# src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:443
+msgid "There is no active buffer to replace data in!"
+msgstr "Tampon bellekte deÄŸiÅŸtirme iÅŸlemi iÃ§in kullanÄ±labilecek veri yok!"
+
+#: src/findreplace.c:455 src/findreplace.c:496
+msgid "Strings are not appropriate for the selected data type!"
+msgstr "Diziler, seÃ§ilen veri tipi iÃ§in uygun deÄŸil!"
 
 # src/findreplace.c:425
-#: src/findreplace.c:429
+#: src/findreplace.c:470 src/findreplace.c:471
 msgid "End Of File reached!"
-msgstr "Dosya sonuna ulaþýldý!"
+msgstr "Dosya sonuna ulaÅŸÄ±ldÄ±!"
+
+# src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:484
+msgid "There is no active document to replace data in!"
+msgstr "Veri deÄŸiÅŸtirmek iÃ§in etkin dÃ¶kÃ¼man yok!"
+
+#: src/findreplace.c:516
+msgid "No occurences were found."
+msgstr "DeÄŸer bulunamadÄ±."
 
 # src/findreplace.c:463
-#: src/findreplace.c:467
+#: src/findreplace.c:519
 #, c-format
 msgid "Replaced %d occurencies."
-msgstr "%d oluþlar deðiþtirildi "
+msgstr "%d deÄŸer deÄŸiÅŸtirildi "
 
-# src/hex-document.c:707
-#: src/hex-document.c:707
-msgid "Page"
-msgstr "Sayfa"
+#: src/ghex-ui.xml.h:1
+msgid "About this application"
+msgstr "Bu uygulama hakkÄ±nda"
 
-# src/hex-document.c:713 src/hex-document.c:814
-#: src/hex-document.c:713 src/hex-document.c:814
-msgid "Hex dump generated by"
-msgstr "Onaltýlýk baský GHex tarafýndan Oluþturuldu"
+# src/hex-document-ui.c:87
+#: src/ghex-ui.xml.h:2
+msgid "Add View"
+msgstr "GÃ¶rÃ¼nÃ¼m ekle"
 
-# src/hex-document.c:737
-#: src/hex-document.c:737
-msgid "Previous page"
-msgstr "Önceki sayfa"
+# src/hex-document-ui.c:88
+#: src/ghex-ui.xml.h:3
+msgid "Add a new view to the buffer"
+msgstr "Tampon belleÄŸe yeni bir gÃ¶rÃ¼ntÃ¼ ekle"
 
-# src/hex-document.c:752
-#: src/hex-document.c:752
-msgid "Next page"
-msgstr "Sonraki sayfa"
+# src/ui.c:108
+#: src/ghex-ui.xml.h:4 src/ui.c:64
+msgid "Bytes"
+msgstr "Bayt"
 
-# src/hex-document-ui.c:50
-#: src/hex-document-ui.c:50
-msgid "_Bytes"
-msgstr "_Bytes"
+# src/preferences.c:172
+#: src/ghex-ui.xml.h:5
+msgid "C_ut"
+msgstr "K_es"
 
-# src/hex-document-ui.c:51
-#: src/hex-document-ui.c:51
-msgid "Group data by 8 bits"
-msgstr "8 bitlik gruplanmýþ veri"
+# src/ui.c:76
+#: src/ghex-ui.xml.h:6
+msgid "Character Table..."
+msgstr "Karakter Tablosu..."
 
-# src/hex-document-ui.c:52
-#: src/hex-document-ui.c:52
-msgid "_Words"
-msgstr "Keli_meler"
+# src/ui.c:76
+#: src/ghex-ui.xml.h:7
+msgid "Character _Table..."
+msgstr "Karakter _Tablosu..."
+
+# src/converter.c:99
+#: src/ghex-ui.xml.h:8
+msgid "Close"
+msgstr "Kapat"
+
+#: src/ghex-ui.xml.h:9
+msgid "Close the current file"
+msgstr "Etkin dosyayÄ± kapat"
+
+#: src/ghex-ui.xml.h:10
+msgid "Configure the application"
+msgstr "UygulamayÄ± yapÄ±landÄ±r"
+
+# src/preferences.c:298
+#: src/ghex-ui.xml.h:11
+msgid "Contents"
+msgstr "Ä°Ã§erik"
+
+# src/ui.c:74
+#: src/ghex-ui.xml.h:12
+msgid "Converter..."
+msgstr "Ã‡evirici..."
+
+#: src/ghex-ui.xml.h:13
+msgid "Copy"
+msgstr "Kopyala"
+
+#: src/ghex-ui.xml.h:14
+msgid "Copy selection to clipboard"
+msgstr "SeÃ§imi panoya kopyala"
+
+# src/preferences.c:172
+#: src/ghex-ui.xml.h:15
+msgid "Cut"
+msgstr "Kes"
+
+#: src/ghex-ui.xml.h:16
+msgid "Cut selection"
+msgstr "SeÃ§imi kes"
+
+#: src/ghex-ui.xml.h:17
+msgid "E_xit"
+msgstr "Ã‡Ä±_k"
+
+#: src/ghex-ui.xml.h:18
+msgid "Exit"
+msgstr "Ã‡Ä±k"
+
+#: src/ghex-ui.xml.h:19
+msgid "Exit the program"
+msgstr "Programdan Ã§Ä±k"
+
+# src/ui.c:57
+#: src/ghex-ui.xml.h:20
+msgid "Export data to HTML source"
+msgstr "Veriyi; HTML kaynak dosyasÄ±na dÃ¶nÃ¼ÅŸtÃ¼r"
+
+# src/ui.c:57
+#: src/ghex-ui.xml.h:21
+msgid "Export to HTML..."
+msgstr "HTML'e Ã§evir..."
+
+# src/findreplace.c:83
+#: src/ghex-ui.xml.h:22
+msgid "Find"
+msgstr "Bul"
+
+# src/hex-document-ui.c:74
+#: src/ghex-ui.xml.h:23
+msgid "Goto Byte"
+msgstr "Bayt'a Git"
 
 # src/hex-document-ui.c:53
-#: src/hex-document-ui.c:53
+#: src/ghex-ui.xml.h:24
 msgid "Group data by 16 bits"
-msgstr "16 bitlik gruplanmýþ veri"
-
-# src/hex-document-ui.c:54
-#: src/hex-document-ui.c:54
-msgid "_Longwords"
-msgstr "_Uzun Kelimeler"
+msgstr "Verileri 16 bitlik olarak grupla"
 
 # src/hex-document-ui.c:55
-#: src/hex-document-ui.c:55
+#: src/ghex-ui.xml.h:25
 msgid "Group data by 32 bits"
-msgstr "32 bitlik gruplanmýþ veri"
+msgstr "Verileri 32 bitlik olarak grupla"
+
+# src/hex-document-ui.c:51
+#: src/ghex-ui.xml.h:26
+msgid "Group data by 8 bits"
+msgstr "Verileri 8  bitlik olarak grupla"
+
+#: src/ghex-ui.xml.h:27
+msgid "Help Chat"
+msgstr "YardÄ±m Sohbeti"
+
+#: src/ghex-ui.xml.h:28
+msgid "Help on this application"
+msgstr "Bu uygulama konusunda yardÄ±m"
+
+# src/hex-document-ui.c:78
+#: src/ghex-ui.xml.h:29
+msgid "Insert Mode"
+msgstr "Araya Ekle Modu"
+
+# src/hex-document-ui.c:78
+#: src/ghex-ui.xml.h:30
+msgid "Insert/overwrite data"
+msgstr "Veriyi araya ekle/Ã¼zerine yaz"
 
 # src/hex-document-ui.c:74
-#: src/hex-document-ui.c:74
-msgid "_Goto Byte..."
-msgstr "Byte'a _Git..."
-
-# src/hex-document-ui.c:74
-#: src/hex-document-ui.c:74
+#: src/ghex-ui.xml.h:31
 msgid "Jump to a certain position"
 msgstr "Belirli bir pozisyona git"
 
-# src/hex-document-ui.c:78
-#: src/hex-document-ui.c:78
-msgid "_Insert mode"
-msgstr "A_raya yazma"
+# src/ui.c:110
+#: src/ghex-ui.xml.h:32 src/ui.c:66
+msgid "Longwords"
+msgstr "Uzun Kelimeler"
 
-# src/hex-document-ui.c:78
-#: src/hex-document-ui.c:78
-msgid "Insert/overwrite data"
-msgstr "Veriyi araya ekle/üzerine yaz"
+#: src/ghex-ui.xml.h:33
+msgid "Open"
+msgstr "AÃ§"
 
-# src/hex-document-ui.c:81
-#: src/hex-document-ui.c:81
-msgid "_Group Data As"
-msgstr "_Veriyi Farklý isimde Grupla"
+#: src/ghex-ui.xml.h:34
+msgid "Open a file"
+msgstr "Dosya aÃ§"
 
-# src/hex-document-ui.c:87
-#: src/hex-document-ui.c:87
-msgid "_Add view"
-msgstr "Görü_nüm ekle"
+# src/ui.c:75
+#: src/ghex-ui.xml.h:35
+msgid "Open base conversion dialog"
+msgstr "Temel Ã§evirme iletiÅŸim penceresini aÃ§"
 
-# src/hex-document-ui.c:88
-#: src/hex-document-ui.c:88
-msgid "Add a new view of the buffer"
-msgstr "Tampon belleðe yeni bir görüntü ekle"
+# src/hex-document.c:707
+#: src/ghex-ui.xml.h:36
+msgid "Paste"
+msgstr "YapÄ±ÅŸtÄ±r"
+
+#: src/ghex-ui.xml.h:37
+msgid "Paste data from clipboard"
+msgstr "Veriyi panodan yapÄ±ÅŸtÄ±r"
+
+#: src/ghex-ui.xml.h:38
+msgid "Preferences"
+msgstr "Tercihler"
+
+# src/ui.c:61
+#: src/ghex-ui.xml.h:39
+msgid "Preview printed data"
+msgstr "YazÄ±lan veriyi gÃ¶ster"
+
+# src/preferences.c:361
+#: src/ghex-ui.xml.h:40
+msgid "Print"
+msgstr "YazdÄ±r"
+
+# src/ui.c:61
+#: src/ghex-ui.xml.h:41
+msgid "Print Previe_w..."
+msgstr "BaskÄ± Ã–ni_zleme..."
+
+# src/ui.c:61
+#: src/ghex-ui.xml.h:42
+msgid "Print Preview..."
+msgstr "BaskÄ± Ã–nizleme..."
+
+#: src/ghex-ui.xml.h:43
+msgid "Print the current file"
+msgstr "GeÃ§erli dosyayÄ± yazdÄ±r"
+
+#: src/ghex-ui.xml.h:44
+msgid "Redo"
+msgstr "Yeniden Yap"
+
+#: src/ghex-ui.xml.h:45
+msgid "Redo the undone action"
+msgstr "Geri alÄ±nmÄ±ÅŸ iÅŸlemi yeniden yapar"
 
 # src/hex-document-ui.c:89
-#: src/hex-document-ui.c:89
-msgid "_Remove view"
-msgstr "Görünümü si_l"
+#: src/ghex-ui.xml.h:46
+msgid "Remove View"
+msgstr "GÃ¶rÃ¼nÃ¼mÃ¼ Sil"
 
 # src/hex-document-ui.c:90
-#: src/hex-document-ui.c:90
+#: src/ghex-ui.xml.h:47
 msgid "Remove the current view of the buffer"
-msgstr "Aktif görüntüyü tampon bellekten sil"
+msgstr "GeÃ§erli gÃ¶rÃ¼ntÃ¼yÃ¼ tampon bellekten sil"
+
+# src/findreplace.c:141
+#: src/ghex-ui.xml.h:49
+msgid "Replace a string"
+msgstr "Bir deÄŸer deÄŸiÅŸtir"
+
+#: src/ghex-ui.xml.h:50
+msgid "Revert"
+msgstr "Geri DÃ¶n"
+
+#: src/ghex-ui.xml.h:51
+msgid "Revert to a saved version of the file"
+msgstr "DosyanÄ±n kaydedilmiÅŸ bir versiyonuna geri dÃ¶n"
+
+#: src/ghex-ui.xml.h:52
+msgid "Save"
+msgstr "Kaydet"
+
+#: src/ghex-ui.xml.h:53
+msgid "Save As"
+msgstr "FarklÄ± Kaydet"
+
+#: src/ghex-ui.xml.h:54
+msgid "Save As _HTML..."
+msgstr "_HTML Olarak Kaydet..."
+
+#: src/ghex-ui.xml.h:55
+msgid "Save _As..."
+msgstr "_FarklÄ± Kaydet..."
+
+#: src/ghex-ui.xml.h:56
+msgid "Save the current file"
+msgstr "GeÃ§erli dosyayÄ± kaydet"
+
+# src/hex-document-ui.c:90
+#: src/ghex-ui.xml.h:57
+msgid "Save the current file with a different name"
+msgstr "GeÃ§erli dosyayÄ± farklÄ± bir ad ile kaydet"
+
+# src/findreplace.c:67
+#: src/ghex-ui.xml.h:58
+msgid "Search for a string"
+msgstr "Bir deÄŸeri ara"
+
+# src/ui.c:77
+#: src/ghex-ui.xml.h:59
+msgid "Show the character table"
+msgstr "Karakter tablosunu gÃ¶ster"
+
+#: src/ghex-ui.xml.h:60
+msgid "Undo"
+msgstr "Geri Al"
+
+#: src/ghex-ui.xml.h:61
+msgid "Undo the last action"
+msgstr "Son iÅŸlemi geri al"
+
+# src/ui.c:109
+#: src/ghex-ui.xml.h:62 src/ui.c:65
+msgid "Words"
+msgstr "Kelimeler"
+
+#: src/ghex-ui.xml.h:63
+msgid "_About"
+msgstr "_HakkÄ±nda"
+
+# src/hex-document-ui.c:87
+#: src/ghex-ui.xml.h:64
+msgid "_Add View"
+msgstr "GÃ¶rÃ¼_nÃ¼m Ekle"
+
+# src/converter.c:44
+#: src/ghex-ui.xml.h:65
+msgid "_Base Converter"
+msgstr "_Temel DÃ¶nÃ¼ÅŸtÃ¼rÃ¼cÃ¼"
+
+# src/hex-document-ui.c:50
+#: src/ghex-ui.xml.h:66
+msgid "_Bytes"
+msgstr "_Bayt"
+
+# src/converter.c:99
+#: src/ghex-ui.xml.h:67
+msgid "_Close"
+msgstr "_Kapat"
+
+#: src/ghex-ui.xml.h:68
+msgid "_Contents"
+msgstr "_Ä°Ã§erik"
+
+#: src/ghex-ui.xml.h:69
+msgid "_Copy"
+msgstr "_Kopyala"
+
+# src/preferences.c:188
+#: src/ghex-ui.xml.h:70
+msgid "_Edit"
+msgstr "DÃ¼_zenle"
+
+#: src/ghex-ui.xml.h:71
+msgid "_File"
+msgstr "_Dosya"
+
+#: src/ghex-ui.xml.h:72
+msgid "_Find"
+msgstr "_Bul"
+
+# src/hex-document-ui.c:74
+#: src/ghex-ui.xml.h:73
+msgid "_Goto Byte..."
+msgstr "Byte'a _Git..."
+
+# src/hex-document-ui.c:81
+#: src/ghex-ui.xml.h:74
+msgid "_Group Data As"
+msgstr "_Veriyi FarklÄ± isimde Grupla"
+
+# src/chartable.c:90 src/converter.c:73
+#: src/ghex-ui.xml.h:75
+msgid "_Help"
+msgstr "_YardÄ±m"
+
+# src/hex-document-ui.c:78
+#: src/ghex-ui.xml.h:76
+msgid "_Insert Mode"
+msgstr "A_raya Yazma Modu"
+
+# src/hex-document-ui.c:54
+#: src/ghex-ui.xml.h:77
+msgid "_Longwords"
+msgstr "_Uzun Kelimeler"
+
+#: src/ghex-ui.xml.h:78
+msgid "_Open..."
+msgstr "_AÃ§..."
+
+# src/hex-document.c:707
+#: src/ghex-ui.xml.h:79
+msgid "_Paste"
+msgstr "_YapÄ±ÅŸtÄ±r"
+
+#: src/ghex-ui.xml.h:80
+msgid "_Preferences"
+msgstr "_Tercihler"
+
+# src/preferences.c:361
+#: src/ghex-ui.xml.h:81
+msgid "_Print"
+msgstr "Yaz_dÄ±r"
+
+#: src/ghex-ui.xml.h:82
+msgid "_Redo"
+msgstr "_Yeniden Yap"
+
+# src/hex-document-ui.c:89
+#: src/ghex-ui.xml.h:83
+msgid "_Remove View"
+msgstr "GÃ¶rÃ¼nÃ¼mÃ¼ Si_l"
+
+#: src/ghex-ui.xml.h:85
+msgid "_Revert"
+msgstr "_Geri DÃ¶n"
+
+#: src/ghex-ui.xml.h:86
+msgid "_Save"
+msgstr "_Kaydet"
+
+#: src/ghex-ui.xml.h:87
+msgid "_Undo"
+msgstr "Geri _Al"
+
+#: src/ghex-ui.xml.h:88
+msgid "_View"
+msgstr "G_Ã¶rÃ¼nÃ¼m"
+
+#: src/ghex-ui.xml.h:89
+msgid "_Windows"
+msgstr "_Pencereler"
+
+# src/hex-document-ui.c:52
+#: src/ghex-ui.xml.h:90
+msgid "_Words"
+msgstr "Keli_meler"
+
+# src/chartable.c:90 src/converter.c:73
+#: src/ghex-window.c:435 src/ghex-window.c:798
+msgid "GHex"
+msgstr "OnaltÄ±lÄ±k"
+
+# src/main.c:191
+#: src/ghex-window.c:554
+#, c-format
+msgid "Offset: %s"
+msgstr "Offset: %s"
+
+# src/ui.c:495
+#: src/ghex-window.c:752
+#, c-format
+msgid "Activate file %s"
+msgstr "\"%s\" dosyasÄ±nÄ± aktifleÅŸtir"
+
+#: src/ghex-window.c:794
+#, c-format
+msgid "GHex - %s"
+msgstr "GHex - %s"
+
+# src/ui.c:284
+#: src/ghex-window.c:926
+msgid "Select a file to save buffer as"
+msgstr "Tampon bellekteki dosyayÄ± saklamak iÃ§in bir dosya seÃ§iniz"
 
 # src/main.c:51
-#: src/main.c:52
+#: src/ghex-window.c:956
+#, c-format
+msgid ""
+"File %s exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"%s dosyasÄ± zaten var\n"
+"Ãœzerine yazmak ister misiniz?"
+
+# src/ui.c:230 src/ui.c:534
+#: src/ghex-window.c:991 src/ui.c:356
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "Tampon bellek %s isimli dosyaya kayÄ±t edildi"
+
+# src/ui.c:226 src/ui.c:539
+#: src/ghex-window.c:997
+msgid "Error saving file!"
+msgstr "Dosya kayÄ±t edilirken hata oluÅŸtu!"
+
+# src/ui.c:543
+#: src/ghex-window.c:1003
+msgid "Can't open file for writing!"
+msgstr "Dosya yazmak iÃ§in aÃ§Ä±lamadÄ±!"
+
+# src/main.c:51
+#: src/ghex-window.c:1030
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
-"%s dosyasýnda deðiþiklik yapýldý.\n"
-"Deðiþiklikler saklansýn mý?"
+"%s dosyasÄ±nda deÄŸiÅŸiklik yapÄ±ldÄ±.\n"
+"DeÄŸiÅŸiklikler kaydedilsin mÄ±?"
 
-# src/main.c:191
-#: src/main.c:204
+#: src/ghex-window.c:1040
+msgid "Do_n't save"
+msgstr "Kaydet_me"
+
+#: src/ghex-window.c:1060 src/ui.c:344
+msgid "You don't have the permissions to save the file!"
+msgstr "DosyayÄ± kaydetmek iÃ§in yetkiniz yok!"
+
+# src/ui.c:226 src/ui.c:539
+#: src/ghex-window.c:1064 src/ui.c:349
+msgid "An error occured while saving file!"
+msgstr "Dosya kayÄ±t edilirken hata oluÅŸtu!"
+
+# src/hex-document.c:707
+#: src/hex-document.c:744
+msgid "Page"
+msgstr "Sayfa"
+
+# src/hex-document.c:713 src/hex-document.c:814
+#: src/hex-document.c:750 src/hex-document.c:875
+msgid "Hex dump generated by"
+msgstr "OnaltÄ±lÄ±k baskÄ±yÄ± yaratan"
+
+# src/ui.c:57
+#: src/hex-document.c:760
+msgid "Saving to HTML..."
+msgstr "HTML Olarak Kaydediliyor..."
+
+# src/hex-document.c:737
+#: src/hex-document.c:798
+msgid "Previous page"
+msgstr "Ã–nceki sayfa"
+
+# src/hex-document.c:752
+#: src/hex-document.c:813
+msgid "Next page"
+msgstr "Sonraki sayfa"
+
+# src/ui.c:200
+#: src/main.c:49
+msgid "The gnome binary editor"
+msgstr "Gnome ikilik editÃ¶rÃ¼"
+
+#: src/main.c:64
+msgid "Could not initialize Bonobo!\n"
+msgstr "Bonobo yÃ¼klenemedi!\n"
+
+#: src/main.c:87 src/main.c:99
 #, c-format
-msgid "Offset: %s"
-msgstr "Offset: %s"
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "Uygun olmayan yapÄ± dizisi \"%s\"\n"
 
-# src/preferences.c:52
-#: src/preferences.c:52
-msgid "Default"
-msgstr "Öntanýmlý"
-
-# src/preferences.c:53
-#: src/preferences.c:53
-msgid "Notebook"
-msgstr "Defter"
-
-# src/preferences.c:54
-#: src/preferences.c:54
-msgid "Toplevel"
-msgstr "En üst seviye"
-
-# src/preferences.c:55
-#: src/preferences.c:55
-msgid "Modal"
-msgstr "Modal"
-
-# src/preferences.c:77
-#: src/preferences.c:77
-msgid "Select font"
-msgstr "Yazýtipi seçiniz"
+#: src/preferences.c:92
+msgid "GHex Preferences"
+msgstr "GHex Tercihleri"
 
 # src/preferences.c:132
-#: src/preferences.c:136
-msgid "Maximum number of undo levels"
-msgstr "Geri alma iþlemi için maksimum seviye"
+#: src/preferences.c:137
+msgid "_Maximum number of undo levels:"
+msgstr "Geri alma iÅŸlemi iÃ§in _azami deÄŸer"
+
+# src/preferences.c:54
+#: src/preferences.c:157
+msgid "Undo levels"
+msgstr "Geri Alma Seviyesi"
+
+# src/preferences.c:132
+#: src/preferences.c:157
+msgid "Select maximum number of undo levels"
+msgstr "Geri alma iÅŸlemi iÃ§in azami deÄŸeri seÃ§iniz"
 
 # src/preferences.c:147
-#: src/preferences.c:151
-msgid "Show cursor offset in statusbar as"
-msgstr "Kursor offsetini durum çubuðunda göster"
-
-# src/chartable.c:90 src/converter.c:63 src/preferences.c:161
-#: src/chartable.c:90 src/preferences.c:165
-msgid "Decimal"
-msgstr "Ondalýk"
+#: src/preferences.c:161
+msgid "Show cursor offset in statusbar as:"
+msgstr "Kursor offseti durum Ã§ubuÄŸundan nasÄ±l gÃ¶sterilsin:"
 
 # src/preferences.c:166
-#: src/preferences.c:170
+#: src/preferences.c:180
 msgid "Hexadecimal"
-msgstr "Onaltýlýk"
+msgstr "OnaltÄ±lÄ±k"
 
 # src/preferences.c:172
-#: src/preferences.c:176
+#: src/preferences.c:186
 msgid "Custom"
-msgstr "Kiþisel"
+msgstr "Ã–zel"
+
+#: src/preferences.c:197
+msgid "Enter the cursor offset format"
+msgstr "Kursor offset biÃ§imini giriniz"
+
+#: src/preferences.c:198
+msgid "Select the cursor offset format"
+msgstr "Kursor offset biÃ§imini seÃ§iniz"
 
 # src/preferences.c:183
 #. show offsets check button
-#: src/preferences.c:187
+#: src/preferences.c:208
 msgid "Show offsets column"
-msgstr "Kolon offsetini göster"
+msgstr "Kolon offsetini gÃ¶ster"
 
 # src/preferences.c:188
-#: src/preferences.c:192
+#: src/preferences.c:213
 msgid "Editing"
-msgstr "Düzenleme"
+msgstr "DÃ¼zenleniyor"
 
 # src/preferences.c:197
 #. display font
-#: src/preferences.c:201
+#: src/preferences.c:222
 msgid "Font"
-msgstr "Yazýtipi"
-
-# src/preferences.c:213
-#: src/preferences.c:217
-msgid "Browse..."
-msgstr "Gözat..."
+msgstr "YazÄ±tipi"
 
 # src/preferences.c:233
 #. default group type
-#: src/preferences.c:237
+#: src/preferences.c:250
 msgid "Default Group Type"
-msgstr "Öntanýmlý Grup Türleri"
+msgstr "Ã–ntanÄ±mlÄ± Grup Tipi"
 
 # src/preferences.c:249
-#: src/preferences.c:253
+#: src/preferences.c:266
 msgid "Display"
-msgstr "Ekran"
-
-# src/preferences.c:258
-#. mdi modes
-#: src/preferences.c:262
-msgid "MDI Mode"
-msgstr "MDI Kipi"
-
-# src/preferences.c:275
-#: src/preferences.c:279
-msgid "MDI"
-msgstr "MDI"
+msgstr "GÃ¶rÃ¼ntÃ¼"
 
 # src/preferences.c:284
 #. paper selection
-#: src/preferences.c:288
+#: src/preferences.c:275
 msgid "Paper size"
-msgstr "Kaðýt boyutu"
+msgstr "KaÄŸÄ±t boyutu"
 
 # src/preferences.c:298
 #. data & header font selection
-#: src/preferences.c:302
+#: src/preferences.c:280
 msgid "Fonts"
-msgstr "Yazý Tipleri"
+msgstr "YazÄ± Tipleri"
 
 # src/preferences.c:304
-#: src/preferences.c:308
+#: src/preferences.c:286
+msgid "_Data font:"
+msgstr "_Veri yazÄ±tipi:"
+
+# src/preferences.c:304
+#: src/preferences.c:305
 msgid "Data font"
-msgstr "Veri yazýtipi"
+msgstr "Veri yazÄ±tipi"
+
+# src/preferences.c:77
+#: src/preferences.c:305
+msgid "Select the data font"
+msgstr "Veri yazÄ±tipi seÃ§iniz"
 
 # src/preferences.c:319
-#: src/preferences.c:323
+#: src/preferences.c:319
+msgid "Header fo_nt:"
+msgstr "BaÅŸlÄ±k _yazÄ± tipi:"
+
+# src/preferences.c:319
+#: src/preferences.c:337
 msgid "Header font"
-msgstr "Baþlýk yazý tipi"
+msgstr "BaÅŸlÄ±k yazÄ± tipi"
+
+# src/preferences.c:77
+#: src/preferences.c:337
+msgid "Select the header font"
+msgstr "BaÅŸlÄ±k yazÄ±tipi seÃ§iniz"
 
 # src/preferences.c:345
-#: src/preferences.c:349
-msgid "Print shaded box over"
-msgstr "Gölgeli kutunun üstüne yaz"
+#: src/preferences.c:365
+msgid "_Print shaded box over:"
+msgstr "G_Ã¶lgeli kutuyu Ã¼stÃ¼ne yaz:"
+
+#: src/preferences.c:377
+msgid "Box size"
+msgstr "Kutu boyutu"
+
+#: src/preferences.c:377
+msgid "Select size of box (in number of lines)"
+msgstr "Kutu boyutunu giriniz (satÄ±r sayÄ±sÄ±)"
 
 # src/preferences.c:354
-#: src/preferences.c:358
+#: src/preferences.c:381
 msgid "lines (0 for no box)"
-msgstr "Çizgiler (kutu yoksa 0'ý kullanýn)"
+msgstr "satÄ±r (kutu yoksa 0'Ä± kullanÄ±n)"
 
 # src/preferences.c:361
-#: src/preferences.c:365
+#: src/preferences.c:388
 msgid "Printing"
-msgstr "Yazdýrma"
+msgstr "YazdÄ±rÄ±lÄ±yor"
 
 # src/preferences.c:534
-#: src/preferences.c:540
+#: src/preferences.c:534
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
-msgstr "Offset biçim dizisi Kabul edilmeyen biçim belileyici içeriyor!.\n"
+msgstr ""
+"Offset biÃ§im dizisi kabul edilmeyen biÃ§im belirleyici iÃ§eriyor.\n"
 "Sadece 'x', 'X', 'p', 'P', 'd' ve 'o' kabul ediliyor."
 
 # src/preferences.c:570
-#: src/preferences.c:577
+#: src/preferences.c:566
 msgid "Can not open desired font!"
-msgstr "Ýstenen yazýtipi dosyasý açýlamadý"
-
-# src/ui.c:57
-#: src/ui.c:61
-msgid "Export to _HTML..."
-msgstr "_HTML olarak ihraç et..."
-
-# src/ui.c:57
-#: src/ui.c:61
-msgid "Export data to HTML source"
-msgstr "Veriyi; HTML kaynak dosyasý olarak ithal et"
-
-# src/ui.c:61
-#: src/ui.c:65
-msgid "Print pre_view..."
-msgstr "Baský öni_zleme..."
-
-# src/ui.c:61
-#: src/ui.c:65
-msgid "Preview printed data"
-msgstr "Yazýlacak veriyi baský önizlemede göster"
-
-# src/ui.c:74
-#: src/ui.c:78
-msgid "Con_verter..."
-msgstr "Çeviri_ci"
-
-# src/ui.c:75
-#: src/ui.c:79
-msgid "Open base conversion dialog"
-msgstr "Temel çevirme iletiþim penceresini aç"
-
-# src/ui.c:76
-#: src/ui.c:80
-msgid "Character _Table..."
-msgstr "Karakter _Tablosu..."
-
-# src/ui.c:77
-#: src/ui.c:81
-msgid "Show the character table"
-msgstr "Karakter tablosunu göster"
-
-# src/ui.c:94
-#: src/ui.c:98
-msgid "_Tools"
-msgstr "Ara_çlar"
-
-# src/ui.c:108
-#: src/ui.c:112
-msgid "Bytes"
-msgstr "Bytes"
-
-# src/ui.c:109
-#: src/ui.c:113
-msgid "Words"
-msgstr "Kelimeler"
-
-# src/ui.c:110
-#: src/ui.c:114
-msgid "Longwords"
-msgstr "Uzun Kelimeler"
-
-# src/ui.c:115
-#: src/ui.c:119
-msgid "hex data"
-msgstr "Onaltýlý veri"
-
-# src/ui.c:116
-#: src/ui.c:120
-msgid "ASCII data"
-msgstr "ASCII veri"
-
-# src/ui.c:200
-#: src/ui.c:204
-msgid "GHex, a binary file editor"
-msgstr "GHex, ikili dosya editörü"
-
-# src/ui.c:202
-#: src/ui.c:206
-msgid "Released under the terms of GNU Public License"
-msgstr "GNU Genel Lisansý altýnda daðýtýlýr"
-
-# src/ui.c:226 src/ui.c:539
-#: src/ui.c:230 src/ui.c:506
-msgid "Error saving file!"
-msgstr "Dosya kayýt edilirken hata oluþtu!"
-
-# src/ui.c:230 src/ui.c:534
-#: src/ui.c:234 src/ui.c:501
-#, c-format
-msgid "Saved buffer to file %s"
-msgstr "Tampon bellek %s isimli dosyaya kayýt edildi"
-
-# src/ui.c:251
-#: src/ui.c:255
-msgid "Select a file to open"
-msgstr "Açýlacak dosyayý seçiniz"
-
-# src/ui.c:284
-#: src/ui.c:290
-msgid "Select a file to save buffer as"
-msgstr "Tampon bellekteki dosyayý saklamak için bir dosya seçiniz"
-
-# src/ui.c:370
-#: src/ui.c:331
-msgid "Select path and file name for the HTML source"
-msgstr "HTML kaynak kodu için dosya yolu ve dosya adý seçiniz"
-
-# src/ui.c:466
-#: src/ui.c:432
-#, c-format
-msgid "Really revert file %s?"
-msgstr "Gerçekten %s isimli dosyaya geri döneyim mi?"
-
-# src/ui.c:479
-#: src/ui.c:446
-#, c-format
-msgid "Reverted buffer from file %s"
-msgstr "%s dosyasýndan tampon belleðe geri dönüldü"
-
-# src/ui.c:495
-#: src/ui.c:462
-#, c-format
-msgid "Loaded file %s"
-msgstr "\"%s\" Dosyasý Yüklendi"
-
-# src/ui.c:500
-#: src/ui.c:467
-msgid "Can not open file!"
-msgstr "Dosya açýlamaz!"
-
-# src/ui.c:543
-#: src/ui.c:510
-msgid "Can't open file for writing!"
-msgstr "Dosya yazmak için açýlamadý!"
-
-#: src/ui.c:579
-msgid "Print Hex Document"
-msgstr "Onaltýlýk Belgeyi Yazdýr"
-
-# src/hex-document.c:707
-#: src/ui.c:584
-msgid "Pages"
-msgstr "Sayfa"
-
-# src/print.c:171
-#: src/ui.c:625
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Baský Önizleme"
-
-# src/chartable.c:90 src/converter.c:83
-#: src/chartable.c:90
-msgid "ASCII"
-msgstr "ASCII"
-
-# src/chartable.c:90 src/converter.c:73
-#: src/chartable.c:90
-msgid "Hex"
-msgstr "Onaltýlýk"
-
-# src/chartable.c:91
-#: src/chartable.c:91
-msgid "Octal"
-msgstr "Sekizli"
-
-# src/chartable.c:91 src/converter.c:53
-#: src/chartable.c:91
-msgid "Binary"
-msgstr "Ýkili"
-
-# src/chartable.c:97
-#: src/chartable.c:98
-msgid "GHex: Character table"
-msgstr "GHex: Karakter tablosu"
+msgstr "Ä°stenen yazÄ±tipi dosyasÄ± aÃ§Ä±lamadÄ±!"
 
 # src/print.c:187
-#: src/print.c:47
+#: src/print.c:54
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Sayfa: %i/%i"
 
-#: src/print.c:197 src/print.c:211
+#: src/print.c:205 src/print.c:219
 #, c-format
 msgid ""
 "GHex could not find the font \"%s\".\n"
 "GHex is unable to print without this font installed."
 msgstr ""
-"GHex \"%s\" yazýtipini bulamadý.\n"
-"GHex bu yazýtipi yüklenmeden yazýcý çýktýsý alamaz."
+"GHex \"%s\" yazÄ±tipini bulamadÄ±.\n"
+"GHex bu yazÄ±tipi yÃ¼klenmeden yazÄ±cÄ± Ã§Ä±ktÄ±sÄ± alamaz."
 
-# src/converter.c:99
-#~ msgid "Close"
-#~ msgstr "Kapat"
+#: src/session.c:29
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "X yapÄ±sÄ± Ã¶zelleÅŸtirmesi (\"X\" man sayfalarÄ±na bakÄ±n)."
+
+#: src/session.c:30
+msgid "GEOMETRY"
+msgstr "YAPI"
+
+# src/ui.c:115
+#: src/ui.c:71
+msgid "hex data"
+msgstr "onaltÄ±lÄ± veri"
+
+# src/ui.c:116
+#: src/ui.c:72
+msgid "ASCII data"
+msgstr "ASCII veri"
+
+# src/ui.c:200
+#: src/ui.c:243
+msgid "GHex, a binary file editor"
+msgstr "GHex, ikilik dosya editÃ¶rÃ¼"
+
+# src/ui.c:202
+#: src/ui.c:245
+msgid "Released under the terms of GNU Public License"
+msgstr "GNU Genel LisansÄ± altÄ±nda daÄŸÄ±tÄ±lÄ±r"
+
+#: src/ui.c:268
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"YardÄ±m gÃ¶sterilirken hata oluÅŸtu: \n"
+"%s"
+
+# src/ui.c:251
+#: src/ui.c:385
+msgid "Select a file to open"
+msgstr "AÃ§Ä±lacak dosyayÄ± seÃ§iniz"
+
+# src/ui.c:495
+#: src/ui.c:423
+#, c-format
+msgid "Loaded file %s"
+msgstr "\"%s\" dosyasÄ± yÃ¼klendi"
+
+# src/ui.c:500
+#: src/ui.c:431
+msgid "Can not open file!"
+msgstr "Dosya aÃ§Ä±lamadÄ±!"
+
+# src/ui.c:370
+#: src/ui.c:495
+msgid "Select path and file name for the HTML source"
+msgstr "HTML kaynak kodu iÃ§in dosya konumunu ve adÄ±nÄ± seÃ§iniz"
+
+# src/ui.c:370
+#: src/ui.c:530
+msgid "You need to specify a base name for the HTML files."
+msgstr "HTML dosyasÄ± iÃ§in temel bir ad belirtmeniz gerekmektedir."
+
+#: src/ui.c:541 src/ui.c:563
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "SeÃ§ilen konuma yazma hakkÄ±nÄ±z yok.\n"
+
+#: src/ui.c:547
+msgid ""
+"Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr ""
+"HTML olarak kayderken bazÄ± dosyalarÄ±n Ã¼zerine yazÄ±lacak.\n"
+"Devam etmek istiyor musunuz?"
+
+# src/ui.c:466
+#: src/ui.c:695
+#, c-format
+msgid "Really revert file %s?"
+msgstr "%s isimli dosyaya geri dÃ¶neyim mi?"
+
+# src/ui.c:479
+#: src/ui.c:713
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "%s dosyasÄ±ndan tampon belleÄŸe geri dÃ¶nÃ¼ldÃ¼"
+
+#: src/ui.c:788
+msgid "Print Hex Document"
+msgstr "OnaltÄ±lÄ±k Belgeyi YazdÄ±r"
+
+# src/hex-document.c:707
+#: src/ui.c:793
+msgid "Pages"
+msgstr "Sayfa"
+
+# src/print.c:171
+#: src/ui.c:839
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): BaskÄ± Ã–nizleme"
+
+# src/findreplace.c:410 src/findreplace.c:447
+#~ msgid "Strange find or replace string!"
+#~ msgstr "Aranmak veya deÄŸiÅŸtirilmek istenen dizi tanÄ±mlanamadÄ±!"
+
+# src/preferences.c:52
+#~ msgid "Default"
+#~ msgstr "Ã–ntanÄ±mlÄ±"
+
+# src/preferences.c:53
+#~ msgid "Notebook"
+#~ msgstr "Defter"
+
+# src/preferences.c:55
+#~ msgid "Modal"
+#~ msgstr "Modal"
+
+# src/preferences.c:213
+#~ msgid "Browse..."
+#~ msgstr "GÃ¶zat..."
+
+# src/preferences.c:258
+#~ msgid "MDI Mode"
+#~ msgstr "MDI Kipi"
+
+# src/preferences.c:275
+#~ msgid "MDI"
+#~ msgstr "MDI"
+
+# src/ui.c:94
+#~ msgid "_Tools"
+#~ msgstr "Ara_Ã§lar"
+
