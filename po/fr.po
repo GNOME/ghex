@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 1998-03-28 20:58+0100\n"
+"POT-Creation-Date: 1998-04-18 00:32+0200\n"
 "PO-Revision-Date: 1998-02-28 19:57+0100\n"
 "Last-Translator: Vincent Renardias <vincent@waw.com>\n"
 "Language-Team: Vincent Renardias <vincent@waw.com>\n"
@@ -59,7 +59,7 @@ msgstr "Recharger"
 msgid "Reload Configuration File"
 msgstr "Recharger le fichier de configuration"
 
-#: gtt/toolbar.c:152
+#: ghex/ui.c:263 ghex/ui.c:293 gtt/toolbar.c:152
 msgid "Save"
 msgstr "Sauver"
 
@@ -123,7 +123,7 @@ msgstr "Manuel"
 msgid "Manual..."
 msgstr "Manuel..."
 
-#: gtt/menus.c:40 gtt/toolbar.c:198
+#: ghex/ui.c:323 gtt/menus.c:40 gtt/toolbar.c:198
 msgid "Quit"
 msgstr "Quitter"
 
@@ -160,7 +160,7 @@ msgstr "Avertissement"
 msgid "I could not write the configuration file!"
 msgstr "Je n'ai pas pu écrire le fichier de configuration!"
 
-#: genius/genius.c:124 gtt/menucmd.c:86
+#: genius/genius.c:127 ghex/ui.c:78 ghex/ui.c:87 gtt/menucmd.c:86
 msgid "OK"
 msgstr "OK"
 
@@ -188,7 +188,7 @@ msgstr ""
 msgid "Clear Daily Counter"
 msgstr "Réinitialiser le compteur journalier"
 
-#: genius/genius.c:456 gtt/menus.c:70 gtt/menus.c:128
+#: genius/genius.c:459 gtt/menus.c:70 gtt/menus.c:128
 msgid "Properties..."
 msgstr "Propriétés..."
 
@@ -208,19 +208,21 @@ msgstr "Stop"
 msgid "Timer Running"
 msgstr "Chronométre lancé"
 
-#: genius/genius.c:475 gtop/main.c:128 gtt/menus.c:103
+#: gcalc/gcalc.c:46 genius/genius.c:478 ghex/ui.c:412 gtop/main.c:129
+#: gtt/menus.c:103
 msgid "About..."
 msgstr "A Propos..."
 
-#: gtop/main.c:147 gtt/menus.c:113
+#: ghex/ui.c:331 gncal/main.c:213 gtop/main.c:148 gtt/menus.c:113
 msgid "File"
 msgstr "Fichier"
 
-#: gtt/menus.c:115
+#: ghex/ui.c:367 gncal/main.c:214 gtt/menus.c:115
 msgid "Edit"
 msgstr "Editer"
 
-#: genius/genius.c:488 gtop/main.c:150 gtt/menus.c:120
+#: gcalc/gcalc.c:56 genius/genius.c:491 ghex/ui.c:430 gncal/main.c:215
+#: gtop/main.c:152 gtt/menus.c:120
 msgid "Help"
 msgstr "Aide"
 
@@ -276,7 +278,7 @@ msgstr "programme terminé"
 msgid "program started"
 msgstr "program lancé"
 
-#: genius/genius.c:601 gtt/options.c:197
+#: genius/genius.c:604 gncal/eventedit.c:367 gtt/options.c:197
 msgid "Display"
 msgstr "Affichage"
 
@@ -380,13 +382,12 @@ msgstr "Préférences"
 msgid "Misc"
 msgstr "Divers"
 
-#. define one empty project on the first start
-#: gtt/clist.c:128 gtt/prop.c:55
+#: gtt/prop.c:55
 msgid "empty"
 msgstr "vide"
 
 #. options area
-#: genius/genius.c:353 gtt/prop.c:161
+#: genius/genius.c:356 gtt/prop.c:161
 msgid "Properties"
 msgstr "Propriétés"
 
@@ -418,153 +419,207 @@ msgstr "secondes"
 msgid "Project Time ever:"
 msgstr "Temps total sur le projet:"
 
-#: gtt/clist.c:86
-msgid "Time"
-msgstr "Temps"
+#: gtt/clist.c:97
+msgid "Total"
+msgstr "Total"
 
-#: gtt/clist.c:87
+#: gncal/main.c:223 gtt/clist.c:98
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: gtt/clist.c:99
 msgid "Project Title"
 msgstr "Titre du Projet"
 
-#: gtop/main.c:62
+#: gtt/clist.c:100
+msgid "Description"
+msgstr "Description"
+
+#: gtop/main.c:63
 msgid "GTop"
 msgstr "GTop"
 
 #. copyrigth notice
-#: gtop/main.c:64
+#: gtop/main.c:65
 msgid "(C) 1998 the Free Software Foundation"
 msgstr "(C) 1998 la Free Software Foundation"
 
 #. another comments
-#: gtop/main.c:67
+#: gtop/main.c:68
 msgid "The GNOME System Monitor program"
 msgstr "Le Moniteur Système GNOME"
 
-#: gtop/main.c:134
+#: gtop/main.c:135
 msgid "item 1"
 msgstr "item 1"
 
-#: gtop/main.c:135
+#: gtop/main.c:136
 msgid "item 2"
 msgstr "item 2"
 
-#: gtop/main.c:136
+#: gtop/main.c:137
 msgid "item 3"
 msgstr "item 3"
 
-#: genius/genius.c:458 gtop/main.c:141
+#: gcalc/gcalc.c:37 genius/genius.c:461 gncal/main.c:194 gtop/main.c:142
 msgid "Exit"
 msgstr "Quitter"
 
-#: genius/genius.c:485 gtop/main.c:148
+#: genius/genius.c:488 gtop/main.c:149
 msgid "View"
 msgstr "Voir"
 
-#: gtop/main.c:149 gtop/sysview.c:34
+#: gtop/main.c:150
+msgid "Memory"
+msgstr "Mémoire"
+
+#: gtop/main.c:151 gtop/sysview.c:34
 msgid "System"
 msgstr "Système"
 
-#: gtop/main.c:155
+#: gtop/main.c:157
 msgid "Start / Stop sampling"
 msgstr "Lancer / Arréter l'échantillonage"
 
-#: gtop/main.c:181
+#: gtop/main.c:183
 msgid "GNOME System Monitor"
 msgstr "Moniteur Système GNOME"
 
-#: gtop/procview.c:162
+#: gtop/procview.c:163
 msgid "Process ID"
 msgstr "ID Processus"
 
-#: gtop/procview.c:164
+#: gtop/procview.c:165
 msgid "User name"
 msgstr "Utilisateur"
 
-#: gtop/procview.c:166
+#: gtop/procview.c:167
 msgid "Priority"
 msgstr "Priorité"
 
-#: gtop/procview.c:168
+#: gtop/procview.c:169
 msgid "Nice"
 msgstr "Prio"
 
-#: gtop/procview.c:170
+#: gtop/procview.c:171
 msgid "Used memory size"
 msgstr "Mémoire utilisée"
 
-#: gtop/procview.c:172
-msgid "Resident memory size"
+#: gtop/procview.c:173
+msgid "Resident memory set size"
 msgstr "Taille de mémoire résidente"
 
-#: gtop/procview.c:174
+#: gtop/procview.c:175
 msgid "Shared memory size"
 msgstr "Taille de mémoire partagée"
 
-#: gtop/procview.c:176
+#: gtop/procview.c:177
 msgid "Process state"
 msgstr "Etat du Process %d"
 
-#: gtop/procview.c:178
+#: gtop/procview.c:179
 msgid "Percent CPU usage"
 msgstr "Pourcentage d'utilisation du processeur"
 
-#: gtop/procview.c:180
+#: gtop/procview.c:181
 msgid "Percent memory usage"
 msgstr "Pourcentage de mémoire utilisée"
 
-#: gtop/procview.c:182
+#: gtop/procview.c:183
 msgid "Time consumed"
 msgstr "Temps consommé"
 
-#: gtop/procview.c:184
+#: gtop/procview.c:185
 msgid "User time consumed"
 msgstr "Temps utilisateur consommé"
 
-#: gtop/procview.c:186
+#: gtop/procview.c:187
 msgid "System time consumed"
 msgstr "Temps système consommé"
 
-#: gtop/procview.c:188
+#: gtop/procview.c:189
 msgid "Command"
 msgstr "Commande"
 
-#: gtop/procview.c:298
+#: gtop/procview.c:191
+msgid "Resident memory size"
+msgstr "Taille de mémoire résidente"
+
+#: gtop/procview.c:301
 msgid "All processes"
 msgstr "Tous les processus"
 
-#: gtop/procview.c:300
+#: gtop/procview.c:303
 msgid "User processes"
 msgstr "Processus utilisateurs"
 
-#: gtop/procview.c:302
+#: gtop/procview.c:305
 msgid "TTY processes"
 msgstr "Processus TTY"
 
-#: gtop/procview.c:388
+#: gtop/procview.c:391
 msgid "Processes"
 msgstr "Processus"
 
-#: gtop/procview.c:574
+#: gtop/procview.c:577
 msgid "Send"
 msgstr "Envoyer"
 
-#: gtop/procview.c:595
+#: gtop/procview.c:598
 msgid "More ..."
 msgstr "Plus ..."
 
-#: gtop/procview.c:609
+#: gtop/procview.c:612
 msgid "SIGTERM"
 msgstr "SIGTERM"
 
-#: gtop/procview.c:616
+#: gtop/procview.c:619
 msgid "SIGKILL"
 msgstr "SIGKILL"
 
-#: gtop/procview.c:628
+#: gtop/procview.c:631
 msgid "Details ..."
 msgstr "Détails ..."
 
-#: gtop/details.c:47
+#: gtop/memusage.c:26
+msgid "Resident"
+msgstr "Résidente"
+
+#: gtop/memusage.c:28
+msgid "Shared"
+msgstr "Partagée"
+
+#: gtop/memusage.c:30
+msgid "Size"
+msgstr "Taille"
+
+#: gtop/memusage.c:76
+msgid "Memory usage"
+msgstr "Utilisation de la mémoire"
+
+#: gtop/memusage.c:175
+msgid "Physical Memory Breakdown"
+msgstr "Détail de la mémoire physique"
+
+#: gtop/memusage.c:179
+#, c-format
+msgid "Total Physical Memory %ldk (%ldk used)"
+msgstr "Mémoire Physique Totale %ldk (%ldk utilisée)"
+
+#: gtop/memusage.c:272
+msgid "Free"
+msgstr "Libre"
+
+#. the Buffers menu
+#: ghex/ui.c:404 gtop/memusage.c:281
+msgid "Buffers"
+msgstr "Tampons"
+
+#: gtop/memusage.c:285
+msgid "Kernel"
+msgstr "Noyau"
+
+#: ghex/ui.c:270 ghex/ui.c:313 gncal/main.c:191 gtop/details.c:47
 msgid "Close"
 msgstr "Fermer"
 
@@ -633,114 +688,708 @@ msgstr "Pile"
 msgid "Hole"
 msgstr "Trou"
 
-#: gtop/details.c:486
+#: gtop/details.c:476
 msgid "Graphical memory map"
 msgstr "Carte mémoire graphique"
 
-#: genius/calc.c:277
+#: genius/calc.c:280
 msgid "ERROR: Probably corrupt stack!"
 msgstr "ERREUR: La pile est probablement corrompue!"
 
-#: genius/calc.c:301
+#: genius/calc.c:304
 msgid "ERROR: "
 msgstr "ERREUR: "
 
-#: genius/calc.c:303
+#: genius/calc.c:306
 msgid " before '"
 msgstr " avant '"
 
-#: genius/genius.c:228 genius/genius.c:501
+#: genius/genius.c:231 genius/genius.c:504
 msgid "GnomENIUS Calculator"
 msgstr "Calculatrice GnomENIUS"
 
 #. another comments
-#: genius/genius.c:233
+#: genius/genius.c:236
 msgid "The Gnome Calculator program"
 msgstr "La Calculatrice Gnome"
 
-#: genius/genius.c:343
+#: genius/genius.c:346
 msgid "GnomENIUS Calculator setup"
 msgstr "Configuration de la Calculatrice GnomENIUS"
 
-#: genius/genius.c:357
+#: genius/genius.c:360
 msgid "Prefix notation"
 msgstr "Notation 'Prefix'"
 
-#: genius/genius.c:368
+#: genius/genius.c:371
 msgid "Infix notation"
 msgstr "Notation 'Infix'"
 
-#: genius/genius.c:379
+#: genius/genius.c:382
 msgid "Postfix notation (RPN)"
 msgstr "Notation 'Postfix' (RPN)"
 
-#: genius/genius.c:393
+#: genius/genius.c:396
 msgid "Full (exact) answers"
 msgstr "Réponses complétes (exactes)"
 
-#: genius/genius.c:403
+#: genius/genius.c:406
 msgid "Make floats integers (e.g. 10.0=10)"
 msgstr "Transformer les nombres flottants en entiers (e.g. 10.0=10)"
 
-#: genius/genius.c:412
+#: genius/genius.c:415
 msgid "Results as floats"
 msgstr "Résultats en nombres flottants"
 
-#: genius/genius.c:421
+#: genius/genius.c:424
 msgid "Floats in scientific notation"
 msgstr "Nombres flottants en notation scientifique"
 
 #. numpad
-#: genius/genius.c:464 genius/genius.c:637
+#: genius/genius.c:467 genius/genius.c:640
 msgid "Numpad"
 msgstr "Pavé Numérique"
 
 #. scientific
-#: genius/genius.c:466 genius/genius.c:662
+#: genius/genius.c:469 genius/genius.c:665
 msgid "Scientific"
 msgstr "Scientifique"
 
-#: genius/genius.c:482
+#: gcalc/gcalc.c:53 genius/genius.c:485
 msgid "Calculator"
 msgstr "Calculatrice"
 
-#: genius/eval.c:329
+#: genius/eval.c:332
 msgid "Variable used uninitialized!"
 msgstr "Variable utilisée sans être initialisée!"
 
-#: genius/eval.c:480
+#: genius/eval.c:483
 msgid "Left value is NOT a number! (ignoring if construct)"
 msgstr "La valeur de gauche n'est PAS un nombre! (\"if\" ignoré)"
 
-#: genius/eval.c:492
+#: genius/eval.c:495
 msgid "Left value is NOT a number! (ignoring ifelse construct)"
 msgstr "La valeur de gauche n'est PAS un nombre! (\"ifelse\" ignorée)"
 
-#: genius/eval.c:706
+#: genius/eval.c:709
 msgid "'=' can't function without proper nodes!"
 msgstr "'=' nécessite une fonction compléte!"
 
-#: genius/eval.c:710
+#: genius/eval.c:713
 msgid "Left value is NOT a 0\\function! (ignoring '=')"
 msgstr "La valeur de gauche n'est PAS une 0\\fonction! ('=' ignoré)"
 
-#: genius/eval.c:714
+#: genius/eval.c:717
 msgid "Right value is NOT computed! (ignoring '=')"
 msgstr "Valeur de droite NON calculée! ('=' ignoré)"
 
-#: genius/eval.c:727
+#: genius/eval.c:730
 msgid "funcdefop can't function without proper nodes!"
 msgstr "funcdefop can't function without proper nodes!"
 
-#: genius/eval.c:730
+#: genius/eval.c:733
 msgid "Left value is NOT a function! (ignoring function definition)"
 msgstr ""
 "La valeur de gauche n'est PAS une fonction! (définition de la fonction "
 "ignorée)"
 
-#: genius/util.c:125
+#: genius/util.c:128
 msgid "Stack underflow!"
 msgstr "Pile vide!"
+
+#: ghex/callbacks.c:19
+msgid "GHex, a binary file editor"
+msgstr "GHex, un éditeur de fichiers binaires"
+
+#: ghex/callbacks.c:21
+msgid ""
+"A small contribution to the GNOME project.\n"
+"Send bug reports (patches preferred ;)) to:\n"
+"<jaka.mocnik@kiss.uni-lj.si>"
+msgstr "Une petite contribution au projet GNOME.\n"
+"Envoyez les raports de bugs (patchs préférés ;)) à:\n"
+"<jaka.mocnik@kiss.uni-lj.si>"
+
+#: ghex/callbacks.c:65 ghex/callbacks.c:115
+msgid "Error saving file!"
+msgstr "Erreur lors de la sauvegarde du fichier!"
+
+#: ghex/callbacks.c:87
+msgid "Can not open file!"
+msgstr "Impossible d'ouvrir le fichier!"
+
+#: ghex/callbacks.c:119
+msgid "Can't open file for writing!"
+msgstr "Impossible d'ouvrir le fichier en écriture!"
+
+#: ghex/callbacks.c:132
+msgid "Select a file to open"
+msgstr "Sélectionnez un fichier"
+
+#: ghex/callbacks.c:150
+msgid "Select a file to save buffer as"
+msgstr "Sélectionnez un fichier pour sauver le tampon"
+
+#: ghex/callbacks.c:264 ghex/callbacks.c:287
+msgid "There seems to be no string to search for!"
+msgstr "Il semble qu'il n'y ait pas de chaine à rechercher!"
+
+#: ghex/callbacks.c:269 ghex/callbacks.c:292
+msgid "There is no active buffer to search!"
+msgstr "Il n'y a pas de tampon actif pour rechercher!"
+
+#: ghex/callbacks.c:278
+msgid "End Of File reached"
+msgstr "Fin du fichier atteinte"
+
+#: ghex/callbacks.c:301
+msgid "Beginning Of File reached"
+msgstr "Début du fichier atteint"
+
+#: ghex/callbacks.c:309
+msgid "There is no active buffer to move the cursor in!"
+msgstr "Il n'y a pas de tampon actif pour y déplacer le curseur!"
+
+#: ghex/callbacks.c:314
+msgid "No offset has been specified!"
+msgstr "Le déplacement n'a pas été spécifié!"
+
+#: ghex/callbacks.c:321
+msgid "The offset must be a positive integer value!"
+msgstr "Le déplacement doit etre une valeur positive et entière!"
+
+#: ghex/callbacks.c:326
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "Impossible de positionner le curseur après la fin du fichier!"
+
+#: ghex/callbacks.c:339 ghex/callbacks.c:374
+msgid "There is no active buffer to replace data in!"
+msgstr "Il n'y a pas de tampon actif dans lequel remplacer des données!"
+
+#: ghex/callbacks.c:347 ghex/callbacks.c:382
+msgid "Erroneous find or replace string!"
+msgstr "Chaine de recherche erronnée!"
+
+#: ghex/callbacks.c:352 ghex/callbacks.c:387
+msgid "Both strings must be of the same length!"
+msgstr "Les deux chaines doivent avoir la meme longueur!"
+
+#: ghex/callbacks.c:365
+msgid "End Of File reached!"
+msgstr "Fin du fichier atteinte!"
+
+#: ghex/callbacks.c:402
+#, c-format
+msgid "Replaced %d occurencies."
+msgstr "%d occurences remplacées."
+
+#: ghex/callbacks.c:420
+msgid "Can not open desired font!"
+msgstr "Impossible d'utiliser la police spécifiée!"
+
+#: ghex/config.c:38
+msgid "Can not open configured font!"
+msgstr "Impossible d'ouvrir la police utilisée!"
+
+#: ghex/gnome-support.c:13
+msgid "ID"
+msgstr "ID"
+
+#: ghex/gnome-support.c:13
+msgid "Discard session"
+msgstr "Ne pas sauver la session"
+
+#: ghex/ui.c:35
+msgid "Single Bytes"
+msgstr ""
+
+#: ghex/ui.c:36
+msgid "Words"
+msgstr "Mots"
+
+#: ghex/ui.c:37
+msgid "Longwords"
+msgstr "Mots Longs"
+
+#: ghex/ui.c:259
+msgid "Open"
+msgstr "Ouvrir"
+
+#: ghex/ui.c:259
+msgid "Open a file"
+msgstr "Ouvrir un fichier"
+
+#: ghex/ui.c:263
+msgid "Save file"
+msgstr "Sauver fichier"
+
+#: ghex/ui.c:267 ghex/ui.c:307
+msgid "Revert"
+msgstr "Annuler"
+
+#: ghex/ui.c:267
+msgid "Revert file"
+msgstr ""
+
+#: ghex/ui.c:270
+msgid "Close file"
+msgstr "Fermer fichier"
+
+#: ghex/ui.c:285
+msgid "Open..."
+msgstr "Ouvrir..."
+
+#: ghex/ui.c:301
+msgid "Save as..."
+msgstr "Enregistrer sous..."
+
+#: ghex/ui.c:339
+msgid "Find..."
+msgstr "Rechercher..."
+
+#: ghex/ui.c:347
+msgid "Replace..."
+msgstr "Remplacer..."
+
+#: ghex/ui.c:359
+msgid "Goto byte"
+msgstr "Aller à l'octet"
+
+#: ghex/ui.c:375
+msgid "Group Data As"
+msgstr ""
+
+#: ghex/ui.c:381
+msgid "Select Font..."
+msgstr "Sélectionner une police..."
+
+#: ghex/ui.c:391
+msgid "Save Configuration On Exit"
+msgstr "Sauver la configuration en quittant"
+
+#: ghex/ui.c:398
+msgid "Options"
+msgstr "Options"
+
+#: ghex/ui.c:424
+msgid "Help..."
+msgstr "Aide..."
+
+#: ghex/ui.c:446
+msgid "Find Data"
+msgstr "Trouver Données"
+
+#. f_next = gtk_button_new_with_label(_("Find Next"));
+#: ghex/ui.c:454
+msgid "Find Next"
+msgstr "Trouver le suivant"
+
+#: ghex/ui.c:461
+msgid "Find Previous"
+msgstr "Trouver le précédent"
+
+#: ghex/ui.c:492
+msgid "Find & Replace Data"
+msgstr "Rechercher & Remplacer données"
+
+#: ghex/ui.c:507
+msgid "Find next"
+msgstr "Trouver le suivant"
+
+#: ghex/ui.c:514
+msgid "Replace"
+msgstr "Remplacer"
+
+#: ghex/ui.c:521
+msgid "Replace All"
+msgstr "Remplacer Tout"
+
+#: ghex/ui.c:550
+msgid "Jump To Byte"
+msgstr "Aller à l'Octet"
+
+#: gncal/eventedit.c:201
+msgid "Time"
+msgstr "Temps"
+
+#: gncal/eventedit.c:215
+msgid "Start time:"
+msgstr "Heure de début:"
+
+#: gncal/eventedit.c:231
+msgid "End time:"
+msgstr "Heure de fin:"
+
+#. 3. All day checkbox
+#: gncal/eventedit.c:241
+msgid "All day event"
+msgstr "Toute la journée"
+
+#. 4. Recurring event checkbox
+#: gncal/eventedit.c:251
+msgid "Recurring event"
+msgstr "Evénement récurrent"
+
+#: gncal/eventedit.c:264
+msgid "Minutes"
+msgstr "Minutes"
+
+#: gncal/eventedit.c:264
+msgid "Hours"
+msgstr "Heures"
+
+#: gncal/eventedit.c:264
+msgid "Days"
+msgstr "Jours"
+
+#: gncal/eventedit.c:328 gncal/eventedit.c:364
+msgid "Mail to:"
+msgstr "Mail à:"
+
+#: gncal/eventedit.c:337
+msgid "Run program:"
+msgstr "Lancer le programme:"
+
+#: gncal/eventedit.c:340
+msgid "Select program to run at alarm time"
+msgstr "Sélectionnez le programme à lancer à l'heure de l'alarme"
+
+#: gncal/eventedit.c:356
+msgid "Alarms"
+msgstr "Alarmes"
+
+#: gncal/eventedit.c:368
+msgid "Audio"
+msgstr "Audio"
+
+#: gncal/eventedit.c:369
+msgid "Program"
+msgstr "Program"
+
+#: gncal/eventedit.c:370
+msgid "Mail"
+msgstr "Mail"
+
+#: gncal/eventedit.c:387
+msgid "Classification"
+msgstr "Classification"
+
+#: gncal/eventedit.c:393
+msgid "Public"
+msgstr "Public"
+
+#: gncal/eventedit.c:394
+msgid "Private"
+msgstr "Privé"
+
+#: gncal/eventedit.c:395
+msgid "Confidential"
+msgstr "Confidentiel"
+
+#: gncal/eventedit.c:560
+msgid "General"
+msgstr "Général"
+
+#: gncal/eventedit.c:569
+msgid "Owner:"
+msgstr "Propriétaire:"
+
+#: gncal/eventedit.c:572
+msgid "?"
+msgstr "?"
+
+#: gncal/eventedit.c:576
+msgid "Description:"
+msgstr "Description:"
+
+#: gncal/eventedit.c:626
+msgid "Daily"
+msgstr "Journalier"
+
+#: gncal/eventedit.c:627
+msgid "Weekly"
+msgstr "Hebdomadaire"
+
+#: gncal/eventedit.c:628
+msgid "Monthly"
+msgstr "Mensuel"
+
+#: gncal/eventedit.c:629
+msgid "Yearly"
+msgstr "Annuel"
+
+#: gncal/eventedit.c:664
+msgid "1st"
+msgstr "1er"
+
+#: gncal/eventedit.c:665
+msgid "2nd"
+msgstr "2"
+
+#: gncal/eventedit.c:666
+msgid "3rd"
+msgstr "3"
+
+#: gncal/eventedit.c:667
+msgid "4th"
+msgstr "4"
+
+#: gncal/eventedit.c:668
+msgid "5th"
+msgstr "5"
+
+#: gncal/eventedit.c:669
+msgid "6th"
+msgstr "6"
+
+#: gncal/eventedit.c:670
+msgid "7th"
+msgstr "7"
+
+#: gncal/eventedit.c:671
+msgid "8th"
+msgstr "8"
+
+#: gncal/eventedit.c:672
+msgid "9th"
+msgstr "9"
+
+#: gncal/eventedit.c:673
+msgid "10th"
+msgstr "10"
+
+#: gncal/eventedit.c:674
+msgid "11th"
+msgstr "11"
+
+#: gncal/eventedit.c:675
+msgid "12th"
+msgstr "12"
+
+#: gncal/eventedit.c:676
+msgid "13th"
+msgstr "13"
+
+#: gncal/eventedit.c:677
+msgid "14th"
+msgstr "14"
+
+#: gncal/eventedit.c:678
+msgid "15th"
+msgstr "15"
+
+#: gncal/eventedit.c:679
+msgid "16th"
+msgstr "16"
+
+#: gncal/eventedit.c:680
+msgid "17th"
+msgstr "17"
+
+#: gncal/eventedit.c:681
+msgid "18th"
+msgstr "18"
+
+#: gncal/eventedit.c:682
+msgid "19th"
+msgstr "19"
+
+#: gncal/eventedit.c:683
+msgid "20th"
+msgstr "20"
+
+#: gncal/eventedit.c:684
+msgid "21th"
+msgstr "21"
+
+#: gncal/eventedit.c:685
+msgid "22th"
+msgstr "22"
+
+#: gncal/eventedit.c:686
+msgid "23th"
+msgstr "23"
+
+#: gncal/eventedit.c:687
+msgid "24th"
+msgstr "24"
+
+#: gncal/eventedit.c:688
+msgid "25th"
+msgstr "25"
+
+#: gncal/eventedit.c:689
+msgid "26th"
+msgstr "26"
+
+#: gncal/eventedit.c:690
+msgid "27th"
+msgstr "27"
+
+#: gncal/eventedit.c:691
+msgid "28th"
+msgstr "28"
+
+#: gncal/eventedit.c:692
+msgid "29th"
+msgstr "29"
+
+#: gncal/eventedit.c:693
+msgid "30th"
+msgstr "30"
+
+#: gncal/eventedit.c:694
+msgid "31th"
+msgstr "31"
+
+#: gncal/eventedit.c:699
+msgid "Monday"
+msgstr "Lundi"
+
+#: gncal/eventedit.c:700
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: gncal/eventedit.c:701
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: gncal/eventedit.c:702
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: gncal/eventedit.c:703
+msgid "Friday"
+msgstr "Vendredi"
+
+#: gncal/eventedit.c:704
+msgid "Saturday"
+msgstr "Samedi"
+
+#: gncal/eventedit.c:705
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: gncal/eventedit.c:760
+msgid "Frequency"
+msgstr "Frequement"
+
+#: gncal/eventedit.c:839 gncal/eventedit.c:849 gncal/eventedit.c:887
+#: gncal/eventedit.c:903
+msgid "Every"
+msgstr "Tout les"
+
+#: gncal/eventedit.c:841
+msgid "day(s)"
+msgstr "jour(s)"
+
+#: gncal/eventedit.c:851
+msgid "week(s)"
+msgstr "semaine(s)"
+
+#: gncal/eventedit.c:867 gncal/eventedit.c:878
+msgid "Recur on the"
+msgstr ""
+
+#: gncal/eventedit.c:869
+msgid "day"
+msgstr "jour"
+
+#: gncal/eventedit.c:892
+msgid "month(s)"
+msgstr "mois"
+
+#: gncal/eventedit.c:905
+msgid "year(s)"
+msgstr "an(s)"
+
+#: gncal/eventedit.c:926
+msgid "Repeating"
+msgstr ""
+
+#: gncal/gncal-full-day.c:383
+msgid "Edit this appointment..."
+msgstr "Editer ce rendez-vouz..."
+
+#: gncal/gncal-full-day.c:384
+msgid "Delete this appointment"
+msgstr "Effacer ce rendez-vous"
+
+#: gncal/gncal-full-day.c:386 gncal/gncal-full-day.c:1497
+msgid "New appointment..."
+msgstr "Nouveau rendez-vous..."
+
+#: gncal/gnome-cal.c:91
+msgid "Day View"
+msgstr "Vue par Jour"
+
+#: gncal/gnome-cal.c:92
+msgid "Week View"
+msgstr "Vue par Semaine"
+
+#: gncal/gnome-cal.c:93
+msgid "Year View"
+msgstr "Vue par An"
+
+#: gncal/gnome-cal.c:94
+msgid "Todo"
+msgstr "A Faire"
+
+#: gncal/main.c:106
+msgid "Gnome Calendar"
+msgstr "Calendrier Gnome"
+
+#: gncal/main.c:109
+msgid "The GNOME personal calendar and schedule manager."
+msgstr "Le calendrier et agenda personnel GNOME."
+
+#: gncal/main.c:132
+msgid "The calendar has unsaved changes, Save them?"
+msgstr "Le calendrier contient des changements non sauvés, Voulez-vous les enregistrer?"
+
+#: gncal/main.c:171
+msgid "Open Calendar"
+msgstr "Ouvrir un Calendrier"
+
+#: gncal/main.c:182
+msgid "New calendar"
+msgstr "Nouveau calendrier"
+
+#: gncal/main.c:184
+msgid "Open calendar"
+msgstr "Ouvrir calendrier"
+
+#: gncal/main.c:187
+msgid "Save calendar"
+msgstr "Sauver le calendrier"
+
+#: gncal/main.c:201
+msgid "About"
+msgstr "A Propos"
+
+#: gncal/main.c:208
+msgid "New appointment"
+msgstr "Nouveau rendez-vous"
+
+#: gncal/main.c:220
+msgid "Prev"
+msgstr "Préc"
+
+#: gncal/main.c:226
+msgid "Next"
+msgstr "Suivant"
+
+#: gncal/timeutil.c:83
+msgid "am"
+msgstr "am"
+
+#: gncal/timeutil.c:83
+msgid "pm"
+msgstr "pm"
+
+#: gncal/timeutil.c:85
+msgid "h"
+msgstr "h"
 
 #~ msgid "unknown arg: %s\n"
 #~ msgstr "argument inconnu: %s\n"
@@ -838,23 +1487,11 @@ msgstr "Pile vide!"
 #~ msgid "View/Options"
 #~ msgstr "Voir/Options"
 
-#~ msgid "Options"
-#~ msgstr "Options"
-
-#~ msgid "PID"
-#~ msgstr "PID"
-
 #~ msgid "Details about process %d"
 #~ msgstr "Détails a propos du processus %d"
 
-#~ msgid "Help Contents..."
-#~ msgstr "Sommaire de l'Aide..."
-
 #~ msgid "<Main>/Help/Contents..."
 #~ msgstr "<Main>/Aide/Sommaire de l'Aide..."
-
-#~ msgid "About"
-#~ msgstr "A Propos"
 
 #~ msgid "Not implemented yet"
 #~ msgstr "Pas encore implémenté"
