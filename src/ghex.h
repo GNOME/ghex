@@ -23,6 +23,9 @@
 extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[];
 #endif
 
+#define DATA_TYPE_HEX   0
+#define DATA_TYPE_ASCII 1
+
 typedef struct _PropertyUI {
   GnomePropertyBox *pbox;
   GtkRadioButton *mdi_type[3];
@@ -30,11 +33,35 @@ typedef struct _PropertyUI {
   GtkButton *font_button;
 } PropertyUI;
 
+typedef struct _JumpDialog {
+  GtkWidget *window;
+  GtkWidget *int_entry;
+  GtkWidget *ok, *cancel;
+} JumpDialog;
+
+typedef struct _ReplaceDialog {
+  GtkWidget *window;
+  gint search_type;
+  GtkWidget *f_string, *r_string;
+  GtkWidget *replace, *replace_all, *next, *close;
+  GtkWidget *type_button[2];
+} ReplaceDialog; 
+
+typedef struct _FindDialog {
+  GtkWidget *window;
+  gint search_type;
+  GtkWidget *f_string;
+  GtkWidget *f_next, *f_prev, *f_close;
+  GtkWidget *type_button[2];
+} FindDialog;
+
 extern GnomeMDI *mdi;
 extern gint mdi_mode;
 
 extern GtkWidget *file_sel;
-extern GtkWidget *find_dialog, *replace_dialog, *jump_dialog;
+extern FindDialog find_dialog;
+extern ReplaceDialog replace_dialog;
+extern JumpDialog jump_dialog;
 extern PropertyUI *prefs_ui;
 
 extern GtkCheckMenuItem *save_config_item;
@@ -49,6 +76,9 @@ extern gchar *group_type_label[3];
 extern guint mdi_type[3];
 extern gchar *mdi_type_label[3];
 
+extern guint search_type;
+extern gchar *search_type_label[2];
+
 void setup_ui();
 
 void redraw_widget(GtkWidget *);
@@ -57,9 +87,9 @@ void redraw_widget(GtkWidget *);
 GtkMenuBar *create_mdi_menus(GnomeMDI *);
 #endif
 
-void create_find_dialog(GtkWidget **);
-void create_replace_dialog(GtkWidget **);
-void create_jump_dialog(GtkWidget **);
+void create_find_dialog(FindDialog *);
+void create_replace_dialog(ReplaceDialog *);
+void create_jump_dialog(JumpDialog *);
 void create_prefs_dialog(PropertyUI **);
 
 void show_message(gchar *);

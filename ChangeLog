@@ -1,3 +1,12 @@
+1998-06-15  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* ui.c: added radio buttons to find/replace dialogs  to enable
+	user to nicely choose between hex and ascii mode.
+	* ghex.h, ui.c, callbacks.c: now we store pointers to all the
+	find/replace/jump dialog widgets and find/replace search type
+	in a [Find|Replace|Jump]Dialog structs. Relevant callbacks were
+	modified to accomodate this.
+
 1998-06-07  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* gnome-mdi.[ch]: moved to gnome-libs/libgnomeui

@@ -71,9 +71,9 @@ GnomeUIInfo main_menu[] = {
 static void set_prefs(PropertyUI *);
 
 GtkWidget *file_sel = NULL;
-GtkWidget *find_dialog = NULL;
-GtkWidget *replace_dialog = NULL;
-GtkWidget *jump_dialog = NULL;
+FindDialog find_dialog = { NULL };
+ReplaceDialog replace_dialog = { NULL };
+JumpDialog jump_dialog = { NULL };
 PropertyUI *prefs_ui = NULL;
 
 GdkFont *def_font = NULL;
@@ -89,6 +89,12 @@ gchar *mdi_type_label[3] = {
   "Notebook",
   "Modal",
   "Toplevel",
+};
+
+guint search_type = 0;
+gchar *search_type_label[] = {
+  "hex data",
+  "ASCII data",
 };
 
 void show_message(gchar *msg) {
@@ -271,11 +277,6 @@ GtkMenuBar *create_mdi_menus(GnomeMDI *mdi) {
   w = gtk_menu_item_new_with_label(_("View"));
   gtk_widget_show(w);
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
-  
-  /* I'm looking for a nicer way to mark where document-specific menus should be inserted.
-     this prevents one from using gnome-app-helper functions and casting some nonsense to
-     gpointer looks really bad. any ideas? */
-  gtk_object_set_data(GTK_OBJECT(w), "MDIDocumentMenu", (gpointer)TRUE);
 
   gtk_menu_bar_append(menubar, w);
 
@@ -312,149 +313,169 @@ GtkMenuBar *create_mdi_menus(GnomeMDI *mdi) {
 }
 #endif
 
-void create_find_dialog(GtkWidget **dialog) {
-  GtkWidget *window;
+void create_find_dialog(FindDialog *dialog) {
+  gint i;
+  GSList *group;
+  gchar type_label[256];
 
-  GtkWidget *f_next, *f_prev, *f_close, *f_string;
+  g_warning("creating find dialog");
 
-  window = gtk_dialog_new();
-  gtk_signal_connect(GTK_OBJECT(window), "delete_event",
-		     GTK_SIGNAL_FUNC(delete_event_cb), dialog);
+  dialog->window = gtk_dialog_new();
+  gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
+		     GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
 
-  gtk_window_set_title(GTK_WINDOW(window), _("Find Data"));
+  gtk_window_set_title(GTK_WINDOW(dialog->window), _("Find Data"));
 
-  f_string = gtk_entry_new();
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->vbox), f_string,
+  dialog->f_string = gtk_entry_new();
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->f_string,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(f_string);
+  gtk_widget_show(dialog->f_string);
 
-  /*   f_next = gtk_button_new_with_label(_("Find Next")); */
-  f_next = create_button(window, GNOME_STOCK_PIXMAP_FORWARD, _("Find Next"));
-  gtk_signal_connect (GTK_OBJECT (f_next),
+  for(i = 0, group = NULL; i < 2;
+      i++, group = gtk_radio_button_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
+    sprintf(type_label, _("Search for %s"), search_type_label[i]);
+
+    dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
+
+    if(find_dialog.search_type == i)
+      gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
+
+    gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
+		       GTK_SIGNAL_FUNC(set_find_type_cb), (gpointer)i);
+
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->type_button[i],
+		       TRUE, TRUE, 0);
+
+    gtk_widget_show(dialog->type_button[i]);
+  }
+
+  dialog->f_next = create_button(dialog->window, GNOME_STOCK_PIXMAP_FORWARD, _("Find Next"));
+  gtk_signal_connect (GTK_OBJECT (dialog->f_next),
 		      "clicked", GTK_SIGNAL_FUNC(find_next_cb),
-		      f_string);
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->action_area), f_next,
+		      dialog->f_string);
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_next,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(f_next);
-  f_prev = create_button(window, GNOME_STOCK_PIXMAP_BACK, _("Find Previous"));
-  gtk_signal_connect (GTK_OBJECT (f_prev),
+  gtk_widget_show(dialog->f_next);
+  dialog->f_prev = create_button(dialog->window, GNOME_STOCK_PIXMAP_BACK, _("Find Previous"));
+  gtk_signal_connect (GTK_OBJECT (dialog->f_prev),
 		      "clicked", GTK_SIGNAL_FUNC(find_prev_cb),
-		      f_string);
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->action_area), f_prev,
+		      dialog->f_string);
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_prev,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(f_prev);
-  f_close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
-  gtk_signal_connect (GTK_OBJECT (f_close),
+  gtk_widget_show(dialog->f_prev);
+  dialog->f_close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
+  gtk_signal_connect (GTK_OBJECT (dialog->f_close),
 		      "clicked", GTK_SIGNAL_FUNC(cancel_cb),
-		      dialog);
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->action_area), f_close,
+		      &dialog->window);
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_close,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(f_close);
+  gtk_widget_show(dialog->f_close);
 
-  gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(window)->vbox), 2);
-  gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(window)->vbox), 2);
-
-  *dialog = window;
+  gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
+  gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
 }
 
-void create_replace_dialog(GtkWidget **dialog) {
-  GtkWidget *window;
+void create_replace_dialog(ReplaceDialog *dialog) {
+  gint i;
+  GSList *group;
+  gchar type_label[256];
 
-  GtkWidget *replace, *replace_all, *next, *close;
-  GtkWidget *f_string, *r_string;
+  dialog->window = gtk_dialog_new();
+  gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
+		     GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
 
-  static ReplaceCBData cbdata;
+  gtk_window_set_title(GTK_WINDOW(dialog->window), _("Find & Replace Data"));
 
-  window = gtk_dialog_new();
-  gtk_signal_connect(GTK_OBJECT(window), "delete_event",
-		     GTK_SIGNAL_FUNC(delete_event_cb), dialog);
-
-  gtk_window_set_title(GTK_WINDOW(window), _("Find & Replace Data"));
-
-  f_string = gtk_entry_new();
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->vbox), f_string,
+  dialog->f_string = gtk_entry_new();
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->f_string,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(f_string);
+  gtk_widget_show(dialog->f_string);
 
-  r_string = gtk_entry_new();
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->vbox), r_string,
+  dialog->r_string = gtk_entry_new();
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->r_string,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(r_string);
+  gtk_widget_show(dialog->r_string);
 
-  cbdata.find = GTK_ENTRY(f_string);
-  cbdata.replace = GTK_ENTRY(r_string);
+  for(i = 0, group = NULL; i < 2;
+      i++, group = gtk_radio_button_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
+    sprintf(type_label, _("Replace %s"), search_type_label[i]);
 
-  next = create_button(window, GNOME_STOCK_PIXMAP_FORWARD, _("Find next"));
-  gtk_signal_connect (GTK_OBJECT (next),
-		      "clicked", GTK_SIGNAL_FUNC(find_next_cb),
-		      f_string);
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->action_area), next,
+    dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
+
+    if(replace_dialog.search_type == i)
+      gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
+
+    gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
+		       GTK_SIGNAL_FUNC(set_replace_type_cb), (gpointer)i);
+
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->type_button[i],
+		       TRUE, TRUE, 0);
+
+    gtk_widget_show(dialog->type_button[i]);
+  }
+
+  dialog->next = create_button(dialog->window, GNOME_STOCK_PIXMAP_FORWARD, _("Find next"));
+  gtk_signal_connect (GTK_OBJECT (dialog->next),
+		      "clicked", GTK_SIGNAL_FUNC(replace_next_cb),
+		      dialog->f_string);
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->next,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(next);
-  replace = gtk_button_new_with_label(_("Replace"));
-  gtk_signal_connect (GTK_OBJECT (replace),
+  gtk_widget_show(dialog->next);
+  dialog->replace = gtk_button_new_with_label(_("Replace"));
+  gtk_signal_connect (GTK_OBJECT (dialog->replace),
 		      "clicked", GTK_SIGNAL_FUNC(replace_one_cb),
-		      &cbdata);
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->action_area), replace,
+		      NULL);
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->replace,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(replace);
-  replace_all= gtk_button_new_with_label(_("Replace All"));
-  gtk_signal_connect (GTK_OBJECT (replace_all),
+  gtk_widget_show(dialog->replace);
+  dialog->replace_all= gtk_button_new_with_label(_("Replace All"));
+  gtk_signal_connect (GTK_OBJECT (dialog->replace_all),
 		      "clicked", GTK_SIGNAL_FUNC(replace_all_cb),
-		      &cbdata);
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->action_area), replace_all,
+		      NULL);
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->replace_all,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(replace_all);
-  close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
-  gtk_signal_connect (GTK_OBJECT (close),
+  gtk_widget_show(dialog->replace_all);
+  dialog->close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
+  gtk_signal_connect (GTK_OBJECT (dialog->close),
 		      "clicked", GTK_SIGNAL_FUNC(cancel_cb),
-		      dialog);
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->action_area), close,
+		      &dialog->window);
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->close,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(close);
+  gtk_widget_show(dialog->close);
 
-  gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(window)->vbox), 2);
-  gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(window)->vbox), 2);
-
-  *dialog = window;
+  gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
+  gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
 }
 
-void create_jump_dialog(GtkWidget **dialog) {
-  GtkWidget *window;
+void create_jump_dialog(JumpDialog *dialog) {
+  dialog->window = gtk_dialog_new();
+  gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
+		     GTK_SIGNAL_FUNC(delete_event_cb), &dialog->window);
 
-  GtkWidget *int_entry;
-  GtkWidget *ok, *cancel;
+  gtk_window_set_title(GTK_WINDOW(dialog->window), _("Jump To Byte"));
 
-  window = gtk_dialog_new();
-  gtk_signal_connect(GTK_OBJECT(window), "delete_event",
-		     GTK_SIGNAL_FUNC(delete_event_cb), dialog);
-
-  gtk_window_set_title(GTK_WINDOW(window), _("Jump To Byte"));
-
-  int_entry = gtk_entry_new();
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->vbox), int_entry,
+  dialog->int_entry = gtk_entry_new();
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->int_entry,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(int_entry);
+  gtk_widget_show(dialog->int_entry);
 
-  ok = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
-  gtk_signal_connect (GTK_OBJECT (ok),
+  dialog->ok = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
+  gtk_signal_connect (GTK_OBJECT (dialog->ok),
 		      "clicked", GTK_SIGNAL_FUNC(goto_byte_cb),
-		      int_entry);
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->action_area), ok,
+		      dialog->int_entry);
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->ok,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(ok);
-  cancel = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
-  gtk_signal_connect (GTK_OBJECT (cancel),
+  gtk_widget_show(dialog->ok);
+  dialog->cancel = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
+  gtk_signal_connect (GTK_OBJECT (dialog->cancel),
 		      "clicked", GTK_SIGNAL_FUNC(cancel_cb),
-		      dialog);
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->action_area), cancel,
+		      &dialog->window);
+  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->cancel,
 		     TRUE, TRUE, 0);
-  gtk_widget_show(cancel);
+  gtk_widget_show(dialog->cancel);
 
-  gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(window)->vbox), 2);
-  gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(window)->vbox), 2);
-
-  *dialog = window;
+  gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
+  gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
 }
 
 static void set_prefs(PropertyUI *pui) {

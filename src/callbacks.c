@@ -170,30 +170,30 @@ void close_cb(GtkWidget *w) {
 }
 
 void find_cb(GtkWidget *w) {
-  if(find_dialog == NULL)
+  if(find_dialog.window == NULL)
     create_find_dialog(&find_dialog);
 
-  gtk_window_position (GTK_WINDOW(find_dialog), GTK_WIN_POS_MOUSE);
+  gtk_window_position (GTK_WINDOW(find_dialog.window), GTK_WIN_POS_MOUSE);
 
-  gtk_widget_show(find_dialog);
+  gtk_widget_show(find_dialog.window);
 }
 
 void replace_cb(GtkWidget *w) {
-  if(replace_dialog == NULL)
+  if(replace_dialog.window == NULL)
     create_replace_dialog(&replace_dialog);
 
-  gtk_window_position (GTK_WINDOW(replace_dialog), GTK_WIN_POS_MOUSE);
+  gtk_window_position (GTK_WINDOW(replace_dialog.window), GTK_WIN_POS_MOUSE);
 
-  gtk_widget_show(replace_dialog);
+  gtk_widget_show(replace_dialog.window);
 }
 
 void jump_cb(GtkWidget *w) {
-  if(jump_dialog == NULL)
+  if(jump_dialog.window == NULL)
     create_jump_dialog(&jump_dialog);
 
-  gtk_window_position (GTK_WINDOW(jump_dialog), GTK_WIN_POS_MOUSE);
+  gtk_window_position (GTK_WINDOW(jump_dialog.window), GTK_WIN_POS_MOUSE);
 
-  gtk_widget_show(jump_dialog);
+  gtk_widget_show(jump_dialog.window);
 }
 
 void prefs_cb(GtkWidget *w) {
@@ -205,63 +205,62 @@ void prefs_cb(GtkWidget *w) {
   gtk_widget_show(GTK_WIDGET(prefs_ui->pbox));
 }
 
-static gint get_search_string(gchar *str, gchar *buf) {
+static gint get_search_string(gchar *str, gchar *buf, gint type) {
   gint len = strlen(str), shift;
 
   if(len > 0) {
-    if(str[0] == '$') {
-      if(len > 1) {
-	if(str[1] == '$') {
-	  /* a string beginning with '$$' == escaped '$' */
-	  strcpy(buf, &str[1]);
-	  len--;
-	}
+    if(type == DATA_TYPE_HEX) {
+      /* we convert the string from hex */
+      if(len % 2 != 0)
+	return 0;  /* the number of hex digits must be EVEN */
+      len = 0;     /* we'll store the returned string length in len */
+      shift = 4;
+      *buf = '\0';
+      while(*str != 0) {
+	if((*str >= '0') && (*str <= '9'))
+	  *buf |= (*str - '0') << shift;
+	else if((*str >= 'A') && (*str <= 'F'))
+	  *buf |= (*str - 'A') << shift;
+	else if((*str >= 'a') && (*str <= 'f'))
+	  *buf |= (*str - 'a' + 10) << shift;
+	else
+	  return 0;
+	
+	if(shift > 0)
+	  shift = 0;
 	else {
-	  /* we convert the string from hex */
-	  if(len % 2 == 0)
-	    return 0;  /* the number of hex digits must be EVEN */
-	  len = 0;     /* we'll store the returned string length in len */
-	  str++;
 	  shift = 4;
+	  buf++;
+	  len++;
 	  *buf = '\0';
-	  while(*str != 0) {
-	    if((*str >= '0') && (*str <= '9'))
-	      *buf |= (*str - '0') << shift;
-	    else if((*str >= 'A') && (*str <= 'F'))
-	      *buf |= (*str - 'A') << shift;
-	    else if((*str >= 'a') && (*str <= 'f'))
-	      *buf |= (*str - 'a' + 10) << shift;
-	    else
-	      return 0;
-
-	    if(shift > 0)
-	      shift = 0;
-	    else {
-	      shift = 4;
-	      buf++;
-	      len++;
-	      *buf = '\0';
-	    }
-
-	    str++;
-	  }
 	}
-	return len;
+	
+	str++;
       }
-      return 0;
     }
-    strcpy(buf, str);
+    else if(type == DATA_TYPE_ASCII)
+      strcpy(buf, str);
+    
     return len;
   }
   return 0;
 }
 
-void find_next_cb(GtkWidget *w, GtkEntry *data) {
+void set_find_type_cb(GtkWidget *w, gint type) {
+  find_dialog.search_type = type;
+}
+
+void set_replace_type_cb(GtkWidget *w, gint type) {
+  replace_dialog.search_type = type;
+}
+
+void find_next_cb(GtkWidget *w) {
   GtkHex *gh;
   guint offset, str_len;
   gchar str[256];
 
-  if((str_len = get_search_string(gtk_entry_get_text(data), str)) == 0) {
+  if((str_len = get_search_string(gtk_entry_get_text(find_dialog.f_string), str,
+				  find_dialog.search_type)) == 0) {
     report_error(_("There seems to be no string to search for!"));
     return;
   }
@@ -279,12 +278,13 @@ void find_next_cb(GtkWidget *w, GtkEntry *data) {
     show_message(_("End Of File reached"));
 }
 
-void find_prev_cb(GtkWidget *w, GtkEntry *data) {
+void find_prev_cb(GtkWidget *w) {
   GtkHex *gh;
   guint offset, str_len;
   gchar str[256];
 
-  if((str_len = get_search_string(gtk_entry_get_text(data), str)) == 0) {
+  if((str_len = get_search_string(gtk_entry_get_text(find_dialog.f_string), str,
+				  find_dialog.search_type)) == 0) {
     report_error(_("There seems to be no string to search for!"));
     return;
   }
@@ -302,9 +302,9 @@ void find_prev_cb(GtkWidget *w, GtkEntry *data) {
     show_message(_("Beginning Of File reached"));
 }
 
-void goto_byte_cb(GtkWidget *w, GtkEntry *data) {
+void goto_byte_cb(GtkWidget *w) {
   guint byte;
-  gchar *byte_str = gtk_entry_get_text(data), *endptr;
+  gchar *byte_str = gtk_entry_get_text(GTK_ENTRY(jump_dialog.int_entry)), *endptr;
   
   if(mdi->active_child == NULL) {
     report_error(_("There is no active buffer to move the cursor in!"));
@@ -331,7 +331,31 @@ void goto_byte_cb(GtkWidget *w, GtkEntry *data) {
   gtk_hex_set_cursor(GTK_HEX(mdi->active_view), byte);
 }
 
-void replace_one_cb(GtkWidget *w, ReplaceCBData *data) {
+void replace_next_cb(GtkWidget *w) {
+  GtkHex *gh;
+  guint offset, str_len;
+  gchar str[256];
+
+  if((str_len = get_search_string(gtk_entry_get_text(replace_dialog.f_string), str,
+				  replace_dialog.search_type)) == 0) {
+    report_error(_("There seems to be no string to search for!"));
+    return;
+  }
+
+  if(mdi->active_child == NULL) {
+    report_error(_("There is no active buffer to search!"));
+    return;
+  }
+
+  gh = GTK_HEX(mdi->active_view);
+
+  if(find_string_forward(HEX_DOCUMENT(mdi->active_child), gh->cursor_pos+1, str, str_len, &offset) == 0)
+    gtk_hex_set_cursor(gh, offset);
+  else
+    show_message(_("End Of File reached"));
+}
+
+void replace_one_cb(GtkWidget *w) {
   gchar find_str[256], rep_str[256];
   guint find_len, rep_len, offset;
   GtkHex *gh;
@@ -345,8 +369,10 @@ void replace_one_cb(GtkWidget *w, ReplaceCBData *data) {
   gh = GTK_HEX(mdi->active_view);
   doc = HEX_DOCUMENT(mdi->active_child);
 
-  if( ((find_len = get_search_string(gtk_entry_get_text(data->find), find_str)) == 0) ||
-      ((rep_len = get_search_string(gtk_entry_get_text(data->replace), rep_str)) == 0)) {
+  if( ((find_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.f_string)), find_str,
+				     replace_dialog.search_type)) == 0) ||
+      ((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.r_string)), rep_str,
+				    replace_dialog.search_type)) == 0)) {
     report_error(_("Erroneous find or replace string!"));
     return;
   }
@@ -368,7 +394,7 @@ void replace_one_cb(GtkWidget *w, ReplaceCBData *data) {
     show_message(_("End Of File reached!"));
 }
 
-void replace_all_cb(GtkWidget *w, ReplaceCBData *data) {
+void replace_all_cb(GtkWidget *w) {
   gchar find_str[256], rep_str[256];
   guint find_len, rep_len, offset, count;
   GtkHex *gh;
@@ -382,8 +408,10 @@ void replace_all_cb(GtkWidget *w, ReplaceCBData *data) {
   gh = GTK_HEX(mdi->active_view);
   doc = HEX_DOCUMENT(mdi->active_child);
 
-  if( ((find_len = get_search_string(gtk_entry_get_text(data->find), find_str)) == 0) ||
-      ((rep_len = get_search_string(gtk_entry_get_text(data->replace), rep_str)) == 0)) {
+  if( ((find_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.f_string)), find_str,
+				     replace_dialog.search_type)) == 0) ||
+      ((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog.r_string)), rep_str,
+				    replace_dialog.search_type)) == 0)) {
     report_error(_("Erroneous find or replace string!"));
     return;
   }

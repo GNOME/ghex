@@ -41,9 +41,12 @@ void replace_cb();
 void jump_cb();
 void find_next_cb();
 void find_prev_cb();
+void replace_next_cb();
 void replace_one_cb();
 void replace_all_cb();
 void goto_byte_cb();
+void set_find_type_cb();
+void set_replace_type_cb();
 
 void open_selected_file();
 void save_selected_file();

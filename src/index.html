@@ -99,9 +99,11 @@ Menu <I>Edit</I> (is shown only when a file is being edited)
 <LI>
 <I>Goto Byte </I>opens the Jump To Byte Dialog</LI>
 
-<BR><I>Group Data As </I>offers three different ways how the bytes in the
+<LI><I>Group Data As </I>offers three different ways how the bytes in the
 hex display are grouped: either as single bytes or in groups of two bytes
-(words) or four bytes (long words).</UL>
+(words) or four bytes (long words).</LI>
+</UL>
+
 Menu <I>View</I>
 <UL>
 <LI>
@@ -144,11 +146,8 @@ Selecting <I>Find </I>from the <I>Edit </I>menu will bring up the Find
 Dialog. It allows you to search the file for a string that you can enter
 in either hex or ascii. To find an ascii string, simply enter it into the
 entry widget and click on the <I>Find Next </I>or <I>Find Previous</I>
-button. You can specify the value to be found in hex if you begin the string
-with a <I>$</I>: searching for "$474e55" is the same as searching for "GNU".
-If you really need to search for an ascii string beginning with a <I>$</I>
-character, you can escape the leading <I>$</I> with <I>$$</I>: "$$GNU"
-represents string "$GNU".
+button. You can choose in which form (either hex or ASCII) you wish to
+enter the search string with the two radio buttons below the entry widget
 <BR>Replacing data is much alike, except that you have to enter both a
 string to be found and a string that will replace the found value. Both
 strings must be of the same length (because GHex allows only overwriting
