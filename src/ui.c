@@ -371,16 +371,7 @@ open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 
 	win = GHEX_WINDOW(user_data);
 
-	if(win->gh)
-		doc = win->gh->document;
-	else
-		doc = NULL;
-
 	file_sel = gtk_file_selection_new(NULL);
-
-	if(doc)
-		gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel),
-										doc->file_name);
 
 	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to open"));
 	
