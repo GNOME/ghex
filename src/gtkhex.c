@@ -28,8 +28,9 @@
 #include "gtkhex.h"
 
 #define DISPLAY_BORDER 4
-#define DISPLAY_SPACING 2
-#define SHADOW_WIDTH 2
+
+#define DEFAULT_CPL 32
+#define DEFAULT_LINES 16
 
 #define DEFAULT_FONT "-*-courier-medium-r-normal--12-*-*-*-*-*-*-*"
 
@@ -74,6 +75,13 @@ static void redraw_widget(GtkWidget *w) {
 	gtk_widget_draw(w, &rect);
 }
 
+static gint widget_get_xt(GtkWidget *w) {
+	return w->style->klass->xthickness;
+}
+
+static gint widget_get_yt(GtkWidget *w) {
+	return w->style->klass->ythickness;
+}
 /*
  * ?_to_pointer translates mouse coordinates in hex/ascii view
  * to cursor coordinates.
@@ -444,13 +452,13 @@ static void draw_shadow(GtkWidget *widget, GdkRectangle *area) {
 	
 	gtk_draw_shadow(widget->style, widget->window,
 					GTK_STATE_NORMAL, GTK_SHADOW_IN,
-					border, border, gh->xdisp_width + 2*SHADOW_WIDTH,
+					border, border, gh->xdisp_width + 2*widget_get_xt(widget),
 					widget->allocation.height - 2*border);
 	
 	gtk_draw_shadow(widget->style, widget->window,
 					GTK_STATE_NORMAL, GTK_SHADOW_IN,
-					border + gh->xdisp_width + 2*SHADOW_WIDTH + DISPLAY_SPACING, border,
-					gh->adisp_width + 2*SHADOW_WIDTH,
+					widget->allocation.width - border - gh->adisp_width - gh->scrollbar->requisition.width - 2*widget_get_xt(widget), border,
+					gh->adisp_width + 2*widget_get_xt(widget),
 					widget->allocation.height - 2*border);
 }
 
@@ -462,11 +470,11 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	gint sep_width, total_width = width;
 	gint total_cpl, xcpl;
 	gint old_cpl = gh->cpl;
+
+	gtk_widget_size_request(gh->scrollbar, &gh->scrollbar->requisition);
 	
-	total_width -= 2*DISPLAY_SPACING + 2*GTK_CONTAINER(gh)->border_width + 4*SHADOW_WIDTH +
-		gh->scrollbar->allocation.width + 6;
-	/* the 6 at the end of the above line comes from experimenting. otherwise the code below
-	   thinks it has too much space to divide ;) */
+	total_width -= 2*GTK_CONTAINER(gh)->border_width + 4*widget_get_xt(GTK_WIDGET(gh)) +
+		gh->scrollbar->requisition.width;
 	
 	total_cpl = total_width / gh->char_width;
 	
@@ -478,24 +486,21 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	/* calculate how many bytes we can stuff in one line */
 	gh->cpl = 0;
 	do {
+		if(gh->cpl % gh->group_type == 0 && total_cpl < gh->group_type*3)
+			break;
+		
 		gh->cpl++;        /* just added one more char */
 		total_cpl -= 3;   /* 2 for xdisp, 1 for adisp */
 		
 		if(gh->cpl % gh->group_type == 0) /* just ended a group */
-			if(total_cpl < gh->group_type*3) {
-				/* there is no more space for another group */
-				total_cpl = 0;
-			}
-			else {
-				total_cpl--;
-			}
+			total_cpl--;
 	} while(total_cpl > 0);
 	
 	gh->lines = gh->document->buffer_size / gh->cpl;
 	if(gh->document->buffer_size % gh->cpl)
 		gh->lines++;
 	
-	gh->vis_lines = (height - 2*GTK_CONTAINER(gh)->border_width - 2*SHADOW_WIDTH) / gh->char_height;
+	gh->vis_lines = (height - 2*GTK_CONTAINER(gh)->border_width - 2*widget_get_yt(GTK_WIDGET(gh))) / gh->char_height;
 	gh->vis_lines = MIN(gh->vis_lines, gh->lines);
 	
 	gh->adisp_width = gh->cpl*gh->char_width + 1;
@@ -876,27 +881,43 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	GtkHex *gh = GTK_HEX(w);
 	GtkAllocation my_alloc;
-	
-	if(GTK_WIDGET_CLASS(parent_class)->size_allocate)
-		(* GTK_WIDGET_CLASS(parent_class)->size_allocate)(w, alloc);  
-	
+	gint border_width, xt, yt;
+
+	g_return_if_fail(w != NULL);
+	g_return_if_fail(GTK_IS_FIXED(w));
+	g_return_if_fail(alloc != NULL);
+
 	hide_cursor(gh);
 	
 	recalc_displays(gh, alloc->width, alloc->height);
-	
-	my_alloc.x = GTK_CONTAINER(gh)->border_width + SHADOW_WIDTH;
-	my_alloc.y = GTK_CONTAINER(gh)->border_width + SHADOW_WIDTH;
-	my_alloc.height = alloc->height - 2*GTK_CONTAINER(gh)->border_width - 2*SHADOW_WIDTH;
+
+	w->allocation = *alloc;
+	if(GTK_WIDGET_REALIZED(w))
+		gdk_window_move_resize (w->window,
+								alloc->x, 
+								alloc->y,
+								alloc->width, 
+								alloc->height);
+
+	border_width = GTK_CONTAINER(w)->border_width;
+	xt = widget_get_xt(w);
+	yt = widget_get_yt(w);
+
+	my_alloc.x = border_width + xt;
+	my_alloc.y = border_width + yt;
+	my_alloc.height = alloc->height - 2*border_width - 2*yt;
 	my_alloc.width = gh->xdisp_width;
-	gtk_signal_emit_by_name(GTK_OBJECT(gh->xdisp), "size_allocate", &my_alloc);
-	my_alloc.x += my_alloc.width + 2*SHADOW_WIDTH + DISPLAY_SPACING;
+	gtk_widget_size_allocate(gh->xdisp, &my_alloc);
+	my_alloc.x = alloc->width - border_width - gh->scrollbar->requisition.width;
+	my_alloc.y = border_width;
+	my_alloc.width = gh->scrollbar->requisition.width;
+	my_alloc.height = alloc->height - 2*border_width;
+	gtk_widget_size_allocate(gh->scrollbar, &my_alloc);
+	my_alloc.x -= gh->adisp_width + xt;
+	my_alloc.y = border_width + yt;
 	my_alloc.width = gh->adisp_width;
-	gtk_signal_emit_by_name(GTK_OBJECT(gh->adisp), "size_allocate", &my_alloc);
-	my_alloc.x += my_alloc.width + SHADOW_WIDTH + DISPLAY_SPACING;
-	my_alloc.y = GTK_CONTAINER(gh)->border_width;
-	my_alloc.width = gh->scrollbar->allocation.width;
-	my_alloc.height = alloc->height - 2*GTK_CONTAINER(gh)->border_width;
-	gtk_signal_emit_by_name(GTK_OBJECT(gh->scrollbar), "size_allocate", &my_alloc);
+	my_alloc.height = alloc->height - 2*border_width - 2*xt;
+	gtk_widget_size_allocate(gh->adisp, &my_alloc);
 	
 	show_cursor(gh);
 }
@@ -915,6 +936,20 @@ static gint gtk_hex_expose(GtkWidget *w, GdkEventExpose *event) {
 		(* GTK_WIDGET_CLASS(parent_class)->expose_event)(w, event);  
 	
 	return TRUE;
+}
+
+static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
+	GtkHex *gh = GTK_HEX(w);
+
+	if(gh->cpl == 0) {
+		gtk_widget_size_request(gh->scrollbar, &gh->scrollbar->requisition);
+		req->width = 4*widget_get_xt(w) + 2*GTK_CONTAINER(w)->border_width +
+			gh->scrollbar->requisition.width +
+			gh->char_width * (DEFAULT_CPL + (DEFAULT_CPL - 1) / gh->group_type);
+		req->height = DEFAULT_LINES * gh->char_height;
+	}
+	else
+		GTK_WIDGET_CLASS(parent_class)->size_request(w, req);
 }
 
 static void gtk_hex_class_init(GtkHexClass *klass) {

@@ -174,8 +174,8 @@ static void hex_document_class_init (HexDocumentClass *class) {
 	
 	object_class->destroy = hex_document_destroy;
 	
-	child_class->create_view = hex_document_create_view;
-	child_class->get_config_string = hex_document_get_config_string;
+	child_class->create_view = (GnomeMDIChildViewCreator)(hex_document_create_view);
+	child_class->get_config_string = (GnomeMDIChildConfigFunc)(hex_document_get_config_string);
 	
 	class->document_changed = hex_document_real_changed;
 	

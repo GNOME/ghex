@@ -96,8 +96,8 @@ int main(int argc, char **argv) {
     while(cl_files && *cl_files) {
 		doc = hex_document_new(*cl_files);
 		if(doc) {
-			gnome_mdi_add_child(mdi, doc);
-			gnome_mdi_add_view(mdi, doc);
+			gnome_mdi_add_child(mdi, GNOME_MDI_CHILD(doc));
+			gnome_mdi_add_view(mdi, GNOME_MDI_CHILD(doc));
 		}
 		cl_files++;
     }
