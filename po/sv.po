@@ -2,633 +2,399 @@
 # Copyright (C) 1998 Free Software Foundation, Inc.
 # Tomas Ögren <stric@ing.umu.se>, 1998.
 #
-#, fuzzy
+# , fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "POT-Creation-Date: 1998-09-05 19:15+0200\n"
-"PO-Revision-Date: 1998-10-26 01:38+0200\n"
+"PO-Revision-Date: 1998-10-27 21:21+0200\n"
 "Last-Translator: Tomas Ögren <stric@ing.umu.se>\n"
 "Language-Team: Tomas Ögren <stric@ing.umu.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: edit-menus/edit-menus.c:140 gcalc/gcalc.c:43 gdiskfree/df.c:144
-#: genius/genius.c:494 ghex/ui.c:57 gncal/gnomecard/gnomecard.c:2197
-#: gsearchtool/gsearchtool.c:588 gtop/main.c:152 gtt/menus.c:103
-#: mini-utils/gless/gless.c:301 mini-utils/gw/gw.c:173
-msgid "About..."
-msgstr "Om..."
-
-#: edit-menus/edit-menus.c:141 mini-utils/gless/gless.c:302
-#: mini-utils/gw/gw.c:174
-msgid "Tell about this application"
-msgstr "Berätta om det här programmet"
-
-#: edit-menus/edit-menus.c:149 ghex/ui.c:16 gncal/gnomecard/gnomecard.c:2101
-#: gncal/gnomecard/gnomecard.c:2234 gtt/toolbar.c:152
-msgid "Save"
-msgstr "Spara"
-
-#: edit-menus/edit-menus.c:149
-msgid "Write menu to disk"
-msgstr "Spara menyerna till disk"
-
-#: edit-menus/edit-menus.c:154 edit-menus/edit-menus.c:199 gdiskfree/df.c:135
-#: genius/genius.c:477 ghex/ui.c:34 gncal/gnomecard/gnomecard.c:2114
-#: gncal/main.c:407 gsearchtool/gsearchtool.c:579
-#: gstripchart/gstripchart.c:764 gtop/main.c:170 mini-utils/gless/gless.c:330
-#: mini-utils/gw/gw.c:187
-msgid "Exit"
-msgstr "Avsluta"
-
-#: edit-menus/edit-menus.c:155 edit-menus/edit-menus.c:200
-#: mini-utils/gw/gw.c:188
-msgid "Quit the application without saving"
-msgstr "Avsluta programmet utan att spara"
-
-#: edit-menus/edit-menus.c:163 edit-menus/edit-menus.c:173 ghex/ui.c:30
-#: gncal/prop.c:521 gtt/options.c:508 mini-utils/gless/gless.c:359
-#: mini-utils/gw/gw.c:206
-msgid "Preferences"
-msgstr "Inställningar"
-
-#: edit-menus/edit-menus.c:164 mini-utils/gless/gless.c:349
-#: mini-utils/gw/gw.c:197
-msgid "Change application preferences"
-msgstr "Ändra programmets inställningar"
-
-#. and document menu and document list paths
-#: edit-menus/edit-menus.c:172 gdiskfree/df.c:151 ghex/main.c:55 ghex/ui.c:63
-#: gncal/gnomecard/gnomecard.c:2205 gncal/main.c:426
-#: gsearchtool/gsearchtool.c:595 gstripchart/gstripchart.c:804 gtop/main.c:176
-#: gtt/menus.c:113 mini-utils/gless/gless.c:357 mini-utils/gw/gw.c:205
-msgid "File"
-msgstr "Arkiv"
-
-#: edit-menus/edit-menus.c:174 gdiskfree/df.c:153 genius/genius.c:507
-#: ghex/ui.c:69 gncal/gnomecard/gnomecard.c:2219 gncal/main.c:428
-#: gsearchtool/gsearchtool.c:598 gstripchart/gstripchart.c:805 gtop/main.c:181
-#: gtt/menus.c:120 mini-utils/gless/gless.c:365 mini-utils/gw/gw.c:208
-msgid "Help"
-msgstr "Hjälp"
-
-#: edit-menus/edit-menus.c:179 gtt/menus.c:55 gtt/menus.c:134
-#: gtt/toolbar.c:159
-msgid "Cut"
-msgstr "Klipp ut"
-
-#: edit-menus/edit-menus.c:179
-msgid "Remove this menu item"
-msgstr ""
-
-#: edit-menus/edit-menus.c:182 gtt/menus.c:64 gtt/menus.c:144
-#: gtt/toolbar.c:167
-msgid "Paste"
-msgstr "Klistra in"
-
-#: edit-menus/edit-menus.c:183
-msgid "Paste the last menu item you cut"
-msgstr ""
-
-#: edit-menus/edit-menus.c:186 gncal/gnomecard/gnomecard.c:2093
-#: gncal/gnomecard/gnomecard.c:2226 gncal/main.c:433
-msgid "New"
-msgstr "Ny"
-
-#: edit-menus/edit-menus.c:187
-msgid "Add a new menu item below current selection"
-msgstr "Addera ny meny-post under nuvarande markering"
-
-#. Edit should have a stock pixmap, oh well, using properties
-#: edit-menus/edit-menus.c:191 gcalc/gcalc.c:68 ghex/hex-document.c:61
-#: gncal/gnomecard/gnomecard.c:2126 gncal/gnomecard/gnomecard.c:2244
-#: gncal/main.c:427 gtt/menus.c:115
-msgid "Edit"
-msgstr "Ändra"
-
-#: edit-menus/edit-menus.c:192
-msgid "Edit this menu item"
-msgstr "Editera denna meny-post"
-
-#: edit-menus/edit-menus.c:195
-msgid "Test"
-msgstr "Testa"
-
-#: edit-menus/edit-menus.c:196
-msgid "Create a test menu"
-msgstr "Skapa en testmeny"
-
-#: edit-menus/edit-menus.c:217
-msgid "Menu Editor"
-msgstr "Menyeditor"
-
-#: edit-menus/edit-menus.c:237
-msgid "Menu Editing Window"
-msgstr ""
-
-#: edit-menus/edit-menus.c:474
-msgid "Created this menu:\n"
-msgstr "Skapa denna meny:\n"
-
-#: edit-menus/edit-menus.c:529
-msgid "You can't edit a separator"
-msgstr "Du kan inte editera en separator"
-
-#: edit-menus/edit-menus.c:559
-msgid "Testing menu"
-msgstr "Testmeny"
-
-#: edit-menus/edit-menus.c:563
-msgid "Working Test Menu"
-msgstr ""
-
-#: edit-menus/edit-menus.c:601
-msgid "Menu item type"
-msgstr ""
-
-#: edit-menus/edit-menus.c:606
-msgid "What kind of menu item?"
-msgstr ""
-
-#: edit-menus/edit-menus.c:611 gtop/procview.c:241 mini-utils/gw/gw.c:534
-msgid "Command"
-msgstr ""
-
-#: edit-menus/edit-menus.c:619
-msgid "Folder"
-msgstr ""
-
-#: edit-menus/edit-menus.c:627
-msgid "Separator"
-msgstr ""
-
-#: edit-menus/edit-menus.c:646
-msgid "You have unsaved changes. Quit?"
-msgstr ""
-
-#: edit-menus/edit-menus.c:676
-msgid "You must select a menu item before performing this operation."
-msgstr ""
-"Vous devez sélectionner un item de menu avant d'effectuer cette opération."
-
-#: edit-menus/edit-menus.c:682
-msgid "You must name your menu item."
-msgstr ""
-
-#: edit-menus/edit-menus.c:687
-msgid "The clipboard is empty"
-msgstr ""
-
-#: edit-menus/edit-menus.c:727
-msgid "New Command"
-msgstr "Nytt kommando"
-
-#: edit-menus/edit-menus.c:730
-msgid "New Folder"
-msgstr "Ny folder"
-
 #: gcalc/gcalc.c:26
 msgid "The Gnome Calculator"
-msgstr ""
+msgstr "Gnome miniräknaren"
 
 #: gcalc/gcalc.c:29
 msgid "Simple double precision calculator similiar to xcalc"
-msgstr ""
+msgstr "Enkel dubbelprecisionsminiräknare liknande xcalc"
 
-#: gcalc/gcalc.c:48 gtt/menus.c:45 gtt/toolbar.c:198
-msgid "Quit"
-msgstr "Avsluta"
+#: gcalc/gcalc.c:43 ghex/ui.c:58 gtt/menus.c:103
+msgid "_About..."
+msgstr "_Om..."
 
-#: gcalc/gcalc.c:55 gtt/menus.c:59 gtt/menus.c:139 gtt/toolbar.c:163
-msgid "Copy"
-msgstr "Kopiera"
+#. {GNOME_APP_UI_ITEM, N_("Preferences..."), NULL, NULL, NULL, NULL,
+#. GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF},
+#: gcalc/gcalc.c:48 ghex/ui.c:34 gtt/menus.c:45
+msgid "_Quit"
+msgstr "_Avsluta"
 
-#: gcalc/gcalc.c:65 gncal/eventedit.c:381
-msgid "Program"
-msgstr "Program"
+#: gcalc/gcalc.c:55 gtt/menus.c:59
+msgid "_Copy"
+msgstr "K_opiera"
+
+#: gcalc/gcalc.c:65
+msgid "_Program"
+msgstr "_Program"
+
+#: gcalc/gcalc.c:68 ghex/hex-document.c:62 gncal/main.c:439 gtt/menus.c:115
+msgid "_Edit"
+msgstr "_Redigera"
 
 #: gcalc/gcalc.c:88
 msgid "Gnome Calculator"
 msgstr "Gnome miniräknaren"
 
-#: gdiskfree/df.c:209
-msgid ""
-"A quick hack to show the amount of space free on mounted file systems "
-"uitilizing a dial."
-msgstr ""
+#: gdiskfree/df.c:128 gncal/gnomecard/gnomecard.c:411 gsearchtool/gsearchtool.c:579 mini-utils/gless/gless.c:330 mini-utils/gw/gw.c:187
+msgid "Exit"
+msgstr "Avsluta"
 
-#: genius/calc.c:280
-msgid "ERROR: Probably corrupt stack!"
-msgstr "FEL: Troligen korrupt stack!"
+#: gdiskfree/df.c:137 gncal/gnomecard/gnomecard.c:527 gsearchtool/gsearchtool.c:588 mini-utils/gless/gless.c:301 mini-utils/gw/gw.c:173
+msgid "About..."
+msgstr "Om..."
 
-#: genius/calc.c:304
-msgid "ERROR: "
-msgstr "FEL: "
+#. and document menu and document list paths
+#: gdiskfree/df.c:144 ghex/main.c:55 gncal/gnomecard/gnomecard.c:535 gsearchtool/gsearchtool.c:595 mini-utils/gless/gless.c:357 mini-utils/gw/gw.c:205
+msgid "File"
+msgstr "Arkiv"
 
-#: genius/calc.c:306
-msgid " before '"
-msgstr ""
+#: gdiskfree/df.c:146 gncal/gnomecard/gnomecard.c:549 gsearchtool/gsearchtool.c:598 mini-utils/gless/gless.c:365 mini-utils/gw/gw.c:208
+msgid "Help"
+msgstr "Hjälp"
 
-#: genius/eval.c:332
-msgid "Variable used uninitialized!"
-msgstr ""
-
-#: genius/eval.c:483
-msgid "Left value is NOT a number! (ignoring if construct)"
-msgstr ""
-
-#: genius/eval.c:495
-msgid "Left value is NOT a number! (ignoring ifelse construct)"
-msgstr ""
-
-#: genius/eval.c:709
-msgid "'=' can't function without proper nodes!"
-msgstr ""
-
-#: genius/eval.c:713
-msgid "Left value is NOT a 0\\function! (ignoring '=')"
-msgstr ""
-
-#: genius/eval.c:717
-msgid "Right value is NOT computed! (ignoring '=')"
-msgstr ""
-
-#: genius/eval.c:730
-msgid "funcdefop can't function without proper nodes!"
-msgstr ""
-
-#: genius/eval.c:733
-msgid "Left value is NOT a function! (ignoring function definition)"
-msgstr ""
-
-#: genius/genius.c:238 genius/genius.c:520
-msgid "GnomENIUS Calculator"
-msgstr ""
-
-#. another comments
-#: genius/genius.c:243
-msgid "The Gnome Calculator program"
-msgstr ""
-
-#: genius/genius.c:371
-msgid "GnomENIUS Calculator setup"
-msgstr ""
-
-#: genius/genius.c:381 gncal/eventedit.c:774
-#: mini-utils/gshutdown/gshutdown.c:388
-msgid "General"
-msgstr "Allmänt"
-
-#. options area
-#: genius/genius.c:384 gtop/main.c:190 gtt/prop.c:175
-msgid "Properties"
-msgstr "Egenskaper"
-
-#: genius/genius.c:388
-msgid "Prefix notation"
-msgstr ""
-
-#: genius/genius.c:399
-msgid "Infix notation"
-msgstr ""
-
-#: genius/genius.c:410
-msgid "Postfix notation (RPN)"
-msgstr ""
-
-#: genius/genius.c:424
-msgid "Full (exact) answers"
-msgstr ""
-
-#: genius/genius.c:434
-msgid "Make floats integers (e.g. 10.0=10)"
-msgstr ""
-
-#: genius/genius.c:443
-msgid "Results as floats"
-msgstr ""
-
-#: genius/genius.c:452
-msgid "Floats in scientific notation"
-msgstr ""
-
-#: genius/genius.c:475 gncal/gnomecard/gnomecard.c:2111 gtop/main.c:167
-#: gtt/menus.c:75 gtt/menus.c:128
-msgid "Properties..."
-msgstr "Egenskaper..."
-
-#. numpad
-#: genius/genius.c:483 genius/genius.c:674
-msgid "Numpad"
-msgstr ""
-
-#. scientific
-#: genius/genius.c:485 genius/genius.c:705
-msgid "Scientific"
-msgstr ""
-
-#: genius/genius.c:501
-msgid "Calculator"
-msgstr ""
-
-#: genius/genius.c:504 ghex/ui.c:65 gtop/main.c:177
-#: mini-utils/gless/gless.c:358
-msgid "View"
-msgstr ""
-
-#: genius/genius.c:638 ghex/ui.c:471 gncal/eventedit.c:379 gtt/options.c:195
-msgid "Display"
-msgstr "Grafiskt"
-
-#: genius/util.c:128
-msgid "Stack underflow!"
-msgstr ""
+#: gdiskfree/df.c:219
+msgid "A quick hack to show the amount of space free on mounted file systems uitilizing a dial."
+msgstr "Ett snabbt hack för att visa mängden fritt utrymme på ett monterat filsystem med hjälp av en visare."
 
 #: ghex/callbacks.c:20
 msgid "GHex, a binary file editor"
-msgstr ""
+msgstr "GHex, en binärfilseditor"
 
 #: ghex/callbacks.c:22
 msgid "Released under the terms of GNU Public License"
-msgstr ""
+msgstr "Släppt under GNU Public License"
 
 #: ghex/callbacks.c:48 ghex/callbacks.c:98
 msgid "Error saving file!"
-msgstr ""
+msgstr "Fel vid sparande av fil!"
 
-#: ghex/callbacks.c:64 ghex/main.c:99
+#: ghex/callbacks.c:64
 msgid "Can not open file!"
-msgstr ""
+msgstr "Kan inte öppna fil!"
 
 #: ghex/callbacks.c:102
 msgid "Can't open file for writing!"
-msgstr ""
+msgstr "Kan inte öppna fil för skrivning!"
 
 #: ghex/callbacks.c:126
 msgid "Select a file to open"
-msgstr ""
+msgstr "Välj en fil att öppna"
 
 #: ghex/callbacks.c:144
 msgid "Select a file to save buffer as"
-msgstr ""
+msgstr "Välj en fil att spara bufferten som"
 
 #: ghex/callbacks.c:238 ghex/callbacks.c:262 ghex/callbacks.c:315
 msgid "There seems to be no string to search for!"
-msgstr ""
+msgstr "Det verkar inte finnas någon sträng at söka efter!"
 
 #: ghex/callbacks.c:243 ghex/callbacks.c:267 ghex/callbacks.c:320
 msgid "There is no active buffer to search!"
-msgstr ""
+msgstr "Det finns ingen aktiv buffer att söka i!"
 
 #: ghex/callbacks.c:252 ghex/callbacks.c:329
 msgid "End Of File reached"
-msgstr ""
+msgstr "Slutet på filen nådd"
 
 #: ghex/callbacks.c:276
 msgid "Beginning Of File reached"
-msgstr ""
+msgstr "Början av filen nådd"
 
 #: ghex/callbacks.c:284
 msgid "There is no active buffer to move the cursor in!"
-msgstr ""
+msgstr "Finns ingen aktiv buffer att flytta markören i!"
 
 #: ghex/callbacks.c:289
 msgid "No offset has been specified!"
-msgstr ""
+msgstr "Ingen offset har specificerats!"
 
 #: ghex/callbacks.c:296
 msgid "The offset must be a positive integer value!"
-msgstr ""
+msgstr "Offsetten måste vara ett positivt heltal!"
 
 #: ghex/callbacks.c:301
 msgid "Can not position cursor beyond the End Of File!"
-msgstr ""
+msgstr "Kan ej positionera markören efter filens slut!"
 
 #: ghex/callbacks.c:339 ghex/callbacks.c:378
 msgid "There is no active buffer to replace data in!"
-msgstr ""
+msgstr "Det finns ingen aktiv buffer att ersätta data i!"
 
 #: ghex/callbacks.c:350 ghex/callbacks.c:389
 msgid "Erroneous find or replace string!"
-msgstr ""
+msgstr "Felaktig sök- eller ersättsträng!"
 
 #: ghex/callbacks.c:355 ghex/callbacks.c:394
 msgid "Both strings must be of the same length!"
-msgstr ""
+msgstr "Båda strängarna måste vara lika långa!"
 
 #: ghex/callbacks.c:368
 msgid "End Of File reached!"
-msgstr ""
+msgstr "Slutet på filen nådd!"
 
+# , c-format
 #: ghex/callbacks.c:409
-#, c-format
 msgid "Replaced %d occurencies."
-msgstr ""
+msgstr "Bytte ut %d förekomster"
 
 #: ghex/callbacks.c:469
 msgid "Can not open desired font!"
-msgstr ""
+msgstr "Kan inte öppna det önskade typsnittet!"
 
+# , c-format
 #: ghex/callbacks.c:488
-#, c-format
 msgid ""
 "The document %s has changed since last save.\n"
 "Do you want to save changes?"
 msgstr ""
-"Le document %s a changé depuis son dernier enregistrement.\n"
-"Voulez-vous enregistrer?"
+"Dokumentet %s har ändrats sen det senaste sparades.\n"
+"Vill du spara förändringarna?"
 
-#: ghex/callbacks.c:547
+#: ghex/callbacks.c:519
+msgid "Edit/Group Data As/"
+msgstr "Redigera/Gruppera data som/"
+
+#: ghex/callbacks.c:562
 msgid "ERRONEUS STRING"
-msgstr ""
+msgstr "FELAKTIG STRÄNG"
 
 #: ghex/config.c:40
 msgid "Can not open configured font!"
-msgstr ""
+msgstr "Kan inte öppna det inställda typsnittet!"
 
-#: ghex/gnome-support.c:13 gtop/session.c:12
+#: ghex/gnome-support.c:13
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
-#: ghex/gnome-support.c:13 gtop/session.c:13
+#: ghex/gnome-support.c:13
 msgid "Discard session"
-msgstr ""
+msgstr "Kassera session"
 
-#: ghex/hex-document.c:30 ghex/ui.c:81
-msgid "Bytes"
-msgstr ""
+#: ghex/hex-document.c:31
+msgid "_Bytes"
+msgstr "_Bytes"
 
-#: ghex/hex-document.c:32 ghex/ui.c:82
-msgid "Words"
-msgstr ""
+#: ghex/hex-document.c:33
+msgid "_Words"
+msgstr "_Ord"
 
-#: ghex/hex-document.c:34 ghex/ui.c:83
-msgid "Longwords"
-msgstr ""
+#: ghex/hex-document.c:35
+msgid "_Longwords"
+msgstr "_Långord"
 
-#: ghex/hex-document.c:45
-msgid "Find..."
-msgstr ""
+#: ghex/hex-document.c:46
+msgid "_Find..."
+msgstr "_Sök..."
 
-#: ghex/hex-document.c:47
-msgid "Replace..."
-msgstr ""
+#: ghex/hex-document.c:48
+msgid "_Replace..."
+msgstr "_Ersätt..."
 
-#: ghex/hex-document.c:51
-msgid "Goto Byte..."
-msgstr ""
+#: ghex/hex-document.c:52
+msgid "_Goto Byte..."
+msgstr "_Gå till byte..."
 
-#: ghex/hex-document.c:55
-msgid "Group Data As"
-msgstr ""
+#: ghex/hex-document.c:56
+msgid "_Group Data As"
+msgstr "_Gruppera data som"
 
 #: ghex/main.c:56
 msgid "Files/"
-msgstr ""
+msgstr "Filer/"
 
-#: ghex/ui.c:14 gncal/gnomecard/gnomecard.c:2230
-msgid "Open"
-msgstr "Öppna"
+#: ghex/ui.c:14
+msgid "_Open"
+msgstr "_Öppna"
 
-#: ghex/ui.c:18 gncal/gnomecard/gnomecard.c:2105
-msgid "Save as..."
-msgstr "Spara som..."
+#: ghex/ui.c:16
+msgid "_Save"
+msgstr "_Spara"
 
+#: ghex/ui.c:18
+msgid "Save _as..."
+msgstr "Spara so_m..."
+
+# , fuzzy
 #: ghex/ui.c:20
-#, fuzzy
-msgid "Revert"
-msgstr "Återställ"
+msgid "_Revert"
+msgstr "_Återställ"
 
-#: ghex/ui.c:22 ghex/ui.c:401 mini-utils/gless/gless.c:324
-msgid "Close"
-msgstr "Stäng"
+#: ghex/ui.c:22
+msgid "_Close"
+msgstr "_Stäng"
 
 #: ghex/ui.c:26
-msgid "Open Converter..."
-msgstr ""
+msgid "Open _Converter..."
+msgstr "Öppna _konverterare..."
+
+#: ghex/ui.c:30
+msgid "_Preferences"
+msgstr "_Inställningar"
 
 #: ghex/ui.c:44
-msgid "Add view"
-msgstr "Lägg till vy"
+msgid "_Add view"
+msgstr "_Lägg till vy"
 
 #: ghex/ui.c:47
-msgid "Remove view"
-msgstr "Ta bort vy"
+msgid "_Remove view"
+msgstr "_Ta bort vy"
+
+#: ghex/ui.c:63 gncal/main.c:438 gtt/menus.c:113
+msgid "_File"
+msgstr "_Arkiv"
+
+#: ghex/ui.c:65
+msgid "_View"
+msgstr "_Visa"
 
 #: ghex/ui.c:67
-msgid "Files"
-msgstr "Filer"
+msgid "File_s"
+msgstr "File_r"
 
-#: ghex/ui.c:107 mini-utils/idetool/idetool.c:140
-#: mini-utils/idetool/idetool.c:322
+#: ghex/ui.c:69 gncal/main.c:440 gtt/menus.c:120
+msgid "_Help"
+msgstr "_Hjälp"
+
+#: ghex/ui.c:81
+msgid "Bytes"
+msgstr "Bytes"
+
+#: ghex/ui.c:82
+msgid "Words"
+msgstr "Ord"
+
+#: ghex/ui.c:83
+msgid "Longwords"
+msgstr "Långord"
+
+#: ghex/ui.c:107 mini-utils/idetool/idetool.c:140 mini-utils/idetool/idetool.c:322
 msgid "Default"
 msgstr "Standard"
 
 #: ghex/ui.c:108
 msgid "Notebook"
-msgstr ""
+msgstr "Anteckningsblock"
 
 #: ghex/ui.c:109
 msgid "Toplevel"
-msgstr ""
+msgstr "Toppnivå"
 
 #: ghex/ui.c:110
 msgid "Modal"
-msgstr ""
+msgstr "Modal"
 
 #: ghex/ui.c:115
 msgid "hex data"
-msgstr ""
+msgstr "hex data"
 
 #: ghex/ui.c:116
 msgid "ASCII data"
-msgstr ""
+msgstr "ASCII data"
 
 #: ghex/ui.c:193
 msgid "GHex: Find Data"
-msgstr ""
+msgstr "GHex: Sök data"
 
+# , c-format
 #: ghex/ui.c:202
-#, c-format
 msgid "Search for %s"
-msgstr ""
+msgstr "Sök efter %s"
 
 #: ghex/ui.c:218
 msgid "Find Next"
-msgstr ""
+msgstr "Hitta nästa"
 
 #: ghex/ui.c:225
 msgid "Find Previous"
-msgstr ""
+msgstr "Hitta föregående"
 
 #: ghex/ui.c:253
 msgid "GHex: Find & Replace Data"
-msgstr ""
+msgstr "GHex: Sök och ersätt data"
 
+# , c-format
 #: ghex/ui.c:267
-#, c-format
 msgid "Replace %s"
-msgstr ""
+msgstr "Ersätt %s"
 
 #: ghex/ui.c:283
 msgid "Find next"
-msgstr ""
+msgstr "Hitta nästa"
 
 #: ghex/ui.c:290
 msgid "Replace"
-msgstr ""
+msgstr "Ersätt"
 
 #: ghex/ui.c:297
 msgid "Replace All"
-msgstr ""
+msgstr "Ersätt alla"
 
 #: ghex/ui.c:321
 msgid "GHex: Jump To Byte"
-msgstr ""
+msgstr "GHex: Hoppa till byte"
 
 #: ghex/ui.c:354
 msgid "GHex: Converter"
-msgstr ""
+msgstr "GHex: Konverterare"
 
 #: ghex/ui.c:361
 msgid "Binary"
-msgstr ""
+msgstr "Binär"
 
 #: ghex/ui.c:371
 msgid "Decimal"
-msgstr ""
+msgstr "Decimal"
 
 #: ghex/ui.c:381
 msgid "Hex"
-msgstr ""
+msgstr "Hex"
 
 #: ghex/ui.c:391
 msgid "ASCII"
-msgstr ""
+msgstr "ASCII"
+
+#: ghex/ui.c:401 mini-utils/gless/gless.c:324
+msgid "Close"
+msgstr "Stäng"
 
 #: ghex/ui.c:445
 msgid "Font"
-msgstr ""
+msgstr "Typsnitt"
 
 #: ghex/ui.c:455
 msgid "Default Group Type"
-msgstr ""
+msgstr "Standard grupptyp"
+
+#: ghex/ui.c:471 gncal/eventedit.c:379 gtt/options.c:195
+msgid "Display"
+msgstr "Utseende"
 
 #: ghex/ui.c:478
 msgid "MDI Mode"
-msgstr ""
+msgstr "MDI-läge"
 
 #: ghex/ui.c:495
 msgid "MDI"
-msgstr ""
+msgstr "MDI"
 
 #: gncal/calobj.c:878
 msgid "Appointment"
-msgstr ""
+msgstr "Händelse"
 
-#: gncal/eventedit.c:219 gtop/procview.c:235
+#: gncal/eventedit.c:219
 msgid "Time"
 msgstr "Tid"
 
@@ -677,6 +443,10 @@ msgstr "Alarm"
 msgid "Audio"
 msgstr "Ljud"
 
+#: gncal/eventedit.c:381
+msgid "Program"
+msgstr "Program"
+
 #: gncal/eventedit.c:382
 msgid "Mail"
 msgstr "Epost"
@@ -697,417 +467,417 @@ msgstr "Privat"
 msgid "Confidential"
 msgstr "Konfidentiell"
 
-#: gncal/eventedit.c:783
+#: gncal/eventedit.c:779 mini-utils/gshutdown/gshutdown.c:384
+msgid "General"
+msgstr "Allmänt"
+
+#: gncal/eventedit.c:788
 msgid "Owner:"
 msgstr "Ägare:"
 
-#: gncal/eventedit.c:786
+#: gncal/eventedit.c:791
 msgid "?"
 msgstr "?"
 
-#: gncal/eventedit.c:790 gncal/gncal-todo.c:108
+#: gncal/eventedit.c:795 gncal/gncal-todo.c:108
 msgid "Summary:"
 msgstr "Sammanfattning:"
 
-#: gncal/eventedit.c:840
+#: gncal/eventedit.c:845
 msgid "None"
 msgstr "Ingen"
 
-#: gncal/eventedit.c:841
+#: gncal/eventedit.c:846
 msgid "Daily"
 msgstr "Dagligen"
 
-#: gncal/eventedit.c:842
+#: gncal/eventedit.c:847
 msgid "Weekly"
 msgstr "Varje vecka"
 
-#: gncal/eventedit.c:843
+#: gncal/eventedit.c:848
 msgid "Monthly"
 msgstr "Månatligen"
 
-#: gncal/eventedit.c:844
+#: gncal/eventedit.c:849
 msgid "Yearly"
 msgstr "Årligen"
 
-#: gncal/eventedit.c:866
+#: gncal/eventedit.c:871
 msgid "1st"
 msgstr "första"
 
-#: gncal/eventedit.c:867
+#: gncal/eventedit.c:872
 msgid "2nd"
 msgstr "andra"
 
-#: gncal/eventedit.c:868
+#: gncal/eventedit.c:873
 msgid "3rd"
 msgstr "tredje"
 
-#: gncal/eventedit.c:869
+#: gncal/eventedit.c:874
 msgid "4th"
 msgstr "fjärde"
 
-#: gncal/eventedit.c:870
+#: gncal/eventedit.c:875
 msgid "5th"
 msgstr "femte"
 
-#: gncal/eventedit.c:875 gncal/prop.c:266
+#: gncal/eventedit.c:880 gncal/prop.c:269
 msgid "Monday"
 msgstr "Måndag"
 
-#: gncal/eventedit.c:876
+#: gncal/eventedit.c:881
 msgid "Tuesday"
 msgstr "Tisdag"
 
-#: gncal/eventedit.c:877
+#: gncal/eventedit.c:882
 msgid "Wednesday"
 msgstr "Onsdag"
 
-#: gncal/eventedit.c:878
+#: gncal/eventedit.c:883
 msgid "Thursday"
 msgstr "Torsdag"
 
-#: gncal/eventedit.c:879
+#: gncal/eventedit.c:884
 msgid "Friday"
 msgstr "Fredag"
 
-#: gncal/eventedit.c:880
+#: gncal/eventedit.c:885
 msgid "Saturday"
 msgstr "Lördag"
 
-#: gncal/eventedit.c:881 gncal/prop.c:265
+#: gncal/eventedit.c:886 gncal/prop.c:268
 msgid "Sunday"
 msgstr "Söndag"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:590
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:733
 msgid "Mon"
 msgstr "Mån"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:591
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:734
 msgid "Tue"
 msgstr "Tis"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:592
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:735
 msgid "Wed"
 msgstr "Ons"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:593
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:736
 msgid "Thu"
 msgstr "Tor"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:594
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:737
 msgid "Fri"
 msgstr "Fre"
 
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:595
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:738
 msgid "Sat"
 msgstr "Lör"
 
-#. Initialize by default to three-letter day names
-#: gncal/eventedit.c:934 gncal/gnome-month-item.c:589
+#: gncal/eventedit.c:939 gncal/gnome-month-item.c:732
 msgid "Sun"
 msgstr "Sön"
 
-#: gncal/eventedit.c:945
+#: gncal/eventedit.c:950
 msgid "Recurrence rule"
 msgstr "Upprepningsregel"
 
-#: gncal/eventedit.c:1046 gncal/eventedit.c:1060 gncal/eventedit.c:1105
-#: gncal/eventedit.c:1127
+#: gncal/eventedit.c:1051 gncal/eventedit.c:1065 gncal/eventedit.c:1110 gncal/eventedit.c:1132
 msgid "Every"
 msgstr "Varje"
 
-#: gncal/eventedit.c:1048
+#: gncal/eventedit.c:1053
 msgid "day(s)"
 msgstr "dag"
 
-#: gncal/eventedit.c:1062
+#: gncal/eventedit.c:1067
 msgid "week(s)"
 msgstr "vecka"
 
-#: gncal/eventedit.c:1083 gncal/eventedit.c:1095
+#: gncal/eventedit.c:1088 gncal/eventedit.c:1100
 msgid "Recur on the"
 msgstr "Upprepa den"
 
-#: gncal/eventedit.c:1085
+#: gncal/eventedit.c:1090
 msgid "th day of the month"
 msgstr ":e dagen i månaden"
 
-#: gncal/eventedit.c:1110
+#: gncal/eventedit.c:1115
 msgid "month(s)"
 msgstr "månad"
 
-#: gncal/eventedit.c:1129
+#: gncal/eventedit.c:1134
 msgid "year(s)"
 msgstr "år"
 
-#: gncal/eventedit.c:1167
+#: gncal/eventedit.c:1172
 msgid "Ending date"
 msgstr "Slutdatum"
 
-#: gncal/eventedit.c:1180
+#: gncal/eventedit.c:1185
 msgid "Repeat forever"
 msgstr "Upprepa förevigt"
 
-#: gncal/eventedit.c:1189
+#: gncal/eventedit.c:1194
 msgid "End on"
 msgstr "Sluta den"
 
-#: gncal/eventedit.c:1214
+#: gncal/eventedit.c:1219
 msgid "End after"
 msgstr "Sluta efter"
 
-#: gncal/eventedit.c:1230
+#: gncal/eventedit.c:1235
 msgid "occurrence(s)"
 msgstr "händelse(r)"
 
-#: gncal/eventedit.c:1348
+#: gncal/eventedit.c:1353
 msgid "Exceptions"
 msgstr "Undantag"
 
-#: gncal/eventedit.c:1360
+#: gncal/eventedit.c:1365
 msgid "Add exception"
 msgstr "Lägg till undantag"
 
-#: gncal/eventedit.c:1370
+#: gncal/eventedit.c:1375
 msgid "Change selected"
 msgstr "Ändra vald"
 
-#: gncal/eventedit.c:1376
+#: gncal/eventedit.c:1381
 msgid "Delete selected"
 msgstr "Ta bort vald"
 
-#: gncal/eventedit.c:1402
+#: gncal/eventedit.c:1407
 msgid "Recurrence"
 msgstr "Upprepning"
 
-#: getdate.y:391 gncal/getdate.y:391
+#. Month and day table.
+#: gncal/getdate.y:391
 msgid "january"
 msgstr "januari"
 
-#: getdate.y:392 gncal/getdate.y:392
+#: gncal/getdate.y:392
 msgid "february"
 msgstr "februrari"
 
-#: getdate.y:393 gncal/getdate.y:393
+#: gncal/getdate.y:393
 msgid "march"
 msgstr "mars"
 
-#: getdate.y:394 gncal/getdate.y:394
+#: gncal/getdate.y:394
 msgid "april"
 msgstr "april"
 
-#: getdate.y:395 gncal/getdate.y:395
+#: gncal/getdate.y:395
 msgid "may"
 msgstr "maj"
 
-#: getdate.y:396 gncal/getdate.y:396
+#: gncal/getdate.y:396
 msgid "june"
 msgstr "juni"
 
-#: getdate.y:397 gncal/getdate.y:397
+#: gncal/getdate.y:397
 msgid "july"
 msgstr "juli"
 
-#: getdate.y:398 gncal/getdate.y:398
+#: gncal/getdate.y:398
 msgid "august"
 msgstr "augusti"
 
-#: getdate.y:399 gncal/getdate.y:399
+#: gncal/getdate.y:399
 msgid "september"
 msgstr "september"
 
-#: getdate.y:400 gncal/getdate.y:400
+#: gncal/getdate.y:400
 msgid "sept"
 msgstr "sept"
 
-#: getdate.y:401 gncal/getdate.y:401
+#: gncal/getdate.y:401
 msgid "october"
 msgstr "oktober"
 
-#: getdate.y:402 gncal/getdate.y:402
+#: gncal/getdate.y:402
 msgid "november"
 msgstr "november"
 
-#: getdate.y:403 gncal/getdate.y:403
+#: gncal/getdate.y:403
 msgid "december"
 msgstr "december"
 
-#: getdate.y:404 gncal/getdate.y:404
+#: gncal/getdate.y:404
 msgid "sunday"
 msgstr "söndag"
 
-#: getdate.y:405 gncal/getdate.y:405
+#: gncal/getdate.y:405
 msgid "monday"
 msgstr "måndag"
 
-#: getdate.y:406 gncal/getdate.y:406
+#: gncal/getdate.y:406
 msgid "tuesday"
 msgstr "tisdag"
 
-#: getdate.y:407 gncal/getdate.y:407
+#: gncal/getdate.y:407
 msgid "tues"
 msgstr "tisd"
 
-#: getdate.y:408 gncal/getdate.y:408
+#: gncal/getdate.y:408
 msgid "wednesday"
 msgstr "onsdag"
 
-#: getdate.y:409 gncal/getdate.y:409
+#: gncal/getdate.y:409
 msgid "wednes"
 msgstr "onsd"
 
-#: getdate.y:410 gncal/getdate.y:410
+#: gncal/getdate.y:410
 msgid "thursday"
 msgstr "torsdag"
 
-#: getdate.y:411 gncal/getdate.y:411
+#: gncal/getdate.y:411
 msgid "thur"
 msgstr "tors"
 
-#: getdate.y:412 gncal/getdate.y:412
+#: gncal/getdate.y:412
 msgid "thurs"
 msgstr "tors"
 
-#: getdate.y:413 gncal/getdate.y:413
+#: gncal/getdate.y:413
 msgid "friday"
 msgstr "fredag"
 
-#: getdate.y:414 gncal/getdate.y:414
+#: gncal/getdate.y:414
 msgid "saturday"
 msgstr "lördag"
 
-#: getdate.y:420 gncal/getdate.y:420
+#: gncal/getdate.y:420
 msgid "year"
 msgstr "år"
 
-#: getdate.y:421 gncal/getdate.y:421
+#: gncal/getdate.y:421
 msgid "month"
 msgstr "månad"
 
-#: getdate.y:422 gncal/getdate.y:422
+#: gncal/getdate.y:422
 msgid "fortnight"
-msgstr ""
+msgstr "14 dagar"
 
-#: getdate.y:423 gncal/getdate.y:423
+#: gncal/getdate.y:423
 msgid "week"
 msgstr "vecka"
 
-#: getdate.y:424 gncal/getdate.y:424
+#: gncal/getdate.y:424
 msgid "day"
 msgstr "dag"
 
-#: getdate.y:425 gncal/getdate.y:425
+#: gncal/getdate.y:425
 msgid "hour"
 msgstr "timme"
 
-#: getdate.y:426 gncal/getdate.y:426
+#: gncal/getdate.y:426
 msgid "minute"
 msgstr "minut"
 
-#: getdate.y:427 gncal/getdate.y:427
+#: gncal/getdate.y:427
 msgid "min"
 msgstr "min"
 
-#: getdate.y:428 gncal/getdate.y:428
+#: gncal/getdate.y:428
 msgid "second"
 msgstr "sekund"
 
-#: getdate.y:429 gncal/getdate.y:429
+#: gncal/getdate.y:429
 msgid "sec"
 msgstr "sek"
 
-#: getdate.y:435 gncal/getdate.y:435
+#: gncal/getdate.y:435
 msgid "tomorrow"
 msgstr "imorgon"
 
-#: getdate.y:436 gncal/getdate.y:436
+#: gncal/getdate.y:436
 msgid "yesterday"
 msgstr "igår"
 
-#: getdate.y:437 gncal/getdate.y:437
+#: gncal/getdate.y:437
 msgid "today"
 msgstr "idag"
 
-#: getdate.y:438 gncal/getdate.y:438
+#: gncal/getdate.y:438
 msgid "now"
 msgstr "nu"
 
-#: getdate.y:439 gncal/getdate.y:439 gncal/gnomecard/gnomecard.c:1494
-#: gncal/gnomecard/gnomecard.c:1495
+#: gncal/getdate.y:439
 msgid "last"
 msgstr "förra"
 
-#: getdate.y:440 gncal/getdate.y:440
+#: gncal/getdate.y:440
 msgid "this"
 msgstr "denna"
 
-#: getdate.y:441 gncal/getdate.y:441
+#: gncal/getdate.y:441
 msgid "next"
 msgstr "nästa"
 
-#: getdate.y:442 gncal/getdate.y:442 gncal/gnomecard/gnomecard.c:1494
-#: gncal/gnomecard/gnomecard.c:1495
+#: gncal/getdate.y:442
 msgid "first"
 msgstr "första"
 
-#. { N_("second"), tUNUMBER, 2 },
-#: getdate.y:444 gncal/getdate.y:444
+#. { N_("second"),		tUNUMBER,	2 },
+#: gncal/getdate.y:444
 msgid "third"
 msgstr "tredje"
 
-#: getdate.y:445 gncal/getdate.y:445
+#: gncal/getdate.y:445
 msgid "fourth"
 msgstr "fjärde"
 
-#: getdate.y:446 gncal/getdate.y:446
+#: gncal/getdate.y:446
 msgid "fifth"
 msgstr "femte"
 
-#: getdate.y:447 gncal/getdate.y:447
+#: gncal/getdate.y:447
 msgid "sixth"
 msgstr "sjätte"
 
-#: getdate.y:448 gncal/getdate.y:448
+#: gncal/getdate.y:448
 msgid "seventh"
 msgstr "sjunde"
 
-#: getdate.y:449 gncal/getdate.y:449
+#: gncal/getdate.y:449
 msgid "eighth"
 msgstr "åttonde"
 
-#: getdate.y:450 gncal/getdate.y:450
+#: gncal/getdate.y:450
 msgid "ninth"
 msgstr "nionde"
 
-#: getdate.y:451 gncal/getdate.y:451
+#: gncal/getdate.y:451
 msgid "tenth"
 msgstr "tionde"
 
-#: getdate.y:452 gncal/getdate.y:452
+#: gncal/getdate.y:452
 msgid "eleventh"
 msgstr "elfte"
 
-#: getdate.y:453 gncal/getdate.y:453
+#: gncal/getdate.y:453
 msgid "twelfth"
 msgstr "tolfte"
 
-#: getdate.y:454 gncal/getdate.y:454
+#: gncal/getdate.y:454
 msgid "ago"
 msgstr "sen"
 
-#: gncal/gncal-day-view.c:135 gncal/gncal-full-day.c:476
-#: gncal/gncal-full-day.c:1713 gncal/main.c:420
+#: gncal/gncal-day-view.c:135 gncal/gncal-full-day.c:472 gncal/gncal-full-day.c:1628
 msgid "New appointment..."
 msgstr "Nytt ärende..."
 
-#: gncal/gncal-full-day.c:472
+#: gncal/gncal-full-day.c:468
 msgid "Make this appointment movable"
 msgstr "Gör detta ärende flyttbart"
 
-#: gncal/gncal-full-day.c:473
+#: gncal/gncal-full-day.c:469
 msgid "Edit this appointment..."
 msgstr "Ändra detta ärende..."
 
-#: gncal/gncal-full-day.c:474
+#: gncal/gncal-full-day.c:470
 msgid "Delete this appointment"
 msgstr "Ta bort detta ärende"
 
@@ -1131,24 +901,21 @@ msgstr "Ändra denna post..."
 msgid "Delete this item"
 msgstr "Ta bort denna post"
 
-#. Label
-#: gncal/gncal-todo.c:235
+#: gncal/gncal-todo.c:238
 msgid "To-do list"
 msgstr "Att-göra lista"
 
 #. Add
-#: gncal/gncal-todo.c:263 gncal/gnomecard/gnomecard.c:2122
+#: gncal/gncal-todo.c:266
 msgid "Add..."
 msgstr "Lägg till..."
 
 #. Edit
-#: gncal/gncal-todo.c:272
+#: gncal/gncal-todo.c:275
 msgid "Edit..."
-msgstr "Ändra..."
+msgstr "Redigera..."
 
-#. Delete
-#: gncal/gncal-todo.c:283 gncal/gnomecard/gnomecard.c:2130
-#: mini-utils/gw/gw.c:466
+#: gncal/gncal-todo.c:286 gncal/gnomecard/gnomecard.c:467 mini-utils/gw/gw.c:466
 msgid "Delete"
 msgstr "Ta bort"
 
@@ -1168,626 +935,274 @@ msgstr "Månadsvy"
 msgid "Year View"
 msgstr "Årsvy"
 
-#: gncal/gnome-cal.c:334 gncal/gnome-cal.c:368
+#: gncal/gnome-cal.c:333 gncal/gnome-cal.c:368
 msgid "Reminder of your appointment at "
 msgstr "Påminnelse om ditt ärende som inträffar "
 
-#: gncal/gnomecard/gnomecard.c:66
-msgid "America On-Line"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:66
-msgid "Apple Link"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:66
-msgid "AT&T"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:67
-msgid "CIS"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:67
-msgid "e-World"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:67
-msgid "Internet"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:67
-msgid "IBM"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:68
-msgid "MCI"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:68
-#, fuzzy
-msgid "Power Share"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:68
-#, fuzzy
-msgid "Prodigy"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:68
-msgid "TLX"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:69
-msgid "X400"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:72
-msgid "Preferred"
-msgstr "Önskad"
-
-#: gncal/gnomecard/gnomecard.c:72 gncal/gnomecard/gnomecard.c:79
-msgid "Work"
-msgstr "Arbete"
-
-#: gncal/gnomecard/gnomecard.c:72 gncal/gnomecard/gnomecard.c:79
-msgid "Home"
-msgstr "Hem"
-
-#: gncal/gnomecard/gnomecard.c:72
-msgid "Voice"
-msgstr "Röst"
-
-#: gncal/gnomecard/gnomecard.c:73
-msgid "Fax"
-msgstr "Fax"
-
-#: gncal/gnomecard/gnomecard.c:73
-#, fuzzy
-msgid "Message Recorder"
-msgstr "Meddelande-inspelare"
-
-#: gncal/gnomecard/gnomecard.c:73
-msgid "Cellular"
-msgstr "Mobil"
-
-#: gncal/gnomecard/gnomecard.c:74
-msgid "Pager"
-msgstr "Sökare"
-
-#: gncal/gnomecard/gnomecard.c:74
-msgid "Bulletin Board"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:74
-msgid "Modem"
-msgstr "Modem"
-
-#: gncal/gnomecard/gnomecard.c:75
-msgid "Car"
-msgstr "Bil"
-
-#: gncal/gnomecard/gnomecard.c:75
-msgid "ISDN"
-msgstr "ISDN"
-
-#: gncal/gnomecard/gnomecard.c:75
-msgid "Video"
-msgstr "Video"
-
-#: gncal/gnomecard/gnomecard.c:78
-msgid "Domiciliary"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:78
-msgid "International"
-msgstr "Internationell"
-
-#: gncal/gnomecard/gnomecard.c:78
-msgid "Postal Box"
-msgstr "Postbox"
-
-#: gncal/gnomecard/gnomecard.c:79
-#, fuzzy
-msgid "Parcel"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:271 gncal/gnomecard/gnomecard.c:936
-msgid "Identity"
-msgstr "Identitet"
-
-#: gncal/gnomecard/gnomecard.c:278 gncal/gnomecard/gnomecard.c:349
-#: gncal/gnomecard/gnomecard.c:955 mini-utils/gcolorsel/gcolorsel.c:154
-#: mini-utils/gw/gw.c:456 mini-utils/gw/gw.c:528
-msgid "Name"
-msgstr "Namn"
-
-#: gncal/gnomecard/gnomecard.c:288
-msgid "Birth Date"
-msgstr "Födelsedatum"
-
-#: gncal/gnomecard/gnomecard.c:297 gncal/gnomecard/gnomecard.c:1026
-msgid "Geographical"
-msgstr "Geografisk"
-
-#: gncal/gnomecard/gnomecard.c:304 gncal/gnomecard/gnomecard.c:1034
-msgid "Time Zone"
-msgstr "Tidszon"
-
-#: gncal/gnomecard/gnomecard.c:311
-msgid "Geo. Position"
-msgstr "Geog. position"
-
-#: gncal/gnomecard/gnomecard.c:321
-msgid "Organizational"
-msgstr "Organisationell"
-
-#: gncal/gnomecard/gnomecard.c:328
-msgid "Title"
-msgstr "Titel"
-
-#: gncal/gnomecard/gnomecard.c:334
-msgid "Role"
-msgstr "Roll"
-
-#: gncal/gnomecard/gnomecard.c:342 gncal/gnomecard/gnomecard.c:1084
-#: gncal/gnomecard/gnomecard.c:1100
-msgid "Organization"
-msgstr "Organisation"
-
-#: gncal/gnomecard/gnomecard.c:355
-msgid "Unit 1"
-msgstr "Enhet 1"
-
-#: gncal/gnomecard/gnomecard.c:361
-msgid "Unit 2"
-msgstr "Enhet 2"
-
-#: gncal/gnomecard/gnomecard.c:368
-msgid "Unit 3"
-msgstr "Enhet 3"
-
-#: gncal/gnomecard/gnomecard.c:374
-msgid "Unit 4"
-msgstr "Enhet 4"
-
-#: gncal/gnomecard/gnomecard.c:387 gncal/gnomecard/gnomecard.c:1136
-#, fuzzy
-msgid "Explanatory"
-msgstr "Förklarande"
-
-#: gncal/gnomecard/gnomecard.c:397
-msgid "Comment"
-msgstr "Kommentar"
-
-#: gncal/gnomecard/gnomecard.c:416
-msgid "URL"
-msgstr "URL"
-
-#: gncal/gnomecard/gnomecard.c:425 gncal/gnomecard/gnomecard.c:1173
-msgid "Security"
-msgstr "Säkerhet"
-
-#: gncal/gnomecard/gnomecard.c:438
-msgid "Telephone Numbers"
-msgstr "Telefonnummer"
-
-#: gncal/gnomecard/gnomecard.c:473
-msgid "E-mail Addresses"
-msgstr "E-postadresser"
-
-#: gncal/gnomecard/gnomecard.c:499
-msgid "Delivery Addresses"
-msgstr "Leveransadresser"
-
-#: gncal/gnomecard/gnomecard.c:556
-msgid "No Formatted Name for this card."
-msgstr "Inget formatterat namn för detta kort."
-
-#: gncal/gnomecard/gnomecard.c:719
-msgid "No fname for this card."
-msgstr "Inget förnamn för detta kort."
-
-#: gncal/gnomecard/gnomecard.c:747
+#: gncal/gnomecard/gnomecard.c:165
 msgid "No cards, yet."
 msgstr "Inga kort, ännu."
 
-#: gncal/gnomecard/gnomecard.c:940
-msgid "Formatted Name:"
-msgstr "Formatterat namn:"
-
-#: gncal/gnomecard/gnomecard.c:943
-msgid "Take from Name"
-msgstr "Ta från namn"
-
-#: gncal/gnomecard/gnomecard.c:959
-msgid "Given:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:965
-msgid "Additional:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:971
-msgid "Family:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:977
-msgid "Prefix:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:987
-msgid "Suffix:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:999
-msgid "Birthdate:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1041
-msgid "hrs."
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1049
-msgid "mins."
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1057
-msgid "Geographic Position"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1064
-msgid "lat, "
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1072
-msgid "lon."
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1088
-msgid "Title:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1093
-msgid "Role:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1104
-msgid "Name:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1112
-msgid "Units:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1139
-msgid "Comment:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1156
-msgid "URL:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1165
-msgid "Last Revision:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1167
-msgid "The last revision goes here."
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1176
-msgid "Public Key:"
-msgstr "Publik nyckel:"
-
-#: gncal/gnomecard/gnomecard.c:1194
-msgid "PGP"
-msgstr "PGP"
-
-#: gncal/gnomecard/gnomecard.c:1201
-msgid "X509"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1246
-msgid "Save GnomeCard File As..."
-msgstr "Spara GnomeCard filen som..."
-
-#: gncal/gnomecard/gnomecard.c:1289
+#: gncal/gnomecard/gnomecard.c:261
 msgid " changed. Save?"
-msgstr " ändrats. Spara?"
+msgstr " förändrad. Spara?"
 
-#: gncal/gnomecard/gnomecard.c:1481
-msgid "No matching record found."
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1496
-#, c-format
-msgid ""
-"Reached %s record.\n"
-"Continue from the %s one?"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1530
-msgid "Find Card"
-msgstr "Sök kort"
-
-#: gncal/gnomecard/gnomecard.c:1530 gncal/gnomecard/gnomecard.c:2154
-#: gncal/gnomecard/gnomecard.c:2272
-msgid "Find"
-msgstr "Sök"
-
-#: gncal/gnomecard/gnomecard.c:1539
-msgid "Find:"
-msgstr "Sök:"
-
-#: gncal/gnomecard/gnomecard.c:1542
-msgid "Case Sensitive"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1545
-msgid "Find Backwards"
-msgstr ""
-
-#. + 7 for case crd->fname == 0, which sprintf's to "(null)"
-#: gncal/gnomecard/gnomecard.c:1589
-msgid "Add E-mail for "
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1591
-#, c-format
-msgid "Add E-mail for %s"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1607
-msgid "E-mail type:"
-msgstr ""
-
-#. + 7 for case crd->fname == 0, which sprintf's to "(null)"
-#: gncal/gnomecard/gnomecard.c:1668
-msgid "Add Telephone Number for "
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1670
-#, c-format
-msgid "Add Telephone Number for %s"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1684
-#, fuzzy
-msgid "Phone type:"
-msgstr ""
-
-#. + 7 for case crd->fname == 0, which sprintf's to "(null)"
-#: gncal/gnomecard/gnomecard.c:1762
-msgid "Add Delivery Address for "
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1764
-#, c-format
-msgid "Add Delivery Address for %s"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1779
-#, fuzzy
-msgid "Address type:"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1912 gncal/gnomecard/gnomecard.c:1913
-msgid "Wrong file format."
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:1954
-msgid "Open GnomeCard File"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:2008
-msgid "Layout"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:2011
-#, fuzzy
-msgid "Default data"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:2062
+#. gnomecard: error in loading shared libraries
+#. * /gnome/lib/libgnome.so.0: undefined symbol: stat
+#: gncal/gnomecard/gnomecard.c:369
 msgid "A new Gnomecard could not be spawned. Maybe it is not in your path."
-msgstr ""
+msgstr "En ny Gnomecard kunde ej startas. Den kanske inte ligger i din sökväg."
 
-#: gncal/gnomecard/gnomecard.c:2078
-msgid "GnomeCard"
-msgstr "Gnomekort"
-
-#: gncal/gnomecard/gnomecard.c:2081
-msgid "Electronic Business Card Manager"
-msgstr ""
-
-#: gncal/gnomecard/gnomecard.c:2087
+#: gncal/gnomecard/gnomecard.c:380
 msgid "New Gnomecard"
 msgstr "Nytt Gnomekort"
 
-#: gncal/gnomecard/gnomecard.c:2087
+#: gncal/gnomecard/gnomecard.c:380
 msgid "Spawn a new Card Manager."
-msgstr ""
+msgstr "Starta en ny korthanterare."
 
-#: gncal/gnomecard/gnomecard.c:2093
+#: gncal/gnomecard/gnomecard.c:386 gncal/gnomecard/gnomecard.c:556 gncal/main.c:445
+msgid "New"
+msgstr "Nytt"
+
+#: gncal/gnomecard/gnomecard.c:386
 msgid "Create new Card File."
 msgstr "Skapa ny kortfil."
 
-#: gncal/gnomecard/gnomecard.c:2097 mini-utils/gless/gless.c:315
+#: gncal/gnomecard/gnomecard.c:390 mini-utils/gless/gless.c:315
 msgid "Open..."
 msgstr "Öppna..."
 
-#: gncal/gnomecard/gnomecard.c:2097
-#, fuzzy
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:390
 msgid "Open a Card File."
 msgstr "Öppna en kortfil."
 
-#: gncal/gnomecard/gnomecard.c:2101
+#: gncal/gnomecard/gnomecard.c:394
+msgid "Append..."
+msgstr "Lägg till..."
+
+#: gncal/gnomecard/gnomecard.c:394
+msgid "Add the contents of another Card File."
+msgstr "Lägg till innehållet från en annan kortfil."
+
+#: gncal/gnomecard/gnomecard.c:398 gncal/gnomecard/gnomecard.c:564 gtt/toolbar.c:152
+msgid "Save"
+msgstr "Spara"
+
+#: gncal/gnomecard/gnomecard.c:398
 msgid "Save current changes."
 msgstr "Spara nuvarande förändringar."
 
-#: gncal/gnomecard/gnomecard.c:2105
+#: gncal/gnomecard/gnomecard.c:402
+msgid "Save as..."
+msgstr "Spara som..."
+
+#: gncal/gnomecard/gnomecard.c:402
 msgid "Save current changes, choosing file name."
 msgstr "Spara nuvarande förändringar, välja filnamn."
 
-#: gncal/gnomecard/gnomecard.c:2111
+#: gncal/gnomecard/gnomecard.c:408 gtt/menus.c:128
+msgid "Properties..."
+msgstr "Egenskaper..."
+
+#: gncal/gnomecard/gnomecard.c:408
 msgid "Appereance, customizations..."
 msgstr "Utseende, modifieringar..."
 
-#: gncal/gnomecard/gnomecard.c:2114
+#: gncal/gnomecard/gnomecard.c:411
 msgid "Close the program."
 msgstr "Stäng programmet."
 
-#: gncal/gnomecard/gnomecard.c:2122 gncal/gnomecard/gnomecard.c:2240
-#, fuzzy
-msgid "Create new card"
-msgstr "Skapa nytt kort"
-
-#: gncal/gnomecard/gnomecard.c:2126 gncal/gnomecard/gnomecard.c:2244
-#, fuzzy
-msgid "Edit card"
-msgstr "Ändra kort"
-
-#: gncal/gnomecard/gnomecard.c:2130 gncal/gnomecard/gnomecard.c:2248
-#, fuzzy
-msgid "Delete card"
-msgstr "Ta bort kort"
-
-#: gncal/gnomecard/gnomecard.c:2136 gncal/gnomecard/gnomecard.c:2254
+#: gncal/gnomecard/gnomecard.c:419 gncal/gnomecard/gnomecard.c:584
 msgid "First"
 msgstr "Första"
 
-#: gncal/gnomecard/gnomecard.c:2136 gncal/gnomecard/gnomecard.c:2254
+#: gncal/gnomecard/gnomecard.c:419 gncal/gnomecard/gnomecard.c:584
 msgid "First card"
 msgstr "Första kortet"
 
-#: gncal/gnomecard/gnomecard.c:2140 gncal/gnomecard/gnomecard.c:2258
-#: gncal/main.c:437
+#: gncal/gnomecard/gnomecard.c:423 gncal/gnomecard/gnomecard.c:588 gncal/main.c:449
 msgid "Prev"
 msgstr "Föreg"
 
-#: gncal/gnomecard/gnomecard.c:2140 gncal/gnomecard/gnomecard.c:2258
-#, fuzzy
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:423 gncal/gnomecard/gnomecard.c:588
 msgid "Previous card"
 msgstr "Föregående kort"
 
-#: gncal/gnomecard/gnomecard.c:2144 gncal/gnomecard/gnomecard.c:2262
-#: gncal/main.c:439
+#: gncal/gnomecard/gnomecard.c:427 gncal/gnomecard/gnomecard.c:592 gncal/main.c:451
 msgid "Next"
 msgstr "Nästa"
 
-#: gncal/gnomecard/gnomecard.c:2144 gncal/gnomecard/gnomecard.c:2262
-#, fuzzy
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:427 gncal/gnomecard/gnomecard.c:592
 msgid "Next card"
 msgstr "Nästa kort"
 
-#: gncal/gnomecard/gnomecard.c:2148 gncal/gnomecard/gnomecard.c:2266
+#: gncal/gnomecard/gnomecard.c:431 gncal/gnomecard/gnomecard.c:596
 msgid "Last"
 msgstr "Sista"
 
-#: gncal/gnomecard/gnomecard.c:2148 gncal/gnomecard/gnomecard.c:2266
+#: gncal/gnomecard/gnomecard.c:431 gncal/gnomecard/gnomecard.c:596
 msgid "Last card"
 msgstr "Sista kortet"
 
-#: gncal/gnomecard/gnomecard.c:2154 gncal/gnomecard/gnomecard.c:2272
-#, fuzzy
-msgid "Search card"
-msgstr "Sök kort"
+#: gncal/gnomecard/gnomecard.c:440
+msgid "By Card Name"
+msgstr "Per kortnamn"
 
-#: gncal/gnomecard/gnomecard.c:2162
-#, fuzzy
-msgid "E-mail"
-msgstr "E-post"
+#: gncal/gnomecard/gnomecard.c:444
+msgid "By Name"
+msgstr "Per namn"
 
-#: gncal/gnomecard/gnomecard.c:2162
-msgid "Add Electronic Address"
-msgstr "Lägg till elektronisk adress"
+#: gncal/gnomecard/gnomecard.c:448
+msgid "By E-mail"
+msgstr "Per e-post"
 
-#: gncal/gnomecard/gnomecard.c:2166
-#, fuzzy
-msgid "Phone"
-msgstr "Telefon"
-
-#: gncal/gnomecard/gnomecard.c:2166
-msgid "Add Telephone Number"
-msgstr "Lägg till telefonnummer"
-
-#: gncal/gnomecard/gnomecard.c:2170
-#, fuzzy
-msgid "Address"
-msgstr "Adress"
-
-#: gncal/gnomecard/gnomecard.c:2170
-msgid "Add Delivery Address"
-msgstr "Lägg till leveransadress"
-
-#: gncal/gnomecard/gnomecard.c:2174
-#, fuzzy
-msgid "Address Label"
-msgstr "Adressetikett"
-
-#: gncal/gnomecard/gnomecard.c:2174
-msgid "Add Delivery Address Label"
-msgstr "Lägg till leveransadress-etikett"
-
-#: gncal/gnomecard/gnomecard.c:2182 gncal/gnomecard/gnomecard.c:2208
-#, fuzzy
+#: gncal/gnomecard/gnomecard.c:463 gncal/gnomecard/gnomecard.c:489 gncal/gnomecard/gnomecard.c:515
 msgid "Card"
 msgstr "Kort"
 
-#: gncal/gnomecard/gnomecard.c:2182
-#, fuzzy
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:463 gncal/gnomecard/gnomecard.c:574
+msgid "Edit card"
+msgstr "Ändra kort"
+
+#: gncal/gnomecard/gnomecard.c:467
+msgid "Delete element"
+msgstr "Ta bort element"
+
+#: gncal/gnomecard/gnomecard.c:473
+msgid "Go"
+msgstr "Gå"
+
+#: gncal/gnomecard/gnomecard.c:473
+msgid "Change current card"
+msgstr "Ändra nuvarande kort"
+
+#: gncal/gnomecard/gnomecard.c:478 gncal/gnomecard/gnomecard.c:602
+msgid "Find"
+msgstr "Sök"
+
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:478 gncal/gnomecard/gnomecard.c:602
+msgid "Search card"
+msgstr "Sök kort"
+
+#: gncal/gnomecard/gnomecard.c:482
+msgid "Sort"
+msgstr "Sortera"
+
+#: gncal/gnomecard/gnomecard.c:482
+msgid "Set sort criteria"
+msgstr "Sätt sorteringskriterie"
+
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:489 gncal/gnomecard/gnomecard.c:570
+msgid "Create new card"
+msgstr "Skapa nytt kort"
+
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:495
+msgid "E-mail"
+msgstr "E-post"
+
+#: gncal/gnomecard/gnomecard.c:495
+msgid "Add Electronic Address"
+msgstr "Lägg till elektronisk adress"
+
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:499
+msgid "Phone"
+msgstr "Telefon"
+
+#: gncal/gnomecard/gnomecard.c:499
+msgid "Add Telephone Number"
+msgstr "Lägg till telefonnummer"
+
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:503
+msgid "Address"
+msgstr "Adress"
+
+#: gncal/gnomecard/gnomecard.c:503
+msgid "Add Delivery Address"
+msgstr "Lägg till leveransadress"
+
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:507
+msgid "Address Label"
+msgstr "Adressetikett"
+
+#: gncal/gnomecard/gnomecard.c:507
+msgid "Add Delivery Address Label"
+msgstr "Lägg till leveransadress-etikett"
+
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:515
 msgid "Toggle Card View"
 msgstr "Växla kortvy"
 
-#: gncal/gnomecard/gnomecard.c:2186
+#: gncal/gnomecard/gnomecard.c:519
 msgid "Tree"
 msgstr "Träd"
 
-#: gncal/gnomecard/gnomecard.c:2186
+#: gncal/gnomecard/gnomecard.c:519
 msgid "Toggle Tree View"
 msgstr "Växla trädvy"
 
-#: gncal/gnomecard/gnomecard.c:2197
+#: gncal/gnomecard/gnomecard.c:527
 msgid "Version, credits, etc."
-msgstr ""
+msgstr "Version, krediter, etc."
 
-#: gncal/gnomecard/gnomecard.c:2211 gncal/gnomecard/gnomecard.c:2240
-#: gsearchtool/gsearchtool.c:504 mini-utils/gw/gw.c:465
+#: gncal/gnomecard/gnomecard.c:538 gncal/gnomecard/gnomecard.c:574
+msgid "Edit"
+msgstr "Redigera"
+
+#: gncal/gnomecard/gnomecard.c:541 gncal/gnomecard/gnomecard.c:570 gsearchtool/gsearchtool.c:504 mini-utils/gw/gw.c:465
 msgid "Add"
 msgstr "Addera"
 
-#: gncal/gnomecard/gnomecard.c:2226
-#, fuzzy
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:556
 msgid "New file"
 msgstr "Ny fil"
 
-#: gncal/gnomecard/gnomecard.c:2230
-#, fuzzy
+#: gncal/gnomecard/gnomecard.c:560
+msgid "Open"
+msgstr "Öppna"
+
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:560
 msgid "Open file"
 msgstr "Öppna fil"
 
-#: gncal/gnomecard/gnomecard.c:2234
-#, fuzzy
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:564
 msgid "Save changes"
 msgstr "Spara förändringar"
 
-#: gncal/gnomecard/gnomecard.c:2248
-#, fuzzy
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:578
 msgid "Del"
 msgstr "Ta bort"
 
-#: gncal/goto.c:52
-#, fuzzy
+# , fuzzy
+#: gncal/gnomecard/gnomecard.c:578
+msgid "Delete card"
+msgstr "Ta bort kort"
+
+# , fuzzy
+#: gncal/goto.c:82
 msgid "Year:"
 msgstr "År:"
 
-#: gncal/goto.c:231
+#: gncal/goto.c:264
 msgid "Go to date"
 msgstr "Gå till datum"
 
-#. Instructions
-#: gncal/goto.c:239
+#: gncal/goto.c:272
 msgid ""
 "Please select the date you want to go to.\n"
 "When you click on a day, you will be taken\n"
@@ -1797,8 +1212,8 @@ msgstr ""
 "När du klickar på någon dag kommer du att\n"
 "komma till det datumet."
 
-#: gncal/goto.c:271
-#, fuzzy
+# , fuzzy
+#: gncal/goto.c:309
 msgid "Go to today"
 msgstr "Gå till idag"
 
@@ -1814,157 +1229,163 @@ msgstr "Den personliga kalendern och planeraren för GNOME."
 msgid "Open calendar"
 msgstr "Öppna kalender"
 
-#: gncal/main.c:365 gncal/main.c:397
+#: gncal/main.c:365
 msgid "Save calendar"
 msgstr "Spara kalender"
 
 #: gncal/main.c:395
-msgid "New calendar"
-msgstr "Ny kalender"
+msgid "_New calendar"
+msgstr "_Ny kalender"
 
-#: gncal/main.c:396
-msgid "Open calendar..."
-msgstr "Öppna kalender..."
+#: gncal/main.c:397
+msgid "_Open calendar..."
+msgstr "_Öppna kalender..."
 
-#: gncal/main.c:398
-msgid "Save calendar as..."
-msgstr "Spara kalender som..."
+#: gncal/main.c:399
+msgid "_Save calendar"
+msgstr "_Spara kalender"
 
-#: gncal/main.c:402 gtt/menus.c:40 mini-utils/gless/gless.c:348
-#: mini-utils/gw/gw.c:196
-msgid "Preferences..."
-msgstr "Inställningar..."
+#: gncal/main.c:401
+msgid "Save calendar _as..."
+msgstr "Spara kalender s_om..."
 
 #: gncal/main.c:406
-msgid "Close this calendar"
-msgstr "Stäng denna kalender"
+msgid "P_references..."
+msgstr "_Inställningar..."
+
+#: gncal/main.c:411
+msgid "_Close this calendar"
+msgstr "S_täng denna kalender"
 
 #: gncal/main.c:413
-#, fuzzy
-msgid "About Gnomecal..."
-msgstr "Om Gnomecal..."
+msgid "E_xit"
+msgstr "_Avsluta"
 
-#: gncal/main.c:421
-msgid "New appointment for today..."
-msgstr "Nytt ärende för idag..."
+#: gncal/main.c:420
+msgid "_New appointment..."
+msgstr "_Nytt ärende..."
 
-#: gncal/main.c:433
+#: gncal/main.c:422
+msgid "New appointment for _today..."
+msgstr "Nytt ärende för _idag..."
+
+#: gncal/main.c:428
+msgid "_About Gnomecal..."
+msgstr "_Om Gnomecal..."
+
+#: gncal/main.c:445
 msgid "Create a new appointment"
 msgstr "Skapa nytt ärende"
 
-#: gncal/main.c:437
+#: gncal/main.c:449
 msgid "Go back in time"
 msgstr "Gå tillbaka i tiden"
 
-#: gncal/main.c:438 gtt/clist.c:132
+#: gncal/main.c:450 gtt/clist.c:132
 msgid "Today"
 msgstr "Idag"
 
-#: gncal/main.c:438
+#: gncal/main.c:450
 msgid "Go to present time"
 msgstr "Gå till nutid"
 
-#: gncal/main.c:439
+#: gncal/main.c:451
 msgid "Go forward in time"
 msgstr "Gå framåt i tiden"
 
-#: gncal/main.c:443
+#: gncal/main.c:455
 msgid "Go to"
 msgstr "Gå till"
 
-#: gncal/main.c:443
+#: gncal/main.c:455
 msgid "Go to a specific date"
 msgstr "Gå till specifikt datum"
 
+# , c-format
 #. i18n: This "%s%s" indicates possession. Languages where the order is
 #. the inverse should translate it to "%2$s%1$s".
-#: gncal/main.c:471
-#, c-format
+#: gncal/main.c:483
 msgid "%s%s"
 msgstr "%s%s"
 
-#: gncal/main.c:471
-#, fuzzy
+# , fuzzy
+#: gncal/main.c:483
 msgid "'s calendar"
 msgstr "'s kalender"
 
-#: gncal/main.c:515
+#: gncal/main.c:527
 msgid "Show events and quit"
 msgstr "Visa händelser och hoppa ur"
 
-#: gncal/main.c:516 gncal/main.c:521
+#: gncal/main.c:528 gncal/main.c:533
 msgid "DATE"
 msgstr "DATUM"
 
-#: gncal/main.c:516
+#: gncal/main.c:528
 msgid "Specifies start date [for --events]"
 msgstr "Specifierar startdatum [för --events]"
 
-#: gncal/main.c:517 gstripchart/gstripchart.c:920
+#: gncal/main.c:529
 msgid "FILE"
 msgstr "FIL"
 
-#: gncal/main.c:517
+#: gncal/main.c:529
 msgid "File to load calendar from"
 msgstr "Fil att ladda kalendern ifrån"
 
-#: gncal/main.c:518
+#: gncal/main.c:530
 msgid "Load the user calendar"
 msgstr "Ladda in användarkalendern"
 
-#. name
 #. key
-#: gncal/main.c:519 mini-utils/gless/gless.c:99
+#: gncal/main.c:531 mini-utils/gless/gless.c:99
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
-#: gncal/main.c:519
+#: gncal/main.c:531
 msgid "Geometry for starting up"
 msgstr "Geometri för uppstart"
 
-#: gncal/main.c:520
+#: gncal/main.c:532
 msgid "VIEW"
 msgstr "VY"
 
-#: gncal/main.c:520
+#: gncal/main.c:532
 msgid "The startup view mode"
 msgstr "Vy vid upstart"
 
-#: gncal/main.c:521
+#: gncal/main.c:533
 msgid "Specifies ending date [for --events]"
 msgstr "Specifierar slutdatum [för --events]"
 
-#: gncal/prop.c:248
-#, fuzzy
+# , fuzzy
+#: gncal/prop.c:251
 msgid "Time display"
 msgstr "Tidsvisning"
 
-#. Time format
-#: gncal/prop.c:252
-#, fuzzy
+# , fuzzy
+#: gncal/prop.c:255
 msgid "Time format"
 msgstr "Tidsformat"
 
-#: gncal/prop.c:253
+#: gncal/prop.c:256
 msgid "12-hour (AM/PM)"
 msgstr "12-timmars (AM/PM)"
 
-#: gncal/prop.c:254
-#, fuzzy
+# , fuzzy
+#: gncal/prop.c:257
 msgid "24-hour"
 msgstr "24-timmars"
 
-#. Weeks start on
-#: gncal/prop.c:264
+#: gncal/prop.c:267
 msgid "Weeks start on"
 msgstr "Veckor startar med"
 
-#. Day range
-#: gncal/prop.c:276
+#: gncal/prop.c:279
 msgid "Day range"
 msgstr "Dagsområde"
 
-#: gncal/prop.c:287
+#: gncal/prop.c:290
 msgid ""
 "Please select the start and end hours you want\n"
 "to be displayed in the day view and week view.\n"
@@ -1976,24 +1397,28 @@ msgstr ""
 "Tider utanför detta område kommer inte att visas\n"
 "som standard."
 
-#: gncal/prop.c:303
-#, fuzzy
+# , fuzzy
+#: gncal/prop.c:306
 msgid "Day start:"
 msgstr "Dagsstart:"
 
-#: gncal/prop.c:314
-#, fuzzy
+# , fuzzy
+#: gncal/prop.c:317
 msgid "Day end:"
 msgstr "Dagsslut:"
 
-#: gncal/prop.c:456
+#: gncal/prop.c:440
 msgid "Colors for months"
 msgstr "Färger för månader"
 
-#: gncal/prop.c:459
-#, fuzzy
+# , fuzzy
+#: gncal/prop.c:443
 msgid "Colors"
 msgstr "Färger"
+
+#: gncal/prop.c:505 gtt/options.c:508 mini-utils/gless/gless.c:359 mini-utils/gw/gw.c:206
+msgid "Preferences"
+msgstr "Inställningar"
 
 #: gncal/timeutil.c:83
 msgid "am"
@@ -2007,24 +1432,24 @@ msgstr "pm"
 msgid "h"
 msgstr "t"
 
+# , fuzzy
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
 #: gsearchtool/gsearchtool.c:200
-#, fuzzy
 msgid "Search Results"
 msgstr "Sökresultat"
 
+# , fuzzy
 #: gsearchtool/gsearchtool.c:486
-#, fuzzy
 msgid "Start in directory:"
 msgstr "Börja i bibliotek:"
 
-#: gsearchtool/gsearchtool.c:515 gtt/menus.c:85
+#: gsearchtool/gsearchtool.c:515
 msgid "Start"
 msgstr "Start"
 
-#: gsearchtool/gsearchtool.c:516 gtt/menus.c:89
+#: gsearchtool/gsearchtool.c:516
 msgid "Stop"
 msgstr "Stop"
 
@@ -2040,721 +1465,19 @@ msgstr "Full sökning (find)"
 msgid "Quick find (locate)"
 msgstr "Snabbsökning (locate)"
 
+# , fuzzy
 #: gsearchtool/gsearchtool.c:561
-#, fuzzy
 msgid "The Gnome Search Tool"
-msgstr ""
+msgstr "Gnome sökverktyg"
 
 #: gsearchtool/gsearchtool.c:564
 msgid "Frontend to the unix find/grep/locate commands"
-msgstr ""
+msgstr "Gränssnitt för unix kommandona find/grep/locate"
 
+# , fuzzy
 #: gsearchtool/gsearchtool.c:619
-#, fuzzy
 msgid "Gnome Search Tool"
 msgstr "Gnome sökverktyg"
-
-#: gstripchart/gstripchart.c:764
-msgid "Terminate the stripchart program"
-msgstr ""
-
-#: gstripchart/gstripchart.c:777
-msgid "Copyright 1998 John Kodis"
-msgstr ""
-
-#: gstripchart/gstripchart.c:793
-msgid "About"
-msgstr ""
-
-#: gstripchart/gstripchart.c:793
-msgid "Info about the striphart program"
-msgstr ""
-
-#: gstripchart/gstripchart.c:920
-msgid "configuration file"
-msgstr ""
-
-#: gstripchart/gstripchart.c:921 gstripchart/gstripchart.c:922
-msgid "SECS"
-msgstr ""
-
-#: gstripchart/gstripchart.c:921
-msgid "chart update interval"
-msgstr ""
-
-#: gstripchart/gstripchart.c:922
-msgid "slider update interval"
-msgstr ""
-
-#: gstripchart/gstripchart.c:923
-msgid "TYPE"
-msgstr ""
-
-#: gstripchart/gstripchart.c:923
-msgid "type of display"
-msgstr ""
-
-#: gstripchart/gstripchart.c:924
-msgid "omit menu"
-msgstr ""
-
-#: gstripchart/gstripchart.c:925
-msgid "omit slider"
-msgstr ""
-
-#: gtop/details.c:51
-#, c-format
-msgid "Process %d details"
-msgstr "Process %d detaljer"
-
-#: gtop/details.c:145 gtop/procview.c:1157
-#, fuzzy
-msgid "<unknown>"
-msgstr "<okänd>"
-
-#: gtop/details.c:208
-msgid "Process info"
-msgstr "Processinfo"
-
-#: gtop/details.c:210
-msgid "Attribute"
-msgstr "Attribut"
-
-#: gtop/details.c:211 mini-utils/gcolorsel/gcolorsel.c:153
-#: mini-utils/idetool/idetool.c:257
-msgid "Value"
-msgstr "Värde"
-
-#: gtop/details.c:407
-msgid "Raw memory map"
-msgstr ""
-
-#: gtop/details.c:409
-msgid "VM start"
-msgstr ""
-
-#: gtop/details.c:410
-msgid "VM end"
-msgstr ""
-
-#: gtop/details.c:411
-msgid "Flags"
-msgstr ""
-
-#: gtop/details.c:412
-msgid "VM offset"
-msgstr ""
-
-#: gtop/details.c:413 mini-utils/guname/info.c:55
-msgid "Device"
-msgstr ""
-
-#: gtop/details.c:414
-msgid "Inode"
-msgstr ""
-
-#: gtop/details.c:415
-msgid "Filename"
-msgstr ""
-
-#: gtop/details.c:464
-msgid "Data"
-msgstr ""
-
-#: gtop/details.c:466
-msgid "Text"
-msgstr ""
-
-#: gtop/details.c:472
-msgid "Stack"
-msgstr ""
-
-#: gtop/details.c:474
-msgid "Hole"
-msgstr ""
-
-#: gtop/details.c:525
-msgid "Graphical memory map"
-msgstr ""
-
-#: gtop/fsusage.c:48 gtt/clist.c:131
-msgid "Total"
-msgstr ""
-
-#: gtop/fsusage.c:50 gtop/procview.c:117
-#, fuzzy
-msgid "Used"
-msgstr ""
-
-#: gtop/fsusage.c:52 gtop/procview.c:113 gtop/procview.c:117
-msgid "Free"
-msgstr ""
-
-#: gtop/fsusage.c:85
-msgid "ufs"
-msgstr ""
-
-#: gtop/fsusage.c:86
-msgid "nfs"
-msgstr ""
-
-#: gtop/fsusage.c:87
-msgid "msdos"
-msgstr ""
-
-#: gtop/fsusage.c:88
-msgid "iso9660"
-msgstr ""
-
-#: gtop/fsusage.c:89
-#, fuzzy
-msgid "ext2fs"
-msgstr ""
-
-#: gtop/fsusage.c:90
-#, fuzzy
-msgid "minix"
-msgstr ""
-
-#: gtop/fsusage.c:91
-#, fuzzy
-msgid "other"
-msgstr ""
-
-#: gtop/fsusage.c:95
-msgid "User Filesystem (FreeBSD)"
-msgstr ""
-
-#: gtop/fsusage.c:96
-#, fuzzy
-msgid "Network Filesystem"
-msgstr ""
-
-#: gtop/fsusage.c:97
-#, fuzzy
-msgid "MSDOS Filesystem"
-msgstr ""
-
-#: gtop/fsusage.c:98
-#, fuzzy
-msgid "CDROM Filesystem"
-msgstr ""
-
-#: gtop/fsusage.c:99
-msgid "Second Extended Filesystem (Linux)"
-msgstr ""
-
-#: gtop/fsusage.c:100
-msgid "Minix Filesystem (Linux)"
-msgstr ""
-
-#: gtop/fsusage.c:101
-#, fuzzy
-msgid "Other Filesystems"
-msgstr ""
-
-#: gtop/fsusage.c:136 gtop/fsusage.c:683 gtop/main.c:179
-#, fuzzy
-msgid "Filesystems"
-msgstr ""
-
-#: gtop/fsusage.c:226
-msgid "Total Filesystem Sizes (including reserved blocks)"
-msgstr ""
-
-#: gtop/fsusage.c:228 gtop/fsusage.c:246 gtop/memusage.c:212
-#, c-format
-msgid "Sum of Total Sizes: %ldk"
-msgstr ""
-
-#: gtop/fsusage.c:231
-msgid "Used Space on Filesystems (including reserved blocks)"
-msgstr ""
-
-#: gtop/fsusage.c:233 gtop/fsusage.c:250
-#, fuzzy, c-format
-msgid "Sum of Uses Space: %ldk"
-msgstr ""
-
-#: gtop/fsusage.c:236
-msgid "Free Space on Filesystems (including reserved blocks)"
-msgstr ""
-
-#: gtop/fsusage.c:238 gtop/fsusage.c:254
-#, fuzzy, c-format
-msgid "Sum of Free Space: %ldk"
-msgstr ""
-
-#: gtop/fsusage.c:245
-#, fuzzy
-msgid "Total Filesystem Sizes"
-msgstr ""
-
-#: gtop/fsusage.c:249
-#, fuzzy
-msgid "Used Space on Filesystems"
-msgstr ""
-
-#: gtop/fsusage.c:253
-msgid "Free Space on Filesystems"
-msgstr ""
-
-#: gtop/fsusage.c:261
-#, fuzzy
-msgid "Total Number of Inodes"
-msgstr ""
-
-#: gtop/fsusage.c:262
-#, fuzzy, c-format
-msgid "Sum of Total Number of Inodes: %ld"
-msgstr ""
-
-#: gtop/fsusage.c:265
-#, fuzzy
-msgid "Used Inodes on Filesystems"
-msgstr ""
-
-#: gtop/fsusage.c:266
-#, fuzzy, c-format
-msgid "Sum of Used Inodes: %ld"
-msgstr ""
-
-#: gtop/fsusage.c:269
-msgid "Free Inodes on Filesystems"
-msgstr ""
-
-#: gtop/fsusage.c:270
-#, fuzzy, c-format
-msgid "Sum of Free Inodes: %ld"
-msgstr ""
-
-#: gtop/fsusage.c:608
-#, fuzzy
-msgid "Select information to show"
-msgstr ""
-
-#: gtop/fsusage.c:613
-msgid "Show 1k-blocks reserved blocks"
-msgstr ""
-
-#: gtop/fsusage.c:621
-msgid "Show 1k-blocks"
-msgstr ""
-
-#: gtop/fsusage.c:629
-#, fuzzy
-msgid "Show inodes"
-msgstr ""
-
-#: gtop/fsusage.c:644
-#, fuzzy
-msgid "Only show selected filesystems"
-msgstr ""
-
-#: gtop/main.c:79
-msgid "GTop"
-msgstr ""
-
-#. copyright notice
-#: gtop/main.c:81
-msgid "(C) 1998 the Free Software Foundation"
-msgstr ""
-
-#. another comments
-#: gtop/main.c:84
-msgid "The GNOME System Monitor program"
-msgstr ""
-
-#: gtop/main.c:159
-msgid "item 1"
-msgstr ""
-
-#: gtop/main.c:160
-msgid "item 2"
-msgstr ""
-
-#: gtop/main.c:161
-msgid "item 3"
-msgstr ""
-
-#: gtop/main.c:178 mini-utils/guname/moreinfo.c:147
-msgid "Memory"
-msgstr ""
-
-#: gtop/main.c:180 gtop/procview.c:109 gtop/sysview.c:37
-msgid "System"
-msgstr ""
-
-#: gtop/main.c:186
-msgid "Start/Stop"
-msgstr ""
-
-#: gtop/main.c:186
-msgid "Start / Stop sampling"
-msgstr ""
-
-#: gtop/main.c:190
-msgid "Set gtop properties"
-msgstr ""
-
-#: gtop/main.c:215
-msgid "GNOME System Monitor"
-msgstr ""
-
-#: gtop/memusage.c:45 gtop/procview.c:243
-msgid "Resident"
-msgstr ""
-
-#: gtop/memusage.c:47 gtop/procview.c:113
-msgid "Shared"
-msgstr ""
-
-#: gtop/memusage.c:49 gtop/procview.c:223 mini-utils/guname/info.c:56
-msgid "Size"
-msgstr ""
-
-#: gtop/memusage.c:51
-msgid "Virtual"
-msgstr ""
-
-#: gtop/memusage.c:53
-#, fuzzy
-msgid "Swap"
-msgstr ""
-
-#: gtop/memusage.c:117 gtop/memusage.c:685
-msgid "Memory usage"
-msgstr ""
-
-#: gtop/memusage.c:203
-msgid "Resident Sizes of Processes"
-msgstr ""
-
-#: gtop/memusage.c:204
-#, c-format
-msgid "Sum of Resident Sizes: %ldk"
-msgstr ""
-
-#: gtop/memusage.c:207
-msgid "Shared Sizes of Processes"
-msgstr ""
-
-#: gtop/memusage.c:208
-#, c-format
-msgid "Sum of Shared Sizes: %ldk"
-msgstr ""
-
-#: gtop/memusage.c:211
-msgid "Total Sizes of Processes"
-msgstr ""
-
-#: gtop/memusage.c:215
-#, fuzzy
-msgid "Virtual Sizes of Processes"
-msgstr ""
-
-#: gtop/memusage.c:216
-#, fuzzy, c-format
-msgid "Sum of Virtual Sizes: %ldk"
-msgstr ""
-
-#: gtop/memusage.c:219
-#, fuzzy
-msgid "Swapped Sizes of Processes"
-msgstr ""
-
-#: gtop/memusage.c:220
-#, fuzzy, c-format
-msgid "Sum of Swapped Sizes: %ldk"
-msgstr ""
-
-#: gtop/memusage.c:548
-#, fuzzy
-msgid "Select Processes"
-msgstr ""
-
-#: gtop/memusage.c:553
-#, fuzzy
-msgid "Show all processes"
-msgstr ""
-
-#: gtop/memusage.c:562
-#, fuzzy
-msgid "Only show user processes"
-msgstr ""
-
-#: gtop/memusage.c:571
-msgid "Only show processes with a controlling tty"
-msgstr ""
-
-#: gtop/memusage.c:585
-#, fuzzy
-msgid "Minimum Resident Memory Size"
-msgstr ""
-
-#: gtop/memusage.c:604
-#, fuzzy
-msgid "Minimum Shared Memory Size"
-msgstr ""
-
-#: gtop/memusage.c:623
-msgid "Minimum Total Process Size"
-msgstr ""
-
-#: gtop/memusage.c:642
-msgid "Minimum Virtual Memory Size"
-msgstr ""
-
-#: gtop/memusage.c:661
-#, fuzzy
-msgid "Minimum Swapped Memory Size"
-msgstr ""
-
-#: gtop/procview.c:109 gtop/procview.c:217
-msgid "User"
-msgstr ""
-
-#: gtop/procview.c:109 gtop/procview.c:221
-msgid "Nice"
-msgstr ""
-
-#: gtop/procview.c:109
-#, fuzzy
-msgid "Idle"
-msgstr ""
-
-#: gtop/procview.c:113
-#, fuzzy
-msgid "Other"
-msgstr ""
-
-#: gtop/procview.c:113
-msgid "Buffers"
-msgstr ""
-
-#: gtop/procview.c:215
-msgid "PID"
-msgstr ""
-
-#: gtop/procview.c:215
-msgid "Process ID"
-msgstr ""
-
-#: gtop/procview.c:217
-msgid "User name"
-msgstr ""
-
-#: gtop/procview.c:219
-msgid "Pri"
-msgstr ""
-
-#: gtop/procview.c:219
-msgid "Priority"
-msgstr ""
-
-#: gtop/procview.c:221
-msgid "Ni"
-msgstr ""
-
-#: gtop/procview.c:223
-msgid "Used memory size"
-msgstr ""
-
-#: gtop/procview.c:225
-msgid "RSS"
-msgstr ""
-
-#: gtop/procview.c:225
-msgid "Resident memory set size"
-msgstr ""
-
-#: gtop/procview.c:227
-msgid "Share"
-msgstr ""
-
-#: gtop/procview.c:227
-msgid "Shared memory size"
-msgstr ""
-
-#: gtop/procview.c:229
-msgid "Stat"
-msgstr ""
-
-#: gtop/procview.c:229
-msgid "Process state"
-msgstr ""
-
-#: gtop/procview.c:231
-msgid "CPU"
-msgstr ""
-
-#: gtop/procview.c:231
-msgid "Percent CPU usage"
-msgstr ""
-
-#: gtop/procview.c:233
-msgid "MEM"
-msgstr ""
-
-#: gtop/procview.c:233
-msgid "Percent memory usage"
-msgstr ""
-
-#: gtop/procview.c:235
-msgid "Time consumed"
-msgstr ""
-
-#: gtop/procview.c:237
-msgid "UTime"
-msgstr ""
-
-#: gtop/procview.c:237
-msgid "User time consumed"
-msgstr ""
-
-#: gtop/procview.c:239
-msgid "STime"
-msgstr ""
-
-#: gtop/procview.c:239
-msgid "System time consumed"
-msgstr ""
-
-#: gtop/procview.c:241
-msgid "Cmd"
-msgstr ""
-
-#: gtop/procview.c:243
-msgid "Resident memory size"
-msgstr ""
-
-#: gtop/procview.c:355
-msgid "All processes"
-msgstr ""
-
-#: gtop/procview.c:357
-msgid "User processes"
-msgstr ""
-
-#: gtop/procview.c:359
-msgid "TTY processes"
-msgstr ""
-
-#: gtop/procview.c:450 gtop/procview.c:1347
-msgid "Processes"
-msgstr ""
-
-#: gtop/procview.c:682
-#, c-format
-msgid "Cannot locate process %d"
-msgstr ""
-
-#: gtop/procview.c:686
-msgid "Only root can set negative priority"
-msgstr ""
-
-#: gtop/procview.c:689
-msgid "Permission denied"
-msgstr ""
-
-#: gtop/procview.c:715
-msgid "Renice"
-msgstr ""
-
-#: gtop/procview.c:725
-msgid "Set priority"
-msgstr ""
-
-#: gtop/procview.c:762
-msgid "Send"
-msgstr ""
-
-#: gtop/procview.c:783
-msgid "More ..."
-msgstr ""
-
-#: gtop/procview.c:797
-msgid "SIGTERM"
-msgstr ""
-
-#: gtop/procview.c:804
-msgid "SIGKILL"
-msgstr ""
-
-#: gtop/procview.c:816
-msgid "Renice ..."
-msgstr ""
-
-#: gtop/procview.c:823
-msgid "Details ..."
-msgstr ""
-
-#: gtop/procview.c:1291
-msgid "Update times (ms)"
-msgstr ""
-
-#: gtop/procview.c:1296
-#, fuzzy
-msgid "Processes list"
-msgstr ""
-
-#: gtop/procview.c:1303
-#, fuzzy
-msgid "Summary"
-msgstr ""
-
-#: gtop/procview.c:1317
-#, fuzzy
-msgid "Show graphical summary"
-msgstr ""
-
-#: gtop/procview.c:1320
-msgid "Show cpu usage"
-msgstr ""
-
-#: gtop/procview.c:1322
-#, fuzzy
-msgid "Show physical memory usage"
-msgstr ""
-
-#: gtop/procview.c:1324
-#, fuzzy
-msgid "Show swap memory usage"
-msgstr ""
-
-#: gtop/procview.c:1334
-#, fuzzy
-msgid "Show text summary"
-msgstr ""
-
-#: gtop/procview.c:1337
-#, fuzzy
-msgid "Show uptime"
-msgstr ""
-
-#: gtop/procview.c:1339
-#, fuzzy
-msgid "Show processes counts"
-msgstr ""
-
-#: gtop/procview.c:1373
-#, fuzzy
-msgid "Summary CPU"
-msgstr ""
-
-#: gtop/procview.c:1379
-#, fuzzy
-msgid "Summary physical memory"
-msgstr ""
-
-#: gtop/procview.c:1385
-msgid "Summary swap memory"
-msgstr ""
-
-#: gtop/procview.c:1393
-#, fuzzy
-msgid "Summary colors"
-msgstr "Sammanställningsfärger"
 
 #: gtt/app.c:110 gtt/app.c:209
 msgid "no project selected"
@@ -2763,6 +1486,10 @@ msgstr "inget projekt valt"
 #: gtt/app.c:198
 msgid "00:00"
 msgstr "00:00"
+
+#: gtt/clist.c:131
+msgid "Total"
+msgstr "Totalt"
 
 #: gtt/clist.c:133
 msgid "Project Title"
@@ -2776,8 +1503,8 @@ msgstr "Beskrivning"
 msgid "program started"
 msgstr "programmet startades"
 
+# , fuzzy
 #: gtt/log.c:73
-#, fuzzy
 msgid "no description"
 msgstr "ingen beskrivning"
 
@@ -2785,6 +1512,7 @@ msgstr "ingen beskrivning"
 msgid "program exited"
 msgstr "programmet avslutades"
 
+#. not DEBUG
 #: gtt/main.c:74 gtt/main.c:116
 msgid "Error"
 msgstr "Fel"
@@ -2794,17 +1522,21 @@ msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Please remove the pid file, if that is not correct."
 msgstr ""
+"Du verkar redan köra en GTimeTracker.\n"
+"Var god plocka bort pid-filen om detta inte stämmer."
 
 #: gtt/main.c:117
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
 msgstr ""
+"Ett fel uppstod vid läsning av inställningsfilen.\n"
+"Ska jag skapa en ny uppsättning inställningar?"
 
+# , c-format
 #: gtt/main.c:210 gtt/main.c:225 gtt/main.c:236 gtt/main.c:242
-#, c-format
 msgid "error in geometry string \"%s\"\n"
-msgstr ""
+msgstr "fel i geometristräng \"%s\"\n"
 
 #: gtt/main.c:259
 msgid "specify geometry"
@@ -2822,7 +1554,7 @@ msgstr "Varning"
 msgid "I could not write the configuration file!"
 msgstr "Kunde ej spara inställningsfilen!"
 
-#: gtt/menucmd.c:85 gtt/menus.c:27 gtt/toolbar.c:142
+#: gtt/menucmd.c:85 gtt/toolbar.c:142
 msgid "New Project..."
 msgstr "Nytt projekt..."
 
@@ -2834,7 +1566,7 @@ msgstr "Mata in namnet på det nya projektet:"
 msgid "I could not read the configuration file"
 msgstr "Kunde ej ladda om inställningsfilen"
 
-#: gtt/menucmd.c:137 gtt/menus.c:31 gtt/toolbar.c:149
+#: gtt/menucmd.c:137 gtt/toolbar.c:149
 msgid "Reload Configuration File"
 msgstr "Ladda om inställningsfilen"
 
@@ -2846,21 +1578,69 @@ msgstr ""
 "Detta skriver över dina nuvarande projekt.\n"
 "Är du säker på att du vill ladda om inställningsfilen?"
 
-#: gtt/menus.c:35 gtt/toolbar.c:153
-msgid "Save Configuration File"
-msgstr "Spara inställningsfil"
+#: gtt/menus.c:27
+msgid "_New Project..."
+msgstr "_Nytt projekt..."
 
-#: gtt/menus.c:70 gtt/menus.c:149
-msgid "Clear Daily Counter"
-msgstr "Rensa dagsräknaren"
+#: gtt/menus.c:31
+msgid "_Reload Configuration File"
+msgstr "Ladda _om inställningsfilen"
+
+#: gtt/menus.c:35
+msgid "_Save Configuration File"
+msgstr "_Spara inställningsfilen"
+
+#: gtt/menus.c:40
+msgid "_Preferences..."
+msgstr "_Inställningar..."
+
+#: gtt/menus.c:55
+msgid "C_ut"
+msgstr "_Klipp ut"
+
+#: gtt/menus.c:64
+msgid "_Paste"
+msgstr "K_listra in"
+
+#: gtt/menus.c:70
+msgid "Clear _Daily Counter"
+msgstr "Rensa _dagliga räknaren"
+
+#: gtt/menus.c:75
+msgid "Pr_operties..."
+msgstr "_Egenskaper..."
+
+#: gtt/menus.c:85
+msgid "St_art"
+msgstr "St_arta"
+
+#: gtt/menus.c:89
+msgid "Sto_p"
+msgstr "Sto_ppa"
 
 #: gtt/menus.c:94
-msgid "Timer Running"
-msgstr "Timer aktiverad"
+msgid "_Timer Running"
+msgstr "_Timer aktiverad"
 
-#: gtt/menus.c:117 gtt/toolbar.c:179
-msgid "Timer"
-msgstr "Timer"
+#: gtt/menus.c:117
+msgid "_Timer"
+msgstr "_Timer"
+
+#: gtt/menus.c:134 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Klipp ut"
+
+#: gtt/menus.c:139 gtt/toolbar.c:163
+msgid "Copy"
+msgstr "Kopiera"
+
+#: gtt/menus.c:144 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Klistra in"
+
+#: gtt/menus.c:149
+msgid "Clear Daily Counter"
+msgstr "Rensa dagliga räknaren"
 
 #: gtt/options.c:203
 msgid "Show Seconds"
@@ -2876,15 +1656,15 @@ msgstr "Visa tabellhuvud"
 
 #: gtt/options.c:229 gtt/options.c:527
 msgid "Toolbar"
-msgstr ""
+msgstr "Knapprad"
 
 #: gtt/options.c:237
 msgid "Show Toolbar Icons"
-msgstr "Visa hjälpbubbleikoner"
+msgstr "Visa knappradsikoner"
 
 #: gtt/options.c:243
 msgid "Show Toolbar Texts"
-msgstr "Visa hjälpbubbetexter"
+msgstr "Visa knappradstexter"
 
 #: gtt/options.c:249
 msgid "Show Tooltips"
@@ -2892,7 +1672,7 @@ msgstr "Visa hjälpbubblor"
 
 #: gtt/options.c:255
 msgid "Toolbar Segments"
-msgstr ""
+msgstr "Knappradsdelar"
 
 #: gtt/options.c:263
 msgid "Show `New'"
@@ -2900,7 +1680,7 @@ msgstr "Visa `Ny'"
 
 #: gtt/options.c:269
 msgid "Show `Save', `Reload'"
-msgstr "Visa `Spara', `Ladda om'"
+msgstr "Visa `Ladda om', `Spara'"
 
 #: gtt/options.c:275
 msgid "Show `Cut', `Copy', `Paste'"
@@ -2932,11 +1712,11 @@ msgstr "Skalkommandon"
 
 #: gtt/options.c:327
 msgid "Switch Project Command:"
-msgstr "Byt projektkommando:"
+msgstr "Byta projekt-kommando:"
 
 #: gtt/options.c:338
 msgid "No Project Command:"
-msgstr "Inget projektkommando:"
+msgstr "Inget projekt-kommando:"
 
 #: gtt/options.c:372
 msgid "Logfile"
@@ -2950,30 +1730,31 @@ msgstr "Använd loggfil"
 msgid "Filename:"
 msgstr "Filnamn:"
 
+# , fuzzy
 #: gtt/options.c:403
-#, fuzzy
 msgid "Entry Start:"
-msgstr ""
+msgstr "Projektstart:"
 
 #: gtt/options.c:417
 msgid "Entry Stop:"
-msgstr ""
+msgstr "Projektstopp:"
 
 #: gtt/options.c:431
 msgid "Timeout in secs:"
-msgstr ""
+msgstr "Timeout i sekunder:"
 
+# FIXME
 #: gtt/options.c:514
 msgid "Misc"
 msgstr "Diverse"
 
+# , fuzzy
 #: gtt/proj.c:461
-#, fuzzy
 msgid "project %t started"
 msgstr "projekt %t startad"
 
+# , fuzzy
 #: gtt/proj.c:464
-#, fuzzy
 msgid "stopped project %t"
 msgstr "stoppade projekt %t"
 
@@ -2981,13 +1762,17 @@ msgstr "stoppade projekt %t"
 msgid "empty"
 msgstr "tom"
 
+#: gtt/prop.c:175
+msgid "Properties"
+msgstr "Egenskaper"
+
 #: gtt/prop.c:182
 msgid "Project"
 msgstr "Projekt"
 
 #: gtt/prop.c:202
 msgid "Project Title:"
-msgstr "Projekt titel:"
+msgstr "Projekttitel:"
 
 #: gtt/prop.c:214
 msgid "Project Description:"
@@ -3022,25 +1807,33 @@ msgstr "Ny"
 msgid "Reload"
 msgstr "Ladda om"
 
+#: gtt/toolbar.c:153
+msgid "Save Configuration File"
+msgstr "Spara inställningsfil"
+
 #: gtt/toolbar.c:160
 msgid "Cut Selected Project"
-msgstr ""
+msgstr "Klipp ut markerat projekt"
 
 #: gtt/toolbar.c:164
 msgid "Copy Selected Project"
-msgstr ""
+msgstr "Kopiera markerat projekt"
 
 #: gtt/toolbar.c:168
 msgid "Paste Project"
-msgstr ""
+msgstr "Klistra in projekt"
 
 #: gtt/toolbar.c:174
 msgid "Props"
-msgstr "Egenskaper"
+msgstr "Egensk."
 
 #: gtt/toolbar.c:175
 msgid "Edit Properties..."
 msgstr "Ändra egenskaper..."
+
+#: gtt/toolbar.c:179
+msgid "Timer"
+msgstr "Timer"
 
 #: gtt/toolbar.c:180
 msgid "Start/Stop Timer"
@@ -3048,7 +1841,7 @@ msgstr "Starta/stoppa timer"
 
 #: gtt/toolbar.c:188
 msgid "Prefs"
-msgstr "Inställningar"
+msgstr "Inställn."
 
 #: gtt/toolbar.c:189
 msgid "Edit Preferences..."
@@ -3056,109 +1849,120 @@ msgstr "Ändra inställningar"
 
 #: gtt/toolbar.c:193
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: gtt/toolbar.c:193
 msgid "Manual..."
-msgstr ""
+msgstr "Manual..."
+
+#: gtt/toolbar.c:198
+msgid "Quit"
+msgstr "Avsluta"
 
 #: gtt/toolbar.c:198
 msgid "Quit GTimeTracker"
-msgstr ""
+msgstr "Avsluta GTimeTracker"
 
-#: mini-utils/gcolorsel/gcolorsel.c:55 mini-utils/gcolorsel/gcolorsel.c:57
-#: mini-utils/gcolorsel/gcolorsel.c:239 mini-utils/gcolorsel/gcolorsel.c:357
-#, fuzzy
+# , fuzzy
+#: mini-utils/gcolorsel/gcolorsel.c:55 mini-utils/gcolorsel/gcolorsel.c:57 mini-utils/gcolorsel/gcolorsel.c:239 mini-utils/gcolorsel/gcolorsel.c:357
 msgid "Gnome Color Browser"
-msgstr ""
+msgstr "Gnome färgbläddrare"
 
+# , fuzzy
 #: mini-utils/gcolorsel/gcolorsel.c:78
-#, fuzzy
 msgid "Color Name:"
-msgstr ""
+msgstr "Färgnamn:"
 
 #: mini-utils/gcolorsel/gcolorsel.c:85
 msgid "Color Values:"
-msgstr ""
+msgstr "Färgvärden:"
 
+# , fuzzy
 #: mini-utils/gcolorsel/gcolorsel.c:152
-#, fuzzy
 msgid "Color"
-msgstr ""
+msgstr "Färg"
+
+#: mini-utils/gcolorsel/gcolorsel.c:153 mini-utils/guname/moreinfo.c:218 mini-utils/idetool/idetool.c:257
+msgid "Value"
+msgstr "Värde"
+
+#: mini-utils/gcolorsel/gcolorsel.c:154 mini-utils/guname/moreinfo.c:217 mini-utils/gw/gw.c:456 mini-utils/gw/gw.c:528
+msgid "Name"
+msgstr "Namn"
 
 #: mini-utils/gcolorsel/gcolorsel.c:230
 msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
-msgstr ""
+msgstr "Fel, kan ej öppna /usr/X11R6/lib/X11/rgb.txt.\n"
 
 #: mini-utils/gcolorsel/gcolorsel.c:242
 msgid "Parsing Colors"
-msgstr ""
+msgstr "Tolkar färger"
 
+# , fuzzy
 #: mini-utils/gcolorsel/gcolorsel.c:304
-#, fuzzy
 msgid "Decimal (8 bit)"
-msgstr ""
+msgstr "Decimal (8 bit)"
 
+# , fuzzy
 #: mini-utils/gcolorsel/gcolorsel.c:305
-#, fuzzy
 msgid "Decimal (16 bit)"
-msgstr ""
+msgstr "Decimal (16 bit)"
 
 #: mini-utils/gcolorsel/gcolorsel.c:306
 msgid "Hex (8 bit)"
-msgstr ""
+msgstr "Hex (8 bit)"
 
 #: mini-utils/gcolorsel/gcolorsel.c:307
 msgid "Hex (16 bit)"
-msgstr ""
+msgstr "Hex (16 bit)"
 
+# , fuzzy
 #: mini-utils/gcolorsel/gcolorsel.c:308
-#, fuzzy
 msgid "Float"
-msgstr ""
+msgstr "Flyttal"
 
 #: mini-utils/gcolorsel/gcolorsel.c:361
 msgid "Small utility to browse available X11 colors."
-msgstr ""
+msgstr "Litet program för att bläddra tillgängliga X11-färger."
 
 #: mini-utils/gfontsel/gfontsel.c:145
 msgid "Font Selector"
-msgstr ""
+msgstr "Typsnittsväljare"
 
+# , fuzzy
 #: mini-utils/gfontsel/gfontsel.c:170
-#, fuzzy
 msgid "Selection:"
-msgstr ""
+msgstr "Markering:"
 
 #: mini-utils/gfontsel/gfontsel.c:263
 msgid "font to load"
-msgstr ""
+msgstr "typsnitt att ladda"
 
 #: mini-utils/gfontsel/gfontsel.c:266
 msgid "print selected font name on exit"
-msgstr ""
+msgstr "skriv ut valt typsnitt vid avslutning"
 
 #: mini-utils/gfontsel/gfontsel.c:269
 msgid "inhibit remembering selected font for next run"
-msgstr ""
+msgstr "avaktivera minne för valt typsnitt vid nästa körning"
 
 #: mini-utils/gfontsel/gfontsel.c:272
 msgid "inhibit loading of last font"
-msgstr ""
+msgstr "avaktivera laddning av senaste typsnitt"
 
-#. name of argument to option
-#. flags
 #: mini-utils/gless/gless.c:101
 msgid "Where to put the window, and its size"
-msgstr ""
+msgstr "Var fönstret skall placeras och dess storlek"
 
-#. name
-#. key
 #. name of argument to option
 #. flags
 #: mini-utils/gless/gless.c:109
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "Ingorera standard-inmatning; kan behövas i vissa fall."
+
+#: mini-utils/gless/gless.c:302 mini-utils/gw/gw.c:174
+msgid "Tell about this application"
+msgstr "Berätta om det här programmet"
 
 #: mini-utils/gless/gless.c:310
 msgid "New Window"
@@ -3170,9 +1974,9 @@ msgstr "Nytt textvisarfönster"
 
 #: mini-utils/gless/gless.c:315
 msgid "Open a new file in this window"
-msgstr ""
+msgstr "Öppna en ny fil i detta fönster"
 
-#: mini-utils/gless/gless.c:320 mini-utils/guname/guname.c:215
+#: mini-utils/gless/gless.c:320 mini-utils/guname/guname.c:523
 msgid "Save As..."
 msgstr "Spara som..."
 
@@ -3190,21 +1994,35 @@ msgstr "Avsluta programmet"
 
 #: mini-utils/gless/gless.c:339
 msgid "Fixed Font"
-msgstr ""
+msgstr "Fixt typsnitt"
 
 #: mini-utils/gless/gless.c:340
 msgid "Display text with a fixed font"
-msgstr ""
+msgstr "Visa text med fixt typsnitt"
+
+#: mini-utils/gless/gless.c:348 mini-utils/gw/gw.c:196
+msgid "Preferences..."
+msgstr "Inställningar..."
+
+#: mini-utils/gless/gless.c:349 mini-utils/gw/gw.c:197
+msgid "Change application preferences"
+msgstr "Ändra programmets inställningar"
+
+#: mini-utils/gless/gless.c:358
+msgid "View"
+msgstr "Visa"
 
 #: mini-utils/gless/gless.c:380
 msgid "Text File Viewer"
-msgstr ""
+msgstr "Textfilsvisare"
 
 #: mini-utils/gless/gless.c:440
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
 msgstr ""
+"Förstod ej geometrin (position och storlek)\n"
+" given på kommandoraden"
 
 #: mini-utils/gless/gless.c:481
 msgid "Loading..."
@@ -3244,424 +2062,376 @@ msgstr "Spara text som..."
 
 #: mini-utils/gless/gless.c:674
 msgid "Open Text File..."
-msgstr ""
+msgstr "Öppna textfil..."
 
 #: mini-utils/gnome-run/gnome-run.c:36
 msgid "Failed to execute command:\n"
-msgstr ""
+msgstr "Misslyckades med att exekvera kommando:\n"
 
 #: mini-utils/gnome-run/gnome-run.c:56
 msgid "Enter a command to execute:"
-msgstr ""
+msgstr "Mata in kommando som skall köras:"
 
 #: mini-utils/gshutdown/gshutdown.c:82
 msgid "Shut Down"
-msgstr ""
+msgstr "Stäng av"
 
 #: mini-utils/gshutdown/gshutdown.c:83
 msgid "Single User Mode"
-msgstr ""
+msgstr "Singel-användarläge"
 
 #: mini-utils/gshutdown/gshutdown.c:84
 msgid "Runlevel 2"
-msgstr ""
+msgstr "Runlevel 2"
 
 #: mini-utils/gshutdown/gshutdown.c:85
 msgid "Runlevel 3"
-msgstr ""
+msgstr "Runlevel 3"
 
 #: mini-utils/gshutdown/gshutdown.c:86
 msgid "Runlevel 4"
-msgstr ""
+msgstr "Runlevel 4"
 
 #: mini-utils/gshutdown/gshutdown.c:87
 msgid "Runlevel 5"
-msgstr ""
+msgstr "Runlevel 5"
 
 #: mini-utils/gshutdown/gshutdown.c:88
 msgid "Reboot"
-msgstr ""
+msgstr "Omstart"
 
 #: mini-utils/gshutdown/gshutdown.c:94
 msgid "Are you sure you want to shut down the computer?"
-msgstr ""
+msgstr "Är du säker att du vill stänga av datorn?"
 
 #: mini-utils/gshutdown/gshutdown.c:95
 msgid "Are you sure you want to switch to single user mode?"
-msgstr ""
+msgstr "Är du säker att du vill ändra till singel-användarläge?"
 
 #: mini-utils/gshutdown/gshutdown.c:96
 msgid "Are you sure you want to switch to runlevel 2?"
-msgstr ""
+msgstr "Är du säker på att du vill byta till runlevel 2?"
 
 #: mini-utils/gshutdown/gshutdown.c:97
 msgid "Are you sure you want to switch to runlevel 3?"
-msgstr ""
+msgstr "Är du säker på att du vill byta till runlevel 3?"
 
 #: mini-utils/gshutdown/gshutdown.c:98
 msgid "Are you sure you want to switch to runlevel 4?"
-msgstr ""
+msgstr "Är du säker på att du vill byta till runlevel 4?"
 
 #: mini-utils/gshutdown/gshutdown.c:99
 msgid "Are you sure you want to switch to runlevel 5?"
-msgstr ""
+msgstr "Är du säker på att du vill byta till runlevel 5?"
 
 #: mini-utils/gshutdown/gshutdown.c:100
 msgid "Are you sure you want to reboot the system?"
-msgstr ""
+msgstr "Är du säker på att du vill starta om systemet?"
 
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:175
 msgid "Shutdown or Reboot"
-msgstr ""
+msgstr "Stänga av eller starta om datorn"
 
 #: mini-utils/gshutdown/gshutdown.c:192 mini-utils/gshutdown/gshutdown.c:193
 msgid "Easy"
-msgstr ""
+msgstr "Enkel"
 
 #: mini-utils/gshutdown/gshutdown.c:197 mini-utils/gshutdown/gshutdown.c:198
 msgid "Advanced"
-msgstr ""
+msgstr "Avancerad"
 
 #: mini-utils/gshutdown/gshutdown.c:230
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
 msgstr ""
+"Tryck OK för att stänga av eller starta om\n"
+"datorn. Du kommer då att förlora osparad data."
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:360
+#: mini-utils/gshutdown/gshutdown.c:357
 msgid "Revert to Defaults"
-msgstr ""
+msgstr "Återställ till standard"
 
-#: mini-utils/gshutdown/gshutdown.c:371
+#: mini-utils/gshutdown/gshutdown.c:367
 msgid "Commands"
-msgstr ""
+msgstr "Kommandon"
 
-#: mini-utils/gshutdown/gshutdown.c:376
+#: mini-utils/gshutdown/gshutdown.c:372
 msgid "Confirm before shutdown?"
-msgstr ""
+msgstr "Bekräfta före avstängning"
 
-#: mini-utils/gshutdown/gshutdown.c:450
+#: mini-utils/gshutdown/gshutdown.c:446
 msgid "Don't ask next time."
-msgstr ""
+msgstr "Fråga inte nästa gång"
 
-#: mini-utils/gsu/gsu.c:210
-msgid "virtual memory exhausted"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:394
-#, c-format
-msgid "Cannot set groups: %s"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:398
-#, c-format
-msgid "Cannot set group id: %s"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:400
-#, c-format
-msgid "Cannot set user id: %s"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:444
-#, c-format
-msgid "cannot run %s"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:472
-#, c-format
-msgid "Try `%s --help' for more information.\n"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:476
-#, c-format
-msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:477
-msgid ""
-"Change the effective user id and group id to that of USER.\n"
-"\n"
-"  -, -l, --login               make the shell a login shell\n"
-"  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
-"  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
-"  -m, --preserve-environment   do not reset environment variables\n"
-"  -p                           same as -m\n"
-"  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
-"      --help                   display this help and exit\n"
-"      --version                output version information and exit\n"
-"\n"
-"A mere - implies -l.   If USER not given, assume root.\n"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:491
-msgid ""
-"\n"
-"Report bugs to sh-utils-bugs@gnu.ai.mit.edu"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:577
-#, c-format
-msgid "user %s does not exist"
-msgstr ""
-
-#. wait for dialog to die, then quit
-#: mini-utils/gsu/gsu.c:602
-msgid "incorrect password"
-msgstr ""
-
-#. The user being su'd to has a nonstandard shell, and so is
-#. probably a uucp account or has restricted access.  Don't
-#. compromise the account by allowing access with a standard
-#. shell.
-#: mini-utils/gsu/gsu.c:621
-#, c-format
-msgid "using restricted shell %s"
-msgstr ""
-
-#. error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir);
-#: mini-utils/gsu/gsu.c:634
-#, c-format
-msgid "Cannot change directory to %s"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:666
-msgid "Root password request"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:676
-msgid ""
-"You are trying to do something which requires\n"
-"root (system administrator) privileges.\n"
-"To do this, you must give the root password.\n"
-"Please enter the root password now, or choose\n"
-"Cancel if you do not know it."
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:683
-msgid ""
-"You are trying to change your user identity.\n"
-"Please enter the password for user `"
-msgstr ""
-
-#: mini-utils/guname/guname.c:101
+#: mini-utils/guname/guname.c:328
 msgid "System Information"
-msgstr ""
+msgstr "Systeminformation"
 
-#: mini-utils/guname/guname.c:141
+#: mini-utils/guname/guname.c:412
 msgid "Logo file not found"
-msgstr ""
+msgstr "Hittade ej logo-filen"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:145
+#: mini-utils/guname/guname.c:416
 msgid "GNOME contributors:"
-msgstr ""
+msgstr "GNOME bidragare:"
 
-#: mini-utils/guname/guname.c:159
+#: mini-utils/guname/guname.c:430
 msgid "GNOME: The GNU Network Object Model Environment"
-msgstr ""
+msgstr "GNOME: The GNU Network Object Model Environment"
 
-#: mini-utils/guname/guname.c:183
-msgid "Category"
-msgstr ""
+#: mini-utils/guname/guname.c:454
+msgid "Email Information..."
+msgstr "Skicka informationen via epost..."
 
-#: mini-utils/guname/guname.c:183
-msgid "Your System"
-msgstr ""
+#: mini-utils/guname/guname.c:465
+msgid "Save Information to File..."
+msgstr "Spara informationen till fil..."
 
-#: mini-utils/guname/guname.c:221
-msgid "Mail To..."
-msgstr ""
-
-#: mini-utils/guname/guname.c:229
+#: mini-utils/guname/guname.c:477 mini-utils/guname/guname.c:537
 msgid "Detailed Information..."
-msgstr ""
+msgstr "Detaljerad information..."
 
-#: mini-utils/guname/guname.c:269
+#: mini-utils/guname/guname.c:491
+msgid "Category"
+msgstr "Kategori"
+
+#: mini-utils/guname/guname.c:491
+msgid "Your System"
+msgstr "Ditt system"
+
+#: mini-utils/guname/guname.c:529
+msgid "Mail To..."
+msgstr "Skicka epost till..."
+
+#: mini-utils/guname/guname.c:577
 msgid "Error closing file `"
-msgstr ""
+msgstr "Fel vid stängning av fil `"
 
-#: mini-utils/guname/guname.c:271
+#: mini-utils/guname/guname.c:579
 msgid ""
 "\n"
 "Some or all data may not have been written."
 msgstr ""
+"\n"
+"Delar eller all data kanske inte skrevs korrekt."
 
-#: mini-utils/guname/guname.c:280
+#: mini-utils/guname/guname.c:588
 msgid "Couldn't open file `"
-msgstr ""
+msgstr "Kunde ej öppna filen `"
 
-#: mini-utils/guname/guname.c:294
+#: mini-utils/guname/guname.c:602
 msgid "Save System Information As..."
 msgstr "Spara systeminformation som..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:325
-msgid "Command failed `"
-msgstr ""
+#: mini-utils/guname/guname.c:648
+msgid "Command failed ` "
+msgstr "Kommando misslyckades ` "
 
-#: mini-utils/guname/guname.c:332
-msgid "Couldn't run command `"
-msgstr ""
+#: mini-utils/guname/guname.c:648 mini-utils/guname/guname.c:655
+msgid " ': "
+msgstr " ': "
 
-#: mini-utils/guname/guname.c:344
+#: mini-utils/guname/guname.c:655
+msgid "Couldn't run command ` "
+msgstr "Kunde ej köra kommando ` "
+
+#: mini-utils/guname/guname.c:678
+msgid "The following mail will be sent to "
+msgstr "Följande brev kommer att skickas till "
+
+#: mini-utils/guname/guname.c:680
+msgid ""
+".\n"
+" Are you sure you want to mail this information?"
+msgstr ""
+".\n"
+" Är du säker att du vill skicka denna information via epost?"
+
+#: mini-utils/guname/guname.c:689
+msgid "Are you sure?"
+msgstr "Är du säker?"
+
+#: mini-utils/guname/guname.c:722
 msgid "Address to mail to:"
-msgstr ""
-
-#: mini-utils/guname/info.c:36
-msgid "Distribution:"
-msgstr ""
+msgstr "Adress att skicka epost till:"
 
 #: mini-utils/guname/info.c:37
-msgid "Operating System:"
-msgstr ""
+msgid "Distribution:"
+msgstr "Distribution:"
 
 #: mini-utils/guname/info.c:38
-msgid "Distribution Version:"
-msgstr ""
+msgid "Operating System:"
+msgstr "Operativsystem:"
 
 #: mini-utils/guname/info.c:39
-msgid "Operating System Version:"
-msgstr ""
+msgid "Distribution Version:"
+msgstr "Distributionsversion:"
 
 #: mini-utils/guname/info.c:40
-msgid "Operating System Release:"
-msgstr ""
+msgid "Operating System Version:"
+msgstr "Operativsystemsversion:"
 
 #: mini-utils/guname/info.c:41
-msgid "Processor Type:"
-msgstr ""
+msgid "Operating System Release:"
+msgstr "Operativsystemsutgåva:"
 
 #: mini-utils/guname/info.c:42
-msgid "Processor Speed:"
-msgstr ""
+msgid "Processor Type:"
+msgstr "Processortyp:"
 
 #: mini-utils/guname/info.c:43
-msgid "Host Name:"
-msgstr ""
+msgid "Processor Speed:"
+msgstr "Processorhastighet:"
 
 #: mini-utils/guname/info.c:44
-msgid "Domain Name:"
-msgstr ""
+msgid "Host Name:"
+msgstr "Värdnamn:"
 
 #: mini-utils/guname/info.c:45
-msgid "User Name:"
-msgstr ""
+msgid "Domain Name:"
+msgstr "Domännamn:"
 
 #: mini-utils/guname/info.c:46
-msgid "X Display Name:"
-msgstr ""
+msgid "User Name:"
+msgstr "Användarnamn:"
 
 #: mini-utils/guname/info.c:47
-msgid "System Status:"
-msgstr ""
+msgid "X Display Name:"
+msgstr "X Display namn:"
 
 #: mini-utils/guname/info.c:48
-msgid "Real Memory:"
-msgstr ""
+msgid "System Status:"
+msgstr "Systemstatus:"
 
 #: mini-utils/guname/info.c:49
-msgid "Swap Space (\"virtual memory\"):"
-msgstr ""
+msgid "Real Memory:"
+msgstr "Fysiskt minne:"
 
 #: mini-utils/guname/info.c:50
-msgid "Total Memory:"
-msgstr ""
+msgid "Swap Space (\"virtual memory\"):"
+msgstr "Swaputrymme (\"virtuellt minne\"):"
 
 #: mini-utils/guname/info.c:51
+msgid "Total Memory:"
+msgstr "Totalt minne:"
+
+#: mini-utils/guname/info.c:52
 msgid "Free Memory:"
-msgstr ""
+msgstr "Fritt minne:"
 
 #: mini-utils/guname/info.c:57
-msgid "Used space"
-msgstr ""
+msgid "Device"
+msgstr "Enhet"
 
 #: mini-utils/guname/info.c:58
-msgid "Free space"
-msgstr ""
+msgid "Size"
+msgstr "Storlek"
 
 #: mini-utils/guname/info.c:59
-msgid "Percent free"
-msgstr ""
+msgid "Used space"
+msgstr "Använt utrymme"
 
 #: mini-utils/guname/info.c:60
+msgid "Free space"
+msgstr "Fritt utrymme"
+
+#: mini-utils/guname/info.c:61
+msgid "Percent free"
+msgstr "Procent fritt"
+
+#: mini-utils/guname/info.c:62
 msgid "Mount point"
-msgstr ""
+msgstr "Monteringspunkt"
 
-#. This is about the only case where we'll put Unknown instead
-#. of simply not showing the info.
-#: mini-utils/guname/info.c:135
+#: mini-utils/guname/info.c:168
 msgid "Unknown"
-msgstr ""
+msgstr "Okänt"
 
-#: mini-utils/guname/moreinfo.c:74
+#: mini-utils/guname/moreinfo.c:82
 msgid "Unknown filesystem"
-msgstr ""
+msgstr "Okänt filsystem"
 
-#: mini-utils/guname/moreinfo.c:96
+#: mini-utils/guname/moreinfo.c:104
 msgid "No information for this filesystem."
-msgstr ""
+msgstr "Ingen information om detta filsystem."
 
-#: mini-utils/guname/moreinfo.c:111
+#: mini-utils/guname/moreinfo.c:119
 msgid "Mounted filesystems"
-msgstr ""
+msgstr "Monterade filsystem"
 
-#: mini-utils/guname/moreinfo.c:147
+#: mini-utils/guname/moreinfo.c:155
+msgid "Memory"
+msgstr "Minne"
+
+#: mini-utils/guname/moreinfo.c:155
 msgid "Kilobytes"
-msgstr ""
+msgstr "Kilobyte"
 
-#: mini-utils/guname/moreinfo.c:150
+#: mini-utils/guname/moreinfo.c:158
 msgid "%ld%% %s used."
-msgstr ""
+msgstr "%ld%% %s använt."
 
-#: mini-utils/guname/moreinfo.c:166
+#: mini-utils/guname/moreinfo.c:174
 msgid "memory"
-msgstr ""
+msgstr "minne"
 
-#: mini-utils/guname/moreinfo.c:180
+#: mini-utils/guname/moreinfo.c:188
 msgid "swap"
-msgstr ""
+msgstr "swap"
 
-#: mini-utils/guname/moreinfo.c:216
+#: mini-utils/guname/moreinfo.c:214
+msgid "CPU %d"
+msgstr "CPU %d"
+
+#: mini-utils/guname/moreinfo.c:255
 msgid "Detailed System Information"
-msgstr ""
-
-#: mini-utils/guname/moreinfo.c:229
-msgid "Disk Information"
-msgstr ""
-
-#: mini-utils/guname/moreinfo.c:231
-msgid "Memory Information"
-msgstr ""
-
-#: mini-utils/guname/moreinfo.c:251
-msgid "%2d%% full "
-msgstr ""
-
-#: mini-utils/guname/moreinfo.c:253
-#, c-format
-msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-msgstr ""
-
-#: mini-utils/guname/moreinfo.c:267
-msgid "Mount Point: "
-msgstr ""
+msgstr "Detaljerad systeminformation"
 
 #: mini-utils/guname/moreinfo.c:268
-msgid "    Device: "
-msgstr ""
+msgid "Disk Information"
+msgstr "Diskinformation"
 
-#: mini-utils/guname/moreinfo.c:269
+#: mini-utils/guname/moreinfo.c:270
+msgid "Memory Information"
+msgstr "Minnesinformation"
+
+#: mini-utils/guname/moreinfo.c:273
+msgid "CPU Information"
+msgstr "CPU Information"
+
+#: mini-utils/guname/moreinfo.c:294
+msgid "%2d%% full "
+msgstr "%2d%% full "
+
+# , c-format
+#: mini-utils/guname/moreinfo.c:296
+msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
+msgstr "%ld megabyte, %ld fritt (%ld superanvändare); %ld inoder, %ld fria."
+
+#: mini-utils/guname/moreinfo.c:310
+msgid "Mount Point: "
+msgstr "Monteringspunkt: "
+
+#: mini-utils/guname/moreinfo.c:311
+msgid "    Device: "
+msgstr "    Enhet: "
+
+#: mini-utils/guname/moreinfo.c:312
 msgid "    Filesystem Type: "
-msgstr ""
+msgstr "    Filsystemstyp: "
 
 #: mini-utils/gw/gw.c:146
 msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
 msgstr ""
+"Kunde ej hitta kommandot \"w\" i din sökväg.\n"
+"Det kommandot krävs för korrekt körning."
 
 #: mini-utils/gw/gw.c:182
 msgid "Save..."
@@ -3670,6 +2440,10 @@ msgstr "Spara..."
 #: mini-utils/gw/gw.c:182
 msgid "Write information to disk"
 msgstr "Spara information till disk"
+
+#: mini-utils/gw/gw.c:188
+msgid "Quit the application without saving"
+msgstr "Avsluta programmet utan att spara"
 
 #: mini-utils/gw/gw.c:218
 msgid "User Listing"
@@ -3686,7 +2460,7 @@ msgstr "Kommandorad"
 #. Create everything.
 #: mini-utils/gw/gw.c:464
 msgid "Add some defaults"
-msgstr "Lägg till några standardsaker"
+msgstr "Lägg till några standardposter"
 
 #: mini-utils/gw/gw.c:481
 msgid "Command Editor"
@@ -3700,6 +2474,11 @@ msgid ""
 "In the command, you can use %u to represent the\n"
 "currently selected username, and %t for the tty."
 msgstr ""
+"Du kan ändra kommandona på popup-menyn.\n"
+"Mata bara in namnet i menyn och vilket program\n"
+"den skall köra. I kommandosträngen kan du\n"
+"använda %u för att representera vald användare\n"
+"och %t för dess tty."
 
 #: mini-utils/gw/gw.c:498
 msgid ""
@@ -3712,7 +2491,11 @@ msgstr ""
 
 #: mini-utils/gw/gw.c:506
 msgid "Menu items"
-msgstr ""
+msgstr "Menyposter"
+
+#: mini-utils/gw/gw.c:534
+msgid "Command"
+msgstr "Kommando"
 
 #: mini-utils/idetool/idetool.c:40
 msgid "Unable to access the drive."
@@ -3722,13 +2505,11 @@ msgstr ""
 msgid "The DMA setting for this drive cannot be changed."
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:77 mini-utils/idetool/idetool.c:109
-#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:77 mini-utils/idetool/idetool.c:109 mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
 msgid "Enabled"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:77 mini-utils/idetool/idetool.c:109
-#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:77 mini-utils/idetool/idetool.c:109 mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
 msgid "Disabled"
 msgstr ""
 
@@ -3740,14 +2521,13 @@ msgstr ""
 msgid "The drive refused to keep its settings."
 msgstr ""
 
+# , fuzzy
 #: mini-utils/idetool/idetool.c:140 mini-utils/idetool/idetool.c:322
-#, fuzzy
 msgid "Keep settings"
 msgstr ""
 
-#. IO
+# , fuzzy
 #: mini-utils/idetool/idetool.c:167
-#, fuzzy
 msgid "PIO Mode"
 msgstr ""
 
@@ -3763,13 +2543,13 @@ msgstr ""
 msgid "(Dual Port Cache)"
 msgstr ""
 
+# , fuzzy
 #: mini-utils/idetool/idetool.c:257
-#, fuzzy
 msgid "Setting"
 msgstr ""
 
+# , fuzzy
 #: mini-utils/idetool/idetool.c:305 mini-utils/idetool/idetool.c:315
-#, fuzzy
 msgid "Model"
 msgstr ""
 
@@ -3781,19 +2561,19 @@ msgstr ""
 msgid "Serial No."
 msgstr ""
 
+# , fuzzy
 #. do config here
 #: mini-utils/idetool/idetool.c:309
-#, fuzzy
 msgid "Geometry"
 msgstr ""
 
+# , fuzzy
 #: mini-utils/idetool/idetool.c:310
-#, fuzzy
 msgid "Cache"
 msgstr ""
 
+# , fuzzy
 #: mini-utils/idetool/idetool.c:311
-#, fuzzy
 msgid "Status"
 msgstr ""
 
@@ -3801,13 +2581,13 @@ msgstr ""
 msgid "Legacy MFM/RLL drive"
 msgstr ""
 
+# , fuzzy
 #: mini-utils/idetool/idetool.c:318
-#, fuzzy
 msgid "DMA Mode"
 msgstr ""
 
+# , fuzzy
 #: mini-utils/idetool/idetool.c:319
-#, fuzzy
 msgid "IO Mode"
 msgstr ""
 
@@ -3819,20 +2599,17 @@ msgstr ""
 msgid "Multisector"
 msgstr ""
 
+# , fuzzy
 #: mini-utils/idetool/idetool.c:322
-#, fuzzy
 msgid "On Reset"
 msgstr ""
 
-#.
-#. * Set up the outer display first
-#.
 #: mini-utils/idetool/idetool.c:347
 msgid "IDE Status"
 msgstr ""
 
+# , fuzzy
 #: mini-utils/idetool/idetool.c:360
-#, fuzzy
 msgid "Disk Logo Not Found"
 msgstr ""
 
@@ -3843,177 +2620,3 @@ msgstr ""
 #: mini-utils/idetool/idetool.c:424
 msgid "You appear to have no IDE drives"
 msgstr ""
-
-#~ msgid "gEdit is a small and lightweight text editor for GNOME/Gtk+"
-#~ msgstr ""
-
-#~ msgid "Plugins"
-#~ msgstr ""
-
-#~ msgid "Plugin Name"
-#~ msgstr ""
-
-#~ msgid "Launch a plugin at startup"
-#~ msgstr ""
-
-#~ msgid "Save as"
-#~ msgstr "Spara som"
-
-#~ msgid "Print"
-#~ msgstr ""
-
-#~ msgid "Close All"
-#~ msgstr "Stäng alla"
-
-#~ msgid "Search"
-#~ msgstr ""
-
-#~ msgid "Search and Replace"
-#~ msgstr ""
-
-#~ msgid "Search Again"
-#~ msgstr ""
-
-#~ msgid "Top"
-#~ msgstr ""
-
-#~ msgid "Bottom"
-#~ msgstr ""
-
-#~ msgid "Left"
-#~ msgstr ""
-
-#~ msgid "Right"
-#~ msgstr ""
-
-#~ msgid "Toggle"
-#~ msgstr ""
-
-#~ msgid "Show Toolbar"
-#~ msgstr ""
-
-#~ msgid "Hide Toolbar"
-#~ msgstr ""
-
-#~ msgid "Pictures and Text"
-#~ msgstr ""
-
-#~ msgid "Pictures only"
-#~ msgstr ""
-
-#~ msgid "Text only"
-#~ msgstr ""
-
-#~ msgid "Tooltips On"
-#~ msgstr ""
-
-#~ msgid "Tooltips Off"
-#~ msgstr ""
-
-#~ msgid "Text Font..."
-#~ msgstr ""
-
-#~ msgid "Toggle Autoindent"
-#~ msgstr ""
-
-#~ msgid "Toggle Statusbar"
-#~ msgstr ""
-
-#~ msgid "Document Tabs"
-#~ msgstr ""
-
-#~ msgid "Save Settings"
-#~ msgstr "Spara inställningar"
-
-#~ msgid "Close Window"
-#~ msgstr "Stäng fönster"
-
-#~ msgid "Document List"
-#~ msgstr ""
-
-#~ msgid "Options"
-#~ msgstr ""
-
-#~ msgid "Window"
-#~ msgstr ""
-
-#~ msgid " New "
-#~ msgstr ""
-
-#~ msgid "Start a new file"
-#~ msgstr ""
-
-#~ msgid " Open "
-#~ msgstr ""
-
-#~ msgid "Open a file"
-#~ msgstr ""
-
-#~ msgid " Save "
-#~ msgstr " Spara "
-
-#~ msgid "Save file"
-#~ msgstr "Spara fil"
-
-#~ msgid " Close "
-#~ msgstr " Stäng "
-
-#~ msgid "Close the current file"
-#~ msgstr ""
-
-#~ msgid " Print "
-#~ msgstr ""
-
-#~ msgid "Print file"
-#~ msgstr ""
-
-#~ msgid " Cut "
-#~ msgstr ""
-
-#~ msgid "Cut text"
-#~ msgstr ""
-
-#~ msgid " Copy "
-#~ msgstr ""
-
-#~ msgid "Copy text"
-#~ msgstr ""
-
-#~ msgid " Paste "
-#~ msgstr ""
-
-#~ msgid "Paste text"
-#~ msgstr ""
-
-#~ msgid "Search for text"
-#~ msgstr ""
-
-#~ msgid " OK "
-#~ msgstr ""
-
-#, fuzzy
-#~ msgid "Event"
-#~ msgstr ""
-
-#, fuzzy
-#~ msgid "File/Exit"
-#~ msgstr ""
-
-#, fuzzy
-#~ msgid "Help/About"
-#~ msgstr ""
-
-#~ msgid "Calendar"
-#~ msgstr ""
-
-#, fuzzy
-#~ msgid "Start time"
-#~ msgstr ""
-
-#, fuzzy
-#~ msgid "End time"
-#~ msgstr ""
-
-#~ msgid "Unknown system error"
-#~ msgstr ""
-
