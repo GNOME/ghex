@@ -29,12 +29,9 @@ app-dist-hook: index.html
 	-$(mkinstalldirs) $(distdir)/$(app)/stylesheet-images
 	-cp $(srcdir)/$(app)/*.html $(distdir)/$(app)
 	-cp $(srcdir)/$(app)/*.css $(distdir)/$(app)
-	-cp $(srcdir)/$(app)/stylesheet-images/*.png \
-		$(distdir)/$(app)/stylesheet-images
 	-cp $(srcdir)/$(app)/stylesheet-images/*.gif \
 		$(distdir)/$(app)/stylesheet-images
-	-cp $(srcdir)/*.png \
-		$(distdir)
+	-cp $(srcdir)/*.png $(distdir)/$(app)
 
 install-data-am: index.html
 	-$(mkinstalldirs) $(DESTDIR)$(helpdir)/stylesheet-images

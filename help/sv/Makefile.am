@@ -1,7 +1,8 @@
-## Process this file with automake to produce Makefile.in.
-
-EXTRA_DIST = index.html \
-	     topic.dat
-
-ghex_helpdir = $(datadir)/gnome/help/ghex/sv
-ghex_help_DATA = index.html topic.dat
+figs = 
+htmls = \
+	index.html
+docname = ghex
+lang = sv
+omffiles=ghex-sv.omf
+include $(top_srcdir)/htmldocs.make
+dist-hook: app-dist-hook
