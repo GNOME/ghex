@@ -1,11 +1,11 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Free Software Foundation, Inc.
 # Ming-Yen Hsu <myhsu@cyberdude.com>, 1999.
-
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-0.99.6\n"
-"POT-Creation-Date: 1999-02-06 08:47-0600\n"
+"POT-Creation-Date: 1999-06-25 01:23+0800\n"
 "PO-Revision-Date: 1999-02-20 08:00+0800\n"
 "Last-Translator: Ming-Yen Hsu <myhsu@cyberdude.com>\n"
 "Language-Team: Chinese <zh@li.org>\n"
@@ -14,1761 +14,2026 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gcalc/gcalc.c:30
-msgid "Gnome 計算機"
-msgstr ""
+msgid "The Gnome Calculator"
+msgstr "Gnome 計算機"
 
 #: gcalc/gcalc.c:33
-msgid "一個類似 xcalc 的雙精準度計算機"
-msgstr ""
+msgid "Simple double precision calculator similiar to xcalc"
+msgstr "一個類似 xcalc 的雙精準度計算機"
 
 #: gcalc/gcalc.c:124
-msgid "Gnome 計算機"
-msgstr ""
+msgid "Gnome Calculator"
+msgstr "Gnome 計算機"
 
 #: gdiskfree/df.c:212
 msgid ""
-"顯示檔案系統的可用空間 "
+"A quick hack to show the amount of space free on mounted file systems "
 "uitilizing a dial."
-msgstr ""
+msgstr "顯示已掛載之檔案系統的可用空間 "
 
-#: ghex/converter.c:39
-msgid "GHex: 轉碼程式"
-msgstr ""
+#: ghex/converter.c:41
+msgid "GHex: Converter"
+msgstr "GHex: 轉碼程式"
 
-#: ghex/converter.c:46
-msgid "二進位"
-msgstr ""
+#: ghex/converter.c:50
+msgid "Binary"
+msgstr "二進位"
 
-#: ghex/converter.c:56
-msgid "十進位"
-msgstr ""
+#: ghex/converter.c:60 ghex/preferences.c:110
+msgid "Decimal"
+msgstr "十進位"
 
-#: ghex/converter.c:66
-msgid "十六進位"
-msgstr ""
+#: ghex/converter.c:70
+msgid "Hex"
+msgstr "十六進位"
 
-#: ghex/converter.c:76
+#: ghex/converter.c:80
 msgid "ASCII"
-msgstr ""
+msgstr "ASCII"
 
-#: ghex/converter.c:86 mini-utils/gshutdown/gshutdown.c:149
-msgid "關閉"
-msgstr ""
+#: ghex/converter.c:90
+msgid "Get cursor value"
+msgstr "獲得游標位置"
 
-#: ghex/converter.c:134
-msgid "錯誤"
-msgstr ""
+#: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
+#: mini-utils/gshutdown/gshutdown.c:594
+msgid "Close"
+msgstr "關閉"
 
-#: ghex/findreplace.c:51 ghex/main.c:68
+#: ghex/converter.c:190
+msgid "ERROR"
+msgstr "錯誤"
+
+#: ghex/findreplace.c:51 ghex/main.c:83
 #, c-format
-msgid "GHex (%s): 找到資料"
-msgstr ""
+msgid "GHex (%s): Find Data"
+msgstr "GHex (%s): 尋找資料"
 
 #: ghex/findreplace.c:60
 #, c-format
-msgid "搜尋 %s"
-msgstr ""
+msgid "Search for %s"
+msgstr "搜尋 %s"
 
 #: ghex/findreplace.c:76
-msgid "找下一個"
-msgstr ""
+msgid "Find Next"
+msgstr "找下一個"
 
 #: ghex/findreplace.c:83
-msgid "找前一個"
-msgstr ""
+msgid "Find Previous"
+msgstr "找前一個"
 
-#: ghex/findreplace.c:111 ghex/main.c:69
+#: ghex/findreplace.c:111 ghex/main.c:84
 #, c-format
-msgid "GHex (%s): 尋找並且取代資料"
-msgstr ""
+msgid "GHex (%s): Find & Replace Data"
+msgstr "GHex (%s): 尋找並且取代資料"
 
 #: ghex/findreplace.c:125
 #, c-format
-msgid "取代 %s"
-msgstr ""
+msgid "Replace %s"
+msgstr "取代 %s"
 
 #: ghex/findreplace.c:141
-msgid "找下一個"
-msgstr ""
+msgid "Find next"
+msgstr "找下一個"
 
 #: ghex/findreplace.c:148
-msgid "取代"
-msgstr ""
+msgid "Replace"
+msgstr "取代"
 
 #: ghex/findreplace.c:155
-msgid "全部取代"
-msgstr ""
+msgid "Replace All"
+msgstr "全部取代"
 
-#: ghex/findreplace.c:179 ghex/main.c:70
+#: ghex/findreplace.c:179 ghex/main.c:85
 #, c-format
-msgid "GHex (%s): 跳至 Byte"
-msgstr ""
+msgid "GHex (%s): Jump To Byte"
+msgstr "GHex (%s): 跳至 Byte"
 
 #: ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
-msgid "沒有緩衝區可供搜尋!"
-msgstr ""
+msgid "There is no active buffer to search!"
+msgstr "沒有緩衝區可供搜尋!"
 
 #: ghex/findreplace.c:268 ghex/findreplace.c:291 ghex/findreplace.c:344
-msgid "沒有字串可供搜尋!"
-msgstr ""
+msgid "There seems to be no string to search for!"
+msgstr "沒有字串可供搜尋!"
 
 #: ghex/findreplace.c:274 ghex/findreplace.c:351
-msgid "到達檔案底端"
-msgstr ""
+msgid "End Of File reached"
+msgstr "到達檔案底端"
 
 #: ghex/findreplace.c:298
-msgid "到達檔案的頂端"
-msgstr ""
+msgid "Beginning Of File reached"
+msgstr "到達檔案的頂端"
 
 #: ghex/findreplace.c:306
-msgid "沒有緩衝區可供游標移入!"
-msgstr ""
+msgid "There is no active buffer to move the cursor in!"
+msgstr "沒有緩衝區可供游標移入!"
 
 #: ghex/findreplace.c:311
-msgid "尚未指定偏移量!"
-msgstr ""
+msgid "No offset has been specified!"
+msgstr "尚未指定偏移量!"
 
 #: ghex/findreplace.c:318
-msgid "偏移量必需為正值!"
-msgstr ""
+msgid "The offset must be a positive integer value!"
+msgstr "偏移量必需為正值!"
 
 #: ghex/findreplace.c:323
-msgid "不能將游標置於檔案底端之後!"
-msgstr ""
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "不能將游標置於檔案底端之後!"
 
 #: ghex/findreplace.c:361 ghex/findreplace.c:400
-msgid "沒有緩衝區可供資料置換!"
-msgstr ""
+msgid "There is no active buffer to replace data in!"
+msgstr "沒有緩衝區可供資料置換!"
 
 #: ghex/findreplace.c:372 ghex/findreplace.c:411
-msgid "在搜尋和取代時遇到奇怪的字串!"
-msgstr ""
+msgid "Strange find or replace string!"
+msgstr "在搜尋和取代時遇到奇怪的字串!"
 
 #: ghex/findreplace.c:377 ghex/findreplace.c:416
-msgid "兩個字串長度必需相同!"
-msgstr ""
+msgid "Both strings must be of the same length!"
+msgstr "兩個字串長度必需相同!"
 
 #: ghex/findreplace.c:390
-msgid "到達檔案底端!"
-msgstr ""
+msgid "End Of File reached!"
+msgstr "到達檔案底端!"
 
 #: ghex/findreplace.c:431
 #, c-format
-msgid "總共取代了 %d 個."
-msgstr ""
+msgid "Replaced %d occurencies."
+msgstr "總共取代了 %d 個."
 
 #: ghex/hex-document.c:57
-msgid "_Byte"
-msgstr ""
+msgid "_Bytes"
+msgstr "_Byte"
 
 #: ghex/hex-document.c:58
 msgid "Group data by 8 bits"
-msgstr ""
+msgstr "Group data by 8 bits"
 
 #: ghex/hex-document.c:59
 msgid "_Words"
-msgstr ""
+msgstr "_Words"
 
 #: ghex/hex-document.c:60
 msgid "Group data by 16 bits"
-msgstr ""
+msgstr "Group data by 16 bits"
 
 #: ghex/hex-document.c:61
 msgid "_Longwords"
-msgstr ""
+msgstr "_Longwords"
 
 #: ghex/hex-document.c:62
 msgid "Group data by 32 bits"
-msgstr ""
+msgstr "Group data by 32 bits"
 
 #: ghex/hex-document.c:78
-msgid "跳至 _G Byte..."
-msgstr ""
+msgid "_Goto Byte..."
+msgstr "跳至 _G Byte..."
 
 #: ghex/hex-document.c:78
-msgid "跳至一特定的位置"
-msgstr ""
+msgid "Jump to a certain position"
+msgstr "跳至一特定的位置"
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
-msgstr ""
+msgstr "_Group Data As"
 
 #: ghex/hex-document.c:86
 msgid "_Add view"
-msgstr ""
+msgstr "_Add view"
 
 #: ghex/hex-document.c:87
 msgid "Add a new view of the buffer"
-msgstr ""
+msgstr "Add a new view of the buffer"
 
 #: ghex/hex-document.c:88
 msgid "_Remove view"
-msgstr ""
+msgstr "_Remove view"
 
 #: ghex/hex-document.c:89
 msgid "Remove the current view of the buffer"
-msgstr ""
+msgstr "Remove the current view of the buffer"
 
-#: ghex/main.c:44
+#: ghex/main.c:51
 #, c-format
 msgid ""
-"檔案 %s 的內容已經變更.\n"
-"是否要儲存這些變更?"
+"File %s has changed since last save.\n"
+"Do you want to save changes?"
 msgstr ""
+"檔案 %s 的內容已有變動.\n"
+"是否要儲存這些變動?"
 
-#: ghex/preferences.c:48 mini-utils/idetool/idetool.c:142
+#: ghex/main.c:173
+msgid "Offset: "
+msgstr "偏移:"
+
+#: ghex/preferences.c:50 mini-utils/idetool/idetool.c:142
 #: mini-utils/idetool/idetool.c:325
-msgid "預設"
-msgstr ""
-
-#: ghex/preferences.c:49
-msgid "記事本"
-msgstr ""
-
-#: ghex/preferences.c:50
-msgid "最上層"
-msgstr ""
+msgid "Default"
+msgstr "預設"
 
 #: ghex/preferences.c:51
+msgid "Notebook"
+msgstr "記事本"
+
+#: ghex/preferences.c:52
+msgid "Toplevel"
+msgstr "最上層"
+
+#: ghex/preferences.c:53
 msgid "Modal"
-msgstr ""
+msgstr "Modal"
 
-#: ghex/preferences.c:79
-msgid "可還原的次數上限"
-msgstr ""
+#: ghex/preferences.c:82
+msgid "Maximum number of undo levels"
+msgstr "可還原的次數上限"
 
-#: ghex/preferences.c:90
-msgid "編輯中"
-msgstr ""
+#: ghex/preferences.c:96
+msgid "Show cursor offset in statusbar as"
+msgstr "在狀態列顯示游標位置的方式: "
 
-#: ghex/preferences.c:97
-msgid "字形"
-msgstr ""
+#: ghex/preferences.c:115
+msgid "Hexadecimal"
+msgstr "十六進位"
 
-#: ghex/preferences.c:113
-msgid "瀏覽..."
-msgstr ""
+#: ghex/preferences.c:121
+msgid "Custom"
+msgstr "自定"
 
-#: ghex/preferences.c:132
+#: ghex/preferences.c:131
+msgid "Show offsets column"
+msgstr "顯示欄位"
+
+#: ghex/preferences.c:136
+msgid "Editing"
+msgstr "編輯中"
+
+#: ghex/preferences.c:143
+msgid "Font"
+msgstr "字形"
+
+#: ghex/preferences.c:159
+msgid "Browse..."
+msgstr "瀏覽..."
+
+#: ghex/preferences.c:178
 msgid "Default Group Type"
-msgstr ""
+msgstr "Default Group Type"
 
-#: ghex/preferences.c:148 gtt/options.c:184
-msgid "顯示"
-msgstr ""
+#: ghex/preferences.c:194 gtt/options.c:186
+msgid "Display"
+msgstr "顯示"
 
-#: ghex/preferences.c:155
-msgid "MDI 模式"
-msgstr ""
+#: ghex/preferences.c:201
+msgid "MDI Mode"
+msgstr "MDI 模式"
 
-#: ghex/preferences.c:172
+#: ghex/preferences.c:218
 msgid "MDI"
-msgstr ""
+msgstr "MDI"
 
-#: ghex/preferences.c:281
-msgid "無法開啟選定的字形!"
-msgstr ""
+#: ghex/preferences.c:365
+msgid "Can not open desired font!"
+msgstr "無法開啟選定的字形!"
 
 #: ghex/ui.c:51
-msgid "開啟轉碼程式 _v..."
-msgstr ""
+msgid "Open Con_verter..."
+msgstr "開啟轉碼程式 _v..."
 
 #: ghex/ui.c:52
-msgid "開啟位元轉換對話框"
-msgstr ""
+msgid "Open base conversion dialog"
+msgstr "開啟位元轉換對話框"
 
 #: ghex/ui.c:89
 msgid "Bytes"
-msgstr ""
+msgstr "Bytes"
 
 #: ghex/ui.c:90
 msgid "Words"
-msgstr ""
+msgstr "Words"
 
 #: ghex/ui.c:91
 msgid "Longwords"
-msgstr ""
+msgstr "Longwords"
 
 #: ghex/ui.c:96
-msgid ""
-msgstr ""
+msgid "hex data"
+msgstr "hex data"
 
 #: ghex/ui.c:97
 msgid "ASCII data"
-msgstr ""
+msgstr "ASCII data"
 
 #: ghex/ui.c:174
-msgid "GHex, 二位元檔編輯器"
-msgstr ""
+msgid "GHex, a binary file editor"
+msgstr "GHex, 二位元檔編輯器"
 
 #: ghex/ui.c:176
 msgid "Released under the terms of GNU Public License"
-msgstr ""
+msgstr "Released under the terms of GNU Public License"
 
 #: ghex/ui.c:193 ghex/ui.c:344
-msgid "存檔時發生錯誤!"
-msgstr ""
+msgid "Error saving file!"
+msgstr "存檔時發生錯誤!"
 
 #: ghex/ui.c:197 ghex/ui.c:339
 #, c-format
-msgid "把緩衝區內容存至檔案 %s"
-msgstr ""
+msgid "Saved buffer to file %s"
+msgstr "把緩衝區內容存至檔案 %s"
 
 #: ghex/ui.c:206
-msgid "選擇要開啟的檔案"
-msgstr ""
+msgid "Select a file to open"
+msgstr "選擇要開啟的檔案"
 
 #: ghex/ui.c:224
-msgid "選擇要把緩衝區存入的檔案"
-msgstr ""
+msgid "Select a file to save buffer as"
+msgstr "選擇要把緩衝區存入的檔案"
 
 #: ghex/ui.c:272
 #, c-format
-msgid "確定要恢復檔案 %s?"
-msgstr ""
+msgid "Really revert file %s?"
+msgstr "確定要復原檔案 %s?"
 
 #: ghex/ui.c:285
 #, c-format
-msgid "把緩衝區內容恢復成檔案 %s"
-msgstr ""
+msgid "Reverted buffer from file %s"
+msgstr "把緩衝區內容復原成檔案 %s"
 
 #: ghex/ui.c:300
 #, c-format
-msgid "已載入檔案 %s"
-msgstr ""
+msgid "Loaded file %s"
+msgstr "已載入檔案 %s"
 
 #: ghex/ui.c:305
-msgid "無法開啟檔案!"
-msgstr ""
+msgid "Can not open file!"
+msgstr "無法開啟檔案!"
 
 #: ghex/ui.c:348
-msgid "檔案無法寫入!"
-msgstr ""
+msgid "Can't open file for writing!"
+msgstr "檔案無法寫入!"
 
-#: gnome-find/gnome-find.c:42
-msgid "新的搜尋"
-msgstr ""
+#: gsearchtool/gsearchtool.c:21
+msgid "File name"
+msgstr "檔名"
 
-#: gnome-find/gnome-find.c:43
-msgid "Open search spec"
-msgstr ""
+#: gsearchtool/gsearchtool.c:23
+msgid "Don't search subdirectories"
+msgstr "不搜尋子目錄"
 
-#: gnome-find/gnome-find.c:44
-msgid "Save search spec"
-msgstr ""
+#: gsearchtool/gsearchtool.c:24
+msgid "File owner"
+msgstr "檔案擁有人"
 
-#: gnome-find/gnome-find.c:45
-msgid "Save search spec as..."
-msgstr ""
+#: gsearchtool/gsearchtool.c:25
+msgid "File owner group"
+msgstr "檔案所屬群組"
 
-#: gnome-find/gnome-find.c:49
-msgid "退出"
-msgstr ""
+#: gsearchtool/gsearchtool.c:26
+msgid "Last modification time"
+msgstr "最後更動時間"
 
-#: gnome-find/gnome-find.c:55
-msgid "偏好設定..."
-msgstr ""
+#: gsearchtool/gsearchtool.c:28
+msgid "Don't search mounted filesystems"
+msgstr "不搜尋掛上的其他檔案系統"
 
-#: gnome-find/gnome-find.c:61
-msgid "增加條件"
-msgstr ""
+#: gsearchtool/gsearchtool.c:30
+msgid "Empty file"
+msgstr "清空檔案"
 
-#: gnome-find/gnome-find.c:61 gnome-find/gnome-find.c:100
-msgid "增加一個新的條件"
-msgstr ""
+#: gsearchtool/gsearchtool.c:32
+msgid "Invalid user or group"
+msgstr "無效的使用者或群組"
 
-#: gnome-find/gnome-find.c:62
-msgid "移除修件"
-msgstr ""
+#: gsearchtool/gsearchtool.c:33
+msgid "Filenames except"
+msgstr "排除的檔名"
 
-#: gnome-find/gnome-find.c:62 gnome-find/gnome-find.c:102
-msgid "移除最後一個搜尋條件"
-msgstr ""
+#: gsearchtool/gsearchtool.c:34
+msgid "Simple substring search"
+msgstr "簡易字串搜尋"
 
-#: gnome-find/gnome-find.c:64 gnome-find/gnome-find.c:65
-#: gnome-find/gnome-find.c:103
-msgid "顯示進階選項"
-msgstr ""
+#: gsearchtool/gsearchtool.c:35
+msgid "Regular expression search"
+msgstr "正規式搜尋"
 
-#: gnome-find/gnome-find.c:70
-msgid "開始搜尋"
-msgstr ""
+#: gsearchtool/gsearchtool.c:37
+msgid "Extended regular expression search"
+msgstr "加強的正規式搜尋"
 
-#: gnome-find/gnome-find.c:77
-msgid "關於 Gnome 搜尋..."
-msgstr ""
+#: gsearchtool/gsearchtool.c:94 gsearchtool/gsearchtool.c:149
+msgid "grep options found in find list bad bad!"
+msgstr "搜尋列表中找到的 grep 選項有問題!"
 
-#: gnome-find/gnome-find.c:86
-msgid "檔案"
-msgstr ""
-
-#: gnome-find/gnome-find.c:87
-msgid "編輯"
-msgstr ""
-
-#: gnome-find/gnome-find.c:88 gnome-find/gnome-find.c:109
-msgid "搜尋"
-msgstr ""
-
-#: gnome-find/gnome-find.c:89
-msgid "說明"
-msgstr ""
-
-#: gnome-find/gnome-find.c:95
-msgid "新增"
-msgstr ""
-
-#: gnome-find/gnome-find.c:95
-msgid "清除搜尋視窗"
-msgstr ""
-
-#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:506
-#: mini-utils/gw/gw.c:454
-msgid "新增"
-msgstr ""
-
-#: gnome-find/gnome-find.c:102
-msgid "移除"
-msgstr ""
-
-#: gnome-find/gnome-find.c:103 mini-utils/gshutdown/gshutdown.c:205
-#: mini-utils/gshutdown/gshutdown.c:206
-msgid "進階"
-msgstr ""
-
-#: gnome-find/gnome-find.c:109
-msgid "開始目前的搜尋"
-msgstr ""
-
-#: gnome-find/gnome-find.c:180
-msgid "尋找檔案"
-msgstr ""
-
-#: gnome-find/gnome-find.c:182
-msgid "目錄:"
-msgstr ""
-
-#: gnome-find/gnome-find.c:184
-msgid "搜尋目錄"
-msgstr ""
-
-#: gnome-find/gnome-find.c:426
-msgid "GNOME 搜尋"
-msgstr ""
-
-#. copyright notice
-#: gnome-find/gnome-find.c:428
-msgid "(C) 1998 the Free Software Foundation"
-msgstr ""
-
-#. another comments
-#: gnome-find/gnome-find.c:431
-msgid "GNOME 搜尋是一個快速, 具彈性的檔案搜尋工具."
-msgstr ""
+#: gsearchtool/gsearchtool.c:163
+msgid "non-grep option found in grep list, bad bad!"
+msgstr "grep 列表中找到非 grep 用的選項，真糟糕!"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
 #: gsearchtool/gsearchtool.c:203
-msgid "搜尋結果"
-msgstr ""
+msgid "Search Results"
+msgstr "搜尋結果"
 
-#: gsearchtool/gsearchtool.c:488
-msgid "開始搜尋目錄:"
-msgstr ""
+#: gsearchtool/gsearchtool.c:426
+msgid "Enable"
+msgstr "啟動"
 
-#: gsearchtool/gsearchtool.c:517
-msgid "開始"
-msgstr ""
+#: gsearchtool/gsearchtool.c:433
+msgid "Remove"
+msgstr "移除"
 
-#: gsearchtool/gsearchtool.c:518
-msgid "停止"
-msgstr ""
+#: gsearchtool/gsearchtool.c:485
+msgid "Start in directory:"
+msgstr "開始搜尋目錄:"
 
-#: gsearchtool/gsearchtool.c:536
-msgid "此功\能尚未完成"
-msgstr ""
+#: gsearchtool/gsearchtool.c:503 mini-utils/gw/gw.c:488
+msgid "Add"
+msgstr "新增"
+
+#: gsearchtool/gsearchtool.c:514
+msgid "Start"
+msgstr "開始"
+
+#: gsearchtool/gsearchtool.c:515
+msgid "Stop"
+msgstr "停止"
+
+#: gsearchtool/gsearchtool.c:533
+msgid "This is not yet implemented"
+msgstr "此功\能尚未完成"
+
+#: gsearchtool/gsearchtool.c:546
+msgid "Full find (find)"
+msgstr "完整尋找 (尋找)"
 
 #: gsearchtool/gsearchtool.c:549
-msgid "完整尋找 (尋找)"
-msgstr ""
+msgid "Quick find (locate)"
+msgstr "快速尋找 (定位)"
 
-#: gsearchtool/gsearchtool.c:552
-msgid "快速尋找 (定位)"
-msgstr ""
+#: gsearchtool/gsearchtool.c:564
+msgid "The Gnome Search Tool"
+msgstr "Gnome 搜尋工具"
+
+#: gsearchtool/gsearchtool.c:565
+msgid "(C) 1998 the Free Software Foundation"
+msgstr "(C) 1998 自由軟體基金會"
 
 #: gsearchtool/gsearchtool.c:567
-msgid "Gnome 搜尋工具"
-msgstr ""
+msgid "Frontend to the unix find/grep/locate commands"
+msgstr "Unix find/grep/locate 指令的使用界面"
 
-#: gsearchtool/gsearchtool.c:570
-msgid "Unix find/grep/locate 指令的使用界面"
-msgstr ""
+#: gsearchtool/gsearchtool.c:610
+msgid "Gnome Search Tool"
+msgstr "Gnome 搜尋工具"
 
-#: gsearchtool/gsearchtool.c:613
-msgid "Gnome 搜尋工具"
-msgstr ""
+#: gstripchart/gstripchart.c:374
+msgid "rparen expected"
+msgstr "應該是正規式才對"
 
-#: gstripchart/gstripchart.c:1249
-msgid "參數"
-msgstr ""
+#: gstripchart/gstripchart.c:391
+#, c-format
+msgid "no such field: %d"
+msgstr "找不到此一範圍: %d"
 
-#: gstripchart/gstripchart.c:1249
-msgid "檢視並調整參數"
-msgstr ""
+#: gstripchart/gstripchart.c:415
+msgid "missing variable identifer"
+msgstr "沒有變數的名稱"
 
-#: gstripchart/gstripchart.c:1255
-msgid "退出 _x"
-msgstr ""
+#: gstripchart/gstripchart.c:417
+#, c-format
+msgid "invalid variable identifer: %s"
+msgstr "無效的變數名稱: %s"
 
-#: gstripchart/gstripchart.c:1255
-msgid "結束 stripchart"
-msgstr ""
+#: gstripchart/gstripchart.c:421
+msgid "number expected"
+msgstr "應該是數字才對"
 
-#: gstripchart/gstripchart.c:1271
+#: gstripchart/gstripchart.c:498
+#, c-format
+msgid "extra gunk at end: \"%s\""
+msgstr "結尾有多餘的廢物: \"%s\""
+
+#: gstripchart/gstripchart.c:575
+#, c-format
+msgid "%s, line %d: "
+msgstr "%s, %d 行: "
+
+#: gstripchart/gstripchart.c:652
+#, c-format
+msgid "can't open config file \"%s\""
+msgstr "無法開啟 \"%s\" 這個設定檔"
+
+#: gstripchart/gstripchart.c:743
+#, c-format
+msgid "invalid display type: %s"
+msgstr "無效的顯示格式: %s"
+
+#: gstripchart/gstripchart.c:777
+msgid "identifier or begin must be first"
+msgstr "begin 或名稱要擺\在最前面"
+
+#: gstripchart/gstripchart.c:784 gstripchart/gstripchart.c:800
+#, c-format
+msgid "unrecognized color: %s"
+msgstr "無效的顏色: %s"
+
+#: gstripchart/gstripchart.c:827
+#, c-format
+msgid "invalid option: \"%s\""
+msgstr "無效的選項: \"%s\""
+
+#: gstripchart/gstripchart.c:1344
+msgid "E_xit"
+msgstr "退出 _x"
+
+#: gstripchart/gstripchart.c:1344
+msgid "Terminate the stripchart program"
+msgstr "結束 stripchart"
+
+#: gstripchart/gstripchart.c:1360
 msgid "Copyright 1998 John Kodis"
-msgstr ""
+msgstr "Copyright 1998 John Kodis"
 
-#: gstripchart/gstripchart.c:1286
-msgid "開於 _A"
-msgstr ""
+#: gstripchart/gstripchart.c:1362
+msgid ""
+"The GNOME stripchart program plots various user-specified parameters as a "
+"function of time.  Its main use is to chart system performance parameters "
+"such as CPU load, CPU utilization, network traffic levels, and the like.  "
+"Other more ingenious uses are left as an exercise for the interested user."
+msgstr "GNOME 條形圖程式可以將使用者指定的參數對時間繪圖。它主要是用來畫出系統的效能參數，如 CPU 的使用率、網路負載狀況... 等等。 有興趣的使用者可以找出其他巧妙的應用。"
 
-#: gstripchart/gstripchart.c:1286
-msgid "關於 striphart 的訊息"
-msgstr ""
+#: gstripchart/gstripchart.c:1375
+msgid "_About"
+msgstr "開於 _A"
 
-#: gstripchart/gstripchart.c:1297
-msgid "檔案 _F"
-msgstr ""
+#: gstripchart/gstripchart.c:1375
+msgid "Info about the striphart program"
+msgstr "關於條形圖程式的訊息"
 
-#: gstripchart/gstripchart.c:1298
-msgid "說明 _H"
-msgstr ""
+#: gstripchart/gstripchart.c:1386
+msgid "_File"
+msgstr "檔案 _F"
 
-#: gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1387
+msgid "_Help"
+msgstr "說明 _H"
+
+#: gstripchart/gstripchart.c:1450
+msgid "Param"
+msgstr "參數"
+
+#: gstripchart/gstripchart.c:1450 mini-utils/gcolorsel/gcolorsel.c:156
+#: mini-utils/guname/moreinfo.c:228
+msgid "Value"
+msgstr "值"
+
+#: gstripchart/gstripchart.c:1454
+msgid "Identifier"
+msgstr "名稱"
+
+#: gstripchart/gstripchart.c:1465
+msgid "yellow"
+msgstr "黃色"
+
+#: gstripchart/gstripchart.c:1465
+msgid "blue"
+msgstr "藍色"
+
+#: gstripchart/gstripchart.c:1465
+msgid "red"
+msgstr "紅色"
+
+#: gstripchart/gstripchart.c:1465
+msgid "green"
+msgstr "綠色"
+
+#: gstripchart/gstripchart.c:1465
+msgid "white"
+msgstr "白色"
+
+#: gstripchart/gstripchart.c:1466
+msgid "Busy"
+msgstr "忙線"
+
+#: gstripchart/gstripchart.c:1466
+msgid "Load"
+msgstr "載入"
+
+#: gstripchart/gstripchart.c:1466
+msgid "PPP In"
+msgstr "PPP 入"
+
+#: gstripchart/gstripchart.c:1466
+msgid "PPP Out"
+msgstr "PPP 出"
+
+#: gstripchart/gstripchart.c:1466
+msgid "Swap"
+msgstr "swap"
+
+#: gstripchart/gstripchart.c:1470 mini-utils/gcolorsel/gcolorsel.c:155
+msgid "Color"
+msgstr "色彩"
+
+#: gstripchart/gstripchart.c:1472
+msgid "Filename"
+msgstr "檔名"
+
+#: gstripchart/gstripchart.c:1474
+msgid "Pattern"
+msgstr "樣式"
+
+#: gstripchart/gstripchart.c:1476
+msgid "Equation"
+msgstr "方程式"
+
+#: gstripchart/gstripchart.c:1478
+msgid "Expected range"
+msgstr "預期的區域"
+
+#: gstripchart/gstripchart.c:1482
+msgid "Displayed range"
+msgstr "顯示範圍"
+
+#: gstripchart/gstripchart.c:1486
+msgid "Current value"
+msgstr "目前的值"
+
+#: gstripchart/gstripchart.c:1493
+msgid "Active"
+msgstr "工作中"
+
+#: gstripchart/gstripchart.c:1509
+msgid "Gnome Stripchart Parameters"
+msgstr "Gnome 條形圖程式之參數"
+
+#: gstripchart/gstripchart.c:1609
+msgid "Help"
+msgstr "說明"
+
+#: gstripchart/gstripchart.c:1615
+msgid "About"
+msgstr "關於"
+
+#: gstripchart/gstripchart.c:1621
+msgid "Params"
+msgstr "參數"
+
+#: gstripchart/gstripchart.c:1627
+msgid "Exit"
+msgstr "退出"
+
+#. Create a top-level window. Set the title, minimum size (_usize),
+#. initial size (_default_size), and establish delete and destroy
+#. event handlers.
+#: gstripchart/gstripchart.c:1729
+msgid "gstripchart"
+msgstr "條形圖程式"
+
+#: gstripchart/gstripchart.c:1729
+msgid "Gnome stripchart viewer"
+msgstr "Gnome 條形圖程式"
+
+#: gstripchart/gstripchart.c:1805
+#, c-format
+msgid "invalid display type: %s\n"
+msgstr "無效的顯示格式: %s\n"
+
+#: gstripchart/gstripchart.c:1832
 msgid "GEO"
-msgstr ""
+msgstr "GEO"
 
-#: gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1832
 msgid "geometry"
-msgstr ""
+msgstr "geometry"
 
-#: gstripchart/gstripchart.c:1708
+#: gstripchart/gstripchart.c:1834
 msgid "FILE"
-msgstr ""
+msgstr "檔案"
 
-#: gstripchart/gstripchart.c:1708
-msgid "設定檔"
-msgstr ""
+#: gstripchart/gstripchart.c:1834
+msgid "configuration file"
+msgstr "設定檔"
 
-#: gstripchart/gstripchart.c:1710 gstripchart/gstripchart.c:1712
-#: gstripchart/gstripchart.c:1714 gstripchart/gstripchart.c:1716
+#: gstripchart/gstripchart.c:1836 gstripchart/gstripchart.c:1838
+#: gstripchart/gstripchart.c:1840 gstripchart/gstripchart.c:1842
 msgid "SECS"
-msgstr ""
+msgstr "SECS"
 
-#: gstripchart/gstripchart.c:1710
-msgid "chart 更新間隔"
-msgstr ""
+#: gstripchart/gstripchart.c:1836
+msgid "chart update interval"
+msgstr "chart 更新間隔"
 
-#: gstripchart/gstripchart.c:1712
+#: gstripchart/gstripchart.c:1838
 msgid "chart LP filter TC"
-msgstr ""
+msgstr "chart LP filter TC"
 
-#: gstripchart/gstripchart.c:1714
-msgid "slider 更新間隔"
-msgstr ""
+#: gstripchart/gstripchart.c:1840
+msgid "slider update interval"
+msgstr "slider 更新間隔"
 
-#: gstripchart/gstripchart.c:1716
+#: gstripchart/gstripchart.c:1842
 msgid "slider LP filter TC"
-msgstr ""
+msgstr "slider LP filter TC"
 
-#: gstripchart/gstripchart.c:1718
+#: gstripchart/gstripchart.c:1844
 msgid "add menubar"
-msgstr ""
+msgstr "新增選單列"
 
-#: gstripchart/gstripchart.c:1720
+#: gstripchart/gstripchart.c:1846
 msgid "omit slider"
-msgstr ""
+msgstr "omit slider"
 
-#: gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1848
 msgid "TYPE"
-msgstr ""
+msgstr "TYPE"
 
-#: gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1848
 msgid "gtk|text|graph|none"
-msgstr ""
+msgstr "gtk|text|graph|none"
 
-#: gtt/app.c:110 gtt/app.c:210
-msgid "沒有任何計劃被選取"
-msgstr ""
+#: gtt/app.c:117 gtt/app.c:223
+msgid "no project selected"
+msgstr "沒有任何計劃被選取"
 
-#: gtt/app.c:199
+#: gtt/app.c:212
 msgid "00:00"
-msgstr ""
+msgstr "00:00"
 
-#: gtt/app.c:239 mini-utils/gless/gless.c:383
+#: gtt/app.c:251 mini-utils/gless/gless.c:424
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
 msgstr ""
+"無法識別在指令列指定的\n"
+" geometry (位置和大小)"
 
 #: gtt/clist.c:169
-msgid "合計"
-msgstr ""
+msgid "Total"
+msgstr "合計"
 
 #: gtt/clist.c:170
 msgid "Today"
-msgstr ""
+msgstr "今日"
 
 #: gtt/clist.c:171
-msgid "計劃標題"
-msgstr ""
+msgid "Project Title"
+msgstr "計劃標題"
 
 #: gtt/clist.c:172
-msgid "描述"
-msgstr ""
+msgid "Description"
+msgstr "描述"
 
-#: gtt/log.c:55 gtt/log.c:207
-msgid "程式已啟動"
-msgstr ""
+#: gtt/log.c:64 gtt/log.c:216
+msgid "program started"
+msgstr "程式已啟動"
 
-#: gtt/log.c:73
-msgid "沒有描述"
-msgstr ""
+#: gtt/log.c:82
+msgid "no description"
+msgstr "沒有描述"
 
-#: gtt/log.c:199
-msgid "程式已退出"
-msgstr ""
+#: gtt/log.c:208
+msgid "program exited"
+msgstr "程式已退出"
 
 #: gtt/main.c:77
 msgid ""
+"There seems to be another GTimeTracker running.\n"
+"Press OK to start GTimeTracker anyway, or press Cancel to quit."
+msgstr ""
 "似乎有另一個 GTimeTracker 正在執行中.\n"
 "按下 OK 強制啟動 GTimeTracker, 或按下 取消 結束."
-msgstr ""
 
 #: gtt/main.c:121
-msgid "錯誤"
-msgstr ""
+msgid "Error"
+msgstr "錯誤"
 
 #: gtt/main.c:122
 msgid ""
+"An error occured while reading the configuration file.\n"
+"Shall I setup a new configuration?"
+msgstr ""
 "讀取設定檔時發生錯誤.\n"
 "是否開始一個新的設定檔?"
-msgstr ""
 
 #: gtt/main.c:204
-msgid "指定 geometry"
-msgstr ""
+msgid "Specify geometry"
+msgstr "指定 geometry"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:115
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
 msgid "GEOMETRY"
-msgstr ""
+msgstr "GEOMETRY"
 
 #: gtt/main.c:206
-msgid "在啟動時選取一個計劃"
-msgstr ""
+msgid "Select a project on startup"
+msgstr "在啟動時選取一個計劃"
 
 #: gtt/main.c:206
-msgid "計劃"
-msgstr ""
+msgid "PROJECT"
+msgstr "計劃"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
-msgid "警告"
-msgstr ""
+msgid "Warning"
+msgstr "警告"
 
 #: gtt/menucmd.c:32 gtt/menucmd.c:155
-msgid "無法寫入設定檔!"
-msgstr ""
+msgid "I could not write the configuration file!"
+msgstr "無法寫入設定檔!"
 
-#: gtt/menucmd.c:85 gtt/toolbar.c:142
-msgid "新增計劃..."
-msgstr ""
+#: gtt/menucmd.c:85 gtt/toolbar.c:146
+msgid "New Project..."
+msgstr "新增計劃..."
 
 #: gtt/menucmd.c:89
-msgid "請輸入新計劃的名稱:"
-msgstr ""
+msgid "Please enter the name of the new project:"
+msgstr "請輸入新計劃的名稱:"
 
 #: gtt/menucmd.c:123
-msgid "無法讀取設定檔"
-msgstr ""
+msgid "I could not read the configuration file"
+msgstr "無法讀取設定檔"
 
-#: gtt/menucmd.c:137 gtt/toolbar.c:149
-msgid "重新載入設定檔"
-msgstr ""
+#: gtt/menucmd.c:137 gtt/toolbar.c:153
+msgid "Reload Configuration File"
+msgstr "重新載入設定檔"
 
 #: gtt/menucmd.c:138
 msgid ""
 "This will overwrite your current set of projects.\n"
-"是否真的要重新載入設定檔?"
+"Do you really want to reload the configuration file?"
 msgstr ""
+"將要覆蓋\現存計劃的設定.\n"
+"是否真的要重新載入設定檔?"
 
 #: gtt/menus.c:27
-msgid "新增計劃 _N..."
-msgstr ""
+msgid "_New Project..."
+msgstr "新增計劃 _N..."
 
 #: gtt/menus.c:30
-msgid "重新載入設定檔 _R"
-msgstr ""
+msgid "_Reload Configuration File"
+msgstr "重新載入設定檔 _R"
 
 #: gtt/menus.c:34
-msgid "另存設定檔 _S"
-msgstr ""
+msgid "_Save Configuration File"
+msgstr "另存設定檔 _S"
 
 #: gtt/menus.c:59 gtt/menus.c:115
-msgid "清除 _Daily Counter"
-msgstr ""
+msgid "Clear _Daily Counter"
+msgstr "清除 _Daily 計數器"
 
 #: gtt/menus.c:71
-msgid "啟動 _a"
-msgstr ""
+msgid "St_art"
+msgstr "啟動 _a"
 
 #: gtt/menus.c:75
-msgid "停止 _p"
-msgstr ""
+msgid "Sto_p"
+msgstr "停止 _p"
 
 #: gtt/menus.c:80
-msgid "_Timer 執行中"
-msgstr ""
+msgid "_Timer Running"
+msgstr "_Timer 執行中"
 
 #: gtt/menus.c:99
 msgid "_Timer"
-msgstr ""
+msgstr "_Timer"
 
-#: gtt/options.c:192
-msgid "顯示秒"
-msgstr ""
+#: gtt/options.c:194
+msgid "Show Seconds"
+msgstr "顯示秒"
 
-#: gtt/options.c:198
-msgid "顯示狀態列"
-msgstr ""
+#: gtt/options.c:200
+msgid "Show Status Bar"
+msgstr "顯示狀態列"
 
-#: gtt/options.c:204
-msgid "顯示表格檔頭"
-msgstr ""
+#: gtt/options.c:206
+msgid "Show Table Header"
+msgstr "顯示表格檔頭"
 
-#: gtt/options.c:218 gtt/options.c:516
-msgid "工具列"
-msgstr ""
+#: gtt/options.c:220 gtt/options.c:518
+msgid "Toolbar"
+msgstr "工具列"
 
-#: gtt/options.c:226
-msgid "顯示工具列圖示"
-msgstr ""
+#: gtt/options.c:228
+msgid "Show Toolbar Icons"
+msgstr "顯示工具列圖示"
 
-#: gtt/options.c:232
-msgid "顯示工具列文字"
-msgstr ""
+#: gtt/options.c:234
+msgid "Show Toolbar Texts"
+msgstr "顯示工具列文字"
 
-#: gtt/options.c:238
-msgid "顯示工具列提示"
-msgstr ""
+#: gtt/options.c:240
+msgid "Show Tooltips"
+msgstr "顯示工具列提示"
 
-#: gtt/options.c:244
+#: gtt/options.c:246
 msgid "Toolbar Segments"
-msgstr ""
+msgstr "工具列區塊"
 
-#: gtt/options.c:252
-msgid "顯示 `新增'"
-msgstr ""
+#: gtt/options.c:254
+msgid "Show `New'"
+msgstr "顯示 `新增'"
 
-#: gtt/options.c:258
-msgid "顯示 `儲存', `重新載入'"
-msgstr ""
+#: gtt/options.c:260
+msgid "Show `Save', `Reload'"
+msgstr "顯示 `儲存', `重新載入'"
 
-#: gtt/options.c:264
-msgid "顯示 `剪下', `複製', `貼上'"
-msgstr ""
+#: gtt/options.c:266
+msgid "Show `Cut', `Copy', `Paste'"
+msgstr "顯示 `剪下', `複製', `貼上'"
 
-#: gtt/options.c:270
-msgid "顯示 `內容'"
-msgstr ""
+#: gtt/options.c:272
+msgid "Show `Properties'"
+msgstr "顯示 `內容'"
 
-#: gtt/options.c:276
-msgid "顯示 `Timer'"
-msgstr ""
+#: gtt/options.c:278
+msgid "Show `Timer'"
+msgstr "顯示 `Timer'"
 
-#: gtt/options.c:282
-msgid "顯示 `偏好設定'"
-msgstr ""
+#: gtt/options.c:284
+msgid "Show `Preferences'"
+msgstr "顯示 `偏好設定'"
 
-#: gtt/options.c:288
-msgid "顯示 `說明'"
-msgstr ""
+#: gtt/options.c:290
+msgid "Show `Help'"
+msgstr "顯示 `說明'"
 
-#: gtt/options.c:294
-msgid "顯示 `結束'"
-msgstr ""
+#: gtt/options.c:296
+msgid "Show `Quit'"
+msgstr "顯示 `結束'"
 
-#: gtt/options.c:308
-msgid "Shell 指令"
-msgstr ""
+#: gtt/options.c:310
+msgid "Shell Commands"
+msgstr "Shell 指令"
 
-#: gtt/options.c:316
-msgid "切換計劃的指令:"
-msgstr ""
+#: gtt/options.c:318
+msgid "Switch Project Command:"
+msgstr "切換計劃的指令:"
 
-#: gtt/options.c:327
-msgid "沒有計劃的指令:"
-msgstr ""
+#: gtt/options.c:329
+msgid "No Project Command:"
+msgstr "沒有計劃的指令:"
 
-#: gtt/options.c:361
-msgid "紀錄檔"
-msgstr ""
+#: gtt/options.c:363
+msgid "Logfile"
+msgstr "紀錄檔"
 
-#: gtt/options.c:369
-msgid "使用紀錄檔"
-msgstr ""
+#: gtt/options.c:371
+msgid "Use Logfile"
+msgstr "使用紀錄檔"
 
-#: gtt/options.c:378
-msgid "檔名:"
-msgstr ""
+#: gtt/options.c:380
+msgid "Filename:"
+msgstr "檔名:"
 
-#: gtt/options.c:392
+#: gtt/options.c:394
 msgid "Entry Start:"
-msgstr ""
+msgstr "啟動點:"
 
-#: gtt/options.c:406
+#: gtt/options.c:408
 msgid "Entry Stop:"
-msgstr ""
+msgstr "停止點:"
 
-#: gtt/options.c:420
+#: gtt/options.c:422
 msgid "Timeout in secs:"
-msgstr ""
+msgstr "Timeout in secs:"
 
-#: gtt/options.c:497
-msgid "偏好設定"
-msgstr ""
+#: gtt/options.c:499
+msgid "Preferences"
+msgstr "偏好設定"
 
-#: gtt/options.c:503
-msgid "其他"
-msgstr ""
+#: gtt/options.c:505
+msgid "Misc"
+msgstr "其他"
 
 #: gtt/proj.c:461
-msgid "計劃 %t 啟動"
-msgstr ""
+msgid "project %t started"
+msgstr "計劃 %t 啟動"
 
 #: gtt/proj.c:464
-msgid "停止計劃 %t"
-msgstr ""
+msgid "stopped project %t"
+msgstr "停止計劃 %t"
 
 #: gtt/prop.c:55
-msgid "空"
-msgstr ""
+msgid "empty"
+msgstr "空"
 
 #: gtt/prop.c:171
-msgid "內容"
-msgstr ""
+msgid "Properties"
+msgstr "內容"
 
 #: gtt/prop.c:178
-msgid "計劃"
-msgstr ""
+msgid "Project"
+msgstr "計劃"
 
 #: gtt/prop.c:197
-msgid "計劃標題:"
-msgstr ""
+msgid "Project Title:"
+msgstr "計劃標題:"
 
 #: gtt/prop.c:209
-msgid "計劃描述:"
-msgstr ""
+msgid "Project Description:"
+msgstr "計劃描述:"
 
 #: gtt/prop.c:221
 msgid "Project Time today:"
-msgstr ""
+msgstr "Project Time today:"
 
 #: gtt/prop.c:237 gtt/prop.c:275
-msgid "時"
-msgstr ""
+msgid "hours"
+msgstr "時"
 
 #: gtt/prop.c:248 gtt/prop.c:286
-msgid "分"
-msgstr ""
+msgid "mins"
+msgstr "分"
 
 #: gtt/prop.c:259 gtt/prop.c:297
-msgid "秒"
-msgstr ""
+msgid "secs"
+msgstr "秒"
 
 #: gtt/prop.c:263
 msgid "Project Time ever:"
-msgstr ""
+msgstr "Project Time ever:"
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:141
+#: gtt/toolbar.c:145
 msgid "[GTT]New"
-msgstr ""
-
-#: gtt/toolbar.c:148
-msgid "重新載入"
-msgstr ""
+msgstr "[GTT]新增"
 
 #: gtt/toolbar.c:152
-msgid "儲存"
-msgstr ""
+msgid "Reload"
+msgstr "重新載入"
 
-#: gtt/toolbar.c:153
-msgid "儲存設定檔"
-msgstr ""
+#: gtt/toolbar.c:156
+msgid "Save"
+msgstr "儲存"
 
-#: gtt/toolbar.c:159
-msgid "剪下"
-msgstr ""
-
-#: gtt/toolbar.c:160
-msgid "剪下被選擇的計劃"
-msgstr ""
+#: gtt/toolbar.c:157
+msgid "Save Configuration File"
+msgstr "儲存設定檔"
 
 #: gtt/toolbar.c:163
-msgid "複製"
-msgstr ""
+msgid "Cut"
+msgstr "剪下"
 
 #: gtt/toolbar.c:164
-msgid "複製被選擇的計劃"
-msgstr ""
+msgid "Cut Selected Project"
+msgstr "剪下被選擇的計劃"
 
 #: gtt/toolbar.c:167
-msgid "貼上"
-msgstr ""
+msgid "Copy"
+msgstr "複製"
 
 #: gtt/toolbar.c:168
-msgid "貼上計劃"
-msgstr ""
+msgid "Copy Selected Project"
+msgstr "複製被選擇的計劃"
 
-#: gtt/toolbar.c:174
-msgid "內容"
-msgstr ""
+#: gtt/toolbar.c:171
+msgid "Paste"
+msgstr "貼上"
 
-#: gtt/toolbar.c:175
-msgid "編輯內容..."
-msgstr ""
+#: gtt/toolbar.c:172
+msgid "Paste Project"
+msgstr "貼上計劃"
+
+#: gtt/toolbar.c:178
+msgid "Props"
+msgstr "內容"
 
 #: gtt/toolbar.c:179
+msgid "Edit Properties..."
+msgstr "編輯內容..."
+
+#: gtt/toolbar.c:183
 msgid "Timer"
-msgstr ""
+msgstr "Timer"
 
-#: gtt/toolbar.c:180
+#: gtt/toolbar.c:184
 msgid "Start/Stop Timer"
-msgstr ""
-
-#: gtt/toolbar.c:188
-msgid "偏好設定"
-msgstr ""
-
-#: gtt/toolbar.c:189
-msgid "編輯偏好設定..."
-msgstr ""
+msgstr "啟動/停止 Timer"
 
 #: gtt/toolbar.c:193
-msgid "使用手冊"
-msgstr ""
+msgid "Prefs"
+msgstr "偏好設定"
 
-#: gtt/toolbar.c:193
-msgid "使用手冊..."
-msgstr ""
-
-#: gtt/toolbar.c:198
-msgid "結束"
-msgstr ""
+#: gtt/toolbar.c:194
+msgid "Edit Preferences..."
+msgstr "編輯偏好設定..."
 
 #: gtt/toolbar.c:198
-msgid "結束 GTimeTracker"
-msgstr ""
+msgid "Manual"
+msgstr "使用手冊"
 
-#: mini-utils/gcolorsel/gcolorsel.c:57 mini-utils/gcolorsel/gcolorsel.c:59
-#: mini-utils/gcolorsel/gcolorsel.c:231 mini-utils/gcolorsel/gcolorsel.c:352
-msgid "Gnome 色彩瀏覽器"
-msgstr ""
+#: gtt/toolbar.c:198
+msgid "Manual..."
+msgstr "使用手冊..."
 
-#: mini-utils/gcolorsel/gcolorsel.c:71
-msgid "格式:"
-msgstr ""
+#: gtt/toolbar.c:203
+msgid "Quit"
+msgstr "結束"
 
-#: mini-utils/gcolorsel/gcolorsel.c:81
-msgid "色彩名稱:"
-msgstr ""
+#: gtt/toolbar.c:203
+msgid "Quit GTimeTracker"
+msgstr "結束 GTimeTracker"
 
-#: mini-utils/gcolorsel/gcolorsel.c:88
-msgid "色彩值:"
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:65 mini-utils/gcolorsel/gcolorsel.c:67
+#: mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:369
+msgid "Gnome Color Browser"
+msgstr "Gnome 色彩瀏覽器"
 
-#: mini-utils/gcolorsel/gcolorsel.c:147
-msgid "色彩"
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:79
+msgid "Format Style:"
+msgstr "格式:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:148 mini-utils/guname/moreinfo.c:220
-msgid "值"
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:89
+msgid "Color Name:"
+msgstr "色彩名稱:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:149 mini-utils/guname/moreinfo.c:219
-#: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
-msgid "名稱"
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:96
+msgid "Color Values:"
+msgstr "色彩值:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:222
-msgid "錯誤, 無法開啟 /usr/X11R6/lib/X11/rgb.txt.\n"
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:227
+#: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
+msgid "Name"
+msgstr "名稱"
 
-#: mini-utils/gcolorsel/gcolorsel.c:235
-msgid "掃描可用色彩"
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:234
+msgid "Error, cannot find the file 'rgb.txt' on your system!"
+msgstr "錯誤，在您的系統上找不到 'rgb.txt' 這個檔案!"
 
-#: mini-utils/gcolorsel/gcolorsel.c:299
-msgid "十進位 (8 bit)"
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:247
+msgid "Parsing Colors"
+msgstr "掃描可用色彩"
 
-#: mini-utils/gcolorsel/gcolorsel.c:300
-msgid "十進位 (16 bit)"
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:316
+msgid "Decimal (8 bit)"
+msgstr "十進位 (8 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:301
-msgid "十六進位 (8 bit)"
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:317
+msgid "Decimal (16 bit)"
+msgstr "十進位 (16 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:302
-msgid "十六進位 (16 bit)"
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:318
+msgid "Hex (8 bit)"
+msgstr "十六進位 (8 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:303
-msgid "浮點數"
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:319
+msgid "Hex (16 bit)"
+msgstr "十六進位 (16 bit)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:356
-msgid "一個瀏覽所有在 X11 下可用色彩的小工具程式."
-msgstr ""
+#: mini-utils/gcolorsel/gcolorsel.c:320
+msgid "Float"
+msgstr "浮點數"
+
+#: mini-utils/gcolorsel/gcolorsel.c:373
+msgid "Small utility to browse available X11 colors."
+msgstr "一個瀏覽所有在 X11 下可用色彩的小工具程式."
 
 #: mini-utils/gfontsel/gfontsel.c:145
-msgid "字形選擇程式"
-msgstr ""
+msgid "Font Selector"
+msgstr "字形選擇程式"
 
 #: mini-utils/gfontsel/gfontsel.c:170
-msgid "選擇:"
-msgstr ""
+msgid "Selection:"
+msgstr "選擇:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "欲載入字形"
-msgstr ""
+msgid "Font to load"
+msgstr "欲載入字形"
 
 #: mini-utils/gfontsel/gfontsel.c:253
 msgid "FONTSPEC"
-msgstr ""
+msgstr "FONTSPEC"
 
 #: mini-utils/gfontsel/gfontsel.c:254
-msgid "在退出時印出選擇的字形名稱"
-msgstr ""
+msgid "Print selected font name on exit"
+msgstr "在退出時印出選擇的字形名稱"
 
 #: mini-utils/gfontsel/gfontsel.c:255
 msgid "Inhibit remembering selected font for next run"
-msgstr ""
+msgstr "下次執行時不要記住現在被選取的字型"
 
 #: mini-utils/gfontsel/gfontsel.c:256
 msgid "Inhibit loading of last font"
-msgstr ""
+msgstr "不要載入最後被選取的字型"
 
-#: mini-utils/gless/gless.c:115
+#: mini-utils/gless/gless.c:29
+msgid "Copyright 1998, under the GNU General Public License."
+msgstr "Copyright 1998, under the GNU General Public License."
+
+#: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
-msgstr ""
+msgstr "視窗擺\放的位置與大小"
 
-#: mini-utils/gless/gless.c:116
-msgid "忽略標準輸入; 在某些場合可能需要."
-msgstr ""
+#: mini-utils/gless/gless.c:132
+msgid "Ignore standard input; may be needed in some cases."
+msgstr "忽略標準輸入; 在某些場合可能需要."
 
-#: mini-utils/gless/gless.c:278
-msgid "新增視窗 _N"
-msgstr ""
+#: mini-utils/gless/gless.c:294
+msgid "_New Window"
+msgstr "新增視窗 _N"
 
-#: mini-utils/gless/gless.c:279
-msgid "新增文字檢視器視窗"
-msgstr ""
+#: mini-utils/gless/gless.c:295
+msgid "New text viewer window"
+msgstr "新增文字檢視器視窗"
 
-#: mini-utils/gless/gless.c:291
-msgid "字形 _F"
-msgstr ""
+#: mini-utils/gless/gless.c:313
+msgid "_Fixed Font"
+msgstr "字形 _F"
 
-#: mini-utils/gless/gless.c:292
-msgid "用固定字形顯示文字"
-msgstr ""
+#: mini-utils/gless/gless.c:314
+msgid "Display text with a fixed font"
+msgstr "用固定字形顯示文字"
 
-#: mini-utils/gless/gless.c:321
-msgid "文字檔案檢視器"
-msgstr ""
+#: mini-utils/gless/gless.c:352
+msgid "Text File Viewer"
+msgstr "文字檔案檢視器"
 
-#: mini-utils/gless/gless.c:424
-msgid "正在載入..."
-msgstr ""
+#: mini-utils/gless/gless.c:460
+msgid "Find string"
+msgstr "搜尋字串"
 
-#: mini-utils/gless/gless.c:429
-msgid "沒有這個檔案或目錄:\n"
-msgstr ""
+#: mini-utils/gless/gless.c:461
+msgid "Find"
+msgstr "搜尋"
 
-#: mini-utils/gless/gless.c:446
-msgid "無法解壓縮並且顯示檔案:\n"
-msgstr ""
+#: mini-utils/gless/gless.c:498
+msgid "Loading..."
+msgstr "正在載入..."
 
-#: mini-utils/gless/gless.c:457
+#: mini-utils/gless/gless.c:503
+msgid "No such file or directory:\n"
+msgstr "沒有這個檔案或目錄:\n"
+
+#: mini-utils/gless/gless.c:520
+msgid "Failed to decompress and display the file:\n"
+msgstr "無法解壓縮並且顯示檔案:\n"
+
+#: mini-utils/gless/gless.c:531
 msgid ""
+"Unable to display compressed file.\n"
+"zcat not found in your path."
+msgstr ""
 "無法顯示壓縮檔.\n"
 "在執行路徑內找不到 zcat."
-msgstr ""
 
-#: mini-utils/gless/gless.c:465
-msgid "載入檔案時錯誤:\n"
-msgstr ""
+#: mini-utils/gless/gless.c:539
+msgid "Error loading file:\n"
+msgstr "載入檔案時錯誤:\n"
 
-#: mini-utils/gless/gless.c:519
-msgid "正在儲存..."
-msgstr ""
+#: mini-utils/gless/gless.c:594
+msgid "Saving..."
+msgstr "正在儲存..."
 
-#: mini-utils/gless/gless.c:530
-msgid "寫入檔案失敗:\n"
-msgstr ""
+#: mini-utils/gless/gless.c:605
+msgid "Failed to write file:\n"
+msgstr "寫入檔案失敗:\n"
 
-#: mini-utils/gless/gless.c:577
-msgid "另存文字..."
-msgstr ""
+#: mini-utils/gless/gless.c:652
+msgid "Save Text As..."
+msgstr "另存文字..."
 
-#: mini-utils/gless/gless.c:617
-msgid "開啟文字檔案..."
-msgstr ""
+#: mini-utils/gless/gless.c:692
+msgid "Open Text File..."
+msgstr "開啟文字檔案..."
+
+#: mini-utils/gless/gless.c:843
+msgid "Searching..."
+msgstr "正在尋找..."
+
+#: mini-utils/gless/gless.c:854
+msgid "No search string was specified!"
+msgstr "找不到字串!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
-msgid "執行指令失敗:\n"
-msgstr ""
+msgid "Failed to execute command:\n"
+msgstr "執行指令失敗:\n"
 
 #: mini-utils/gnome-run/gnome-run.c:68
-msgid "執行程式"
-msgstr ""
+msgid "Run Program"
+msgstr "執行程式"
 
 #: mini-utils/gnome-run/gnome-run.c:69
-msgid "執行"
-msgstr ""
+msgid "Run"
+msgstr "執行"
 
 #: mini-utils/gnome-run/gnome-run.c:69
-msgid "取消"
-msgstr ""
+msgid "Cancel"
+msgstr "取消"
 
 #: mini-utils/gnome-run/gnome-run.c:80
-msgid "選擇要執行的程式"
-msgstr ""
-
-#: mini-utils/gshutdown/gshutdown.c:83
-msgid "關機"
-msgstr ""
-
-#: mini-utils/gshutdown/gshutdown.c:84
-msgid "單人使用模式"
-msgstr ""
-
-#: mini-utils/gshutdown/gshutdown.c:85
-msgid "Runlevel 2"
-msgstr ""
+msgid "Select a program to run"
+msgstr "選擇要執行的程式"
 
 #: mini-utils/gshutdown/gshutdown.c:86
-msgid "Runlevel 3"
-msgstr ""
+msgid "Shut Down"
+msgstr "關機"
 
 #: mini-utils/gshutdown/gshutdown.c:87
-msgid "Runlevel 4"
-msgstr ""
+msgid "Single User Mode"
+msgstr "單人使用模式"
 
 #: mini-utils/gshutdown/gshutdown.c:88
-msgid "Runlevel 5"
-msgstr ""
+msgid "Runlevel 2"
+msgstr "Runlevel 2"
 
 #: mini-utils/gshutdown/gshutdown.c:89
-msgid "重新啟動系統"
-msgstr ""
+msgid "Runlevel 3"
+msgstr "Runlevel 3"
 
-#: mini-utils/gshutdown/gshutdown.c:95
-msgid "你確定要關掉電腦?"
-msgstr ""
+#: mini-utils/gshutdown/gshutdown.c:90
+msgid "Runlevel 4"
+msgstr "Runlevel 4"
 
-#: mini-utils/gshutdown/gshutdown.c:96
-msgid "你確定要切換至單人使用模式?"
-msgstr ""
+#: mini-utils/gshutdown/gshutdown.c:91
+msgid "Runlevel 5"
+msgstr "Runlevel 5"
 
-#: mini-utils/gshutdown/gshutdown.c:97
-msgid "你確定要切換至 runlevel 2?"
-msgstr ""
+#: mini-utils/gshutdown/gshutdown.c:92
+msgid "Reboot"
+msgstr "重新啟動系統"
 
 #: mini-utils/gshutdown/gshutdown.c:98
-msgid "你確定要切換至 runlevel 3?"
-msgstr ""
+msgid "Are you sure you want to shut down the computer?"
+msgstr "你確定要關掉電腦?"
 
 #: mini-utils/gshutdown/gshutdown.c:99
-msgid "你確定要切換至 runlevel 4?"
-msgstr ""
+msgid "Are you sure you want to switch to single user mode?"
+msgstr "你確定要切換至單人使用模式?"
 
 #: mini-utils/gshutdown/gshutdown.c:100
-msgid "你確定要切換至 runlevel 5?"
-msgstr ""
+msgid "Are you sure you want to switch to runlevel 2?"
+msgstr "你確定要切換至 runlevel 2?"
 
 #: mini-utils/gshutdown/gshutdown.c:101
-msgid "你確定要重新啟動系統?"
-msgstr ""
+msgid "Are you sure you want to switch to runlevel 3?"
+msgstr "你確定要切換至 runlevel 3?"
 
-#: mini-utils/gshutdown/gshutdown.c:147
-msgid "你必需有 super-user (root) 的權限才可以關閉或重新啟動電腦."
-msgstr ""
+#: mini-utils/gshutdown/gshutdown.c:102
+msgid "Are you sure you want to switch to runlevel 4?"
+msgstr "你確定要切換至 runlevel 4?"
+
+#: mini-utils/gshutdown/gshutdown.c:103
+msgid "Are you sure you want to switch to runlevel 5?"
+msgstr "你確定要切換至 runlevel 5?"
+
+#: mini-utils/gshutdown/gshutdown.c:104
+msgid "Are you sure you want to reboot the system?"
+msgstr "你確定要重新啟動系統?"
+
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:591
+msgid "You must be the super-user (root) to shut down or restart the computer."
+msgstr "你必需有 super-user (root) 的權限才可以關閉或重新啟動電腦."
 
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:183
-msgid "關閉或重新啟動"
-msgstr ""
+#: mini-utils/gshutdown/gshutdown.c:186
+msgid "Shutdown or Reboot"
+msgstr "關閉或重新啟動"
 
-#: mini-utils/gshutdown/gshutdown.c:200 mini-utils/gshutdown/gshutdown.c:201
-msgid "簡單"
-msgstr ""
+#: mini-utils/gshutdown/gshutdown.c:203 mini-utils/gshutdown/gshutdown.c:204
+msgid "Easy"
+msgstr "簡單"
 
-#: mini-utils/gshutdown/gshutdown.c:238
+#: mini-utils/gshutdown/gshutdown.c:208 mini-utils/gshutdown/gshutdown.c:209
+msgid "Advanced"
+msgstr "進階"
+
+#: mini-utils/gshutdown/gshutdown.c:241
 msgid ""
+"Click OK to shutdown or reboot. You will lose\n"
+"any unsaved information in open applications."
+msgstr ""
 "按下 OK 關閉或重新啟動電腦. 你會失去所有\n"
 "已開啟程式中尚未儲存的資料."
-msgstr ""
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:365
-msgid "恢復成預設值"
-msgstr ""
+#: mini-utils/gshutdown/gshutdown.c:368
+msgid "Revert to Defaults"
+msgstr "恢復成預設值"
 
-#: mini-utils/gshutdown/gshutdown.c:375
-msgid "指令"
-msgstr ""
+#: mini-utils/gshutdown/gshutdown.c:378
+msgid "Commands"
+msgstr "指令"
 
-#: mini-utils/gshutdown/gshutdown.c:380
-msgid "關機前是否再確認?"
-msgstr ""
+#: mini-utils/gshutdown/gshutdown.c:383
+msgid "Confirm before shutdown?"
+msgstr "關機前是否再確認?"
 
-#: mini-utils/gshutdown/gshutdown.c:392
-msgid "一般"
-msgstr ""
+#: mini-utils/gshutdown/gshutdown.c:395
+msgid "General"
+msgstr "一般"
 
-#: mini-utils/gshutdown/gshutdown.c:454
-msgid "下次別問了."
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:210
-msgid "虛擬記憶體用盡"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:394
-#, c-format
-msgid "無法設定群組: %s"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:398
-#, c-format
-msgid "無法設定群組代號: %s"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:400
-#, c-format
-msgid "無法設定使用者代號: %s"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:444
-#, c-format
-msgid "不能執行 %s"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:472
-#, c-format
-msgid "鍵入 `%s --help' 取得更多資訊.\n"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:476
-#, c-format
-msgid "使用方法: %s [OPTION]... [-] [USER [ARG]...]\n"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:477
-msgid ""
-"Change the effective user id and group id to that of USER.\n"
-"\n"
-"  -, -l, --login               make the shell a login shell\n"
-"  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
-"  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
-"  -m, --preserve-environment   do not reset environment variables\n"
-"  -p                           same as -m\n"
-"  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
-"      --help                   display this help and exit\n"
-"      --version                output version information and exit\n"
-"\n"
-"A mere - implies -l.   If USER not given, assume root.\n"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:491
-msgid ""
-"\n"
-"回報程式錯誤給 sh-utils-bugs@gnu.ai.mit.edu"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:577
-#, c-format
-msgid "使用者 %s 不存在"
-msgstr ""
-
-#. wait for dialog to die, then quit
-#: mini-utils/gsu/gsu.c:602
-msgid "密碼不正確"
-msgstr ""
-
-#. The user being su'd to has a nonstandard shell, and so is
-#. probably a uucp account or has restricted access.  Don't
-#. compromise the account by allowing access with a standard
-#. shell.
-#: mini-utils/gsu/gsu.c:621
-#, c-format
-msgid "使用受限制的 shell %s"
-msgstr ""
-
-#. error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir);
-#: mini-utils/gsu/gsu.c:634
-#, c-format
-msgid "無法改變目錄至 %s"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:666
-msgid "請輸入 Root 的密碼"
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:676
-msgid ""
-"你現在要做的事需要有\n"
-"root (系統管理員) 的權限.\n"
-"要完成這些事, 你必需輸入 root 的密碼.\n"
-"現在請輸入 root 的密碼或選擇\n"
-"取消如果你不知道 root 的密碼."
-msgstr ""
-
-#: mini-utils/gsu/gsu.c:683
-msgid ""
-"你正試圖變換你的使用者身份.\n"
-"請輸入密碼 `"
-msgstr ""
+#: mini-utils/gshutdown/gshutdown.c:457
+msgid "Don't ask next time."
+msgstr "下次別問了."
 
 #: mini-utils/guname/guname.c:327
-msgid "系統資訊"
-msgstr ""
+msgid "System Information"
+msgstr "系統資訊"
 
 #: mini-utils/guname/guname.c:409
-msgid "找不到 Logo 檔案"
-msgstr ""
+msgid "Logo file not found"
+msgstr "找不到 Logo 檔案"
 
 #. Up here so it uses the default font
 #: mini-utils/guname/guname.c:413
 msgid "GNOME contributors:"
-msgstr ""
+msgstr "GNOME contributors:"
 
 #: mini-utils/guname/guname.c:427
 msgid "GNOME: The GNU Network Object Model Environment"
-msgstr ""
+msgstr "GNOME: The GNU Network Object Model Environment"
 
 #: mini-utils/guname/guname.c:451
-msgid "Email 訊息..."
-msgstr ""
+msgid "Email Information..."
+msgstr "電子郵件訊息..."
 
 #: mini-utils/guname/guname.c:462
-msgid "把訊息存入檔案..."
-msgstr ""
+msgid "Save Information to File..."
+msgstr "把訊息存入檔案..."
 
-#: mini-utils/guname/guname.c:474 mini-utils/guname/guname.c:538
-msgid "詳細的資訊..."
-msgstr ""
-
-#: mini-utils/guname/guname.c:489
-msgid "類別"
-msgstr ""
+#: mini-utils/guname/guname.c:474 mini-utils/guname/guname.c:541
+msgid "Detailed Information..."
+msgstr "詳細的資訊..."
 
 #: mini-utils/guname/guname.c:489
-msgid "你的系統"
-msgstr ""
+msgid "Category"
+msgstr "類別"
 
-#: mini-utils/guname/guname.c:524
-msgid "另存新檔..."
-msgstr ""
+#: mini-utils/guname/guname.c:489
+msgid "Your System"
+msgstr "你的系統"
 
-#: mini-utils/guname/guname.c:530
-msgid "寄至..."
-msgstr ""
+#: mini-utils/guname/guname.c:527
+msgid "Save As..."
+msgstr "另存新檔..."
 
-#: mini-utils/guname/guname.c:578
-msgid "關閉檔案時發生錯誤 `"
-msgstr ""
+#: mini-utils/guname/guname.c:533
+msgid "Mail To..."
+msgstr "寄至..."
 
-#: mini-utils/guname/guname.c:580
+#: mini-utils/guname/guname.c:581
+msgid "Error closing file `"
+msgstr "關閉檔案時發生錯誤 `"
+
+#: mini-utils/guname/guname.c:583
 msgid ""
 "\n"
+"Some or all data may not have been written."
+msgstr ""
+"\n"
 "部份或可能所有資料都尚未被寫入."
-msgstr ""
 
-#: mini-utils/guname/guname.c:589
-msgid "無法開啟檔案 `"
-msgstr ""
+#: mini-utils/guname/guname.c:592
+msgid "Couldn't open file `"
+msgstr "無法開啟檔案 `"
 
-#: mini-utils/guname/guname.c:603
-msgid "另存系統訊息..."
-msgstr ""
+#: mini-utils/guname/guname.c:606
+msgid "Save System Information As..."
+msgstr "另存系統訊息..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:649
-msgid "指令失敗 ` "
-msgstr ""
+#: mini-utils/guname/guname.c:652
+msgid "Command failed ` "
+msgstr "指令失敗 ` "
 
-#: mini-utils/guname/guname.c:649 mini-utils/guname/guname.c:656
+#: mini-utils/guname/guname.c:652 mini-utils/guname/guname.c:659
 msgid " ': "
-msgstr ""
+msgstr " ': "
 
-#: mini-utils/guname/guname.c:656
-msgid "無法執行指令 ` "
-msgstr ""
+#: mini-utils/guname/guname.c:659
+msgid "Couldn't run command ` "
+msgstr "無法執行指令 ` "
 
-#: mini-utils/guname/guname.c:679
-msgid "下列郵件將寄至 "
-msgstr ""
+#: mini-utils/guname/guname.c:682
+msgid "The following mail will be sent to "
+msgstr "以下郵件將寄至 "
 
-#: mini-utils/guname/guname.c:681
+#: mini-utils/guname/guname.c:684
 msgid ""
 ".\n"
-" 你確定要寄出這個訊息?"
-msgstr ""
+" Are you sure you want to mail this information?"
+msgstr "你確定要寄出這些資訊?"
 
-#: mini-utils/guname/guname.c:690
-msgid "你確定?"
-msgstr ""
+# msgid ""
+# ".\n"
+# " Are you sure you want to mail this information?"
+# msgstr ""
+# ".\n"
+# msgstr " 你確定要寄出這個訊息?"
+#: mini-utils/guname/guname.c:693
+msgid "Are you sure?"
+msgstr "你確定?"
 
-#: mini-utils/guname/guname.c:724
-msgid "欲寄至的郵件位址:"
-msgstr ""
-
-#: mini-utils/guname/info.c:37
-msgid "發行套件:"
-msgstr ""
+#: mini-utils/guname/guname.c:727
+msgid "Address to mail to:"
+msgstr "欲寄至的郵件位址:"
 
 #: mini-utils/guname/info.c:38
-msgid "作業系統:"
-msgstr ""
+msgid "Distribution:"
+msgstr "發行套件:"
 
 #: mini-utils/guname/info.c:39
-msgid "發行套件版本:"
-msgstr ""
+msgid "Operating System:"
+msgstr "作業系統:"
 
 #: mini-utils/guname/info.c:40
-msgid "作業系統版本:"
-msgstr ""
+msgid "Distribution Version:"
+msgstr "發行套件版本:"
 
 #: mini-utils/guname/info.c:41
-msgid "作業系統發行版本:"
-msgstr ""
+msgid "Operating System Version:"
+msgstr "作業系統版本:"
 
 #: mini-utils/guname/info.c:42
-msgid "處理器類型:"
-msgstr ""
+msgid "Operating System Release:"
+msgstr "作業系統發行版本:"
 
 #: mini-utils/guname/info.c:43
-msgid "處理器速度:"
-msgstr ""
+msgid "Processor Type:"
+msgstr "處理器類型:"
 
 #: mini-utils/guname/info.c:44
-msgid "主機名稱:"
-msgstr ""
+msgid "Processor Speed:"
+msgstr "處理器速度:"
 
 #: mini-utils/guname/info.c:45
-msgid "領域名稱:"
-msgstr ""
+msgid "Host Name:"
+msgstr "主機名稱:"
 
 #: mini-utils/guname/info.c:46
-msgid "使用者名稱:"
-msgstr ""
+msgid "Domain Name:"
+msgstr "領域名稱:"
 
 #: mini-utils/guname/info.c:47
-msgid "X Display Name:"
-msgstr ""
+msgid "User Name:"
+msgstr "使用者名稱:"
 
 #: mini-utils/guname/info.c:48
-msgid "系統狀態:"
-msgstr ""
+msgid "X Display Name:"
+msgstr "X Display Name:"
 
 #: mini-utils/guname/info.c:49
-msgid "真實記憶體:"
-msgstr ""
+msgid "System Status:"
+msgstr "系統狀態:"
 
 #: mini-utils/guname/info.c:50
-msgid "Swap Space (\"虛擬記憶體\"):"
-msgstr ""
+msgid "Real Memory:"
+msgstr "真實記憶體:"
 
 #: mini-utils/guname/info.c:51
-msgid "記憶體合計:"
-msgstr ""
+msgid "Swap Space (\"virtual memory\"):"
+msgstr "Swap Space (\"虛擬記憶體\"):"
 
 #: mini-utils/guname/info.c:52
-msgid "可用剩餘記憶體:"
-msgstr ""
+msgid "Total Memory:"
+msgstr "記憶體合計:"
 
-#: mini-utils/guname/info.c:57
-msgid "裝置"
-msgstr ""
+#: mini-utils/guname/info.c:53
+msgid "Free Memory:"
+msgstr "可用剩餘記憶體:"
 
 #: mini-utils/guname/info.c:58
-msgid "大小"
-msgstr ""
+msgid "Device"
+msgstr "裝置"
 
 #: mini-utils/guname/info.c:59
-msgid "已使用空間"
-msgstr ""
+msgid "Size"
+msgstr "大小"
 
 #: mini-utils/guname/info.c:60
-msgid "可用剩餘空間"
-msgstr ""
+msgid "Used space"
+msgstr "已使用空間"
 
 #: mini-utils/guname/info.c:61
-msgid "可用百分比"
-msgstr ""
+msgid "Free space"
+msgstr "可用剩餘空間"
 
 #: mini-utils/guname/info.c:62
+msgid "Percent free"
+msgstr "可用百分比"
+
+#: mini-utils/guname/info.c:63
 msgid "Mount point"
-msgstr ""
+msgstr "掛載點"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:168
-msgid "不明"
-msgstr ""
+#: mini-utils/guname/info.c:182
+msgid "Unknown"
+msgstr "不明"
 
 #: mini-utils/guname/moreinfo.c:82
-msgid "不明的檔案系統"
-msgstr ""
+msgid "Unknown filesystem"
+msgstr "不明的檔案系統"
 
 #: mini-utils/guname/moreinfo.c:104
-msgid "沒有關於這個檔案系統的資訊."
-msgstr ""
+msgid "No information for this filesystem."
+msgstr "沒有關於這個檔案系統的資訊."
 
-#: mini-utils/guname/moreinfo.c:160
-msgid "記憶體"
-msgstr ""
+#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:166
+msgid "Memory"
+msgstr "記憶體"
 
-#: mini-utils/guname/moreinfo.c:160
+#: mini-utils/guname/moreinfo.c:161 mini-utils/guname/moreinfo.c:167
 msgid "Kilobytes"
-msgstr ""
+msgstr "千位元組"
 
-#: mini-utils/guname/moreinfo.c:163
-msgid "%ld%% %s 已被使用."
-msgstr ""
+#: mini-utils/guname/moreinfo.c:164
+msgid "%ld%% %s used."
+msgstr "%ld%% %s 已被使用."
 
-#: mini-utils/guname/moreinfo.c:179
-msgid "記憶體"
-msgstr ""
+#: mini-utils/guname/moreinfo.c:183 mini-utils/guname/moreinfo.c:187
+msgid "memory"
+msgstr "記憶體"
 
-#: mini-utils/guname/moreinfo.c:193
+#: mini-utils/guname/moreinfo.c:197 mini-utils/guname/moreinfo.c:201
 msgid "swap"
-msgstr ""
+msgstr "swap"
 
-#: mini-utils/guname/moreinfo.c:216
+#: mini-utils/guname/moreinfo.c:224
 #, c-format
 msgid "CPU %d"
-msgstr ""
+msgstr "CPU %d"
 
-#: mini-utils/guname/moreinfo.c:264
-msgid "詳細的系統訊息"
-msgstr ""
+#: mini-utils/guname/moreinfo.c:272
+msgid "Detailed System Information"
+msgstr "詳細的系統訊息"
 
-#: mini-utils/guname/moreinfo.c:277
-msgid "磁碟機訊息"
-msgstr ""
+#: mini-utils/guname/moreinfo.c:285
+msgid "Disk Information"
+msgstr "磁碟機訊息"
 
-#: mini-utils/guname/moreinfo.c:279
-msgid "記憶體訊息"
-msgstr ""
+#: mini-utils/guname/moreinfo.c:287
+msgid "Memory Information"
+msgstr "記憶體訊息"
 
-#: mini-utils/guname/moreinfo.c:282
-msgid "CPU 訊息"
-msgstr ""
+#: mini-utils/guname/moreinfo.c:290
+msgid "CPU Information"
+msgstr "CPU 訊息"
 
-#: mini-utils/guname/moreinfo.c:303
-msgid "%2d%% 滿了 "
-msgstr ""
+#: mini-utils/guname/moreinfo.c:311
+msgid "%2d%% full "
+msgstr "%2d%% 滿了 "
 
-#: mini-utils/guname/moreinfo.c:305
+#: mini-utils/guname/moreinfo.c:313
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
-msgstr ""
+msgstr "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 
-#: mini-utils/guname/moreinfo.c:319
+#: mini-utils/guname/moreinfo.c:327
 msgid "Mount Point: "
-msgstr ""
+msgstr "掛載點: "
 
-#: mini-utils/guname/moreinfo.c:320
-msgid "    裝置: "
-msgstr ""
+#: mini-utils/guname/moreinfo.c:328
+msgid "    Device: "
+msgstr "    裝置: "
 
-#: mini-utils/guname/moreinfo.c:321
-msgid "    檔案系統類型: "
-msgstr ""
+#: mini-utils/guname/moreinfo.c:329
+msgid "    Filesystem Type: "
+msgstr "    檔案系統類型: "
 
-#: mini-utils/gw/gw.c:144
+#: mini-utils/gw/gw.c:141
 msgid ""
+"Couldn't find the \"w\" command in your path.\n"
+"This command is needed for the program to work."
+msgstr ""
 "在你的執行路徑中找不到 \"w\" 這個指令.\n"
 "這個指令必需存在以供程式執行."
-msgstr ""
 
-#: mini-utils/gw/gw.c:177
-msgid "儲存 _S..."
-msgstr ""
+#: mini-utils/gw/gw.c:174
+msgid "_Save..."
+msgstr "儲存 _S..."
 
-#: mini-utils/gw/gw.c:177
-msgid "將訊息寫回磁碟"
-msgstr ""
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "將訊息寫回磁碟"
 
-#: mini-utils/gw/gw.c:205
-msgid "User Listing"
-msgstr ""
+#: mini-utils/gw/gw.c:202
+msgid "Active User Listing"
+msgstr "使用者列表"
 
-#: mini-utils/gw/gw.c:222
-msgid "更新訊息"
-msgstr ""
+#: mini-utils/gw/gw.c:219
+msgid "Update Information"
+msgstr "更新訊息"
 
-#: mini-utils/gw/gw.c:445
-msgid "指令列"
-msgstr ""
+#: mini-utils/gw/gw.c:479
+msgid "Command Line"
+msgstr "指令列"
 
 #. Create everything.
-#: mini-utils/gw/gw.c:453
+#: mini-utils/gw/gw.c:487
 msgid "Add some defaults"
-msgstr ""
+msgstr "新增預設值"
 
-#: mini-utils/gw/gw.c:455
-msgid "刪除"
-msgstr ""
+#: mini-utils/gw/gw.c:489
+msgid "Delete"
+msgstr "刪除"
 
-#: mini-utils/gw/gw.c:473
-msgid "指令編輯器"
-msgstr ""
+#: mini-utils/gw/gw.c:507
+msgid "Command Editor"
+msgstr "指令編輯器"
 
-#: mini-utils/gw/gw.c:483
+#: mini-utils/gw/gw.c:517
 msgid ""
+"You can configure the commands on the popup menus.\n"
+"Just enter the name you want to appear on the \n"
+"menu, and the command to execute.\n"
+"In the command, you can use %u to represent the\n"
+"currently selected username, and %t for the tty."
+msgstr ""
 "你可以自行設定彈出式選單上的指令.\n"
 "輸入你欲在選單上顯示的名字, \n"
 ", 和欲執行的指令.\n"
 "在指令列中, 你可以用 %u 來表示目前正被選擇的使用者名稱\n"
 ", 而 %t 表示 tty."
-msgstr ""
 
-#: mini-utils/gw/gw.c:490
+#: mini-utils/gw/gw.c:524
 msgid ""
+"Click this button to add\n"
+"some sample commands."
+msgstr ""
 "按下這個按鈕以新增\n"
 "一些樣本指令."
-msgstr ""
 
-#: mini-utils/gw/gw.c:498
+#: mini-utils/gw/gw.c:532
 msgid "Menu items"
-msgstr ""
+msgstr "選單項目"
 
-#: mini-utils/gw/gw.c:526
-msgid "指令"
-msgstr ""
+#: mini-utils/gw/gw.c:560
+msgid "Command"
+msgstr "指令"
 
 #: mini-utils/idetool/idetool.c:42
-msgid "無法存取這個磁碟機."
-msgstr ""
+msgid "Unable to access the drive."
+msgstr "無法存取這個磁碟機."
 
 #: mini-utils/idetool/idetool.c:59 mini-utils/idetool/idetool.c:71
-msgid "這個磁碟機的 DMA 設定值不能改變."
-msgstr ""
+msgid "The DMA setting for this drive cannot be changed."
+msgstr "這個磁碟機的 DMA 設定值不能改變."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
 msgid "Enabled"
-msgstr ""
+msgstr "啟動"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
 msgid "Disabled"
-msgstr ""
+msgstr "關閉"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
-msgid "這個磁碟機的 IRQ unmask 設定值不能改變."
-msgstr ""
+msgid "The IRQ unmask setting for this drive cannot be changed."
+msgstr "這個磁碟機的 IRQ unmask 設定值不能改變."
 
 #: mini-utils/idetool/idetool.c:122 mini-utils/idetool/idetool.c:134
-msgid "這個磁碟機拒絕保留它的設定值."
-msgstr ""
+msgid "The drive refused to keep its settings."
+msgstr "這個磁碟機拒絕保留它的設定值."
 
 #: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
-msgid "保留設定值"
-msgstr ""
+msgid "Keep settings"
+msgstr "保留設定值"
 
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
-msgstr ""
+msgstr "(1 Sector)"
 
 #: mini-utils/idetool/idetool.c:213
 msgid "(Dual Port)"
-msgstr ""
+msgstr "(Dual Port)"
 
 #: mini-utils/idetool/idetool.c:215
 msgid "(Dual Port Cache)"
-msgstr ""
+msgstr "(Dual Port Cache)"
 
 #: mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
-msgid "型號"
-msgstr ""
+msgid "Model"
+msgstr "型號"
 
 #: mini-utils/idetool/idetool.c:309
-msgid "韌體"
-msgstr ""
+msgid "Firmware"
+msgstr "韌體"
 
 #: mini-utils/idetool/idetool.c:310
 msgid "Serial No."
-msgstr ""
+msgstr "序號."
 
 #. do config here
 #: mini-utils/idetool/idetool.c:312
 msgid "Geometry"
-msgstr ""
+msgstr "Geometry"
 
 #: mini-utils/idetool/idetool.c:313
-msgid "快取記憶體"
-msgstr ""
+msgid "Cache"
+msgstr "快取記憶體"
 
 #: mini-utils/idetool/idetool.c:314
-msgid "狀態"
-msgstr ""
+msgid "Status"
+msgstr "狀態"
 
 #: mini-utils/idetool/idetool.c:318
 msgid "Legacy MFM/RLL drive"
-msgstr ""
+msgstr "Legacy MFM/RLL drive"
 
 #: mini-utils/idetool/idetool.c:321
-msgid "DMA 模式"
-msgstr ""
+msgid "DMA Mode"
+msgstr "DMA 模式"
 
 #: mini-utils/idetool/idetool.c:322
-msgid "IO 模式"
-msgstr ""
+msgid "IO Mode"
+msgstr "IO 模式"
 
 #: mini-utils/idetool/idetool.c:323
 msgid "IRQ Unmask"
-msgstr ""
+msgstr "IRQ Unmask"
 
 #: mini-utils/idetool/idetool.c:324
 msgid "Multisector"
-msgstr ""
+msgstr "Multisector"
 
 #: mini-utils/idetool/idetool.c:325
 msgid "On Reset"
-msgstr ""
+msgstr "On Reset"
 
 #.
 #. *	Set up the outer display first
 #.
 #: mini-utils/idetool/idetool.c:351
-msgid "IDE 狀態"
-msgstr ""
+msgid "IDE Status"
+msgstr "IDE 狀態"
 
 #: mini-utils/idetool/idetool.c:364
 msgid "Disk Logo Not Found"
-msgstr ""
+msgstr "Disk Logo Not Found"
 
 #: mini-utils/idetool/idetool.c:415
-msgid "只有 superuser 可以使用這個工具"
-msgstr ""
+msgid "Only the superuser can use this tool"
+msgstr "只有 superuser 可以使用這個工具"
 
 #: mini-utils/idetool/idetool.c:426
-msgid "你似乎沒有 IDE 磁碟機"
-msgstr ""
+msgid "You appear to have no IDE drives"
+msgstr "你似乎沒有 IDE 磁碟機"
+
+#~ msgid "New search"
+#~ msgstr "新的搜尋"
+
+#~ msgid "Open search spec"
+#~ msgstr "Open search spec"
+
+#~ msgid "Save search spec"
+#~ msgstr "Save search spec"
+
+#~ msgid "Save search spec as..."
+#~ msgstr "Save search spec as..."
+
+#~ msgid "Preferences..."
+#~ msgstr "偏好設定..."
+
+#~ msgid "Add condition"
+#~ msgstr "增加條件"
+
+#~ msgid "Add a search condition"
+#~ msgstr "增加一個新的條件"
+
+#~ msgid "Remove condition"
+#~ msgstr "移除條件"
+
+#~ msgid "Remove last search condition"
+#~ msgstr "移除最後一個搜尋條件"
+
+#~ msgid "Show advanced options"
+#~ msgstr "顯示進階選項"
+
+#~ msgid "Start search"
+#~ msgstr "開始搜尋"
+
+#~ msgid "About Gnome Find..."
+#~ msgstr "關於 Gnome 搜尋..."
+
+#~ msgid "File"
+#~ msgstr "檔案"
+
+#~ msgid "Edit"
+#~ msgstr "編輯"
+
+#~ msgid "Search"
+#~ msgstr "搜尋"
+
+#~ msgid "New"
+#~ msgstr "新增"
+
+#~ msgid "Clear the search window"
+#~ msgstr "清除搜尋視窗"
+
+#~ msgid "Start the current search"
+#~ msgstr "開始目前的搜尋"
+
+#~ msgid "Find Files"
+#~ msgstr "尋找檔案"
+
+#~ msgid "Directory:"
+#~ msgstr "目錄:"
+
+#~ msgid "Directory to Search"
+#~ msgstr "搜尋目錄"
+
+#~ msgid "GNOME Find"
+#~ msgstr "GNOME 搜尋"
+
+#~ msgid "GNOME Find is a fast, flexible file search tool."
+#~ msgstr "GNOME 搜尋是一個快速, 具彈性的檔案搜尋工具."
+
+#~ msgid "Examine and adjust parameters"
+#~ msgstr "檢視並調整參數"
+
+#~ msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
+#~ msgstr "錯誤, 無法開啟 /usr/X11R6/lib/X11/rgb.txt.\n"
+
+#~ msgid "virtual memory exhausted"
+#~ msgstr "虛擬記憶體用盡"
+
+#~ msgid "Cannot set groups: %s"
+#~ msgstr "無法設定群組: %s"
+
+#~ msgid "Cannot set group id: %s"
+#~ msgstr "無法設定群組代號: %s"
+
+#~ msgid "Cannot set user id: %s"
+#~ msgstr "無法設定使用者代號: %s"
+
+#~ msgid "cannot run %s"
+#~ msgstr "不能執行 %s"
+
+#~ msgid "Try `%s --help' for more information.\n"
+#~ msgstr "鍵入 `%s --help' 取得更多資訊.\n"
+
+#~ msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
+#~ msgstr "使用方法: %s [OPTION]... [-] [USER [ARG]...]\n"
+
+#~ msgid ""
+#~ "Change the effective user id and group id to that of USER.\n"
+#~ "\n"
+#~ "  -, -l, --login               make the shell a login shell\n"
+#~ "  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
+#~ "  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
+#~ "  -m, --preserve-environment   do not reset environment variables\n"
+#~ "  -p                           same as -m\n"
+#~ "  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
+#~ "      --help                   display this help and exit\n"
+#~ "      --version                output version information and exit\n"
+#~ "\n"
+#~ "A mere - implies -l.   If USER not given, assume root.\n"
+#~ msgstr ""
+#~ "切換使用者代號和群組代號成另一個使用者.\n"
+#~ "\n"
+#~ "  -, -l, --login               make the shell a login shell\n"
+#~ "  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c\n"
+#~ "  -f, --fast                   pass -f to the shell (for csh or tcsh)\n"
+#~ "  -m, --preserve-environment   do not reset environment variables\n"
+#~ "  -p                           同 -m\n"
+#~ "  -s, --shell=SHELL            run SHELL if /etc/shells allows it\n"
+#~ "      --help                   顯示說明然後結束程式\n"
+#~ "      --version                顯示版本編號然後結束程式\n"
+#~ "\n"
+#~ "A mere - implies -l.   如果沒有指定使用者，則假設為 root.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Report bugs to sh-utils-bugs@gnu.ai.mit.edu"
+#~ msgstr ""
+#~ "\n"
+#~ "回報程式錯誤給 sh-utils-bugs@gnu.ai.mit.edu"
+
+#~ msgid "user %s does not exist"
+#~ msgstr "使用者 %s 不存在"
+
+#~ msgid "incorrect password"
+#~ msgstr "密碼不正確"
+
+#~ msgid "using restricted shell %s"
+#~ msgstr "使用受限制的 shell %s"
+
+#~ msgid "Cannot change directory to %s"
+#~ msgstr "無法改變目錄至 %s"
+
+#~ msgid "Root password request"
+#~ msgstr "請輸入 Root 的密碼"
+
+#~ msgid ""
+#~ "You are trying to do something which requires\n"
+#~ "root (system administrator) privileges.\n"
+#~ "To do this, you must give the root password.\n"
+#~ "Please enter the root password now, or choose\n"
+#~ "Cancel if you do not know it."
+#~ msgstr ""
+#~ "你現在要做的事需要有\n"
+#~ "root (系統管理員) 的權限.\n"
+#~ "要完成這些事, 你必需輸入 root 的密碼.\n"
+#~ "現在請輸入 root 的密碼或選擇\n"
+#~ "取消如果你不知道 root 的密碼."
+
+#~ msgid ""
+#~ "You are trying to change your user identity.\n"
+#~ "Please enter the password for user `"
+#~ msgstr ""
+#~ "你正試圖變換你的使用者身份.\n"
+#~ "請輸入密碼 `"
