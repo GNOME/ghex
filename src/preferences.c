@@ -492,15 +492,15 @@ select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui)
 	PangoFontDescription *new_desc;
 
 	if(w == pui->font_button) {
-		if(strcmp(gtk_font_selection_get_font_name(GTK_FONT_SELECTION
-												   (pui->font_button)),
+		if(strcmp(gnome_print_font_picker_get_font_name
+				  (GNOME_PRINT_FONT_PICKER(pui->font_button)),
 				  def_font_name) != 0) {
 			if((new_metrics = gtk_hex_load_font
-				(gtk_font_selection_get_font_name
-				 (GTK_FONT_SELECTION(pui->font_button)))) != NULL) {
+				(gnome_print_font_picker_get_font_name
+				 (GNOME_PRINT_FONT_PICKER(pui->font_button)))) != NULL) {
 				new_desc = pango_font_description_from_string
-					(gtk_font_selection_get_font_name
-					 (GTK_FONT_SELECTION (pui->font_button)));
+					(gnome_print_font_picker_get_font_name
+					 (GNOME_PRINT_FONT_PICKER (pui->font_button)));
 				if (def_metrics)
 					pango_font_metrics_unref (def_metrics);
 				if (def_font_desc)
@@ -508,8 +508,9 @@ select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui)
 				def_metrics = new_metrics;
 				if(def_font_name)
 					g_free(def_font_name);
-				def_font_name = g_strdup(gtk_font_selection_get_font_name
-										 (GTK_FONT_SELECTION(pui->font_button)));
+				def_font_name = g_strdup
+					(gnome_print_font_picker_get_font_name
+					 (GNOME_PRINT_FONT_PICKER(pui->font_button)));
 				def_font_desc = new_desc;
 				gconf_client_set_string (gconf_client,
 										 GHEX_BASE_KEY GHEX_PREF_FONT,
