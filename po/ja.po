@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 1999-09-01 15:44+0200\n"
-"PO-Revision-Date: 1999-06-22 05:56+09:00\n"
+"POT-Creation-Date: 1999-08-19 14:55+0900\n"
+"PO-Revision-Date: 1999-08-21 06:07+09:00\n"
 "Last-Translator: Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
 "Language-Team: <gnome@lists.hypercore.co.jp>\n"
 "MIME-Version: 1.0\n"
@@ -189,12 +189,12 @@ msgid "Group data by 32 bits"
 msgstr "¥Ç¡¼¥¿¤Ï32¥Ó¥Ã¥È¤Ç"
 
 #: ghex/hex-document.c:78
-msgid "Jump to a certain position"
-msgstr "»ØÄê²Õ½ê¤ØÈô¤Ö"
-
-#: ghex/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr "N¥Ð¥¤¥ÈÌÜ¤Ø(_G)..."
+
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "»ØÄê²Õ½ê¤ØÈô¤Ö"
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -226,9 +226,9 @@ msgstr ""
 "ÊÑ¹¹¤ò¥»¡¼¥Ö¤·¤Þ¤¹¤«?"
 
 #: ghex/main.c:173
-#, fuzzy, c-format
+#, c-format
 msgid "Offset: %s"
-msgstr "¥ª¥Õ¥»¥Ã¥È: "
+msgstr "¥ª¥Õ¥»¥Ã¥È: %s"
 
 #: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
 #: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
@@ -252,9 +252,8 @@ msgid "Maximum number of undo levels"
 msgstr "¤ä¤êÄ¾¤·¤ÎºÇÂç²ó¿ô"
 
 #: ghex/preferences.c:96
-#, fuzzy
 msgid "Show cursor offset in statusbar as"
-msgstr "¥«¡¼¥½¥ë¤Î¥ª¥Õ¥»¥Ã¥ÈÉ½¼¨"
+msgstr "¥¹¥Æ¡¼¥¿¥¹¥Ð¡¼¤Ë¥«¡¼¥½¥ë¤Î¥ª¥Õ¥»¥Ã¥ÈÉ½¼¨¤ò"
 
 #: ghex/preferences.c:115
 msgid "Hexadecimal"
@@ -265,9 +264,8 @@ msgid "Custom"
 msgstr "¥ª¥ê¥¸¥Ê¥ë"
 
 #: ghex/preferences.c:131
-#, fuzzy
 msgid "Show offsets column"
-msgstr "¥«¡¼¥½¥ë¤Î¥ª¥Õ¥»¥Ã¥ÈÉ½¼¨"
+msgstr "¥ª¥Õ¥»¥Ã¥È¥«¥é¥à¤ÎÉ½¼¨"
 
 #: ghex/preferences.c:136
 msgid "Editing"
@@ -492,86 +490,75 @@ msgstr "UNIX¥³¥Þ¥ó¥É find/grep/locate ¤Î¥Õ¥í¥ó¥È¥¨¥ó¥É¤Ç¤¹"
 msgid "Gnome Search Tool"
 msgstr "GNOMEÃµº÷¥Ä¡¼¥ë"
 
-#: gstripchart/gstripchart.c:423
+#: gstripchart/gstripchart.c:374
 msgid "rparen expected"
 msgstr "ÊÄ¤¸³ç¸Ì¤¬É¬Í×¤Ç¤¹"
 
-#: gstripchart/gstripchart.c:440
+#: gstripchart/gstripchart.c:391
 #, c-format
 msgid "no such field: %d"
 msgstr "¤½¤Î¤è¤¦¤Ê¥Õ¥£¡¼¥ë¥É¤Ï¤¢¤ê¤Þ¤»¤ó: %d"
 
-#: gstripchart/gstripchart.c:468
+#: gstripchart/gstripchart.c:415
 msgid "missing variable identifer"
 msgstr "ÊÑ¿ô»ØÄê¤¬¤¢¤ê¤Þ¤»¤ó"
 
-#: gstripchart/gstripchart.c:470
+#: gstripchart/gstripchart.c:417
 #, c-format
 msgid "invalid variable identifer: %s"
 msgstr "¤ª¤«¤·¤ÊÊÑ¿ô»ØÄê¤Ç¤¹: %s"
 
-#: gstripchart/gstripchart.c:474
+#: gstripchart/gstripchart.c:421
 msgid "number expected"
 msgstr "¿ôÃÍ¤¬É¬Í×¤Ç¤¹"
 
-#: gstripchart/gstripchart.c:553
+#: gstripchart/gstripchart.c:498
 #, c-format
 msgid "extra gunk at end: \"%s\""
 msgstr "Ì¯¤Ê¤â¤Î¤¬½ª¤ê¤Ë¤Ä¤¤¤Æ¤¤¤Þ¤¹: \"%s\""
 
-#: gstripchart/gstripchart.c:630
+#: gstripchart/gstripchart.c:575
 #, c-format
 msgid "%s, line %d: "
 msgstr "%s¡¢%d¹Ô: "
 
-#: gstripchart/gstripchart.c:707
+#: gstripchart/gstripchart.c:652
 #, c-format
 msgid "can't open config file \"%s\""
 msgstr "ÀßÄê¥Õ¥¡¥¤¥ë \"%s\" ¤òÆÉ¤á¤Þ¤»¤ó"
 
-#: gstripchart/gstripchart.c:734
-#, c-format
-msgid ""
-"can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-msgstr ""
-
-#: gstripchart/gstripchart.c:739
-#, fuzzy, c-format
-msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr "ÀßÄê¥Õ¥¡¥¤¥ë \"%s\" ¤òÆÉ¤á¤Þ¤»¤ó"
-
-#: gstripchart/gstripchart.c:796
+#: gstripchart/gstripchart.c:743
 #, c-format
 msgid "invalid display type: %s"
 msgstr "Àµ¤·¤¯¤Ê¤¤É½¼¨·Á¼°¤Ç¤¹: %s"
 
-#: gstripchart/gstripchart.c:830
+#: gstripchart/gstripchart.c:777
 msgid "identifier or begin must be first"
 msgstr "¼±ÊÌ»Ò¤â¤·¤¯¤Ï begin ¤¬Àè¤Ë¤Ê¤±¤ì¤Ð¤Ê¤ê¤Þ¤»¤ó"
 
-#: gstripchart/gstripchart.c:837 gstripchart/gstripchart.c:853
+#: gstripchart/gstripchart.c:784 gstripchart/gstripchart.c:800
 #, c-format
 msgid "unrecognized color: %s"
 msgstr "Ç§¼±¤Ç¤­¤Ê¤¤¿§¤Ç¤¹: %s"
 
-#: gstripchart/gstripchart.c:880
+#: gstripchart/gstripchart.c:827
 #, c-format
 msgid "invalid option: \"%s\""
 msgstr "Àµ¤·¤¯¤Ê¤¤¥ª¥×¥·¥ç¥ó¤Ç¤¹: \"%s\""
 
-#: gstripchart/gstripchart.c:1409
+#: gstripchart/gstripchart.c:1344
 msgid "E_xit"
 msgstr "½ªÎ»(_X)"
 
-#: gstripchart/gstripchart.c:1409
+#: gstripchart/gstripchart.c:1344
 msgid "Terminate the stripchart program"
 msgstr "¥¹¥È¥ê¥Ã¥×¥Á¥ã¡¼¥È¤ò½ªÎ»¤·¤Þ¤¹"
 
-#: gstripchart/gstripchart.c:1425
+#: gstripchart/gstripchart.c:1360
 msgid "Copyright 1998 John Kodis"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1427
+#: gstripchart/gstripchart.c:1362
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -580,170 +567,197 @@ msgid ""
 msgstr ""
 "GNOME¥¹¥È¥ê¥Ã¥×¥Á¥ã¡¼¥È¤Ï¥æ¡¼¥¶¡¼¤¬»ØÄê¤¹¤ëÍÍ¡¹¤Ê¥Ñ¥é¥á¡¼¥¿¤ò»þ´Ö¤Î´Ø¿ô¤È¤·¤Æ"
 "É½¼¨¤·¤Þ¤¹¡£¼ç¤ÊÌÜÅª¤ÏCPU¤ÎÉé²Ù¤ä»ÈÍÑÅÙ¡¢¥Í¥Ã¥È¥ï¡¼¥¯¥È¥é¥Õ¥£¥Ã¥¯¤Î¤è¤¦¤Ê¥·¥¹"
-"¥Æ¥à¥Ñ¥Õ¥©¡¼¥Þ¥ó¥¹¤òÉ½¤¹¥Ñ¥é¥á¡¼¥¿¤ò¥Á¥ã¡¼¥ÈÉ½¼¨¤¹¤ë¤³¤È¤Ç¤¹¡£¤½¤ì°Ê³°¤Îµ¤¤Î¸"
-"ú¤¤¤¿»È¤¤Êý¤Ï¡¢¶½Ì£¤ò¤â¤Ã¤¿¤¢¤Ê¤¿¼¡Âè¤Ç¤¹¡£"
+"¥Æ¥à¥Ñ¥Õ¥©¡¼¥Þ¥ó¥¹¤òÉ½¤¹¥Ñ¥é¥á¡¼¥¿¤ò¥Á¥ã¡¼¥ÈÉ½¼¨¤¹¤ë¤³¤È¤Ç¤¹¡£¤½¤ì°Ê³°¤Îµ¤¤Î¸ú"
+"¤¤¤¿»È¤¤Êý¤Ï¡¢¶½Ì£¤ò¤â¤Ã¤¿¤¢¤Ê¤¿¼¡Âè¤Ç¤¹¡£"
 
-#: gstripchart/gstripchart.c:1440
-msgid "Info about the striphart program"
-msgstr "¥¹¥È¥ê¥Ã¥×¥Á¥ã¡¼¥È¤Ë´Ø¤¹¤ë¾ðÊó"
-
-#: gstripchart/gstripchart.c:1440
+#: gstripchart/gstripchart.c:1375
 msgid "_About"
 msgstr "¾ðÊó(_A)"
 
-#: gstripchart/gstripchart.c:1451
+#: gstripchart/gstripchart.c:1375
+msgid "Info about the striphart program"
+msgstr "¥¹¥È¥ê¥Ã¥×¥Á¥ã¡¼¥È¤Ë´Ø¤¹¤ë¾ðÊó"
+
+#: gstripchart/gstripchart.c:1386
 msgid "_File"
 msgstr "¥Õ¥¡¥¤¥ë(_F)"
 
-#: gstripchart/gstripchart.c:1452
+#: gstripchart/gstripchart.c:1387
 msgid "_Help"
 msgstr "¥Ø¥ë¥×(_H)"
 
-#: gstripchart/gstripchart.c:1516 gstripchart/gstripchart.c:1629
+#: gstripchart/gstripchart.c:1450
 msgid "Param"
 msgstr "¥Ñ¥é¥á¡¼¥¿"
 
-#: gstripchart/gstripchart.c:1516 mini-utils/gcolorsel/gcolorsel.c:156
+#: gstripchart/gstripchart.c:1450 mini-utils/gcolorsel/gcolorsel.c:156
 #: mini-utils/guname/moreinfo.c:218
 msgid "Value"
 msgstr "ÃÍ"
 
-#: gstripchart/gstripchart.c:1520
+#: gstripchart/gstripchart.c:1454
 msgid "Identifier"
 msgstr "¼±ÊÌ»Ò"
 
-#: gstripchart/gstripchart.c:1522 mini-utils/gcolorsel/gcolorsel.c:155
+#: gstripchart/gstripchart.c:1465
+msgid "yellow"
+msgstr "²«"
+
+#: gstripchart/gstripchart.c:1465
+msgid "blue"
+msgstr "ÀÄ"
+
+#: gstripchart/gstripchart.c:1465
+msgid "red"
+msgstr "ÀÖ"
+
+#: gstripchart/gstripchart.c:1465
+msgid "green"
+msgstr "ÎÐ"
+
+#: gstripchart/gstripchart.c:1465
+msgid "white"
+msgstr "Çò"
+
+#: gstripchart/gstripchart.c:1466
+msgid "Busy"
+msgstr "¥Ó¥¸¡¼"
+
+#: gstripchart/gstripchart.c:1466
+msgid "Load"
+msgstr "Éé²Ù"
+
+#: gstripchart/gstripchart.c:1466
+msgid "PPP In"
+msgstr "PPPÆþ¿®"
+
+#: gstripchart/gstripchart.c:1466
+msgid "PPP Out"
+msgstr "PPPÁ÷¿®"
+
+#: gstripchart/gstripchart.c:1466
+msgid "Swap"
+msgstr "¥¹¥ï¥Ã¥×"
+
+#: gstripchart/gstripchart.c:1470 mini-utils/gcolorsel/gcolorsel.c:155
 msgid "Color"
 msgstr "¿§"
 
-#: gstripchart/gstripchart.c:1524
+#: gstripchart/gstripchart.c:1472
 msgid "Filename"
 msgstr "¥Õ¥¡¥¤¥ëÌ¾"
 
-#: gstripchart/gstripchart.c:1526
+#: gstripchart/gstripchart.c:1474
 msgid "Pattern"
 msgstr "¥Ñ¥¿¡¼¥ó"
 
-#: gstripchart/gstripchart.c:1528
+#: gstripchart/gstripchart.c:1476
 msgid "Equation"
 msgstr "Ê¿¶Ñ²½"
 
-#: gstripchart/gstripchart.c:1530
+#: gstripchart/gstripchart.c:1478
 msgid "Expected range"
 msgstr "¤È¤êÆÀ¤ëÃÍ°è"
 
-#: gstripchart/gstripchart.c:1534
+#: gstripchart/gstripchart.c:1482
 msgid "Displayed range"
 msgstr "É½¼¨°è"
 
-#: gstripchart/gstripchart.c:1538
+#: gstripchart/gstripchart.c:1486
 msgid "Current value"
 msgstr "¸½ºßÃÍ"
 
-#: gstripchart/gstripchart.c:1545
+#: gstripchart/gstripchart.c:1493
 msgid "Active"
 msgstr "É½¼¨"
 
-#: gstripchart/gstripchart.c:1561
+#: gstripchart/gstripchart.c:1509
 msgid "Gnome Stripchart Parameters"
 msgstr "GNOME¥¹¥È¥ê¥Ã¥×¥Á¥ã¡¼¥È¥Ñ¥é¥á¡¼¥¿"
 
-#: gstripchart/gstripchart.c:1629
-#, fuzzy
-msgid "Current"
-msgstr "¸½ºßÃÍ"
-
-#: gstripchart/gstripchart.c:1629
-msgid "Top"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1657
+#: gstripchart/gstripchart.c:1609
 msgid "Help"
 msgstr "¥Ø¥ë¥×"
 
-#: gstripchart/gstripchart.c:1663 mini-utils/gshutdown/gshutdown.c:318
+#: gstripchart/gstripchart.c:1615 mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "¾ðÊó"
 
-#: gstripchart/gstripchart.c:1669
+#: gstripchart/gstripchart.c:1621
 msgid "Params"
 msgstr "¥Ñ¥é¥á¡¼¥¿"
 
-#: gstripchart/gstripchart.c:1675
+#: gstripchart/gstripchart.c:1627
 msgid "Exit"
 msgstr "½ªÎ»"
-
-#: gstripchart/gstripchart.c:1777
-msgid "Gnome stripchart viewer"
-msgstr "GNOME¥¹¥È¥ê¥Ã¥×¥Á¥ã¡¼¥ÈÉ½¼¨"
 
 #. Create a top-level window. Set the title, minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
-#: gstripchart/gstripchart.c:1777
+#: gstripchart/gstripchart.c:1729
 msgid "gstripchart"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1856
+#: gstripchart/gstripchart.c:1729
+msgid "Gnome stripchart viewer"
+msgstr "GNOME¥¹¥È¥ê¥Ã¥×¥Á¥ã¡¼¥ÈÉ½¼¨"
+
+#: gstripchart/gstripchart.c:1805
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "Àµ¤·¤¯¤Ê¤¤É½¼¨·Á¼°¤Ç¤¹: %s\n"
 
-#: gstripchart/gstripchart.c:1883
+#: gstripchart/gstripchart.c:1832
 msgid "GEO"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1883
-msgid "Geometry string: WxH+X+Y"
-msgstr ""
+#: gstripchart/gstripchart.c:1832
+msgid "geometry"
+msgstr "°ÌÃÖ¡¦Âç¤­¤µ"
 
-#: gstripchart/gstripchart.c:1885
-#, fuzzy
-msgid "Configuration file name"
-msgstr "ÀßÄê¥Õ¥¡¥¤¥ë"
-
-#: gstripchart/gstripchart.c:1885
+#: gstripchart/gstripchart.c:1834
 msgid "FILE"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1887
-#, fuzzy
-msgid "Chart update interval"
-msgstr "¥Á¥ã¡¼¥È¹¹¿·¤Î´Ö³Ö"
+#: gstripchart/gstripchart.c:1834
+msgid "configuration file"
+msgstr "ÀßÄê¥Õ¥¡¥¤¥ë"
 
-#: gstripchart/gstripchart.c:1887 gstripchart/gstripchart.c:1889
-#: gstripchart/gstripchart.c:1891 gstripchart/gstripchart.c:1893
+#: gstripchart/gstripchart.c:1836 gstripchart/gstripchart.c:1838
+#: gstripchart/gstripchart.c:1840 gstripchart/gstripchart.c:1842
 msgid "SECS"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1889
-msgid "Chart low-pass filter time constant"
+#: gstripchart/gstripchart.c:1836
+msgid "chart update interval"
+msgstr "¥Á¥ã¡¼¥È¹¹¿·¤Î´Ö³Ö"
+
+#: gstripchart/gstripchart.c:1838
+msgid "chart LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1891
-#, fuzzy
-msgid "Slider update interval"
+#: gstripchart/gstripchart.c:1840
+msgid "slider update interval"
 msgstr "¥¹¥é¥¤¥À¹¹¿·´Ö³Ö"
 
-#: gstripchart/gstripchart.c:1893
-msgid "Slider low-pass filter time constant"
+#: gstripchart/gstripchart.c:1842
+msgid "slider LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1895
-msgid "Adds a menubar to the main window"
-msgstr ""
+#: gstripchart/gstripchart.c:1844
+msgid "add menubar"
+msgstr "¥á¥Ë¥å¡¼¥Ð¡¼É½¼¨"
 
-#: gstripchart/gstripchart.c:1897
-#, fuzzy
-msgid "Omits slider window"
+#: gstripchart/gstripchart.c:1846
+msgid "omit slider"
 msgstr "¥¹¥é¥¤¥À¾ÊÎ¬"
 
-#: gstripchart/gstripchart.c:1899
+#: gstripchart/gstripchart.c:1848
 msgid "TYPE"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1899
-msgid "TYPE is one of gtk, text, graph, or none"
+#: gstripchart/gstripchart.c:1848
+msgid "gtk|text|graph|none"
 msgstr ""
 
 #: gtt/app.c:117 gtt/app.c:223
@@ -810,21 +824,21 @@ msgstr ""
 "ÀßÄê¥Õ¥¡¥¤¥ëÆÉ¤ß¹þ¤ßÃæ¤Ë¥¨¥é¡¼¤¬È¯À¸¤·¤Þ¤·¤¿¡£\n"
 "¿·µ¬¤ËÀßÄê¥Õ¥¡¥¤¥ë¤òÍÑ°Õ¤·¤Þ¤·¤ç¤¦¤«?"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr ""
-
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "¥¸¥ª¥á¥È¥ê¤Î»ØÄê"
 
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "¥×¥í¥¸¥§¥¯¥È"
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
+msgid "GEOMETRY"
+msgstr ""
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "µ¯Æ°»þ¤Ë¥¹¥¿¡¼¥È¤¹¤ë¥×¥í¥¸¥§¥¯¥È¤òÁªÂò"
+
+#: gtt/main.c:206
+msgid "PROJECT"
+msgstr "¥×¥í¥¸¥§¥¯¥È"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1191,12 +1205,12 @@ msgid "Selection:"
 msgstr "ÁªÂò:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "¥Õ¥©¥ó¥È¤Î¥¹¥Ú¥Ã¥¯"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
 msgstr "ÆÉ¤ß¹þ¤à¥Õ¥©¥ó¥È"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr "¥Õ¥©¥ó¥È¤Î¥¹¥Ú¥Ã¥¯"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1217,7 +1231,7 @@ msgstr ""
 #: mini-utils/gless/gless.c:116
 #, c-format
 msgid "Reason %d\n"
-msgstr ""
+msgstr "ÍýÍ³ %d\n"
 
 #: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
@@ -1260,19 +1274,24 @@ msgid "Loading..."
 msgstr "ÆÉ¤ß¹þ¤ßÃæ..."
 
 #: mini-utils/gless/gless.c:502
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "No such file or directory:\n"
 "%s"
-msgstr "¤½¤ó¤Ê¥Õ¥¡¥¤¥ë¤â¥Ç¥£¥ì¥¯¥È¥ê¤â¤¢¤ê¤Þ¤»¤ó:\n"
+msgstr ""
+"¤½¤ó¤Ê¥Õ¥¡¥¤¥ë¤â¥Ç¥£¥ì¥¯¥È¥ê¤â¤¢¤ê¤Þ¤»¤ó:\n"
+"%s"
 
 #: mini-utils/gless/gless.c:520
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to decompress and display the file:\n"
 "%s\n"
 "%s"
-msgstr "¥Õ¥¡¥¤¥ë¤ÎÅ¸³«¡¢É½¼¨¤Ë¼ºÇÔ¤·¤Þ¤·¤¿:\n"
+msgstr ""
+"¥Õ¥¡¥¤¥ë¤ÎÅ¸³«¡¢É½¼¨¤Ë¼ºÇÔ¤·¤Þ¤·¤¿:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:533
 msgid ""
@@ -1283,24 +1302,30 @@ msgstr ""
 "zcat ¤¬¸«Åö¤¿¤ê¤Þ¤»¤ó¡£"
 
 #: mini-utils/gless/gless.c:541
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error loading file:\n"
 "%s\n"
 "%s"
-msgstr "¥Õ¥¡¥¤¥ëÆÉ¤ß¹þ¤ßÃæ¤Ë¥¨¥é¡¼:\n"
+msgstr ""
+"¥Õ¥¡¥¤¥ëÆÉ¤ß¹þ¤ßÃæ¤Ë¥¨¥é¡¼:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:599
 msgid "Saving..."
 msgstr "ÊÝÂ¸Ãæ..."
 
 #: mini-utils/gless/gless.c:610
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to write file:\n"
 "%s\n"
 "%s"
-msgstr "¥Õ¥¡¥¤¥ë½ñ¤­¹þ¤ß¤Ë¼ºÇÔ:\n"
+msgstr ""
+"¥Õ¥¡¥¤¥ë½ñ¤­¹þ¤ß¤Ë¼ºÇÔ:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gless/gless.c:660
 msgid "Save Text As..."
@@ -1312,7 +1337,7 @@ msgstr "¥Æ¥­¥¹¥È¥Õ¥¡¥¤¥ë¤ò³«¤¯..."
 
 #: mini-utils/gless/gless.c:764
 msgid "Sorry, no preferences yet."
-msgstr ""
+msgstr "¤¹¤ß¤Þ¤»¤ó¡¢¥×¥ê¥Õ¥¡¥ì¥ó¥¹¤Ï¤Þ¤À¤¢¤ê¤Þ¤»¤ó¡£"
 
 #: mini-utils/gless/gless.c:851
 msgid "Searching..."
@@ -1323,24 +1348,27 @@ msgid "No search string was specified!"
 msgstr "¸¡º÷Ê¸»úÎó¤¬»ØÄê¤µ¤ì¤Æ¤¤¤Þ¤»¤ó!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to execute command:\n"
 "%s\n"
 "%s"
-msgstr "¥³¥Þ¥ó¥É¼Â¹Ô¤Ë¼ºÇÔ:\n"
+msgstr ""
+"¥³¥Þ¥ó¥É¼Â¹Ô¤Ë¼ºÇÔ:\n"
+"%s\n"
+"%s"
 
 #: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run Program"
 msgstr "¥×¥í¥°¥é¥à¼Â¹Ô"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "¥­¥ã¥ó¥»¥ë"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "¼Â¹Ô"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Cancel"
+msgstr "¥­¥ã¥ó¥»¥ë"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1451,6 +1479,8 @@ msgid ""
 "%s\n"
 "You will lose any unsaved work."
 msgstr ""
+"%s\n"
+"ÊÝÂ¸¤·¤Æ¤¤¤Ê¤¤»öÊÁ¤Ï¼º¤ï¤ì¤Þ¤¹¡£"
 
 #: mini-utils/gshutdown/gshutdown.c:458
 msgid "Don't ask next time."
@@ -1458,15 +1488,15 @@ msgstr "¤â¤¦Ê¹¤«¤Ê¤¤"
 
 #: mini-utils/gshutdown/gshutdown.c:685
 msgid "Command execution failed: fork failed"
-msgstr ""
+msgstr "¥³¥Þ¥ó¥É¼Â¹Ô¤Ë¼ºÇÔ: fork ¤Ç¤­¤Þ¤»¤ó"
 
 #: mini-utils/guname/guname.c:51
 msgid "Make guname act as a control center applet"
-msgstr ""
+msgstr "guname¤ò¥³¥ó¥È¥í¡¼¥ë¥»¥ó¥¿¡¼¤Î¥¢¥×¥ì¥Ã¥È¤È¤·¤ÆÆ°¤«¤¹"
 
 #: mini-utils/guname/guname.c:114
 msgid "an initialization error occurred while starting 'guname-capplet'."
-msgstr ""
+msgstr "'guname-capplet'¤Î½é´ü²½¤Ë¼ºÇÔ¤·¤Þ¤·¤¿¡£"
 
 #: mini-utils/guname/guname.c:424
 msgid "System Information"
@@ -1483,7 +1513,7 @@ msgstr "GNOME¤Ë¹×¸¥¤·¤¿¿Í¡¹:"
 
 #: mini-utils/guname/guname.c:513
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
-msgstr ""
+msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*,-*-fixed-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
 #: mini-utils/guname/guname.c:524
 msgid "GNOME: The GNU Network Object Model Environment"
@@ -1518,19 +1548,20 @@ msgid "Mail To..."
 msgstr "¥á¥¤¥ëÀè..."
 
 #: mini-utils/guname/guname.c:680
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error closing file `%s': \n"
 "%s\n"
 "Some or all data may not have been written."
 msgstr ""
-"\n"
+"¥Õ¥¡¥¤¥ë`%s'¤òÊÄ¤¸¤ë¤Î¤Ë¼ºÇÔ:\n"
+"%s\n"
 "°ìÉô¤â¤·¤¯¤ÏÁ´¤Æ¤Î¥Ç¡¼¥¿¤¬µ­Ï¿¤µ¤ì¤Æ¤¤¤Ê¤¤¤«¤â¤·¤ì¤Þ¤»¤ó¡£"
 
 #: mini-utils/guname/guname.c:692
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't open file `%s': %s"
-msgstr "¤³¤Î¥Õ¥¡¥¤¥ë¤ò³«¤±¤Þ¤»¤ó `"
+msgstr "¤³¤Î¥Õ¥¡¥¤¥ë¤ò³«¤±¤Þ¤»¤ó `%s': %s"
 
 #: mini-utils/guname/guname.c:707
 msgid "Save System Information As..."
@@ -1538,22 +1569,22 @@ msgstr "¥·¥¹¥Æ¥à¾ðÊó¤ËÌ¾Á°¤ò¤Ä¤±¤ÆÊÝÂ¸..."
 
 #. I don't think the error_string() will reliably mean anything.
 #: mini-utils/guname/guname.c:753
-#, fuzzy, c-format
+#, c-format
 msgid "Command failed ` %s ': %s"
-msgstr "Ì¿Îá¼Â¹Ô¼ºÇÔ"
+msgstr "Ì¿Îá¼Â¹Ô¼ºÇÔ ` %s ':%s"
 
 #: mini-utils/guname/guname.c:761
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't run command ` %s ': %s"
-msgstr "¼¡¤Î¥³¥Þ¥ó¥É¤ò¼Â¹Ô¤Ç¤­¤Þ¤»¤ó `"
+msgstr "¼¡¤Î¥³¥Þ¥ó¥É¤ò¼Â¹Ô¤Ç¤­¤Þ¤»¤ó ` %s ': %s"
 
 #: mini-utils/guname/guname.c:785
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
-"¡£\n"
+"¼¡¤Î¥á¥¤¥ë¤¬ %s ¤ËÁ÷¿®¤µ¤ì¤Þ¤¹¡£¡£\n"
 "¤³¤Î¾ðÊó¤ò¥á¥¤¥ë¤·¤Æ¤âÎÉ¤¤¤Ç¤¹¤Í?"
 
 #: mini-utils/guname/guname.c:796
@@ -1667,12 +1698,12 @@ msgid "No information for this filesystem."
 msgstr "¤³¤Î¥Õ¥¡¥¤¥ë¥·¥¹¥Æ¥à¤Î¾ðÊó¤Ï¤¢¤ê¤Þ¤»¤ó"
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "K¥Ð¥¤¥È"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "¥á¥â¥ê"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Kilobytes"
+msgstr "K¥Ð¥¤¥È"
 
 #: mini-utils/guname/moreinfo.c:214
 #, c-format
@@ -1721,12 +1752,12 @@ msgstr ""
 "\"w\"¤¬¤Ê¤¤¤È¤³¤Î¥×¥í¥°¥é¥à¤ÏÆ°¤­¤Þ¤»¤ó¡£"
 
 #: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "¾ðÊó¤ò¥Ç¥£¥¹¥¯¤Ëµ­Ï¿"
-
-#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "ÊÝÂ¸...(_S)"
+
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "¾ðÊó¤ò¥Ç¥£¥¹¥¯¤Ëµ­Ï¿"
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1737,9 +1768,8 @@ msgid "Update Information"
 msgstr "¾ðÊó¤Î¹¹¿·"
 
 #: mini-utils/gw/gw.c:466
-#, fuzzy
 msgid "Save not implemented yet\n"
-msgstr "¤Þ¤À¼ÂÁõ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó"
+msgstr "ÊÝÂ¸¤Ï¤Þ¤À¼ÂÁõ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó\n"
 
 #: mini-utils/gw/gw.c:479
 msgid "Command Line"
@@ -1791,32 +1821,31 @@ msgstr "¥³¥Þ¥ó¥É"
 #: mini-utils/gw/gw.c:947
 #, c-format
 msgid "Running: %s\n"
-msgstr ""
+msgstr "¼Â¹ÔÃæ: %s\n"
 
 #: mini-utils/idetool/idetool.c:20
 msgid "16-bit"
-msgstr ""
+msgstr "16¥Ó¥Ã¥È"
 
 #: mini-utils/idetool/idetool.c:21
 msgid "32-bit"
-msgstr ""
+msgstr "32¥Ó¥Ã¥È"
 
 #: mini-utils/idetool/idetool.c:22
 msgid "32-bit w/sync"
-msgstr ""
+msgstr "32¥Ó¥Ã¥ÈÆ±´ü"
 
 #: mini-utils/idetool/idetool.c:27
 msgid "Sleeping"
-msgstr ""
+msgstr "¥¹¥ê¡¼¥×Ãæ"
 
 #: mini-utils/idetool/idetool.c:28
-#, fuzzy
 msgid "Active/Idle"
-msgstr "É½¼¨"
+msgstr "¥¢¥¯¥Æ¥£¥Ö/¥¢¥¤¥É¥ë"
 
 #: mini-utils/idetool/idetool.c:29
 msgid "Standby"
-msgstr ""
+msgstr "¥¹¥¿¥ó¥Ð¥¤"
 
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
@@ -1828,13 +1857,13 @@ msgstr "¤³¤Î¥É¥é¥¤¥Ö¤ÎDMAÀßÄê¤òÊÑ¹¹¤¹¤ë¤³¤È¤Ï¤Ç¤­¤Þ¤»¤ó¡£"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "ÉÔµö²Ä"
+msgid "Enabled"
+msgstr "µö²Ä"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "µö²Ä"
+msgid "Disabled"
+msgstr "ÉÔµö²Ä"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
@@ -1850,7 +1879,7 @@ msgstr "ÀßÄê¤òÊÝ»ý"
 
 #: mini-utils/idetool/idetool.c:207
 msgid "None"
-msgstr ""
+msgstr "¤Ê¤·"
 
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
@@ -1866,17 +1895,17 @@ msgstr "(¥Ç¥å¥¢¥ë¥Ý¡¼¥È¥­¥ã¥Ã¥·¥å)"
 
 #: mini-utils/idetool/idetool.c:243
 msgid "No"
-msgstr ""
+msgstr "ÀÚ"
 
 #: mini-utils/idetool/idetool.c:245
-#, fuzzy, c-format
+#, c-format
 msgid "Yes (%d sector)"
-msgstr "(1¥»¥¯¥¿¡¼)"
+msgstr "Æþ(%d¥»¥¯¥¿¡¼)"
 
 #: mini-utils/idetool/idetool.c:247
-#, fuzzy, c-format
+#, c-format
 msgid "Yes (%d sectors)"
-msgstr "(1¥»¥¯¥¿¡¼)"
+msgstr "Æþ(%d¥»¥¯¥¿¡¼)"
 
 #: mini-utils/idetool/idetool.c:310 mini-utils/idetool/idetool.c:320
 msgid "Model"
@@ -1945,48 +1974,3 @@ msgstr "¥¹¡¼¥Ñ¡¼¥æ¡¼¥¶¤Î¤ß¤¬¤³¤Î¥Ä¡¼¥ë¤ò»È¤¨¤Þ¤¹"
 #: mini-utils/idetool/idetool.c:428
 msgid "You appear to have no IDE drives"
 msgstr "IDE¥É¥é¥¤¥Ö¤ÏÉÕ¤¤¤Æ¤¤¤Ê¤¤¤è¤¦¤Ç¤¹¤Í"
-
-#~ msgid "%2d%% full "
-#~ msgstr "%2d%% »ÈÍÑÃæ "
-
-#~ msgid "swap"
-#~ msgstr "¥¹¥ï¥Ã¥×"
-
-#~ msgid "memory"
-#~ msgstr "¥á¥â¥ê"
-
-#~ msgid "%ld%% %s used."
-#~ msgstr "%ld%% ¤Î%s»ÈÍÑÃæ"
-
-#~ msgid "The following mail will be sent to "
-#~ msgstr "°Ê²¼¤Î¥á¥¤¥ë¤¬¤½¤³¤ËÁ÷¤é¤ì¤Þ¤¹"
-
-#~ msgid "Error closing file `"
-#~ msgstr "¥Õ¥¡¥¤¥ë¤òÊÄ¤¸¤ë¤Î¤Ë¼ºÇÔ"
-
-#~ msgid "blue"
-#~ msgstr "ÀÄ"
-
-#~ msgid "green"
-#~ msgstr "ÎÐ"
-
-#~ msgid "red"
-#~ msgstr "ÀÖ"
-
-#~ msgid "white"
-#~ msgstr "Çò"
-
-#~ msgid "yellow"
-#~ msgstr "²«"
-
-#~ msgid "Load"
-#~ msgstr "Éé²Ù"
-
-#~ msgid "Swap"
-#~ msgstr "¥¹¥ï¥Ã¥×"
-
-#~ msgid "geometry"
-#~ msgstr "°ÌÃÖ¡¦Âç¤­¤µ"
-
-#~ msgid "add menubar"
-#~ msgstr "¥á¥Ë¥å¡¼¥Ð¡¼É½¼¨"
