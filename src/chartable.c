@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* chartable.c - a window with a character table
 
-   Copyright (C) 1998 - 2001 Free Software Foundation
+   Copyright (C) 1998 - 2002 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -106,10 +106,12 @@ GtkWidget *create_char_table()
 	for(i = 0; i < 256; i++) {
 		if(i < 0x20)
 			row[0] = ascii_non_printable_label[i];
-		else {
+		else if(i < 0x7f) {
 			ascii_printable_label[0] = i;
 			row[0] = ascii_printable_label;
 		}
+		else
+			row[0] = "";
 		for(col = 1; col < 4; col++) {
 			label = g_strdup_printf(fmt[col], i);
 			row[col] = label;

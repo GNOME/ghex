@@ -31,33 +31,6 @@
 #include "ghex.h"
 #include "gtkhex.h"
 
-#ifdef SNM /* No longer required for Gnome 2.0 -- SnM */
-void hex_document_set_menu_sensitivity(HexDocument *doc)
-{
-	GList *view_node;
-	GnomeApp *app;
-	GnomeUIInfo *uiinfo;
-	GtkWidget *view;
-	gboolean sensitive;
-
-	view_node = BONOBO_MDI_CHILD(doc)->views;
-	while(view_node) {
-		view = GTK_WIDGET(view_node->data);
-		app = gnome_mdi_get_app_from_view(view);
-		if(view == gnome_mdi_get_view_from_window(mdi, app)) { 
-			uiinfo = gnome_mdi_get_child_menu_info(app);
-			uiinfo = (GnomeUIInfo *)uiinfo[0].moreinfo;
-			sensitive = doc->undo_top != NULL;
-			gtk_widget_set_sensitive(uiinfo[0].widget, sensitive);
-			sensitive = doc->undo_stack && doc->undo_top != doc->undo_stack;
-			gtk_widget_set_sensitive(uiinfo[1].widget, sensitive);
-			view_node = view_node->next;
-		}
-	}
-}
-#endif
-
-
 void hex_document_set_menu_sensitivity(HexDocument *doc)
 {
 	GList *view_node;

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* gtkhex.c - a GtkHex widget, modified for use in GHex
 
-   Copyright (C) 1998 - 2001  Free Software Foundation
+   Copyright (C) 1998 - 2002 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -27,7 +27,6 @@
 #include "hex-document.h"
 #include "gtkhex.h"
 
-/* Added for signal marshalling -- SnM */
 #include "ghex-marshal.h"
 
 #define DISPLAY_BORDER 4
@@ -37,7 +36,12 @@
 
 #define SCROLL_TIMEOUT 100
 
-#define is_displayable(c) ((char_widths[(guchar)c])?1:0)
+/* jaKa: this causes trouble to pango */
+#if 0 
+#  define is_displayable(c) ((char_widths[(guchar)c])?1:0)
+#else 
+#  define is_displayable(c) (((c) >= 0x20) && ((c) <= 0x7f))
+#endif /* 0 */
 
 typedef void (*DataChangedSignal)(GtkObject *, gpointer, gpointer);
 
@@ -64,18 +68,6 @@ static gchar *char_widths = NULL;
 static void render_hex_lines(GtkHex *, gint, gint);
 static void render_ascii_lines(GtkHex *, gint, gint);
 static void gtk_hex_set_selection(GtkHex *gh, gint start, gint end);
-
-#ifdef SNM /* No longer requried for Gnome 2.0 */
-
-static void gtk_hex_marshaller (GtkObject *object, GtkSignalFunc func,
-								gpointer func_data, GtkArg *args) {
-	DataChangedSignal rfunc;
-  
-	rfunc = (DataChangedSignal) func;
-  
-	(* rfunc)(object, GTK_VALUE_POINTER (args[0]), func_data);
-}
-#endif
 
 static guint32 get_event_time() {
 	GdkEvent *event;

@@ -1,3 +1,15 @@
+2002-03-18  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/chartable.c: only show chars < 0x7f.
+	* src/ghex-mdi.[ch]: set state of insert toggle item and group type
+	radio items when view changes.
+	* src/hex-document-ui.c: removed some obsolete code.
+	* src/bonobo-mdi.c: removed some obsolete code.
+	attempt to enable dragging of notebook pages to new top level windows.
+	still crashes some but this needs fixing!
+	* src/gtkhex.c (is_displayable): make it stricter as the previous
+	incarnation caused trouble to pango.
+
 2002-03-10  Shivram U  <shivaram.upadhyayula@wipro.com>
 
 	* configure.in: Added gettext changes.

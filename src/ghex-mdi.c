@@ -84,11 +84,6 @@ static void ghex_mdi_listener(BonoboUIComponent           *uic,
 
 static void cursor_moved_cb (GtkHex *gtkhex);
 
-#ifdef SNM /* Requried by remove_view_cb in hex-document-ui -- SnM */
-static void ghex_menus_set_verb_list_sensitive (BonoboUIComponent *uic, gboolean allmenus );
-#endif
-
-
 static BonoboMDIClass *parent_class = NULL;
 
 GType
@@ -466,6 +461,7 @@ ghex_mdi_add_view_handler (BonoboMDI *mdi, GtkWidget *view)
 			    GTK_SIGNAL_FUNC (cursor_moved_cb),
 			    mdi);
 	gtk_hex_show_offsets (GTK_HEX(view), show_offsets_column);
+
 	return TRUE;
 }
 
@@ -616,16 +612,72 @@ void ghex_mdi_child_changed_handler (BonoboMDI *mdi, BonoboMDIChild *old_child)
 static 
 void ghex_mdi_view_changed_handler (BonoboMDI *mdi, GtkWidget *old_view)
 {
-	ghex_mdi_set_active_window_verbs_sensitivity (mdi);
+	GtkWidget *active_view;
 
-	gtk_widget_grab_focus (bonobo_mdi_get_active_view (BONOBO_MDI (mdi)));
+	ghex_mdi_set_active_window_verbs_sensitivity (mdi);
+	ghex_mdi_set_active_window_insert_state(GHEX_MDI(mdi));
+	ghex_mdi_set_active_window_group_type(GHEX_MDI(mdi));
+	active_view = bonobo_mdi_get_active_view (BONOBO_MDI (mdi));
+	if(active_view)
+		gtk_widget_grab_focus (active_view);
+}
+
+void
+ghex_mdi_set_active_window_insert_state(GhexMDI *mdi)
+{
+	BonoboUIComponent *uic;
+	BonoboWindow *win;
+	GtkWidget *view;
+
+	win = bonobo_mdi_get_active_window(BONOBO_MDI(mdi));
+	if(!win)
+		return;
+	uic = bonobo_mdi_get_ui_component_from_window(win);
+	view = bonobo_mdi_get_view_from_window(BONOBO_MDI(mdi), win);
+	if(!view)
+		return;
+	bonobo_ui_component_set_prop(uic, "/commands/InsertMode",
+				     "state", GTK_HEX(view)->insert?"1":"0",
+				     NULL);
+}
+
+void
+ghex_mdi_set_active_window_group_type(GhexMDI *mdi)
+{
+	BonoboUIComponent *uic;
+	BonoboWindow *win;
+	GtkWidget *view;
+	gchar *path;
+
+	win = bonobo_mdi_get_active_window(BONOBO_MDI(mdi));
+	if(!win)
+		return;
+	uic = bonobo_mdi_get_ui_component_from_window(win);
+	view = bonobo_mdi_get_view_from_window(BONOBO_MDI(mdi), win);
+	if(!view)
+		return;
+	switch(GTK_HEX(view)->group_type) {
+	case GROUP_BYTE:
+		path = "/commands/Bytes";
+		break;
+	case GROUP_WORD:
+		path = "/commands/Words";
+		break;
+	case GROUP_LONG:
+		path = "/commands/Longwords";
+		break;
+	default:
+		path = NULL;
+		break;
+	}
+	if(path)
+		bonobo_ui_component_set_prop(uic, path, "state", "1", NULL);
 }
 
 void 
 ghex_mdi_set_active_window_verbs_sensitivity (BonoboMDI *mdi)
 {
 	/* FIXME: it is too slooooooow! - Paolo */
-
 	BonoboWindow* active_window = NULL;
 	BonoboMDIChild* active_child = NULL;
 	HexDocument* doc = NULL;
@@ -647,11 +699,10 @@ ghex_mdi_set_active_window_verbs_sensitivity (BonoboMDI *mdi)
 	}
 	else {
 		ghex_menus_set_verb_list_sensitive (uic, TRUE);
+		hex_document_set_menu_sensitivity (HEX_DOCUMENT (active_child));
 	}
 
 	bonobo_ui_component_thaw (uic, NULL);
-
-	hex_document_set_menu_sensitivity (HEX_DOCUMENT (active_child));
 
 #ifdef SNM	
 	doc = HEX_DOCUMENT (active_child);
@@ -816,7 +867,7 @@ ghex_mdi_update_ui_according_to_preferences (GhexMDI *mdi)
 
 		while (views != NULL)
 		{
-			GhexView *v =	GHEX_VIEW (views->data);
+			GhexView *v = GHEX_VIEW (views->data);
 			
 			ghex_view_set_colors (v, &background, &text, &selection, &sel_text);
 			ghex_view_set_font (v, font);

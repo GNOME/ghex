@@ -35,11 +35,6 @@ EXTRA_DIST =	\
 	$(ui_DATA)	\
 	ghex-marshal.list
 
-#ghex_LDADD = $(GNOME_LIBDIR)        \
-#             $(GNOMEUI_LIBS)        \
-#             $(INTLLIBS) 	    \
-#             $(GNOME_PRINT_LIBS)
-
 LDADD =	\
 	$(POPT_LIBS)		\
 	$(GHEX_LIBS)

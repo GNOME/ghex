@@ -71,6 +71,10 @@ void		ghex_mdi_update_ui_according_to_preferences (GhexMDI *mdi);
 
 /* FIXME: should be static ??? */
 void 		ghex_mdi_set_active_window_verbs_sensitivity (BonoboMDI *mdi);
+void            ghex_mdi_set_active_window_group_type (GhexMDI *mdi);
+void            ghex_mdi_set_active_window_insert_state (GhexMDI *mdi);
+
+void            ghex_menus_set_verb_list_sensitive (BonoboUIComponent *uic, gboolean allmenus);
 
 #endif /* __GHEX_MDI_H__ */
 
