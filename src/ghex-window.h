@@ -44,10 +44,10 @@ struct _GHexWindow
     BonoboUIComponent *uic;
     gboolean changed, undo_sens, redo_sens;
 
-    HexDialog *dialog;
+    struct _HexDialog *dialog;
     GtkWidget *dialog_widget;
 
-    AdvancedFindDialog *advanced_find_dialog;
+    struct _AdvancedFindDialog *advanced_find_dialog;
 
     gchar **uris_to_open;
 };

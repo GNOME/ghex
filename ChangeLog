@@ -1,3 +1,20 @@
+2004-05-20  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/hex-document.[ch]: new signals "undo", "redo" and
+	"undo_stack_forget" added.
+	* src/hex-document.c: remove all calls to
+	hex_document_set_menu_sensitivity(). UI related stuff should be
+	abstracted from the HexDocument class. man, was I dumb... instead
+	just invoke the new signals.
+	* src/hex-document-ui.c (hex_document_set_menu_sensitivity): changed
+	to set_doc_menu_sensitivity().
+	* src/ghex.h: prototype for set_doc_menu_sensitivity().
+	* src/ghex-window.c (ghex_window_load): connect
+	set_doc_menu_sensitivity() to all three new signals.
+	* all the above together should fix #142220.
+	* src/gtkhex.h: removed hex-dialog.h include. moved advanced find
+	dialog related typedefs to ghex.h where they belong. fixes #142221.
+	
 2004-04-25  Jaka Mocnik <jaka@gnu.org>
 
 	* applied a patch from Muktha Narayan; prevent a crash when advanced

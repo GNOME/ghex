@@ -39,6 +39,8 @@ static void hex_document_finalize       (GObject *obj);
 static void hex_document_real_changed   (HexDocument *doc,
 										 gpointer change_data,
 										 gboolean undoable);
+static void hex_document_real_redo      (HexDocument *doc);
+static void hex_document_real_undo      (HexDocument *doc);
 static void move_gap_to                 (HexDocument *doc,
 										 guint offset,
 								  	     gint min_size);
@@ -54,12 +56,13 @@ static gboolean get_document_attributes (HexDocument *doc);
 
 enum {
 	DOCUMENT_CHANGED,
+	UNDO,
+	REDO,
+	UNDO_STACK_FORGET,
 	LAST_SIGNAL
 };
 
 static gint hex_signals[LAST_SIGNAL];
-
-typedef void (*HexDocumentSignal) (GtkObject *, gpointer, gboolean, gpointer);
 
 static GObjectClass *parent_class = NULL;
 
@@ -128,12 +131,8 @@ undo_stack_push(HexDocument *doc, HexChangeData *change_data)
 		doc->undo_stack = g_list_prepend(doc->undo_stack, cd);
 		doc->undo_top = doc->undo_stack;
 
-		hex_document_set_menu_sensitivity(doc);
-
 		return TRUE;
 	}
-
-	hex_document_set_menu_sensitivity(doc);
 
 	return FALSE;
 }
@@ -154,9 +153,6 @@ undo_stack_descend(HexDocument *doc)
 #ifdef ENABLE_DEBUG
 	g_message("undo depth at: %d", doc->undo_depth);
 #endif
-
-	hex_document_set_menu_sensitivity(doc);
-
 }
 
 static void
@@ -174,9 +170,6 @@ undo_stack_ascend(HexDocument *doc)
 	else
 		doc->undo_top = doc->undo_top->prev;
 	doc->undo_depth++;
-
-	hex_document_set_menu_sensitivity(doc);
-
 }
 
 static void
@@ -194,8 +187,7 @@ undo_stack_free(HexDocument *doc)
 	doc->undo_top = NULL;
 	doc->undo_depth = 0;
 
-	hex_document_set_menu_sensitivity(doc);
-
+	g_signal_emit(G_OBJECT(doc), hex_signals[UNDO_STACK_FORGET], 0);
 }
 
 static gboolean
@@ -314,7 +306,8 @@ hex_document_finalize(GObject *obj)
 }
 
 static void
-hex_document_real_changed(HexDocument *doc, gpointer change_data, gboolean push_undo)
+hex_document_real_changed(HexDocument *doc, gpointer change_data,
+						  gboolean push_undo)
 {
 	GList *view;
 
@@ -324,7 +317,8 @@ hex_document_real_changed(HexDocument *doc, gpointer change_data, gboolean push_
 	view = doc->views;
 
 	while(view) {
-		g_signal_emit_by_name(G_OBJECT(view->data), "data_changed", change_data);
+		g_signal_emit_by_name(G_OBJECT(view->data), "data_changed",
+							  change_data);
 		view = g_list_next(view);
 	}
 }
@@ -339,7 +333,10 @@ hex_document_class_init (HexDocumentClass *klass)
 	gobject_class->finalize = hex_document_finalize;
 	
 	klass->document_changed = hex_document_real_changed;
-	
+	klass->undo = hex_document_real_undo;
+	klass->redo = hex_document_real_redo;
+	klass->undo_stack_forget = NULL;
+
 	hex_signals[DOCUMENT_CHANGED] = 
 		g_signal_new ("document_changed",
 					  G_TYPE_FROM_CLASS(gobject_class),
@@ -350,6 +347,33 @@ hex_document_class_init (HexDocumentClass *klass)
 					  ghex_marshal_VOID__POINTER_BOOLEAN,
 					  G_TYPE_NONE,
 					  2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
+	hex_signals[UNDO] = 
+		g_signal_new ("undo",
+					  G_TYPE_FROM_CLASS(gobject_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (HexDocumentClass, undo),
+					  NULL,
+					  NULL,
+					  ghex_marshal_VOID__VOID,
+					  G_TYPE_NONE, 0);
+	hex_signals[REDO] = 
+		g_signal_new ("redo",
+					  G_TYPE_FROM_CLASS(gobject_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (HexDocumentClass, redo),
+					  NULL,
+					  NULL,
+					  ghex_marshal_VOID__VOID,
+					  G_TYPE_NONE, 0);
+	hex_signals[UNDO_STACK_FORGET] = 
+		g_signal_new ("undo_stack_forget",
+					  G_TYPE_FROM_CLASS(gobject_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (HexDocumentClass, undo_stack_forget),
+					  NULL,
+					  NULL,
+					  ghex_marshal_VOID__VOID,
+					  G_TYPE_NONE, 0);
 }
 
 static void
@@ -944,13 +968,21 @@ hex_document_find_backward(HexDocument *doc, guint start, guchar *what,
 gboolean
 hex_document_undo(HexDocument *doc)
 {
+	if(doc->undo_top == NULL)
+		return FALSE;
+
+	g_signal_emit(G_OBJECT(doc), hex_signals[UNDO], 0);
+
+	return TRUE;
+}
+
+static void
+hex_document_real_undo(HexDocument *doc)
+{
 	HexChangeData *cd;
 	gint len;
 	guchar *rep_data;
 	gchar c_val;
-
-	if(doc->undo_top == NULL)
-		return FALSE;
 
 	cd = (HexChangeData *)doc->undo_top->data;
 
@@ -981,8 +1013,6 @@ hex_document_undo(HexDocument *doc)
 	hex_document_changed(doc, cd, FALSE);
 
 	undo_stack_descend(doc);
-
-	return TRUE;
 }
 
 gboolean
@@ -992,16 +1022,24 @@ hex_document_is_writable(HexDocument *doc)
 			access(doc->file_name, W_OK) == 0);
 }
 
-gboolean
+gboolean 
 hex_document_redo(HexDocument *doc)
+{
+	if(doc->undo_stack == NULL || doc->undo_top == doc->undo_stack)
+		return FALSE;
+
+	g_signal_emit(G_OBJECT(doc), hex_signals[REDO], 0);
+
+	return TRUE;
+}
+
+static void
+hex_document_real_redo(HexDocument *doc)
 {
 	HexChangeData *cd;
 	gint len;
 	guchar *rep_data;
 	gchar c_val;
-
-	if(doc->undo_stack == NULL || doc->undo_top == doc->undo_stack)
-		return FALSE;
 
 	undo_stack_ascend(doc);
 
@@ -1035,8 +1073,6 @@ hex_document_redo(HexDocument *doc)
 	}
 
 	hex_document_changed(doc, cd, FALSE);
-
-	return TRUE;
 }
 
 const GList *

@@ -22,14 +22,15 @@
 #include <config.h>
 #include <glib-object.h>
 
-#include <gtkhex.h>
 #include <gnome.h>
-
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <string.h>
 #include <math.h>
+
+#include "gtkhex.h"
+#include "hex-dialog.h"
 
 static void hex_dialog_class_init     (HexDialogClass *);
 static void hex_dialog_init           (HexDialog *);
