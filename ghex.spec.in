@@ -1,0 +1,71 @@
+%define name ghex
+%define version @VERSION@
+%define release 1
+%define prefix /usr
+
+Summary: GNOME binary editor
+
+Name: %{name}
+Version: %{version}
+Release: %{release}
+Group: Applications/Editors
+Copyright: GPL
+
+Url: http://pluton.ijs.si/~jaka/gnome.html#GHEX
+
+Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/ghex/ghex-%{version}.tar.gz
+Buildroot: /var/tmp/%{name}-%{version}-%{release}-root
+
+%description
+GHex allows the user to load data from any file, view and edit it in either
+hex or ascii. A must for anyone playing games that use non-ascii format for
+saving.
+
+%prep
+
+%setup
+
+%build
+%ifarch alpha
+  MYARCH_FLAGS="--host=alpha-redhat-linux"
+%endif
+
+if [ ! -f configure ]; then
+CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh $MYARCH_FLAGS --prefix=%{prefix}
+else
+CFLAGS="$RPM_OPT_FLAGS" ./configure $MYARCH_FLAGS --prefix=%{prefix}
+fi
+
+if [ "$SMP" != "" ]; then
+  (make "MAKE=make -k -j $SMP"; exit 0)
+  make
+else
+  make
+fi
+
+%install
+if [ -d $RPM_BUILD_ROOT ]; then rm -r $RPM_BUILD_ROOT; fi
+mkdir -p $RPM_BUILD_ROOT%{prefix}
+make prefix=$RPM_BUILD_ROOT%{prefix} install-strip
+
+%files
+%defattr(-,root,root)
+%doc README COPYING AUTHORS
+%attr(755,root,root) %{prefix}/bin/ghex
+%{prefix}/share/gnome/apps/Applications/ghex.desktop
+%{prefix}/share/gnome/help/ghex/C/*
+%{prefix}/share/gnome/help/ghex/es/*
+%{prefix}/share/gnome/help/ghex/ja/*
+%{prefix}/share/gnome/help/ghex/sv/*
+%{prefix}/share/pixmaps/gnome-ghex.png
+%{prefix}/share/locale/*/*/*
+
+%clean
+rm -r $RPM_BUILD_ROOT
+
+%changelog
+* Sun Oct 22 2000 John Gotts <jgotts@linuxsavvy.com>
+- Minor modifications.
+
+* Sun May 14 2000 John Gotts <jgotts@linuxsavvy.com>
+- New SPEC file.

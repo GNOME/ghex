@@ -1,6 +1,12 @@
 SUBDIRS = po intl macros src help
 
-EXTRA_DIST = ghex.desktop $(appicon_DATA)
+EXTRA_DIST =		\
+	ghex.spec.in	\
+	ghex.desktop	\
+	$(appicon_DATA)
+
+dist-hook: ghex.spec
+	cp ghex.spec $(distdir)
 
 appicondir = $(datadir)/pixmaps
 
