@@ -1461,6 +1461,7 @@ static void gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
 	guint foundpos = -1;
 	gint prev_min = ahl->view_min;
 	gint prev_max = ahl->view_max;
+	GtkHex_Highlight *cur;
 
 	ahl->view_min = gh->top_line * gh->cpl;
 	ahl->view_max = (gh->top_line + gh->vis_lines) * gh->cpl;
@@ -1490,7 +1491,7 @@ static void gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
 	add_min = MAX(add_min, 0);
 	del_min = MAX(del_min, 0);
 
-	GtkHex_Highlight *cur = ahl->highlights;
+	cur = ahl->highlights;
 	while (delete && cur)
 	{
 		if (cur->start >= del_min && cur->start <= del_max)
