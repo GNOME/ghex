@@ -319,7 +319,7 @@ quit_app_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	while(doc_node) {
 		doc = HEX_DOCUMENT(doc_node->data);
 		win = ghex_window_find_for_doc(doc);
-		if(!ghex_window_ok_to_close(win))
+		if(win && !ghex_window_ok_to_close(win))
 			return;
 		doc_node = doc_node->next;
 	}
