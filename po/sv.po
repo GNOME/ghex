@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 1.0.12\n"
-"POT-Creation-Date: 1999-09-01 15:44+0200\n"
-"PO-Revision-Date: 1999-07-30 14:42+0200\n"
+"Project-Id-Version: gnome-utils 1.0.x\n"
+"POT-Creation-Date: 1999-09-07 03:10+0200\n"
+"PO-Revision-Date: 1999-09-07 03:10+0200\n"
 "Last-Translator: Tomas Ögren <stric@ing.umu.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgid "Get cursor value"
 msgstr "Hämta värde vid markör"
 
 #: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:595
+#: mini-utils/gshutdown/gshutdown.c:596
 msgid "Close"
 msgstr "Stäng"
 
@@ -189,12 +189,12 @@ msgid "Group data by 32 bits"
 msgstr "Gruppera data per 32 bitar"
 
 #: ghex/hex-document.c:78
-msgid "Jump to a certain position"
-msgstr "Hoppa till en speciell position"
-
-#: ghex/hex-document.c:78
 msgid "_Goto Byte..."
 msgstr "_Gå till byte..."
+
+#: ghex/hex-document.c:78
+msgid "Jump to a certain position"
+msgstr "Hoppa till en speciell position"
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -532,11 +532,14 @@ msgstr "kan ej öppna konfigurationsfil \"%s\""
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
 msgstr ""
+"kan ej öppna konfigurationsfil \"./gstripchart.conf\", \"%s\", \"%s\", "
+"eller \"%s\""
 
 #: gstripchart/gstripchart.c:739
-#, fuzzy, c-format
+#, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr "kan ej öppna konfigurationsfil \"%s\""
+msgstr
+"kan ej öppna konfigurationsfil \"./gstripchart.conf\", \"%s\" eller \"%s\""
 
 #: gstripchart/gstripchart.c:796
 #, c-format
@@ -582,12 +585,12 @@ msgstr ""
 "liknande.Andra användningsområden lämnas som en övning för den intresserade."
 
 #: gstripchart/gstripchart.c:1440
-msgid "Info about the striphart program"
-msgstr "Information om stripchart programmet"
-
-#: gstripchart/gstripchart.c:1440
 msgid "_About"
 msgstr "_Om"
+
+#: gstripchart/gstripchart.c:1440
+msgid "Info about the striphart program"
+msgstr "Information om stripchart programmet"
 
 #: gstripchart/gstripchart.c:1451
 msgid "_File"
@@ -647,13 +650,12 @@ msgid "Gnome Stripchart Parameters"
 msgstr "Gnome Diagramritare - parametrar"
 
 #: gstripchart/gstripchart.c:1629
-#, fuzzy
 msgid "Current"
-msgstr "Aktuellt värde"
+msgstr "Nuvarande"
 
 #: gstripchart/gstripchart.c:1629
 msgid "Top"
-msgstr ""
+msgstr "Topp"
 
 #: gstripchart/gstripchart.c:1657
 msgid "Help"
@@ -671,10 +673,6 @@ msgstr "Parametrar"
 msgid "Exit"
 msgstr "Avsluta"
 
-#: gstripchart/gstripchart.c:1777
-msgid "Gnome stripchart viewer"
-msgstr "Gnome diagramritarvisare"
-
 #. Create a top-level window. Set the title, minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
@@ -682,32 +680,34 @@ msgstr "Gnome diagramritarvisare"
 msgid "gstripchart"
 msgstr "gstripchart"
 
+#: gstripchart/gstripchart.c:1777
+msgid "Gnome stripchart viewer"
+msgstr "Gnome diagramritarvisare"
+
 #: gstripchart/gstripchart.c:1856
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "ogiltig visningstyp: %s\n"
 
 #: gstripchart/gstripchart.c:1883
+msgid "Geometry string: WxH+X+Y"
+msgstr "Geometristräng: BxH+X+Y"
+
+#: gstripchart/gstripchart.c:1883
 msgid "GEO"
 msgstr "GEO"
 
-#: gstripchart/gstripchart.c:1883
-msgid "Geometry string: WxH+X+Y"
-msgstr ""
-
 #: gstripchart/gstripchart.c:1885
-#, fuzzy
 msgid "Configuration file name"
-msgstr "inställningsfil"
+msgstr "Filnamn för inställningsfil"
 
 #: gstripchart/gstripchart.c:1885
 msgid "FILE"
 msgstr "FIL"
 
 #: gstripchart/gstripchart.c:1887
-#, fuzzy
 msgid "Chart update interval"
-msgstr "diagram updatteringsintervall"
+msgstr "Diagram updateringsintervall"
 
 #: gstripchart/gstripchart.c:1887 gstripchart/gstripchart.c:1889
 #: gstripchart/gstripchart.c:1891 gstripchart/gstripchart.c:1893
@@ -716,33 +716,31 @@ msgstr "SEK"
 
 #: gstripchart/gstripchart.c:1889
 msgid "Chart low-pass filter time constant"
-msgstr ""
+msgstr "Tidskonstant för lågpassfilter-diagram"
 
 #: gstripchart/gstripchart.c:1891
-#, fuzzy
 msgid "Slider update interval"
-msgstr "justera uppdateringsintervall"
+msgstr "Justera uppdateringsintervall"
 
 #: gstripchart/gstripchart.c:1893
 msgid "Slider low-pass filter time constant"
-msgstr ""
+msgstr "Justera tidskonstant för lågpass-filter"
 
 #: gstripchart/gstripchart.c:1895
 msgid "Adds a menubar to the main window"
-msgstr ""
+msgstr "Lägger till en menyrad för huvudfönstret"
 
 #: gstripchart/gstripchart.c:1897
-#, fuzzy
 msgid "Omits slider window"
-msgstr "ta bort justerar-handtag"
+msgstr "Ta bort justerar-handtag"
+
+#: gstripchart/gstripchart.c:1899
+msgid "TYPE is one of gtk, text, graph, or none"
+msgstr "TYP är en av gtk, text, graph eller none"
 
 #: gstripchart/gstripchart.c:1899
 msgid "TYPE"
 msgstr "TYP"
-
-#: gstripchart/gstripchart.c:1899
-msgid "TYPE is one of gtk, text, graph, or none"
-msgstr ""
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -808,21 +806,21 @@ msgstr ""
 "Ett fel uppstod vid läsning av inställningsfilen.\n"
 "Ska jag skapa en ny uppsättning inställningar?"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "GEOMETRI"
-
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "Välj geometri"
 
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "PROJEKT"
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
+msgid "GEOMETRY"
+msgstr "GEOMETRI"
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "Välj ett projekt vid uppstart"
+
+#: gtt/main.c:206
+msgid "PROJECT"
+msgstr "PROJEKT"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1190,12 +1188,12 @@ msgid "Selection:"
 msgstr "Markering:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "FONTSPEC"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "Font to load"
 msgstr "Typsnitt att ladda"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "FONTSPEC"
+msgstr "FONTSPEC"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1348,12 +1346,12 @@ msgid "Run Program"
 msgstr "Kör program"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "Kör"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Cancel"
+msgstr "Avbryt"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1415,7 +1413,7 @@ msgstr "Är du säker på att du vill byta till runlevel 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Är du säker på att du vill starta om systemet?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:592
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:593
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Du måste vara super-användaren (root) för att stänga av eller starta om "
@@ -1472,7 +1470,7 @@ msgstr ""
 msgid "Don't ask next time."
 msgstr "Fråga inte nästa gång"
 
-#: mini-utils/gshutdown/gshutdown.c:685
+#: mini-utils/gshutdown/gshutdown.c:691
 msgid "Command execution failed: fork failed"
 msgstr "Kommando-exekvering misslyckades: gren misslyckades"
 
@@ -1684,12 +1682,12 @@ msgid "No information for this filesystem."
 msgstr "Ingen information om detta filsystem."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "Kilobyte"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "Minne"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Kilobytes"
+msgstr "Kilobyte"
 
 #: mini-utils/guname/moreinfo.c:214
 #, c-format
@@ -1738,12 +1736,12 @@ msgstr ""
 "Det kommandot krävs för korrekt körning."
 
 #: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "Spara information till disk"
-
-#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "_Spara..."
+
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "Spara information till disk"
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1844,13 +1842,13 @@ msgstr "DMA-inställningarna för denna disk kan ej ändras."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Avaktiverad"
+msgid "Enabled"
+msgstr "Aktierad"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Aktierad"
+msgid "Disabled"
+msgstr "Avaktiverad"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
