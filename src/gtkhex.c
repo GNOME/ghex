@@ -317,7 +317,6 @@ static void render_byte(GtkHex *gh, gint pos) {
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->xlayout, buf, 2);
 		gdk_draw_layout (gh->xdisp->window, gh->xdisp_gc, cx, cy, gh->xlayout);
-
 	}
 	
 	if(!get_acoords(gh, pos, &cx, &cy))
@@ -334,7 +333,6 @@ static void render_byte(GtkHex *gh, gint pos) {
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->alayout, buf, 1);
 		gdk_draw_layout (gh->adisp->window, gh->adisp_gc, cx, cy, gh->alayout);
-
 	}
 }
 
@@ -434,6 +432,7 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 	gint i, cursor_line, sl, el, start, end;
 	gint xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
 	gint frm_len, tmp, cursor_off = 0, len;
+	GtkStateType state;
 
 	if( (!GTK_WIDGET_REALIZED(gh)) || (gh->cpl == 0) )
 		return;
@@ -471,6 +470,7 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 			return;
 
 		if(gh->sel_start != gh->sel_end) {
+			state = (gh->active_view == VIEW_HEX)?GTK_STATE_ACTIVE:GTK_STATE_INSENSITIVE;
 			if(i == sl) {
 				cursor_off = 2*(start%gh->cpl) + (start%gh->cpl)/gh->group_type;
 				if(i == el)
@@ -480,7 +480,7 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 				len = len - cursor_off;
 				if(len > 0)
 					gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
-								 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
+								 state, GTK_SHADOW_NONE,
 								 cursor_off*gh->char_width, i*gh->char_height,
 								 len*gh->char_width, gh->char_height);
 			}
@@ -488,13 +488,13 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 				cursor_off = 2*(end%gh->cpl + 1) + (end%gh->cpl)/gh->group_type;
 				if(cursor_off > 0)
 					gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
-								 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
+								 state, GTK_SHADOW_NONE,
 								 0, i*gh->char_height,
 								 cursor_off*gh->char_width, gh->char_height);
 			}
 			else if(i > sl && i < el) {
 				gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window,
-							 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
+							 state, GTK_SHADOW_NONE,
 							 0, i*gh->char_height,
 							 xcpl*gh->char_width, gh->char_height);
 			}
@@ -512,7 +512,8 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 	GtkWidget *w = gh->adisp;
 	gint i, tmp, frm_len, sl, el, start, end;
 	guint cursor_line, cursor_off, len;
-	
+	GtkStateType state;
+
 	if( (!GTK_WIDGET_REALIZED(gh)) || (gh->cpl == 0) )
 		return;
 	
@@ -549,6 +550,7 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 			return;
 
 		if(gh->sel_start != gh->sel_end) {
+			state = (gh->active_view == VIEW_HEX)?GTK_STATE_ACTIVE:GTK_STATE_INSENSITIVE;
 			if(i == sl) {
 				cursor_off = start%gh->cpl;
 				if(i == el)
@@ -557,7 +559,7 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 					len = gh->cpl - cursor_off;
 				if(len > 0)
 					gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window,
-								 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
+								 state, GTK_SHADOW_NONE,
 								 cursor_off*gh->char_width, i*gh->char_height,
 								 len*gh->char_width, gh->char_height);
 			}
@@ -565,13 +567,13 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 				cursor_off = end%gh->cpl + 1;
 				if(cursor_off > 0)
 					gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window,
-								 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
+								 state, GTK_SHADOW_NONE,
 								 0, i*gh->char_height,
 								 cursor_off*gh->char_width, gh->char_height);
 			}
 			else if(i > sl && i < el) {
 				gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window,
-							 GTK_STATE_ACTIVE, GTK_SHADOW_NONE,
+							 state, GTK_SHADOW_NONE,
 							 0, i*gh->char_height,
 							 gh->cpl*gh->char_width, gh->char_height);
 			}
@@ -1331,6 +1333,8 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 		if(gh->cursor_pos > 0) {
 			hex_document_set_data(gh->document, gh->cursor_pos - 1,
 								  0, 1, NULL, TRUE);
+			if (gh->selecting)
+				gh->selecting = FALSE;
 			gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
 		}
 		break;
@@ -1407,6 +1411,8 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 					hex_document_set_nibble(gh->document, event->keyval - '0',
 											gh->cursor_pos, gh->lower_nibble,
 											gh->insert, TRUE);
+					if (gh->selecting)
+						gh->selecting = FALSE;
 					gh->lower_nibble = !gh->lower_nibble;
 					if(!gh->lower_nibble)
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
@@ -1415,6 +1421,8 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 					hex_document_set_nibble(gh->document, event->keyval - 'A' + 10,
 											gh->cursor_pos, gh->lower_nibble,
 											gh->insert, TRUE);
+					if (gh->selecting)
+						gh->selecting = FALSE;
 					gh->lower_nibble = !gh->lower_nibble;
 					if(!gh->lower_nibble)
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
@@ -1423,6 +1431,8 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 					hex_document_set_nibble(gh->document, event->keyval - 'a' + 10,
 											gh->cursor_pos, gh->lower_nibble,
 											gh->insert, TRUE);
+					if (gh->selecting)
+						gh->selecting = FALSE;
 					gh->lower_nibble = !gh->lower_nibble;
 					if(!gh->lower_nibble)
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
@@ -1448,6 +1458,8 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 				else if(is_displayable(event->keyval)) {
 					hex_document_set_byte(gh->document, event->keyval,
 										  gh->cursor_pos, gh->insert, TRUE);
+					if (gh->selecting)
+						gh->selecting = FALSE;
 					old_cp = gh->cursor_pos;
 					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}

@@ -1,3 +1,14 @@
+2003-04-11  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/gtkhex.c: Deactivate selection for keys other then
+	Arrows and PgUp/PgDown.	Fixes bug 109397. patch by Rajkumar
+	Sivasamy.
+	* src/gtkhex.c: draw highlight in secondary view with the color
+	for insensitive state. fixes bug 108756.
+	* src/chartable.c: fixed keybindings. fixes 107188.
+	* src/main.c (main): only attempt to open a file that exists. patch
+	by Pasupathi Duraisamy.
+
 2003-02-28  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/chartable.c: fix ESC key press handler bug that hid the treeview

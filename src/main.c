@@ -81,13 +81,15 @@ main(int argc, char **argv)
 	cl_files = (char **)poptGetArgs(ctx);
 
 	while(cl_files && *cl_files) {
-		win = ghex_window_new_from_file(*cl_files);
-		if(geometry) {
-			if(!gtk_window_parse_geometry(GTK_WINDOW(win), geometry))
-				g_warning(_("Invalid geometry string \"%s\"\n"), geometry);
-			geometry = NULL;
+		if (g_file_exists (*cl_files)) {
+			win = ghex_window_new_from_file(*cl_files);
+			if(geometry) {
+				if(!gtk_window_parse_geometry(GTK_WINDOW(win), geometry))
+					g_warning(_("Invalid geometry string \"%s\"\n"), geometry);
+					geometry = NULL;
+			}
+			gtk_widget_show(win);
 		}
-		gtk_widget_show(win);
 		cl_files++;
 	}
 	poptFreeContext(ctx);
@@ -102,7 +104,6 @@ main(int argc, char **argv)
 		gtk_widget_show(win);
 	}
 	else win = GTK_WIDGET(ghex_window_get_list()->data);
-
 
 	bonobo_main();
 
