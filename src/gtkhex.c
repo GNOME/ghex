@@ -1596,31 +1596,13 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 		break;
 	case GDK_Tab:
 	case GDK_KP_Tab:
-			if (event->state & GDK_CONTROL_MASK) {
-				if (gh->active_view == VIEW_ASCII) {
-					get_acoords(gh, gh->cursor_pos, &cx, &cy);
-					gtk_paint_flat_box(GTK_WIDGET(gh)->style,
-									   gh->adisp->window,
-									   GTK_STATE_NORMAL,
-									   GTK_SHADOW_IN,
-									   NULL, gh->adisp, NULL,
-									   cx, cy,
-									   gh->char_width, gh->char_height-1);
-					gh->active_view = VIEW_HEX;
-				}
-				else {
-					get_xcoords(gh, gh->cursor_pos, &cx, &cy);
-					gtk_paint_flat_box(GTK_WIDGET(gh)->style,
-									   gh->xdisp->window,
-									   GTK_STATE_NORMAL,
-									   GTK_SHADOW_IN,
-									   NULL, gh->xdisp, NULL,
-									   cx, cy,
-									   gh->char_width, gh->char_height-1);
-					gh->active_view = VIEW_ASCII;
-				}
-			}
-			break;
+		if (gh->active_view == VIEW_ASCII) {
+			gh->active_view = VIEW_HEX;
+		}
+		else {
+			gh->active_view = VIEW_ASCII;
+		}
+		break;
 	case GDK_Delete:
 		if(gh->cursor_pos < gh->document->file_size) {
 			hex_document_set_data(gh->document, gh->cursor_pos,
@@ -1777,6 +1759,7 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	if(gh->show_offsets) {
 		my_alloc.width = 8*gh->char_width;
 		gtk_widget_size_allocate(gh->offsets, &my_alloc);
+		gtk_widget_queue_draw(gh->offsets);
 		my_alloc.x += 2*xt + my_alloc.width;
 	}
 	my_alloc.width = gh->xdisp_width;
