@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 2.2.0\n"
-"POT-Creation-Date: 2003-01-28 03:57+0100\n"
-"PO-Revision-Date: 2003-01-29 10:58+0800\n"
+"Project-Id-Version: ghex 2.2.0.1\n"
+"POT-Creation-Date: 2003-02-11 16:31+0800\n"
+"PO-Revision-Date: 2003-02-11 16:34+0800\n"
 "Last-Translator: Joe Man <trmetal@yahoo.com.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "十六進位"
 
-#: src/chartable.c:133 src/preferences.c:174
+#: src/chartable.c:133 src/preferences.c:175
 msgid "Decimal"
 msgstr "十進位"
 
@@ -89,7 +89,7 @@ msgstr "以二進位、八進位、十進位、十六進位及 ASCII 方式讀�
 msgid "ERROR"
 msgstr "錯誤"
 
-#: src/findreplace.c:60 src/ui.c:901
+#: src/findreplace.c:60 src/ui.c:918
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s)：搜尋資料"
@@ -139,7 +139,7 @@ msgstr "取消"
 msgid "Closes find data window"
 msgstr "關閉搜尋資料的視窗"
 
-#: src/findreplace.c:140 src/ui.c:899
+#: src/findreplace.c:140 src/ui.c:916
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s)：搜尋及取代資料"
@@ -193,7 +193,7 @@ msgstr "將所有準備取代的字串換成指定的字串"
 msgid "Closes find and replace data window"
 msgstr "關閉「搜尋及取代資料」視窗"
 
-#: src/findreplace.c:231 src/ui.c:897
+#: src/findreplace.c:231 src/ui.c:914
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s)：移至位元組"
@@ -229,6 +229,10 @@ msgstr "字串不可能在指定的資料類型中出現！"
 #: src/findreplace.c:344 src/findreplace.c:430
 msgid "End Of File reached"
 msgstr "已到達檔案的末端"
+
+#: src/findreplace.c:345 src/findreplace.c:374 src/findreplace.c:429
+msgid "String was not found!\n"
+msgstr "找不到字串！\n"
 
 #: src/findreplace.c:373
 msgid "Beginning Of File reached"
@@ -663,7 +667,7 @@ msgstr ""
 "檔案 %s 已存在。\n"
 "是否覆寫檔案？"
 
-#: src/ghex-window.c:991 src/ui.c:356
+#: src/ghex-window.c:991 src/ui.c:373
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "把緩衝區內容存至檔案 %s"
@@ -689,11 +693,11 @@ msgstr ""
 msgid "Do_n't save"
 msgstr "不儲存(_N)"
 
-#: src/ghex-window.c:1060 src/ui.c:344
+#: src/ghex-window.c:1060 src/ui.c:361
 msgid "You don't have the permissions to save the file!"
 msgstr "閣下沒有足夠的權限儲存檔案！"
 
-#: src/ghex-window.c:1064 src/ui.c:349
+#: src/ghex-window.c:1064 src/ui.c:366
 msgid "An error occured while saving file!"
 msgstr "存檔時發生錯誤！"
 
@@ -730,120 +734,115 @@ msgstr "無法初始化 Bonobo！\n"
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "無效的視窗尺寸/位置字串“%s”\n"
 
-#: src/preferences.c:91
+#: src/preferences.c:92
 msgid "GHex Preferences"
 msgstr "GHex 偏好設定"
 
-#: src/preferences.c:136
+#: src/preferences.c:137
 msgid "_Maximum number of undo levels:"
 msgstr "可還原的次數上限(_M)："
 
-#: src/preferences.c:156
+#: src/preferences.c:157
 msgid "Undo levels"
 msgstr "還原次數"
 
-#: src/preferences.c:156
+#: src/preferences.c:157
 msgid "Select maximum number of undo levels"
 msgstr "選取可還原的次數上限"
 
-#: src/preferences.c:160
+#: src/preferences.c:161
 msgid "Show cursor offset in statusbar as:"
 msgstr "在狀態列顯示的游標位置的格式："
 
-#: src/preferences.c:179
+#: src/preferences.c:180
 msgid "Hexadecimal"
 msgstr "十六進位"
 
-#: src/preferences.c:185
+#: src/preferences.c:186
 msgid "Custom"
 msgstr "自訂"
 
-#: src/preferences.c:196
+#: src/preferences.c:197
 msgid "Enter the cursor offset format"
 msgstr "輸入顯示游標位置的格式"
 
-#: src/preferences.c:197
+#: src/preferences.c:198
 msgid "Select the cursor offset format"
 msgstr "選取顯示游標位置的格式"
 
 #. show offsets check button
-#: src/preferences.c:207
+#: src/preferences.c:208
 msgid "Show offsets column"
 msgstr "顯示位置列"
 
-#: src/preferences.c:212
+#: src/preferences.c:213
 msgid "Editing"
 msgstr "編輯"
 
 #. display font
-#: src/preferences.c:221
+#: src/preferences.c:222
 msgid "Font"
 msgstr "字型"
 
 #. default group type
-#: src/preferences.c:249
+#: src/preferences.c:250
 msgid "Default Group Type"
 msgstr "預設資料顯示方式"
 
-#: src/preferences.c:265
+#: src/preferences.c:266
 msgid "Display"
 msgstr "顯示"
 
-#. paper selection
-#: src/preferences.c:274
-msgid "Paper size"
-msgstr "紙張尺寸"
-
 #. data & header font selection
-#: src/preferences.c:279
+#: src/preferences.c:275
 msgid "Fonts"
 msgstr "字型"
 
-#: src/preferences.c:285
+#: src/preferences.c:281
 msgid "_Data font:"
 msgstr "資料字型(_D)："
 
-#: src/preferences.c:305
+#: src/preferences.c:300
 msgid "Data font"
 msgstr "資料字型"
 
-#: src/preferences.c:305
+#: src/preferences.c:300
 msgid "Select the data font"
 msgstr "選取顯示資料的字型"
 
-#: src/preferences.c:319
+#: src/preferences.c:314
 msgid "Header fo_nt:"
 msgstr "標題字型(_N)："
 
-#: src/preferences.c:338
+#: src/preferences.c:332
 msgid "Header font"
 msgstr "標題字型"
 
-#: src/preferences.c:338
+#: src/preferences.c:332
 msgid "Select the header font"
 msgstr "選擇顯示標題的字型"
 
-#: src/preferences.c:366
+#: src/preferences.c:360
 msgid "_Print shaded box over:"
-msgstr "列印灰色框(_P)：每"
+msgstr "每隔指定行數列印灰色框(_P)："
 
-#: src/preferences.c:378
+#: src/preferences.c:372
 msgid "Box size"
 msgstr "灰色框尺寸"
 
-#: src/preferences.c:378
+#: src/preferences.c:372
 msgid "Select size of box (in number of lines)"
 msgstr "選取灰色框尺寸 (以行數表示)"
 
-#: src/preferences.c:382
+#: src/preferences.c:376
 msgid "lines (0 for no box)"
 msgstr "行 (0 代表無灰色框)"
 
-#: src/preferences.c:389
+#: src/preferences.c:383
 msgid "Printing"
 msgstr "列印"
 
-#: src/preferences.c:535
+#: src/preferences.c:529
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -851,16 +850,16 @@ msgstr ""
 "游標位置格式字串具有不合法的語句。\n"
 "只接受 'x'、'X'、'p'、'P'、'd' 及 'o' 格式符號。"
 
-#: src/preferences.c:567
+#: src/preferences.c:561
 msgid "Can not open desired font!"
 msgstr "無法開啟選定的字形！"
 
-#: src/print.c:54
+#: src/print.c:52
 #, c-format
 msgid "Page: %i/%i"
-msgstr "頁：%i/%i"
+msgstr "頁數：%i/%i"
 
-#: src/print.c:205 src/print.c:219
+#: src/print.c:203 src/print.c:217
 #, c-format
 msgid ""
 "GHex could not find the font \"%s\".\n"
@@ -871,11 +870,11 @@ msgstr ""
 
 #: src/session.c:29
 msgid "X geometry specification (see \"X\" man page)."
-msgstr "指定視窗尺寸/位置的規格 (請參考“X”的 manpage)。"
+msgstr "指定視窗位置/尺寸的規格 (請參考“X”的 manpage)。"
 
 #: src/session.c:30
 msgid "GEOMETRY"
-msgstr "位置及尺寸"
+msgstr "位置尺寸"
 
 #: src/ui.c:71
 msgid "hex data"
@@ -885,79 +884,7 @@ msgstr "十六進位資料"
 msgid "ASCII data"
 msgstr "ASCII 資料"
 
-#: src/ui.c:243
-msgid "GHex, a binary file editor"
-msgstr "GHex，二位元檔編輯器"
-
-#: src/ui.c:245
-msgid "Released under the terms of GNU Public License"
-msgstr "遵從 GNU Public License 中的條款發佈"
-
-#: src/ui.c:268
-#, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-"顯示說明文件時發生錯誤：\n"
-"%s"
-
-#: src/ui.c:385
-msgid "Select a file to open"
-msgstr "選擇準備開啟的檔案"
-
-#: src/ui.c:423
-#, c-format
-msgid "Loaded file %s"
-msgstr "已載入檔案 %s"
-
-#: src/ui.c:431
-msgid "Can not open file!"
-msgstr "無法開啟檔案！"
-
-#: src/ui.c:495
-msgid "Select path and file name for the HTML source"
-msgstr "選擇 HTML 檔的路徑及檔案名稱"
-
-#: src/ui.c:530
-msgid "You need to specify a base name for the HTML files."
-msgstr "閣下必須指定 HTML 檔的檔案名稱。"
-
-#: src/ui.c:541 src/ui.c:563
-msgid "You don't have the permission to write to the selected path.\n"
-msgstr "閣下沒有足夠的權限在選定的路徑寫入檔案。\n"
-
-#: src/ui.c:547
-msgid ""
-"Saving to HTML will overwrite some files.\n"
-"Do you want to proceed?"
-msgstr ""
-"儲存為 HTML 會覆寫其它檔案。\n"
-"是否確定要繼續？"
-
-#: src/ui.c:695
-#, c-format
-msgid "Really revert file %s?"
-msgstr "是否確定將檔案 %s 回復至已儲存的版本？"
-
-#: src/ui.c:713
-#, c-format
-msgid "Reverted buffer from file %s"
-msgstr "把緩衝區內容復原成檔案 %s "
-
-#: src/ui.c:788
-msgid "Print Hex Document"
-msgstr "列印文件"
-
-#: src/ui.c:793
-msgid "Pages"
-msgstr "頁"
-
-#: src/ui.c:839
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s)：預覽列印"
-
+#: src/ui.c:246
 msgid "translator_credits"
 msgstr ""
 "i18n 程式中文化計劃\n"
@@ -967,14 +894,81 @@ msgstr ""
 "Joe Man <trmetal@yahoo.com.hk>, 2002\n"
 "Ming-Yen Hsu <myhsu@cyberdude.com>, 1999"
 
-#~ msgid "Select font"
-#~ msgstr "選擇字型："
+#: src/ui.c:256
+msgid "GHex, a binary file editor"
+msgstr "GHex，二位元檔編輯器"
+
+#: src/ui.c:258
+msgid "Released under the terms of GNU Public License"
+msgstr "遵從 GNU Public License 中的條款發佈"
+
+#: src/ui.c:285
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"顯示說明文件時發生錯誤：\n"
+"%s"
+
+#: src/ui.c:402
+msgid "Select a file to open"
+msgstr "選擇準備開啟的檔案"
+
+#: src/ui.c:440
+#, c-format
+msgid "Loaded file %s"
+msgstr "已載入檔案 %s"
+
+#: src/ui.c:448
+msgid "Can not open file!"
+msgstr "無法開啟檔案！"
+
+#: src/ui.c:512
+msgid "Select path and file name for the HTML source"
+msgstr "選取 HTML 檔的路徑及檔案名稱"
+
+#: src/ui.c:547
+msgid "You need to specify a base name for the HTML files."
+msgstr "閣下必須指定 HTML 檔的檔案名稱。"
+
+#: src/ui.c:558 src/ui.c:580
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "閣下沒有足夠的權限在指定的路徑寫入檔案。\n"
+
+#: src/ui.c:564
+msgid ""
+"Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr ""
+"儲存為 HTML 會覆寫其它檔案。\n"
+"是否確定要繼續？"
+
+#: src/ui.c:712
+#, c-format
+msgid "Really revert file %s?"
+msgstr "是否確定將檔案 %s 回復至已儲存的版本？"
+
+#: src/ui.c:730
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "將緩衝區的內容回復至檔案 %s 的內容"
+
+#: src/ui.c:805
+msgid "Print Hex Document"
+msgstr "列印文件"
+
+#: src/ui.c:810
+msgid "Pages"
+msgstr "頁"
+
+#: src/ui.c:856
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s)：預覽列印"
 
 #~ msgid "format_optionmenu"
 #~ msgstr "格式選項"
-
-#~ msgid "Print pre_view..."
-#~ msgstr "預覽列印(_V)..."
 
 #~ msgid "Con_verter..."
 #~ msgstr "轉碼工具(_V)..."
