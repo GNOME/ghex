@@ -16,7 +16,7 @@
 #include "gtkhex.h"
 
 #define NO_BUFFER_LABEL "No buffer"
-#define DEFAULT_FONT    "-*-courier-medium-r-normal--12-*-*-*-*-*-*-*"
+#define DEFAULT_FONT    "-adobe-courier-medium-r-normal--12-*-*-*-*-*-*-*"
 
 extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[];
 
@@ -27,9 +27,9 @@ extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[];
 
 typedef struct _PropertyUI {
   GnomePropertyBox *pbox;
-  GtkRadioButton *mdi_type[3];
+  GtkRadioButton *mdi_type[NUM_MDI_MODES];
   GtkRadioButton *group_type[3];
-  GtkButton *font_button;
+  GtkWidget *font_button;
 } PropertyUI;
 
 typedef struct _JumpDialog {

@@ -419,7 +419,7 @@ static void set_prefs(PropertyUI *pui) {
       break;
     }
   
-  for(i = 0; i < 3; i++)
+  for(i = 0; i < NUM_MDI_MODES; i++)
     if(mdi_mode == mdi_type[i]) {
       gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(pui->mdi_type[i]), TRUE);
       break;
@@ -427,7 +427,7 @@ static void set_prefs(PropertyUI *pui) {
 }
 
 void create_prefs_dialog(PropertyUI *pui) {
-  GtkWidget *vbox, *label, *frame, *box;
+  GtkWidget *vbox, *label, *frame, *box, *entry, *fbox, *flabel;
   GSList *group;
   
   int i;
@@ -445,11 +445,36 @@ void create_prefs_dialog(PropertyUI *pui) {
   frame = gtk_frame_new(_("Font"));
   gtk_container_border_width(GTK_CONTAINER(frame), 4);
   gtk_widget_show(frame);
-  pui->font_button = GTK_BUTTON(gtk_button_new_with_label(def_font_name));
-  gtk_signal_connect(GTK_OBJECT(pui->font_button), "clicked",
-		     select_font_cb, pui->pbox);
+
+  fbox = gtk_hbox_new(0, 0);
+  entry = gtk_entry_new();
+  gtk_entry_set_text(GTK_ENTRY(entry), def_font_name);
+  gtk_signal_connect (GTK_OBJECT (entry), "changed",
+		      select_font_cb, pui->pbox);
+  pui->font_button = gnome_font_picker_new();
+  gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->font_button),
+				  def_font_name);
+  gnome_font_picker_set_mode(GNOME_FONT_PICKER(pui->font_button),
+			     GNOME_FONT_PICKER_MODE_USER_WIDGET);
+  gtk_signal_connect (GTK_OBJECT (pui->font_button), "font_set",
+		      GTK_SIGNAL_FUNC (select_font_cb), pui->pbox);
+  flabel = gtk_label_new (_("Browse..."));
+  gnome_font_picker_uw_set_widget(GNOME_FONT_PICKER(pui->font_button), GTK_WIDGET(flabel));
+
+  gtk_object_set_user_data(GTK_OBJECT(entry), GTK_OBJECT(pui->font_button)); 
+  gtk_object_set_user_data (GTK_OBJECT(pui->font_button), GTK_OBJECT(entry)); 
+
+  gtk_widget_show(flabel);
   gtk_widget_show(GTK_WIDGET(pui->font_button));
-  gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(pui->font_button));
+  gtk_widget_show(entry);
+
+  gtk_container_border_width(GTK_CONTAINER(fbox), 4);
+  gtk_box_pack_start (GTK_BOX (fbox), entry, 1, 1, 0);
+  gtk_box_pack_end (GTK_BOX (fbox), GTK_WIDGET(pui->font_button), 0, 1, 0);
+
+  gtk_widget_show(fbox);
+  gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(fbox));
+  
   gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 2);
 
   frame = gtk_frame_new(_("Default Group Type"));
@@ -501,10 +526,10 @@ void create_prefs_dialog(PropertyUI *pui) {
   /* signals have to be connected after set_prefs(), otherwise
      a gnome_property_box_changed() is called */
 
-  for(i = 0; i < NUM_MDI_MODES; i++) {
+  for(i = 0; i < NUM_MDI_MODES; i++)
     gtk_signal_connect(GTK_OBJECT(pui->mdi_type[i]), "clicked",
 		       properties_modified_cb, pui->pbox);
+  for(i = 0; i < 3; i++)
     gtk_signal_connect(GTK_OBJECT(pui->group_type[i]), "clicked",
 		       properties_modified_cb, pui->pbox);
-  } 
 }

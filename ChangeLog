@@ -1,3 +1,17 @@
+
+1998-10-29  Jens Lautenbacher  <jens@tellux.de>
+
+	* ui.c (create_prefs_dialog): added standard gnome_font_picker
+ 	plus entry box, small fix in loop for group_types
+	(set_prefs): use NUM_MDI_MODES
+
+	* callbacks.c (select_font_cb): changed to work with new font selector
+	(apply_changes_cb): ditto.; use NUM_MDI_MODES
+
+	* ghex.h (_PropertyUI): ditto; use NUM_MDI_MODES
+	(DEFAULT_FONT): added foundry for courier font to make font picker
+ 	happy
+
 1998-10-29  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* gnome-support.c (parse_an_arg): add support for opening files

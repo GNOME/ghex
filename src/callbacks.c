@@ -432,16 +432,19 @@ void replace_all_cb(GtkWidget *w) {
 
 void select_font_cb(GtkWidget *w, GnomePropertyBox *pbox) {
   gchar *font_desc;
-  GList *doc, *view;
-
-  if((font_desc = gnome_font_select()) != NULL) {
-    if(strcmp(font_desc, def_font_name) != 0) {
-      gnome_property_box_changed(pbox);
-      gtk_label_set(GTK_LABEL(GTK_BUTTON(w)->child), font_desc);
-    }
-    g_free(font_desc);
+  GtkWidget *peer;
+  if (GNOME_IS_FONT_PICKER(w)) {
+    font_desc = gnome_font_picker_get_font_name (GNOME_FONT_PICKER(w));
+    peer = gtk_object_get_user_data (GTK_OBJECT(w));
+    gtk_entry_set_text (GTK_ENTRY(peer), font_desc);
+  } else {
+    font_desc = gtk_entry_get_text (GTK_ENTRY(w));
+    peer = gtk_object_get_user_data (GTK_OBJECT(w));
+    gnome_font_picker_set_font_name (GNOME_FONT_PICKER(peer), font_desc);
+    gnome_property_box_changed(pbox);
   }
 }
+
 
 void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
   int i;
@@ -456,15 +459,17 @@ void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
       break;
     }
 
-  for(i = 0; i < 3; i++)
+  for(i = 0; i < NUM_MDI_MODES; i++)
     if(GTK_TOGGLE_BUTTON(pui->mdi_type[i])->active) {
       mdi_mode = mdi_type[i];
       gnome_mdi_set_mode(mdi, mdi_mode);
       break;
     }
 
-  if(strcmp(GTK_LABEL(pui->font_button->child)->label, def_font_name) != 0) {
-    if((new_font = gdk_font_load(GTK_LABEL(pui->font_button->child)->label)) != NULL) {
+  if(strcmp(gnome_font_picker_get_font_name(GNOME_FONT_PICKER
+					    (pui->font_button)), def_font_name) != 0) {
+    if((new_font = gdk_font_load(gnome_font_picker_get_font_name
+				 (GNOME_FONT_PICKER(pui->font_button)))) != NULL) {
       child = mdi->children;
 
       while(child) {
@@ -483,11 +488,12 @@ void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
 
       free(def_font_name);
 
-      def_font_name = g_strdup(GTK_LABEL(pui->font_button->child)->label);
+      def_font_name = g_strdup(gnome_font_picker_get_font_name
+				 (GNOME_FONT_PICKER(pui->font_button)));
     }
     else
       report_error(_("Can not open desired font!"));
-  }
+  } 
 }
       
 void add_view_cb(GtkWidget *w) {
