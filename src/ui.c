@@ -145,8 +145,8 @@ static void question_destroy_cb(GtkObject *obj) {
 gint ask_user(GnomeMessageBox *message_box) {
   gint reply;
 
-  gnome_dialog_set_destroy(GNOME_DIALOG(message_box), TRUE);
-  gnome_dialog_set_modal(GNOME_DIALOG(message_box));
+  gnome_dialog_set_close(GNOME_DIALOG(message_box), TRUE);
+  gtk_window_set_modal(GTK_WINDOW(message_box), TRUE);
   gtk_signal_connect(GTK_OBJECT(message_box), "clicked",
 		     GTK_SIGNAL_FUNC(question_click_cb), &reply);
   gtk_signal_connect(GTK_OBJECT(message_box), "destroy",

@@ -1,3 +1,9 @@
+1998-10-12  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
+
+	* ui.c (ask_user): call gnome_dialog_set_close() instead
+	of gnome_dialog_set_destroy() and gtk_window_set_modal()
+	instead of gnome_dialog_set_modal().
+	
 1998-10-04  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* hex-document.c (hex_document_read): fixed a bug with
