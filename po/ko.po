@@ -1,0 +1,528 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNOME-utils 0.13\n"
+"POT-Creation-Date: 1998-02-16 20:29+0900\n"
+"PO-Revision-Date: 1998-02-16 17:38+0900\n"
+"Last-Translator: Changwoo Ryu <cwryu@adam.kaist.ac.kr>\n"
+"Language-Team: Korean <ko@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=euc-kr\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gtt/app.c:118 gtt/app.c:541 gtt/app.c:549
+msgid "no project selected"
+msgstr "프로젝트를 선택하지 않았습니다"
+
+#. define one empty project on the first start
+#: gtt/app.c:316 gtt/clist.c:133 gtt/prop.c:63
+msgid "empty"
+msgstr "없음"
+
+#: gtt/app.c:368 gtt/main.c:87
+msgid "Error"
+msgstr "오류"
+
+#: gtt/app.c:369
+msgid ""
+"An error occured while reading the configuration file.\n"
+"Shall I setup a new configuration?"
+msgstr ""
+"설정 파일을 읽는데 오류가 발생하였습니다.\n"
+"새로운 설정 파일을 만들까요?"
+
+#: gtt/app.c:372 gtt/menucmd.c:198
+msgid "Yes"
+msgstr "예"
+
+#: gtt/app.c:372 gtt/menucmd.c:198
+msgid "No"
+msgstr "아니오"
+
+#: gtt/app.c:449 gtt/app.c:464 gtt/app.c:474 gtt/app.c:480
+#, c-format
+msgid "error in geometry string \"%s\"\n"
+msgstr "geometry 문자열에 오류 \"%s\"\n"
+
+#. TODO: parsing more arguments?
+#: gtt/app.c:487
+#, c-format
+msgid "unknown arg: %s\n"
+msgstr "알수 없는 인자: %s\n"
+
+#: gtt/app.c:531
+msgid "00:00"
+msgstr "00:00"
+
+#. Note to translators: just skip the `[GTT]'
+#: gtt/toolbar.c:319 gtt/toolbar.c:361
+msgid "[GTT]New"
+msgstr "[GTT]새 프로젝트"
+
+#: gtt/menucmd.c:139 gtt/toolbar.c:320 gtt/toolbar.c:362
+msgid "New Project..."
+msgstr "새 프로젝트"
+
+#: gtt/menus.c:69 gtt/toolbar.c:322 gtt/toolbar.c:363
+msgid "<Main>/File/New Project..."
+msgstr "<Main>/파일/새 프로젝트..."
+
+#: gtt/toolbar.c:326 gtt/toolbar.c:367
+msgid "Reload"
+msgstr "다시 읽기"
+
+#: gtt/menucmd.c:195 gtt/toolbar.c:327 gtt/toolbar.c:368
+msgid "Reload Configuration File"
+msgstr "컨피그 파일 다시 읽기"
+
+#: gtt/menus.c:71 gtt/toolbar.c:329 gtt/toolbar.c:370
+msgid "<Main>/File/Reload Configuration File"
+msgstr "<Main>/파일/컨피그 파일 다시 읽기"
+
+#: gtt/toolbar.c:330 gtt/toolbar.c:371
+msgid "Save"
+msgstr "저장"
+
+#: gtt/toolbar.c:331 gtt/toolbar.c:372
+msgid "Save Configuration File"
+msgstr "컨피그 파일 저장"
+
+#: gtt/menus.c:72 gtt/toolbar.c:333 gtt/toolbar.c:374
+msgid "<Main>/File/Save Configuration File"
+msgstr "<Main>/파일/컨피그 파일 저장"
+
+#: gtt/toolbar.c:337 gtt/toolbar.c:378
+msgid "Cut"
+msgstr "자르기"
+
+#: gtt/toolbar.c:338 gtt/toolbar.c:378
+msgid "Cut Selected Project"
+msgstr "선택된 프로젝트 자르기"
+
+#: gtt/menucmd.c:426 gtt/menus.c:75 gtt/toolbar.c:340 gtt/toolbar.c:380
+msgid "<Main>/Edit/Cut"
+msgstr "<Main>/편집/자르기"
+
+#: gtt/toolbar.c:341 gtt/toolbar.c:381
+msgid "Copy"
+msgstr "복사"
+
+#: gtt/toolbar.c:342 gtt/toolbar.c:382
+msgid "Copy Selected Project"
+msgstr "선택된 프로젝트 복사"
+
+#: gtt/menucmd.c:427 gtt/menus.c:76 gtt/toolbar.c:344 gtt/toolbar.c:384
+msgid "<Main>/Edit/Copy"
+msgstr "<Main>/편집/복사"
+
+#: gtt/toolbar.c:345 gtt/toolbar.c:385
+msgid "Paste"
+msgstr "붙이기"
+
+#: gtt/toolbar.c:346 gtt/toolbar.c:385
+msgid "Paste Project"
+msgstr "프로젝트 붙이기"
+
+#: gtt/menucmd.c:428 gtt/menus.c:77 gtt/toolbar.c:348 gtt/toolbar.c:387
+msgid "<Main>/Edit/Paste"
+msgstr "<Main>/편집/붙이기"
+
+#: gtt/toolbar.c:352 gtt/toolbar.c:391
+msgid "Props"
+msgstr "속성"
+
+#: gtt/toolbar.c:353 gtt/toolbar.c:392
+msgid "Edit Properties..."
+msgstr "속성 바꾸기..."
+
+#: gtt/menucmd.c:432 gtt/menus.c:80 gtt/toolbar.c:355 gtt/toolbar.c:395
+msgid "<Main>/Edit/Properties..."
+msgstr "<Main>/편집/속성"
+
+#: gtt/toolbar.c:399
+msgid "Timer"
+msgstr "타이머"
+
+#: gtt/toolbar.c:400
+msgid "Start/Stop Timer"
+msgstr "타이머 시작/멈춤"
+
+#: gtt/menucmd.c:423 gtt/menus.c:131 gtt/toolbar.c:403
+msgid "<Main>/Timer/Timer running"
+msgstr "<Main>/타이머/타이머 동작중"
+
+#: gtt/toolbar.c:409
+msgid "Prefs"
+msgstr "설정"
+
+#: gtt/toolbar.c:409
+msgid "Edit Preferences..."
+msgstr "설정 바꾸기"
+
+#: gtt/menus.c:82 gtt/toolbar.c:411
+msgid "<Main>/Edit/Preferences..."
+msgstr "<Main>/편집/설정"
+
+#: gtt/toolbar.c:414
+msgid "Help"
+msgstr "도움말"
+
+#: gtt/toolbar.c:414
+msgid "Help Contents..."
+msgstr "도움말 차례"
+
+#: gtt/menus.c:91 gtt/toolbar.c:416
+msgid "<Main>/Help/Contents..."
+msgstr "<Main>/도움말/차례..."
+
+#: gtt/menucmd.c:70 gtt/toolbar.c:418
+msgid "About"
+msgstr "이 프로그램은"
+
+#: gtt/toolbar.c:418
+msgid "About..."
+msgstr "이 프로그램은..."
+
+#: gtt/menus.c:94 gtt/toolbar.c:420
+msgid "<Main>/Help/About..."
+msgstr "<Main>/도움말/이 프로그램은..."
+
+#: gtt/toolbar.c:424
+msgid "Exit"
+msgstr "끝내기"
+
+#: gtt/toolbar.c:424
+msgid "Exit GTimeTracker"
+msgstr "GTimeTracker 끝내기"
+
+#: gtt/menus.c:74 gtt/toolbar.c:426
+msgid "<Main>/File/Exit"
+msgstr "<Main>/파일/끝내기"
+
+#: gtt/main.c:87
+msgid ""
+"There seems to be another GTimeTracker running.\n"
+"Please remove the pid file, if that is not correct."
+msgstr ""
+"다른 GTimeTracker가 실행중인 것 같습니다.\n"
+"실행되고 있지 않다면, pid 파일을 지워 주십시오."
+
+#: gtt/main.c:89 gtt/menucmd.c:53 gtt/menucmd.c:176 gtt/menucmd.c:212
+msgid "Oops"
+msgstr "앗"
+
+#: gtt/menucmd.c:40
+msgid "Notice"
+msgstr "알림"
+
+#: gtt/menucmd.c:41
+msgid "Not implemented yet"
+msgstr "아직 만들어지지 않았습니다"
+
+#: gtt/menucmd.c:42 gtt/menucmd.c:71
+msgid "Close"
+msgstr "닫기"
+
+#: gtt/menucmd.c:51 gtt/menucmd.c:175 gtt/menucmd.c:211
+msgid "Warning"
+msgstr "경고"
+
+#: gtt/menucmd.c:52 gtt/menucmd.c:213
+msgid "I could not write the configuration file!"
+msgstr "컨피그 파일을 쓸 수 없습니다!"
+
+#: gtt/menucmd.c:78 gtt/menucmd.c:81
+msgid "version"
+msgstr "버전"
+
+#: gtt/menucmd.c:140
+msgid "OK"
+msgstr "확인"
+
+#: gtt/menucmd.c:142
+msgid "Cancel"
+msgstr "취소"
+
+#: gtt/menucmd.c:143
+msgid "Please enter the name of the new project:"
+msgstr "새로운 프로젝트의 이름을 입력하세요:"
+
+#: gtt/menucmd.c:177
+msgid "I could not read the configuration file"
+msgstr "컨피그 파일을 읽을 수 없습니다"
+
+#: gtt/menucmd.c:196
+msgid ""
+"This will overwrite your current set of projects.\n"
+"Do you really want to reload the configuration file?"
+msgstr ""
+"현재의 프로젝트들을 덮어쓰게 됩니다.\n"
+"정말로 컨피그 파일을 다시 읽겠습니까?"
+
+#: gtt/menucmd.c:424 gtt/menus.c:83
+msgid "<Main>/Timer/Start"
+msgstr "<Main>/타이머/시작"
+
+#: gtt/menucmd.c:425 gtt/menus.c:84
+msgid "<Main>/Timer/Stop"
+msgstr "<Main>/타이머/멈춤"
+
+#: gtt/menucmd.c:429 gtt/menus.c:99
+msgid "<Popup>/Paste"
+msgstr "<Popup>/붙이기"
+
+#: gtt/menucmd.c:430 gtt/menus.c:79
+msgid "<Main>/Edit/Clear Daily Counter"
+msgstr "<Main>/편집/오늘의 카운터 지우기"
+
+#: gtt/menucmd.c:431 gtt/menus.c:101
+msgid "<Popup>/Clear Daily Counter"
+msgstr "오늘의 카운터 지우기"
+
+#: gtt/menus.c:69
+msgid "<control>N"
+msgstr "<control>N"
+
+#: gtt/menus.c:70 gtt/menus.c:73
+msgid "<Main>/File/<separator>"
+msgstr "<Main>/파일/<separator>"
+
+#: gtt/menus.c:71
+msgid "<control>R"
+msgstr "<control>R"
+
+#: gtt/menus.c:72
+msgid "<control>S"
+msgstr "<control>S"
+
+#: gtt/menus.c:74
+msgid "<control>Q"
+msgstr "<control>Q"
+
+#: gtt/menus.c:75
+msgid "<control>X"
+msgstr "<control>X"
+
+#: gtt/menus.c:76
+msgid "<control>C"
+msgstr "<control>C"
+
+#: gtt/menus.c:77
+msgid "<control>V"
+msgstr "<control>V"
+
+#: gtt/menus.c:78 gtt/menus.c:81
+msgid "<Main>/Edit/<separator>"
+msgstr "<Main>/편집/<separator>"
+
+#: gtt/menus.c:80
+msgid "<control>E"
+msgstr "<control>E"
+
+#: gtt/menus.c:83
+msgid "<control>A"
+msgstr "<control>A"
+
+#: gtt/menus.c:84
+msgid "<control>P"
+msgstr "<control>P"
+
+#: gtt/menus.c:85
+msgid "<Main>/Timer/<check>Timer running"
+msgstr "<Main>/타이머/<check>타이머 동작중"
+
+#: gtt/menus.c:85
+msgid "<control>T"
+msgstr "<control>T"
+
+#: gtt/menus.c:90
+msgid "<Main>/Help/Help on Help..."
+msgstr "<Main>/도움말/도움말에 대한 도움말"
+
+#: gtt/menus.c:91
+msgid "<alt>H"
+msgstr "<alt>H"
+
+#: gtt/menus.c:92
+msgid "<Main>/Help/<separator>"
+msgstr "<Main>/도움말/<separator>"
+
+#: gtt/menus.c:95
+msgid "<Popup>/Properties..."
+msgstr "<Popup>/속성"
+
+#: gtt/menus.c:96 gtt/menus.c:100
+msgid "<Popup>/<separator>"
+msgstr "<Popup>/<separator>"
+
+#: gtt/menus.c:97
+msgid "<Popup>/Cut"
+msgstr "<Popup>/자르기"
+
+#: gtt/menus.c:98
+msgid "<Popup>/Copy"
+msgstr "<Popup>/복사"
+
+#: gtt/menus.c:128
+msgid "<Main>/Help"
+msgstr "<Main>/도움말"
+
+#: gtt/log.c:62
+msgid "stopped project"
+msgstr "중단된 프로젝트"
+
+#: gtt/log.c:129
+msgid "program exited"
+msgstr "프로그램이 끝났습니다"
+
+#: gtt/log.c:137
+msgid "program started"
+msgstr "프로그램이 시작했습니다"
+
+#: gtt/options.c:212
+msgid "Display"
+msgstr "표시"
+
+#: gtt/options.c:220
+msgid "Show Seconds"
+msgstr "초 표시"
+
+#: gtt/options.c:225
+msgid "Show Status Bar"
+msgstr "상태바 표시"
+
+#: gtt/options.c:231
+msgid "Show Table Header"
+msgstr ""
+
+#: gtt/options.c:245 gtt/options.c:503
+msgid "Toolbar"
+msgstr "툴바"
+
+#: gtt/options.c:253
+msgid "Show Toolbar Icons"
+msgstr "툴바의 아이콘 표시"
+
+#: gtt/options.c:258
+msgid "Show Toolbar Texts"
+msgstr "툴바의 글 표시"
+
+#: gtt/options.c:263
+msgid "Show Tooltips"
+msgstr "툴팁 표시"
+
+#: gtt/options.c:268
+msgid "Toolbar Segments"
+msgstr "툴바의 조각들"
+
+#: gtt/options.c:276
+msgid "Show `New'"
+msgstr "`새 프로젝트' 표시"
+
+#: gtt/options.c:281
+msgid "Show `Save', `Reload'"
+msgstr "`저장', `다시 읽기' 표시"
+
+#: gtt/options.c:286
+msgid "Show `Cut', `Copy', `Paste'"
+msgstr "`자르기', `복사', `붙이기' 표시"
+
+#: gtt/options.c:291
+msgid "Show `Properties'"
+msgstr "`속성' 표시"
+
+#: gtt/options.c:296
+msgid "Show `Timer'"
+msgstr "`타이머' 표시"
+
+#: gtt/options.c:301
+msgid "Show `Preferences'"
+msgstr "`설정' 표시"
+
+#: gtt/options.c:306
+msgid "Show `Help'"
+msgstr "`도움말' 표시"
+
+#: gtt/options.c:311
+msgid "Show `Exit'"
+msgstr "`끝내기' 표시"
+
+#: gtt/options.c:324
+msgid "Shell Commands"
+msgstr "셸 명령"
+
+#: gtt/options.c:332
+msgid "Switch Project Command:"
+msgstr "프로젝트를 바꿀 때의 명령"
+
+#: gtt/options.c:341
+msgid "No Project Command:"
+msgstr "프로젝트가 없을 때의 명령:"
+
+#: gtt/options.c:370
+msgid "Logfile"
+msgstr "기록 파일"
+
+#: gtt/options.c:378
+msgid "Use Logfile"
+msgstr "기록 파일 사용하기"
+
+#: gtt/options.c:390
+msgid "Filename:"
+msgstr "파일이름:"
+
+#: gtt/options.c:404
+msgid "Timeout in secs:"
+msgstr "기록할 시간 (초):"
+
+#: gtt/options.c:477
+msgid "Preferences"
+msgstr "설정"
+
+#: gtt/options.c:491
+msgid "Misc"
+msgstr "기타"
+
+#: gtt/prop.c:182
+msgid "Properties"
+msgstr "속성"
+
+#: gtt/prop.c:225
+msgid "Project Title:"
+msgstr "프로젝트 이름:"
+
+#: gtt/prop.c:234
+msgid "Project Description:"
+msgstr "프로젝트 설명:"
+
+#: gtt/prop.c:243
+msgid "Project Time today:"
+msgstr "오늘의 프로젝트 시간:"
+
+#: gtt/prop.c:256 gtt/prop.c:285
+msgid "hours"
+msgstr "시간"
+
+#: gtt/prop.c:264 gtt/prop.c:293
+msgid "mins"
+msgstr "분"
+
+#: gtt/prop.c:272 gtt/prop.c:301
+msgid "secs"
+msgstr "초"
+
+#: gtt/prop.c:276
+msgid "Project Time ever:"
+msgstr "이때까지의 프로젝트 시간:"
+
+#. to make room
+#: gtt/clist.c:97
+msgid "Project Title"
+msgstr "프로젝트 이름"
+
+#: gtt/clist.c:103
+msgid "Time"
+msgstr "시간"
