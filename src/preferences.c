@@ -28,7 +28,6 @@
 
 #include "ghex.h"
 
-static void set_prefs(PropertyUI *pui);
 static void select_font_cb(GtkWidget *w, const gchar *font_name, GtkDialog *pbox);
 static void apply_changes_cb(PropertyUI *pui);
 static void max_undo_changed_cb(GtkAdjustment *adj, GtkDialog *pbox);
@@ -401,7 +400,7 @@ create_prefs_dialog()
 }
 
 
-static void set_prefs(PropertyUI *pui) {
+void set_prefs(PropertyUI *pui) {
 	int i;
 
 	for(i = 0; i < 3; i++)
@@ -430,6 +429,10 @@ static void set_prefs(PropertyUI *pui) {
 
 	gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->df_button),
 									data_font_name);
+
+	gtk_dialog_set_default_response(GTK_DIALOG(pui->pbox), GTK_RESPONSE_CANCEL);
+	gtk_dialog_set_response_sensitive(GTK_DIALOG(pui->pbox), GTK_RESPONSE_OK, FALSE);
+	gtk_dialog_set_response_sensitive(GTK_DIALOG(pui->pbox), GTK_RESPONSE_APPLY, FALSE);
 }
 
 /*

@@ -232,6 +232,7 @@ void raise_and_focus_widget(GtkWidget *);
 
 gboolean hex_document_ok_to_close(HexDocument *doc);
 
+void set_prefs(PropertyUI *pui);
 
 G_END_DECLS
 

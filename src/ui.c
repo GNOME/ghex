@@ -549,9 +549,8 @@ void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 	if(!prefs_ui)
 		prefs_ui = create_prefs_dialog();
 
-	gtk_dialog_set_default_response(GTK_DIALOG(prefs_ui->pbox), GTK_RESPONSE_CANCEL);
-	gtk_dialog_set_response_sensitive(GTK_DIALOG(prefs_ui->pbox), GTK_RESPONSE_OK, FALSE);
-	gtk_dialog_set_response_sensitive(GTK_DIALOG(prefs_ui->pbox), GTK_RESPONSE_APPLY, FALSE);
+	set_prefs(prefs_ui);
+
 	if(ghex_window_get_active() != NULL)
 		gtk_window_set_transient_for(GTK_WINDOW(prefs_ui->pbox),
 									 GTK_WINDOW(ghex_window_get_active()));
