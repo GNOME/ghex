@@ -1,13 +1,13 @@
 # Norwegian (bokmål dialect) translation of the gnome-utils module
 # Copyright (C) 1998, 1999 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@fib.hl.no>, 1998, 1999.
+# Kjartan Maraas <kmaraas@online.no>, 1998, 1999.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.1\n"
-"POT-Creation-Date: 1999-03-13 00:39+0100\n"
-"PO-Revision-Date: 1999-03-13 00:47+0100\n"
-"Last-Translator: Kjartan Maraas <kmaraas@fib.hl.no>\n"
+"POT-Creation-Date: 1999-03-26 01:53+0100\n"
+"PO-Revision-Date: 1999-03-26 01:55+0100\n"
+"Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -39,7 +39,7 @@ msgstr "GHex: Konvertering"
 msgid "Binary"
 msgstr "Binær"
 
-#: ghex/converter.c:56
+#: ghex/converter.c:56 ghex/preferences.c:109
 msgid "Decimal"
 msgstr "Desimal"
 
@@ -219,78 +219,72 @@ msgstr ""
 "Filen %s er endret siden forrige lagring.\n"
 "Vil du lagre endringene?"
 
-#: ghex/main.c:173
-#, c-format
-msgid "Offset: %x"
-msgstr "Avstand: %x"
+#: ghex/main.c:172
+msgid "Offset: "
+msgstr "Avstand: "
 
-#: ghex/main.c:175
-#, c-format
-msgid "Offset: %d"
-msgstr "Avstand: %d"
-
-#: ghex/preferences.c:48 mini-utils/idetool/idetool.c:142
+#: ghex/preferences.c:49 mini-utils/idetool/idetool.c:142
 #: mini-utils/idetool/idetool.c:325
 msgid "Default"
 msgstr "Standard"
 
-#: ghex/preferences.c:49
+#: ghex/preferences.c:50
 msgid "Notebook"
 msgstr "Notisblokk"
 
-#: ghex/preferences.c:50
+#: ghex/preferences.c:51
 msgid "Toplevel"
 msgstr "Toppnivå"
 
-#: ghex/preferences.c:51
+#: ghex/preferences.c:52
 msgid "Modal"
 msgstr "Modal"
 
-#: ghex/preferences.c:80
+#: ghex/preferences.c:81
 msgid "Maximum number of undo levels"
 msgstr "Maksimalt angrenivå"
 
-#: ghex/preferences.c:94
-msgid "Show cursor offset in"
+#: ghex/preferences.c:95
+msgid "Show cursor offset as"
 msgstr "Vis markøravstand i"
 
-#: ghex/preferences.c:102
-msgid "decimal"
-msgstr "desimal"
+#: ghex/preferences.c:114
+msgid "Hexadecimal"
+msgstr "Heksadesimal"
 
-#: ghex/preferences.c:107
-msgid "hexadecimal"
-msgstr "heksadesimal"
+#: ghex/preferences.c:120
+msgid "Custom"
+msgstr "Egendefinert"
 
-#: ghex/preferences.c:118
+#: ghex/preferences.c:130
 msgid "Editing"
 msgstr "Redigering"
 
-#: ghex/preferences.c:125
+#: ghex/preferences.c:137
 msgid "Font"
 msgstr "Skrifttype"
 
-#: ghex/preferences.c:141
+#: ghex/preferences.c:153
 msgid "Browse..."
 msgstr "Se på..."
 
-#: ghex/preferences.c:160
+#: ghex/preferences.c:172
 msgid "Default Group Type"
 msgstr "Standard gruppetype"
 
-#: ghex/preferences.c:176 gtt/options.c:186
+#: ghex/preferences.c:188 gtt/options.c:186
 msgid "Display"
 msgstr "Skjerm"
 
-#: ghex/preferences.c:183
+#: ghex/preferences.c:195
 msgid "MDI Mode"
 msgstr "MDI-modus"
 
-#: ghex/preferences.c:200
+#: ghex/preferences.c:212
 msgid "MDI"
 msgstr "MDI"
 
-#: ghex/preferences.c:319
+#: ghex/preferences.c:337
 msgid "Can not open desired font!"
 msgstr "Kan ikke åpne ønsket skrifttype!"
 
@@ -578,15 +572,15 @@ msgstr "TYPE"
 msgid "gtk|text|graph|none"
 msgstr "gtk|tekst|graf|ingen"
 
-#: gtt/app.c:110 gtt/app.c:213
+#: gtt/app.c:110 gtt/app.c:216
 msgid "no project selected"
 msgstr "ingen prosjekter valgt"
 
-#: gtt/app.c:202
+#: gtt/app.c:205
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:235 mini-utils/gless/gless.c:383
+#: gtt/app.c:238 mini-utils/gless/gless.c:383
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -666,7 +660,7 @@ msgstr "Advarsel"
 msgid "I could not write the configuration file!"
 msgstr "Jeg kunne ikke skrive konfigurasjonsfilen!"
 
-#: gtt/menucmd.c:85 gtt/toolbar.c:142
+#: gtt/menucmd.c:85 gtt/toolbar.c:146
 msgid "New Project..."
 msgstr "Nytt prosjekt..."
 
@@ -678,7 +672,7 @@ msgstr "Skriv inn navnet på det nye prosjektet:"
 msgid "I could not read the configuration file"
 msgstr "Jeg kunne ikke lese konfigurasjonsfilen"
 
-#: gtt/menucmd.c:137 gtt/toolbar.c:149
+#: gtt/menucmd.c:137 gtt/toolbar.c:153
 msgid "Reload Configuration File"
 msgstr "Les konfigurasjonsfilen på nytt"
 
@@ -879,83 +873,83 @@ msgid "Project Time ever:"
 msgstr "Prosjekttid noensinne:"
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:141
+#: gtt/toolbar.c:145
 msgid "[GTT]New"
 msgstr "[GTT]Ny"
 
-#: gtt/toolbar.c:148
+#: gtt/toolbar.c:152
 msgid "Reload"
 msgstr "Les på nytt"
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:156
 msgid "Save"
 msgstr "Lagre"
 
-#: gtt/toolbar.c:153
+#: gtt/toolbar.c:157
 msgid "Save Configuration File"
 msgstr "Lagre konfigurasjonsfilen"
 
-#: gtt/toolbar.c:159
+#: gtt/toolbar.c:163
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: gtt/toolbar.c:160
+#: gtt/toolbar.c:164
 msgid "Cut Selected Project"
 msgstr "Klipp ut valgte prosjekt"
 
-#: gtt/toolbar.c:163
+#: gtt/toolbar.c:167
 msgid "Copy"
 msgstr "Kopiér"
 
-#: gtt/toolbar.c:164
+#: gtt/toolbar.c:168
 msgid "Copy Selected Project"
 msgstr "Kopier valgte prosjekt"
 
-#: gtt/toolbar.c:167
+#: gtt/toolbar.c:171
 msgid "Paste"
 msgstr "Lim inn"
 
-#: gtt/toolbar.c:168
+#: gtt/toolbar.c:172
 msgid "Paste Project"
 msgstr "Lim inn valgte prosjekt"
 
-#: gtt/toolbar.c:174
+#: gtt/toolbar.c:178
 msgid "Props"
 msgstr "Egenskaper"
 
-#: gtt/toolbar.c:175
+#: gtt/toolbar.c:179
 msgid "Edit Properties..."
 msgstr "Rediger egenskaper..."
 
-#: gtt/toolbar.c:179
+#: gtt/toolbar.c:183
 msgid "Timer"
 msgstr "Klokke"
 
-#: gtt/toolbar.c:180
+#: gtt/toolbar.c:184
 msgid "Start/Stop Timer"
 msgstr "Start/Stopp klokke"
 
-#: gtt/toolbar.c:188
+#: gtt/toolbar.c:193
 msgid "Prefs"
 msgstr "Preferanser"
 
-#: gtt/toolbar.c:189
+#: gtt/toolbar.c:194
 msgid "Edit Preferences..."
 msgstr "Rediger preferanser..."
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual"
 msgstr "Manuell"
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual..."
 msgstr "Manuell..."
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit"
 msgstr "Avslutt"
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit GTimeTracker"
 msgstr "Avslutt GTimeTracker"
 
@@ -1432,7 +1426,7 @@ msgstr "Monteringspunkt"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:168
+#: mini-utils/guname/info.c:170
 msgid "Unknown"
 msgstr "Ukjent"
 
@@ -1686,3 +1680,4 @@ msgstr "Bare superbruker kan bruke dette verktøyet"
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "Det ser ut til at du ikke har noen IDE disker"
+
