@@ -39,7 +39,6 @@ gchar *group_type_label[3] = {
 
 void cursor_moved(GtkWidget *w) {
   static gchar info_msg[64];
-  static gchar data_msg[64];
 
   sprintf(info_msg, "%9d / %d", GTK_HEX(w)->cursor_pos, GTK_HEX(w)->buffer_size-1);
   gtk_label_set(GTK_LABEL(offset_label), info_msg);
@@ -49,7 +48,7 @@ void cursor_moved(GtkWidget *w) {
 void data_changed(GtkWidget *w, guint start, guint end) {
   GtkHex *gh = GTK_HEX(w);
   static gchar data_msg[64];
-  guint word, longword, pos, i;
+  guint word, longword, pos;
 
   if((gh->cursor_pos >= start) && (gh->cursor_pos <= end)) {
     pos = gh->cursor_pos;
@@ -119,7 +118,6 @@ void set_desired_group_type(gint type) {
 }
 
 int add_view(FileEntry *fe) {
-  gchar len_str[32];
 
   fe->hexedit = gtk_hex_new();
 
@@ -143,6 +141,7 @@ int add_view(FileEntry *fe) {
   gtk_label_set(GTK_LABEL(name_label), fe->path_end);
 
   gtk_signal_emit_by_name(GTK_OBJECT(fe->hexedit), "cursor_moved");
+  return 0;
 }
 
 void remove_view(FileEntry *fe) {
@@ -150,8 +149,6 @@ void remove_view(FileEntry *fe) {
     return;
 
   fe->cursor_pos = gtk_hex_get_cursor(GTK_HEX(fe->hexedit));
-
-  gtk_container_remove(GTK_CONTAINER(table), fe->hexedit);
 
   gtk_label_set(GTK_LABEL(name_label), NO_BUFFER_LABEL);
   gtk_label_set(GTK_LABEL(offset_label), "");
@@ -191,13 +188,14 @@ void remake_buffer_menu() {
      fe must first be removed from buffer_list for this to work!!!
      */
   GtkWidget *menu;
-  GList *children;
 
   menu = buffers_menu->submenu;
 
   if(menu) {
+#if 0
     gtk_menu_detach(GTK_MENU(menu));
     gtk_widget_destroy(menu);
+#endif
   }
 
   if(g_slist_length(buffer_list) > 1) {
@@ -212,8 +210,7 @@ GtkWidget *create_group_type_menu() {
   GtkWidget *menu;
   GtkWidget *menuitem;
   GSList *group;
-  char buf[32];
-  int i, j;
+  int i;
 
   menu = gtk_menu_new ();
   group = NULL;
@@ -274,7 +271,7 @@ void create_toolbar() {
 }
 
 void create_menus() {
-  GtkWidget *w, *menu, *sep;
+  GtkWidget *w, *menu;
 
   accel = gtk_accelerator_table_new();
   mbar = gtk_menu_bar_new();

@@ -5,7 +5,7 @@
 
 #ifndef GHEX_H
 #define GHEX_H
-
+#include <config.h>
 #include <gnome.h>
 #include <gtk/gtk.h>
 #include <glib.h>
@@ -13,9 +13,6 @@
 #include <stdio.h>
 
 #include "gtkhex.h"
-
-#define VERSION "980403"
-#define PACKAGE "ghex"
 
 #define NO_BUFFER_LABEL "No buffer"
 
@@ -56,8 +53,8 @@ void redraw_widget(GtkWidget *);
 
 void menus_create(GtkMenuFactory *, GtkMenuEntry *, int);
 void get_main_menu(GtkWidget **, GtkAcceleratorTable **);
-static gint menus_install_accel(GtkWidget *, gchar *, gchar, gchar, gchar *);
-static void menus_remove_accel(GtkWidget *, gchar *, gchar *);
+guint get_desired_group_type();
+void set_desired_group_type(gint type);
 
 int add_view(FileEntry *);
 void remove_view(FileEntry *);

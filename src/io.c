@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include <sys/stat.h>
-
+#include <string.h>
 #include "ghex.h"
 
 FileEntry *open_file(gchar *name) {
@@ -16,12 +16,12 @@ FileEntry *open_file(gchar *name) {
   /* hopefully using stat() works for all flavours of UNIX...
      don't know for sure, though */
   if(!stat(name, &stats)) {
-    if(fe = (FileEntry *)malloc(sizeof(FileEntry))) {
+    if((fe = (FileEntry *)malloc(sizeof(FileEntry))) != NULL) {
       fe->len = stats.st_size;
       fe->hexedit = NULL;
 
-      if(fe->contents = (guchar *)malloc(fe->len)) {
-	if(fe->file_name = (gchar *)strdup(name)) {
+      if((fe->contents = (guchar *)malloc(fe->len)) != NULL) {
+	if((fe->file_name = (gchar *)strdup(name)) != NULL) {
 	  for(i = strlen(fe->file_name); (i >= 0) && (fe->file_name[i] != '/'); i--)
 	    ;
 	  if(fe->file_name[i] == '/')
@@ -29,12 +29,13 @@ FileEntry *open_file(gchar *name) {
 	  else
 	    fe->path_end = fe->file_name;
 
-	  if(fe->file = fopen(name, "r")) {
+	  if((fe->file = fopen(name, "r")) != NULL) {
 	    fe->cursor_pos = 0;
 	    add_buffer_entry(fe);
 	    g_slist_append(buffer_list, fe);
 	    fe->len = fread(fe->contents, 1, fe->len, fe->file);
 	    fclose(fe->file);
+	    fe->file = 0;
 	    return fe;
 	  }
 	  free(fe->file_name);
@@ -57,30 +58,37 @@ void close_file(FileEntry *fe) {
     if(fe->hexedit)
       remove_view(fe);
 
-    if(fe->file_name)
+    if(fe->file_name){
       free(fe->file_name);
-    if(fe->file)
+      fe->file_name = 0;
+    }
+    if(fe->file){
       fclose(fe->file);
-    if(fe->contents)
+      fe->file = 0;
+    }
+    if(fe->contents){
       free(fe->contents);
-
+      fe->contents = 0;
+    }
     free(fe);
   }
 }
 
 gint read_file(FileEntry *fe) {
-  if(fe->file = fopen(fe->file_name, "r")) {
+  if((fe->file = fopen(fe->file_name, "r")) != NULL) {
     fe->len = fread(fe->contents, 1, fe->len, fe->file);
     fclose(fe->file);
+    fe->file = 0;
     return 0;
   }
   return 1;
 }
 
 gint write_file(FileEntry *fe) {
-  if(fe->file = fopen(fe->file_name, "w")) {
+  if((fe->file = fopen(fe->file_name, "w")) != NULL) {
     fwrite(fe->contents, 1, fe->len, fe->file);
     fclose(fe->file);
+    fe->file = 0;
     return 0;
   }
   return 1;

@@ -2,9 +2,8 @@
  * callbacks.c - callbacks for GHex widgets
  * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
-
 #include <libgnome/gnome-help.h> 
-
+#include <string.h>
 #include "ghex.h"
 #include "callbacks.h"
 
@@ -77,7 +76,7 @@ void open_selected_file(GtkWidget *w) {
   FileEntry *new_fe, *fe;
 
   fe = active_fe;
-  if(new_fe = open_file(gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel)))) {
+  if((new_fe = open_file(gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_sel)))) != NULL) {
     active_fe = new_fe;
     if(fe)
       remove_view(fe);
@@ -94,7 +93,7 @@ void save_selected_file(GtkWidget *w) {
   gchar *filename = gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_sel));
   int i;
 
-  if(active_fe->file = fopen(filename, "w")) {
+  if((active_fe->file = fopen(filename, "w")) != NULL) {
     if(fwrite(active_fe->contents, active_fe->len, 1, active_fe->file) == 1) {
       if(active_fe->file_name)
 	free(active_fe->file_name);
@@ -257,7 +256,7 @@ static gint get_search_string(gchar *str, gchar *buf) {
 
 void find_next_cb(GtkWidget *w, GtkEntry *data) {
   GtkHex *gh;
-  guint offset, block, str_len;
+  guint offset, str_len;
   gchar str[256];
 
   if((str_len = get_search_string(gtk_entry_get_text(data), str)) == 0) {
@@ -280,7 +279,7 @@ void find_next_cb(GtkWidget *w, GtkEntry *data) {
 
 void find_prev_cb(GtkWidget *w, GtkEntry *data) {
   GtkHex *gh;
-  guint offset, block, str_len;
+  guint offset, str_len;
   gchar str[256];
 
   if((str_len = get_search_string(gtk_entry_get_text(data), str)) == 0) {
@@ -407,8 +406,8 @@ void select_font_cb(GtkWidget *w) {
   gchar *font_desc;
   GdkFont *new_font;
 
-  if(font_desc = gnome_font_select()) {
-    if(new_font = gdk_font_load(font_desc)) {
+  if((font_desc = gnome_font_select()) != NULL) {
+    if((new_font = gdk_font_load(font_desc)) != NULL) {
       if(active_fe)
 	gtk_hex_set_font(GTK_HEX(active_fe->hexedit), new_font);
       if(def_font)

@@ -2,7 +2,6 @@
  * config.c - configuration loading/saving via gnome-config routines
  * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
-
 #include "ghex.h"
 
 gint save_config_on_exit = FALSE;
@@ -25,8 +24,8 @@ void load_configuration() {
   gint group;
   GdkFont *new_font;
 
-  if(font_desc = gnome_config_get_string("/ghex/Display/Font")) {
-    if(new_font = gdk_font_load(font_desc)) {
+  if((font_desc = gnome_config_get_string("/ghex/Display/Font")) != NULL) {
+    if((new_font = gdk_font_load(font_desc)) != NULL) {
       if(active_fe)
 	gtk_hex_set_font(GTK_HEX(active_fe->hexedit), new_font);
       if(def_font)
@@ -38,7 +37,7 @@ void load_configuration() {
       report_error(_("Can not open configured font!"));
   }
 
-  if(group = gnome_config_get_int("/ghex/Display/Group")) {
+  if((group = gnome_config_get_int("/ghex/Display/Group=0")) != 0) {
     set_desired_group_type(group);
     if(active_fe)
       gtk_hex_set_group_type(GTK_HEX(active_fe->hexedit), group);

@@ -18,7 +18,7 @@
  *
  * For more details see the file COPYING.
  */
-
+#include <config.h>
 #include <gnome.h>
 #include <getopt.h>
 
@@ -33,6 +33,7 @@ int main(int argc, char **argv) {
 
   argp_program_version = VERSION;
 
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain(PACKAGE);
 
   client = gnome_client_new_default();

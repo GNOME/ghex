@@ -338,7 +338,7 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
   GtkWidget *w = gh->adisp;
   gint i, tmp, frm_len;
-  guint cx, cy, cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
+  guint cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 
   imax = MIN(imax, gh->vis_lines);
 
@@ -421,7 +421,7 @@ static void draw_shadow(GtkWidget *widget, GdkEventExpose *event) {
  * lines we can display according to the current size of the widget
  */
 static void recalc_displays(GtkHex *gh, guint width, guint height) {
-  gint sep_width, total_width = width;
+  gint total_width = width;
   gint total_cpl, xcpl;
   gint old_cpl = gh->cpl;
 
@@ -619,7 +619,6 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
  * mouse signal handlers (button 1 and motion) for both displays
  */
 static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
-  guint mx, my, cx, cy, x;
 
   if((event->type == GDK_BUTTON_PRESS) && (event->button == 1)) {
     if (!GTK_WIDGET_HAS_FOCUS (gh))
@@ -947,6 +946,7 @@ gint gtk_hex_get_cursor(GtkHex *gh) {
 guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
   if((offset >= 0) && (offset < gh->buffer_size))
     return gh->buffer[offset];
+  return 0;
 }
 
 /*
