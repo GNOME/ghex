@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 1999-11-26 15:49+0100\n"
+"POT-Creation-Date: 1999-11-29 11:09+0100\n"
 "PO-Revision-Date: 1999-01-13 14:09+0100\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Language-Team: \n"
@@ -228,7 +228,7 @@ msgstr ""
 "El archivo %s cambió desde la última vez que fué guardado.\n"
 "¿Desea guardar los cambios?"
 
-#: ghex/main.c:174
+#: ghex/main.c:170
 #, c-format
 msgid "Offset: %s"
 msgstr "Offset: %s"
@@ -522,17 +522,17 @@ msgstr "se esperaba un número"
 msgid "extra gunk at end: \"%s\""
 msgstr "gunk extra al final: \"%s\""
 
-#: gstripchart/gstripchart.c:635
+#: gstripchart/gstripchart.c:637
 #, c-format
 msgid "%s, line %d: "
 msgstr "%s, línea %d: "
 
-#: gstripchart/gstripchart.c:712
+#: gstripchart/gstripchart.c:714
 #, c-format
 msgid "can't open config file \"%s\""
 msgstr "no puedo abrir el archivo de configuración \"%s\""
 
-#: gstripchart/gstripchart.c:739
+#: gstripchart/gstripchart.c:741
 #, c-format
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
@@ -540,40 +540,44 @@ msgstr ""
 "no puedo abrir el archivo de configuración \"./gstripchart.conf\",\"%s\", "
 "\"%s\", o \"%s\""
 
-#: gstripchart/gstripchart.c:744
+#: gstripchart/gstripchart.c:746
 #, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
 msgstr ""
 "no puedo abrir el archivo de configuración \"./gstripchart.conf\", \"%s\", o "
 "\"%s\""
 
-#: gstripchart/gstripchart.c:821
+#: gstripchart/gstripchart.c:824
 msgid "identifier or begin must be first"
 msgstr "un identificador o el comienzo tiene que venir antes"
 
-#: gstripchart/gstripchart.c:829 gstripchart/gstripchart.c:846
+#: gstripchart/gstripchart.c:832 gstripchart/gstripchart.c:849
 #, c-format
 msgid "unrecognized color: %s"
 msgstr "color desconocido: %s"
 
-#: gstripchart/gstripchart.c:873
+#: gstripchart/gstripchart.c:864
+msgid "scale must be either \"log\" or \"linear\""
+msgstr "la escala tiene que ser o «log» o «linear»"
+
+#: gstripchart/gstripchart.c:886
 #, c-format
 msgid "invalid option: \"%s\""
 msgstr "opción inválida: \"%s\""
 
-#: gstripchart/gstripchart.c:1423
+#: gstripchart/gstripchart.c:1449
 msgid "E_xit"
 msgstr "_Salir"
 
-#: gstripchart/gstripchart.c:1423
+#: gstripchart/gstripchart.c:1449
 msgid "Terminate the stripchart program"
 msgstr "Terminar el programa stripchart"
 
-#: gstripchart/gstripchart.c:1439
+#: gstripchart/gstripchart.c:1465
 msgid "Copyright 1998,99 John Kodis"
 msgstr "Copyright © 1998,1999 John Kodis"
 
-#: gstripchart/gstripchart.c:1441
+#: gstripchart/gstripchart.c:1467
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -587,222 +591,234 @@ msgstr ""
 "posibilidades más ingeniosas se dejan como ejercicio para el usuario "
 "interesado en ello."
 
-#: gstripchart/gstripchart.c:1454
+#: gstripchart/gstripchart.c:1480
 msgid "Info about the striphart program"
 msgstr "Información acerca del programa stripchart"
 
-#: gstripchart/gstripchart.c:1454
+#: gstripchart/gstripchart.c:1480
 msgid "_About"
 msgstr "_Acerca"
 
-#: gstripchart/gstripchart.c:1465
+#: gstripchart/gstripchart.c:1491
 msgid "_File"
 msgstr "_Archivo"
 
-#: gstripchart/gstripchart.c:1466
+#: gstripchart/gstripchart.c:1492
 msgid "_Help"
 msgstr "A_yuda"
 
-#: gstripchart/gstripchart.c:1530 gstripchart/gstripchart.c:1647
+#: gstripchart/gstripchart.c:1556 gstripchart/gstripchart.c:1694
 msgid "Param"
 msgstr "Parám."
 
-#: gstripchart/gstripchart.c:1530 mini-utils/gcolorsel/gcolorsel.c:156
+#: gstripchart/gstripchart.c:1556 mini-utils/gcolorsel/gcolorsel.c:156
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Valor"
 
-#: gstripchart/gstripchart.c:1534
+#: gstripchart/gstripchart.c:1560
 msgid "Identifier"
 msgstr "Identificador"
 
-#: gstripchart/gstripchart.c:1536 mini-utils/gcolorsel/gcolorsel.c:155
+#: gstripchart/gstripchart.c:1562 mini-utils/gcolorsel/gcolorsel.c:155
 msgid "Color"
 msgstr "Color"
 
-#: gstripchart/gstripchart.c:1538
+#: gstripchart/gstripchart.c:1564
 msgid "Filename"
 msgstr "Nombre del archivo"
 
-#: gstripchart/gstripchart.c:1540
+#: gstripchart/gstripchart.c:1566
 msgid "Pattern"
 msgstr "Patrón"
 
-#: gstripchart/gstripchart.c:1542
+#: gstripchart/gstripchart.c:1568
 msgid "Equation"
 msgstr "Ecuación"
 
-#: gstripchart/gstripchart.c:1544
+#: gstripchart/gstripchart.c:1570
 msgid "Expected range"
 msgstr "Rango admitido"
 
-#: gstripchart/gstripchart.c:1548
+#: gstripchart/gstripchart.c:1574
 msgid "Displayed range"
 msgstr "Rango afichado"
 
-#: gstripchart/gstripchart.c:1552
+#: gstripchart/gstripchart.c:1578
 msgid "Current value"
 msgstr "Valor actual"
 
-#: gstripchart/gstripchart.c:1559
+#: gstripchart/gstripchart.c:1585
 msgid "Active"
 msgstr "Activo"
 
-#: gstripchart/gstripchart.c:1575
-msgid "Gnome Stripchart Parameters"
-msgstr "Parámetros de gstripchart"
+#: gstripchart/gstripchart.c:1601
+msgid "Stripchart Parameters"
+msgstr "Parámetros de Stripchart"
 
-#: gstripchart/gstripchart.c:1647
+#: gstripchart/gstripchart.c:1695
 msgid "Current"
 msgstr "Actual"
 
-#: gstripchart/gstripchart.c:1647
+#: gstripchart/gstripchart.c:1696
 msgid "Top"
 msgstr "Máximo"
 
-#: gstripchart/gstripchart.c:1675 gstripchart/gstripchart.c:1950
+#: gstripchart/gstripchart.c:1697
+msgid "Scale"
+msgstr "Escala"
+
+#: gstripchart/gstripchart.c:1734 gstripchart/gstripchart.c:2013
 msgid "Help"
 msgstr "Ayuda"
 
-#: gstripchart/gstripchart.c:1681 gstripchart/gstripchart.c:1953
+#: gstripchart/gstripchart.c:1740 gstripchart/gstripchart.c:2016
 #: mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "Acerca"
 
-#: gstripchart/gstripchart.c:1687
+#: gstripchart/gstripchart.c:1746
 msgid "Params"
 msgstr "Parám."
 
-#: gstripchart/gstripchart.c:1693
+#: gstripchart/gstripchart.c:1752
 msgid "Exit"
 msgstr "Salir"
 
-#: gstripchart/gstripchart.c:1799
-msgid "Gnome stripchart viewer"
-msgstr "Visualizador de gráficos sistema de Gnome"
+#: gstripchart/gstripchart.c:1858
+msgid "Stripchart Viewer"
+msgstr "Visualizador de gráficos Stripchart"
 
 #. Create a top-level application window. Set minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
-#: gstripchart/gstripchart.c:1799
+#: gstripchart/gstripchart.c:1858
 msgid "gstripchart"
 msgstr "gstripchart"
 
-#: gstripchart/gstripchart.c:1956
+#: gstripchart/gstripchart.c:2019
 msgid "Params..."
 msgstr "Parám..."
 
-#: gstripchart/gstripchart.c:2000
+#: gstripchart/gstripchart.c:2063
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "tipo de afichage inválido: %s\n"
 
-#: gstripchart/gstripchart.c:2025
+#: gstripchart/gstripchart.c:2088
 msgid "GEO"
 msgstr "GEO"
 
-#: gstripchart/gstripchart.c:2025
+#: gstripchart/gstripchart.c:2088
 msgid "Geometry string: WxH+X+Y"
 msgstr "Geometría: AxL+X+Y"
 
-#: gstripchart/gstripchart.c:2027
+#: gstripchart/gstripchart.c:2090
 msgid "Configuration file name"
 msgstr "Nombre del archivo de configuración"
 
-#: gstripchart/gstripchart.c:2027
+#: gstripchart/gstripchart.c:2090
 msgid "FILE"
 msgstr "ARCHIVO"
 
-#: gstripchart/gstripchart.c:2029
+#: gstripchart/gstripchart.c:2092
 msgid "Chart update interval"
 msgstr "intervalo de actualización del grafo"
 
-#: gstripchart/gstripchart.c:2029 gstripchart/gstripchart.c:2031
-#: gstripchart/gstripchart.c:2033 gstripchart/gstripchart.c:2035
+#: gstripchart/gstripchart.c:2092 gstripchart/gstripchart.c:2094
+#: gstripchart/gstripchart.c:2096 gstripchart/gstripchart.c:2098
 msgid "SECS"
 msgstr "SEG"
 
-#: gstripchart/gstripchart.c:2031
+#: gstripchart/gstripchart.c:2094
 msgid "Chart low-pass filter time constant"
 msgstr "Constante de tiempo del filtro pasa-bajo del grafo"
 
-#: gstripchart/gstripchart.c:2033
+#: gstripchart/gstripchart.c:2096
 msgid "Slider update interval"
 msgstr "intervalo de actualización de la aguja"
 
-#: gstripchart/gstripchart.c:2035
+#: gstripchart/gstripchart.c:2098
 msgid "Slider low-pass filter time constant"
 msgstr "Constante de tiempo del filtro pasa-bajo de la aguja"
 
-#: gstripchart/gstripchart.c:2037
+#: gstripchart/gstripchart.c:2100
 msgid "Adds a menubar to the main window"
 msgstr "Añadir una barra de menú a la ventana principal"
 
-#: gstripchart/gstripchart.c:2039
+#: gstripchart/gstripchart.c:2102
 msgid "Omits slider window"
 msgstr "No mostrar las agujas"
 
-#: gstripchart/gstripchart.c:2041
+#: gstripchart/gstripchart.c:2105 gstripchart/gstripchart.c:2107
 msgid "TYPE"
 msgstr "TIPO"
 
-#: gstripchart/gstripchart.c:2041
-msgid "TYPE is one of gtk, text, graph, or none"
-msgstr "TIPO es uno de gtk, texto, grafo o 'none'"
+#: gstripchart/gstripchart.c:2105
+msgid "TYPE is one of gtk, applet, text, or none"
+msgstr "TIPO es uno de gtk, applet, texto, o 'ninguno'"
 
-#: gstripchart/gstripchart.c:2190
+#: gstripchart/gstripchart.c:2107
+msgid "TYPE is one of gtk, text, or none"
+msgstr "TIPO es uno de gtk, texto, o 'ninguno'"
+
+#: gstripchart/gstripchart.c:2258
 msgid "black"
 msgstr "negro"
 
-#: gstripchart/gstripchart.c:2190
-msgid "blue"
-msgstr "azúl"
-
-#: gstripchart/gstripchart.c:2190
+#: gstripchart/gstripchart.c:2258
 msgid "red"
 msgstr "rojo"
 
-#: gstripchart/gstripchart.c:2190
+#: gstripchart/gstripchart.c:2258
 msgid "white"
 msgstr "blanco"
 
-#: gstripchart/gstripchart.c:2190
+#: gstripchart/gstripchart.c:2258
 msgid "yellow"
 msgstr "amarillo"
 
-#: gstripchart/gstripchart.c:2191
-msgid "Busy"
-msgstr "Ocupado"
+#: gstripchart/gstripchart.c:2259
+msgid "blue"
+msgstr "azúl"
 
-#: gstripchart/gstripchart.c:2191
-msgid "Load"
-msgstr "Cargar"
-
-#: gstripchart/gstripchart.c:2191
+#: gstripchart/gstripchart.c:2259
 msgid "cyan"
 msgstr "cyan"
 
-#: gstripchart/gstripchart.c:2191
+#: gstripchart/gstripchart.c:2259
 msgid "green"
 msgstr "verde"
 
-#: gstripchart/gstripchart.c:2191
+#: gstripchart/gstripchart.c:2259
 msgid "magenta"
 msgstr "magenta"
 
-#: gstripchart/gstripchart.c:2192
-msgid "Net In"
-msgstr "Entradas Red"
+#: gstripchart/gstripchart.c:2260
+msgid "Battery"
+msgstr "Batería"
 
-#: gstripchart/gstripchart.c:2192
-msgid "Net Out"
-msgstr "Salidas Red"
+#: gstripchart/gstripchart.c:2260
+msgid "Busy"
+msgstr "Ocupado"
 
-#: gstripchart/gstripchart.c:2192
+#: gstripchart/gstripchart.c:2260
+msgid "Load"
+msgstr "Cargar"
+
+#: gstripchart/gstripchart.c:2260
 msgid "Swap"
 msgstr "Swap"
 
-#: gstripchart/gstripchart.c:2192
+#: gstripchart/gstripchart.c:2261
+msgid "Net In"
+msgstr "Entradas Red"
+
+#: gstripchart/gstripchart.c:2261
+msgid "Net Out"
+msgstr "Salidas Red"
+
+#: gstripchart/gstripchart.c:2261
 msgid "ppp"
 msgstr "PPP"
 
@@ -2036,4 +2052,3 @@ msgstr "Solamente el superusuario puede usar esta herramienta"
 #: mini-utils/idetool/idetool.c:428
 msgid "You appear to have no IDE drives"
 msgstr "Al parecer Vd. no tiene discos IDE"
-

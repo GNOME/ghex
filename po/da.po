@@ -2,12 +2,13 @@
 # Copyright (C) 1999 Free Software Foundation, Inc.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1998, 1999.
 # Kim Schulz <kim@schulz.dk>, 1999.
+# Birger Langkjer <birger.langkjer@image.dk>, 1999
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 1999-11-28 10:56+0100\n"
-"PO-Revision-Date: 1999-11-27 22:06+01:00\n"
+"POT-Creation-Date: 1999-11-29 11:09+0100\n"
+"PO-Revision-Date: 1999-11-29 03:56+01:00\n"
 "Last-Translator: Birger Langkjer <birger.langkjer@image.dk>\n"
 "Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
 "MIME-Version: 1.0\n"
@@ -226,7 +227,7 @@ msgstr ""
 "Filen %s har ændret sig siden sidste gemning.\n"
 "Ønsker du at gemme ændringerne?"
 
-#: ghex/main.c:174
+#: ghex/main.c:170
 #, c-format
 msgid "Offset: %s"
 msgstr "Afstand: %s"
@@ -254,7 +255,7 @@ msgstr "Maksimum antal af fortrydninger?"
 
 #: ghex/preferences.c:96
 msgid "Show cursor offset in statusbar as"
-msgstr "Vis markør afstand i statusbaren som"
+msgstr "Vis markørafstand i statusbaren som"
 
 #: ghex/preferences.c:115
 msgid "Hexadecimal"
@@ -306,7 +307,7 @@ msgstr "Åbner Kon_verteringsprogram"
 
 #: ghex/ui.c:52
 msgid "Open base conversion dialog"
-msgstr "Åben standard konverteringsdialog"
+msgstr "Åbn standard konverteringsdialog"
 
 #: ghex/ui.c:89
 msgid "Bytes"
@@ -356,7 +357,7 @@ msgstr "Vælg en fil at gemme bufferen som"
 #: ghex/ui.c:272
 #, c-format
 msgid "Really revert file %s?"
-msgstr "Vil du virkelig gendanne filen %s?"
+msgstr "Vil du gerne gendanne filen %s?"
 
 #: ghex/ui.c:285
 #, c-format
@@ -414,7 +415,7 @@ msgstr "Filnavne pånær"
 
 #: gsearchtool/gsearchtool.c:34
 msgid "Simple substring search"
-msgstr "Simpel substreng søgning"
+msgstr "Simpel substrengssøgning"
 
 #: gsearchtool/gsearchtool.c:35
 msgid "Regular expression search"
@@ -481,7 +482,7 @@ msgstr "Gnome filsøgningsredskab"
 
 #: gsearchtool/gsearchtool.c:569
 msgid "(C) 1998 the Free Software Foundation"
-msgstr "Ophavsret (C) 1998 Free Software Foundation"
+msgstr "(C) 1998 Free Software Foundation"
 
 #: gsearchtool/gsearchtool.c:571
 msgid "Frontend to the unix find/grep/locate commands"
@@ -551,27 +552,26 @@ msgstr "ukendt farve: %s"
 
 #: gstripchart/gstripchart.c:864
 msgid "scale must be either \"log\" or \"linear\""
-msgstr ""
+msgstr "skala skal enten være \"log\" eller \"lineær\""
 
 #: gstripchart/gstripchart.c:886
 #, c-format
 msgid "invalid option: \"%s\""
 msgstr "ugyldigt flag: \"%s\""
 
-#: gstripchart/gstripchart.c:1445
+#: gstripchart/gstripchart.c:1449
 msgid "E_xit"
 msgstr "_Afslut"
 
-#: gstripchart/gstripchart.c:1445
+#: gstripchart/gstripchart.c:1449
 msgid "Terminate the stripchart program"
 msgstr "Afslut diagramprogrammet"
 
-#: gstripchart/gstripchart.c:1461
-#, fuzzy
+#: gstripchart/gstripchart.c:1465
 msgid "Copyright 1998,99 John Kodis"
-msgstr "Ophavsret (C) 1998 John Kodis"
+msgstr "Ophavsret 1998, 99 John Kodis"
 
-#: gstripchart/gstripchart.c:1463
+#: gstripchart/gstripchart.c:1467
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -583,234 +583,239 @@ msgstr ""
 "ydelsesparametre såsom CPU forbrug, CPU utilisation, netværkstrafik, osv. "
 "Andre formål er skjult for at give den interesserede bruger lidt øvelse."
 
-#: gstripchart/gstripchart.c:1476
+#: gstripchart/gstripchart.c:1480
 msgid "Info about the striphart program"
 msgstr "Information om stripgrafprogrammet"
 
-#: gstripchart/gstripchart.c:1476
+#: gstripchart/gstripchart.c:1480
 msgid "_About"
 msgstr "_Om..."
 
-#: gstripchart/gstripchart.c:1487
+#: gstripchart/gstripchart.c:1491
 msgid "_File"
 msgstr "_Filer"
 
-#: gstripchart/gstripchart.c:1488
+#: gstripchart/gstripchart.c:1492
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: gstripchart/gstripchart.c:1552 gstripchart/gstripchart.c:1690
+#: gstripchart/gstripchart.c:1556 gstripchart/gstripchart.c:1694
 msgid "Param"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1552 mini-utils/gcolorsel/gcolorsel.c:156
+#: gstripchart/gstripchart.c:1556 mini-utils/gcolorsel/gcolorsel.c:156
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Værdi"
 
-#: gstripchart/gstripchart.c:1556
+#: gstripchart/gstripchart.c:1560
 msgid "Identifier"
 msgstr "Identifikator"
 
-#: gstripchart/gstripchart.c:1558 mini-utils/gcolorsel/gcolorsel.c:155
+#: gstripchart/gstripchart.c:1562 mini-utils/gcolorsel/gcolorsel.c:155
 msgid "Color"
 msgstr "Farve"
 
-#: gstripchart/gstripchart.c:1560
+#: gstripchart/gstripchart.c:1564
 msgid "Filename"
 msgstr "Filnavn"
 
-#: gstripchart/gstripchart.c:1562
+#: gstripchart/gstripchart.c:1566
 msgid "Pattern"
 msgstr "Mønster"
 
-#: gstripchart/gstripchart.c:1564
+#: gstripchart/gstripchart.c:1568
 msgid "Equation"
 msgstr "Beregning"
 
-#: gstripchart/gstripchart.c:1566
+#: gstripchart/gstripchart.c:1570
 msgid "Expected range"
 msgstr "Forventet længde"
 
-#: gstripchart/gstripchart.c:1570
+#: gstripchart/gstripchart.c:1574
 msgid "Displayed range"
 msgstr "Vist længde"
 
-#: gstripchart/gstripchart.c:1574
+#: gstripchart/gstripchart.c:1578
 msgid "Current value"
 msgstr "Nuværende værdi"
 
-#: gstripchart/gstripchart.c:1581
+#: gstripchart/gstripchart.c:1585
 msgid "Active"
 msgstr "Aktiv"
 
-#: gstripchart/gstripchart.c:1597
-#, fuzzy
+#: gstripchart/gstripchart.c:1601
 msgid "Stripchart Parameters"
-msgstr "GNOME Stripgraf parametre"
+msgstr "Stripgraf parametre"
 
-#: gstripchart/gstripchart.c:1691
+#: gstripchart/gstripchart.c:1695
 msgid "Current"
 msgstr "Nuværende"
 
-#: gstripchart/gstripchart.c:1692
+#: gstripchart/gstripchart.c:1696
 msgid "Top"
 msgstr "Top"
 
-#: gstripchart/gstripchart.c:1693
-#, fuzzy
+#: gstripchart/gstripchart.c:1697
 msgid "Scale"
-msgstr "Gem"
+msgstr "Skalér"
 
-#: gstripchart/gstripchart.c:1730 gstripchart/gstripchart.c:2005
+#: gstripchart/gstripchart.c:1734 gstripchart/gstripchart.c:2013
 msgid "Help"
 msgstr "Hjælp"
 
-#: gstripchart/gstripchart.c:1736 gstripchart/gstripchart.c:2008
+#: gstripchart/gstripchart.c:1740 gstripchart/gstripchart.c:2016
 #: mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "Om..."
 
-#: gstripchart/gstripchart.c:1742
+#: gstripchart/gstripchart.c:1746
 msgid "Params"
 msgstr "Parametre"
 
-#: gstripchart/gstripchart.c:1748
+#: gstripchart/gstripchart.c:1752
 msgid "Exit"
 msgstr "Afslut"
 
-#: gstripchart/gstripchart.c:1854
-#, fuzzy
+#: gstripchart/gstripchart.c:1858
 msgid "Stripchart Viewer"
-msgstr "GNOME Stripgraffremviser"
+msgstr "Stripgraffremviser"
 
 #. Create a top-level application window. Set minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
-#: gstripchart/gstripchart.c:1854
+#: gstripchart/gstripchart.c:1858
 msgid "gstripchart"
 msgstr "gstripgraf"
 
-#: gstripchart/gstripchart.c:2011
-#, fuzzy
+#: gstripchart/gstripchart.c:2019
 msgid "Params..."
-msgstr "Parametre"
+msgstr "Param..."
 
-#: gstripchart/gstripchart.c:2055
+#: gstripchart/gstripchart.c:2063
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "forkert fremvisertype: %s\n"
 
-#: gstripchart/gstripchart.c:2080
+#: gstripchart/gstripchart.c:2088
 msgid "GEO"
 msgstr "GEO"
 
-#: gstripchart/gstripchart.c:2080
+#: gstripchart/gstripchart.c:2088
 msgid "Geometry string: WxH+X+Y"
 msgstr "Geometristreng: VxH+X+Y"
 
-#: gstripchart/gstripchart.c:2082
+#: gstripchart/gstripchart.c:2090
 msgid "Configuration file name"
 msgstr "konfigurationsfilnavn"
 
-#: gstripchart/gstripchart.c:2082
+#: gstripchart/gstripchart.c:2090
 msgid "FILE"
 msgstr "FILE"
 
-#: gstripchart/gstripchart.c:2084
+#: gstripchart/gstripchart.c:2092
 msgid "Chart update interval"
 msgstr "Graf opdateringsinterval"
 
-#: gstripchart/gstripchart.c:2084 gstripchart/gstripchart.c:2086
-#: gstripchart/gstripchart.c:2088 gstripchart/gstripchart.c:2090
+#: gstripchart/gstripchart.c:2092 gstripchart/gstripchart.c:2094
+#: gstripchart/gstripchart.c:2096 gstripchart/gstripchart.c:2098
 msgid "SECS"
 msgstr "SEK."
 
-#: gstripchart/gstripchart.c:2086
+#: gstripchart/gstripchart.c:2094
 msgid "Chart low-pass filter time constant"
 msgstr "Chart low-pass filter tidskonstant"
 
-#: gstripchart/gstripchart.c:2088
+#: gstripchart/gstripchart.c:2096
 msgid "Slider update interval"
 msgstr "Slider opdateringsinterval"
 
-#: gstripchart/gstripchart.c:2090
+#: gstripchart/gstripchart.c:2098
 msgid "Slider low-pass filter time constant"
 msgstr "Slider low-pass filter tidskonstant"
 
-#: gstripchart/gstripchart.c:2092
+#: gstripchart/gstripchart.c:2100
 msgid "Adds a menubar to the main window"
 msgstr "Tilføj en menulinie til hovedvinduet"
 
-#: gstripchart/gstripchart.c:2094
+#: gstripchart/gstripchart.c:2102
 msgid "Omits slider window"
 msgstr "Udelader slidervindue"
 
-#: gstripchart/gstripchart.c:2096
+#: gstripchart/gstripchart.c:2105 gstripchart/gstripchart.c:2107
 msgid "TYPE"
 msgstr "TYPE"
 
-#: gstripchart/gstripchart.c:2096
-msgid "TYPE is one of gtk, text, graph, or none"
+#: gstripchart/gstripchart.c:2105
+#, fuzzy
+msgid "TYPE is one of gtk, applet, text, or none"
 msgstr "TYPE er enten GTK, tekst, graf eller ingen"
 
-#: gstripchart/gstripchart.c:2245
+#: gstripchart/gstripchart.c:2107
+#, fuzzy
+msgid "TYPE is one of gtk, text, or none"
+msgstr "TYPE er enten GTK, tekst, graf eller ingen"
+
+#: gstripchart/gstripchart.c:2258
 msgid "black"
-msgstr ""
+msgstr "sort"
 
-#: gstripchart/gstripchart.c:2245
-#, fuzzy
-msgid "blue"
-msgstr "Værdi"
-
-#: gstripchart/gstripchart.c:2245
+#: gstripchart/gstripchart.c:2258
 msgid "red"
-msgstr ""
+msgstr "rød"
 
-#: gstripchart/gstripchart.c:2245
+#: gstripchart/gstripchart.c:2258
 msgid "white"
-msgstr ""
+msgstr "hvid"
 
-#: gstripchart/gstripchart.c:2245
+#: gstripchart/gstripchart.c:2258
 msgid "yellow"
-msgstr ""
+msgstr "gul"
 
-#: gstripchart/gstripchart.c:2246
-msgid "Busy"
-msgstr ""
+#: gstripchart/gstripchart.c:2259
+msgid "blue"
+msgstr "blå"
 
-#: gstripchart/gstripchart.c:2246
-#, fuzzy
-msgid "Load"
-msgstr "Genindlæs"
-
-#: gstripchart/gstripchart.c:2246
+#: gstripchart/gstripchart.c:2259
 msgid "cyan"
-msgstr ""
+msgstr "cyan"
 
-#: gstripchart/gstripchart.c:2246
+#: gstripchart/gstripchart.c:2259
 msgid "green"
-msgstr ""
+msgstr "grøn"
 
-#: gstripchart/gstripchart.c:2246
+#: gstripchart/gstripchart.c:2259
 msgid "magenta"
-msgstr ""
+msgstr "magenta"
 
-#: gstripchart/gstripchart.c:2247
-msgid "Net In"
-msgstr ""
+#: gstripchart/gstripchart.c:2260
+#, fuzzy
+msgid "Battery"
+msgstr "Mønster"
 
-#: gstripchart/gstripchart.c:2247
-msgid "Net Out"
-msgstr ""
+#: gstripchart/gstripchart.c:2260
+msgid "Busy"
+msgstr "Arbejder"
 
-#: gstripchart/gstripchart.c:2247
+#: gstripchart/gstripchart.c:2260
+msgid "Load"
+msgstr "Belast."
+
+#: gstripchart/gstripchart.c:2260
 msgid "Swap"
-msgstr ""
+msgstr "Swap"
 
-#: gstripchart/gstripchart.c:2247
+#: gstripchart/gstripchart.c:2261
+msgid "Net In"
+msgstr "Net ind"
+
+#: gstripchart/gstripchart.c:2261
+msgid "Net Out"
+msgstr "Net ud"
+
+#: gstripchart/gstripchart.c:2261
 msgid "ppp"
-msgstr ""
+msgstr "ppp"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -1760,11 +1765,11 @@ msgstr "Hukommelse"
 
 #: mini-utils/guname/moreinfo.c:186
 msgid "%ld%% memory used."
-msgstr ""
+msgstr "%ld%% hukommelse brugt."
 
 #: mini-utils/guname/moreinfo.c:197
 msgid "%ld%% swap used."
-msgstr ""
+msgstr "%ld%% swap brugt."
 
 #: mini-utils/guname/moreinfo.c:222
 #, c-format
@@ -1806,7 +1811,7 @@ msgstr "%ld megabyte, %ld fri (%ld superbruger); %ld inoder, %ld ledig."
 
 #: mini-utils/guname/moreinfo.c:353
 msgid "%2d%% full "
-msgstr ""
+msgstr "%2d%% fuld "
 
 #: mini-utils/gw/gw.c:141
 msgid ""
@@ -1822,7 +1827,7 @@ msgstr "Skriv information til disk"
 
 #: mini-utils/gw/gw.c:174
 msgid "_Save..."
-msgstr "Gem..."
+msgstr "_Gem..."
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
