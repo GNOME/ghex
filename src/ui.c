@@ -170,7 +170,7 @@ void create_find_dialog(FindDialog *dialog) {
 		dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
 		
 		if(find_dialog.search_type == i)
-			gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
 		
 		gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
 						   GTK_SIGNAL_FUNC(set_find_type_cb), GINT_TO_POINTER(i));
@@ -235,7 +235,7 @@ void create_replace_dialog(ReplaceDialog *dialog) {
 		dialog->type_button[i] = gtk_radio_button_new_with_label(group, type_label);
 		
 		if(replace_dialog.search_type == i)
-			gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
 		
 		gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
 						   GTK_SIGNAL_FUNC(set_replace_type_cb), GINT_TO_POINTER(i));
@@ -398,13 +398,13 @@ static void set_prefs(PropertyUI *pui) {
 	
 	for(i = 0; i < 3; i++)
 		if(def_group_type == group_type[i]) {
-			gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(pui->group_type[i]), TRUE);
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->group_type[i]), TRUE);
 			break;
 		}
 	
 	for(i = 0; i < NUM_MDI_MODES; i++)
 		if(mdi_mode == mdi_type[i]) {
-			gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(pui->mdi_type[i]), TRUE);
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->mdi_type[i]), TRUE);
 			break;
 		}
 }
