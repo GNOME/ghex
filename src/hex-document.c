@@ -187,7 +187,7 @@ static void hex_document_init (HexDocument *document) {
   document->buffer = NULL;
   document->buffer_size = 0;
   document->changed = FALSE;
-  gnome_mdi_child_set_menu_template(GNOME_MDI_CHILD(document), doc_menu, TRUE);
+  gnome_mdi_child_set_menu_template(GNOME_MDI_CHILD(document), doc_menu);
 }
 
 HexDocument *hex_document_new(gchar *name) {
