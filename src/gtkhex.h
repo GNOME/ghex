@@ -155,12 +155,17 @@ void gtk_hex_set_insert_mode(GtkHex *, gboolean);
 
 PangoFontMetrics* gtk_hex_load_font (const char *font_name); 
 
-void gtk_hex_copy_clipboard(GtkHex *gh);
-void gtk_hex_cut_clipboard(GtkHex *gh);
-void gtk_hex_paste_clipboard(GtkHex *gh);
+void gtk_hex_copy_to_clipboard(GtkHex *gh);
+void gtk_hex_cut_to_clipboard(GtkHex *gh);
+void gtk_hex_paste_from_clipboard(GtkHex *gh);
 
 void add_atk_namedesc(GtkWidget *widget, const gchar *name, const gchar *desc);
 void add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType type);
+
+void     gtk_hex_set_selection(GtkHex *gh, gint start, gint end);
+gboolean gtk_hex_get_selection(GtkHex *gh, gint *start, gint *end);
+void     gtk_hex_clear_selection(GtkHex *gh);
+void     gtk_hex_delete_selection(GtkHex *gh);
 
 GtkHex_AutoHighlight *gtk_hex_insert_autohighlight(GtkHex *gh,
 												   const gchar *search,

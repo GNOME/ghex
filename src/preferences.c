@@ -535,6 +535,7 @@ format_activated_cb(GtkEntry *entry, PropertyUI *pui)
 	int i, len;
 	gchar *old_offset_fmt;
 	gboolean expect_spec;
+	GList *win_list;
 
 	old_offset_fmt = offset_fmt;
 	offset_fmt = g_strdup(gtk_entry_get_text(GTK_ENTRY(pui->format)));
@@ -577,6 +578,11 @@ format_activated_cb(GtkEntry *entry, PropertyUI *pui)
 							 GHEX_BASE_KEY GHEX_PREF_OFFSET_FORMAT,
 							 offset_fmt,
 							 NULL);
+	win_list = ghex_window_get_list();
+	while(NULL != win_list) {
+		ghex_window_update_status_message((GHexWindow *)win_list->data);
+		win_list = win_list->next;
+	}
 }
 
 static void

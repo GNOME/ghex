@@ -85,6 +85,7 @@ void ghex_window_sync_converter_item(GHexWindow *win, gboolean state);
 gboolean ghex_window_ok_to_close(GHexWindow *win);
 gboolean ghex_window_save_as(GHexWindow *win);
 
+void ghex_window_update_status_message(GHexWindow *win);
 
 G_END_DECLS
 

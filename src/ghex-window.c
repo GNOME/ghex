@@ -71,29 +71,42 @@ ghex_window_drag_data_received(GtkWidget *widget,
         else
             newwin = NULL;
         while(*uri) {
-            if(!g_ascii_strncasecmp("file:", *uri, 5)) {
-	    	if(newwin == NULL)
-                                newwin = ghex_window_new();
-                if(ghex_window_load(GHEX_WINDOW(newwin), (*uri) + 5)) {
-                	if(newwin != GTK_WIDGET(win))
-                                        gtk_widget_show(newwin);
-                        newwin = NULL;
-                }
-                else {
-                	GtkWidget *dlg;
-                        dlg = gtk_message_dialog_new(GTK_WINDOW(win),
-                                                             GTK_DIALOG_MODAL,
-                                                             GTK_MESSAGE_ERROR,
-                                                             GTK_BUTTONS_OK,
-                                                             _("Can not open file:\n%s"),
-                                                             *uri);
-                        gtk_widget_show(dlg);
-                        gtk_dialog_run(GTK_DIALOG(dlg));
-                        gtk_widget_destroy(dlg);
-                }
+            GError *err;
+            gchar *filename = g_filename_from_uri(*uri, NULL, &err);
 
-            }
             uri++;
+            if(filename == NULL) {
+                GtkWidget *dlg;
+                dlg = gtk_message_dialog_new(GTK_WINDOW(win),
+                                             GTK_DIALOG_MODAL,
+                                             GTK_MESSAGE_ERROR,
+                                             GTK_BUTTONS_OK,
+                                             _("Can not open URI:\n%s"),
+                                             err->message);
+                g_error_free(err);
+                continue;
+            }
+
+	    	if(newwin == NULL)
+                newwin = ghex_window_new();
+            if(ghex_window_load(GHEX_WINDOW(newwin), filename)) {
+                if(newwin != GTK_WIDGET(win))
+                    gtk_widget_show(newwin);
+                newwin = NULL;
+            }
+            else {
+                GtkWidget *dlg;
+                dlg = gtk_message_dialog_new(GTK_WINDOW(win),
+                                             GTK_DIALOG_MODAL,
+                                             GTK_MESSAGE_ERROR,
+                                             GTK_BUTTONS_OK,
+                                             _("Can not open file:\n%s"),
+                                             *filename);
+                gtk_widget_show(dlg);
+                gtk_dialog_run(GTK_DIALOG(dlg));
+                gtk_widget_destroy(dlg);
+            }
+            g_free(filename);
         }
         g_strfreev(win->uris_to_open);
         win->uris_to_open = NULL;
@@ -605,6 +618,34 @@ ghex_window_sync_group_type(GHexWindow *win)
     bonobo_ui_component_set_prop(win->uic, group_path, "state", "1", NULL);
 }
 
+void
+ghex_window_update_status_message(GHexWindow *win)
+{
+#define FMT_LEN    128
+#define STATUS_LEN 128
+
+    gchar fmt[FMT_LEN], status[STATUS_LEN];
+    gint current_pos;
+    gint ss, se, len;
+
+    current_pos = gtk_hex_get_cursor(win->gh);
+    if(g_snprintf(fmt, FMT_LEN, _("Offset: %s"), offset_fmt) < FMT_LEN) {
+        g_snprintf(status, STATUS_LEN, fmt, current_pos);
+        if(gtk_hex_get_selection(win->gh, &ss, &se)) {
+            if(g_snprintf(fmt, FMT_LEN, _("; %s bytes from %s to %s selected"),
+                          offset_fmt, offset_fmt, offset_fmt) < FMT_LEN) {
+                len = strlen(status);
+                if(len < STATUS_LEN) {
+                    g_snprintf(status + len, STATUS_LEN - len, fmt, se - ss, ss, se);
+                }
+            }
+        }
+        ghex_window_show_status(win, status);
+    }
+    else
+        ghex_window_show_status(win, " ");
+}
+
 static void
 cursor_moved_cb(GtkHex *gtkhex, gpointer user_data)
 {
@@ -615,17 +656,10 @@ cursor_moved_cb(GtkHex *gtkhex, gpointer user_data)
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
     current_pos = gtk_hex_get_cursor(gtkhex);
-
-	if((format = g_strdup_printf(_("Offset: %s"), offset_fmt)) != NULL) {
-		if((cursor_pos = g_strdup_printf(format, current_pos)) != NULL) {
-			ghex_window_show_status(win, cursor_pos);
-            g_free(cursor_pos);
-		}
-		g_free(format);
-	}
+    ghex_window_update_status_message(win);
     for (i = 0; i < 8; i++)
     {
-        /* returns  0 on buffer overflow, which is what we want */
+        /* returns 0 on buffer overflow, which is what we want */
         val.v[i] = gtk_hex_get_byte(gtkhex, current_pos+i);
     }
     hex_dialog_updateview(win->dialog, &val);
@@ -921,7 +955,7 @@ remove_message_timeout (MessageInfo * mi)
 
 	/* Remove the status message */
 	/* NOTE : Use space ' ' not an empty string '' */
-	ghex_window_show_status (mi->win, " ");
+	ghex_window_update_status_message (mi->win);
     g_signal_handlers_disconnect_by_func(G_OBJECT(mi->win),
                                          remove_timeout_cb, mi);
 	g_free (mi);
@@ -971,7 +1005,6 @@ ghex_window_flash (GHexWindow * win, const gchar * flash)
 	g_return_if_fail (win != NULL);
 	g_return_if_fail (GHEX_IS_WINDOW (win));
 	g_return_if_fail (flash != NULL);
-
 
 	mi = g_new (MessageInfo, 1);
 

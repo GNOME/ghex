@@ -280,7 +280,7 @@ paste_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
 	if(win->gh)
-		gtk_hex_paste_clipboard(win->gh);
+		gtk_hex_paste_from_clipboard(win->gh);
 }
 
 void 
@@ -289,7 +289,7 @@ copy_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
 	if(win->gh)
-		gtk_hex_copy_clipboard(win->gh);
+		gtk_hex_copy_to_clipboard(win->gh);
 }
 
 void 
@@ -298,7 +298,7 @@ cut_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
 	if(win->gh)
-		gtk_hex_cut_clipboard(win->gh);
+		gtk_hex_cut_to_clipboard(win->gh);
 }
 
 void

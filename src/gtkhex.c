@@ -82,8 +82,6 @@ static void render_hex_highlights(GtkHex *gh, gint cursor_line);
 static void render_ascii_highlights(GtkHex *gh, gint cursor_line);
 static void render_hex_lines(GtkHex *, gint, gint);
 static void render_ascii_lines(GtkHex *, gint, gint);
-static void gtk_hex_set_selection(GtkHex *gh, gint start, gint end);
-
 
 static void gtk_hex_validate_highlight(GtkHex *gh, GtkHex_Highlight *hl);
 static void gtk_hex_invalidate_highlight(GtkHex *gh, GtkHex_Highlight *hl);
@@ -1247,7 +1245,7 @@ static void primary_clear_cb(GtkClipboard *clipboard,
 							 gpointer user_data_or_owner) {
 }
 
-static void gtk_hex_set_selection(GtkHex *gh, gint start, gint end)
+void gtk_hex_set_selection(GtkHex *gh, gint start, gint end)
 {
 	gint length = gh->document->file_size;
 	gint oe, os, ne, ns;
@@ -1291,11 +1289,30 @@ static void gtk_hex_set_selection(GtkHex *gh, gint start, gint end)
 									gh);
 }
 
-void gtk_hex_select_region (GtkHex *gh,
-							gint         start,
-							gint         end) {
-	
-	gtk_hex_set_selection(gh, start, end);
+gboolean gtk_hex_get_selection(GtkHex *gh, gint *start, gint *end)
+{
+	gint ss, se;
+
+	if(gh->selection.start > gh->selection.end) {
+		se = gh->selection.start;
+		ss = gh->selection.end;
+	}
+	else {
+		ss = gh->selection.start;
+		se = gh->selection.end;
+	}
+
+	if(NULL != start)
+		*start = ss;
+	if(NULL != end)
+		*end = se;
+
+	return !(ss == se);
+}
+
+void gtk_hex_clear_selection(GtkHex *gh)
+{
+	gtk_hex_set_selection(gh, 0, 0);
 }
 
 void gtk_hex_delete_selection(GtkHex *gh)
@@ -1306,7 +1323,7 @@ void gtk_hex_delete_selection(GtkHex *gh)
 	start = MIN(gh->selection.start, gh->selection.end);
 	end = MAX(gh->selection.start, gh->selection.end);
 
-	gtk_hex_select_region(gh, 0, 0);
+	gtk_hex_set_selection(gh, 0, 0);
 
 	if(start != end) {
 		if(start < gh->cursor_pos)
@@ -1498,22 +1515,22 @@ static void gtk_hex_update_all_auto_highlights(GtkHex *gh, gboolean delete, gboo
 	}
 }
 
-void gtk_hex_copy_clipboard(GtkHex *gh)
+void gtk_hex_copy_to_clipboard(GtkHex *gh)
 {
 	g_signal_emit_by_name(G_OBJECT(gh), "copy_clipboard");
 }
 
-void gtk_hex_cut_clipboard(GtkHex *gh)
+void gtk_hex_cut_to_clipboard(GtkHex *gh)
 {
 	g_signal_emit_by_name(G_OBJECT(gh), "cut_clipboard");
 }
 
-void gtk_hex_paste_clipboard(GtkHex *gh)
+void gtk_hex_paste_from_clipboard(GtkHex *gh)
 {
 	g_signal_emit_by_name(G_OBJECT(gh), "paste_clipboard");
 }
 
-static void gtk_hex_real_copy_clipboard(GtkHex *gh)
+static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
 {
 	gint start_pos; 
 	gint end_pos;
@@ -1530,15 +1547,15 @@ static void gtk_hex_real_copy_clipboard(GtkHex *gh)
 	}
 }
 
-static void gtk_hex_real_cut_clipboard(GtkHex *gh)
+static void gtk_hex_real_cut_to_clipboard(GtkHex *gh)
 {
 	if(gh->selection.start != -1 && gh->selection.end != -1) {
-		gtk_hex_real_copy_clipboard(gh);
+		gtk_hex_real_copy_to_clipboard(gh);
 		gtk_hex_delete_selection(gh);
 	}
 }
 
-static void gtk_hex_real_paste_clipboard(GtkHex *gh)
+static void gtk_hex_real_paste_from_clipboard(GtkHex *gh)
 {
 	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 	gchar *text;
@@ -1858,9 +1875,9 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 	
 	klass->cursor_moved = NULL;
 	klass->data_changed = gtk_hex_real_data_changed;
-	klass->cut_clipboard = gtk_hex_real_cut_clipboard;
-	klass->copy_clipboard = gtk_hex_real_copy_clipboard;
-	klass->paste_clipboard = gtk_hex_real_paste_clipboard;
+	klass->cut_clipboard = gtk_hex_real_cut_to_clipboard;
+	klass->copy_clipboard = gtk_hex_real_copy_to_clipboard;
+	klass->paste_clipboard = gtk_hex_real_paste_from_clipboard;
 
 	klass->primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 	klass->clipboard = gtk_clipboard_get(GDK_NONE);
