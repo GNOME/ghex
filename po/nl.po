@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.1\n"
-"POT-Creation-Date: 1999-03-01 17:26-0500\n"
+"POT-Creation-Date: 1999-09-01 15:44+0200\n"
 "PO-Revision-Date: 1999-01-23 19:29+0100\n"
 "Last-Translator: André van Dijk <ady@unseen.demon.nl>\n"
 "Language-Team: Dutch <NL@li.org>\n"
@@ -13,18 +13,22 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
+# gcalc/gcalc.c:30
 #: gcalc/gcalc.c:30
 msgid "The Gnome Calculator"
 msgstr "De Gnome Rekenmachine"
 
+# gcalc/gcalc.c:33
 #: gcalc/gcalc.c:33
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Simpele dubbele precisie-rekenmachine vergelijkbaar met xcalc"
 
+# gcalc/gcalc.c:124
 #: gcalc/gcalc.c:124
 msgid "Gnome Calculator"
 msgstr "Gnome Rekenmachine"
 
+# gdiskfree/df.c:212
 #: gdiskfree/df.c:212
 msgid ""
 "A quick hack to show the amount of space free on mounted file systems "
@@ -33,186 +37,235 @@ msgstr ""
 "Een simpel programma om de hoeveelheid vrije ruimte op aangekoppelde "
 "bestandsystemen te tonen met wijzerplaten."
 
-#: ghex/converter.c:39
+# ghex/converter.c:39
+#: ghex/converter.c:41
 msgid "GHex: Converter"
 msgstr ""
 
-#: ghex/converter.c:46
+# ghex/converter.c:46
+#: ghex/converter.c:50
 msgid "Binary"
 msgstr ""
 
-#: ghex/converter.c:56
+# ghex/converter.c:56
+#: ghex/converter.c:60 ghex/preferences.c:110
 msgid "Decimal"
 msgstr ""
 
-#: ghex/converter.c:66
+# ghex/converter.c:66
+#: ghex/converter.c:70
 msgid "Hex"
 msgstr ""
 
-#: ghex/converter.c:76
+# ghex/converter.c:76
+#: ghex/converter.c:80
 msgid "ASCII"
 msgstr ""
 
-#: ghex/converter.c:86 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:594
+#: ghex/converter.c:90
+msgid "Get cursor value"
+msgstr ""
+
+# ghex/converter.c:86 mini-utils/gshutdown/gshutdown.c:152
+# mini-utils/gshutdown/gshutdown.c:594
+#: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
+#: mini-utils/gshutdown/gshutdown.c:595
 msgid "Close"
 msgstr ""
 
-#: ghex/converter.c:134
+# ghex/converter.c:134
+#: ghex/converter.c:190
 msgid "ERROR"
 msgstr "FOUT"
 
-#: ghex/findreplace.c:51 ghex/main.c:72
+# ghex/findreplace.c:51 ghex/main.c:72
+#: ghex/findreplace.c:51 ghex/main.c:83
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr ""
 
+# ghex/findreplace.c:60
 #: ghex/findreplace.c:60
 #, c-format
 msgid "Search for %s"
 msgstr ""
 
+# ghex/findreplace.c:76
 #: ghex/findreplace.c:76
 msgid "Find Next"
 msgstr ""
 
+# ghex/findreplace.c:83
 #: ghex/findreplace.c:83
 msgid "Find Previous"
 msgstr ""
 
-#: ghex/findreplace.c:111 ghex/main.c:73
+# ghex/findreplace.c:111 ghex/main.c:73
+#: ghex/findreplace.c:111 ghex/main.c:84
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr ""
 
+# ghex/findreplace.c:125
 #: ghex/findreplace.c:125
 #, c-format
 msgid "Replace %s"
 msgstr ""
 
+# ghex/findreplace.c:141
 #: ghex/findreplace.c:141
 msgid "Find next"
 msgstr ""
 
+# ghex/findreplace.c:148
 #: ghex/findreplace.c:148
 msgid "Replace"
 msgstr ""
 
+# ghex/findreplace.c:155
 #: ghex/findreplace.c:155
 msgid "Replace All"
 msgstr ""
 
-#: ghex/findreplace.c:179 ghex/main.c:74
+# ghex/findreplace.c:179 ghex/main.c:74
+#: ghex/findreplace.c:179 ghex/main.c:85
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr ""
 
+# ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
 #: ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
 msgid "There is no active buffer to search!"
 msgstr ""
 
+# ghex/findreplace.c:268 ghex/findreplace.c:291 ghex/findreplace.c:344
 #: ghex/findreplace.c:268 ghex/findreplace.c:291 ghex/findreplace.c:344
 msgid "There seems to be no string to search for!"
 msgstr ""
 
+# ghex/findreplace.c:274 ghex/findreplace.c:351
 #: ghex/findreplace.c:274 ghex/findreplace.c:351
 msgid "End Of File reached"
 msgstr "Einde van bestand bereikt"
 
+# ghex/findreplace.c:298
 #: ghex/findreplace.c:298
 msgid "Beginning Of File reached"
 msgstr "Begin van bestand bereikt"
 
+# ghex/findreplace.c:306
 #: ghex/findreplace.c:306
 msgid "There is no active buffer to move the cursor in!"
 msgstr ""
 
+# ghex/findreplace.c:311
 #: ghex/findreplace.c:311
 msgid "No offset has been specified!"
 msgstr ""
 
+# ghex/findreplace.c:318
 #: ghex/findreplace.c:318
 msgid "The offset must be a positive integer value!"
 msgstr ""
 
+# ghex/findreplace.c:323
 #: ghex/findreplace.c:323
 msgid "Can not position cursor beyond the End Of File!"
 msgstr ""
 
+# ghex/findreplace.c:361 ghex/findreplace.c:400
 #: ghex/findreplace.c:361 ghex/findreplace.c:400
 msgid "There is no active buffer to replace data in!"
 msgstr ""
 
+# ghex/findreplace.c:372 ghex/findreplace.c:411
 #: ghex/findreplace.c:372 ghex/findreplace.c:411
 msgid "Strange find or replace string!"
 msgstr ""
 
+# ghex/findreplace.c:377 ghex/findreplace.c:416
 #: ghex/findreplace.c:377 ghex/findreplace.c:416
 msgid "Both strings must be of the same length!"
 msgstr ""
 
+# ghex/findreplace.c:390
 #: ghex/findreplace.c:390
 msgid "End Of File reached!"
 msgstr ""
 
+# ghex/findreplace.c:431
 #: ghex/findreplace.c:431
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr ""
 
+# ghex/hex-document.c:57
 #: ghex/hex-document.c:57
 msgid "_Bytes"
 msgstr ""
 
+# ghex/hex-document.c:58
 #: ghex/hex-document.c:58
 msgid "Group data by 8 bits"
 msgstr ""
 
+# ghex/hex-document.c:59
 #: ghex/hex-document.c:59
 msgid "_Words"
 msgstr ""
 
+# ghex/hex-document.c:60
 #: ghex/hex-document.c:60
 msgid "Group data by 16 bits"
 msgstr ""
 
+# ghex/hex-document.c:61
 #: ghex/hex-document.c:61
 msgid "_Longwords"
 msgstr ""
 
+# ghex/hex-document.c:62
 #: ghex/hex-document.c:62
 msgid "Group data by 32 bits"
 msgstr "Groepeer gegevens per 32 bits"
 
-#: ghex/hex-document.c:78
-msgid "_Goto Byte..."
-msgstr "_Ga naar Byte..."
-
+# ghex/hex-document.c:78
 #: ghex/hex-document.c:78
 msgid "Jump to a certain position"
 msgstr ""
 
+# ghex/hex-document.c:78
+#: ghex/hex-document.c:78
+msgid "_Goto Byte..."
+msgstr "_Ga naar Byte..."
+
+# ghex/hex-document.c:81
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
 msgstr ""
 
+# ghex/hex-document.c:86
 #: ghex/hex-document.c:86
 msgid "_Add view"
 msgstr ""
 
+# ghex/hex-document.c:87
 #: ghex/hex-document.c:87
 msgid "Add a new view of the buffer"
 msgstr ""
 
+# ghex/hex-document.c:88
 #: ghex/hex-document.c:88
 msgid "_Remove view"
 msgstr ""
 
+# ghex/hex-document.c:89
 #: ghex/hex-document.c:89
 msgid "Remove the current view of the buffer"
 msgstr ""
 
-#: ghex/main.c:48
+# ghex/main.c:48
+#: ghex/main.c:51
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -221,191 +274,261 @@ msgstr ""
 "Bestand %s is veranderd sinds laatste opslag.\n"
 "Wilt u de veranderingen bewaren?"
 
-#: ghex/preferences.c:48 mini-utils/idetool/idetool.c:142
-#: mini-utils/idetool/idetool.c:325
+#: ghex/main.c:173
+#, c-format
+msgid "Offset: %s"
+msgstr ""
+
+# ghex/preferences.c:48 mini-utils/idetool/idetool.c:142
+# mini-utils/idetool/idetool.c:325
+#: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
 msgid "Default"
 msgstr ""
 
-#: ghex/preferences.c:49
+# ghex/preferences.c:49
+#: ghex/preferences.c:51
 msgid "Notebook"
 msgstr ""
 
-#: ghex/preferences.c:50
+# ghex/preferences.c:50
+#: ghex/preferences.c:52
 msgid "Toplevel"
 msgstr ""
 
-#: ghex/preferences.c:51
+# ghex/preferences.c:51
+#: ghex/preferences.c:53
 msgid "Modal"
 msgstr ""
 
-#: ghex/preferences.c:79
+# ghex/preferences.c:79
+#: ghex/preferences.c:82
 msgid "Maximum number of undo levels"
 msgstr ""
 
-#: ghex/preferences.c:90
+#: ghex/preferences.c:96
+msgid "Show cursor offset in statusbar as"
+msgstr ""
+
+#: ghex/preferences.c:115
+msgid "Hexadecimal"
+msgstr ""
+
+# gtt/toolbar.c:159
+#: ghex/preferences.c:121
+#, fuzzy
+msgid "Custom"
+msgstr "Knippen"
+
+#: ghex/preferences.c:131
+msgid "Show offsets column"
+msgstr ""
+
+# ghex/preferences.c:90
+#: ghex/preferences.c:136
 msgid "Editing"
 msgstr "_Bewerken"
 
-#: ghex/preferences.c:97
+# ghex/preferences.c:97
+#: ghex/preferences.c:143
 msgid "Font"
 msgstr ""
 
-#: ghex/preferences.c:113
+# ghex/preferences.c:113
+#: ghex/preferences.c:159
 msgid "Browse..."
 msgstr ""
 
-#: ghex/preferences.c:132
+# ghex/preferences.c:132
+#: ghex/preferences.c:178
 msgid "Default Group Type"
 msgstr ""
 
-#: ghex/preferences.c:148 gtt/options.c:187
+# ghex/preferences.c:148 gtt/options.c:187
+#: ghex/preferences.c:194 gtt/options.c:186
 msgid "Display"
 msgstr ""
 
-#: ghex/preferences.c:155
+# ghex/preferences.c:155
+#: ghex/preferences.c:201
 msgid "MDI Mode"
 msgstr ""
 
-#: ghex/preferences.c:172
+# ghex/preferences.c:172
+#: ghex/preferences.c:218
 msgid "MDI"
 msgstr ""
 
-#: ghex/preferences.c:281
+# ghex/preferences.c:281
+#: ghex/preferences.c:365
 msgid "Can not open desired font!"
 msgstr "Kan het gewenste lettertype niet openen!"
 
+# ghex/ui.c:51
 #: ghex/ui.c:51
 msgid "Open Con_verter..."
 msgstr ""
 
+# ghex/ui.c:52
 #: ghex/ui.c:52
 msgid "Open base conversion dialog"
 msgstr ""
 
+# ghex/ui.c:89
 #: ghex/ui.c:89
 msgid "Bytes"
 msgstr ""
 
+# ghex/ui.c:90
 #: ghex/ui.c:90
 msgid "Words"
 msgstr ""
 
+# ghex/ui.c:91
 #: ghex/ui.c:91
 msgid "Longwords"
 msgstr ""
 
+# ghex/ui.c:96
 #: ghex/ui.c:96
 msgid "hex data"
 msgstr ""
 
+# ghex/ui.c:97
 #: ghex/ui.c:97
 msgid "ASCII data"
 msgstr ""
 
+# ghex/ui.c:174
 #: ghex/ui.c:174
 msgid "GHex, a binary file editor"
 msgstr "GHex, een binaire bestandsbewerker"
 
+# ghex/ui.c:176
 #: ghex/ui.c:176
 msgid "Released under the terms of GNU Public License"
 msgstr "Uitgebracht onder de voorwaarden van de GNU Public License"
 
+# ghex/ui.c:193 ghex/ui.c:344
 #: ghex/ui.c:193 ghex/ui.c:344
 msgid "Error saving file!"
 msgstr "Fout bij bewaren bestand!"
 
+# ghex/ui.c:197 ghex/ui.c:339
 #: ghex/ui.c:197 ghex/ui.c:339
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Buffer naar bestand %s geschreven"
 
+# ghex/ui.c:206
 #: ghex/ui.c:206
 msgid "Select a file to open"
 msgstr "Kies een bestand om te openen"
 
+# ghex/ui.c:224
 #: ghex/ui.c:224
 msgid "Select a file to save buffer as"
 msgstr ""
 
+# ghex/ui.c:272
 #: ghex/ui.c:272
 #, c-format
 msgid "Really revert file %s?"
 msgstr ""
 
+# ghex/ui.c:285
 #: ghex/ui.c:285
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr ""
 
+# ghex/ui.c:300
 #: ghex/ui.c:300
 #, c-format
 msgid "Loaded file %s"
 msgstr ""
 
+# ghex/ui.c:305
 #: ghex/ui.c:305
 msgid "Can not open file!"
 msgstr "Kan bestand niet openen!"
 
+# ghex/ui.c:348
 #: ghex/ui.c:348
 msgid "Can't open file for writing!"
 msgstr "Kan bestand niet openen om te schrijven"
 
+# gsearchtool/gsearchtool.c:21
 #: gsearchtool/gsearchtool.c:21
 msgid "File name"
 msgstr "Bestandsnaam:"
 
+# gsearchtool/gsearchtool.c:23
 #: gsearchtool/gsearchtool.c:23
 msgid "Don't search subdirectories"
 msgstr ""
 
+# gsearchtool/gsearchtool.c:24
 #: gsearchtool/gsearchtool.c:24
 msgid "File owner"
 msgstr "Bestandseigenaar"
 
+# gsearchtool/gsearchtool.c:25
 #: gsearchtool/gsearchtool.c:25
 msgid "File owner group"
 msgstr "Bestand eigenaar groep"
 
+# gsearchtool/gsearchtool.c:26
 #: gsearchtool/gsearchtool.c:26
 msgid "Last modification time"
 msgstr ""
 
+# gsearchtool/gsearchtool.c:28
 #: gsearchtool/gsearchtool.c:28
 msgid "Don't search mounted filesystems"
 msgstr ""
 
+# gsearchtool/gsearchtool.c:30
 #: gsearchtool/gsearchtool.c:30
 msgid "Empty file"
 msgstr "Leeg bestand"
 
+# gsearchtool/gsearchtool.c:32
 #: gsearchtool/gsearchtool.c:32
 msgid "Invalid user or group"
 msgstr "Ongeldige gebruiker of groep"
 
+# gsearchtool/gsearchtool.c:33
 #: gsearchtool/gsearchtool.c:33
 msgid "Filenames except"
 msgstr "Bestandsnamen behalve"
 
+# gsearchtool/gsearchtool.c:34
 #: gsearchtool/gsearchtool.c:34
 msgid "Simple substring search"
 msgstr ""
 
+# gsearchtool/gsearchtool.c:35
 #: gsearchtool/gsearchtool.c:35
 msgid "Regular expression search"
 msgstr ""
 
+# gsearchtool/gsearchtool.c:37
 #: gsearchtool/gsearchtool.c:37
 msgid "Extended regular expression search"
 msgstr ""
 
+# gsearchtool/gsearchtool.c:94 gsearchtool/gsearchtool.c:149
 #: gsearchtool/gsearchtool.c:94 gsearchtool/gsearchtool.c:149
 msgid "grep options found in find list bad bad!"
 msgstr ""
 
+# gsearchtool/gsearchtool.c:163
 #: gsearchtool/gsearchtool.c:163
 msgid "non-grep option found in grep list, bad bad!"
 msgstr ""
 
+# gsearchtool/gsearchtool.c:203
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
@@ -413,193 +536,401 @@ msgstr ""
 msgid "Search Results"
 msgstr "Zoek Resultaten"
 
-#: gsearchtool/gsearchtool.c:209
-msgid "Using command:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:429
+# gsearchtool/gsearchtool.c:429
+#: gsearchtool/gsearchtool.c:426
 msgid "Enable"
 msgstr "Ingeschakeld"
 
-#: gsearchtool/gsearchtool.c:436
+# gsearchtool/gsearchtool.c:436
+#: gsearchtool/gsearchtool.c:433
 msgid "Remove"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:488
+# gsearchtool/gsearchtool.c:488
+#: gsearchtool/gsearchtool.c:485
 msgid "Start in directory:"
 msgstr "Begin in map:"
 
-#: gsearchtool/gsearchtool.c:506 mini-utils/gw/gw.c:454
+# gsearchtool/gsearchtool.c:506 mini-utils/gw/gw.c:454
+#: gsearchtool/gsearchtool.c:503 mini-utils/gw/gw.c:488
 msgid "Add"
 msgstr "Toevoegen"
 
-#: gsearchtool/gsearchtool.c:517
+# gsearchtool/gsearchtool.c:517
+#: gsearchtool/gsearchtool.c:514
 msgid "Start"
 msgstr "Start"
 
-#: gsearchtool/gsearchtool.c:518
+# gsearchtool/gsearchtool.c:518
+#: gsearchtool/gsearchtool.c:515
 msgid "Stop"
 msgstr "Stop"
 
-#: gsearchtool/gsearchtool.c:536
+# gsearchtool/gsearchtool.c:536
+#: gsearchtool/gsearchtool.c:533
 msgid "This is not yet implemented"
 msgstr "Dit is nog niet geïmplementeerd"
 
-#: gsearchtool/gsearchtool.c:549
+# gsearchtool/gsearchtool.c:549
+#: gsearchtool/gsearchtool.c:546
 msgid "Full find (find)"
 msgstr "Volledig zoeken (find)"
 
-#: gsearchtool/gsearchtool.c:552
+# gsearchtool/gsearchtool.c:552
+#: gsearchtool/gsearchtool.c:549
 msgid "Quick find (locate)"
 msgstr "Snel zoeken  (locate)"
 
-#: gsearchtool/gsearchtool.c:567
+# gsearchtool/gsearchtool.c:567
+#: gsearchtool/gsearchtool.c:564
 msgid "The Gnome Search Tool"
 msgstr "Het Gnome Zoekhulpmiddel"
 
-#: gsearchtool/gsearchtool.c:568
+# gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:565
 msgid "(C) 1998 the Free Software Foundation"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:570
+# gsearchtool/gsearchtool.c:570
+#: gsearchtool/gsearchtool.c:567
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Frontend voor de Unix find/grep/locate opdrachten"
 
-#: gsearchtool/gsearchtool.c:613
+# gsearchtool/gsearchtool.c:613
+#: gsearchtool/gsearchtool.c:610
 msgid "Gnome Search Tool"
 msgstr "Gnome Zoekhulpmiddel"
 
-#: gstripchart/gstripchart.c:1249
-msgid "Params"
+#: gstripchart/gstripchart.c:423
+msgid "rparen expected"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1249
-msgid "Examine and adjust parameters"
+#: gstripchart/gstripchart.c:440
+#, c-format
+msgid "no such field: %d"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:468
+msgid "missing variable identifer"
+msgstr ""
+
+#: gstripchart/gstripchart.c:470
+#, c-format
+msgid "invalid variable identifer: %s"
+msgstr ""
+
+#: gstripchart/gstripchart.c:474
+msgid "number expected"
+msgstr ""
+
+#: gstripchart/gstripchart.c:553
+#, c-format
+msgid "extra gunk at end: \"%s\""
+msgstr ""
+
+#: gstripchart/gstripchart.c:630
+#, c-format
+msgid "%s, line %d: "
+msgstr ""
+
+#: gstripchart/gstripchart.c:707
+#, c-format
+msgid "can't open config file \"%s\""
+msgstr ""
+
+#: gstripchart/gstripchart.c:734
+#, c-format
+msgid ""
+"can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+msgstr ""
+
+#: gstripchart/gstripchart.c:739
+#, c-format
+msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
+msgstr ""
+
+#: gstripchart/gstripchart.c:796
+#, c-format
+msgid "invalid display type: %s"
+msgstr ""
+
+#: gstripchart/gstripchart.c:830
+msgid "identifier or begin must be first"
+msgstr ""
+
+#: gstripchart/gstripchart.c:837 gstripchart/gstripchart.c:853
+#, c-format
+msgid "unrecognized color: %s"
+msgstr ""
+
+#: gstripchart/gstripchart.c:880
+#, c-format
+msgid "invalid option: \"%s\""
+msgstr ""
+
+# gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:1409
 msgid "E_xit"
 msgstr "_Afsluiten"
 
-#: gstripchart/gstripchart.c:1255
+# gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:1409
 msgid "Terminate the stripchart program"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1271
+# gstripchart/gstripchart.c:1271
+#: gstripchart/gstripchart.c:1425
 msgid "Copyright 1998 John Kodis"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1286
-msgid "_About"
-msgstr "_Over"
+#: gstripchart/gstripchart.c:1427
+msgid ""
+"The GNOME stripchart program plots various user-specified parameters as a "
+"function of time.  Its main use is to chart system performance parameters "
+"such as CPU load, CPU utilization, network traffic levels, and the like.  "
+"Other more ingenious uses are left as an exercise for the interested user."
+msgstr ""
 
-#: gstripchart/gstripchart.c:1286
+# gstripchart/gstripchart.c:1286
+#: gstripchart/gstripchart.c:1440
 msgid "Info about the striphart program"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1297
+# gstripchart/gstripchart.c:1286
+#: gstripchart/gstripchart.c:1440
+msgid "_About"
+msgstr "_Over"
+
+# gstripchart/gstripchart.c:1297
+#: gstripchart/gstripchart.c:1451
 msgid "_File"
 msgstr "_Bestand"
 
-#: gstripchart/gstripchart.c:1298
+# gstripchart/gstripchart.c:1298
+#: gstripchart/gstripchart.c:1452
 msgid "_Help"
 msgstr "_Help"
 
-#: gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1516 gstripchart/gstripchart.c:1629
+#, fuzzy
+msgid "Param"
+msgstr "_Bestand"
+
+# mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:223
+#: gstripchart/gstripchart.c:1516 mini-utils/gcolorsel/gcolorsel.c:156
+#: mini-utils/guname/moreinfo.c:218
+msgid "Value"
+msgstr "Waarde"
+
+#: gstripchart/gstripchart.c:1520
+msgid "Identifier"
+msgstr ""
+
+# mini-utils/gcolorsel/gcolorsel.c:155
+#: gstripchart/gstripchart.c:1522 mini-utils/gcolorsel/gcolorsel.c:155
+msgid "Color"
+msgstr "Kleur"
+
+# gsearchtool/gsearchtool.c:21
+#: gstripchart/gstripchart.c:1524
+#, fuzzy
+msgid "Filename"
+msgstr "Bestandsnaam:"
+
+# gtt/toolbar.c:167
+#: gstripchart/gstripchart.c:1526
+#, fuzzy
+msgid "Pattern"
+msgstr "Plakken"
+
+#: gstripchart/gstripchart.c:1528
+msgid "Equation"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1530
+msgid "Expected range"
+msgstr ""
+
+# mini-utils/guname/info.c:47
+#: gstripchart/gstripchart.c:1534
+#, fuzzy
+msgid "Displayed range"
+msgstr "X-Schermnaam:"
+
+#: gstripchart/gstripchart.c:1538
+msgid "Current value"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1545
+msgid "Active"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1561
+msgid "Gnome Stripchart Parameters"
+msgstr ""
+
+# gtt/toolbar.c:159
+#: gstripchart/gstripchart.c:1629
+#, fuzzy
+msgid "Current"
+msgstr "Knippen"
+
+#: gstripchart/gstripchart.c:1629
+msgid "Top"
+msgstr ""
+
+# gstripchart/gstripchart.c:1298
+#: gstripchart/gstripchart.c:1657
+#, fuzzy
+msgid "Help"
+msgstr "_Help"
+
+# gstripchart/gstripchart.c:1286
+#: gstripchart/gstripchart.c:1663 mini-utils/gshutdown/gshutdown.c:318
+#, fuzzy
+msgid "About"
+msgstr "_Over"
+
+# gstripchart/gstripchart.c:1249
+#: gstripchart/gstripchart.c:1669
+msgid "Params"
+msgstr ""
+
+# gstripchart/gstripchart.c:1255
+#: gstripchart/gstripchart.c:1675
+#, fuzzy
+msgid "Exit"
+msgstr "_Afsluiten"
+
+#: gstripchart/gstripchart.c:1777
+msgid "Gnome stripchart viewer"
+msgstr ""
+
+#. Create a top-level window. Set the title, minimum size (_usize),
+#. initial size (_default_size), and establish delete and destroy
+#. event handlers.
+#: gstripchart/gstripchart.c:1777
+msgid "gstripchart"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1856
+#, c-format
+msgid "invalid display type: %s\n"
+msgstr ""
+
+# gstripchart/gstripchart.c:1706
+#: gstripchart/gstripchart.c:1883
 msgid "GEO"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1706
-msgid "geometry"
-msgstr "leeg"
+#: gstripchart/gstripchart.c:1883
+msgid "Geometry string: WxH+X+Y"
+msgstr ""
 
-#: gstripchart/gstripchart.c:1708
+# gstripchart/gstripchart.c:1708
+#: gstripchart/gstripchart.c:1885
+#, fuzzy
+msgid "Configuration file name"
+msgstr "Configuratiebestand Opslaan"
+
+# gstripchart/gstripchart.c:1708
+#: gstripchart/gstripchart.c:1885
 msgid "FILE"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1708
-msgid "configuration file"
-msgstr "Configuratiebestand Opslaan"
+#: gstripchart/gstripchart.c:1887
+msgid "Chart update interval"
+msgstr ""
 
-#: gstripchart/gstripchart.c:1710 gstripchart/gstripchart.c:1712
-#: gstripchart/gstripchart.c:1714 gstripchart/gstripchart.c:1716
+# gstripchart/gstripchart.c:1710 gstripchart/gstripchart.c:1712
+# gstripchart/gstripchart.c:1714 gstripchart/gstripchart.c:1716
+#: gstripchart/gstripchart.c:1887 gstripchart/gstripchart.c:1889
+#: gstripchart/gstripchart.c:1891 gstripchart/gstripchart.c:1893
 msgid "SECS"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1710
-msgid "chart update interval"
+#: gstripchart/gstripchart.c:1889
+msgid "Chart low-pass filter time constant"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1712
-msgid "chart LP filter TC"
+#: gstripchart/gstripchart.c:1891
+msgid "Slider update interval"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1714
-msgid "slider update interval"
+#: gstripchart/gstripchart.c:1893
+msgid "Slider low-pass filter time constant"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1716
-msgid "slider LP filter TC"
+#: gstripchart/gstripchart.c:1895
+msgid "Adds a menubar to the main window"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1718
-msgid "add menubar"
+#: gstripchart/gstripchart.c:1897
+msgid "Omits slider window"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1720
-msgid "omit slider"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1722
+# gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1899
 msgid "TYPE"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1722
-msgid "gtk|text|graph|none"
+#: gstripchart/gstripchart.c:1899
+msgid "TYPE is one of gtk, text, graph, or none"
 msgstr ""
 
-#: gtt/app.c:110 gtt/app.c:212
+# gtt/app.c:110 gtt/app.c:212
+#: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
 msgstr "Geen project geselecteerd"
 
-#: gtt/app.c:201
+# gtt/app.c:201
+#: gtt/app.c:212
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:234 mini-utils/gless/gless.c:383
+# gtt/app.c:234 mini-utils/gless/gless.c:383
+#: gtt/app.c:251 mini-utils/gless/gless.c:424
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
 msgstr ""
 
+# gtt/clist.c:169
 #: gtt/clist.c:169
 msgid "Total"
 msgstr "Totaal"
 
+# gtt/clist.c:170
 #: gtt/clist.c:170
 msgid "Today"
 msgstr "Vandaag"
 
+# gtt/clist.c:171
 #: gtt/clist.c:171
 msgid "Project Title"
 msgstr "Projecttitel"
 
+# gtt/clist.c:172
 #: gtt/clist.c:172
 msgid "Description"
 msgstr "Omschrijving"
 
-#: gtt/log.c:55 gtt/log.c:207
+# gtt/log.c:55 gtt/log.c:207
+#: gtt/log.c:64 gtt/log.c:216
 msgid "program started"
 msgstr "programma gestart"
 
-#: gtt/log.c:73
+# gtt/log.c:73
+#: gtt/log.c:82
 msgid "no description"
 msgstr "geen omschrijving"
 
-#: gtt/log.c:199
+# gtt/log.c:199
+#: gtt/log.c:208
 msgid "program exited"
 msgstr "programma beëindigd"
 
+# gtt/main.c:77
 #: gtt/main.c:77
 msgid ""
 "There seems to be another GTimeTracker running.\n"
@@ -608,10 +939,12 @@ msgstr ""
 "Er lijkt nog een andere GTimeTracker te draaien.\n"
 "Verwijder het pid-bestand, als dat niet het geval is."
 
+# gtt/main.c:121
 #: gtt/main.c:121
 msgid "Error"
 msgstr "Fout"
 
+# gtt/main.c:122
 #: gtt/main.c:122
 msgid ""
 "An error occured while reading the configuration file.\n"
@@ -620,456 +953,582 @@ msgstr ""
 "Er is een fout opgetreden bij het lezen van het configuratiebestand.\n"
 "Zal ik een nieuwe configuratie opzetten?"
 
+# gtt/main.c:204 mini-utils/gless/gless.c:115
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
+msgid "GEOMETRY"
+msgstr ""
+
+# gtt/main.c:204
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr ""
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:115
-msgid "GEOMETRY"
-msgstr ""
-
-#: gtt/main.c:206
-msgid "Select a project on startup"
-msgstr ""
-
+# gtt/main.c:206
 #: gtt/main.c:206
 msgid "PROJECT"
 msgstr ""
 
+# gtt/main.c:206
+#: gtt/main.c:206
+msgid "Select a project on startup"
+msgstr ""
+
+# gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
 msgstr "Waarschuwing"
 
+# gtt/menucmd.c:32 gtt/menucmd.c:155
 #: gtt/menucmd.c:32 gtt/menucmd.c:155
 msgid "I could not write the configuration file!"
 msgstr ""
 
-#: gtt/menucmd.c:85 gtt/toolbar.c:142
+# gtt/menucmd.c:85 gtt/toolbar.c:142
+#: gtt/menucmd.c:85 gtt/toolbar.c:146
 msgid "New Project..."
 msgstr "Nieuw Project..."
 
+# gtt/menucmd.c:89
 #: gtt/menucmd.c:89
 msgid "Please enter the name of the new project:"
 msgstr "Geef de naam van het nieuwe project:"
 
+# gtt/menucmd.c:123
 #: gtt/menucmd.c:123
 msgid "I could not read the configuration file"
 msgstr "Het configuratie-bestand kon niet worden gelezen"
 
-#: gtt/menucmd.c:137 gtt/toolbar.c:149
+# gtt/menucmd.c:137 gtt/toolbar.c:149
+#: gtt/menucmd.c:137 gtt/toolbar.c:153
 msgid "Reload Configuration File"
 msgstr "Herlaad Configuratie-bestand"
 
+# gtt/menucmd.c:138
 #: gtt/menucmd.c:138
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
 msgstr ""
 
+# gtt/menus.c:27
 #: gtt/menus.c:27
 msgid "_New Project..."
 msgstr "_Nieuw Project..."
 
+# gtt/menus.c:30
 #: gtt/menus.c:30
 msgid "_Reload Configuration File"
 msgstr "_Herlaad Configuratiebestand"
 
+# gtt/menus.c:34
 #: gtt/menus.c:34
 msgid "_Save Configuration File"
 msgstr "_Configuratiebestand opslaan"
 
+# gtt/menus.c:59 gtt/menus.c:115
 #: gtt/menus.c:59 gtt/menus.c:115
 msgid "Clear _Daily Counter"
 msgstr ""
 
+# gtt/menus.c:71
 #: gtt/menus.c:71
 msgid "St_art"
 msgstr ""
 
+# gtt/menus.c:75
 #: gtt/menus.c:75
 msgid "Sto_p"
 msgstr ""
 
+# gtt/menus.c:80
 #: gtt/menus.c:80
 msgid "_Timer Running"
 msgstr "_Tijdmeter loopt"
 
+# gtt/menus.c:99
 #: gtt/menus.c:99
 msgid "_Timer"
 msgstr "_Tijdmeter"
 
-#: gtt/options.c:195
+# gtt/options.c:195
+#: gtt/options.c:194
 msgid "Show Seconds"
 msgstr "Toon Seconden"
 
-#: gtt/options.c:201
+# gtt/options.c:201
+#: gtt/options.c:200
 msgid "Show Status Bar"
 msgstr "Toon Statusbalk"
 
-#: gtt/options.c:207
+# gtt/options.c:207
+#: gtt/options.c:206
 msgid "Show Table Header"
 msgstr ""
 
-#: gtt/options.c:221 gtt/options.c:519
+# gtt/options.c:221 gtt/options.c:519
+#: gtt/options.c:220 gtt/options.c:518
 msgid "Toolbar"
 msgstr "Werkbalk"
 
-#: gtt/options.c:229
+# gtt/options.c:229
+#: gtt/options.c:228
 msgid "Show Toolbar Icons"
 msgstr "Toon Werkbalkpictogrammen"
 
-#: gtt/options.c:235
+# gtt/options.c:235
+#: gtt/options.c:234
 msgid "Show Toolbar Texts"
 msgstr "Toon Werkbalkteksten"
 
-#: gtt/options.c:241
+# gtt/options.c:241
+#: gtt/options.c:240
 msgid "Show Tooltips"
 msgstr "Toon Tooltips"
 
-#: gtt/options.c:247
+# gtt/options.c:247
+#: gtt/options.c:246
 msgid "Toolbar Segments"
 msgstr "Werkbalksegementen"
 
-#: gtt/options.c:255
+# gtt/options.c:255
+#: gtt/options.c:254
 msgid "Show `New'"
 msgstr "Toon `Nieuw'"
 
-#: gtt/options.c:261
+# gtt/options.c:261
+#: gtt/options.c:260
 msgid "Show `Save', `Reload'"
 msgstr "Toon `Opslaan', `Herladen'"
 
-#: gtt/options.c:267
+# gtt/options.c:267
+#: gtt/options.c:266
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Toon `Knippen', `Kopiëren', `Plakken'"
 
-#: gtt/options.c:273
+# gtt/options.c:273
+#: gtt/options.c:272
 msgid "Show `Properties'"
 msgstr "Toon `Eigenschappen'"
 
-#: gtt/options.c:279
+# gtt/options.c:279
+#: gtt/options.c:278
 msgid "Show `Timer'"
 msgstr "Toon `Tijdmeter'"
 
-#: gtt/options.c:285
+# gtt/options.c:285
+#: gtt/options.c:284
 msgid "Show `Preferences'"
 msgstr "Toon `Voorkeuren'"
 
-#: gtt/options.c:291
+# gtt/options.c:291
+#: gtt/options.c:290
 msgid "Show `Help'"
 msgstr "Toon `Help'"
 
-#: gtt/options.c:297
+# gtt/options.c:297
+#: gtt/options.c:296
 msgid "Show `Quit'"
 msgstr "Toon `Afsluiten'"
 
-#: gtt/options.c:311
+# gtt/options.c:311
+#: gtt/options.c:310
 msgid "Shell Commands"
 msgstr "Shell Opdrachten"
 
-#: gtt/options.c:319
+# gtt/options.c:319
+#: gtt/options.c:318
 msgid "Switch Project Command:"
 msgstr ""
 
-#: gtt/options.c:330
+# gtt/options.c:330
+#: gtt/options.c:329
 msgid "No Project Command:"
 msgstr "Geen Projectopdracht"
 
-#: gtt/options.c:364
+# gtt/options.c:364
+#: gtt/options.c:363
 msgid "Logfile"
 msgstr "Logbestand"
 
-#: gtt/options.c:372
+# gtt/options.c:372
+#: gtt/options.c:371
 msgid "Use Logfile"
 msgstr "Gebruik Logbestand"
 
-#: gtt/options.c:381
+# gtt/options.c:381
+#: gtt/options.c:380
 msgid "Filename:"
 msgstr "Bestandsnaam:"
 
-#: gtt/options.c:395
+# gtt/options.c:395
+#: gtt/options.c:394
 msgid "Entry Start:"
 msgstr ""
 
-#: gtt/options.c:409
+# gtt/options.c:409
+#: gtt/options.c:408
 msgid "Entry Stop:"
 msgstr ""
 
-#: gtt/options.c:423
+# gtt/options.c:423
+#: gtt/options.c:422
 msgid "Timeout in secs:"
 msgstr ""
 
-#: gtt/options.c:500
+# gtt/options.c:500
+#. Fixme these should be stock buttons
+#: gtt/options.c:499 mini-utils/gshutdown/gshutdown.c:313
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: gtt/options.c:506
+# gtt/options.c:506
+#: gtt/options.c:505
 msgid "Misc"
 msgstr "Overige"
 
+# gtt/proj.c:461
 #: gtt/proj.c:461
 msgid "project %t started"
 msgstr ""
 
+# gtt/proj.c:464
 #: gtt/proj.c:464
 msgid "stopped project %t"
 msgstr ""
 
+# gtt/prop.c:55
 #: gtt/prop.c:55
 msgid "empty"
 msgstr "leeg"
 
-#: gtt/prop.c:172
+# gtt/prop.c:172
+#: gtt/prop.c:171
 msgid "Properties"
 msgstr "Eigenschappen"
 
-#: gtt/prop.c:179
+# gtt/prop.c:179
+#: gtt/prop.c:178
 msgid "Project"
 msgstr "Project"
 
-#: gtt/prop.c:198
+# gtt/prop.c:198
+#: gtt/prop.c:197
 msgid "Project Title:"
 msgstr "Projecttitel"
 
-#: gtt/prop.c:210
+# gtt/prop.c:210
+#: gtt/prop.c:209
 msgid "Project Description:"
 msgstr "Project Omschrijving"
 
-#: gtt/prop.c:222
+# gtt/prop.c:222
+#: gtt/prop.c:221
 msgid "Project Time today:"
 msgstr ""
 
-#: gtt/prop.c:238 gtt/prop.c:276
+# gtt/prop.c:238 gtt/prop.c:276
+#: gtt/prop.c:237 gtt/prop.c:275
 msgid "hours"
 msgstr "uren"
 
-#: gtt/prop.c:249 gtt/prop.c:287
+# gtt/prop.c:249 gtt/prop.c:287
+#: gtt/prop.c:248 gtt/prop.c:286
 msgid "mins"
 msgstr "minuten"
 
-#: gtt/prop.c:260 gtt/prop.c:298
+# gtt/prop.c:260 gtt/prop.c:298
+#: gtt/prop.c:259 gtt/prop.c:297
 msgid "secs"
 msgstr "seconden"
 
-#: gtt/prop.c:264
+# gtt/prop.c:264
+#: gtt/prop.c:263
 msgid "Project Time ever:"
 msgstr ""
 
+# gtt/toolbar.c:141
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:141
+#: gtt/toolbar.c:145
 msgid "[GTT]New"
 msgstr "Nieuw"
 
-#: gtt/toolbar.c:148
+# gtt/toolbar.c:148
+#: gtt/toolbar.c:152
 msgid "Reload"
 msgstr "Herladen"
 
-#: gtt/toolbar.c:152
+# gtt/toolbar.c:152
+#: gtt/toolbar.c:156
 msgid "Save"
 msgstr "Opslaan"
 
-#: gtt/toolbar.c:153
+# gtt/toolbar.c:153
+#: gtt/toolbar.c:157
 msgid "Save Configuration File"
 msgstr "Configuratiebestand Opslaan"
 
-#: gtt/toolbar.c:159
+# gtt/toolbar.c:159
+#: gtt/toolbar.c:163
 msgid "Cut"
 msgstr "Knippen"
 
-#: gtt/toolbar.c:160
+# gtt/toolbar.c:160
+#: gtt/toolbar.c:164
 msgid "Cut Selected Project"
 msgstr "Geselecteerde Project Knippen"
 
-#: gtt/toolbar.c:163
+# gtt/toolbar.c:163
+#: gtt/toolbar.c:167
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: gtt/toolbar.c:164
+# gtt/toolbar.c:164
+#: gtt/toolbar.c:168
 msgid "Copy Selected Project"
 msgstr "Geselecteerde Project Kopiërenn"
 
-#: gtt/toolbar.c:167
+# gtt/toolbar.c:167
+#: gtt/toolbar.c:171
 msgid "Paste"
 msgstr "Plakken"
 
-#: gtt/toolbar.c:168
+# gtt/toolbar.c:168
+#: gtt/toolbar.c:172
 msgid "Paste Project"
 msgstr "Project Plakken"
 
-#: gtt/toolbar.c:174
+# gtt/toolbar.c:174
+#: gtt/toolbar.c:178
 msgid "Props"
 msgstr "Voorkeuren"
 
-#: gtt/toolbar.c:175
+# gtt/toolbar.c:175
+#: gtt/toolbar.c:179
 msgid "Edit Properties..."
 msgstr "Voorkeuren bewerken..."
 
-#: gtt/toolbar.c:179
+# gtt/toolbar.c:179
+#: gtt/toolbar.c:183
 msgid "Timer"
 msgstr "Tijdmeter"
 
-#: gtt/toolbar.c:180
+# gtt/toolbar.c:180
+#: gtt/toolbar.c:184
 msgid "Start/Stop Timer"
 msgstr "Start/Stop Tijdmeter"
 
-#: gtt/toolbar.c:188
+# gtt/toolbar.c:188
+#: gtt/toolbar.c:193
 msgid "Prefs"
 msgstr "Voorkeuren"
 
-#: gtt/toolbar.c:189
+# gtt/toolbar.c:189
+#: gtt/toolbar.c:194
 msgid "Edit Preferences..."
 msgstr "Voorkeuren bewerken..."
 
-#: gtt/toolbar.c:193
+# gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual"
 msgstr "Handmatig"
 
-#: gtt/toolbar.c:193
+# gtt/toolbar.c:193
+#: gtt/toolbar.c:198
 msgid "Manual..."
 msgstr "Handmatig..."
 
-#: gtt/toolbar.c:198
+# gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit"
 msgstr "Afsluiten"
 
-#: gtt/toolbar.c:198
+# gtt/toolbar.c:198
+#: gtt/toolbar.c:203
 msgid "Quit GTimeTracker"
 msgstr "GTimeTracker Afsluiten"
 
+# mini-utils/gcolorsel/gcolorsel.c:65 mini-utils/gcolorsel/gcolorsel.c:67
+# mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:369
 #: mini-utils/gcolorsel/gcolorsel.c:65 mini-utils/gcolorsel/gcolorsel.c:67
 #: mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:369
 msgid "Gnome Color Browser"
 msgstr "Gnome Kleurenpalette"
 
+# mini-utils/gcolorsel/gcolorsel.c:79
 #: mini-utils/gcolorsel/gcolorsel.c:79
 msgid "Format Style:"
 msgstr ""
 
+# mini-utils/gcolorsel/gcolorsel.c:89
 #: mini-utils/gcolorsel/gcolorsel.c:89
 msgid "Color Name:"
 msgstr "Kleurnaam:"
 
+# mini-utils/gcolorsel/gcolorsel.c:96
 #: mini-utils/gcolorsel/gcolorsel.c:96
 msgid "Color Values:"
 msgstr "Kleurwaarden:"
 
-#: mini-utils/gcolorsel/gcolorsel.c:155
-msgid "Color"
-msgstr "Kleur"
-
-#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:223
-msgid "Value"
-msgstr "Waarde"
-
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:222
-#: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
+# mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:222
+# mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
+#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:217
+#: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
 msgid "Name"
 msgstr "Naam"
 
+# mini-utils/gcolorsel/gcolorsel.c:234
 #: mini-utils/gcolorsel/gcolorsel.c:234
 msgid "Error, cannot find the file 'rgb.txt' on your system!"
 msgstr ""
 
+# mini-utils/gcolorsel/gcolorsel.c:247
 #: mini-utils/gcolorsel/gcolorsel.c:247
 msgid "Parsing Colors"
 msgstr "Kleuren verwerken"
 
+# mini-utils/gcolorsel/gcolorsel.c:316
 #: mini-utils/gcolorsel/gcolorsel.c:316
 msgid "Decimal (8 bit)"
 msgstr "Decimaal (8 bit)"
 
+# mini-utils/gcolorsel/gcolorsel.c:317
 #: mini-utils/gcolorsel/gcolorsel.c:317
 msgid "Decimal (16 bit)"
 msgstr "Decimaal (16 bit)"
 
+# mini-utils/gcolorsel/gcolorsel.c:318
 #: mini-utils/gcolorsel/gcolorsel.c:318
 msgid "Hex (8 bit)"
 msgstr "Hex (8 bit)"
 
+# mini-utils/gcolorsel/gcolorsel.c:319
 #: mini-utils/gcolorsel/gcolorsel.c:319
 msgid "Hex (16 bit)"
 msgstr "Hex (16 bit)"
 
+# mini-utils/gcolorsel/gcolorsel.c:320
 #: mini-utils/gcolorsel/gcolorsel.c:320
 msgid "Float"
 msgstr "Float"
 
+# mini-utils/gcolorsel/gcolorsel.c:373
 #: mini-utils/gcolorsel/gcolorsel.c:373
 msgid "Small utility to browse available X11 colors."
 msgstr "Klein hulpmiddel om door de beschikbare X11 kleuren te bladeren."
 
+# mini-utils/gfontsel/gfontsel.c:145
 #: mini-utils/gfontsel/gfontsel.c:145
 msgid "Font Selector"
 msgstr "Lettertype Seleteren"
 
+# mini-utils/gfontsel/gfontsel.c:170
 #: mini-utils/gfontsel/gfontsel.c:170
 msgid "Selection:"
 msgstr "Selectie:"
 
-#: mini-utils/gfontsel/gfontsel.c:253
-msgid "Font to load"
-msgstr "Te laden lettertype"
-
+# mini-utils/gfontsel/gfontsel.c:253
 #: mini-utils/gfontsel/gfontsel.c:253
 msgid "FONTSPEC"
 msgstr ""
 
+# mini-utils/gfontsel/gfontsel.c:253
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "Font to load"
+msgstr "Te laden lettertype"
+
+# mini-utils/gfontsel/gfontsel.c:254
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
 msgstr "Druk geselecteerde lettertype af bij aflsluiten"
 
+# mini-utils/gfontsel/gfontsel.c:255
 #: mini-utils/gfontsel/gfontsel.c:255
 msgid "Inhibit remembering selected font for next run"
 msgstr ""
 
+# mini-utils/gfontsel/gfontsel.c:256
 #: mini-utils/gfontsel/gfontsel.c:256
 msgid "Inhibit loading of last font"
 msgstr ""
 
+# mini-utils/gless/gless.c:29
 #: mini-utils/gless/gless.c:29
 msgid "Copyright 1998, under the GNU General Public License."
 msgstr ""
 
-#: mini-utils/gless/gless.c:115
+#: mini-utils/gless/gless.c:116
+#, c-format
+msgid "Reason %d\n"
+msgstr ""
+
+# mini-utils/gless/gless.c:115
+#: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
 msgstr ""
 
-#: mini-utils/gless/gless.c:116
+# mini-utils/gless/gless.c:116
+#: mini-utils/gless/gless.c:132
 msgid "Ignore standard input; may be needed in some cases."
 msgstr ""
 
-#: mini-utils/gless/gless.c:278
+# mini-utils/gless/gless.c:278
+#: mini-utils/gless/gless.c:294
 msgid "_New Window"
 msgstr "_Nieuw Venster"
 
-#: mini-utils/gless/gless.c:279
+# mini-utils/gless/gless.c:279
+#: mini-utils/gless/gless.c:295
 msgid "New text viewer window"
 msgstr "Nieuw teksttoonvenster"
 
-#: mini-utils/gless/gless.c:291
+# mini-utils/gless/gless.c:291
+#: mini-utils/gless/gless.c:313
 msgid "_Fixed Font"
 msgstr "_Vast Lettertype"
 
-#: mini-utils/gless/gless.c:292
+# mini-utils/gless/gless.c:292
+#: mini-utils/gless/gless.c:314
 msgid "Display text with a fixed font"
 msgstr "Toon tekst met een vaste lettertype"
 
-#: mini-utils/gless/gless.c:321
+# mini-utils/gless/gless.c:321
+#: mini-utils/gless/gless.c:352
 msgid "Text File Viewer"
 msgstr "Tekstbestandtoner"
 
-#: mini-utils/gless/gless.c:424
+#: mini-utils/gless/gless.c:460
+msgid "Find string"
+msgstr ""
+
+#: mini-utils/gless/gless.c:461
+#, fuzzy
+msgid "Find"
+msgstr "_Zoek..."
+
+# mini-utils/gless/gless.c:424
+#: mini-utils/gless/gless.c:498
 msgid "Loading..."
 msgstr "Bezig met laden..."
 
-#: mini-utils/gless/gless.c:429
-msgid "No such file or directory:\n"
+# mini-utils/gless/gless.c:429
+#: mini-utils/gless/gless.c:502
+#, fuzzy, c-format
+msgid ""
+"No such file or directory:\n"
+"%s"
 msgstr "Onbekend bestand of map:\n"
 
-#: mini-utils/gless/gless.c:446
-msgid "Failed to decompress and display the file:\n"
+# mini-utils/gless/gless.c:446
+#: mini-utils/gless/gless.c:520
+#, fuzzy, c-format
+msgid ""
+"Failed to decompress and display the file:\n"
+"%s\n"
+"%s"
 msgstr "Kon bestand niet uitpakken en tonen:\n"
 
-#: mini-utils/gless/gless.c:457
+# mini-utils/gless/gless.c:457
+#: mini-utils/gless/gless.c:533
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1077,119 +1536,174 @@ msgstr ""
 "Kon ingepakt bestand niet tonen.\n"
 "zcat niet gevonden in uw pad."
 
-#: mini-utils/gless/gless.c:465
-msgid "Error loading file:\n"
+# mini-utils/gless/gless.c:465
+#: mini-utils/gless/gless.c:541
+#, fuzzy, c-format
+msgid ""
+"Error loading file:\n"
+"%s\n"
+"%s"
 msgstr "Fout bij laden bestand:\n"
 
-#: mini-utils/gless/gless.c:519
+# mini-utils/gless/gless.c:519
+#: mini-utils/gless/gless.c:599
 msgid "Saving..."
 msgstr "Bezig met opslaan..."
 
-#: mini-utils/gless/gless.c:530
-msgid "Failed to write file:\n"
+# mini-utils/gless/gless.c:530
+#: mini-utils/gless/gless.c:610
+#, fuzzy, c-format
+msgid ""
+"Failed to write file:\n"
+"%s\n"
+"%s"
 msgstr "Kon bestand niet schrijven:\n"
 
-#: mini-utils/gless/gless.c:577
+# mini-utils/gless/gless.c:577
+#: mini-utils/gless/gless.c:660
 msgid "Save Text As..."
 msgstr ""
 
-#: mini-utils/gless/gless.c:617
+# mini-utils/gless/gless.c:617
+#: mini-utils/gless/gless.c:700
 msgid "Open Text File..."
 msgstr ""
 
-#: mini-utils/gnome-run/gnome-run.c:48
-msgid "Failed to execute command:\n"
+#: mini-utils/gless/gless.c:764
+#, fuzzy
+msgid "Sorry, no preferences yet."
+msgstr "Stel voorkeuren in"
+
+# mini-utils/gless/gless.c:519
+#: mini-utils/gless/gless.c:851
+#, fuzzy
+msgid "Searching..."
+msgstr "Bezig met opslaan..."
+
+#: mini-utils/gless/gless.c:862
+msgid "No search string was specified!"
 msgstr ""
 
-#: mini-utils/gnome-run/gnome-run.c:68
+#: mini-utils/gnome-run/gnome-run.c:48
+#, c-format
+msgid ""
+"Failed to execute command:\n"
+"%s\n"
+"%s"
+msgstr ""
+
+# mini-utils/gnome-run/gnome-run.c:68
+#: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run Program"
 msgstr "Programma uitvoeren"
 
-#: mini-utils/gnome-run/gnome-run.c:69
-msgid "Run"
-msgstr "Uitvoeren"
-
-#: mini-utils/gnome-run/gnome-run.c:69
+# mini-utils/gnome-run/gnome-run.c:69
+#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: mini-utils/gnome-run/gnome-run.c:80
+# mini-utils/gnome-run/gnome-run.c:69
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Run"
+msgstr "Uitvoeren"
+
+# mini-utils/gnome-run/gnome-run.c:80
+#: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
 msgstr "Kies een programma om uit te voeren"
 
+# mini-utils/gshutdown/gshutdown.c:86
 #: mini-utils/gshutdown/gshutdown.c:86
 msgid "Shut Down"
 msgstr "Afsluiten"
 
+# mini-utils/gshutdown/gshutdown.c:87
 #: mini-utils/gshutdown/gshutdown.c:87
 msgid "Single User Mode"
 msgstr "Eén gebruikermodus (Single User Mode)"
 
+# mini-utils/gshutdown/gshutdown.c:88
 #: mini-utils/gshutdown/gshutdown.c:88
 msgid "Runlevel 2"
 msgstr ""
 
+# mini-utils/gshutdown/gshutdown.c:89
 #: mini-utils/gshutdown/gshutdown.c:89
 msgid "Runlevel 3"
 msgstr ""
 
+# mini-utils/gshutdown/gshutdown.c:90
 #: mini-utils/gshutdown/gshutdown.c:90
 msgid "Runlevel 4"
 msgstr ""
 
+# mini-utils/gshutdown/gshutdown.c:91
 #: mini-utils/gshutdown/gshutdown.c:91
 msgid "Runlevel 5"
 msgstr ""
 
+# mini-utils/gshutdown/gshutdown.c:92
 #: mini-utils/gshutdown/gshutdown.c:92
 msgid "Reboot"
 msgstr "Herstarten"
 
+# mini-utils/gshutdown/gshutdown.c:98
 #: mini-utils/gshutdown/gshutdown.c:98
 msgid "Are you sure you want to shut down the computer?"
 msgstr "Weet u zeker dat u de computer wilt afsluiten?"
 
+# mini-utils/gshutdown/gshutdown.c:99
 #: mini-utils/gshutdown/gshutdown.c:99
 msgid "Are you sure you want to switch to single user mode?"
 msgstr "Weet u zeker dat u naar één gebruikermodus wilt overschakelen?"
 
+# mini-utils/gshutdown/gshutdown.c:100
 #: mini-utils/gshutdown/gshutdown.c:100
 msgid "Are you sure you want to switch to runlevel 2?"
 msgstr "Weet u zeker dat u naar runlevel 2 wilt overschakelen?"
 
+# mini-utils/gshutdown/gshutdown.c:101
 #: mini-utils/gshutdown/gshutdown.c:101
 msgid "Are you sure you want to switch to runlevel 3?"
 msgstr "Weet u zeker dat u naar runlevel 3 wilt overschakelen?"
 
+# mini-utils/gshutdown/gshutdown.c:102
 #: mini-utils/gshutdown/gshutdown.c:102
 msgid "Are you sure you want to switch to runlevel 4?"
 msgstr "Weet u zeker dat u naar runlevel 4 wilt overschakelen?"
 
+# mini-utils/gshutdown/gshutdown.c:103
 #: mini-utils/gshutdown/gshutdown.c:103
 msgid "Are you sure you want to switch to runlevel 5?"
 msgstr "Weet u zeker dat u naar runlevel 5 wilt overschakelen?"
 
+# mini-utils/gshutdown/gshutdown.c:104
 #: mini-utils/gshutdown/gshutdown.c:104
 msgid "Are you sure you want to reboot the system?"
 msgstr "Weet u zeker dat u het systeem opnieuw wilt opstarten?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:591
+# mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:591
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:592
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr "Weet u zeker dat u de computer wilt afsluiten?"
 
+# mini-utils/gshutdown/gshutdown.c:186
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:186
 msgid "Shutdown or Reboot"
 msgstr "Afsluiten of herstarten"
 
+# mini-utils/gshutdown/gshutdown.c:203 mini-utils/gshutdown/gshutdown.c:204
 #: mini-utils/gshutdown/gshutdown.c:203 mini-utils/gshutdown/gshutdown.c:204
 msgid "Easy"
 msgstr "Eenvoudig"
 
+# mini-utils/gshutdown/gshutdown.c:208 mini-utils/gshutdown/gshutdown.c:209
 #: mini-utils/gshutdown/gshutdown.c:208 mini-utils/gshutdown/gshutdown.c:209
 msgid "Advanced"
 msgstr "Uitgebreid"
 
+# mini-utils/gshutdown/gshutdown.c:241
 #: mini-utils/gshutdown/gshutdown.c:241
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
@@ -1198,290 +1712,352 @@ msgstr ""
 "Klik OK om af te sluiten of te herstarten. U zal niet\n"
 "bewaarde informatie in open applicaties verliezen."
 
+# mini-utils/gshutdown/gshutdown.c:368
 #. Put in a "revert to defaults" button
 #: mini-utils/gshutdown/gshutdown.c:368
 msgid "Revert to Defaults"
 msgstr "Herstel standaardwaarden"
 
+# mini-utils/gshutdown/gshutdown.c:378
 #: mini-utils/gshutdown/gshutdown.c:378
 msgid "Commands"
 msgstr "Opdrachten"
 
+# mini-utils/gshutdown/gshutdown.c:383
 #: mini-utils/gshutdown/gshutdown.c:383
 msgid "Confirm before shutdown?"
 msgstr "Bevestigen voor afsluiten?"
 
+# mini-utils/gshutdown/gshutdown.c:395
 #: mini-utils/gshutdown/gshutdown.c:395
 msgid "General"
 msgstr "Algemeen"
 
-#: mini-utils/gshutdown/gshutdown.c:457
+#: mini-utils/gshutdown/gshutdown.c:448
+#, c-format
+msgid ""
+"%s\n"
+"You will lose any unsaved work."
+msgstr ""
+
+# mini-utils/gshutdown/gshutdown.c:457
+#: mini-utils/gshutdown/gshutdown.c:458
 msgid "Don't ask next time."
 msgstr "Volgende keer niet vragen."
 
-#: mini-utils/guname/guname.c:327
+#: mini-utils/gshutdown/gshutdown.c:685
+msgid "Command execution failed: fork failed"
+msgstr ""
+
+#: mini-utils/guname/guname.c:51
+msgid "Make guname act as a control center applet"
+msgstr ""
+
+#: mini-utils/guname/guname.c:114
+msgid "an initialization error occurred while starting 'guname-capplet'."
+msgstr ""
+
+# mini-utils/guname/guname.c:327
+#: mini-utils/guname/guname.c:424
 msgid "System Information"
 msgstr "Systeeminformatie"
 
-#: mini-utils/guname/guname.c:409
+# mini-utils/guname/guname.c:409
+#: mini-utils/guname/guname.c:506
 msgid "Logo file not found"
 msgstr "Logobestand niet gevonden"
 
+# mini-utils/guname/guname.c:413
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:413
+#: mini-utils/guname/guname.c:510
 msgid "GNOME contributors:"
 msgstr "Aan GNOME hebben bijgdragen:"
 
-#: mini-utils/guname/guname.c:427
+#: mini-utils/guname/guname.c:513
+msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
+msgstr ""
+
+# mini-utils/guname/guname.c:427
+#: mini-utils/guname/guname.c:524
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr ""
 
-#: mini-utils/guname/guname.c:451
+# mini-utils/guname/guname.c:451
+#: mini-utils/guname/guname.c:548
 msgid "Email Information..."
 msgstr "Email Informatie..."
 
-#: mini-utils/guname/guname.c:462
+# mini-utils/guname/guname.c:462
+#: mini-utils/guname/guname.c:561
 msgid "Save Information to File..."
 msgstr "Bewaar Informatie in bestand..."
 
-#: mini-utils/guname/guname.c:474 mini-utils/guname/guname.c:541
+# mini-utils/guname/guname.c:474 mini-utils/guname/guname.c:541
+#: mini-utils/guname/guname.c:573 mini-utils/guname/guname.c:640
 msgid "Detailed Information..."
 msgstr "Gedetailleerde Informatie..."
 
-#: mini-utils/guname/guname.c:489
+# mini-utils/guname/guname.c:489
+#: mini-utils/guname/guname.c:588
 msgid "Category"
 msgstr "Categorie"
 
-#: mini-utils/guname/guname.c:489
+# mini-utils/guname/guname.c:489
+#: mini-utils/guname/guname.c:588
 msgid "Your System"
 msgstr "Uw Systeem"
 
-#: mini-utils/guname/guname.c:527
+# mini-utils/guname/guname.c:527
+#: mini-utils/guname/guname.c:626
 msgid "Save As..."
 msgstr "Oplslaan Als..."
 
-#: mini-utils/guname/guname.c:533
+# mini-utils/guname/guname.c:533
+#: mini-utils/guname/guname.c:632
 msgid "Mail To..."
 msgstr "Mail Naar..."
 
-#: mini-utils/guname/guname.c:581
-msgid "Error closing file `"
-msgstr "Fout bij sluiten bestand `"
-
-#: mini-utils/guname/guname.c:583
+# mini-utils/guname/guname.c:583
+#: mini-utils/guname/guname.c:680
+#, fuzzy, c-format
 msgid ""
-"\n"
+"Error closing file `%s': \n"
+"%s\n"
 "Some or all data may not have been written."
 msgstr ""
 "\n"
 "Sommige of alle gegevens zijn wellicht niet geschreven."
 
-#: mini-utils/guname/guname.c:592
-msgid "Couldn't open file `"
+# mini-utils/guname/guname.c:592
+#: mini-utils/guname/guname.c:692
+#, fuzzy, c-format
+msgid "Couldn't open file `%s': %s"
 msgstr "Kon bestand niet openen `"
 
-#: mini-utils/guname/guname.c:606
+# mini-utils/guname/guname.c:606
+#: mini-utils/guname/guname.c:707
 msgid "Save System Information As..."
 msgstr "Systeem Informatie Opslaan Als..."
 
+# mini-utils/guname/guname.c:652
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:652
-msgid "Command failed ` "
+#: mini-utils/guname/guname.c:753
+#, fuzzy, c-format
+msgid "Command failed ` %s ': %s"
 msgstr "Opdracht gefaald ` "
 
-#: mini-utils/guname/guname.c:652 mini-utils/guname/guname.c:659
-msgid " ': "
-msgstr ""
-
-#: mini-utils/guname/guname.c:659
-msgid "Couldn't run command ` "
+# mini-utils/guname/guname.c:659
+#: mini-utils/guname/guname.c:761
+#, fuzzy, c-format
+msgid "Couldn't run command ` %s ': %s"
 msgstr "Kon opdracht niet draaien ` "
 
-#: mini-utils/guname/guname.c:682
-msgid "The following mail will be sent to "
-msgstr "Het volgende bericht zal worden gezonden naar "
-
-#: mini-utils/guname/guname.c:684
+# mini-utils/guname/guname.c:684
+#: mini-utils/guname/guname.c:785
+#, fuzzy, c-format
 msgid ""
-".\n"
+"The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
 ".\n"
 " Weet u zeker dat u deze informatie wilt versturen?"
 
-#: mini-utils/guname/guname.c:693
+# mini-utils/guname/guname.c:693
+#: mini-utils/guname/guname.c:796
 msgid "Are you sure?"
 msgstr "Weet u het zeker?"
 
-#: mini-utils/guname/guname.c:727
+# mini-utils/guname/guname.c:727
+#: mini-utils/guname/guname.c:830
 msgid "Address to mail to:"
 msgstr "Adres om naar te mailen:"
 
-#: mini-utils/guname/info.c:37
+# mini-utils/guname/info.c:37
+#: mini-utils/guname/info.c:39
 msgid "Distribution:"
 msgstr "Distributie:"
 
-#: mini-utils/guname/info.c:38
+# mini-utils/guname/info.c:38
+#: mini-utils/guname/info.c:40
 msgid "Operating System:"
 msgstr "Besturingssysteem:"
 
-#: mini-utils/guname/info.c:39
+# mini-utils/guname/info.c:39
+#: mini-utils/guname/info.c:41
 msgid "Distribution Version:"
 msgstr "Distributie Versie:"
 
-#: mini-utils/guname/info.c:40
+# mini-utils/guname/info.c:40
+#: mini-utils/guname/info.c:42
 msgid "Operating System Version:"
 msgstr "Besturingssysteem Versie"
 
-#: mini-utils/guname/info.c:41
+# mini-utils/guname/info.c:41
+#: mini-utils/guname/info.c:43
 msgid "Operating System Release:"
 msgstr "Besturingssysteem Release:"
 
-#: mini-utils/guname/info.c:42
+# mini-utils/guname/info.c:42
+#: mini-utils/guname/info.c:44
 msgid "Processor Type:"
 msgstr "Processortype:"
 
-#: mini-utils/guname/info.c:43
+# mini-utils/guname/info.c:43
+#: mini-utils/guname/info.c:45
 msgid "Processor Speed:"
 msgstr "Processorsnelheid:"
 
-#: mini-utils/guname/info.c:44
+# mini-utils/guname/info.c:44
+#: mini-utils/guname/info.c:46
 msgid "Host Name:"
 msgstr "Computernaam:"
 
-#: mini-utils/guname/info.c:45
+# mini-utils/guname/info.c:45
+#: mini-utils/guname/info.c:47
 msgid "Domain Name:"
 msgstr "Domainnaam:"
 
-#: mini-utils/guname/info.c:46
+# mini-utils/guname/info.c:46
+#: mini-utils/guname/info.c:48
 msgid "User Name:"
 msgstr "Gebruikersnaam:"
 
-#: mini-utils/guname/info.c:47
+# mini-utils/guname/info.c:47
+#: mini-utils/guname/info.c:49
 msgid "X Display Name:"
 msgstr "X-Schermnaam:"
 
-#: mini-utils/guname/info.c:48
+# mini-utils/guname/info.c:48
+#: mini-utils/guname/info.c:50
 msgid "System Status:"
 msgstr "Systeemstatus:"
 
-#: mini-utils/guname/info.c:49
+# mini-utils/guname/info.c:49
+#: mini-utils/guname/info.c:51
 msgid "Real Memory:"
 msgstr "Echt geheugen:"
 
-#: mini-utils/guname/info.c:50
+# mini-utils/guname/info.c:50
+#: mini-utils/guname/info.c:52
 msgid "Swap Space (\"virtual memory\"):"
 msgstr "Swap Ruimte (\"virtueel geheugen\"):"
 
-#: mini-utils/guname/info.c:51
+# mini-utils/guname/info.c:51
+#: mini-utils/guname/info.c:53
 msgid "Total Memory:"
 msgstr "Totaal Geheugen:"
 
-#: mini-utils/guname/info.c:52
+# mini-utils/guname/info.c:52
+#: mini-utils/guname/info.c:54
 msgid "Free Memory:"
 msgstr "Vrij Geheugen:"
 
-#: mini-utils/guname/info.c:57
+# mini-utils/guname/info.c:57
+#: mini-utils/guname/info.c:59
 msgid "Device"
 msgstr "Apparaat"
 
-#: mini-utils/guname/info.c:58
+# mini-utils/guname/info.c:58
+#: mini-utils/guname/info.c:60
 msgid "Size"
 msgstr "Grootte"
 
-#: mini-utils/guname/info.c:59
+# mini-utils/guname/info.c:59
+#: mini-utils/guname/info.c:61
 msgid "Used space"
 msgstr "Gebruikte ruimte"
 
-#: mini-utils/guname/info.c:60
+# mini-utils/guname/info.c:60
+#: mini-utils/guname/info.c:62
 msgid "Free space"
 msgstr "Vrije ruimte"
 
-#: mini-utils/guname/info.c:61
+# mini-utils/guname/info.c:61
+#: mini-utils/guname/info.c:63
 msgid "Percent free"
 msgstr "Percentage vrij"
 
-#: mini-utils/guname/info.c:62
+# mini-utils/guname/info.c:62
+#: mini-utils/guname/info.c:64
 msgid "Mount point"
 msgstr "Koppelpunt"
 
+# mini-utils/guname/info.c:168
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:168
+#: mini-utils/guname/info.c:206 mini-utils/idetool/idetool.c:26
 msgid "Unknown"
 msgstr "Onbekend"
 
+# mini-utils/guname/moreinfo.c:82
 #: mini-utils/guname/moreinfo.c:82
 msgid "Unknown filesystem"
 msgstr "Onbekend bestandsysteem"
 
+# mini-utils/guname/moreinfo.c:104
 #: mini-utils/guname/moreinfo.c:104
 msgid "No information for this filesystem."
 msgstr "Geen informatie voor dit bestandsysteem"
 
-#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:165
-msgid "Memory"
-msgstr "Geheugen"
-
-#: mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:166
+# mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:166
+#: mini-utils/guname/moreinfo.c:161
 msgid "Kilobytes"
 msgstr ""
 
-#: mini-utils/guname/moreinfo.c:163
-msgid "%ld%% %s used."
-msgstr "%ld%% %s gebruikt."
+# mini-utils/guname/moreinfo.c:160 mini-utils/guname/moreinfo.c:165
+#: mini-utils/guname/moreinfo.c:161
+msgid "Memory"
+msgstr "Geheugen"
 
-#: mini-utils/guname/moreinfo.c:178 mini-utils/guname/moreinfo.c:182
-msgid "memory"
-msgstr "geheugen"
-
-#: mini-utils/guname/moreinfo.c:192 mini-utils/guname/moreinfo.c:196
-msgid "swap"
-msgstr "swap"
-
-#: mini-utils/guname/moreinfo.c:219
+# mini-utils/guname/moreinfo.c:219
+#: mini-utils/guname/moreinfo.c:214
 #, c-format
 msgid "CPU %d"
 msgstr "CPU %d"
 
-#: mini-utils/guname/moreinfo.c:267
+# mini-utils/guname/moreinfo.c:267
+#: mini-utils/guname/moreinfo.c:262
 msgid "Detailed System Information"
 msgstr "Gedatailleerde Systeeminformatie"
 
-#: mini-utils/guname/moreinfo.c:280
+# mini-utils/guname/moreinfo.c:280
+#: mini-utils/guname/moreinfo.c:275
 msgid "Disk Information"
 msgstr "Schijfinformatie"
 
-#: mini-utils/guname/moreinfo.c:282
+# mini-utils/guname/moreinfo.c:282
+#: mini-utils/guname/moreinfo.c:277
 msgid "Memory Information"
 msgstr "Geheugeninformatie"
 
-#: mini-utils/guname/moreinfo.c:285
+# mini-utils/guname/moreinfo.c:285
+#: mini-utils/guname/moreinfo.c:280
 msgid "CPU Information"
 msgstr "CPU-informatie"
 
-#: mini-utils/guname/moreinfo.c:306
-msgid "%2d%% full "
-msgstr "%2d%% vol"
+# mini-utils/guname/moreinfo.c:322
+#: mini-utils/guname/moreinfo.c:312
+msgid "Mount Point: "
+msgstr "Koppelpunt: "
 
-#: mini-utils/guname/moreinfo.c:308
+# mini-utils/guname/moreinfo.c:323
+#: mini-utils/guname/moreinfo.c:313
+msgid "    Device: "
+msgstr "   Apparaat: "
+
+# mini-utils/guname/moreinfo.c:324
+#: mini-utils/guname/moreinfo.c:314
+msgid "    Filesystem Type: "
+msgstr "   Bestandsysteemtype: "
+
+# mini-utils/guname/moreinfo.c:308
+#: mini-utils/guname/moreinfo.c:327
 #, c-format
 msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr "%ld MB, %ld vrij (%ld systeembeheer); %ld inodes, %ld vrij."
 
-#: mini-utils/guname/moreinfo.c:322
-msgid "Mount Point: "
-msgstr "Koppelpunt: "
-
-#: mini-utils/guname/moreinfo.c:323
-msgid "    Device: "
-msgstr "   Apparaat: "
-
-#: mini-utils/guname/moreinfo.c:324
-msgid "    Filesystem Type: "
-msgstr "   Bestandsysteemtype: "
-
-#: mini-utils/gw/gw.c:144
+# mini-utils/gw/gw.c:144
+#: mini-utils/gw/gw.c:141
 msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
@@ -1489,40 +2065,55 @@ msgstr ""
 "Kon de \"w\" opdracht niet vinden in uw pad.\n"
 "Zonder deze opdracht werkt het programma niet."
 
-#: mini-utils/gw/gw.c:177
-msgid "_Save..."
-msgstr "_Opslaan..."
-
-#: mini-utils/gw/gw.c:177
+# mini-utils/gw/gw.c:177
+#: mini-utils/gw/gw.c:174
 msgid "Write information to disk"
 msgstr "Schrijf informatie naar schijf"
 
-#: mini-utils/gw/gw.c:205
+# mini-utils/gw/gw.c:177
+#: mini-utils/gw/gw.c:174
+msgid "_Save..."
+msgstr "_Opslaan..."
+
+# mini-utils/gw/gw.c:205
+#: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
 msgstr "Gebruikerslijst"
 
-#: mini-utils/gw/gw.c:222
+# mini-utils/gw/gw.c:222
+#: mini-utils/gw/gw.c:219
 msgid "Update Information"
 msgstr "Informatie Bijwerken"
 
-#: mini-utils/gw/gw.c:445
+# gsearchtool/gsearchtool.c:536
+#: mini-utils/gw/gw.c:466
+#, fuzzy
+msgid "Save not implemented yet\n"
+msgstr "Dit is nog niet geïmplementeerd"
+
+# mini-utils/gw/gw.c:445
+#: mini-utils/gw/gw.c:479
 msgid "Command Line"
 msgstr "Opdrachtregel"
 
+# mini-utils/gw/gw.c:453
 #. Create everything.
-#: mini-utils/gw/gw.c:453
+#: mini-utils/gw/gw.c:487
 msgid "Add some defaults"
 msgstr "Enkele standaarwaarden toevoegen"
 
-#: mini-utils/gw/gw.c:455
+# mini-utils/gw/gw.c:455
+#: mini-utils/gw/gw.c:489
 msgid "Delete"
 msgstr "Wissen"
 
-#: mini-utils/gw/gw.c:473
+# mini-utils/gw/gw.c:473
+#: mini-utils/gw/gw.c:507
 msgid "Command Editor"
 msgstr "Opdrachtbewerker"
 
-#: mini-utils/gw/gw.c:483
+# mini-utils/gw/gw.c:483
+#: mini-utils/gw/gw.c:517
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -1536,7 +2127,8 @@ msgstr ""
 "In de opdracht kunt u %u gebruiken voor de huidige\n"
 "geselecteerde gebruikersnaam en %t voor de tty."
 
-#: mini-utils/gw/gw.c:490
+# mini-utils/gw/gw.c:490
+#: mini-utils/gw/gw.c:524
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -1545,213 +2137,309 @@ msgstr ""
 "voorbeeld opdrachten toe te\n"
 "voegen"
 
-#: mini-utils/gw/gw.c:498
+# mini-utils/gw/gw.c:498
+#: mini-utils/gw/gw.c:532
 msgid "Menu items"
 msgstr "Menuonderdelen"
 
-#: mini-utils/gw/gw.c:526
+# mini-utils/gw/gw.c:526
+#: mini-utils/gw/gw.c:560
 msgid "Command"
 msgstr "Opdracht"
 
+#: mini-utils/gw/gw.c:947
+#, c-format
+msgid "Running: %s\n"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:20
+msgid "16-bit"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:21
+msgid "32-bit"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:22
+msgid "32-bit w/sync"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:27
+msgid "Sleeping"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:28
+msgid "Active/Idle"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:29
+msgid "Standby"
+msgstr ""
+
+# mini-utils/idetool/idetool.c:42
 #: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
 msgstr "Kon de schijf niet benaderen."
 
+# mini-utils/idetool/idetool.c:59 mini-utils/idetool/idetool.c:71
 #: mini-utils/idetool/idetool.c:59 mini-utils/idetool/idetool.c:71
 msgid "The DMA setting for this drive cannot be changed."
 msgstr "De DMA instelling voor deze schijf kan niet worden aangepast."
 
+# mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
+# mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
-#: mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
-msgid "Enabled"
-msgstr "Ingeschakeld"
-
-#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
-#: mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
+#: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
+# mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
+# mini-utils/idetool/idetool.c:321 mini-utils/idetool/idetool.c:323
+#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
+#: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+# mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
 msgstr ""
 
+# mini-utils/idetool/idetool.c:122 mini-utils/idetool/idetool.c:134
 #: mini-utils/idetool/idetool.c:122 mini-utils/idetool/idetool.c:134
 msgid "The drive refused to keep its settings."
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
+# mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:325
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
 msgid "Keep settings"
 msgstr ""
 
+#: mini-utils/idetool/idetool.c:207
+msgid "None"
+msgstr ""
+
+# mini-utils/idetool/idetool.c:211
 #: mini-utils/idetool/idetool.c:211
 msgid "(1 Sector)"
 msgstr ""
 
+# mini-utils/idetool/idetool.c:213
 #: mini-utils/idetool/idetool.c:213
 msgid "(Dual Port)"
 msgstr ""
 
+# mini-utils/idetool/idetool.c:215
 #: mini-utils/idetool/idetool.c:215
 msgid "(Dual Port Cache)"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
+#: mini-utils/idetool/idetool.c:243
+msgid "No"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:245
+#, c-format
+msgid "Yes (%d sector)"
+msgstr ""
+
+#: mini-utils/idetool/idetool.c:247
+#, c-format
+msgid "Yes (%d sectors)"
+msgstr ""
+
+# mini-utils/idetool/idetool.c:308 mini-utils/idetool/idetool.c:318
+#: mini-utils/idetool/idetool.c:310 mini-utils/idetool/idetool.c:320
 msgid "Model"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:309
+# mini-utils/idetool/idetool.c:309
+#: mini-utils/idetool/idetool.c:311
 msgid "Firmware"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:310
+# mini-utils/idetool/idetool.c:310
+#: mini-utils/idetool/idetool.c:312
 msgid "Serial No."
 msgstr ""
 
+# mini-utils/idetool/idetool.c:312
 #. do config here
-#: mini-utils/idetool/idetool.c:312
+#: mini-utils/idetool/idetool.c:314
 msgid "Geometry"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:313
+# mini-utils/idetool/idetool.c:313
+#: mini-utils/idetool/idetool.c:315
 msgid "Cache"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:314
+# mini-utils/idetool/idetool.c:314
+#: mini-utils/idetool/idetool.c:316
 msgid "Status"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:318
+# mini-utils/idetool/idetool.c:318
+#: mini-utils/idetool/idetool.c:320
 msgid "Legacy MFM/RLL drive"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:321
+# mini-utils/idetool/idetool.c:321
+#: mini-utils/idetool/idetool.c:323
 msgid "DMA Mode"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:322
+# mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:324
 msgid "IO Mode"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:323
+# mini-utils/idetool/idetool.c:323
+#: mini-utils/idetool/idetool.c:325
 msgid "IRQ Unmask"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:324
+# mini-utils/idetool/idetool.c:324
+#: mini-utils/idetool/idetool.c:326
 msgid "Multisector"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:325
+# mini-utils/idetool/idetool.c:325
+#: mini-utils/idetool/idetool.c:327
 msgid "On Reset"
 msgstr ""
 
+# mini-utils/idetool/idetool.c:351
 #.
 #. *	Set up the outer display first
 #.
-#: mini-utils/idetool/idetool.c:351
+#: mini-utils/idetool/idetool.c:353
 msgid "IDE Status"
 msgstr ""
 
-#: mini-utils/idetool/idetool.c:364
+# mini-utils/idetool/idetool.c:364
+#: mini-utils/idetool/idetool.c:366
 msgid "Disk Logo Not Found"
 msgstr "Disk Logo niet gevonden"
 
-#: mini-utils/idetool/idetool.c:415
+# mini-utils/idetool/idetool.c:415
+#: mini-utils/idetool/idetool.c:417
 msgid "Only the superuser can use this tool"
 msgstr "Alleen de systeembeheerder kan dit hulpmiddel gebruiken"
 
-#: mini-utils/idetool/idetool.c:426
+# mini-utils/idetool/idetool.c:426
+#: mini-utils/idetool/idetool.c:428
 msgid "You appear to have no IDE drives"
 msgstr "U lijkt geen IDE schijven te hebben"
 
-#~ msgid "_About..."
-#~ msgstr "_Over"
-
-#~ msgid "_Copy"
-#~ msgstr "_Kopiëren"
-
-#~ msgid "_Calculator"
-#~ msgstr "_Rekenmachine"
-
-#~ msgid "_Find..."
-#~ msgstr "_Zoek..."
-
-#~ msgid "Search for a string"
-#~ msgstr "Zoek naar tekenreeks"
-
-#~ msgid "_Replace..."
-#~ msgstr "_Vervang"
-
-#~ msgid "Replace a string"
-#~ msgstr "Vervang een tekenreeks"
-
-#~ msgid "_Open"
-#~ msgstr "_Openen"
-
-#~ msgid "Open a file"
-#~ msgstr "Open een bestand"
-
-#~ msgid "_Save"
-#~ msgstr "_Opslaan"
-
-#~ msgid "Save buffer "
-#~ msgstr "Buffer opslaan"
-
-#~ msgid "Save _As..."
-#~ msgstr "Opslaan _Als..."
-
-#~ msgid "Save buffer under a different file name"
-#~ msgstr "Sla buffer op onder andere bestandsnaam"
-
-#~ msgid "_Close"
-#~ msgstr "_Sluit"
-
-#~ msgid "Close file"
-#~ msgstr "Sluit bestand"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Voorkeuren"
-
-#~ msgid "Set user preferences"
-#~ msgstr "Stel voorkeuren in"
-
-#~ msgid "Exit GHex"
-#~ msgstr "GHex afsluiten"
-
-#~ msgid "_Preferences..."
-#~ msgstr "_Voorkeuren..."
-
-#~ msgid "C_ut"
-#~ msgstr "_Knippen"
-
-#~ msgid "_Paste"
-#~ msgstr "_Plakken"
-
-#~ msgid "P_roperties..."
-#~ msgstr "_Eigenschappen..."
-
-#~ msgid "Clear Daily Counter"
-#~ msgstr "_Dagteller nulstellen"
-
-#~ msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
-#~ msgstr "Fout, kan /usr/X11R6/lib/X11/rgb.txt niet openen.\n"
-
-#~ msgid "_Program"
-#~ msgstr "_Bestand"
-
-#~ msgid "_Open..."
-#~ msgstr "_Openen..."
-
-#~ msgid "Open a new file in this window"
-#~ msgstr "Openen in nieuw bestand in dit venster"
-
-#~ msgid "Save file to disk"
-#~ msgstr "Bewaar bestand op schijf"
-
-#~ msgid "Close this window"
-#~ msgstr "Sluit dit venster"
+#~ msgid "Quit the application"
+#~ msgstr "Toepassing afsluiten"
 
 #~ msgid "Change application preferences"
 #~ msgstr "Pas applicatie voorkeuren aan"
 
-#~ msgid "Quit the application"
-#~ msgstr "Toepassing afsluiten"
+#~ msgid "Close this window"
+#~ msgstr "Sluit dit venster"
+
+#~ msgid "Save file to disk"
+#~ msgstr "Bewaar bestand op schijf"
+
+#~ msgid "Open a new file in this window"
+#~ msgstr "Openen in nieuw bestand in dit venster"
+
+#~ msgid "_Open..."
+#~ msgstr "_Openen..."
+
+#~ msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
+#~ msgstr "Fout, kan /usr/X11R6/lib/X11/rgb.txt niet openen.\n"
+
+#~ msgid "Clear Daily Counter"
+#~ msgstr "_Dagteller nulstellen"
+
+#~ msgid "P_roperties..."
+#~ msgstr "_Eigenschappen..."
+
+#~ msgid "_Paste"
+#~ msgstr "_Plakken"
+
+#~ msgid "C_ut"
+#~ msgstr "_Knippen"
+
+#~ msgid "_Preferences..."
+#~ msgstr "_Voorkeuren..."
+
+#~ msgid "Exit GHex"
+#~ msgstr "GHex afsluiten"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Voorkeuren"
+
+#~ msgid "Close file"
+#~ msgstr "Sluit bestand"
+
+#~ msgid "_Close"
+#~ msgstr "_Sluit"
+
+#~ msgid "Save buffer under a different file name"
+#~ msgstr "Sla buffer op onder andere bestandsnaam"
+
+#~ msgid "Save _As..."
+#~ msgstr "Opslaan _Als..."
+
+#~ msgid "Save buffer "
+#~ msgstr "Buffer opslaan"
+
+#~ msgid "_Save"
+#~ msgstr "_Opslaan"
+
+#~ msgid "Open a file"
+#~ msgstr "Open een bestand"
+
+#~ msgid "_Open"
+#~ msgstr "_Openen"
+
+#~ msgid "Replace a string"
+#~ msgstr "Vervang een tekenreeks"
+
+#~ msgid "_Replace..."
+#~ msgstr "_Vervang"
+
+#~ msgid "Search for a string"
+#~ msgstr "Zoek naar tekenreeks"
+
+#~ msgid "_Calculator"
+#~ msgstr "_Rekenmachine"
+
+#~ msgid "_Copy"
+#~ msgstr "_Kopiëren"
+
+#~ msgid "_About..."
+#~ msgstr "_Over"
+
+# gstripchart/gstripchart.c:1706
+#~ msgid "geometry"
+#~ msgstr "leeg"
+
+# mini-utils/guname/guname.c:581
+#~ msgid "Error closing file `"
+#~ msgstr "Fout bij sluiten bestand `"
+
+# mini-utils/guname/guname.c:682
+#~ msgid "The following mail will be sent to "
+#~ msgstr "Het volgende bericht zal worden gezonden naar "
+
+# mini-utils/guname/moreinfo.c:163
+#~ msgid "%ld%% %s used."
+#~ msgstr "%ld%% %s gebruikt."
+
+# mini-utils/guname/moreinfo.c:178 mini-utils/guname/moreinfo.c:182
+#~ msgid "memory"
+#~ msgstr "geheugen"
+
+# mini-utils/guname/moreinfo.c:192 mini-utils/guname/moreinfo.c:196
+#~ msgid "swap"
+#~ msgstr "swap"
+
+# mini-utils/guname/moreinfo.c:306
+#~ msgid "%2d%% full "
+#~ msgstr "%2d%% vol"

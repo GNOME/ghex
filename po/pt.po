@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 0.99.2\n"
-"POT-Creation-Date: 1999-07-30 15:46-0400\n"
+"POT-Creation-Date: 1999-09-01 15:44+0200\n"
 "PO-Revision-Date: 1999-01-10 19:28+00:00\n"
 "Last-Translator: Nuno Ferreira <nmrf@rnl.ist.utl.pt>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -185,12 +185,12 @@ msgid "Group data by 32 bits"
 msgstr "Agrupar cada 32 bits"
 
 #: ghex/hex-document.c:78
-msgid "_Goto Byte..."
-msgstr "_Ir para o Byte..."
-
-#: ghex/hex-document.c:78
 msgid "Jump to a certain position"
 msgstr "Ir para uma determinada posição"
+
+#: ghex/hex-document.c:78
+msgid "_Goto Byte..."
+msgstr "_Ir para o Byte..."
 
 #: ghex/hex-document.c:81
 msgid "_Group Data As"
@@ -493,75 +493,86 @@ msgstr "Interface para os comandos unix find/grep/locate"
 msgid "Gnome Search Tool"
 msgstr "Ferramenta de procura Gnome"
 
-#: gstripchart/gstripchart.c:374
+#: gstripchart/gstripchart.c:423
 msgid "rparen expected"
 msgstr ""
 
-#: gstripchart/gstripchart.c:391
+#: gstripchart/gstripchart.c:440
 #, c-format
 msgid "no such field: %d"
 msgstr ""
 
-#: gstripchart/gstripchart.c:415
+#: gstripchart/gstripchart.c:468
 msgid "missing variable identifer"
 msgstr ""
 
-#: gstripchart/gstripchart.c:417
+#: gstripchart/gstripchart.c:470
 #, c-format
 msgid "invalid variable identifer: %s"
 msgstr ""
 
-#: gstripchart/gstripchart.c:421
+#: gstripchart/gstripchart.c:474
 msgid "number expected"
 msgstr ""
 
-#: gstripchart/gstripchart.c:498
+#: gstripchart/gstripchart.c:553
 #, c-format
 msgid "extra gunk at end: \"%s\""
 msgstr ""
 
-#: gstripchart/gstripchart.c:575
+#: gstripchart/gstripchart.c:630
 #, c-format
 msgid "%s, line %d: "
 msgstr ""
 
-#: gstripchart/gstripchart.c:652
+#: gstripchart/gstripchart.c:707
 #, c-format
 msgid "can't open config file \"%s\""
 msgstr ""
 
-#: gstripchart/gstripchart.c:743
+#: gstripchart/gstripchart.c:734
+#, c-format
+msgid ""
+"can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+msgstr ""
+
+#: gstripchart/gstripchart.c:739
+#, c-format
+msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
+msgstr ""
+
+#: gstripchart/gstripchart.c:796
 #, c-format
 msgid "invalid display type: %s"
 msgstr ""
 
-#: gstripchart/gstripchart.c:777
+#: gstripchart/gstripchart.c:830
 msgid "identifier or begin must be first"
 msgstr ""
 
-#: gstripchart/gstripchart.c:784 gstripchart/gstripchart.c:800
+#: gstripchart/gstripchart.c:837 gstripchart/gstripchart.c:853
 #, c-format
 msgid "unrecognized color: %s"
 msgstr ""
 
-#: gstripchart/gstripchart.c:827
+#: gstripchart/gstripchart.c:880
 #, c-format
 msgid "invalid option: \"%s\""
 msgstr ""
 
-#: gstripchart/gstripchart.c:1344
+#: gstripchart/gstripchart.c:1409
 msgid "E_xit"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1344
+#: gstripchart/gstripchart.c:1409
 msgid "Terminate the stripchart program"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1360
+#: gstripchart/gstripchart.c:1425
 msgid "Copyright 1998 John Kodis"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1362
+#: gstripchart/gstripchart.c:1427
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -569,202 +580,167 @@ msgid ""
 "Other more ingenious uses are left as an exercise for the interested user."
 msgstr ""
 
-#: gstripchart/gstripchart.c:1375
-msgid "_About"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1375
+#: gstripchart/gstripchart.c:1440
 msgid "Info about the striphart program"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1386
+#: gstripchart/gstripchart.c:1440
+msgid "_About"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1451
 msgid "_File"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1387
+#: gstripchart/gstripchart.c:1452
 msgid "_Help"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1450
+#: gstripchart/gstripchart.c:1516 gstripchart/gstripchart.c:1629
 msgid "Param"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1450 mini-utils/gcolorsel/gcolorsel.c:156
+#: gstripchart/gstripchart.c:1516 mini-utils/gcolorsel/gcolorsel.c:156
 #: mini-utils/guname/moreinfo.c:218
 msgid "Value"
 msgstr "Valor"
 
-#: gstripchart/gstripchart.c:1454
+#: gstripchart/gstripchart.c:1520
 msgid "Identifier"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1465
-msgid "yellow"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1465
-#, fuzzy
-msgid "blue"
-msgstr "Valor"
-
-#: gstripchart/gstripchart.c:1465
-msgid "red"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1465
-msgid "green"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1465
-msgid "white"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1466
-msgid "Busy"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1466
-#, fuzzy
-msgid "Load"
-msgstr "Reler"
-
-#: gstripchart/gstripchart.c:1466
-msgid "PPP In"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1466
-msgid "PPP Out"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1466
-#, fuzzy
-msgid "Swap"
-msgstr "\"swap\""
-
-#: gstripchart/gstripchart.c:1470 mini-utils/gcolorsel/gcolorsel.c:155
+#: gstripchart/gstripchart.c:1522 mini-utils/gcolorsel/gcolorsel.c:155
 msgid "Color"
 msgstr "Cor"
 
-#: gstripchart/gstripchart.c:1472
+#: gstripchart/gstripchart.c:1524
 #, fuzzy
 msgid "Filename"
 msgstr "Nome do Ficheiro:"
 
-#: gstripchart/gstripchart.c:1474
+#: gstripchart/gstripchart.c:1526
 #, fuzzy
 msgid "Pattern"
 msgstr "Colar"
 
-#: gstripchart/gstripchart.c:1476
+#: gstripchart/gstripchart.c:1528
 msgid "Equation"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1478
+#: gstripchart/gstripchart.c:1530
 msgid "Expected range"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1482
+#: gstripchart/gstripchart.c:1534
 #, fuzzy
 msgid "Displayed range"
 msgstr "Nome do display X:"
 
-#: gstripchart/gstripchart.c:1486
+#: gstripchart/gstripchart.c:1538
 msgid "Current value"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1493
+#: gstripchart/gstripchart.c:1545
 msgid "Active"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1509
+#: gstripchart/gstripchart.c:1561
 msgid "Gnome Stripchart Parameters"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1609
+#: gstripchart/gstripchart.c:1629
+#, fuzzy
+msgid "Current"
+msgstr "Cortar"
+
+#: gstripchart/gstripchart.c:1629
+msgid "Top"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1657
 msgid "Help"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1615 mini-utils/gshutdown/gshutdown.c:318
+#: gstripchart/gstripchart.c:1663 mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1621
+#: gstripchart/gstripchart.c:1669
 msgid "Params"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1627
+#: gstripchart/gstripchart.c:1675
 msgid "Exit"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1777
+msgid "Gnome stripchart viewer"
 msgstr ""
 
 #. Create a top-level window. Set the title, minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
-#: gstripchart/gstripchart.c:1729
+#: gstripchart/gstripchart.c:1777
 msgid "gstripchart"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1729
-msgid "Gnome stripchart viewer"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1805
+#: gstripchart/gstripchart.c:1856
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1832
+#: gstripchart/gstripchart.c:1883
 msgid "GEO"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1832
-#, fuzzy
-msgid "geometry"
-msgstr "Geometria"
+#: gstripchart/gstripchart.c:1883
+msgid "Geometry string: WxH+X+Y"
+msgstr ""
 
-#: gstripchart/gstripchart.c:1834
+#: gstripchart/gstripchart.c:1885
+#, fuzzy
+msgid "Configuration file name"
+msgstr "Gravar Ficheiro de Configuração"
+
+#: gstripchart/gstripchart.c:1885
 msgid "FILE"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1834
-#, fuzzy
-msgid "configuration file"
-msgstr "Gravar Ficheiro de Configuração"
+#: gstripchart/gstripchart.c:1887
+msgid "Chart update interval"
+msgstr ""
 
-#: gstripchart/gstripchart.c:1836 gstripchart/gstripchart.c:1838
-#: gstripchart/gstripchart.c:1840 gstripchart/gstripchart.c:1842
+#: gstripchart/gstripchart.c:1887 gstripchart/gstripchart.c:1889
+#: gstripchart/gstripchart.c:1891 gstripchart/gstripchart.c:1893
 msgid "SECS"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1836
-msgid "chart update interval"
+#: gstripchart/gstripchart.c:1889
+msgid "Chart low-pass filter time constant"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1838
-msgid "chart LP filter TC"
+#: gstripchart/gstripchart.c:1891
+msgid "Slider update interval"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1840
-msgid "slider update interval"
+#: gstripchart/gstripchart.c:1893
+msgid "Slider low-pass filter time constant"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1842
-msgid "slider LP filter TC"
+#: gstripchart/gstripchart.c:1895
+msgid "Adds a menubar to the main window"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1844
-msgid "add menubar"
+#: gstripchart/gstripchart.c:1897
+msgid "Omits slider window"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1846
-msgid "omit slider"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1848
+#: gstripchart/gstripchart.c:1899
 msgid "TYPE"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1848
-msgid "gtk|text|graph|none"
+#: gstripchart/gstripchart.c:1899
+msgid "TYPE is one of gtk, text, graph, or none"
 msgstr ""
 
 #: gtt/app.c:117 gtt/app.c:223
@@ -831,21 +807,21 @@ msgstr ""
 "Ocurreu um erro durante a leitura do ficheiro de configuração.\n"
 "Quer que efectue uma nova configuração?"
 
-#: gtt/main.c:204
-msgid "Specify geometry"
-msgstr "Especifique a geometria"
-
 #: gtt/main.c:204 mini-utils/gless/gless.c:131
 msgid "GEOMETRY"
 msgstr "GEOMETRIA"
 
-#: gtt/main.c:206
-msgid "Select a project on startup"
-msgstr "Seleccione um projecto ao arrancar"
+#: gtt/main.c:204
+msgid "Specify geometry"
+msgstr "Especifique a geometria"
 
 #: gtt/main.c:206
 msgid "PROJECT"
 msgstr "PROJECTO"
+
+#: gtt/main.c:206
+msgid "Select a project on startup"
+msgstr "Seleccione um projecto ao arrancar"
 
 #: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
 msgid "Warning"
@@ -1212,12 +1188,12 @@ msgid "Selection:"
 msgstr "Selecção:"
 
 #: mini-utils/gfontsel/gfontsel.c:253
-msgid "Font to load"
-msgstr "Fonte a carregar"
-
-#: mini-utils/gfontsel/gfontsel.c:253
 msgid "FONTSPEC"
 msgstr "ESPEC-FONTE"
+
+#: mini-utils/gfontsel/gfontsel.c:253
+msgid "Font to load"
+msgstr "Fonte a carregar"
 
 #: mini-utils/gfontsel/gfontsel.c:254
 msgid "Print selected font name on exit"
@@ -1360,12 +1336,12 @@ msgid "Run Program"
 msgstr "Executar Aplicação"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Run"
-msgstr "Executar"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Cancel"
 msgstr "Cancelar"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Run"
+msgstr "Executar"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1590,97 +1566,97 @@ msgstr "Tem a certeza?"
 msgid "Address to mail to:"
 msgstr "Endereço para o qual enviar:"
 
-#: mini-utils/guname/info.c:38
+#: mini-utils/guname/info.c:39
 msgid "Distribution:"
 msgstr "Distribuição:"
 
-#: mini-utils/guname/info.c:39
+#: mini-utils/guname/info.c:40
 msgid "Operating System:"
 msgstr "Sistema Operativo:"
 
-#: mini-utils/guname/info.c:40
+#: mini-utils/guname/info.c:41
 msgid "Distribution Version:"
 msgstr "Versão da distribuição"
 
-#: mini-utils/guname/info.c:41
+#: mini-utils/guname/info.c:42
 msgid "Operating System Version:"
 msgstr "Identificação do S.O.:"
 
-#: mini-utils/guname/info.c:42
+#: mini-utils/guname/info.c:43
 msgid "Operating System Release:"
 msgstr "Versão do S.O.:"
 
-#: mini-utils/guname/info.c:43
+#: mini-utils/guname/info.c:44
 msgid "Processor Type:"
 msgstr "Tipo de Processador:"
 
-#: mini-utils/guname/info.c:44
+#: mini-utils/guname/info.c:45
 msgid "Processor Speed:"
 msgstr "Velocidade do processador:"
 
-#: mini-utils/guname/info.c:45
+#: mini-utils/guname/info.c:46
 msgid "Host Name:"
 msgstr "Nome do nó:"
 
-#: mini-utils/guname/info.c:46
+#: mini-utils/guname/info.c:47
 msgid "Domain Name:"
 msgstr "Nome do domínio:"
 
-#: mini-utils/guname/info.c:47
+#: mini-utils/guname/info.c:48
 msgid "User Name:"
 msgstr "Nome do Utilizador:"
 
-#: mini-utils/guname/info.c:48
+#: mini-utils/guname/info.c:49
 msgid "X Display Name:"
 msgstr "Nome do display X:"
 
-#: mini-utils/guname/info.c:49
+#: mini-utils/guname/info.c:50
 msgid "System Status:"
 msgstr "Estado do sistema:"
 
-#: mini-utils/guname/info.c:50
+#: mini-utils/guname/info.c:51
 msgid "Real Memory:"
 msgstr "Memória real:"
 
-#: mini-utils/guname/info.c:51
+#: mini-utils/guname/info.c:52
 msgid "Swap Space (\"virtual memory\"):"
 msgstr "Espaço de \"swap\" (\"memória virtual\"):"
 
-#: mini-utils/guname/info.c:52
+#: mini-utils/guname/info.c:53
 msgid "Total Memory:"
 msgstr "Memória total:"
 
-#: mini-utils/guname/info.c:53
+#: mini-utils/guname/info.c:54
 msgid "Free Memory:"
 msgstr "Memória livre:"
 
-#: mini-utils/guname/info.c:58
+#: mini-utils/guname/info.c:59
 msgid "Device"
 msgstr "Dispositivo"
 
-#: mini-utils/guname/info.c:59
+#: mini-utils/guname/info.c:60
 msgid "Size"
 msgstr "Size"
 
-#: mini-utils/guname/info.c:60
+#: mini-utils/guname/info.c:61
 msgid "Used space"
 msgstr "Espaço utilizado"
 
-#: mini-utils/guname/info.c:61
+#: mini-utils/guname/info.c:62
 msgid "Free space"
 msgstr "Espaço livre"
 
-#: mini-utils/guname/info.c:62
+#: mini-utils/guname/info.c:63
 msgid "Percent free"
 msgstr "Percentagem livre"
 
-#: mini-utils/guname/info.c:63
+#: mini-utils/guname/info.c:64
 msgid "Mount point"
 msgstr "Ponto de montagem"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:182 mini-utils/idetool/idetool.c:26
+#: mini-utils/guname/info.c:206 mini-utils/idetool/idetool.c:26
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -1693,12 +1669,12 @@ msgid "No information for this filesystem."
 msgstr "Informação inexistente para este sistema de ficheiros."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Memory"
-msgstr "Memória"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Kilobytes"
 msgstr "Kilobytes"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Memory"
+msgstr "Memória"
 
 #: mini-utils/guname/moreinfo.c:214
 #, c-format
@@ -1748,12 +1724,12 @@ msgstr ""
 "Este comando é necessário para o funcionamento desta aplicação."
 
 #: mini-utils/gw/gw.c:174
-msgid "_Save..."
-msgstr "_Gravar..."
-
-#: mini-utils/gw/gw.c:174
 msgid "Write information to disk"
 msgstr "Gravar informação para o disco"
+
+#: mini-utils/gw/gw.c:174
+msgid "_Save..."
+msgstr "_Gravar..."
 
 #: mini-utils/gw/gw.c:202
 #, fuzzy
@@ -1855,13 +1831,13 @@ msgstr ""
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Activo"
+msgid "Disabled"
+msgstr "Inactivo"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Inactivo"
+msgid "Enabled"
+msgstr "Activo"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
@@ -1973,53 +1949,69 @@ msgstr "Esta ferramenta só pode ser utilizada pelo super-utilizador"
 msgid "You appear to have no IDE drives"
 msgstr "Você parece não ter quaisquer discos IDE"
 
-#~ msgid "Error closing file `"
-#~ msgstr "Erro a fechar o ficheiro `"
+#~ msgid "PIO Mode"
+#~ msgstr "Modo PIO"
 
-#~ msgid " ': "
-#~ msgstr " ': "
+#~ msgid "error in geometry string \"%s\"\n"
+#~ msgstr "erro na especificação da geometria \"%s\"\n"
 
-#~ msgid "The following mail will be sent to "
-#~ msgstr "O mail seguinte será enviado para "
-
-#~ msgid "%ld%% %s used."
-#~ msgstr "%ld%% %s usado."
-
-#~ msgid "memory"
-#~ msgstr "memória"
-
-#~ msgid "%2d%% full "
-#~ msgstr "%2d%% cheio "
+#~ msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
+#~ msgstr "Erro, não consegui abrir /usr/X11R6/lib/X11/rgb.txt.\n"
 
 #, fuzzy
-#~ msgid "Preferences..."
-#~ msgstr "Preferências"
-
-#, fuzzy
-#~ msgid "File"
-#~ msgstr "Nome do Ficheiro:"
-
-#, fuzzy
-#~ msgid "Search"
-#~ msgstr "Procurar %s"
-
-#, fuzzy
-#~ msgid "Clear the search window"
-#~ msgstr "Nova janela para visualizar texto"
+#~ msgid "Directory:"
+#~ msgstr "Iniciar na directoria:"
 
 #, fuzzy
 #~ msgid "Find Files"
 #~ msgstr "Procurar Seguinte"
 
 #, fuzzy
-#~ msgid "Directory:"
-#~ msgstr "Iniciar na directoria:"
+#~ msgid "Clear the search window"
+#~ msgstr "Nova janela para visualizar texto"
 
-#~ msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
-#~ msgstr "Erro, não consegui abrir /usr/X11R6/lib/X11/rgb.txt.\n"
+#, fuzzy
+#~ msgid "Search"
+#~ msgstr "Procurar %s"
 
-#~ msgid "error in geometry string \"%s\"\n"
-#~ msgstr "erro na especificação da geometria \"%s\"\n"
+#, fuzzy
+#~ msgid "File"
+#~ msgstr "Nome do Ficheiro:"
 
-#~ msgid "PIO Mode"
-#~ msgstr "Modo PIO"
+#, fuzzy
+#~ msgid "Preferences..."
+#~ msgstr "Preferências"
+
+#~ msgid "%2d%% full "
+#~ msgstr "%2d%% cheio "
+
+#~ msgid "memory"
+#~ msgstr "memória"
+
+#~ msgid "%ld%% %s used."
+#~ msgstr "%ld%% %s usado."
+
+#~ msgid "The following mail will be sent to "
+#~ msgstr "O mail seguinte será enviado para "
+
+#~ msgid " ': "
+#~ msgstr " ': "
+
+#~ msgid "Error closing file `"
+#~ msgstr "Erro a fechar o ficheiro `"
+
+#, fuzzy
+#~ msgid "blue"
+#~ msgstr "Valor"
+
+#, fuzzy
+#~ msgid "Load"
+#~ msgstr "Reler"
+
+#, fuzzy
+#~ msgid "Swap"
+#~ msgstr "\"swap\""
+
+#, fuzzy
+#~ msgid "geometry"
+#~ msgstr "Geometria"
