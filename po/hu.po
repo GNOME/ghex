@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex VERSION\n"
-"POT-Creation-Date: 2002-10-20 13:06+0200\n"
-"PO-Revision-Date: 2002-10-20 13:10+0200\n"
+"POT-Creation-Date: 2002-10-27 16:36+0100\n"
+"PO-Revision-Date: 2002-10-27 16:42+0100\n"
 "Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "HIBA"
 
-#: src/findreplace.c:60 src/ui.c:913
+#: src/findreplace.c:60 src/ui.c:889
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Adat keresése"
@@ -100,13 +100,13 @@ msgstr "GHex (%s): Adat keresése"
 msgid "Search for %s"
 msgstr "%s keresése"
 
-#: src/findreplace.c:86 src/findreplace.c:119
-msgid "Find Next"
-msgstr "Következő találat"
+#: src/findreplace.c:86
+msgid "Find _Next"
+msgstr "_Következő találat"
 
 #: src/findreplace.c:94
-msgid "Find Previous"
-msgstr "Előző találat"
+msgid "Find _Previous"
+msgstr "_Előző találat"
 
 #: src/findreplace.c:118 src/findreplace.c:210
 msgid "Find Data"
@@ -115,6 +115,10 @@ msgstr "Adat keresése"
 #: src/findreplace.c:118 src/findreplace.c:210
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Add meg a keresendő hexadecimális vagy ASCII adatot"
+
+#: src/findreplace.c:119
+msgid "Find Next"
+msgstr "Következő találat"
 
 #: src/findreplace.c:119 src/findreplace.c:212
 msgid "Finds the next occurrence of the search string"
@@ -136,7 +140,7 @@ msgstr "Mégse"
 msgid "Closes find data window"
 msgstr "Bezárja az adatkereső ablakot"
 
-#: src/findreplace.c:140 src/ui.c:911
+#: src/findreplace.c:140 src/ui.c:887
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Keresés és csere"
@@ -146,17 +150,17 @@ msgstr "GHex (%s): Keresés és csere"
 msgid "Replace %s"
 msgstr "%s cseréje"
 
-#: src/findreplace.c:172 src/findreplace.c:212
-msgid "Find next"
-msgstr "Következő keresése"
+#: src/findreplace.c:172
+msgid "Find _next"
+msgstr "_Következő találat"
 
-#: src/findreplace.c:180 src/findreplace.c:213 src/ghex-ui.xml.h:49
-msgid "Replace"
-msgstr "Csere"
+#: src/findreplace.c:180 src/ghex-ui.xml.h:85
+msgid "_Replace"
+msgstr "_Csere"
 
-#: src/findreplace.c:188 src/findreplace.c:214
-msgid "Replace All"
-msgstr "Mindent cserél"
+#: src/findreplace.c:188
+msgid "Replace _All"
+msgstr "_Mindet cseréli"
 
 #: src/findreplace.c:211
 msgid "Replace Data"
@@ -166,9 +170,21 @@ msgstr "Adat cseréje"
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "Add meg a hexadecimális vagy ASCII adatot, amire cserélni kell"
 
+#: src/findreplace.c:212
+msgid "Find next"
+msgstr "Következő keresése"
+
+#: src/findreplace.c:213 src/ghex-ui.xml.h:48
+msgid "Replace"
+msgstr "Csere"
+
 #: src/findreplace.c:213
 msgid "Replaces the search string with the replace string"
 msgstr "Cseréli a keresett karakterláncot a megadott karakterláncra"
+
+#: src/findreplace.c:214
+msgid "Replace All"
+msgstr "Mindent cserél"
 
 #: src/findreplace.c:214
 msgid "Replaces all occurrences of the search string with the replace string"
@@ -180,7 +196,7 @@ msgstr ""
 msgid "Closes find and replace data window"
 msgstr "Bezárja a keresés és csere ablakot"
 
-#: src/findreplace.c:231 src/ui.c:909
+#: src/findreplace.c:231 src/ui.c:885
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Bájtra ugrás"
@@ -246,10 +262,10 @@ msgid "There is no active buffer to replace data in!"
 msgstr "Nincs olyan aktív tároló, amelyben adatot lehetne cserélni!"
 
 #: src/findreplace.c:455 src/findreplace.c:496
-msgid "Strings are not approprate for the selected data type!"
+msgid "Strings are not appropriate for the selected data type!"
 msgstr "A karakterláncok nem megfelelőek a kiválasztott adattípushoz!"
 
-#: src/findreplace.c:471
+#: src/findreplace.c:470 src/findreplace.c:471
 msgid "End Of File reached!"
 msgstr "A fájl végén vagyok!"
 
@@ -257,7 +273,11 @@ msgstr "A fájl végén vagyok!"
 msgid "There is no active document to replace data in!"
 msgstr "Nincs aktív dokumentum, amelyben adatot lehetne cserélni!"
 
-#: src/findreplace.c:515
+#: src/findreplace.c:516
+msgid "No occurences were found."
+msgstr "Nem volt találat."
+
+#: src/findreplace.c:519
 #, c-format
 msgid "Replaced %d occurencies."
 msgstr "Kicserélve %d helyen."
@@ -267,249 +287,249 @@ msgid "About this application"
 msgstr "Az alkalmazás névjegye"
 
 #: src/ghex-ui.xml.h:2
-msgid "About..."
-msgstr "Névjegy..."
-
-#: src/ghex-ui.xml.h:3
 msgid "Add View"
 msgstr "Nézet hozzáadása"
 
-#: src/ghex-ui.xml.h:4
+#: src/ghex-ui.xml.h:3
 msgid "Add a new view to the buffer"
 msgstr "Új nézet hozzáadása a tárolóhoz"
 
-#: src/ghex-ui.xml.h:5 src/ui.c:67
+#: src/ghex-ui.xml.h:4 src/ui.c:64
 msgid "Bytes"
 msgstr "Bájtok"
 
-#: src/ghex-ui.xml.h:6
+#: src/ghex-ui.xml.h:5
 msgid "C_ut"
 msgstr "_Kivágás"
 
-#: src/ghex-ui.xml.h:7
+#: src/ghex-ui.xml.h:6
 msgid "Character Table..."
 msgstr "Karaktertábla..."
 
-#: src/ghex-ui.xml.h:8
+#: src/ghex-ui.xml.h:7
 msgid "Character _Table..."
 msgstr "Karakter_tábla..."
 
-#: src/ghex-ui.xml.h:9
+#: src/ghex-ui.xml.h:8
 msgid "Close"
 msgstr "Bezárás"
 
-#: src/ghex-ui.xml.h:10
+#: src/ghex-ui.xml.h:9
 msgid "Close the current file"
 msgstr "Az aktuális fájl bezárása"
 
-#: src/ghex-ui.xml.h:11
+#: src/ghex-ui.xml.h:10
 msgid "Configure the application"
 msgstr "Az alkalmazás beállításai"
 
-#: src/ghex-ui.xml.h:12
+#: src/ghex-ui.xml.h:11
 msgid "Contents"
 msgstr "Tartalom"
 
-#: src/ghex-ui.xml.h:13
+#: src/ghex-ui.xml.h:12
 msgid "Converter..."
 msgstr "Konvertáló..."
 
-#: src/ghex-ui.xml.h:14
+#: src/ghex-ui.xml.h:13
 msgid "Copy"
 msgstr "Másolás"
 
-#: src/ghex-ui.xml.h:15
+#: src/ghex-ui.xml.h:14
 msgid "Copy selection to clipboard"
 msgstr "Kijelölés másolása a vágólapra"
 
-#: src/ghex-ui.xml.h:16
+#: src/ghex-ui.xml.h:15
 msgid "Cut"
 msgstr "Kivágás"
 
-#: src/ghex-ui.xml.h:17
+#: src/ghex-ui.xml.h:16
 msgid "Cut selection"
 msgstr "Kijelölés kivágása"
 
-#: src/ghex-ui.xml.h:18
+#: src/ghex-ui.xml.h:17
 msgid "E_xit"
 msgstr "_Kilépés"
 
-#: src/ghex-ui.xml.h:19
+#: src/ghex-ui.xml.h:18
 msgid "Exit"
 msgstr "Kilépés"
 
-#: src/ghex-ui.xml.h:20
+#: src/ghex-ui.xml.h:19
 msgid "Exit the program"
 msgstr "Kilépés a programból"
 
-#: src/ghex-ui.xml.h:21
+#: src/ghex-ui.xml.h:20
 msgid "Export data to HTML source"
 msgstr "HTML forrásba menti az adatokat"
 
 # src/ui.c:57
-#: src/ghex-ui.xml.h:22
+#: src/ghex-ui.xml.h:21
 msgid "Export to HTML..."
 msgstr "Exportálás HTML-be..."
 
-#: src/ghex-ui.xml.h:23
+#: src/ghex-ui.xml.h:22
 msgid "Find"
 msgstr "Keresés"
 
-#: src/ghex-ui.xml.h:24
+#: src/ghex-ui.xml.h:23
 msgid "Goto Byte"
 msgstr "Ugrás bájtra"
 
-#: src/ghex-ui.xml.h:25
+#: src/ghex-ui.xml.h:24
 msgid "Group data by 16 bits"
 msgstr "16 bitenként csoportosítja az adatokat"
 
-#: src/ghex-ui.xml.h:26
+#: src/ghex-ui.xml.h:25
 msgid "Group data by 32 bits"
 msgstr "32 bitenként csoportosítja az adatokat"
 
-#: src/ghex-ui.xml.h:27
+#: src/ghex-ui.xml.h:26
 msgid "Group data by 8 bits"
 msgstr "8 bitenként csoportosítja az adatokat"
 
-#: src/ghex-ui.xml.h:28
+#: src/ghex-ui.xml.h:27
 msgid "Help Chat"
 msgstr "Segítő csevegés"
 
-#: src/ghex-ui.xml.h:29
+#: src/ghex-ui.xml.h:28
 msgid "Help on this application"
 msgstr "Az alkalmazás súgója"
 
-#: src/ghex-ui.xml.h:30
+#: src/ghex-ui.xml.h:29
 msgid "Insert Mode"
 msgstr "Beszúrás mód"
 
-#: src/ghex-ui.xml.h:31
+#: src/ghex-ui.xml.h:30
 msgid "Insert/overwrite data"
 msgstr "Adatot beszúr/felülír"
 
-#: src/ghex-ui.xml.h:32
+#: src/ghex-ui.xml.h:31
 msgid "Jump to a certain position"
 msgstr "Ugrás a megadott pozícióra"
 
-#: src/ghex-ui.xml.h:33 src/ui.c:69
+#: src/ghex-ui.xml.h:32 src/ui.c:66
 msgid "Longwords"
 msgstr "Hosszúszavak"
 
-#: src/ghex-ui.xml.h:34
+#: src/ghex-ui.xml.h:33
 msgid "Open"
 msgstr "Megnyitás"
 
-#: src/ghex-ui.xml.h:35
+#: src/ghex-ui.xml.h:34
 msgid "Open a file"
 msgstr "Fájl megnyitása"
 
-#: src/ghex-ui.xml.h:36
+#: src/ghex-ui.xml.h:35
 msgid "Open base conversion dialog"
 msgstr "Konverziós párbeszédablak nyitása"
 
-#: src/ghex-ui.xml.h:37
+#: src/ghex-ui.xml.h:36
 msgid "Paste"
 msgstr "Beillesztés"
 
-#: src/ghex-ui.xml.h:38
+#: src/ghex-ui.xml.h:37
 msgid "Paste data from clipboard"
 msgstr "Vágólap tartalmának beillesztése"
 
-#: src/ghex-ui.xml.h:39
+#: src/ghex-ui.xml.h:38
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: src/ghex-ui.xml.h:40
+#: src/ghex-ui.xml.h:39
 msgid "Preview printed data"
 msgstr "A nyomtatandó lapokat mutatja meg"
 
-#: src/ghex-ui.xml.h:41
+#: src/ghex-ui.xml.h:40
 msgid "Print"
 msgstr "Nyomtatás"
 
-#: src/ghex-ui.xml.h:42
+#: src/ghex-ui.xml.h:41
 msgid "Print Previe_w..."
 msgstr "Nyomtatási _kép..."
 
-#: src/ghex-ui.xml.h:43
+#: src/ghex-ui.xml.h:42
 msgid "Print Preview..."
 msgstr "Nyomtatási kép..."
 
-#: src/ghex-ui.xml.h:44
+#: src/ghex-ui.xml.h:43
 msgid "Print the current file"
 msgstr "Az aktuális fájl nyomtatása"
 
-#: src/ghex-ui.xml.h:45
+#: src/ghex-ui.xml.h:44
 msgid "Redo"
 msgstr "Újra"
 
-#: src/ghex-ui.xml.h:46
+#: src/ghex-ui.xml.h:45
 msgid "Redo the undone action"
 msgstr "Visszavont művelet ismételt végrehajtása"
 
-#: src/ghex-ui.xml.h:47
+#: src/ghex-ui.xml.h:46
 msgid "Remove View"
 msgstr "Nézet törlése"
 
-#: src/ghex-ui.xml.h:48
+#: src/ghex-ui.xml.h:47
 msgid "Remove the current view of the buffer"
 msgstr "Törli az aktuális nézetet"
 
-#: src/ghex-ui.xml.h:50
+#: src/ghex-ui.xml.h:49
 msgid "Replace a string"
 msgstr "Karakterlánc cseréje"
 
-#: src/ghex-ui.xml.h:51
+#: src/ghex-ui.xml.h:50
 msgid "Revert"
 msgstr "Visszaállítás"
 
-#: src/ghex-ui.xml.h:52
+#: src/ghex-ui.xml.h:51
 msgid "Revert to a saved version of the file"
 msgstr "A fájl mentett változatának visszaállítása"
 
-#: src/ghex-ui.xml.h:53
+#: src/ghex-ui.xml.h:52
 msgid "Save"
 msgstr "Mentés"
 
-#: src/ghex-ui.xml.h:54
+#: src/ghex-ui.xml.h:53
 msgid "Save As"
 msgstr "Mentés másként"
 
-#: src/ghex-ui.xml.h:55
+#: src/ghex-ui.xml.h:54
 msgid "Save As _HTML..."
 msgstr "Mentés _HTML formátumban..."
 
-#: src/ghex-ui.xml.h:56
+#: src/ghex-ui.xml.h:55
 msgid "Save _As..."
 msgstr "Mentés _másként..."
 
-#: src/ghex-ui.xml.h:57
+#: src/ghex-ui.xml.h:56
 msgid "Save the current file"
 msgstr "Az aktuális fájl mentése"
 
-#: src/ghex-ui.xml.h:58
+#: src/ghex-ui.xml.h:57
 msgid "Save the current file with a different name"
 msgstr "Az aktuális fájl mentése más néven"
 
-#: src/ghex-ui.xml.h:59
+#: src/ghex-ui.xml.h:58
 msgid "Search for a string"
 msgstr "Karakterlánc keresése"
 
-#: src/ghex-ui.xml.h:60
+#: src/ghex-ui.xml.h:59
 msgid "Show the character table"
 msgstr "Karaktertáblázatot jelenít meg"
 
-#: src/ghex-ui.xml.h:61
+#: src/ghex-ui.xml.h:60
 msgid "Undo"
 msgstr "Visszavonás"
 
-#: src/ghex-ui.xml.h:62
+#: src/ghex-ui.xml.h:61
 msgid "Undo the last action"
 msgstr "Az utolsó művelet visszavonása"
 
-#: src/ghex-ui.xml.h:63 src/ui.c:68
+#: src/ghex-ui.xml.h:62 src/ui.c:65
 msgid "Words"
 msgstr "Szavak"
+
+#: src/ghex-ui.xml.h:63
+msgid "_About"
+msgstr "_Névjegy"
 
 #: src/ghex-ui.xml.h:64
 msgid "_About..."
@@ -595,10 +615,6 @@ msgstr "_Újra"
 msgid "_Remove View"
 msgstr "_Nézet törlése"
 
-#: src/ghex-ui.xml.h:85
-msgid "_Replace"
-msgstr "_Csere"
-
 #: src/ghex-ui.xml.h:86
 msgid "_Revert"
 msgstr "_Visszaállítás"
@@ -623,26 +639,53 @@ msgstr "_Ablakok"
 msgid "_Words"
 msgstr "_Szavak"
 
-#: src/ghex-window.c:427
+#: src/ghex-window.c:435
 msgid "GHex"
 msgstr "GHex"
 
-#: src/ghex-window.c:546
+#: src/ghex-window.c:554
 #, c-format
 msgid "Offset: %s"
 msgstr "Eltolás: %s"
 
-#: src/ghex-window.c:681
+#: src/ghex-window.c:689
 #, c-format
 msgid "Activate file %s"
 msgstr "%s fájl aktiválása"
 
-#: src/ghex-window.c:720
+#: src/ghex-window.c:728
 #, c-format
 msgid "GHex - %s"
 msgstr "GHex - %s"
 
-#: src/hex-document-ui.c:178
+#: src/ghex-window.c:857
+msgid "Select a file to save buffer as"
+msgstr "Válassz ki egy fájlt a mentéshez"
+
+#: src/ghex-window.c:883
+#, c-format
+msgid ""
+"File %s exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"A %s fájl létezik.\n"
+"Felülírod?"
+
+#: src/ghex-window.c:915 src/ui.c:353
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "Elmentve %s néven"
+
+#: src/ghex-window.c:920
+msgid "Error saving file!"
+msgstr "Hiba a fájl mentése közben!"
+
+# src/ui.c:543
+#: src/ghex-window.c:926
+msgid "Can't open file for writing!"
+msgstr "A fájlmegnyitás írásra nem sikerült!"
+
+#: src/ghex-window.c:953
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -651,27 +694,35 @@ msgstr ""
 "A %s fájl változott, de nincs elmentve.\n"
 "Szeretnéd menteni?"
 
-#: src/hex-document-ui.c:188
+#: src/ghex-window.c:963
 msgid "Do_n't save"
 msgstr "Ne _mentse"
 
-#: src/hex-document.c:741
+#: src/ghex-window.c:983 src/ui.c:344
+msgid "You don't have the permissions to save the file!"
+msgstr "Nincs jogod a fájl mentéséhez!"
+
+#: src/ghex-window.c:987 src/ui.c:349
+msgid "An error occured while saving file!"
+msgstr "Hiba a fájl mentése közben!"
+
+#: src/hex-document.c:740
 msgid "Page"
 msgstr "Lap"
 
-#: src/hex-document.c:747 src/hex-document.c:872
+#: src/hex-document.c:746 src/hex-document.c:871
 msgid "Hex dump generated by"
 msgstr "Hex dump készítője"
 
-#: src/hex-document.c:757
+#: src/hex-document.c:756
 msgid "Saving to HTML..."
 msgstr "Mentés _HTML-be..."
 
-#: src/hex-document.c:795
+#: src/hex-document.c:794
 msgid "Previous page"
 msgstr "Előző lap"
 
-#: src/hex-document.c:810
+#: src/hex-document.c:809
 msgid "Next page"
 msgstr "Következő lap"
 
@@ -761,47 +812,47 @@ msgstr "Betűkészletek"
 msgid "_Data font:"
 msgstr "_Adat betűtípusa:"
 
-#: src/preferences.c:303
+#: src/preferences.c:305
 msgid "Data font"
 msgstr "Adat betűtípusa"
 
-#: src/preferences.c:303
+#: src/preferences.c:305
 msgid "Select the data font"
 msgstr "Adat betűtípusának kiválasztása"
 
-#: src/preferences.c:317
+#: src/preferences.c:319
 msgid "Header fo_nt:"
 msgstr "_Fejléc betűtípusa:"
 
-#: src/preferences.c:334
+#: src/preferences.c:338
 msgid "Header font"
 msgstr "Fejléc betűtípusa"
 
-#: src/preferences.c:334
+#: src/preferences.c:338
 msgid "Select the header font"
 msgstr "Fejléc betűtípusának kiválasztása"
 
-#: src/preferences.c:362
+#: src/preferences.c:366
 msgid "_Print shaded box over:"
 msgstr "_Árnyékolt doboz megjelenítése:"
 
-#: src/preferences.c:374
+#: src/preferences.c:378
 msgid "Box size"
 msgstr "Dobozméret"
 
-#: src/preferences.c:374
+#: src/preferences.c:378
 msgid "Select size of box (in number of lines)"
 msgstr "Add meg a doboz méretét (sorok száma)"
 
-#: src/preferences.c:378
+#: src/preferences.c:382
 msgid "lines (0 for no box)"
 msgstr "soronként (0 = nincs doboz)"
 
-#: src/preferences.c:385
+#: src/preferences.c:389
 msgid "Printing"
 msgstr "Nyomtatás"
 
-#: src/preferences.c:527
+#: src/preferences.c:531
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -811,7 +862,7 @@ msgstr ""
 "Csak  'x', 'X', 'p', 'P', 'd' és 'o' megengedett."
 
 # src/preferences.c:567
-#: src/preferences.c:559
+#: src/preferences.c:563
 msgid "Can not open desired font!"
 msgstr "Nem sikerült a kívánt betűkészletet megnyitni!"
 
@@ -837,23 +888,23 @@ msgstr "X-geometria specifikációja (lásd az X man oldalát)."
 msgid "GEOMETRY"
 msgstr "GEOMETRY"
 
-#: src/ui.c:74
+#: src/ui.c:71
 msgid "hex data"
 msgstr "hexa adat"
 
-#: src/ui.c:75
+#: src/ui.c:72
 msgid "ASCII data"
 msgstr "ASCII adat"
 
-#: src/ui.c:226
+#: src/ui.c:243
 msgid "GHex, a binary file editor"
 msgstr "GHex bináris fájlszerkesztő"
 
-#: src/ui.c:228
+#: src/ui.c:245
 msgid "Released under the terms of GNU Public License"
 msgstr "GNU Public License alatt jelent meg"
 
-#: src/ui.c:251
+#: src/ui.c:268
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -862,64 +913,65 @@ msgstr ""
 "Hiba történt a súgó megjelenítése közben:\n"
 "%s"
 
-#: src/ui.c:328 src/ui.c:724
-msgid "Error saving file!"
-msgstr "Hiba a fájl mentése közben!"
-
-#: src/ui.c:332 src/ui.c:719
-#, c-format
-msgid "Saved buffer to file %s"
-msgstr "Elmentve %s néven"
-
-#: src/ui.c:363
+#: src/ui.c:382
 msgid "Select a file to open"
 msgstr "Válaszd ki a megnyitandó fájlt"
 
-#: src/ui.c:407
-msgid "Select a file to save buffer as"
-msgstr "Válassz ki egy fájlt a mentéshez"
-
-#: src/ui.c:464
-msgid "Select path and file name for the HTML source"
-msgstr "Add meg a HTML forrás elérését és fájlnevét"
-
-#: src/ui.c:625
-#, c-format
-msgid "Really revert file %s?"
-msgstr "Tényleg visszaállítod %s fájlt?"
-
-#: src/ui.c:640
-#, c-format
-msgid "Reverted buffer from file %s"
-msgstr "Visszaállítva %s fájlból"
-
-#: src/ui.c:669
+#: src/ui.c:416
 #, c-format
 msgid "Loaded file %s"
 msgstr "%s betöltve"
 
 # src/ui.c:500
-#: src/ui.c:677
+#: src/ui.c:424
 msgid "Can not open file!"
 msgstr "A fájlmegnyitás nem sikerült!"
 
-# src/ui.c:543
-#: src/ui.c:728
-msgid "Can't open file for writing!"
-msgstr "A fájlmegnyitás írásra nem sikerült!"
+#: src/ui.c:488
+msgid "Select path and file name for the HTML source"
+msgstr "Add meg a HTML forrás elérését és fájlnevét"
 
-#: src/ui.c:800
+#: src/ui.c:523
+msgid "You need to specify a base name for the HTML files."
+msgstr "Meg kell adnod a HTML fájl nevét."
+
+#: src/ui.c:534 src/ui.c:556
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "Nincs jogod írni a megadott útvonalra.\n"
+
+#: src/ui.c:540
+msgid ""
+"Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr ""
+"A HTML-be mentés felülír bizonyos fájlokat.\n"
+"Folytatod?"
+
+#: src/ui.c:687
+#, c-format
+msgid "Really revert file %s?"
+msgstr "Tényleg visszaállítod %s fájlt?"
+
+#: src/ui.c:702
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "Visszaállítva %s fájlból"
+
+#: src/ui.c:776
 msgid "Print Hex Document"
 msgstr "Hexa dokumentum nyomtatása"
 
-#: src/ui.c:805
+#: src/ui.c:781
 msgid "Pages"
 msgstr "Lap"
 
-#: src/ui.c:851
+#: src/ui.c:827
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): nyomtatási előnézet"
+
+#~ msgid "About..."
+#~ msgstr "Névjegy..."
 
 #~ msgid "Strange find or replace string!"
 #~ msgstr ""
