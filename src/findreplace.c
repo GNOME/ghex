@@ -83,7 +83,7 @@ FindDialog *create_find_dialog()
 		gtk_widget_show(dialog->type_button[i]);
 	}
 	
-	dialog->f_next = create_button(dialog->window, GNOME_STOCK_PIXMAP_FORWARD, _("Find Next"));
+	dialog->f_next = create_button(dialog->window, GTK_STOCK_GO_FORWARD, _("Find Next"));
 	gtk_signal_connect (GTK_OBJECT (dialog->f_next),
 						"clicked", GTK_SIGNAL_FUNC(find_next_cb),
 						dialog->f_string);
@@ -91,23 +91,26 @@ FindDialog *create_find_dialog()
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(dialog->f_next, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_next);
-	dialog->f_prev = create_button(dialog->window, GNOME_STOCK_PIXMAP_BACK, _("Find Previous"));
+	dialog->f_prev = create_button(dialog->window, GTK_STOCK_GO_BACK, _("Find Previous"));
 	gtk_signal_connect (GTK_OBJECT (dialog->f_prev),
 						"clicked", GTK_SIGNAL_FUNC(find_prev_cb),
 						dialog->f_string);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_prev,
 					   TRUE, TRUE, 0);
+
 	GTK_WIDGET_SET_FLAGS(dialog->f_prev, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_prev);
-	dialog->f_close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
+
+	dialog->f_close = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
 	gtk_signal_connect (GTK_OBJECT (dialog->f_close),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
 						dialog->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_close,
 					   TRUE, TRUE, 0);
+
 	GTK_WIDGET_SET_FLAGS(dialog->f_close, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_close);
-	
+
 	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
 
@@ -135,6 +138,7 @@ ReplaceDialog *create_replace_dialog()
 	gtk_widget_show(dialog->f_string);
 	
 	dialog->r_string = gtk_entry_new();
+
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->r_string,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(dialog->r_string);
@@ -158,7 +162,7 @@ ReplaceDialog *create_replace_dialog()
 		gtk_widget_show(dialog->type_button[i]);
 	}
 	
-	dialog->next = create_button(dialog->window, GNOME_STOCK_PIXMAP_FORWARD, _("Find next"));
+	dialog->next = create_button(dialog->window, GTK_STOCK_GO_FORWARD, _("Find next"));
 	gtk_signal_connect (GTK_OBJECT (dialog->next),
 						"clicked", GTK_SIGNAL_FUNC(replace_next_cb),
 						dialog->f_string);
@@ -182,7 +186,8 @@ ReplaceDialog *create_replace_dialog()
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(dialog->replace_all, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->replace_all);
-	dialog->close = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
+
+	dialog->close = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
 	gtk_signal_connect (GTK_OBJECT (dialog->close),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
 						dialog->window);
@@ -213,21 +218,23 @@ JumpDialog *create_jump_dialog()
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->int_entry,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(dialog->int_entry);
-	
-	dialog->ok = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
+
+	dialog->ok = gtk_button_new_from_stock (GTK_STOCK_OK);
 	gtk_signal_connect (GTK_OBJECT (dialog->ok),
 						"clicked", GTK_SIGNAL_FUNC(goto_byte_cb),
 						dialog->int_entry);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->ok,
 					   TRUE, TRUE, 0);
+
 	GTK_WIDGET_SET_FLAGS(dialog->ok, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->ok);
-	dialog->cancel = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
+	dialog->cancel = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
 	gtk_signal_connect (GTK_OBJECT (dialog->cancel),
 						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
 						dialog->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->cancel,
 					   TRUE, TRUE, 0);
+
 	GTK_WIDGET_SET_FLAGS(dialog->cancel, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->cancel);
 	
@@ -295,23 +302,24 @@ static void find_next_cb(GtkWidget *w)
 	guint offset, str_len;
 	gchar str[256];
 	
-	if(mdi->active_child == NULL) {
-		gnome_app_error(mdi->active_window, _("There is no active buffer to search!"));
+	if(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)) == NULL) {
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("There is no active buffer to search!"));
 		return;
 	}
 	
-	gh = GTK_HEX(mdi->active_view);
+	gh = GTK_HEX (bonobo_mdi_get_active_view (BONOBO_MDI (mdi)));
 	
 	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog->f_string)), str,
 									find_dialog->search_type)) == 0) {
-		gnome_app_error(mdi->active_window, _("There seems to be no string to search for!"));
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("There seems to be no string to search for!"));
 		return;
 	}
-   	if(hex_document_find_forward(HEX_DOCUMENT(mdi->active_child),
+   	if(hex_document_find_forward(HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi))),
 								 gh->cursor_pos+1, str, str_len, &offset))
 		gtk_hex_set_cursor(gh, offset);
-	else
-		gnome_app_flash(mdi->active_window, _("End Of File reached"));
+	else {
+		bonobo_window_flash(bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("End Of File reached"));
+	}
 }
 
 static void find_prev_cb(GtkWidget *w)
@@ -320,24 +328,25 @@ static void find_prev_cb(GtkWidget *w)
 	guint offset, str_len;
 	gchar str[256];
 		
-	if(mdi->active_child == NULL) {
-		gnome_app_error(mdi->active_window, _("There is no active buffer to search!"));
+	if(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)) == NULL) {
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("There is no active buffer to search!"));
 		return;
 	}
 	
-	gh = GTK_HEX(mdi->active_view);
+	gh = GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)));
 	
 	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(find_dialog->f_string)), str,
 									find_dialog->search_type)) == 0) {
-		gnome_app_error(mdi->active_window, _("There seems to be no string to search for!"));
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("There seems to be no string to search for!"));
 		return;
 	}
 
-	if(hex_document_find_backward(HEX_DOCUMENT(mdi->active_child),
+	if(hex_document_find_backward(HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi))),
 								  gh->cursor_pos, str, str_len, &offset))
 		gtk_hex_set_cursor(gh, offset);
-	else
-		gnome_app_flash(mdi->active_window, _("Beginning Of File reached"));
+	else {
+		bonobo_window_flash(bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Beginning Of File reached"));
+	}
 }
 
 static void goto_byte_cb(GtkWidget *w)
@@ -345,25 +354,25 @@ static void goto_byte_cb(GtkWidget *w)
 	guint byte = 2;
 	gchar *byte_str = gtk_entry_get_text(GTK_ENTRY(jump_dialog->int_entry));
 	
-	if(mdi->active_child == NULL) {
-		gnome_app_error(mdi->active_window, _("There is no active buffer to move the cursor in!"));
+	if(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)) == NULL) {
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("There is no active buffer to move the cursor in!"));
 		return;
 	}
 
 	if(strlen(byte_str) == 0) {
-		gnome_app_error(mdi->active_window, _("No offset has been specified!"));
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("No offset has been specified!"));
 		return;
 	}
 	
 	if((sscanf(byte_str, "0x%x", &byte) == 1) ||
 	   (sscanf(byte_str, "%d", &byte) == 1)) {
-		if(byte >= HEX_DOCUMENT(mdi->active_child)->file_size)
-			gnome_app_error(mdi->active_window,_("Can not position cursor beyond the End Of File!"));
+		if(byte >= HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)))->file_size)
+			display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)),_("Can not position cursor beyond the End Of File!"));
 		else
-			gtk_hex_set_cursor(GTK_HEX(mdi->active_view), byte);
+			gtk_hex_set_cursor(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), byte);
 	}
 	else
-		gnome_app_error(mdi->active_window, _("The offset must be a positive integer value!"));
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("The offset must be a positive integer value!"));
 }
 
 static void replace_next_cb(GtkWidget *w)
@@ -372,24 +381,25 @@ static void replace_next_cb(GtkWidget *w)
 	guint offset, str_len;
 	gchar str[256];
 		
-	if(mdi->active_child == NULL) {
-		gnome_app_error(mdi->active_window, _("There is no active buffer to search!"));
+	if(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)) == NULL) {
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("There is no active buffer to search!"));
 		return;
 	}
 	
-	gh = GTK_HEX(mdi->active_view);
+	gh = GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)));
 
 	if((str_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->f_string)), str,
 									replace_dialog->search_type)) == 0) {
-		gnome_app_error(mdi->active_window, _("There seems to be no string to search for!"));
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("There seems to be no string to search for!"));
 		return;
 	}
 
-	if(hex_document_find_forward(HEX_DOCUMENT(mdi->active_child),
+	if(hex_document_find_forward(HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi))),
 								 gh->cursor_pos+1, str, str_len, &offset))
 		gtk_hex_set_cursor(gh, offset);
-	else
-		gnome_app_flash(mdi->active_window, _("End Of File reached"));
+	else {
+		bonobo_window_flash(bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("End Of File reached"));
+	}
 }
 
 static void replace_one_cb(GtkWidget *w)
@@ -399,19 +409,19 @@ static void replace_one_cb(GtkWidget *w)
 	GtkHex *gh;
 	HexDocument *doc;
 	
-	if(mdi->active_child == NULL) {
-		gnome_app_error(mdi->active_window, _("There is no active buffer to replace data in!"));
+	if(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)) == NULL) {
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("There is no active buffer to replace data in!"));
 		return;
 	}
 	
-	gh = GTK_HEX(mdi->active_view);
-	doc = HEX_DOCUMENT(mdi->active_child);
+	gh = GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)));
+	doc = HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)));
 	
 	if( ((find_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->f_string)), find_str,
 									   replace_dialog->search_type)) == 0) ||
 		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->r_string)), rep_str,
 									  replace_dialog->search_type)) == 0)) {
-		gnome_app_error(mdi->active_window, _("Strange find or replace string!"));
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Strange find or replace string!"));
 		return;
 	}
 	
@@ -425,8 +435,9 @@ static void replace_one_cb(GtkWidget *w)
 	if(hex_document_find_forward(doc, gh->cursor_pos + rep_len, find_str, find_len,
 								 &offset))
 		gtk_hex_set_cursor(gh, offset);
-	else
-		gnome_app_flash(mdi->active_window, _("End Of File reached!"));
+	else {
+		bonobo_window_flash(bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("End Of File reached!"));
+	}
 }
 
 static void replace_all_cb(GtkWidget *w)
@@ -436,19 +447,19 @@ static void replace_all_cb(GtkWidget *w)
 	GtkHex *gh;
 	HexDocument *doc;
 	
-	if(mdi->active_child == NULL) {
-		gnome_app_error(mdi->active_window, _("There is no active buffer to replace data in!"));
+	if(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)) == NULL) {
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("There is no active buffer to replace data in!"));
 		return;
 	}
 	
-	gh = GTK_HEX(mdi->active_view);
-	doc = HEX_DOCUMENT(mdi->active_child);
+	gh = GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)));
+	doc = HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)));
 	
 	if( ((find_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->f_string)), find_str,
 									   replace_dialog->search_type)) == 0) ||
 		((rep_len = get_search_string(gtk_entry_get_text(GTK_ENTRY(replace_dialog->r_string)), rep_str,
 									  replace_dialog->search_type)) == 0)) {
-		gnome_app_error(mdi->active_window, _("Strange find or replace string!"));
+		display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Strange find or replace string!"));
 		return;
 	}
 	
@@ -465,6 +476,6 @@ static void replace_all_cb(GtkWidget *w)
 	gtk_hex_set_cursor(gh, offset);  
 	
 	flash = g_strdup_printf(_("Replaced %d occurencies."), count);
-	gnome_app_flash(mdi->active_window, flash);
+	bonobo_window_flash(bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), flash);
 	g_free(flash);
 }

@@ -26,7 +26,9 @@
 #include <gdk/gdk.h>
 #include <gnome.h>
 
+#ifdef SNM /* We dont require this. Included by "ghex.h" */
 #include <hex-document.h>
+#endif
 
 #include "ghex.h"
 #include "gtkhex.h"
@@ -37,10 +39,13 @@
 
 static void       hex_document_class_init        (HexDocumentClass *);
 static void       hex_document_init              (HexDocument *doc);
-static GtkWidget *hex_document_create_view       (GnomeMDIChild *child);
-static void       hex_document_finalize          (GtkObject *obj);
+static GtkWidget *hex_document_create_view       (BonoboMDIChild *child);
+
+/* Changed from GtkObject to GObject -- SnM */
+static void       hex_document_finalize          (GObject *obj);
+
 static void       hex_document_real_changed      (HexDocument *doc, gpointer change_data, gboolean undoable);
-static gchar     *hex_document_get_config_string (GnomeMDIChild *child);
+static gchar     *hex_document_get_config_string (BonoboMDIChild *child);
 
 static void move_gap_to (HexDocument *doc, guint offset, gint min_size);
 static void free_stack(GList *stack);
@@ -62,8 +67,14 @@ static gint hex_signals[LAST_SIGNAL];
 
 typedef void (*HexDocumentSignal) (GtkObject *, gpointer, gboolean, gpointer);
 
-static GnomeMDIChildClass *parent_class = NULL;
+static BonoboMDIChildClass *parent_class = NULL;
 
+
+/*
+ * Signal Marshalling has changed from Gnome 1.4 to Gnome2.
+ */
+
+#ifdef SNM
 static void hex_document_marshal (GtkObject	    *object,
                                   GtkSignalFunc     func,
                                   gpointer	    func_data,
@@ -75,6 +86,8 @@ static void hex_document_marshal (GtkObject	    *object,
 	
 	(* rfunc)(object, GTK_VALUE_POINTER(args[0]), GTK_VALUE_BOOL(args[1]), func_data);
 }
+#endif
+
 
 static void free_stack(GList *stack)
 {
@@ -161,6 +174,7 @@ static void undo_stack_descend(HexDocument *doc)
 #endif
 
 	hex_document_set_menu_sensitivity(doc);
+
 }
 
 static void undo_stack_ascend(HexDocument *doc)
@@ -179,6 +193,7 @@ static void undo_stack_ascend(HexDocument *doc)
 	doc->undo_depth++;
 
 	hex_document_set_menu_sensitivity(doc);
+
 }
 
 static void undo_stack_free(HexDocument *doc)
@@ -194,7 +209,9 @@ static void undo_stack_free(HexDocument *doc)
 	doc->undo_stack = NULL;
 	doc->undo_top = NULL;
 	doc->undo_depth = 0;
+
 	hex_document_set_menu_sensitivity(doc);
+
 }
 
 static gboolean get_document_attributes(HexDocument *doc)
@@ -257,20 +274,27 @@ static void move_gap_to(HexDocument *doc, guint offset, gint min_size)
 	}
 }
 
-static GtkWidget *hex_document_create_view(GnomeMDIChild *child)
+static GtkWidget *hex_document_create_view(BonoboMDIChild *child)
 {
 	GtkWidget *new_view;
 	
 	new_view = gtk_hex_new(HEX_DOCUMENT(child));
+
+	/* Required for GtkFixed widget -- SnM */
+	gtk_fixed_set_has_window (GTK_FIXED(new_view), TRUE);
 	
 	/* TODO: perhaps it would be nicer to put such stuff in the MDI add_view signal handler */
 	gtk_hex_set_group_type(GTK_HEX(new_view), def_group_type);
-	gtk_hex_set_font(GTK_HEX(new_view), def_font);
+
+	/* Sanity check for default font -- SnM */
+	if (def_font) {
+		gtk_hex_set_font(GTK_HEX(new_view), def_font);
+	}
 
 	return new_view;
 }
 
-static void hex_document_finalize(GtkObject *obj)
+static void hex_document_finalize(GObject *obj)
 {
 	HexDocument *hex;
 	
@@ -283,58 +307,65 @@ static void hex_document_finalize(GtkObject *obj)
 		g_free(hex->file_name);
 
 	undo_stack_free(hex);
-	
-	if(GTK_OBJECT_CLASS(parent_class)->finalize)
-		(* GTK_OBJECT_CLASS(parent_class)->finalize)(GTK_OBJECT(hex));
+
+	/* Changed from GtkObjectClass to GObjectClass -- SnM */	
+	G_OBJECT_CLASS (parent_class)->finalize (obj);
 }
 
 static void hex_document_real_changed(HexDocument *doc, gpointer change_data, gboolean push_undo)
 {
 	GList *view;
-	GnomeMDIChild *child;
+	BonoboMDIChild *child; /* Changed to BonoboMDI -- SnM */
 	
-	child = GNOME_MDI_CHILD(doc);
+	child = BONOBO_MDI_CHILD(doc);
 
 	if(push_undo)
 		undo_stack_push(doc, change_data);
 
+#ifdef SNM
 	view = child->views;
+#endif
+	view = bonobo_mdi_child_get_views(child);
+
 	while(view) {
 		gtk_signal_emit_by_name(GTK_OBJECT(view->data), "data_changed", change_data);
 		view = g_list_next(view);
 	}
 }
 
-static gchar *hex_document_get_config_string(GnomeMDIChild *child)
+static gchar *hex_document_get_config_string(BonoboMDIChild *child)
 {
 	return g_strdup(HEX_DOCUMENT(child)->file_name);
 }
 
 static void hex_document_class_init (HexDocumentClass *class)
 {
-	GtkObjectClass *object_class;
-	GnomeMDIChildClass *child_class;
+	/* Changes done for porting to Gnome2 -- SnM */
+	GObjectClass *gobject_class = G_OBJECT_CLASS(class);
+	GtkObjectClass *object_class = GTK_OBJECT_CLASS(class);
 	
-	object_class = (GtkObjectClass*)class;
-	child_class = GNOME_MDI_CHILD_CLASS(class);
+	parent_class = g_type_class_peek_parent(class);
 	
-	hex_signals[DOCUMENT_CHANGED] = gtk_signal_new ("document_changed",
-													GTK_RUN_LAST,
-													object_class->type,
-													GTK_SIGNAL_OFFSET (HexDocumentClass, document_changed),
-													hex_document_marshal,
-													GTK_TYPE_NONE, 2, GTK_TYPE_POINTER, GTK_TYPE_BOOL);
-	
-	gtk_object_class_add_signals (object_class, hex_signals, LAST_SIGNAL);
-	
-	object_class->finalize = hex_document_finalize;
-	
-	child_class->create_view = (GnomeMDIChildViewCreator)(hex_document_create_view);
-	child_class->get_config_string = (GnomeMDIChildConfigFunc)(hex_document_get_config_string);
+	gobject_class->finalize = hex_document_finalize;
 	
 	class->document_changed = hex_document_real_changed;
 	
+	hex_signals[DOCUMENT_CHANGED] = 
+		gtk_signal_new ("document_changed",
+			GTK_RUN_LAST,
+			GTK_CLASS_TYPE(object_class),
+			GTK_SIGNAL_OFFSET (HexDocumentClass, document_changed),
+			ghex_marshal_VOID__POINTER_BOOLEAN,
+			GTK_TYPE_NONE, 2, GTK_TYPE_POINTER, GTK_TYPE_BOOL);
+
+	BONOBO_MDI_CHILD_CLASS (class)->create_view = 
+			(BonoboMDIChildViewCreator)(hex_document_create_view);
+
+#ifdef SNM
+	BONOBO_MDI_CHILD_CLASS (class)->get_config_string = (BonoboMDIChildConfigFunc)(hex_document_get_config_string);
 	parent_class = gtk_type_class (gnome_mdi_child_get_type ());
+#endif
+
 }
 
 static void hex_document_init (HexDocument *doc)
@@ -349,25 +380,35 @@ static void hex_document_init (HexDocument *doc)
 	doc->undo_top = NULL;
 	doc->undo_depth = 0;
 	doc->undo_max = max_undo_depth;
-	gnome_mdi_child_set_menu_template(GNOME_MDI_CHILD(doc), hex_document_menu);
+
+#ifdef SNM
+	gnome_mdi_child_set_menu_template(BONOBO_MDI_CHILD(doc), hex_document_menu);
+#endif
+
 }
 
+/* Changed for Gnome 1.4 to Gnome 2 -- SnM */
 GtkType hex_document_get_type ()
 {
 	static GtkType doc_type = 0;
 	
 	if (!doc_type) {
-		static const GtkTypeInfo doc_info = {
-			"HexDocument",
-			sizeof (HexDocument),
+		static const GTypeInfo doc_info = {
 			sizeof (HexDocumentClass),
-			(GtkClassInitFunc) hex_document_class_init,
-			(GtkObjectInitFunc) hex_document_init,
-			(GtkArgSetFunc) NULL,
-			(GtkArgGetFunc) NULL,
+			NULL,		/* base_init */
+			NULL,		/* base_finalize */
+			(GClassInitFunc) hex_document_class_init,
+			NULL,		/* class_finalize */
+			NULL,		/* class_data */
+			sizeof (HexDocument),
+			0,
+			(GInstanceInitFunc) hex_document_init
 		};
-		
-		doc_type = gtk_type_unique (gnome_mdi_child_get_type (), &doc_info);
+	
+		doc_type = g_type_register_static (BONOBO_TYPE_MDI_CHILD,
+							"HexDocument",
+							&doc_info,
+							0);	
 	}
 
 	return doc_type;
@@ -382,28 +423,29 @@ HexDocument *hex_document_new(const gchar *name)
 	HexDocument *doc;
 	
 	int i;
-	
-	if((doc = gtk_type_new(hex_document_get_type()))) {
-		doc->file_name = (gchar *)g_strdup(name);
-		if(get_document_attributes(doc)) {
-			doc->gap_size = 100;
-			doc->buffer_size = doc->file_size + doc->gap_size;
-			doc->buffer = (guchar *)g_malloc(doc->buffer_size);
 
-			/* find the start of the filename without path */
-			for(i = strlen(doc->file_name); (i >= 0) && (doc->file_name[i] != '/'); i--)
-				;					
-			if(doc->file_name[i] == '/')
-				doc->path_end = &doc->file_name[i+1];
-			else
-				doc->path_end = doc->file_name;
+	doc = HEX_DOCUMENT (g_object_new (hex_document_get_type(), NULL));
+	g_return_val_if_fail (doc != NULL, NULL);
+
+	doc->file_name = (gchar *)g_strdup(name);
+	if(get_document_attributes(doc)) {
+		doc->gap_size = 100;
+		doc->buffer_size = doc->file_size + doc->gap_size;
+		doc->buffer = (guchar *)g_malloc(doc->buffer_size);
+
+		/* find the start of the filename without path */
+		for(i = strlen(doc->file_name); (i >= 0) && (doc->file_name[i] != '/'); i--)
+			;					
+		if(doc->file_name[i] == '/')
+			doc->path_end = &doc->file_name[i+1];
+		else
+			doc->path_end = doc->file_name;
 					
-			gnome_mdi_child_set_name(GNOME_MDI_CHILD(doc), doc->path_end);
-			if(hex_document_read(doc))
-				return doc;
-		}
-		gtk_object_destroy(GTK_OBJECT(doc));
+		bonobo_mdi_child_set_name (BONOBO_MDI_CHILD(doc), doc->path_end);
+		if(hex_document_read(doc))
+			return doc;
 	}
+	gtk_object_destroy(GTK_OBJECT(doc));
 	
 	return NULL;
 }
@@ -642,7 +684,7 @@ gint hex_document_write(HexDocument *doc)
 	return ret;
 }
 
-GnomeMDIChild *hex_document_new_from_config(const gchar *cfg)
+BonoboMDIChild *hex_document_new_from_config(const gchar *cfg)
 {
 	HexDocument *doc;
 
@@ -651,7 +693,7 @@ GnomeMDIChild *hex_document_new_from_config(const gchar *cfg)
 	if(doc)
 		hex_document_read(doc);
 	
-	return GNOME_MDI_CHILD(doc);
+	return BONOBO_MDI_CHILD(doc);
 }
 
 void hex_document_changed(HexDocument *doc, gpointer change_data,

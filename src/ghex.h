@@ -27,14 +27,23 @@
 #include <gnome.h>
 
 #include <libgnomeprint/gnome-print.h>
+
+#ifdef SNM /* No longer present -- SnM */
 #include <libgnomeprint/gnome-printer.h>
 #include <libgnomeprint/gnome-print-preview.h>
+#endif
+
 #include <libgnomeprint/gnome-print-master.h>
 
 #include <stdio.h>
 
 #include "hex-document.h"
 #include "gtkhex.h"
+#include "bonobo-mdi.h"
+#include "bonobo-mdi-child.h"
+#include "ghex-mdi.h"
+#include "ghex-marshal.h"
+#include "bonobo-mdi-session.h"
 
 #define NO_BUFFER_LABEL "No buffer"
 
@@ -88,6 +97,9 @@ typedef struct _ReplaceDialog {
 
 typedef struct _FindDialog {
 	GtkWidget *window;
+	GtkWidget *frame;
+	GtkWidget *vbox;
+	GtkWidget *hbox;
 	GtkWidget *f_string;
 	GtkWidget *f_next, *f_prev, *f_close;
 	GtkWidget *type_button[2];
@@ -107,7 +119,11 @@ typedef struct _Converter {
 typedef struct {
 	GnomePrintMaster *master;
 	GnomePrintContext *pc;
-	GnomePrinter *printer;
+#ifdef SNM
+	GnomePrinter *printer; /* GnomePrinter struct no longer present-- SnM */
+#endif
+	guchar *printer; /* Changed to guchar -- SnM */
+
 	GnomeFont *d_font, *h_font;
 	HexDocument *doc;
 
@@ -135,7 +151,12 @@ extern int restarted;
 extern const struct poptOption options[];
 extern GSList *cl_files;
 
+#ifdef SNM
 extern GnomeMDI       *mdi;
+#endif
+
+extern GhexMDI        *mdi; /* We shall use the bonobo-mdi instead -- SnM */
+
 extern GtkWidget      *file_sel;
 extern FindDialog     *find_dialog;
 extern ReplaceDialog  *replace_dialog;
@@ -153,7 +174,12 @@ extern gdouble    data_font_size, header_font_size;
 extern guint      max_undo_depth;
 extern gchar      *offset_fmt;
 extern gboolean   show_offsets_column;
+
+#ifdef SNM /* GnomePaper no longer present -- SnM */
 extern const GnomePaper *def_paper;
+#endif 
+extern const guchar *def_paper; /* Changed to guchar -- SnM */
+
 extern gint       shaded_box_size;
 extern gint       def_group_type;
 extern gint       mdi_mode;
@@ -204,5 +230,29 @@ int save_state      (GnomeClient        *client,
 
 gint client_die     (GnomeClient *client, gpointer client_data);
 
+/* The ghex menu verbs -- SnM */
+extern BonoboUIVerb ghex_verbs [];
 
+/* Initializes the gconf client */
+void ghex_prefs_init (void);
+
+void find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void jump_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void set_byte_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void set_word_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void set_long_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void undo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void redo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void add_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void insert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void quit_app_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+
+void display_error_dialog (BonoboWindow *win, const gchar *msg);
+
+void ghex_menus_set_verb_list_sensitive (BonoboUIEngine *ui_engine, gboolean allmenus);
+
+gint remove_doc_cb (BonoboMDI *mdi, HexDocument *doc);
+void cleanup_cb (BonoboMDI *mdi);
 #endif

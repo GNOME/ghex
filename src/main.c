@@ -30,20 +30,23 @@ enum {
 };
 
 /* callbacks for MDI signals */
-static gint remove_doc_cb(GnomeMDI *, HexDocument *);
-static gint add_view_cb(GnomeMDI *, GtkHex *);
-static void view_changed_cb(GnomeMDI *, GtkHex *);
-static void child_changed_cb(GnomeMDI *, HexDocument *);
-static void customize_app_cb(GnomeMDI *, GnomeApp *);
-static void cleanup_cb(GnomeMDI *);
+#ifdef SNM 
+static gint remove_doc_cb(BonoboMDI *, HexDocument *);
+static gint add_view_cb(BonoboMDI *, GtkHex *);
+static void cleanup_cb(BonoboMDI *);
+#endif
+static void view_changed_cb(BonoboMDI *, GtkHex *);
+static void child_changed_cb(BonoboMDI *, HexDocument *);
+static void customize_app_cb(BonoboMDI *, GnomeApp *);
 
 static void cursor_moved_cb(GtkHex *gtkhex);
 
-GnomeMDI *mdi;
+/* Changed from BonoboMDI to GhexMDI -- SnM */
+GhexMDI *mdi;
 
-gint mdi_mode = GNOME_MDI_DEFAULT_MODE;
+gint mdi_mode = BONOBO_MDI_DEFAULT_MODE;
 
-gint remove_doc_cb(GnomeMDI *mdi, HexDocument *doc) {
+gint remove_doc_cb(BonoboMDI *mdi, HexDocument *doc) {
 	static char msg[MESSAGE_LEN + 1];
 	GnomeMessageBox *mbox;
 	gint reply;
@@ -51,7 +54,7 @@ gint remove_doc_cb(GnomeMDI *mdi, HexDocument *doc) {
 	g_snprintf(msg, MESSAGE_LEN,
 			   _("File %s has changed since last save.\n"
 				 "Do you want to save changes?"),
-			   GNOME_MDI_CHILD(doc)->name);
+			   bonobo_mdi_child_get_name (BONOBO_MDI_CHILD(doc)));
 	
 	if(hex_document_has_changed(doc)) {
 		mbox = GNOME_MESSAGE_BOX(gnome_message_box_new( msg, GNOME_MESSAGE_BOX_QUESTION, GNOME_STOCK_BUTTON_YES,
@@ -68,27 +71,30 @@ gint remove_doc_cb(GnomeMDI *mdi, HexDocument *doc) {
 	return TRUE;
 }
 
-gint add_view_cb(GnomeMDI *mdi, GtkHex *view) {
+#ifdef SNM
+gint add_view_cb(BonoboMDI *mdi, GtkHex *view) {
 	gtk_signal_connect(GTK_OBJECT(view), "cursor_moved",
 					   GTK_SIGNAL_FUNC(cursor_moved_cb), mdi);
 	gtk_hex_show_offsets(GTK_HEX(view), show_offsets_column);
 
 	return TRUE;
 }
+#endif
 
-void cleanup_cb(GnomeMDI *mdi) {
+void cleanup_cb(BonoboMDI *mdi) {
 	save_configuration();
 	gtk_main_quit();
 }
 
-void child_changed_cb(GnomeMDI *mdi, HexDocument *old_doc) {
+void child_changed_cb(BonoboMDI *mdi, HexDocument *old_doc) {
 	GnomeUIInfo *mdi_menus;
 	gboolean sens;
 	int i;
 
-	if(gnome_mdi_get_active_child(mdi) == NULL || old_doc == NULL) {
+#ifdef SNM
+	if(bonobo_mdi_get_active_child(mdi) == NULL || old_doc == NULL) {
 		sens = old_doc == NULL;
-		mdi_menus = gnome_mdi_get_menubar_info(gnome_mdi_get_active_window(mdi));
+		mdi_menus = bonobo_mdi_get_menubar_info(bonobo_mdi_get_active_window (BONOBO_MDI (mdi)));
 		/* keep in sync: ui.c/file_menu[] */
 		for(i = 1; i < 4; i++)
 			gtk_widget_set_sensitive(((GnomeUIInfo *)mdi_menus[0].moreinfo)[i].widget, sens);
@@ -100,9 +106,13 @@ void child_changed_cb(GnomeMDI *mdi, HexDocument *old_doc) {
 		create_dialog_title(replace_dialog->window, _("GHex (%s): Find & Replace Data"));
 	if(jump_dialog)
 		create_dialog_title(jump_dialog->window, _("GHex (%s): Jump To Byte"));
+#endif
+
 }
 
-void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
+void view_changed_cb(BonoboMDI *mdi, GtkHex *old_view) {
+
+#ifdef SNM
 	GnomeApp *app;
 	GnomeUIInfo *uiinfo;
 	GtkWidget *shell, *item;
@@ -111,14 +121,14 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	gint pos;
 	gint group_item;
 
-	if(mdi->active_view == NULL)
+	if(bonobo_mdi_get_active_view( BONOBO_MDI(mdi)) == NULL)
 		return;
 
-	app = gnome_mdi_get_app_from_view(mdi->active_view);
+	app = bonobo_mdi_get_app_from_view(bonobo_mdi_get_active_view( BONOBO_MDI(mdi)));
 	
 	shell = gnome_app_find_menu_pos(app->menubar, GROUP_MENU_PATH, &pos);
 	if (shell) {
-		group_item = GTK_HEX(mdi->active_view)->group_type / 2;
+		group_item = GTK_HEX(bonobo_mdi_get_active_view( BONOBO_MDI(mdi)))->group_type / 2;
 		item_node = GTK_MENU_SHELL(shell)->children;
 		item = NULL;
 		while(item_node) {
@@ -139,20 +149,23 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 	if (shell) {
 		item = g_list_nth(GTK_MENU_SHELL(shell)->children, pos - 1)->data;
 		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(item),
-									   GTK_HEX(mdi->active_view)->insert);
+									   GTK_HEX(bonobo_mdi_get_active_view( BONOBO_MDI(mdi)))->insert);
 	}
-	uiinfo = gnome_mdi_get_child_menu_info(app);
+	uiinfo = bonobo_mdi_get_child_menu_info(app);
 	uiinfo = (GnomeUIInfo *)uiinfo[0].moreinfo;
-    doc = HEX_DOCUMENT(gnome_mdi_get_child_from_view(mdi->active_view));
+    	doc = HEX_DOCUMENT(bonobo_mdi_get_child_from_view(bonobo_mdi_get_active_view( BONOBO_MDI(mdi))));
 	gtk_widget_set_sensitive(uiinfo[0].widget, doc->undo_depth > 0);
 	gtk_widget_set_sensitive(uiinfo[1].widget, doc->undo_top != doc->undo_stack);
 
-	gnome_app_install_menu_hints(app, gnome_mdi_get_child_menu_info(app));
+	gnome_app_install_menu_hints(app, bonobo_mdi_get_child_menu_info(app));
+#endif
+
 }
 
 static void app_drop_cb(GtkWidget *widget, GdkDragContext *context,
 		        gint x, gint y, GtkSelectionData *selection_data,
 			guint info, guint time, gpointer data) {
+#ifdef SNM
 	GList *names, *list;
 
 	switch (info) {
@@ -163,8 +176,8 @@ static void app_drop_cb(GtkWidget *widget, GdkDragContext *context,
 
 			doc = hex_document_new((gchar *)names->data);
 			if(doc) {
-				gnome_mdi_add_child(mdi, GNOME_MDI_CHILD(doc));
-				gnome_mdi_add_view(mdi, GNOME_MDI_CHILD(doc));
+				bonobo_mdi_add_child(mdi, BONOBO_MDI_CHILD(doc));
+				bonobo_mdi_add_view(mdi, BONOBO_MDI_CHILD(doc));
 			}
 			names = names->next;
 		}
@@ -173,9 +186,13 @@ static void app_drop_cb(GtkWidget *widget, GdkDragContext *context,
 	default:
 		break;
 	}
+#endif
+
 }
 
-void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
+void customize_app_cb(BonoboMDI *mdi, GnomeApp *app) {
+
+#ifdef SNM
 	GtkWidget *bar;
 	static GtkTargetEntry drop_types [] = {
 		{ "text/uri-list", 0, TARGET_URI_LIST}
@@ -195,22 +212,29 @@ void customize_app_cb(GnomeMDI *mdi, GnomeApp *app) {
 	gnome_app_set_statusbar(app, bar);
 	gtk_widget_show(bar);
 
-	gnome_app_install_menu_hints(app, gnome_mdi_get_menubar_info(app));
+	gnome_app_install_menu_hints(app, bonobo_mdi_get_menubar_info(app));
+#endif
+
 }
 
 static void cursor_moved_cb(GtkHex *gtkhex) {
+
+#ifdef SNM
 	static gchar *cursor_pos, *format;
 
 	if((format = g_strdup_printf(_("Offset: %s"), offset_fmt)) != NULL) {
 		if((cursor_pos = g_strdup_printf(format, gtk_hex_get_cursor(gtkhex))) != NULL) {
-			gnome_appbar_set_status(GNOME_APPBAR(gnome_mdi_get_app_from_view(GTK_WIDGET(gtkhex))->statusbar),
+			gnome_appbar_set_status(GNOME_APPBAR(bonobo_mdi_get_app_from_view(GTK_WIDGET(gtkhex))->statusbar),
 									cursor_pos);
 			g_free(cursor_pos);
 		}
 		g_free(format);
 	}
+#endif
+
 }
 
+#ifdef SNM
 int main(int argc, char **argv) {
 	GnomeClient *client;
 	HexDocument *doc;
@@ -229,14 +253,14 @@ int main(int argc, char **argv) {
 	gtk_signal_connect (GTK_OBJECT (client), "die",
 						GTK_SIGNAL_FUNC (client_die), NULL);
 
-    mdi = GNOME_MDI(gnome_mdi_new("ghex", "GHex"));
+    mdi = BONOBO_MDI(bonobo_mdi_new("ghex", "GHex"));
 
     /* set up MDI menus */
-    gnome_mdi_set_menubar_template(mdi, main_menu);
+    bonobo_mdi_set_menubar_template(mdi, main_menu);
 
     /* and document menu and document list paths */
-    gnome_mdi_set_child_menu_path(mdi, CHILD_MENU_PATH);
-    gnome_mdi_set_child_list_path(mdi, CHILD_LIST_PATH);
+    bonobo_mdi_set_child_menu_path(mdi, CHILD_MENU_PATH);
+    bonobo_mdi_set_child_list_path(mdi, CHILD_LIST_PATH);
 
 #if 0
 	/* set default window icon */
@@ -252,31 +276,32 @@ int main(int argc, char **argv) {
 	gtk_signal_connect(GTK_OBJECT(mdi), "add_view", GTK_SIGNAL_FUNC(add_view_cb), NULL);
 
     /* load preferences */
+    ghex_prefs_init();
     load_configuration();
 
     /* set MDI mode */
-    gnome_mdi_set_mode(mdi, mdi_mode);
+    bonobo_mdi_set_mode(mdi, mdi_mode);
 
     /* restore state from previous session */
     if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
 
 		gnome_config_push_prefix (gnome_client_get_config_prefix (client));
 
-		restarted= gnome_mdi_restore_state (mdi, "Session", (GnomeMDIChildCreator)hex_document_new_from_config);		
+		restarted= bonobo_mdi_restore_state (mdi, "Session", (BonoboMDIChildCreator)hex_document_new_from_config);		
 		
 		gnome_config_pop_prefix ();
 	}
 
 	if (!restarted)
-		gnome_mdi_open_toplevel(mdi);
+		bonobo_mdi_open_toplevel(mdi);
 	
     cl_files = (char **)poptGetArgs(ctx);
 	
     while(cl_files && *cl_files) {
 		doc = hex_document_new(*cl_files);
 		if(doc) {
-			gnome_mdi_add_child(mdi, GNOME_MDI_CHILD(doc));
-			gnome_mdi_add_view(mdi, GNOME_MDI_CHILD(doc));
+			bonobo_mdi_add_child(mdi, BONOBO_MDI_CHILD(doc));
+			bonobo_mdi_add_view(mdi, BONOBO_MDI_CHILD(doc));
 		}
 		cl_files++;
     }
@@ -284,6 +309,94 @@ int main(int argc, char **argv) {
 	
     /* and here we go... */
     gtk_main();
+
+	return 0;
+}
+#endif
+
+int
+main(int argc, char **argv)
+{
+	GnomeClient *client;
+	GValue value = { 0, };
+	GnomeProgram *program;
+	poptContext ctx;
+	char **args;
+	HexDocument *doc;
+
+	char **cl_files;
+
+	GList *file_list = NULL;
+
+	gint i;
+
+        /* Initialize gnome program */
+	program = gnome_program_init ("ghex2", VERSION,
+				LIBGNOMEUI_MODULE, argc, argv,
+				GNOME_PARAM_POPT_TABLE, options,
+				GNOME_PARAM_HUMAN_READABLE_NAME,
+				_("The gnome binary editor"),
+				NULL);
+
+	/* Set default icon */
+//	ghex_set_default_icon();
+
+	/* load preferences */
+	ghex_prefs_init();
+	load_configuration();
+
+	/* Parse args and build the list of files to be loaded at startup */
+	g_value_init (&value, G_TYPE_POINTER);
+	g_object_get_property (G_OBJECT (program), GNOME_PARAM_POPT_CONTEXT, &value);
+	ctx = g_value_get_pointer (&value);
+	g_value_unset (&value);
+
+	args = (char**) poptGetArgs(ctx);
+
+	for (i = 0; args && args[i]; i++)
+		file_list = g_list_append (file_list, args[i]);
+
+	client = gnome_master_client();
+
+	gtk_signal_connect (GTK_OBJECT (client), "save_yourself",
+						GTK_SIGNAL_FUNC (save_state), (gpointer) argv[0]);
+	gtk_signal_connect (GTK_OBJECT (client), "die",
+						GTK_SIGNAL_FUNC (client_die), NULL);
+
+
+	/* Create ghex_mdi and open the first top level window */
+	mdi = ghex_mdi_new ();
+
+    /* restore state from previous session */
+    if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
+
+		gnome_config_push_prefix (gnome_client_get_config_prefix (client));
+
+		restarted= bonobo_mdi_restore_state (mdi, "Session", (BonoboMDIChildCreator)hex_document_new_from_config);		
+		
+		gnome_config_pop_prefix ();
+	}
+
+	if (!restarted)
+		bonobo_mdi_open_toplevel(mdi);
+#if 0	
+	bonobo_mdi_open_toplevel (BONOBO_MDI (mdi));
+#endif
+
+	cl_files = (char **)poptGetArgs(ctx);
+	
+	while(cl_files && *cl_files) {
+		doc = hex_document_new(*cl_files);
+		if(doc) {
+			bonobo_mdi_add_child (BONOBO_MDI (mdi), BONOBO_MDI_CHILD(doc));
+			bonobo_mdi_add_view(BONOBO_MDI (mdi), BONOBO_MDI_CHILD(doc));
+		}
+		cl_files++;
+	}
+	poptFreeContext(ctx);
+	
+
+	gtk_main();
 
 	return 0;
 }

@@ -33,6 +33,7 @@
 
 void hex_document_set_menu_sensitivity(HexDocument *doc);
 
+#ifdef SNM
 static void find_cb     (GtkWidget *);
 static void replace_cb  (GtkWidget *);
 static void jump_cb     (GtkWidget *);
@@ -44,6 +45,7 @@ static void redo_cb     (GtkWidget *, gpointer);
 static void add_view_cb    (GtkWidget *, gpointer);
 static void remove_view_cb (GtkWidget *, gpointer);
 static void insert_cb      (GtkWidget *w);
+#endif
 
 static GnomeUIInfo group_radio_items[] =
 {
@@ -99,6 +101,7 @@ GnomeUIInfo hex_document_menu[] =
 	GNOMEUIINFO_END
 };
 
+#ifdef SNM /* No longer required for Gnome 2.0 -- SnM */
 void hex_document_set_menu_sensitivity(HexDocument *doc)
 {
 	GList *view_node;
@@ -107,7 +110,7 @@ void hex_document_set_menu_sensitivity(HexDocument *doc)
 	GtkWidget *view;
 	gboolean sensitive;
 
-	view_node = GNOME_MDI_CHILD(doc)->views;
+	view_node = BONOBO_MDI_CHILD(doc)->views;
 	while(view_node) {
 		view = GTK_WIDGET(view_node->data);
 		app = gnome_mdi_get_app_from_view(view);
@@ -122,36 +125,100 @@ void hex_document_set_menu_sensitivity(HexDocument *doc)
 		}
 	}
 }
+#endif
+
+
+void hex_document_set_menu_sensitivity(HexDocument *doc)
+{
+	GList *view_node;
+	GtkWidget *view;
+	gboolean sensitive;
+	BonoboWindow *win;
+
+	BonoboUIEngine *ui_engine;
+
+	view_node = bonobo_mdi_child_get_views (BONOBO_MDI_CHILD (doc));
+
+	while (view_node) {
+		view = GTK_WIDGET(view_node->data);
+
+		win = bonobo_mdi_get_window_from_view (view);
+
+		g_return_if_fail (win != NULL);
+ 
+		ui_engine = bonobo_window_get_ui_engine (win);
+
+		g_return_if_fail (ui_engine != NULL);
+
+		bonobo_ui_engine_freeze (ui_engine);
+
+		sensitive = doc->undo_top != NULL;
+		bonobo_ui_engine_xml_set_prop (ui_engine, "/commands/EditUndo",
+						"sensitive", sensitive ? "1" : "0", "EditUndo"); 
+	
+		sensitive = doc->undo_stack && doc->undo_top != doc->undo_stack;
+
+		bonobo_ui_engine_xml_set_prop (ui_engine, "/commands/EditRedo",
+						"sensitive", sensitive ? "1" : "0", "EditRedo"); 
+
+		bonobo_ui_engine_thaw (ui_engine);	
+		view_node = view_node->next;
+	}
+
+}
+
+
 
 /*
  * callbacks for document's menus
  */
-static void set_byte_cb(GtkWidget *w)
+
+/* Changed the function parameters -- SnM */
+void set_byte_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	if(GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
-		gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_BYTE);
+#ifdef SNM
+	if(GTK_CHECK_MENU_ITEM(w)->active && bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
+#endif
+	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
+		gtk_hex_set_group_type(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), GROUP_BYTE);
 }
 
-static void set_word_cb(GtkWidget *w)
+/* Changed the function parameters -- SnM */
+void set_word_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	if(GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
-		gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_WORD);
+#ifdef SNM
+	if(GTK_CHECK_MENU_ITEM(w)->active && bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
+#endif
+	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
+		gtk_hex_set_group_type(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), GROUP_WORD);
 }
 
-static void set_long_cb(GtkWidget *w)
+/* Changed the function parameters -- SnM */
+void set_long_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	if(GTK_CHECK_MENU_ITEM(w)->active && mdi->active_view)
-		gtk_hex_set_group_type(GTK_HEX(mdi->active_view), GROUP_LONG);
+#ifdef SNM
+	if(GTK_CHECK_MENU_ITEM(w)->active && bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
+#endif
+	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
+		gtk_hex_set_group_type(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), GROUP_LONG);
 }
 
-static void insert_cb(GtkWidget *w)
+/* Changed the function parameters -- SnM */
+void insert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	if(mdi->active_view)
-		gtk_hex_set_insert_mode(GTK_HEX(mdi->active_view),
+#ifdef REQUIRED
+	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
+		gtk_hex_set_insert_mode(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))),
 								GTK_CHECK_MENU_ITEM(w)->active);
+#endif
+	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
+		gtk_hex_set_insert_mode(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), TRUE ); /* Have to fix this -- SnM */
+
 }
 
-static void find_cb(GtkWidget *w) {
+/* Changed the function parameters -- SnM */
+void find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
 	if(!find_dialog)
 		find_dialog = create_find_dialog();
 
@@ -163,7 +230,9 @@ static void find_cb(GtkWidget *w) {
 	gdk_window_raise(find_dialog->window->window);
 }
 
-static void replace_cb(GtkWidget *w) {
+/* Changed the function parameters -- SnM */
+void replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
 	if(!replace_dialog)
 		replace_dialog = create_replace_dialog();
 
@@ -175,7 +244,9 @@ static void replace_cb(GtkWidget *w) {
 	gdk_window_raise(replace_dialog->window->window);
 }
 
-static void jump_cb(GtkWidget *w) {
+/* Changed the function parameters -- SnM */
+void jump_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
 	if(!jump_dialog)
 		jump_dialog = create_jump_dialog();
 
@@ -187,8 +258,10 @@ static void jump_cb(GtkWidget *w) {
 	gdk_window_raise(jump_dialog->window->window);
 }
 
-static void undo_cb(GtkWidget *w, gpointer user_data) {
-	HexDocument *doc = HEX_DOCUMENT(user_data);
+/* Changed the function parameters -- SnM */
+void undo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	HexDocument *doc = HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)));
 	HexChangeData *cd;
 
 	if(doc->undo_top) {
@@ -196,13 +269,15 @@ static void undo_cb(GtkWidget *w, gpointer user_data) {
 
 		hex_document_undo(doc);
 
-		gtk_hex_set_cursor(GTK_HEX(mdi->active_view), cd->start);
-		gtk_hex_set_nibble(GTK_HEX(mdi->active_view), cd->lower_nibble);
+		gtk_hex_set_cursor(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), cd->start);
+		gtk_hex_set_nibble(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), cd->lower_nibble);
 	}
 }
 
-static void redo_cb(GtkWidget *w, gpointer user_data) {
-	HexDocument *doc = HEX_DOCUMENT(user_data);
+/* Changed the function parameters -- SnM */
+void redo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	HexDocument *doc = HEX_DOCUMENT(bonobo_mdi_get_active_child (BONOBO_MDI (mdi)));
 	HexChangeData *cd;
 
 	if(doc->undo_stack && doc->undo_top != doc->undo_stack) {
@@ -210,18 +285,41 @@ static void redo_cb(GtkWidget *w, gpointer user_data) {
 
 		cd = (HexChangeData *)doc->undo_top->data;
 
-		gtk_hex_set_cursor(GTK_HEX(mdi->active_view), cd->start);
-		gtk_hex_set_nibble(GTK_HEX(mdi->active_view), cd->lower_nibble);
+		gtk_hex_set_cursor(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), cd->start);
+		gtk_hex_set_nibble(GTK_HEX(bonobo_mdi_get_active_view (BONOBO_MDI (mdi))), cd->lower_nibble);
 	}
 }
 
-static void add_view_cb(GtkWidget *w, gpointer user_data) {
-	GnomeMDIChild *child = GNOME_MDI_CHILD(user_data);
+/* Changed the function parameters -- SnM */
+void add_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+#ifdef SNM
+	BonoboMDIChild *child = BONOBO_MDI_CHILD(user_data);
+#endif
 
-	gnome_mdi_add_view(mdi, child);
+	bonobo_mdi_add_view( BONOBO_MDI (mdi), bonobo_mdi_get_active_child (BONOBO_MDI (mdi)));
 }
 
-static void remove_view_cb(GtkWidget *w, gpointer user_data) {
-	if(mdi->active_view)
-		gnome_mdi_remove_view(mdi, mdi->active_view, FALSE);
+/* Changed the function parameters -- SnM */
+void remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	if(bonobo_mdi_get_active_view (BONOBO_MDI (mdi)))
+		bonobo_mdi_remove_view( BONOBO_MDI (mdi), bonobo_mdi_get_active_view (BONOBO_MDI (mdi)), FALSE);
+	
+	if ( NULL == bonobo_mdi_get_active_child (BONOBO_MDI (mdi))) {
+		BonoboUIEngine *ui_engine;
+		BonoboWindow *active_window;
+
+		active_window = bonobo_mdi_get_active_window (BONOBO_MDI (mdi));
+
+		g_return_if_fail (active_window != NULL);
+
+		ui_engine = bonobo_window_get_ui_engine (active_window);
+
+		bonobo_ui_engine_freeze (ui_engine);
+
+		ghex_menus_set_verb_list_sensitive (ui_engine, FALSE);
+	
+		bonobo_ui_engine_thaw (ui_engine);
+	}
 }

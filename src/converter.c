@@ -219,7 +219,7 @@ create_converter()
 static void
 get_cursor_val_cb(GtkButton *button, Converter *conv)
 {
-	GtkWidget *view = gnome_mdi_get_active_view(mdi);
+	GtkWidget *view = bonobo_mdi_get_active_view ( BONOBO_MDI (mdi));
 	guint val, start;
 
 	if(view) {

@@ -24,10 +24,15 @@
 
 #include "ghex.h"
 #include "gtkhex.h"
+#include <libgnomeprintui/gnome-print-dialog.h> /* Added for Gnome 2 -- SnM */
 
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0x7F))?1:0)
 
+#ifdef SNM /* GnomePaper no longer present -- SnM */
 const GnomePaper *def_paper;
+#endif
+const guchar *def_paper; /* Using guchar instead -- SnM */
+
 gchar *data_font_name, *header_font_name;
 gdouble data_font_size, header_font_size;
 gint shaded_box_size;
@@ -54,7 +59,9 @@ static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 	y = pji->page_height - pji->margin_top -
 		2.1*gnome_font_get_ascender(pji->h_font) -
 		1.1*gnome_font_get_descender(pji->h_font);
+#ifdef SNM /* Replacement has to be found -- SnM */
 	len = gnome_font_get_width_string (pji->h_font, text1);
+#endif
 	x = pji->page_width/2 - len/2;
 	gnome_print_moveto(pji->pc, x, y);
 	gnome_print_show(pji->pc, text1);
@@ -62,7 +69,9 @@ static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 	/* Print the page/pages  */
 	y = pji->page_height - pji->margin_top -
 		gnome_font_get_ascender(pji->h_font);
+#ifdef SNM /* Replacement has to be found -- SnM */
 	len = gnome_font_get_width_string (pji->h_font, text2);
+#endif
 	x = pji->page_width - len - 36;
 	gnome_print_moveto(pji->pc, x, y);
 	gnome_print_show(pji->pc, text2);
@@ -188,6 +197,7 @@ static void print_shaded_box(GHexPrintJobInfo *pji, guint row, guint rows)
 
 static gboolean print_verify_fonts()
 {
+#ifdef SNM
 	GnomeFont *test_font;
 	guchar *test_font_name;
 
@@ -198,7 +208,7 @@ static gboolean print_verify_fonts()
 		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
 										  "GHex is unable to print without this font installed."),
 										test_font_name);
-		gnome_app_error(mdi->active_window, errstr);
+		display_error_dialog (mdi->active_window, errstr);
 		g_free(errstr);
 		return FALSE;
 	}
@@ -212,13 +222,13 @@ static gboolean print_verify_fonts()
 		gchar *errstr = g_strdup_printf(_("GHex could not find the font \"%s\".\n"
 										  "GHex is unable to print without this font installed."),
 										test_font_name);
-		gnome_app_error(mdi->active_window, errstr);
+		display_error_dialog (mdi->active_window, errstr);
 		g_free(errstr);
 		return FALSE;
 	}
 	gnome_font_unref(test_font);
 	g_free(test_font_name);	
- 
+#endif 
 	return TRUE;
 }
 
@@ -244,6 +254,7 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 	if (!doc || !print_verify_fonts())
 		return NULL;
 
+#ifdef SNM
 	/* Create the header and data fonts */
 	d_font = gnome_font_new(data_font_name, data_font_size);
 	if (!d_font)
@@ -254,6 +265,7 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 		gnome_font_unref(d_font);
 		return NULL;
 	}
+#endif
 
 	pji = g_new0(GHexPrintJobInfo, 1);
 	pji->h_font = h_font;
@@ -266,8 +278,10 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
 
 	pji->doc = doc;
 
+#ifdef SNM
 	pji->page_width = gnome_paper_pswidth(def_paper);
 	pji->page_height = gnome_paper_psheight(def_paper);
+#endif
 
 	/* Convert inches to ps points */
 	pji->margin_top = .75 * 72; /* Printer margins, not page margins */

@@ -43,7 +43,7 @@ int save_state (GnomeClient        *client,
 	/* Save the state using gnome-config stuff. */
 	gnome_config_push_prefix (prefix);
 	
-	gnome_mdi_save_state(mdi, "Session");
+	bonobo_mdi_save_state(mdi, "Session");
 	
 	gnome_config_pop_prefix();
 	gnome_config_sync();

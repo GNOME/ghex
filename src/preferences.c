@@ -23,7 +23,9 @@
 
 #include <config.h>
 #include <gnome.h>
-#include <libgnomeprint/gnome-font-dialog.h>
+
+/* Changed to libgnomeprintui from libgnomeprint -- SnM */
+#include <libgnomeprintui/gnome-font-dialog.h>
 
 #include "ghex.h"
 
@@ -42,10 +44,10 @@ gchar *def_font_name = NULL;
 gboolean show_offsets_column = TRUE;
 
 guint mdi_type[NUM_MDI_MODES] = {
-	GNOME_MDI_DEFAULT_MODE,
-	GNOME_MDI_NOTEBOOK,
-	GNOME_MDI_TOPLEVEL,
-	GNOME_MDI_MODAL
+	BONOBO_MDI_DEFAULT_MODE,
+	BONOBO_MDI_NOTEBOOK,
+	BONOBO_MDI_TOPLEVEL,
+	BONOBO_MDI_MODAL
 };
 
 gchar *mdi_type_label[NUM_MDI_MODES] = {
@@ -68,6 +70,8 @@ static GtkWidget *get_font_label(const gchar *name, gdouble size) {
 }
 
 static void font_button_clicked(GtkWidget *button, GnomeFont **font) {
+
+#ifdef SNM
 	static GtkWidget *fsd = NULL;
 	static GtkWidget *fontsel = NULL;
 	const gchar *f_name;
@@ -95,14 +99,30 @@ static void font_button_clicked(GtkWidget *button, GnomeFont **font) {
 		gtk_container_remove(GTK_CONTAINER(button), GTK_BIN(button)->child);
 		gtk_container_add(GTK_CONTAINER(button), get_font_label(f_name, f_size));
 	}
+#endif
+
 }
 
+/*
+ * Now we shall have a preferences dialog similar to what gedit2 does.
+ * GnomePropertyBox has been deprecated completely.
+ * We dont need this function. Alteast for now -- SnM
+ * Look at dialogs/ghex-preferences-dialog.[ch]
+ */
+
 PropertyUI *create_prefs_dialog() {
+
+#ifdef SNM
 	static GnomeHelpMenuEntry help_entry = { "ghex", "prefs.html" };
+#endif
+
 	GtkWidget *vbox, *label, *frame, *box, *entry, *fbox, *flabel, *table;
 	GtkWidget *menu, *item;
 	GtkAdjustment *undo_adj, *box_adj;
+#ifdef SNM
 	GnomePaperSelector *paper_sel;
+#endif
+
 	GSList *group;
 	PropertyUI *pui;
 	const gchar *paper_name;
@@ -115,9 +135,12 @@ PropertyUI *create_prefs_dialog() {
 	
 	gtk_signal_connect(GTK_OBJECT(pui->pbox), "apply",
 					   GTK_SIGNAL_FUNC(apply_changes_cb), pui);
+
+#ifdef SNM
 	gtk_signal_connect (GTK_OBJECT (pui->pbox), "help",
 					GTK_SIGNAL_FUNC(gnome_help_pbox_goto), &help_entry);
 	gnome_dialog_close_hides(GNOME_DIALOG(pui->pbox), TRUE);
+#endif
 	
 
 	/* editing page */
@@ -289,6 +312,7 @@ PropertyUI *create_prefs_dialog() {
 	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
 
+#ifdef SNM
 	pui->paper_sel = gnome_paper_selector_new();
 	paper_sel = GNOME_PAPER_SELECTOR(pui->paper_sel);
 	paper_name = gnome_paper_name(def_paper);
@@ -297,6 +321,7 @@ PropertyUI *create_prefs_dialog() {
 	gtk_container_add(GTK_CONTAINER(frame), pui->paper_sel);
 	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE,
 					   GNOME_PAD_SMALL);  
+#endif
 
 	/* data & header font selection */
 	frame = gtk_frame_new(_("Fonts"));
@@ -381,6 +406,7 @@ PropertyUI *create_prefs_dialog() {
 	gtk_signal_connect(GTK_OBJECT(pui->offsets_col), "toggled",
 					   properties_modified_cb, pui->pbox);
 
+#ifdef SNM
 	gtk_signal_connect(GTK_OBJECT(GTK_COMBO(paper_sel->paper)->entry), "changed",
 					   properties_modified_cb, pui->pbox);
 	gtk_signal_connect(GTK_OBJECT(paper_sel->width), "changed",
@@ -389,11 +415,14 @@ PropertyUI *create_prefs_dialog() {
 					   properties_modified_cb, pui->pbox);
 	gtk_signal_connect(GTK_OBJECT(pui->df_button), "clicked",
 					   properties_modified_cb, pui->pbox);
+#endif
+
 	gtk_signal_connect(GTK_OBJECT(pui->hf_button), "clicked",
 					   properties_modified_cb, pui->pbox);
 
 	return pui;
 }
+
 
 static void set_prefs(PropertyUI *pui) {
 	int i;
@@ -425,9 +454,12 @@ static void set_prefs(PropertyUI *pui) {
 		gtk_widget_set_sensitive(pui->format, TRUE);
 	}
 
+#ifdef SNM
 	if(def_paper)
 		gnome_paper_selector_set_name(GNOME_PAPER_SELECTOR(pui->paper_sel),
 									  gnome_paper_name(def_paper));
+#endif
+
 	if(GTK_BIN(pui->hf_button)->child)
 		gtk_container_remove(GTK_CONTAINER(pui->hf_button),
 							 GTK_BIN(pui->hf_button)->child);
@@ -436,6 +468,8 @@ static void set_prefs(PropertyUI *pui) {
 	if(GTK_BIN(pui->df_button)->child)
 		gtk_container_remove(GTK_CONTAINER(pui->df_button),
 							 GTK_BIN(pui->df_button)->child);
+
+#ifdef SNM
 	gtk_container_add(GTK_CONTAINER(pui->df_button),
 					  get_font_label(data_font_name, data_font_size));
 	if(pui->data_font)
@@ -443,7 +477,9 @@ static void set_prefs(PropertyUI *pui) {
 	pui->data_font = gnome_font_new(data_font_name, data_font_size);
 	if(pui->header_font)
 		gtk_object_unref(GTK_OBJECT(pui->header_font));
-	pui->header_font = gnome_font_new(header_font_name, header_font_size);	
+	pui->header_font = gnome_font_new(header_font_name, header_font_size);
+#endif
+
 }
 
 /*
@@ -465,6 +501,7 @@ static void box_size_changed_cb(GtkAdjustment *adj, GnomePropertyBox *pbox) {
 }
 
 static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui) {
+
 	int i, len;
 	GList *child, *view;
 	GdkFont *new_font;
@@ -473,15 +510,17 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 	gchar *old_offset_fmt;
 	gchar *new_paper_name;
 
+#ifdef SNM
 	if ( page != -1 ) return; /* Only do something on global apply */
+#endif
 	
 	show_off = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(pui->offsets_col));
 	if(show_off != show_offsets_column) {
 		show_offsets_column = show_off;
-		child = mdi->children;
+		child = bonobo_mdi_get_children (BONOBO_MDI (mdi));
 			
 		while(child) {
-			view = GNOME_MDI_CHILD(child->data)->views;
+			view = bonobo_mdi_child_get_views (BONOBO_MDI_CHILD(child->data));
 			while(view) {
 				gtk_hex_show_offsets(GTK_HEX(view->data), show_off);
 				view = g_list_next(view);
@@ -501,7 +540,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 		if(GTK_TOGGLE_BUTTON(pui->mdi_type[i])->active) {
 			if(mdi_mode != mdi_type[i]) {
 				mdi_mode = mdi_type[i];
-				gnome_mdi_set_mode(mdi, mdi_mode);
+				bonobo_mdi_set_mode( BONOBO_MDI(mdi), mdi_mode);
 			}
 			break;
 		}
@@ -510,7 +549,7 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 	if(new_undo_max != max_undo_depth) {
 		max_undo_depth = new_undo_max;
 
-		child = mdi->children;
+		child = bonobo_mdi_get_children (BONOBO_MDI (mdi));
 		while(child) {
 			hex_document_set_max_undo(HEX_DOCUMENT(child->data), max_undo_depth);
 			child = child->next;
@@ -552,10 +591,10 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 											  (pui->font_button)), def_font_name) != 0) {
 		if((new_font = gdk_font_load(gnome_font_picker_get_font_name
 									 (GNOME_FONT_PICKER(pui->font_button)))) != NULL) {
-			child = mdi->children;
+			child = bonobo_mdi_get_children (BONOBO_MDI (mdi));
 			
 			while(child) {
-				view = GNOME_MDI_CHILD(child->data)->views;
+				view = bonobo_mdi_child_get_views (BONOBO_MDI_CHILD(child->data));
 				while(view) {
 					gtk_hex_set_font(GTK_HEX(view->data), new_font);
 					view = g_list_next(view);
@@ -574,11 +613,14 @@ static void apply_changes_cb(GnomePropertyBox *pbox, gint page, PropertyUI *pui)
 									 (GNOME_FONT_PICKER(pui->font_button)));
 		}
 		else
-			gnome_app_error(mdi->active_window, _("Can not open desired font!"));
+			display_error_dialog (bonobo_mdi_get_active_window (BONOBO_MDI (mdi)), _("Can not open desired font!"));
 	} 
 
+#ifdef SNM /* Have to find a replacement for this */
 	new_paper_name = gnome_paper_selector_get_name(GNOME_PAPER_SELECTOR(pui->paper_sel));
+
 	def_paper = gnome_paper_with_name(new_paper_name);
+#endif
 
 	if(pui->data_font) {
 		if(data_font_name)

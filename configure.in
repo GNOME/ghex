@@ -1,13 +1,19 @@
 AC_INIT(ghex.desktop)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(ghex, 1.3.0)
+AM_INIT_AUTOMAKE(ghex, 1.99.0)
 
 AM_MAINTAINER_MODE
 
-AM_ACLOCAL_INCLUDE(macros)
+dnl The following lines are no longer required. -- SnM
+dnl AM_ACLOCAL_INCLUDE(macros) -- SnM
+dnl GNOME_INIT() -- SnM
 
-GNOME_INIT()
+dnl The following line will have to be removed -- SnM
+GNOME_COMMON_INIT
+
+dnl added AC_PROG_INTLTOOL -- SnM
+AC_PROG_INTLTOOL
 
 AC_ISC_POSIX
 AC_PROG_CC
@@ -15,43 +21,76 @@ dnl AC_PROG_CPP
 AC_STDC_HEADERS
 dnl AC_ARG_PROGRAM
 dnl AM_PROG_LIBTOOL
+
+dnl Added AC_PROG_LIBTOOL -- SnM
+AC_PROG_LIBTOOL
+
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
-GNOME_COMPILE_WARNINGS
 
-GNOME_X_CHECKS
+dnl Added GNOME_PLATFORM_GNOME_2 and removed GNOME_COMPILE_WARNINGS --SnM 
+dnl GNOME_COMPILE_WARNINGS(maximum) -- SnM
+dnl Removed GNOME_PLATFORM_GNOME_2 as my Gnome2 build does not put it
+dnl among known autoconf stuff...
+dnl GNOME_PLATFORM_GNOME_2(yes, force)
+
+dnl Dont know what this is used for now. Removed for now -- SnM 
+dnl GNOME_X_CHECKS
 
 dnl ******************************
 dnl GnomePrint checking
 dnl ******************************
-AC_MSG_CHECKING(for GnomePrint libraries >= 0.32)
-if gnome-config --libs print > /dev/null 2>&1; then 
-    vers=`gnome-config --modversion print | sed -e "s/gnome-print-//" -e 's/cvs$//' -e 's/pre$//' | \
-        awk 'BEGIN { FS = "."; } { print $1 * 1000 + $2;}'`
-    if test "$vers" -ge 32; then
-        AC_MSG_RESULT(found)
-    else
-        AC_MSG_ERROR(You need at least GNOME print 0.32 for this version of ghex)
-    fi
-else
-    AC_MSG_ERROR(Did not find GnomePrint installed)
-fi
+
+dnl AC_MSG_CHECKING(for GnomePrint libraries >= 0.32)
+dnl if gnome-config --libs print > /dev/null 2>&1; then 
+dnl    vers=`gnome-config --modversion print | sed -e "s/gnome-print-//" -e 's/cvs$//' -e 's/pre$//' | \
+dnl        awk 'BEGIN { FS = "."; } { print $1 * 1000 + $2;}'`
+dnl    if test "$vers" -ge 32; then
+dnl       AC_MSG_RESULT(found)
+dnl    else
+dnl        AC_MSG_ERROR(You need at least GNOME print 0.32 for this version of ghex)
+dnl    fi
+dnl else
+dnl    AC_MSG_ERROR(Did not find GnomePrint installed)
+dnl fi
+
+dnl **************************************************************
+dnl Now we shall use pkg-config rather than gnome-config. -- SnM 
+dnl **************************************************************
+
+PKG_CHECK_MODULES(GHEX,
+		libgnomeui-2.0 >= 1.96.0	\
+		libglade-2.0 >= 1.99.2		\
+		libgnomeprintui-2.0 >= 1.106.0)
+
+AC_SUBST(GHEX_CFLAGS)
+AC_SUBST(GHEX_LIBS)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 ALL_LINGUAS="ca cs da de el en_GB es et fi fr ga gl hr hu it ja ko nl nn no pl pt pt_BR ro ru sk sl sv tr uk wa zh_TW zh_CN"
-AM_GNOME_GETTEXT
-AM_PATH_GNOME_PRINT(0.32.0)
+
+dnl removed the following lines -- SnM
+dnl AM_GNOME_GETTEXT -- SnM
+dnl AM_PATH_GNOME_PRINT(0.32.0) -- SnM
+
+dnl added AM_GLIB_GNU_GETTEXT -- SnM
+AM_GLIB_GNU_GETTEXT
 
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
+dnl Remove the following line from AC_OUTPUT. -- SnM 
+dnl macros/Makefile -- SnM
+dnl intl/Makefile -- SnM
+
+dnl Added the program glib-genmarshal -- SnM
+AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
+
 AC_OUTPUT([
 Makefile
 po/Makefile.in
-intl/Makefile
-macros/Makefile
 src/Makefile
 help/Makefile
 help/C/Makefile

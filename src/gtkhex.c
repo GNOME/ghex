@@ -27,6 +27,9 @@
 #include "hex-document.h"
 #include "gtkhex.h"
 
+/* Added for signal marshalling -- SnM */
+#include "ghex-marshal.h"
+
 #define DISPLAY_BORDER 4
 
 #define DEFAULT_CPL 32
@@ -64,6 +67,8 @@ static void render_hex_lines(GtkHex *, gint, gint);
 static void render_ascii_lines(GtkHex *, gint, gint);
 static void gtk_hex_set_selection(GtkHex *gh, gint start, gint end);
 
+#ifdef SNM /* No longer requried for Gnome 2.0 */
+
 static void gtk_hex_marshaller (GtkObject *object, GtkSignalFunc func,
 								gpointer func_data, GtkArg *args) {
 	DataChangedSignal rfunc;
@@ -72,6 +77,7 @@ static void gtk_hex_marshaller (GtkObject *object, GtkSignalFunc func,
   
 	(* rfunc)(object, GTK_VALUE_POINTER (args[0]), func_data);
 }
+#endif
 
 static guint32 get_event_time() {
 	GdkEvent *event;
@@ -118,7 +124,7 @@ static guint32 get_event_time() {
  */
 static void redraw_widget(GtkWidget *w) {
 	GdkRectangle rect;
-	
+
 	rect.x = rect.y = 0;
 	rect.width = w->allocation.width;
 	rect.height = w->allocation.height;
@@ -127,11 +133,11 @@ static void redraw_widget(GtkWidget *w) {
 }
 
 static gint widget_get_xt(GtkWidget *w) {
-	return w->style->klass->xthickness;
+	return w->style->xthickness; /* Changed in Gtk-2.0 -- SnM */
 }
 
 static gint widget_get_yt(GtkWidget *w) {
-	return w->style->klass->ythickness;
+	return w->style->ythickness; /* Changed in Gtk-2.0 -- SnM */
 }
 /*
  * ?_to_pointer translates mouse coordinates in hex/ascii view
@@ -843,7 +849,14 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 							 source_max - source_min);
 		}
 
+			gdk_window_invalidate_rect (gh->xdisp->window, NULL, FALSE);
+			gdk_window_invalidate_rect (gh->adisp->window, NULL, FALSE);
+			if(gh->offsets) {
+				gdk_window_invalidate_rect (gh->offsets->window, NULL, FALSE);
+			}
+#ifdef SNM
 		while ((event = gdk_event_get_graphics_expose (gh->xdisp->window)) != NULL) {
+//			gdk_window_invalidate_rect (gh->xdisp->window, NULL, FALSE);
 			gtk_widget_event (gh->xdisp, event);
 			if (event->expose.count == 0) {
 				gdk_event_free (event);
@@ -853,6 +866,7 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 		}
 		
 		while ((event = gdk_event_get_graphics_expose (gh->adisp->window)) != NULL) {
+//			gdk_window_invalidate_rect (gh->adisp->window, NULL, FALSE);
 			gtk_widget_event (gh->adisp, event);
 			if (event->expose.count == 0) {
 				gdk_event_free (event);
@@ -863,6 +877,7 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 
 		if(gh->offsets) {
 			while ((event = gdk_event_get_graphics_expose (gh->offsets->window)) != NULL) {
+//			gdk_window_invalidate_rect (gh->offsets->window, NULL, FALSE);
 				gtk_widget_event (gh->offsets, event);
 				if (event->expose.count == 0) {
 					gdk_event_free (event);
@@ -871,6 +886,7 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 				gdk_event_free (event);
 			}
 		}
+#endif
 	}
 	
 	if (rect.height != 0) {
@@ -1379,9 +1395,10 @@ static void gtk_hex_finalize(GtkObject *o) {
 	
 	if(gh->disp_buffer)
 		g_free(gh->disp_buffer);
-	
-	if(GTK_OBJECT_CLASS(parent_class)->finalize)
-		(* GTK_OBJECT_CLASS(parent_class)->finalize)(o);  
+
+	/* Changes for Gnome 2.0 -- SnM */	
+	if(G_OBJECT_CLASS(parent_class)->finalize)
+		(* G_OBJECT_CLASS(parent_class)->finalize)(o);  
 }
 
 static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
@@ -1555,12 +1572,14 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	show_cursor(gh);
 }
 
+#ifdef SNM /* No longer required for Gnome 2.0 */
 static void gtk_hex_draw(GtkWidget *w, GdkRectangle *area) {
 	if(GTK_WIDGET_CLASS(parent_class)->draw)
 		(* GTK_WIDGET_CLASS(parent_class)->draw)(w, area);
 
 	draw_shadow(w, area);
 }
+#endif
 
 static gint gtk_hex_expose(GtkWidget *w, GdkEventExpose *event) {
 	draw_shadow(w, &event->area);
@@ -1586,38 +1605,50 @@ static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 }
 
 static void gtk_hex_class_init(GtkHexClass *klass) {
-	GtkObjectClass *object_class;
 
-	object_class = (GtkObjectClass*) klass;
+	GtkObjectClass *object_class = GTK_OBJECT_CLASS(klass);
+	GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
+
+	parent_class = g_type_class_peek_parent(klass);
 	
-	gtkhex_signals[CURSOR_MOVED_SIGNAL] = gtk_signal_new ("cursor_moved",
-														  GTK_RUN_FIRST,
-														  object_class->type,
-														  GTK_SIGNAL_OFFSET (GtkHexClass, cursor_moved),
-														  gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
-	gtkhex_signals[DATA_CHANGED_SIGNAL] = gtk_signal_new ("data_changed",
-														  GTK_RUN_FIRST,
-														  object_class->type,
-														  GTK_SIGNAL_OFFSET (GtkHexClass, data_changed),
-														  gtk_hex_marshaller, GTK_TYPE_NONE, 2,
-														  GTK_TYPE_INT, GTK_TYPE_INT);
-	gtkhex_signals[CUT_CLIPBOARD_SIGNAL] = gtk_signal_new ("cut_clipboard",
-														  GTK_RUN_FIRST,
-														  object_class->type,
-														  GTK_SIGNAL_OFFSET (GtkHexClass, cut_clipboard),
-														  gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
-	gtkhex_signals[COPY_CLIPBOARD_SIGNAL] = gtk_signal_new ("copy_clipboard",
-															GTK_RUN_FIRST,
-															object_class->type,
-															GTK_SIGNAL_OFFSET (GtkHexClass, copy_clipboard),
-															gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
-	gtkhex_signals[PASTE_CLIPBOARD_SIGNAL] = gtk_signal_new ("paste_clipboard",
-															 GTK_RUN_FIRST,
-															 object_class->type,
-															 GTK_SIGNAL_OFFSET (GtkHexClass, paste_clipboard),
-															 gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
+	gtkhex_signals[CURSOR_MOVED_SIGNAL] = 
+		gtk_signal_new ("cursor_moved",
+			GTK_RUN_FIRST,
+			GTK_CLASS_TYPE(object_class),
+			GTK_SIGNAL_OFFSET (GtkHexClass, cursor_moved),
+			gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
 
+	gtkhex_signals[DATA_CHANGED_SIGNAL] = 
+		gtk_signal_new ("data_changed",
+			GTK_RUN_FIRST,
+			GTK_CLASS_TYPE(object_class),
+			GTK_SIGNAL_OFFSET (GtkHexClass, data_changed),
+			ghex_marshal_VOID__POINTER, GTK_TYPE_NONE, 1, GTK_TYPE_POINTER);
+
+	gtkhex_signals[CUT_CLIPBOARD_SIGNAL] = 
+		gtk_signal_new ("cut_clipboard",
+			GTK_RUN_FIRST,
+			GTK_CLASS_TYPE(object_class),
+			GTK_SIGNAL_OFFSET (GtkHexClass, cut_clipboard),
+			gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
+
+	gtkhex_signals[COPY_CLIPBOARD_SIGNAL] = 
+		gtk_signal_new ("copy_clipboard",
+			GTK_RUN_FIRST,
+			GTK_CLASS_TYPE(object_class),
+			GTK_SIGNAL_OFFSET (GtkHexClass, copy_clipboard),
+			gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
+
+	gtkhex_signals[PASTE_CLIPBOARD_SIGNAL] = 
+		gtk_signal_new ("paste_clipboard",
+			GTK_RUN_FIRST,
+			GTK_CLASS_TYPE(object_class),
+			GTK_SIGNAL_OFFSET (GtkHexClass, paste_clipboard),
+			gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
+
+#ifdef SNM /* Not needed now for Gnome 2.0 -- SnM */
 	gtk_object_class_add_signals (object_class, gtkhex_signals, LAST_SIGNAL);
+#endif
 	
 	klass->cursor_moved = NULL;
 	klass->data_changed = gtk_hex_real_data_changed;
@@ -1625,13 +1656,19 @@ static void gtk_hex_class_init(GtkHexClass *klass) {
 	klass->copy_clipboard = gtk_hex_real_copy_clipboard;
 	klass->paste_clipboard = gtk_hex_real_paste_clipboard;
 
+#ifdef SNM /* No longer present in Gnome 2.0 -- SnM */
 	GTK_WIDGET_CLASS(klass)->draw = gtk_hex_draw;
+#endif
+
 	GTK_WIDGET_CLASS(klass)->size_allocate = gtk_hex_size_allocate;
 	GTK_WIDGET_CLASS(klass)->size_request = gtk_hex_size_request;
 	GTK_WIDGET_CLASS(klass)->expose_event = gtk_hex_expose;
 	GTK_WIDGET_CLASS(klass)->key_press_event = gtk_hex_key_press;
 	GTK_WIDGET_CLASS(klass)->realize = gtk_hex_realize;
-	GTK_OBJECT_CLASS(klass)->finalize = gtk_hex_finalize;
+
+	/* Changed in Gnome 2.0 -- SnM */
+	G_OBJECT_CLASS(klass)->finalize = gtk_hex_finalize;
+
 	GTK_WIDGET_CLASS(klass)->selection_clear_event = gtk_hex_selection_clear;
 	GTK_WIDGET_CLASS(klass)->selection_received = gtk_hex_selection_received;
 	GTK_WIDGET_CLASS(klass)->selection_get = gtk_hex_selection_get;
@@ -1664,6 +1701,11 @@ static void gtk_hex_init(GtkHex *gh) {
 
 	/* get ourselves a decent monospaced font for rendering text */
 	gh->disp_font = gdk_font_load(DEFAULT_FONT);
+
+	if (gh->disp_font) {
+		gdk_font_ref (gh->disp_font);
+	}
+
 	gh->char_width = get_max_char_width(gh->disp_font);
 	gh->char_height = gh->disp_font->ascent + gh->disp_font->descent + 2;
 	
@@ -1725,23 +1767,33 @@ guint gtk_hex_get_type() {
 	static guint gh_type = 0;
 	
 	if(!gh_type) {
-		GtkTypeInfo gh_info = {
-			"GtkHex", sizeof(GtkHex), sizeof(GtkHexClass),
-			(GtkClassInitFunc) gtk_hex_class_init,
-			(GtkObjectInitFunc) gtk_hex_init,
-			(GtkArgSetFunc) NULL,
-			(GtkArgGetFunc) NULL,
+		GTypeInfo gh_info = {
+			sizeof (GtkHexClass),
+			NULL,		/* base_init */
+			NULL,		/* base_finalize */
+			gtk_hex_class_init,
+			NULL,		/* class_finalize */
+			NULL,		/* class_data */
+			sizeof (GtkHex),
+			0,
+			gtk_hex_init	
 		};
-		
-		gh_type = gtk_type_unique(gtk_fixed_get_type(), &gh_info);
+	
+		gh_type = g_type_register_static (gtk_fixed_get_type(),
+							"GtkHex",
+							&gh_info,
+							0);	
 	}
 	
 	return gh_type;
 }
 
 GtkWidget *gtk_hex_new(HexDocument *owner) {
-	GtkHex *gh = gtk_type_new(gtk_hex_get_type());
-	
+	GtkHex *gh;
+
+	gh = GTK_HEX (g_object_new (gtk_hex_get_type(), NULL));
+	g_return_val_if_fail (gh != NULL, NULL);
+
 	gh->document = owner;
 	
 	return GTK_WIDGET(gh);

@@ -31,7 +31,8 @@
 
 #include <gnome.h>
 
-BEGIN_GNOME_DECLS
+/* Added for bonobo_mdi classes -- SnM */
+#include "bonobo-mdi.h"
 
 #define HEX_DOCUMENT(obj)          GTK_CHECK_CAST (obj, hex_document_get_type (), HexDocument)
 #define HEX_DOCUMENT_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, hex_document_get_type (), HexDocumentClass)
@@ -58,7 +59,7 @@ struct _HexChangeData
 
 struct _HexDocument
 {
-	GnomeMDIChild mdi_child;
+	BonoboMDIChild mdi_child;
 	
 	gchar *file_name;
 	gchar *path_end;
@@ -79,7 +80,7 @@ struct _HexDocument
 
 struct _HexDocumentClass
 {
-	GnomeMDIChildClass parent_class;
+	BonoboMDIChildClass parent_class;
 
 	void (*document_changed)(HexDocument *, gpointer, gboolean);
 };
@@ -123,8 +124,6 @@ gint        hex_document_find_forward(HexDocument *doc, guint start,
 gint        hex_document_find_backward(HexDocument *doc, guint start,
 									   guchar *what, gint len, guint *found);
 
-GnomeMDIChild *hex_document_new_from_config(const gchar *);
-
-END_GNOME_DECLS
+BonoboMDIChild *hex_document_new_from_config(const gchar *);
 
 #endif /* __HEX_DOCUMENT_H__ */
