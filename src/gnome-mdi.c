@@ -53,7 +53,8 @@ static void             toplevel_focus           (GnomeApp *, GdkEventFocus *, G
 
 static void             top_add_view             (GnomeMDI *, GnomeDocument *, GtkWidget *);
 
-static void             book_drag                (GtkNotebook *, GdkEvent *, GnomeMDI *);
+static void             book_drag_begin          (GtkNotebook *, GdkEvent *, GnomeMDI *);
+static void             book_drag_req            (GtkNotebook *, GdkEvent *, GnomeMDI *);
 static void             book_drop                (GtkNotebook *, GdkEvent *, GnomeMDI *);
 static void             rootwin_drop             (GtkWidget *, GdkEvent *, GnomeMDI *);
 
@@ -62,12 +63,16 @@ static void             free_ui_info_tree        (GnomeUIInfo *);
 
 #define DND_DATA_TYPE "mdi/bookpage"
 
-/* this is just for simple debugging (as little gdb or ddd as possible...) */
-#define EMBRACE(s) { printf("<\n"); s; printf(">\n"); }
+/* hmmm... is it OK to have these two widgets (used for notebook page DnD)
+   as global vars? */
+static GtkWidget *drag_page = NULL, *drag_page_ok = NULL;
 
 /* accepted DND types for the Notebook */
-char *possible_drag_types[] = { DND_DATA_TYPE };
-char *accepted_drop_types[] = { DND_DATA_TYPE };
+static char *possible_drag_types[] = { DND_DATA_TYPE };
+static char *accepted_drop_types[] = { DND_DATA_TYPE };
+
+/* this is just for simple debugging (as little gdb or ddd as possible...) */
+#define EMBRACE(s) { printf("<\n"); s; printf(">\n"); }
 
 enum {
   CREATE_MENUS,
@@ -517,12 +522,21 @@ static GtkWidget *book_create(GnomeMDI *mdi) {
 
   gtk_signal_connect(GTK_OBJECT(us), "switch_page",
 		     GTK_SIGNAL_FUNC(book_switch_page), mdi);
+  gtk_signal_connect(GTK_OBJECT(us), "drag_begin_event",
+		     GTK_SIGNAL_FUNC(book_drag_begin), mdi);
   gtk_signal_connect(GTK_OBJECT(us), "drag_request_event",
-		     GTK_SIGNAL_FUNC(book_drag), mdi);
+		     GTK_SIGNAL_FUNC(book_drag_req), mdi);
   gtk_signal_connect (GTK_OBJECT(us), "drop_data_available_event",
 		      GTK_SIGNAL_FUNC(book_drop), mdi);
   
-  if(mdi->root_window == NULL) {
+  /* if DnD icons are not loaded yet, load them */
+  if(!drag_page)
+    drag_page = gnome_stock_transparent_window (GNOME_STOCK_PIXMAP_NOT, NULL);
+  if(!drag_page_ok)
+    drag_page_ok = gnome_stock_transparent_window (GNOME_STOCK_PIXMAP_BOOK_BLUE, NULL);
+
+  /* if root window is not set up as our drop zone, set it up */
+  if(!mdi->root_window) {
     rw = gnome_rootwin_new ();
     
     gtk_signal_connect (GTK_OBJECT(rw), "drop_data_available_event",
@@ -566,10 +580,6 @@ static void book_remove_view(GtkWidget *view, GnomeMDI *mdi) {
 static void book_switch_page(GtkNotebook *book, GtkNotebookPage *page, gint page_num, GnomeMDI *mdi) {
   GnomeApp *app;
 
-#ifdef DEBUG
-  printf("book switch page\n");
-#endif
-
   if(page_num == -1)
     return;
 
@@ -610,10 +620,19 @@ static void toplevel_focus(GnomeApp *app, GdkEventFocus *event, GnomeMDI *mdi) {
 #endif
 }
 
-static void book_drag(GtkNotebook *book, GdkEvent *event, GnomeMDI *mdi) {
-#ifdef DEBUG
-  printf("GnomeMDI: starting page drag!\n");
-#endif
+static void book_drag_begin(GtkNotebook *book, GdkEvent *event, GnomeMDI *mdi) {
+  GdkPoint hotspot = { 15, 15 };
+
+  if (drag_page && drag_page_ok) {
+    gdk_dnd_set_drag_shape (drag_page->window, &hotspot,
+			    drag_page_ok->window, &hotspot);	
+
+    gtk_widget_show (drag_page_ok);
+    gtk_widget_show (drag_page);
+  }
+}
+
+static void book_drag_req(GtkNotebook *book, GdkEvent *event, GnomeMDI *mdi) {
   gtk_widget_dnd_data_set(GTK_WIDGET(book), event, book, sizeof(book));
 }
 
@@ -633,13 +652,13 @@ static void book_drop(GtkNotebook *book, GdkEvent *event, GnomeMDI *mdi) {
     return;
   }
 
-#ifdef 0
+#if 0
   /* can get this to work */
   old_book = GTK_NOTEBOOK(event->dropdataavailable.data);
-#endif
-
+#else
   /* so this is a workaround */
   old_book = GTK_NOTEBOOK(mdi->active_window->contents);
+#endif
 
   if(book == old_book)
     return;
@@ -677,10 +696,10 @@ static void rootwin_drop(GtkWidget *rw, GdkEvent *event, GnomeMDI *mdi) {
 #if 0
   /* dont know why this doesnt work... */
   old_book = GTK_NOTEBOOK(event->dropdataavailable.data);
-#endif
-
+#else
   /* so this is a workaround */
   old_book = GTK_NOTEBOOK(mdi->active_window->contents);
+#endif 
 
   if(g_list_length(old_book->children) == 1)
     return;
