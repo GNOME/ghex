@@ -27,7 +27,7 @@ void about_cb (GtkWidget *widget) {
 }
 
 void quit_app_cb (GtkWidget *widget) {
-  if(gnome_mdi_remove_all_documents(mdi))
+  if(gnome_mdi_remove_all_documents(mdi, FALSE))
     gtk_object_destroy(GTK_OBJECT(mdi));
 }
 
@@ -166,7 +166,7 @@ void close_cb(GtkWidget *w) {
   if(mdi->active_doc == NULL)
     return;
 
-  gnome_mdi_remove_document(mdi, mdi->active_doc);
+  gnome_mdi_remove_document(mdi, mdi->active_doc, FALSE);
 }
 
 void find_cb(GtkWidget *w) {
@@ -475,7 +475,7 @@ void add_view_cb(GtkWidget *w) {
 
 void remove_view_cb(GtkWidget *w) {
   if(mdi->active_view)
-    gnome_mdi_remove_view(mdi, mdi->active_view);
+    gnome_mdi_remove_view(mdi, mdi->active_view, FALSE);
 }
 
 gint remove_doc_cb(GnomeMDI *mdi, GnomeDocument *doc) {

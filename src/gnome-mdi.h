@@ -3,6 +3,28 @@
  * written by Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>
  */
 
+/*
+ * GnomeMDI signals:
+ *
+ * gint add_document(GnomeMDI *, GnomeDocument *)
+ * gint add_view(GnomeMDI *, GtkWidget *)
+ *   are called before actually adding a document or a view to the MDI. if the handler returns
+ *   TRUE, the action proceeds otherwise the document or view are not added.
+ *
+ * gint remove_document(GnomeMDI *, GnomeDocument *)
+ * gint remove_view(GnomeMDI *, GtkWidget *)
+ *   are called before removing document or view. the handler should return true if the object
+ *   should be removed from MDI
+ *
+ * GList *create_menus(GnomeMDI *)
+ *   should return a GList of menuitems to be added to the MDI menubar when the GnomeUIInfo way
+ *   with using menu template is not sufficient. This signal is emitted when a new GnomeApp that
+ *   needs new menubar is created but ONLY if the menu template is NULL!
+ *
+ * void app_created(GnomeMDI *, GnomeApp *)
+ *   is called with each newly created GnomeApp to allow the MDI user to customize it.
+ */
+
 #ifndef __GNOME_MDI_H__
 #define __GNOME_MDI_H__
 
@@ -46,6 +68,9 @@ struct _GnomeMDI {
   GList *windows;   /* toplevel windows - GnomeApp widgets */
   GList *documents; /* documents - GnomeDocument objects*/
 
+  GnomeUIInfo *menu_template;
+  GnomeUIInfo *toolbar_template;
+
   GnomeRootWin *root_window; /* this will be needed for DND */
 };
 
@@ -64,14 +89,22 @@ struct _GnomeMDIClass
 };
 
 GtkObject *gnome_mdi_new(gchar *, gchar *);
+
 void gnome_mdi_set_mode(GnomeMDI *, gint);
-void gnome_mdi_add_document(GnomeMDI *, GnomeDocument *);
-void gnome_mdi_remove_document(GnomeMDI *, GnomeDocument *);
-void gnome_mdi_add_view(GnomeMDI *, GnomeDocument *);
-void gnome_mdi_remove_view(GnomeMDI *, GtkWidget *);
-void gnome_mdi_menu_place(GnomeMDI *, gint);
+
+void gnome_mdi_set_menu_template(GnomeMDI*, GnomeUIInfo *);
+void gnome_mdi_set_menu_template(GnomeMDI*, GnomeUIInfo *);
+
 GnomeDocument *gnome_mdi_active_document(GnomeMDI*);
-gboolean gnome_mdi_remove_all_documents(GnomeMDI *);
+
+gint gnome_mdi_add_view(GnomeMDI *, GnomeDocument *);
+gint gnome_mdi_remove_view(GnomeMDI *, GtkWidget *, gint);
+
+gint gnome_mdi_add_document(GnomeMDI *, GnomeDocument *);
+gint gnome_mdi_remove_document(GnomeMDI *, GnomeDocument *, gint);
+gint gnome_mdi_remove_all_documents(GnomeMDI *, gint);
+
+void gnome_mdi_menu_place(GnomeMDI *, gint);
 
 #endif /* __GNOME_MDI_H__ */
 

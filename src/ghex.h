@@ -18,6 +18,11 @@
 
 #define NO_BUFFER_LABEL "No buffer"
 #define DEFAULT_FONT    "-*-courier-medium-r-normal--12-*-*-*-*-*-*-*"
+#define USE_APP_HELPER  YES_PLEASE_DO
+
+#ifdef USE_APP_HELPER
+extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[];
+#endif
 
 typedef struct _PropertyUI {
   GnomePropertyBox *pbox;
@@ -49,7 +54,9 @@ void setup_ui();
 
 void redraw_widget(GtkWidget *);
 
+#ifndef USE_APP_HELPER
 GList *create_mdi_menus(GnomeMDI *);
+#endif
 
 void create_find_dialog(GtkWidget **);
 void create_replace_dialog(GtkWidget **);

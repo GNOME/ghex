@@ -50,7 +50,12 @@ int main(int argc, char **argv) {
   if(!just_exit) {
     mdi = gnome_mdi_new("ghex", "GNOME hex editor");
 
-    gtk_signal_connect(GTK_OBJECT(mdi), "create_menus", GTK_SIGNAL_FUNC(create_mdi_menus), NULL);  
+#ifdef USE_APP_HELPER
+    gnome_mdi_set_menu_template(mdi, main_menu);
+#else
+    gtk_signal_connect(GTK_OBJECT(mdi), "create_menus", GTK_SIGNAL_FUNC(create_mdi_menus), NULL);
+#endif
+
     gtk_signal_connect(GTK_OBJECT(mdi), "remove_document", GTK_SIGNAL_FUNC(remove_doc_cb), NULL);
     gtk_signal_connect(GTK_OBJECT(mdi), "destroy", GTK_SIGNAL_FUNC(cleanup_cb), NULL);
 

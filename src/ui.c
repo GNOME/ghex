@@ -9,6 +9,68 @@
 #include "callbacks.h"
 #include "ghex.h"
 
+#ifdef USE_APP_HELPER
+GnomeUIInfo file_menu[] = {
+  { GNOME_APP_UI_ITEM, "Open", NULL, open_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'O',
+    GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_ITEM, "Save", NULL, save_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 'S',
+    GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_ITEM, "Save as...", NULL, save_as_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0,
+    0, NULL },
+  { GNOME_APP_UI_ITEM, "Revert", NULL, revert_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 'S',
+    GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_ITEM, "Close", NULL, close_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 'S',
+    GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0,
+    0, NULL },
+  { GNOME_APP_UI_ITEM, "Preferences", NULL, prefs_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'P',
+    GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0,
+    0, NULL },
+  { GNOME_APP_UI_ITEM, "Exit", NULL, quit_app_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'X',
+    GDK_CONTROL_MASK, NULL },
+  { GNOME_APP_UI_ENDOFINFO }
+};
+
+GnomeUIInfo view_menu[] = {
+  { GNOME_APP_UI_ITEM, "Add view", NULL, add_view_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0,
+    0, NULL },
+  { GNOME_APP_UI_ITEM, "Remove view", NULL, remove_view_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0,
+    0, NULL },
+  { GNOME_APP_UI_ENDOFINFO }
+};
+
+GnomeUIInfo help_menu[] = {
+  { GNOME_APP_UI_HELP, NULL, NULL, NULL, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_ITEM, "About...", NULL, about_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0,
+    NULL },
+  { GNOME_APP_UI_ENDOFINFO }
+};
+
+GnomeUIInfo main_menu[] = {
+  { GNOME_APP_UI_SUBTREE, ("File"), NULL, file_menu, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_SUBTREE, ("View"), NULL, view_menu, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_SUBTREE, ("Help"), NULL, help_menu, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_ENDOFINFO }
+};
+#endif
+
 static void set_prefs(PropertyUI *);
 
 GtkWidget *file_sel = NULL;
@@ -122,6 +184,7 @@ void create_toolbar() {
 }
 #endif
 
+#ifndef USE_APP_HELPER
 GList *create_mdi_menus(GnomeMDI *mdi) {
   GList *menu_list;
   GtkWidget *w, *menu;
@@ -214,7 +277,7 @@ GList *create_mdi_menus(GnomeMDI *mdi) {
   /* I'm looking for a nicer way to mark where document-specific menus should be inserted.
      this prevents one from using gnome-app-helper functions and casting some nonsense to
      gpointer looks really bad. any ideas? */
-  gtk_object_set_data(GTK_OBJECT(w), "document_menu", (gpointer)TRUE);
+  gtk_object_set_data(GTK_OBJECT(w), "MDIDocumentMenu", (gpointer)TRUE);
 
   menu_list = g_list_append(menu_list, w);
 
@@ -243,12 +306,13 @@ GList *create_mdi_menus(GnomeMDI *mdi) {
   gtk_widget_show(w);
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
   gtk_menu_item_right_justify(GTK_MENU_ITEM(w));
-  gtk_object_set_data(GTK_OBJECT(w), "document_list", (gpointer)TRUE);
+  gtk_object_set_data(GTK_OBJECT(w), "MDIDocumentList", (gpointer)TRUE);
 
   menu_list = g_list_append(menu_list, w);
 
   return menu_list;
 }
+#endif
 
 void create_find_dialog(GtkWidget **dialog) {
   GtkWidget *window;
