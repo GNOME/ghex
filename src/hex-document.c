@@ -51,40 +51,34 @@ static void set_word_cb();
 static void set_long_cb();
 
 GnomeUIInfo group_radio_items[] = {
-	{ GNOME_APP_UI_ITEM, N_("_Bytes"), N_("Group data by 8 bits"), set_byte_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ITEM, N_("_Words"), N_("Group data by 16 bits"), set_word_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ITEM, N_("_Longwords"), N_("Group data by 32 bits"), set_long_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ENDOFINFO },
+	GNOMEUIINFO_ITEM_NONE(N_("_Bytes"),
+			      N_("Group data by 8 bits"), set_byte_cb),
+	GNOMEUIINFO_ITEM_NONE(N_("_Words"),
+			      N_("Group data by 16 bits"), set_word_cb),
+	GNOMEUIINFO_ITEM_NONE(N_("_Longwords"),
+			      N_("Group data by 32 bits"), set_long_cb),
+	GNOMEUIINFO_END
 };
 
 GnomeUIInfo group_type_menu[] = {
 	{ GNOME_APP_UI_RADIOITEMS, NULL, NULL, group_radio_items, NULL, NULL,
 	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ENDOFINFO },
+	GNOMEUIINFO_END
 };
 GnomeUIInfo edit_menu[] = {
-	{ GNOME_APP_UI_ITEM, N_("_Find..."), N_("Search for a string"), find_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SEARCH, 'F', GDK_CONTROL_MASK, NULL },
-	{ GNOME_APP_UI_ITEM, N_("_Replace..."), N_("Replace a string"), replace_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SRCHRPL, 'R', GDK_CONTROL_MASK, NULL },
-	{ GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+	GNOMEUIINFO_MENU_FIND_ITEM(find_cb,NULL),
+	GNOMEUIINFO_MENU_REPLACE_ITEM(replace_cb,NULL),
+	GNOMEUIINFO_SEPARATOR,
 	{ GNOME_APP_UI_ITEM, N_("_Goto Byte..."), N_("Jump to a certain position"), jump_cb, NULL, NULL,
 	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_JUMP_TO, 'J', GDK_CONTROL_MASK, NULL },
-	{ GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_SUBTREE, N_("_Group Data As"), NULL, group_type_menu, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ENDOFINFO }
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_SUBTREE(N_("_Group Data As"), group_type_menu),
+	GNOMEUIINFO_END
 };
 
 GnomeUIInfo doc_menu[] = {
-	{ GNOME_APP_UI_SUBTREE, N_("_Edit"), NULL, edit_menu, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ENDOFINFO }
+	GNOMEUIINFO_MENU_EDIT_TREE(edit_menu),
+	GNOMEUIINFO_END
 };
 
 enum {

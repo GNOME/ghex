@@ -43,9 +43,9 @@ extern GnomeUIInfo help_menu[], file_menu[], view_menu[], main_menu[];
 
 #define NUM_MDI_MODES 4
 
-#define CHILD_MENU_PATH "File"
-#define CHILD_LIST_PATH "Files/"
-#define GROUP_MENU_PATH "Edit/Group Data As/"
+#define CHILD_MENU_PATH GNOME_MENU_FILE_STRING
+#define CHILD_LIST_PATH GNOME_MENU_FILES_PATH
+#define GROUP_MENU_PATH _("Edit/Group Data As/")
 
 typedef struct _PropertyUI {
 	GnomePropertyBox *pbox;

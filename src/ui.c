@@ -29,64 +29,46 @@
 #include "ghex.h"
 
 GnomeUIInfo file_menu[] = {
-	{ GNOME_APP_UI_ITEM, N_("_Open"), N_("Open a file"), open_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'O', GDK_CONTROL_MASK, NULL },
-	{ GNOME_APP_UI_ITEM, N_("_Save"), N_("Save buffer "), save_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 'S', GDK_CONTROL_MASK, NULL },
-	{ GNOME_APP_UI_ITEM, N_("Save _As..."), N_("Save buffer under a different file name"), save_as_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE_AS, 0, 0, NULL },
-	{ GNOME_APP_UI_ITEM, N_("_Revert"), N_("Revert buffer"), revert_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_REVERT, 'R', GDK_CONTROL_MASK, NULL },
-	{ GNOME_APP_UI_ITEM, N_("_Close"), N_("Close file"), close_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CLOSE, 0, 0, NULL },
-	{ GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ITEM, N_("Open Con_verter..."), N_("Open base conversion dialog"), converter_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ITEM, N_("_Preferences"), N_("Set user preferences"), prefs_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'P', GDK_CONTROL_MASK, NULL },
-	{ GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ITEM, N_("E_xit"), N_("Exit GHex"), quit_app_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'x', GDK_CONTROL_MASK, NULL },
-	{ GNOME_APP_UI_ENDOFINFO }
+	GNOMEUIINFO_MENU_OPEN_ITEM(open_cb,NULL),
+	GNOMEUIINFO_MENU_SAVE_ITEM(save_cb,NULL),
+	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb,NULL),
+	GNOMEUIINFO_MENU_REVERT_ITEM(revert_cb,NULL),
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_ITEM_NONE(N_("Open Con_verter..."),
+			      N_("Open base conversion dialog"), converter_cb),
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_MENU_PREFERENCES_ITEM(prefs_cb,NULL),
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_MENU_CLOSE_ITEM(close_cb,NULL),
+	GNOMEUIINFO_MENU_EXIT_ITEM(quit_app_cb,NULL),
+	GNOMEUIINFO_END
 };
 
 GnomeUIInfo empty_menu[] = {
-	{ GNOME_APP_UI_ENDOFINFO },
+	GNOMEUIINFO_END
 };
 
 GnomeUIInfo view_menu[] = {
-	{ GNOME_APP_UI_ITEM, N_("_Add view"), N_("Add a new view of the buffer"), add_view_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0,
-	  0, NULL },
-	{ GNOME_APP_UI_ITEM, N_("_Remove view"), N_("Remove the current view of the buffer"), remove_view_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ENDOFINFO }
+	GNOMEUIINFO_ITEM_NONE(N_("_Add view"),
+			      N_("Add a new view of the buffer"), add_view_cb),
+	GNOMEUIINFO_ITEM_NONE(N_("_Remove view"),
+			      N_("Remove the current view of the buffer"),
+			      remove_view_cb),
+	GNOMEUIINFO_END
 };
 
 GnomeUIInfo help_menu[] = {
-	{ GNOME_APP_UI_HELP, NULL, NULL, "ghex", NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ITEM, N_("_About..."), N_("About GHex"), about_cb, NULL, NULL,
-	  GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL },
-	{ GNOME_APP_UI_ENDOFINFO }
+	GNOMEUIINFO_HELP("ghex"),
+	GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb,NULL),
+	GNOMEUIINFO_END
 };
 
 GnomeUIInfo main_menu[] = {
-	{ GNOME_APP_UI_SUBTREE, N_("_File"), NULL, file_menu, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_SUBTREE, N_("_View"), NULL, view_menu, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_SUBTREE, N_("File_s"), NULL, empty_menu, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_SUBTREE, N_("_Help"), NULL, help_menu, NULL, NULL,
-	  GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{ GNOME_APP_UI_ENDOFINFO }
+	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+	GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
+	GNOMEUIINFO_MENU_FILES_TREE(empty_menu),
+	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
+	GNOMEUIINFO_END
 };
 
 guint group_type[3] = {

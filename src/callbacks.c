@@ -602,7 +602,7 @@ void view_changed_cb(GnomeMDI *mdi, GtkHex *old_view) {
 
 	app = gnome_mdi_get_app_from_view(mdi->active_view);
 	
-	shell = gnome_app_find_menu_pos(app->menubar, _(GROUP_MENU_PATH), &pos);
+	shell = gnome_app_find_menu_pos(app->menubar, GROUP_MENU_PATH, &pos);
 
 	group_item = GTK_HEX(mdi->active_view)->group_type / 2;
 	shell = gnome_app_find_menu_pos(shell, _(group_type_label[group_item]), &pos);
