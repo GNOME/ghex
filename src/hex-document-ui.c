@@ -89,6 +89,23 @@ find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 }
 
 void
+advanced_find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+{
+	GHexWindow *win = GHEX_WINDOW(user_data);
+	if (!win->advanced_find_dialog)
+		win->advanced_find_dialog = create_advanced_find_dialog(win);
+
+	if(!GTK_WIDGET_VISIBLE(win->advanced_find_dialog->window)) {
+		gtk_window_position (GTK_WINDOW(win->advanced_find_dialog->window), GTK_WIN_POS_MOUSE);
+		gtk_window_set_default(GTK_WINDOW(win->advanced_find_dialog->window),
+							   win->advanced_find_dialog->f_close);
+		gtk_widget_show(win->advanced_find_dialog->window);
+	}
+	raise_and_focus_widget(win->advanced_find_dialog->window);
+}
+
+
+void
 replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	if(!replace_dialog)

@@ -88,6 +88,7 @@ BonoboUIVerb ghex_verbs [] = {
 	BONOBO_UI_VERB ("EditCopy", copy_cb),
 	BONOBO_UI_VERB ("EditPaste", paste_cb),
 	BONOBO_UI_VERB ("Find", find_cb),
+	BONOBO_UI_VERB ("AdvancedFind", advanced_find_cb),
 	BONOBO_UI_VERB ("Replace", replace_cb),
 	BONOBO_UI_VERB ("GoToByte", jump_cb),
 	BONOBO_UI_VERB ("AddView", add_view_cb),
@@ -134,7 +135,7 @@ cancel_cb(GtkWidget *w, GtkWidget *me)
 }
 
 gint
-delete_event_cb(GtkWidget *w, GdkEventAny *e)
+delete_event_cb(GtkWidget *w, GdkEventAny *e, GtkWindow *win)
 {
 	gtk_widget_hide(w);
 	

@@ -56,6 +56,29 @@ typedef struct _GtkHex GtkHex;
 typedef struct _GtkHexClass GtkHexClass;
 typedef struct _GtkHexChangeData GtkHexChangeData;
 
+typedef struct _GtkHex_Highlight GtkHex_Highlight;
+
+typedef struct _AdvancedFindDialog AdvancedFindDialog;
+typedef struct _AdvancedFind_AddDialog AdvancedFind_AddDialog;
+
+/* start_line and end_line only have to be set (and valid) of
+ * valid is set to TRUE. */
+struct _GtkHex_Highlight
+{
+	gint start, end;
+	gint start_line, end_line;
+	GtkStyle *style; /* NULL for parent style */
+	gint min_select;
+
+	GtkHex_Highlight *prev, *next;
+	gboolean valid;
+};
+
+/* used to automatically highlight all visible occurances
+ * of the string.
+ */
+typedef struct _GtkHex_AutoHighlight GtkHex_AutoHighlight;
+
 struct _GtkHex
 {
 	GtkFixed fixed;
@@ -80,7 +103,7 @@ struct _GtkHex
 	guint button;
 	
 	guint cursor_pos;
-	guint sel_start, sel_end;
+	GtkHex_Highlight selection;
 	gint lower_nibble;
 	
 	guint group_type;
@@ -93,6 +116,8 @@ struct _GtkHex
 	/* buffer for storing formatted data for rendering.
 	   dynamically adjusts its size to the display size */
 	guchar *disp_buffer;
+
+	GtkHex_AutoHighlight *auto_highlight;
 	
 	gint scroll_dir;
 	guint scroll_timeout;
@@ -140,6 +165,12 @@ void gtk_hex_paste_clipboard(GtkHex *gh);
 
 void add_atk_namedesc(GtkWidget *widget, const gchar *name, const gchar *desc);
 void add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType type);
+
+GtkHex_AutoHighlight *gtk_hex_insert_autohighlight(GtkHex *gh,
+												   const gchar *search,
+												   gint len,
+                                                   const gchar *colour);
+void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl);
 
 #ifdef __cplusplus
 }

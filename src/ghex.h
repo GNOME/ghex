@@ -88,6 +88,8 @@ typedef struct _ReplaceDialog {
 	GtkWidget *replace, *replace_all, *next, *close;
 	GtkWidget *type_button[2];
 	
+	GtkHex_AutoHighlight *auto_highlight;
+	
 	gint search_type;
 } ReplaceDialog; 
 
@@ -100,8 +102,34 @@ typedef struct _FindDialog {
 	GtkWidget *f_next, *f_prev, *f_close;
 	GtkWidget *type_button[2];
 	
+	GtkHex_AutoHighlight *auto_highlight;
+	
 	gint search_type;
 } FindDialog;
+
+struct _AdvancedFindDialog {
+	GHexWindow *parent;
+	AdvancedFind_AddDialog *addDialog;
+
+	GtkWidget *window;
+	GtkWidget *hbox;
+	GtkWidget *vbox;
+	GtkListStore *list;
+	GtkWidget *tree;
+	GtkWidget *f_next, *f_prev;
+	GtkWidget *f_new, *f_remove;
+	GtkWidget *f_close;
+
+	gint search_type;
+};
+
+struct _AdvancedFind_AddDialog {
+	AdvancedFindDialog *parent;
+	GtkWidget *window;
+	GtkWidget *f_string;
+	GtkWidget *type_button[2];
+	GtkWidget *colour;
+};
 
 typedef struct _Converter {
 	GtkWidget *window;
@@ -177,12 +205,14 @@ extern gchar *geometry;
 extern GConfClient *gconf_client;
 
 /* creation of dialogs */
-FindDialog    *create_find_dialog    (void);
-ReplaceDialog *create_replace_dialog (void);
-JumpDialog    *create_jump_dialog    (void);
-Converter     *create_converter      (void);
-GtkWidget     *create_char_table     (void);
-PropertyUI    *create_prefs_dialog   (void);
+FindDialog              *create_find_dialog               (void);
+ReplaceDialog           *create_replace_dialog            (void);
+JumpDialog              *create_jump_dialog               (void);
+Converter               *create_converter                 (void);
+GtkWidget               *create_char_table                (void);
+PropertyUI              *create_prefs_dialog              (void);
+AdvancedFindDialog      *create_advanced_find_dialog      (GHexWindow *parent);
+void             delete_advanced_find_dialog      (AdvancedFindDialog *dialog);
 
 /* various ui convenience functions */
 void create_dialog_title   (GtkWidget *, gchar *);
@@ -200,7 +230,7 @@ void ghex_print_job_info_destroy(GHexPrintJobInfo *pji);
 void load_configuration    (void);
 
 /* hiding widgets on cancel or delete_event */
-gint delete_event_cb(GtkWidget *, GdkEventAny *);
+gint delete_event_cb(GtkWidget *, GdkEventAny *, GtkWindow *win);
 void cancel_cb(GtkWidget *, GtkWidget *);
 
 /* session managment */
@@ -223,6 +253,7 @@ extern GtkWidget *converter_get;
 void ghex_prefs_init (void);
 
 void find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+void advanced_find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 void replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 void jump_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
 void set_byte_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);

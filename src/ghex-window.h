@@ -47,6 +47,8 @@ struct _GHexWindow
     HexDialog *dialog;
     GtkWidget *dialog_widget;
 
+    AdvancedFindDialog *advanced_find_dialog;
+
     gchar **uris_to_open;
 };
 

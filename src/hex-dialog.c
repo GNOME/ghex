@@ -53,17 +53,17 @@ static struct {
     char *name;
     char *(*conv_function)(HexDialogVal64 *val, HexConversionProperties *prop);
 } HexDialogEntries[ENTRY_MAX] = {
-    "Signed 8 bit:", HexConvert_S8,
-    "Unsigned 8 bit:", HexConvert_US8,
-    "Signed 16 bit:", HexConvert_S16,
-    "Unsigned 16 bit:", HexConvert_US16,
-    "Signed 32 bit:", HexConvert_S32,
-    "Unsigned 32 bit:", HexConvert_US32,
-    "32 bit float:", HexConvert_32float,
-    "64 bit float:", HexConvert_64float,
-    "Hexadecimal:", HexConvert_hex,
-    "Octal:", HexConvert_oct,
-    "Binary:", HexConvert_bin
+    N_("Signed 8 bit:"), HexConvert_S8,
+    N_("Unsigned 8 bit:"), HexConvert_US8,
+    N_("Signed 16 bit:"), HexConvert_S16,
+    N_("Unsigned 16 bit:"), HexConvert_US16,
+    N_("Signed 32 bit:"), HexConvert_S32,
+    N_("Unsigned 32 bit:"), HexConvert_US32,
+    N_("32 bit float:"), HexConvert_32float,
+    N_("64 bit float:"), HexConvert_64float,
+    N_("Hexadecimal:"), HexConvert_hex,
+    N_("Octal:"), HexConvert_oct,
+    N_("Binary:"), HexConvert_bin
 };
 
 
@@ -130,7 +130,7 @@ static void create_dialog_prop(HexDialogEntryTypes type,
 {
     GtkWidget *label;
 
-    label = gtk_label_new(HexDialogEntries[type].name);
+    label = gtk_label_new(_(HexDialogEntries[type].name));
     gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
     gtk_table_attach_defaults(GTK_TABLE(table), label, xpos, xpos+1, ypos, ypos+1);
     gtk_widget_show(label);
@@ -193,20 +193,20 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, FALSE, GNOME_PAD_SMALL);
     gtk_widget_show(hbox);
 
-    dialog->config_endian = gtk_check_button_new_with_label("Show little endian decoding");
+    dialog->config_endian = gtk_check_button_new_with_label(_("Show little endian decoding"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->config_endian), TRUE);
     g_signal_connect(G_OBJECT(dialog->config_endian), "toggled",
                      G_CALLBACK(config_toggled_cb), dialog);
     gtk_widget_show(dialog->config_endian);
     gtk_box_pack_start(GTK_BOX(hbox), dialog->config_endian, TRUE, FALSE, GNOME_PAD_SMALL);
 
-    dialog->config_hex = gtk_check_button_new_with_label("Show unsigned and float as hexadecimal");
+    dialog->config_hex = gtk_check_button_new_with_label(_("Show unsigned and float as hexadecimal"));
     g_signal_connect(G_OBJECT(dialog->config_hex), "toggled",
                      G_CALLBACK(config_toggled_cb), dialog);
     gtk_widget_show(dialog->config_hex);
     gtk_box_pack_start(GTK_BOX(hbox), dialog->config_hex, TRUE, FALSE, GNOME_PAD_SMALL);
 
-    label = gtk_label_new("Stream Length:");
+    label = gtk_label_new(_("Stream Length:"));
     gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
     gtk_table_attach_defaults(GTK_TABLE(table), label, 4, 5, 3, 4);
     gtk_widget_show(label);
@@ -228,7 +228,7 @@ static void update_dialog_prop(HexDialogEntryTypes type,
     if (HexDialogEntries[type].conv_function)
         buf = HexDialogEntries[type].conv_function(val, &dialog->properties);
     else
-        buf = "FIXME: no conversion function";
+        buf = _("FIXME: no conversion function");
     gtk_entry_set_text(GTK_ENTRY(dialog->entry[type]), buf);
 }
 

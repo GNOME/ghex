@@ -120,6 +120,9 @@ ghex_window_close(GHexWindow *win)
 	if (converter_get)
 		gtk_widget_set_sensitive(converter_get, FALSE);
 
+    if (win->advanced_find_dialog)
+        delete_advanced_find_dialog(win->advanced_find_dialog);
+
     gtk_widget_destroy(GTK_WIDGET(win));
 
     if (doc->views == NULL) /* If we have destroyed the last view */
