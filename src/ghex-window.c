@@ -790,8 +790,12 @@ ghex_window_get_ui_component(GHexWindow *win)
 void
 ghex_window_set_doc_name(GHexWindow *win, const gchar *name)
 {
-    gchar *title = g_strdup_printf(_("GHex - %s"), name);
-    gtk_window_set_title(GTK_WINDOW(win), title);
+    if(name != NULL) {
+        gchar *title = g_strdup_printf(_("GHex - %s"), name);
+        gtk_window_set_title(GTK_WINDOW(win), title);
+        g_free(title);
+    }
+    else gtk_window_set_title(GTK_WINDOW(win), _("GHex"));
 }
 
 struct _MessageInfo {

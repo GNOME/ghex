@@ -193,6 +193,8 @@ accessible_gtk_hex_real_initialize (AtkObject *obj,
 
 	g_return_if_fail (obj != NULL);
 
+	ATK_OBJECT_CLASS(parent_class)->initialize(obj, data);
+
 	accessible_gtk_hex = ACCESSIBLE_GTK_HEX(obj);
 
 	gtk_hex = GTK_HEX (data);

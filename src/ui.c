@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ui.c - main menus and callbacks; utility functions
 
-   Copyright (C) 1998 - 2002 Free Software Foundation
+   Copyright (C) 1998 - 2003 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -597,10 +597,10 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	window_list = ghex_window_get_list();
 	while(window_list) {
 		other_win = GHEX_WINDOW(window_list->data);
-		window_list = window_list->next;
 		ghex_window_remove_doc_from_list(other_win, doc);
+		window_list = window_list->next;
 		if(other_win->gh && other_win->gh->document == doc && other_win != win)
-			gtk_widget_destroy(GTK_WIDGET(win));
+			gtk_widget_destroy(GTK_WIDGET(other_win));
 	}
 
 	/* this implicitly destroys all views including this one */
@@ -616,6 +616,7 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
         bonobo_window_set_contents(BONOBO_WINDOW(win), NULL);
 		win->gh = NULL;
         ghex_window_set_sensitivity(win);
+		ghex_window_set_doc_name(win, NULL);
     }
     else
         gtk_widget_destroy(GTK_WIDGET(win));	

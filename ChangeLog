@@ -1,3 +1,15 @@
+2003-01-06  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/ui.c (close_cb): fixed a possible crash.
+	* src/gtkhex.c: enabled pasting of primary selection with
+	middle mouse button. move cursor properly after cutting or
+	pasting data.
+	* configure.in: bumped version to 2.0.0; tagged as GHEX_2_0_0;
+	branch ghex-2-0.
+	* src/preferences.c (set_prefs): set display font.
+	* src/access/accessiblegtkhex.c (accessible_gtk_hex_real_initialize): 
+	applied patch from padraig o'briain. fixes #101136.
+
 2002-12-23  Jaka Mocnik  <jaka@gnu.org>
 
 	* configure.in: bumped version to 1.99.90; tagged as GHEX_1_99_90.

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* preferences.c - setting the preferences
 
-   Copyright (C) 1998 - 2002 Free Software Foundation
+   Copyright (C) 1998 - 2003 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -432,11 +432,15 @@ void set_prefs(PropertyUI *pui) {
 		gtk_widget_set_sensitive(pui->format, TRUE);
 	}
 
-	gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->hf_button),
-									header_font_name);
-
-	gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->df_button),
-									data_font_name);
+	if(header_font_name)
+		gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->hf_button),
+										header_font_name);
+	if(data_font_name)
+		gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->df_button),
+										data_font_name);
+	if(def_font_name)
+		gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->font_button),
+										def_font_name);
 
 	gtk_dialog_set_default_response(GTK_DIALOG(pui->pbox), GTK_RESPONSE_CANCEL);
 	gtk_dialog_set_response_sensitive(GTK_DIALOG(pui->pbox), GTK_RESPONSE_OK, FALSE);
@@ -542,7 +546,7 @@ static void apply_changes_cb(PropertyUI *pui) {
 	if(strcmp(gnome_font_picker_get_font_name(GNOME_FONT_PICKER
 											  (pui->font_button)), def_font_name) != 0) {
 		if((new_metrics = gtk_hex_load_font(gnome_font_picker_get_font_name
-									 (GNOME_FONT_PICKER(pui->font_button)))) != NULL) {
+											(GNOME_FONT_PICKER(pui->font_button)))) != NULL) {
 			new_desc = pango_font_description_from_string (gnome_font_picker_get_font_name (GNOME_FONT_PICKER (pui->font_button)));
 			if (def_metrics)
 				pango_font_metrics_unref (def_metrics);

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* gtkhex.c - a GtkHex widget, modified for use in GHex
 
-   Copyright (C) 1998 - 2002 Free Software Foundation
+   Copyright (C) 1998 - 2003 Free Software Foundation
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -869,7 +869,6 @@ static gboolean scroll_timeout_handler(GtkHex *gh) {
 }
 
 static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
-	
 	if( (event->type == GDK_BUTTON_RELEASE) &&
 		(event->button == 1) ) {
 		if(gh->scroll_timeout != -1) {
@@ -902,6 +901,22 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 			gh->active_view = VIEW_HEX;
 			show_cursor(gh);
 		}
+	}
+	else if((event->type == GDK_BUTTON_PRESS) && (event->button == 2)) {
+		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
+		gchar *text;
+
+		gh->active_view = VIEW_HEX;
+		hex_to_pointer(gh, event->x, event->y);
+
+		text = gtk_clipboard_wait_for_text(klass->primary);
+		if(text) {
+			hex_document_set_data(gh->document, gh->cursor_pos,
+								  strlen(text), 0, text, TRUE);
+			gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
+			g_free(text);
+		}
+		gh->button = 0;
 	}
 	else
 		gh->button = 0;
@@ -969,6 +984,22 @@ static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 			gh->active_view = VIEW_ASCII;
 			show_cursor(gh);
 		}
+	}
+	else if((event->type == GDK_BUTTON_PRESS) && (event->button == 2)) {
+		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
+		gchar *text;
+
+		gh->active_view = VIEW_ASCII;
+		ascii_to_pointer(gh, event->x, event->y);
+
+		text = gtk_clipboard_wait_for_text(klass->primary);
+		if(text) {
+			hex_document_set_data(gh->document, gh->cursor_pos,
+								  strlen(text), 0, text, TRUE);
+			gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
+			g_free(text);
+		}
+		gh->button = 0;
 	}
 	else
 		gh->button = 0;
@@ -1123,8 +1154,6 @@ static void primary_get_cb(GtkClipboard *clipboard,
 		guchar *text;
 		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 
-		g_message("copy_primary");
-
 		start_pos = MIN(gh->sel_start, gh->sel_end);
 		end_pos = MAX(gh->sel_start, gh->sel_end);
  
@@ -1195,8 +1224,11 @@ void gtk_hex_delete_selection(GtkHex *gh)
 
 	gtk_hex_select_region(gh, 0, 0);
 
-	if(start != end)
+	if(start != end) {
+		if(start < gh->cursor_pos)
+			gtk_hex_set_cursor(gh, gh->cursor_pos - end + start);
 		hex_document_delete_data(gh->document, MIN(start, end), end - start, TRUE);
+	}
 }
 
 void gtk_hex_copy_clipboard(GtkHex *gh)
@@ -1221,7 +1253,6 @@ static void gtk_hex_real_copy_clipboard(GtkHex *gh)
 	gint end_pos;
 	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 
-	g_message("copy_clipboard");
 	start_pos = MIN(gh->sel_start, gh->sel_end);
 	end_pos = MAX(gh->sel_start, gh->sel_end);
  
@@ -1235,8 +1266,6 @@ static void gtk_hex_real_copy_clipboard(GtkHex *gh)
 
 static void gtk_hex_real_cut_clipboard(GtkHex *gh)
 {
-	g_message("cut_clipboard");
-
 	if(gh->sel_start != -1 && gh->sel_end != -1) {
 		gtk_hex_real_copy_clipboard(gh);
 		gtk_hex_delete_selection(gh);
@@ -1248,12 +1277,11 @@ static void gtk_hex_real_paste_clipboard(GtkHex *gh)
 	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 	gchar *text;
 
-	g_message("paste_clipboard");
-
 	text = gtk_clipboard_wait_for_text(klass->clipboard);
 	if(text) {
 		hex_document_set_data(gh->document, gh->cursor_pos,
 							  strlen(text), 0, text, TRUE);
+		gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
 		g_free(text);
 	}
 }
