@@ -7,6 +7,6 @@ ghex_helpdir = $(datadir)/gnome/help/ghex/es
 
 install-data-local:
 	$(mkinstalldirs) $(ghex_helpdir)
-	$(INSTALL_DATA)  index.html $(ghex_helpdir)
-	$(INSTALL_DATA)  topic.dat $(ghex_helpdir)
+	$(INSTALL_DATA)  $(srcdir)/index.html $(ghex_helpdir)
+	$(INSTALL_DATA)  $(srcdir)/topic.dat $(ghex_helpdir)
 
