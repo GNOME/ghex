@@ -772,6 +772,11 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 	
 	start_line = change_data->start/gh->cpl - gh->top_line;
 	end_line = change_data->end/gh->cpl - gh->top_line;
+
+	if(end_line < 0 ||
+	   start_line > gh->vis_lines)
+		return;
+
 	start_line = MAX(start_line, 0);
 	end_line = MIN(end_line, gh->vis_lines);
 	
