@@ -485,7 +485,7 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 	HexDocument *doc;
-	GList *window_list;
+	const GList *window_list;
 
 	if(win->gh == NULL) {
 		gtk_widget_destroy(GTK_WIDGET(win));
@@ -520,7 +520,9 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 void
 raise_and_focus_widget (GtkWidget *widget)
 {
-	g_assert (GTK_WIDGET_REALIZED (widget));
+	if(!GTK_WIDGET_REALIZED (widget))
+		return;
+
 	gdk_window_raise (widget->window);
 	gtk_widget_grab_focus (widget);
 }
@@ -542,7 +544,7 @@ file_list_activated_cb (BonoboUIComponent *uic, gpointer user_data, const gchar*
 
 	if(window_list) {
 		win = GHEX_WINDOW(window_list->data);
-		raise_and_focus_widget(win);
+		raise_and_focus_widget(GTK_WIDGET(win));
 	}
 }
 
@@ -574,7 +576,7 @@ char_table_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 		gtk_window_position(GTK_WINDOW(char_table), GTK_WIN_POS_MOUSE);
 		gtk_widget_show(char_table);
 	}
-	raise_and_focus_widget(char_table->window);
+	raise_and_focus_widget(char_table);
 }
 
 
@@ -591,7 +593,7 @@ void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 		gtk_window_position (GTK_WINDOW(prefs_ui->pbox), GTK_WIN_POS_MOUSE);
 		gtk_widget_show(GTK_WIDGET(prefs_ui->pbox));
 	}
-	raise_and_focus_widget(GTK_WIDGET(prefs_ui->pbox)->window);
+	raise_and_focus_widget(GTK_WIDGET(prefs_ui->pbox));
 }
 
 

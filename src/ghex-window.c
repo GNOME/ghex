@@ -452,6 +452,18 @@ ghex_window_sync_group_type(GHexWindow *win)
     bonobo_ui_component_set_prop(win->uic, group_path, "state", "1", NULL);
 }
 
+static void cursor_moved_cb(GtkHex *gtkhex, gpointer user_data) {
+	static gchar *cursor_pos, *format;
+	GHexWindow *win = GHEX_WINDOW(user_data);
+
+	if((format = g_strdup_printf(_("Offset: %s"), offset_fmt)) != NULL) {
+		if((cursor_pos = g_strdup_printf(format, gtk_hex_get_cursor(gtkhex))) != NULL) {
+			ghex_window_show_status(win, format);
+		}
+		g_free(format);
+	}
+}
+
 gboolean
 ghex_window_load(GHexWindow *win, const gchar *filename)
 {
@@ -479,8 +491,11 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     if(!doc)
         return FALSE;
     gh = hex_document_add_view(doc);
+    gtk_hex_show_offsets(GTK_HEX(gh), show_offsets_column);
     g_signal_connect(G_OBJECT(doc), "document_changed",
                      G_CALLBACK(ghex_window_doc_changed), win);
+    g_signal_connect(G_OBJECT(gh), "cursor_moved",
+                     G_CALLBACK(cursor_moved_cb), win);
     gtk_widget_show(gh);
     
     if(win->gh) {

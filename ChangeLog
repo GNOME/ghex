@@ -1,3 +1,12 @@
+2002-07-07  Jaka Mocnik  <jaka@gnu.org>
+
+	* src/ghex-window.c (ghex_window_load): connect cursor_moved signal
+	to report cursor offset.
+	display offsets column if desired.
+	* src/config.c: removed old, gnome1-related, code.
+	* src/ui.c (raise_and_focus_widget): silently return if widget is not
+	realized.
+
 2002-06-30  Jaka Mocnik  <jaka@gnu.org>
 
 	* src/ui.c (quit_app_cb): ask to save or cancel if the documents

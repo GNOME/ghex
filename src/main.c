@@ -25,24 +25,6 @@
 #include <gnome.h>
 #include "ghex.h"
 
-static void cursor_moved_cb(GtkHex *gtkhex);
-
-static void cursor_moved_cb(GtkHex *gtkhex) {
-#ifdef SNM
-	static gchar *cursor_pos, *format;
-
-	if((format = g_strdup_printf(_("Offset: %s"), offset_fmt)) != NULL) {
-		if((cursor_pos = g_strdup_printf(format, gtk_hex_get_cursor(gtkhex))) != NULL) {
-			gnome_appbar_set_status(GNOME_APPBAR(bonobo_mdi_get_app_from_view(GTK_WIDGET(gtkhex))->statusbar),
-									cursor_pos);
-			g_free(cursor_pos);
-		}
-		g_free(format);
-	}
-#endif
-
-}
-
 int
 main(int argc, char **argv)
 {
