@@ -4,6 +4,7 @@ EXTRA_DIST =		\
 	ghex.spec.in	\
 	ghex.desktop	\
 	app-docs.make   \
+	COPYING-DOCS    \
 	$(appicon_DATA)
 
 dist-hook: ghex.spec
