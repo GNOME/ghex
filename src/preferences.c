@@ -30,7 +30,6 @@
 #include "gnome-print-font-picker.h"
 
 static void select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui);
-static void apply_changes_cb(PropertyUI *pui);
 static void max_undo_changed_cb(GtkAdjustment *adj, PropertyUI *pui);
 static void box_size_changed_cb(GtkAdjustment *adj, PropertyUI *pui);
 static void offset_cb(GtkWidget *w, PropertyUI *pui);
@@ -47,6 +46,7 @@ PangoFontDescription *def_font_desc = NULL;
 gchar *def_font_name = NULL;
 gboolean show_offsets_column = TRUE;
 
+#if 0
 static char* get_font_name (const gchar *name, int size) {
 	gchar *caption;
 
@@ -66,6 +66,7 @@ static GtkWidget *get_font_label(const gchar *name, gdouble size) {
 	gtk_widget_show(label);
 	return label;
 }
+#endif /* 0/1 */
 
 /*
  * Now we shall have a preferences dialog similar to what gedit2 does.
@@ -76,8 +77,7 @@ static GtkWidget *get_font_label(const gchar *name, gdouble size) {
 PropertyUI *
 create_prefs_dialog()
 {
-	GtkWidget *vbox, *label, *frame, *box, *entry, *fbox, *flabel, *table;
-	GtkWidget *menu, *item;
+	GtkWidget *vbox, *label, *frame, *box, *fbox, *flabel, *table;
 	GtkAdjustment *undo_adj, *box_adj;
 	GtkWidget *notebook;
 
@@ -153,31 +153,21 @@ create_prefs_dialog()
 	gtk_widget_show(label);
 
 	pui->format = gtk_entry_new();
-	gtk_signal_connect(GTK_OBJECT(pui->format), "activate",
-					   GTK_SIGNAL_FUNC(format_activated_cb), pui);
+	g_signal_connect(G_OBJECT(pui->format), "activate",
+					 G_CALLBACK(format_activated_cb), pui);
 	gtk_box_pack_start (GTK_BOX(box), pui->format, TRUE, TRUE, GNOME_PAD);
 	gtk_widget_show(pui->format);
 
-	pui->offset_menu = gtk_option_menu_new();
+	pui->offset_menu = gtk_combo_box_new_text();
 	gtk_widget_show(pui->offset_menu);
-	menu = gtk_menu_new();
-	pui->offset_choice[0] = item = gtk_menu_item_new_with_label(_("Decimal"));
-	gtk_signal_connect(GTK_OBJECT(item), "activate",
-					   GTK_SIGNAL_FUNC(offset_cb), pui);
-	gtk_widget_show(item);
-	gtk_menu_append(GTK_MENU(menu), item);
-	pui->offset_choice[1] = item = gtk_menu_item_new_with_label(_("Hexadecimal"));
-	gtk_widget_show(item);
-	gtk_menu_append(GTK_MENU(menu), item);
-	gtk_option_menu_set_menu(GTK_OPTION_MENU(pui->offset_menu), menu);
-	gtk_signal_connect(GTK_OBJECT(item), "activate",
-					   GTK_SIGNAL_FUNC(offset_cb), pui);
-	pui->offset_choice[2] = item = gtk_menu_item_new_with_label(_("Custom"));
-	gtk_widget_show(item);
-	gtk_menu_append(GTK_MENU(menu), item);
-	gtk_option_menu_set_menu(GTK_OPTION_MENU(pui->offset_menu), menu);
-	gtk_signal_connect(GTK_OBJECT(item), "activate",
-					   GTK_SIGNAL_FUNC(offset_cb), pui);
+	gtk_combo_box_append_text(GTK_COMBO_BOX(pui->offset_menu),
+							  _("Decimal"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(pui->offset_menu),
+							  _("Hexadecimal"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(pui->offset_menu),
+							  _("Custom"));
+	g_signal_connect(G_OBJECT(pui->offset_menu), "changed",
+					 G_CALLBACK(offset_cb), pui);
 	gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(pui->offset_menu),
 					 FALSE, TRUE, GNOME_PAD);
 
@@ -185,7 +175,7 @@ create_prefs_dialog()
 
 	if (gail_up) {
 		add_atk_namedesc (pui->format, "format_entry", _("Enter the cursor offset format"));
-		add_atk_namedesc (menu, "format_optionmenu", _("Select the cursor offset format"));
+		add_atk_namedesc (pui->offset_menu, "format_combobox", _("Select the cursor offset format"));
 		add_atk_relation (label, pui->format, ATK_RELATION_LABEL_FOR);
 		add_atk_relation (pui->format, label, ATK_RELATION_LABELLED_BY);
 		add_atk_relation (label, pui->offset_menu, ATK_RELATION_LABEL_FOR);
@@ -210,25 +200,23 @@ create_prefs_dialog()
 	
 	/* display font */
 	frame = gtk_frame_new(_("Font"));
-	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
+	gtk_container_set_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
 	
 	fbox = gtk_hbox_new(0, 5);
-	pui->font_button = gnome_font_picker_new();
-	gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->font_button),
-									def_font_name);
-	gnome_font_picker_set_mode(GNOME_FONT_PICKER(pui->font_button),
-							   GNOME_FONT_PICKER_MODE_FONT_INFO);
-	gnome_font_picker_fi_set_use_font_in_label (GNOME_FONT_PICKER (pui->font_button), TRUE, 14);
-	gnome_font_picker_fi_set_show_size (GNOME_FONT_PICKER (pui->font_button), TRUE);
-	
+	pui->font_button = gtk_font_selection_new();
+	gtk_font_selection_set_font_name(GTK_FONT_SELECTION(pui->font_button),
+									 def_font_name);
+#if 0	
 	gtk_signal_connect (GTK_OBJECT (pui->font_button), "font_set",
 						GTK_SIGNAL_FUNC (select_font_cb), pui);
+#endif /* 0/1 */
+
 	flabel = gtk_label_new("");
 	gtk_label_set_mnemonic_widget (GTK_LABEL (flabel), pui->font_button);
 	gtk_widget_show(flabel);
 	gtk_widget_show(GTK_WIDGET(pui->font_button));
-	gtk_container_border_width(GTK_CONTAINER(fbox), GNOME_PAD_SMALL);
+	gtk_container_set_border_width(GTK_CONTAINER(fbox), GNOME_PAD_SMALL);
 	gtk_box_pack_start (GTK_BOX (fbox), GTK_WIDGET(pui->font_button), FALSE, TRUE, GNOME_PAD_BIG);
 	
 	gtk_widget_show(fbox);
@@ -238,7 +226,7 @@ create_prefs_dialog()
 	
 	/* default group type */
 	frame = gtk_frame_new(_("Default Group Type"));
-	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
+	gtk_container_set_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
 
 	box = gtk_vbox_new(FALSE, 0);
@@ -248,7 +236,7 @@ create_prefs_dialog()
 		pui->group_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, _(group_type_label[i])));
 		gtk_widget_show(GTK_WIDGET(pui->group_type[i]));
 		gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->group_type[i]), TRUE, TRUE, 2);
-		group = gtk_radio_button_group (pui->group_type[i]);
+		group = gtk_radio_button_get_group(pui->group_type[i]);
 	}
 	gtk_container_add(GTK_CONTAINER(frame), box);
 	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, GNOME_PAD_SMALL);
@@ -263,12 +251,12 @@ create_prefs_dialog()
 
 	/* paper selection */
 	frame = gtk_frame_new(_("Paper size"));
-	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
+	gtk_container_set_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
 
 	/* data & header font selection */
 	frame = gtk_frame_new(_("Fonts"));
-	gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
+	gtk_container_set_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 	gtk_widget_show(frame);
 
 	table = gtk_table_new(2, 3, TRUE);
@@ -284,8 +272,8 @@ create_prefs_dialog()
 	gnome_print_font_picker_set_mode (GNOME_PRINT_FONT_PICKER (pui->df_button), GNOME_PRINT_FONT_PICKER_MODE_FONT_INFO);
 	gnome_print_font_picker_fi_set_use_font_in_label (GNOME_PRINT_FONT_PICKER (pui->df_button), TRUE, 14);
 	gnome_print_font_picker_fi_set_show_size (GNOME_PRINT_FONT_PICKER (pui->df_button), TRUE);
-	gtk_signal_connect (GTK_OBJECT (pui->df_button), "font_set",
-						GTK_SIGNAL_FUNC (select_font_cb), pui);
+	g_signal_connect (G_OBJECT (pui->df_button), "font_set",
+					  G_CALLBACK (select_font_cb), pui);
 	pui->df_label = gtk_label_new("");
 	gtk_label_set_mnemonic_widget (GTK_LABEL (pui->df_label), pui->df_button);
 
@@ -316,8 +304,8 @@ create_prefs_dialog()
 	gnome_print_font_picker_set_mode (GNOME_PRINT_FONT_PICKER (pui->hf_button), GNOME_PRINT_FONT_PICKER_MODE_FONT_INFO);
 	gnome_print_font_picker_fi_set_use_font_in_label (GNOME_PRINT_FONT_PICKER (pui->hf_button), TRUE, 14);
 	gnome_print_font_picker_fi_set_show_size (GNOME_PRINT_FONT_PICKER (pui->hf_button), TRUE);
-	gtk_signal_connect (GTK_OBJECT (pui->hf_button), "font_set",
-						GTK_SIGNAL_FUNC (select_font_cb), pui);
+	g_signal_connect (G_OBJECT (pui->hf_button), "font_set",
+					  G_CALLBACK (select_font_cb), pui);
 	pui->hf_label = gtk_label_new("");
 	gtk_label_set_mnemonic_widget (GTK_LABEL (pui->hf_label), pui->hf_button);
 
@@ -407,23 +395,23 @@ void set_prefs(PropertyUI *pui) {
 	gtk_widget_set_sensitive(pui->format, FALSE);
 	gtk_entry_set_text(GTK_ENTRY(pui->format), offset_fmt);
 	if(strcmp(offset_fmt, "%d") == 0)
-		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 0);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(pui->offset_menu), 0);
 	else if(strcmp(offset_fmt, "%X") == 0)
-		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 1);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(pui->offset_menu), 1);
 	else {
-		gtk_option_menu_set_history(GTK_OPTION_MENU(pui->offset_menu), 2);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(pui->offset_menu), 2);
 		gtk_widget_set_sensitive(pui->format, TRUE);
 	}
 
 	if(header_font_name)
-		gnome_print_font_picker_set_font_name(GNOME_PRINT_FONT_PICKER(pui->hf_button),
-										header_font_name);
+		gtk_font_selection_set_font_name(GTK_FONT_SELECTION(pui->hf_button),
+										 header_font_name);
 	if(data_font_name)
-		gnome_print_font_picker_set_font_name(GNOME_PRINT_FONT_PICKER(pui->df_button),
-										data_font_name);
+		gtk_font_selection_set_font_name(GTK_FONT_SELECTION(pui->df_button),
+										 data_font_name);
 	if(def_font_name)
-		gnome_font_picker_set_font_name(GNOME_FONT_PICKER(pui->font_button),
-										def_font_name);
+		gtk_font_selection_set_font_name(GTK_FONT_SELECTION(pui->font_button),
+										 def_font_name);
 
 	gtk_dialog_set_default_response(GTK_DIALOG(pui->pbox), GTK_RESPONSE_CLOSE);
 }
@@ -504,14 +492,15 @@ select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui)
 	PangoFontDescription *new_desc;
 
 	if(w == pui->font_button) {
-		if(strcmp(gnome_font_picker_get_font_name(GNOME_FONT_PICKER
-												  (pui->font_button)),
+		if(strcmp(gtk_font_selection_get_font_name(GTK_FONT_SELECTION
+												   (pui->font_button)),
 				  def_font_name) != 0) {
 			if((new_metrics = gtk_hex_load_font
-				(gnome_font_picker_get_font_name
-				 (GNOME_FONT_PICKER(pui->font_button)))) != NULL) {
+				(gtk_font_selection_get_font_name
+				 (GTK_FONT_SELECTION(pui->font_button)))) != NULL) {
 				new_desc = pango_font_description_from_string
-					(gnome_font_picker_get_font_name (GNOME_FONT_PICKER (pui->font_button)));
+					(gtk_font_selection_get_font_name
+					 (GTK_FONT_SELECTION (pui->font_button)));
 				if (def_metrics)
 					pango_font_metrics_unref (def_metrics);
 				if (def_font_desc)
@@ -519,8 +508,8 @@ select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui)
 				def_metrics = new_metrics;
 				if(def_font_name)
 					g_free(def_font_name);
-				def_font_name = g_strdup(gnome_font_picker_get_font_name
-										 (GNOME_FONT_PICKER(pui->font_button)));
+				def_font_name = g_strdup(gtk_font_selection_get_font_name
+										 (GTK_FONT_SELECTION(pui->font_button)));
 				def_font_desc = new_desc;
 				gconf_client_set_string (gconf_client,
 										 GHEX_BASE_KEY GHEX_PREF_FONT,
@@ -575,12 +564,21 @@ format_activated_cb(GtkEntry *entry, PropertyUI *pui)
 			if(offset_fmt[i] != 'x' && offset_fmt[i] != 'd' &&
 			   offset_fmt[i] != 'o' && offset_fmt[i] != 'X' &&
 			   offset_fmt[i] != 'P' && offset_fmt[i] != 'p') {
+				GtkWidget *msg_dialog;
+
 				g_free(offset_fmt);
 				offset_fmt = old_offset_fmt;
 				gtk_entry_set_text(GTK_ENTRY(pui->format), old_offset_fmt);
-				gnome_error_dialog_parented(_("The offset format string contains invalid format specifier.\n"
-											  "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."),
-											GTK_WINDOW(pui->pbox));
+				msg_dialog =
+					gtk_message_dialog_new(GTK_WINDOW(pui->pbox),
+										   GTK_DIALOG_MODAL|
+										   GTK_DIALOG_DESTROY_WITH_PARENT,
+										   GTK_MESSAGE_ERROR,
+										   GTK_BUTTONS_OK,
+										   _("The offset format string contains invalid format specifier.\n"
+											 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."));
+				gtk_dialog_run(GTK_DIALOG(msg_dialog));
+				gtk_widget_destroy(msg_dialog);
 				gtk_window_set_focus(GTK_WINDOW(pui->pbox), pui->format);
 				break;
 			}
@@ -597,11 +595,7 @@ format_activated_cb(GtkEntry *entry, PropertyUI *pui)
 static void
 offset_cb(GtkWidget *w, PropertyUI *pui)
 {
-	int i;
-
-	for(i = 0; i < 3; i++)
-		if(w == pui->offset_choice[i])
-			break;
+	int i = gtk_combo_box_get_active(GTK_COMBO_BOX(w)); 
 
 	switch(i) {
 	case 0:

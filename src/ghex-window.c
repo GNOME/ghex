@@ -14,7 +14,7 @@
 #include <libgnomeui/gnome-window-icon.h>
 #include <bonobo.h>
 #include <bonobo/bonobo-ui-main.h>
-
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <math.h>
 #include <ctype.h>
 
@@ -76,7 +76,7 @@ ghex_window_drag_data_received(GtkWidget *widget,
                     gtk_widget_show(newwin);
                 }
                 else
-                    ghex_window_load(newwin, (*uri) + 5);
+                    ghex_window_load(GHEX_WINDOW(newwin), (*uri) + 5);
                 newwin = NULL;
             }
             uri++;
@@ -94,14 +94,14 @@ ghex_window_close(GHexWindow *win)
 
 	if(win->gh == NULL) {
         gtk_widget_destroy(GTK_WIDGET(win));
-		return;
+		return FALSE;;
 	}
 
 	doc = win->gh->document;
 	
 	if(doc->views->next == NULL) {
 		if(!ghex_window_ok_to_close(win))
-			return;
+			return FALSE;
 	}	
 
     /* We dont have to unref the document if the view is the only one */
@@ -127,6 +127,8 @@ ghex_window_close(GHexWindow *win)
 
     if (doc->views == NULL) /* If we have destroyed the last view */
       g_object_unref (G_OBJECT (doc));
+
+    return TRUE;
 }
 
 static gboolean 
@@ -147,7 +149,6 @@ ghex_window_set_sensitivity (GHexWindow *win)
 {
     BonoboUIComponent *uic = win->uic;
     gboolean allmenus = (win->gh != NULL);
-    gboolean anymenus = (ghex_window_get_list() != NULL);
 
     win->undo_sens = (allmenus && (win->gh->document->undo_top != NULL));
     win->redo_sens = (allmenus && (win->gh->document->undo_stack != NULL && win->gh->document->undo_top != win->gh->document->undo_stack));
@@ -257,7 +258,7 @@ ghex_window_destroy(GtkObject *object)
             active_window = GHEX_WINDOW(window_list->data);
 
         if(GTK_OBJECT_CLASS(parent_class)->destroy)
-                GTK_OBJECT_CLASS(parent_class)->destroy(object);
+            GTK_OBJECT_CLASS(parent_class)->destroy(object);
 }
 
 static gboolean
@@ -358,7 +359,6 @@ ghex_window_listener (BonoboUIComponent           *uic,
                       gpointer                     user_data)
 {
 	GHexWindow *win;
-	GtkWidget *view;
 
 	g_return_if_fail (user_data != NULL);
 	g_return_if_fail (GHEX_IS_WINDOW (user_data));
@@ -379,7 +379,7 @@ ghex_window_listener (BonoboUIComponent           *uic,
 
         if(state && atoi(state)) {
             if(!GTK_WIDGET_VISIBLE(converter->window)) {
-                gtk_window_position(GTK_WINDOW(converter->window), GTK_WIN_POS_MOUSE);
+                gtk_window_set_position(GTK_WINDOW(converter->window), GTK_WIN_POS_MOUSE);
                 gtk_widget_show(converter->window);
             }
             raise_and_focus_widget(converter->window);
@@ -402,7 +402,7 @@ ghex_window_listener (BonoboUIComponent           *uic,
 
         if(state && atoi(state)) {
             if(!GTK_WIDGET_VISIBLE(char_table)) {
-                gtk_window_position(GTK_WINDOW(char_table), GTK_WIN_POS_MOUSE);
+                gtk_window_set_position(GTK_WINDOW(char_table), GTK_WIN_POS_MOUSE);
                 gtk_widget_show(char_table);
             }
             raise_and_focus_widget(char_table);
@@ -450,7 +450,6 @@ ghex_window_new(void)
     GHexWindow *win;
 	BonoboUIContainer *ui_container;
 	BonoboUIComponent *uic;
-    CORBA_Environment ev;
     const GList *doc_list;
 
 	static const GtkTargetEntry drag_types[] = {
@@ -698,7 +697,7 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     ghex_window_set_doc_name(win, win->gh->document->path_end);
     ghex_window_set_sensitivity(win);
 
-    gtk_signal_emit_by_name(GTK_OBJECT(gh), "cursor_moved");
+    g_signal_emit_by_name(G_OBJECT(gh), "cursor_moved");
    
     return TRUE;
 }
@@ -823,7 +822,7 @@ ghex_window_add_doc_to_list(GHexWindow *win, HexDocument *doc)
 {
     gchar *menu = NULL, *verb_name;
     gchar *cmd = NULL;
-    gchar *escaped_name, *encoded_name;
+    gchar *escaped_name;
     gchar *tip;
 
     escaped_name = encode_xml (doc->path_end);
@@ -889,7 +888,7 @@ remove_timeout_cb (GtkWidget *win, MessageInfo *mi )
 {
 	g_return_if_fail (mi != NULL);
 
-	gtk_timeout_remove (mi->timeoutid);
+	g_source_remove (mi->timeoutid);
 	g_free (mi);
 }
 
@@ -957,14 +956,14 @@ ghex_window_flash (GHexWindow * win, const gchar * flash)
 	ghex_window_show_status (win, flash);
 
 	mi->timeoutid =
-		gtk_timeout_add (flash_length,
-                         (GtkFunction) remove_message_timeout,
-                         mi);
+		g_timeout_add (flash_length,
+                       (GSourceFunc) remove_message_timeout,
+                       mi);
 	mi->handlerid =
-		gtk_signal_connect (GTK_OBJECT(win),
-                            "destroy",
-                            GTK_SIGNAL_FUNC (remove_timeout_cb),
-                            mi );
+		g_signal_connect (G_OBJECT(win),
+                          "destroy",
+                          G_CALLBACK (remove_timeout_cb),
+                          mi );
 	mi->win = win;
 }
 
@@ -1004,18 +1003,18 @@ ghex_window_save_as(GHexWindow *win)
 										doc->file_name);
 
 	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to save buffer as"));
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
-						"clicked", GTK_SIGNAL_FUNC(file_sel_ok_cb),
-						&resp);
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
-						"clicked", GTK_SIGNAL_FUNC(file_sel_cancel_cb),
-						&resp);
-	gtk_signal_connect (GTK_OBJECT (file_sel),
-						"delete-event", GTK_SIGNAL_FUNC(file_sel_delete_event_cb),
-						&resp);
+	g_signal_connect (G_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
+                      "clicked", G_CALLBACK(file_sel_ok_cb),
+                      &resp);
+	g_signal_connect (G_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
+                      "clicked", G_CALLBACK(file_sel_cancel_cb),
+                      &resp);
+	g_signal_connect (G_OBJECT (file_sel),
+                      "delete-event", G_CALLBACK(file_sel_delete_event_cb),
+                      &resp);
 
 	gtk_window_set_modal(GTK_WINDOW(file_sel), TRUE);
-	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+	gtk_window_set_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 	gtk_widget_show (file_sel);
 
 	do {
@@ -1031,7 +1030,8 @@ ghex_window_save_as(GHexWindow *win)
 			} else  {
 				dir_name = g_strdup (filename);
 			}
-			gtk_file_selection_set_filename (file_sel, dir_name);
+			gtk_file_selection_set_filename (GTK_FILE_SELECTION(file_sel),
+                                             dir_name);
 			g_free (dir_name);
 			dir_flag = TRUE;
 		}
@@ -1046,28 +1046,26 @@ ghex_window_save_as(GHexWindow *win)
 		FILE *file;
 		gchar *flash;
 		int i;
-        gint save = 0;
         gchar *gtk_file_name, *path_end;
 
         if(access(filename, F_OK) == 0) {
-            GnomeMessageBox *mbox;
-            gchar *msg;
+            GtkWidget *mbox;
 
             gtk_file_name = g_filename_to_utf8(filename, -1, NULL, NULL, NULL);
-            msg= g_strdup_printf(_("File %s exists.\n"
-                                   "Do you want to overwrite it?"),
-                                 gtk_file_name);
-            g_free(gtk_file_name);
-            mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(msg,
-                                                           GNOME_MESSAGE_BOX_QUESTION,
-                                                           GNOME_STOCK_BUTTON_YES,
-                                                           GNOME_STOCK_BUTTON_NO,
-                                                           NULL));
-			 gtk_window_set_type_hint (GTK_WINDOW (mbox), GDK_WINDOW_TYPE_HINT_DIALOG);
-			 gtk_window_set_transient_for (GTK_WINDOW (mbox), GTK_WINDOW (file_sel));
 
-            g_free(msg);
-            ret_val = (ask_user(mbox) == 0);
+			mbox = gtk_message_dialog_new(GTK_WINDOW(win),
+										  GTK_DIALOG_MODAL|
+										  GTK_DIALOG_DESTROY_WITH_PARENT,
+										  GTK_MESSAGE_QUESTION,
+										  GTK_BUTTONS_YES_NO,
+                                          _("File %s exists.\n"
+                                            "Do you want to overwrite it?"),
+                                          gtk_file_name);
+            g_free(gtk_file_name);
+
+            gtk_dialog_set_default_response(GTK_DIALOG(mbox), GTK_RESPONSE_NO);
+
+            ret_val = (ask_user(GTK_MESSAGE_DIALOG(mbox)) == GTK_RESPONSE_YES);
         }
 
         if(ret_val) {
@@ -1077,7 +1075,7 @@ ghex_window_save_as(GHexWindow *win)
                         g_free(doc->file_name);
                     if(doc->path_end)
                         g_free(doc->path_end);
-                    doc->file_name = strdup(filename);
+                    doc->file_name = g_strdup(filename);
                     doc->changed = FALSE;
                     win->changed = FALSE;
                     
@@ -1131,7 +1129,6 @@ ghex_window_uri_exists (const gchar* text_uri)
 gboolean
 ghex_window_ok_to_close(GHexWindow *win)
 {
-	static char msg[MESSAGE_LEN + 1];
 	GtkWidget *mbox;
 	gint reply;
 	gboolean uri_exists;
@@ -1146,16 +1143,13 @@ ghex_window_ok_to_close(GHexWindow *win)
     if(!hex_document_has_changed(doc) && uri_exists)
         return TRUE;
 
-	g_snprintf(msg, MESSAGE_LEN,
-			   _("File %s has changed since last save.\n"
-				 "Do you want to save changes?"),
-			   doc->path_end);
-
 	mbox = gtk_message_dialog_new(GTK_WINDOW(win),
 								  GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
 								  GTK_MESSAGE_QUESTION,
 								  GTK_BUTTONS_NONE,
-								  msg);
+                                  _("File %s has changed since last save.\n"
+                                    "Do you want to save changes?"),
+                                  doc->path_end);
 			
 	save_btn = create_button(mbox, GTK_STOCK_NO, _("Do_n't save"));
 	gtk_widget_show (save_btn);

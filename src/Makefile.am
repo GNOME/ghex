@@ -5,7 +5,10 @@ INCLUDES = -I$(includedir) 					\
 	-DGNOMELOCALEDIR=\""${prefix}/${DATADIRNAME}/locale"\" 	\
 	-DLOCALEDIR=\"${prefix}/${DATADIRNAME}/locale\"		\
 	-DDATADIR=\""$(datadir)"\"				\
-	$(GHEX_CFLAGS) $(GAILUTIL_CFLAGS)
+	$(GHEX_CFLAGS) $(GAILUTIL_CFLAGS)			\
+	-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED		\
+	-DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED	\
+	-DPANGO_DISABLE_DEPRECATED -DBONOBO_DISABLE_DEPRECATED
 
 BUILT_SOURCES = \
 	ghex-marshal.c	\
@@ -22,6 +25,7 @@ uidir = $(datadir)/gnome-2.0/ui/
 libgtkhex_la_SOURCES = \
 	hex-document.c			\
 	gtkhex.c			\
+	gtkhex-private.h		\
 	accessiblegtkhex.c		\
 	accessiblegtkhexfactory.c	\
 	$(BUILT_SOURCES)

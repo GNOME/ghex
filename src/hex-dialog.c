@@ -29,10 +29,10 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <math.h>
 
 static void hex_dialog_class_init     (HexDialogClass *);
 static void hex_dialog_init           (HexDialog *);
-static void hex_dialog_destroy        (GtkObject *);
 
 void hex_dialog_updateview(HexDialog *dialog, HexDialogVal64 *val);
 
@@ -53,17 +53,17 @@ static struct {
     char *name;
     char *(*conv_function)(HexDialogVal64 *val, HexConversionProperties *prop);
 } HexDialogEntries[ENTRY_MAX] = {
-    N_("Signed 8 bit:"), HexConvert_S8,
-    N_("Unsigned 8 bit:"), HexConvert_US8,
-    N_("Signed 16 bit:"), HexConvert_S16,
-    N_("Unsigned 16 bit:"), HexConvert_US16,
-    N_("Signed 32 bit:"), HexConvert_S32,
-    N_("Unsigned 32 bit:"), HexConvert_US32,
-    N_("32 bit float:"), HexConvert_32float,
-    N_("64 bit float:"), HexConvert_64float,
-    N_("Hexadecimal:"), HexConvert_hex,
-    N_("Octal:"), HexConvert_oct,
-    N_("Binary:"), HexConvert_bin
+    { N_("Signed 8 bit:"), HexConvert_S8 },
+    { N_("Unsigned 8 bit:"), HexConvert_US8 },
+    { N_("Signed 16 bit:"), HexConvert_S16 },
+    { N_("Unsigned 16 bit:"), HexConvert_US16 },
+    { N_("Signed 32 bit:"), HexConvert_S32 },
+    { N_("Unsigned 32 bit:"), HexConvert_US32 },
+    { N_("32 bit float:"), HexConvert_32float },
+    { N_("64 bit float:"), HexConvert_64float },
+    { N_("Hexadecimal:"), HexConvert_hex },
+    { N_("Octal:"), HexConvert_oct }, 
+    { N_("Binary:"), HexConvert_bin }
 };
 
 
@@ -111,7 +111,6 @@ static void hex_dialog_init (HexDialog *dialog)
 
 static void hex_dialog_class_init (HexDialogClass *klass)
 {
-    GObjectClass *object_class = G_OBJECT_CLASS(klass);
 }
 
 HexDialog *hex_dialog_new()
@@ -597,8 +596,9 @@ char *HexConvert_bin(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i;
 
-    g_return_if_fail(prop->streamBitsHint <= 32);
     convbuffer[0] = '\0';
+
+    g_return_val_if_fail(prop->streamBitsHint <= 32, convbuffer);
 
     for (i = 0; i < prop->streamBitsHint; i++)
     {

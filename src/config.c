@@ -39,9 +39,6 @@ void load_configuration () {
 	gchar *font_name;
 	PangoFontMetrics *new_metrics;
 
-	GnomeFont *print_font;
-	gchar *def_paper_name;
-
 	/* Get the default font metrics */
 	font_name = gconf_client_get_string (gconf_client,
 										 GHEX_BASE_KEY GHEX_PREF_FONT,

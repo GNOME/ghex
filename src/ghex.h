@@ -216,7 +216,7 @@ void             delete_advanced_find_dialog      (AdvancedFindDialog *dialog);
 
 /* various ui convenience functions */
 void create_dialog_title   (GtkWidget *, gchar *);
-gint ask_user              (GnomeMessageBox *);
+gint ask_user              (GtkMessageDialog *);
 GtkWidget *create_button   (GtkWidget *, const gchar *, gchar *);
 
 /* printing */

@@ -25,6 +25,6 @@
 #include "accessiblegtkhexfactory.h"
 #include "gtkhex.h"
 
-static gboolean is_gail_loaded (GType derived_type);
+void setup_factory (void);
 
 #endif /* __FACTORY_H__ */

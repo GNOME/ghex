@@ -324,7 +324,7 @@ hex_document_real_changed(HexDocument *doc, gpointer change_data, gboolean push_
 	view = doc->views;
 
 	while(view) {
-		gtk_signal_emit_by_name(GTK_OBJECT(view->data), "data_changed", change_data);
+		g_signal_emit_by_name(G_OBJECT(view->data), "data_changed", change_data);
 		view = g_list_next(view);
 	}
 }

@@ -28,6 +28,7 @@
 
 #include <accessiblegtkhex.h>
 #include <gtkhex.h>
+#include <gtkhex-private.h>
 
 static void accessible_gtk_hex_class_init       (AccessibleGtkHexClass *klass);
 
@@ -273,7 +274,7 @@ accessible_gtk_hex_get_text (AtkText *text,
 	AccessibleGtkHex *access_gtk_hex;
 	GtkWidget *widget;
 	GtkHex *gtk_hex ;
-	gchar *str, *utf8;
+	gchar *str = NULL, *utf8;
         
 	widget = GTK_ACCESSIBLE (text)->widget;
 
@@ -368,7 +369,7 @@ accessible_gtk_hex_get_character_at_offset (AtkText *text,
 	GtkWidget *widget;
 	GtkHex *gtk_hex ;
 	gchar str[2];
-	gunichar c;
+	gunichar c = '.';
 	
 	widget = GTK_ACCESSIBLE (text)->widget;
 	gtk_hex = GTK_HEX (widget);
@@ -468,7 +469,7 @@ _accessible_gtk_hex_changed_cb (GtkHex *gtkhex)
 {
 	AtkObject *accessible;
 	AccessibleGtkHex *accessible_gtk_hex;
-	gchar *str, *utf8;
+	gchar *str = NULL, *utf8;
 
 	accessible = gtk_widget_get_accessible (GTK_WIDGET (gtkhex));
 

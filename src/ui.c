@@ -23,12 +23,14 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <string.h>
 
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprintui/gnome-print-dialog.h>
 #include <libgnomeprintui/gnome-print-job-preview.h>
 
 #include "ghex.h"
+#include "ghex-window.h"
 
 static void ghex_print(GtkHex *gh, gboolean preview);
 static void ghex_print_run_dialog(GHexPrintJobInfo *pji);
@@ -166,11 +168,9 @@ file_sel_delete_event_cb(GtkWidget *w, GdkEventAny *e, gboolean *resp)
 }
 
 gint
-ask_user(GnomeMessageBox *message_box)
+ask_user(GtkMessageDialog *message_box)
 {
-	gtk_window_set_modal(GTK_WINDOW(message_box), TRUE);	
-
-	return gnome_dialog_run_and_close(GNOME_DIALOG(message_box));
+	return gtk_dialog_run(GTK_DIALOG(message_box));
 }
 
 GtkWidget *
@@ -284,7 +284,6 @@ void
 paste_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
-	HexDocument *doc;
 
 	if(win->gh)
 		gtk_hex_paste_clipboard(win->gh);
@@ -294,7 +293,6 @@ void
 copy_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
-	HexDocument *doc;
 
 	if(win->gh)
 		gtk_hex_copy_clipboard(win->gh);
@@ -304,7 +302,6 @@ void
 cut_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
-	HexDocument *doc;
 
 	if(win->gh)
 		gtk_hex_cut_clipboard(win->gh);
@@ -313,7 +310,7 @@ cut_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 void
 quit_app_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	const GList *win_node, *doc_node;
+	const GList *doc_node;
 	GHexWindow *win;
 	HexDocument *doc;
 
@@ -367,7 +364,6 @@ static void
 open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
 	GHexWindow *win;
-	HexDocument *doc;
 	GtkWidget *file_sel;
 	gboolean resp;
 
@@ -377,24 +373,23 @@ open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 
 	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select a file to open"));
 	
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
-						"clicked", GTK_SIGNAL_FUNC(file_sel_ok_cb),
-					    &resp);
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
-						"clicked", GTK_SIGNAL_FUNC(file_sel_cancel_cb),
-						&resp);
-	gtk_signal_connect (GTK_OBJECT (file_sel),
-						"delete-event", GTK_SIGNAL_FUNC(file_sel_delete_event_cb),
-						&resp);
+	g_signal_connect (G_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
+					  "clicked", G_CALLBACK(file_sel_ok_cb),
+					  &resp);
+	g_signal_connect (G_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
+					  "clicked", G_CALLBACK(file_sel_cancel_cb),
+					  &resp);
+	g_signal_connect (G_OBJECT (file_sel),
+					  "delete-event", G_CALLBACK(file_sel_delete_event_cb),
+					  &resp);
 
 	gtk_window_set_modal (GTK_WINDOW(file_sel), TRUE);
-	gtk_window_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+	gtk_window_set_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 	gtk_widget_show (file_sel);
 
 	gtk_main();
 
 	if(resp) {
-		HexDocument *new_doc;
 		gchar *flash;
 
 		if(GHEX_WINDOW(win)->gh != NULL) {
@@ -486,18 +481,18 @@ export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbnam
 
 	gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_sel), doc->file_name);
 	gtk_window_set_title(GTK_WINDOW(file_sel), _("Select path and file name for the HTML source"));	
-	gtk_signal_connect(GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
-						"clicked", GTK_SIGNAL_FUNC(file_sel_ok_cb),
-						&resp);
-	gtk_signal_connect(GTK_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
-						"clicked", GTK_SIGNAL_FUNC(file_sel_cancel_cb),
-						&resp);
-	gtk_signal_connect (GTK_OBJECT (file_sel),
-						"delete-event", GTK_SIGNAL_FUNC(file_sel_delete_event_cb),
-						&resp);
+	g_signal_connect(G_OBJECT (GTK_FILE_SELECTION (file_sel)->ok_button),
+					 "clicked", G_CALLBACK(file_sel_ok_cb),
+					 &resp);
+	g_signal_connect(G_OBJECT (GTK_FILE_SELECTION (file_sel)->cancel_button),
+					 "clicked", G_CALLBACK(file_sel_cancel_cb),
+					 &resp);
+	g_signal_connect (G_OBJECT (file_sel),
+					  "delete-event", G_CALLBACK(file_sel_delete_event_cb),
+					  &resp);
 	gtk_window_set_modal(GTK_WINDOW(file_sel), TRUE);
 	gtk_widget_show(file_sel);
-	gtk_window_position(GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
+	gtk_window_set_position(GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 
 	gtk_main();
 
@@ -528,7 +523,7 @@ export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbnam
 		check_path = g_strdup_printf("%s/%s.html", html_path, base_name);
 		if(access(check_path, F_OK) == 0) {
 			gint reply;
-			GnomeMessageBox *mbox;
+			GtkWidget *mbox;
 
 			if(access(check_path, W_OK) != 0) {
 				display_error_dialog(win, _("You don't have the permission to write to the selected path.\n"));
@@ -537,15 +532,16 @@ export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbnam
 				return;
 			}
 
-			mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(_("Saving to HTML will overwrite some files.\n"
-															 "Do you want to proceed?"),
-														   GNOME_MESSAGE_BOX_QUESTION,
-														   GNOME_STOCK_BUTTON_YES,
-														   GNOME_STOCK_BUTTON_NO,
-														   NULL));
-			gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
-			reply = ask_user(mbox);
-			if(reply != 0) {
+			mbox = gtk_message_dialog_new(GTK_WINDOW(win),
+										  GTK_DIALOG_MODAL|
+										  GTK_DIALOG_DESTROY_WITH_PARENT,
+										  GTK_MESSAGE_QUESTION,
+										  GTK_BUTTONS_YES_NO,
+										  _("Saving to HTML will overwrite some files.\n"
+											"Do you want to proceed?"));
+			gtk_dialog_set_default_response(GTK_DIALOG(mbox), GTK_RESPONSE_NO);
+			reply = ask_user(GTK_MESSAGE_DIALOG(mbox));
+			if(reply != GTK_RESPONSE_YES) {
 				g_free(html_path);
 				g_free(check_path);
 				return;
@@ -658,7 +654,7 @@ void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 		gtk_window_set_transient_for(GTK_WINDOW(prefs_ui->pbox),
 									 GTK_WINDOW(ghex_window_get_active()));
 	if(!GTK_WIDGET_VISIBLE(prefs_ui->pbox)) {
-		gtk_window_position (GTK_WINDOW(prefs_ui->pbox), GTK_WIN_POS_MOUSE);
+		gtk_window_set_position (GTK_WINDOW(prefs_ui->pbox), GTK_WIN_POS_MOUSE);
 		gtk_widget_show(GTK_WIDGET(prefs_ui->pbox));
 	}
 	raise_and_focus_widget(GTK_WIDGET(prefs_ui->pbox));
@@ -668,10 +664,9 @@ void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 static void
 revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	static gchar msg[MESSAGE_LEN + 1];
 	GHexWindow *win;
    	HexDocument *doc;
-	GnomeMessageBox *mbox;
+	GtkWidget *mbox;
 	gint reply;
 	
 	win = GHEX_WINDOW(user_data);
@@ -684,18 +679,18 @@ revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		return;
 
 	if(doc->changed) {
-		g_snprintf(msg, MESSAGE_LEN,
-				   _("Really revert file %s?"),
-				   doc->path_end);
-		mbox = GNOME_MESSAGE_BOX(gnome_message_box_new(msg,
-													   GNOME_MESSAGE_BOX_QUESTION,
-													   GNOME_STOCK_BUTTON_YES,
-													   GNOME_STOCK_BUTTON_NO,
-													   NULL));
-		gnome_dialog_set_default(GNOME_DIALOG(mbox), 2);
-		reply = ask_user(mbox);
+		mbox = gtk_message_dialog_new(GTK_WINDOW(win),
+									  GTK_DIALOG_MODAL|
+									  GTK_DIALOG_DESTROY_WITH_PARENT,
+									  GTK_MESSAGE_QUESTION,
+									  GTK_BUTTONS_YES_NO,
+									  _("Really revert file %s?"),
+									  doc->path_end);
+		gtk_dialog_set_default_response(GTK_DIALOG(mbox), GTK_RESPONSE_NO);
+
+		reply = ask_user(GTK_MESSAGE_DIALOG(mbox));
 		
-		if(reply == 0) {
+		if(reply == GTK_RESPONSE_YES) {
 			gchar *flash;
 			gchar *gtk_file_name;
 
@@ -724,7 +719,6 @@ ghex_print(GtkHex *gh, gboolean preview)
 {
 	GHexPrintJobInfo *pji;
 	HexDocument *doc;
-	gboolean cancel = FALSE;
 
 	doc = gh->document;
 
@@ -810,7 +804,6 @@ static void
 ghex_print_run_dialog(GHexPrintJobInfo *pji)
 {
 	GtkWidget *dialog;
-	gint res;
 
 	dialog = gnome_print_dialog_new(pji->master,
 			     (const char *) _("Print Hex Document"),

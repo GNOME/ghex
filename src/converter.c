@@ -26,6 +26,8 @@
 #include <config.h>
 #include <gnome.h>
 #include <ctype.h>      /* for isdigit */
+#include <string.h>     /* for strncpy */
+
 #include "ghex.h"
 
 static void conv_entry_cb(GtkEntry *, gint);
@@ -64,7 +66,7 @@ entry_filter(GtkEditable *editable, const gchar *text, gint length,
 	if(length == 1) {
 		if(!is_char_ok(*text, base)) {
 			gdk_beep();
-			gtk_signal_emit_stop_by_name(GTK_OBJECT(editable), "insert_text");
+			g_signal_stop_emission_by_name(G_OBJECT(editable), "insert_text");
 		}
 		return;
 	}
@@ -82,7 +84,7 @@ entry_filter(GtkEditable *editable, const gchar *text, gint length,
 		return;
 
 	gdk_beep();
-	gtk_signal_emit_stop_by_name(GTK_OBJECT(editable), "insert_text");
+	g_signal_stop_emission_by_name(G_OBJECT(editable), "insert_text");
 #if 0 /* Pasting is not working. gtk is doing weird things. Chema */
 	gtk_signal_handler_block_by_func(GTK_OBJECT(editable), entry_filter,
 									 data);
@@ -102,7 +104,7 @@ entry_key_press_event_cb(GtkWidget *widget, GdkEventKey *event,
 	 * gtk takes care of this event
 	 */
 	if(event->state & GDK_MOD1_MASK)
-		gtk_signal_emit_stop_by_name(GTK_OBJECT(widget), "key_press_event");
+		g_signal_stop_emission_by_name(G_OBJECT(widget), "key_press_event");
 
 	return FALSE;
 }
@@ -115,27 +117,33 @@ create_converter_entry(const gchar *name, GtkWidget *table,
 {
 	GtkWidget *label;
     GtkWidget *entry;
+#if 0
     gint accel_key;
-
+#endif /* 0/1 */
     gchar str[BUFFER_LEN + 1];
 
 	/* label */
-	label = gtk_label_new(name);
+	label = gtk_label_new_with_mnemonic(name);
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, pos, pos+1);
+#if 0
 	accel_key = gtk_label_parse_uline(GTK_LABEL(label), name);
+#endif /* 0/1 */
 	gtk_widget_show(label);
 
 	/* entry */
 	entry = gtk_entry_new();
-	gtk_signal_connect(GTK_OBJECT(entry), "activate",
-					   GTK_SIGNAL_FUNC(conv_entry_cb), GINT_TO_POINTER(base));
-	gtk_signal_connect(GTK_OBJECT(entry), "key_press_event",
-						GTK_SIGNAL_FUNC(entry_key_press_event_cb), NULL);
-	gtk_signal_connect(GTK_OBJECT(entry), "insert_text",
-						GTK_SIGNAL_FUNC(entry_filter), GINT_TO_POINTER(base));
+	g_signal_connect(G_OBJECT(entry), "activate",
+					 G_CALLBACK(conv_entry_cb), GINT_TO_POINTER(base));
+	g_signal_connect(G_OBJECT(entry), "key_press_event",
+					 G_CALLBACK(entry_key_press_event_cb), NULL);
+	g_signal_connect(G_OBJECT(entry), "insert_text",
+					 G_CALLBACK(entry_filter), GINT_TO_POINTER(base));
+	gtk_label_set_mnemonic_widget(GTK_LABEL(label), entry);
+#if 0
 	gtk_widget_add_accelerator(entry, "grab_focus", accel_group, accel_key,
 							   GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+#endif /* 0/1 */
 	gtk_table_attach_defaults(GTK_TABLE(table), entry, 1, 2, pos, pos+1);
 	gtk_widget_show(entry);
 
@@ -153,15 +161,23 @@ create_converter_button(const gchar *name, GtkAccelGroup *accel_group)
 {
 	GtkWidget *button;
     GtkWidget *label;
+#if 0
     gint accel_key;
+#endif /* 0/1 */
 
 	button = gtk_button_new();
     label = gtk_label_new(name);
 	gtk_misc_set_alignment(GTK_MISC(label), 0.5, 0.5);
+#if 0
 	accel_key = gtk_label_parse_uline(GTK_LABEL(label), name);
+#endif /* 0/1 */
 	gtk_container_add(GTK_CONTAINER(button), label);
+#if 0
 	gtk_widget_add_accelerator(button, "clicked", accel_group, accel_key,
 							   GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+#endif /* 0/1 */
+	gtk_label_set_mnemonic_widget(GTK_LABEL(label), button);
+
 	gtk_widget_show(label);
 	gtk_widget_show(button);
 
@@ -172,10 +188,10 @@ create_converter_button(const gchar *name, GtkAccelGroup *accel_group)
 GtkWidget *converter_get = NULL;
 
 static void
-close_converter(GtkWidget *button, GnomeDialog *dialog)
+close_converter(GtkWidget *dialog, gint response, gpointer user_data)
 {
 	ghex_window_sync_converter_item(NULL, FALSE);
-	gnome_dialog_close(dialog);
+	gtk_widget_hide(GTK_WIDGET(dialog));
 }
 
 static gboolean
@@ -206,20 +222,22 @@ create_converter()
  
 	conv = g_new0(Converter, 1);
 
-	conv->window = gnome_dialog_new(_("Base Converter"),
-									 GNOME_STOCK_BUTTON_CLOSE, NULL);
-	gnome_dialog_close_hides(GNOME_DIALOG(conv->window), TRUE);
-	gnome_dialog_button_connect(GNOME_DIALOG(conv->window), 0,
-								GTK_SIGNAL_FUNC(close_converter), conv->window);
+	conv->window = gtk_dialog_new_with_buttons(_("Base Converter"),
+											   NULL, 0,
+											   GTK_STOCK_CLOSE,
+											   GTK_RESPONSE_OK,
+											   NULL);
+	g_signal_connect(G_OBJECT(conv->window), "response",
+					 G_CALLBACK(close_converter), conv->window);
 
 	table = gtk_table_new(6, 2, FALSE);
 	gtk_table_set_row_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
 	gtk_table_set_col_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(conv->window)->vbox), table,
+	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(conv->window)->vbox), table,
 					   TRUE, TRUE, 0);
-	gtk_container_border_width(GTK_CONTAINER(GNOME_DIALOG(conv->window)->vbox),
-							   2);
-	gtk_box_set_spacing(GTK_BOX(GNOME_DIALOG(conv->window)->vbox), 2);
+	gtk_container_set_border_width(GTK_CONTAINER(GTK_DIALOG(conv->window)->vbox),
+								   GNOME_PAD_SMALL);
+	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(conv->window)->vbox), 2);
 	gtk_widget_show(table);
 	
 	accel_group = gtk_accel_group_new();
@@ -239,12 +257,12 @@ create_converter()
 	/* get cursor button */
 	converter_get = create_converter_button(_("_Get cursor value"), accel_group);
 
-	gtk_signal_connect(GTK_OBJECT(conv->window), "delete_event",
-						GTK_SIGNAL_FUNC(converter_delete_event_cb), conv);
-	gtk_signal_connect(GTK_OBJECT(converter_get), "clicked",
-						GTK_SIGNAL_FUNC(get_cursor_val_cb), conv);
-	gtk_signal_connect(GTK_OBJECT(conv->window), "key_press_event",
-					   G_CALLBACK(conv_key_press_cb), conv);
+	g_signal_connect(G_OBJECT(conv->window), "delete_event",
+					 G_CALLBACK(converter_delete_event_cb), conv);
+	g_signal_connect(G_OBJECT(converter_get), "clicked",
+					 G_CALLBACK(get_cursor_val_cb), conv);
+	g_signal_connect(G_OBJECT(conv->window), "key_press_event",
+					 G_CALLBACK(conv_key_press_cb), conv);
  	gtk_table_attach_defaults(GTK_TABLE(table), converter_get, 0, 2, 5, 6);
 
 	/* add the accelerators */
@@ -328,7 +346,7 @@ set_values(Converter *conv, gulong val, guint group)
 	
 	for(i = 0; i < group; i++) {
 		g_snprintf(buffer + 2*i, CONV_BUFFER_LEN - 2*i,
-				   "%02x", ((val & (0xFF << ((group - 1 - i)*8)))) >> (group - 1 - i)*8);
+				   "%02x", (guint8)((val & (0xFF << ((group - 1 - i)*8)))) >> (group - 1 - i)*8);
 	}
 	gtk_entry_set_text(GTK_ENTRY(conv->entry[3]), buffer);
 	
@@ -385,7 +403,7 @@ conv_entry_cb(GtkEntry *entry, gint base)
 			converter->value = 0;
 			for(i = 0; i < 5; i++)
 				gtk_entry_set_text(GTK_ENTRY(converter->entry[i]), _("ERROR"));
-			gtk_entry_select_region(entry, 0, -1);
+			gtk_editable_select_region(GTK_EDITABLE(entry), 0, -1);
 			return;
 		}
 	}

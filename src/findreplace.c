@@ -79,8 +79,8 @@ FindDialog *create_find_dialog()
 	dialog = g_new0(FindDialog, 1);
 
 	dialog->window = gtk_dialog_new();
-	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
-					   GTK_SIGNAL_FUNC(find_delete_event_cb), dialog);
+	g_signal_connect(G_OBJECT(dialog->window), "delete_event",
+					 G_CALLBACK(find_delete_event_cb), dialog);
 	
 	create_dialog_title(dialog->window, _("GHex (%s): Find Data"));
 	
@@ -90,7 +90,7 @@ FindDialog *create_find_dialog()
 	gtk_widget_show(dialog->f_string);
 	
 	for(i = 0, group = NULL; i < 2;
-		i++, group = gtk_radio_button_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
+		i++, group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
 		g_snprintf(type_label, TYPE_LABEL_LEN, _("Search for %s"),
 				   _(search_type_label[i]));
 		
@@ -99,8 +99,8 @@ FindDialog *create_find_dialog()
 		if(dialog->search_type == i)
 			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
 		
-		gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
-						   GTK_SIGNAL_FUNC(set_find_type_cb), GINT_TO_POINTER(i));
+		g_signal_connect(G_OBJECT(dialog->type_button[i]), "clicked",
+						 G_CALLBACK(set_find_type_cb), GINT_TO_POINTER(i));
 		
 		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->type_button[i],
 						   TRUE, TRUE, 0);
@@ -109,17 +109,15 @@ FindDialog *create_find_dialog()
 	}
 	
 	dialog->f_next = create_button(dialog->window, GTK_STOCK_GO_FORWARD, _("Find _Next"));
-	gtk_signal_connect (GTK_OBJECT (dialog->f_next),
-						"clicked", GTK_SIGNAL_FUNC(find_next_cb),
-						dialog);
+	g_signal_connect (G_OBJECT (dialog->f_next), "clicked",
+					  G_CALLBACK(find_next_cb), dialog);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_next,
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(dialog->f_next, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_next);
 	dialog->f_prev = create_button(dialog->window, GTK_STOCK_GO_BACK, _("Find _Previous"));
-	gtk_signal_connect (GTK_OBJECT (dialog->f_prev),
-						"clicked", GTK_SIGNAL_FUNC(find_prev_cb),
-						dialog);
+	g_signal_connect (G_OBJECT (dialog->f_prev), "clicked",
+					  G_CALLBACK(find_prev_cb), dialog);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_prev,
 					   TRUE, TRUE, 0);
 
@@ -127,16 +125,16 @@ FindDialog *create_find_dialog()
 	gtk_widget_show(dialog->f_prev);
 
 	dialog->f_close = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
-	gtk_signal_connect (GTK_OBJECT (dialog->f_close),
-						"clicked", GTK_SIGNAL_FUNC(find_cancel_cb),
-						dialog);
+	g_signal_connect (G_OBJECT (dialog->f_close),
+					  "clicked", G_CALLBACK(find_cancel_cb),
+					  dialog);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_close,
 					   TRUE, TRUE, 0);
 
 	GTK_WIDGET_SET_FLAGS(dialog->f_close, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_close);
 
-	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
+	gtk_container_set_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
 
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (dialog->f_string))) {
@@ -159,8 +157,8 @@ AdvancedFind_AddDialog *create_advanced_find_add_dialog(AdvancedFindDialog *pare
 
 	dialog->window = gtk_dialog_new();
 	gtk_widget_hide(dialog->window);
-	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), dialog->window);
+	g_signal_connect(G_OBJECT(dialog->window), "delete_event",
+					 G_CALLBACK(delete_event_cb), dialog->window);
 
 	create_dialog_title(dialog->window, _("GHex (%s): Find Data: Add search"));
 
@@ -170,7 +168,7 @@ AdvancedFind_AddDialog *create_advanced_find_add_dialog(AdvancedFindDialog *pare
 	gtk_widget_show(dialog->f_string);
 
 	for(i = 0, group = NULL; i < 2;
-		i++, group = gtk_radio_button_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
+		i++, group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
 		g_snprintf(type_label, TYPE_LABEL_LEN, _("Search for %s"),
 				   _(search_type_label[i]));
 		
@@ -188,25 +186,28 @@ AdvancedFind_AddDialog *create_advanced_find_add_dialog(AdvancedFindDialog *pare
 	button = create_button(dialog->window, GTK_STOCK_ADD, _("Add"));
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), button,
 					   TRUE, TRUE, 0);
-	gtk_signal_connect (GTK_OBJECT (button),
-						"clicked", GTK_SIGNAL_FUNC(advanced_find_add_add_cb),
-						dialog);
+	g_signal_connect (G_OBJECT (button),
+					  "clicked", G_CALLBACK(advanced_find_add_add_cb),
+					  dialog);
 	GTK_WIDGET_SET_FLAGS(button, GTK_CAN_DEFAULT);
 	gtk_widget_show(button);
 
 	button = gtk_button_new_from_stock(GTK_STOCK_CANCEL);
-	gtk_signal_connect (GTK_OBJECT (button),
-						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						dialog->window);
+	g_signal_connect (G_OBJECT (button),
+					  "clicked", G_CALLBACK(cancel_cb),
+					  dialog->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), button,
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(button, GTK_CAN_DEFAULT);
 	gtk_widget_show(button);
 
-	dialog->colour = gnome_color_picker_new();
-	gnome_color_picker_set_use_alpha(GNOME_COLOR_PICKER(dialog->colour), FALSE);
-	gnome_color_picker_set_title(GNOME_COLOR_PICKER(dialog->colour), _("Highlight Colour"));
-	gnome_color_picker_set_i8(GNOME_COLOR_PICKER(dialog->colour), 255, 0, 0, 0);
+	dialog->colour = gtk_color_selection_new();
+	gtk_color_selection_set_has_opacity_control(GTK_COLOR_SELECTION(dialog->colour),
+												FALSE);
+#if 0
+	gnome_color_picker_set_title(GTK_COLOR_SELECTION(dialog->colour), _("Highlight Colour"));
+	gnome_color_picker_set_i8(GTK_COLOR_SELECTION(dialog->colour), 255, 0, 0, 0);
+#endif /* 0/1 */
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area),
 					   dialog->colour, TRUE, TRUE, 0);
 	gtk_widget_show(dialog->colour);
@@ -230,8 +231,8 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 	dialog->addDialog = create_advanced_find_add_dialog(dialog);
 
 	dialog->window = gtk_dialog_new();
-	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
-					   GTK_SIGNAL_FUNC(advanced_find_delete_event_cb), dialog);
+	g_signal_connect(G_OBJECT(dialog->window), "delete_event",
+					 G_CALLBACK(advanced_find_delete_event_cb), dialog);
 
 	gtk_window_set_default_size(GTK_WINDOW(dialog->window), 300, 350);
 
@@ -242,8 +243,9 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 					   dialog->hbox, TRUE, TRUE, GNOME_PAD_SMALL);
 	gtk_widget_show(dialog->hbox);
 
-	dialog->list = gtk_list_store_new(3, G_TYPE_STRING, GTK_TYPE_STRING,
-			                          G_TYPE_POINTER, GTK_TYPE_POINTER);
+	dialog->list = gtk_list_store_new(3,
+									  G_TYPE_STRING, G_TYPE_STRING,
+			                          G_TYPE_POINTER, G_TYPE_POINTER);
 	dialog->tree = gtk_tree_view_new_with_model (GTK_TREE_MODEL (dialog->list));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(dialog->tree));
 	gtk_tree_selection_set_mode(selection, GTK_SELECTION_SINGLE);
@@ -274,18 +276,18 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 	dialog->f_next = create_button(dialog->window, GTK_STOCK_GO_FORWARD, _("Find _Next"));
 	gtk_box_pack_start(GTK_BOX(dialog->vbox), dialog->f_next,
 					   FALSE, FALSE, 0);
-	gtk_signal_connect (GTK_OBJECT (dialog->f_next),
-						"clicked", GTK_SIGNAL_FUNC(advanced_find_next_cb),
-						dialog);
+	g_signal_connect (G_OBJECT (dialog->f_next),
+					  "clicked", G_CALLBACK(advanced_find_next_cb),
+					  dialog);
 	GTK_WIDGET_SET_FLAGS(dialog->f_next, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_next);
 
 	dialog->f_prev = create_button(dialog->window, GTK_STOCK_GO_BACK, _("Find _Previous"));
 	gtk_box_pack_start(GTK_BOX(dialog->vbox), dialog->f_prev,
 					   FALSE, FALSE, 0);
-	gtk_signal_connect (GTK_OBJECT (dialog->f_prev),
-						"clicked", GTK_SIGNAL_FUNC(advanced_find_prev_cb),
-						dialog);
+	g_signal_connect (G_OBJECT (dialog->f_prev),
+					  "clicked", G_CALLBACK(advanced_find_prev_cb),
+					  dialog);
 	GTK_WIDGET_SET_FLAGS(dialog->f_prev, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_prev);
 
@@ -296,26 +298,25 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 	dialog->f_new = create_button(dialog->window, GTK_STOCK_ADD, _("_Add New"));
 	gtk_box_pack_start(GTK_BOX(dialog->vbox), dialog->f_new,
 					   FALSE, FALSE, 0);
-	gtk_signal_connect (GTK_OBJECT (dialog->f_new),
-						"clicked", GTK_SIGNAL_FUNC(advanced_find_add_cb),
-						dialog);
+	g_signal_connect (G_OBJECT (dialog->f_new),
+					  "clicked", G_CALLBACK(advanced_find_add_cb),
+					  dialog);
 	GTK_WIDGET_SET_FLAGS(dialog->f_new, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_new);
 
 	dialog->f_remove = create_button(dialog->window, GTK_STOCK_REMOVE, _("_Remove Selected"));
 	gtk_box_pack_start(GTK_BOX(dialog->vbox), dialog->f_remove,
 					   FALSE, FALSE, 0);
-	gtk_signal_connect (GTK_OBJECT (dialog->f_remove),
-						"clicked", GTK_SIGNAL_FUNC(advanced_find_delete_cb),
-						dialog);
+	g_signal_connect (G_OBJECT (dialog->f_remove),
+					  "clicked", G_CALLBACK(advanced_find_delete_cb),
+					  dialog);
 	GTK_WIDGET_SET_FLAGS(dialog->f_remove, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->f_remove);
 
-
 	dialog->f_close = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
-	gtk_signal_connect(GTK_OBJECT(dialog->f_close),
-					   "clicked", GTK_SIGNAL_FUNC(advanced_find_close_cb),
-					   dialog);
+	g_signal_connect(G_OBJECT(dialog->f_close),
+					 "clicked", G_CALLBACK(advanced_find_close_cb),
+					 dialog);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area),
 					   dialog->f_close, TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(dialog->f_close, GTK_CAN_DEFAULT);
@@ -364,8 +365,8 @@ ReplaceDialog *create_replace_dialog()
 	dialog = g_new0(ReplaceDialog, 1);
 
 	dialog->window = gtk_dialog_new();
-	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), dialog->window);
+	g_signal_connect(G_OBJECT(dialog->window), "delete_event",
+					 G_CALLBACK(delete_event_cb), dialog->window);
 	
 	create_dialog_title(dialog->window, _("GHex (%s): Find & Replace Data"));
 	
@@ -381,7 +382,7 @@ ReplaceDialog *create_replace_dialog()
 	gtk_widget_show(dialog->r_string);
 	
 	for(i = 0, group = NULL; i < 2;
-		i++, group = gtk_radio_button_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
+		i++, group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->type_button[i-1]))) {
 		g_snprintf(type_label, TYPE_LABEL_LEN, _("Replace %s"),
 				   _(search_type_label[i]));
 		
@@ -390,8 +391,8 @@ ReplaceDialog *create_replace_dialog()
 		if(dialog->search_type == i)
 			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
 		
-		gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
-						   GTK_SIGNAL_FUNC(set_replace_type_cb), GINT_TO_POINTER(i));
+		g_signal_connect(G_OBJECT(dialog->type_button[i]), "clicked",
+						 G_CALLBACK(set_replace_type_cb), GINT_TO_POINTER(i));
 		
 		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->type_button[i],
 						   TRUE, TRUE, 0);
@@ -400,40 +401,40 @@ ReplaceDialog *create_replace_dialog()
 	}
 	
 	dialog->next = create_button(dialog->window, GTK_STOCK_GO_FORWARD, _("Find _next"));
-	gtk_signal_connect (GTK_OBJECT (dialog->next),
-						"clicked", GTK_SIGNAL_FUNC(replace_next_cb),
-						dialog->f_string);
+	g_signal_connect (G_OBJECT (dialog->next),
+					  "clicked", G_CALLBACK(replace_next_cb),
+					  dialog->f_string);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->next,
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(dialog->next, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->next);
 	dialog->replace = gtk_button_new_with_mnemonic(_("_Replace"));
-	gtk_signal_connect (GTK_OBJECT (dialog->replace),
-						"clicked", GTK_SIGNAL_FUNC(replace_one_cb),
-						NULL);
+	g_signal_connect (G_OBJECT (dialog->replace),
+					  "clicked", G_CALLBACK(replace_one_cb),
+					  NULL);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->replace,
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(dialog->replace, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->replace);
 	dialog->replace_all= gtk_button_new_with_mnemonic(_("Replace _All"));
-	gtk_signal_connect (GTK_OBJECT (dialog->replace_all),
-						"clicked", GTK_SIGNAL_FUNC(replace_all_cb),
-						NULL);
+	g_signal_connect (G_OBJECT (dialog->replace_all),
+					  "clicked", G_CALLBACK(replace_all_cb),
+					  NULL);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->replace_all,
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(dialog->replace_all, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->replace_all);
 
 	dialog->close = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
-	gtk_signal_connect (GTK_OBJECT (dialog->close),
-						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						dialog->window);
+	g_signal_connect (G_OBJECT (dialog->close),
+					  "clicked", G_CALLBACK(cancel_cb),
+					  dialog->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->close,
 					   TRUE, TRUE, 0);
 	GTK_WIDGET_SET_FLAGS(dialog->close, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->close);
 	
-	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
+	gtk_container_set_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
 
 	if (GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(dialog->f_string))) {
@@ -455,8 +456,8 @@ JumpDialog *create_jump_dialog()
 	dialog = g_new0(JumpDialog, 1);
 
 	dialog->window = gtk_dialog_new();
-	gtk_signal_connect(GTK_OBJECT(dialog->window), "delete_event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), dialog->window);
+	g_signal_connect(G_OBJECT(dialog->window), "delete_event",
+					 G_CALLBACK(delete_event_cb), dialog->window);
 	
 	create_dialog_title(dialog->window, _("GHex (%s): Jump To Byte"));
 	
@@ -466,25 +467,25 @@ JumpDialog *create_jump_dialog()
 	gtk_widget_show(dialog->int_entry);
 
 	dialog->ok = gtk_button_new_from_stock (GTK_STOCK_OK);
-	gtk_signal_connect (GTK_OBJECT (dialog->ok),
-						"clicked", GTK_SIGNAL_FUNC(goto_byte_cb),
-						dialog->int_entry);
+	g_signal_connect (G_OBJECT (dialog->ok),
+					  "clicked", G_CALLBACK(goto_byte_cb),
+					  dialog->int_entry);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->ok,
 					   TRUE, TRUE, 0);
 
 	GTK_WIDGET_SET_FLAGS(dialog->ok, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->ok);
 	dialog->cancel = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
-	gtk_signal_connect (GTK_OBJECT (dialog->cancel),
-						"clicked", GTK_SIGNAL_FUNC(cancel_cb),
-						dialog->window);
+	g_signal_connect (G_OBJECT (dialog->cancel),
+					  "clicked", G_CALLBACK(cancel_cb),
+					  dialog->window);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->cancel,
 					   TRUE, TRUE, 0);
 
 	GTK_WIDGET_SET_FLAGS(dialog->cancel, GTK_CAN_DEFAULT);
 	gtk_widget_show(dialog->cancel);
 	
-	gtk_container_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
+	gtk_container_set_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
 
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible(dialog->int_entry))) {
@@ -549,6 +550,8 @@ static gint find_delete_event_cb(GtkWidget *w, GdkEventAny *e, FindDialog *dialo
 	if (dialog->auto_highlight) gtk_hex_delete_autohighlight(gh, dialog->auto_highlight);
 	dialog->auto_highlight = NULL;
 	gtk_widget_hide(w);
+
+	return TRUE;
 }
 
 static void find_cancel_cb(GtkWidget *w, FindDialog *dialog)
@@ -814,7 +817,7 @@ static void advanced_find_add_cb(GtkButton *button, AdvancedFindDialog *dialog)
 {
 	gint ret;
 	if(!GTK_WIDGET_VISIBLE(dialog->addDialog->window)) {
-		gtk_window_position (GTK_WINDOW(dialog->addDialog->window), GTK_WIN_POS_MOUSE);
+		gtk_window_set_position (GTK_WINDOW(dialog->addDialog->window), GTK_WIN_POS_MOUSE);
 		gtk_widget_show(dialog->addDialog->window);
 	}
 
@@ -823,22 +826,28 @@ static void advanced_find_add_cb(GtkButton *button, AdvancedFindDialog *dialog)
 	if (ret >= 0)
 	{
 		gchar *colour;
-		guint8 colour_parts[4];
+		GdkColor gcol;
 		AdvancedFind_ListData *data = g_new0(AdvancedFind_ListData, 1);
 		GtkHex *gh = dialog->parent->gh;
 		const gchar *findstr = gtk_entry_get_text(GTK_ENTRY(dialog->addDialog->f_string));
 		GtkTreeIter iter;
-
+		
 		if((data->str_len = get_search_string(findstr, data->str, ret)) == 0) {
 			display_error_dialog (dialog->parent, _("The string is not appropriate for the selected data type!"));
 			return;
 		}
+#if 0
 		gnome_color_picker_get_i8(GNOME_COLOR_PICKER(dialog->addDialog->colour),
 								  &colour_parts[0],
 								  &colour_parts[1],
 								  &colour_parts[2],
 								  &colour_parts[3]);
-		colour = g_strdup_printf("#%02x%02x%02x", colour_parts[0], colour_parts[1], colour_parts[2]);
+#else
+		gtk_color_selection_get_current_color
+			(GTK_COLOR_SELECTION(dialog->addDialog->colour), &gcol);
+#endif /* 0/1 */
+		colour = g_strdup_printf("#%02x%02x%02x",
+								 gcol.red, gcol.green, gcol.blue);
 		data->auto_highlight = gtk_hex_insert_autohighlight(gh, data->str, data->str_len, colour);
 		gtk_list_store_append(dialog->list, &iter);
 		gtk_list_store_set(dialog->list, &iter,

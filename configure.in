@@ -27,16 +27,21 @@ AC_SUBST(LIBGTKHEX_VERSION)
 AC_DEFINE(LIBGTKHEX_RELEASE_STRING, "gtkhex-$LIBGTKHEX_RELEASE", [GtkHex library release string.])
 
 PKG_CHECK_MODULES(LIBGTKHEX,
-		  gtk+-2.0 >= 2.0.0	\
+		  gtk+-2.0 >= 2.3.0	\
 		  atk >= 1.0.0)
+
+LIBGTKHEX_CFLAGS="$LIBGTKHEX_CFLAGS -Wall"
 
 AC_SUBST(LIBGTKHEX_LIBS)
 AC_SUBST(LIBGTKHEX_CFLAGS)
 
 PKG_CHECK_MODULES(GHEX,
+		  gtk+-2.0 >= 2.3.0 		\
 		  libgnomeui-2.0 >= 2.0.0	\
 		  libglade-2.0 >= 2.0.0		\
 		  libgnomeprintui-2.2)
+
+GHEX_CFLAGS="$GHEX_CFLAGS -Wall"
 
 AC_SUBST(GHEX_CFLAGS)
 AC_SUBST(GHEX_LIBS)

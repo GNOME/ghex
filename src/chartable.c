@@ -109,7 +109,7 @@ static void hide_chartable_cb (GtkWidget *widget, GtkWidget *win)
 static gint char_table_key_press_cb (GtkWindow *w, GdkEventKey *e, gpointer data)
 {
 	if (e->keyval == GDK_Escape) {
-		hide_chartable_cb(NULL, w);
+		hide_chartable_cb(NULL, GTK_WIDGET(w));
 		return TRUE;
 	}
 	return FALSE;
@@ -150,10 +150,10 @@ GtkWidget *create_char_table()
 	gchar *label, ascii_printable_label[2], bin_label[9], *row[5];
 
 	ct = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_signal_connect(GTK_OBJECT(ct), "delete_event",
-					   GTK_SIGNAL_FUNC(char_table_delete_event_cb), NULL);
-	gtk_signal_connect(GTK_OBJECT(ct), "key_press_event",
-					   GTK_SIGNAL_FUNC(char_table_key_press_cb), NULL);
+	g_signal_connect(G_OBJECT(ct), "delete_event",
+					 G_CALLBACK(char_table_delete_event_cb), NULL);
+	g_signal_connect(G_OBJECT(ct), "key_press_event",
+					 G_CALLBACK(char_table_key_press_cb), NULL);
 	gtk_window_set_title(GTK_WINDOW(ct), _("Character table"));
 	sw = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -203,8 +203,8 @@ GtkWidget *create_char_table()
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW (ctv));
 	gtk_tree_selection_set_mode(selection, GTK_SELECTION_SINGLE);
 
-	gtk_signal_connect(GTK_OBJECT(ct), "delete-event",
-					   GTK_SIGNAL_FUNC(delete_event_cb), ct);
+	g_signal_connect(G_OBJECT(ct), "delete-event",
+					 G_CALLBACK(delete_event_cb), ct);
 	g_signal_connect(G_OBJECT(ctv), "button_press_event",
 					 G_CALLBACK(select_chartable_row_cb), GTK_TREE_MODEL(store));
 	g_signal_connect(G_OBJECT(ctv), "key_press_event",
@@ -235,7 +235,7 @@ GtkWidget *create_char_table()
 	gtk_widget_show(ctv);
 	gtk_widget_show(sw);
 
-	gtk_widget_set_usize(ct, 320, 256);
+	gtk_widget_set_size_request(ct, 320, 256);
 
 	return ct;
 }

@@ -100,48 +100,6 @@ static void gtk_hex_delete_highlight (GtkHex *gh, GtkHex_AutoHighlight *ahl,
 static void gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
 									  gboolean delete, gboolean add);
 
-
-
-static guint32 get_event_time() {
-	GdkEvent *event;
-	guint32 tm = GDK_CURRENT_TIME;
-  
-	event = gtk_get_current_event();
-  
-	if(event) {
-		switch (event->type) {
-		case GDK_MOTION_NOTIFY:
-			tm = event->motion.time; break;
-		case GDK_BUTTON_PRESS:
-		case GDK_2BUTTON_PRESS:
-		case GDK_3BUTTON_PRESS:
-		case GDK_BUTTON_RELEASE:
-			tm = event->button.time; break;
-		case GDK_KEY_PRESS:
-		case GDK_KEY_RELEASE:
-			tm = event->key.time; break;
-		case GDK_ENTER_NOTIFY:
-		case GDK_LEAVE_NOTIFY:
-			tm = event->crossing.time; break;
-		case GDK_PROPERTY_NOTIFY:
-			tm = event->property.time; break;
-		case GDK_SELECTION_CLEAR:
-		case GDK_SELECTION_REQUEST:
-		case GDK_SELECTION_NOTIFY:
-			tm = event->selection.time; break;
-		case GDK_PROXIMITY_IN:
-		case GDK_PROXIMITY_OUT:
-			tm = event->proximity.time; break;
-		default:			/* use current time */
-			break;
-		}
-		
-		gdk_event_free(event);
-	}
-  
-	return tm;
-}
-
 /*
  * simply forces widget w to redraw itself
  */
@@ -377,7 +335,6 @@ static void render_byte(GtkHex *gh, gint pos) {
 static void render_ac(GtkHex *gh) {
 	gint cx, cy;
 	static guchar c[2] = "\0\0";
-	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 	
 	if(!GTK_WIDGET_REALIZED(gh->adisp))
 		return;
@@ -406,7 +363,6 @@ static void render_ac(GtkHex *gh) {
 static void render_xc(GtkHex *gh) {
 	gint cx, cy, i;
 	static guchar c[2];
-	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 
 	if(!GTK_WIDGET_REALIZED(gh->xdisp))
 		return;
@@ -494,30 +450,36 @@ static void render_hex_highlights(GtkHex *gh, gint cursor_line)
 					len = xcpl;
 				len = len - cursor_off;
 				if (len > 0)
-					gtk_draw_box((curHighlight->style ? curHighlight->style :
-								 GTK_WIDGET(gh)->style), gh->xdisp->window,
-								 state, GTK_SHADOW_NONE,
-								 cursor_off*gh->char_width,
-								 cursor_line*gh->char_height,
-								 len*gh->char_width, gh->char_height);
+					gtk_paint_flat_box((curHighlight->style?
+										curHighlight->style :
+										GTK_WIDGET(gh)->style),
+									   gh->xdisp->window,
+									   state,
+									   GTK_SHADOW_NONE,
+									   NULL, gh->xdisp, NULL,
+									   cursor_off*gh->char_width,
+									   cursor_line*gh->char_height,
+									   len*gh->char_width, gh->char_height);
 			}
 			else if (cursor_line == el)
 			{
 				cursor_off = 2*(end%gh->cpl + 1) + (end%gh->cpl)/gh->group_type;
 				if (cursor_off > 0)
-					gtk_draw_box((curHighlight->style ? curHighlight->style :
-								 GTK_WIDGET(gh)->style), gh->xdisp->window,
-								 state, GTK_SHADOW_NONE,
-								 0, cursor_line*gh->char_height,
-								 cursor_off*gh->char_width, gh->char_height);
+					gtk_paint_flat_box((curHighlight->style ? curHighlight->style :
+										GTK_WIDGET(gh)->style), gh->xdisp->window,
+									   state, GTK_SHADOW_NONE,
+									   NULL, gh->xdisp, NULL,
+									   0, cursor_line*gh->char_height,
+									   cursor_off*gh->char_width, gh->char_height);
 			}
 			else if (cursor_line > sl && cursor_line < el)
 			{
-				gtk_draw_box((curHighlight->style ? curHighlight->style :
-							 GTK_WIDGET(gh)->style), gh->xdisp->window,
-							 state, GTK_SHADOW_NONE,
-							 0, cursor_line*gh->char_height,
-							 xcpl*gh->char_width, gh->char_height);
+				gtk_paint_flat_box((curHighlight->style ? curHighlight->style :
+									GTK_WIDGET(gh)->style), gh->xdisp->window,
+								   state, GTK_SHADOW_NONE,
+								   NULL, gh->xdisp, NULL,
+								   0, cursor_line*gh->char_height,
+								   xcpl*gh->char_width, gh->char_height);
 			}
 			if (curHighlight->style)
 				gtk_style_detach(curHighlight->style);
@@ -565,30 +527,33 @@ static void render_ascii_highlights(GtkHex *gh, gint cursor_line)
 				else
 					len = gh->cpl - cursor_off;
 				if (len > 0)
-					gtk_draw_box((curHighlight->style ? curHighlight->style :
-								 GTK_WIDGET(gh)->style), gh->adisp->window,
-								 state, GTK_SHADOW_NONE,
-								 cursor_off*gh->char_width,
-								 cursor_line*gh->char_height,
-								 len*gh->char_width, gh->char_height);
+					gtk_paint_flat_box((curHighlight->style ? curHighlight->style :
+										GTK_WIDGET(gh)->style), gh->adisp->window,
+									   state, GTK_SHADOW_NONE,
+									   NULL, gh->adisp, NULL,
+									   cursor_off*gh->char_width,
+									   cursor_line*gh->char_height,
+									   len*gh->char_width, gh->char_height);
 			}
 			else if (cursor_line == el)
 			{
 				cursor_off = end % gh->cpl + 1;
 				if (cursor_off > 0)
-					gtk_draw_box((curHighlight->style ? curHighlight->style :
-								 GTK_WIDGET(gh)->style), gh->adisp->window,
-								 state, GTK_SHADOW_NONE,
-								 0, cursor_line * gh->char_height,
-								 cursor_off*gh->char_width, gh->char_height);
+					gtk_paint_flat_box((curHighlight->style ? curHighlight->style :
+										GTK_WIDGET(gh)->style), gh->adisp->window,
+									   state, GTK_SHADOW_NONE,
+									   NULL, gh->adisp, NULL,
+									   0, cursor_line * gh->char_height,
+									   cursor_off*gh->char_width, gh->char_height);
 			}
 			else if (cursor_line > sl && cursor_line < el)
 			{
-				gtk_draw_box((curHighlight->style ? curHighlight->style :
-							 GTK_WIDGET(gh)->style), gh->adisp->window,
-							 state, GTK_SHADOW_NONE,
-							 0, cursor_line * gh->char_height,
-							 gh->cpl*gh->char_width, gh->char_height);
+				gtk_paint_flat_box((curHighlight->style ? curHighlight->style :
+									GTK_WIDGET(gh)->style), gh->adisp->window,
+								   state, GTK_SHADOW_NONE,
+								   NULL, gh->adisp, NULL,
+								   0, cursor_line * gh->char_height,
+								   gh->cpl*gh->char_width, gh->char_height);
 			}
 			if (curHighlight->style)
 				gtk_style_attach(curHighlight->style, gh->adisp->window);
@@ -772,20 +737,23 @@ static void draw_shadow(GtkWidget *widget, GdkRectangle *area) {
 
 	x = border;
 	if(gh->show_offsets) {
-		gtk_draw_shadow(widget->style, widget->window,
-						GTK_STATE_NORMAL, GTK_SHADOW_IN,
-						border, border, 8*gh->char_width + 2*widget_get_xt(widget),
-						widget->allocation.height - 2*border);
+		gtk_paint_shadow(widget->style, widget->window,
+						 GTK_STATE_NORMAL, GTK_SHADOW_IN,
+						 NULL, widget, NULL,
+						 border, border, 8*gh->char_width + 2*widget_get_xt(widget),
+						 widget->allocation.height - 2*border);
 		x += 8*gh->char_width + 2*widget_get_xt(widget);
 	}
 
-	gtk_draw_shadow(widget->style, widget->window,
+	gtk_paint_shadow(widget->style, widget->window,
 					GTK_STATE_NORMAL, GTK_SHADOW_IN,
+					 NULL, widget, NULL,
 					x, border, gh->xdisp_width + 2*widget_get_xt(widget),
 					widget->allocation.height - 2*border);
 	
-	gtk_draw_shadow(widget->style, widget->window,
+	gtk_paint_shadow(widget->style, widget->window,
 					GTK_STATE_NORMAL, GTK_SHADOW_IN,
+					 NULL, widget, NULL,
 					widget->allocation.width - border - gh->adisp_width - gh->scrollbar->requisition.width - 2*widget_get_xt(widget), border,
 					gh->adisp_width + 2*widget_get_xt(widget),
 					widget->allocation.height - 2*border);
@@ -867,8 +835,8 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	gh->adj->page_increment = gh->vis_lines - 1;
 	gh->adj->page_size = gh->vis_lines;
 	
-	gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "changed");
-	gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "value_changed");
+	g_signal_emit_by_name(G_OBJECT(gh->adj), "changed");
+	g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
 }
 
 /*
@@ -884,7 +852,6 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 	gint dest_max = gh->xdisp->allocation.height;
 	
 	GdkRectangle rect;
-	GdkEvent *event;
 	
 	if(gh->xdisp_gc == NULL ||
 	   gh->adisp_gc == NULL ||
@@ -916,32 +883,32 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 	}
 
 	if (source_min != source_max) {
-		gdk_draw_pixmap (gh->xdisp->window,
-						 gh->xdisp_gc,
-						 gh->xdisp->window,
-						 0, source_min,
-						 0, dest_min,
-						 gh->xdisp->allocation.width,
-						 source_max - source_min);
-		gdk_draw_pixmap (gh->adisp->window,
-						 gh->adisp_gc,
-						 gh->adisp->window,
-						 0, source_min,
-						 0, dest_min,
-						 gh->adisp->allocation.width,
-						 source_max - source_min);
+		gdk_draw_drawable (gh->xdisp->window,
+						   gh->xdisp_gc,
+						   gh->xdisp->window,
+						   0, source_min,
+						   0, dest_min,
+						   gh->xdisp->allocation.width,
+						   source_max - source_min);
+		gdk_draw_drawable (gh->adisp->window,
+						   gh->adisp_gc,
+						   gh->adisp->window,
+						   0, source_min,
+						   0, dest_min,
+						   gh->adisp->allocation.width,
+						   source_max - source_min);
 		if(gh->offsets) {
 			if(gh->offsets_gc == NULL) {
 				gh->offsets_gc = gdk_gc_new(gh->offsets->window);
 				gdk_gc_set_exposures(gh->offsets_gc, TRUE);
 			}
-			gdk_draw_pixmap (gh->offsets->window,
-							 gh->offsets_gc,
-							 gh->offsets->window,
-							 0, source_min,
-							 0, dest_min,
-							 gh->offsets->allocation.width,
-							 source_max - source_min);
+			gdk_draw_drawable (gh->offsets->window,
+							   gh->offsets_gc,
+							   gh->offsets->window,
+							   0, source_min,
+							   0, dest_min,
+							   gh->offsets->allocation.width,
+							   source_max - source_min);
 		}
 	}
 
@@ -973,7 +940,7 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 	if( (event->type == GDK_BUTTON_RELEASE) &&
 		(event->button == 1) ) {
 		if(gh->scroll_timeout != -1) {
-			gtk_timeout_remove(gh->scroll_timeout);
+			g_source_remove(gh->scroll_timeout);
 			gh->scroll_timeout = -1;
 			gh->scroll_dir = 0;
 		}
@@ -1037,12 +1004,14 @@ static void hex_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 
 	if(gh->scroll_dir != 0) {
 		if(gh->scroll_timeout == -1)
-			gh->scroll_timeout = gtk_timeout_add(SCROLL_TIMEOUT, (GtkFunction)scroll_timeout_handler, gh);
+			gh->scroll_timeout =
+				g_timeout_add(SCROLL_TIMEOUT,
+							  (GSourceFunc)scroll_timeout_handler, gh);
 		return;
 	}
 	else {
 		if(gh->scroll_timeout != -1) {
-			gtk_timeout_remove(gh->scroll_timeout);
+			g_source_remove(gh->scroll_timeout);
 			gh->scroll_timeout = -1;
 		}
 	}
@@ -1059,7 +1028,7 @@ static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 	if( (event->type == GDK_BUTTON_RELEASE) &&
 		(event->button == 1) ) {
 		if(gh->scroll_timeout != -1) {
-			gtk_timeout_remove(gh->scroll_timeout);
+			g_source_remove(gh->scroll_timeout);
 			gh->scroll_timeout = -1;
 			gh->scroll_dir = 0;
 		}
@@ -1120,12 +1089,14 @@ static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 
 	if(gh->scroll_dir != 0) {
 		if(gh->scroll_timeout == -1)
-			gh->scroll_timeout = gtk_timeout_add(SCROLL_TIMEOUT, (GtkFunction)scroll_timeout_handler, gh);
+			gh->scroll_timeout =
+				g_timeout_add(SCROLL_TIMEOUT,
+							  (GSourceFunc)scroll_timeout_handler, gh);
 		return;
 	}
 	else {
 		if(gh->scroll_timeout != -1) {
-			gtk_timeout_remove(gh->scroll_timeout);
+			g_source_remove(gh->scroll_timeout);
 			gh->scroll_timeout = -1;
 		}
 	}
@@ -1148,8 +1119,8 @@ static void show_offsets_widget(GtkHex *gh) {
 	gh->olayout = gtk_widget_create_pango_layout (gh->offsets, "");
 
 	gtk_widget_set_events (gh->offsets, GDK_EXPOSURE_MASK);
-	gtk_signal_connect(GTK_OBJECT(gh->offsets), "expose_event",
-					   GTK_SIGNAL_FUNC(offsets_expose), gh);
+	g_signal_connect(G_OBJECT(gh->offsets), "expose_event",
+					 G_CALLBACK(offsets_expose), gh);
 	gtk_fixed_put(GTK_FIXED(gh), gh->offsets, 0, 0);
 	gtk_widget_show(gh->offsets);
 }
@@ -1208,8 +1179,8 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 			gh->adj->step_increment = 1;
 			gh->adj->page_increment = gh->vis_lines - 1;
 			gh->adj->page_size = gh->vis_lines;
-			gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "changed");
-			gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "value_changed");
+			g_signal_emit_by_name(G_OBJECT(gh->adj), "changed");
+			g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
 		}
 	}
 
@@ -1253,7 +1224,6 @@ static void primary_get_cb(GtkClipboard *clipboard,
 		gint start_pos; 
 		gint end_pos;
 		guchar *text;
-		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 
 		start_pos = MIN(gh->selection.start, gh->selection.end);
 		end_pos = MAX(gh->selection.start, gh->selection.end);
@@ -1380,7 +1350,7 @@ static GtkHex_Highlight *gtk_hex_insert_highlight (GtkHex *gh,
 	new->end = MIN(MAX(start, end), length);
 
 	new->style = gtk_style_copy(GTK_WIDGET(gh)->style);
-	gtk_style_ref(new->style);
+	g_object_ref(new->style);
 
 	new->valid = FALSE;
 
@@ -1411,7 +1381,7 @@ static void gtk_hex_delete_highlight (GtkHex *gh, GtkHex_AutoHighlight *ahl,
 
 	if (hl == ahl->highlights) ahl->highlights = hl->next;
 
-	if (hl->style) gtk_style_unref(hl->style);
+	if (hl->style) g_object_unref(hl->style);
 
 	g_free(hl);
 	bytes_changed(gh, start, end);
@@ -1522,22 +1492,21 @@ static void gtk_hex_update_all_auto_highlights(GtkHex *gh, gboolean delete, gboo
 
 void gtk_hex_copy_clipboard(GtkHex *gh)
 {
-	gtk_signal_emit_by_name(GTK_OBJECT(gh), "copy_clipboard");
+	g_signal_emit_by_name(G_OBJECT(gh), "copy_clipboard");
 }
 
 void gtk_hex_cut_clipboard(GtkHex *gh)
 {
-	gtk_signal_emit_by_name(GTK_OBJECT(gh), "cut_clipboard");
+	g_signal_emit_by_name(G_OBJECT(gh), "cut_clipboard");
 }
 
 void gtk_hex_paste_clipboard(GtkHex *gh)
 {
-	gtk_signal_emit_by_name(GTK_OBJECT(gh), "paste_clipboard");
+	g_signal_emit_by_name(G_OBJECT(gh), "paste_clipboard");
 }
 
 static void gtk_hex_real_copy_clipboard(GtkHex *gh)
 {
-	guint32 time;
 	gint start_pos; 
 	gint end_pos;
 	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
@@ -1630,12 +1599,24 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 			if (event->state & GDK_CONTROL_MASK) {
 				if (gh->active_view == VIEW_ASCII) {
 					get_acoords(gh, gh->cursor_pos, &cx, &cy);
-					gtk_draw_box(GTK_WIDGET(gh)->style, gh->adisp->window, GTK_STATE_NORMAL, GTK_SHADOW_IN, cx, cy, gh->char_width, gh->char_height-1);
+					gtk_paint_flat_box(GTK_WIDGET(gh)->style,
+									   gh->adisp->window,
+									   GTK_STATE_NORMAL,
+									   GTK_SHADOW_IN,
+									   NULL, gh->adisp, NULL,
+									   cx, cy,
+									   gh->char_width, gh->char_height-1);
 					gh->active_view = VIEW_HEX;
 				}
 				else {
 					get_xcoords(gh, gh->cursor_pos, &cx, &cy);
-					gtk_draw_box(GTK_WIDGET(gh)->style, gh->xdisp->window, GTK_STATE_NORMAL, GTK_SHADOW_IN, cx, cy, gh->char_width, gh->char_height-1);
+					gtk_paint_flat_box(GTK_WIDGET(gh)->style,
+									   gh->xdisp->window,
+									   GTK_STATE_NORMAL,
+									   GTK_SHADOW_IN,
+									   NULL, gh->xdisp, NULL,
+									   cx, cy,
+									   gh->char_width, gh->char_height-1);
 					gh->active_view = VIEW_ASCII;
 				}
 			}
@@ -1839,45 +1820,51 @@ static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 
 static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 	GtkObjectClass *object_class = GTK_OBJECT_CLASS(klass);
-	GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
 
 	parent_class = g_type_class_peek_parent(klass);
 	
 	gtkhex_signals[CURSOR_MOVED_SIGNAL] = 
-		gtk_signal_new ("cursor_moved",
-			GTK_RUN_FIRST,
-			GTK_CLASS_TYPE(object_class),
-			GTK_SIGNAL_OFFSET (GtkHexClass, cursor_moved),
-			gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
+		g_signal_new ("cursor_moved",
+					  G_TYPE_FROM_CLASS(object_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (GtkHexClass, cursor_moved),
+					  NULL, NULL,
+					  g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
 
 	gtkhex_signals[DATA_CHANGED_SIGNAL] = 
-		gtk_signal_new ("data_changed",
-			GTK_RUN_FIRST,
-			GTK_CLASS_TYPE(object_class),
-			GTK_SIGNAL_OFFSET (GtkHexClass, data_changed),
-			ghex_marshal_VOID__POINTER, GTK_TYPE_NONE, 1, GTK_TYPE_POINTER);
+		g_signal_new ("data_changed",
+					  G_TYPE_FROM_CLASS(object_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (GtkHexClass, data_changed),
+					  NULL, NULL,
+					  g_cclosure_marshal_VOID__POINTER, G_TYPE_NONE, 1,
+					  G_TYPE_POINTER);
 
 	gtkhex_signals[CUT_CLIPBOARD_SIGNAL] = 
-		gtk_signal_new ("cut_clipboard",
-			GTK_RUN_FIRST,
-			GTK_CLASS_TYPE(object_class),
-			GTK_SIGNAL_OFFSET (GtkHexClass, cut_clipboard),
-			gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
+		g_signal_new ("cut_clipboard",
+					  G_TYPE_FROM_CLASS(object_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (GtkHexClass, cut_clipboard),
+					  NULL, NULL,
+					  g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
 
 	gtkhex_signals[COPY_CLIPBOARD_SIGNAL] = 
-		gtk_signal_new ("copy_clipboard",
-			GTK_RUN_FIRST,
-			GTK_CLASS_TYPE(object_class),
-			GTK_SIGNAL_OFFSET (GtkHexClass, copy_clipboard),
-			gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
+		g_signal_new ("copy_clipboard",
+					  G_TYPE_FROM_CLASS(object_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (GtkHexClass, copy_clipboard),
+					  NULL, NULL,
+					  g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
+
 
 	gtkhex_signals[PASTE_CLIPBOARD_SIGNAL] = 
-		gtk_signal_new ("paste_clipboard",
-			GTK_RUN_FIRST,
-			GTK_CLASS_TYPE(object_class),
-			GTK_SIGNAL_OFFSET (GtkHexClass, paste_clipboard),
-			gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
-
+		g_signal_new ("paste_clipboard",
+					  G_TYPE_FROM_CLASS(object_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (GtkHexClass, paste_clipboard),
+					  NULL, NULL,
+					  g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
+	
 	klass->cursor_moved = NULL;
 	klass->data_changed = gtk_hex_real_data_changed;
 	klass->cut_clipboard = gtk_hex_real_cut_clipboard;
@@ -1935,7 +1922,7 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	
 	GTK_WIDGET_SET_FLAGS(gh, GTK_CAN_FOCUS);
 	gtk_widget_set_events(GTK_WIDGET(gh), GDK_KEY_PRESS_MASK);
-	gtk_container_border_width(GTK_CONTAINER(gh), DISPLAY_BORDER);
+	gtk_container_set_border_width(GTK_CONTAINER(gh), DISPLAY_BORDER);
 	
 	gh->adj = GTK_ADJUSTMENT(gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
 	gh->xdisp = gtk_drawing_area_new();
@@ -1948,16 +1935,16 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 
 	gtk_widget_set_events (gh->xdisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
 						   GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK);
-	gtk_signal_connect(GTK_OBJECT(gh->xdisp), "expose_event",
-					   GTK_SIGNAL_FUNC(hex_expose), gh);
-	gtk_signal_connect(GTK_OBJECT(gh->xdisp), "button_press_event",
-					   GTK_SIGNAL_FUNC(hex_button_cb), gh);
-	gtk_signal_connect(GTK_OBJECT(gh->xdisp), "button_release_event",
-					   GTK_SIGNAL_FUNC(hex_button_cb), gh);
-	gtk_signal_connect(GTK_OBJECT(gh->xdisp), "motion_notify_event",
-					   GTK_SIGNAL_FUNC(hex_motion_cb), gh);
-	gtk_signal_connect(GTK_OBJECT(gh->xdisp), "realize",
-					   GTK_SIGNAL_FUNC(hex_realize), gh);
+	g_signal_connect(G_OBJECT(gh->xdisp), "expose_event",
+					 G_CALLBACK(hex_expose), gh);
+	g_signal_connect(G_OBJECT(gh->xdisp), "button_press_event",
+					 G_CALLBACK(hex_button_cb), gh);
+	g_signal_connect(G_OBJECT(gh->xdisp), "button_release_event",
+					 G_CALLBACK(hex_button_cb), gh);
+	g_signal_connect(G_OBJECT(gh->xdisp), "motion_notify_event",
+					 G_CALLBACK(hex_motion_cb), gh);
+	g_signal_connect(G_OBJECT(gh->xdisp), "realize",
+					 G_CALLBACK(hex_realize), gh);
 	gtk_fixed_put(GTK_FIXED(gh), gh->xdisp, 0, 0);
 	gtk_widget_show(gh->xdisp);
 	
@@ -1971,21 +1958,21 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 
 	gtk_widget_set_events (gh->adisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
 						   GDK_BUTTON_RELEASE_MASK |GDK_BUTTON_MOTION_MASK);
-	gtk_signal_connect(GTK_OBJECT(gh->adisp), "expose_event",
-					   GTK_SIGNAL_FUNC(ascii_expose), gh);
-	gtk_signal_connect(GTK_OBJECT(gh->adisp), "button_press_event",
-					   GTK_SIGNAL_FUNC(ascii_button_cb), gh);
-	gtk_signal_connect(GTK_OBJECT(gh->adisp), "button_release_event",
-					   GTK_SIGNAL_FUNC(ascii_button_cb), gh);
-	gtk_signal_connect(GTK_OBJECT(gh->adisp), "motion_notify_event",
-					   GTK_SIGNAL_FUNC(ascii_motion_cb), gh);
-	gtk_signal_connect(GTK_OBJECT(gh->adisp), "realize",
-					   GTK_SIGNAL_FUNC(ascii_realize), gh);
+	g_signal_connect(G_OBJECT(gh->adisp), "expose_event",
+					 G_CALLBACK(ascii_expose), gh);
+	g_signal_connect(G_OBJECT(gh->adisp), "button_press_event",
+					 G_CALLBACK(ascii_button_cb), gh);
+	g_signal_connect(G_OBJECT(gh->adisp), "button_release_event",
+					 G_CALLBACK(ascii_button_cb), gh);
+	g_signal_connect(G_OBJECT(gh->adisp), "motion_notify_event",
+					 G_CALLBACK(ascii_motion_cb), gh);
+	g_signal_connect(G_OBJECT(gh->adisp), "realize",
+					 G_CALLBACK(ascii_realize), gh);
 	gtk_fixed_put(GTK_FIXED(gh), gh->adisp, 0, 0);
 	gtk_widget_show(gh->adisp);
 	
-	gtk_signal_connect(GTK_OBJECT(gh->adj), "value_changed",
-					   GTK_SIGNAL_FUNC(display_scrolled), gh);
+	g_signal_connect(G_OBJECT(gh->adj), "value_changed",
+					 G_CALLBACK(display_scrolled), gh);
 
 	gh->scrollbar = gtk_vscrollbar_new(gh->adj);
 	gtk_fixed_put(GTK_FIXED(gh), gh->scrollbar, 0, 0);
@@ -2082,17 +2069,17 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 		if(y >= gh->top_line + gh->vis_lines) {
 			gh->adj->value = MIN(y - gh->vis_lines + 1, gh->lines - gh->vis_lines);
 			gh->adj->value = MAX(gh->adj->value, 0);
-			gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "value_changed");
+			g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
 		}
 		else if (y < gh->top_line) {
 			gh->adj->value = y;
-			gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "value_changed");
+			g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
 		}      
 
 		if(index == gh->document->file_size)
 			gh->lower_nibble = FALSE;
 		
-		gtk_signal_emit_by_name(GTK_OBJECT(gh), "cursor_moved");
+		g_signal_emit_by_name(G_OBJECT(gh), "cursor_moved");
 
 		if(gh->selecting) {
 			gtk_hex_set_selection(gh, gh->selection.start, gh->cursor_pos);
@@ -2133,14 +2120,14 @@ void gtk_hex_set_cursor_xy(GtkHex *gh, gint x, gint y) {
 		if(y >= gh->top_line + gh->vis_lines) {
 			gh->adj->value = MIN(y - gh->vis_lines + 1, gh->lines - gh->vis_lines);
 			gh->adj->value = MAX(0, gh->adj->value);
-			gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "value_changed");
+			g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
 		}
 		else if (y < gh->top_line) {
 			gh->adj->value = y;
-			gtk_signal_emit_by_name(GTK_OBJECT(gh->adj), "value_changed");
+			g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
 		}      
 		
-		gtk_signal_emit_by_name(GTK_OBJECT(gh), "cursor_moved");
+		g_signal_emit_by_name(G_OBJECT(gh), "cursor_moved");
 		
 		if(gh->selecting) {
 			gtk_hex_set_selection(gh, gh->selection.start, gh->cursor_pos);
@@ -2198,7 +2185,6 @@ void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
  * sets font for displaying data
  */
 void gtk_hex_set_font(GtkHex *gh, PangoFontMetrics *font_metrics, PangoFontDescription *font_desc) {
-	PangoFontDescription *tmp_desc;
 	g_return_if_fail(gh != NULL);
 	g_return_if_fail(GTK_IS_HEX(gh));
 

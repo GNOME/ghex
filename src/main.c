@@ -25,6 +25,8 @@
 #include <gnome.h>
 #include "ghex.h"
 
+#include "factory.h"
+
 int
 main(int argc, char **argv)
 {
@@ -65,10 +67,10 @@ main(int argc, char **argv)
 
 	client = gnome_master_client();
 
-	gtk_signal_connect (GTK_OBJECT (client), "save_yourself",
-						GTK_SIGNAL_FUNC (save_session), (gpointer) argv[0]);
-	gtk_signal_connect (GTK_OBJECT (client), "die",
-						GTK_SIGNAL_FUNC (client_die), NULL);
+	g_signal_connect (G_OBJECT (client), "save_yourself",
+					  G_CALLBACK (save_session), (gpointer) argv[0]);
+	g_signal_connect (G_OBJECT (client), "die",
+					  G_CALLBACK (client_die), NULL);
 
 	/* Parse args and build the list of files to be loaded at startup */
 	g_value_init (&value, G_TYPE_POINTER);
@@ -81,7 +83,7 @@ main(int argc, char **argv)
 	cl_files = (char **)poptGetArgs(ctx);
 
 	while(cl_files && *cl_files) {
-		if (g_file_exists (*cl_files)) {
+		if (g_file_test (*cl_files, G_FILE_TEST_EXISTS)) {
 			win = ghex_window_new_from_file(*cl_files);
 			if(win != NULL) {
 				if(geometry) {

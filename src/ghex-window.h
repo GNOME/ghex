@@ -61,6 +61,7 @@ GType             ghex_window_get_type           (void);
 GtkWidget         *ghex_window_new               (void);
 GtkWidget         *ghex_window_new_from_doc      (HexDocument *doc);
 GtkWidget         *ghex_window_new_from_file     (const gchar *filename);
+gboolean          ghex_window_load(GHexWindow *win, const gchar *filename);
 gboolean          ghex_window_close              (GHexWindow *win);
 BonoboUIComponent *ghex_window_get_ui_component  (GHexWindow *win);
 const GList       *ghex_window_get_list          (void);
