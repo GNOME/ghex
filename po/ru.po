@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-util-1.0.1\n"
-"POT-Creation-Date: 1999-09-28 17:18-0400\n"
-"PO-Revision-Date: 1999-03-10 HO:MI+ZONE\n"
+"POT-Creation-Date: 1999-10-05 20:05-0400\n"
+"PO-Revision-Date: 1999-10-05 20:47-0400\n"
 "Last-Translator: Sergey Panov <sipan@mit.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -532,11 +532,12 @@ msgstr "не удалось открыть конфигурационный файл \"%s\""
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
 msgstr ""
+"не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
 
 #: gstripchart/gstripchart.c:739
-#, fuzzy, c-format
+#, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr "не удалось открыть конфигурационный файл \"%s\""
+msgstr "не удалось открыть конфигурационный файл \"./gstripchart.conf\", \"%s\", or \"%s\""
 
 #: gstripchart/gstripchart.c:796
 #, c-format
@@ -648,13 +649,12 @@ msgid "Gnome Stripchart Parameters"
 msgstr "Параметры самописца Gnome"
 
 #: gstripchart/gstripchart.c:1633
-#, fuzzy
 msgid "Current"
-msgstr "Текущее значение"
+msgstr "Текущее"
 
 #: gstripchart/gstripchart.c:1633
 msgid "Top"
-msgstr ""
+msgstr "Верхнее"
 
 #: gstripchart/gstripchart.c:1661
 msgid "Help"
@@ -690,25 +690,23 @@ msgstr "неправильный тип дисплея: %s\n"
 
 #: gstripchart/gstripchart.c:1887
 msgid "Geometry string: WxH+X+Y"
-msgstr ""
+msgstr "Описание геометрии: WxH+X+Y"
 
 #: gstripchart/gstripchart.c:1887
 msgid "GEO"
 msgstr "ГЕОМ"
 
 #: gstripchart/gstripchart.c:1889
-#, fuzzy
 msgid "Configuration file name"
-msgstr "конфигурационный файл"
+msgstr "Имя конфигурационного файла"
 
 #: gstripchart/gstripchart.c:1889
 msgid "FILE"
 msgstr "ФАЙЛ"
 
 #: gstripchart/gstripchart.c:1891
-#, fuzzy
 msgid "Chart update interval"
-msgstr "интервал обновления диаграммы"
+msgstr "Интервал обновления диаграммы"
 
 #: gstripchart/gstripchart.c:1891 gstripchart/gstripchart.c:1893
 #: gstripchart/gstripchart.c:1895 gstripchart/gstripchart.c:1897
@@ -717,29 +715,27 @@ msgstr "СЕКУНДЫ"
 
 #: gstripchart/gstripchart.c:1893
 msgid "Chart low-pass filter time constant"
-msgstr ""
+msgstr "Константа времени сглаживания диаграммы"
 
 #: gstripchart/gstripchart.c:1895
-#, fuzzy
 msgid "Slider update interval"
-msgstr "интервал обновления ползунка"
+msgstr "Интервал обновления ползунка"
 
 #: gstripchart/gstripchart.c:1897
 msgid "Slider low-pass filter time constant"
-msgstr ""
+msgstr "Константа времени сглаживания ползунка"
 
 #: gstripchart/gstripchart.c:1899
 msgid "Adds a menubar to the main window"
-msgstr ""
+msgstr "Добавляет к главному окну панель меню"
 
 #: gstripchart/gstripchart.c:1901
-#, fuzzy
 msgid "Omits slider window"
-msgstr "пропустить ползунок"
+msgstr "Пропускает окно ползунка"
 
 #: gstripchart/gstripchart.c:1903
 msgid "TYPE is one of gtk, text, graph, or none"
-msgstr ""
+msgstr "ТИП это либо gtk, text, graph или none"
 
 #: gstripchart/gstripchart.c:1903
 msgid "TYPE"
@@ -1887,14 +1883,14 @@ msgid "No"
 msgstr "Нет"
 
 #: mini-utils/idetool/idetool.c:245
-#, fuzzy, c-format
+#, c-format
 msgid "Yes (%d sector)"
-msgstr "Да (%d сектор%s)"
+msgstr "Да (%d сектор)"
 
 #: mini-utils/idetool/idetool.c:247
-#, fuzzy, c-format
+#, c-format
 msgid "Yes (%d sectors)"
-msgstr "Да (%d сектор%s)"
+msgstr "Да (%d секторов)"
 
 #: mini-utils/idetool/idetool.c:310 mini-utils/idetool/idetool.c:320
 msgid "Model"
@@ -1963,69 +1959,3 @@ msgstr "Только администратор может использовать этот инструмент"
 #: mini-utils/idetool/idetool.c:428
 msgid "You appear to have no IDE drives"
 msgstr "Кажется у Вас нет IDE дисков"
-
-#~ msgid "%2d%% full "
-#~ msgstr "%2d%% заполнено "
-
-#~ msgid "swap"
-#~ msgstr "подкачка"
-
-#~ msgid "memory"
-#~ msgstr "память"
-
-#~ msgid "%ld%% %s used."
-#~ msgstr "%ld%% %s использовано."
-
-#~ msgid "The following mail will be sent to "
-#~ msgstr "Следующее сообщение будет послано "
-
-#~ msgid " ': "
-#~ msgstr " ': "
-
-#~ msgid "Error closing file `"
-#~ msgstr "Ошибка при закрытии файла `"
-
-#~ msgid "blue"
-#~ msgstr "голубой"
-
-#~ msgid "green"
-#~ msgstr "зеленый"
-
-#~ msgid "red"
-#~ msgstr "красный"
-
-#~ msgid "white"
-#~ msgstr "белый"
-
-#~ msgid "yellow"
-#~ msgstr "желтый"
-
-#~ msgid "Busy"
-#~ msgstr "Занят"
-
-#~ msgid "Load"
-#~ msgstr "Нагрузка"
-
-#~ msgid "PPP In"
-#~ msgstr "PPP, в"
-
-#~ msgid "PPP Out"
-#~ msgstr "PPP, из"
-
-#~ msgid "Swap"
-#~ msgstr "Подкачка"
-
-#~ msgid "geometry"
-#~ msgstr "геометрия"
-
-#~ msgid "chart LP filter TC"
-#~ msgstr "чертить LP фильтр TC"
-
-#~ msgid "slider LP filter TC"
-#~ msgstr "ползунок LP фильтр TC"
-
-#~ msgid "add menubar"
-#~ msgstr "добавить строку меню"
-
-#~ msgid "gtk|text|graph|none"
-#~ msgstr "gtk|text|graph|none"
