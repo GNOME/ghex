@@ -2,7 +2,9 @@
 
 	* gtkhex.c (gtk_hex_key_press): added moving by pages when pressing
 	PageUp and PageDown.
-	
+	(*_expose): change MAX() to MIN(). silly me. this fixes
+	ugly flickering when scrolling upwards.
+
 2000-04-07  Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>
 
 	* configure.in: bumped version to 1.1.2. released a new tarball.

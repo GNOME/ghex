@@ -481,7 +481,7 @@ static void hex_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
 	if((event->area.y + event->area.height) % gh->char_height)
 		imax++;
 
-	imax = MAX(imax, gh->vis_lines);
+	imax = MIN(imax, gh->vis_lines);
 	
 	render_hex_lines(gh, imin, imax);
 }
@@ -494,7 +494,7 @@ static void ascii_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
 	if((event->area.y + event->area.height) % gh->char_height)
 		imax++;
 	
-	imax = MAX(imax, gh->vis_lines);
+	imax = MIN(imax, gh->vis_lines);
 
 	render_ascii_lines(gh, imin, imax);
 }
@@ -507,7 +507,7 @@ static void offsets_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
 	if((event->area.y + event->area.height) % gh->char_height)
 		imax++;
 
-	imax = MAX(imax, gh->vis_lines);
+	imax = MIN(imax, gh->vis_lines);
 	
 	render_offsets(gh, imin, imax);
 }
