@@ -435,6 +435,7 @@ static void render_offsets(GtkHex *gh, gint imin, gint imax) {
 					   (imax - imin + 1)*gh->char_height);
   
 	imax = MIN(imax, gh->vis_lines);
+	imax = MIN(imax, gh->lines - gh->top_line - 1);
 
 	gdk_gc_set_foreground(gh->offsets_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 	
@@ -532,6 +533,9 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 
 	gtk_widget_size_request(gh->scrollbar, &req);
 	
+	gh->xdisp_width = 1;
+	gh->adisp_width = 1;
+
 	total_width -= 2*GTK_CONTAINER(gh)->border_width +
 		4*widget_get_xt(GTK_WIDGET(gh)) + req.width;
 
@@ -1021,7 +1025,7 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 
    	my_alloc.x = border_width + xt;
 	my_alloc.y = border_width + yt;
-	my_alloc.height = alloc->height - 2*border_width - 2*yt;
+	my_alloc.height = MAX(alloc->height - 2*border_width - 2*yt, 1);
 	if(gh->show_offsets) {
 		my_alloc.width = 8*gh->char_width;
 		gtk_widget_size_allocate(gh->offsets, &my_alloc);
@@ -1032,12 +1036,12 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	my_alloc.x = alloc->width - border_width - gh->scrollbar->requisition.width;
 	my_alloc.y = border_width;
 	my_alloc.width = gh->scrollbar->requisition.width;
-	my_alloc.height = alloc->height - 2*border_width;
+	my_alloc.height = MAX(alloc->height - 2*border_width, 1);
 	gtk_widget_size_allocate(gh->scrollbar, &my_alloc);
 	my_alloc.x -= gh->adisp_width + xt;
 	my_alloc.y = border_width + yt;
 	my_alloc.width = gh->adisp_width;
-	my_alloc.height = alloc->height - 2*border_width - 2*xt;
+	my_alloc.height = MAX(alloc->height - 2*border_width - 2*yt, 1);
 	gtk_widget_size_allocate(gh->adisp, &my_alloc);
 	
 	show_cursor(gh);
