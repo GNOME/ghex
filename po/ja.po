@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 1999-04-14 22:16+0200\n"
-"PO-Revision-Date: 1998-12-11 07:17+09:00\n"
+"POT-Creation-Date: 1999-06-20 19:32+0900\n"
+"PO-Revision-Date: 1999-06-22 05:56+09:00\n"
 "Last-Translator: Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
 "Language-Team: <gnome@lists.hypercore.co.jp>\n"
 "MIME-Version: 1.0\n"
@@ -33,39 +33,43 @@ msgstr ""
 "マウントされているファイルシステムの未使用領域を "
 "ダイヤル表示するちょっとしたプログラム。"
 
-#: ghex/converter.c:39
+#: ghex/converter.c:41
 msgid "GHex: Converter"
 msgstr "GHex: 変換器"
 
-#: ghex/converter.c:46
+#: ghex/converter.c:50
 msgid "Binary"
 msgstr "バイナリ"
 
-#: ghex/converter.c:56 ghex/preferences.c:109
+#: ghex/converter.c:60 ghex/preferences.c:109
 msgid "Decimal"
 msgstr "10進"
 
-#: ghex/converter.c:66
+#: ghex/converter.c:70
 msgid "Hex"
 msgstr "16進"
 
-#: ghex/converter.c:76
+#: ghex/converter.c:80
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ghex/converter.c:86 mini-utils/gshutdown/gshutdown.c:152
+#: ghex/converter.c:90
+msgid "Get cursor value"
+msgstr "カーソルの値を取得"
+
+#: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
 #: mini-utils/gshutdown/gshutdown.c:594
 msgid "Close"
 msgstr "閉じる"
 
-#: ghex/converter.c:134
+#: ghex/converter.c:190
 msgid "ERROR"
 msgstr ""
 
 #: ghex/findreplace.c:51 ghex/main.c:82
-#, fuzzy, c-format
+#, c-format
 msgid "GHex (%s): Find Data"
-msgstr "GHex: データ検索"
+msgstr "GHex (%s): データ検索"
 
 #: ghex/findreplace.c:60
 #, c-format
@@ -81,9 +85,9 @@ msgid "Find Previous"
 msgstr "以前を検索"
 
 #: ghex/findreplace.c:111 ghex/main.c:83
-#, fuzzy, c-format
+#, c-format
 msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex: 検索およびデータの置換"
+msgstr "GHex (%s): 検索およびデータの置換"
 
 #: ghex/findreplace.c:125
 #, c-format
@@ -103,9 +107,9 @@ msgid "Replace All"
 msgstr "全て置換"
 
 #: ghex/findreplace.c:179 ghex/main.c:84
-#, fuzzy, c-format
+#, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex: nバイト目にジャンプ"
+msgstr "GHex (%s): nバイト目にジャンプ"
 
 #: ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
 msgid "There is no active buffer to search!"
@@ -144,9 +148,8 @@ msgid "There is no active buffer to replace data in!"
 msgstr "置換を行なうべきアクティブなバッファがありません!"
 
 #: ghex/findreplace.c:372 ghex/findreplace.c:411
-#, fuzzy
 msgid "Strange find or replace string!"
-msgstr "検索もしくは文字置換のエラーです!"
+msgstr "検索・置換文字列が変です!"
 
 #: ghex/findreplace.c:377 ghex/findreplace.c:416
 msgid "Both strings must be of the same length!"
@@ -224,7 +227,7 @@ msgstr ""
 
 #: ghex/main.c:172
 msgid "Offset: "
-msgstr ""
+msgstr "オフセット: "
 
 #: ghex/preferences.c:49 mini-utils/idetool/idetool.c:142
 #: mini-utils/idetool/idetool.c:325
@@ -245,26 +248,23 @@ msgstr "モーダル"
 
 #: ghex/preferences.c:81
 msgid "Maximum number of undo levels"
-msgstr ""
+msgstr "やり直しの最大回数"
 
 #: ghex/preferences.c:95
 msgid "Show cursor offset as"
-msgstr ""
+msgstr "カーソルのオフセット表示"
 
 #: ghex/preferences.c:114
-#, fuzzy
 msgid "Hexadecimal"
-msgstr "10進"
+msgstr "16進"
 
 #: ghex/preferences.c:120
-#, fuzzy
 msgid "Custom"
-msgstr "切り出し"
+msgstr "オリジナル"
 
 #: ghex/preferences.c:130
-#, fuzzy
 msgid "Editing"
-msgstr "編集(_E)"
+msgstr "編集"
 
 #: ghex/preferences.c:137
 msgid "Font"
@@ -295,9 +295,8 @@ msgid "Can not open desired font!"
 msgstr "お望みのフォントを読めません!"
 
 #: ghex/ui.c:51
-#, fuzzy
 msgid "Open Con_verter..."
-msgstr "変換器を開く(_C)..."
+msgstr "変換器を開く(_v)..."
 
 #: ghex/ui.c:52
 msgid "Open base conversion dialog"
@@ -336,9 +335,9 @@ msgid "Error saving file!"
 msgstr "ファイル書き込みにエラー!"
 
 #: ghex/ui.c:197 ghex/ui.c:339
-#, fuzzy, c-format
+#, c-format
 msgid "Saved buffer to file %s"
-msgstr "バッファの保存"
+msgstr "バッファを%sファイルに保存しました"
 
 #: ghex/ui.c:206
 msgid "Select a file to open"
@@ -354,14 +353,14 @@ msgid "Really revert file %s?"
 msgstr "本当にファイル %s を元に戻しますか?"
 
 #: ghex/ui.c:285
-#, fuzzy, c-format
+#, c-format
 msgid "Reverted buffer from file %s"
-msgstr "バッファを戻す"
+msgstr "ファイル%sを使ってバッファをもとに戻しました"
 
 #: ghex/ui.c:300
 #, c-format
 msgid "Loaded file %s"
-msgstr ""
+msgstr "%sファイルの読み込み完了"
 
 #: ghex/ui.c:305
 msgid "Can not open file!"
@@ -372,64 +371,60 @@ msgid "Can't open file for writing!"
 msgstr "ファイルに書き込めません!"
 
 #: gsearchtool/gsearchtool.c:21
-#, fuzzy
 msgid "File name"
-msgstr "ファイル名:"
+msgstr "ファイル名"
 
 #: gsearchtool/gsearchtool.c:23
 msgid "Don't search subdirectories"
-msgstr ""
+msgstr "サブディレクトリの検索をしない"
 
 #: gsearchtool/gsearchtool.c:24
-#, fuzzy
 msgid "File owner"
-msgstr "ファイル名:"
+msgstr "ファイル所有者"
 
 #: gsearchtool/gsearchtool.c:25
 msgid "File owner group"
-msgstr ""
+msgstr "ファイル所有グループ"
 
 #: gsearchtool/gsearchtool.c:26
 msgid "Last modification time"
-msgstr ""
+msgstr "最終更新時刻"
 
 #: gsearchtool/gsearchtool.c:28
-#, fuzzy
 msgid "Don't search mounted filesystems"
-msgstr "マウント中のファイルシステム"
+msgstr "マウントされたファイルシステムの検索をしない"
 
 #: gsearchtool/gsearchtool.c:30
 msgid "Empty file"
-msgstr ""
+msgstr "空ファイル"
 
 #: gsearchtool/gsearchtool.c:32
 msgid "Invalid user or group"
-msgstr ""
+msgstr "正しくないユーザまたはグループ"
 
 #: gsearchtool/gsearchtool.c:33
-#, fuzzy
 msgid "Filenames except"
-msgstr "ファイル名:"
+msgstr "除外するファイル名"
 
 #: gsearchtool/gsearchtool.c:34
 msgid "Simple substring search"
-msgstr ""
+msgstr "単純部分文字列検索"
 
 #: gsearchtool/gsearchtool.c:35
 msgid "Regular expression search"
-msgstr ""
+msgstr "正規表現検索"
 
 #: gsearchtool/gsearchtool.c:37
 msgid "Extended regular expression search"
-msgstr ""
+msgstr "拡張正規表現検索"
 
 #: gsearchtool/gsearchtool.c:94 gsearchtool/gsearchtool.c:149
 msgid "grep options found in find list bad bad!"
-msgstr ""
+msgstr "findリスト中にgrepのオプションが入っていたらダメダメです!"
 
 #: gsearchtool/gsearchtool.c:163
 msgid "non-grep option found in grep list, bad bad!"
-msgstr ""
+msgstr "grepリスト中にgrepのものでないオプションが入っていたらダメダメです!"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
@@ -439,20 +434,18 @@ msgid "Search Results"
 msgstr "検索結果"
 
 #: gsearchtool/gsearchtool.c:426
-#, fuzzy
 msgid "Enable"
 msgstr "許可"
 
 #: gsearchtool/gsearchtool.c:433
-#, fuzzy
 msgid "Remove"
-msgstr "ビューの削除(_R)"
+msgstr "削除"
 
 #: gsearchtool/gsearchtool.c:485
 msgid "Start in directory:"
 msgstr "起点ディレクトリ:"
 
-#: gsearchtool/gsearchtool.c:503 mini-utils/gw/gw.c:454
+#: gsearchtool/gsearchtool.c:503 mini-utils/gw/gw.c:488
 msgid "Add"
 msgstr "追加"
 
@@ -492,95 +485,273 @@ msgstr "UNIXコマンド find/grep/locate のフロントエンドです"
 msgid "Gnome Search Tool"
 msgstr "GNOME探索ツール"
 
-#: gstripchart/gstripchart.c:1321
-msgid "Params"
-msgstr ""
+#: gstripchart/gstripchart.c:374
+msgid "rparen expected"
+msgstr "閉じ括弧が必要です"
 
-#: gstripchart/gstripchart.c:1321
-msgid "Examine and adjust parameters"
-msgstr ""
+#: gstripchart/gstripchart.c:391
+#, c-format
+msgid "no such field: %d"
+msgstr "そのようなフィールドはありません: %d"
 
-#: gstripchart/gstripchart.c:1327
+#: gstripchart/gstripchart.c:415
+msgid "missing variable identifer"
+msgstr "変数指定がありません"
+
+#: gstripchart/gstripchart.c:417
+#, c-format
+msgid "invalid variable identifer: %s"
+msgstr "おかしな変数指定です: %s"
+
+#: gstripchart/gstripchart.c:421
+msgid "number expected"
+msgstr "数値が必要です"
+
+#: gstripchart/gstripchart.c:498
+#, c-format
+msgid "extra gunk at end: \"%s\""
+msgstr "妙なものが終りについています: \"%s\""
+
+#: gstripchart/gstripchart.c:575
+#, c-format
+msgid "%s, line %d: "
+msgstr "%s、%d行: "
+
+#: gstripchart/gstripchart.c:652
+#, c-format
+msgid "can't open config file \"%s\""
+msgstr "設定ファイル \"%s\" を読めません"
+
+#: gstripchart/gstripchart.c:743
+#, c-format
+msgid "invalid display type: %s"
+msgstr "正しくない表示形式です: %s"
+
+#: gstripchart/gstripchart.c:777
+msgid "identifier or begin must be first"
+msgstr "識別子もしくは begin が先になければなりません"
+
+#: gstripchart/gstripchart.c:784 gstripchart/gstripchart.c:800
+#, c-format
+msgid "unrecognized color: %s"
+msgstr "認識できない色です: %s"
+
+#: gstripchart/gstripchart.c:827
+#, c-format
+msgid "invalid option: \"%s\""
+msgstr "正しくないオプションです: \"%s\""
+
+#: gstripchart/gstripchart.c:1344
 msgid "E_xit"
 msgstr "終了(_X)"
 
-#: gstripchart/gstripchart.c:1327
+#: gstripchart/gstripchart.c:1344
 msgid "Terminate the stripchart program"
-msgstr ""
+msgstr "ストリップチャートを終了します"
 
-#: gstripchart/gstripchart.c:1343
+#: gstripchart/gstripchart.c:1360
 msgid "Copyright 1998 John Kodis"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1358
-#, fuzzy
-msgid "_About"
-msgstr "情報...(_A)"
-
-#: gstripchart/gstripchart.c:1358
-msgid "Info about the striphart program"
+#: gstripchart/gstripchart.c:1362
+msgid ""
+"The GNOME stripchart program plots various user-specified parameters as a "
+"function of time.  Its main use is to chart system performance parameters "
+"such as CPU load, CPU utilization, network traffic levels, and the like.  "
+"Other more ingenious uses are left as an exercise for the interested user."
 msgstr ""
+"GNOMEストリップチャートはユーザーが指定する様々なパラメータを時間の関"
+"数として表示します。主な目的はCPUの負荷や使用度、ネットワークトラフィッ"
+"クのようなシステムパフォーマンスを表すパラメータをチャート表示すること"
+"です。それ以外の気の効いた使い方は、興味をもったあなた次第です。"
 
-#: gstripchart/gstripchart.c:1369
+#: gstripchart/gstripchart.c:1375
+msgid "_About"
+msgstr "情報(_A)"
+
+#: gstripchart/gstripchart.c:1375
+msgid "Info about the striphart program"
+msgstr "ストリップチャートに関する情報"
+
+#: gstripchart/gstripchart.c:1386
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: gstripchart/gstripchart.c:1370
+#: gstripchart/gstripchart.c:1387
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: gstripchart/gstripchart.c:1776
+#: gstripchart/gstripchart.c:1450
+msgid "Param"
+msgstr "パラメータ"
+
+#: gstripchart/gstripchart.c:1450 mini-utils/gcolorsel/gcolorsel.c:156
+#: mini-utils/guname/moreinfo.c:228
+msgid "Value"
+msgstr "値"
+
+#: gstripchart/gstripchart.c:1454
+msgid "Identifier"
+msgstr "識別子"
+
+#: gstripchart/gstripchart.c:1465
+msgid "yellow"
+msgstr "黄"
+
+#: gstripchart/gstripchart.c:1465
+msgid "blue"
+msgstr "青"
+
+#: gstripchart/gstripchart.c:1465
+msgid "red"
+msgstr "赤"
+
+#: gstripchart/gstripchart.c:1465
+msgid "green"
+msgstr "緑"
+
+#: gstripchart/gstripchart.c:1465
+msgid "white"
+msgstr "白"
+
+#: gstripchart/gstripchart.c:1466
+msgid "Busy"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1466
+msgid "Load"
+msgstr "負荷"
+
+#: gstripchart/gstripchart.c:1466
+msgid "PPP In"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1466
+msgid "PPP Out"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1466
+msgid "Swap"
+msgstr "スワップ"
+
+#: gstripchart/gstripchart.c:1470 mini-utils/gcolorsel/gcolorsel.c:155
+msgid "Color"
+msgstr "色"
+
+#: gstripchart/gstripchart.c:1472
+msgid "Filename"
+msgstr "ファイル名"
+
+#: gstripchart/gstripchart.c:1474
+msgid "Pattern"
+msgstr "パターン"
+
+#: gstripchart/gstripchart.c:1476
+msgid "Equation"
+msgstr "平均化"
+
+#: gstripchart/gstripchart.c:1478
+msgid "Expected range"
+msgstr "とり得る値域"
+
+#: gstripchart/gstripchart.c:1482
+msgid "Displayed range"
+msgstr "表示域"
+
+#: gstripchart/gstripchart.c:1486
+msgid "Current value"
+msgstr "現在値"
+
+#: gstripchart/gstripchart.c:1493
+msgid "Active"
+msgstr "表示"
+
+#: gstripchart/gstripchart.c:1509
+msgid "Gnome Stripchart Parameters"
+msgstr "GNOMEストリップチャートパラメータ"
+
+#: gstripchart/gstripchart.c:1609
+msgid "Help"
+msgstr "ヘルプ"
+
+#: gstripchart/gstripchart.c:1615
+msgid "About"
+msgstr "情報"
+
+#: gstripchart/gstripchart.c:1621
+msgid "Params"
+msgstr "パラメータ"
+
+#: gstripchart/gstripchart.c:1627
+msgid "Exit"
+msgstr "終了"
+
+#. Create a top-level window. Set the title, minimum size (_usize),
+#. initial size (_default_size), and establish delete and destroy
+#. event handlers.
+#: gstripchart/gstripchart.c:1729
+msgid "gstripchart"
+msgstr ""
+
+#: gstripchart/gstripchart.c:1729
+msgid "Gnome stripchart viewer"
+msgstr "GNOMEストリップチャート表示"
+
+#: gstripchart/gstripchart.c:1805
+#, c-format
+msgid "invalid display type: %s\n"
+msgstr "正しくない表示形式です: %s\n"
+
+#: gstripchart/gstripchart.c:1832
 msgid "GEO"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1776
-#, fuzzy
+#: gstripchart/gstripchart.c:1832
 msgid "geometry"
-msgstr "ジオメトリ"
+msgstr "位置・大きさ"
 
-#: gstripchart/gstripchart.c:1778
+#: gstripchart/gstripchart.c:1834
 msgid "FILE"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1778
-#, fuzzy
+#: gstripchart/gstripchart.c:1834
 msgid "configuration file"
-msgstr "設定ファイルの保存"
+msgstr "設定ファイル"
 
-#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:1782
-#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:1786
+#: gstripchart/gstripchart.c:1836 gstripchart/gstripchart.c:1838
+#: gstripchart/gstripchart.c:1840 gstripchart/gstripchart.c:1842
 msgid "SECS"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1780
+#: gstripchart/gstripchart.c:1836
 msgid "chart update interval"
-msgstr ""
+msgstr "チャート更新の間隔"
 
-#: gstripchart/gstripchart.c:1782
+#: gstripchart/gstripchart.c:1838
 msgid "chart LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1784
+#: gstripchart/gstripchart.c:1840
 msgid "slider update interval"
-msgstr ""
+msgstr "スライダ更新間隔"
 
-#: gstripchart/gstripchart.c:1786
+#: gstripchart/gstripchart.c:1842
 msgid "slider LP filter TC"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1788
+#: gstripchart/gstripchart.c:1844
 msgid "add menubar"
-msgstr ""
+msgstr "メニューバー表示"
 
-#: gstripchart/gstripchart.c:1790
+#: gstripchart/gstripchart.c:1846
 msgid "omit slider"
-msgstr ""
+msgstr "スライダ省略"
 
-#: gstripchart/gstripchart.c:1792
+#: gstripchart/gstripchart.c:1848
 msgid "TYPE"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1792
+#: gstripchart/gstripchart.c:1848
 msgid "gtk|text|graph|none"
 msgstr ""
 
@@ -592,7 +763,7 @@ msgstr "プロジェクトが選択されていません"
 msgid "00:00"
 msgstr ""
 
-#: gtt/app.c:251 mini-utils/gless/gless.c:384
+#: gtt/app.c:251 mini-utils/gless/gless.c:424
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -629,13 +800,12 @@ msgid "program exited"
 msgstr "プログラム終了済"
 
 #: gtt/main.c:77
-#, fuzzy
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
 msgstr ""
 "別のGTimeTrackerが動いているようです。\n"
-"動いていないなら、pidファイルを削除して下さい。"
+"それでもGtimeTrackerを実行時はOKを、またはキャンセルで中止して下さい。"
 
 #: gtt/main.c:121
 msgid "Error"
@@ -653,7 +823,7 @@ msgstr ""
 msgid "Specify geometry"
 msgstr "ジオメトリの指定"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:116
+#: gtt/main.c:204 mini-utils/gless/gless.c:131
 msgid "GEOMETRY"
 msgstr ""
 
@@ -973,7 +1143,7 @@ msgstr "GNOME色ブラウザ"
 
 #: mini-utils/gcolorsel/gcolorsel.c:79
 msgid "Format Style:"
-msgstr ""
+msgstr "表示形式:"
 
 #: mini-utils/gcolorsel/gcolorsel.c:89
 msgid "Color Name:"
@@ -983,22 +1153,14 @@ msgstr "色名"
 msgid "Color Values:"
 msgstr "色値"
 
-#: mini-utils/gcolorsel/gcolorsel.c:155
-msgid "Color"
-msgstr "色"
-
-#: mini-utils/gcolorsel/gcolorsel.c:156 mini-utils/guname/moreinfo.c:228
-msgid "Value"
-msgstr "値"
-
 #: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:227
-#: mini-utils/gw/gw.c:445 mini-utils/gw/gw.c:520
+#: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
 msgid "Name"
 msgstr "名前"
 
 #: mini-utils/gcolorsel/gcolorsel.c:234
 msgid "Error, cannot find the file 'rgb.txt' on your system!"
-msgstr ""
+msgstr "エラー: 'rgb.txt' ファイルがシステムに見つかりません!"
 
 #: mini-utils/gcolorsel/gcolorsel.c:247
 msgid "Parsing Colors"
@@ -1060,49 +1222,55 @@ msgstr "前回読んだフォントを読み込まない"
 msgid "Copyright 1998, under the GNU General Public License."
 msgstr ""
 
-#: mini-utils/gless/gless.c:116
+#: mini-utils/gless/gless.c:131
 msgid "Where to put the window, and its size"
 msgstr "ウインドウの位置とサイズ"
 
-#: mini-utils/gless/gless.c:117
+#: mini-utils/gless/gless.c:132
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "標準入力を無視する(何かで必要かもしれません)"
 
-#: mini-utils/gless/gless.c:279
-#, fuzzy
+#: mini-utils/gless/gless.c:294
 msgid "_New Window"
-msgstr "新規ウインドウ"
+msgstr "新規ウインドウ(_N)"
 
-#: mini-utils/gless/gless.c:280
+#: mini-utils/gless/gless.c:295
 msgid "New text viewer window"
 msgstr "新しいテキスト表示ウインドウ"
 
-#: mini-utils/gless/gless.c:292
-#, fuzzy
+#: mini-utils/gless/gless.c:313
 msgid "_Fixed Font"
-msgstr "固定幅フォント"
+msgstr "固定幅フォント(_F)"
 
-#: mini-utils/gless/gless.c:293
+#: mini-utils/gless/gless.c:314
 msgid "Display text with a fixed font"
 msgstr "固定幅フォントで表示する"
 
-#: mini-utils/gless/gless.c:322
+#: mini-utils/gless/gless.c:352
 msgid "Text File Viewer"
 msgstr "テキストファイルビューワ"
 
-#: mini-utils/gless/gless.c:425
+#: mini-utils/gless/gless.c:460
+msgid "Find string"
+msgstr "文字列検索"
+
+#: mini-utils/gless/gless.c:461
+msgid "Find"
+msgstr "検索"
+
+#: mini-utils/gless/gless.c:498
 msgid "Loading..."
 msgstr "読み込み中..."
 
-#: mini-utils/gless/gless.c:430
+#: mini-utils/gless/gless.c:503
 msgid "No such file or directory:\n"
 msgstr "そんなファイルもディレクトリもありません:\n"
 
-#: mini-utils/gless/gless.c:447
+#: mini-utils/gless/gless.c:520
 msgid "Failed to decompress and display the file:\n"
 msgstr "ファイルの展開、表示に失敗しました:\n"
 
-#: mini-utils/gless/gless.c:458
+#: mini-utils/gless/gless.c:531
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1110,48 +1278,53 @@ msgstr ""
 "圧縮されたファイルを表示することができません。\n"
 "zcat が見当たりません。"
 
-#: mini-utils/gless/gless.c:466
+#: mini-utils/gless/gless.c:539
 msgid "Error loading file:\n"
 msgstr "ファイル読み込み中にエラー:\n"
 
-#: mini-utils/gless/gless.c:520
+#: mini-utils/gless/gless.c:594
 msgid "Saving..."
 msgstr "保存中..."
 
-#: mini-utils/gless/gless.c:531
+#: mini-utils/gless/gless.c:605
 msgid "Failed to write file:\n"
 msgstr "ファイル書き込みに失敗:\n"
 
-#: mini-utils/gless/gless.c:578
+#: mini-utils/gless/gless.c:652
 msgid "Save Text As..."
 msgstr "テキストに名前をつけて保存..."
 
-#: mini-utils/gless/gless.c:618
+#: mini-utils/gless/gless.c:692
 msgid "Open Text File..."
 msgstr "テキストファイルを開く..."
+
+#: mini-utils/gless/gless.c:843
+msgid "Searching..."
+msgstr "検索中..."
+
+#: mini-utils/gless/gless.c:854
+msgid "No search string was specified!"
+msgstr "検索文字列が指定されていません!"
 
 #: mini-utils/gnome-run/gnome-run.c:48
 msgid "Failed to execute command:\n"
 msgstr "コマンド実行に失敗:\n"
 
 #: mini-utils/gnome-run/gnome-run.c:68
-#, fuzzy
 msgid "Run Program"
-msgstr "プログラム(_P)"
+msgstr "プログラム実行"
 
 #: mini-utils/gnome-run/gnome-run.c:69
 msgid "Run"
-msgstr ""
+msgstr "実行"
 
 #: mini-utils/gnome-run/gnome-run.c:69
-#, fuzzy
 msgid "Cancel"
-msgstr "キャッシュ"
+msgstr "キャンセル"
 
 #: mini-utils/gnome-run/gnome-run.c:80
-#, fuzzy
 msgid "Select a program to run"
-msgstr "起動時にスタートするプロジェクトを選択"
+msgstr "実行するプログラムを選択"
 
 #: mini-utils/gshutdown/gshutdown.c:86
 msgid "Shut Down"
@@ -1210,9 +1383,8 @@ msgid "Are you sure you want to reboot the system?"
 msgstr "システムを本当にリブートしていいのですね?"
 
 #: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:591
-#, fuzzy
 msgid "You must be the super-user (root) to shut down or restart the computer."
-msgstr "本当にコンピュータをシャットダウンしてしていいのですね?"
+msgstr "コンピュータをシャットダウン/リブートできるのはスーパーユーザ(root)だけです。"
 
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:186
@@ -1271,7 +1443,7 @@ msgstr "GNOMEに貢献した人々:"
 
 #: mini-utils/guname/guname.c:427
 msgid "GNOME: The GNU Network Object Model Environment"
-msgstr ""
+msgstr "GNOME: GNUネットワークオブジェクトモデル環境"
 
 #: mini-utils/guname/guname.c:451
 msgid "Email Information..."
@@ -1354,97 +1526,97 @@ msgstr "本当ですか?"
 msgid "Address to mail to:"
 msgstr "メイル宛先:"
 
-#: mini-utils/guname/info.c:37
+#: mini-utils/guname/info.c:38
 msgid "Distribution:"
 msgstr "ディストリビューション:"
 
-#: mini-utils/guname/info.c:38
+#: mini-utils/guname/info.c:39
 msgid "Operating System:"
 msgstr "オペレーティングシステム:"
 
-#: mini-utils/guname/info.c:39
+#: mini-utils/guname/info.c:40
 msgid "Distribution Version:"
 msgstr "ディストリビューションのバージョン"
 
-#: mini-utils/guname/info.c:40
+#: mini-utils/guname/info.c:41
 msgid "Operating System Version:"
 msgstr "オペレーティングシステムのバージョン:"
 
-#: mini-utils/guname/info.c:41
+#: mini-utils/guname/info.c:42
 msgid "Operating System Release:"
 msgstr "オペレーティングシステムのリリース番号:"
 
-#: mini-utils/guname/info.c:42
+#: mini-utils/guname/info.c:43
 msgid "Processor Type:"
 msgstr "プロセッサの種別:"
 
-#: mini-utils/guname/info.c:43
+#: mini-utils/guname/info.c:44
 msgid "Processor Speed:"
 msgstr "プロセッサの速度:"
 
-#: mini-utils/guname/info.c:44
+#: mini-utils/guname/info.c:45
 msgid "Host Name:"
 msgstr "ホスト名:"
 
-#: mini-utils/guname/info.c:45
+#: mini-utils/guname/info.c:46
 msgid "Domain Name:"
 msgstr "ドメイン名:"
 
-#: mini-utils/guname/info.c:46
+#: mini-utils/guname/info.c:47
 msgid "User Name:"
 msgstr "ユーザ名:"
 
-#: mini-utils/guname/info.c:47
+#: mini-utils/guname/info.c:48
 msgid "X Display Name:"
 msgstr "Xディスプレイ名:"
 
-#: mini-utils/guname/info.c:48
+#: mini-utils/guname/info.c:49
 msgid "System Status:"
 msgstr "システム状態:"
 
-#: mini-utils/guname/info.c:49
+#: mini-utils/guname/info.c:50
 msgid "Real Memory:"
 msgstr "実メモリ:"
 
-#: mini-utils/guname/info.c:50
+#: mini-utils/guname/info.c:51
 msgid "Swap Space (\"virtual memory\"):"
 msgstr "スワップ空間(\"仮想メモリ\"):"
 
-#: mini-utils/guname/info.c:51
+#: mini-utils/guname/info.c:52
 msgid "Total Memory:"
 msgstr "全メモリ:"
 
-#: mini-utils/guname/info.c:52
+#: mini-utils/guname/info.c:53
 msgid "Free Memory:"
 msgstr "空きメモリ:"
 
-#: mini-utils/guname/info.c:57
+#: mini-utils/guname/info.c:58
 msgid "Device"
 msgstr "デバイス"
 
-#: mini-utils/guname/info.c:58
+#: mini-utils/guname/info.c:59
 msgid "Size"
 msgstr "サイズ"
 
-#: mini-utils/guname/info.c:59
+#: mini-utils/guname/info.c:60
 msgid "Used space"
 msgstr "使用領域"
 
-#: mini-utils/guname/info.c:60
+#: mini-utils/guname/info.c:61
 msgid "Free space"
 msgstr "未使用領域"
 
-#: mini-utils/guname/info.c:61
+#: mini-utils/guname/info.c:62
 msgid "Percent free"
 msgstr "未使用割合"
 
-#: mini-utils/guname/info.c:62
+#: mini-utils/guname/info.c:63
 msgid "Mount point"
 msgstr "マウントポイント"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:170
+#: mini-utils/guname/info.c:182
 msgid "Unknown"
 msgstr "未知"
 
@@ -1518,7 +1690,7 @@ msgstr "   デバイス: "
 msgid "    Filesystem Type: "
 msgstr "   ファイルシステム形式: "
 
-#: mini-utils/gw/gw.c:144
+#: mini-utils/gw/gw.c:141
 msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
@@ -1526,42 +1698,40 @@ msgstr ""
 "\"w\"コマンドが見つかりません。\n"
 "\"w\"がないとこのプログラムは動きません。"
 
-#: mini-utils/gw/gw.c:177
-#, fuzzy
+#: mini-utils/gw/gw.c:174
 msgid "_Save..."
-msgstr "保存..."
+msgstr "保存...(_S)"
 
-#: mini-utils/gw/gw.c:177
+#: mini-utils/gw/gw.c:174
 msgid "Write information to disk"
 msgstr "情報をディスクに記録"
 
-#: mini-utils/gw/gw.c:205
-#, fuzzy
+#: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
-msgstr "ユーザ表示"
+msgstr "蠕いているユーザの一覧"
 
-#: mini-utils/gw/gw.c:222
+#: mini-utils/gw/gw.c:219
 msgid "Update Information"
 msgstr "情報の更新"
 
-#: mini-utils/gw/gw.c:445
+#: mini-utils/gw/gw.c:479
 msgid "Command Line"
 msgstr "コマンドライン"
 
 #. Create everything.
-#: mini-utils/gw/gw.c:453
+#: mini-utils/gw/gw.c:487
 msgid "Add some defaults"
 msgstr "デフォルトに何か追加"
 
-#: mini-utils/gw/gw.c:455
+#: mini-utils/gw/gw.c:489
 msgid "Delete"
 msgstr "削除"
 
-#: mini-utils/gw/gw.c:473
+#: mini-utils/gw/gw.c:507
 msgid "Command Editor"
 msgstr "コマンドエディタ"
 
-#: mini-utils/gw/gw.c:483
+#: mini-utils/gw/gw.c:517
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -1575,7 +1745,7 @@ msgstr ""
 "コマンドには、%u 選択したユーザを表すものとして、%t を\n"
 "tty を表すものとして指示することができます。"
 
-#: mini-utils/gw/gw.c:490
+#: mini-utils/gw/gw.c:524
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -1583,11 +1753,11 @@ msgstr ""
 "このボタンをクリックして\n"
 "コマンドの例を追加できます。"
 
-#: mini-utils/gw/gw.c:498
+#: mini-utils/gw/gw.c:532
 msgid "Menu items"
 msgstr "メニュー項目"
 
-#: mini-utils/gw/gw.c:526
+#: mini-utils/gw/gw.c:560
 msgid "Command"
 msgstr "コマンド"
 
@@ -1672,7 +1842,7 @@ msgstr "IOモード"
 
 #: mini-utils/idetool/idetool.c:323
 msgid "IRQ Unmask"
-msgstr ""
+msgstr "IRQアンマスク"
 
 #: mini-utils/idetool/idetool.c:324
 msgid "Multisector"
@@ -1700,197 +1870,3 @@ msgstr "スーパーユーザのみがこのツールを使えます"
 #: mini-utils/idetool/idetool.c:426
 msgid "You appear to have no IDE drives"
 msgstr "IDEドライブは付いていないようですね"
-
-#, fuzzy
-#~ msgid "Save search spec as..."
-#~ msgstr "名前をつけて保存(_A)..."
-
-#~ msgid "Exit"
-#~ msgstr "終了"
-
-#~ msgid "Preferences..."
-#~ msgstr "好み..."
-
-#~ msgid "File"
-#~ msgstr "ファイル"
-
-#, fuzzy
-#~ msgid "Edit"
-#~ msgstr "編集(_E)"
-
-#, fuzzy
-#~ msgid "Search"
-#~ msgstr "%sを探す"
-
-#~ msgid "Help"
-#~ msgstr "ヘルプ"
-
-#, fuzzy
-#~ msgid "Clear the search window"
-#~ msgstr "このウインドウを閉じる"
-
-#, fuzzy
-#~ msgid "Find Files"
-#~ msgstr "grep gnome_mdi_get_menubar *.[ch"
-
-#, fuzzy
-#~ msgid "Directory:"
-#~ msgstr "起点ディレクトリ:"
-
-#~ msgid "Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"
-#~ msgstr "エラー。/usr/X11R6/lib/X11/rgb.txt が読めません\n"
-
-#~ msgid "error in geometry string \"%s\"\n"
-#~ msgstr "ジオメトリ指定 \"%s\" にエラーがあります。\n"
-
-#~ msgid "PIO Mode"
-#~ msgstr "PIOモード"
-
-#~ msgid "_About..."
-#~ msgstr "情報...(_A)"
-
-#~ msgid "_Copy"
-#~ msgstr "コピー(_C)"
-
-#~ msgid "_Calculator"
-#~ msgstr "計算器(_C)"
-
-#~ msgid "_Find..."
-#~ msgstr "検索(_F)..."
-
-#~ msgid "Search for a string"
-#~ msgstr "文字列を探す"
-
-#~ msgid "_Replace..."
-#~ msgstr "置換(_R)..."
-
-#~ msgid "Replace a string"
-#~ msgstr "文字列を置換"
-
-#~ msgid "_Open"
-#~ msgstr "開く(_O)"
-
-#~ msgid "Open a file"
-#~ msgstr "ファイルを開く"
-
-#~ msgid "_Save"
-#~ msgstr "保存(_S)"
-
-#~ msgid "Save buffer "
-#~ msgstr "バッファの保存"
-
-#, fuzzy
-#~ msgid "Save _As..."
-#~ msgstr "名前をつけて保存..."
-
-#~ msgid "Save buffer under a different file name"
-#~ msgstr "バッファを別の名前のファイルに保存"
-
-#~ msgid "_Revert"
-#~ msgstr "戻す(_R)"
-
-#~ msgid "Revert buffer"
-#~ msgstr "バッファを戻す"
-
-#~ msgid "_Close"
-#~ msgstr "閉じる(_C)"
-
-#~ msgid "Close file"
-#~ msgstr "ファイルを閉じる"
-
-#~ msgid "_Preferences"
-#~ msgstr "設定(_P)"
-
-#~ msgid "Set user preferences"
-#~ msgstr "カスタム設定"
-
-#~ msgid "Exit GHex"
-#~ msgstr "GHexを終了"
-
-#~ msgid "About GHex"
-#~ msgstr "GHexについて"
-
-#~ msgid "_View"
-#~ msgstr "ビュー(_V)"
-
-#~ msgid "File_s"
-#~ msgstr "ファイル集(_S)"
-
-#~ msgid "_Preferences..."
-#~ msgstr "好み(_P)..."
-
-#~ msgid "C_ut"
-#~ msgstr "切り出し(_u)"
-
-#~ msgid "_Paste"
-#~ msgstr "貼り付け(_P)"
-
-#, fuzzy
-#~ msgid "P_roperties..."
-#~ msgstr "設定"
-
-#~ msgid "Clear Daily Counter"
-#~ msgstr "日毎のカウンターのクリア"
-
-#~ msgid "_Program"
-#~ msgstr "プログラム(_P)"
-
-#~ msgid "Tell about this application"
-#~ msgstr "このアプリケーションについて語る"
-
-#, fuzzy
-#~ msgid "_Open..."
-#~ msgstr "開く..."
-
-#~ msgid "Open a new file in this window"
-#~ msgstr "このウインドウに新しいファイルを開く"
-
-#~ msgid "Save file to disk"
-#~ msgstr "ファイルをディスクに保存"
-
-#~ msgid "Change application preferences"
-#~ msgstr "アプリケーションに関する好みを変更する"
-
-#~ msgid "Quit the application"
-#~ msgstr "アプリケーションを終了する"
-
-#~ msgid "Setting"
-#~ msgstr "設定"
-
-#~ msgid "About..."
-#~ msgstr "情報..."
-
-#, fuzzy
-#~ msgid "_Edit/_Group Data As/"
-#~ msgstr "データ表示は"
-
-#~ msgid "Discard session"
-#~ msgstr "セッションの破棄"
-
-#, fuzzy
-#~ msgid "File_s/"
-#~ msgstr "ファイル/"
-
-#~ msgid "_Exit"
-#~ msgstr "終了(_E)"
-
-#~ msgid "_Quit"
-#~ msgstr "終了(_Q)"
-
-#~ msgid "Pr_operties..."
-#~ msgstr "設定(_O)..."
-
-#~ msgid "View"
-#~ msgstr "ビュー"
-
-#~ msgid "Quit the application without saving"
-#~ msgstr "記録せずにアプリケーションを終了"
-
-#~ msgid "ERRONEUS STRING"
-#~ msgstr "問題のある文字"
-
-#~ msgid "Can not open configured font!"
-#~ msgstr "設定されたフォントを読めません!"
-
-#~ msgid "Enter a command to execute:"
-#~ msgstr "実行するコマンドを入力して下さい:"
