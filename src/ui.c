@@ -189,7 +189,7 @@ void create_find_dialog(FindDialog *dialog) {
 			gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
 		
 		gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
-						   GTK_SIGNAL_FUNC(set_find_type_cb), (gpointer)i);
+						   GTK_SIGNAL_FUNC(set_find_type_cb), GINT_TO_POINTER(i));
 		
 		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->type_button[i],
 						   TRUE, TRUE, 0);
@@ -254,7 +254,7 @@ void create_replace_dialog(ReplaceDialog *dialog) {
 			gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(dialog->type_button[i]), TRUE);
 		
 		gtk_signal_connect(GTK_OBJECT(dialog->type_button[i]), "clicked",
-						   GTK_SIGNAL_FUNC(set_replace_type_cb), (gpointer)i);
+						   GTK_SIGNAL_FUNC(set_replace_type_cb), GINT_TO_POINTER(i));
 		
 		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->type_button[i],
 						   TRUE, TRUE, 0);
