@@ -5,13 +5,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 2002-03-06 07:56+0100\n"
-"PO-Revision-Date: 2002-03-06 08:00+0100\n"
+"POT-Creation-Date: 2002-03-12 18:44+0100\n"
+"PO-Revision-Date: 2002-03-12 18:46+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
+
+#: ghex.desktop.in.h:1
+msgid "GHex"
+msgstr "GHex"
+
+#: ghex.desktop.in.h:2
+msgid "Gnome Hexadecimal Editor"
+msgstr "GNOME hexeditor"
 
 #: src/bonobo-mdi.c:490 src/bonobo-mdi.c:566 src/bonobo-mdi.c:1917
 #, c-format
@@ -177,6 +185,9 @@ msgid ""
 "\n"
 "Your changes will be lost if you don't save them."
 msgstr ""
+"Ønsker du å lagre endringene du har gjort i dokument «%s»?\n"
+"\n"
+"Dine endringer vil gå tapt hvis du ikke lagrer dem."
 
 #: src/ghex-mdi.c:506
 msgid "_Don't save"
@@ -396,14 +407,12 @@ msgid "Save the current file"
 msgstr "Lagre aktiv fil"
 
 #: src/ghex-ui.xml.h:52
-#, fuzzy
 msgid "Save the current file with a different name"
-msgstr "Fjern nåværende visning av bufferen"
+msgstr "Lagre aktiv fil med et nytt navn"
 
 #: src/ghex-ui.xml.h:53
-#, fuzzy
 msgid "Search for a string"
-msgstr "Søk etter %s"
+msgstr "Søk etter en streng"
 
 #: src/ghex-ui.xml.h:54 src/ui.c:85
 msgid "Show the character table"
@@ -475,38 +484,35 @@ msgstr "_Åpne..."
 
 #: src/ghex-ui.xml.h:71
 msgid "_Preferences"
-msgstr ""
+msgstr "_Brukervalg"
 
 #: src/ghex-ui.xml.h:72
-#, fuzzy
 msgid "_Print"
-msgstr "Skriver ut"
+msgstr "_Skriv ut"
 
 #: src/ghex-ui.xml.h:73
 msgid "_Redo"
-msgstr ""
+msgstr "_Gjenopprett"
 
 #: src/ghex-ui.xml.h:74
-#, fuzzy
 msgid "_Remove View"
-msgstr "Fjern visning"
+msgstr "Fje_rn visning"
 
 #: src/ghex-ui.xml.h:75
-#, fuzzy
 msgid "_Replace"
-msgstr "Erstatt"
+msgstr "E_rstatt"
 
 #: src/ghex-ui.xml.h:76
 msgid "_Revert"
-msgstr ""
+msgstr "Fo_rkast"
 
 #: src/ghex-ui.xml.h:77
 msgid "_Save"
-msgstr ""
+msgstr "_Lagre"
 
 #: src/ghex-ui.xml.h:78
 msgid "_Settings"
-msgstr ""
+msgstr "_Innstillinger"
 
 #: src/ghex-ui.xml.h:79 src/ui.c:102
 msgid "_Tools"
@@ -514,11 +520,11 @@ msgstr "Verk_tøy"
 
 #: src/ghex-ui.xml.h:80
 msgid "_Undo"
-msgstr ""
+msgstr "_Angre"
 
 #: src/ghex-ui.xml.h:81
 msgid "_View"
-msgstr ""
+msgstr "_Vis"
 
 #: src/ghex-ui.xml.h:82
 msgid "_Words"
@@ -549,10 +555,9 @@ msgstr ""
 "Filen %s er endret siden forrige lagring.\n"
 "Vil du lagre endringene?"
 
-#: src/main.c:334
-#, fuzzy
+#: src/main.c:338
 msgid "The gnome binary editor"
-msgstr "GHex, en binærfileditor"
+msgstr "GNOME binærfileditor"
 
 #: src/preferences.c:56
 msgid "Default"
@@ -656,7 +661,7 @@ msgstr "linjer (0 for ingen boks)"
 msgid "Printing"
 msgstr "Skriver ut"
 
-#: src/preferences.c:627
+#: src/preferences.c:629
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -664,16 +669,16 @@ msgstr ""
 "Formatstrengen for avstand inneholder en ugyldig formatspesifikatorer.\n"
 "Kun 'x', 'X', 'p', 'P', 'd' eller 'o' er tillat."
 
-#: src/preferences.c:670
+#: src/preferences.c:672
 msgid "Can not open desired font!"
 msgstr "Kan ikke åpne ønsket skrifttype!"
 
-#: src/print.c:56
+#: src/print.c:57
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Side: %i %i"
 
-#: src/print.c:207 src/print.c:221
+#: src/print.c:208 src/print.c:222
 #, c-format
 msgid ""
 "GHex could not find the font \"%s\".\n"
@@ -746,15 +751,15 @@ msgstr "Kan ikke åpne filen!"
 msgid "Can't open file for writing!"
 msgstr "Kan ikke åpne filen for skriving!"
 
-#: src/ui.c:711
+#: src/ui.c:708
 msgid "Print Hex Document"
 msgstr "Skriv ut Hex dokument"
 
-#: src/ui.c:716
+#: src/ui.c:713
 msgid "Pages"
 msgstr "Sider"
 
-#: src/ui.c:762
+#: src/ui.c:759
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Forhåndsvisning av utskrift"
