@@ -1,3 +1,4 @@
+# translation of ghex.HEAD.po to
 # translation of es.po to Spanish
 # GHex Spanish translation
 # Copyright © 2002, Free Software Foundation
@@ -5,21 +6,21 @@
 # Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
 # QA por Carlos Perelló Marín <carlos@gnome-db.org>, 2002.
 # Lucas 'Basurero' Vieites <lucas@asixinformatica.com>, 2002,2003.
-# Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005.
+# Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: es\n"
+"Project-Id-Version: ghex.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-13 22:57+0200\n"
-"PO-Revision-Date: 2004-07-05 13:19+0200\n"
-"Last-Translator: Lucas Vieites <lucas@asixinformatica.com>\n"
-"Language-Team: Spanish <traductores@es.gnome.org>\n"
+"POT-Creation-Date: 2006-01-13 02:39+0100\n"
+"PO-Revision-Date: 2006-01-13 10:25+0100\n"
+"Last-Translator: \n"
+"Language-Team:  <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.10\n"
+"X-Generator: KBabel 1.10.2\n"
 
 #: ../ghex.desktop.in.h:1
 msgid "GNOME Hexadecimal Editor"
@@ -285,7 +286,7 @@ msgstr "No hay documento activo para mover el cursor."
 
 #: ../src/findreplace.c:602
 msgid "No offset has been specified!"
-msgstr "No se ha especificado el offset."
+msgstr "No se ha especificado el desplazamiento."
 
 #: ../src/findreplace.c:626
 msgid "Can not position cursor beyond the End Of File!"
@@ -297,7 +298,7 @@ msgid ""
 "  - a positive decimal number, or\n"
 "  - a hex number, beginning with '0x'"
 msgstr ""
-"Solamente puede indicar el offset como:\n"
+"Solamente puede indicar el desplazamiento como:\n"
 " - un número decimal positivo, o\n"
 " - un número hexadecimal, que empiece por «0x»"
 
@@ -708,9 +709,7 @@ msgstr ""
 msgid ""
 "Can not open file:\n"
 "%s"
-msgstr ""
-"No se puede abrir el archivo:\\ "
-"%s"
+msgstr "No se puede abrir el archivo:\\ %s"
 
 #: ../src/ghex-window.c:500 ../src/ghex-window.c:947
 msgid "GHex"
@@ -719,7 +718,7 @@ msgstr "GHex"
 #: ../src/ghex-window.c:647
 #, c-format
 msgid "Offset: %s"
-msgstr "Offset: %s"
+msgstr "Desplazamiento: %s"
 
 #: ../src/ghex-window.c:650
 #, c-format
