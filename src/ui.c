@@ -241,7 +241,7 @@ about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 
 	if(!about) {
 		about = gnome_about_new ( _("GHex, a binary file editor"), VERSION,
-								  "Copyright 1998 - 2004 Jaka Mo\304\215nik",
+								  "Copyright 1998 - 2006 Jaka Mo\304\215nik",
 								  _("Released under the terms of GNU Public License"),
 								  authors, NULL, NULL, NULL);
 		g_signal_connect(G_OBJECT(about), "destroy",
