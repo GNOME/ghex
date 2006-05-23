@@ -111,7 +111,7 @@ ghex_window_drag_data_received(GtkWidget *widget,
                                              GTK_MESSAGE_ERROR,
                                              GTK_BUTTONS_OK,
                                              _("Can not open file:\n%s"),
-                                             *filename);
+                                             filename);
                 gtk_widget_show(dlg);
                 gtk_dialog_run(GTK_DIALOG(dlg));
                 gtk_widget_destroy(dlg);

@@ -199,8 +199,7 @@ get_document_attributes(HexDocument *doc)
 		return FALSE;
 
 	if(!stat(doc->file_name, &stats) &&
-	   S_ISREG(stats.st_mode) &&
-	   stats.st_size > 0) {
+	   S_ISREG(stats.st_mode)) {
 		doc->file_size = stats.st_size;
 
 		return TRUE;
