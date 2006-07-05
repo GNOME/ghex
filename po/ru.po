@@ -1,665 +1,740 @@
-# Copyright (C) 1999-2003 Free Software Foundation, Inc.
-# Valek Filppov <frob@df.ru>, 1999-2003
+# Copyright (C) 1999-2006 Free Software Foundation, Inc.
+# Valek Filppov <frob@df.ru>, 1999-2003, 2006
 # Sergey Panov <sipan@mit.edu>, 1999,2000.
 # Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2003-07-03 21:05+0400\n"
-"PO-Revision-Date: 2003-07-03 21:12+0400\n"
-"Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-07-06 03:39+0400\n"
+"PO-Revision-Date: 2006-07-05 21:16+0400\n"
+"Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: ghex.desktop.in.h:1
+#: ../ghex.desktop.in.h:1
 msgid "GNOME Hexadecimal Editor"
 msgstr "Шестнадцатиричный редактор для среды GNOME"
 
-#: ghex.desktop.in.h:2
+#: ../ghex.desktop.in.h:2
 msgid "Hex Editor"
 msgstr "Шестнадцатиричный редактор"
 
-#: src/chartable.c:140
+#: ../src/chartable.c:143
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:140
+#: ../src/chartable.c:143
 msgid "Hex"
 msgstr "Шестнадц."
 
-#: src/chartable.c:140 src/preferences.c:164
+#: ../src/chartable.c:143 ../src/preferences.c:143
 msgid "Decimal"
 msgstr "Десятичное"
 
-#: src/chartable.c:141
+#: ../src/chartable.c:144
 msgid "Octal"
 msgstr "Восьмеричное"
 
-#: src/chartable.c:141
+#: ../src/chartable.c:144
 msgid "Binary"
 msgstr "Двоичное"
 
-#: src/chartable.c:157
+#: ../src/chartable.c:160
 msgid "Character table"
 msgstr "Таблица символов"
 
-#: src/converter.c:209
+#: ../src/converter.c:230
 msgid "Base Converter"
 msgstr "Основной преобразователь"
 
 #. entries
-#: src/converter.c:228
+#: ../src/converter.c:251
 msgid "_Binary:"
 msgstr "_Двоичное:"
 
-#: src/converter.c:230
+#: ../src/converter.c:253
 msgid "_Octal:"
 msgstr "_Восьмеричное:"
 
-#: src/converter.c:232
+#: ../src/converter.c:255
 msgid "_Decimal:"
 msgstr "Де_сятичное:"
 
-#: src/converter.c:234
+#: ../src/converter.c:257
 msgid "_Hex:"
 msgstr "_Шестнадцатиричное:"
 
-#: src/converter.c:236
+#: ../src/converter.c:259
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:240
+#: ../src/converter.c:263
 msgid "_Get cursor value"
 msgstr "Вз_ять положение курсора"
 
-#: src/converter.c:254
+#: ../src/converter.c:277
 msgid "Get cursor value"
 msgstr "Взять положение курсора"
 
-#: src/converter.c:254
+#: ../src/converter.c:277
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr ""
 "Получает значение в позиции курсора в двоичном, восьмеричном, десятичном, "
 "шестнадцатиричном и ACSII представлении"
 
-#: src/converter.c:387
+#: ../src/converter.c:417
 msgid "ERROR"
 msgstr "ОШИБКА"
 
-#: src/findreplace.c:60 src/ui.c:891
+#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:936
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): поиск данных"
 
-#: src/findreplace.c:69
-#, c-format
-msgid "Search for %s"
-msgstr "Поиск %s"
+#: ../src/findreplace.c:102 ../src/findreplace.c:162 ../src/findreplace.c:358
+msgid "Find String"
+msgstr "Найти строку"
 
-#: src/findreplace.c:86
+#: ../src/findreplace.c:109 ../src/findreplace.c:259
 msgid "Find _Next"
 msgstr "Найти следующее"
 
-#: src/findreplace.c:94
+#: ../src/findreplace.c:116 ../src/findreplace.c:268
 msgid "Find _Previous"
 msgstr "Найти предыдущее"
 
-#: src/findreplace.c:118 src/findreplace.c:210
+#: ../src/findreplace.c:139 ../src/findreplace.c:412
 msgid "Find Data"
 msgstr "Найти данные"
 
-#: src/findreplace.c:118 src/findreplace.c:210
+#: ../src/findreplace.c:139 ../src/findreplace.c:412
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Введите шестнадцатиричные или ASCII данные для поиска"
 
-#: src/findreplace.c:119
+#: ../src/findreplace.c:140
 msgid "Find Next"
 msgstr "Найти следующее"
 
-#: src/findreplace.c:119 src/findreplace.c:212
+#: ../src/findreplace.c:140 ../src/findreplace.c:414
 msgid "Finds the next occurrence of the search string"
 msgstr "Находит следующее вхождение строки поиска"
 
-#: src/findreplace.c:120
+#: ../src/findreplace.c:141
 msgid "Find previous"
 msgstr "Найти предыдущее"
 
-#: src/findreplace.c:120
+#: ../src/findreplace.c:141
 msgid "Finds the previous occurrence of the search string "
 msgstr "Находит предыдущее вхождение строки поиска"
 
-#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
+#: ../src/findreplace.c:142 ../src/findreplace.c:417 ../src/findreplace.c:465
 msgid "Cancel"
 msgstr "Отменить"
 
-#: src/findreplace.c:121
+#: ../src/findreplace.c:142
 msgid "Closes find data window"
 msgstr "Закрывает окно поиска"
 
-#: src/findreplace.c:140 src/ui.c:889
+#: ../src/findreplace.c:158
+#, c-format
+msgid "GHex (%s): Find Data: Add search"
+msgstr "GHex (%s): поиск данных: добавить поиск"
+
+#: ../src/findreplace.c:180
+msgid "Add"
+msgstr "Добавить"
+
+#: ../src/findreplace.c:236
+msgid "Search String"
+msgstr "Найти строку"
+
+#: ../src/findreplace.c:244
+msgid "Highlight Colour"
+msgstr "Цвет выделения"
+
+#: ../src/findreplace.c:281
+msgid "_Add New"
+msgstr "Доб_авить окно просмотра"
+
+#: ../src/findreplace.c:290
+msgid "_Remove Selected"
+msgstr "У_брать выделенное"
+
+#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:9
+msgid "Close"
+msgstr "Закрыть"
+
+#: ../src/findreplace.c:310
+msgid "Closes advanced find window"
+msgstr "Закрывает окно поиска"
+
+#: ../src/findreplace.c:354 ../src/ui.c:934
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): найти и заменить данные"
 
-#: src/findreplace.c:155
-#, c-format
-msgid "Replace %s"
-msgstr "Заменить %s"
+#: ../src/findreplace.c:367
+msgid "Replace With"
+msgstr "Заменить на"
 
-#: src/findreplace.c:172
+#: ../src/findreplace.c:374
 msgid "Find _next"
 msgstr "Найти следующее"
 
-#: src/findreplace.c:180 src/ghex-ui.xml.h:84
+#: ../src/findreplace.c:382 ../src/ghex-ui.xml.h:89
 msgid "_Replace"
 msgstr "_Заменить"
 
-#: src/findreplace.c:188
+#: ../src/findreplace.c:390
 msgid "Replace _All"
 msgstr "Заменить все"
 
-#: src/findreplace.c:211
+#: ../src/findreplace.c:413
 msgid "Replace Data"
 msgstr "Заменить данные"
 
-#: src/findreplace.c:211
+#: ../src/findreplace.c:413
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "Введите шестнадцатиричные или ASCII данные для замены"
 
-#: src/findreplace.c:212
+#: ../src/findreplace.c:414
 msgid "Find next"
 msgstr "Найти следующее"
 
-#: src/findreplace.c:213 src/ghex-ui.xml.h:48
+#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:49
 msgid "Replace"
 msgstr "Заменить"
 
-#: src/findreplace.c:213
+#: ../src/findreplace.c:415
 msgid "Replaces the search string with the replace string"
 msgstr "Заменяет строку поиска строкой замены"
 
-#: src/findreplace.c:214
+#: ../src/findreplace.c:416
 msgid "Replace All"
 msgstr "Заменить все"
 
-#: src/findreplace.c:214
+#: ../src/findreplace.c:416
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Заменяет все вхождения строки поиска строкой замены"
 
-#: src/findreplace.c:215
+#: ../src/findreplace.c:417
 msgid "Closes find and replace data window"
 msgstr "Закрывает окно поиска и замены"
 
-#: src/findreplace.c:231 src/ui.c:887
+#: ../src/findreplace.c:433 ../src/ui.c:932
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): перейти к байту"
 
-#: src/findreplace.c:261
+#: ../src/findreplace.c:463
 msgid "Jump to byte"
 msgstr "Перейти к байту"
 
-#: src/findreplace.c:261
+#: ../src/findreplace.c:463
 msgid "Enter the byte to jump to"
 msgstr "Введите байт, к которому надо перейти"
 
-#: src/findreplace.c:262
+#: ../src/findreplace.c:464
 msgid "OK"
 msgstr "OK"
 
-#: src/findreplace.c:262
+#: ../src/findreplace.c:464
 msgid "Jumps to the specified byte"
 msgstr "Переходит к указанному байту"
 
-#: src/findreplace.c:263
+#: ../src/findreplace.c:465
 msgid "Closes jump to byte window"
 msgstr "Закрывает окно перехода"
 
-#: src/findreplace.c:329 src/findreplace.c:357 src/findreplace.c:413
+#: ../src/findreplace.c:528 ../src/findreplace.c:562 ../src/findreplace.c:646
 msgid "There is no active document to search!"
 msgstr "Нет активного документа для поиска!"
 
-#: src/findreplace.c:337 src/findreplace.c:365
-msgid "The string is not appropriate for the selected data type!"
-msgstr "Строка не соответствует выбранному типу данных!"
+#: ../src/findreplace.c:535 ../src/findreplace.c:569 ../src/findreplace.c:653
+#: ../src/findreplace.c:687 ../src/findreplace.c:732
+msgid "There is no string to search for!"
+msgstr "Нет строки для поиска!"
 
-#: src/findreplace.c:344 src/findreplace.c:430
+#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:851
 msgid "End Of File reached"
 msgstr "Достигнут конец файла"
 
-#: src/findreplace.c:345 src/findreplace.c:374 src/findreplace.c:429
+#: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
+#: ../src/findreplace.c:852 ../src/findreplace.c:875
 msgid "String was not found!\n"
 msgstr "Строка не найдена!\n"
 
-#: src/findreplace.c:373
+#: ../src/findreplace.c:580 ../src/findreplace.c:874
 msgid "Beginning Of File reached"
 msgstr "Достигнуто начало файла"
 
-#: src/findreplace.c:385
+#: ../src/findreplace.c:596
 msgid "There is no active document to move the cursor in!"
 msgstr "Нет активного документа для перемещения курсора!"
 
-#: src/findreplace.c:390
+#: ../src/findreplace.c:602
 msgid "No offset has been specified!"
 msgstr "Не было указано смещение!"
 
-#: src/findreplace.c:397
+#: ../src/findreplace.c:626
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Невозможно установить курсор дальше конца файла!"
 
-#: src/findreplace.c:402
-msgid "The offset must be a positive integer value!"
-msgstr "Смещение должно быть положительным целым числом!"
+#: ../src/findreplace.c:633
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x'"
+msgstr ""
+"Отступ может быть задан только как:\n"
+" - положительное десятичное число, или\n"
+" - шестнадцатиричное число начинающееся с \"0x\""
 
-#: src/findreplace.c:421
-msgid "There seems to be no string to search for!"
-msgstr "Это означает, что нет строки для поиска!"
-
-#: src/findreplace.c:443
+#: ../src/findreplace.c:678
 msgid "There is no active buffer to replace data in!"
 msgstr "Нет активных буферов для замены данных!"
 
-#: src/findreplace.c:455 src/findreplace.c:496
-msgid "Strings are not appropriate for the selected data type!"
-msgstr "Строки не соответствуют выбранному типу данных!"
-
-#: src/findreplace.c:470 src/findreplace.c:471
+#: ../src/findreplace.c:703 ../src/findreplace.c:704
 msgid "End Of File reached!"
 msgstr "Достигнут конец файла!"
 
-#: src/findreplace.c:484
+#: ../src/findreplace.c:723
 msgid "There is no active document to replace data in!"
 msgstr "Нет активного документа для замены данных!"
 
-#: src/findreplace.c:516
-msgid "No occurences were found."
+#: ../src/findreplace.c:753
+msgid "No occurrences were found."
 msgstr "Вхождений не найдено."
 
-#: src/findreplace.c:519
+#: ../src/findreplace.c:756
 #, c-format
-msgid "Replaced %d occurencies."
+msgid "Replaced %d occurrences."
 msgstr "Заменено %d вхождений."
 
-#: src/ghex-ui.xml.h:1
+#: ../src/findreplace.c:794
+msgid "No string to search for!"
+msgstr "Нет строки для поиска!"
+
+#: ../src/ghex-ui.xml.h:1
 msgid "About this application"
 msgstr "Получить информацию об этой программе"
 
-#: src/ghex-ui.xml.h:2
+#: ../src/ghex-ui.xml.h:2
 msgid "Add View"
 msgstr "Добавить окно просмотра"
 
-#: src/ghex-ui.xml.h:3
+#: ../src/ghex-ui.xml.h:3
 msgid "Add a new view to the buffer"
 msgstr "Добавить новое окно просмотра буфера"
 
-#: src/ghex-ui.xml.h:4 src/ui.c:64
+#: ../src/ghex-ui.xml.h:4
+msgid "Advanced Find"
+msgstr "Расширенный поиск"
+
+#: ../src/ghex-ui.xml.h:5 ../src/ui.c:87
 msgid "Bytes"
 msgstr "Байты"
 
-#: src/ghex-ui.xml.h:5
+#: ../src/ghex-ui.xml.h:6
 msgid "C_ut"
 msgstr "Вырезать"
 
-#: src/ghex-ui.xml.h:6
+#: ../src/ghex-ui.xml.h:7
 msgid "Character Table..."
 msgstr "Таблица символов..."
 
-#: src/ghex-ui.xml.h:7
+#: ../src/ghex-ui.xml.h:8
 msgid "Character _Table..."
 msgstr "_Таблица символов..."
 
-#: src/ghex-ui.xml.h:8
-msgid "Close"
-msgstr "Закрыть"
-
-#: src/ghex-ui.xml.h:9
+#: ../src/ghex-ui.xml.h:10
 msgid "Close the current file"
 msgstr "Закрыть текущий файл"
 
-#: src/ghex-ui.xml.h:10
+#: ../src/ghex-ui.xml.h:11
 msgid "Configure the application"
 msgstr "Настроить приложение"
 
-#: src/ghex-ui.xml.h:11
+#: ../src/ghex-ui.xml.h:12
 msgid "Contents"
 msgstr "Содержание"
 
-#: src/ghex-ui.xml.h:12
+#: ../src/ghex-ui.xml.h:13
 msgid "Converter..."
 msgstr "Преобразователь..."
 
-#: src/ghex-ui.xml.h:13
+#: ../src/ghex-ui.xml.h:14
 msgid "Copy"
 msgstr "Скопировать"
 
-#: src/ghex-ui.xml.h:14
+#: ../src/ghex-ui.xml.h:15
 msgid "Copy selection to clipboard"
 msgstr "Скопировать выделение в буфер обмена"
 
-#: src/ghex-ui.xml.h:15
+#: ../src/ghex-ui.xml.h:16
 msgid "Cut"
 msgstr "Вырезать"
 
-#: src/ghex-ui.xml.h:16
+#: ../src/ghex-ui.xml.h:17
 msgid "Cut selection"
 msgstr "Вырезать выделение"
 
-#: src/ghex-ui.xml.h:17
+#: ../src/ghex-ui.xml.h:18
 msgid "E_xit"
 msgstr "В_ыйти"
 
-#: src/ghex-ui.xml.h:18
+#: ../src/ghex-ui.xml.h:19
 msgid "Exit"
 msgstr "Выйти"
 
-#: src/ghex-ui.xml.h:19
+#: ../src/ghex-ui.xml.h:20
 msgid "Exit the program"
 msgstr "Выйти из программы"
 
-#: src/ghex-ui.xml.h:20
+#: ../src/ghex-ui.xml.h:21
 msgid "Export data to HTML source"
 msgstr "Экспортировать данные в формат HTML"
 
-#: src/ghex-ui.xml.h:21
+#: ../src/ghex-ui.xml.h:22
 msgid "Export to HTML..."
 msgstr "Экспортировать в формат HTML..."
 
-#: src/ghex-ui.xml.h:22
+#: ../src/ghex-ui.xml.h:23
 msgid "Find"
 msgstr "Найти"
 
-#: src/ghex-ui.xml.h:23
+#: ../src/ghex-ui.xml.h:24
 msgid "Goto Byte"
 msgstr "Перейти к байту"
 
-#: src/ghex-ui.xml.h:24
+#: ../src/ghex-ui.xml.h:25
 msgid "Group data by 16 bits"
 msgstr "Группировать данные по 16 бит"
 
-#: src/ghex-ui.xml.h:25
+#: ../src/ghex-ui.xml.h:26
 msgid "Group data by 32 bits"
 msgstr "Группировать данные по 32 бита"
 
-#: src/ghex-ui.xml.h:26
+#: ../src/ghex-ui.xml.h:27
 msgid "Group data by 8 bits"
 msgstr "Группировать данные по 8 бит"
 
-#: src/ghex-ui.xml.h:27
+#: ../src/ghex-ui.xml.h:28
 msgid "Help Chat"
 msgstr "Справочный чат"
 
-#: src/ghex-ui.xml.h:28
+#: ../src/ghex-ui.xml.h:29
 msgid "Help on this application"
 msgstr "Получить справку по этой программе"
 
-#: src/ghex-ui.xml.h:29
+#: ../src/ghex-ui.xml.h:30
 msgid "Insert Mode"
 msgstr "Режим вставки"
 
-#: src/ghex-ui.xml.h:30
+#: ../src/ghex-ui.xml.h:31
 msgid "Insert/overwrite data"
 msgstr "Вставлять/переписывать данные"
 
-#: src/ghex-ui.xml.h:31
+#: ../src/ghex-ui.xml.h:32
 msgid "Jump to a certain position"
 msgstr "Перейти в указанную позицию"
 
-#: src/ghex-ui.xml.h:32 src/ui.c:66
+#: ../src/ghex-ui.xml.h:33 ../src/ui.c:89
 msgid "Longwords"
 msgstr "Двойные слова"
 
-#: src/ghex-ui.xml.h:33
+#: ../src/ghex-ui.xml.h:34
 msgid "Open"
 msgstr "Открыть"
 
-#: src/ghex-ui.xml.h:34
+#: ../src/ghex-ui.xml.h:35
 msgid "Open a file"
 msgstr "Открыть файл"
 
-#: src/ghex-ui.xml.h:35
+#: ../src/ghex-ui.xml.h:36
 msgid "Open base conversion dialog"
 msgstr "Открыть основной диалог преобразования"
 
-#: src/ghex-ui.xml.h:36
+#: ../src/ghex-ui.xml.h:37
 msgid "Paste"
 msgstr "Вставить"
 
-#: src/ghex-ui.xml.h:37
+#: ../src/ghex-ui.xml.h:38
 msgid "Paste data from clipboard"
 msgstr "Вставить данные из буфера обмена"
 
-#: src/ghex-ui.xml.h:38
+#: ../src/ghex-ui.xml.h:39
 msgid "Preferences"
 msgstr "Настроить"
 
-#: src/ghex-ui.xml.h:39
+#: ../src/ghex-ui.xml.h:40
 msgid "Preview printed data"
 msgstr "Просмотреть образец данных на печати"
 
-#: src/ghex-ui.xml.h:40
+#: ../src/ghex-ui.xml.h:41
 msgid "Print"
 msgstr "Напечатать"
 
-#: src/ghex-ui.xml.h:41
+#: ../src/ghex-ui.xml.h:42
 msgid "Print Previe_w..."
 msgstr "Просмотреть образе_ц печати..."
 
-#: src/ghex-ui.xml.h:42
+#: ../src/ghex-ui.xml.h:43
 msgid "Print Preview..."
 msgstr "Просмотреть образец печати..."
 
-#: src/ghex-ui.xml.h:43
+#: ../src/ghex-ui.xml.h:44
 msgid "Print the current file"
 msgstr "Напечатать текущий файл"
 
-#: src/ghex-ui.xml.h:44
+#: ../src/ghex-ui.xml.h:45
 msgid "Redo"
 msgstr "Возвратить"
 
-#: src/ghex-ui.xml.h:45
+#: ../src/ghex-ui.xml.h:46
 msgid "Redo the undone action"
 msgstr "Возвратить отменённое действие"
 
-#: src/ghex-ui.xml.h:46
+#: ../src/ghex-ui.xml.h:47
 msgid "Remove View"
 msgstr "Удалить окно просмотра"
 
-#: src/ghex-ui.xml.h:47
+#: ../src/ghex-ui.xml.h:48
 msgid "Remove the current view of the buffer"
 msgstr "Удалить текущее окно просмотра буфера"
 
-#: src/ghex-ui.xml.h:49
+#: ../src/ghex-ui.xml.h:50
 msgid "Replace a string"
 msgstr "Заменить строку"
 
-#: src/ghex-ui.xml.h:50
+#: ../src/ghex-ui.xml.h:51
 msgid "Revert"
 msgstr "Восстановить"
 
-#: src/ghex-ui.xml.h:51
+#: ../src/ghex-ui.xml.h:52
 msgid "Revert to a saved version of the file"
 msgstr "Восстановить из сохранённой версии файла"
 
-#: src/ghex-ui.xml.h:52
+#: ../src/ghex-ui.xml.h:53
 msgid "Save"
 msgstr "Сохранить"
 
-#: src/ghex-ui.xml.h:53
+#: ../src/ghex-ui.xml.h:54
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: src/ghex-ui.xml.h:54
+#: ../src/ghex-ui.xml.h:55
 msgid "Save As _HTML..."
 msgstr "Сохранить как _HTML..."
 
-#: src/ghex-ui.xml.h:55
+#: ../src/ghex-ui.xml.h:56
 msgid "Save _As..."
 msgstr "Сохранить _как..."
 
-#: src/ghex-ui.xml.h:56
+#: ../src/ghex-ui.xml.h:57
 msgid "Save the current file"
 msgstr "Сохранить текущий файл"
 
-#: src/ghex-ui.xml.h:57
+#: ../src/ghex-ui.xml.h:58
 msgid "Save the current file with a different name"
 msgstr "Сохранить текущий файл под другим именем"
 
-#: src/ghex-ui.xml.h:58
+#: ../src/ghex-ui.xml.h:59
 msgid "Search for a string"
 msgstr "Найти строку"
 
-#: src/ghex-ui.xml.h:59
+#: ../src/ghex-ui.xml.h:60
 msgid "Show the character table"
 msgstr "Показать таблицу символов"
 
-#: src/ghex-ui.xml.h:60
+#: ../src/ghex-ui.xml.h:61
+msgid "Show the type conversion dialog in the edit window"
+msgstr "Показать диалог преобразования типов в окне редактирования"
+
+#: ../src/ghex-ui.xml.h:62
+msgid "Type Conversion Dialog..."
+msgstr "Диалог преобразования типов..."
+
+#: ../src/ghex-ui.xml.h:63
+msgid "Type Conversion _Dialog"
+msgstr "Диалог преобразования типов"
+
+#: ../src/ghex-ui.xml.h:64
 msgid "Undo"
 msgstr "Откатить"
 
-#: src/ghex-ui.xml.h:61
+#: ../src/ghex-ui.xml.h:65
 msgid "Undo the last action"
 msgstr "Отменить последнее действие"
 
-#: src/ghex-ui.xml.h:62 src/ui.c:65
+#: ../src/ghex-ui.xml.h:66 ../src/ui.c:88
 msgid "Words"
 msgstr "Слова"
 
-#: src/ghex-ui.xml.h:63
+#: ../src/ghex-ui.xml.h:67
 msgid "_About"
 msgstr "_О программе..."
 
-#: src/ghex-ui.xml.h:64
+#: ../src/ghex-ui.xml.h:68
 msgid "_Add View"
 msgstr "Доб_авить окно просмотра"
 
-#: src/ghex-ui.xml.h:65
+#: ../src/ghex-ui.xml.h:69
+msgid "_Advanced Find"
+msgstr "Расширенный поиск"
+
+#: ../src/ghex-ui.xml.h:70
 msgid "_Base Converter"
 msgstr "_Основной преобразователь"
 
-#: src/ghex-ui.xml.h:66
+#: ../src/ghex-ui.xml.h:71
 msgid "_Bytes"
 msgstr "_Байты"
 
-#: src/ghex-ui.xml.h:67
+#: ../src/ghex-ui.xml.h:72
 msgid "_Close"
 msgstr "_Закрыть"
 
-#: src/ghex-ui.xml.h:68
+#: ../src/ghex-ui.xml.h:73
 msgid "_Contents"
 msgstr "_Содержание"
 
-#: src/ghex-ui.xml.h:69
+#: ../src/ghex-ui.xml.h:74
 msgid "_Copy"
 msgstr "Скопировать"
 
-#: src/ghex-ui.xml.h:70
+#: ../src/ghex-ui.xml.h:75
 msgid "_Edit"
 msgstr "_Правка"
 
-#: src/ghex-ui.xml.h:71
+#: ../src/ghex-ui.xml.h:76
 msgid "_File"
 msgstr "_Файл"
 
-#: src/ghex-ui.xml.h:72
+#: ../src/ghex-ui.xml.h:77
 msgid "_Find"
 msgstr "_Найти"
 
-#: src/ghex-ui.xml.h:73
+#: ../src/ghex-ui.xml.h:78
 msgid "_Goto Byte..."
 msgstr "Перейти _к байту..."
 
-#: src/ghex-ui.xml.h:74
+#: ../src/ghex-ui.xml.h:79
 msgid "_Group Data As"
 msgstr "_Группировать данные как..."
 
-#: src/ghex-ui.xml.h:75
+#: ../src/ghex-ui.xml.h:80
 msgid "_Help"
 msgstr "_Справка"
 
-#: src/ghex-ui.xml.h:76
+#: ../src/ghex-ui.xml.h:81
 msgid "_Insert Mode"
 msgstr "Режим вст_авки"
 
-#: src/ghex-ui.xml.h:77
+#: ../src/ghex-ui.xml.h:82
 msgid "_Longwords"
 msgstr "_Двойные слова"
 
-#: src/ghex-ui.xml.h:78
+#: ../src/ghex-ui.xml.h:83
 msgid "_Open..."
 msgstr "_Открыть..."
 
-#: src/ghex-ui.xml.h:79
+#: ../src/ghex-ui.xml.h:84
 msgid "_Paste"
 msgstr "Вставить"
 
-#: src/ghex-ui.xml.h:80
+#: ../src/ghex-ui.xml.h:85
 msgid "_Preferences"
 msgstr "_Настроить"
 
-#: src/ghex-ui.xml.h:81
+#: ../src/ghex-ui.xml.h:86
 msgid "_Print"
 msgstr "На_печатать"
 
-#: src/ghex-ui.xml.h:82
+#: ../src/ghex-ui.xml.h:87
 msgid "_Redo"
 msgstr "Возв_ратить"
 
-#: src/ghex-ui.xml.h:83
+#: ../src/ghex-ui.xml.h:88
 msgid "_Remove View"
 msgstr "У_брать окно просмотра"
 
-#: src/ghex-ui.xml.h:85
+#: ../src/ghex-ui.xml.h:90
 msgid "_Revert"
 msgstr "Восста_новить"
 
-#: src/ghex-ui.xml.h:86
+#: ../src/ghex-ui.xml.h:91
 msgid "_Save"
 msgstr "Со_хранить"
 
-#: src/ghex-ui.xml.h:87
+#: ../src/ghex-ui.xml.h:92
 msgid "_Undo"
 msgstr "_Откатить"
 
-#: src/ghex-ui.xml.h:88
+#: ../src/ghex-ui.xml.h:93
 msgid "_View"
 msgstr "_Вид"
 
-#: src/ghex-ui.xml.h:89
+#: ../src/ghex-ui.xml.h:94
 msgid "_Windows"
 msgstr "_Окна"
 
-#: src/ghex-ui.xml.h:90
+#: ../src/ghex-ui.xml.h:95
 msgid "_Words"
 msgstr "_Слова"
 
-#: src/ghex-window.c:438 src/ghex-window.c:816
+#: ../src/ghex-window.c:94
+#, c-format
+msgid ""
+"Can not open URI:\n"
+"%s"
+msgstr ""
+"Невозможно открыть URI:\n"
+"%s"
+
+#: ../src/ghex-window.c:113
+#, c-format
+msgid ""
+"Can not open file:\n"
+"%s"
+msgstr ""
+"Невозможно открыть файл:\n"
+"%s"
+
+#: ../src/ghex-window.c:500 ../src/ghex-window.c:947
 msgid "GHex"
 msgstr "GHex"
 
-#: src/ghex-window.c:571
+#: ../src/ghex-window.c:647
 #, c-format
 msgid "Offset: %s"
 msgstr "Отступ: %s"
 
-#: src/ghex-window.c:770
+#: ../src/ghex-window.c:650
+#, c-format
+msgid "; %s bytes from %s to %s selected"
+msgstr "; выбрано %s байт с %s до %s"
+
+#: ../src/ghex-window.c:901
 #, c-format
 msgid "Activate file %s"
 msgstr "Активировать файл %s"
 
-#: src/ghex-window.c:812
+#: ../src/ghex-window.c:943
 #, c-format
-msgid "GHex - %s"
-msgstr "GHex - %s"
+msgid "%s - GHex"
+msgstr "%s - GHex"
 
-#: src/ghex-window.c:944
+#: ../src/ghex-window.c:1072
 msgid "Select a file to save buffer as"
 msgstr "Выбрать файл для сохранения буфера"
 
-#: src/ghex-window.c:974
+#: ../src/ghex-window.c:1128
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -668,20 +743,20 @@ msgstr ""
 "Файл %s уже существует.\n"
 "Переписать его?"
 
-#: src/ghex-window.c:1009 src/ui.c:356
+#: ../src/ghex-window.c:1161 ../src/ui.c:353
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Сохранить буфер в файле %s"
 
-#: src/ghex-window.c:1015
+#: ../src/ghex-window.c:1167
 msgid "Error saving file!"
 msgstr "Ошибка сохранения файла!"
 
-#: src/ghex-window.c:1021
+#: ../src/ghex-window.c:1173
 msgid "Can't open file for writing!"
 msgstr "Невозможно открыть файл для записи!"
 
-#: src/ghex-window.c:1048
+#: ../src/ghex-window.c:1218
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -690,215 +765,321 @@ msgstr ""
 "Файл %s был изменен со времени последнего сохранения.\n"
 "Сохранить изменения?"
 
-#: src/ghex-window.c:1058
+#: ../src/ghex-window.c:1222
 msgid "Do_n't save"
 msgstr "_Не сохранять"
 
-#: src/ghex-window.c:1078 src/ui.c:344
+#: ../src/ghex-window.c:1242 ../src/ui.c:341
 msgid "You don't have the permissions to save the file!"
 msgstr "У вас недостаточно прав для сохранения файла!"
 
-#: src/ghex-window.c:1082 src/ui.c:349
+#: ../src/ghex-window.c:1246 ../src/ui.c:346
 msgid "An error occured while saving file!"
 msgstr "При сохранении файла возникла ошибка!"
 
-#: src/hex-document.c:746
+#: ../src/gnome-print-font-dialog.c:111
+msgid "_Insert a new preview phrase."
+msgstr "Вставить новую фразу для просмотра."
+
+#: ../src/gnome-print-font-dialog.c:117
+msgid "Modify preview phrase..."
+msgstr "Изменить фразу для просмотра..."
+
+#: ../src/gnome-print-font-dialog.c:171
+msgid "Preview"
+msgstr "Просмотр"
+
+#: ../src/gnome-print-font-dialog.c:184
+msgid "_Modify preview phrase..."
+msgstr "Изменить фразу для просмотра..."
+
+#: ../src/gnome-print-font-dialog.c:247
+msgid "Font Selection"
+msgstr "Выбор шрифта"
+
+#: ../src/gnome-print-font-picker.c:91
+msgid "Sans Regular 12"
+msgstr "Sans Regular 12"
+
+#: ../src/gnome-print-font-picker.c:92
+msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+msgstr "В чащах юга жил-был цитрус! Да, но фальшивый экземпляръ..."
+
+#: ../src/gnome-print-font-picker.c:93
+msgid "Pick a Font"
+msgstr "Выбрать шрифт"
+
+#: ../src/gnome-print-font-picker.c:178
+msgid "Title"
+msgstr "Заголовок"
+
+#: ../src/gnome-print-font-picker.c:179
+msgid "The title of the selection dialog box"
+msgstr "Заголовок диалога выделения"
+
+#: ../src/gnome-print-font-picker.c:199
+msgid "Font name"
+msgstr "Название шрифта"
+
+#: ../src/gnome-print-font-picker.c:200
+msgid "Name of the selected font"
+msgstr "Название выбраного шрифта"
+
+#: ../src/gnome-print-font-picker.c:208
+msgid "Preview text"
+msgstr "Просмотреть образец текста"
+
+#: ../src/gnome-print-font-picker.c:209
+msgid "Preview text shown in the dialog"
+msgstr "Просмотреть текст показываемый в диалоге"
+
+#: ../src/gnome-print-font-picker.c:217
+msgid "Use font in label"
+msgstr "Использовать шрифт для меток"
+
+#: ../src/gnome-print-font-picker.c:218
+msgid "Use font in the label in font info mode"
+msgstr "Использовать шрифт в метках в режиме информации о шрифте"
+
+#: ../src/gnome-print-font-picker.c:226
+msgid "Font size for label"
+msgstr "Размер шрифта для меток"
+
+#: ../src/gnome-print-font-picker.c:227
+msgid "Font size for label in font info mode"
+msgstr "Размер шрифта для меток в режиме информации о шрифте"
+
+#: ../src/gnome-print-font-picker.c:237
+msgid "Show size"
+msgstr "Показать размер"
+
+#: ../src/gnome-print-font-picker.c:238
+msgid "Show size in font info mode"
+msgstr "Показывать размер в режиме информации о шрифте"
+
+#. display font
+#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:181
+msgid "Font"
+msgstr "Шрифт"
+
+#: ../src/hex-dialog.c:57
+msgid "Signed 8 bit:"
+msgstr "8 бит со знаком:"
+
+#: ../src/hex-dialog.c:58
+msgid "Unsigned 8 bit:"
+msgstr "8 бит без знака:"
+
+#: ../src/hex-dialog.c:59
+msgid "Signed 16 bit:"
+msgstr "16 бит со знаком:"
+
+#: ../src/hex-dialog.c:60
+msgid "Unsigned 16 bit:"
+msgstr "16 бит без знака:"
+
+#: ../src/hex-dialog.c:61
+msgid "Signed 32 bit:"
+msgstr "32 бита со знаком:"
+
+#: ../src/hex-dialog.c:62
+msgid "Unsigned 32 bit:"
+msgstr "32 бита без знака:"
+
+#: ../src/hex-dialog.c:63
+msgid "32 bit float:"
+msgstr "32 бита с плавающей точкой:"
+
+#: ../src/hex-dialog.c:64
+msgid "64 bit float:"
+msgstr "64 бита с плавающей точкой:"
+
+#: ../src/hex-dialog.c:65
+msgid "Hexadecimal:"
+msgstr "_Шестнадцатиричное:"
+
+#: ../src/hex-dialog.c:66
+msgid "Octal:"
+msgstr "_Восьмеричное:"
+
+#: ../src/hex-dialog.c:67
+msgid "Binary:"
+msgstr "_Двоичное:"
+
+#: ../src/hex-dialog.c:196
+msgid "Show little endian decoding"
+msgstr "Показать декодирование little endian"
+
+#: ../src/hex-dialog.c:203
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Показывать беззнаковые и с плавающей точкой как шестнадцатиричные"
+
+#: ../src/hex-dialog.c:209
+msgid "Stream Length:"
+msgstr "Длина потока:"
+
+#: ../src/hex-dialog.c:231
+msgid "FIXME: no conversion function"
+msgstr "ИСПРАВИТЬ: нет функции преобразования"
+
+#: ../src/hex-document.c:444
+msgid "New document"
+msgstr "Создать документ"
+
+#: ../src/hex-document.c:795
+#, c-format
 msgid "Page"
 msgstr "Страница"
 
-#: src/hex-document.c:752 src/hex-document.c:877
+#: ../src/hex-document.c:801 ../src/hex-document.c:926
+#, c-format
 msgid "Hex dump generated by"
 msgstr "Шестнадцатеричный дамп сгенерирован по"
 
-#: src/hex-document.c:762
+#: ../src/hex-document.c:812
 msgid "Saving to HTML..."
 msgstr "Сохранение как HTML..."
 
-#: src/hex-document.c:800
+#: ../src/hex-document.c:849
+#, c-format
 msgid "Previous page"
 msgstr "Пред. страница"
 
-#: src/hex-document.c:815
+#: ../src/hex-document.c:864
+#, c-format
 msgid "Next page"
 msgstr "След. страница"
 
-#: src/main.c:49
+#: ../src/main.c:38
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "Геометрия окна (см. страницу руководства для системы \"X\")."
+
+#: ../src/main.c:39
+msgid "GEOMETRY"
+msgstr "GEOMETRY"
+
+#: ../src/main.c:65
 msgid "The gnome binary editor"
 msgstr "Редактор двоичных файлов"
 
-#: src/main.c:64
+#: ../src/main.c:81
 msgid "Could not initialize Bonobo!\n"
 msgstr "Не удалось инициализировать Bonobo!\n"
 
-#: src/main.c:88 src/main.c:101
+#: ../src/main.c:106 ../src/main.c:120
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Недопустимая строка геометрии окна \"%s\"\n"
 
-#: src/preferences.c:94
+#: ../src/preferences.c:71
 msgid "GHex Preferences"
 msgstr "Настроить программу GHex"
 
-#: src/preferences.c:126
+#: ../src/preferences.c:103
 msgid "_Maximum number of undo levels:"
 msgstr "Ма_ксимальное число уровней отмены"
 
-#: src/preferences.c:146
+#: ../src/preferences.c:123
 msgid "Undo levels"
 msgstr "Уровни отмены"
 
-#: src/preferences.c:146
+#: ../src/preferences.c:123
 msgid "Select maximum number of undo levels"
 msgstr "Выберите максимальное число уровней отмены"
 
-#: src/preferences.c:150
+#: ../src/preferences.c:127
 msgid "Show cursor offset in statusbar as:"
 msgstr "Показывать смещение курсора в строке состояния как:"
 
-#: src/preferences.c:169
+#: ../src/preferences.c:145
 msgid "Hexadecimal"
 msgstr "Шестнадцатиричное"
 
-#: src/preferences.c:175
+#: ../src/preferences.c:147
 msgid "Custom"
 msgstr "Нестандартное"
 
-#: src/preferences.c:187
+#: ../src/preferences.c:156
 msgid "Enter the cursor offset format"
 msgstr "Введите формат смещения курсора"
 
-#: src/preferences.c:188
+#: ../src/preferences.c:157
 msgid "Select the cursor offset format"
 msgstr "Выберите формат смещения курсора"
 
 #. show offsets check button
-#: src/preferences.c:198
+#: ../src/preferences.c:167
 msgid "Show offsets column"
 msgstr "Показывать колонку смещения"
 
-#: src/preferences.c:203
+#: ../src/preferences.c:172
 msgid "Editing"
 msgstr "Редактирование"
 
-#. display font
-#: src/preferences.c:212
-msgid "Font"
-msgstr "Шрифт"
-
 #. default group type
-#: src/preferences.c:240
+#: ../src/preferences.c:204
 msgid "Default Group Type"
 msgstr "Тип группирования по умолчанию"
 
-#: src/preferences.c:256
+#: ../src/preferences.c:220
 msgid "Display"
 msgstr "Представление"
 
 #. paper selection
-#: src/preferences.c:265
+#: ../src/preferences.c:229
 msgid "Paper size"
 msgstr "Размер бумаги"
 
 #. data & header font selection
-#: src/preferences.c:270
+#: ../src/preferences.c:234
 msgid "Fonts"
 msgstr "Шрифты"
 
-#: src/preferences.c:276
+#: ../src/preferences.c:240
 msgid "_Data font:"
 msgstr "Шрифт _данных:"
 
-#: src/preferences.c:295
+#: ../src/preferences.c:259
 msgid "Data font"
 msgstr "Шрифт данных"
 
-#: src/preferences.c:295
+#: ../src/preferences.c:259
 msgid "Select the data font"
 msgstr "Выберите шрифт для данных"
 
-#: src/preferences.c:309
+#: ../src/preferences.c:273
 msgid "Header fo_nt:"
 msgstr "Шрифт за_головка:"
 
-#: src/preferences.c:327
+#: ../src/preferences.c:291
 msgid "Header font"
 msgstr "Шрифт заголовка"
 
-#: src/preferences.c:327
+#: ../src/preferences.c:291
 msgid "Select the header font"
 msgstr "Выберите шрифт заголовка"
 
-#: src/preferences.c:353
+#: ../src/preferences.c:317
 msgid "_Print shaded box over:"
 msgstr "_Печатать полоску каждые"
 
-#: src/preferences.c:365
+#: ../src/preferences.c:329
 msgid "Box size"
 msgstr "Размер полоски"
 
-#: src/preferences.c:365
+#: ../src/preferences.c:329
 msgid "Select size of box (in number of lines)"
 msgstr "Выберите размер полоски (число строк)"
 
-#: src/preferences.c:369
+#: ../src/preferences.c:333
 msgid "lines (0 for no box)"
 msgstr "строки (0 - без полоски)"
 
-#: src/preferences.c:376
+#: ../src/preferences.c:340
 msgid "Printing"
 msgstr "Печать"
 
-#: src/preferences.c:531
-msgid "Can not open desired font!"
-msgstr "Не удалось загрузить желаемый шрифт!"
-
-#: src/preferences.c:581
-msgid ""
-"The offset format string contains invalid format specifier.\n"
-"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
-msgstr ""
-"Строка формата содержит недопустимый спецификатор.\n"
-"Допустимы только \"x\", \"X\", \"p\", \"P\", \"d\" или \"o\"!"
-
-#: src/print.c:53
-#, c-format
-msgid "Page: %i/%i"
-msgstr "Страница: %i/%i"
-
-#: src/print.c:204 src/print.c:218
-#, c-format
-msgid ""
-"GHex could not find the font \"%s\".\n"
-"GHex is unable to print without this font installed."
-msgstr ""
-"Программа GHex не обнаружила шрифт \"%s\".\n"
-"Программа GHex не может печатать без этого шрифта."
-
-#: src/session.c:29
-msgid "X geometry specification (see \"X\" man page)."
-msgstr "Геометрия окна (см. страницу руководства для системы \"X\")."
-
-#: src/session.c:30
-msgid "GEOMETRY"
-msgstr "GEOMETRY"
-
-#: src/ui.c:71
-msgid "hex data"
-msgstr "шестнадцатиричные данные"
-
-#: src/ui.c:72
-msgid "ASCII data"
-msgstr "ASCII-данные"
-
-#: src/ui.c:243
-msgid "GHex, a binary file editor"
-msgstr "GHex, редактор двоичных файлов"
-
-#: src/ui.c:245
-msgid "Released under the terms of GNU Public License"
-msgstr "Распространяется на условиях GNU Public License"
-
-#: src/ui.c:268
+#: ../src/preferences.c:462 ../src/ui.c:268
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -907,32 +1088,74 @@ msgstr ""
 "Возникла ошибка при отображении справки: \n"
 "%s"
 
-#: src/ui.c:376
+#: ../src/preferences.c:514
+msgid "Can not open desired font!"
+msgstr "Не удалось загрузить желаемый шрифт!"
+
+#: ../src/preferences.c:577
+msgid ""
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"Строка формата содержит недопустимый спецификатор.\n"
+"Допустимы только \"x\", \"X\", \"p\", \"P\", \"d\" или \"o\"!"
+
+#: ../src/print.c:66
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Страница: %i/%i"
+
+#: ../src/print.c:222 ../src/print.c:238
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"Программа GHex не обнаружила шрифт \"%s\".\n"
+"Программа GHex не может печатать без этого шрифта."
+
+#: ../src/ui.c:94
+msgid "hex data"
+msgstr "шестнадцатиричные данные"
+
+#: ../src/ui.c:95
+msgid "ASCII data"
+msgstr "ASCII-данные"
+
+#: ../src/ui.c:243
+msgid "GHex, a binary file editor"
+msgstr "GHex, редактор двоичных файлов"
+
+#: ../src/ui.c:245
+msgid "Released under the terms of GNU Public License"
+msgstr "Распространяется на условиях GNU Public License"
+
+#: ../src/ui.c:370
 msgid "Select a file to open"
 msgstr "Выбрать файл для открытия"
 
-#: src/ui.c:414
+#: ../src/ui.c:401
 #, c-format
 msgid "Loaded file %s"
 msgstr "Загрузка файла %s"
 
-#: src/ui.c:422
+#: ../src/ui.c:409
 msgid "Can not open file!"
 msgstr "Невозможно открыть файл!"
 
-#: src/ui.c:486
+#: ../src/ui.c:470
 msgid "Select path and file name for the HTML source"
 msgstr "Выбрать путь и имя файла для HTML"
 
-#: src/ui.c:521
+#: ../src/ui.c:504
 msgid "You need to specify a base name for the HTML files."
 msgstr "Укажите основу для названия HTML файлов."
 
-#: src/ui.c:532 src/ui.c:554
+#: ../src/ui.c:515 ../src/ui.c:539
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "У вас нет прав на запись в указанное место.\n"
 
-#: src/ui.c:538
+#: ../src/ui.c:526
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -940,25 +1163,29 @@ msgstr ""
 "Сохранение в HTML приведёт к перезаписи некоторых файлов.\n"
 "Продолжить?"
 
-#: src/ui.c:686
+#: ../src/ui.c:679
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Действительно восстановить файл %s?"
 
-#: src/ui.c:704
+#: ../src/ui.c:693
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Восстановленный буфер из файла %s"
 
-#: src/ui.c:778
+#: ../src/ui.c:777
+msgid "Printing file..."
+msgstr "Печать файла..."
+
+#: ../src/ui.c:837
 msgid "Print Hex Document"
 msgstr "Напечатать шестнадцатиричный документ"
 
-#: src/ui.c:783
+#: ../src/ui.c:849
 msgid "Pages"
 msgstr "Страницы"
 
-#: src/ui.c:829
+#: ../src/ui.c:874
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Просмотр образца печати"
