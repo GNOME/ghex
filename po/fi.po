@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex 1.0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-09 17:26+0200\n"
-"PO-Revision-Date: 2006-03-09 17:56+0200\n"
+"POT-Creation-Date: 2006-07-17 09:28+0300\n"
+"PO-Revision-Date: 2006-07-17 09:38+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -80,11 +80,12 @@ msgstr "_Hae kursorin arvo"
 
 #: ../src/converter.c:277
 msgid "Get cursor value"
-msgstr "Hae kursorin arvo"
+msgstr "Hae arvo kohdistimelta"
 
 #: ../src/converter.c:277
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
-msgstr ""
+msgstr "Hae kohdistimen kohdalla oleva arvo binääri-, oktaali-, desimaali-, "
+"heksadesimaali- ja ASCII-muodoissa"
 
 #: ../src/converter.c:417
 msgid "ERROR"
@@ -113,7 +114,7 @@ msgstr "Etsi tietoa"
 
 #: ../src/findreplace.c:139 ../src/findreplace.c:412
 msgid "Enter the hex data or ASCII data to search for"
-msgstr ""
+msgstr "Syötä etsittävä heksadesimaali- tai ASCII-muotoinen tieto"
 
 #: ../src/findreplace.c:140
 msgid "Find Next"
@@ -199,7 +200,7 @@ msgstr "Korvaa tieto"
 
 #: ../src/findreplace.c:413
 msgid "Enter the hex data or ASCII data to replace with"
-msgstr ""
+msgstr "Syötä heksadesimaali- tai ASCII-muotoinen tieto, jolla korvataan"
 
 #: ../src/findreplace.c:414
 msgid "Find next"
@@ -211,7 +212,7 @@ msgstr "Korvaa"
 
 #: ../src/findreplace.c:415
 msgid "Replaces the search string with the replace string"
-msgstr ""
+msgstr "Korvaa hakujonon annetulla merkkijonolla"
 
 #: ../src/findreplace.c:416
 msgid "Replace All"
@@ -219,11 +220,11 @@ msgstr "Korvaa kaikki"
 
 #: ../src/findreplace.c:416
 msgid "Replaces all occurrences of the search string with the replace string"
-msgstr ""
+msgstr "Korvaa kaikki haetun merkkijonon osumat korvaavalla merkkijonolla"
 
 #: ../src/findreplace.c:417
 msgid "Closes find and replace data window"
-msgstr ""
+msgstr "Sulkee haku ja korvaus -ikkunan"
 
 #: ../src/findreplace.c:433 ../src/ui.c:932
 #, c-format
@@ -252,7 +253,7 @@ msgstr "Sulkee \"Siirry tavuun\"-ikkunan"
 
 #: ../src/findreplace.c:528 ../src/findreplace.c:562 ../src/findreplace.c:646
 msgid "There is no active document to search!"
-msgstr ""
+msgstr "Aktiivista asiakirjaa etsittäväksi ei löydy!"
 
 #: ../src/findreplace.c:535 ../src/findreplace.c:569 ../src/findreplace.c:653
 #: ../src/findreplace.c:687 ../src/findreplace.c:732
@@ -290,10 +291,13 @@ msgid ""
 "  - a positive decimal number, or\n"
 "  - a hex number, beginning with '0x'"
 msgstr ""
+"Voit antaa siirtymän seuraavina rvoina:\n"
+"  - positiivinen desimaalikokonaisluku, tai\n"
+"  - heksanumero, alkaen merkillä '0x'" 
 
 #: ../src/findreplace.c:678
 msgid "There is no active buffer to replace data in!"
-msgstr ""
+msgstr "Aktiivista puskuria korvaukselle ei ole olemassa!"
 
 #: ../src/findreplace.c:703 ../src/findreplace.c:704
 msgid "End Of File reached!"
@@ -301,7 +305,7 @@ msgstr "EOF (tiedoston loppu) tuli vastaan."
 
 #: ../src/findreplace.c:723
 msgid "There is no active document to replace data in!"
-msgstr ""
+msgstr "Aktiivista asiakirjaa korvaukselle ei ole olemassa!"
 
 #: ../src/findreplace.c:753
 msgid "No occurrences were found."
@@ -550,7 +554,7 @@ msgstr "Näytä merkkitaulukko"
 
 #: ../src/ghex-ui.xml.h:61
 msgid "Show the type conversion dialog in the edit window"
-msgstr ""
+msgstr "Näytä tyypin muunnosikkuna muokkausikkunassa"
 
 #: ../src/ghex-ui.xml.h:62
 msgid "Type Conversion Dialog..."
@@ -767,7 +771,7 @@ msgstr "Ä_lä tallenna"
 
 #: ../src/ghex-window.c:1242 ../src/ui.c:341
 msgid "You don't have the permissions to save the file!"
-msgstr ""
+msgstr "Sinulla ei ole oikeuksia tallentaa tätä tiedostoa!"
 
 #: ../src/ghex-window.c:1246 ../src/ui.c:346
 msgid "An error occured while saving file!"
@@ -811,7 +815,7 @@ msgstr "Otsikko"
 
 #: ../src/gnome-print-font-picker.c:179
 msgid "The title of the selection dialog box"
-msgstr ""
+msgstr "Valintaikkunan laatikon otsikko"
 
 #: ../src/gnome-print-font-picker.c:199
 msgid "Font name"
@@ -835,15 +839,15 @@ msgstr "Käytä kirjasinta otsakkeessa"
 
 #: ../src/gnome-print-font-picker.c:218
 msgid "Use font in the label in font info mode"
-msgstr ""
+msgstr "Käytä kirjasinta otsakkeen käytettäessä kirjasintietotilaa"
 
 #: ../src/gnome-print-font-picker.c:226
 msgid "Font size for label"
-msgstr ""
+msgstr "Otsakkeen kirjasinkoko"
 
 #: ../src/gnome-print-font-picker.c:227
 msgid "Font size for label in font info mode"
-msgstr ""
+msgstr "Otsakkeen kirjasinkoko kirjasintietotilassa"
 
 #: ../src/gnome-print-font-picker.c:237
 msgid "Show size"
@@ -884,11 +888,11 @@ msgstr ""
 
 #: ../src/hex-dialog.c:63
 msgid "32 bit float:"
-msgstr ""
+msgstr "32-bittinen liukuluku:"
 
 #: ../src/hex-dialog.c:64
 msgid "64 bit float:"
-msgstr ""
+msgstr "64-bittinen liukuluku:"
 
 #: ../src/hex-dialog.c:65
 msgid "Hexadecimal:"
@@ -918,30 +922,30 @@ msgstr "Virran pituus:"
 msgid "FIXME: no conversion function"
 msgstr "KORJAATÄMÄ: ei muunnosfunktiota"
 
-#: ../src/hex-document.c:445
+#: ../src/hex-document.c:444
 msgid "New document"
 msgstr "Uusi asiakirja"
 
-#: ../src/hex-document.c:796
+#: ../src/hex-document.c:795
 #, c-format
 msgid "Page"
 msgstr "Sivu"
 
-#: ../src/hex-document.c:802 ../src/hex-document.c:927
+#: ../src/hex-document.c:801 ../src/hex-document.c:926
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Heksadumpin luonut"
 
-#: ../src/hex-document.c:813
+#: ../src/hex-document.c:812
 msgid "Saving to HTML..."
 msgstr "Tallennetaan HTML-muotoon..."
 
-#: ../src/hex-document.c:850
+#: ../src/hex-document.c:849
 #, c-format
 msgid "Previous page"
 msgstr "Edellinen sivu"
 
-#: ../src/hex-document.c:865
+#: ../src/hex-document.c:864
 #, c-format
 msgid "Next page"
 msgstr "Seuraava sivu"
@@ -997,11 +1001,11 @@ msgstr "Oma"
 
 #: ../src/preferences.c:156
 msgid "Enter the cursor offset format"
-msgstr ""
+msgstr "Anna kohdistimen siirtymän muoto"
 
 #: ../src/preferences.c:157
 msgid "Select the cursor offset format"
-msgstr ""
+msgstr "Valitse kohdistimen siirtymän muoto"
 
 #. show offsets check button
 #: ../src/preferences.c:167
@@ -1093,6 +1097,8 @@ msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
+"Siirtymän muotoilumerkkijonossa on virheellinen muotoilun määrittely.\n"
+"Vain merkit 'x', 'X', 'p', 'P', 'd' ja 'o' ovat sallittuja."
 
 #: ../src/print.c:66
 #, c-format
@@ -1105,6 +1111,8 @@ msgid ""
 "GHex could not find the font \"%s\".\n"
 "GHex is unable to print without this font installed."
 msgstr ""
+"GHex ei löytänyt kirjasinta \"%s\".\n"
+"GHex ei voi tulostaa, jos tätä kirjasinta ei ole asennettu."
 
 #: ../src/ui.c:94
 msgid "hex data"
@@ -1137,21 +1145,23 @@ msgstr "Tiedostoa ei voitu avata."
 
 #: ../src/ui.c:470
 msgid "Select path and file name for the HTML source"
-msgstr ""
+msgstr "Valitse HTML-lähteen polku ja tiedostonimi"
 
 #: ../src/ui.c:504
 msgid "You need to specify a base name for the HTML files."
-msgstr ""
+msgstr "HTML-tiedostoille täytyy valita kantanimi."
 
 #: ../src/ui.c:515 ../src/ui.c:539
 msgid "You don't have the permission to write to the selected path.\n"
-msgstr ""
+msgstr "Sinulla ei ole oikeuksia kirjoittaa valittuun polkuun.\n"
 
 #: ../src/ui.c:526
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
 msgstr ""
+"HTML-muotoon tallentaminen ylikirjoittaa joitain tiedostoja.\n"
+"Haluatko jatkaa?"
 
 #: ../src/ui.c:679
 #, c-format
@@ -1179,4 +1189,3 @@ msgstr "Sivua"
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Tulostuksen esikatselu"
-
