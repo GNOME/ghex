@@ -1,666 +1,748 @@
 # ghex translation to Catalan.
-# Copyright © 2000, 2003 Free Software Foundation, Inc.
+# Copyright © 2000, 2006 Free Software Foundation, Inc.
 # Ivan Vilata i Balaguer <al011097@alumail.uji.es>, 2000.
 # Quico Llach <quico@softcatala.org>, 2000.
 # Xavier Conde Rueda <xaviconde@eresmas.com>, 2003.
+# Jordi Sayol Salomó <jordisayol@gmail.com>, 2006.
+#
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-19 14:27+0100\n"
-"PO-Revision-Date: 2003-11-19 20:04+0200\n"
-"Last-Translator: Xavier Conde Rueda <xaviconde@eresmas.com\n"
-"Language-Team: Catalan <tradgnome@softcatala.org>\n"
+"POT-Creation-Date: 2006-09-03 16:10+0200\n"
+"PO-Revision-Date: 2006-09-03 15:29+0100\n"
+"Last-Translator: Jordi Sayol Salomó <jordisayol@gmail.com>\n"
+"Language-Team: Softcatalà <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Catalan\n"
 
-#: ghex.desktop.in.h:1
+#: ../ghex.desktop.in.h:1
 msgid "GNOME Hexadecimal Editor"
 msgstr "Editor hexadecimal del GNOME"
 
-#: ghex.desktop.in.h:2
+#: ../ghex.desktop.in.h:2
 msgid "Hex Editor"
 msgstr "Editor hexadecimal"
 
-#: src/chartable.c:140
+#: ../src/chartable.c:143
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:140
+#: ../src/chartable.c:143
 msgid "Hex"
 msgstr "Hexadecimal"
 
-#: src/chartable.c:140 src/preferences.c:164
+#: ../src/chartable.c:143 ../src/preferences.c:143
 msgid "Decimal"
 msgstr "Decimal"
 
-#: src/chartable.c:141
+#: ../src/chartable.c:144
 msgid "Octal"
 msgstr "Octal"
 
-#: src/chartable.c:141
+#: ../src/chartable.c:144
 msgid "Binary"
 msgstr "Binari"
 
-#: src/chartable.c:157
+#: ../src/chartable.c:160
 msgid "Character table"
 msgstr "Taula de caràcters"
 
-#: src/converter.c:209
+#: ../src/converter.c:230
 msgid "Base Converter"
 msgstr "Conversor entre bases"
 
 #. entries
-#: src/converter.c:228
+#: ../src/converter.c:251
 msgid "_Binary:"
 msgstr "_Binari:"
 
-#: src/converter.c:230
+#: ../src/converter.c:253
 msgid "_Octal:"
 msgstr "_Octal:"
 
-#: src/converter.c:232
+#: ../src/converter.c:255
 msgid "_Decimal:"
 msgstr "_Decimal:"
 
-#: src/converter.c:234
+#: ../src/converter.c:257
 msgid "_Hex:"
 msgstr "_Hexadecimal:"
 
-#: src/converter.c:236
+#: ../src/converter.c:259
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:240
+#: ../src/converter.c:263
 msgid "_Get cursor value"
 msgstr "_Obté el valor del cursor"
 
-#: src/converter.c:254
+#: ../src/converter.c:277
 msgid "Get cursor value"
 msgstr "Obté el valor del cursor"
 
-#: src/converter.c:254
+#: ../src/converter.c:277
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
-msgstr "Obté el valor del cursor en binari, octal, decimal, hexadecimal i ASCII"
+msgstr ""
+"Obté el valor del cursor en binari, octal, decimal, hexadecimal i ASCII"
 
-#: src/converter.c:387
+#: ../src/converter.c:417
 msgid "ERROR"
 msgstr "Error"
 
-#: src/findreplace.c:60 src/ui.c:891
+#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:936
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Cercar dades"
 
-#: src/findreplace.c:69
-#, c-format
-msgid "Search for %s"
-msgstr "Cerca de %s"
+#: ../src/findreplace.c:102 ../src/findreplace.c:162 ../src/findreplace.c:358
+msgid "Find String"
+msgstr "Troba una cadena"
 
-#: src/findreplace.c:86
+#: ../src/findreplace.c:109 ../src/findreplace.c:259
 msgid "Find _Next"
 msgstr "Troba el següe_nt"
 
-#: src/findreplace.c:94
+#: ../src/findreplace.c:116 ../src/findreplace.c:268
 msgid "Find _Previous"
 msgstr "Tro_ba l'anterior"
 
-#: src/findreplace.c:118 src/findreplace.c:210
+#: ../src/findreplace.c:139 ../src/findreplace.c:412
 msgid "Find Data"
 msgstr "Troba dades"
 
-#: src/findreplace.c:118 src/findreplace.c:210
+#: ../src/findreplace.c:139 ../src/findreplace.c:412
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Introduïu les dades hexadecimals o ASCII que s'han de cercar"
 
-#: src/findreplace.c:119
+#: ../src/findreplace.c:140
 msgid "Find Next"
 msgstr "Troba el següent"
 
-#: src/findreplace.c:119 src/findreplace.c:212
+#: ../src/findreplace.c:140 ../src/findreplace.c:414
 msgid "Finds the next occurrence of the search string"
-msgstr "Troba la següent concordància amb la cadena de cerca"
+msgstr "Troba la següent concordança amb la cadena de cerca"
 
-#: src/findreplace.c:120
+#: ../src/findreplace.c:141
 msgid "Find previous"
 msgstr "Troba l'anterior"
 
-#: src/findreplace.c:120
+#: ../src/findreplace.c:141
 msgid "Finds the previous occurrence of the search string "
-msgstr "Troba la anterior concordància amb la cadena de cerca "
+msgstr "Troba la anterior concordança amb la cadena de cerca "
 
-#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
+#: ../src/findreplace.c:142 ../src/findreplace.c:417 ../src/findreplace.c:465
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: src/findreplace.c:121
+#: ../src/findreplace.c:142
 msgid "Closes find data window"
 msgstr "Tanca la finestra de cerca de dades"
 
-#: src/findreplace.c:140 src/ui.c:889
+#: ../src/findreplace.c:158
+#, c-format
+msgid "GHex (%s): Find Data: Add search"
+msgstr "GHex (%s): Cercar dades: Afegir recerca"
+
+#: ../src/findreplace.c:180
+msgid "Add"
+msgstr "Afegeix"
+
+#: ../src/findreplace.c:236
+msgid "Search String"
+msgstr "Cadena de cerca"
+
+#: ../src/findreplace.c:244
+msgid "Highlight Colour"
+msgstr "Color ressaltat"
+
+#: ../src/findreplace.c:281
+msgid "_Add New"
+msgstr "_Afegeix nou"
+
+#: ../src/findreplace.c:290
+msgid "_Remove Selected"
+msgstr "_Elimina la selecció"
+
+#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:9
+msgid "Close"
+msgstr "Tanca"
+
+#: ../src/findreplace.c:310
+msgid "Closes advanced find window"
+msgstr "Tanca la finestra de cerca avançada de dades"
+
+#: ../src/findreplace.c:354 ../src/ui.c:934
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): cerca i reemplaça dades"
 
-#: src/findreplace.c:155
-#, c-format
-msgid "Replace %s"
-msgstr "Reemplaça %s"
+#: ../src/findreplace.c:367
+msgid "Replace With"
+msgstr "Reemplaça dades amb"
 
-#: src/findreplace.c:172
+#: ../src/findreplace.c:374
 msgid "Find _next"
 msgstr "Troba el següe_nt"
 
-#: src/findreplace.c:180 src/ghex-ui.xml.h:84
+#: ../src/findreplace.c:382 ../src/ghex-ui.xml.h:89
 msgid "_Replace"
 msgstr "_Reemplaça"
 
-#: src/findreplace.c:188
+#: ../src/findreplace.c:390
 msgid "Replace _All"
 msgstr "Reempl_aça'ls tots"
 
-#: src/findreplace.c:211
+#: ../src/findreplace.c:413
 msgid "Replace Data"
 msgstr "Reemplaça dades"
 
-#: src/findreplace.c:211
+#: ../src/findreplace.c:413
 msgid "Enter the hex data or ASCII data to replace with"
-msgstr "Introduïu les dades hexadecimals o les dades ASCII amb què s'han de reemplaçar"
+msgstr ""
+"Introduïu les dades hexadecimals o les dades ASCII amb què s'han de "
+"reemplaçar"
 
-#: src/findreplace.c:212
+#: ../src/findreplace.c:414
 msgid "Find next"
 msgstr "Troba el següent"
 
-#: src/findreplace.c:213 src/ghex-ui.xml.h:48
+#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:49
 msgid "Replace"
 msgstr "Reemplaça"
 
-#: src/findreplace.c:213
+#: ../src/findreplace.c:415
 msgid "Replaces the search string with the replace string"
 msgstr "Reemplaça la cadena de text de cerca amb la cadena de text indicada"
 
-#: src/findreplace.c:214
+#: ../src/findreplace.c:416
 msgid "Replace All"
 msgstr "Reemplaça'ls tots"
 
-#: src/findreplace.c:214
+#: ../src/findreplace.c:416
 msgid "Replaces all occurrences of the search string with the replace string"
-msgstr "Reemplaça totes les concordàncies de la cadena de text de cerca amb la "
+msgstr ""
+"Reemplaça totes les concordàncies de la cadena de text de cerca amb la "
 "cadena de text indicada"
 
-#: src/findreplace.c:215
+#: ../src/findreplace.c:417
 msgid "Closes find and replace data window"
 msgstr "Tanca la finestra de dades de cerca i reemplaça"
 
-#: src/findreplace.c:231 src/ui.c:887
+#: ../src/findreplace.c:433 ../src/ui.c:932
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): salta a byte"
 
-#: src/findreplace.c:261
+#: ../src/findreplace.c:463
 msgid "Jump to byte"
 msgstr "Salta a byte"
 
-#: src/findreplace.c:261
+#: ../src/findreplace.c:463
 msgid "Enter the byte to jump to"
 msgstr "Introduïu el byte on voleu saltar"
 
-#: src/findreplace.c:262
+#: ../src/findreplace.c:464
 msgid "OK"
 msgstr "D'acord"
 
-#: src/findreplace.c:262
+#: ../src/findreplace.c:464
 msgid "Jumps to the specified byte"
 msgstr "Salta al byte especificat"
 
-#: src/findreplace.c:263
+#: ../src/findreplace.c:465
 msgid "Closes jump to byte window"
 msgstr "Tanca la finestra de salta a byte"
 
-#: src/findreplace.c:329 src/findreplace.c:357 src/findreplace.c:413
+#: ../src/findreplace.c:528 ../src/findreplace.c:562 ../src/findreplace.c:646
 msgid "There is no active document to search!"
 msgstr "No hi ha cap document actiu per cercar"
 
-#: src/findreplace.c:337 src/findreplace.c:365
-msgid "The string is not appropriate for the selected data type!"
-msgstr "La cadena de text no és adecuada per al tipus de dades seleccionats"
+#: ../src/findreplace.c:535 ../src/findreplace.c:569 ../src/findreplace.c:653
+#: ../src/findreplace.c:687 ../src/findreplace.c:732
+msgid "There is no string to search for!"
+msgstr "No hi ha cap cadena per cercar!"
 
-#: src/findreplace.c:344 src/findreplace.c:430
+#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:851
 msgid "End Of File reached"
 msgstr "S'ha arribat al final del fitxer"
 
-#: src/findreplace.c:345 src/findreplace.c:374 src/findreplace.c:429
+#: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
+#: ../src/findreplace.c:852 ../src/findreplace.c:875
 msgid "String was not found!\n"
 msgstr "No s'ha trobat la cadena de text\n"
 
-#: src/findreplace.c:373
+#: ../src/findreplace.c:580 ../src/findreplace.c:874
 msgid "Beginning Of File reached"
 msgstr "S'ha arribat a l'inici del fitxer"
 
-#: src/findreplace.c:385
+#: ../src/findreplace.c:596
 msgid "There is no active document to move the cursor in!"
 msgstr "No hi ha cap document actiu per moure-hi el cursor"
 
-#: src/findreplace.c:390
+#: ../src/findreplace.c:602
 msgid "No offset has been specified!"
 msgstr "No s'ha especificat un desplaçament"
 
-#: src/findreplace.c:397
+#: ../src/findreplace.c:626
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "No es pot posicionar el cursor més enllà del final del fitxer"
 
-#: src/findreplace.c:402
-msgid "The offset must be a positive integer value!"
-msgstr "El desplaçament ha de ser un enter positiu"
+#: ../src/findreplace.c:633
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x'"
+msgstr ""
+"Heu de donar el desplaçament només com a:\n"
+" - un número decimal positiu, o\n"
+" - un número hexadecimal, encapçalat amb '0x'"
 
-#: src/findreplace.c:421
-msgid "There seems to be no string to search for!"
-msgstr "Sembla que no hi ha cap cadena per cercar"
-
-#: src/findreplace.c:443
+#: ../src/findreplace.c:678
 msgid "There is no active buffer to replace data in!"
-msgstr "No hi ha cap memòria intermitja activa per reemplaçar-hi dades"
+msgstr "No hi ha cap memòria intermèdia activa per reemplaçar-hi dades"
 
-#: src/findreplace.c:455 src/findreplace.c:496
-msgid "Strings are not appropriate for the selected data type!"
-msgstr "Les cadenes no són adecuades per al tipus de dades seleccionades"
-
-#: src/findreplace.c:470 src/findreplace.c:471
+#: ../src/findreplace.c:703 ../src/findreplace.c:704
 msgid "End Of File reached!"
 msgstr "S'ha arribat al final del fitxer"
 
-#: src/findreplace.c:484
+#: ../src/findreplace.c:723
 msgid "There is no active document to replace data in!"
 msgstr "No hi ha cap document actiu per reemplaçar-hi dades"
 
-#: src/findreplace.c:516
-msgid "No occurences were found."
-msgstr "No s'ha trobat cap concordància."
+#: ../src/findreplace.c:753
+msgid "No occurrences were found."
+msgstr "No s'ha trobat cap concordança."
 
-#: src/findreplace.c:519
+#: ../src/findreplace.c:756
 #, c-format
-msgid "Replaced %d occurencies."
-msgstr "S'han reemplaçat %d concordàncies."
+msgid "Replaced %d occurrences."
+msgstr "S'han reemplaçat %d concordances."
 
-#: src/ghex-ui.xml.h:1
+#: ../src/findreplace.c:794
+msgid "No string to search for!"
+msgstr "No hi ha cap cadena per cercar!"
+
+#: ../src/ghex-ui.xml.h:1
 msgid "About this application"
 msgstr "Quant a aquesta aplicació"
 
-#: src/ghex-ui.xml.h:2
+#: ../src/ghex-ui.xml.h:2
 msgid "Add View"
 msgstr "Afegeix visualització"
 
-#: src/ghex-ui.xml.h:3
+#: ../src/ghex-ui.xml.h:3
 msgid "Add a new view to the buffer"
-msgstr "Afegeix una nova visualització a la memòria intermitja"
+msgstr "Afegeix una nova visualització a la memòria intermèdia"
 
-#: src/ghex-ui.xml.h:4 src/ui.c:64
+#: ../src/ghex-ui.xml.h:4
+msgid "Advanced Find"
+msgstr "Cerca avançada"
+
+#: ../src/ghex-ui.xml.h:5 ../src/ui.c:87
 msgid "Bytes"
 msgstr "Bytes"
 
-#: src/ghex-ui.xml.h:5
+#: ../src/ghex-ui.xml.h:6
 msgid "C_ut"
 msgstr "_Retalla"
 
-#: src/ghex-ui.xml.h:6
+#: ../src/ghex-ui.xml.h:7
 msgid "Character Table..."
 msgstr "Taula de caràcters..."
 
-#: src/ghex-ui.xml.h:7
+#: ../src/ghex-ui.xml.h:8
 msgid "Character _Table..."
 msgstr "_Taula de caràcters..."
 
-#: src/ghex-ui.xml.h:8
-msgid "Close"
-msgstr "Tanca"
-
-#: src/ghex-ui.xml.h:9
+#: ../src/ghex-ui.xml.h:10
 msgid "Close the current file"
 msgstr "Tanca el fitxer actual"
 
-#: src/ghex-ui.xml.h:10
+#: ../src/ghex-ui.xml.h:11
 msgid "Configure the application"
 msgstr "Configura l'aplicació"
 
-#: src/ghex-ui.xml.h:11
+#: ../src/ghex-ui.xml.h:12
 msgid "Contents"
 msgstr "Continguts"
 
-#: src/ghex-ui.xml.h:12
+#: ../src/ghex-ui.xml.h:13
 msgid "Converter..."
 msgstr "Conversor..."
 
-#: src/ghex-ui.xml.h:13
+#: ../src/ghex-ui.xml.h:14
 msgid "Copy"
 msgstr "Copia"
 
-#: src/ghex-ui.xml.h:14
+#: ../src/ghex-ui.xml.h:15
 msgid "Copy selection to clipboard"
 msgstr "Copia la selecció al porta-retalls"
 
-#: src/ghex-ui.xml.h:15
+#: ../src/ghex-ui.xml.h:16
 msgid "Cut"
 msgstr "Retalla"
 
-#: src/ghex-ui.xml.h:16
+#: ../src/ghex-ui.xml.h:17
 msgid "Cut selection"
 msgstr "Retalla la selecció"
 
-#: src/ghex-ui.xml.h:17
+#: ../src/ghex-ui.xml.h:18
 msgid "E_xit"
 msgstr "_Surt"
 
-#: src/ghex-ui.xml.h:18
+#: ../src/ghex-ui.xml.h:19
 msgid "Exit"
 msgstr "Surt"
 
-#: src/ghex-ui.xml.h:19
+#: ../src/ghex-ui.xml.h:20
 msgid "Exit the program"
 msgstr "Surt del programa"
 
-#: src/ghex-ui.xml.h:20
+#: ../src/ghex-ui.xml.h:21
 msgid "Export data to HTML source"
 msgstr "Exporta les dades a codi HTML"
 
-#: src/ghex-ui.xml.h:21
+#: ../src/ghex-ui.xml.h:22
 msgid "Export to HTML..."
 msgstr "Exporta a HTML..."
 
-#: src/ghex-ui.xml.h:22
+#: ../src/ghex-ui.xml.h:23
 msgid "Find"
 msgstr "Troba"
 
-#: src/ghex-ui.xml.h:23
+#: ../src/ghex-ui.xml.h:24
 msgid "Goto Byte"
 msgstr "Vés a byte..."
 
-#: src/ghex-ui.xml.h:24
+#: ../src/ghex-ui.xml.h:25
 msgid "Group data by 16 bits"
 msgstr "Agrupa les dades cada 16 bits"
 
-#: src/ghex-ui.xml.h:25
+#: ../src/ghex-ui.xml.h:26
 msgid "Group data by 32 bits"
 msgstr "Agrupa les dades cada 32 bits"
 
-#: src/ghex-ui.xml.h:26
+#: ../src/ghex-ui.xml.h:27
 msgid "Group data by 8 bits"
 msgstr "Agrupa les dades cada 8 bits"
 
-#: src/ghex-ui.xml.h:27
+#: ../src/ghex-ui.xml.h:28
 msgid "Help Chat"
 msgstr "Xat d'ajuda"
 
-#: src/ghex-ui.xml.h:28
+#: ../src/ghex-ui.xml.h:29
 msgid "Help on this application"
 msgstr "Ajuda sobre aquesta aplicació"
 
-#: src/ghex-ui.xml.h:29
+#: ../src/ghex-ui.xml.h:30
 msgid "Insert Mode"
 msgstr "Mode d'inserció"
 
-#: src/ghex-ui.xml.h:30
+#: ../src/ghex-ui.xml.h:31
 msgid "Insert/overwrite data"
 msgstr "Insereix/sobreescriu les dades"
 
-#: src/ghex-ui.xml.h:31
+#: ../src/ghex-ui.xml.h:32
 msgid "Jump to a certain position"
 msgstr "Salta a una posició determinada"
 
-#: src/ghex-ui.xml.h:32 src/ui.c:66
+#: ../src/ghex-ui.xml.h:33 ../src/ui.c:89
 msgid "Longwords"
 msgstr "Paraules llargues"
 
-#: src/ghex-ui.xml.h:33
+#: ../src/ghex-ui.xml.h:34
 msgid "Open"
 msgstr "Obre"
 
-#: src/ghex-ui.xml.h:34
+#: ../src/ghex-ui.xml.h:35
 msgid "Open a file"
 msgstr "Obre un fitxer"
 
-#: src/ghex-ui.xml.h:35
+#: ../src/ghex-ui.xml.h:36
 msgid "Open base conversion dialog"
 msgstr "Obre el diàleg de conversió de bases"
 
-#: src/ghex-ui.xml.h:36
+#: ../src/ghex-ui.xml.h:37
 msgid "Paste"
 msgstr "Enganxa"
 
-#: src/ghex-ui.xml.h:37
+#: ../src/ghex-ui.xml.h:38
 msgid "Paste data from clipboard"
 msgstr "Enganxa dades del porta-retalls"
 
-#: src/ghex-ui.xml.h:38
+#: ../src/ghex-ui.xml.h:39
 msgid "Preferences"
 msgstr "Preferències"
 
-#: src/ghex-ui.xml.h:39
+#: ../src/ghex-ui.xml.h:40
 msgid "Preview printed data"
 msgstr "Previsualitza les dades impresses"
 
-#: src/ghex-ui.xml.h:40
+#: ../src/ghex-ui.xml.h:41
 msgid "Print"
 msgstr "Imprimeix"
 
-#: src/ghex-ui.xml.h:41
+#: ../src/ghex-ui.xml.h:42
 msgid "Print Previe_w..."
 msgstr "Pre_visualitza la impressió..."
 
-#: src/ghex-ui.xml.h:42
+#: ../src/ghex-ui.xml.h:43
 msgid "Print Preview..."
 msgstr "Previsualitza la impressió..."
 
-#: src/ghex-ui.xml.h:43
+#: ../src/ghex-ui.xml.h:44
 msgid "Print the current file"
 msgstr "Imprimeix el fitxer actual"
 
-#: src/ghex-ui.xml.h:44
+#: ../src/ghex-ui.xml.h:45
 msgid "Redo"
 msgstr "Torna a fer"
 
-#: src/ghex-ui.xml.h:45
+#: ../src/ghex-ui.xml.h:46
 msgid "Redo the undone action"
 msgstr "Torna a fer l'acció desfeta"
 
-#: src/ghex-ui.xml.h:46
+#: ../src/ghex-ui.xml.h:47
 msgid "Remove View"
 msgstr "_Elimina visualització"
 
-#: src/ghex-ui.xml.h:47
+#: ../src/ghex-ui.xml.h:48
 msgid "Remove the current view of the buffer"
-msgstr "Elimina la visualització actual de la memòria intermitja"
+msgstr "Elimina la visualització actual de la memòria intermèdia"
 
-#: src/ghex-ui.xml.h:49
+#: ../src/ghex-ui.xml.h:50
 msgid "Replace a string"
 msgstr "Reemplaça una cadena"
 
-#: src/ghex-ui.xml.h:50
+#: ../src/ghex-ui.xml.h:51
 msgid "Revert"
 msgstr "Torna a estat anterior"
 
-#: src/ghex-ui.xml.h:51
+#: ../src/ghex-ui.xml.h:52
 msgid "Revert to a saved version of the file"
 msgstr "Torna a l'estat del fitxer desat anteriorment"
 
-#: src/ghex-ui.xml.h:52
+#: ../src/ghex-ui.xml.h:53
 msgid "Save"
 msgstr "Desa"
 
-#: src/ghex-ui.xml.h:53
+#: ../src/ghex-ui.xml.h:54
 msgid "Save As"
 msgstr "Anomena i desa"
 
-#: src/ghex-ui.xml.h:54
+#: ../src/ghex-ui.xml.h:55
 msgid "Save As _HTML..."
 msgstr "Anomena i desa com a _HTML..."
 
-#: src/ghex-ui.xml.h:55
+#: ../src/ghex-ui.xml.h:56
 msgid "Save _As..."
 msgstr "_Anomena i desa..."
 
-#: src/ghex-ui.xml.h:56
+#: ../src/ghex-ui.xml.h:57
 msgid "Save the current file"
 msgstr "Desa el fitxer actual"
 
-#: src/ghex-ui.xml.h:57
+#: ../src/ghex-ui.xml.h:58
 msgid "Save the current file with a different name"
 msgstr "Desa el fitxer actual amb un nom diferent"
 
-#: src/ghex-ui.xml.h:58
+#: ../src/ghex-ui.xml.h:59
 msgid "Search for a string"
 msgstr "Cerca una cadena"
 
-#: src/ghex-ui.xml.h:59
+#: ../src/ghex-ui.xml.h:60
 msgid "Show the character table"
 msgstr "Mostra la taula de caràcters"
 
-#: src/ghex-ui.xml.h:60
+#: ../src/ghex-ui.xml.h:61
+msgid "Show the type conversion dialog in the edit window"
+msgstr "Mostra el diàleg de conversió de tipus a la finestra d'edició"
+
+#: ../src/ghex-ui.xml.h:62
+msgid "Type Conversion Dialog..."
+msgstr "Obre el diàleg de conversió..."
+
+#: ../src/ghex-ui.xml.h:63
+msgid "Type Conversion _Dialog"
+msgstr "Obre el _diàleg de conversió"
+
+#: ../src/ghex-ui.xml.h:64
 msgid "Undo"
 msgstr "Desfès"
 
-#: src/ghex-ui.xml.h:61
+#: ../src/ghex-ui.xml.h:65
 msgid "Undo the last action"
 msgstr "Desfès l'acció anterior"
 
-#: src/ghex-ui.xml.h:62 src/ui.c:65
+#: ../src/ghex-ui.xml.h:66 ../src/ui.c:88
 msgid "Words"
 msgstr "Paraules"
 
-#: src/ghex-ui.xml.h:63
+#: ../src/ghex-ui.xml.h:67
 msgid "_About"
 msgstr "_Quant a"
 
-#: src/ghex-ui.xml.h:64
+#: ../src/ghex-ui.xml.h:68
 msgid "_Add View"
 msgstr "_Afegeix visualització"
 
-#: src/ghex-ui.xml.h:65
+#: ../src/ghex-ui.xml.h:69
+msgid "_Advanced Find"
+msgstr "Cerca _avançada"
+
+#: ../src/ghex-ui.xml.h:70
 msgid "_Base Converter"
 msgstr "Conversor de _base"
 
-#: src/ghex-ui.xml.h:66
+#: ../src/ghex-ui.xml.h:71
 msgid "_Bytes"
 msgstr "_Bytes"
 
-#: src/ghex-ui.xml.h:67
+#: ../src/ghex-ui.xml.h:72
 msgid "_Close"
 msgstr "Tan_ca"
 
-#: src/ghex-ui.xml.h:68
+#: ../src/ghex-ui.xml.h:73
 msgid "_Contents"
 msgstr "_Continguts"
 
-#: src/ghex-ui.xml.h:69
+#: ../src/ghex-ui.xml.h:74
 msgid "_Copy"
 msgstr "_Copia"
 
-#: src/ghex-ui.xml.h:70
+#: ../src/ghex-ui.xml.h:75
 msgid "_Edit"
 msgstr "_Edita"
 
-#: src/ghex-ui.xml.h:71
+#: ../src/ghex-ui.xml.h:76
 msgid "_File"
 msgstr "_Fitxer"
 
-#: src/ghex-ui.xml.h:72
+#: ../src/ghex-ui.xml.h:77
 msgid "_Find"
 msgstr "_Cerca"
 
-#: src/ghex-ui.xml.h:73
+#: ../src/ghex-ui.xml.h:78
 msgid "_Goto Byte..."
 msgstr "_Vés a byte..."
 
-#: src/ghex-ui.xml.h:74
+#: ../src/ghex-ui.xml.h:79
 msgid "_Group Data As"
 msgstr "A_grupa dades per"
 
-#: src/ghex-ui.xml.h:75
+#: ../src/ghex-ui.xml.h:80
 msgid "_Help"
 msgstr "A_juda"
 
-#: src/ghex-ui.xml.h:76
+#: ../src/ghex-ui.xml.h:81
 msgid "_Insert Mode"
 msgstr "Mode d'_inserció"
 
-#: src/ghex-ui.xml.h:77
+#: ../src/ghex-ui.xml.h:82
 msgid "_Longwords"
 msgstr "Paraules _llargues"
 
-#: src/ghex-ui.xml.h:78
+#: ../src/ghex-ui.xml.h:83
 msgid "_Open..."
 msgstr "_Obre..."
 
-#: src/ghex-ui.xml.h:79
+#: ../src/ghex-ui.xml.h:84
 msgid "_Paste"
 msgstr "_Enganxa"
 
-#: src/ghex-ui.xml.h:80
+#: ../src/ghex-ui.xml.h:85
 msgid "_Preferences"
 msgstr "_Preferències"
 
-#: src/ghex-ui.xml.h:81
+#: ../src/ghex-ui.xml.h:86
 msgid "_Print"
 msgstr "Im_primeix"
 
-#: src/ghex-ui.xml.h:82
+#: ../src/ghex-ui.xml.h:87
 msgid "_Redo"
 msgstr "To_rna a fer"
 
-#: src/ghex-ui.xml.h:83
+#: ../src/ghex-ui.xml.h:88
 msgid "_Remove View"
 msgstr "_Elimina visualització"
 
-#: src/ghex-ui.xml.h:85
+#: ../src/ghex-ui.xml.h:90
 msgid "_Revert"
 msgstr "To_rna a estat anterior"
 
-#: src/ghex-ui.xml.h:86
+#: ../src/ghex-ui.xml.h:91
 msgid "_Save"
 msgstr "_Desa"
 
-#: src/ghex-ui.xml.h:87
+#: ../src/ghex-ui.xml.h:92
 msgid "_Undo"
 msgstr "_Desfès"
 
-#: src/ghex-ui.xml.h:88
+#: ../src/ghex-ui.xml.h:93
 msgid "_View"
 msgstr "_Visualitza"
 
-#: src/ghex-ui.xml.h:89
+#: ../src/ghex-ui.xml.h:94
 msgid "_Windows"
 msgstr "_Finestres"
 
-#: src/ghex-ui.xml.h:90
+#: ../src/ghex-ui.xml.h:95
 msgid "_Words"
 msgstr "_Paraules"
 
-#: src/ghex-window.c:438 src/ghex-window.c:816
+#: ../src/ghex-window.c:94
+#, c-format
+msgid ""
+"Can not open URI:\n"
+"%s"
+msgstr ""
+"No es pot obrir URI:\n"
+"%s"
+
+#: ../src/ghex-window.c:113
+#, c-format
+msgid ""
+"Can not open file:\n"
+"%s"
+msgstr ""
+"No es pot obrir el fitxer:\n"
+"%s"
+
+#: ../src/ghex-window.c:500 ../src/ghex-window.c:947
 msgid "GHex"
 msgstr "GHex"
 
-#: src/ghex-window.c:571
+#: ../src/ghex-window.c:647
 #, c-format
 msgid "Offset: %s"
 msgstr "Desplaçament: %s"
 
-#: src/ghex-window.c:770
+#: ../src/ghex-window.c:650
+#, c-format
+msgid "; %s bytes from %s to %s selected"
+msgstr "; %s octets seleccionats des de %s fins a %s"
+
+#: ../src/ghex-window.c:901
 #, c-format
 msgid "Activate file %s"
 msgstr "Activa el fitxer %s"
 
-#: src/ghex-window.c:812
+#: ../src/ghex-window.c:943
 #, c-format
-msgid "GHex - %s"
-msgstr "GHex - %s"
+msgid "%s - GHex"
+msgstr "%s - GHex"
 
-#: src/ghex-window.c:946
+#: ../src/ghex-window.c:1072
 msgid "Select a file to save buffer as"
-msgstr "Seleccioneu un fitxer per anomenar i desar la memòria intermitja"
+msgstr "Seleccioneu un fitxer per anomenar i desar la memòria intermèdia"
 
-#: src/ghex-window.c:997
+#: ../src/ghex-window.c:1128
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -669,20 +751,20 @@ msgstr ""
 "El fitxer %s ja existeix.\n"
 "Voleu sobreescriure'l?"
 
-#: src/ghex-window.c:1035 src/ui.c:356
+#: ../src/ghex-window.c:1161 ../src/ui.c:353
 #, c-format
 msgid "Saved buffer to file %s"
-msgstr "S'ha guardat la memòria intermitja al fitxer %s"
+msgstr "S'ha guardat la memòria intermèdia al fitxer %s"
 
-#: src/ghex-window.c:1041
+#: ../src/ghex-window.c:1167
 msgid "Error saving file!"
 msgstr "S'ha produït un error en desar el fitxer"
 
-#: src/ghex-window.c:1047
+#: ../src/ghex-window.c:1173
 msgid "Can't open file for writing!"
 msgstr "No es pot obrir el fitxer per escriure"
 
-#: src/ghex-window.c:1090
+#: ../src/ghex-window.c:1218
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -691,216 +773,322 @@ msgstr ""
 "El fitxer %s ha canviat des que es desà.\n"
 "Voleu desar els canvis?"
 
-#: src/ghex-window.c:1100
+#: ../src/ghex-window.c:1222
 msgid "Do_n't save"
 msgstr "_No desis"
 
-#: src/ghex-window.c:1120 src/ui.c:344
+#: ../src/ghex-window.c:1242 ../src/ui.c:341
 msgid "You don't have the permissions to save the file!"
-msgstr "No teniu els permissos necessaris per desar el fitxer"
+msgstr "No teniu els permisos necessaris per desar el fitxer"
 
-#: src/ghex-window.c:1124 src/ui.c:349
+#: ../src/ghex-window.c:1246 ../src/ui.c:346
 msgid "An error occured while saving file!"
 msgstr "Ha succeït un error en desar el fitxer"
 
-#: src/hex-document.c:746
+#: ../src/gnome-print-font-dialog.c:111
+msgid "_Insert a new preview phrase."
+msgstr "_Insereix una nova frase per previsualitzar."
+
+#: ../src/gnome-print-font-dialog.c:117
+msgid "Modify preview phrase..."
+msgstr "Modifica la frase per previsualitzar..."
+
+#: ../src/gnome-print-font-dialog.c:171
+msgid "Preview"
+msgstr "Previsualitza"
+
+#: ../src/gnome-print-font-dialog.c:184
+msgid "_Modify preview phrase..."
+msgstr "_Modifica la frase per previsualitzar..."
+
+#: ../src/gnome-print-font-dialog.c:247
+msgid "Font Selection"
+msgstr "Selecció del tipus de lletra"
+
+#: ../src/gnome-print-font-picker.c:91
+msgid "Sans Regular 12"
+msgstr "Sans Regular 12"
+
+#: ../src/gnome-print-font-picker.c:92
+msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+
+#: ../src/gnome-print-font-picker.c:93
+msgid "Pick a Font"
+msgstr "Esculliu un tipus de lletra"
+
+#: ../src/gnome-print-font-picker.c:178
+msgid "Title"
+msgstr "Títol"
+
+#: ../src/gnome-print-font-picker.c:179
+msgid "The title of the selection dialog box"
+msgstr "El títol del diàleg de selecció"
+
+#: ../src/gnome-print-font-picker.c:199
+msgid "Font name"
+msgstr "Nom del tipus de lletra"
+
+#: ../src/gnome-print-font-picker.c:200
+msgid "Name of the selected font"
+msgstr "Nom del tipus de lletra seleccionat"
+
+#: ../src/gnome-print-font-picker.c:208
+msgid "Preview text"
+msgstr "Previsualitza text"
+
+#: ../src/gnome-print-font-picker.c:209
+msgid "Preview text shown in the dialog"
+msgstr "Previsualitza el text mostrat en el diàleg"
+
+#: ../src/gnome-print-font-picker.c:217
+msgid "Use font in label"
+msgstr "Fes servir tipus de lletra en etiqueta"
+
+#: ../src/gnome-print-font-picker.c:218
+msgid "Use font in the label in font info mode"
+msgstr "Fes servir la lletra en l'etiqueta en el mode d'informació de lletra"
+
+#: ../src/gnome-print-font-picker.c:226
+msgid "Font size for label"
+msgstr "Mida del tipus de lletra per a l'etiqueta"
+
+#: ../src/gnome-print-font-picker.c:227
+msgid "Font size for label in font info mode"
+msgstr ""
+"Mida del tipus de lletra per a etiqueta en el mode d'informació de lletra"
+
+#: ../src/gnome-print-font-picker.c:237
+msgid "Show size"
+msgstr "Mostra mida"
+
+#: ../src/gnome-print-font-picker.c:238
+msgid "Show size in font info mode"
+msgstr "Mostra mida en el mode d'informació de lletra"
+
+#. display font
+#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:181
+msgid "Font"
+msgstr "Tipus de lletra"
+
+#: ../src/hex-dialog.c:57
+msgid "Signed 8 bit:"
+msgstr "8 bit signat:"
+
+#: ../src/hex-dialog.c:58
+msgid "Unsigned 8 bit:"
+msgstr "8 bit no signat:"
+
+#: ../src/hex-dialog.c:59
+msgid "Signed 16 bit:"
+msgstr "16 bit signat:"
+
+#: ../src/hex-dialog.c:60
+msgid "Unsigned 16 bit:"
+msgstr "16 bit no signat:"
+
+#: ../src/hex-dialog.c:61
+msgid "Signed 32 bit:"
+msgstr "32 bit signat:"
+
+#: ../src/hex-dialog.c:62
+msgid "Unsigned 32 bit:"
+msgstr "32 bit no signat:"
+
+#: ../src/hex-dialog.c:63
+msgid "32 bit float:"
+msgstr "32 bit coma flotant:"
+
+#: ../src/hex-dialog.c:64
+msgid "64 bit float:"
+msgstr "64 bit coma flotant:"
+
+#: ../src/hex-dialog.c:65
+msgid "Hexadecimal:"
+msgstr "Hexadecimal:"
+
+#: ../src/hex-dialog.c:66
+msgid "Octal:"
+msgstr "Octal:"
+
+#: ../src/hex-dialog.c:67
+msgid "Binary:"
+msgstr "Binari:"
+
+#: ../src/hex-dialog.c:196
+msgid "Show little endian decoding"
+msgstr "Mostra la descodificació little endian"
+
+#: ../src/hex-dialog.c:203
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Mostra els no signat i coma flotant com a hexadecimal"
+
+#: ../src/hex-dialog.c:209
+msgid "Stream Length:"
+msgstr "Longitud de la seqüència:"
+
+#: ../src/hex-dialog.c:231
+msgid "FIXME: no conversion function"
+msgstr "FIXME: sense funcions de conversió"
+
+#: ../src/hex-document.c:444
+msgid "New document"
+msgstr "Document nou"
+
+#: ../src/hex-document.c:795
+#, c-format
 msgid "Page"
 msgstr "Pàgina"
 
-#: src/hex-document.c:752 src/hex-document.c:877
+#: ../src/hex-document.c:801 ../src/hex-document.c:926
+#, c-format
 msgid "Hex dump generated by"
 msgstr "Volcat hexadecimal generat per"
 
-#: src/hex-document.c:762
+#: ../src/hex-document.c:812
 msgid "Saving to HTML..."
 msgstr "Desa en HTML..."
 
-#: src/hex-document.c:800
+#: ../src/hex-document.c:849
+#, c-format
 msgid "Previous page"
 msgstr "Pàgina anterior"
 
-#: src/hex-document.c:815
+#: ../src/hex-document.c:864
+#, c-format
 msgid "Next page"
 msgstr "Pàgina següent"
 
-#: src/main.c:49
+#: ../src/main.c:38
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "Especificació de geometria X (vegeu la pàgina man d'\"X\")."
+
+#: ../src/main.c:39
+msgid "GEOMETRY"
+msgstr "Geometria"
+
+#: ../src/main.c:65
 msgid "The gnome binary editor"
 msgstr "L'editor binari del gnome"
 
-#: src/main.c:64
+#: ../src/main.c:81
 msgid "Could not initialize Bonobo!\n"
 msgstr "No es pot inicialitzar el Bonobo\n"
 
-#: src/main.c:89 src/main.c:103
+#: ../src/main.c:106 ../src/main.c:120
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "La cadena de geometria \"%s\" és invàlida\n"
 
-#: src/preferences.c:94
+#: ../src/preferences.c:71
 msgid "GHex Preferences"
 msgstr "Preferències del GHex"
 
-#: src/preferences.c:126
+#: ../src/preferences.c:103
 msgid "_Maximum number of undo levels:"
 msgstr "_Màxim nombre d'accions a desfer:"
 
-#: src/preferences.c:146
+#: ../src/preferences.c:123
 msgid "Undo levels"
 msgstr "Accions per desfer"
 
-#: src/preferences.c:146
+#: ../src/preferences.c:123
 msgid "Select maximum number of undo levels"
 msgstr "Seleccioneu el nombre màxim d'accions a desfer"
 
-#: src/preferences.c:150
+#: ../src/preferences.c:127
 msgid "Show cursor offset in statusbar as:"
 msgstr "Mostra el desplaçament del cursor en la barra d'estat com a:"
 
-#: src/preferences.c:169
+#: ../src/preferences.c:145
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
 
-#: src/preferences.c:175
+#: ../src/preferences.c:147
 msgid "Custom"
 msgstr "Personalitzat"
 
-#: src/preferences.c:187
+#: ../src/preferences.c:156
 msgid "Enter the cursor offset format"
 msgstr "Introduïu el format de desplaçament del cursor"
 
-#: src/preferences.c:188
+#: ../src/preferences.c:157
 msgid "Select the cursor offset format"
 msgstr "Seleccioneu el format de desplaçament de cursor"
 
 #. show offsets check button
-#: src/preferences.c:198
+#: ../src/preferences.c:167
 msgid "Show offsets column"
 msgstr "Mostra columna de desplaçaments"
 
-#: src/preferences.c:203
+#: ../src/preferences.c:172
 msgid "Editing"
 msgstr "Edició"
 
-#. display font
-#: src/preferences.c:212 src/gnome-print-font-picker.c:1017
-msgid "Font"
-msgstr "Tipus de lletra"
-
 #. default group type
-#: src/preferences.c:240
+#: ../src/preferences.c:204
 msgid "Default Group Type"
 msgstr "Tipus de grup per defecte"
 
-#: src/preferences.c:256
+#: ../src/preferences.c:220
 msgid "Display"
 msgstr "Visualització"
 
 #. paper selection
-#: src/preferences.c:265
+#: ../src/preferences.c:229
 msgid "Paper size"
 msgstr "Mida del paper"
 
 #. data & header font selection
-#: src/preferences.c:270
+#: ../src/preferences.c:234
 msgid "Fonts"
 msgstr "Tipus de lletres"
 
-#: src/preferences.c:276
+#: ../src/preferences.c:240
 msgid "_Data font:"
 msgstr "Tipus _de lletra de les dades:"
 
-#: src/preferences.c:295
+#: ../src/preferences.c:259
 msgid "Data font"
 msgstr "Tipus de lletra de les dades"
 
-#: src/preferences.c:295
+#: ../src/preferences.c:259
 msgid "Select the data font"
 msgstr "Seleccioneu el tipus de lletra de les dades"
 
-#: src/preferences.c:309
+#: ../src/preferences.c:273
 msgid "Header fo_nt:"
 msgstr "_Tipus de lletra de la capçalera:"
 
-#: src/preferences.c:327
+#: ../src/preferences.c:291
 msgid "Header font"
 msgstr "Tipus de lletra de la capçalera"
 
-#: src/preferences.c:327
+#: ../src/preferences.c:291
 msgid "Select the header font"
 msgstr "Seleccioneu un tipus de lletra per a la capçalera"
 
-#: src/preferences.c:353
+#: ../src/preferences.c:317
 msgid "_Print shaded box over:"
 msgstr "_Imprimeix el quadre ombrejat sobre:"
 
-#: src/preferences.c:365
+#: ../src/preferences.c:329
 msgid "Box size"
 msgstr "Mida de capsa"
 
-#: src/preferences.c:365
+#: ../src/preferences.c:329
 msgid "Select size of box (in number of lines)"
 msgstr "Seleccioneu la mida de la capsa (en nombre de linies)"
 
-#: src/preferences.c:369
+#: ../src/preferences.c:333
 msgid "lines (0 for no box)"
 msgstr "linies (0: sense quadre)"
 
-#: src/preferences.c:376
+#: ../src/preferences.c:340
 msgid "Printing"
 msgstr "Impressió"
 
-#: src/preferences.c:531
-msgid "Can not open desired font!"
-msgstr "No es pot obrir el tipus de lletra indicat"
-
-#: src/preferences.c:581
-msgid ""
-"The offset format string contains invalid format specifier.\n"
-"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
-msgstr ""
-"La cadena de format de desplaçament conté un especificador de format invàild.\n"
-"Només es permet 'x', 'X', 'p', 'P', 'd' i 'o'."
-
-#: src/print.c:53
-#, c-format
-msgid "Page: %i/%i"
-msgstr "Pàgina: %i/%i"
-
-#: src/print.c:204 src/print.c:218
-#, c-format
-msgid ""
-"GHex could not find the font \"%s\".\n"
-"GHex is unable to print without this font installed."
-msgstr ""
-"GHex no ha trobat el tipus de lletra \"%s\".\n"
-"GHex no pot imprimir sense aquest tipus de lletra instal·lat."
-
-#: src/session.c:29
-msgid "X geometry specification (see \"X\" man page)."
-msgstr "Especificació de geometria X (vegeu la pàgina man d'\"X\")."
-
-#: src/session.c:30
-msgid "GEOMETRY"
-msgstr "Geometria"
-
-#: src/ui.c:71
-msgid "hex data"
-msgstr "dades hexadecimals"
-
-#: src/ui.c:72
-msgid "ASCII data"
-msgstr "dades ASCII"
-
-# Els fitxers són el que són, el binari és l'editor!  iv
-#: src/ui.c:243
-msgid "GHex, a binary file editor"
-msgstr "GHex, un editor binari de fitxers"
-
-#: src/ui.c:245
-msgid "Released under the terms of GNU Public License"
-msgstr "Alliberat sota els termes de la Llicència Pública General GNU."
-
-#: src/ui.c:268
+#: ../src/preferences.c:462 ../src/ui.c:268
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -909,32 +1097,76 @@ msgstr ""
 "S'ha produït un error quan es mostrava l'ajuda: \n"
 "%s"
 
-#: src/ui.c:376
+#: ../src/preferences.c:514
+msgid "Can not open desired font!"
+msgstr "No es pot obrir el tipus de lletra indicat"
+
+#: ../src/preferences.c:577
+msgid ""
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"La cadena de format de desplaçament conté un especificador de format "
+"invàild.\n"
+"Només es permet 'x', 'X', 'p', 'P', 'd' i 'o'."
+
+#: ../src/print.c:66
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Pàgina: %i/%i"
+
+#: ../src/print.c:222 ../src/print.c:238
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"GHex no ha trobat el tipus de lletra \"%s\".\n"
+"GHex no pot imprimir sense aquest tipus de lletra instal·lat."
+
+#: ../src/ui.c:94
+msgid "hex data"
+msgstr "dades hexadecimals"
+
+#: ../src/ui.c:95
+msgid "ASCII data"
+msgstr "dades ASCII"
+
+# Els fitxers són el que són, el binari és l'editor!  iv
+#: ../src/ui.c:243
+msgid "GHex, a binary file editor"
+msgstr "GHex, un editor binari de fitxers"
+
+#: ../src/ui.c:245
+msgid "Released under the terms of GNU Public License"
+msgstr "Alliberat sota els termes de la Llicència Pública General GNU."
+
+#: ../src/ui.c:370
 msgid "Select a file to open"
 msgstr "Seleccioneu un fitxer per obrir"
 
-#: src/ui.c:414
+#: ../src/ui.c:401
 #, c-format
 msgid "Loaded file %s"
 msgstr "S'ha carregat el fitxer %s"
 
-#: src/ui.c:422
+#: ../src/ui.c:409
 msgid "Can not open file!"
 msgstr "No es pot obrir el fitxer"
 
-#: src/ui.c:486
+#: ../src/ui.c:470
 msgid "Select path and file name for the HTML source"
 msgstr "Seleccioneu el camí i el nom del fitxer per al codi HTML"
 
-#: src/ui.c:521
+#: ../src/ui.c:504
 msgid "You need to specify a base name for the HTML files."
 msgstr "Heu d'especificar un nom de base per als fitxers HTML."
 
-#: src/ui.c:532 src/ui.c:554
+#: ../src/ui.c:515 ../src/ui.c:539
 msgid "You don't have the permission to write to the selected path.\n"
-msgstr "No teniu els permissos necessaris per escriure al camí seleccionat.\n"
+msgstr "No teniu els permisos necessaris per escriure al camí seleccionat.\n"
 
-#: src/ui.c:538
+#: ../src/ui.c:526
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -942,105 +1174,47 @@ msgstr ""
 "En desar en HTML es sobreescriuran alguns fitxers.\n"
 "Voleu continuar?"
 
-#: src/ui.c:686
+#: ../src/ui.c:679
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Voleu tornar a l'estat anterior del fitxer %s?"
 
-#: src/ui.c:704
+#: ../src/ui.c:693
 #, c-format
 msgid "Reverted buffer from file %s"
-msgstr "La memòria intermitja s'ha omplert amb el fitxer %s"
+msgstr "La memòria intermèdia s'ha omplert amb el fitxer %s"
 
-#: src/ui.c:778
+#: ../src/ui.c:777
+msgid "Printing file..."
+msgstr "Imprimint el fitxer..."
+
+#: ../src/ui.c:837
 msgid "Print Hex Document"
 msgstr "Imprimeix document hexadecimal"
 
-#: src/ui.c:783
+#: ../src/ui.c:849
 msgid "Pages"
 msgstr "Pàgines"
 
-#: src/ui.c:829
+#: ../src/ui.c:874
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): previsualitza impressió"
 
-#: src/gnome-print-font-dialog.c:111
-msgid "_Insert a new preview phrase."
-msgstr "_Insereix una nova frase per previsualitzar."
+#~ msgid "Search for %s"
+#~ msgstr "Cerca de %s"
 
-#: src/gnome-print-font-dialog.c:117
-msgid "Modify preview phrase..."
-msgstr "Modifica la frase per previsualitzar..."
+#~ msgid "Replace %s"
+#~ msgstr "Reemplaça %s"
 
-#: src/gnome-print-font-dialog.c:171
-msgid "Preview"
-msgstr "Previsualitza"
+#~ msgid "The string is not appropriate for the selected data type!"
+#~ msgstr "La cadena de text no és adecuada per al tipus de dades seleccionats"
 
-#: src/gnome-print-font-dialog.c:184
-msgid "_Modify preview phrase..."
-msgstr "_Modifica la frase per previsualitzar..."
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "El desplaçament ha de ser un enter positiu"
 
-#: src/gnome-print-font-dialog.c:247
-msgid "Font Selection"
-msgstr "Selecció del tipus de lletra"
+#~ msgid "Strings are not appropriate for the selected data type!"
+#~ msgstr "Les cadenes no són adecuades per al tipus de dades seleccionades"
 
-#: src/gnome-print-font-picker.c:91
-msgid "Sans Regular 12"
-msgstr "Sans Regular 12"
-
-#: src/gnome-print-font-picker.c:92
-msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-
-#: src/gnome-print-font-picker.c:93
-msgid "Pick a Font"
-msgstr "Esculliu un tipus de lletra"
-
-#: src/gnome-print-font-picker.c:178
-msgid "Title"
-msgstr "Títol"
-
-#: src/gnome-print-font-picker.c:179
-msgid "The title of the selection dialog box"
-msgstr "El títol del diàleg de selecció"
-
-#: src/gnome-print-font-picker.c:199
-msgid "Font name"
-msgstr "Nom del tipus de lletra"
-
-#: src/gnome-print-font-picker.c:200
-msgid "Name of the selected font"
-msgstr "Nom del tipus de lletra seleccionat"
-
-#: src/gnome-print-font-picker.c:208
-msgid "Preview text"
-msgstr "Previsualitza text"
-
-#: src/gnome-print-font-picker.c:209
-msgid "Preview text shown in the dialog"
-msgstr "Previsualitza el text mostrat en el diàleg"
-
-#: src/gnome-print-font-picker.c:217
-msgid "Use font in label"
-msgstr "Fes servir tipus de lletra en etiqueta"
-
-#: src/gnome-print-font-picker.c:218
-msgid "Use font in the label in font info mode"
-msgstr "Fes servir la lletra en l'etiqueta en el mode d'informació de lletra"
-
-#: src/gnome-print-font-picker.c:226
-msgid "Font size for label"
-msgstr "Mida del tipus de lletra per a l'etiqueta"
-
-#: src/gnome-print-font-picker.c:227
-msgid "Font size for label in font info mode"
-msgstr "Mida del tipus de lletra per a etiqueta en el mode d'informació de lletra"
-
-#: src/gnome-print-font-picker.c:237
-msgid "Show size"
-msgstr "Mostra mida"
-
-#: src/gnome-print-font-picker.c:238
-msgid "Show size in font info mode"
-msgstr "Mostra mida en el mode d'informació de lletra"
+#~ msgid "GHex - %s"
+#~ msgstr "GHex - %s"
