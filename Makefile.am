@@ -37,5 +37,9 @@ appicon_DATA = gnome-ghex.png
 @INTLTOOL_DESKTOP_RULE@
 
 #Install the ghex2 schema file
+if GCONF_SCHEMAS_INSTALL
 install-data-local:
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
+else
+install-data-local:
+endif
