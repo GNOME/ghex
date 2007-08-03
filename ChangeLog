@@ -1,5 +1,10 @@
 2007-08-03  Rodney Dawes  <dobey.pwns@gmail.com>
 
+	* configure.in: Require intltool >= 0.35.0 for po/LINGUAS support
+	Remove ALL_LINGUAS as we moved this information to po/LINGUAS
+
+2007-08-03  Rodney Dawes  <dobey.pwns@gmail.com>
+
 	* src/ghex-window.c (ghex_window_ok_to_close):
 	* src/ui.c (save_cb):
 	Fix typo in string: occurred not occured
