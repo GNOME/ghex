@@ -753,7 +753,9 @@ static void replace_all_cb(GtkButton *button, gpointer unused)
 		display_info_dialog(win, _("No occurrences were found."));
 	}
 	
-	flash = g_strdup_printf(_("Replaced %d occurrences."), count);
+	flash = g_strdup_printf(ngettext("Replaced %d occurrence.",
+									 "Replaced %d occurrences.",
+									 count), count);
 	ghex_window_flash(win, flash);
 	g_free(flash);
 

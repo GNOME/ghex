@@ -1,5 +1,12 @@
 2007-08-03  Rodney Dawes  <dobey.pwns@gmail.com>
 
+	* src/findreplace.c (replace_all_cb):
+	Use ngettext to translate plurals
+
+	Fixes #123865
+
+2007-08-03  Rodney Dawes  <dobey.pwns@gmail.com>
+
 	* Makefile.am: Remove duplicate @INTLTOOL_DESKTOP_RULE@
 
 	Fixes #333808
