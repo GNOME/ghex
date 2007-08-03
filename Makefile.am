@@ -34,8 +34,6 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 appicondir = $(datadir)/pixmaps
 appicon_DATA = gnome-ghex.png
 
-@INTLTOOL_DESKTOP_RULE@
-
 #Install the ghex2 schema file
 if GCONF_SCHEMAS_INSTALL
 install-data-local:
