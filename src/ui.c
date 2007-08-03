@@ -343,7 +343,7 @@ save_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	}
 
 	if(!hex_document_write(doc))
-		display_error_dialog (win, _("An error occured while saving file!"));
+		display_error_dialog (win, _("An error occurred while saving file!"));
 	else {
 		gchar *flash;
 		gchar *gtk_file_name;

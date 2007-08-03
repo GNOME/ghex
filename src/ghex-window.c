@@ -1243,7 +1243,7 @@ ghex_window_ok_to_close(GHexWindow *win)
                 return FALSE;
             }
             else if(!hex_document_write(doc)) {
-                display_error_dialog(win, _("An error occured while saving file!"));
+                display_error_dialog(win, _("An error occurred while saving file!"));
 				return FALSE;
 			}
 		}
