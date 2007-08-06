@@ -2,7 +2,7 @@
 
 #Remove macros intl directory from SUBDIRS -- SnM 
 
-SUBDIRS = po src help omf-install
+SUBDIRS = po src help icons omf-install
 
 schemadir = $(sysconfdir)/gconf/schemas
 schema_DATA = ghex2.schemas
@@ -19,8 +19,7 @@ EXTRA_DIST =			\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in	\
-	$(schema_DATA)		\
-	$(appicon_DATA)
+	$(schema_DATA)
 
 dist-hook: ghex.spec
 	cp ghex.spec $(distdir)
@@ -30,9 +29,6 @@ desktop_in_files = ghex.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 @INTLTOOL_DESKTOP_RULE@
-
-appicondir = $(datadir)/pixmaps
-appicon_DATA = gnome-ghex.png
 
 #Install the ghex2 schema file
 if GCONF_SCHEMAS_INSTALL

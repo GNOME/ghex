@@ -66,9 +66,8 @@ main(int argc, char **argv)
 				GNOME_PARAM_APP_DATADIR, DATADIR,
 				NULL);
 
-	/* FIXME - Couldnt find gnome-ghex.png in the sources directory */
 	/* Set default window icon */
-	gnome_window_icon_set_default_from_file (GNOMEICONDIR "/gnome-ghex.png");
+	gtk_window_set_default_icon_name ("ghex");
 
 	/* load preferences */
 	ghex_init_configuration();
