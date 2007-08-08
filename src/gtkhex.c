@@ -2294,7 +2294,7 @@ GtkHex_AutoHighlight *gtk_hex_insert_autohighlight(GtkHex *gh,
 												   gint len,
 												   const gchar *colour)
 {
-	GtkHex_AutoHighlight *new = g_malloc0(sizeof(GtkHex_Highlight));
+	GtkHex_AutoHighlight *new = g_malloc0(sizeof(GtkHex_AutoHighlight));
 
 	new->search_string = g_memdup(search, len);
 	new->search_len = len;

@@ -1,5 +1,13 @@
 2007-08-08  Rodney Dawes  <dobey.pwns@gmail.com>
 
+	* src/gtkhex.c (gtk_hex_insert_autohilight):
+	Pass the right type to sizeof for the malloc
+	Patch from Stanislav Brabec <sbrabec@suse.cz>
+
+	Fixes #339055
+	
+2007-08-08  Rodney Dawes  <dobey.pwns@gmail.com>
+
 	* configure.in: Update version to 2.19.0 for release
 	Don't pass arguments to AM_INIT_AUTOMAKE and AC_INIT both
 	
