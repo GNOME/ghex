@@ -1,7 +1,8 @@
 AC_PREREQ(2.53)
-AC_INIT(ghex, 2.8.3, http://bugzilla.gnome.org/enter_bug.cgi?product=ghex)
+AC_INIT([ghex], [2.19.0],
+	[http://bugzilla.gnome.org/enter_bug.cgi?product=ghex])
 AC_CONFIG_SRCDIR(src/ghex-window.c)
-AM_INIT_AUTOMAKE(ghex, 2.8.3)
+AM_INIT_AUTOMAKE
 AM_CONFIG_HEADER(config.h)
 
 AM_MAINTAINER_MODE
