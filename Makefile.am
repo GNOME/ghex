@@ -1,8 +1,8 @@
 ## Process this file with automake to produce Makefile.in.
 
-#Remove macros intl directory from SUBDIRS -- SnM 
+DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --disable-schemas-install
 
-SUBDIRS = po src help icons omf-install
+SUBDIRS = po src help icons
 
 schemadir = $(sysconfdir)/gconf/schemas
 schema_DATA = ghex2.schemas
@@ -13,7 +13,8 @@ pkgconfig_DATA = gtkhex.pc
 EXTRA_DIST =			\
 	ghex.spec.in		\
 	ghex.desktop.in		\
-	app-docs.make   	\
+	gnome-doc-utils.make	\
+	omf.make		\
 	xmldocs.make		\
 	COPYING-DOCS    	\
 	intltool-extract.in	\
@@ -37,3 +38,11 @@ install-data-local:
 else
 install-data-local:
 endif
+
+CLEANFILES =			\
+	$(desktop_DATA)
+
+DISTCLEANFILES =		\
+	intltool-extract	\
+	intltool-merge		\
+	intltool-update
