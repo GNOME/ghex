@@ -28,6 +28,8 @@
 
 #include <glib-object.h>
 
+G_BEGIN_DECLS
+
 #define HEX_DOCUMENT_TYPE          (hex_document_get_type())
 #define HEX_DOCUMENT(obj)          G_TYPE_CHECK_INSTANCE_CAST (obj, hex_document_get_type (), HexDocument)
 #define HEX_DOCUMENT_CLASS(klass)  G_TYPE_CHECK_CLASS_CAST (klass, hex_document_get_type (), HexDocumentClass)
@@ -123,5 +125,7 @@ void        hex_document_remove_view(HexDocument *doc, GtkWidget *view);
 GtkWidget   *hex_document_add_view(HexDocument *doc);
 const GList *hex_document_get_list(void);
 gboolean    hex_document_is_writable(HexDocument *doc);
+
+G_END_DECLS
 
 #endif /* __HEX_DOCUMENT_H__ */
