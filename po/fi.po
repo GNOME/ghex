@@ -1,20 +1,21 @@
 # Finnish translations of ghex
 # Copyright (C) 1999 Free Software Foundation, Inc.
 #
+# Ilkka Tuohela  <hile@iki.fi>, 2006-2007
 # Tuomas Merilä <tuomas@merila.org>, 1999
-# Ilkka Tuohela  <hile@iki.fi>, 2006
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 1.0.5\n"
+"Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-17 10:05+0300\n"
+"POT-Creation-Date: 2007-08-14 22:19+0300\n"
 "PO-Revision-Date: 2006-07-17 10:08+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../ghex.desktop.in.h:1
 msgid "GNOME Hexadecimal Editor"
@@ -148,7 +149,7 @@ msgstr "GHex (%s): Etsi tietoa: lisää haku"
 
 #: ../src/findreplace.c:180
 msgid "Add"
-msgstr "Uusi"
+msgstr "Lisää"
 
 #: ../src/findreplace.c:236
 msgid "Search String"
@@ -166,7 +167,7 @@ msgstr "_Lisää uusi"
 msgid "_Remove Selected"
 msgstr "_Poista valittu"
 
-#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:9
+#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:8
 msgid "Close"
 msgstr "Sulje"
 
@@ -187,7 +188,7 @@ msgstr "Korvaa"
 msgid "Find _next"
 msgstr "Etsi _seuraava"
 
-#: ../src/findreplace.c:382 ../src/ghex-ui.xml.h:89
+#: ../src/findreplace.c:382
 msgid "_Replace"
 msgstr "_Korvaa"
 
@@ -207,7 +208,7 @@ msgstr "Syötä heksadesimaali- tai ASCII-muotoinen tieto, jolla korvataan"
 msgid "Find next"
 msgstr "Etsi seuraava"
 
-#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:49
+#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:51
 msgid "Replace"
 msgstr "Korvaa"
 
@@ -261,16 +262,16 @@ msgstr "Aktiivista asiakirjaa etsittäväksi ei löydy!"
 msgid "There is no string to search for!"
 msgstr "Haettavaa merkkijono ei ole annettu!"
 
-#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:851
+#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:853
 msgid "End Of File reached"
 msgstr "EOF (tiedoston loppu) tuli vastaan"
 
 #: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
-#: ../src/findreplace.c:852 ../src/findreplace.c:875
+#: ../src/findreplace.c:854 ../src/findreplace.c:877
 msgid "String was not found!\n"
 msgstr "Merkkijonoa ei löytynyt!\n"
 
-#: ../src/findreplace.c:580 ../src/findreplace.c:874
+#: ../src/findreplace.c:580 ../src/findreplace.c:876
 msgid "Beginning Of File reached"
 msgstr "Tiedoston alussa"
 
@@ -314,10 +315,12 @@ msgstr "Osumia ei löytynyt."
 
 #: ../src/findreplace.c:756
 #, c-format
-msgid "Replaced %d occurrences."
-msgstr "%d esiintemää korvattu."
+msgid "Replaced %d occurrence."
+msgid_plural "Replaced %d occurrences."
+msgstr[0] "Korvattiin %d esiintymä."
+msgstr[1] "Korvattiin %d esiintymää."
 
-#: ../src/findreplace.c:794
+#: ../src/findreplace.c:796
 msgid "No string to search for!"
 msgstr "Ei etsittävää merkkijonoa!"
 
@@ -342,40 +345,40 @@ msgid "Bytes"
 msgstr "Tavuittain"
 
 #: ../src/ghex-ui.xml.h:6
-msgid "C_ut"
-msgstr "_Leikkaa"
-
-#: ../src/ghex-ui.xml.h:7
 msgid "Character Table..."
 msgstr "Merkkitaulukko..."
 
-#: ../src/ghex-ui.xml.h:8
-msgid "Character _Table..."
-msgstr "Merkki_taulukko..."
+#: ../src/ghex-ui.xml.h:7
+msgid "Character _Table"
+msgstr "Merkki_taulukko"
 
-#: ../src/ghex-ui.xml.h:10
+#: ../src/ghex-ui.xml.h:9
 msgid "Close the current file"
 msgstr "Sulje valittu tiedosto"
 
-#: ../src/ghex-ui.xml.h:11
+#: ../src/ghex-ui.xml.h:10
 msgid "Configure the application"
 msgstr "Sovelluksen asetukset"
 
-#: ../src/ghex-ui.xml.h:12
+#: ../src/ghex-ui.xml.h:11
 msgid "Contents"
 msgstr "Sisältö"
 
-#: ../src/ghex-ui.xml.h:13
+#: ../src/ghex-ui.xml.h:12
 msgid "Converter..."
 msgstr "Muunnin..."
 
-#: ../src/ghex-ui.xml.h:14
+#: ../src/ghex-ui.xml.h:13
 msgid "Copy"
 msgstr "Kopioi"
 
-#: ../src/ghex-ui.xml.h:15
+#: ../src/ghex-ui.xml.h:14
 msgid "Copy selection to clipboard"
 msgstr "Kopioi valinta leikepöydälle"
+
+#: ../src/ghex-ui.xml.h:15
+msgid "Cu_t"
+msgstr "_Leikkaa"
 
 #: ../src/ghex-ui.xml.h:16
 msgid "Cut"
@@ -462,206 +465,210 @@ msgid "Open base conversion dialog"
 msgstr "Avaa kantamuunnosikkuna"
 
 #: ../src/ghex-ui.xml.h:37
+msgid "Pa_ste"
+msgstr "L_iitä"
+
+#: ../src/ghex-ui.xml.h:38
 msgid "Paste"
 msgstr "Liitä"
 
-#: ../src/ghex-ui.xml.h:38
+#: ../src/ghex-ui.xml.h:39
 msgid "Paste data from clipboard"
 msgstr "Liitä tietoa leikepöydältä"
 
-#: ../src/ghex-ui.xml.h:39
+#: ../src/ghex-ui.xml.h:40
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: ../src/ghex-ui.xml.h:40
+#: ../src/ghex-ui.xml.h:41
 msgid "Preview printed data"
 msgstr "Esikatsele tulostettavaa tietoa"
 
-#: ../src/ghex-ui.xml.h:41
+#: ../src/ghex-ui.xml.h:42
 msgid "Print"
 msgstr "Tulosta"
 
-#: ../src/ghex-ui.xml.h:42
+#: ../src/ghex-ui.xml.h:43
 msgid "Print Previe_w..."
 msgstr "Tulostuksen _esikatse¿u..."
 
-#: ../src/ghex-ui.xml.h:43
+#: ../src/ghex-ui.xml.h:44
 msgid "Print Preview..."
 msgstr "Tulostuksen esikatselu..."
 
-#: ../src/ghex-ui.xml.h:44
+#: ../src/ghex-ui.xml.h:45
 msgid "Print the current file"
 msgstr "Tulosta valittu tiedosto"
 
-#: ../src/ghex-ui.xml.h:45
+#: ../src/ghex-ui.xml.h:46
+msgid "R_eplace"
+msgstr "_Korvaa"
+
+#: ../src/ghex-ui.xml.h:47
 msgid "Redo"
 msgstr "Tee uudestaan"
 
-#: ../src/ghex-ui.xml.h:46
+#: ../src/ghex-ui.xml.h:48
 msgid "Redo the undone action"
 msgstr "Tee peruttu toimenpide uudestaan"
 
-#: ../src/ghex-ui.xml.h:47
+#: ../src/ghex-ui.xml.h:49
 msgid "Remove View"
 msgstr "Poista näkymä"
 
-#: ../src/ghex-ui.xml.h:48
+#: ../src/ghex-ui.xml.h:50
 msgid "Remove the current view of the buffer"
 msgstr "Poista valittu puskurin näkymä"
 
-#: ../src/ghex-ui.xml.h:50
+#: ../src/ghex-ui.xml.h:52
 msgid "Replace a string"
 msgstr "Korvaa merkkijono"
 
-#: ../src/ghex-ui.xml.h:51
+#: ../src/ghex-ui.xml.h:53
 msgid "Revert"
 msgstr "Palauta"
 
-#: ../src/ghex-ui.xml.h:52
+#: ../src/ghex-ui.xml.h:54
 msgid "Revert to a saved version of the file"
 msgstr "Palauta tiedoston tallennettu versio"
 
-#: ../src/ghex-ui.xml.h:53
+#: ../src/ghex-ui.xml.h:55
 msgid "Save"
 msgstr "Tallenna"
 
-#: ../src/ghex-ui.xml.h:54
+#: ../src/ghex-ui.xml.h:56
 msgid "Save As"
 msgstr "Tallenna nimellä"
 
-#: ../src/ghex-ui.xml.h:55
+#: ../src/ghex-ui.xml.h:57
 msgid "Save As _HTML..."
 msgstr "Tallenna _HTML-tiedostona..."
 
-#: ../src/ghex-ui.xml.h:56
+#: ../src/ghex-ui.xml.h:58
 msgid "Save _As..."
 msgstr "Tallenna _nimellä..."
 
-#: ../src/ghex-ui.xml.h:57
+#: ../src/ghex-ui.xml.h:59
 msgid "Save the current file"
 msgstr "Tallenna valittu tiedosto"
 
-#: ../src/ghex-ui.xml.h:58
+#: ../src/ghex-ui.xml.h:60
 msgid "Save the current file with a different name"
 msgstr "Tallenna valittu tiedosto toisella nimellä"
 
-#: ../src/ghex-ui.xml.h:59
+#: ../src/ghex-ui.xml.h:61
 msgid "Search for a string"
 msgstr "Etsi merkkijonoa"
 
-#: ../src/ghex-ui.xml.h:60
+#: ../src/ghex-ui.xml.h:62
 msgid "Show the character table"
 msgstr "Näytä merkkitaulukko"
 
-#: ../src/ghex-ui.xml.h:61
+#: ../src/ghex-ui.xml.h:63
 msgid "Show the type conversion dialog in the edit window"
 msgstr "Näytä tyypin muunnosikkuna muokkausikkunassa"
 
-#: ../src/ghex-ui.xml.h:62
+#: ../src/ghex-ui.xml.h:64
 msgid "Type Conversion Dialog..."
 msgstr "Tyypinmuunnosikkuna..."
 
-#: ../src/ghex-ui.xml.h:63
+#: ../src/ghex-ui.xml.h:65
 msgid "Type Conversion _Dialog"
 msgstr "Tyypin_muunnosikkuna"
 
-#: ../src/ghex-ui.xml.h:64
+#: ../src/ghex-ui.xml.h:66
 msgid "Undo"
 msgstr "Peru"
 
-#: ../src/ghex-ui.xml.h:65
+#: ../src/ghex-ui.xml.h:67
 msgid "Undo the last action"
 msgstr "Peru viimeisin toimenpide"
 
-#: ../src/ghex-ui.xml.h:66 ../src/ui.c:88
+#: ../src/ghex-ui.xml.h:68 ../src/ui.c:88
 msgid "Words"
 msgstr "Sanoittain"
 
-#: ../src/ghex-ui.xml.h:67
+#: ../src/ghex-ui.xml.h:69
 msgid "_About"
 msgstr "_Tietoja"
 
-#: ../src/ghex-ui.xml.h:68
+#: ../src/ghex-ui.xml.h:70
 msgid "_Add View"
 msgstr "_Lisää näkymä"
 
-#: ../src/ghex-ui.xml.h:69
+#: ../src/ghex-ui.xml.h:71
 msgid "_Advanced Find"
 msgstr "_Edistynyt haku"
 
-#: ../src/ghex-ui.xml.h:70
+#: ../src/ghex-ui.xml.h:72
 msgid "_Base Converter"
 msgstr "Kantamuunnin"
 
-#: ../src/ghex-ui.xml.h:71
+#: ../src/ghex-ui.xml.h:73
 msgid "_Bytes"
 msgstr "_Tavuja"
 
-#: ../src/ghex-ui.xml.h:72
+#: ../src/ghex-ui.xml.h:74
 msgid "_Close"
 msgstr "_Sulje"
 
-#: ../src/ghex-ui.xml.h:73
+#: ../src/ghex-ui.xml.h:75
 msgid "_Contents"
 msgstr "_Sisältö"
 
-#: ../src/ghex-ui.xml.h:74
+#: ../src/ghex-ui.xml.h:76
 msgid "_Copy"
 msgstr "_Kopioi"
 
-#: ../src/ghex-ui.xml.h:75
+#: ../src/ghex-ui.xml.h:77
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../src/ghex-ui.xml.h:76
+#: ../src/ghex-ui.xml.h:78
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: ../src/ghex-ui.xml.h:77
+#: ../src/ghex-ui.xml.h:79
 msgid "_Find"
 msgstr "_Etsi"
 
-#: ../src/ghex-ui.xml.h:78
+#: ../src/ghex-ui.xml.h:80
 msgid "_Goto Byte..."
 msgstr "_Siirry tavuun..."
 
-#: ../src/ghex-ui.xml.h:79
+#: ../src/ghex-ui.xml.h:81
 msgid "_Group Data As"
 msgstr "Ryhmittele _data..."
 
-#: ../src/ghex-ui.xml.h:80
+#: ../src/ghex-ui.xml.h:82
 msgid "_Help"
 msgstr "O_hje"
 
-#: ../src/ghex-ui.xml.h:81
+#: ../src/ghex-ui.xml.h:83
 msgid "_Insert Mode"
 msgstr "_Lisäystila"
 
-#: ../src/ghex-ui.xml.h:82
+#: ../src/ghex-ui.xml.h:84
 msgid "_Longwords"
 msgstr "_Pitkät sanat"
 
-#: ../src/ghex-ui.xml.h:83
+#: ../src/ghex-ui.xml.h:85
 msgid "_Open..."
 msgstr "_Tallenna..."
 
-#: ../src/ghex-ui.xml.h:84
-msgid "_Paste"
-msgstr "_Liitä"
-
-#: ../src/ghex-ui.xml.h:85
+#: ../src/ghex-ui.xml.h:86
 msgid "_Preferences"
 msgstr "_Asetukset"
 
-#: ../src/ghex-ui.xml.h:86
+#: ../src/ghex-ui.xml.h:87
 msgid "_Print"
 msgstr "_Tulosta"
 
-#: ../src/ghex-ui.xml.h:87
+#: ../src/ghex-ui.xml.h:88
 msgid "_Redo"
 msgstr "_Tee uudestaan"
 
-#: ../src/ghex-ui.xml.h:88
+#: ../src/ghex-ui.xml.h:89
 msgid "_Remove View"
 msgstr "_Poista näkymä"
 
@@ -775,8 +782,8 @@ msgid "You don't have the permissions to save the file!"
 msgstr "Sinulla ei ole oikeuksia tallentaa tätä tiedostoa!"
 
 #: ../src/ghex-window.c:1246 ../src/ui.c:346
-msgid "An error occured while saving file!"
-msgstr "Virhe tallennettaessa tiedostoa!"
+msgid "An error occurred while saving file!"
+msgstr "Tapahtui virhe tallennettaessa tiedostoa!"
 
 #: ../src/gnome-print-font-dialog.c:111
 msgid "_Insert a new preview phrase."
@@ -963,11 +970,11 @@ msgstr "GEOMETRIA"
 msgid "The gnome binary editor"
 msgstr "Gnomen binäärieditori"
 
-#: ../src/main.c:81
+#: ../src/main.c:80
 msgid "Could not initialize Bonobo!\n"
 msgstr "Bonoboa ei voitu alustaa!\n"
 
-#: ../src/main.c:106 ../src/main.c:120
+#: ../src/main.c:105 ../src/main.c:119
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Virheellinen geometriamäärittely \"%s\"\n"
@@ -1190,3 +1197,9 @@ msgstr "Sivua"
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Tulostuksen esikatselu"
+
+#~ msgid "C_ut"
+#~ msgstr "_Leikkaa"
+
+#~ msgid "_Paste"
+#~ msgstr "_Liitä"
