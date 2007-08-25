@@ -1,5 +1,14 @@
 2007-08-25  Rodney Dawes  <dobey.pwns@gmail.com>
 
+	* src/gtkhex.c (gtk_hex_key_press):
+	Change the return value to be gboolean instead of gint
+	(gtk_hex_key_release):
+	Turn off selection mode when Shift is released
+	(gtk_hex_button_release):
+	Enable selection mode if doing shift+click
+
+2007-08-25  Rodney Dawes  <dobey.pwns@gmail.com>
+
 	* src/preferences.c (create_prefs_dialog):
 	Add mnemonics to a few labels, and set mnemonic widget if needed
 

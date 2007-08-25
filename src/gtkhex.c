@@ -1598,7 +1598,7 @@ static void gtk_hex_finalize(GObject *o) {
 		(* G_OBJECT_CLASS(parent_class)->finalize)(G_OBJECT(o));  
 }
 
-static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
+static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	GtkHex *gh = GTK_HEX(w);
 	guint old_cp = gh->cursor_pos;
 	gint ret = TRUE;
@@ -1766,6 +1766,26 @@ static gint gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	return ret;
 }
 
+static gboolean gtk_hex_key_release(GtkWidget *w, GdkEventKey *event) {
+	GtkHex *gh = GTK_HEX(w);
+
+	if(event->keyval == GDK_Shift_L || event->keyval == GDK_Shift_R) {
+		gh->selecting = FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean gtk_hex_button_release(GtkWidget *w, GdkEventButton *event) {
+	GtkHex *gh = GTK_HEX(w);
+
+	if(event->state & GDK_SHIFT_MASK) {
+		gh->selecting = FALSE;
+	}
+
+	return TRUE;
+}
+
 /* 
  * recalculate the width of both displays and reposition and resize all
  * the children widgets and adjust the scrollbar after resizing
@@ -1901,6 +1921,8 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 	GTK_WIDGET_CLASS(klass)->size_request = gtk_hex_size_request;
 	GTK_WIDGET_CLASS(klass)->expose_event = gtk_hex_expose;
 	GTK_WIDGET_CLASS(klass)->key_press_event = gtk_hex_key_press;
+	GTK_WIDGET_CLASS(klass)->key_release_event = gtk_hex_key_release;
+	GTK_WIDGET_CLASS(klass)->button_release_event = gtk_hex_button_release;
 	GTK_WIDGET_CLASS(klass)->realize = gtk_hex_realize;
 
 	/* Changed in Gnome 2.0 -- SnM */
