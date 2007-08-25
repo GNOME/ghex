@@ -124,7 +124,7 @@ create_prefs_dialog()
 		add_atk_relation (pui->undo_spin, label, ATK_RELATION_LABELLED_BY);
 	}
 
-	label = gtk_label_new(_("Show cursor offset in statusbar as:"));
+	label = gtk_label_new_with_mnemonic(_("_Show cursor offset in statusbar as:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
 	gtk_widget_show(label);
@@ -138,6 +138,7 @@ create_prefs_dialog()
 	gtk_widget_show(pui->format);
 
 	pui->offset_menu = gtk_combo_box_new_text();
+	gtk_label_set_mnemonic_widget (GTK_LABEL(label), pui->offset_menu);
 	gtk_widget_show(pui->offset_menu);
 	gtk_combo_box_append_text(GTK_COMBO_BOX(pui->offset_menu),
 							  _("Decimal"));
@@ -164,7 +165,7 @@ create_prefs_dialog()
 	}
 
 	/* show offsets check button */
-	pui->offsets_col = gtk_check_button_new_with_label(_("Show offsets column"));
+	pui->offsets_col = gtk_check_button_new_with_mnemonic(_("Sh_ow offsets column"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->offsets_col), show_offsets_column);
 	gtk_box_pack_start(GTK_BOX(vbox), pui->offsets_col, FALSE, TRUE, GNOME_PAD_SMALL);
 	gtk_widget_show(pui->offsets_col);
@@ -209,7 +210,7 @@ create_prefs_dialog()
 	gtk_widget_show(box);
 	group = NULL;
 	for(i = 0; i < 3; i++) {
-		pui->group_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_label(group, _(group_type_label[i])));
+		pui->group_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_mnemonic(group, _(group_type_label[i])));
 		gtk_widget_show(GTK_WIDGET(pui->group_type[i]));
 		gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->group_type[i]), TRUE, TRUE, 2);
 		group = gtk_radio_button_get_group(pui->group_type[i]);

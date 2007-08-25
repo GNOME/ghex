@@ -84,9 +84,9 @@ guint group_type[3] = {
 };
 
 gchar *group_type_label[3] = {
-	N_("Bytes"),
-	N_("Words"),
-	N_("Longwords"),
+	N_("_Bytes"),
+	N_("_Words"),
+	N_("_Longwords"),
 };
 
 guint search_type = 0;
