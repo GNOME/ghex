@@ -1,11 +1,20 @@
+2007-08-25  Rodney Dawes  <dobey.pwns@gmail.com>
+
+	* src/Makefile.am:
+	* src/ghex-window.c (ghex_window_new):
+	Pass PREFIX in to bonobo_ui_util_set_ui so that we can load the
+	ui xml from the appropriate prefix
+
+	Fixes #467384
+
 2007-08-13  Rodney Dawes  <dobey.pwns@gmail.com>
 
 	* configure.in: Update version to 2.19.90 for release
 
 2007-08-10  Jonathon Jongsma  <jjongsma@gnome.org>
 
-	* src/hex-document.h: add G_BEGIN/END_DECLS around public declarations so
-	that it can be easily included in C++ applications
+	* src/hex-document.h: add G_BEGIN/END_DECLS around public declarations
+	so that it can be easily included in C++ applications
 
 2007-08-09  Rodney Dawes  <dobey.pwns@gmail.com>
 

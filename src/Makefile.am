@@ -5,6 +5,7 @@ INCLUDES = \
 	-DGNOMELOCALEDIR=\""${prefix}/${DATADIRNAME}/locale"\" 	\
 	-DLOCALEDIR=\"${prefix}/${DATADIRNAME}/locale\"		\
 	-DDATADIR=\""$(datadir)"\"				\
+	-DPREFIX=\""$(prefix)"\"				\
 	$(GHEX_CFLAGS) $(GAILUTIL_CFLAGS)			\
 	$(GHEX_DEPRECATED_CFLAGS)
 
