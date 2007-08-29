@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-09 00:48+0200\n"
-"PO-Revision-Date: 2007-08-09 00:49+0100\n"
+"POT-Creation-Date: 2007-08-29 23:40+0200\n"
+"PO-Revision-Date: 2007-08-29 23:41+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgid "Hex"
 msgstr "Hexadecimalt"
 
 #: ../src/chartable.c:143
-#: ../src/preferences.c:143
+#: ../src/preferences.c:144
 msgid "Decimal"
 msgstr "Decimalt"
 
@@ -368,7 +368,6 @@ msgid "Advanced Find"
 msgstr "Avancerad sökning"
 
 #: ../src/ghex-ui.xml.h:5
-#: ../src/ui.c:87
 msgid "Bytes"
 msgstr "Byte"
 
@@ -477,7 +476,6 @@ msgid "Jump to a certain position"
 msgstr "Hoppa till en speciell position"
 
 #: ../src/ghex-ui.xml.h:33
-#: ../src/ui.c:89
 msgid "Longwords"
 msgstr "Långord"
 
@@ -614,7 +612,6 @@ msgid "Undo the last action"
 msgstr "Ångra den senaste åtgärden"
 
 #: ../src/ghex-ui.xml.h:68
-#: ../src/ui.c:88
 msgid "Words"
 msgstr "Ord"
 
@@ -635,6 +632,7 @@ msgid "_Base Converter"
 msgstr "_Baskonverterare"
 
 #: ../src/ghex-ui.xml.h:73
+#: ../src/ui.c:87
 msgid "_Bytes"
 msgstr "_Byte"
 
@@ -679,6 +677,7 @@ msgid "_Insert Mode"
 msgstr "_Inskrivningsläge"
 
 #: ../src/ghex-ui.xml.h:84
+#: ../src/ui.c:89
 msgid "_Longwords"
 msgstr "_Långord"
 
@@ -723,6 +722,7 @@ msgid "_Windows"
 msgstr "_Fönster"
 
 #: ../src/ghex-ui.xml.h:95
+#: ../src/ui.c:88
 msgid "_Words"
 msgstr "_Ord"
 
@@ -902,7 +902,7 @@ msgstr "Visa storlek i typsnittsinformationsläge"
 
 #. display font
 #: ../src/gnome-print-font-picker.c:1019
-#: ../src/preferences.c:181
+#: ../src/preferences.c:182
 msgid "Font"
 msgstr "Typsnitt"
 
@@ -1035,98 +1035,98 @@ msgid "Select maximum number of undo levels"
 msgstr "Välj maximalt antal ångrasteg"
 
 #: ../src/preferences.c:127
-msgid "Show cursor offset in statusbar as:"
-msgstr "Visa markörpositionen i statusraden som:"
+msgid "_Show cursor offset in statusbar as:"
+msgstr "_Visa markörpositionen i statusraden som:"
 
-#: ../src/preferences.c:145
+#: ../src/preferences.c:146
 msgid "Hexadecimal"
 msgstr "Hexadecimalt"
 
-#: ../src/preferences.c:147
+#: ../src/preferences.c:148
 msgid "Custom"
 msgstr "Anpassad"
 
-#: ../src/preferences.c:156
+#: ../src/preferences.c:157
 msgid "Enter the cursor offset format"
 msgstr "Ange markörpositionsformatet"
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:158
 msgid "Select the cursor offset format"
 msgstr "Välj markörpositionsformatet"
 
 #. show offsets check button
-#: ../src/preferences.c:167
-msgid "Show offsets column"
-msgstr "Visa avståndskolumn"
+#: ../src/preferences.c:168
+msgid "Sh_ow offsets column"
+msgstr "Vis_a avståndskolumn"
 
-#: ../src/preferences.c:172
+#: ../src/preferences.c:173
 msgid "Editing"
 msgstr "Redigerar"
 
 #. default group type
-#: ../src/preferences.c:204
+#: ../src/preferences.c:205
 msgid "Default Group Type"
 msgstr "Standardgrupptyp"
 
-#: ../src/preferences.c:220
+#: ../src/preferences.c:221
 msgid "Display"
 msgstr "Utseende"
 
 #. paper selection
-#: ../src/preferences.c:229
+#: ../src/preferences.c:230
 msgid "Paper size"
 msgstr "Pappersstorlek"
 
 #. data & header font selection
-#: ../src/preferences.c:234
+#: ../src/preferences.c:235
 msgid "Fonts"
 msgstr "Typsnitt"
 
-#: ../src/preferences.c:240
+#: ../src/preferences.c:241
 msgid "_Data font:"
 msgstr "_Datatypsnitt:"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Data font"
 msgstr "Datatypsnitt"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Select the data font"
 msgstr "Välj datatypsnittet"
 
-#: ../src/preferences.c:273
+#: ../src/preferences.c:274
 msgid "Header fo_nt:"
 msgstr "_Rubriktypsnitt:"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Header font"
 msgstr "Rubriktypsnitt"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Select the header font"
 msgstr "Välj rubriktypsnittet"
 
-#: ../src/preferences.c:317
+#: ../src/preferences.c:318
 msgid "_Print shaded box over:"
 msgstr "_Skriv skuggad ruta över:"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Box size"
 msgstr "Rutstorlek"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Select size of box (in number of lines)"
 msgstr "Välj storleken på rutan (i antal rader)"
 
-#: ../src/preferences.c:333
+#: ../src/preferences.c:334
 msgid "lines (0 for no box)"
 msgstr "rader (0 för ingen ruta)"
 
-#: ../src/preferences.c:340
+#: ../src/preferences.c:341
 msgid "Printing"
 msgstr "Skriver ut"
 
-#: ../src/preferences.c:462
+#: ../src/preferences.c:463
 #: ../src/ui.c:268
 #, c-format
 msgid ""
@@ -1136,11 +1136,11 @@ msgstr ""
 "Det inträffade ett fel vid visande av hjälp:\n"
 "%s"
 
-#: ../src/preferences.c:514
+#: ../src/preferences.c:515
 msgid "Can not open desired font!"
 msgstr "Kan inte öppna det önskade typsnittet!"
 
-#: ../src/preferences.c:577
+#: ../src/preferences.c:578
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
