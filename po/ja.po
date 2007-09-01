@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-14 00:17+0900\n"
-"PO-Revision-Date: 2007-08-14 00:16+0900\n"
+"POT-Creation-Date: 2007-09-02 01:03+0900\n"
+"PO-Revision-Date: 2007-09-02 01:03+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "文字"
 msgid "Hex"
 msgstr "16進"
 
-#: ../src/chartable.c:143 ../src/preferences.c:143
+#: ../src/chartable.c:143 ../src/preferences.c:144
 msgid "Decimal"
 msgstr "10進"
 
@@ -340,7 +340,7 @@ msgstr "新しいビューをバッファに追加します"
 msgid "Advanced Find"
 msgstr "拡張検索を行います"
 
-#: ../src/ghex-ui.xml.h:5 ../src/ui.c:87
+#: ../src/ghex-ui.xml.h:5
 msgid "Bytes"
 msgstr "バイト"
 
@@ -448,7 +448,7 @@ msgstr "挿入/上書きモードを切り替えます"
 msgid "Jump to a certain position"
 msgstr "指定した位置へジャンプします"
 
-#: ../src/ghex-ui.xml.h:33 ../src/ui.c:89
+#: ../src/ghex-ui.xml.h:33
 msgid "Longwords"
 msgstr "ロングワード"
 
@@ -584,7 +584,7 @@ msgstr "元に戻す"
 msgid "Undo the last action"
 msgstr "最後の操作に戻します"
 
-#: ../src/ghex-ui.xml.h:68 ../src/ui.c:88
+#: ../src/ghex-ui.xml.h:68
 msgid "Words"
 msgstr "ワード"
 
@@ -604,7 +604,7 @@ msgstr "拡張検索(_A)"
 msgid "_Base Converter"
 msgstr "基数コンバータ(_B)"
 
-#: ../src/ghex-ui.xml.h:73
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:87
 msgid "_Bytes"
 msgstr "バイト(_B)"
 
@@ -648,7 +648,7 @@ msgstr "ヘルプ(_H)"
 msgid "_Insert Mode"
 msgstr "挿入モード(_I)"
 
-#: ../src/ghex-ui.xml.h:84
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:89
 msgid "_Longwords"
 msgstr "ロングワード(_L)"
 
@@ -692,7 +692,7 @@ msgstr "表示(_V)"
 msgid "_Windows"
 msgstr "ウィンドウ(_W)"
 
-#: ../src/ghex-ui.xml.h:95
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:88
 msgid "_Words"
 msgstr "ワード(_W)"
 
@@ -866,7 +866,7 @@ msgid "Show size in font info mode"
 msgstr "フォント情報モードでサイズを表示します"
 
 #. display font
-#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:181
+#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:182
 msgid "Font"
 msgstr "フォント"
 
@@ -996,98 +996,100 @@ msgid "Select maximum number of undo levels"
 msgstr "元に戻すレベルの最大値の選択"
 
 #: ../src/preferences.c:127
-msgid "Show cursor offset in statusbar as:"
-msgstr "ステータスバーに表示するカーソルのオフセットの書式:"
+msgid "_Show cursor offset in statusbar as:"
+msgstr ""
+"ステータスバーに表示する\n"
+"カーソル位置のオフセットの書式(_S):"
 
-#: ../src/preferences.c:145
+#: ../src/preferences.c:146
 msgid "Hexadecimal"
 msgstr "16進"
 
-#: ../src/preferences.c:147
+#: ../src/preferences.c:148
 msgid "Custom"
 msgstr "カスタム"
 
-#: ../src/preferences.c:156
+#: ../src/preferences.c:157
 msgid "Enter the cursor offset format"
 msgstr "カーソル位置のオフセット値の書式を入力して下さい"
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:158
 msgid "Select the cursor offset format"
 msgstr "カーソル位置のオフセット値の書式の選択"
 
 #. show offsets check button
-#: ../src/preferences.c:167
-msgid "Show offsets column"
-msgstr "オフセットを表示する"
+#: ../src/preferences.c:168
+msgid "Sh_ow offsets column"
+msgstr "メイン画面の左側にオフセットを表示する(_O)"
 
-#: ../src/preferences.c:172
+#: ../src/preferences.c:173
 msgid "Editing"
 msgstr "編集"
 
 #. default group type
-#: ../src/preferences.c:204
+#: ../src/preferences.c:205
 msgid "Default Group Type"
 msgstr "デフォルトの表示単位"
 
-#: ../src/preferences.c:220
+#: ../src/preferences.c:221
 msgid "Display"
 msgstr "表示"
 
 #. paper selection
-#: ../src/preferences.c:229
+#: ../src/preferences.c:230
 msgid "Paper size"
 msgstr "用紙のサイズ"
 
 #. data & header font selection
-#: ../src/preferences.c:234
+#: ../src/preferences.c:235
 msgid "Fonts"
 msgstr "フォント"
 
-#: ../src/preferences.c:240
+#: ../src/preferences.c:241
 msgid "_Data font:"
 msgstr "データのフォント(_D):"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Data font"
 msgstr "データのフォント"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Select the data font"
 msgstr "データの表示に使用するフォントを選択して下さい"
 
-#: ../src/preferences.c:273
+#: ../src/preferences.c:274
 msgid "Header fo_nt:"
 msgstr "ヘッダのフォント(_N):"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Header font"
 msgstr "ヘッダのフォント"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Select the header font"
 msgstr "ヘッダの表示に使用するフォントを選択して下さい"
 
-#: ../src/preferences.c:317
+#: ../src/preferences.c:318
 msgid "_Print shaded box over:"
 msgstr "影の付いた矩形を印刷する行数(_P):"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Box size"
 msgstr "矩形の大きさ"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Select size of box (in number of lines)"
 msgstr "影の付いた矩形の行数を指定して下さい"
 
-#: ../src/preferences.c:333
+#: ../src/preferences.c:334
 msgid "lines (0 for no box)"
 msgstr "行 (0: 矩形なし)"
 
-#: ../src/preferences.c:340
+#: ../src/preferences.c:341
 msgid "Printing"
 msgstr "印刷"
 
-#: ../src/preferences.c:462 ../src/ui.c:268
+#: ../src/preferences.c:463 ../src/ui.c:268
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1096,11 +1098,11 @@ msgstr ""
 "次のヘルプを表示できません: \n"
 "%s"
 
-#: ../src/preferences.c:514
+#: ../src/preferences.c:515
 msgid "Can not open desired font!"
 msgstr "お望みのフォントを読めません！"
 
-#: ../src/preferences.c:577
+#: ../src/preferences.c:578
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
