@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-04 03:16+0100\n"
-"PO-Revision-Date: 2007-08-05 20:23+0200\n"
+"POT-Creation-Date: 2007-08-26 03:16+0100\n"
+"PO-Revision-Date: 2007-09-05 20:32+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Hexadecimal"
 
-#: ../src/chartable.c:143 ../src/preferences.c:143
+#: ../src/chartable.c:143 ../src/preferences.c:144
 msgid "Decimal"
 msgstr "Decimal"
 
@@ -344,7 +344,7 @@ msgstr "Añade una nueva vista al búfer"
 msgid "Advanced Find"
 msgstr "Buscar avanzado"
 
-#: ../src/ghex-ui.xml.h:5 ../src/ui.c:87
+#: ../src/ghex-ui.xml.h:5
 msgid "Bytes"
 msgstr "Bytes"
 
@@ -452,7 +452,7 @@ msgstr "Insertar/sobrescribir datos"
 msgid "Jump to a certain position"
 msgstr "Saltar a una posición dada"
 
-#: ../src/ghex-ui.xml.h:33 ../src/ui.c:89
+#: ../src/ghex-ui.xml.h:33
 msgid "Longwords"
 msgstr "Palabras largas"
 
@@ -588,7 +588,7 @@ msgstr "Deshacer"
 msgid "Undo the last action"
 msgstr "Deshacer la última acción"
 
-#: ../src/ghex-ui.xml.h:68 ../src/ui.c:88
+#: ../src/ghex-ui.xml.h:68
 msgid "Words"
 msgstr "Palabras"
 
@@ -608,7 +608,7 @@ msgstr "Buscar _avanzado"
 msgid "_Base Converter"
 msgstr "Conversor de _base"
 
-#: ../src/ghex-ui.xml.h:73
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:87
 msgid "_Bytes"
 msgstr "_Bytes"
 
@@ -652,7 +652,7 @@ msgstr "Ay_uda"
 msgid "_Insert Mode"
 msgstr "Modo _insertar"
 
-#: ../src/ghex-ui.xml.h:84
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:89
 msgid "_Longwords"
 msgstr "Palabras _largas"
 
@@ -696,7 +696,7 @@ msgstr "_Ver"
 msgid "_Windows"
 msgstr "_Ventanas"
 
-#: ../src/ghex-ui.xml.h:95
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:88
 msgid "_Words"
 msgstr "_Palabras"
 
@@ -868,7 +868,7 @@ msgid "Show size in font info mode"
 msgstr "Mostrar tamaño en el modo de info de fuente"
 
 #. display font
-#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:181
+#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:182
 msgid "Font"
 msgstr "Tipografía"
 
@@ -972,11 +972,11 @@ msgstr "GEOMETRÍA"
 msgid "The gnome binary editor"
 msgstr "El editor binario GNOME"
 
-#: ../src/main.c:81
+#: ../src/main.c:80
 msgid "Could not initialize Bonobo!\n"
 msgstr "No pude iniciar Bonobo.\n"
 
-#: ../src/main.c:106 ../src/main.c:120
+#: ../src/main.c:105 ../src/main.c:119
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Cadena de geometría inválida «%s»\n"
@@ -998,98 +998,98 @@ msgid "Select maximum number of undo levels"
 msgstr "Seleccione el número máximo de niveles de deshacer"
 
 #: ../src/preferences.c:127
-msgid "Show cursor offset in statusbar as:"
-msgstr "Mostrar desplazamiento del cursor en la barra de estado como:"
+msgid "_Show cursor offset in statusbar as:"
+msgstr "Mo_strar desplazamiento del cursor en la barra de estado como:"
 
-#: ../src/preferences.c:145
+#: ../src/preferences.c:146
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
 
-#: ../src/preferences.c:147
+#: ../src/preferences.c:148
 msgid "Custom"
 msgstr "Personalizado"
 
-#: ../src/preferences.c:156
+#: ../src/preferences.c:157
 msgid "Enter the cursor offset format"
 msgstr "Introduzca el formato del desplazamiento del cursor"
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:158
 msgid "Select the cursor offset format"
 msgstr "Seleccione el formato de desplazamiento del cursor"
 
 #. show offsets check button
-#: ../src/preferences.c:167
-msgid "Show offsets column"
-msgstr "Mostrar columna de los desplazamientos"
+#: ../src/preferences.c:168
+msgid "Sh_ow offsets column"
+msgstr "M_ostrar columna de los desplazamientos"
 
-#: ../src/preferences.c:172
+#: ../src/preferences.c:173
 msgid "Editing"
 msgstr "Editando"
 
 #. default group type
-#: ../src/preferences.c:204
+#: ../src/preferences.c:205
 msgid "Default Group Type"
 msgstr "Tipo de grupo predeterminado"
 
-#: ../src/preferences.c:220
+#: ../src/preferences.c:221
 msgid "Display"
 msgstr "Pantalla"
 
 #. paper selection
-#: ../src/preferences.c:229
+#: ../src/preferences.c:230
 msgid "Paper size"
 msgstr "Tamaño del papel"
 
 #. data & header font selection
-#: ../src/preferences.c:234
+#: ../src/preferences.c:235
 msgid "Fonts"
 msgstr "Tipografía"
 
-#: ../src/preferences.c:240
+#: ../src/preferences.c:241
 msgid "_Data font:"
 msgstr "Tipografía de los _datos:"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Data font"
 msgstr "Tipografía de los datos"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Select the data font"
 msgstr "Selecciona la tipografía de los datos"
 
-#: ../src/preferences.c:273
+#: ../src/preferences.c:274
 msgid "Header fo_nt:"
 msgstr "Tipografía de las _cabeceras:"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Header font"
 msgstr "Tipografía de las cabeceras"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Select the header font"
 msgstr "Selecciona la tipografía de las cabeceras"
 
-#: ../src/preferences.c:317
+#: ../src/preferences.c:318
 msgid "_Print shaded box over:"
 msgstr "Sobreim_primir un recuadro sombreado:"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Box size"
 msgstr "Tamaño del recuadro"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Select size of box (in number of lines)"
 msgstr "Seleccione el tamaño del recuadro (cantidad de líneas)"
 
-#: ../src/preferences.c:333
+#: ../src/preferences.c:334
 msgid "lines (0 for no box)"
 msgstr "líneas (0 significa sin recuadro)"
 
-#: ../src/preferences.c:340
+#: ../src/preferences.c:341
 msgid "Printing"
 msgstr "Imprimiendo"
 
-#: ../src/preferences.c:462 ../src/ui.c:268
+#: ../src/preferences.c:463 ../src/ui.c:268
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1098,11 +1098,11 @@ msgstr ""
 "Ha ocurrido un error al mostrar ayuda: \n"
 "%s"
 
-#: ../src/preferences.c:514
+#: ../src/preferences.c:515
 msgid "Can not open desired font!"
 msgstr "No se puede abrir la tipografía deseada."
 
-#: ../src/preferences.c:577
+#: ../src/preferences.c:578
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
