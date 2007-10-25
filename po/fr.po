@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex 2.8.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-08 20:12+0200\n"
-"PO-Revision-Date: 2007-08-08 20:25+0200\n"
+"POT-Creation-Date: 2007-10-25 21:41+0200\n"
+"PO-Revision-Date: 2007-10-25 21:48+0200\n"
 "Last-Translator: Robert-André Mauchin <zebob.m@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Hex"
 
-#: ../src/chartable.c:143 ../src/preferences.c:143
+#: ../src/chartable.c:143 ../src/preferences.c:144
 msgid "Decimal"
 msgstr "Décimal"
 
@@ -346,7 +346,7 @@ msgstr "Ajoute une nouvelle une vue au tampon"
 msgid "Advanced Find"
 msgstr "Recherche avancée"
 
-#: ../src/ghex-ui.xml.h:5 ../src/ui.c:87
+#: ../src/ghex-ui.xml.h:5
 msgid "Bytes"
 msgstr "Octets"
 
@@ -454,7 +454,7 @@ msgstr "Insère/écrase les données"
 msgid "Jump to a certain position"
 msgstr "Va à la position"
 
-#: ../src/ghex-ui.xml.h:33 ../src/ui.c:89
+#: ../src/ghex-ui.xml.h:33
 msgid "Longwords"
 msgstr "Mots longs"
 
@@ -591,7 +591,7 @@ msgstr "Annuler"
 msgid "Undo the last action"
 msgstr "Annule la dernière action"
 
-#: ../src/ghex-ui.xml.h:68 ../src/ui.c:88
+#: ../src/ghex-ui.xml.h:68
 msgid "Words"
 msgstr "Mots"
 
@@ -611,7 +611,7 @@ msgstr "Recherche _avancée"
 msgid "_Base Converter"
 msgstr "_Convertisseur de base"
 
-#: ../src/ghex-ui.xml.h:73
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:87
 msgid "_Bytes"
 msgstr "_Octets"
 
@@ -655,7 +655,7 @@ msgstr "_Aide"
 msgid "_Insert Mode"
 msgstr "Mode d'_insertion"
 
-#: ../src/ghex-ui.xml.h:84
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:89
 msgid "_Longwords"
 msgstr "Mots _longs"
 
@@ -699,7 +699,7 @@ msgstr "Afficha_ge"
 msgid "_Windows"
 msgstr "Fe_nêtres"
 
-#: ../src/ghex-ui.xml.h:95
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:88
 msgid "_Words"
 msgstr "_Mots"
 
@@ -876,7 +876,7 @@ msgid "Show size in font info mode"
 msgstr "Afficher la taille en mode d'informations de police"
 
 #. display font
-#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:181
+#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:182
 msgid "Font"
 msgstr "Police"
 
@@ -1006,98 +1006,98 @@ msgid "Select maximum number of undo levels"
 msgstr "Choisissez le nombre maximum de niveaux d'annulation"
 
 #: ../src/preferences.c:127
-msgid "Show cursor offset in statusbar as:"
-msgstr "Afficher la position du curseur dans la barre d'état comme :"
+msgid "_Show cursor offset in statusbar as:"
+msgstr "_Afficher la position du curseur dans la barre d'état comme :"
 
-#: ../src/preferences.c:145
+#: ../src/preferences.c:146
 msgid "Hexadecimal"
 msgstr "Hexadécimal"
 
-#: ../src/preferences.c:147
+#: ../src/preferences.c:148
 msgid "Custom"
 msgstr "Personnalisé"
 
-#: ../src/preferences.c:156
+#: ../src/preferences.c:157
 msgid "Enter the cursor offset format"
 msgstr "Saisissez le format de la position du curseur"
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:158
 msgid "Select the cursor offset format"
 msgstr "Choisissez le format de la position du curseur"
 
 #. show offsets check button
-#: ../src/preferences.c:167
-msgid "Show offsets column"
-msgstr "Afficher la colonne de décalage"
+#: ../src/preferences.c:168
+msgid "Sh_ow offsets column"
+msgstr "Aff_icher la colonne de décalage"
 
-#: ../src/preferences.c:172
+#: ../src/preferences.c:173
 msgid "Editing"
 msgstr "Édition"
 
 #. default group type
-#: ../src/preferences.c:204
+#: ../src/preferences.c:205
 msgid "Default Group Type"
 msgstr "Type de groupement par défaut"
 
-#: ../src/preferences.c:220
+#: ../src/preferences.c:221
 msgid "Display"
 msgstr "Affichage"
 
 #. paper selection
-#: ../src/preferences.c:229
+#: ../src/preferences.c:230
 msgid "Paper size"
 msgstr "Taille du papier"
 
 #. data & header font selection
-#: ../src/preferences.c:234
+#: ../src/preferences.c:235
 msgid "Fonts"
 msgstr "Polices"
 
-#: ../src/preferences.c:240
+#: ../src/preferences.c:241
 msgid "_Data font:"
 msgstr "Police des _données :"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Data font"
 msgstr "Police des données"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Select the data font"
 msgstr "Sélectionnez une police de données"
 
-#: ../src/preferences.c:273
+#: ../src/preferences.c:274
 msgid "Header fo_nt:"
 msgstr "_Police de l'en-tête :"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Header font"
 msgstr "Police de l'en-tête"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Select the header font"
 msgstr "Sélectionnez une police pour l'en-tête"
 
-#: ../src/preferences.c:317
+#: ../src/preferences.c:318
 msgid "_Print shaded box over:"
 msgstr "_Imprimer une boîte ombrée par-dessus :"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Box size"
 msgstr "Taille de la boîte"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Select size of box (in number of lines)"
 msgstr "Choisissez la taille de la boîte (en nombre de lignes)"
 
-#: ../src/preferences.c:333
+#: ../src/preferences.c:334
 msgid "lines (0 for no box)"
 msgstr "lignes (0 pour aucune boîte)"
 
-#: ../src/preferences.c:340
+#: ../src/preferences.c:341
 msgid "Printing"
 msgstr "Impression"
 
-#: ../src/preferences.c:462 ../src/ui.c:268
+#: ../src/preferences.c:463 ../src/ui.c:268
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1106,11 +1106,11 @@ msgstr ""
 "Il y a eu une erreur lors de l'affichage de l'aide : \n"
 "%s"
 
-#: ../src/preferences.c:514
+#: ../src/preferences.c:515
 msgid "Can not open desired font!"
 msgstr "Impossible d'ouvrir la police indiquée !"
 
-#: ../src/preferences.c:577
+#: ../src/preferences.c:578
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
