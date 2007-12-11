@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-14 22:19+0300\n"
+"POT-Creation-Date: 2007-12-11 11:38+0300\n"
 "PO-Revision-Date: 2006-07-17 10:08+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -33,7 +33,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Heksa"
 
-#: ../src/chartable.c:143 ../src/preferences.c:143
+#: ../src/chartable.c:143 ../src/preferences.c:144
 msgid "Decimal"
 msgstr "Desimaali"
 
@@ -340,7 +340,7 @@ msgstr "Lisää uusi käyttäjän näkymä puskurille"
 msgid "Advanced Find"
 msgstr "Edistynyt haku"
 
-#: ../src/ghex-ui.xml.h:5 ../src/ui.c:87
+#: ../src/ghex-ui.xml.h:5
 msgid "Bytes"
 msgstr "Tavuittain"
 
@@ -448,7 +448,7 @@ msgstr "Lisää tai ylikirjoita tietoa"
 msgid "Jump to a certain position"
 msgstr "Hyppää tiettyyn sijaintiin"
 
-#: ../src/ghex-ui.xml.h:33 ../src/ui.c:89
+#: ../src/ghex-ui.xml.h:33
 msgid "Longwords"
 msgstr "Pitkäsanoittain"
 
@@ -584,7 +584,7 @@ msgstr "Peru"
 msgid "Undo the last action"
 msgstr "Peru viimeisin toimenpide"
 
-#: ../src/ghex-ui.xml.h:68 ../src/ui.c:88
+#: ../src/ghex-ui.xml.h:68
 msgid "Words"
 msgstr "Sanoittain"
 
@@ -604,7 +604,7 @@ msgstr "_Edistynyt haku"
 msgid "_Base Converter"
 msgstr "Kantamuunnin"
 
-#: ../src/ghex-ui.xml.h:73
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:87
 msgid "_Bytes"
 msgstr "_Tavuja"
 
@@ -648,13 +648,13 @@ msgstr "O_hje"
 msgid "_Insert Mode"
 msgstr "_Lisäystila"
 
-#: ../src/ghex-ui.xml.h:84
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:89
 msgid "_Longwords"
 msgstr "_Pitkät sanat"
 
 #: ../src/ghex-ui.xml.h:85
 msgid "_Open..."
-msgstr "_Tallenna..."
+msgstr "_Avaa..."
 
 #: ../src/ghex-ui.xml.h:86
 msgid "_Preferences"
@@ -692,7 +692,7 @@ msgstr "_Näytä"
 msgid "_Windows"
 msgstr "_Ikkunat"
 
-#: ../src/ghex-ui.xml.h:95
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:88
 msgid "_Words"
 msgstr "_Sanat"
 
@@ -866,7 +866,7 @@ msgid "Show size in font info mode"
 msgstr "Näytä koko kirjasimen tiedoissa"
 
 #. display font
-#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:181
+#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:182
 msgid "Font"
 msgstr "Kirjasin"
 
@@ -996,98 +996,98 @@ msgid "Select maximum number of undo levels"
 msgstr "Valitse perumistasojen enimmäismäärä"
 
 #: ../src/preferences.c:127
-msgid "Show cursor offset in statusbar as:"
-msgstr "Osoittimen sijainnin tyyli tilarivillä:"
+msgid "_Show cursor offset in statusbar as:"
+msgstr "Näytä osoittimen siirros tilarivillä muodossa:"
 
-#: ../src/preferences.c:145
+#: ../src/preferences.c:146
 msgid "Hexadecimal"
 msgstr "Heksadesimaali"
 
-#: ../src/preferences.c:147
+#: ../src/preferences.c:148
 msgid "Custom"
 msgstr "Oma"
 
-#: ../src/preferences.c:156
+#: ../src/preferences.c:157
 msgid "Enter the cursor offset format"
 msgstr "Anna kohdistimen siirtymän muoto"
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:158
 msgid "Select the cursor offset format"
 msgstr "Valitse kohdistimen siirtymän muoto"
 
 #. show offsets check button
-#: ../src/preferences.c:167
-msgid "Show offsets column"
-msgstr "Näytä siirrossarake"
+#: ../src/preferences.c:168
+msgid "Sh_ow offsets column"
+msgstr "_Näytä siirrossarake"
 
-#: ../src/preferences.c:172
+#: ../src/preferences.c:173
 msgid "Editing"
 msgstr "Muokkaus"
 
 #. default group type
-#: ../src/preferences.c:204
+#: ../src/preferences.c:205
 msgid "Default Group Type"
 msgstr "Oletusryhmittely"
 
-#: ../src/preferences.c:220
+#: ../src/preferences.c:221
 msgid "Display"
 msgstr "Näyttö"
 
 #. paper selection
-#: ../src/preferences.c:229
+#: ../src/preferences.c:230
 msgid "Paper size"
 msgstr "Paperin koko"
 
 #. data & header font selection
-#: ../src/preferences.c:234
+#: ../src/preferences.c:235
 msgid "Fonts"
 msgstr "Kirjasimet"
 
-#: ../src/preferences.c:240
+#: ../src/preferences.c:241
 msgid "_Data font:"
 msgstr "_Tiedon kirjasin:"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Data font"
 msgstr "Tiedon kirjasin"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Select the data font"
 msgstr "Valitse tiedon kirjasin"
 
-#: ../src/preferences.c:273
+#: ../src/preferences.c:274
 msgid "Header fo_nt:"
 msgstr "Otsikon _kirjasin:"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Header font"
 msgstr "Otsikon kirjasin"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Select the header font"
 msgstr "Valitse otsikon kirjasin"
 
-#: ../src/preferences.c:317
+#: ../src/preferences.c:318
 msgid "_Print shaded box over:"
 msgstr "_Tulosta päälle varjostettu laatikko:"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Box size"
 msgstr "Laatikon koko"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Select size of box (in number of lines)"
 msgstr "Valitse laatikon koko (riveinä)"
 
-#: ../src/preferences.c:333
+#: ../src/preferences.c:334
 msgid "lines (0 for no box)"
 msgstr "riviä (0 jos et halua laatikkoa)"
 
-#: ../src/preferences.c:340
+#: ../src/preferences.c:341
 msgid "Printing"
 msgstr "Tulostus"
 
-#: ../src/preferences.c:462 ../src/ui.c:268
+#: ../src/preferences.c:463 ../src/ui.c:268
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1096,11 +1096,11 @@ msgstr ""
 "Virhe näytettäessä ohjetta: \n"
 "%s"
 
-#: ../src/preferences.c:514
+#: ../src/preferences.c:515
 msgid "Can not open desired font!"
 msgstr "Haluttua kirjasinlajia ei voitu avata!"
 
-#: ../src/preferences.c:577
+#: ../src/preferences.c:578
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
