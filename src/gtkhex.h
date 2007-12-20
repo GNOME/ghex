@@ -141,7 +141,7 @@ guchar gtk_hex_get_byte(GtkHex *, guint);
 void gtk_hex_set_group_type(GtkHex *, guint);
 
 void gtk_hex_show_offsets(GtkHex *, gboolean);
-void gtk_hex_set_font(GtkHex *, PangoFontMetrics *, PangoFontDescription *);
+void gtk_hex_set_font(GtkHex *, const PangoFontMetrics *, const PangoFontDescription *);
 
 void gtk_hex_set_insert_mode(GtkHex *, gboolean);
 

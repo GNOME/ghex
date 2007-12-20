@@ -1208,6 +1208,10 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 
 	render_hex_lines(gh, start_line, end_line);
 	render_ascii_lines(gh, start_line, end_line);
+    if (gh->show_offsets)
+    {
+        render_offsets (gh, start_line, end_line);
+    }
 }
 
 static void bytes_changed(GtkHex *gh, gint start, gint end)
@@ -1223,6 +1227,10 @@ static void bytes_changed(GtkHex *gh, gint start, gint end)
 
 	render_hex_lines(gh, start_line, end_line);
 	render_ascii_lines(gh, start_line, end_line);
+    if (gh->show_offsets)
+    {
+        render_offsets (gh, start_line, end_line);
+    }
 }
 
 static void primary_get_cb(GtkClipboard *clipboard,
@@ -1847,6 +1855,13 @@ static gint gtk_hex_expose(GtkWidget *w, GdkEventExpose *event) {
 	return TRUE;
 }
 
+static void gtk_hex_document_changed(HexDocument* doc, gpointer change_data,
+        gboolean push_undo, gpointer data)
+{
+    gtk_hex_real_data_changed (GTK_HEX(data), change_data);
+}
+
+
 static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 	GtkHex *gh = GTK_HEX(w);
 	GtkRequisition sb_req;
@@ -2060,6 +2075,8 @@ GtkWidget *gtk_hex_new(HexDocument *owner) {
 	g_return_val_if_fail (gh != NULL, NULL);
 
 	gh->document = owner;
+    g_signal_connect (G_OBJECT (gh->document), "document_changed",
+            G_CALLBACK (gtk_hex_document_changed), gh);
 	
 	return GTK_WIDGET(gh);
 }
@@ -2237,7 +2254,7 @@ void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
 /*
  * sets font for displaying data
  */
-void gtk_hex_set_font(GtkHex *gh, PangoFontMetrics *font_metrics, PangoFontDescription *font_desc) {
+void gtk_hex_set_font(GtkHex *gh, const PangoFontMetrics *font_metrics, const PangoFontDescription *font_desc) {
 	g_return_if_fail(gh != NULL);
 	g_return_if_fail(GTK_IS_HEX(gh));
 

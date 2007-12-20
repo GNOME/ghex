@@ -315,14 +315,6 @@ hex_document_real_changed(HexDocument *doc, gpointer change_data,
 
 	if(push_undo && doc->undo_max > 0)
 		undo_stack_push(doc, change_data);
-
-	view = doc->views;
-
-	while(view) {
-		g_signal_emit_by_name(G_OBJECT(view->data), "data_changed",
-							  change_data);
-		view = g_list_next(view);
-	}
 }
 
 static void
