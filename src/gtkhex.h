@@ -110,6 +110,7 @@ struct _GtkHex
 	gint scroll_dir;
 	guint scroll_timeout;
 	gboolean show_offsets;
+	gint starting_offset;
 	gboolean insert;
 	gboolean selecting;
 };
@@ -140,6 +141,7 @@ guchar gtk_hex_get_byte(GtkHex *, guint);
 
 void gtk_hex_set_group_type(GtkHex *, guint);
 
+void gtk_hex_set_starting_offset(GtkHex *, gint);
 void gtk_hex_show_offsets(GtkHex *, gboolean);
 void gtk_hex_set_font(GtkHex *, const PangoFontMetrics *, const PangoFontDescription *);
 

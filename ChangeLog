@@ -1,6 +1,16 @@
 2007-11-30  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* src/gtkhex.c:
+	* src/gtkhex.h: add API to set a starting offset address.  In some ways it
+	seems that this information is a property of the document rather than the
+	view, but the GtkHex widget does all of the offset-related stuff, so I put
+	it here.  This is useful for using this widget as a debugger memory editor
+	since we'll only read a small amount of memory from gdb and we want to be
+	able to label the rows with the correct address.  Fix for bug #465137
+
+2007-11-30  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* src/gtkhex.c:
 	* src/gtkhex.h: connect to the HexDocument's document_changed signal and
 	redraw the widget so that the display gets updated when modifying the data
 	with hex_document_set_data().  Fix for bug #500358

@@ -673,7 +673,7 @@ static void render_offsets(GtkHex *gh, gint imin, gint imax) {
 	gdk_gc_set_foreground(gh->offsets_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 	
 	for(i = imin; i <= imax; i++) {
-		sprintf(offstr, "%08X", (gh->top_line + i)*gh->cpl);
+		sprintf(offstr, "%08X", (gh->top_line + i)*gh->cpl + gh->starting_offset);
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->olayout, offstr, 8);
 		gdk_draw_layout (w->window, gh->offsets_gc, 0, i*gh->char_height, gh->olayout);
@@ -1951,6 +1951,7 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 
 	gh->disp_buffer = NULL;
 	gh->document = NULL;
+	gh->starting_offset = 0;
 
 	gh->xdisp_width = gh->adisp_width = 200;
 	gh->adisp_gc = gh->xdisp_gc = NULL;
@@ -2300,6 +2301,13 @@ void gtk_hex_show_offsets(GtkHex *gh, gboolean show)
 		show_offsets_widget(gh);
 	else
 		hide_offsets_widget(gh);
+}
+
+void gtk_hex_set_starting_offset(GtkHex *gh, gint starting_offset)
+{
+	g_return_if_fail (gh != NULL);
+	g_return_if_fail(GTK_IS_HEX(gh));
+	gh->starting_offset = starting_offset;
 }
 
 void gtk_hex_set_insert_mode(GtkHex *gh, gboolean insert)
