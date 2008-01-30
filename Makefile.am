@@ -4,7 +4,7 @@ DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --disable-schemas-install
 
 SUBDIRS = po src help icons
 
-schemadir = $(sysconfdir)/gconf/schemas
+schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_DATA = ghex2.schemas
 
 pkgconfigdir = $(libdir)/pkgconfig
