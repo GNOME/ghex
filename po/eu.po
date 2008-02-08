@@ -1,16 +1,16 @@
-# translation of eu.po to Basque
-# Copyright (C) 2001, 2006, 2007 Free Software Foundation, Inc.
+# translation of ghex.HEAD.po to Basque
+# Copyright (C) 2001, 2006, 2007, 2008 Free Software Foundation, Inc.
 #
 # Josu Waliño <josu@elhuyar.com>, 2001.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2005, 2006.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2005, 2006, 2008.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: eu\n"
+"Project-Id-Version: ghex.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-09 18:01+0200\n"
-"PO-Revision-Date: 2007-08-09 18:02+0200\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
+"POT-Creation-Date: 2008-02-08 17:37+0100\n"
+"PO-Revision-Date: 2008-02-06 21:58+0100\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Hamaseitarra"
 
-#: ../src/chartable.c:143 ../src/preferences.c:143
+#: ../src/chartable.c:143 ../src/preferences.c:144
 msgid "Decimal"
 msgstr "Hamartarra"
 
@@ -97,7 +97,7 @@ msgstr "ERROREA"
 #: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:936
 #, c-format
 msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): Bilatu datuak"
+msgstr "GHex (%s): bilatu datuak"
 
 #: ../src/findreplace.c:102 ../src/findreplace.c:162 ../src/findreplace.c:358
 msgid "Find String"
@@ -179,7 +179,7 @@ msgstr "Bilaketa aurreratuaren leihoa ixten du"
 #: ../src/findreplace.c:354 ../src/ui.c:934
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): Bilatu eta ordeztu datuak"
+msgstr "GHex (%s): bilatu eta ordeztu datuak"
 
 #: ../src/findreplace.c:367
 msgid "Replace With"
@@ -232,7 +232,7 @@ msgstr "Bilaketako eta ordezteko leihoa ixten du"
 #: ../src/findreplace.c:433 ../src/ui.c:932
 #, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): Joan bytera"
+msgstr "GHex (%s): joan bytera"
 
 #: ../src/findreplace.c:463
 msgid "Jump to byte"
@@ -256,12 +256,12 @@ msgstr "Bytera joateko leihoa ixten du"
 
 #: ../src/findreplace.c:528 ../src/findreplace.c:562 ../src/findreplace.c:646
 msgid "There is no active document to search!"
-msgstr "Ez dago dokumentu aktiborik bilatzeko!"
+msgstr "Ez dago dokumentu aktiborik bilatzeko."
 
 #: ../src/findreplace.c:535 ../src/findreplace.c:569 ../src/findreplace.c:653
 #: ../src/findreplace.c:687 ../src/findreplace.c:732
 msgid "There is no string to search for!"
-msgstr "Badirudi ez dagoela katerik bilatzeko!"
+msgstr "Badirudi ez dagoela katerik bilatzeko."
 
 #: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:853
 msgid "End Of File reached"
@@ -270,7 +270,7 @@ msgstr "Fitxategi-amaierara iritsi da"
 #: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
 #: ../src/findreplace.c:854 ../src/findreplace.c:877
 msgid "String was not found!\n"
-msgstr "Ez da katea aurkitu!\n"
+msgstr "Ez da katea aurkitu.\n"
 
 #: ../src/findreplace.c:580 ../src/findreplace.c:876
 msgid "Beginning Of File reached"
@@ -278,15 +278,15 @@ msgstr "Fitxategi-hasierara iritsi da"
 
 #: ../src/findreplace.c:596
 msgid "There is no active document to move the cursor in!"
-msgstr "Ez dago dokumentu aktiborik kurtsorea eramateko!"
+msgstr "Ez dago dokumentu aktiborik kurtsorea eramateko."
 
 #: ../src/findreplace.c:602
 msgid "No offset has been specified!"
-msgstr "Ez da desplazamendurik zehaztu!"
+msgstr "Ez da desplazamendurik zehaztu."
 
 #: ../src/findreplace.c:626
 msgid "Can not position cursor beyond the End Of File!"
-msgstr "Kurtsorea ezin da fitxategi-amaieraz haratago kokatu!"
+msgstr "Kurtsorea ezin da fitxategi-amaieraz haratago kokatu."
 
 #: ../src/findreplace.c:633
 msgid ""
@@ -300,15 +300,15 @@ msgstr ""
 
 #: ../src/findreplace.c:678
 msgid "There is no active buffer to replace data in!"
-msgstr "Ez dago buffer aktiborik datuak ordezteko!"
+msgstr "Ez dago buffer aktiborik datuak ordezteko."
 
 #: ../src/findreplace.c:703 ../src/findreplace.c:704
 msgid "End Of File reached!"
-msgstr "Fitxategi-amaierara iritsi da!"
+msgstr "Fitxategi-amaierara iritsi da."
 
 #: ../src/findreplace.c:723
 msgid "There is no active document to replace data in!"
-msgstr "Ez dago dokumentu aktiborik datuak ordezteko!"
+msgstr "Ez dago dokumentu aktiborik datuak ordezteko."
 
 #: ../src/findreplace.c:753
 msgid "No occurrences were found."
@@ -323,7 +323,7 @@ msgstr[1] "%d agerpen ordeztu dira."
 
 #: ../src/findreplace.c:796
 msgid "No string to search for!"
-msgstr "Ez dago katerik bilatzeko!"
+msgstr "Ez dago katerik bilatzeko."
 
 #: ../src/ghex-ui.xml.h:1
 msgid "About this application"
@@ -341,7 +341,7 @@ msgstr "Bufferraren ikuspegi berria gehitzen du"
 msgid "Advanced Find"
 msgstr "Bilaketa aurreratua"
 
-#: ../src/ghex-ui.xml.h:5 ../src/ui.c:87
+#: ../src/ghex-ui.xml.h:5
 msgid "Bytes"
 msgstr "Byteak"
 
@@ -447,9 +447,9 @@ msgstr "Datuak txertatzen/gainidazten ditu"
 
 #: ../src/ghex-ui.xml.h:32
 msgid "Jump to a certain position"
-msgstr "Kokaleku jakin batera joaten da"
+msgstr "Posizio jakin batera joaten da"
 
-#: ../src/ghex-ui.xml.h:33 ../src/ui.c:89
+#: ../src/ghex-ui.xml.h:33
 msgid "Longwords"
 msgstr "Hitz luzeak"
 
@@ -547,7 +547,7 @@ msgstr "Gorde _HTML gisa..."
 
 #: ../src/ghex-ui.xml.h:58
 msgid "Save _As..."
-msgstr "Gorde hone_la..."
+msgstr "Gorde h_onela..."
 
 #: ../src/ghex-ui.xml.h:59
 msgid "Save the current file"
@@ -585,7 +585,7 @@ msgstr "Desegin"
 msgid "Undo the last action"
 msgstr "Azken ekintza desegiten du"
 
-#: ../src/ghex-ui.xml.h:68 ../src/ui.c:88
+#: ../src/ghex-ui.xml.h:68
 msgid "Words"
 msgstr "Hitzak"
 
@@ -605,7 +605,7 @@ msgstr "_Bilaketa aurreratua"
 msgid "_Base Converter"
 msgstr "_Bihurtzailea"
 
-#: ../src/ghex-ui.xml.h:73
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:87
 msgid "_Bytes"
 msgstr "_Byteak"
 
@@ -649,7 +649,7 @@ msgstr "_Laguntza"
 msgid "_Insert Mode"
 msgstr "T_xertatze-modua"
 
-#: ../src/ghex-ui.xml.h:84
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:89
 msgid "_Longwords"
 msgstr "Hit_z luzeak"
 
@@ -693,7 +693,7 @@ msgstr "_Ikusi"
 msgid "_Windows"
 msgstr "Lei_hoak"
 
-#: ../src/ghex-ui.xml.h:95
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:88
 msgid "_Words"
 msgstr "_Hitzak"
 
@@ -759,11 +759,11 @@ msgstr "Bufferra %s fitxategian gorde da"
 
 #: ../src/ghex-window.c:1167
 msgid "Error saving file!"
-msgstr "Errorea fitxategia gordetzean!"
+msgstr "Errorea fitxategia gordetzean."
 
 #: ../src/ghex-window.c:1173
 msgid "Can't open file for writing!"
-msgstr "Ezin da fitxategia idazteko ireki!"
+msgstr "Ezin da fitxategia idazteko ireki."
 
 #: ../src/ghex-window.c:1218
 #, c-format
@@ -784,7 +784,7 @@ msgstr "Ez duzu nahikoa baimen fitxategia gordetzeko."
 
 #: ../src/ghex-window.c:1246 ../src/ui.c:346
 msgid "An error occurred while saving file!"
-msgstr "Errorea gertatu da fitxategia gordetzean!"
+msgstr "Errorea gertatu da fitxategia gordetzean."
 
 #: ../src/gnome-print-font-dialog.c:111
 msgid "_Insert a new preview phrase."
@@ -867,7 +867,7 @@ msgid "Show size in font info mode"
 msgstr "Erakutsi tamaina letra-tipoaren informazio moduan"
 
 #. display font
-#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:181
+#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:182
 msgid "Font"
 msgstr "Letra-tipoa"
 
@@ -931,30 +931,30 @@ msgstr "Korrontearen luzera:"
 msgid "FIXME: no conversion function"
 msgstr "ZUZENTZEKO: bihurtzeko funtziorik ez"
 
-#: ../src/hex-document.c:444
+#: ../src/hex-document.c:436
 msgid "New document"
 msgstr "Dokumentu berria"
 
-#: ../src/hex-document.c:795
+#: ../src/hex-document.c:787
 #, c-format
 msgid "Page"
 msgstr "Orrialdea"
 
-#: ../src/hex-document.c:801 ../src/hex-document.c:926
+#: ../src/hex-document.c:793 ../src/hex-document.c:918
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Iraulketa hamaseitarraren sortzailea:"
 
-#: ../src/hex-document.c:812
+#: ../src/hex-document.c:804
 msgid "Saving to HTML..."
 msgstr "HTML gisa gordetzen..."
 
-#: ../src/hex-document.c:849
+#: ../src/hex-document.c:841
 #, c-format
 msgid "Previous page"
 msgstr "Aurreko orrialdea"
 
-#: ../src/hex-document.c:864
+#: ../src/hex-document.c:856
 #, c-format
 msgid "Next page"
 msgstr "Hurrengo orrialdea"
@@ -997,98 +997,98 @@ msgid "Select maximum number of undo levels"
 msgstr "Hautatu desegite-mailen gehienezko kopurua"
 
 #: ../src/preferences.c:127
-msgid "Show cursor offset in statusbar as:"
-msgstr "Erakutsi egoera-barrako kurtsore-desplazamendua honela:"
+msgid "_Show cursor offset in statusbar as:"
+msgstr "_Erakutsi egoera-barrako kurtsore-desplazamendua honela:"
 
-#: ../src/preferences.c:145
+#: ../src/preferences.c:146
 msgid "Hexadecimal"
 msgstr "Hamaseitarra"
 
-#: ../src/preferences.c:147
+#: ../src/preferences.c:148
 msgid "Custom"
 msgstr "Pertsonalizatua"
 
-#: ../src/preferences.c:156
+#: ../src/preferences.c:157
 msgid "Enter the cursor offset format"
 msgstr "Sartu kurtsore-desplazamenduaren formatua"
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:158
 msgid "Select the cursor offset format"
-msgstr "Hautati kurtsore-desplazamenduaren formatua"
+msgstr "Hautatu kurtsore-desplazamenduaren formatua"
 
 #. show offsets check button
-#: ../src/preferences.c:167
-msgid "Show offsets column"
-msgstr "Erakutsi desplazamendu-zutabea"
+#: ../src/preferences.c:168
+msgid "Sh_ow offsets column"
+msgstr "E_rakutsi desplazamendu-zutabea"
 
-#: ../src/preferences.c:172
+#: ../src/preferences.c:173
 msgid "Editing"
 msgstr "Edizioa"
 
 #. default group type
-#: ../src/preferences.c:204
+#: ../src/preferences.c:205
 msgid "Default Group Type"
 msgstr "Talde-mota lehenetsia"
 
-#: ../src/preferences.c:220
+#: ../src/preferences.c:221
 msgid "Display"
 msgstr "Bistaratzea"
 
 #. paper selection
-#: ../src/preferences.c:229
+#: ../src/preferences.c:230
 msgid "Paper size"
 msgstr "Paper-tamaina"
 
 #. data & header font selection
-#: ../src/preferences.c:234
+#: ../src/preferences.c:235
 msgid "Fonts"
 msgstr "Letra-tipoak"
 
-#: ../src/preferences.c:240
+#: ../src/preferences.c:241
 msgid "_Data font:"
 msgstr "_Datuen letra-tipoa:"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Data font"
 msgstr "Datuen letra-tipoa"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Select the data font"
 msgstr "Hautatu datuen letra-tipoa"
 
-#: ../src/preferences.c:273
+#: ../src/preferences.c:274
 msgid "Header fo_nt:"
 msgstr "_Goiburuko letra-tipoa:"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Header font"
 msgstr "Goiburukoen letra-tipoa"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Select the header font"
 msgstr "Hautatu goiburuko letra-tipoa"
 
-#: ../src/preferences.c:317
+#: ../src/preferences.c:318
 msgid "_Print shaded box over:"
 msgstr "_Inprimatu laukia itzaldurarekin:"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Box size"
 msgstr "Lauki-tamaina"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Select size of box (in number of lines)"
-msgstr "Hautatu laukiaren tamaina (lerro kopuruan)"
+msgstr "Hautatu laukiaren tamaina (lerro-kopuruan)"
 
-#: ../src/preferences.c:333
+#: ../src/preferences.c:334
 msgid "lines (0 for no box)"
 msgstr "lerroren gainean (0 laukirik ez jartzeko)"
 
-#: ../src/preferences.c:340
+#: ../src/preferences.c:341
 msgid "Printing"
 msgstr "Inprimatzea"
 
-#: ../src/preferences.c:462 ../src/ui.c:268
+#: ../src/preferences.c:463 ../src/ui.c:268
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1097,11 +1097,11 @@ msgstr ""
 "Errorea gertatu da laguntza bistaratzean: \n"
 "%s"
 
-#: ../src/preferences.c:514
+#: ../src/preferences.c:515
 msgid "Can not open desired font!"
-msgstr "Ezin da letra-tipoa ireki!"
+msgstr "Ezin da letra-tipoa ireki."
 
-#: ../src/preferences.c:577
+#: ../src/preferences.c:578
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -1150,7 +1150,7 @@ msgstr "%s fitxategia kargatuta"
 
 #: ../src/ui.c:409
 msgid "Can not open file!"
-msgstr "Ezin da fitxategia ireki!"
+msgstr "Ezin da fitxategia ireki."
 
 #: ../src/ui.c:470
 msgid "Select path and file name for the HTML source"
@@ -1169,7 +1169,7 @@ msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
 msgstr ""
-"HTMlen gordetzean zenbait fitxategi gainidatz ditzake.\n"
+"HTMLen gordetzean zenbait fitxategi gainidatz ditzake.\n"
 "Jarraitzea nahi duzu?"
 
 #: ../src/ui.c:679
@@ -1197,5 +1197,4 @@ msgstr "Orrialdeak"
 #: ../src/ui.c:874
 #, c-format
 msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Inprimatzeko aurrebista"
-
+msgstr "GHex (%s): inprimatzeko aurrebista"
