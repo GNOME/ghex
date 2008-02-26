@@ -512,7 +512,7 @@ ghex_window_new(void)
     win->uic = uic;
 	bonobo_ui_component_set_container(uic, BONOBO_OBJREF(ui_container),
                                       NULL);
-	bonobo_ui_util_set_ui(uic, PREFIX, "ghex-ui.xml", "GHex", NULL);
+	bonobo_ui_util_set_ui(uic, DATADIR, "ghex-ui.xml", "GHex", NULL);
 	bonobo_ui_component_add_verb_list_with_data(uic, ghex_verbs, win);
     
 	bonobo_ui_component_add_listener (uic, "Bytes",
