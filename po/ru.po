@@ -1,4 +1,6 @@
+# Russian translation of ghex
 # Copyright (C) 1999-2006 Free Software Foundation, Inc.
+#
 # Valek Filppov <frob@df.ru>, 1999-2003, 2006
 # Sergey Panov <sipan@mit.edu>, 1999,2000.
 # Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002
@@ -7,13 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-06 03:39+0400\n"
-"PO-Revision-Date: 2006-07-05 21:16+0400\n"
-"Last-Translator: Valek Filippov <frob@df.ru>\n"
+"POT-Creation-Date: 2008-04-06 13:09+0400\n"
+"PO-Revision-Date: 2008-04-05 02:49+0300\n"
+"Last-Translator: Yuriy Penkin <yura.penkin@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../ghex.desktop.in.h:1
 msgid "GNOME Hexadecimal Editor"
@@ -31,7 +35,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Шестнадц."
 
-#: ../src/chartable.c:143 ../src/preferences.c:143
+#: ../src/chartable.c:143 ../src/preferences.c:144
 msgid "Decimal"
 msgstr "Десятичное"
 
@@ -165,7 +169,7 @@ msgstr "Доб_авить окно просмотра"
 msgid "_Remove Selected"
 msgstr "У_брать выделенное"
 
-#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:9
+#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:8
 msgid "Close"
 msgstr "Закрыть"
 
@@ -186,7 +190,7 @@ msgstr "Заменить на"
 msgid "Find _next"
 msgstr "Найти следующее"
 
-#: ../src/findreplace.c:382 ../src/ghex-ui.xml.h:89
+#: ../src/findreplace.c:382
 msgid "_Replace"
 msgstr "_Заменить"
 
@@ -206,7 +210,7 @@ msgstr "Введите шестнадцатиричные или ASCII данн�
 msgid "Find next"
 msgstr "Найти следующее"
 
-#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:49
+#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:51
 msgid "Replace"
 msgstr "Заменить"
 
@@ -260,16 +264,16 @@ msgstr "Нет активного документа для поиска!"
 msgid "There is no string to search for!"
 msgstr "Нет строки для поиска!"
 
-#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:851
+#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:853
 msgid "End Of File reached"
 msgstr "Достигнут конец файла"
 
 #: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
-#: ../src/findreplace.c:852 ../src/findreplace.c:875
+#: ../src/findreplace.c:854 ../src/findreplace.c:877
 msgid "String was not found!\n"
 msgstr "Строка не найдена!\n"
 
-#: ../src/findreplace.c:580 ../src/findreplace.c:874
+#: ../src/findreplace.c:580 ../src/findreplace.c:876
 msgid "Beginning Of File reached"
 msgstr "Достигнуто начало файла"
 
@@ -313,10 +317,13 @@ msgstr "Вхождений не найдено."
 
 #: ../src/findreplace.c:756
 #, c-format
-msgid "Replaced %d occurrences."
-msgstr "Заменено %d вхождений."
+msgid "Replaced %d occurrence."
+msgid_plural "Replaced %d occurrences."
+msgstr[0] "Заменено %d вхождение."
+msgstr[1] "Заменено %d вхождения."
+msgstr[2] "Заменено %d вхождений."
 
-#: ../src/findreplace.c:794
+#: ../src/findreplace.c:796
 msgid "No string to search for!"
 msgstr "Нет строки для поиска!"
 
@@ -336,45 +343,45 @@ msgstr "Добавить новое окно просмотра буфера"
 msgid "Advanced Find"
 msgstr "Расширенный поиск"
 
-#: ../src/ghex-ui.xml.h:5 ../src/ui.c:87
+#: ../src/ghex-ui.xml.h:5
 msgid "Bytes"
 msgstr "Байты"
 
 #: ../src/ghex-ui.xml.h:6
-msgid "C_ut"
-msgstr "Вырезать"
-
-#: ../src/ghex-ui.xml.h:7
 msgid "Character Table..."
 msgstr "Таблица символов..."
 
-#: ../src/ghex-ui.xml.h:8
-msgid "Character _Table..."
-msgstr "_Таблица символов..."
+#: ../src/ghex-ui.xml.h:7
+msgid "Character _Table"
+msgstr "_Таблица символов"
 
-#: ../src/ghex-ui.xml.h:10
+#: ../src/ghex-ui.xml.h:9
 msgid "Close the current file"
 msgstr "Закрыть текущий файл"
 
-#: ../src/ghex-ui.xml.h:11
+#: ../src/ghex-ui.xml.h:10
 msgid "Configure the application"
 msgstr "Настроить приложение"
 
-#: ../src/ghex-ui.xml.h:12
+#: ../src/ghex-ui.xml.h:11
 msgid "Contents"
 msgstr "Содержание"
 
-#: ../src/ghex-ui.xml.h:13
+#: ../src/ghex-ui.xml.h:12
 msgid "Converter..."
 msgstr "Преобразователь..."
 
-#: ../src/ghex-ui.xml.h:14
+#: ../src/ghex-ui.xml.h:13
 msgid "Copy"
 msgstr "Скопировать"
 
-#: ../src/ghex-ui.xml.h:15
+#: ../src/ghex-ui.xml.h:14
 msgid "Copy selection to clipboard"
 msgstr "Скопировать выделение в буфер обмена"
+
+#: ../src/ghex-ui.xml.h:15
+msgid "Cu_t"
+msgstr "_Вырезать"
 
 #: ../src/ghex-ui.xml.h:16
 msgid "Cut"
@@ -444,7 +451,7 @@ msgstr "Вставлять/переписывать данные"
 msgid "Jump to a certain position"
 msgstr "Перейти в указанную позицию"
 
-#: ../src/ghex-ui.xml.h:33 ../src/ui.c:89
+#: ../src/ghex-ui.xml.h:33
 msgid "Longwords"
 msgstr "Двойные слова"
 
@@ -461,206 +468,210 @@ msgid "Open base conversion dialog"
 msgstr "Открыть основной диалог преобразования"
 
 #: ../src/ghex-ui.xml.h:37
+msgid "Pa_ste"
+msgstr "Вст_авить"
+
+#: ../src/ghex-ui.xml.h:38
 msgid "Paste"
 msgstr "Вставить"
 
-#: ../src/ghex-ui.xml.h:38
+#: ../src/ghex-ui.xml.h:39
 msgid "Paste data from clipboard"
 msgstr "Вставить данные из буфера обмена"
 
-#: ../src/ghex-ui.xml.h:39
+#: ../src/ghex-ui.xml.h:40
 msgid "Preferences"
 msgstr "Настроить"
 
-#: ../src/ghex-ui.xml.h:40
+#: ../src/ghex-ui.xml.h:41
 msgid "Preview printed data"
 msgstr "Просмотреть образец данных на печати"
 
-#: ../src/ghex-ui.xml.h:41
+#: ../src/ghex-ui.xml.h:42
 msgid "Print"
 msgstr "Напечатать"
 
-#: ../src/ghex-ui.xml.h:42
+#: ../src/ghex-ui.xml.h:43
 msgid "Print Previe_w..."
 msgstr "Просмотреть образе_ц печати..."
 
-#: ../src/ghex-ui.xml.h:43
+#: ../src/ghex-ui.xml.h:44
 msgid "Print Preview..."
 msgstr "Просмотреть образец печати..."
 
-#: ../src/ghex-ui.xml.h:44
+#: ../src/ghex-ui.xml.h:45
 msgid "Print the current file"
 msgstr "Напечатать текущий файл"
 
-#: ../src/ghex-ui.xml.h:45
+#: ../src/ghex-ui.xml.h:46
+msgid "R_eplace"
+msgstr "За_менить"
+
+#: ../src/ghex-ui.xml.h:47
 msgid "Redo"
 msgstr "Возвратить"
 
-#: ../src/ghex-ui.xml.h:46
+#: ../src/ghex-ui.xml.h:48
 msgid "Redo the undone action"
 msgstr "Возвратить отменённое действие"
 
-#: ../src/ghex-ui.xml.h:47
+#: ../src/ghex-ui.xml.h:49
 msgid "Remove View"
 msgstr "Удалить окно просмотра"
 
-#: ../src/ghex-ui.xml.h:48
+#: ../src/ghex-ui.xml.h:50
 msgid "Remove the current view of the buffer"
 msgstr "Удалить текущее окно просмотра буфера"
 
-#: ../src/ghex-ui.xml.h:50
+#: ../src/ghex-ui.xml.h:52
 msgid "Replace a string"
 msgstr "Заменить строку"
 
-#: ../src/ghex-ui.xml.h:51
+#: ../src/ghex-ui.xml.h:53
 msgid "Revert"
 msgstr "Восстановить"
 
-#: ../src/ghex-ui.xml.h:52
+#: ../src/ghex-ui.xml.h:54
 msgid "Revert to a saved version of the file"
 msgstr "Восстановить из сохранённой версии файла"
 
-#: ../src/ghex-ui.xml.h:53
+#: ../src/ghex-ui.xml.h:55
 msgid "Save"
 msgstr "Сохранить"
 
-#: ../src/ghex-ui.xml.h:54
+#: ../src/ghex-ui.xml.h:56
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: ../src/ghex-ui.xml.h:55
+#: ../src/ghex-ui.xml.h:57
 msgid "Save As _HTML..."
 msgstr "Сохранить как _HTML..."
 
-#: ../src/ghex-ui.xml.h:56
+#: ../src/ghex-ui.xml.h:58
 msgid "Save _As..."
 msgstr "Сохранить _как..."
 
-#: ../src/ghex-ui.xml.h:57
+#: ../src/ghex-ui.xml.h:59
 msgid "Save the current file"
 msgstr "Сохранить текущий файл"
 
-#: ../src/ghex-ui.xml.h:58
+#: ../src/ghex-ui.xml.h:60
 msgid "Save the current file with a different name"
 msgstr "Сохранить текущий файл под другим именем"
 
-#: ../src/ghex-ui.xml.h:59
+#: ../src/ghex-ui.xml.h:61
 msgid "Search for a string"
 msgstr "Найти строку"
 
-#: ../src/ghex-ui.xml.h:60
+#: ../src/ghex-ui.xml.h:62
 msgid "Show the character table"
 msgstr "Показать таблицу символов"
 
-#: ../src/ghex-ui.xml.h:61
+#: ../src/ghex-ui.xml.h:63
 msgid "Show the type conversion dialog in the edit window"
 msgstr "Показать диалог преобразования типов в окне редактирования"
 
-#: ../src/ghex-ui.xml.h:62
+#: ../src/ghex-ui.xml.h:64
 msgid "Type Conversion Dialog..."
 msgstr "Диалог преобразования типов..."
 
-#: ../src/ghex-ui.xml.h:63
+#: ../src/ghex-ui.xml.h:65
 msgid "Type Conversion _Dialog"
 msgstr "Диалог преобразования типов"
 
-#: ../src/ghex-ui.xml.h:64
+#: ../src/ghex-ui.xml.h:66
 msgid "Undo"
 msgstr "Откатить"
 
-#: ../src/ghex-ui.xml.h:65
+#: ../src/ghex-ui.xml.h:67
 msgid "Undo the last action"
 msgstr "Отменить последнее действие"
 
-#: ../src/ghex-ui.xml.h:66 ../src/ui.c:88
+#: ../src/ghex-ui.xml.h:68
 msgid "Words"
 msgstr "Слова"
 
-#: ../src/ghex-ui.xml.h:67
+#: ../src/ghex-ui.xml.h:69
 msgid "_About"
 msgstr "_О программе..."
 
-#: ../src/ghex-ui.xml.h:68
+#: ../src/ghex-ui.xml.h:70
 msgid "_Add View"
 msgstr "Доб_авить окно просмотра"
 
-#: ../src/ghex-ui.xml.h:69
+#: ../src/ghex-ui.xml.h:71
 msgid "_Advanced Find"
 msgstr "Расширенный поиск"
 
-#: ../src/ghex-ui.xml.h:70
+#: ../src/ghex-ui.xml.h:72
 msgid "_Base Converter"
 msgstr "_Основной преобразователь"
 
-#: ../src/ghex-ui.xml.h:71
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:87
 msgid "_Bytes"
 msgstr "_Байты"
 
-#: ../src/ghex-ui.xml.h:72
+#: ../src/ghex-ui.xml.h:74
 msgid "_Close"
 msgstr "_Закрыть"
 
-#: ../src/ghex-ui.xml.h:73
+#: ../src/ghex-ui.xml.h:75
 msgid "_Contents"
 msgstr "_Содержание"
 
-#: ../src/ghex-ui.xml.h:74
+#: ../src/ghex-ui.xml.h:76
 msgid "_Copy"
 msgstr "Скопировать"
 
-#: ../src/ghex-ui.xml.h:75
+#: ../src/ghex-ui.xml.h:77
 msgid "_Edit"
 msgstr "_Правка"
 
-#: ../src/ghex-ui.xml.h:76
+#: ../src/ghex-ui.xml.h:78
 msgid "_File"
 msgstr "_Файл"
 
-#: ../src/ghex-ui.xml.h:77
+#: ../src/ghex-ui.xml.h:79
 msgid "_Find"
 msgstr "_Найти"
 
-#: ../src/ghex-ui.xml.h:78
+#: ../src/ghex-ui.xml.h:80
 msgid "_Goto Byte..."
 msgstr "Перейти _к байту..."
 
-#: ../src/ghex-ui.xml.h:79
+#: ../src/ghex-ui.xml.h:81
 msgid "_Group Data As"
 msgstr "_Группировать данные как..."
 
-#: ../src/ghex-ui.xml.h:80
+#: ../src/ghex-ui.xml.h:82
 msgid "_Help"
 msgstr "_Справка"
 
-#: ../src/ghex-ui.xml.h:81
+#: ../src/ghex-ui.xml.h:83
 msgid "_Insert Mode"
 msgstr "Режим вст_авки"
 
-#: ../src/ghex-ui.xml.h:82
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:89
 msgid "_Longwords"
 msgstr "_Двойные слова"
 
-#: ../src/ghex-ui.xml.h:83
+#: ../src/ghex-ui.xml.h:85
 msgid "_Open..."
 msgstr "_Открыть..."
 
-#: ../src/ghex-ui.xml.h:84
-msgid "_Paste"
-msgstr "Вставить"
-
-#: ../src/ghex-ui.xml.h:85
+#: ../src/ghex-ui.xml.h:86
 msgid "_Preferences"
 msgstr "_Настроить"
 
-#: ../src/ghex-ui.xml.h:86
+#: ../src/ghex-ui.xml.h:87
 msgid "_Print"
 msgstr "На_печатать"
 
-#: ../src/ghex-ui.xml.h:87
+#: ../src/ghex-ui.xml.h:88
 msgid "_Redo"
 msgstr "Возв_ратить"
 
-#: ../src/ghex-ui.xml.h:88
+#: ../src/ghex-ui.xml.h:89
 msgid "_Remove View"
 msgstr "У_брать окно просмотра"
 
@@ -684,7 +695,7 @@ msgstr "_Вид"
 msgid "_Windows"
 msgstr "_Окна"
 
-#: ../src/ghex-ui.xml.h:95
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:88
 msgid "_Words"
 msgstr "_Слова"
 
@@ -774,7 +785,7 @@ msgid "You don't have the permissions to save the file!"
 msgstr "У вас недостаточно прав для сохранения файла!"
 
 #: ../src/ghex-window.c:1246 ../src/ui.c:346
-msgid "An error occured while saving file!"
+msgid "An error occurred while saving file!"
 msgstr "При сохранении файла возникла ошибка!"
 
 #: ../src/gnome-print-font-dialog.c:111
@@ -858,7 +869,7 @@ msgid "Show size in font info mode"
 msgstr "Показывать размер в режиме информации о шрифте"
 
 #. display font
-#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:181
+#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:182
 msgid "Font"
 msgstr "Шрифт"
 
@@ -922,30 +933,30 @@ msgstr "Длина потока:"
 msgid "FIXME: no conversion function"
 msgstr "ИСПРАВИТЬ: нет функции преобразования"
 
-#: ../src/hex-document.c:444
+#: ../src/hex-document.c:436
 msgid "New document"
 msgstr "Создать документ"
 
-#: ../src/hex-document.c:795
+#: ../src/hex-document.c:787
 #, c-format
 msgid "Page"
 msgstr "Страница"
 
-#: ../src/hex-document.c:801 ../src/hex-document.c:926
+#: ../src/hex-document.c:793 ../src/hex-document.c:918
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Шестнадцатеричный дамп сгенерирован по"
 
-#: ../src/hex-document.c:812
+#: ../src/hex-document.c:804
 msgid "Saving to HTML..."
 msgstr "Сохранение как HTML..."
 
-#: ../src/hex-document.c:849
+#: ../src/hex-document.c:841
 #, c-format
 msgid "Previous page"
 msgstr "Пред. страница"
 
-#: ../src/hex-document.c:864
+#: ../src/hex-document.c:856
 #, c-format
 msgid "Next page"
 msgstr "След. страница"
@@ -962,11 +973,11 @@ msgstr "GEOMETRY"
 msgid "The gnome binary editor"
 msgstr "Редактор двоичных файлов"
 
-#: ../src/main.c:81
+#: ../src/main.c:80
 msgid "Could not initialize Bonobo!\n"
 msgstr "Не удалось инициализировать Bonobo!\n"
 
-#: ../src/main.c:106 ../src/main.c:120
+#: ../src/main.c:105 ../src/main.c:119
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Недопустимая строка геометрии окна \"%s\"\n"
@@ -988,98 +999,98 @@ msgid "Select maximum number of undo levels"
 msgstr "Выберите максимальное число уровней отмены"
 
 #: ../src/preferences.c:127
-msgid "Show cursor offset in statusbar as:"
-msgstr "Показывать смещение курсора в строке состояния как:"
+msgid "_Show cursor offset in statusbar as:"
+msgstr "_Показывать смещение курсора в строке состояния как:"
 
-#: ../src/preferences.c:145
+#: ../src/preferences.c:146
 msgid "Hexadecimal"
 msgstr "Шестнадцатиричное"
 
-#: ../src/preferences.c:147
+#: ../src/preferences.c:148
 msgid "Custom"
 msgstr "Нестандартное"
 
-#: ../src/preferences.c:156
+#: ../src/preferences.c:157
 msgid "Enter the cursor offset format"
 msgstr "Введите формат смещения курсора"
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:158
 msgid "Select the cursor offset format"
 msgstr "Выберите формат смещения курсора"
 
 #. show offsets check button
-#: ../src/preferences.c:167
-msgid "Show offsets column"
-msgstr "Показывать колонку смещения"
+#: ../src/preferences.c:168
+msgid "Sh_ow offsets column"
+msgstr "Пок_азывать колонку смещения"
 
-#: ../src/preferences.c:172
+#: ../src/preferences.c:173
 msgid "Editing"
 msgstr "Редактирование"
 
 #. default group type
-#: ../src/preferences.c:204
+#: ../src/preferences.c:205
 msgid "Default Group Type"
 msgstr "Тип группирования по умолчанию"
 
-#: ../src/preferences.c:220
+#: ../src/preferences.c:221
 msgid "Display"
 msgstr "Представление"
 
 #. paper selection
-#: ../src/preferences.c:229
+#: ../src/preferences.c:230
 msgid "Paper size"
 msgstr "Размер бумаги"
 
 #. data & header font selection
-#: ../src/preferences.c:234
+#: ../src/preferences.c:235
 msgid "Fonts"
 msgstr "Шрифты"
 
-#: ../src/preferences.c:240
+#: ../src/preferences.c:241
 msgid "_Data font:"
 msgstr "Шрифт _данных:"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Data font"
 msgstr "Шрифт данных"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 msgid "Select the data font"
 msgstr "Выберите шрифт для данных"
 
-#: ../src/preferences.c:273
+#: ../src/preferences.c:274
 msgid "Header fo_nt:"
 msgstr "Шрифт за_головка:"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Header font"
 msgstr "Шрифт заголовка"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 msgid "Select the header font"
 msgstr "Выберите шрифт заголовка"
 
-#: ../src/preferences.c:317
+#: ../src/preferences.c:318
 msgid "_Print shaded box over:"
 msgstr "_Печатать полоску каждые"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Box size"
 msgstr "Размер полоски"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Select size of box (in number of lines)"
 msgstr "Выберите размер полоски (число строк)"
 
-#: ../src/preferences.c:333
+#: ../src/preferences.c:334
 msgid "lines (0 for no box)"
 msgstr "строки (0 - без полоски)"
 
-#: ../src/preferences.c:340
+#: ../src/preferences.c:341
 msgid "Printing"
 msgstr "Печать"
 
-#: ../src/preferences.c:462 ../src/ui.c:268
+#: ../src/preferences.c:463 ../src/ui.c:268
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1088,11 +1099,11 @@ msgstr ""
 "Возникла ошибка при отображении справки: \n"
 "%s"
 
-#: ../src/preferences.c:514
+#: ../src/preferences.c:515
 msgid "Can not open desired font!"
 msgstr "Не удалось загрузить желаемый шрифт!"
 
-#: ../src/preferences.c:577
+#: ../src/preferences.c:578
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
