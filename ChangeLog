@@ -1,3 +1,9 @@
+2008-04-09  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* src/gtkhex.c (draw_shadow, gtk_hex_size_allocate): Fix the allocation code
+	to allocate the child widgets relative to the GtkHex allocation.x and
+	allocation.y coordinates instead of (0,0).  Fixes Bug #527272
+
 2008-04-12  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* src/gtkhex.c (draw_shadow): remove the call to gdk_window_clear_area()
