@@ -35,6 +35,8 @@ libgtkhex_la_LIBADD = \
 	$(LIBGTKHEX_LIBS)	\
 	$(GAILUTIL_LIBS)
 
+libgtkhex_la_CFLAGS = -DG_LOG_DOMAIN=\"libgtkhex\"
+
 libgtkhex_HEADERS = \
 	hex-document.h 			\
 	gtkhex.h
