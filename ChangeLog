@@ -1,3 +1,9 @@
+2008-04-12  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* src/gtkhex.c (draw_shadow): remove the call to gdk_window_clear_area()
+	since it can sometimes result in the background between the hex and ascii
+	widgets becoming dark black.  Fixes Bug #527279
+
 2008-04-10  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* src/Makefile.am: set G_LOG_DOMAIN for the shared libgtkhex library so that

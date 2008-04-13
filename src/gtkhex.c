@@ -730,9 +730,6 @@ static void draw_shadow(GtkWidget *widget, GdkRectangle *area) {
 	GtkHex *gh = GTK_HEX(widget);
 	gint border = GTK_CONTAINER(widget)->border_width;
 	gint x;
-	
-	gdk_window_clear_area (widget->window, area->x, area->y,
-						   area->width, area->height);
 
 	x = border;
 	if(gh->show_offsets) {
