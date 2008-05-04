@@ -1,5 +1,13 @@
-2008-04-09  Jonathon Jongsma  <jjongsma@gnome.org>
+2008-04-05  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* src/gtkhex.c: fix a bug where the selection would always start at 0 if
+	the user only used the keyboard.  To reproduce, navigate away from the start
+	of the document, then press Shift+Down, and the text will be selected, but
+	instead of starting the selection from where the cursor was when you pressed
+	Down, it would start from the beginning of the file.
+
+2008-04-09  Jonathon Jongsma  <jjongsma@gnome.org>
+i
 	* src/gtkhex.c (draw_shadow, gtk_hex_size_allocate): Fix the allocation code
 	to allocate the child widgets relative to the GtkHex allocation.x and
 	allocation.y coordinates instead of (0,0).  Fixes Bug #527272

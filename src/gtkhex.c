@@ -2154,11 +2154,11 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 			gtk_hex_set_selection(gh, gh->selection.start, gh->cursor_pos);
 			bytes_changed(gh, MIN(gh->cursor_pos, old_pos), MAX(gh->cursor_pos, old_pos));
 		}
-		else if(gh->selection.end != gh->selection.start) {
+		else {
 			guint start = MIN(gh->selection.start, gh->selection.end);
 			guint end = MAX(gh->selection.start, gh->selection.end);
-			gh->selection.end = gh->selection.start = 0;
 			bytes_changed(gh, start, end);
+			gh->selection.end = gh->selection.start = gh->cursor_pos;
 		}
 		bytes_changed(gh, old_pos, old_pos);
 		show_cursor(gh);
