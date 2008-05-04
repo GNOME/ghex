@@ -28,6 +28,7 @@
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprintui/gnome-print-dialog.h>
 #include <libgnomeprintui/gnome-print-job-preview.h>
+#include <gtk/gtkaboutdialog.h>
 
 #include "ui.h"
 #include "ghex-window.h"
@@ -36,13 +37,15 @@
 #include "print.h"
 #include "chartable.h"
 
+static GtkWidget *about = NULL;
+
 static void ghex_print(GtkHex *gh, gboolean preview);
 static void ghex_print_run_dialog(GHexPrintJobInfo *pji);
 static void ghex_print_preview_real(GHexPrintJobInfo *pji);
 static void ghex_print_document_real (GHexPrintJobInfo *pji, gboolean preview);
 
 /* callbacks to nullify widget pointer after a delete event */
-static void about_destroy_cb(GtkObject *, GtkWidget **);
+static void about_destroy_cb(GtkObject *, gpointer);
 
 static void open_cb (BonoboUIComponent *uic, gpointer user_data,
 					 const gchar* verbname);
@@ -222,30 +225,53 @@ create_dialog_title(GtkWidget *window, gchar *title)
  * callbacks for global menus
  */
 static void
-about_destroy_cb(GtkObject *obj, GtkWidget **about)
+about_destroy_cb(GtkObject *obj, gpointer user_data)
 {
-	*about = NULL;
+	about = NULL;
+}
+
+static void
+about_response_cb(GtkDialog *dialog, gint response_id, gpointer user_data)
+{
+    switch (response_id) {
+		case GTK_RESPONSE_CLOSE:
+		case GTK_RESPONSE_CANCEL:
+			gtk_widget_destroy (dialog);
+			about = NULL;
+			break;
+		default:
+			// do nothing
+			break;
+    }
 }
 
 static void
 about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	static GtkWidget *about = NULL;
-	
 	static const gchar *authors[] = {
 		"Jaka Mo\304\215nik",
 		"Chema Celorio",
 		"Shivram Upadhyayula",
+		"Rodney Dawes",
+		"Jonathon Jongsma",
 		NULL
 	};
 
 	if(!about) {
-		about = gnome_about_new ( _("GHex, a binary file editor"), VERSION,
-								  "Copyright 1998 - 2006 Jaka Mo\304\215nik",
-								  _("Released under the terms of GNU Public License"),
-								  authors, NULL, NULL, NULL);
+		about = gtk_about_dialog_new ();
+		gtk_about_dialog_set_program_name (GTK_ABOUT_DIALOG (about), "GHex");
+		gtk_about_dialog_set_comments (GTK_ABOUT_DIALOG (about),
+				_("A binary file editor"));
+		gtk_about_dialog_set_copyright (GTK_ABOUT_DIALOG (about),
+				"Copyright 1998 - 2006 Jaka Mo\304\215nik");
+		gtk_about_dialog_set_license (GTK_ABOUT_DIALOG (about),
+				_("Released under the terms of GNU Public License"));
+		gtk_about_dialog_set_authors (GTK_ABOUT_DIALOG (about), authors);
+		gtk_about_dialog_set_logo_icon_name (GTK_ABOUT_DIALOG (about), "ghex");
 		g_signal_connect(G_OBJECT(about), "destroy",
-						 G_CALLBACK(about_destroy_cb), &about);
+						 G_CALLBACK(about_destroy_cb), NULL);
+		g_signal_connect(G_OBJECT(about), "response",
+						 G_CALLBACK(about_response_cb), NULL);
 		gtk_widget_show (about);
 	}
 	else

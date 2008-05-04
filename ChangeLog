@@ -1,3 +1,9 @@
+2008-04-06  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* src/ui.c: Update the About Dialog to use the application icon.  In the
+	process, I ported the code from GnomeAbout to GtkAboutDialog.
+	Fixes Bug #520983
+
 2008-04-05  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* src/gtkhex.c: fix a bug where the selection would always start at 0 if
