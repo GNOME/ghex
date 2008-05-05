@@ -1810,12 +1810,6 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	recalc_displays(gh, alloc->width, alloc->height);
 
 	w->allocation = *alloc;
-	if(GTK_WIDGET_REALIZED(w))
-		gdk_window_move_resize (w->window,
-								alloc->x, 
-								alloc->y,
-								alloc->width, 
-								alloc->height);
 
 	border_width = GTK_CONTAINER(w)->border_width;
 	xt = widget_get_xt(w);
