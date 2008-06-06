@@ -1,21 +1,21 @@
 # Vietnamese translation for GHex.
-# Copyright © 2007 GNOME i18n Project for Vietnamese.
+# Copyright © 2008 GNOME i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@gmx.net>, 2002.
-# Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
+# Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex GNOME TRUNK\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-26 03:16+0100\n"
-"PO-Revision-Date: 2007-09-16 16:20+0930\n"
+"POT-Creation-Date: 2008-05-04 21:17+0000\n"
+"PO-Revision-Date: 2008-06-06 16:59+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
-"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.7b1\n"
+"X-Generator: LocFactoryEditor 1.7b3\n"
 
 #: ../ghex.desktop.in.h:1
 msgid "GNOME Hexadecimal Editor"
@@ -33,8 +33,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Thập lục"
 
-#: ../src/chartable.c:143
-#: ../src/preferences.c:144
+#: ../src/chartable.c:143 ../src/preferences.c:144
 msgid "Decimal"
 msgstr "Thập phân"
 
@@ -54,8 +53,8 @@ msgstr "Bảng ký tự"
 msgid "Base Converter"
 msgstr "Bộ chuyển đổi cơ số"
 
-#: ../src/converter.c:251
 #. entries
+#: ../src/converter.c:251
 msgid "_Binary:"
 msgstr "_Nhị phân:"
 
@@ -75,8 +74,8 @@ msgstr "T_hập lục:"
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
-#: ../src/converter.c:263
 #. get cursor button
+#: ../src/converter.c:263
 msgid "_Get cursor value"
 msgstr "_Lấy giá trị con trỏ"
 
@@ -94,36 +93,28 @@ msgstr ""
 msgid "ERROR"
 msgstr "LỖI"
 
-#: ../src/findreplace.c:98
-#: ../src/findreplace.c:222
-#: ../src/ui.c:936
+#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:962
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Tìm dữ liệu"
 
-#: ../src/findreplace.c:102
-#: ../src/findreplace.c:162
-#: ../src/findreplace.c:358
+#: ../src/findreplace.c:102 ../src/findreplace.c:162 ../src/findreplace.c:358
 msgid "Find String"
 msgstr "Tìm chuỗi"
 
-#: ../src/findreplace.c:109
-#: ../src/findreplace.c:259
+#: ../src/findreplace.c:109 ../src/findreplace.c:259
 msgid "Find _Next"
 msgstr "Tìm _kế"
 
-#: ../src/findreplace.c:116
-#: ../src/findreplace.c:268
+#: ../src/findreplace.c:116 ../src/findreplace.c:268
 msgid "Find _Previous"
 msgstr "Tìm _lùi"
 
-#: ../src/findreplace.c:139
-#: ../src/findreplace.c:412
+#: ../src/findreplace.c:139 ../src/findreplace.c:412
 msgid "Find Data"
 msgstr "Tìm dữ liệu"
 
-#: ../src/findreplace.c:139
-#: ../src/findreplace.c:412
+#: ../src/findreplace.c:139 ../src/findreplace.c:412
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Nhập dữ liệu thập lục hoặc ASCII cần tìm."
 
@@ -131,8 +122,7 @@ msgstr "Nhập dữ liệu thập lục hoặc ASCII cần tìm."
 msgid "Find Next"
 msgstr "Tìm kế"
 
-#: ../src/findreplace.c:140
-#: ../src/findreplace.c:414
+#: ../src/findreplace.c:140 ../src/findreplace.c:414
 msgid "Finds the next occurrence of the search string"
 msgstr "Tìm lần kế tiếp gặp chuỗi tìm kiếm."
 
@@ -144,9 +134,7 @@ msgstr "Tìm lùi"
 msgid "Finds the previous occurrence of the search string "
 msgstr "Tìm lần trước gặp chuỗi tìm kiếm "
 
-#: ../src/findreplace.c:142
-#: ../src/findreplace.c:417
-#: ../src/findreplace.c:465
+#: ../src/findreplace.c:142 ../src/findreplace.c:417 ../src/findreplace.c:465
 msgid "Cancel"
 msgstr "Thôi"
 
@@ -179,8 +167,7 @@ msgstr "Mớ_i"
 msgid "_Remove Selected"
 msgstr "_Bỏ mục đã chọn"
 
-#: ../src/findreplace.c:310
-#: ../src/ghex-ui.xml.h:8
+#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:8
 msgid "Close"
 msgstr "Đóng"
 
@@ -188,8 +175,7 @@ msgstr "Đóng"
 msgid "Closes advanced find window"
 msgstr "Đóng cửa sổ tìm cấp cao"
 
-#: ../src/findreplace.c:354
-#: ../src/ui.c:934
+#: ../src/findreplace.c:354 ../src/ui.c:960
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Tìm và Thay thế Dữ liệu"
@@ -222,8 +208,7 @@ msgstr "Nhập dữ liệu thập lục hay ASCII bằng đó cần thay thế"
 msgid "Find next"
 msgstr "Tìm kế"
 
-#: ../src/findreplace.c:415
-#: ../src/ghex-ui.xml.h:51
+#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:51
 msgid "Replace"
 msgstr "Thay thế"
 
@@ -243,8 +228,7 @@ msgstr "Thay thế mọi lần gặp chuỗi tìm kiếm bằng chuỗi thay th�
 msgid "Closes find and replace data window"
 msgstr "Đóng cửa sổ tìm và thay thế dữ liệu"
 
-#: ../src/findreplace.c:433
-#: ../src/ui.c:932
+#: ../src/findreplace.c:433 ../src/ui.c:958
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Nhảy tới byte"
@@ -269,36 +253,25 @@ msgstr "Nhảy tới byte đã xác định"
 msgid "Closes jump to byte window"
 msgstr "Đóng cửa sổ « Nhảy tới byte »"
 
-#: ../src/findreplace.c:528
-#: ../src/findreplace.c:562
-#: ../src/findreplace.c:646
+#: ../src/findreplace.c:528 ../src/findreplace.c:562 ../src/findreplace.c:646
 msgid "There is no active document to search!"
 msgstr "Không có tài liệu hoạt động trong đó cần tìm kiếm."
 
-#: ../src/findreplace.c:535
-#: ../src/findreplace.c:569
-#: ../src/findreplace.c:653
-#: ../src/findreplace.c:687
-#: ../src/findreplace.c:732
+#: ../src/findreplace.c:535 ../src/findreplace.c:569 ../src/findreplace.c:653
+#: ../src/findreplace.c:687 ../src/findreplace.c:732
 msgid "There is no string to search for!"
 msgstr "Chưa gõ chuỗi cần tìm."
 
-#: ../src/findreplace.c:547
-#: ../src/findreplace.c:662
-#: ../src/findreplace.c:853
+#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:853
 msgid "End Of File reached"
 msgstr "Gặp kết thúc tập tin"
 
-#: ../src/findreplace.c:548
-#: ../src/findreplace.c:581
-#: ../src/findreplace.c:661
-#: ../src/findreplace.c:854
-#: ../src/findreplace.c:877
+#: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
+#: ../src/findreplace.c:854 ../src/findreplace.c:877
 msgid "String was not found!\n"
 msgstr "Không tìm thấy chuỗi.\n"
 
-#: ../src/findreplace.c:580
-#: ../src/findreplace.c:876
+#: ../src/findreplace.c:580 ../src/findreplace.c:876
 msgid "Beginning Of File reached"
 msgstr "Mới tới đầu tập tin"
 
@@ -328,8 +301,7 @@ msgstr ""
 msgid "There is no active buffer to replace data in!"
 msgstr "Không có bộ đệm hoạt động trong đó cần thay thế dữ liệu."
 
-#: ../src/findreplace.c:703
-#: ../src/findreplace.c:704
+#: ../src/findreplace.c:703 ../src/findreplace.c:704
 msgid "End Of File reached!"
 msgstr "Mới tới kết thúc tập tin."
 
@@ -631,8 +603,7 @@ msgstr "Tìm cấp c_ao"
 msgid "_Base Converter"
 msgstr "_Bộ chuyển đổi cơ số"
 
-#: ../src/ghex-ui.xml.h:73
-#: ../src/ui.c:87
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:90
 msgid "_Bytes"
 msgstr "_Byte"
 
@@ -676,8 +647,7 @@ msgstr "Trợ g_iúp"
 msgid "_Insert Mode"
 msgstr "C_hế độ chèn"
 
-#: ../src/ghex-ui.xml.h:84
-#: ../src/ui.c:89
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:92
 msgid "_Longwords"
 msgstr "Từ _dài"
 
@@ -721,8 +691,7 @@ msgstr "_Xem"
 msgid "_Windows"
 msgstr "_Cửa sổ"
 
-#: ../src/ghex-ui.xml.h:95
-#: ../src/ui.c:88
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:91
 msgid "_Words"
 msgstr "_Từ"
 
@@ -744,8 +713,7 @@ msgstr ""
 "Không thể mở tập tin:\n"
 "%s"
 
-#: ../src/ghex-window.c:500
-#: ../src/ghex-window.c:947
+#: ../src/ghex-window.c:500 ../src/ghex-window.c:947
 msgid "GHex"
 msgstr "GHex"
 
@@ -782,8 +750,7 @@ msgstr ""
 "Tập tin %s đã có.\n"
 "Bạn có muốn ghi đè lên nó không?"
 
-#: ../src/ghex-window.c:1161
-#: ../src/ui.c:353
+#: ../src/ghex-window.c:1161 ../src/ui.c:379
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Đã lưu vùng đệm vào tập tin %s"
@@ -809,13 +776,11 @@ msgstr ""
 msgid "Do_n't save"
 msgstr "Khô_ng lưu"
 
-#: ../src/ghex-window.c:1242
-#: ../src/ui.c:341
+#: ../src/ghex-window.c:1242 ../src/ui.c:367
 msgid "You don't have the permissions to save the file!"
 msgstr "Bạn không có đủ quyền truy cập để lưu tập tin đó."
 
-#: ../src/ghex-window.c:1246
-#: ../src/ui.c:346
+#: ../src/ghex-window.c:1246 ../src/ui.c:372
 msgid "An error occurred while saving file!"
 msgstr "Gặp lỗi khi lưu tập tin."
 
@@ -899,9 +864,8 @@ msgstr "Hiện cỡ"
 msgid "Show size in font info mode"
 msgstr "Hiển thị kích cỡ ở chế độ thông tin phông"
 
-#: ../src/gnome-print-font-picker.c:1019
-#: ../src/preferences.c:182
 #. display font
+#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:182
 msgid "Font"
 msgstr "Phông"
 
@@ -965,31 +929,30 @@ msgstr "Bề dài luồng:"
 msgid "FIXME: no conversion function"
 msgstr "Sửa Đi: không có chức năng chuyển đổi"
 
-#: ../src/hex-document.c:444
+#: ../src/hex-document.c:436
 msgid "New document"
 msgstr "Tài liệu mới"
 
-#: ../src/hex-document.c:795
+#: ../src/hex-document.c:787
 #, c-format
 msgid "Page"
 msgstr "Trang"
 
-#: ../src/hex-document.c:801
-#: ../src/hex-document.c:926
+#: ../src/hex-document.c:793 ../src/hex-document.c:918
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Đổ dạng thập lục phân được tạo ra bởi"
 
-#: ../src/hex-document.c:812
+#: ../src/hex-document.c:804
 msgid "Saving to HTML..."
 msgstr "Đang lưu dạng HTML..."
 
-#: ../src/hex-document.c:849
+#: ../src/hex-document.c:841
 #, c-format
 msgid "Previous page"
 msgstr "Trang lùi"
 
-#: ../src/hex-document.c:864
+#: ../src/hex-document.c:856
 #, c-format
 msgid "Next page"
 msgstr "Trang kế"
@@ -1010,8 +973,7 @@ msgstr "Bộ sửa nhị phân GNOME"
 msgid "Could not initialize Bonobo!\n"
 msgstr "Không thể khởi động Bonobo.\n"
 
-#: ../src/main.c:105
-#: ../src/main.c:119
+#: ../src/main.c:105 ../src/main.c:119
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Chuỗi dạng hình không hợp lệ « %s ».\n"
@@ -1052,8 +1014,8 @@ msgstr "Gõ định dạng hiệu số con trỏ"
 msgid "Select the cursor offset format"
 msgstr "Chọn định dạng hiệu số con trỏ"
 
-#: ../src/preferences.c:168
 #. show offsets check button
+#: ../src/preferences.c:168
 msgid "Sh_ow offsets column"
 msgstr "_Hiện cột hiệu số"
 
@@ -1061,8 +1023,8 @@ msgstr "_Hiện cột hiệu số"
 msgid "Editing"
 msgstr "Sửa"
 
-#: ../src/preferences.c:205
 #. default group type
+#: ../src/preferences.c:205
 msgid "Default Group Type"
 msgstr "Kiểu nhóm mặc định"
 
@@ -1070,13 +1032,13 @@ msgstr "Kiểu nhóm mặc định"
 msgid "Display"
 msgstr "Hiển thị"
 
-#: ../src/preferences.c:230
 #. paper selection
+#: ../src/preferences.c:230
 msgid "Paper size"
 msgstr "Cỡ giấy"
 
-#: ../src/preferences.c:235
 #. data & header font selection
+#: ../src/preferences.c:235
 msgid "Fonts"
 msgstr "Phông"
 
@@ -1124,8 +1086,7 @@ msgstr "dòng (0 là không có hộp)"
 msgid "Printing"
 msgstr "In"
 
-#: ../src/preferences.c:463
-#: ../src/ui.c:268
+#: ../src/preferences.c:463 ../src/ui.c:294
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1151,8 +1112,7 @@ msgstr ""
 msgid "Page: %i/%i"
 msgstr "Trang: %i/%i"
 
-#: ../src/print.c:222
-#: ../src/print.c:238
+#: ../src/print.c:222 ../src/print.c:238
 #, c-format
 msgid ""
 "GHex could not find the font \"%s\".\n"
@@ -1161,49 +1121,48 @@ msgstr ""
 "GHex không thể tìm phông « %s ».\n"
 "GHex không thể in mà không có phông chữ này."
 
-#: ../src/ui.c:94
+#: ../src/ui.c:97
 msgid "hex data"
 msgstr "Dữ liệu thập lục"
 
-#: ../src/ui.c:95
+#: ../src/ui.c:98
 msgid "ASCII data"
 msgstr "Dữ liệu ASCII"
 
-#: ../src/ui.c:243
-msgid "GHex, a binary file editor"
-msgstr "GHex, bộ sửa tập tin nhị phân"
+#: ../src/ui.c:264
+msgid "A binary file editor"
+msgstr "Một trình chỉnh sửa tập tin nhị phân"
 
-#: ../src/ui.c:245
+#: ../src/ui.c:268
 msgid "Released under the terms of GNU Public License"
 msgstr "Được phát hành với điều khoản của Giấy phép Công cộng GNU (GPL)"
 
-#: ../src/ui.c:370
+#: ../src/ui.c:396
 msgid "Select a file to open"
 msgstr "Chọn tập tin cần mở"
 
-#: ../src/ui.c:401
+#: ../src/ui.c:427
 #, c-format
 msgid "Loaded file %s"
 msgstr "Đã nạp tập tin %s"
 
-#: ../src/ui.c:409
+#: ../src/ui.c:435
 msgid "Can not open file!"
 msgstr "Không thể mở tập tin."
 
-#: ../src/ui.c:470
+#: ../src/ui.c:496
 msgid "Select path and file name for the HTML source"
 msgstr "Chọn đường dẫn và tên tập tin cho mã nguồn HTML"
 
-#: ../src/ui.c:504
+#: ../src/ui.c:530
 msgid "You need to specify a base name for the HTML files."
 msgstr "Bạn cần phải xác định tên cơ sở cho các tập tin HTML"
 
-#: ../src/ui.c:515
-#: ../src/ui.c:539
+#: ../src/ui.c:541 ../src/ui.c:565
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Bạn không có đủ quyền truy cập để ghi vào đường dẫn đã chọn.\n"
 
-#: ../src/ui.c:526
+#: ../src/ui.c:552
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1211,35 +1170,29 @@ msgstr ""
 "Lưu theo định dạng HTML sẽ ghi đè lên một vài tập tin.\n"
 "Bạn vẫn có muốn tiếp tục không?"
 
-#: ../src/ui.c:679
+#: ../src/ui.c:705
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Thực sự muốn hoàn nguyên tập tin %s không?"
 
-#: ../src/ui.c:693
+#: ../src/ui.c:719
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Đã hoàn nguyên vùng đệm từ tập tin %s"
 
-#: ../src/ui.c:777
+#: ../src/ui.c:803
 msgid "Printing file..."
 msgstr "Đang in tập tin..."
 
-#: ../src/ui.c:837
+#: ../src/ui.c:863
 msgid "Print Hex Document"
 msgstr "In tài liệu thập lục"
 
-#: ../src/ui.c:849
+#: ../src/ui.c:875
 msgid "Pages"
 msgstr "Trang"
 
-#: ../src/ui.c:874
+#: ../src/ui.c:900
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Xem thử bản in"
-
-#~ msgid "C_ut"
-#~ msgstr "_Cắt"
-
-#~ msgid "_Paste"
-#~ msgstr "_Dán"
