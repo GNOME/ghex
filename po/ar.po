@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Arabic\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-21 12:55+0100\n"
+"POT-Creation-Date: 2008-07-31 11:06+0100\n"
 "PO-Revision-Date: 2007-04-14 18:49+0100\n"
 "Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -35,7 +35,7 @@ msgstr "SCSI"
 msgid "Hex"
 msgstr "_سادس عشري"
 
-#: ../src/chartable.c:143 ../src/preferences.c:143
+#: ../src/chartable.c:143 ../src/preferences.c:144
 msgid "Decimal"
 msgstr "عشري"
 
@@ -104,7 +104,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "الخطأ: "
 
-#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:936
+#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:962
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr ""
@@ -192,7 +192,7 @@ msgstr "أ_ضف اسماً"
 msgid "_Remove Selected"
 msgstr "ا_حفِظ المنتقى"
 
-#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:9
+#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:8
 msgid "Close"
 msgstr "أغلق"
 
@@ -201,7 +201,7 @@ msgstr "أغلق"
 msgid "Closes advanced find window"
 msgstr "إغلاق النافذة"
 
-#: ../src/findreplace.c:354 ../src/ui.c:934
+#: ../src/findreplace.c:354 ../src/ui.c:960
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr ""
@@ -216,7 +216,7 @@ msgstr "استبدّل _بـ: "
 msgid "Find _next"
 msgstr "ايجاد التالي"
 
-#: ../src/findreplace.c:382 ../src/ghex-ui.xml.h:89
+#: ../src/findreplace.c:382
 #, fuzzy
 msgid "_Replace"
 msgstr "المبدل"
@@ -240,7 +240,7 @@ msgstr ""
 msgid "Find next"
 msgstr "ايجاد التالي"
 
-#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:49
+#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:51
 #, fuzzy
 msgid "Replace"
 msgstr "المبدل"
@@ -263,7 +263,7 @@ msgstr ""
 msgid "Closes find and replace data window"
 msgstr "يغلق نافذة معاينة المطبوعة"
 
-#: ../src/findreplace.c:433 ../src/ui.c:932
+#: ../src/findreplace.c:433 ../src/ui.c:958
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr ""
@@ -303,17 +303,17 @@ msgstr "صفحة المستند المطلوب عرضها."
 msgid "There is no string to search for!"
 msgstr "السلسة التي تريد البحث عنها"
 
-#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:851
+#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:853
 msgid "End Of File reached"
 msgstr ""
 
 #: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
-#: ../src/findreplace.c:852 ../src/findreplace.c:875
+#: ../src/findreplace.c:854 ../src/findreplace.c:877
 #, fuzzy
 msgid "String was not found!\n"
 msgstr "غير قادر على العثور على العبارة"
 
-#: ../src/findreplace.c:580 ../src/findreplace.c:874
+#: ../src/findreplace.c:580 ../src/findreplace.c:876
 #, fuzzy
 msgid "Beginning Of File reached"
 msgstr "فشل إرسال الملف"
@@ -360,10 +360,12 @@ msgstr "لا توجد أي نتائج."
 
 #: ../src/findreplace.c:756
 #, fuzzy, c-format
-msgid "Replaced %d occurrences."
-msgstr "تمّ ايجاد واستبدال حدوث واحد."
+msgid "Replaced %d occurrence."
+msgid_plural "Replaced %d occurrences."
+msgstr[0] "تمّ ايجاد واستبدال حدوث واحد."
+msgstr[1] "تمّ ايجاد واستبدال حدوث واحد."
 
-#: ../src/findreplace.c:794
+#: ../src/findreplace.c:796
 #, fuzzy
 msgid "No string to search for!"
 msgstr "السلسة التي تريد البحث عنها"
@@ -387,51 +389,52 @@ msgstr "أضف معيار جديد لهذا البحث"
 msgid "Advanced Find"
 msgstr "متقدم"
 
-#: ../src/ghex-ui.xml.h:5 ../src/ui.c:87
+#: ../src/ghex-ui.xml.h:5
 msgid "Bytes"
 msgstr "بايتات"
 
 #: ../src/ghex-ui.xml.h:6
-msgid "C_ut"
-msgstr "_قص"
-
-#: ../src/ghex-ui.xml.h:7
 #, fuzzy
 msgid "Character Table..."
 msgstr "جدول المحارف"
 
-#: ../src/ghex-ui.xml.h:8
+#: ../src/ghex-ui.xml.h:7
 #, fuzzy
-msgid "Character _Table..."
+msgid "Character _Table"
 msgstr "جدول المحارف"
 
-#: ../src/ghex-ui.xml.h:10
+#: ../src/ghex-ui.xml.h:9
 #, fuzzy
 msgid "Close the current file"
 msgstr "أغلق المحفوظة الحاليّة"
 
-#: ../src/ghex-ui.xml.h:11
+#: ../src/ghex-ui.xml.h:10
 msgid "Configure the application"
 msgstr "إعداد التطبيق"
 
-#: ../src/ghex-ui.xml.h:12
+#: ../src/ghex-ui.xml.h:11
 msgid "Contents"
 msgstr "المحتويات"
 
-#: ../src/ghex-ui.xml.h:13
+#: ../src/ghex-ui.xml.h:12
 #, fuzzy
 msgid "Converter..."
 msgstr "يجري تحويل %s..."
 
-#: ../src/ghex-ui.xml.h:14
+#: ../src/ghex-ui.xml.h:13
 #, fuzzy
 msgid "Copy"
 msgstr "ان_سخ"
 
-#: ../src/ghex-ui.xml.h:15
+#: ../src/ghex-ui.xml.h:14
 #, fuzzy
 msgid "Copy selection to clipboard"
 msgstr "ا_نسخ العنوان إلى الحافظة"
+
+#: ../src/ghex-ui.xml.h:15
+#, fuzzy
+msgid "Cu_t"
+msgstr "قص"
 
 #: ../src/ghex-ui.xml.h:16
 msgid "Cut"
@@ -510,7 +513,7 @@ msgstr ""
 msgid "Jump to a certain position"
 msgstr "إذهب إلى المقطع التالي"
 
-#: ../src/ghex-ui.xml.h:33 ../src/ui.c:89
+#: ../src/ghex-ui.xml.h:33
 #, fuzzy
 msgid "Longwords"
 msgstr "ال_شعارات"
@@ -531,246 +534,251 @@ msgstr "فتح حوار تحديد الخط"
 
 #: ../src/ghex-ui.xml.h:37
 #, fuzzy
-msgid "Paste"
+msgid "Pa_ste"
 msgstr "ال_صق"
 
 #: ../src/ghex-ui.xml.h:38
 #, fuzzy
+msgid "Paste"
+msgstr "ال_صق"
+
+#: ../src/ghex-ui.xml.h:39
+#, fuzzy
 msgid "Paste data from clipboard"
 msgstr "الصق مهام من الحافظة"
 
-#: ../src/ghex-ui.xml.h:39
+#: ../src/ghex-ui.xml.h:40
 #, fuzzy
 msgid "Preferences"
 msgstr "ت_فضيلات"
 
-#: ../src/ghex-ui.xml.h:40
+#: ../src/ghex-ui.xml.h:41
 #, fuzzy
 msgid "Preview printed data"
 msgstr "عرض المعاينة"
 
-#: ../src/ghex-ui.xml.h:41
+#: ../src/ghex-ui.xml.h:42
 msgid "Print"
 msgstr "اطبع"
 
-#: ../src/ghex-ui.xml.h:42
+#: ../src/ghex-ui.xml.h:43
 #, fuzzy
 msgid "Print Previe_w..."
 msgstr "م_عاينة الطبع"
 
-#: ../src/ghex-ui.xml.h:43
+#: ../src/ghex-ui.xml.h:44
 #, fuzzy
 msgid "Print Preview..."
 msgstr "م_عاينة الطبع"
 
-#: ../src/ghex-ui.xml.h:44
+#: ../src/ghex-ui.xml.h:45
 #, fuzzy
 msgid "Print the current file"
 msgstr "يطبع الملف الحالي"
 
-#: ../src/ghex-ui.xml.h:45
+#: ../src/ghex-ui.xml.h:46
+#, fuzzy
+msgid "R_eplace"
+msgstr "المبدل"
+
+#: ../src/ghex-ui.xml.h:47
 #, fuzzy
 msgid "Redo"
 msgstr "عكس تراجع"
 
-#: ../src/ghex-ui.xml.h:46
+#: ../src/ghex-ui.xml.h:48
 #, fuzzy
 msgid "Redo the undone action"
 msgstr "أعِد آخر عملية متراجع عنها"
 
-#: ../src/ghex-ui.xml.h:47
+#: ../src/ghex-ui.xml.h:49
 #, fuzzy
 msgid "Remove View"
 msgstr "احذف العنصر"
 
-#: ../src/ghex-ui.xml.h:48
+#: ../src/ghex-ui.xml.h:50
 #, fuzzy
 msgid "Remove the current view of the buffer"
 msgstr "النص الحالي للحاجز"
 
-#: ../src/ghex-ui.xml.h:50
+#: ../src/ghex-ui.xml.h:52
 #, fuzzy
 msgid "Replace a string"
 msgstr "سلسلة البحث"
 
-#: ../src/ghex-ui.xml.h:51
+#: ../src/ghex-ui.xml.h:53
 msgid "Revert"
 msgstr "ارتداد"
 
-#: ../src/ghex-ui.xml.h:52
+#: ../src/ghex-ui.xml.h:54
 #, fuzzy
 msgid "Revert to a saved version of the file"
 msgstr "إسم و أيقونة الملف."
 
-#: ../src/ghex-ui.xml.h:53
+#: ../src/ghex-ui.xml.h:55
 msgid "Save"
 msgstr "احفظ"
 
-#: ../src/ghex-ui.xml.h:54
+#: ../src/ghex-ui.xml.h:56
 #, fuzzy
 msgid "Save As"
 msgstr "ا_حفظ باسم"
 
-#: ../src/ghex-ui.xml.h:55
+#: ../src/ghex-ui.xml.h:57
 #, fuzzy
 msgid "Save As _HTML..."
 msgstr "احفظ كـ..."
 
-#: ../src/ghex-ui.xml.h:56
+#: ../src/ghex-ui.xml.h:58
 #, fuzzy
 msgid "Save _As..."
 msgstr "احفظ كـ..."
 
-#: ../src/ghex-ui.xml.h:57
+#: ../src/ghex-ui.xml.h:59
 #, fuzzy
 msgid "Save the current file"
 msgstr "إحفظ اللعبة الحالية"
 
-#: ../src/ghex-ui.xml.h:58
+#: ../src/ghex-ui.xml.h:60
 #, fuzzy
 msgid "Save the current file with a different name"
 msgstr "احفظ المحفوظة الحالية تحت اسمٍ مختلف"
 
-#: ../src/ghex-ui.xml.h:59
+#: ../src/ghex-ui.xml.h:61
 #, fuzzy
 msgid "Search for a string"
 msgstr "سلسلة البحث"
 
-#: ../src/ghex-ui.xml.h:60
+#: ../src/ghex-ui.xml.h:62
 #, fuzzy
 msgid "Show the character table"
 msgstr "جدول المحارف"
 
-#: ../src/ghex-ui.xml.h:61
+#: ../src/ghex-ui.xml.h:63
 #, fuzzy
 msgid "Show the type conversion dialog in the edit window"
 msgstr "اظهر أو إخفي اللوحة الجانبية في النافذة الحالية "
 
-#: ../src/ghex-ui.xml.h:62
+#: ../src/ghex-ui.xml.h:64
 msgid "Type Conversion Dialog..."
 msgstr ""
 
-#: ../src/ghex-ui.xml.h:63
+#: ../src/ghex-ui.xml.h:65
 #, fuzzy
 msgid "Type Conversion _Dialog"
 msgstr "حوار تصفّح الملفات"
 
-#: ../src/ghex-ui.xml.h:64
+#: ../src/ghex-ui.xml.h:66
 msgid "Undo"
 msgstr "تراجع"
 
-#: ../src/ghex-ui.xml.h:65
+#: ../src/ghex-ui.xml.h:67
 #, fuzzy
 msgid "Undo the last action"
 msgstr "أعِد آخر عملية"
 
-#: ../src/ghex-ui.xml.h:66 ../src/ui.c:88
+#: ../src/ghex-ui.xml.h:68
 msgid "Words"
 msgstr "كلمات"
 
-#: ../src/ghex-ui.xml.h:67
+#: ../src/ghex-ui.xml.h:69
 #, fuzzy
 msgid "_About"
 msgstr "_6 عن البرنامج"
 
-#: ../src/ghex-ui.xml.h:68
+#: ../src/ghex-ui.xml.h:70
 #, fuzzy
 msgid "_Add View"
 msgstr "أ_ضف"
 
-#: ../src/ghex-ui.xml.h:69
+#: ../src/ghex-ui.xml.h:71
 #, fuzzy
 msgid "_Advanced Find"
 msgstr "م_تقدم"
 
-#: ../src/ghex-ui.xml.h:70
+#: ../src/ghex-ui.xml.h:72
 #, fuzzy
 msgid "_Base Converter"
 msgstr "_حوّل"
 
-#: ../src/ghex-ui.xml.h:71
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:90
 #, fuzzy
 msgid "_Bytes"
 msgstr "بايتات"
 
-#: ../src/ghex-ui.xml.h:72
+#: ../src/ghex-ui.xml.h:74
 #, fuzzy
 msgid "_Close"
 msgstr "أغلق"
 
-#: ../src/ghex-ui.xml.h:73
+#: ../src/ghex-ui.xml.h:75
 #, fuzzy
 msgid "_Contents"
 msgstr "المحتويات"
 
-#: ../src/ghex-ui.xml.h:74
+#: ../src/ghex-ui.xml.h:76
 #, fuzzy
 msgid "_Copy"
 msgstr "ان_سخ"
 
-#: ../src/ghex-ui.xml.h:75
+#: ../src/ghex-ui.xml.h:77
 #, fuzzy
 msgid "_Edit"
 msgstr "_تحرير/"
 
-#: ../src/ghex-ui.xml.h:76
+#: ../src/ghex-ui.xml.h:78
 #, fuzzy
 msgid "_File"
 msgstr "/ملف"
 
-#: ../src/ghex-ui.xml.h:77
+#: ../src/ghex-ui.xml.h:79
 msgid "_Find"
 msgstr "ا_بحث"
 
-#: ../src/ghex-ui.xml.h:78
+#: ../src/ghex-ui.xml.h:80
 #, fuzzy
 msgid "_Goto Byte..."
 msgstr "_جمّع حسب..."
 
-#: ../src/ghex-ui.xml.h:79
+#: ../src/ghex-ui.xml.h:81
 #, fuzzy
 msgid "_Group Data As"
 msgstr "ال_مجموعات"
 
-#: ../src/ghex-ui.xml.h:80
+#: ../src/ghex-ui.xml.h:82
 #, fuzzy
 msgid "_Help"
 msgstr "مساعدة"
 
-#: ../src/ghex-ui.xml.h:81
+#: ../src/ghex-ui.xml.h:83
 #, fuzzy
 msgid "_Insert Mode"
 msgstr "أ_درج"
 
-#: ../src/ghex-ui.xml.h:82
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:92
 #, fuzzy
 msgid "_Longwords"
 msgstr "ال_شعارات"
 
-#: ../src/ghex-ui.xml.h:83
+#: ../src/ghex-ui.xml.h:85
 #, fuzzy
 msgid "_Open..."
 msgstr "افتح..."
 
-#: ../src/ghex-ui.xml.h:84
-#, fuzzy
-msgid "_Paste"
-msgstr "_توقّف مؤقّت"
-
-#: ../src/ghex-ui.xml.h:85
+#: ../src/ghex-ui.xml.h:86
 #, fuzzy
 msgid "_Preferences"
 msgstr "ت_فضيلات"
 
-#: ../src/ghex-ui.xml.h:86
+#: ../src/ghex-ui.xml.h:87
 msgid "_Print"
 msgstr "ا_طبع"
 
-#: ../src/ghex-ui.xml.h:87
+#: ../src/ghex-ui.xml.h:88
 msgid "_Redo"
 msgstr "عكس تراجع"
 
-#: ../src/ghex-ui.xml.h:88
+#: ../src/ghex-ui.xml.h:89
 #, fuzzy
 msgid "_Remove View"
 msgstr "احذف العنصر"
@@ -797,7 +805,7 @@ msgstr "_عرض/"
 msgid "_Windows"
 msgstr "_نوافذ"
 
-#: ../src/ghex-ui.xml.h:95
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:91
 #, fuzzy
 msgid "_Words"
 msgstr "كلمات"
@@ -853,7 +861,7 @@ msgid ""
 "Do you want to overwrite it?"
 msgstr "الملف موجود. هل تريد أن تكتب فوقه؟"
 
-#: ../src/ghex-window.c:1161 ../src/ui.c:353
+#: ../src/ghex-window.c:1161 ../src/ui.c:379
 #, fuzzy, c-format
 msgid "Saved buffer to file %s"
 msgstr "حفظ ملف لوحة المفاتيح كـ"
@@ -880,14 +888,14 @@ msgstr "لقد قمت بتعديلات على هذا المراسل. أترغب 
 msgid "Do_n't save"
 msgstr "لا تحفظ"
 
-#: ../src/ghex-window.c:1242 ../src/ui.c:341
+#: ../src/ghex-window.c:1242 ../src/ui.c:367
 #, fuzzy
 msgid "You don't have the permissions to save the file!"
 msgstr "لا تملك الصلاحيات المطلوبة لفتح هذا الملف."
 
-#: ../src/ghex-window.c:1246 ../src/ui.c:346
+#: ../src/ghex-window.c:1246 ../src/ui.c:372
 #, fuzzy
-msgid "An error occured while saving file!"
+msgid "An error occurred while saving file!"
 msgstr "حدث خطأ عند استخراج الملفات."
 
 #: ../src/gnome-print-font-dialog.c:111
@@ -982,7 +990,7 @@ msgid "Show size in font info mode"
 msgstr "عرض الحجم في نسق معلومات الخطوط"
 
 #. display font
-#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:181
+#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:182
 msgid "Font"
 msgstr "الخط"
 
@@ -1060,32 +1068,32 @@ msgstr "الشدة:"
 msgid "FIXME: no conversion function"
 msgstr "دالات محولة"
 
-#: ../src/hex-document.c:444
+#: ../src/hex-document.c:436
 #, fuzzy
 msgid "New document"
 msgstr "مستند"
 
-#: ../src/hex-document.c:795
+#: ../src/hex-document.c:787
 #, c-format
 msgid "Page"
 msgstr "الصفحة"
 
-#: ../src/hex-document.c:801 ../src/hex-document.c:926
+#: ../src/hex-document.c:793 ../src/hex-document.c:918
 #, c-format
 msgid "Hex dump generated by"
 msgstr ""
 
-#: ../src/hex-document.c:812
+#: ../src/hex-document.c:804
 #, fuzzy
 msgid "Saving to HTML..."
 msgstr "يجري حفظ العنصر..."
 
-#: ../src/hex-document.c:849
+#: ../src/hex-document.c:841
 #, fuzzy, c-format
 msgid "Previous page"
 msgstr "الصفحة ال_سابقة"
 
-#: ../src/hex-document.c:864
+#: ../src/hex-document.c:856
 #, fuzzy, c-format
 msgid "Next page"
 msgstr "الصفحة ال_تالية"
@@ -1106,11 +1114,11 @@ msgstr "جنوم"
 msgid "The gnome binary editor"
 msgstr "اللعبة متعادلة."
 
-#: ../src/main.c:81
+#: ../src/main.c:80
 msgid "Could not initialize Bonobo!\n"
 msgstr "لم يمكن تهيئة بونوبو!\n"
 
-#: ../src/main.c:106 ../src/main.c:120
+#: ../src/main.c:105 ../src/main.c:119
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "سلسلة هندسة غير سليمة \"%s\"\n"
@@ -1137,111 +1145,111 @@ msgstr "أقل عدد من مستويات التراجع:"
 
 #: ../src/preferences.c:127
 #, fuzzy
-msgid "Show cursor offset in statusbar as:"
+msgid "_Show cursor offset in statusbar as:"
 msgstr "اظهر أو خفي شريط الحالة"
 
-#: ../src/preferences.c:145
+#: ../src/preferences.c:146
 msgid "Hexadecimal"
 msgstr "سادس عشري"
 
-#: ../src/preferences.c:147
+#: ../src/preferences.c:148
 #, fuzzy
 msgid "Custom"
 msgstr "مخصص:"
 
-#: ../src/preferences.c:156
+#: ../src/preferences.c:157
 #, fuzzy
 msgid "Enter the cursor offset format"
 msgstr "أدخل المستخدم الذي تريد جسّه."
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:158
 #, fuzzy
 msgid "Select the cursor offset format"
 msgstr "انتقِ وقتاً من القائمة"
 
 #. show offsets check button
-#: ../src/preferences.c:167
+#: ../src/preferences.c:168
 #, fuzzy
-msgid "Show offsets column"
+msgid "Sh_ow offsets column"
 msgstr "اظهر عمود ثقة المالك"
 
-#: ../src/preferences.c:172
+#: ../src/preferences.c:173
 msgid "Editing"
 msgstr "يجري التعديل"
 
 #. default group type
-#: ../src/preferences.c:204
+#: ../src/preferences.c:205
 #, fuzzy
 msgid "Default Group Type"
 msgstr "نوع الخط الإفتراضي"
 
-#: ../src/preferences.c:220
+#: ../src/preferences.c:221
 msgid "Display"
 msgstr "العرض"
 
 #. paper selection
-#: ../src/preferences.c:229
+#: ../src/preferences.c:230
 #, fuzzy
 msgid "Paper size"
 msgstr "_مقاس الورق:"
 
 #. data & header font selection
-#: ../src/preferences.c:234
+#: ../src/preferences.c:235
 msgid "Fonts"
 msgstr "خطوط"
 
-#: ../src/preferences.c:240
+#: ../src/preferences.c:241
 #, fuzzy
 msgid "_Data font:"
 msgstr "_خط الطبع:"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 #, fuzzy
 msgid "Data font"
 msgstr "الخط الإفتراضي"
 
-#: ../src/preferences.c:259
+#: ../src/preferences.c:260
 #, fuzzy
 msgid "Select the data font"
 msgstr "يختار خط الترويسة."
 
-#: ../src/preferences.c:273
+#: ../src/preferences.c:274
 #, fuzzy
 msgid "Header fo_nt:"
 msgstr "ترويسة _1"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 #, fuzzy
 msgid "Header font"
 msgstr "ترويسة 1"
 
-#: ../src/preferences.c:291
+#: ../src/preferences.c:292
 #, fuzzy
 msgid "Select the header font"
 msgstr "اختر كامل المستند"
 
-#: ../src/preferences.c:317
+#: ../src/preferences.c:318
 msgid "_Print shaded box over:"
 msgstr ""
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 #, fuzzy
 msgid "Box size"
 msgstr "حجم الكتلة"
 
-#: ../src/preferences.c:329
+#: ../src/preferences.c:330
 msgid "Select size of box (in number of lines)"
 msgstr ""
 
-#: ../src/preferences.c:333
+#: ../src/preferences.c:334
 msgid "lines (0 for no box)"
 msgstr ""
 
-#: ../src/preferences.c:340
+#: ../src/preferences.c:341
 msgid "Printing"
 msgstr "طباعة"
 
-#: ../src/preferences.c:462 ../src/ui.c:268
+#: ../src/preferences.c:463 ../src/ui.c:294
 #, fuzzy, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1250,12 +1258,12 @@ msgstr ""
 "حدث خطأ عند عرض المساعدة:\n"
 "%s"
 
-#: ../src/preferences.c:514
+#: ../src/preferences.c:515
 #, fuzzy
 msgid "Can not open desired font!"
 msgstr "لا يمكن فتح المقبس!"
 
-#: ../src/preferences.c:577
+#: ../src/preferences.c:578
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -1273,85 +1281,92 @@ msgid ""
 "GHex is unable to print without this font installed."
 msgstr ""
 
-#: ../src/ui.c:94
+#: ../src/ui.c:97
 #, fuzzy
 msgid "hex data"
 msgstr "بيانات المستخدم"
 
-#: ../src/ui.c:95
+#: ../src/ui.c:98
 msgid "ASCII data"
 msgstr ""
 
-#: ../src/ui.c:243
-msgid "GHex, a binary file editor"
-msgstr ""
+#: ../src/ui.c:264
+#, fuzzy
+msgid "A binary file editor"
+msgstr "اللعبة متعادلة."
 
-#: ../src/ui.c:245
+#: ../src/ui.c:268
 #, fuzzy
 msgid "Released under the terms of GNU Public License"
 msgstr "مرخّص تحت النسخة 2 من رخصة جنو العمومية العامة "
 
-#: ../src/ui.c:370
+#: ../src/ui.c:396
 msgid "Select a file to open"
 msgstr "انتقِ ملفّ لفتحه"
 
-#: ../src/ui.c:401
+#: ../src/ui.c:427
 #, fuzzy, c-format
 msgid "Loaded file %s"
 msgstr "المل_فّات المحملة:"
 
-#: ../src/ui.c:409
+#: ../src/ui.c:435
 #, fuzzy
 msgid "Can not open file!"
 msgstr "لا يمكن فتح الملف"
 
-#: ../src/ui.c:470
+#: ../src/ui.c:496
 #, fuzzy
 msgid "Select path and file name for the HTML source"
 msgstr "تلقي اسم المصدر اﻻفتراضي"
 
-#: ../src/ui.c:504
+#: ../src/ui.c:530
 #, fuzzy
 msgid "You need to specify a base name for the HTML files."
 msgstr "عليك أن تعطي اسماً لملفك الشخصي على الأقل"
 
-#: ../src/ui.c:515 ../src/ui.c:539
+#: ../src/ui.c:541 ../src/ui.c:565
 #, fuzzy
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "لا تملك الصلاحيات الكافية للكتابة في المقصد."
 
-#: ../src/ui.c:526
+#: ../src/ui.c:552
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
 msgstr ""
 
-#: ../src/ui.c:679
+#: ../src/ui.c:705
 #, fuzzy, c-format
 msgid "Really revert file %s?"
 msgstr "أتريد حقاً حذف الملف \"%s\"؟"
 
-#: ../src/ui.c:693
+#: ../src/ui.c:719
 #, fuzzy, c-format
 msgid "Reverted buffer from file %s"
 msgstr "استرجاع %s من %s"
 
-#: ../src/ui.c:777
+#: ../src/ui.c:803
 #, fuzzy
 msgid "Printing file..."
 msgstr "حجم الطباعة..."
 
-#: ../src/ui.c:837
+#: ../src/ui.c:863
 #, fuzzy
 msgid "Print Hex Document"
 msgstr "اطبع المستند"
 
-#: ../src/ui.c:849
+#: ../src/ui.c:875
 msgid "Pages"
 msgstr "صفحات"
 
-#: ../src/ui.c:874
+#: ../src/ui.c:900
 #, fuzzy, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "معاينة جنوم للمطبوعة"
 
+#~ msgid "C_ut"
+#~ msgstr "_قص"
+
+#, fuzzy
+#~ msgid "_Paste"
+#~ msgstr "_توقّف مؤقّت"
