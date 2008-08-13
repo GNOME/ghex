@@ -736,8 +736,7 @@ static void draw_shadow(GtkWidget *widget, GdkRectangle *area) {
 		gtk_paint_shadow(widget->style, widget->window,
 						 GTK_STATE_NORMAL, GTK_SHADOW_IN,
 						 NULL, widget, NULL,
-						 widget->allocation.x + border, widget->allocation.y + border,
-						 8*gh->char_width + 2*widget_get_xt(widget),
+						 border, border, 8*gh->char_width + 2*widget_get_xt(widget),
 						 widget->allocation.height - 2*border);
 		x += 8*gh->char_width + 2*widget_get_xt(widget);
 	}
@@ -745,15 +744,13 @@ static void draw_shadow(GtkWidget *widget, GdkRectangle *area) {
 	gtk_paint_shadow(widget->style, widget->window,
 					GTK_STATE_NORMAL, GTK_SHADOW_IN,
 					 NULL, widget, NULL,
-					widget->allocation.x + x, widget->allocation.y + border,
-					gh->xdisp_width + 2*widget_get_xt(widget),
+					x, border, gh->xdisp_width + 2*widget_get_xt(widget),
 					widget->allocation.height - 2*border);
 	
 	gtk_paint_shadow(widget->style, widget->window,
 					GTK_STATE_NORMAL, GTK_SHADOW_IN,
 					 NULL, widget, NULL,
-					widget->allocation.x + widget->allocation.width - border - gh->adisp_width - gh->scrollbar->requisition.width - 2*widget_get_xt(widget),
-					widget->allocation.y + border,
+					widget->allocation.width - border - gh->adisp_width - gh->scrollbar->requisition.width - 2*widget_get_xt(widget), border,
 					gh->adisp_width + 2*widget_get_xt(widget),
 					widget->allocation.height - 2*border);
 }
@@ -1821,8 +1818,8 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	xt = widget_get_xt(w);
 	yt = widget_get_yt(w);
 
-   	my_alloc.x = alloc->x + border_width + xt;
-	my_alloc.y = alloc->y + border_width + yt;
+   	my_alloc.x = border_width + xt;
+	my_alloc.y = border_width + yt;
 	my_alloc.height = MAX(alloc->height - 2*border_width - 2*yt, 1);
 	if(gh->show_offsets) {
 		my_alloc.width = 8*gh->char_width;
@@ -1832,13 +1829,13 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	}
 	my_alloc.width = gh->xdisp_width;
 	gtk_widget_size_allocate(gh->xdisp, &my_alloc);
-	my_alloc.x = alloc->x + alloc->width - border_width - gh->scrollbar->requisition.width;
-	my_alloc.y = alloc->y + border_width;
+	my_alloc.x = alloc->width - border_width - gh->scrollbar->requisition.width;
+	my_alloc.y = border_width;
 	my_alloc.width = gh->scrollbar->requisition.width;
 	my_alloc.height = MAX(alloc->height - 2*border_width, 1);
 	gtk_widget_size_allocate(gh->scrollbar, &my_alloc);
 	my_alloc.x -= gh->adisp_width + xt;
-	my_alloc.y = alloc->y + border_width + yt;
+	my_alloc.y = border_width + yt;
 	my_alloc.width = gh->adisp_width;
 	my_alloc.height = MAX(alloc->height - 2*border_width - 2*yt, 1);
 	gtk_widget_size_allocate(gh->adisp, &my_alloc);
