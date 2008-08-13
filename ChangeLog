@@ -1,10 +1,3 @@
-2008-05-04  Jonathon Jongsma  <jjongsma@gnome.org>
-
-	* src/gtkhex.c: Don't move or resize the widget inside
-	gtk_hex_size_allocate() as this seems to trigger a positive feedback loop
-	and the window shrinks to its minimum size sometimes when the user attempts
-	to resize the window.  Fixes Bug #527277
-
 2008-04-10  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* configure.in: post-release bump to 2.23.0 for trunk
