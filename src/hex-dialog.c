@@ -211,7 +211,7 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     gtk_table_attach_defaults(GTK_TABLE(table), label, 4, 5, 3, 4);
     gtk_widget_show(label);
 
-    adjuster = (GtkAdjustment *)gtk_adjustment_new(8.0, 1.0, 32.0, 1.0, 8.0, 8.0);
+    adjuster = (GtkAdjustment *)gtk_adjustment_new(8.0, 1.0, 32.0, 1.0, 8.0, 0);
     spin = gtk_spin_button_new(adjuster, 1.0, 0);
     g_signal_connect(G_OBJECT(spin), "value-changed",
                      G_CALLBACK(config_spinchange_cb), dialog);

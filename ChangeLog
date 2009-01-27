@@ -1,3 +1,10 @@
+2009-01-26  Jonathon Jongsma  <jonathon@quotidian.org>
+
+	* src/hex-dialog.c:
+	(hex_dialog_getview): Bug #564371 - ghex2 prints g_warning on startup because
+	it uses a deprecated API (GtkAdjustment page_size being non-zero.  Patch
+	from Martin Olsson <mnemo AT minimum.se>
+
 2008-04-10  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* configure.in: post-release bump to 2.23.0 for trunk
