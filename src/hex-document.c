@@ -311,8 +311,6 @@ static void
 hex_document_real_changed(HexDocument *doc, gpointer change_data,
 						  gboolean push_undo)
 {
-	GList *view;
-
 	if(push_undo && doc->undo_max > 0)
 		undo_stack_push(doc, change_data);
 }
@@ -420,8 +418,6 @@ HexDocument *
 hex_document_new()
 {
 	HexDocument *doc;
-	gchar *path_end;
-	int i;
 
 	doc = HEX_DOCUMENT (g_object_new (hex_document_get_type(), NULL));
 	g_return_val_if_fail (doc != NULL, NULL);

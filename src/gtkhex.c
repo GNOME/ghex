@@ -1607,7 +1607,6 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	GtkHex *gh = GTK_HEX(w);
 	guint old_cp = gh->cursor_pos;
 	gint ret = TRUE;
-	gint cx, cy;
 
 	hide_cursor(gh);
 

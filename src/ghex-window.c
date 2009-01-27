@@ -664,7 +664,6 @@ ghex_window_update_status_message(GHexWindow *win)
 static void
 cursor_moved_cb(GtkHex *gtkhex, gpointer user_data)
 {
-	static gchar *cursor_pos, *format;
     int i;
     int current_pos;
     HexDialogVal64 val;

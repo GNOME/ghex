@@ -1,9 +1,16 @@
-2009-01-26  Jonathon Jongsma  <jonathon@quotidian.org>
+2009-01-26  Martin Olsson  <mnemo@minimum.se>
+
+	* src/ghex-window.c:
+	* src/gtkhex.c:
+	(gtk_hex_key_press):
+	* src/hex-document.c:
+	Bug #564375 - patch that removes unused variables in ghex.
+
+2009-01-26  Martin Olsson  <mnemo@minimum.se>
 
 	* src/hex-dialog.c:
 	(hex_dialog_getview): Bug #564371 - ghex2 prints g_warning on startup because
-	it uses a deprecated API (GtkAdjustment page_size being non-zero.  Patch
-	from Martin Olsson <mnemo AT minimum.se>
+	it uses a deprecated API (GtkAdjustment page_size being non-zero.
 
 2008-04-10  Jonathon Jongsma  <jjongsma@gnome.org>
 
