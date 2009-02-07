@@ -1,3 +1,12 @@
+2009-02-06  Martin Olsson  <mnemo@minimum.se>
+
+	* src/ghex-window.c:
+	(ghex_window_update_status_message): Fix an off-by-one error in reporting
+	the number of bytes selected in the status bar.
+	* src/gtkhex.c:
+	(gtk_hex_set_cursor): emit the 'cursor-moved' signal later to fix broken
+	reporting of selection range when selecting text with the keyboard
+
 2009-01-27  Pacho Ramos  <pacho@condmat1.ciencias.uniovi.es>
 
 	* ghex.desktop.in: Bug #568023: provided desktop files don't follow

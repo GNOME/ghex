@@ -2144,8 +2144,6 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 		if(index == gh->document->file_size)
 			gh->lower_nibble = FALSE;
 		
-		g_signal_emit_by_name(G_OBJECT(gh), "cursor_moved");
-
 		if(gh->selecting) {
 			gtk_hex_set_selection(gh, gh->selection.start, gh->cursor_pos);
 			bytes_changed(gh, MIN(gh->cursor_pos, old_pos), MAX(gh->cursor_pos, old_pos));
@@ -2156,6 +2154,9 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 			bytes_changed(gh, start, end);
 			gh->selection.end = gh->selection.start = gh->cursor_pos;
 		}
+
+		g_signal_emit_by_name(G_OBJECT(gh), "cursor_moved");
+
 		bytes_changed(gh, old_pos, old_pos);
 		show_cursor(gh);
 	}

@@ -651,7 +651,9 @@ ghex_window_update_status_message(GHexWindow *win)
                           offset_fmt, offset_fmt, offset_fmt) < FMT_LEN) {
                 len = strlen(status);
                 if(len < STATUS_LEN) {
-                    g_snprintf(status + len, STATUS_LEN - len, fmt, se - ss, ss, se);
+                    // Variables 'ss' and 'se' denotes the offsets of the first and
+                    // the last bytes that are part of the selection.
+                    g_snprintf(status + len, STATUS_LEN - len, fmt, se - ss + 1, ss, se);
                 }
             }
         }
