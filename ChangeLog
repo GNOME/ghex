@@ -1,3 +1,9 @@
+2009-02-15  Dodji Seketeli  <dodji@redhat.com>
+
+	* src/gtkhex.c (gtk_hex_init): GObject type ids should be instances of
+	GType, not of guint. On x86_64, GType size is 8 bytes whereas guint is
+	4 bytes. This was causing random crashes in Nemiver in gtk_hex_new.
+
 2009-02-06  Martin Olsson  <mnemo@minimum.se>
 
 	* src/ghex-window.c:

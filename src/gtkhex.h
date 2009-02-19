@@ -128,7 +128,7 @@ struct _GtkHexClass
 	void (*paste_clipboard)(GtkHex *);
 };
 
-guint gtk_hex_get_type(void);
+GType gtk_hex_get_type(void);
 
 GtkWidget *gtk_hex_new(HexDocument *);
 

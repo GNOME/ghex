@@ -2040,8 +2040,8 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	gtk_widget_show(gh->scrollbar);
 }
 
-guint gtk_hex_get_type() {
-	static guint gh_type = 0;
+GType gtk_hex_get_type() {
+	static GType gh_type = 0;
 	
 	if(!gh_type) {
 		GTypeInfo gh_info = {
