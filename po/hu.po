@@ -1,16 +1,16 @@
 # Hungarian translation of ghex.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2007 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2007, 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the ghex package.
 #
 # Szabolcs Ban <shooby@gnome.hu>, 1999, 2000, 2001.
 # Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2007.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2007, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-26 03:16+0100\n"
-"PO-Revision-Date: 2007-11-01 11:51+0100\n"
+"POT-Creation-Date: 2008-11-07 11:51+0100\n"
+"PO-Revision-Date: 2009-03-03 13:31+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "GNOME hexadecimális szerkesztő"
 
 #: ../ghex.desktop.in.h:2
 msgid "Hex Editor"
-msgstr "Hexadecimális Szerkesztő"
+msgstr "Hexadecimális szerkesztő"
 
 #: ../src/chartable.c:143
 msgid "ASCII"
@@ -95,7 +95,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "HIBA"
 
-#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:936
+#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:962
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Adat keresése"
@@ -138,7 +138,7 @@ msgstr "A keresett karakterlánc előző előfordulását keresi meg"
 
 #: ../src/findreplace.c:142 ../src/findreplace.c:417 ../src/findreplace.c:465
 msgid "Cancel"
-msgstr "Mégsem"
+msgstr "Mégse"
 
 #: ../src/findreplace.c:142
 msgid "Closes find data window"
@@ -177,7 +177,7 @@ msgstr "Bezárás"
 msgid "Closes advanced find window"
 msgstr "Bezárja a haladó keresés ablakot"
 
-#: ../src/findreplace.c:354 ../src/ui.c:934
+#: ../src/findreplace.c:354 ../src/ui.c:960
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Keresés és csere"
@@ -232,7 +232,7 @@ msgstr ""
 msgid "Closes find and replace data window"
 msgstr "Bezárja a keresés és csere ablakot"
 
-#: ../src/findreplace.c:433 ../src/ui.c:932
+#: ../src/findreplace.c:433 ../src/ui.c:958
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Bájtra ugrás"
@@ -299,7 +299,7 @@ msgid ""
 msgstr ""
 "Az eltolást csak a következő módokon adhatja meg:\n"
 "  - pozitív egész szám vagy\n"
-"  - '0x'-el kezdődő hexadecimális szám"
+"  - „0x”-szel kezdődő hexadecimális szám"
 
 #: ../src/findreplace.c:678
 msgid "There is no active buffer to replace data in!"
@@ -350,7 +350,7 @@ msgstr "Bájt"
 
 #: ../src/ghex-ui.xml.h:6
 msgid "Character Table..."
-msgstr "Karaktertábla..."
+msgstr "Karaktertábla…"
 
 #: ../src/ghex-ui.xml.h:7
 msgid "Character _Table"
@@ -370,7 +370,7 @@ msgstr "Tartalom"
 
 #: ../src/ghex-ui.xml.h:12
 msgid "Converter..."
-msgstr "Konvertáló..."
+msgstr "Konvertáló…"
 
 #: ../src/ghex-ui.xml.h:13
 msgid "Copy"
@@ -411,7 +411,7 @@ msgstr "Adatok mentése HTML forrásba"
 # src/ui.c:57
 #: ../src/ghex-ui.xml.h:22
 msgid "Export to HTML..."
-msgstr "Exportálás HTML-be..."
+msgstr "Exportálás HTML-be…"
 
 #: ../src/ghex-ui.xml.h:23
 msgid "Find"
@@ -495,11 +495,11 @@ msgstr "Nyomtatás"
 
 #: ../src/ghex-ui.xml.h:43
 msgid "Print Previe_w..."
-msgstr "Nyomtatási _kép..."
+msgstr "Nyomtatási _kép…"
 
 #: ../src/ghex-ui.xml.h:44
 msgid "Print Preview..."
-msgstr "Nyomtatási kép..."
+msgstr "Nyomtatási kép…"
 
 #: ../src/ghex-ui.xml.h:45
 msgid "Print the current file"
@@ -547,11 +547,11 @@ msgstr "Mentés másként"
 
 #: ../src/ghex-ui.xml.h:57
 msgid "Save As _HTML..."
-msgstr "Mentés _HTML formátumban..."
+msgstr "Mentés _HTML formátumban…"
 
 #: ../src/ghex-ui.xml.h:58
 msgid "Save _As..."
-msgstr "Men_tés másként..."
+msgstr "Men_tés másként…"
 
 #: ../src/ghex-ui.xml.h:59
 msgid "Save the current file"
@@ -575,7 +575,7 @@ msgstr "A típuskonverziós párbeszédablak mutatása a szerkesztőablakban"
 
 #: ../src/ghex-ui.xml.h:64
 msgid "Type Conversion Dialog..."
-msgstr "Típuskonverziós párbeszédablak..."
+msgstr "Típuskonverziós párbeszédablak…"
 
 #: ../src/ghex-ui.xml.h:65
 msgid "Type Conversion _Dialog"
@@ -609,7 +609,7 @@ msgstr "_Haladó keresés"
 msgid "_Base Converter"
 msgstr "_Alapkonvertáló"
 
-#: ../src/ghex-ui.xml.h:73 ../src/ui.c:87
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:90
 msgid "_Bytes"
 msgstr "_Bájt"
 
@@ -639,7 +639,7 @@ msgstr "_Keresés"
 
 #: ../src/ghex-ui.xml.h:80
 msgid "_Goto Byte..."
-msgstr "_Ugrás bájtra..."
+msgstr "_Ugrás bájtra…"
 
 #: ../src/ghex-ui.xml.h:81
 msgid "_Group Data As"
@@ -653,13 +653,13 @@ msgstr "_Súgó"
 msgid "_Insert Mode"
 msgstr "_Beszúrás mód"
 
-#: ../src/ghex-ui.xml.h:84 ../src/ui.c:89
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:92
 msgid "_Longwords"
 msgstr "_Hosszúszó"
 
 #: ../src/ghex-ui.xml.h:85
 msgid "_Open..."
-msgstr "_Megnyitás..."
+msgstr "_Megnyitás…"
 
 #: ../src/ghex-ui.xml.h:86
 msgid "_Preferences"
@@ -697,7 +697,7 @@ msgstr "_Nézet"
 msgid "_Windows"
 msgstr "_Ablakok"
 
-#: ../src/ghex-ui.xml.h:95 ../src/ui.c:88
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:91
 msgid "_Words"
 msgstr "_Szó"
 
@@ -758,7 +758,7 @@ msgstr ""
 "A %s fájl létezik.\n"
 "Felülírja?"
 
-#: ../src/ghex-window.c:1161 ../src/ui.c:353
+#: ../src/ghex-window.c:1161 ../src/ui.c:379
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Elmentve %s néven"
@@ -785,11 +785,11 @@ msgstr ""
 msgid "Do_n't save"
 msgstr "N_e mentse"
 
-#: ../src/ghex-window.c:1242 ../src/ui.c:341
+#: ../src/ghex-window.c:1242 ../src/ui.c:367
 msgid "You don't have the permissions to save the file!"
 msgstr "Nincs joga a fájl mentéséhez!"
 
-#: ../src/ghex-window.c:1246 ../src/ui.c:346
+#: ../src/ghex-window.c:1246 ../src/ui.c:372
 msgid "An error occurred while saving file!"
 msgstr "Hiba történt a fájl mentése közben!"
 
@@ -799,7 +799,7 @@ msgstr "Új előnézeti szöveg _beillesztése."
 
 #: ../src/gnome-print-font-dialog.c:117
 msgid "Modify preview phrase..."
-msgstr "Előnézeti szöveg módosítása..."
+msgstr "Előnézeti szöveg módosítása…"
 
 #: ../src/gnome-print-font-dialog.c:171
 msgid "Preview"
@@ -807,7 +807,7 @@ msgstr "Előnézet"
 
 #: ../src/gnome-print-font-dialog.c:184
 msgid "_Modify preview phrase..."
-msgstr "Előnézeti szöveg _módosítása..."
+msgstr "Előnézeti szöveg _módosítása…"
 
 #: ../src/gnome-print-font-dialog.c:247
 msgid "Font Selection"
@@ -924,7 +924,7 @@ msgstr "Bináris:"
 
 #: ../src/hex-dialog.c:196
 msgid "Show little endian decoding"
-msgstr "'little endian' dekódolás mutatása"
+msgstr "„little endian” dekódolás mutatása"
 
 #: ../src/hex-dialog.c:203
 msgid "Show unsigned and float as hexadecimal"
@@ -938,37 +938,37 @@ msgstr "Adatfolyam hossza:"
 msgid "FIXME: no conversion function"
 msgstr "FIXME: nincs konverziós függvény"
 
-#: ../src/hex-document.c:444
+#: ../src/hex-document.c:436
 msgid "New document"
 msgstr "Új dokumentum nyomtatása"
 
-#: ../src/hex-document.c:795
+#: ../src/hex-document.c:787
 #, c-format
 msgid "Page"
 msgstr "Oldal"
 
-#: ../src/hex-document.c:801 ../src/hex-document.c:926
+#: ../src/hex-document.c:793 ../src/hex-document.c:918
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Hex dump készítője"
 
-#: ../src/hex-document.c:812
+#: ../src/hex-document.c:804
 msgid "Saving to HTML..."
-msgstr "Mentés HTML-be..."
+msgstr "Mentés HTML-be…"
 
-#: ../src/hex-document.c:849
+#: ../src/hex-document.c:841
 #, c-format
 msgid "Previous page"
 msgstr "Előző lap"
 
-#: ../src/hex-document.c:864
+#: ../src/hex-document.c:856
 #, c-format
 msgid "Next page"
 msgstr "Következő lap"
 
 #: ../src/main.c:38
 msgid "X geometry specification (see \"X\" man page)."
-msgstr "X-geometria specifikációja (lásd az \"X\" súgóoldalát)."
+msgstr "X-geometria specifikációja (lásd az „X” súgóoldalát)."
 
 #: ../src/main.c:39
 msgid "GEOMETRY"
@@ -985,7 +985,7 @@ msgstr "Nem lehet inicializálni a Bonobo-t!\n"
 #: ../src/main.c:105 ../src/main.c:119
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
-msgstr "Érvénytelen geometria-karakterlánc: \"%s\"\n"
+msgstr "Érvénytelen geometria-karakterlánc: „%s”\n"
 
 #: ../src/preferences.c:71
 msgid "GHex Preferences"
@@ -1095,7 +1095,7 @@ msgstr "soronként (0 = nincs doboz)"
 msgid "Printing"
 msgstr "Nyomtatás"
 
-#: ../src/preferences.c:463 ../src/ui.c:268
+#: ../src/preferences.c:463 ../src/ui.c:294
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1116,7 +1116,7 @@ msgid ""
 msgstr ""
 "Az eltolás formátumát megadó karakterlánc érvénytelen formátumleírót "
 "tartalmaz.\n"
-"Csak  'x', 'X', 'p', 'P', 'd' és 'o' megengedett."
+"Csak „x”, „X”, „p”, „P”, „d” és „o” megengedett."
 
 #: ../src/print.c:66
 #, c-format
@@ -1129,52 +1129,52 @@ msgid ""
 "GHex could not find the font \"%s\".\n"
 "GHex is unable to print without this font installed."
 msgstr ""
-"A GHex nem találta a \"%s\" betűkészletet.\n"
+"A GHex nem találta a(z) „%s” betűkészletet.\n"
 "A GHex nem képes nyomtatni enélkül a betűkészlet nélkül."
 
-#: ../src/ui.c:94
+#: ../src/ui.c:97
 msgid "hex data"
 msgstr "hexa adat"
 
-#: ../src/ui.c:95
+#: ../src/ui.c:98
 msgid "ASCII data"
 msgstr "ASCII adat"
 
-#: ../src/ui.c:243
-msgid "GHex, a binary file editor"
-msgstr "GHex bináris fájlszerkesztő"
+#: ../src/ui.c:264
+msgid "A binary file editor"
+msgstr "Binárisfájl-szerkesztő"
 
-#: ../src/ui.c:245
+#: ../src/ui.c:268
 msgid "Released under the terms of GNU Public License"
 msgstr "GNU Public License alatt jelent meg"
 
-#: ../src/ui.c:370
+#: ../src/ui.c:396
 msgid "Select a file to open"
 msgstr "A megnyitandó fájl kiválasztása"
 
-#: ../src/ui.c:401
+#: ../src/ui.c:427
 #, c-format
 msgid "Loaded file %s"
 msgstr "%s fájl betöltve"
 
 # src/ui.c:500
-#: ../src/ui.c:409
+#: ../src/ui.c:435
 msgid "Can not open file!"
 msgstr "A fájl megnyitása nem sikerült!"
 
-#: ../src/ui.c:470
+#: ../src/ui.c:496
 msgid "Select path and file name for the HTML source"
 msgstr "Adja meg a HTML forrás elérését és fájlnevét"
 
-#: ../src/ui.c:504
+#: ../src/ui.c:530
 msgid "You need to specify a base name for the HTML files."
 msgstr "Meg kell adnia a HTML fájl nevét."
 
-#: ../src/ui.c:515 ../src/ui.c:539
+#: ../src/ui.c:541 ../src/ui.c:565
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Nincs joga írni a megadott útvonalra.\n"
 
-#: ../src/ui.c:526
+#: ../src/ui.c:552
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1182,29 +1182,29 @@ msgstr ""
 "A HTML-be mentés felülír bizonyos fájlokat.\n"
 "Folytatja?"
 
-#: ../src/ui.c:679
+#: ../src/ui.c:705
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Tényleg visszaállítja %s fájlt?"
 
-#: ../src/ui.c:693
+#: ../src/ui.c:719
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Visszaállítva %s fájlból"
 
-#: ../src/ui.c:777
+#: ../src/ui.c:803
 msgid "Printing file..."
-msgstr "Fájl nyomtatása..."
+msgstr "Fájl nyomtatása…"
 
-#: ../src/ui.c:837
+#: ../src/ui.c:863
 msgid "Print Hex Document"
 msgstr "Hexa dokumentum nyomtatása"
 
-#: ../src/ui.c:849
+#: ../src/ui.c:875
 msgid "Pages"
 msgstr "Oldal"
 
-#: ../src/ui.c:874
+#: ../src/ui.c:900
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): nyomtatási kép"
