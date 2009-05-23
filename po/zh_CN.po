@@ -1,662 +1,753 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
+# zh_CN translation of ghex.
+# Copyright (C) 2009 Free Software Foundation, Inc.
 # Wang Jian <lark@linux.net.cn>, 2001,2003
+#  Zhang Miao <mymzhang@gmail.com>, 2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"POT-Creation-Date: 2003-08-29 04:51+0800\n"
-"PO-Revision-Date: 2002-09-18 03:14+0800\n"
-"Last-Translator: Wang Jian <lark@linux.net.cn>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=ghex&component=general\n"
+"POT-Creation-Date: 2009-04-17 14:24+0000\n"
+"PO-Revision-Date: 2009-04-18 23:34+0800\n"
+"Last-Translator: Zhang Miao <mymzhang@gmail.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ghex.desktop.in.h:1
+#: ../ghex.desktop.in.h:1
 msgid "GNOME Hexadecimal Editor"
-msgstr "GNOME十六进制编辑器"
+msgstr "GNOME 十六进制编辑器"
 
-#: ghex.desktop.in.h:2
+#: ../ghex.desktop.in.h:2
 msgid "Hex Editor"
 msgstr "十六进制编辑器"
 
-#: src/chartable.c:140
+#: ../src/chartable.c:143
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:140
+#: ../src/chartable.c:143
 msgid "Hex"
 msgstr "十六进制"
 
-#: src/chartable.c:140 src/preferences.c:164
+#: ../src/chartable.c:143 ../src/preferences.c:144
 msgid "Decimal"
 msgstr "十进制数"
 
-#: src/chartable.c:141
+#: ../src/chartable.c:144
 msgid "Octal"
 msgstr "八进制"
 
-#: src/chartable.c:141
+#: ../src/chartable.c:144
 msgid "Binary"
 msgstr "二进制"
 
-#: src/chartable.c:157
+#: ../src/chartable.c:160
 msgid "Character table"
 msgstr "字符表"
 
-#: src/converter.c:209
+#: ../src/converter.c:230
 msgid "Base Converter"
 msgstr "数制转换器"
 
 #. entries
-#: src/converter.c:228
+#: ../src/converter.c:251
 msgid "_Binary:"
 msgstr "二进制(_B)："
 
-#: src/converter.c:230
+#: ../src/converter.c:253
 msgid "_Octal:"
 msgstr "八进制(_O)："
 
-#: src/converter.c:232
+#: ../src/converter.c:255
 msgid "_Decimal:"
 msgstr "十进制(_D)："
 
-#: src/converter.c:234
+#: ../src/converter.c:257
 msgid "_Hex:"
 msgstr "十六进制(_H)："
 
-#: src/converter.c:236
+#: ../src/converter.c:259
 msgid "_ASCII:"
 msgstr "ASCII(_A)："
 
 #. get cursor button
-#: src/converter.c:240
+#: ../src/converter.c:263
 msgid "_Get cursor value"
 msgstr "获取光标处值(_G)"
 
-#: src/converter.c:254
+#: ../src/converter.c:277
 msgid "Get cursor value"
 msgstr "获取光标处值"
 
-#: src/converter.c:254
+#: ../src/converter.c:277
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
-msgstr "获取光标处的值"
+msgstr "获取光标处的二进制、八进制、十进制、十六进制和 ASCII 形式的值"
 
-#: src/converter.c:387
+#: ../src/converter.c:417
 msgid "ERROR"
 msgstr "错误"
 
-#: src/findreplace.c:60 src/ui.c:891
+#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:962
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s)：查找数据"
 
-#: src/findreplace.c:69
-#, c-format
-msgid "Search for %s"
-msgstr "查找 %s"
+#: ../src/findreplace.c:102 ../src/findreplace.c:162 ../src/findreplace.c:358
+msgid "Find String"
+msgstr "查找字符串"
 
-#: src/findreplace.c:86
+#: ../src/findreplace.c:109 ../src/findreplace.c:259
 msgid "Find _Next"
 msgstr "查找下一个(_N)"
 
-#: src/findreplace.c:94
+#: ../src/findreplace.c:116 ../src/findreplace.c:268
 msgid "Find _Previous"
 msgstr "查找上一个(_P)"
 
-#: src/findreplace.c:118 src/findreplace.c:210
+#: ../src/findreplace.c:139 ../src/findreplace.c:412
 msgid "Find Data"
 msgstr "查找数据"
 
-#: src/findreplace.c:118 src/findreplace.c:210
+#: ../src/findreplace.c:139 ../src/findreplace.c:412
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "输入要查找的十六进制数据或 ASCII 数据"
 
-#: src/findreplace.c:119
+#: ../src/findreplace.c:140
 msgid "Find Next"
 msgstr "查找下一个"
 
-#: src/findreplace.c:119 src/findreplace.c:212
+#: ../src/findreplace.c:140 ../src/findreplace.c:414
 msgid "Finds the next occurrence of the search string"
 msgstr "查找搜索字符串的下一个匹配项"
 
-#: src/findreplace.c:120
+#: ../src/findreplace.c:141
 msgid "Find previous"
 msgstr "查找前一个"
 
-#: src/findreplace.c:120
+#: ../src/findreplace.c:141
 msgid "Finds the previous occurrence of the search string "
 msgstr "查找搜索字符串的上一个匹配项 "
 
-#: src/findreplace.c:121 src/findreplace.c:215 src/findreplace.c:263
+#: ../src/findreplace.c:142 ../src/findreplace.c:417 ../src/findreplace.c:465
 msgid "Cancel"
 msgstr "取消"
 
-#: src/findreplace.c:121
+#: ../src/findreplace.c:142
 msgid "Closes find data window"
 msgstr "关闭查找数据窗口"
 
-#: src/findreplace.c:140 src/ui.c:889
+#: ../src/findreplace.c:158
+#, c-format
+msgid "GHex (%s): Find Data: Add search"
+msgstr "GHex (%s)：查找数据：添加搜索"
+
+#: ../src/findreplace.c:180
+msgid "Add"
+msgstr "添加"
+
+#: ../src/findreplace.c:236
+msgid "Search String"
+msgstr "搜索字符串"
+
+#: ../src/findreplace.c:244
+msgid "Highlight Colour"
+msgstr "高亮颜色"
+
+#: ../src/findreplace.c:281
+#, fuzzy
+#| msgid "_Add View"
+msgid "_Add New"
+msgstr "添加新项(_A)"
+
+#: ../src/findreplace.c:290
+#, fuzzy
+#| msgid "_Remove View"
+msgid "_Remove Selected"
+msgstr "移除选定(_R)"
+
+#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:8
+msgid "Close"
+msgstr "关闭"
+
+#: ../src/findreplace.c:310
+msgid "Closes advanced find window"
+msgstr "关闭高级查找数据窗口"
+
+#: ../src/findreplace.c:354 ../src/ui.c:960
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s)：查找并替换数据"
 
-#: src/findreplace.c:155
-#, c-format
-msgid "Replace %s"
-msgstr "替换 %s"
+#: ../src/findreplace.c:367
+msgid "Replace With"
+msgstr "替换为"
 
-#: src/findreplace.c:172
+#: ../src/findreplace.c:374
 msgid "Find _next"
 msgstr "查找下一个(_N)"
 
-#: src/findreplace.c:180 src/ghex-ui.xml.h:84
+#: ../src/findreplace.c:382
 msgid "_Replace"
 msgstr "替换(_R)"
 
-#: src/findreplace.c:188
+#: ../src/findreplace.c:390
 msgid "Replace _All"
 msgstr "全部替换(_A)"
 
-#: src/findreplace.c:211
+#: ../src/findreplace.c:413
 msgid "Replace Data"
 msgstr "替换数据"
 
-#: src/findreplace.c:211
+#: ../src/findreplace.c:413
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "输入要替换的十六进制数据或ASCII数据"
 
-#: src/findreplace.c:212
+#: ../src/findreplace.c:414
 msgid "Find next"
 msgstr "查找下一个"
 
-#: src/findreplace.c:213 src/ghex-ui.xml.h:48
+#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:51
 msgid "Replace"
 msgstr "替换"
 
-#: src/findreplace.c:213
+#: ../src/findreplace.c:415
 msgid "Replaces the search string with the replace string"
 msgstr "将搜索字符串替换为替换字符串"
 
-#: src/findreplace.c:214
+#: ../src/findreplace.c:416
 msgid "Replace All"
 msgstr "全部替换"
 
-#: src/findreplace.c:214
+#: ../src/findreplace.c:416
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "将所有的搜索字符串替换为替换字符串"
 
-#: src/findreplace.c:215
+#: ../src/findreplace.c:417
 msgid "Closes find and replace data window"
 msgstr "关闭查找和替换数据窗口"
 
-#: src/findreplace.c:231 src/ui.c:887
+#: ../src/findreplace.c:433 ../src/ui.c:958
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s)：转到字节位置"
 
-#: src/findreplace.c:261
+#: ../src/findreplace.c:463
 msgid "Jump to byte"
 msgstr "转到字节位置"
 
-#: src/findreplace.c:261
+#: ../src/findreplace.c:463
 msgid "Enter the byte to jump to"
 msgstr "输入要转到的字节位置"
 
-#: src/findreplace.c:262
+#: ../src/findreplace.c:464
 msgid "OK"
 msgstr "确定"
 
-#: src/findreplace.c:262
+#: ../src/findreplace.c:464
 msgid "Jumps to the specified byte"
 msgstr "转到指定的字节位置"
 
-#: src/findreplace.c:263
+#: ../src/findreplace.c:465
 msgid "Closes jump to byte window"
 msgstr "关闭“转到字节位置”窗口"
 
-#: src/findreplace.c:329 src/findreplace.c:357 src/findreplace.c:413
+#: ../src/findreplace.c:528 ../src/findreplace.c:562 ../src/findreplace.c:646
 msgid "There is no active document to search!"
 msgstr "没有活动文档用于查找！"
 
-#: src/findreplace.c:337 src/findreplace.c:365
-msgid "The string is not appropriate for the selected data type!"
-msgstr "字符串不适用于选中的数据类型！"
+#: ../src/findreplace.c:535 ../src/findreplace.c:569 ../src/findreplace.c:653
+#: ../src/findreplace.c:687 ../src/findreplace.c:732
+msgid "There is no string to search for!"
+msgstr "没有字符串要查找！"
 
-#: src/findreplace.c:344 src/findreplace.c:430
+#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:853
 msgid "End Of File reached"
 msgstr "已到文件末尾"
 
-#: src/findreplace.c:345 src/findreplace.c:374 src/findreplace.c:429
+#: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
+#: ../src/findreplace.c:854 ../src/findreplace.c:877
 msgid "String was not found!\n"
 msgstr "没有找到字符串！\n"
 
-#: src/findreplace.c:373
+#: ../src/findreplace.c:580 ../src/findreplace.c:876
 msgid "Beginning Of File reached"
 msgstr "已到文件开头"
 
-#: src/findreplace.c:385
+#: ../src/findreplace.c:596
 msgid "There is no active document to move the cursor in!"
 msgstr "没有可以将光标移入的活动文档！"
 
-#: src/findreplace.c:390
+#: ../src/findreplace.c:602
 msgid "No offset has been specified!"
 msgstr "没有指定偏移值！"
 
-#: src/findreplace.c:397
+#: ../src/findreplace.c:626
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "无法将光标定位到文件末尾之后！"
 
-#: src/findreplace.c:402
-msgid "The offset must be a positive integer value!"
-msgstr "偏移值必须是一个正整数！"
+#: ../src/findreplace.c:633
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x'"
+msgstr ""
+"您只能以以下形式给定偏移值：\n"
+"  - 十进制的正数，或\n"
+"  - 十六进制数，以'0x'起首"
 
-#: src/findreplace.c:421
-msgid "There seems to be no string to search for!"
-msgstr "好像没有字符串要查找！"
-
-#: src/findreplace.c:443
+#: ../src/findreplace.c:678
 msgid "There is no active buffer to replace data in!"
 msgstr "没有可以替换的活动缓冲区！"
 
-#: src/findreplace.c:455 src/findreplace.c:496
-msgid "Strings are not appropriate for the selected data type!"
-msgstr "字符串不适用于选中的数据类型！"
-
-#: src/findreplace.c:470 src/findreplace.c:471
+#: ../src/findreplace.c:703 ../src/findreplace.c:704
 msgid "End Of File reached!"
 msgstr "已到文件末尾！"
 
-#: src/findreplace.c:484
+#: ../src/findreplace.c:723
 msgid "There is no active document to replace data in!"
 msgstr "没有可以替换数据的活动文档！"
 
-#: src/findreplace.c:516
-msgid "No occurences were found."
-msgstr "没有找到匹配项。"
+#: ../src/findreplace.c:753
+msgid "No occurrences were found."
+msgstr "未找到匹配项。"
 
-#: src/findreplace.c:519
+#: ../src/findreplace.c:756
 #, c-format
-msgid "Replaced %d occurencies."
-msgstr "替换了 %d 处。"
+msgid "Replaced %d occurrence."
+msgid_plural "Replaced %d occurrences."
+msgstr[0] "已替换 %d 匹配项。"
 
-#: src/ghex-ui.xml.h:1
+#: ../src/findreplace.c:796
+msgid "No string to search for!"
+msgstr "没有要查找的字符串！"
+
+#: ../src/ghex-ui.xml.h:1
 msgid "About this application"
 msgstr "关于本程序"
 
-#: src/ghex-ui.xml.h:2
+#: ../src/ghex-ui.xml.h:2
 msgid "Add View"
 msgstr "添加视图"
 
-#: src/ghex-ui.xml.h:3
+#: ../src/ghex-ui.xml.h:3
 msgid "Add a new view to the buffer"
 msgstr "添加缓冲区的新视图"
 
-#: src/ghex-ui.xml.h:4 src/ui.c:64
+#: ../src/ghex-ui.xml.h:4
+msgid "Advanced Find"
+msgstr "高级查找"
+
+#: ../src/ghex-ui.xml.h:5
 msgid "Bytes"
 msgstr "字节"
 
-#: src/ghex-ui.xml.h:5
-msgid "C_ut"
-msgstr "剪切(_U)"
-
-#: src/ghex-ui.xml.h:6
+#: ../src/ghex-ui.xml.h:6
 msgid "Character Table..."
 msgstr "字符表..."
 
-#: src/ghex-ui.xml.h:7
-msgid "Character _Table..."
-msgstr "字符表(_T)..."
+#: ../src/ghex-ui.xml.h:7
+msgid "Character _Table"
+msgstr "字符表(_T)"
 
-#: src/ghex-ui.xml.h:8
-msgid "Close"
-msgstr "关闭"
-
-#: src/ghex-ui.xml.h:9
+#: ../src/ghex-ui.xml.h:9
 msgid "Close the current file"
 msgstr "关闭当前文件"
 
-#: src/ghex-ui.xml.h:10
+#: ../src/ghex-ui.xml.h:10
 msgid "Configure the application"
 msgstr "配置本程序"
 
-#: src/ghex-ui.xml.h:11
+#: ../src/ghex-ui.xml.h:11
 msgid "Contents"
 msgstr "内容"
 
-#: src/ghex-ui.xml.h:12
+#: ../src/ghex-ui.xml.h:12
 msgid "Converter..."
 msgstr "转换程序..."
 
-#: src/ghex-ui.xml.h:13
+#: ../src/ghex-ui.xml.h:13
 msgid "Copy"
 msgstr "复制"
 
-#: src/ghex-ui.xml.h:14
+#: ../src/ghex-ui.xml.h:14
 msgid "Copy selection to clipboard"
 msgstr "将选中内容复制到剪贴板"
 
-#: src/ghex-ui.xml.h:15
+#: ../src/ghex-ui.xml.h:15
+msgid "Cu_t"
+msgstr "剪切(_T)"
+
+#: ../src/ghex-ui.xml.h:16
 msgid "Cut"
 msgstr "剪切"
 
-#: src/ghex-ui.xml.h:16
+#: ../src/ghex-ui.xml.h:17
 msgid "Cut selection"
 msgstr "剪切选择的内容"
 
-#: src/ghex-ui.xml.h:17
+#: ../src/ghex-ui.xml.h:18
 msgid "E_xit"
 msgstr "退出(_X)"
 
-#: src/ghex-ui.xml.h:18
+#: ../src/ghex-ui.xml.h:19
 msgid "Exit"
 msgstr "退出"
 
-#: src/ghex-ui.xml.h:19
+#: ../src/ghex-ui.xml.h:20
 msgid "Exit the program"
 msgstr "退出程序"
 
-#: src/ghex-ui.xml.h:20
+#: ../src/ghex-ui.xml.h:21
 msgid "Export data to HTML source"
 msgstr "打出数据为 HTML 源代码"
 
-#: src/ghex-ui.xml.h:21
+#: ../src/ghex-ui.xml.h:22
 msgid "Export to HTML..."
 msgstr "导出为HTML..."
 
-#: src/ghex-ui.xml.h:22
+#: ../src/ghex-ui.xml.h:23
 msgid "Find"
 msgstr "查找"
 
-#: src/ghex-ui.xml.h:23
+#: ../src/ghex-ui.xml.h:24
 msgid "Goto Byte"
 msgstr "转到字节"
 
-#: src/ghex-ui.xml.h:24
+#: ../src/ghex-ui.xml.h:25
 msgid "Group data by 16 bits"
 msgstr "将数据按 16 位分组"
 
-#: src/ghex-ui.xml.h:25
+#: ../src/ghex-ui.xml.h:26
 msgid "Group data by 32 bits"
 msgstr "将数据按 32 位分组"
 
-#: src/ghex-ui.xml.h:26
+#: ../src/ghex-ui.xml.h:27
 msgid "Group data by 8 bits"
 msgstr "将数据按 8 位分组"
 
-#: src/ghex-ui.xml.h:27
+#: ../src/ghex-ui.xml.h:28
 msgid "Help Chat"
 msgstr "帮助(在线聊天)"
 
-#: src/ghex-ui.xml.h:28
+#: ../src/ghex-ui.xml.h:29
 msgid "Help on this application"
 msgstr "本程序的帮助"
 
-#: src/ghex-ui.xml.h:29
+#: ../src/ghex-ui.xml.h:30
 msgid "Insert Mode"
 msgstr "插入模式"
 
-#: src/ghex-ui.xml.h:30
+#: ../src/ghex-ui.xml.h:31
 msgid "Insert/overwrite data"
 msgstr "插入/覆盖数据"
 
-#: src/ghex-ui.xml.h:31
+#: ../src/ghex-ui.xml.h:32
 msgid "Jump to a certain position"
 msgstr "跳转到特定位置"
 
-#: src/ghex-ui.xml.h:32 src/ui.c:66
+#: ../src/ghex-ui.xml.h:33
 msgid "Longwords"
 msgstr "长字"
 
-#: src/ghex-ui.xml.h:33
+#: ../src/ghex-ui.xml.h:34
 msgid "Open"
 msgstr "打开"
 
-#: src/ghex-ui.xml.h:34
+#: ../src/ghex-ui.xml.h:35
 msgid "Open a file"
 msgstr "打开文件"
 
-#: src/ghex-ui.xml.h:35
+#: ../src/ghex-ui.xml.h:36
 msgid "Open base conversion dialog"
 msgstr "打开进制转换对话"
 
-#: src/ghex-ui.xml.h:36
+#: ../src/ghex-ui.xml.h:37
+msgid "Pa_ste"
+msgstr "粘贴(_S)"
+
+#: ../src/ghex-ui.xml.h:38
 msgid "Paste"
 msgstr "粘贴"
 
-#: src/ghex-ui.xml.h:37
+#: ../src/ghex-ui.xml.h:39
 msgid "Paste data from clipboard"
 msgstr "从剪贴板粘贴数据"
 
-#: src/ghex-ui.xml.h:38
+#: ../src/ghex-ui.xml.h:40
 msgid "Preferences"
 msgstr "首选项"
 
-#: src/ghex-ui.xml.h:39
+#: ../src/ghex-ui.xml.h:41
 msgid "Preview printed data"
 msgstr "预览打印的数据"
 
-#: src/ghex-ui.xml.h:40
+#: ../src/ghex-ui.xml.h:42
 msgid "Print"
 msgstr "打印"
 
-#: src/ghex-ui.xml.h:41
+#: ../src/ghex-ui.xml.h:43
 msgid "Print Previe_w..."
 msgstr "打印预览(_W)..."
 
-#: src/ghex-ui.xml.h:42
+#: ../src/ghex-ui.xml.h:44
 msgid "Print Preview..."
 msgstr "打印预览..."
 
-#: src/ghex-ui.xml.h:43
+#: ../src/ghex-ui.xml.h:45
 msgid "Print the current file"
 msgstr "打印当前文件"
 
-#: src/ghex-ui.xml.h:44
+#: ../src/ghex-ui.xml.h:46
+msgid "R_eplace"
+msgstr "替换(_E)"
+
+#: ../src/ghex-ui.xml.h:47
 msgid "Redo"
 msgstr "重复"
 
-#: src/ghex-ui.xml.h:45
+#: ../src/ghex-ui.xml.h:48
 msgid "Redo the undone action"
 msgstr "重复被撤消的操作"
 
-#: src/ghex-ui.xml.h:46
+#: ../src/ghex-ui.xml.h:49
 msgid "Remove View"
-msgstr "删除视图"
+msgstr "移除视图"
 
-#: src/ghex-ui.xml.h:47
+#: ../src/ghex-ui.xml.h:50
 msgid "Remove the current view of the buffer"
-msgstr "删除缓冲区的当前视图"
+msgstr "移除缓冲区的当前视图"
 
-#: src/ghex-ui.xml.h:49
+#: ../src/ghex-ui.xml.h:52
 msgid "Replace a string"
 msgstr "替换字符串"
 
-#: src/ghex-ui.xml.h:50
+#: ../src/ghex-ui.xml.h:53
 msgid "Revert"
 msgstr "还原"
 
-#: src/ghex-ui.xml.h:51
+#: ../src/ghex-ui.xml.h:54
 msgid "Revert to a saved version of the file"
 msgstr "还原为文件的一个保存的版本"
 
-#: src/ghex-ui.xml.h:52
+#: ../src/ghex-ui.xml.h:55
 msgid "Save"
 msgstr "保存"
 
-#: src/ghex-ui.xml.h:53
+#: ../src/ghex-ui.xml.h:56
 msgid "Save As"
 msgstr "保存为"
 
-#: src/ghex-ui.xml.h:54
+#: ../src/ghex-ui.xml.h:57
 msgid "Save As _HTML..."
 msgstr "保存为 HTML(_H)..."
 
-#: src/ghex-ui.xml.h:55
+#: ../src/ghex-ui.xml.h:58
 msgid "Save _As..."
 msgstr "保存为(_A)..."
 
-#: src/ghex-ui.xml.h:56
+#: ../src/ghex-ui.xml.h:59
 msgid "Save the current file"
 msgstr "保存当前文件"
 
-#: src/ghex-ui.xml.h:57
+#: ../src/ghex-ui.xml.h:60
 msgid "Save the current file with a different name"
 msgstr "用另外的文件名保存当前文件"
 
-#: src/ghex-ui.xml.h:58
+#: ../src/ghex-ui.xml.h:61
 msgid "Search for a string"
 msgstr "查找字符串"
 
-#: src/ghex-ui.xml.h:59
+#: ../src/ghex-ui.xml.h:62
 msgid "Show the character table"
 msgstr "显示字符表"
 
-#: src/ghex-ui.xml.h:60
+#: ../src/ghex-ui.xml.h:63
+msgid "Show the type conversion dialog in the edit window"
+msgstr "在编辑窗口显示类型转换对话框"
+
+#: ../src/ghex-ui.xml.h:64
+#, fuzzy
+#| msgid "Open base conversion dialog"
+msgid "Type Conversion Dialog..."
+msgstr "打开进制转换对话"
+
+#: ../src/ghex-ui.xml.h:65
+#, fuzzy
+#| msgid "Open base conversion dialog"
+msgid "Type Conversion _Dialog"
+msgstr "打开进制转换对话"
+
+#: ../src/ghex-ui.xml.h:66
 msgid "Undo"
 msgstr "撤消"
 
-#: src/ghex-ui.xml.h:61
+#: ../src/ghex-ui.xml.h:67
 msgid "Undo the last action"
 msgstr "撤消上次操作"
 
-#: src/ghex-ui.xml.h:62 src/ui.c:65
+#: ../src/ghex-ui.xml.h:68
 msgid "Words"
 msgstr "字"
 
-#: src/ghex-ui.xml.h:63
+#: ../src/ghex-ui.xml.h:69
 msgid "_About"
 msgstr "关于(_A)"
 
-#: src/ghex-ui.xml.h:64
+#: ../src/ghex-ui.xml.h:70
 msgid "_Add View"
 msgstr "添加视图(_A)"
 
-#: src/ghex-ui.xml.h:65
+#: ../src/ghex-ui.xml.h:71
+msgid "_Advanced Find"
+msgstr "高级查找(_A)"
+
+#: ../src/ghex-ui.xml.h:72
 msgid "_Base Converter"
 msgstr "数制转换程序(_B)"
 
-#: src/ghex-ui.xml.h:66
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:90
 msgid "_Bytes"
 msgstr "字节(_B)"
 
-#: src/ghex-ui.xml.h:67
+#: ../src/ghex-ui.xml.h:74
 msgid "_Close"
 msgstr "关闭(_C)"
 
-#: src/ghex-ui.xml.h:68
+#: ../src/ghex-ui.xml.h:75
 msgid "_Contents"
 msgstr "内容(_C)"
 
-#: src/ghex-ui.xml.h:69
+#: ../src/ghex-ui.xml.h:76
 msgid "_Copy"
 msgstr "复制(_C)"
 
-#: src/ghex-ui.xml.h:70
+#: ../src/ghex-ui.xml.h:77
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: src/ghex-ui.xml.h:71
+#: ../src/ghex-ui.xml.h:78
 msgid "_File"
 msgstr "文件(_F)"
 
-#: src/ghex-ui.xml.h:72
+#: ../src/ghex-ui.xml.h:79
 msgid "_Find"
 msgstr "查找(_F)"
 
-#: src/ghex-ui.xml.h:73
+#: ../src/ghex-ui.xml.h:80
 msgid "_Goto Byte..."
 msgstr "转到字节(_G)..."
 
-#: src/ghex-ui.xml.h:74
+#: ../src/ghex-ui.xml.h:81
 msgid "_Group Data As"
 msgstr "将数据分组为(_G)"
 
-#: src/ghex-ui.xml.h:75
+#: ../src/ghex-ui.xml.h:82
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: src/ghex-ui.xml.h:76
+#: ../src/ghex-ui.xml.h:83
 msgid "_Insert Mode"
 msgstr "插入模式(_I)"
 
-#: src/ghex-ui.xml.h:77
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:92
 msgid "_Longwords"
 msgstr "长字(_L)"
 
-#: src/ghex-ui.xml.h:78
+#: ../src/ghex-ui.xml.h:85
 msgid "_Open..."
 msgstr "打开(_O)..."
 
-#: src/ghex-ui.xml.h:79
-msgid "_Paste"
-msgstr "粘贴(_P)"
-
-#: src/ghex-ui.xml.h:80
+#: ../src/ghex-ui.xml.h:86
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: src/ghex-ui.xml.h:81
+#: ../src/ghex-ui.xml.h:87
 msgid "_Print"
 msgstr "打印(_P)"
 
-#: src/ghex-ui.xml.h:82
+#: ../src/ghex-ui.xml.h:88
 msgid "_Redo"
 msgstr "重复(_R)"
 
-#: src/ghex-ui.xml.h:83
+#: ../src/ghex-ui.xml.h:89
 msgid "_Remove View"
-msgstr "删除视图(_R)"
+msgstr "移除视图(_R)"
 
-#: src/ghex-ui.xml.h:85
+#: ../src/ghex-ui.xml.h:90
 msgid "_Revert"
 msgstr "还原(_R)"
 
-#: src/ghex-ui.xml.h:86
+#: ../src/ghex-ui.xml.h:91
 msgid "_Save"
 msgstr "保存(_S)"
 
-#: src/ghex-ui.xml.h:87
+#: ../src/ghex-ui.xml.h:92
 msgid "_Undo"
 msgstr "撤消(_U)"
 
-#: src/ghex-ui.xml.h:88
+#: ../src/ghex-ui.xml.h:93
 msgid "_View"
 msgstr "查看(_V)"
 
-#: src/ghex-ui.xml.h:89
+#: ../src/ghex-ui.xml.h:94
 msgid "_Windows"
 msgstr "窗口(_W)"
 
-#: src/ghex-ui.xml.h:90
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:91
 msgid "_Words"
 msgstr "字(_W)"
 
-#: src/ghex-window.c:438 src/ghex-window.c:816
+#: ../src/ghex-window.c:94
+#, c-format
+msgid ""
+"Can not open URI:\n"
+"%s"
+msgstr ""
+"无法打开URI:\n"
+"%s"
+
+#: ../src/ghex-window.c:113
+#, c-format
+msgid ""
+"Can not open file:\n"
+"%s"
+msgstr ""
+"无法打开文件:\n"
+"%s"
+
+#: ../src/ghex-window.c:500 ../src/ghex-window.c:948
 msgid "GHex"
 msgstr "GHex"
 
-#: src/ghex-window.c:571
+#: ../src/ghex-window.c:647
 #, c-format
 msgid "Offset: %s"
 msgstr "偏移值：%s"
 
-#: src/ghex-window.c:770
+#: ../src/ghex-window.c:650
+#, c-format
+msgid "; %s bytes from %s to %s selected"
+msgstr "；从 2$%s 到 3$%s  的 1$%s 字节已选定"
+
+#: ../src/ghex-window.c:902
 #, c-format
 msgid "Activate file %s"
 msgstr "激活文件 %s"
 
-#: src/ghex-window.c:812
+#: ../src/ghex-window.c:944
 #, c-format
-msgid "GHex - %s"
-msgstr "GHex - %s"
+msgid "%s - GHex"
+msgstr "%s - GHex"
 
-#: src/ghex-window.c:946
+#: ../src/ghex-window.c:1073
 msgid "Select a file to save buffer as"
 msgstr "选择用来保存缓冲区的文件"
 
-#: src/ghex-window.c:997
+#: ../src/ghex-window.c:1129
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -665,20 +756,20 @@ msgstr ""
 "文件 %s 已存在。\n"
 "您要覆盖它吗？"
 
-#: src/ghex-window.c:1032 src/ui.c:356
+#: ../src/ghex-window.c:1162 ../src/ui.c:379
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "保存缓冲区到文件 %s"
 
-#: src/ghex-window.c:1038
+#: ../src/ghex-window.c:1168
 msgid "Error saving file!"
 msgstr "保存文件时发生错误！"
 
-#: src/ghex-window.c:1044
+#: ../src/ghex-window.c:1174
 msgid "Can't open file for writing!"
 msgstr "无法打开文件写！"
 
-#: src/ghex-window.c:1071
+#: ../src/ghex-window.c:1219
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -687,215 +778,326 @@ msgstr ""
 "文件 %s 自上次保存后已被修改。\n"
 "您要保存改动吗？"
 
-#: src/ghex-window.c:1081
+#: ../src/ghex-window.c:1223
 msgid "Do_n't save"
 msgstr "不保存(_N)"
 
-#: src/ghex-window.c:1101 src/ui.c:344
+#: ../src/ghex-window.c:1243 ../src/ui.c:367
 msgid "You don't have the permissions to save the file!"
 msgstr "您没有权限保存文件！"
 
-#: src/ghex-window.c:1105 src/ui.c:349
-msgid "An error occured while saving file!"
+#: ../src/ghex-window.c:1247 ../src/ui.c:372
+msgid "An error occurred while saving file!"
 msgstr "保存文件时发生错误！"
 
-#: src/hex-document.c:746
+#: ../src/gnome-print-font-dialog.c:111
+#, fuzzy
+msgid "_Insert a new preview phrase."
+msgstr "插入新的预览语句(_I)。"
+
+#: ../src/gnome-print-font-dialog.c:117
+#, fuzzy
+msgid "Modify preview phrase..."
+msgstr "更改预览语句..."
+
+#: ../src/gnome-print-font-dialog.c:171
+msgid "Preview"
+msgstr "预览"
+
+#: ../src/gnome-print-font-dialog.c:184
+#, fuzzy
+msgid "_Modify preview phrase..."
+msgstr "更改预览语句(_M)..."
+
+#: ../src/gnome-print-font-dialog.c:247
+msgid "Font Selection"
+msgstr "字体选择"
+
+#: ../src/gnome-print-font-picker.c:91
+msgid "Sans Regular 12"
+msgstr "Sans 常规 12"
+
+#: ../src/gnome-print-font-picker.c:92
+msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+
+#: ../src/gnome-print-font-picker.c:93
+msgid "Pick a Font"
+msgstr "选取字体"
+
+#: ../src/gnome-print-font-picker.c:178
+msgid "Title"
+msgstr "标题"
+
+#: ../src/gnome-print-font-picker.c:179
+msgid "The title of the selection dialog box"
+msgstr "选择对话框的标题"
+
+#: ../src/gnome-print-font-picker.c:199
+msgid "Font name"
+msgstr "字体名称"
+
+#: ../src/gnome-print-font-picker.c:200
+msgid "Name of the selected font"
+msgstr "选定字体的名称"
+
+#: ../src/gnome-print-font-picker.c:208
+msgid "Preview text"
+msgstr "预览文本"
+
+#: ../src/gnome-print-font-picker.c:209
+msgid "Preview text shown in the dialog"
+msgstr "预览显示于对话框中的文本"
+
+#: ../src/gnome-print-font-picker.c:217
+msgid "Use font in label"
+msgstr "在标签中使用字体"
+
+#: ../src/gnome-print-font-picker.c:218
+msgid "Use font in the label in font info mode"
+msgstr "在字体信息模式下在标签中使用字体"
+
+#: ../src/gnome-print-font-picker.c:226
+msgid "Font size for label"
+msgstr "标签的字体大小"
+
+#: ../src/gnome-print-font-picker.c:227
+msgid "Font size for label in font info mode"
+msgstr "字体信息模式下的标签字体大小"
+
+#: ../src/gnome-print-font-picker.c:237
+msgid "Show size"
+msgstr "显示大小"
+
+#: ../src/gnome-print-font-picker.c:238
+msgid "Show size in font info mode"
+msgstr "字体信息模式下显示大小"
+
+#. display font
+#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:182
+msgid "Font"
+msgstr "字体"
+
+#: ../src/hex-dialog.c:57
+msgid "Signed 8 bit:"
+msgstr "有符号 8 位："
+
+#: ../src/hex-dialog.c:58
+msgid "Unsigned 8 bit:"
+msgstr "无符号 8 位："
+
+#: ../src/hex-dialog.c:59
+msgid "Signed 16 bit:"
+msgstr "有符号 16 位："
+
+#: ../src/hex-dialog.c:60
+msgid "Unsigned 16 bit:"
+msgstr "无符号 16 位："
+
+#: ../src/hex-dialog.c:61
+msgid "Signed 32 bit:"
+msgstr "有符号 32 位："
+
+#: ../src/hex-dialog.c:62
+msgid "Unsigned 32 bit:"
+msgstr "无符号 32 位："
+
+#: ../src/hex-dialog.c:63
+msgid "32 bit float:"
+msgstr "32 位浮点数："
+
+#: ../src/hex-dialog.c:64
+msgid "64 bit float:"
+msgstr "64 位浮点数："
+
+#: ../src/hex-dialog.c:65
+msgid "Hexadecimal:"
+msgstr "十六进制数："
+
+#: ../src/hex-dialog.c:66
+msgid "Octal:"
+msgstr "八进制："
+
+#: ../src/hex-dialog.c:67
+msgid "Binary:"
+msgstr "二进制："
+
+#: ../src/hex-dialog.c:196
+msgid "Show little endian decoding"
+msgstr "显示小尾序解码"
+
+#: ../src/hex-dialog.c:203
+msgid "Show unsigned and float as hexadecimal"
+msgstr "以十六进制显示无符号数和浮点数"
+
+#: ../src/hex-dialog.c:209
+#, fuzzy
+msgid "Stream Length:"
+msgstr "流长度："
+
+#: ../src/hex-dialog.c:231
+#, fuzzy
+msgid "FIXME: no conversion function"
+msgstr "修正错误：没有转换函数"
+
+#: ../src/hex-document.c:432
+msgid "New document"
+msgstr "新建文档"
+
+#: ../src/hex-document.c:783
+#, c-format
 msgid "Page"
 msgstr "页"
 
-#: src/hex-document.c:752 src/hex-document.c:877
+#: ../src/hex-document.c:789 ../src/hex-document.c:914
+#, c-format
 msgid "Hex dump generated by"
 msgstr "十六进制转储生成由"
 
-#: src/hex-document.c:762
+#: ../src/hex-document.c:800
 msgid "Saving to HTML..."
 msgstr "正保存到 HTML..."
 
-#: src/hex-document.c:800
+#: ../src/hex-document.c:837
+#, c-format
 msgid "Previous page"
 msgstr "上一页"
 
-#: src/hex-document.c:815
+#: ../src/hex-document.c:852
+#, c-format
 msgid "Next page"
 msgstr "下一页"
 
-#: src/main.c:49
-msgid "The gnome binary editor"
-msgstr "GNOME二进制编辑器"
+#: ../src/main.c:38
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "X 几何属性 (见“X”的手册页)。"
 
-#: src/main.c:64
+#: ../src/main.c:39
+msgid "GEOMETRY"
+msgstr "几何属性"
+
+#: ../src/main.c:65
+msgid "The gnome binary editor"
+msgstr "GNOME 二进制编辑器"
+
+#: ../src/main.c:80
 msgid "Could not initialize Bonobo!\n"
 msgstr "无法初始化 Bonobo！\n"
 
-#: src/main.c:89 src/main.c:103
+#: ../src/main.c:105 ../src/main.c:119
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "无效的几何属性字符串“%s”\n"
 
-#: src/preferences.c:94
+#: ../src/preferences.c:71
 msgid "GHex Preferences"
 msgstr "GHex 首选项"
 
-#: src/preferences.c:126
+#: ../src/preferences.c:103
 msgid "_Maximum number of undo levels:"
 msgstr "最大撤消次数(_M)："
 
-#: src/preferences.c:146
+#: ../src/preferences.c:123
 msgid "Undo levels"
 msgstr "撤消次数"
 
-#: src/preferences.c:146
+#: ../src/preferences.c:123
 msgid "Select maximum number of undo levels"
 msgstr "选择最大撤消次数"
 
-#: src/preferences.c:150
-msgid "Show cursor offset in statusbar as:"
-msgstr "在状态栏中显示光标偏移值为："
+#: ../src/preferences.c:127
+msgid "_Show cursor offset in statusbar as:"
+msgstr "在状态栏中显示光标偏移值为(_S)："
 
-#: src/preferences.c:169
+#: ../src/preferences.c:146
 msgid "Hexadecimal"
 msgstr "十六进制数"
 
-#: src/preferences.c:175
+#: ../src/preferences.c:148
 msgid "Custom"
 msgstr "定制"
 
-#: src/preferences.c:187
+#: ../src/preferences.c:157
 msgid "Enter the cursor offset format"
 msgstr "输入光标偏移值格式"
 
-#: src/preferences.c:188
+#: ../src/preferences.c:158
 msgid "Select the cursor offset format"
 msgstr "选择光标偏移值格式"
 
 #. show offsets check button
-#: src/preferences.c:198
-msgid "Show offsets column"
-msgstr "显示偏移值列"
+#: ../src/preferences.c:168
+msgid "Sh_ow offsets column"
+msgstr "显示偏移值列(_O)"
 
-#: src/preferences.c:203
+#: ../src/preferences.c:173
 msgid "Editing"
 msgstr "编辑"
 
-#. display font
-#: src/preferences.c:212
-msgid "Font"
-msgstr "字体"
-
 #. default group type
-#: src/preferences.c:240
+#: ../src/preferences.c:205
 msgid "Default Group Type"
 msgstr "默认分组类型"
 
-#: src/preferences.c:256
+#: ../src/preferences.c:221
 msgid "Display"
 msgstr "显示"
 
 #. paper selection
-#: src/preferences.c:265
+#: ../src/preferences.c:230
 msgid "Paper size"
 msgstr "纸张大小"
 
 #. data & header font selection
-#: src/preferences.c:270
+#: ../src/preferences.c:235
 msgid "Fonts"
 msgstr "字体"
 
-#: src/preferences.c:276
+#: ../src/preferences.c:241
 msgid "_Data font:"
 msgstr "数据字体(_D)："
 
-#: src/preferences.c:295
+#: ../src/preferences.c:260
 msgid "Data font"
 msgstr "数据字体"
 
-#: src/preferences.c:295
+#: ../src/preferences.c:260
 msgid "Select the data font"
 msgstr "选择数据字体"
 
-#: src/preferences.c:309
+#: ../src/preferences.c:274
 msgid "Header fo_nt:"
 msgstr "页眉字体(_N)："
 
-#: src/preferences.c:327
+#: ../src/preferences.c:292
 msgid "Header font"
 msgstr "页眉字体"
 
-#: src/preferences.c:327
+#: ../src/preferences.c:292
 msgid "Select the header font"
 msgstr "选择页眉字体"
 
-#: src/preferences.c:353
+#: ../src/preferences.c:318
 msgid "_Print shaded box over:"
 msgstr "打印阴影框(_P)："
 
-#: src/preferences.c:365
+#: ../src/preferences.c:330
 msgid "Box size"
 msgstr "边框大小"
 
-#: src/preferences.c:365
+#: ../src/preferences.c:330
 msgid "Select size of box (in number of lines)"
 msgstr "选择边框大小(线宽)"
 
-#: src/preferences.c:369
+#: ../src/preferences.c:334
 msgid "lines (0 for no box)"
 msgstr "线宽(0 表示没有边框)"
 
-#: src/preferences.c:376
+#: ../src/preferences.c:341
 msgid "Printing"
 msgstr "打印"
 
-#: src/preferences.c:531
-msgid "Can not open desired font!"
-msgstr "无法打开需要的字体！"
-
-#: src/preferences.c:581
-msgid ""
-"The offset format string contains invalid format specifier.\n"
-"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
-msgstr ""
-"偏移格式串保护无效的格式符。\n"
-"只允许使用“x”、“X”、“p”、“P”、“d”和“o”。"
-
-#: src/print.c:53
-#, c-format
-msgid "Page: %i/%i"
-msgstr "页面：%i/%i"
-
-#: src/print.c:204 src/print.c:218
-#, c-format
-msgid ""
-"GHex could not find the font \"%s\".\n"
-"GHex is unable to print without this font installed."
-msgstr ""
-"GHex 无法找到字体“%s”。\n"
-"没有该字体，GHex 无法打印。"
-
-#: src/session.c:29
-msgid "X geometry specification (see \"X\" man page)."
-msgstr "X 几何属性 (见“X”的手册页)。"
-
-#: src/session.c:30
-msgid "GEOMETRY"
-msgstr "几何属性"
-
-#: src/ui.c:71
-msgid "hex data"
-msgstr "十六进制数据"
-
-#: src/ui.c:72
-msgid "ASCII data"
-msgstr "ASCII 数据"
-
-#: src/ui.c:243
-msgid "GHex, a binary file editor"
-msgstr "GHex二进制编辑器"
-
-#: src/ui.c:245
-msgid "Released under the terms of GNU Public License"
-msgstr "按 GNU 公共授权方式发布"
-
-#: src/ui.c:268
+#: ../src/preferences.c:463 ../src/ui.c:294
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -904,32 +1106,74 @@ msgstr ""
 "显示帮助时出现错误：\n"
 "%s"
 
-#: src/ui.c:376
+#: ../src/preferences.c:515
+msgid "Can not open desired font!"
+msgstr "无法打开需要的字体！"
+
+#: ../src/preferences.c:578
+msgid ""
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"偏移格式串保护无效的格式符。\n"
+"只允许使用“x”、“X”、“p”、“P”、“d”和“o”。"
+
+#: ../src/print.c:66
+#, c-format
+msgid "Page: %i/%i"
+msgstr "页面：%i/%i"
+
+#: ../src/print.c:222 ../src/print.c:238
+#, c-format
+msgid ""
+"GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr ""
+"GHex 无法找到字体“%s”。\n"
+"没有该字体，GHex 无法打印。"
+
+#: ../src/ui.c:97
+msgid "hex data"
+msgstr "十六进制数据"
+
+#: ../src/ui.c:98
+msgid "ASCII data"
+msgstr "ASCII 数据"
+
+#: ../src/ui.c:264
+msgid "A binary file editor"
+msgstr "二进制文件编辑器"
+
+#: ../src/ui.c:268
+msgid "Released under the terms of GNU Public License"
+msgstr "按 GNU 公共授权方式发布"
+
+#: ../src/ui.c:396
 msgid "Select a file to open"
 msgstr "选择要打开的文件"
 
-#: src/ui.c:414
+#: ../src/ui.c:427
 #, c-format
 msgid "Loaded file %s"
 msgstr "载入文件 %s"
 
-#: src/ui.c:422
+#: ../src/ui.c:435
 msgid "Can not open file!"
 msgstr "无法打开文件！"
 
-#: src/ui.c:486
+#: ../src/ui.c:496
 msgid "Select path and file name for the HTML source"
 msgstr "选择 HTML 源码文件的路径和文件名"
 
-#: src/ui.c:521
+#: ../src/ui.c:530
 msgid "You need to specify a base name for the HTML files."
 msgstr "您要为生成的 HTML 文件指定一个基本名。"
 
-#: src/ui.c:532 src/ui.c:554
+#: ../src/ui.c:541 ../src/ui.c:565
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "您没有写入选中路径的权限。\n"
 
-#: src/ui.c:538
+#: ../src/ui.c:552
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -937,91 +1181,29 @@ msgstr ""
 "保存到 HTML 将覆盖一些文件。\n"
 "您要继续吗？"
 
-#: src/ui.c:686
+#: ../src/ui.c:705
 #, c-format
 msgid "Really revert file %s?"
 msgstr "真的要恢复文件 %s？"
 
-#: src/ui.c:704
+#: ../src/ui.c:719
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "从文件 %s 中恢复了缓冲区"
 
-#: src/ui.c:778
+#: ../src/ui.c:803
+msgid "Printing file..."
+msgstr "打印文件..."
+
+#: ../src/ui.c:863
 msgid "Print Hex Document"
 msgstr "打印十六进制文档"
 
-#: src/ui.c:783
+#: ../src/ui.c:875
 msgid "Pages"
-msgstr "页面"
+msgstr "页"
 
-#: src/ui.c:829
+#: ../src/ui.c:900
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s)：打印预览"
-
-#~ msgid "About..."
-#~ msgstr "关于..."
-
-#~ msgid "GHex: Character table"
-#~ msgstr "GHex：字符表"
-
-#~ msgid "Strange find or replace string!"
-#~ msgstr "奇怪的查找或替换字符串！"
-
-#~ msgid ""
-#~ "Do you want to save the changes you made to the document ``%s''? \n"
-#~ "\n"
-#~ "Your changes will be lost if you don't save them."
-#~ msgstr ""
-#~ "您要保存您对文档“%s”的修改吗？\n"
-#~ "\n"
-#~ "如果您不保存，你的修改将丢失。"
-
-#~ msgid "(modified)"
-#~ msgstr "(已修改)"
-
-#~ msgid "(readonly)"
-#~ msgstr "(只读)"
-
-#~ msgid "Con_verter"
-#~ msgstr "转换程序(_V)..."
-
-#~ msgid "Export to _HTML..."
-#~ msgstr "导出为HTML(_H)..."
-
-#~ msgid "Fi_les"
-#~ msgstr "文件(_L)"
-
-#~ msgid "Help"
-#~ msgstr "帮助"
-
-#~ msgid "Print pre_view..."
-#~ msgstr "打印预览(_V)..."
-
-#~ msgid "_Settings"
-#~ msgstr "设置(_S)"
-
-#~ msgid "_Tools"
-#~ msgstr "工具(_T)"
-
-#~ msgid "Default"
-#~ msgstr "默认"
-
-#~ msgid "Notebook"
-#~ msgstr "笔记本"
-
-#~ msgid "Modal"
-#~ msgstr "模态"
-
-#~ msgid "Browse..."
-#~ msgstr "浏览..."
-
-#~ msgid "MDI Mode"
-#~ msgstr "MDI模式"
-
-#~ msgid "MDI"
-#~ msgstr "MDI"
-
-#~ msgid "Con_verter..."
-#~ msgstr "转换程序..."
