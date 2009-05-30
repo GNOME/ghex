@@ -12,10 +12,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex 2.8.3\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-25 21:41+0200\n"
-"PO-Revision-Date: 2007-10-25 21:48+0200\n"
-"Last-Translator: Robert-André Mauchin <zebob.m@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=ghex&component=general\n"
+"POT-Creation-Date: 2009-04-17 14:24+0000\n"
+"PO-Revision-Date: 2009-05-30 12:06+0200\n"
+"Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,7 +98,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "ERREUR"
 
-#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:936
+#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:962
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s) : rechercher des données"
@@ -179,7 +180,7 @@ msgstr "Fermer"
 msgid "Closes advanced find window"
 msgstr "Ferme la fenêtre de recherche avancée"
 
-#: ../src/findreplace.c:354 ../src/ui.c:934
+#: ../src/findreplace.c:354 ../src/ui.c:960
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s) : rechercher et remplacer des données"
@@ -234,7 +235,7 @@ msgstr ""
 msgid "Closes find and replace data window"
 msgstr "Ferme la fenêtre de remplacement"
 
-#: ../src/findreplace.c:433 ../src/ui.c:932
+#: ../src/findreplace.c:433 ../src/ui.c:958
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s) : aller à l'octet"
@@ -611,7 +612,7 @@ msgstr "Recherche _avancée"
 msgid "_Base Converter"
 msgstr "_Convertisseur de base"
 
-#: ../src/ghex-ui.xml.h:73 ../src/ui.c:87
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:90
 msgid "_Bytes"
 msgstr "_Octets"
 
@@ -655,7 +656,7 @@ msgstr "_Aide"
 msgid "_Insert Mode"
 msgstr "Mode d'_insertion"
 
-#: ../src/ghex-ui.xml.h:84 ../src/ui.c:89
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:92
 msgid "_Longwords"
 msgstr "Mots _longs"
 
@@ -699,7 +700,7 @@ msgstr "Afficha_ge"
 msgid "_Windows"
 msgstr "Fe_nêtres"
 
-#: ../src/ghex-ui.xml.h:95 ../src/ui.c:88
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:91
 msgid "_Words"
 msgstr "_Mots"
 
@@ -721,7 +722,7 @@ msgstr ""
 "Impossible d'ouvrir le fichier :\n"
 "%s"
 
-#: ../src/ghex-window.c:500 ../src/ghex-window.c:947
+#: ../src/ghex-window.c:500 ../src/ghex-window.c:948
 msgid "GHex"
 msgstr "GHex"
 
@@ -735,21 +736,21 @@ msgstr "Décalage : %s"
 msgid "; %s bytes from %s to %s selected"
 msgstr "; %s octets, de %s à %s sélectionnés"
 
-#: ../src/ghex-window.c:901
+#: ../src/ghex-window.c:902
 #, c-format
 msgid "Activate file %s"
 msgstr "Activer le fichier %s"
 
-#: ../src/ghex-window.c:943
+#: ../src/ghex-window.c:944
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
-#: ../src/ghex-window.c:1072
+#: ../src/ghex-window.c:1073
 msgid "Select a file to save buffer as"
 msgstr "Sélectionnez un fichier où enregistrer le tampon"
 
-#: ../src/ghex-window.c:1128
+#: ../src/ghex-window.c:1129
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -758,20 +759,20 @@ msgstr ""
 "Le fichier %s existe.\n"
 "Voulez-vous l'écraser ?"
 
-#: ../src/ghex-window.c:1161 ../src/ui.c:353
+#: ../src/ghex-window.c:1162 ../src/ui.c:379
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Tampon enregistré dans le fichier %s"
 
-#: ../src/ghex-window.c:1167
+#: ../src/ghex-window.c:1168
 msgid "Error saving file!"
 msgstr "Erreur lors de l'enregistrement du fichier !"
 
-#: ../src/ghex-window.c:1173
+#: ../src/ghex-window.c:1174
 msgid "Can't open file for writing!"
 msgstr "Impossible d'ouvrir le fichier en écriture !"
 
-#: ../src/ghex-window.c:1218
+#: ../src/ghex-window.c:1219
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -780,15 +781,15 @@ msgstr ""
 "Le document %s a été modifié depuis son dernier enregistrement.\n"
 "Voulez-vous enregistrer les modifications ?"
 
-#: ../src/ghex-window.c:1222
+#: ../src/ghex-window.c:1223
 msgid "Do_n't save"
 msgstr "_Ne pas enregistrer"
 
-#: ../src/ghex-window.c:1242 ../src/ui.c:341
+#: ../src/ghex-window.c:1243 ../src/ui.c:367
 msgid "You don't have the permissions to save the file!"
 msgstr "Vous n'avez pas les droits pour enregistrer ce fichier !"
 
-#: ../src/ghex-window.c:1246 ../src/ui.c:346
+#: ../src/ghex-window.c:1247 ../src/ui.c:372
 msgid "An error occurred while saving file!"
 msgstr "Erreur lors de l'enregistrement du fichier !"
 
@@ -926,7 +927,7 @@ msgstr "Binaire :"
 
 #: ../src/hex-dialog.c:196
 msgid "Show little endian decoding"
-msgstr "Afficher le décodage petit boutiste"
+msgstr "Afficher les mots de poids faible en tête"
 
 #: ../src/hex-dialog.c:203
 msgid "Show unsigned and float as hexadecimal"
@@ -940,30 +941,30 @@ msgstr "Longueur du flux :"
 msgid "FIXME: no conversion function"
 msgstr "ÀCORRIGER : aucune fonction de conversion"
 
-#: ../src/hex-document.c:444
+#: ../src/hex-document.c:432
 msgid "New document"
 msgstr "Nouveau document"
 
-#: ../src/hex-document.c:795
+#: ../src/hex-document.c:783
 #, c-format
 msgid "Page"
 msgstr "Page"
 
-#: ../src/hex-document.c:801 ../src/hex-document.c:926
+#: ../src/hex-document.c:789 ../src/hex-document.c:914
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Sortie hexa générée par"
 
-#: ../src/hex-document.c:812
+#: ../src/hex-document.c:800
 msgid "Saving to HTML..."
 msgstr "Enregistrer en HTML..."
 
-#: ../src/hex-document.c:849
+#: ../src/hex-document.c:837
 #, c-format
 msgid "Previous page"
 msgstr "Page précédente"
 
-#: ../src/hex-document.c:864
+#: ../src/hex-document.c:852
 #, c-format
 msgid "Next page"
 msgstr "Page suivante"
@@ -1097,7 +1098,7 @@ msgstr "lignes (0 pour aucune boîte)"
 msgid "Printing"
 msgstr "Impression"
 
-#: ../src/preferences.c:463 ../src/ui.c:268
+#: ../src/preferences.c:463 ../src/ui.c:294
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1133,48 +1134,48 @@ msgstr ""
 "GHex ne peut pas trouver la police « %s ».\n"
 "GHex ne peut pas imprimer si cette police n'est pas installée."
 
-#: ../src/ui.c:94
+#: ../src/ui.c:97
 msgid "hex data"
 msgstr "données hexa"
 
-#: ../src/ui.c:95
+#: ../src/ui.c:98
 msgid "ASCII data"
 msgstr "données ASCII"
 
-#: ../src/ui.c:243
-msgid "GHex, a binary file editor"
-msgstr "GHex, un éditeur de fichiers binaires"
+#: ../src/ui.c:264
+msgid "A binary file editor"
+msgstr "Un éditeur de fichiers binaires"
 
-#: ../src/ui.c:245
+#: ../src/ui.c:268
 msgid "Released under the terms of GNU Public License"
 msgstr "Distribué sous les termes de la Licence Publique Générale GNU"
 
-#: ../src/ui.c:370
+#: ../src/ui.c:396
 msgid "Select a file to open"
 msgstr "Sélectionnez un fichier à ouvrir"
 
-#: ../src/ui.c:401
+#: ../src/ui.c:427
 #, c-format
 msgid "Loaded file %s"
 msgstr "Fichier %s chargé"
 
-#: ../src/ui.c:409
+#: ../src/ui.c:435
 msgid "Can not open file!"
 msgstr "Impossible d'ouvrir le fichier !"
 
-#: ../src/ui.c:470
+#: ../src/ui.c:496
 msgid "Select path and file name for the HTML source"
 msgstr "Sélectionnez le chemin et un nom de fichier pour la source HTML"
 
-#: ../src/ui.c:504
+#: ../src/ui.c:530
 msgid "You need to specify a base name for the HTML files."
 msgstr "Vous devez préciser un nom de base pour les fichiers HTML."
 
-#: ../src/ui.c:515 ../src/ui.c:539
+#: ../src/ui.c:541 ../src/ui.c:565
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Vous n'avez pas le droit d'écrire dans le répertoire choisi.\n"
 
-#: ../src/ui.c:526
+#: ../src/ui.c:552
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1182,29 +1183,29 @@ msgstr ""
 "L'enregistrement en HTML va écraser certains fichiers.\n"
 "Voulez-vous l'effectuer ?"
 
-#: ../src/ui.c:679
+#: ../src/ui.c:705
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Voulez-vous vraiment récupérer le fichier %s ?"
 
-#: ../src/ui.c:693
+#: ../src/ui.c:719
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Tampon rétabli depuis le fichier %s"
 
-#: ../src/ui.c:777
+#: ../src/ui.c:803
 msgid "Printing file..."
 msgstr "Impression du fichier..."
 
-#: ../src/ui.c:837
+#: ../src/ui.c:863
 msgid "Print Hex Document"
 msgstr "Affiche un document hexa"
 
-#: ../src/ui.c:849
+#: ../src/ui.c:875
 msgid "Pages"
 msgstr "Pages"
 
-#: ../src/ui.c:874
+#: ../src/ui.c:900
 #, c-format
 msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s) : Aperçu avant impression"
+msgstr "GHex (%s) : aperçu avant impression"
