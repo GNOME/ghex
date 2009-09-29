@@ -6,16 +6,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex HEAD\n"
+"Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&component=general\n"
-"POT-Creation-Date: 2009-04-17 14:24+0000\n"
-"PO-Revision-Date: 2009-09-16 19:41+0700\n"
+"POT-Creation-Date: 2009-09-27 19:31+0000\n"
+"PO-Revision-Date: 2009-09-29 14:06+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <l10n@gnome.linux.or.id>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Indonesian\n"
+"X-Poedit-Country: Indonesia\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../ghex.desktop.in.h:1
 msgid "GNOME Hexadecimal Editor"
@@ -102,7 +105,6 @@ msgstr "GHex (%s): Cari Data"
 #: ../src/findreplace.c:102
 #: ../src/findreplace.c:162
 #: ../src/findreplace.c:358
-#| msgid "Printing"
 msgid "Find String"
 msgstr "Cari String"
 
@@ -194,7 +196,6 @@ msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Cari & Timpa Data"
 
 #: ../src/findreplace.c:367
-#| msgid "Replace Data"
 msgid "Replace With"
 msgstr "Ganti Dengan"
 
@@ -280,7 +281,6 @@ msgstr "Pencarian hanya dapat dilakukan pada dokumen yang aktif!"
 #: ../src/findreplace.c:653
 #: ../src/findreplace.c:687
 #: ../src/findreplace.c:732
-#| msgid "There seems to be no string to search for!"
 msgid "There is no string to search for!"
 msgstr "Tak ada string untuk dicari!"
 
@@ -339,19 +339,16 @@ msgid "There is no active document to replace data in!"
 msgstr "Penggantian data hanya dapat dilakukan pada dokumen aktif!"
 
 #: ../src/findreplace.c:753
-#| msgid "No occurences were found."
 msgid "No occurrences were found."
 msgstr "Tidak ditemukan."
 
 #: ../src/findreplace.c:756
 #, c-format
-#| msgid "Replaced %d occurencies."
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
 msgstr[0] "Mengganti sebanyak %d kali."
 
 #: ../src/findreplace.c:796
-#| msgid "There seems to be no string to search for!"
 msgid "No string to search for!"
 msgstr "Tak ada string untuk dicari!"
 
@@ -380,7 +377,6 @@ msgid "Character Table..."
 msgstr "Tabel Karakter..."
 
 #: ../src/ghex-ui.xml.h:7
-#| msgid "Character _Table..."
 msgid "Character _Table"
 msgstr "_Tabel Karakter"
 
@@ -409,7 +405,6 @@ msgid "Copy selection to clipboard"
 msgstr "Salin pilihan ke clipboard"
 
 #: ../src/ghex-ui.xml.h:15
-#| msgid "Cut"
 msgid "Cu_t"
 msgstr "Po_tong"
 
@@ -498,7 +493,6 @@ msgid "Open base conversion dialog"
 msgstr "Buka dialog konversi basis"
 
 #: ../src/ghex-ui.xml.h:37
-#| msgid "Paste"
 msgid "Pa_ste"
 msgstr "Te_mpel"
 
@@ -535,7 +529,6 @@ msgid "Print the current file"
 msgstr "Cetak file yang aktif sekarang"
 
 #: ../src/ghex-ui.xml.h:46
-#| msgid "Replace"
 msgid "R_eplace"
 msgstr "_Ganti"
 
@@ -736,7 +729,6 @@ msgstr "_Words"
 
 #: ../src/ghex-window.c:94
 #, c-format
-#| msgid "Can not open file!"
 msgid ""
 "Can not open URI:\n"
 "%s"
@@ -746,7 +738,6 @@ msgstr ""
 
 #: ../src/ghex-window.c:113
 #, c-format
-#| msgid "Can not open file!"
 msgid ""
 "Can not open file:\n"
 "%s"
@@ -826,7 +817,6 @@ msgstr "Anda tidak punya wewenang menyimpan file!"
 
 #: ../src/ghex-window.c:1247
 #: ../src/ui.c:372
-#| msgid "An error occured while saving file!"
 msgid "An error occurred while saving file!"
 msgstr "Error terjadi ketika menyimpan berkas!"
 
@@ -977,7 +967,6 @@ msgid "FIXME: no conversion function"
 msgstr "PERBAIKI: tidak ada fungsi konversi"
 
 #: ../src/hex-document.c:432
-#| msgid "Print Hex Document"
 msgid "New document"
 msgstr "Dokumen baru"
 
@@ -1045,7 +1034,6 @@ msgid "Select maximum number of undo levels"
 msgstr "Pilih nomor maksimum dari tingkat pembatalan"
 
 #: ../src/preferences.c:127
-#| msgid "Show cursor offset in statusbar as:"
 msgid "_Show cursor offset in statusbar as:"
 msgstr "Tampilkan offset kursor pada statusbar _sebagai:"
 
@@ -1067,7 +1055,6 @@ msgstr "Pilih format offset kursor"
 
 #. show offsets check button
 #: ../src/preferences.c:168
-#| msgid "Show offsets column"
 msgid "Sh_ow offsets column"
 msgstr "Tampilkan k_olom offset"
 
@@ -1184,7 +1171,6 @@ msgid "ASCII data"
 msgstr "data ASCII"
 
 #: ../src/ui.c:264
-#| msgid "GHex, a binary file editor"
 msgid "A binary file editor"
 msgstr "Penyunting berkas biner"
 
@@ -1252,17 +1238,4 @@ msgstr "Halaman"
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Contoh Cetakan"
-
-#~ msgid "Search for %s"
-#~ msgstr "Mencari %s"
-#~ msgid "Replace %s"
-#~ msgstr "Timpa %s"
-#~ msgid "The string is not appropriate for the selected data type!"
-#~ msgstr "String tidak tepat untuk tipe data terpilih!"
-#~ msgid "Strings are not appropriate for the selected data type!"
-#~ msgstr "String tidak tepat untuk tipe data terpilih!"
-#~ msgid "C_ut"
-#~ msgstr "P_otong"
-#~ msgid "_Paste"
-#~ msgstr "Tem_pel"
 
