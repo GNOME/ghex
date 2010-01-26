@@ -42,7 +42,7 @@
 #include <gtk/gtkaccessible.h>
 #include <atk/atk.h>
 
-#include <libgnome/gnome-i18n.h>
+#include <glib/gi18n.h>
 
 #include <gnome-print-font-dialog.h>
 
