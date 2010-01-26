@@ -12,9 +12,6 @@
 #endif /* HAVE_CONFIG_H */
 
 #include <bonobo-activation/bonobo-activation.h>
-
-#include <libgnomeui/gnome-window-icon.h>
-
 #include <bonobo.h>
 #include <bonobo/bonobo-ui-main.h>
 

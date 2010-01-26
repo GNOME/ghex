@@ -11,7 +11,6 @@
 #define __GHEX_WINDOW_H__
 
 #include <bonobo-activation/bonobo-activation.h>
-#include <libgnomeui/gnome-window-icon.h>
 #include <gconf/gconf-client.h>
 #include <bonobo.h>
 #include <bonobo/bonobo-ui-main.h>
