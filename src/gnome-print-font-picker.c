@@ -41,7 +41,6 @@
 /* Copied from gedit to ghex */
 
 #include <config.h>
-#include <libgnome/gnome-macros.h>
 
 /* Must be before all other gnome includes!! */
 #include <glib/gi18n.h>
@@ -147,8 +146,7 @@ static void gnome_print_font_picker_update_font_info	(GnomePrintFontPicker     *
 
 static guint font_picker_signals[LAST_SIGNAL] = { 0 };
 
-GNOME_CLASS_BOILERPLATE (GnomePrintFontPicker, gnome_print_font_picker,
-			 GtkButton, GTK_TYPE_BUTTON)
+G_DEFINE_TYPE (GnomePrintFontPicker, gnome_print_font_picker, GTK_TYPE_BUTTON)
 
 static void
 gnome_print_font_picker_class_init (GnomePrintFontPickerClass *class)
@@ -253,7 +251,7 @@ gnome_print_font_picker_class_init (GnomePrintFontPickerClass *class)
 }
 
 static void
-gnome_print_font_picker_instance_init (GnomePrintFontPicker *gfp)
+gnome_print_font_picker_init (GnomePrintFontPicker *gfp)
 {
 
     gfp->_priv                         = g_new0(GnomePrintFontPickerPrivate, 1);
@@ -300,7 +298,7 @@ gnome_print_font_picker_destroy (GtkObject *object)
 	    gfp->_priv->font_dialog = NULL;
     }
 
-    GNOME_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+    GTK_OBJECT_CLASS (gnome_print_font_picker_parent_class)->destroy (object);
 
 } /* gnome_print_font_picker_destroy */
 
@@ -333,7 +331,7 @@ gnome_print_font_picker_finalize (GObject *object)
     g_free(gfp->_priv);
     gfp->_priv = NULL;
 
-    GNOME_CALL_PARENT (G_OBJECT_CLASS, finalize, (object));
+    G_OBJECT_CLASS (gnome_print_font_picker_parent_class)->finalize (object);
 
 } /* gnome_print_font_picker_finalize */
 
