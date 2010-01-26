@@ -22,13 +22,13 @@
 */
 
 #include <config.h>
-#include <gnome.h>
 #include <string.h>
+#include <unistd.h> /* for F_OK and W_OK */
 
+#include <gtk/gtkaboutdialog.h>
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprintui/gnome-print-dialog.h>
 #include <libgnomeprintui/gnome-print-job-preview.h>
-#include <gtk/gtkaboutdialog.h>
 
 #include "ui.h"
 #include "ghex-window.h"

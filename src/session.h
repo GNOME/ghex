@@ -24,7 +24,7 @@
 #ifndef __GHEX_SESSION_H__
 #define __GHEX_SESSION_H__
 
-#include <gnome.h>
+#include <libgnomeui/gnome-client.h>
 
 G_BEGIN_DECLS
 

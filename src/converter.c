@@ -27,9 +27,10 @@
 #  include <config.h>
 #endif /* HAVE_CONFIG_H */
 
-#include <gnome.h>
 #include <ctype.h>      /* for isdigit */
 #include <string.h>     /* for strncpy */
+
+#include <libgnomeui/gnome-uidefs.h>
 
 #include "gtkhex.h"
 #include "converter.h"

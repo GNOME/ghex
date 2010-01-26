@@ -23,10 +23,10 @@
 
 #include <config.h>
 #include <glib-object.h>
+#include <glib/gi18n.h>
 
 #include <gtkhex.h>
 #include <ghex-marshal.h>
-#include <gnome.h>
 
 #include <stdio.h>
 #include <unistd.h>

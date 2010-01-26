@@ -27,7 +27,7 @@
 #  include <config.h>
 #endif /* HAVE_CONFIG_H */
 
-#include <gnome.h>
+#include <glib/gi18n.h>
 
 #include <libgnomeprintui/gnome-print-dialog.h>
 

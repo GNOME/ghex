@@ -24,7 +24,6 @@
 #include <config.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
-#include <gnome.h>
 
 #include "hex-document.h"
 #include "ghex-window.h"

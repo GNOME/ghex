@@ -11,10 +11,9 @@
 #  include <config.h>
 #endif /* HAVE_CONFIG_H */
 
-#include <gnome.h>
-
 #include <bonobo-activation/bonobo-activation.h>
 
+#include <libgnomeui/gnome-uidefs.h>
 #include <libgnomeui/gnome-window-icon.h>
 
 #include <bonobo.h>
@@ -24,6 +23,7 @@
 
 #include <math.h>
 #include <ctype.h>
+#include <unistd.h> /* for F_OK */
 
 #include "ghex-window.h"
 #include "ui.h"

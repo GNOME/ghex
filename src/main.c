@@ -23,7 +23,8 @@
 
 #include <config.h>
 
-#include <gnome.h>
+#include <libgnomeui/gnome-client.h>
+#include <libgnomeui/gnome-ui-init.h>
 
 #include "session.h"
 #include "factory.h"

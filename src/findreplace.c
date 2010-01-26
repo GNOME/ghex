@@ -26,6 +26,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <libgnomeui/gnome-uidefs.h>
 
 #include "findreplace.h"
 #include "ui.h"

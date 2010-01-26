@@ -29,6 +29,8 @@
 
 #include <libgnomeprintui/gnome-font-dialog.h>
 
+#include <libgnomeui/gnome-uidefs.h>
+
 #include "gnome-print-font-picker.h"
 #include "preferences.h"
 #include "configuration.h"

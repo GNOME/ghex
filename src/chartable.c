@@ -26,6 +26,7 @@
 #endif /* HAVE_CONFIG_H */
 
 #include <gtk/gtk.h>
+#include <libgnomeui/gnome-uidefs.h>
 
 #include "chartable.h"
 #include "ghex-window.h"

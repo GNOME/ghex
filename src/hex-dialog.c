@@ -22,7 +22,9 @@
 #include <config.h>
 #include <glib-object.h>
 
-#include <gnome.h>
+#include <libgnomeui/gnome-uidefs.h>
+#include <glib/gi18n.h>
+
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/stat.h>
