@@ -13,7 +13,6 @@
 
 #include <bonobo-activation/bonobo-activation.h>
 
-#include <libgnomeui/gnome-uidefs.h>
 #include <libgnomeui/gnome-window-icon.h>
 
 #include <bonobo.h>
@@ -725,13 +724,13 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     gtk_widget_show(gh);
 
     vbox = gtk_vbox_new(FALSE, 0);
-    gtk_container_set_border_width(GTK_CONTAINER(win), GNOME_PAD_SMALL);
+    gtk_container_set_border_width(GTK_CONTAINER(win), 4);
     gtk_widget_show(vbox);
-    gtk_box_pack_start(GTK_BOX(vbox), gh, TRUE, TRUE, GNOME_PAD_SMALL);
+    gtk_box_pack_start(GTK_BOX(vbox), gh, TRUE, TRUE, 4);
 
     win->dialog = hex_dialog_new();
     win->dialog_widget = hex_dialog_getview(win->dialog);
-    gtk_box_pack_start(GTK_BOX(vbox), win->dialog_widget, FALSE, FALSE, GNOME_PAD_SMALL);
+    gtk_box_pack_start(GTK_BOX(vbox), win->dialog_widget, FALSE, FALSE, 4);
     state = bonobo_ui_component_get_prop (win->uic, "/commands/TypeDialog", "state", NULL);
     if ((state && atoi(state)) || !state)
     {

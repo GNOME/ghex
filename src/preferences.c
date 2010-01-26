@@ -29,8 +29,6 @@
 
 #include <libgnomeprintui/gnome-font-dialog.h>
 
-#include <libgnomeui/gnome-uidefs.h>
-
 #include "gnome-print-font-picker.h"
 #include "preferences.h"
 #include "configuration.h"
@@ -104,14 +102,14 @@ create_prefs_dialog()
 
 	label = gtk_label_new_with_mnemonic(_("_Maximum number of undo levels:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
+	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, 8);
 	gtk_widget_show(label);
 						  
 	pui->undo_spin = gtk_spin_button_new(undo_adj, 1, 0);
-	gtk_box_pack_end (GTK_BOX(box), GTK_WIDGET(pui->undo_spin), FALSE, TRUE, GNOME_PAD);
+	gtk_box_pack_end (GTK_BOX(box), GTK_WIDGET(pui->undo_spin), FALSE, TRUE, 8);
 	gtk_widget_show(pui->undo_spin);
 
-	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, GNOME_PAD);
+	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 8);
 
 	/* cursor offset format */
 	box = gtk_hbox_new(FALSE, 0);
@@ -128,7 +126,7 @@ create_prefs_dialog()
 
 	label = gtk_label_new_with_mnemonic(_("_Show cursor offset in statusbar as:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD);
+	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, 8);
 	gtk_widget_show(label);
 
 	pui->format = gtk_entry_new();
@@ -136,7 +134,7 @@ create_prefs_dialog()
 					 G_CALLBACK(format_activated_cb), pui);
 	g_signal_connect(G_OBJECT(pui->format), "focus_out_event",
 					 G_CALLBACK(format_focus_out_event_cb), pui);
-	gtk_box_pack_start (GTK_BOX(box), pui->format, TRUE, TRUE, GNOME_PAD);
+	gtk_box_pack_start (GTK_BOX(box), pui->format, TRUE, TRUE, 8);
 	gtk_widget_show(pui->format);
 
 	pui->offset_menu = gtk_combo_box_new_text();
@@ -151,9 +149,9 @@ create_prefs_dialog()
 	g_signal_connect(G_OBJECT(pui->offset_menu), "changed",
 					 G_CALLBACK(offset_cb), pui);
 	gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(pui->offset_menu),
-					 FALSE, TRUE, GNOME_PAD);
+					 FALSE, TRUE, 8);
 
-	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 4);
 
 	if (gail_up) {
 		add_atk_namedesc (pui->format, "format_entry", _("Enter the cursor offset format"));
@@ -169,7 +167,7 @@ create_prefs_dialog()
 	/* show offsets check button */
 	pui->offsets_col = gtk_check_button_new_with_mnemonic(_("Sh_ow offsets column"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->offsets_col), show_offsets_column);
-	gtk_box_pack_start(GTK_BOX(vbox), pui->offsets_col, FALSE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(GTK_BOX(vbox), pui->offsets_col, FALSE, TRUE, 4);
 	gtk_widget_show(pui->offsets_col);
 
 	label = gtk_label_new(_("Editing"));
@@ -182,7 +180,7 @@ create_prefs_dialog()
 	
 	/* display font */
 	frame = gtk_frame_new(_("Font"));
-	gtk_container_set_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
+	gtk_container_set_border_width(GTK_CONTAINER(frame), 4);
 	gtk_widget_show(frame);
 	
 	fbox = gtk_hbox_new(0, 5);
@@ -195,17 +193,17 @@ create_prefs_dialog()
 	gtk_label_set_mnemonic_widget (GTK_LABEL (flabel), pui->font_button);
 	gtk_widget_show(flabel);
 	gtk_widget_show(GTK_WIDGET(pui->font_button));
-	gtk_container_set_border_width(GTK_CONTAINER(fbox), GNOME_PAD_SMALL);
-	gtk_box_pack_start (GTK_BOX (fbox), GTK_WIDGET(pui->font_button), FALSE, TRUE, GNOME_PAD_BIG);
+	gtk_container_set_border_width(GTK_CONTAINER(fbox), 4);
+	gtk_box_pack_start (GTK_BOX (fbox), GTK_WIDGET(pui->font_button), FALSE, TRUE, 12);
 	
 	gtk_widget_show(fbox);
 	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(fbox));
 	
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 4);
 	
 	/* default group type */
 	frame = gtk_frame_new(_("Default Group Type"));
-	gtk_container_set_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
+	gtk_container_set_border_width(GTK_CONTAINER(frame), 4);
 	gtk_widget_show(frame);
 
 	box = gtk_vbox_new(FALSE, 0);
@@ -218,7 +216,7 @@ create_prefs_dialog()
 		group = gtk_radio_button_get_group(pui->group_type[i]);
 	}
 	gtk_container_add(GTK_CONTAINER(frame), box);
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 4);
 	
 	label = gtk_label_new(_("Display"));
 	gtk_widget_show(label);
@@ -230,12 +228,12 @@ create_prefs_dialog()
 
 	/* paper selection */
 	frame = gtk_frame_new(_("Paper size"));
-	gtk_container_set_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
+	gtk_container_set_border_width(GTK_CONTAINER(frame), 4);
 	gtk_widget_show(frame);
 
 	/* data & header font selection */
 	frame = gtk_frame_new(_("Fonts"));
-	gtk_container_set_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
+	gtk_container_set_border_width(GTK_CONTAINER(frame), 4);
 	gtk_widget_show(frame);
 
 	table = gtk_table_new(2, 3, TRUE);
@@ -245,7 +243,7 @@ create_prefs_dialog()
 	gtk_widget_show(label);
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
 					 GTK_FILL, GTK_FILL,
-					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+					 4, 4);
 
 	pui->df_button = gnome_print_font_picker_new();
 	gnome_print_font_picker_set_mode (GNOME_PRINT_FONT_PICKER (pui->df_button), GNOME_PRINT_FONT_PICKER_MODE_FONT_INFO);
@@ -266,19 +264,19 @@ create_prefs_dialog()
 	gtk_widget_show(pui->df_button);
 	gtk_table_attach(GTK_TABLE(table), pui->df_button, 1, 2, 0, 1,
 					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
-					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+					 4, 4);
 	label = gtk_label_new("");
 	gtk_widget_show(label);
 	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
 					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
-					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+					 4, 4);
 
 	label = gtk_label_new_with_mnemonic(_("Header fo_nt:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_widget_show(label);
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
 					 GTK_FILL, GTK_FILL,
-					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+					 4, 4);
 	pui->hf_button = gnome_print_font_picker_new();
 	gnome_print_font_picker_set_mode (GNOME_PRINT_FONT_PICKER (pui->hf_button), GNOME_PRINT_FONT_PICKER_MODE_FONT_INFO);
 	gnome_print_font_picker_fi_set_use_font_in_label (GNOME_PRINT_FONT_PICKER (pui->hf_button), TRUE, 14);
@@ -298,18 +296,18 @@ create_prefs_dialog()
 	gtk_widget_show(pui->hf_button);
 	gtk_table_attach(GTK_TABLE(table), pui->hf_button, 1, 2, 1, 2,
 					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
-					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+					 4, 4);
 
 	label = gtk_label_new("");
 	gtk_widget_show(label);
 	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 1, 2,
 					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
-					 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+					 4, 4);
 
 	gtk_container_add(GTK_CONTAINER(frame), table);
 
 	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE,
-					   GNOME_PAD_SMALL);  
+					   4);
 
 	/* shaded box entry */
 	box_adj = GTK_ADJUSTMENT(gtk_adjustment_new(0, 0, 1000, 1, 10, 0));
@@ -319,11 +317,11 @@ create_prefs_dialog()
 
 	label = gtk_label_new_with_mnemonic(_("_Print shaded box over:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 1.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, 4);
 	gtk_widget_show(label);
 						  
 	pui->box_size_spin = gtk_spin_button_new(box_adj, 1, 0);
-	gtk_box_pack_start (GTK_BOX(box), GTK_WIDGET(pui->box_size_spin), FALSE, TRUE, GNOME_PAD);
+	gtk_box_pack_start (GTK_BOX(box), GTK_WIDGET(pui->box_size_spin), FALSE, TRUE, 8);
 	gtk_widget_show(pui->box_size_spin);
 
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pui->box_size_spin);
@@ -335,10 +333,10 @@ create_prefs_dialog()
 
 	label = gtk_label_new(_("lines (0 for no box)"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, FALSE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX(box), label, FALSE, TRUE, 4);
 	gtk_widget_show(label);
 
-	gtk_box_pack_start(GTK_BOX(vbox), box, TRUE, TRUE, GNOME_PAD_SMALL);  
+	gtk_box_pack_start(GTK_BOX(vbox), box, TRUE, TRUE, 4);
 
 	label = gtk_label_new(_("Printing"));
 	gtk_widget_show(label);

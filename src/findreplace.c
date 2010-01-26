@@ -26,7 +26,6 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <libgnomeui/gnome-uidefs.h>
 
 #include "findreplace.h"
 #include "ui.h"
@@ -224,7 +223,7 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 
 	dialog->hbox = gtk_hbox_new(FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox),
-					   dialog->hbox, TRUE, TRUE, GNOME_PAD_SMALL);
+					   dialog->hbox, TRUE, TRUE, 4);
 	gtk_widget_show(dialog->hbox);
 
 	dialog->list = gtk_list_store_new(3,
@@ -249,12 +248,12 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 	gtk_tree_view_append_column (GTK_TREE_VIEW (dialog->tree), column);
 
 	gtk_box_pack_start(GTK_BOX(dialog->hbox), dialog->tree,
-					   TRUE, TRUE, GNOME_PAD_SMALL);
+					   TRUE, TRUE, 4);
 	gtk_widget_show (dialog->tree);
 
 	dialog->vbox = gtk_vbox_new(FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(dialog->hbox), dialog->vbox,
-					   FALSE, FALSE, GNOME_PAD_SMALL);
+					   FALSE, FALSE, 4);
 	gtk_widget_show(dialog->vbox);
 
 	dialog->f_next = create_button(dialog->window, GTK_STOCK_GO_FORWARD, _("Find _Next"));
@@ -276,7 +275,7 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 	gtk_widget_show(dialog->f_prev);
 
 	sep = gtk_hseparator_new();
-	gtk_box_pack_start(GTK_BOX(dialog->vbox), sep, FALSE, FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(GTK_BOX(dialog->vbox), sep, FALSE, FALSE, 4);
 	gtk_widget_show(sep);
 
 	dialog->f_new = create_button(dialog->window, GTK_STOCK_ADD, _("_Add New"));

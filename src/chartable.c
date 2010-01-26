@@ -26,7 +26,7 @@
 #endif /* HAVE_CONFIG_H */
 
 #include <gtk/gtk.h>
-#include <libgnomeui/gnome-uidefs.h>
+#include <gdk/gdkkeysyms.h>
 
 #include "chartable.h"
 #include "ghex-window.h"
@@ -223,15 +223,15 @@ GtkWidget *create_char_table()
 	lbl = gtk_label_new ("");
 	gtk_widget_show(lbl);
 
-	vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
+	vbox = gtk_vbox_new(FALSE, 4);
 	gtk_widget_show(vbox);
 
-	hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
+	hbox = gtk_hbox_new (FALSE, 4);
 	gtk_widget_show(hbox);
 
 	gtk_box_pack_start(GTK_BOX(vbox), sw, TRUE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), lbl, TRUE, TRUE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(hbox), cbtn, FALSE, TRUE, GNOME_PAD_BIG);
+	gtk_box_pack_start(GTK_BOX(hbox), lbl, TRUE, TRUE, 4);
+	gtk_box_pack_start(GTK_BOX(hbox), cbtn, FALSE, TRUE, 12);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	gtk_container_add(GTK_CONTAINER(sw), ctv);

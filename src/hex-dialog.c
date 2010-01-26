@@ -22,7 +22,6 @@
 #include <config.h>
 #include <glib-object.h>
 
-#include <libgnomeui/gnome-uidefs.h>
 #include <glib/gi18n.h>
 
 #include <stdio.h>
@@ -172,10 +171,10 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     gtk_widget_show(table);
     gtk_widget_show(vbox);
 
-    gtk_box_pack_start(GTK_BOX(vbox), table, TRUE, FALSE, GNOME_PAD_SMALL);
+    gtk_box_pack_start(GTK_BOX(vbox), table, TRUE, FALSE, 4);
 
-    gtk_table_set_row_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
-    gtk_table_set_col_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
+    gtk_table_set_row_spacings(GTK_TABLE(table), 4);
+    gtk_table_set_col_spacings(GTK_TABLE(table), 4);
 
     create_dialog_prop(S8, dialog, table, 0, 0);
     create_dialog_prop(US8, dialog, table, 0, 1);
@@ -192,7 +191,7 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     create_dialog_prop(BIN, dialog, table, 4, 2);
 
     hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, FALSE, GNOME_PAD_SMALL);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, FALSE, 4);
     gtk_widget_show(hbox);
 
     dialog->config_endian = gtk_check_button_new_with_label(_("Show little endian decoding"));
@@ -200,13 +199,13 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     g_signal_connect(G_OBJECT(dialog->config_endian), "toggled",
                      G_CALLBACK(config_toggled_cb), dialog);
     gtk_widget_show(dialog->config_endian);
-    gtk_box_pack_start(GTK_BOX(hbox), dialog->config_endian, TRUE, FALSE, GNOME_PAD_SMALL);
+    gtk_box_pack_start(GTK_BOX(hbox), dialog->config_endian, TRUE, FALSE, 4);
 
     dialog->config_hex = gtk_check_button_new_with_label(_("Show unsigned and float as hexadecimal"));
     g_signal_connect(G_OBJECT(dialog->config_hex), "toggled",
                      G_CALLBACK(config_toggled_cb), dialog);
     gtk_widget_show(dialog->config_hex);
-    gtk_box_pack_start(GTK_BOX(hbox), dialog->config_hex, TRUE, FALSE, GNOME_PAD_SMALL);
+    gtk_box_pack_start(GTK_BOX(hbox), dialog->config_hex, TRUE, FALSE, 4);
 
     label = gtk_label_new(_("Stream Length:"));
     gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);

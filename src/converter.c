@@ -30,7 +30,7 @@
 #include <ctype.h>      /* for isdigit */
 #include <string.h>     /* for strncpy */
 
-#include <libgnomeui/gnome-uidefs.h>
+#include <gdk/gdkkeysyms.h>
 
 #include "gtkhex.h"
 #include "converter.h"
@@ -237,12 +237,12 @@ create_converter()
 					 G_CALLBACK(close_converter), conv->window);
 
 	table = gtk_table_new(6, 2, FALSE);
-	gtk_table_set_row_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
-	gtk_table_set_col_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
+	gtk_table_set_row_spacings(GTK_TABLE(table), 4);
+	gtk_table_set_col_spacings(GTK_TABLE(table), 4);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(conv->window)->vbox), table,
 					   TRUE, TRUE, 0);
 	gtk_container_set_border_width(GTK_CONTAINER(GTK_DIALOG(conv->window)->vbox),
-								   GNOME_PAD_SMALL);
+								   4);
 	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(conv->window)->vbox), 2);
 	gtk_widget_show(table);
 	
