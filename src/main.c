@@ -26,6 +26,7 @@
 #include <libgnomeui/gnome-client.h>
 #include <libgnomeui/gnome-ui-init.h>
 
+#include "configuration.h"
 #include "session.h"
 #include "factory.h"
 #include "ghex-window.h"
