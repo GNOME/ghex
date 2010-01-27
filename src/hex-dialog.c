@@ -72,7 +72,7 @@ static struct {
 
 GType hex_dialog_get_type ()
 {
-    static GtkType doc_type = 0;
+    static GType doc_type = 0;
 
     if (doc_type == 0)
     {

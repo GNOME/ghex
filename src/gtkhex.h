@@ -39,9 +39,12 @@ G_BEGIN_DECLS
 #define LOWER_NIBBLE TRUE
 #define UPPER_NIBBLE FALSE
 
-#define GTK_HEX(obj)          GTK_CHECK_CAST (obj, gtk_hex_get_type (), GtkHex)
-#define GTK_HEX_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, gtk_hex_get_type (), GtkHexClass)
-#define GTK_IS_HEX(obj)       GTK_CHECK_TYPE (obj, gtk_hex_get_type ())
+#define GTK_TYPE_HEX                    (gtk_hex_get_type ())
+#define GTK_HEX(obj)                    (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_HEX, GtkHex))
+#define GTK_HEX_CLASS(klass)            (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_HEX, GtkHexClass))
+#define GTK_IS_HEX(obj)                 (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_HEX))
+#define GTK_IS_HEX_CLASS(klass)         (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_HEX))
+#define GTK_HEX_GET_CLASS(obj)          (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_HEX, GtkHexClass))
 
 typedef struct _GtkHex GtkHex;
 typedef struct _GtkHexClass GtkHexClass;
@@ -128,7 +131,7 @@ struct _GtkHexClass
 	void (*paste_clipboard)(GtkHex *);
 };
 
-GType gtk_hex_get_type(void);
+GType           gtk_hex_get_type                (void) G_GNUC_CONST;
 
 GtkWidget *gtk_hex_new(HexDocument *);
 

@@ -188,8 +188,8 @@ create_prefs_dialog()
 	pui->font_button = gtk_font_button_new();
 	gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->font_button),
 								  def_font_name);
-	gtk_signal_connect (GTK_OBJECT (pui->font_button), "font-set",
-						GTK_SIGNAL_FUNC (select_display_font_cb), pui);
+	g_signal_connect (pui->font_button, "font-set",
+	                  G_CALLBACK (select_display_font_cb), pui);
 	flabel = gtk_label_new("");
 	gtk_label_set_mnemonic_widget (GTK_LABEL (flabel), pui->font_button);
 	gtk_widget_show(flabel);

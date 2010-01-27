@@ -29,7 +29,7 @@ setup_factory (void)
   /*
    * set up the factory only if GAIL is loaded.
    */
-  derived_type = g_type_parent (gtk_hex_get_type());
+  derived_type = g_type_parent (GTK_TYPE_HEX);
 
 
   if (is_gail_loaded (derived_type))
@@ -37,7 +37,7 @@ setup_factory (void)
       /* create the factory */
       default_registry = atk_get_default_registry();
       atk_registry_set_factory_type (default_registry,
-				     gtk_hex_get_type(),
+				     GTK_TYPE_HEX,
 				     ACCESSIBLE_TYPE_GTK_HEX_FACTORY);
     }
 }

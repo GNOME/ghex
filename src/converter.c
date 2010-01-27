@@ -92,12 +92,10 @@ entry_filter(GtkEditable *editable, const gchar *text, gint length,
 	gdk_beep();
 	g_signal_stop_emission_by_name(G_OBJECT(editable), "insert_text");
 #if 0 /* Pasting is not working. gtk is doing weird things. Chema */
-	gtk_signal_handler_block_by_func(GTK_OBJECT(editable), entry_filter,
-									 data);
+	g_signal_handler_block_by_func (editable, entry_filter, data);
 	g_print("Inserting -->%s<--- of length %i in pos %i\n", s, l, *pos);
 	gtk_editable_insert_text(editable, s, l, pos);
-	gtk_signal_handler_unblock_by_func(GTK_OBJECT(editable), entry_filter,
-									   data);
+	g_signal_handler_unblock_by_func (editable, entry_filter, data);
 #endif 
 }
 

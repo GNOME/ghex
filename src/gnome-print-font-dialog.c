@@ -148,7 +148,7 @@ gnome_print_font_dialog_class_init (GnomePrintFontDialogClass *klass)
   
 	object_class = (GtkObjectClass*) klass;
   
-	gfsd_parent_class = gtk_type_class (GTK_TYPE_DIALOG);
+	gfsd_parent_class = g_type_class_ref (GTK_TYPE_DIALOG);
 }
 
 static GtkWidget*

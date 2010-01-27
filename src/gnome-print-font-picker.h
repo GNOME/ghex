@@ -63,11 +63,11 @@ typedef enum {
         
 
 #define GNOME_PRINT_TYPE_FONT_PICKER            (gnome_print_font_picker_get_type ())
-#define GNOME_PRINT_FONT_PICKER(obj)            (GTK_CHECK_CAST ((obj), GNOME_PRINT_TYPE_FONT_PICKER, GnomePrintFontPicker))
-#define GNOME_PRINT_FONT_PICKER_CLASS(klass)    (GTK_CHECK_CLASS_CAST ((klass), GNOME_PRINT_TYPE_FONT_PICKER, GnomePrintFontPickerClass))
-#define GNOME_PRINT_IS_FONT_PICKER(obj)         (GTK_CHECK_TYPE ((obj), GNOME_PRINT_TYPE_FONT_PICKER))
-#define GNOME_PRINT_IS_FONT_PICKER_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((klass), GNOME_PRINT_TYPE_FONT_PICKER))
-#define GNOME_PRINT_FONT_PICKER_GET_CLASS(obj)  (GTK_CHECK_GET_CLASS ((obj), GNOME_PRINT_TYPE_FONT_PICKER, GnomePrintFontPickerClass))
+#define GNOME_PRINT_FONT_PICKER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GNOME_PRINT_TYPE_FONT_PICKER, GnomePrintFontPicker))
+#define GNOME_PRINT_FONT_PICKER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GNOME_PRINT_TYPE_FONT_PICKER, GnomePrintFontPickerClass))
+#define GNOME_PRINT_IS_FONT_PICKER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GNOME_PRINT_TYPE_FONT_PICKER))
+#define GNOME_PRINT_IS_FONT_PICKER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GNOME_PRINT_TYPE_FONT_PICKER))
+#define GNOME_PRINT_FONT_PICKER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GNOME_PRINT_TYPE_FONT_PICKER, GnomePrintFontPickerClass))
 
 typedef struct _GnomePrintFontPicker        GnomePrintFontPicker;
 typedef struct _GnomePrintFontPickerPrivate GnomePrintFontPickerPrivate;

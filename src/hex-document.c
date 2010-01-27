@@ -261,7 +261,11 @@ hex_document_add_view(HexDocument *doc)
 	
 	new_view = gtk_hex_new(doc);
 
+#if GTK_CHECK_VERSION (2,18,0)
+	gtk_widget_set_has_window (GTK_WIDGET (new_view), TRUE);
+#else
 	gtk_fixed_set_has_window (GTK_FIXED(new_view), TRUE);
+#endif
 
 	gtk_widget_ref(new_view);
 
@@ -386,7 +390,7 @@ hex_document_init (HexDocument *doc)
 GType
 hex_document_get_type (void)
 {
-	static GtkType doc_type = 0;
+	static GType doc_type = 0;
 	
 	if (!doc_type) {
 		static const GTypeInfo doc_info = {

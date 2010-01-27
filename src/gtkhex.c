@@ -1952,7 +1952,7 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 	/* Changed in Gnome 2.0 -- SnM */
 	G_OBJECT_CLASS(klass)->finalize = gtk_hex_finalize;
 
-	parent_class = gtk_type_class (gtk_fixed_get_type ());
+	parent_class = g_type_class_ref (gtk_fixed_get_type ());
 }
 
 static void gtk_hex_init(GtkHex *gh, gpointer klass) {
@@ -2081,7 +2081,7 @@ GType gtk_hex_get_type() {
 GtkWidget *gtk_hex_new(HexDocument *owner) {
 	GtkHex *gh;
 
-	gh = GTK_HEX (g_object_new (gtk_hex_get_type(), NULL));
+	gh = GTK_HEX (g_object_new (GTK_TYPE_HEX, NULL));
 	g_return_val_if_fail (gh != NULL, NULL);
 
 	gh->document = owner;
