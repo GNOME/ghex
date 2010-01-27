@@ -25,6 +25,8 @@
 #  include <config.h>
 #endif /* HAVE_CONFIG_H */
 
+#include <string.h>
+
 #include <gdk/gdkkeysyms.h>
 
 #include "hex-document.h"
