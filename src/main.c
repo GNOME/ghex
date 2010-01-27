@@ -31,33 +31,34 @@
 #include "factory.h"
 #include "ghex-window.h"
 
-static GSList *cl_files;
-
+/* Command line options */
 static gchar *geometry = NULL;
+static gchar **args_remaining = NULL;
 
-static const struct poptOption options[] = {
-  { "geometry", '\0', POPT_ARG_STRING, &geometry, 0,
-    N_("X geometry specification (see \"X\" man page)."),
-    N_("GEOMETRY")
-  },
-  {NULL, '\0', 0, NULL, 0}
+static GOptionEntry options[] = {
+        { "geometry", 'g', 0, G_OPTION_ARG_STRING, &geometry, N_("X geometry specification (see \"X\" man page)."), N_("GEOMETRY") },
+        { G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &args_remaining, NULL, N_("FILES") },
+        { NULL }
 };
 
 int
 main(int argc, char **argv)
 {
+	GOptionContext *context;
 	GnomeClient *client;
-	GValue value = { 0, };
 	GnomeProgram *program;
-	poptContext ctx;
-	char **args;
 	GtkWidget *win;
+	GError *error = NULL;
 
-	char **cl_files;
-
+	context = g_option_context_new (_("- GTK+ binary editor"));
+#ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
+	g_option_context_add_main_entries (context, options, GETTEXT_PACKAGE);
+#else
+	g_option_context_add_main_entries (context, options, NULL);
+#endif
 
 	/* Initialize gnome program */
 	program = gnome_program_init ("ghex2", VERSION,
@@ -89,30 +90,31 @@ main(int argc, char **argv)
 					  G_CALLBACK (client_die), NULL);
 
 	/* Parse args and build the list of files to be loaded at startup */
-	g_value_init (&value, G_TYPE_POINTER);
-	g_object_get_property (G_OBJECT (program), GNOME_PARAM_POPT_CONTEXT, &value);
-	ctx = g_value_get_pointer (&value);
-	g_value_unset (&value);
+	if (g_option_context_parse (context, &argc, &argv, &error) == FALSE) {
+		g_print (_("%s\nRun '%s --help' to see a full list of available command line options.\n"),
+		         error->message, argv[0]);
+		g_error_free (error);
+		g_option_context_free (context);
+		exit(1);
+        }
+	g_option_context_free (context);
 
-	args = (char**) poptGetArgs(ctx);
-
-	cl_files = (char **)poptGetArgs(ctx);
-
-	while(cl_files && *cl_files) {
-		if (g_file_test (*cl_files, G_FILE_TEST_EXISTS)) {
-			win = ghex_window_new_from_file(*cl_files);
-			if(win != NULL) {
-				if(geometry) {
-					if(!gtk_window_parse_geometry(GTK_WINDOW(win), geometry))
-						g_warning(_("Invalid geometry string \"%s\"\n"), geometry);
-					geometry = NULL;
+	if (args_remaining != NULL) {
+		gchar **filename;
+		for (filename = args_remaining; *filename != NULL; filename++) {
+			if (g_file_test (*filename, G_FILE_TEST_EXISTS)) {
+				win = ghex_window_new_from_file(*filename);
+				if(win != NULL) {
+					if(geometry) {
+						if(!gtk_window_parse_geometry(GTK_WINDOW(win), geometry))
+							g_warning(_("Invalid geometry string \"%s\"\n"), geometry);
+						geometry = NULL;
+					}
+					gtk_widget_show(win);
 				}
-				gtk_widget_show(win);
 			}
 		}
-		cl_files++;
 	}
-	poptFreeContext(ctx);
 
 	if(ghex_window_get_list() == NULL) {
 		win = ghex_window_new();
