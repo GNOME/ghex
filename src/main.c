@@ -23,10 +23,7 @@
 
 #include <config.h>
 
-#include <libgnomeui/gnome-client.h>
-
 #include "configuration.h"
-#include "session.h"
 #include "factory.h"
 #include "ghex-window.h"
 
@@ -43,7 +40,6 @@ static GOptionEntry options[] = {
 int
 main(int argc, char **argv)
 {
-	GnomeClient *client;
 	GtkWidget *win;
 	GError *error = NULL;
 
@@ -75,13 +71,6 @@ main(int argc, char **argv)
 
 	if (bonobo_ui_init ("Gnome Binary Editor", VERSION, &argc, argv) == FALSE)
 		g_error (_("Could not initialize Bonobo!\n"));
-
-	client = gnome_master_client();
-
-	g_signal_connect (G_OBJECT (client), "save_yourself",
-					  G_CALLBACK (save_session), (gpointer) argv[0]);
-	g_signal_connect (G_OBJECT (client), "die",
-					  G_CALLBACK (client_die), NULL);
 
 	if (args_remaining != NULL) {
 		gchar **filename;

@@ -43,13 +43,13 @@ libgtkhex_HEADERS = \
 
 ghex2_SOURCES = \
 	hex-document-ui.c preferences.c findreplace.c converter.c	\
-	config.c main.c ui.c chartable.c session.c		\
+	config.c main.c ui.c chartable.c				\
 	print.c ghex-window.c ghex-window.h				\
 	gnome-print-font-dialog.c gnome-print-font-dialog.h		\
 	gnome-print-font-picker.c gnome-print-font-picker.h		\
 	factory.c factory.h hex-dialog.c hex-dialog.h			\
 	configuration.h preferences.h findreplace.h print.h		\
-	converter.h chartable.h ui.h session.h
+	converter.h chartable.h ui.h
 
 ghex-marshal.h: ghex-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --header --prefix=ghex_marshal > $@
