@@ -24,7 +24,6 @@
 #include <config.h>
 
 #include <libgnomeui/gnome-client.h>
-#include <libgnomeui/gnome-ui-init.h>
 
 #include "configuration.h"
 #include "session.h"
@@ -44,30 +43,25 @@ static GOptionEntry options[] = {
 int
 main(int argc, char **argv)
 {
-	GOptionContext *context;
 	GnomeClient *client;
-	GnomeProgram *program;
 	GtkWidget *win;
 	GError *error = NULL;
 
-	context = g_option_context_new (_("- GTK+ binary editor"));
-#ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
-	g_option_context_add_main_entries (context, options, GETTEXT_PACKAGE);
-#else
-	g_option_context_add_main_entries (context, options, NULL);
-#endif
 
-	/* Initialize gnome program */
-	program = gnome_program_init ("ghex2", VERSION,
-				LIBGNOMEUI_MODULE, argc, argv,
-				GNOME_PARAM_POPT_TABLE, options,
-				GNOME_PARAM_HUMAN_READABLE_NAME,
-				_("The gnome binary editor"),
-				GNOME_PARAM_APP_DATADIR, DATADIR,
-				NULL);
+	/* Initialize GTK+ program */
+	if (!gtk_init_with_args (&argc, &argv,
+	                         _("- GTK+ binary editor"),
+	                         options,
+	                         GETTEXT_PACKAGE,
+	                         &error)) {
+		g_printerr (_("%s\nRun '%s --help' to see a full list of available command line options.\n"),
+		            error->message, argv[0]);
+		g_error_free (error);
+		return 1;
+	}
 
 	/* Set default window icon */
 	gtk_window_set_default_icon_name ("ghex");
@@ -88,16 +82,6 @@ main(int argc, char **argv)
 					  G_CALLBACK (save_session), (gpointer) argv[0]);
 	g_signal_connect (G_OBJECT (client), "die",
 					  G_CALLBACK (client_die), NULL);
-
-	/* Parse args and build the list of files to be loaded at startup */
-	if (g_option_context_parse (context, &argc, &argv, &error) == FALSE) {
-		g_print (_("%s\nRun '%s --help' to see a full list of available command line options.\n"),
-		         error->message, argv[0]);
-		g_error_free (error);
-		g_option_context_free (context);
-		exit(1);
-        }
-	g_option_context_free (context);
 
 	if (args_remaining != NULL) {
 		gchar **filename;
