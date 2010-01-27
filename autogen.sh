@@ -15,12 +15,11 @@ PKG_NAME="GHex"
     exit 1
 }
 
-# Check for gnome-autogen.sh existance -- SnM 
+# Check for gnome-autogen.sh existance
 which gnome-autogen.sh || {
-   echo "You need to install gnome-common from the GNOME CVS"
-   exit 1
+    echo "You need to install gnome-common from GNOME Git (or from"
+    echo "your OS vendor's package manager)."
+    exit 1
 }
- 
-#. $srcdir/macros/autogen.sh -- SnM
 
-REQUIRED_AUTOMAKE_VERSION=1.7 USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh
+USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh

@@ -7,7 +7,8 @@ INCLUDES = \
 	-DDATADIR=\""$(datadir)"\"				\
 	-DPREFIX=\""$(prefix)"\"				\
 	$(GHEX_CFLAGS) $(GAILUTIL_CFLAGS)			\
-	$(GHEX_DEPRECATED_CFLAGS)
+	$(WARN_CFLAGS)						\
+	$(DISABLE_DEPRECATED)
 
 BUILT_SOURCES = \
 	ghex-marshal.c	\

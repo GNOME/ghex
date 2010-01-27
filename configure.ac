@@ -1,24 +1,32 @@
-AC_PREREQ(2.53)
-AC_INIT([ghex], [2.24.0],
-	[http://bugzilla.gnome.org/enter_bug.cgi?product=ghex])
-AC_CONFIG_SRCDIR(src/ghex-window.c)
-AM_INIT_AUTOMAKE
-AM_CONFIG_HEADER(config.h)
+AC_PREREQ(2.61)
+AC_INIT([ghex],[2.24.0],[http://bugzilla.gnome.org/enter_bug.cgi?product=ghex],[ghex])
 
+AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_SRCDIR([src/ghex-window.c])
+AC_CONFIG_MACRO_DIR([m4])
+
+AM_INIT_AUTOMAKE([1.10])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 AM_MAINTAINER_MODE
 
-GNOME_DOC_INIT
-
-IT_PROG_INTLTOOL([0.35.0])
-
-AC_ISC_POSIX
+# Check for programs
 AC_PROG_CC
-AC_STDC_HEADERS
-AM_PROG_LIBTOOL
-
 AC_PROG_INSTALL
-AC_PROG_LN_S
-AC_PROG_MAKE_SET
+
+# Initialize libtool
+LT_PREREQ([2.2.6])
+LT_INIT([disable-static])
+
+# Check for header files.
+AC_CHECK_HEADERS([string.h unistd.h])
+
+# Check for typedefs, structures, and compiler characteristics.
+AC_TYPE_SIZE_T
+
+# Check for library functions.
+AC_CHECK_FUNCS([pow strstr strtoul])
+
+AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
 LIBGTKHEX_RELEASE=1.0
 AC_SUBST(LIBGTKHEX_RELEASE)
@@ -54,25 +62,16 @@ AC_SUBST(GAILUTIL_LIBS)
 dnl =================================================================
 dnl Gettext stuff
 dnl =================================================================
+IT_PROG_INTLTOOL([0.40.0])
 GETTEXT_PACKAGE=ghex-2.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext package name.])
 AM_GLIB_GNU_GETTEXT
+dnl =================================================================
 
-AC_CHECK_LIB(popt, poptGetArgs, [POPT_LIBS="-lpopt"],
-AC_MSG_ERROR([popt is required to build ghex.
-You can download the latest version from ftp://ftp.rpm.org/pub/rpm/dist/rpm-4.0.x/]))
-AC_SUBST(POPT_LIBS)
-
-AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
-
-dnl A switch to enable *_DISABLE__DEPRECATED flags
-AC_ARG_ENABLE(deprecations,
-              [AC_HELP_STRING([--enable-deprecations],
-                              [warn about deprecated usages [default=no]])],
-              GHEX_DEPRECATED_CFLAGS="-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -DPANGO_DISABLE_DEPRECATED",
-              GHEX_DEPRECATED_CFLAGS="")
-AC_SUBST(GHEX_DEPRECATED_CFLAGS)
+# Uncomment this when we get rid of bonobo code: GB #590996
+#GNOME_MAINTAINER_MODE_DEFINES
+GNOME_COMPILE_WARNINGS([maximum])
 
 AC_ARG_ENABLE(debug,
               [  --enable-debug      Enables extra debugging output], AC_DEFINE(ENABLE_DEBUG, 1, [Should verbose debugging output be enabled.]))
@@ -86,7 +85,10 @@ fi
 
 AM_GCONF_SOURCE_2
 
-AC_OUTPUT([
+GNOME_DOC_INIT([0.9.0],,
+  [AC_MSG_WARN([[gnome-doc-utils not found: documentation will not be built.]])])
+
+AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
 src/Makefile
@@ -99,3 +101,4 @@ icons/32x32/Makefile
 icons/48x48/Makefile
 ghex.spec
 gtkhex.pc])
+AC_OUTPUT
