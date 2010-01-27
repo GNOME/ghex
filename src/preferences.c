@@ -457,7 +457,7 @@ prefs_response_cb(GtkDialog *dlg, gint response, PropertyUI *pui)
 
 	switch(response) {
 	case GTK_RESPONSE_HELP:
-		gnome_help_display("ghex2.xml", "ghex-prefs", &error);
+		gtk_show_uri (NULL, "ghelp:ghex2?ghex-prefs",  gtk_get_current_event_time (), &error);
 		if(NULL != error) {
 			GtkWidget *dialog;
 			dialog = gtk_message_dialog_new
@@ -468,7 +468,8 @@ prefs_response_cb(GtkDialog *dlg, gint response, PropertyUI *pui)
 							 G_CALLBACK (gtk_widget_destroy),
 							 NULL);
 			gtk_window_set_resizable(GTK_WINDOW (dialog), FALSE);
-			gtk_widget_show(dialog);
+			gtk_window_present (GTK_WINDOW (dialog));
+
 			g_error_free(error);
 		}
 		break;

@@ -284,9 +284,9 @@ help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar *verbname)
 {
 	GError *error = NULL;
 
-	gnome_help_display ("ghex2", NULL, &error);
+	gtk_show_uri (NULL, "ghelp:ghex2",  gtk_get_current_event_time (), &error);
 
-	if(error) {
+	if (error != NULL) {
 		GtkWidget *dialog;
 		dialog = gtk_message_dialog_new (NULL,
 						GTK_DIALOG_MODAL,
@@ -300,7 +300,8 @@ help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar *verbname)
 				  NULL);
 
 		gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-		gtk_widget_show (dialog);
+		gtk_window_present (GTK_WINDOW (dialog));
+
 		g_error_free (error);
 	}
 }
