@@ -22,6 +22,7 @@
 #include <unistd.h> /* for F_OK */
 
 #include "ghex-window.h"
+#include "findreplace.h"
 #include "ui.h"
 #include "converter.h"
 #include "chartable.h"
