@@ -29,6 +29,7 @@
 #include "ghex-window.h"
 #include "gtkhex.h"
 #include "findreplace.h"
+#include "ui.h"
 
 void
 set_doc_menu_sensitivity(HexDocument *doc)
