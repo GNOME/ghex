@@ -33,6 +33,7 @@
 #include "preferences.h"
 #include "configuration.h"
 #include "ghex-window.h"
+#include "ui.h"
 
 #define MAX_MAX_UNDO_DEPTH 100000
 
