@@ -236,7 +236,7 @@ about_response_cb(GtkDialog *dialog, gint response_id, gpointer user_data)
     switch (response_id) {
 		case GTK_RESPONSE_CLOSE:
 		case GTK_RESPONSE_CANCEL:
-			gtk_widget_destroy (dialog);
+			gtk_widget_destroy (GTK_WIDGET(dialog));
 			about = NULL;
 			break;
 		default:
@@ -917,6 +917,7 @@ display_error_dialog (GHexWindow *win, const gchar *msg)
 			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 			GTK_MESSAGE_ERROR,
 			GTK_BUTTONS_OK,
+			"%s",
 			msg);
 
 	gtk_dialog_set_default_response (GTK_DIALOG (error_dlg), GTK_RESPONSE_OK);
@@ -942,6 +943,7 @@ display_info_dialog (GHexWindow *win, const gchar *msg, ...)
 			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 			GTK_MESSAGE_ERROR,
 			GTK_BUTTONS_OK,
+			"%s",
 			real_msg);
 	g_free(real_msg);
 

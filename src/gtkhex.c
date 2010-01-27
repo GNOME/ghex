@@ -439,7 +439,11 @@ static void render_hex_highlights(GtkHex *gh, gint cursor_line)
 			el = curHighlight->end_line;
 
 			if (curHighlight->style)
-				gtk_style_attach(curHighlight->style, gh->xdisp->window);
+			{
+				// For an explanation of "style = gtk_style_attach(style, window)" see:
+				// http://library.gnome.org/devel/gtk/unstable/GtkStyle.html#gtk-style-attach
+				curHighlight->style = gtk_style_attach(curHighlight->style, gh->xdisp->window);
+			}
 			state = (gh->active_view == VIEW_HEX)?GTK_STATE_ACTIVE:GTK_STATE_INSENSITIVE;
 			if (cursor_line == sl)
 			{
@@ -517,7 +521,11 @@ static void render_ascii_highlights(GtkHex *gh, gint cursor_line)
 			el = curHighlight->end_line;
 
 			if (curHighlight->style)
-				gtk_style_attach(curHighlight->style, gh->adisp->window);
+			{
+				// For an explanation of "style = gtk_style_attach(style, window)" see:
+				// http://library.gnome.org/devel/gtk/unstable/GtkStyle.html#gtk-style-attach
+				curHighlight->style = gtk_style_attach(curHighlight->style, gh->adisp->window);
+			}
 			state = (gh->active_view == VIEW_ASCII)?GTK_STATE_ACTIVE:GTK_STATE_INSENSITIVE;
 			if (cursor_line == sl)
 			{
@@ -556,7 +564,11 @@ static void render_ascii_highlights(GtkHex *gh, gint cursor_line)
 								   gh->cpl*gh->char_width, gh->char_height);
 			}
 			if (curHighlight->style)
-				gtk_style_attach(curHighlight->style, gh->adisp->window);
+			{
+				// For an explanation of "style = gtk_style_attach(style, window)" see:
+				// http://library.gnome.org/devel/gtk/unstable/GtkStyle.html#gtk-style-attach
+				curHighlight->style = gtk_style_attach(curHighlight->style, gh->adisp->window);
+			}
 		}
 		curHighlight = curHighlight->next;
 		while (curHighlight == NULL && nextList)
@@ -2253,7 +2265,7 @@ void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
 /*
  * sets font for displaying data
  */
-void gtk_hex_set_font(GtkHex *gh, const PangoFontMetrics *font_metrics, const PangoFontDescription *font_desc) {
+void gtk_hex_set_font(GtkHex *gh, PangoFontMetrics *font_metrics, const PangoFontDescription *font_desc) {
 	g_return_if_fail(gh != NULL);
 	g_return_if_fail(GTK_IS_HEX(gh));
 

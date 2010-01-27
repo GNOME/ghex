@@ -658,7 +658,10 @@ hex_document_read(HexDocument *doc)
 		return FALSE;
 
 	doc->gap_size = doc->buffer_size - doc->file_size;
-	fread(doc->buffer + doc->gap_size, 1, doc->file_size, file);
+	if(fread(doc->buffer + doc->gap_size, 1, doc->file_size, file) != doc->file_size)
+	{
+		g_return_val_if_reached(FALSE);
+	}
 	doc->gap_pos = doc->buffer;
 	fclose(file);
 	undo_stack_free(doc);

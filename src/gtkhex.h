@@ -143,7 +143,7 @@ void gtk_hex_set_group_type(GtkHex *, guint);
 
 void gtk_hex_set_starting_offset(GtkHex *, gint);
 void gtk_hex_show_offsets(GtkHex *, gboolean);
-void gtk_hex_set_font(GtkHex *, const PangoFontMetrics *, const PangoFontDescription *);
+void gtk_hex_set_font(GtkHex *, PangoFontMetrics *, const PangoFontDescription *);
 
 void gtk_hex_set_insert_mode(GtkHex *, gboolean);
 
