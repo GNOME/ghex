@@ -26,6 +26,7 @@
 #include <unistd.h> /* for F_OK and W_OK */
 
 #include <gtk/gtkaboutdialog.h>
+#include <libgnome/gnome-help.h>
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprintui/gnome-print-dialog.h>
 #include <libgnomeprintui/gnome-print-job-preview.h>
