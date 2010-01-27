@@ -33,6 +33,7 @@
 
 #include "print.h"
 #include "gtkhex.h"
+#include "ui.h"
 
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<=0x7F))?1:0)
 
