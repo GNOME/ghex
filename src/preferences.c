@@ -26,7 +26,6 @@
 #endif /* HAVE_CONFIG_H */
 
 #include <gtk/gtk.h>
-#include <libgnome/gnome-help.h>
 
 #include <libgnomeprintui/gnome-font-dialog.h>
 
