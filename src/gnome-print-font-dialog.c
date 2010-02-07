@@ -31,20 +31,11 @@
 
 #include <string.h>
 
-#include <gtk/gtkdialog.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtkframe.h>
-#include <gtk/gtkhbbox.h>
-#include <gtk/gtkbutton.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkaccessible.h>
+#include <glib/gi18n.h>
+#include <gtk/gtk.h>
 #include <atk/atk.h>
 
-#include <glib/gi18n.h>
-
-#include <gnome-print-font-dialog.h>
+#include "gnome-print-font-dialog.h"
 
 void ghex_utils_set_atk_relation (  GtkWidget *obj1, GtkWidget *obj2, AtkRelationType rel_type );
 

@@ -20,7 +20,7 @@
 #ifndef __ACCESSIBLE_GTK_HEX_H__
 #define __ACCESSIBLE_GTK_HEX_H__
 
-#include <gtk/gtkaccessible.h>
+#include <gtk/gtk.h>
 #include <libgail-util/gailtextutil.h>
 
 #ifdef __cplusplus

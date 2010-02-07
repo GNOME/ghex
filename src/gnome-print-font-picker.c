@@ -42,24 +42,10 @@
 
 #include <config.h>
 
-/* Must be before all other gnome includes!! */
 #include <glib/gi18n.h>
+#include <gtk/gtk.h>
 
-#include <gtk/gtksignal.h>
-#include <gtk/gtkmain.h>
-#include <gtk/gtkalignment.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkvseparator.h>
-#include <gtk/gtkfontsel.h>
-#include <gtk/gtkimage.h>
-#include <gtk/gtkstock.h>
-
-#include <gnome-print-font-dialog.h>
-/*
-#include "gnometypebuiltins.h"
-*/
-
+#include "gnome-print-font-dialog.h"
 #include "gnome-print-font-picker.h"
 
 #include <string.h>

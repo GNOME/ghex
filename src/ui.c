@@ -25,7 +25,7 @@
 #include <string.h>
 #include <unistd.h> /* for F_OK and W_OK */
 
-#include <gtk/gtkaboutdialog.h>
+#include <gtk/gtk.h>
 
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprintui/gnome-print-dialog.h>

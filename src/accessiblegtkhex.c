@@ -21,18 +21,19 @@
 #  include <config.h>
 #endif /* HAVE_CONFIG_H */
 
+#include <sys/types.h>
 #include <stdio.h>
 #include <string.h>
-#include <gtk/gtk.h>
-#include <gtk/gtkwidget.h>
-#include <sys/types.h>
-#include <bonobo.h>
-#include <libgail-util/gailmisc.h>
-#include <atk/atkobject.h>
 
-#include <accessiblegtkhex.h>
-#include <gtkhex.h>
-#include <gtkhex-private.h>
+#include <gtk/gtk.h>
+#include <atk/atk.h>
+#include <libgail-util/gailmisc.h>
+
+#include <bonobo.h>
+
+#include "accessiblegtkhex.h"
+#include "gtkhex.h"
+#include "gtkhex-private.h"
 
 static void accessible_gtk_hex_class_init       (AccessibleGtkHexClass *klass);
 

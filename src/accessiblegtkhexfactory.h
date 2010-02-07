@@ -20,7 +20,7 @@
 #ifndef __ACCESSIBLE_GTK_HEX_FACTORY_H__
 #define __ACCESSIBLE_GTK_HEX_FACTORY_H__
 
-#include <atk/atkobjectfactory.h>
+#include <atk/atk.h>
 #include <gtkhex.h>
 
 #ifdef __cplusplus

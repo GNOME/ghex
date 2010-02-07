@@ -20,7 +20,8 @@
 #  include <config.h>
 #endif /* HAVE_CONFIG_H */
 
-#include <gtk/gtkaccessible.h>
+#include <gtk/gtk.h>
+
 #include "accessiblegtkhexfactory.h"
 #include "accessiblegtkhex.h"
 

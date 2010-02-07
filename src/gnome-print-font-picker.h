@@ -43,7 +43,7 @@
 #ifndef GNOME_PRINT_FONT_PICKER_H
 #define GNOME_PRINT_FONT_PICKER_H
 
-#include <gtk/gtkbutton.h>
+#include <gtk/gtk.h>
 #include <libgnomeprint/gnome-font.h>
 
 
@@ -129,7 +129,6 @@ const gchar 	*gnome_print_font_picker_get_font_name	(GnomePrintFontPicker *gfp);
 
 gboolean   	 gnome_print_font_picker_set_font_name	(GnomePrintFontPicker *gfp,
                                                	     	 const gchar *fontname);
-#include <gtk/gtkbutton.h>
 
 const gchar	*gnome_print_font_picker_get_preview_text (GnomePrintFontPicker *gfp);
 

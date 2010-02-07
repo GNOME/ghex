@@ -25,9 +25,9 @@
 #define __HEX_DOCUMENT_H__
 
 #include <stdio.h>
-#include <gtk/gtkwidget.h>
 
 #include <glib-object.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
