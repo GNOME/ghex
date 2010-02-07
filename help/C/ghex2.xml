@@ -1,10 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-  <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "2.5.2">
+  <!ENTITY appversion "2.19">
   <!ENTITY manrevision "2.5">
-  <!ENTITY date "March 2004">
+  <!ENTITY date "December 2005">
   <!ENTITY app "GHex">
 ]>
 
@@ -21,7 +20,16 @@
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo> 
-    <title>&app; Manual V&manrevision;</title>       
+    <title>User manual for &app;</title>
+
+    <abstract role="description">
+      &app; is a simple binary editor. It lets users view and edit a binary
+      file in both hex and ascii with a multiple level undo/redo mechanism.
+      Features include find and replace functions, conversion between binary,
+      octal, decimal and hexadecimal values, and use of an alternative,
+      user-configurable MDI concept that lets users edit multiple documents
+      with multiple views of each.
+    </abstract>
 
     <copyright> 
       <year>2002</year> 
@@ -40,12 +48,12 @@
   	</copyright>
    	-->
 
-    <publisher> 
+    <publisher role="maintainer">
       <publishername> GNOME Documentation Project </publishername> 
     </publisher> 
 
-   &legal;
-   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+    <xi:include href="legal.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <!-- This file  contains link to license for the documentation (GNU FDL), and
         other legal stuff such as "NO WARRANTY" statement. Please do not change 
 	any of this. -->
 
