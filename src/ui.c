@@ -268,6 +268,8 @@ about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		gtk_about_dialog_set_license (GTK_ABOUT_DIALOG (about),
 				_("Released under the terms of GNU Public License"));
 		gtk_about_dialog_set_authors (GTK_ABOUT_DIALOG (about), authors);
+		gtk_about_dialog_set_translator_credits (GTK_ABOUT_DIALOG (about),
+		                                         _("translator-credits"));
 		gtk_about_dialog_set_logo_icon_name (GTK_ABOUT_DIALOG (about), "ghex");
 		g_signal_connect(G_OBJECT(about), "destroy",
 						 G_CALLBACK(about_destroy_cb), NULL);
