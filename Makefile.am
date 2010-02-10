@@ -4,7 +4,7 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --disable-schemas-install
 
-SUBDIRS = po src help icons
+SUBDIRS = po help src icons
 
 schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_DATA = ghex2.schemas
