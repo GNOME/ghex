@@ -38,16 +38,12 @@
 #include "print.h"
 #include "chartable.h"
 
-static GtkWidget *about = NULL;
-
 static void ghex_print(GtkHex *gh, gboolean preview);
 static void ghex_print_run_dialog(GHexPrintJobInfo *pji);
 static void ghex_print_preview_real(GHexPrintJobInfo *pji);
 static void ghex_print_document_real (GHexPrintJobInfo *pji, gboolean preview);
 
 /* callbacks to nullify widget pointer after a delete event */
-static void about_destroy_cb(GtkObject *, gpointer);
-
 static void open_cb (BonoboUIComponent *uic, gpointer user_data,
 					 const gchar* verbname);
 static void close_cb (BonoboUIComponent *uic, gpointer user_data,
@@ -226,30 +222,11 @@ create_dialog_title(GtkWidget *window, gchar *title)
  * callbacks for global menus
  */
 static void
-about_destroy_cb(GtkObject *obj, gpointer user_data)
-{
-	about = NULL;
-}
-
-static void
-about_response_cb(GtkDialog *dialog, gint response_id, gpointer user_data)
-{
-    switch (response_id) {
-		case GTK_RESPONSE_CLOSE:
-		case GTK_RESPONSE_CANCEL:
-			gtk_widget_destroy (GTK_WIDGET(dialog));
-			about = NULL;
-			break;
-		default:
-			// do nothing
-			break;
-    }
-}
-
-static void
 about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 {
-	static const gchar *authors[] = {
+	gchar *copyright, *license_translated;
+
+	const gchar *authors[] = {
 		"Jaka Mo\304\215nik",
 		"Chema Celorio",
 		"Shivram Upadhyayula",
@@ -258,27 +235,49 @@ about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		NULL
 	};
 
-	if(!about) {
-		about = gtk_about_dialog_new ();
-		gtk_about_dialog_set_program_name (GTK_ABOUT_DIALOG (about), "GHex");
-		gtk_about_dialog_set_comments (GTK_ABOUT_DIALOG (about),
-				_("A binary file editor"));
-		gtk_about_dialog_set_copyright (GTK_ABOUT_DIALOG (about),
-				"Copyright 1998 - 2006 Jaka Mo\304\215nik");
-		gtk_about_dialog_set_license (GTK_ABOUT_DIALOG (about),
-				_("Released under the terms of GNU Public License"));
-		gtk_about_dialog_set_authors (GTK_ABOUT_DIALOG (about), authors);
-		gtk_about_dialog_set_translator_credits (GTK_ABOUT_DIALOG (about),
-		                                         _("translator-credits"));
-		gtk_about_dialog_set_logo_icon_name (GTK_ABOUT_DIALOG (about), "ghex");
-		g_signal_connect(G_OBJECT(about), "destroy",
-						 G_CALLBACK(about_destroy_cb), NULL);
-		g_signal_connect(G_OBJECT(about), "response",
-						 G_CALLBACK(about_response_cb), NULL);
-		gtk_widget_show (about);
-	}
-	else
-		gdk_window_raise(GTK_WIDGET(about)->window);
+	copyright = g_strdup ("Copyright © 1998 - 2006 Jaka Mo\304\215nik\n"
+	                      "Copyright © 2006 - 2010 GHex Contributors");
+
+	/* For documentation_credits */
+	#include "../help/ghex2-docs.h"
+
+	const gchar *license[] = {
+		N_("The GNOME Web Browser is free software; you can redistribute it and/or modify "
+		   "it under the terms of the GNU General Public License as published by "
+		   "the Free Software Foundation; either version 2 of the License, or "
+		   "(at your option) any later version."),
+		N_("The GNOME Web Browser is distributed in the hope that it will be useful, "
+		   "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+		   "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+		   "GNU General Public License for more details."),
+		N_("You should have received a copy of the GNU General Public License "
+		   "along with the GNOME Web Browser; if not, write to the Free Software Foundation, Inc., "
+		   "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA")
+	};
+	license_translated = g_strjoin ("\n\n",
+	                                _(license[0]),
+	                                _(license[1]),
+	                                _(license[2]),
+	                                NULL);
+
+	gtk_show_about_dialog (NULL,
+	                       "authors", authors,
+	                       "comments", _("A binary file editor"),
+	                       "copyright", copyright,
+	                       "documenters", documentation_credits,
+	                       "license", license_translated,
+	                       "logo-icon-name", PACKAGE,
+	                       "program-name", "GHex",
+	                       "title", _("About GHex"),
+	                       "translator-credits", _("translator-credits"),
+	                       "version", PACKAGE_VERSION,
+	                       "website", "http://live.gnome.org/Ghex",
+	                       "website-label", _("GHex Website"),
+	                       "wrap-license", TRUE,
+	                       NULL);
+
+	g_free (copyright);
+	g_free (license_translated);
 }
 
 static void
