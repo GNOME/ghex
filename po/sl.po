@@ -1,14 +1,16 @@
-# Jaka Mocnik translation of ghex.
+# Slovenian translation of ghex.
 # Copyright (C) 2002 Free Software Foundation, Inc.
-# Jaka Mocnik <jaka.mocnik@kiss.uni-lj.si>, 2000
-# Matej Urbančič <mateju@svn.gnome.org>, 2009
+# This file is distributed under the same license as the ghex package.
+#
+# Jaka Močnik <jaka.mocnik@kiss.uni-lj.si>, 2000.
+# Matej Urbančič <mateju@svn.gnome.org>, 2009 - 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex 1.99.90\n"
+"Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&component=general\n"
-"POT-Creation-Date: 2009-09-29 07:10+0000\n"
-"PO-Revision-Date: 2009-11-20 09:31+0100\n"
+"POT-Creation-Date: 2010-02-10 06:29+0000\n"
+"PO-Revision-Date: 2010-02-10 09:11+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,83 +22,89 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../ghex.desktop.in.h:1
-msgid "GNOME Hexadecimal Editor"
-msgstr "Urejevalnik dvojiških datotek"
+#: ../src/ghex-window.c:497
+#: ../src/ghex-window.c:945
+msgid "GHex"
+msgstr "GHex"
 
 #: ../ghex.desktop.in.h:2
-msgid "Hex Editor"
-msgstr "Urejevalnik dvojiških datotek"
+msgid "Hexadecimal Editor"
+msgstr "Urejevalnik šestnajstiških datotek"
 
-#: ../src/chartable.c:143
+#: ../ghex.desktop.in.h:3
+msgid "Inspect and edit the contents of files"
+msgstr "Pregled in urejanje vsebine datotek"
+
+#: ../src/chartable.c:144
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ../src/chartable.c:143
+#: ../src/chartable.c:144
 msgid "Hex"
 msgstr "Šestnajstiško"
 
-#: ../src/chartable.c:143
-#: ../src/preferences.c:144
+#: ../src/chartable.c:144
+#: ../src/preferences.c:145
 msgid "Decimal"
 msgstr "Desetiško"
 
-#: ../src/chartable.c:144
+#: ../src/chartable.c:145
 msgid "Octal"
 msgstr "Osmiško"
 
-#: ../src/chartable.c:144
+#: ../src/chartable.c:145
 msgid "Binary"
-msgstr "Binarno"
+msgstr "Dvojiško"
 
-#: ../src/chartable.c:160
+#: ../src/chartable.c:161
 msgid "Character table"
-msgstr "Tabela znakov"
+msgstr "Preglednica znakov"
 
-#: ../src/converter.c:230
+#: ../src/converter.c:229
 msgid "Base Converter"
 msgstr "Pretvornik številske osnove"
 
 #. entries
-#: ../src/converter.c:251
+#: ../src/converter.c:250
 msgid "_Binary:"
 msgstr "_Dvojiško:"
 
-#: ../src/converter.c:253
+#: ../src/converter.c:252
 msgid "_Octal:"
 msgstr "_Osmiško:"
 
-#: ../src/converter.c:255
+#: ../src/converter.c:254
 msgid "_Decimal:"
 msgstr "_Desetiško:"
 
-#: ../src/converter.c:257
+#: ../src/converter.c:256
 msgid "_Hex:"
 msgstr "_Šestnajstiško:"
 
-#: ../src/converter.c:259
+#: ../src/converter.c:258
 msgid "_ASCII:"
 msgstr "_ASCII"
 
 #. get cursor button
-#: ../src/converter.c:263
+#: ../src/converter.c:262
 msgid "_Get cursor value"
-msgstr "_Pokaži vrednost pod kazalnikoma"
+msgstr "_Pokaži vrednost pod kazalcem"
 
-#: ../src/converter.c:277
+#: ../src/converter.c:276
 msgid "Get cursor value"
-msgstr "_Pokaži vrednost pod kazalnikom"
+msgstr "_Pokaži vrednost pod kazalcem"
 
-#: ../src/converter.c:277
+#: ../src/converter.c:276
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr "Pokaže vrednost pod kazalnikom v dvojiškem, osmiškem, desetiškem in šestnajstiškem sistemu ter kot ASCII niz"
 
-#: ../src/converter.c:417
+#: ../src/converter.c:416
 msgid "ERROR"
 msgstr "NAPAKA"
 
 #: ../src/findreplace.c:98
 #: ../src/findreplace.c:222
-#: ../src/ui.c:962
+#: ../src/ui.c:967
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): iskanje niza"
@@ -110,12 +118,12 @@ msgstr "Iskani niz"
 #: ../src/findreplace.c:109
 #: ../src/findreplace.c:259
 msgid "Find _Next"
-msgstr "Poišči _naslednjega"
+msgstr "Najdi _naslednje"
 
 #: ../src/findreplace.c:116
 #: ../src/findreplace.c:268
 msgid "Find _Previous"
-msgstr "Poišči _predhodnega"
+msgstr "Najdi _predhodne"
 
 #: ../src/findreplace.c:139
 #: ../src/findreplace.c:412
@@ -129,7 +137,7 @@ msgstr "Vnos iskanega niza v šestnajstiški ali ASCII obliki"
 
 #: ../src/findreplace.c:140
 msgid "Find Next"
-msgstr "Poišči naslednjega"
+msgstr "Najdi naslednje"
 
 #: ../src/findreplace.c:140
 #: ../src/findreplace.c:414
@@ -138,7 +146,7 @@ msgstr "Poišče naslednji primer iskanega niza"
 
 #: ../src/findreplace.c:141
 msgid "Find previous"
-msgstr "Poišči predhodnega"
+msgstr "Najdi predhodne"
 
 #: ../src/findreplace.c:141
 msgid "Finds the previous occurrence of the search string "
@@ -161,7 +169,7 @@ msgstr "GHex (%s): iskanje: dodaj niz"
 
 #: ../src/findreplace.c:180
 msgid "Add"
-msgstr "_Dodaj"
+msgstr "Dodaj"
 
 #: ../src/findreplace.c:236
 msgid "Search String"
@@ -173,7 +181,7 @@ msgstr "Barva poudarjanja"
 
 #: ../src/findreplace.c:281
 msgid "_Add New"
-msgstr "_Dodaj niz"
+msgstr "_Dodaj novo"
 
 #: ../src/findreplace.c:290
 msgid "_Remove Selected"
@@ -189,7 +197,7 @@ msgid "Closes advanced find window"
 msgstr "Zapre pogovorno okno naprednega iskanja"
 
 #: ../src/findreplace.c:354
-#: ../src/ui.c:960
+#: ../src/ui.c:965
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): iskanje in zamenjava nizov"
@@ -200,7 +208,7 @@ msgstr "Zamenjaj z"
 
 #: ../src/findreplace.c:374
 msgid "Find _next"
-msgstr "Poišči _naslednjega"
+msgstr "Najdi _naslednje"
 
 #: ../src/findreplace.c:382
 msgid "_Replace"
@@ -220,7 +228,7 @@ msgstr "Vnos novega niza v šestnajstiški ali ASCII obliki za zamenjavo"
 
 #: ../src/findreplace.c:414
 msgid "Find next"
-msgstr "Poišči naslednjega"
+msgstr "Najdi naslednje"
 
 #: ../src/findreplace.c:415
 #: ../src/ghex-ui.xml.h:51
@@ -244,7 +252,7 @@ msgid "Closes find and replace data window"
 msgstr "Zapre pogovorno okno zamenjave"
 
 #: ../src/findreplace.c:433
-#: ../src/ui.c:958
+#: ../src/ui.c:963
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): skoči na bit"
@@ -259,7 +267,7 @@ msgstr "Vnos bita za skok"
 
 #: ../src/findreplace.c:464
 msgid "OK"
-msgstr "Da"
+msgstr "V redu"
 
 #: ../src/findreplace.c:464
 msgid "Jumps to the specified byte"
@@ -326,7 +334,7 @@ msgstr ""
 
 #: ../src/findreplace.c:678
 msgid "There is no active buffer to replace data in!"
-msgstr "Ni dejavnega predpomnilnika za zamenjavo podatkov!"
+msgstr "Ni dejavnega medpomnilnika za zamenjavo podatkov!"
 
 #: ../src/findreplace.c:703
 #: ../src/findreplace.c:704
@@ -364,7 +372,7 @@ msgstr "Dodaj pogled"
 
 #: ../src/ghex-ui.xml.h:3
 msgid "Add a new view to the buffer"
-msgstr "Dodaj nov pogled v pomnilnik"
+msgstr "Dodaj nov pogled v medpomnilnik"
 
 #: ../src/ghex-ui.xml.h:4
 msgid "Advanced Find"
@@ -376,19 +384,19 @@ msgstr "Biti"
 
 #: ../src/ghex-ui.xml.h:6
 msgid "Character Table..."
-msgstr "Razpredelnica znakov ..."
+msgstr "Preglednica znakov ..."
 
 #: ../src/ghex-ui.xml.h:7
 msgid "Character _Table"
-msgstr "_Razpredelnica znakov"
+msgstr "_Preglednica znakov"
 
 #: ../src/ghex-ui.xml.h:9
 msgid "Close the current file"
-msgstr "Zapre trenutno datoteko"
+msgstr "Zapri trenutno datoteko"
 
 #: ../src/ghex-ui.xml.h:10
 msgid "Configure the application"
-msgstr "Spremeni nastavitve programa"
+msgstr "Nastavitve programa"
 
 #: ../src/ghex-ui.xml.h:11
 msgid "Contents"
@@ -404,7 +412,7 @@ msgstr "Kopiraj"
 
 #: ../src/ghex-ui.xml.h:14
 msgid "Copy selection to clipboard"
-msgstr "Kopiraj izbrane podatke v odložišče"
+msgstr "Kopiraj izbrano na odložišče"
 
 #: ../src/ghex-ui.xml.h:15
 msgid "Cu_t"
@@ -444,7 +452,7 @@ msgstr "Poišči"
 
 #: ../src/ghex-ui.xml.h:24
 msgid "Goto Byte"
-msgstr "Skoči na _bit"
+msgstr "Skoči na bit"
 
 #: ../src/ghex-ui.xml.h:25
 msgid "Group data by 16 bits"
@@ -464,7 +472,7 @@ msgstr "Pomoč"
 
 #: ../src/ghex-ui.xml.h:29
 msgid "Help on this application"
-msgstr "Pomoč o uporabi programa"
+msgstr "Pomoč za delo s programom"
 
 #: ../src/ghex-ui.xml.h:30
 msgid "Insert Mode"
@@ -508,7 +516,7 @@ msgstr "Prilepi podatke iz odložišča"
 
 #: ../src/ghex-ui.xml.h:40
 msgid "Preferences"
-msgstr "Nastavitve"
+msgstr "Možnosti"
 
 #: ../src/ghex-ui.xml.h:41
 msgid "Preview printed data"
@@ -516,11 +524,11 @@ msgstr "Predogled podatkov tiskanja"
 
 #: ../src/ghex-ui.xml.h:42
 msgid "Print"
-msgstr "Tiskanje"
+msgstr "Natisni"
 
 #: ../src/ghex-ui.xml.h:43
 msgid "Print Previe_w..."
-msgstr "Predogled tiskanja ..."
+msgstr "_Predogled tiskanja ..."
 
 #: ../src/ghex-ui.xml.h:44
 msgid "Print Preview..."
@@ -536,11 +544,11 @@ msgstr "_Zamenjaj"
 
 #: ../src/ghex-ui.xml.h:47
 msgid "Redo"
-msgstr "Ponovi"
+msgstr "Ponovno uveljavi"
 
 #: ../src/ghex-ui.xml.h:48
 msgid "Redo the undone action"
-msgstr "Ponovi razveljavljeno spremembo"
+msgstr "Obnovi razveljavljeno spremembo"
 
 #: ../src/ghex-ui.xml.h:49
 msgid "Remove View"
@@ -548,7 +556,7 @@ msgstr "Zapri pogled"
 
 #: ../src/ghex-ui.xml.h:50
 msgid "Remove the current view of the buffer"
-msgstr "Odstrani trenutni podled pomnilnika"
+msgstr "Odstrani trenutni pogled medpomnilnika"
 
 #: ../src/ghex-ui.xml.h:52
 msgid "Replace a string"
@@ -584,7 +592,7 @@ msgstr "Shrani trenutno datoteko"
 
 #: ../src/ghex-ui.xml.h:60
 msgid "Save the current file with a different name"
-msgstr "Shrani datoteko z drugim imenom"
+msgstr "Shrani trenutno datoteko z drugim imenom"
 
 #: ../src/ghex-ui.xml.h:61
 msgid "Search for a string"
@@ -592,7 +600,7 @@ msgstr "Poišči niz"
 
 #: ../src/ghex-ui.xml.h:62
 msgid "Show the character table"
-msgstr "Pokaži razpredelnico znakov"
+msgstr "Pokaži preglednico znakov"
 
 #: ../src/ghex-ui.xml.h:63
 msgid "Show the type conversion dialog in the edit window"
@@ -612,7 +620,7 @@ msgstr "Razveljavi"
 
 #: ../src/ghex-ui.xml.h:67
 msgid "Undo the last action"
-msgstr "Razveljavi zadnjo spremembo"
+msgstr "Razveljavi zadnje dejanje"
 
 #: ../src/ghex-ui.xml.h:68
 msgid "Words"
@@ -635,7 +643,7 @@ msgid "_Base Converter"
 msgstr "_Pretvornik osnove števil"
 
 #: ../src/ghex-ui.xml.h:73
-#: ../src/ui.c:90
+#: ../src/ui.c:87
 msgid "_Bytes"
 msgstr "_Biti"
 
@@ -680,7 +688,7 @@ msgid "_Insert Mode"
 msgstr "Način _vstavljanja"
 
 #: ../src/ghex-ui.xml.h:84
-#: ../src/ui.c:92
+#: ../src/ui.c:89
 msgid "_Longwords"
 msgstr "_Dolge besede"
 
@@ -690,7 +698,7 @@ msgstr "_Odpri ..."
 
 #: ../src/ghex-ui.xml.h:86
 msgid "_Preferences"
-msgstr "_Nastavitve"
+msgstr "_Možnosti"
 
 #: ../src/ghex-ui.xml.h:87
 msgid "_Print"
@@ -698,7 +706,7 @@ msgstr "_Natisni"
 
 #: ../src/ghex-ui.xml.h:88
 msgid "_Redo"
-msgstr "_Obnovi"
+msgstr "_Ponovno uveljavi"
 
 #: ../src/ghex-ui.xml.h:89
 msgid "_Remove View"
@@ -725,55 +733,53 @@ msgid "_Windows"
 msgstr "_Okna"
 
 #: ../src/ghex-ui.xml.h:95
-#: ../src/ui.c:91
+#: ../src/ui.c:88
 msgid "_Words"
 msgstr "_Besede"
 
-#: ../src/ghex-window.c:94
+#: ../src/ghex-window.c:91
 #, c-format
 msgid ""
 "Can not open URI:\n"
 "%s"
-msgstr "Ni mogoče odpreti naslova URI:\n"
+msgstr ""
+"Ni mogoče odpreti naslova URI:\n"
 "%s"
 
-#: ../src/ghex-window.c:113
+#: ../src/ghex-window.c:110
 #, c-format
-msgid "Can not open file:\n"
+msgid ""
+"Can not open file:\n"
 "%s"
-msgstr "Ni mogoče odpreti datoteke URI:\n"
+msgstr ""
+"Ni mogoče odpreti datoteke URI:\n"
 "%s"
 
-#: ../src/ghex-window.c:500
-#: ../src/ghex-window.c:948
-msgid "GHex"
-msgstr "GHex"
-
-#: ../src/ghex-window.c:647
+#: ../src/ghex-window.c:644
 #, c-format
 msgid "Offset: %s"
 msgstr "Odmik: %s"
 
-#: ../src/ghex-window.c:650
+#: ../src/ghex-window.c:647
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; %s bitov od %s do %s izbranih"
 
-#: ../src/ghex-window.c:902
+#: ../src/ghex-window.c:899
 #, c-format
 msgid "Activate file %s"
 msgstr "Uporabi datoteko %s"
 
-#: ../src/ghex-window.c:944
+#: ../src/ghex-window.c:941
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
-#: ../src/ghex-window.c:1073
+#: ../src/ghex-window.c:1070
 msgid "Select a file to save buffer as"
-msgstr "Izbor datoteke v za shranjevanje pomnilnika"
+msgstr "Izbor datoteke v za shranjevanje medpomnilnika"
 
-#: ../src/ghex-window.c:1129
+#: ../src/ghex-window.c:1126
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -782,21 +788,21 @@ msgstr ""
 "Datoteka %s obstaja.\n"
 "Ali jo želite prepisati?"
 
-#: ../src/ghex-window.c:1162
-#: ../src/ui.c:379
+#: ../src/ghex-window.c:1159
+#: ../src/ui.c:382
 #, c-format
 msgid "Saved buffer to file %s"
-msgstr "Pomnilnik shranjen v datoteko %s"
+msgstr "Medpomnilnik je shranjen v datoteko %s"
 
-#: ../src/ghex-window.c:1168
+#: ../src/ghex-window.c:1165
 msgid "Error saving file!"
 msgstr "Napaka med shranjevanjem datoteke!"
 
-#: ../src/ghex-window.c:1174
+#: ../src/ghex-window.c:1171
 msgid "Can't open file for writing!"
 msgstr "Ni mogoče odpreti datoteke za pisanje!"
 
-#: ../src/ghex-window.c:1219
+#: ../src/ghex-window.c:1216
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -805,327 +811,340 @@ msgstr ""
 "Datoteka %s je bila spremenjena.\n"
 "Ali želite shraniti spremembe?"
 
-#: ../src/ghex-window.c:1223
+#: ../src/ghex-window.c:1220
 msgid "Do_n't save"
 msgstr "_Ne shrani"
 
-#: ../src/ghex-window.c:1243
-#: ../src/ui.c:367
+#: ../src/ghex-window.c:1240
+#: ../src/ui.c:370
 msgid "You don't have the permissions to save the file!"
 msgstr "Ni ustreznih pravic za shranjevanje datoteke!"
 
-#: ../src/ghex-window.c:1247
-#: ../src/ui.c:372
+#: ../src/ghex-window.c:1244
+#: ../src/ui.c:375
 msgid "An error occurred while saving file!"
 msgstr "Prišlo je do napake med shranjevanjem datoteke!"
 
-#: ../src/gnome-print-font-dialog.c:111
+#: ../src/gnome-print-font-dialog.c:102
 msgid "_Insert a new preview phrase."
 msgstr "_Vstavi novo reklo predogleda"
 
-#: ../src/gnome-print-font-dialog.c:117
+#: ../src/gnome-print-font-dialog.c:108
 msgid "Modify preview phrase..."
 msgstr "Spremeni reklo predogleda ..."
 
-#: ../src/gnome-print-font-dialog.c:171
+#: ../src/gnome-print-font-dialog.c:162
 msgid "Preview"
 msgstr "Predogled"
 
-#: ../src/gnome-print-font-dialog.c:184
+#: ../src/gnome-print-font-dialog.c:175
 msgid "_Modify preview phrase..."
 msgstr "_Spremeni reklo predogleda ..."
 
-#: ../src/gnome-print-font-dialog.c:247
+#: ../src/gnome-print-font-dialog.c:238
 msgid "Font Selection"
-msgstr "Izbira pisave"
+msgstr "Izbor pisave"
 
-#: ../src/gnome-print-font-picker.c:91
+#: ../src/gnome-print-font-picker.c:76
 msgid "Sans Regular 12"
 msgstr "Sans Regular 12"
 
-#: ../src/gnome-print-font-picker.c:92
+#: ../src/gnome-print-font-picker.c:77
 msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+msgstr "AaBbCcČčDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsŠšTtUuVvWwXxYyZzŽž"
 
-#: ../src/gnome-print-font-picker.c:93
+#: ../src/gnome-print-font-picker.c:78
 msgid "Pick a Font"
 msgstr "Izbor pisave"
 
-#: ../src/gnome-print-font-picker.c:178
+#: ../src/gnome-print-font-picker.c:162
 msgid "Title"
 msgstr "Naslov"
 
-#: ../src/gnome-print-font-picker.c:179
+#: ../src/gnome-print-font-picker.c:163
 msgid "The title of the selection dialog box"
-msgstr "Naslov izbirnega pogovornega okna"
+msgstr "Naziv izbirnega pogovornega okna"
 
-#: ../src/gnome-print-font-picker.c:199
+#: ../src/gnome-print-font-picker.c:183
 msgid "Font name"
 msgstr "Ime pisave"
 
-#: ../src/gnome-print-font-picker.c:200
+#: ../src/gnome-print-font-picker.c:184
 msgid "Name of the selected font"
 msgstr "Ime izbrane pisave"
 
-#: ../src/gnome-print-font-picker.c:208
+#: ../src/gnome-print-font-picker.c:192
 msgid "Preview text"
 msgstr "Reklo predogleda"
 
-#: ../src/gnome-print-font-picker.c:209
+#: ../src/gnome-print-font-picker.c:193
 msgid "Preview text shown in the dialog"
 msgstr "Reklo predogleda, prikazano v pogovornem oknu"
 
-#: ../src/gnome-print-font-picker.c:217
+#: ../src/gnome-print-font-picker.c:201
 msgid "Use font in label"
 msgstr "Uporabi pisavo v oznaki"
 
-#: ../src/gnome-print-font-picker.c:218
+#: ../src/gnome-print-font-picker.c:202
 msgid "Use font in the label in font info mode"
 msgstr "Uporabi pisavo v oznaki v načinu podrobnosti pisave"
 
-#: ../src/gnome-print-font-picker.c:226
+#: ../src/gnome-print-font-picker.c:210
 msgid "Font size for label"
-msgstr "Velikost pisave v oznaki"
+msgstr "Velikost pisave naziva"
 
-#: ../src/gnome-print-font-picker.c:227
+#: ../src/gnome-print-font-picker.c:211
 msgid "Font size for label in font info mode"
 msgstr "Velikost pisave v oznaki v načinu podrobnosti pisave"
 
-#: ../src/gnome-print-font-picker.c:237
+#: ../src/gnome-print-font-picker.c:221
 msgid "Show size"
 msgstr "Pokaži velikost"
 
-#: ../src/gnome-print-font-picker.c:238
+#: ../src/gnome-print-font-picker.c:222
 msgid "Show size in font info mode"
 msgstr "Pokaži velikost v načinu podrobnosti pisave"
 
 #. display font
-#: ../src/gnome-print-font-picker.c:1019
-#: ../src/preferences.c:182
+#: ../src/gnome-print-font-picker.c:1003
+#: ../src/preferences.c:183
 msgid "Font"
 msgstr "Pisava"
 
-#: ../src/hex-dialog.c:57
+#: ../src/hex-dialog.c:58
 msgid "Signed 8 bit:"
 msgstr "Podpisano 8-bitno:"
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:59
 msgid "Unsigned 8 bit:"
 msgstr "Nepodpisano 8-bitno:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:60
 msgid "Signed 16 bit:"
 msgstr "Podpisano 16-bitno:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:61
 msgid "Unsigned 16 bit:"
 msgstr "Nepodpisano 16-bitno:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:62
 msgid "Signed 32 bit:"
 msgstr "Podpisano 32-bitno:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:63
 msgid "Unsigned 32 bit:"
 msgstr "Nepodpisano 32-bitno:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:64
 msgid "32 bit float:"
 msgstr "32-bitno, plavajoča vejica:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:65
 msgid "64 bit float:"
 msgstr "64-bitno, plavajoča vejica:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:66
 msgid "Hexadecimal:"
 msgstr "Šestnajstiško"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:67
 msgid "Octal:"
 msgstr "Osmiško:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:68
 msgid "Binary:"
 msgstr "Dvojiško:"
 
-#: ../src/hex-dialog.c:196
+#: ../src/hex-dialog.c:197
 msgid "Show little endian decoding"
 msgstr "Pokaži kodiranje little endian"
 
-#: ../src/hex-dialog.c:203
+#: ../src/hex-dialog.c:204
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Šestnajstiški prikaz nepodpisanih števil in plavajoče vejice"
 
-#: ../src/hex-dialog.c:209
+#: ../src/hex-dialog.c:210
 msgid "Stream Length:"
 msgstr "Dolžina podatka:"
 
-#: ../src/hex-dialog.c:231
+#: ../src/hex-dialog.c:232
 msgid "FIXME: no conversion function"
 msgstr "POPRAVI: ni funkcije za pretvorbo"
 
-#: ../src/hex-document.c:432
+#: ../src/hex-document.c:436
 msgid "New document"
-msgstr "Nova datoteka"
+msgstr "Nov dokument"
 
-#: ../src/hex-document.c:783
+#: ../src/hex-document.c:790
 #, c-format
 msgid "Page"
 msgstr "Stran"
 
-#: ../src/hex-document.c:789
-#: ../src/hex-document.c:914
+#: ../src/hex-document.c:796
+#: ../src/hex-document.c:921
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Šestnajstiški izpis je ustvaril"
 
-#: ../src/hex-document.c:800
+#: ../src/hex-document.c:807
 msgid "Saving to HTML..."
 msgstr "Shranjevanje kot HTML ..."
 
-#: ../src/hex-document.c:837
+#: ../src/hex-document.c:844
 #, c-format
 msgid "Previous page"
-msgstr "Predhodna stran"
+msgstr "Predhodn stran"
 
-#: ../src/hex-document.c:852
+#: ../src/hex-document.c:859
 #, c-format
 msgid "Next page"
 msgstr "Naslednja stran"
 
-#: ../src/main.c:38
+#: ../src/main.c:35
 msgid "X geometry specification (see \"X\" man page)."
 msgstr "Določilo geometrije okna (glej stran z navodili \"X\")."
 
-#: ../src/main.c:39
+#: ../src/main.c:35
 msgid "GEOMETRY"
 msgstr "GEOMETRIJA"
 
-#: ../src/main.c:65
-msgid "The gnome binary editor"
-msgstr "Urejevalnik dvojiških datotek"
+#: ../src/main.c:36
+msgid "FILES"
+msgstr "Datoteke"
 
-#: ../src/main.c:80
+#: ../src/main.c:52
+msgid "- GTK+ binary editor"
+msgstr "- GTK+ urejevalnik dvojiških datotek"
+
+#: ../src/main.c:56
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"Zaženite '%s --help' za podroben pregled celotnega seznama možnosti ukazne vrstice.\n"
+
+#: ../src/main.c:73
 msgid "Could not initialize Bonobo!\n"
 msgstr "Ni mogoče začeti Bonoba!\n"
 
-#: ../src/main.c:105
-#: ../src/main.c:119
+#: ../src/main.c:83
+#: ../src/main.c:96
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
-msgstr "Neveljaven niz geometrije okna \"%s\"\n"
+msgstr "Neveljaven geometrijski niz \"%s\"\n"
 
-#: ../src/preferences.c:71
+#: ../src/preferences.c:72
 msgid "GHex Preferences"
-msgstr "Nastavitve"
+msgstr "Možnosti GHex"
 
-#: ../src/preferences.c:103
+#: ../src/preferences.c:104
 msgid "_Maximum number of undo levels:"
 msgstr "_Največje število razveljavitev"
 
-#: ../src/preferences.c:123
+#: ../src/preferences.c:124
 msgid "Undo levels"
 msgstr "Ravni razveljavitve"
 
-#: ../src/preferences.c:123
+#: ../src/preferences.c:124
 msgid "Select maximum number of undo levels"
 msgstr "Izbor največjega števila razveljavitev"
 
-#: ../src/preferences.c:127
+#: ../src/preferences.c:128
 msgid "_Show cursor offset in statusbar as:"
 msgstr "_Pokaži odmik kazalnika v vrstici stanja kot:"
 
-#: ../src/preferences.c:146
+#: ../src/preferences.c:147
 msgid "Hexadecimal"
 msgstr "Šestnajstiško"
 
-#: ../src/preferences.c:148
+#: ../src/preferences.c:149
 msgid "Custom"
 msgstr "Po meri"
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:158
 msgid "Enter the cursor offset format"
 msgstr "Vnos zapisa za odmik kazalnika"
 
-#: ../src/preferences.c:158
+#: ../src/preferences.c:159
 msgid "Select the cursor offset format"
 msgstr "Izbor zapisa za odmik kazalnika"
 
 #. show offsets check button
-#: ../src/preferences.c:168
+#: ../src/preferences.c:169
 msgid "Sh_ow offsets column"
 msgstr "Pokaži _stolpec odmikov"
 
-#: ../src/preferences.c:173
+#: ../src/preferences.c:174
 msgid "Editing"
 msgstr "Urejanje"
 
 #. default group type
-#: ../src/preferences.c:205
+#: ../src/preferences.c:206
 msgid "Default Group Type"
 msgstr "Privzeta vrsta skupine"
 
-#: ../src/preferences.c:221
+#: ../src/preferences.c:222
 msgid "Display"
-msgstr "Prikaz"
+msgstr "Pokaži"
 
 #. paper selection
-#: ../src/preferences.c:230
+#: ../src/preferences.c:231
 msgid "Paper size"
 msgstr "Velikost papirja"
 
 #. data & header font selection
-#: ../src/preferences.c:235
+#: ../src/preferences.c:236
 msgid "Fonts"
 msgstr "Pisave"
 
-#: ../src/preferences.c:241
+#: ../src/preferences.c:242
 msgid "_Data font:"
 msgstr "Pisava _podatkov"
 
-#: ../src/preferences.c:260
+#: ../src/preferences.c:261
 msgid "Data font"
 msgstr "Pisava podatkov"
 
-#: ../src/preferences.c:260
+#: ../src/preferences.c:261
 msgid "Select the data font"
 msgstr "Izbor pisave podatkov"
 
-#: ../src/preferences.c:274
+#: ../src/preferences.c:275
 msgid "Header fo_nt:"
 msgstr "Pisava _glave"
 
-#: ../src/preferences.c:292
+#: ../src/preferences.c:293
 msgid "Header font"
 msgstr "Pisava glave"
 
-#: ../src/preferences.c:292
+#: ../src/preferences.c:293
 msgid "Select the header font"
 msgstr "Izbor pisave glave"
 
-#: ../src/preferences.c:318
+#: ../src/preferences.c:319
 msgid "_Print shaded box over:"
 msgstr "_Natisni senčenje preko:"
 
-#: ../src/preferences.c:330
+#: ../src/preferences.c:331
 msgid "Box size"
 msgstr "Velikost polja"
 
-#: ../src/preferences.c:330
+#: ../src/preferences.c:331
 msgid "Select size of box (in number of lines)"
 msgstr "Izbor velikosti polja (v vrsticah)"
 
-#: ../src/preferences.c:334
+#: ../src/preferences.c:335
 msgid "lines (0 for no box)"
 msgstr "vrstic (0 za neosenčen izpis)"
 
-#: ../src/preferences.c:341
+#: ../src/preferences.c:342
 msgid "Printing"
 msgstr "Tiskanje"
 
-#: ../src/preferences.c:463
-#: ../src/ui.c:294
+#: ../src/preferences.c:464
+#: ../src/ui.c:296
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1134,23 +1153,25 @@ msgstr ""
 "Prišlo je do napake med prikazovanjem pomoči: \n"
 "%s"
 
-#: ../src/preferences.c:515
+#: ../src/preferences.c:517
 msgid "Can not open desired font!"
 msgstr "Ni mogoče odpreti želene pisave"
 
-#: ../src/preferences.c:578
-msgid "The offset format string contains invalid format specifier.\n"
+#: ../src/preferences.c:580
+msgid ""
+"The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
-msgstr "Zapis odmika vsebuje nedovoljena določila.\n"
+msgstr ""
+"Zapis odmika vsebuje nedovoljena določila.\n"
 "Uporabiti je mogoče le 'x', 'X', 'p', 'P', 'd' in 'o'!"
 
-#: ../src/print.c:66
+#: ../src/print.c:67
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Stran: %i/%i"
 
-#: ../src/print.c:222
-#: ../src/print.c:238
+#: ../src/print.c:223
+#: ../src/print.c:239
 #, c-format
 msgid ""
 "GHex could not find the font \"%s\".\n"
@@ -1159,49 +1180,73 @@ msgstr ""
 "Ni mogoče najti pisave \"%s\".\n"
 "Brez te pisave s programom ni mogoče tiskati."
 
-#: ../src/ui.c:97
+#: ../src/ui.c:94
 msgid "hex data"
 msgstr "šestnajstiški niz"
 
-#: ../src/ui.c:98
+#: ../src/ui.c:95
 msgid "ASCII data"
 msgstr "ASCII niz"
 
-#: ../src/ui.c:264
+#: ../src/ui.c:245
+msgid "The GNOME Web Browser is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
+msgstr "Program je prosti program. Lahko ga razširjate in/ali spreminjate pod pogoji licence GNU General Public License kot jo je objavila organizacija Free Software Foundation; bodisi pod različico 2 ali (po vašem mnenju) katerokoli kasnejšo različico."
+
+#: ../src/ui.c:249
+msgid "The GNOME Web Browser is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
+msgstr "Program se razširja v upanju, da bo koristen, vendar BREZ ZAGOTOVILA KAKRŠNEGAKOLI JAMSTVA; tudi brez posrednega jamstva CENOVNE VREDNOSTI ali PRIMERNOSTI ZA DOLOČENO UPORABO. Za več podrobnosti si oglejte GNU General Public License."
+
+#: ../src/ui.c:253
+msgid "You should have received a copy of the GNU General Public License along with the GNOME Web Browser; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr "Skupaj s programom bi morali prejeti kopijo dovoljenja GNU General Public License. Če je niste, pišite na Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA"
+
+#: ../src/ui.c:265
 msgid "A binary file editor"
 msgstr "Urejevalnik dvojiških datotek"
 
-#: ../src/ui.c:268
-msgid "Released under the terms of GNU Public License"
-msgstr "Objavljeno pod pogoji dovoljenja GPL"
+#: ../src/ui.c:271
+msgid "About GHex"
+msgstr "O programu"
 
-#: ../src/ui.c:396
+#: ../src/ui.c:272
+msgid "translator-credits"
+msgstr ""
+"Matic Žgur <mr.zgur@gmail.com>\n"
+"Matjaž Horvat <m@owca.info>\n"
+"Tilen Travnik <tilen.travnik@guest.arnes.si>\n"
+"Matej Urbančič <mateju@svn.gnome.org>"
+
+#: ../src/ui.c:275
+msgid "GHex Website"
+msgstr "Spletišče GHex"
+
+#: ../src/ui.c:399
 msgid "Select a file to open"
-msgstr "Izbor datoteke"
+msgstr "Izbor datoteke za odpiranje"
 
-#: ../src/ui.c:427
+#: ../src/ui.c:430
 #, c-format
 msgid "Loaded file %s"
 msgstr "Naložena datoteka %s"
 
-#: ../src/ui.c:435
+#: ../src/ui.c:438
 msgid "Can not open file!"
 msgstr "Ni mogoče odpreti datoteke!"
 
-#: ../src/ui.c:496
+#: ../src/ui.c:499
 msgid "Select path and file name for the HTML source"
 msgstr "Izbor imenika in datoteke za vir HTML"
 
-#: ../src/ui.c:530
+#: ../src/ui.c:533
 msgid "You need to specify a base name for the HTML files."
 msgstr "Izbrati je treba osnovno ime za datoteke HTML"
 
-#: ../src/ui.c:541
-#: ../src/ui.c:565
+#: ../src/ui.c:544
+#: ../src/ui.c:568
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Ni ustreznih dovoljenj za pisanje v izbrano mapo.\n"
 
-#: ../src/ui.c:552
+#: ../src/ui.c:555
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1209,47 +1254,62 @@ msgstr ""
 "Shranjevanje v zapisu HTML bo prepisalo nekatere datoteke.\n"
 "Ali želite nadaljevati?"
 
-#: ../src/ui.c:705
+#: ../src/ui.c:708
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Ali naj se povrne vsebina datoeke %s?"
 
-#: ../src/ui.c:719
+#: ../src/ui.c:722
 #, c-format
 msgid "Reverted buffer from file %s"
-msgstr "Povrnil pomnilnik iz datoteke %s"
+msgstr "Povrnjen medpomnilnik iz datoteke %s"
 
-#: ../src/ui.c:803
+#: ../src/ui.c:806
 msgid "Printing file..."
 msgstr "Tiskanje datoteke ..."
 
-#: ../src/ui.c:863
+#: ../src/ui.c:866
 msgid "Print Hex Document"
 msgstr "Natisni binarni dokument"
 
-#: ../src/ui.c:875
+#: ../src/ui.c:878
 msgid "Pages"
 msgstr "Strani"
 
-#: ../src/ui.c:900
+#: ../src/ui.c:903
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Predogled tiskanja"
 
+#~ msgid "Hex Editor"
+#~ msgstr "Urejevalnik dvojiških datotek"
+
+#~ msgid "The gnome binary editor"
+#~ msgstr "Urejevalnik dvojiških datotek"
+
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "Objavljeno pod pogoji dovoljenja GPL"
+
 #~ msgid "C_ut"
 #~ msgstr "I_zreži"
+
 #~ msgid "_Paste"
 #~ msgstr "_Prilepi"
+
 #~ msgid "Search for %s"
 #~ msgstr "Poišči %s"
+
 #~ msgid "Replace %s"
 #~ msgstr "Zamenjaj %s"
+
 #~ msgid "The string is not appropriate for the selected data type!"
 #~ msgstr "Niz ne ustreza izbranem zapisu podatkov!"
+
 #~ msgid "The offset must be a positive integer value!"
 #~ msgstr "Odmik kazalnika mora biti pozitivno celo število!"
+
 #~ msgid "Strings are not appropriate for the selected data type!"
 #~ msgstr "Niza ne ustrezata izbrani vrsti podatkov!"
+
 #~ msgid "GHex - %s"
 #~ msgstr "GHex - %s"
-
