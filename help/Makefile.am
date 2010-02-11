@@ -10,4 +10,4 @@ DOC_FIGURES =	\
 	figures/ghex_window_empty.png	\
 	figures/ghex_window_open.png
 
-DOC_LINGUAS = de es fr it ja ko oc sv th zh_CN zh_TW
+DOC_LINGUAS = cs de es fr it ja ko oc sv th zh_CN zh_TW
