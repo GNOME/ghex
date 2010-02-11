@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&component=general\n"
-"POT-Creation-Date: 2010-02-10 06:29+0000\n"
-"PO-Revision-Date: 2010-02-10 09:11+0100\n"
+"POT-Creation-Date: 2010-02-11 00:34+0000\n"
+"PO-Revision-Date: 2010-02-11 08:02+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -104,7 +104,7 @@ msgstr "NAPAKA"
 
 #: ../src/findreplace.c:98
 #: ../src/findreplace.c:222
-#: ../src/ui.c:967
+#: ../src/ui.c:966
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): iskanje niza"
@@ -197,7 +197,7 @@ msgid "Closes advanced find window"
 msgstr "Zapre pogovorno okno naprednega iskanja"
 
 #: ../src/findreplace.c:354
-#: ../src/ui.c:965
+#: ../src/ui.c:964
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): iskanje in zamenjava nizov"
@@ -252,7 +252,7 @@ msgid "Closes find and replace data window"
 msgstr "Zapre pogovorno okno zamenjave"
 
 #: ../src/findreplace.c:433
-#: ../src/ui.c:963
+#: ../src/ui.c:962
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): skoči na bit"
@@ -789,7 +789,7 @@ msgstr ""
 "Ali jo želite prepisati?"
 
 #: ../src/ghex-window.c:1159
-#: ../src/ui.c:382
+#: ../src/ui.c:381
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Medpomnilnik je shranjen v datoteko %s"
@@ -816,12 +816,12 @@ msgid "Do_n't save"
 msgstr "_Ne shrani"
 
 #: ../src/ghex-window.c:1240
-#: ../src/ui.c:370
+#: ../src/ui.c:369
 msgid "You don't have the permissions to save the file!"
 msgstr "Ni ustreznih pravic za shranjevanje datoteke!"
 
 #: ../src/ghex-window.c:1244
-#: ../src/ui.c:375
+#: ../src/ui.c:374
 msgid "An error occurred while saving file!"
 msgstr "Prišlo je do napake med shranjevanjem datoteke!"
 
@@ -1144,7 +1144,7 @@ msgid "Printing"
 msgstr "Tiskanje"
 
 #: ../src/preferences.c:464
-#: ../src/ui.c:296
+#: ../src/ui.c:295
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1188,17 +1188,25 @@ msgstr "šestnajstiški niz"
 msgid "ASCII data"
 msgstr "ASCII niz"
 
+#: ../src/ui.c:238
+msgid ""
+"Copyright © 1998 - 2006 Jaka Močnik\n"
+"Copyright © 2006 - 2010 GHex Contributors"
+msgstr ""
+"Avtorske pravice © 1998 - 2006 Jaka Močnik\n"
+"Avtorske pravice © 2006 - 2010 GHex skupina"
+
 #: ../src/ui.c:245
-msgid "The GNOME Web Browser is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
+msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
 msgstr "Program je prosti program. Lahko ga razširjate in/ali spreminjate pod pogoji licence GNU General Public License kot jo je objavila organizacija Free Software Foundation; bodisi pod različico 2 ali (po vašem mnenju) katerokoli kasnejšo različico."
 
 #: ../src/ui.c:249
-msgid "The GNOME Web Browser is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
-msgstr "Program se razširja v upanju, da bo koristen, vendar BREZ ZAGOTOVILA KAKRŠNEGAKOLI JAMSTVA; tudi brez posrednega jamstva CENOVNE VREDNOSTI ali PRIMERNOSTI ZA DOLOČENO UPORABO. Za več podrobnosti si oglejte GNU General Public License."
+msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
+msgstr "Ta program je na voljo v upanju, da bo uporaben, vendar je BREZ VSAKRŠNEGA JAMSTVA; tudi brez jamstva o USTREZNOSTI ZA PRODAJO ali PRIMERNOSTI ZA UPORABO. Za več podrobnosti si oglejte besedilo splošnega javnega dovoljenja (GNU GPL)."
 
 #: ../src/ui.c:253
-msgid "You should have received a copy of the GNU General Public License along with the GNOME Web Browser; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
-msgstr "Skupaj s programom bi morali prejeti kopijo dovoljenja GNU General Public License. Če je niste, pišite na Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA"
+msgid "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr "S programom bi morali dobiti tudi kopijo Splošnega Javnega dovoljenja (GNU General Public License); v primeru, da je niste, stopite v stik s Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA "
 
 #: ../src/ui.c:265
 msgid "A binary file editor"
@@ -1220,33 +1228,33 @@ msgstr ""
 msgid "GHex Website"
 msgstr "Spletišče GHex"
 
-#: ../src/ui.c:399
+#: ../src/ui.c:398
 msgid "Select a file to open"
 msgstr "Izbor datoteke za odpiranje"
 
-#: ../src/ui.c:430
+#: ../src/ui.c:429
 #, c-format
 msgid "Loaded file %s"
 msgstr "Naložena datoteka %s"
 
-#: ../src/ui.c:438
+#: ../src/ui.c:437
 msgid "Can not open file!"
 msgstr "Ni mogoče odpreti datoteke!"
 
-#: ../src/ui.c:499
+#: ../src/ui.c:498
 msgid "Select path and file name for the HTML source"
 msgstr "Izbor imenika in datoteke za vir HTML"
 
-#: ../src/ui.c:533
+#: ../src/ui.c:532
 msgid "You need to specify a base name for the HTML files."
 msgstr "Izbrati je treba osnovno ime za datoteke HTML"
 
-#: ../src/ui.c:544
-#: ../src/ui.c:568
+#: ../src/ui.c:543
+#: ../src/ui.c:567
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Ni ustreznih dovoljenj za pisanje v izbrano mapo.\n"
 
-#: ../src/ui.c:555
+#: ../src/ui.c:554
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1254,62 +1262,53 @@ msgstr ""
 "Shranjevanje v zapisu HTML bo prepisalo nekatere datoteke.\n"
 "Ali želite nadaljevati?"
 
-#: ../src/ui.c:708
+#: ../src/ui.c:707
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Ali naj se povrne vsebina datoeke %s?"
 
-#: ../src/ui.c:722
+#: ../src/ui.c:721
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Povrnjen medpomnilnik iz datoteke %s"
 
-#: ../src/ui.c:806
+#: ../src/ui.c:805
 msgid "Printing file..."
 msgstr "Tiskanje datoteke ..."
 
-#: ../src/ui.c:866
+#: ../src/ui.c:865
 msgid "Print Hex Document"
 msgstr "Natisni binarni dokument"
 
-#: ../src/ui.c:878
+#: ../src/ui.c:877
 msgid "Pages"
 msgstr "Strani"
 
-#: ../src/ui.c:903
+#: ../src/ui.c:902
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Predogled tiskanja"
 
 #~ msgid "Hex Editor"
 #~ msgstr "Urejevalnik dvojiških datotek"
-
 #~ msgid "The gnome binary editor"
 #~ msgstr "Urejevalnik dvojiških datotek"
-
 #~ msgid "Released under the terms of GNU Public License"
 #~ msgstr "Objavljeno pod pogoji dovoljenja GPL"
-
 #~ msgid "C_ut"
 #~ msgstr "I_zreži"
-
 #~ msgid "_Paste"
 #~ msgstr "_Prilepi"
-
 #~ msgid "Search for %s"
 #~ msgstr "Poišči %s"
-
 #~ msgid "Replace %s"
 #~ msgstr "Zamenjaj %s"
-
 #~ msgid "The string is not appropriate for the selected data type!"
 #~ msgstr "Niz ne ustreza izbranem zapisu podatkov!"
-
 #~ msgid "The offset must be a positive integer value!"
 #~ msgstr "Odmik kazalnika mora biti pozitivno celo število!"
-
 #~ msgid "Strings are not appropriate for the selected data type!"
 #~ msgstr "Niza ne ustrezata izbrani vrsti podatkov!"
-
 #~ msgid "GHex - %s"
 #~ msgstr "GHex - %s"
+
