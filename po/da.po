@@ -3,7 +3,7 @@
 # Kenneth Christiansen <kenneth@ripen.dk>, 1998-2000.
 # Birger Langkjer <birger.langkjer@image.dk>, 1999.
 # Keld Simonsen <keld@dkuug.dk>, 2000.
-# Joe Hansen (joedalton2@yahoo.dk), 2009.
+# Joe Hansen (joedalton2@yahoo.dk), 2009, 2010.
 #
 # offset -> afstand
 #
@@ -11,93 +11,97 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.5x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-27 21:25+0200\n"
-"PO-Revision-Date: 2009-09-22 19:49+0200\n"
+"POT-Creation-Date: 2010-02-23 23:04+0100\n"
+"PO-Revision-Date: 2010-02-20 19:49+0200\n"
 "Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../ghex.desktop.in.h:1
-msgid "GNOME Hexadecimal Editor"
-msgstr "Hexadecimalredigering for GNOME"
+#: ../ghex.desktop.in.h:1 ../src/ghex-window.c:497 ../src/ghex-window.c:945
+msgid "GHex"
+msgstr "GHex"
 
 #: ../ghex.desktop.in.h:2
-msgid "Hex Editor"
-msgstr "Hexadecimalredigering"
+msgid "Hexadecimal Editor"
+msgstr "Heksadecimalredigering til GNOME"
 
-#: ../src/chartable.c:143
+#: ../ghex.desktop.in.h:3
+msgid "Inspect and edit the contents of files"
+msgstr "Inspicer og rediger indholdet i filer"
+
+#: ../src/chartable.c:144
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ../src/chartable.c:143
+#: ../src/chartable.c:144
 msgid "Hex"
 msgstr "Hex"
 
-#: ../src/chartable.c:143 ../src/preferences.c:144
+#: ../src/chartable.c:144 ../src/preferences.c:145
 msgid "Decimal"
 msgstr "Decimal"
 
-#: ../src/chartable.c:144
+#: ../src/chartable.c:145
 msgid "Octal"
 msgstr "Oktalt"
 
-#: ../src/chartable.c:144
+#: ../src/chartable.c:145
 msgid "Binary"
 msgstr "Binær"
 
-#: ../src/chartable.c:160
+#: ../src/chartable.c:161
 msgid "Character table"
 msgstr "Tegntabel"
 
 # Skal ikke være basekonvertering
-#: ../src/converter.c:230
+#: ../src/converter.c:229
 msgid "Base Converter"
 msgstr "Grundtalskonvertering"
 
 #. entries
-#: ../src/converter.c:251
+#: ../src/converter.c:250
 msgid "_Binary:"
 msgstr "_Binært:"
 
-#: ../src/converter.c:253
+#: ../src/converter.c:252
 msgid "_Octal:"
 msgstr "_Oktalt:"
 
-#: ../src/converter.c:255
+#: ../src/converter.c:254
 msgid "_Decimal:"
 msgstr "_Decimalt:"
 
-#: ../src/converter.c:257
+#: ../src/converter.c:256
 msgid "_Hex:"
 msgstr "_Hexadecimalt:"
 
-#: ../src/converter.c:259
+#: ../src/converter.c:258
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
 #. get cursor button
-#: ../src/converter.c:263
+#: ../src/converter.c:262
 msgid "_Get cursor value"
 msgstr "_Hent markørværdi"
 
-#: ../src/converter.c:277
+#: ../src/converter.c:276
 msgid "Get cursor value"
 msgstr "Hent værdi ved markør"
 
-#: ../src/converter.c:277
+#: ../src/converter.c:276
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr ""
 "Henter værdien ved markøren i binært, oktalt, decimalt, hexadecimalt og "
 "ASCII-format"
 
-#: ../src/converter.c:417
+#: ../src/converter.c:416
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:962
+#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:966
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Find data"
@@ -179,7 +183,7 @@ msgstr "Luk"
 msgid "Closes advanced find window"
 msgstr "Lukker avanceret søgningsvindue"
 
-#: ../src/findreplace.c:354 ../src/ui.c:960
+#: ../src/findreplace.c:354 ../src/ui.c:964
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Find og erstat data"
@@ -232,7 +236,7 @@ msgstr "Erstatter alle forekomster af søgestrengen med erstatningsstrengen"
 msgid "Closes find and replace data window"
 msgstr "Lukker datasøgnings- og dataerstatningsvinduet"
 
-#: ../src/findreplace.c:433 ../src/ui.c:958
+#: ../src/findreplace.c:433 ../src/ui.c:962
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Hop til byte"
@@ -609,7 +613,7 @@ msgstr "_Avanceret søgning"
 msgid "_Base Converter"
 msgstr "_Grundtalskonvertering"
 
-#: ../src/ghex-ui.xml.h:73 ../src/ui.c:90
+#: ../src/ghex-ui.xml.h:73 ../src/ui.c:87
 msgid "_Bytes"
 msgstr "_Byte"
 
@@ -653,7 +657,7 @@ msgstr "_Hjælp"
 msgid "_Insert Mode"
 msgstr "_Indskrivningstilstand"
 
-#: ../src/ghex-ui.xml.h:84 ../src/ui.c:92
+#: ../src/ghex-ui.xml.h:84 ../src/ui.c:89
 msgid "_Longwords"
 msgstr "_Lange ord"
 
@@ -697,11 +701,11 @@ msgstr "_Vis"
 msgid "_Windows"
 msgstr "_Vindue"
 
-#: ../src/ghex-ui.xml.h:95 ../src/ui.c:91
+#: ../src/ghex-ui.xml.h:95 ../src/ui.c:88
 msgid "_Words"
 msgstr "_Ord"
 
-#: ../src/ghex-window.c:94
+#: ../src/ghex-window.c:91
 #, c-format
 msgid ""
 "Can not open URI:\n"
@@ -710,7 +714,7 @@ msgstr ""
 "Kan ikke åbne URI:\n"
 "%s"
 
-#: ../src/ghex-window.c:113
+#: ../src/ghex-window.c:110
 #, c-format
 msgid ""
 "Can not open file:\n"
@@ -719,35 +723,31 @@ msgstr ""
 "Kan ikke åbne fil:\n"
 "%s"
 
-#: ../src/ghex-window.c:500 ../src/ghex-window.c:948
-msgid "GHex"
-msgstr "GHex"
-
-#: ../src/ghex-window.c:647
+#: ../src/ghex-window.c:644
 #, c-format
 msgid "Offset: %s"
 msgstr "Afstand: %s"
 
-#: ../src/ghex-window.c:650
+#: ../src/ghex-window.c:647
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; %s byte fra %s til %s valgt"
 
-#: ../src/ghex-window.c:902
+#: ../src/ghex-window.c:899
 #, c-format
 msgid "Activate file %s"
 msgstr "Aktivér filen %s"
 
-#: ../src/ghex-window.c:944
+#: ../src/ghex-window.c:941
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
-#: ../src/ghex-window.c:1073
+#: ../src/ghex-window.c:1070
 msgid "Select a file to save buffer as"
 msgstr "Vælg en fil at gemme bufferen som"
 
-#: ../src/ghex-window.c:1129
+#: ../src/ghex-window.c:1126
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -756,20 +756,20 @@ msgstr ""
 "Filen %s findes.\n"
 "Vil du overskrive den?"
 
-#: ../src/ghex-window.c:1162 ../src/ui.c:379
+#: ../src/ghex-window.c:1159 ../src/ui.c:381
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Gemte buffer på filen %s"
 
-#: ../src/ghex-window.c:1168
+#: ../src/ghex-window.c:1165
 msgid "Error saving file!"
 msgstr "Fejl under gemning af fil!"
 
-#: ../src/ghex-window.c:1174
+#: ../src/ghex-window.c:1171
 msgid "Can't open file for writing!"
 msgstr "Kan ikke åbne fil til skrivning!"
 
-#: ../src/ghex-window.c:1219
+#: ../src/ghex-window.c:1216
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -778,322 +778,336 @@ msgstr ""
 "Filen %s har ændret sig siden sidste gemning.\n"
 "Ønsker du at gemme ændringerne?"
 
-#: ../src/ghex-window.c:1223
+#: ../src/ghex-window.c:1220
 msgid "Do_n't save"
 msgstr "Gem _ikke"
 
-#: ../src/ghex-window.c:1243 ../src/ui.c:367
+#: ../src/ghex-window.c:1240 ../src/ui.c:369
 msgid "You don't have the permissions to save the file!"
 msgstr "Du har ikke rettighederne at gemme filen!"
 
-#: ../src/ghex-window.c:1247 ../src/ui.c:372
+#: ../src/ghex-window.c:1244 ../src/ui.c:374
 msgid "An error occurred while saving file!"
 msgstr "Der opstod en fejl ved gemning af filen!"
 
-#: ../src/gnome-print-font-dialog.c:111
+#: ../src/gnome-print-font-dialog.c:102
 msgid "_Insert a new preview phrase."
 msgstr "_Indsæt en ny forhåndsvisningsfrase."
 
-#: ../src/gnome-print-font-dialog.c:117
+#: ../src/gnome-print-font-dialog.c:108
 msgid "Modify preview phrase..."
 msgstr "Ændr forhåndsvisningsfrase..."
 
-#: ../src/gnome-print-font-dialog.c:171
+#: ../src/gnome-print-font-dialog.c:162
 msgid "Preview"
 msgstr "Forhåndsvisning"
 
-#: ../src/gnome-print-font-dialog.c:184
+#: ../src/gnome-print-font-dialog.c:175
 msgid "_Modify preview phrase..."
 msgstr "_Ændr forhåndsvisningsfrase..."
 
-#: ../src/gnome-print-font-dialog.c:247
+#: ../src/gnome-print-font-dialog.c:238
 msgid "Font Selection"
 msgstr "Skrifttypevalg"
 
-#: ../src/gnome-print-font-picker.c:91
+#: ../src/gnome-print-font-picker.c:76
 msgid "Sans Regular 12"
 msgstr "Sans Regular 12"
 
-#: ../src/gnome-print-font-picker.c:92
+#: ../src/gnome-print-font-picker.c:77
 msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
 msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzÆæØøÅå"
 
-#: ../src/gnome-print-font-picker.c:93
+#: ../src/gnome-print-font-picker.c:78
 msgid "Pick a Font"
 msgstr "Vælg en skrifttype"
 
-#: ../src/gnome-print-font-picker.c:178
+#: ../src/gnome-print-font-picker.c:162
 msgid "Title"
 msgstr "Titel"
 
-#: ../src/gnome-print-font-picker.c:179
+#: ../src/gnome-print-font-picker.c:163
 msgid "The title of the selection dialog box"
 msgstr "Titlen på udvælgelsesdialogboksen"
 
-#: ../src/gnome-print-font-picker.c:199
+#: ../src/gnome-print-font-picker.c:183
 msgid "Font name"
 msgstr "Skrifttypenavn"
 
-#: ../src/gnome-print-font-picker.c:200
+#: ../src/gnome-print-font-picker.c:184
 msgid "Name of the selected font"
 msgstr "Navn på den valgte skrifttype"
 
-#: ../src/gnome-print-font-picker.c:208
+#: ../src/gnome-print-font-picker.c:192
 msgid "Preview text"
 msgstr "Forhåndsvis tekst"
 
-#: ../src/gnome-print-font-picker.c:209
+#: ../src/gnome-print-font-picker.c:193
 msgid "Preview text shown in the dialog"
 msgstr "Forhåndsvis tekst vist i dialogen"
 
-#: ../src/gnome-print-font-picker.c:217
+#: ../src/gnome-print-font-picker.c:201
 msgid "Use font in label"
 msgstr "Brug skrifttype i etiket"
 
-#: ../src/gnome-print-font-picker.c:218
+#: ../src/gnome-print-font-picker.c:202
 msgid "Use font in the label in font info mode"
 msgstr "Brug skrifttype i etiketten i skrifttypeinfotilstand"
 
-#: ../src/gnome-print-font-picker.c:226
+#: ../src/gnome-print-font-picker.c:210
 msgid "Font size for label"
 msgstr "Skriftstørrelse til etiket"
 
-#: ../src/gnome-print-font-picker.c:227
+#: ../src/gnome-print-font-picker.c:211
 msgid "Font size for label in font info mode"
 msgstr "Skriftstørrelse til etiket i skrifttypeinfotilstand"
 
-#: ../src/gnome-print-font-picker.c:237
+#: ../src/gnome-print-font-picker.c:221
 msgid "Show size"
 msgstr "Vis størrelse"
 
-#: ../src/gnome-print-font-picker.c:238
+#: ../src/gnome-print-font-picker.c:222
 msgid "Show size in font info mode"
 msgstr "Vis størrelse i skrifttypeinfotilstand"
 
 #. display font
-#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:182
+#: ../src/gnome-print-font-picker.c:1003 ../src/preferences.c:183
 msgid "Font"
 msgstr "Skrifttype"
 
-#: ../src/hex-dialog.c:57
+#: ../src/hex-dialog.c:58
 msgid "Signed 8 bit:"
 msgstr "Signeret 8 bit:"
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:59
 msgid "Unsigned 8 bit:"
 msgstr "Ikke signeret 8 bit:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:60
 msgid "Signed 16 bit:"
 msgstr "Signeret 16 bit:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:61
 msgid "Unsigned 16 bit:"
 msgstr "Usigneret 16 bit:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:62
 msgid "Signed 32 bit:"
 msgstr "Signeret 32 bit:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:63
 msgid "Unsigned 32 bit:"
 msgstr "Usigneret 32 bit:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:64
 msgid "32 bit float:"
 msgstr "32 bit flydende:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:65
 msgid "64 bit float:"
 msgstr "64 bit flydende:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:66
 msgid "Hexadecimal:"
 msgstr "Hexadecimal:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:67
 msgid "Octal:"
 msgstr "Oktalt:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:68
 msgid "Binary:"
 msgstr "Binært:"
 
-#: ../src/hex-dialog.c:196
+#: ../src/hex-dialog.c:197
 msgid "Show little endian decoding"
 msgstr "Vis afkodning af lille endian"
 
-#: ../src/hex-dialog.c:203
+#: ../src/hex-dialog.c:204
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Vis usigneret og flydende som hexadecimal"
 
-#: ../src/hex-dialog.c:209
+#: ../src/hex-dialog.c:210
 msgid "Stream Length:"
 msgstr "Strømlængde:"
 
-#: ../src/hex-dialog.c:231
+#: ../src/hex-dialog.c:232
 msgid "FIXME: no conversion function"
 msgstr "RETMIG: Ingen konverteringsfunktion"
 
-#: ../src/hex-document.c:432
+#: ../src/hex-document.c:436
 msgid "New document"
 msgstr "Nyt dokument"
 
-#: ../src/hex-document.c:783
+#: ../src/hex-document.c:790
 #, c-format
 msgid "Page"
 msgstr "Side"
 
-#: ../src/hex-document.c:789 ../src/hex-document.c:914
+#: ../src/hex-document.c:796 ../src/hex-document.c:921
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Hex dump lavet af"
 
-#: ../src/hex-document.c:800
+#: ../src/hex-document.c:807
 msgid "Saving to HTML..."
 msgstr "Gemmer som HTML..."
 
-#: ../src/hex-document.c:837
+#: ../src/hex-document.c:844
 #, c-format
 msgid "Previous page"
 msgstr "Forrige side"
 
-#: ../src/hex-document.c:852
+#: ../src/hex-document.c:859
 #, c-format
 msgid "Next page"
 msgstr "Næste side"
 
-#: ../src/main.c:38
+#: ../src/main.c:35
 msgid "X geometry specification (see \"X\" man page)."
 msgstr "X-geometrispecifikation (se manualsiden for \"X\")."
 
-#: ../src/main.c:39
+#: ../src/main.c:35
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
-#: ../src/main.c:65
-msgid "The gnome binary editor"
-msgstr "GNOME's binærfilredigering"
+#: ../src/main.c:36
+msgid "FILES"
+msgstr "FILER"
 
-#: ../src/main.c:80
+#: ../src/main.c:52
+msgid "- GTK+ binary editor"
+msgstr "- Binærredigering til GTK+"
+
+#: ../src/main.c:56
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"Kør '%s --help' for at se en fuldstændig liste over tilgængelige tilvalg for "
+"kommandolinjen.\n"
+
+#: ../src/main.c:73
 msgid "Could not initialize Bonobo!\n"
 msgstr "Kunne ikke initiere Bonobo!\n"
 
-#: ../src/main.c:105 ../src/main.c:119
+#: ../src/main.c:83 ../src/main.c:96
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Ugyldig geometristreng \"%s\"\n"
 
-#: ../src/preferences.c:71
+#: ../src/preferences.c:72
 msgid "GHex Preferences"
 msgstr "Indstillinger for GHex"
 
-#: ../src/preferences.c:103
+#: ../src/preferences.c:104
 msgid "_Maximum number of undo levels:"
 msgstr "_Maksimalt antal fortrydelsesniveauer:"
 
-#: ../src/preferences.c:123
+#: ../src/preferences.c:124
 msgid "Undo levels"
 msgstr "Fortrydelsesniveauer"
 
-#: ../src/preferences.c:123
+#: ../src/preferences.c:124
 msgid "Select maximum number of undo levels"
 msgstr "Vælg maksimalt antal fortrydelsesniveauer"
 
-#: ../src/preferences.c:127
+#: ../src/preferences.c:128
 msgid "_Show cursor offset in statusbar as:"
 msgstr "_Vis markørpositionen i statuslinjen som:"
 
-#: ../src/preferences.c:146
+#: ../src/preferences.c:147
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
 
-#: ../src/preferences.c:148
+#: ../src/preferences.c:149
 msgid "Custom"
 msgstr "Personlig"
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:158
 msgid "Enter the cursor offset format"
 msgstr "Indtast markørpositionsformatet"
 
-#: ../src/preferences.c:158
+#: ../src/preferences.c:159
 msgid "Select the cursor offset format"
 msgstr "Vælg markørpositionsformatet"
 
 #. show offsets check button
-#: ../src/preferences.c:168
+#: ../src/preferences.c:169
 msgid "Sh_ow offsets column"
 msgstr "Vis afstandsk_olonne"
 
-#: ../src/preferences.c:173
+#: ../src/preferences.c:174
 msgid "Editing"
 msgstr "Redigering"
 
 #. default group type
-#: ../src/preferences.c:205
+#: ../src/preferences.c:206
 msgid "Default Group Type"
 msgstr "Standardgruppetype"
 
-#: ../src/preferences.c:221
+#: ../src/preferences.c:222
 msgid "Display"
 msgstr "Vis"
 
 #. paper selection
-#: ../src/preferences.c:230
+#: ../src/preferences.c:231
 msgid "Paper size"
 msgstr "Papirstørrelse"
 
 #. data & header font selection
-#: ../src/preferences.c:235
+#: ../src/preferences.c:236
 msgid "Fonts"
 msgstr "Skrifttyper"
 
-#: ../src/preferences.c:241
+#: ../src/preferences.c:242
 msgid "_Data font:"
 msgstr "_Dataskrifttype:"
 
-#: ../src/preferences.c:260
+#: ../src/preferences.c:261
 msgid "Data font"
 msgstr "Dataskrifttype"
 
-#: ../src/preferences.c:260
+#: ../src/preferences.c:261
 msgid "Select the data font"
 msgstr "Vælg dataskrifttypen"
 
-#: ../src/preferences.c:274
+#: ../src/preferences.c:275
 msgid "Header fo_nt:"
 msgstr "_Headerskrifttype:"
 
-#: ../src/preferences.c:292
+#: ../src/preferences.c:293
 msgid "Header font"
 msgstr "Headerskrifttype"
 
-#: ../src/preferences.c:292
+#: ../src/preferences.c:293
 msgid "Select the header font"
 msgstr "Vælg headerskrifttypen"
 
-#: ../src/preferences.c:318
+#: ../src/preferences.c:319
 msgid "_Print shaded box over:"
 msgstr "_Skriv skygget kasse over:"
 
-#: ../src/preferences.c:330
+#: ../src/preferences.c:331
 msgid "Box size"
 msgstr "Kassestørrelse"
 
-#: ../src/preferences.c:330
+#: ../src/preferences.c:331
 msgid "Select size of box (in number of lines)"
 msgstr "Vælg størrelsen på kassen (i antal linjer)"
 
-#: ../src/preferences.c:334
+#: ../src/preferences.c:335
 msgid "lines (0 for no box)"
 msgstr "linier (0 for ingen kasse)"
 
 # Skal IKKE være Udskriver
-#: ../src/preferences.c:341
+#: ../src/preferences.c:342
 msgid "Printing"
 msgstr "Udskrift"
 
-#: ../src/preferences.c:463 ../src/ui.c:294
+#: ../src/preferences.c:464 ../src/ui.c:295
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1102,11 +1116,11 @@ msgstr ""
 "Der skete en fejl ved visning af hjælp:\n"
 "%s"
 
-#: ../src/preferences.c:515
+#: ../src/preferences.c:517
 msgid "Can not open desired font!"
 msgstr "Kan ikke åbne den ønskede skrifttype!"
 
-#: ../src/preferences.c:578
+#: ../src/preferences.c:580
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -1114,12 +1128,12 @@ msgstr ""
 "Afstands-formatstrengen indeholder en ugyldig formatangiver.\n"
 "Kun 'x', 'X', 'p', 'P', 'd' og 'o' er tilladte."
 
-#: ../src/print.c:66
+#: ../src/print.c:67
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Side: %i/%i"
 
-#: ../src/print.c:222 ../src/print.c:238
+#: ../src/print.c:223 ../src/print.c:239
 #, c-format
 msgid ""
 "GHex could not find the font \"%s\".\n"
@@ -1128,49 +1142,103 @@ msgstr ""
 "GHex kunne ikke finde skrifttypen '%s'.\n"
 "GHex kan ikke udskrive uden denne font er installeret."
 
-#: ../src/ui.c:97
+#: ../src/ui.c:94
 msgid "hex data"
 msgstr "hex data"
 
-#: ../src/ui.c:98
+#: ../src/ui.c:95
 msgid "ASCII data"
 msgstr "ASCII data"
 
-#: ../src/ui.c:264
+#: ../src/ui.c:238
+msgid ""
+"Copyright © 1998 - 2006 Jaka Močnik\n"
+"Copyright © 2006 - 2010 GHex Contributors"
+msgstr ""
+"Ophavsret 1998 - 2006 Jaka Močnik\n"
+"Ophavsret 2006 - 2010 GHex-bidragydere"
+
+#: ../src/ui.c:245
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"Dette program er fri software. Du kan redistribuere og/ellermodificere det "
+"under de betingelserne som er angivet i GNU GeneralPublic License, som er "
+"udgivet af Free Software Foundation. Entenversion 2 af licensen eller (efter "
+"eget valg) enhver senere version."
+
+#: ../src/ui.c:249
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"Dette program distribueres i håb om at det vil vise sig nyttigt, menUDEN "
+"NOGEN FORM FOR GARANTI, uden selv de underforståede garantieromkring "
+"SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Yderligeredetaljer kan "
+"læses i GNU General Public License."
+
+#: ../src/ui.c:253
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"Du bør have modtaget en kopi af GNU General Public License sammen med dette "
+"program. Hvis ikke, så skriv til Free software Foundation, Inc., 51 Franklin "
+"Street, Fifth Floor, Boston, MA 02110-1301, USA."
+
+#: ../src/ui.c:265
 msgid "A binary file editor"
 msgstr "En editor til binære filer"
 
-#: ../src/ui.c:268
-msgid "Released under the terms of GNU Public License"
-msgstr "Udgivet under GNU Public License (GPL)"
+#: ../src/ui.c:271
+msgid "About GHex"
+msgstr "Om GHex"
 
-#: ../src/ui.c:396
+#: ../src/ui.c:272
+msgid "translator-credits"
+msgstr ""
+"Joe Hansen 2009, 2010.\n"
+"\n"
+"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
+"Mere info: http://www.dansk-gruppen.dk"
+
+#: ../src/ui.c:275
+msgid "GHex Website"
+msgstr "GHex' hjemmeside"
+
+#: ../src/ui.c:398
 msgid "Select a file to open"
 msgstr "Vælg en fil der skal åbnes"
 
-#: ../src/ui.c:427
+#: ../src/ui.c:429
 #, c-format
 msgid "Loaded file %s"
 msgstr "Åbnede filen %s"
 
-#: ../src/ui.c:435
+#: ../src/ui.c:437
 msgid "Can not open file!"
 msgstr "Kan ikke åbne fil!"
 
-#: ../src/ui.c:496
+#: ../src/ui.c:498
 msgid "Select path and file name for the HTML source"
 msgstr "Vælg sti og filnavn for HTML inddata"
 
-#: ../src/ui.c:530
+#: ../src/ui.c:532
 msgid "You need to specify a base name for the HTML files."
 msgstr "Du skal angive et basenavn for HTML-filerne."
 
-#: ../src/ui.c:541 ../src/ui.c:565
+#: ../src/ui.c:543 ../src/ui.c:567
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr ""
 "Du har ikke de rettigheder som kræves for at skrive til den valgte søgesti.\n"
 
-#: ../src/ui.c:552
+#: ../src/ui.c:554
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1178,53 +1246,29 @@ msgstr ""
 "At gemme i HTML vil overskrive en del filer.\n"
 "Vil du fortsætte?"
 
-#: ../src/ui.c:705
+#: ../src/ui.c:707
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Vil du gerne gendanne filen %s?"
 
-#: ../src/ui.c:719
+#: ../src/ui.c:721
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Gendannede buffer fra filen %s"
 
-#: ../src/ui.c:803
+#: ../src/ui.c:805
 msgid "Printing file..."
 msgstr "Udskriver fil..."
 
-#: ../src/ui.c:863
+#: ../src/ui.c:865
 msgid "Print Hex Document"
 msgstr "Udskriv hex-dokument"
 
-#: ../src/ui.c:875
+#: ../src/ui.c:877
 msgid "Pages"
 msgstr "Sider"
 
-#: ../src/ui.c:900
+#: ../src/ui.c:902
 #, c-format
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Udskriv Kladde"
-
-#~ msgid "Search for %s"
-#~ msgstr "Søg efter %s"
-
-#~ msgid "Replace %s"
-#~ msgstr "Erstat %s"
-
-#~ msgid "The string is not appropriate for the selected data type!"
-#~ msgstr "Strengen er ikke passende for den valgte datatype!"
-
-#~ msgid "The offset must be a positive integer value!"
-#~ msgstr "Afstanden skal have en positiv integerværdi!"
-
-#~ msgid "Strings are not appropriate for the selected data type!"
-#~ msgstr "Strenge er ikke passende for den valgte datatype!"
-
-#~ msgid "C_ut"
-#~ msgstr "Klip _ud"
-
-#~ msgid "_Paste"
-#~ msgstr "_Indsæt"
-
-#~ msgid "GHex - %s"
-#~ msgstr "GHex - %s"
