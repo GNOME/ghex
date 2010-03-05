@@ -2134,7 +2134,7 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 		if(!gh->insert && index == gh->document->file_size)
 			index--;
 
-		index == MAX(index, 0);
+		index = MAX(index, 0);
 
 		hide_cursor(gh);
 		
