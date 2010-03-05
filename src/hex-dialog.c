@@ -263,22 +263,12 @@ static char convbuffer[CONV_BUFSIZE];
  * also makes it endian safe (i think)
  */
 
-unsigned int pow2(int p)
+static unsigned int pow2(int p)
 {
     unsigned int i = 0, r = 1;
     for (i = 0; i < p; i++)
         r*=2;
     return r;
-}
-
-double fpow10(int p)
-{
-    return pow(10, p);
-}
-
-double fpow2(int p)
-{
-    return pow(2.0, p);
 }
 
 char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop)
