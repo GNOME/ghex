@@ -267,7 +267,7 @@ hex_document_add_view(HexDocument *doc)
 	gtk_fixed_set_has_window (GTK_FIXED(new_view), TRUE);
 #endif
 
-	gtk_widget_ref(new_view);
+	g_object_ref(new_view);
 
 	doc->views = g_list_append(doc->views, new_view);
 
@@ -282,7 +282,7 @@ hex_document_remove_view(HexDocument *doc, GtkWidget *view)
 
 	doc->views = g_list_remove(doc->views, view);
 
-	gtk_widget_unref(view);
+	g_object_unref(view);
 }
 
 static void
