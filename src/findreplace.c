@@ -84,8 +84,6 @@ static GtkWidget *create_hex_view(HexDocument *doc)
 
 FindDialog *create_find_dialog()
 {
-	gint i;
-	GSList *group;
 	FindDialog *dialog;
 	GtkWidget *frame;
 
