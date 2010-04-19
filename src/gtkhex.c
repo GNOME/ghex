@@ -104,10 +104,10 @@ static void gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
  * simply forces widget w to redraw itself
  */
 static void redraw_widget(GtkWidget *w) {
-	if(!GTK_WIDGET_REALIZED(w))
+	if(!gtk_widget_get_realized(w))
 		return;
 
-	gdk_window_invalidate_rect (w->window, NULL, FALSE);
+	gdk_window_invalidate_rect (gtk_widget_get_window(w), NULL, FALSE);
 }
 
 static gint widget_get_xt(GtkWidget *w) {
@@ -293,7 +293,7 @@ static void render_byte(GtkHex *gh, gint pos) {
 	gchar buf[2];
 
 	if(gh->xdisp_gc == NULL || gh->adisp_gc == NULL ||
-	   !GTK_WIDGET_REALIZED(gh->xdisp) || !GTK_WIDGET_REALIZED(gh->adisp))
+	   !gtk_widget_get_realized(gh->xdisp) || !gtk_widget_get_realized(gh->adisp))
 		return;
 
 	if(!get_xcoords(gh, pos, &cx, &cy))
@@ -302,21 +302,21 @@ static void render_byte(GtkHex *gh, gint pos) {
 	format_xbyte(gh, pos, buf);
 
 	gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
-	gdk_draw_rectangle(gh->xdisp->window, gh->xdisp_gc, TRUE,
+	gdk_draw_rectangle(gtk_widget_get_window(gh->xdisp), gh->xdisp_gc, TRUE,
 					   cx, cy, 2*gh->char_width, gh->char_height);
 
 	if(pos < gh->document->file_size) {
 		gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->xlayout, buf, 2);
-		gdk_draw_layout (gh->xdisp->window, gh->xdisp_gc, cx, cy, gh->xlayout);
+		gdk_draw_layout (gtk_widget_get_window(gh->xdisp), gh->xdisp_gc, cx, cy, gh->xlayout);
 	}
 	
 	if(!get_acoords(gh, pos, &cx, &cy))
 		return;
 
 	gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
-	gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc, TRUE,
+	gdk_draw_rectangle(gtk_widget_get_window(gh->adisp), gh->adisp_gc, TRUE,
 					   cx, cy, gh->char_width, gh->char_height);
 	if(pos < gh->document->file_size) {
 		gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->text[GTK_STATE_NORMAL]);
@@ -325,7 +325,7 @@ static void render_byte(GtkHex *gh, gint pos) {
 			buf[0] = '.';
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->alayout, buf, 1);
-		gdk_draw_layout (gh->adisp->window, gh->adisp_gc, cx, cy, gh->alayout);
+		gdk_draw_layout (gtk_widget_get_window(gh->adisp), gh->adisp_gc, cx, cy, gh->alayout);
 	}
 }
 
@@ -336,7 +336,7 @@ static void render_ac(GtkHex *gh) {
 	gint cx, cy;
 	static guchar c[2] = "\0\0";
 	
-	if(!GTK_WIDGET_REALIZED(gh->adisp))
+	if(!gtk_widget_get_realized(gh->adisp))
 		return;
 	
 	if(get_acoords(gh, gh->cursor_pos, &cx, &cy)) {
@@ -346,17 +346,17 @@ static void render_ac(GtkHex *gh) {
 
 			gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_ACTIVE]);
 		if(gh->active_view == VIEW_ASCII) {
-			gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc,
+			gdk_draw_rectangle(gtk_widget_get_window(gh->adisp), gh->adisp_gc,
 							   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
 		else {
-			gdk_draw_rectangle(gh->adisp->window, gh->adisp_gc,
+			gdk_draw_rectangle(gtk_widget_get_window(gh->adisp), gh->adisp_gc,
 							   FALSE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
 		gdk_gc_set_foreground(gh->adisp_gc, &(GTK_WIDGET(gh)->style->black));
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->alayout, c, 1);
-		gdk_draw_layout (gh->adisp->window, gh->adisp_gc, cx, cy, gh->alayout);
+		gdk_draw_layout (gtk_widget_get_window(gh->adisp), gh->adisp_gc, cx, cy, gh->alayout);
 	}
 }
 
@@ -364,7 +364,7 @@ static void render_xc(GtkHex *gh) {
 	gint cx, cy, i;
 	static guchar c[2];
 
-	if(!GTK_WIDGET_REALIZED(gh->xdisp))
+	if(!gtk_widget_get_realized(gh->xdisp))
 		return;
 
 	if(get_xcoords(gh, gh->cursor_pos, &cx, &cy)) {
@@ -380,23 +380,23 @@ static void render_xc(GtkHex *gh) {
 
 		gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_ACTIVE]);
 		if(gh->active_view == VIEW_HEX) {
-			gdk_draw_rectangle(GTK_WIDGET(gh->xdisp)->window, gh->xdisp_gc,
+			gdk_draw_rectangle(gtk_widget_get_window(GTK_WIDGET(gh->xdisp)), gh->xdisp_gc,
 							   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
 		else {
-			gdk_draw_rectangle(GTK_WIDGET(gh->xdisp)->window, gh->xdisp_gc,
+			gdk_draw_rectangle(gtk_widget_get_window(GTK_WIDGET(gh->xdisp)), gh->xdisp_gc,
 							   FALSE, cx, cy, gh->char_width, gh->char_height - 1);
 		}
 		gdk_gc_set_foreground(gh->xdisp_gc, &(GTK_WIDGET(gh)->style->black));
 		pango_layout_set_text (gh->xlayout, &c[i], 1);
-		gdk_draw_layout (gh->xdisp->window, gh->xdisp_gc, cx, cy, gh->xlayout);
+		gdk_draw_layout (gtk_widget_get_window(gh->xdisp), gh->xdisp_gc, cx, cy, gh->xlayout);
 	}
 }
 
 static void show_cursor(GtkHex *gh) {
 	if(!gh->cursor_shown) {
 		if(gh->xdisp_gc != NULL || gh->adisp_gc != NULL ||
-		   GTK_WIDGET_REALIZED(gh->xdisp) || GTK_WIDGET_REALIZED(gh->adisp)) {
+		   gtk_widget_get_realized(gh->xdisp) || gtk_widget_get_realized(gh->adisp)) {
 			render_xc(gh);
 			render_ac(gh);
 		}
@@ -407,7 +407,7 @@ static void show_cursor(GtkHex *gh) {
 static void hide_cursor(GtkHex *gh) {
 	if(gh->cursor_shown) {
 		if(gh->xdisp_gc != NULL || gh->adisp_gc != NULL ||
-		   GTK_WIDGET_REALIZED(gh->xdisp) || GTK_WIDGET_REALIZED(gh->adisp))
+		   gtk_widget_get_realized(gh->xdisp) || gtk_widget_get_realized(gh->adisp))
 			render_byte(gh, gh->cursor_pos);
 		gh->cursor_shown = FALSE;
 	}
@@ -442,7 +442,7 @@ static void render_hex_highlights(GtkHex *gh, gint cursor_line)
 			{
 				// For an explanation of "style = gtk_style_attach(style, window)" see:
 				// http://library.gnome.org/devel/gtk/unstable/GtkStyle.html#gtk-style-attach
-				curHighlight->style = gtk_style_attach(curHighlight->style, gh->xdisp->window);
+				curHighlight->style = gtk_style_attach(curHighlight->style, gtk_widget_get_window(gh->xdisp));
 			}
 			state = (gh->active_view == VIEW_HEX)?GTK_STATE_ACTIVE:GTK_STATE_INSENSITIVE;
 			if (cursor_line == sl)
@@ -457,7 +457,7 @@ static void render_hex_highlights(GtkHex *gh, gint cursor_line)
 					gtk_paint_flat_box((curHighlight->style?
 										curHighlight->style :
 										GTK_WIDGET(gh)->style),
-									   gh->xdisp->window,
+									   gtk_widget_get_window(gh->xdisp),
 									   state,
 									   GTK_SHADOW_NONE,
 									   NULL, gh->xdisp, NULL,
@@ -470,7 +470,7 @@ static void render_hex_highlights(GtkHex *gh, gint cursor_line)
 				cursor_off = 2*(end%gh->cpl + 1) + (end%gh->cpl)/gh->group_type;
 				if (cursor_off > 0)
 					gtk_paint_flat_box((curHighlight->style ? curHighlight->style :
-										GTK_WIDGET(gh)->style), gh->xdisp->window,
+										GTK_WIDGET(gh)->style), gtk_widget_get_window(gh->xdisp),
 									   state, GTK_SHADOW_NONE,
 									   NULL, gh->xdisp, NULL,
 									   0, cursor_line*gh->char_height,
@@ -479,7 +479,7 @@ static void render_hex_highlights(GtkHex *gh, gint cursor_line)
 			else if (cursor_line > sl && cursor_line < el)
 			{
 				gtk_paint_flat_box((curHighlight->style ? curHighlight->style :
-									GTK_WIDGET(gh)->style), gh->xdisp->window,
+									GTK_WIDGET(gh)->style), gtk_widget_get_window(gh->xdisp),
 								   state, GTK_SHADOW_NONE,
 								   NULL, gh->xdisp, NULL,
 								   0, cursor_line*gh->char_height,
@@ -524,7 +524,7 @@ static void render_ascii_highlights(GtkHex *gh, gint cursor_line)
 			{
 				// For an explanation of "style = gtk_style_attach(style, window)" see:
 				// http://library.gnome.org/devel/gtk/unstable/GtkStyle.html#gtk-style-attach
-				curHighlight->style = gtk_style_attach(curHighlight->style, gh->adisp->window);
+				curHighlight->style = gtk_style_attach(curHighlight->style, gtk_widget_get_window(gh->adisp));
 			}
 			state = (gh->active_view == VIEW_ASCII)?GTK_STATE_ACTIVE:GTK_STATE_INSENSITIVE;
 			if (cursor_line == sl)
@@ -536,7 +536,7 @@ static void render_ascii_highlights(GtkHex *gh, gint cursor_line)
 					len = gh->cpl - cursor_off;
 				if (len > 0)
 					gtk_paint_flat_box((curHighlight->style ? curHighlight->style :
-										GTK_WIDGET(gh)->style), gh->adisp->window,
+										GTK_WIDGET(gh)->style), gtk_widget_get_window(gh->adisp),
 									   state, GTK_SHADOW_NONE,
 									   NULL, gh->adisp, NULL,
 									   cursor_off*gh->char_width,
@@ -548,7 +548,7 @@ static void render_ascii_highlights(GtkHex *gh, gint cursor_line)
 				cursor_off = end % gh->cpl + 1;
 				if (cursor_off > 0)
 					gtk_paint_flat_box((curHighlight->style ? curHighlight->style :
-										GTK_WIDGET(gh)->style), gh->adisp->window,
+										GTK_WIDGET(gh)->style), gtk_widget_get_window(gh->adisp),
 									   state, GTK_SHADOW_NONE,
 									   NULL, gh->adisp, NULL,
 									   0, cursor_line * gh->char_height,
@@ -557,7 +557,7 @@ static void render_ascii_highlights(GtkHex *gh, gint cursor_line)
 			else if (cursor_line > sl && cursor_line < el)
 			{
 				gtk_paint_flat_box((curHighlight->style ? curHighlight->style :
-									GTK_WIDGET(gh)->style), gh->adisp->window,
+									GTK_WIDGET(gh)->style), gtk_widget_get_window(gh->adisp),
 								   state, GTK_SHADOW_NONE,
 								   NULL, gh->adisp, NULL,
 								   0, cursor_line * gh->char_height,
@@ -567,7 +567,7 @@ static void render_ascii_highlights(GtkHex *gh, gint cursor_line)
 			{
 				// For an explanation of "style = gtk_style_attach(style, window)" see:
 				// http://library.gnome.org/devel/gtk/unstable/GtkStyle.html#gtk-style-attach
-				curHighlight->style = gtk_style_attach(curHighlight->style, gh->adisp->window);
+				curHighlight->style = gtk_style_attach(curHighlight->style, gtk_widget_get_window(gh->adisp));
 			}
 		}
 		curHighlight = curHighlight->next;
@@ -590,13 +590,13 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 	gint xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
 	gint frm_len, tmp;
 
-	if( (!GTK_WIDGET_REALIZED(gh)) || (gh->cpl == 0) )
+	if( (!gtk_widget_get_realized(GTK_WIDGET (gh))) || (gh->cpl == 0) )
 		return;
 
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 
 	gdk_gc_set_foreground(gh->xdisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
-	gdk_draw_rectangle(w->window, gh->xdisp_gc, TRUE,
+	gdk_draw_rectangle(gtk_widget_get_window(w), gh->xdisp_gc, TRUE,
 					   0, imin*gh->char_height, w->allocation.width,
 					   (imax - imin + 1)*gh->char_height);
   
@@ -616,7 +616,7 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 		render_hex_highlights(gh, i);
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->xlayout, gh->disp_buffer + (i - imin)*xcpl, MIN(xcpl, tmp));
-		gdk_draw_layout (w->window, gh->xdisp_gc, 0, i*gh->char_height, gh->xlayout);
+		gdk_draw_layout (gtk_widget_get_window(w), gh->xdisp_gc, 0, i*gh->char_height, gh->xlayout);
 	}
 	
 	if((cursor_line >= imin) && (cursor_line <= imax) && (gh->cursor_shown))
@@ -628,13 +628,13 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 	gint i, tmp, frm_len;
 	guint cursor_line;
 
-	if( (!GTK_WIDGET_REALIZED(gh)) || (gh->cpl == 0) )
+	if( (!gtk_widget_get_realized(GTK_WIDGET(gh))) || (gh->cpl == 0) )
 		return;
 	
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 
 	gdk_gc_set_foreground(gh->adisp_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_NORMAL]);
-	gdk_draw_rectangle(w->window, gh->adisp_gc, TRUE,
+	gdk_draw_rectangle(gtk_widget_get_window(w), gh->adisp_gc, TRUE,
 					   0, imin*gh->char_height, w->allocation.width,
 					   (imax - imin + 1)*gh->char_height);
 	
@@ -654,7 +654,7 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 		render_ascii_highlights(gh, i);
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->alayout, gh->disp_buffer + (i - imin)*gh->cpl, MIN(gh->cpl, tmp));
-		gdk_draw_layout (w->window, gh->adisp_gc, 0, i*gh->char_height, gh->alayout);
+		gdk_draw_layout (gtk_widget_get_window(w), gh->adisp_gc, 0, i*gh->char_height, gh->alayout);
 
 	}
 	
@@ -667,16 +667,16 @@ static void render_offsets(GtkHex *gh, gint imin, gint imax) {
 	gint i;
 	gchar offstr[9];
 
-	if(!GTK_WIDGET_REALIZED(gh))
+	if(!gtk_widget_get_realized(GTK_WIDGET(gh)))
 		return;
 
 	if(gh->offsets_gc == NULL) {
-		gh->offsets_gc = gdk_gc_new(gh->offsets->window);
+		gh->offsets_gc = gdk_gc_new(gtk_widget_get_window(gh->offsets));
 		gdk_gc_set_exposures(gh->offsets_gc, TRUE);
 	}
 	
 	gdk_gc_set_foreground(gh->offsets_gc, &GTK_WIDGET(gh)->style->base[GTK_STATE_INSENSITIVE]);
-	gdk_draw_rectangle(w->window, gh->offsets_gc, TRUE,
+	gdk_draw_rectangle(gtk_widget_get_window(w), gh->offsets_gc, TRUE,
 					   0, imin*gh->char_height, w->allocation.width,
 					   (imax - imin + 1)*gh->char_height);
   
@@ -689,7 +689,7 @@ static void render_offsets(GtkHex *gh, gint imin, gint imax) {
 		sprintf(offstr, "%08X", (gh->top_line + i)*gh->cpl + gh->starting_offset);
 		/* Changes for Gnome 2.0 */
 		pango_layout_set_text (gh->olayout, offstr, 8);
-		gdk_draw_layout (w->window, gh->offsets_gc, 0, i*gh->char_height, gh->olayout);
+		gdk_draw_layout (gtk_widget_get_window(w), gh->offsets_gc, 0, i*gh->char_height, gh->olayout);
 
 	}
 }
@@ -741,12 +741,12 @@ static void offsets_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
  */
 static void draw_shadow(GtkWidget *widget, GdkRectangle *area) {
 	GtkHex *gh = GTK_HEX(widget);
-	gint border = GTK_CONTAINER(widget)->border_width;
+	gint border = gtk_container_get_border_width(GTK_CONTAINER(widget));
 	gint x;
 
 	x = border;
 	if(gh->show_offsets) {
-		gtk_paint_shadow(widget->style, widget->window,
+		gtk_paint_shadow(widget->style, gtk_widget_get_window(widget),
 						 GTK_STATE_NORMAL, GTK_SHADOW_IN,
 						 NULL, widget, NULL,
 						 border, border, 8*gh->char_width + 2*widget_get_xt(widget),
@@ -754,13 +754,13 @@ static void draw_shadow(GtkWidget *widget, GdkRectangle *area) {
 		x += 8*gh->char_width + 2*widget_get_xt(widget);
 	}
 
-	gtk_paint_shadow(widget->style, widget->window,
+	gtk_paint_shadow(widget->style, gtk_widget_get_window(widget),
 					GTK_STATE_NORMAL, GTK_SHADOW_IN,
 					 NULL, widget, NULL,
 					x, border, gh->xdisp_width + 2*widget_get_xt(widget),
 					widget->allocation.height - 2*border);
 	
-	gtk_paint_shadow(widget->style, widget->window,
+	gtk_paint_shadow(widget->style, gtk_widget_get_window(widget),
 					GTK_STATE_NORMAL, GTK_SHADOW_IN,
 					 NULL, widget, NULL,
 					widget->allocation.width - border - gh->adisp_width - gh->scrollbar->requisition.width - 2*widget_get_xt(widget), border,
@@ -783,7 +783,7 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	gh->xdisp_width = 1;
 	gh->adisp_width = 1;
 
-	total_width -= 2*GTK_CONTAINER(gh)->border_width +
+	total_width -= 2*gtk_container_get_border_width(GTK_CONTAINER(gh)) +
 		4*widget_get_xt(GTK_WIDGET(gh)) + req.width;
 
 	if(gh->show_offsets)
@@ -820,7 +820,7 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 			gh->lines++;
 	}
 
-	gh->vis_lines = ( (gint) (height - 2*GTK_CONTAINER(gh)->border_width - 2*widget_get_yt(GTK_WIDGET(gh))) ) / ( (gint) gh->char_height );
+	gh->vis_lines = ( (gint) (height - 2*gtk_container_get_border_width(GTK_CONTAINER(gh)) - 2*widget_get_yt(GTK_WIDGET(gh))) ) / ( (gint) gh->char_height );
 
 	gh->adisp_width = gh->cpl*gh->char_width + 1;
 	xcpl = gh->cpl*2 + (gh->cpl - 1)/gh->group_type;
@@ -840,11 +840,11 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 		gh->adj->value = MIN(gh->cursor_pos/gh->cpl, gh->lines - gh->vis_lines);
 		gh->adj->value = MAX(0, gh->adj->value);
 	}
-	gh->adj->lower = 0;
-	gh->adj->upper = gh->lines;
-	gh->adj->step_increment = 1;
-	gh->adj->page_increment = gh->vis_lines - 1;
-	gh->adj->page_size = gh->vis_lines;
+	gtk_adjustment_set_lower(gh->adj, 0);
+	gtk_adjustment_set_upper(gh->adj, gh->lines);
+	gtk_adjustment_set_step_increment(gh->adj, 1);
+	gtk_adjustment_set_page_increment(gh->adj, gh->vis_lines - 1);
+	gtk_adjustment_set_page_size(gh->adj, gh->vis_lines);
 	
 	g_signal_emit_by_name(G_OBJECT(gh->adj), "changed");
 	g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
@@ -857,7 +857,7 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
  * from testgtk.c ;)
  */
 static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
-	gint source_min = ((gint)adj->value - gh->top_line) * gh->char_height;
+	gint source_min = ((gint)gtk_adjustment_get_value(adj) - gh->top_line) * gh->char_height;
 	gint source_max = source_min + gh->xdisp->allocation.height;
 	gint dest_min = 0;
 	gint dest_max = gh->xdisp->allocation.height;
@@ -866,11 +866,11 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 	
 	if(gh->xdisp_gc == NULL ||
 	   gh->adisp_gc == NULL ||
-	   (!GTK_WIDGET_DRAWABLE(gh->xdisp)) ||
-	   (!GTK_WIDGET_DRAWABLE(gh->adisp)))
+	   (!gtk_widget_is_drawable(gh->xdisp)) ||
+	   (!gtk_widget_is_drawable(gh->adisp)))
 		return;
 
-	gh->top_line = (gint)adj->value;
+	gh->top_line = (gint)gtk_adjustment_get_value(adj);
 
 	rect.x = 0;
 	rect.width = -1;
@@ -894,28 +894,28 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 	}
 
 	if (source_min != source_max) {
-		gdk_draw_drawable (gh->xdisp->window,
+		gdk_draw_drawable (gtk_widget_get_window(gh->xdisp),
 						   gh->xdisp_gc,
-						   gh->xdisp->window,
+						   gtk_widget_get_window(gh->xdisp),
 						   0, source_min,
 						   0, dest_min,
 						   gh->xdisp->allocation.width,
 						   source_max - source_min);
-		gdk_draw_drawable (gh->adisp->window,
+		gdk_draw_drawable (gtk_widget_get_window(gh->adisp),
 						   gh->adisp_gc,
-						   gh->adisp->window,
+						   gtk_widget_get_window(gh->adisp),
 						   0, source_min,
 						   0, dest_min,
 						   gh->adisp->allocation.width,
 						   source_max - source_min);
 		if(gh->offsets) {
 			if(gh->offsets_gc == NULL) {
-				gh->offsets_gc = gdk_gc_new(gh->offsets->window);
+				gh->offsets_gc = gdk_gc_new(gtk_widget_get_window(gh->offsets));
 				gdk_gc_set_exposures(gh->offsets_gc, TRUE);
 			}
-			gdk_draw_drawable (gh->offsets->window,
+			gdk_draw_drawable (gtk_widget_get_window(gh->offsets),
 							   gh->offsets_gc,
-							   gh->offsets->window,
+							   gtk_widget_get_window(gh->offsets),
 							   0, source_min,
 							   0, dest_min,
 							   gh->offsets->allocation.width,
@@ -926,12 +926,12 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 	gtk_hex_update_all_auto_highlights(gh, TRUE, TRUE);
 	gtk_hex_invalidate_all_highlights(gh);
 	rect.width = gh->xdisp->allocation.width;
-	gdk_window_invalidate_rect (gh->xdisp->window, &rect, FALSE);
+	gdk_window_invalidate_rect (gtk_widget_get_window(gh->xdisp), &rect, FALSE);
 	rect.width = gh->adisp->allocation.width;
-	gdk_window_invalidate_rect (gh->adisp->window, &rect, FALSE);
+	gdk_window_invalidate_rect (gtk_widget_get_window(gh->adisp), &rect, FALSE);
 	if(gh->offsets) {
 		rect.width = gh->offsets->allocation.width;
-		gdk_window_invalidate_rect (gh->offsets->window, &rect, FALSE);
+		gdk_window_invalidate_rect (gtk_widget_get_window(gh->offsets), &rect, FALSE);
 	}
 }
 
@@ -964,7 +964,7 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 		gh->button = 0;
 	}
 	else if((event->type == GDK_BUTTON_PRESS) && (event->button == 1)) {
-		if (!GTK_WIDGET_HAS_FOCUS (gh))
+		if (!gtk_widget_has_focus (GTK_WIDGET (gh)))
 			gtk_widget_grab_focus (GTK_WIDGET(gh));
 		
 		gtk_grab_add(w);
@@ -1008,7 +1008,7 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 static void hex_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 	gint x, y;
 
-	gdk_window_get_pointer(w->window, &x, &y, NULL);
+	gdk_window_get_pointer(gtk_widget_get_window(w), &x, &y, NULL);
 
 	if(y < 0)
 		gh->scroll_dir = -1;
@@ -1031,7 +1031,7 @@ static void hex_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 		}
 	}
 			
-	if(event->window != w->window)
+	if(event->window != gtk_widget_get_window(w))
 		return;
 
 	if((gh->active_view == VIEW_HEX) && (gh->button == 1)) {
@@ -1056,7 +1056,7 @@ static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 		gh->button = 0;
 	}
 	else if( (event->type == GDK_BUTTON_PRESS) && (event->button == 1) ) {
-		if (!GTK_WIDGET_HAS_FOCUS (gh))
+		if (!gtk_widget_has_focus (GTK_WIDGET (gh)))
 			gtk_widget_grab_focus (GTK_WIDGET(gh));
 		
 		gtk_grab_add(w);
@@ -1097,7 +1097,7 @@ static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 	gint x, y;
 
-	gdk_window_get_pointer(w->window, &x, &y, NULL);
+	gdk_window_get_pointer(gtk_widget_get_window(w), &x, &y, NULL);
 
 	if(y < 0)
 		gh->scroll_dir = -1;
@@ -1120,7 +1120,7 @@ static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 		}
 	}
 
-	if(event->window != w->window)
+	if(event->window != gtk_widget_get_window(w))
 		return;
 
 	if((gh->active_view == VIEW_ASCII) && (gh->button == 1)) {
@@ -1153,12 +1153,12 @@ static void hide_offsets_widget(GtkHex *gh) {
 }
 
 static void hex_realize(GtkWidget *widget, GtkHex *gh) {
-	gh->xdisp_gc = gdk_gc_new(gh->xdisp->window);
+	gh->xdisp_gc = gdk_gc_new(gtk_widget_get_window(gh->xdisp));
 	gdk_gc_set_exposures(gh->xdisp_gc, TRUE);
 }
 	
 static void ascii_realize(GtkWidget *widget, GtkHex *gh) {
-	gh->adisp_gc = gdk_gc_new(gh->adisp->window);
+	gh->adisp_gc = gdk_gc_new(gtk_widget_get_window(gh->adisp));
 	gdk_gc_set_exposures(gh->adisp_gc, TRUE);
 }
 
@@ -1166,7 +1166,7 @@ static void gtk_hex_realize(GtkWidget *widget) {
 	if(GTK_WIDGET_CLASS(parent_class)->realize)
 		(* GTK_WIDGET_CLASS(parent_class)->realize)(widget);  	
 
-	gdk_window_set_back_pixmap(widget->window, NULL, TRUE);
+	gdk_window_set_back_pixmap(gtk_widget_get_window(widget), NULL, TRUE);
 }
 
 /*
@@ -1193,11 +1193,11 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 				gh->adj->value = MIN(gh->cursor_pos/gh->cpl, gh->lines - gh->vis_lines);
 				gh->adj->value = MAX(0, gh->adj->value);
 			}
-			gh->adj->lower = 0;
-			gh->adj->upper = gh->lines;
-			gh->adj->step_increment = 1;
-			gh->adj->page_increment = gh->vis_lines - 1;
-			gh->adj->page_size = gh->vis_lines;
+			gtk_adjustment_set_lower(gh->adj, 0);
+			gtk_adjustment_set_upper(gh->adj, gh->lines);
+			gtk_adjustment_set_step_increment(gh->adj, 1);
+			gtk_adjustment_set_page_increment(gh->adj, gh->vis_lines - 1);
+			gtk_adjustment_set_page_size(gh->adj, gh->vis_lines);
 			g_signal_emit_by_name(G_OBJECT(gh->adj), "changed");
 			g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
 		}
@@ -1819,14 +1819,14 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	recalc_displays(gh, alloc->width, alloc->height);
 
 	w->allocation = *alloc;
-	if(GTK_WIDGET_REALIZED(w))
-		gdk_window_move_resize (w->window,
+	if(gtk_widget_get_realized(w))
+		gdk_window_move_resize (gtk_widget_get_window(w),
 								alloc->x, 
 								alloc->y,
 								alloc->width, 
 								alloc->height);
 
-	border_width = GTK_CONTAINER(w)->border_width;
+	border_width = gtk_container_get_border_width(GTK_CONTAINER(w));
 	xt = widget_get_xt(w);
 	yt = widget_get_yt(w);
 
@@ -1876,13 +1876,13 @@ static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 	GtkRequisition sb_req;
 
 	gtk_widget_size_request(gh->scrollbar, &sb_req);
-	req->width = 4*widget_get_xt(w) + 2*GTK_CONTAINER(w)->border_width +
+	req->width = 4*widget_get_xt(w) + 2*gtk_container_get_border_width(GTK_CONTAINER(w)) +
 		sb_req.width + gh->char_width * (DEFAULT_CPL + (DEFAULT_CPL - 1) /
 										 gh->group_type);
 	if(gh->show_offsets)
 		req->width += 2*widget_get_xt(w) + 8*gh->char_width;
 	req->height = DEFAULT_LINES * gh->char_height + 2*widget_get_yt(w) +
-		2*GTK_CONTAINER(w)->border_width;
+		2*gtk_container_get_border_width(GTK_CONTAINER(w));
 }
 
 static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
@@ -2415,13 +2415,13 @@ void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines)
 
 	xcpl = 2*cpl + (cpl - 1)/gh->group_type;
 	width = xcpl*gh->char_width + cpl*gh->char_width;
-	width += 2*GTK_CONTAINER(gh)->border_width + 4*widget_get_xt(GTK_WIDGET(gh)) +
+	width += 2*gtk_container_get_border_width(GTK_CONTAINER(gh)) + 4*widget_get_xt(GTK_WIDGET(gh)) +
 		req.width;
 	if(gh->show_offsets)
 		width += 2*widget_get_xt(GTK_WIDGET(gh)) + 8*gh->char_width;
 
 	height = vis_lines*gh->char_height;
-	height += 2*GTK_CONTAINER(gh)->border_width + 2*widget_get_yt(GTK_WIDGET(gh));
+	height += 2*gtk_container_get_border_width(GTK_CONTAINER(gh)) + 2*widget_get_yt(GTK_WIDGET(gh));
 
 	gtk_widget_set_size_request(GTK_WIDGET(gh), width, height);
 }

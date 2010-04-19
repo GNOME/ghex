@@ -807,7 +807,7 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 						 _("Saving to HTML..."));
 	progress_bar = gtk_progress_bar_new();
 	gtk_widget_show(progress_bar);
-	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(progress_dialog)->vbox),
+	gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(progress_dialog))),
 					  progress_bar);
 	gtk_widget_show(progress_dialog);
 
