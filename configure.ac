@@ -45,7 +45,7 @@ AC_SUBST(LIBGTKHEX_LIBS)
 AC_SUBST(LIBGTKHEX_CFLAGS)
 
 PKG_CHECK_MODULES(GHEX,
-		  gnome-vfs-2.0			\
+		  gio-2.0                       \
 		  gtk+-2.0 >= 2.4.0 		\
 		  libbonoboui-2.0		\
 		  libgnomeprintui-2.2)

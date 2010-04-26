@@ -15,7 +15,7 @@
 #include <bonobo.h>
 #include <bonobo/bonobo-ui-main.h>
 
-#include <libgnomevfs/gnome-vfs-ops.h>
+#include <gio/gio.h>
 
 #include <math.h>
 #include <ctype.h>
@@ -1180,15 +1180,15 @@ ghex_window_save_as(GHexWindow *win)
 gboolean
 ghex_window_uri_exists (const gchar* text_uri)
 {
-	GnomeVFSURI *uri;
+	GFile *uri;
 	gboolean res;
 
 	g_return_val_if_fail (text_uri != NULL, FALSE);
-	uri = gnome_vfs_uri_new (text_uri);
+	uri = g_file_new_for_uri (text_uri);
 	g_return_val_if_fail (uri != NULL, FALSE);
-	res = gnome_vfs_uri_exists (uri);
+	res = g_file_query_exists (uri, NULL);
 
-	gnome_vfs_uri_unref (uri);
+	g_object_unref (uri);
 	return res;
 }
 
