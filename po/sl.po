@@ -1,4 +1,4 @@
-# Slovenian translation of ghex.
+# Slovenian translations for ghex.
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # This file is distributed under the same license as the ghex package.
 #
@@ -7,10 +7,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex\n"
+"Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&component=general\n"
 "POT-Creation-Date: 2010-02-11 00:34+0000\n"
-"PO-Revision-Date: 2010-02-11 08:02+0100\n"
+"PO-Revision-Date: 2010-07-19 14:38+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -88,15 +88,15 @@ msgstr "_ASCII"
 #. get cursor button
 #: ../src/converter.c:262
 msgid "_Get cursor value"
-msgstr "_Pokaži vrednost pod kazalcem"
+msgstr "_Pridobi vrednost pod kazalko"
 
 #: ../src/converter.c:276
 msgid "Get cursor value"
-msgstr "_Pokaži vrednost pod kazalcem"
+msgstr "_Pridobi vrednost pod kazalko"
 
 #: ../src/converter.c:276
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
-msgstr "Pokaže vrednost pod kazalnikom v dvojiškem, osmiškem, desetiškem in šestnajstiškem sistemu ter kot ASCII niz"
+msgstr "Pridobi vrednost pod kazalko v dvojiškem, osmiškem, desetiškem in šestnajstiškem sistemu ter kot ASCII niz"
 
 #: ../src/converter.c:416
 msgid "ERROR"
@@ -123,12 +123,12 @@ msgstr "Najdi _naslednje"
 #: ../src/findreplace.c:116
 #: ../src/findreplace.c:268
 msgid "Find _Previous"
-msgstr "Najdi _predhodne"
+msgstr "Najdi _predhodno"
 
 #: ../src/findreplace.c:139
 #: ../src/findreplace.c:412
 msgid "Find Data"
-msgstr "Poišči niz"
+msgstr "Najdi niz"
 
 #: ../src/findreplace.c:139
 #: ../src/findreplace.c:412
@@ -142,15 +142,15 @@ msgstr "Najdi naslednje"
 #: ../src/findreplace.c:140
 #: ../src/findreplace.c:414
 msgid "Finds the next occurrence of the search string"
-msgstr "Poišče naslednji primer iskanega niza"
+msgstr "Najde naslednji primer iskanega niza"
 
 #: ../src/findreplace.c:141
 msgid "Find previous"
-msgstr "Najdi predhodne"
+msgstr "Najdi predhodno"
 
 #: ../src/findreplace.c:141
 msgid "Finds the previous occurrence of the search string "
-msgstr "Poišče predhodni primer iskanega niza"
+msgstr "Najde predhodni primer iskanega niza"
 
 #: ../src/findreplace.c:142
 #: ../src/findreplace.c:417
@@ -220,7 +220,7 @@ msgstr "Zamenjaj _vse"
 
 #: ../src/findreplace.c:413
 msgid "Replace Data"
-msgstr "Zamenjaj niz"
+msgstr "Zamenjaj podatke"
 
 #: ../src/findreplace.c:413
 msgid "Enter the hex data or ASCII data to replace with"
@@ -237,7 +237,7 @@ msgstr "Zamenjaj"
 
 #: ../src/findreplace.c:415
 msgid "Replaces the search string with the replace string"
-msgstr "Zamenja iskani niz z drugim"
+msgstr "Zamenja iskani niz z drugim nizom"
 
 #: ../src/findreplace.c:416
 msgid "Replace All"
@@ -312,15 +312,15 @@ msgstr "Dosežen je začetek datoteke"
 
 #: ../src/findreplace.c:596
 msgid "There is no active document to move the cursor in!"
-msgstr "Ni dejavnega dokumenta v katerem naj bi se premaknik kazalnik!"
+msgstr "Ni dejavnega dokumenta v katerem naj bi se premaknila kazalka!"
 
 #: ../src/findreplace.c:602
 msgid "No offset has been specified!"
-msgstr "Odmik kazalnika ni določen!"
+msgstr "Ni določen odmik!"
 
 #: ../src/findreplace.c:626
 msgid "Can not position cursor beyond the End Of File!"
-msgstr "Ni mogoče premakniti kazalnika za konec datoteke!"
+msgstr "Ni mogoče premakniti kazalke za konec datoteke!"
 
 #: ../src/findreplace.c:633
 msgid ""
@@ -330,7 +330,7 @@ msgid ""
 msgstr ""
 "Odmik lahko določite kot:\n"
 "  - pozitivno desetiško število, ali\n"
-"  - štestnastiško število, začeto z '0x'"
+"  - šestnajstiško število, začeto z '0x'"
 
 #: ../src/findreplace.c:678
 msgid "There is no active buffer to replace data in!"
@@ -339,7 +339,7 @@ msgstr "Ni dejavnega medpomnilnika za zamenjavo podatkov!"
 #: ../src/findreplace.c:703
 #: ../src/findreplace.c:704
 msgid "End Of File reached!"
-msgstr "Dosežen je knec datoteke"
+msgstr "Dosežen je konec datoteke"
 
 #: ../src/findreplace.c:723
 msgid "There is no active document to replace data in!"
@@ -353,10 +353,10 @@ msgstr "Niza ni mogoče najti."
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
-msgstr[0] "Zamenjanih je bilo %d nizov."
-msgstr[1] "Zamenjan je bil %d niz."
-msgstr[2] "Zamenjana sta bila %d niza."
-msgstr[3] "Zamenjani so bili %d nizi."
+msgstr[0] "Zamenjanih je %d nizov."
+msgstr[1] "Zamenjan je %d niz."
+msgstr[2] "Zamenjana sta %d niza."
+msgstr[3] "Zamenjani so %d nizi."
 
 #: ../src/findreplace.c:796
 msgid "No string to search for!"
@@ -428,15 +428,15 @@ msgstr "Izreži izbor"
 
 #: ../src/ghex-ui.xml.h:18
 msgid "E_xit"
-msgstr "_Izhod"
+msgstr "_Končaj"
 
 #: ../src/ghex-ui.xml.h:19
 msgid "Exit"
-msgstr "Izhod"
+msgstr "Končaj"
 
 #: ../src/ghex-ui.xml.h:20
 msgid "Exit the program"
-msgstr "Izhod iz programa"
+msgstr "Končaj program"
 
 #: ../src/ghex-ui.xml.h:21
 msgid "Export data to HTML source"
@@ -448,7 +448,7 @@ msgstr "Shrani kot HTML ..."
 
 #: ../src/ghex-ui.xml.h:23
 msgid "Find"
-msgstr "Poišči"
+msgstr "Najdi"
 
 #: ../src/ghex-ui.xml.h:24
 msgid "Goto Byte"
@@ -480,7 +480,7 @@ msgstr "Način vstavljanja"
 
 #: ../src/ghex-ui.xml.h:31
 msgid "Insert/overwrite data"
-msgstr "Vstavi/prepiši podatke"
+msgstr "Vstavi/Prepiši podatke"
 
 #: ../src/ghex-ui.xml.h:32
 msgid "Jump to a certain position"
@@ -520,7 +520,7 @@ msgstr "Možnosti"
 
 #: ../src/ghex-ui.xml.h:41
 msgid "Preview printed data"
-msgstr "Predogled podatkov tiskanja"
+msgstr "Predogled natisnjenih podatkov"
 
 #: ../src/ghex-ui.xml.h:42
 msgid "Print"
@@ -548,7 +548,7 @@ msgstr "Ponovno uveljavi"
 
 #: ../src/ghex-ui.xml.h:48
 msgid "Redo the undone action"
-msgstr "Obnovi razveljavljeno spremembo"
+msgstr "Ponovno uveljavi razveljavljeno dejanje"
 
 #: ../src/ghex-ui.xml.h:49
 msgid "Remove View"
@@ -640,7 +640,7 @@ msgstr "Napre_dno iskanje"
 
 #: ../src/ghex-ui.xml.h:72
 msgid "_Base Converter"
-msgstr "_Pretvornik osnove števil"
+msgstr "_Pretvornik številske osnove"
 
 #: ../src/ghex-ui.xml.h:73
 #: ../src/ui.c:87
@@ -681,7 +681,7 @@ msgstr "_Združi podatke kot"
 
 #: ../src/ghex-ui.xml.h:82
 msgid "_Help"
-msgstr "_Pomoč"
+msgstr "Pomo_č"
 
 #: ../src/ghex-ui.xml.h:83
 msgid "_Insert Mode"
@@ -777,7 +777,7 @@ msgstr "%s - GHex"
 
 #: ../src/ghex-window.c:1070
 msgid "Select a file to save buffer as"
-msgstr "Izbor datoteke v za shranjevanje medpomnilnika"
+msgstr "Izbor datoteke za shranjevanje medpomnilnika"
 
 #: ../src/ghex-window.c:1126
 #, c-format
@@ -945,7 +945,7 @@ msgstr "64-bitno, plavajoča vejica:"
 
 #: ../src/hex-dialog.c:66
 msgid "Hexadecimal:"
-msgstr "Šestnajstiško"
+msgstr "Šestnajstiško:"
 
 #: ../src/hex-dialog.c:67
 msgid "Octal:"
@@ -993,7 +993,7 @@ msgstr "Shranjevanje kot HTML ..."
 #: ../src/hex-document.c:844
 #, c-format
 msgid "Previous page"
-msgstr "Predhodn stran"
+msgstr "Predhodna stran"
 
 #: ../src/hex-document.c:859
 #, c-format
@@ -1006,7 +1006,7 @@ msgstr "Določilo geometrije okna (glej stran z navodili \"X\")."
 
 #: ../src/main.c:35
 msgid "GEOMETRY"
-msgstr "GEOMETRIJA"
+msgstr "Geometrija"
 
 #: ../src/main.c:36
 msgid "FILES"
@@ -1053,7 +1053,7 @@ msgstr "Izbor največjega števila razveljavitev"
 
 #: ../src/preferences.c:128
 msgid "_Show cursor offset in statusbar as:"
-msgstr "_Pokaži odmik kazalnika v vrstici stanja kot:"
+msgstr "_Pokaži odmik kazalke v vrstici stanja kot:"
 
 #: ../src/preferences.c:147
 msgid "Hexadecimal"
@@ -1065,11 +1065,11 @@ msgstr "Po meri"
 
 #: ../src/preferences.c:158
 msgid "Enter the cursor offset format"
-msgstr "Vnos zapisa za odmik kazalnika"
+msgstr "Vnos zapisa za odmik kazalke"
 
 #: ../src/preferences.c:159
 msgid "Select the cursor offset format"
-msgstr "Izbor zapisa za odmik kazalnika"
+msgstr "Izbor zapisa za odmik kazalke"
 
 #. show offsets check button
 #: ../src/preferences.c:169
@@ -1113,7 +1113,7 @@ msgstr "Izbor pisave podatkov"
 
 #: ../src/preferences.c:275
 msgid "Header fo_nt:"
-msgstr "Pisava _glave"
+msgstr "Pisava _glave:"
 
 #: ../src/preferences.c:293
 msgid "Header font"
@@ -1133,11 +1133,11 @@ msgstr "Velikost polja"
 
 #: ../src/preferences.c:331
 msgid "Select size of box (in number of lines)"
-msgstr "Izbor velikosti polja (v vrsticah)"
+msgstr "Izbor velikosti polja (v številu vrstic)"
 
 #: ../src/preferences.c:335
 msgid "lines (0 for no box)"
-msgstr "vrstic (0 za neosenčen izpis)"
+msgstr "vrstic (0 za brez polja)"
 
 #: ../src/preferences.c:342
 msgid "Printing"
@@ -1155,7 +1155,7 @@ msgstr ""
 
 #: ../src/preferences.c:517
 msgid "Can not open desired font!"
-msgstr "Ni mogoče odpreti želene pisave"
+msgstr "Ni mogoče odpreti želene pisave!"
 
 #: ../src/preferences.c:580
 msgid ""
@@ -1178,7 +1178,7 @@ msgid ""
 "GHex is unable to print without this font installed."
 msgstr ""
 "Ni mogoče najti pisave \"%s\".\n"
-"Brez te pisave s programom ni mogoče tiskati."
+"Brez te pisave datoteke ni mogoče natisniti."
 
 #: ../src/ui.c:94
 msgid "hex data"
@@ -1198,7 +1198,7 @@ msgstr ""
 
 #: ../src/ui.c:245
 msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
-msgstr "Program je prosti program. Lahko ga razširjate in/ali spreminjate pod pogoji licence GNU General Public License kot jo je objavila organizacija Free Software Foundation; bodisi pod različico 2 ali (po vašem mnenju) katerokoli kasnejšo različico."
+msgstr "Program je prosti program. Lahko ga razširjate in/ali spreminjate pod pogoji Splošnega javnega dovoljenja GNU (GPL) kot jo je objavila organizacija Free Software Foundation; bodisi pod različico 2 ali (po vašem mnenju) katerokoli kasnejšo različico."
 
 #: ../src/ui.c:249
 msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
@@ -1259,13 +1259,13 @@ msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
 msgstr ""
-"Shranjevanje v zapisu HTML bo prepisalo nekatere datoteke.\n"
+"S shranjevanjem v zapisu HTML bodo prepisane nekatere datoteke.\n"
 "Ali želite nadaljevati?"
 
 #: ../src/ui.c:707
 #, c-format
 msgid "Really revert file %s?"
-msgstr "Ali naj se povrne vsebina datoeke %s?"
+msgstr "Ali naj se povrne vsebina datoteke %s?"
 
 #: ../src/ui.c:721
 #, c-format
@@ -1278,7 +1278,7 @@ msgstr "Tiskanje datoteke ..."
 
 #: ../src/ui.c:865
 msgid "Print Hex Document"
-msgstr "Natisni binarni dokument"
+msgstr "Natisni šestnajstiški dokument"
 
 #: ../src/ui.c:877
 msgid "Pages"
@@ -1287,14 +1287,14 @@ msgstr "Strani"
 #: ../src/ui.c:902
 #, c-format
 msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Predogled tiskanja"
+msgstr "GHex (%s): predogled tiskanja"
 
 #~ msgid "Hex Editor"
-#~ msgstr "Urejevalnik dvojiških datotek"
+#~ msgstr "Urejevalnik šestnajstiških datotek"
 #~ msgid "The gnome binary editor"
 #~ msgstr "Urejevalnik dvojiških datotek"
 #~ msgid "Released under the terms of GNU Public License"
-#~ msgstr "Objavljeno pod pogoji dovoljenja GPL"
+#~ msgstr "Objavljeno pod pogoji splošnega javnega dovoljenja GPL"
 #~ msgid "C_ut"
 #~ msgstr "I_zreži"
 #~ msgid "_Paste"
@@ -1304,9 +1304,9 @@ msgstr "GHex (%s): Predogled tiskanja"
 #~ msgid "Replace %s"
 #~ msgstr "Zamenjaj %s"
 #~ msgid "The string is not appropriate for the selected data type!"
-#~ msgstr "Niz ne ustreza izbranem zapisu podatkov!"
+#~ msgstr "Niz ne ustreza izbranemu zapisu podatkov!"
 #~ msgid "The offset must be a positive integer value!"
-#~ msgstr "Odmik kazalnika mora biti pozitivno celo število!"
+#~ msgstr "Odmik mora biti določen kot pozitivno celo število!"
 #~ msgid "Strings are not appropriate for the selected data type!"
 #~ msgstr "Niza ne ustrezata izbrani vrsti podatkov!"
 #~ msgid "GHex - %s"
