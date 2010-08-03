@@ -480,14 +480,14 @@ char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *prop)
     }
     else
     {
-        in.c[0] = val->v[3];
-        in.c[1] = val->v[2];
-        in.c[2] = val->v[1];
-        in.c[3] = val->v[0];
-        in.c[4] = val->v[7];
-        in.c[5] = val->v[6];
-        in.c[6] = val->v[5];
-        in.c[7] = val->v[4];
+        in.c[0] = val->v[7];
+        in.c[1] = val->v[6];
+        in.c[2] = val->v[5];
+        in.c[3] = val->v[4];
+        in.c[4] = val->v[3];
+        in.c[5] = val->v[2];
+        in.c[6] = val->v[1];
+        in.c[7] = val->v[0];
     }
 
     local = in.f;
