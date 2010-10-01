@@ -63,10 +63,13 @@ dnl =================================================================
 dnl Gettext stuff
 dnl =================================================================
 IT_PROG_INTLTOOL([0.40.0])
+
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.17])
+
 GETTEXT_PACKAGE=ghex-2.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext package name.])
-AM_GLIB_GNU_GETTEXT
 dnl =================================================================
 
 # Uncomment this when we get rid of bonobo code: GB #590996
