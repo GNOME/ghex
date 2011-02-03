@@ -38,9 +38,6 @@ PKG_CHECK_MODULES(LIBGTKHEX,
 		  gtk+-2.0 >= 2.4.0	\
 		  libbonobo-2.0		\
 		  atk >= 1.0.0)
-
-LIBGTKHEX_CFLAGS="$LIBGTKHEX_CFLAGS"
-
 AC_SUBST(LIBGTKHEX_LIBS)
 AC_SUBST(LIBGTKHEX_CFLAGS)
 
@@ -49,9 +46,6 @@ PKG_CHECK_MODULES(GHEX,
 		  gtk+-2.0 >= 2.4.0 		\
 		  libbonoboui-2.0		\
 		  libgnomeprintui-2.2)
-
-GHEX_CFLAGS="$GHEX_CFLAGS"
-
 AC_SUBST(GHEX_CFLAGS)
 AC_SUBST(GHEX_LIBS)
 
