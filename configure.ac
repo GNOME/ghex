@@ -44,6 +44,7 @@ AC_SUBST(LIBGTKHEX_CFLAGS)
 PKG_CHECK_MODULES(GHEX,
 		  gio-2.0                       \
 		  gtk+-2.0 >= 2.4.0 		\
+		  gconf-2.0			\
 		  libbonoboui-2.0		\
 		  libgnomeprintui-2.2)
 AC_SUBST(GHEX_CFLAGS)
