@@ -585,6 +585,7 @@ static void find_prev_cb(GtkButton *button, FindDialog *dialog)
 static void goto_byte_cb(GtkButton *button, GtkWidget *w)
 {
 	guint byte = 2, len, i;
+	gint is_relative = 0;
 	gboolean is_hex;
 	const gchar *byte_str = gtk_entry_get_text(GTK_ENTRY(jump_dialog->int_entry));
 	GHexWindow *win = ghex_window_get_active();
@@ -595,8 +596,20 @@ static void goto_byte_cb(GtkButton *button, GtkWidget *w)
 								"cursor in!"));
 		return;
 	}
-
-	if((len = strlen(byte_str)) == 0) {
+	
+	len = strlen(byte_str);
+	
+	if(len > 1 && byte_str[0] == '+') {
+		is_relative = 1;
+		byte_str++;
+		len--;
+	} else if(len > 1 && byte_str[0] == '-') {
+		is_relative = -1;
+		byte_str++;
+		len--;
+	}
+	
+	if(len == 0) {
 		display_error_dialog (win, _("No offset has been specified!"));
 		return;
 	}
@@ -619,6 +632,15 @@ static void goto_byte_cb(GtkButton *button, GtkWidget *w)
 	if((i == len) &&
 	   ((sscanf(byte_str, "0x%x", &byte) == 1) ||
 		(sscanf(byte_str, "%d", &byte) == 1))) {
+		if(is_relative) {
+			if(is_relative == -1 && byte > win->gh->cursor_pos) {
+				display_error_dialog(win,
+								 _("The specified offset is beyond the "
+								" file boundaries!"));
+				return;
+			}
+			byte = byte * is_relative + win->gh->cursor_pos;
+		}
 		if(byte >= win->gh->document->file_size)
 			display_error_dialog(win,
 								 _("Can not position cursor beyond the "
@@ -630,7 +652,8 @@ static void goto_byte_cb(GtkButton *button, GtkWidget *w)
 		display_error_dialog(win,
 							 _("You may only give the offset as:\n"
 							   "  - a positive decimal number, or\n"
-							   "  - a hex number, beginning with '0x'"));
+							   "  - a hex number, beginning with '0x', or\n"
+							   "  - a '+' or '-' sign, followed by a relative offset"));
 }
 
 static void replace_next_cb(GtkButton *button, gpointer unused)
