@@ -6,16 +6,17 @@
 # QA por Carlos Perelló Marín <carlos@gnome-db.org>, 2002.
 # Lucas 'Basurero' Vieites <lucas@asixinformatica.com>, 2002,2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005, 2006.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2010.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex.HEAD.es\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=ghex&component=general\n"
-"POT-Creation-Date: 2010-02-10 19:34+0000\n"
-"PO-Revision-Date: 2010-02-15 20:59+0100\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-05-06 15:48+0000\n"
+"PO-Revision-Date: 2011-05-07 12:31+0200\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,236 +102,246 @@ msgstr "Obtiene el valor del cursor en binario, octal, decimal, hex y ASCII"
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:966
+#: ../src/findreplace.c:96 ../src/findreplace.c:220 ../src/ui.c:966
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Buscar datos"
 
-#: ../src/findreplace.c:102 ../src/findreplace.c:162 ../src/findreplace.c:358
+#: ../src/findreplace.c:100 ../src/findreplace.c:160 ../src/findreplace.c:356
 msgid "Find String"
 msgstr "Buscar cadena"
 
-#: ../src/findreplace.c:109 ../src/findreplace.c:259
+#: ../src/findreplace.c:107 ../src/findreplace.c:257
 msgid "Find _Next"
 msgstr "Buscar siguie_nte"
 
-#: ../src/findreplace.c:116 ../src/findreplace.c:268
+#: ../src/findreplace.c:114 ../src/findreplace.c:266
 msgid "Find _Previous"
 msgstr "Buscar _anterior"
 
-#: ../src/findreplace.c:139 ../src/findreplace.c:412
+#: ../src/findreplace.c:137 ../src/findreplace.c:410
 msgid "Find Data"
 msgstr "Buscar datos"
 
-#: ../src/findreplace.c:139 ../src/findreplace.c:412
+#: ../src/findreplace.c:137 ../src/findreplace.c:410
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Introduzca los datos hex o ASCII que desea encontrar"
 
-#: ../src/findreplace.c:140
+#: ../src/findreplace.c:138
 msgid "Find Next"
 msgstr "Buscar siguiente"
 
-#: ../src/findreplace.c:140 ../src/findreplace.c:414
+#: ../src/findreplace.c:138 ../src/findreplace.c:412
 msgid "Finds the next occurrence of the search string"
 msgstr "Busca la siguiente coincidencia de la cadena de búsqueda"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:139
 msgid "Find previous"
 msgstr "Buscar anterior"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:139
 msgid "Finds the previous occurrence of the search string "
 msgstr "Busca la coincidencia anterior de la cadena de búsqueda"
 
-#: ../src/findreplace.c:142 ../src/findreplace.c:417 ../src/findreplace.c:465
+#: ../src/findreplace.c:140 ../src/findreplace.c:415 ../src/findreplace.c:463
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../src/findreplace.c:142
+#: ../src/findreplace.c:140
 msgid "Closes find data window"
 msgstr "Cierra la ventana buscar datos"
 
-#: ../src/findreplace.c:158
+#: ../src/findreplace.c:156
 #, c-format
 msgid "GHex (%s): Find Data: Add search"
 msgstr "GHex (%s): Buscar datos: Añadir búsqueda"
 
-#: ../src/findreplace.c:180
+#: ../src/findreplace.c:178
 msgid "Add"
 msgstr "Añadir"
 
-#: ../src/findreplace.c:236
+#: ../src/findreplace.c:234
 msgid "Search String"
 msgstr "Cadena de búsqueda"
 
-#: ../src/findreplace.c:244
+#: ../src/findreplace.c:242
 msgid "Highlight Colour"
 msgstr "Color de resaltado"
 
-#: ../src/findreplace.c:281
+#: ../src/findreplace.c:279
 msgid "_Add New"
 msgstr "_Añadir nuevo"
 
-#: ../src/findreplace.c:290
+#: ../src/findreplace.c:288
 msgid "_Remove Selected"
 msgstr "_Eliminar seleccionado"
 
-#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:8
+#: ../src/findreplace.c:308 ../src/ghex-ui.xml.h:8
 msgid "Close"
 msgstr "Cerrar"
 
-#: ../src/findreplace.c:310
+#: ../src/findreplace.c:308
 msgid "Closes advanced find window"
 msgstr "Cierra la ventana de búsqueda avanzada"
 
-#: ../src/findreplace.c:354 ../src/ui.c:964
+#: ../src/findreplace.c:352 ../src/ui.c:964
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Buscar y reemplazar datos"
 
-#: ../src/findreplace.c:367
+#: ../src/findreplace.c:365
 msgid "Replace With"
 msgstr "Reemplazar con"
 
-#: ../src/findreplace.c:374
+#: ../src/findreplace.c:372
 msgid "Find _next"
 msgstr "Buscar siguie_nte"
 
-#: ../src/findreplace.c:382
+#: ../src/findreplace.c:380
 msgid "_Replace"
 msgstr "_Reemplazar"
 
-#: ../src/findreplace.c:390
+#: ../src/findreplace.c:388
 msgid "Replace _All"
 msgstr "Reempl_azar todos"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:411
 msgid "Replace Data"
 msgstr "Reemplazar datos"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:411
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "Introduzca los datos hex o ASCII con los que desea reemplazar"
 
-#: ../src/findreplace.c:414
+#: ../src/findreplace.c:412
 msgid "Find next"
 msgstr "Buscar siguiente"
 
-#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:51
+#: ../src/findreplace.c:413 ../src/ghex-ui.xml.h:51
 msgid "Replace"
 msgstr "Reemplazar"
 
-#: ../src/findreplace.c:415
+#: ../src/findreplace.c:413
 msgid "Replaces the search string with the replace string"
 msgstr "Reemplaza la cadena de búsqueda con la cadena de reemplazo"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:414
 msgid "Replace All"
 msgstr "Reemplazar todos"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:414
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr ""
 "Reemplaza todas las coincidencias de la cadena de búsqueda con la cadena de "
 "reemplazo"
 
-#: ../src/findreplace.c:417
+#: ../src/findreplace.c:415
 msgid "Closes find and replace data window"
 msgstr "Cierra la ventana buscar y reemplazar"
 
-#: ../src/findreplace.c:433 ../src/ui.c:962
+#: ../src/findreplace.c:431 ../src/ui.c:962
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Saltar al byte"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:461
 msgid "Jump to byte"
 msgstr "Saltar a byte"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:461
 msgid "Enter the byte to jump to"
 msgstr "Introduzca el byte al que saltar"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:462
 msgid "OK"
 msgstr "Aceptar"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:462
 msgid "Jumps to the specified byte"
 msgstr "Salta al byte especificado"
 
-#: ../src/findreplace.c:465
+#: ../src/findreplace.c:463
 msgid "Closes jump to byte window"
 msgstr "Cierra la ventana saltar a byte"
 
-#: ../src/findreplace.c:528 ../src/findreplace.c:562 ../src/findreplace.c:646
+#: ../src/findreplace.c:526 ../src/findreplace.c:560 ../src/findreplace.c:667
 msgid "There is no active document to search!"
 msgstr "No hay un documento activo para buscar."
 
-#: ../src/findreplace.c:535 ../src/findreplace.c:569 ../src/findreplace.c:653
-#: ../src/findreplace.c:687 ../src/findreplace.c:732
+#: ../src/findreplace.c:533 ../src/findreplace.c:567 ../src/findreplace.c:674
+#: ../src/findreplace.c:708 ../src/findreplace.c:753
 msgid "There is no string to search for!"
 msgstr "No hay cadena de búsqueda."
 
-#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:853
+#: ../src/findreplace.c:545 ../src/findreplace.c:683 ../src/findreplace.c:874
 msgid "End Of File reached"
 msgstr "Se ha alcanzado el fin del archivo (EOF)"
 
-#: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
-#: ../src/findreplace.c:854 ../src/findreplace.c:877
+#: ../src/findreplace.c:546 ../src/findreplace.c:579 ../src/findreplace.c:682
+#: ../src/findreplace.c:875 ../src/findreplace.c:898
 msgid "String was not found!\n"
 msgstr "No se encontró la cadena.\n"
 
-#: ../src/findreplace.c:580 ../src/findreplace.c:876
+#: ../src/findreplace.c:578 ../src/findreplace.c:897
 msgid "Beginning Of File reached"
 msgstr "Se ha alcanzado el inicio del archivo (BOF)"
 
-#: ../src/findreplace.c:596
+#: ../src/findreplace.c:595
 msgid "There is no active document to move the cursor in!"
 msgstr "No hay documento activo para mover el cursor."
 
-#: ../src/findreplace.c:602
+#: ../src/findreplace.c:613
 msgid "No offset has been specified!"
 msgstr "No se ha especificado el desplazamiento."
 
-#: ../src/findreplace.c:626
+#: ../src/findreplace.c:638
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "El desplazamiento especificado está fuera de los límites del archivo"
+
+#: ../src/findreplace.c:646
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "No se puede poner el cursor más allá del fin del archivo."
 
-#: ../src/findreplace.c:633
+#: ../src/findreplace.c:653
+#| msgid ""
+#| "You may only give the offset as:\n"
+#| "  - a positive decimal number, or\n"
+#| "  - a hex number, beginning with '0x'"
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x'"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
 msgstr ""
 "Solamente puede indicar el desplazamiento como:\n"
-" - un número decimal positivo, o\n"
-" - un número hexadecimal, que empiece por «0x»"
+"  - un número decimal positivo, o\n"
+"  - un número hexadecimal, que empiece por «0x»\n"
+"  - un signo «+» o «-». seguido de un desplazamiento relativo"
 
-#: ../src/findreplace.c:678
+#: ../src/findreplace.c:699
 msgid "There is no active buffer to replace data in!"
 msgstr "No existe un búfer activo en el cual reemplazar los datos."
 
-#: ../src/findreplace.c:703 ../src/findreplace.c:704
+#: ../src/findreplace.c:724 ../src/findreplace.c:725
 msgid "End Of File reached!"
 msgstr "Se ha alcanzado el fin del archivo (EOF)."
 
-#: ../src/findreplace.c:723
+#: ../src/findreplace.c:744
 msgid "There is no active document to replace data in!"
 msgstr "No existe un documento activo en el cual reemplazar los datos."
 
-#: ../src/findreplace.c:753
+#: ../src/findreplace.c:774
 msgid "No occurrences were found."
 msgstr "No se han encontrado coincidencias."
 
-#: ../src/findreplace.c:756
+#: ../src/findreplace.c:777
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
 msgstr[0] "Reemplazada una aparición."
 msgstr[1] "Reemplazadas %d apariciones."
 
-#: ../src/findreplace.c:796
+#: ../src/findreplace.c:817
 msgid "No string to search for!"
 msgstr "No hay cadena de búsqueda."
 
@@ -1158,11 +1169,6 @@ msgstr ""
 "Copyright © 2006 - 2010 Colaboradores de GHex"
 
 #: ../src/ui.c:245
-#| msgid ""
-#| "The GNOME Web Browser is free software; you can redistribute it and/or "
-#| "modify it under the terms of the GNU General Public License as published "
-#| "by the Free Software Foundation; either version 2 of the License, or (at "
-#| "your option) any later version."
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -1175,11 +1181,6 @@ msgstr ""
 "elección) cualquier versión posterior."
 
 #: ../src/ui.c:249
-#| msgid ""
-#| "The GNOME Web Browser is distributed in the hope that it will be useful, "
-#| "but WITHOUT ANY WARRANTY; without even the implied warranty of "
-#| "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
-#| "Public License for more details."
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -1192,11 +1193,6 @@ msgstr ""
 "para más detalles."
 
 #: ../src/ui.c:253
-#| msgid ""
-#| "You should have received a copy of the GNU General Public License along "
-#| "with the GNOME Web Browser; if not, write to the Free Software "
-#| "Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-"
-#| "1301  USA"
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
