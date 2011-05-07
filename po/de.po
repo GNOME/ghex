@@ -9,16 +9,16 @@
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2004.
 # Hendrik Richter <hendrikr@gnome.org>, 2005.
 # Andre Klapper <ak-47@gmx.net>, 2007.
-# Mario Blättermann <mariobl@gnome.org>, 2008.
+# Mario Blättermann <mariobl@freenet.de>, 2008, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex HEAD\n"
+"Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=ghex&component=general\n"
-"POT-Creation-Date: 2010-02-10 19:34+0000\n"
-"PO-Revision-Date: 2010-02-12 23:07+0100\n"
-"Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
+"product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-05-06 15:48+0000\n"
+"PO-Revision-Date: 2011-05-07 20:54+0100\n"
+"Last-Translator: Mario Blättermann <mariobl@freenet.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,6 @@ msgid "GHex"
 msgstr "GHex"
 
 #: ../ghex.desktop.in.h:2
-#| msgid "GNOME Hexadecimal Editor"
 msgid "Hexadecimal Editor"
 msgstr "Hexadezimaler Editor"
 
@@ -106,239 +105,246 @@ msgstr "Liest den Wert unter dem Cursor binär, oktal, hexadezimal und ASCII aus
 msgid "ERROR"
 msgstr "FEHLER"
 
-#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:966
+#: ../src/findreplace.c:96 ../src/findreplace.c:220 ../src/ui.c:966
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Daten suchen"
 
-#: ../src/findreplace.c:102 ../src/findreplace.c:162 ../src/findreplace.c:358
+#: ../src/findreplace.c:100 ../src/findreplace.c:160 ../src/findreplace.c:356
 msgid "Find String"
 msgstr "Finde Zeichenkette"
 
-#: ../src/findreplace.c:109 ../src/findreplace.c:259
+#: ../src/findreplace.c:107 ../src/findreplace.c:257
 msgid "Find _Next"
 msgstr "_Weitersuchen"
 
-#: ../src/findreplace.c:116 ../src/findreplace.c:268
+#: ../src/findreplace.c:114 ../src/findreplace.c:266
 msgid "Find _Previous"
 msgstr "_Rückwärts suchen"
 
-#: ../src/findreplace.c:139 ../src/findreplace.c:412
+#: ../src/findreplace.c:137 ../src/findreplace.c:410
 msgid "Find Data"
 msgstr "Daten suchen"
 
-#: ../src/findreplace.c:139 ../src/findreplace.c:412
+#: ../src/findreplace.c:137 ../src/findreplace.c:410
 msgid "Enter the hex data or ASCII data to search for"
 msgstr ""
 "Geben Sie die hexadezimalen oder ASCII-Daten ein, nach denen gesucht werden "
 "soll"
 
-#: ../src/findreplace.c:140
+#: ../src/findreplace.c:138
 msgid "Find Next"
 msgstr "Weitersuchen"
 
-#: ../src/findreplace.c:140 ../src/findreplace.c:414
+#: ../src/findreplace.c:138 ../src/findreplace.c:412
 msgid "Finds the next occurrence of the search string"
 msgstr "Das nächste Auftreten der Suchzeichenkette wird gefunden"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:139
 msgid "Find previous"
 msgstr "Rückwärts suchen"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:139
 msgid "Finds the previous occurrence of the search string "
 msgstr "Das vorherige Auftreten der Suchzeichenkette wird gefunden"
 
-#: ../src/findreplace.c:142 ../src/findreplace.c:417 ../src/findreplace.c:465
+#: ../src/findreplace.c:140 ../src/findreplace.c:415 ../src/findreplace.c:463
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../src/findreplace.c:142
+#: ../src/findreplace.c:140
 msgid "Closes find data window"
 msgstr "Schließen des Datensuch-Dialogs"
 
-#: ../src/findreplace.c:158
+#: ../src/findreplace.c:156
 #, c-format
 msgid "GHex (%s): Find Data: Add search"
 msgstr "GHex (%s): Daten suchen: Suche hinzufügen"
 
-#: ../src/findreplace.c:180
+#: ../src/findreplace.c:178
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: ../src/findreplace.c:236
+#: ../src/findreplace.c:234
 msgid "Search String"
 msgstr "Zeichenkette suchen"
 
-#: ../src/findreplace.c:244
+#: ../src/findreplace.c:242
 msgid "Highlight Colour"
 msgstr "Markierungsfarbe"
 
-#: ../src/findreplace.c:281
+#: ../src/findreplace.c:279
 msgid "_Add New"
 msgstr "_Hinzufügen"
 
-#: ../src/findreplace.c:290
+#: ../src/findreplace.c:288
 msgid "_Remove Selected"
 msgstr "Auswahl ent_fernen"
 
-#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:8
+#: ../src/findreplace.c:308 ../src/ghex-ui.xml.h:8
 msgid "Close"
 msgstr "Schließen"
 
-#: ../src/findreplace.c:310
+#: ../src/findreplace.c:308
 msgid "Closes advanced find window"
 msgstr "Schließen des Fensters zur erweiterten Suche"
 
-#: ../src/findreplace.c:354 ../src/ui.c:964
+#: ../src/findreplace.c:352 ../src/ui.c:964
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Daten suchen und ersetzen"
 
-#: ../src/findreplace.c:367
+#: ../src/findreplace.c:365
 msgid "Replace With"
 msgstr "Ersetzen durch"
 
-#: ../src/findreplace.c:374
+#: ../src/findreplace.c:372
 msgid "Find _next"
 msgstr "_Weitersuchen"
 
-#: ../src/findreplace.c:382
+#: ../src/findreplace.c:380
 msgid "_Replace"
 msgstr "Erse_tzen"
 
-#: ../src/findreplace.c:390
+#: ../src/findreplace.c:388
 msgid "Replace _All"
 msgstr "_Alle ersetzen"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:411
 msgid "Replace Data"
 msgstr "Daten ersetzen"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:411
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr ""
 "Geben Sie die hexadezimalen oder ASCII-Daten ein, die ersetzt werden sollen"
 
-#: ../src/findreplace.c:414
+#: ../src/findreplace.c:412
 msgid "Find next"
 msgstr "Weitersuchen"
 
-#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:51
+#: ../src/findreplace.c:413 ../src/ghex-ui.xml.h:51
 msgid "Replace"
 msgstr "Ersetzen"
 
-#: ../src/findreplace.c:415
+#: ../src/findreplace.c:413
 msgid "Replaces the search string with the replace string"
 msgstr "Die Suchzeichenkette wird durch die Ersatzzeichenkette ersetzt"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:414
 msgid "Replace All"
 msgstr "Alle ersetzen"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:414
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr ""
 "Alle Auftritte der Suchzeichenkette werden durch die Ersatzzeichenkette "
 "ersetzt"
 
-#: ../src/findreplace.c:417
+#: ../src/findreplace.c:415
 msgid "Closes find and replace data window"
 msgstr "Schließen des »Suchen und Ersetzen«-Dialogs"
 
-#: ../src/findreplace.c:433 ../src/ui.c:962
+#: ../src/findreplace.c:431 ../src/ui.c:962
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Zu Byte springen"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:461
 msgid "Jump to byte"
 msgstr "Zu folgendem Byte springen"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:461
 msgid "Enter the byte to jump to"
 msgstr "Das Byte eingeben, zu dem gesprungen werden soll"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:462
 msgid "OK"
 msgstr "OK"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:462
 msgid "Jumps to the specified byte"
 msgstr "Zum angegebene Byte springen"
 
-#: ../src/findreplace.c:465
+#: ../src/findreplace.c:463
 msgid "Closes jump to byte window"
 msgstr "Den »Springe zu Byte«-Dialog schließen"
 
-#: ../src/findreplace.c:528 ../src/findreplace.c:562 ../src/findreplace.c:646
+#: ../src/findreplace.c:526 ../src/findreplace.c:560 ../src/findreplace.c:667
 msgid "There is no active document to search!"
 msgstr "Es gibt kein aktives Dokument zum Durchsuchen!"
 
-#: ../src/findreplace.c:535 ../src/findreplace.c:569 ../src/findreplace.c:653
-#: ../src/findreplace.c:687 ../src/findreplace.c:732
+#: ../src/findreplace.c:533 ../src/findreplace.c:567 ../src/findreplace.c:674
+#: ../src/findreplace.c:708 ../src/findreplace.c:753
 msgid "There is no string to search for!"
 msgstr "Es gibt keine Zeichenkette, nach der zu suchen wäre!"
 
-#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:853
+#: ../src/findreplace.c:545 ../src/findreplace.c:683 ../src/findreplace.c:874
 msgid "End Of File reached"
 msgstr "Dateiende erreicht"
 
-#: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
-#: ../src/findreplace.c:854 ../src/findreplace.c:877
+#: ../src/findreplace.c:546 ../src/findreplace.c:579 ../src/findreplace.c:682
+#: ../src/findreplace.c:875 ../src/findreplace.c:898
 msgid "String was not found!\n"
 msgstr "Zeichenkette nicht gefunden!\n"
 
-#: ../src/findreplace.c:580 ../src/findreplace.c:876
+#: ../src/findreplace.c:578 ../src/findreplace.c:897
 msgid "Beginning Of File reached"
 msgstr "Dateianfang erreicht"
 
-#: ../src/findreplace.c:596
+#: ../src/findreplace.c:595
 msgid "There is no active document to move the cursor in!"
 msgstr "Es gibt kein aktives Dokument, in das der Cursor bewegt werden kann!"
 
-#: ../src/findreplace.c:602
+#: ../src/findreplace.c:613
 msgid "No offset has been specified!"
 msgstr "Es wurde kein Offset angegeben!"
 
-#: ../src/findreplace.c:626
+#: ../src/findreplace.c:638
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "Der angegebene Offset liegt nicht innerhalb der Datei!"
+
+#: ../src/findreplace.c:646
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Cursor kann nicht hinter Dateiende gesetzt werden!"
 
-#: ../src/findreplace.c:633
+#: ../src/findreplace.c:653
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x'"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
 msgstr ""
 "Sie können einen Offset nur eingeben als:\n"
-"  - eine positive dezimale Zahl oder\n"
-"  - eine hexadezimale Zahl, die mit »0x« beginnt"
+"  - eine positive dezimale Zahl\n"
+"  - oder eine hexadezimale Zahl, die mit »0x« beginnt,\n"
+"  - oder den Zeichen »+« und »-«\n"
+"    gefolgt von einem relativen Versatz"
 
-#: ../src/findreplace.c:678
+#: ../src/findreplace.c:699
 msgid "There is no active buffer to replace data in!"
 msgstr "Es gibt keinen aktiven Puffer, um Daten darin zu ersetzen!"
 
-#: ../src/findreplace.c:703 ../src/findreplace.c:704
+#: ../src/findreplace.c:724 ../src/findreplace.c:725
 msgid "End Of File reached!"
 msgstr "Dateiende erreicht!"
 
-#: ../src/findreplace.c:723
+#: ../src/findreplace.c:744
 msgid "There is no active document to replace data in!"
 msgstr "Es gibt kein aktives Dokument, um Daten darin zu ersetzen!"
 
-#: ../src/findreplace.c:753
+#: ../src/findreplace.c:774
 msgid "No occurrences were found."
 msgstr "Keine Vorkommen gefunden."
 
-#: ../src/findreplace.c:756
+#: ../src/findreplace.c:777
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
 msgstr[0] "Es wurde %d Vorkommen ersetzt."
 msgstr[1] "Es wurden %d Vorkommen ersetzt."
 
-#: ../src/findreplace.c:796
+#: ../src/findreplace.c:817
 msgid "No string to search for!"
 msgstr "Keine zu suchende Zeichenkette!"
 
@@ -985,7 +991,6 @@ msgid "FILES"
 msgstr "DATEIEN"
 
 #: ../src/main.c:52
-#| msgid "A binary file editor"
 msgid "- GTK+ binary editor"
 msgstr "GTK+ Binärdatei-Editor"
 
@@ -1206,7 +1211,6 @@ msgid "A binary file editor"
 msgstr "Ein Binärdatei-Editor"
 
 #: ../src/ui.c:271
-#| msgid "_About"
 msgid "About GHex"
 msgstr "Info zu GHex"
 
@@ -1221,7 +1225,7 @@ msgstr ""
 "Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Hendrik Richter <hendrikr@gnome.org>\n"
 "Andre Klapper <ak-47@gmx.net>\n"
-"Mario Blättermann <mariobl@gnome.org>"
+"Mario Blättermann <mariobl@freenet.de>"
 
 #: ../src/ui.c:275
 msgid "GHex Website"
@@ -1287,11 +1291,3 @@ msgstr "Seiten"
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s): Druckvorschau"
 
-#~ msgid "Hex Editor"
-#~ msgstr "Hex-Editor"
-
-#~ msgid "The gnome binary editor"
-#~ msgstr "Der GNOME Binärdatei-Editor"
-
-#~ msgid "Released under the terms of GNU Public License"
-#~ msgstr "Freigegeben unter den Bedingungen der GNU General Public License"
