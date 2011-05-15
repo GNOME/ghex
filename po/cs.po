@@ -7,17 +7,20 @@
 # Michal Bukovjan <bukm@centrum.cz>, 2002, 2003.
 # Miloslav Trmac <mitr@volny.cz>, 2004.
 # Lucas Lommer <llommer@svn.gnome.org>, 2009. (just an update).
-# Marek Černocký <marek@manet.cz>, 2010.
-# Petr Kovar <pknbe@volny.cz>, 2010.
+# Petr Kovar <pknbe@volny.cz>, 2010
+# Marek Černocký <marek@manet.cz>, 2010, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-11 01:33+0100\n"
-"PO-Revision-Date: 2010-02-11 01:33+0100\n"
-"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-05-06 15:48+0000\n"
+"PO-Revision-Date: 2011-05-15 22:15+0200\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
+"Language: cs\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
@@ -103,228 +106,238 @@ msgstr ""
 msgid "ERROR"
 msgstr "CHYBA"
 
-#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:966
+#: ../src/findreplace.c:96 ../src/findreplace.c:220 ../src/ui.c:966
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Hledání dat"
 
-#: ../src/findreplace.c:102 ../src/findreplace.c:162 ../src/findreplace.c:358
+#: ../src/findreplace.c:100 ../src/findreplace.c:160 ../src/findreplace.c:356
 msgid "Find String"
 msgstr "Hledat řetězec"
 
-#: ../src/findreplace.c:109 ../src/findreplace.c:259
+#: ../src/findreplace.c:107 ../src/findreplace.c:257
 msgid "Find _Next"
 msgstr "Hledat _následující"
 
-#: ../src/findreplace.c:116 ../src/findreplace.c:268
+#: ../src/findreplace.c:114 ../src/findreplace.c:266
 msgid "Find _Previous"
 msgstr "Hledat _předchozí"
 
-#: ../src/findreplace.c:139 ../src/findreplace.c:412
+#: ../src/findreplace.c:137 ../src/findreplace.c:410
 msgid "Find Data"
 msgstr "Hledat data"
 
-#: ../src/findreplace.c:139 ../src/findreplace.c:412
+#: ../src/findreplace.c:137 ../src/findreplace.c:410
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Zadejte data, která se mají hledat, v šestnáctkovém podobě nebo ASCII"
 
-#: ../src/findreplace.c:140
+#: ../src/findreplace.c:138
 msgid "Find Next"
 msgstr "Hledat následující"
 
-#: ../src/findreplace.c:140 ../src/findreplace.c:414
+#: ../src/findreplace.c:138 ../src/findreplace.c:412
 msgid "Finds the next occurrence of the search string"
 msgstr "Nalezne následující výskyt hledaného řetězce"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:139
 msgid "Find previous"
 msgstr "Hledat předchozí"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:139
 msgid "Finds the previous occurrence of the search string "
 msgstr "Nalezne předchozí výskyt hledaného řetězce"
 
-#: ../src/findreplace.c:142 ../src/findreplace.c:417 ../src/findreplace.c:465
+#: ../src/findreplace.c:140 ../src/findreplace.c:415 ../src/findreplace.c:463
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: ../src/findreplace.c:142
+#: ../src/findreplace.c:140
 msgid "Closes find data window"
 msgstr "Zavře okno pro hledání dat"
 
-#: ../src/findreplace.c:158
+#: ../src/findreplace.c:156
 #, c-format
 msgid "GHex (%s): Find Data: Add search"
 msgstr "GHex (%s): Hledání dat: Přidat hledání"
 
-#: ../src/findreplace.c:180
+#: ../src/findreplace.c:178
 msgid "Add"
 msgstr "Přidat"
 
-#: ../src/findreplace.c:236
+#: ../src/findreplace.c:234
 msgid "Search String"
 msgstr "Hledaný řetězec"
 
-#: ../src/findreplace.c:244
+#: ../src/findreplace.c:242
 msgid "Highlight Colour"
 msgstr "Barva zvýraznění"
 
-#: ../src/findreplace.c:281
+#: ../src/findreplace.c:279
 msgid "_Add New"
 msgstr "_Přidat nové"
 
-#: ../src/findreplace.c:290
+#: ../src/findreplace.c:288
 msgid "_Remove Selected"
 msgstr "_Odstranit vybrané"
 
-#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:8
+#: ../src/findreplace.c:308 ../src/ghex-ui.xml.h:8
 msgid "Close"
 msgstr "Zavřít"
 
-#: ../src/findreplace.c:310
+#: ../src/findreplace.c:308
 msgid "Closes advanced find window"
 msgstr "Zavře okno pro pokročilého hledání"
 
-#: ../src/findreplace.c:354 ../src/ui.c:964
+#: ../src/findreplace.c:352 ../src/ui.c:964
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Hledání a nahrazení dat"
 
-#: ../src/findreplace.c:367
+#: ../src/findreplace.c:365
 msgid "Replace With"
 msgstr "Nahradit s"
 
-#: ../src/findreplace.c:374
+#: ../src/findreplace.c:372
 msgid "Find _next"
 msgstr "Hledat _následující"
 
-#: ../src/findreplace.c:382
+#: ../src/findreplace.c:380
 msgid "_Replace"
 msgstr "Nah_radit"
 
-#: ../src/findreplace.c:390
+#: ../src/findreplace.c:388
 msgid "Replace _All"
 msgstr "N_ahradit vše"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:411
 msgid "Replace Data"
 msgstr "Nahradit data"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:411
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr ""
 "Zadejte data, kterými se má nahrazovat, v šestnáctkovém podobě nebo ASCII"
 
-#: ../src/findreplace.c:414
+#: ../src/findreplace.c:412
 msgid "Find next"
 msgstr "Hledat následující"
 
-#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:51
+#: ../src/findreplace.c:413 ../src/ghex-ui.xml.h:51
 msgid "Replace"
 msgstr "Nahradit"
 
-#: ../src/findreplace.c:415
+#: ../src/findreplace.c:413
 msgid "Replaces the search string with the replace string"
 msgstr "Nahradí hledaný řetězec řetězcem pro nahrazení"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:414
 msgid "Replace All"
 msgstr "Nahradit vše"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:414
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Nahradí všechny výskyty hledaného řetězce řetězcem pro nahrazení"
 
-#: ../src/findreplace.c:417
+#: ../src/findreplace.c:415
 msgid "Closes find and replace data window"
 msgstr "Zavře okno hledání a nahrazování dat"
 
-#: ../src/findreplace.c:433 ../src/ui.c:962
+#: ../src/findreplace.c:431 ../src/ui.c:962
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Přeskočit na bajt"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:461
 msgid "Jump to byte"
 msgstr "Skočí na bajt"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:461
 msgid "Enter the byte to jump to"
 msgstr "Zadejte bajt, na který se má přeskočit"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:462
 msgid "OK"
 msgstr "OK"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:462
 msgid "Jumps to the specified byte"
 msgstr "Skočí na zadaný bajt"
 
-#: ../src/findreplace.c:465
+#: ../src/findreplace.c:463
 msgid "Closes jump to byte window"
 msgstr "Zavře okno přeskočení na bajt"
 
-#: ../src/findreplace.c:528 ../src/findreplace.c:562 ../src/findreplace.c:646
+#: ../src/findreplace.c:526 ../src/findreplace.c:560 ../src/findreplace.c:667
 msgid "There is no active document to search!"
 msgstr "Pro hledání není k dispozici žádný aktivní dokument!"
 
-#: ../src/findreplace.c:535 ../src/findreplace.c:569 ../src/findreplace.c:653
-#: ../src/findreplace.c:687 ../src/findreplace.c:732
+#: ../src/findreplace.c:533 ../src/findreplace.c:567 ../src/findreplace.c:674
+#: ../src/findreplace.c:708 ../src/findreplace.c:753
 msgid "There is no string to search for!"
 msgstr "Chybí řetězec, který se má hledat!"
 
-#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:853
+#: ../src/findreplace.c:545 ../src/findreplace.c:683 ../src/findreplace.c:874
 msgid "End Of File reached"
 msgstr "Dosaženo konce souboru"
 
-#: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
-#: ../src/findreplace.c:854 ../src/findreplace.c:877
+#: ../src/findreplace.c:546 ../src/findreplace.c:579 ../src/findreplace.c:682
+#: ../src/findreplace.c:875 ../src/findreplace.c:898
 msgid "String was not found!\n"
 msgstr "Řetězec nebyl nalezen!\n"
 
-#: ../src/findreplace.c:580 ../src/findreplace.c:876
+#: ../src/findreplace.c:578 ../src/findreplace.c:897
 msgid "Beginning Of File reached"
 msgstr "Dosaženo začátku souboru"
 
-#: ../src/findreplace.c:596
+#: ../src/findreplace.c:595
 msgid "There is no active document to move the cursor in!"
 msgstr "Pro přemístění kurzoru není k dispozici žádný aktivní dokument!"
 
-#: ../src/findreplace.c:602
+#: ../src/findreplace.c:613
 msgid "No offset has been specified!"
 msgstr "Nebylo zadaná žádná pozice!"
 
-#: ../src/findreplace.c:626
+#: ../src/findreplace.c:638
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "Zadaný posun je mimo hranice souboru!"
+
+#: ../src/findreplace.c:646
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Nelze umístit kurzor za konec souboru!"
 
-#: ../src/findreplace.c:633
+#: ../src/findreplace.c:653
+#| msgid ""
+#| "You may only give the offset as:\n"
+#| "  - a positive decimal number, or\n"
+#| "  - a hex number, beginning with '0x'"
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x'"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
 msgstr ""
 "Pozici můžete zadat jen jako:\n"
 "  - kladné desítkové číslo nebo\n"
-"  - šestnáctkové číslo začínající „0x“"
+"  - šestnáctkové číslo začínající „0x“\n"
+"  - znaménko „+“ nebo „-“ následované relativním posunem"
 
-#: ../src/findreplace.c:678
+#: ../src/findreplace.c:699
 msgid "There is no active buffer to replace data in!"
 msgstr "Pro nahrazování dat není k dispozici žádná aktivní vyrovnávací paměť!"
 
-#: ../src/findreplace.c:703 ../src/findreplace.c:704
+#: ../src/findreplace.c:724 ../src/findreplace.c:725
 msgid "End Of File reached!"
 msgstr "Dosaženo konce souboru!"
 
-#: ../src/findreplace.c:723
+#: ../src/findreplace.c:744
 msgid "There is no active document to replace data in!"
 msgstr "Pro nahrazování dat není k dispozici žádný aktivní dokument!"
 
-#: ../src/findreplace.c:753
+#: ../src/findreplace.c:774
 msgid "No occurrences were found."
 msgstr "Nebyl nalezen žádný výskyt."
 
-#: ../src/findreplace.c:756
+#: ../src/findreplace.c:777
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
@@ -332,7 +345,7 @@ msgstr[0] "Nahrazen %d výskyt."
 msgstr[1] "Nahrazeny %d výskyty."
 msgstr[2] "Nahrazeno %d výskytů."
 
-#: ../src/findreplace.c:796
+#: ../src/findreplace.c:817
 msgid "No string to search for!"
 msgstr "Chybí řetězec, který se má hledat!"
 
