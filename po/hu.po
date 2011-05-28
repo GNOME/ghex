@@ -1,16 +1,16 @@
 # Hungarian translation of ghex.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2007, 2009, 2010 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2007, 2009, 2010, 2011 Free Software Foundation, Inc.
 # This file is distributed under the same license as the ghex package.
 #
 # Szabolcs Ban <shooby at gnome dot hu>, 1999, 2000, 2001.
 # Andras Timar <timar at gnome dot hu>, 2001, 2002, 2003.
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2004, 2005, 2007, 2009, 2010.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2004, 2005, 2007, 2009, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-11 22:31+0100\n"
-"PO-Revision-Date: 2010-02-11 22:37+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-05-07 18:58+0000\n"
+"PO-Revision-Date: 2011-05-29 00:37+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
@@ -99,236 +99,242 @@ msgstr ""
 msgid "ERROR"
 msgstr "HIBA"
 
-#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:966
+#: ../src/findreplace.c:96 ../src/findreplace.c:220 ../src/ui.c:966
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Adat keresése"
 
-#: ../src/findreplace.c:102 ../src/findreplace.c:162 ../src/findreplace.c:358
+#: ../src/findreplace.c:100 ../src/findreplace.c:160 ../src/findreplace.c:356
 msgid "Find String"
 msgstr "Karakterlánc keresése"
 
-#: ../src/findreplace.c:109 ../src/findreplace.c:259
+#: ../src/findreplace.c:107 ../src/findreplace.c:257
 msgid "Find _Next"
 msgstr "_Következő találat"
 
-#: ../src/findreplace.c:116 ../src/findreplace.c:268
+#: ../src/findreplace.c:114 ../src/findreplace.c:266
 msgid "Find _Previous"
 msgstr "_Előző találat"
 
-#: ../src/findreplace.c:139 ../src/findreplace.c:412
+#: ../src/findreplace.c:137 ../src/findreplace.c:410
 msgid "Find Data"
 msgstr "Adat keresése"
 
-#: ../src/findreplace.c:139 ../src/findreplace.c:412
+#: ../src/findreplace.c:137 ../src/findreplace.c:410
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Adja meg a keresendő hexadecimális vagy ASCII adatot"
 
-#: ../src/findreplace.c:140
+#: ../src/findreplace.c:138
 msgid "Find Next"
 msgstr "Következő találat"
 
-#: ../src/findreplace.c:140 ../src/findreplace.c:414
+#: ../src/findreplace.c:138 ../src/findreplace.c:412
 msgid "Finds the next occurrence of the search string"
 msgstr "A keresett karakterlánc következő előfordulását keresi meg"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:139
 msgid "Find previous"
 msgstr "Előző találat"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:139
 msgid "Finds the previous occurrence of the search string "
 msgstr "A keresett karakterlánc előző előfordulását keresi meg"
 
-#: ../src/findreplace.c:142 ../src/findreplace.c:417 ../src/findreplace.c:465
+#: ../src/findreplace.c:140 ../src/findreplace.c:415 ../src/findreplace.c:463
 msgid "Cancel"
 msgstr "Mégse"
 
-#: ../src/findreplace.c:142
+#: ../src/findreplace.c:140
 msgid "Closes find data window"
 msgstr "Bezárja az adatkereső ablakot"
 
-#: ../src/findreplace.c:158
+#: ../src/findreplace.c:156
 #, c-format
 msgid "GHex (%s): Find Data: Add search"
 msgstr "GHex (%s): Adat keresése: Keresés hozzáadása"
 
-#: ../src/findreplace.c:180
+#: ../src/findreplace.c:178
 msgid "Add"
 msgstr "Hozzáadás"
 
-#: ../src/findreplace.c:236
+#: ../src/findreplace.c:234
 msgid "Search String"
 msgstr "Karakterlánc keresése"
 
-#: ../src/findreplace.c:244
+#: ../src/findreplace.c:242
 msgid "Highlight Colour"
 msgstr "Kiemelés színe"
 
-#: ../src/findreplace.c:281
+#: ../src/findreplace.c:279
 msgid "_Add New"
 msgstr "Ú_j hozzáadása"
 
-#: ../src/findreplace.c:290
+#: ../src/findreplace.c:288
 msgid "_Remove Selected"
 msgstr "_Kijelölt törlése"
 
-#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:8
+#: ../src/findreplace.c:308 ../src/ghex-ui.xml.h:8
 msgid "Close"
 msgstr "Bezárás"
 
-#: ../src/findreplace.c:310
+#: ../src/findreplace.c:308
 msgid "Closes advanced find window"
 msgstr "Bezárja a haladó keresés ablakot"
 
-#: ../src/findreplace.c:354 ../src/ui.c:964
+#: ../src/findreplace.c:352 ../src/ui.c:964
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Keresés és csere"
 
-#: ../src/findreplace.c:367
+#: ../src/findreplace.c:365
 msgid "Replace With"
 msgstr "Csere ezzel:"
 
-#: ../src/findreplace.c:374
+#: ../src/findreplace.c:372
 msgid "Find _next"
 msgstr "_Következő találat"
 
-#: ../src/findreplace.c:382
+#: ../src/findreplace.c:380
 msgid "_Replace"
 msgstr "_Csere"
 
-#: ../src/findreplace.c:390
+#: ../src/findreplace.c:388
 msgid "Replace _All"
 msgstr "_Mindet cseréli"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:411
 msgid "Replace Data"
 msgstr "Adat cseréje"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:411
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "Adja meg a hexadecimális vagy ASCII adatot, amire cserélni kell"
 
-#: ../src/findreplace.c:414
+#: ../src/findreplace.c:412
 msgid "Find next"
 msgstr "Következő keresése"
 
-#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:51
+#: ../src/findreplace.c:413 ../src/ghex-ui.xml.h:51
 msgid "Replace"
 msgstr "Csere"
 
-#: ../src/findreplace.c:415
+#: ../src/findreplace.c:413
 msgid "Replaces the search string with the replace string"
 msgstr "Cseréli a keresett karakterláncot a megadott karakterláncra"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:414
 msgid "Replace All"
 msgstr "Mindet cseréli"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:414
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr ""
 "A keresett karakterlánc minden előfordulását cseréli a megadott "
 "karakterláncra"
 
-#: ../src/findreplace.c:417
+#: ../src/findreplace.c:415
 msgid "Closes find and replace data window"
 msgstr "Bezárja a keresés és csere ablakot"
 
-#: ../src/findreplace.c:433 ../src/ui.c:962
+#: ../src/findreplace.c:431 ../src/ui.c:962
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Bájtra ugrás"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:461
 msgid "Jump to byte"
 msgstr "Ugrás bájtra"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:461
 msgid "Enter the byte to jump to"
 msgstr "Adja meg a bájtot, ahová ugorni kell"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:462
 msgid "OK"
 msgstr "OK"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:462
 msgid "Jumps to the specified byte"
 msgstr "A megadott bájtra ugrik"
 
-#: ../src/findreplace.c:465
+#: ../src/findreplace.c:463
 msgid "Closes jump to byte window"
 msgstr "Bezárja a bájtra ugró ablakot"
 
-#: ../src/findreplace.c:528 ../src/findreplace.c:562 ../src/findreplace.c:646
+#: ../src/findreplace.c:526 ../src/findreplace.c:560 ../src/findreplace.c:667
 msgid "There is no active document to search!"
 msgstr "Nincs aktív kereshető dokumentum!"
 
-#: ../src/findreplace.c:535 ../src/findreplace.c:569 ../src/findreplace.c:653
-#: ../src/findreplace.c:687 ../src/findreplace.c:732
+#: ../src/findreplace.c:533 ../src/findreplace.c:567 ../src/findreplace.c:674
+#: ../src/findreplace.c:708 ../src/findreplace.c:753
 msgid "There is no string to search for!"
 msgstr "Nem adta meg a keresendő karakterláncot!"
 
-#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:853
+#: ../src/findreplace.c:545 ../src/findreplace.c:683 ../src/findreplace.c:874
 msgid "End Of File reached"
 msgstr "A fájl végén vagyok"
 
-#: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
-#: ../src/findreplace.c:854 ../src/findreplace.c:877
+#: ../src/findreplace.c:546 ../src/findreplace.c:579 ../src/findreplace.c:682
+#: ../src/findreplace.c:875 ../src/findreplace.c:898
 msgid "String was not found!\n"
 msgstr "A karakterlánc nem található!\n"
 
-#: ../src/findreplace.c:580 ../src/findreplace.c:876
+#: ../src/findreplace.c:578 ../src/findreplace.c:897
 msgid "Beginning Of File reached"
 msgstr "A program elérte a fájl elejét"
 
-#: ../src/findreplace.c:596
+#: ../src/findreplace.c:595
 msgid "There is no active document to move the cursor in!"
 msgstr "Nincs aktív dokumentum, amelybe a kurzort lehetne mozgatni!"
 
-#: ../src/findreplace.c:602
+#: ../src/findreplace.c:613
 msgid "No offset has been specified!"
 msgstr "Nincs eltolás megadva!"
 
-#: ../src/findreplace.c:626
+#: ../src/findreplace.c:638
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "A megadott eltolás túl van a fájl határain!"
+
+#: ../src/findreplace.c:646
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Nem lehet a kurzort a fájl végén túlra mozgatni!"
 
-#: ../src/findreplace.c:633
+#: ../src/findreplace.c:653
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x'"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
 msgstr ""
 "Az eltolást csak a következő módokon adhatja meg:\n"
 "  - pozitív egész szám vagy\n"
-"  - „0x”-szel kezdődő hexadecimális szám"
+"  - „0x”-szel kezdődő hexadecimális szám vagy\n"
+"  - „+” vagy „-” jel, amelyet a relatív eltolás követ"
 
-#: ../src/findreplace.c:678
+#: ../src/findreplace.c:699
 msgid "There is no active buffer to replace data in!"
 msgstr "Nincs olyan aktív tároló, amelyben adatot lehetne cserélni!"
 
-#: ../src/findreplace.c:703 ../src/findreplace.c:704
+#: ../src/findreplace.c:724 ../src/findreplace.c:725
 msgid "End Of File reached!"
 msgstr "A fájl végén vagyok!"
 
-#: ../src/findreplace.c:723
+#: ../src/findreplace.c:744
 msgid "There is no active document to replace data in!"
 msgstr "Nincs aktív dokumentum, amelyben adatot lehetne cserélni!"
 
-#: ../src/findreplace.c:753
+#: ../src/findreplace.c:774
 msgid "No occurrences were found."
 msgstr "Nem találtam előfordulásokat."
 
-#: ../src/findreplace.c:756
+#: ../src/findreplace.c:777
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
 msgstr[0] "%d előfordulás kicserélve."
 msgstr[1] "%d előfordulás kicserélve."
 
-#: ../src/findreplace.c:796
+#: ../src/findreplace.c:817
 msgid "No string to search for!"
 msgstr "Nem adta meg a keresendő karakterláncot!"
 
@@ -1190,7 +1196,10 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
 "Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
-msgstr "A programhoz a GNU General Public License egy példánya is jár, ha nem kapta meg, írjon a Free Software Foundation Inc.-nek. Levélcímük: 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
+msgstr ""
+"A programhoz a GNU General Public License egy példánya is jár, ha nem kapta "
+"meg, írjon a Free Software Foundation Inc.-nek. Levélcímük: 51 Franklin St, "
+"Fifth Floor, Boston, MA 02110-1301, USA."
 
 #: ../src/ui.c:265
 msgid "A binary file editor"
