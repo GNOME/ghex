@@ -27,9 +27,6 @@
 
 #include <gtk/gtk.h>
 
-#include <libgnomeprintui/gnome-font-dialog.h>
-
-#include "gnome-print-font-picker.h"
 #include "preferences.h"
 #include "configuration.h"
 #include "ghex-window.h"
@@ -246,10 +243,7 @@ create_prefs_dialog()
 					 GTK_FILL, GTK_FILL,
 					 4, 4);
 
-	pui->df_button = gnome_print_font_picker_new();
-	gnome_print_font_picker_set_mode (GNOME_PRINT_FONT_PICKER (pui->df_button), GNOME_PRINT_FONT_PICKER_MODE_FONT_INFO);
-	gnome_print_font_picker_fi_set_use_font_in_label (GNOME_PRINT_FONT_PICKER (pui->df_button), TRUE, 14);
-	gnome_print_font_picker_fi_set_show_size (GNOME_PRINT_FONT_PICKER (pui->df_button), TRUE);
+	pui->df_button = gtk_font_button_new_with_font(def_font_name);
 	g_signal_connect (G_OBJECT (pui->df_button), "font_set",
 					  G_CALLBACK (select_font_cb), pui);
 	pui->df_label = gtk_label_new("");
@@ -278,10 +272,7 @@ create_prefs_dialog()
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
 					 GTK_FILL, GTK_FILL,
 					 4, 4);
-	pui->hf_button = gnome_print_font_picker_new();
-	gnome_print_font_picker_set_mode (GNOME_PRINT_FONT_PICKER (pui->hf_button), GNOME_PRINT_FONT_PICKER_MODE_FONT_INFO);
-	gnome_print_font_picker_fi_set_use_font_in_label (GNOME_PRINT_FONT_PICKER (pui->hf_button), TRUE, 14);
-	gnome_print_font_picker_fi_set_show_size (GNOME_PRINT_FONT_PICKER (pui->hf_button), TRUE);
+	pui->hf_button = gtk_font_button_new_with_font(def_font_name);
 	g_signal_connect (G_OBJECT (pui->hf_button), "font_set",
 					  G_CALLBACK (select_font_cb), pui);
 	pui->hf_label = gtk_label_new("");
@@ -382,12 +373,10 @@ void set_current_prefs(PropertyUI *pui) {
 	}
 
 	if(header_font_name)
-		gnome_print_font_picker_set_font_name
-			(GNOME_PRINT_FONT_PICKER(pui->hf_button),
+		gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->hf_button),
 			 header_font_name);
 	if(data_font_name)
-		gnome_print_font_picker_set_font_name
-			(GNOME_PRINT_FONT_PICKER(pui->df_button),
+		gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->df_button),
 			 data_font_name);
 	if(def_font_name)
 		gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->font_button),
@@ -524,8 +513,8 @@ select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui)
 	if(w == pui->df_button) {
 		if(data_font_name)
 			g_free(data_font_name);
-		data_font_name = g_strdup(gnome_print_font_picker_get_font_name
-								  (GNOME_PRINT_FONT_PICKER (pui->df_button)));
+		data_font_name = g_strdup(gtk_font_button_get_font_name
+								  (GTK_FONT_BUTTON (pui->df_button)));
 		gconf_client_set_string (gconf_client,
 								 GHEX_BASE_KEY GHEX_PREF_DATA_FONT,
 								 data_font_name,
@@ -534,8 +523,8 @@ select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui)
 	else if(w == pui->hf_button) {
 		if(header_font_name)
 			g_free(header_font_name);
-		header_font_name = g_strdup(gnome_print_font_picker_get_font_name
-									(GNOME_PRINT_FONT_PICKER (pui->hf_button)));
+		header_font_name = g_strdup(gtk_font_button_get_font_name
+									(GTK_FONT_BUTTON (pui->hf_button)));
 		gconf_client_set_string (gconf_client,
 								 GHEX_BASE_KEY GHEX_PREF_HEADER_FONT,
 								 header_font_name,
