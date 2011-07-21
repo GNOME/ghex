@@ -19,6 +19,7 @@
 
 #include <math.h>
 #include <ctype.h>
+#include <stdlib.h>
 #include <unistd.h> /* for F_OK */
 
 #include "ghex-window.h"

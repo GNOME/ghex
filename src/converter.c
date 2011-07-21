@@ -28,6 +28,7 @@
 #endif /* HAVE_CONFIG_H */
 
 #include <ctype.h>      /* for isdigit */
+#include <stdlib.h>     /* for strtoul */
 #include <string.h>     /* for strncpy */
 
 #include <gdk/gdkkeysyms.h>
