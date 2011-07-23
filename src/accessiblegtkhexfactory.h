@@ -55,7 +55,7 @@ struct _AccessibleGtkHexFactoryClass
 GType accessible_gtk_hex_get_type (void);
 AtkObjectFactory *accessible_gtk_hex_factory_new (void);
 
-GType accessible_gtk_hex_factory_get_type ();
+GType accessible_gtk_hex_factory_get_type (void);
 
 #ifdef __cplusplus
 }

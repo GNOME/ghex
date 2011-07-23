@@ -70,7 +70,7 @@ static struct {
 
 
 
-GType hex_dialog_get_type ()
+GType hex_dialog_get_type (void)
 {
     static GType doc_type = 0;
 
@@ -115,7 +115,7 @@ static void hex_dialog_class_init (HexDialogClass *klass)
 {
 }
 
-HexDialog *hex_dialog_new()
+HexDialog *hex_dialog_new (void)
 {
     HexDialog *dialog;
 

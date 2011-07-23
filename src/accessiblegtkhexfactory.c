@@ -32,7 +32,7 @@ static AtkObject* accessible_gtk_hex_factory_create_accessible (GObject *obj);
 static GType accessible_gtk_hex_factory_get_accessible_type    (void);
 
 GType
-accessible_gtk_hex_factory_get_type ()
+accessible_gtk_hex_factory_get_type (void)
 {
 	static GType type = 0;
 

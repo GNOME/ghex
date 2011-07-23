@@ -143,7 +143,7 @@ FindDialog *create_find_dialog()
 	return dialog;
 }
 
-AdvancedFind_AddDialog *create_advanced_find_add_dialog(AdvancedFindDialog *parent)
+static AdvancedFind_AddDialog *create_advanced_find_add_dialog(AdvancedFindDialog *parent)
 {
 	AdvancedFind_AddDialog *dialog = g_new0(AdvancedFind_AddDialog, 1);
 	GtkWidget *button, *frame, *sep;
@@ -317,8 +317,10 @@ static void delete_advanced_find_add_dialog(AdvancedFind_AddDialog *dialog)
 	g_free(dialog);
 }
 
-gboolean advanced_find_foreachfunc_cb(GtkTreeModel *model, GtkTreePath *path,
-									  GtkTreeIter *iter, gpointer data)
+static gboolean advanced_find_foreachfunc_cb (GtkTreeModel *model,
+                                              GtkTreePath  *path,
+                                              GtkTreeIter  *iter,
+                                              gpointer      data)
 {
 	AdvancedFind_ListData *udata;
 	GtkHex *gh = (GtkHex *)data;

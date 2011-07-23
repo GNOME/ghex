@@ -83,8 +83,8 @@ struct _HexDialogClass
     GObjectClass parent_class;
 };
 
-GType        hex_dialog_get_type();
-HexDialog    *hex_dialog_new();
+GType        hex_dialog_get_type(void);
+HexDialog    *hex_dialog_new(void);
 GtkWidget    *hex_dialog_getview(HexDialog *);
 void         hex_dialog_updateview(HexDialog *dialog, HexDialogVal64 *val);
 
