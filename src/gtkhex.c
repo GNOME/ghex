@@ -1618,7 +1618,6 @@ static void gtk_hex_finalize(GObject *o) {
 
 static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 	GtkHex *gh = GTK_HEX(w);
-	guint old_cp = gh->cursor_pos;
 	gint ret = TRUE;
 
 	hide_cursor(gh);
@@ -1759,7 +1758,6 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 										  gh->cursor_pos, gh->insert, TRUE);
 					if (gh->selecting)
 						gh->selecting = FALSE;
-					old_cp = gh->cursor_pos;
 					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
 				else if((event->keyval >= GDK_KP_0)&&(event->keyval <= GDK_KP_9)) {
@@ -1767,7 +1765,6 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 											gh->cursor_pos, gh->insert, TRUE);
 					if (gh->selecting)
 						gh->selecting = FALSE;
-					old_cp = gh->cursor_pos;
 					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
 				else
