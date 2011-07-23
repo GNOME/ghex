@@ -1178,18 +1178,18 @@ ghex_window_save_as(GHexWindow *win)
 	return ret_val;
 }
 
-gboolean
-ghex_window_uri_exists (const gchar* text_uri)
+static gboolean
+ghex_window_path_exists (const gchar* path)
 {
-	GFile *uri;
+	GFile *file;
 	gboolean res;
 
-	g_return_val_if_fail (text_uri != NULL, FALSE);
-	uri = g_file_new_for_uri (text_uri);
-	g_return_val_if_fail (uri != NULL, FALSE);
-	res = g_file_query_exists (uri, NULL);
+	g_return_val_if_fail (path != NULL, FALSE);
+	file = g_file_new_for_path (path);
+	g_return_val_if_fail (file != NULL, FALSE);
+	res = g_file_query_exists (file, NULL);
 
-	g_object_unref (uri);
+	g_object_unref (file);
 	return res;
 }
 
@@ -1198,7 +1198,7 @@ ghex_window_ok_to_close(GHexWindow *win)
 {
 	GtkWidget *mbox;
 	gint reply;
-	gboolean uri_exists;
+	gboolean file_exists;
 	GtkWidget *save_btn;
     HexDocument *doc;
 
@@ -1206,8 +1206,8 @@ ghex_window_ok_to_close(GHexWindow *win)
         return TRUE;
 
     doc = win->gh->document;
-    uri_exists = ghex_window_uri_exists(doc->file_name);
-    if(!hex_document_has_changed(doc) && uri_exists)
+    file_exists = ghex_window_path_exists (doc->file_name);
+    if (!hex_document_has_changed(doc) && file_exists)
         return TRUE;
 
 	mbox = gtk_message_dialog_new(GTK_WINDOW(win),
@@ -1231,7 +1231,7 @@ ghex_window_ok_to_close(GHexWindow *win)
 	gtk_widget_destroy(mbox);
 		
 	if(reply == GTK_RESPONSE_YES) {
-		if(!uri_exists) {
+		if(!file_exists) {
 			if(!ghex_window_save_as(win)) {
 				return FALSE;
 			}
