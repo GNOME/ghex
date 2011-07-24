@@ -210,7 +210,7 @@ converter_delete_event_cb(GtkWidget *widget, GdkEventAny *e, gpointer user_data)
 static gboolean
 conv_key_press_cb (GtkWidget *widget, GdkEventKey *e, gpointer user_data)
 {
-	if (e->keyval == GDK_Escape) {
+	if (e->keyval == GDK_KEY_Escape) {
 		converter_delete_event_cb(widget, (GdkEventAny *)e, user_data);
 		return TRUE;
 	}

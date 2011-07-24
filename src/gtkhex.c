@@ -1629,7 +1629,7 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 		gh->selecting = TRUE;
 	}
 	switch(event->keyval) {
-	case GDK_BackSpace:
+	case GDK_KEY_BackSpace:
 		if(gh->cursor_pos > 0) {
 			hex_document_set_data(gh->document, gh->cursor_pos - 1,
 								  0, 1, NULL, TRUE);
@@ -1638,8 +1638,8 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 			gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
 		}
 		break;
-	case GDK_Tab:
-	case GDK_KP_Tab:
+	case GDK_KEY_Tab:
+	case GDK_KEY_KP_Tab:
 		if (gh->active_view == VIEW_ASCII) {
 			gh->active_view = VIEW_HEX;
 		}
@@ -1647,22 +1647,22 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 			gh->active_view = VIEW_ASCII;
 		}
 		break;
-	case GDK_Delete:
+	case GDK_KEY_Delete:
 		if(gh->cursor_pos < gh->document->file_size) {
 			hex_document_set_data(gh->document, gh->cursor_pos,
 								  0, 1, NULL, TRUE);
 		}
 		break;
-	case GDK_Up:
+	case GDK_KEY_Up:
 		gtk_hex_set_cursor(gh, gh->cursor_pos - gh->cpl);
 		break;
-	case GDK_Down:
+	case GDK_KEY_Down:
 		gtk_hex_set_cursor(gh, gh->cursor_pos + gh->cpl);
 		break;
-	case GDK_Page_Up:
+	case GDK_KEY_Page_Up:
 		gtk_hex_set_cursor(gh, MAX(0, (gint)gh->cursor_pos - gh->vis_lines*gh->cpl));
 		break;
-	case GDK_Page_Down:
+	case GDK_KEY_Page_Down:
 		gtk_hex_set_cursor(gh, MIN((gint)gh->document->file_size, (gint)gh->cursor_pos + gh->vis_lines*gh->cpl));
 		break;
 	default:
@@ -1672,7 +1672,7 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 		}
 		if(gh->active_view == VIEW_HEX)
 			switch(event->keyval) {
-			case GDK_Left:
+			case GDK_KEY_Left:
 				if(!(event->state & GDK_SHIFT_MASK)) {
 					gh->lower_nibble = !gh->lower_nibble;
 					if(gh->lower_nibble)
@@ -1682,7 +1682,7 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 					gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
 				}
 				break;
-			case GDK_Right:
+			case GDK_KEY_Right:
 				if(gh->cursor_pos >= gh->document->file_size)
 					break;
 				if(!(event->state & GDK_SHIFT_MASK)) {
@@ -1727,8 +1727,8 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 					if(!gh->lower_nibble)
 						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
-				else if((event->keyval >= GDK_KP_0)&&(event->keyval <= GDK_KP_9)) {
-					hex_document_set_nibble(gh->document, event->keyval - GDK_KP_0,
+				else if((event->keyval >= GDK_KEY_KP_0)&&(event->keyval <= GDK_KEY_KP_9)) {
+					hex_document_set_nibble(gh->document, event->keyval - GDK_KEY_KP_0,
 											gh->cursor_pos, gh->lower_nibble,
 											gh->insert, TRUE);
 					if (gh->selecting)
@@ -1744,10 +1744,10 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 			}
 		else if(gh->active_view == VIEW_ASCII)
 			switch(event->keyval) {
-			case GDK_Left:
+			case GDK_KEY_Left:
 				gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
 				break;
-			case GDK_Right:
+			case GDK_KEY_Right:
 				gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				break;
 			default:
@@ -1760,8 +1760,8 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 						gh->selecting = FALSE;
 					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
 				}
-				else if((event->keyval >= GDK_KP_0)&&(event->keyval <= GDK_KP_9)) {
-					hex_document_set_byte(gh->document, event->keyval - GDK_KP_0 + '0',
+				else if((event->keyval >= GDK_KEY_KP_0)&&(event->keyval <= GDK_KEY_KP_9)) {
+					hex_document_set_byte(gh->document, event->keyval - GDK_KEY_KP_0 + '0',
 											gh->cursor_pos, gh->insert, TRUE);
 					if (gh->selecting)
 						gh->selecting = FALSE;
@@ -1783,7 +1783,7 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 static gboolean gtk_hex_key_release(GtkWidget *w, GdkEventKey *event) {
 	GtkHex *gh = GTK_HEX(w);
 
-	if(event->keyval == GDK_Shift_L || event->keyval == GDK_Shift_R) {
+	if (event->keyval == GDK_KEY_Shift_L || event->keyval == GDK_KEY_Shift_R) {
 		gh->selecting = FALSE;
 	}
 

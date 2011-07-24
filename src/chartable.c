@@ -114,7 +114,7 @@ static void hide_chartable_cb (GtkWidget *widget, GtkWidget *win)
 
 static gint char_table_key_press_cb (GtkWindow *w, GdkEventKey *e, gpointer data)
 {
-	if (e->keyval == GDK_Escape) {
+	if (e->keyval == GDK_KEY_Escape) {
 		hide_chartable_cb(NULL, GTK_WIDGET(w));
 		return TRUE;
 	}
@@ -125,7 +125,7 @@ static gint key_press_cb (GtkTreeView *treeview, GdkEventKey *e, gpointer data)
 {
 	GtkTreeModel *model = GTK_TREE_MODEL(data);
 
-	if(e->keyval == GDK_Return) {
+	if (e->keyval == GDK_KEY_Return) {
 		insert_char(treeview, model);
 		return TRUE;
 	}

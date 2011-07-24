@@ -35,7 +35,7 @@ AC_DEFINE_UNQUOTED(LIBGTKHEX_RELEASE_STRING, "$LIBGTKHEX_RELEASE_STRING",
                    [GtkHex library release string.])
 
 PKG_CHECK_MODULES(LIBGTKHEX,
-		  gtk+-2.0 >= 2.20.0	\
+		  gtk+-2.0 >= 2.24.0	\
 		  libbonobo-2.0		\
 		  atk >= 1.0.0)
 AC_SUBST(LIBGTKHEX_LIBS)
@@ -43,7 +43,7 @@ AC_SUBST(LIBGTKHEX_CFLAGS)
 
 PKG_CHECK_MODULES(GHEX,
 		  gio-2.0                       \
-		  gtk+-2.0 >= 2.20.0 		\
+		  gtk+-2.0 >= 2.24.0 		\
 		  gconf-2.0			\
 		  libbonoboui-2.0		\
 		  libgnomeprintui-2.2)
