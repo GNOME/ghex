@@ -291,9 +291,9 @@ static gint get_acoords(GtkHex *gh, gint pos, gint *x, gint *y) {
 static void render_byte(GtkHex *gh, gint pos) {
 	gint cx, cy;
 	gchar buf[2];
+	cairo_t *cr;
 
-	if(gh->xdisp_gc == NULL || gh->adisp_gc == NULL ||
-	   !gtk_widget_get_realized(gh->xdisp) || !gtk_widget_get_realized(gh->adisp))
+	if (!gtk_widget_get_realized (gh->xdisp) || !gtk_widget_get_realized (gh->adisp))
 		return;
 
 	if(!get_xcoords(gh, pos, &cx, &cy))
@@ -301,32 +301,38 @@ static void render_byte(GtkHex *gh, gint pos) {
 
 	format_xbyte(gh, pos, buf);
 
-	gdk_gc_set_foreground(gh->xdisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->base[GTK_STATE_NORMAL]);
-	gdk_draw_rectangle(gtk_widget_get_window(gh->xdisp), gh->xdisp_gc, TRUE,
-					   cx, cy, 2*gh->char_width, gh->char_height);
+	cr = gdk_cairo_create (gtk_widget_get_window (gh->xdisp));
+
+	gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_NORMAL]);
+	cairo_rectangle (cr, cx, cy, 2 * gh->char_width, gh->char_height);
+	cairo_fill (cr);
 
 	if(pos < gh->document->file_size) {
-		gdk_gc_set_foreground(gh->xdisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->text[GTK_STATE_NORMAL]);
-		/* Changes for Gnome 2.0 */
+		gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->text[GTK_STATE_NORMAL]);
+		cairo_move_to (cr, cx, cy);
 		pango_layout_set_text (gh->xlayout, buf, 2);
-		gdk_draw_layout (gtk_widget_get_window(gh->xdisp), gh->xdisp_gc, cx, cy, gh->xlayout);
+		pango_cairo_show_layout (cr, gh->xlayout);
 	}
+	cairo_destroy (cr);
 	
 	if(!get_acoords(gh, pos, &cx, &cy))
 		return;
 
-	gdk_gc_set_foreground(gh->adisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->base[GTK_STATE_NORMAL]);
-	gdk_draw_rectangle(gtk_widget_get_window(gh->adisp), gh->adisp_gc, TRUE,
-					   cx, cy, gh->char_width, gh->char_height);
+	cr = gdk_cairo_create (gtk_widget_get_window (gh->adisp));
+
+	gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_NORMAL]);
+	cairo_rectangle (cr, cx, cy, gh->char_width, gh->char_height);
+	cairo_fill (cr);
 	if(pos < gh->document->file_size) {
-		gdk_gc_set_foreground(gh->adisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->text[GTK_STATE_NORMAL]);
+		gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->text[GTK_STATE_NORMAL]);
 		buf[0] = gtk_hex_get_byte(gh, pos);
 		if(!is_displayable((guchar)buf[0]))
 			buf[0] = '.';
-		/* Changes for Gnome 2.0 */
+		cairo_move_to (cr, cx, cy);
 		pango_layout_set_text (gh->alayout, buf, 1);
-		gdk_draw_layout (gtk_widget_get_window(gh->adisp), gh->adisp_gc, cx, cy, gh->alayout);
+		pango_cairo_show_layout (cr, gh->alayout);
 	}
+	cairo_destroy (cr);
 }
 
 /*
@@ -335,34 +341,41 @@ static void render_byte(GtkHex *gh, gint pos) {
 static void render_ac(GtkHex *gh) {
 	gint cx, cy;
 	static guchar c[2] = "\0\0";
+	cairo_t *cr;
 	
 	if(!gtk_widget_get_realized(gh->adisp))
 		return;
-	
+
 	if(get_acoords(gh, gh->cursor_pos, &cx, &cy)) {
 		c[0] = gtk_hex_get_byte(gh, gh->cursor_pos);
 		if(!is_displayable(c[0]))
 			c[0] = '.';
 
-		gdk_gc_set_foreground(gh->adisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->base[GTK_STATE_ACTIVE]);
+		cr = gdk_cairo_create (gtk_widget_get_window (gh->adisp));
+
+		gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_ACTIVE]);
 		if(gh->active_view == VIEW_ASCII) {
-			gdk_draw_rectangle(gtk_widget_get_window(gh->adisp), gh->adisp_gc,
-							   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
+			cairo_rectangle (cr, cx, cy, gh->char_width, gh->char_height - 1);
+			cairo_fill (cr);
 		}
 		else {
-			gdk_draw_rectangle(gtk_widget_get_window(gh->adisp), gh->adisp_gc,
-							   FALSE, cx, cy, gh->char_width, gh->char_height - 1);
+			cairo_set_line_width (cr, 1.0);
+			cairo_rectangle (cr, cx + 0.5, cy + 0.5, gh->char_width, gh->char_height - 1);
+			cairo_stroke (cr);
 		}
-		gdk_gc_set_foreground(gh->adisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->black);
-		/* Changes for Gnome 2.0 */
+		gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->black);
+		cairo_move_to (cr, cx, cy);
 		pango_layout_set_text (gh->alayout, c, 1);
-		gdk_draw_layout (gtk_widget_get_window(gh->adisp), gh->adisp_gc, cx, cy, gh->alayout);
+		pango_cairo_show_layout (cr, gh->alayout);
+
+		cairo_destroy (cr);
 	}
 }
 
 static void render_xc(GtkHex *gh) {
 	gint cx, cy, i;
 	static guchar c[2];
+	cairo_t *cr;
 
 	if(!gtk_widget_get_realized(gh->xdisp))
 		return;
@@ -378,25 +391,30 @@ static void render_xc(GtkHex *gh) {
 			i = 0;
 		}
 
-		gdk_gc_set_foreground(gh->xdisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->base[GTK_STATE_ACTIVE]);
+		cr = gdk_cairo_create (gtk_widget_get_window (gh->xdisp));
+
+		gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_ACTIVE]);
 		if(gh->active_view == VIEW_HEX) {
-			gdk_draw_rectangle(gtk_widget_get_window(GTK_WIDGET(gh->xdisp)), gh->xdisp_gc,
-							   TRUE, cx, cy, gh->char_width, gh->char_height - 1);
+			cairo_rectangle (cr, cx, cy, gh->char_width, gh->char_height - 1);
+			cairo_fill (cr);
 		}
 		else {
-			gdk_draw_rectangle(gtk_widget_get_window(GTK_WIDGET(gh->xdisp)), gh->xdisp_gc,
-							   FALSE, cx, cy, gh->char_width, gh->char_height - 1);
+			cairo_set_line_width (cr, 1.0);
+			cairo_rectangle (cr, cx + 0.5, cy + 0.5, gh->char_width, gh->char_height - 1);
+			cairo_stroke (cr);
 		}
-		gdk_gc_set_foreground(gh->xdisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->black);
+		gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->black);
+		cairo_move_to (cr, cx, cy);
 		pango_layout_set_text (gh->xlayout, &c[i], 1);
-		gdk_draw_layout (gtk_widget_get_window(gh->xdisp), gh->xdisp_gc, cx, cy, gh->xlayout);
+		pango_cairo_show_layout (cr, gh->xlayout);
+
+		cairo_destroy (cr);
 	}
 }
 
 static void show_cursor(GtkHex *gh) {
 	if(!gh->cursor_shown) {
-		if(gh->xdisp_gc != NULL || gh->adisp_gc != NULL ||
-		   gtk_widget_get_realized(gh->xdisp) || gtk_widget_get_realized(gh->adisp)) {
+		if (gtk_widget_get_realized (gh->xdisp) || gtk_widget_get_realized (gh->adisp)) {
 			render_xc(gh);
 			render_ac(gh);
 		}
@@ -406,8 +424,7 @@ static void show_cursor(GtkHex *gh) {
 
 static void hide_cursor(GtkHex *gh) {
 	if(gh->cursor_shown) {
-		if(gh->xdisp_gc != NULL || gh->adisp_gc != NULL ||
-		   gtk_widget_get_realized(gh->xdisp) || gtk_widget_get_realized(gh->adisp))
+		if (gtk_widget_get_realized (gh->xdisp) || gtk_widget_get_realized (gh->adisp))
 			render_byte(gh, gh->cursor_pos);
 		gh->cursor_shown = FALSE;
 	}
@@ -595,22 +612,24 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 	gint i, cursor_line;
 	gint xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
 	gint frm_len, tmp;
+	cairo_t *cr;
 
 	if( (!gtk_widget_get_realized(GTK_WIDGET (gh))) || (gh->cpl == 0) )
 		return;
 
+	cr = gdk_cairo_create (gtk_widget_get_window (w));
+
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 
 	gtk_widget_get_allocation(w, &allocation);
-	gdk_gc_set_foreground(gh->xdisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->base[GTK_STATE_NORMAL]);
-	gdk_draw_rectangle(gtk_widget_get_window(w), gh->xdisp_gc, TRUE,
-					   0, imin*gh->char_height, allocation.width,
-					   (imax - imin + 1)*gh->char_height);
+	gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_NORMAL]);
+	cairo_rectangle (cr, 0, imin * gh->char_height, allocation.width, (imax - imin + 1) * gh->char_height);
+	cairo_fill (cr);
   
 	imax = MIN(imax, gh->vis_lines);
 	imax = MIN(imax, gh->lines);
 
-	gdk_gc_set_foreground(gh->xdisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->text[GTK_STATE_NORMAL]);
+	gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->text[GTK_STATE_NORMAL]);
 
 	frm_len = format_xblock(gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
 							MIN((gh->top_line+imax+1)*gh->cpl, gh->document->file_size) );
@@ -621,13 +640,15 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 			return;
 
 		render_hex_highlights(gh, i);
-		/* Changes for Gnome 2.0 */
+		cairo_move_to (cr, 0, i * gh->char_height);
 		pango_layout_set_text (gh->xlayout, gh->disp_buffer + (i - imin)*xcpl, MIN(xcpl, tmp));
-		gdk_draw_layout (gtk_widget_get_window(w), gh->xdisp_gc, 0, i*gh->char_height, gh->xlayout);
+		pango_cairo_show_layout (cr, gh->xlayout);
 	}
 	
 	if((cursor_line >= imin) && (cursor_line <= imax) && (gh->cursor_shown))
 		render_xc(gh);
+
+	cairo_destroy (cr);
 }
 
 static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
@@ -635,40 +656,46 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 	GtkAllocation allocation;
 	gint i, tmp, frm_len;
 	guint cursor_line;
+	cairo_t *cr;
 
 	if( (!gtk_widget_get_realized(GTK_WIDGET(gh))) || (gh->cpl == 0) )
 		return;
+
+	cr = gdk_cairo_create (gtk_widget_get_window (w));
 	
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 
 	gtk_widget_get_allocation(w, &allocation);
-	gdk_gc_set_foreground(gh->adisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->base[GTK_STATE_NORMAL]);
-	gdk_draw_rectangle(gtk_widget_get_window(w), gh->adisp_gc, TRUE,
-					   0, imin*gh->char_height, allocation.width,
-					   (imax - imin + 1)*gh->char_height);
+	gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_NORMAL]);
+	cairo_rectangle (cr, 0, imin * gh->char_height, allocation.width, (imax - imin + 1) * gh->char_height);
+	cairo_fill (cr);
 	
 	imax = MIN(imax, gh->vis_lines);
 	imax = MIN(imax, gh->lines);
 
-	gdk_gc_set_foreground(gh->adisp_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->text[GTK_STATE_NORMAL]);
+	gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->text[GTK_STATE_NORMAL]);
 	
 	frm_len = format_ablock(gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
 							MIN((gh->top_line+imax+1)*gh->cpl, gh->document->file_size) );
 	
 	for(i = imin; i <= imax; i++) {
 		tmp = (gint)frm_len - (gint)((i - imin)*gh->cpl);
-		if(tmp <= 0)
+		if (tmp <= 0) {
+			cairo_destroy (cr);
 			return;
+		}
 
 		render_ascii_highlights(gh, i);
-		/* Changes for Gnome 2.0 */
-		pango_layout_set_text (gh->alayout, gh->disp_buffer + (i - imin)*gh->cpl, MIN(gh->cpl, tmp));
-		gdk_draw_layout (gtk_widget_get_window(w), gh->adisp_gc, 0, i*gh->char_height, gh->alayout);
 
+		cairo_move_to (cr, 0, i * gh->char_height);
+		pango_layout_set_text (gh->alayout, gh->disp_buffer + (i - imin)*gh->cpl, MIN(gh->cpl, tmp));
+		pango_cairo_show_layout (cr, gh->alayout);
 	}
 	
 	if((cursor_line >= imin) && (cursor_line <= imax) && (gh->cursor_shown))
 		render_ac(gh);
+
+	cairo_destroy (cr);
 }
 
 static void render_offsets(GtkHex *gh, gint imin, gint imax) {
@@ -676,33 +703,31 @@ static void render_offsets(GtkHex *gh, gint imin, gint imax) {
 	GtkAllocation allocation;
 	gint i;
 	gchar offstr[9];
+	cairo_t *cr;
 
 	if(!gtk_widget_get_realized(GTK_WIDGET(gh)))
 		return;
 
-	if(gh->offsets_gc == NULL) {
-		gh->offsets_gc = gdk_gc_new(gtk_widget_get_window(gh->offsets));
-		gdk_gc_set_exposures(gh->offsets_gc, TRUE);
-	}
+	cr = gdk_cairo_create (gtk_widget_get_window (gh->offsets));
 
 	gtk_widget_get_allocation(w, &allocation);
-	gdk_gc_set_foreground(gh->offsets_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->base[GTK_STATE_INSENSITIVE]);
-	gdk_draw_rectangle(gtk_widget_get_window(w), gh->offsets_gc, TRUE,
-					   0, imin*gh->char_height, allocation.width,
-					   (imax - imin + 1)*gh->char_height);
+	gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_INSENSITIVE]);
+	cairo_rectangle (cr, 0, imin * gh->char_height, allocation.width, (imax - imin + 1) * gh->char_height);
+	cairo_fill (cr);
   
 	imax = MIN(imax, gh->vis_lines);
 	imax = MIN(imax, gh->lines - gh->top_line - 1);
 
-	gdk_gc_set_foreground(gh->offsets_gc, &gtk_widget_get_style(GTK_WIDGET(gh))->text[GTK_STATE_NORMAL]);
+	gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->text[GTK_STATE_NORMAL]);
 	
 	for(i = imin; i <= imax; i++) {
 		sprintf(offstr, "%08X", (gh->top_line + i)*gh->cpl + gh->starting_offset);
-		/* Changes for Gnome 2.0 */
+		cairo_move_to (cr, 0, i * gh->char_height);
 		pango_layout_set_text (gh->olayout, offstr, 8);
-		gdk_draw_layout (gtk_widget_get_window(w), gh->offsets_gc, 0, i*gh->char_height, gh->olayout);
-
+		pango_cairo_show_layout (cr, gh->olayout);
 	}
+
+	cairo_destroy (cr);
 }
 
 /*
@@ -884,10 +909,8 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 	source_max = source_min + xdisp_allocation.height;
 	dest_min = 0;
 
-	if(gh->xdisp_gc == NULL ||
-	   gh->adisp_gc == NULL ||
-	   (!gtk_widget_is_drawable(gh->xdisp)) ||
-	   (!gtk_widget_is_drawable(gh->adisp)))
+	if ((!gtk_widget_is_drawable(gh->xdisp)) ||
+	    (!gtk_widget_is_drawable(gh->adisp)))
 		return;
 
 	gh->top_line = (gint)gtk_adjustment_get_value(adj);
@@ -1142,18 +1165,7 @@ static void hide_offsets_widget(GtkHex *gh) {
 	if(gh->offsets) {
 		gtk_container_remove(GTK_CONTAINER(gh), gh->offsets);
 		gh->offsets = NULL;
-		gh->offsets_gc = NULL;
 	}
-}
-
-static void hex_realize(GtkWidget *widget, GtkHex *gh) {
-	gh->xdisp_gc = gdk_gc_new(gtk_widget_get_window(gh->xdisp));
-	gdk_gc_set_exposures(gh->xdisp_gc, TRUE);
-}
-	
-static void ascii_realize(GtkWidget *widget, GtkHex *gh) {
-	gh->adisp_gc = gdk_gc_new(gtk_widget_get_window(gh->adisp));
-	gdk_gc_set_exposures(gh->adisp_gc, TRUE);
 }
 
 static void gtk_hex_realize(GtkWidget *widget) {
@@ -1958,7 +1970,6 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	gh->starting_offset = 0;
 
 	gh->xdisp_width = gh->adisp_width = 200;
-	gh->adisp_gc = gh->xdisp_gc = NULL;
 	gh->active_view = VIEW_HEX;
 	gh->group_type = GROUP_BYTE;
 	gh->lines = gh->vis_lines = gh->top_line = gh->cpl = 0;
@@ -2008,8 +2019,6 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 					 G_CALLBACK(hex_button_cb), gh);
 	g_signal_connect(G_OBJECT(gh->xdisp), "motion_notify_event",
 					 G_CALLBACK(hex_motion_cb), gh);
-	g_signal_connect(G_OBJECT(gh->xdisp), "realize",
-					 G_CALLBACK(hex_realize), gh);
 	g_signal_connect(G_OBJECT(gh->xdisp), "scroll_event",
 					 G_CALLBACK(hex_scroll_cb), gh);
 	gtk_fixed_put(GTK_FIXED(gh), gh->xdisp, 0, 0);
@@ -2033,8 +2042,6 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 					 G_CALLBACK(ascii_button_cb), gh);
 	g_signal_connect(G_OBJECT(gh->adisp), "motion_notify_event",
 					 G_CALLBACK(ascii_motion_cb), gh);
-	g_signal_connect(G_OBJECT(gh->adisp), "realize",
-					 G_CALLBACK(ascii_realize), gh);
 	g_signal_connect(G_OBJECT(gh->adisp), "scroll_event",
 					 G_CALLBACK(ascii_scroll_cb), gh);
 	gtk_fixed_put(GTK_FIXED(gh), gh->adisp, 0, 0);
