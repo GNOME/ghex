@@ -78,7 +78,7 @@ find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	if(!find_dialog)
 		find_dialog = create_find_dialog();
 
-	if(!GTK_WIDGET_VISIBLE(find_dialog->window)) {
+	if(!gtk_widget_get_visible(find_dialog->window)) {
 		gtk_window_set_position (GTK_WINDOW(find_dialog->window), GTK_WIN_POS_MOUSE);
 		gtk_window_set_default(GTK_WINDOW(find_dialog->window), find_dialog->f_next);
 		gtk_widget_show(find_dialog->window);
@@ -93,7 +93,7 @@ advanced_find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbn
 	if (!win->advanced_find_dialog)
 		win->advanced_find_dialog = create_advanced_find_dialog(win);
 
-	if(!GTK_WIDGET_VISIBLE(win->advanced_find_dialog->window)) {
+	if(!gtk_widget_get_visible(win->advanced_find_dialog->window)) {
 		gtk_window_set_position (GTK_WINDOW(win->advanced_find_dialog->window), GTK_WIN_POS_MOUSE);
 		gtk_window_set_default(GTK_WINDOW(win->advanced_find_dialog->window),
 							   win->advanced_find_dialog->f_close);
@@ -109,7 +109,7 @@ replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	if(!replace_dialog)
 		replace_dialog = create_replace_dialog();
 
-	if(!GTK_WIDGET_VISIBLE(replace_dialog->window)) {
+	if(!gtk_widget_get_visible(replace_dialog->window)) {
 		gtk_window_set_position (GTK_WINDOW(replace_dialog->window), GTK_WIN_POS_MOUSE);
 		gtk_window_set_default(GTK_WINDOW(replace_dialog->window), replace_dialog->next);
 		gtk_widget_show(replace_dialog->window);
@@ -123,7 +123,7 @@ jump_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	if(!jump_dialog)
 		jump_dialog = create_jump_dialog();
 
-	if(!GTK_WIDGET_VISIBLE(jump_dialog->window)) {
+	if(!gtk_widget_get_visible(jump_dialog->window)) {
 		gtk_window_set_position (GTK_WINDOW(jump_dialog->window), GTK_WIN_POS_MOUSE);
 		gtk_window_set_default(GTK_WINDOW(jump_dialog->window), jump_dialog->ok);
 		gtk_widget_show(jump_dialog->window);

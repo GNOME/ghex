@@ -238,11 +238,11 @@ create_converter()
 	table = gtk_table_new(6, 2, FALSE);
 	gtk_table_set_row_spacings(GTK_TABLE(table), 4);
 	gtk_table_set_col_spacings(GTK_TABLE(table), 4);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(conv->window)->vbox), table,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(conv->window))), table,
 					   TRUE, TRUE, 0);
-	gtk_container_set_border_width(GTK_CONTAINER(GTK_DIALOG(conv->window)->vbox),
+	gtk_container_set_border_width(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(conv->window))),
 								   4);
-	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(conv->window)->vbox), 2);
+	gtk_box_set_spacing(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(conv->window))), 2);
 	gtk_widget_show(table);
 	
 	accel_group = gtk_accel_group_new();

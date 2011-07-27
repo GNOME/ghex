@@ -634,7 +634,7 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 void
 raise_and_focus_widget (GtkWidget *widget)
 {
-	if(!GTK_WIDGET_REALIZED (widget))
+	if(!gtk_widget_get_realized (widget))
 		return;
 
 	gtk_window_present(GTK_WINDOW(widget));
@@ -673,7 +673,7 @@ void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 	if(ghex_window_get_active() != NULL)
 		gtk_window_set_transient_for(GTK_WINDOW(prefs_ui->pbox),
 									 GTK_WINDOW(ghex_window_get_active()));
-	if(!GTK_WIDGET_VISIBLE(prefs_ui->pbox)) {
+	if(!gtk_widget_get_visible(prefs_ui->pbox)) {
 		gtk_window_set_position (GTK_WINDOW(prefs_ui->pbox), GTK_WIN_POS_MOUSE);
 		gtk_widget_show(GTK_WIDGET(prefs_ui->pbox));
 	}
@@ -805,7 +805,7 @@ ghex_print_document_real(GHexPrintJobInfo *pji, gboolean preview)
 						 _("Printing file..."));
 	progress_bar = gtk_progress_bar_new();
 	gtk_widget_show(progress_bar);
-	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(progress_dialog)->vbox),
+	gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(progress_dialog))),
 					  progress_bar);
 	gtk_widget_show(progress_dialog);
 

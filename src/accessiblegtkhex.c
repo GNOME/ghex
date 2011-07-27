@@ -208,7 +208,7 @@ accessible_gtk_hex_real_initialize (AtkObject *obj,
 
 	accessible = GTK_ACCESSIBLE (obj);
 	g_return_if_fail (accessible != NULL);
-	accessible->widget = GTK_WIDGET (gtk_hex);
+	gtk_accessible_set_widget (accessible, GTK_WIDGET (gtk_hex));
 
 	accessible_gtk_hex->textutil = gail_text_util_new();
 
@@ -281,7 +281,7 @@ accessible_gtk_hex_get_text (AtkText *text,
 	GtkHex *gtk_hex ;
 	gchar *str = NULL, *utf8;
         
-	widget = GTK_ACCESSIBLE (text)->widget;
+	widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (text));
 
 	access_gtk_hex = ACCESSIBLE_GTK_HEX (text);
 	g_return_val_if_fail (access_gtk_hex->textutil, NULL);
@@ -359,7 +359,7 @@ accessible_gtk_hex_get_character_count (AtkText *text)
 	GtkWidget *widget;
 	GtkHex *gtk_hex ;
 
-	widget = GTK_ACCESSIBLE (text)->widget;
+	widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (text));
 	
 	gtk_hex = GTK_HEX (widget);
 
@@ -376,7 +376,7 @@ accessible_gtk_hex_get_character_at_offset (AtkText *text,
 	gchar str[2];
 	gunichar c = '.';
 	
-	widget = GTK_ACCESSIBLE (text)->widget;
+	widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (text));
 	gtk_hex = GTK_HEX (widget);
 
 	if (gtk_hex->active_view == VIEW_ASCII) {
@@ -397,7 +397,7 @@ accessible_gtk_hex_get_caret_offset (AtkText *text)
 	GtkHex *gtk_hex;
 	GtkWidget *widget;
 
-	widget = GTK_ACCESSIBLE (text)->widget;
+	widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (text));
 	g_return_val_if_fail (widget != NULL, 0);
 
 	gtk_hex = GTK_HEX (widget);
@@ -422,7 +422,7 @@ accessible_gtk_hex_set_text_contents (AtkEditableText *text,
 	GtkWidget *widget;
 	gint len;
 
-	widget = GTK_ACCESSIBLE (text)->widget;
+	widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (text));
 	g_return_if_fail (widget != NULL);
 	gtkhex = GTK_HEX (widget);
 
@@ -441,7 +441,7 @@ accessible_gtk_hex_insert_text (AtkEditableText *text,
 	GtkHex *gtkhex;
 	GtkWidget *widget;
 
-	widget = GTK_ACCESSIBLE (text)->widget;
+	widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (text));
 	g_return_if_fail (widget != NULL);
 
 	gtkhex = GTK_HEX (widget);
@@ -459,7 +459,7 @@ accessible_gtk_hex_delete_text (AtkEditableText *text,
 	GtkHex *gtkhex;
 	GtkWidget *widget;
 
-	widget = GTK_ACCESSIBLE (text)->widget;
+	widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (text));
 
 	g_return_if_fail (widget != NULL);
 

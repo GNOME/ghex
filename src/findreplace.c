@@ -99,7 +99,7 @@ FindDialog *create_find_dialog()
 	dialog->f_gh = create_hex_view(dialog->f_doc);
 	frame = gtk_frame_new(_("Find String"));
 	gtk_container_add(GTK_CONTAINER(frame), dialog->f_gh);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), frame,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), frame,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(frame);
 	gtk_widget_show(dialog->f_gh);
@@ -107,31 +107,31 @@ FindDialog *create_find_dialog()
 	dialog->f_next = create_button(dialog->window, GTK_STOCK_GO_FORWARD, _("Find _Next"));
 	g_signal_connect (G_OBJECT (dialog->f_next), "clicked",
 					  G_CALLBACK(find_next_cb), dialog);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_next,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))), dialog->f_next,
 					   TRUE, TRUE, 0);
-	GTK_WIDGET_SET_FLAGS(dialog->f_next, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->f_next, TRUE);
 	gtk_widget_show(dialog->f_next);
 	dialog->f_prev = create_button(dialog->window, GTK_STOCK_GO_BACK, _("Find _Previous"));
 	g_signal_connect (G_OBJECT (dialog->f_prev), "clicked",
 					  G_CALLBACK(find_prev_cb), dialog);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_prev,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))), dialog->f_prev,
 					   TRUE, TRUE, 0);
 
-	GTK_WIDGET_SET_FLAGS(dialog->f_prev, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->f_prev, TRUE);
 	gtk_widget_show(dialog->f_prev);
 
 	dialog->f_close = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
 	g_signal_connect (G_OBJECT (dialog->f_close),
 					  "clicked", G_CALLBACK(find_cancel_cb),
 					  dialog);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->f_close,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))), dialog->f_close,
 					   TRUE, TRUE, 0);
 
-	GTK_WIDGET_SET_FLAGS(dialog->f_close, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->f_close, TRUE);
 	gtk_widget_show(dialog->f_close);
 
-	gtk_container_set_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
-	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
+	gtk_container_set_border_width(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), 2);
+	gtk_box_set_spacing(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), 2);
 
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (dialog->f_gh))) {
 		add_atk_namedesc (dialog->f_gh, _("Find Data"), _("Enter the hex data or ASCII data to search for"));
@@ -159,38 +159,38 @@ static AdvancedFind_AddDialog *create_advanced_find_add_dialog(AdvancedFindDialo
 	dialog->f_gh = create_hex_view(dialog->f_doc);
 	frame = gtk_frame_new(_("Find String"));
 	gtk_container_add(GTK_CONTAINER(frame), dialog->f_gh);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), frame,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), frame,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(frame);
 	gtk_widget_show(dialog->f_gh);
 
 	sep = gtk_hseparator_new();
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), sep,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), sep,
 					   FALSE, FALSE, 0);
 
 	dialog->colour = gtk_color_selection_new();
 	gtk_color_selection_set_has_opacity_control(GTK_COLOR_SELECTION(dialog->colour),
 												FALSE);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox),
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))),
 					   dialog->colour, FALSE, FALSE, 0);
 	gtk_widget_show(dialog->colour);
 
 	button = create_button(dialog->window, GTK_STOCK_ADD, _("Add"));
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), button,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))), button,
 					   TRUE, TRUE, 0);
 	g_signal_connect (G_OBJECT (button),
 					  "clicked", G_CALLBACK(advanced_find_add_add_cb),
 					  dialog);
-	GTK_WIDGET_SET_FLAGS(button, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
 
 	button = gtk_button_new_from_stock(GTK_STOCK_CANCEL);
 	g_signal_connect (G_OBJECT (button),
 					  "clicked", G_CALLBACK(cancel_cb),
 					  dialog->window);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), button,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))), button,
 					   TRUE, TRUE, 0);
-	GTK_WIDGET_SET_FLAGS(button, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
 
 	return dialog;
@@ -220,7 +220,7 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 	create_dialog_title(dialog->window, _("GHex (%s): Find Data"));
 
 	dialog->hbox = gtk_hbox_new(FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox),
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))),
 					   dialog->hbox, TRUE, TRUE, 4);
 	gtk_widget_show(dialog->hbox);
 
@@ -260,7 +260,7 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 	g_signal_connect (G_OBJECT (dialog->f_next),
 					  "clicked", G_CALLBACK(advanced_find_next_cb),
 					  dialog);
-	GTK_WIDGET_SET_FLAGS(dialog->f_next, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->f_next, TRUE);
 	gtk_widget_show(dialog->f_next);
 
 	dialog->f_prev = create_button(dialog->window, GTK_STOCK_GO_BACK, _("Find _Previous"));
@@ -269,7 +269,7 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 	g_signal_connect (G_OBJECT (dialog->f_prev),
 					  "clicked", G_CALLBACK(advanced_find_prev_cb),
 					  dialog);
-	GTK_WIDGET_SET_FLAGS(dialog->f_prev, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->f_prev, TRUE);
 	gtk_widget_show(dialog->f_prev);
 
 	sep = gtk_hseparator_new();
@@ -282,7 +282,7 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 	g_signal_connect (G_OBJECT (dialog->f_new),
 					  "clicked", G_CALLBACK(advanced_find_add_cb),
 					  dialog);
-	GTK_WIDGET_SET_FLAGS(dialog->f_new, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->f_new, TRUE);
 	gtk_widget_show(dialog->f_new);
 
 	dialog->f_remove = create_button(dialog->window, GTK_STOCK_REMOVE, _("_Remove Selected"));
@@ -291,16 +291,16 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 	g_signal_connect (G_OBJECT (dialog->f_remove),
 					  "clicked", G_CALLBACK(advanced_find_delete_cb),
 					  dialog);
-	GTK_WIDGET_SET_FLAGS(dialog->f_remove, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->f_remove, TRUE);
 	gtk_widget_show(dialog->f_remove);
 
 	dialog->f_close = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
 	g_signal_connect(G_OBJECT(dialog->f_close),
 					 "clicked", G_CALLBACK(advanced_find_close_cb),
 					 dialog);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area),
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))),
 					   dialog->f_close, TRUE, TRUE, 0);
-	GTK_WIDGET_SET_FLAGS(dialog->f_close, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->f_close, TRUE);
 	gtk_widget_show(dialog->f_close);
 
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (dialog->f_close)))
@@ -357,7 +357,7 @@ ReplaceDialog *create_replace_dialog()
 	dialog->f_gh = create_hex_view(dialog->f_doc);
 	frame = gtk_frame_new(_("Find String"));
 	gtk_container_add(GTK_CONTAINER(frame), dialog->f_gh);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), frame,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), frame,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(frame);
 	gtk_widget_show(dialog->f_gh);
@@ -366,7 +366,7 @@ ReplaceDialog *create_replace_dialog()
 	dialog->r_gh = create_hex_view(dialog->r_doc);
 	frame = gtk_frame_new(_("Replace With"));
 	gtk_container_add(GTK_CONTAINER(frame), dialog->r_gh);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), frame,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), frame,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(frame);
 	gtk_widget_show(dialog->r_gh);
@@ -375,38 +375,38 @@ ReplaceDialog *create_replace_dialog()
 	g_signal_connect (G_OBJECT (dialog->next),
 					  "clicked", G_CALLBACK(replace_next_cb),
 					  NULL);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->next,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))), dialog->next,
 					   TRUE, TRUE, 0);
-	GTK_WIDGET_SET_FLAGS(dialog->next, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->next, TRUE);
 	gtk_widget_show(dialog->next);
 	dialog->replace = gtk_button_new_with_mnemonic(_("_Replace"));
 	g_signal_connect (G_OBJECT (dialog->replace),
 					  "clicked", G_CALLBACK(replace_one_cb),
 					  NULL);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->replace,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))), dialog->replace,
 					   TRUE, TRUE, 0);
-	GTK_WIDGET_SET_FLAGS(dialog->replace, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->replace, TRUE);
 	gtk_widget_show(dialog->replace);
 	dialog->replace_all= gtk_button_new_with_mnemonic(_("Replace _All"));
 	g_signal_connect (G_OBJECT (dialog->replace_all),
 					  "clicked", G_CALLBACK(replace_all_cb),
 					  NULL);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->replace_all,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))), dialog->replace_all,
 					   TRUE, TRUE, 0);
-	GTK_WIDGET_SET_FLAGS(dialog->replace_all, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->replace_all, TRUE);
 	gtk_widget_show(dialog->replace_all);
 
 	dialog->close = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
 	g_signal_connect (G_OBJECT (dialog->close),
 					  "clicked", G_CALLBACK(cancel_cb),
 					  dialog->window);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->close,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))), dialog->close,
 					   TRUE, TRUE, 0);
-	GTK_WIDGET_SET_FLAGS(dialog->close, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->close, TRUE);
 	gtk_widget_show(dialog->close);
 	
-	gtk_container_set_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
-	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
+	gtk_container_set_border_width(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), 2);
+	gtk_box_set_spacing(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), 2);
 
 	if (GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(dialog->f_gh))) {
 		add_atk_namedesc (dialog->f_gh, _("Find Data"), _("Enter the hex data or ASCII data to search for"));
@@ -433,7 +433,7 @@ JumpDialog *create_jump_dialog()
 	create_dialog_title(dialog->window, _("GHex (%s): Jump To Byte"));
 	
 	dialog->int_entry = gtk_entry_new();
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), dialog->int_entry,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), dialog->int_entry,
 					   TRUE, TRUE, 0);
 	gtk_widget_show(dialog->int_entry);
 
@@ -441,23 +441,23 @@ JumpDialog *create_jump_dialog()
 	g_signal_connect (G_OBJECT (dialog->ok),
 					  "clicked", G_CALLBACK(goto_byte_cb),
 					  dialog->int_entry);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->ok,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))), dialog->ok,
 					   TRUE, TRUE, 0);
 
-	GTK_WIDGET_SET_FLAGS(dialog->ok, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->ok, TRUE);
 	gtk_widget_show(dialog->ok);
 	dialog->cancel = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
 	g_signal_connect (G_OBJECT (dialog->cancel),
 					  "clicked", G_CALLBACK(cancel_cb),
 					  dialog->window);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog->window)->action_area), dialog->cancel,
+	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(dialog->window))), dialog->cancel,
 					   TRUE, TRUE, 0);
 
-	GTK_WIDGET_SET_FLAGS(dialog->cancel, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default(dialog->cancel, TRUE);
 	gtk_widget_show(dialog->cancel);
 	
-	gtk_container_set_border_width(GTK_CONTAINER(GTK_DIALOG(dialog->window)->vbox), 2);
-	gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog->window)->vbox), 2);
+	gtk_container_set_border_width(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), 2);
+	gtk_box_set_spacing(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), 2);
 
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible(dialog->int_entry))) {
 		add_atk_namedesc (dialog->int_entry, _("Jump to byte"), _("Enter the byte to jump to"));
@@ -798,7 +798,7 @@ static void advanced_find_add_add_cb(GtkButton *button,
 static void advanced_find_add_cb(GtkButton *button, AdvancedFindDialog *dialog)
 {
 	gint ret;
-	if(!GTK_WIDGET_VISIBLE(dialog->addDialog->window)) {
+	if(!gtk_widget_get_visible(dialog->addDialog->window)) {
 		gtk_window_set_position (GTK_WINDOW(dialog->addDialog->window), GTK_WIN_POS_MOUSE);
 		gtk_widget_show(dialog->addDialog->window);
 	}

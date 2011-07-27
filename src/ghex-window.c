@@ -55,8 +55,8 @@ ghex_window_drag_data_received(GtkWidget *widget,
 	if (info != TARGET_URI_LIST)
 		return;
 
-    win->uris_to_open = g_strsplit(selection_data->data, "\r\n", 0);
-    if (context->suggested_action == GDK_ACTION_ASK) {
+    win->uris_to_open = g_strsplit(gtk_selection_data_get_data(selection_data), "\r\n", 0);
+    if (gdk_drag_context_get_suggested_action(context) == GDK_ACTION_ASK) {
         GtkWidget *menu = gtk_menu_new ();
 		
         bonobo_window_add_popup (BONOBO_WINDOW (win), 
@@ -415,7 +415,7 @@ ghex_window_listener (BonoboUIComponent           *uic,
             converter = create_converter();
 
         if(state && atoi(state)) {
-            if(!GTK_WIDGET_VISIBLE(converter->window)) {
+            if(!gtk_widget_get_visible(converter->window)) {
                 gtk_window_set_position(GTK_WINDOW(converter->window), GTK_WIN_POS_MOUSE);
                 gtk_widget_show(converter->window);
             }
@@ -427,7 +427,7 @@ ghex_window_listener (BonoboUIComponent           *uic,
                 gtk_widget_set_sensitive(converter_get, TRUE);
         }
         else {
-            if(GTK_WIDGET_VISIBLE(converter->window))
+            if(gtk_widget_get_visible(converter->window))
                 gtk_widget_hide(converter->window);
         }
         ghex_window_sync_converter_item(win, atoi(state));
@@ -438,14 +438,14 @@ ghex_window_listener (BonoboUIComponent           *uic,
             char_table = create_char_table();
 
         if(state && atoi(state)) {
-            if(!GTK_WIDGET_VISIBLE(char_table)) {
+            if(!gtk_widget_get_visible(char_table)) {
                 gtk_window_set_position(GTK_WINDOW(char_table), GTK_WIN_POS_MOUSE);
                 gtk_widget_show(char_table);
             }
             raise_and_focus_widget(char_table);
         }
         else {
-            if(GTK_WIDGET_VISIBLE(char_table))
+            if(gtk_widget_get_visible(char_table))
                 gtk_widget_hide(GTK_WIDGET(char_table));
         }
         ghex_window_sync_char_table_item(win, atoi(state));
@@ -456,12 +456,12 @@ ghex_window_listener (BonoboUIComponent           *uic,
         if (!win->dialog)
             return;
         if (state && atoi(state)) {
-            if (!GTK_WIDGET_VISIBLE(win->dialog_widget))
+            if (!gtk_widget_get_visible(win->dialog_widget))
             {
                 gtk_widget_show(win->dialog_widget);
             }
         }
-        else if (GTK_WIDGET_VISIBLE(win->dialog_widget))
+        else if (gtk_widget_get_visible(win->dialog_widget))
         {
             gtk_widget_hide(GTK_WIDGET(win->dialog_widget));
         }
@@ -528,10 +528,10 @@ ghex_window_new(void)
 	bonobo_ui_component_add_listener (uic, "TypeDialog",
                                       ghex_window_listener, win);
     bonobo_ui_component_set_prop (uic, "/commands/Converter", "state",
-                                  (converter && GTK_WIDGET_VISIBLE(converter->window))?"1":"0",
+                                  (converter && gtk_widget_get_visible(converter->window))?"1":"0",
                                   NULL);
     bonobo_ui_component_set_prop (uic, "/commands/CharacterTable", "state",
-                                  (char_table && GTK_WIDGET_VISIBLE(char_table))?"1":"0",
+                                  (char_table && gtk_widget_get_visible(char_table))?"1":"0",
                                   NULL);
     bonobo_ui_component_set_prop (uic, "/commands/TypeDialog", "state",
                                   "1", NULL);

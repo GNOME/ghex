@@ -85,7 +85,7 @@ create_prefs_dialog()
 
 	notebook = gtk_notebook_new();
 	gtk_widget_show(notebook);
-	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(pui->pbox)->vbox), notebook);
+	gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(pui->pbox))), notebook);
 
 	/* editing page */
 	vbox = gtk_vbox_new(FALSE, 0);
@@ -388,7 +388,7 @@ void set_current_prefs(PropertyUI *pui) {
 static void
 max_undo_changed_cb(GtkAdjustment *adj, PropertyUI *pui)
 {
-	if((guint)adj->value != max_undo_depth) {
+	if((guint)gtk_adjustment_get_value(adj) != max_undo_depth) {
 		max_undo_depth = gtk_spin_button_get_value_as_int
 			(GTK_SPIN_BUTTON(pui->undo_spin));
 		gconf_client_set_int (gconf_client,
@@ -401,7 +401,7 @@ max_undo_changed_cb(GtkAdjustment *adj, PropertyUI *pui)
 static void
 box_size_changed_cb(GtkAdjustment *adj, PropertyUI *pui)
 {
-	if((guint)adj->value != shaded_box_size) {
+	if((guint)gtk_adjustment_get_value(adj) != shaded_box_size) {
 		shaded_box_size = gtk_spin_button_get_value_as_int
 			(GTK_SPIN_BUTTON(pui->box_size_spin));
 		gconf_client_set_int (gconf_client,
@@ -428,7 +428,7 @@ group_type_cb(GtkRadioButton *rd, PropertyUI *pui)
 	int i;
 
 	for(i = 0; i < 3; i++)
-		if(GTK_TOGGLE_BUTTON(pui->group_type[i])->active) {
+		if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(pui->group_type[i]))) {
 			def_group_type = group_type[i];
 			break;
 		}
