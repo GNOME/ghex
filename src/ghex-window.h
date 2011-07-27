@@ -53,7 +53,7 @@ struct _GHexWindowClass
     BonoboWindowClass klass;
 };
 
-GType             ghex_window_get_type           (void);
+GType             ghex_window_get_type           (void) G_GNUC_CONST;
 GtkWidget         *ghex_window_new               (void);
 GtkWidget         *ghex_window_new_from_doc      (HexDocument *doc);
 GtkWidget         *ghex_window_new_from_file     (const gchar *filename);

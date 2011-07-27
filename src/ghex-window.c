@@ -33,7 +33,7 @@
 #define GHEX_WINDOW_DEFAULT_WIDTH 320
 #define GHEX_WINDOW_DEFAULT_HEIGHT 256
 
-static BonoboWindowClass *parent_class;
+G_DEFINE_TYPE (GHexWindow, ghex_window, BONOBO_TYPE_WINDOW)
 
 static GList *window_list = NULL;
 static GHexWindow *active_window = NULL;
@@ -173,8 +173,8 @@ ghex_window_focus_in_event(GtkWidget *win, GdkEventFocus *event)
 
     update_dialog_titles();
 
-    if(GTK_WIDGET_CLASS(parent_class)->focus_in_event)
-        return GTK_WIDGET_CLASS(parent_class)->focus_in_event(win, event);
+    if (GTK_WIDGET_CLASS (ghex_window_parent_class)->focus_in_event)
+        return GTK_WIDGET_CLASS (ghex_window_parent_class)->focus_in_event (win, event);
     else
         return TRUE;
 }
@@ -294,8 +294,8 @@ ghex_window_destroy(GtkObject *object)
         else if(active_window == win)
             active_window = GHEX_WINDOW(window_list->data);
 
-        if(GTK_OBJECT_CLASS(parent_class)->destroy)
-            GTK_OBJECT_CLASS(parent_class)->destroy(object);
+        if (GTK_OBJECT_CLASS (ghex_window_parent_class)->destroy)
+            GTK_OBJECT_CLASS (ghex_window_parent_class)->destroy (object);
 }
 
 static gboolean
@@ -316,8 +316,6 @@ ghex_window_class_init(GHexWindowClass *class)
 	object_class = (GtkObjectClass *) class;
 	widget_class = (GtkWidgetClass *) class;
 
-	parent_class = g_type_class_peek_parent (class);
-
 	object_class->destroy = ghex_window_destroy;
 
 	widget_class->delete_event = ghex_window_delete_event;
@@ -329,33 +327,6 @@ static void
 ghex_window_init (GHexWindow *window)
 {
     window_list = g_list_prepend(window_list, window);
-}
-
-GType
-ghex_window_get_type (void) 
-{
-	static GType ghex_window_type = 0;
-	
-	if(!ghex_window_type) {
-		static const GTypeInfo ghex_window_info =
-		{
-			sizeof(GHexWindowClass),
-			NULL,		/* base_init */
-			NULL,		/* base_finalize */
-			(GClassInitFunc) ghex_window_class_init,
-			NULL,		/* class_finalize */
-			NULL,		/* class_data */
-			sizeof(GHexWindow),
-			0,		/* n_preallocs */
-			(GInstanceInitFunc) ghex_window_init,
-		};
-		
-		ghex_window_type = g_type_register_static(BONOBO_TYPE_WINDOW, 
-                                                  "GHexWindow", 
-                                                  &ghex_window_info, 0);
-	}
-
-	return ghex_window_type;
 }
 
 void
