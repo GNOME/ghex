@@ -619,16 +619,15 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		win->gh = NULL;
         ghex_window_set_sensitivity(win);
 		ghex_window_set_doc_name(win, NULL);
+
+        /* Clear the contents of status bar after closing the files */
+        bonobo_ui_component_set_status(win->uic, " ", NULL);
     }
     else
         gtk_widget_destroy(GTK_WIDGET(win));	
 
     /* this implicitly destroys all views including this one */
     g_object_unref(G_OBJECT(doc));
-
-    /* This is to clear the contents of status  bar after closing the files */
-    bonobo_ui_component_set_status(win->uic, " ", NULL);
-
 }
 
 void
