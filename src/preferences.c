@@ -135,15 +135,15 @@ create_prefs_dialog()
 	gtk_box_pack_start (GTK_BOX(box), pui->format, TRUE, TRUE, 8);
 	gtk_widget_show(pui->format);
 
-	pui->offset_menu = gtk_combo_box_new_text();
+	pui->offset_menu = gtk_combo_box_text_new();
 	gtk_label_set_mnemonic_widget (GTK_LABEL(label), pui->offset_menu);
 	gtk_widget_show(pui->offset_menu);
-	gtk_combo_box_append_text(GTK_COMBO_BOX(pui->offset_menu),
-							  _("Decimal"));
-	gtk_combo_box_append_text(GTK_COMBO_BOX(pui->offset_menu),
-							  _("Hexadecimal"));
-	gtk_combo_box_append_text(GTK_COMBO_BOX(pui->offset_menu),
-							  _("Custom"));
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(pui->offset_menu),
+								   _("Decimal"));
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(pui->offset_menu),
+								   _("Hexadecimal"));
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(pui->offset_menu),
+								   _("Custom"));
 	g_signal_connect(G_OBJECT(pui->offset_menu), "changed",
 					 G_CALLBACK(offset_cb), pui);
 	gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(pui->offset_menu),
