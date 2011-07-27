@@ -873,23 +873,16 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
  */
 static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 	GtkAllocation xdisp_allocation;
-	GtkAllocation adisp_allocation;
-	GtkAllocation offsets_allocation;
 	GdkRectangle rect;
 	gint source_min;
 	gint source_max;
 	gint dest_min;
-	gint dest_max;
 
 	gtk_widget_get_allocation(gh->xdisp, &xdisp_allocation);
-	gtk_widget_get_allocation(gh->adisp, &adisp_allocation);
-	if(gh->offsets)
-		gtk_widget_get_allocation(gh->offsets, &offsets_allocation);
 
 	source_min = ((gint)gtk_adjustment_get_value(adj) - gh->top_line) * gh->char_height;
 	source_max = source_min + xdisp_allocation.height;
 	dest_min = 0;
-	dest_max = xdisp_allocation.height;
 
 	if(gh->xdisp_gc == NULL ||
 	   gh->adisp_gc == NULL ||
@@ -898,9 +891,6 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 		return;
 
 	gh->top_line = (gint)gtk_adjustment_get_value(adj);
-
-	rect.x = 0;
-	rect.width = -1;
 
 	if (source_min < 0) {
 		rect.y = 0;
@@ -917,49 +907,22 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 		rect.height = xdisp_allocation.height - rect.y;
 		
 		source_max = xdisp_allocation.height;
-		dest_max = rect.y;
 	}
 
 	if (source_min != source_max) {
-		gdk_draw_drawable (gtk_widget_get_window(gh->xdisp),
-						   gh->xdisp_gc,
-						   gtk_widget_get_window(gh->xdisp),
-						   0, source_min,
-						   0, dest_min,
-						   xdisp_allocation.width,
-						   source_max - source_min);
-		gdk_draw_drawable (gtk_widget_get_window(gh->adisp),
-						   gh->adisp_gc,
-						   gtk_widget_get_window(gh->adisp),
-						   0, source_min,
-						   0, dest_min,
-						   adisp_allocation.width,
-						   source_max - source_min);
-		if(gh->offsets) {
-			if(gh->offsets_gc == NULL) {
-				gh->offsets_gc = gdk_gc_new(gtk_widget_get_window(gh->offsets));
-				gdk_gc_set_exposures(gh->offsets_gc, TRUE);
-			}
-			gdk_draw_drawable (gtk_widget_get_window(gh->offsets),
-							   gh->offsets_gc,
-							   gtk_widget_get_window(gh->offsets),
-							   0, source_min,
-							   0, dest_min,
-							   offsets_allocation.width,
-							   source_max - source_min);
-		}
+		gint dx, dy;
+
+		dx = 0;
+		dy = dest_min - source_min;
+
+		gdk_window_scroll (gtk_widget_get_window (gh->xdisp), dx, dy);
+		gdk_window_scroll (gtk_widget_get_window (gh->adisp), dx, dy);
+		if (gh->offsets)
+			gdk_window_scroll (gtk_widget_get_window (gh->offsets), dx, dy);
 	}
 
 	gtk_hex_update_all_auto_highlights(gh, TRUE, TRUE);
 	gtk_hex_invalidate_all_highlights(gh);
-	rect.width = xdisp_allocation.width;
-	gdk_window_invalidate_rect (gtk_widget_get_window(gh->xdisp), &rect, FALSE);
-	rect.width = adisp_allocation.width;
-	gdk_window_invalidate_rect (gtk_widget_get_window(gh->adisp), &rect, FALSE);
-	if(gh->offsets) {
-		rect.width = offsets_allocation.width;
-		gdk_window_invalidate_rect (gtk_widget_get_window(gh->offsets), &rect, FALSE);
-	}
 }
 
 /*
