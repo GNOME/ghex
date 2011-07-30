@@ -284,55 +284,35 @@ static gint get_acoords(GtkHex *gh, gint pos, gint *x, gint *y) {
 	return TRUE;
 }
 
+static void
+invalidate_xc (GtkHex *gh)
+{
+    GtkWidget *widget = gh->xdisp;
+    gint cx, cy;
 
-/*
- * renders a byte at offset pos in both displays
- */ 
-static void render_byte(GtkHex *gh, gint pos) {
-	gint cx, cy;
-	gchar buf[2];
-	cairo_t *cr;
+    if (get_xcoords (gh, gh->cursor_pos, &cx, &cy)) {
+        if (gh->lower_nibble)
+            cx += gh->char_width;
 
-	if (!gtk_widget_get_realized (gh->xdisp) || !gtk_widget_get_realized (gh->adisp))
-		return;
+        gtk_widget_queue_draw_area (widget,
+                                    cx, cy,
+                                    gh->char_width + 1,
+                                    gh->char_height);
+    }
+}
 
-	if(!get_xcoords(gh, pos, &cx, &cy))
-		return;
+static void
+invalidate_ac (GtkHex *gh)
+{
+    GtkWidget *widget = gh->adisp;
+    gint cx, cy;
 
-	format_xbyte(gh, pos, buf);
-
-	cr = gdk_cairo_create (gtk_widget_get_window (gh->xdisp));
-
-	gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_NORMAL]);
-	cairo_rectangle (cr, cx, cy, 2 * gh->char_width, gh->char_height);
-	cairo_fill (cr);
-
-	if(pos < gh->document->file_size) {
-		gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->text[GTK_STATE_NORMAL]);
-		cairo_move_to (cr, cx, cy);
-		pango_layout_set_text (gh->xlayout, buf, 2);
-		pango_cairo_show_layout (cr, gh->xlayout);
-	}
-	cairo_destroy (cr);
-	
-	if(!get_acoords(gh, pos, &cx, &cy))
-		return;
-
-	cr = gdk_cairo_create (gtk_widget_get_window (gh->adisp));
-
-	gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_NORMAL]);
-	cairo_rectangle (cr, cx, cy, gh->char_width, gh->char_height);
-	cairo_fill (cr);
-	if(pos < gh->document->file_size) {
-		gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->text[GTK_STATE_NORMAL]);
-		buf[0] = gtk_hex_get_byte(gh, pos);
-		if(!is_displayable((guchar)buf[0]))
-			buf[0] = '.';
-		cairo_move_to (cr, cx, cy);
-		pango_layout_set_text (gh->alayout, buf, 1);
-		pango_cairo_show_layout (cr, gh->alayout);
-	}
-	cairo_destroy (cr);
+    if (get_acoords (gh, gh->cursor_pos, &cx, &cy)) {
+        gtk_widget_queue_draw_area (widget,
+                                    cx, cy,
+                                    gh->char_width + 1,
+                                    gh->char_height);
+    }
 }
 
 /*
@@ -415,8 +395,8 @@ static void render_xc(GtkHex *gh) {
 static void show_cursor(GtkHex *gh) {
 	if(!gh->cursor_shown) {
 		if (gtk_widget_get_realized (gh->xdisp) || gtk_widget_get_realized (gh->adisp)) {
-			render_xc(gh);
-			render_ac(gh);
+			invalidate_xc (gh);
+			invalidate_ac (gh);
 		}
 		gh->cursor_shown = TRUE;
 	}
@@ -424,8 +404,10 @@ static void show_cursor(GtkHex *gh) {
 
 static void hide_cursor(GtkHex *gh) {
 	if(gh->cursor_shown) {
-		if (gtk_widget_get_realized (gh->xdisp) || gtk_widget_get_realized (gh->adisp))
-			render_byte(gh, gh->cursor_pos);
+		if (gtk_widget_get_realized (gh->xdisp) || gtk_widget_get_realized (gh->adisp)) {
+			invalidate_xc (gh);
+			invalidate_ac (gh);
+		}
 		gh->cursor_shown = FALSE;
 	}
 }
@@ -599,6 +581,51 @@ static void render_ascii_highlights(GtkHex *gh, gint cursor_line)
 			nextList = nextList->next;
 		}
 	}
+}
+
+/*
+ * when calling invalidate_*_lines() the imin and imax arguments are the
+ * numbers of the first and last line TO BE INVALIDATED in the range
+ * [0 .. gh->vis_lines-1] AND NOT [0 .. gh->lines]!
+ */
+static void
+invalidate_lines (GtkHex *gh,
+                  GtkWidget *widget,
+                  gint imin,
+                  gint imax)
+{
+    GtkAllocation allocation;
+
+    gtk_widget_get_allocation (widget, &allocation);
+    gtk_widget_queue_draw_area (widget,
+                                0,
+                                imin * gh->char_height,
+                                allocation.width,
+                                (imax - imin + 1) * gh->char_height);
+}
+
+static void
+invalidate_hex_lines (GtkHex *gh,
+                      gint imin,
+                      gint imax)
+{
+    invalidate_lines (gh, gh->xdisp, imin, imax);
+}
+
+static void
+invalidate_ascii_lines (GtkHex *gh,
+                        gint imin,
+                        gint imax)
+{
+    invalidate_lines (gh, gh->adisp, imin, imax);
+}
+
+static void
+invalidate_offsets (GtkHex *gh,
+                    gint imin,
+                    gint imax)
+{
+    invalidate_lines (gh, gh->offsets, imin, imax);
 }
 
 /*
@@ -1222,11 +1249,11 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 	else
 		end_line = MIN(end_line, gh->vis_lines);
 
-	render_hex_lines(gh, start_line, end_line);
-	render_ascii_lines(gh, start_line, end_line);
+    invalidate_hex_lines (gh, start_line, end_line);
+    invalidate_ascii_lines (gh, start_line, end_line);
     if (gh->show_offsets)
     {
-        render_offsets (gh, start_line, end_line);
+        invalidate_offsets (gh, start_line, end_line);
     }
 }
 
@@ -1241,11 +1268,11 @@ static void bytes_changed(GtkHex *gh, gint start, gint end)
 
 	start_line = MAX(start_line, 0);
 
-	render_hex_lines(gh, start_line, end_line);
-	render_ascii_lines(gh, start_line, end_line);
+    invalidate_hex_lines (gh, start_line, end_line);
+    invalidate_ascii_lines (gh, start_line, end_line);
     if (gh->show_offsets)
     {
-        render_offsets (gh, start_line, end_line);
+        invalidate_offsets (gh, start_line, end_line);
     }
 }
 
