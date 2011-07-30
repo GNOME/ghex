@@ -82,8 +82,8 @@ static gchar *char_widths = NULL;
 
 static void render_hex_highlights(GtkHex *gh, gint cursor_line);
 static void render_ascii_highlights(GtkHex *gh, gint cursor_line);
-static void render_hex_lines(GtkHex *, gint, gint);
-static void render_ascii_lines(GtkHex *, gint, gint);
+static void render_hex_lines (GtkHex *gh, cairo_t *cr, gint, gint);
+static void render_ascii_lines (GtkHex *gh, cairo_t *cr, gint, gint);
 
 static void gtk_hex_validate_highlight(GtkHex *gh, GtkHex_Highlight *hl);
 static void gtk_hex_invalidate_highlight(GtkHex *gh, GtkHex_Highlight *hl);
@@ -318,10 +318,12 @@ invalidate_ac (GtkHex *gh)
 /*
  * the cursor rendering stuff...
  */
-static void render_ac(GtkHex *gh) {
+static void
+render_ac (GtkHex *gh,
+           cairo_t *cr)
+{
 	gint cx, cy;
 	static guchar c[2] = "\0\0";
-	cairo_t *cr;
 	
 	if(!gtk_widget_get_realized(gh->adisp))
 		return;
@@ -330,8 +332,6 @@ static void render_ac(GtkHex *gh) {
 		c[0] = gtk_hex_get_byte(gh, gh->cursor_pos);
 		if(!is_displayable(c[0]))
 			c[0] = '.';
-
-		cr = gdk_cairo_create (gtk_widget_get_window (gh->adisp));
 
 		gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_ACTIVE]);
 		if(gh->active_view == VIEW_ASCII) {
@@ -347,15 +347,15 @@ static void render_ac(GtkHex *gh) {
 		cairo_move_to (cr, cx, cy);
 		pango_layout_set_text (gh->alayout, c, 1);
 		pango_cairo_show_layout (cr, gh->alayout);
-
-		cairo_destroy (cr);
 	}
 }
 
-static void render_xc(GtkHex *gh) {
+static void
+render_xc (GtkHex *gh,
+           cairo_t *cr)
+{
 	gint cx, cy, i;
 	static guchar c[2];
-	cairo_t *cr;
 
 	if(!gtk_widget_get_realized(gh->xdisp))
 		return;
@@ -371,8 +371,6 @@ static void render_xc(GtkHex *gh) {
 			i = 0;
 		}
 
-		cr = gdk_cairo_create (gtk_widget_get_window (gh->xdisp));
-
 		gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_ACTIVE]);
 		if(gh->active_view == VIEW_HEX) {
 			cairo_rectangle (cr, cx, cy, gh->char_width, gh->char_height - 1);
@@ -387,8 +385,6 @@ static void render_xc(GtkHex *gh) {
 		cairo_move_to (cr, cx, cy);
 		pango_layout_set_text (gh->xlayout, &c[i], 1);
 		pango_cairo_show_layout (cr, gh->xlayout);
-
-		cairo_destroy (cr);
 	}
 }
 
@@ -633,18 +629,20 @@ invalidate_offsets (GtkHex *gh,
  * numbers of the first and last line TO BE DISPLAYED in the range
  * [0 .. gh->vis_lines-1] AND NOT [0 .. gh->lines]!
  */
-static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
+static void
+render_hex_lines (GtkHex *gh,
+                  cairo_t *cr,
+                  gint imin,
+                  gint imax)
+{
 	GtkWidget *w = gh->xdisp;
 	GtkAllocation allocation;
 	gint i, cursor_line;
 	gint xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
 	gint frm_len, tmp;
-	cairo_t *cr;
 
 	if( (!gtk_widget_get_realized(GTK_WIDGET (gh))) || (gh->cpl == 0) )
 		return;
-
-	cr = gdk_cairo_create (gtk_widget_get_window (w));
 
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 
@@ -673,23 +671,23 @@ static void render_hex_lines(GtkHex *gh, gint imin, gint imax) {
 	}
 	
 	if((cursor_line >= imin) && (cursor_line <= imax) && (gh->cursor_shown))
-		render_xc(gh);
-
-	cairo_destroy (cr);
+		render_xc (gh, cr);
 }
 
-static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
+static void
+render_ascii_lines (GtkHex *gh,
+                    cairo_t *cr,
+                    gint imin,
+                    gint imax)
+{
 	GtkWidget *w = gh->adisp;
 	GtkAllocation allocation;
 	gint i, tmp, frm_len;
 	guint cursor_line;
-	cairo_t *cr;
 
 	if( (!gtk_widget_get_realized(GTK_WIDGET(gh))) || (gh->cpl == 0) )
 		return;
 
-	cr = gdk_cairo_create (gtk_widget_get_window (w));
-	
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 
 	gtk_widget_get_allocation(w, &allocation);
@@ -707,10 +705,8 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 	
 	for(i = imin; i <= imax; i++) {
 		tmp = (gint)frm_len - (gint)((i - imin)*gh->cpl);
-		if (tmp <= 0) {
-			cairo_destroy (cr);
+		if(tmp <= 0)
 			return;
-		}
 
 		render_ascii_highlights(gh, i);
 
@@ -720,22 +716,22 @@ static void render_ascii_lines(GtkHex *gh, gint imin, gint imax) {
 	}
 	
 	if((cursor_line >= imin) && (cursor_line <= imax) && (gh->cursor_shown))
-		render_ac(gh);
-
-	cairo_destroy (cr);
+		render_ac (gh, cr);
 }
 
-static void render_offsets(GtkHex *gh, gint imin, gint imax) {
+static void
+render_offsets (GtkHex *gh,
+                cairo_t *cr,
+                gint imin,
+                gint imax)
+{
 	GtkWidget *w = gh->offsets;
 	GtkAllocation allocation;
 	gint i;
 	gchar offstr[9];
-	cairo_t *cr;
 
 	if(!gtk_widget_get_realized(GTK_WIDGET(gh)))
 		return;
-
-	cr = gdk_cairo_create (gtk_widget_get_window (gh->offsets));
 
 	gtk_widget_get_allocation(w, &allocation);
 	gdk_cairo_set_source_color (cr, &gtk_widget_get_style (GTK_WIDGET (gh))->base[GTK_STATE_INSENSITIVE]);
@@ -753,16 +749,19 @@ static void render_offsets(GtkHex *gh, gint imin, gint imax) {
 		pango_layout_set_text (gh->olayout, offstr, 8);
 		pango_cairo_show_layout (cr, gh->olayout);
 	}
-
-	cairo_destroy (cr);
 }
 
 /*
  * expose signal handlers for both displays
  */
 static void hex_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
+	cairo_t *cr;
 	gint imin, imax;
-	
+
+	cr = gdk_cairo_create (event->window);
+	gdk_cairo_region (cr, event->region);
+	cairo_clip (cr);
+
 	imin = (event->area.y) / gh->char_height;
 	imax = (event->area.y + event->area.height) / gh->char_height;
 	if((event->area.y + event->area.height) % gh->char_height)
@@ -770,11 +769,18 @@ static void hex_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
 
 	imax = MIN(imax, gh->vis_lines);
 	
-	render_hex_lines(gh, imin, imax);
+	render_hex_lines (gh, cr, imin, imax);
+
+	cairo_destroy (cr);
 }
 
 static void ascii_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
+	cairo_t *cr;
 	gint imin, imax;
+
+	cr = gdk_cairo_create (event->window);
+	gdk_cairo_region (cr, event->region);
+	cairo_clip (cr);
 
 	imin = (event->area.y) / gh->char_height;
 	imax = (event->area.y + event->area.height) / gh->char_height;
@@ -783,12 +789,19 @@ static void ascii_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
 	
 	imax = MIN(imax, gh->vis_lines);
 
-	render_ascii_lines(gh, imin, imax);
+	render_ascii_lines (gh, cr, imin, imax);
+
+	cairo_destroy (cr);
 }
 
 static void offsets_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
+	cairo_t *cr;
 	gint imin, imax;
-	
+
+	cr = gdk_cairo_create (event->window);
+	gdk_cairo_region (cr, event->region);
+	cairo_clip (cr);
+
 	imin = (event->area.y) / gh->char_height;
 	imax = (event->area.y + event->area.height) / gh->char_height;
 	if((event->area.y + event->area.height) % gh->char_height)
@@ -796,7 +809,9 @@ static void offsets_expose(GtkWidget *w, GdkEventExpose *event, GtkHex *gh) {
 
 	imax = MIN(imax, gh->vis_lines);
 	
-	render_offsets(gh, imin, imax);
+	render_offsets (gh, cr, imin, imax);
+
+	cairo_destroy (cr);
 }
 
 /*
