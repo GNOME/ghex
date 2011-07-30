@@ -662,7 +662,7 @@ render_hex_lines (GtkHex *gh,
 	for(i = imin; i <= imax; i++) {
 		tmp = (gint)frm_len - (gint)((i - imin)*xcpl);
 		if(tmp <= 0)
-			return;
+			break;
 
 		render_hex_highlights(gh, i);
 		cairo_move_to (cr, 0, i * gh->char_height);
@@ -706,7 +706,7 @@ render_ascii_lines (GtkHex *gh,
 	for(i = imin; i <= imax; i++) {
 		tmp = (gint)frm_len - (gint)((i - imin)*gh->cpl);
 		if(tmp <= 0)
-			return;
+			break;
 
 		render_ascii_highlights(gh, i);
 
