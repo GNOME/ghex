@@ -1,5 +1,5 @@
 # French translation of ghex.
-# Copyright (C) 1998-2006 Free Software Foundation, Inc.
+# Copyright (C) 1998-2011 Free Software Foundation, Inc.
 # This file is under the same license as the ghex package.
 #
 # Vincent Renardias <vincent@ldsol.com>, 1998-2000.
@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex 2.8.3\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=ghex&component=general\n"
-"POT-Creation-Date: 2010-03-08 00:49+0000\n"
-"PO-Revision-Date: 2009-05-30 12:06+0200\n"
-"Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
+"product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-07-25 17:07+0000\n"
+"PO-Revision-Date: 2011-07-31 17:03+0200\n"
+"Last-Translator: Bruno Brouard <annoa.b@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +43,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Hex"
 
-#: ../src/chartable.c:144 ../src/preferences.c:145
+#: ../src/chartable.c:144 ../src/preferences.c:142
 msgid "Decimal"
 msgstr "Décimal"
 
@@ -264,74 +264,80 @@ msgstr "Se place sur un octet spécifié"
 msgid "Closes jump to byte window"
 msgstr "Ferme la fenêtre de saut"
 
-#: ../src/findreplace.c:526 ../src/findreplace.c:560 ../src/findreplace.c:644
+#: ../src/findreplace.c:526 ../src/findreplace.c:560 ../src/findreplace.c:667
 msgid "There is no active document to search!"
 msgstr "Il n'y a pas de document actif dans lequel chercher !"
 
-#: ../src/findreplace.c:533 ../src/findreplace.c:567 ../src/findreplace.c:651
-#: ../src/findreplace.c:685 ../src/findreplace.c:730
+#: ../src/findreplace.c:533 ../src/findreplace.c:567 ../src/findreplace.c:674
+#: ../src/findreplace.c:708 ../src/findreplace.c:753
 msgid "There is no string to search for!"
 msgstr "Il n'y a pas de chaîne à rechercher !"
 
-#: ../src/findreplace.c:545 ../src/findreplace.c:660 ../src/findreplace.c:851
+#: ../src/findreplace.c:545 ../src/findreplace.c:683 ../src/findreplace.c:874
 msgid "End Of File reached"
 msgstr "Fin du fichier atteinte"
 
-#: ../src/findreplace.c:546 ../src/findreplace.c:579 ../src/findreplace.c:659
-#: ../src/findreplace.c:852 ../src/findreplace.c:875
+#: ../src/findreplace.c:546 ../src/findreplace.c:579 ../src/findreplace.c:682
+#: ../src/findreplace.c:875 ../src/findreplace.c:898
 msgid "String was not found!\n"
 msgstr "La chaîne n'a pas été trouvée !\n"
 
-#: ../src/findreplace.c:578 ../src/findreplace.c:874
+#: ../src/findreplace.c:578 ../src/findreplace.c:897
 msgid "Beginning Of File reached"
 msgstr "Début du fichier atteint"
 
-#: ../src/findreplace.c:594
+#: ../src/findreplace.c:595
 msgid "There is no active document to move the cursor in!"
 msgstr "Il n'y a pas de document actif pour y déplacer le curseur !"
 
-#: ../src/findreplace.c:600
+#: ../src/findreplace.c:613
 msgid "No offset has been specified!"
 msgstr "Le déplacement n'a pas été précisé !"
 
-#: ../src/findreplace.c:624
+#: ../src/findreplace.c:638
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "Le déplacement précisé est au delà des limites du fichier !"
+
+#: ../src/findreplace.c:646
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Impossible de positionner le curseur après la fin du fichier !"
 
-#: ../src/findreplace.c:631
+#: ../src/findreplace.c:653
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x'"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
 msgstr ""
 "Vous pouvez donner le déplacement comme :\n"
 "  - un nombre décimal positif, ou\n"
-"  - un nombre hexadécimal, commençant par « 0x »"
+"  - un nombre hexadécimal, commençant par « 0x » ou\n"
+"  - un signe « + » ou « - », suivi par un déplacement relatif"
 
-#: ../src/findreplace.c:676
+#: ../src/findreplace.c:699
 msgid "There is no active buffer to replace data in!"
 msgstr "Il n'y a pas de tampon actif dans lequel remplacer des données !"
 
-#: ../src/findreplace.c:701 ../src/findreplace.c:702
+#: ../src/findreplace.c:724 ../src/findreplace.c:725
 msgid "End Of File reached!"
 msgstr "Fin du fichier atteinte !"
 
-#: ../src/findreplace.c:721
+#: ../src/findreplace.c:744
 msgid "There is no active document to replace data in!"
 msgstr "Il n'y a pas de document actif dans lequel remplacer des données !"
 
-#: ../src/findreplace.c:751
+#: ../src/findreplace.c:774
 msgid "No occurrences were found."
 msgstr "Aucune occurrence trouvée."
 
-#: ../src/findreplace.c:754
+#: ../src/findreplace.c:777
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
 msgstr[0] "%d occurrence remplacée."
 msgstr[1] "%d occurrences remplacées."
 
-#: ../src/findreplace.c:794
+#: ../src/findreplace.c:817
 msgid "No string to search for!"
 msgstr "Aucune chaîne à rechercher !"
 
@@ -793,94 +799,6 @@ msgstr "Vous n'avez pas les droits pour enregistrer ce fichier !"
 msgid "An error occurred while saving file!"
 msgstr "Erreur lors de l'enregistrement du fichier !"
 
-#: ../src/gnome-print-font-dialog.c:102
-msgid "_Insert a new preview phrase."
-msgstr "_Insérer une nouvelle phrase d'aperçu."
-
-#: ../src/gnome-print-font-dialog.c:108
-msgid "Modify preview phrase..."
-msgstr "Modifiez la phrase d'aperçu..."
-
-#: ../src/gnome-print-font-dialog.c:162
-msgid "Preview"
-msgstr "Aperçu"
-
-#: ../src/gnome-print-font-dialog.c:175
-msgid "_Modify preview phrase..."
-msgstr "_Modifier la phrase d'aperçu..."
-
-#: ../src/gnome-print-font-dialog.c:238
-msgid "Font Selection"
-msgstr "Sélecteur de polices"
-
-#: ../src/gnome-print-font-picker.c:76
-msgid "Sans Regular 12"
-msgstr "Sans Regular 12"
-
-#: ../src/gnome-print-font-picker.c:77
-msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-msgstr ""
-"Portez ce vieux whisky au juge blond qui fume. 0123456789. àâçèéêëîïôùûüæœ."
-
-#: ../src/gnome-print-font-picker.c:78
-msgid "Pick a Font"
-msgstr "Choisissez une police"
-
-#: ../src/gnome-print-font-picker.c:162
-msgid "Title"
-msgstr "Titre"
-
-#: ../src/gnome-print-font-picker.c:163
-msgid "The title of the selection dialog box"
-msgstr "Le titre de la boîte de dialogue de sélection"
-
-#: ../src/gnome-print-font-picker.c:183
-msgid "Font name"
-msgstr "Nom de la police"
-
-#: ../src/gnome-print-font-picker.c:184
-msgid "Name of the selected font"
-msgstr "Nom de la police sélectionnée"
-
-#: ../src/gnome-print-font-picker.c:192
-msgid "Preview text"
-msgstr "Texte d'aperçu"
-
-#: ../src/gnome-print-font-picker.c:193
-msgid "Preview text shown in the dialog"
-msgstr "Texte d'aperçu affiché dans la boîte de dialogue"
-
-#: ../src/gnome-print-font-picker.c:201
-msgid "Use font in label"
-msgstr "Utiliser la police dans les étiquettes"
-
-#: ../src/gnome-print-font-picker.c:202
-msgid "Use font in the label in font info mode"
-msgstr ""
-"Utiliser la police dans les étiquettes en mode d'informations de polices"
-
-#: ../src/gnome-print-font-picker.c:210
-msgid "Font size for label"
-msgstr "Taille de la police pour les étiquettes"
-
-#: ../src/gnome-print-font-picker.c:211
-msgid "Font size for label in font info mode"
-msgstr ""
-"Taille de la police pour les étiquettes en mode d'informations de polices"
-
-#: ../src/gnome-print-font-picker.c:221
-msgid "Show size"
-msgstr "Afficher la taille"
-
-#: ../src/gnome-print-font-picker.c:222
-msgid "Show size in font info mode"
-msgstr "Afficher la taille en mode d'informations de police"
-
-#. display font
-#: ../src/gnome-print-font-picker.c:1003 ../src/preferences.c:183
-msgid "Font"
-msgstr "Police"
-
 #: ../src/hex-dialog.c:58
 msgid "Signed 8 bit:"
 msgstr "Signé 8 bit :"
@@ -1004,115 +922,120 @@ msgstr "Impossible d'initialiser Bonobo !\n"
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Chaîne de géométrie « %s » non valide\n"
 
-#: ../src/preferences.c:72
+#: ../src/preferences.c:69
 msgid "GHex Preferences"
 msgstr "Préférences GHex"
 
-#: ../src/preferences.c:104
+#: ../src/preferences.c:101
 msgid "_Maximum number of undo levels:"
 msgstr "Nombre _maximum de niveaux d'annulation :"
 
-#: ../src/preferences.c:124
+#: ../src/preferences.c:121
 msgid "Undo levels"
 msgstr "Niveaux d'annulation"
 
-#: ../src/preferences.c:124
+#: ../src/preferences.c:121
 msgid "Select maximum number of undo levels"
 msgstr "Choisissez le nombre maximum de niveaux d'annulation"
 
-#: ../src/preferences.c:128
+#: ../src/preferences.c:125
 msgid "_Show cursor offset in statusbar as:"
 msgstr "_Afficher la position du curseur dans la barre d'état comme :"
 
-#: ../src/preferences.c:147
+#: ../src/preferences.c:144
 msgid "Hexadecimal"
 msgstr "Hexadécimal"
 
-#: ../src/preferences.c:149
+#: ../src/preferences.c:146
 msgid "Custom"
 msgstr "Personnalisé"
 
-#: ../src/preferences.c:158
+#: ../src/preferences.c:155
 msgid "Enter the cursor offset format"
 msgstr "Saisissez le format de la position du curseur"
 
-#: ../src/preferences.c:159
+#: ../src/preferences.c:156
 msgid "Select the cursor offset format"
 msgstr "Choisissez le format de la position du curseur"
 
 #. show offsets check button
-#: ../src/preferences.c:169
+#: ../src/preferences.c:166
 msgid "Sh_ow offsets column"
 msgstr "Aff_icher la colonne de décalage"
 
-#: ../src/preferences.c:174
+#: ../src/preferences.c:171
 msgid "Editing"
 msgstr "Édition"
 
+#. display font
+#: ../src/preferences.c:180
+msgid "Font"
+msgstr "Police"
+
 #. default group type
-#: ../src/preferences.c:206
+#: ../src/preferences.c:203
 msgid "Default Group Type"
 msgstr "Type de groupement par défaut"
 
-#: ../src/preferences.c:222
+#: ../src/preferences.c:219
 msgid "Display"
 msgstr "Affichage"
 
 #. paper selection
-#: ../src/preferences.c:231
+#: ../src/preferences.c:228
 msgid "Paper size"
 msgstr "Taille du papier"
 
 #. data & header font selection
-#: ../src/preferences.c:236
+#: ../src/preferences.c:233
 msgid "Fonts"
 msgstr "Polices"
 
-#: ../src/preferences.c:242
+#: ../src/preferences.c:239
 msgid "_Data font:"
 msgstr "Police des _données :"
 
-#: ../src/preferences.c:261
+#: ../src/preferences.c:255
 msgid "Data font"
 msgstr "Police des données"
 
-#: ../src/preferences.c:261
+#: ../src/preferences.c:255
 msgid "Select the data font"
 msgstr "Sélectionnez une police de données"
 
-#: ../src/preferences.c:275
+#: ../src/preferences.c:269
 msgid "Header fo_nt:"
 msgstr "_Police de l'en-tête :"
 
-#: ../src/preferences.c:293
+#: ../src/preferences.c:284
 msgid "Header font"
 msgstr "Police de l'en-tête"
 
-#: ../src/preferences.c:293
+#: ../src/preferences.c:284
 msgid "Select the header font"
 msgstr "Sélectionnez une police pour l'en-tête"
 
-#: ../src/preferences.c:319
+#: ../src/preferences.c:310
 msgid "_Print shaded box over:"
 msgstr "_Imprimer une boîte ombrée par-dessus :"
 
-#: ../src/preferences.c:331
+#: ../src/preferences.c:322
 msgid "Box size"
 msgstr "Taille de la boîte"
 
-#: ../src/preferences.c:331
+#: ../src/preferences.c:322
 msgid "Select size of box (in number of lines)"
 msgstr "Choisissez la taille de la boîte (en nombre de lignes)"
 
-#: ../src/preferences.c:335
+#: ../src/preferences.c:326
 msgid "lines (0 for no box)"
 msgstr "lignes (0 pour aucune boîte)"
 
-#: ../src/preferences.c:342
+#: ../src/preferences.c:333
 msgid "Printing"
 msgstr "Impression"
 
-#: ../src/preferences.c:464 ../src/ui.c:295
+#: ../src/preferences.c:453 ../src/ui.c:295
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1121,11 +1044,11 @@ msgstr ""
 "Il y a eu une erreur lors de l'affichage de l'aide : \n"
 "%s"
 
-#: ../src/preferences.c:517
+#: ../src/preferences.c:506
 msgid "Can not open desired font!"
 msgstr "Impossible d'ouvrir la police indiquée !"
 
-#: ../src/preferences.c:580
+#: ../src/preferences.c:569
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -1281,11 +1204,3 @@ msgstr "Pages"
 msgid "GHex (%s): Print Preview"
 msgstr "GHex (%s) : aperçu avant impression"
 
-#~ msgid "Hex Editor"
-#~ msgstr "Éditeur hexadécimal"
-
-#~ msgid "The gnome binary editor"
-#~ msgstr "L'éditeur binaire GNOME"
-
-#~ msgid "Released under the terms of GNU Public License"
-#~ msgstr "Distribué sous les termes de la Licence Publique Générale GNU"
