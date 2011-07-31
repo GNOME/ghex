@@ -72,10 +72,6 @@ static void paste_cb (BonoboUIComponent *uic, gpointer user_data,
 					  const gchar* verbname);
 static void help_cb (BonoboUIComponent *uic, gpointer user_data,
 					 const gchar* verbname);
-static void DnDNewWindow_cb(BonoboUIComponent *uic, gpointer user_data,
-							const char *cname);
-static void DnDCancel_cb(BonoboUIComponent *uic, gpointer user_data,
-						 const char *cname);
 
 guint group_type[3] = {
 	GROUP_BYTE,
@@ -119,37 +115,8 @@ BonoboUIVerb ghex_verbs [] = {
 	BONOBO_UI_VERB ("Preferences", prefs_cb),
 	BONOBO_UI_VERB ("About", about_cb),
 	BONOBO_UI_VERB ("Help", help_cb),
-	BONOBO_UI_VERB ("DnDNewWindow", DnDNewWindow_cb),
-	BONOBO_UI_VERB ("DnDCancel", DnDCancel_cb),
 	BONOBO_UI_VERB_END
 };
-
-static void
-DnDNewWindow_cb(BonoboUIComponent *uic, gpointer user_data, const char *cname)
-{
-	GHexWindow *win = GHEX_WINDOW(user_data);
-	gchar **uri;
-
-	uri = win->uris_to_open;
-	while(*uri) {
-		GtkWidget *newwin;
-		if(!g_ascii_strncasecmp("file:", *uri, 5)) {
-			newwin = ghex_window_new_from_file((*uri) + 5);
-			gtk_widget_show(newwin);
-		}
-		uri++;
-	}
-	g_strfreev(win->uris_to_open);
-	win->uris_to_open = NULL;
-}
-
-static void
-DnDCancel_cb(BonoboUIComponent *uic, gpointer user_data, const char *cname)
-{
-        GHexWindow *win = GHEX_WINDOW(user_data);
-        g_strfreev(win->uris_to_open);
-        win->uris_to_open = NULL;	
-}
 
 void
 cancel_cb(GtkWidget *w, GtkWidget *me)

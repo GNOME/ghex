@@ -44,8 +44,6 @@ struct _GHexWindow
     GtkWidget *dialog_widget;
 
     struct _AdvancedFindDialog *advanced_find_dialog;
-
-    gchar **uris_to_open;
 };
 
 struct _GHexWindowClass

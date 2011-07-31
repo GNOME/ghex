@@ -51,74 +51,58 @@ ghex_window_drag_data_received(GtkWidget *widget,
                                guint info, guint time)
 {
     GHexWindow *win = GHEX_WINDOW(widget);
+    GtkWidget *newwin;
+    gchar **uri;
+    gchar **uris_to_open;
 
-	if (info != TARGET_URI_LIST)
-		return;
+    if (info != TARGET_URI_LIST)
+        return;
 
-    win->uris_to_open = g_strsplit(gtk_selection_data_get_data(selection_data), "\r\n", 0);
-    if (gdk_drag_context_get_suggested_action(context) == GDK_ACTION_ASK) {
-        GtkWidget *menu = gtk_menu_new ();
-		
-        bonobo_window_add_popup (BONOBO_WINDOW (win), 
-                                 GTK_MENU (menu), 
-                                 "/popups/DnD");
-        gtk_menu_popup (GTK_MENU (menu),
-                        NULL,
-                        NULL,
-                        NULL,
-                        NULL,
-                        0,
-                        GDK_CURRENT_TIME);
-    }
-    else {
-        GtkWidget *newwin;
-        gchar **uri = win->uris_to_open;
-        
-        if(win->gh == NULL)
-            newwin = GTK_WIDGET(win);
-        else
-            newwin = NULL;
-        while(*uri) {
-            GError *err = NULL;
-            gchar *filename = g_filename_from_uri(*uri, NULL, &err);
+    if (win->gh == NULL)
+        newwin = GTK_WIDGET (win);
+    else
+        newwin = NULL;
 
-            uri++;
-            if(filename == NULL) {
-                GtkWidget *dlg;
-                dlg = gtk_message_dialog_new(GTK_WINDOW(win),
-                                             GTK_DIALOG_MODAL,
-                                             GTK_MESSAGE_ERROR,
-                                             GTK_BUTTONS_OK,
-                                             _("Can not open URI:\n%s"),
-                                             err->message);
-                g_error_free(err);
-                continue;
-            }
+    uri = uris_to_open = g_strsplit (gtk_selection_data_get_data (selection_data), "\r\n", 0);
+    while (*uri) {
+        GError *err = NULL;
+        gchar *filename = g_filename_from_uri (*uri, NULL, &err);
 
-	    	if(newwin == NULL)
-                newwin = ghex_window_new();
-            if(ghex_window_load(GHEX_WINDOW(newwin), filename)) {
-                if(newwin != GTK_WIDGET(win))
-                    gtk_widget_show(newwin);
-                newwin = NULL;
-            }
-            else {
-                GtkWidget *dlg;
-                dlg = gtk_message_dialog_new(GTK_WINDOW(win),
-                                             GTK_DIALOG_MODAL,
-                                             GTK_MESSAGE_ERROR,
-                                             GTK_BUTTONS_OK,
-                                             _("Can not open file:\n%s"),
-                                             filename);
-                gtk_widget_show(dlg);
-                gtk_dialog_run(GTK_DIALOG(dlg));
-                gtk_widget_destroy(dlg);
-            }
-            g_free(filename);
+        uri++;
+        if (filename == NULL) {
+            GtkWidget *dlg;
+            dlg = gtk_message_dialog_new (GTK_WINDOW (win),
+                                          GTK_DIALOG_MODAL,
+                                          GTK_MESSAGE_ERROR,
+                                          GTK_BUTTONS_OK,
+                                          _("Can not open URI:\n%s"),
+                                          err->message);
+            g_error_free (err);
+            continue;
         }
-        g_strfreev(win->uris_to_open);
-        win->uris_to_open = NULL;
+
+        if (newwin == NULL)
+            newwin = ghex_window_new ();
+        if (ghex_window_load (GHEX_WINDOW (newwin), filename)) {
+            if (newwin != GTK_WIDGET (win))
+                gtk_widget_show (newwin);
+            newwin = NULL;
+        }
+        else {
+            GtkWidget *dlg;
+            dlg = gtk_message_dialog_new (GTK_WINDOW (win),
+                                          GTK_DIALOG_MODAL,
+                                          GTK_MESSAGE_ERROR,
+                                          GTK_BUTTONS_OK,
+                                          _("Can not open file:\n%s"),
+                                          filename);
+            gtk_widget_show (dlg);
+            gtk_dialog_run (GTK_DIALOG (dlg));
+            gtk_widget_destroy (dlg);
+        }
+        g_free (filename);
     }
+    g_strfreev (uris_to_open);
 }
 
 gboolean
@@ -473,7 +457,7 @@ ghex_window_new(void)
                        GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP,
                        drag_types,
                        sizeof (drag_types) / sizeof (drag_types[0]),
-                       GDK_ACTION_COPY | GDK_ACTION_ASK);
+                       GDK_ACTION_COPY);
 
 	/* add menu and toolbar */
 	ui_container = bonobo_window_get_ui_container(BONOBO_WINDOW(win));
