@@ -4,7 +4,7 @@ INCLUDES = \
 	-DGNOMEICONDIR=\""$(datadir)/pixmaps"\"			\
 	-DGNOMELOCALEDIR=\""${prefix}/${DATADIRNAME}/locale"\" 	\
 	-DLOCALEDIR=\"${prefix}/${DATADIRNAME}/locale\"		\
-	-DDATADIR=\""$(datadir)"\"				\
+	-DGHEXDATADIR=\""$(pkgdatadir)"\"			\
 	-DPREFIX=\""$(prefix)"\"				\
 	$(GHEX_CFLAGS) $(GAILUTIL_CFLAGS)			\
 	$(WARN_CFLAGS)						\
@@ -20,7 +20,7 @@ lib_LTLIBRARIES = libgtkhex.la
 
 libgtkhexdir = $(includedir)/gtkhex/
 
-uidir = $(datadir)/gnome-2.0/ui/
+uidir = $(pkgdatadir)
 
 libgtkhex_la_SOURCES = \
 	hex-document.c			\

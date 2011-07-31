@@ -32,6 +32,7 @@
 #include <string.h>     /* for strncpy */
 
 #include <gdk/gdkkeysyms.h>
+#include <glib/gi18n.h>
 
 #include "gtkhex.h"
 #include "converter.h"

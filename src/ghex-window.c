@@ -11,11 +11,8 @@
 #  include <config.h>
 #endif /* HAVE_CONFIG_H */
 
-#include <bonobo-activation/bonobo-activation.h>
-#include <bonobo.h>
-#include <bonobo/bonobo-ui-main.h>
-
 #include <gio/gio.h>
+#include <glib/gi18n.h>
 
 #include <math.h>
 #include <ctype.h>
@@ -33,7 +30,7 @@
 #define GHEX_WINDOW_DEFAULT_WIDTH 320
 #define GHEX_WINDOW_DEFAULT_HEIGHT 256
 
-G_DEFINE_TYPE (GHexWindow, ghex_window, BONOBO_TYPE_WINDOW)
+G_DEFINE_TYPE (GHexWindow, ghex_window, GTK_TYPE_WINDOW)
 
 static GList *window_list = NULL;
 static GHexWindow *active_window = NULL;
@@ -164,52 +161,78 @@ ghex_window_focus_in_event(GtkWidget *win, GdkEventFocus *event)
 }
 
 void
+ghex_window_set_action_visible (GHexWindow *win,
+                                const char *name,
+                                gboolean    visible)
+{
+    GtkAction *action;
+
+    action = gtk_action_group_get_action (win->action_group, name);
+    gtk_action_set_visible (action, visible);
+}
+
+void
+ghex_window_set_action_sensitive (GHexWindow *win,
+                                  const char *name,
+                                  gboolean    sensitive)
+{
+    GtkAction *action;
+
+    action = gtk_action_group_get_action (win->action_group, name);
+    gtk_action_set_sensitive (action, sensitive);
+}
+
+static void
+ghex_window_set_toggle_action_active (GHexWindow *win,
+                                      const char *name,
+                                      gboolean    active)
+{
+    GtkAction *action;
+
+    action = gtk_action_group_get_action (win->action_group, name);
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), active);
+}
+
+static gboolean
+ghex_window_get_toggle_action_active (GHexWindow *win,
+                                      const char *name)
+{
+    GtkAction *action;
+
+    action = gtk_action_group_get_action (win->action_group, name);
+    return gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+}
+
+void
 ghex_window_set_sensitivity (GHexWindow *win)
 {
-    BonoboUIComponent *uic = win->uic;
     gboolean allmenus = (win->gh != NULL);
 
     win->undo_sens = (allmenus && (win->gh->document->undo_top != NULL));
     win->redo_sens = (allmenus && (win->gh->document->undo_stack != NULL && win->gh->document->undo_top != win->gh->document->undo_stack));
 
-    bonobo_ui_component_freeze(uic, NULL);
-	bonobo_ui_component_set_prop (uic, "/menu/View", "hidden", 
-                                  allmenus?"0":"1", NULL);
-    bonobo_ui_component_set_prop (uic, "/commands/FileClose", "sensitive",
-                                  allmenus?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/FileSave", "sensitive",
-                                  (allmenus && win->gh->document->changed)?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/FileSaveAs", "sensitive",
-                                  allmenus?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/ExportToHTML", "sensitive",
-                                  allmenus?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/FileRevert", "sensitive",
-                                  (allmenus && win->gh->document->changed)?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/FilePrint", "sensitive",
-                                  allmenus ?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/FilePrintPreview", "sensitive",
-                                  allmenus?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/Find", "sensitive",
-                                  allmenus?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/Replace", "sensitive",
-                                  allmenus?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/AdvancedFind", "sensitive",
-                                  allmenus?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/GoToByte", "sensitive",
-                                  allmenus?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/InsertMode", "sensitive",
-                                  allmenus?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/EditUndo", "sensitive",
-                                  (allmenus && win->undo_sens)?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/EditRedo", "sensitive",
-                                  (allmenus && win->redo_sens)?"1":"0", NULL);
-	bonobo_ui_component_set_prop (uic, "/commands/EditCut", "sensitive",
-                                  (allmenus)?"1":"0", NULL);
-  	bonobo_ui_component_set_prop (uic, "/commands/EditCopy", "sensitive",
-                                  (allmenus)?"1":"0", NULL);
-  	bonobo_ui_component_set_prop (uic, "/commands/EditPaste", "sensitive",
-                                  (allmenus)?"1":"0", NULL);
-    bonobo_ui_component_thaw(uic, NULL);
+    ghex_window_set_action_visible (win, "View", allmenus);
+
+    /* File menu */
+    ghex_window_set_action_sensitive (win, "FileClose", allmenus);
+    ghex_window_set_action_sensitive (win, "FileSave", allmenus && win->gh->document->changed);
+    ghex_window_set_action_sensitive (win, "FileSaveAs", allmenus);
+    ghex_window_set_action_sensitive (win, "FileExportToHTML", allmenus);
+    ghex_window_set_action_sensitive (win, "FileRevert", allmenus && win->gh->document->changed);
+    ghex_window_set_action_sensitive (win, "FilePrint", allmenus);
+    ghex_window_set_action_sensitive (win, "FilePrintPreview", allmenus);
+
+    /* Edit menu */
+    ghex_window_set_action_sensitive (win, "EditFind", allmenus);
+    ghex_window_set_action_sensitive (win, "EditReplace", allmenus);
+    ghex_window_set_action_sensitive (win, "EditAdvancedFind", allmenus);
+    ghex_window_set_action_sensitive (win, "EditGotoByte", allmenus);
+    ghex_window_set_action_sensitive (win, "EditInsertMode", allmenus);
+    ghex_window_set_action_sensitive (win, "EditUndo", allmenus && win->undo_sens);
+    ghex_window_set_action_sensitive (win, "EditRedo", allmenus && win->redo_sens);
+    ghex_window_set_action_sensitive (win, "EditCut", allmenus);
+    ghex_window_set_action_sensitive (win, "EditCopy", allmenus);
+    ghex_window_set_action_sensitive (win, "EditPaste", allmenus);
 }
 
 static void
@@ -228,14 +251,12 @@ ghex_window_doc_changed(HexDocument *doc, HexChangeData *change_data,
     else if(push_undo) {
         if(win->undo_sens != ( win->gh->document->undo_top == NULL)) {
             win->undo_sens = (win->gh->document->undo_top != NULL);
-            bonobo_ui_component_set_prop (win->uic, "/commands/EditUndo", "sensitive",
-                                          win->undo_sens?"1":"0", NULL);
+            ghex_window_set_action_sensitive (win, "EditUndo", win->undo_sens);
         }
         if(win->redo_sens != (win->gh->document->undo_stack != NULL && (win->gh->document->undo_stack != win->gh->document->undo_top))) {
             win->redo_sens = (win->gh->document->undo_stack != NULL &&
                               (win->gh->document->undo_top != win->gh->document->undo_stack));
-            bonobo_ui_component_set_prop (win->uic, "/commands/EditRedo", "sensitive",
-                                          win->redo_sens?"1":"0", NULL);
+            ghex_window_set_action_sensitive (win, "EditRedo", win->redo_sens);
         }
     }
 }
@@ -250,10 +271,6 @@ ghex_window_destroy(GtkObject *object)
 
         win = GHEX_WINDOW(object);
 
-        if(win->uic) {
-            bonobo_object_unref(win->uic);
-            win->uic = NULL;
-        }
         if(win->gh) {
             hex_document_remove_view(win->gh->document, GTK_WIDGET(win->gh));
             g_signal_handlers_disconnect_matched(win->gh->document,
@@ -263,6 +280,20 @@ ghex_window_destroy(GtkObject *object)
                                                  win);
             win->gh = NULL;
         }
+
+        if (win->action_group) {
+            g_object_unref (win->action_group);
+            win->action_group = NULL;
+        }
+        if (win->doc_list_action_group) {
+            g_object_unref (win->doc_list_action_group);
+            win->doc_list_action_group = NULL;
+        }
+        if (win->ui_manager) {
+            g_object_unref (win->ui_manager);
+            win->ui_manager = NULL;
+        }
+
         if (win->dialog)
         {
             g_object_unref (G_OBJECT(win->dialog));
@@ -272,7 +303,7 @@ ghex_window_destroy(GtkObject *object)
         window_list = g_list_remove(window_list, win);
 
         if(window_list == NULL) {
-            bonobo_main_quit();
+            gtk_main_quit ();
             active_window = NULL;
         }
         else if(active_window == win)
@@ -289,6 +320,274 @@ ghex_window_delete_event(GtkWidget *widget, GdkEventAny *e)
     return TRUE;
 }
 
+/* Normal items */
+static const GtkActionEntry action_entries [] = {
+    { "File", NULL, "_File" },
+    { "Edit", NULL, "_Edit" },
+    { "View", NULL, "_View" },
+    { "GroupDataAs", NULL, "_Group Data As" }, // View submenu
+    { "Windows", NULL, "_Windows" },
+    { "Help", NULL, "_Help" },
+
+    /* File menu */
+    { "FileOpen", GTK_STOCK_OPEN, "_Open...", "<control>O",
+      "Open a file",
+      G_CALLBACK (open_cb) },
+    { "FileSave", GTK_STOCK_SAVE, "_Save", "<control>S",
+      "Save the current file",
+      G_CALLBACK (save_cb) },
+    { "FileSaveAs", GTK_STOCK_SAVE_AS, "Save _As...", "<shift><control>S",
+      "Save the current file with a different name",
+      G_CALLBACK (save_as_cb) },
+    { "FileExportToHTML", NULL, "Save As _HTML...", NULL,
+      "Export data to HTML source",
+      G_CALLBACK (export_html_cb) },
+    { "FileRevert", GTK_STOCK_REVERT_TO_SAVED, "_Revert", NULL,
+      "Revert to a saved version of the file",
+      G_CALLBACK (revert_cb) },
+    { "FilePrint", GTK_STOCK_PRINT, "_Print", "<control>P",
+      "Print the current file",
+      G_CALLBACK (print_cb) },
+    { "FilePrintPreview", GTK_STOCK_PRINT_PREVIEW, "Print Previe_w...", "<shift><control>P",
+      "Preview printed data",
+      G_CALLBACK (print_preview_cb) },
+    { "FileClose", GTK_STOCK_CLOSE, "_Close", "<control>W",
+      "Close the current file",
+      G_CALLBACK (close_cb) },
+    { "FileExit", GTK_STOCK_QUIT, "E_xit", "<control>Q",
+      "Exit the program",
+      G_CALLBACK (quit_app_cb) },
+
+    /* Edit menu */
+    { "EditUndo", GTK_STOCK_UNDO, "_Undo", "<control>Z",
+      "Undo the last action",
+      G_CALLBACK (undo_cb) },
+    { "EditRedo", GTK_STOCK_REDO, "_Redo", "<shift><control>Z",
+      "Redo the undone action",
+      G_CALLBACK (redo_cb) },
+    { "EditCopy", GTK_STOCK_COPY, "_Copy", "<control>C",
+      "Copy selection to clipboard",
+      G_CALLBACK (copy_cb) },
+    { "EditCut", GTK_STOCK_CUT, "Cu_t", "<control>X",
+      "Cut selection",
+      G_CALLBACK (cut_cb) },
+    { "EditPaste", GTK_STOCK_PASTE, "Pa_ste", "<control>V",
+      "Paste data from clipboard",
+      G_CALLBACK (paste_cb) },
+    { "EditFind", GTK_STOCK_FIND, "_Find", "<control>F",
+      "Search for a string",
+      G_CALLBACK (find_cb) },
+    { "EditAdvancedFind", GTK_STOCK_FIND, "_Advanced Find", NULL,
+      "Advanced Find",
+      G_CALLBACK (advanced_find_cb) },
+    { "EditReplace", GTK_STOCK_FIND_AND_REPLACE, "R_eplace", "<control>H",
+      "Replace a string",
+      G_CALLBACK (replace_cb) },
+    { "EditGotoByte", NULL, "_Goto Byte...", "<control>J",
+      "Jump to a certain position",
+      G_CALLBACK (jump_cb) },
+    { "EditPreferences", GTK_STOCK_PREFERENCES, "_Preferences", NULL,
+      "Configure the application",
+      G_CALLBACK (prefs_cb) },
+
+    /* View menu */
+    { "ViewAddView", NULL, "_Add View", NULL,
+      "Add a new view to the buffer",
+      G_CALLBACK (add_view_cb) },
+    { "ViewRemoveView", NULL, "_Remove View", NULL,
+      "Remove the current view of the buffer",
+      G_CALLBACK (remove_view_cb) },
+
+    /* Help menu */
+    { "HelpContents", GTK_STOCK_HELP, "_Contents", "F1",
+      "Help on this application",
+      G_CALLBACK (help_cb) },
+    { "HelpAbout", GTK_STOCK_ABOUT, "_About", NULL,
+      "About this application",
+      G_CALLBACK (about_cb) }
+};
+
+/* Toggle items */
+static const GtkToggleActionEntry toggle_entries[] = {
+    /* Edit menu */
+    { "EditInsertMode", NULL, "_Insert Mode", "Insert",
+      "Insert/overwrite data",
+      G_CALLBACK (insert_mode_cb), FALSE },
+
+    /* Windows menu */
+    { "CharacterTable", NULL, "Character _Table", NULL,
+      "Show the character table",
+      G_CALLBACK (character_table_cb), FALSE },
+    { "Converter", NULL, "_Base Converter", NULL,
+      "Open base conversion dialog",
+      G_CALLBACK (converter_cb), FALSE },
+    { "TypeDialog", NULL, "Type Conversion _Dialog", NULL,
+      "Show the type conversion dialog in the edit window",
+      G_CALLBACK (type_dialog_cb), TRUE }
+};
+
+/* Radio items in View -> Group Data As */
+static GtkRadioActionEntry group_data_entries[] = {
+    { "Bytes", NULL, "_Bytes", NULL,
+      "Group data by 8 bits", GROUP_BYTE },
+    { "Words", NULL, "_Words", NULL,
+      "Group data by 16 bits", GROUP_WORD },
+    { "Longwords", NULL, "_Longwords", NULL,
+      "Group data by 32 bits", GROUP_LONG }
+};
+
+static void
+menu_item_selected_cb (GtkWidget  *item,
+                       GHexWindow *window)
+{
+    GtkAction *action;
+    gchar *tooltip;
+
+    action = gtk_activatable_get_related_action (GTK_ACTIVATABLE (item));
+    g_object_get (G_OBJECT (action), "tooltip", &tooltip, NULL);
+
+    if (tooltip != NULL)
+        gtk_statusbar_push (GTK_STATUSBAR (window->statusbar),
+                            window->statusbar_tooltip_id,
+                            tooltip);
+
+    g_free (tooltip);
+}
+
+static void
+menu_item_deselected_cb (GtkWidget  *item,
+                         GHexWindow *window)
+{
+    gtk_statusbar_pop (GTK_STATUSBAR (window->statusbar),
+                       window->statusbar_tooltip_id);
+}
+
+static void
+connect_proxy_cb (GtkUIManager *ui,
+                  GtkAction    *action,
+                  GtkWidget    *proxy,
+                  GHexWindow   *window)
+{
+    if (!GTK_IS_MENU_ITEM (proxy))
+        return;
+
+    g_signal_connect (G_OBJECT (proxy), "select",
+                      G_CALLBACK (menu_item_selected_cb), window);
+    g_signal_connect (G_OBJECT (proxy), "deselect",
+                      G_CALLBACK (menu_item_deselected_cb), window);
+}
+
+static void
+disconnect_proxy_cb (GtkUIManager *manager,
+                     GtkAction    *action,
+                     GtkWidget    *proxy,
+                     GHexWindow   *window)
+{
+    if (!GTK_IS_MENU_ITEM (proxy))
+        return;
+
+    g_signal_handlers_disconnect_by_func
+        (proxy, G_CALLBACK (menu_item_selected_cb), window);
+    g_signal_handlers_disconnect_by_func
+        (proxy, G_CALLBACK (menu_item_deselected_cb), window);
+}
+
+void
+ghex_window_set_contents (GHexWindow *win,
+                          GtkWidget  *child)
+{
+    if (win->contents)
+        gtk_widget_destroy (win->contents);
+
+    win->contents = child;
+    gtk_box_pack_start (GTK_BOX (win->vbox), win->contents, TRUE, TRUE, 0);
+}
+
+void
+ghex_window_destroy_contents (GHexWindow *win)
+{
+    gtk_widget_destroy (win->contents);
+    win->contents = NULL;
+}
+
+static GObject *
+ghex_window_constructor (GType                  type,
+                         guint                  n_construct_properties,
+                         GObjectConstructParam *construct_params)
+{
+    GObject    *object;
+    GHexWindow *window;
+    GtkWidget  *menubar;
+    GError     *error = NULL;
+    gchar      *ui_path;
+
+    object = G_OBJECT_CLASS (ghex_window_parent_class)->constructor (type,
+                             n_construct_properties,
+                             construct_params);
+    window = GHEX_WINDOW (object);
+
+    window->ui_merge_id = 0;
+    window->ui_manager = gtk_ui_manager_new ();
+    g_signal_connect (G_OBJECT (window->ui_manager), "connect-proxy",
+                      G_CALLBACK (connect_proxy_cb), window);
+    g_signal_connect (G_OBJECT (window->ui_manager), "disconnect-proxy",
+                      G_CALLBACK (disconnect_proxy_cb), window);
+
+    /* Action group for static menu items */
+    window->action_group = gtk_action_group_new ("GHexActions");
+    gtk_action_group_set_translation_domain (window->action_group,
+                                             GETTEXT_PACKAGE);
+    gtk_action_group_add_actions (window->action_group, action_entries,
+                                  G_N_ELEMENTS (action_entries),
+                                  window);
+    gtk_action_group_add_toggle_actions (window->action_group, toggle_entries,
+                                         G_N_ELEMENTS (toggle_entries),
+                                         window);
+    gtk_action_group_add_radio_actions (window->action_group, group_data_entries,
+                                        G_N_ELEMENTS (group_data_entries),
+                                        GROUP_BYTE,
+                                        G_CALLBACK (group_data_cb),
+                                        window);
+    gtk_ui_manager_insert_action_group (window->ui_manager,
+                                        window->action_group, 0);
+    gtk_window_add_accel_group (GTK_WINDOW (window),
+                                gtk_ui_manager_get_accel_group (window->ui_manager));
+
+    /* Action group for open documents */
+    window->doc_list_action_group = gtk_action_group_new ("DocListActions");
+    gtk_ui_manager_insert_action_group (window->ui_manager,
+                                        window->doc_list_action_group, 0);
+
+    /* Load menu description from file */
+    ui_path = g_build_filename (GHEXDATADIR, "ghex-ui.xml", NULL);
+    if (!gtk_ui_manager_add_ui_from_file (window->ui_manager, ui_path, &error)) {
+        g_warning ("Failed to load ui: %s", error->message);
+        g_error_free (error);
+    }
+    g_free (ui_path);
+
+    window->vbox = gtk_vbox_new (FALSE, 0);
+
+    /* Attach menu */
+    menubar = gtk_ui_manager_get_widget (window->ui_manager, "/MainMenu");
+    gtk_box_pack_start (GTK_BOX (window->vbox), menubar, FALSE, TRUE, 0);
+    gtk_widget_show (menubar);
+
+    window->contents = NULL;
+
+    /* Create statusbar */
+    window->statusbar = gtk_statusbar_new ();
+    window->statusbar_tooltip_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (window->statusbar),
+                                                                 "tooltip");
+    gtk_box_pack_end (GTK_BOX (window->vbox), window->statusbar, FALSE, TRUE, 0);
+    gtk_widget_show (window->statusbar);
+
+    gtk_container_add (GTK_CONTAINER (window), window->vbox);
+    gtk_widget_show (window->vbox);
+
+    return object;
+}
+
 static void
 ghex_window_class_init(GHexWindowClass *class)
 {
@@ -299,6 +598,8 @@ ghex_window_class_init(GHexWindowClass *class)
 	gobject_class = (GObjectClass *) class;
 	object_class = (GtkObjectClass *) class;
 	widget_class = (GtkWidgetClass *) class;
+
+	gobject_class->constructor = ghex_window_constructor;
 
 	object_class->destroy = ghex_window_destroy;
 
@@ -321,9 +622,7 @@ ghex_window_sync_converter_item(GHexWindow *win, gboolean state)
     wnode = ghex_window_get_list();
     while(wnode) {
         if(GHEX_WINDOW(wnode->data) != win)
-            bonobo_ui_component_set_prop (GHEX_WINDOW(wnode->data)->uic,
-                                          "/commands/Converter", "state",
-                                          state?"1":"0", NULL);
+            ghex_window_set_toggle_action_active (GHEX_WINDOW (wnode->data), "Converter", state);
         wnode = wnode->next;
     }
 }
@@ -336,112 +635,15 @@ ghex_window_sync_char_table_item(GHexWindow *win, gboolean state)
     wnode = ghex_window_get_list();
     while(wnode) {
         if(GHEX_WINDOW(wnode->data) != win)
-            bonobo_ui_component_set_prop (GHEX_WINDOW(wnode->data)->uic,
-                                          "/commands/CharacterTable", "state",
-                                          state?"1":"0", NULL);
+            ghex_window_set_toggle_action_active (GHEX_WINDOW (wnode->data), "CharacterTable", state);
         wnode = wnode->next;
     }
-}
-
-static void
-ghex_window_listener (BonoboUIComponent           *uic,
-                      const char                  *path,
-                      Bonobo_UIComponent_EventType type,
-                      const char                  *state,
-                      gpointer                     user_data)
-{
-	GHexWindow *win;
-
-	g_return_if_fail (user_data != NULL);
-	g_return_if_fail (GHEX_IS_WINDOW (user_data));
-
-	if (type != Bonobo_UIComponent_STATE_CHANGED)
-		return;
-
-	win = GHEX_WINDOW(user_data);
-
-	if (!strcmp (path, "InsertMode")) {
-        if (win->gh != NULL)
-            gtk_hex_set_insert_mode(win->gh, *state == '1');
-		return;
-	}
-    else if(!strcmp (path, "Converter")) {
-        if(!converter)
-            converter = create_converter();
-
-        if(state && atoi(state)) {
-            if(!gtk_widget_get_visible(converter->window)) {
-                gtk_window_set_position(GTK_WINDOW(converter->window), GTK_WIN_POS_MOUSE);
-                gtk_widget_show(converter->window);
-            }
-            raise_and_focus_widget(converter->window);
-
-            if (!ghex_window_get_active() && converter_get)
-                gtk_widget_set_sensitive(converter_get, FALSE);
-            else
-                gtk_widget_set_sensitive(converter_get, TRUE);
-        }
-        else {
-            if(gtk_widget_get_visible(converter->window))
-                gtk_widget_hide(converter->window);
-        }
-        ghex_window_sync_converter_item(win, atoi(state));
-        return;
-    }
-    else if(!strcmp (path, "CharacterTable")) {
-        if(!char_table)
-            char_table = create_char_table();
-
-        if(state && atoi(state)) {
-            if(!gtk_widget_get_visible(char_table)) {
-                gtk_window_set_position(GTK_WINDOW(char_table), GTK_WIN_POS_MOUSE);
-                gtk_widget_show(char_table);
-            }
-            raise_and_focus_widget(char_table);
-        }
-        else {
-            if(gtk_widget_get_visible(char_table))
-                gtk_widget_hide(GTK_WIDGET(char_table));
-        }
-        ghex_window_sync_char_table_item(win, atoi(state));
-        return;
-    }
-    else if (strcmp(path, "TypeDialog") == 0)
-    {
-        if (!win->dialog)
-            return;
-        if (state && atoi(state)) {
-            if (!gtk_widget_get_visible(win->dialog_widget))
-            {
-                gtk_widget_show(win->dialog_widget);
-            }
-        }
-        else if (gtk_widget_get_visible(win->dialog_widget))
-        {
-            gtk_widget_hide(GTK_WIDGET(win->dialog_widget));
-        }
-        return;
-    }
-	if (!state || !atoi (state) || (win->gh == NULL))
-		return;
-
-	if (!strcmp (path, "Bytes"))
-		gtk_hex_set_group_type(win->gh, GROUP_BYTE);
-	else if (!strcmp (path, "Words"))
-		gtk_hex_set_group_type(win->gh, GROUP_WORD);
-	else if (!strcmp (path, "Longwords"))
-		gtk_hex_set_group_type(win->gh, GROUP_LONG);
-	else {
-		g_warning("Unknown event: '%s'.", path);
-	}
 }
 
 GtkWidget *
 ghex_window_new(void)
 {
     GHexWindow *win;
-	BonoboUIContainer *ui_container;
-	BonoboUIComponent *uic;
     const GList *doc_list;
 
 	static const GtkTargetEntry drag_types[] = {
@@ -449,7 +651,6 @@ ghex_window_new(void)
 	};
 
 	win = GHEX_WINDOW(g_object_new(GHEX_TYPE_WINDOW,
-                                   "win_name", "ghex",
                                    "title", _("GHex"),
                                    NULL));
 
@@ -459,38 +660,10 @@ ghex_window_new(void)
                        sizeof (drag_types) / sizeof (drag_types[0]),
                        GDK_ACTION_COPY);
 
-	/* add menu and toolbar */
-	ui_container = bonobo_window_get_ui_container(BONOBO_WINDOW(win));
-	uic = bonobo_ui_component_new("ghex");
-    win->uic = uic;
-	bonobo_ui_component_set_container(uic, BONOBO_OBJREF(ui_container),
-                                      NULL);
-	bonobo_ui_util_set_ui(uic, DATADIR, "ghex-ui.xml", "GHex", NULL);
-	bonobo_ui_component_add_verb_list_with_data(uic, ghex_verbs, win);
-    
-	bonobo_ui_component_add_listener (uic, "Bytes",
-                                      ghex_window_listener, win);
-	bonobo_ui_component_add_listener (uic, "Words",
-                                      ghex_window_listener, win);
-	bonobo_ui_component_add_listener (uic, "Longwords",
-                                      ghex_window_listener, win);
-	bonobo_ui_component_add_listener (uic, "InsertMode",
-                                      ghex_window_listener, win);
-	bonobo_ui_component_add_listener (uic, "Converter",
-                                      ghex_window_listener, win);
-	bonobo_ui_component_add_listener (uic, "CharacterTable",
-                                      ghex_window_listener, win);
-	bonobo_ui_component_add_listener (uic, "TypeDialog",
-                                      ghex_window_listener, win);
-    bonobo_ui_component_set_prop (uic, "/commands/Converter", "state",
-                                  (converter && gtk_widget_get_visible(converter->window))?"1":"0",
-                                  NULL);
-    bonobo_ui_component_set_prop (uic, "/commands/CharacterTable", "state",
-                                  (char_table && gtk_widget_get_visible(char_table))?"1":"0",
-                                  NULL);
-    bonobo_ui_component_set_prop (uic, "/commands/TypeDialog", "state",
-                                  "1", NULL);
-	bonobo_ui_component_set_prop (uic, "/status", "hidden", "0", NULL);
+    ghex_window_set_toggle_action_active (win, "Converter",
+                                          converter && gtk_widget_get_visible (converter->window));
+    ghex_window_set_toggle_action_active (win, "CharacterTable",
+                                          char_table && gtk_widget_get_visible (char_table));
 
     ghex_window_set_sensitivity(win);
 
@@ -529,7 +702,7 @@ ghex_window_new_from_doc(HexDocument *doc)
 
     gtk_widget_show(gh);
     GHEX_WINDOW(win)->gh = GTK_HEX(gh);
-    bonobo_window_set_contents(BONOBO_WINDOW(win), gh);
+    ghex_window_set_contents (GHEX_WINDOW (win), gh);
     g_signal_connect(G_OBJECT(doc), "document_changed",
                      G_CALLBACK(ghex_window_doc_changed), win);
     ghex_window_set_doc_name(GHEX_WINDOW(win),
@@ -562,13 +735,13 @@ ghex_window_sync_group_type(GHexWindow *win)
 
     switch(win->gh->group_type) {
     case GROUP_BYTE:
-        group_path = "/commands/Bytes";
+        group_path = "Bytes";
         break;
     case GROUP_WORD:
-        group_path = "/commands/Words";
+        group_path = "Words";
         break;
     case GROUP_LONG:
-        group_path = "/commands/Longwords";
+        group_path = "Longwords";
         break;
     default:
         group_path = NULL;
@@ -578,7 +751,7 @@ ghex_window_sync_group_type(GHexWindow *win)
     if(group_path == NULL)
         return;
 
-    bonobo_ui_component_set_prop(win->uic, group_path, "state", "1", NULL);
+    ghex_window_set_toggle_action_active (win, group_path, TRUE);
 }
 
 void
@@ -642,7 +815,7 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     GtkWidget *gh;
     GtkWidget *vbox;
     const GList *window_list;
-    gchar *state;
+    gboolean active;
 
     g_return_val_if_fail(win != NULL, FALSE);
     g_return_val_if_fail(GHEX_IS_WINDOW(win), FALSE);
@@ -685,8 +858,8 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     win->dialog = hex_dialog_new();
     win->dialog_widget = hex_dialog_getview(win->dialog);
     gtk_box_pack_start(GTK_BOX(vbox), win->dialog_widget, FALSE, FALSE, 4);
-    state = bonobo_ui_component_get_prop (win->uic, "/commands/TypeDialog", "state", NULL);
-    if ((state && atoi(state)) || !state)
+    active = ghex_window_get_toggle_action_active (win, "TypeDialog");
+    if (active)
     {
       gtk_widget_show(win->dialog_widget);
     }
@@ -709,7 +882,7 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
                                              ghex_window_doc_changed,
                                              win);
     }
-    bonobo_window_set_contents(BONOBO_WINDOW(win), vbox);
+    ghex_window_set_contents (win, vbox);
     win->gh = GTK_HEX(gh);
     win->changed = FALSE;
 
@@ -827,27 +1000,59 @@ encode_xml (const gchar* text)
 	return g_string_free (str, FALSE);
 }
 
+static void
+ghex_window_doc_menu_update (GHexWindow *win)
+{
+    GList *items, *l;
+
+    /* Remove existing entries from UI manager */
+    if (win->ui_merge_id > 0) {
+        gtk_ui_manager_remove_ui (win->ui_manager,
+                                  win->ui_merge_id);
+        gtk_ui_manager_ensure_update (win->ui_manager);
+    }
+    win->ui_merge_id = gtk_ui_manager_new_merge_id (win->ui_manager);
+
+    /* Populate the UI with entries from the action group */
+    items = gtk_action_group_list_actions (win->doc_list_action_group);
+    for (l = items; l && l->data; l = g_list_next (l)) {
+        GtkAction *action;
+        const gchar *action_name;
+
+        action = (GtkAction *) l->data;
+        action_name = gtk_action_get_name (action);
+
+        gtk_ui_manager_add_ui (win->ui_manager,
+                               win->ui_merge_id,
+                               "/MainMenu/Windows/OpenDocuments",
+                               action_name,
+                               action_name,
+                               GTK_UI_MANAGER_MENUITEM,
+                               FALSE);
+    }
+}
+
 void
 ghex_window_remove_doc_from_list(GHexWindow *win, HexDocument *doc)
 {
-    gchar *verb_name = g_strdup_printf("FilesFile_%p", doc);
-    gchar *menu_path = g_strdup_printf("/menu/Windows/OpenDocuments/%s", verb_name);
-    gchar *cmd_path = g_strdup_printf("/commands/%s", verb_name);
+    GtkAction *action;
+    gchar *action_name;
 
-    bonobo_ui_component_remove_verb(win->uic, verb_name);
-    bonobo_ui_component_rm(win->uic, cmd_path, NULL);
-    bonobo_ui_component_rm(win->uic, menu_path, NULL);
- 
-    g_free(cmd_path);
-    g_free(menu_path);
-    g_free(verb_name);
+    action_name = g_strdup_printf ("FilesFile_%p", doc);
+    action = gtk_action_group_get_action (win->doc_list_action_group,
+                                          action_name);
+    g_free (action_name);
+
+    gtk_action_group_remove_action (win->doc_list_action_group,
+                                    action);
+    ghex_window_doc_menu_update (win);
 }
 
 void
 ghex_window_add_doc_to_list(GHexWindow *win, HexDocument *doc)
 {
-    gchar *menu = NULL, *verb_name;
-    gchar *cmd = NULL;
+    GtkAction *action;
+    gchar *action_name;
     gchar *escaped_name;
     gchar *tip;
 
@@ -855,21 +1060,21 @@ ghex_window_add_doc_to_list(GHexWindow *win, HexDocument *doc)
     tip = g_strdup_printf(_("Activate file %s"), escaped_name);
     g_free(escaped_name);
     escaped_name = encode_xml_and_escape_underscores(doc->path_end);
-    verb_name = g_strdup_printf("FilesFile_%p", doc);
-    menu = g_strdup_printf("<menuitem name=\"%s\" verb=\"%s\" label=\"%s\"/>",
-                           verb_name, verb_name, escaped_name);
-    cmd = g_strdup_printf("<cmd name=\"%s\" label=\"%s\" _tip=\"%s\"/>",
-                          verb_name, escaped_name, tip);
-    g_free(tip);
-    g_free(escaped_name);
+    action_name = g_strdup_printf ("FilesFile_%p", doc);
 
-    bonobo_ui_component_set_translate(win->uic, "/menu/Windows/OpenDocuments", menu, NULL);
-    bonobo_ui_component_set_translate(win->uic, "/commands/", cmd, NULL);
-    bonobo_ui_component_add_verb(win->uic, verb_name, file_list_activated_cb, doc);
+    action = gtk_action_new (action_name, escaped_name, tip, NULL);
+    g_signal_connect (action, "activate",
+                      G_CALLBACK (file_list_activated_cb),
+                      (gpointer) doc);
+    gtk_action_group_add_action (win->doc_list_action_group,
+                                 action);
+    g_object_unref (action);
 
-    g_free(menu);
-    g_free(cmd);
-    g_free(verb_name);
+    ghex_window_doc_menu_update (win);
+
+    g_free (tip);
+    g_free (escaped_name);
+    g_free (action_name);
 }
 
 const GList *
@@ -882,12 +1087,6 @@ GHexWindow *
 ghex_window_get_active()
 {
     return active_window;
-}
-
-BonoboUIComponent *
-ghex_window_get_ui_component(GHexWindow *win)
-{
-    return win->uic;
 }
 
 void
@@ -939,7 +1138,7 @@ static const guint32 flash_length = 3000; /* 3 seconds, I hope */
 
 /**
  * ghex_window_set_status
- * @win: Pointer a Bonobo window object.
+ * @win: Pointer to GHexWindow object.
  * @msg: Text of message to be shown on the status bar.
  *
  * Description:
@@ -953,14 +1152,13 @@ ghex_window_show_status (GHexWindow *win, const gchar *msg)
 	g_return_if_fail (GHEX_IS_WINDOW (win));
 	g_return_if_fail (msg != NULL);
 
-	if (strcmp (msg, " "))
-		bonobo_ui_component_set_status (win->uic, " ", NULL);
-	bonobo_ui_component_set_status (win->uic, msg, NULL);
+	gtk_statusbar_pop (GTK_STATUSBAR (win->statusbar), 0);
+	gtk_statusbar_push (GTK_STATUSBAR (win->statusbar), 0, msg);
 }
 
 /**
  * ghex_window_flash
- * @app: Pointer a Bonobo window object
+ * @win: Pointer to GHexWindow object
  * @flash: Text of message to be flashed
  *
  * Description:

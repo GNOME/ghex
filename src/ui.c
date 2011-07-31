@@ -26,6 +26,7 @@
 #include <unistd.h> /* for F_OK and W_OK */
 
 #include <gtk/gtk.h>
+#include <glib/gi18n.h>
 
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprintui/gnome-print-dialog.h>
@@ -43,36 +44,6 @@ static void ghex_print_run_dialog(GHexPrintJobInfo *pji);
 static void ghex_print_preview_real(GHexPrintJobInfo *pji);
 static void ghex_print_document_real (GHexPrintJobInfo *pji, gboolean preview);
 
-/* callbacks to nullify widget pointer after a delete event */
-static void open_cb (BonoboUIComponent *uic, gpointer user_data,
-					 const gchar* verbname);
-static void close_cb (BonoboUIComponent *uic, gpointer user_data,
-					  const gchar* verbname);
-static void save_cb (BonoboUIComponent *uic, gpointer user_data,
-					 const gchar* verbname);
-static void save_as_cb (BonoboUIComponent *uic, gpointer user_data,
-						const gchar* verbname);
-static void print_cb (BonoboUIComponent *uic, gpointer user_data,
-					  const gchar* verbname);
-static void print_preview_cb (BonoboUIComponent *uic, gpointer user_data,
-							  const gchar* verbname);
-static void export_html_cb (BonoboUIComponent *uic, gpointer user_data,
-							const gchar* verbname);
-static void revert_cb (BonoboUIComponent *uic, gpointer user_data,
-					   const gchar* verbname);
-static void prefs_cb (BonoboUIComponent *uic, gpointer user_data,
-					  const gchar* verbname);
-static void about_cb (BonoboUIComponent *uic, gpointer user_data,
-					  const gchar* verbname);
-static void cut_cb (BonoboUIComponent *uic, gpointer user_data,
-					const gchar* verbname);
-static void copy_cb (BonoboUIComponent *uic, gpointer user_data,
-					 const gchar* verbname);
-static void paste_cb (BonoboUIComponent *uic, gpointer user_data,
-					  const gchar* verbname);
-static void help_cb (BonoboUIComponent *uic, gpointer user_data,
-					 const gchar* verbname);
-
 guint group_type[3] = {
 	GROUP_BYTE,
 	GROUP_WORD,
@@ -89,33 +60,6 @@ guint search_type = 0;
 gchar *search_type_label[] = {
 	N_("hex data"),
 	N_("ASCII data"),
-};
-
-BonoboUIVerb ghex_verbs [] = {
-	BONOBO_UI_VERB ("FileOpen", open_cb),
-	BONOBO_UI_VERB ("FileSave", save_cb),
-	BONOBO_UI_VERB ("FileSaveAs", save_as_cb),
-	BONOBO_UI_VERB ("ExportToHTML", export_html_cb),
-	BONOBO_UI_VERB ("FileRevert", revert_cb),
-	BONOBO_UI_VERB ("FilePrint", print_cb),
-	BONOBO_UI_VERB ("FilePrintPreview", print_preview_cb),
-	BONOBO_UI_VERB ("FileClose", close_cb),
-	BONOBO_UI_VERB ("FileExit", quit_app_cb),
-	BONOBO_UI_VERB ("EditUndo", undo_cb),
-	BONOBO_UI_VERB ("EditRedo", redo_cb),
-	BONOBO_UI_VERB ("EditCut", cut_cb),
-	BONOBO_UI_VERB ("EditCopy", copy_cb),
-	BONOBO_UI_VERB ("EditPaste", paste_cb),
-	BONOBO_UI_VERB ("Find", find_cb),
-	BONOBO_UI_VERB ("AdvancedFind", advanced_find_cb),
-	BONOBO_UI_VERB ("Replace", replace_cb),
-	BONOBO_UI_VERB ("GoToByte", jump_cb),
-	BONOBO_UI_VERB ("AddView", add_view_cb),
-	BONOBO_UI_VERB ("RemoveView", remove_view_cb),
-	BONOBO_UI_VERB ("Preferences", prefs_cb),
-	BONOBO_UI_VERB ("About", about_cb),
-	BONOBO_UI_VERB ("Help", help_cb),
-	BONOBO_UI_VERB_END
 };
 
 void
@@ -188,8 +132,9 @@ create_dialog_title(GtkWidget *window, gchar *title)
 /*
  * callbacks for global menus
  */
-static void
-about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+about_cb (GtkAction *action,
+          gpointer   user_data)
 {
 	gchar *license_translated;
 
@@ -246,8 +191,9 @@ about_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	g_free (license_translated);
 }
 
-static void
-help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar *verbname)
+void
+help_cb (GtkAction *action,
+         gpointer   user_data)
 {
 	GError *error = NULL;
 
@@ -274,7 +220,8 @@ help_cb (BonoboUIComponent *uic, gpointer user_data, const gchar *verbname)
 }
 
 void 
-paste_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+paste_cb (GtkAction *action,
+          gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
@@ -283,7 +230,8 @@ paste_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 }
 
 void 
-copy_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+copy_cb (GtkAction *action,
+         gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
@@ -292,7 +240,8 @@ copy_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 }
 
 void 
-cut_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+cut_cb (GtkAction *action,
+        gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
@@ -301,7 +250,8 @@ cut_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 }
 
 void
-quit_app_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+quit_app_cb (GtkAction *action,
+             gpointer   user_data)
 {
 	const GList *doc_node;
 	GHexWindow *win;
@@ -315,11 +265,12 @@ quit_app_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 			return;
 		doc_node = doc_node->next;
 	}
-	bonobo_main_quit();
+	gtk_main_quit ();
 }
 
-static void
-save_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+save_cb (GtkAction *action,
+         gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 	HexDocument *doc;
@@ -353,8 +304,9 @@ save_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	}
 }
 
-static void
-open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+open_cb (GtkAction *action,
+         gpointer   user_data)
 {
 	GHexWindow *win;
 	GtkWidget *file_sel;
@@ -407,8 +359,9 @@ open_cb(BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	gtk_widget_destroy(file_sel);
 }
 
-static void
-save_as_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+save_as_cb (GtkAction *action,
+            gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 	HexDocument *doc;
@@ -424,8 +377,9 @@ save_as_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	ghex_window_save_as(win);
 }
 
-static void
-print_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+print_cb (GtkAction *action,
+          gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
@@ -435,8 +389,9 @@ print_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 	ghex_print(win->gh, FALSE);
 }
 
-static void
-print_preview_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+print_preview_cb (GtkAction *action,
+                  gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 
@@ -446,8 +401,9 @@ print_preview_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbn
 	ghex_print(win->gh, TRUE);
 }
 
-static void
-export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+export_html_cb (GtkAction *action,
+                gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 	HexDocument *doc;
@@ -547,8 +503,9 @@ export_html_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbnam
 		gtk_widget_destroy(GTK_WIDGET(file_sel));
 }
 
-static void
-close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+close_cb (GtkAction *action,
+          gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data), *other_win;
 	HexDocument *doc;
@@ -582,13 +539,13 @@ close_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 		gtk_widget_set_sensitive(converter_get, FALSE);
 
     if(ghex_window_get_list()->next == NULL) {
-        bonobo_window_set_contents(BONOBO_WINDOW(win), NULL);
+        ghex_window_destroy_contents (win);
 		win->gh = NULL;
         ghex_window_set_sensitivity(win);
 		ghex_window_set_doc_name(win, NULL);
 
         /* Clear the contents of status bar after closing the files */
-        bonobo_ui_component_set_status(win->uic, " ", NULL);
+        ghex_window_show_status (win, " ");
     }
     else
         gtk_widget_destroy(GTK_WIDGET(win));	
@@ -607,7 +564,8 @@ raise_and_focus_widget (GtkWidget *widget)
 }
 
 void
-file_list_activated_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+file_list_activated_cb (GtkAction *action,
+                        gpointer   user_data)
 {
 	GHexWindow *win;
 	HexDocument *doc = HEX_DOCUMENT(user_data);
@@ -627,9 +585,119 @@ file_list_activated_cb (BonoboUIComponent *uic, gpointer user_data, const gchar*
 	}
 }
 
-/* Changed the function parameters -- SnM */
-static
-void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+insert_mode_cb (GtkAction *action,
+                gpointer   user_data)
+{
+    GHexWindow *win;
+    gboolean active;
+
+    win = GHEX_WINDOW (user_data);
+    active = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+
+    if (win->gh != NULL)
+        gtk_hex_set_insert_mode (win->gh, active);
+}
+
+void
+character_table_cb (GtkAction *action,
+                    gpointer   user_data)
+{
+    GHexWindow *win;
+    gboolean active;
+
+    win = GHEX_WINDOW (user_data);
+    active = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+
+    if (!char_table)
+        char_table = create_char_table ();
+
+    if (active) {
+        if (!gtk_widget_get_visible (char_table)) {
+            gtk_window_set_position (GTK_WINDOW (char_table), GTK_WIN_POS_MOUSE);
+            gtk_widget_show (char_table);
+        }
+        raise_and_focus_widget (char_table);
+    }
+    else {
+        if (gtk_widget_get_visible (char_table))
+            gtk_widget_hide (GTK_WIDGET (char_table));
+    }
+    ghex_window_sync_char_table_item (win, active ? 1 : 0);
+}
+
+void
+converter_cb (GtkAction *action,
+              gpointer   user_data)
+{
+    GHexWindow *win;
+    gboolean active;
+
+    win = GHEX_WINDOW (user_data);
+    active = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+
+    if (!converter)
+        converter = create_converter ();
+
+    if (active) {
+        if (!gtk_widget_get_visible (converter->window)) {
+            gtk_window_set_position (GTK_WINDOW (converter->window), GTK_WIN_POS_MOUSE);
+            gtk_widget_show (converter->window);
+        }
+        raise_and_focus_widget (converter->window);
+
+        if (!ghex_window_get_active () && converter_get)
+            gtk_widget_set_sensitive (converter_get, FALSE);
+        else
+            gtk_widget_set_sensitive (converter_get, TRUE);
+    }
+    else {
+        if (gtk_widget_get_visible (converter->window))
+            gtk_widget_hide (converter->window);
+    }
+    ghex_window_sync_converter_item (win, active ? 1 : 0);
+}
+
+void
+type_dialog_cb (GtkAction *action,
+                gpointer   user_data)
+{
+    GHexWindow *win;
+    gboolean active;
+
+    win = GHEX_WINDOW (user_data);
+    active = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+
+    if (!win->dialog)
+        return;
+    if (active) {
+        if (!gtk_widget_get_visible (win->dialog_widget)) {
+            gtk_widget_show (win->dialog_widget);
+        }
+    }
+    else if (gtk_widget_get_visible (win->dialog_widget)) {
+        gtk_widget_hide (GTK_WIDGET (win->dialog_widget));
+    }
+}
+
+void
+group_data_cb (GtkAction      *action,
+               GtkRadioAction *current,
+               gpointer        user_data)
+{
+    GHexWindow *win;
+    gint value;
+
+    win = GHEX_WINDOW (user_data);
+    value = gtk_radio_action_get_current_value (current);
+
+    if (win->gh != NULL)
+        gtk_hex_set_group_type (win->gh, value);
+}
+
+void
+prefs_cb (GtkAction *action,
+          gpointer   user_data)
 {
 	if(!prefs_ui)
 		prefs_ui = create_prefs_dialog();
@@ -647,8 +715,9 @@ void prefs_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname
 }
 
 
-static void
-revert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+void
+revert_cb (GtkAction *action,
+           gpointer   user_data)
 {
 	GHexWindow *win;
    	HexDocument *doc;
@@ -933,7 +1002,8 @@ update_dialog_titles()
 }
 
 void
-add_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+add_view_cb (GtkAction *action,
+             gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 	GtkWidget *newwin;
@@ -946,7 +1016,8 @@ add_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 }
 
 void
-remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+remove_view_cb (GtkAction *action,
+                gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 

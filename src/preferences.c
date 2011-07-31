@@ -26,6 +26,7 @@
 #endif /* HAVE_CONFIG_H */
 
 #include <gtk/gtk.h>
+#include <glib/gi18n.h>
 
 #include "preferences.h"
 #include "configuration.h"

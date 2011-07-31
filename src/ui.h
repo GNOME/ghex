@@ -26,15 +26,10 @@
 
 #include <gtk/gtk.h>
 
-#include <libbonoboui.h>
-
 #include "ghex-window.h"
 #include "preferences.h"
 
 G_BEGIN_DECLS
-
-/* command verbs */
-extern BonoboUIVerb ghex_verbs[];
 
 /* various ui convenience functions */
 void create_dialog_title   (GtkWidget *, gchar *);
@@ -50,20 +45,48 @@ GtkWidget *create_button   (GtkWidget *, const gchar *, gchar *);
 gint delete_event_cb(GtkWidget *, GdkEventAny *, GtkWindow *);
 void cancel_cb      (GtkWidget *, GtkWidget *);
 
-void find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void advanced_find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void jump_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void set_byte_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void set_word_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void set_long_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void undo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void redo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void add_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void remove_view_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void insert_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void quit_app_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
-void file_list_activated_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname);
+/* File menu */
+void open_cb (GtkAction *action, gpointer user_data);
+void save_cb (GtkAction *action, gpointer user_data);
+void save_as_cb (GtkAction *action, gpointer user_data);
+void export_html_cb (GtkAction *action, gpointer user_data);
+void revert_cb (GtkAction *action, gpointer user_data);
+void print_cb (GtkAction *action, gpointer user_data);
+void print_preview_cb (GtkAction *action, gpointer user_data);
+void close_cb (GtkAction *action, gpointer user_data);
+void quit_app_cb (GtkAction *action, gpointer user_data);
+
+/* Edit menu */
+void undo_cb (GtkAction *action, gpointer user_data);
+void redo_cb (GtkAction *action, gpointer user_data);
+void copy_cb (GtkAction *action, gpointer user_data);
+void cut_cb (GtkAction *action, gpointer user_data);
+void paste_cb (GtkAction *action, gpointer user_data);
+void find_cb (GtkAction *action, gpointer user_data);
+void advanced_find_cb (GtkAction *action, gpointer user_data);
+void replace_cb (GtkAction *action, gpointer user_data);
+void jump_cb (GtkAction *action, gpointer user_data);
+void insert_mode_cb (GtkAction *action, gpointer user_data);
+void prefs_cb (GtkAction *action, gpointer user_data);
+
+/* View menu */
+void add_view_cb (GtkAction *action, gpointer user_data);
+void remove_view_cb (GtkAction *action, gpointer user_data);
+void group_data_cb (GtkAction *action, GtkRadioAction *current, gpointer user_data);
+void set_byte_cb (GtkAction *action, gpointer user_data);
+void set_word_cb (GtkAction *action, gpointer user_data);
+void set_long_cb (GtkAction *action, gpointer user_data);
+
+/* Windows menu */
+void character_table_cb (GtkAction *action, gpointer user_data);
+void converter_cb (GtkAction *action, gpointer user_data);
+void type_dialog_cb (GtkAction *action, gpointer user_data);
+
+/* Help menu */
+void help_cb (GtkAction *action, gpointer user_data);
+void about_cb (GtkAction *action, gpointer user_data);
+
+void file_list_activated_cb (GtkAction *action, gpointer user_data);
 
 G_END_DECLS
 

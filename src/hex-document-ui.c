@@ -38,7 +38,6 @@ set_doc_menu_sensitivity(HexDocument *doc)
 	GtkWidget *view;
 	gboolean sensitive;
 	GHexWindow *win;
-	BonoboUIComponent *uic;
 
 	view_node = doc->views;
 
@@ -49,31 +48,20 @@ set_doc_menu_sensitivity(HexDocument *doc)
 
 		g_return_if_fail (win != NULL);
  
-		uic = ghex_window_get_ui_component(win);
-
-		g_return_if_fail (uic != NULL);
-
-		bonobo_ui_component_freeze (uic, NULL);
-
 		sensitive = doc->undo_top != NULL;
-		bonobo_ui_component_set_prop (uic, "/commands/EditUndo",
-									  "sensitive", sensitive ? "1" : "0",
-									  NULL); 
+		ghex_window_set_action_sensitive (win, "EditUndo", sensitive);
 	
 		sensitive = doc->undo_stack && doc->undo_top != doc->undo_stack;
+		ghex_window_set_action_sensitive (win, "EditRedo", sensitive);
 
-		bonobo_ui_component_set_prop (uic, "/commands/EditRedo",
-									  "sensitive", sensitive ? "1" : "0",
-									  NULL); 
-
-		bonobo_ui_component_thaw (uic, NULL);	
 		view_node = view_node->next;
 	}
 
 }
 
 void
-find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+find_cb (GtkAction *action,
+         gpointer   user_data)
 {
 	if(!find_dialog)
 		find_dialog = create_find_dialog();
@@ -87,7 +75,8 @@ find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 }
 
 void
-advanced_find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+advanced_find_cb (GtkAction *action,
+                  gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 	if (!win->advanced_find_dialog)
@@ -104,7 +93,8 @@ advanced_find_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbn
 
 
 void
-replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+replace_cb (GtkAction *action,
+            gpointer   user_data)
 {
 	if(!replace_dialog)
 		replace_dialog = create_replace_dialog();
@@ -118,7 +108,8 @@ replace_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 }
 
 void
-jump_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+jump_cb (GtkAction *action,
+         gpointer   user_data)
 {
 	if(!jump_dialog)
 		jump_dialog = create_jump_dialog();
@@ -132,7 +123,8 @@ jump_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 }
 
 void
-undo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+undo_cb (GtkAction *action,
+         gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 	HexDocument *doc;
@@ -154,7 +146,8 @@ undo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
 }
 
 void
-redo_cb (BonoboUIComponent *uic, gpointer user_data, const gchar* verbname)
+redo_cb (GtkAction *action,
+         gpointer   user_data)
 {
 	GHexWindow *win = GHEX_WINDOW(user_data);
 	HexDocument *doc;

@@ -1,233 +1,59 @@
-<Root>
-
-<commands>
-        <cmd name="FileOpen" _label="Open"
-	     _tip="Open a file" pixtype="stock" pixname="gtk-open"
-	     accel="*Control*O"/>
-	
-        <cmd name="FileSave" _label="Save"
-	     _tip="Save the current file" pixtype="stock" pixname="gtk-save"
-	     accel="*Control*S"/>
-	
-        <cmd name="FileSaveAs" _label="Save As"
-	     _tip="Save the current file with a different name"
-	     pixtype="stock" pixname="gtk-save-as" accel="*Shift**Control*S"/>
-
-	<cmd name="ExportToHTML" _label="Export to HTML..."
-	     _tip="Export data to HTML source"/>
-
-        <cmd name="FileRevert" _label="Revert"
-	     _tip="Revert to a saved version of the file"
-	     pixtype="stock" pixname="gtk-revert-to-saved"/>
-	
-        <cmd name="FilePrint" _label="Print"
-	     _tip="Print the current file" pixtype="stock" pixname="gtk-print"
-	     accel="*Control*P"/>
-	
-	<cmd name="FilePrintPreview" _label="Print Preview..."
-	     _tip="Preview printed data"
-	     pixtype="stock" pixname="gtk-print-preview"
-	     accel="*Shift**Control*P"/>
-	
-        <cmd name="FileClose" _label="Close"
-	     _tip="Close the current file" pixtype="stock" pixname="gtk-close"
-	     accel="*Control*W"/>
-
-        <cmd name="FileExit" _label="Exit" _tip="Exit the program"
-	     pixtype="stock" pixname="gtk-quit" accel="*Control*Q"/>
-
-	<cmd name="Converter" type="toggle" _label="Converter..."
-	     _tip="Open base conversion dialog"/>
-
-	<cmd name="CharacterTable" type="toggle" _label="Character Table..."
-	     _tip="Show the character table"/>
-
-	<cmd name="TypeDialog" type="toggle"
-	     _label="Type Conversion Dialog..."
-	     _tip="Show the type conversion dialog in the edit window"/>
-
-	<cmd name="EditUndo" _label="Undo" _tip="Undo the last action"
-	     pixtype="stock" pixname="gtk-undo" accel="*Control*Z"/>
-
-	<cmd name="EditRedo" _label="Redo" _tip="Redo the undone action"
-	     pixtype="stock" pixname="gtk-redo" accel="*Shift**Control*Z"/>
-
-        <cmd name="EditPaste" _label="Paste" _tip="Paste data from clipboard"
-	     pixtype="stock" pixname="gtk-paste" accel="*Control*V"/>
-
-        <cmd name="EditCopy" _label="Copy" _tip="Copy selection to clipboard"
-	     pixtype="stock" pixname="gtk-copy" accel="*Control*C"/>
-
-        <cmd name="EditCut" _label="Cut" _tip="Cut selection"
-	     pixtype="stock" pixname="gtk-cut" accel="*Control*X"/>
-
-	<cmd name="Find" _label="Find" _tip="Search for a string"
-	     pixtype="stock" pixname="gtk-find" accel="*Control*F"/>
-
-	<cmd name="AdvancedFind" _label="Advanced Find" _tip="Advanced Find"
-	     pixtype="stock" pixname="gtk-find"/>
-
-        <cmd name="Replace" _label="Replace" _tip="Replace a string"
-	     pixtype="stock" pixname="gtk-find-and-replace"
-	     accel="*Control*H"/>
-
-	<cmd name="GoToByte" _label="Goto Byte"
-	     _tip="Jump to a certain position"
-	accel="*Control*J"/>
-
-	<cmd name="InsertMode" _label="Insert Mode"
-	     _tip="Insert/overwrite data"
-             type="toggle" accel="Insert"/>
-
-	<cmd name="Bytes" _label="Bytes" _tip="Group data by 8 bits"
-             type="radio" group="Group"/>
-
-	<cmd name="Words" _label="Words" _tip="Group data by 16 bits"
-             type="radio" group="Group"/>
-
-	<cmd name="Longwords" _label="Longwords" _tip="Group data by 32 bits"
-             type="radio" group="Group"/>
-
-	<cmd name="AddView" _label="Add View"
-	     _tip="Add a new view to the buffer"/>
-
-	<cmd name="RemoveView" _label="Remove View"
-	     _tip="Remove the current view of the buffer"/>
-
-        <cmd name="Preferences" _label="Preferences"
-	     _tip="Configure the application"
-	  pixtype="stock" pixname="gtk-preferences"/>
-
-	<cmd name="HelpChat..." _label="Help Chat" _tip=""/>
-
-        <cmd name="About" _label="_About" _tip="About this application"
-	     pixtype="stock" pixname="About"/>
-
-	<cmd name="Help" _label="Contents" _tip="Help on this application"
-	     pixtype="stock" pixname="gtk-help" accel="F1"/>
-
-</commands>
-
-<menu>
-
-<submenu name="File" _label="_File">
-        
-        <menuitem name="FileOpen" verb="" _label="_Open..."/>
-	
-	<separator/>
-
-        <menuitem name="FileSave" verb=""  _label="_Save"/>
-	
-        <menuitem name="FileSaveAs" verb="" _label="Save _As..."/>
-
-	<menuitem name="ExportToHTML" verb="" _label="Save As _HTML..."/>
-
-	<separator/>
-
-        <menuitem name="FileRevert" verb="" _label="_Revert"/>
-	
-	<separator/>
-
-	<menuitem name="FilePrint" verb="" _label="_Print"/>
-	
-	<menuitem name="FilePrintPreview" verb="" _label="Print Previe_w..."/>
-
-	<separator/>
-	
-        <menuitem name="FileClose" verb="" _label="_Close"/>
-
-        <menuitem name="FileExit" verb="" _label="E_xit"/>
-
-</submenu>
-
-<submenu name="Edit" _label="_Edit" hidden="0">
-        
-        <menuitem name="EditUndo" verb="" _label="_Undo"/>
-
-	<menuitem name="EditRedo" verb="" _label="_Redo"/>
-
-	<separator/>
-
-	<menuitem name="EditCopy" verb="" _label="_Copy"/>
-	<menuitem name="EditCut" verb="" _label="Cu_t"/>
-        <menuitem name="EditPaste" verb="" _label="Pa_ste"/>
-
-	<separator/>
-
-	<menuitem name="Find" verb="" _label="_Find"/>
-
-	<menuitem name="AdvancedFind" verb="" _label="_Advanced Find"/>
-
-	<menuitem name="Replace" verb="" _label="R_eplace"/>
-
-	<separator/>
-
-	<menuitem name="GoToByte" verb="" _label="_Goto Byte..."/>
-
-	<separator/>
-
-	<menuitem name="InsertMode" verb="" _label="_Insert Mode"
-                        type="toggle"/>
-
-	<separator/>
-
-        <menuitem name="Preferences" verb="" _label="_Preferences"/>
-
-</submenu>
-
-<submenu name="View" _label="_View" hidden="1">
-
-	<menuitem name="AddView" verb="" _label="_Add View"/>
-
-	<menuitem name="RemoveView" verb="" _label="_Remove View"/>
-
-	<separator/>
-
-	<submenu name="GroupDataAs" _label="_Group Data As">
-
-		<menuitem name="Bytes" verb="" _label="_Bytes"
-                          type="radio" group="Group"/>
-
-		<menuitem name="Words" verb="" _label="_Words"
-                          type="radio" group="Group"/>
-
-		<menuitem name="Longwords" verb="" _label="_Longwords"
-                          type="radio" group="Group"/>
-
-	</submenu>
-
-</submenu>
-
-<submenu name="Windows" _label="_Windows">
-	<placeholder delimit="bottom" name="OpenDocuments" />
-
-	<separator/>
-
-	<menuitem name="CharacterTable" type="toggle" verb=""
-		  _label="Character _Table"/>
-
-	<menuitem name="Converter" type="toggle" verb=""
-		  _label="_Base Converter"/>
-
-	<menuitem name="TypeDialog" type="toggle" verb=""
-		  _label="Type Conversion _Dialog"/>
-</submenu>
-
-<submenu name="Help" _label="_Help">
-	
-	<menuitem name="Help" verb="" _label="_Contents"/>
-
-        <menuitem name="About" verb="" _label="_About"/>
-
-</submenu>
-
-</menu>
-
-<status>
-
-	<item name="main"/>
-
-</status>
-
-</Root>
-
+<ui>
+  <menubar name="MainMenu">
+    <menu action="File">
+      <menuitem action="FileOpen"/>
+      <separator/>
+      <menuitem action="FileSave"/>
+      <menuitem action="FileSaveAs"/>
+      <menuitem action="FileExportToHTML"/>
+      <separator/>
+      <menuitem action="FileRevert"/>
+      <separator/>
+      <menuitem action="FilePrint"/>
+      <menuitem action="FilePrintPreview"/>
+      <separator/>
+      <menuitem action="FileClose"/>
+      <menuitem action="FileExit"/>
+    </menu>
+
+    <menu action="Edit">
+      <menuitem action="EditUndo"/>
+      <menuitem action="EditRedo"/>
+      <separator/>
+      <menuitem action="EditCopy"/>
+      <menuitem action="EditCut"/>
+      <menuitem action="EditPaste"/>
+      <separator/>
+      <menuitem action="EditFind"/>
+      <menuitem action="EditAdvancedFind"/>
+      <menuitem action="EditReplace"/>
+      <separator/>
+      <menuitem action="EditGotoByte"/>
+      <separator/>
+      <menuitem action="EditInsertMode"/>
+      <separator/>
+      <menuitem action="EditPreferences"/>
+    </menu>
+    <menu action="View">
+      <menuitem action="ViewAddView"/>
+      <menuitem action="ViewRemoveView"/>
+      <separator/>
+      <menu action="GroupDataAs">
+        <menuitem action="Bytes"/>
+        <menuitem action="Words"/>
+        <menuitem action="Longwords"/>
+      </menu>
+    </menu>
+    <menu action="Windows">
+      <placeholder name="OpenDocuments"/>
+      <separator/>
+      <menuitem action="CharacterTable"/>
+      <menuitem action="Converter"/>
+      <menuitem action="TypeDialog"/>
+    </menu>
+    <menu action="Help">
+      <menuitem action="HelpContents"/>
+      <menuitem action="HelpAbout"/>
+    </menu>
+  </menubar>
+</ui>

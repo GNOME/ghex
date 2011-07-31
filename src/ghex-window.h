@@ -10,10 +10,7 @@
 #ifndef __GHEX_WINDOW_H__
 #define __GHEX_WINDOW_H__
 
-#include <bonobo-activation/bonobo-activation.h>
 #include <gconf/gconf-client.h>
-#include <bonobo.h>
-#include <bonobo/bonobo-ui-main.h>
 
 #include <math.h>
 #include <ctype.h>
@@ -34,10 +31,19 @@ typedef struct _GHexWindowClass GHexWindowClass;
 
 struct _GHexWindow 
 {
-    BonoboWindow win;
+    GtkWindow win;
 
-    GtkHex *gh;
-    BonoboUIComponent *uic;
+    GtkHex    *gh;
+    GtkWidget *vbox;
+    GtkWidget *contents;
+    GtkWidget *statusbar;
+    guint      statusbar_tooltip_id;
+
+    GtkActionGroup *action_group;
+    GtkActionGroup *doc_list_action_group;
+    GtkUIManager   *ui_manager;
+    guint           ui_merge_id;
+
     gboolean changed, undo_sens, redo_sens;
 
     struct _HexDialog *dialog;
@@ -48,20 +54,27 @@ struct _GHexWindow
 
 struct _GHexWindowClass
 {
-    BonoboWindowClass klass;
+    GtkWindowClass klass;
 };
 
 GType             ghex_window_get_type           (void) G_GNUC_CONST;
 GtkWidget         *ghex_window_new               (void);
 GtkWidget         *ghex_window_new_from_doc      (HexDocument *doc);
 GtkWidget         *ghex_window_new_from_file     (const gchar *filename);
+void              ghex_window_set_contents       (GHexWindow *win, GtkWidget  *child);
+void              ghex_window_destroy_contents   (GHexWindow *win);
 gboolean          ghex_window_load(GHexWindow *win, const gchar *filename);
 gboolean          ghex_window_close              (GHexWindow *win);
-BonoboUIComponent *ghex_window_get_ui_component  (GHexWindow *win);
 const GList       *ghex_window_get_list          (void);
 GHexWindow        *ghex_window_get_active        (void);
 void              ghex_window_set_doc_name       (GHexWindow *win,
                                                   const gchar *name);
+void              ghex_window_set_action_visible (GHexWindow *win,
+                                                  const char *name,
+                                                  gboolean    visible);
+void              ghex_window_set_action_sensitive (GHexWindow *win,
+                                                    const char *name,
+                                                    gboolean    sensitive);
 void              ghex_window_set_sensitivity    (GHexWindow *win);
 void              ghex_window_show_status        (GHexWindow *win,
                                                   const gchar *msg);

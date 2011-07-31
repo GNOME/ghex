@@ -22,6 +22,7 @@
 */
 
 #include <config.h>
+#include <glib/gi18n.h>
 
 #include "configuration.h"
 #include "factory.h"
@@ -69,9 +70,6 @@ main(int argc, char **argv)
 	/* accessibility setup */
 	setup_factory();
 
-	if (bonobo_ui_init ("Gnome Binary Editor", VERSION, &argc, argv) == FALSE)
-		g_error (_("Could not initialize Bonobo!\n"));
-
 	if (args_remaining != NULL) {
 		gchar **filename;
 		for (filename = args_remaining; *filename != NULL; filename++) {
@@ -100,7 +98,7 @@ main(int argc, char **argv)
 	}
 	else win = GTK_WIDGET(ghex_window_get_list()->data);
 
-	bonobo_main();
+	gtk_main ();
 
 	return 0;
 }

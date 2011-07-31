@@ -29,8 +29,6 @@
 #include <atk/atk.h>
 #include <libgail-util/gailmisc.h>
 
-#include <bonobo.h>
-
 #include "accessiblegtkhex.h"
 #include "gtkhex.h"
 #include "gtkhex-private.h"
