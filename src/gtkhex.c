@@ -1699,6 +1699,7 @@ static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
 		if(gh->cursor_pos < gh->document->file_size) {
 			hex_document_set_data(gh->document, gh->cursor_pos,
 								  0, 1, NULL, TRUE);
+			gtk_hex_set_cursor(gh, gh->cursor_pos);
 		}
 		break;
 	case GDK_KEY_Up:
