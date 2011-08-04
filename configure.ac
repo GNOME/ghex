@@ -85,6 +85,7 @@ GNOME_DOC_INIT([0.9.0],,
 
 AC_CONFIG_FILES([
 Makefile
+data/Makefile
 po/Makefile.in
 src/Makefile
 help/Makefile
@@ -94,5 +95,5 @@ icons/22x22/Makefile
 icons/24x24/Makefile
 icons/32x32/Makefile
 icons/48x48/Makefile
-gtkhex.pc])
+data/gtkhex.pc])
 AC_OUTPUT
