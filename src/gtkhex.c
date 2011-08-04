@@ -1210,13 +1210,6 @@ static void hide_offsets_widget(GtkHex *gh) {
 	}
 }
 
-static void gtk_hex_realize(GtkWidget *widget) {
-	if(GTK_WIDGET_CLASS(parent_class)->realize)
-		(* GTK_WIDGET_CLASS(parent_class)->realize)(widget);  	
-
-	gdk_window_set_back_pixmap(gtk_widget_get_window(widget), NULL, TRUE);
-}
-
 /*
  * default data_changed signal handler
  */
@@ -1997,7 +1990,6 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 	GTK_WIDGET_CLASS(klass)->key_press_event = gtk_hex_key_press;
 	GTK_WIDGET_CLASS(klass)->key_release_event = gtk_hex_key_release;
 	GTK_WIDGET_CLASS(klass)->button_release_event = gtk_hex_button_release;
-	GTK_WIDGET_CLASS(klass)->realize = gtk_hex_realize;
 
 	/* Changed in Gnome 2.0 -- SnM */
 	G_OBJECT_CLASS(klass)->finalize = gtk_hex_finalize;
