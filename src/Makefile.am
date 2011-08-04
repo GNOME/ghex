@@ -14,7 +14,7 @@ BUILT_SOURCES = \
 	ghex-marshal.c	\
 	ghex-marshal.h
 
-bin_PROGRAMS = ghex2
+bin_PROGRAMS = ghex
 
 lib_LTLIBRARIES = libgtkhex-3.la
 
@@ -42,7 +42,7 @@ gtkhexinclude_HEADERS = \
 	hex-document.h 			\
 	gtkhex.h
 
-ghex2_SOURCES = \
+ghex_SOURCES = \
 	hex-document-ui.c preferences.c findreplace.c converter.c	\
 	config.c main.c ui.c chartable.c				\
 	print.c ghex-window.c ghex-window.h				\

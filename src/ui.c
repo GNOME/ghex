@@ -145,7 +145,7 @@ about_cb (GtkAction *action,
 	                           "Copyright © 2006 - 2010 GHex Contributors");
 
 	/* For documentation_credits */
-	#include "../help/ghex2-docs.h"
+	#include "../help/ghex-docs.h"
 
 	const gchar *license[] = {
 		N_("This program is free software; you can redistribute it and/or modify "
@@ -191,7 +191,7 @@ help_cb (GtkAction *action,
 {
 	GError *error = NULL;
 
-	gtk_show_uri (NULL, "ghelp:ghex2",  gtk_get_current_event_time (), &error);
+	gtk_show_uri (NULL, "ghelp:ghex",  gtk_get_current_event_time (), &error);
 
 	if (error != NULL) {
 		GtkWidget *dialog;

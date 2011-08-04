@@ -445,7 +445,7 @@ prefs_response_cb(GtkDialog *dlg, gint response, PropertyUI *pui)
 
 	switch(response) {
 	case GTK_RESPONSE_HELP:
-		gtk_show_uri (NULL, "ghelp:ghex2?ghex-prefs",  gtk_get_current_event_time (), &error);
+		gtk_show_uri (NULL, "ghelp:ghex?ghex-prefs",  gtk_get_current_event_time (), &error);
 		if(NULL != error) {
 			GtkWidget *dialog;
 			dialog = gtk_message_dialog_new
