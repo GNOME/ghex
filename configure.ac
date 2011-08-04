@@ -28,7 +28,7 @@ AC_CHECK_FUNCS([pow strstr strtoul])
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
-LIBGTKHEX_RELEASE=1.0
+LIBGTKHEX_RELEASE=3.0
 AC_SUBST(LIBGTKHEX_RELEASE)
 LIBGTKHEX_RELEASE_STRING=gtkhex-${LIBGTKHEX_RELEASE}
 AC_DEFINE_UNQUOTED(LIBGTKHEX_RELEASE_STRING, "$LIBGTKHEX_RELEASE_STRING",
@@ -59,7 +59,7 @@ IT_PROG_INTLTOOL([0.40.0])
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION([0.17])
 
-GETTEXT_PACKAGE=ghex-2.0
+GETTEXT_PACKAGE=ghex-3.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext package name.])
 dnl =================================================================
@@ -95,5 +95,5 @@ icons/22x22/Makefile
 icons/24x24/Makefile
 icons/32x32/Makefile
 icons/48x48/Makefile
-data/gtkhex.pc])
+data/gtkhex-3.pc])
 AC_OUTPUT

@@ -2,7 +2,7 @@ schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_DATA = ghex2.schemas
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = gtkhex.pc
+pkgconfig_DATA = gtkhex-3.pc
 
 EXTRA_DIST =			\
 	ghex.desktop.in		\

@@ -16,13 +16,13 @@ BUILT_SOURCES = \
 
 bin_PROGRAMS = ghex2
 
-lib_LTLIBRARIES = libgtkhex.la
+lib_LTLIBRARIES = libgtkhex-3.la
 
-libgtkhexdir = $(includedir)/gtkhex/
+gtkhexincludedir = $(includedir)/gtkhex-3/
 
 uidir = $(pkgdatadir)
 
-libgtkhex_la_SOURCES = \
+libgtkhex_3_la_SOURCES = \
 	hex-document.c			\
 	gtkhex.c			\
 	gtkhex-private.h		\
@@ -32,13 +32,13 @@ libgtkhex_la_SOURCES = \
 	accessiblegtkhexfactory.h	\
 	$(BUILT_SOURCES)
 
-libgtkhex_la_LIBADD = \
+libgtkhex_3_la_LIBADD = \
 	$(LIBGTKHEX_LIBS)	\
 	$(GAILUTIL_LIBS)
 
-libgtkhex_la_CFLAGS = -DG_LOG_DOMAIN=\"libgtkhex\"
+libgtkhex_3_la_CFLAGS = -DG_LOG_DOMAIN=\"libgtkhex-3\"
 
-libgtkhex_HEADERS = \
+gtkhexinclude_HEADERS = \
 	hex-document.h 			\
 	gtkhex.h
 
@@ -63,7 +63,7 @@ EXTRA_DIST = \
 	ghex-marshal.list
 
 LDADD =	\
-	libgtkhex.la	\
+	libgtkhex-3.la	\
 	$(GHEX_LIBS)
 
 CLEAN_FILES = $(BUILT_SOURCES)
