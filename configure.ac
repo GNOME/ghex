@@ -35,19 +35,19 @@ AC_DEFINE_UNQUOTED(LIBGTKHEX_RELEASE_STRING, "$LIBGTKHEX_RELEASE_STRING",
                    [GtkHex library release string.])
 
 PKG_CHECK_MODULES(LIBGTKHEX,
-		  gtk+-2.0 >= 2.24.0	\
+		  gtk+-3.0 >= 3.0	\
 		  atk >= 1.0.0)
 AC_SUBST(LIBGTKHEX_LIBS)
 AC_SUBST(LIBGTKHEX_CFLAGS)
 
 PKG_CHECK_MODULES(GHEX,
 		  gio-2.0                       \
-		  gtk+-2.0 >= 2.24.0 		\
+		  gtk+-3.0 >= 3.0 		\
 		  gconf-2.0)
 AC_SUBST(GHEX_CFLAGS)
 AC_SUBST(GHEX_LIBS)
 
-PKG_CHECK_MODULES(GAILUTIL, gail >= 0.17)
+PKG_CHECK_MODULES(GAILUTIL, gail-3.0)
 AC_SUBST(GAILUTIL_CFLAGS)
 AC_SUBST(GAILUTIL_LIBS)
 

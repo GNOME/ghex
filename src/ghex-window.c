@@ -262,7 +262,7 @@ ghex_window_doc_changed(HexDocument *doc, HexChangeData *change_data,
 }
 
 static void
-ghex_window_destroy(GtkObject *object)
+ghex_window_destroy (GtkWidget *object)
 {
         GHexWindow *win;
 
@@ -309,8 +309,8 @@ ghex_window_destroy(GtkObject *object)
         else if(active_window == win)
             active_window = GHEX_WINDOW(window_list->data);
 
-        if (GTK_OBJECT_CLASS (ghex_window_parent_class)->destroy)
-            GTK_OBJECT_CLASS (ghex_window_parent_class)->destroy (object);
+        if (GTK_WIDGET_CLASS (ghex_window_parent_class)->destroy)
+            GTK_WIDGET_CLASS (ghex_window_parent_class)->destroy (object);
 }
 
 static gboolean
@@ -592,18 +592,15 @@ static void
 ghex_window_class_init(GHexWindowClass *class)
 {
 	GObjectClass   *gobject_class;
-	GtkObjectClass *object_class;
 	GtkWidgetClass *widget_class;
 
 	gobject_class = (GObjectClass *) class;
-	object_class = (GtkObjectClass *) class;
 	widget_class = (GtkWidgetClass *) class;
 
 	gobject_class->constructor = ghex_window_constructor;
 
-	object_class->destroy = ghex_window_destroy;
-
 	widget_class->delete_event = ghex_window_delete_event;
+	widget_class->destroy = ghex_window_destroy;
 	widget_class->drag_data_received = ghex_window_drag_data_received;
     widget_class->focus_in_event = ghex_window_focus_in_event;
 }
