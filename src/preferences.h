@@ -24,8 +24,6 @@
 #ifndef __GHEX_PREFERENCES_H__
 #define __GHEX_PREFERENCES_H__
 
-#include <libgnomeprint/gnome-font.h>
-
 G_BEGIN_DECLS
 
 typedef struct _PropertyUI PropertyUI;
@@ -38,7 +36,6 @@ struct _PropertyUI {
 	GtkWidget *paper_sel, *print_font_sel;
 	GtkWidget *df_button, *hf_button;
 	GtkWidget *df_label, *hf_label;
-	GnomeFont *data_font, *header_font;
 };
 
 extern PropertyUI *prefs_ui;

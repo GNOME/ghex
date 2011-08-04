@@ -24,8 +24,7 @@
 #ifndef __GHEX_PRINT_H__
 #define __GHEX_PRINT_H__
 
-#include <libgnomeprint/gnome-print.h>
-#include <libgnomeprint/gnome-print-job.h>
+#include <gtk/gtk.h>
 
 #include "hex-document.h"
 
@@ -34,25 +33,22 @@ G_BEGIN_DECLS
 typedef struct _GHexPrintJobInfo  GHexPrintJobInfo;
 
 struct _GHexPrintJobInfo {
-	GnomePrintJob *master;
-	GnomePrintContext *pc;
-	GnomePrintConfig *config;
+	GtkPrintOperation *master;
+	GtkPrintContext *pc;
+	GtkPrintSettings *config;
 
-	GnomeFont *d_font, *h_font;
+	PangoFontDescription *d_font, *h_font;
 	HexDocument *doc;
 
 	int   pages;
 	gint range;
 	gint page_first;
 	gint page_last;
-	gdouble page_width, page_height;
-	gdouble margin_top, margin_bottom, margin_left, margin_right;
-	gdouble printable_width, printable_height;
 
 	gdouble header_height;
 	
-	gdouble font_char_width;
-	gdouble font_char_height;
+	gint font_char_width;
+	gint font_char_height;
 
 	int   bytes_per_row, rows_per_page;
 	gdouble pad_size;
@@ -62,11 +58,13 @@ struct _GHexPrintJobInfo {
 };
 
 /* printing */
-void ghex_print_job_execute(GHexPrintJobInfo *pji,
-			    void (*progress_func)(gint, gint, gpointer),
-			    gpointer data);
-void ghex_print_update_page_size_and_margins (HexDocument *doc,
-					      GHexPrintJobInfo *pji);
+void begin_print (GtkPrintOperation *operation,
+                  GtkPrintContext   *context,
+                  gpointer           data);
+void print_page (GtkPrintOperation *operation,
+                 GtkPrintContext   *context,
+                 gint               page_nr,
+                 gpointer           data);
 GHexPrintJobInfo *ghex_print_job_info_new(HexDocument *doc, guint group_type);
 void ghex_print_job_info_destroy(GHexPrintJobInfo *pji);
 

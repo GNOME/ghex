@@ -35,8 +35,7 @@
 
 #define MAX_MAX_UNDO_DEPTH 100000
 
-static void select_font_cb(GtkWidget *w, const gchar *font_name,
-						   PropertyUI *pui);
+static void select_font_cb(GtkWidget *w, PropertyUI *pui);
 static void select_display_font_cb(GtkWidget *w, PropertyUI *pui);
 static void max_undo_changed_cb(GtkAdjustment *adj, PropertyUI *pui);
 static void box_size_changed_cb(GtkAdjustment *adj, PropertyUI *pui);
@@ -509,7 +508,7 @@ select_display_font_cb(GtkWidget *w, PropertyUI *pui)
 }
 
 static void
-select_font_cb(GtkWidget *w, const gchar *font_name, PropertyUI *pui)
+select_font_cb(GtkWidget *w, PropertyUI *pui)
 {
 	if(w == pui->df_button) {
 		if(data_font_name)
