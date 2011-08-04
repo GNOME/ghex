@@ -13,7 +13,6 @@ pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gtkhex.pc
 
 EXTRA_DIST =			\
-	ghex.spec.in		\
 	ghex.desktop.in		\
 	gnome-doc-utils.make	\
 	omf.make		\
@@ -23,9 +22,6 @@ EXTRA_DIST =			\
 	intltool-merge.in	\
 	intltool-update.in	\
 	$(schema_DATA)
-
-dist-hook: ghex.spec
-	cp ghex.spec $(distdir)
 
 desktopdir = $(datadir)/applications
 desktop_in_files = ghex.desktop.in
