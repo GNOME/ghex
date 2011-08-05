@@ -1,0 +1,91 @@
+===========
+GHex 2.90.0
+===========
+
+This is the first GHex release featuring GTK+ 3 support. For parallel
+installability with the GTK+ 2 version, the shared library along with its
+pkgconfig file and translation files were renamed. The application binary was
+also renamed and is now called 'ghex'.
+
+Changes for GNOME 3 support:
+ - Port from poptOption to GOptionEntry (Javier Jardón)
+ - Replace deprecated GTK+ symbols (Andre Klapper, Javier Jardón,
+   Adrian Zgorzałek, Kalev Lember)
+ - Remove libgnome and libgnomeui dependency (Javier Jardón, Andre Klapper)
+ - Use Gio instead GnomeVfs (Daniel Macks)
+ - Replace Gdk drawing with Cairo (Kalev Lember)
+ - Port from BonoboUI to GtkUIManager (Kalev Lember)
+ - Remove custom print widgets (Rafał Mużyło)
+ - Port from libgnomeprint to GtkPrint (Rafał Mużyło)
+ - Port to GTK+ 3 (Kalev Lember)
+ - Rename the shared libray for parallel installability (Kalev Lember)
+
+New Features and UI Improvements:
+ - Improve About dialog (Javier Jardón)
+ - Add relative offset jumping with + and - in 'Go to Byte' (Roy Spliet)
+ - Use double buffering for drawing, reducing flicker (Kalev Lember)
+
+Bug fixes:
+ - Convert po files to UTF-8 (Andre Klapper)
+ - Fix various compiler warnings (Andre Klapper, Martin Olsson, Tobias Mueller,
+   Kalev Lember)
+ - Fix xsltproc warnings (Rafał Mużyło)
+ - Fix the order of LDADD (Rafał Mużyło)
+ - Fix build with stricter linker on latest Fedora (Kalev Lember)
+ - Fix gnome-doc-utils support (Javier Jardón)
+ - Modernize autotools configuration (Javier Jardón)
+ - Use upstream gettext instead the glib one (Javier Jardón)
+ - Fix regression with close on save confirmation (Kalev Lember)
+ - Avoid showing status message on an already destroyed window (Kalev Lember)
+ - Update overview when deleting a character with the 'DEL' key (Kalev Lember)
+
+Translation updates:
+ - Basque (Inaki Larranaga Murgoitio)
+ - Brazilian Portuguese (Mateus Zenaide)
+ - British English (Philip Withnall, Jen Ockwell)
+ - Catalan (David Espinosa)
+ - Czech (Marek Černocký, Lucas Lommer, Petr Kovar)
+ - Danish (Joe Hansen)
+ - French (Bruno Brouard, Claude Paroz)
+ - Galician (Fran Diéguez)
+ - German (Mario Blättermann)
+ - Hungarian (Gabor Kelemen, Balazs Ur)
+ - Indonesian (Andika Triwidada)
+ - Japanese (Takeshi AIHANA)
+ - Latvian (Rudolfs Mazurs)
+ - Portuguese (Filipe Gomes)
+ - Russian (Yuri Myasoedov)
+ - Simplified Chinese (Aron Xu, Zhang Miao, du baodao)
+ - Slovenian (Matej Urbančič)
+ - Spanish (Daniel Mustieles)
+ - Swedish (Daniel Nylander)
+ - Thai (Akom C, Theppitak Karoonboonyanan)
+
+Bugs fixed:
+  333819 "Help files out-of-date"
+  445053 "Memory corruption when searching on x86_64"
+  508563 "Migrate from libgnomeprint to gtk-print"
+  547882 "menu entry name and tooltip are not accurate"
+  548438 "Fields are not being updated when deleting a character"
+  570688 "fix all compiler warnings given by normal makefiles and gcc 4.3.3"
+  571892 "Crash in gtk_hex_new"
+  584006 "Use gtk_show_uri instead of gnome_help"
+  590995 "Remove libgnome(ui) usage"
+  590996 "Remove Bonobo usage"
+  597683 "Can't compile due to hex-document-ui.c:86: error: implicit
+          declaration of function ‘raise_and_focus_widget’"
+  597684 "Can't compile due to: preferences.c:514: error: implicit declaration
+          of function ‘display_error_dialog’"
+  597685 "Can't compile due to main.c:73: error: implicit declaration of
+          function ‘ghex_init_configuration’"
+  597687 "Can't compile due to print.c:226: error: implicit declaration of
+          function ‘display_error_dialog’"
+  597688 "Can't compile due to  ghex-window.c:160: error: implicit declaration
+          of function ‘delete_advanced_find_dialog’"
+  608275 "Remove deprecated GTK+ symbols"
+  608284 "Use single GTK includes"
+  609277 "A little automake/libtool problem"
+  609548 "Bad application name in the licence"
+  612693 "Does not compile with -DGSEAL_ENABLE"
+  612885 "Make a release"
+  630377 "[Patch] Add support for relative jumping"
