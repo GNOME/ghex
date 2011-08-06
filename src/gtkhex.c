@@ -945,56 +945,24 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 /*
  * takes care of xdisp and adisp scrolling
  * connected to value_changed signal of scrollbar's GtkAdjustment
- * I cant really remember anymore, but I think it was mostly copied
- * from testgtk.c ;)
  */
 static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
-	GtkAllocation xdisp_allocation;
-	GdkRectangle rect;
-	gint source_min;
-	gint source_max;
-	gint dest_min;
-
-	gtk_widget_get_allocation(gh->xdisp, &xdisp_allocation);
-
-	source_min = ((gint)gtk_adjustment_get_value(adj) - gh->top_line) * gh->char_height;
-	source_max = source_min + xdisp_allocation.height;
-	dest_min = 0;
+	gint dx;
+	gint dy;
 
 	if ((!gtk_widget_is_drawable(gh->xdisp)) ||
 	    (!gtk_widget_is_drawable(gh->adisp)))
 		return;
 
+	dx = 0;
+	dy = (gh->top_line - (gint)gtk_adjustment_get_value (adj)) * gh->char_height;
+
 	gh->top_line = (gint)gtk_adjustment_get_value(adj);
 
-	if (source_min < 0) {
-		rect.y = 0;
-		rect.height = -source_min;
-		if (rect.height > xdisp_allocation.height)
-			rect.height = xdisp_allocation.height;
-		source_min = 0;
-		dest_min = rect.height;
-	}
-	else {
-		rect.y = 2*xdisp_allocation.height - source_max;
-		if (rect.y < 0)
-			rect.y = 0;
-		rect.height = xdisp_allocation.height - rect.y;
-		
-		source_max = xdisp_allocation.height;
-	}
-
-	if (source_min != source_max) {
-		gint dx, dy;
-
-		dx = 0;
-		dy = dest_min - source_min;
-
-		gdk_window_scroll (gtk_widget_get_window (gh->xdisp), dx, dy);
-		gdk_window_scroll (gtk_widget_get_window (gh->adisp), dx, dy);
-		if (gh->offsets)
-			gdk_window_scroll (gtk_widget_get_window (gh->offsets), dx, dy);
-	}
+	gdk_window_scroll (gtk_widget_get_window (gh->xdisp), dx, dy);
+	gdk_window_scroll (gtk_widget_get_window (gh->adisp), dx, dy);
+	if (gh->offsets)
+		gdk_window_scroll (gtk_widget_get_window (gh->offsets), dx, dy);
 
 	gtk_hex_update_all_auto_highlights(gh, TRUE, TRUE);
 	gtk_hex_invalidate_all_highlights(gh);
