@@ -1,10 +1,17 @@
 <schemalist>
+
+  <enum id="org.gnome.GHex.GroupType">
+    <value nick="bytes" value="1"/>
+    <value nick="words" value="2"/>
+    <value nick="longwords" value="4"/>
+  </enum>
+
   <schema id="org.gnome.GHex" path="/org/gnome/ghex/">
     <key name="font" type="s">
       <default>'Monospace 12'</default>
     </key>
-    <key name="group-data-by" type="i">
-      <default>1</default>
+    <key name="group-data-by" enum="org.gnome.GHex.GroupType">
+      <default>'bytes'</default>
     </key>
     <key name="max-undo-depth" type="u">
       <default>100</default>

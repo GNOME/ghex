@@ -75,7 +75,7 @@ void ghex_load_configuration () {
 	g_free (font_name);
 
 	/* Get the default group type -- SnM */
-	def_group_type = g_settings_get_int (settings, GHEX_PREF_GROUP);
+	def_group_type = g_settings_get_enum (settings, GHEX_PREF_GROUP);
 
 	/* Sanity check for group type */
 	if (def_group_type <= 0 )
@@ -150,7 +150,7 @@ group_changed_cb (GSettings   *settings,
                   const gchar *key,
                   gpointer     user_data)
 {
-    def_group_type = g_settings_get_int (settings, key);
+    def_group_type = g_settings_get_enum (settings, key);
 }
 
 static void

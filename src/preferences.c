@@ -431,9 +431,9 @@ group_type_cb(GtkRadioButton *rd, PropertyUI *pui)
 			def_group_type = group_type[i];
 			break;
 		}
-	g_settings_set_int (settings,
-	                    GHEX_PREF_GROUP,
-	                    def_group_type);
+	g_settings_set_enum (settings,
+	                     GHEX_PREF_GROUP,
+	                     def_group_type);
 }
 
 static void
