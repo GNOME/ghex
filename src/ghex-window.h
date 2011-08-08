@@ -10,8 +10,6 @@
 #ifndef __GHEX_WINDOW_H__
 #define __GHEX_WINDOW_H__
 
-#include <gconf/gconf-client.h>
-
 #include <math.h>
 #include <ctype.h>
 

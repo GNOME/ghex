@@ -2,7 +2,7 @@
 
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --disable-schemas-install
+DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 
 SUBDIRS = data po help src icons
 

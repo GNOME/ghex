@@ -24,8 +24,6 @@
 #ifndef __GHEX_CONFIGURATION_H__
 #define __GHEX_CONFIGURATION_H__
 
-#include <gconf/gconf-client.h>
-
 #include <gtk/gtk.h>
 
 #include "preferences.h"
@@ -33,17 +31,15 @@
 
 G_BEGIN_DECLS
 
-/* GConf keys */
-#define GHEX_BASE_KEY                "/apps/ghex2"
-#define GHEX_PREF_FONT               "/font"
-#define GHEX_PREF_GROUP              "/group"
-#define GHEX_PREF_MAX_UNDO_DEPTH     "/maxundodepth"   
-#define GHEX_PREF_OFFSET_FORMAT      "/offsetformat"
-#define GHEX_PREF_OFFSETS_COLUMN     "/offsetscolumn"
-#define GHEX_PREF_PAPER              "/paper"
-#define GHEX_PREF_BOX_SIZE           "/boxsize"
-#define GHEX_PREF_DATA_FONT          "/datafont"
-#define GHEX_PREF_HEADER_FONT        "/headerfont"
+/* GSettings keys */
+#define GHEX_PREF_FONT               "font"
+#define GHEX_PREF_GROUP              "group-data-by"
+#define GHEX_PREF_MAX_UNDO_DEPTH     "max-undo-depth"
+#define GHEX_PREF_OFFSET_FORMAT      "offset-format"
+#define GHEX_PREF_DATA_FONT          "print-font-data"
+#define GHEX_PREF_HEADER_FONT        "print-font-header"
+#define GHEX_PREF_BOX_SIZE           "print-shaded-rows"
+#define GHEX_PREF_OFFSETS_COLUMN     "show-offsets"
 
 /* our preferred settings; as only one copy of them is required,
    we'll make them global vars, although this is a bit ugly */
@@ -60,9 +56,9 @@ extern gboolean   show_offsets_column;
 extern gint       shaded_box_size;
 extern gint       def_group_type;
 
-extern GConfClient *gconf_client;
+extern GSettings *settings;
 
-/* Initializes the gconf client */
+/* Initializes the gsettings client */
 void ghex_init_configuration (void);
 
 /* config stuff */

@@ -27,16 +27,13 @@
 
 #include <string.h>
 
-#include <gconf/gconf-client.h>
-#include <gconf/gconf-value.h>
-
 #include "configuration.h"
 #include "gtkhex.h"
 #include "ghex-window.h"
 
 #define DEFAULT_FONT "Monospace 12"
 
-GConfClient *gconf_client = NULL;
+GSettings *settings = NULL;
 
 gint def_group_type = GROUP_BYTE;
 guint max_undo_depth;
@@ -51,9 +48,7 @@ void ghex_load_configuration () {
 	PangoFontMetrics *new_metrics;
 
 	/* Get the default font metrics */
-	font_name = gconf_client_get_string (gconf_client,
-										 GHEX_BASE_KEY GHEX_PREF_FONT,
-										 NULL);
+	font_name = g_settings_get_string (settings, GHEX_PREF_FONT);
 
 	if (NULL == font_name)
 		font_name = g_strdup (DEFAULT_FONT);
@@ -80,18 +75,14 @@ void ghex_load_configuration () {
 	g_free (font_name);
 
 	/* Get the default group type -- SnM */
-	def_group_type = gconf_client_get_int (gconf_client,
-										   GHEX_BASE_KEY GHEX_PREF_GROUP,
-										   NULL);
+	def_group_type = g_settings_get_int (settings, GHEX_PREF_GROUP);
 
 	/* Sanity check for group type */
 	if (def_group_type <= 0 )
 		def_group_type = GROUP_BYTE;
 
 	/* Get the max undo depth -- SnM */
-	max_undo_depth = gconf_client_get_int (gconf_client,
-										   GHEX_BASE_KEY GHEX_PREF_MAX_UNDO_DEPTH,
-										   NULL);
+	max_undo_depth = g_settings_get_int (settings, GHEX_PREF_MAX_UNDO_DEPTH);
 
 
 	/* Get the offset format -- SnM */ 
@@ -99,9 +90,7 @@ void ghex_load_configuration () {
 	if (offset_fmt)
 		g_free (offset_fmt);
 
-	offset_fmt = gconf_client_get_string (gconf_client,
-										  GHEX_BASE_KEY GHEX_PREF_OFFSET_FORMAT,
-										  NULL);
+	offset_fmt = g_settings_get_string (settings, GHEX_PREF_OFFSET_FORMAT);
 
 	/* Check if offset_fmt is NULL. Shouldnt happen if we get the default
 	 * value from the gconf client -- SnM
@@ -112,19 +101,13 @@ void ghex_load_configuration () {
 	}
 
 	/* Get the show offsets column value -- SnM */
-	show_offsets_column = gconf_client_get_bool (gconf_client,
-												 GHEX_BASE_KEY GHEX_PREF_OFFSETS_COLUMN,
-												 NULL);
+	show_offsets_column = g_settings_get_boolean (settings, GHEX_PREF_OFFSETS_COLUMN);
 
 	/* Get the shaded box size -- SnM */
-	shaded_box_size = gconf_client_get_int (gconf_client,
-											GHEX_BASE_KEY GHEX_PREF_BOX_SIZE,
-											NULL);
+	shaded_box_size = g_settings_get_int (settings, GHEX_PREF_BOX_SIZE);
 
 	/* Get the data font name -- SnM */
-	data_font_name = gconf_client_get_string (gconf_client,
-											  GHEX_BASE_KEY GHEX_PREF_DATA_FONT,
-											  NULL);
+	data_font_name = g_settings_get_string (settings, GHEX_PREF_DATA_FONT);
 	
 	/* Check if data_font_name is NULL. Should not happen if we get the
 	 * default value from the gconf client -- SnM
@@ -134,9 +117,7 @@ void ghex_load_configuration () {
 	}
 
 	/* Get the header font name -- SnM */
-	header_font_name = gconf_client_get_string (gconf_client,
-												GHEX_BASE_KEY GHEX_PREF_HEADER_FONT,
-												NULL);
+	header_font_name = g_settings_get_string (settings, GHEX_PREF_HEADER_FONT);
 
 	/* Check if the header_font_name is NULL. Should not happen if we get
 	 * the default value from the gconf client -- SnM
@@ -147,15 +128,15 @@ void ghex_load_configuration () {
 	}
 }
 
-static void ghex_prefs_notify_cb (GConfClient *gconf_client,
-								  guint cnxn_id,
-								  GConfEntry *entry,
-								  gpointer user_data)
+static void
+ghex_prefs_changed_cb (GSettings   *settings,
+                       const gchar *key,
+                       gpointer     user_data)
 {
 	const GList *winn, *docn;
 
-	if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_OFFSETS_COLUMN)) {
-		gboolean show_off = gconf_value_get_bool(entry->value);
+	if (!strcmp (key, GHEX_PREF_OFFSETS_COLUMN)) {
+		gboolean show_off = g_settings_get_boolean (settings, key);
 		show_offsets_column = show_off;
 		winn = ghex_window_get_list();
 		while(winn) {
@@ -164,11 +145,11 @@ static void ghex_prefs_notify_cb (GConfClient *gconf_client,
 			winn = g_list_next(winn);
 		}
 	}
-	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_GROUP)) {
-		def_group_type = gconf_value_get_int(entry->value);
+	else if (!strcmp (key, GHEX_PREF_GROUP)) {
+		def_group_type = g_settings_get_int (settings, key);
 	}
-	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_MAX_UNDO_DEPTH)) {
-		gint new_undo_max = gconf_value_get_int(entry->value);
+	else if (!strcmp (key, GHEX_PREF_MAX_UNDO_DEPTH)) {
+		gint new_undo_max = g_settings_get_int (settings, key);
 		max_undo_depth = new_undo_max;
 		docn = hex_document_get_list();
 		while(docn) {
@@ -176,16 +157,16 @@ static void ghex_prefs_notify_cb (GConfClient *gconf_client,
 			docn = g_list_next(docn);
 		}
 	}
-	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_BOX_SIZE)) {
-		shaded_box_size = gconf_value_get_int(entry->value);
+	else if (!strcmp (key, GHEX_PREF_BOX_SIZE)) {
+		shaded_box_size = g_settings_get_int (settings, key);
 	}
-	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_OFFSET_FORMAT) &&
-			strcmp(gconf_value_get_string(entry->value), offset_fmt)) {
+	else if (!strcmp (key, GHEX_PREF_OFFSET_FORMAT) &&
+			strcmp (g_settings_get_string (settings, key), offset_fmt)) {
 		gchar *old_offset_fmt = offset_fmt;
 		gint len, i;
 		gboolean expect_spec;
 
-		offset_fmt = g_strdup(gconf_value_get_string(entry->value));
+		offset_fmt = g_strdup (g_settings_get_string (settings, key));
 
 		/* check for a valid format string */
 		len = strlen(offset_fmt);
@@ -202,17 +183,16 @@ static void ghex_prefs_notify_cb (GConfClient *gconf_client,
 				   offset_fmt[i] != 'P' && offset_fmt[i] != 'p') {
 					g_free(offset_fmt);
 					offset_fmt = old_offset_fmt;
-					gconf_client_set_string(gconf_client, GHEX_BASE_KEY GHEX_PREF_OFFSET_FORMAT,
-											"%X", NULL);
+					g_settings_set_string (settings, GHEX_PREF_OFFSET_FORMAT, "%X");
 				}
 			}
 		}
 		if(offset_fmt != old_offset_fmt)
 			g_free(old_offset_fmt);
 	}
-	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_FONT)) {
-		if(gconf_value_get_string(entry->value) != NULL) {
-			const gchar *font_name = gconf_value_get_string(entry->value);
+	else if (!strcmp (key, GHEX_PREF_FONT)) {
+		if (g_settings_get_string (settings, key) != NULL) {
+			const gchar *font_name = g_settings_get_string (settings, key);
 			PangoFontMetrics *new_metrics;
 			PangoFontDescription *new_desc;
 
@@ -240,31 +220,25 @@ static void ghex_prefs_notify_cb (GConfClient *gconf_client,
 			}
 		}
 	}
-	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_DATA_FONT)) {
+	else if (!strcmp (key, GHEX_PREF_DATA_FONT)) {
 		if(data_font_name)
 			g_free(data_font_name);
-		data_font_name = g_strdup (gconf_value_get_string(entry->value));
+		data_font_name = g_strdup (g_settings_get_string (settings, key));
 	}
-	else if(!strcmp(entry->key, GHEX_BASE_KEY GHEX_PREF_HEADER_FONT)) {
+	else if (!strcmp (key, GHEX_PREF_HEADER_FONT)) {
 		if(header_font_name)
 			g_free(header_font_name);
-		header_font_name = g_strdup (gconf_value_get_string(entry->value));
+		header_font_name = g_strdup (g_settings_get_string (settings, key));
 	}
 }
 
 void ghex_init_configuration ()
 {
-	gconf_client = gconf_client_get_default ();
+    settings = g_settings_new ("org.gnome.GHex");
 
-	g_return_if_fail (gconf_client != NULL);
+    g_return_if_fail (settings != NULL);
 
-	gconf_client_add_dir (gconf_client,
-						  GHEX_BASE_KEY,
-						  GCONF_CLIENT_PRELOAD_RECURSIVE,
-						  NULL);
-
-	gconf_client_notify_add (gconf_client,
-							 GHEX_BASE_KEY,
-							 ghex_prefs_notify_cb,
-							 NULL, NULL, NULL);
+    g_signal_connect (settings, "changed",
+                      G_CALLBACK (ghex_prefs_changed_cb),
+                      NULL);
 }

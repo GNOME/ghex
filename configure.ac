@@ -28,6 +28,8 @@ AC_CHECK_FUNCS([pow strstr strtoul])
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
+GLIB_GSETTINGS
+
 LIBGTKHEX_RELEASE=3.0
 AC_SUBST(LIBGTKHEX_RELEASE)
 LIBGTKHEX_RELEASE_STRING=gtkhex-${LIBGTKHEX_RELEASE}
@@ -41,9 +43,8 @@ AC_SUBST(LIBGTKHEX_LIBS)
 AC_SUBST(LIBGTKHEX_CFLAGS)
 
 PKG_CHECK_MODULES(GHEX,
-		  gio-2.0                       \
-		  gtk+-3.0 >= 3.0 		\
-		  gconf-2.0)
+		  gio-2.0 >= 2.26	\
+		  gtk+-3.0 >= 3.0)
 AC_SUBST(GHEX_CFLAGS)
 AC_SUBST(GHEX_LIBS)
 
@@ -70,15 +71,6 @@ GNOME_COMPILE_WARNINGS([maximum])
 
 AC_ARG_ENABLE(debug,
               [  --enable-debug      Enables extra debugging output], AC_DEFINE(ENABLE_DEBUG, 1, [Should verbose debugging output be enabled.]))
-
-dnl Checking for gconftool-2
-AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
-
-if test "x$GCONFTOOL" = xno; then
-	AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
-fi
-
-AM_GCONF_SOURCE_2
 
 GNOME_DOC_INIT([0.9.0],,
   [AC_MSG_WARN([[gnome-doc-utils not found: documentation will not be built.]])])

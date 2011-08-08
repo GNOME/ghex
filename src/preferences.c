@@ -391,10 +391,9 @@ max_undo_changed_cb(GtkAdjustment *adj, PropertyUI *pui)
 	if((guint)gtk_adjustment_get_value(adj) != max_undo_depth) {
 		max_undo_depth = gtk_spin_button_get_value_as_int
 			(GTK_SPIN_BUTTON(pui->undo_spin));
-		gconf_client_set_int (gconf_client,
-							  GHEX_BASE_KEY GHEX_PREF_MAX_UNDO_DEPTH,
-							  max_undo_depth,
-							  NULL);
+		g_settings_set_int (settings,
+		                    GHEX_PREF_MAX_UNDO_DEPTH,
+		                    max_undo_depth);
 	}
 }
 
@@ -404,10 +403,9 @@ box_size_changed_cb(GtkAdjustment *adj, PropertyUI *pui)
 	if((guint)gtk_adjustment_get_value(adj) != shaded_box_size) {
 		shaded_box_size = gtk_spin_button_get_value_as_int
 			(GTK_SPIN_BUTTON(pui->box_size_spin));
-		gconf_client_set_int (gconf_client,
-							  GHEX_BASE_KEY GHEX_PREF_BOX_SIZE,
-							  shaded_box_size,
-							  NULL);
+		g_settings_set_int (settings,
+		                    GHEX_PREF_BOX_SIZE,
+		                    shaded_box_size);
 	}
 }
 
@@ -416,10 +414,9 @@ offsets_col_cb(GtkToggleButton *tb, PropertyUI *pui)
 {
 	show_offsets_column = gtk_toggle_button_get_active
 		(GTK_TOGGLE_BUTTON(pui->offsets_col));
-	gconf_client_set_bool (gconf_client,
-						   GHEX_BASE_KEY GHEX_PREF_OFFSETS_COLUMN,
-						   show_offsets_column,
-						   NULL);	
+	g_settings_set_boolean (settings,
+	                        GHEX_PREF_OFFSETS_COLUMN,
+	                        show_offsets_column);
 }
 
 static void
@@ -432,10 +429,9 @@ group_type_cb(GtkRadioButton *rd, PropertyUI *pui)
 			def_group_type = group_type[i];
 			break;
 		}
-	gconf_client_set_int (gconf_client,
-						  GHEX_BASE_KEY GHEX_PREF_GROUP,
-						  def_group_type,
-						  NULL);
+	g_settings_set_int (settings,
+	                    GHEX_PREF_GROUP,
+	                    def_group_type);
 }
 
 static void
@@ -496,10 +492,9 @@ select_display_font_cb(GtkWidget *w, PropertyUI *pui)
 				(gtk_font_button_get_font_name
 				 (GTK_FONT_BUTTON(pui->font_button)));
 			def_font_desc = new_desc;
-			gconf_client_set_string (gconf_client,
-									 GHEX_BASE_KEY GHEX_PREF_FONT,
-									 def_font_name,
-									 NULL);
+			g_settings_set_string (settings,
+			                       GHEX_PREF_FONT,
+			                       def_font_name);
 		}
 		else
 			display_error_dialog (ghex_window_get_active(),
@@ -515,20 +510,18 @@ select_font_cb(GtkWidget *w, PropertyUI *pui)
 			g_free(data_font_name);
 		data_font_name = g_strdup(gtk_font_button_get_font_name
 								  (GTK_FONT_BUTTON (pui->df_button)));
-		gconf_client_set_string (gconf_client,
-								 GHEX_BASE_KEY GHEX_PREF_DATA_FONT,
-								 data_font_name,
-								 NULL);
+		g_settings_set_string (settings,
+		                       GHEX_PREF_DATA_FONT,
+		                       data_font_name);
 	}
 	else if(w == pui->hf_button) {
 		if(header_font_name)
 			g_free(header_font_name);
 		header_font_name = g_strdup(gtk_font_button_get_font_name
 									(GTK_FONT_BUTTON (pui->hf_button)));
-		gconf_client_set_string (gconf_client,
-								 GHEX_BASE_KEY GHEX_PREF_HEADER_FONT,
-								 header_font_name,
-								 NULL);
+		g_settings_set_string (settings,
+		                       GHEX_PREF_HEADER_FONT,
+		                       header_font_name);
 	}
 }
 
@@ -577,10 +570,9 @@ update_offset_fmt_from_entry(GtkEntry *entry, PropertyUI *pui)
 	}
 	if(offset_fmt != old_offset_fmt)
 		g_free(old_offset_fmt);
-	gconf_client_set_string (gconf_client,
-							 GHEX_BASE_KEY GHEX_PREF_OFFSET_FORMAT,
-							 offset_fmt,
-							 NULL);
+	g_settings_set_string (settings,
+	                       GHEX_PREF_OFFSET_FORMAT,
+	                       offset_fmt);
 	win_list = ghex_window_get_list();
 	while(NULL != win_list) {
 		ghex_window_update_status_message((GHexWindow *)win_list->data);
