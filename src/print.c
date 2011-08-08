@@ -36,7 +36,7 @@
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<0x7F))?1:0)
 
 gchar *data_font_name, *header_font_name;
-gint shaded_box_size;
+guint shaded_box_size;
 
 static void print_header(GHexPrintJobInfo *pji, unsigned int page);
 static void print_row(GHexPrintJobInfo *pji, unsigned int offset,
@@ -181,8 +181,8 @@ static void format_ascii(HexDocument *doc, gchar *out, guint start, guint end)
 static void print_shaded_boxes(GHexPrintJobInfo *pji, guint page,
 							   guint max_row)
 {
-	gint i;
-	gint box_size = shaded_box_size;
+	guint i;
+	guint box_size = shaded_box_size;
 
 	if(box_size == 0)
 		return;

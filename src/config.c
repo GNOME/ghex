@@ -82,7 +82,7 @@ void ghex_load_configuration () {
 		def_group_type = GROUP_BYTE;
 
 	/* Get the max undo depth -- SnM */
-	max_undo_depth = g_settings_get_int (settings, GHEX_PREF_MAX_UNDO_DEPTH);
+	g_settings_get (settings, GHEX_PREF_MAX_UNDO_DEPTH, "u", &max_undo_depth);
 
 
 	/* Get the offset format -- SnM */ 
@@ -104,7 +104,7 @@ void ghex_load_configuration () {
 	show_offsets_column = g_settings_get_boolean (settings, GHEX_PREF_OFFSETS_COLUMN);
 
 	/* Get the shaded box size -- SnM */
-	shaded_box_size = g_settings_get_int (settings, GHEX_PREF_BOX_SIZE);
+	g_settings_get (settings, GHEX_PREF_BOX_SIZE, "u", &shaded_box_size);
 
 	/* Get the data font name -- SnM */
 	data_font_name = g_settings_get_string (settings, GHEX_PREF_DATA_FONT);
@@ -159,9 +159,9 @@ max_undo_depth_changed_cb (GSettings   *settings,
                            gpointer     user_data)
 {
     const GList *docn;
-    gint new_undo_max = g_settings_get_int (settings, key);
 
-    max_undo_depth = new_undo_max;
+    g_settings_get (settings, key, "u", &max_undo_depth);
+
     docn = hex_document_get_list ();
     while (docn) {
         hex_document_set_max_undo (HEX_DOCUMENT (docn->data), max_undo_depth);
@@ -174,7 +174,7 @@ box_size_changed_cb (GSettings   *settings,
                      const gchar *key,
                      gpointer     user_data)
 {
-    shaded_box_size = g_settings_get_int (settings, key);
+    g_settings_get (settings, key, "u", &shaded_box_size);
 }
 
 static void

@@ -391,9 +391,10 @@ max_undo_changed_cb(GtkAdjustment *adj, PropertyUI *pui)
 	if((guint)gtk_adjustment_get_value(adj) != max_undo_depth) {
 		max_undo_depth = gtk_spin_button_get_value_as_int
 			(GTK_SPIN_BUTTON(pui->undo_spin));
-		g_settings_set_int (settings,
-		                    GHEX_PREF_MAX_UNDO_DEPTH,
-		                    max_undo_depth);
+		g_settings_set (settings,
+		                GHEX_PREF_MAX_UNDO_DEPTH,
+		                "u",
+		                max_undo_depth);
 	}
 }
 
@@ -403,9 +404,10 @@ box_size_changed_cb(GtkAdjustment *adj, PropertyUI *pui)
 	if((guint)gtk_adjustment_get_value(adj) != shaded_box_size) {
 		shaded_box_size = gtk_spin_button_get_value_as_int
 			(GTK_SPIN_BUTTON(pui->box_size_spin));
-		g_settings_set_int (settings,
-		                    GHEX_PREF_BOX_SIZE,
-		                    shaded_box_size);
+		g_settings_set (settings,
+		                GHEX_PREF_BOX_SIZE,
+		                "u",
+		                shaded_box_size);
 	}
 }
 

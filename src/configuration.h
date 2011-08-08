@@ -53,7 +53,7 @@ extern guint      max_undo_depth;
 extern gchar      *offset_fmt;
 extern gboolean   show_offsets_column;
 
-extern gint       shaded_box_size;
+extern guint      shaded_box_size;
 extern gint       def_group_type;
 
 extern GSettings *settings;
