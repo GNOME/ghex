@@ -55,7 +55,7 @@ AC_SUBST(GAILUTIL_LIBS)
 dnl =================================================================
 dnl Gettext stuff
 dnl =================================================================
-IT_PROG_INTLTOOL([0.40.0])
+IT_PROG_INTLTOOL([0.41.1])
 
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION([0.17])
