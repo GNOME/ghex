@@ -8,6 +8,4 @@ SUBDIRS = data po help src icons
 
 EXTRA_DIST =			\
 	gnome-doc-utils.make	\
-	omf.make		\
-	xmldocs.make		\
 	COPYING-DOCS
