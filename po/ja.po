@@ -1,702 +1,342 @@
 # ghex ja.po.
-# Copyright (C) 1998-2004,2007 Free Software Foundation, Inc.
+# Copyright (C) 1998-2004,2007,2011 Free Software Foundation, Inc.
 # Eiichiro ITANI <emu@ceres.dti.ne.jp>, 1998.
 # Yuusuke Tahara <tahara@gnome.gr.jp>, 2000.
 # Yukihiro Nakai <nakai@gnome.gr.jp>, 2000.
 # Akira TAGOH <tagoh@gnome.gr.jp>, 2001.
-# Takeshi Aihana <takeshi.aihana@gmail.com>, 2003-2004,2007.
+# Takeshi Aihana <takeshi.aihana@gmail.com>, 2003-2004,2007,2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex trunk\n"
+"Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-24 21:45+0900\n"
-"PO-Revision-Date: 2009-03-24 21:44+0900\n"
+"POT-Creation-Date: 2011-09-19 15:52+0900\n"
+"PO-Revision-Date: 2011-09-19 15:48+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../ghex.desktop.in.h:1
-msgid "GNOME Hexadecimal Editor"
-msgstr "GNOME 向けの16進数バイナリ・エディタです"
+#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:651
+#: ../src/ghex-window.c:1097
+msgid "GHex"
+msgstr "GHex"
 
-#: ../ghex.desktop.in.h:2
+#: ../data/ghex.desktop.in.h:2
 msgid "Hex Editor"
 msgstr "Hex エディタ"
 
-#: ../src/chartable.c:143
+#: ../data/ghex.desktop.in.h:3
+msgid "Inspect and edit binary files"
+msgstr "バイナリ・ファイルを調査したり編集します"
+
+#: ../src/chartable.c:147
 msgid "ASCII"
 msgstr "文字"
 
-#: ../src/chartable.c:143
+#: ../src/chartable.c:147
 msgid "Hex"
 msgstr "16進"
 
-#: ../src/chartable.c:143 ../src/preferences.c:144
+#: ../src/chartable.c:147 ../src/preferences.c:142
 msgid "Decimal"
 msgstr "10進"
 
-#: ../src/chartable.c:144
+#: ../src/chartable.c:148
 msgid "Octal"
 msgstr "8進"
 
-#: ../src/chartable.c:144
+#: ../src/chartable.c:148
 msgid "Binary"
 msgstr "2進"
 
-#: ../src/chartable.c:160
+#: ../src/chartable.c:164
 msgid "Character table"
 msgstr "文字テーブル"
 
-#: ../src/converter.c:230
+#: ../src/converter.c:231
 msgid "Base Converter"
 msgstr "基数コンバータ"
 
 #. entries
-#: ../src/converter.c:251
+#: ../src/converter.c:252
 msgid "_Binary:"
 msgstr "2進(_B):"
 
-#: ../src/converter.c:253
+#: ../src/converter.c:254
 msgid "_Octal:"
 msgstr "8進(_O):"
 
-#: ../src/converter.c:255
+#: ../src/converter.c:256
 msgid "_Decimal:"
 msgstr "10進(_D):"
 
-#: ../src/converter.c:257
+#: ../src/converter.c:258
 msgid "_Hex:"
 msgstr "16進(_H):"
 
-#: ../src/converter.c:259
+#: ../src/converter.c:260
 msgid "_ASCII:"
 msgstr "文字(_A):"
 
 #. get cursor button
-#: ../src/converter.c:263
+#: ../src/converter.c:264
 msgid "_Get cursor value"
 msgstr "カーソル位置にある値の取得(_G)"
 
-#: ../src/converter.c:277
+#: ../src/converter.c:278
 msgid "Get cursor value"
 msgstr "カーソル位置にある値を取得します"
 
-#: ../src/converter.c:277
+#: ../src/converter.c:278
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr "カーソル位置の値を 2進、8進、10進、16進 と文字 (ASCII) で取得します"
 
-#: ../src/converter.c:417
+#: ../src/converter.c:418
 msgid "ERROR"
 msgstr "エラー"
 
-#: ../src/findreplace.c:98 ../src/findreplace.c:222 ../src/ui.c:962
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:864
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): データの検索"
 
-#: ../src/findreplace.c:102 ../src/findreplace.c:162 ../src/findreplace.c:358
+#: ../src/findreplace.c:101 ../src/findreplace.c:161 ../src/findreplace.c:359
 msgid "Find String"
 msgstr "検索する文字列"
 
-#: ../src/findreplace.c:109 ../src/findreplace.c:259
+#: ../src/findreplace.c:108 ../src/findreplace.c:258
 msgid "Find _Next"
 msgstr "次を検索(_N)"
 
-#: ../src/findreplace.c:116 ../src/findreplace.c:268
+#: ../src/findreplace.c:115 ../src/findreplace.c:267
 msgid "Find _Previous"
 msgstr "前を検索(_P)"
 
-#: ../src/findreplace.c:139 ../src/findreplace.c:412
+#: ../src/findreplace.c:138 ../src/findreplace.c:413
 msgid "Find Data"
 msgstr "データの検索"
 
-#: ../src/findreplace.c:139 ../src/findreplace.c:412
+#: ../src/findreplace.c:138 ../src/findreplace.c:413
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "検索するデータの 16進または文字 (ASCII) を入力して下さい"
 
-#: ../src/findreplace.c:140
+#: ../src/findreplace.c:139
 msgid "Find Next"
 msgstr "次を検索"
 
-#: ../src/findreplace.c:140 ../src/findreplace.c:414
+#: ../src/findreplace.c:139 ../src/findreplace.c:415
 msgid "Finds the next occurrence of the search string"
 msgstr "後方に出現する検索文字列を表示します"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:140
 msgid "Find previous"
 msgstr "前を検索"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:140
 msgid "Finds the previous occurrence of the search string "
 msgstr "前方に出現する検索文字列を表示します"
 
-#: ../src/findreplace.c:142 ../src/findreplace.c:417 ../src/findreplace.c:465
+#: ../src/findreplace.c:141 ../src/findreplace.c:418 ../src/findreplace.c:466
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: ../src/findreplace.c:142
+#: ../src/findreplace.c:141
 msgid "Closes find data window"
 msgstr "データ検索ウィンドウを閉じます"
 
-#: ../src/findreplace.c:158
+#: ../src/findreplace.c:157
 #, c-format
 msgid "GHex (%s): Find Data: Add search"
 msgstr "GHex (%s): データの検索: 検索の追加"
 
-#: ../src/findreplace.c:180
+#: ../src/findreplace.c:179
 msgid "Add"
 msgstr "追加"
 
-#: ../src/findreplace.c:236
+#: ../src/findreplace.c:235
 msgid "Search String"
 msgstr "検索する文字列"
 
-#: ../src/findreplace.c:244
+#: ../src/findreplace.c:243
 msgid "Highlight Colour"
 msgstr "強調表示する色"
 
-#: ../src/findreplace.c:281
+#: ../src/findreplace.c:280
 msgid "_Add New"
 msgstr "新しいエントリの追加(_A)"
 
-#: ../src/findreplace.c:290
+#: ../src/findreplace.c:289
 msgid "_Remove Selected"
 msgstr "選択したエントリの削除(_R)"
 
-#: ../src/findreplace.c:310 ../src/ghex-ui.xml.h:8
+#: ../src/findreplace.c:309
 msgid "Close"
 msgstr "閉じる"
 
-#: ../src/findreplace.c:310
+#: ../src/findreplace.c:309
 msgid "Closes advanced find window"
 msgstr "拡張検索ウィンドウを閉じます"
 
-#: ../src/findreplace.c:354 ../src/ui.c:960
+#: ../src/findreplace.c:355 ../src/ui.c:862
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): データの検索と置換"
 
-#: ../src/findreplace.c:367
+#: ../src/findreplace.c:368
 msgid "Replace With"
 msgstr "置換する文字列"
 
-#: ../src/findreplace.c:374
+#: ../src/findreplace.c:375
 msgid "Find _next"
 msgstr "次を検索(_N)"
 
-#: ../src/findreplace.c:382
+#: ../src/findreplace.c:383
 msgid "_Replace"
 msgstr "置換(_R)"
 
-#: ../src/findreplace.c:390
+#: ../src/findreplace.c:391
 msgid "Replace _All"
 msgstr "全て置換(_A)"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:414
 msgid "Replace Data"
 msgstr "データの置換"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:414
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "置換するデータの 16進または文字 (ASCII) を入力して下さい"
 
-#: ../src/findreplace.c:414
+#: ../src/findreplace.c:415
 msgid "Find next"
 msgstr "次を検索"
 
-#: ../src/findreplace.c:415 ../src/ghex-ui.xml.h:51
+#: ../src/findreplace.c:416
 msgid "Replace"
 msgstr "置換"
 
-#: ../src/findreplace.c:415
+#: ../src/findreplace.c:416
 msgid "Replaces the search string with the replace string"
 msgstr "置換する文字列で検索したデータを置き換えます"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:417
 msgid "Replace All"
 msgstr "全て置換"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:417
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "置換する文字列で検索した全てのデータを置き換えます"
 
-#: ../src/findreplace.c:417
+#: ../src/findreplace.c:418
 msgid "Closes find and replace data window"
 msgstr "データの検索と置換ウィンドウを閉じます"
 
-#: ../src/findreplace.c:433 ../src/ui.c:958
+#: ../src/findreplace.c:434 ../src/ui.c:860
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): 指定した位置にジャンプ"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:464
 msgid "Jump to byte"
 msgstr "指定した位置にジャンプ"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:464
 msgid "Enter the byte to jump to"
 msgstr "ジャンプするバイトを入力して下さい"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:465
 msgid "OK"
 msgstr "OK"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:465
 msgid "Jumps to the specified byte"
 msgstr "指定したバイトにジャンプします"
 
-#: ../src/findreplace.c:465
+#: ../src/findreplace.c:466
 msgid "Closes jump to byte window"
 msgstr "ジャンプ・ウィンドウを閉じます"
 
-#: ../src/findreplace.c:528 ../src/findreplace.c:562 ../src/findreplace.c:646
+#: ../src/findreplace.c:529 ../src/findreplace.c:563 ../src/findreplace.c:670
 msgid "There is no active document to search!"
 msgstr "検索対象となるドキュメントがありません！"
 
-#: ../src/findreplace.c:535 ../src/findreplace.c:569 ../src/findreplace.c:653
-#: ../src/findreplace.c:687 ../src/findreplace.c:732
+#: ../src/findreplace.c:536 ../src/findreplace.c:570 ../src/findreplace.c:677
+#: ../src/findreplace.c:711 ../src/findreplace.c:756
 msgid "There is no string to search for!"
 msgstr "検索する文字列はありません！"
 
-#: ../src/findreplace.c:547 ../src/findreplace.c:662 ../src/findreplace.c:853
+#: ../src/findreplace.c:548 ../src/findreplace.c:686 ../src/findreplace.c:877
 msgid "End Of File reached"
 msgstr "ファイル終端に到達しました"
 
-#: ../src/findreplace.c:548 ../src/findreplace.c:581 ../src/findreplace.c:661
-#: ../src/findreplace.c:854 ../src/findreplace.c:877
+#: ../src/findreplace.c:549 ../src/findreplace.c:582 ../src/findreplace.c:685
+#: ../src/findreplace.c:878 ../src/findreplace.c:901
 msgid "String was not found!\n"
 msgstr "文字列がありません！\n"
 
-#: ../src/findreplace.c:580 ../src/findreplace.c:876
+#: ../src/findreplace.c:581 ../src/findreplace.c:900
 msgid "Beginning Of File reached"
 msgstr "ファイル先頭に到達しました"
 
-#: ../src/findreplace.c:596
+#: ../src/findreplace.c:598
 msgid "There is no active document to move the cursor in!"
 msgstr "カーソルを移動するためのドキュメントがありません！"
 
-#: ../src/findreplace.c:602
+#: ../src/findreplace.c:616
 msgid "No offset has been specified!"
 msgstr "オフセットが指定されていません！"
 
-#: ../src/findreplace.c:626
+#: ../src/findreplace.c:641
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "指定したオフセットはファイルの終端を越えています！"
+
+#: ../src/findreplace.c:649
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "ファイルの終端より先にはカーソルを移動できません！"
 
-#: ../src/findreplace.c:633
+#: ../src/findreplace.c:656
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x'"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
 msgstr ""
-"次のようなオフセットのみ指定できます:\n"
-" - 正の 10進数値\n"
-" - 16進数値 (文字 '0x' で始める)"
+"次のような値だけオフセットとして指定できます:\n"
+" - 正の10進数値\n"
+" - '0x' で始まる16進数値\n"
+" - '+' または '-' 符号を持つ相対オフセット"
 
-#: ../src/findreplace.c:678
+#: ../src/findreplace.c:702
 msgid "There is no active buffer to replace data in!"
 msgstr "置換を行なうべきアクティブなバッファがありません！"
 
-#: ../src/findreplace.c:703 ../src/findreplace.c:704
+#: ../src/findreplace.c:727 ../src/findreplace.c:728
 msgid "End Of File reached!"
 msgstr "ファイル終端に到達しました！"
 
-#: ../src/findreplace.c:723
+#: ../src/findreplace.c:747
 msgid "There is no active document to replace data in!"
 msgstr "置換を行なうためのドキュメントがありません！"
 
-#: ../src/findreplace.c:753
+#: ../src/findreplace.c:777
 msgid "No occurrences were found."
 msgstr "該当するものが見つかりませんでした。"
 
-#: ../src/findreplace.c:756
+#: ../src/findreplace.c:780
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
-msgstr[0] " %d個を置き換えました"
-msgstr[1] " %d個を置き換えました"
+msgstr[0] "%d個を置き換えました"
+msgstr[1] "%d個を置き換えました"
 
-#: ../src/findreplace.c:796
+#: ../src/findreplace.c:820
 msgid "No string to search for!"
 msgstr "検索対象の文字列はありません！"
 
-#: ../src/ghex-ui.xml.h:1
-msgid "About this application"
-msgstr "このアプリケーションについて"
-
-#: ../src/ghex-ui.xml.h:2
-msgid "Add View"
-msgstr "ビューの追加"
-
-#: ../src/ghex-ui.xml.h:3
-msgid "Add a new view to the buffer"
-msgstr "新しいビューをバッファに追加します"
-
-#: ../src/ghex-ui.xml.h:4
-msgid "Advanced Find"
-msgstr "拡張検索を行います"
-
-#: ../src/ghex-ui.xml.h:5
-msgid "Bytes"
-msgstr "バイト"
-
-#: ../src/ghex-ui.xml.h:6
-msgid "Character Table..."
-msgstr "文字テーブル..."
-
-#: ../src/ghex-ui.xml.h:7
-msgid "Character _Table"
-msgstr "文字テーブル(_T)"
-
-#: ../src/ghex-ui.xml.h:9
-msgid "Close the current file"
-msgstr "このファイルを閉じます"
-
-#: ../src/ghex-ui.xml.h:10
-msgid "Configure the application"
-msgstr "GHex の設定を変更します"
-
-#: ../src/ghex-ui.xml.h:11
-msgid "Contents"
-msgstr "内容"
-
-#: ../src/ghex-ui.xml.h:12
-msgid "Converter..."
-msgstr "変換..."
-
-#: ../src/ghex-ui.xml.h:13
-msgid "Copy"
-msgstr "コピー"
-
-#: ../src/ghex-ui.xml.h:14
-msgid "Copy selection to clipboard"
-msgstr "選択範囲をクリップボードにコピーします"
-
-#: ../src/ghex-ui.xml.h:15
-msgid "Cu_t"
-msgstr "切り取り(_T)"
-
-#: ../src/ghex-ui.xml.h:16
-msgid "Cut"
-msgstr "切り取り"
-
-#: ../src/ghex-ui.xml.h:17
-msgid "Cut selection"
-msgstr "選択範囲を切り取ります"
-
-#: ../src/ghex-ui.xml.h:18
-msgid "E_xit"
-msgstr "終了(_X)"
-
-#: ../src/ghex-ui.xml.h:19
-msgid "Exit"
-msgstr "終了"
-
-#: ../src/ghex-ui.xml.h:20
-msgid "Exit the program"
-msgstr "このプログラムを終了します"
-
-#: ../src/ghex-ui.xml.h:21
-msgid "Export data to HTML source"
-msgstr "データを HTML ファイルへ出力します"
-
-#: ../src/ghex-ui.xml.h:22
-msgid "Export to HTML..."
-msgstr "HTMLへ出力..."
-
-#: ../src/ghex-ui.xml.h:23
-msgid "Find"
-msgstr "検索"
-
-#: ../src/ghex-ui.xml.h:24
-msgid "Goto Byte"
-msgstr "指定バイトに移動"
-
-#: ../src/ghex-ui.xml.h:25
-msgid "Group data by 16 bits"
-msgstr "16ビットでグループ化します"
-
-#: ../src/ghex-ui.xml.h:26
-msgid "Group data by 32 bits"
-msgstr "32ビットでグループ化します"
-
-#: ../src/ghex-ui.xml.h:27
-msgid "Group data by 8 bits"
-msgstr "8ビットでグループ化します"
-
-#: ../src/ghex-ui.xml.h:28
-msgid "Help Chat"
-msgstr "ヘルプ・チャット"
-
-#: ../src/ghex-ui.xml.h:29
-msgid "Help on this application"
-msgstr "ghex のヘルプです"
-
-#: ../src/ghex-ui.xml.h:30
-msgid "Insert Mode"
-msgstr "挿入モード"
-
-#: ../src/ghex-ui.xml.h:31
-msgid "Insert/overwrite data"
-msgstr "挿入/上書きモードを切り替えます"
-
-#: ../src/ghex-ui.xml.h:32
-msgid "Jump to a certain position"
-msgstr "指定した位置へジャンプします"
-
-#: ../src/ghex-ui.xml.h:33
-msgid "Longwords"
-msgstr "ロングワード"
-
-#: ../src/ghex-ui.xml.h:34
-msgid "Open"
-msgstr "開く"
-
-#: ../src/ghex-ui.xml.h:35
-msgid "Open a file"
-msgstr "ファイルを開きます"
-
-#: ../src/ghex-ui.xml.h:36
-msgid "Open base conversion dialog"
-msgstr "基数変換ダイアログを開きます"
-
-#: ../src/ghex-ui.xml.h:37
-msgid "Pa_ste"
-msgstr "貼り付け(_S)"
-
-#: ../src/ghex-ui.xml.h:38
-msgid "Paste"
-msgstr "貼り付け"
-
-#: ../src/ghex-ui.xml.h:39
-msgid "Paste data from clipboard"
-msgstr "クリップボードからデータを貼り付けます"
-
-#: ../src/ghex-ui.xml.h:40
-msgid "Preferences"
-msgstr "設定"
-
-#: ../src/ghex-ui.xml.h:41
-msgid "Preview printed data"
-msgstr "印刷するデータのプレビューを表示します"
-
-#: ../src/ghex-ui.xml.h:42
-msgid "Print"
-msgstr "印刷"
-
-#: ../src/ghex-ui.xml.h:43
-msgid "Print Previe_w..."
-msgstr "印刷プレビュー(_W)..."
-
-#: ../src/ghex-ui.xml.h:44
-msgid "Print Preview..."
-msgstr "印刷プレビュー..."
-
-#: ../src/ghex-ui.xml.h:45
-msgid "Print the current file"
-msgstr "このファイルを印刷します"
-
-#: ../src/ghex-ui.xml.h:46
-msgid "R_eplace"
-msgstr "置換(_E)"
-
-#: ../src/ghex-ui.xml.h:47
-msgid "Redo"
-msgstr "やり直す"
-
-#: ../src/ghex-ui.xml.h:48
-msgid "Redo the undone action"
-msgstr "実行していない操作をやり直します"
-
-#: ../src/ghex-ui.xml.h:49
-msgid "Remove View"
-msgstr "ビューの削除"
-
-#: ../src/ghex-ui.xml.h:50
-msgid "Remove the current view of the buffer"
-msgstr "このバッファのビューを削除します"
-
-#: ../src/ghex-ui.xml.h:52
-msgid "Replace a string"
-msgstr "文字列を置換します"
-
-#: ../src/ghex-ui.xml.h:53
-msgid "Revert"
-msgstr "戻す"
-
-#: ../src/ghex-ui.xml.h:54
-msgid "Revert to a saved version of the file"
-msgstr "保存したファイルに戻します"
-
-#: ../src/ghex-ui.xml.h:55
-msgid "Save"
-msgstr "保存"
-
-#: ../src/ghex-ui.xml.h:56
-msgid "Save As"
-msgstr "別名で保存"
-
-#: ../src/ghex-ui.xml.h:57
-msgid "Save As _HTML..."
-msgstr "HTML で保存(_H)..."
-
-#: ../src/ghex-ui.xml.h:58
-msgid "Save _As..."
-msgstr "別名で保存(_A)..."
-
-#: ../src/ghex-ui.xml.h:59
-msgid "Save the current file"
-msgstr "このファイルを保存します"
-
-#: ../src/ghex-ui.xml.h:60
-msgid "Save the current file with a different name"
-msgstr "このファイルに別の名前を付けて保存します"
-
-#: ../src/ghex-ui.xml.h:61
-msgid "Search for a string"
-msgstr "文字列を検索します"
-
-#: ../src/ghex-ui.xml.h:62
-msgid "Show the character table"
-msgstr "文字テーブルを表示します"
-
-#: ../src/ghex-ui.xml.h:63
-msgid "Show the type conversion dialog in the edit window"
-msgstr "編集ウィンドウの中に型変換ダイアログを表示します"
-
-#: ../src/ghex-ui.xml.h:64
-msgid "Type Conversion Dialog..."
-msgstr "型変換ダイアログ..."
-
-#: ../src/ghex-ui.xml.h:65
-msgid "Type Conversion _Dialog"
-msgstr "型変換ダイアログ(_D)"
-
-#: ../src/ghex-ui.xml.h:66
-msgid "Undo"
-msgstr "元に戻す"
-
-#: ../src/ghex-ui.xml.h:67
-msgid "Undo the last action"
-msgstr "最後の操作に戻します"
-
-#: ../src/ghex-ui.xml.h:68
-msgid "Words"
-msgstr "ワード"
-
-#: ../src/ghex-ui.xml.h:69
-msgid "_About"
-msgstr "情報(_A)"
-
-#: ../src/ghex-ui.xml.h:70
-msgid "_Add View"
-msgstr "ビューの追加(_A)"
-
-#: ../src/ghex-ui.xml.h:71
-msgid "_Advanced Find"
-msgstr "拡張検索(_A)"
-
-#: ../src/ghex-ui.xml.h:72
-msgid "_Base Converter"
-msgstr "基数コンバータ(_B)"
-
-#: ../src/ghex-ui.xml.h:73 ../src/ui.c:90
-msgid "_Bytes"
-msgstr "バイト(_B)"
-
-#: ../src/ghex-ui.xml.h:74
-msgid "_Close"
-msgstr "閉じる(_C)"
-
-#: ../src/ghex-ui.xml.h:75
-msgid "_Contents"
-msgstr "目次(_C)"
-
-#: ../src/ghex-ui.xml.h:76
-msgid "_Copy"
-msgstr "コピー(_C)"
-
-#: ../src/ghex-ui.xml.h:77
-msgid "_Edit"
-msgstr "編集(_E)"
-
-#: ../src/ghex-ui.xml.h:78
-msgid "_File"
-msgstr "ファイル(_F)"
-
-#: ../src/ghex-ui.xml.h:79
-msgid "_Find"
-msgstr "検索(_F)"
-
-#: ../src/ghex-ui.xml.h:80
-msgid "_Goto Byte..."
-msgstr "指定した場所へ移動(_G)..."
-
-#: ../src/ghex-ui.xml.h:81
-msgid "_Group Data As"
-msgstr "グループ化(_G)"
-
-#: ../src/ghex-ui.xml.h:82
-msgid "_Help"
-msgstr "ヘルプ(_H)"
-
-#: ../src/ghex-ui.xml.h:83
-msgid "_Insert Mode"
-msgstr "挿入モード(_I)"
-
-#: ../src/ghex-ui.xml.h:84 ../src/ui.c:92
-msgid "_Longwords"
-msgstr "ロングワード(_L)"
-
-#: ../src/ghex-ui.xml.h:85
-msgid "_Open..."
-msgstr "開く(_O)..."
-
-#: ../src/ghex-ui.xml.h:86
-msgid "_Preferences"
-msgstr "設定(_P)"
-
-#: ../src/ghex-ui.xml.h:87
-msgid "_Print"
-msgstr "印刷(_P)"
-
-#: ../src/ghex-ui.xml.h:88
-msgid "_Redo"
-msgstr "やり直す(_R)"
-
-#: ../src/ghex-ui.xml.h:89
-msgid "_Remove View"
-msgstr "ビューの削除(_R)"
-
-#: ../src/ghex-ui.xml.h:90
-msgid "_Revert"
-msgstr "戻す(_R)"
-
-#: ../src/ghex-ui.xml.h:91
-msgid "_Save"
-msgstr "保存(_S)"
-
-#: ../src/ghex-ui.xml.h:92
-msgid "_Undo"
-msgstr "元に戻す(_U)"
-
-#: ../src/ghex-ui.xml.h:93
-msgid "_View"
-msgstr "表示(_V)"
-
-#: ../src/ghex-ui.xml.h:94
-msgid "_Windows"
-msgstr "ウィンドウ(_W)"
-
-#: ../src/ghex-ui.xml.h:95 ../src/ui.c:91
-msgid "_Words"
-msgstr "ワード(_W)"
-
-#: ../src/ghex-window.c:94
+#: ../src/ghex-window.c:75
 #, c-format
 msgid ""
 "Can not open URI:\n"
@@ -705,7 +345,7 @@ msgstr ""
 "URI を開けません:\n"
 "%s"
 
-#: ../src/ghex-window.c:113
+#: ../src/ghex-window.c:94
 #, c-format
 msgid ""
 "Can not open file:\n"
@@ -714,35 +354,302 @@ msgstr ""
 "ファイルを開けません:\n"
 "%s"
 
-#: ../src/ghex-window.c:500 ../src/ghex-window.c:948
-msgid "GHex"
-msgstr "GHex"
+#: ../src/ghex-window.c:325
+msgid "_File"
+msgstr "ファイル(_F)"
 
-#: ../src/ghex-window.c:647
+#: ../src/ghex-window.c:326
+msgid "_Edit"
+msgstr "編集(_E)"
+
+#: ../src/ghex-window.c:327
+msgid "_View"
+msgstr "表示(_V)"
+
+#: ../src/ghex-window.c:328
+msgid "_Group Data As"
+msgstr "グループ化(_G)"
+
+#. View submenu
+#: ../src/ghex-window.c:329
+msgid "_Windows"
+msgstr "ウィンドウ(_W)"
+
+#: ../src/ghex-window.c:330
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#. File menu
+#: ../src/ghex-window.c:333
+msgid "_Open..."
+msgstr "開く(_O)..."
+
+#: ../src/ghex-window.c:334
+msgid "Open a file"
+msgstr "ファイルを開きます"
+
+#: ../src/ghex-window.c:336
+msgid "_Save"
+msgstr "保存(_S)"
+
+#: ../src/ghex-window.c:337
+msgid "Save the current file"
+msgstr "このファイルを保存します"
+
+#: ../src/ghex-window.c:339
+msgid "Save _As..."
+msgstr "別名で保存(_A)..."
+
+#: ../src/ghex-window.c:340
+msgid "Save the current file with a different name"
+msgstr "このファイルに別の名前を付けて保存します"
+
+#: ../src/ghex-window.c:342
+msgid "Save As _HTML..."
+msgstr "HTML で保存(_H)..."
+
+#: ../src/ghex-window.c:343
+msgid "Export data to HTML source"
+msgstr "データを HTML ファイルへ出力します"
+
+#: ../src/ghex-window.c:345
+msgid "_Revert"
+msgstr "戻す(_R)"
+
+#: ../src/ghex-window.c:346
+msgid "Revert to a saved version of the file"
+msgstr "保存したファイルに戻します"
+
+#: ../src/ghex-window.c:348
+msgid "_Print"
+msgstr "印刷(_P)"
+
+#: ../src/ghex-window.c:349
+msgid "Print the current file"
+msgstr "このファイルを印刷します"
+
+#: ../src/ghex-window.c:351
+msgid "Print Previe_w..."
+msgstr "印刷プレビュー(_W)..."
+
+#: ../src/ghex-window.c:352
+msgid "Preview printed data"
+msgstr "印刷するデータのプレビューを表示します"
+
+#: ../src/ghex-window.c:354
+msgid "_Close"
+msgstr "閉じる(_C)"
+
+#: ../src/ghex-window.c:355
+msgid "Close the current file"
+msgstr "このファイルを閉じます"
+
+#: ../src/ghex-window.c:357
+msgid "E_xit"
+msgstr "終了(_X)"
+
+#: ../src/ghex-window.c:358
+msgid "Exit the program"
+msgstr "このプログラムを終了します"
+
+#. Edit menu
+#: ../src/ghex-window.c:362
+msgid "_Undo"
+msgstr "元に戻す(_U)"
+
+#: ../src/ghex-window.c:363
+msgid "Undo the last action"
+msgstr "最後の操作に戻します"
+
+#: ../src/ghex-window.c:365
+msgid "_Redo"
+msgstr "やり直す(_R)"
+
+#: ../src/ghex-window.c:366
+msgid "Redo the undone action"
+msgstr "実行していない操作をやり直します"
+
+#: ../src/ghex-window.c:368
+msgid "_Copy"
+msgstr "コピー(_C)"
+
+#: ../src/ghex-window.c:369
+msgid "Copy selection to clipboard"
+msgstr "選択範囲をクリップボードにコピーします"
+
+#: ../src/ghex-window.c:371
+msgid "Cu_t"
+msgstr "切り取り(_T)"
+
+#: ../src/ghex-window.c:372
+msgid "Cut selection"
+msgstr "選択範囲を切り取ります"
+
+#: ../src/ghex-window.c:374
+msgid "Pa_ste"
+msgstr "貼り付け(_S)"
+
+#: ../src/ghex-window.c:375
+msgid "Paste data from clipboard"
+msgstr "クリップボードからデータを貼り付けます"
+
+#: ../src/ghex-window.c:377
+msgid "_Find"
+msgstr "検索(_F)"
+
+#: ../src/ghex-window.c:378
+msgid "Search for a string"
+msgstr "文字列を検索します"
+
+#: ../src/ghex-window.c:380
+msgid "_Advanced Find"
+msgstr "拡張検索(_A)"
+
+#: ../src/ghex-window.c:381
+msgid "Advanced Find"
+msgstr "拡張検索を行います"
+
+#: ../src/ghex-window.c:383
+msgid "R_eplace"
+msgstr "置換(_E)"
+
+#: ../src/ghex-window.c:384
+msgid "Replace a string"
+msgstr "文字列を置換します"
+
+#: ../src/ghex-window.c:386
+msgid "_Goto Byte..."
+msgstr "指定した場所へ移動(_G)..."
+
+#: ../src/ghex-window.c:387
+msgid "Jump to a certain position"
+msgstr "指定した位置へジャンプします"
+
+#: ../src/ghex-window.c:389
+msgid "_Preferences"
+msgstr "設定(_P)"
+
+#: ../src/ghex-window.c:390
+msgid "Configure the application"
+msgstr "GHex の設定を変更します"
+
+#. View menu
+#: ../src/ghex-window.c:394
+msgid "_Add View"
+msgstr "ビューの追加(_A)"
+
+#: ../src/ghex-window.c:395
+msgid "Add a new view to the buffer"
+msgstr "新しいビューをバッファに追加します"
+
+#: ../src/ghex-window.c:397
+msgid "_Remove View"
+msgstr "ビューの削除(_R)"
+
+#: ../src/ghex-window.c:398
+msgid "Remove the current view of the buffer"
+msgstr "このバッファのビューを削除します"
+
+#. Help menu
+#: ../src/ghex-window.c:402
+msgid "_Contents"
+msgstr "目次(_C)"
+
+#: ../src/ghex-window.c:403
+msgid "Help on this application"
+msgstr "ghex のヘルプです"
+
+#: ../src/ghex-window.c:405
+msgid "_About"
+msgstr "情報(_A)"
+
+#: ../src/ghex-window.c:406
+msgid "About this application"
+msgstr "このアプリケーションについて"
+
+#. Edit menu
+#: ../src/ghex-window.c:413
+msgid "_Insert Mode"
+msgstr "挿入モード(_I)"
+
+#: ../src/ghex-window.c:414
+msgid "Insert/overwrite data"
+msgstr "挿入/上書きモードを切り替えます"
+
+#. Windows menu
+#: ../src/ghex-window.c:418
+msgid "Character _Table"
+msgstr "文字テーブル(_T)"
+
+#: ../src/ghex-window.c:419
+msgid "Show the character table"
+msgstr "文字テーブルを表示します"
+
+#: ../src/ghex-window.c:421
+msgid "_Base Converter"
+msgstr "基数コンバータ(_B)"
+
+#: ../src/ghex-window.c:422
+msgid "Open base conversion dialog"
+msgstr "基数変換ダイアログを開きます"
+
+#: ../src/ghex-window.c:424
+msgid "Type Conversion _Dialog"
+msgstr "型変換ダイアログ(_D)"
+
+#: ../src/ghex-window.c:425
+msgid "Show the type conversion dialog in the edit window"
+msgstr "編集ウィンドウの中に型変換ダイアログを表示します"
+
+#: ../src/ghex-window.c:431 ../src/ui.c:48
+msgid "_Bytes"
+msgstr "バイト(_B)"
+
+#: ../src/ghex-window.c:432
+msgid "Group data by 8 bits"
+msgstr "8ビットでグループ化します"
+
+#: ../src/ghex-window.c:433 ../src/ui.c:49
+msgid "_Words"
+msgstr "ワード(_W)"
+
+#: ../src/ghex-window.c:434
+msgid "Group data by 16 bits"
+msgstr "16ビットでグループ化します"
+
+#: ../src/ghex-window.c:435 ../src/ui.c:50
+msgid "_Longwords"
+msgstr "ロングワード(_L)"
+
+#: ../src/ghex-window.c:436
+msgid "Group data by 32 bits"
+msgstr "32ビットでグループ化します"
+
+#: ../src/ghex-window.c:770
 #, c-format
 msgid "Offset: %s"
 msgstr "オフセット: %s"
 
-#: ../src/ghex-window.c:650
+#: ../src/ghex-window.c:773
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; %s バイト (%s から %s まで) 選択しました"
 
-#: ../src/ghex-window.c:902
+#: ../src/ghex-window.c:1057
 #, c-format
 msgid "Activate file %s"
 msgstr "ファイル %s を読み込みます"
 
-#: ../src/ghex-window.c:944
+#: ../src/ghex-window.c:1093
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
-#: ../src/ghex-window.c:1073
+#: ../src/ghex-window.c:1221
 msgid "Select a file to save buffer as"
 msgstr "バッファを書き込むファイル名は"
 
-#: ../src/ghex-window.c:1129
+#: ../src/ghex-window.c:1277
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -751,20 +658,20 @@ msgstr ""
 "ファイル %s が存在しています。\n"
 "上書きしてもよろしいですか？"
 
-#: ../src/ghex-window.c:1162 ../src/ui.c:379
+#: ../src/ghex-window.c:1310 ../src/ui.c:293
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "バッファを %s ファイルに保存しました"
 
-#: ../src/ghex-window.c:1168
+#: ../src/ghex-window.c:1316
 msgid "Error saving file!"
 msgstr "ファイル書き込み中にエラー！"
 
-#: ../src/ghex-window.c:1174
+#: ../src/ghex-window.c:1322
 msgid "Can't open file for writing!"
 msgstr "ファイルに書き込めません！"
 
-#: ../src/ghex-window.c:1219
+#: ../src/ghex-window.c:1367
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -773,323 +680,252 @@ msgstr ""
 "ファイル %s は前回の保存から更新されています。\n"
 "変更を保存しますか？"
 
-#: ../src/ghex-window.c:1223
+#: ../src/ghex-window.c:1371
 msgid "Do_n't save"
 msgstr "保存しない(_N)"
 
-#: ../src/ghex-window.c:1243 ../src/ui.c:367
+#: ../src/ghex-window.c:1391 ../src/ui.c:281
 msgid "You don't have the permissions to save the file!"
 msgstr "ファイルを保存する権限がありません！"
 
-#: ../src/ghex-window.c:1247 ../src/ui.c:372
+#: ../src/ghex-window.c:1395 ../src/ui.c:286
 msgid "An error occurred while saving file!"
 msgstr "ファイルを保存する際にエラーが発生しました！"
 
-#: ../src/gnome-print-font-dialog.c:111
-msgid "_Insert a new preview phrase."
-msgstr "新しく挿入する文字列を入力して下さい(_I)"
-
-#: ../src/gnome-print-font-dialog.c:117
-msgid "Modify preview phrase..."
-msgstr "プレビュー用文字列の変更..."
-
-#: ../src/gnome-print-font-dialog.c:171
-msgid "Preview"
-msgstr "プレビュー"
-
-#: ../src/gnome-print-font-dialog.c:184
-msgid "_Modify preview phrase..."
-msgstr "プレビュー用文字列の変更(_M)..."
-
-#: ../src/gnome-print-font-dialog.c:247
-msgid "Font Selection"
-msgstr "フォントの選択"
-
-#: ../src/gnome-print-font-picker.c:91
-msgid "Sans Regular 12"
-msgstr "Sans Regular 12"
-
-#: ../src/gnome-print-font-picker.c:92
-msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-msgstr "AaBbCcDd XxYyZz これはサンプルです"
-
-#: ../src/gnome-print-font-picker.c:93
-msgid "Pick a Font"
-msgstr "フォントの取得"
-
-#: ../src/gnome-print-font-picker.c:178
-msgid "Title"
-msgstr "タイトル"
-
-#: ../src/gnome-print-font-picker.c:179
-msgid "The title of the selection dialog box"
-msgstr "選択ダイアログ・ボックスのタイトルです"
-
-#: ../src/gnome-print-font-picker.c:199
-msgid "Font name"
-msgstr "フォント名"
-
-#: ../src/gnome-print-font-picker.c:200
-msgid "Name of the selected font"
-msgstr "選択したフォントの名前です"
-
-#: ../src/gnome-print-font-picker.c:208
-msgid "Preview text"
-msgstr "プレビューする文字列"
-
-#: ../src/gnome-print-font-picker.c:209
-msgid "Preview text shown in the dialog"
-msgstr "ダイアログの中に表示されるプレビュー用の文字列です"
-
-#: ../src/gnome-print-font-picker.c:217
-msgid "Use font in label"
-msgstr "ラベルのフォントを使用する"
-
-#: ../src/gnome-print-font-picker.c:218
-msgid "Use font in the label in font info mode"
-msgstr "フォント情報モードのラベルのフォントを使用します"
-
-#: ../src/gnome-print-font-picker.c:226
-msgid "Font size for label"
-msgstr "ラベルのフォント・サイズ"
-
-#: ../src/gnome-print-font-picker.c:227
-msgid "Font size for label in font info mode"
-msgstr "フォント情報モードにあるラベルのフォント・サイズです"
-
-#: ../src/gnome-print-font-picker.c:237
-msgid "Show size"
-msgstr "サイズを表示する"
-
-#: ../src/gnome-print-font-picker.c:238
-msgid "Show size in font info mode"
-msgstr "フォント情報モードでサイズを表示します"
-
-#. display font
-#: ../src/gnome-print-font-picker.c:1019 ../src/preferences.c:182
-msgid "Font"
-msgstr "フォント"
-
-#: ../src/hex-dialog.c:57
+#: ../src/hex-dialog.c:58
 msgid "Signed 8 bit:"
 msgstr "符号付き 8ビット:"
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:59
 msgid "Unsigned 8 bit:"
 msgstr "符号なし 8ビット:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:60
 msgid "Signed 16 bit:"
 msgstr "符号付き 16ビット:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:61
 msgid "Unsigned 16 bit:"
 msgstr "符号なし 16ビット:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:62
 msgid "Signed 32 bit:"
 msgstr "符号付き 32ビット:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:63
 msgid "Unsigned 32 bit:"
 msgstr "符号なし 32ビット:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:64
 msgid "32 bit float:"
 msgstr " 32ビット浮動小数点:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:65
 msgid "64 bit float:"
 msgstr " 64ビット浮動小数点:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:66
 msgid "Hexadecimal:"
 msgstr " 16進:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:67
 msgid "Octal:"
 msgstr " 8進:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:68
 msgid "Binary:"
 msgstr " 2進:"
 
-#: ../src/hex-dialog.c:196
+#: ../src/hex-dialog.c:197
 msgid "Show little endian decoding"
 msgstr "リトル・エンディアン形式で表示する"
 
-#: ../src/hex-dialog.c:203
+#: ../src/hex-dialog.c:204
 msgid "Show unsigned and float as hexadecimal"
 msgstr "16進を符号なし浮動小数点形式で表示する"
 
-#: ../src/hex-dialog.c:209
+#: ../src/hex-dialog.c:210
 msgid "Stream Length:"
 msgstr "ストリームの長さ:"
 
-#: ../src/hex-dialog.c:231
+#: ../src/hex-dialog.c:232
 msgid "FIXME: no conversion function"
 msgstr "FIXME: 変換関数はありません"
 
-#: ../src/hex-document.c:432
+#: ../src/hex-document.c:436
 msgid "New document"
 msgstr "新しいドキュメント"
 
-#: ../src/hex-document.c:783
+#: ../src/hex-document.c:790
 #, c-format
 msgid "Page"
 msgstr "ページ"
 
-#: ../src/hex-document.c:789 ../src/hex-document.c:914
+#: ../src/hex-document.c:796 ../src/hex-document.c:921
 #, c-format
 msgid "Hex dump generated by"
 msgstr "この 16進データを生成したのは"
 
-#: ../src/hex-document.c:800
+#: ../src/hex-document.c:807
 msgid "Saving to HTML..."
 msgstr "HTML 形式へ保存..."
 
-#: ../src/hex-document.c:837
+#: ../src/hex-document.c:844
 #, c-format
 msgid "Previous page"
 msgstr "前のページ"
 
-#: ../src/hex-document.c:852
+#: ../src/hex-document.c:859
 #, c-format
 msgid "Next page"
 msgstr "次のページ"
 
-#: ../src/main.c:38
+#: ../src/main.c:36
 msgid "X geometry specification (see \"X\" man page)."
-msgstr "表示する位置 (\"X\" の Man page を参照下さい)"
+msgstr "表示する位置 (Ｘの man page を参照のこと)"
 
-#: ../src/main.c:39
+#: ../src/main.c:36
 msgid "GEOMETRY"
 msgstr "GEOMETRY"
 
-#: ../src/main.c:65
-msgid "The gnome binary editor"
-msgstr "GNOME 向けのバイナリ・エディタ"
+#: ../src/main.c:37
+msgid "FILES"
+msgstr "FILES"
 
-#: ../src/main.c:80
-msgid "Could not initialize Bonobo!\n"
-msgstr "Bonobo を初期化することができませんでした！\n"
+#: ../src/main.c:53
+msgid "- GTK+ binary editor"
+msgstr "- GTK+ 版のバイナリ・エディタ"
 
-#: ../src/main.c:105 ../src/main.c:119
+#: ../src/main.c:57
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"'%s --help' で利用可能なコマンドライン・オプションの一覧を表示します\n"
+
+#: ../src/main.c:81 ../src/main.c:94
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "表示位置の文字列 \"%s\" が正しくありません\n"
 
-#: ../src/preferences.c:71
+#: ../src/preferences.c:69
 msgid "GHex Preferences"
 msgstr "GHex の設定"
 
-#: ../src/preferences.c:103
+#: ../src/preferences.c:101
 msgid "_Maximum number of undo levels:"
 msgstr "\"元に戻す\" 回数の最大値(_M):"
 
-#: ../src/preferences.c:123
+#: ../src/preferences.c:121
 msgid "Undo levels"
 msgstr "元に戻すレベル"
 
-#: ../src/preferences.c:123
+#: ../src/preferences.c:121
 msgid "Select maximum number of undo levels"
 msgstr "元に戻すレベルの最大値の選択"
 
-#: ../src/preferences.c:127
+#: ../src/preferences.c:125
 msgid "_Show cursor offset in statusbar as:"
 msgstr ""
 "ステータスバーに表示する\n"
 "カーソル位置のオフセットの書式(_S):"
 
-#: ../src/preferences.c:146
+#: ../src/preferences.c:144
 msgid "Hexadecimal"
 msgstr "16進"
 
-#: ../src/preferences.c:148
+#: ../src/preferences.c:146
 msgid "Custom"
 msgstr "カスタム"
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:155
 msgid "Enter the cursor offset format"
 msgstr "カーソル位置のオフセット値の書式を入力して下さい"
 
-#: ../src/preferences.c:158
+#: ../src/preferences.c:156
 msgid "Select the cursor offset format"
 msgstr "カーソル位置のオフセット値の書式の選択"
 
 #. show offsets check button
-#: ../src/preferences.c:168
+#: ../src/preferences.c:166
 msgid "Sh_ow offsets column"
 msgstr "メイン画面の左側にオフセットを表示する(_O)"
 
-#: ../src/preferences.c:173
+#: ../src/preferences.c:171
 msgid "Editing"
 msgstr "編集"
 
+#. display font
+#: ../src/preferences.c:180
+msgid "Font"
+msgstr "フォント"
+
 #. default group type
-#: ../src/preferences.c:205
+#: ../src/preferences.c:203
 msgid "Default Group Type"
 msgstr "デフォルトの表示単位"
 
-#: ../src/preferences.c:221
+#: ../src/preferences.c:219
 msgid "Display"
 msgstr "表示"
 
 #. paper selection
-#: ../src/preferences.c:230
+#: ../src/preferences.c:228
 msgid "Paper size"
 msgstr "用紙のサイズ"
 
 #. data & header font selection
-#: ../src/preferences.c:235
+#: ../src/preferences.c:233
 msgid "Fonts"
 msgstr "フォント"
 
-#: ../src/preferences.c:241
+#: ../src/preferences.c:239
 msgid "_Data font:"
 msgstr "データのフォント(_D):"
 
-#: ../src/preferences.c:260
+#: ../src/preferences.c:255
 msgid "Data font"
 msgstr "データのフォント"
 
-#: ../src/preferences.c:260
+#: ../src/preferences.c:255
 msgid "Select the data font"
 msgstr "データの表示に使用するフォントを選択して下さい"
 
-#: ../src/preferences.c:274
+#: ../src/preferences.c:269
 msgid "Header fo_nt:"
 msgstr "ヘッダのフォント(_N):"
 
-#: ../src/preferences.c:292
+#: ../src/preferences.c:284
 msgid "Header font"
 msgstr "ヘッダのフォント"
 
-#: ../src/preferences.c:292
+#: ../src/preferences.c:284
 msgid "Select the header font"
 msgstr "ヘッダの表示に使用するフォントを選択して下さい"
 
-#: ../src/preferences.c:318
+#: ../src/preferences.c:310
 msgid "_Print shaded box over:"
 msgstr "影の付いた矩形を印刷する行数(_P):"
 
-#: ../src/preferences.c:330
+#: ../src/preferences.c:322
 msgid "Box size"
 msgstr "矩形の大きさ"
 
-#: ../src/preferences.c:330
+#: ../src/preferences.c:322
 msgid "Select size of box (in number of lines)"
 msgstr "影の付いた矩形の行数を指定して下さい"
 
-#: ../src/preferences.c:334
+#: ../src/preferences.c:326
 msgid "lines (0 for no box)"
 msgstr "行 (0: 矩形なし)"
 
-#: ../src/preferences.c:341
+#: ../src/preferences.c:333
 msgid "Printing"
 msgstr "印刷"
 
-#: ../src/preferences.c:463 ../src/ui.c:294
+#: ../src/preferences.c:451 ../src/ui.c:202
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1098,11 +934,11 @@ msgstr ""
 "次のヘルプを表示できません: \n"
 "%s"
 
-#: ../src/preferences.c:515
+#: ../src/preferences.c:503
 msgid "Can not open desired font!"
 msgstr "お望みのフォントを読めません！"
 
-#: ../src/preferences.c:578
+#: ../src/preferences.c:564
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -1110,62 +946,106 @@ msgstr ""
 "オフセット指定の文字列に間違った指定子が含まれています。\n"
 "'x', 'X', 'p', 'P', 'd' と 'o' だけが使用可能です。"
 
-#: ../src/print.c:66
+#: ../src/print.c:57
 #, c-format
 msgid "Page: %i/%i"
 msgstr "ページ: %i/%i"
 
-#: ../src/print.c:222 ../src/print.c:238
-#, c-format
-msgid ""
-"GHex could not find the font \"%s\".\n"
-"GHex is unable to print without this font installed."
-msgstr ""
-"GHex はフォント \"%s\" を見つけることができませんでした。\n"
-"このフォントをインストールするまで印刷できません。"
-
-#: ../src/ui.c:97
+#: ../src/ui.c:55
 msgid "hex data"
 msgstr "16進データ"
 
-#: ../src/ui.c:98
+#: ../src/ui.c:56
 msgid "ASCII data"
 msgstr "ASCII データ"
 
-#: ../src/ui.c:264
+#: ../src/ui.c:144
+msgid ""
+"Copyright © 1998 - 2006 Jaka Močnik\n"
+"Copyright © 2006 - 2010 GHex Contributors"
+msgstr ""
+"Copyright © 1998 - 2006 Jaka Močnik\n"
+"Copyright © 2006 - 2010 GHex Contributors"
+
+#: ../src/ui.c:151
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"このプログラムはフリーソフトウェアです。フリーソフトウェア財団が提供する GNU "
+"一般公衆利用許諾契約書の第二版、あるいはそれ以降の版が定める条項の下で本プロ"
+"グラムを再頒布または変更することができます。"
+
+#: ../src/ui.c:155
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"本プログラムは有用とは思いますが、その頒布にあたり商用での利用や特定の目的に"
+"対する適用については暗黙の保証を含めて、いかなる保証も行ないません。詳細には "
+"GNU 一般公衆利用許諾契約書をご覧下さい。"
+
+#: ../src/ui.c:159
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"あなたは本プログラムと一緒に GNU 一般公衆利用許諾契約書の写しを受け取っている"
+"はずです。そうでない場合は、Free Software Foundation, Inc., 51 Franklin "
+"Street, Fifth Floor, Boston, MA 02110-1301, USA まで連絡して下さい。"
+
+#: ../src/ui.c:171
 msgid "A binary file editor"
 msgstr "バイナリ・ファイルのエディタです。"
 
-#: ../src/ui.c:268
-msgid "Released under the terms of GNU Public License"
-msgstr "GNU 一般公衆利用許諾契約書に基づいてリリースされています"
+#: ../src/ui.c:177
+msgid "About GHex"
+msgstr "GHex について"
 
-#: ../src/ui.c:396
+#: ../src/ui.c:178
+msgid "translator-credits"
+msgstr ""
+"相花 毅 <takeshi.aihana@gmail.com>\n"
+"Akira TAGOH <tagoh@gnome.gr.jp>\n"
+"Yukihiro Nakai <nakai@gnome.gr.jp>\n"
+"Yuusuke Tahara <tahara@gnome.gr.jp>\n"
+"Eiichiro ITANI <emu@ceres.dti.ne.jp>"
+
+#: ../src/ui.c:181
+msgid "GHex Website"
+msgstr "GHex のウェブサイト"
+
+#: ../src/ui.c:311
 msgid "Select a file to open"
 msgstr "開くファイルを選択"
 
-#: ../src/ui.c:427
+#: ../src/ui.c:342
 #, c-format
 msgid "Loaded file %s"
 msgstr "ファイル %s の読み込み完了"
 
-#: ../src/ui.c:435
+#: ../src/ui.c:350
 msgid "Can not open file!"
 msgstr "ファイルが開けません！"
 
-#: ../src/ui.c:496
+#: ../src/ui.c:415
 msgid "Select path and file name for the HTML source"
 msgstr "HTMLファイルのパスと名前の選択"
 
-#: ../src/ui.c:530
+#: ../src/ui.c:449
 msgid "You need to specify a base name for the HTML files."
 msgstr "HTMLファイルの拡張子 (.html) を除いた名前を指定して下さい。"
 
-#: ../src/ui.c:541 ../src/ui.c:565
+#: ../src/ui.c:460 ../src/ui.c:484
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "指定したフォルダに書き込む権限がありません。\n"
 
-#: ../src/ui.c:552
+#: ../src/ui.c:471
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1173,29 +1053,184 @@ msgstr ""
 "HTML 形式の保存でいくつかのファイルを上書きします。\n"
 "続行してもよろしいですか？"
 
-#: ../src/ui.c:705
+#: ../src/ui.c:736
 #, c-format
 msgid "Really revert file %s?"
 msgstr "本当にファイル %s を元に戻しますか？"
 
-#: ../src/ui.c:719
+#: ../src/ui.c:750
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "ファイル %s を使ってバッファをもとに戻しました"
 
-#: ../src/ui.c:803
-msgid "Printing file..."
-msgstr "印刷中..."
+#~ msgid "GNOME Hexadecimal Editor"
+#~ msgstr "GNOME 向けの16進数バイナリ・エディタです"
 
-#: ../src/ui.c:863
-msgid "Print Hex Document"
-msgstr "16進ドキュメントを印刷します"
+#~ msgid "Add View"
+#~ msgstr "ビューの追加"
 
-#: ../src/ui.c:875
-msgid "Pages"
-msgstr "ページ"
+#~ msgid "Bytes"
+#~ msgstr "バイト"
 
-#: ../src/ui.c:900
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): 印刷プレビュー"
+#~ msgid "Character Table..."
+#~ msgstr "文字テーブル..."
+
+#~ msgid "Contents"
+#~ msgstr "内容"
+
+#~ msgid "Converter..."
+#~ msgstr "変換..."
+
+#~ msgid "Copy"
+#~ msgstr "コピー"
+
+#~ msgid "Cut"
+#~ msgstr "切り取り"
+
+#~ msgid "Exit"
+#~ msgstr "終了"
+
+#~ msgid "Export to HTML..."
+#~ msgstr "HTMLへ出力..."
+
+#~ msgid "Find"
+#~ msgstr "検索"
+
+#~ msgid "Goto Byte"
+#~ msgstr "指定バイトに移動"
+
+#~ msgid "Help Chat"
+#~ msgstr "ヘルプ・チャット"
+
+#~ msgid "Insert Mode"
+#~ msgstr "挿入モード"
+
+#~ msgid "Longwords"
+#~ msgstr "ロングワード"
+
+#~ msgid "Open"
+#~ msgstr "開く"
+
+#~ msgid "Paste"
+#~ msgstr "貼り付け"
+
+#~ msgid "Preferences"
+#~ msgstr "設定"
+
+#~ msgid "Print"
+#~ msgstr "印刷"
+
+#~ msgid "Print Preview..."
+#~ msgstr "印刷プレビュー..."
+
+#~ msgid "Redo"
+#~ msgstr "やり直す"
+
+#~ msgid "Remove View"
+#~ msgstr "ビューの削除"
+
+#~ msgid "Revert"
+#~ msgstr "戻す"
+
+#~ msgid "Save"
+#~ msgstr "保存"
+
+#~ msgid "Save As"
+#~ msgstr "別名で保存"
+
+#~ msgid "Type Conversion Dialog..."
+#~ msgstr "型変換ダイアログ..."
+
+#~ msgid "Undo"
+#~ msgstr "元に戻す"
+
+#~ msgid "Words"
+#~ msgstr "ワード"
+
+#~ msgid "_Insert a new preview phrase."
+#~ msgstr "新しく挿入する文字列を入力して下さい(_I)"
+
+#~ msgid "Modify preview phrase..."
+#~ msgstr "プレビュー用文字列の変更..."
+
+#~ msgid "Preview"
+#~ msgstr "プレビュー"
+
+#~ msgid "_Modify preview phrase..."
+#~ msgstr "プレビュー用文字列の変更(_M)..."
+
+#~ msgid "Font Selection"
+#~ msgstr "フォントの選択"
+
+#~ msgid "Sans Regular 12"
+#~ msgstr "Sans Regular 12"
+
+#~ msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+#~ msgstr "AaBbCcDd XxYyZz これはサンプルです"
+
+#~ msgid "Pick a Font"
+#~ msgstr "フォントの取得"
+
+#~ msgid "Title"
+#~ msgstr "タイトル"
+
+#~ msgid "The title of the selection dialog box"
+#~ msgstr "選択ダイアログ・ボックスのタイトルです"
+
+#~ msgid "Font name"
+#~ msgstr "フォント名"
+
+#~ msgid "Name of the selected font"
+#~ msgstr "選択したフォントの名前です"
+
+#~ msgid "Preview text"
+#~ msgstr "プレビューする文字列"
+
+#~ msgid "Preview text shown in the dialog"
+#~ msgstr "ダイアログの中に表示されるプレビュー用の文字列です"
+
+#~ msgid "Use font in label"
+#~ msgstr "ラベルのフォントを使用する"
+
+#~ msgid "Use font in the label in font info mode"
+#~ msgstr "フォント情報モードのラベルのフォントを使用します"
+
+#~ msgid "Font size for label"
+#~ msgstr "ラベルのフォント・サイズ"
+
+#~ msgid "Font size for label in font info mode"
+#~ msgstr "フォント情報モードにあるラベルのフォント・サイズです"
+
+#~ msgid "Show size"
+#~ msgstr "サイズを表示する"
+
+#~ msgid "Show size in font info mode"
+#~ msgstr "フォント情報モードでサイズを表示します"
+
+#~ msgid "The gnome binary editor"
+#~ msgstr "GNOME 向けのバイナリ・エディタ"
+
+#~ msgid "Could not initialize Bonobo!\n"
+#~ msgstr "Bonobo を初期化することができませんでした！\n"
+
+#~ msgid ""
+#~ "GHex could not find the font \"%s\".\n"
+#~ "GHex is unable to print without this font installed."
+#~ msgstr ""
+#~ "GHex はフォント \"%s\" を見つけることができませんでした。\n"
+#~ "このフォントをインストールするまで印刷できません。"
+
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "GNU 一般公衆利用許諾契約書に基づいてリリースされています"
+
+#~ msgid "Printing file..."
+#~ msgstr "印刷中..."
+
+#~ msgid "Print Hex Document"
+#~ msgstr "16進ドキュメントを印刷します"
+
+#~ msgid "Pages"
+#~ msgstr "ページ"
+
+#~ msgid "GHex (%s): Print Preview"
+#~ msgstr "GHex (%s): 印刷プレビュー"
