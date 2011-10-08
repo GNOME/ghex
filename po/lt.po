@@ -1,0 +1,1075 @@
+# Lithuanian translation for ghex.
+# Copyright (C) 2011 ghex's COPYRIGHT HOLDER
+# This file is distributed under the same license as the ghex package.
+# Algimantas Margevičius <gymka@mail.ru>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ghex master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-09-27 09:00+0000\n"
+"PO-Revision-Date: 2011-10-08 18:08+0300\n"
+"Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
+"Language-Team: Lietuvių <>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+
+#: ../data/ghex.desktop.in.h:1
+#: ../src/ghex-window.c:651
+#: ../src/ghex-window.c:1097
+msgid "GHex"
+msgstr "GHex"
+
+#: ../data/ghex.desktop.in.h:2
+msgid "Hex Editor"
+msgstr "Šešioliktainis redaktorius"
+
+#: ../data/ghex.desktop.in.h:3
+msgid "Inspect and edit binary files"
+msgstr "Peržiūrėti ir redaguoti dvejetainius failus"
+
+#: ../src/chartable.c:147
+msgid "ASCII"
+msgstr "ASCII"
+
+#: ../src/chartable.c:147
+msgid "Hex"
+msgstr "Šešioliktainis"
+
+#: ../src/chartable.c:147
+#: ../src/preferences.c:142
+msgid "Decimal"
+msgstr "Dešimtainis"
+
+#: ../src/chartable.c:148
+msgid "Octal"
+msgstr "Aštuntainis"
+
+#: ../src/chartable.c:148
+msgid "Binary"
+msgstr "Dvejetainis"
+
+#: ../src/chartable.c:164
+msgid "Character table"
+msgstr "Simbolių lentelė"
+
+#: ../src/converter.c:231
+msgid "Base Converter"
+msgstr "Bazės konvertavimas"
+
+#. entries
+#: ../src/converter.c:252
+msgid "_Binary:"
+msgstr "_Dvejetainis:"
+
+#: ../src/converter.c:254
+msgid "_Octal:"
+msgstr "_Aštuntainis:"
+
+#: ../src/converter.c:256
+msgid "_Decimal:"
+msgstr "_Dešimtainis:"
+
+#: ../src/converter.c:258
+msgid "_Hex:"
+msgstr "_Šešioliktainis:"
+
+#: ../src/converter.c:260
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+#. get cursor button
+#: ../src/converter.c:264
+msgid "_Get cursor value"
+msgstr "_Gauti žymeklio reikšmę"
+
+#: ../src/converter.c:278
+msgid "Get cursor value"
+msgstr "Gauti žymeklio reikšmę"
+
+#: ../src/converter.c:278
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr "Gauna žymeklio reikšmę dvejetaine, aštuntaine, dešimtaine, šešioliktaine ir ASCII išraiška"
+
+#: ../src/converter.c:418
+msgid "ERROR"
+msgstr "KLAIDA"
+
+#: ../src/findreplace.c:97
+#: ../src/findreplace.c:221
+#: ../src/ui.c:864
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr "GHex (%s): Surasti duomenis"
+
+#: ../src/findreplace.c:101
+#: ../src/findreplace.c:161
+#: ../src/findreplace.c:359
+msgid "Find String"
+msgstr "Surasti eilutę"
+
+#: ../src/findreplace.c:108
+#: ../src/findreplace.c:258
+msgid "Find _Next"
+msgstr "Surasti _kitą"
+
+#: ../src/findreplace.c:115
+#: ../src/findreplace.c:267
+msgid "Find _Previous"
+msgstr "Surasti _ankstesnį"
+
+#: ../src/findreplace.c:138
+#: ../src/findreplace.c:413
+msgid "Find Data"
+msgstr "Surasti duomenis"
+
+#: ../src/findreplace.c:138
+#: ../src/findreplace.c:413
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Įveskite duomenis paieškai šešioliktaine ar ASCII išraiška"
+
+#: ../src/findreplace.c:139
+msgid "Find Next"
+msgstr "Surasti kitą"
+
+#: ../src/findreplace.c:139
+#: ../src/findreplace.c:415
+msgid "Finds the next occurrence of the search string"
+msgstr "Suranda kitą žodį, atitinkantį paieškos kriterijus"
+
+#: ../src/findreplace.c:140
+msgid "Find previous"
+msgstr "Surasti ankstesnį"
+
+#: ../src/findreplace.c:140
+msgid "Finds the previous occurrence of the search string "
+msgstr "Suranda ankstesnį žodį, atitinkantį paieškos kriterijus"
+
+#: ../src/findreplace.c:141
+#: ../src/findreplace.c:418
+#: ../src/findreplace.c:466
+msgid "Cancel"
+msgstr "Atsisakyti"
+
+#: ../src/findreplace.c:141
+msgid "Closes find data window"
+msgstr "Uždaro paieškos langą"
+
+#: ../src/findreplace.c:157
+#, c-format
+msgid "GHex (%s): Find Data: Add search"
+msgstr "GHex (%s): Surasti: Pridėti paiešką"
+
+#: ../src/findreplace.c:179
+msgid "Add"
+msgstr "Pridėti"
+
+#: ../src/findreplace.c:235
+msgid "Search String"
+msgstr "Ieškoti žodžio"
+
+#: ../src/findreplace.c:243
+msgid "Highlight Colour"
+msgstr "Paryškinimo spalva"
+
+#: ../src/findreplace.c:280
+msgid "_Add New"
+msgstr "_Pridėti naują"
+
+#: ../src/findreplace.c:289
+msgid "_Remove Selected"
+msgstr "_Pašalinti pasirinktą"
+
+#: ../src/findreplace.c:309
+msgid "Close"
+msgstr "Užverti"
+
+#: ../src/findreplace.c:309
+msgid "Closes advanced find window"
+msgstr "Užveria papildomą paieškos langą"
+
+#: ../src/findreplace.c:355
+#: ../src/ui.c:862
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "GHex (%s): Surasti ir pakeisti"
+
+#: ../src/findreplace.c:368
+msgid "Replace With"
+msgstr "Kuo pakeisti"
+
+#: ../src/findreplace.c:375
+msgid "Find _next"
+msgstr "Surasti _kitą"
+
+#: ../src/findreplace.c:383
+msgid "_Replace"
+msgstr "_Pakeisti"
+
+#: ../src/findreplace.c:391
+msgid "Replace _All"
+msgstr "Pakeisti _visus"
+
+#: ../src/findreplace.c:414
+msgid "Replace Data"
+msgstr "Pakeisti duomenis"
+
+#: ../src/findreplace.c:414
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Įveskite reikšmę, kuria pakeisti šešioliktaine arba ASCII išraišką"
+
+#: ../src/findreplace.c:415
+msgid "Find next"
+msgstr "Surasti kitą"
+
+#: ../src/findreplace.c:416
+msgid "Replace"
+msgstr "Pakeisti"
+
+#: ../src/findreplace.c:416
+msgid "Replaces the search string with the replace string"
+msgstr "Pakeičia paieškos eilutę pakeitimo eilute"
+
+#: ../src/findreplace.c:417
+msgid "Replace All"
+msgstr "Pakeisti visus"
+
+#: ../src/findreplace.c:417
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Pakeisti visus rastus žodžius "
+
+#: ../src/findreplace.c:418
+msgid "Closes find and replace data window"
+msgstr "Užveria paieškos ir keitimo langą"
+
+#: ../src/findreplace.c:434
+#: ../src/ui.c:860
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr "GHex (%s): Peršokti į baitą"
+
+#: ../src/findreplace.c:464
+msgid "Jump to byte"
+msgstr "Peršokti į baitą"
+
+#: ../src/findreplace.c:464
+msgid "Enter the byte to jump to"
+msgstr "Įvesk baitą, į kurį pereiti"
+
+#: ../src/findreplace.c:465
+msgid "OK"
+msgstr "GERAI"
+
+#: ../src/findreplace.c:465
+msgid "Jumps to the specified byte"
+msgstr "Peršoka į nurodytą baitą"
+
+#: ../src/findreplace.c:466
+msgid "Closes jump to byte window"
+msgstr "Užveria peršokimo į baitą langą"
+
+#: ../src/findreplace.c:529
+#: ../src/findreplace.c:563
+#: ../src/findreplace.c:670
+msgid "There is no active document to search!"
+msgstr "Nėra aktyvaus dokumento, kuriame galima būtų ieškoti!"
+
+#: ../src/findreplace.c:536
+#: ../src/findreplace.c:570
+#: ../src/findreplace.c:677
+#: ../src/findreplace.c:711
+#: ../src/findreplace.c:756
+msgid "There is no string to search for!"
+msgstr "Nėra paieškos eilutės!"
+
+#: ../src/findreplace.c:548
+#: ../src/findreplace.c:686
+#: ../src/findreplace.c:877
+msgid "End Of File reached"
+msgstr "Pasiekta failo pabaiga"
+
+#: ../src/findreplace.c:549
+#: ../src/findreplace.c:582
+#: ../src/findreplace.c:685
+#: ../src/findreplace.c:878
+#: ../src/findreplace.c:901
+msgid "String was not found!\n"
+msgstr "Eilutė rastas!\n"
+
+#: ../src/findreplace.c:581
+#: ../src/findreplace.c:900
+msgid "Beginning Of File reached"
+msgstr "Prieita failo pradžia"
+
+#: ../src/findreplace.c:598
+msgid "There is no active document to move the cursor in!"
+msgstr "Nėra dokumento, į kurį būtų galima nuvesti žymeklį!"
+
+#: ../src/findreplace.c:616
+msgid "No offset has been specified!"
+msgstr "Nenurodyta poslinkio reikšmė!"
+
+#: ../src/findreplace.c:641
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "Nurodytas poslinkis yra už failo ribų!"
+
+#: ../src/findreplace.c:649
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "Negaliu perkelti žymeklio už failo pabaigos!"
+
+#: ../src/findreplace.c:656
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+"Gali nurodyti poslinkį kaip:\n"
+"  - teigiamą dešimtainį skaičių, arba\n"
+"  - šešioliktainį skaičių, pradedantį '0x', arba\n"
+"  - „+“ arba „-“ ženklas ir santykinis poslinkis"
+
+#: ../src/findreplace.c:702
+msgid "There is no active buffer to replace data in!"
+msgstr "Nėra aktyvaus buferio, kuriame galim būtų pakeisti duomenis!"
+
+#: ../src/findreplace.c:727
+#: ../src/findreplace.c:728
+msgid "End Of File reached!"
+msgstr "Pasiekta failo pabaiga!"
+
+#: ../src/findreplace.c:747
+msgid "There is no active document to replace data in!"
+msgstr "Nėra aktyvaus dokumento, kuriame galim būtų pakeisti duomenis!"
+
+#: ../src/findreplace.c:777
+msgid "No occurrences were found."
+msgstr "Nerasta pasikartojimų."
+
+#: ../src/findreplace.c:780
+#, c-format
+msgid "Replaced %d occurrence."
+msgid_plural "Replaced %d occurrences."
+msgstr[0] "Pakeistas %d pasikartojimas."
+msgstr[1] "Pakeisti %d pasikartojimai."
+msgstr[2] "Pakeista %d pasikartojimų."
+
+#: ../src/findreplace.c:820
+msgid "No string to search for!"
+msgstr "Nėra ko ieškoti!"
+
+#: ../src/ghex-window.c:75
+#, c-format
+msgid ""
+"Can not open URI:\n"
+"%s"
+msgstr ""
+"Nepavyko atverti URI:\n"
+"%s"
+
+#: ../src/ghex-window.c:94
+#, c-format
+msgid ""
+"Can not open file:\n"
+"%s"
+msgstr ""
+"Nepavyko atverti failo:\n"
+"%s"
+
+#: ../src/ghex-window.c:325
+msgid "_File"
+msgstr "_Failas"
+
+#: ../src/ghex-window.c:326
+msgid "_Edit"
+msgstr "_Keisti"
+
+#: ../src/ghex-window.c:327
+msgid "_View"
+msgstr "_Rodymas"
+
+#: ../src/ghex-window.c:328
+msgid "_Group Data As"
+msgstr "_Grupuoti duomenis kaip"
+
+#. View submenu
+#: ../src/ghex-window.c:329
+msgid "_Windows"
+msgstr "_Langai"
+
+#: ../src/ghex-window.c:330
+msgid "_Help"
+msgstr "_Žinynas"
+
+#. File menu
+#: ../src/ghex-window.c:333
+msgid "_Open..."
+msgstr "_Atverti"
+
+#: ../src/ghex-window.c:334
+msgid "Open a file"
+msgstr "Atverti failą"
+
+#: ../src/ghex-window.c:336
+msgid "_Save"
+msgstr "_Išsaugoti"
+
+#: ../src/ghex-window.c:337
+msgid "Save the current file"
+msgstr "Išsaugoti šį failą"
+
+#: ../src/ghex-window.c:339
+msgid "Save _As..."
+msgstr "Išsaugoti _kaip..."
+
+#: ../src/ghex-window.c:340
+msgid "Save the current file with a different name"
+msgstr "Išsaugoti šį failą kitu vardu"
+
+#: ../src/ghex-window.c:342
+msgid "Save As _HTML..."
+msgstr "Išsaugoti kaip _HTML..."
+
+#: ../src/ghex-window.c:343
+msgid "Export data to HTML source"
+msgstr "Eksportuoti duomenis į HTML pradinį kodą"
+
+#: ../src/ghex-window.c:345
+msgid "_Revert"
+msgstr "_Atstatyti"
+
+#: ../src/ghex-window.c:346
+msgid "Revert to a saved version of the file"
+msgstr "Sugrąžina išsaugotą failo versiją"
+
+#: ../src/ghex-window.c:348
+msgid "_Print"
+msgstr "_Spausdinti"
+
+#: ../src/ghex-window.c:349
+msgid "Print the current file"
+msgstr "Spausdina failą"
+
+#: ../src/ghex-window.c:351
+msgid "Print Previe_w..."
+msgstr "Spausdinti peržiū_rą..."
+
+#: ../src/ghex-window.c:352
+msgid "Preview printed data"
+msgstr "Peržiūrėti spausdinamus duomenis"
+
+#: ../src/ghex-window.c:354
+msgid "_Close"
+msgstr "_Užverti"
+
+#: ../src/ghex-window.c:355
+msgid "Close the current file"
+msgstr "Užverti dabartinį failą"
+
+#: ../src/ghex-window.c:357
+msgid "E_xit"
+msgstr "Iš_eiti"
+
+#: ../src/ghex-window.c:358
+msgid "Exit the program"
+msgstr "Išeiti iš programos"
+
+#. Edit menu
+#: ../src/ghex-window.c:362
+msgid "_Undo"
+msgstr "_Atšaukti"
+
+#: ../src/ghex-window.c:363
+msgid "Undo the last action"
+msgstr "Panaikina paskutinį veiksmą"
+
+#: ../src/ghex-window.c:365
+msgid "_Redo"
+msgstr "_Pakartoti"
+
+#: ../src/ghex-window.c:366
+msgid "Redo the undone action"
+msgstr "Pakartoja atšauktą veiksmą"
+
+#: ../src/ghex-window.c:368
+msgid "_Copy"
+msgstr "_Kopijuoti"
+
+#: ../src/ghex-window.c:369
+msgid "Copy selection to clipboard"
+msgstr "Kopijuoti pasirinkimą į iškarpinę"
+
+#: ../src/ghex-window.c:371
+msgid "Cu_t"
+msgstr "Iškirp_ti"
+
+#: ../src/ghex-window.c:372
+msgid "Cut selection"
+msgstr "Iškerpa pasirinkimą"
+
+#: ../src/ghex-window.c:374
+msgid "Pa_ste"
+msgstr "Į_dėti"
+
+#: ../src/ghex-window.c:375
+msgid "Paste data from clipboard"
+msgstr "Įdeda duomenis iš iškarpinės"
+
+#: ../src/ghex-window.c:377
+msgid "_Find"
+msgstr "_Ieškoti"
+
+#: ../src/ghex-window.c:378
+msgid "Search for a string"
+msgstr "Ieškoti eilutės"
+
+#: ../src/ghex-window.c:380
+msgid "_Advanced Find"
+msgstr "_Išplėstinė paieška"
+
+#: ../src/ghex-window.c:381
+msgid "Advanced Find"
+msgstr "Išplėstinė paieška"
+
+#: ../src/ghex-window.c:383
+msgid "R_eplace"
+msgstr "Pa_keisti"
+
+#: ../src/ghex-window.c:384
+msgid "Replace a string"
+msgstr "Pakeisti žodį"
+
+#: ../src/ghex-window.c:386
+msgid "_Goto Byte..."
+msgstr "_Eiti į baitą..."
+
+#: ../src/ghex-window.c:387
+msgid "Jump to a certain position"
+msgstr "Peršokti į nurodytą vietą"
+
+#: ../src/ghex-window.c:389
+msgid "_Preferences"
+msgstr "_Nustatymai"
+
+#: ../src/ghex-window.c:390
+msgid "Configure the application"
+msgstr "Konfigūruoti programą"
+
+#. View menu
+#: ../src/ghex-window.c:394
+msgid "_Add View"
+msgstr "_Pridėti rodinį"
+
+#: ../src/ghex-window.c:395
+msgid "Add a new view to the buffer"
+msgstr "Pridėti rodinį buferiui"
+
+#: ../src/ghex-window.c:397
+msgid "_Remove View"
+msgstr "_Pašalinti rodinį"
+
+#: ../src/ghex-window.c:398
+msgid "Remove the current view of the buffer"
+msgstr "Pašalinti esamą rodinį"
+
+#. Help menu
+#: ../src/ghex-window.c:402
+msgid "_Contents"
+msgstr "_Turinys"
+
+#: ../src/ghex-window.c:403
+msgid "Help on this application"
+msgstr "Programos žinynas"
+
+#: ../src/ghex-window.c:405
+msgid "_About"
+msgstr "_Apie"
+
+#: ../src/ghex-window.c:406
+msgid "About this application"
+msgstr "Apie programą"
+
+#. Edit menu
+#: ../src/ghex-window.c:413
+msgid "_Insert Mode"
+msgstr "_Įterpimo režimas"
+
+#: ../src/ghex-window.c:414
+msgid "Insert/overwrite data"
+msgstr "Įterpti/perrašyti duomenis"
+
+#. Windows menu
+#: ../src/ghex-window.c:418
+msgid "Character _Table"
+msgstr "Simbolių _Lentelė"
+
+#: ../src/ghex-window.c:419
+msgid "Show the character table"
+msgstr "Parodyti simbolių lentelę"
+
+#: ../src/ghex-window.c:421
+msgid "_Base Converter"
+msgstr "_Bazės konvertavimas"
+
+#: ../src/ghex-window.c:422
+msgid "Open base conversion dialog"
+msgstr "Atverti sistemos keitimo langą"
+
+#: ../src/ghex-window.c:424
+msgid "Type Conversion _Dialog"
+msgstr "Tipo konvertavimo _langas"
+
+#: ../src/ghex-window.c:425
+msgid "Show the type conversion dialog in the edit window"
+msgstr "Rodyti tipo konvertavimo langą redagavimo lange"
+
+#: ../src/ghex-window.c:431
+#: ../src/ui.c:48
+msgid "_Bytes"
+msgstr "_Baitai"
+
+#: ../src/ghex-window.c:432
+msgid "Group data by 8 bits"
+msgstr "Grupuoti duomenis po 8 bitus"
+
+#: ../src/ghex-window.c:433
+#: ../src/ui.c:49
+msgid "_Words"
+msgstr "_Žodžiai"
+
+#: ../src/ghex-window.c:434
+msgid "Group data by 16 bits"
+msgstr "Grupuoti duomenis po 16 bitų"
+
+#: ../src/ghex-window.c:435
+#: ../src/ui.c:50
+msgid "_Longwords"
+msgstr "_Ilgi žodžiai"
+
+#: ../src/ghex-window.c:436
+msgid "Group data by 32 bits"
+msgstr "Grupuoti duomenis po 32 bitus"
+
+#: ../src/ghex-window.c:770
+#, c-format
+msgid "Offset: %s"
+msgstr "Poslinkis: %s"
+
+#: ../src/ghex-window.c:773
+#, c-format
+msgid "; %s bytes from %s to %s selected"
+msgstr "; %s baitai nuo %s iki %s pasirinkti"
+
+#: ../src/ghex-window.c:1057
+#, c-format
+msgid "Activate file %s"
+msgstr "Aktyvuoti failą %s"
+
+#: ../src/ghex-window.c:1093
+#, c-format
+msgid "%s - GHex"
+msgstr "%s - GHex"
+
+#: ../src/ghex-window.c:1221
+msgid "Select a file to save buffer as"
+msgstr "Pasirinkti failą, į kurį saugoti buferį kaip"
+
+#: ../src/ghex-window.c:1277
+#, c-format
+msgid ""
+"File %s exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"Failas %s egzistuoja.\n"
+"Perrašyti?"
+
+#: ../src/ghex-window.c:1310
+#: ../src/ui.c:293
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "Buferis išsaugotas faile %s"
+
+#: ../src/ghex-window.c:1316
+msgid "Error saving file!"
+msgstr "Klaida saugant failą!"
+
+#: ../src/ghex-window.c:1322
+msgid "Can't open file for writing!"
+msgstr "Negaliu atidaryti failo rašymui!"
+
+#: ../src/ghex-window.c:1367
+#, c-format
+msgid ""
+"File %s has changed since last save.\n"
+"Do you want to save changes?"
+msgstr ""
+"Failas %s buvo pakeistas nuo paskutinio saugojimo.\n"
+"Ar išsaugoti keitimus?"
+
+#: ../src/ghex-window.c:1371
+msgid "Do_n't save"
+msgstr "Nesa_ugoti"
+
+#: ../src/ghex-window.c:1391
+#: ../src/ui.c:281
+msgid "You don't have the permissions to save the file!"
+msgstr "Neturite teisių išsaugoti failą!"
+
+#: ../src/ghex-window.c:1395
+#: ../src/ui.c:286
+msgid "An error occurred while saving file!"
+msgstr "Klaida bandant išsaugoti failą!"
+
+#: ../src/hex-dialog.c:58
+msgid "Signed 8 bit:"
+msgstr "8 bitai su ženklu:"
+
+#: ../src/hex-dialog.c:59
+msgid "Unsigned 8 bit:"
+msgstr "8 bitai be ženklo:"
+
+#: ../src/hex-dialog.c:60
+msgid "Signed 16 bit:"
+msgstr "16 bitų su ženklu:"
+
+#: ../src/hex-dialog.c:61
+msgid "Unsigned 16 bit:"
+msgstr "16 bitų be ženklo:"
+
+#: ../src/hex-dialog.c:62
+msgid "Signed 32 bit:"
+msgstr "32 bitų su ženklu:"
+
+#: ../src/hex-dialog.c:63
+msgid "Unsigned 32 bit:"
+msgstr "32 bitų be ženklo:"
+
+#: ../src/hex-dialog.c:64
+msgid "32 bit float:"
+msgstr "32 bitų slankaus kablelio:"
+
+#: ../src/hex-dialog.c:65
+msgid "64 bit float:"
+msgstr "64 bitų slankaus kablelio:"
+
+#: ../src/hex-dialog.c:66
+msgid "Hexadecimal:"
+msgstr "Šešioliktainis:"
+
+#: ../src/hex-dialog.c:67
+msgid "Octal:"
+msgstr "Aštuntainis:"
+
+#: ../src/hex-dialog.c:68
+msgid "Binary:"
+msgstr "Dvejetainis:"
+
+#: ../src/hex-dialog.c:197
+msgid "Show little endian decoding"
+msgstr "Rodyti didėjančio reikšmingumo (little endian) dekodavimą"
+
+#: ../src/hex-dialog.c:204
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Rodyti be ženklo ir slankaus kablelio kaip šešioliktainius"
+
+#: ../src/hex-dialog.c:210
+msgid "Stream Length:"
+msgstr "Srauto ilgis:"
+
+#: ../src/hex-dialog.c:232
+msgid "FIXME: no conversion function"
+msgstr "IŠTAISYK: nėra konvertavimo funkcijos"
+
+#: ../src/hex-document.c:436
+msgid "New document"
+msgstr "Naujas dokumentas"
+
+#: ../src/hex-document.c:790
+#, c-format
+msgid "Page"
+msgstr "Puslapis"
+
+#: ../src/hex-document.c:796
+#: ../src/hex-document.c:921
+#, c-format
+msgid "Hex dump generated by"
+msgstr "Šešioliktainę išklotinę sukūrė"
+
+#: ../src/hex-document.c:807
+msgid "Saving to HTML..."
+msgstr "Saugojama į HTML..."
+
+#: ../src/hex-document.c:844
+#, c-format
+msgid "Previous page"
+msgstr "Ankstesnis puslapis"
+
+#: ../src/hex-document.c:859
+#, c-format
+msgid "Next page"
+msgstr "Kitas puslapis"
+
+#: ../src/main.c:36
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "X geometrijos specifikacija (žiūrėkite „X“ man puslapį)."
+
+#: ../src/main.c:36
+msgid "GEOMETRY"
+msgstr "GEOMETRIJA"
+
+#: ../src/main.c:37
+msgid "FILES"
+msgstr "FAILAI"
+
+#: ../src/main.c:53
+msgid "- GTK+ binary editor"
+msgstr "- GTK+ kompiliuotos programos redaktorius"
+
+#: ../src/main.c:57
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"Paleisk '%s --help' visoms galimoms komandoms pamatyti.\n"
+
+#: ../src/main.c:81
+#: ../src/main.c:94
+#, c-format
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "Neteisingas geometrijos apibrėžimas „%s“\n"
+
+#: ../src/preferences.c:69
+msgid "GHex Preferences"
+msgstr "GHex nustatymai"
+
+#: ../src/preferences.c:101
+msgid "_Maximum number of undo levels:"
+msgstr "_Daugiausia atšaukimo lygių:"
+
+#: ../src/preferences.c:121
+msgid "Undo levels"
+msgstr "Atšaukimo lygiai"
+
+#: ../src/preferences.c:121
+msgid "Select maximum number of undo levels"
+msgstr "Pasirinkite, kiek daugiausia bus atšaukimo lygių"
+
+#: ../src/preferences.c:125
+msgid "_Show cursor offset in statusbar as:"
+msgstr "_Rodyti žymeklio koordinates būsenos eilutėje kaip:"
+
+#: ../src/preferences.c:144
+msgid "Hexadecimal"
+msgstr "Šešioliktainis"
+
+#: ../src/preferences.c:146
+msgid "Custom"
+msgstr "Pasirinktinis"
+
+#: ../src/preferences.c:155
+msgid "Enter the cursor offset format"
+msgstr "Įvesk žymeklio koordinačių formatą"
+
+#: ../src/preferences.c:156
+msgid "Select the cursor offset format"
+msgstr "Pasirinkite žymeklio poslinkio formatą"
+
+#. show offsets check button
+#: ../src/preferences.c:166
+msgid "Sh_ow offsets column"
+msgstr "Rod_yti poslinkių stulpelį"
+
+#: ../src/preferences.c:171
+msgid "Editing"
+msgstr "Redagavimas"
+
+#. display font
+#: ../src/preferences.c:180
+msgid "Font"
+msgstr "Šriftas"
+
+#. default group type
+#: ../src/preferences.c:203
+msgid "Default Group Type"
+msgstr "Numatytasis grupės tipas"
+
+#: ../src/preferences.c:219
+msgid "Display"
+msgstr "Ekranas"
+
+#. paper selection
+#: ../src/preferences.c:228
+msgid "Paper size"
+msgstr "Popieriaus dydis"
+
+#. data & header font selection
+#: ../src/preferences.c:233
+msgid "Fonts"
+msgstr "Šriftai"
+
+#: ../src/preferences.c:239
+msgid "_Data font:"
+msgstr "_Duomenų šriftas:"
+
+#: ../src/preferences.c:255
+msgid "Data font"
+msgstr "Duomenų šriftas"
+
+#: ../src/preferences.c:255
+msgid "Select the data font"
+msgstr "Pasirinkite duomenų šriftą"
+
+#: ../src/preferences.c:269
+msgid "Header fo_nt:"
+msgstr "Antraštės šrif_tas:"
+
+#: ../src/preferences.c:284
+msgid "Header font"
+msgstr "Antraštės šriftas"
+
+#: ../src/preferences.c:284
+msgid "Select the header font"
+msgstr "Pasirinkite antraštės šriftą"
+
+#: ../src/preferences.c:310
+msgid "_Print shaded box over:"
+msgstr "_Spausdinti rėmelyje su šešėliu:"
+
+#: ../src/preferences.c:322
+msgid "Box size"
+msgstr "Rėmelio dydis"
+
+#: ../src/preferences.c:322
+msgid "Select size of box (in number of lines)"
+msgstr "Pasirinkite rėmelio dydį (išreikštą eilučių skaičiumi)"
+
+#: ../src/preferences.c:326
+msgid "lines (0 for no box)"
+msgstr "eilutės (0, jei be rėmelio)"
+
+#: ../src/preferences.c:333
+msgid "Printing"
+msgstr "Spausdinama"
+
+#: ../src/preferences.c:451
+#: ../src/ui.c:202
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Kilo klaida atveriant žinyną:\n"
+"%s"
+
+#: ../src/preferences.c:503
+msgid "Can not open desired font!"
+msgstr "Negaliu atidaryti pageidaujamo šrifto!"
+
+#: ../src/preferences.c:564
+msgid ""
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"Poslinkio formatas turi netinkamų reikšmių.\n"
+"Leidžiama tik „x“, „X“, „p“, „P“, „d“ ir „o“."
+
+#: ../src/print.c:57
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Puslapis: %i/%i"
+
+#: ../src/ui.c:55
+msgid "hex data"
+msgstr "šešioliktainiai duomenys"
+
+#: ../src/ui.c:56
+msgid "ASCII data"
+msgstr "ASCII duomenys"
+
+#: ../src/ui.c:144
+msgid ""
+"Copyright © 1998 - 2006 Jaka Močnik\n"
+"Copyright © 2006 - 2010 GHex Contributors"
+msgstr ""
+"Autorinės teisės © 1998 - 2006 Jaka Močnik\n"
+"Autorinės teisės © 2006 - 2010 GHex pagalbininkai"
+
+#: ../src/ui.c:151
+msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
+msgstr "Ši programa yra laisva programinė įranga; jūs galite ją platinti bei keisti pagal GNU bendrosios viešos licencijos sąlygas, kaip jas pateikia Free Software Foundation; licencijos versija 2 arba (jūsų pasirinkta) bet kuri vėlesnė versija."
+
+#: ../src/ui.c:155
+msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
+msgstr "Ši programa platinama tikintis, kad ji bus naudinga, be BE JOKIOS GARANTIJOS; netgi be numanomos PREKYBINĖS ar TINKAMUMO TAM TIKRAM TIKSLUI garantijos. Daugiau informacijos rasite GNU bendrojoje viešoje licencijoje."
+
+#: ../src/ui.c:159
+msgid "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr "Jūs turėjote gauti GNU bendros viešosios licencijos kopiją kartu su programa; jei negavote, parašykite į Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+
+#: ../src/ui.c:171
+msgid "A binary file editor"
+msgstr "Dvejetainių failų redaktorius"
+
+#: ../src/ui.c:177
+msgid "About GHex"
+msgstr "Apie GHex"
+
+#: ../src/ui.c:178
+msgid "translator-credits"
+msgstr ""
+"padėka vertėjams:\n"
+"Algimantas Margevičius\n"
+"Aurimas Černius"
+
+#: ../src/ui.c:181
+msgid "GHex Website"
+msgstr "GHex svetainė"
+
+#: ../src/ui.c:311
+msgid "Select a file to open"
+msgstr "Pasirinkite failą atvėrimui"
+
+#: ../src/ui.c:342
+#, c-format
+msgid "Loaded file %s"
+msgstr "Įkeltas failas %s"
+
+#: ../src/ui.c:350
+msgid "Can not open file!"
+msgstr "Negaliu atverti failo!"
+
+#: ../src/ui.c:415
+msgid "Select path and file name for the HTML source"
+msgstr "Pasirink kelią ir failo vardą HTML pradiniam kodui"
+
+#: ../src/ui.c:449
+msgid "You need to specify a base name for the HTML files."
+msgstr "Turi nurodyti vardą HTML failams."
+
+#: ../src/ui.c:460
+#: ../src/ui.c:484
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "Neturi teisės rašyti į pasirinktą kelią.\n"
+
+#: ../src/ui.c:471
+msgid ""
+"Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr ""
+"Saugant į HTML perrašys kelis failus.\n"
+"Tęsti?"
+
+#: ../src/ui.c:736
+#, c-format
+msgid "Really revert file %s?"
+msgstr "Tikrai atstatyti failą %s?"
+
+#: ../src/ui.c:750
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "Atstatytas buferis iš failo %s"
+
