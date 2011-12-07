@@ -865,10 +865,20 @@ draw_shadow (GtkWidget *widget,
  * lines we can display according to the current size of the widget
  */
 static void recalc_displays(GtkHex *gh, guint width, guint height) {
+	gboolean scroll_to_cursor;
+	gdouble value;
 	gint total_width = width;
 	gint total_cpl, xcpl;
 	gint old_cpl = gh->cpl;
 	GtkRequisition req;
+
+	/*
+	 * Only change the value of the adjustment to put the cursor on screen
+	 * if the cursor is currently within the displayed portion.
+	 */
+	scroll_to_cursor = (gh->cpl == 0) ||
+	                   ((gh->cursor_pos / gh->cpl >= gtk_adjustment_get_value (gh->adj)) &&
+	                    (gh->cursor_pos / gh->cpl <= gtk_adjustment_get_value (gh->adj) + gh->vis_lines - 1));
 
 	gtk_widget_size_request(gh->scrollbar, &req);
 	
@@ -923,21 +933,27 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	
 	gh->disp_buffer = g_malloc( (xcpl + 1) * (gh->vis_lines + 1) );
 
-	/* adjust the scrollbar and display position to
-	   new sizes */
-	gtk_adjustment_set_value(gh->adj, MIN(gh->top_line*old_cpl / gh->cpl, gh->lines - gh->vis_lines));
-	gtk_adjustment_set_value(gh->adj, MAX(0, gtk_adjustment_get_value(gh->adj)));
-	if((gh->cursor_pos/gh->cpl < gtk_adjustment_get_value(gh->adj)) ||
-	   (gh->cursor_pos/gh->cpl > gtk_adjustment_get_value(gh->adj) + gh->vis_lines - 1)) {
-		gtk_adjustment_set_value(gh->adj, MIN(gh->cursor_pos/gh->cpl, gh->lines - gh->vis_lines));
-		gtk_adjustment_set_value(gh->adj, MAX(0, gtk_adjustment_get_value(gh->adj)));
+	/* calculate new display position */
+	value = MIN (gh->top_line * old_cpl / gh->cpl, gh->lines - gh->vis_lines);
+	value = MAX (0, value);
+
+	/* keep cursor on screen if it was on screen before */
+	if (scroll_to_cursor &&
+	    ((gh->cursor_pos / gh->cpl < value) ||
+	     (gh->cursor_pos / gh->cpl > value + gh->vis_lines - 1))) {
+		value = MIN (gh->cursor_pos / gh->cpl, gh->lines - gh->vis_lines);
+		value = MAX (0, value);
 	}
-	gtk_adjustment_set_lower(gh->adj, 0);
-	gtk_adjustment_set_upper(gh->adj, gh->lines);
-	gtk_adjustment_set_step_increment(gh->adj, 1);
-	gtk_adjustment_set_page_increment(gh->adj, gh->vis_lines - 1);
-	gtk_adjustment_set_page_size(gh->adj, gh->vis_lines);
-	
+
+	/* adjust the scrollbar and display position to new values */
+	gtk_adjustment_configure (gh->adj,
+	                          value,             /* value */
+	                          0,                 /* lower */
+	                          gh->lines,         /* upper */
+	                          1,                 /* step increment */
+	                          gh->vis_lines - 1, /* page increment */
+	                          gh->vis_lines      /* page size */);
+
 	g_signal_emit_by_name(G_OBJECT(gh->adj), "changed");
 	g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
 }
