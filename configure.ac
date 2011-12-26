@@ -7,7 +7,7 @@ AC_CONFIG_MACRO_DIR([m4])
 
 AM_INIT_AUTOMAKE([1.10 dist-bzip2 no-dist-gzip])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
-AM_MAINTAINER_MODE
+AM_MAINTAINER_MODE([enable])
 
 # Check for programs
 AC_PROG_CC
@@ -65,8 +65,6 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext package name.])
 dnl =================================================================
 
-# Uncomment this when we get rid of bonobo code: GB #590996
-#GNOME_MAINTAINER_MODE_DEFINES
 GNOME_COMPILE_WARNINGS([maximum])
 
 AC_ARG_ENABLE(debug,
