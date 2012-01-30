@@ -5,9 +5,9 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR([src/ghex-window.c])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.10 dist-bzip2 no-dist-gzip])
-m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+AM_INIT_AUTOMAKE([1.11 dist-xz no-dist-gzip])
 AM_MAINTAINER_MODE([enable])
+AM_SILENT_RULES([yes])
 
 # Check for programs
 AC_PROG_CC
