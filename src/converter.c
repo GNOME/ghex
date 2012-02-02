@@ -313,8 +313,8 @@ get_cursor_val_cb(GtkButton *button, Converter *conv)
 	}
 }
 
-static guchar *
-clean(guchar *ptr)
+static gchar *
+clean(gchar *ptr)
 {
 	while(*ptr == '0')
 		ptr++;
@@ -326,7 +326,7 @@ clean(guchar *ptr)
 static void
 set_values(Converter *conv, gulong val)
 {
-	guchar buffer[CONV_BUFFER_LEN + 1];
+	gchar buffer[CONV_BUFFER_LEN + 1];
 	gint i, nhex, nbytes;
 	gulong tmp = val;
 
@@ -376,7 +376,7 @@ set_values(Converter *conv, gulong val)
 static void
 conv_entry_cb(GtkEntry *entry, gint base)
 {
-	guchar buffer[33];
+	gchar buffer[33];
 	const gchar *text;
 	gchar *endptr;
 	gulong val = converter->value;
