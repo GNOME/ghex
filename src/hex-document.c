@@ -26,7 +26,6 @@
 #include <glib/gi18n.h>
 
 #include <gtkhex.h>
-#include <ghex-marshal.h>
 
 #include <stdio.h>
 #include <unistd.h>
@@ -340,7 +339,7 @@ hex_document_class_init (HexDocumentClass *klass)
 					  G_STRUCT_OFFSET (HexDocumentClass, document_changed),
 					  NULL,
 					  NULL,
-					  ghex_marshal_VOID__POINTER_BOOLEAN,
+					  NULL,
 					  G_TYPE_NONE,
 					  2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
 	hex_signals[UNDO] = 
@@ -350,7 +349,7 @@ hex_document_class_init (HexDocumentClass *klass)
 					  G_STRUCT_OFFSET (HexDocumentClass, undo),
 					  NULL,
 					  NULL,
-					  ghex_marshal_VOID__VOID,
+					  NULL,
 					  G_TYPE_NONE, 0);
 	hex_signals[REDO] = 
 		g_signal_new ("redo",
@@ -359,7 +358,7 @@ hex_document_class_init (HexDocumentClass *klass)
 					  G_STRUCT_OFFSET (HexDocumentClass, redo),
 					  NULL,
 					  NULL,
-					  ghex_marshal_VOID__VOID,
+					  NULL,
 					  G_TYPE_NONE, 0);
 	hex_signals[UNDO_STACK_FORGET] = 
 		g_signal_new ("undo_stack_forget",
@@ -368,7 +367,7 @@ hex_document_class_init (HexDocumentClass *klass)
 					  G_STRUCT_OFFSET (HexDocumentClass, undo_stack_forget),
 					  NULL,
 					  NULL,
-					  ghex_marshal_VOID__VOID,
+					  NULL,
 					  G_TYPE_NONE, 0);
 }
 

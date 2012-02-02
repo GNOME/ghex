@@ -32,7 +32,6 @@
 #include "hex-document.h"
 #include "gtkhex.h"
 #include "gtkhex-private.h"
-#include "ghex-marshal.h"
 
 #define DISPLAY_BORDER 4
 
@@ -2054,16 +2053,14 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 					  G_TYPE_FROM_CLASS (widget_class),
 					  G_SIGNAL_RUN_FIRST,
 					  G_STRUCT_OFFSET (GtkHexClass, cursor_moved),
-					  NULL, NULL,
-					  g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
+					  NULL, NULL, NULL, G_TYPE_NONE, 0);
 
 	gtkhex_signals[DATA_CHANGED_SIGNAL] = 
 		g_signal_new ("data_changed",
 					  G_TYPE_FROM_CLASS (widget_class),
 					  G_SIGNAL_RUN_FIRST,
 					  G_STRUCT_OFFSET (GtkHexClass, data_changed),
-					  NULL, NULL,
-					  g_cclosure_marshal_VOID__POINTER, G_TYPE_NONE, 1,
+					  NULL, NULL, NULL, G_TYPE_NONE, 1,
 					  G_TYPE_POINTER);
 
 	gtkhex_signals[CUT_CLIPBOARD_SIGNAL] = 
@@ -2071,16 +2068,14 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 					  G_TYPE_FROM_CLASS (widget_class),
 					  G_SIGNAL_RUN_FIRST,
 					  G_STRUCT_OFFSET (GtkHexClass, cut_clipboard),
-					  NULL, NULL,
-					  g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
+					  NULL, NULL, NULL, G_TYPE_NONE, 0);
 
 	gtkhex_signals[COPY_CLIPBOARD_SIGNAL] = 
 		g_signal_new ("copy_clipboard",
 					  G_TYPE_FROM_CLASS (widget_class),
 					  G_SIGNAL_RUN_FIRST,
 					  G_STRUCT_OFFSET (GtkHexClass, copy_clipboard),
-					  NULL, NULL,
-					  g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
+					  NULL, NULL, NULL, G_TYPE_NONE, 0);
 
 
 	gtkhex_signals[PASTE_CLIPBOARD_SIGNAL] = 
@@ -2088,8 +2083,7 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 					  G_TYPE_FROM_CLASS (widget_class),
 					  G_SIGNAL_RUN_FIRST,
 					  G_STRUCT_OFFSET (GtkHexClass, paste_clipboard),
-					  NULL, NULL,
-					  g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
+					  NULL, NULL, NULL, G_TYPE_NONE, 0);
 	
 	klass->cursor_moved = NULL;
 	klass->data_changed = gtk_hex_real_data_changed;

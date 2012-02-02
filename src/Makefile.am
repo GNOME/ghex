@@ -17,8 +17,6 @@ ghex-resources.h: ghex.gresource.xml
 	glib-compile-resources --target=$@ --generate-header --c-name ghex --sourcedir=$(srcdir) $<
 
 BUILT_SOURCES = \
-	ghex-marshal.c	\
-	ghex-marshal.h	\
 	ghex-resources.c	\
 	ghex-resources.h	\
 	$(NULL)
@@ -57,14 +55,7 @@ ghex_SOURCES = \
 	configuration.h preferences.h findreplace.h print.h		\
 	converter.h chartable.h ui.h
 
-ghex-marshal.h: ghex-marshal.list $(GLIB_GENMARSHAL)
-	$(GLIB_GENMARSHAL) $< --header --prefix=ghex_marshal > $@
-ghex-marshal.c: ghex-marshal.list $(GLIB_GENMARSHAL)
-	echo "#include \"ghex-marshal.h\"" > $@ && \
-	$(GLIB_GENMARSHAL) $< --body --prefix=ghex_marshal >> $@
-
 EXTRA_DIST = \
-	ghex-marshal.list \
 	ghex-ui.xml \
 	ghex.gresource.xml
 
