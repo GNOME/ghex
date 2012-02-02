@@ -10,17 +10,24 @@ INCLUDES = \
 	$(WARN_CFLAGS)						\
 	$(DISABLE_DEPRECATED)
 
+ghex-resources.c: ghex.gresource.xml ghex-ui.xml
+	glib-compile-resources --target=$@ --generate-source --c-name ghex --sourcedir=$(srcdir) $<
+
+ghex-resources.h: ghex.gresource.xml
+	glib-compile-resources --target=$@ --generate-header --c-name ghex --sourcedir=$(srcdir) $<
+
 BUILT_SOURCES = \
 	ghex-marshal.c	\
-	ghex-marshal.h
+	ghex-marshal.h	\
+	ghex-resources.c	\
+	ghex-resources.h	\
+	$(NULL)
 
 bin_PROGRAMS = ghex
 
 lib_LTLIBRARIES = libgtkhex-3.la
 
 gtkhexincludedir = $(includedir)/gtkhex-3/
-
-uidir = $(pkgdatadir)
 
 libgtkhex_3_la_SOURCES = \
 	hex-document.c			\
@@ -56,11 +63,10 @@ ghex-marshal.c: ghex-marshal.list $(GLIB_GENMARSHAL)
 	echo "#include \"ghex-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=ghex_marshal >> $@
 
-ui_DATA = ghex-ui.xml
-
 EXTRA_DIST = \
-	$(ui_DATA)		\
-	ghex-marshal.list
+	ghex-marshal.list \
+	ghex-ui.xml \
+	ghex.gresource.xml
 
 LDADD =	\
 	libgtkhex-3.la	\

@@ -512,23 +512,6 @@ ghex_window_destroy_contents (GHexWindow *win)
     win->contents = NULL;
 }
 
-static gchar *
-ghex_datadir (void)
-{
-    gchar *datadir;
-#ifdef G_OS_WIN32
-    gchar *dir;
-
-    dir = g_win32_get_package_installation_directory_of_module (NULL);
-    datadir = g_build_filename (dir, "share", "ghex", NULL);
-    g_free (dir);
-#else
-    datadir = g_strdup (GHEXDATADIR);
-#endif
-
-    return datadir;
-}
-
 static GObject *
 ghex_window_constructor (GType                  type,
                          guint                  n_construct_properties,
@@ -538,8 +521,6 @@ ghex_window_constructor (GType                  type,
     GHexWindow *window;
     GtkWidget  *menubar;
     GError     *error = NULL;
-    gchar      *datadir;
-    gchar      *ui_path;
 
     object = G_OBJECT_CLASS (ghex_window_parent_class)->constructor (type,
                              n_construct_properties,
@@ -578,17 +559,11 @@ ghex_window_constructor (GType                  type,
     gtk_ui_manager_insert_action_group (window->ui_manager,
                                         window->doc_list_action_group, 0);
 
-    /* Load menu description from file */
-    datadir = ghex_datadir ();
-    ui_path = g_build_filename (datadir, "ghex-ui.xml", NULL);
-    if (!gtk_ui_manager_add_ui_from_file (window->ui_manager, ui_path, &error)) {
-        gchar *msg = g_strdup_printf (_("Failed to load UI: %s"), error->message);
+    /* Load menu description from resources framework */
+    if (!gtk_ui_manager_add_ui_from_resource (window->ui_manager, "/org/gnome/ghex/ghex-ui.xml", &error)) {
+        g_warning ("Failed to load ui: %s", error->message);
         g_error_free (error);
-        display_error_dialog (window, msg);
-        g_free (msg);
     }
-    g_free (ui_path);
-    g_free (datadir);
 
     window->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 
