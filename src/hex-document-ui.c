@@ -118,6 +118,7 @@ jump_cb (GtkAction *action,
 		gtk_window_set_position (GTK_WINDOW(jump_dialog->window), GTK_WIN_POS_MOUSE);
 		gtk_window_set_default(GTK_WINDOW(jump_dialog->window), jump_dialog->ok);
 		gtk_widget_show(jump_dialog->window);
+		gtk_widget_grab_focus(jump_dialog->int_entry);
 	}
 	raise_and_focus_widget(jump_dialog->window);
 }

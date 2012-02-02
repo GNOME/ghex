@@ -436,6 +436,9 @@ JumpDialog *create_jump_dialog()
 	dialog->int_entry = gtk_entry_new();
 	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), dialog->int_entry,
 					   TRUE, TRUE, 0);
+	g_signal_connect_swapped (G_OBJECT (dialog->int_entry),
+	                          "activate", G_CALLBACK(gtk_window_activate_default),
+	                          GTK_WINDOW (dialog->window));
 	gtk_widget_show(dialog->int_entry);
 
 	dialog->ok = gtk_button_new_from_stock (GTK_STOCK_OK);
