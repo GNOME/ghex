@@ -58,7 +58,7 @@ struct _GtkHex_Highlight
 {
 	gint start, end;
 	gint start_line, end_line;
-	GtkStyle *style; /* NULL for parent style */
+	GdkRGBA *bg_color; /* NULL to use the style color */
 	gint min_select;
 
 	GtkHex_Highlight *prev, *next;
