@@ -165,7 +165,7 @@ static AdvancedFind_AddDialog *create_advanced_find_add_dialog(AdvancedFindDialo
 	gtk_widget_show(frame);
 	gtk_widget_show(dialog->f_gh);
 
-	sep = gtk_hseparator_new();
+	sep = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
 	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), sep,
 					   FALSE, FALSE, 0);
 
@@ -273,7 +273,7 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 	gtk_widget_set_can_default(dialog->f_prev, TRUE);
 	gtk_widget_show(dialog->f_prev);
 
-	sep = gtk_hseparator_new();
+	sep = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
 	gtk_box_pack_start(GTK_BOX(dialog->vbox), sep, FALSE, FALSE, 4);
 	gtk_widget_show(sep);
 
