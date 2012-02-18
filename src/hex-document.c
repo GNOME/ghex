@@ -702,7 +702,7 @@ hex_document_write(HexDocument *doc)
 	if(doc->file_name == NULL)
 		return FALSE;
 
-	if((file = fopen(doc->file_name, "w")) != NULL) {
+	if((file = fopen(doc->file_name, "wb")) != NULL) {
 		ret = hex_document_write_to_file(doc, file);
 		fclose(file);
 		if(ret) {

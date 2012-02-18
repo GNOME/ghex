@@ -1248,7 +1248,7 @@ ghex_window_save_as(GHexWindow *win)
         }
 
         if(ret_val) {
-            if((file = fopen(filename, "w")) != NULL) {
+            if((file = fopen(filename, "wb")) != NULL) {
                 if(hex_document_write_to_file(doc, file)) {
                     if(doc->file_name)
                         g_free(doc->file_name);
