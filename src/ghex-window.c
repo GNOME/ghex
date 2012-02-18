@@ -1209,8 +1209,6 @@ ghex_window_save_as(GHexWindow *win)
 	HexDocument *doc;
 	GtkWidget *file_sel;
 	gboolean ret_val = TRUE;
-	const gchar *filename;
-	gboolean dir_flag = FALSE;
     GtkResponseType resp;
 
 	if(win->gh == NULL)
@@ -1232,37 +1230,14 @@ ghex_window_save_as(GHexWindow *win)
 	gtk_window_set_position (GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 	gtk_widget_show (file_sel);
 
-	do {
-        resp = gtk_dialog_run(GTK_DIALOG(file_sel));
-        if(resp == GTK_RESPONSE_OK) {
-            filename =
-                gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_sel));
-            if (g_file_test(filename,G_FILE_TEST_IS_DIR)) {
-                gint name_len;
-                gchar *dir_name;
-
-                name_len = strlen (filename);
-                if (name_len < 1 || filename [name_len - 1] != '/')	{
-                    dir_name = g_strconcat (filename, "/", NULL);
-                } else  {
-                    dir_name = g_strdup (filename);
-                }
-                gtk_file_chooser_set_filename (GTK_FILE_CHOOSER(file_sel),
-                                               dir_name);
-                g_free (dir_name);
-                dir_flag = TRUE;
-            }
-            else  {
-                dir_flag = FALSE;
-            }
-        }
-	} while (resp == GTK_RESPONSE_OK && dir_flag);	   
-
+	resp = gtk_dialog_run (GTK_DIALOG (file_sel));
 	if(resp == GTK_RESPONSE_OK) {
 		FILE *file;
 		gchar *flash;
         gchar *gtk_file_name, *path_end;
+        const gchar *filename;
 
+        filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_sel));
         if(access(filename, F_OK) == 0) {
             GtkWidget *mbox;
 
