@@ -226,10 +226,10 @@ GtkWidget *create_char_table()
 	lbl = gtk_label_new ("");
 	gtk_widget_show(lbl);
 
-	vbox = gtk_vbox_new(FALSE, 4);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 4);
 	gtk_widget_show(vbox);
 
-	hbox = gtk_hbox_new (FALSE, 4);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
 	gtk_widget_show(hbox);
 
 	gtk_box_pack_start(GTK_BOX(vbox), sw, TRUE, TRUE, 0);

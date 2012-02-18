@@ -220,7 +220,7 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 
 	create_dialog_title(dialog->window, _("GHex (%s): Find Data"));
 
-	dialog->hbox = gtk_hbox_new(FALSE, 0);
+	dialog->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))),
 					   dialog->hbox, TRUE, TRUE, 4);
 	gtk_widget_show(dialog->hbox);
@@ -250,7 +250,7 @@ AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent)
 					   TRUE, TRUE, 4);
 	gtk_widget_show (dialog->tree);
 
-	dialog->vbox = gtk_vbox_new(FALSE, 0);
+	dialog->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_box_pack_start(GTK_BOX(dialog->hbox), dialog->vbox,
 					   FALSE, FALSE, 4);
 	gtk_widget_show(dialog->vbox);

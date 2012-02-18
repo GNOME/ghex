@@ -162,7 +162,7 @@ static void config_spinchange_cb(GtkSpinButton *spinbutton, gpointer user_data)
 GtkWidget *hex_dialog_getview(HexDialog *dialog)
 {
 
-    GtkWidget *vbox = gtk_vbox_new(FALSE, 0);
+    GtkWidget *vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     GtkWidget *hbox;
     GtkWidget *table = gtk_table_new(4, 6, FALSE);
     GtkWidget *label;
@@ -190,7 +190,7 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     create_dialog_prop(OCT, dialog, table, 4, 1);
     create_dialog_prop(BIN, dialog, table, 4, 2);
 
-    hbox = gtk_hbox_new(FALSE, 0);
+    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, FALSE, 4);
     gtk_widget_show(hbox);
 

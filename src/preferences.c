@@ -88,14 +88,14 @@ create_prefs_dialog()
 	gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(pui->pbox))), notebook);
 
 	/* editing page */
-	vbox = gtk_vbox_new(FALSE, 0);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(vbox);
 
 	/* max undo levels */
 	undo_adj = GTK_ADJUSTMENT(gtk_adjustment_new(MIN(max_undo_depth, MAX_MAX_UNDO_DEPTH),
 												 0, MAX_MAX_UNDO_DEPTH, 1, 10, 0));
 
-	box = gtk_hbox_new(FALSE, 0);
+	box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_widget_show(box);
 
 	label = gtk_label_new_with_mnemonic(_("_Maximum number of undo levels:"));
@@ -110,7 +110,7 @@ create_prefs_dialog()
 	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 8);
 
 	/* cursor offset format */
-	box = gtk_hbox_new(FALSE, 0);
+	box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_widget_show(box);
 
 	gtk_label_set_mnemonic_widget(GTK_LABEL(label), pui->undo_spin);
@@ -173,7 +173,7 @@ create_prefs_dialog()
 	gtk_notebook_append_page (GTK_NOTEBOOK(notebook), vbox, label);
 
 	/* display page */
-	vbox = gtk_vbox_new(FALSE, 0);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(vbox);
 	
 	/* display font */
@@ -181,7 +181,7 @@ create_prefs_dialog()
 	gtk_container_set_border_width(GTK_CONTAINER(frame), 4);
 	gtk_widget_show(frame);
 	
-	fbox = gtk_hbox_new(0, 5);
+	fbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
 	pui->font_button = gtk_font_button_new();
 	gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->font_button),
 								  def_font_name);
@@ -204,7 +204,7 @@ create_prefs_dialog()
 	gtk_container_set_border_width(GTK_CONTAINER(frame), 4);
 	gtk_widget_show(frame);
 
-	box = gtk_vbox_new(FALSE, 0);
+	box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(box);
 	group = NULL;
 	for(i = 0; i < 3; i++) {
@@ -221,7 +221,7 @@ create_prefs_dialog()
 	gtk_notebook_append_page (GTK_NOTEBOOK(notebook), vbox, label);
 	
 	/* printing page */
-	vbox = gtk_vbox_new(FALSE, 0);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(vbox);
 
 	/* paper selection */
@@ -304,7 +304,7 @@ create_prefs_dialog()
 	/* shaded box entry */
 	box_adj = GTK_ADJUSTMENT(gtk_adjustment_new(0, 0, 1000, 1, 10, 0));
 
-	box = gtk_hbox_new(FALSE, 0);
+	box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_widget_show(box);
 
 	label = gtk_label_new_with_mnemonic(_("_Print shaded box over:"));

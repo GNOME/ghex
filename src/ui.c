@@ -81,7 +81,7 @@ create_button(GtkWidget *window, const gchar *type, gchar *text)
 {
 	GtkWidget *button, *pixmap, *label, *hbox;
 	
-	hbox = gtk_hbox_new(FALSE, 2);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
 	
 	label = gtk_label_new_with_mnemonic(text);
 
