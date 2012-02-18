@@ -580,8 +580,10 @@ ghex_window_constructor (GType                  type,
     datadir = ghex_datadir ();
     ui_path = g_build_filename (datadir, "ghex-ui.xml", NULL);
     if (!gtk_ui_manager_add_ui_from_file (window->ui_manager, ui_path, &error)) {
-        g_warning ("Failed to load ui: %s", error->message);
+        gchar *msg = g_strdup_printf (_("Failed to load ui: %s"), error->message);
         g_error_free (error);
+        display_error_dialog (window, msg);
+        g_free (msg);
     }
     g_free (ui_path);
     g_free (datadir);
