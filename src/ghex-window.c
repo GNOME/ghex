@@ -807,7 +807,6 @@ cursor_moved_cb(GtkHex *gtkhex, gpointer user_data)
 gboolean
 ghex_window_load(GHexWindow *win, const gchar *filename)
 {
-    gchar *full_path;
     HexDocument *doc;
     GtkWidget *gh;
     GtkWidget *vbox;
@@ -818,18 +817,7 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     g_return_val_if_fail(GHEX_IS_WINDOW(win), FALSE);
     g_return_val_if_fail(filename != NULL, FALSE);
 
-    if(*filename != '/') {
-        gchar *cwd;
-        
-        cwd = g_get_current_dir();
-        full_path = g_strconcat(cwd, "/", filename, NULL);
-        g_free(cwd);
-    }
-    else
-        full_path = g_strdup(filename);
-    
-    doc = hex_document_new_from_file(full_path);
-    g_free(full_path);
+    doc = hex_document_new_from_file (filename);
     if(!doc)
         return FALSE;
     hex_document_set_max_undo(doc, max_undo_depth);
