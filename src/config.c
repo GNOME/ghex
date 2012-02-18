@@ -43,91 +43,6 @@ PangoFontDescription *def_font_desc = NULL;
 gchar *def_font_name = NULL;
 gboolean show_offsets_column = TRUE;
 
-void ghex_load_configuration () {
-	gchar *font_name;
-	PangoFontMetrics *new_metrics;
-
-	/* Get the default font metrics */
-	font_name = g_settings_get_string (settings, GHEX_PREF_FONT);
-
-	if (NULL == font_name)
-		font_name = g_strdup (DEFAULT_FONT);
-
-	if (def_metrics)
-		pango_font_metrics_unref (def_metrics);
-
-	if (def_font_desc)
-		pango_font_description_free (def_font_desc);
-
-	new_metrics = gtk_hex_load_font (font_name);
-
-	if (!new_metrics) {
-		def_metrics = gtk_hex_load_font (DEFAULT_FONT);
-		def_font_desc = pango_font_description_from_string (font_name);
-		def_font_name = g_strdup (DEFAULT_FONT);
-	}
-	else {
-		def_metrics = new_metrics;
-		def_font_desc = pango_font_description_from_string (font_name);
-		def_font_name = g_strdup (font_name);
-	}
-
-	g_free (font_name);
-
-	/* Get the default group type -- SnM */
-	def_group_type = g_settings_get_enum (settings, GHEX_PREF_GROUP);
-
-	/* Sanity check for group type */
-	if (def_group_type <= 0 )
-		def_group_type = GROUP_BYTE;
-
-	/* Get the max undo depth -- SnM */
-	g_settings_get (settings, GHEX_PREF_MAX_UNDO_DEPTH, "u", &max_undo_depth);
-
-
-	/* Get the offset format -- SnM */ 
-
-	if (offset_fmt)
-		g_free (offset_fmt);
-
-	offset_fmt = g_settings_get_string (settings, GHEX_PREF_OFFSET_FORMAT);
-
-	/* Check if offset_fmt is NULL. Shouldnt happen if we get the default
-	 * value from the gconf client -- SnM
-	 */
-
-	if (NULL == offset_fmt) {
-		offset_fmt = g_strdup("%X"); 
-	}
-
-	/* Get the show offsets column value -- SnM */
-	show_offsets_column = g_settings_get_boolean (settings, GHEX_PREF_OFFSETS_COLUMN);
-
-	/* Get the shaded box size -- SnM */
-	g_settings_get (settings, GHEX_PREF_BOX_SIZE, "u", &shaded_box_size);
-
-	/* Get the data font name -- SnM */
-	data_font_name = g_settings_get_string (settings, GHEX_PREF_DATA_FONT);
-	
-	/* Check if data_font_name is NULL. Should not happen if we get the
-	 * default value from the gconf client -- SnM
-	 */
-	if (NULL == data_font_name) {
-		data_font_name = g_strdup ("Courier 10");
-	}
-
-	/* Get the header font name -- SnM */
-	header_font_name = g_settings_get_string (settings, GHEX_PREF_HEADER_FONT);
-
-	/* Check if the header_font_name is NULL. Should not happen if we get
-	 * the default value from the gconf client -- SnM
-	 */
-
-	if(NULL == header_font_name) {
-		header_font_name = g_strdup ("Helvetica 12");
-	}
-}
-
 static void
 offsets_column_changed_cb (GSettings   *settings,
                            const gchar *key,
@@ -275,18 +190,35 @@ void ghex_init_configuration ()
 
     g_signal_connect (settings, "changed::" GHEX_PREF_OFFSETS_COLUMN,
                       G_CALLBACK (offsets_column_changed_cb), NULL);
+    offsets_column_changed_cb (settings, GHEX_PREF_OFFSETS_COLUMN, NULL);
+
     g_signal_connect (settings, "changed::" GHEX_PREF_GROUP,
                       G_CALLBACK (group_changed_cb), NULL);
+    group_changed_cb (settings, GHEX_PREF_GROUP, NULL);
+
     g_signal_connect (settings, "changed::" GHEX_PREF_MAX_UNDO_DEPTH,
                       G_CALLBACK (max_undo_depth_changed_cb), NULL);
+    max_undo_depth_changed_cb (settings, GHEX_PREF_MAX_UNDO_DEPTH, NULL);
+
     g_signal_connect (settings, "changed::" GHEX_PREF_BOX_SIZE,
                       G_CALLBACK (box_size_changed_cb), NULL);
+    box_size_changed_cb (settings, GHEX_PREF_BOX_SIZE, NULL);
+
+
     g_signal_connect (settings, "changed::" GHEX_PREF_OFFSET_FORMAT,
                       G_CALLBACK (offset_format_changed_cb), NULL);
+    offset_format_changed_cb (settings, GHEX_PREF_OFFSET_FORMAT, NULL);
+
     g_signal_connect (settings, "changed::" GHEX_PREF_FONT,
                       G_CALLBACK (font_changed_cb), NULL);
+    font_changed_cb (settings, GHEX_PREF_FONT, NULL);
+
     g_signal_connect (settings, "changed::" GHEX_PREF_DATA_FONT,
                       G_CALLBACK (data_font_changed_cb), NULL);
+
+    data_font_changed_cb (settings, GHEX_PREF_DATA_FONT, NULL);
+
     g_signal_connect (settings, "changed::" GHEX_PREF_HEADER_FONT,
                       G_CALLBACK (header_font_changed_cb), NULL);
+    header_font_changed_cb (settings, GHEX_PREF_HEADER_FONT, NULL);
 }

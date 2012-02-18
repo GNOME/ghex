@@ -61,9 +61,6 @@ extern GSettings *settings;
 /* Initializes the gsettings client */
 void ghex_init_configuration (void);
 
-/* config stuff */
-void ghex_load_configuration(void);
-
 G_END_DECLS
 
 #endif /* !__GHEX_CONFIGURATION_H__ */

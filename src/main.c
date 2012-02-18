@@ -65,7 +65,6 @@ main(int argc, char **argv)
 
 	/* load preferences */
 	ghex_init_configuration();
-	ghex_load_configuration();
 
 	/* accessibility setup */
 	setup_factory();
