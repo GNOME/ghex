@@ -1127,10 +1127,15 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 
 static void hex_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 	GtkAllocation allocation;
+	GdkDeviceManager *device_manager;
+	GdkDevice *pointer;
 	gint x, y;
 
 	gtk_widget_get_allocation(w, &allocation);
-	gdk_window_get_pointer(gtk_widget_get_window(w), &x, &y, NULL);
+
+	device_manager = gdk_display_get_device_manager (gtk_widget_get_display (w));
+	pointer = gdk_device_manager_get_client_pointer (device_manager);
+	gdk_window_get_device_position (gtk_widget_get_window (w), pointer, &x, &y, NULL);
 
 	if(y < 0)
 		gh->scroll_dir = -1;
@@ -1218,10 +1223,15 @@ static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 
 static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 	GtkAllocation allocation;
+	GdkDeviceManager *device_manager;
+	GdkDevice *pointer;
 	gint x, y;
 
 	gtk_widget_get_allocation(w, &allocation);
-	gdk_window_get_pointer(gtk_widget_get_window(w), &x, &y, NULL);
+
+	device_manager = gdk_display_get_device_manager (gtk_widget_get_display (w));
+	pointer = gdk_device_manager_get_client_pointer (device_manager);
+	gdk_window_get_device_position (gtk_widget_get_window (w), pointer, &x, &y, NULL);
 
 	if(y < 0)
 		gh->scroll_dir = -1;
