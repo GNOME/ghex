@@ -20,3 +20,5 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 CLEANFILES =			\
 	$(desktop_DATA)
+
+-include $(top_srcdir)/git.mk

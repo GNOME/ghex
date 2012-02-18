@@ -67,3 +67,5 @@ LDADD =	\
 	$(GHEX_LIBS)
 
 CLEAN_FILES = $(BUILT_SOURCES)
+
+-include $(top_srcdir)/git.mk
