@@ -141,8 +141,8 @@ about_cb (GtkAction *action,
 		NULL
 	};
 
-	const gchar *copyright = _("Copyright © 1998 - 2006 Jaka Mo\304\215nik\n"
-	                           "Copyright © 2006 - 2010 GHex Contributors");
+	const gchar *copyright = "Copyright © 1998 - 2006 Jaka Mo\304\215nik\n"
+	                         "Copyright © 2006 - 2012 GHex Contributors";
 
 	/* For documentation_credits */
 	#include "../help/ghex-docs.h"
