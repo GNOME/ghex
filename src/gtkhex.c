@@ -951,7 +951,7 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	                   ((gh->cursor_pos / gh->cpl >= gtk_adjustment_get_value (gh->adj)) &&
 	                    (gh->cursor_pos / gh->cpl <= gtk_adjustment_get_value (gh->adj) + gh->vis_lines - 1));
 
-	gtk_widget_size_request(gh->scrollbar, &req);
+	gtk_widget_get_preferred_size (gh->scrollbar, &req, NULL);
 	
 	gh->xdisp_width = 1;
 	gh->adisp_width = 1;
@@ -2005,7 +2005,7 @@ static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 	state = gtk_widget_get_state_flags (w);
 	gtk_style_context_get_padding (context, state, &padding);
 
-	gtk_widget_size_request(gh->scrollbar, &sb_req);
+	gtk_widget_get_preferred_size (gh->scrollbar, &sb_req, NULL);
 	req->width = 2 * padding.left + 2 * padding.right + 2 * gtk_container_get_border_width (GTK_CONTAINER (w)) +
 		sb_req.width + gh->char_width * (DEFAULT_CPL + (DEFAULT_CPL - 1) /
 										 gh->group_type);
@@ -2590,7 +2590,7 @@ void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines)
 	GtkStateFlags state;
 	GtkStyleContext *context;
 
-	gtk_widget_size_request(gh->scrollbar, &req);
+	gtk_widget_get_preferred_size (gh->scrollbar, &req, NULL);
 
 	if(cpl <= 0 || vis_lines <= 0)
 		return;
