@@ -1261,7 +1261,6 @@ ghex_window_save_as(GHexWindow *win)
 	if(resp == GTK_RESPONSE_OK) {
 		FILE *file;
 		gchar *flash;
-		int i;
         gchar *gtk_file_name, *path_end;
 
         if(access(filename, F_OK) == 0) {
@@ -1296,19 +1295,13 @@ ghex_window_save_as(GHexWindow *win)
                     doc->changed = FALSE;
                     win->changed = FALSE;
 
-                    for(i = strlen(doc->file_name);
-                        (i >= 0) && (doc->file_name[i] != '/');
-                        i--)
-                        ;
-                    if(doc->file_name[i] == '/')
-                        path_end = &doc->file_name[i+1];
-                    else
-                        path_end = doc->file_name;
+                    path_end = g_path_get_basename (doc->file_name);
                     doc->path_end = g_filename_to_utf8(path_end, -1, NULL, NULL, NULL);
                     ghex_window_set_doc_name(win, doc->path_end);
                     gtk_file_name = g_filename_to_utf8(doc->file_name, -1, NULL, NULL, NULL);
                     flash = g_strdup_printf(_("Saved buffer to file %s"), gtk_file_name);
                     ghex_window_flash(win, flash);
+                    g_free(path_end);
                     g_free(gtk_file_name);
                     g_free(flash);
                 }

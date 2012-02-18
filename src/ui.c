@@ -428,24 +428,22 @@ export_html_cb (GtkAction *action,
 	resp = gtk_dialog_run(GTK_DIALOG(file_sel));
 
 	if(resp == GTK_RESPONSE_OK) {
-		gchar *html_path = g_strdup(gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_sel)));
+		gchar *html_path;
 		gchar *sep, *base_name, *check_path;
 		GtkHex *view = win->gh;
 
+		html_path = g_path_get_dirname (gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_sel)));
+		base_name = g_path_get_basename (gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_sel)));
+
 		gtk_widget_destroy(file_sel);
 
-		sep = html_path + strlen(html_path) - 1;
-		while(sep >= html_path && *sep != '/')
-			sep--;
-		if(sep >= html_path)
-			*sep = 0;
-		base_name = sep + 1;
 		sep = strstr(base_name, ".htm");
 		if(sep)
 			*sep = 0;
 
 		if(*base_name == 0) {
 			g_free(html_path);
+			g_free(base_name);
 			display_error_dialog(win, _("You need to specify a base name for "
 										"the HTML files."));
 			return;
@@ -459,6 +457,7 @@ export_html_cb (GtkAction *action,
 			if(access(check_path, W_OK) != 0) {
 				display_error_dialog(win, _("You don't have the permission to write to the selected path.\n"));
 				g_free(html_path);
+				g_free(base_name);
 				g_free(check_path);
 				return;
 			}
@@ -475,6 +474,7 @@ export_html_cb (GtkAction *action,
 			gtk_widget_destroy(mbox);
 			if(reply != GTK_RESPONSE_YES) {
 				g_free(html_path);
+				g_free(base_name);
 				g_free(check_path);
 				return;
 			}
@@ -483,6 +483,7 @@ export_html_cb (GtkAction *action,
 			if(access(html_path, W_OK) != 0) {
 				display_error_dialog(win, _("You don't have the permission to write to the selected path.\n"));
 				g_free(html_path);
+				g_free(base_name);
 				g_free(check_path);
 				return;
 			}
@@ -492,6 +493,7 @@ export_html_cb (GtkAction *action,
 		hex_document_export_html(doc, html_path, base_name, 0, doc->file_size,
 								 view->cpl, view->vis_lines, view->group_type);
 		g_free(html_path);
+		g_free(base_name);
 	}
 	else
 		gtk_widget_destroy(GTK_WIDGET(file_sel));
