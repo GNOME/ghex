@@ -193,7 +193,6 @@ accessible_gtk_hex_real_initialize (AtkObject *obj,
 	AccessibleGtkHex *accessible_gtk_hex;
 	GtkHex *gtk_hex;
 	GtkAccessible *accessible;
-	GtkWidget *widget;
 
 	g_return_if_fail (obj != NULL);
 
@@ -209,8 +208,6 @@ accessible_gtk_hex_real_initialize (AtkObject *obj,
 	gtk_accessible_set_widget (accessible, GTK_WIDGET (gtk_hex));
 
 	accessible_gtk_hex->textutil = gail_text_util_new();
-
-	widget = GTK_WIDGET (data);
 
 	g_signal_connect (G_OBJECT (gtk_hex), "data_changed",
 			  G_CALLBACK (_accessible_gtk_hex_changed_cb), NULL);
