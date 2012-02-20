@@ -989,9 +989,9 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 
 	gh->vis_lines = ((gint) (height - 2 * gtk_container_get_border_width (GTK_CONTAINER (gh)) - padding.top - padding.bottom)) / ((gint) gh->char_height);
 
-	gh->adisp_width = gh->cpl*gh->char_width + 1;
+	gh->adisp_width = gh->cpl*gh->char_width;
 	xcpl = gh->cpl*2 + (gh->cpl - 1)/gh->group_type;
-	gh->xdisp_width = xcpl*gh->char_width + 1;
+	gh->xdisp_width = xcpl*gh->char_width;
 
 	if(gh->disp_buffer)
 		g_free(gh->disp_buffer);
