@@ -75,6 +75,8 @@ ghex_window_drag_data_received(GtkWidget *widget,
                                           _("Can not open URI:\n%s"),
                                           err->message);
             g_error_free (err);
+            gtk_dialog_run (GTK_DIALOG (dlg));
+            gtk_widget_destroy (dlg);
             continue;
         }
 
