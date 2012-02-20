@@ -52,7 +52,7 @@ PropertyUI *prefs_ui = NULL;
 PropertyUI *
 create_prefs_dialog()
 {
-	GtkWidget *vbox, *label, *frame, *box, *fbox, *flabel, *table;
+	GtkWidget *vbox, *label, *frame, *box, *fbox, *flabel, *grid;
 	GtkAdjustment *undo_adj, *box_adj;
 	GtkWidget *notebook;
 
@@ -234,14 +234,18 @@ create_prefs_dialog()
 	gtk_container_set_border_width(GTK_CONTAINER(frame), 4);
 	gtk_widget_show(frame);
 
-	table = gtk_table_new(2, 3, TRUE);
-	gtk_widget_show(table);
+	grid = gtk_grid_new ();
+	g_object_set (grid,
+	              "orientation", GTK_ORIENTATION_VERTICAL,
+	              "row-spacing", 6,
+	              "column-spacing", 12,
+	              NULL);
+	gtk_widget_show (grid);
+
 	label = gtk_label_new_with_mnemonic(_("_Data font:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_widget_show(label);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
-					 GTK_FILL, GTK_FILL,
-					 4, 4);
+	gtk_container_add (GTK_CONTAINER (grid), label);
 
 	pui->df_button = gtk_font_button_new_with_font(def_font_name);
 	g_signal_connect (G_OBJECT (pui->df_button), "font_set",
@@ -256,22 +260,15 @@ create_prefs_dialog()
 		add_atk_relation (pui->df_button, label, ATK_RELATION_LABELLED_BY);
 	}	
 	
+	gtk_widget_set_hexpand (pui->df_button, TRUE);
 	gtk_widget_show(pui->df_button);
-	gtk_table_attach(GTK_TABLE(table), pui->df_button, 1, 2, 0, 1,
-					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
-					 4, 4);
-	label = gtk_label_new("");
-	gtk_widget_show(label);
-	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
-					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
-					 4, 4);
+	gtk_grid_attach_next_to (GTK_GRID (grid), pui->df_button, label,
+	                         GTK_POS_RIGHT, 1, 1);
 
 	label = gtk_label_new_with_mnemonic(_("Header fo_nt:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_widget_show(label);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
-					 GTK_FILL, GTK_FILL,
-					 4, 4);
+	gtk_container_add (GTK_CONTAINER (grid), label);
 	pui->hf_button = gtk_font_button_new_with_font(def_font_name);
 	g_signal_connect (G_OBJECT (pui->hf_button), "font_set",
 					  G_CALLBACK (select_font_cb), pui);
@@ -285,18 +282,17 @@ create_prefs_dialog()
 		add_atk_relation (pui->hf_button, label, ATK_RELATION_LABELLED_BY);
 	}
 
+	gtk_widget_set_hexpand (pui->hf_button, TRUE);
 	gtk_widget_show(pui->hf_button);
-	gtk_table_attach(GTK_TABLE(table), pui->hf_button, 1, 2, 1, 2,
-					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
-					 4, 4);
+	gtk_grid_attach_next_to (GTK_GRID (grid), pui->hf_button, label,
+	                         GTK_POS_RIGHT, 1, 1);
 
 	label = gtk_label_new("");
+	gtk_widget_set_hexpand (label, TRUE);
 	gtk_widget_show(label);
-	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 1, 2,
-					 GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL,
-					 4, 4);
+	gtk_grid_attach (GTK_GRID (grid), label, 2, 1, 1, 1);
 
-	gtk_container_add(GTK_CONTAINER(frame), table);
+	gtk_container_add (GTK_CONTAINER (frame), grid);
 
 	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE,
 					   4);
