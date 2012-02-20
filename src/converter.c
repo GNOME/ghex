@@ -118,7 +118,7 @@ entry_key_press_event_cb(GtkWidget *widget, GdkEventKey *event,
 #define BUFFER_LEN 40
 
 static GtkWidget *
-create_converter_entry(const gchar *name, GtkWidget *table,
+create_converter_entry(const gchar *name, GtkWidget *grid,
 						GtkAccelGroup *accel_group, gint pos, gint base)
 {
 	GtkWidget *label;
@@ -131,7 +131,7 @@ create_converter_entry(const gchar *name, GtkWidget *table,
 	/* label */
 	label = gtk_label_new_with_mnemonic(name);
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, pos, pos+1);
+	gtk_grid_attach (GTK_GRID (grid), label, 0, pos, 1, 1);
 #if 0
 	accel_key = gtk_label_parse_uline(GTK_LABEL(label), name);
 #endif /* 0/1 */
@@ -150,7 +150,8 @@ create_converter_entry(const gchar *name, GtkWidget *table,
 	gtk_widget_add_accelerator(entry, "grab_focus", accel_group, accel_key,
 							   GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
 #endif /* 0/1 */
-	gtk_table_attach_defaults(GTK_TABLE(table), entry, 1, 2, pos, pos+1);
+	gtk_widget_set_hexpand (entry, TRUE);
+	gtk_grid_attach (GTK_GRID (grid), entry, 1, pos, 1, 1);
 	gtk_widget_show(entry);
 
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (entry))) {
@@ -222,7 +223,7 @@ Converter *
 create_converter()
 {
 	Converter *conv;
-	GtkWidget *table;
+	GtkWidget *grid;
 	GtkAccelGroup *accel_group;
 	gint i;
  
@@ -236,28 +237,28 @@ create_converter()
 	g_signal_connect(G_OBJECT(conv->window), "response",
 					 G_CALLBACK(close_converter), conv->window);
 
-	table = gtk_table_new(6, 2, FALSE);
-	gtk_table_set_row_spacings(GTK_TABLE(table), 4);
-	gtk_table_set_col_spacings(GTK_TABLE(table), 4);
-	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(conv->window))), table,
+	grid = gtk_grid_new ();
+	gtk_grid_set_row_spacing (GTK_GRID (grid), 4);
+	gtk_grid_set_column_spacing (GTK_GRID (grid), 4);
+	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (conv->window))), grid,
 					   TRUE, TRUE, 0);
 	gtk_container_set_border_width(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(conv->window))),
 								   4);
 	gtk_box_set_spacing(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(conv->window))), 2);
-	gtk_widget_show(table);
+	gtk_widget_show (grid);
 	
 	accel_group = gtk_accel_group_new();
 
 	/* entries */
-	conv->entry[0] = create_converter_entry(_("_Binary:"), table,
+	conv->entry[0] = create_converter_entry (_("_Binary:"), grid,
 											 accel_group, 0, 2);
-	conv->entry[1] = create_converter_entry(_("_Octal:"), table,
+	conv->entry[1] = create_converter_entry (_("_Octal:"), grid,
 											 accel_group, 1, 8);
-	conv->entry[2] = create_converter_entry(_("_Decimal:"), table,
+	conv->entry[2] = create_converter_entry (_("_Decimal:"), grid,
 											 accel_group, 2, 10);
-	conv->entry[3] = create_converter_entry(_("_Hex:"), table,
+	conv->entry[3] = create_converter_entry (_("_Hex:"), grid,
 											 accel_group, 3, 16);
-	conv->entry[4] = create_converter_entry(_("_ASCII:"), table,
+	conv->entry[4] = create_converter_entry (_("_ASCII:"), grid,
 											 accel_group, 4, 0);
 
 	/* get cursor button */
@@ -269,7 +270,7 @@ create_converter()
 					 G_CALLBACK(get_cursor_val_cb), conv);
 	g_signal_connect(G_OBJECT(conv->window), "key_press_event",
 					 G_CALLBACK(conv_key_press_cb), conv);
- 	gtk_table_attach_defaults(GTK_TABLE(table), converter_get, 0, 2, 5, 6);
+	gtk_grid_attach (GTK_GRID (grid), converter_get, 0, 5, 2, 1);
 
 	/* add the accelerators */
 	gtk_window_add_accel_group(GTK_WINDOW(conv->window), accel_group);
