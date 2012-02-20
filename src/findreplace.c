@@ -809,7 +809,7 @@ static void advanced_find_add_cb(GtkButton *button, AdvancedFindDialog *dialog)
 	if (ret != GTK_RESPONSE_NONE)
 	{
 		gchar *colour;
-		GdkColor gcol;
+		GdkRGBA rgba;
 		AdvancedFind_ListData *data = g_new0(AdvancedFind_ListData, 1);
 		GtkHex *gh = dialog->parent->gh;
 		GtkTreeIter iter;
@@ -820,10 +820,9 @@ static void advanced_find_add_cb(GtkButton *button, AdvancedFindDialog *dialog)
 			display_error_dialog (dialog->parent, _("No string to search for!"));
 			return;
 		}
-		gtk_color_selection_get_current_color
-			(GTK_COLOR_SELECTION(dialog->addDialog->colour), &gcol);
-		colour = g_strdup_printf("#%02x%02x%02x",
-								 gcol.red, gcol.green, gcol.blue);
+		gtk_color_selection_get_current_rgba (GTK_COLOR_SELECTION (dialog->addDialog->colour),
+		                                      &rgba);
+		colour = gdk_rgba_to_string (&rgba);
 		data->auto_highlight = gtk_hex_insert_autohighlight(gh, data->str, data->str_len, colour);
 		gtk_list_store_append(dialog->list, &iter);
 		gtk_list_store_set(dialog->list, &iter,
