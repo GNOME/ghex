@@ -127,8 +127,8 @@ create_dialog_title(GtkWidget *window, gchar *title)
  * callbacks for global menus
  */
 void
-about_cb (GtkAction *action,
-          gpointer   user_data)
+about_cb (GtkAction  *action,
+          GHexWindow *window)
 {
 	gchar *copyright;
 	gchar *license_translated;
@@ -169,7 +169,7 @@ about_cb (GtkAction *action,
 	   e.g. 1998-2012. */
 	copyright = g_strdup_printf (_("Copyright © %Id–%Id The GHex authors"), 1998, 2012);
 
-	gtk_show_about_dialog (NULL,
+	gtk_show_about_dialog (GTK_WINDOW (window),
 	                       "authors", authors,
 	                       "comments", _("A binary file editor"),
 	                       "copyright", copyright,
@@ -190,12 +190,15 @@ about_cb (GtkAction *action,
 }
 
 void
-help_cb (GtkAction *action,
-         gpointer   user_data)
+help_cb (GtkAction  *action,
+         GHexWindow *window)
 {
 	GError *error = NULL;
 
-	gtk_show_uri (NULL, "ghelp:ghex",  gtk_get_current_event_time (), &error);
+	gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (window)),
+	              "ghelp:ghex",
+	              gtk_get_current_event_time (),
+	              &error);
 
 	if (error != NULL) {
 		GtkWidget *dialog;

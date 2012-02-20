@@ -83,8 +83,8 @@ void converter_cb (GtkAction *action, gpointer user_data);
 void type_dialog_cb (GtkAction *action, gpointer user_data);
 
 /* Help menu */
-void help_cb (GtkAction *action, gpointer user_data);
-void about_cb (GtkAction *action, gpointer user_data);
+void help_cb (GtkAction *action, GHexWindow *window);
+void about_cb (GtkAction *action, GHexWindow *window);
 
 void file_list_activated_cb (GtkAction *action, gpointer user_data);
 
