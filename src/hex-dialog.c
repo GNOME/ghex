@@ -126,20 +126,24 @@ HexDialog *hex_dialog_new (void)
 }
 
 static void create_dialog_prop(HexDialogEntryTypes type,
-                               HexDialog *dialog, GtkWidget *table,
+                               HexDialog *dialog,
+                               GtkWidget *grid,
                                gint xpos, gint ypos)
 {
     GtkWidget *label;
 
     label = gtk_label_new(_(HexDialogEntries[type].name));
     gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-    gtk_table_attach_defaults(GTK_TABLE(table), label, xpos, xpos+1, ypos, ypos+1);
+    gtk_widget_set_hexpand (label, TRUE);
+    gtk_grid_attach (GTK_GRID (grid), label,
+                     xpos, ypos, 1, 1);
     gtk_widget_show(label);
 
     dialog->entry[type] = gtk_entry_new();
     gtk_editable_set_editable(GTK_EDITABLE(dialog->entry[type]), FALSE);
-    gtk_table_attach_defaults(GTK_TABLE(table), dialog->entry[type], xpos+1,
-                              xpos+2, ypos, ypos+1);
+    gtk_widget_set_hexpand (dialog->entry[type], TRUE);
+    gtk_grid_attach (GTK_GRID (grid), dialog->entry[type],
+                     xpos+1, ypos, 1, 1);
     gtk_widget_show(dialog->entry[type]);
 }
 
@@ -162,33 +166,36 @@ static void config_spinchange_cb(GtkSpinButton *spinbutton, gpointer user_data)
 GtkWidget *hex_dialog_getview(HexDialog *dialog)
 {
 
-    GtkWidget *vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    GtkWidget *vbox;
     GtkWidget *hbox;
-    GtkWidget *table = gtk_table_new(4, 6, FALSE);
+    GtkWidget *grid;
     GtkWidget *label;
     GtkAdjustment *adjuster;
     GtkWidget *spin;
-    gtk_widget_show(table);
-    gtk_widget_show(vbox);
 
-    gtk_box_pack_start(GTK_BOX(vbox), table, TRUE, FALSE, 4);
+    grid = gtk_grid_new ();
+    gtk_grid_set_row_spacing (GTK_GRID (grid), 4);
+    gtk_grid_set_column_spacing (GTK_GRID (grid), 4);
+    gtk_widget_show (grid);
 
-    gtk_table_set_row_spacings(GTK_TABLE(table), 4);
-    gtk_table_set_col_spacings(GTK_TABLE(table), 4);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_vexpand (GTK_WIDGET (vbox), FALSE);
+    gtk_box_pack_start (GTK_BOX (vbox), grid, TRUE, FALSE, 4);
+    gtk_widget_show (vbox);
 
-    create_dialog_prop(S8, dialog, table, 0, 0);
-    create_dialog_prop(US8, dialog, table, 0, 1);
-    create_dialog_prop(S16, dialog, table, 0, 2);
-    create_dialog_prop(US16, dialog, table, 0, 3);
+    create_dialog_prop (S8, dialog, grid, 0, 0);
+    create_dialog_prop (US8, dialog, grid, 0, 1);
+    create_dialog_prop (S16, dialog, grid, 0, 2);
+    create_dialog_prop (US16, dialog, grid, 0, 3);
 
-    create_dialog_prop(S32, dialog, table, 2, 0);
-    create_dialog_prop(US32, dialog, table, 2, 1);
-    create_dialog_prop(FLOAT32, dialog, table, 2, 2);
-    create_dialog_prop(FLOAT64, dialog, table, 2, 3);
+    create_dialog_prop (S32, dialog, grid, 2, 0);
+    create_dialog_prop (US32, dialog, grid, 2, 1);
+    create_dialog_prop (FLOAT32, dialog, grid, 2, 2);
+    create_dialog_prop (FLOAT64, dialog, grid, 2, 3);
 
-    create_dialog_prop(HEX, dialog, table, 4, 0);
-    create_dialog_prop(OCT, dialog, table, 4, 1);
-    create_dialog_prop(BIN, dialog, table, 4, 2);
+    create_dialog_prop (HEX, dialog, grid, 4, 0);
+    create_dialog_prop (OCT, dialog, grid, 4, 1);
+    create_dialog_prop (BIN, dialog, grid, 4, 2);
 
     hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, FALSE, 4);
@@ -209,14 +216,14 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
 
     label = gtk_label_new(_("Stream Length:"));
     gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-    gtk_table_attach_defaults(GTK_TABLE(table), label, 4, 5, 3, 4);
+    gtk_grid_attach (GTK_GRID (grid), label, 4, 3, 1, 1);
     gtk_widget_show(label);
 
     adjuster = (GtkAdjustment *)gtk_adjustment_new(8.0, 1.0, 32.0, 1.0, 8.0, 0);
     spin = gtk_spin_button_new(adjuster, 1.0, 0);
     g_signal_connect(G_OBJECT(spin), "value-changed",
                      G_CALLBACK(config_spinchange_cb), dialog);
-    gtk_table_attach_defaults(GTK_TABLE(table), spin, 5, 6, 3, 4);
+    gtk_grid_attach (GTK_GRID (grid), spin, 5, 3, 1, 1);
     gtk_widget_show(spin);
 
     return vbox;
