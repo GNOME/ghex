@@ -440,10 +440,7 @@ render_hex_highlights (GtkHex *gh,
 	state = gtk_widget_get_state_flags (gh->xdisp);
 
 	gtk_style_context_save (context);
-	if (gh->active_view == VIEW_HEX)
-		state |= GTK_STATE_FLAG_ACTIVE;
-	else
-		state |= GTK_STATE_FLAG_INSENSITIVE;
+	state |= GTK_STATE_FLAG_SELECTED;
 	gtk_style_context_set_state (context, state);
 
 	cairo_save (cr);
@@ -533,10 +530,7 @@ render_ascii_highlights (GtkHex *gh,
 	state = gtk_widget_get_state_flags (gh->adisp);
 
 	gtk_style_context_save (context);
-	if (gh->active_view == VIEW_ASCII)
-		state |= GTK_STATE_FLAG_ACTIVE;
-	else
-		state |= GTK_STATE_FLAG_INSENSITIVE;
+	state |= GTK_STATE_FLAG_SELECTED;
 	gtk_style_context_set_state (context, state);
 
 	cairo_save (cr);
