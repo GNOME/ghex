@@ -130,6 +130,7 @@ void
 about_cb (GtkAction *action,
           gpointer   user_data)
 {
+	gchar *copyright;
 	gchar *license_translated;
 
 	const gchar *authors[] = {
@@ -140,9 +141,6 @@ about_cb (GtkAction *action,
 		"Jonathon Jongsma",
 		NULL
 	};
-
-	const gchar *copyright = "Copyright © 1998 - 2006 Jaka Mo\304\215nik\n"
-	                         "Copyright © 2006 - 2012 GHex Contributors";
 
 	/* For documentation_credits */
 	#include "../help/ghex-docs.h"
@@ -166,6 +164,10 @@ about_cb (GtkAction *action,
 	                                _(license[2]),
 	                                NULL);
 
+	/* Translators: these two strings here indicate the copyright time span,
+	   e.g. 1998-2012. */
+	copyright = g_strdup_printf (_("Copyright © %Id–%Id The GHex authors"), 1998, 2012);
+
 	gtk_show_about_dialog (NULL,
 	                       "authors", authors,
 	                       "comments", _("A binary file editor"),
@@ -183,6 +185,7 @@ about_cb (GtkAction *action,
 	                       NULL);
 
 	g_free (license_translated);
+	g_free (copyright);
 }
 
 void
