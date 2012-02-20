@@ -909,12 +909,13 @@ draw_shadow (GtkWidget *widget,
 	                  gh->xdisp_width + padding.left + padding.right,
 	                  allocation.height - 2 * border);
 
+	/* Draw a frame around the ascii display + scrollbar */
 	gtk_widget_get_requisition(gh->scrollbar, &sb_req);
 	gtk_render_frame (context,
 	                  cr,
 	                  allocation.width - border - gh->adisp_width - sb_req.width - padding.left - padding.right,
 	                  border,
-	                  gh->adisp_width + padding.left + padding.right,
+	                  gh->adisp_width + sb_req.width + padding.left + padding.right,
 	                  allocation.height - 2 * border);
 }
 
@@ -1983,11 +1984,11 @@ static gboolean
 gtk_hex_draw (GtkWidget *w,
               cairo_t *cr)
 {
-	draw_shadow (w, cr);
-	
 	if (GTK_WIDGET_CLASS (parent_class)->draw)
 		(* GTK_WIDGET_CLASS (parent_class)->draw) (w, cr);
-	
+
+	draw_shadow (w, cr);
+
 	return TRUE;
 }
 
