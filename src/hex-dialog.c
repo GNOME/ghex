@@ -61,8 +61,8 @@ static struct {
     { N_("Unsigned 16 bit:"), HexConvert_US16 },
     { N_("Signed 32 bit:"), HexConvert_S32 },
     { N_("Unsigned 32 bit:"), HexConvert_US32 },
-    { N_("32 bit float:"), HexConvert_32float },
-    { N_("64 bit float:"), HexConvert_64float },
+    { N_("Float 32 bit:"), HexConvert_32float },
+    { N_("Float 64 bit:"), HexConvert_64float },
     { N_("Hexadecimal:"), HexConvert_hex },
     { N_("Octal:"), HexConvert_oct }, 
     { N_("Binary:"), HexConvert_bin }
@@ -133,7 +133,7 @@ static void create_dialog_prop(HexDialogEntryTypes type,
     GtkWidget *label;
 
     label = gtk_label_new(_(HexDialogEntries[type].name));
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+    gtk_misc_set_alignment (GTK_MISC(label), 1.0, 0.5);
     gtk_widget_set_hexpand (label, TRUE);
     gtk_grid_attach (GTK_GRID (grid), label,
                      xpos, ypos, 1, 1);
