@@ -139,6 +139,7 @@ about_cb (GtkAction *action,
 		"Shivram Upadhyayula",
 		"Rodney Dawes",
 		"Jonathon Jongsma",
+		"Kalev Lember",
 		NULL
 	};
 
