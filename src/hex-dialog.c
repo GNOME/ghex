@@ -215,7 +215,7 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     gtk_box_pack_start(GTK_BOX(hbox), dialog->config_hex, TRUE, FALSE, 4);
 
     label = gtk_label_new(_("Stream Length:"));
-    gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+    gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
     gtk_grid_attach (GTK_GRID (grid), label, 4, 3, 1, 1);
     gtk_widget_show(label);
 
