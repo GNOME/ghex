@@ -26,8 +26,6 @@ AC_TYPE_SIZE_T
 # Check for library functions.
 AC_CHECK_FUNCS([pow strstr strtoul])
 
-AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
-
 GLIB_GSETTINGS
 
 LIBGTKHEX_RELEASE=3.0
