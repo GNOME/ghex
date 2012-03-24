@@ -361,7 +361,7 @@ void set_current_prefs(PropertyUI *pui) {
 	gtk_entry_set_text(GTK_ENTRY(pui->format), offset_fmt);
 	if(strcmp(offset_fmt, "%d") == 0)
 		gtk_combo_box_set_active(GTK_COMBO_BOX(pui->offset_menu), 0);
-	else if(strcmp(offset_fmt, "%X") == 0)
+	else if(strcmp(offset_fmt, "0x%X") == 0)
 		gtk_combo_box_set_active(GTK_COMBO_BOX(pui->offset_menu), 1);
 	else {
 		gtk_combo_box_set_active(GTK_COMBO_BOX(pui->offset_menu), 2);
@@ -602,7 +602,7 @@ offset_cb(GtkWidget *w, PropertyUI *pui)
 		gtk_widget_set_sensitive(pui->format, FALSE);
 		break;
 	case 1:
-		gtk_entry_set_text(GTK_ENTRY(pui->format), "%X");
+		gtk_entry_set_text(GTK_ENTRY(pui->format), "0x%X");
 		gtk_widget_set_sensitive(pui->format, FALSE);
 		break;
 	case 2:
