@@ -8,6 +8,7 @@ SUBDIRS = data po help src icons
 
 EXTRA_DIST =			\
 	gnome-doc-utils.make	\
-	COPYING-DOCS
+	COPYING-DOCS		\
+	HACKING
 
 -include $(top_srcdir)/git.mk

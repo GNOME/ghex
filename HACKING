@@ -1,0 +1,35 @@
+HOW TO BUILD FROM GIT
+
+	First install the build dependencies (i.e. libraries that ghex uses).
+	If you're on Debian or Ubuntu you can install the build dependencies
+	of the distro packaged version of ghex using the command:
+
+		sudo apt-get build-dep ghex
+
+	If you're on Fedora, the equivalent command is:
+
+		sudo yum-builddep ghex
+
+	Other distributions have similar commands for their package managers.
+	Of course, there is no guarantee that the build dependencies of the
+	distro packaged version is the same as the git version, but in practice
+	the former gets you quite far and if not, autogen.sh will tell you
+	what is missing during the next step.
+
+	To configure and build the git version of ghex, run:
+
+		git clone git://git.gnome.org/ghex
+		cd ghex
+		./autogen.sh --prefix=~/ghex
+		make
+		make install
+
+
+	After you have done this you can run and test the built ghex binary using:
+
+		GSETTINGS_SCHEMA_DIR=~/ghex/share/glib-2.0/schemas src/ghex
+
+
+	For instructions on how to prepare a patch, see:
+
+		https://live.gnome.org/Git/Developers#Contributing_patches
