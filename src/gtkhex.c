@@ -1067,7 +1067,7 @@ static void hex_scroll_cb(GtkWidget *w, GdkEventScroll *event, GtkHex *gh) {
 
 static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 	if( (event->type == GDK_BUTTON_RELEASE) &&
-		(event->button == 1) ) {
+		(event->button == GDK_BUTTON_PRIMARY) ) {
 		if(gh->scroll_timeout != -1) {
 			g_source_remove(gh->scroll_timeout);
 			gh->scroll_timeout = -1;
@@ -1077,7 +1077,7 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 		gtk_grab_remove(w);
 		gh->button = 0;
 	}
-	else if((event->type == GDK_BUTTON_PRESS) && (event->button == 1)) {
+	else if((event->type == GDK_BUTTON_PRESS) && (event->button == GDK_BUTTON_PRIMARY)) {
 		if (!gtk_widget_has_focus (GTK_WIDGET (gh)))
 			gtk_widget_grab_focus (GTK_WIDGET(gh));
 		
@@ -1099,7 +1099,7 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 			show_cursor(gh);
 		}
 	}
-	else if((event->type == GDK_BUTTON_PRESS) && (event->button == 2)) {
+	else if((event->type == GDK_BUTTON_PRESS) && (event->button == GDK_BUTTON_MIDDLE)) {
 		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 		gchar *text;
 
@@ -1166,7 +1166,7 @@ static void ascii_scroll_cb(GtkWidget *w, GdkEventScroll *event, GtkHex *gh) {
 
 static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 	if( (event->type == GDK_BUTTON_RELEASE) &&
-		(event->button == 1) ) {
+		(event->button == GDK_BUTTON_PRIMARY) ) {
 		if(gh->scroll_timeout != -1) {
 			g_source_remove(gh->scroll_timeout);
 			gh->scroll_timeout = -1;
@@ -1176,7 +1176,7 @@ static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 		gtk_grab_remove(w);
 		gh->button = 0;
 	}
-	else if( (event->type == GDK_BUTTON_PRESS) && (event->button == 1) ) {
+	else if( (event->type == GDK_BUTTON_PRESS) && (event->button == GDK_BUTTON_PRIMARY) ) {
 		if (!gtk_widget_has_focus (GTK_WIDGET (gh)))
 			gtk_widget_grab_focus (GTK_WIDGET(gh));
 		
@@ -1195,7 +1195,7 @@ static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 			show_cursor(gh);
 		}
 	}
-	else if((event->type == GDK_BUTTON_PRESS) && (event->button == 2)) {
+	else if((event->type == GDK_BUTTON_PRESS) && (event->button == GDK_BUTTON_MIDDLE)) {
 		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 		gchar *text;
 
