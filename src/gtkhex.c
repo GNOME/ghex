@@ -2220,7 +2220,7 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	g_signal_connect(G_OBJECT(gh->adj), "value_changed",
 					 G_CALLBACK(display_scrolled), gh);
 
-	gh->scrollbar = gtk_vscrollbar_new(gh->adj);
+	gh->scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL, gh->adj);
 	gtk_fixed_put(GTK_FIXED(gh), gh->scrollbar, 0, 0);
 	gtk_widget_show(gh->scrollbar);
 }
