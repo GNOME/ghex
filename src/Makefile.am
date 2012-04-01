@@ -42,6 +42,7 @@ libgtkhex_3_la_LIBADD = \
 	$(GAILUTIL_LIBS)
 
 libgtkhex_3_la_CFLAGS = -DG_LOG_DOMAIN=\"libgtkhex-3\"
+libgtkhex_3_la_LDFLAGS = -no-undefined
 
 gtkhexinclude_HEADERS = \
 	hex-document.h 			\
