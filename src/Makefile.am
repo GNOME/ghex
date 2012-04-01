@@ -11,10 +11,10 @@ INCLUDES = \
 	$(DISABLE_DEPRECATED)
 
 ghex-resources.c: ghex.gresource.xml ghex-ui.xml
-	glib-compile-resources --target=$@ --generate-source --c-name ghex --sourcedir=$(srcdir) $<
+	$(AM_V_GEN)glib-compile-resources --target=$@ --generate-source --c-name ghex --sourcedir=$(srcdir) $<
 
 ghex-resources.h: ghex.gresource.xml
-	glib-compile-resources --target=$@ --generate-header --c-name ghex --sourcedir=$(srcdir) $<
+	$(AM_V_GEN)glib-compile-resources --target=$@ --generate-header --c-name ghex --sourcedir=$(srcdir) $<
 
 BUILT_SOURCES = \
 	ghex-resources.c	\
