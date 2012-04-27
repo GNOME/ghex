@@ -48,13 +48,29 @@ gtkhexinclude_HEADERS = \
 	hex-document.h 			\
 	gtkhex.h
 
-ghex_SOURCES = \
-	hex-document-ui.c preferences.c findreplace.c converter.c	\
-	config.c main.c ui.c chartable.c				\
-	print.c ghex-window.c ghex-window.h				\
-	factory.c factory.h hex-dialog.c hex-dialog.h			\
-	configuration.h preferences.h findreplace.h print.h		\
-	converter.h chartable.h ui.h
+ghex_SOURCES =			\
+	chartable.c		\
+	chartable.h		\
+	config.c		\
+	configuration.h		\
+	converter.c		\
+	converter.h		\
+	factory.c		\
+	factory.h		\
+	findreplace.c		\
+	findreplace.h		\
+	ghex-window.c		\
+	ghex-window.h		\
+	hex-dialog.c		\
+	hex-dialog.h		\
+	hex-document-ui.c	\
+	main.c			\
+	preferences.c		\
+	preferences.h		\
+	print.c			\
+	print.h			\
+	ui.c			\
+	ui.h
 
 EXTRA_DIST = \
 	ghex-ui.xml \
