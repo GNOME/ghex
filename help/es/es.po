@@ -2,14 +2,14 @@
 # Spanish translation for ghex manual
 #
 # Jorge González <jorgegonz@svn.gnome.org>, 2008, 2010.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex.help.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-04 14:42+0000\n"
-"PO-Revision-Date: 2011-09-15 12:30+0200\n"
+"POT-Creation-Date: 2012-05-16 09:26+0000\n"
+"PO-Revision-Date: 2012-05-16 16:31+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,23 +18,1281 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: C/legal.xml:2(para)
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+#| msgid "translator-credits"
+msgctxt "_"
+msgid "translator-credits"
+msgstr ""
+"Daniel Mustieles <daniel.mustieles@ie.edu>, 2008-2012\n"
+"QA: Jorge González <jorgegonz@svn.gnome.org>, 2008-2010"
+
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#.
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/index.docbook:222(imagedata)
+#| msgid ""
+#| "@@image: 'figures/ghex_window_empty.png'; "
+#| "md5=89b78d734e989c368b82592f385db8dd"
+msgctxt "_"
+msgid ""
+"external ref='figures/ghex_window_empty.png' "
+"md5='89b78d734e989c368b82592f385db8dd'"
+msgstr ""
+"external ref='figures/ghex_window_empty.png' "
+"md5='89b78d734e989c368b82592f385db8dd'"
+
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#.
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/index.docbook:248(imagedata)
+#| msgid ""
+#| "@@image: 'figures/ghex_window_open.png'; "
+#| "md5=9c4ae66bb45a43803e1f70abfaede88b"
+msgctxt "_"
+msgid ""
+"external ref='figures/ghex_window_open.png' "
+"md5='9c4ae66bb45a43803e1f70abfaede88b'"
+msgstr ""
+"external ref='figures/ghex_window_open.png' "
+"md5='9c4ae66bb45a43803e1f70abfaede88b'"
+
+#: C/index.docbook:23(articleinfo/title)
+msgid "User manual for GHex"
+msgstr "Manual del usuario de GHex."
+
+#: C/index.docbook:26(abstract/para)
+msgid ""
+"GHex is a simple binary editor. It lets users view and edit a binary file in "
+"both hex and ascii with a multiple level undo/redo mechanism. Features "
+"include find and replace functions, conversion between binary, octal, "
+"decimal and hexadecimal values, and use of an alternative, user-configurable "
+"MDI concept that lets users edit multiple documents with multiple views of "
+"each."
+msgstr ""
+"GHex es un sencillo editor binario. Permite a los usuarios ver y editar un "
+"archivo binario en ascii y y en hexadecimal con un mecanismo de niveles "
+"múltiples de deshacer/rehacer. Entre sus características incluye buscar y "
+"reemplazar funciones, convertir entre valores binarios, octales, decimales y "
+"hexadecimales y el uso de una alternativa, concepto MDI configurable por el "
+"usuario que permite a los usuarios editar múltiples documentos con múltiples "
+"vistas de cada uno."
+
+#: C/index.docbook:36(articleinfo/copyright)
+msgid ""
+"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
+"Microsystems</holder>"
+msgstr ""
+"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
+"Microsystems</holder>"
+
+#: C/index.docbook:42(articleinfo/copyright)
+msgid "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+msgstr "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+
+#: C/index.docbook:54(publisher/publishername)
+#: C/index.docbook:99(revdescription/para)
+#: C/index.docbook:107(revdescription/para)
+#: C/index.docbook:115(revdescription/para)
+#: C/index.docbook:123(revdescription/para)
+#: C/index.docbook:131(revdescription/para)
+#: C/index.docbook:139(revdescription/para)
+#: C/index.docbook:149(revdescription/para)
+msgid "GNOME Documentation Project"
+msgstr "Proyecto de documentación de GNOME"
+
+#: C/index.docbook:63(authorgroup/author)
+msgid ""
+"<firstname>Sun</firstname> <surname>GNOME Documentation Team</surname> "
+"<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
+"affiliation>"
+msgstr ""
+"<firstname>Sun</firstname> <surname>Equipo de documentación de GNOME</"
+"surname> <affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
+"affiliation>"
+
+#: C/index.docbook:71(authorgroup/author)
+msgid ""
+"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
+"<orgname>GNOME Documentation Project</orgname> <address> <email>jaka@gnu."
+"org</email> </address> </affiliation>"
+msgstr ""
+"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
+"<orgname>Equipo de documentación de GNOME</orgname> <address> "
+"<email>jaka@gnu.org</email> </address> </affiliation>"
+
+#: C/index.docbook:98(revdescription/para)
+#: C/index.docbook:106(revdescription/para)
+#: C/index.docbook:114(revdescription/para)
+#: C/index.docbook:122(revdescription/para)
+#: C/index.docbook:130(revdescription/para)
+#: C/index.docbook:138(revdescription/para)
+msgid "Sun GNOME Documentation Team"
+msgstr "Equipo de documentación de GNOME de Sun"
+
+#: C/index.docbook:94(revhistory/revision)
+msgid ""
+"<revnumber>GHex Manual V2.5</revnumber> <date>December 2005</date> <_:"
+"revdescription-1/>"
+msgstr ""
+"<revnumber>Manual de GHex V2.5</revnumber> <date>Diciembre 2005</date> <_:"
+"revdescription-1/>"
+
+#: C/index.docbook:102(revhistory/revision)
+msgid ""
+"<revnumber>GHex Manual V2.4</revnumber> <date>April 2003</date> <_:"
+"revdescription-1/>"
+msgstr ""
+"<revnumber>Manual de GHex V2.4</revnumber> <date>Abril 2003</date> <_:"
+"revdescription-1/>"
+
+#: C/index.docbook:110(revhistory/revision)
+msgid ""
+"<revnumber>GHex Manual V2.3</revnumber> <date>August 2002</date> <_:"
+"revdescription-1/>"
+msgstr ""
+"<revnumber>Manual de GHex V2.3</revnumber> <date>Agosto 2002</date> <_:"
+"revdescription-1/>"
+
+#: C/index.docbook:118(revhistory/revision)
+msgid ""
+"<revnumber>GHex Manual V2.2</revnumber> <date>August 2002</date> <_:"
+"revdescription-1/>"
+msgstr ""
+"<revnumber>Manual de GHex V2.2</revnumber> <date>Agosto 2002</date> <_:"
+"revdescription-1/>"
+
+#: C/index.docbook:126(revhistory/revision)
+msgid ""
+"<revnumber>GHex Manual V2.1</revnumber> <date>July 2002</date> <_:"
+"revdescription-1/>"
+msgstr ""
+"<revnumber>Manual de GHex V2.1</revnumber> <date>Julio 2002</date> <_:"
+"revdescription-1/>"
+
+#: C/index.docbook:134(revhistory/revision)
+msgid ""
+"<revnumber>GHex Manual V2.0</revnumber> <date>March 2002</date> <_:"
+"revdescription-1/>"
+msgstr ""
+"<revnumber>Manual de GHex V2.0</revnumber> <date>Marzo 2002</date> <_:"
+"revdescription-1/>"
+
+#: C/index.docbook:146(revdescription/para)
+msgid "Jaka Mocnik <email>jaka@gnu.org</email>"
+msgstr "Jaka Mocnik <email>jaka@gnu.org</email>"
+
+#: C/index.docbook:142(revhistory/revision)
+msgid ""
+"<revnumber>GHex Manual V1.0</revnumber> <date>2000</date> <_:revdescription-"
+"1/>"
+msgstr ""
+"<revnumber>Manual de GHex V1.0</revnumber> <date>2000</date> <_:"
+"revdescription-1/>"
+
+#: C/index.docbook:154(articleinfo/releaseinfo)
+msgid "This manual describes version 2.19 of GHex."
+msgstr "Este manual describe la versión 2.19 de GHex."
+
+#: C/index.docbook:157(legalnotice/title)
+msgid "Feedback"
+msgstr "Comentarios"
+
+#: C/index.docbook:158(legalnotice/para)
+msgid ""
+"To report a bug or make a suggestion regarding the GHex application or this "
+"manual, follow the directions in the <ulink url=\"ghelp:gnome-feedback\" "
+"type=\"help\">GNOME Feedback Page</ulink>."
+msgstr ""
+"Para informar sobre un fallo o hacer sugerencias sobre la GHex o sobre este "
+"manual, siga las indicaciones en la <ulink url=\"ghelp:gnome-feedback\" type="
+"\"help\">Página de comentarios de GNOME</ulink>."
+
+#: C/index.docbook:164(article/indexterm)
+msgid "<primary>GHex</primary>"
+msgstr "<primary>GHex</primary>"
+
+#: C/index.docbook:174(sect1/title)
+msgid "Introduction"
+msgstr "Introducción"
+
+#: C/index.docbook:175(sect1/para)
+msgid ""
+"The <application>GHex</application> application enables you to perform the "
+"following actions:"
+msgstr ""
+"La aplicación <application>Editor hexadecimal de GNOME</application> le "
+"permite ejecutar las siguientes acciones:"
+
+#: C/index.docbook:177(listitem/para)
+msgid "View a file in ASCII or hexadecimal format simultaneously."
+msgstr ""
+"Visualizar un archivo en formato ASCII y hexadecimal de forma simultánea."
+
+#: C/index.docbook:179(listitem/para)
+msgid "Edit a file in either ASCII or hexadecimal format."
+msgstr "Editar un archivo en formato ASCII o hexadecimal."
+
+#: C/index.docbook:187(sect1/title)
+msgid "Getting Started"
+msgstr "Procedimientos iniciales"
+
+#: C/index.docbook:192(sect2/title)
+msgid "To Start GHex"
+msgstr "Inicio de Editor Hexadecimal de GNOME"
+
+#: C/index.docbook:194(sect2/para)
+msgid "You can start <application>GHex</application> in the following ways:"
+msgstr ""
+"Para iniciar <application>Editor Hexadecimal de GNOME</application>, siga "
+"los siguientes pasos:"
+
+#: C/index.docbook:197(varlistentry/term)
+msgid "<guimenu>Applications</guimenu> menu"
+msgstr "Menú <guimenu>Aplicaciones</guimenu>"
+
+#: C/index.docbook:199(listitem/para)
+msgid ""
+"Choose <menuchoice><guisubmenu>Accessories</guisubmenu><guimenuitem>Hex "
+"Editor</guimenuitem></menuchoice>."
+msgstr ""
+"Seleccione <menuchoice><guisubmenu>Accesorios</"
+"guisubmenu><guimenuitem>Editor hexadecimal</guimenuitem></menuchoice>."
+
+#: C/index.docbook:203(varlistentry/term)
+msgid "Command line"
+msgstr "Línea de comandos"
+
+#: C/index.docbook:205(listitem/para)
+msgid "Execute the following command: <command>ghex</command>"
+msgstr "Ejecute el siguiente comando: <command>ghex</command>"
+
+#: C/index.docbook:212(sect2/title)
+msgid "When You Start GHex"
+msgstr "Al iniciar Editor Hexadecimal de GNOME"
+
+#: C/index.docbook:214(sect2/para)
+msgid ""
+"When you start <application>GHex</application>, the following window is "
+"displayed."
+msgstr ""
+"Al iniciar <application>Editor Hexadecimal de GNOME</application>, se "
+"muestra la siguiente ventana."
+
+#: C/index.docbook:218(figure/title)
+msgid "GHex Window Before You Open a File"
+msgstr "Ventana de Editor Hexadecimal de GNOME antes de abrir un archivo"
+
+#: C/index.docbook:220(screenshot/mediaobject)
+msgid ""
+"<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
+"\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window before "
+"you open a file.</phrase> </textobject>"
+msgstr ""
+"<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
+"\"PNG\"/> </imageobject> <textobject> <phrase> Muestra la ventana principal "
+"de GHex antes de abrir un archivo.</phrase> </textobject>"
+
+#: C/index.docbook:238(sect2/title)
+msgid "To Open a File"
+msgstr "Abrir un archivo"
+
+#: C/index.docbook:239(sect2/para)
+msgid ""
+"To open a file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Open</"
+"guimenuitem></menuchoice>. Select the file that you want to open, then click "
+"<guibutton>OK</guibutton>. You can open multiple files in <application>GHex</"
+"application>. <application>GHex</application> displays each file in a new "
+"window."
+msgstr ""
+"Para abrir un archivo, seleccione <menuchoice><guimenu>Archivo</"
+"guimenu><guimenuitem>Abrir</guimenuitem></menuchoice>. Seleccione el archivo "
+"que desea abrir y luego haga clic en <guibutton>Aceptar</guibutton>. Puede "
+"abrir múltiples archivos en <application>Editor hexadecimal de GNOME</"
+"application>. <application>Editor Hexadecimal de GNOME</application> muestra "
+"cada archivo en una nueva ventana."
+
+#: C/index.docbook:240(sect2/para)
+msgid ""
+"When you open a file in <application>GHex</application>, the application "
+"displays the file in the following window."
+msgstr ""
+"Al abrir un archivo en <application>Editor hexadecimal de GNOME</"
+"application>, la aplicación muestra dicho archivo en la siguiente ventana."
+
+#: C/index.docbook:244(figure/title)
+msgid "GHex Window with an Open File"
+msgstr "Ventana de Editor Hexadecimal de GNOME con un archivo abierto"
+
+#: C/index.docbook:246(screenshot/mediaobject)
+msgid ""
+"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
+"\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window with an "
+"open file</phrase> </textobject>"
+msgstr ""
+"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
+"\"PNG\"/> </imageobject> <textobject> <phrase>Muestra la ventana principal "
+"de GHex con un archivo abierto</phrase> </textobject>"
+
+#: C/index.docbook:258(sect2/para)
+msgid ""
+"The <application>GHex</application> window contains the following elements:"
+msgstr ""
+"La ventana de <application>Editor Hexadecimal de GNOME</application> "
+"contiene los elementos siguientes:"
+
+#: C/index.docbook:261(varlistentry/term)
+msgid "Menubar"
+msgstr "Barra de menús"
+
+#: C/index.docbook:263(listitem/para)
+msgid ""
+"The menus on the menubar contain all the commands that you need to work with "
+"files in <application>GHex</application>."
+msgstr ""
+"Los menús que aparecen en la barra de menú contienen todos los comandos "
+"necesarios para trabajar con archivos en <application>Editor Hexadecimal de "
+"GNOME</application>."
+
+#: C/index.docbook:267(varlistentry/term)
+msgid "Cursor offsets column"
+msgstr "Una columna de desplazamientos del cursor"
+
+#: C/index.docbook:269(listitem/para)
+msgid ""
+"The cursor offset is the distance between the beginning of the file and the "
+"first byte in each line. By default, <application>GHex</application> "
+"displays the cursor offsets column to the left of the hexadecimal view."
+msgstr ""
+"El desplazamiento del cursor es la distancia entre el comienzo del archivo y "
+"el primer byte de cada línea. De manera predeterminada, <application>Editor "
+"Hexadecimal de GNOME</application> muestra la columna de desplazamientos del "
+"cursor en la parte izquierda de la vista hexadecimal."
+
+#: C/index.docbook:273(varlistentry/term)
+msgid "Display pane on left side"
+msgstr "Panel de visualización en la parte izquierda"
+
+#: C/index.docbook:275(listitem/para)
+msgid ""
+"The display pane on the left side of the display area displays a hexadecimal "
+"view of the file."
+msgstr ""
+"El panel de visualización ubicado en la parte izquierda del área de "
+"visualización muestra una vista hexadecimal del archivo."
+
+#: C/index.docbook:279(varlistentry/term)
+msgid "Display pane on right side"
+msgstr "Panel de visualización en la parte derecha"
+
+#: C/index.docbook:281(listitem/para)
+msgid ""
+"The display pane on the right side of the display area displays an ASCII "
+"view of the file."
+msgstr ""
+"El panel de visualización ubicado en la parte derecha del área de "
+"visualización muestra una vista ASCII del archivo."
+
+#: C/index.docbook:285(varlistentry/term)
+msgid "Type conversion dialog"
+msgstr "Diálogo de conversión de tipo"
+
+#: C/index.docbook:287(listitem/para)
+msgid ""
+"The type conversion dialog below the display area displays the value of the "
+"selected character in several different numeric types."
+msgstr ""
+"El cuadro de diálogo de conversión de tipo debajo del área de visualización "
+"muestra el valor del carácter seleccionado en distintos formatos numéricos."
+
+#: C/index.docbook:297(sect1/title)
+msgid "Usage"
+msgstr "Uso"
+
+#: C/index.docbook:302(sect2/title)
+msgid "To Edit a File"
+msgstr "Editar un archivo"
+
+#: C/index.docbook:303(sect2/para)
+msgid "To edit a file, perform the following steps:"
+msgstr "Para editar un archivo, ejecute los siguientes pasos:"
+
+#: C/index.docbook:305(listitem/para)
+msgid ""
+"Click in the hexadecimal or ASCII view of the file. The view in which the "
+"cursor is active displays a full cursor. The view in which the cursor is not "
+"active displays an outline of the cursor."
+msgstr ""
+"Pulse en la vista hexadecimal o ASCII del archivo. La vista en la que el "
+"cursor está activo muestra un cursor completo. La vista en la que el cursor "
+"no está activo muestra el contorno del cursor."
+
+#: C/index.docbook:307(listitem/para)
+msgid "Use any of the following methods to move the cursor around the file:"
+msgstr ""
+"Use cualquiera de los siguientes métodos para mover el cursor por el archivo:"
+
+#: C/index.docbook:309(listitem/para)
+msgid ""
+"Use the scrollbar on the window or the arrow keys on the keyboard to scroll "
+"through the file."
+msgstr ""
+"Use la barra de desplazamiento de la ventana o las flechas del teclado para "
+"desplazarse a lo largo del archivo."
+
+#: C/index.docbook:311(listitem/para)
+msgid ""
+"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Goto Byte</"
+"guimenuitem></menuchoice>, type the cursor offset as a decimal or "
+"hexadecimal value, then click <guibutton>OK</guibutton>. The format of the "
+"hexadecimal value must be 0x followed by the offset, for example 0x3."
+msgstr ""
+"Seleccione <menuchoice><guimenu>Editar</guimenu><guimenuitem>Ir a byte</"
+"guimenuitem></menuchoice>, introduzca el desplazamiento del cursor como un "
+"valor decimal o hexadecimal y, luego, haga clic en <guibutton>Aceptar</"
+"guibutton>. El formato del valor hexadecimal debe ser 0x seguido del "
+"desplazamiento, por ejemplo, 0x3."
+
+#: C/index.docbook:315(listitem/para)
+msgid ""
+"Edit the ASCII format in the same way you edit a normal text file. To edit "
+"the hexadecimal format, use the values 0 to 9 and a to f."
+msgstr ""
+"Edite el formato ASCII del mismo modo que edita un archivo de texto normal. "
+"Para editar el formato hexadecimal, use los valores del 0 a 9 y de la a a la "
+"f."
+
+#: C/index.docbook:318(sect2/para)
+msgid ""
+"To insert data and not overwrite existing data, choose "
+"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Insert Mode</guimenuitem></"
+"menuchoice>."
+msgstr ""
+"Para insertar datos sin sobrescribir los existentes, seleccione "
+"<menuchoice><guimenu>Editar</guimenu><guimenuitem>Modo Insertar</"
+"guimenuitem></menuchoice>."
+
+#: C/index.docbook:319(sect2/para)
+msgid ""
+"To cut, copy, and paste data, choose <menuchoice><guimenu>Edit</"
+"guimenu><guimenuitem>Cut</guimenuitem></menuchoice>, "
+"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></"
+"menuchoice>, and <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</"
+"guimenuitem></menuchoice>."
+msgstr ""
+"Para cortar, copiar, y pegar datos elija <menuchoice><guimenu>Editar</"
+"guimenu><guimenuitem>Cortar</guimenuitem></menuchoice>, "
+"<menuchoice><guimenu>Editar</guimenu><guimenuitem>Copiar</guimenuitem></"
+"menuchoice>, y <menuchoice><guimenu>Editar</guimenu><guimenuitem>Pegar</"
+"guimenuitem></menuchoice>."
+
+#: C/index.docbook:320(sect2/para)
+msgid ""
+"To undo an edit, choose <menuchoice><guimenu>Edit</"
+"guimenu><guimenuitem>Undo</guimenuitem></menuchoice>. To redo an edit, "
+"choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Redo</guimenuitem></"
+"menuchoice>. The number of previous edits that you can undo is determined by "
+"the <guilabel>Maximum number of undo levels</guilabel> setting in the <xref "
+"linkend=\"ghex-prefs-editing\"/> tabbed section of the "
+"<guilabel>Preferences</guilabel> dialog."
+msgstr ""
+"Para deshacer y editar elija <menuchoice><guimenu>Editar</"
+"guimenu><guimenuitem>Deshacer</guimenuitem></menuchoice>. Para rehacer una "
+"acción elija <menuchoice><guimenu>Editar</guimenu><guimenuitem>Rehacer</"
+"guimenuitem></menuchoice>. El número de ediciones previas que puede deshacer "
+"está determinado en la configuración de <guilabel>Número máximo de niveles "
+"de deshacer</guilabel> en la sección en pestañas <xref linkend=\"ghex-prefs-"
+"editing\"/> del cuadro de diálogo<guilabel>Preferences</guilabel> ."
+
+#: C/index.docbook:326(sect2/title)
+msgid "To Save a File"
+msgstr "Guardar un archivo"
+
+#: C/index.docbook:327(sect2/para)
+msgid "You can save a file in the following ways:"
+msgstr "Para guardar un archivo, tiene dos opciones:"
+
+#: C/index.docbook:329(listitem/para)
+msgid ""
+"To save changes to the current file, choose <menuchoice><guimenu>File</"
+"guimenu><guimenuitem>Save</guimenuitem></menuchoice>."
+msgstr ""
+"Para guardar cambios en el archivo actual, seleccione "
+"<menuchoice><guimenu>Archivo</guimenu><guimenuitem>Guardar</guimenuitem></"
+"menuchoice>."
+
+#: C/index.docbook:331(listitem/para)
+msgid ""
+"To save the current file under a new filename, choose "
+"<menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></"
+"menuchoice>. Enter a name for the file in the <guilabel>Select a file to "
+"save buffer as</guilabel> dialog, then click <guibutton>OK</guibutton>."
+msgstr ""
+"Para guardar el archivo actual bajo un nuevo nombre, seleccione "
+"<menuchoice><guimenu>Archivo</guimenu><guimenuitem>Guardar como</"
+"guimenuitem></menuchoice>. Introduzca un nombre para el archivo en el cuadro "
+"de diálogo <guilabel>Seleccione el archivo donde quiere guardar el buffer "
+"actual</guilabel> y luego haga clic en <guibutton>Aceptar</guibutton>."
+
+#: C/index.docbook:339(sect2/title)
+msgid "To Revert to the Last Saved Version of a File"
+msgstr "Revertir la última versión guardada de un archivo"
+
+#: C/index.docbook:340(sect2/para)
+msgid ""
+"To revert to the last version of the current file that you saved and undo "
+"all of the edits that you made to the file since you last saved the file, "
+"choose <menuchoice><guimenu>File</guimenu><guimenuitem>Revert</guimenuitem></"
+"menuchoice>, then click <guibutton>Yes</guibutton> in the "
+"<guilabel>Question</guilabel> dialog."
+msgstr ""
+"Para revertir a la última versión del archivo actual que haya guardado, y "
+"deshacer todas las ediciones que realizó en el archivo desde que lo guardó, "
+"elija <menuchoice><guimenu>Archivo</guimenu><guimenuitem>Revertir</"
+"guimenuitem></menuchoice>, después pulse <guibutton>Sí</guibutton> en el "
+"cuadro de diálogo <guilabel>Pregunta</guilabel>."
+
+#: C/index.docbook:346(sect2/title)
+msgid "To Find Data in a File"
+msgstr "Buscar datos en un archivo"
+
+#: C/index.docbook:347(sect2/para)
+msgid ""
+"To search a file for a hexadecimal or ASCII string, perform the following "
+"steps:"
+msgstr ""
+"Para buscar una cadena hexadecimal o ASCII en un archivo, ejecute los "
+"siguientes pasos:"
+
+#: C/index.docbook:349(listitem/para)
+msgid ""
+"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find</guimenuitem></"
+"menuchoice>."
+msgstr ""
+"Seleccione <menuchoice><guimenu>Editar</guimenu><guimenuitem>Buscar</"
+"guimenuitem></menuchoice>."
+
+#: C/index.docbook:351(listitem/para)
+msgid ""
+"In the <guilabel>Find Data</guilabel> dialog, choose one of the following "
+"options:"
+msgstr ""
+"En el cuadro de diálogo <guilabel>Buscar los datos</guilabel>, seleccione "
+"una de las siguientes opciones:"
+
+#: C/index.docbook:353(listitem/para) C/index.docbook:402(listitem/para)
+#| msgid "Search for hex data"
+msgid "<guilabel>Search for hex data</guilabel>"
+msgstr "<guilabel>Buscar datos hexadecimales</guilabel>"
+
+#: C/index.docbook:355(listitem/para) C/index.docbook:404(listitem/para)
+#| msgid "Search for ASCII data"
+msgid "<guilabel>Search for ASCII data</guilabel>"
+msgstr "<guilabel>Buscar datos ASCII</guilabel>"
+
+#: C/index.docbook:359(listitem/para) C/index.docbook:408(listitem/para)
+msgid "Type the string that you want to find."
+msgstr "Escriba la cadena que desea encontrar."
+
+#: C/index.docbook:361(listitem/para) C/index.docbook:381(listitem/para)
+msgid ""
+"Click <guibutton>Find Next</guibutton> to find the next occurrence of the "
+"string."
+msgstr ""
+"Pulse en <guibutton>Buscar siguiente</guibutton> para buscar la siguiente "
+"aparición de la cadena."
+
+#: C/index.docbook:363(listitem/para) C/index.docbook:383(listitem/para)
+msgid ""
+"Click <guibutton>Find Previous</guibutton> to find the previous occurrence "
+"of the string."
+msgstr ""
+"Pulse en <guibutton>Buscar anterior</guibutton> para buscar la aparición "
+"anterior de la cadena."
+
+#: C/index.docbook:365(listitem/para) C/index.docbook:415(listitem/para)
+#: C/index.docbook:430(listitem/para)
+msgid ""
+"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find Data</"
+"guilabel> dialog."
+msgstr ""
+"Pulse en <guibutton>Cancelar</guibutton> para cerrar el diálogo "
+"<guilabel>Buscar datos</guilabel>."
+
+#: C/index.docbook:373(sect2/title)
+msgid "To Perform an Advanced Find"
+msgstr "Realizar una búsqueda avanzada"
+
+#: C/index.docbook:374(sect2/para)
+msgid "To perform an advanced find, perform the following steps:"
+msgstr "Para realizar una busqueda avanzada, ejecute los siguientes pasos:"
+
+#: C/index.docbook:376(listitem/para) C/index.docbook:396(listitem/para)
+#: C/index.docbook:424(listitem/para)
+msgid ""
+"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Advanced Find</"
+"guimenuitem></menuchoice>."
+msgstr ""
+"Seleccione <menuchoice><guimenu>Editar</guimenu><guimenuitem>Búsqueda "
+"avanzada</guimenuitem></menuchoice>."
+
+#: C/index.docbook:378(listitem/para)
+msgid ""
+"In the <guilabel>Find Data</guilabel> dialog, select the required search "
+"criteria. For information about how to add new search criteria, see <xref "
+"linkend=\"ghex-search-criteria-add\"/>."
+msgstr ""
+"En el cuadro de diálogo <guilabel>Buscar datos</guilabel>, seleccione el "
+"criterio de búsqueda requerido. Para obtener información acerca de cómo "
+"añadir nuevos criterios de búsqueda, consulte <xref linkend=\"ghex-search-"
+"criteria-add\"/>."
+
+#: C/index.docbook:385(listitem/para)
+msgid ""
+"Click <guibutton>Close</guibutton> to close the <guilabel>Find Data</"
+"guilabel> dialog."
+msgstr ""
+"Pulse en <guibutton>Cerrar</guibutton> para cerrar el diálogo "
+"<guilabel>Buscar datos</guilabel>."
+
+#: C/index.docbook:393(sect2/title)
+msgid "To Add Search Criteria"
+msgstr "Añadir criterios de búsqueda"
+
+#: C/index.docbook:394(sect2/para)
+msgid "To add search criteria, perform the following steps:"
+msgstr "Para añadir criterios de búsqueda, realice los siguientes pasos:"
+
+#: C/index.docbook:398(listitem/para)
+msgid ""
+"In the <guilabel>Find Data</guilabel> dialog, click <guibutton>Add New</"
+"guibutton>."
+msgstr ""
+"Pulse en <guibutton>Añadir nuevo</guibutton> dentro del cuadro de diálogo "
+"<guilabel>Buscar datos</guilabel>."
+
+#: C/index.docbook:400(listitem/para)
+msgid ""
+"In the <guilabel>Find Data: Add Search</guilabel> dialog, choose one of the "
+"following options:"
+msgstr ""
+"En el cuadro de diálogo <guilabel>Añadir búsqueda</guilabel>, seleccione una "
+"de las siguientes opciones:"
+
+#: C/index.docbook:410(listitem/para)
+msgid ""
+"Use the color wheel or the spin boxes to select a color to highlight the "
+"search criteria."
+msgstr ""
+"Use la rueda de color o las casillas de selección para escoger un color para "
+"resaltar loscriterios de búsqueda."
+
+#: C/index.docbook:413(listitem/para)
+msgid "Click <guibutton>Add</guibutton>."
+msgstr "Pulse en <guibutton>Añadir</guibutton>."
+
+#: C/index.docbook:421(sect2/title)
+msgid "To Remove Search Criteria"
+msgstr "Eliminar criterios de búsqueda"
+
+#: C/index.docbook:422(sect2/para)
+msgid "To remove search criteria, perform the following steps:"
+msgstr "Para eliminar un criterio de búsqueda, siga los siguientes pasos:"
+
+#: C/index.docbook:426(listitem/para)
+msgid ""
+"In the <guilabel>Find Data</guilabel> dialog, select the search criteria "
+"that you want to remove."
+msgstr ""
+"En el cuadro de diálogo <guilabel>Buscar los datos</guilabel>, seleccione el "
+"criterio de búsqueda que desea eliminar."
+
+#: C/index.docbook:428(listitem/para)
+msgid "Click <guibutton>Remove Selected</guibutton>."
+msgstr "Pulse en <guibutton>Eliminar seleccionados</guibutton>."
+
+#: C/index.docbook:438(sect2/title)
+msgid "To Find and Replace Data in a File"
+msgstr "Buscar y reemplazar datos de un archivo"
+
+#: C/index.docbook:439(sect2/para)
+msgid ""
+"To search a file for a hexadecimal or ASCII string and then replace the "
+"string, perform the following steps:"
+msgstr ""
+"Para buscar una cadena hexadecimal o ASCII en un archivo y luego "
+"reemplazarla, ejecute los siguientes pasos:"
+
+#: C/index.docbook:441(listitem/para)
+msgid ""
+"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Replace</"
+"guimenuitem></menuchoice>."
+msgstr ""
+"Seleccione <menuchoice><guimenu>Editar</guimenu><guimenuitem>Reemplazar</"
+"guimenuitem></menuchoice>."
+
+#: C/index.docbook:443(listitem/para)
+msgid ""
+"In the <guilabel>Find &amp; Replace Data</guilabel> dialog, choose one of "
+"the following options:"
+msgstr ""
+"En la ventana de diálogo <guilabel>Buscar &amp; reemplazar datos</guilabel>, "
+"seleccione una de las siguientes opciones:"
+
+#: C/index.docbook:445(listitem/para)
+#| msgid "Replace hex data"
+msgid "<guilabel>Replace hex data</guilabel>"
+msgstr "<guilabel>Reemplazar datos hexadecimales</guilabel>"
+
+#: C/index.docbook:447(listitem/para)
+#| msgid "Replace ASCII data"
+msgid "<guilabel>Replace ASCII data</guilabel>"
+msgstr "<guilabel>Reemplazar datos ASCII</guilabel>"
+
+#: C/index.docbook:451(listitem/para)
+msgid "In the first text box, type the string that you want to find."
+msgstr "En el primer cuadro de texto, escriba la cadena que desea encontrar."
+
+#: C/index.docbook:453(listitem/para)
+msgid ""
+"In the second text box, type the string that you want to use to replace the "
+"string that you find."
+msgstr ""
+"En el segundo cuadro de texto, escriba la cadena con la que desea reemplazar "
+"la cadena que está buscando."
+
+#: C/index.docbook:455(listitem/para)
+msgid "Click <guibutton>Find Next</guibutton>."
+msgstr "Pulse en <guibutton>Buscar el siguiente</guibutton>."
+
+#: C/index.docbook:457(listitem/para)
+msgid ""
+"Click <guibutton>Replace</guibutton> to replace the current occurrence of "
+"the string or click <guibutton>Replace All</guibutton> to replace all "
+"occurrences of the string."
+msgstr ""
+"Pulse en <guibutton>Reemplazar</guibutton> para reemplazar la aparición "
+"actual de la cadena, o bien en <guibutton>Reemplazar todo</guibutton> para "
+"reemplazar todas las apariciones de la cadena."
+
+#: C/index.docbook:459(listitem/para)
+msgid ""
+"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find &amp; "
+"Replace Data</guilabel> dialog."
+msgstr ""
+"Pulse en <guibutton>Cancelar</guibutton> para cerrar el diálogo "
+"<guilabel>Buscar y reemplazar datos</guilabel>"
+
+#: C/index.docbook:467(sect2/title)
+msgid "To Add or Remove Additional Views of a File"
+msgstr "Añadir o quitar vistas adicionales de un archivo"
+
+#: C/index.docbook:468(sect2/para)
+msgid ""
+"To add another view of the current file to your <application>GHex</"
+"application> window, choose <menuchoice><guimenu>View</"
+"guimenu><guimenuitem>Add View</guimenuitem></menuchoice>."
+msgstr ""
+"Para añdir otra vista del archivo actual a la ventana de <application>Editor "
+"Hexadecimal de GNOME</application>, seleccione <menuchoice><guimenu>Ver</"
+"guimenu><guimenuitem>Añadir vista</guimenuitem></menuchoice>."
+
+#: C/index.docbook:469(sect2/para)
+msgid ""
+"To remove a view of the current file, choose <menuchoice><guimenu>View</"
+"guimenu><guimenuitem>Remove View</guimenuitem></menuchoice>. If you remove "
+"the last view that is open, the application exits."
+msgstr ""
+"Para quitar una vista del archivo actual, seleccione "
+"<menuchoice><guimenu>Ver</guimenu><guimenuitem>Eliminar vista</guimenuitem></"
+"menuchoice>. Al cerrar el ultimo archivo abierto, también se cerrará la "
+"aplicación."
+
+#: C/index.docbook:475(sect2/title)
+msgid "To Change the Data Group Type"
+msgstr "Cambiar el tipo de grupo de datos"
+
+#: C/index.docbook:476(sect2/para)
+msgid ""
+"To change how <application>GHex</application> displays the hexadecimal "
+"content of a file in the <application>GHex</application> window, choose "
+"<menuchoice><guimenu>View</guimenu><guimenuitem>Group Data As</guimenuitem></"
+"menuchoice>, then select one of the following menu items:"
+msgstr ""
+"Para modificar la forma en que <application>GHex</application> muestra el "
+"contenidohexadecimal de un archivo en la ventana de <application>GHex</"
+"application>, seleccione<menuchoice><guimenu>Ver</"
+"guimenu><guimenuitem>Agrupar datos como</guimenuitem></menuchoice>, y "
+"seleccione una de las siguientes opciones:"
+
+#: C/index.docbook:478(listitem/para) C/index.docbook:657(listitem/para)
+msgid "<guilabel>Bytes</guilabel> - single bytes"
+msgstr "<guilabel>Bytes</guilabel>: bytes únicos."
+
+#: C/index.docbook:480(listitem/para) C/index.docbook:659(listitem/para)
+msgid "<guilabel>Words</guilabel> - groups of two bytes"
+msgstr "<guilabel>Palabras</guilabel>: grupos de dos bytes."
+
+#: C/index.docbook:482(listitem/para) C/index.docbook:661(listitem/para)
+msgid "<guilabel>Longwords</guilabel> - groups of four bytes"
+msgstr "<guilabel>Palabras largas</guilabel>: grupos de cuatro bytes."
+
+#: C/index.docbook:490(sect2/title)
+msgid "To Export the GHex Display to HTML"
+msgstr "Exportar la visualización de Editor Hexadecimal de GNOME a HTML"
+
+#: C/index.docbook:492(listitem/para)
+msgid ""
+"Creates a separate HTML file for each page of data that is displayed in the "
+"<application>GHex</application> window."
+msgstr ""
+"Crea un archivo HTML independiente para cada página de datos que se muestra "
+"en la ventana <application>Editor Hexadecimal de GNOME</application>."
+
+#: C/index.docbook:494(listitem/para)
+msgid "Uses the HTML filename that you specify as the basis for the filename."
+msgstr ""
+"Usa el nombre de archivo HTML que usted especifique como base para el nombre "
+"del archivo."
+
+#: C/index.docbook:496(listitem/para)
+msgid "Appends a page number to the filename to differentiate the files."
+msgstr ""
+"Adjudica un número de página al nombre del archivo para diferenciar los "
+"documentos."
+
+#: C/index.docbook:491(sect2/para)
+#| msgid ""
+#| "To export the data contained in the <application>GHex</application> "
+#| "window to HTML, choose <menuchoice><guimenu>File</"
+#| "guimenu><guimenuitem>Save As HTML</guimenuitem></menuchoice>. Choose a "
+#| "directory and specify a filename for the HTML file, then click "
+#| "<guibutton>OK</guibutton>. <application>GHex</application> implements the "
+#| "following actions: <placeholder-1/> For example, if you specify the "
+#| "filename <filename>log.html</filename>, <application>GHex</application> "
+#| "creates a series of HTML files named <filename>log00000000.html</"
+#| "filename>, <filename>log00000001.html</filename>, <filename>log00000002."
+#| "html</filename>, and so on."
+msgid ""
+"To export the data contained in the <application>GHex</application> window "
+"to HTML, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Save As "
+"HTML</guimenuitem></menuchoice>. Choose a directory and specify a filename "
+"for the HTML file, then click <guibutton>OK</guibutton>. <application>GHex</"
+"application> implements the following actions: <_:itemizedlist-1/> For "
+"example, if you specify the filename <filename>log.html</filename>, "
+"<application>GHex</application> creates a series of HTML files named "
+"<filename>log00000000.html</filename>, <filename>log00000001.html</"
+"filename>, <filename>log00000002.html</filename>, and so on."
+msgstr ""
+"Para exportar los datos de la ventana de <application>GHex</application> a "
+"HTML, seleccione <menuchoice><guimenu>Archivo</guimenu><guimenuitem>Guardar "
+"como HTML</guimenuitem></menuchoice>. Seleccione una carpeta y especifique "
+"un nombre para el archivo HTML y pulse <guibutton>Aceptar</guibutton>. "
+"<application>GHex</application> implementa las siguientes acciones: <_:"
+"itemizedlist-1/> Por ejemplo, si especifica el nombre del archivo "
+"<filename>log.html</filename>, <application>GHex</application> crea una "
+"serie de archivos HTML denominados <filename>log00000000.html</filename>, "
+"<filename>log00000001.html</filename>, <filename>log00000002.html</"
+"filename>, y así sucesivamente."
+
+#: C/index.docbook:504(sect2/title)
+msgid "To View a Character Table"
+msgstr "Ver una tabla de caracteres"
+
+#: C/index.docbook:505(sect2/para)
+msgid ""
+"To view a table that contains the ASCII, hexadecimal, decimal, octal, and "
+"binary representations for the values 0 to 255, choose "
+"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Character Table</"
+"guimenuitem></menuchoice>."
+msgstr ""
+"Para ver una tabla que contenga las representaciones ASCII, hexadecimales, "
+"decimales, octales y binarias de los valores que van de 0 a 255, seleccione "
+"<menuchoice><guimenu>Herramientas</guimenu><guimenuitem>Tabla de caracteres</"
+"guimenuitem></menuchoice>."
+
+#: C/index.docbook:511(sect2/title)
+msgid "To View Data Conversions"
+msgstr "Ver conversiones de datos"
+
+#: C/index.docbook:512(sect2/para)
+msgid ""
+"To display the binary, decimal, hexadecimal, and ASCII conversions for up to "
+"four bytes of data, perform the following steps:"
+msgstr ""
+"Para visualizar conversiones binarias, decimales, hexadecimales y ASCII "
+"hasta un máximo de cuatro bytes de datos, ejecute los siguientes pasos:"
+
+#: C/index.docbook:514(listitem/para)
+msgid ""
+"Choose <menuchoice><guimenu>Windows</guimenu><guimenuitem>Base Converter</"
+"guimenuitem></menuchoice>."
+msgstr ""
+"Seleccione <menuchoice><guimenu>Herramientas</"
+"guimenu><guimenuitem>Convertidor base</guimenuitem></menuchoice>."
+
+#: C/index.docbook:516(listitem/para)
+msgid "Perform one of the following actions:"
+msgstr "Seleccione una de las siguientes opciones:"
+
+#: C/index.docbook:518(listitem/para)
+msgid ""
+"Type the data that you want to convert in one of the fields in the "
+"<guilabel>Base Converter</guilabel> dialog, then press <keycap>Return</"
+"keycap>."
+msgstr ""
+"Escriba los datos que desea convertir en uno de los campos del cuadro de "
+"diálogo <guilabel>Convertidor base</guilabel> y pulse <keycap>Intro</keycap>."
+
+#: C/index.docbook:520(listitem/para)
+msgid ""
+"To display the conversions for the data at the cursor position in the "
+"current file, click on the <guibutton>Get cursor value</guibutton> button."
+msgstr ""
+"Si desea ver las conversiones de los datos de la posición del cursor en el "
+"archivo abierto, haga clic en el botón <guibutton> Recuperar valor del "
+"cursor</guibutton>."
+
+#: C/index.docbook:523(listitem/para)
+msgid ""
+"<application>GHex</application> updates the values of the other fields to "
+"display the data conversions."
+msgstr ""
+"<application>Editor Hexadecimal de GNOME</application> actualiza los valores "
+"de los demás campos para mostrar las conversiones de los datos."
+
+#: C/index.docbook:525(listitem/para)
+msgid ""
+"Click <guibutton>Close</guibutton> to close the <guilabel>Base Converter</"
+"guilabel> dialog."
+msgstr ""
+"Pulse en <guibutton>Cerrar</guibutton> para cerrar el diálogo "
+"<guilabel>Conversor de base</guilabel>."
+
+#: C/index.docbook:533(sect2/title)
+msgid "To Show or Hide the Type Conversion Dialog"
+msgstr "Para mostrar u ocultar el cuadro de diálogo de conversión de tipo"
+
+#: C/index.docbook:534(sect2/para)
+msgid ""
+"To show or hide the type conversion dialog, choose "
+"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Type Conversion Dialog</"
+"guimenuitem></menuchoice>."
+msgstr ""
+"Para mostrar u ocultar el cuadro de diálogo de conversión de tipo, "
+"seleccione<menuchoice><guimenu>Ventanas</guimenu><guimenuitem>Diálogo de "
+"conversión de tipo</guimenuitem></menuchoice>."
+
+#: C/index.docbook:535(sect2/para)
+msgid ""
+"The type conversion dialog displays the value of the selected character in "
+"the following representations:"
+msgstr ""
+"El cuadro de diálogo de conversión de tipos mustra el valor del carácter "
+"seleccionado en las siguientes representaciones:"
+
+#: C/index.docbook:538(listitem/para)
+msgid "<guilabel>Signed 8 bit</guilabel>"
+msgstr "<guilabel>8 bits con signo</guilabel>"
+
+#: C/index.docbook:541(listitem/para)
+msgid "<guilabel>Unsigned 8 bit</guilabel>"
+msgstr "<guilabel>8 bits sin signo</guilabel>"
+
+#: C/index.docbook:544(listitem/para)
+msgid "<guilabel>Signed 16 bit</guilabel>"
+msgstr "<guilabel>16 bits con signo</guilabel>"
+
+#: C/index.docbook:547(listitem/para)
+msgid "<guilabel>Unsigned 16 bit</guilabel>"
+msgstr "<guilabel>16 bits sin signo</guilabel>"
+
+#: C/index.docbook:550(listitem/para)
+msgid "<guilabel>Signed 32 bit</guilabel>"
+msgstr "<guilabel>32 bits con signo</guilabel>"
+
+#: C/index.docbook:553(listitem/para)
+msgid "<guilabel>Unsigned 32 bit</guilabel>"
+msgstr "<guilabel>32 bits sin signo</guilabel>"
+
+#: C/index.docbook:556(listitem/para)
+msgid "<guilabel>32 bit float</guilabel>"
+msgstr "<guilabel>32 bits en coma flotante</guilabel>"
+
+#: C/index.docbook:559(listitem/para)
+msgid "<guilabel>64 bit float</guilabel>"
+msgstr "<guilabel>64 bits en coma flotante</guilabel>"
+
+#: C/index.docbook:562(listitem/para)
+#| msgid "<guilabel>Bytes</guilabel> - single bytes"
+msgid "<guilabel>Hexadecimal</guilabel>"
+msgstr "<guilabel>Hexadecimal</guilabel>"
+
+#: C/index.docbook:565(listitem/para)
+#| msgid "<guilabel>Bytes</guilabel> - single bytes"
+msgid "<guilabel>Octal</guilabel>"
+msgstr "<guilabel>Octal</guilabel>"
+
+#: C/index.docbook:568(listitem/para)
+#| msgid "<guilabel>Bytes</guilabel> - single bytes"
+msgid "<guilabel>Binary</guilabel>"
+msgstr "<guilabel>Binario</guilabel>"
+
+#: C/index.docbook:571(listitem/para)
+#| msgid "<guilabel>Bytes</guilabel> - single bytes"
+msgid "<guilabel>Stream Length</guilabel>"
+msgstr "<guilabel>Longitud del flujo</guilabel>"
+
+#: C/index.docbook:574(sect2/para)
+msgid "The type conversion dialog also contains the following options:"
+msgstr ""
+"El cuadro de diálogo de conversión de tipo también contiene las siguientes "
+"opciones:"
+
+#: C/index.docbook:577(varlistentry/term)
+#| msgid "Show little endian decoding"
+msgid "<guilabel>Show little endian decoding</guilabel>"
+msgstr "<guilabel>Mostrar la decodificación en little endian</guilabel>"
+
+#: C/index.docbook:579(listitem/para)
+msgid "Select this option to show little endian decoding."
+msgstr ""
+"Seleccione esta opcion para mostrar la decodificación en little endian."
+
+#: C/index.docbook:583(varlistentry/term)
+#| msgid "Show unsigned and float as hexadecimal"
+msgid "<guilabel>Show unsigned and float as hexadecimal</guilabel>"
+msgstr ""
+"<guilabel>Mostrar como hexadecimal los números sin signo y en coma flotante</"
+"guilabel>"
+
+#: C/index.docbook:585(listitem/para)
+msgid ""
+"Select this option to show unsigned and float numbers as hexadecimal numbers."
+msgstr ""
+"Seleccione esta opción para mostrar los números sin signo y en coma flotante "
+"como números hexadecimales."
+
+#: C/index.docbook:594(sect2/title)
+msgid "To Print a File"
+msgstr "Imprimir un archivo"
+
+#: C/index.docbook:595(sect2/para)
+msgid ""
+"To print a file, choose <menuchoice><guimenu>File</"
+"guimenu><guimenuitem>Print</guimenuitem></menuchoice>. Select the print "
+"options that you require in the <guilabel>Print</guilabel> dialog, then "
+"click <guibutton>OK</guibutton>."
+msgstr ""
+"Para imprimir un archivo, seleccione <menuchoice><guimenu>Archivo</"
+"guimenu><guimenuitem>Imprimir</guimenuitem></menuchoice>. Seleccione las "
+"opciones de impresión que necesita en el cuadro de diálogo "
+"<guilabel>Imprimir</guilabel> y, a continuación, pulse en "
+"<guibutton>Aceptar</guibutton>."
+
+#: C/index.docbook:596(sect2/para)
+msgid ""
+"To preview a printed copy of the file, choose <menuchoice><guimenu>File</"
+"guimenu><guimenuitem>Print Preview</guimenuitem></menuchoice>."
+msgstr ""
+"Para obtener una vista previa de una copia impresa del archivo, seleccione "
+"<menuchoice><guimenu>Archivo</guimenu><guimenuitem>Vista previa de "
+"impresión</guimenuitem></menuchoice>."
+
+#: C/index.docbook:604(sect1/title)
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: C/index.docbook:605(sect1/para)
+msgid ""
+"To configure <application>GHex</application>, choose "
+"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></"
+"menuchoice>. The <guilabel>Preferences</guilabel> dialog contains the "
+"following tabbed sections:"
+msgstr ""
+"Para configurar <application>Editor Hexadecimal de GNOME</application>, "
+"seleccione <menuchoice><guimenu>Configuración</"
+"guimenu><guimenuitem>Preferencias</guimenuitem></menuchoice>. El cuadro de "
+"diálogo <guilabel>Preferencias</guilabel> contiene pestañas con las "
+"siguientes secciones:"
+
+#: C/index.docbook:618(sect2/title)
+msgid "Editing"
+msgstr "Editar"
+
+#: C/index.docbook:621(varlistentry/term)
+#| msgid "Maximum number of undo levels"
+msgid "<guilabel>Maximum number of undo levels</guilabel>"
+msgstr "<guilabel>Número máximo de niveles de deshacer</guilabel>"
+
+#: C/index.docbook:623(listitem/para)
+msgid ""
+"Use this spin box to specify the maximum number of edits that you can undo."
+msgstr ""
+"Use esta casilla de selección para especificar el número máximo de acciones "
+"que puede deshacer."
+
+#: C/index.docbook:627(varlistentry/term)
+#| msgid "Show cursor offset in statusbar as"
+msgid "<guilabel>Show cursor offset in statusbar as</guilabel>"
+msgstr ""
+"<guilabel>Mostrar el desplazamiento del cursor en la barra de estado como</"
+"guilabel>"
+
+#: C/index.docbook:629(listitem/para)
+msgid ""
+"Use this drop-down list to select the format in which the cursor offset is "
+"displayed. The format can be decimal, hexadecimal, or a custom print style "
+"string that only contains the format specifiers x, o, and s."
+msgstr ""
+"Use esta lista desplegable para seleccionar el formato en el que se mostrará "
+"el desplazamiento del cursor. El formato puede ser decimal, hexadecimal o "
+"una cadena de estilo de impresión personalizado que sólo contenga los "
+"especificadores de formato x, o y s."
+
+#: C/index.docbook:633(varlistentry/term)
+#| msgid "Show offsets column"
+msgid "<guilabel>Show offsets column</guilabel>"
+msgstr "<guilabel>Mostrar columna de los desplazamientos</guilabel>"
+
+#: C/index.docbook:635(listitem/para)
+msgid ""
+"Select this option to display the cursor offsets in a column to the left of "
+"the hexadecimal view of the <application>GHex</application> window."
+msgstr ""
+"Seleccione esta opción para visualizar los desplazamientos del cursor en una "
+"columna situada a la izquierda de la vista hexadecimal de la ventana "
+"<application>Editor Hexadecimal de GNOME</application>."
+
+#: C/index.docbook:644(sect2/title)
+msgid "Display"
+msgstr "Visualizar"
+
+#: C/index.docbook:647(varlistentry/term)
+#| msgid "<guilabel>Bytes</guilabel> - single bytes"
+msgid "<guilabel>Font</guilabel>"
+msgstr "<guilabel>Tipografía</guilabel>"
+
+#: C/index.docbook:649(listitem/para)
+msgid ""
+"Use the font selector list boxes to edit the existing font information or "
+"type new font information. Specify a font type, style, and size to display "
+"the contents of files in <application>GHex</application>."
+msgstr ""
+"Use las cajas de selección de tipografía para editar la información "
+"existente sobre la tipografía o para escribir información nueva sobre ésta. "
+"Especifique un tipo, estilo y tamaño de tipografía para mostrar el contenido "
+"de los archivos en <application>GHex</application>."
+
+#: C/index.docbook:653(varlistentry/term)
+#| msgid "Default Group Type"
+msgid "<guilabel>Default Group Type</guilabel>"
+msgstr "<guilabel>Tipo de grupo predeterminado</guilabel>"
+
+#: C/index.docbook:655(listitem/para)
+msgid ""
+"Select one of the following options to specify how <application>GHex</"
+"application> displays the hexadecimal content of a file in the "
+"<application>GHex</application> window:"
+msgstr ""
+"Seleccione una de las siguientes opciones para especificar cómo "
+"<application>GHex</application> muestra el contenido hexadecimal de un "
+"archivo en la ventana de <application>GHex</application>:"
+
+#: C/index.docbook:672(sect2/title)
+msgid "Printing"
+msgstr "Imprimir"
+
+#: C/index.docbook:675(varlistentry/term)
+#| msgid "<guilabel>Bytes</guilabel> - single bytes"
+msgid "<guilabel>Data font</guilabel>"
+msgstr "<guilabel>Tipografía de los datos</guilabel>"
+
+#: C/index.docbook:677(listitem/para)
+msgid ""
+"Click on the <guibutton>Data font</guibutton> button to specify the font "
+"type, style, and size to use to print the data contained in a file."
+msgstr ""
+"Pulse en el botón <guibutton>Fuente de los datos</guibutton> para "
+"especificar el  tipo,estilo y tamaño  de la tipografía que desea utilizar "
+"para imprimir los datos de un archivo."
+
+#: C/index.docbook:681(varlistentry/term)
+#| msgid "<guilabel>Bytes</guilabel> - single bytes"
+msgid "<guilabel>Header font</guilabel>"
+msgstr "<guilabel>Tipografía de las cabeceras</guilabel>"
+
+#: C/index.docbook:683(listitem/para)
+msgid ""
+"Click on the <guibutton>Header font</guibutton> button to specify the font "
+"type, style, and size to use to print the header information that is "
+"contained in the file."
+msgstr ""
+"Pulse en el botón <guibutton>Tipografía de las cabeceras</guibutton> para "
+"especificar el tipo ,el estilo y el tamaño de la tipografía que desea "
+"utilizar para imprimir la información de cabecera de un archivo."
+
+#: C/index.docbook:687(varlistentry/term)
+#| msgid "Print shaded box over"
+msgid "<guilabel>Print shaded box over</guilabel>"
+msgstr "<guilabel>Sobreimprimir un recuadro sombreado</guilabel>"
+
+#: C/index.docbook:689(listitem/para)
+msgid ""
+"Use this spin box to specify the number of lines that <application>GHex</"
+"application> alternately prints with a surrounding shaded box. If the value "
+"of the spin box is 10, <application>GHex</application> prints the first 10 "
+"lines of the file without a shaded box, the next 10 lines with a shaded box, "
+"and so on. If the value of the spin box is 0, <application>GHex</"
+"application> does not print any shaded box."
+msgstr ""
+"Use este cuadro de incremento para especificar el número de líneas que desea "
+"que el <application>Editor hexadecimal de GNOME</application> imprima dentro "
+"de un recuadro sombreado . Si el valor del cuadro de incremento es 10, el "
+"<application>Editor hexadecimal de GNOME</application> imprimirá las 10 "
+"primeras líneas del archivo sin el recuadro sombreado, y las 10 siguientes "
+"con el recuadro, y así sucesivamente. Si el valor del cuadro de incremento "
+"es 0, <application>GHex</application> no imprimirá ningun recuadro sombreado."
+
+#: C/legal.xml:9(para/ulink)
+msgid "link"
+msgstr "enlace"
+
+#: C/legal.xml:2(legalnotice/para)
+#| msgid ""
+#| "Permission is granted to copy, distribute and/or modify this document "
+#| "under the terms of the GNU Free Documentation License (GFDL), Version 1.1 "
+#| "or any later version published by the Free Software Foundation with no "
+#| "Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. You "
+#| "can find a copy of the GFDL at this <ulink type=\"help\" url=\"ghelp:fdl"
+#| "\">link</ulink> or in the file COPYING-DOCS distributed with this manual."
 msgid ""
 "Permission is granted to copy, distribute and/or modify this document under "
 "the terms of the GNU Free Documentation License (GFDL), Version 1.1 or any "
 "later version published by the Free Software Foundation with no Invariant "
 "Sections, no Front-Cover Texts, and no Back-Cover Texts. You can find a copy "
-"of the GFDL at this <ulink type=\"help\" url=\"ghelp:fdl\">link</ulink> or "
-"in the file COPYING-DOCS distributed with this manual."
+"of the GFDL at this <_:ulink-1/> or in the file COPYING-DOCS distributed "
+"with this manual."
 msgstr ""
-"Se concede autorización para copiar, distribuir o modificar este documento "
-"según los términos de la GFDL (GNU Free Documentation Licence), Versión 1.1, "
-"o cualquier otra versión posterior publicada por Free Software Fundation sin "
-"secciones invariables, textos de portada ni textos de contraportada. Podrá "
-"encontrar una copia de la GFDL en este <ulink type=\"help\" url=\"ghelp:fdl"
-"\">enlace</ulink> o en el archivo COPYING-DOCS distribuido con este manual."
+"Se concede permiso para copiar, distribuir o modificar este documento según "
+"las condiciones de la GNU Free Documentation License (GFDL), Versión 1.1 o "
+"cualquier versión posterior publicada por la Free Software Foundation sin "
+"Secciones invariantes, Textos de portada y Textos de contraportada. "
+"Encontrará una copia de la GFDL en este <_:ulink-1/> o en el archivo COPYING-"
+"DOCS distribuido con este manual."
 
-#: C/legal.xml:12(para)
+#: C/legal.xml:12(legalnotice/para)
 msgid ""
 "This manual is part of a collection of GNOME manuals distributed under the "
 "GFDL. If you want to distribute this manual separately from the collection, "
@@ -46,7 +1304,7 @@ msgstr ""
 "colección, puede hacerlo añadiendo al manual una copia de la licencia, como "
 "se describe en el apartado 6 de la licencia."
 
-#: C/legal.xml:19(para)
+#: C/legal.xml:19(legalnotice/para)
 msgid ""
 "Many of the names used by companies to distinguish their products and "
 "services are claimed as trademarks. Where those names appear in any GNOME "
@@ -60,7 +1318,7 @@ msgstr ""
 "conocimiento de los miembros del Proyecto de documentación de GNOME, "
 "entonces los nombres aparecen en mayúsculas o con la inicial en mayúsculas."
 
-#: C/legal.xml:35(para)
+#: C/legal.xml:35(listitem/para)
 msgid ""
 "DOCUMENT IS PROVIDED ON AN \"AS IS\" BASIS, WITHOUT WARRANTY OF ANY KIND, "
 "EITHER EXPRESSED OR IMPLIED, INCLUDING, WITHOUT LIMITATION, WARRANTIES THAT "
@@ -89,7 +1347,7 @@ msgstr ""
 "O VERSIÓN MODIFICADA DEL MISMO SI NO ES CON SUJECIÓN A ESTA LIMITACIÓN DE "
 "LAS GARANTÍAS; Y"
 
-#: C/legal.xml:55(para)
+#: C/legal.xml:55(listitem/para)
 msgid ""
 "UNDER NO CIRCUMSTANCES AND UNDER NO LEGAL THEORY, WHETHER IN TORT (INCLUDING "
 "NEGLIGENCE), CONTRACT, OR OTHERWISE, SHALL THE AUTHOR, INITIAL WRITER, ANY "
@@ -115,1192 +1373,145 @@ msgstr ""
 "ELLO, INCLUSO SI SE HABÍA COMUNICADO A AQUELLA PARTE LA POSIBILIDAD DE TALES "
 "DAÑOS."
 
-#: C/legal.xml:28(para)
+#: C/legal.xml:28(legalnotice/para)
+#| msgid ""
+#| "DOCUMENT AND MODIFIED VERSIONS OF THE DOCUMENT ARE PROVIDED UNDER THE "
+#| "TERMS OF THE GNU FREE DOCUMENTATION LICENSE WITH THE FURTHER "
+#| "UNDERSTANDING THAT: <placeholder-1/>"
 msgid ""
 "DOCUMENT AND MODIFIED VERSIONS OF THE DOCUMENT ARE PROVIDED UNDER THE TERMS "
 "OF THE GNU FREE DOCUMENTATION LICENSE WITH THE FURTHER UNDERSTANDING THAT: "
+"<_:orderedlist-1/>"
+msgstr ""
+"EL DOCUMENTO Y LAS VERSIONES MODIFICADAS DEL MISMO SE PROPORCIONAN CON "
+"SUJECIÓN A LOS TÉRMINOS DE LA GFDL, QUEDANDO BIEN ENTENDIDO, ADEMÁS, QUE: "
 "<placeholder-1/>"
-msgstr ""
-"El DOCUMENTO Y LAS VERSIONES MODIFICADAS DEL MISMO SE PROPORCIONAN CON "
-"SUJECIÓN A LOS TÉRMINOS DE LA GFDL, QUEDANDO BIEN ENTENDIDO, ADEMÁS, QUE: "
-"<placeholder-1/>"
-
-#. When image changes, this message will be marked fuzzy or untranslated for you.
-#. It doesn't matter what you translate it to: it's not used at all.
-#: C/ghex.xml:222(None)
-msgid ""
-"@@image: 'figures/ghex_window_empty.png'; "
-"md5=89b78d734e989c368b82592f385db8dd"
-msgstr ""
-"@@image: 'figures/ghex_window_empty.png'; "
-"md5=89b78d734e989c368b82592f385db8dd "
-
-#. When image changes, this message will be marked fuzzy or untranslated for you.
-#. It doesn't matter what you translate it to: it's not used at all.
-#: C/ghex.xml:248(None)
-msgid ""
-"@@image: 'figures/ghex_window_open.png'; md5=9c4ae66bb45a43803e1f70abfaede88b"
-msgstr ""
-"@@image: 'figures/ghex_window_open.png'; md5=9c4ae66bb45a43803e1f70abfaede88b"
-
-#: C/ghex.xml:23(title)
-msgid "User manual for GHex"
-msgstr "Manual del usuario de GHex."
-
-#: C/ghex.xml:26(para)
-msgid ""
-"GHex is a simple binary editor. It lets users view and edit a binary file in "
-"both hex and ascii with a multiple level undo/redo mechanism. Features "
-"include find and replace functions, conversion between binary, octal, "
-"decimal and hexadecimal values, and use of an alternative, user-configurable "
-"MDI concept that lets users edit multiple documents with multiple views of "
-"each."
-msgstr ""
-"GHex es un sencillo editor binario. Permite a los usuarios ver y editar un "
-"archivo binario en ascii y y en hexadecimal con un mecanismo de niveles "
-"múltiples de deshacer/rehacer. Entre sus características incluye buscar y "
-"reemplazar funciones, convertir entre valores binarios, octales, decimales y "
-"hexadecimales y el uso de una alternativa, concepto MDI configurable por el "
-"usuario que permite a los usuarios editar múltiples documentos con múltiples "
-"vistas de cada uno."
-
-#: C/ghex.xml:37(year)
-msgid "2002"
-msgstr "2002"
-
-#: C/ghex.xml:38(year)
-msgid "2003"
-msgstr "2003"
-
-#: C/ghex.xml:39(year)
-msgid "2004"
-msgstr "2004"
-
-#: C/ghex.xml:40(holder) C/ghex.xml:67(orgname)
-msgid "Sun Microsystems"
-msgstr "Sun Microsystems"
-
-#: C/ghex.xml:43(year)
-msgid "1998-2000"
-msgstr "1998-2000"
-
-#: C/ghex.xml:44(holder)
-msgid "Jaka Mocnik"
-msgstr "Jaka Mocnik"
-
-#: C/ghex.xml:54(publishername) C/ghex.xml:75(orgname) C/ghex.xml:99(para)
-#: C/ghex.xml:107(para) C/ghex.xml:115(para) C/ghex.xml:123(para)
-#: C/ghex.xml:131(para) C/ghex.xml:139(para) C/ghex.xml:149(para)
-msgid "GNOME Documentation Project"
-msgstr "Proyecto de documentación de GNOME"
-
-#: C/ghex.xml:64(firstname)
-msgid "Sun"
-msgstr "Sun"
-
-#: C/ghex.xml:65(surname)
-msgid "GNOME Documentation Team"
-msgstr "Equipo de documentación de GNOME"
-
-#: C/ghex.xml:72(firstname)
-msgid "Jaka"
-msgstr "Jaka"
-
-#: C/ghex.xml:73(surname)
-msgid "Mocnik"
-msgstr "Mocnik"
-
-#: C/ghex.xml:76(email)
-msgid "jaka@gnu.org"
-msgstr "jaka@gnu.org"
-
-#: C/ghex.xml:95(revnumber)
-msgid "GHex Manual V2.5"
-msgstr "Manual de GHex V2.5"
-
-#: C/ghex.xml:96(date)
-msgid "December 2005"
-msgstr "Diciembre de 2005"
-
-#: C/ghex.xml:98(para) C/ghex.xml:106(para) C/ghex.xml:114(para)
-#: C/ghex.xml:122(para) C/ghex.xml:130(para) C/ghex.xml:138(para)
-msgid "Sun GNOME Documentation Team"
-msgstr "Equipo de documentación de GNOME de Sun"
-
-#: C/ghex.xml:103(revnumber)
-msgid "GHex Manual V2.4"
-msgstr "Manual de GHex V2.4"
-
-#: C/ghex.xml:104(date)
-msgid "April 2003"
-msgstr "Abril de 2003"
-
-#: C/ghex.xml:111(revnumber)
-msgid "GHex Manual V2.3"
-msgstr "Manual de GHex V2.3"
-
-#: C/ghex.xml:112(date) C/ghex.xml:120(date)
-msgid "August 2002"
-msgstr "Agosto 2002"
-
-#: C/ghex.xml:119(revnumber)
-msgid "GHex Manual V2.2"
-msgstr "Manual de GHex V2.2"
-
-#: C/ghex.xml:127(revnumber)
-msgid "GHex Manual V2.1"
-msgstr "Manual de GHex V2.1"
-
-#: C/ghex.xml:128(date)
-msgid "July 2002"
-msgstr "Julio 2002"
-
-#: C/ghex.xml:135(revnumber)
-msgid "GHex Manual V2.0"
-msgstr "Manual de GHex V2.0"
-
-#: C/ghex.xml:136(date)
-msgid "March 2002"
-msgstr "Marzo 2002"
-
-#: C/ghex.xml:143(revnumber)
-msgid "GHex Manual V1.0"
-msgstr "Manual de GHex V1.0"
-
-#: C/ghex.xml:144(date)
-msgid "2000"
-msgstr "2000"
-
-#: C/ghex.xml:146(para)
-msgid "Jaka Mocnik <email>jaka@gnu.org</email>"
-msgstr "Jaka Mocnik <email>jaka@gnu.org</email>"
-
-#: C/ghex.xml:154(releaseinfo)
-msgid "This manual describes version 2.19 of GHex."
-msgstr "Este manual describe la versión 2.19 de GHex."
-
-#: C/ghex.xml:157(title)
-msgid "Feedback"
-msgstr "Comentarios"
-
-#: C/ghex.xml:158(para)
-msgid ""
-"To report a bug or make a suggestion regarding the GHex application or this "
-"manual, follow the directions in the <ulink url=\"ghelp:gnome-feedback\" "
-"type=\"help\">GNOME Feedback Page</ulink>."
-msgstr ""
-"Para informar de un defecto o hacer una sugerencia sobre la aplicación "
-"Editor hexadecimal de GNOME o este manual, siga las indicaciones que "
-"aparecen en la <ulink url=\"ghelp:gnome-feedback\" type=\"help\">página de "
-"comentarios de GNOME</ulink>."
-
-#: C/ghex.xml:165(primary)
-msgid "GHex"
-msgstr "GHex"
-
-#: C/ghex.xml:174(title)
-msgid "Introduction"
-msgstr "Introducción"
-
-#: C/ghex.xml:175(para)
-msgid ""
-"The <application>GHex</application> application enables you to perform the "
-"following actions:"
-msgstr ""
-"La aplicación <application>Editor hexadecimal de GNOME</application> le "
-"permite ejecutar las siguientes acciones:"
-
-#: C/ghex.xml:177(para)
-msgid "View a file in ASCII or hexadecimal format simultaneously."
-msgstr ""
-"Visualizar un archivo en formato ASCII y hexadecimal de forma simultánea."
-
-#: C/ghex.xml:179(para)
-msgid "Edit a file in either ASCII or hexadecimal format."
-msgstr "Editar un archivo en formato ASCII o hexadecimal."
-
-#: C/ghex.xml:187(title)
-msgid "Getting Started"
-msgstr "Procedimientos iniciales"
-
-#: C/ghex.xml:192(title)
-msgid "To Start GHex"
-msgstr "Inicio de Editor Hexadecimal de GNOME"
-
-#: C/ghex.xml:194(para)
-msgid "You can start <application>GHex</application> in the following ways:"
-msgstr ""
-"Para iniciar <application>Editor Hexadecimal de GNOME</application>, siga "
-"los siguientes pasos:"
-
-#: C/ghex.xml:197(term)
-msgid "<guimenu>Applications</guimenu> menu"
-msgstr "Menú <guimenu>Aplicaciones</guimenu>"
-
-#: C/ghex.xml:199(para)
-msgid ""
-"Choose <menuchoice><guisubmenu>Accessories</guisubmenu><guimenuitem>Hex "
-"Editor</guimenuitem></menuchoice>."
-msgstr ""
-"Seleccione <menuchoice><guisubmenu>Accesorios</"
-"guisubmenu><guimenuitem>Editor hexadecimal</guimenuitem></menuchoice>."
-
-#: C/ghex.xml:203(term)
-msgid "Command line"
-msgstr "Línea de comandos"
-
-#: C/ghex.xml:205(para)
-msgid "Execute the following command: <command>ghex</command>"
-msgstr "Ejecute el siguiente comando: <command>ghex</command>"
-
-#: C/ghex.xml:212(title)
-msgid "When You Start GHex"
-msgstr "Al iniciar Editor Hexadecimal de GNOME"
-
-#: C/ghex.xml:214(para)
-msgid ""
-"When you start <application>GHex</application>, the following window is "
-"displayed."
-msgstr ""
-"Al iniciar <application>Editor Hexadecimal de GNOME</application>, se "
-"muestra la siguiente ventana."
-
-#: C/ghex.xml:218(title)
-msgid "GHex Window Before You Open a File"
-msgstr "Ventana de Editor Hexadecimal de GNOME antes de abrir un archivo"
-
-#: C/ghex.xml:225(phrase)
-msgid "Shows GHex main window before you open a file."
-msgstr "Muestra la ventana principal de GHex antes de abrir un archivo"
-
-#: C/ghex.xml:238(title)
-msgid "To Open a File"
-msgstr "Abrir un archivo"
-
-#: C/ghex.xml:239(para)
-msgid ""
-"To open a file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Open</"
-"guimenuitem></menuchoice>. Select the file that you want to open, then click "
-"<guibutton>OK</guibutton>. You can open multiple files in <application>GHex</"
-"application>. <application>GHex</application> displays each file in a new "
-"window."
-msgstr ""
-"Para abrir un archivo, seleccione <menuchoice><guimenu>Archivo</"
-"guimenu><guimenuitem>Abrir</guimenuitem></menuchoice>. Seleccione el archivo "
-"que desea abrir y luego haga clic en <guibutton>Aceptar</guibutton>. Puede "
-"abrir múltiples archivos en <application>Editor hexadecimal de GNOME</"
-"application>. <application>Editor Hexadecimal de GNOME</application> muestra "
-"cada archivo en una nueva ventana."
-
-#: C/ghex.xml:240(para)
-msgid ""
-"When you open a file in <application>GHex</application>, the application "
-"displays the file in the following window."
-msgstr ""
-"Al abrir un archivo en <application>Editor hexadecimal de GNOME</"
-"application>, la aplicación muestra dicho archivo en la siguiente ventana."
-
-#: C/ghex.xml:244(title)
-msgid "GHex Window with an Open File"
-msgstr "Ventana de Editor Hexadecimal de GNOME con un archivo abierto"
-
-#: C/ghex.xml:251(phrase)
-msgid "Shows GHex main window with an open file"
-msgstr "Muestra la ventana principal de GHex con un archivo abierto"
-
-#. ==== End of Figure ====
-#: C/ghex.xml:258(para)
-msgid ""
-"The <application>GHex</application> window contains the following elements:"
-msgstr ""
-"La ventana de <application>Editor Hexadecimal de GNOME</application> "
-"contiene los elementos siguientes:"
-
-#: C/ghex.xml:261(term)
-msgid "Menubar"
-msgstr "Barra de menús"
-
-#: C/ghex.xml:263(para)
-msgid ""
-"The menus on the menubar contain all the commands that you need to work with "
-"files in <application>GHex</application>."
-msgstr ""
-"Los menús que aparecen en la barra de menú contienen todos los comandos "
-"necesarios para trabajar con archivos en <application>Editor Hexadecimal de "
-"GNOME</application>."
-
-#: C/ghex.xml:267(term)
-msgid "Cursor offsets column"
-msgstr "Una columna de desplazamientos del cursor"
-
-#: C/ghex.xml:269(para)
-msgid ""
-"The cursor offset is the distance between the beginning of the file and the "
-"first byte in each line. By default, <application>GHex</application> "
-"displays the cursor offsets column to the left of the hexadecimal view."
-msgstr ""
-"El desplazamiento del cursor es la distancia entre el comienzo del archivo y "
-"el primer byte de cada línea. De manera predeterminada, <application>Editor "
-"Hexadecimal de GNOME</application> muestra la columna de desplazamientos del "
-"cursor en la parte izquierda de la vista hexadecimal."
-
-#: C/ghex.xml:273(term)
-msgid "Display pane on left side"
-msgstr "Panel de visualización en la parte izquierda"
-
-#: C/ghex.xml:275(para)
-msgid ""
-"The display pane on the left side of the display area displays a hexadecimal "
-"view of the file."
-msgstr ""
-"El panel de visualización ubicado en la parte izquierda del área de "
-"visualización muestra una vista hexadecimal del archivo."
-
-#: C/ghex.xml:279(term)
-msgid "Display pane on right side"
-msgstr "Panel de visualización en la parte derecha"
-
-#: C/ghex.xml:281(para)
-msgid ""
-"The display pane on the right side of the display area displays an ASCII "
-"view of the file."
-msgstr ""
-"El panel de visualización ubicado en la parte derecha del área de "
-"visualización muestra una vista ASCII del archivo."
-
-#: C/ghex.xml:285(term)
-msgid "Type conversion dialog"
-msgstr "Diálogo de conversión de tipo"
-
-#: C/ghex.xml:287(para)
-msgid ""
-"The type conversion dialog below the display area displays the value of the "
-"selected character in several different numeric types."
-msgstr ""
-"El cuadro de diálogo de conversión de tipo debajo del área de visualización "
-"muestra el valor del carácter seleccionado en distintos formatos numéricos."
-
-#: C/ghex.xml:297(title)
-msgid "Usage"
-msgstr "Uso"
-
-#: C/ghex.xml:302(title)
-msgid "To Edit a File"
-msgstr "Editar un archivo"
-
-#: C/ghex.xml:303(para)
-msgid "To edit a file, perform the following steps:"
-msgstr "Para editar un archivo, ejecute los siguientes pasos:"
-
-#: C/ghex.xml:305(para)
-msgid ""
-"Click in the hexadecimal or ASCII view of the file. The view in which the "
-"cursor is active displays a full cursor. The view in which the cursor is not "
-"active displays an outline of the cursor."
-msgstr ""
-"Pulse en la vista hexadecimal o ASCII del archivo. La vista en la que el "
-"cursor está activo muestra un cursor completo. La vista en la que el cursor "
-"no está activo muestra el contorno del cursor."
-
-#: C/ghex.xml:307(para)
-msgid "Use any of the following methods to move the cursor around the file:"
-msgstr ""
-"Use cualquiera de los siguientes métodos para mover el cursor por el archivo:"
-
-#: C/ghex.xml:309(para)
-msgid ""
-"Use the scrollbar on the window or the arrow keys on the keyboard to scroll "
-"through the file."
-msgstr ""
-"Use la barra de desplazamiento de la ventana o las flechas del teclado para "
-"desplazarse a lo largo del archivo."
-
-#: C/ghex.xml:311(para)
-msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Goto Byte</"
-"guimenuitem></menuchoice>, type the cursor offset as a decimal or "
-"hexadecimal value, then click <guibutton>OK</guibutton>. The format of the "
-"hexadecimal value must be 0x followed by the offset, for example 0x3."
-msgstr ""
-"Seleccione <menuchoice><guimenu>Editar</guimenu><guimenuitem>Ir a byte</"
-"guimenuitem></menuchoice>, introduzca el desplazamiento del cursor como un "
-"valor decimal o hexadecimal y, luego, haga clic en <guibutton>Aceptar</"
-"guibutton>. El formato del valor hexadecimal debe ser 0x seguido del "
-"desplazamiento, por ejemplo, 0x3."
-
-#: C/ghex.xml:315(para)
-msgid ""
-"Edit the ASCII format in the same way you edit a normal text file. To edit "
-"the hexadecimal format, use the values 0 to 9 and a to f."
-msgstr ""
-"Edite el formato ASCII del mismo modo que edita un archivo de texto normal. "
-"Para editar el formato hexadecimal, use los valores del 0 a 9 y de la a a la "
-"f."
-
-#: C/ghex.xml:318(para)
-msgid ""
-"To insert data and not overwrite existing data, choose "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Insert Mode</guimenuitem></"
-"menuchoice>."
-msgstr ""
-"Para insertar datos sin sobrescribir los existentes, seleccione "
-"<menuchoice><guimenu>Editar</guimenu><guimenuitem>Modo Insertar</"
-"guimenuitem></menuchoice>."
-
-#: C/ghex.xml:319(para)
-msgid ""
-"To cut, copy, and paste data, choose <menuchoice><guimenu>Edit</"
-"guimenu><guimenuitem>Cut</guimenuitem></menuchoice>, "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></"
-"menuchoice>, and <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Para cortar, copiar, y pegar datos elija <menuchoice><guimenu>Editar</"
-"guimenu><guimenuitem>Cortar</guimenuitem></menuchoice>, "
-"<menuchoice><guimenu>Editar</guimenu><guimenuitem>Copiar</guimenuitem></"
-"menuchoice>, y <menuchoice><guimenu>Editar</guimenu><guimenuitem>Pegar</"
-"guimenuitem></menuchoice>."
-
-#: C/ghex.xml:320(para)
-msgid ""
-"To undo an edit, choose <menuchoice><guimenu>Edit</"
-"guimenu><guimenuitem>Undo</guimenuitem></menuchoice>. To redo an edit, "
-"choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Redo</guimenuitem></"
-"menuchoice>. The number of previous edits that you can undo is determined by "
-"the <guilabel>Maximum number of undo levels</guilabel> setting in the <xref "
-"linkend=\"ghex-prefs-editing\"/> tabbed section of the "
-"<guilabel>Preferences</guilabel> dialog."
-msgstr ""
-"Para deshacer y editar elija <menuchoice><guimenu>Editar</"
-"guimenu><guimenuitem>Deshacer</guimenuitem></menuchoice>. Para rehacer una "
-"acción elija <menuchoice><guimenu>Editar</guimenu><guimenuitem>Rehacer</"
-"guimenuitem></menuchoice>. El número de ediciones previas que puede deshacer "
-"está determinado en la configuración de <guilabel>Número máximo de niveles "
-"de deshacer</guilabel> en la sección en pestañas <xref linkend=\"ghex-prefs-"
-"editing\"/> del cuadro de diálogo<guilabel>Preferences</guilabel> ."
-
-#: C/ghex.xml:326(title)
-msgid "To Save a File"
-msgstr "Guardar un archivo"
-
-#: C/ghex.xml:327(para)
-msgid "You can save a file in the following ways:"
-msgstr "Para guardar un archivo, tiene dos opciones:"
-
-#: C/ghex.xml:329(para)
-msgid ""
-"To save changes to the current file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Save</guimenuitem></menuchoice>."
-msgstr ""
-"Para guardar cambios en el archivo actual, seleccione "
-"<menuchoice><guimenu>Archivo</guimenu><guimenuitem>Guardar</guimenuitem></"
-"menuchoice>."
-
-#: C/ghex.xml:331(para)
-msgid ""
-"To save the current file under a new filename, choose "
-"<menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></"
-"menuchoice>. Enter a name for the file in the <guilabel>Select a file to "
-"save buffer as</guilabel> dialog, then click <guibutton>OK</guibutton>."
-msgstr ""
-"Para guardar el archivo actual bajo un nuevo nombre, seleccione "
-"<menuchoice><guimenu>Archivo</guimenu><guimenuitem>Guardar como</"
-"guimenuitem></menuchoice>. Introduzca un nombre para el archivo en el cuadro "
-"de diálogo <guilabel>Seleccione el archivo donde quiere guardar el buffer "
-"actual</guilabel> y luego haga clic en <guibutton>Aceptar</guibutton>."
-
-#: C/ghex.xml:339(title)
-msgid "To Revert to the Last Saved Version of a File"
-msgstr "Revertir la última versión guardada de un archivo"
-
-#: C/ghex.xml:340(para)
-msgid ""
-"To revert to the last version of the current file that you saved and undo "
-"all of the edits that you made to the file since you last saved the file, "
-"choose <menuchoice><guimenu>File</guimenu><guimenuitem>Revert</guimenuitem></"
-"menuchoice>, then click <guibutton>Yes</guibutton> in the "
-"<guilabel>Question</guilabel> dialog."
-msgstr ""
-"Para revertir a la última versión del archivo actual que haya guardado, y "
-"deshacer todas las ediciones que realizó en el archivo desde que lo guardó, "
-"elija <menuchoice><guimenu>Archivo</guimenu><guimenuitem>Revertir</"
-"guimenuitem></menuchoice>, después pulse <guibutton>Sí</guibutton> en el "
-"cuadro de diálogo <guilabel>Pregunta</guilabel>."
-
-#: C/ghex.xml:346(title)
-msgid "To Find Data in a File"
-msgstr "Buscar datos en un archivo"
-
-#: C/ghex.xml:347(para)
-msgid ""
-"To search a file for a hexadecimal or ASCII string, perform the following "
-"steps:"
-msgstr ""
-"Para buscar una cadena hexadecimal o ASCII en un archivo, ejecute los "
-"siguientes pasos:"
-
-#: C/ghex.xml:349(para)
-msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find</guimenuitem></"
-"menuchoice>."
-msgstr ""
-"Seleccione <menuchoice><guimenu>Editar</guimenu><guimenuitem>Buscar</"
-"guimenuitem></menuchoice>."
-
-#: C/ghex.xml:351(para)
-msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, choose one of the following "
-"options:"
-msgstr ""
-"En el cuadro de diálogo <guilabel>Buscar los datos</guilabel>, seleccione "
-"una de las siguientes opciones:"
-
-#: C/ghex.xml:353(guilabel) C/ghex.xml:402(guilabel)
-msgid "Search for hex data"
-msgstr "Buscar hexadecimal"
-
-#: C/ghex.xml:355(guilabel) C/ghex.xml:404(guilabel)
-msgid "Search for ASCII data"
-msgstr "Buscar ASCII"
-
-#: C/ghex.xml:359(para) C/ghex.xml:408(para)
-msgid "Type the string that you want to find."
-msgstr "Escriba la cadena que desea encontrar."
-
-#: C/ghex.xml:361(para) C/ghex.xml:381(para)
-msgid ""
-"Click <guibutton>Find Next</guibutton> to find the next occurrence of the "
-"string."
-msgstr ""
-"Pulse en <guibutton>Buscar siguiente</guibutton> para buscar la siguiente "
-"aparición de la cadena."
-
-#: C/ghex.xml:363(para) C/ghex.xml:383(para)
-msgid ""
-"Click <guibutton>Find Previous</guibutton> to find the previous occurrence "
-"of the string."
-msgstr ""
-"Pulse en <guibutton>Buscar anterior</guibutton> para buscar la aparición "
-"anterior de la cadena."
-
-#: C/ghex.xml:365(para) C/ghex.xml:415(para) C/ghex.xml:430(para)
-msgid ""
-"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find Data</"
-"guilabel> dialog."
-msgstr ""
-"Pulse en <guibutton>Cancelar</guibutton> para cerrar el diálogo "
-"<guilabel>Buscar datos</guilabel>."
-
-#: C/ghex.xml:373(title)
-msgid "To Perform an Advanced Find"
-msgstr "Realizar una búsqueda avanzada"
-
-#: C/ghex.xml:374(para)
-msgid "To perform an advanced find, perform the following steps:"
-msgstr "Para realizar una busqueda avanzada, ejecute los siguientes pasos:"
-
-#: C/ghex.xml:376(para) C/ghex.xml:396(para) C/ghex.xml:424(para)
-msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Advanced Find</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Seleccione <menuchoice><guimenu>Editar</guimenu><guimenuitem>Búsqueda "
-"avanzada</guimenuitem></menuchoice>."
-
-#: C/ghex.xml:378(para)
-msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, select the required search "
-"criteria. For information about how to add new search criteria, see <xref "
-"linkend=\"ghex-search-criteria-add\"/>."
-msgstr ""
-"En el cuadro de diálogo <guilabel>Buscar datos</guilabel>, seleccione el "
-"criterio de búsqueda requerido. Para obtener información acerca de cómo "
-"añadir nuevos criterios de búsqueda, consulte <xref linkend=\"ghex-search-"
-"criteria-add\"/>."
-
-#: C/ghex.xml:385(para)
-msgid ""
-"Click <guibutton>Close</guibutton> to close the <guilabel>Find Data</"
-"guilabel> dialog."
-msgstr ""
-"Pulse en <guibutton>Cerrar</guibutton> para cerrar el diálogo "
-"<guilabel>Buscar datos</guilabel>."
-
-#: C/ghex.xml:393(title)
-msgid "To Add Search Criteria"
-msgstr "Añadir criterios de búsqueda"
-
-#: C/ghex.xml:394(para)
-msgid "To add search criteria, perform the following steps:"
-msgstr "Para añadir criterios de búsqueda, realice los siguientes pasos:"
-
-#: C/ghex.xml:398(para)
-msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, click <guibutton>Add New</"
-"guibutton>."
-msgstr ""
-"Pulse en <guibutton>Añadir nuevo</guibutton> dentro del cuadro de diálogo "
-"<guilabel>Buscar datos</guilabel>."
-
-#: C/ghex.xml:400(para)
-msgid ""
-"In the <guilabel>Find Data: Add Search</guilabel> dialog, choose one of the "
-"following options:"
-msgstr ""
-"En el cuadro de diálogo <guilabel>Añadir búsqueda</guilabel>, seleccione una "
-"de las siguientes opciones:"
-
-#: C/ghex.xml:410(para)
-msgid ""
-"Use the color wheel or the spin boxes to select a color to highlight the "
-"search criteria."
-msgstr ""
-"Use la rueda de color o las casillas de selección para escoger un color para "
-"resaltar loscriterios de búsqueda."
-
-#: C/ghex.xml:413(para)
-msgid "Click <guibutton>Add</guibutton>."
-msgstr "Pulse en <guibutton>Añadir</guibutton>."
-
-#: C/ghex.xml:421(title)
-msgid "To Remove Search Criteria"
-msgstr "Eliminar criterios de búsqueda"
-
-#: C/ghex.xml:422(para)
-msgid "To remove search criteria, perform the following steps:"
-msgstr "Para eliminar un criterio de búsqueda, siga los siguientes pasos:"
-
-#: C/ghex.xml:426(para)
-msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, select the search criteria "
-"that you want to remove."
-msgstr ""
-"En el cuadro de diálogo <guilabel>Buscar los datos</guilabel>, seleccione el "
-"criterio de búsqueda que desea eliminar."
-
-#: C/ghex.xml:428(para)
-msgid "Click <guibutton>Remove Selected</guibutton>."
-msgstr "Pulse en <guibutton>Eliminar seleccionados</guibutton>."
-
-#: C/ghex.xml:438(title)
-msgid "To Find and Replace Data in a File"
-msgstr "Buscar y reemplazar datos de un archivo"
-
-#: C/ghex.xml:439(para)
-msgid ""
-"To search a file for a hexadecimal or ASCII string and then replace the "
-"string, perform the following steps:"
-msgstr ""
-"Para buscar una cadena hexadecimal o ASCII en un archivo y luego "
-"reemplazarla, ejecute los siguientes pasos:"
-
-#: C/ghex.xml:441(para)
-msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Replace</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Seleccione <menuchoice><guimenu>Editar</guimenu><guimenuitem>Reemplazar</"
-"guimenuitem></menuchoice>."
-
-#: C/ghex.xml:443(para)
-msgid ""
-"In the <guilabel>Find &amp; Replace Data</guilabel> dialog, choose one of "
-"the following options:"
-msgstr ""
-"En la ventana de diálogo <guilabel>Buscar &amp; reemplazar datos</guilabel>, "
-"seleccione una de las siguientes opciones:"
-
-#: C/ghex.xml:445(guilabel)
-msgid "Replace hex data"
-msgstr "Reemplazar datos hexadecimales"
-
-#: C/ghex.xml:447(guilabel)
-msgid "Replace ASCII data"
-msgstr "Reemplazar datos ASCII"
-
-#: C/ghex.xml:451(para)
-msgid "In the first text box, type the string that you want to find."
-msgstr "En el primer cuadro de texto, escriba la cadena que desea encontrar."
-
-#: C/ghex.xml:453(para)
-msgid ""
-"In the second text box, type the string that you want to use to replace the "
-"string that you find."
-msgstr ""
-"En el segundo cuadro de texto, escriba la cadena con la que desea reemplazar "
-"la cadena que está buscando."
-
-#: C/ghex.xml:455(para)
-msgid "Click <guibutton>Find Next</guibutton>."
-msgstr "Pulse en <guibutton>Buscar el siguiente</guibutton>."
-
-#: C/ghex.xml:457(para)
-msgid ""
-"Click <guibutton>Replace</guibutton> to replace the current occurrence of "
-"the string or click <guibutton>Replace All</guibutton> to replace all "
-"occurrences of the string."
-msgstr ""
-"Pulse en <guibutton>Reemplazar</guibutton> para reemplazar la aparición "
-"actual de la cadena, o bien en <guibutton>Reemplazar todo</guibutton> para "
-"reemplazar todas las apariciones de la cadena."
-
-#: C/ghex.xml:459(para)
-msgid ""
-"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find &amp; "
-"Replace Data</guilabel> dialog."
-msgstr ""
-"Pulse en <guibutton>Cancelar</guibutton> para cerrar el diálogo "
-"<guilabel>Buscar y reemplazar datos</guilabel>"
-
-#: C/ghex.xml:467(title)
-msgid "To Add or Remove Additional Views of a File"
-msgstr "Añadir o quitar vistas adicionales de un archivo"
-
-#: C/ghex.xml:468(para)
-msgid ""
-"To add another view of the current file to your <application>GHex</"
-"application> window, choose <menuchoice><guimenu>View</"
-"guimenu><guimenuitem>Add View</guimenuitem></menuchoice>."
-msgstr ""
-"Para añdir otra vista del archivo actual a la ventana de <application>Editor "
-"Hexadecimal de GNOME</application>, seleccione <menuchoice><guimenu>Ver</"
-"guimenu><guimenuitem>Añadir vista</guimenuitem></menuchoice>."
-
-#: C/ghex.xml:469(para)
-msgid ""
-"To remove a view of the current file, choose <menuchoice><guimenu>View</"
-"guimenu><guimenuitem>Remove View</guimenuitem></menuchoice>. If you remove "
-"the last view that is open, the application exits."
-msgstr ""
-"Para quitar una vista del archivo actual, seleccione "
-"<menuchoice><guimenu>Ver</guimenu><guimenuitem>Eliminar vista</guimenuitem></"
-"menuchoice>. Al cerrar el ultimo archivo abierto, también se cerrará la "
-"aplicación."
-
-#: C/ghex.xml:475(title)
-msgid "To Change the Data Group Type"
-msgstr "Cambiar el tipo de grupo de datos"
-
-#: C/ghex.xml:476(para)
-msgid ""
-"To change how <application>GHex</application> displays the hexadecimal "
-"content of a file in the <application>GHex</application> window, choose "
-"<menuchoice><guimenu>View</guimenu><guimenuitem>Group Data As</guimenuitem></"
-"menuchoice>, then select one of the following menu items:"
-msgstr ""
-"Para modificar la forma en que <application>GHex</application> muestra el "
-"contenidohexadecimal de un archivo en la ventana de <application>GHex</"
-"application>, seleccione<menuchoice><guimenu>Ver</"
-"guimenu><guimenuitem>Agrupar datos como</guimenuitem></menuchoice>, y "
-"seleccione una de las siguientes opciones:"
-
-#: C/ghex.xml:478(para) C/ghex.xml:657(para)
-msgid "<guilabel>Bytes</guilabel> - single bytes"
-msgstr "<guilabel>Bytes</guilabel>: bytes únicos."
-
-#: C/ghex.xml:480(para) C/ghex.xml:659(para)
-msgid "<guilabel>Words</guilabel> - groups of two bytes"
-msgstr "<guilabel>Palabras</guilabel>: grupos de dos bytes."
-
-#: C/ghex.xml:482(para) C/ghex.xml:661(para)
-msgid "<guilabel>Longwords</guilabel> - groups of four bytes"
-msgstr "<guilabel>Palabras largas</guilabel>: grupos de cuatro bytes."
-
-#: C/ghex.xml:490(title)
-msgid "To Export the GHex Display to HTML"
-msgstr "Exportar la visualización de Editor Hexadecimal de GNOME a HTML"
-
-#: C/ghex.xml:492(para)
-msgid ""
-"Creates a separate HTML file for each page of data that is displayed in the "
-"<application>GHex</application> window."
-msgstr ""
-"Crea un archivo HTML independiente para cada página de datos que se muestra "
-"en la ventana <application>Editor Hexadecimal de GNOME</application>."
-
-#: C/ghex.xml:494(para)
-msgid "Uses the HTML filename that you specify as the basis for the filename."
-msgstr ""
-"Usa el nombre de archivo HTML que usted especifique como base para el nombre "
-"del archivo."
-
-#: C/ghex.xml:496(para)
-msgid "Appends a page number to the filename to differentiate the files."
-msgstr ""
-"Adjudica un número de página al nombre del archivo para diferenciar los "
-"documentos."
-
-#: C/ghex.xml:491(para)
-msgid ""
-"To export the data contained in the <application>GHex</application> window "
-"to HTML, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Save As "
-"HTML</guimenuitem></menuchoice>. Choose a directory and specify a filename "
-"for the HTML file, then click <guibutton>OK</guibutton>. <application>GHex</"
-"application> implements the following actions: <placeholder-1/> For example, "
-"if you specify the filename <filename>log.html</filename>, "
-"<application>GHex</application> creates a series of HTML files named "
-"<filename>log00000000.html</filename>, <filename>log00000001.html</"
-"filename>, <filename>log00000002.html</filename>, and so on."
-msgstr ""
-"Para exportar los datos de la ventana de <application>Editor Hexadecimal de "
-"GNOME</application> a HTML, seleccione <menuchoice><guimenu>Archivo</"
-"guimenu><guimenuitem>Guardar como HTML</guimenuitem></menuchoice>. "
-"Seleccione una carpeta y especifique un nombre para el archivo HTML y, a "
-"continuación, haga clic en <guibutton>Aceptar</guibutton>. "
-"<application>Editor Hexadecimal de GNOME</application> implementa las "
-"siguientes acciones: <placeholder-1/> Por ejemplo, si especifica el nombre "
-"del archivo <filename>log.html</filename>, <application>Editor Hexadecimal "
-"de GNOME</application> crea una serie de archivos HTML denominados "
-"<filename>log00000000.html</filename>, <filename>log00000001.html</"
-"filename>, <filename>log00000002.html</filename>, y así sucesivamente."
-
-#: C/ghex.xml:504(title)
-msgid "To View a Character Table"
-msgstr "Ver una tabla de caracteres"
-
-#: C/ghex.xml:505(para)
-msgid ""
-"To view a table that contains the ASCII, hexadecimal, decimal, octal, and "
-"binary representations for the values 0 to 255, choose "
-"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Character Table</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Para ver una tabla que contenga las representaciones ASCII, hexadecimales, "
-"decimales, octales y binarias de los valores que van de 0 a 255, seleccione "
-"<menuchoice><guimenu>Herramientas</guimenu><guimenuitem>Tabla de caracteres</"
-"guimenuitem></menuchoice>."
-
-#: C/ghex.xml:511(title)
-msgid "To View Data Conversions"
-msgstr "Ver conversiones de datos"
-
-#: C/ghex.xml:512(para)
-msgid ""
-"To display the binary, decimal, hexadecimal, and ASCII conversions for up to "
-"four bytes of data, perform the following steps:"
-msgstr ""
-"Para visualizar conversiones binarias, decimales, hexadecimales y ASCII "
-"hasta un máximo de cuatro bytes de datos, ejecute los siguientes pasos:"
-
-#: C/ghex.xml:514(para)
-msgid ""
-"Choose <menuchoice><guimenu>Windows</guimenu><guimenuitem>Base Converter</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Seleccione <menuchoice><guimenu>Herramientas</"
-"guimenu><guimenuitem>Convertidor base</guimenuitem></menuchoice>."
-
-#: C/ghex.xml:516(para)
-msgid "Perform one of the following actions:"
-msgstr "Seleccione una de las siguientes opciones:"
-
-#: C/ghex.xml:518(para)
-msgid ""
-"Type the data that you want to convert in one of the fields in the "
-"<guilabel>Base Converter</guilabel> dialog, then press <keycap>Return</"
-"keycap>."
-msgstr ""
-"Escriba los datos que desea convertir en uno de los campos del cuadro de "
-"diálogo <guilabel>Convertidor base</guilabel> y pulse <keycap>Intro</keycap>."
-
-#: C/ghex.xml:520(para)
-msgid ""
-"To display the conversions for the data at the cursor position in the "
-"current file, click on the <guibutton>Get cursor value</guibutton> button."
-msgstr ""
-"Si desea ver las conversiones de los datos de la posición del cursor en el "
-"archivo abierto, haga clic en el botón <guibutton> Recuperar valor del "
-"cursor</guibutton>."
-
-#: C/ghex.xml:523(para)
-msgid ""
-"<application>GHex</application> updates the values of the other fields to "
-"display the data conversions."
-msgstr ""
-"<application>Editor Hexadecimal de GNOME</application> actualiza los valores "
-"de los demás campos para mostrar las conversiones de los datos."
-
-#: C/ghex.xml:525(para)
-msgid ""
-"Click <guibutton>Close</guibutton> to close the <guilabel>Base Converter</"
-"guilabel> dialog."
-msgstr ""
-"Pulse en <guibutton>Cerrar</guibutton> para cerrar el diálogo "
-"<guilabel>Conversor de base</guilabel>."
-
-#: C/ghex.xml:533(title)
-msgid "To Show or Hide the Type Conversion Dialog"
-msgstr "Para mostrar u ocultar el cuadro de diálogo de conversión de tipo"
-
-#: C/ghex.xml:534(para)
-msgid ""
-"To show or hide the type conversion dialog, choose "
-"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Type Conversion Dialog</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Para mostrar u ocultar el cuadro de diálogo de conversión de tipo, "
-"seleccione<menuchoice><guimenu>Ventanas</guimenu><guimenuitem>Diálogo de "
-"conversión de tipo</guimenuitem></menuchoice>."
-
-#: C/ghex.xml:535(para)
-msgid ""
-"The type conversion dialog displays the value of the selected character in "
-"the following representations:"
-msgstr ""
-"El cuadro de diálogo de conversión de tipos mustra el valor del carácter "
-"seleccionado en las siguientes representaciones:"
-
-#: C/ghex.xml:538(guilabel)
-msgid "Signed 8 bit"
-msgstr "8 bit con signo"
-
-#: C/ghex.xml:541(guilabel)
-msgid "Unsigned 8 bit"
-msgstr "8 bit sin signo"
-
-#: C/ghex.xml:544(guilabel)
-msgid "Signed 16 bit"
-msgstr "16 bit con signo"
-
-#: C/ghex.xml:547(guilabel)
-msgid "Unsigned 16 bit"
-msgstr "16 bit sin signo"
-
-#: C/ghex.xml:550(guilabel)
-msgid "Signed 32 bit"
-msgstr "32 bit con signo"
-
-#: C/ghex.xml:553(guilabel)
-msgid "Unsigned 32 bit"
-msgstr "32 bit sin signo"
-
-#: C/ghex.xml:556(guilabel)
-msgid "32 bit float"
-msgstr "32 bit en coma flotante"
-
-#: C/ghex.xml:559(guilabel)
-msgid "64 bit float"
-msgstr "64 bit en coma flotante"
-
-#: C/ghex.xml:562(guilabel)
-msgid "Hexadecimal"
-msgstr "Hexadecimal"
-
-#: C/ghex.xml:565(guilabel)
-msgid "Octal"
-msgstr "Octal"
-
-#: C/ghex.xml:568(guilabel)
-msgid "Binary"
-msgstr "Binario"
-
-#: C/ghex.xml:571(guilabel)
-msgid "Stream Length"
-msgstr "Longitud del flujo"
-
-#: C/ghex.xml:574(para)
-msgid "The type conversion dialog also contains the following options:"
-msgstr ""
-"El cuadro de diálogo de conversión de tipo también contiene las siguientes "
-"opciones:"
-
-#: C/ghex.xml:577(guilabel)
-msgid "Show little endian decoding"
-msgstr "Mostrar la decodificación en little endian"
-
-#: C/ghex.xml:579(para)
-msgid "Select this option to show little endian decoding."
-msgstr ""
-"Seleccione esta opcion para mostrar la decodificación en little endian."
-
-#: C/ghex.xml:583(guilabel)
-msgid "Show unsigned and float as hexadecimal"
-msgstr "Mostrar como hexadecimal los números sin signo y en coma flotante"
-
-#: C/ghex.xml:585(para)
-msgid ""
-"Select this option to show unsigned and float numbers as hexadecimal numbers."
-msgstr ""
-"Seleccione esta opción para mostrar los números sin signo y en coma flotante "
-"como números hexadecimales."
-
-#: C/ghex.xml:594(title)
-msgid "To Print a File"
-msgstr "Imprimir un archivo"
-
-#: C/ghex.xml:595(para)
-msgid ""
-"To print a file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Print</guimenuitem></menuchoice>. Select the print "
-"options that you require in the <guilabel>Print</guilabel> dialog, then "
-"click <guibutton>OK</guibutton>."
-msgstr ""
-"Para imprimir un archivo, seleccione <menuchoice><guimenu>Archivo</"
-"guimenu><guimenuitem>Imprimir</guimenuitem></menuchoice>. Seleccione las "
-"opciones de impresión que necesita en el cuadro de diálogo "
-"<guilabel>Imprimir</guilabel> y, a continuación, pulse en "
-"<guibutton>Aceptar</guibutton>."
-
-#: C/ghex.xml:596(para)
-msgid ""
-"To preview a printed copy of the file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Print Preview</guimenuitem></menuchoice>."
-msgstr ""
-"Para obtener una vista previa de una copia impresa del archivo, seleccione "
-"<menuchoice><guimenu>Archivo</guimenu><guimenuitem>Vista previa de "
-"impresión</guimenuitem></menuchoice>."
-
-#: C/ghex.xml:604(title)
-msgid "Preferences"
-msgstr "Preferencias"
-
-#: C/ghex.xml:605(para)
-msgid ""
-"To configure <application>GHex</application>, choose "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></"
-"menuchoice>. The <guilabel>Preferences</guilabel> dialog contains the "
-"following tabbed sections:"
-msgstr ""
-"Para configurar <application>Editor Hexadecimal de GNOME</application>, "
-"seleccione <menuchoice><guimenu>Configuración</"
-"guimenu><guimenuitem>Preferencias</guimenuitem></menuchoice>. El cuadro de "
-"diálogo <guilabel>Preferencias</guilabel> contiene pestañas con las "
-"siguientes secciones:"
-
-#: C/ghex.xml:618(title)
-msgid "Editing"
-msgstr "Editar"
-
-#: C/ghex.xml:621(guilabel)
-msgid "Maximum number of undo levels"
-msgstr "Número máximo de niveles de deshacer"
-
-#: C/ghex.xml:623(para)
-msgid ""
-"Use this spin box to specify the maximum number of edits that you can undo."
-msgstr ""
-"Use esta casilla de selección para especificar el número máximo de acciones "
-"que puede deshacer."
-
-#: C/ghex.xml:627(guilabel)
-msgid "Show cursor offset in statusbar as"
-msgstr "Ver el desplazamiento del cursor en la barra de estado como"
-
-#: C/ghex.xml:629(para)
-msgid ""
-"Use this drop-down list to select the format in which the cursor offset is "
-"displayed. The format can be decimal, hexadecimal, or a custom print style "
-"string that only contains the format specifiers x, o, and s."
-msgstr ""
-"Use esta lista desplegable para seleccionar el formato en el que se mostrará "
-"el desplazamiento del cursor. El formato puede ser decimal, hexadecimal o "
-"una cadena de estilo de impresión personalizado que sólo contenga los "
-"especificadores de formato x, o y s."
-
-#: C/ghex.xml:633(guilabel)
-msgid "Show offsets column"
-msgstr "Ver la columna de los desplazamientos (offsets)"
-
-#: C/ghex.xml:635(para)
-msgid ""
-"Select this option to display the cursor offsets in a column to the left of "
-"the hexadecimal view of the <application>GHex</application> window."
-msgstr ""
-"Seleccione esta opción para visualizar los desplazamientos del cursor en una "
-"columna situada a la izquierda de la vista hexadecimal de la ventana "
-"<application>Editor Hexadecimal de GNOME</application>."
-
-#: C/ghex.xml:644(title)
-msgid "Display"
-msgstr "Visualizar"
-
-#: C/ghex.xml:647(guilabel)
-msgid "Font"
-msgstr "Tipografía"
-
-#: C/ghex.xml:649(para)
-msgid ""
-"Use the font selector list boxes to edit the existing font information or "
-"type new font information. Specify a font type, style, and size to display "
-"the contents of files in <application>GHex</application>."
-msgstr ""
-"Use las cajas de selección de tipografía para editar la información "
-"existente sobre la tipografía o para escribir información nueva sobre ésta. "
-"Especifique un tipo, estilo y tamaño de tipografía para mostrar el contenido "
-"de los archivos en <application>GHex</application>."
-
-#: C/ghex.xml:653(guilabel)
-msgid "Default Group Type"
-msgstr "Tipo de grupo predeterminado"
-
-#: C/ghex.xml:655(para)
-msgid ""
-"Select one of the following options to specify how <application>GHex</"
-"application> displays the hexadecimal content of a file in the "
-"<application>GHex</application> window:"
-msgstr ""
-"Seleccione una de las siguientes opciones para especificar cómo "
-"<application>GHex</application> muestra el contenido hexadecimal de un "
-"archivo en la ventana de <application>GHex</application>:"
-
-#: C/ghex.xml:672(title)
-msgid "Printing"
-msgstr "Imprimir"
-
-#: C/ghex.xml:675(guilabel)
-msgid "Data font"
-msgstr "Tipografía de los datos"
-
-#: C/ghex.xml:677(para)
-msgid ""
-"Click on the <guibutton>Data font</guibutton> button to specify the font "
-"type, style, and size to use to print the data contained in a file."
-msgstr ""
-"Pulse en el botón <guibutton>Fuente de los datos</guibutton> para "
-"especificar el  tipo,estilo y tamaño  de la tipografía que desea utilizar "
-"para imprimir los datos de un archivo."
-
-#: C/ghex.xml:681(guilabel)
-msgid "Header font"
-msgstr "Tipografía de las cabeceras"
-
-#: C/ghex.xml:683(para)
-msgid ""
-"Click on the <guibutton>Header font</guibutton> button to specify the font "
-"type, style, and size to use to print the header information that is "
-"contained in the file."
-msgstr ""
-"Pulse en el botón <guibutton>Tipografía de las cabeceras</guibutton> para "
-"especificar el tipo ,el estilo y el tamaño de la tipografía que desea "
-"utilizar para imprimir la información de cabecera de un archivo."
-
-#: C/ghex.xml:687(guilabel)
-msgid "Print shaded box over"
-msgstr "Sobreimprimir un recuadro sombreado"
-
-#: C/ghex.xml:689(para)
-msgid ""
-"Use this spin box to specify the number of lines that <application>GHex</"
-"application> alternately prints with a surrounding shaded box. If the value "
-"of the spin box is 10, <application>GHex</application> prints the first 10 "
-"lines of the file without a shaded box, the next 10 lines with a shaded box, "
-"and so on. If the value of the spin box is 0, <application>GHex</"
-"application> does not print any shaded box."
-msgstr ""
-"Use este cuadro de incremento para especificar el número de líneas que desea "
-"que el <application>Editor hexadecimal de GNOME</application> imprima dentro "
-"de un recuadro sombreado . Si el valor del cuadro de incremento es 10, el "
-"<application>Editor hexadecimal de GNOME</application> imprimirá las 10 "
-"primeras líneas del archivo sin el recuadro sombreado, y las 10 siguientes "
-"con el recuadro, y así sucesivamente. Si el valor del cuadro de incremento "
-"es 0, <application>GHex</application> no imprimirá ningun recuadro sombreado."
-
-#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
-#: C/ghex.xml:0(None)
-msgid "translator-credits"
-msgstr ""
-"Daniel Mustieles <daniel.mustieles@ie.edu>, 2008-2010\n"
-"QA: Jorge González <jorgegonz@svn.gnome.org>, 2008-2010"
+
+#~ msgid "2002"
+#~ msgstr "2002"
+
+#~ msgid "2003"
+#~ msgstr "2003"
+
+#~ msgid "2004"
+#~ msgstr "2004"
+
+#~ msgid "Sun Microsystems"
+#~ msgstr "Sun Microsystems"
+
+#~ msgid "1998-2000"
+#~ msgstr "1998-2000"
+
+#~ msgid "Jaka Mocnik"
+#~ msgstr "Jaka Mocnik"
+
+#~ msgid "Sun"
+#~ msgstr "Sun"
+
+#~ msgid "GNOME Documentation Team"
+#~ msgstr "Equipo de documentación de GNOME"
+
+#~ msgid "Jaka"
+#~ msgstr "Jaka"
+
+#~ msgid "Mocnik"
+#~ msgstr "Mocnik"
+
+#~ msgid "jaka@gnu.org"
+#~ msgstr "jaka@gnu.org"
+
+#~ msgid "GHex Manual V2.5"
+#~ msgstr "Manual de GHex V2.5"
+
+#~ msgid "December 2005"
+#~ msgstr "Diciembre de 2005"
+
+#~ msgid "GHex Manual V2.4"
+#~ msgstr "Manual de GHex V2.4"
+
+#~ msgid "April 2003"
+#~ msgstr "Abril de 2003"
+
+#~ msgid "GHex Manual V2.3"
+#~ msgstr "Manual de GHex V2.3"
+
+#~ msgid "August 2002"
+#~ msgstr "Agosto 2002"
+
+#~ msgid "GHex Manual V2.2"
+#~ msgstr "Manual de GHex V2.2"
+
+#~ msgid "GHex Manual V2.1"
+#~ msgstr "Manual de GHex V2.1"
+
+#~ msgid "July 2002"
+#~ msgstr "Julio 2002"
+
+#~ msgid "GHex Manual V2.0"
+#~ msgstr "Manual de GHex V2.0"
+
+#~ msgid "March 2002"
+#~ msgstr "Marzo 2002"
+
+#~ msgid "GHex Manual V1.0"
+#~ msgstr "Manual de GHex V1.0"
+
+#~ msgid "2000"
+#~ msgstr "2000"
+
+#~ msgid "GHex"
+#~ msgstr "GHex"
+
+#~ msgid "Shows GHex main window before you open a file."
+#~ msgstr "Muestra la ventana principal de GHex antes de abrir un archivo"
+
+#~ msgid "Shows GHex main window with an open file"
+#~ msgstr "Muestra la ventana principal de GHex con un archivo abierto"
+
+#~ msgid "Signed 8 bit"
+#~ msgstr "8 bit con signo"
+
+#~ msgid "Unsigned 8 bit"
+#~ msgstr "8 bit sin signo"
+
+#~ msgid "Signed 16 bit"
+#~ msgstr "16 bit con signo"
+
+#~ msgid "Unsigned 16 bit"
+#~ msgstr "16 bit sin signo"
+
+#~ msgid "Signed 32 bit"
+#~ msgstr "32 bit con signo"
+
+#~ msgid "Unsigned 32 bit"
+#~ msgstr "32 bit sin signo"
+
+#~ msgid "32 bit float"
+#~ msgstr "32 bit en coma flotante"
+
+#~ msgid "64 bit float"
+#~ msgstr "64 bit en coma flotante"
+
+#~ msgid "Hexadecimal"
+#~ msgstr "Hexadecimal"
+
+#~ msgid "Octal"
+#~ msgstr "Octal"
+
+#~ msgid "Binary"
+#~ msgstr "Binario"
+
+#~ msgid "Stream Length"
+#~ msgstr "Longitud del flujo"
+
+#~ msgid "Font"
+#~ msgstr "Tipografía"
+
+#~ msgid "Data font"
+#~ msgstr "Tipografía de los datos"
+
+#~ msgid "Header font"
+#~ msgstr "Tipografía de las cabeceras"
 
 #~ msgid "March 2004"
 #~ msgstr "Marzo 2004"
