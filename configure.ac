@@ -74,8 +74,7 @@ GNOME_COMPILE_WARNINGS([maximum])
 AC_ARG_ENABLE(debug,
               [  --enable-debug      Enables extra debugging output], AC_DEFINE(ENABLE_DEBUG, 1, [Should verbose debugging output be enabled.]))
 
-GNOME_DOC_INIT([0.9.0],,
-  [AC_MSG_WARN([[gnome-doc-utils not found: documentation will not be built.]])])
+YELP_HELP_INIT
 
 AC_CONFIG_FILES([
 Makefile

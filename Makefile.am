@@ -2,12 +2,9 @@
 
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
-
 SUBDIRS = data po help src icons
 
 EXTRA_DIST =			\
-	gnome-doc-utils.make	\
 	COPYING-DOCS		\
 	HACKING
 
