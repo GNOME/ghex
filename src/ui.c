@@ -143,11 +143,8 @@ about_cb (GtkAction  *action,
 		NULL
 	};
 
-	const gchar *documenters[] = {
-		"Jaka Mocnik",
-		"Sun GNOME Documentation Team",
-		NULL
-	};
+	/* For documentation_credits */
+	#include "../help/ghex-docs.h"
 
 	const gchar *license[] = {
 		N_("This program is free software; you can redistribute it and/or modify "
@@ -176,7 +173,7 @@ about_cb (GtkAction  *action,
 	                       "authors", authors,
 	                       "comments", _("A binary file editor"),
 	                       "copyright", copyright,
-	                       "documenters", documenters,
+	                       "documenters", documentation_credits,
 	                       "license", license_translated,
 	                       "logo-icon-name", PACKAGE,
 	                       "program-name", "GHex",
@@ -199,7 +196,7 @@ help_cb (GtkAction  *action,
 	GError *error = NULL;
 
 	gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (window)),
-	              "help:ghex",
+	              "ghelp:ghex",
 	              gtk_get_current_event_time (),
 	              &error);
 
