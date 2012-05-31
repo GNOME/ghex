@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: ghex.HEAD.es\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-02-21 04:50+0000\n"
+"POT-Creation-Date: 2012-03-01 23:51+0000\n"
 "PO-Revision-Date: 2012-02-21 14:03+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
@@ -24,8 +24,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:675
-#: ../src/ghex-window.c:1109
+#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:650
+#: ../src/ghex-window.c:1084
 msgid "GHex"
 msgstr "GHex"
 
@@ -144,7 +144,7 @@ msgstr "Buscar anterior"
 msgid "Finds the previous occurrence of the search string "
 msgstr "Busca la coincidencia anterior de la cadena de búsqueda"
 
-#: ../src/findreplace.c:141 ../src/findreplace.c:418 ../src/findreplace.c:466
+#: ../src/findreplace.c:141 ../src/findreplace.c:418 ../src/findreplace.c:469
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -245,65 +245,65 @@ msgstr "Cierra la ventana buscar y reemplazar"
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Saltar al byte"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:467
 msgid "Jump to byte"
 msgstr "Saltar a byte"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:467
 msgid "Enter the byte to jump to"
 msgstr "Introduzca el byte al que saltar"
 
-#: ../src/findreplace.c:465
+#: ../src/findreplace.c:468
 msgid "OK"
 msgstr "Aceptar"
 
-#: ../src/findreplace.c:465
+#: ../src/findreplace.c:468
 msgid "Jumps to the specified byte"
 msgstr "Salta al byte especificado"
 
-#: ../src/findreplace.c:466
+#: ../src/findreplace.c:469
 msgid "Closes jump to byte window"
 msgstr "Cierra la ventana saltar a byte"
 
-#: ../src/findreplace.c:529 ../src/findreplace.c:563 ../src/findreplace.c:670
+#: ../src/findreplace.c:532 ../src/findreplace.c:566 ../src/findreplace.c:673
 msgid "There is no active document to search!"
 msgstr "No hay un documento activo para buscar."
 
-#: ../src/findreplace.c:536 ../src/findreplace.c:570 ../src/findreplace.c:677
-#: ../src/findreplace.c:711 ../src/findreplace.c:756
+#: ../src/findreplace.c:539 ../src/findreplace.c:573 ../src/findreplace.c:680
+#: ../src/findreplace.c:714 ../src/findreplace.c:759
 msgid "There is no string to search for!"
 msgstr "No hay cadena de búsqueda."
 
-#: ../src/findreplace.c:548 ../src/findreplace.c:686 ../src/findreplace.c:876
+#: ../src/findreplace.c:551 ../src/findreplace.c:689 ../src/findreplace.c:879
 msgid "End Of File reached"
 msgstr "Se ha alcanzado el fin del archivo (EOF)"
 
-#: ../src/findreplace.c:549 ../src/findreplace.c:582 ../src/findreplace.c:685
-#: ../src/findreplace.c:877 ../src/findreplace.c:900
+#: ../src/findreplace.c:552 ../src/findreplace.c:585 ../src/findreplace.c:688
+#: ../src/findreplace.c:880 ../src/findreplace.c:903
 msgid "String was not found!\n"
 msgstr "No se encontró la cadena.\n"
 
-#: ../src/findreplace.c:581 ../src/findreplace.c:899
+#: ../src/findreplace.c:584 ../src/findreplace.c:902
 msgid "Beginning Of File reached"
 msgstr "Se ha alcanzado el inicio del archivo (BOF)"
 
-#: ../src/findreplace.c:598
+#: ../src/findreplace.c:601
 msgid "There is no active document to move the cursor in!"
 msgstr "No hay documento activo para mover el cursor."
 
-#: ../src/findreplace.c:616
+#: ../src/findreplace.c:619
 msgid "No offset has been specified!"
 msgstr "No se ha especificado el desplazamiento."
 
-#: ../src/findreplace.c:641
+#: ../src/findreplace.c:644
 msgid "The specified offset is beyond the  file boundaries!"
 msgstr "El desplazamiento especificado está fuera de los límites del archivo"
 
-#: ../src/findreplace.c:649
+#: ../src/findreplace.c:652
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "No se puede poner el cursor más allá del fin del archivo."
 
-#: ../src/findreplace.c:656
+#: ../src/findreplace.c:659
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
@@ -315,30 +315,30 @@ msgstr ""
 "  - un número hexadecimal, que empiece por «0x»\n"
 "  - un signo «+» o «-». seguido de un desplazamiento relativo"
 
-#: ../src/findreplace.c:702
+#: ../src/findreplace.c:705
 msgid "There is no active buffer to replace data in!"
 msgstr "No existe un búfer activo en el cual reemplazar los datos."
 
-#: ../src/findreplace.c:727 ../src/findreplace.c:728
+#: ../src/findreplace.c:730 ../src/findreplace.c:731
 msgid "End Of File reached!"
 msgstr "Se ha alcanzado el fin del archivo (EOF)."
 
-#: ../src/findreplace.c:747
+#: ../src/findreplace.c:750
 msgid "There is no active document to replace data in!"
 msgstr "No existe un documento activo en el cual reemplazar los datos."
 
-#: ../src/findreplace.c:777
+#: ../src/findreplace.c:780
 msgid "No occurrences were found."
 msgstr "No se han encontrado coincidencias."
 
-#: ../src/findreplace.c:780
+#: ../src/findreplace.c:783
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
 msgstr[0] "Reemplazada una aparición."
 msgstr[1] "Reemplazadas %d apariciones."
 
-#: ../src/findreplace.c:820
+#: ../src/findreplace.c:823
 msgid "No string to search for!"
 msgstr "No hay cadena de búsqueda."
 
@@ -629,36 +629,31 @@ msgstr "Palabras _largas"
 msgid "Group data by 32 bits"
 msgstr "Agrupar datos por 32 bits"
 
-#: ../src/ghex-window.c:585
-#, c-format
-msgid "Failed to load UI: %s"
-msgstr "Fallo al cargar la IU: %s"
-
-#: ../src/ghex-window.c:794
+#: ../src/ghex-window.c:769
 #, c-format
 msgid "Offset: %s"
 msgstr "Desplazamiento: %s"
 
-#: ../src/ghex-window.c:797
+#: ../src/ghex-window.c:772
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; seleccionados %s bytes desde %s hasta %s"
 
-#: ../src/ghex-window.c:1069
+#: ../src/ghex-window.c:1044
 #, c-format
 msgid "Activate file %s"
 msgstr "Activar archivo %s"
 
-#: ../src/ghex-window.c:1105
+#: ../src/ghex-window.c:1080
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
-#: ../src/ghex-window.c:1231
+#: ../src/ghex-window.c:1206
 msgid "Select a file to save buffer as"
 msgstr "Seleccione un archivo en el que guardar el búfer actual"
 
-#: ../src/ghex-window.c:1263
+#: ../src/ghex-window.c:1238
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -667,20 +662,20 @@ msgstr ""
 "El archivo %s existe.\n"
 "¿Desea sobreescribirlo?"
 
-#: ../src/ghex-window.c:1289 ../src/ui.c:300
+#: ../src/ghex-window.c:1264 ../src/ui.c:300
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Búfer guardado en el archivo %s"
 
-#: ../src/ghex-window.c:1296
+#: ../src/ghex-window.c:1271
 msgid "Error saving file!"
 msgstr "Error al guardar el archivo."
 
-#: ../src/ghex-window.c:1302
+#: ../src/ghex-window.c:1277
 msgid "Can't open file for writing!"
 msgstr "No se puede abrir el archivo para escritura."
 
-#: ../src/ghex-window.c:1347
+#: ../src/ghex-window.c:1322
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -689,15 +684,15 @@ msgstr ""
 "El archivo %s ha cambiado desde la última vez que se guardó.\n"
 "¿Desea guardar los cambios?"
 
-#: ../src/ghex-window.c:1351
+#: ../src/ghex-window.c:1326
 msgid "Do_n't save"
 msgstr "_No guardar"
 
-#: ../src/ghex-window.c:1371 ../src/ui.c:288
+#: ../src/ghex-window.c:1346 ../src/ui.c:288
 msgid "You don't have the permissions to save the file!"
 msgstr "No tiene permisos para guardar el archivo."
 
-#: ../src/ghex-window.c:1375 ../src/ui.c:293
+#: ../src/ghex-window.c:1350 ../src/ui.c:293
 msgid "An error occurred while saving file!"
 msgstr "Sucedió un error al guardar el archivo."
 
@@ -761,30 +756,30 @@ msgstr "Longitud del flujo:"
 msgid "FIXME: no conversion function"
 msgstr "FIXME: no hay función de conversión"
 
-#: ../src/hex-document.c:436
+#: ../src/hex-document.c:435
 msgid "New document"
 msgstr "Nuevo documento"
 
-#: ../src/hex-document.c:785
+#: ../src/hex-document.c:784
 #, c-format
 msgid "Page"
 msgstr "Página"
 
-#: ../src/hex-document.c:791 ../src/hex-document.c:916
+#: ../src/hex-document.c:790 ../src/hex-document.c:915
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Volcado hexadecimal generado por"
 
-#: ../src/hex-document.c:802
+#: ../src/hex-document.c:801
 msgid "Saving to HTML..."
 msgstr "Guardando a HTML..."
 
-#: ../src/hex-document.c:839
+#: ../src/hex-document.c:838
 #, c-format
 msgid "Previous page"
 msgstr "Página anterior"
 
-#: ../src/hex-document.c:854
+#: ../src/hex-document.c:853
 #, c-format
 msgid "Next page"
 msgstr "Página siguiente"
@@ -818,7 +813,7 @@ msgstr ""
 #: ../src/main.c:80 ../src/main.c:93
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
-msgstr "Cadena de geometría inválida «%s»\n"
+msgstr "Cadena de geometría no válida «%s»\n"
 
 #: ../src/preferences.c:69
 msgid "GHex Preferences"
@@ -952,7 +947,7 @@ msgid ""
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
 "La cadena de formato del desplazamiento contiene un especificador de formato "
-"inválido.\n"
+"no válido.\n"
 "Solo se permiten «x», «X», «p», «P», «d» y «o»."
 
 #: ../src/print.c:57
@@ -1066,6 +1061,9 @@ msgstr "¿Desea realmente revertir los cambios del archivo %s?"
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Se ha revertido el búfer desde el archivo %s"
+
+#~ msgid "Failed to load UI: %s"
+#~ msgstr "Fallo al cargar la IU: %s"
 
 #~ msgid "32 bit float:"
 #~ msgstr "flotante de 32 bits:"
