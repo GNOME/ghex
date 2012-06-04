@@ -1,17 +1,17 @@
 # Indonesia translation of ghex.
 # Copyright (C) 2004 THE ghex'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the ghex package.
-# Abdul Hamid.A.N <hameed@linuxmail.org>, 2004
-#
+# Abdul Hamid.A.N <hameed@linuxmail.org>, 2004.
+# Andika Triwidada <andika@gmail.com>, 2009, 2012.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&component=general\n"
-"POT-Creation-Date: 2009-09-27 19:31+0000\n"
-"PO-Revision-Date: 2009-09-29 14:06+0700\n"
+"Project-Id-Version: ghex gnome-3-4\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-04-01 19:16+0000\n"
+"PO-Revision-Date: 2012-06-04 20:32+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
-"Language-Team: Indonesian <l10n@gnome.linux.or.id>\n"
+"Language-Team: Indonesian <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,714 +20,353 @@ msgstr ""
 "X-Poedit-Country: Indonesia\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../ghex.desktop.in.h:1
-msgid "GNOME Hexadecimal Editor"
-msgstr "Penyunting Heksadesimal GNOME"
+#: ../data/ghex.desktop.in.h:1
+#: ../src/ghex-window.c:650
+#: ../src/ghex-window.c:1084
+msgid "GHex"
+msgstr "GHex"
 
-#: ../ghex.desktop.in.h:2
+#: ../data/ghex.desktop.in.h:2
 msgid "Hex Editor"
 msgstr "Penyunting Heksa"
 
-#: ../src/chartable.c:143
+#: ../data/ghex.desktop.in.h:3
+msgid "Inspect and edit binary files"
+msgstr "Periksa dan sunting berkas biner"
+
+#: ../src/chartable.c:147
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ../src/chartable.c:143
+#: ../src/chartable.c:147
 msgid "Hex"
 msgstr "Heksa"
 
-#: ../src/chartable.c:143
-#: ../src/preferences.c:144
+#: ../src/chartable.c:147
+#: ../src/preferences.c:142
 msgid "Decimal"
 msgstr "Desimal"
 
-#: ../src/chartable.c:144
+#: ../src/chartable.c:148
 msgid "Octal"
 msgstr "Oktal"
 
-#: ../src/chartable.c:144
+#: ../src/chartable.c:148
 msgid "Binary"
 msgstr "Biner"
 
-#: ../src/chartable.c:160
+#: ../src/chartable.c:164
 msgid "Character table"
 msgstr "Tabel karakter"
 
-#: ../src/converter.c:230
+#: ../src/converter.c:232
 msgid "Base Converter"
 msgstr "Pengubah Basis"
 
 #. entries
-#: ../src/converter.c:251
+#: ../src/converter.c:253
 msgid "_Binary:"
 msgstr "_Biner:"
 
-#: ../src/converter.c:253
+#: ../src/converter.c:255
 msgid "_Octal:"
 msgstr "_Oktal:"
 
-#: ../src/converter.c:255
+#: ../src/converter.c:257
 msgid "_Decimal:"
 msgstr "_Desimal:"
 
-#: ../src/converter.c:257
+#: ../src/converter.c:259
 msgid "_Hex:"
 msgstr "_Heksa:"
 
-#: ../src/converter.c:259
+#: ../src/converter.c:261
 msgid "_ASCII:"
 msgstr "_ASCII"
 
 #. get cursor button
-#: ../src/converter.c:263
+#: ../src/converter.c:265
 msgid "_Get cursor value"
 msgstr "_Dapatkan nilai cursor"
 
-#: ../src/converter.c:277
+#: ../src/converter.c:279
 msgid "Get cursor value"
 msgstr "Dapatkan nilai cursor"
 
-#: ../src/converter.c:277
+#: ../src/converter.c:279
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr "Dapatkan nilai pada cursor dalam binary, oktal desimal, heksa dan ASCII"
 
-#: ../src/converter.c:417
+#: ../src/converter.c:419
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ../src/findreplace.c:98
-#: ../src/findreplace.c:222
-#: ../src/ui.c:962
+#: ../src/findreplace.c:97
+#: ../src/findreplace.c:221
+#: ../src/ui.c:873
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Cari Data"
 
-#: ../src/findreplace.c:102
-#: ../src/findreplace.c:162
-#: ../src/findreplace.c:358
+#: ../src/findreplace.c:101
+#: ../src/findreplace.c:161
+#: ../src/findreplace.c:359
 msgid "Find String"
 msgstr "Cari String"
 
-#: ../src/findreplace.c:109
-#: ../src/findreplace.c:259
+#: ../src/findreplace.c:108
+#: ../src/findreplace.c:258
 msgid "Find _Next"
 msgstr "Temukan Sela_njutnya"
 
-#: ../src/findreplace.c:116
-#: ../src/findreplace.c:268
+#: ../src/findreplace.c:115
+#: ../src/findreplace.c:267
 msgid "Find _Previous"
 msgstr "Temukan _Sebelum"
 
-#: ../src/findreplace.c:139
-#: ../src/findreplace.c:412
+#: ../src/findreplace.c:138
+#: ../src/findreplace.c:413
 msgid "Find Data"
 msgstr "Temukan Data"
 
-#: ../src/findreplace.c:139
-#: ../src/findreplace.c:412
+#: ../src/findreplace.c:138
+#: ../src/findreplace.c:413
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Masukkan data heksa atau data ASCII untuk dicari"
 
-#: ../src/findreplace.c:140
+#: ../src/findreplace.c:139
 msgid "Find Next"
 msgstr "Cari Lagi"
 
-#: ../src/findreplace.c:140
-#: ../src/findreplace.c:414
+#: ../src/findreplace.c:139
+#: ../src/findreplace.c:415
 msgid "Finds the next occurrence of the search string"
 msgstr "Temukan string berikutnya"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:140
 msgid "Find previous"
 msgstr "Temukan sebelumnya"
 
-#: ../src/findreplace.c:141
+#: ../src/findreplace.c:140
 msgid "Finds the previous occurrence of the search string "
 msgstr "Temukan string yang ada sebelumnya"
 
-#: ../src/findreplace.c:142
-#: ../src/findreplace.c:417
-#: ../src/findreplace.c:465
+#: ../src/findreplace.c:141
+#: ../src/findreplace.c:418
+#: ../src/findreplace.c:469
 msgid "Cancel"
 msgstr "Batal"
 
-#: ../src/findreplace.c:142
+#: ../src/findreplace.c:141
 msgid "Closes find data window"
 msgstr "Menutup window pencarian data"
 
-#: ../src/findreplace.c:158
+#: ../src/findreplace.c:157
 #, c-format
 msgid "GHex (%s): Find Data: Add search"
 msgstr "GHex (%s): Mencari Data: Tambah pencarian"
 
-#: ../src/findreplace.c:180
+#: ../src/findreplace.c:179
 msgid "Add"
 msgstr "Tambah"
 
-#: ../src/findreplace.c:236
+#: ../src/findreplace.c:235
 msgid "Search String"
 msgstr "Mencari String"
 
-#: ../src/findreplace.c:244
+#: ../src/findreplace.c:243
 msgid "Highlight Colour"
 msgstr "Warna Sorot"
 
-#: ../src/findreplace.c:281
+#: ../src/findreplace.c:280
 msgid "_Add New"
 msgstr "T_ambah yang Baru"
 
-#: ../src/findreplace.c:290
+#: ../src/findreplace.c:289
 msgid "_Remove Selected"
 msgstr "_Buang yang Terpilih"
 
-#: ../src/findreplace.c:310
-#: ../src/ghex-ui.xml.h:8
+#: ../src/findreplace.c:309
 msgid "Close"
 msgstr "Tutup"
 
-#: ../src/findreplace.c:310
+#: ../src/findreplace.c:309
 msgid "Closes advanced find window"
 msgstr "Tutup jendela pencarian detil"
 
-#: ../src/findreplace.c:354
-#: ../src/ui.c:960
+#: ../src/findreplace.c:355
+#: ../src/ui.c:871
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Cari & Timpa Data"
 
-#: ../src/findreplace.c:367
+#: ../src/findreplace.c:368
 msgid "Replace With"
 msgstr "Ganti Dengan"
 
-#: ../src/findreplace.c:374
+#: ../src/findreplace.c:375
 msgid "Find _next"
 msgstr "Temukan sela_jutnya"
 
-#: ../src/findreplace.c:382
+#: ../src/findreplace.c:383
 msgid "_Replace"
 msgstr "_Timpa"
 
-#: ../src/findreplace.c:390
+#: ../src/findreplace.c:391
 msgid "Replace _All"
 msgstr "Timpa seluruhny_a"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:414
 msgid "Replace Data"
 msgstr "Timpa Data"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:414
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "Masukkan data heksa atau data ASCII untuk ditimpa"
 
-#: ../src/findreplace.c:414
+#: ../src/findreplace.c:415
 msgid "Find next"
 msgstr "Cari data berikutnya"
 
-#: ../src/findreplace.c:415
-#: ../src/ghex-ui.xml.h:51
+#: ../src/findreplace.c:416
 msgid "Replace"
 msgstr "Ganti"
 
-#: ../src/findreplace.c:415
+#: ../src/findreplace.c:416
 msgid "Replaces the search string with the replace string"
 msgstr "Ganti string yang dicari dengan string yang diinginkan"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:417
 msgid "Replace All"
 msgstr "Ganti Semua"
 
-#: ../src/findreplace.c:416
+#: ../src/findreplace.c:417
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Ganti semua string yang dimaksud dengan string yang diinginkan"
 
-#: ../src/findreplace.c:417
+#: ../src/findreplace.c:418
 msgid "Closes find and replace data window"
 msgstr "Tutup jendela pencarian dan penggantian data"
 
-#: ../src/findreplace.c:433
-#: ../src/ui.c:958
+#: ../src/findreplace.c:434
+#: ../src/ui.c:869
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Loncat Ke Byte"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:467
 msgid "Jump to byte"
 msgstr "Loncat ke byte"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:467
 msgid "Enter the byte to jump to"
 msgstr "Masukkan byte yang diinginkan"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:468
 msgid "OK"
 msgstr "OK"
 
-#: ../src/findreplace.c:464
+#: ../src/findreplace.c:468
 msgid "Jumps to the specified byte"
 msgstr "Lompat ke byte yang dimaksud"
 
-#: ../src/findreplace.c:465
+#: ../src/findreplace.c:469
 msgid "Closes jump to byte window"
 msgstr "Tutup jendela lompat ke byte"
 
-#: ../src/findreplace.c:528
-#: ../src/findreplace.c:562
-#: ../src/findreplace.c:646
+#: ../src/findreplace.c:532
+#: ../src/findreplace.c:566
+#: ../src/findreplace.c:673
 msgid "There is no active document to search!"
 msgstr "Pencarian hanya dapat dilakukan pada dokumen yang aktif!"
 
-#: ../src/findreplace.c:535
-#: ../src/findreplace.c:569
-#: ../src/findreplace.c:653
-#: ../src/findreplace.c:687
-#: ../src/findreplace.c:732
+#: ../src/findreplace.c:539
+#: ../src/findreplace.c:573
+#: ../src/findreplace.c:680
+#: ../src/findreplace.c:714
+#: ../src/findreplace.c:759
 msgid "There is no string to search for!"
 msgstr "Tak ada string untuk dicari!"
 
-#: ../src/findreplace.c:547
-#: ../src/findreplace.c:662
-#: ../src/findreplace.c:853
+#: ../src/findreplace.c:551
+#: ../src/findreplace.c:689
+#: ../src/findreplace.c:879
 msgid "End Of File reached"
 msgstr "Akhir File sudah tercapai"
 
-#: ../src/findreplace.c:548
-#: ../src/findreplace.c:581
-#: ../src/findreplace.c:661
-#: ../src/findreplace.c:854
-#: ../src/findreplace.c:877
+#: ../src/findreplace.c:552
+#: ../src/findreplace.c:585
+#: ../src/findreplace.c:688
+#: ../src/findreplace.c:880
+#: ../src/findreplace.c:903
 msgid "String was not found!\n"
 msgstr "String tidak ditemukan!\n"
 
-#: ../src/findreplace.c:580
-#: ../src/findreplace.c:876
+#: ../src/findreplace.c:584
+#: ../src/findreplace.c:902
 msgid "Beginning Of File reached"
 msgstr "Awal file tercapai"
 
-#: ../src/findreplace.c:596
+#: ../src/findreplace.c:601
 msgid "There is no active document to move the cursor in!"
 msgstr "Kursor dapat bergerak hanya pada dokumen aktif!"
 
-#: ../src/findreplace.c:602
+#: ../src/findreplace.c:619
 msgid "No offset has been specified!"
 msgstr "Offset belum diberikan!"
 
-#: ../src/findreplace.c:626
+#: ../src/findreplace.c:644
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "Ofset yang dinyatakan di luar batas berkas!"
+
+#: ../src/findreplace.c:652
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "Tidak dapat menggerakkan kursor melebihi Batas Akhir File!"
 
-#: ../src/findreplace.c:633
+#: ../src/findreplace.c:659
+#| msgid ""
+#| "You may only give the offset as:\n"
+#| "  - a positive decimal number, or\n"
+#| "  - a hex number, beginning with '0x'"
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x'"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
 msgstr ""
-"Masukkan nilai offset dalam bentuk:\n"
+"Anda hanya boleh memberikan nilai ofset sebagai:\n"
 "  - angka desimal positif, atau\n"
-"  - angka heksa dimulai dengan '0x'"
+"  - angka heksa dimulai dengan '0x', atau\n"
+"  - suatu tanda '+' atau '-', diikuti dengan ofset relatif"
 
-#: ../src/findreplace.c:678
+#: ../src/findreplace.c:705
 msgid "There is no active buffer to replace data in!"
 msgstr "Penggantian data hanya dapat dilakukan pada buffer aktif!"
 
-#: ../src/findreplace.c:703
-#: ../src/findreplace.c:704
+#: ../src/findreplace.c:730
+#: ../src/findreplace.c:731
 msgid "End Of File reached!"
 msgstr "Akhir File telah tercapai!"
 
-#: ../src/findreplace.c:723
+#: ../src/findreplace.c:750
 msgid "There is no active document to replace data in!"
 msgstr "Penggantian data hanya dapat dilakukan pada dokumen aktif!"
 
-#: ../src/findreplace.c:753
+#: ../src/findreplace.c:780
 msgid "No occurrences were found."
 msgstr "Tidak ditemukan."
 
-#: ../src/findreplace.c:756
+#: ../src/findreplace.c:783
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
 msgstr[0] "Mengganti sebanyak %d kali."
 
-#: ../src/findreplace.c:796
+#: ../src/findreplace.c:823
 msgid "No string to search for!"
 msgstr "Tak ada string untuk dicari!"
 
-#: ../src/ghex-ui.xml.h:1
-msgid "About this application"
-msgstr "Tentang program ini"
-
-#: ../src/ghex-ui.xml.h:2
-msgid "Add View"
-msgstr "Tambah Layar"
-
-#: ../src/ghex-ui.xml.h:3
-msgid "Add a new view to the buffer"
-msgstr "Tambah layar baru ke buffer"
-
-#: ../src/ghex-ui.xml.h:4
-msgid "Advanced Find"
-msgstr "Pencarian Detil"
-
-#: ../src/ghex-ui.xml.h:5
-msgid "Bytes"
-msgstr "Byte"
-
-#: ../src/ghex-ui.xml.h:6
-msgid "Character Table..."
-msgstr "Tabel Karakter..."
-
-#: ../src/ghex-ui.xml.h:7
-msgid "Character _Table"
-msgstr "_Tabel Karakter"
-
-#: ../src/ghex-ui.xml.h:9
-msgid "Close the current file"
-msgstr "Tutup file yang aktif sekarang"
-
-#: ../src/ghex-ui.xml.h:10
-msgid "Configure the application"
-msgstr "Konfigurasikan aplikasi"
-
-#: ../src/ghex-ui.xml.h:11
-msgid "Contents"
-msgstr "Isi"
-
-#: ../src/ghex-ui.xml.h:12
-msgid "Converter..."
-msgstr "Pengkonversi..."
-
-#: ../src/ghex-ui.xml.h:13
-msgid "Copy"
-msgstr "Salin"
-
-#: ../src/ghex-ui.xml.h:14
-msgid "Copy selection to clipboard"
-msgstr "Salin pilihan ke clipboard"
-
-#: ../src/ghex-ui.xml.h:15
-msgid "Cu_t"
-msgstr "Po_tong"
-
-#: ../src/ghex-ui.xml.h:16
-msgid "Cut"
-msgstr "Potong"
-
-#: ../src/ghex-ui.xml.h:17
-msgid "Cut selection"
-msgstr "Potong data terpilih"
-
-#: ../src/ghex-ui.xml.h:18
-msgid "E_xit"
-msgstr "Ke_luar"
-
-#: ../src/ghex-ui.xml.h:19
-msgid "Exit"
-msgstr "Keluar"
-
-#: ../src/ghex-ui.xml.h:20
-msgid "Exit the program"
-msgstr "Akhiri program"
-
-#: ../src/ghex-ui.xml.h:21
-msgid "Export data to HTML source"
-msgstr "Ekspor data ke file HTML"
-
-#: ../src/ghex-ui.xml.h:22
-msgid "Export to HTML..."
-msgstr "Ekspor ke HTML..."
-
-#: ../src/ghex-ui.xml.h:23
-msgid "Find"
-msgstr "Cari"
-
-#: ../src/ghex-ui.xml.h:24
-msgid "Goto Byte"
-msgstr "Lompat ke Byte"
-
-#: ../src/ghex-ui.xml.h:25
-msgid "Group data by 16 bits"
-msgstr "Kelompokkan data berdasarkan 16 bit"
-
-#: ../src/ghex-ui.xml.h:26
-msgid "Group data by 32 bits"
-msgstr "Kelompokkan data berdasarkan 32 bit"
-
-#: ../src/ghex-ui.xml.h:27
-msgid "Group data by 8 bits"
-msgstr "Kelompokkan data berdasarkan 8 bit"
-
-#: ../src/ghex-ui.xml.h:28
-msgid "Help Chat"
-msgstr "Bantuan Melalui Obrolan"
-
-#: ../src/ghex-ui.xml.h:29
-msgid "Help on this application"
-msgstr "Bantuan dalam aplikasi ini"
-
-#: ../src/ghex-ui.xml.h:30
-msgid "Insert Mode"
-msgstr "Mode Ketik"
-
-#: ../src/ghex-ui.xml.h:31
-msgid "Insert/overwrite data"
-msgstr "Masukkan/timpa data"
-
-#: ../src/ghex-ui.xml.h:32
-msgid "Jump to a certain position"
-msgstr "Lompat ke posisi tertentu"
-
-#: ../src/ghex-ui.xml.h:33
-msgid "Longwords"
-msgstr "Longwords"
-
-#: ../src/ghex-ui.xml.h:34
-msgid "Open"
-msgstr "Buka"
-
-#: ../src/ghex-ui.xml.h:35
-msgid "Open a file"
-msgstr "Buka file"
-
-#: ../src/ghex-ui.xml.h:36
-msgid "Open base conversion dialog"
-msgstr "Buka dialog konversi basis"
-
-#: ../src/ghex-ui.xml.h:37
-msgid "Pa_ste"
-msgstr "Te_mpel"
-
-#: ../src/ghex-ui.xml.h:38
-msgid "Paste"
-msgstr "Tempel"
-
-#: ../src/ghex-ui.xml.h:39
-msgid "Paste data from clipboard"
-msgstr "Tempel data dari clipboard"
-
-#: ../src/ghex-ui.xml.h:40
-msgid "Preferences"
-msgstr "Setingan"
-
-#: ../src/ghex-ui.xml.h:41
-msgid "Preview printed data"
-msgstr "Lihat contoh data tercetak"
-
-#: ../src/ghex-ui.xml.h:42
-msgid "Print"
-msgstr "Cetak"
-
-#: ../src/ghex-ui.xml.h:43
-msgid "Print Previe_w..."
-msgstr "Contoh Ceta_kan..."
-
-#: ../src/ghex-ui.xml.h:44
-msgid "Print Preview..."
-msgstr "Contoh Cetakan..."
-
-#: ../src/ghex-ui.xml.h:45
-msgid "Print the current file"
-msgstr "Cetak file yang aktif sekarang"
-
-#: ../src/ghex-ui.xml.h:46
-msgid "R_eplace"
-msgstr "_Ganti"
-
-#: ../src/ghex-ui.xml.h:47
-msgid "Redo"
-msgstr "Abaikan Pembatalan"
-
-#: ../src/ghex-ui.xml.h:48
-msgid "Redo the undone action"
-msgstr "Jalankan aksi yang telah dibatalkan"
-
-#: ../src/ghex-ui.xml.h:49
-msgid "Remove View"
-msgstr "Buang Layar"
-
-#: ../src/ghex-ui.xml.h:50
-msgid "Remove the current view of the buffer"
-msgstr "Buang layar aktif dari buffer"
-
-#: ../src/ghex-ui.xml.h:52
-msgid "Replace a string"
-msgstr "Ganti string"
-
-#: ../src/ghex-ui.xml.h:53
-msgid "Revert"
-msgstr "Kembalikan"
-
-#: ../src/ghex-ui.xml.h:54
-msgid "Revert to a saved version of the file"
-msgstr "Kembalikan ke data sebelumnya tersimpan dalam file"
-
-#: ../src/ghex-ui.xml.h:55
-msgid "Save"
-msgstr "Simpan"
-
-#: ../src/ghex-ui.xml.h:56
-msgid "Save As"
-msgstr "Simpan Sebagai"
-
-#: ../src/ghex-ui.xml.h:57
-msgid "Save As _HTML..."
-msgstr "Simpan Sebagai _HTML..."
-
-#: ../src/ghex-ui.xml.h:58
-msgid "Save _As..."
-msgstr "Simpan Seb_agai..."
-
-#: ../src/ghex-ui.xml.h:59
-msgid "Save the current file"
-msgstr "Simpan file aktif sekarang"
-
-#: ../src/ghex-ui.xml.h:60
-msgid "Save the current file with a different name"
-msgstr "Simpan file aktif sekarang dengan nama yang berbeda"
-
-#: ../src/ghex-ui.xml.h:61
-msgid "Search for a string"
-msgstr "Cari string"
-
-#: ../src/ghex-ui.xml.h:62
-msgid "Show the character table"
-msgstr "Tampilkan tabel karakter"
-
-#: ../src/ghex-ui.xml.h:63
-msgid "Show the type conversion dialog in the edit window"
-msgstr "Tampilkan dialog tipe konversi dalam jendela edit"
-
-#: ../src/ghex-ui.xml.h:64
-msgid "Type Conversion Dialog..."
-msgstr "Dialog Tipe Konversi..."
-
-#: ../src/ghex-ui.xml.h:65
-msgid "Type Conversion _Dialog"
-msgstr "_Dialog Tipe Konversi"
-
-#: ../src/ghex-ui.xml.h:66
-msgid "Undo"
-msgstr "Batalkan"
-
-#: ../src/ghex-ui.xml.h:67
-msgid "Undo the last action"
-msgstr "Batalkan aksi terakhir"
-
-#: ../src/ghex-ui.xml.h:68
-msgid "Words"
-msgstr "Words"
-
-#: ../src/ghex-ui.xml.h:69
-msgid "_About"
-msgstr "_Tentang"
-
-#: ../src/ghex-ui.xml.h:70
-msgid "_Add View"
-msgstr "T_ambah Tampilan"
-
-#: ../src/ghex-ui.xml.h:71
-msgid "_Advanced Find"
-msgstr "Penc_arian Detil"
-
-#: ../src/ghex-ui.xml.h:72
-msgid "_Base Converter"
-msgstr "Pengkonversi _Basis"
-
-#: ../src/ghex-ui.xml.h:73
-#: ../src/ui.c:90
-msgid "_Bytes"
-msgstr "_Byte"
-
-#: ../src/ghex-ui.xml.h:74
-msgid "_Close"
-msgstr "_Tutup"
-
-#: ../src/ghex-ui.xml.h:75
-msgid "_Contents"
-msgstr "_Isi"
-
-#: ../src/ghex-ui.xml.h:76
-msgid "_Copy"
-msgstr "_Salin"
-
-#: ../src/ghex-ui.xml.h:77
-msgid "_Edit"
-msgstr "_Edit"
-
-#: ../src/ghex-ui.xml.h:78
-msgid "_File"
-msgstr "_File"
-
-#: ../src/ghex-ui.xml.h:79
-msgid "_Find"
-msgstr "_Cari"
-
-#: ../src/ghex-ui.xml.h:80
-msgid "_Goto Byte..."
-msgstr "Per_gi ke Byte..."
-
-#: ../src/ghex-ui.xml.h:81
-msgid "_Group Data As"
-msgstr "_Kelompokkan Data Berdasarkan"
-
-#: ../src/ghex-ui.xml.h:82
-msgid "_Help"
-msgstr "_Bantuan"
-
-#: ../src/ghex-ui.xml.h:83
-msgid "_Insert Mode"
-msgstr "Mode _Pemasukan"
-
-#: ../src/ghex-ui.xml.h:84
-#: ../src/ui.c:92
-msgid "_Longwords"
-msgstr "_Longwords"
-
-#: ../src/ghex-ui.xml.h:85
-msgid "_Open..."
-msgstr "_Buka..."
-
-#: ../src/ghex-ui.xml.h:86
-msgid "_Preferences"
-msgstr "_Setingan"
-
-#: ../src/ghex-ui.xml.h:87
-msgid "_Print"
-msgstr "_Cetak"
-
-#: ../src/ghex-ui.xml.h:88
-msgid "_Redo"
-msgstr "_Abaikan Pembatalan"
-
-#: ../src/ghex-ui.xml.h:89
-msgid "_Remove View"
-msgstr "_Buang Tampilan"
-
-#: ../src/ghex-ui.xml.h:90
-msgid "_Revert"
-msgstr "_Kembalikan"
-
-#: ../src/ghex-ui.xml.h:91
-msgid "_Save"
-msgstr "_Simpan"
-
-#: ../src/ghex-ui.xml.h:92
-msgid "_Undo"
-msgstr "_Batalkan"
-
-#: ../src/ghex-ui.xml.h:93
-msgid "_View"
-msgstr "_Layar"
-
-#: ../src/ghex-ui.xml.h:94
-msgid "_Windows"
-msgstr "_Jendela"
-
-#: ../src/ghex-ui.xml.h:95
-#: ../src/ui.c:91
-msgid "_Words"
-msgstr "_Words"
-
-#: ../src/ghex-window.c:94
+#: ../src/ghex-window.c:75
 #, c-format
 msgid ""
 "Can not open URI:\n"
@@ -736,7 +375,7 @@ msgstr ""
 "Tak dapat membuka URI:\n"
 "%s"
 
-#: ../src/ghex-window.c:113
+#: ../src/ghex-window.c:96
 #, c-format
 msgid ""
 "Can not open file:\n"
@@ -745,36 +384,305 @@ msgstr ""
 "Tak dapat membuka berkas:\n"
 "%s"
 
-#: ../src/ghex-window.c:500
-#: ../src/ghex-window.c:948
-msgid "GHex"
-msgstr "GHex"
+#: ../src/ghex-window.c:327
+msgid "_File"
+msgstr "_File"
 
-#: ../src/ghex-window.c:647
+#: ../src/ghex-window.c:328
+msgid "_Edit"
+msgstr "_Edit"
+
+#: ../src/ghex-window.c:329
+msgid "_View"
+msgstr "_Layar"
+
+#: ../src/ghex-window.c:330
+msgid "_Group Data As"
+msgstr "_Kelompokkan Data Berdasarkan"
+
+#. View submenu
+#: ../src/ghex-window.c:331
+msgid "_Windows"
+msgstr "_Jendela"
+
+#: ../src/ghex-window.c:332
+msgid "_Help"
+msgstr "_Bantuan"
+
+#. File menu
+#: ../src/ghex-window.c:335
+msgid "_Open..."
+msgstr "_Buka..."
+
+#: ../src/ghex-window.c:336
+msgid "Open a file"
+msgstr "Buka file"
+
+#: ../src/ghex-window.c:338
+msgid "_Save"
+msgstr "_Simpan"
+
+#: ../src/ghex-window.c:339
+msgid "Save the current file"
+msgstr "Simpan file aktif sekarang"
+
+#: ../src/ghex-window.c:341
+msgid "Save _As..."
+msgstr "Simpan Seb_agai..."
+
+#: ../src/ghex-window.c:342
+msgid "Save the current file with a different name"
+msgstr "Simpan file aktif sekarang dengan nama yang berbeda"
+
+#: ../src/ghex-window.c:344
+msgid "Save As _HTML..."
+msgstr "Simpan Sebagai _HTML..."
+
+#: ../src/ghex-window.c:345
+msgid "Export data to HTML source"
+msgstr "Ekspor data ke file HTML"
+
+#: ../src/ghex-window.c:347
+msgid "_Revert"
+msgstr "_Kembalikan"
+
+#: ../src/ghex-window.c:348
+msgid "Revert to a saved version of the file"
+msgstr "Kembalikan ke data sebelumnya tersimpan dalam file"
+
+#: ../src/ghex-window.c:350
+msgid "_Print"
+msgstr "_Cetak"
+
+#: ../src/ghex-window.c:351
+msgid "Print the current file"
+msgstr "Cetak file yang aktif sekarang"
+
+#: ../src/ghex-window.c:353
+msgid "Print Previe_w..."
+msgstr "Contoh Ceta_kan..."
+
+#: ../src/ghex-window.c:354
+msgid "Preview printed data"
+msgstr "Lihat contoh data tercetak"
+
+#: ../src/ghex-window.c:356
+msgid "_Close"
+msgstr "_Tutup"
+
+#: ../src/ghex-window.c:357
+msgid "Close the current file"
+msgstr "Tutup file yang aktif sekarang"
+
+#: ../src/ghex-window.c:359
+msgid "E_xit"
+msgstr "Ke_luar"
+
+#: ../src/ghex-window.c:360
+msgid "Exit the program"
+msgstr "Akhiri program"
+
+#. Edit menu
+#: ../src/ghex-window.c:364
+msgid "_Undo"
+msgstr "_Batalkan"
+
+#: ../src/ghex-window.c:365
+msgid "Undo the last action"
+msgstr "Batalkan aksi terakhir"
+
+#: ../src/ghex-window.c:367
+msgid "_Redo"
+msgstr "_Abaikan Pembatalan"
+
+#: ../src/ghex-window.c:368
+msgid "Redo the undone action"
+msgstr "Jalankan aksi yang telah dibatalkan"
+
+#: ../src/ghex-window.c:370
+msgid "_Copy"
+msgstr "_Salin"
+
+#: ../src/ghex-window.c:371
+msgid "Copy selection to clipboard"
+msgstr "Salin pilihan ke clipboard"
+
+#: ../src/ghex-window.c:373
+msgid "Cu_t"
+msgstr "Po_tong"
+
+#: ../src/ghex-window.c:374
+msgid "Cut selection"
+msgstr "Potong data terpilih"
+
+#: ../src/ghex-window.c:376
+msgid "Pa_ste"
+msgstr "Te_mpel"
+
+#: ../src/ghex-window.c:377
+msgid "Paste data from clipboard"
+msgstr "Tempel data dari clipboard"
+
+#: ../src/ghex-window.c:379
+msgid "_Find"
+msgstr "_Cari"
+
+#: ../src/ghex-window.c:380
+msgid "Search for a string"
+msgstr "Cari string"
+
+#: ../src/ghex-window.c:382
+msgid "_Advanced Find"
+msgstr "Penc_arian Detil"
+
+#: ../src/ghex-window.c:383
+msgid "Advanced Find"
+msgstr "Pencarian Detil"
+
+#: ../src/ghex-window.c:385
+msgid "R_eplace"
+msgstr "_Ganti"
+
+#: ../src/ghex-window.c:386
+msgid "Replace a string"
+msgstr "Ganti string"
+
+#: ../src/ghex-window.c:388
+msgid "_Goto Byte..."
+msgstr "Per_gi ke Byte..."
+
+#: ../src/ghex-window.c:389
+msgid "Jump to a certain position"
+msgstr "Lompat ke posisi tertentu"
+
+#: ../src/ghex-window.c:391
+msgid "_Preferences"
+msgstr "_Setingan"
+
+#: ../src/ghex-window.c:392
+msgid "Configure the application"
+msgstr "Konfigurasikan aplikasi"
+
+#. View menu
+#: ../src/ghex-window.c:396
+msgid "_Add View"
+msgstr "T_ambah Tampilan"
+
+#: ../src/ghex-window.c:397
+msgid "Add a new view to the buffer"
+msgstr "Tambah layar baru ke buffer"
+
+#: ../src/ghex-window.c:399
+msgid "_Remove View"
+msgstr "_Buang Tampilan"
+
+#: ../src/ghex-window.c:400
+msgid "Remove the current view of the buffer"
+msgstr "Buang layar aktif dari buffer"
+
+#. Help menu
+#: ../src/ghex-window.c:404
+msgid "_Contents"
+msgstr "_Isi"
+
+#: ../src/ghex-window.c:405
+msgid "Help on this application"
+msgstr "Bantuan dalam aplikasi ini"
+
+#: ../src/ghex-window.c:407
+msgid "_About"
+msgstr "_Tentang"
+
+#: ../src/ghex-window.c:408
+msgid "About this application"
+msgstr "Tentang program ini"
+
+#. Edit menu
+#: ../src/ghex-window.c:415
+msgid "_Insert Mode"
+msgstr "Mode _Pemasukan"
+
+#: ../src/ghex-window.c:416
+msgid "Insert/overwrite data"
+msgstr "Masukkan/timpa data"
+
+#. Windows menu
+#: ../src/ghex-window.c:420
+msgid "Character _Table"
+msgstr "_Tabel Karakter"
+
+#: ../src/ghex-window.c:421
+msgid "Show the character table"
+msgstr "Tampilkan tabel karakter"
+
+#: ../src/ghex-window.c:423
+msgid "_Base Converter"
+msgstr "Pengkonversi _Basis"
+
+#: ../src/ghex-window.c:424
+msgid "Open base conversion dialog"
+msgstr "Buka dialog konversi basis"
+
+#: ../src/ghex-window.c:426
+msgid "Type Conversion _Dialog"
+msgstr "_Dialog Tipe Konversi"
+
+#: ../src/ghex-window.c:427
+msgid "Show the type conversion dialog in the edit window"
+msgstr "Tampilkan dialog tipe konversi dalam jendela edit"
+
+#: ../src/ghex-window.c:433
+#: ../src/ui.c:48
+msgid "_Bytes"
+msgstr "_Byte"
+
+#: ../src/ghex-window.c:434
+msgid "Group data by 8 bits"
+msgstr "Kelompokkan data berdasarkan 8 bit"
+
+#: ../src/ghex-window.c:435
+#: ../src/ui.c:49
+msgid "_Words"
+msgstr "_Words"
+
+#: ../src/ghex-window.c:436
+msgid "Group data by 16 bits"
+msgstr "Kelompokkan data berdasarkan 16 bit"
+
+#: ../src/ghex-window.c:437
+#: ../src/ui.c:50
+msgid "_Longwords"
+msgstr "_Longwords"
+
+#: ../src/ghex-window.c:438
+msgid "Group data by 32 bits"
+msgstr "Kelompokkan data berdasarkan 32 bit"
+
+#: ../src/ghex-window.c:769
 #, c-format
 msgid "Offset: %s"
 msgstr "Offset: %s"
 
-#: ../src/ghex-window.c:650
+#: ../src/ghex-window.c:772
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; %s byte dari %s ke %s dipilih"
 
-#: ../src/ghex-window.c:902
+#: ../src/ghex-window.c:1044
 #, c-format
 msgid "Activate file %s"
 msgstr "Aktifkan file %s"
 
-#: ../src/ghex-window.c:944
+#: ../src/ghex-window.c:1080
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
-#: ../src/ghex-window.c:1073
+#: ../src/ghex-window.c:1206
 msgid "Select a file to save buffer as"
 msgstr "Pilih file untuk simpan buffer sebagai"
 
-#: ../src/ghex-window.c:1129
+#: ../src/ghex-window.c:1238
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -783,21 +691,21 @@ msgstr ""
 "File %s sudah ada.\n"
 "Apakah Anda ingin menimpanya?"
 
-#: ../src/ghex-window.c:1162
-#: ../src/ui.c:379
+#: ../src/ghex-window.c:1264
+#: ../src/ui.c:300
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Simpan buffer ke file %s"
 
-#: ../src/ghex-window.c:1168
+#: ../src/ghex-window.c:1271
 msgid "Error saving file!"
 msgstr "Error menyimpan file!"
 
-#: ../src/ghex-window.c:1174
+#: ../src/ghex-window.c:1277
 msgid "Can't open file for writing!"
 msgstr "Tidak dapat membuka file untuk ditulisi!"
 
-#: ../src/ghex-window.c:1219
+#: ../src/ghex-window.c:1322
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -806,327 +714,256 @@ msgstr ""
 "File %s telah berubah sejak terakhir disimpan\n"
 "Apakah Anda ingin simpan perubahan ini?"
 
-#: ../src/ghex-window.c:1223
+#: ../src/ghex-window.c:1326
 msgid "Do_n't save"
 msgstr "Ja_ngan simpan"
 
-#: ../src/ghex-window.c:1243
-#: ../src/ui.c:367
+#: ../src/ghex-window.c:1346
+#: ../src/ui.c:288
 msgid "You don't have the permissions to save the file!"
 msgstr "Anda tidak punya wewenang menyimpan file!"
 
-#: ../src/ghex-window.c:1247
-#: ../src/ui.c:372
+#: ../src/ghex-window.c:1350
+#: ../src/ui.c:293
 msgid "An error occurred while saving file!"
 msgstr "Error terjadi ketika menyimpan berkas!"
 
-#: ../src/gnome-print-font-dialog.c:111
-msgid "_Insert a new preview phrase."
-msgstr "Tul_is contoh kalimat."
-
-#: ../src/gnome-print-font-dialog.c:117
-msgid "Modify preview phrase..."
-msgstr "Ganti contoh kalimat..."
-
-#: ../src/gnome-print-font-dialog.c:171
-msgid "Preview"
-msgstr "Tampilan contoh"
-
-#: ../src/gnome-print-font-dialog.c:184
-msgid "_Modify preview phrase..."
-msgstr "_Ganti contoh kalimat..."
-
-#: ../src/gnome-print-font-dialog.c:247
-msgid "Font Selection"
-msgstr "Font Pilihan"
-
-#: ../src/gnome-print-font-picker.c:91
-msgid "Sans Regular 12"
-msgstr "Sans Regular 12"
-
-#: ../src/gnome-print-font-picker.c:92
-msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-
-#: ../src/gnome-print-font-picker.c:93
-msgid "Pick a Font"
-msgstr "Pilih jenis huruf"
-
-#: ../src/gnome-print-font-picker.c:178
-msgid "Title"
-msgstr "Judul"
-
-#: ../src/gnome-print-font-picker.c:179
-msgid "The title of the selection dialog box"
-msgstr "Judul dari kotak dialog pilihan"
-
-#: ../src/gnome-print-font-picker.c:199
-msgid "Font name"
-msgstr "Nama font"
-
-#: ../src/gnome-print-font-picker.c:200
-msgid "Name of the selected font"
-msgstr "Nama dari font terpilih"
-
-#: ../src/gnome-print-font-picker.c:208
-msgid "Preview text"
-msgstr "Tampilkan contoh text"
-
-#: ../src/gnome-print-font-picker.c:209
-msgid "Preview text shown in the dialog"
-msgstr "Tampilkan contoh teks pada dialog"
-
-#: ../src/gnome-print-font-picker.c:217
-msgid "Use font in label"
-msgstr "Gunakan font dalam label"
-
-#: ../src/gnome-print-font-picker.c:218
-msgid "Use font in the label in font info mode"
-msgstr "Gunakan font pada label dalam mode info font"
-
-#: ../src/gnome-print-font-picker.c:226
-msgid "Font size for label"
-msgstr "Ukuran font label"
-
-#: ../src/gnome-print-font-picker.c:227
-msgid "Font size for label in font info mode"
-msgstr "Ukuran font untuk label dalam mode font info"
-
-#: ../src/gnome-print-font-picker.c:237
-msgid "Show size"
-msgstr "Tampilkan ukuran"
-
-#: ../src/gnome-print-font-picker.c:238
-msgid "Show size in font info mode"
-msgstr "Tampilkan ukuran dalam mode info font"
-
-#. display font
-#: ../src/gnome-print-font-picker.c:1019
-#: ../src/preferences.c:182
-msgid "Font"
-msgstr "Huruf"
-
-#: ../src/hex-dialog.c:57
+#: ../src/hex-dialog.c:58
 msgid "Signed 8 bit:"
 msgstr "Signed 8 bit:"
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:59
 msgid "Unsigned 8 bit:"
 msgstr "Unsigned 8 bit:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:60
 msgid "Signed 16 bit:"
 msgstr "Signed 16 bit:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:61
 msgid "Unsigned 16 bit:"
 msgstr "Unsigned 16 bit:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:62
 msgid "Signed 32 bit:"
 msgstr "Signed 32 bit:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:63
 msgid "Unsigned 32 bit:"
 msgstr "Unsigned 32 bit:"
 
-#: ../src/hex-dialog.c:63
-msgid "32 bit float:"
-msgstr "32 bit float:"
-
 #: ../src/hex-dialog.c:64
-msgid "64 bit float:"
-msgstr "64 bit float:"
+msgid "Float 32 bit:"
+msgstr "Float 32 bit:"
 
 #: ../src/hex-dialog.c:65
+msgid "Float 64 bit:"
+msgstr "Float 64 bit:"
+
+#: ../src/hex-dialog.c:66
 msgid "Hexadecimal:"
 msgstr "Heksadesimal:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:67
 msgid "Octal:"
 msgstr "Oktal:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:68
 msgid "Binary:"
 msgstr "Biner:"
 
-#: ../src/hex-dialog.c:196
+#: ../src/hex-dialog.c:204
 msgid "Show little endian decoding"
 msgstr "Perlihatkan decoding little endian"
 
-#: ../src/hex-dialog.c:203
+#: ../src/hex-dialog.c:211
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Tampilkan unsigned dan float sebagai heksadesimal"
 
-#: ../src/hex-dialog.c:209
+#: ../src/hex-dialog.c:217
 msgid "Stream Length:"
 msgstr "Panjang Stream:"
 
-#: ../src/hex-dialog.c:231
+#: ../src/hex-dialog.c:239
 msgid "FIXME: no conversion function"
 msgstr "PERBAIKI: tidak ada fungsi konversi"
 
-#: ../src/hex-document.c:432
+#: ../src/hex-document.c:435
 msgid "New document"
 msgstr "Dokumen baru"
 
-#: ../src/hex-document.c:783
+#: ../src/hex-document.c:784
 #, c-format
 msgid "Page"
 msgstr "Halaman"
 
-#: ../src/hex-document.c:789
-#: ../src/hex-document.c:914
+#: ../src/hex-document.c:790
+#: ../src/hex-document.c:915
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Dump heksa dihasilkan oleh"
 
-#: ../src/hex-document.c:800
+#: ../src/hex-document.c:801
 msgid "Saving to HTML..."
 msgstr "Simpan ke HTML..."
 
-#: ../src/hex-document.c:837
+#: ../src/hex-document.c:838
 #, c-format
 msgid "Previous page"
 msgstr "Halaman sebelumnya"
 
-#: ../src/hex-document.c:852
+#: ../src/hex-document.c:853
 #, c-format
 msgid "Next page"
 msgstr "Halaman selanjutnya"
 
-#: ../src/main.c:38
+#: ../src/main.c:36
 msgid "X geometry specification (see \"X\" man page)."
 msgstr "Spesifikasi geometri X (ketikkan \"man X\" untuk melihat halaman manual X)."
 
-#: ../src/main.c:39
+#: ../src/main.c:36
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
-#: ../src/main.c:65
-msgid "The gnome binary editor"
-msgstr "pengedit biner gnome"
+#: ../src/main.c:37
+msgid "FILES"
+msgstr "BERKAS"
+
+#: ../src/main.c:53
+#| msgid "A binary file editor"
+msgid "- GTK+ binary editor"
+msgstr "- Penyunting biner GTK+"
+
+#: ../src/main.c:57
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"Jalankan '%s --help' untuk melihat daftar lengkap dari pilihan baris perintah.\n"
 
 #: ../src/main.c:80
-msgid "Could not initialize Bonobo!\n"
-msgstr "Tidak dapat menjalankan Bonobo!\n"
-
-#: ../src/main.c:105
-#: ../src/main.c:119
+#: ../src/main.c:93
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "String geometrynya salah \"%s\"\n"
 
-#: ../src/preferences.c:71
+#: ../src/preferences.c:69
 msgid "GHex Preferences"
 msgstr "Settingan GHex"
 
-#: ../src/preferences.c:103
+#: ../src/preferences.c:101
 msgid "_Maximum number of undo levels:"
 msgstr "nomor _Maksimum dari tingkat pembatalan:"
 
-#: ../src/preferences.c:123
+#: ../src/preferences.c:121
 msgid "Undo levels"
 msgstr "Tingkat pembatalan"
 
-#: ../src/preferences.c:123
+#: ../src/preferences.c:121
 msgid "Select maximum number of undo levels"
 msgstr "Pilih nomor maksimum dari tingkat pembatalan"
 
-#: ../src/preferences.c:127
+#: ../src/preferences.c:125
 msgid "_Show cursor offset in statusbar as:"
 msgstr "Tampilkan offset kursor pada statusbar _sebagai:"
 
-#: ../src/preferences.c:146
+#: ../src/preferences.c:144
 msgid "Hexadecimal"
 msgstr "Heksadesimal"
 
-#: ../src/preferences.c:148
+#: ../src/preferences.c:146
 msgid "Custom"
 msgstr "Bebas"
 
-#: ../src/preferences.c:157
+#: ../src/preferences.c:155
 msgid "Enter the cursor offset format"
 msgstr "Masukkan format offset kursor"
 
-#: ../src/preferences.c:158
+#: ../src/preferences.c:156
 msgid "Select the cursor offset format"
 msgstr "Pilih format offset kursor"
 
 #. show offsets check button
-#: ../src/preferences.c:168
+#: ../src/preferences.c:166
 msgid "Sh_ow offsets column"
 msgstr "Tampilkan k_olom offset"
 
-#: ../src/preferences.c:173
+#: ../src/preferences.c:171
 msgid "Editing"
 msgstr "Mengedit"
 
+#. display font
+#: ../src/preferences.c:180
+msgid "Font"
+msgstr "Huruf"
+
 #. default group type
-#: ../src/preferences.c:205
+#: ../src/preferences.c:203
 msgid "Default Group Type"
 msgstr "Tipe Group Default"
 
-#: ../src/preferences.c:221
+#: ../src/preferences.c:219
 msgid "Display"
 msgstr "Tampilan"
 
 #. paper selection
-#: ../src/preferences.c:230
+#: ../src/preferences.c:228
 msgid "Paper size"
 msgstr "Ukuran kertas"
 
 #. data & header font selection
-#: ../src/preferences.c:235
+#: ../src/preferences.c:233
 msgid "Fonts"
 msgstr "Font"
 
-#: ../src/preferences.c:241
+#: ../src/preferences.c:245
 msgid "_Data font:"
 msgstr "Font _data:"
 
-#: ../src/preferences.c:260
+#: ../src/preferences.c:259
 msgid "Data font"
 msgstr "Font data"
 
-#: ../src/preferences.c:260
+#: ../src/preferences.c:259
 msgid "Select the data font"
 msgstr "Pilih jenis huruf untuk data"
 
-#: ../src/preferences.c:274
+#: ../src/preferences.c:268
 msgid "Header fo_nt:"
 msgstr "Hu_ruf header"
 
-#: ../src/preferences.c:292
+#: ../src/preferences.c:281
 msgid "Header font"
 msgstr "Huruf header"
 
-#: ../src/preferences.c:292
+#: ../src/preferences.c:281
 msgid "Select the header font"
 msgstr "Pilih jenis huruf untuk header"
 
-#: ../src/preferences.c:318
+#: ../src/preferences.c:306
 msgid "_Print shaded box over:"
 msgstr "_Cetak kotak terbayang:"
 
-#: ../src/preferences.c:330
+#: ../src/preferences.c:318
 msgid "Box size"
 msgstr "Ukuran kotak"
 
-#: ../src/preferences.c:330
+#: ../src/preferences.c:318
 msgid "Select size of box (in number of lines)"
 msgstr "Pilih ukuran kotak (dalam jumlah baris)"
 
-#: ../src/preferences.c:334
+#: ../src/preferences.c:322
 msgid "lines (0 for no box)"
 msgstr "baris (0 untuk tanpa kotak)"
 
-#: ../src/preferences.c:341
+#: ../src/preferences.c:329
 msgid "Printing"
 msgstr "Mencetak"
 
-#: ../src/preferences.c:463
-#: ../src/ui.c:294
+#: ../src/preferences.c:447
+#: ../src/ui.c:209
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1135,11 +972,11 @@ msgstr ""
 "Ada error saat menampilkan halaman bantuan: \n"
 "%s"
 
-#: ../src/preferences.c:515
+#: ../src/preferences.c:499
 msgid "Can not open desired font!"
 msgstr "Tidak dapat membuka jenis huruf yang diinginkan!"
 
-#: ../src/preferences.c:578
+#: ../src/preferences.c:560
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -1147,64 +984,83 @@ msgstr ""
 "String format offset mengandung format yang salah.\n"
 "Hanya 'x', 'X', 'p', 'P', 'd', dan 'o' yang diperbolehkan."
 
-#: ../src/print.c:66
+#: ../src/print.c:57
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Halaman: %i/%i"
 
-#: ../src/print.c:222
-#: ../src/print.c:238
-#, c-format
-msgid ""
-"GHex could not find the font \"%s\".\n"
-"GHex is unable to print without this font installed."
-msgstr ""
-"GHex tidak dapat menemukan font \"%s\" \n"
-"GHex tidak mau mencetak tanpa font ini"
-
-#: ../src/ui.c:97
+#: ../src/ui.c:55
 msgid "hex data"
 msgstr "data heksa"
 
-#: ../src/ui.c:98
+#: ../src/ui.c:56
 msgid "ASCII data"
 msgstr "data ASCII"
 
-#: ../src/ui.c:264
+#: ../src/ui.c:150
+msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
+msgstr "Program ini adalah perangkat lunak bebas: Anda dapat menyebarluaskannya dan/atau mengubahnya di bawah syarat dari GNU General Public License sebagaimana dipublikasikan oleh Free Software Foundation, bisa Lisensi versi 2, atau (sesuai pilihan Anda) sebarang versi setelahnya."
+
+#: ../src/ui.c:154
+msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
+msgstr "Program ini didistribusikan dengan harapan dapat berguna, tetapi TANPA ADANYA JAMINAN; termasuk tanpa jaminan DAYA JUAL atau KELAIKAN UNTUK TUJUAN TERTENTU. Lihat GNU General Public License untuk rincian lebih lanjut."
+
+#: ../src/ui.c:158
+msgid "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr "Anda seharusnya menerima salinan dari GNU General Public License bersama program ini; jika tidak, kirimkan surat Anda ke Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
+
+#. Translators: these two strings here indicate the copyright time span,
+#. e.g. 1998-2012.
+#: ../src/ui.c:170
+msgid "Copyright © %Id–%Id The GHex authors"
+msgstr "Hak Cipta © %Id–%Id para penuils GHex"
+
+#: ../src/ui.c:174
 msgid "A binary file editor"
 msgstr "Penyunting berkas biner"
 
-#: ../src/ui.c:268
-msgid "Released under the terms of GNU Public License"
-msgstr "Dirilis dibawah GNU Public License"
+#: ../src/ui.c:180
+#| msgid "_About"
+msgid "About GHex"
+msgstr "Tentang GHex"
 
-#: ../src/ui.c:396
+#: ../src/ui.c:181
+msgid "translator-credits"
+msgstr ""
+"Abdul Hamid.A.N <hameed@linuxmail.org>, 2004.\n"
+"Andika Triwidada <andika@gmail.com>, 2009, 2012."
+
+#: ../src/ui.c:184
+msgid "GHex Website"
+msgstr "Situs Web GHex"
+
+#: ../src/ui.c:318
 msgid "Select a file to open"
 msgstr "Pilih file untuk dibuka"
 
-#: ../src/ui.c:427
+#: ../src/ui.c:349
 #, c-format
 msgid "Loaded file %s"
 msgstr "Membuka file %s"
 
-#: ../src/ui.c:435
+#: ../src/ui.c:357
 msgid "Can not open file!"
 msgstr "Tidak dapat membuka file!"
 
-#: ../src/ui.c:496
+#: ../src/ui.c:422
 msgid "Select path and file name for the HTML source"
 msgstr "Pilih path dan nama file HTML"
 
-#: ../src/ui.c:530
+#: ../src/ui.c:454
 msgid "You need to specify a base name for the HTML files."
 msgstr "Anda harus menuliskan nama awalan untuk file HTML."
 
-#: ../src/ui.c:541
-#: ../src/ui.c:565
+#: ../src/ui.c:465
+#: ../src/ui.c:491
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Anda tidak memiliki hak untuk menulis pada path tersebut.\n"
 
-#: ../src/ui.c:552
+#: ../src/ui.c:477
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1212,30 +1068,13 @@ msgstr ""
 "Menyimpan ke HTML akan menimpa ulang file-file yang ada.\n"
 "Apakah Anda ingin meneruskan proses ini?"
 
-#: ../src/ui.c:705
+#: ../src/ui.c:745
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Kembalikan file %s ke bentuk semula?"
 
-#: ../src/ui.c:719
+#: ../src/ui.c:759
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Buffer dikembalikan dari file %s"
-
-#: ../src/ui.c:803
-msgid "Printing file..."
-msgstr "Mencetak file..."
-
-#: ../src/ui.c:863
-msgid "Print Hex Document"
-msgstr "Cetak Dokumen Heksa"
-
-#: ../src/ui.c:875
-msgid "Pages"
-msgstr "Halaman"
-
-#: ../src/ui.c:900
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): Contoh Cetakan"
 
