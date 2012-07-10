@@ -60,7 +60,7 @@ ghex_window_drag_data_received(GtkWidget *widget,
     else
         newwin = NULL;
 
-    uri = uris_to_open = g_strsplit (gtk_selection_data_get_data (selection_data), "\r\n", 0);
+    uri = uris_to_open = g_uri_list_extract_uris (gtk_selection_data_get_data (selection_data));
     while (*uri) {
         GError *err = NULL;
         gchar *filename = g_filename_from_uri (*uri, NULL, &err);
