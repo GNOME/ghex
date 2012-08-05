@@ -1104,16 +1104,12 @@ remove_timeout_cb (GtkWidget *win, MessageInfo *mi )
 static gint
 remove_message_timeout (MessageInfo * mi)
 {
-	GDK_THREADS_ENTER ();
-
 	/* Remove the status message */
 	/* NOTE : Use space ' ' not an empty string '' */
 	ghex_window_update_status_message (mi->win);
     g_signal_handlers_disconnect_by_func(G_OBJECT(mi->win),
                                          remove_timeout_cb, mi);
 	g_free (mi);
-
-	GDK_THREADS_LEAVE ();
 
 	return FALSE; /* removes the timeout */
 }
