@@ -71,9 +71,11 @@ struct _GHexWindowClass
 };
 
 GType             ghex_window_get_type           (void) G_GNUC_CONST;
-GtkWidget         *ghex_window_new               (void);
-GtkWidget         *ghex_window_new_from_doc      (HexDocument *doc);
-GtkWidget         *ghex_window_new_from_file     (const gchar *filename);
+GtkWidget         *ghex_window_new               (GtkApplication    *application);
+GtkWidget         *ghex_window_new_from_doc      (GtkApplication    *application,
+                                                  HexDocument       *doc);
+GtkWidget         *ghex_window_new_from_file     (GtkApplication    *application,
+                                                  const gchar       *filename);
 void              ghex_window_set_contents       (GHexWindow *win, GtkWidget  *child);
 void              ghex_window_destroy_contents   (GHexWindow *win);
 gboolean          ghex_window_load(GHexWindow *win, const gchar *filename);

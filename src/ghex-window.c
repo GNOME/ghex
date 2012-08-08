@@ -96,7 +96,7 @@ ghex_window_drag_data_received(GtkWidget *widget,
         }
 
         if (newwin == NULL)
-            newwin = ghex_window_new ();
+            newwin = ghex_window_new (GTK_APPLICATION (g_application_get_default ()));
         if (ghex_window_load (GHEX_WINDOW (newwin), filename)) {
             if (newwin != GTK_WIDGET (win))
                 gtk_widget_show (newwin);
@@ -319,10 +319,8 @@ ghex_window_destroy (GtkWidget *object)
 
         window_list = g_list_remove(window_list, win);
 
-        if(window_list == NULL) {
-            gtk_main_quit ();
+        if (window_list == NULL)
             active_window = NULL;
-        }
         else if(active_window == win)
             active_window = GHEX_WINDOW(window_list->data);
 
@@ -652,7 +650,7 @@ ghex_window_sync_char_table_item(GHexWindow *win, gboolean state)
 }
 
 GtkWidget *
-ghex_window_new(void)
+ghex_window_new (GtkApplication *application)
 {
     GHexWindow *win;
     const GList *doc_list;
@@ -662,6 +660,7 @@ ghex_window_new(void)
 	};
 
 	win = GHEX_WINDOW(g_object_new(GHEX_TYPE_WINDOW,
+                                   "application", application,
                                    "title", _("GHex"),
                                    NULL));
 
@@ -706,9 +705,10 @@ create_document_view(HexDocument *doc)
 }
 
 GtkWidget *
-ghex_window_new_from_doc(HexDocument *doc)
+ghex_window_new_from_doc (GtkApplication *application,
+                          HexDocument    *doc)
 {
-    GtkWidget *win = ghex_window_new();
+    GtkWidget *win = ghex_window_new (application);
     GtkWidget *gh = create_document_view(doc);
 
     gtk_widget_show(gh);
@@ -724,9 +724,10 @@ ghex_window_new_from_doc(HexDocument *doc)
 }
 
 GtkWidget *
-ghex_window_new_from_file(const gchar *filename)
+ghex_window_new_from_file (GtkApplication *application,
+                           const gchar    *filename)
 {
-    GtkWidget *win = ghex_window_new();
+    GtkWidget *win = ghex_window_new (application);
 
     if(!ghex_window_load(GHEX_WINDOW(win), filename)) {
         gtk_widget_destroy(win);

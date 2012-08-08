@@ -70,13 +70,22 @@ ghex_locale_dir (void)
 #endif
 }
 
+static void
+ghex_activate (GApplication *application,
+               gpointer      unused)
+{
+    GList *windows = gtk_application_get_windows (GTK_APPLICATION (application));
+    gtk_window_present (GTK_WINDOW (windows->data));
+}
 
 int
 main(int argc, char **argv)
 {
 	GtkWidget *win;
 	GError *error = NULL;
+	GtkApplication *application;
 	gchar *locale_dir;
+	gint retval;
 
 	locale_dir = ghex_locale_dir ();
 	bindtextdomain (GETTEXT_PACKAGE, locale_dir);
@@ -106,11 +115,16 @@ main(int argc, char **argv)
 	/* accessibility setup */
 	setup_factory();
 
+	application = gtk_application_new ("org.gnome.GHexApplication",
+	                                   G_APPLICATION_NON_UNIQUE);
+	g_signal_connect (application, "activate",
+	                  G_CALLBACK (ghex_activate), NULL);
+
 	if (args_remaining != NULL) {
 		gchar **filename;
 		for (filename = args_remaining; *filename != NULL; filename++) {
 			if (g_file_test (*filename, G_FILE_TEST_EXISTS)) {
-				win = ghex_window_new_from_file(*filename);
+				win = ghex_window_new_from_file (application, *filename);
 				if(win != NULL) {
 					if(geometry) {
 						if(!gtk_window_parse_geometry(GTK_WINDOW(win), geometry))
@@ -124,7 +138,7 @@ main(int argc, char **argv)
 	}
 
 	if(ghex_window_get_list() == NULL) {
-		win = ghex_window_new();
+		win = ghex_window_new (application);
 		if(geometry) {
 			if(!gtk_window_parse_geometry(GTK_WINDOW(win), geometry))
 				g_warning(_("Invalid geometry string \"%s\"\n"), geometry);
@@ -134,7 +148,8 @@ main(int argc, char **argv)
 	}
 	else win = GTK_WIDGET(ghex_window_get_list()->data);
 
-	gtk_main ();
+	retval = g_application_run (G_APPLICATION (application), argc, argv);
+	g_object_unref (application);
 
-	return 0;
+	return retval;
 }

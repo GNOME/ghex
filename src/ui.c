@@ -266,7 +266,7 @@ quit_app_cb (GtkAction *action,
 			return;
 		doc_node = doc_node->next;
 	}
-	gtk_main_quit ();
+	g_application_quit (g_application_get_default ());
 }
 
 void
@@ -331,7 +331,8 @@ open_cb (GtkAction *action,
 		gchar *flash;
 
 		if(GHEX_WINDOW(win)->gh != NULL) {
-			win = GHEX_WINDOW(ghex_window_new_from_file(gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_sel))));
+			win = GHEX_WINDOW (ghex_window_new_from_file (GTK_APPLICATION (g_application_get_default ()),
+			                                              gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_sel))));
 			if(win != NULL)
 				gtk_widget_show(GTK_WIDGET(win));
 		}
@@ -883,7 +884,8 @@ add_view_cb (GtkAction *action,
 	if(win->gh == NULL)
 		return;
 
-	newwin = ghex_window_new_from_doc(win->gh->document);
+	newwin = ghex_window_new_from_doc (GTK_APPLICATION (g_application_get_default ()),
+	                                   win->gh->document);
 	gtk_widget_show(newwin);
 }
 
