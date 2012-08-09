@@ -10,7 +10,7 @@ INCLUDES = \
 	$(WARN_CFLAGS)						\
 	$(DISABLE_DEPRECATED)
 
-ghex-resources.c: ghex.gresource.xml ghex-ui.xml
+ghex-resources.c: ghex.gresource.xml $(shell glib-compile-resources --generate-dependencies --sourcedir=$(srcdir) $(srcdir)/ghex.gresource.xml)
 	$(AM_V_GEN)glib-compile-resources --target=$@ --generate-source --c-name ghex --sourcedir=$(srcdir) $<
 
 ghex-resources.h: ghex.gresource.xml
