@@ -120,6 +120,8 @@ main(int argc, char **argv)
 	g_signal_connect (application, "activate",
 	                  G_CALLBACK (ghex_activate), NULL);
 
+	g_application_register (G_APPLICATION (application), NULL, NULL);
+
 	if (args_remaining != NULL) {
 		gchar **filename;
 		for (filename = args_remaining; *filename != NULL; filename++) {

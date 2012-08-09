@@ -45,7 +45,7 @@
 #define GHEX_WINDOW_DEFAULT_WIDTH 320
 #define GHEX_WINDOW_DEFAULT_HEIGHT 256
 
-G_DEFINE_TYPE (GHexWindow, ghex_window, GTK_TYPE_WINDOW)
+G_DEFINE_TYPE (GHexWindow, ghex_window, GTK_TYPE_APPLICATION_WINDOW)
 
 static GList *window_list = NULL;
 static GHexWindow *active_window = NULL;

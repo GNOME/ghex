@@ -44,7 +44,7 @@ typedef struct _GHexWindowClass GHexWindowClass;
 
 struct _GHexWindow 
 {
-    GtkWindow win;
+    GtkApplicationWindow win;
 
     GtkHex    *gh;
     GtkWidget *vbox;
@@ -67,7 +67,7 @@ struct _GHexWindow
 
 struct _GHexWindowClass
 {
-    GtkWindowClass klass;
+    GtkApplicationWindowClass klass;
 };
 
 GType             ghex_window_get_type           (void) G_GNUC_CONST;
