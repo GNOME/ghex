@@ -81,6 +81,9 @@ struct _GtkHexPrivate
 	/* Buffer for storing formatted data for rendering;
 	   dynamically adjusts its size to the display size */
 	guchar *disp_buffer;
+
+	gint default_cpl;
+	gint default_lines;
 };
 
 static gint gtkhex_signals[LAST_SIGNAL] = { 0 };
@@ -2022,11 +2025,11 @@ static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 
 	gtk_widget_get_preferred_size (gh->scrollbar, &sb_req, NULL);
 	req->width = 2 * padding.left + 2 * padding.right + 2 * gtk_container_get_border_width (GTK_CONTAINER (w)) +
-		sb_req.width + gh->char_width * (DEFAULT_CPL + (DEFAULT_CPL - 1) /
+		sb_req.width + gh->char_width * (gh->priv->default_cpl + (gh->priv->default_cpl - 1) /
 										 gh->group_type);
 	if(gh->show_offsets)
 		req->width += padding.left + padding.right + 8 * gh->char_width;
-	req->height = DEFAULT_LINES * gh->char_height + padding.top + padding.bottom +
+	req->height = gh->priv->default_lines * gh->char_height + padding.top + padding.bottom +
 		2*gtk_container_get_border_width(GTK_CONTAINER(w));
 }
 
@@ -2127,6 +2130,8 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 
 	gh->priv = GTKHEX_GET_PRIVATE (gh);
 	gh->priv->disp_buffer = NULL;
+	gh->priv->default_cpl = DEFAULT_CPL;
+	gh->priv->default_lines = DEFAULT_LINES;
 
 	gh->scroll_timeout = -1;
 
@@ -2598,32 +2603,8 @@ void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl)
 
 void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines)
 {
-	gint width, height, xcpl;
-	GtkBorder padding;
-	GtkRequisition req;
-	GtkStateFlags state;
-	GtkStyleContext *context;
-
-	gtk_widget_get_preferred_size (gh->scrollbar, &req, NULL);
-
-	if(cpl <= 0 || vis_lines <= 0)
-		return;
-
-	context = gtk_widget_get_style_context (GTK_WIDGET (gh));
-	state = gtk_widget_get_state_flags (GTK_WIDGET (gh));
-	gtk_style_context_get_padding (context, state, &padding);
-
-	xcpl = 2*cpl + (cpl - 1)/gh->group_type;
-	width = xcpl*gh->char_width + cpl*gh->char_width;
-	width += 2 * gtk_container_get_border_width (GTK_CONTAINER (gh))
-	       + 2 * padding.left + 2 * padding.right +	req.width;
-	if(gh->show_offsets)
-		width += padding.left + padding.right + 8 * gh->char_width;
-
-	height = vis_lines*gh->char_height;
-	height += 2 * gtk_container_get_border_width (GTK_CONTAINER (gh)) + padding.top + padding.bottom;
-
-	gtk_widget_set_size_request(GTK_WIDGET(gh), width, height);
+    gh->priv->default_cpl = cpl;
+    gh->priv->default_lines = vis_lines;
 }
 
 void add_atk_namedesc (GtkWidget *widget, const gchar *name, const gchar *desc)
