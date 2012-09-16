@@ -44,6 +44,10 @@
 
 #define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
 
+#define GTKHEX_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),\
+                                   GTK_TYPE_HEX,                         \
+                                   GtkHexPrivate))
+
 enum {
 	CURSOR_MOVED_SIGNAL,
 	DATA_CHANGED_SIGNAL,
@@ -70,6 +74,13 @@ struct _GtkHex_AutoHighlight
 
 	GtkHex_Highlight *highlights;
 	GtkHex_AutoHighlight *next, *prev;
+};
+
+struct _GtkHexPrivate
+{
+	/* Buffer for storing formatted data for rendering;
+	   dynamically adjusts its size to the display size */
+	guchar *disp_buffer;
 };
 
 static gint gtkhex_signals[LAST_SIGNAL] = { 0 };
@@ -691,7 +702,7 @@ render_hex_lines (GtkHex *gh,
 
 	gdk_cairo_set_source_rgba (cr, &fg_color);
 
-	frm_len = format_xblock(gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
+	frm_len = format_xblock (gh, gh->priv->disp_buffer, (gh->top_line+imin)*gh->cpl,
 							MIN((gh->top_line+imax+1)*gh->cpl, gh->document->file_size) );
 	
 	for(i = imin; i <= imax; i++) {
@@ -701,7 +712,7 @@ render_hex_lines (GtkHex *gh,
 
 		render_hex_highlights (gh, cr, i);
 		cairo_move_to (cr, 0, i * gh->char_height);
-		pango_layout_set_text (gh->xlayout, gh->disp_buffer + (i - imin)*xcpl, MIN(xcpl, tmp));
+		pango_layout_set_text (gh->xlayout, gh->priv->disp_buffer + (i - imin) * xcpl, MIN(xcpl, tmp));
 		pango_cairo_show_layout (cr, gh->xlayout);
 	}
 	
@@ -745,7 +756,7 @@ render_ascii_lines (GtkHex *gh,
 
 	gdk_cairo_set_source_rgba (cr, &fg_color);
 	
-	frm_len = format_ablock(gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
+	frm_len = format_ablock (gh, gh->priv->disp_buffer, (gh->top_line+imin)*gh->cpl,
 							MIN((gh->top_line+imax+1)*gh->cpl, gh->document->file_size) );
 	
 	for(i = imin; i <= imax; i++) {
@@ -756,7 +767,7 @@ render_ascii_lines (GtkHex *gh,
 		render_ascii_highlights (gh, cr, i);
 
 		cairo_move_to (cr, 0, i * gh->char_height);
-		pango_layout_set_text (gh->alayout, gh->disp_buffer + (i - imin)*gh->cpl, MIN(gh->cpl, tmp));
+		pango_layout_set_text (gh->alayout, gh->priv->disp_buffer + (i - imin)*gh->cpl, MIN(gh->cpl, tmp));
 		pango_cairo_show_layout (cr, gh->alayout);
 	}
 	
@@ -993,10 +1004,10 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	xcpl = gh->cpl*2 + (gh->cpl - 1)/gh->group_type;
 	gh->xdisp_width = xcpl*gh->char_width;
 
-	if(gh->disp_buffer)
-		g_free(gh->disp_buffer);
+	if (gh->priv->disp_buffer)
+		g_free (gh->priv->disp_buffer);
 	
-	gh->disp_buffer = g_malloc( (xcpl + 1) * (gh->vis_lines + 1) );
+	gh->priv->disp_buffer = g_malloc ((xcpl + 1) * (gh->vis_lines + 1));
 
 	/* calculate new display position */
 	value = MIN (gh->top_line * old_cpl / gh->cpl, gh->lines - gh->vis_lines);
@@ -1710,8 +1721,8 @@ static void gtk_hex_real_paste_from_clipboard(GtkHex *gh)
 static void gtk_hex_finalize(GObject *o) {
 	GtkHex *gh = GTK_HEX(o);
 	
-	if(gh->disp_buffer)
-		g_free(gh->disp_buffer);
+	if (gh->priv->disp_buffer)
+		g_free (gh->priv->disp_buffer);
 
 	if (gh->disp_font_metrics)
 		pango_font_metrics_unref (gh->disp_font_metrics);
@@ -2044,6 +2055,7 @@ gtk_hex_get_preferred_height (GtkWidget *widget,
 }
 
 static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
 	parent_class = g_type_class_peek_parent(klass);
@@ -2102,19 +2114,22 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 	GTK_WIDGET_CLASS(klass)->key_release_event = gtk_hex_key_release;
 	GTK_WIDGET_CLASS(klass)->button_release_event = gtk_hex_button_release;
 
-	/* Changed in Gnome 2.0 -- SnM */
-	G_OBJECT_CLASS(klass)->finalize = gtk_hex_finalize;
+	object_class->finalize = gtk_hex_finalize;
 
 	parent_class = g_type_class_ref (gtk_fixed_get_type ());
+
+	g_type_class_add_private (object_class, sizeof (GtkHexPrivate));
 }
 
 static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	GtkCssProvider *provider;
 	GtkStyleContext *context;
 
+	gh->priv = GTKHEX_GET_PRIVATE (gh);
+	gh->priv->disp_buffer = NULL;
+
 	gh->scroll_timeout = -1;
 
-	gh->disp_buffer = NULL;
 	gh->document = NULL;
 	gh->starting_offset = 0;
 

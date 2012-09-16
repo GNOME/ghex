@@ -70,6 +70,9 @@ struct _GtkHex_Highlight
  */
 typedef struct _GtkHex_AutoHighlight GtkHex_AutoHighlight;
 
+/* Private structure type */
+typedef struct _GtkHexPrivate GtkHexPrivate;
+
 struct _GtkHex
 {
 	GtkFixed fixed;
@@ -102,9 +105,8 @@ struct _GtkHex
 	
 	gint xdisp_width, adisp_width;
 	
-	/* buffer for storing formatted data for rendering.
-	   dynamically adjusts its size to the display size */
-	guchar *disp_buffer;
+	/*< private > */
+	GtkHexPrivate *priv;
 
 	GtkHex_AutoHighlight *auto_highlight;
 	
