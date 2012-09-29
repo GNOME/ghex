@@ -15,7 +15,7 @@ PKG_NAME="GHex"
     exit 1
 }
 
-# Check for gnome-autogen.sh existance
+# Check for gnome-autogen.sh existence
 which gnome-autogen.sh || {
     echo "You need to install gnome-common from GNOME Git (or from"
     echo "your OS vendor's package manager)."

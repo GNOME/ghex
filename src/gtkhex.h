@@ -65,7 +65,7 @@ struct _GtkHex_Highlight
 	gboolean valid;
 };
 
-/* used to automatically highlight all visible occurances
+/* used to automatically highlight all visible occurrences
  * of the string.
  */
 typedef struct _GtkHex_AutoHighlight GtkHex_AutoHighlight;
