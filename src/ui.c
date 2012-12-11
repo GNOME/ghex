@@ -143,8 +143,11 @@ about_cb (GtkAction  *action,
 		NULL
 	};
 
-	/* For documentation_credits */
-	#include "../help/ghex-docs.h"
+	const gchar *documentation_credits[] = {
+		"Jaka Mo\304\215nik",
+		"Sun GNOME Documentation Team",
+		NULL
+	};
 
 	const gchar *license[] = {
 		N_("This program is free software; you can redistribute it and/or modify "
@@ -196,7 +199,7 @@ help_cb (GtkAction  *action,
 	GError *error = NULL;
 
 	gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (window)),
-	              "ghelp:ghex",
+	              "help:ghex",
 	              gtk_get_current_event_time (),
 	              &error);
 
