@@ -2,6 +2,7 @@ NULL =
 
 public_icons_themes = \
 	hicolor \
+	HighContrast \
 	$(NULL)
 
 public_icons = \
@@ -11,12 +12,19 @@ public_icons = \
 	hicolor_apps_32x32_ghex.png \
 	hicolor_apps_48x48_ghex.png \
 	hicolor_apps_scalable_ghex.svg \
+	HighContrast_apps_16x16_ghex.png \
+	HighContrast_apps_22x22_ghex.png \
+	HighContrast_apps_24x24_ghex.png \
+	HighContrast_apps_32x32_ghex.png \
+	HighContrast_apps_48x48_ghex.png \
+	HighContrast_apps_256x256_ghex.png \
 	$(NULL)
 
 noinst_DATA = \
 	hicolor_apps_16x16_ghex.svg \
 	hicolor_apps_22x22_ghex.svg \
 	hicolor_apps_32x32_ghex.svg \
+	HighContrast_source_ghex.svg \
 	$(NULL)
 
 EXTRA_DIST = \
