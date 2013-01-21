@@ -8,26 +8,26 @@
 # Miloslav Trmac <mitr@volny.cz>, 2004.
 # Lucas Lommer <llommer@svn.gnome.org>, 2009. (just an update).
 # Petr Kovar <pknbe@volny.cz>, 2010
-# Marek Černocký <marek@manet.cz>, 2010, 2011, 2012.
+# Marek Černocký <marek@manet.cz>, 2010, 2011, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-01 23:51+0000\n"
-"PO-Revision-Date: 2012-03-25 22:31+0200\n"
+"POT-Creation-Date: 2013-01-15 17:40+0000\n"
+"PO-Revision-Date: 2013-01-21 21:57+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
-"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"Language-Team: čeština <gnome-cs-list@gnome.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
-#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:650
-#: ../src/ghex-window.c:1084
+#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
+#: ../src/ghex-window.c:1100
 msgid "GHex"
 msgstr "GHex"
 
@@ -38,6 +38,11 @@ msgstr "Hexadecimálních editor"
 #: ../data/ghex.desktop.in.h:3
 msgid "Inspect and edit binary files"
 msgstr "Zkoumat a upravovat obsah souborů"
+
+#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#: ../data/ghex.desktop.in.h:5
+msgid "binary;debug;"
+msgstr "binární soubor;ladění;"
 
 #: ../src/chartable.c:147
 msgid "ASCII"
@@ -107,7 +112,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "CHYBA"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:873
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Hledání dat"
@@ -189,7 +194,7 @@ msgstr "Zavřít"
 msgid "Closes advanced find window"
 msgstr "Zavře okno pro pokročilého hledání"
 
-#: ../src/findreplace.c:355 ../src/ui.c:871
+#: ../src/findreplace.c:355 ../src/ui.c:875
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Hledání a nahrazení dat"
@@ -243,7 +248,7 @@ msgstr "Nahradí všechny výskyty hledaného řetězce řetězcem pro nahrazen�
 msgid "Closes find and replace data window"
 msgstr "Zavře okno hledání a nahrazování dat"
 
-#: ../src/findreplace.c:434 ../src/ui.c:869
+#: ../src/findreplace.c:434 ../src/ui.c:873
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Přeskočit na bajt"
@@ -346,7 +351,7 @@ msgstr[2] "Nahrazeno %d výskytů."
 msgid "No string to search for!"
 msgstr "Chybí řetězec, který se má hledat!"
 
-#: ../src/ghex-window.c:75
+#: ../src/ghex-window.c:90
 #, c-format
 msgid ""
 "Can not open URI:\n"
@@ -355,7 +360,7 @@ msgstr ""
 "Nelze otevřít URI:\n"
 "%s"
 
-#: ../src/ghex-window.c:96
+#: ../src/ghex-window.c:111
 #, c-format
 msgid ""
 "Can not open file:\n"
@@ -364,302 +369,302 @@ msgstr ""
 "Nelze otevřít soubor:\n"
 "%s"
 
-#: ../src/ghex-window.c:327
+#: ../src/ghex-window.c:340
 msgid "_File"
 msgstr "_Soubor"
 
-#: ../src/ghex-window.c:328
+#: ../src/ghex-window.c:341
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../src/ghex-window.c:329
+#: ../src/ghex-window.c:342
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ../src/ghex-window.c:330
+#: ../src/ghex-window.c:343
 msgid "_Group Data As"
 msgstr "_Seskupit data jako"
 
 #. View submenu
-#: ../src/ghex-window.c:331
+#: ../src/ghex-window.c:344
 msgid "_Windows"
 msgstr "_Okna"
 
-#: ../src/ghex-window.c:332
+#: ../src/ghex-window.c:345
 msgid "_Help"
 msgstr "_Nápověda"
 
 #. File menu
-#: ../src/ghex-window.c:335
+#: ../src/ghex-window.c:348
 msgid "_Open..."
 msgstr "_Otevřít…"
 
-#: ../src/ghex-window.c:336
+#: ../src/ghex-window.c:349
 msgid "Open a file"
 msgstr "Otevřít soubor"
 
-#: ../src/ghex-window.c:338
+#: ../src/ghex-window.c:351
 msgid "_Save"
 msgstr "_Uložit"
 
-#: ../src/ghex-window.c:339
+#: ../src/ghex-window.c:352
 msgid "Save the current file"
 msgstr "Uložit současný soubor"
 
-#: ../src/ghex-window.c:341
+#: ../src/ghex-window.c:354
 msgid "Save _As..."
 msgstr "Uložit j_ako…"
 
-#: ../src/ghex-window.c:342
+#: ../src/ghex-window.c:355
 msgid "Save the current file with a different name"
 msgstr "Uložit současný soubor pod jiným názvem"
 
-#: ../src/ghex-window.c:344
+#: ../src/ghex-window.c:357
 msgid "Save As _HTML..."
 msgstr "Uložit jako _HTML…"
 
-#: ../src/ghex-window.c:345
+#: ../src/ghex-window.c:358
 msgid "Export data to HTML source"
 msgstr "Exportovat data do zdrojového kódu HTML"
 
-#: ../src/ghex-window.c:347
+#: ../src/ghex-window.c:360
 msgid "_Revert"
 msgstr "V_rátit změny"
 
-#: ../src/ghex-window.c:348
+#: ../src/ghex-window.c:361
 msgid "Revert to a saved version of the file"
 msgstr "Návrat k uložené verzi souboru"
 
-#: ../src/ghex-window.c:350
+#: ../src/ghex-window.c:363
 msgid "_Print"
 msgstr "_Tisk"
 
-#: ../src/ghex-window.c:351
+#: ../src/ghex-window.c:364
 msgid "Print the current file"
 msgstr "Tisknout aktuální dokument"
 
-#: ../src/ghex-window.c:353
+#: ../src/ghex-window.c:366
 msgid "Print Previe_w..."
 msgstr "Náhled t_isku…"
 
-#: ../src/ghex-window.c:354
+#: ../src/ghex-window.c:367
 msgid "Preview printed data"
 msgstr "Náhled tištěných dat"
 
-#: ../src/ghex-window.c:356
+#: ../src/ghex-window.c:369
 msgid "_Close"
 msgstr "_Zavřít"
 
-#: ../src/ghex-window.c:357
+#: ../src/ghex-window.c:370
 msgid "Close the current file"
 msgstr "Zavřít aktuální soubor"
 
-#: ../src/ghex-window.c:359
+#: ../src/ghex-window.c:372
 msgid "E_xit"
 msgstr "_Konec"
 
-#: ../src/ghex-window.c:360
+#: ../src/ghex-window.c:373
 msgid "Exit the program"
 msgstr "Ukončit program"
 
 #. Edit menu
-#: ../src/ghex-window.c:364
+#: ../src/ghex-window.c:377
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: ../src/ghex-window.c:365
+#: ../src/ghex-window.c:378
 msgid "Undo the last action"
 msgstr "Vrátit zpět poslední úkon"
 
-#: ../src/ghex-window.c:367
+#: ../src/ghex-window.c:380
 msgid "_Redo"
 msgstr "Zn_ovu"
 
-#: ../src/ghex-window.c:368
+#: ../src/ghex-window.c:381
 msgid "Redo the undone action"
 msgstr "Znovu provede vrácenou akci"
 
-#: ../src/ghex-window.c:370
+#: ../src/ghex-window.c:383
 msgid "_Copy"
 msgstr "_Kopírovat"
 
-#: ../src/ghex-window.c:371
+#: ../src/ghex-window.c:384
 msgid "Copy selection to clipboard"
 msgstr "Kopírovat výběr do schránky"
 
-#: ../src/ghex-window.c:373
+#: ../src/ghex-window.c:386
 msgid "Cu_t"
 msgstr "_Vyjmout"
 
-#: ../src/ghex-window.c:374
+#: ../src/ghex-window.c:387
 msgid "Cut selection"
 msgstr "Vyjmout výběr"
 
-#: ../src/ghex-window.c:376
+#: ../src/ghex-window.c:389
 msgid "Pa_ste"
 msgstr "V_ložit"
 
-#: ../src/ghex-window.c:377
+#: ../src/ghex-window.c:390
 msgid "Paste data from clipboard"
 msgstr "Vložení dat ze schránky"
 
-#: ../src/ghex-window.c:379
+#: ../src/ghex-window.c:392
 msgid "_Find"
 msgstr "_Hledat"
 
-#: ../src/ghex-window.c:380
+#: ../src/ghex-window.c:393
 msgid "Search for a string"
 msgstr "Hledat řetězec"
 
-#: ../src/ghex-window.c:382
+#: ../src/ghex-window.c:395
 msgid "_Advanced Find"
 msgstr "_Pokročilé hledání"
 
-#: ../src/ghex-window.c:383
+#: ../src/ghex-window.c:396
 msgid "Advanced Find"
 msgstr "Pokročilé hledání"
 
-#: ../src/ghex-window.c:385
+#: ../src/ghex-window.c:398
 msgid "R_eplace"
 msgstr "Nah_radit"
 
-#: ../src/ghex-window.c:386
+#: ../src/ghex-window.c:399
 msgid "Replace a string"
 msgstr "Nahradit řetězec"
 
-#: ../src/ghex-window.c:388
+#: ../src/ghex-window.c:401
 msgid "_Goto Byte..."
 msgstr "_Přejít na bajt…"
 
-#: ../src/ghex-window.c:389
+#: ../src/ghex-window.c:402
 msgid "Jump to a certain position"
 msgstr "Přeskočit na určitou pozici"
 
-#: ../src/ghex-window.c:391
+#: ../src/ghex-window.c:404
 msgid "_Preferences"
 msgstr "_Předvolby"
 
-#: ../src/ghex-window.c:392
+#: ../src/ghex-window.c:405
 msgid "Configure the application"
 msgstr "Nastavit aplikaci"
 
 #. View menu
-#: ../src/ghex-window.c:396
+#: ../src/ghex-window.c:409
 msgid "_Add View"
 msgstr "Přid_at pohled"
 
-#: ../src/ghex-window.c:397
+#: ../src/ghex-window.c:410
 msgid "Add a new view to the buffer"
 msgstr "Přidat nový pohled na vyrovnávací paměť"
 
-#: ../src/ghex-window.c:399
+#: ../src/ghex-window.c:412
 msgid "_Remove View"
 msgstr "Odst_ranit pohled"
 
-#: ../src/ghex-window.c:400
+#: ../src/ghex-window.c:413
 msgid "Remove the current view of the buffer"
 msgstr "Odstraní aktuální pohled na vyrovnávací paměť"
 
 #. Help menu
-#: ../src/ghex-window.c:404
+#: ../src/ghex-window.c:417
 msgid "_Contents"
 msgstr "O_bsah"
 
-#: ../src/ghex-window.c:405
+#: ../src/ghex-window.c:418
 msgid "Help on this application"
 msgstr "Nápověda pro tuto aplikaci"
 
-#: ../src/ghex-window.c:407
+#: ../src/ghex-window.c:420
 msgid "_About"
 msgstr "O _aplikaci"
 
-#: ../src/ghex-window.c:408
+#: ../src/ghex-window.c:421
 msgid "About this application"
 msgstr "O této aplikaci"
 
 #. Edit menu
-#: ../src/ghex-window.c:415
+#: ../src/ghex-window.c:428
 msgid "_Insert Mode"
 msgstr "Rež_im vkládání"
 
-#: ../src/ghex-window.c:416
+#: ../src/ghex-window.c:429
 msgid "Insert/overwrite data"
 msgstr "Vkládat/přepisovat data"
 
 #. Windows menu
-#: ../src/ghex-window.c:420
+#: ../src/ghex-window.c:433
 msgid "Character _Table"
 msgstr "_Tabulka znaků"
 
-#: ../src/ghex-window.c:421
+#: ../src/ghex-window.c:434
 msgid "Show the character table"
 msgstr "Zobrazit tabulku znaků"
 
-#: ../src/ghex-window.c:423
+#: ../src/ghex-window.c:436
 msgid "_Base Converter"
 msgstr "_Převod soustav"
 
-#: ../src/ghex-window.c:424
+#: ../src/ghex-window.c:437
 msgid "Open base conversion dialog"
 msgstr "Otevřít dialogové okno převodu soustav"
 
-#: ../src/ghex-window.c:426
+#: ../src/ghex-window.c:439
 msgid "Type Conversion _Dialog"
 msgstr "_Dialog převodu typů"
 
-#: ../src/ghex-window.c:427
+#: ../src/ghex-window.c:440
 msgid "Show the type conversion dialog in the edit window"
 msgstr "Zobrazovat dialog převodu typů v okně úprav"
 
-#: ../src/ghex-window.c:433 ../src/ui.c:48
+#: ../src/ghex-window.c:446 ../src/ui.c:48
 msgid "_Bytes"
 msgstr "_Bajty"
 
-#: ../src/ghex-window.c:434
+#: ../src/ghex-window.c:447
 msgid "Group data by 8 bits"
 msgstr "Data do skupin po 8 bitech"
 
-#: ../src/ghex-window.c:435 ../src/ui.c:49
+#: ../src/ghex-window.c:448 ../src/ui.c:49
 msgid "_Words"
 msgstr "_Slova"
 
-#: ../src/ghex-window.c:436
+#: ../src/ghex-window.c:449
 msgid "Group data by 16 bits"
 msgstr "Data do skupin po 16 bitech"
 
-#: ../src/ghex-window.c:437 ../src/ui.c:50
+#: ../src/ghex-window.c:450 ../src/ui.c:50
 msgid "_Longwords"
 msgstr "D_louhá slova"
 
-#: ../src/ghex-window.c:438
+#: ../src/ghex-window.c:451
 msgid "Group data by 32 bits"
 msgstr "Data do skupin po 32 bitech"
 
-#: ../src/ghex-window.c:769
+#: ../src/ghex-window.c:785
 #, c-format
 msgid "Offset: %s"
 msgstr "Pozice: %s"
 
-#: ../src/ghex-window.c:772
+#: ../src/ghex-window.c:788
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; vybráno %s bajtů od %s do %s"
 
-#: ../src/ghex-window.c:1044
+#: ../src/ghex-window.c:1060
 #, c-format
 msgid "Activate file %s"
 msgstr "Aktivovat soubor %s"
 
-#: ../src/ghex-window.c:1080
+#: ../src/ghex-window.c:1096
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
-#: ../src/ghex-window.c:1206
+#: ../src/ghex-window.c:1218
 msgid "Select a file to save buffer as"
 msgstr "Vyberte soubor pro uložení vyrovnávací paměti"
 
-#: ../src/ghex-window.c:1238
+#: ../src/ghex-window.c:1250
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -668,20 +673,20 @@ msgstr ""
 "Soubor %s existuje.\n"
 "Chcete jej přepsat?"
 
-#: ../src/ghex-window.c:1264 ../src/ui.c:300
+#: ../src/ghex-window.c:1276 ../src/ui.c:303
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Vyrovnávací paměť uložena do souboru %s"
 
-#: ../src/ghex-window.c:1271
+#: ../src/ghex-window.c:1283
 msgid "Error saving file!"
 msgstr "Chyba při ukládání souboru!"
 
-#: ../src/ghex-window.c:1277
+#: ../src/ghex-window.c:1289
 msgid "Can't open file for writing!"
 msgstr "Soubor nelze otevřít pro zápis!"
 
-#: ../src/ghex-window.c:1322
+#: ../src/ghex-window.c:1334
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -690,15 +695,15 @@ msgstr ""
 "Soubor %s byl od posledního uložení změněn.\n"
 "Chcete tyto změny uložit?"
 
-#: ../src/ghex-window.c:1326
+#: ../src/ghex-window.c:1338
 msgid "Do_n't save"
 msgstr "_Neukládat"
 
-#: ../src/ghex-window.c:1346 ../src/ui.c:288
+#: ../src/ghex-window.c:1358 ../src/ui.c:291
 msgid "You don't have the permissions to save the file!"
 msgstr "Nemáte oprávnění k uložení souboru!"
 
-#: ../src/ghex-window.c:1350 ../src/ui.c:293
+#: ../src/ghex-window.c:1362 ../src/ui.c:296
 msgid "An error occurred while saving file!"
 msgstr "Během ukládání souboru se vyskytla chyba!"
 
@@ -802,11 +807,11 @@ msgstr "GEOMETRIE"
 msgid "FILES"
 msgstr "SOUBORY"
 
-#: ../src/main.c:53
+#: ../src/main.c:99
 msgid "- GTK+ binary editor"
 msgstr "- Binární editor GTK+"
 
-#: ../src/main.c:57
+#: ../src/main.c:103
 #, c-format
 msgid ""
 "%s\n"
@@ -816,7 +821,7 @@ msgstr ""
 "Spuštěním „%s --help“ se zobrazí úplný seznam dostupných přepínačů "
 "příkazového řádku.\n"
 
-#: ../src/main.c:80 ../src/main.c:93
+#: ../src/main.c:133 ../src/main.c:146
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Neplatný řetězec „%s“ s rozměry a polohou\n"
@@ -934,7 +939,7 @@ msgstr "řádků (0 pro žádnou)"
 msgid "Printing"
 msgstr "Tisk"
 
-#: ../src/preferences.c:447 ../src/ui.c:209
+#: ../src/preferences.c:447 ../src/ui.c:212
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -968,7 +973,7 @@ msgstr "Data jako HEXA"
 msgid "ASCII data"
 msgstr "Data jako ASCII"
 
-#: ../src/ui.c:150
+#: ../src/ui.c:153
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -980,7 +985,7 @@ msgstr ""
 "Software Foundation, a to buď ve verzi 2 této licence nebo (dle vaší volby) "
 "v libovolné novější verzi."
 
-#: ../src/ui.c:154
+#: ../src/ui.c:157
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -991,7 +996,7 @@ msgstr ""
 "bez předpokládané záruky na PRODEJNOST nebo VHODNOST PRO KONKRÉTNÍ ÚČEL. "
 "Více podrobností najdete přímo v licenci GNU General Public License."
 
-#: ../src/ui.c:158
+#: ../src/ui.c:161
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
@@ -1003,52 +1008,52 @@ msgstr ""
 
 #. Translators: these two strings here indicate the copyright time span,
 #. e.g. 1998-2012.
-#: ../src/ui.c:170
+#: ../src/ui.c:173
 msgid "Copyright © %Id–%Id The GHex authors"
 msgstr "Copyright © %Id – %Id autoři aplikace GHex"
 
-#: ../src/ui.c:174
+#: ../src/ui.c:177
 msgid "A binary file editor"
 msgstr "Editor binárních souborů"
 
-#: ../src/ui.c:180
+#: ../src/ui.c:183
 msgid "About GHex"
 msgstr "O _aplikaci GHex"
 
-#: ../src/ui.c:181
+#: ../src/ui.c:184
 msgid "translator-credits"
 msgstr "Marek Černocký <marek@manet.cz>"
 
-#: ../src/ui.c:184
+#: ../src/ui.c:187
 msgid "GHex Website"
 msgstr "Webové stránky GHex"
 
-#: ../src/ui.c:318
+#: ../src/ui.c:321
 msgid "Select a file to open"
 msgstr "Vyberte soubor k otevření"
 
-#: ../src/ui.c:349
+#: ../src/ui.c:353
 #, c-format
 msgid "Loaded file %s"
 msgstr "Načten soubor %s"
 
-#: ../src/ui.c:357
+#: ../src/ui.c:361
 msgid "Can not open file!"
 msgstr "Soubor nelze otevřít!"
 
-#: ../src/ui.c:422
+#: ../src/ui.c:426
 msgid "Select path and file name for the HTML source"
 msgstr "Vyber cestu a název souboru pro zdroj HTML"
 
-#: ../src/ui.c:454
+#: ../src/ui.c:458
 msgid "You need to specify a base name for the HTML files."
 msgstr "Musíte zadat základní název pro soubory HTML."
 
-#: ../src/ui.c:465 ../src/ui.c:491
+#: ../src/ui.c:469 ../src/ui.c:495
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Nemáte oprávnění k zápisu ve vybrané cestě.\n"
 
-#: ../src/ui.c:477
+#: ../src/ui.c:481
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1056,12 +1061,12 @@ msgstr ""
 "Uložením do formátu HTML se přepíší některé soubory.\n"
 "Chcete pokračovat?"
 
-#: ../src/ui.c:745
+#: ../src/ui.c:749
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Opravdu vrátit soubor %s do původní podoby?"
 
-#: ../src/ui.c:759
+#: ../src/ui.c:763
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Vyrovnávací paměť vrácen do původního stavu podle souboru %s"
