@@ -1,5 +1,5 @@
 AC_PREREQ(2.61)
-AC_INIT([ghex],[3.7.2],[http://bugzilla.gnome.org/enter_bug.cgi?product=ghex],[ghex])
+AC_INIT([ghex],[3.7.3],[http://bugzilla.gnome.org/enter_bug.cgi?product=ghex],[ghex])
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR([src/ghex-window.c])
