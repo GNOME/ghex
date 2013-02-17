@@ -36,6 +36,7 @@
 static void hex_dialog_class_init     (HexDialogClass *);
 static void hex_dialog_init           (HexDialog *);
 
+void hex_dialog_update_entry_sizes(HexDialog *dialog);
 void hex_dialog_updateview(HexDialog *dialog, HexDialogVal64 *val);
 
 /* conversion functions */
@@ -197,6 +198,8 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     create_dialog_prop (OCT, dialog, grid, 4, 1);
     create_dialog_prop (BIN, dialog, grid, 4, 2);
 
+    hex_dialog_update_entry_sizes (dialog);
+
     hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, FALSE, 4);
     gtk_widget_show(hbox);
@@ -229,15 +232,42 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     return vbox;
 }
 
-static void update_dialog_prop(HexDialogEntryTypes type,
-                               HexDialog *dialog, HexDialogVal64 *val)
+static char *dialog_prop_get_text(HexDialogEntryTypes type,
+                                  HexDialog *dialog,
+                                  HexDialogVal64 *val)
 {
     char *buf;
     if (HexDialogEntries[type].conv_function)
         buf = HexDialogEntries[type].conv_function(val, &dialog->properties);
     else
         buf = _("FIXME: no conversion function");
-    gtk_entry_set_text(GTK_ENTRY(dialog->entry[type]), buf);
+    return buf;
+}
+
+static void update_dialog_prop(HexDialogEntryTypes type,
+                               HexDialog *dialog,
+                               HexDialogVal64 *val)
+{
+    char *buf;
+    buf = dialog_prop_get_text (type, dialog, val);
+    gtk_entry_set_text (GTK_ENTRY (dialog->entry[type]), buf);
+}
+
+/* Try to guess the maximum width needed for each entry */
+void hex_dialog_update_entry_sizes(HexDialog *dialog)
+{
+    HexDialogVal64 val;
+    gint i;
+    gint width_chars;
+
+    for (i = 0; i < 8; i++)
+        val.v[i] = 0xfb;
+
+    for (i = 0; i < ENTRY_MAX; i++)
+    {
+        width_chars = strlen (dialog_prop_get_text (i, dialog, &val));
+        gtk_entry_set_width_chars (GTK_ENTRY (dialog->entry[i]), width_chars);
+    }
 }
 
 /* if val is NULL, uses the previous used val */
@@ -255,6 +285,8 @@ void hex_dialog_updateview(HexDialog *dialog, HexDialogVal64 *val)
     {
         update_dialog_prop(i, dialog, &dialog->val);
     }
+
+    hex_dialog_update_entry_sizes (dialog);
 }
 
 /* used for conversions, this can be global, since it need not be
