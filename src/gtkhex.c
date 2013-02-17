@@ -36,7 +36,7 @@
 #define DISPLAY_BORDER 4
 
 #define DEFAULT_CPL 32
-#define DEFAULT_LINES 16
+#define DEFAULT_LINES 10
 
 #define SCROLL_TIMEOUT 100
 
