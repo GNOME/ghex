@@ -12,6 +12,7 @@ AM_SILENT_RULES([yes])
 # Check for programs
 AC_PROG_CC
 AC_PROG_INSTALL
+AC_PATH_PROG(DESKTOP_FILE_VALIDATE, desktop-file-validate)
 
 # Initialize libtool
 LT_PREREQ([2.2.6])

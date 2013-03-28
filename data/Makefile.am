@@ -18,6 +18,9 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 @INTLTOOL_DESKTOP_RULE@
 
+check-local: ghex.desktop
+	$(DESKTOP_FILE_VALIDATE) ghex.desktop
+
 CLEANFILES =			\
 	$(desktop_DATA)
 
