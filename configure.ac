@@ -62,9 +62,6 @@ dnl Gettext stuff
 dnl =================================================================
 IT_PROG_INTLTOOL([0.41.1])
 
-AM_GNU_GETTEXT([external])
-AM_GNU_GETTEXT_VERSION([0.17])
-
 GETTEXT_PACKAGE=ghex-3.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext package name.])
