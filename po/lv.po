@@ -5,25 +5,26 @@
 #
 # Raivis Dejus <orvils@gmail.com>, 2007.
 # Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-01 23:51+0000\n"
-"PO-Revision-Date: 2012-03-15 19:57+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-08 01:30+0300\n"
+"PO-Revision-Date: 2013-10-08 01:30+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
-"Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
+"Language-Team: Latviešu <lata-l10n@googlegroups.com>\n"
+"Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.2\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"X-Generator: Gtranslator 2.91.6\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"Language: lv\n"
 
-#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:650
-#: ../src/ghex-window.c:1084
+#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
+#: ../src/ghex-window.c:1100
 msgid "GHex"
 msgstr "GHex"
 
@@ -34,6 +35,11 @@ msgstr "Heksadecimālais redaktors"
 #: ../data/ghex.desktop.in.h:3
 msgid "Inspect and edit binary files"
 msgstr "Pētiet un rediģējiet bināros failus"
+
+#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#: ../data/ghex.desktop.in.h:5
+msgid "binary;debug;"
+msgstr "binārs;atkļūdot;"
 
 #: ../src/chartable.c:147
 msgid "ASCII"
@@ -103,7 +109,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:873
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Atrast datus"
@@ -185,7 +191,7 @@ msgstr "Aizvērt"
 msgid "Closes advanced find window"
 msgstr "Aizver izvērsto meklēšanas logu"
 
-#: ../src/findreplace.c:355 ../src/ui.c:871
+#: ../src/findreplace.c:355 ../src/ui.c:875
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Atrast un aizvietot datus"
@@ -238,7 +244,7 @@ msgstr "Aizvieto meklējamo virkni ar aizvietojamo virkni  visos gadījumos"
 msgid "Closes find and replace data window"
 msgstr "Aizver datu atrašanas un aizvēršanas logu"
 
-#: ../src/findreplace.c:434 ../src/ui.c:869
+#: ../src/findreplace.c:434 ../src/ui.c:873
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Lekt uz baitu"
@@ -341,7 +347,7 @@ msgstr[2] "Aizvietoti %d gadījumi."
 msgid "No string to search for!"
 msgstr "Nav virknes ko meklēt!"
 
-#: ../src/ghex-window.c:75
+#: ../src/ghex-window.c:90
 #, c-format
 msgid ""
 "Can not open URI:\n"
@@ -350,7 +356,7 @@ msgstr ""
 "Nav iespējams atvērt URI:\n"
 "%s"
 
-#: ../src/ghex-window.c:96
+#: ../src/ghex-window.c:111
 #, c-format
 msgid ""
 "Can not open file:\n"
@@ -359,302 +365,302 @@ msgstr ""
 "Nav iespējams atvērt failu:\n"
 "%s"
 
-#: ../src/ghex-window.c:327
+#: ../src/ghex-window.c:340
 msgid "_File"
 msgstr "_Fails"
 
-#: ../src/ghex-window.c:328
+#: ../src/ghex-window.c:341
 msgid "_Edit"
 msgstr "_Rediģēt"
 
-#: ../src/ghex-window.c:329
+#: ../src/ghex-window.c:342
 msgid "_View"
 msgstr "_Skats"
 
-#: ../src/ghex-window.c:330
+#: ../src/ghex-window.c:343
 msgid "_Group Data As"
 msgstr "_Grupēt datus kā"
 
 #. View submenu
-#: ../src/ghex-window.c:331
+#: ../src/ghex-window.c:344
 msgid "_Windows"
 msgstr "_Logi"
 
-#: ../src/ghex-window.c:332
+#: ../src/ghex-window.c:345
 msgid "_Help"
 msgstr "_Palīdzība"
 
 #. File menu
-#: ../src/ghex-window.c:335
+#: ../src/ghex-window.c:348
 msgid "_Open..."
 msgstr "_Atvērt..."
 
-#: ../src/ghex-window.c:336
+#: ../src/ghex-window.c:349
 msgid "Open a file"
 msgstr "Atvērt failu"
 
-#: ../src/ghex-window.c:338
+#: ../src/ghex-window.c:351
 msgid "_Save"
 msgstr "_Saglabāt"
 
-#: ../src/ghex-window.c:339
+#: ../src/ghex-window.c:352
 msgid "Save the current file"
 msgstr "Saglabāt pašreizējo failu"
 
-#: ../src/ghex-window.c:341
+#: ../src/ghex-window.c:354
 msgid "Save _As..."
 msgstr "Saglabāt _Kā..."
 
-#: ../src/ghex-window.c:342
+#: ../src/ghex-window.c:355
 msgid "Save the current file with a different name"
 msgstr "Saglabāt pašreizējo failu ar citu nosaukumu"
 
-#: ../src/ghex-window.c:344
+#: ../src/ghex-window.c:357
 msgid "Save As _HTML..."
 msgstr "Saglabāt kā _HTML..."
 
-#: ../src/ghex-window.c:345
+#: ../src/ghex-window.c:358
 msgid "Export data to HTML source"
 msgstr "Eksportēt datus uz HTML avotu"
 
-#: ../src/ghex-window.c:347
+#: ../src/ghex-window.c:360
 msgid "_Revert"
 msgstr "_Atgriezt"
 
-#: ../src/ghex-window.c:348
+#: ../src/ghex-window.c:361
 msgid "Revert to a saved version of the file"
 msgstr "Atgriezt faila saglabāto versiju"
 
-#: ../src/ghex-window.c:350
+#: ../src/ghex-window.c:363
 msgid "_Print"
 msgstr "_Drukāt"
 
-#: ../src/ghex-window.c:351
+#: ../src/ghex-window.c:364
 msgid "Print the current file"
 msgstr "Drukāt pašreizējo failu"
 
-#: ../src/ghex-window.c:353
+#: ../src/ghex-window.c:366
 msgid "Print Previe_w..."
 msgstr "Drukas priekšska_ts..."
 
-#: ../src/ghex-window.c:354
+#: ../src/ghex-window.c:367
 msgid "Preview printed data"
 msgstr "Priekšskatīt drukājamos datus"
 
-#: ../src/ghex-window.c:356
+#: ../src/ghex-window.c:369
 msgid "_Close"
 msgstr "_Aizvērt"
 
-#: ../src/ghex-window.c:357
+#: ../src/ghex-window.c:370
 msgid "Close the current file"
 msgstr "Aizvērt pašreizējo failu"
 
-#: ../src/ghex-window.c:359
+#: ../src/ghex-window.c:372
 msgid "E_xit"
 msgstr "I_ziet"
 
-#: ../src/ghex-window.c:360
+#: ../src/ghex-window.c:373
 msgid "Exit the program"
 msgstr "Iziet no programmas"
 
 #. Edit menu
-#: ../src/ghex-window.c:364
+#: ../src/ghex-window.c:377
 msgid "_Undo"
 msgstr "_Atsaukt"
 
-#: ../src/ghex-window.c:365
+#: ../src/ghex-window.c:378
 msgid "Undo the last action"
 msgstr "Atsaukt pēdējo darbību"
 
-#: ../src/ghex-window.c:367
+#: ../src/ghex-window.c:380
 msgid "_Redo"
 msgstr "_Restaurēt"
 
-#: ../src/ghex-window.c:368
+#: ../src/ghex-window.c:381
 msgid "Redo the undone action"
 msgstr "Pārdarīt atcelto darbību"
 
-#: ../src/ghex-window.c:370
+#: ../src/ghex-window.c:383
 msgid "_Copy"
 msgstr "_Kopēt"
 
-#: ../src/ghex-window.c:371
+#: ../src/ghex-window.c:384
 msgid "Copy selection to clipboard"
 msgstr "Kopēt izvēlēto iztvērumu uz starpliktuvi"
 
-#: ../src/ghex-window.c:373
+#: ../src/ghex-window.c:386
 msgid "Cu_t"
 msgstr "Izgriez_t"
 
-#: ../src/ghex-window.c:374
+#: ../src/ghex-window.c:387
 msgid "Cut selection"
 msgstr "Izgriezt izvēlēto"
 
-#: ../src/ghex-window.c:376
+#: ../src/ghex-window.c:389
 msgid "Pa_ste"
 msgstr "_Ielīmēt"
 
-#: ../src/ghex-window.c:377
+#: ../src/ghex-window.c:390
 msgid "Paste data from clipboard"
 msgstr "Ievietot datus no starpliktuves"
 
-#: ../src/ghex-window.c:379
+#: ../src/ghex-window.c:392
 msgid "_Find"
 msgstr "At_rast"
 
-#: ../src/ghex-window.c:380
+#: ../src/ghex-window.c:393
 msgid "Search for a string"
 msgstr "Meklēt virkni"
 
-#: ../src/ghex-window.c:382
+#: ../src/ghex-window.c:395
 msgid "_Advanced Find"
 msgstr "Izvērstā meklēšan_a"
 
-#: ../src/ghex-window.c:383
+#: ../src/ghex-window.c:396
 msgid "Advanced Find"
 msgstr "Izvērstā meklēšana"
 
-#: ../src/ghex-window.c:385
+#: ../src/ghex-window.c:398
 msgid "R_eplace"
 msgstr "_Aizvietot"
 
-#: ../src/ghex-window.c:386
+#: ../src/ghex-window.c:399
 msgid "Replace a string"
 msgstr "Aizvietot virkni"
 
-#: ../src/ghex-window.c:388
+#: ../src/ghex-window.c:401
 msgid "_Goto Byte..."
 msgstr "_Iet uz baitu..."
 
-#: ../src/ghex-window.c:389
+#: ../src/ghex-window.c:402
 msgid "Jump to a certain position"
 msgstr "Lekt uz noteiktu pozīciju"
 
-#: ../src/ghex-window.c:391
+#: ../src/ghex-window.c:404
 msgid "_Preferences"
 msgstr "_Iestatījumi"
 
-#: ../src/ghex-window.c:392
+#: ../src/ghex-window.c:405
 msgid "Configure the application"
 msgstr "Konfigurēt šo aplikāciju"
 
 #. View menu
-#: ../src/ghex-window.c:396
+#: ../src/ghex-window.c:409
 msgid "_Add View"
 msgstr "Pievienot Sk_atu"
 
-#: ../src/ghex-window.c:397
+#: ../src/ghex-window.c:410
 msgid "Add a new view to the buffer"
 msgstr "Pievienot jaunu skatu buferim"
 
-#: ../src/ghex-window.c:399
+#: ../src/ghex-window.c:412
 msgid "_Remove View"
 msgstr "_Aizvākt skatu"
 
-#: ../src/ghex-window.c:400
+#: ../src/ghex-window.c:413
 msgid "Remove the current view of the buffer"
 msgstr "AIzvākt tekošo bufera skatu"
 
 #. Help menu
-#: ../src/ghex-window.c:404
+#: ../src/ghex-window.c:417
 msgid "_Contents"
 msgstr "_Saturs"
 
-#: ../src/ghex-window.c:405
+#: ../src/ghex-window.c:418
 msgid "Help on this application"
 msgstr "Palīdziba šai aplikācijai"
 
-#: ../src/ghex-window.c:407
+#: ../src/ghex-window.c:420
 msgid "_About"
 msgstr "P_ar"
 
-#: ../src/ghex-window.c:408
+#: ../src/ghex-window.c:421
 msgid "About this application"
 msgstr "Par šo programmu"
 
 #. Edit menu
-#: ../src/ghex-window.c:415
+#: ../src/ghex-window.c:428
 msgid "_Insert Mode"
 msgstr "_Ievietošanas režīms"
 
-#: ../src/ghex-window.c:416
+#: ../src/ghex-window.c:429
 msgid "Insert/overwrite data"
 msgstr "Ievietot/pārrakstīt datus"
 
 #. Windows menu
-#: ../src/ghex-window.c:420
+#: ../src/ghex-window.c:433
 msgid "Character _Table"
 msgstr "Rakstzīmju _tabula"
 
-#: ../src/ghex-window.c:421
+#: ../src/ghex-window.c:434
 msgid "Show the character table"
 msgstr "Rādīt simbolu tabulu"
 
-#: ../src/ghex-window.c:423
+#: ../src/ghex-window.c:436
 msgid "_Base Converter"
 msgstr "_Pamata pārveidotājs"
 
-#: ../src/ghex-window.c:424
+#: ../src/ghex-window.c:437
 msgid "Open base conversion dialog"
 msgstr "Atvērt pamata pārveidošanas dialogu"
 
-#: ../src/ghex-window.c:426
+#: ../src/ghex-window.c:439
 msgid "Type Conversion _Dialog"
 msgstr "Tipa pārvēršanas _dialogs"
 
-#: ../src/ghex-window.c:427
+#: ../src/ghex-window.c:440
 msgid "Show the type conversion dialog in the edit window"
 msgstr "Rādit tipa pārvēršanas dialogu rediģēšanas logā"
 
-#: ../src/ghex-window.c:433 ../src/ui.c:48
+#: ../src/ghex-window.c:446 ../src/ui.c:48
 msgid "_Bytes"
 msgstr "_Baiti"
 
-#: ../src/ghex-window.c:434
+#: ../src/ghex-window.c:447
 msgid "Group data by 8 bits"
 msgstr "Grupēt datus pēc 8 bitiem"
 
-#: ../src/ghex-window.c:435 ../src/ui.c:49
+#: ../src/ghex-window.c:448 ../src/ui.c:49
 msgid "_Words"
 msgstr "_Vārdi"
 
-#: ../src/ghex-window.c:436
+#: ../src/ghex-window.c:449
 msgid "Group data by 16 bits"
 msgstr "Grupēt datus pēc 16 bitiem"
 
-#: ../src/ghex-window.c:437 ../src/ui.c:50
+#: ../src/ghex-window.c:450 ../src/ui.c:50
 msgid "_Longwords"
 msgstr "_Garie vārdi"
 
-#: ../src/ghex-window.c:438
+#: ../src/ghex-window.c:451
 msgid "Group data by 32 bits"
 msgstr "Grupēt datus pēc 32 bitiem"
 
-#: ../src/ghex-window.c:769
+#: ../src/ghex-window.c:785
 #, c-format
 msgid "Offset: %s"
 msgstr "Nobīde: %s"
 
-#: ../src/ghex-window.c:772
+#: ../src/ghex-window.c:788
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; %s baiti no %s uz %s izvēlēti"
 
-#: ../src/ghex-window.c:1044
+#: ../src/ghex-window.c:1060
 #, c-format
 msgid "Activate file %s"
 msgstr "Aktivizēt failu %s"
 
-#: ../src/ghex-window.c:1080
+#: ../src/ghex-window.c:1096
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
-#: ../src/ghex-window.c:1206
+#: ../src/ghex-window.c:1218
 msgid "Select a file to save buffer as"
 msgstr "Izvēlieties failu lai saglabātu buferi kā"
 
-#: ../src/ghex-window.c:1238
+#: ../src/ghex-window.c:1250
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -663,20 +669,20 @@ msgstr ""
 "Fails %s jau eksistē.\n"
 "Vai vēlaties pārrakstīt to?"
 
-#: ../src/ghex-window.c:1264 ../src/ui.c:300
+#: ../src/ghex-window.c:1276 ../src/ui.c:303
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Buferis saglabāts failā %s"
 
-#: ../src/ghex-window.c:1271
+#: ../src/ghex-window.c:1283
 msgid "Error saving file!"
 msgstr "Kļūda saglabājot failu!"
 
-#: ../src/ghex-window.c:1277
+#: ../src/ghex-window.c:1289
 msgid "Can't open file for writing!"
 msgstr "Nevar atvērt failu rakstīšanai!"
 
-#: ../src/ghex-window.c:1322
+#: ../src/ghex-window.c:1334
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -685,75 +691,75 @@ msgstr ""
 "Fails %s ticis mainīts pēc pēdejās saglabāšanas.\n"
 "Vai jūs vēlaties saglabāt izmaiņas?"
 
-#: ../src/ghex-window.c:1326
+#: ../src/ghex-window.c:1338
 msgid "Do_n't save"
 msgstr "_Nesaglabāt"
 
-#: ../src/ghex-window.c:1346 ../src/ui.c:288
+#: ../src/ghex-window.c:1358 ../src/ui.c:291
 msgid "You don't have the permissions to save the file!"
 msgstr "Jums nav tiesību saglabāt failu!"
 
-#: ../src/ghex-window.c:1350 ../src/ui.c:293
+#: ../src/ghex-window.c:1362 ../src/ui.c:296
 msgid "An error occurred while saving file!"
 msgstr "Gadījās kļūda faila saglabāšanas laikā!"
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:59
 msgid "Signed 8 bit:"
 msgstr "Skaitlis ar zīmi 8 bitu:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:60
 msgid "Unsigned 8 bit:"
 msgstr "Pozitīvs 8 bitu:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:61
 msgid "Signed 16 bit:"
 msgstr "Skaitlis ar zīmi 16 bitu:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 16 bit:"
 msgstr "Pozitīvs 16 bitu:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:63
 msgid "Signed 32 bit:"
 msgstr "Skaitlis ar zīmi 32 bitu:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 32 bit:"
 msgstr "Pozitīvs 32 bitu:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:65
 msgid "Float 32 bit:"
 msgstr "Peldošs 32 bitu:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:66
 msgid "Float 64 bit:"
 msgstr "Peldošs 64 bitu:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:67
 msgid "Hexadecimal:"
 msgstr "Heksadecimāls:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:68
 msgid "Octal:"
 msgstr "Oktāls:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:69
 msgid "Binary:"
 msgstr "Binārs:"
 
-#: ../src/hex-dialog.c:204
+#: ../src/hex-dialog.c:207
 msgid "Show little endian decoding"
 msgstr "Rādīt little endian atšifrēšanu"
 
-#: ../src/hex-dialog.c:211
+#: ../src/hex-dialog.c:214
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Rādit absolūtos un reālos skaitļus heksadecimālā formā"
 
-#: ../src/hex-dialog.c:217
+#: ../src/hex-dialog.c:220
 msgid "Stream Length:"
 msgstr "Plūsmas garums:"
 
-#: ../src/hex-dialog.c:239
+#: ../src/hex-dialog.c:243
 msgid "FIXME: no conversion function"
 msgstr "FIXME: nav pārveidošanas funkcijas"
 
@@ -797,11 +803,11 @@ msgstr "ĢEOMETRIJA"
 msgid "FILES"
 msgstr "FAILI"
 
-#: ../src/main.c:53
+#: ../src/main.c:99
 msgid "- GTK+ binary editor"
 msgstr "- GTK+ bināro failu redaktors"
 
-#: ../src/main.c:57
+#: ../src/main.c:103
 #, c-format
 msgid ""
 "%s\n"
@@ -811,7 +817,7 @@ msgstr ""
 "Palaidiet '%s --help', lai redzētu pilnu sarakstu ar pieejamajām "
 "komandrindas opcijām.\n"
 
-#: ../src/main.c:80 ../src/main.c:93
+#: ../src/main.c:133 ../src/main.c:146
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Nederīga ģeometrijas virkne \"%s\"\n"
@@ -929,7 +935,7 @@ msgstr "rindas (0 lai nebūtu rāmīša)"
 msgid "Printing"
 msgstr "Drukāju"
 
-#: ../src/preferences.c:447 ../src/ui.c:209
+#: ../src/preferences.c:447 ../src/ui.c:212
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -963,7 +969,7 @@ msgstr "heksadecimāli dati"
 msgid "ASCII data"
 msgstr "ASCII dati"
 
-#: ../src/ui.c:150
+#: ../src/ui.c:153
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -974,7 +980,7 @@ msgstr ""
 "saskaņā ar Free Software Foundation GNU Vispārējās publiskās licences 2 vai "
 "kādas brīvi izvēlētas vēlākas versijas noteikumiem."
 
-#: ../src/ui.c:154
+#: ../src/ui.c:157
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -985,7 +991,7 @@ msgstr ""
 "BEZ JEBKĀDAS GARANTIJAS vai DERĪBAS KĀDAM MĒRĶIM. Sīkāku informāciju "
 "meklējiet GNU Vispārējās publiskās licences tekstā."
 
-#: ../src/ui.c:158
+#: ../src/ui.c:161
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
@@ -997,53 +1003,53 @@ msgstr ""
 
 #. Translators: these two strings here indicate the copyright time span,
 #. e.g. 1998-2012.
-#: ../src/ui.c:170
+#: ../src/ui.c:173
 msgid "Copyright © %Id–%Id The GHex authors"
 msgstr "Autortiesības © %Id–%Id GHex autori"
 
-#: ../src/ui.c:174
+#: ../src/ui.c:177
 msgid "A binary file editor"
 msgstr "Bināru failu redaktors"
 
-#: ../src/ui.c:180
+#: ../src/ui.c:183
 msgid "About GHex"
 msgstr "P_ar GHex"
 
-#: ../src/ui.c:181
+#: ../src/ui.c:184
 msgid "translator-credits"
 msgstr ""
 "Raivis Dejus <orvils@gmail.com> Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
-#: ../src/ui.c:184
+#: ../src/ui.c:187
 msgid "GHex Website"
 msgstr "GHex tīmekļa vietne"
 
-#: ../src/ui.c:318
+#: ../src/ui.c:321
 msgid "Select a file to open"
 msgstr "Izvēlieties failu, ko atvērt"
 
-#: ../src/ui.c:349
+#: ../src/ui.c:353
 #, c-format
 msgid "Loaded file %s"
 msgstr "Ielādets fails %s"
 
-#: ../src/ui.c:357
+#: ../src/ui.c:361
 msgid "Can not open file!"
 msgstr "Nav iespējams atvērt failu!"
 
-#: ../src/ui.c:422
+#: ../src/ui.c:426
 msgid "Select path and file name for the HTML source"
 msgstr "Norādiet atrašanās vietu un faila vārdu HTML avotam"
 
-#: ../src/ui.c:454
+#: ../src/ui.c:458
 msgid "You need to specify a base name for the HTML files."
 msgstr "Jums nepieciešams norādit pamata vārdu HTML failiem."
 
-#: ../src/ui.c:465 ../src/ui.c:491
+#: ../src/ui.c:469 ../src/ui.c:495
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Jums nav tiesību rakstīt norāditajā vietā.\n"
 
-#: ../src/ui.c:477
+#: ../src/ui.c:481
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1051,12 +1057,12 @@ msgstr ""
 "Saglabājot kā HTML tiks pārrakstīti daži faili.\n"
 "Vēlaties turpināt?"
 
-#: ../src/ui.c:745
+#: ../src/ui.c:749
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Tiešām atgriezt failu %s?"
 
-#: ../src/ui.c:759
+#: ../src/ui.c:763
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Atgrieztais buferis no faila %s"
