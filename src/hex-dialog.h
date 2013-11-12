@@ -41,6 +41,8 @@ typedef enum
     US16,
     S32,
     US32,
+    S64,
+    US64,
     FLOAT32,
     FLOAT64,
     HEX,

@@ -46,6 +46,8 @@ char *HexConvert_S16(HexDialogVal64 *val, HexConversionProperties *prop);
 char *HexConvert_US16(HexDialogVal64 *val, HexConversionProperties *prop);
 char *HexConvert_S32(HexDialogVal64 *val, HexConversionProperties *prop);
 char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop);
+char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop);
+char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop);
 char *HexConvert_32float(HexDialogVal64 *val, HexConversionProperties *prop);
 char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *prop);
 char *HexConvert_hex(HexDialogVal64 *val, HexConversionProperties *prop);
@@ -62,6 +64,8 @@ static struct {
     { N_("Unsigned 16 bit:"), HexConvert_US16 },
     { N_("Signed 32 bit:"), HexConvert_S32 },
     { N_("Unsigned 32 bit:"), HexConvert_US32 },
+    { N_("Signed 64 bit:"), HexConvert_S64 },
+    { N_("Unsigned 64 bit:"), HexConvert_US64 },
     { N_("Float 32 bit:"), HexConvert_32float },
     { N_("Float 64 bit:"), HexConvert_64float },
     { N_("Hexadecimal:"), HexConvert_hex },
@@ -191,8 +195,11 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
 
     create_dialog_prop (S32, dialog, grid, 2, 0);
     create_dialog_prop (US32, dialog, grid, 2, 1);
-    create_dialog_prop (FLOAT32, dialog, grid, 2, 2);
-    create_dialog_prop (FLOAT64, dialog, grid, 2, 3);
+    create_dialog_prop (S64, dialog, grid, 2, 2);
+    create_dialog_prop (US64, dialog, grid, 2, 3);
+
+    create_dialog_prop (FLOAT32, dialog, grid, 0, 4);
+    create_dialog_prop (FLOAT64, dialog, grid, 2, 4);
 
     create_dialog_prop (HEX, dialog, grid, 4, 0);
     create_dialog_prop (OCT, dialog, grid, 4, 1);
@@ -448,6 +455,104 @@ char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop)
         snprintf(convbuffer, sizeof(convbuffer), "%u", local);
     else
         snprintf(convbuffer, sizeof(convbuffer), "0x%08X", local);
+    return convbuffer;
+}
+
+char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop)
+{
+    guchar in[8];
+    long long i, local = 0;
+    if (prop->endian == LITTLE)
+    {
+        in[0] = val->v[0];
+        in[1] = val->v[1];
+        in[2] = val->v[2];
+        in[3] = val->v[3];
+        in[4] = val->v[4];
+        in[5] = val->v[5];
+        in[6] = val->v[6];
+        in[7] = val->v[7];
+    }
+    else
+    {
+        in[0] = val->v[7];
+        in[1] = val->v[6];
+        in[2] = val->v[5];
+        in[3] = val->v[4];
+        in[4] = val->v[3];
+        in[5] = val->v[2];
+        in[6] = val->v[1];
+        in[7] = val->v[0];
+    }
+    for (i = 0; i < 8; i++)
+        local += ((in[0] >> i) & 0x1) * pow2(i);
+    for (i = 0; i < 8; i++)
+        local += ((in[1] >> i) & 0x1) * pow2(i + 8);
+    for (i = 0; i < 8; i++)
+        local += ((in[2] >> i) & 0x1) * pow2(i + 16);
+    for (i = 0; i < 8; i++)
+        local += ((in[3] >> i) & 0x1) * pow2(i + 24);
+    for (i = 0; i < 8; i++)
+        local += ((in[4] >> i) & 0x1) * pow2(i + 32);
+    for (i = 0; i < 8; i++)
+        local += ((in[5] >> i) & 0x1) * pow2(i + 40);
+    for (i = 0; i < 8; i++)
+        local += ((in[6] >> i) & 0x1) * pow2(i + 48);
+    for (i = 0; i < 7; i++)
+        local += ((in[7] >> i) & 0x1) * pow2(i + 56);
+    if ((in[7] >> 7) & 0x1)
+        local  = -(pow2(63) - local);
+    snprintf(convbuffer, sizeof(convbuffer), "%lld", local);
+    return convbuffer;
+}
+
+char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop)
+{
+    guchar in[8];
+    long long unsigned i, local = 0;
+    if (prop->endian == LITTLE)
+    {
+        in[0] = val->v[0];
+        in[1] = val->v[1];
+        in[2] = val->v[2];
+        in[3] = val->v[3];
+        in[4] = val->v[4];
+        in[5] = val->v[5];
+        in[6] = val->v[6];
+        in[7] = val->v[7];
+    }
+    else
+    {
+        in[0] = val->v[7];
+        in[1] = val->v[6];
+        in[2] = val->v[5];
+        in[3] = val->v[4];
+        in[4] = val->v[3];
+        in[5] = val->v[2];
+        in[6] = val->v[1];
+        in[7] = val->v[0];
+    }
+    for (i = 0; i < 8; i++)
+        local += ((in[0] >> i) & 0x1) * pow2(i);
+    for (i = 0; i < 8; i++)
+        local += ((in[1] >> i) & 0x1) * pow2(i + 8);
+    for (i = 0; i < 8; i++)
+        local += ((in[2] >> i) & 0x1) * pow2(i + 16);
+    for (i = 0; i < 8; i++)
+        local += ((in[3] >> i) & 0x1) * pow2(i + 24);
+    for (i = 0; i < 8; i++)
+        local += ((in[4] >> i) & 0x1) * pow2(i + 32);
+    for (i = 0; i < 8; i++)
+        local += ((in[5] >> i) & 0x1) * pow2(i + 40);
+    for (i = 0; i < 8; i++)
+        local += ((in[6] >> i) & 0x1) * pow2(i + 48);
+    for (i = 0; i < 8; i++)
+        local += ((in[7] >> i) & 0x1) * pow2(i + 56);
+
+    if (!prop->hexHint)
+        snprintf(convbuffer, sizeof(convbuffer), "%llu", local);
+    else
+        snprintf(convbuffer, sizeof(convbuffer), "0x%016llX", local);
     return convbuffer;
 }
 
