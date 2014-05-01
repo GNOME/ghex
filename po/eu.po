@@ -1,707 +1,349 @@
-# translation of eu.po to Basque
+# Basque translation of ghex.
 # Copyright (C) 2001, 2006, 2007, 2008, 2010 Free Software Foundation, Inc.
 #
-# Josu Waliño <josu@elhuyar.com>, 2001.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2005, 2006, 2008, 2010.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
+# Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>, 2001.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2005, 2006, 2007, 2008, 2010.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2014.
 msgid ""
 msgstr ""
-"Project-Id-Version: eu\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-18 17:53+0100\n"
-"PO-Revision-Date: 2010-03-18 17:55+0100\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
+"Project-Id-Version: ghex master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-05-01 12:34+0200\n"
+"PO-Revision-Date: 2014-05-01 12:37+0200\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../ghex.desktop.in.h:1 ../src/ghex-window.c:497 ../src/ghex-window.c:945
+#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
+#: ../src/ghex-window.c:1100
 msgid "GHex"
 msgstr "GHex"
 
-#: ../ghex.desktop.in.h:2
-msgid "Hexadecimal Editor"
-msgstr "Editore hamaseitarra"
+#: ../data/ghex.desktop.in.h:2
+msgid "Hex Editor"
+msgstr "Hamaseitarren editorea"
 
-#: ../ghex.desktop.in.h:3
-msgid "Inspect and edit the contents of files"
-msgstr "Aztertu eta editatu fitxategien edukia"
+#: ../data/ghex.desktop.in.h:3
+msgid "Inspect and edit binary files"
+msgstr "Aztertu eta editatu fitxategi bitarrak"
 
-#: ../src/chartable.c:144
+#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#: ../data/ghex.desktop.in.h:5
+msgid "binary;debug;"
+msgstr "bitarra;arazketa;"
+
+#: ../src/chartable.c:147
 msgid "ASCII"
 msgstr "ASCII"
 
-#: ../src/chartable.c:144
+#: ../src/chartable.c:147
 msgid "Hex"
 msgstr "Hamaseitarra"
 
-#: ../src/chartable.c:144 ../src/preferences.c:145
+#: ../src/chartable.c:147 ../src/preferences.c:142
 msgid "Decimal"
 msgstr "Hamartarra"
 
-#: ../src/chartable.c:145
+#: ../src/chartable.c:148
 msgid "Octal"
 msgstr "Zortzitarra"
 
-#: ../src/chartable.c:145
+#: ../src/chartable.c:148
 msgid "Binary"
 msgstr "Bitarra"
 
-#: ../src/chartable.c:161
+#: ../src/chartable.c:164
 msgid "Character table"
 msgstr "Karaktere-taula"
 
-#: ../src/converter.c:229
+#: ../src/converter.c:232
 msgid "Base Converter"
 msgstr "Bihurtzailea"
 
 #. entries
-#: ../src/converter.c:250
+#: ../src/converter.c:253
 msgid "_Binary:"
 msgstr "_Bitarra:"
 
-#: ../src/converter.c:252
+#: ../src/converter.c:255
 msgid "_Octal:"
 msgstr "_Zortzitarra:"
 
-#: ../src/converter.c:254
+#: ../src/converter.c:257
 msgid "_Decimal:"
 msgstr "_Hamartarra:"
 
-#: ../src/converter.c:256
+#: ../src/converter.c:259
 msgid "_Hex:"
 msgstr "Hama_seitarra:"
 
-#: ../src/converter.c:258
+#: ../src/converter.c:261
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
 #. get cursor button
-#: ../src/converter.c:262
+#: ../src/converter.c:265
 msgid "_Get cursor value"
 msgstr "Ha_rtu kurtsore-balioa"
 
-#: ../src/converter.c:276
+#: ../src/converter.c:279
 msgid "Get cursor value"
 msgstr "Hartu kurtsore-balioa"
 
-#: ../src/converter.c:276
+#: ../src/converter.c:279
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr ""
 "Hartu kurtsorearen balioa bitarrean, zortzitarrean, hamartarrean, "
 "hamaseitarrean eta ASCII"
 
-#: ../src/converter.c:416
+#: ../src/converter.c:419
 msgid "ERROR"
 msgstr "ERROREA"
 
-#: ../src/findreplace.c:96 ../src/findreplace.c:220 ../src/ui.c:966
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): bilatu datuak"
 
-#: ../src/findreplace.c:100 ../src/findreplace.c:160 ../src/findreplace.c:356
+#: ../src/findreplace.c:101 ../src/findreplace.c:161 ../src/findreplace.c:359
 msgid "Find String"
 msgstr "Bilatu katea"
 
-#: ../src/findreplace.c:107 ../src/findreplace.c:257
+#: ../src/findreplace.c:108 ../src/findreplace.c:258
 msgid "Find _Next"
 msgstr "Bilatu _hurrengoa"
 
-#: ../src/findreplace.c:114 ../src/findreplace.c:266
+#: ../src/findreplace.c:115 ../src/findreplace.c:267
 msgid "Find _Previous"
 msgstr "Bilatu _aurrekoa"
 
-#: ../src/findreplace.c:137 ../src/findreplace.c:410
+#: ../src/findreplace.c:138 ../src/findreplace.c:413
 msgid "Find Data"
 msgstr "Bilatu datua"
 
-#: ../src/findreplace.c:137 ../src/findreplace.c:410
+#: ../src/findreplace.c:138 ../src/findreplace.c:413
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Sartu hamaseitar edo ASCII datua bilatzeko"
 
-#: ../src/findreplace.c:138
+#: ../src/findreplace.c:139
 msgid "Find Next"
 msgstr "Hurrengoa"
 
-#: ../src/findreplace.c:138 ../src/findreplace.c:412
+#: ../src/findreplace.c:139 ../src/findreplace.c:415
 msgid "Finds the next occurrence of the search string"
 msgstr "Bilaketaren katearen hurrengo agerraldia bilatzen du"
 
-#: ../src/findreplace.c:139
+#: ../src/findreplace.c:140
 msgid "Find previous"
 msgstr "Aurrekoa"
 
-#: ../src/findreplace.c:139
+#: ../src/findreplace.c:140
 msgid "Finds the previous occurrence of the search string "
 msgstr "Bilaketaren katearen aurreko agerraldia bilatzen du"
 
-#: ../src/findreplace.c:140 ../src/findreplace.c:415 ../src/findreplace.c:463
+#: ../src/findreplace.c:141 ../src/findreplace.c:418 ../src/findreplace.c:469
 msgid "Cancel"
 msgstr "Utzi"
 
-#: ../src/findreplace.c:140
+#: ../src/findreplace.c:141
 msgid "Closes find data window"
 msgstr "Bilaketako leihoa ixten du"
 
-#: ../src/findreplace.c:156
+#: ../src/findreplace.c:157
 #, c-format
 msgid "GHex (%s): Find Data: Add search"
 msgstr "GHex (%s): bilatu datuak; gehitu bilaketa"
 
-#: ../src/findreplace.c:178
+#: ../src/findreplace.c:179
 msgid "Add"
 msgstr "Gehitu"
 
-#: ../src/findreplace.c:234
+#: ../src/findreplace.c:235
 msgid "Search String"
 msgstr "Bilaketa-katea"
 
-#: ../src/findreplace.c:242
+#: ../src/findreplace.c:243
 msgid "Highlight Colour"
 msgstr "Nabarmentze-kolorea"
 
-#: ../src/findreplace.c:279
+#: ../src/findreplace.c:280
 msgid "_Add New"
 msgstr "_Gehitu berria"
 
-#: ../src/findreplace.c:288
+#: ../src/findreplace.c:289
 msgid "_Remove Selected"
 msgstr "_Kendu hautapena"
 
-#: ../src/findreplace.c:308 ../src/ghex-ui.xml.h:8
+#: ../src/findreplace.c:309
 msgid "Close"
 msgstr "Itxi"
 
-#: ../src/findreplace.c:308
+#: ../src/findreplace.c:309
 msgid "Closes advanced find window"
 msgstr "Bilaketa aurreratuaren leihoa ixten du"
 
-#: ../src/findreplace.c:352 ../src/ui.c:964
+#: ../src/findreplace.c:355 ../src/ui.c:875
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): bilatu eta ordeztu datuak"
 
-#: ../src/findreplace.c:365
+#: ../src/findreplace.c:368
 msgid "Replace With"
 msgstr "Ordeztu honekin"
 
-#: ../src/findreplace.c:372
+#: ../src/findreplace.c:375
 msgid "Find _next"
 msgstr "Bilatu _hurrengoa"
 
-#: ../src/findreplace.c:380
+#: ../src/findreplace.c:383
 msgid "_Replace"
 msgstr "_Ordeztu"
 
-#: ../src/findreplace.c:388
+#: ../src/findreplace.c:391
 msgid "Replace _All"
 msgstr "Ordeztu _guztiak"
 
-#: ../src/findreplace.c:411
+#: ../src/findreplace.c:414
 msgid "Replace Data"
 msgstr "Ordeztu datua"
 
-#: ../src/findreplace.c:411
+#: ../src/findreplace.c:414
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "Sartu hamaseitar edo ASCII datua ordezteko"
 
-#: ../src/findreplace.c:412
+#: ../src/findreplace.c:415
 msgid "Find next"
 msgstr "Hurrengoa"
 
-#: ../src/findreplace.c:413 ../src/ghex-ui.xml.h:51
+#: ../src/findreplace.c:416
 msgid "Replace"
 msgstr "Ordeztu"
 
-#: ../src/findreplace.c:413
+#: ../src/findreplace.c:416
 msgid "Replaces the search string with the replace string"
 msgstr "Ordeztu bilaketako testua ordezko testuarekin"
 
-#: ../src/findreplace.c:414
+#: ../src/findreplace.c:417
 msgid "Replace All"
 msgstr "Ordeztu guztiak"
 
-#: ../src/findreplace.c:414
+#: ../src/findreplace.c:417
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Ordeztu bilaketako testu guztiak ordezko testuarekin"
 
-#: ../src/findreplace.c:415
+#: ../src/findreplace.c:418
 msgid "Closes find and replace data window"
 msgstr "Bilaketako eta ordezteko leihoa ixten du"
 
-#: ../src/findreplace.c:431 ../src/ui.c:962
+#: ../src/findreplace.c:434 ../src/ui.c:873
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): joan bytera"
 
-#: ../src/findreplace.c:461
+#: ../src/findreplace.c:467
 msgid "Jump to byte"
 msgstr "Joan bytera"
 
-#: ../src/findreplace.c:461
+#: ../src/findreplace.c:467
 msgid "Enter the byte to jump to"
 msgstr "Sartu byte-a bertara joateko"
 
-#: ../src/findreplace.c:462
+#: ../src/findreplace.c:468
 msgid "OK"
 msgstr "Ados"
 
-#: ../src/findreplace.c:462
+#: ../src/findreplace.c:468
 msgid "Jumps to the specified byte"
 msgstr "Joan zehaztutako bytera"
 
-#: ../src/findreplace.c:463
+#: ../src/findreplace.c:469
 msgid "Closes jump to byte window"
 msgstr "Bytera joateko leihoa ixten du"
 
-#: ../src/findreplace.c:526 ../src/findreplace.c:560 ../src/findreplace.c:644
+#: ../src/findreplace.c:532 ../src/findreplace.c:566 ../src/findreplace.c:673
 msgid "There is no active document to search!"
 msgstr "Ez dago dokumentu aktiborik bilatzeko."
 
-#: ../src/findreplace.c:533 ../src/findreplace.c:567 ../src/findreplace.c:651
-#: ../src/findreplace.c:685 ../src/findreplace.c:730
+#: ../src/findreplace.c:539 ../src/findreplace.c:573 ../src/findreplace.c:680
+#: ../src/findreplace.c:714 ../src/findreplace.c:759
 msgid "There is no string to search for!"
 msgstr "Badirudi ez dagoela katerik bilatzeko."
 
-#: ../src/findreplace.c:545 ../src/findreplace.c:660 ../src/findreplace.c:851
+#: ../src/findreplace.c:551 ../src/findreplace.c:689 ../src/findreplace.c:879
 msgid "End Of File reached"
 msgstr "Fitxategi-amaierara iritsi da"
 
-#: ../src/findreplace.c:546 ../src/findreplace.c:579 ../src/findreplace.c:659
-#: ../src/findreplace.c:852 ../src/findreplace.c:875
+#: ../src/findreplace.c:552 ../src/findreplace.c:585 ../src/findreplace.c:688
+#: ../src/findreplace.c:880 ../src/findreplace.c:903
 msgid "String was not found!\n"
 msgstr "Ez da katea aurkitu.\n"
 
-#: ../src/findreplace.c:578 ../src/findreplace.c:874
+#: ../src/findreplace.c:584 ../src/findreplace.c:902
 msgid "Beginning Of File reached"
 msgstr "Fitxategi-hasierara iritsi da"
 
-#: ../src/findreplace.c:594
+#: ../src/findreplace.c:601
 msgid "There is no active document to move the cursor in!"
 msgstr "Ez dago dokumentu aktiborik kurtsorea eramateko."
 
-#: ../src/findreplace.c:600
+#: ../src/findreplace.c:619
 msgid "No offset has been specified!"
 msgstr "Ez da desplazamendurik zehaztu."
 
-#: ../src/findreplace.c:624
-msgid "Can not position cursor beyond the End Of File!"
-msgstr "Kurtsorea ezin da fitxategi-amaieraz haratago kokatu."
+#: ../src/findreplace.c:644
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "Zehaztutako desplazamendua fitxategiaren mugetatik kanpo dago."
 
-#: ../src/findreplace.c:631
+#: ../src/findreplace.c:652
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "Kurtsorea ezin da fitxategi-amaieraz harago kokatu."
+
+#: ../src/findreplace.c:659
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x'"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
 msgstr ""
-"Desplazamendua honakoekin bakarrik zehaz daiteke:\n"
+"Desplazamendua honakoekin bakarrik zehatz daiteke:\n"
 "  - zenbaki hamartar positiboa, edo\n"
-"  - zenbaki hamaseitarra, '0x' karaktereekin hasita"
+"  - zenbaki hamaseitarra, '0x' karaktereekin hasita, edo\n"
+"  - '+' edo '-' ikur bat desplazamendu erlatibo batekin jarraituz"
 
-#: ../src/findreplace.c:676
+#: ../src/findreplace.c:705
 msgid "There is no active buffer to replace data in!"
 msgstr "Ez dago buffer aktiborik datuak ordezteko."
 
-#: ../src/findreplace.c:701 ../src/findreplace.c:702
+#: ../src/findreplace.c:730 ../src/findreplace.c:731
 msgid "End Of File reached!"
 msgstr "Fitxategi-amaierara iritsi da."
 
-#: ../src/findreplace.c:721
+#: ../src/findreplace.c:750
 msgid "There is no active document to replace data in!"
 msgstr "Ez dago dokumentu aktiborik datuak ordezteko."
 
-#: ../src/findreplace.c:751
+#: ../src/findreplace.c:780
 msgid "No occurrences were found."
 msgstr "Ez da agerraldirik aurkitu."
 
-#: ../src/findreplace.c:754
+#: ../src/findreplace.c:783
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
 msgstr[0] "Agerpen %d ordeztu da."
 msgstr[1] "%d agerpen ordeztu dira."
 
-#: ../src/findreplace.c:794
+#: ../src/findreplace.c:823
 msgid "No string to search for!"
 msgstr "Ez dago katerik bilatzeko."
 
-#: ../src/ghex-ui.xml.h:1
-msgid "About this application"
-msgstr "Aplikazio honi buruz"
-
-#: ../src/ghex-ui.xml.h:2
-msgid "Add View"
-msgstr "Gehitu ikuspegia"
-
-#: ../src/ghex-ui.xml.h:3
-msgid "Add a new view to the buffer"
-msgstr "Bufferraren ikuspegi berria gehitzen du"
-
-#: ../src/ghex-ui.xml.h:4
-msgid "Advanced Find"
-msgstr "Bilaketa aurreratua"
-
-#: ../src/ghex-ui.xml.h:5
-msgid "Bytes"
-msgstr "Byteak"
-
-#: ../src/ghex-ui.xml.h:6
-msgid "Character Table..."
-msgstr "Karaktere-taula..."
-
-#: ../src/ghex-ui.xml.h:7
-msgid "Character _Table"
-msgstr "Karaktere-_taula"
-
-#: ../src/ghex-ui.xml.h:9
-msgid "Close the current file"
-msgstr "Itxi uneko fitxategia"
-
-#: ../src/ghex-ui.xml.h:10
-msgid "Configure the application"
-msgstr "Konfiguratu aplikazioa"
-
-#: ../src/ghex-ui.xml.h:11
-msgid "Contents"
-msgstr "Edukia"
-
-#: ../src/ghex-ui.xml.h:12
-msgid "Converter..."
-msgstr "Bihurtzailea..."
-
-#: ../src/ghex-ui.xml.h:13
-msgid "Copy"
-msgstr "Kopiatu"
-
-#: ../src/ghex-ui.xml.h:14
-msgid "Copy selection to clipboard"
-msgstr "Kopiatu hautapena arbelean"
-
-#: ../src/ghex-ui.xml.h:15
-msgid "Cu_t"
-msgstr "_Ebaki"
-
-#: ../src/ghex-ui.xml.h:16
-msgid "Cut"
-msgstr "Ebaki"
-
-#: ../src/ghex-ui.xml.h:17
-msgid "Cut selection"
-msgstr "Ebaki hautapena"
-
-#: ../src/ghex-ui.xml.h:18
-msgid "E_xit"
-msgstr "I_rten"
-
-#: ../src/ghex-ui.xml.h:19
-msgid "Exit"
-msgstr "Irten"
-
-#: ../src/ghex-ui.xml.h:20
-msgid "Exit the program"
-msgstr "Irten programatik"
-
-#: ../src/ghex-ui.xml.h:21
-msgid "Export data to HTML source"
-msgstr "Datuak HTML iturburura esportatzen ditu"
-
-#: ../src/ghex-ui.xml.h:22
-msgid "Export to HTML..."
-msgstr "Esportatu HTMLra..."
-
-#: ../src/ghex-ui.xml.h:23
-msgid "Find"
-msgstr "Bilatu"
-
-#: ../src/ghex-ui.xml.h:24
-msgid "Goto Byte"
-msgstr "Joan bytera"
-
-#: ../src/ghex-ui.xml.h:25
-msgid "Group data by 16 bits"
-msgstr "Datuak 16 biteko taldeetan elkartzen ditu"
-
-#: ../src/ghex-ui.xml.h:26
-msgid "Group data by 32 bits"
-msgstr "Datuak 32 biteko taldeetan elkartzen ditu"
-
-#: ../src/ghex-ui.xml.h:27
-msgid "Group data by 8 bits"
-msgstr "Datuak 8 biteko taldeetan elkartzen ditu"
-
-#: ../src/ghex-ui.xml.h:28
-msgid "Help Chat"
-msgstr "Laguntzako berriketa"
-
-#: ../src/ghex-ui.xml.h:29
-msgid "Help on this application"
-msgstr "Aplikazio honen laguntza"
-
-#: ../src/ghex-ui.xml.h:30
-msgid "Insert Mode"
-msgstr "Txertatze-modua"
-
-#: ../src/ghex-ui.xml.h:31
-msgid "Insert/overwrite data"
-msgstr "Datuak txertatzen/gainidazten ditu"
-
-#: ../src/ghex-ui.xml.h:32
-msgid "Jump to a certain position"
-msgstr "Posizio jakin batera joaten da"
-
-#: ../src/ghex-ui.xml.h:33
-msgid "Longwords"
-msgstr "Hitz luzeak"
-
-#: ../src/ghex-ui.xml.h:34
-msgid "Open"
-msgstr "Ireki"
-
-#: ../src/ghex-ui.xml.h:35
-msgid "Open a file"
-msgstr "Fitxategi bat irekitzen du"
-
-#: ../src/ghex-ui.xml.h:36
-msgid "Open base conversion dialog"
-msgstr "Oinarria bihurtzeko elkarrizketa irekitzen du"
-
-#: ../src/ghex-ui.xml.h:37
-msgid "Pa_ste"
-msgstr "_Itsatsi"
-
-#: ../src/ghex-ui.xml.h:38
-msgid "Paste"
-msgstr "Itsatsi"
-
-#: ../src/ghex-ui.xml.h:39
-msgid "Paste data from clipboard"
-msgstr "Itsatsi datuak arbeletik"
-
-#: ../src/ghex-ui.xml.h:40
-msgid "Preferences"
-msgstr "Hobespenak"
-
-#: ../src/ghex-ui.xml.h:41
-msgid "Preview printed data"
-msgstr "Inprimatzeko datuen aurrebista eskaintzen du"
-
-#: ../src/ghex-ui.xml.h:42
-msgid "Print"
-msgstr "Inprimatu"
-
-#: ../src/ghex-ui.xml.h:43
-msgid "Print Previe_w..."
-msgstr "Inprimatzeko _aurrebista..."
-
-#: ../src/ghex-ui.xml.h:44
-msgid "Print Preview..."
-msgstr "Inprimatzeko aurrebista..."
-
-#: ../src/ghex-ui.xml.h:45
-msgid "Print the current file"
-msgstr "Inprimatu uneko fitxategia"
-
-#: ../src/ghex-ui.xml.h:46
-msgid "R_eplace"
-msgstr "_Ordeztu"
-
-#: ../src/ghex-ui.xml.h:47
-msgid "Redo"
-msgstr "Berregin"
-
-#: ../src/ghex-ui.xml.h:48
-msgid "Redo the undone action"
-msgstr "Desegindako ekintza berregiten du"
-
-#: ../src/ghex-ui.xml.h:49
-msgid "Remove View"
-msgstr "Kendu ikuspegia"
-
-#: ../src/ghex-ui.xml.h:50
-msgid "Remove the current view of the buffer"
-msgstr "Bufferraren uneko ikuspegia kentzen du"
-
-#: ../src/ghex-ui.xml.h:52
-msgid "Replace a string"
-msgstr "Kate bat ordezten du"
-
-#: ../src/ghex-ui.xml.h:53
-msgid "Revert"
-msgstr "Leheneratu"
-
-#: ../src/ghex-ui.xml.h:54
-msgid "Revert to a saved version of the file"
-msgstr "Fitxategiaren gordetako bertsio batera itzuli"
-
-#: ../src/ghex-ui.xml.h:55
-msgid "Save"
-msgstr "Gorde"
-
-#: ../src/ghex-ui.xml.h:56
-msgid "Save As"
-msgstr "Gorde honela"
-
-#: ../src/ghex-ui.xml.h:57
-msgid "Save As _HTML..."
-msgstr "Gorde _HTML gisa..."
-
-#: ../src/ghex-ui.xml.h:58
-msgid "Save _As..."
-msgstr "Gorde h_onela..."
-
-#: ../src/ghex-ui.xml.h:59
-msgid "Save the current file"
-msgstr "Gorde uneko fitxategia"
-
-#: ../src/ghex-ui.xml.h:60
-msgid "Save the current file with a different name"
-msgstr "Gorde uneko fitxategia beste izen batekin"
-
-#: ../src/ghex-ui.xml.h:61
-msgid "Search for a string"
-msgstr "Kate bat bilatzen du"
-
-#: ../src/ghex-ui.xml.h:62
-msgid "Show the character table"
-msgstr "Karaktere-taula erakusten du"
-
-#: ../src/ghex-ui.xml.h:63
-msgid "Show the type conversion dialog in the edit window"
-msgstr "Erakutsi motak bihurtzeko elkarrizketa-koadroa editatzeko leihoan"
-
-#: ../src/ghex-ui.xml.h:64
-msgid "Type Conversion Dialog..."
-msgstr "Motak bihurtzeko elkarrizketa-koadroa..."
-
-#: ../src/ghex-ui.xml.h:65
-msgid "Type Conversion _Dialog"
-msgstr "Motak bihurtzeko _elkarrizketa-koadroa"
-
-#: ../src/ghex-ui.xml.h:66
-msgid "Undo"
-msgstr "Desegin"
-
-#: ../src/ghex-ui.xml.h:67
-msgid "Undo the last action"
-msgstr "Azken ekintza desegiten du"
-
-#: ../src/ghex-ui.xml.h:68
-msgid "Words"
-msgstr "Hitzak"
-
-#: ../src/ghex-ui.xml.h:69
-msgid "_About"
-msgstr "Honi _buruz"
-
-#: ../src/ghex-ui.xml.h:70
-msgid "_Add View"
-msgstr "_Gehitu ikuspegia"
-
-#: ../src/ghex-ui.xml.h:71
-msgid "_Advanced Find"
-msgstr "_Bilaketa aurreratua"
-
-#: ../src/ghex-ui.xml.h:72
-msgid "_Base Converter"
-msgstr "_Bihurtzailea"
-
-#: ../src/ghex-ui.xml.h:73 ../src/ui.c:87
-msgid "_Bytes"
-msgstr "_Byteak"
-
-#: ../src/ghex-ui.xml.h:74
-msgid "_Close"
-msgstr "It_xi"
-
-#: ../src/ghex-ui.xml.h:75
-msgid "_Contents"
-msgstr "_Edukia"
-
-#: ../src/ghex-ui.xml.h:76
-msgid "_Copy"
-msgstr "_Kopiatu"
-
-#: ../src/ghex-ui.xml.h:77
-msgid "_Edit"
-msgstr "_Editatu"
-
-#: ../src/ghex-ui.xml.h:78
-msgid "_File"
-msgstr "_Fitxategia"
-
-#: ../src/ghex-ui.xml.h:79
-msgid "_Find"
-msgstr "Bila_tu"
-
-#: ../src/ghex-ui.xml.h:80
-msgid "_Goto Byte..."
-msgstr "_Joan bytera..."
-
-#: ../src/ghex-ui.xml.h:81
-msgid "_Group Data As"
-msgstr "_Elkartu datuak honela"
-
-#: ../src/ghex-ui.xml.h:82
-msgid "_Help"
-msgstr "_Laguntza"
-
-#: ../src/ghex-ui.xml.h:83
-msgid "_Insert Mode"
-msgstr "T_xertatze-modua"
-
-#: ../src/ghex-ui.xml.h:84 ../src/ui.c:89
-msgid "_Longwords"
-msgstr "Hit_z luzeak"
-
-#: ../src/ghex-ui.xml.h:85
-msgid "_Open..."
-msgstr "_Ireki..."
-
-#: ../src/ghex-ui.xml.h:86
-msgid "_Preferences"
-msgstr "_Hobespenak"
-
-#: ../src/ghex-ui.xml.h:87
-msgid "_Print"
-msgstr "_Inprimatu"
-
-#: ../src/ghex-ui.xml.h:88
-msgid "_Redo"
-msgstr "B_erregin"
-
-#: ../src/ghex-ui.xml.h:89
-msgid "_Remove View"
-msgstr "_Kendu ikuspegia"
-
-#: ../src/ghex-ui.xml.h:90
-msgid "_Revert"
-msgstr "_Leheneratu"
-
-#: ../src/ghex-ui.xml.h:91
-msgid "_Save"
-msgstr "_Gorde"
-
-#: ../src/ghex-ui.xml.h:92
-msgid "_Undo"
-msgstr "_Desegin"
-
-#: ../src/ghex-ui.xml.h:93
-msgid "_View"
-msgstr "_Ikusi"
-
-#: ../src/ghex-ui.xml.h:94
-msgid "_Windows"
-msgstr "Lei_hoak"
-
-#: ../src/ghex-ui.xml.h:95 ../src/ui.c:88
-msgid "_Words"
-msgstr "_Hitzak"
-
-#: ../src/ghex-window.c:91
+#: ../src/ghex-window.c:90
 #, c-format
 msgid ""
 "Can not open URI:\n"
@@ -710,7 +352,7 @@ msgstr ""
 "Ezin da URIa ireki:\n"
 "%s"
 
-#: ../src/ghex-window.c:110
+#: ../src/ghex-window.c:111
 #, c-format
 msgid ""
 "Can not open file:\n"
@@ -719,31 +361,302 @@ msgstr ""
 "Ezin da fitxategia ireki:\n"
 "%s"
 
-#: ../src/ghex-window.c:644
+#: ../src/ghex-window.c:340
+msgid "_File"
+msgstr "_Fitxategia"
+
+#: ../src/ghex-window.c:341
+msgid "_Edit"
+msgstr "_Editatu"
+
+#: ../src/ghex-window.c:342
+msgid "_View"
+msgstr "_Ikusi"
+
+#: ../src/ghex-window.c:343
+msgid "_Group Data As"
+msgstr "_Elkartu datuak honela"
+
+#. View submenu
+#: ../src/ghex-window.c:344
+msgid "_Windows"
+msgstr "Lei_hoak"
+
+#: ../src/ghex-window.c:345
+msgid "_Help"
+msgstr "_Laguntza"
+
+#. File menu
+#: ../src/ghex-window.c:348
+msgid "_Open..."
+msgstr "_Ireki..."
+
+#: ../src/ghex-window.c:349
+msgid "Open a file"
+msgstr "Fitxategi bat irekitzen du"
+
+#: ../src/ghex-window.c:351
+msgid "_Save"
+msgstr "_Gorde"
+
+#: ../src/ghex-window.c:352
+msgid "Save the current file"
+msgstr "Gorde uneko fitxategia"
+
+#: ../src/ghex-window.c:354
+msgid "Save _As..."
+msgstr "Gorde h_onela..."
+
+#: ../src/ghex-window.c:355
+msgid "Save the current file with a different name"
+msgstr "Gorde uneko fitxategia beste izen batekin"
+
+#: ../src/ghex-window.c:357
+msgid "Save As _HTML..."
+msgstr "Gorde _HTML gisa..."
+
+#: ../src/ghex-window.c:358
+msgid "Export data to HTML source"
+msgstr "Datuak HTML iturburura esportatzen ditu"
+
+#: ../src/ghex-window.c:360
+msgid "_Revert"
+msgstr "_Leheneratu"
+
+#: ../src/ghex-window.c:361
+msgid "Revert to a saved version of the file"
+msgstr "Fitxategiaren gordetako bertsio batera itzuli"
+
+#: ../src/ghex-window.c:363
+msgid "_Print"
+msgstr "_Inprimatu"
+
+#: ../src/ghex-window.c:364
+msgid "Print the current file"
+msgstr "Inprimatu uneko fitxategia"
+
+#: ../src/ghex-window.c:366
+msgid "Print Previe_w..."
+msgstr "Inprimatzeko _aurrebista..."
+
+#: ../src/ghex-window.c:367
+msgid "Preview printed data"
+msgstr "Inprimatzeko datuen aurrebista eskaintzen du"
+
+#: ../src/ghex-window.c:369
+msgid "_Close"
+msgstr "It_xi"
+
+#: ../src/ghex-window.c:370
+msgid "Close the current file"
+msgstr "Itxi uneko fitxategia"
+
+#: ../src/ghex-window.c:372
+msgid "E_xit"
+msgstr "I_rten"
+
+#: ../src/ghex-window.c:373
+msgid "Exit the program"
+msgstr "Irten programatik"
+
+#. Edit menu
+#: ../src/ghex-window.c:377
+msgid "_Undo"
+msgstr "_Desegin"
+
+#: ../src/ghex-window.c:378
+msgid "Undo the last action"
+msgstr "Azken ekintza desegiten du"
+
+#: ../src/ghex-window.c:380
+msgid "_Redo"
+msgstr "B_erregin"
+
+#: ../src/ghex-window.c:381
+msgid "Redo the undone action"
+msgstr "Desegindako ekintza berregiten du"
+
+#: ../src/ghex-window.c:383
+msgid "_Copy"
+msgstr "_Kopiatu"
+
+#: ../src/ghex-window.c:384
+msgid "Copy selection to clipboard"
+msgstr "Kopiatu hautapena arbelean"
+
+#: ../src/ghex-window.c:386
+msgid "Cu_t"
+msgstr "_Ebaki"
+
+#: ../src/ghex-window.c:387
+msgid "Cut selection"
+msgstr "Ebaki hautapena"
+
+#: ../src/ghex-window.c:389
+msgid "Pa_ste"
+msgstr "_Itsatsi"
+
+#: ../src/ghex-window.c:390
+msgid "Paste data from clipboard"
+msgstr "Itsatsi datuak arbeletik"
+
+#: ../src/ghex-window.c:392
+msgid "_Find"
+msgstr "Bila_tu"
+
+#: ../src/ghex-window.c:393
+msgid "Search for a string"
+msgstr "Kate bat bilatzen du"
+
+#: ../src/ghex-window.c:395
+msgid "_Advanced Find"
+msgstr "_Bilaketa aurreratua"
+
+#: ../src/ghex-window.c:396
+msgid "Advanced Find"
+msgstr "Bilaketa aurreratua"
+
+#: ../src/ghex-window.c:398
+msgid "R_eplace"
+msgstr "_Ordeztu"
+
+#: ../src/ghex-window.c:399
+msgid "Replace a string"
+msgstr "Kate bat ordezten du"
+
+#: ../src/ghex-window.c:401
+msgid "_Goto Byte..."
+msgstr "_Joan bytera..."
+
+#: ../src/ghex-window.c:402
+msgid "Jump to a certain position"
+msgstr "Posizio jakin batera joaten da"
+
+#: ../src/ghex-window.c:404
+msgid "_Preferences"
+msgstr "_Hobespenak"
+
+#: ../src/ghex-window.c:405
+msgid "Configure the application"
+msgstr "Konfiguratu aplikazioa"
+
+#. View menu
+#: ../src/ghex-window.c:409
+msgid "_Add View"
+msgstr "_Gehitu ikuspegia"
+
+#: ../src/ghex-window.c:410
+msgid "Add a new view to the buffer"
+msgstr "Bufferraren ikuspegi berria gehitzen du"
+
+#: ../src/ghex-window.c:412
+msgid "_Remove View"
+msgstr "_Kendu ikuspegia"
+
+#: ../src/ghex-window.c:413
+msgid "Remove the current view of the buffer"
+msgstr "Bufferraren uneko ikuspegia kentzen du"
+
+#. Help menu
+#: ../src/ghex-window.c:417
+msgid "_Contents"
+msgstr "_Edukia"
+
+#: ../src/ghex-window.c:418
+msgid "Help on this application"
+msgstr "Aplikazio honen laguntza"
+
+#: ../src/ghex-window.c:420
+msgid "_About"
+msgstr "Honi _buruz"
+
+#: ../src/ghex-window.c:421
+msgid "About this application"
+msgstr "Aplikazio honi buruz"
+
+#. Edit menu
+#: ../src/ghex-window.c:428
+msgid "_Insert Mode"
+msgstr "T_xertatze-modua"
+
+#: ../src/ghex-window.c:429
+msgid "Insert/overwrite data"
+msgstr "Datuak txertatzen/gainidazten ditu"
+
+#. Windows menu
+#: ../src/ghex-window.c:433
+msgid "Character _Table"
+msgstr "Karaktere-_taula"
+
+#: ../src/ghex-window.c:434
+msgid "Show the character table"
+msgstr "Karaktere-taula erakusten du"
+
+#: ../src/ghex-window.c:436
+msgid "_Base Converter"
+msgstr "_Bihurtzailea"
+
+#: ../src/ghex-window.c:437
+msgid "Open base conversion dialog"
+msgstr "Oinarria bihurtzeko elkarrizketa irekitzen du"
+
+#: ../src/ghex-window.c:439
+msgid "Type Conversion _Dialog"
+msgstr "Motak bihurtzeko _elkarrizketa-koadroa"
+
+#: ../src/ghex-window.c:440
+msgid "Show the type conversion dialog in the edit window"
+msgstr "Erakutsi motak bihurtzeko elkarrizketa-koadroa editatzeko leihoan"
+
+#: ../src/ghex-window.c:446 ../src/ui.c:48
+msgid "_Bytes"
+msgstr "_Byteak"
+
+#: ../src/ghex-window.c:447
+msgid "Group data by 8 bits"
+msgstr "Datuak 8 biteko taldeetan elkartzen ditu"
+
+#: ../src/ghex-window.c:448 ../src/ui.c:49
+msgid "_Words"
+msgstr "_Hitzak"
+
+#: ../src/ghex-window.c:449
+msgid "Group data by 16 bits"
+msgstr "Datuak 16 biteko taldeetan elkartzen ditu"
+
+#: ../src/ghex-window.c:450 ../src/ui.c:50
+msgid "_Longwords"
+msgstr "Hit_z luzeak"
+
+#: ../src/ghex-window.c:451
+msgid "Group data by 32 bits"
+msgstr "Datuak 32 biteko taldeetan elkartzen ditu"
+
+#: ../src/ghex-window.c:785
 #, c-format
 msgid "Offset: %s"
 msgstr "Desplazamendua: %s"
 
-#: ../src/ghex-window.c:647
+#: ../src/ghex-window.c:788
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; %s byte hautatuta (%s -> %s)"
 
-#: ../src/ghex-window.c:899
+#: ../src/ghex-window.c:1060
 #, c-format
 msgid "Activate file %s"
 msgstr "Aktibatu %s fitxategia"
 
-#: ../src/ghex-window.c:941
+#: ../src/ghex-window.c:1096
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
-#: ../src/ghex-window.c:1070
+#: ../src/ghex-window.c:1218
 msgid "Select a file to save buffer as"
 msgstr "Hautatu fitxategi bat bufferra gordetzeko honela"
 
-#: ../src/ghex-window.c:1126
+#: ../src/ghex-window.c:1250
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -752,20 +665,20 @@ msgstr ""
 "%s fitxategia badago lehendik ere.\n"
 "Gainidaztea nahi duzu?"
 
-#: ../src/ghex-window.c:1159 ../src/ui.c:381
+#: ../src/ghex-window.c:1276 ../src/ui.c:303
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Bufferra %s fitxategian gorde da"
 
-#: ../src/ghex-window.c:1165
+#: ../src/ghex-window.c:1283
 msgid "Error saving file!"
 msgstr "Errorea fitxategia gordetzean."
 
-#: ../src/ghex-window.c:1171
+#: ../src/ghex-window.c:1289
 msgid "Can't open file for writing!"
 msgstr "Ezin da fitxategia idazteko ireki."
 
-#: ../src/ghex-window.c:1216
+#: ../src/ghex-window.c:1334
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -774,208 +687,123 @@ msgstr ""
 "%s fitxategia aldatu egin da azken aldiz gorde zenetik.\n"
 "Aldaketak gorde nahi dituzu?"
 
-#: ../src/ghex-window.c:1220
+#: ../src/ghex-window.c:1338
 msgid "Do_n't save"
 msgstr "E_z gorde"
 
-#: ../src/ghex-window.c:1240 ../src/ui.c:369
+#: ../src/ghex-window.c:1358 ../src/ui.c:291
 msgid "You don't have the permissions to save the file!"
 msgstr "Ez duzu nahikoa baimen fitxategia gordetzeko."
 
-#: ../src/ghex-window.c:1244 ../src/ui.c:374
+#: ../src/ghex-window.c:1362 ../src/ui.c:296
 msgid "An error occurred while saving file!"
 msgstr "Errorea gertatu da fitxategia gordetzean."
 
-#: ../src/gnome-print-font-dialog.c:102
-msgid "_Insert a new preview phrase."
-msgstr "_Sartu aurrebistaren esaldi berria."
-
-#: ../src/gnome-print-font-dialog.c:108
-msgid "Modify preview phrase..."
-msgstr "Aldatu aurrebistaren esaldia..."
-
-#: ../src/gnome-print-font-dialog.c:162
-msgid "Preview"
-msgstr "Aurrebista"
-
-#: ../src/gnome-print-font-dialog.c:175
-msgid "_Modify preview phrase..."
-msgstr "_Aldatu aurrebistaren esaldia..."
-
-#: ../src/gnome-print-font-dialog.c:238
-msgid "Font Selection"
-msgstr "Letra-tipoaren hautapena"
-
-#: ../src/gnome-print-font-picker.c:76
-msgid "Sans Regular 12"
-msgstr "Sans Regular 12"
-
-#: ../src/gnome-print-font-picker.c:77
-msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-
-#: ../src/gnome-print-font-picker.c:78
-msgid "Pick a Font"
-msgstr "Hautatu letra-tipoa"
-
-#: ../src/gnome-print-font-picker.c:162
-msgid "Title"
-msgstr "Titulua"
-
-#: ../src/gnome-print-font-picker.c:163
-msgid "The title of the selection dialog box"
-msgstr "Hautapen-leihoaren titulua"
-
-#: ../src/gnome-print-font-picker.c:183
-msgid "Font name"
-msgstr "Letra-tipoaren izena"
-
-#: ../src/gnome-print-font-picker.c:184
-msgid "Name of the selected font"
-msgstr "Hautatutako letra-tipoaren izena"
-
-#: ../src/gnome-print-font-picker.c:192
-msgid "Preview text"
-msgstr "Testuaren aurrebista"
-
-#: ../src/gnome-print-font-picker.c:193
-msgid "Preview text shown in the dialog"
-msgstr "Elkarrizketa-koadroan erakutsitako testuaren aurrebista"
-
-#: ../src/gnome-print-font-picker.c:201
-msgid "Use font in label"
-msgstr "Erabili etiketako letra-tipoa"
-
-#: ../src/gnome-print-font-picker.c:202
-msgid "Use font in the label in font info mode"
-msgstr "Erabili letra-tipoa etiketan letra-tipoaren informazio moduan"
-
-#: ../src/gnome-print-font-picker.c:210
-msgid "Font size for label"
-msgstr "Letra-tipoaren tamaina etiketentzat"
-
-#: ../src/gnome-print-font-picker.c:211
-msgid "Font size for label in font info mode"
-msgstr "Letra-tipoaren tamaina etiketentzat letra-tipo informazio moduan"
-
-#: ../src/gnome-print-font-picker.c:221
-msgid "Show size"
-msgstr "Erakutsi tamaina"
-
-#: ../src/gnome-print-font-picker.c:222
-msgid "Show size in font info mode"
-msgstr "Erakutsi tamaina letra-tipoaren informazio moduan"
-
-#. display font
-#: ../src/gnome-print-font-picker.c:1003 ../src/preferences.c:183
-msgid "Font"
-msgstr "Letra-tipoa"
-
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:59
 msgid "Signed 8 bit:"
 msgstr "8 bit zeinuarekin:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:60
 msgid "Unsigned 8 bit:"
 msgstr "8 bit zeinurik gabe:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:61
 msgid "Signed 16 bit:"
 msgstr "16 bit zeinuarekin:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 16 bit:"
 msgstr "16 bit zeinurik gabe:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:63
 msgid "Signed 32 bit:"
 msgstr "32 bit zeinuarekin:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 32 bit:"
 msgstr "32 bit zeinurik gabe:"
 
-#: ../src/hex-dialog.c:64
-msgid "32 bit float:"
+#: ../src/hex-dialog.c:65
+msgid "Float 32 bit:"
 msgstr "32 bit mugikorra:"
 
-#: ../src/hex-dialog.c:65
-msgid "64 bit float:"
+#: ../src/hex-dialog.c:66
+msgid "Float 64 bit:"
 msgstr "64 bit mugikorra:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:67
 msgid "Hexadecimal:"
 msgstr "Hamaseitarra:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:68
 msgid "Octal:"
 msgstr "Zortzitarra:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:69
 msgid "Binary:"
 msgstr "Bitarra:"
 
-#: ../src/hex-dialog.c:197
+#: ../src/hex-dialog.c:207
 msgid "Show little endian decoding"
 msgstr "Erakutsi 'little-endian' deskodeketa"
 
-#: ../src/hex-dialog.c:204
+#: ../src/hex-dialog.c:214
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Erakutsi zeinu gabekoak eta mugikorrak hamaseitar gisa"
 
-#: ../src/hex-dialog.c:210
+#: ../src/hex-dialog.c:220
 msgid "Stream Length:"
 msgstr "Korrontearen luzera:"
 
-#: ../src/hex-dialog.c:232
+#: ../src/hex-dialog.c:243
 msgid "FIXME: no conversion function"
 msgstr "ZUZENTZEKO: bihurtzeko funtziorik ez"
 
-#: ../src/hex-document.c:436
+#: ../src/hex-document.c:435
 msgid "New document"
 msgstr "Dokumentu berria"
 
-#: ../src/hex-document.c:790
+#: ../src/hex-document.c:784
 #, c-format
 msgid "Page"
 msgstr "Orrialdea"
 
-#: ../src/hex-document.c:796 ../src/hex-document.c:921
+#: ../src/hex-document.c:790 ../src/hex-document.c:915
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Iraulketa hamaseitarraren sortzailea:"
 
-#: ../src/hex-document.c:807
+#: ../src/hex-document.c:801
 msgid "Saving to HTML..."
 msgstr "HTML gisa gordetzen..."
 
-#: ../src/hex-document.c:844
+#: ../src/hex-document.c:838
 #, c-format
 msgid "Previous page"
 msgstr "Aurreko orrialdea"
 
-#: ../src/hex-document.c:859
+#: ../src/hex-document.c:853
 #, c-format
 msgid "Next page"
 msgstr "Hurrengo orrialdea"
 
-#: ../src/main.c:35
+#: ../src/main.c:36
 msgid "X geometry specification (see \"X\" man page)."
 msgstr "X geometriaren espezifikazioak (ikus \"X\" eskuliburua)."
 
-#: ../src/main.c:35
+#: ../src/main.c:36
 msgid "GEOMETRY"
 msgstr "GEOMETRIA"
 
-#: ../src/main.c:36
+#: ../src/main.c:37
 msgid "FILES"
 msgstr "FITXATEGIAK"
 
-#: ../src/main.c:52
+#: ../src/main.c:99
 msgid "- GTK+ binary editor"
 msgstr "- GTK+ bitarren editorea"
 
-#: ../src/main.c:56
+#: ../src/main.c:103
 #, c-format
 msgid ""
 "%s\n"
@@ -984,124 +812,125 @@ msgstr ""
 "%s\n"
 "Exekutatu '%s --help' aukeren zerrenda osoa ikusteko.\n"
 
-#: ../src/main.c:73
-msgid "Could not initialize Bonobo!\n"
-msgstr "Ezin izan da Bonobo hasieratu.\n"
-
-#: ../src/main.c:83 ../src/main.c:96
+#: ../src/main.c:133 ../src/main.c:146
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "\"%s\" geometria-kate baliogabea\n"
 
-#: ../src/preferences.c:72
+#: ../src/preferences.c:69
 msgid "GHex Preferences"
 msgstr "GHex hobespenak"
 
-#: ../src/preferences.c:104
+#: ../src/preferences.c:101
 msgid "_Maximum number of undo levels:"
 msgstr "Desegite-mailen _gehienezko kopurua:"
 
-#: ../src/preferences.c:124
+#: ../src/preferences.c:121
 msgid "Undo levels"
 msgstr "Desegite-maila"
 
-#: ../src/preferences.c:124
+#: ../src/preferences.c:121
 msgid "Select maximum number of undo levels"
 msgstr "Hautatu desegite-mailen gehienezko kopurua"
 
-#: ../src/preferences.c:128
+#: ../src/preferences.c:125
 msgid "_Show cursor offset in statusbar as:"
 msgstr "_Erakutsi egoera-barrako kurtsore-desplazamendua honela:"
 
-#: ../src/preferences.c:147
+#: ../src/preferences.c:144
 msgid "Hexadecimal"
 msgstr "Hamaseitarra"
 
-#: ../src/preferences.c:149
+#: ../src/preferences.c:146
 msgid "Custom"
 msgstr "Pertsonalizatua"
 
-#: ../src/preferences.c:158
+#: ../src/preferences.c:155
 msgid "Enter the cursor offset format"
 msgstr "Sartu kurtsore-desplazamenduaren formatua"
 
-#: ../src/preferences.c:159
+#: ../src/preferences.c:156
 msgid "Select the cursor offset format"
 msgstr "Hautatu kurtsore-desplazamenduaren formatua"
 
 #. show offsets check button
-#: ../src/preferences.c:169
+#: ../src/preferences.c:166
 msgid "Sh_ow offsets column"
 msgstr "E_rakutsi desplazamendu-zutabea"
 
-#: ../src/preferences.c:174
+#: ../src/preferences.c:171
 msgid "Editing"
 msgstr "Edizioa"
 
+#. display font
+#: ../src/preferences.c:180
+msgid "Font"
+msgstr "Letra-tipoa"
+
 #. default group type
-#: ../src/preferences.c:206
+#: ../src/preferences.c:203
 msgid "Default Group Type"
 msgstr "Talde-mota lehenetsia"
 
-#: ../src/preferences.c:222
+#: ../src/preferences.c:219
 msgid "Display"
 msgstr "Bistaratzea"
 
 #. paper selection
-#: ../src/preferences.c:231
+#: ../src/preferences.c:228
 msgid "Paper size"
 msgstr "Paper-tamaina"
 
 #. data & header font selection
-#: ../src/preferences.c:236
+#: ../src/preferences.c:233
 msgid "Fonts"
 msgstr "Letra-tipoak"
 
-#: ../src/preferences.c:242
+#: ../src/preferences.c:245
 msgid "_Data font:"
 msgstr "_Datuen letra-tipoa:"
 
-#: ../src/preferences.c:261
+#: ../src/preferences.c:259
 msgid "Data font"
 msgstr "Datuen letra-tipoa"
 
-#: ../src/preferences.c:261
+#: ../src/preferences.c:259
 msgid "Select the data font"
 msgstr "Hautatu datuen letra-tipoa"
 
-#: ../src/preferences.c:275
+#: ../src/preferences.c:268
 msgid "Header fo_nt:"
 msgstr "_Goiburuko letra-tipoa:"
 
-#: ../src/preferences.c:293
+#: ../src/preferences.c:281
 msgid "Header font"
 msgstr "Goiburukoen letra-tipoa"
 
-#: ../src/preferences.c:293
+#: ../src/preferences.c:281
 msgid "Select the header font"
 msgstr "Hautatu goiburuko letra-tipoa"
 
-#: ../src/preferences.c:319
+#: ../src/preferences.c:306
 msgid "_Print shaded box over:"
 msgstr "_Inprimatu laukia itzaldurarekin:"
 
-#: ../src/preferences.c:331
+#: ../src/preferences.c:318
 msgid "Box size"
 msgstr "Lauki-tamaina"
 
-#: ../src/preferences.c:331
+#: ../src/preferences.c:318
 msgid "Select size of box (in number of lines)"
 msgstr "Hautatu laukiaren tamaina (lerro-kopuruan)"
 
-#: ../src/preferences.c:335
+#: ../src/preferences.c:322
 msgid "lines (0 for no box)"
 msgstr "lerroren gainean (0 laukirik ez jartzeko)"
 
-#: ../src/preferences.c:342
+#: ../src/preferences.c:329
 msgid "Printing"
 msgstr "Inprimatzea"
 
-#: ../src/preferences.c:464 ../src/ui.c:295
+#: ../src/preferences.c:447 ../src/ui.c:212
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1110,11 +939,11 @@ msgstr ""
 "Errorea gertatu da laguntza bistaratzean: \n"
 "%s"
 
-#: ../src/preferences.c:517
+#: ../src/preferences.c:499
 msgid "Can not open desired font!"
 msgstr "Ezin da letra-tipoa ireki."
 
-#: ../src/preferences.c:580
+#: ../src/preferences.c:560
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -1122,37 +951,20 @@ msgstr ""
 "Desplazamenduaren formatu-kateak baliogabeko formatu-adierazlea dauka.\n"
 "'x', 'X', 'p', 'P', 'd' eta 'o' bakarrik onartzen dira."
 
-#: ../src/print.c:67
+#: ../src/print.c:57
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Orrialdea: %i/%i"
 
-#: ../src/print.c:223 ../src/print.c:239
-#, c-format
-msgid ""
-"GHex could not find the font \"%s\".\n"
-"GHex is unable to print without this font installed."
-msgstr ""
-"Ghex-ek ezin izan du \"%s\" letra-tipoa aurkitu.\n"
-"Ghex-ek ezin du inprimatu letra-tipo hori instalatuta ez badago."
-
-#: ../src/ui.c:94
+#: ../src/ui.c:55
 msgid "hex data"
 msgstr "datu hamaseitarrak"
 
-#: ../src/ui.c:95
+#: ../src/ui.c:56
 msgid "ASCII data"
 msgstr "ASCII datuak"
 
-#: ../src/ui.c:238
-msgid ""
-"Copyright © 1998 - 2006 Jaka Močnik\n"
-"Copyright © 2006 - 2010 GHex Contributors"
-msgstr ""
-"Copyright-a © 1998 - 2006 Jaka Močnik\n"
-"Copyright-a © 2006 - 2010 GHex laguntzaileak"
-
-#: ../src/ui.c:245
+#: ../src/ui.c:153
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -1164,7 +976,7 @@ msgstr ""
 "ek argitaratu bezala; nola baimenaren 2. bertsioa edo(nahi izanez gero) "
 "ondorengo edozein bertsio."
 
-#: ../src/ui.c:249
+#: ../src/ui.c:157
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -1176,7 +988,7 @@ msgstr ""
 "MERKATURATZEKO edo HELBURU PARTIKULARRETARAKO ERABILTZEKO. Argibide gehiago "
 "nahi izanez gero, ikus GNU Lizentzia Publiko Orokorra."
 
-#: ../src/ui.c:253
+#: ../src/ui.c:161
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
@@ -1186,48 +998,54 @@ msgstr ""
 "zenuen; hala ez bada, idatzi hona: Free Software Foundation, Inc., 51 "
 "Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
 
-#: ../src/ui.c:265
+#. Translators: these two strings here indicate the copyright time span,
+#. e.g. 1998-2012.
+#: ../src/ui.c:173
+msgid "Copyright © %Id–%Id The GHex authors"
+msgstr "Copyright-a © %Id–%Id GHex-en egileak"
+
+#: ../src/ui.c:177
 msgid "A binary file editor"
 msgstr "Fitxategi bitarren editorea"
 
-#: ../src/ui.c:271
+#: ../src/ui.c:183
 msgid "About GHex"
 msgstr "GHex-i buruz"
 
-#: ../src/ui.c:272
+#: ../src/ui.c:184
 msgid "translator-credits"
 msgstr "Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>"
 
-#: ../src/ui.c:275
+#: ../src/ui.c:187
 msgid "GHex Website"
 msgstr "GHex-en webgunea"
 
-#: ../src/ui.c:398
+#: ../src/ui.c:321
 msgid "Select a file to open"
 msgstr "Hautatu fitxategi bat irekitzeko"
 
-#: ../src/ui.c:429
+#: ../src/ui.c:353
 #, c-format
 msgid "Loaded file %s"
 msgstr "%s fitxategia kargatuta"
 
-#: ../src/ui.c:437
+#: ../src/ui.c:361
 msgid "Can not open file!"
 msgstr "Ezin da fitxategia ireki."
 
-#: ../src/ui.c:498
+#: ../src/ui.c:426
 msgid "Select path and file name for the HTML source"
 msgstr "Hautatu HTML iturburuaren bide-izena eta fitxategi-izena"
 
-#: ../src/ui.c:532
+#: ../src/ui.c:458
 msgid "You need to specify a base name for the HTML files."
 msgstr "HTML fitxategien izena zehaztu behar duzu."
 
-#: ../src/ui.c:543 ../src/ui.c:567
+#: ../src/ui.c:469 ../src/ui.c:495
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Ez duzu nahikoa baimen hautatutako bide-izenean idazteko.\n"
 
-#: ../src/ui.c:554
+#: ../src/ui.c:481
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1235,30 +1053,188 @@ msgstr ""
 "HTMLen gordetzean zenbait fitxategi gainidatz ditzake.\n"
 "Jarraitzea nahi duzu?"
 
-#: ../src/ui.c:707
+#: ../src/ui.c:749
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Ziur zaude %s fitxategia lehengora itzuli nahi duzula?"
 
-#: ../src/ui.c:721
+#: ../src/ui.c:763
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Bufferra lehengora itzuli da %s fitxategitik"
 
-#: ../src/ui.c:805
-msgid "Printing file..."
-msgstr "Fitxategia inprimatzen..."
+#~ msgid "Add View"
+#~ msgstr "Gehitu ikuspegia"
 
-#: ../src/ui.c:865
-msgid "Print Hex Document"
-msgstr "Inprimatu dokumentu hamaseitarra"
+#~ msgid "Bytes"
+#~ msgstr "Byteak"
 
-#: ../src/ui.c:877
-msgid "Pages"
-msgstr "Orrialdeak"
+#~ msgid "Character Table..."
+#~ msgstr "Karaktere-taula..."
 
-#: ../src/ui.c:902
-#, c-format
-msgid "GHex (%s): Print Preview"
-msgstr "GHex (%s): inprimatzeko aurrebista"
+#~ msgid "Contents"
+#~ msgstr "Edukia"
 
+#~ msgid "Converter..."
+#~ msgstr "Bihurtzailea..."
+
+#~ msgid "Copy"
+#~ msgstr "Kopiatu"
+
+#~ msgid "Cut"
+#~ msgstr "Ebaki"
+
+#~ msgid "Exit"
+#~ msgstr "Irten"
+
+#~ msgid "Export to HTML..."
+#~ msgstr "Esportatu HTMLra..."
+
+#~ msgid "Find"
+#~ msgstr "Bilatu"
+
+#~ msgid "Goto Byte"
+#~ msgstr "Joan bytera"
+
+#~ msgid "Help Chat"
+#~ msgstr "Laguntzako berriketa"
+
+#~ msgid "Insert Mode"
+#~ msgstr "Txertatze-modua"
+
+#~ msgid "Longwords"
+#~ msgstr "Hitz luzeak"
+
+#~ msgid "Open"
+#~ msgstr "Ireki"
+
+#~ msgid "Paste"
+#~ msgstr "Itsatsi"
+
+#~ msgid "Preferences"
+#~ msgstr "Hobespenak"
+
+#~ msgid "Print"
+#~ msgstr "Inprimatu"
+
+#~ msgid "Print Preview..."
+#~ msgstr "Inprimatzeko aurrebista..."
+
+#~ msgid "Redo"
+#~ msgstr "Berregin"
+
+#~ msgid "Remove View"
+#~ msgstr "Kendu ikuspegia"
+
+#~ msgid "Revert"
+#~ msgstr "Leheneratu"
+
+#~ msgid "Save"
+#~ msgstr "Gorde"
+
+#~ msgid "Save As"
+#~ msgstr "Gorde honela"
+
+#~ msgid "Type Conversion Dialog..."
+#~ msgstr "Motak bihurtzeko elkarrizketa-koadroa..."
+
+#~ msgid "Undo"
+#~ msgstr "Desegin"
+
+#~ msgid "Words"
+#~ msgstr "Hitzak"
+
+#~ msgid "_Insert a new preview phrase."
+#~ msgstr "_Sartu aurrebistaren esaldi berria."
+
+#~ msgid "Modify preview phrase..."
+#~ msgstr "Aldatu aurrebistaren esaldia..."
+
+#~ msgid "Preview"
+#~ msgstr "Aurrebista"
+
+#~ msgid "_Modify preview phrase..."
+#~ msgstr "_Aldatu aurrebistaren esaldia..."
+
+#~ msgid "Font Selection"
+#~ msgstr "Letra-tipoaren hautapena"
+
+#~ msgid "Sans Regular 12"
+#~ msgstr "Sans Regular 12"
+
+#~ msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+#~ msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+
+#~ msgid "Pick a Font"
+#~ msgstr "Hautatu letra-tipoa"
+
+#~ msgid "Title"
+#~ msgstr "Titulua"
+
+#~ msgid "The title of the selection dialog box"
+#~ msgstr "Hautapen-leihoaren titulua"
+
+#~ msgid "Font name"
+#~ msgstr "Letra-tipoaren izena"
+
+#~ msgid "Name of the selected font"
+#~ msgstr "Hautatutako letra-tipoaren izena"
+
+#~ msgid "Preview text"
+#~ msgstr "Testuaren aurrebista"
+
+#~ msgid "Preview text shown in the dialog"
+#~ msgstr "Elkarrizketa-koadroan erakutsitako testuaren aurrebista"
+
+#~ msgid "Use font in label"
+#~ msgstr "Erabili etiketako letra-tipoa"
+
+#~ msgid "Use font in the label in font info mode"
+#~ msgstr "Erabili letra-tipoa etiketan letra-tipoaren informazio moduan"
+
+#~ msgid "Font size for label"
+#~ msgstr "Letra-tipoaren tamaina etiketentzat"
+
+#~ msgid "Font size for label in font info mode"
+#~ msgstr "Letra-tipoaren tamaina etiketentzat letra-tipo informazio moduan"
+
+#~ msgid "Show size"
+#~ msgstr "Erakutsi tamaina"
+
+#~ msgid "Show size in font info mode"
+#~ msgstr "Erakutsi tamaina letra-tipoaren informazio moduan"
+
+#~ msgid "32 bit float:"
+#~ msgstr "32 bit mugikorra:"
+
+#~ msgid "64 bit float:"
+#~ msgstr "64 bit mugikorra:"
+
+#~ msgid "Could not initialize Bonobo!\n"
+#~ msgstr "Ezin izan da Bonobo hasieratu.\n"
+
+#~ msgid ""
+#~ "GHex could not find the font \"%s\".\n"
+#~ "GHex is unable to print without this font installed."
+#~ msgstr ""
+#~ "Ghex-ek ezin izan du \"%s\" letra-tipoa aurkitu.\n"
+#~ "Ghex-ek ezin du inprimatu letra-tipo hori instalatuta ez badago."
+
+#~ msgid ""
+#~ "Copyright © 1998 - 2006 Jaka Močnik\n"
+#~ "Copyright © 2006 - 2010 GHex Contributors"
+#~ msgstr ""
+#~ "Copyright-a © 1998 - 2006 Jaka Močnik\n"
+#~ "Copyright-a © 2006 - 2010 GHex laguntzaileak"
+
+#~ msgid "Printing file..."
+#~ msgstr "Fitxategia inprimatzen..."
+
+#~ msgid "Print Hex Document"
+#~ msgstr "Inprimatu dokumentu hamaseitarra"
+
+#~ msgid "Pages"
+#~ msgstr "Orrialdeak"
+
+#~ msgid "GHex (%s): Print Preview"
+#~ msgstr "GHex (%s): inprimatzeko aurrebista"
