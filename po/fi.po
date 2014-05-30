@@ -1,25 +1,26 @@
 # Finnish translations of ghex
 # Copyright (C) 1999 Free Software Foundation, Inc.
 #
-# Ilkka Tuohela  <hile@iki.fi>, 2006-2007
-# Tuomas Merilä <tuomas@merila.org>, 1999
-# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2013.
 #
+# Ilkka Tuohela  <hile@iki.fi>, 2006-2007.
+# Tuomas Merilä <tuomas@merila.org>, 1999.
+# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2013.
+# Lasse Liehu <lasse.liehu@gmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-27 22:57+0000\n"
-"PO-Revision-Date: 2013-09-10 16:49+0300\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
-"Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-05-03 17:15+0000\n"
+"PO-Revision-Date: 2014-05-04 02:59+0300\n"
+"Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
 #: ../src/ghex-window.c:1100
@@ -306,10 +307,6 @@ msgid "Can not position cursor beyond the End Of File!"
 msgstr "Osoitinta ei voi sijoittaa tiedoston lopun (EOF) ohi."
 
 #: ../src/findreplace.c:659
-#| msgid ""
-#| "You may only give the offset as:\n"
-#| "  - a positive decimal number, or\n"
-#| "  - a hex number, beginning with '0x'"
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
@@ -805,7 +802,6 @@ msgid "FILES"
 msgstr ""
 
 #: ../src/main.c:99
-#| msgid "The gnome binary editor"
 msgid "- GTK+ binary editor"
 msgstr "- GTK+-pohjainen binäärimuokkain"
 
@@ -869,7 +865,7 @@ msgstr "Muokkaus"
 #. display font
 #: ../src/preferences.c:180
 msgid "Font"
-msgstr "Kirjasin"
+msgstr "Fontti"
 
 #. default group type
 #: ../src/preferences.c:203
@@ -888,31 +884,31 @@ msgstr "Paperin koko"
 #. data & header font selection
 #: ../src/preferences.c:233
 msgid "Fonts"
-msgstr "Kirjasimet"
+msgstr "Fontit"
 
 #: ../src/preferences.c:245
 msgid "_Data font:"
-msgstr "_Tiedon kirjasin:"
+msgstr "_Tiedon fontti:"
 
 #: ../src/preferences.c:259
 msgid "Data font"
-msgstr "Tiedon kirjasin"
+msgstr "Tiedon fontti"
 
 #: ../src/preferences.c:259
 msgid "Select the data font"
-msgstr "Valitse tiedon kirjasin"
+msgstr "Valitse tiedon fontti"
 
 #: ../src/preferences.c:268
 msgid "Header fo_nt:"
-msgstr "Otsikon _kirjasin:"
+msgstr "Otsikon _fontti:"
 
 #: ../src/preferences.c:281
 msgid "Header font"
-msgstr "Otsikon kirjasin"
+msgstr "Otsikon fontti"
 
 #: ../src/preferences.c:281
 msgid "Select the header font"
-msgstr "Valitse otsikon kirjasin"
+msgstr "Valitse otsikon fontti"
 
 #: ../src/preferences.c:306
 msgid "_Print shaded box over:"
@@ -945,7 +941,7 @@ msgstr ""
 
 #: ../src/preferences.c:499
 msgid "Can not open desired font!"
-msgstr "Haluttua kirjasinlajia ei voitu avata!"
+msgstr "Haluttua fonttia ei voitu avata!"
 
 #: ../src/preferences.c:560
 msgid ""
@@ -998,12 +994,10 @@ msgid "Copyright © %Id–%Id The GHex authors"
 msgstr "Tekijänoikeus © %Id–%Id GHexin tekijät"
 
 #: ../src/ui.c:177
-#| msgid "GHex, a binary file editor"
 msgid "A binary file editor"
 msgstr "Binääritiedostoeditori"
 
 #: ../src/ui.c:183
-#| msgid "_About"
 msgid "About GHex"
 msgstr "Tietoja - GHex"
 
@@ -1057,184 +1051,3 @@ msgstr "Hylätäänkö todella tiedostoon %s tehdyt muutokset?"
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Puskuri palautettu tiedostosta %s"
-
-#~ msgid "GNOME Hexadecimal Editor"
-#~ msgstr "Gnomen heksadesimaalimuokkain"
-
-#~ msgid "Add View"
-#~ msgstr "Lisää näkymä"
-
-#~ msgid "Bytes"
-#~ msgstr "Tavuittain"
-
-#~ msgid "Character Table..."
-#~ msgstr "Merkkitaulukko..."
-
-#~ msgid "Contents"
-#~ msgstr "Sisältö"
-
-#~ msgid "Converter..."
-#~ msgstr "Muunnin..."
-
-#~ msgid "Copy"
-#~ msgstr "Kopioi"
-
-#~ msgid "Cut"
-#~ msgstr "Leikkaa"
-
-#~ msgid "Exit"
-#~ msgstr "Lopeta"
-
-#~ msgid "Export to HTML..."
-#~ msgstr "Vie HTML-muodossa..."
-
-#~ msgid "Find"
-#~ msgstr "Etsi"
-
-#~ msgid "Goto Byte"
-#~ msgstr "Siirry tavuun"
-
-#~ msgid "Help Chat"
-#~ msgstr "Ohjekeskustelu"
-
-#~ msgid "Insert Mode"
-#~ msgstr "Lisäystila"
-
-#~ msgid "Longwords"
-#~ msgstr "Pitkäsanoittain"
-
-#~ msgid "Open"
-#~ msgstr "Avaa"
-
-#~ msgid "Paste"
-#~ msgstr "Liitä"
-
-#~ msgid "Preferences"
-#~ msgstr "Asetukset"
-
-#~ msgid "Print"
-#~ msgstr "Tulosta"
-
-#~ msgid "Print Preview..."
-#~ msgstr "Tulostuksen esikatselu..."
-
-#~ msgid "Redo"
-#~ msgstr "Tee uudestaan"
-
-#~ msgid "Remove View"
-#~ msgstr "Poista näkymä"
-
-#~ msgid "Revert"
-#~ msgstr "Palauta"
-
-#~ msgid "Save"
-#~ msgstr "Tallenna"
-
-#~ msgid "Save As"
-#~ msgstr "Tallenna nimellä"
-
-#~ msgid "Type Conversion Dialog..."
-#~ msgstr "Tyypinmuunnosikkuna..."
-
-#~ msgid "Undo"
-#~ msgstr "Peru"
-
-#~ msgid "Words"
-#~ msgstr "Sanoittain"
-
-#~ msgid "_Insert a new preview phrase."
-#~ msgstr "_Lisää uusi esikatseluvaihe."
-
-#~ msgid "Modify preview phrase..."
-#~ msgstr "Muokkaa esikatseluvaihetta..."
-
-#~ msgid "Preview"
-#~ msgstr "Esikatselu"
-
-#~ msgid "_Modify preview phrase..."
-#~ msgstr "_Muokkaa esikatseluvaihetta..."
-
-#~ msgid "Font Selection"
-#~ msgstr "Kirjasimen valinta"
-
-#~ msgid "Sans Regular 12"
-#~ msgstr "Sans Regular 12"
-
-#~ msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-#~ msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzÅåÄäÖö"
-
-#~ msgid "Pick a Font"
-#~ msgstr "Valitse kirjasin"
-
-#~ msgid "Title"
-#~ msgstr "Otsikko"
-
-#~ msgid "The title of the selection dialog box"
-#~ msgstr "Valintaikkunan laatikon otsikko"
-
-#~ msgid "Font name"
-#~ msgstr "Kirjasimen nimi"
-
-#~ msgid "Name of the selected font"
-#~ msgstr "Valitun kirjasimen nimi"
-
-#~ msgid "Preview text"
-#~ msgstr "Esikatseluteksti"
-
-#~ msgid "Preview text shown in the dialog"
-#~ msgstr "Ikkunassa näytettävä esikatseluteksti"
-
-#~ msgid "Use font in label"
-#~ msgstr "Käytä kirjasinta otsakkeessa"
-
-#~ msgid "Use font in the label in font info mode"
-#~ msgstr "Käytä kirjasinta otsakkeen käytettäessä kirjasintietotilaa"
-
-#~ msgid "Font size for label"
-#~ msgstr "Otsakkeen kirjasinkoko"
-
-#~ msgid "Font size for label in font info mode"
-#~ msgstr "Otsakkeen kirjasinkoko kirjasintietotilassa"
-
-#~ msgid "Show size"
-#~ msgstr "Näytä koko"
-
-#~ msgid "Show size in font info mode"
-#~ msgstr "Näytä koko kirjasimen tiedoissa"
-
-#~ msgid "32 bit float:"
-#~ msgstr "32-bittinen liukuluku:"
-
-#~ msgid "64 bit float:"
-#~ msgstr "64-bittinen liukuluku:"
-
-#~ msgid "Could not initialize Bonobo!\n"
-#~ msgstr "Bonoboa ei voitu alustaa!\n"
-
-#~ msgid ""
-#~ "GHex could not find the font \"%s\".\n"
-#~ "GHex is unable to print without this font installed."
-#~ msgstr ""
-#~ "GHex ei löytänyt kirjasinta \"%s\".\n"
-#~ "GHex ei voi tulostaa, jos tätä kirjasinta ei ole asennettu."
-
-#~ msgid "Released under the terms of GNU Public License"
-#~ msgstr "Julkaistu GNU GPL -lisenssillä"
-
-#~ msgid "Printing file..."
-#~ msgstr "Tulostetaan tiedostoa..."
-
-#~ msgid "Print Hex Document"
-#~ msgstr "Tulosta heksadesimaaliasiakirja"
-
-#~ msgid "Pages"
-#~ msgstr "Sivua"
-
-#~ msgid "GHex (%s): Print Preview"
-#~ msgstr "GHex (%s): Tulostuksen esikatselu"
-
-#~ msgid "C_ut"
-#~ msgstr "_Leikkaa"
-
-#~ msgid "_Paste"
-#~ msgstr "_Liitä"
