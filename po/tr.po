@@ -4,23 +4,25 @@
 # Murat SULUHAN <murat.suluhan@tesam.com.tr>, 2000-2001.
 # Ömer Fadıl USTA <omer_fad@hotmail.com>, 2000.
 # Arman Aksoy (Armish) <armish@linux-sevenler.de>, 2003.
-# Muhammet Kara <muhammetk@gmail.com>, 2014.
+# Necdet Yücel <necdetyucel@gmail.com>, 2015.
+# Muhammet Kara <muhammetk@gmail.com>, 2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: glib\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-18 18:59+0000\n"
-"PO-Revision-Date: 2014-12-13 13:23+0200\n"
+"POT-Creation-Date: 2015-02-15 18:11+0000\n"
+"PO-Revision-Date: 2015-02-16 16:18+0200\n"
 "Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
-"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
+"Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 2.91.6\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Gtranslator 2.91.6\n"
+"X-POOTLE-MTIME: 1423957989.000000\n"
 
 # src/chartable.c:90 src/converter.c:73
 #: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
@@ -342,7 +344,7 @@ msgstr "Ofset tanımlanmamış!"
 
 #: ../src/findreplace.c:644
 msgid "The specified offset is beyond the  file boundaries!"
-msgstr ""
+msgstr "Belirtilen ofset dosya sınırlarının dışında!"
 
 # src/findreplace.c:357
 #: ../src/findreplace.c:652
@@ -350,10 +352,6 @@ msgid "Can not position cursor beyond the End Of File!"
 msgstr "İmleç dosya sonundan ileri konumlandırılamaz!"
 
 #: ../src/findreplace.c:659
-#| msgid ""
-#| "You may only give the offset as:\n"
-#| "  - a positive decimal number, or\n"
-#| "  - a hex number, beginning with '0x'"
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
@@ -388,7 +386,6 @@ msgstr "Hiçbir belirimi bulunamadı."
 # src/findreplace.c:463
 #: ../src/findreplace.c:783
 #, c-format
-#| msgid "Replaced %d occurrences."
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
 msgstr[0] "%d belirim değiştirildi."
@@ -552,7 +549,7 @@ msgstr "Seçimi panoya kopyala"
 
 #: ../src/ghex-window.c:386
 msgid "Cu_t"
-msgstr ""
+msgstr "Ke_s"
 
 #: ../src/ghex-window.c:387
 msgid "Cut selection"
@@ -560,7 +557,7 @@ msgstr "Seçimi kes"
 
 #: ../src/ghex-window.c:389
 msgid "Pa_ste"
-msgstr ""
+msgstr "Ya_pıştır"
 
 #: ../src/ghex-window.c:390
 msgid "Paste data from clipboard"
@@ -585,7 +582,6 @@ msgstr "Gelişmiş Arama"
 
 # src/findreplace.c:165
 #: ../src/ghex-window.c:398
-#| msgid "Replace"
 msgid "R_eplace"
 msgstr "Değişti_r"
 
@@ -664,7 +660,6 @@ msgstr "Veriyi araya ekle/üzerine yaz"
 # src/ui.c:76
 #. Windows menu
 #: ../src/ghex-window.c:433
-#| msgid "Character _Table..."
 msgid "Character _Table"
 msgstr "Karakter _Tablosu"
 
@@ -796,7 +791,6 @@ msgstr "Dosyayı kaydetmek için yetkiniz yok!"
 
 # src/ui.c:226 src/ui.c:539
 #: ../src/ghex-window.c:1362 ../src/ui.c:296
-#| msgid "An error occured while saving file!"
 msgid "An error occurred while saving file!"
 msgstr "Dosya kaydedilirken hata oluştu!"
 
@@ -826,11 +820,11 @@ msgstr "İşaretsiz 32 bit:"
 
 #: ../src/hex-dialog.c:65
 msgid "Float 32 bit:"
-msgstr ""
+msgstr "Float 32 bit:"
 
 #: ../src/hex-dialog.c:66
 msgid "Float 64 bit:"
-msgstr ""
+msgstr "Float 64 bit:"
 
 # src/preferences.c:166
 #: ../src/hex-dialog.c:67
@@ -910,7 +904,6 @@ msgstr "DOSYALAR"
 
 # src/ui.c:200
 #: ../src/main.c:99
-#| msgid "The gnome binary editor"
 msgid "- GTK+ binary editor"
 msgstr "- GTK+ ikilik düzenleyicisi"
 
@@ -920,6 +913,9 @@ msgid ""
 "%s\n"
 "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
+"%s\n"
+"Tüm mevcut komut satırı seçeneklerinin listesini görmek için '%s --help' "
+"çalıştırın.\n"
 
 #: ../src/main.c:133 ../src/main.c:146
 #, c-format
@@ -947,7 +943,6 @@ msgstr "Geri alma işlemi için azami seviyeyi seçiniz"
 
 # src/preferences.c:147
 #: ../src/preferences.c:125
-#| msgid "Show cursor offset in statusbar as:"
 msgid "_Show cursor offset in statusbar as:"
 msgstr "İmleç ofsetinin durum çubuğu gö_sterimi:"
 
@@ -972,10 +967,8 @@ msgstr "İmleç ofset biçimini seçiniz"
 # src/preferences.c:183
 #. show offsets check button
 #: ../src/preferences.c:166
-#, fuzzy
-#| msgid "Show offsets column"
 msgid "Sh_ow offsets column"
-msgstr "Sütun ofsetini göster"
+msgstr "Ofset sütununu g_öster"
 
 # src/preferences.c:188
 #: ../src/preferences.c:171
@@ -1144,12 +1137,10 @@ msgstr "Telif Hakkı © %Id–%Id GHex geliştiricileri"
 
 # src/ui.c:200
 #: ../src/ui.c:177
-#| msgid "GHex, a binary file editor"
 msgid "A binary file editor"
 msgstr "İkilik dosya düzenleyici"
 
 #: ../src/ui.c:183
-#| msgid "_About"
 msgid "About GHex"
 msgstr "GHex Hakkında"
 
