@@ -785,12 +785,18 @@ ghex_print(GtkHex *gh, gboolean preview)
 	HexDocument *doc;
 	GtkPrintOperationResult result;
 	GError *error = NULL;
+	gchar *basename;
+	gchar *gtk_file_name;
 
 	doc = gh->document;
+
+	gtk_file_name = g_filename_to_utf8 (doc->file_name, -1, NULL, NULL, NULL);
+	basename = g_filename_display_basename (gtk_file_name);
 
 	pji = ghex_print_job_info_new(doc, gh->group_type);
 	pji->master = gtk_print_operation_new ();
 	pji->config = gtk_print_settings_new ();
+	gtk_print_settings_set (pji->config, GTK_PRINT_SETTINGS_OUTPUT_BASENAME, basename);
 	gtk_print_settings_set_paper_size (pji->config, gtk_paper_size_new (GTK_PAPER_NAME_A4));
 	gtk_print_operation_set_unit (pji->master, GTK_UNIT_POINTS);
 	gtk_print_operation_set_print_settings (pji->master, pji->config);
@@ -816,6 +822,8 @@ ghex_print(GtkHex *gh, gboolean preview)
 		g_error_free (error);
 	}
 	ghex_print_job_info_destroy (pji);
+	g_free (basename);
+	g_free (gtk_file_name);
 }
 
 void
