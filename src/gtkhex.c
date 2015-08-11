@@ -1111,6 +1111,7 @@ static void hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 			hide_cursor(gh);
 			gh->active_view = VIEW_HEX;
 			show_cursor(gh);
+			hex_button_cb(w, event, gh);
 		}
 	}
 	else if((event->type == GDK_BUTTON_PRESS) && (event->button == GDK_BUTTON_MIDDLE)) {
@@ -1207,6 +1208,7 @@ static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 			hide_cursor(gh);
 			gh->active_view = VIEW_ASCII;
 			show_cursor(gh);
+			ascii_button_cb(w, event, gh);
 		}
 	}
 	else if((event->type == GDK_BUTTON_PRESS) && (event->button == GDK_BUTTON_MIDDLE)) {
