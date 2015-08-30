@@ -6,14 +6,14 @@
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # Zbigniew Chyla <chyla@alice.ci.pwr.wroc.pl>, 1999-2003.
 # Artur Flinta <aflinta@at.kernel.pl>, 2003.
-# Piotr Drąg <piotrdrag@gmail.com>, 2012-2013.
-# Aviary.pl <gnomepl@aviary.pl>, 2012-2013.
+# Piotr Drąg <piotrdrag@gmail.com>, 2012-2015.
+# Aviary.pl <gnomepl@aviary.pl>, 2012-2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-16 20:22+0100\n"
-"PO-Revision-Date: 2013-01-16 20:23+0100\n"
+"POT-Creation-Date: 2015-08-30 16:54+0200\n"
+"PO-Revision-Date: 2015-08-30 16:55+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -38,7 +38,7 @@ msgstr "Edytor szesnastkowy"
 msgid "Inspect and edit binary files"
 msgstr "Badanie i modyfikacja plików binarnych"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
 msgstr "binarny;binarnie;binarka;debugowanie;debuguj;debuger;"
@@ -111,7 +111,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "BŁĄD"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:885
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): wyszukiwanie danych"
@@ -193,7 +193,7 @@ msgstr "Zamknij"
 msgid "Closes advanced find window"
 msgstr "Zamyka okno zaawansowanego wyszukiwania"
 
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:883
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): wyszukiwanie i zamiana danych"
@@ -246,7 +246,7 @@ msgstr "Zastępuje wszystkie wystąpienia wyszukiwanego ciągu nowym"
 msgid "Closes find and replace data window"
 msgstr "Zamyka okno wyszukiwania i zmiany danych"
 
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:881
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): przejście do bajtu"
@@ -316,10 +316,10 @@ msgid ""
 "  - a hex number, beginning with '0x', or\n"
 "  - a '+' or '-' sign, followed by a relative offset"
 msgstr ""
-"Można podawać offset tylko jako:\n"
-"  - dodatnia liczba dziesiętna lub\n"
-"  - liczba szesnastkowa, zaczynająca się od \"0x\" lub\n"
-"  - znak \"+\" lub \"-\" następujący po przesunięciu względnym"
+"Można podawać przesunięcie tylko jako:\n"
+"  • dodatnia liczba dziesiętna lub\n"
+"  • liczba szesnastkowa, zaczynająca się od „0x” lub\n"
+"  • znak „+” lub „-” następujący po przesunięciu względnym"
 
 #: ../src/findreplace.c:705
 msgid "There is no active buffer to replace data in!"
@@ -395,7 +395,7 @@ msgstr "Pomo_c"
 #. File menu
 #: ../src/ghex-window.c:348
 msgid "_Open..."
-msgstr "_Otwórz..."
+msgstr "_Otwórz…"
 
 #: ../src/ghex-window.c:349
 msgid "Open a file"
@@ -411,7 +411,7 @@ msgstr "Zapisuje bieżący plik"
 
 #: ../src/ghex-window.c:354
 msgid "Save _As..."
-msgstr "Z_apisz jako..."
+msgstr "Z_apisz jako…"
 
 #: ../src/ghex-window.c:355
 msgid "Save the current file with a different name"
@@ -419,7 +419,7 @@ msgstr "Zapisuje bieżący plik pod inną nazwą"
 
 #: ../src/ghex-window.c:357
 msgid "Save As _HTML..."
-msgstr "Zapisz w formacie _HTML..."
+msgstr "Zapisz w formacie _HTML…"
 
 #: ../src/ghex-window.c:358
 msgid "Export data to HTML source"
@@ -443,7 +443,7 @@ msgstr "Drukuje bieżący plik"
 
 #: ../src/ghex-window.c:366
 msgid "Print Previe_w..."
-msgstr "Podgląd _wydruku..."
+msgstr "Podgląd _wydruku…"
 
 #: ../src/ghex-window.c:367
 msgid "Preview printed data"
@@ -532,7 +532,7 @@ msgstr "Zmienia ciąg"
 
 #: ../src/ghex-window.c:401
 msgid "_Goto Byte..."
-msgstr "_Przejdź do bajtu..."
+msgstr "_Przejdź do bajtu…"
 
 #: ../src/ghex-window.c:402
 msgid "Jump to a certain position"
@@ -656,7 +656,7 @@ msgstr "Aktywuje plik %s"
 #: ../src/ghex-window.c:1096
 #, c-format
 msgid "%s - GHex"
-msgstr "%s - GHex"
+msgstr "%s — GHex"
 
 #: ../src/ghex-window.c:1218
 msgid "Select a file to save buffer as"
@@ -695,7 +695,7 @@ msgstr ""
 
 #: ../src/ghex-window.c:1338
 msgid "Do_n't save"
-msgstr "_Bez zapisywania"
+msgstr "_Nie zapisuj"
 
 #: ../src/ghex-window.c:1358 ../src/ui.c:291
 msgid "You don't have the permissions to save the file!"
@@ -705,64 +705,72 @@ msgstr "Brak uprawnień do zapisania pliku."
 msgid "An error occurred while saving file!"
 msgstr "Wystąpił błąd podczas zapisywania pliku."
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:61
 msgid "Signed 8 bit:"
 msgstr "8 bitów ze znakiem:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 8 bit:"
 msgstr "8 bitów bez znaku:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:63
 msgid "Signed 16 bit:"
 msgstr "16 bitów ze znakiem:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 16 bit:"
 msgstr "16 bitów bez znaku:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:65
 msgid "Signed 32 bit:"
 msgstr "32 bity ze znakiem:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:66
 msgid "Unsigned 32 bit:"
 msgstr "32 bity bez znaku:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:67
+msgid "Signed 64 bit:"
+msgstr "64 bity ze znakiem:"
+
+#: ../src/hex-dialog.c:68
+msgid "Unsigned 64 bit:"
+msgstr "64 bity bez znaku:"
+
+#: ../src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "Zmiennoprzecinkowe 32 bity:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "Zmiennoprzecinkowe 64 bity:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Szesnastkowo:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Ósemkowo:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "Binarnie:"
 
-#: ../src/hex-dialog.c:204
+#: ../src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "Wyświetlanie dekodowania little endian"
 
-#: ../src/hex-dialog.c:211
+#: ../src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr ""
 "Wyświetlanie wartości bez znaku i zmiennoprzecinkowych jako szesnastkowe"
 
-#: ../src/hex-dialog.c:217
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Długość potoku:"
 
-#: ../src/hex-dialog.c:239
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "FIXME: brak funkcji konwersji"
 
@@ -782,7 +790,7 @@ msgstr "Zrzut szesnastkowy utworzony przez"
 
 #: ../src/hex-document.c:801
 msgid "Saving to HTML..."
-msgstr "Zapisywanie w formacie HTML..."
+msgstr "Zapisywanie w formacie HTML…"
 
 #: ../src/hex-document.c:838
 #, c-format
@@ -796,7 +804,7 @@ msgstr "Następna strona"
 
 #: ../src/main.c:36
 msgid "X geometry specification (see \"X\" man page)."
-msgstr "Określenie geometrii X (proszę zobaczyć stronę podręcznika \"X\")."
+msgstr "Określenie geometrii X (proszę zobaczyć stronę podręcznika „X”)."
 
 #: ../src/main.c:36
 msgid "GEOMETRY"
@@ -808,7 +816,7 @@ msgstr "PLIKI"
 
 #: ../src/main.c:99
 msgid "- GTK+ binary editor"
-msgstr "- edytor plików binarnych GTK+"
+msgstr "— edytor plików binarnych GTK+"
 
 #: ../src/main.c:103
 #, c-format
@@ -817,13 +825,13 @@ msgid ""
 "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "%s\n"
-"Wykonanie polecenia \"%s --help\" wyświetli pełną listę dostępnych opcji "
-"wiesza poleceń.\n"
+"Polecenie „%s --help” wyświetli pełną listę dostępnych opcji wiesza "
+"poleceń.\n"
 
 #: ../src/main.c:133 ../src/main.c:146
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
-msgstr "Nieprawidłowy ciąg geometrii \"%s\"\n"
+msgstr "Nieprawidłowy ciąg geometrii „%s”\n"
 
 #: ../src/preferences.c:69
 msgid "GHex Preferences"
@@ -843,7 +851,7 @@ msgstr "Wybór maksymalnej liczby cofnięć"
 
 #: ../src/preferences.c:125
 msgid "_Show cursor offset in statusbar as:"
-msgstr "Wyświetlanie przesunięcia _kursora na pasku stanu jako:"
+msgstr "Przesunięcie _kursora na pasku stanu jako:"
 
 #: ../src/preferences.c:144
 msgid "Hexadecimal"
@@ -864,7 +872,7 @@ msgstr "Wybór format przesunięcia kursora"
 #. show offsets check button
 #: ../src/preferences.c:166
 msgid "Sh_ow offsets column"
-msgstr "Wyświetlanie k_olumny przesunięć"
+msgstr "K_olumna przesunięć"
 
 #: ../src/preferences.c:171
 msgid "Editing"
@@ -932,7 +940,7 @@ msgstr "Wybór rozmiar prostokąta (w wierszach)"
 
 #: ../src/preferences.c:322
 msgid "lines (0 for no box)"
-msgstr "wierszy (0 wyłącza przyciemnianie)"
+msgstr "wierszy („0” wyłącza przyciemnianie)"
 
 #: ../src/preferences.c:329
 msgid "Printing"
@@ -957,7 +965,7 @@ msgid ""
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
 "Ciąg formatu przesunięcia zawiera nieprawidłowe specyfikatory.\n"
-"Dozwolone są tylko \"x\", \"X\", \"p\", \"P\", \"d\" i \"o\"."
+"Dozwolone są tylko „x”, „X”, „p”, „P”, „d” i „o”."
 
 #: ../src/print.c:57
 #, c-format
@@ -981,7 +989,7 @@ msgid ""
 msgstr ""
 "Niniejszy program jest wolnym oprogramowaniem; można go rozprowadzać dalej i/"
 "lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU, wydanej "
-"przez Fundację Wolnego Oprogramowania (Free Software Foundation) - według "
+"przez Fundację Wolnego Oprogramowania (Free Software Foundation) — według "
 "wersji drugiej tej Licencji lub którejś z późniejszych wersji."
 
 #: ../src/ui.c:157
@@ -991,7 +999,7 @@ msgid ""
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details."
 msgstr ""
-"Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on użyteczny - "
+"Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on użyteczny — "
 "jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI "
 "HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania "
 "bliższych informacji należy zapoznać się z Powszechną Licencją Publiczną GNU."
@@ -1004,7 +1012,7 @@ msgid ""
 msgstr ""
 "Z pewnością wraz z niniejszym programem dostarczono także egzemplarz "
 "Powszechnej Licencji Publicznej GNU (GNU General Public License); jeśli nie "
-"- proszę napisać do Free Software Foundation, Inc., 51 Franklin Street, "
+"— proszę napisać do Free Software Foundation, Inc., 51 Franklin Street, "
 "Fifth Floor, Boston, MA 02110-1301 USA."
 
 #. Translators: these two strings here indicate the copyright time span,
@@ -1026,8 +1034,8 @@ msgid "translator-credits"
 msgstr ""
 "Zbigniew Chyla <chyla@alice.ci.pwr.wroc.pl>, 1999-2003\n"
 "Artur Flinta <aflinta@at.kernel.pl>, 2003\n"
-"Piotr Drąg <piotrdrag@gmail.com>, 2012-2013\n"
-"Aviary.pl <gnomepl@aviary.pl>, 2012-2013"
+"Piotr Drąg <piotrdrag@gmail.com>, 2012-2015\n"
+"Aviary.pl <gnomepl@aviary.pl>, 2012-2015"
 
 #: ../src/ui.c:187
 msgid "GHex Website"
