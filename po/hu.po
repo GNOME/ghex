@@ -5,16 +5,16 @@
 # Szabolcs Ban <shooby at gnome dot hu>, 1999, 2000, 2001.
 # Andras Timar <timar at gnome dot hu>, 2001, 2002, 2003.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2004, 2005, 2007, 2009, 2010, 2011.
-# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013.
+# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-15 17:40+0000\n"
-"PO-Revision-Date: 2013-03-16 23:26+0100\n"
-"Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
-"Language-Team: Hungarian <gnome at fsf dot hu>\n"
+"POT-Creation-Date: 2015-08-31 05:30+0000\n"
+"PO-Revision-Date: 2015-08-31 18:08+0200\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"Language-Team: Hungarian <openscope at gmail dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +35,7 @@ msgstr "Hexadecimális szerkesztő"
 msgid "Inspect and edit binary files"
 msgstr "Bináris fájlok megfigyelése és szerkesztése"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
 msgstr "bináris;hibakeresés;"
@@ -108,7 +108,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "HIBA"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:885
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Adat keresése"
@@ -190,7 +190,7 @@ msgstr "Bezárás"
 msgid "Closes advanced find window"
 msgstr "Bezárja a haladó keresés ablakot"
 
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:883
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Keresés és csere"
@@ -245,7 +245,7 @@ msgstr ""
 msgid "Closes find and replace data window"
 msgstr "Bezárja a keresés és csere ablakot"
 
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:881
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Bájtra ugrás"
@@ -706,63 +706,73 @@ msgstr "Nincs joga a fájl mentéséhez!"
 msgid "An error occurred while saving file!"
 msgstr "Hiba történt a fájl mentése közben!"
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:61
 msgid "Signed 8 bit:"
 msgstr "Előjeles 8 bit:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 8 bit:"
 msgstr "Előjel nélküli 8 bit:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:63
 msgid "Signed 16 bit:"
 msgstr "Előjeles 16 bit:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 16 bit:"
 msgstr "Előjel nélküli 16 bit:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:65
 msgid "Signed 32 bit:"
 msgstr "Előjeles 32 bit:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:66
 msgid "Unsigned 32 bit:"
 msgstr "Előjel nélküli 32 bit:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:67
+#| msgid "Signed 16 bit:"
+msgid "Signed 64 bit:"
+msgstr "Előjeles 64 bit:"
+
+#: ../src/hex-dialog.c:68
+#| msgid "Unsigned 16 bit:"
+msgid "Unsigned 64 bit:"
+msgstr "Előjel nélküli 64 bit:"
+
+#: ../src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "32 bites lebegőpontos:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "64 bites lebegőpontos:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Hexadecimális:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Oktális:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "Bináris:"
 
-#: ../src/hex-dialog.c:204
+#: ../src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "„little endian” dekódolás mutatása"
 
-#: ../src/hex-dialog.c:211
+#: ../src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Előjel nélküli és lebegőpontos mutatása hexadecimálisan"
 
-#: ../src/hex-dialog.c:217
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Adatfolyam hossza:"
 
-#: ../src/hex-dialog.c:239
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "FIXME: nincs konverziós függvény"
 
