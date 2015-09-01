@@ -7,17 +7,17 @@
 # Lucas 'Basurero' Vieites <lucas@asixinformatica.com>, 2002,2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005, 2006.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2010.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011, 2012, 2013.
 #
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011, 2012, 2013, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex.HEAD.es\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-04-15 05:38+0000\n"
-"PO-Revision-Date: 2013-01-16 12:57+0100\n"
+"POT-Creation-Date: 2015-09-01 05:30+0000\n"
+"PO-Revision-Date: 2015-09-01 \n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"Language-Team: Spanish <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgstr "Editor hexadecimal"
 msgid "Inspect and edit binary files"
 msgstr "Inspeccionar y editar archivos binarios"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
 msgstr "binario;depurar;"
@@ -109,7 +109,7 @@ msgstr "Obtiene el valor del cursor en binario, octal, decimal, hex y ASCII"
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:885
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Buscar datos"
@@ -191,7 +191,7 @@ msgstr "Cerrar"
 msgid "Closes advanced find window"
 msgstr "Cierra la ventana de búsqueda avanzada"
 
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:883
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Buscar y reemplazar datos"
@@ -246,7 +246,7 @@ msgstr ""
 msgid "Closes find and replace data window"
 msgstr "Cierra la ventana buscar y reemplazar"
 
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:881
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Saltar al byte"
@@ -702,63 +702,73 @@ msgstr "No tiene permisos para guardar el archivo."
 msgid "An error occurred while saving file!"
 msgstr "Sucedió un error al guardar el archivo."
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:61
 msgid "Signed 8 bit:"
 msgstr "8 bits con signo:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 8 bit:"
 msgstr "8 bits sin signo:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:63
 msgid "Signed 16 bit:"
 msgstr "16 bits con signo:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 16 bit:"
 msgstr "16 bits sin signo:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:65
 msgid "Signed 32 bit:"
 msgstr "32 bits con signo:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:66
 msgid "Unsigned 32 bit:"
 msgstr "32 bits sin signo:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:67
+#| msgid "Signed 16 bit:"
+msgid "Signed 64 bit:"
+msgstr "64 bits con signo:"
+
+#: ../src/hex-dialog.c:68
+#| msgid "Unsigned 16 bit:"
+msgid "Unsigned 64 bit:"
+msgstr "64 bits sin signo:"
+
+#: ../src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "32 bits en coma flotante:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "64 bits en coma flotante:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Hexadecimal:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Octal:"
 
-#: ../src/hex-dialog.c:69
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "Binario:"
 
-#: ../src/hex-dialog.c:207
+#: ../src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "Mostrar decodificación little endian"
 
-#: ../src/hex-dialog.c:214
+#: ../src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Mostrar unsigned y float como hexadecimal"
 
-#: ../src/hex-dialog.c:220
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Longitud del flujo:"
 
-#: ../src/hex-dialog.c:243
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "FIXME: no hay función de conversión"
 
