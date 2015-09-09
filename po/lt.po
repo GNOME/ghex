@@ -2,24 +2,24 @@
 # Copyright (C) 2011 ghex's COPYRIGHT HOLDER
 # This file is distributed under the same license as the ghex package.
 # Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2011, 2012.
-# Aurimas Černius <aurisc4@gmail.com>, 2013.
+# Aurimas Černius <aurisc4@gmail.com>, 2013, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-15 17:40+0000\n"
-"PO-Revision-Date: 2013-01-29 22:56+0200\n"
+"POT-Creation-Date: 2015-09-09 05:31+0000\n"
+"PO-Revision-Date: 2015-09-09 17:09+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
-"Language: \n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
 #: ../src/ghex-window.c:1100
@@ -34,7 +34,7 @@ msgstr "Šešioliktainis redaktorius"
 msgid "Inspect and edit binary files"
 msgstr "Peržiūrėti ir redaguoti dvejetainius failus"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
 msgstr "dvejetainė;derinimas;"
@@ -107,7 +107,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "KLAIDA"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:885
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Surasti duomenis"
@@ -189,7 +189,7 @@ msgstr "Užverti"
 msgid "Closes advanced find window"
 msgstr "Užveria papildomą paieškos langą"
 
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:883
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Surasti ir pakeisti"
@@ -242,7 +242,7 @@ msgstr "Pakeisti visus rastus žodžius "
 msgid "Closes find and replace data window"
 msgstr "Užveria paieškos ir keitimo langą"
 
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:881
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Peršokti į baitą"
@@ -701,63 +701,73 @@ msgstr "Neturite teisių išsaugoti failą!"
 msgid "An error occurred while saving file!"
 msgstr "Klaida bandant išsaugoti failą!"
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:61
 msgid "Signed 8 bit:"
 msgstr "8 bitai su ženklu:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 8 bit:"
 msgstr "8 bitai be ženklo:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:63
 msgid "Signed 16 bit:"
 msgstr "16 bitų su ženklu:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 16 bit:"
 msgstr "16 bitų be ženklo:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:65
 msgid "Signed 32 bit:"
 msgstr "32 bitų su ženklu:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:66
 msgid "Unsigned 32 bit:"
 msgstr "32 bitų be ženklo:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:67
+#| msgid "Signed 16 bit:"
+msgid "Signed 64 bit:"
+msgstr "64 bitų su ženklu:"
+
+#: ../src/hex-dialog.c:68
+#| msgid "Unsigned 16 bit:"
+msgid "Unsigned 64 bit:"
+msgstr "64 bitų be ženklo:"
+
+#: ../src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "32 bitų slankaus kablelio:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "64 bitų slankaus kablelio:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Šešioliktainis:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Aštuntainis:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "Dvejetainis:"
 
-#: ../src/hex-dialog.c:204
+#: ../src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "Rodyti didėjančio reikšmingumo (little endian) dekodavimą"
 
-#: ../src/hex-dialog.c:211
+#: ../src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Rodyti be ženklo ir slankaus kablelio kaip šešioliktainius"
 
-#: ../src/hex-dialog.c:217
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Srauto ilgis:"
 
-#: ../src/hex-dialog.c:239
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "IŠTAISYK: nėra konvertavimo funkcijos"
 
