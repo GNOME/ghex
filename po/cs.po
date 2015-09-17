@@ -8,15 +8,15 @@
 # Miloslav Trmac <mitr@volny.cz>, 2004.
 # Lucas Lommer <llommer@svn.gnome.org>, 2009. (just an update).
 # Petr Kovar <pknbe@volny.cz>, 2010
-# Marek Černocký <marek@manet.cz>, 2010, 2011, 2012, 2013.
+# Marek Černocký <marek@manet.cz>, 2010, 2011, 2012, 2013, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-15 17:40+0000\n"
-"PO-Revision-Date: 2013-01-21 21:57+0100\n"
+"POT-Creation-Date: 2015-09-17 05:34+0000\n"
+"PO-Revision-Date: 2015-09-17 09:58+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -39,7 +39,7 @@ msgstr "Hexadecimálních editor"
 msgid "Inspect and edit binary files"
 msgstr "Zkoumat a upravovat obsah souborů"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
 msgstr "binární soubor;ladění;"
@@ -112,7 +112,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "CHYBA"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:885
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Hledání dat"
@@ -194,7 +194,7 @@ msgstr "Zavřít"
 msgid "Closes advanced find window"
 msgstr "Zavře okno pro pokročilého hledání"
 
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:883
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Hledání a nahrazení dat"
@@ -248,7 +248,7 @@ msgstr "Nahradí všechny výskyty hledaného řetězce řetězcem pro nahrazen�
 msgid "Closes find and replace data window"
 msgstr "Zavře okno hledání a nahrazování dat"
 
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:881
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Přeskočit na bajt"
@@ -707,63 +707,71 @@ msgstr "Nemáte oprávnění k uložení souboru!"
 msgid "An error occurred while saving file!"
 msgstr "Během ukládání souboru se vyskytla chyba!"
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:61
 msgid "Signed 8 bit:"
 msgstr "8 bitů se znaménkem:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 8 bit:"
 msgstr "8 bitů bez znaménka:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:63
 msgid "Signed 16 bit:"
 msgstr "16 bitů se znaménkem:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 16 bit:"
 msgstr "16 bitů bez znaménka:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:65
 msgid "Signed 32 bit:"
 msgstr "32 bitů se znaménkem:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:66
 msgid "Unsigned 32 bit:"
 msgstr "32 bitů bez znaménka:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:67
+msgid "Signed 64 bit:"
+msgstr "64 bitů se znaménkem:"
+
+#: ../src/hex-dialog.c:68
+msgid "Unsigned 64 bit:"
+msgstr "64 bitů bez znaménka:"
+
+#: ../src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "32 bitů desetinné:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "64 bitů desetinné:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Šestnáctkově:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Osmičkově:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "Dvojkově:"
 
-#: ../src/hex-dialog.c:204
+#: ../src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "Zobrazit v kódování little endian"
 
-#: ../src/hex-dialog.c:211
+#: ../src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Zobrazit plovoucí hodnoty a bez znaménka šestnáctkově"
 
-#: ../src/hex-dialog.c:217
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Délka proudu:"
 
-#: ../src/hex-dialog.c:239
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "OPRAVIT: chybí funkce pro převod"
 
