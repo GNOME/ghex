@@ -9,25 +9,26 @@
 # simos: put buffer=entamieftis, dunno what for "modal"
 # simos: 107 messages, 26Mar2001, updated translation of Spyros - Spyros did all.
 # Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2013.
+# Vangelis Skarmoutsos <skarmoutsosv@gmail.com>, 2015.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex 1.2\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&k"
-"eywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-05-27 12:46+0000\n"
-"PO-Revision-Date: 2013-06-28 17:01+0300\n"
-"Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
-"Language-Team: team@gnome.gr\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&keywords=I18N"
+"+L10N&component=general\n"
+"POT-Creation-Date: 2015-09-29 17:48+0000\n"
+"PO-Revision-Date: 2015-09-30 11:07+0300\n"
+"Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
+"Language-Team: Ελληνικά <team@gnome.gr>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
-#: ../src/ghex-window.c:1100
+#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664 ../src/ghex-window.c:1100
 msgid "GHex"
 msgstr "GHex"
 
@@ -37,12 +38,12 @@ msgstr "Δεκαεξαδικός επεξεργαστής"
 
 #: ../data/ghex.desktop.in.h:3
 msgid "Inspect and edit binary files"
-msgstr "Έλεγχος και επεξεργασία δυαδικών αρχείων"
+msgstr "Ελέγξτε και επεξεργαστείτε εκτελέσιμα αρχεία"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
-msgstr "δυαδικό;αποσφαλμάτωση;"
+msgstr "δυαδικό;αποσφαλμάτωση;εκτελέσιμο;binary;debug;"
 
 #: ../src/chartable.c:147
 msgid "ASCII"
@@ -104,18 +105,16 @@ msgstr "Λήψη τιμής δρομέα"
 
 #: ../src/converter.c:279
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
-msgstr ""
-"Δέχεται την τιμή στον δρομέα σε δυαδική, οκταδική, δεκαδική, δεκαεξαδική και "
-"ASCII"
+msgstr "Δέχεται την τιμή στον δρομέα σε δυαδική, οκταδική, δεκαδική, δεκαεξαδική και ASCII"
 
 #: ../src/converter.c:419
 msgid "ERROR"
 msgstr "ΣΦΑΛΜΑ"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:885
 #, c-format
 msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): Αναζήτηση Δεδομένων"
+msgstr "GHex (%s): Αναζήτηση δεδομένων"
 
 #: ../src/findreplace.c:101 ../src/findreplace.c:161 ../src/findreplace.c:359
 msgid "Find String"
@@ -143,7 +142,7 @@ msgstr "Εύρεση επομένου"
 
 #: ../src/findreplace.c:139 ../src/findreplace.c:415
 msgid "Finds the next occurrence of the search string"
-msgstr "Εύρεση της επόμενης εμφάνισης της ζητούμενης συμβολοσειράς"
+msgstr "Εύρεση της επόμενης αντιστοίχισης της ζητούμενης συμβολοσειράς"
 
 #: ../src/findreplace.c:140
 msgid "Find previous"
@@ -151,7 +150,7 @@ msgstr "Εύρεση προηγούμενου"
 
 #: ../src/findreplace.c:140
 msgid "Finds the previous occurrence of the search string "
-msgstr "Εύρεση προηγούμενης εμφάνισης της ζητούμενης συμβολοσειράς "
+msgstr "Εύρεση προηγούμενης αντιστοίχισης της ζητούμενης συμβολοσειράς "
 
 #: ../src/findreplace.c:141 ../src/findreplace.c:418 ../src/findreplace.c:469
 msgid "Cancel"
@@ -192,9 +191,9 @@ msgstr "Κλείσιμο"
 
 #: ../src/findreplace.c:309
 msgid "Closes advanced find window"
-msgstr "Κλείνει το προχωρημένο παράθυρο εύρεσης"
+msgstr "Κλείνει το προχωρημένο παράθυρο αναζήτησης"
 
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:883
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Εύρεση και αντικατάσταση δεδομένων"
@@ -221,7 +220,7 @@ msgstr "Αντικατάσταση δεδομένων"
 
 #: ../src/findreplace.c:414
 msgid "Enter the hex data or ASCII data to replace with"
-msgstr "Εισάγετε τα δεκαεξαδικά δεδομένα ή δεδομένα ASCII για αντικατάσταση"
+msgstr "Εισάγετε τα δεκαεξαδικά ή ASCII δεδομένα για αντικατάσταση"
 
 #: ../src/findreplace.c:415
 msgid "Find next"
@@ -233,35 +232,33 @@ msgstr "Αντικατάσταση"
 
 #: ../src/findreplace.c:416
 msgid "Replaces the search string with the replace string"
-msgstr ""
-"Αντικαθιστά τη συμβολοσειρά αναζήτησης με τη συμβολοσειρά αντικατάστασης"
+msgstr "Αντικαθιστά τη συμβολοσειρά αναζήτησης με τη συμβολοσειρά αντικατάστασης"
 
 #: ../src/findreplace.c:417
 msgid "Replace All"
-msgstr "Αντικατάσταση Όλων"
+msgstr "Αντικατάσταση όλων"
 
 #: ../src/findreplace.c:417
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr ""
-"Αντικαθιστά όλες τις εμφανίσεις της συμβολοσειράς αναζήτησης με τη "
-"συμβολοσειρά αντικατάστασης"
+"Αντικαθιστά όλες τις εμφανίσεις της συμβολοσειράς αναζήτησης με τη συμβολοσειρά αντικατάστασης"
 
 #: ../src/findreplace.c:418
 msgid "Closes find and replace data window"
 msgstr "Κλείνει το παράθυρο εύρεσης και αντικατάστασης δεδομένων"
 
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:881
 #, c-format
 msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): Μετάβαση στην ψηφιολέξη"
+msgstr "GHex (%s): Μετάβαση σε byte"
 
 #: ../src/findreplace.c:467
 msgid "Jump to byte"
-msgstr "Μετάβαση στην ψηφιολέξη"
+msgstr "Μετάβαση σε byte"
 
 #: ../src/findreplace.c:467
 msgid "Enter the byte to jump to"
-msgstr "Εισάγετε την ψηφιολέξη για μετάβαση"
+msgstr "Εισάγετε το byte στο οποίο θα μεταβείτε"
 
 #: ../src/findreplace.c:468
 msgid "OK"
@@ -269,11 +266,11 @@ msgstr "Εντάξει"
 
 #: ../src/findreplace.c:468
 msgid "Jumps to the specified byte"
-msgstr "Μεταβαίνει στην συγκεκριμένη ψηφιολέξη"
+msgstr "Μεταβαίνει στο συγκεκριμένο byte"
 
 #: ../src/findreplace.c:469
 msgid "Closes jump to byte window"
-msgstr "Κλείνει τη μετάβαση στο παράθυρο ψηφιολέξης"
+msgstr "Κλείνει το παράθυρο της μετάβασης σε byte"
 
 #: ../src/findreplace.c:532 ../src/findreplace.c:566 ../src/findreplace.c:673
 msgid "There is no active document to search!"
@@ -282,7 +279,7 @@ msgstr "Δεν υπάρχει ενεργό έγγραφο για αναζήτη�
 #: ../src/findreplace.c:539 ../src/findreplace.c:573 ../src/findreplace.c:680
 #: ../src/findreplace.c:714 ../src/findreplace.c:759
 msgid "There is no string to search for!"
-msgstr "Δεν υπάρχει καμιά συμβολοσειρά για αναζήτηση!"
+msgstr "Δεν υπάρχει συμβολοσειρά για αναζήτηση!"
 
 #: ../src/findreplace.c:551 ../src/findreplace.c:689 ../src/findreplace.c:879
 msgid "End Of File reached"
@@ -291,7 +288,7 @@ msgstr "Έφτασε το τέλος του αρχείου"
 #: ../src/findreplace.c:552 ../src/findreplace.c:585 ../src/findreplace.c:688
 #: ../src/findreplace.c:880 ../src/findreplace.c:903
 msgid "String was not found!\n"
-msgstr "Δε βρέθηκε συμβολοσειρά!\n"
+msgstr "Δε βρέθηκε η συμβολοσειρά!\n"
 
 #: ../src/findreplace.c:584 ../src/findreplace.c:902
 msgid "Beginning Of File reached"
@@ -345,8 +342,8 @@ msgstr "Δεν βρέθηκαν εμφανίσεις."
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
-msgstr[0] "Αντικαταστάθηκε %d περίπτωση."
-msgstr[1] "Αντικαταστάθηκαν %d περιπτώσεις."
+msgstr[0] "Αντικαταστάθηκε %d αντιστοιχία."
+msgstr[1] "Αντικαταστάθηκαν %d αντιστοιχίες."
 
 #: ../src/findreplace.c:823
 msgid "No string to search for!"
@@ -446,7 +443,7 @@ msgstr "Εκτύπωση του τρέχοντος αρχείου"
 
 #: ../src/ghex-window.c:366
 msgid "Print Previe_w..."
-msgstr "Εκτύπωση _προεπισκόπησης..."
+msgstr "_Προεπισκόπηση εκτύπωσης..."
 
 #: ../src/ghex-window.c:367
 msgid "Preview printed data"
@@ -535,7 +532,7 @@ msgstr "Αντικατάσταση συμβολοσειράς"
 
 #: ../src/ghex-window.c:401
 msgid "_Goto Byte..."
-msgstr "_Μετάβαση στην ψηφιολέξη..."
+msgstr "_Μετάβαση σε byte..."
 
 #: ../src/ghex-window.c:402
 msgid "Jump to a certain position"
@@ -595,7 +592,7 @@ msgstr "Εισαγωγή/αντικατάσταση δεδομένων"
 #. Windows menu
 #: ../src/ghex-window.c:433
 msgid "Character _Table"
-msgstr "_Πίνακας Χαρακτήρων"
+msgstr "_Πίνακας χαρακτήρων"
 
 #: ../src/ghex-window.c:434
 msgid "Show the character table"
@@ -619,11 +616,11 @@ msgstr "Εμφάνιση του διαλόγου μετατροπής τύπου
 
 #: ../src/ghex-window.c:446 ../src/ui.c:48
 msgid "_Bytes"
-msgstr "_Ψηφιολέξεις"
+msgstr "_Bytes"
 
 #: ../src/ghex-window.c:447
 msgid "Group data by 8 bits"
-msgstr "Ομαδοποίηση δεδομένων ανά 8 δυαδικά"
+msgstr "Ομαδοποίηση δεδομένων ανά 8 bit"
 
 #: ../src/ghex-window.c:448 ../src/ui.c:49
 msgid "_Words"
@@ -631,7 +628,7 @@ msgstr "_Λέξεις"
 
 #: ../src/ghex-window.c:449
 msgid "Group data by 16 bits"
-msgstr "Ομαδοποίηση δεδομένων ανά 16 δυαδικά"
+msgstr "Ομαδοποίηση δεδομένων ανά 16 bit"
 
 #: ../src/ghex-window.c:450 ../src/ui.c:50
 msgid "_Longwords"
@@ -639,7 +636,7 @@ msgstr "Με_γάλες λέξεις"
 
 #: ../src/ghex-window.c:451
 msgid "Group data by 32 bits"
-msgstr "Ομαδοποίηση δεδομένων ανά 32 δυαδικά"
+msgstr "Ομαδοποίηση δεδομένων ανά 32 bit"
 
 #: ../src/ghex-window.c:785
 #, c-format
@@ -649,7 +646,7 @@ msgstr "Μετατόπιση: %s"
 #: ../src/ghex-window.c:788
 #, c-format
 msgid "; %s bytes from %s to %s selected"
-msgstr "; %s ψηφιολέξεις από %s σε %s επιλέχτηκαν"
+msgstr "; %s bytes από %s σε %s επιλέχτηκαν"
 
 #: ../src/ghex-window.c:1060
 #, c-format
@@ -708,65 +705,71 @@ msgstr "Δεν έχετε τα απαραίτητα δικαιώματα για 
 msgid "An error occurred while saving file!"
 msgstr "Σφάλμα κατά την αποθήκευση του αρχείου!"
 
-#: ../src/hex-dialog.c:59
-msgid "Signed 8 bit:"
-msgstr "Με υπογραφή 8 δυαδικών:"
-
-#: ../src/hex-dialog.c:60
-msgid "Unsigned 8 bit:"
-msgstr "Χωρίς υπογραφή 8 δυαδικών:"
-
 #: ../src/hex-dialog.c:61
-msgid "Signed 16 bit:"
-msgstr "Με υπογραφή 16 δυαδικών:"
+msgid "Signed 8 bit:"
+msgstr "Με πρόσημο 8 bit:"
 
 #: ../src/hex-dialog.c:62
-msgid "Unsigned 16 bit:"
-msgstr "Χωρίς υπογραφή 16 δυαδικών:"
+msgid "Unsigned 8 bit:"
+msgstr "Χωρίς πρόσημο 8 bit:"
 
 #: ../src/hex-dialog.c:63
-msgid "Signed 32 bit:"
-msgstr "Με υπογραφή 32 δυαδικών:"
+msgid "Signed 16 bit:"
+msgstr "Με πρόσημο 16 bit:"
 
 #: ../src/hex-dialog.c:64
-msgid "Unsigned 32 bit:"
-msgstr "Χωρίς υπογραφή 32 δυαδικών:"
+msgid "Unsigned 16 bit:"
+msgstr "Χωρίς πρόσημο 16 bit:"
 
 #: ../src/hex-dialog.c:65
-msgid "Float 32 bit:"
-msgstr "Αριθμός κινητής υποδιαστολής 32 δυαδικών:"
+msgid "Signed 32 bit:"
+msgstr "Με πρόσημο 32 bit:"
 
 #: ../src/hex-dialog.c:66
-msgid "Float 64 bit:"
-msgstr "Αριθμός κινητής υποδιαστολής 64 δυαδικών:"
+msgid "Unsigned 32 bit:"
+msgstr "Χωρίς πρόσημο 32 bit:"
 
 #: ../src/hex-dialog.c:67
+msgid "Signed 64 bit:"
+msgstr "Με πρόσημο 64 bit:"
+
+#: ../src/hex-dialog.c:68
+msgid "Unsigned 64 bit:"
+msgstr "Χωρίς πρόσημο 64 bit:"
+
+#: ../src/hex-dialog.c:69
+msgid "Float 32 bit:"
+msgstr "Κινητής υποδιαστολής 32 bit:"
+
+#: ../src/hex-dialog.c:70
+msgid "Float 64 bit:"
+msgstr "Κινητής υποδιαστολής 64 bit:"
+
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Δεκαεξαδικό:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Οκταδικό:"
 
-#: ../src/hex-dialog.c:69
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "Δυαδικό:"
 
-#: ../src/hex-dialog.c:207
-msgid "Show little endian decoding"
-msgstr "Εμφάνιση αποκωδικοποίησης μικρότερη τελική"
-
 #: ../src/hex-dialog.c:214
-msgid "Show unsigned and float as hexadecimal"
-msgstr ""
-"Εμφάνιση αριθμού χωρίς πρόσημο και αριθμού κινητής υποδιαστολής ως "
-"δεκαεξαδικού"
+msgid "Show little endian decoding"
+msgstr "Εμφάνιση αποκωδικοποίησης little endian"
 
-#: ../src/hex-dialog.c:220
+#: ../src/hex-dialog.c:221
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Εμφάνιση αριθμών (χωρίς πρόσημο/κινητής υποδιαστολής), ως δεκαεξαδικούς"
+
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Μήκος ροής:"
 
-#: ../src/hex-dialog.c:243
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "ΔΙΟΡΘΩΣΗ: χωρίς συνάρτηση μετατροπής"
 
@@ -821,8 +824,8 @@ msgid ""
 "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "%s\n"
-"Εκτελέστε '%s --help' για να δείτε μια πλήρη λίστα με τις διαθέσιμες "
-"επιλογές γραμμής εντολών.\n"
+"Εκτελέστε '%s --help' για να δείτε μια πλήρη λίστα με τις διαθέσιμες επιλογές γραμμής "
+"εντολών.\n"
 
 #: ../src/main.c:133 ../src/main.c:146
 #, c-format
@@ -839,7 +842,7 @@ msgstr "_Μέγιστος αριθμός επιπέδων αναίρεσης:"
 
 #: ../src/preferences.c:121
 msgid "Undo levels"
-msgstr "Αναίρεση επιπέδων"
+msgstr "Επίπεδα αναίρεσης"
 
 #: ../src/preferences.c:121
 msgid "Select maximum number of undo levels"
@@ -936,7 +939,7 @@ msgstr "Επιλέξτε μέγεθος πλαισίου (σε αριθμό γρ
 
 #: ../src/preferences.c:322
 msgid "lines (0 for no box)"
-msgstr "γραμμές (0 για χωρίς πλαίσιο)"
+msgstr "γραμμές (0 για κανένα πλαίσιο)"
 
 #: ../src/preferences.c:329
 msgid "Printing"
@@ -978,39 +981,35 @@ msgstr "ASCII δεδομένα"
 
 #: ../src/ui.c:153
 msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version."
+"This program is free software; you can redistribute it and/or modify it under the terms of "
+"the GNU General Public License as published by the Free Software Foundation; either version 2 "
+"of the License, or (at your option) any later version."
 msgstr ""
-"Αυτό το πρόγραμμα είναι ελεύθερο λογισμικό· επιτρέπεται η αναδιανομή ή/και η "
-"τροποποίησή του υπό τους όρους της Γενικής Άδειας Δημόσιας Χρήσης GNU όπως "
-"αυτή δημοσιεύεται από το Ίδρυμα Ελεύθερου Λογισμικού· είτε της έκδοσης 2 της "
-"άδειας, είτε (κατ' επιλογήν) οποιασδήποτε μεταγενέστερης έκδοσης."
+"Αυτό το πρόγραμμα είναι ελεύθερο λογισμικό· επιτρέπεται η αναδιανομή ή/και η τροποποίησή του "
+"υπό τους όρους της Γενικής Άδειας Δημόσιας Χρήσης GNU όπως αυτή δημοσιεύεται από το Ίδρυμα "
+"Ελεύθερου Λογισμικού· είτε της έκδοσης 2 της άδειας, είτε (κατ' επιλογήν) οποιασδήποτε "
+"μεταγενέστερης έκδοσης."
 
 #: ../src/ui.c:157
 msgid ""
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details."
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; "
+"without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  "
+"See the GNU General Public License for more details."
 msgstr ""
-"Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ "
-"ΚΑΜΙΑ ΑΠΟΛΥΤΩΣ ΕΓΓΥΗΣΗ· χωρίς ακόμη και την έμμεση εγγύηση ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ "
-"ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Δείτε για περισσότερες λεπτομέρειες "
-"τη Γενική Άδεια Δημόσιας Χρήσης GNU."
+"Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΑΠΟΛΥΤΩΣ "
+"ΕΓΓΥΗΣΗ· χωρίς ακόμη και την έμμεση εγγύηση ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ "
+"ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Δείτε για περισσότερες λεπτομέρειες τη Γενική Άδεια Δημόσιας Χρήσης GNU."
 
 #: ../src/ui.c:161
 msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program; if not, write to the Free Software Foundation, Inc., 51 "
-"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+"You should have received a copy of the GNU General Public License along with this program; if "
+"not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, "
+"MA  02110-1301  USA"
 msgstr ""
-"Θα πρέπει να έχετε λάβει ένα αντίγραφο της Γενικής Άδειας Δημόσιας Χρήσης "
-"GNU (GNU General Public License) μαζί με αυτό το πρόγραμμα. Αν όχι, "
-"επικοινωνήστε γραπτώς με το Ίδρυμα Ελεύθερου Λογισμικού (Free Software "
-"Foundation, Inc.), 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, "
-"USA"
+"Θα πρέπει να έχετε λάβει ένα αντίγραφο της Γενικής Άδειας Δημόσιας Χρήσης GNU (GNU General "
+"Public License) μαζί με αυτό το πρόγραμμα. Αν όχι, επικοινωνήστε γραπτώς με το Ίδρυμα "
+"Ελεύθερου Λογισμικού (Free Software Foundation, Inc.), 51 Franklin Street, Fifth Floor, "
+"Boston, MA 02110-1301, USA"
 
 #. Translators: these two strings here indicate the copyright time span,
 #. e.g. 1998-2012.
@@ -1020,28 +1019,29 @@ msgstr "Πνευματικά δικαιώματα © %Id–%Id Οι συγγρα
 
 #: ../src/ui.c:177
 msgid "A binary file editor"
-msgstr "Ένας δυαδικός επεξεργαστής αρχείων"
+msgstr "Ένας επεξεργαστής εκτελέσιμων αρχείων"
 
 #: ../src/ui.c:183
-#| msgid "About"
 msgid "About GHex"
 msgstr "Σχετικά με το GHex"
 
 #: ../src/ui.c:184
 msgid "translator-credits"
 msgstr ""
-"Ελληνική μεταφραστική ομάδα του GNOME\n"
-" Δημήτρης Σπίγγος <dmtrs32@gmail.com>\n"
-"Για περισσότερες λεπτομέρειες δείτε htto://gnome.gr"
+"Ελληνική μεταφραστική ομάδα GNOME\n"
+"Δημήτρης Σπίγγος <dmtrs32@gmail.com>\n"
+"Βαγγέλης Σκαρμούτσος <skarmoutsosv@gmail.com>\n"
+"\n"
+"Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
+"http://gnome.gr"
 
 #: ../src/ui.c:187
-#| msgid "Hex (8 bit)"
 msgid "GHex Website"
 msgstr "Ιστότοπος GHex"
 
 #: ../src/ui.c:321
 msgid "Select a file to open"
-msgstr "Επιλέξτε αρχείο για ανάγνωση"
+msgstr "Επιλέξτε αρχεία για ανάγνωση"
 
 #: ../src/ui.c:353
 #, c-format
@@ -1058,7 +1058,7 @@ msgstr "Επιλέξτε διαδρομή και όνομα αρχείου γι�
 
 #: ../src/ui.c:458
 msgid "You need to specify a base name for the HTML files."
-msgstr "Καθορίστε όνομα βάσης για τα αρχεία HTML."
+msgstr "Πρέπει να καθορίσετε ένα όνομα βάσης για τα αρχεία HTML."
 
 #: ../src/ui.c:469 ../src/ui.c:495
 msgid "You don't have the permission to write to the selected path.\n"
@@ -1069,7 +1069,7 @@ msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
 msgstr ""
-"Η αποθήκευση του HTML θα αντικαταστήσει μερικά αρχεία.\n"
+"Η αποθήκευση σε HTML θα αντικαταστήσει μερικά αρχεία.\n"
 "Θέλετε να συνεχίσετε;"
 
 #: ../src/ui.c:749
@@ -1264,11 +1264,8 @@ msgstr "Επαναφορά ενδιάμεσης μνήμης από το αρχ�
 
 # Possibly revise translation of "dial" (don't like it!)
 #~ msgid ""
-#~ "A quick hack to show the amount of space free on mounted file systems "
-#~ "uitilizing a dial."
-#~ msgstr ""
-#~ "Πρόχειρο πρόγραμμα για εμφάνιση ελεύθερου χώρου στους δίσκους, με "
-#~ "στροφικό δείκτη."
+#~ "A quick hack to show the amount of space free on mounted file systems uitilizing a dial."
+#~ msgstr "Πρόχειρο πρόγραμμα για εμφάνιση ελεύθερου χώρου στους δίσκους, με στροφικό δείκτη."
 
 #~ msgid "Don't search subdirectories"
 #~ msgstr "Όχι αναζήτηση σε υποκαταλόγους"
@@ -1374,24 +1371,17 @@ msgstr "Επαναφορά ενδιάμεσης μνήμης από το αρχ�
 #~ msgid "can't open config file \"%s\""
 #~ msgstr "άνοιγμα αρχείου ρυθμίσεων \"%s\" αδύνατο"
 
-#~ msgid ""
-#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-#~ msgstr ""
-#~ "άνοιγμα αρχείου ρυθμίσεων \"./gstripchart.conf\", \"%s\", \"%s\", ή \"%s"
-#~ "\" αδύνατο"
+#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+#~ msgstr "άνοιγμα αρχείου ρυθμίσεων \"./gstripchart.conf\", \"%s\", \"%s\", ή \"%s\" αδύνατο"
 
 #~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-#~ msgstr ""
-#~ "άνοιγμα αρχείου ρυθμίσεων \"./gstripchart.conf\", \"%s\", \"%s\", ή \"%s"
-#~ "\" αδύνατο"
+#~ msgstr "άνοιγμα αρχείου ρυθμίσεων \"./gstripchart.conf\", \"%s\", \"%s\", ή \"%s\" αδύνατο"
 
 #~ msgid "unrecognized color: %s"
 #~ msgstr "άγνωστο χρώμα: %s"
 
 #~ msgid "scale must be either \"log\" or \"linear\""
-#~ msgstr ""
-#~ "η κλίμακα πρέπει να είναι είτε \"log\" (λογαριθμική) ή \"linear"
-#~ "\" (γραμμική)"
+#~ msgstr "η κλίμακα πρέπει να είναι είτε \"log\" (λογαριθμική) ή \"linear\" (γραμμική)"
 
 #~ msgid "no equation found"
 #~ msgstr "δε βρέθηκε εξίσωση"
@@ -1403,16 +1393,15 @@ msgstr "Επαναφορά ενδιάμεσης μνήμης από το αρχ�
 #~ msgstr "Πνευματικά δικαιώματα 1998,99 John Kodis"
 
 #~ msgid ""
-#~ "The GNOME stripchart program plots various user-specified parameters as a "
-#~ "function of time.  Its main use is to chart system performance parameters "
-#~ "such as CPU load, CPU utilization, network traffic levels, and the like.  "
-#~ "Other more ingenious uses are left as an exercise for the interested user."
+#~ "The GNOME stripchart program plots various user-specified parameters as a function of "
+#~ "time.  Its main use is to chart system performance parameters such as CPU load, CPU "
+#~ "utilization, network traffic levels, and the like.  Other more ingenious uses are left as "
+#~ "an exercise for the interested user."
 #~ msgstr ""
-#~ "Το πρόγραμμα γραφημάτων του GNOME απεικονίζει δίαφορες παραμέτρους ως "
-#~ "συνάρτηση του χρόνου. Η βασική λειτουργία του είναι η απεικόνιση διαφόρων "
-#~ "παραμέτρων της απόδοσης του συστήματος, όπως φόρτος CPU load, αξιοποίηση "
-#~ "CPU, επίπεδα κίνησης δικτύου, και τα σχετικά. Άλλες ευφυέστερες χρήσεις "
-#~ "αφήνονται ως άσκηση για τους ενδιαφερόμενους χρήστες."
+#~ "Το πρόγραμμα γραφημάτων του GNOME απεικονίζει δίαφορες παραμέτρους ως συνάρτηση του "
+#~ "χρόνου. Η βασική λειτουργία του είναι η απεικόνιση διαφόρων παραμέτρων της απόδοσης του "
+#~ "συστήματος, όπως φόρτος CPU load, αξιοποίηση CPU, επίπεδα κίνησης δικτύου, και τα σχετικά. "
+#~ "Άλλες ευφυέστερες χρήσεις αφήνονται ως άσκηση για τους ενδιαφερόμενους χρήστες."
 
 #~ msgid "Info about the striphart program"
 #~ msgstr "Πληροφορίες για το πρόγραμμα γραφημάτων"
@@ -1941,11 +1930,8 @@ msgstr "Επαναφορά ενδιάμεσης μνήμης από το αρχ�
 #~ msgid "Are you sure you want to reboot the system?"
 #~ msgstr "Είσαστε βέβαιοι ότι θέλετε να επανεκιννήσετε τον υπολογιστή;"
 
-#~ msgid ""
-#~ "You must be the super-user (root) to shut down or restart the computer."
-#~ msgstr ""
-#~ "Μόνο ο υπερχρήστης (root) επιτρέπεται να κλείσει ή επανεκκινήσει τον "
-#~ "υπολογιστή."
+#~ msgid "You must be the super-user (root) to shut down or restart the computer."
+#~ msgstr "Μόνο ο υπερχρήστης (root) επιτρέπεται να κλείσει ή επανεκκινήσει τον υπολογιστή."
 
 #~ msgid "Shutdown or Reboot"
 #~ msgstr "Τερματισμός ή Επανεκκίνηση Υπολογιστή"
@@ -1957,8 +1943,7 @@ msgstr "Επαναφορά ενδιάμεσης μνήμης από το αρχ�
 #~ "Click OK to shutdown or reboot. You will lose\n"
 #~ "any unsaved information in open applications."
 #~ msgstr ""
-#~ "Κάντε κλίκ στο Εντάξει για να κλείσετε ή να επανεκκινήσετε τον "
-#~ "υπολογιστή.\n"
+#~ "Κάντε κλίκ στο Εντάξει για να κλείσετε ή να επανεκκινήσετε τον υπολογιστή.\n"
 #~ "Οι μη αποθηκευμένες αλλαγές σε ανοιχτά προγράμματα θα χαθούν."
 
 #~ msgid "Revert to Defaults"
