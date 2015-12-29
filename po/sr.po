@@ -1,15 +1,15 @@
 # Serbian translation of ghex
-# Courtesy of Prevod.org team (http://www.prevod.org/) -- 2003—2012.
+# Courtesy of Prevod.org team (http://www.prevod.org/) -- 2003—2015.
 # This file is distributed under the same license as the ghex package.
 # Maintainer: Слободан Средојевић <ssl@uns.ns.ac.yu>
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011, 2012, 2013.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011—2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.2.1\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&k"
-"eywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-15 17:40+0000\n"
-"PO-Revision-Date: 2013-02-20 19:48+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=ghex&ke"
+"ywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-12-29 07:05+0000\n"
+"PO-Revision-Date: 2015-12-29 11:47+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -33,7 +33,7 @@ msgstr "Хексадецимални уређивач"
 msgid "Inspect and edit binary files"
 msgstr "Прегледајте и измените извршне датотеке"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
 msgstr "извршни;прочишћавање;уклањање грешака;"
@@ -106,7 +106,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "ГРЕШКА"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:885
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "Гхекс (%s): пронађи податак"
@@ -188,7 +188,7 @@ msgstr "Затвори"
 msgid "Closes advanced find window"
 msgstr "Затвара напредни прозор тражења"
 
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:883
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "Гхекс (%s): пронађи и замени податак"
@@ -241,7 +241,7 @@ msgstr "Врши замену два низа знакова на нивоу ц�
 msgid "Closes find and replace data window"
 msgstr "Затвара пронажи и замени прозор"
 
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:881
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "Гхекс (%s): Скочи на бајт"
@@ -702,63 +702,73 @@ msgstr "Немате права да снимите датотеку!"
 msgid "An error occurred while saving file!"
 msgstr "Дошло је до грешке приликом чувања датотеке!"
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:61
 msgid "Signed 8 bit:"
 msgstr "Означено 8‑битно:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 8 bit:"
 msgstr "Неозначено 8‑битно:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:63
 msgid "Signed 16 bit:"
 msgstr "Означено 16‑битно:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 16 bit:"
 msgstr "Неозначено 16‑битно:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:65
 msgid "Signed 32 bit:"
 msgstr "Означено 32‑битно:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:66
 msgid "Unsigned 32 bit:"
 msgstr "Неозначено 32‑битно:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:67
+#| msgid "Signed 16 bit:"
+msgid "Signed 64 bit:"
+msgstr "Означено 64‑битно:"
+
+#: ../src/hex-dialog.c:68
+#| msgid "Unsigned 16 bit:"
+msgid "Unsigned 64 bit:"
+msgstr "Неозначено 64‑битно:"
+
+#: ../src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "Покретно 32‑битно:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "Покретно 64‑битно:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Хексадецимално:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Октално:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "Бинарно:"
 
-#: ../src/hex-dialog.c:204
+#: ../src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "Прикажи декодирање у малом поретку"
 
-#: ../src/hex-dialog.c:211
+#: ../src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Прикажи неозначене и покретне као хексадецималне"
 
-#: ../src/hex-dialog.c:217
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Дужина притока:"
 
-#: ../src/hex-dialog.c:239
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "ИСПРАВИМЕ: нема функције за конверзију"
 
