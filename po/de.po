@@ -9,7 +9,7 @@
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2004.
 # Hendrik Richter <hendrikr@gnome.org>, 2005.
 # Andre Klapper <ak-47@gmx.net>, 2007.
-# Mario Blättermann <mariobl@freenet.de>, 2008, 2011.
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2008, 2011, 2015.
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2012.
 # Wolfgang Stöggl <c72578@yahoo.de>, 2012.
 #
@@ -18,16 +18,16 @@ msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-18 18:58+0000\n"
-"PO-Revision-Date: 2014-02-02 13:10+0100\n"
-"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
+"POT-Creation-Date: 2015-12-30 07:07+0000\n"
+"PO-Revision-Date: 2015-12-30 15:27+0100\n"
+"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.5\n"
 
 #: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
 #: ../src/ghex-window.c:1100
@@ -42,7 +42,7 @@ msgstr "Hexadezimaler Editor"
 msgid "Inspect and edit binary files"
 msgstr "Inhalte von Dateien untersuchen und bearbeiten"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
 msgstr "binary;binär;Datei;debug;Fehlerbehebung;"
@@ -114,7 +114,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "FEHLER"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:885
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Daten suchen"
@@ -198,7 +198,7 @@ msgstr "Schließen"
 msgid "Closes advanced find window"
 msgstr "Schließen des Fensters zur erweiterten Suche"
 
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:883
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Daten suchen und ersetzen"
@@ -254,7 +254,7 @@ msgstr ""
 msgid "Closes find and replace data window"
 msgstr "Schließen des »Suchen und Ersetzen«-Dialogs"
 
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:881
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Zu Byte springen"
@@ -713,63 +713,71 @@ msgstr "Sie haben nicht die Berechtigung, um die Datei zu speichern!"
 msgid "An error occurred while saving file!"
 msgstr "Beim Speichern der Datei ist ein Fehler aufgetreten!"
 
-#: ../src/hex-dialog.c:59
-msgid "Signed 8 bit:"
-msgstr "Signed 8 Bit:"
-
-#: ../src/hex-dialog.c:60
-msgid "Unsigned 8 bit:"
-msgstr "Unsigned 8 Bit:"
-
 #: ../src/hex-dialog.c:61
-msgid "Signed 16 bit:"
-msgstr "Signed 16 Bit:"
+msgid "Signed 8 bit:"
+msgstr "8 Bit vorzeichenbehaftet:"
 
 #: ../src/hex-dialog.c:62
-msgid "Unsigned 16 bit:"
-msgstr "Unsigned 16 Bit:"
+msgid "Unsigned 8 bit:"
+msgstr "8 Bit vorzeichenlos:"
 
 #: ../src/hex-dialog.c:63
-msgid "Signed 32 bit:"
-msgstr "Signed 32 Bit:"
+msgid "Signed 16 bit:"
+msgstr "16 Bit vorzeichenbehaftet:"
 
 #: ../src/hex-dialog.c:64
-msgid "Unsigned 32 bit:"
-msgstr "Unsigned 32 Bit:"
+msgid "Unsigned 16 bit:"
+msgstr "16 Bit vorzeichenlos:"
 
 #: ../src/hex-dialog.c:65
+msgid "Signed 32 bit:"
+msgstr "32 Bit vorzeichenbehaftet:"
+
+#: ../src/hex-dialog.c:66
+msgid "Unsigned 32 bit:"
+msgstr "32 Bit vorzeichenlos:"
+
+#: ../src/hex-dialog.c:67
+msgid "Signed 64 bit:"
+msgstr "64 Bit vorzeichenbehaftet:"
+
+#: ../src/hex-dialog.c:68
+msgid "Unsigned 64 bit:"
+msgstr "64 Bit vorzeichenlos:"
+
+#: ../src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "32 Bit Fließkommazahl:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "64 Bit Fließkommazahl:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Hexadezimal:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Oktal:"
 
-#: ../src/hex-dialog.c:69
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "Binär:"
 
-#: ../src/hex-dialog.c:207
+#: ../src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "Anzeige als Little Endian"
 
-#: ../src/hex-dialog.c:214
+#: ../src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Unsigned und Float hexadezimal anzeigen"
 
-#: ../src/hex-dialog.c:220
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Stream-Länge:"
 
-#: ../src/hex-dialog.c:243
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "FIXME: Keine Umwandlungsfunktion"
 
@@ -1038,7 +1046,7 @@ msgstr ""
 "Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Hendrik Richter <hendrikr@gnome.org>\n"
 "Andre Klapper <ak-47@gmx.net>\n"
-"Mario Blättermann <mariobl@freenet.de>"
+"Mario Blättermann <mario.blaettermann@gmail.com>"
 
 #: ../src/ui.c:187
 msgid "GHex Website"
