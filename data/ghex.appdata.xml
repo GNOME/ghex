@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
-  <id type="desktop">ghex.desktop</id>
-  <licence>CC0</licence>
+<component type="desktop">
+  <id>ghex.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
   <name>GNOME Hex Editor</name>
+  <summary>Inspect and edit binary files</summary>
   <description>
     <p>
       GHex is a hex editor for the GNOME desktop.
@@ -15,7 +17,9 @@
     </p>
   </description>
   <screenshots>
-    <screenshot type="default">https://kalev.fedorapeople.org/ghex.png</screenshot>
+    <screenshot type="default">
+      <image>https://kalev.fedorapeople.org/ghex.png</image>
+    </screenshot>
   </screenshots>
   <kudos>
     <kudo>HiDpiIcon</kudo>
@@ -23,5 +27,9 @@
     <kudo>UserDocs</kudo>
   </kudos>
   <url type="homepage">https://wiki.gnome.org/Apps/Ghex</url>
-  <updatecontact>kalevlember_at_gmail.com</updatecontact>
-</application>
+  <url type="bugtracker">https://bugzilla.gnome.org/enter_bug.cgi?product=ghex</url>
+  <url type="donation">http://www.gnome.org/friends/</url>
+  <url type="help">https://help.gnome.org/users/ghex/stable/</url>
+  <update_contact>kalevlember_at_gmail.com</update_contact>
+  <project_group>GNOME</project_group>
+</component>
