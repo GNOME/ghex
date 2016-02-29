@@ -1,27 +1,28 @@
 # Brazilian Portuguese translation of ghex
-# Copyright (C) 2004 Free Software Foundation, Inc.
+# Copyright (C) 2016 Free Software Foundation, Inc.
 # This file is distributed under the same license as the ghex package.
 # Edson A. Tacão <tacao@conectiva.com.br>, 2000.
 # Alexandre Folle de Menezes <afmenez@terra.com.br>, 2002-2003.
 # Raphael Higino <In memoriam>, 2004.
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008.
 # Mateus Zenaide <matzenh@gmail.com>, 2011.
+# Rafael Fontenelle <rffontenelle@gmail.com>, 2011, 2013, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-15 17:40+0000\n"
-"PO-Revision-Date: 2013-02-15 13:51-0300\n"
-"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
-"Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
+"POT-Creation-Date: 2016-02-29 07:05+0000\n"
+"PO-Revision-Date: 2016-02-29 06:52-0300\n"
+"Last-Translator: Rafael Fontenelle <rffontenelle@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.7\n"
 
 #: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
 #: ../src/ghex-window.c:1100
@@ -36,7 +37,7 @@ msgstr "Editor hexadecimal"
 msgid "Inspect and edit binary files"
 msgstr "Inspecione e edite arquivos binários"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
 msgstr "binário;depurar;"
@@ -107,7 +108,7 @@ msgstr "Captura o valor no cursor em binário, octal, decimal, hexa e ASCII"
 msgid "ERROR"
 msgstr "ERRO"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:885
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Localizar dados"
@@ -189,7 +190,7 @@ msgstr "Fechar"
 msgid "Closes advanced find window"
 msgstr "Fecha a janela de busca avançada"
 
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:883
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Localizar & substituir dados"
@@ -244,7 +245,7 @@ msgstr ""
 msgid "Closes find and replace data window"
 msgstr "Fecha a janela de busca e substituição de dados"
 
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:881
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Pular para o byte"
@@ -702,63 +703,71 @@ msgstr "Você não tem as permissões para salvar o arquivo!"
 msgid "An error occurred while saving file!"
 msgstr "Ocorreu um erro ao salvar o arquivo!"
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:61
 msgid "Signed 8 bit:"
 msgstr "8 bits com sinal:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 8 bit:"
 msgstr "8 bits sem sinal:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:63
 msgid "Signed 16 bit:"
 msgstr "16 bits com sinal:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 16 bit:"
 msgstr "16 bits sem sinal:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:65
 msgid "Signed 32 bit:"
 msgstr "32 bits com sinal:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:66
 msgid "Unsigned 32 bit:"
 msgstr "32 bits sem sinal:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:67
+msgid "Signed 64 bit:"
+msgstr "64 bits com sinal:"
+
+#: ../src/hex-dialog.c:68
+msgid "Unsigned 64 bit:"
+msgstr "64 bits sem sinal:"
+
+#: ../src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "Flutuante 32 bit:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "Flutuante 64 bit:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Hexadecimal:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Octal:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "Binário:"
 
-#: ../src/hex-dialog.c:204
+#: ../src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "Mostrar decodificação little endian"
 
-#: ../src/hex-dialog.c:211
+#: ../src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Mostrar números sem sinal e flutuantes como hexadecimal"
 
-#: ../src/hex-dialog.c:217
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Tamanho do fluxo:"
 
-#: ../src/hex-dialog.c:239
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "CONSERTE-ME: sem função de conversão"
 
