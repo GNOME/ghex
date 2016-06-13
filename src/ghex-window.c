@@ -781,6 +781,8 @@ ghex_window_update_status_message(GHexWindow *win)
         return;
     }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-nonliteral"
     current_pos = gtk_hex_get_cursor(win->gh);
     if(g_snprintf(fmt, FMT_LEN, _("Offset: %s"), offset_fmt) < FMT_LEN) {
         g_snprintf(status, STATUS_LEN, fmt, current_pos);
@@ -795,6 +797,8 @@ ghex_window_update_status_message(GHexWindow *win)
                 }
             }
         }
+#pragma GCC diagnostic pop
+
         ghex_window_show_status(win, status);
     }
     else

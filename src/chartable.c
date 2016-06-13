@@ -186,7 +186,10 @@ GtkWidget *create_char_table()
 		else
 			row[0] = "";
 		for(col = 1; col < 4; col++) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-nonliteral"
 			label = g_strdup_printf(fmt[col], i);
+#pragma GCC diagnostic pop
 			row[col] = label;
 		}
 		for(col = 0; col < 8; col++) {
