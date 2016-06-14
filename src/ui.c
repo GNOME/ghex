@@ -112,13 +112,17 @@ create_dialog_title(GtkWidget *window, gchar *title)
 
 	win = ghex_window_get_active();
 
+#if defined(__GNUC__) && (__GNUC__ > 4)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wformat-nonliteral"
+#endif
 	if(win != NULL && win->gh != NULL)
 		full_title = g_strdup_printf(title, win->gh->document->path_end);
 	else
 		full_title = g_strdup_printf(title, "");
+#if defined(__GNUC__) && (__GNUC__ > 4)
 #pragma GCC diagnostic pop
+#endif
 
 	if(full_title) {
 		gtk_window_set_title(GTK_WINDOW(window), full_title);
