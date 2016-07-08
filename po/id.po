@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-27 22:57+0000\n"
-"PO-Revision-Date: 2013-09-26 18:59+0700\n"
+"POT-Creation-Date: 2016-05-19 06:18+0000\n"
+"PO-Revision-Date: 2016-07-08 19:17+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
 #: ../src/ghex-window.c:1100
@@ -34,7 +34,7 @@ msgstr "Penyunting Heksa"
 msgid "Inspect and edit binary files"
 msgstr "Periksa dan sunting berkas biner"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
 msgstr "biner;awakutu;"
@@ -105,7 +105,7 @@ msgstr "Dapatkan nilai pada cursor dalam biner, oktal desimal, heksa dan ASCII"
 msgid "ERROR"
 msgstr "GALAT"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:885
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Cari Data"
@@ -187,7 +187,7 @@ msgstr "Tutup"
 msgid "Closes advanced find window"
 msgstr "Tutup jendela pencarian tingkat lanjut"
 
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:883
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Cari & Timpa Data"
@@ -240,7 +240,7 @@ msgstr "Ganti semua kemunculan string yang dicari dengan string pengganti"
 msgid "Closes find and replace data window"
 msgstr "Tutup jendela pencarian dan penggantian data"
 
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:881
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Loncat Ke Byte"
@@ -697,63 +697,71 @@ msgstr "Anda tidak punya wewenang menyimpan berkas!"
 msgid "An error occurred while saving file!"
 msgstr "Galat terjadi ketika menyimpan berkas!"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:61
 msgid "Signed 8 bit:"
 msgstr "Signed 8 bit:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 8 bit:"
 msgstr "Unsigned 8 bit:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:63
 msgid "Signed 16 bit:"
 msgstr "Signed 16 bit:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 16 bit:"
 msgstr "Unsigned 16 bit:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:65
 msgid "Signed 32 bit:"
 msgstr "Signed 32 bit:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:66
 msgid "Unsigned 32 bit:"
 msgstr "Unsigned 32 bit:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:67
+msgid "Signed 64 bit:"
+msgstr "Signed 64 bit:"
+
+#: ../src/hex-dialog.c:68
+msgid "Unsigned 64 bit:"
+msgstr "Unsigned 64 bit:"
+
+#: ../src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "Float 32 bit:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "Float 64 bit:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Heksadesimal:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Oktal:"
 
-#: ../src/hex-dialog.c:69
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "Biner:"
 
-#: ../src/hex-dialog.c:207
+#: ../src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "Perlihatkan decoding little endian"
 
-#: ../src/hex-dialog.c:214
+#: ../src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Tampilkan unsigned dan float sebagai heksadesimal"
 
-#: ../src/hex-dialog.c:220
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Panjang Stream:"
 
-#: ../src/hex-dialog.c:243
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "PERBAIKI: tidak ada fungsi konversi"
 
@@ -1015,7 +1023,7 @@ msgstr "Tentang GHex"
 msgid "translator-credits"
 msgstr ""
 "Abdul Hamid.A.N <hameed@linuxmail.org>, 2004.\n"
-"Andika Triwidada <andika@gmail.com>, 2009, 2012, 2013."
+"Andika Triwidada <andika@gmail.com>, 2009, 2012, 2013, 2016."
 
 #: ../src/ui.c:187
 msgid "GHex Website"
