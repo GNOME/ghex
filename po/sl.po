@@ -3,28 +3,28 @@
 # This file is distributed under the same license as the ghex package.
 #
 # Jaka Močnik <jaka.mocnik@kiss.uni-lj.si>, 2000.
-# Matej Urbančič <mateju@svn.gnome.org>, 2009 - 2013.
+# Matej Urbančič <mateju@svn.gnome.org>, 2009 - 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-21 20:57+0000\n"
-"PO-Revision-Date: 2013-01-28 13:08+0100\n"
+"POT-Creation-Date: 2016-08-25 22:30+0200\n"
+"PO-Revision-Date: 2016-08-25 22:30+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: sl\n"
+"Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
-#: ../src/ghex-window.c:1100
+#: ../src/ghex-window.c:1104
 msgid "GHex"
 msgstr "GHex"
 
@@ -36,7 +36,7 @@ msgstr "Urejevalnik šestnajstiških datotek"
 msgid "Inspect and edit binary files"
 msgstr "Pregled in urejanje dvojiških datotek"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
 msgstr "razhroščevanje;binarni;osmiški;urejevalnik;"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "ERROR"
 msgstr "NAPAKA"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:888
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): iskanje niza"
@@ -191,7 +191,7 @@ msgstr "Zapri"
 msgid "Closes advanced find window"
 msgstr "Zapre pogovorno okno naprednega iskanja"
 
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:886
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): iskanje in zamenjava nizov"
@@ -244,7 +244,7 @@ msgstr "Zamenja vse primere iskanega niza z drugim nizom"
 msgid "Closes find and replace data window"
 msgstr "Zapre pogovorno okno zamenjave"
 
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:884
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): skoči na bit"
@@ -637,31 +637,31 @@ msgstr "_Dolge besede"
 msgid "Group data by 32 bits"
 msgstr "Združi podatke kot 32 bitne zveze"
 
-#: ../src/ghex-window.c:785
+#: ../src/ghex-window.c:787
 #, c-format
 msgid "Offset: %s"
 msgstr "Odmik: %s"
 
-#: ../src/ghex-window.c:788
+#: ../src/ghex-window.c:790
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; %s bitov od %s do %s izbranih"
 
-#: ../src/ghex-window.c:1060
+#: ../src/ghex-window.c:1064
 #, c-format
 msgid "Activate file %s"
 msgstr "Uporabi datoteko %s"
 
-#: ../src/ghex-window.c:1096
+#: ../src/ghex-window.c:1100
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
-#: ../src/ghex-window.c:1218
+#: ../src/ghex-window.c:1222
 msgid "Select a file to save buffer as"
 msgstr "Izbor datoteke za shranjevanje medpomnilnika"
 
-#: ../src/ghex-window.c:1250
+#: ../src/ghex-window.c:1254
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -670,20 +670,20 @@ msgstr ""
 "Datoteka %s obstaja.\n"
 "Ali jo želite prepisati?"
 
-#: ../src/ghex-window.c:1276 ../src/ui.c:303
+#: ../src/ghex-window.c:1280 ../src/ui.c:306
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Medpomnilnik je shranjen v datoteko %s"
 
-#: ../src/ghex-window.c:1283
+#: ../src/ghex-window.c:1287
 msgid "Error saving file!"
 msgstr "Napaka med shranjevanjem datoteke!"
 
-#: ../src/ghex-window.c:1289
+#: ../src/ghex-window.c:1293
 msgid "Can't open file for writing!"
 msgstr "Ni mogoče odpreti datoteke za pisanje!"
 
-#: ../src/ghex-window.c:1334
+#: ../src/ghex-window.c:1338
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -692,75 +692,83 @@ msgstr ""
 "Datoteka %s je bila spremenjena.\n"
 "Ali želite shraniti spremembe?"
 
-#: ../src/ghex-window.c:1338
+#: ../src/ghex-window.c:1342
 msgid "Do_n't save"
 msgstr "_Ne shrani"
 
-#: ../src/ghex-window.c:1358 ../src/ui.c:291
+#: ../src/ghex-window.c:1362 ../src/ui.c:294
 msgid "You don't have the permissions to save the file!"
 msgstr "Ni ustreznih pravic za shranjevanje datoteke!"
 
-#: ../src/ghex-window.c:1362 ../src/ui.c:296
+#: ../src/ghex-window.c:1366 ../src/ui.c:299
 msgid "An error occurred while saving file!"
 msgstr "Prišlo je do napake med shranjevanjem datoteke!"
 
-#: ../src/hex-dialog.c:58
+#: ../src/hex-dialog.c:61
 msgid "Signed 8 bit:"
 msgstr "Podpisano 8-bitno:"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 8 bit:"
 msgstr "Nepodpisano 8-bitno:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:63
 msgid "Signed 16 bit:"
 msgstr "Podpisano 16-bitno:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 16 bit:"
 msgstr "Nepodpisano 16-bitno:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:65
 msgid "Signed 32 bit:"
 msgstr "Podpisano 32-bitno:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:66
 msgid "Unsigned 32 bit:"
 msgstr "Nepodpisano 32-bitno:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:67
+msgid "Signed 64 bit:"
+msgstr "Podpisano 64 bitno:"
+
+#: ../src/hex-dialog.c:68
+msgid "Unsigned 64 bit:"
+msgstr "Nepodpisano 64 bitno:"
+
+#: ../src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "Plavajoče 32-bitno:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "Plavajoče 64-bitno:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Šestnajstiško:"
 
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Osmiško:"
 
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "Dvojiško:"
 
-#: ../src/hex-dialog.c:204
+#: ../src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "Pokaži kodiranje little endian"
 
-#: ../src/hex-dialog.c:211
+#: ../src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Šestnajstiški prikaz nepodpisanih števil in plavajoče vejice"
 
-#: ../src/hex-dialog.c:217
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Dolžina podatka:"
 
-#: ../src/hex-dialog.c:239
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "POPRAVI: ni funkcije za pretvorbo"
 
@@ -936,7 +944,7 @@ msgstr "vrstic (0 za brez polja)"
 msgid "Printing"
 msgstr "Tiskanje"
 
-#: ../src/preferences.c:447 ../src/ui.c:212
+#: ../src/preferences.c:447 ../src/ui.c:215
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -970,7 +978,7 @@ msgstr "šestnajstiški niz"
 msgid "ASCII data"
 msgstr "ASCII niz"
 
-#: ../src/ui.c:153
+#: ../src/ui.c:156
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -982,7 +990,7 @@ msgstr ""
 "Software Foundation; bodisi pod različico 2 ali (po vašem mnenju) katerokoli "
 "kasnejšo različico."
 
-#: ../src/ui.c:157
+#: ../src/ui.c:160
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -994,7 +1002,7 @@ msgstr ""
 "UPORABO. Za več podrobnosti si oglejte besedilo splošnega javnega dovoljenja "
 "(GNU GPL)."
 
-#: ../src/ui.c:161
+#: ../src/ui.c:164
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
@@ -1007,19 +1015,19 @@ msgstr ""
 
 #. Translators: these two strings here indicate the copyright time span,
 #. e.g. 1998-2012.
-#: ../src/ui.c:173
+#: ../src/ui.c:176
 msgid "Copyright © %Id–%Id The GHex authors"
 msgstr "Avtorske pravice © %Id–%Id Avtorji programa GHex"
 
-#: ../src/ui.c:177
+#: ../src/ui.c:180
 msgid "A binary file editor"
 msgstr "Urejevalnik dvojiških datotek"
 
-#: ../src/ui.c:183
+#: ../src/ui.c:186
 msgid "About GHex"
 msgstr "O programu"
 
-#: ../src/ui.c:184
+#: ../src/ui.c:187
 msgid "translator-credits"
 msgstr ""
 "Matic Žgur <mr.zgur@gmail.com>\n"
@@ -1027,36 +1035,36 @@ msgstr ""
 "Tilen Travnik <tilen.travnik@guest.arnes.si>\n"
 "Matej Urbančič <mateju@svn.gnome.org>"
 
-#: ../src/ui.c:187
+#: ../src/ui.c:190
 msgid "GHex Website"
 msgstr "Spletišče GHex"
 
-#: ../src/ui.c:321
+#: ../src/ui.c:324
 msgid "Select a file to open"
 msgstr "Izbor datoteke za odpiranje"
 
-#: ../src/ui.c:353
+#: ../src/ui.c:356
 #, c-format
 msgid "Loaded file %s"
 msgstr "Naložena datoteka %s"
 
-#: ../src/ui.c:361
+#: ../src/ui.c:364
 msgid "Can not open file!"
 msgstr "Ni mogoče odpreti datoteke!"
 
-#: ../src/ui.c:426
+#: ../src/ui.c:429
 msgid "Select path and file name for the HTML source"
 msgstr "Izbor imenika in datoteke za vir HTML"
 
-#: ../src/ui.c:458
+#: ../src/ui.c:461
 msgid "You need to specify a base name for the HTML files."
 msgstr "Izbrati je treba osnovno ime za datoteke HTML"
 
-#: ../src/ui.c:469 ../src/ui.c:495
+#: ../src/ui.c:472 ../src/ui.c:498
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Ni ustreznih dovoljenj za pisanje v izbrano mapo.\n"
 
-#: ../src/ui.c:481
+#: ../src/ui.c:484
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1064,12 +1072,12 @@ msgstr ""
 "S shranjevanjem v zapisu HTML bodo prepisane nekatere datoteke.\n"
 "Ali želite nadaljevati?"
 
-#: ../src/ui.c:749
+#: ../src/ui.c:752
 #, c-format
 msgid "Really revert file %s?"
 msgstr "Ali naj se povrne vsebina datoteke %s?"
 
-#: ../src/ui.c:763
+#: ../src/ui.c:766
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Povrnjen medpomnilnik iz datoteke %s"
