@@ -1,20 +1,20 @@
 # translation of ghex.HEAD.po to
 # Copyright © 2002, Free Software Foundation
 # This file is distributed under the same license as the ghex package.
-#
+# 
 # Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
 # QA por Carlos Perelló Marín <carlos@gnome-db.org>, 2002.
 # Lucas 'Basurero' Vieites <lucas@asixinformatica.com>, 2002,2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005, 2006.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2010.
-#
+# 
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011, 2012, 2013, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex.HEAD.es\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-01 05:30+0000\n"
+"POT-Creation-Date: 2016-08-19 17:14+0000\n"
 "PO-Revision-Date: 2015-09-01 \n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish <gnome-es-list@gnome.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
-#: ../src/ghex-window.c:1100
+#: ../src/ghex-window.c:1104
 msgid "GHex"
 msgstr "GHex"
 
@@ -109,7 +109,7 @@ msgstr "Obtiene el valor del cursor en binario, octal, decimal, hex y ASCII"
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:885
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:888
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Buscar datos"
@@ -191,7 +191,7 @@ msgstr "Cerrar"
 msgid "Closes advanced find window"
 msgstr "Cierra la ventana de búsqueda avanzada"
 
-#: ../src/findreplace.c:355 ../src/ui.c:883
+#: ../src/findreplace.c:355 ../src/ui.c:886
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Buscar y reemplazar datos"
@@ -246,7 +246,7 @@ msgstr ""
 msgid "Closes find and replace data window"
 msgstr "Cierra la ventana buscar y reemplazar"
 
-#: ../src/findreplace.c:434 ../src/ui.c:881
+#: ../src/findreplace.c:434 ../src/ui.c:884
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Saltar al byte"
@@ -635,31 +635,31 @@ msgstr "Palabras _largas"
 msgid "Group data by 32 bits"
 msgstr "Agrupar datos por 32 bits"
 
-#: ../src/ghex-window.c:785
+#: ../src/ghex-window.c:787
 #, c-format
 msgid "Offset: %s"
 msgstr "Desplazamiento: %s"
 
-#: ../src/ghex-window.c:788
+#: ../src/ghex-window.c:790
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; seleccionados %s bytes desde %s hasta %s"
 
-#: ../src/ghex-window.c:1060
+#: ../src/ghex-window.c:1064
 #, c-format
 msgid "Activate file %s"
 msgstr "Activar archivo %s"
 
-#: ../src/ghex-window.c:1096
+#: ../src/ghex-window.c:1100
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
-#: ../src/ghex-window.c:1218
+#: ../src/ghex-window.c:1222
 msgid "Select a file to save buffer as"
 msgstr "Seleccione un archivo en el que guardar el búfer actual"
 
-#: ../src/ghex-window.c:1250
+#: ../src/ghex-window.c:1254
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -668,20 +668,20 @@ msgstr ""
 "El archivo %s existe.\n"
 "¿Desea sobrescribirlo?"
 
-#: ../src/ghex-window.c:1276 ../src/ui.c:303
+#: ../src/ghex-window.c:1280 ../src/ui.c:306
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Búfer guardado en el archivo %s"
 
-#: ../src/ghex-window.c:1283
+#: ../src/ghex-window.c:1287
 msgid "Error saving file!"
 msgstr "Error al guardar el archivo."
 
-#: ../src/ghex-window.c:1289
+#: ../src/ghex-window.c:1293
 msgid "Can't open file for writing!"
 msgstr "No se puede abrir el archivo para escritura."
 
-#: ../src/ghex-window.c:1334
+#: ../src/ghex-window.c:1338
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -690,15 +690,15 @@ msgstr ""
 "El archivo %s ha cambiado desde la última vez que se guardó.\n"
 "¿Desea guardar los cambios?"
 
-#: ../src/ghex-window.c:1338
+#: ../src/ghex-window.c:1342
 msgid "Do_n't save"
 msgstr "_No guardar"
 
-#: ../src/ghex-window.c:1358 ../src/ui.c:291
+#: ../src/ghex-window.c:1362 ../src/ui.c:294
 msgid "You don't have the permissions to save the file!"
 msgstr "No tiene permisos para guardar el archivo."
 
-#: ../src/ghex-window.c:1362 ../src/ui.c:296
+#: ../src/ghex-window.c:1366 ../src/ui.c:299
 msgid "An error occurred while saving file!"
 msgstr "Sucedió un error al guardar el archivo."
 
@@ -727,12 +727,10 @@ msgid "Unsigned 32 bit:"
 msgstr "32 bits sin signo:"
 
 #: ../src/hex-dialog.c:67
-#| msgid "Signed 16 bit:"
 msgid "Signed 64 bit:"
 msgstr "64 bits con signo:"
 
 #: ../src/hex-dialog.c:68
-#| msgid "Unsigned 16 bit:"
 msgid "Unsigned 64 bit:"
 msgstr "64 bits sin signo:"
 
@@ -944,7 +942,7 @@ msgstr "líneas (0 significa sin recuadro)"
 msgid "Printing"
 msgstr "Imprimiendo"
 
-#: ../src/preferences.c:447 ../src/ui.c:212
+#: ../src/preferences.c:447 ../src/ui.c:215
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -979,7 +977,7 @@ msgstr "datos hexadecimales"
 msgid "ASCII data"
 msgstr "datos ASCII"
 
-#: ../src/ui.c:153
+#: ../src/ui.c:156
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -991,7 +989,7 @@ msgstr ""
 "Free Software Foundation; ya sea la versión 2 de la Licencia, o (a su "
 "elección) cualquier versión posterior."
 
-#: ../src/ui.c:157
+#: ../src/ui.c:160
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -1003,10 +1001,10 @@ msgstr ""
 "IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Vea la Licencia Pública General GNU "
 "para más detalles."
 
-#: ../src/ui.c:161
+#: ../src/ui.c:164
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
-"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"this program; if not, write to the Free Software Foundation, Inc, 51 "
 "Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
 msgstr ""
 "Debería haber recibido una copia de la Licencia Pública General de GNU junto "
@@ -1015,52 +1013,52 @@ msgstr ""
 
 #. Translators: these two strings here indicate the copyright time span,
 #. e.g. 1998-2012.
-#: ../src/ui.c:173
+#: ../src/ui.c:176
 msgid "Copyright © %Id–%Id The GHex authors"
 msgstr "Copyright © %Id–%Id Los autores de GHex"
 
-#: ../src/ui.c:177
+#: ../src/ui.c:180
 msgid "A binary file editor"
 msgstr "Un editor de archivos binarios"
 
-#: ../src/ui.c:183
+#: ../src/ui.c:186
 msgid "About GHex"
 msgstr "Acerca de GHex"
 
-#: ../src/ui.c:184
+#: ../src/ui.c:187
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2007-2010"
 
-#: ../src/ui.c:187
+#: ../src/ui.c:190
 msgid "GHex Website"
 msgstr "Página web de GHex"
 
-#: ../src/ui.c:321
+#: ../src/ui.c:324
 msgid "Select a file to open"
 msgstr "Seleccione un archivo para abrir"
 
-#: ../src/ui.c:353
+#: ../src/ui.c:356
 #, c-format
 msgid "Loaded file %s"
 msgstr "Se ha cargado el archivo %s"
 
-#: ../src/ui.c:361
+#: ../src/ui.c:364
 msgid "Can not open file!"
 msgstr "No se puede abrir el archivo."
 
-#: ../src/ui.c:426
+#: ../src/ui.c:429
 msgid "Select path and file name for the HTML source"
 msgstr "Seleccione la ruta y nombre del archivo para el código HTML"
 
-#: ../src/ui.c:458
+#: ../src/ui.c:461
 msgid "You need to specify a base name for the HTML files."
 msgstr "Debe especificar un nombre base para los archivos HTML."
 
-#: ../src/ui.c:469 ../src/ui.c:495
+#: ../src/ui.c:472 ../src/ui.c:498
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "No tiene permisos para escribir en la ruta especificada.\n"
 
-#: ../src/ui.c:481
+#: ../src/ui.c:484
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1068,12 +1066,12 @@ msgstr ""
 "Al guardar como HTML se sobrescribirán algunos archivos.\n"
 "¿Desea continuar?"
 
-#: ../src/ui.c:749
+#: ../src/ui.c:752
 #, c-format
 msgid "Really revert file %s?"
 msgstr "¿Desea realmente revertir los cambios del archivo %s?"
 
-#: ../src/ui.c:763
+#: ../src/ui.c:766
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Se ha revertido el búfer desde el archivo %s"
