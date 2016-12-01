@@ -5,28 +5,28 @@
 # Ömer Fadıl USTA <omer_fad@hotmail.com>, 2000.
 # Arman Aksoy (Armish) <armish@linux-sevenler.de>, 2003.
 # Necdet Yücel <necdetyucel@gmail.com>, 2015.
-# Muhammet Kara <muhammetk@gmail.com>, 2014, 2015.
+# Muhammet Kara <muhammetk@gmail.com>, 2014, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: glib\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-15 18:11+0000\n"
-"PO-Revision-Date: 2015-02-16 16:18+0200\n"
+"POT-Creation-Date: 2016-08-19 17:14+0000\n"
+"PO-Revision-Date: 2016-12-01 23:30+0300\n"
 "Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
-"Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 "X-POOTLE-MTIME: 1423957989.000000\n"
 
 # src/chartable.c:90 src/converter.c:73
 #: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
-#: ../src/ghex-window.c:1100
+#: ../src/ghex-window.c:1104
 msgid "GHex"
 msgstr "GHex"
 
@@ -38,7 +38,7 @@ msgstr "Onaltılık Düzenliyici"
 msgid "Inspect and edit binary files"
 msgstr "İkilik dosyaları inceleyin ve düzenleyin"
 
-#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
 #: ../data/ghex.desktop.in.h:5
 msgid "binary;debug;"
 msgstr "ikilik;hata ayıklama;"
@@ -125,7 +125,7 @@ msgid "ERROR"
 msgstr "HATA"
 
 # src/findreplace.c:58 src/main.c:96
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:888
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Veri Bul"
@@ -219,7 +219,7 @@ msgid "Closes advanced find window"
 msgstr "Gelişmiş veri bul penceresini kapatır"
 
 # src/findreplace.c:127 src/main.c:98
-#: ../src/findreplace.c:355 ../src/ui.c:875
+#: ../src/findreplace.c:355 ../src/ui.c:886
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Veriyi Bul ve Değiştir"
@@ -281,7 +281,7 @@ msgid "Closes find and replace data window"
 msgstr "Bul ve değişr penceresini kapatır"
 
 # src/findreplace.c:206 src/main.c:100
-#: ../src/findreplace.c:434 ../src/ui.c:873
+#: ../src/findreplace.c:434 ../src/ui.c:884
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Bayt'a Git"
@@ -718,35 +718,35 @@ msgid "Group data by 32 bits"
 msgstr "Verileri 32 bitlik olarak grupla"
 
 # src/main.c:191
-#: ../src/ghex-window.c:785
+#: ../src/ghex-window.c:787
 #, c-format
 msgid "Offset: %s"
 msgstr "Ofset: %s"
 
-#: ../src/ghex-window.c:788
+#: ../src/ghex-window.c:790
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; %s bayt seçildi, %s konumundan %s konumuna kadar"
 
 # src/ui.c:495
-#: ../src/ghex-window.c:1060
+#: ../src/ghex-window.c:1064
 #, c-format
 msgid "Activate file %s"
 msgstr "%s dosyasını etkinleştir"
 
 # src/chartable.c:90 src/converter.c:73
-#: ../src/ghex-window.c:1096
+#: ../src/ghex-window.c:1100
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
 # src/ui.c:284
-#: ../src/ghex-window.c:1218
+#: ../src/ghex-window.c:1222
 msgid "Select a file to save buffer as"
 msgstr "Tampondaki dosyayı saklamak için bir dosya seçiniz"
 
 # src/main.c:51
-#: ../src/ghex-window.c:1250
+#: ../src/ghex-window.c:1254
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -756,23 +756,23 @@ msgstr ""
 "Üzerine yazmak ister misiniz?"
 
 # src/ui.c:230 src/ui.c:534
-#: ../src/ghex-window.c:1276 ../src/ui.c:303
+#: ../src/ghex-window.c:1280 ../src/ui.c:306
 #, c-format
 msgid "Saved buffer to file %s"
 msgstr "Tampon %s isimli dosyaya kaydedildi"
 
 # src/ui.c:226 src/ui.c:539
-#: ../src/ghex-window.c:1283
+#: ../src/ghex-window.c:1287
 msgid "Error saving file!"
 msgstr "Dosya kayıt edilirken hata oluştu!"
 
 # src/ui.c:543
-#: ../src/ghex-window.c:1289
+#: ../src/ghex-window.c:1293
 msgid "Can't open file for writing!"
 msgstr "Dosya yazmak için açılamıyor!"
 
 # src/main.c:51
-#: ../src/ghex-window.c:1334
+#: ../src/ghex-window.c:1338
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -781,79 +781,89 @@ msgstr ""
 "%s dosyasında değişiklik yapıldı.\n"
 "Değişiklikleri kaydetmek ister misiniz?"
 
-#: ../src/ghex-window.c:1338
+#: ../src/ghex-window.c:1342
 msgid "Do_n't save"
 msgstr "Kaydet_me"
 
-#: ../src/ghex-window.c:1358 ../src/ui.c:291
+#: ../src/ghex-window.c:1362 ../src/ui.c:294
 msgid "You don't have the permissions to save the file!"
 msgstr "Dosyayı kaydetmek için yetkiniz yok!"
 
 # src/ui.c:226 src/ui.c:539
-#: ../src/ghex-window.c:1362 ../src/ui.c:296
+#: ../src/ghex-window.c:1366 ../src/ui.c:299
 msgid "An error occurred while saving file!"
 msgstr "Dosya kaydedilirken hata oluştu!"
 
-#: ../src/hex-dialog.c:59
+#: ../src/hex-dialog.c:61
 msgid "Signed 8 bit:"
 msgstr "İşaretli 8 bit:"
 
-#: ../src/hex-dialog.c:60
+#: ../src/hex-dialog.c:62
 msgid "Unsigned 8 bit:"
 msgstr "İşaretsiz 8 bit:"
 
-#: ../src/hex-dialog.c:61
+#: ../src/hex-dialog.c:63
 msgid "Signed 16 bit:"
 msgstr "İşaretli 16 bit:"
 
-#: ../src/hex-dialog.c:62
+#: ../src/hex-dialog.c:64
 msgid "Unsigned 16 bit:"
 msgstr "İşaretsiz 16 bit:"
 
-#: ../src/hex-dialog.c:63
+#: ../src/hex-dialog.c:65
 msgid "Signed 32 bit:"
 msgstr "İşaretli 32 bit:"
 
-#: ../src/hex-dialog.c:64
+#: ../src/hex-dialog.c:66
 msgid "Unsigned 32 bit:"
 msgstr "İşaretsiz 32 bit:"
 
-#: ../src/hex-dialog.c:65
+#: ../src/hex-dialog.c:67
+#| msgid "Signed 16 bit:"
+msgid "Signed 64 bit:"
+msgstr "İşaretli 64 bit:"
+
+#: ../src/hex-dialog.c:68
+#| msgid "Unsigned 16 bit:"
+msgid "Unsigned 64 bit:"
+msgstr "İşaretsiz 64 bit:"
+
+#: ../src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "Float 32 bit:"
 
-#: ../src/hex-dialog.c:66
+#: ../src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "Float 64 bit:"
 
 # src/preferences.c:166
-#: ../src/hex-dialog.c:67
+#: ../src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Onaltılık:"
 
 # src/chartable.c:91
-#: ../src/hex-dialog.c:68
+#: ../src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Sekizlik:"
 
 # src/chartable.c:91 src/converter.c:53
-#: ../src/hex-dialog.c:69
+#: ../src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "İkilik:"
 
-#: ../src/hex-dialog.c:207
+#: ../src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "Küçük endian kodlamasını göster"
 
-#: ../src/hex-dialog.c:214
+#: ../src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr "İşaretsiz ve ondalık değerleri onaltılık olarak göster"
 
-#: ../src/hex-dialog.c:220
+#: ../src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Akım Uzunluğu:"
 
-#: ../src/hex-dialog.c:243
+#: ../src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "BENİ DÜZELT: çevrim işlevi yok"
 
@@ -1057,7 +1067,7 @@ msgstr "satır (kutu yoksa 0'ı kullanın)"
 msgid "Printing"
 msgstr "Yazdırılıyor"
 
-#: ../src/preferences.c:447 ../src/ui.c:212
+#: ../src/preferences.c:447 ../src/ui.c:215
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1096,7 +1106,7 @@ msgstr "onaltılık veri"
 msgid "ASCII data"
 msgstr "ASCII veri"
 
-#: ../src/ui.c:153
+#: ../src/ui.c:156
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -1108,7 +1118,7 @@ msgstr ""
 "sonraki sürümleri koşulları altında yeniden dağıtabilir ve/veya "
 "değiştirebilirsiniz."
 
-#: ../src/ui.c:157
+#: ../src/ui.c:160
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -1119,7 +1129,7 @@ msgstr ""
 "GARANTİSİ YOKTUR; hatta ÜRÜN DEĞERİ ya da BİR AMACA UYGUNLUK gibi garantiler "
 "de vermez.  Ayrıntılar için lütfen GNU Genel Kamu Lisansı'na bakınız."
 
-#: ../src/ui.c:161
+#: ../src/ui.c:164
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
@@ -1131,58 +1141,58 @@ msgstr ""
 
 #. Translators: these two strings here indicate the copyright time span,
 #. e.g. 1998-2012.
-#: ../src/ui.c:173
+#: ../src/ui.c:176
 msgid "Copyright © %Id–%Id The GHex authors"
 msgstr "Telif Hakkı © %Id–%Id GHex geliştiricileri"
 
 # src/ui.c:200
-#: ../src/ui.c:177
+#: ../src/ui.c:180
 msgid "A binary file editor"
 msgstr "İkilik dosya düzenleyici"
 
-#: ../src/ui.c:183
+#: ../src/ui.c:186
 msgid "About GHex"
 msgstr "GHex Hakkında"
 
-#: ../src/ui.c:184
+#: ../src/ui.c:187
 msgid "translator-credits"
 msgstr "Muhammet Kara <muhammetk@gmail.com>"
 
-#: ../src/ui.c:187
+#: ../src/ui.c:190
 msgid "GHex Website"
 msgstr "GHex Web Sitesi"
 
 # src/ui.c:251
-#: ../src/ui.c:321
+#: ../src/ui.c:324
 msgid "Select a file to open"
 msgstr "Açılacak dosyayı seçiniz"
 
 # src/ui.c:495
-#: ../src/ui.c:353
+#: ../src/ui.c:356
 #, c-format
 msgid "Loaded file %s"
 msgstr "%s dosyası yüklendi"
 
 # src/ui.c:500
-#: ../src/ui.c:361
+#: ../src/ui.c:364
 msgid "Can not open file!"
 msgstr "Dosya açılamıyor!"
 
 # src/ui.c:370
-#: ../src/ui.c:426
+#: ../src/ui.c:429
 msgid "Select path and file name for the HTML source"
 msgstr "HTML kaynak kodu için dosya yolunu ve adını seçiniz"
 
 # src/ui.c:370
-#: ../src/ui.c:458
+#: ../src/ui.c:461
 msgid "You need to specify a base name for the HTML files."
 msgstr "HTML dosyası için temel bir ad belirtmeniz gerekmektedir."
 
-#: ../src/ui.c:469 ../src/ui.c:495
+#: ../src/ui.c:472 ../src/ui.c:498
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Seçilen yola yazma izniniz yok.\n"
 
-#: ../src/ui.c:481
+#: ../src/ui.c:484
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1191,13 +1201,13 @@ msgstr ""
 "Devam etmek istiyor musunuz?"
 
 # src/ui.c:466
-#: ../src/ui.c:749
+#: ../src/ui.c:752
 #, c-format
 msgid "Really revert file %s?"
 msgstr "%s isimli dosyaya geri döneyim mi?"
 
 # src/ui.c:479
-#: ../src/ui.c:763
+#: ../src/ui.c:766
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "%s dosyasından tampona geri dönüldü"
