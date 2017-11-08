@@ -7,7 +7,7 @@ gsettings_SCHEMAS = org.gnome.GHex.gschema.xml
 convertdir = $(datadir)/GConf/gsettings
 convert_DATA = ghex.convert
 
-appdatadir = $(datadir)/appdata
+appdatadir = $(datadir)/metainfo
 appdata_DATA = ghex.appdata.xml
 
 EXTRA_DIST =			\
