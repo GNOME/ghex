@@ -20,7 +20,7 @@ ghex_localedir = join_paths(ghex_prefix, get_option('localedir'))
 ghex_pkgconfigdir = join_paths(ghex_libdir, 'pkgconfig')
 ghex_applicationsdir = join_paths(ghex_datadir, 'applications')
 ghex_schemasdir = join_paths(ghex_datadir, 'glib-2.0/schemas')
-ghex_appdatadir = join_paths(ghex_datadir, 'appdata')
+ghex_appdatadir = join_paths(ghex_datadir, 'metainfo')
 ghex_iconsdir = join_paths(ghex_datadir, 'icons')
 
 ghex_root_dir = include_directories('.')
