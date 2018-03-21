@@ -190,7 +190,7 @@ about_cb (GtkAction  *action,
 	                       "title", _("About GHex"),
 	                       "translator-credits", _("translator-credits"),
 	                       "version", PACKAGE_VERSION,
-	                       "website", "http://live.gnome.org/Ghex",
+	                       "website", "https://wiki.gnome.org/Apps/Ghex",
 	                       "website-label", _("GHex Website"),
 	                       "wrap-license", TRUE,
 	                       NULL);
