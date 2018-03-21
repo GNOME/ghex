@@ -176,8 +176,8 @@ about_cb (GtkAction  *action,
 	                                NULL);
 
 	/* Translators: these two strings here indicate the copyright time span,
-	   e.g. 1998-2012. */
-	copyright = g_strdup_printf (_("Copyright © %Id–%Id The GHex authors"), 1998, 2012);
+	   e.g. 1998-2018. */
+	copyright = g_strdup_printf (_("Copyright © %Id–%Id The GHex authors"), 1998, 2018);
 
 	gtk_show_about_dialog (GTK_WINDOW (window),
 	                       "authors", authors,
