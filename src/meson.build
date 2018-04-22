@@ -29,7 +29,7 @@ libghex_link_args = [
 
 install_headers(
   libghex_headers,
-  subdir: 'gtkhex-@0@.0'.format(libghex_version_major)
+  subdir: 'gtkhex-@0@'.format(libghex_version_major)
 )
 
 libghex = library(
