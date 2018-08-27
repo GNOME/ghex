@@ -695,6 +695,21 @@ type_dialog_cb (GtkAction *action,
 }
 
 void
+base_data_cb (GtkAction      *action,
+			  GtkRadioAction *current,
+			  gpointer        user_data)
+{
+    GHexWindow *win;
+    gint value;
+
+    win = GHEX_WINDOW (user_data);
+    value = gtk_radio_action_get_current_value (current);
+
+    if (win->gh != NULL)
+        gtk_hex_set_base_type (win->gh, value);
+}
+
+void
 group_data_cb (GtkAction      *action,
                GtkRadioAction *current,
                gpointer        user_data)

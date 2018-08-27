@@ -72,6 +72,7 @@ void prefs_cb (GtkAction *action, gpointer user_data);
 /* View menu */
 void add_view_cb (GtkAction *action, gpointer user_data);
 void remove_view_cb (GtkAction *action, gpointer user_data);
+void base_data_cb (GtkAction *action, GtkRadioAction *current, gpointer user_data);
 void group_data_cb (GtkAction *action, GtkRadioAction *current, gpointer user_data);
 void set_byte_cb (GtkAction *action, gpointer user_data);
 void set_word_cb (GtkAction *action, gpointer user_data);
