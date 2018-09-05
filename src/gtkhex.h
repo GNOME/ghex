@@ -103,7 +103,7 @@ struct _GtkHex
 	gint lines, vis_lines, cpl, top_line;
 	gint cursor_shown;
 	
-	gint xdisp_width, adisp_width;
+	gint xdisp_width, adisp_width, extra_width;
 	
 	/*< private > */
 	GtkHexPrivate *priv;

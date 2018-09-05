@@ -910,7 +910,7 @@ draw_shadow (GtkWidget *widget,
 		                  border,
 		                  8 * gh->char_width + padding.left + padding.right,
 		                  allocation.height - 2 * border);
-		x += 8 * gh->char_width + padding.left + padding.right;
+		x += 8 * gh->char_width + padding.left + padding.right + gh->extra_width/2;
 	}
 
 	gtk_render_frame (context,
@@ -1004,6 +1004,8 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	gh->adisp_width = gh->cpl*gh->char_width;
 	xcpl = gh->cpl*2 + (gh->cpl - 1)/gh->group_type;
 	gh->xdisp_width = xcpl*gh->char_width;
+
+	gh->extra_width = total_width - gh->xdisp_width - gh->adisp_width;
 
 	if (gh->priv->disp_buffer)
 		g_free (gh->priv->disp_buffer);
@@ -1972,7 +1974,7 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 		my_alloc.width = 8*gh->char_width;
 		gtk_widget_size_allocate(gh->offsets, &my_alloc);
 		gtk_widget_queue_draw(gh->offsets);
-		my_alloc.x += padding.left + padding.right + my_alloc.width;
+		my_alloc.x += padding.left + padding.right + my_alloc.width + gh->extra_width/2;
 	}
 
 	gtk_widget_get_requisition(gh->scrollbar, &sb_req);
@@ -2139,6 +2141,7 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	gh->starting_offset = 0;
 
 	gh->xdisp_width = gh->adisp_width = 200;
+	gh->extra_width = 0;
 	gh->active_view = VIEW_HEX;
 	gh->group_type = GROUP_BYTE;
 	gh->lines = gh->vis_lines = gh->top_line = gh->cpl = 0;
