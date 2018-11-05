@@ -857,7 +857,7 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     gtk_widget_show(gh);
 
     vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_set_border_width(GTK_CONTAINER(win), 4);
+    gtk_container_set_border_width(GTK_CONTAINER(vbox), 4);
     gtk_widget_show(vbox);
     gtk_box_pack_start(GTK_BOX(vbox), gh, TRUE, TRUE, 4);
 
