@@ -31,8 +31,6 @@
 #include "gtkhex.h"
 #include "gtkhex-private.h"
 
-#define DISPLAY_BORDER 4
-
 #define DEFAULT_CPL 32
 #define DEFAULT_LINES 10
 
@@ -2170,7 +2168,6 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	
 	gtk_widget_set_can_focus(GTK_WIDGET(gh), TRUE);
 	gtk_widget_set_events(GTK_WIDGET(gh), GDK_KEY_PRESS_MASK);
-	gtk_container_set_border_width(GTK_CONTAINER(gh), DISPLAY_BORDER);
 	
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh));
 	provider = gtk_css_provider_new ();
