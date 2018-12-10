@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>ghex.desktop</id>
+  <id>org.gnome.GHex</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>GNOME Hex Editor</name>
@@ -26,10 +26,19 @@
     <kudo>ModernToolkit</kudo>
     <kudo>UserDocs</kudo>
   </kudos>
+  <provides>
+    <binary>ghex</binary>
+  </provides>
+  <releases>
+    <release version="3.18.3" date="2016-10-12"/>
+    <release version="3.18.2" date="2016-06-13"/>
+  </releases>
   <url type="homepage">https://wiki.gnome.org/Apps/Ghex</url>
   <url type="bugtracker">https://gitlab.gnome.org/GNOME/ghex/issues</url>
   <url type="donation">http://www.gnome.org/friends/</url>
   <url type="help">https://help.gnome.org/users/ghex/stable/</url>
+  <launchable type="desktop-id">org.gnome.GHex.desktop</launchable>
+  <developer_name>The GNOME Project</developer_name>
   <update_contact>kalevlember_at_gmail.com</update_contact>
   <project_group>GNOME</project_group>
   <translation type="gettext">ghex-3.0</translation>
