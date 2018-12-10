@@ -4,8 +4,8 @@ install_data(
 )
 
 ghex_desktop = i18n.merge_file(
-  input: 'ghex.desktop.in',
-  output: 'ghex.desktop',
+  input: 'org.gnome.GHex.desktop.in',
+  output: 'org.gnome.GHex.desktop',
   po_dir: ghex_po_dir,
   type: 'desktop',
   install_dir: ghex_applicationsdir,
@@ -42,8 +42,8 @@ configure_file(
 )
 
 ghex_appdata = i18n.merge_file(
-  input: 'ghex.appdata.xml.in',
-  output: 'ghex.appdata.xml',
+  input: 'org.gnome.GHex.appdata.xml.in',
+  output: 'org.gnome.GHex.appdata.xml',
   po_dir: ghex_po_dir,
   install_dir: ghex_appdatadir,
   install: true,
