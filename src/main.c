@@ -107,7 +107,7 @@ main(int argc, char **argv)
 	}
 
 	/* Set default window icon */
-	gtk_window_set_default_icon_name ("ghex");
+	gtk_window_set_default_icon_name ("org.gnome.GHex");
 
 	/* load preferences */
 	ghex_init_configuration();
@@ -115,7 +115,7 @@ main(int argc, char **argv)
 	/* accessibility setup */
 	setup_factory();
 
-	application = gtk_application_new ("org.gnome.GHexApplication",
+	application = gtk_application_new ("org.gnome.GHex",
 	                                   G_APPLICATION_NON_UNIQUE);
 	g_signal_connect (application, "activate",
 	                  G_CALLBACK (ghex_activate), NULL);
