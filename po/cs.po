@@ -8,15 +8,14 @@
 # Miloslav Trmac <mitr@volny.cz>, 2004.
 # Lucas Lommer <llommer@svn.gnome.org>, 2009. (just an update).
 # Petr Kovar <pknbe@volny.cz>, 2010
-# Marek Černocký <marek@manet.cz>, 2010, 2011, 2012, 2013, 2015, 2018.
+# Marek Černocký <marek@manet.cz>, 2010, 2011, 2012, 2013, 2015, 2018, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-03-07 16:03+0000\n"
-"PO-Revision-Date: 2018-03-09 08:36+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
+"POT-Creation-Date: 2018-12-11 10:20+0000\n"
+"PO-Revision-Date: 2019-01-07 11:18+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -26,19 +25,19 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: data/ghex.appdata.xml.in:6
+#: data/org.gnome.GHex.appdata.xml.in:6
 msgid "GNOME Hex Editor"
 msgstr "Hexadecimální editor GNOME"
 
-#: data/ghex.appdata.xml.in:7 data/ghex.desktop.in:5
+#: data/org.gnome.GHex.appdata.xml.in:7 data/org.gnome.GHex.desktop.in:5
 msgid "Inspect and edit binary files"
 msgstr "Zkoumat a upravovat obsah souborů"
 
-#: data/ghex.appdata.xml.in:9
+#: data/org.gnome.GHex.appdata.xml.in:9
 msgid "GHex is a hex editor for the GNOME desktop."
 msgstr "GHex je hexadecimální editor pro uživatelské prostředí GNOME."
 
-#: data/ghex.appdata.xml.in:12
+#: data/org.gnome.GHex.appdata.xml.in:12
 msgid ""
 "GHex can load raw data from binary files and display them for editing in the "
 "traditional hex editor view. The display is split in two columns, with "
@@ -50,23 +49,28 @@ msgstr ""
 "sloupců, s šestnáctkovými hodnotami v jednom sloupci a znaky ASCII v druhém. "
 "Jde o užitečný nástroj pro práci se surovými daty."
 
-#: data/ghex.desktop.in:3 src/ghex-window.c:662 src/ghex-window.c:1106
+#: data/org.gnome.GHex.appdata.xml.in:41
+msgid "The GNOME Project"
+msgstr "Projekt GNOME"
+
+#: data/org.gnome.GHex.desktop.in:3 src/ghex-window.c:662
+#: src/ghex-window.c:1106
 msgid "GHex"
 msgstr "GHex"
 
-#: data/ghex.desktop.in:4
+#: data/org.gnome.GHex.desktop.in:4
 msgid "Hex Editor"
 msgstr "Hexadecimálních editor"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
-#: data/ghex.desktop.in:7
+#: data/org.gnome.GHex.desktop.in:7
 msgid "binary;debug;"
 msgstr "binární soubor;ladění;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/ghex.desktop.in:12
-msgid "ghex"
-msgstr "ghex"
+#: data/org.gnome.GHex.desktop.in:12
+msgid "org.gnome.GHex"
+msgstr "org.gnome.GHex"
 
 #: src/chartable.c:147
 msgid "ASCII"
@@ -1039,7 +1043,7 @@ msgstr ""
 "Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
 
 #. Translators: these two strings here indicate the copyright time span,
-#. e.g. 1998-2012.
+#. e.g. 1998-2018.
 #: src/ui.c:180
 msgid "Copyright © %Id–%Id The GHex authors"
 msgstr "Copyright © %Id – %Id autoři aplikace GHex"
@@ -1102,3 +1106,6 @@ msgstr "Opravdu vrátit soubor %s do původní podoby?"
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Vyrovnávací paměť vrácen do původního stavu podle souboru %s"
+
+#~ msgid "ghex"
+#~ msgstr "ghex"
