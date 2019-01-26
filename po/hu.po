@@ -1,20 +1,19 @@
 # Hungarian translation for ghex.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2007, 2009, 2010, 2011, 2012, 2013, 2015, 2018 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2007, 2009, 2010, 2011, 2012, 2013, 2015, 2018, 2019 Free Software Foundation, Inc.
 # This file is distributed under the same license as the ghex package.
 #
 # Szabolcs Ban <shooby at gnome dot hu>, 1999, 2000, 2001.
 # Andras Timar <timar at gnome dot hu>, 2001, 2002, 2003.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2004, 2005, 2007, 2009, 2010, 2011.
-# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2015, 2018.
+# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2015, 2018, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-03-07 16:03+0000\n"
-"PO-Revision-Date: 2018-03-12 07:45+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
+"POT-Creation-Date: 2018-12-11 10:20+0000\n"
+"PO-Revision-Date: 2019-01-26 22:30+0100\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
-"Language-Team: Hungarian <openscope at gmail dot com>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,19 +21,19 @@ msgstr ""
 "X-Generator: Lokalize 1.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: data/ghex.appdata.xml.in:6
+#: data/org.gnome.GHex.appdata.xml.in:6
 msgid "GNOME Hex Editor"
 msgstr "GNOME hexadecimális szerkesztő"
 
-#: data/ghex.appdata.xml.in:7 data/ghex.desktop.in:5
+#: data/org.gnome.GHex.appdata.xml.in:7 data/org.gnome.GHex.desktop.in:5
 msgid "Inspect and edit binary files"
 msgstr "Bináris fájlok megfigyelése és szerkesztése"
 
-#: data/ghex.appdata.xml.in:9
+#: data/org.gnome.GHex.appdata.xml.in:9
 msgid "GHex is a hex editor for the GNOME desktop."
 msgstr "A GHex egy hexadecimális szerkesztő a GNOME asztali környezethez."
 
-#: data/ghex.appdata.xml.in:12
+#: data/org.gnome.GHex.appdata.xml.in:12
 msgid ""
 "GHex can load raw data from binary files and display them for editing in the "
 "traditional hex editor view. The display is split in two columns, with "
@@ -47,23 +46,28 @@ msgstr ""
 "oszlopban, és az ASCII ábrázolással a másikban. Hasznos eszköz a nyers "
 "adatokkal történő munkavégzésnél."
 
-#: data/ghex.desktop.in:3 src/ghex-window.c:662 src/ghex-window.c:1106
+#: data/org.gnome.GHex.appdata.xml.in:41
+msgid "The GNOME Project"
+msgstr "A GNOME projekt"
+
+#: data/org.gnome.GHex.desktop.in:3 src/ghex-window.c:662
+#: src/ghex-window.c:1106
 msgid "GHex"
 msgstr "GHex"
 
-#: data/ghex.desktop.in:4
+#: data/org.gnome.GHex.desktop.in:4
 msgid "Hex Editor"
 msgstr "Hexadecimális szerkesztő"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
-#: data/ghex.desktop.in:7
+#: data/org.gnome.GHex.desktop.in:7
 msgid "binary;debug;"
 msgstr "bináris;hibakeresés;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/ghex.desktop.in:12
-msgid "ghex"
-msgstr "ghex"
+#: data/org.gnome.GHex.desktop.in:12
+msgid "org.gnome.GHex"
+msgstr "org.gnome.GHex"
 
 #: src/chartable.c:147
 msgid "ASCII"
@@ -1041,7 +1045,7 @@ msgstr ""
 "Fifth Floor, Boston, MA 02110-1301, USA."
 
 #. Translators: these two strings here indicate the copyright time span,
-#. e.g. 1998-2012.
+#. e.g. 1998-2018.
 #: src/ui.c:180
 msgid "Copyright © %Id–%Id The GHex authors"
 msgstr "Copyright © %Id–%Id A GHex szerzői"
