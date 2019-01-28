@@ -7,14 +7,14 @@
 # Lucas 'Basurero' Vieites <lucas@asixinformatica.com>, 2002,2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005, 2006.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2010.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011, 2012, 2013, 2015, 2016, 2018.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex.HEAD.es\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2018-06-05 13:56+0000\n"
-"PO-Revision-Date: 2018-06-22 09:39+0200\n"
+"POT-Creation-Date: 2018-12-11 10:20+0000\n"
+"PO-Revision-Date: 2019-01-28 13:43+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -22,22 +22,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 3.31.0\n"
 
-#: data/ghex.appdata.xml.in:6
-#| msgid "Hex Editor"
+#: data/org.gnome.GHex.appdata.xml.in:6
 msgid "GNOME Hex Editor"
 msgstr "Editor hexadecimal de GNOME"
 
-#: data/ghex.appdata.xml.in:7 data/ghex.desktop.in:5
+#: data/org.gnome.GHex.appdata.xml.in:7 data/org.gnome.GHex.desktop.in:5
 msgid "Inspect and edit binary files"
 msgstr "Inspeccionar y editar archivos binarios"
 
-#: data/ghex.appdata.xml.in:9
+#: data/org.gnome.GHex.appdata.xml.in:9
 msgid "GHex is a hex editor for the GNOME desktop."
 msgstr "GHex es un editor hexadecimal para el escritorio GNOME."
 
-#: data/ghex.appdata.xml.in:12
+#: data/org.gnome.GHex.appdata.xml.in:12
 msgid ""
 "GHex can load raw data from binary files and display them for editing in the "
 "traditional hex editor view. The display is split in two columns, with "
@@ -49,23 +48,28 @@ msgstr ""
 "columnas , una con los valores hexadecimales y otra con su representación "
 "ASCII. Es una herramienta muy útil para trabajar con datos en bruto."
 
-#: data/ghex.desktop.in:3 src/ghex-window.c:662 src/ghex-window.c:1106
+#: data/org.gnome.GHex.appdata.xml.in:41
+msgid "The GNOME Project"
+msgstr "El Proyecto GNOME"
+
+#: data/org.gnome.GHex.desktop.in:3 src/ghex-window.c:662
+#: src/ghex-window.c:1106
 msgid "GHex"
 msgstr "GHex"
 
-#: data/ghex.desktop.in:4
+#: data/org.gnome.GHex.desktop.in:4
 msgid "Hex Editor"
 msgstr "Editor hexadecimal"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
-#: data/ghex.desktop.in:7
+#: data/org.gnome.GHex.desktop.in:7
 msgid "binary;debug;"
 msgstr "binario;depurar;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/ghex.desktop.in:12
-msgid "ghex"
-msgstr "ghex"
+#: data/org.gnome.GHex.desktop.in:12
+msgid "org.gnome.GHex"
+msgstr "org.gnome.GHex"
 
 #: src/chartable.c:147
 msgid "ASCII"
@@ -1099,6 +1103,9 @@ msgstr "¿Desea realmente revertir los cambios del archivo %s?"
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Se ha revertido el búfer desde el archivo %s"
+
+#~ msgid "ghex"
+#~ msgstr "ghex"
 
 #~ msgid "Failed to load UI: %s"
 #~ msgstr "Fallo al cargar la IU: %s"
