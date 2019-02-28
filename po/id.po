@@ -7,33 +7,32 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-03-07 16:03+0000\n"
-"PO-Revision-Date: 2018-03-16 11:10+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
+"POT-Creation-Date: 2018-12-11 10:20+0000\n"
+"PO-Revision-Date: 2019-02-28 13:58+0700\n"
+"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural= n!=1;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.1\n"
 
-#: data/ghex.appdata.xml.in:6
+#: data/org.gnome.GHex.appdata.xml.in:6
 msgid "GNOME Hex Editor"
 msgstr "Penyunting Heksa GNOME"
 
-#: data/ghex.appdata.xml.in:7 data/ghex.desktop.in:5
+#: data/org.gnome.GHex.appdata.xml.in:7 data/org.gnome.GHex.desktop.in:5
 msgid "Inspect and edit binary files"
 msgstr "Periksa dan sunting berkas biner"
 
-#: data/ghex.appdata.xml.in:9
+#: data/org.gnome.GHex.appdata.xml.in:9
 msgid "GHex is a hex editor for the GNOME desktop."
 msgstr "GHex adalah penyunting heksa untuk desktop GNOME."
 
-#: data/ghex.appdata.xml.in:12
+#: data/org.gnome.GHex.appdata.xml.in:12
 msgid ""
 "GHex can load raw data from binary files and display them for editing in the "
 "traditional hex editor view. The display is split in two columns, with "
@@ -45,23 +44,28 @@ msgstr ""
 "dua kolom, dengan nilai-nilai heksadesimal dalam satu kolom dan representasi "
 "ASCII di kolom lain. Alat yang berguna untuk bekerja dengan data mentah."
 
-#: data/ghex.desktop.in:3 src/ghex-window.c:662 src/ghex-window.c:1106
+#: data/org.gnome.GHex.appdata.xml.in:41
+msgid "The GNOME Project"
+msgstr "Proyek GNOME"
+
+#: data/org.gnome.GHex.desktop.in:3 src/ghex-window.c:662
+#: src/ghex-window.c:1106
 msgid "GHex"
 msgstr "GHex"
 
-#: data/ghex.desktop.in:4
+#: data/org.gnome.GHex.desktop.in:4
 msgid "Hex Editor"
 msgstr "Penyunting Heksa"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
-#: data/ghex.desktop.in:7
+#: data/org.gnome.GHex.desktop.in:7
 msgid "binary;debug;"
 msgstr "biner;awakutu;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/ghex.desktop.in:12
-msgid "ghex"
-msgstr "ghex"
+#: data/org.gnome.GHex.desktop.in:12
+msgid "org.gnome.GHex"
+msgstr "org.gnome.GHex"
 
 #: src/chartable.c:147
 msgid "ASCII"
@@ -360,6 +364,7 @@ msgstr "Tidak ditemukan."
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
 msgstr[0] "Mengganti sebanyak %d kali."
+msgstr[1] "Mengganti sebanyak %d kali."
 
 #: src/findreplace.c:823
 msgid "No string to search for!"
@@ -1030,7 +1035,7 @@ msgstr ""
 "Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
 
 #. Translators: these two strings here indicate the copyright time span,
-#. e.g. 1998-2012.
+#. e.g. 1998-2018.
 #: src/ui.c:180
 msgid "Copyright © %Id–%Id The GHex authors"
 msgstr "Hak Cipta © %Id–%Id para penuils GHex"
@@ -1047,7 +1052,8 @@ msgstr "Tentang GHex"
 msgid "translator-credits"
 msgstr ""
 "Abdul Hamid.A.N <hameed@linuxmail.org>, 2004.\n"
-"Andika Triwidada <andika@gmail.com>, 2009, 2012, 2013, 2016, 2018."
+"Andika Triwidada <andika@gmail.com>, 2009, 2012, 2013, 2016, 2018.\n"
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2019."
 
 #: src/ui.c:194
 msgid "GHex Website"
@@ -1095,3 +1101,6 @@ msgstr "Kembalikan berkas %s ke bentuk semula?"
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "Penyangga dikembalikan dari berkas %s"
+
+#~ msgid "ghex"
+#~ msgstr "ghex"
