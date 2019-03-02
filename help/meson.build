@@ -4,7 +4,6 @@ help_pages = [
 ]
 
 help_media = [
-  'figures/ghex_window_empty.png',
   'figures/ghex_window_open.png'
 ]
 
