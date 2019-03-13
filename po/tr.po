@@ -6,352 +6,382 @@
 # Arman Aksoy (Armish) <armish@linux-sevenler.de>, 2003.
 # Necdet Yücel <necdetyucel@gmail.com>, 2015.
 # Muhammet Kara <muhammetk@gmail.com>, 2014, 2015, 2016.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: glib\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=ghex&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-08-19 17:14+0000\n"
-"PO-Revision-Date: 2016-12-01 23:30+0300\n"
-"Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
+"POT-Creation-Date: 2019-01-07 10:19+0000\n"
+"PO-Revision-Date: 2019-03-13 13:49+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 3.30.1\n"
 "X-POOTLE-MTIME: 1423957989.000000\n"
 
-# src/chartable.c:90 src/converter.c:73
-#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
-#: ../src/ghex-window.c:1104
-msgid "GHex"
-msgstr "GHex"
+# src/preferences.c:166
+#: data/org.gnome.GHex.appdata.xml.in:6
+msgid "GNOME Hex Editor"
+msgstr "GNOME Onaltılık Düzenleyici"
 
-#: ../data/ghex.desktop.in.h:2
-msgid "Hex Editor"
-msgstr "Onaltılık Düzenliyici"
-
-#: ../data/ghex.desktop.in.h:3
+#: data/org.gnome.GHex.appdata.xml.in:7 data/org.gnome.GHex.desktop.in:5
 msgid "Inspect and edit binary files"
 msgstr "İkilik dosyaları inceleyin ve düzenleyin"
 
-#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
-#: ../data/ghex.desktop.in.h:5
+#: data/org.gnome.GHex.appdata.xml.in:9
+msgid "GHex is a hex editor for the GNOME desktop."
+msgstr "GHex, GNOME masaüstü için onaltılık düzenleyicidir."
+
+#: data/org.gnome.GHex.appdata.xml.in:12
+msgid ""
+"GHex can load raw data from binary files and display them for editing in the "
+"traditional hex editor view. The display is split in two columns, with "
+"hexadecimal values in one column and the ASCII representation in the other. "
+"A useful tool for working with raw data."
+msgstr ""
+"GHex ham verileri ikili dosyalardan yükleyebilir ve bunları geleneksel "
+"onaltılık düzenleyici görünümünde düzenlemek için görüntüleyebilir. Ekran, "
+"bir sütunda onaltılık değer ve diğerinde ASCII gösterimi ile iki sütuna "
+"bölünmüştür. Ham verilerle çalışmak için yararlı bir araçtır."
+
+#: data/org.gnome.GHex.appdata.xml.in:41
+msgid "The GNOME Project"
+msgstr "GNOME Projesi"
+
+# src/chartable.c:90 src/converter.c:73
+#: data/org.gnome.GHex.desktop.in:3 src/ghex-window.c:662
+#: src/ghex-window.c:1106
+msgid "GHex"
+msgstr "GHex"
+
+#: data/org.gnome.GHex.desktop.in:4
+msgid "Hex Editor"
+msgstr "Onaltılık Düzenliyici"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
+#: data/org.gnome.GHex.desktop.in:7
 msgid "binary;debug;"
-msgstr "ikilik;hata ayıklama;"
+msgstr "ikilik;ikili;hata ayıklama;"
+
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.GHex.desktop.in:12
+msgid "org.gnome.GHex"
+msgstr "org.gnome.GHex"
 
 # src/chartable.c:90 src/converter.c:83
-#: ../src/chartable.c:147
+#: src/chartable.c:147
 msgid "ASCII"
 msgstr "ASCII"
 
 # src/chartable.c:90 src/converter.c:73
-#: ../src/chartable.c:147
+#: src/chartable.c:147
 msgid "Hex"
 msgstr "Onaltılık"
 
 # src/chartable.c:90 src/converter.c:63 src/preferences.c:161
-#: ../src/chartable.c:147 ../src/preferences.c:142
+#: src/chartable.c:147 src/preferences.c:142
 msgid "Decimal"
 msgstr "Ondalık"
 
 # src/chartable.c:91
-#: ../src/chartable.c:148
+#: src/chartable.c:148
 msgid "Octal"
 msgstr "Sekizlik"
 
 # src/chartable.c:91 src/converter.c:53
-#: ../src/chartable.c:148
+#: src/chartable.c:148
 msgid "Binary"
 msgstr "İkilik"
 
 # src/chartable.c:97
-#: ../src/chartable.c:164
+#: src/chartable.c:164
 msgid "Character table"
 msgstr "Karakter tablosu"
 
 # src/converter.c:44
-#: ../src/converter.c:232
+#: src/converter.c:232
 msgid "Base Converter"
 msgstr "Taban Çevirici"
 
 # src/chartable.c:91 src/converter.c:53
 #. entries
-#: ../src/converter.c:253
+#: src/converter.c:253
 msgid "_Binary:"
 msgstr "İ_kilik:"
 
 # src/chartable.c:91
-#: ../src/converter.c:255
+#: src/converter.c:255
 msgid "_Octal:"
 msgstr "_Sekizlik:"
 
 # src/chartable.c:90 src/converter.c:63 src/preferences.c:161
-#: ../src/converter.c:257
+#: src/converter.c:257
 msgid "_Decimal:"
 msgstr "_Ondalık:"
 
 # src/chartable.c:90 src/converter.c:73
-#: ../src/converter.c:259
+#: src/converter.c:259
 msgid "_Hex:"
 msgstr "Onal_tılık:"
 
 # src/chartable.c:90 src/converter.c:83
-#: ../src/converter.c:261
+#: src/converter.c:261
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
 # src/converter.c:93
 #. get cursor button
-#: ../src/converter.c:265
+#: src/converter.c:265
 msgid "_Get cursor value"
 msgstr "_İmleç değerlerini al"
 
 # src/converter.c:93
-#: ../src/converter.c:279
+#: src/converter.c:279
 msgid "Get cursor value"
 msgstr "İmleç değerlerini al"
 
-#: ../src/converter.c:279
+#: src/converter.c:279
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr "İmleçteki ikilik, ondalık, sekizlik, onaltılık ve ASCII değerleri alır"
 
 # src/converter.c:194
-#: ../src/converter.c:419
+#: src/converter.c:419
 msgid "ERROR"
 msgstr "HATA"
 
 # src/findreplace.c:58 src/main.c:96
-#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:888
+#: src/findreplace.c:97 src/findreplace.c:221 src/ui.c:892
 #, c-format
 msgid "GHex (%s): Find Data"
 msgstr "GHex (%s): Veri Bul"
 
 # src/preferences.c:361
-#: ../src/findreplace.c:101 ../src/findreplace.c:161 ../src/findreplace.c:359
+#: src/findreplace.c:101 src/findreplace.c:161 src/findreplace.c:359
 msgid "Find String"
 msgstr "Dizgi Bul"
 
 # src/findreplace.c:83
-#: ../src/findreplace.c:108 ../src/findreplace.c:258
+#: src/findreplace.c:108 src/findreplace.c:258
 msgid "Find _Next"
 msgstr "So_nrakini Bul"
 
 # src/findreplace.c:91
-#: ../src/findreplace.c:115 ../src/findreplace.c:267
+#: src/findreplace.c:115 src/findreplace.c:267
 msgid "Find _Previous"
 msgstr "_Öncekini Bul"
 
 # src/findreplace.c:157
-#: ../src/findreplace.c:138 ../src/findreplace.c:413
+#: src/findreplace.c:138 src/findreplace.c:413
 msgid "Find Data"
 msgstr "Veri Bul"
 
-#: ../src/findreplace.c:138 ../src/findreplace.c:413
+#: src/findreplace.c:138 src/findreplace.c:413
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Aranılacak onaltılık veya ASCII verisini giriniz"
 
 # src/findreplace.c:83
-#: ../src/findreplace.c:139
+#: src/findreplace.c:139
 msgid "Find Next"
 msgstr "Sonrakini Bul"
 
-#: ../src/findreplace.c:139 ../src/findreplace.c:415
+#: src/findreplace.c:139 src/findreplace.c:415
 msgid "Finds the next occurrence of the search string"
 msgstr "Arama dizgisinin bir sonraki belirdiği yeri bulur"
 
 # src/findreplace.c:91
-#: ../src/findreplace.c:140
+#: src/findreplace.c:140
 msgid "Find previous"
 msgstr "Öncekini bul"
 
-#: ../src/findreplace.c:140
+#: src/findreplace.c:140
 msgid "Finds the previous occurrence of the search string "
 msgstr "Arama dizgisinin bir önceki belirdiği yeri bulur"
 
-#: ../src/findreplace.c:141 ../src/findreplace.c:418 ../src/findreplace.c:469
+#: src/findreplace.c:141 src/findreplace.c:418 src/findreplace.c:469
 msgid "Cancel"
 msgstr "İptal"
 
-#: ../src/findreplace.c:141
+#: src/findreplace.c:141
 msgid "Closes find data window"
 msgstr "Veri bul penceresini kapatır"
 
 # src/findreplace.c:58 src/main.c:96
-#: ../src/findreplace.c:157
+#: src/findreplace.c:157
 #, c-format
 msgid "GHex (%s): Find Data: Add search"
 msgstr "GHex (%s): Veri bul: Arama ekle"
 
-#: ../src/findreplace.c:179
+#: src/findreplace.c:179
 msgid "Add"
 msgstr "Ekle"
 
 # src/findreplace.c:67
-#: ../src/findreplace.c:235
+#: src/findreplace.c:235
 msgid "Search String"
 msgstr "Arama Dizgisi"
 
-#: ../src/findreplace.c:243
+#: src/findreplace.c:243
 msgid "Highlight Colour"
 msgstr "Vurgu Rengi"
 
 # src/hex-document-ui.c:87
-#: ../src/findreplace.c:280
+#: src/findreplace.c:280
 msgid "_Add New"
 msgstr "_Yeni Ekle"
 
 # src/hex-document-ui.c:89
-#: ../src/findreplace.c:289
+#: src/findreplace.c:289
 msgid "_Remove Selected"
 msgstr "Seçilileri _Kaldır"
 
 # src/converter.c:99
-#: ../src/findreplace.c:309
+#: src/findreplace.c:309
 msgid "Close"
 msgstr "Kapat"
 
-#: ../src/findreplace.c:309
+#: src/findreplace.c:309
 msgid "Closes advanced find window"
 msgstr "Gelişmiş veri bul penceresini kapatır"
 
 # src/findreplace.c:127 src/main.c:98
-#: ../src/findreplace.c:355 ../src/ui.c:886
+#: src/findreplace.c:355 src/ui.c:890
 #, c-format
 msgid "GHex (%s): Find & Replace Data"
 msgstr "GHex (%s): Veriyi Bul ve Değiştir"
 
 # src/findreplace.c:165
-#: ../src/findreplace.c:368
+#: src/findreplace.c:368
 msgid "Replace With"
 msgstr "İle Değiştir"
 
 # src/findreplace.c:157
-#: ../src/findreplace.c:375
+#: src/findreplace.c:375
 msgid "Find _next"
 msgstr "Sonraki_ni bul"
 
 # src/findreplace.c:165
-#: ../src/findreplace.c:383
+#: src/findreplace.c:383
 msgid "_Replace"
 msgstr "Değişti_r"
 
 # src/findreplace.c:173
-#: ../src/findreplace.c:391
+#: src/findreplace.c:391
 msgid "Replace _All"
-msgstr "_Hepsini Değiştir"
+msgstr "_Tümünü Değiştir"
 
 # src/findreplace.c:165
-#: ../src/findreplace.c:414
+#: src/findreplace.c:414
 msgid "Replace Data"
 msgstr "Veriyi Değiştir"
 
-#: ../src/findreplace.c:414
+#: src/findreplace.c:414
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "Değiştirilecek onaltılık veya ASCII veriyi girin"
 
 # src/findreplace.c:157
-#: ../src/findreplace.c:415
+#: src/findreplace.c:415
 msgid "Find next"
 msgstr "Sonrakini bul"
 
 # src/findreplace.c:165
-#: ../src/findreplace.c:416
+#: src/findreplace.c:416
 msgid "Replace"
 msgstr "Değiştir"
 
-#: ../src/findreplace.c:416
+#: src/findreplace.c:416
 msgid "Replaces the search string with the replace string"
 msgstr "Bulunan dizgileri verilen değerle değişitirir"
 
 # src/findreplace.c:173
-#: ../src/findreplace.c:417
+#: src/findreplace.c:417
 msgid "Replace All"
-msgstr "Hepsini Değiştir"
+msgstr "Tümünü Değiştir"
 
-#: ../src/findreplace.c:417
+#: src/findreplace.c:417
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Arama dizgisinin her belirimini değiştirme dizgisi ile değiştirir"
 
-#: ../src/findreplace.c:418
+#: src/findreplace.c:418
 msgid "Closes find and replace data window"
 msgstr "Bul ve değişr penceresini kapatır"
 
 # src/findreplace.c:206 src/main.c:100
-#: ../src/findreplace.c:434 ../src/ui.c:884
+#: src/findreplace.c:434 src/ui.c:888
 #, c-format
 msgid "GHex (%s): Jump To Byte"
 msgstr "GHex (%s): Bayt'a Git"
 
-#: ../src/findreplace.c:467
+#: src/findreplace.c:467
 msgid "Jump to byte"
 msgstr "Bayt'a Git"
 
-#: ../src/findreplace.c:467
+#: src/findreplace.c:467
 msgid "Enter the byte to jump to"
 msgstr "Gidilecek baytı giriniz"
 
-#: ../src/findreplace.c:468
+#: src/findreplace.c:468
 msgid "OK"
 msgstr "TAMAM"
 
-#: ../src/findreplace.c:468
+#: src/findreplace.c:468
 msgid "Jumps to the specified byte"
 msgstr "Belirtilen bayt'a gider"
 
-#: ../src/findreplace.c:469
+#: src/findreplace.c:469
 msgid "Closes jump to byte window"
 msgstr "Bayt'a git penceresini kapatır"
 
 # src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
-#: ../src/findreplace.c:532 ../src/findreplace.c:566 ../src/findreplace.c:673
+#: src/findreplace.c:532 src/findreplace.c:566 src/findreplace.c:673
 msgid "There is no active document to search!"
 msgstr "Aranılacak bir etkin belge yok!"
 
 # src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
-#: ../src/findreplace.c:539 ../src/findreplace.c:573 ../src/findreplace.c:680
-#: ../src/findreplace.c:714 ../src/findreplace.c:759
+#: src/findreplace.c:539 src/findreplace.c:573 src/findreplace.c:680
+#: src/findreplace.c:714 src/findreplace.c:759
 msgid "There is no string to search for!"
 msgstr "Aranılacak bir dizgi yok!"
 
 # src/findreplace.c:310 src/findreplace.c:388
-#: ../src/findreplace.c:551 ../src/findreplace.c:689 ../src/findreplace.c:879
+#: src/findreplace.c:551 src/findreplace.c:689 src/findreplace.c:879
 msgid "End Of File reached"
 msgstr "Dosya sonuna ulaşıldı"
 
-#: ../src/findreplace.c:552 ../src/findreplace.c:585 ../src/findreplace.c:688
-#: ../src/findreplace.c:880 ../src/findreplace.c:903
+#: src/findreplace.c:552 src/findreplace.c:585 src/findreplace.c:688
+#: src/findreplace.c:880 src/findreplace.c:903
 msgid "String was not found!\n"
 msgstr "Dizgi bulunamadı!\n"
 
 # src/findreplace.c:336
-#: ../src/findreplace.c:584 ../src/findreplace.c:902
+#: src/findreplace.c:584 src/findreplace.c:902
 msgid "Beginning Of File reached"
 msgstr "Dosya başına ulaşıldı"
 
 # src/findreplace.c:345
-#: ../src/findreplace.c:601
+#: src/findreplace.c:601
 msgid "There is no active document to move the cursor in!"
 msgstr "İmleci taşımak için etkin belge yok!"
 
 # src/findreplace.c:350
-#: ../src/findreplace.c:619
+#: src/findreplace.c:619
 msgid "No offset has been specified!"
 msgstr "Ofset tanımlanmamış!"
 
-#: ../src/findreplace.c:644
+#: src/findreplace.c:644
 msgid "The specified offset is beyond the  file boundaries!"
 msgstr "Belirtilen ofset dosya sınırlarının dışında!"
 
 # src/findreplace.c:357
-#: ../src/findreplace.c:652
+#: src/findreplace.c:652
 msgid "Can not position cursor beyond the End Of File!"
 msgstr "İmleç dosya sonundan ileri konumlandırılamaz!"
 
-#: ../src/findreplace.c:659
+#: src/findreplace.c:659
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
@@ -365,38 +395,38 @@ msgstr ""
 "girebilirsiniz."
 
 # src/findreplace.c:399 src/findreplace.c:436
-#: ../src/findreplace.c:705
+#: src/findreplace.c:705
 msgid "There is no active buffer to replace data in!"
 msgstr "Veriyi değiştirmek için etkin bir tampon yok!"
 
 # src/findreplace.c:425
-#: ../src/findreplace.c:730 ../src/findreplace.c:731
+#: src/findreplace.c:730 src/findreplace.c:731
 msgid "End Of File reached!"
 msgstr "Dosya sonuna ulaşıldı!"
 
 # src/findreplace.c:399 src/findreplace.c:436
-#: ../src/findreplace.c:750
+#: src/findreplace.c:750
 msgid "There is no active document to replace data in!"
 msgstr "Veri değiştirmek için etkin belge yok!"
 
-#: ../src/findreplace.c:780
+#: src/findreplace.c:780
 msgid "No occurrences were found."
 msgstr "Hiçbir belirimi bulunamadı."
 
 # src/findreplace.c:463
-#: ../src/findreplace.c:783
+#: src/findreplace.c:783
 #, c-format
 msgid "Replaced %d occurrence."
 msgid_plural "Replaced %d occurrences."
 msgstr[0] "%d belirim değiştirildi."
 
 # src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
-#: ../src/findreplace.c:823
+#: src/findreplace.c:823
 msgid "No string to search for!"
 msgstr "Arama yapmak için dizgi yok !"
 
 # src/ui.c:500
-#: ../src/ghex-window.c:90
+#: src/ghex-window.c:88
 #, c-format
 msgid ""
 "Can not open URI:\n"
@@ -406,7 +436,7 @@ msgstr ""
 "%s"
 
 # src/ui.c:500
-#: ../src/ghex-window.c:111
+#: src/ghex-window.c:109
 #, c-format
 msgid ""
 "Can not open file:\n"
@@ -415,338 +445,338 @@ msgstr ""
 "Dosya açılamıyor:\n"
 "%s"
 
-#: ../src/ghex-window.c:340
+#: src/ghex-window.c:338
 msgid "_File"
 msgstr "_Dosya"
 
 # src/preferences.c:188
-#: ../src/ghex-window.c:341
+#: src/ghex-window.c:339
 msgid "_Edit"
 msgstr "Dü_zenle"
 
-#: ../src/ghex-window.c:342
+#: src/ghex-window.c:340
 msgid "_View"
 msgstr "G_örünüm"
 
 # src/hex-document-ui.c:81
-#: ../src/ghex-window.c:343
+#: src/ghex-window.c:341
 msgid "_Group Data As"
-msgstr "_Veriyi Farklı İsimde Grupla"
+msgstr "_Veriyi Farklı Adla Kümele"
 
 #. View submenu
-#: ../src/ghex-window.c:344
+#: src/ghex-window.c:342
 msgid "_Windows"
 msgstr "_Pencereler"
 
 # src/chartable.c:90 src/converter.c:73
-#: ../src/ghex-window.c:345
+#: src/ghex-window.c:343
 msgid "_Help"
 msgstr "_Yardım"
 
 #. File menu
-#: ../src/ghex-window.c:348
+#: src/ghex-window.c:346
 msgid "_Open..."
 msgstr "_Aç..."
 
-#: ../src/ghex-window.c:349
+#: src/ghex-window.c:347
 msgid "Open a file"
 msgstr "Dosya aç"
 
-#: ../src/ghex-window.c:351
+#: src/ghex-window.c:349
 msgid "_Save"
 msgstr "_Kaydet"
 
-#: ../src/ghex-window.c:352
+#: src/ghex-window.c:350
 msgid "Save the current file"
 msgstr "Geçerli dosyayı kaydet"
 
-#: ../src/ghex-window.c:354
+#: src/ghex-window.c:352
 msgid "Save _As..."
 msgstr "_Farklı Kaydet..."
 
 # src/hex-document-ui.c:90
-#: ../src/ghex-window.c:355
+#: src/ghex-window.c:353
 msgid "Save the current file with a different name"
 msgstr "Geçerli dosyayı farklı bir ad ile kaydet"
 
-#: ../src/ghex-window.c:357
+#: src/ghex-window.c:355
 msgid "Save As _HTML..."
 msgstr "_HTML Olarak Kaydet..."
 
 # src/ui.c:57
-#: ../src/ghex-window.c:358
+#: src/ghex-window.c:356
 msgid "Export data to HTML source"
 msgstr "Veriyi HTML kaynağına aktar"
 
-#: ../src/ghex-window.c:360
+#: src/ghex-window.c:358
 msgid "_Revert"
 msgstr "_Geri Dön"
 
-#: ../src/ghex-window.c:361
+#: src/ghex-window.c:359
 msgid "Revert to a saved version of the file"
 msgstr "Dosyanın kaydedilmiş bir sürümüne geri döner"
 
 # src/preferences.c:361
-#: ../src/ghex-window.c:363
+#: src/ghex-window.c:361
 msgid "_Print"
 msgstr "Yaz_dır"
 
-#: ../src/ghex-window.c:364
+#: src/ghex-window.c:362
 msgid "Print the current file"
 msgstr "Geçerli dosyayı yazdır"
 
 # src/ui.c:61
-#: ../src/ghex-window.c:366
+#: src/ghex-window.c:364
 msgid "Print Previe_w..."
 msgstr "Baskı Ön_izleme..."
 
 # src/ui.c:61
-#: ../src/ghex-window.c:367
+#: src/ghex-window.c:365
 msgid "Preview printed data"
 msgstr "Yazılan veriyi göster"
 
 # src/converter.c:99
-#: ../src/ghex-window.c:369
+#: src/ghex-window.c:367
 msgid "_Close"
 msgstr "_Kapat"
 
-#: ../src/ghex-window.c:370
+#: src/ghex-window.c:368
 msgid "Close the current file"
 msgstr "Etkin dosyayı kapat"
 
-#: ../src/ghex-window.c:372
+#: src/ghex-window.c:370
 msgid "E_xit"
 msgstr "Çı_kış"
 
-#: ../src/ghex-window.c:373
+#: src/ghex-window.c:371
 msgid "Exit the program"
 msgstr "Programdan çık"
 
 #. Edit menu
-#: ../src/ghex-window.c:377
+#: src/ghex-window.c:375
 msgid "_Undo"
 msgstr "Geri _Al"
 
-#: ../src/ghex-window.c:378
+#: src/ghex-window.c:376
 msgid "Undo the last action"
 msgstr "Son işlemi geri al"
 
-#: ../src/ghex-window.c:380
+#: src/ghex-window.c:378
 msgid "_Redo"
 msgstr "_Yeniden Yap"
 
-#: ../src/ghex-window.c:381
+#: src/ghex-window.c:379
 msgid "Redo the undone action"
 msgstr "Geri alınmış işlemi yeniden yap"
 
-#: ../src/ghex-window.c:383
+#: src/ghex-window.c:381
 msgid "_Copy"
 msgstr "_Kopyala"
 
-#: ../src/ghex-window.c:384
+#: src/ghex-window.c:382
 msgid "Copy selection to clipboard"
 msgstr "Seçimi panoya kopyala"
 
-#: ../src/ghex-window.c:386
+#: src/ghex-window.c:384
 msgid "Cu_t"
 msgstr "Ke_s"
 
-#: ../src/ghex-window.c:387
+#: src/ghex-window.c:385
 msgid "Cut selection"
 msgstr "Seçimi kes"
 
-#: ../src/ghex-window.c:389
+#: src/ghex-window.c:387
 msgid "Pa_ste"
 msgstr "Ya_pıştır"
 
-#: ../src/ghex-window.c:390
+#: src/ghex-window.c:388
 msgid "Paste data from clipboard"
 msgstr "Veriyi panodan yapıştır"
 
-#: ../src/ghex-window.c:392
+#: src/ghex-window.c:390
 msgid "_Find"
 msgstr "_Bul"
 
 # src/findreplace.c:67
-#: ../src/ghex-window.c:393
+#: src/ghex-window.c:391
 msgid "Search for a string"
 msgstr "Bir dizgiyi ara"
 
-#: ../src/ghex-window.c:395
+#: src/ghex-window.c:393
 msgid "_Advanced Find"
 msgstr "_Gelişmiş Arama"
 
-#: ../src/ghex-window.c:396
+#: src/ghex-window.c:394
 msgid "Advanced Find"
 msgstr "Gelişmiş Arama"
 
 # src/findreplace.c:165
-#: ../src/ghex-window.c:398
+#: src/ghex-window.c:396
 msgid "R_eplace"
 msgstr "Değişti_r"
 
 # src/findreplace.c:141
-#: ../src/ghex-window.c:399
+#: src/ghex-window.c:397
 msgid "Replace a string"
 msgstr "Bir dizgiyi değiştir"
 
 # src/hex-document-ui.c:74
-#: ../src/ghex-window.c:401
+#: src/ghex-window.c:399
 msgid "_Goto Byte..."
 msgstr "Bayta _Git..."
 
 # src/hex-document-ui.c:74
-#: ../src/ghex-window.c:402
+#: src/ghex-window.c:400
 msgid "Jump to a certain position"
 msgstr "Belirli bir konuma gider"
 
-#: ../src/ghex-window.c:404
+#: src/ghex-window.c:402
 msgid "_Preferences"
 msgstr "_Tercihler"
 
-#: ../src/ghex-window.c:405
+#: src/ghex-window.c:403
 msgid "Configure the application"
 msgstr "Uygulamayı yapılandır"
 
 # src/hex-document-ui.c:87
 #. View menu
-#: ../src/ghex-window.c:409
+#: src/ghex-window.c:407
 msgid "_Add View"
 msgstr "Görü_nüm Ekle"
 
 # src/hex-document-ui.c:88
-#: ../src/ghex-window.c:410
+#: src/ghex-window.c:408
 msgid "Add a new view to the buffer"
 msgstr "Tampona yeni bir görünüm ekle"
 
 # src/hex-document-ui.c:89
-#: ../src/ghex-window.c:412
+#: src/ghex-window.c:410
 msgid "_Remove View"
 msgstr "Görünümü _Kaldır"
 
 # src/hex-document-ui.c:90
-#: ../src/ghex-window.c:413
+#: src/ghex-window.c:411
 msgid "Remove the current view of the buffer"
 msgstr "Geçerli görüntüyü tampondan sil"
 
 #. Help menu
-#: ../src/ghex-window.c:417
+#: src/ghex-window.c:415
 msgid "_Contents"
 msgstr "_İçerik"
 
-#: ../src/ghex-window.c:418
+#: src/ghex-window.c:416
 msgid "Help on this application"
 msgstr "Bu uygulama konusunda yardım görüntüle"
 
-#: ../src/ghex-window.c:420
+#: src/ghex-window.c:418
 msgid "_About"
 msgstr "_Hakkında"
 
-#: ../src/ghex-window.c:421
+#: src/ghex-window.c:419
 msgid "About this application"
 msgstr "Bu uygulama hakkında"
 
 # src/hex-document-ui.c:78
 #. Edit menu
-#: ../src/ghex-window.c:428
+#: src/ghex-window.c:426
 msgid "_Insert Mode"
 msgstr "A_raya Yazma Kipi"
 
 # src/hex-document-ui.c:78
-#: ../src/ghex-window.c:429
+#: src/ghex-window.c:427
 msgid "Insert/overwrite data"
 msgstr "Veriyi araya ekle/üzerine yaz"
 
 # src/ui.c:76
 #. Windows menu
-#: ../src/ghex-window.c:433
+#: src/ghex-window.c:431
 msgid "Character _Table"
 msgstr "Karakter _Tablosu"
 
 # src/ui.c:77
-#: ../src/ghex-window.c:434
+#: src/ghex-window.c:432
 msgid "Show the character table"
 msgstr "Karakter tablosunu göster"
 
 # src/converter.c:44
-#: ../src/ghex-window.c:436
+#: src/ghex-window.c:434
 msgid "_Base Converter"
 msgstr "_Taban Dönüştürücü"
 
 # src/ui.c:75
-#: ../src/ghex-window.c:437
+#: src/ghex-window.c:435
 msgid "Open base conversion dialog"
 msgstr "Taban çevrim penceresini aç"
 
 # src/ui.c:75
-#: ../src/ghex-window.c:439
+#: src/ghex-window.c:437
 msgid "Type Conversion _Dialog"
 msgstr "Tür Çevrim _Penceresi"
 
-#: ../src/ghex-window.c:440
+#: src/ghex-window.c:438
 msgid "Show the type conversion dialog in the edit window"
 msgstr "Düzenleme penceresindeki tür çevrim penceresini görüntüle"
 
 # src/hex-document-ui.c:50
-#: ../src/ghex-window.c:446 ../src/ui.c:48
+#: src/ghex-window.c:444 src/ui.c:48
 msgid "_Bytes"
 msgstr "_Bayt"
 
 # src/hex-document-ui.c:51
-#: ../src/ghex-window.c:447
+#: src/ghex-window.c:445
 msgid "Group data by 8 bits"
-msgstr "Verileri 8 bitlik olarak grupla"
+msgstr "Verileri 8 bitlik olarak kümele"
 
 # src/hex-document-ui.c:52
-#: ../src/ghex-window.c:448 ../src/ui.c:49
+#: src/ghex-window.c:446 src/ui.c:49
 msgid "_Words"
-msgstr "Keli_me"
+msgstr "S_özcük"
 
 # src/hex-document-ui.c:53
-#: ../src/ghex-window.c:449
+#: src/ghex-window.c:447
 msgid "Group data by 16 bits"
-msgstr "Verileri 16 bitlik olarak grupla"
+msgstr "Verileri 16 bitlik olarak kümele"
 
 # src/hex-document-ui.c:54
-#: ../src/ghex-window.c:450 ../src/ui.c:50
+#: src/ghex-window.c:448 src/ui.c:50
 msgid "_Longwords"
-msgstr "_Uzun Kelime"
+msgstr "_Uzun Sözcük"
 
 # src/hex-document-ui.c:55
-#: ../src/ghex-window.c:451
+#: src/ghex-window.c:449
 msgid "Group data by 32 bits"
-msgstr "Verileri 32 bitlik olarak grupla"
+msgstr "Verileri 32 bitlik olarak kümele"
 
 # src/main.c:191
-#: ../src/ghex-window.c:787
+#: src/ghex-window.c:787
 #, c-format
 msgid "Offset: %s"
 msgstr "Ofset: %s"
 
-#: ../src/ghex-window.c:790
+#: src/ghex-window.c:790
 #, c-format
 msgid "; %s bytes from %s to %s selected"
 msgstr "; %s bayt seçildi, %s konumundan %s konumuna kadar"
 
 # src/ui.c:495
-#: ../src/ghex-window.c:1064
+#: src/ghex-window.c:1066
 #, c-format
 msgid "Activate file %s"
 msgstr "%s dosyasını etkinleştir"
 
 # src/chartable.c:90 src/converter.c:73
-#: ../src/ghex-window.c:1100
+#: src/ghex-window.c:1102
 #, c-format
 msgid "%s - GHex"
 msgstr "%s - GHex"
 
 # src/ui.c:284
-#: ../src/ghex-window.c:1222
+#: src/ghex-window.c:1224
 msgid "Select a file to save buffer as"
 msgstr "Tampondaki dosyayı saklamak için bir dosya seçiniz"
 
 # src/main.c:51
-#: ../src/ghex-window.c:1254
+#: src/ghex-window.c:1256
 #, c-format
 msgid ""
 "File %s exists.\n"
@@ -756,23 +786,23 @@ msgstr ""
 "Üzerine yazmak ister misiniz?"
 
 # src/ui.c:230 src/ui.c:534
-#: ../src/ghex-window.c:1280 ../src/ui.c:306
+#: src/ghex-window.c:1282 src/ui.c:310
 #, c-format
 msgid "Saved buffer to file %s"
-msgstr "Tampon %s isimli dosyaya kaydedildi"
+msgstr "Tampon %s adlı dosyaya kaydedildi"
 
 # src/ui.c:226 src/ui.c:539
-#: ../src/ghex-window.c:1287
+#: src/ghex-window.c:1289
 msgid "Error saving file!"
 msgstr "Dosya kayıt edilirken hata oluştu!"
 
 # src/ui.c:543
-#: ../src/ghex-window.c:1293
+#: src/ghex-window.c:1295
 msgid "Can't open file for writing!"
 msgstr "Dosya yazmak için açılamıyor!"
 
 # src/main.c:51
-#: ../src/ghex-window.c:1338
+#: src/ghex-window.c:1340
 #, c-format
 msgid ""
 "File %s has changed since last save.\n"
@@ -781,293 +811,291 @@ msgstr ""
 "%s dosyasında değişiklik yapıldı.\n"
 "Değişiklikleri kaydetmek ister misiniz?"
 
-#: ../src/ghex-window.c:1342
+#: src/ghex-window.c:1344
 msgid "Do_n't save"
 msgstr "Kaydet_me"
 
-#: ../src/ghex-window.c:1362 ../src/ui.c:294
+#: src/ghex-window.c:1364 src/ui.c:298
 msgid "You don't have the permissions to save the file!"
 msgstr "Dosyayı kaydetmek için yetkiniz yok!"
 
 # src/ui.c:226 src/ui.c:539
-#: ../src/ghex-window.c:1366 ../src/ui.c:299
+#: src/ghex-window.c:1368 src/ui.c:303
 msgid "An error occurred while saving file!"
 msgstr "Dosya kaydedilirken hata oluştu!"
 
-#: ../src/hex-dialog.c:61
+#: src/hex-dialog.c:61
 msgid "Signed 8 bit:"
 msgstr "İşaretli 8 bit:"
 
-#: ../src/hex-dialog.c:62
+#: src/hex-dialog.c:62
 msgid "Unsigned 8 bit:"
 msgstr "İşaretsiz 8 bit:"
 
-#: ../src/hex-dialog.c:63
+#: src/hex-dialog.c:63
 msgid "Signed 16 bit:"
 msgstr "İşaretli 16 bit:"
 
-#: ../src/hex-dialog.c:64
+#: src/hex-dialog.c:64
 msgid "Unsigned 16 bit:"
 msgstr "İşaretsiz 16 bit:"
 
-#: ../src/hex-dialog.c:65
+#: src/hex-dialog.c:65
 msgid "Signed 32 bit:"
 msgstr "İşaretli 32 bit:"
 
-#: ../src/hex-dialog.c:66
+#: src/hex-dialog.c:66
 msgid "Unsigned 32 bit:"
 msgstr "İşaretsiz 32 bit:"
 
-#: ../src/hex-dialog.c:67
-#| msgid "Signed 16 bit:"
+#: src/hex-dialog.c:67
 msgid "Signed 64 bit:"
 msgstr "İşaretli 64 bit:"
 
-#: ../src/hex-dialog.c:68
-#| msgid "Unsigned 16 bit:"
+#: src/hex-dialog.c:68
 msgid "Unsigned 64 bit:"
 msgstr "İşaretsiz 64 bit:"
 
-#: ../src/hex-dialog.c:69
+#: src/hex-dialog.c:69
 msgid "Float 32 bit:"
 msgstr "Float 32 bit:"
 
-#: ../src/hex-dialog.c:70
+#: src/hex-dialog.c:70
 msgid "Float 64 bit:"
 msgstr "Float 64 bit:"
 
 # src/preferences.c:166
-#: ../src/hex-dialog.c:71
+#: src/hex-dialog.c:71
 msgid "Hexadecimal:"
 msgstr "Onaltılık:"
 
 # src/chartable.c:91
-#: ../src/hex-dialog.c:72
+#: src/hex-dialog.c:72
 msgid "Octal:"
 msgstr "Sekizlik:"
 
 # src/chartable.c:91 src/converter.c:53
-#: ../src/hex-dialog.c:73
+#: src/hex-dialog.c:73
 msgid "Binary:"
 msgstr "İkilik:"
 
-#: ../src/hex-dialog.c:214
+#: src/hex-dialog.c:214
 msgid "Show little endian decoding"
 msgstr "Küçük endian kodlamasını göster"
 
-#: ../src/hex-dialog.c:221
+#: src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
 msgstr "İşaretsiz ve ondalık değerleri onaltılık olarak göster"
 
-#: ../src/hex-dialog.c:227
+#: src/hex-dialog.c:227
 msgid "Stream Length:"
 msgstr "Akım Uzunluğu:"
 
-#: ../src/hex-dialog.c:250
+#: src/hex-dialog.c:250
 msgid "FIXME: no conversion function"
 msgstr "BENİ DÜZELT: çevrim işlevi yok"
 
-#: ../src/hex-document.c:435
+#: src/hex-document.c:435
 msgid "New document"
 msgstr "Yeni belge"
 
 # src/hex-document.c:707
-#: ../src/hex-document.c:784
+#: src/hex-document.c:784
 #, c-format
 msgid "Page"
 msgstr "Sayfa"
 
 # src/hex-document.c:713 src/hex-document.c:814
-#: ../src/hex-document.c:790 ../src/hex-document.c:915
+#: src/hex-document.c:790 src/hex-document.c:915
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Onaltılık baskıyı yaratan"
 
 # src/ui.c:57
-#: ../src/hex-document.c:801
+#: src/hex-document.c:801
 msgid "Saving to HTML..."
 msgstr "HTML Olarak Kaydediliyor..."
 
 # src/hex-document.c:737
-#: ../src/hex-document.c:838
+#: src/hex-document.c:838
 #, c-format
 msgid "Previous page"
 msgstr "Önceki sayfa"
 
 # src/hex-document.c:752
-#: ../src/hex-document.c:853
+#: src/hex-document.c:853
 #, c-format
 msgid "Next page"
 msgstr "Sonraki sayfa"
 
-#: ../src/main.c:36
+#: src/main.c:36
 msgid "X geometry specification (see \"X\" man page)."
 msgstr "X geometri özelleştirmesi (\"X\" kılavuz sayfalarına bakın)."
 
-#: ../src/main.c:36
+#: src/main.c:36
 msgid "GEOMETRY"
 msgstr "GEOMETRİ"
 
-#: ../src/main.c:37
+#: src/main.c:37
 msgid "FILES"
 msgstr "DOSYALAR"
 
 # src/ui.c:200
-#: ../src/main.c:99
+#: src/main.c:99
 msgid "- GTK+ binary editor"
 msgstr "- GTK+ ikilik düzenleyicisi"
 
-#: ../src/main.c:103
+#: src/main.c:103
 #, c-format
 msgid ""
 "%s\n"
 "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "%s\n"
-"Tüm mevcut komut satırı seçeneklerinin listesini görmek için '%s --help' "
+"Tüm var olan komut satırı seçeneklerinin listesini görmek için '%s --help' "
 "çalıştırın.\n"
 
-#: ../src/main.c:133 ../src/main.c:146
+#: src/main.c:133 src/main.c:146
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
 msgstr "Uygun olmayan geometri dizgisi \"%s\"\n"
 
-#: ../src/preferences.c:69
+#: src/preferences.c:69
 msgid "GHex Preferences"
 msgstr "GHex Tercihleri"
 
 # src/preferences.c:132
-#: ../src/preferences.c:101
+#: src/preferences.c:101
 msgid "_Maximum number of undo levels:"
-msgstr "_Azami geri alma seviyesi:"
+msgstr "_Azami geri alma düzeyi:"
 
 # src/preferences.c:54
-#: ../src/preferences.c:121
+#: src/preferences.c:121
 msgid "Undo levels"
-msgstr "Geri alma seviyeleri"
+msgstr "Geri alma düzeyleri"
 
 # src/preferences.c:132
-#: ../src/preferences.c:121
+#: src/preferences.c:121
 msgid "Select maximum number of undo levels"
-msgstr "Geri alma işlemi için azami seviyeyi seçiniz"
+msgstr "Geri alma işlemi için azami düzeyi seçiniz"
 
 # src/preferences.c:147
-#: ../src/preferences.c:125
+#: src/preferences.c:125
 msgid "_Show cursor offset in statusbar as:"
 msgstr "İmleç ofsetinin durum çubuğu gö_sterimi:"
 
 # src/preferences.c:166
-#: ../src/preferences.c:144
+#: src/preferences.c:144
 msgid "Hexadecimal"
 msgstr "Onaltılık"
 
 # src/preferences.c:172
-#: ../src/preferences.c:146
+#: src/preferences.c:146
 msgid "Custom"
 msgstr "Özel"
 
-#: ../src/preferences.c:155
+#: src/preferences.c:155
 msgid "Enter the cursor offset format"
 msgstr "İmleç ofset biçimini giriniz"
 
-#: ../src/preferences.c:156
+#: src/preferences.c:156
 msgid "Select the cursor offset format"
 msgstr "İmleç ofset biçimini seçiniz"
 
 # src/preferences.c:183
 #. show offsets check button
-#: ../src/preferences.c:166
+#: src/preferences.c:166
 msgid "Sh_ow offsets column"
 msgstr "Ofset sütununu g_öster"
 
 # src/preferences.c:188
-#: ../src/preferences.c:171
+#: src/preferences.c:171
 msgid "Editing"
 msgstr "Düzenleniyor"
 
 # src/preferences.c:197
 #. display font
-#: ../src/preferences.c:180
+#: src/preferences.c:180
 msgid "Font"
-msgstr "Yazıtipi"
+msgstr "Yazı Tipi"
 
 # src/preferences.c:233
 #. default group type
-#: ../src/preferences.c:203
+#: src/preferences.c:203
 msgid "Default Group Type"
-msgstr "Öntanımlı Grup Çeşidi"
+msgstr "Öntanımlı Küme Türü"
 
 # src/preferences.c:249
-#: ../src/preferences.c:219
+#: src/preferences.c:219
 msgid "Display"
 msgstr "Görüntüle"
 
 # src/preferences.c:284
 #. paper selection
-#: ../src/preferences.c:228
+#: src/preferences.c:228
 msgid "Paper size"
 msgstr "Kağıt boyutu"
 
 # src/preferences.c:298
 #. data & header font selection
-#: ../src/preferences.c:233
+#: src/preferences.c:233
 msgid "Fonts"
-msgstr "Yazıtipleri"
+msgstr "Yazı tipleri"
 
 # src/preferences.c:304
-#: ../src/preferences.c:245
+#: src/preferences.c:245
 msgid "_Data font:"
-msgstr "_Veri yazıtipi:"
+msgstr "_Veri yazı tipi:"
 
 # src/preferences.c:304
-#: ../src/preferences.c:259
+#: src/preferences.c:259
 msgid "Data font"
-msgstr "Veri yazıtipi"
+msgstr "Veri yazı tipi"
 
 # src/preferences.c:77
-#: ../src/preferences.c:259
+#: src/preferences.c:259
 msgid "Select the data font"
-msgstr "Veri yazıtipini seç"
+msgstr "Veri yazı tipini seç"
 
 # src/preferences.c:319
-#: ../src/preferences.c:268
+#: src/preferences.c:268
 msgid "Header fo_nt:"
-msgstr "Başlık _yazıtipi:"
+msgstr "Başlık _yazı tipi:"
 
 # src/preferences.c:319
-#: ../src/preferences.c:281
+#: src/preferences.c:281
 msgid "Header font"
-msgstr "Başlık yazıtipi"
+msgstr "Başlık yazı tipi"
 
 # src/preferences.c:77
-#: ../src/preferences.c:281
+#: src/preferences.c:281
 msgid "Select the header font"
-msgstr "Başlık yazıtipi seç"
+msgstr "Başlık yazı tipi seç"
 
 # src/preferences.c:345
-#: ../src/preferences.c:306
+#: src/preferences.c:306
 msgid "_Print shaded box over:"
 msgstr "G_ölgeli kutuyu üstüne bastır:"
 
-#: ../src/preferences.c:318
+#: src/preferences.c:318
 msgid "Box size"
 msgstr "Kutu boyutu"
 
-#: ../src/preferences.c:318
+#: src/preferences.c:318
 msgid "Select size of box (in number of lines)"
 msgstr "Kutu boyutunu giriniz (satır sayısı olarak)"
 
 # src/preferences.c:354
-#: ../src/preferences.c:322
+#: src/preferences.c:322
 msgid "lines (0 for no box)"
 msgstr "satır (kutu yoksa 0'ı kullanın)"
 
 # src/preferences.c:361
-#: ../src/preferences.c:329
+#: src/preferences.c:329
 msgid "Printing"
 msgstr "Yazdırılıyor"
 
-#: ../src/preferences.c:447 ../src/ui.c:215
+#: src/preferences.c:447 src/ui.c:219
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -1077,12 +1105,12 @@ msgstr ""
 "%s"
 
 # src/preferences.c:570
-#: ../src/preferences.c:499
+#: src/preferences.c:499
 msgid "Can not open desired font!"
-msgstr "İstenen yazıtipi dosyası açılamadı!"
+msgstr "İstenen yazı tipi dosyası açılamadı!"
 
 # src/preferences.c:534
-#: ../src/preferences.c:560
+#: src/preferences.c:560
 msgid ""
 "The offset format string contains invalid format specifier.\n"
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
@@ -1091,22 +1119,22 @@ msgstr ""
 "İzin verilenler yalnızca 'x', 'X', 'p', 'P', 'd' ve 'o'."
 
 # src/print.c:187
-#: ../src/print.c:57
+#: src/print.c:57
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Sayfa: %i/%i"
 
 # src/ui.c:115
-#: ../src/ui.c:55
+#: src/ui.c:55
 msgid "hex data"
 msgstr "onaltılık veri"
 
 # src/ui.c:116
-#: ../src/ui.c:56
+#: src/ui.c:56
 msgid "ASCII data"
 msgstr "ASCII veri"
 
-#: ../src/ui.c:156
+#: src/ui.c:160
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -1118,7 +1146,7 @@ msgstr ""
 "sonraki sürümleri koşulları altında yeniden dağıtabilir ve/veya "
 "değiştirebilirsiniz."
 
-#: ../src/ui.c:160
+#: src/ui.c:164
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -1129,7 +1157,7 @@ msgstr ""
 "GARANTİSİ YOKTUR; hatta ÜRÜN DEĞERİ ya da BİR AMACA UYGUNLUK gibi garantiler "
 "de vermez.  Ayrıntılar için lütfen GNU Genel Kamu Lisansı'na bakınız."
 
-#: ../src/ui.c:164
+#: src/ui.c:168
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
@@ -1140,59 +1168,59 @@ msgstr ""
 "Street, Fifth Floor, Boston, MA  02110-1301  USA adresine yazın."
 
 #. Translators: these two strings here indicate the copyright time span,
-#. e.g. 1998-2012.
-#: ../src/ui.c:176
+#. e.g. 1998-2018.
+#: src/ui.c:180
 msgid "Copyright © %Id–%Id The GHex authors"
 msgstr "Telif Hakkı © %Id–%Id GHex geliştiricileri"
 
 # src/ui.c:200
-#: ../src/ui.c:180
+#: src/ui.c:184
 msgid "A binary file editor"
 msgstr "İkilik dosya düzenleyici"
 
-#: ../src/ui.c:186
+#: src/ui.c:190
 msgid "About GHex"
 msgstr "GHex Hakkında"
 
-#: ../src/ui.c:187
+#: src/ui.c:191
 msgid "translator-credits"
 msgstr "Muhammet Kara <muhammetk@gmail.com>"
 
-#: ../src/ui.c:190
+#: src/ui.c:194
 msgid "GHex Website"
 msgstr "GHex Web Sitesi"
 
 # src/ui.c:251
-#: ../src/ui.c:324
+#: src/ui.c:328
 msgid "Select a file to open"
 msgstr "Açılacak dosyayı seçiniz"
 
 # src/ui.c:495
-#: ../src/ui.c:356
+#: src/ui.c:360
 #, c-format
 msgid "Loaded file %s"
 msgstr "%s dosyası yüklendi"
 
 # src/ui.c:500
-#: ../src/ui.c:364
+#: src/ui.c:368
 msgid "Can not open file!"
 msgstr "Dosya açılamıyor!"
 
 # src/ui.c:370
-#: ../src/ui.c:429
+#: src/ui.c:433
 msgid "Select path and file name for the HTML source"
 msgstr "HTML kaynak kodu için dosya yolunu ve adını seçiniz"
 
 # src/ui.c:370
-#: ../src/ui.c:461
+#: src/ui.c:465
 msgid "You need to specify a base name for the HTML files."
 msgstr "HTML dosyası için temel bir ad belirtmeniz gerekmektedir."
 
-#: ../src/ui.c:472 ../src/ui.c:498
+#: src/ui.c:476 src/ui.c:502
 msgid "You don't have the permission to write to the selected path.\n"
 msgstr "Seçilen yola yazma izniniz yok.\n"
 
-#: ../src/ui.c:484
+#: src/ui.c:488
 msgid ""
 "Saving to HTML will overwrite some files.\n"
 "Do you want to proceed?"
@@ -1201,20 +1229,16 @@ msgstr ""
 "Devam etmek istiyor musunuz?"
 
 # src/ui.c:466
-#: ../src/ui.c:752
+#: src/ui.c:756
 #, c-format
 msgid "Really revert file %s?"
-msgstr "%s isimli dosyaya geri döneyim mi?"
+msgstr "%s adlı dosyaya geri dönülsün mü?"
 
 # src/ui.c:479
-#: ../src/ui.c:766
+#: src/ui.c:770
 #, c-format
 msgid "Reverted buffer from file %s"
 msgstr "%s dosyasından tampona geri dönüldü"
-
-# src/preferences.c:166
-#~ msgid "GNOME Hexadecimal Editor"
-#~ msgstr "GNOME Onaltılık Düzenleyici"
 
 # src/hex-document-ui.c:87
 #~ msgid "Add View"
