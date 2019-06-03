@@ -247,6 +247,7 @@ ghex_window_set_sensitivity (GHexWindow *win)
     ghex_window_set_action_sensitive (win, "EditRedo", allmenus && win->redo_sens);
     ghex_window_set_action_sensitive (win, "EditCut", allmenus);
     ghex_window_set_action_sensitive (win, "EditCopy", allmenus);
+    ghex_window_set_action_sensitive (win, "EditCopyEscaped", allmenus);
     ghex_window_set_action_sensitive (win, "EditPaste", allmenus);
 }
 
@@ -381,6 +382,9 @@ static const GtkActionEntry action_entries [] = {
     { "EditCopy", GTK_STOCK_COPY, N_("_Copy"), "<control>C",
       N_("Copy selection to clipboard"),
       G_CALLBACK (copy_cb) },
+    { "EditCopyEscaped", NULL, N_("Copy Escaped"), NULL,
+      N_("Copy selection to clipboard as escaped string"),
+      G_CALLBACK (copy_escaped_cb) },
     { "EditCut", GTK_STOCK_CUT, N_("Cu_t"), "<control>X",
       N_("Cut selection"),
       G_CALLBACK (cut_cb) },

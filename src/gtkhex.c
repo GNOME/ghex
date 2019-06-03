@@ -49,6 +49,7 @@ enum {
 	DATA_CHANGED_SIGNAL,
 	CUT_CLIPBOARD_SIGNAL,
 	COPY_CLIPBOARD_SIGNAL,
+    COPY_ESCAPED_CLIPBOARD_SIGNAL,
 	PASTE_CLIPBOARD_SIGNAL,
 	LAST_SIGNAL
 };
@@ -1674,6 +1675,11 @@ void gtk_hex_copy_to_clipboard(GtkHex *gh)
 	g_signal_emit_by_name(G_OBJECT(gh), "copy_clipboard");
 }
 
+void gtk_hex_copy_escaped_to_clipboard(GtkHex *gh)
+{
+	g_signal_emit_by_name(G_OBJECT(gh), "copy_escaped_clipboard");
+}
+
 void gtk_hex_cut_to_clipboard(GtkHex *gh)
 {
 	g_signal_emit_by_name(G_OBJECT(gh), "cut_clipboard");
@@ -1697,10 +1703,39 @@ static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
         /* length is end_pos - start_pos + 1. If start and end 
          * differ by one, two bytes should be copied. */
 		guchar *text = hex_document_get_data(gh->document, start_pos,
-											 (end_pos - start_pos)+1);
+											 end_pos - start_pos + 1);
 		gtk_clipboard_set_text(klass->clipboard, text, end_pos - start_pos + 1);
 		g_free(text);
 	}
+}
+
+static void gtk_hex_real_copy_escaped_to_clipboard(GtkHex *gh)
+{
+	gint start_pos; 
+	gint end_pos;
+	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
+
+	start_pos = MIN(gh->selection.start, gh->selection.end);
+	end_pos = MAX(gh->selection.start, gh->selection.end);
+
+	if(start_pos != end_pos) {
+		guchar *text = hex_document_get_data(gh->document, start_pos,
+											 end_pos - start_pos + 1);
+
+        guchar *escaped_text = g_malloc0(sizeof(guchar) * (end_pos - start_pos + 1) * 4 + 1);
+
+        if (escaped_text != NULL) {
+            for (guint i = 0; i < (end_pos - start_pos + 1); i++) {
+                sprintf(escaped_text+4*i, "\\x%02X", text[i]);
+            }
+
+            /* four output bytes per data byte ("\x" + 2 data characters) */
+            gtk_clipboard_set_text(klass->clipboard, escaped_text, 4*((end_pos - start_pos)+1)+1);
+            g_free(escaped_text);
+        }
+
+        g_free(text);
+    }
 }
 
 static void gtk_hex_real_cut_to_clipboard(GtkHex *gh)
@@ -2096,6 +2131,13 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 					  G_STRUCT_OFFSET (GtkHexClass, copy_clipboard),
 					  NULL, NULL, NULL, G_TYPE_NONE, 0);
 
+	gtkhex_signals[COPY_ESCAPED_CLIPBOARD_SIGNAL] = 
+		g_signal_new ("copy_escaped_clipboard",
+					  G_TYPE_FROM_CLASS (widget_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (GtkHexClass, copy_escaped_clipboard),
+					  NULL, NULL, NULL, G_TYPE_NONE, 0);
+
 
 	gtkhex_signals[PASTE_CLIPBOARD_SIGNAL] = 
 		g_signal_new ("paste_clipboard",
@@ -2108,6 +2150,7 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 	klass->data_changed = gtk_hex_real_data_changed;
 	klass->cut_clipboard = gtk_hex_real_cut_to_clipboard;
 	klass->copy_clipboard = gtk_hex_real_copy_to_clipboard;
+    klass->copy_escaped_clipboard = gtk_hex_real_copy_escaped_to_clipboard;
 	klass->paste_clipboard = gtk_hex_real_paste_from_clipboard;
 
 	klass->primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);

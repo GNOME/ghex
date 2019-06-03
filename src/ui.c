@@ -250,6 +250,17 @@ copy_cb (GtkAction *action,
 		gtk_hex_copy_to_clipboard(win->gh);
 }
 
+void
+copy_escaped_cb (GtkAction *action,
+                 gpointer   user_data)
+{
+	GHexWindow *win = GHEX_WINDOW(user_data);
+
+	if(win->gh)
+		gtk_hex_copy_escaped_to_clipboard(win->gh);
+}
+
+
 void 
 cut_cb (GtkAction *action,
         gpointer   user_data)

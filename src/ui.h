@@ -60,6 +60,7 @@ void quit_app_cb (GtkAction *action, gpointer user_data);
 void undo_cb (GtkAction *action, gpointer user_data);
 void redo_cb (GtkAction *action, gpointer user_data);
 void copy_cb (GtkAction *action, gpointer user_data);
+void copy_escaped_cb (GtkAction *action, gpointer user_data);
 void cut_cb (GtkAction *action, gpointer user_data);
 void paste_cb (GtkAction *action, gpointer user_data);
 void find_cb (GtkAction *action, gpointer user_data);

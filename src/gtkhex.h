@@ -128,6 +128,7 @@ struct _GtkHexClass
 	void (*data_changed)(GtkHex *, gpointer);
 	void (*cut_clipboard)(GtkHex *);
 	void (*copy_clipboard)(GtkHex *);
+	void (*copy_escaped_clipboard)(GtkHex *);
 	void (*paste_clipboard)(GtkHex *);
 };
 
@@ -155,6 +156,7 @@ void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines);
 PangoFontMetrics* gtk_hex_load_font (const char *font_name); 
 
 void gtk_hex_copy_to_clipboard(GtkHex *gh);
+void gtk_hex_copy_escaped_to_clipboard(GtkHex *gh);
 void gtk_hex_cut_to_clipboard(GtkHex *gh);
 void gtk_hex_paste_from_clipboard(GtkHex *gh);
 
