@@ -1479,7 +1479,9 @@ void gtk_hex_delete_selection(GtkHex *gh)
 	if(start != end) {
 		if(start < gh->cursor_pos)
 			gtk_hex_set_cursor(gh, gh->cursor_pos - end + start);
-		hex_document_delete_data(gh->document, MIN(start, end), end - start, TRUE);
+        /* length is end - start + 1. If start and end 
+         * differ by one, two bytes should be deleted. */
+		hex_document_delete_data(gh->document, MIN(start, end), end - start + 1, TRUE);
 	}
 }
 
@@ -1690,11 +1692,13 @@ static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
 
 	start_pos = MIN(gh->selection.start, gh->selection.end);
 	end_pos = MAX(gh->selection.start, gh->selection.end);
- 
+
 	if(start_pos != end_pos) {
+        /* length is end_pos - start_pos + 1. If start and end 
+         * differ by one, two bytes should be copied. */
 		guchar *text = hex_document_get_data(gh->document, start_pos,
-											 end_pos - start_pos);
-		gtk_clipboard_set_text(klass->clipboard, text, end_pos - start_pos);
+											 (end_pos - start_pos)+1);
+		gtk_clipboard_set_text(klass->clipboard, text, end_pos - start_pos + 1);
 		g_free(text);
 	}
 }

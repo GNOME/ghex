@@ -489,7 +489,8 @@ hex_document_get_data(HexDocument *doc, guint offset, guint len)
 	ptr = doc->buffer + offset;
 	if(ptr >= doc->gap_pos)
 		ptr += doc->gap_size;
-	dptr = data = g_malloc(sizeof(guchar)*len);
+    /* allocate for len+1 characters to account for trailing 0x00 */
+	dptr = data = g_malloc(sizeof(guchar)*(len+1));
 	i = 0;
 	while(i < len) {
 		if(ptr >= doc->gap_pos && ptr < doc->gap_pos + doc->gap_size)
@@ -497,6 +498,9 @@ hex_document_get_data(HexDocument *doc, guint offset, guint len)
 		*dptr++ = *ptr++;
 		i++;
 	}
+
+    /* add trailing 0x00 here */
+    *dptr = 0x00;
 
 	return data;
 }
