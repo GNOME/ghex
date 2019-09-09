@@ -18,16 +18,13 @@ HOW TO BUILD FROM GIT
 
 	To configure and build the git version of ghex, run:
 
-		git clone git://git.gnome.org/ghex
+		git clone git@gitlab.gnome.org:GNOME/ghex.git      # Using SSH
+		git clone https://gitlab.gnome.org/GNOME/ghex.git  # Using HTTPS
 		cd ghex
-		./autogen.sh --prefix=~/ghex
-		make
-		make install
-
-
-	After you have done this you can run and test the built ghex binary using:
-
-		GSETTINGS_SCHEMA_DIR=~/ghex/share/glib-2.0/schemas src/ghex
+		meson build
+		cd build
+		ninja-build
+		sudo ninja-build install
 
 
 	For instructions on how to prepare a patch, see:
