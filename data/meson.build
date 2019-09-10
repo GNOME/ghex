@@ -58,6 +58,6 @@ if appstream_util_prg.found()
   test(
     'Validate appstream file',
     appstream_util_prg,
-    args: ['validate', '--nonet', ghex_appdata]
+    args: ['validate-relax', '--nonet', ghex_appdata]
   )
 endif
