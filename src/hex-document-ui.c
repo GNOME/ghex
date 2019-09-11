@@ -142,7 +142,7 @@ undo_cb (GtkAction *action,
 		hex_document_undo(doc);
 
 		gtk_hex_set_cursor(win->gh, cd->start);
-		gtk_hex_set_nibble(win->gh, cd->lower_nibble);
+		gtk_hex_set_digit(win->gh, cd->digit);
 	}
 }
 
@@ -165,6 +165,6 @@ redo_cb (GtkAction *action,
 		cd = (HexChangeData *)doc->undo_top->data;
 
 		gtk_hex_set_cursor(win->gh, cd->start);
-		gtk_hex_set_nibble(win->gh, cd->lower_nibble);
+		gtk_hex_set_digit(win->gh, cd->digit);
 	}
 }

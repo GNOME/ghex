@@ -31,13 +31,18 @@
 
 G_BEGIN_DECLS
 
-/* how to group bytes? */
-#define GROUP_BYTE 1
-#define GROUP_WORD 2
-#define GROUP_LONG 4
+/* How many bytes are in each group. */
+enum {
+	  GROUP_BYTE = 1,
+	  GROUP_WORD = 2,
+	  GROUP_LONG = 4,
+};
 
-#define LOWER_NIBBLE TRUE
-#define UPPER_NIBBLE FALSE
+/* The amount of characters needed to represent a single byte. */
+enum {
+	  BASE_BIN = 8,
+	  BASE_HEX = 2,
+};
 
 #define GTK_TYPE_HEX                    (gtk_hex_get_type ())
 #define GTK_HEX(obj)                    (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_HEX, GtkHex))
@@ -96,9 +101,10 @@ struct _GtkHex
 	
 	guint cursor_pos;
 	GtkHex_Highlight selection;
-	gint lower_nibble;
+	gint digit;
 	
 	guint group_type;
+	guint base_type;
 	
 	gint lines, vis_lines, cpl, top_line;
 	gint cursor_shown;
@@ -137,12 +143,13 @@ GtkWidget *gtk_hex_new(HexDocument *);
 
 void gtk_hex_set_cursor(GtkHex *, gint);
 void gtk_hex_set_cursor_xy(GtkHex *, gint, gint);
-void gtk_hex_set_nibble(GtkHex *, gint);
+void gtk_hex_set_digit(GtkHex *, gint);
 
 guint gtk_hex_get_cursor(GtkHex *);
 guchar gtk_hex_get_byte(GtkHex *, guint);
 
 void gtk_hex_set_group_type(GtkHex *, guint);
+void gtk_hex_set_base_type(GtkHex *, guint);
 
 void gtk_hex_set_starting_offset(GtkHex *, gint);
 void gtk_hex_show_offsets(GtkHex *, gboolean);

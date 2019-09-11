@@ -48,7 +48,7 @@ typedef enum {
 struct _HexChangeData
 {
 	guint start, end, rep_len;
-	gboolean lower_nibble;
+	gint digit;
 	gboolean insert;
 	HexChangeType type;
 	gchar *v_string;
@@ -99,6 +99,9 @@ void        hex_document_set_byte(HexDocument *doc, guchar val, guint offset,
 void        hex_document_set_nibble(HexDocument *doc, guchar val,
 									guint offset, gboolean lower_nibble,
 									gboolean insert, gboolean undoable);
+void        hex_document_set_digit(HexDocument *doc, guchar val,
+								   guint offset, gint digit,
+								   gboolean insert, gboolean undoable);
 guchar      hex_document_get_byte(HexDocument *doc, guint offset);
 guchar      *hex_document_get_data(HexDocument *doc, guint offset, guint len);
 void        hex_document_delete_data(HexDocument *doc, guint offset,

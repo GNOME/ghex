@@ -517,7 +517,7 @@ hex_document_set_nibble(HexDocument *doc, guchar val, guint offset,
 		change_data.end = offset;
 		change_data.v_string = NULL;
 		change_data.type = HEX_CHANGE_BYTE;
-		change_data.lower_nibble = lower_nibble;
+		change_data.digit = lower_nibble;
 		change_data.insert = insert;
 		if(!lower_nibble && insert) {
 			move_gap_to(doc, offset, 1);
@@ -536,6 +536,51 @@ hex_document_set_nibble(HexDocument *doc, guchar val, guint offset,
 
 		change_data.v_byte = doc->buffer[offset];
 		doc->buffer[offset] = (doc->buffer[offset] & (lower_nibble?0xF0:0x0F)) | (lower_nibble?val:(val << 4));
+
+		hex_document_changed(doc, &change_data, undoable);
+	}
+}
+
+/* Assumes binary.
+ * TODO: Generalize.
+ */
+void
+hex_document_set_digit(HexDocument *doc, guchar val, guint offset,
+					   gint digit, gboolean insert,
+					   gboolean undoable)
+{
+	static HexChangeData change_data;
+
+	if(offset <= doc->file_size) {
+		if(!insert && offset == doc->file_size)
+			return;
+
+		doc->changed = TRUE;
+		change_data.start = offset;
+		change_data.end = offset;
+		change_data.v_string = NULL;
+		change_data.type = HEX_CHANGE_BYTE;
+		change_data.digit = digit;
+		change_data.insert = insert;
+		if(digit == 7 && insert) {
+			move_gap_to(doc, offset, 1);
+			doc->gap_size--;
+			doc->gap_pos++;
+			doc->file_size++;
+			change_data.rep_len = 0;
+			if(offset == doc->file_size)
+				doc->buffer[offset] = 0;
+		}
+		else {
+			if(doc->buffer + offset >= doc->gap_pos)
+				offset += doc->gap_size;
+			change_data.rep_len = 1;
+		}
+
+		change_data.v_byte = doc->buffer[offset];
+
+		guchar byte = doc->buffer[offset];
+		doc->buffer[offset] = (byte & ~(1 << digit)) | (val << digit);
 
 	 	hex_document_changed(doc, &change_data, undoable);
 	}
@@ -557,7 +602,7 @@ hex_document_set_byte(HexDocument *doc, guchar val, guint offset,
 		change_data.rep_len = (insert?0:1);
 		change_data.v_string = NULL;
 		change_data.type = HEX_CHANGE_BYTE;
-		change_data.lower_nibble = FALSE;
+		change_data.digit = 0; /* TODO: Set MSB */
 		change_data.insert = insert;
 		if(insert) {
 			move_gap_to(doc, offset, 1);
@@ -594,7 +639,7 @@ hex_document_set_data(HexDocument *doc, guint offset, guint len,
 		change_data.end = change_data.start + len - 1;
 		change_data.rep_len = rep_len;
 		change_data.type = HEX_CHANGE_STRING;
-		change_data.lower_nibble = FALSE;
+		change_data.digit = 0; /* TODO: Set MSB. */
 		
 		i = 0;
 		ptr = &doc->buffer[offset];

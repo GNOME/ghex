@@ -338,6 +338,7 @@ static const GtkActionEntry action_entries [] = {
     { "File", NULL, N_("_File") },
     { "Edit", NULL, N_("_Edit") },
     { "View", NULL, N_("_View") },
+    { "ViewDataAs", NULL, N_("_View Data As ") }, // View submenu
     { "GroupDataAs", NULL, N_("_Group Data As") }, // View submenu
     { "Windows", NULL, N_("_Windows") },
     { "Help", NULL, N_("_Help") },
@@ -437,6 +438,14 @@ static const GtkToggleActionEntry toggle_entries[] = {
     { "TypeDialog", NULL, N_("Type Conversion _Dialog"), NULL,
       N_("Show the type conversion dialog in the edit window"),
       G_CALLBACK (type_dialog_cb), TRUE }
+};
+
+/* Radio items in View -> View Data As */
+static GtkRadioActionEntry base_data_entries[] = {
+    { "Binary", NULL, N_("_Binary"), NULL,
+      N_("View data in base 2"), BASE_BIN },
+    { "Hexadecimal", NULL, N_("_Hexadecimal"), NULL,
+      N_("View data in base 16"), BASE_HEX },
 };
 
 /* Radio items in View -> Group Data As */
@@ -555,6 +564,11 @@ ghex_window_constructor (GType                  type,
     gtk_action_group_add_toggle_actions (window->action_group, toggle_entries,
                                          G_N_ELEMENTS (toggle_entries),
                                          window);
+    gtk_action_group_add_radio_actions (window->action_group, base_data_entries,
+                                        G_N_ELEMENTS (base_data_entries),
+                                        BASE_HEX,
+                                        G_CALLBACK (base_data_cb),
+                                        window);
     gtk_action_group_add_radio_actions (window->action_group, group_data_entries,
                                         G_N_ELEMENTS (group_data_entries),
                                         GROUP_BYTE,
