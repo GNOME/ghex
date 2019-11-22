@@ -317,6 +317,15 @@ static unsigned int pow2(int p)
     return r;
 }
 
+static unsigned long long int llpow2(int p)
+{
+    unsigned int i = 0;
+    unsigned long long int r = 1;
+    for (i = 0; i < p; i++)
+        r*=2;
+    return r;
+}
+
 char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i, local = 0;
@@ -485,23 +494,23 @@ char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop)
         in[7] = val->v[0];
     }
     for (i = 0; i < 8; i++)
-        local += ((in[0] >> i) & 0x1) * pow2(i);
+        local += ((in[0] >> i) & 0x1) * llpow2(i);
     for (i = 0; i < 8; i++)
-        local += ((in[1] >> i) & 0x1) * pow2(i + 8);
+        local += ((in[1] >> i) & 0x1) * llpow2(i + 8);
     for (i = 0; i < 8; i++)
-        local += ((in[2] >> i) & 0x1) * pow2(i + 16);
+        local += ((in[2] >> i) & 0x1) * llpow2(i + 16);
     for (i = 0; i < 8; i++)
-        local += ((in[3] >> i) & 0x1) * pow2(i + 24);
+        local += ((in[3] >> i) & 0x1) * llpow2(i + 24);
     for (i = 0; i < 8; i++)
-        local += ((in[4] >> i) & 0x1) * pow2(i + 32);
+        local += ((in[4] >> i) & 0x1) * llpow2(i + 32);
     for (i = 0; i < 8; i++)
-        local += ((in[5] >> i) & 0x1) * pow2(i + 40);
+        local += ((in[5] >> i) & 0x1) * llpow2(i + 40);
     for (i = 0; i < 8; i++)
-        local += ((in[6] >> i) & 0x1) * pow2(i + 48);
+        local += ((in[6] >> i) & 0x1) * llpow2(i + 48);
     for (i = 0; i < 7; i++)
-        local += ((in[7] >> i) & 0x1) * pow2(i + 56);
+        local += ((in[7] >> i) & 0x1) * llpow2(i + 56);
     if ((in[7] >> 7) & 0x1)
-        local  = -(pow2(63) - local);
+        local  = -(llpow2(63) - local);
     snprintf(convbuffer, sizeof(convbuffer), "%lld", local);
     return convbuffer;
 }
@@ -533,21 +542,21 @@ char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop)
         in[7] = val->v[0];
     }
     for (i = 0; i < 8; i++)
-        local += ((in[0] >> i) & 0x1) * pow2(i);
+        local += ((in[0] >> i) & 0x1) * llpow2(i);
     for (i = 0; i < 8; i++)
-        local += ((in[1] >> i) & 0x1) * pow2(i + 8);
+        local += ((in[1] >> i) & 0x1) * llpow2(i + 8);
     for (i = 0; i < 8; i++)
-        local += ((in[2] >> i) & 0x1) * pow2(i + 16);
+        local += ((in[2] >> i) & 0x1) * llpow2(i + 16);
     for (i = 0; i < 8; i++)
-        local += ((in[3] >> i) & 0x1) * pow2(i + 24);
+        local += ((in[3] >> i) & 0x1) * llpow2(i + 24);
     for (i = 0; i < 8; i++)
-        local += ((in[4] >> i) & 0x1) * pow2(i + 32);
+        local += ((in[4] >> i) & 0x1) * llpow2(i + 32);
     for (i = 0; i < 8; i++)
-        local += ((in[5] >> i) & 0x1) * pow2(i + 40);
+        local += ((in[5] >> i) & 0x1) * llpow2(i + 40);
     for (i = 0; i < 8; i++)
-        local += ((in[6] >> i) & 0x1) * pow2(i + 48);
+        local += ((in[6] >> i) & 0x1) * llpow2(i + 48);
     for (i = 0; i < 8; i++)
-        local += ((in[7] >> i) & 0x1) * pow2(i + 56);
+        local += ((in[7] >> i) & 0x1) * llpow2(i + 56);
 
     if (!prop->hexHint)
         snprintf(convbuffer, sizeof(convbuffer), "%llu", local);
