@@ -1,19 +1,20 @@
 # ghex ja.po.
-# Copyright (C) 1998-2004,2007,2011-2012 Free Software Foundation, Inc.
+# Copyright (C) 1998-2012, 2020 Free Software Foundation, Inc.
 # Eiichiro ITANI <emu@ceres.dti.ne.jp>, 1998.
 # Yuusuke Tahara <tahara@gnome.gr.jp>, 2000.
 # Yukihiro Nakai <nakai@gnome.gr.jp>, 2000.
 # Akira TAGOH <tagoh@gnome.gr.jp>, 2001.
-# Takeshi Aihana <takeshi.aihana@gmail.com>, 2003-2004,2007,2011.
+# Takeshi Aihana <takeshi.aihana@gmail.com>, 2003-2004, 2007, 2011.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2012.
+# sicklylife <translation@sicklylife.jp>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
 "POT-Creation-Date: 2019-11-22 20:16+0000\n"
-"PO-Revision-Date: 2012-08-10 19:55+0900\n"
-"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"PO-Revision-Date: 2020-01-09 22:00+0900\n"
+"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -22,18 +23,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/org.gnome.GHex.appdata.xml.in:6
-#, fuzzy
-#| msgid "GNOME Hexadecimal Editor"
 msgid "GNOME Hex Editor"
-msgstr "GNOME 向けの16進数バイナリ・エディタです"
+msgstr "GNOME Hex エディター"
 
 #: data/org.gnome.GHex.appdata.xml.in:7 data/org.gnome.GHex.desktop.in:5
 msgid "Inspect and edit binary files"
-msgstr "バイナリ・ファイルを調査したり編集します"
+msgstr "バイナリファイルを調査したり編集します"
 
 #: data/org.gnome.GHex.appdata.xml.in:9
 msgid "GHex is a hex editor for the GNOME desktop."
-msgstr ""
+msgstr "GHex は GNOME デスクトップ向けのバイナリエディターです。"
 
 #: data/org.gnome.GHex.appdata.xml.in:12
 msgid ""
@@ -45,7 +44,7 @@ msgstr ""
 
 #: data/org.gnome.GHex.appdata.xml.in:44
 msgid "The GNOME Project"
-msgstr ""
+msgstr "The GNOME Project"
 
 #: data/org.gnome.GHex.desktop.in:3 src/ghex-window.c:662
 #: src/ghex-window.c:1106
@@ -59,7 +58,7 @@ msgstr "Hex エディター"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
 #: data/org.gnome.GHex.desktop.in:7
 msgid "binary;debug;"
-msgstr ""
+msgstr "binary;debug;バイナリ;デバッグ;"
 
 #: src/chartable.c:147
 msgid "ASCII"
@@ -166,7 +165,7 @@ msgstr "前を検索"
 
 #: src/findreplace.c:140
 msgid "Finds the previous occurrence of the search string "
-msgstr "前方に出現する検索文字列を表示します"
+msgstr "前方に出現する検索文字列を表示します "
 
 #: src/findreplace.c:141 src/findreplace.c:418 src/findreplace.c:469
 msgid "Cancel"
@@ -745,24 +744,20 @@ msgid "Unsigned 32 bit:"
 msgstr "符号なし 32ビット:"
 
 #: src/hex-dialog.c:67
-#, fuzzy
-#| msgid "Signed 16 bit:"
 msgid "Signed 64 bit:"
-msgstr "符号付き 16ビット:"
+msgstr "符号付き 64ビット:"
 
 #: src/hex-dialog.c:68
-#, fuzzy
-#| msgid "Unsigned 16 bit:"
 msgid "Unsigned 64 bit:"
-msgstr "符号なし 16ビット:"
+msgstr "符号なし 64ビット:"
 
 #: src/hex-dialog.c:69
 msgid "Float 32 bit:"
-msgstr ""
+msgstr "浮動小数点 32ビット:"
 
 #: src/hex-dialog.c:70
 msgid "Float 64 bit:"
-msgstr ""
+msgstr "浮動小数点 64ビット:"
 
 #: src/hex-dialog.c:71
 msgid "Hexadecimal:"
@@ -778,7 +773,7 @@ msgstr " 2進:"
 
 #: src/hex-dialog.c:214
 msgid "Show little endian decoding"
-msgstr "リトル・エンディアン形式で表示する"
+msgstr "リトルエンディアン形式で表示する"
 
 #: src/hex-dialog.c:221
 msgid "Show unsigned and float as hexadecimal"
@@ -834,7 +829,7 @@ msgstr "FILES"
 
 #: src/main.c:99
 msgid "- GTK+ binary editor"
-msgstr "- GTK+ 版のバイナリ・エディター"
+msgstr "- GTK+ 版のバイナリエディター"
 
 #: src/main.c:103
 #, c-format
@@ -843,7 +838,7 @@ msgid ""
 "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "%s\n"
-"'%s --help' で利用可能なコマンドライン・オプションの一覧を表示します\n"
+"'%s --help' で利用可能なコマンドラインオプションの一覧を表示します\n"
 
 #: src/main.c:133 src/main.c:146
 #, c-format
@@ -1035,11 +1030,11 @@ msgstr ""
 #. e.g. 1998-2018.
 #: src/ui.c:180
 msgid "Copyright © %Id–%Id The GHex authors"
-msgstr ""
+msgstr "Copyright © %Id–%Id The GHex authors"
 
 #: src/ui.c:184
 msgid "A binary file editor"
-msgstr "バイナリ・ファイルのエディターです。"
+msgstr "バイナリファイルエディター"
 
 #: src/ui.c:190
 msgid "About GHex"
@@ -1050,9 +1045,11 @@ msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
 "Akira TAGOH <tagoh@gnome.gr.jp>\n"
+"Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
+"Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"sicklylife <translation@sicklylife.jp>\n"
 "Yukihiro Nakai <nakai@gnome.gr.jp>\n"
-"Yuusuke Tahara <tahara@gnome.gr.jp>\n"
-"Eiichiro ITANI <emu@ceres.dti.ne.jp>"
+"Yuusuke Tahara <tahara@gnome.gr.jp>"
 
 #: src/ui.c:194
 msgid "GHex Website"
