@@ -1,10 +1,4 @@
 include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
-stages:
-  - test
-  - deploy
-
-variables:
-    BUNDLE: "ghex-dev.flatpak"
 
 flatpak:
     image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
@@ -13,16 +7,5 @@ flatpak:
         FLATPAK_MODULE: "ghex"
         RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
         APP_ID: "org.gnome.GHex"
+        BUNDLE: "ghex-dev.flatpak"
     extends: .flatpak
-
-review:
-    stage: deploy
-    dependencies:
-        - 'flatpak'
-    extends: '.review'
-
-stop_review:
-    stage: deploy
-    extends: '.stop_review'
-
-
