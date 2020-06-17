@@ -906,9 +906,9 @@ draw_shadow (GtkWidget *widget,
 		                  cr,
 		                  border,
 		                  border,
-		                  8 * gh->char_width + padding.left + padding.right,
+		                  9 * gh->char_width + padding.left + padding.right,
 		                  allocation.height - 2 * border);
-		x += 8 * gh->char_width + padding.left + padding.right + gh->extra_width/2;
+		x += 9 * gh->char_width + padding.left + padding.right + gh->extra_width/2;
 	}
 
 	gtk_render_frame (context,
@@ -964,7 +964,7 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	               2 * padding.left + 2 * padding.right + req.width;
 
 	if(gh->show_offsets)
-		total_width -= padding.left + padding.right + 8 * gh->char_width;
+		total_width -= padding.left + padding.right + 9 * gh->char_width;
 
 	total_cpl = total_width / gh->char_width;
 
@@ -1969,7 +1969,7 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	my_alloc.y = border_width + padding.top;
 	my_alloc.height = MAX (alloc->height - 2 * border_width - padding.top - padding.bottom, 1);
 	if(gh->show_offsets) {
-		my_alloc.width = 8*gh->char_width;
+		my_alloc.width = 9*gh->char_width;
 		gtk_widget_size_allocate(gh->offsets, &my_alloc);
 		gtk_widget_queue_draw(gh->offsets);
 		my_alloc.x += padding.left + padding.right + my_alloc.width + gh->extra_width/2;
@@ -2028,7 +2028,7 @@ static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 		sb_req.width + gh->char_width * (gh->priv->default_cpl + (gh->priv->default_cpl - 1) /
 										 gh->group_type);
 	if(gh->show_offsets)
-		req->width += padding.left + padding.right + 8 * gh->char_width;
+		req->width += padding.left + padding.right + 9 * gh->char_width;
 	req->height = gh->priv->default_lines * gh->char_height + padding.top + padding.bottom +
 		2*gtk_container_get_border_width(GTK_CONTAINER(w));
 }
