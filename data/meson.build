@@ -34,8 +34,8 @@ pkg_conf.set('includedir', ghex_includedir)
 pkg_conf.set('VERSION', meson.project_version())
 
 configure_file(
-  input: 'gtkhex-3.pc.in',
-  output: 'gtkhex-3.pc',
+  input: 'gtkhex-4.pc.in',
+  output: 'gtkhex-4.pc',
   configuration: pkg_conf,
   install_dir: ghex_pkgconfigdir,
   install: true

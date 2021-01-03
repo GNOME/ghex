@@ -1,6 +1,6 @@
 project(
   'ghex', 'c',
-  version: '3.18.4',
+  version: '4.alpha.0',
   meson_version: '>=0.37.0',
   license: 'GPL2'
 )
@@ -77,10 +77,12 @@ foreach f : check_functions
   endif
 endforeach
 
+# FIXME - REMOVE
 atk_dep = dependency('atk', version: '>= 1.0.0')
-gio_dep = dependency('gio-2.0', version: '>= 2.31.10')
-gtk_dep = dependency('gtk+-3.0', version: '>= 3.3.8')
 gail_dep = dependency('gail-3.0', version: '>= 1.0.0')
+
+gio_dep = dependency('gio-2.0', version: '>= 2.66.0')
+gtk_dep = dependency('gtk4', version: '>= 4.0.0')
 
 configure_file(
   output: 'config.h',
