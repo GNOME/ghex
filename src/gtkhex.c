@@ -1835,6 +1835,11 @@ void gtk_hex_paste_from_clipboard(GtkHex *gh)
 
 static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
 {
+	// LAR - REWRITE FOR GTK4
+	(void)gh;
+	g_debug("%s: NOT IMPLEMENTED", __func__);
+
+#if 0
 	gint start_pos; 
 	gint end_pos;
 	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
@@ -1848,6 +1853,7 @@ static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
 		gtk_clipboard_set_text(klass->clipboard, text, end_pos - start_pos);
 		g_free(text);
 	}
+#endif
 }
 
 static void gtk_hex_real_cut_to_clipboard(GtkHex *gh)
