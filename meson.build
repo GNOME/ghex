@@ -1,13 +1,13 @@
 project(
   'ghex', 'c',
   version: '4.alpha.0',
-  meson_version: '>=0.37.0',
+  meson_version: '>=0.50.0',
   license: 'GPL2'
 )
 
 version_arr = meson.project_version().split('.')
 ghex_version_major = version_arr[0].to_int()
-ghex_version_minor = version_arr[1].to_int()
+ghex_version_minor = version_arr[1]
 ghex_version_micro = version_arr[2].to_int()
 
 libghex_version_major = version_arr[0].to_int()
