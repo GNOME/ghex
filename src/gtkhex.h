@@ -1,5 +1,6 @@
-/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex.h - definition of a GtkHex widget, modified for use with GnomeMDI
+/* vim: ts=4 sw=4
+ * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* gtkhex.h - definition of a GtkHex widget
 
    Copyright (C) 1997 - 2004 Free Software Foundation
 
@@ -21,8 +22,8 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef __GTKHEX_H__
-#define __GTKHEX_H__
+#ifndef GTKHEX_H
+#define GTKHEX_H
 
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
@@ -82,7 +83,7 @@ struct _GtkHex
 	GtkWidget *xdisp, *adisp, *scrollbar;
 	GtkWidget *offsets;
 
-	PangoLayout *xlayout, *alayout, *olayout; /* Changes for Gnome 2.0 */
+	PangoLayout *xlayout, *alayout, *olayout;
 
 	GtkAdjustment *adj;
 
@@ -174,4 +175,4 @@ void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl);
 
 G_END_DECLS
 
-#endif
+#endif		/* GTKHEX_H */
