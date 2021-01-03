@@ -159,9 +159,6 @@ void gtk_hex_copy_to_clipboard(GtkHex *gh);
 void gtk_hex_cut_to_clipboard(GtkHex *gh);
 void gtk_hex_paste_from_clipboard(GtkHex *gh);
 
-void add_atk_namedesc(GtkWidget *widget, const gchar *name, const gchar *desc);
-void add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType type);
-
 void     gtk_hex_set_selection(GtkHex *gh, gint start, gint end);
 gboolean gtk_hex_get_selection(GtkHex *gh, gint *start, gint *end);
 void     gtk_hex_clear_selection(GtkHex *gh);
