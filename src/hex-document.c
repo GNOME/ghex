@@ -260,11 +260,8 @@ hex_document_add_view(HexDocument *doc)
 	
 	new_view = gtk_hex_new(doc);
 
-#if GTK_CHECK_VERSION (2,18,0)
-	gtk_widget_set_has_window (GTK_WIDGET (new_view), TRUE);
-#else
-	gtk_fixed_set_has_window (GTK_FIXED(new_view), TRUE);
-#endif
+	// LAR - I DON'T THINK GTK4 HAS THIS CONCEPT ANYMORE.
+//	gtk_widget_set_has_window (GTK_WIDGET (new_view), TRUE);
 
 	g_object_ref(new_view);
 
@@ -405,9 +402,9 @@ hex_document_get_type (void)
 		};
 	
 		doc_type = g_type_register_static (G_TYPE_OBJECT,
-										   "HexDocument",
-										   &doc_info,
-										   0);	
+				"HexDocument",
+				&doc_info,
+				0);	
 	}
 
 	return doc_type;
@@ -737,8 +734,11 @@ hex_document_set_max_undo(HexDocument *doc, guint max_undo)
 }
 
 static gboolean
-ignore_cb(GtkWidget *w, GdkEventAny *e, gpointer user_data)
+ignore_dialog_cb(GtkDialog *dialog, gpointer user_data)
 {
+	/* unused, as this function just ignores user input. */
+	(void)dialog, (void)user_data;
+
 	return TRUE;
 }
 
@@ -795,14 +795,21 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 	progress_dialog = gtk_dialog_new();
 	gtk_window_set_resizable(GTK_WINDOW(progress_dialog), FALSE);
 	gtk_window_set_modal(GTK_WINDOW(progress_dialog), TRUE);
-	g_signal_connect(G_OBJECT(progress_dialog), "delete-event",
-					 G_CALLBACK(ignore_cb), NULL);
+	// LAR - TEST - API CHANGE
+	g_signal_connect(G_OBJECT(progress_dialog), "close",
+					 G_CALLBACK(ignore_dialog_cb), NULL);
+//	g_signal_connect(G_OBJECT(progress_dialog), "delete-event",
+//					 G_CALLBACK(ignore_cb), NULL);
 	gtk_window_set_title(GTK_WINDOW(progress_dialog),
 						 _("Saving to HTML..."));
 	progress_bar = gtk_progress_bar_new();
 	gtk_widget_show(progress_bar);
-	gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(progress_dialog))),
-					  progress_bar);
+	// LAR - TEST FOR GTK4 - API CHANGE
+	gtk_box_append (GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG (progress_dialog))),
+			progress_bar);
+//	gtk_widget_set_parent (progress_bar, progress_dialog);
+//	gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(progress_dialog))),
+//					  progress_bar);
 	gtk_widget_show(progress_dialog);
 
 	pos = start;
@@ -810,13 +817,18 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 	for(page = 0; page < pages; page++) {
 		if((page%update_pages) == 0) {
 			gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(progress_bar),
-										  (gdouble)page/(gdouble)pages);
+					(gdouble)page/(gdouble)pages);
 			progress_str = g_strdup_printf("%d/%d", page, pages);
 			gtk_progress_bar_set_text(GTK_PROGRESS_BAR(progress_bar),
 									  progress_str);
 			g_free(progress_str);
-			while(gtk_events_pending())
-				gtk_main_iteration();
+			// LAR - ABI CHANGE - TEST FOR GTK4
+			while (g_main_context_pending (NULL)) {	/* GMainContext - NULL == default */
+				g_main_context_iteration (NULL,	/* " " */
+						FALSE);		/* gboolean may_block */
+			}
+//			while(gtk_events_pending())
+//				gtk_main_iteration();
 		}
 		/* write page header */
 		page_name = g_strdup_printf("%s/%s%08d.html",
@@ -918,7 +930,9 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 		fclose(file);
 	}
 	g_object_unref(G_OBJECT(doc));
-	gtk_widget_destroy(progress_dialog);
+	// LAR - TEST FOR GTK4 - API CHANGE
+	gtk_window_destroy(GTK_WINDOW (progress_dialog));
+//	gtk_widget_destroy(progress_dialog);
 
 	return TRUE;
 }
