@@ -16,7 +16,7 @@ activate (GtkApplication *app,
   box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_window_set_child (GTK_WINDOW (window), box);
 
-  doc = hex_document_new ();
+  doc = hex_document_new_from_file ("main.c");
   hex = gtk_hex_new (doc);
 
   gtk_box_append (GTK_BOX (box), hex);

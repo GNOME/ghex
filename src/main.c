@@ -25,7 +25,6 @@
 #include <glib/gi18n.h>
 
 #include "configuration.h"
-#include "factory.h"
 #include "ghex-window.h"
 
 /* Command line options */

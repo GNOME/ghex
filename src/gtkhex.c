@@ -1,8 +1,16 @@
-/* vim: ts=4 sw=4
+/* vim: ts=4 sw=4 colorcolumn=80
  * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex.c - a GtkHex widget, modified for use in GHex
 
-   Copyright (C) 1998 - 2004 Free Software Foundation
+/* gtkhex.c - definition of a GtkHex widget
+
+   Copyright © 1997 - 2004 Free Software Foundation
+
+   Copyright © 2005-2020 Various individual contributors, including
+   but not limited to: Jonathon Jongsma, Kalev Lember, who continued
+   to maintain the source code under the licensing terms described
+   herein and below.
+
+   Copyright © 2021 Logan Rathbone
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -19,19 +27,34 @@
    If not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-   Author: Jaka Mocnik <jaka@gnu.org>
- */
+   Original Author: Jaka Mocnik <jaka@gnu.org>
+*/
 
 #include <config.h>
 
 #include <string.h>
 
-// LAR - doubt we explicitly need to include this.
-//#include <gdk/gdkkeysyms.h>
-
 #include "hex-document.h"
 #include "gtkhex.h"
-#include "gtkhex-private.h"
+
+/* LAR - defines copied from the old header. */
+
+/* how to group bytes? */
+#define GROUP_BYTE 1
+#define GROUP_WORD 2
+#define GROUP_LONG 4
+
+#define LOWER_NIBBLE TRUE
+#define UPPER_NIBBLE FALSE
+
+/* ------ */
+
+/* LAR - some more defines brought in from the old gtkhex-private.h */
+
+#define VIEW_HEX 1
+#define VIEW_ASCII 2
+
+/* ----- */
 
 #define DEFAULT_CPL 32
 #define DEFAULT_LINES 10
@@ -41,10 +64,6 @@
 #define DEFAULT_FONT "Monospace 12"
 
 #define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
-
-#define GTKHEX_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),\
-                                   GTK_TYPE_HEX,                         \
-                                   GtkHexPrivate))
 
 enum {
 	CURSOR_MOVED_SIGNAL,
@@ -59,6 +78,26 @@ enum {
   TARGET_STRING,
 };
 
+/* highlighting information.
+ */
+typedef struct _GtkHex_Highlight GtkHex_Highlight;
+
+/* start_line and end_line only have to be set (and valid) of
+ * valid is set to TRUE. */
+struct _GtkHex_Highlight
+{
+	gint start, end;
+	gint start_line, end_line;
+	GdkRGBA *bg_color; /* NULL to use the style color */
+	gint min_select;
+
+	GtkHex_Highlight *prev, *next;
+	gboolean valid;
+};
+
+/* used to automatically highlight all visible occurrences
+ * of the string.
+ */
 struct _GtkHex_AutoHighlight
 {
 	gint search_view;
@@ -74,12 +113,64 @@ struct _GtkHex_AutoHighlight
 	GtkHex_AutoHighlight *next, *prev;
 };
 
-struct _GtkHexPrivate
+/* TODO / NOTE - 'GtkHexClass' previously had these members:
+ *		GtkClipboard *clipboard, *primary;
+ * so when you see ->clipboard and ->primary, these are related to
+ * clipboard stuff that needs to be rewritten. */
+
+/* ------------------------------
+ * Main GtkHex GObject definition
+ * ------------------------------
+ */
+
+struct _GtkHex
 {
+	GtkFixed fixed;
+
+	HexDocument *document;
+
+	GtkWidget *xdisp, *adisp, *scrollbar;
+	GtkWidget *offsets;
+
+	PangoLayout *xlayout, *alayout, *olayout;
+
+	GtkAdjustment *adj;
+
+	PangoFontMetrics *disp_font_metrics;
+	PangoFontDescription *font_desc;
+
+	gint active_view;
+
+	guint char_width, char_height;
+	guint button;
+
+	guint cursor_pos;
+	GtkHex_Highlight selection;
+	gint lower_nibble;
+
+	guint group_type;
+
+	gint lines, vis_lines, cpl, top_line;
+	gint cursor_shown;
+
+	gint xdisp_width, adisp_width, extra_width;
+
+	GtkHex_AutoHighlight *auto_highlight;
+
+	gint scroll_dir;
+	guint scroll_timeout;
+	gboolean show_offsets;
+	gint starting_offset;
+	gboolean insert;
+	gboolean selecting;
+
 	/* Buffer for storing formatted data for rendering;
 	   dynamically adjusts its size to the display size */
 	guchar *disp_buffer;
 
+	/* FIXME - I think this is `characters per line` == cpl
+	 * These could probably just be defines, but changing this is not a top
+	 * priority right now. */
 	gint default_cpl;
 	gint default_lines;
 };
@@ -747,7 +838,7 @@ render_hex_lines (GtkHex *gh,
 
 	gdk_cairo_set_source_rgba (cr, &fg_color);
 
-	frm_len = format_xblock (gh, gh->priv->disp_buffer,
+	frm_len = format_xblock (gh, gh->disp_buffer,
 			(gh->top_line+imin)*gh->cpl,
 			MIN((gh->top_line+imax+1)*gh->cpl,
 				gh->document->file_size) );
@@ -759,7 +850,7 @@ render_hex_lines (GtkHex *gh,
 
 		render_hex_highlights (gh, cr, i);
 		cairo_move_to (cr, 0, i * gh->char_height);
-		pango_layout_set_text (gh->xlayout, gh->priv->disp_buffer + (i - imin) * xcpl, MIN(xcpl, tmp));
+		pango_layout_set_text (gh->xlayout, gh->disp_buffer + (i - imin) * xcpl, MIN(xcpl, tmp));
 		pango_cairo_show_layout (cr, gh->xlayout);
 	}
 	
@@ -806,7 +897,7 @@ render_ascii_lines (GtkHex *gh,
 
 	gdk_cairo_set_source_rgba (cr, &fg_color);
 	
-	frm_len = format_ablock (gh, gh->priv->disp_buffer, (gh->top_line+imin)*gh->cpl,
+	frm_len = format_ablock (gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
 							MIN((gh->top_line+imax+1)*gh->cpl, gh->document->file_size) );
 	
 	for (i = imin; i <= imax; i++) {
@@ -817,7 +908,7 @@ render_ascii_lines (GtkHex *gh,
 		render_ascii_highlights (gh, cr, i);
 
 		cairo_move_to (cr, 0, i * gh->char_height);
-		pango_layout_set_text (gh->alayout, gh->priv->disp_buffer + (i - imin)*gh->cpl, MIN(gh->cpl, tmp));
+		pango_layout_set_text (gh->alayout, gh->disp_buffer + (i - imin)*gh->cpl, MIN(gh->cpl, tmp));
 		pango_cairo_show_layout (cr, gh->alayout);
 	}
 	
@@ -1107,10 +1198,10 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 
 	gh->extra_width = total_width - gh->xdisp_width - gh->adisp_width;
 
-	if (gh->priv->disp_buffer)
-		g_free (gh->priv->disp_buffer);
+	if (gh->disp_buffer)
+		g_free (gh->disp_buffer);
 	
-	gh->priv->disp_buffer = g_malloc ((xcpl + 1) * (gh->vis_lines + 1));
+	gh->disp_buffer = g_malloc ((xcpl + 1) * (gh->vis_lines + 1));
 
 	/* calculate new display position */
 	value = MIN (gh->top_line * old_cpl / gh->cpl, gh->lines - gh->vis_lines);
@@ -1134,7 +1225,7 @@ static void recalc_displays(GtkHex *gh, guint width, guint height) {
 	                          gh->vis_lines      /* page size */);
 
 	g_signal_emit_by_name(G_OBJECT(gh->adj), "changed");
-	g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
+	g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
 }
 
 /*
@@ -1464,7 +1555,7 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 			gtk_adjustment_set_page_increment(gh->adj, gh->vis_lines - 1);
 			gtk_adjustment_set_page_size(gh->adj, gh->vis_lines);
 			g_signal_emit_by_name(G_OBJECT(gh->adj), "changed");
-			g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
+			g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
 		}
 	}
 
@@ -1542,7 +1633,7 @@ void gtk_hex_set_selection(GtkHex *gh, gint start, gint end)
 {
 	gint length = gh->document->file_size;
 	gint oe, os, ne, ns;
-	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
+//	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 
 	// API CHANGE - SEE CLIPBOARD STUFF. DEFER.
 #if 0
@@ -1820,17 +1911,17 @@ static void gtk_hex_update_all_auto_highlights(GtkHex *gh, gboolean delete, gboo
 
 void gtk_hex_copy_to_clipboard(GtkHex *gh)
 {
-	g_signal_emit_by_name(G_OBJECT(gh), "copy_clipboard");
+	g_signal_emit_by_name(G_OBJECT(gh), "copy-clipboard");
 }
 
 void gtk_hex_cut_to_clipboard(GtkHex *gh)
 {
-	g_signal_emit_by_name(G_OBJECT(gh), "cut_clipboard");
+	g_signal_emit_by_name(G_OBJECT(gh), "cut-clipboard");
 }
 
 void gtk_hex_paste_from_clipboard(GtkHex *gh)
 {
-	g_signal_emit_by_name(G_OBJECT(gh), "paste_clipboard");
+	g_signal_emit_by_name(G_OBJECT(gh), "paste-clipboard");
 }
 
 static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
@@ -1856,7 +1947,8 @@ static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
 #endif
 }
 
-static void gtk_hex_real_cut_to_clipboard(GtkHex *gh)
+static void gtk_hex_real_cut_to_clipboard(GtkHex *gh,
+		gpointer user_data)
 {
 	if(gh->selection.start != -1 && gh->selection.end != -1) {
 		gtk_hex_real_copy_to_clipboard(gh);
@@ -1864,7 +1956,8 @@ static void gtk_hex_real_cut_to_clipboard(GtkHex *gh)
 	}
 }
 
-static void gtk_hex_real_paste_from_clipboard(GtkHex *gh)
+static void gtk_hex_real_paste_from_clipboard(GtkHex *gh,
+		gpointer user_data)
 {
 	g_debug("%s: NOT IMPLEMENTED", __func__);
 
@@ -1886,8 +1979,8 @@ static void gtk_hex_real_paste_from_clipboard(GtkHex *gh)
 static void gtk_hex_finalize(GObject *o) {
 	GtkHex *gh = GTK_HEX(o);
 	
-	if (gh->priv->disp_buffer)
-		g_free (gh->priv->disp_buffer);
+	if (gh->disp_buffer)
+		g_free (gh->disp_buffer);
 
 	if (gh->disp_font_metrics)
 		pango_font_metrics_unref (gh->disp_font_metrics);
@@ -2216,11 +2309,11 @@ static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
 	// API CHANGE
 //	req->width = 2 * padding.left + 2 * padding.right + 2 * gtk_container_get_border_width (GTK_CONTAINER (w)) +
 	req->width = 2 * padding.left + 2 * padding.right + 20 +	/* DUMB TEST */
-		sb_req.width + gh->char_width * (gh->priv->default_cpl + (gh->priv->default_cpl - 1) /
+		sb_req.width + gh->char_width * (gh->default_cpl + (gh->default_cpl - 1) /
 										 gh->group_type);
 	if(gh->show_offsets)
 		req->width += padding.left + padding.right + 9 * gh->char_width;
-	req->height = gh->priv->default_lines * gh->char_height + padding.top + padding.bottom +
+	req->height = gh->default_lines * gh->char_height + padding.top + padding.bottom +
 		// API CHANGE 
 //		2*gtk_container_get_border_width(GTK_CONTAINER(w));
 		20;		// LAR - DUMB TEST
@@ -2256,49 +2349,62 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 
 	parent_class = g_type_class_peek_parent(klass);
 	
-	gtkhex_signals[CURSOR_MOVED_SIGNAL] = 
-		g_signal_new ("cursor_moved",
-					  G_TYPE_FROM_CLASS (widget_class),
-					  G_SIGNAL_RUN_FIRST,
-					  G_STRUCT_OFFSET (GtkHexClass, cursor_moved),
-					  NULL, NULL, NULL, G_TYPE_NONE, 0);
+	gtkhex_signals[CURSOR_MOVED_SIGNAL] =
+		g_signal_new_class_handler ("cursor-moved",
+				G_OBJECT_CLASS_TYPE(object_class),
+			/* GSignalFlags signal_flags : */
+				G_SIGNAL_RUN_FIRST,
+			/* GCallback class_handler: */
+				NULL,		/* no callback; plain signal. */
+			/* no accumulator or accu_data */
+				NULL, NULL,
+			/* GSignalCMarshaller c_marshaller: */
+				NULL,		/* use generic marshaller */
+			/* GType return_type: */
+				G_TYPE_NONE,
+			/* guint n_params: */
+				0);
 
 	gtkhex_signals[DATA_CHANGED_SIGNAL] = 
-		g_signal_new ("data_changed",
-					  G_TYPE_FROM_CLASS (widget_class),
-					  G_SIGNAL_RUN_FIRST,
-					  G_STRUCT_OFFSET (GtkHexClass, data_changed),
-					  NULL, NULL, NULL, G_TYPE_NONE, 1,
-					  G_TYPE_POINTER);
+		g_signal_new_class_handler ("data-changed",
+				G_OBJECT_CLASS_TYPE(object_class),
+				G_SIGNAL_RUN_FIRST,
+				G_CALLBACK(gtk_hex_real_data_changed),
+				NULL, NULL,
+				NULL,
+				G_TYPE_NONE,
+				0);
 
-	gtkhex_signals[CUT_CLIPBOARD_SIGNAL] = 
-		g_signal_new ("cut_clipboard",
-					  G_TYPE_FROM_CLASS (widget_class),
-					  G_SIGNAL_RUN_FIRST,
-					  G_STRUCT_OFFSET (GtkHexClass, cut_clipboard),
-					  NULL, NULL, NULL, G_TYPE_NONE, 0);
+	gtkhex_signals[CUT_CLIPBOARD_SIGNAL] =
+		g_signal_new_class_handler ("cut-clipboard",
+				G_OBJECT_CLASS_TYPE(object_class),
+				G_SIGNAL_RUN_FIRST,
+				G_CALLBACK(gtk_hex_real_cut_to_clipboard),
+				NULL, NULL,
+				NULL,
+				G_TYPE_NONE,
+				0);
 
 	gtkhex_signals[COPY_CLIPBOARD_SIGNAL] = 
-		g_signal_new ("copy_clipboard",
-					  G_TYPE_FROM_CLASS (widget_class),
-					  G_SIGNAL_RUN_FIRST,
-					  G_STRUCT_OFFSET (GtkHexClass, copy_clipboard),
-					  NULL, NULL, NULL, G_TYPE_NONE, 0);
-
+		g_signal_new_class_handler ("copy-clipboard",
+				G_OBJECT_CLASS_TYPE(object_class),
+				G_SIGNAL_RUN_FIRST,
+				G_CALLBACK(gtk_hex_real_copy_to_clipboard),
+				NULL, NULL,
+				NULL,
+				G_TYPE_NONE,
+				0);
 
 	gtkhex_signals[PASTE_CLIPBOARD_SIGNAL] = 
-		g_signal_new ("paste_clipboard",
-					  G_TYPE_FROM_CLASS (widget_class),
-					  G_SIGNAL_RUN_FIRST,
-					  G_STRUCT_OFFSET (GtkHexClass, paste_clipboard),
-					  NULL, NULL, NULL, G_TYPE_NONE, 0);
+		g_signal_new_class_handler ("paste-clipboard",
+				G_OBJECT_CLASS_TYPE(object_class),
+				G_SIGNAL_RUN_FIRST,
+				G_CALLBACK(gtk_hex_real_paste_from_clipboard),
+				NULL, NULL,
+				NULL,
+				G_TYPE_NONE,
+				0);
 	
-	klass->cursor_moved = NULL;
-	klass->data_changed = gtk_hex_real_data_changed;
-	klass->cut_clipboard = gtk_hex_real_cut_to_clipboard;
-	klass->copy_clipboard = gtk_hex_real_copy_to_clipboard;
-	klass->paste_clipboard = gtk_hex_real_paste_from_clipboard;
-
 	// API CHANGES
 //	klass->primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 //	klass->clipboard = gtk_clipboard_get(GDK_NONE);
@@ -2316,20 +2422,15 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 //	GTK_WIDGET_CLASS(klass)->button_release_event = gtk_hex_button_release;
 
 	object_class->finalize = gtk_hex_finalize;
-
-	parent_class = g_type_class_ref (gtk_fixed_get_type ());
-
-	g_type_class_add_private (object_class, sizeof (GtkHexPrivate));
 }
 
 static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	GtkCssProvider *provider;
 	GtkStyleContext *context;
 
-	gh->priv = GTKHEX_GET_PRIVATE (gh);
-	gh->priv->disp_buffer = NULL;
-	gh->priv->default_cpl = DEFAULT_CPL;
-	gh->priv->default_lines = DEFAULT_LINES;
+	gh->disp_buffer = NULL;
+	gh->default_cpl = DEFAULT_CPL;
+	gh->default_lines = DEFAULT_LINES;
 
 	gh->scroll_timeout = -1;
 
@@ -2463,7 +2564,7 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	gtk_fixed_put(GTK_FIXED(gh), gh->adisp, 0, 0);
 	gtk_widget_show(gh->adisp);
 	
-	g_signal_connect(G_OBJECT(gh->adj), "value_changed",
+	g_signal_connect(G_OBJECT(gh->adj), "value-changed",
 					 G_CALLBACK(display_scrolled), gh);
 
 	gh->scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL, gh->adj);
@@ -2503,7 +2604,7 @@ GtkWidget *gtk_hex_new(HexDocument *owner) {
 	g_return_val_if_fail (gh != NULL, NULL);
 
 	gh->document = owner;
-    g_signal_connect (G_OBJECT (gh->document), "document_changed",
+    g_signal_connect (G_OBJECT (gh->document), "document-changed",
             G_CALLBACK (gtk_hex_document_changed), gh);
 	
 	return GTK_WIDGET(gh);
@@ -2565,11 +2666,11 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 		if(y >= gh->top_line + gh->vis_lines) {
 			gtk_adjustment_set_value(gh->adj, MIN(y - gh->vis_lines + 1, gh->lines - gh->vis_lines));
 			gtk_adjustment_set_value(gh->adj, MAX(gtk_adjustment_get_value(gh->adj), 0));
-			g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
+			g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
 		}
 		else if (y < gh->top_line) {
 			gtk_adjustment_set_value(gh->adj, y);
-			g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
+			g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
 		}      
 
 		if(index == gh->document->file_size)
@@ -2586,7 +2687,7 @@ void gtk_hex_set_cursor(GtkHex *gh, gint index) {
 			gh->selection.end = gh->selection.start = gh->cursor_pos;
 		}
 
-		g_signal_emit_by_name(G_OBJECT(gh), "cursor_moved");
+		g_signal_emit_by_name(G_OBJECT(gh), "cursor-moved");
 
 		bytes_changed(gh, old_pos, old_pos);
 		show_cursor(gh);
@@ -2619,14 +2720,14 @@ void gtk_hex_set_cursor_xy(GtkHex *gh, gint x, gint y) {
 		if(y >= gh->top_line + gh->vis_lines) {
 			gtk_adjustment_set_value(gh->adj, MIN(y - gh->vis_lines + 1, gh->lines - gh->vis_lines));
 			gtk_adjustment_set_value(gh->adj, MAX(0, gtk_adjustment_get_value(gh->adj)));
-			g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
+			g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
 		}
 		else if (y < gh->top_line) {
 			gtk_adjustment_set_value(gh->adj, y);
-			g_signal_emit_by_name(G_OBJECT(gh->adj), "value_changed");
+			g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
 		}      
 		
-		g_signal_emit_by_name(G_OBJECT(gh), "cursor_moved");
+		g_signal_emit_by_name(G_OBJECT(gh), "cursor-moved");
 		
 		if(gh->selecting) {
 			gtk_hex_set_selection(gh, gh->selection.start, gh->cursor_pos);
@@ -2791,7 +2892,8 @@ PangoFontMetrics* gtk_hex_load_font (const char *font_name)
 	return new_metrics;
 }
 
-GtkHex_AutoHighlight *gtk_hex_insert_autohighlight(GtkHex *gh,
+GtkHex_AutoHighlight *
+gtk_hex_insert_autohighlight(GtkHex *gh,
 		const gchar *search,
 		gint len,
 		const gchar *colour)
@@ -2838,8 +2940,8 @@ void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl)
 
 void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines)
 {
-    gh->priv->default_cpl = cpl;
-    gh->priv->default_lines = vis_lines;
+    gh->default_cpl = cpl;
+    gh->default_lines = vis_lines;
 }
 
 // LAR - atk is gone

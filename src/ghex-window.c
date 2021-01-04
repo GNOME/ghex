@@ -852,7 +852,7 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
                      G_CALLBACK(set_doc_menu_sensitivity), win);;
     g_signal_connect(G_OBJECT(doc), "undo_stack_forget",
                      G_CALLBACK(set_doc_menu_sensitivity), win);;
-    g_signal_connect(G_OBJECT(gh), "cursor_moved",
+    g_signal_connect(G_OBJECT(gh), "cursor-moved",
                      G_CALLBACK(cursor_moved_cb), win);
     gtk_widget_show(gh);
 
@@ -902,7 +902,7 @@ ghex_window_load(GHexWindow *win, const gchar *filename)
     ghex_window_set_doc_name(win, win->gh->document->path_end);
     ghex_window_set_sensitivity(win);
 
-    g_signal_emit_by_name(G_OBJECT(gh), "cursor_moved");
+    g_signal_emit_by_name(G_OBJECT(gh), "cursor-moved");
    
     return TRUE;
 }

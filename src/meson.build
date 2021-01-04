@@ -1,10 +1,5 @@
 libghex_sources = [
-  'accessiblegtkhex.c',
-  'accessiblegtkhex.h',
-  'accessiblegtkhexfactory.c',
-  'accessiblegtkhexfactory.h',
   'gtkhex.c',
-  'gtkhex-private.h',
   'hex-document.c'
 ]
 
@@ -58,8 +53,6 @@ ghex_sources = [
   'configuration.h',
   'converter.c',
   'converter.h',
-  'factory.c',
-  'factory.h',
   'findreplace.c',
   'findreplace.h',
   'ghex-window.c',

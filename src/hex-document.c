@@ -330,7 +330,7 @@ hex_document_class_init (HexDocumentClass *klass)
 	klass->undo_stack_forget = NULL;
 
 	hex_signals[DOCUMENT_CHANGED] = 
-		g_signal_new ("document_changed",
+		g_signal_new ("document-changed",
 					  G_TYPE_FROM_CLASS(gobject_class),
 					  G_SIGNAL_RUN_FIRST,
 					  G_STRUCT_OFFSET (HexDocumentClass, document_changed),

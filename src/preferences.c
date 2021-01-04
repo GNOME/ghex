@@ -335,9 +335,9 @@ create_prefs_dialog()
 						 G_CALLBACK(group_type_cb), pui);
 	g_signal_connect(G_OBJECT(pui->offsets_col), "toggled",
 					 G_CALLBACK(offsets_col_cb), pui);
-	g_signal_connect(G_OBJECT(undo_adj), "value_changed",
+	g_signal_connect(G_OBJECT(undo_adj), "value-changed",
 					 G_CALLBACK(max_undo_changed_cb), pui);
-	g_signal_connect(G_OBJECT(box_adj), "value_changed",
+	g_signal_connect(G_OBJECT(box_adj), "value-changed",
 					 G_CALLBACK(box_size_changed_cb), pui);
 
 	return pui;
