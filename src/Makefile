@@ -1,6 +1,6 @@
 # TEMPORARY MAKEFILE FOR TESTING PURPOSES ONLY
 
-DEBUG=-g
+DEBUG=-g -DENABLE_DEBUG
 CC=gcc
 GTK_CFLAGS=$(shell pkg-config --libs --cflags gtk4)
 CFLAGS=-Wall -Wextra -std=c11 -pedantic \

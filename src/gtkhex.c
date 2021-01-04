@@ -1533,6 +1533,10 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 	gint start_line, end_line;
 	guint lines;
 
+#ifdef ENABLE_DEBUG
+	g_debug("%s: start", __func__);
+#endif
+
 	if(gh->cpl == 0)
 		return;
 
