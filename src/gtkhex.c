@@ -47,6 +47,8 @@
 #define CSS_NAME "hex"
 //#define CSS_NAME "entry"
 
+#define DEFAULT_DA_SIZE 200
+
 /* LAR - defines copied from the old header. */
 
 /* how to group bytes? */
@@ -138,7 +140,6 @@ struct _GtkHex
 	HexDocument *document;
 
 	GtkWidget *box;				/* main box for layout */
-	GtkWidget *xa_box;			/* box to hold ascii and hex widgets */
 
 	GtkWidget *xdisp, *adisp;	/* DrawingArea */
 	GtkWidget *offsets;			/* DrawingArea */
@@ -148,7 +149,7 @@ struct _GtkHex
 
 	GtkAdjustment *adj;
 
-	gint active_view;
+	int active_view;
 
 	guint char_width, char_height;
 	guint button;
@@ -159,17 +160,17 @@ struct _GtkHex
 
 	guint group_type;
 
-	gint lines, vis_lines, cpl, top_line;
-	gint cursor_shown;
+	int lines, vis_lines, cpl, top_line;
+	int cursor_shown;
 
-	gint xdisp_width, adisp_width, extra_width;
+	int xdisp_width, adisp_width, extra_width;
 
 	GtkHex_AutoHighlight *auto_highlight;
 
-	gint scroll_dir;
+	int scroll_dir;
 	guint scroll_timeout;
 	gboolean show_offsets;
-	gint starting_offset;
+	int starting_offset;
 	gboolean insert;
 	gboolean selecting;
 
@@ -177,11 +178,9 @@ struct _GtkHex
 	   dynamically adjusts its size to the display size */
 	guchar *disp_buffer;
 
-	/* FIXME - I think this is `characters per line` == cpl
-	 * These could probably just be defines, but changing this is not a top
-	 * priority right now. */
-	gint default_cpl;
-	gint default_lines;
+	/* default characters per line and number of lines. */
+	int default_cpl;
+	int default_lines;
 };
 
 G_DEFINE_TYPE(GtkHex, gtk_hex, GTK_TYPE_WIDGET)
@@ -833,6 +832,9 @@ render_hex_lines (GtkHex *gh,
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 	gtk_widget_get_allocation (widget, &allocation);
 
+	g_debug("%s: WIDTH: %d HEIGHT: %d",
+			__func__, allocation.width, allocation.height);
+
 	/* render background. */
 	gtk_render_background (context, cr,
 			/* x: */		0,
@@ -1163,35 +1165,26 @@ draw_shadow (GtkWidget *widget,
 static void
 recalc_displays(GtkHex *gh, int width, int height)
 {
+	int total_width = width;
+	int old_cpl = gh->cpl;
 	gboolean scroll_to_cursor;
 	gdouble value;
-	gint total_width = width;
-	gint total_cpl, xcpl;
-	gint old_cpl = gh->cpl;
-	GtkBorder padding;
-	GtkStateFlags state;
-	GtkStyleContext *context;
-	GtkRequisition req;
-
-	context = gtk_widget_get_style_context (GTK_WIDGET (gh));
-	state = gtk_widget_get_state_flags (GTK_WIDGET (gh));
-	// API CHANGE
-	//gtk_style_context_get_padding (context, state, &padding);
-	gtk_style_context_get_padding (context, &padding);
+	int total_cpl, xcpl;
 
 	/*
 	 * Only change the value of the adjustment to put the cursor on screen
 	 * if the cursor is currently within the displayed portion.
 	 */
+	// FIXME - WTF??
 	scroll_to_cursor = (gh->cpl == 0) ||
-	                   ((gh->cursor_pos / gh->cpl >= gtk_adjustment_get_value (gh->adj)) &&
-	                    (gh->cursor_pos / gh->cpl <= gtk_adjustment_get_value (gh->adj) + gh->vis_lines - 1));
-
-	gtk_widget_get_preferred_size (gh->scrollbar, &req, NULL);
+		((gh->cursor_pos / gh->cpl >= gtk_adjustment_get_value (gh->adj)) &&
+		 (gh->cursor_pos / gh->cpl <= gtk_adjustment_get_value (gh->adj) +
+			  gh->vis_lines - 1));
 	
 	gh->xdisp_width = 1;
 	gh->adisp_width = 1;
 
+#if 0
 	// API CHANGE
 	total_width -= 20 +		// LAR DUMB TEST
 	               2 * padding.left + 2 * padding.right + req.width;
@@ -1201,49 +1194,58 @@ recalc_displays(GtkHex *gh, int width, int height)
 
 	if(gh->show_offsets)
 		total_width -= padding.left + padding.right + 9 * gh->char_width;
+#endif
 
 	total_cpl = total_width / gh->char_width;
 
-	if((total_cpl == 0) || (total_width < 0)) {
+	/* Sanity check. */
+	if (total_cpl == 0 || total_width < 0) {
 		gh->cpl = gh->lines = gh->vis_lines = 0;
+		g_critical("%s: Something has gone wrong; total cpl is 0 or "
+				"width is too small.");
 		return;
 	}
 	
 	/* calculate how many bytes we can stuff in one line */
 	gh->cpl = 0;
 	do {
-		if(gh->cpl % gh->group_type == 0 && total_cpl < gh->group_type*3)
+		if (gh->cpl % gh->group_type == 0 && total_cpl < gh->group_type * 3)
 			break;
 		
 		gh->cpl++;        /* just added one more char */
 		total_cpl -= 3;   /* 2 for xdisp, 1 for adisp */
 		
-		if(gh->cpl % gh->group_type == 0) /* just ended a group */
+		if (gh->cpl % gh->group_type == 0)	/* just ended a group */
 			total_cpl--;
+
 	} while(total_cpl > 0);
 
-	if(gh->cpl == 0)
-		return;
+	/* If gh->cpl is not greater than 0, something has gone wrong. */
+	g_return_if_fail (gh->cpl > 0);
 
-	if(gh->document->file_size == 0)
+	if (gh->document->file_size == 0)
 		gh->lines = 1;
 	else {
 		gh->lines = gh->document->file_size / gh->cpl;
-		if(gh->document->file_size % gh->cpl)
+		if (gh->document->file_size % gh->cpl)
 			gh->lines++;
 	}
 
-	// API CHANGE
-	gh->vis_lines = ((gint) (height - 20 /* LAR DUMB TEST */ - padding.top - padding.bottom)) / ((gint) gh->char_height);
+	/* set visible lines */
+	gh->vis_lines = height / gh->char_height;
 
+	/* display width of ascii drawing area */
+	gh->adisp_width = gh->cpl * gh->char_width;
 
-//	gh->vis_lines = ((gint) (height - 2 * gtk_container_get_border_width (GTK_CONTAINER (gh)) - padding.top - padding.bottom)) / ((gint) gh->char_height);
+	/* set number of hex characters per line */
+	xcpl = gh->cpl * 2 + (gh->cpl - 1) / gh->group_type;
 
-	gh->adisp_width = gh->cpl*gh->char_width;
-	xcpl = gh->cpl*2 + (gh->cpl - 1)/gh->group_type;
-	gh->xdisp_width = xcpl*gh->char_width;
+	/* display width of hex drawing area */
+	gh->xdisp_width = xcpl * gh->char_width;
 
 	gh->extra_width = total_width - gh->xdisp_width - gh->adisp_width;
+	g_debug("%s: GH->EXTRA_WIDTH: %d",
+			__func__, gh->extra_width);
 
 	if (gh->disp_buffer)
 		g_free (gh->disp_buffer);
@@ -2526,7 +2528,7 @@ gtk_hex_init(GtkHex *gh)
 	gh->document = NULL;
 	gh->starting_offset = 0;
 
-	gh->xdisp_width = gh->adisp_width = 200;
+	gh->xdisp_width = gh->adisp_width = DEFAULT_DA_SIZE;
 	gh->extra_width = 0;
 	gh->active_view = VIEW_HEX;
 	gh->group_type = GROUP_BYTE;
@@ -2559,6 +2561,7 @@ gtk_hex_init(GtkHex *gh)
 	/* Init CSS */
 	// LAR - FIXME - made some fixes, but tweak etc.
 
+	/* Set context var to the widget's context at large. */
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh));
 
 	/* set up a provider so we can feed CSS through C code. */
@@ -2583,16 +2586,8 @@ gtk_hex_init(GtkHex *gh)
 	/* Setup a GtkBox as our base container */
 	gh->box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 
-	/* Setup another GtkBox to hold the hex and ascii widgets, which must
-	 * be the homogeneous in size */
-	gh->xa_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_set_homogeneous (GTK_BOX(gh->xa_box), TRUE);
-
 	/* set main box as a child of main widget */
 	gtk_widget_set_parent (gh->box, GTK_WIDGET (gh));
-
-	/* set xa_box as a parent of the main box */
-	gtk_box_append (GTK_BOX(gh->box), gh->xa_box);
 
 
 
@@ -2601,7 +2596,8 @@ gtk_hex_init(GtkHex *gh)
 	gh->offsets = gtk_drawing_area_new();
 
 	/* LAR - FIXME not sure if should leave this in - set a minimum size */
-	gtk_widget_set_size_request (gh->offsets, 100, 100);
+	gtk_widget_set_size_request (gh->offsets,
+			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
 
 	/* Create the pango layout for the widget */
 	gh->olayout = gtk_widget_create_pango_layout (gh->offsets, "");
@@ -2625,7 +2621,7 @@ gtk_hex_init(GtkHex *gh)
 
 
 
-	/* Setup our ASCII and Hex drawing areas. */
+	/* Setup our Hex drawing areas. */
 
 	gh->xdisp = gtk_drawing_area_new();
 
@@ -2636,10 +2632,7 @@ gtk_hex_init(GtkHex *gh)
 	// LAR - NO CAN DO - GTK4
 	// here's a test instead!
 	gtk_widget_set_can_focus (gh->xdisp, TRUE);
-//	gtk_widget_set_events (gh->xdisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
-//						   GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK | GDK_SCROLL_MASK);
 
-	// TEST FOR GTK4 - draw
 	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (gh->xdisp),
 			hex_draw,	// GtkDrawingAreaDrawFunc draw_func,
 			gh,			// gpointer user_data,
@@ -2647,6 +2640,11 @@ gtk_hex_init(GtkHex *gh)
 
 	// REWRITE - LAR
 #if 0
+
+	gtk_widget_set_events (gh->xdisp, GDK_EXPOSURE_MASK |
+			GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
+			GDK_BUTTON_MOTION_MASK | GDK_SCROLL_MASK);
+
 	g_signal_connect(G_OBJECT(gh->xdisp), "button_press_event",
 					 G_CALLBACK(hex_button_cb), gh);
 	g_signal_connect(G_OBJECT(gh->xdisp), "button_release_event",
@@ -2657,11 +2655,15 @@ gtk_hex_init(GtkHex *gh)
 					 G_CALLBACK(hex_scroll_cb), gh);
 #endif
 
+	/* Set context var to hex widget's context. */
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->xdisp));
+
+	/* Add view class so we get certain theme colours for free. */
 	gtk_style_context_add_class (context, "view");
 
-	gtk_box_append (GTK_BOX(gh->xa_box), gh->xdisp);
+	gtk_box_append (GTK_BOX(gh->box), gh->xdisp);
 	
+	/* Setup our ASCII widget. */
 	gh->adisp = gtk_drawing_area_new();
 
 	/* Expand drawing areas as necessary */
@@ -2669,27 +2671,30 @@ gtk_hex_init(GtkHex *gh)
 	gtk_widget_set_hexpand (gh->adisp, TRUE);
 
 	/* LAR - TEMPORARY - FIXME DON'T LEAVE IN - set a minimum size */
-	gtk_widget_set_size_request (gh->adisp, 100, 100);
-	gtk_widget_set_size_request (gh->xdisp, 100, 100);
+	gtk_widget_set_size_request (gh->adisp,
+			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
+	gtk_widget_set_size_request (gh->xdisp,
+			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
 
 	/* Create the pango layout for the widget */
 	gh->alayout = gtk_widget_create_pango_layout (gh->adisp, "");
 
-	// LAR - TEST FOR GTK4
+	// LAR - TEST  - dont' know if needed
 	gtk_widget_set_can_focus (GTK_WIDGET(gh->adisp), TRUE);
-//	gtk_widget_set_events (gh->adisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
-//						   GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK | GDK_SCROLL_MASK);
 
-	// TEST FOR GTK4 - draw
 	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (gh->adisp),
-			ascii_draw,	// GtkDrawingAreaDrawFunc draw_func,
-			gh,		// gpointer user_data,
-			NULL);		// GDestroyNotify destroy);
+			ascii_draw,	/* GtkDrawingAreaDrawFunc draw_func, */
+			gh,			/* gpointer user_data, */
+			NULL);		/* GDestroyNotify destroy); */
 
 //	g_signal_connect(G_OBJECT(gh->adisp), "draw",
 //					 G_CALLBACK(ascii_draw), gh);
 	// LAR - REWRITE
 #if 0
+	gtk_widget_set_events (gh->adisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK
+			| GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK |
+			GDK_SCROLL_MASK);
+
 	g_signal_connect(G_OBJECT(gh->adisp), "button_press_event",
 					 G_CALLBACK(ascii_button_cb), gh);
 	g_signal_connect(G_OBJECT(gh->adisp), "button_release_event",
@@ -2700,10 +2705,11 @@ gtk_hex_init(GtkHex *gh)
 					 G_CALLBACK(ascii_scroll_cb), gh);
 #endif
 
+	/* Rinse and repeat as above for ascii widget / context / view. */
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->adisp));
 	gtk_style_context_add_class (context, "view");
 
-	gtk_box_append (GTK_BOX(gh->xa_box), gh->adisp);
+	gtk_box_append (GTK_BOX(gh->box), gh->adisp);
 	
 	g_signal_connect(G_OBJECT(gh->adj), "value-changed",
 					 G_CALLBACK(display_scrolled), gh);
@@ -2989,43 +2995,10 @@ void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl)
 	g_free(ahl);
 }
 
+// LAR - FIXME - FLAGGED FOR DELETION - I don't really want this kind of manual
+// setting of geometry values anywhere in the app.
 void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines)
 {
     gh->default_cpl = cpl;
     gh->default_lines = vis_lines;
 }
-
-// LAR - atk is gone
-#if 0
-void add_atk_namedesc (GtkWidget *widget, const gchar *name, const gchar *desc)
-{
-        AtkObject *atk_widget;
-
-        g_return_if_fail (GTK_IS_WIDGET (widget));
-        atk_widget = gtk_widget_get_accessible (widget);
-
-        if (name)
-                atk_object_set_name (atk_widget, name);
-        if (desc)
-                atk_object_set_description (atk_widget, desc);
-}
-
-void add_atk_relation (GtkWidget *obj1, GtkWidget *obj2, AtkRelationType type)
-{
-
-        AtkObject *atk_obj1, *atk_obj2;
-        AtkRelationSet *relation_set;
-        AtkRelation *relation;
-
-        g_return_if_fail (GTK_IS_WIDGET (obj1));
-        g_return_if_fail (GTK_IS_WIDGET (obj2));
-
-        atk_obj1 = gtk_widget_get_accessible (obj1);
-        atk_obj2 = gtk_widget_get_accessible (obj2);
-
-        relation_set = atk_object_ref_relation_set (atk_obj1);
-        relation = atk_relation_new (&atk_obj2, 1, type);
-        atk_relation_set_add (relation_set, relation);
-        g_object_unref (G_OBJECT (relation));
-}
-#endif
