@@ -262,10 +262,6 @@ get_char_height (GtkHex *gh)
 	context = gtk_widget_get_pango_context (GTK_WIDGET(gh));
 	metrics = pango_context_get_metrics (context, NULL, NULL);
 
-	g_debug("%s: CHAR_HEIGHT: %d",
-			__func__,
-			pango_font_metrics_get_height (metrics));
-
 	height =
 		PANGO_PIXELS(pango_font_metrics_get_height (metrics));
 	
@@ -293,45 +289,6 @@ get_char_width (GtkHex *gh)
 	
 	return width;
 }
-
-#if 0
-/* LAR: REWRITE */
-static guint
-get_max_char_width(GtkHex *gh, PangoFontMetrics *font_metrics)
-{
-	/* this is, I guess, a rather dirty trick, but
-	   right now i can't think of anything better */
-	guint i;
-	guint maxwidth = 0;
-	PangoRectangle logical_rect;
-	PangoLayout *layout;
-	gchar str[2]; 
-
-	if (char_widths == NULL)
-		char_widths = (gchar*)g_malloc(0x100);
-
-	char_widths[0] = 0;
-
-	layout = gtk_widget_create_pango_layout (GTK_WIDGET (gh), "");
-
-	for(i = 1; i < 0x100; i++) {
-		logical_rect.width = 0;
-		/* Check if the char is displayable. Caused trouble to pango */
-		if (is_displayable((guchar)i)) {
-			sprintf (str, "%c", (gchar)i);
-			pango_layout_set_text(layout, str, -1);
-			pango_layout_get_pixel_extents (layout, NULL, &logical_rect);
-		}
-		char_widths[i] = logical_rect.width;
-	}
-
-	for(i = '0'; i <= 'z'; i++)
-		maxwidth = MAX(maxwidth, char_widths[i]);
-
-	g_object_unref (G_OBJECT (layout));
-	return maxwidth;
-}
-#endif
 
 void
 format_xbyte(GtkHex *gh, gint pos, gchar buf[2]) {
@@ -846,68 +803,78 @@ invalidate_offsets (GtkHex *gh,
 }
 
 /*
- * when calling render_*_lines() the imin and imax arguments are the
+ * when calling render_*_lines() the min_lines and max_lines arguments are the
  * numbers of the first and last line TO BE DISPLAYED in the range
  * [0 .. gh->vis_lines-1] AND NOT [0 .. gh->lines]!
  */
 static void
 render_hex_lines (GtkHex *gh,
                   cairo_t *cr,
-                  gint imin,
-                  gint imax)
+                  int min_lines,
+                  int max_lines)
 {
-	GtkWidget *w = gh->xdisp;
-	GdkRGBA bg_color;
-	GdkRGBA fg_color;
+	GtkWidget *widget = gh->xdisp;
 	GtkAllocation allocation;
 	GtkStateFlags state;
 	GtkStyleContext *context;
-	gint i, cursor_line;
-	gint xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
-	gint frm_len, tmp;
+	int cursor_line;
+	int xcpl = gh->cpl * 2 + gh->cpl / gh->group_type;
+	int frm_len;
 
-	g_return_if_fail (gtk_widget_get_realized(GTK_WIDGET (gh)));
-	g_return_if_fail (gh->cpl);
+	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET(gh)));
+	g_return_if_fail (gh->cpl > 0);
 
-	context = gtk_widget_get_style_context (w);
-	state = gtk_widget_get_state_flags (w);
+	TEST_DEBUG_FUNCTION_START
 
-	/* gtk_render_background? */
-//	gtk_style_context_get_background_color (context, state, &bg_color);
-//	// API CHANGE
-	//gtk_style_context_get_color (context, state, &fg_color);
-	gtk_style_context_get_color (context, &fg_color);
-
+	context = gtk_widget_get_style_context (widget);
+	state = gtk_widget_get_state_flags (widget);
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
+	gtk_widget_get_allocation (widget, &allocation);
 
-	gtk_widget_get_allocation(w, &allocation);
-//	gdk_cairo_set_source_rgba (cr, &bg_color);
-	cairo_rectangle (cr, 0, imin * gh->char_height, allocation.width, (imax - imin + 1) * gh->char_height);
-	cairo_fill (cr);
-  
-	imax = MIN(imax, gh->vis_lines);
-	imax = MIN(imax, gh->lines);
+	/* render background. */
+	gtk_render_background (context, cr,
+			/* x: */		0,
+			/* y: */		min_lines * gh->char_height,
+			/* width: */	allocation.width,
+			/* height: */	(max_lines - min_lines + 1) * gh->char_height);
 
-	gdk_cairo_set_source_rgba (cr, &fg_color);
+	max_lines = MIN(max_lines, gh->vis_lines);
+	max_lines = MIN(max_lines, gh->lines);
 
+	/* FIXME - I have no idea what this does. It's too early in the morning
+	 * and the coffee hasn't kicked in yet. Maybe break this down / comment
+	 * it to make it clearer?
+	 */
 	frm_len = format_xblock (gh, gh->disp_buffer,
-			(gh->top_line+imin)*gh->cpl,
-			MIN((gh->top_line+imax+1)*gh->cpl,
+			(gh->top_line+min_lines)*gh->cpl,
+			MIN((gh->top_line+max_lines+1)*gh->cpl,
 				gh->document->file_size) );
 	
-	for (i = imin; i <= imax; i++) {
-		tmp = (gint)frm_len - (gint)((i - imin)*xcpl);
+	for (int i = min_lines; i <= max_lines; i++) {
+		int tmp = frm_len - ((i - min_lines) * xcpl);
+
 		if(tmp <= 0)
 			break;
 
 		render_hex_highlights (gh, cr, i);
-		cairo_move_to (cr, 0, i * gh->char_height);
-		pango_layout_set_text (gh->xlayout, gh->disp_buffer + (i - imin) * xcpl, MIN(xcpl, tmp));
-		pango_cairo_show_layout (cr, gh->xlayout);
+
+		/* Set pango layout to the line of hex to render. */
+		// FIXME - make this understandable.
+		pango_layout_set_text (gh->xlayout,
+				gh->disp_buffer + (i - min_lines) * xcpl,
+				MIN(xcpl, tmp));
+
+		gtk_render_layout (context, cr,
+				/* x: */ 0,
+				/* y: */ i * gh->char_height,
+				gh->xlayout);
 	}
 	
-	if((cursor_line >= imin) && (cursor_line <= imax) && (gh->cursor_shown))
+	if ( (cursor_line >= min_lines) && (cursor_line <= max_lines) &&
+			(gh->cursor_shown) )
+	{
 		render_xc (gh, cr);
+	}
 }
 
 static void
@@ -971,8 +938,8 @@ render_ascii_lines (GtkHex *gh,
 static void
 render_offsets (GtkHex *gh,
                 cairo_t *cr,
-                gint min_lines,
-                gint max_lines)
+                int min_lines,
+                int max_lines)
 {
 	GtkWidget *widget = gh->offsets;
 	GdkRGBA fg_color;
@@ -980,55 +947,40 @@ render_offsets (GtkHex *gh,
 	GtkStateFlags state;
 	GtkStyleContext *context;
 	/* offset chars (8) + 1 (null terminator) */
-	gchar offstr[9];
+	char offstr[9];
 
 	TEST_DEBUG_FUNCTION_START 
-
-	g_debug("%s: char_height: %u",
-			__func__, gh->char_height);
 
 	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET (gh)));
 
 	context = gtk_widget_get_style_context (widget);
 	state = gtk_widget_get_state_flags (widget);
 
-//	API CHANGE - FIXME - see if even needed. Guessing not.
-//	gtk_style_context_get_color (context, state, &fg_color);
-	gtk_style_context_get_color (context, &fg_color);
-
 	gtk_widget_get_allocation(widget, &allocation);
 
 	/* render background. */
-	g_debug("%s: RENDERING BACKGROUND", __func__);
 	gtk_render_background (context, cr,
 			/* x: */		0,
 			/* y: */		min_lines * gh->char_height,
 			/* width: */	allocation.width,
 			/* height: */	(max_lines - min_lines + 1) * gh->char_height);
-
   
 	/* update max_lines and min_lines - FIXME this is from original code -
 	 * why?? - test and see. */
 	max_lines = MIN(max_lines, gh->vis_lines);
 	max_lines = MIN(max_lines, gh->lines - gh->top_line - 1);
 
-	gdk_cairo_set_source_rgba (cr, &fg_color);
-	
 	for (int i = min_lines; i <= max_lines; i++) {
 		/* generate offset string and place in temporary buffer */
 		sprintf(offstr, "%08X",
 				(gh->top_line + i) * gh->cpl + gh->starting_offset);
 
-		// LAR - TEST FOR GTK4
+		/* build pango layout for offset line; draw line with gtk. */
 		pango_layout_set_text (gh->olayout, offstr, 8);
 		gtk_render_layout (context, cr,
 				/* x: */ 0,
 				/* y: */ i * gh->char_height,
 				gh->olayout);
-
-		// OLD CODE:
-//		cairo_move_to (cr, 0, i * gh->char_height);
-//		pango_cairo_show_layout (cr, gh->olayout);
 	}
 }
 
@@ -2608,19 +2560,18 @@ gtk_hex_init(GtkHex *gh)
 	gh->char_width = get_char_width(gh);
 	gh->char_height = get_char_height(gh);
 
-//	gh->char_width = get_max_char_width(gh, gh->disp_font_metrics);
-//
-//	gh->char_height = PANGO_PIXELS (pango_font_metrics_get_ascent (gh->disp_font_metrics)) +
-//		PANGO_PIXELS (pango_font_metrics_get_descent (gh->disp_font_metrics)) + 2;
-	
 	// GTK4 - TEST - DON'T KNOW IF NECESSARY FOR KEYBOARD STUFF - FIXME
 	gtk_widget_set_can_focus(GTK_WIDGET(gh), TRUE);
-	// API CHANGE
+
+	// API CHANGE - FIXME REWRITE.
 //	gtk_widget_set_events(GTK_WIDGET(gh), GDK_KEY_PRESS_MASK);
-	
+
+	/* Init CSS */
+	// LAR - FIXME - made some fixes, but tweak etc.
+
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh));
 
-	// LAR - FIXME - made some fixes, but tweak etc.
+	/* set up a provider so we can feed CSS through C code. */
 	provider = gtk_css_provider_new ();
 	gtk_css_provider_load_from_data (GTK_CSS_PROVIDER (provider),
 									CSS_NAME " {\n"
@@ -2630,6 +2581,8 @@ gtk_hex_init(GtkHex *gh)
 	                                 "   border-width: 1px;\n"
 	                                 "   padding: 1px;\n"
 	                                 "}\n", -1);
+
+	/* add the provider to our widget's style context. */
 	gtk_style_context_add_provider (context,
 	                                GTK_STYLE_PROVIDER (provider),
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -2903,7 +2856,7 @@ guchar gtk_hex_get_byte(GtkHex *gh, guint offset) {
 }
 
 /*
- * sets data group type (see GROUP_* defines in gtkhex.h)
+ * sets data group type (see GROUP_* defines at top of file)
  */
 void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
 	GtkAllocation allocation;
