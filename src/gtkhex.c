@@ -37,6 +37,15 @@
 #include "hex-document.h"
 #include "gtkhex.h"
 
+/* LAR - TEMPORARY FOR TESTING ONLY */
+
+#ifdef ENABLE_DEBUG
+#define TEST_DEBUG_FUNCTION_START g_debug ("%s: start", __func__);
+#endif
+
+/* LAR - new stuff that wasn't in old code */
+#define CSS_NAME "hex"
+
 /* LAR - defines copied from the old header. */
 
 /* how to group bytes? */
@@ -60,8 +69,6 @@
 #define DEFAULT_LINES 10
 
 #define SCROLL_TIMEOUT 100
-
-#define DEFAULT_FONT "Monospace 12"
 
 #define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
 
@@ -125,19 +132,19 @@ struct _GtkHex_AutoHighlight
 
 struct _GtkHex
 {
-	GtkFixed fixed;
+	GtkWidget parent_instance;
 
 	HexDocument *document;
 
-	GtkWidget *xdisp, *adisp, *scrollbar;
-	GtkWidget *offsets;
+	GtkWidget *box;				/* main box for layout */
+
+	GtkWidget *xdisp, *adisp;	/* DrawingArea */
+	GtkWidget *offsets;			/* DrawingArea */
+	GtkWidget *scrollbar;
 
 	PangoLayout *xlayout, *alayout, *olayout;
 
 	GtkAdjustment *adj;
-
-	PangoFontMetrics *disp_font_metrics;
-	PangoFontDescription *font_desc;
 
 	gint active_view;
 
@@ -175,9 +182,12 @@ struct _GtkHex
 	gint default_lines;
 };
 
+G_DEFINE_TYPE(GtkHex, gtk_hex, GTK_TYPE_WIDGET)
+
+/* ----- */
+
 static gint gtkhex_signals[LAST_SIGNAL] = { 0 };
 
-static GtkFixedClass *parent_class = NULL;
 static gchar *char_widths = NULL;
 
 static void render_hex_highlights (GtkHex *gh, cairo_t *cr, gint cursor_line);
@@ -241,6 +251,50 @@ ascii_to_pointer(GtkHex *gh, gint mx, gint my)
 	gtk_hex_set_cursor_xy(gh, mx/gh->char_width, cy);
 }
 
+
+static int
+get_char_height (GtkHex *gh)
+{
+	PangoContext *context;
+	PangoFontMetrics *metrics;
+	int height;
+
+	context = gtk_widget_get_pango_context (GTK_WIDGET(gh));
+	metrics = pango_context_get_metrics (context, NULL, NULL);
+
+	g_debug("%s: CHAR_HEIGHT: %d",
+			__func__,
+			pango_font_metrics_get_height (metrics));
+
+	height =
+		PANGO_PIXELS(pango_font_metrics_get_height (metrics));
+	
+	return height;
+}
+
+static int
+get_char_width (GtkHex *gh)
+{
+	PangoContext *context;
+	PangoFontMetrics *metrics;
+	int width;
+
+	context = gtk_widget_get_pango_context (GTK_WIDGET(gh));
+	metrics = pango_context_get_metrics (context, NULL, NULL);
+
+	/* generally the digit width returned will be bigger, but let's take
+	 * the max for now and run with it.
+	 */
+	width = MAX(pango_font_metrics_get_approximate_digit_width(metrics),
+				pango_font_metrics_get_approximate_char_width(metrics));
+
+	/* scale down from pango units to pixels */
+	width = PANGO_PIXELS(width);
+	
+	return width;
+}
+
+#if 0
 /* LAR: REWRITE */
 static guint
 get_max_char_width(GtkHex *gh, PangoFontMetrics *font_metrics)
@@ -259,7 +313,6 @@ get_max_char_width(GtkHex *gh, PangoFontMetrics *font_metrics)
 	char_widths[0] = 0;
 
 	layout = gtk_widget_create_pango_layout (GTK_WIDGET (gh), "");
-	pango_layout_set_font_description (layout, gh->font_desc);
 
 	for(i = 1; i < 0x100; i++) {
 		logical_rect.width = 0;
@@ -278,6 +331,7 @@ get_max_char_width(GtkHex *gh, PangoFontMetrics *font_metrics)
 	g_object_unref (G_OBJECT (layout));
 	return maxwidth;
 }
+#endif
 
 void
 format_xbyte(GtkHex *gh, gint pos, gchar buf[2]) {
@@ -439,8 +493,7 @@ render_ac (GtkHex *gh,
 	gint cx, cy;
 	static guchar c[2] = "\0\0";
 	
-	if (! gtk_widget_get_realized (gh->adisp))
-		return;
+	g_return_if_fail (gtk_widget_get_realized (gh->adisp));
 
 	context = gtk_widget_get_style_context (gh->adisp);
 	state = gtk_widget_get_state_flags (gh->adisp);
@@ -490,8 +543,7 @@ render_xc (GtkHex *gh,
 	gint cx, cy, i;
 	static guchar c[2];
 
-	if(!gtk_widget_get_realized(gh->xdisp))
-		return;
+	g_return_if_fail (gtk_widget_get_realized (gh->xdisp));
 
 	context = gtk_widget_get_style_context (gh->xdisp);
 	state = gtk_widget_get_state_flags (gh->xdisp);
@@ -814,8 +866,8 @@ render_hex_lines (GtkHex *gh,
 	gint xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
 	gint frm_len, tmp;
 
-	if( (!gtk_widget_get_realized(GTK_WIDGET (gh))) || (gh->cpl == 0) )
-		return;
+	g_return_if_fail (gtk_widget_get_realized(GTK_WIDGET (gh)));
+	g_return_if_fail (gh->cpl);
 
 	context = gtk_widget_get_style_context (w);
 	state = gtk_widget_get_state_flags (w);
@@ -873,8 +925,8 @@ render_ascii_lines (GtkHex *gh,
 	gint i, tmp, frm_len;
 	guint cursor_line;
 
-	if( (!gtk_widget_get_realized(GTK_WIDGET(gh))) || (gh->cpl == 0) )
-		return;
+	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET(gh)));
+	g_return_if_fail (gh->cpl);
 
 	context = gtk_widget_get_style_context (w);
 	state = gtk_widget_get_state_flags (w);
@@ -919,45 +971,64 @@ render_ascii_lines (GtkHex *gh,
 static void
 render_offsets (GtkHex *gh,
                 cairo_t *cr,
-                gint imin,
-                gint imax)
+                gint min_lines,
+                gint max_lines)
 {
-	GtkWidget *w = gh->offsets;
-	GdkRGBA bg_color;
+	GtkWidget *widget = gh->offsets;
 	GdkRGBA fg_color;
 	GtkAllocation allocation;
 	GtkStateFlags state;
 	GtkStyleContext *context;
-	gint i;
+	/* offset chars (8) + 1 (null terminator) */
 	gchar offstr[9];
 
-	if (! gtk_widget_get_realized (GTK_WIDGET (gh)))
-		return;
+	TEST_DEBUG_FUNCTION_START 
 
-	context = gtk_widget_get_style_context (w);
-	state = gtk_widget_get_state_flags (w);
+	g_debug("%s: char_height: %u",
+			__func__, gh->char_height);
 
-	/* LAR - gtk_render_background? */
-//	gtk_style_context_get_background_color (context, state, &bg_color);
-//	API CHANGE
+	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET (gh)));
+
+	context = gtk_widget_get_style_context (widget);
+	state = gtk_widget_get_state_flags (widget);
+
+//	API CHANGE - FIXME - see if even needed. Guessing not.
 //	gtk_style_context_get_color (context, state, &fg_color);
 	gtk_style_context_get_color (context, &fg_color);
 
-	gtk_widget_get_allocation(w, &allocation);
-//	gdk_cairo_set_source_rgba (cr, &bg_color);
-	cairo_rectangle (cr, 0, imin * gh->char_height, allocation.width, (imax - imin + 1) * gh->char_height);
-	cairo_fill (cr);
+	gtk_widget_get_allocation(widget, &allocation);
+
+	/* render background. */
+	g_debug("%s: RENDERING BACKGROUND", __func__);
+	gtk_render_background (context, cr,
+			/* x: */		0,
+			/* y: */		min_lines * gh->char_height,
+			/* width: */	allocation.width,
+			/* height: */	(max_lines - min_lines + 1) * gh->char_height);
+
   
-	imax = MIN(imax, gh->vis_lines);
-	imax = MIN(imax, gh->lines - gh->top_line - 1);
+	/* update max_lines and min_lines - FIXME this is from original code -
+	 * why?? - test and see. */
+	max_lines = MIN(max_lines, gh->vis_lines);
+	max_lines = MIN(max_lines, gh->lines - gh->top_line - 1);
 
 	gdk_cairo_set_source_rgba (cr, &fg_color);
 	
-	for(i = imin; i <= imax; i++) {
-		sprintf(offstr, "%08X", (gh->top_line + i)*gh->cpl + gh->starting_offset);
-		cairo_move_to (cr, 0, i * gh->char_height);
+	for (int i = min_lines; i <= max_lines; i++) {
+		/* generate offset string and place in temporary buffer */
+		sprintf(offstr, "%08X",
+				(gh->top_line + i) * gh->cpl + gh->starting_offset);
+
+		// LAR - TEST FOR GTK4
 		pango_layout_set_text (gh->olayout, offstr, 8);
-		pango_cairo_show_layout (cr, gh->olayout);
+		gtk_render_layout (context, cr,
+				/* x: */ 0,
+				/* y: */ i * gh->char_height,
+				gh->olayout);
+
+		// OLD CODE:
+//		cairo_move_to (cr, 0, i * gh->char_height);
+//		pango_cairo_show_layout (cr, gh->olayout);
 	}
 }
 
@@ -972,7 +1043,12 @@ hex_draw (GtkDrawingArea *drawing_area,
                            gpointer user_data)
 {
 	GtkHex *gh = GTK_HEX(user_data);
+
+	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail(GTK_IS_HEX(gh));
+
+	g_debug("%s: width: %d - height: %d",
+			__func__, width, height);
 
 	/* LAR - TEST - I have no idea what this function is trying to
 	 * accomplish. May need a rewrite. */
@@ -1003,6 +1079,13 @@ ascii_draw (GtkDrawingArea *drawing_area,
                            gpointer user_data)
 {
 	GtkHex *gh = GTK_HEX(user_data);
+
+	TEST_DEBUG_FUNCTION_START 
+	g_return_if_fail(GTK_IS_HEX(gh));
+
+	g_debug("%s: width: %d - height: %d",
+			__func__, width, height);
+
 	g_return_if_fail(GTK_IS_HEX(gh));
 
 	/* LAR - TEST - I have no idea what this function is trying to
@@ -1040,6 +1123,7 @@ offsets_draw (GtkDrawingArea *drawing_area,
 	GtkHex *gh = GTK_HEX(user_data);
 
 	g_return_if_fail(GTK_IS_HEX(gh));
+	TEST_DEBUG_FUNCTION_START 
 
 	render_offsets (gh, cr, 0, gh->vis_lines);
 
@@ -1115,7 +1199,9 @@ draw_shadow (GtkWidget *widget,
  * this calculates how many bytes we can stuff into one line and how many
  * lines we can display according to the current size of the widget
  */
-static void recalc_displays(GtkHex *gh, guint width, guint height) {
+static void
+recalc_displays(GtkHex *gh, int width, int height)
+{
 	gboolean scroll_to_cursor;
 	gdouble value;
 	gint total_width = width;
@@ -1491,18 +1577,19 @@ show_offsets_widget(GtkHex *gh)
 {
 	GtkStyleContext *context;
 
+	TEST_DEBUG_FUNCTION_START 
+
 	gh->offsets = gtk_drawing_area_new();
 
-	/* Modify the font for the widget */
-	// LAR - NOPE - CSS.
-//	gtk_widget_modify_font (gh->offsets, gh->font_desc);
- 
+	/* LAR - FIXME not sure if should leave this in - set a minimum size */
+	gtk_widget_set_size_request (gh->offsets, 100, 100);
+
 	/* Create the pango layout for the widget */
 	gh->olayout = gtk_widget_create_pango_layout (gh->offsets, "");
 
 //	gtk_widget_set_events (gh->offsets, GDK_EXPOSURE_MASK);
 
-	gtk_drawing_area_set_draw_func (gh->offsets,
+	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (gh->offsets),
 			offsets_draw,	// GtkDrawingAreaDrawFunc draw_func,
 			gh,		// gpointer user_data,
 			NULL);		// GDestroyNotify destroy);
@@ -1510,8 +1597,7 @@ show_offsets_widget(GtkHex *gh)
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->xdisp));
 	gtk_style_context_add_class (context, "header");
 
-	gtk_fixed_put(GTK_FIXED(gh), gh->offsets, 0, 0);
-	gtk_widget_show(gh->offsets);
+	gtk_box_prepend (GTK_BOX(gh->box), gh->offsets);
 }
 
 static void hide_offsets_widget(GtkHex *gh) {
@@ -1533,9 +1619,7 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 	gint start_line, end_line;
 	guint lines;
 
-#ifdef ENABLE_DEBUG
 	g_debug("%s: start", __func__);
-#endif
 
 	if(gh->cpl == 0)
 		return;
@@ -1980,17 +2064,11 @@ static void gtk_hex_real_paste_from_clipboard(GtkHex *gh,
 #endif
 }
 
-static void gtk_hex_finalize(GObject *o) {
-	GtkHex *gh = GTK_HEX(o);
+static void gtk_hex_finalize(GObject *gobject) {
+	GtkHex *gh = GTK_HEX(gobject);
 	
 	if (gh->disp_buffer)
 		g_free (gh->disp_buffer);
-
-	if (gh->disp_font_metrics)
-		pango_font_metrics_unref (gh->disp_font_metrics);
-
-	if (gh->font_desc)
-		pango_font_description_free (gh->font_desc);
 
 	if (gh->xlayout)
 		g_object_unref (G_OBJECT (gh->xlayout));
@@ -2001,9 +2079,9 @@ static void gtk_hex_finalize(GObject *o) {
 	if (gh->olayout)
 		g_object_unref (G_OBJECT (gh->olayout));
 	
-	/* Changes for Gnome 2.0 -- SnM */	
-	if(G_OBJECT_CLASS(parent_class)->finalize)
-		(* G_OBJECT_CLASS(parent_class)->finalize)(G_OBJECT(o));  
+	/* Boilerplate; keep here. Chain up to the parent class.
+	 */
+	G_OBJECT_CLASS(gtk_hex_parent_class)->finalize(gobject);
 }
 
 // REWRITE FOR GESTURES/EVENT CONTROLLERS
@@ -2202,24 +2280,34 @@ static gboolean gtk_hex_button_release(GtkWidget *w, GdkEventButton *event) {
  * the children widgets and adjust the scrollbar after resizing
  * connects to the size_allocate signal of the GtkHex widget
  */
-static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
-	GtkHex *gh;
+static void
+gtk_hex_size_allocate (GtkWidget *widget,
+		int width,
+		int height,
+		int baseline)
+{
+	GtkHex *gh = GTK_HEX(widget);
 	GtkAllocation my_alloc;
 	GtkBorder padding;
 	GtkStateFlags state;
 	GtkStyleContext *context;
 	gint border_width;
 
-	gh = GTK_HEX(w);
+	TEST_DEBUG_FUNCTION_START 
+
+	g_debug("%s: width: %d - height: %d - baseline: %d",
+			__func__, width, height, baseline);
+
+	// LAR - TEST BASED ON OLD CODE
 	hide_cursor(gh);
-	
-	recalc_displays(gh, alloc->width, alloc->height);
+
+	recalc_displays(gh, width, height);
 
 	// API CHANGE
 #if 0
-	gtk_widget_set_allocation(w, alloc);
-	if(gtk_widget_get_realized(w))
-		gdk_window_move_resize (gtk_widget_get_window(w),
+	gtk_widget_set_allocation(widget, alloc);
+	if(gtk_widget_get_realized(widget))
+		gdk_window_move_resize (gtk_widget_get_window(widget),
 								alloc->x, 
 								alloc->y,
 								alloc->width, 
@@ -2227,18 +2315,18 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 #endif 
 
 	// LAR - API CHANGE
-//	border_width = gtk_container_get_border_width(GTK_CONTAINER(w));
+//	border_width = gtk_container_get_border_width(GTK_CONTAINER(widget));
 	border_width = 20;	// DUMB TEST
 
-	context = gtk_widget_get_style_context (w);
-	state = gtk_widget_get_state_flags (w);
+	context = gtk_widget_get_style_context (widget);
+	state = gtk_widget_get_state_flags (widget);
 	// API CHANGE
 //	gtk_style_context_get_padding (context, state, &padding);
 	gtk_style_context_get_padding (context, &padding);
 
 	my_alloc.x = border_width + padding.left;
 	my_alloc.y = border_width + padding.top;
-	my_alloc.height = MAX (alloc->height - 2 * border_width - padding.top - padding.bottom, 1);
+	my_alloc.height = MAX (height - 2 * border_width - padding.top - padding.bottom, 1);
 	if(gh->show_offsets) {
 		my_alloc.width = 9*gh->char_width;
 		// API CHANGE - ADDED THE -1 AS A TEST
@@ -2250,44 +2338,78 @@ static void gtk_hex_size_allocate(GtkWidget *w, GtkAllocation *alloc) {
 	my_alloc.width = gh->xdisp_width;
 	// LAR - TEST
 	gtk_widget_size_allocate(gh->xdisp, &my_alloc, -1);
-	my_alloc.x = alloc->width - border_width;
+	my_alloc.x = width - border_width;
 	my_alloc.y = border_width;
 	// LAR - TEST
-	my_alloc.width = alloc->width;
-	my_alloc.height = MAX(alloc->height - 2*border_width, 1);
+	my_alloc.width = width;
+	my_alloc.height = MAX(height - 2*border_width, 1);
 	// LAR - TEST
 	gtk_widget_size_allocate(gh->scrollbar, &my_alloc, -1);
 	my_alloc.x -= gh->adisp_width + padding.left;
 	my_alloc.y = border_width + padding.top;
 	my_alloc.width = gh->adisp_width;
-	my_alloc.height = MAX (alloc->height - 2 * border_width - padding.top - padding.bottom, 1);
+	my_alloc.height = MAX (height - 2 * border_width - padding.top - padding.bottom, 1);
 	// LAR - TEST
 	gtk_widget_size_allocate(gh->adisp, &my_alloc, -1);
-	
+	// ALSO TRY THIS
+//	gtk_widget_size_allocate(gh->adisp, &my_alloc, baseline);
+
 	show_cursor(gh);
 }
 
-// LAR - no can do, gtk4
-#if 0
-static gboolean
-gtk_hex_draw (GtkWidget *w,
+static void
+gtk_hex_draw (GtkWidget *widget,
               cairo_t *cr)
 {
-	if (GTK_WIDGET_CLASS (parent_class)->draw)
-		(* GTK_WIDGET_CLASS (parent_class)->draw) (w, cr);
+	GtkHex *gh = GTK_HEX(widget);
+	GtkWidget *child;
+	GtkWidget *sibling;
 
-	draw_shadow (w, cr);
+	TEST_DEBUG_FUNCTION_START 
 
-	return TRUE;
+	draw_shadow (widget, cr);
 }
-#endif
 
+// LAR - TEST GTK4
 static void
-offsets_draw (GtkDrawingArea *drawing_area,
-                           cairo_t *cr,
-                           int width,
-                           int height,
-                           gpointer user_data);
+gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
+{
+	GtkHex *gh = GTK_HEX(widget);
+	graphene_rect_t rect;
+	float width, height;
+	cairo_t *cr;
+	GtkWidget *child;
+
+	TEST_DEBUG_FUNCTION_START 
+
+	// LAR - TEST
+	// Update character width & height
+	gh->char_width = get_char_width(gh);
+	gh->char_height = get_char_height(gh);
+
+	width = gtk_widget_get_allocated_width (widget);
+	height = gtk_widget_get_allocated_height (widget);
+
+	// DUMB TEST
+	gtk_hex_size_allocate (widget, width, height, -1);
+
+	graphene_rect_init (&rect,
+			/* x */ 0.0f, /* y */ 0.0f, width, height);
+	cr = gtk_snapshot_append_cairo (snapshot, &rect);
+
+	g_debug("%s: width: %f - height: %f",
+			__func__, width, height);
+
+	gtk_hex_draw (widget, cr);
+
+	/* queue draw functions for children */
+	for (child = gtk_widget_get_first_child (widget);
+			child != NULL;
+			child = gtk_widget_get_next_sibling (child))
+	{
+		gtk_widget_snapshot_child (widget, child, snapshot);
+	}
+}
 
 static void gtk_hex_document_changed(HexDocument* doc, gpointer change_data,
         gboolean push_undo, gpointer data)
@@ -2347,12 +2469,23 @@ gtk_hex_get_preferred_height (GtkWidget *widget,
     *minimal_height = *natural_height = requisition.height;
 }
 
-static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
+static void
+gtk_hex_class_init(GtkHexClass *klass)
+{
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-	parent_class = g_type_class_peek_parent(klass);
-	
+	/* Layout manager: box-style layout. */
+	gtk_widget_class_set_layout_manager_type (widget_class,
+			GTK_TYPE_BOX_LAYOUT);
+
+	/* CSS name */
+
+	// FIXME - maybe change this to "entry" once the dust settles
+	gtk_widget_class_set_css_name (widget_class, CSS_NAME);
+
+	/* SIGNALS */
+
 	gtkhex_signals[CURSOR_MOVED_SIGNAL] =
 		g_signal_new_class_handler ("cursor-moved",
 				G_OBJECT_CLASS_TYPE(object_class),
@@ -2413,12 +2546,20 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 //	klass->primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 //	klass->clipboard = gtk_clipboard_get(GDK_NONE);
 
-	GTK_WIDGET_CLASS(klass)->size_allocate = gtk_hex_size_allocate;
+	// LAR - NOTE - GTK4, THIS IS ONLY CALLED IF THE WIDGET DOES *NOT* HAVE
+	// A LAYOUT MANAGER
+	//
+	// POSSIBLE TODO - subclass a GtkLayoutManager and set the `allocate'
+	// vfunc.
+//	GTK_WIDGET_CLASS(klass)->size_allocate = gtk_hex_size_allocate;
+
+	
 	// GONESVILLE WITH GTK4
 //	GTK_WIDGET_CLASS(klass)->get_preferred_width = gtk_hex_get_preferred_width;
 //	GTK_WIDGET_CLASS(klass)->get_preferred_height = gtk_hex_get_preferred_height;
 	// LAR - no can do, gtk4 - just seems to draw a border??
-//	GTK_WIDGET_CLASS(klass)->draw = gtk_hex_draw;
+//	LAR - TEST FOR GTK4
+	widget_class->snapshot = gtk_hex_snapshot;
 
 //	GTK4 API CHANGES - SWITCH TO GESTURES / EVENT CONTROLLERS
 //	GTK_WIDGET_CLASS(klass)->key_press_event = gtk_hex_key_press;
@@ -2428,7 +2569,9 @@ static void gtk_hex_class_init(GtkHexClass *klass, gpointer data) {
 	object_class->finalize = gtk_hex_finalize;
 }
 
-static void gtk_hex_init(GtkHex *gh, gpointer klass) {
+static void
+gtk_hex_init(GtkHex *gh)
+{
 	GtkCssProvider *provider;
 	GtkStyleContext *context;
 
@@ -2461,24 +2604,28 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 
 	gh->auto_highlight = NULL;
 
-	/* get ourselves a decent monospaced font for rendering text */
-	gh->disp_font_metrics = gtk_hex_load_font (DEFAULT_FONT);
-	gh->font_desc = pango_font_description_from_string (DEFAULT_FONT);
+	// LAR - TEST
+	gh->char_width = get_char_width(gh);
+	gh->char_height = get_char_height(gh);
 
-	gh->char_width = get_max_char_width(gh, gh->disp_font_metrics);
-	gh->char_height = PANGO_PIXELS (pango_font_metrics_get_ascent (gh->disp_font_metrics)) +
-		PANGO_PIXELS (pango_font_metrics_get_descent (gh->disp_font_metrics)) + 2;
+//	gh->char_width = get_max_char_width(gh, gh->disp_font_metrics);
+//
+//	gh->char_height = PANGO_PIXELS (pango_font_metrics_get_ascent (gh->disp_font_metrics)) +
+//		PANGO_PIXELS (pango_font_metrics_get_descent (gh->disp_font_metrics)) + 2;
 	
+	// GTK4 - TEST - DON'T KNOW IF NECESSARY FOR KEYBOARD STUFF - FIXME
 	gtk_widget_set_can_focus(GTK_WIDGET(gh), TRUE);
 	// API CHANGE
 //	gtk_widget_set_events(GTK_WIDGET(gh), GDK_KEY_PRESS_MASK);
 	
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh));
 
-	// LAR - this looks wrong.
+	// LAR - FIXME - made some fixes, but tweak etc.
 	provider = gtk_css_provider_new ();
 	gtk_css_provider_load_from_data (GTK_CSS_PROVIDER (provider),
-	                                 "GtkHex {\n"
+									CSS_NAME " {\n"
+									 "   font-family: Monospace;\n"
+									 "   font-size: 12pt;\n"
 	                                 "   border-style: solid;\n"
 	                                 "   border-width: 1px;\n"
 	                                 "   padding: 1px;\n"
@@ -2487,13 +2634,16 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	                                GTK_STYLE_PROVIDER (provider),
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-
+	/* Initialize Adjustment */
 	gh->adj = GTK_ADJUSTMENT(gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
-	gh->xdisp = gtk_drawing_area_new();
 
-	/* Modify the font for the widget */
-	// API CHANGE - USE CSS
-//	gtk_widget_modify_font (gh->xdisp, gh->font_desc);
+	/* Setup a GtkBox as our base container */
+	gh->box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+
+	gtk_widget_set_parent (gh->box, GTK_WIDGET (gh));
+
+	/* Setup our ASCII and Hex drawing areas. */
+	gh->xdisp = gtk_drawing_area_new();
 
 	/* Create the pango layout for the widget */
 	gh->xlayout = gtk_widget_create_pango_layout (gh->xdisp, "");
@@ -2501,15 +2651,16 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 
 	// LAR - NO CAN DO - GTK4
 	// here's a test instead!
-	gtk_widget_set_can_focus (GTK_WIDGET(gh->xdisp), TRUE);
+	gtk_widget_set_can_focus (gh->xdisp, TRUE);
 //	gtk_widget_set_events (gh->xdisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
 //						   GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK | GDK_SCROLL_MASK);
 
 	// TEST FOR GTK4 - draw
-	gtk_drawing_area_set_draw_func (gh->xdisp,
+	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (gh->xdisp),
 			hex_draw,	// GtkDrawingAreaDrawFunc draw_func,
-			gh,		// gpointer user_data,
+			gh,			// gpointer user_data,
 			NULL);		// GDestroyNotify destroy);
+
 	// REWRITE - LAR
 #if 0
 	g_signal_connect(G_OBJECT(gh->xdisp), "button_press_event",
@@ -2525,14 +2676,17 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->xdisp));
 	gtk_style_context_add_class (context, "view");
 
-	gtk_fixed_put(GTK_FIXED(gh), gh->xdisp, 0, 0);
-	gtk_widget_show(gh->xdisp);
+	gtk_box_append (GTK_BOX(gh->box), gh->xdisp);
 	
 	gh->adisp = gtk_drawing_area_new();
 
-	/* Modify the font for the widget */
-	// LAR - no can do - gtk4
-//	gtk_widget_modify_font (gh->adisp, gh->font_desc);
+	/* Expand drawing areas as necessary */
+	gtk_widget_set_hexpand (gh->xdisp, TRUE);
+	gtk_widget_set_hexpand (gh->adisp, TRUE);
+
+	/* LAR - TEMPORARY - FIXME DON'T LEAVE IN - set a minimum size */
+	gtk_widget_set_size_request (gh->adisp, 100, 100);
+	gtk_widget_set_size_request (gh->xdisp, 100, 100);
 
 	/* Create the pango layout for the widget */
 	gh->alayout = gtk_widget_create_pango_layout (gh->adisp, "");
@@ -2543,7 +2697,7 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 //						   GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK | GDK_SCROLL_MASK);
 
 	// TEST FOR GTK4 - draw
-	gtk_drawing_area_set_draw_func (gh->adisp,
+	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (gh->adisp),
 			ascii_draw,	// GtkDrawingAreaDrawFunc draw_func,
 			gh,		// gpointer user_data,
 			NULL);		// GDestroyNotify destroy);
@@ -2565,40 +2719,17 @@ static void gtk_hex_init(GtkHex *gh, gpointer klass) {
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->adisp));
 	gtk_style_context_add_class (context, "view");
 
-	gtk_fixed_put(GTK_FIXED(gh), gh->adisp, 0, 0);
-	gtk_widget_show(gh->adisp);
+	gtk_box_append (GTK_BOX(gh->box), gh->adisp);
 	
 	g_signal_connect(G_OBJECT(gh->adj), "value-changed",
 					 G_CALLBACK(display_scrolled), gh);
 
-	gh->scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL, gh->adj);
-	gtk_fixed_put(GTK_FIXED(gh), gh->scrollbar, 0, 0);
-	gtk_widget_show(gh->scrollbar);
-}
+	/* Setup Scrollbar */
 
-GType gtk_hex_get_type() {
-	static GType gh_type = 0;
-	
-	if(!gh_type) {
-		GTypeInfo gh_info = {
-			sizeof (GtkHexClass),
-			NULL,		/* base_init */
-			NULL,		/* base_finalize */
-			(GClassInitFunc) gtk_hex_class_init,
-			NULL,		/* class_finalize */
-			NULL,		/* class_data */
-			sizeof (GtkHex),
-			0,
-			(GInstanceInitFunc) gtk_hex_init	
-		};
-	
-		gh_type = g_type_register_static (gtk_fixed_get_type(),
-							"GtkHex",
-							&gh_info,
-							0);	
-	}
-	
-	return gh_type;
+	gh->scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL, gh->adj);
+	/* keep scrollbar to the right */
+	gtk_widget_set_halign (gh->scrollbar, GTK_ALIGN_END);
+	gtk_box_append (GTK_BOX(gh->box), gh->scrollbar);
 }
 
 GtkWidget *gtk_hex_new(HexDocument *owner) {
@@ -2789,54 +2920,12 @@ void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
 }
 
 /*
- * sets font for displaying data
- */
-void
-gtk_hex_set_font(GtkHex *gh,
-		PangoFontMetrics *font_metrics,
-		const PangoFontDescription *font_desc)
-{
-	GtkAllocation allocation;
-
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
-
-	if (gh->disp_font_metrics)
-		pango_font_metrics_unref (gh->disp_font_metrics);
-
-	if (gh->font_desc)
-		pango_font_description_free (gh->font_desc);
-	
-	gh->disp_font_metrics = pango_font_metrics_ref (font_metrics);
-	gh->font_desc = pango_font_description_copy (font_desc);
-
-	// API CHANGE - USE CSS
-#if 0
-	if (gh->xdisp)
-		gtk_widget_modify_font (gh->xdisp, gh->font_desc);
-
-	if (gh->adisp)
-		gtk_widget_modify_font (gh->adisp, gh->font_desc);
-
-	if (gh->offsets)
-		gtk_widget_modify_font (gh->offsets, gh->font_desc);
-#endif
-
-
-	gh->char_width = get_max_char_width(gh, gh->disp_font_metrics);
-	gh->char_height = PANGO_PIXELS (pango_font_metrics_get_ascent (gh->disp_font_metrics)) +
-		PANGO_PIXELS (pango_font_metrics_get_descent (gh->disp_font_metrics)) + 2;
-	gtk_widget_get_allocation(GTK_WIDGET(gh), &allocation);
-	recalc_displays(gh, allocation.width, allocation.height);
-	
-	gtk_widget_queue_draw(GTK_WIDGET(gh));
-}
-
-/*
  *  do we show the offsets of lines?
  */
 void gtk_hex_show_offsets(GtkHex *gh, gboolean show)
 {
+	TEST_DEBUG_FUNCTION_START
+
 	g_return_if_fail(gh != NULL);
 	g_return_if_fail(GTK_IS_HEX(gh));
 
@@ -2868,32 +2957,6 @@ void gtk_hex_set_insert_mode(GtkHex *gh, gboolean insert)
 		if(gh->cursor_pos >= gh->document->file_size)
 			gh->cursor_pos = gh->document->file_size - 1;
 	}
-}
-
-PangoFontMetrics* gtk_hex_load_font (const char *font_name)
-{
-	PangoContext *context;
-	PangoFont *new_font;
-	PangoFontDescription *new_desc;
-	PangoFontMetrics *new_metrics;
-
-	new_desc = pango_font_description_from_string (font_name);
-
-	// LAR - TEST
-	context = pango_context_new();
-
-	/* FIXME - Should get the locale language here */
-	pango_context_set_language (context, gtk_get_default_language());
-
-	new_font = pango_context_load_font (context, new_desc);
-
-	new_metrics = pango_font_get_metrics (new_font, pango_context_get_language (context));
-
-	pango_font_description_free (new_desc);
-	g_object_unref (G_OBJECT (context));
-	g_object_unref (G_OBJECT (new_font));
-
-	return new_metrics;
 }
 
 GtkHex_AutoHighlight *

@@ -44,8 +44,7 @@ G_BEGIN_DECLS
  * line with changes made to GTK 4 at large.
  */
 #define GTK_TYPE_HEX (gtk_hex_get_type ())
-/* FIXME (no pun intended) - don't use GtkFixed. */
-G_DECLARE_FINAL_TYPE(GtkHex, gtk_hex, GTK, HEX, GtkFixed)
+G_DECLARE_FINAL_TYPE(GtkHex, gtk_hex, GTK, HEX, GtkWidget)
 
 /* OPAQUE DATATYPES */
 typedef struct _GtkHex_AutoHighlight GtkHex_AutoHighlight;

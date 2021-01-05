@@ -7,19 +7,17 @@ activate (GtkApplication *app,
   GtkWidget *window;
   HexDocument *doc;
   GtkWidget *hex;
-  GtkWidget *box;
 
   window = gtk_application_window_new (app);
   gtk_window_set_title (GTK_WINDOW (window), "Window");
   gtk_window_set_default_size (GTK_WINDOW (window), 640, 480);
 
-  box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-  gtk_window_set_child (GTK_WINDOW (window), box);
-
   doc = hex_document_new_from_file ("main.c");
   hex = gtk_hex_new (doc);
+//  gtk_hex_set_geometry (GTK_HEX (hex), 32, 1024);
+  gtk_hex_show_offsets (GTK_HEX (hex), TRUE);
 
-  gtk_box_append (GTK_BOX (box), hex);
+  gtk_window_set_child (GTK_WINDOW (window), hex);
 
   gtk_widget_show (window);
 }
