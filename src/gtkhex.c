@@ -1536,40 +1536,21 @@ static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 static void
 show_offsets_widget(GtkHex *gh)
 {
-	GtkStyleContext *context;
+	g_return_if_fail (GTK_IS_WIDGET (gh->offsets));
 
 	TEST_DEBUG_FUNCTION_START 
 
-	gh->offsets = gtk_drawing_area_new();
-
-	/* LAR - FIXME not sure if should leave this in - set a minimum size */
-	gtk_widget_set_size_request (gh->offsets, 100, 100);
-
-	/* Create the pango layout for the widget */
-	gh->olayout = gtk_widget_create_pango_layout (gh->offsets, "");
-
-//	gtk_widget_set_events (gh->offsets, GDK_EXPOSURE_MASK);
-
-	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (gh->offsets),
-			offsets_draw,	// GtkDrawingAreaDrawFunc draw_func,
-			gh,		// gpointer user_data,
-			NULL);		// GDestroyNotify destroy);
-
-	context = gtk_widget_get_style_context (GTK_WIDGET (gh->xdisp));
-	gtk_style_context_add_class (context, "header");
-
-	gtk_box_prepend (GTK_BOX(gh->box), gh->offsets);
+	gtk_widget_show (gh->offsets);
 }
 
-static void hide_offsets_widget(GtkHex *gh) {
-	g_debug("%s: NOT IMPLEMENTED", __func__);
-	// API CHANGES
-#if 0
-	if(gh->offsets) {
-		gtk_container_remove(GTK_CONTAINER(gh), gh->offsets);
-		gh->offsets = NULL;
-	}
-#endif
+static void
+hide_offsets_widget(GtkHex *gh)
+{
+	g_return_if_fail (gtk_widget_get_realized (gh->offsets));
+
+	TEST_DEBUG_FUNCTION_START 
+
+	gtk_widget_hide (gh->offsets);
 }
 
 /*
@@ -2613,7 +2594,39 @@ gtk_hex_init(GtkHex *gh)
 	/* set xa_box as a parent of the main box */
 	gtk_box_append (GTK_BOX(gh->box), gh->xa_box);
 
+
+
+	/* Setup offsets widget. */
+
+	gh->offsets = gtk_drawing_area_new();
+
+	/* LAR - FIXME not sure if should leave this in - set a minimum size */
+	gtk_widget_set_size_request (gh->offsets, 100, 100);
+
+	/* Create the pango layout for the widget */
+	gh->olayout = gtk_widget_create_pango_layout (gh->offsets, "");
+
+//	gtk_widget_set_events (gh->offsets, GDK_EXPOSURE_MASK);
+
+	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (gh->offsets),
+			offsets_draw,	// GtkDrawingAreaDrawFunc draw_func,
+			gh,		// gpointer user_data,
+			NULL);		// GDestroyNotify destroy);
+
+	// FIXME - not sure what this buys us. Monitor.
+	context = gtk_widget_get_style_context (GTK_WIDGET (gh->offsets));
+	gtk_style_context_add_class (context, "header");
+
+	gtk_box_append (GTK_BOX(gh->box), gh->offsets);
+
+	/* hide it by default. */
+	gtk_widget_hide (gh->offsets);
+
+
+
+
 	/* Setup our ASCII and Hex drawing areas. */
+
 	gh->xdisp = gtk_drawing_area_new();
 
 	/* Create the pango layout for the widget */
