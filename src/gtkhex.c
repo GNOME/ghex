@@ -45,6 +45,7 @@
 
 /* LAR - new stuff that wasn't in old code */
 #define CSS_NAME "hex"
+//#define CSS_NAME "entry"
 
 /* LAR - defines copied from the old header. */
 
@@ -850,7 +851,8 @@ render_hex_lines (GtkHex *gh,
 			MIN((gh->top_line+max_lines+1)*gh->cpl,
 				gh->document->file_size) );
 	
-	for (int i = min_lines; i <= max_lines; i++) {
+	for (int i = min_lines; i <= max_lines; i++)
+	{
 		int tmp = frm_len - ((i - min_lines) * xcpl);
 
 		if(tmp <= 0)
@@ -880,59 +882,65 @@ render_hex_lines (GtkHex *gh,
 static void
 render_ascii_lines (GtkHex *gh,
                     cairo_t *cr,
-                    gint imin,
-                    gint imax)
+                    int min_lines,
+                    int max_lines)
 {
-	GtkWidget *w = gh->adisp;
-	GdkRGBA bg_color;
-	GdkRGBA fg_color;
+	GtkWidget *widget = gh->adisp;
 	GtkAllocation allocation;
 	GtkStateFlags state;
 	GtkStyleContext *context;
-	gint i, tmp, frm_len;
+	int frm_len;
 	guint cursor_line;
 
 	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET(gh)));
 	g_return_if_fail (gh->cpl);
 
-	context = gtk_widget_get_style_context (w);
-	state = gtk_widget_get_state_flags (w);
+	TEST_DEBUG_FUNCTION_START
 
-	/* LAR: gtk_render_background?  */
-//	gtk_style_context_get_background_color (context, state, &bg_color);
-//	// API CHANGE
-//	gtk_style_context_get_color (context, state, &fg_color);
-	gtk_style_context_get_color (context, &fg_color);
-
+	context = gtk_widget_get_style_context (widget);
+	state = gtk_widget_get_state_flags (widget);
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
+	gtk_widget_get_allocation(widget, &allocation);
 
-	gtk_widget_get_allocation(w, &allocation);
-//	gdk_cairo_set_source_rgba (cr, &bg_color);
-	cairo_rectangle (cr, 0, imin * gh->char_height, allocation.width, (imax - imin + 1) * gh->char_height);
-	cairo_fill (cr);
+	/* render background. */
+	gtk_render_background (context, cr,
+			/* x: */		0,
+			/* y: */		min_lines * gh->char_height,
+			/* width: */	allocation.width,
+			/* height: */	(max_lines - min_lines + 1) * gh->char_height);
 	
-	imax = MIN(imax, gh->vis_lines);
-	imax = MIN(imax, gh->lines);
-
-	gdk_cairo_set_source_rgba (cr, &fg_color);
+	max_lines = MIN(max_lines, gh->vis_lines);
+	max_lines = MIN(max_lines, gh->lines);
 	
-	frm_len = format_ablock (gh, gh->disp_buffer, (gh->top_line+imin)*gh->cpl,
-							MIN((gh->top_line+imax+1)*gh->cpl, gh->document->file_size) );
+	frm_len = format_ablock (gh, gh->disp_buffer,
+			(gh->top_line+min_lines)*gh->cpl,
+			MIN((gh->top_line+max_lines+1)*gh->cpl,
+				gh->document->file_size));
 	
-	for (i = imin; i <= imax; i++) {
-		tmp = (gint)frm_len - (gint)((i - imin)*gh->cpl);
+	for (int i = min_lines; i <= max_lines; i++)
+	{
+		int tmp = frm_len - ((i - min_lines) * gh->cpl);
 		if(tmp <= 0)
 			break;
 
 		render_ascii_highlights (gh, cr, i);
 
-		cairo_move_to (cr, 0, i * gh->char_height);
-		pango_layout_set_text (gh->alayout, gh->disp_buffer + (i - imin)*gh->cpl, MIN(gh->cpl, tmp));
-		pango_cairo_show_layout (cr, gh->alayout);
+		pango_layout_set_text (gh->alayout,
+				gh->disp_buffer + (i - min_lines) * gh->cpl,
+				MIN(gh->cpl, tmp));
+
+		gtk_render_layout (context, cr,
+				/* x: */ 0,
+				/* y: */ i * gh->char_height,
+				gh->alayout);
 	}
-	
-	if ((cursor_line >= imin) && (cursor_line <= imax) && (gh->cursor_shown))
+
+	if ((cursor_line >= min_lines) &&
+			(cursor_line <= max_lines) &&
+			(gh->cursor_shown))
+	{
 		render_ac (gh, cr);
+	}
 }
 
 static void
