@@ -138,6 +138,7 @@ struct _GtkHex
 	HexDocument *document;
 
 	GtkWidget *box;				/* main box for layout */
+	GtkWidget *xa_box;			/* box to hold ascii and hex widgets */
 
 	GtkWidget *xdisp, *adisp;	/* DrawingArea */
 	GtkWidget *offsets;			/* DrawingArea */
@@ -2601,7 +2602,16 @@ gtk_hex_init(GtkHex *gh)
 	/* Setup a GtkBox as our base container */
 	gh->box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 
+	/* Setup another GtkBox to hold the hex and ascii widgets, which must
+	 * be the homogeneous in size */
+	gh->xa_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+	gtk_box_set_homogeneous (GTK_BOX(gh->xa_box), TRUE);
+
+	/* set main box as a child of main widget */
 	gtk_widget_set_parent (gh->box, GTK_WIDGET (gh));
+
+	/* set xa_box as a parent of the main box */
+	gtk_box_append (GTK_BOX(gh->box), gh->xa_box);
 
 	/* Setup our ASCII and Hex drawing areas. */
 	gh->xdisp = gtk_drawing_area_new();
@@ -2637,7 +2647,7 @@ gtk_hex_init(GtkHex *gh)
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->xdisp));
 	gtk_style_context_add_class (context, "view");
 
-	gtk_box_append (GTK_BOX(gh->box), gh->xdisp);
+	gtk_box_append (GTK_BOX(gh->xa_box), gh->xdisp);
 	
 	gh->adisp = gtk_drawing_area_new();
 
@@ -2680,7 +2690,7 @@ gtk_hex_init(GtkHex *gh)
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->adisp));
 	gtk_style_context_add_class (context, "view");
 
-	gtk_box_append (GTK_BOX(gh->box), gh->adisp);
+	gtk_box_append (GTK_BOX(gh->xa_box), gh->adisp);
 	
 	g_signal_connect(G_OBJECT(gh->adj), "value-changed",
 					 G_CALLBACK(display_scrolled), gh);
