@@ -1108,57 +1108,6 @@ offsets_draw (GtkDrawingArea *drawing_area,
 }
 
 /*
- * draw signal handler for the GtkHex itself: draws shadows around both displays
- */
-static void
-draw_shadow (GtkWidget *widget,
-             cairo_t *cr)
-{
-	GtkHex *gh = GTK_HEX(widget);
-	GtkAllocation allocation;
-	GtkBorder padding;
-	GtkStateFlags state;
-	GtkStyleContext *context;
-	// LAR - TEST
-	gint border = 10;
-//	gint border = gtk_container_get_border_width(GTK_CONTAINER(widget));
-	gint x;
-
-	context = gtk_widget_get_style_context (widget);
-	state = gtk_widget_get_state_flags (widget);
-	// API CHANGE
-	gtk_style_context_get_padding (context, &padding);
-//	gtk_style_context_get_padding (context, state, &padding);
-
-	x = border;
-	gtk_widget_get_allocation(widget, &allocation);
-	if (gh->show_offsets) {
-		gtk_render_frame (context,
-		                  cr,
-		                  border,
-		                  border,
-		                  9 * gh->char_width + padding.left + padding.right,
-		                  allocation.height - 2 * border);
-		x += 9 * gh->char_width + padding.left + padding.right + gh->extra_width/2;
-	}
-
-	gtk_render_frame (context,
-	                  cr,
-	                  x,
-	                  border,
-	                  gh->xdisp_width + padding.left + padding.right,
-	                  allocation.height - 2 * border);
-
-	/* Draw a frame around the ascii display + scrollbar */
-	gtk_render_frame (context,
-	                  cr,
-	                  allocation.width - border - gh->adisp_width - padding.left - padding.right,
-	                  border,
-	                  gh->adisp_width + padding.left + padding.right,
-	                  allocation.height - 2 * border);
-}
-
-/*
  * this calculates how many bytes we can stuff into one line and how many
  * lines we can display according to the current size of the widget
  */
@@ -1218,7 +1167,7 @@ recalc_displays(GtkHex *gh, int width, int height)
 		if (gh->cpl % gh->group_type == 0)	/* just ended a group */
 			total_cpl--;
 
-	} while(total_cpl > 0);
+	} while (total_cpl > 0);
 
 	/* If gh->cpl is not greater than 0, something has gone wrong. */
 	g_return_if_fail (gh->cpl > 0);
@@ -1244,8 +1193,9 @@ recalc_displays(GtkHex *gh, int width, int height)
 	gh->xdisp_width = xcpl * gh->char_width;
 
 	gh->extra_width = total_width - gh->xdisp_width - gh->adisp_width;
-	g_debug("%s: GH->EXTRA_WIDTH: %d",
-			__func__, gh->extra_width);
+	g_debug("%s: TOTAL_WIDTH: %d - GH->ADISP_WIDTH: %d - GH->XDISP_WIDTH: %d - GH->EXTRA_WIDTH: %d",
+			__func__,
+			total_width, gh->adisp_width, gh->xdisp_width, gh->extra_width);
 
 	if (gh->disp_buffer)
 		g_free (gh->disp_buffer);
@@ -2231,11 +2181,10 @@ gtk_hex_size_allocate (GtkWidget *widget,
 		int baseline)
 {
 	GtkHex *gh = GTK_HEX(widget);
-	GtkAllocation my_alloc;
+	GtkAllocation my_alloc = { 0 };
 	GtkBorder padding;
-	GtkStateFlags state;
+	GtkBorder border;
 	GtkStyleContext *context;
-	gint border_width;
 
 	TEST_DEBUG_FUNCTION_START 
 
@@ -2245,73 +2194,50 @@ gtk_hex_size_allocate (GtkWidget *widget,
 	// LAR - TEST BASED ON OLD CODE
 	hide_cursor(gh);
 
+	/* recalculate displays - get sizing for gh->{x,a}disb, etc. */
 	recalc_displays(gh, width, height);
 
-	// API CHANGE
-#if 0
-	gtk_widget_set_allocation(widget, alloc);
-	if(gtk_widget_get_realized(widget))
-		gdk_window_move_resize (gtk_widget_get_window(widget),
-								alloc->x, 
-								alloc->y,
-								alloc->width, 
-								alloc->height);
-#endif 
-
-	// LAR - API CHANGE
-//	border_width = gtk_container_get_border_width(GTK_CONTAINER(widget));
-	border_width = 20;	// DUMB TEST
-
+	/* pull our widget's style context so we can grab the border & padding */
 	context = gtk_widget_get_style_context (widget);
-	state = gtk_widget_get_state_flags (widget);
-	// API CHANGE
-//	gtk_style_context_get_padding (context, state, &padding);
-	gtk_style_context_get_padding (context, &padding);
 
-	my_alloc.x = border_width + padding.left;
-	my_alloc.y = border_width + padding.top;
-	my_alloc.height = MAX (height - 2 * border_width - padding.top - padding.bottom, 1);
-	if(gh->show_offsets) {
-		my_alloc.width = 9*gh->char_width;
-		// API CHANGE - ADDED THE -1 AS A TEST
-		gtk_widget_size_allocate(gh->offsets, &my_alloc, -1);
+	gtk_style_context_get_padding (context, &padding);
+	gtk_style_context_get_border (context, &border);
+
+	my_alloc.x = border.left + padding.left;
+	my_alloc.y = border.top + padding.top;
+	my_alloc.height = MAX (height - border.top - border.bottom - padding.top -
+							padding.bottom,
+						1);
+
+	if(gh->show_offsets)
+	{
+		my_alloc.width = 9 * gh->char_width;
+		gtk_widget_size_allocate(gh->offsets, &my_alloc, baseline);
 		gtk_widget_queue_draw(gh->offsets);
-		my_alloc.x += padding.left + padding.right + my_alloc.width + gh->extra_width/2;
+		my_alloc.x += padding.left + padding.right + my_alloc.width +
+			gh->extra_width / 2;
 	}
 
 	my_alloc.width = gh->xdisp_width;
 	// LAR - TEST
-	gtk_widget_size_allocate(gh->xdisp, &my_alloc, -1);
-	my_alloc.x = width - border_width;
-	my_alloc.y = border_width;
+	gtk_widget_size_allocate(gh->xdisp, &my_alloc, baseline);
+	my_alloc.x = width - border.left;
+	my_alloc.y = border.top;
 	// LAR - TEST
 	my_alloc.width = width;
-	my_alloc.height = MAX(height - 2*border_width, 1);
+	my_alloc.height = MAX(height - border.top - border.bottom, 1);
 	// LAR - TEST
-	gtk_widget_size_allocate(gh->scrollbar, &my_alloc, -1);
+	gtk_widget_size_allocate(gh->scrollbar, &my_alloc, baseline);
 	my_alloc.x -= gh->adisp_width + padding.left;
-	my_alloc.y = border_width + padding.top;
+	my_alloc.y = border.top + padding.top;
 	my_alloc.width = gh->adisp_width;
-	my_alloc.height = MAX (height - 2 * border_width - padding.top - padding.bottom, 1);
-	// LAR - TEST
-	gtk_widget_size_allocate(gh->adisp, &my_alloc, -1);
-	// ALSO TRY THIS
-//	gtk_widget_size_allocate(gh->adisp, &my_alloc, baseline);
+	my_alloc.height = MAX (height - border.top - border.bottom - padding.top -
+							padding.bottom,
+						1);
+
+	gtk_widget_size_allocate(gh->adisp, &my_alloc, baseline);
 
 	show_cursor(gh);
-}
-
-static void
-gtk_hex_draw (GtkWidget *widget,
-              cairo_t *cr)
-{
-	GtkHex *gh = GTK_HEX(widget);
-	GtkWidget *child;
-	GtkWidget *sibling;
-
-	TEST_DEBUG_FUNCTION_START 
-
-	draw_shadow (widget, cr);
 }
 
 // LAR - TEST GTK4
@@ -2343,8 +2269,6 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 
 	g_debug("%s: width: %f - height: %f",
 			__func__, width, height);
-
-	gtk_hex_draw (widget, cr);
 
 	/* queue draw functions for children */
 	for (child = gtk_widget_get_first_child (widget);
@@ -2665,10 +2589,6 @@ gtk_hex_init(GtkHex *gh)
 	
 	/* Setup our ASCII widget. */
 	gh->adisp = gtk_drawing_area_new();
-
-	/* Expand drawing areas as necessary */
-	gtk_widget_set_hexpand (gh->xdisp, TRUE);
-	gtk_widget_set_hexpand (gh->adisp, TRUE);
 
 	/* LAR - TEMPORARY - FIXME DON'T LEAVE IN - set a minimum size */
 	gtk_widget_set_size_request (gh->adisp,
