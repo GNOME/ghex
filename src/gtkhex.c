@@ -47,7 +47,7 @@
 #define CSS_NAME "hex"
 //#define CSS_NAME "entry"
 
-#define DEFAULT_DA_SIZE 200
+#define DEFAULT_DA_SIZE 100
 
 /* LAR - defines copied from the old header. */
 
@@ -212,6 +212,8 @@ static void gtk_hex_delete_highlight (GtkHex *gh, GtkHex_AutoHighlight *ahl,
 
 static void gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
 		gboolean delete, gboolean add);
+
+static void recalc_displays(GtkHex *gh);
 
 /*
  * ?_to_pointer translates mouse coordinates in hex/ascii view
@@ -995,8 +997,7 @@ render_offsets (GtkHex *gh,
 	}
 }
 
-/*
- * draw signal handlers for both displays
+/* draw_func for the hex drawing area
  */
 static void
 hex_draw (GtkDrawingArea *drawing_area,
@@ -1006,20 +1007,54 @@ hex_draw (GtkDrawingArea *drawing_area,
                            gpointer user_data)
 {
 	GtkHex *gh = GTK_HEX(user_data);
+	int xcpl = 0;
 
 	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail(GTK_IS_HEX(gh));
 
 	// TEST
-	gtk_drawing_area_set_content_width (drawing_area, gh->xdisp_width);
+//	gtk_drawing_area_set_content_width (drawing_area, gh->xdisp_width);
 
 	g_debug("%s: width: %d - height: %d",
 			__func__, width, height);
 
-	/* LAR - TEST - I have no idea what this function is trying to
-	 * accomplish. May need a rewrite. */
+	// TEST - let's try pegging things to this DA for gh->cpl etc.
+
+	/* calculate how many bytes we can stuff in one line */
+
+	xcpl = width / gh->char_width;
+
+	/* given 16 xcpl:
+	 *
+	 * 16 [xcpl] / (2 [fixed - # characters in a hex pair] * 4 [gh->group_type]
+	 * + 1 [space]) == 1
+	 *
+	 * 1 word * 4 [gh->group_type] == 4 cpl.
+	 */
+
+	gh->cpl = xcpl / (2 * gh->group_type + 1);
+	gh->cpl *= gh->group_type;
+
+	/* pixel width of hex drawing area */
+	gh->xdisp_width = xcpl * gh->char_width;
+
+	/* pixel width of ascii drawing area */
+	gh->adisp_width = gh->cpl * gh->char_width;
+
+	/* set visible lines */
+	gh->vis_lines = height / gh->char_height;
+
+	/* If gh->cpl is not greater than 0, something has gone wrong. */
+	g_debug("%s: gh->cpl: %d", __func__, gh->cpl);
+	g_return_if_fail (gh->cpl > 0);
+
+	// TEST
+	recalc_displays(gh);
 
 	render_hex_lines (gh, cr, 0, gh->vis_lines);
+
+	/* LAR - TEST - I have no idea what this section is trying to
+	 * accomplish. May need a rewrite. */
 #if 0
 	GdkRectangle rect;
 	gint imin, imax;
@@ -1125,10 +1160,11 @@ offsets_draw (GtkDrawingArea *drawing_area,
  * lines we can display according to the current size of the widget
  */
 static void
-recalc_displays(GtkHex *gh, int width, int height)
+recalc_displays(GtkHex *gh)
+//recalc_displays(GtkHex *gh, int width, int height)
 {
 	GtkWidget *widget = GTK_WIDGET (gh);
-	int total_width = width;
+//	int total_width = width;
 	int old_cpl = gh->cpl;
 	gboolean scroll_to_cursor;
 	gdouble value;
@@ -1138,10 +1174,13 @@ recalc_displays(GtkHex *gh, int width, int height)
 	GtkBorder padding;
 	GtkBorder border;
 
+	// TEST - no longer needed??
+#if 0
 	context = gtk_widget_get_style_context (widget);
 
 	gtk_style_context_get_padding (context, &padding);
 	gtk_style_context_get_border (context, &border);
+#endif
 
 
 	/*
@@ -1154,8 +1193,11 @@ recalc_displays(GtkHex *gh, int width, int height)
 		 (gh->cursor_pos / gh->cpl <= gtk_adjustment_get_value (gh->adj) +
 			  gh->vis_lines - 1));
 	
+	// TEST - no longer needed?
+#if 0
 	gh->xdisp_width = 1;
 	gh->adisp_width = 1;
+#endif
 
 #if 0
 	// API CHANGE
@@ -1169,6 +1211,8 @@ recalc_displays(GtkHex *gh, int width, int height)
 		total_width -= padding.left + padding.right + 9 * gh->char_width;
 #endif
 
+	// TEST - MOVED TO HEX_DRAW
+#if 0
 	// TEST - DUMB HACK
 	total_width = total_width - padding.left - padding.right - 
 		border.left - border.right - 100;
@@ -1200,6 +1244,7 @@ recalc_displays(GtkHex *gh, int width, int height)
 	/* If gh->cpl is not greater than 0, something has gone wrong. */
 	g_debug("%s: gh->cpl: %d", __func__, gh->cpl);
 	g_return_if_fail (gh->cpl > 0);
+#endif
 
 	if (gh->document->file_size == 0)
 		gh->lines = 1;
@@ -1209,15 +1254,21 @@ recalc_displays(GtkHex *gh, int width, int height)
 			gh->lines++;
 	}
 
+	// TEST - TRYING MOVING TO HEX_DRAW
+#if 0
 	/* set visible lines */
 	gh->vis_lines = height / gh->char_height;
+#endif
 
+	// MOVED TO HEX_DRAW
+#if 0
 	/* display width of ascii drawing area */
 	gh->adisp_width = gh->cpl * gh->char_width;
-
+#endif
 	/* set number of hex characters per line */
 	xcpl = gh->cpl * 2 + (gh->cpl - 1) / gh->group_type;
 
+#if 0
 	/* display width of hex drawing area */
 	gh->xdisp_width = xcpl * gh->char_width;
 
@@ -1225,6 +1276,7 @@ recalc_displays(GtkHex *gh, int width, int height)
 	g_debug("%s: TOTAL_WIDTH: %d - GH->ADISP_WIDTH: %d - GH->XDISP_WIDTH: %d - GH->EXTRA_WIDTH: %d",
 			__func__,
 			total_width, gh->adisp_width, gh->xdisp_width, gh->extra_width);
+#endif
 
 	if (gh->disp_buffer)
 		g_free (gh->disp_buffer);
@@ -2198,6 +2250,8 @@ static gboolean gtk_hex_button_release(GtkWidget *w, GdkEventButton *event) {
 }
 #endif
 
+// COMMENTING OUT FOR NOW BECAUSE NOT USED - GETS CONFUSING 
+#if 0
 /* 
  * recalculate the width of both displays and reposition and resize all
  * the children widgets and adjust the scrollbar after resizing
@@ -2279,6 +2333,7 @@ gtk_hex_size_allocate (GtkWidget *widget,
 
 	show_cursor(gh);
 }
+#endif
 
 // LAR - TEST GTK4
 static void
@@ -2300,9 +2355,12 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 	width = gtk_widget_get_allocated_width (widget);
 	height = gtk_widget_get_allocated_height (widget);
 
+	/* set visible lines */
+	gh->vis_lines = height / gh->char_height;
+
 	// DUMB TEST
 //	gtk_hex_size_allocate (widget, width, height, -1);
-	recalc_displays(gh, width, height);
+//	recalc_displays(gh, width, height);
 
 	graphene_rect_init (&rect,
 			/* x */ 0.0f, /* y */ 0.0f, width, height);
@@ -2311,9 +2369,17 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 	g_debug("%s: width: %f - height: %f",
 			__func__, width, height);
 
-	/* queue draw functions for children */
+	/* queue draw functions for drawing areas - order matters here as
+	 * we're pegging certain elements of the ascii widget being drawn
+	 * to after the hex widget is drawn.
+	 */
+	gtk_widget_snapshot_child (widget, gh->xdisp, snapshot);
+	gtk_widget_snapshot_child (widget, gh->adisp, snapshot);
+
+	/* queue draw functions for other children */
 	for (child = gtk_widget_get_first_child (widget);
-			child != NULL;
+							/* don't draw these as we already did above. */
+			child != NULL && child != gh->xdisp && child != gh->adisp;
 			child = gtk_widget_get_next_sibling (child))
 	{
 		gtk_widget_snapshot_child (widget, child, snapshot);
@@ -2597,7 +2663,7 @@ gtk_hex_init(GtkHex *gh)
 
 	// TEST
 	gtk_widget_set_parent (gh->xdisp, GTK_WIDGET (gh));
-	gtk_widget_set_halign (gh->xdisp, GTK_ALIGN_CENTER);
+//	gtk_widget_set_halign (gh->xdisp, GTK_ALIGN_CENTER);
 	gtk_widget_set_hexpand (gh->xdisp, TRUE);
 
 	/* Create the pango layout for the widget */
@@ -2643,8 +2709,8 @@ gtk_hex_init(GtkHex *gh)
 
 	// TEST
 	gtk_widget_set_parent (gh->adisp, GTK_WIDGET (gh));
-	gtk_widget_set_halign (gh->adisp, GTK_ALIGN_CENTER);
-	gtk_widget_set_hexpand (gh->adisp, TRUE);
+	gtk_widget_set_halign (gh->adisp, GTK_ALIGN_START);
+	gtk_widget_set_hexpand (gh->adisp, FALSE);
 	
 	/* LAR - TEMPORARY - FIXME DON'T LEAVE IN - set a minimum size */
 #if 0
@@ -2886,7 +2952,9 @@ void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
 	hide_cursor(gh);
 	gh->group_type = gt;
 	gtk_widget_get_allocation(GTK_WIDGET(gh), &allocation);
-	recalc_displays(gh, allocation.width, allocation.height);
+	// TEST
+//	recalc_displays(gh, allocation.width, allocation.height);
+	recalc_displays(gh);
 	gtk_widget_queue_resize(GTK_WIDGET(gh));
 	show_cursor(gh);
 }
