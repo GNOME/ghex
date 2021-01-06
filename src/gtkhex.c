@@ -1010,6 +1010,9 @@ hex_draw (GtkDrawingArea *drawing_area,
 	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail(GTK_IS_HEX(gh));
 
+	// TEST
+	gtk_drawing_area_set_content_width (drawing_area, gh->xdisp_width);
+
 	g_debug("%s: width: %d - height: %d",
 			__func__, width, height);
 
@@ -1045,6 +1048,9 @@ ascii_draw (GtkDrawingArea *drawing_area,
 
 	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail(GTK_IS_HEX(gh));
+
+	// TEST
+	gtk_drawing_area_set_content_width (drawing_area, gh->adisp_width);
 
 	g_debug("%s: width: %d - height: %d",
 			__func__, width, height);
@@ -1088,6 +1094,13 @@ offsets_draw (GtkDrawingArea *drawing_area,
 	g_return_if_fail(GTK_IS_HEX(gh));
 	TEST_DEBUG_FUNCTION_START 
 
+	// DUMB TEST - 1 plus 9 characters.
+	gtk_drawing_area_set_content_width (drawing_area,
+			10 * gh->char_width);
+
+	g_debug("%s: width: %d - height: %d",
+			__func__, width, height);
+
 	render_offsets (gh, cr, 0, gh->vis_lines);
 
 #if 0
@@ -1114,11 +1127,22 @@ offsets_draw (GtkDrawingArea *drawing_area,
 static void
 recalc_displays(GtkHex *gh, int width, int height)
 {
+	GtkWidget *widget = GTK_WIDGET (gh);
 	int total_width = width;
 	int old_cpl = gh->cpl;
 	gboolean scroll_to_cursor;
 	gdouble value;
 	int total_cpl, xcpl;
+	// TEST
+	GtkStyleContext *context;
+	GtkBorder padding;
+	GtkBorder border;
+
+	context = gtk_widget_get_style_context (widget);
+
+	gtk_style_context_get_padding (context, &padding);
+	gtk_style_context_get_border (context, &border);
+
 
 	/*
 	 * Only change the value of the adjustment to put the cursor on screen
@@ -1145,6 +1169,10 @@ recalc_displays(GtkHex *gh, int width, int height)
 		total_width -= padding.left + padding.right + 9 * gh->char_width;
 #endif
 
+	// TEST - DUMB HACK
+	total_width = total_width - padding.left - padding.right - 
+		border.left - border.right - 100;
+
 	total_cpl = total_width / gh->char_width;
 
 	/* Sanity check. */
@@ -1170,6 +1198,7 @@ recalc_displays(GtkHex *gh, int width, int height)
 	} while (total_cpl > 0);
 
 	/* If gh->cpl is not greater than 0, something has gone wrong. */
+	g_debug("%s: gh->cpl: %d", __func__, gh->cpl);
 	g_return_if_fail (gh->cpl > 0);
 
 	if (gh->document->file_size == 0)
@@ -2182,9 +2211,9 @@ gtk_hex_size_allocate (GtkWidget *widget,
 {
 	GtkHex *gh = GTK_HEX(widget);
 	GtkAllocation my_alloc = { 0 };
+	GtkStyleContext *context;
 	GtkBorder padding;
 	GtkBorder border;
-	GtkStyleContext *context;
 
 	TEST_DEBUG_FUNCTION_START 
 
@@ -2203,31 +2232,42 @@ gtk_hex_size_allocate (GtkWidget *widget,
 	gtk_style_context_get_padding (context, &padding);
 	gtk_style_context_get_border (context, &border);
 
+	/* fill up allocation with initial values. */
+
 	my_alloc.x = border.left + padding.left;
 	my_alloc.y = border.top + padding.top;
 	my_alloc.height = MAX (height - border.top - border.bottom - padding.top -
 							padding.bottom,
 						1);
 
-	if(gh->show_offsets)
+	/* First up:  the offsets widget. */
+
+	if (gh->show_offsets)
 	{
 		my_alloc.width = 9 * gh->char_width;
+		
 		gtk_widget_size_allocate(gh->offsets, &my_alloc, baseline);
-		gtk_widget_queue_draw(gh->offsets);
-		my_alloc.x += padding.left + padding.right + my_alloc.width +
-			gh->extra_width / 2;
+
+		my_alloc.x += my_alloc.width + padding.left + padding.right + 
+			border.left + border.right;
 	}
 
+	/* Next up: the hex widget.
+	 * Gear up the alloc's width to be the xdisp_width previously calc'd: */
 	my_alloc.width = gh->xdisp_width;
-	// LAR - TEST
+
+	/* .. and place the hex widget accordingly. */
 	gtk_widget_size_allocate(gh->xdisp, &my_alloc, baseline);
-	my_alloc.x = width - border.left;
+
+	/* Next up: the scrollbar. */
+	my_alloc.x = width - border.right - padding.right;
 	my_alloc.y = border.top;
-	// LAR - TEST
 	my_alloc.width = width;
 	my_alloc.height = MAX(height - border.top - border.bottom, 1);
-	// LAR - TEST
+	
 	gtk_widget_size_allocate(gh->scrollbar, &my_alloc, baseline);
+
+	/* lastly: ascii widget. */
 	my_alloc.x -= gh->adisp_width + padding.left;
 	my_alloc.y = border.top + padding.top;
 	my_alloc.width = gh->adisp_width;
@@ -2261,7 +2301,8 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 	height = gtk_widget_get_allocated_height (widget);
 
 	// DUMB TEST
-	gtk_hex_size_allocate (widget, width, height, -1);
+//	gtk_hex_size_allocate (widget, width, height, -1);
+	recalc_displays(gh, width, height);
 
 	graphene_rect_init (&rect,
 			/* x */ 0.0f, /* y */ 0.0f, width, height);
@@ -2508,10 +2549,10 @@ gtk_hex_init(GtkHex *gh)
 	gh->adj = GTK_ADJUSTMENT(gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
 
 	/* Setup a GtkBox as our base container */
-	gh->box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+//	gh->box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 
 	/* set main box as a child of main widget */
-	gtk_widget_set_parent (gh->box, GTK_WIDGET (gh));
+//	gtk_widget_set_parent (gh->box, GTK_WIDGET (gh));
 
 
 
@@ -2519,9 +2560,14 @@ gtk_hex_init(GtkHex *gh)
 
 	gh->offsets = gtk_drawing_area_new();
 
+	// TEST
+	gtk_widget_set_parent (gh->offsets, GTK_WIDGET (gh));
+	gtk_widget_set_halign (gh->offsets, GTK_ALIGN_START);
+	gtk_widget_set_hexpand (gh->offsets, FALSE);
+
 	/* LAR - FIXME not sure if should leave this in - set a minimum size */
-	gtk_widget_set_size_request (gh->offsets,
-			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
+//	gtk_widget_set_size_request (gh->offsets,
+//			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
 
 	/* Create the pango layout for the widget */
 	gh->olayout = gtk_widget_create_pango_layout (gh->offsets, "");
@@ -2537,7 +2583,7 @@ gtk_hex_init(GtkHex *gh)
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->offsets));
 	gtk_style_context_add_class (context, "header");
 
-	gtk_box_append (GTK_BOX(gh->box), gh->offsets);
+//	gtk_box_append (GTK_BOX(gh->box), gh->offsets);
 
 	/* hide it by default. */
 	gtk_widget_hide (gh->offsets);
@@ -2548,6 +2594,11 @@ gtk_hex_init(GtkHex *gh)
 	/* Setup our Hex drawing areas. */
 
 	gh->xdisp = gtk_drawing_area_new();
+
+	// TEST
+	gtk_widget_set_parent (gh->xdisp, GTK_WIDGET (gh));
+	gtk_widget_set_halign (gh->xdisp, GTK_ALIGN_CENTER);
+	gtk_widget_set_hexpand (gh->xdisp, TRUE);
 
 	/* Create the pango layout for the widget */
 	gh->xlayout = gtk_widget_create_pango_layout (gh->xdisp, "");
@@ -2585,16 +2636,23 @@ gtk_hex_init(GtkHex *gh)
 	/* Add view class so we get certain theme colours for free. */
 	gtk_style_context_add_class (context, "view");
 
-	gtk_box_append (GTK_BOX(gh->box), gh->xdisp);
+//	gtk_box_append (GTK_BOX(gh->box), gh->xdisp);
 	
 	/* Setup our ASCII widget. */
 	gh->adisp = gtk_drawing_area_new();
 
+	// TEST
+	gtk_widget_set_parent (gh->adisp, GTK_WIDGET (gh));
+	gtk_widget_set_halign (gh->adisp, GTK_ALIGN_CENTER);
+	gtk_widget_set_hexpand (gh->adisp, TRUE);
+	
 	/* LAR - TEMPORARY - FIXME DON'T LEAVE IN - set a minimum size */
+#if 0
 	gtk_widget_set_size_request (gh->adisp,
 			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
 	gtk_widget_set_size_request (gh->xdisp,
 			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
+#endif
 
 	/* Create the pango layout for the widget */
 	gh->alayout = gtk_widget_create_pango_layout (gh->adisp, "");
@@ -2629,7 +2687,7 @@ gtk_hex_init(GtkHex *gh)
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->adisp));
 	gtk_style_context_add_class (context, "view");
 
-	gtk_box_append (GTK_BOX(gh->box), gh->adisp);
+//	gtk_box_append (GTK_BOX(gh->box), gh->adisp);
 	
 	g_signal_connect(G_OBJECT(gh->adj), "value-changed",
 					 G_CALLBACK(display_scrolled), gh);
@@ -2639,7 +2697,11 @@ gtk_hex_init(GtkHex *gh)
 	gh->scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL, gh->adj);
 	/* keep scrollbar to the right */
 	gtk_widget_set_halign (gh->scrollbar, GTK_ALIGN_END);
-	gtk_box_append (GTK_BOX(gh->box), gh->scrollbar);
+//	gtk_box_append (GTK_BOX(gh->box), gh->scrollbar);
+
+	// TEST
+	gtk_widget_set_parent (gh->scrollbar, GTK_WIDGET (gh));
+
 }
 
 GtkWidget *gtk_hex_new(HexDocument *owner) {
