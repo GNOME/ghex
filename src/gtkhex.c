@@ -1402,10 +1402,10 @@ hex_pressed_cb (GtkGestureClick *gesture,
 		
 		gh->button = button;
 		
-		if(gh->active_view == VIEW_HEX) {
+		if (gh->active_view == VIEW_HEX) {
 			hex_to_pointer(gh, x, y);
 
-			if(! gh->selecting) {
+			if (! gh->selecting) {
 				gh->selecting = TRUE;
 				gtk_hex_set_selection(gh, gh->cursor_pos, gh->cursor_pos);
 			}
@@ -1428,7 +1428,7 @@ hex_pressed_cb (GtkGestureClick *gesture,
 		hex_to_pointer(gh, event->x, event->y);
 
 		text = gtk_clipboard_wait_for_text(klass->primary);
-		if(text) {
+		if (text) {
 			hex_document_set_data(gh->document, gh->cursor_pos,
 								  strlen(text), 0, text, TRUE);
 			gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
@@ -1558,8 +1558,8 @@ hex_drag_update_cb (GtkGestureDrag *gesture,
 		gh->scroll_dir = 0;
 	}
 
-	if(gh->scroll_dir != 0) {
-		if(gh->scroll_timeout == -1) {
+	if (gh->scroll_dir != 0) {
+		if (gh->scroll_timeout == -1) {
 			gh->scroll_timeout =
 				g_timeout_add(SCROLL_TIMEOUT,
 							  G_SOURCE_FUNC(scroll_timeout_handler),
@@ -1570,7 +1570,7 @@ hex_drag_update_cb (GtkGestureDrag *gesture,
 		return;
 	}
 	else {
-		if(gh->scroll_timeout != -1) {
+		if (gh->scroll_timeout != -1) {
 			g_source_remove(gh->scroll_timeout);
 			gh->scroll_timeout = -1;
 		}
@@ -1613,10 +1613,10 @@ ascii_pressed_cb (GtkGestureClick *gesture,
 		
 		gh->button = button;
 		
-		if(gh->active_view == VIEW_ASCII) {
+		if (gh->active_view == VIEW_ASCII) {
 			ascii_to_pointer(gh, x, y);
 
-			if(! gh->selecting) {
+			if (! gh->selecting) {
 				gh->selecting = TRUE;
 				gtk_hex_set_selection(gh, gh->cursor_pos, gh->cursor_pos);
 			}
@@ -1639,7 +1639,7 @@ ascii_pressed_cb (GtkGestureClick *gesture,
 		hex_to_pointer(gh, event->x, event->y);
 
 		text = gtk_clipboard_wait_for_text(klass->primary);
-		if(text) {
+		if (text) {
 			hex_document_set_data(gh->document, gh->cursor_pos,
 								  strlen(text), 0, text, TRUE);
 			gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
@@ -1734,8 +1734,8 @@ ascii_drag_update_cb (GtkGestureDrag *gesture,
 		gh->scroll_dir = 0;
 	}
 
-	if(gh->scroll_dir != 0) {
-		if(gh->scroll_timeout == -1) {
+	if (gh->scroll_dir != 0) {
+		if (gh->scroll_timeout == -1) {
 			gh->scroll_timeout =
 				g_timeout_add(SCROLL_TIMEOUT,
 							  G_SOURCE_FUNC(scroll_timeout_handler),
@@ -1746,7 +1746,7 @@ ascii_drag_update_cb (GtkGestureDrag *gesture,
 		return;
 	}
 	else {
-		if(gh->scroll_timeout != -1) {
+		if (gh->scroll_timeout != -1) {
 			g_source_remove(gh->scroll_timeout);
 			gh->scroll_timeout = -1;
 		}
@@ -1777,6 +1777,7 @@ hide_offsets_widget(GtkHex *gh)
 	gtk_widget_hide (gh->offsets);
 }
 
+// FIXME - REORGANIZE!
 /*
  * default data_changed signal handler
  */
@@ -1785,7 +1786,7 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 	gint start_line, end_line;
 	guint lines;
 
-	g_debug("%s: start", __func__);
+	TEST_DEBUG_FUNCTION_START 
 
 	if(gh->cpl == 0)
 		return;
@@ -1840,9 +1841,7 @@ bytes_changed(GtkHex *gh, gint start, gint end)
 	gint start_line = start/gh->cpl - gh->top_line;
 	gint end_line = end/gh->cpl - gh->top_line;
 
-	if(end_line < 0 ||
-	   start_line > gh->vis_lines)
-		return;
+	g_return_if_fail(end_line >=0 && start_line <= gh->vis_lines);
 
 	start_line = MAX(start_line, 0);
 
