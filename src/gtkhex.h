@@ -84,8 +84,7 @@ void gtk_hex_delete_selection(GtkHex *gh);
 
 GtkHex_AutoHighlight *gtk_hex_insert_autohighlight(GtkHex *gh,
 		const gchar *search,
-		gint len,
-		const gchar *colour);
+		gint len);
 void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl);
 
 G_END_DECLS

@@ -118,8 +118,6 @@ struct _GtkHex_AutoHighlight
 	gchar *search_string;
 	gint search_len;
 
-	gchar *colour;
-
 	gint view_min;
 	gint view_max;
 
@@ -609,9 +607,9 @@ render_hex_highlights (GtkHex *gh,
 	GtkStyleContext *context;
 
 	context = gtk_widget_get_style_context (gh->xdisp);
-	state = gtk_widget_get_state_flags (gh->xdisp);
-
 	gtk_style_context_save (context);
+
+	state = gtk_widget_get_state_flags (gh->xdisp);
 	state |= GTK_STATE_FLAG_SELECTED;
 	gtk_style_context_set_state (context, state);
 
@@ -619,13 +617,13 @@ render_hex_highlights (GtkHex *gh,
 
 	while (curHighlight)
 	{
-		if (ABS(curHighlight->start - curHighlight->end) >= curHighlight->min_select)
+		if (ABS(curHighlight->start - curHighlight->end) >=
+				curHighlight->min_select)
 		{
-			GdkRGBA bg_color;
-			gint start, end;
-			gint sl, el;
-			gint cursor_off = 0;
-			gint len;
+			int start, end;
+			int sl, el;
+			int cursor_off = 0;
+			int len;
 
 			gtk_hex_validate_highlight(gh, curHighlight);
 
@@ -634,16 +632,6 @@ render_hex_highlights (GtkHex *gh,
 			sl = curHighlight->start_line;
 			el = curHighlight->end_line;
 
-			if (curHighlight->bg_color) {
-				gdk_cairo_set_source_rgba (cr, curHighlight->bg_color);
-			} else {
-				/* LAR: gtk_render_background? */
-#if 0
-				gtk_style_context_get_background_color (context, state, &bg_color);
-				gdk_cairo_set_source_rgba (cr, &bg_color);
-#endif
-			}
-
 			if (cursor_line == sl)
 			{
 				cursor_off = 2*(start%gh->cpl) + (start%gh->cpl)/gh->group_type;
@@ -651,19 +639,23 @@ render_hex_highlights (GtkHex *gh,
 					len = 2*(end%gh->cpl + 1) + (end%gh->cpl)/gh->group_type;
 				else
 					len = xcpl;
+
 				len = len - cursor_off;
-				if (len > 0)
-					cairo_rectangle (cr,
-					                 cursor_off * gh->char_width,
-					                 cursor_line * gh->char_height,
-					                 len * gh->char_width,
-					                 gh->char_height);
+
+				if (len > 0) {
+					gtk_render_background (context, cr,
+							cursor_off * gh->char_width,
+							cursor_line * gh->char_height,
+							len * gh->char_width,
+							gh->char_height);
+				}
+		
 			}
 			else if (cursor_line == el)
 			{
 				cursor_off = 2*(end%gh->cpl + 1) + (end%gh->cpl)/gh->group_type;
 				if (cursor_off > 0)
-					cairo_rectangle (cr,
+					gtk_render_background (context, cr,
 					                 0,
 					                 cursor_line * gh->char_height,
 					                 cursor_off * gh->char_width,
@@ -671,14 +663,12 @@ render_hex_highlights (GtkHex *gh,
 			}
 			else if (cursor_line > sl && cursor_line < el)
 			{
-				cairo_rectangle (cr,
+				gtk_render_background (context, cr,
 				                 0,
 				                 cursor_line * gh->char_height,
 				                 xcpl * gh->char_width,
 				                 gh->char_height);
 			}
-
-			cairo_fill (cr);
 		}
 		curHighlight = curHighlight->next;
 		while (curHighlight == NULL && nextList)
@@ -702,19 +692,20 @@ render_ascii_highlights (GtkHex *gh,
 	GtkStyleContext *context;
 
 	context = gtk_widget_get_style_context (gh->adisp);
-	state = gtk_widget_get_state_flags (gh->adisp);
-
 	gtk_style_context_save (context);
+
+	state = gtk_widget_get_state_flags (gh->adisp);
 	state |= GTK_STATE_FLAG_SELECTED;
+
 	gtk_style_context_set_state (context, state);
 
 	cairo_save (cr);
 
 	while (curHighlight)
 	{
-		if (ABS(curHighlight->start - curHighlight->end) >= curHighlight->min_select)
+		if (ABS(curHighlight->start - curHighlight->end) >=
+				curHighlight->min_select)
 		{
-			GdkRGBA bg_color;
 			gint start, end;
 			gint sl, el;
 			gint cursor_off = 0;
@@ -727,15 +718,6 @@ render_ascii_highlights (GtkHex *gh,
 			sl = curHighlight->start_line;
 			el = curHighlight->end_line;
 
-			if (curHighlight->bg_color) {
-				gdk_cairo_set_source_rgba (cr, curHighlight->bg_color);
-			} else {
-				/* LAR - gtk_render_background? */
-#if 0
-				gtk_style_context_get_background_color (context, state, &bg_color);
-				gdk_cairo_set_source_rgba (cr, &bg_color);
-#endif
-			}
 			if (cursor_line == sl)
 			{
 				cursor_off = start % gh->cpl;
@@ -744,7 +726,7 @@ render_ascii_highlights (GtkHex *gh,
 				else
 					len = gh->cpl - cursor_off;
 				if (len > 0)
-					cairo_rectangle (cr,
+					gtk_render_background (context, cr,
 					                 cursor_off * gh->char_width,
 					                 cursor_line * gh->char_height,
 					                 len * gh->char_width,
@@ -754,7 +736,7 @@ render_ascii_highlights (GtkHex *gh,
 			{
 				cursor_off = end % gh->cpl + 1;
 				if (cursor_off > 0)
-					cairo_rectangle (cr,
+					gtk_render_background (context, cr,
 					                 0,
 					                 cursor_line * gh->char_height,
 					                 cursor_off * gh->char_width,
@@ -762,14 +744,12 @@ render_ascii_highlights (GtkHex *gh,
 			}
 			else if (cursor_line > sl && cursor_line < el)
 			{
-				cairo_rectangle (cr,
+				gtk_render_background (context, cr,
 				                 0,
 				                 cursor_line * gh->char_height,
 				                 gh->cpl * gh->char_width,
 				                 gh->char_height);
 			}
-
-			cairo_fill (cr);
 		}
 		curHighlight = curHighlight->next;
 		while (curHighlight == NULL && nextList)
@@ -778,7 +758,6 @@ render_ascii_highlights (GtkHex *gh,
 			nextList = nextList->next;
 		}
 	}
-
 	cairo_restore (cr);
 	gtk_style_context_restore (context);
 }
@@ -1374,11 +1353,13 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 static gboolean
 scroll_timeout_handler(GtkHex *gh)
 {
-	if(gh->scroll_dir < 0)
-		gtk_hex_set_cursor(gh, MAX(0, (int)(gh->cursor_pos - gh->cpl)));
-	else if(gh->scroll_dir > 0)
+	if (gh->scroll_dir < 0) {
+		gtk_hex_set_cursor (gh, MAX(0, (int)(gh->cursor_pos - gh->cpl)));
+	}
+	else if (gh->scroll_dir > 0) {
 		gtk_hex_set_cursor(gh, MIN(gh->document->file_size - 1,
 						gh->cursor_pos + gh->cpl));
+	}
 	return TRUE;
 }
 
@@ -1391,27 +1372,6 @@ hex_scroll_cb(GtkWidget *w, GdkEventScroll *event, GtkHex *gh)
 }
 #endif
 
-// GESTURES - TEST
-static void
-gesture_test_cb (GtkGestureClick *gesture,
-               int              n_press,
-               double           x,
-               double           y,
-               gpointer         user_data)
-{
-#if 0
-	GtkHex *gh = GTK_HEX (user_data);
-
-	g_return_if_fail (GTK_IS_HEX(gh));
-#endif
-
-	TEST_DEBUG_FUNCTION_START
-	
-	g_debug("%s: n_press: %d - x: %f - y: %f",
-			__func__, n_press, x, y);
-}
-
-
 static void
 hex_pressed_cb (GtkGestureClick *gesture,
                int              n_press,
@@ -1420,7 +1380,7 @@ hex_pressed_cb (GtkGestureClick *gesture,
                gpointer         user_data)
 {
 	GtkHex *gh = GTK_HEX (user_data);
-	GtkWidget *widget = GTK_WIDGET (user_data);
+	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
 	guint button;
 
 	TEST_DEBUG_FUNCTION_START 
@@ -1429,6 +1389,9 @@ hex_pressed_cb (GtkGestureClick *gesture,
 
 	button = gtk_gesture_single_get_current_button
 		(GTK_GESTURE_SINGLE(gesture));
+
+	g_debug("%s: n_press: %d, x: %f - y: %f",
+			__func__, n_press, x, y);
 
 	/* Single-press */
 	if (button == GDK_BUTTON_PRIMARY)
@@ -1450,9 +1413,7 @@ hex_pressed_cb (GtkGestureClick *gesture,
 			hide_cursor(gh);
 			gh->active_view = VIEW_HEX;
 			show_cursor(gh);
-			// FIXME - TEST - I DON'T KNOW WHY THIS IS CALLED AGAIN?
-			// RECURSION?
-//			hex_button_cb(w, event, gh);
+			hex_pressed_cb (gesture, n_press, x, y, user_data);
 		}
 	}
 	/* Middle-click press. */
@@ -1490,7 +1451,218 @@ hex_released_cb (GtkGestureClick *gesture,
                gpointer         user_data)
 {
 	GtkHex *gh = GTK_HEX (user_data);
-	GtkWidget *widget = GTK_WIDGET (user_data);
+	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
+	guint button;
+
+	TEST_DEBUG_FUNCTION_START 
+	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (GTK_IS_WIDGET(widget));
+
+	button =
+		gtk_gesture_single_get_current_button (GTK_GESTURE_SINGLE(gesture));
+
+	/* Single-click */
+	if (button == GDK_BUTTON_PRIMARY && n_press == 1)
+	{
+		// TEST - OLD CODE
+		if (gh->scroll_timeout != -1) {
+			g_source_remove(gh->scroll_timeout);
+			gh->scroll_timeout = -1;
+			gh->scroll_dir = 0;
+		}
+		gh->selecting = FALSE;
+		gh->button = 0;
+	}
+}
+
+static void
+hex_drag_begin_cb (GtkGestureDrag *gesture,
+               double          start_x,
+               double          start_y,
+               gpointer        user_data)
+{
+	GtkHex *gh = GTK_HEX (user_data);
+	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
+	guint button;
+
+	TEST_DEBUG_FUNCTION_START 
+	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (GTK_IS_WIDGET(widget));
+
+	g_debug("%s: offset_x: %f - offset_y: %f",
+			__func__, start_x, start_y);
+
+}
+
+static void
+hex_drag_end_cb (GtkGestureDrag *gesture,
+               double          offset_x,
+               double          offset_y,
+               gpointer        user_data)
+{
+	GtkHex *gh = GTK_HEX (user_data);
+	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
+	guint button;
+
+	TEST_DEBUG_FUNCTION_START 
+	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (GTK_IS_WIDGET(widget));
+
+	g_debug("%s: offset_x: %f - offset_y: %f",
+			__func__, offset_x, offset_y);
+}
+
+static void
+hex_drag_update_cb (GtkGestureDrag *gesture,
+               double          offset_x,
+               double          offset_y,
+               gpointer        user_data)
+{
+	GtkHex *gh = GTK_HEX (user_data);
+	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
+	guint button;
+
+	// TEST
+	double start_x, start_y;
+	double x, y;
+
+	// TEST - FROM OLD CODE:
+	GtkAllocation allocation;
+
+	TEST_DEBUG_FUNCTION_START 
+	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (GTK_IS_WIDGET(widget));
+
+	g_debug("%s: offset_x: %f - offset_y: %f",
+			__func__, offset_x, offset_y);
+
+	gtk_widget_get_allocation(widget, &allocation);
+
+	g_debug("%s: allocation: x: %d - y: %d - width: %d - height: %d",
+			__func__,
+			allocation.x, allocation.y, allocation.width, allocation.height);
+
+	gtk_gesture_drag_get_start_point(gesture, &start_x, &start_y);
+
+	x = start_x + offset_x;
+	y = start_y + offset_y;
+
+	g_debug("%s: x: %f - y: %f",
+			__func__, x, y);
+
+	if (y < 0) {
+		gh->scroll_dir = -1;
+	} else if (y >= allocation.height) {
+		gh->scroll_dir = 1;
+	} else {
+		gh->scroll_dir = 0;
+	}
+
+	if(gh->scroll_dir != 0) {
+		if(gh->scroll_timeout == -1) {
+			gh->scroll_timeout =
+				g_timeout_add(SCROLL_TIMEOUT,
+							  G_SOURCE_FUNC(scroll_timeout_handler),
+							  gh);
+		}
+		// FIXME - don't really like this - seems like it's setting up for
+		// silent failure. Maybe put a debugging msg once understand better.
+		return;
+	}
+	else {
+		if(gh->scroll_timeout != -1) {
+			g_source_remove(gh->scroll_timeout);
+			gh->scroll_timeout = -1;
+		}
+	}
+			
+	if (gh->active_view == VIEW_HEX && gh->button == GDK_BUTTON_PRIMARY) {
+		hex_to_pointer(gh, x, y);
+	}
+}
+
+/* ASCII Widget - click and drag callbacks. */
+
+static void
+ascii_pressed_cb (GtkGestureClick *gesture,
+               int              n_press,
+               double           x,
+               double           y,
+               gpointer         user_data)
+{
+	GtkHex *gh = GTK_HEX (user_data);
+	GtkWidget *widget = GTK_WIDGET (gh->adisp);
+	guint button;
+
+	TEST_DEBUG_FUNCTION_START 
+	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (GTK_IS_WIDGET(widget));
+
+	button = gtk_gesture_single_get_current_button
+		(GTK_GESTURE_SINGLE(gesture));
+
+	g_debug("%s: n_press: %d, x: %f - y: %f",
+			__func__, n_press, x, y);
+
+	/* Single-press */
+	if (button == GDK_BUTTON_PRIMARY)
+	{
+		if (! gtk_widget_has_focus (widget)) {
+			gtk_widget_grab_focus (GTK_WIDGET(gh));
+		}
+		
+		gh->button = button;
+		
+		if(gh->active_view == VIEW_ASCII) {
+			ascii_to_pointer(gh, x, y);
+
+			if(! gh->selecting) {
+				gh->selecting = TRUE;
+				gtk_hex_set_selection(gh, gh->cursor_pos, gh->cursor_pos);
+			}
+		} else {
+			hide_cursor(gh);
+			gh->active_view = VIEW_ASCII;
+			show_cursor(gh);
+			ascii_pressed_cb (gesture, n_press, x, y, user_data);
+		}
+	}
+	/* Middle-click press. */
+	else if (button == GDK_BUTTON_MIDDLE)
+	{
+		g_debug("%s: MIDDLE CLICK - NOT IMPLEMENTED.");
+#if 0
+		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
+		gchar *text;
+
+		gh->active_view = VIEW_HEX;
+		hex_to_pointer(gh, event->x, event->y);
+
+		text = gtk_clipboard_wait_for_text(klass->primary);
+		if(text) {
+			hex_document_set_data(gh->document, gh->cursor_pos,
+								  strlen(text), 0, text, TRUE);
+			gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
+			g_free(text);
+		}
+#endif
+		gh->button = 0;
+	}
+	else
+	{
+		gh->button = 0;
+	}
+}
+
+static void
+ascii_released_cb (GtkGestureClick *gesture,
+               int              n_press,
+               double           x,
+               double           y,
+               gpointer         user_data)
+{
+	GtkHex *gh = GTK_HEX (user_data);
+	GtkWidget *widget = GTK_WIDGET (gh->adisp);
 	guint button;
 
 	TEST_DEBUG_FUNCTION_START 
@@ -1516,200 +1688,61 @@ hex_released_cb (GtkGestureClick *gesture,
 
 }
 
-/* REWRITE */
-#if 0
-hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
-	if( (event->type == GDK_BUTTON_RELEASE) &&
-		(event->button == GDK_BUTTON_PRIMARY) ) {
-		if(gh->scroll_timeout != -1) {
-			g_source_remove(gh->scroll_timeout);
-			gh->scroll_timeout = -1;
-			gh->scroll_dir = 0;
-		}
-		gh->selecting = FALSE;
-		gtk_grab_remove(w);
-		gh->button = 0;
-	}
-#endif
+static void
+ascii_drag_update_cb (GtkGestureDrag *gesture,
+               double          offset_x,
+               double          offset_y,
+               gpointer        user_data)
+{
+	GtkHex *gh = GTK_HEX (user_data);
+	GtkWidget *widget = GTK_WIDGET (gh->adisp);
+	guint button;
 
-#if 0	
-	else if((event->type == GDK_BUTTON_PRESS) &&
-			(event->button == GDK_BUTTON_PRIMARY)) {
-		if (!gtk_widget_has_focus (GTK_WIDGET (gh)))
-			gtk_widget_grab_focus (GTK_WIDGET(gh));
-		
-		gtk_grab_add(w);
+	// TEST
+	double start_x, start_y;
+	double x, y;
 
-		gh->button = event->button;
-		
-		if(gh->active_view == VIEW_HEX) {
-			hex_to_pointer(gh, event->x, event->y);
-
-			if(!gh->selecting) {
-				gh->selecting = TRUE;
-				gtk_hex_set_selection(gh, gh->cursor_pos, gh->cursor_pos);
-			}
-		}
-		else {
-			hide_cursor(gh);
-			gh->active_view = VIEW_HEX;
-			show_cursor(gh);
-			hex_button_cb(w, event, gh);
-		}
-	}
-#endif
-
-#if 0
-	else if((event->type == GDK_BUTTON_PRESS) && (event->button == GDK_BUTTON_MIDDLE)) {
-		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
-		gchar *text;
-
-		gh->active_view = VIEW_HEX;
-		hex_to_pointer(gh, event->x, event->y);
-
-		text = gtk_clipboard_wait_for_text(klass->primary);
-		if(text) {
-			hex_document_set_data(gh->document, gh->cursor_pos,
-								  strlen(text), 0, text, TRUE);
-			gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
-			g_free(text);
-		}
-		gh->button = 0;
-	}
-	else
-		gh->button = 0;
-}
-#endif
-
-// REWRITE
-#if 0
-static void hex_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
+	// TEST - FROM OLD CODE:
 	GtkAllocation allocation;
-	GdkDeviceManager *device_manager;
-	GdkDevice *pointer;
-	gint x, y;
 
-	gtk_widget_get_allocation(w, &allocation);
+	TEST_DEBUG_FUNCTION_START 
+	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (GTK_IS_WIDGET(widget));
 
-	device_manager = gdk_display_get_device_manager (gtk_widget_get_display (w));
-	pointer = gdk_device_manager_get_client_pointer (device_manager);
-	gdk_window_get_device_position (gtk_widget_get_window (w), pointer, &x, &y, NULL);
+	g_debug("%s: offset_x: %f - offset_y: %f",
+			__func__, offset_x, offset_y);
 
-	if(y < 0)
+	gtk_widget_get_allocation(widget, &allocation);
+
+	g_debug("%s: allocation: x: %d - y: %d - width: %d - height: %d",
+			__func__,
+			allocation.x, allocation.y, allocation.width, allocation.height);
+
+	gtk_gesture_drag_get_start_point(gesture, &start_x, &start_y);
+
+	x = start_x + offset_x;
+	y = start_y + offset_y;
+
+	g_debug("%s: x: %f - y: %f",
+			__func__, x, y);
+
+	if (y < 0) {
 		gh->scroll_dir = -1;
-	else if(y >= allocation.height)
+	} else if (y >= allocation.height) {
 		gh->scroll_dir = 1;
-	else
+	} else {
 		gh->scroll_dir = 0;
+	}
 
 	if(gh->scroll_dir != 0) {
-		if(gh->scroll_timeout == -1)
+		if(gh->scroll_timeout == -1) {
 			gh->scroll_timeout =
 				g_timeout_add(SCROLL_TIMEOUT,
-							  (GSourceFunc)scroll_timeout_handler, gh);
-		return;
-	}
-	else {
-		if(gh->scroll_timeout != -1) {
-			g_source_remove(gh->scroll_timeout);
-			gh->scroll_timeout = -1;
+							  G_SOURCE_FUNC(scroll_timeout_handler),
+							  gh);
 		}
-	}
-			
-	if(event->window != gtk_widget_get_window(w))
-		return;
-
-	if((gh->active_view == VIEW_HEX) && (gh->button == 1)) {
-		hex_to_pointer(gh, x, y);
-	}
-}
-#endif
-
-#if 0
-static void ascii_scroll_cb(GtkWidget *w, GdkEventScroll *event, GtkHex *gh) {
-	gtk_widget_event(gh->scrollbar, (GdkEvent *)event);
-}
-#endif
-
-#if 0
-static void ascii_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
-	if( (event->type == GDK_BUTTON_RELEASE) &&
-		(event->button == GDK_BUTTON_PRIMARY) ) {
-		if(gh->scroll_timeout != -1) {
-			g_source_remove(gh->scroll_timeout);
-			gh->scroll_timeout = -1;
-			gh->scroll_dir = 0;
-		}
-		gh->selecting = FALSE;
-		gtk_grab_remove(w);
-		gh->button = 0;
-	}
-	else if( (event->type == GDK_BUTTON_PRESS) && (event->button == GDK_BUTTON_PRIMARY) ) {
-		if (!gtk_widget_has_focus (GTK_WIDGET (gh)))
-			gtk_widget_grab_focus (GTK_WIDGET(gh));
-		
-		gtk_grab_add(w);
-		gh->button = event->button;
-		if(gh->active_view == VIEW_ASCII) {
-			ascii_to_pointer(gh, event->x, event->y);
-			if(!gh->selecting) {
-				gh->selecting = TRUE;
-				gtk_hex_set_selection(gh, gh->cursor_pos, gh->cursor_pos);
-			}
-		}
-		else {
-			hide_cursor(gh);
-			gh->active_view = VIEW_ASCII;
-			show_cursor(gh);
-			ascii_button_cb(w, event, gh);
-		}
-	}
-	else if((event->type == GDK_BUTTON_PRESS) && (event->button == GDK_BUTTON_MIDDLE)) {
-		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
-		gchar *text;
-
-		gh->active_view = VIEW_ASCII;
-		ascii_to_pointer(gh, event->x, event->y);
-
-		text = gtk_clipboard_wait_for_text(klass->primary);
-		if(text) {
-			hex_document_set_data(gh->document, gh->cursor_pos,
-								  strlen(text), 0, text, TRUE);
-			gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
-			g_free(text);
-		}
-		gh->button = 0;
-	}
-	else
-		gh->button = 0;
-}
-#endif
-
-#if 0
-static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
-	GtkAllocation allocation;
-	GdkDeviceManager *device_manager;
-	GdkDevice *pointer;
-	gint x, y;
-
-	gtk_widget_get_allocation(w, &allocation);
-
-	device_manager = gdk_display_get_device_manager (gtk_widget_get_display (w));
-	pointer = gdk_device_manager_get_client_pointer (device_manager);
-	gdk_window_get_device_position (gtk_widget_get_window (w), pointer, &x, &y, NULL);
-
-	if(y < 0)
-		gh->scroll_dir = -1;
-	else if(y >= allocation.height)
-		gh->scroll_dir = 1;
-	else
-		gh->scroll_dir = 0;
-
-	if(gh->scroll_dir != 0) {
-		if(gh->scroll_timeout == -1)
-			gh->scroll_timeout =
-				g_timeout_add(SCROLL_TIMEOUT,
-							  (GSourceFunc)scroll_timeout_handler, gh);
+		// FIXME - don't really like this - seems like it's setting up for
+		// silent failure. Maybe put a debugging msg once understand better.
 		return;
 	}
 	else {
@@ -1719,14 +1752,10 @@ static void ascii_motion_cb(GtkWidget *w, GdkEventMotion *event, GtkHex *gh) {
 		}
 	}
 
-	if(event->window != gtk_widget_get_window(w))
-		return;
-
-	if((gh->active_view == VIEW_ASCII) && (gh->button == 1)) {
+	if (gh->active_view == VIEW_ASCII && gh->button == GDK_BUTTON_PRIMARY) {
 		ascii_to_pointer(gh, x, y);
 	}
 }
-#endif
 
 static void
 show_offsets_widget(GtkHex *gh)
@@ -1805,7 +1834,8 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
     }
 }
 
-static void bytes_changed(GtkHex *gh, gint start, gint end)
+static void
+bytes_changed(GtkHex *gh, gint start, gint end)
 {
 	gint start_line = start/gh->cpl - gh->top_line;
 	gint end_line = end/gh->cpl - gh->top_line;
@@ -1818,6 +1848,7 @@ static void bytes_changed(GtkHex *gh, gint start, gint end)
 
     invalidate_hex_lines (gh, start_line, end_line);
     invalidate_ascii_lines (gh, start_line, end_line);
+
     if (gh->show_offsets)
     {
         invalidate_offsets (gh, start_line, end_line);
@@ -1854,7 +1885,8 @@ static void primary_clear_cb(GtkClipboard *clipboard,
 }
 #endif
 
-void gtk_hex_set_selection(GtkHex *gh, gint start, gint end)
+void
+gtk_hex_set_selection(GtkHex *gh, gint start, gint end)
 {
 	gint length = gh->document->file_size;
 	gint oe, os, ne, ns;
@@ -1996,12 +2028,6 @@ static GtkHex_Highlight *gtk_hex_insert_highlight (GtkHex *gh,
 
 	new->min_select = 0;
 
-	if (gdk_rgba_parse (&rgba, ahl->colour))
-		new->bg_color = gdk_rgba_copy (&rgba);
-	else
-		new->bg_color = NULL;
-
-
 	new->prev = NULL;
 	new->next = ahl->highlights;
 	if (new->next) new->next->prev = new;
@@ -2022,9 +2048,6 @@ static void gtk_hex_delete_highlight (GtkHex *gh, GtkHex_AutoHighlight *ahl,
 	if (hl->next) hl->next->prev = hl->prev;
 
 	if (hl == ahl->highlights) ahl->highlights = hl->next;
-
-	if (hl->bg_color)
-		gdk_rgba_free (hl->bg_color);
 
 	g_free(hl);
 	bytes_changed(gh, start, end);
@@ -2916,7 +2939,9 @@ gtk_hex_init(GtkHex *gh)
 	/* Connect gestures to ascii/hex drawing areas.
 	 */
 
-	/* hex widget: */
+	/* Hex widget: */
+
+	/* click gestures */
 	gesture = gtk_gesture_click_new ();
 
 	g_signal_connect (gesture, "pressed",
@@ -2930,22 +2955,60 @@ gtk_hex_init(GtkHex *gh)
 	gtk_widget_add_controller (gh->xdisp,
 			GTK_EVENT_CONTROLLER(gesture));
 
-	// TODO
-#if 0
-	/* ascii widget: */
+	/* drag gestures */
+	gesture = gtk_gesture_drag_new ();
+
+	g_signal_connect (gesture, "drag-begin",
+			G_CALLBACK (hex_drag_begin_cb),
+			gh);
+	g_signal_connect (gesture, "drag-end",
+			G_CALLBACK (hex_drag_end_cb),
+			gh);
+	g_signal_connect (gesture, "drag-update",
+			G_CALLBACK (hex_drag_update_cb),
+			gh);
+	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER(gesture),
+			GTK_PHASE_BUBBLE);
+	gtk_widget_add_controller (gh->xdisp,
+			GTK_EVENT_CONTROLLER(gesture));
+
+	/* ASCII widget: */
+
+	/* click gestures */
 	gesture = gtk_gesture_click_new ();
 
 	g_signal_connect (gesture, "pressed",
 			G_CALLBACK(ascii_pressed_cb),
 			gh);
-	g_signal_connect (gesture, "pressed",
+	g_signal_connect (gesture, "released",
 			G_CALLBACK(ascii_released_cb),
 			gh);
 	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER(gesture),
 			GTK_PHASE_BUBBLE);
 	gtk_widget_add_controller (gh->adisp,
 			GTK_EVENT_CONTROLLER(gesture));
+
+	/* drag gestures */
+	gesture = gtk_gesture_drag_new ();
+
+// TODO IF NEEDED
+#if 0
+	g_signal_connect (gesture, "drag-begin",
+			G_CALLBACK (ascii_drag_begin_cb),
+			gh);
+	g_signal_connect (gesture, "drag-end",
+			G_CALLBACK (ascii_drag_end_cb),
+			gh);
 #endif
+
+	g_signal_connect (gesture, "drag-update",
+			G_CALLBACK (ascii_drag_update_cb),
+			gh);
+	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER(gesture),
+			GTK_PHASE_BUBBLE);
+	gtk_widget_add_controller (gh->adisp,
+			GTK_EVENT_CONTROLLER(gesture));
+
 
 	/* Setup Scrollbar */
 
@@ -3004,7 +3067,8 @@ void gtk_hex_set_nibble(GtkHex *gh, gint lower_nibble) {
 /*
  * moves cursor to byte index
  */
-void gtk_hex_set_cursor(GtkHex *gh, gint index) {
+void
+gtk_hex_set_cursor(GtkHex *gh, gint index) {
 	guint y;
 	guint old_pos = gh->cursor_pos;
 
@@ -3191,15 +3255,12 @@ void gtk_hex_set_insert_mode(GtkHex *gh, gboolean insert)
 GtkHex_AutoHighlight *
 gtk_hex_insert_autohighlight(GtkHex *gh,
 		const gchar *search,
-		gint len,
-		const gchar *colour)
+		gint len)
 {
 	GtkHex_AutoHighlight *new = g_malloc0(sizeof(GtkHex_AutoHighlight));
 
 	new->search_string = g_memdup(search, len);
 	new->search_len = len;
-
-	new->colour = g_strdup(colour);
 
 	new->highlights = NULL;
 
@@ -3219,7 +3280,6 @@ gtk_hex_insert_autohighlight(GtkHex *gh,
 void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl)
 {
 	g_free(ahl->search_string);
-	g_free(ahl->colour);
 
 	while (ahl->highlights)
 	{

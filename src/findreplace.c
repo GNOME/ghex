@@ -826,7 +826,7 @@ static void advanced_find_add_cb(GtkButton *button, AdvancedFindDialog *dialog)
 		gtk_color_selection_get_current_rgba (GTK_COLOR_SELECTION (dialog->addDialog->colour),
 		                                      &rgba);
 		colour = gdk_rgba_to_string (&rgba);
-		data->auto_highlight = gtk_hex_insert_autohighlight(gh, data->str, data->str_len, colour);
+		data->auto_highlight = gtk_hex_insert_autohighlight(gh, data->str, data->str_len);
 		gtk_list_store_append(dialog->list, &iter);
 		gtk_list_store_set(dialog->list, &iter,
 						   0, data->str,
