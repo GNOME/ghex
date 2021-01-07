@@ -16,6 +16,8 @@ activate (GtkApplication *app,
   hex = gtk_hex_new (doc);
 //  gtk_hex_set_geometry (GTK_HEX (hex), 32, 1024);
   gtk_hex_show_offsets (GTK_HEX (hex), TRUE);
+  gtk_hex_set_cursor (GTK_HEX(hex), 25);
+//  gtk_hex_set_selection (GTK_HEX(hex), 20, 30);
 
   gtk_window_set_child (GTK_WINDOW (window), hex);
 

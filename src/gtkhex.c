@@ -43,10 +43,14 @@
 #define TEST_DEBUG_FUNCTION_START g_debug ("%s: start", __func__);
 #endif
 
+#define NOT_IMPLEMENTED \
+	g_critical("%s: NOT IMPLEMENTED", __func__);
+
 /* LAR - new stuff that wasn't in old code */
 #define CSS_NAME "hex"
 //#define CSS_NAME "entry"
 
+/* default minimum drawing area size (for ascii and hex widgets) in pixels. */
 #define DEFAULT_DA_SIZE 100
 
 /* LAR - defines copied from the old header. */
@@ -439,6 +443,7 @@ invalidate_ac (GtkHex *gh)
     }
 }
 
+// FIXME - THE NEXT 2 FUNCTIONS ARE DUPLICITOUS. MERGE INTO ONE.
 /*
  * the cursor rendering stuff...
  */
@@ -457,39 +462,50 @@ render_ac (GtkHex *gh,
 
 	context = gtk_widget_get_style_context (gh->adisp);
 	state = gtk_widget_get_state_flags (gh->adisp);
-	state |= GTK_STATE_FLAG_SELECTED;
+
 
 	if(get_acoords(gh, gh->cursor_pos, &cx, &cy)) {
 		c[0] = gtk_hex_get_byte(gh, gh->cursor_pos);
 		if (! is_displayable (c[0]))
 			c[0] = '.';
-
-		/* LAR - maybe put a gtk_render_background in here somewhere. */
-#if 0
-		gtk_style_context_get_background_color (context, state, &bg_color);
-		gdk_cairo_set_source_rgba (cr, &bg_color);
-#endif
-
-		if(gh->active_view == VIEW_ASCII) {
-			cairo_rectangle (cr, cx, cy, gh->char_width, gh->char_height - 1);
-			cairo_fill (cr);
-			//gtk_style_context_get_color (context, state, &fg_color);
-			// API CHANGE
-			gtk_style_context_get_color (context, &fg_color);
-		}
-		else {
-			cairo_set_line_width (cr, 1.0);
-			cairo_rectangle (cr, cx + 0.5, cy + 0.5, gh->char_width, gh->char_height - 1);
-			cairo_stroke (cr);
-			// API CHANGE
-			//gtk_style_context_get_color (context, state & ~GTK_STATE_FLAG_SELECTED, &fg_color);
-			gtk_style_context_get_color (context, &fg_color);
-		}
-		gdk_cairo_set_source_rgba (cr, &fg_color);
-		cairo_move_to (cr, cx, cy);
-		pango_layout_set_text (gh->alayout, c, 1);
-		pango_cairo_show_layout (cr, gh->alayout);
+	} else {
+		g_critical("%s: Something has gone wrong. Can't get coordinates!",
+				__func__);
+		return;
 	}
+
+	gtk_style_context_save (context);
+
+	if(gh->active_view == VIEW_ASCII) {
+		state |= GTK_STATE_FLAG_SELECTED;
+		gtk_style_context_set_state (context, state);
+
+		gtk_render_background (context, cr,
+				cx,					// double x,
+				cy,					// double y,
+				gh->char_width,		// double width,
+				gh->char_height - 1);	// double height
+
+	} else {
+
+		gtk_style_context_get_color (context, &fg_color);
+		cairo_save (cr);
+		cairo_set_source_rgba (cr,
+				fg_color.red, fg_color.green, fg_color.blue,
+				fg_color.alpha);
+		cairo_set_line_width (cr, 1.0);
+		cairo_rectangle (cr, cx + 0.5, cy + 0.5, gh->char_width,
+				gh->char_height - 1);
+		cairo_stroke (cr);
+		cairo_restore (cr);
+	}
+	pango_layout_set_text (gh->alayout, c, 1);
+	gtk_render_layout (context, cr,
+			/* x: */ cx,
+			/* y: */ cy,
+			gh->alayout);
+
+	gtk_style_context_restore (context);
 }
 
 static void
@@ -505,9 +521,10 @@ render_xc (GtkHex *gh,
 
 	g_return_if_fail (gtk_widget_get_realized (gh->xdisp));
 
+	TEST_DEBUG_FUNCTION_START
+
 	context = gtk_widget_get_style_context (gh->xdisp);
 	state = gtk_widget_get_state_flags (gh->xdisp);
-	state |= GTK_STATE_FLAG_SELECTED;
 
 	if (get_xcoords (gh, gh->cursor_pos, &cx, &cy)) {
 		format_xbyte(gh, gh->cursor_pos, c);
@@ -518,36 +535,47 @@ render_xc (GtkHex *gh,
 			c[1] = 0;
 			i = 0;
 		}
-
-		/* LAR - maybe put a gtk_render_background in here somewhere */
-#if 0
-		gtk_style_context_get_background_color (context, state, &bg_color);
-		gdk_cairo_set_source_rgba (cr, &bg_color);
-#endif
-
-		if(gh->active_view == VIEW_HEX) {
-			cairo_rectangle (cr, cx, cy, gh->char_width, gh->char_height - 1);
-			cairo_fill (cr);
-			// API CHANGE
-			//gtk_style_context_get_color (context, state, &fg_color);
-			gtk_style_context_get_color (context, &fg_color);
-		}
-		else {
-			cairo_set_line_width (cr, 1.0);
-			cairo_rectangle (cr, cx + 0.5, cy + 0.5, gh->char_width, gh->char_height - 1);
-			cairo_stroke (cr);
-			// API CHANGE
-			//gtk_style_context_get_color (context, state & ~GTK_STATE_FLAG_SELECTED, &fg_color);
-			gtk_style_context_get_color (context, &fg_color);
-		}
-		gdk_cairo_set_source_rgba (cr, &fg_color);
-		cairo_move_to (cr, cx, cy);
-		pango_layout_set_text (gh->xlayout, &c[i], 1);
-		pango_cairo_show_layout (cr, gh->xlayout);
+	} else {
+		g_critical("%s: Something has gone wrong. Can't get coordinates!",
+				__func__);
+		return;
 	}
+
+	gtk_style_context_save (context);
+
+	if(gh->active_view == VIEW_HEX) {
+
+		state |= GTK_STATE_FLAG_SELECTED;
+		gtk_style_context_set_state (context, state);
+
+		gtk_render_background (context, cr,
+				cx,					// double x,
+				cy,					// double y,
+				gh->char_width,		// double width,
+				gh->char_height - 1);	// double height
+	} else {
+
+		gtk_style_context_get_color (context, &fg_color);
+		cairo_save (cr);
+		cairo_set_source_rgba (cr,
+				fg_color.red, fg_color.green, fg_color.blue,
+				fg_color.alpha);
+		cairo_set_line_width (cr, 1.0);
+		cairo_rectangle (cr, cx + 0.5, cy + 0.5, gh->char_width,
+				gh->char_height - 1);
+		cairo_stroke (cr);
+		cairo_restore (cr);
+	}
+	pango_layout_set_text (gh->xlayout, &c[i], 1);
+	gtk_render_layout (context, cr,
+			/* x: */ cx,
+			/* y: */ cy,
+			gh->xlayout);
+	gtk_style_context_restore (context);
 }
 
-static void show_cursor(GtkHex *gh) {
+static void
+show_cursor(GtkHex *gh) {
 	if(!gh->cursor_shown) {
 		if (gtk_widget_get_realized (gh->xdisp) || gtk_widget_get_realized (gh->adisp)) {
 			invalidate_xc (gh);
@@ -877,6 +905,9 @@ render_hex_lines (GtkHex *gh,
 				gh->xlayout);
 	}
 	
+	// TEST
+	g_debug("%s: cursor_line: %d - min_lines: %d - max_lines: %d - cursor_shown: %d",
+			__func__, cursor_line, min_lines, max_lines, gh->cursor_shown);
 	if ( (cursor_line >= min_lines) && (cursor_line <= max_lines) &&
 			(gh->cursor_shown) )
 	{
@@ -1012,26 +1043,37 @@ hex_draw (GtkDrawingArea *drawing_area,
 	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail(GTK_IS_HEX(gh));
 
-	// TEST
-//	gtk_drawing_area_set_content_width (drawing_area, gh->xdisp_width);
+	/* Here's the idea here:  the hex drawing widget can expand at will,
+	 * and we generate our cpl as a whole and to be passed to the ascii draw
+	 * function based on that.
+	 *
+	 * Thus, we need to do some calculations in this function before drawing
+	 * the hex lines and before proceeding to draw the ascii widget.
+	 */
 
 	g_debug("%s: width: %d - height: %d",
 			__func__, width, height);
 
-	// TEST - let's try pegging things to this DA for gh->cpl etc.
-
-	/* calculate how many bytes we can stuff in one line */
-
+	/* Total number of characters that can be displayed per line on the hex
+	 * widget (xcpl) is the simplest calculation:
+	 */
 	xcpl = width / gh->char_width;
 
-	/* given 16 xcpl:
+	/* Next, extrapolate the number of ASCII characters per line; this is
+	 * dependent upon the 'grouping' (ie, hex: 2 characters followed by a
+	 * space, a 'word' (2 hex characters together followed by a space, ie,
+	 * 4 + space... this is best illustrated with an example.
 	 *
-	 * 16 [xcpl] / (2 [fixed - # characters in a hex pair] * 4 [gh->group_type]
-	 * + 1 [space]) == 1
+	 * given 16 xcpl, 'word' grouping:
 	 *
-	 * 1 word * 4 [gh->group_type] == 4 cpl.
+	 * 16 [xcpl] / (2 [fixed value; # characters in a hex pair] * 4
+	 * [gh->group_type] + 1 [space]) == 1
+	 *
+	 * Meaning: 1 full word only can fit on a hex line, in this hypothetical,
+	 * then multiply the result by the group type again to get the number of
+	 * _characters_ (ascii) that this represents. (4 * 1 = 4 in this case)
+	 * Whew!
 	 */
-
 	gh->cpl = xcpl / (2 * gh->group_type + 1);
 	gh->cpl *= gh->group_type;
 
@@ -1048,28 +1090,15 @@ hex_draw (GtkDrawingArea *drawing_area,
 	g_debug("%s: gh->cpl: %d", __func__, gh->cpl);
 	g_return_if_fail (gh->cpl > 0);
 
-	// TEST
+	/* Now that we have gh->cpl defined, run this function to bump all
+	 * required values:
+	 */
 	recalc_displays(gh);
 
+	/* Finally, we can do what we wanted to do to begin with: draw our hex
+	 * lines!
+	 */
 	render_hex_lines (gh, cr, 0, gh->vis_lines);
-
-	/* LAR - TEST - I have no idea what this section is trying to
-	 * accomplish. May need a rewrite. */
-#if 0
-	GdkRectangle rect;
-	gint imin, imax;
-
-	gdk_cairo_get_clip_rectangle (cr, &rect);
-
-	imin = (rect.y) / gh->char_height;
-	imax = (rect.y + rect.height) / gh->char_height;
-	if ((rect.y + rect.height) % gh->char_height)
-		imax++;
-
-	imax = MIN(imax, gh->vis_lines);
-	
-	render_hex_lines (gh, cr, imin, imax);
-#endif
 }
 
 static void
@@ -1092,11 +1121,11 @@ ascii_draw (GtkDrawingArea *drawing_area,
 
 	g_return_if_fail(GTK_IS_HEX(gh));
 
-	/* LAR - TEST - I have no idea what this function is trying to
-	 * accomplish. May need a rewrite. */
 
 	render_ascii_lines (gh, cr, 0, gh->vis_lines);
 
+	/* LAR - TEST - I have no idea what the below is trying to
+	 * accomplish. Keeping here for reference. */
 #if 0
 	GdkRectangle rect;
 	gint imin, imax;
@@ -1121,22 +1150,23 @@ offsets_draw (GtkDrawingArea *drawing_area,
                            int height,
                            gpointer user_data)
 {
-	/* LAR - TEST - I have no idea what this function is trying to
-	 * accomplish. May need a rewrite. */
-
 	GtkHex *gh = GTK_HEX(user_data);
 
 	g_return_if_fail(GTK_IS_HEX(gh));
 	TEST_DEBUG_FUNCTION_START 
 
-	// DUMB TEST - 1 plus 9 characters.
+	/* FIXME - MAGIC NUMBER - set the width to 8 + 1 = 9 characters
+	 * (this is fixed based on offset length always being 8 chars.)  */
 	gtk_drawing_area_set_content_width (drawing_area,
-			10 * gh->char_width);
+			9 * gh->char_width);
 
 	g_debug("%s: width: %d - height: %d",
 			__func__, width, height);
 
 	render_offsets (gh, cr, 0, gh->vis_lines);
+
+	/* LAR - TEST - I have no idea what the below is trying to
+	 * accomplish. Keeping for reference. */
 
 #if 0
 	GdkRectangle rect;
@@ -1155,16 +1185,17 @@ offsets_draw (GtkDrawingArea *drawing_area,
 #endif
 }
 
+// FIXME - CLEAN UP THIS MESS! Not touching it right now because I don't
+// know whether we'll need to 'revive' some variables that aren't really
+// used here, like 'old_cpl'
 /*
  * this calculates how many bytes we can stuff into one line and how many
  * lines we can display according to the current size of the widget
  */
 static void
 recalc_displays(GtkHex *gh)
-//recalc_displays(GtkHex *gh, int width, int height)
 {
 	GtkWidget *widget = GTK_WIDGET (gh);
-//	int total_width = width;
 	int old_cpl = gh->cpl;
 	gboolean scroll_to_cursor;
 	gdouble value;
@@ -1360,9 +1391,133 @@ hex_scroll_cb(GtkWidget *w, GdkEventScroll *event, GtkHex *gh)
 }
 #endif
 
+// GESTURES - TEST
+static void
+gesture_test_cb (GtkGestureClick *gesture,
+               int              n_press,
+               double           x,
+               double           y,
+               gpointer         user_data)
+{
+#if 0
+	GtkHex *gh = GTK_HEX (user_data);
+
+	g_return_if_fail (GTK_IS_HEX(gh));
+#endif
+
+	TEST_DEBUG_FUNCTION_START
+	
+	g_debug("%s: n_press: %d - x: %f - y: %f",
+			__func__, n_press, x, y);
+}
+
+
+static void
+hex_pressed_cb (GtkGestureClick *gesture,
+               int              n_press,
+               double           x,
+               double           y,
+               gpointer         user_data)
+{
+	GtkHex *gh = GTK_HEX (user_data);
+	GtkWidget *widget = GTK_WIDGET (user_data);
+	guint button;
+
+	TEST_DEBUG_FUNCTION_START 
+	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (GTK_IS_WIDGET(widget));
+
+	button = gtk_gesture_single_get_current_button
+		(GTK_GESTURE_SINGLE(gesture));
+
+	/* Single-press */
+	if (button == GDK_BUTTON_PRIMARY)
+	{
+		if (! gtk_widget_has_focus (widget)) {
+			gtk_widget_grab_focus (GTK_WIDGET(gh));
+		}
+		
+		gh->button = button;
+		
+		if(gh->active_view == VIEW_HEX) {
+			hex_to_pointer(gh, x, y);
+
+			if(! gh->selecting) {
+				gh->selecting = TRUE;
+				gtk_hex_set_selection(gh, gh->cursor_pos, gh->cursor_pos);
+			}
+		} else {
+			hide_cursor(gh);
+			gh->active_view = VIEW_HEX;
+			show_cursor(gh);
+			// FIXME - TEST - I DON'T KNOW WHY THIS IS CALLED AGAIN?
+			// RECURSION?
+//			hex_button_cb(w, event, gh);
+		}
+	}
+	/* Middle-click press. */
+	else if (button == GDK_BUTTON_MIDDLE)
+	{
+		g_debug("%s: MIDDLE CLICK - NOT IMPLEMENTED.");
+#if 0
+		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
+		gchar *text;
+
+		gh->active_view = VIEW_HEX;
+		hex_to_pointer(gh, event->x, event->y);
+
+		text = gtk_clipboard_wait_for_text(klass->primary);
+		if(text) {
+			hex_document_set_data(gh->document, gh->cursor_pos,
+								  strlen(text), 0, text, TRUE);
+			gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
+			g_free(text);
+		}
+#endif
+		gh->button = 0;
+	}
+	else
+	{
+		gh->button = 0;
+	}
+}
+
+static void
+hex_released_cb (GtkGestureClick *gesture,
+               int              n_press,
+               double           x,
+               double           y,
+               gpointer         user_data)
+{
+	GtkHex *gh = GTK_HEX (user_data);
+	GtkWidget *widget = GTK_WIDGET (user_data);
+	guint button;
+
+	TEST_DEBUG_FUNCTION_START 
+	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (GTK_IS_WIDGET(widget));
+
+	button =
+		gtk_gesture_single_get_current_button (GTK_GESTURE_SINGLE(gesture));
+
+	/* Single-click */
+	if (button == GDK_BUTTON_PRIMARY && n_press == 1)
+	{
+		// TEST - OLD CODE
+		if (gh->scroll_timeout != -1) {
+			g_source_remove(gh->scroll_timeout);
+			gh->scroll_timeout = -1;
+			gh->scroll_dir = 0;
+		}
+		gh->selecting = FALSE;
+		gh->button = 0;
+	}
+
+
+}
+
 /* REWRITE */
 #if 0
-static void
 hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 	if( (event->type == GDK_BUTTON_RELEASE) &&
 		(event->button == GDK_BUTTON_PRIMARY) ) {
@@ -1375,7 +1530,11 @@ hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 		gtk_grab_remove(w);
 		gh->button = 0;
 	}
-	else if((event->type == GDK_BUTTON_PRESS) && (event->button == GDK_BUTTON_PRIMARY)) {
+#endif
+
+#if 0	
+	else if((event->type == GDK_BUTTON_PRESS) &&
+			(event->button == GDK_BUTTON_PRIMARY)) {
 		if (!gtk_widget_has_focus (GTK_WIDGET (gh)))
 			gtk_widget_grab_focus (GTK_WIDGET(gh));
 		
@@ -1398,6 +1557,9 @@ hex_button_cb(GtkWidget *w, GdkEventButton *event, GtkHex *gh) {
 			hex_button_cb(w, event, gh);
 		}
 	}
+#endif
+
+#if 0
 	else if((event->type == GDK_BUTTON_PRESS) && (event->button == GDK_BUTTON_MIDDLE)) {
 		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 		gchar *text;
@@ -1991,7 +2153,8 @@ static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
 {
 	// LAR - REWRITE FOR GTK4
 	(void)gh;
-	g_debug("%s: NOT IMPLEMENTED", __func__);
+
+	NOT_IMPLEMENTED
 
 #if 0
 	gint start_pos; 
@@ -2335,7 +2498,6 @@ gtk_hex_size_allocate (GtkWidget *widget,
 }
 #endif
 
-// LAR - TEST GTK4
 static void
 gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 {
@@ -2347,27 +2509,36 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 
 	TEST_DEBUG_FUNCTION_START 
 
-	// LAR - TEST
-	// Update character width & height
+	/* Update character width & height */
 	gh->char_width = get_char_width(gh);
 	gh->char_height = get_char_height(gh);
 
+	/* get width and height, implicitly converted to floats so we can pass
+	 * to graphene_rect_init below. */
 	width = gtk_widget_get_allocated_width (widget);
 	height = gtk_widget_get_allocated_height (widget);
 
-	/* set visible lines */
+	/* set visible lines - do this here and now as we can use the height
+	 * of the widget as a whole.  */
 	gh->vis_lines = height / gh->char_height;
 
-	// DUMB TEST
-//	gtk_hex_size_allocate (widget, width, height, -1);
-//	recalc_displays(gh, width, height);
-
+	/* get a graphene rect so we can pass it to the next function and draw
+	 * with cairo, which is all we want to do anyway. */
 	graphene_rect_init (&rect,
-			/* x */ 0.0f, /* y */ 0.0f, width, height);
+		/* float x: */	0.0f,
+		/* float y: */	0.0f,
+			width, height);
+
 	cr = gtk_snapshot_append_cairo (snapshot, &rect);
 
 	g_debug("%s: width: %f - height: %f",
 			__func__, width, height);
+
+
+	// TEST for trying render_xc
+	show_cursor(gh);
+
+
 
 	/* queue draw functions for drawing areas - order matters here as
 	 * we're pegging certain elements of the ascii widget being drawn
@@ -2456,7 +2627,6 @@ gtk_hex_class_init(GtkHexClass *klass)
 
 	/* CSS name */
 
-	// FIXME - maybe change this to "entry" once the dust settles
 	gtk_widget_class_set_css_name (widget_class, CSS_NAME);
 
 	/* SIGNALS */
@@ -2547,8 +2717,12 @@ gtk_hex_class_init(GtkHexClass *klass)
 static void
 gtk_hex_init(GtkHex *gh)
 {
+	GtkWidget *widget = GTK_WIDGET(gh);
+
 	GtkCssProvider *provider;
 	GtkStyleContext *context;
+
+	GtkGesture *gesture;
 
 	gh->disp_buffer = NULL;
 	gh->default_cpl = DEFAULT_CPL;
@@ -2579,21 +2753,16 @@ gtk_hex_init(GtkHex *gh)
 
 	gh->auto_highlight = NULL;
 
-	// LAR - TEST
-	gh->char_width = get_char_width(gh);
-	gh->char_height = get_char_height(gh);
-
 	// GTK4 - TEST - DON'T KNOW IF NECESSARY FOR KEYBOARD STUFF - FIXME
-	gtk_widget_set_can_focus(GTK_WIDGET(gh), TRUE);
+//	gtk_widget_set_can_focus(widget, TRUE);
 
 	// API CHANGE - FIXME REWRITE.
 //	gtk_widget_set_events(GTK_WIDGET(gh), GDK_KEY_PRESS_MASK);
 
 	/* Init CSS */
-	// LAR - FIXME - made some fixes, but tweak etc.
 
 	/* Set context var to the widget's context at large. */
-	context = gtk_widget_get_style_context (GTK_WIDGET (gh));
+	context = gtk_widget_get_style_context (widget);
 
 	/* set up a provider so we can feed CSS through C code. */
 	provider = gtk_css_provider_new ();
@@ -2604,6 +2773,14 @@ gtk_hex_init(GtkHex *gh)
 	                                 "   border-style: solid;\n"
 	                                 "   border-width: 1px;\n"
 	                                 "   padding: 1px;\n"
+									 "   border-color: black;\n"
+#if 0
+									 "}\n"
+									 "#asciidisplay {\n"
+									 "       border-style: solid;\n"
+									 "       border-width: 2px;\n"
+									 "       border-color: blue;\n"
+#endif
 	                                 "}\n", -1);
 
 	/* add the provider to our widget's style context. */
@@ -2614,26 +2791,12 @@ gtk_hex_init(GtkHex *gh)
 	/* Initialize Adjustment */
 	gh->adj = GTK_ADJUSTMENT(gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
 
-	/* Setup a GtkBox as our base container */
-//	gh->box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-
-	/* set main box as a child of main widget */
-//	gtk_widget_set_parent (gh->box, GTK_WIDGET (gh));
-
-
-
 	/* Setup offsets widget. */
 
 	gh->offsets = gtk_drawing_area_new();
-
-	// TEST
-	gtk_widget_set_parent (gh->offsets, GTK_WIDGET (gh));
+	gtk_widget_set_parent (gh->offsets, widget);
 	gtk_widget_set_halign (gh->offsets, GTK_ALIGN_START);
 	gtk_widget_set_hexpand (gh->offsets, FALSE);
-
-	/* LAR - FIXME not sure if should leave this in - set a minimum size */
-//	gtk_widget_set_size_request (gh->offsets,
-//			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
 
 	/* Create the pango layout for the widget */
 	gh->olayout = gtk_widget_create_pango_layout (gh->offsets, "");
@@ -2645,11 +2808,10 @@ gtk_hex_init(GtkHex *gh)
 			gh,		// gpointer user_data,
 			NULL);		// GDestroyNotify destroy);
 
-	// FIXME - not sure what this buys us. Monitor.
+	// FIXME - not sure what this buys us. Monitor. - header class?
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->offsets));
 	gtk_style_context_add_class (context, "header");
 
-//	gtk_box_append (GTK_BOX(gh->box), gh->offsets);
 
 	/* hide it by default. */
 	gtk_widget_hide (gh->offsets);
@@ -2657,27 +2819,25 @@ gtk_hex_init(GtkHex *gh)
 
 
 
-	/* Setup our Hex drawing areas. */
+	/* Setup our Hex drawing area. */
 
 	gh->xdisp = gtk_drawing_area_new();
-
-	// TEST
 	gtk_widget_set_parent (gh->xdisp, GTK_WIDGET (gh));
-//	gtk_widget_set_halign (gh->xdisp, GTK_ALIGN_CENTER);
 	gtk_widget_set_hexpand (gh->xdisp, TRUE);
 
 	/* Create the pango layout for the widget */
 	gh->xlayout = gtk_widget_create_pango_layout (gh->xdisp, "");
 
-
-	// LAR - NO CAN DO - GTK4
-	// here's a test instead!
-	gtk_widget_set_can_focus (gh->xdisp, TRUE);
+	// TEST / MONITOR - not sure if needed for keyboard events. - NOT
+	// needed for mouse events.
+//	gtk_widget_set_can_focus (gh->xdisp, TRUE);
 
 	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (gh->xdisp),
 			hex_draw,	// GtkDrawingAreaDrawFunc draw_func,
 			gh,			// gpointer user_data,
 			NULL);		// GDestroyNotify destroy);
+
+
 
 	// REWRITE - LAR
 #if 0
@@ -2696,43 +2856,39 @@ gtk_hex_init(GtkHex *gh)
 					 G_CALLBACK(hex_scroll_cb), gh);
 #endif
 
-	/* Set context var to hex widget's context. */
+	/* Set context var to hex widget's context... */
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->xdisp));
-
-	/* Add view class so we get certain theme colours for free. */
+	/* ... and add view class so we get certain theme colours for free. */
 	gtk_style_context_add_class (context, "view");
-
-//	gtk_box_append (GTK_BOX(gh->box), gh->xdisp);
-	
+	gtk_style_context_add_provider (context,
+	                                GTK_STYLE_PROVIDER (provider),
+	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 	/* Setup our ASCII widget. */
-	gh->adisp = gtk_drawing_area_new();
 
-	// TEST
+	gh->adisp = gtk_drawing_area_new();
 	gtk_widget_set_parent (gh->adisp, GTK_WIDGET (gh));
 	gtk_widget_set_halign (gh->adisp, GTK_ALIGN_START);
 	gtk_widget_set_hexpand (gh->adisp, FALSE);
+	gtk_widget_set_name (gh->adisp, "asciidisplay");
 	
-	/* LAR - TEMPORARY - FIXME DON'T LEAVE IN - set a minimum size */
-#if 0
-	gtk_widget_set_size_request (gh->adisp,
-			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
-	gtk_widget_set_size_request (gh->xdisp,
-			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
-#endif
-
 	/* Create the pango layout for the widget */
 	gh->alayout = gtk_widget_create_pango_layout (gh->adisp, "");
 
-	// LAR - TEST  - dont' know if needed
-	gtk_widget_set_can_focus (GTK_WIDGET(gh->adisp), TRUE);
+	// LAR - TEST  - dont' know if needed - NOT needed for mouse clicks.
+//	gtk_widget_set_can_focus (gh->adisp, TRUE);
 
 	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (gh->adisp),
 			ascii_draw,	/* GtkDrawingAreaDrawFunc draw_func, */
 			gh,			/* gpointer user_data, */
 			NULL);		/* GDestroyNotify destroy); */
 
-//	g_signal_connect(G_OBJECT(gh->adisp), "draw",
-//					 G_CALLBACK(ascii_draw), gh);
+	/* Rinse and repeat as above for ascii widget / context / view. */
+	context = gtk_widget_get_style_context (GTK_WIDGET (gh->adisp));
+	gtk_style_context_add_class (context, "view");
+	gtk_style_context_add_provider (context,
+	                                GTK_STYLE_PROVIDER (provider),
+	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
 	// LAR - REWRITE
 #if 0
 	gtk_widget_set_events (gh->adisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK
@@ -2749,25 +2905,58 @@ gtk_hex_init(GtkHex *gh)
 					 G_CALLBACK(ascii_scroll_cb), gh);
 #endif
 
-	/* Rinse and repeat as above for ascii widget / context / view. */
-	context = gtk_widget_get_style_context (GTK_WIDGET (gh->adisp));
-	gtk_style_context_add_class (context, "view");
+	/* Set a minimum size for hex/ascii drawing areas. */
 
-//	gtk_box_append (GTK_BOX(gh->box), gh->adisp);
-	
-	g_signal_connect(G_OBJECT(gh->adj), "value-changed",
-					 G_CALLBACK(display_scrolled), gh);
+	gtk_widget_set_size_request (gh->adisp,
+			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
+	gtk_widget_set_size_request (gh->xdisp,
+			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
+
+
+	/* Connect gestures to ascii/hex drawing areas.
+	 */
+
+	/* hex widget: */
+	gesture = gtk_gesture_click_new ();
+
+	g_signal_connect (gesture, "pressed",
+			G_CALLBACK(hex_pressed_cb),
+			gh);
+	g_signal_connect (gesture, "released",
+			G_CALLBACK(hex_released_cb),
+			gh);
+	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER(gesture),
+			GTK_PHASE_BUBBLE);
+	gtk_widget_add_controller (gh->xdisp,
+			GTK_EVENT_CONTROLLER(gesture));
+
+	// TODO
+#if 0
+	/* ascii widget: */
+	gesture = gtk_gesture_click_new ();
+
+	g_signal_connect (gesture, "pressed",
+			G_CALLBACK(ascii_pressed_cb),
+			gh);
+	g_signal_connect (gesture, "pressed",
+			G_CALLBACK(ascii_released_cb),
+			gh);
+	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER(gesture),
+			GTK_PHASE_BUBBLE);
+	gtk_widget_add_controller (gh->adisp,
+			GTK_EVENT_CONTROLLER(gesture));
+#endif
 
 	/* Setup Scrollbar */
 
 	gh->scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL, gh->adj);
 	/* keep scrollbar to the right */
 	gtk_widget_set_halign (gh->scrollbar, GTK_ALIGN_END);
-//	gtk_box_append (GTK_BOX(gh->box), gh->scrollbar);
 
-	// TEST
 	gtk_widget_set_parent (gh->scrollbar, GTK_WIDGET (gh));
 
+	g_signal_connect(G_OBJECT(gh->adj), "value-changed",
+					 G_CALLBACK(display_scrolled), gh);
 }
 
 GtkWidget *gtk_hex_new(HexDocument *owner) {
@@ -3045,8 +3234,6 @@ void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl)
 	g_free(ahl);
 }
 
-// LAR - FIXME - FLAGGED FOR DELETION - I don't really want this kind of manual
-// setting of geometry values anywhere in the app.
 void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines)
 {
     gh->default_cpl = cpl;
