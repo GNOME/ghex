@@ -1007,6 +1007,34 @@ render_offsets (GtkHex *gh,
 	}
 }
 
+/* ascii / hex widget draw helper function */
+static void
+compute_scrolling (GtkHex *gh, cairo_t *cr)
+{
+	double dx, dy;
+
+	TEST_DEBUG_FUNCTION_START
+
+	dx = 0;
+	dy = (gh->top_line - gtk_adjustment_get_value (gh->adj)) * gh->char_height;
+
+	g_debug("%s: gh->top_line: %d - adj_val: %f - char_height: %d - dy: %f",
+			__func__,
+			gh->top_line, gtk_adjustment_get_value (gh->adj), gh->char_height, dy);
+
+//	gh->top_line = gtk_adjustment_get_value(gh->adj);
+
+	/* LAR - rewrite. */
+#if 0
+	gdk_window_scroll (gtk_widget_get_window (gh->xdisp), dx, dy);
+	gdk_window_scroll (gtk_widget_get_window (gh->adisp), dx, dy);
+	if (gh->offsets)
+		gdk_window_scroll (gtk_widget_get_window (gh->offsets), dx, dy);
+#endif
+
+	cairo_translate(cr, dx, dy);
+}
+
 /* draw_func for the hex drawing area
  */
 static void
@@ -1021,6 +1049,9 @@ hex_draw (GtkDrawingArea *drawing_area,
 
 	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail(GTK_IS_HEX(gh));
+
+	// TEST
+//	compute_scrolling (gh, cr);
 
 	/* Here's the idea here:  the hex drawing widget can expand at will,
 	 * and we generate our cpl as a whole and to be passed to the ascii draw
@@ -1080,6 +1111,7 @@ hex_draw (GtkDrawingArea *drawing_area,
 	render_hex_lines (gh, cr, 0, gh->vis_lines);
 }
 
+
 static void
 ascii_draw (GtkDrawingArea *drawing_area,
                            cairo_t *cr,
@@ -1093,13 +1125,12 @@ ascii_draw (GtkDrawingArea *drawing_area,
 	g_return_if_fail(GTK_IS_HEX(gh));
 
 	// TEST
+//	compute_scrolling (gh, cr);
+
 	gtk_drawing_area_set_content_width (drawing_area, gh->adisp_width);
 
 	g_debug("%s: width: %d - height: %d",
 			__func__, width, height);
-
-	g_return_if_fail(GTK_IS_HEX(gh));
-
 
 	render_ascii_lines (gh, cr, 0, gh->vis_lines);
 
@@ -1133,6 +1164,9 @@ offsets_draw (GtkDrawingArea *drawing_area,
 
 	g_return_if_fail(GTK_IS_HEX(gh));
 	TEST_DEBUG_FUNCTION_START 
+
+	// TEST
+//	compute_scrolling (gh, cr);
 
 	/* FIXME - MAGIC NUMBER - set the width to 8 + 1 = 9 characters
 	 * (this is fixed based on offset length always being 8 chars.)  */
@@ -1320,20 +1354,22 @@ recalc_displays(GtkHex *gh)
 
 /*
  * takes care of xdisp and adisp scrolling
- * connected to value_changed signal of scrollbar's GtkAdjustment
+ * connected to value-changed signal of scrollbar's GtkAdjustment
  */
 static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 	gint dx;
 	gint dy;
 
-	if ((!gtk_widget_is_drawable(gh->xdisp)) ||
-	    (!gtk_widget_is_drawable(gh->adisp)))
-		return;
+	TEST_DEBUG_FUNCTION_START
 
-	dx = 0;
-	dy = (gh->top_line - (gint)gtk_adjustment_get_value (adj)) * gh->char_height;
+	g_return_if_fail (gtk_widget_is_drawable (gh->xdisp) ||
+			gtk_widget_is_drawable (gh->adisp));
 
-	gh->top_line = (gint)gtk_adjustment_get_value(adj);
+	// TEST REMOVAL
+//	dx = 0;
+//	dy = (gh->top_line - gtk_adjustment_get_value (adj)) * gh->char_height;
+
+	gh->top_line = gtk_adjustment_get_value(adj);
 
 	/* LAR - rewrite. */
 #if 0
@@ -1345,6 +1381,11 @@ static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
 
 	gtk_hex_update_all_auto_highlights(gh, TRUE, TRUE);
 	gtk_hex_invalidate_all_highlights(gh);
+
+	// TEST FOR SCROLLING
+	gtk_widget_queue_draw (GTK_WIDGET(gh->adisp));
+	gtk_widget_queue_draw (GTK_WIDGET(gh->xdisp));
+	gtk_widget_queue_draw (GTK_WIDGET(gh->offsets));
 }
 
 /*
@@ -1364,13 +1405,39 @@ scroll_timeout_handler(GtkHex *gh)
 }
 
 /* REWRITE */
-#if 0
-static void
-hex_scroll_cb(GtkWidget *w, GdkEventScroll *event, GtkHex *gh)
+static gboolean
+scroll_cb (GtkEventControllerScroll *controller,
+               double                    dx,
+               double                    dy,
+               gpointer                  user_data)
 {
+	GtkHex *gh = GTK_HEX (user_data);
+//	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
+	guint button;
+	double old_value, new_value;
+
+	TEST_DEBUG_FUNCTION_START
+	g_return_if_fail (GTK_IS_HEX(gh));
+//	g_return_if_fail (GTK_IS_WIDGET(widget));
+
+	g_debug("%s: dx: %f - dy: %f",
+			__func__, dx, dy);
+
+	old_value = gtk_adjustment_get_value(gh->adj);
+	new_value = old_value + dy;
+
+	gtk_adjustment_set_value(gh->adj, new_value);
+
+		// OLD CODE - useless
+#if 0
 	gtk_widget_event(gh->scrollbar, (GdkEvent *)event);
-}
 #endif
+
+	/* TFM: returns true if scroll event was handled; false otherwise.
+	 */
+	return TRUE;
+}
+
 
 static void
 hex_pressed_cb (GtkGestureClick *gesture,
@@ -1756,6 +1823,179 @@ ascii_drag_update_cb (GtkGestureDrag *gesture,
 		ascii_to_pointer(gh, x, y);
 	}
 }
+
+
+static gboolean
+key_press_cb (GtkEventControllerKey *controller,
+               guint                  keyval,
+               guint                  keycode,
+               GdkModifierType        state,
+               gpointer               user_data)
+{
+	GtkHex *gh = GTK_HEX(user_data);
+	GtkWidget *widget = GTK_WIDGET(user_data);
+	gboolean ret = TRUE;
+
+	TEST_DEBUG_FUNCTION_START
+
+	hide_cursor(gh);
+
+	if (! state & GDK_SHIFT_MASK) {
+		gh->selecting = FALSE;
+	}
+	else {
+		gh->selecting = TRUE;
+	}
+
+	switch(keyval) {
+	case GDK_KEY_BackSpace:
+		if(gh->cursor_pos > 0) {
+			hex_document_set_data(gh->document, gh->cursor_pos - 1,
+								  0, 1, NULL, TRUE);
+			if (gh->selecting)
+				gh->selecting = FALSE;
+			gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
+		}
+		break;
+	case GDK_KEY_Tab:
+	case GDK_KEY_KP_Tab:
+		if (gh->active_view == VIEW_ASCII) {
+			gh->active_view = VIEW_HEX;
+		}
+		else {
+			gh->active_view = VIEW_ASCII;
+		}
+		break;
+	case GDK_KEY_Delete:
+		if(gh->cursor_pos < gh->document->file_size) {
+			hex_document_set_data(gh->document, gh->cursor_pos,
+								  0, 1, NULL, TRUE);
+			gtk_hex_set_cursor(gh, gh->cursor_pos);
+		}
+		break;
+	case GDK_KEY_Up:
+		gtk_hex_set_cursor(gh, gh->cursor_pos - gh->cpl);
+		break;
+	case GDK_KEY_Down:
+		gtk_hex_set_cursor(gh, gh->cursor_pos + gh->cpl);
+		break;
+	case GDK_KEY_Page_Up:
+		gtk_hex_set_cursor(gh, MAX(0, (gint)gh->cursor_pos - gh->vis_lines*gh->cpl));
+		break;
+	case GDK_KEY_Page_Down:
+		gtk_hex_set_cursor(gh, MIN((gint)gh->document->file_size, (gint)gh->cursor_pos + gh->vis_lines*gh->cpl));
+		break;
+	default:
+		if (state & GDK_ALT_MASK) {
+			show_cursor(gh);
+			return FALSE;
+		}
+		if(gh->active_view == VIEW_HEX)
+			switch(keyval) {
+			case GDK_KEY_Left:
+				if(!(state & GDK_SHIFT_MASK)) {
+					gh->lower_nibble = !gh->lower_nibble;
+					if(gh->lower_nibble)
+						gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
+				}
+				else {
+					gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
+				}
+				break;
+			case GDK_KEY_Right:
+				if(gh->cursor_pos >= gh->document->file_size)
+					break;
+				if(!(state & GDK_SHIFT_MASK)) {
+					gh->lower_nibble = !gh->lower_nibble;
+					if(!gh->lower_nibble)
+						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+				}
+				else {
+					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+				}
+				break;
+			default:
+				if((keyval >= '0')&&(keyval <= '9')) {
+					hex_document_set_nibble(gh->document, keyval - '0',
+											gh->cursor_pos, gh->lower_nibble,
+											gh->insert, TRUE);
+					if (gh->selecting)
+						gh->selecting = FALSE;
+					gh->lower_nibble = !gh->lower_nibble;
+					if(!gh->lower_nibble)
+						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+				}
+				else if((keyval >= 'A')&&(keyval <= 'F')) {
+					hex_document_set_nibble(gh->document, keyval - 'A' + 10,
+											gh->cursor_pos, gh->lower_nibble,
+											gh->insert, TRUE);
+					if (gh->selecting)
+						gh->selecting = FALSE;
+					gh->lower_nibble = !gh->lower_nibble;
+					if(!gh->lower_nibble)
+						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+				}
+				else if((keyval >= 'a')&&(keyval <= 'f')) {
+					hex_document_set_nibble(gh->document, keyval - 'a' + 10,
+											gh->cursor_pos, gh->lower_nibble,
+											gh->insert, TRUE);
+					if (gh->selecting)
+						gh->selecting = FALSE;
+					gh->lower_nibble = !gh->lower_nibble;
+					if(!gh->lower_nibble)
+						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+				}
+				else if((keyval >= GDK_KEY_KP_0)&&(keyval <= GDK_KEY_KP_9)) {
+					hex_document_set_nibble(gh->document, keyval - GDK_KEY_KP_0,
+											gh->cursor_pos, gh->lower_nibble,
+											gh->insert, TRUE);
+					if (gh->selecting)
+						gh->selecting = FALSE;
+					gh->lower_nibble = !gh->lower_nibble;
+					if(!gh->lower_nibble)
+						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+				}
+				else
+					ret = FALSE;
+
+				break;      
+			}
+		else if(gh->active_view == VIEW_ASCII)
+			switch(keyval) {
+			case GDK_KEY_Left:
+				gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
+				break;
+			case GDK_KEY_Right:
+				gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+				break;
+			default:
+				if(is_displayable(keyval)) {
+					hex_document_set_byte(gh->document, keyval,
+										  gh->cursor_pos, gh->insert, TRUE);
+					if (gh->selecting)
+						gh->selecting = FALSE;
+					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+				}
+				else if((keyval >= GDK_KEY_KP_0)&&(keyval <= GDK_KEY_KP_9)) {
+					hex_document_set_byte(gh->document, keyval - GDK_KEY_KP_0 + '0',
+											gh->cursor_pos, gh->insert, TRUE);
+					if (gh->selecting)
+						gh->selecting = FALSE;
+					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+				}
+				else
+					ret = FALSE;
+
+				break;
+			}
+		break;
+	}
+
+	show_cursor(gh);
+	
+	return ret;
+}
+
 
 static void
 show_offsets_widget(GtkHex *gh)
@@ -2243,6 +2483,8 @@ static void gtk_hex_finalize(GObject *gobject) {
 	 */
 	G_OBJECT_CLASS(gtk_hex_parent_class)->finalize(gobject);
 }
+
+
 
 // REWRITE FOR GESTURES/EVENT CONTROLLERS
 #if 0
@@ -2745,6 +2987,7 @@ gtk_hex_init(GtkHex *gh)
 	GtkStyleContext *context;
 
 	GtkGesture *gesture;
+	GtkEventController *controller;
 
 	gh->disp_buffer = NULL;
 	gh->default_cpl = DEFAULT_CPL;
@@ -2776,7 +3019,8 @@ gtk_hex_init(GtkHex *gh)
 	gh->auto_highlight = NULL;
 
 	// GTK4 - TEST - DON'T KNOW IF NECESSARY FOR KEYBOARD STUFF - FIXME
-//	gtk_widget_set_can_focus(widget, TRUE);
+	gtk_widget_set_can_focus (widget, TRUE);
+	gtk_widget_set_focusable (widget, TRUE);
 
 	// API CHANGE - FIXME REWRITE.
 //	gtk_widget_set_events(GTK_WIDGET(gh), GDK_KEY_PRESS_MASK);
@@ -2949,8 +3193,6 @@ gtk_hex_init(GtkHex *gh)
 	g_signal_connect (gesture, "released",
 			G_CALLBACK(hex_released_cb),
 			gh);
-	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER(gesture),
-			GTK_PHASE_BUBBLE);
 	gtk_widget_add_controller (gh->xdisp,
 			GTK_EVENT_CONTROLLER(gesture));
 
@@ -2958,16 +3200,14 @@ gtk_hex_init(GtkHex *gh)
 	gesture = gtk_gesture_drag_new ();
 
 	g_signal_connect (gesture, "drag-begin",
-			G_CALLBACK (hex_drag_begin_cb),
+			G_CALLBACK(hex_drag_begin_cb),
 			gh);
 	g_signal_connect (gesture, "drag-end",
-			G_CALLBACK (hex_drag_end_cb),
+			G_CALLBACK(hex_drag_end_cb),
 			gh);
 	g_signal_connect (gesture, "drag-update",
 			G_CALLBACK (hex_drag_update_cb),
 			gh);
-	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER(gesture),
-			GTK_PHASE_BUBBLE);
 	gtk_widget_add_controller (gh->xdisp,
 			GTK_EVENT_CONTROLLER(gesture));
 
@@ -2982,8 +3222,6 @@ gtk_hex_init(GtkHex *gh)
 	g_signal_connect (gesture, "released",
 			G_CALLBACK(ascii_released_cb),
 			gh);
-	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER(gesture),
-			GTK_PHASE_BUBBLE);
 	gtk_widget_add_controller (gh->adisp,
 			GTK_EVENT_CONTROLLER(gesture));
 
@@ -2993,21 +3231,41 @@ gtk_hex_init(GtkHex *gh)
 // TODO IF NEEDED
 #if 0
 	g_signal_connect (gesture, "drag-begin",
-			G_CALLBACK (ascii_drag_begin_cb),
+			G_CALLBACK(ascii_drag_begin_cb),
 			gh);
 	g_signal_connect (gesture, "drag-end",
-			G_CALLBACK (ascii_drag_end_cb),
+			G_CALLBACK(ascii_drag_end_cb),
 			gh);
 #endif
 
 	g_signal_connect (gesture, "drag-update",
-			G_CALLBACK (ascii_drag_update_cb),
+			G_CALLBACK(ascii_drag_update_cb),
 			gh);
-	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER(gesture),
-			GTK_PHASE_BUBBLE);
 	gtk_widget_add_controller (gh->adisp,
 			GTK_EVENT_CONTROLLER(gesture));
 
+	/* Event controller - scrolling */
+
+	controller =
+		gtk_event_controller_scroll_new
+			(GTK_EVENT_CONTROLLER_SCROLL_VERTICAL |
+			 GTK_EVENT_CONTROLLER_SCROLL_DISCRETE);
+
+	g_signal_connect (controller, "scroll",
+			G_CALLBACK(scroll_cb),
+			gh);
+	gtk_widget_add_controller (widget,
+			GTK_EVENT_CONTROLLER(controller));
+
+	/* Event controller - keyboard */
+	
+	controller = gtk_event_controller_key_new ();
+
+	g_signal_connect(controller, "key-pressed",
+			G_CALLBACK(key_press_cb),
+			gh);
+	gtk_widget_add_controller (widget,
+			GTK_EVENT_CONTROLLER(controller));
 
 	/* Setup Scrollbar */
 
