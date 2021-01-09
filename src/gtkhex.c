@@ -1848,6 +1848,11 @@ key_press_cb (GtkEventControllerKey *controller,
 	}
 
 	switch(keyval) {
+		// TEST
+	case GDK_KEY_F12:
+		g_debug("F12 PRESSED - TESTING CLIPBOARD COPY");
+		gtk_hex_copy_to_clipboard (gh);
+		break;
 	case GDK_KEY_BackSpace:
 		if(gh->cursor_pos > 0) {
 			hex_document_set_data(gh->document, gh->cursor_pos - 1,
@@ -2076,14 +2081,19 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 }
 
 static void
-bytes_changed(GtkHex *gh, gint start, gint end)
+bytes_changed(GtkHex *gh, int start, int end)
 {
-	gint start_line = start/gh->cpl - gh->top_line;
-	gint end_line = end/gh->cpl - gh->top_line;
+	int start_line;
+	int end_line;
+
+	g_return_if_fail(gh->cpl);	/* check for divide-by-zero issues */
+
+	start_line = start/gh->cpl - gh->top_line;
+	start_line = MAX(start_line, 0);
+
+	end_line = end/gh->cpl - gh->top_line;
 
 	g_return_if_fail(end_line >=0 && start_line <= gh->vis_lines);
-
-	start_line = MAX(start_line, 0);
 
     invalidate_hex_lines (gh, start_line, end_line);
     invalidate_ascii_lines (gh, start_line, end_line);
@@ -2411,12 +2421,42 @@ void gtk_hex_paste_from_clipboard(GtkHex *gh)
 	g_signal_emit_by_name(G_OBJECT(gh), "paste-clipboard");
 }
 
-static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
+static void
+gtk_hex_real_copy_to_clipboard (GtkHex *gh)
 {
-	// LAR - REWRITE FOR GTK4
-	(void)gh;
+	GtkWidget *widget = GTK_WIDGET(gh);
+	GdkClipboard *clipboard;
+	int start_pos, end_pos;
 
-	NOT_IMPLEMENTED
+	TEST_DEBUG_FUNCTION_START
+
+	start_pos = MIN(gh->selection.start, gh->selection.end);
+	end_pos = MAX(gh->selection.start, gh->selection.end);
+
+	clipboard = gtk_widget_get_clipboard (widget);
+
+	if(start_pos != end_pos) {
+		char *text;
+		char *cp;
+		
+		text = hex_document_get_data(gh->document,
+				start_pos,
+				end_pos - start_pos);
+
+		// TEST
+
+		for (cp = text; *cp != '\0'; ++cp)
+		{
+			if (! is_displayable(*cp))
+				*cp = '?';
+		}
+
+		printf("%s\n", text);
+
+		gdk_clipboard_set_text (clipboard, text);
+
+		g_free(text);
+	}
 
 #if 0
 	gint start_pos; 
@@ -3021,6 +3061,9 @@ gtk_hex_init(GtkHex *gh)
 	// GTK4 - TEST - DON'T KNOW IF NECESSARY FOR KEYBOARD STUFF - FIXME
 	gtk_widget_set_can_focus (widget, TRUE);
 	gtk_widget_set_focusable (widget, TRUE);
+
+	gtk_widget_set_vexpand (widget, TRUE);
+	gtk_widget_set_hexpand (widget, TRUE);
 
 	// API CHANGE - FIXME REWRITE.
 //	gtk_widget_set_events(GTK_WIDGET(gh), GDK_KEY_PRESS_MASK);

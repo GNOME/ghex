@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim:ts=4 sw=4
+-->
+
+<!-- just a test. -->
+<interface>
+	<menu id="hamburger_menu">
+		<section>
+			<item>
+				<attribute name="label" translatable="yes">_Open</attribute>
+				<attribute name="action">ghex.open</attribute>
+			</item>
+			<item>
+				<attribute name="label" translatable="yes">_Save</attribute>
+				<attribute name="action">ghex.save</attribute>
+			</item>
+			<item>
+				<attribute name="label" translatable="yes">Save _As</attribute>
+				<attribute name="action">ghex.save-as</attribute>
+			</item>
+		</section>
+		<section>
+			<item>
+				<attribute name="label" translatable="yes">_About GHex</attribute>
+				<attribute name="action">app.about</attribute>
+			</item>
+		</section>
+	</menu>
+
+	<object class="GtkApplicationWindow" id="main_window">
+		<property name="title" translatable="yes">GHex</property>
+		<property name="default-width">800</property>
+		<property name="default-height">600</property>
+		<!-- FIXME - this is a standard XDG icon name as a placeholder for now.
+		Replace with the GHex icon. -->
+		<property name="icon-name">document-open</property>
+
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+
+				<child>
+					<object class="GtkHeaderBar" id="headerbar">
+						<property name="show-title-buttons">false</property>
+
+						<child>
+							<object class="GtkButton">
+								<property name="valign">center</property>
+								<property name="icon-name">document-open</property>
+								<property name="action-name">ghex.open</property>
+								<property name="tooltip-text" translatable="yes">Open a file for hex editing</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkButton">
+								<property name="valign">center</property>
+								<property name="icon-name">document-save</property>
+								<property name="action-name">ghex.save</property>
+								<property name="tooltip-text" translatable="yes">Save file to disk</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkButton">
+								<property name="valign">center</property>
+								<property name="icon-name">edit-undo</property>
+								<property name="action-name">ghex.undo</property>
+								<property name="tooltip-text" translatable="yes">Undo last action</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkButton">
+								<property name="valign">center</property>
+								<property name="icon-name">edit-redo</property>
+								<property name="action-name">ghex.redo</property>
+								<property name="tooltip-text" translatable="yes">Redo last action</property>
+							</object>
+						</child>
+					
+						<child type="end">
+							<object class="GtkMenuButton" id="hamburger_menu_button">
+								<property name="valign">center</property>
+								<property name="menu-model">hamburger_menu</property>
+								<property name="icon-name">open-menu-symbolic</property>
+								<accessibility>
+									<property name="label" translatable="yes">Main menu</property>
+								</accessibility>
+							</object>
+						</child>
+
+					</object>
+				</child>
+
+				<child>
+					<object class="GtkBox" id="child_box">
+						<property name="homogeneous">true</property>
+					</object>
+				</child>
+			</object>
+		</child>
+	</object>
+</interface>

@@ -1,40 +1,49 @@
+/* vim: colorcolumn=80 tw=4 ts=4
+ */
+
 #include <gtkhex.h>
 
 static void
 activate (GtkApplication *app,
-          gpointer        user_data)
+				gpointer user_data)
 {
-  GtkWidget *window;
-  HexDocument *doc;
-  GtkWidget *hex;
+	GtkWidget *window;
+	GtkWidget *box;
+	GtkBuilder *builder;
+	GtkWidget *hex;
+	HexDocument *doc;
 
-  window = gtk_application_window_new (app);
-  gtk_window_set_title (GTK_WINDOW (window), "Window");
-  gtk_window_set_default_size (GTK_WINDOW (window), 640, 480);
+	(void)user_data;	/* unused for now. */
 
-  doc = hex_document_new_from_file ("main.c");
-  hex = gtk_hex_new (doc);
-//  gtk_hex_set_geometry (GTK_HEX (hex), 32, 1024);
-  gtk_hex_show_offsets (GTK_HEX (hex), TRUE);
-  gtk_hex_set_cursor (GTK_HEX(hex), 25);
-//  gtk_hex_set_selection (GTK_HEX(hex), 20, 30);
+	builder = gtk_builder_new_from_file ("application.ui");
+	doc = hex_document_new_from_file ("main.c");
+	hex = gtk_hex_new (doc);
+	gtk_hex_show_offsets (GTK_HEX(hex), TRUE);
 
-  gtk_window_set_child (GTK_WINDOW (window), hex);
+	box = GTK_WIDGET(gtk_builder_get_object(builder, "child_box"));
+	window = GTK_WIDGET(gtk_builder_get_object(builder, "main_window"));
 
-  gtk_widget_show (window);
+	gtk_box_append (GTK_BOX(box), hex);
+
+	gtk_window_set_application (GTK_WINDOW(window), app);
+
+	gtk_widget_show (window);
+
+	g_object_unref (builder);
 }
 
 int
-main (int    argc,
-      char **argv)
+main (int argc, char *argv[])
 {
-  GtkApplication *app;
-  int status;
+	GtkApplication *app;
+	int status;
 
-  app = gtk_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
-  g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
-  status = g_application_run (G_APPLICATION (app), argc, argv);
-  g_object_unref (app);
+	app = gtk_application_new("org.gtk.example", G_APPLICATION_FLAGS_NONE);
+	g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
 
-  return status;
+	status = g_application_run (G_APPLICATION(app), argc, argv);
+
+	g_object_unref(app);
+
+	return status;
 }
