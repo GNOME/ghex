@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- vim:ts=4 sw=4
+<!-- vim:ts=4 sw=4 foldmethod=indent
 -->
 
-<!-- just a test. -->
 <interface>
 	<menu id="hamburger_menu">
+		<!-- "FILE" -->
 		<section>
-			<item>
-				<attribute name="label" translatable="yes">_Open</attribute>
-				<attribute name="action">ghex.open</attribute>
-			</item>
 			<item>
 				<attribute name="label" translatable="yes">_Save</attribute>
 				<attribute name="action">ghex.save</attribute>
@@ -18,12 +14,90 @@
 				<attribute name="label" translatable="yes">Save _As</attribute>
 				<attribute name="action">ghex.save-as</attribute>
 			</item>
+			<item>
+				<attribute name="label" translatable="yes">_Revert</attribute>
+				<attribute name="action">ghex.revert</attribute>
+			</item>
 		</section>
+
 		<section>
 			<item>
-				<attribute name="label" translatable="yes">_About GHex</attribute>
-				<attribute name="action">app.about</attribute>
+				<attribute name="label" translatable="yes">_Print</attribute>
+				<attribute name="action">ghex.print</attribute>
 			</item>
+			<item>
+				<attribute name="label" translatable="yes">Print Previe_w</attribute>
+				<attribute name="action">ghex.print-preview</attribute>
+			</item>
+		</section>
+
+		<!-- OTHER COMMON TASKS -->
+		<section>
+			<item>
+				<attribute name="label" translatable="yes">_Insert Mode</attribute>
+				<attribute name="icon">insert-text-symbolic</attribute>
+				<attribute name="action">ghex.insert</attribute>
+			</item>
+
+			<item>
+				<attribute name="label" translatable="yes">_Go to Byte</attribute>
+				<attribute name="icon">go-jump-symbolic</attribute>
+				<attribute name="action">ghex.goto</attribute>
+			</item>
+		</section>
+
+
+		<!-- SUBMENUS -->
+		<section>
+
+			<!-- TOOLS -->
+			<submenu>
+				<attribute name="label" translatable="yes">_Tools</attribute>
+				<item>
+					<attribute name="label" translatable="yes">_Character Table</attribute>
+					<attribute name="action">ghex.goto</attribute>
+				</item>
+				<item>
+					<attribute name="label" translatable="yes">_Base Converter</attribute>
+					<attribute name="action">ghex.goto</attribute>
+				</item>
+				<item>
+					<attribute name="label" translatable="yes">_Type Conversion</attribute>
+					<attribute name="action">ghex.goto</attribute>
+				</item>
+			</submenu>
+
+			<!-- GROUP DATA AS -->
+			<submenu>
+				<attribute name="label" translatable="yes">G_roup Data As</attribute>
+				<item>
+					<attribute name="label" translatable="yes">_Bytes</attribute>
+					<attribute name="action">ghex.goto</attribute>
+				</item>
+				<item>
+					<attribute name="label" translatable="yes">_Words</attribute>
+					<attribute name="action">ghex.goto</attribute>
+				</item>
+				<item>
+					<attribute name="label" translatable="yes">_Longwords</attribute>
+					<attribute name="action">ghex.goto</attribute>
+				</item>
+			</submenu>
+		</section>
+
+		<!-- PREFS AND ABOUT -->
+		<section>
+			<item>
+				<attribute name="label" translatable="yes">_Preferences</attribute>
+				<attribute name="icon">preferences-other-symbolic</attribute>
+				<attribute name="action">ghex.preferences</attribute>
+			</item>
+
+			<item>
+				<attribute name="label" translatable="yes">_About GHex</attribute>
+				<attribute name="action">ghex.about</attribute>
+			</item>
+
 		</section>
 	</menu>
 
@@ -31,74 +105,97 @@
 		<property name="title" translatable="yes">GHex</property>
 		<property name="default-width">800</property>
 		<property name="default-height">600</property>
-		<!-- FIXME - this is a standard XDG icon name as a placeholder for now.
-		Replace with the GHex icon. -->
-		<property name="icon-name">document-open</property>
+		<property name="icon-name">org.gnome.GHex</property>
+
+		<child type="titlebar">
+			<object class="GtkHeaderBar" id="headerbar">
+				<property name="show-title-buttons">true</property>
+
+				<child>
+					<object class="GtkButton">
+						<property name="valign">center</property>
+						<property name="label">Open</property>
+						<property name="action-name">ghex.open</property>
+						<property name="tooltip-text" translatable="yes">Open a file for hex editing</property>
+					</object>
+				</child>
+
+				<child type="end">
+					<object class="GtkMenuButton" id="hamburger_menu_button">
+						<property name="valign">center</property>
+						<property name="menu-model">hamburger_menu</property>
+						<property name="icon-name">open-menu-symbolic</property>
+						<accessibility>
+							<property name="label" translatable="yes">Main menu</property>
+						</accessibility>
+					</object>
+				</child>
+
+				<child type="end">
+					<object class="GtkButton">
+						<property name="valign">center</property>
+						<property name="icon-name">edit-find-symbolic</property>
+						<property name="action-name">ghex.find</property>
+						<property name="tooltip-text" translatable="yes">Find and replace</property>
+					</object>
+				</child>
+
+			</object>
+		</child>
 
 		<child>
 			<object class="GtkBox">
 				<property name="orientation">vertical</property>
 
+				<!-- IF WANNA ADD A TABBED INTERFACE - DO SOMETHING LIKE THIS
 				<child>
-					<object class="GtkHeaderBar" id="headerbar">
-						<property name="show-title-buttons">false</property>
-
+					<object class="GtkNotebook">
+						<property name="visible">false</property>
 						<child>
-							<object class="GtkButton">
-								<property name="valign">center</property>
-								<property name="icon-name">document-open</property>
-								<property name="action-name">ghex.open</property>
-								<property name="tooltip-text" translatable="yes">Open a file for hex editing</property>
+							<object class="GtkLabel" id="notebook-content">
+								<property name="label">Content</property>
 							</object>
 						</child>
-
-						<child>
-							<object class="GtkButton">
-								<property name="valign">center</property>
-								<property name="icon-name">document-save</property>
-								<property name="action-name">ghex.save</property>
-								<property name="tooltip-text" translatable="yes">Save file to disk</property>
+						<child type="tab">
+							<object class="GtkLabel" id="notebook-tab">
+								<property name="label">Tab</property>
 							</object>
 						</child>
 
 						<child>
-							<object class="GtkButton">
-								<property name="valign">center</property>
-								<property name="icon-name">edit-undo</property>
-								<property name="action-name">ghex.undo</property>
-								<property name="tooltip-text" translatable="yes">Undo last action</property>
+							<object class="GtkLabel" id="notebook-content2">
+								<property name="label">Contentasdfafdf</property>
 							</object>
 						</child>
-
-						<child>
-							<object class="GtkButton">
-								<property name="valign">center</property>
-								<property name="icon-name">edit-redo</property>
-								<property name="action-name">ghex.redo</property>
-								<property name="tooltip-text" translatable="yes">Redo last action</property>
+						<child type="tab">
+							<object class="GtkLabel" id="notebook-tab2">
+								<property name="label">Tabasfasd</property>
 							</object>
 						</child>
-					
-						<child type="end">
-							<object class="GtkMenuButton" id="hamburger_menu_button">
-								<property name="valign">center</property>
-								<property name="menu-model">hamburger_menu</property>
-								<property name="icon-name">open-menu-symbolic</property>
-								<accessibility>
-									<property name="label" translatable="yes">Main menu</property>
-								</accessibility>
-							</object>
-						</child>
-
 					</object>
 				</child>
+				-->
 
 				<child>
 					<object class="GtkBox" id="child_box">
-						<property name="homogeneous">true</property>
+						<property name="orientation">horizontal</property>
+						<property name="homogeneous">false</property>
+						<child>
+							<object class="GtkScrollbar" id="scrollbar">
+								<property name="orientation">vertical</property>
+								<property name="hexpand">false</property>
+								<property name="halign">end</property>
+							</object>
+						</child>
 					</object>
 				</child>
+
+				<child>
+					<object class="GtkStatusbar" id="statusbar" />
+				</child>
 			</object>
+
 		</child>
 	</object>
+
 </interface>

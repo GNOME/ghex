@@ -7,10 +7,12 @@ static void
 activate (GtkApplication *app,
 				gpointer user_data)
 {
+	GtkAdjustment *adj;
 	GtkWidget *window;
 	GtkWidget *box;
 	GtkBuilder *builder;
 	GtkWidget *hex;
+	GtkScrollbar *scrollbar;
 	HexDocument *doc;
 
 	(void)user_data;	/* unused for now. */
@@ -20,10 +22,14 @@ activate (GtkApplication *app,
 	hex = gtk_hex_new (doc);
 	gtk_hex_show_offsets (GTK_HEX(hex), TRUE);
 
-	box = GTK_WIDGET(gtk_builder_get_object(builder, "child_box"));
-	window = GTK_WIDGET(gtk_builder_get_object(builder, "main_window"));
+	box = GTK_WIDGET(gtk_builder_get_object (builder, "child_box"));
+	window = GTK_WIDGET(gtk_builder_get_object (builder, "main_window"));
+	scrollbar = GTK_SCROLLBAR(gtk_builder_get_object (builder, "scrollbar"));
+	adj = gtk_hex_get_adjustment (GTK_HEX(hex));
 
-	gtk_box_append (GTK_BOX(box), hex);
+	gtk_scrollbar_set_adjustment (scrollbar, adj);
+
+	gtk_box_prepend (GTK_BOX(box), hex);
 
 	gtk_window_set_application (GTK_WINDOW(window), app);
 

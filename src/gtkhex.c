@@ -145,7 +145,6 @@ struct _GtkHex
 
 	GtkWidget *xdisp, *adisp;	/* DrawingArea */
 	GtkWidget *offsets;			/* DrawingArea */
-	GtkWidget *scrollbar;
 
 	PangoLayout *xlayout, *alayout, *olayout;
 
@@ -1007,34 +1006,6 @@ render_offsets (GtkHex *gh,
 	}
 }
 
-/* ascii / hex widget draw helper function */
-static void
-compute_scrolling (GtkHex *gh, cairo_t *cr)
-{
-	double dx, dy;
-
-	TEST_DEBUG_FUNCTION_START
-
-	dx = 0;
-	dy = (gh->top_line - gtk_adjustment_get_value (gh->adj)) * gh->char_height;
-
-	g_debug("%s: gh->top_line: %d - adj_val: %f - char_height: %d - dy: %f",
-			__func__,
-			gh->top_line, gtk_adjustment_get_value (gh->adj), gh->char_height, dy);
-
-//	gh->top_line = gtk_adjustment_get_value(gh->adj);
-
-	/* LAR - rewrite. */
-#if 0
-	gdk_window_scroll (gtk_widget_get_window (gh->xdisp), dx, dy);
-	gdk_window_scroll (gtk_widget_get_window (gh->adisp), dx, dy);
-	if (gh->offsets)
-		gdk_window_scroll (gtk_widget_get_window (gh->offsets), dx, dy);
-#endif
-
-	cairo_translate(cr, dx, dy);
-}
-
 /* draw_func for the hex drawing area
  */
 static void
@@ -1049,9 +1020,6 @@ hex_draw (GtkDrawingArea *drawing_area,
 
 	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail(GTK_IS_HEX(gh));
-
-	// TEST
-//	compute_scrolling (gh, cr);
 
 	/* Here's the idea here:  the hex drawing widget can expand at will,
 	 * and we generate our cpl as a whole and to be passed to the ascii draw
@@ -1124,9 +1092,6 @@ ascii_draw (GtkDrawingArea *drawing_area,
 	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail(GTK_IS_HEX(gh));
 
-	// TEST
-//	compute_scrolling (gh, cr);
-
 	gtk_drawing_area_set_content_width (drawing_area, gh->adisp_width);
 
 	g_debug("%s: width: %d - height: %d",
@@ -1164,9 +1129,6 @@ offsets_draw (GtkDrawingArea *drawing_area,
 
 	g_return_if_fail(GTK_IS_HEX(gh));
 	TEST_DEBUG_FUNCTION_START 
-
-	// TEST
-//	compute_scrolling (gh, cr);
 
 	/* FIXME - MAGIC NUMBER - set the width to 8 + 1 = 9 characters
 	 * (this is fixed based on offset length always being 8 chars.)  */
@@ -1347,42 +1309,34 @@ recalc_displays(GtkHex *gh)
 	                          1,                 /* step increment */
 	                          gh->vis_lines - 1, /* page increment */
 	                          gh->vis_lines      /* page size */);
-
-	g_signal_emit_by_name(G_OBJECT(gh->adj), "changed");
-	g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
 }
 
 /*
  * takes care of xdisp and adisp scrolling
  * connected to value-changed signal of scrollbar's GtkAdjustment
  */
-static void display_scrolled(GtkAdjustment *adj, GtkHex *gh) {
+static void
+display_scrolled(GtkAdjustment *adj, GtkHex *gh)
+{
 	gint dx;
 	gint dy;
 
 	TEST_DEBUG_FUNCTION_START
 
-	g_return_if_fail (gtk_widget_is_drawable (gh->xdisp) ||
+	g_return_if_fail (gtk_widget_is_drawable (gh->xdisp) &&
 			gtk_widget_is_drawable (gh->adisp));
 
-	// TEST REMOVAL
-//	dx = 0;
-//	dy = (gh->top_line - gtk_adjustment_get_value (adj)) * gh->char_height;
+	g_debug("%s: ADJ: %f",
+			__func__,
+			gtk_adjustment_get_page_size (gh->adj));
 
 	gh->top_line = gtk_adjustment_get_value(adj);
-
-	/* LAR - rewrite. */
-#if 0
-	gdk_window_scroll (gtk_widget_get_window (gh->xdisp), dx, dy);
-	gdk_window_scroll (gtk_widget_get_window (gh->adisp), dx, dy);
-	if (gh->offsets)
-		gdk_window_scroll (gtk_widget_get_window (gh->offsets), dx, dy);
-#endif
 
 	gtk_hex_update_all_auto_highlights(gh, TRUE, TRUE);
 	gtk_hex_invalidate_all_highlights(gh);
 
-	// TEST FOR SCROLLING
+	// TEST FOR SCROLLING - yes it's needed.. not the best appraoch, but for
+	// now it works.
 	gtk_widget_queue_draw (GTK_WIDGET(gh->adisp));
 	gtk_widget_queue_draw (GTK_WIDGET(gh->xdisp));
 	gtk_widget_queue_draw (GTK_WIDGET(gh->offsets));
@@ -1420,18 +1374,10 @@ scroll_cb (GtkEventControllerScroll *controller,
 	g_return_if_fail (GTK_IS_HEX(gh));
 //	g_return_if_fail (GTK_IS_WIDGET(widget));
 
-	g_debug("%s: dx: %f - dy: %f",
-			__func__, dx, dy);
-
 	old_value = gtk_adjustment_get_value(gh->adj);
 	new_value = old_value + dy;
 
 	gtk_adjustment_set_value(gh->adj, new_value);
-
-		// OLD CODE - useless
-#if 0
-	gtk_widget_event(gh->scrollbar, (GdkEvent *)event);
-#endif
 
 	/* TFM: returns true if scroll event was handled; false otherwise.
 	 */
@@ -2054,8 +2000,6 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
 			gtk_adjustment_set_step_increment(gh->adj, 1);
 			gtk_adjustment_set_page_increment(gh->adj, gh->vis_lines - 1);
 			gtk_adjustment_set_page_size(gh->adj, gh->vis_lines);
-			g_signal_emit_by_name(G_OBJECT(gh->adj), "changed");
-			g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
 		}
 	}
 
@@ -2717,90 +2661,6 @@ static gboolean gtk_hex_button_release(GtkWidget *w, GdkEventButton *event) {
 }
 #endif
 
-// COMMENTING OUT FOR NOW BECAUSE NOT USED - GETS CONFUSING 
-#if 0
-/* 
- * recalculate the width of both displays and reposition and resize all
- * the children widgets and adjust the scrollbar after resizing
- * connects to the size_allocate signal of the GtkHex widget
- */
-static void
-gtk_hex_size_allocate (GtkWidget *widget,
-		int width,
-		int height,
-		int baseline)
-{
-	GtkHex *gh = GTK_HEX(widget);
-	GtkAllocation my_alloc = { 0 };
-	GtkStyleContext *context;
-	GtkBorder padding;
-	GtkBorder border;
-
-	TEST_DEBUG_FUNCTION_START 
-
-	g_debug("%s: width: %d - height: %d - baseline: %d",
-			__func__, width, height, baseline);
-
-	// LAR - TEST BASED ON OLD CODE
-	hide_cursor(gh);
-
-	/* recalculate displays - get sizing for gh->{x,a}disb, etc. */
-	recalc_displays(gh, width, height);
-
-	/* pull our widget's style context so we can grab the border & padding */
-	context = gtk_widget_get_style_context (widget);
-
-	gtk_style_context_get_padding (context, &padding);
-	gtk_style_context_get_border (context, &border);
-
-	/* fill up allocation with initial values. */
-
-	my_alloc.x = border.left + padding.left;
-	my_alloc.y = border.top + padding.top;
-	my_alloc.height = MAX (height - border.top - border.bottom - padding.top -
-							padding.bottom,
-						1);
-
-	/* First up:  the offsets widget. */
-
-	if (gh->show_offsets)
-	{
-		my_alloc.width = 9 * gh->char_width;
-		
-		gtk_widget_size_allocate(gh->offsets, &my_alloc, baseline);
-
-		my_alloc.x += my_alloc.width + padding.left + padding.right + 
-			border.left + border.right;
-	}
-
-	/* Next up: the hex widget.
-	 * Gear up the alloc's width to be the xdisp_width previously calc'd: */
-	my_alloc.width = gh->xdisp_width;
-
-	/* .. and place the hex widget accordingly. */
-	gtk_widget_size_allocate(gh->xdisp, &my_alloc, baseline);
-
-	/* Next up: the scrollbar. */
-	my_alloc.x = width - border.right - padding.right;
-	my_alloc.y = border.top;
-	my_alloc.width = width;
-	my_alloc.height = MAX(height - border.top - border.bottom, 1);
-	
-	gtk_widget_size_allocate(gh->scrollbar, &my_alloc, baseline);
-
-	/* lastly: ascii widget. */
-	my_alloc.x -= gh->adisp_width + padding.left;
-	my_alloc.y = border.top + padding.top;
-	my_alloc.width = gh->adisp_width;
-	my_alloc.height = MAX (height - border.top - border.bottom - padding.top -
-							padding.bottom,
-						1);
-
-	gtk_widget_size_allocate(gh->adisp, &my_alloc, baseline);
-
-	show_cursor(gh);
-}
-#endif
 
 static void
 gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
@@ -2838,11 +2698,8 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 	g_debug("%s: width: %f - height: %f",
 			__func__, width, height);
 
-
 	// TEST for trying render_xc
 	show_cursor(gh);
-
-
 
 	/* queue draw functions for drawing areas - order matters here as
 	 * we're pegging certain elements of the ascii widget being drawn
@@ -2867,57 +2724,6 @@ static void gtk_hex_document_changed(HexDocument* doc, gpointer change_data,
     gtk_hex_real_data_changed (GTK_HEX(data), change_data);
 }
 
-
-static void gtk_hex_size_request(GtkWidget *w, GtkRequisition *req) {
-	GtkBorder padding;
-	GtkHex *gh = GTK_HEX(w);
-	GtkRequisition sb_req;
-	GtkStateFlags state;
-	GtkStyleContext *context;
-
-	context = gtk_widget_get_style_context (w);
-	state = gtk_widget_get_state_flags (w);
-	// API CHANGE
-//	gtk_style_context_get_padding (context, state, &padding);
-	gtk_style_context_get_padding (context, &padding);
-
-	gtk_widget_get_preferred_size (gh->scrollbar, &sb_req, NULL);
-	// API CHANGE
-//	req->width = 2 * padding.left + 2 * padding.right + 2 * gtk_container_get_border_width (GTK_CONTAINER (w)) +
-	req->width = 2 * padding.left + 2 * padding.right + 20 +	/* DUMB TEST */
-		sb_req.width + gh->char_width * (gh->default_cpl + (gh->default_cpl - 1) /
-										 gh->group_type);
-	if(gh->show_offsets)
-		req->width += padding.left + padding.right + 9 * gh->char_width;
-	req->height = gh->default_lines * gh->char_height + padding.top + padding.bottom +
-		// API CHANGE 
-//		2*gtk_container_get_border_width(GTK_CONTAINER(w));
-		20;		// LAR - DUMB TEST
-}
-
-static void
-gtk_hex_get_preferred_width (GtkWidget *widget,
-                             gint      *minimal_width,
-                             gint      *natural_width)
-{
-    GtkRequisition requisition;
-
-    gtk_hex_size_request (widget, &requisition);
-
-    *minimal_width = *natural_width = requisition.width;
-}
-
-static void
-gtk_hex_get_preferred_height (GtkWidget *widget,
-                              gint      *minimal_height,
-                              gint      *natural_height)
-{
-    GtkRequisition requisition;
-
-    gtk_hex_size_request (widget, &requisition);
-
-    *minimal_height = *natural_height = requisition.height;
-}
 
 static void
 gtk_hex_class_init(GtkHexClass *klass)
@@ -3079,10 +2885,10 @@ gtk_hex_init(GtkHex *gh)
 									CSS_NAME " {\n"
 									 "   font-family: Monospace;\n"
 									 "   font-size: 12pt;\n"
-	                                 "   border-style: solid;\n"
-	                                 "   border-width: 1px;\n"
-	                                 "   padding: 1px;\n"
-									 "   border-color: black;\n"
+//	                                 "   border-style: solid;\n"
+//	                                 "   border-width: 1px;\n"
+	                                 "   padding: 6px;\n"
+//									 "   border-color: black;\n"
 #if 0
 									 "}\n"
 									 "#asciidisplay {\n"
@@ -3098,7 +2904,8 @@ gtk_hex_init(GtkHex *gh)
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 	/* Initialize Adjustment */
-	gh->adj = GTK_ADJUSTMENT(gtk_adjustment_new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+
+	gh->adj = gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
 	/* Setup offsets widget. */
 
@@ -3310,13 +3117,7 @@ gtk_hex_init(GtkHex *gh)
 	gtk_widget_add_controller (widget,
 			GTK_EVENT_CONTROLLER(controller));
 
-	/* Setup Scrollbar */
-
-	gh->scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL, gh->adj);
-	/* keep scrollbar to the right */
-	gtk_widget_set_halign (gh->scrollbar, GTK_ALIGN_END);
-
-	gtk_widget_set_parent (gh->scrollbar, GTK_WIDGET (gh));
+	/* Connect signal for adjustment */
 
 	g_signal_connect(G_OBJECT(gh->adj), "value-changed",
 					 G_CALLBACK(display_scrolled), gh);
@@ -3392,11 +3193,10 @@ gtk_hex_set_cursor(GtkHex *gh, gint index) {
 		if(y >= gh->top_line + gh->vis_lines) {
 			gtk_adjustment_set_value(gh->adj, MIN(y - gh->vis_lines + 1, gh->lines - gh->vis_lines));
 			gtk_adjustment_set_value(gh->adj, MAX(gtk_adjustment_get_value(gh->adj), 0));
-			g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
+
 		}
 		else if (y < gh->top_line) {
 			gtk_adjustment_set_value(gh->adj, y);
-			g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
 		}      
 
 		if(index == gh->document->file_size)
@@ -3446,13 +3246,11 @@ void gtk_hex_set_cursor_xy(GtkHex *gh, gint x, gint y) {
 		if(y >= gh->top_line + gh->vis_lines) {
 			gtk_adjustment_set_value(gh->adj, MIN(y - gh->vis_lines + 1, gh->lines - gh->vis_lines));
 			gtk_adjustment_set_value(gh->adj, MAX(0, gtk_adjustment_get_value(gh->adj)));
-			g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
 		}
 		else if (y < gh->top_line) {
 			gtk_adjustment_set_value(gh->adj, y);
-			g_signal_emit_by_name(G_OBJECT(gh->adj), "value-changed");
 		}      
-		
+	
 		g_signal_emit_by_name(G_OBJECT(gh), "cursor-moved");
 		
 		if(gh->selecting) {
@@ -3598,4 +3396,12 @@ void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines)
 {
     gh->default_cpl = cpl;
     gh->default_lines = vis_lines;
+}
+
+GtkAdjustment *
+gtk_hex_get_adjustment(GtkHex *gh)
+{
+	g_return_if_fail (GTK_IS_ADJUSTMENT(gh->adj));
+
+	return gh->adj;
 }
