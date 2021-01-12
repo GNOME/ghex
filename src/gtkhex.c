@@ -78,6 +78,7 @@
 #define SCROLL_TIMEOUT 100
 
 #define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
+#define is_copyable(c) (is_displayable(c) || (c) == 0x0a || (c) == 0x0d)
 
 enum {
 	CURSOR_MOVED_SIGNAL,
@@ -215,6 +216,49 @@ static void gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
 		gboolean delete, gboolean add);
 
 static void recalc_displays(GtkHex *gh);
+
+
+
+static void
+popup_context_menu(GtkWidget *widget, double x, double y)
+{
+	GtkWidget *popover;
+	GtkBuilder *builder;
+	GMenuModel *menu;
+	GdkRectangle rect = { 0 };
+
+	rect.x = x;
+	rect.y = y;
+
+	builder = gtk_builder_new_from_resource ("/org/gnome/ghex/context-menu.ui");
+	menu = G_MENU_MODEL(gtk_builder_get_object (builder, "context-menu"));
+	popover = gtk_popover_menu_new_from_model (menu);
+
+	/* required by TFM. */
+	gtk_widget_set_parent (popover, widget);
+
+	gtk_popover_set_pointing_to (GTK_POPOVER(popover), &rect);
+	gtk_popover_popup (GTK_POPOVER(popover));
+
+	g_object_unref (menu);
+	g_object_unref (builder);
+}
+
+/* ACTIONS - just wrappers around callbacks for this widget. */
+
+static void
+copy_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GtkHex *gh = GTK_HEX(widget);
+
+	g_return_if_fail (GTK_IS_HEX(gh));
+
+	(void)action_name, (void)parameter;
+
+	gtk_hex_copy_to_clipboard (gh);
+}
 
 /*
  * ?_to_pointer translates mouse coordinates in hex/ascii view
@@ -1403,8 +1447,8 @@ hex_pressed_cb (GtkGestureClick *gesture,
 	button = gtk_gesture_single_get_current_button
 		(GTK_GESTURE_SINGLE(gesture));
 
-	g_debug("%s: n_press: %d, x: %f - y: %f",
-			__func__, n_press, x, y);
+	g_debug("%s: n_press: %d, x: %f - y: %f - button: %u",
+			__func__, n_press, x, y, button);
 
 	/* Single-press */
 	if (button == GDK_BUTTON_PRIMARY)
@@ -1429,10 +1473,17 @@ hex_pressed_cb (GtkGestureClick *gesture,
 			hex_pressed_cb (gesture, n_press, x, y, user_data);
 		}
 	}
+	/* Right-click */
+	else if (button == GDK_BUTTON_SECONDARY)
+	{
+		g_debug("%s: RIGHT CLICK - TRYING TO POPUP CONTEXT MENU.", __func__);
+
+		popup_context_menu(widget, x, y);
+	}
 	/* Middle-click press. */
 	else if (button == GDK_BUTTON_MIDDLE)
 	{
-		g_debug("%s: MIDDLE CLICK - NOT IMPLEMENTED.");
+		g_debug("%s: MIDDLE CLICK - NOT IMPLEMENTED.", __func__);
 #if 0
 		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 		gchar *text;
@@ -1640,6 +1691,13 @@ ascii_pressed_cb (GtkGestureClick *gesture,
 			ascii_pressed_cb (gesture, n_press, x, y, user_data);
 		}
 	}
+	/* Right-click */
+	else if (button == GDK_BUTTON_SECONDARY)
+	{
+		g_debug("%s: RIGHT CLICK - TRYING TO POPUP CONTEXT MENU.", __func__);
+
+		popup_context_menu(widget, x, y);
+	}
 	/* Middle-click press. */
 	else if (button == GDK_BUTTON_MIDDLE)
 	{
@@ -1786,7 +1844,14 @@ key_press_cb (GtkEventControllerKey *controller,
 
 	hide_cursor(gh);
 
-	if (! state & GDK_SHIFT_MASK) {
+	/* don't trample over Ctrl */
+	if (state & GDK_CONTROL_MASK) {
+		g_debug("%s: CTRL PRESSED - RETURNING.", __func__);
+		return FALSE;
+	}
+
+	/* Figure out if we're holding shift or not. */
+	if (! (state & GDK_SHIFT_MASK)) {
 		gh->selecting = FALSE;
 	}
 	else {
@@ -1794,7 +1859,7 @@ key_press_cb (GtkEventControllerKey *controller,
 	}
 
 	switch(keyval) {
-		// TEST
+		// TEST - COPY
 	case GDK_KEY_F12:
 		g_debug("F12 PRESSED - TESTING CLIPBOARD COPY");
 		gtk_hex_copy_to_clipboard (gh);
@@ -1945,6 +2010,26 @@ key_press_cb (GtkEventControllerKey *controller,
 	show_cursor(gh);
 	
 	return ret;
+}
+
+static gboolean
+key_release_cb (GtkEventControllerKey *controller,
+               guint                  keyval,
+               guint                  keycode,
+               GdkModifierType        state,
+               gpointer               user_data)
+{
+	GtkHex *gh = GTK_HEX(user_data);
+	GtkWidget *widget = GTK_WIDGET(user_data);
+	gboolean ret = TRUE;
+
+	TEST_DEBUG_FUNCTION_START
+
+	/* avoid shift key getting 'stuck' */
+
+	if (state & GDK_SHIFT_MASK) {
+		gh->selecting = FALSE;
+	}
 }
 
 
@@ -2391,7 +2476,8 @@ gtk_hex_real_copy_to_clipboard (GtkHex *gh)
 
 		for (cp = text; *cp != '\0'; ++cp)
 		{
-			if (! is_displayable(*cp))
+//			if (! is_displayable(*cp))
+			if (! is_copyable(*cp))
 				*cp = '?';
 		}
 
@@ -2797,6 +2883,23 @@ gtk_hex_class_init(GtkHexClass *klass)
 				G_TYPE_NONE,
 				0);
 	
+	/* ACTIONS */
+
+	gtk_widget_class_install_action (widget_class, "gtkhex.copy",
+			NULL,   // GVariant string param_type
+			copy_action);
+
+
+	/* SHORTCUTS (not to be confused with keybindings, which are set up
+	 * in gtk_hex_init) */
+
+	/* Ctrl+c - copy */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_c,
+			GDK_CONTROL_MASK,
+			"gtkhex.copy",
+			NULL);	// no args.
+
 	// API CHANGES
 //	klass->primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 //	klass->clipboard = gtk_clipboard_get(GDK_NONE);
@@ -3036,6 +3139,9 @@ gtk_hex_init(GtkHex *gh)
 	/* click gestures */
 	gesture = gtk_gesture_click_new ();
 
+	/* listen for any button */
+	gtk_gesture_single_set_button (GTK_GESTURE_SINGLE(gesture), 0);
+
 	g_signal_connect (gesture, "pressed",
 			G_CALLBACK(hex_pressed_cb),
 			gh);
@@ -3064,6 +3170,9 @@ gtk_hex_init(GtkHex *gh)
 
 	/* click gestures */
 	gesture = gtk_gesture_click_new ();
+
+	/* listen for any button */
+	gtk_gesture_single_set_button (GTK_GESTURE_SINGLE(gesture), 0);
 
 	g_signal_connect (gesture, "pressed",
 			G_CALLBACK(ascii_pressed_cb),
@@ -3106,13 +3215,17 @@ gtk_hex_init(GtkHex *gh)
 	gtk_widget_add_controller (widget,
 			GTK_EVENT_CONTROLLER(controller));
 
-	/* Event controller - keyboard */
+	/* Event controller - keyboard - for the widget *as a whole* */
 	
 	controller = gtk_event_controller_key_new ();
 
 	g_signal_connect(controller, "key-pressed",
 			G_CALLBACK(key_press_cb),
 			gh);
+	g_signal_connect(controller, "key-released",
+			G_CALLBACK(key_release_cb),
+			gh);
+
 	gtk_widget_add_controller (widget,
 			GTK_EVENT_CONTROLLER(controller));
 

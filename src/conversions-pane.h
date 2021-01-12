@@ -1,4 +1,4 @@
-/* vim: colorcolumn=80 tw=4 ts=4
+/* vim: colorcolumn=80 ts=4 sw=4
  */
 
 #ifndef CONVERSIONS_PANE_H
