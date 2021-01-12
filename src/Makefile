@@ -8,9 +8,16 @@ CFLAGS=-Wall -Wextra -std=c11 -pedantic \
        -I../build -I. \
        $(DEBUG)
 
-STUB: gtkhex.o hex-document.o
+.PHONY: clean compile-resources
+
+STUB: gtkhex.o hex-document.o ghex-application-window.o conversions-pane.o resources.o
+
+compile-resources:
+	glib-compile-resources ghex.gresource.xml --target=resources.c --generate-source
+
+resources.o:
+	make compile-resources
+	$(CC) resources.c -c -o resources.o $(CFLAGS)
 
 clean:
-	rm -f STUB *.o
-
-.PHONY: clean
+	rm -f STUB *.o resources.c

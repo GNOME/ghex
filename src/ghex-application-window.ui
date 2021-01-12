@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- vim:ts=4 sw=4 foldmethod=indent
 -->
 
@@ -6,10 +7,6 @@
 	<menu id="hamburger_menu">
 		<!-- "FILE" -->
 		<section>
-			<item>
-				<attribute name="label" translatable="yes">_Save</attribute>
-				<attribute name="action">ghex.save</attribute>
-			</item>
 			<item>
 				<attribute name="label" translatable="yes">Save _As</attribute>
 				<attribute name="action">ghex.save-as</attribute>
@@ -33,12 +30,6 @@
 
 		<!-- OTHER COMMON TASKS -->
 		<section>
-			<item>
-				<attribute name="label" translatable="yes">_Insert Mode</attribute>
-				<attribute name="icon">insert-text-symbolic</attribute>
-				<attribute name="action">ghex.insert</attribute>
-			</item>
-
 			<item>
 				<attribute name="label" translatable="yes">_Go to Byte</attribute>
 				<attribute name="icon">go-jump-symbolic</attribute>
@@ -101,10 +92,10 @@
 		</section>
 	</menu>
 
-	<object class="GtkApplicationWindow" id="main_window">
+	<template class="GHexApplicationWindow" parent="GtkApplicationWindow">
 		<property name="title" translatable="yes">GHex</property>
-		<property name="default-width">800</property>
-		<property name="default-height">600</property>
+		<property name="default-width">600</property>
+		<property name="default-height">400</property>
 		<property name="icon-name">org.gnome.GHex</property>
 
 		<child type="titlebar">
@@ -140,43 +131,21 @@
 					</object>
 				</child>
 
-			</object>
-		</child>
-
-		<child>
-			<object class="GtkBox">
-				<property name="orientation">vertical</property>
-
-				<!-- IF WANNA ADD A TABBED INTERFACE - DO SOMETHING LIKE THIS
-				<child>
-					<object class="GtkNotebook">
-						<property name="visible">false</property>
-						<child>
-							<object class="GtkLabel" id="notebook-content">
-								<property name="label">Content</property>
-							</object>
-						</child>
-						<child type="tab">
-							<object class="GtkLabel" id="notebook-tab">
-								<property name="label">Tab</property>
-							</object>
-						</child>
-
-						<child>
-							<object class="GtkLabel" id="notebook-content2">
-								<property name="label">Contentasdfafdf</property>
-							</object>
-						</child>
-						<child type="tab">
-							<object class="GtkLabel" id="notebook-tab2">
-								<property name="label">Tabasfasd</property>
-							</object>
-						</child>
+				<child type="end">
+					<object class="GtkButton">
+						<property name="valign">center</property>
+						<property name="icon-name">document-save-symbolic</property>
+						<property name="action-name">ghex.save</property>
+						<property name="tooltip-text" translatable="yes">Save document</property>
 					</object>
 				</child>
-				-->
+			</object> <!-- headerbar -->
+		</child> <!-- titlebar -->
 
-				<child>
+		<child> <!-- main vert gtkbox -->
+			<object class="GtkBox"> <!-- main vert gtkbox -->
+				<property name="orientation">vertical</property>
+				<child> <!-- child_box for gtkhex widget and scrollbar -->
 					<object class="GtkBox" id="child_box">
 						<property name="orientation">horizontal</property>
 						<property name="homogeneous">false</property>
@@ -187,15 +156,60 @@
 								<property name="halign">end</property>
 							</object>
 						</child>
+					</object> <!-- child_box -->
+				</child> <!-- child_box -->
+
+				<child>
+					<object class="GtkSeparator">
+						<property name="orientation">horizontal</property>
 					</object>
 				</child>
 
-				<child>
-					<object class="GtkStatusbar" id="statusbar" />
+				<child> <!-- box just to put the conversions_pane; APPEND -->
+					<object class="GtkBox" id="conversions_box" />
 				</child>
-			</object>
 
-		</child>
-	</object>
+
+				<child> <!-- status_box -->
+					<object class="GtkBox" id="status_box">
+						<property name="orientation">horizontal</property>
+						<property name="homogeneous">false</property>
+
+
+						<child>
+							<object class="GtkStatusbar" id="statusbar">
+								<property name="hexpand">true</property>
+							</object>
+						</child>
+
+						<child> <!-- insert_mode_button -->
+							<object class="GtkButton" id="insert_mode_button">
+								<property name="valign">center</property>
+								<property name="halign">end</property>
+								<property name="icon-name">insert-text-symbolic</property>
+								<property name="has-frame">false</property>
+								<property name="action-name">ghex.insert-mode</property>
+								<property name="tooltip-text" translatable="yes">Toggle insert mode (add data to file rather than replace existing data)</property>
+							</object>
+						</child> <!-- insert_mode_button -->
+
+						<!-- pane toggle btn -->
+						<child>
+							<object class="GtkButton" id="pane_toggle_button">
+								<property name="valign">center</property>
+								<property name="halign">end</property>
+								<property name="icon-name">pan-up-symbolic</property>
+								<property name="has-frame">false</property>
+								<property name="action-name">ghex.show-conversions</property>
+								<property name="tooltip-text" translatable="yes">Toggle a pane showing various numeric conversions</property>
+							</object>
+						</child>
+
+					</object> <!-- status_box -->
+				</child> <!-- status_box -->
+
+			</object> <!-- main vert gtkbox -->
+		</child> <!-- main vert gtkbox -->
+	</template>
 
 </interface>

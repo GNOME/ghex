@@ -2885,10 +2885,9 @@ gtk_hex_init(GtkHex *gh)
 									CSS_NAME " {\n"
 									 "   font-family: Monospace;\n"
 									 "   font-size: 12pt;\n"
-//	                                 "   border-style: solid;\n"
-//	                                 "   border-width: 1px;\n"
-	                                 "   padding: 6px;\n"
-//									 "   border-color: black;\n"
+	                                 "   padding-left: 12px;\n"
+	                                 "   padding-right: 12px;\n"
+// example of how to style a specific widget:
 #if 0
 									 "}\n"
 									 "#asciidisplay {\n"

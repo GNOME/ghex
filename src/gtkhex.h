@@ -39,10 +39,6 @@
 
 G_BEGIN_DECLS
 
-/* Declare GtkHex as a *final* type, meaning you cannot derive from it.
- * This is a change from prior versions of libgtkhex <= 3.x, and is in
- * line with changes made to GTK 4 at large.
- */
 #define GTK_TYPE_HEX (gtk_hex_get_type ())
 G_DECLARE_FINAL_TYPE(GtkHex, gtk_hex, GTK, HEX, GtkWidget)
 
