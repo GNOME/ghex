@@ -3,7 +3,6 @@
 
 #include <gtkhex.h>
 #include "ghex-application-window.h"
-#include "conversions-pane.h"
 
 static void
 activate (GtkApplication *app,
