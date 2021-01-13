@@ -9,6 +9,7 @@ struct _GHexApplicationWindow
 {
 	GtkApplicationWindow parent_instance;
 
+	GtkHex *gh;
 	HexDialog *dialog;
 	GtkWidget *dialog_widget;
 	guint statusbar_id;
@@ -22,6 +23,7 @@ struct _GHexApplicationWindow
 	GtkWidget *child_box;
 	GtkWidget *conversions_box;
 	GtkWidget *pane_toggle_button;
+	GtkWidget *insert_mode_button;
 	GtkWidget *statusbar;
 	GtkWidget *scrollbar;
 };
@@ -49,7 +51,8 @@ cursor_moved_cb(GtkHex *gtkhex, gpointer user_data)
     hex_dialog_updateview (self->dialog, &val);
 }
 
-/* --- */
+
+/* ACTIONS */
 
 static void
 toggle_conversions (GtkWidget *widget,
@@ -71,6 +74,28 @@ toggle_conversions (GtkWidget *widget,
 	}
 }
 
+static void
+toggle_insert_mode (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+
+	(void)parameter, (void)action_name;		/* unused */
+
+	/* this tests whether the button is pressed AFTER its state has changed. */
+	if (gtk_toggle_button_get_active (self->insert_mode_button)) {
+		g_debug("%s: TOGGLING INSERT MODE", __func__);
+		gtk_hex_set_insert_mode(self->gh, TRUE);
+	} else {
+		g_debug("%s: UNTOGGLING INSERT MODE", __func__);
+		gtk_hex_set_insert_mode(self->gh, FALSE);
+	}
+}
+
+/* --- */
+
+// DUMB TEST
 static void
 set_statusbar(GHexApplicationWindow *self, const char *str)
 {
@@ -152,9 +177,16 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_set_template_from_resource (widget_class,
 					"/org/gnome/ghex/ghex-application-window.ui");
 
+	/* ACTIONS */
+
 	gtk_widget_class_install_action (widget_class, "ghex.show-conversions",
 			NULL,	// GVariant string param_type
 			toggle_conversions);
+
+	gtk_widget_class_install_action (widget_class, "ghex.insert-mode",
+			NULL,	// GVariant string param_type
+			toggle_insert_mode);
+
 	/* 
 	 * for i in `cat tmp.txt`; do echo "gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow, ${i});"; done
 	 */
@@ -164,6 +196,8 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			conversions_box);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			pane_toggle_button);
+	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
+			insert_mode_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			statusbar);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
@@ -180,6 +214,8 @@ void
 ghex_application_window_add_hex(GHexApplicationWindow *self, GtkHex *gh)
 {
 	g_return_if_fail (GTK_IS_HEX(gh));
+
+	self->gh = gh;
 
 	gtk_box_prepend (GTK_BOX(self->child_box), GTK_WIDGET(gh));
 

@@ -183,11 +183,10 @@
 						</child>
 
 						<child> <!-- insert_mode_button -->
-							<object class="GtkButton" id="insert_mode_button">
+							<object class="GtkToggleButton" id="insert_mode_button">
 								<property name="valign">center</property>
 								<property name="halign">end</property>
 								<property name="icon-name">insert-text-symbolic</property>
-								<property name="has-frame">false</property>
 								<property name="action-name">ghex.insert-mode</property>
 								<property name="tooltip-text" translatable="yes">Toggle insert mode (add data to file rather than replace existing data)</property>
 							</object>
