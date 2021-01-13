@@ -33,26 +33,33 @@
 #include "gtkhex.h"
 #include "hex-dialog.h"
 
-static void hex_dialog_class_init     (HexDialogClass *);
-static void hex_dialog_init           (HexDialog *);
+struct _HexDialog
+{
+    GObject gobject;
 
-void hex_dialog_update_entry_sizes(HexDialog *dialog);
-void hex_dialog_updateview(HexDialog *dialog, HexDialogVal64 *val);
+    GtkWidget *entry[ENTRY_MAX];
+    GtkWidget *config_endian;
+    GtkWidget *config_hex;
+    HexConversionProperties properties;
+    HexDialogVal64 val;
+};
+
+static void hex_dialog_update_entry_sizes(HexDialog *dialog);
 
 /* conversion functions */
-char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_US8(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_S16(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_US16(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_S32(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_32float(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_hex(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_oct(HexDialogVal64 *val, HexConversionProperties *prop);
-char *HexConvert_bin(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_US8(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_S16(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_US16(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_S32(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_32float(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_hex(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_oct(HexDialogVal64 *val, HexConversionProperties *prop);
+static char *HexConvert_bin(HexDialogVal64 *val, HexConversionProperties *prop);
 
 static struct {
     char *name;
@@ -73,64 +80,44 @@ static struct {
     { N_("Binary:"), HexConvert_bin }
 };
 
+G_DEFINE_TYPE (HexDialog, hex_dialog, G_TYPE_OBJECT)
 
-
-GType hex_dialog_get_type (void)
-{
-    static GType doc_type = 0;
-
-    if (doc_type == 0)
-    {
-        static const GTypeInfo doc_info =
-        {
-            sizeof (HexDialogClass),
-            NULL,       /* base_init */
-            NULL,       /* base_finalize */
-            (GClassInitFunc) hex_dialog_class_init,
-            NULL,       /* class_finalize */
-            NULL,       /* class_data */
-            sizeof (HexDialog),
-            0,
-            (GInstanceInitFunc) hex_dialog_init
-        };
-
-        doc_type = g_type_register_static (G_TYPE_OBJECT,
-                                           "HexDialog",
-                                           &doc_info,
-                                           0);
-    }
-    return doc_type;
-}
-
-static void hex_dialog_init (HexDialog *dialog)
+static void
+hex_dialog_init (HexDialog *dialog)
 {
     int i;
+
     for (i = 0; i < ENTRY_MAX; i++)
         dialog->entry[i] = NULL;
+
     dialog->config_endian = NULL;
     dialog->config_hex = NULL;
     dialog->properties.endian = LITTLE;
     dialog->properties.hexHint = FALSE;
     dialog->properties.streamBitsHint = 8;
+
     for (i = 0; i < 8; i++)
         dialog->val.v[i] = 0;
 }
 
-static void hex_dialog_class_init (HexDialogClass *klass)
+static void
+hex_dialog_class_init (HexDialogClass *klass)
 {
 }
 
-HexDialog *hex_dialog_new (void)
+HexDialog *
+hex_dialog_new (void)
 {
     HexDialog *dialog;
 
-    dialog = HEX_DIALOG(g_object_new(HEX_DIALOG_TYPE, NULL));
+    dialog = HEX_DIALOG(g_object_new(HEX_TYPE_DIALOG, NULL));
     g_return_val_if_fail (dialog != NULL, NULL);
 
     return dialog;
 }
 
-static void create_dialog_prop(HexDialogEntryTypes type,
+static void
+create_dialog_prop(HexDialogEntryTypes type,
                                HexDialog *dialog,
                                GtkWidget *grid,
                                gint xpos, gint ypos)
@@ -138,7 +125,6 @@ static void create_dialog_prop(HexDialogEntryTypes type,
     GtkWidget *label;
 
     label = gtk_label_new(_(HexDialogEntries[type].name));
-    gtk_misc_set_alignment (GTK_MISC(label), 1.0, 0.5);
     gtk_widget_set_hexpand (label, TRUE);
     gtk_grid_attach (GTK_GRID (grid), label,
                      xpos, ypos, 1, 1);
@@ -152,16 +138,18 @@ static void create_dialog_prop(HexDialogEntryTypes type,
     gtk_widget_show(dialog->entry[type]);
 }
 
-static void config_toggled_cb(GtkToggleButton *togglebutton, gpointer user_data)
+static void
+config_toggled_cb(GtkToggleButton *togglebutton, gpointer user_data)
 {
     HexDialog *dialog = HEX_DIALOG(user_data);
-    dialog->properties.endian = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(dialog->config_endian)) ?
+    dialog->properties.endian = gtk_check_button_get_active(GTK_CHECK_BUTTON(dialog->config_endian)) ?
                                 LITTLE : BIG;
-    dialog->properties.hexHint = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(dialog->config_hex));
+    dialog->properties.hexHint = gtk_check_button_get_active(GTK_CHECK_BUTTON(dialog->config_hex));
     hex_dialog_updateview(dialog, NULL);
 }
 
-static void config_spinchange_cb(GtkSpinButton *spinbutton, gpointer user_data)
+static void
+config_spinchange_cb(GtkSpinButton *spinbutton, gpointer user_data)
 {
     HexDialog *dialog = HEX_DIALOG(user_data);
     dialog->properties.streamBitsHint = (guchar)gtk_spin_button_get_value(spinbutton);
@@ -170,7 +158,6 @@ static void config_spinchange_cb(GtkSpinButton *spinbutton, gpointer user_data)
 
 GtkWidget *hex_dialog_getview(HexDialog *dialog)
 {
-
     GtkWidget *vbox;
     GtkWidget *hbox;
     GtkWidget *grid;
@@ -185,7 +172,7 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
 
     vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_widget_set_vexpand (GTK_WIDGET (vbox), FALSE);
-    gtk_box_pack_start (GTK_BOX (vbox), grid, TRUE, FALSE, 4);
+    gtk_box_append (GTK_BOX (vbox), grid);
     gtk_widget_show (vbox);
 
     create_dialog_prop (S8, dialog, grid, 0, 0);
@@ -208,24 +195,23 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     hex_dialog_update_entry_sizes (dialog);
 
     hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, FALSE, 4);
+    gtk_box_append(GTK_BOX(vbox), hbox);
     gtk_widget_show(hbox);
 
     dialog->config_endian = gtk_check_button_new_with_label(_("Show little endian decoding"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->config_endian), TRUE);
+    gtk_check_button_set_active(GTK_CHECK_BUTTON(dialog->config_endian), TRUE);
     g_signal_connect(G_OBJECT(dialog->config_endian), "toggled",
                      G_CALLBACK(config_toggled_cb), dialog);
     gtk_widget_show(dialog->config_endian);
-    gtk_box_pack_start(GTK_BOX(hbox), dialog->config_endian, TRUE, FALSE, 4);
+    gtk_box_append(GTK_BOX(hbox), dialog->config_endian);
 
     dialog->config_hex = gtk_check_button_new_with_label(_("Show unsigned and float as hexadecimal"));
     g_signal_connect(G_OBJECT(dialog->config_hex), "toggled",
                      G_CALLBACK(config_toggled_cb), dialog);
     gtk_widget_show(dialog->config_hex);
-    gtk_box_pack_start(GTK_BOX(hbox), dialog->config_hex, TRUE, FALSE, 4);
+    gtk_box_append(GTK_BOX(hbox), dialog->config_hex);
 
     label = gtk_label_new(_("Stream Length:"));
-    gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
     gtk_grid_attach (GTK_GRID (grid), label, 4, 3, 1, 1);
     gtk_widget_show(label);
 
@@ -239,7 +225,8 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     return vbox;
 }
 
-static char *dialog_prop_get_text(HexDialogEntryTypes type,
+static char *
+dialog_prop_get_text(HexDialogEntryTypes type,
                                   HexDialog *dialog,
                                   HexDialogVal64 *val)
 {
@@ -256,12 +243,17 @@ static void update_dialog_prop(HexDialogEntryTypes type,
                                HexDialogVal64 *val)
 {
     char *buf;
+    GtkEntryBuffer *eb;
+
     buf = dialog_prop_get_text (type, dialog, val);
-    gtk_entry_set_text (GTK_ENTRY (dialog->entry[type]), buf);
+    eb = gtk_entry_get_buffer (GTK_ENTRY(dialog->entry[type]));
+
+    gtk_entry_buffer_set_text (eb, buf, -1);
 }
 
 /* Try to guess the maximum width needed for each entry */
-void hex_dialog_update_entry_sizes(HexDialog *dialog)
+static void
+hex_dialog_update_entry_sizes(HexDialog *dialog)
 {
     HexDialogVal64 val;
     gint i;
@@ -273,7 +265,7 @@ void hex_dialog_update_entry_sizes(HexDialog *dialog)
     for (i = 0; i < ENTRY_MAX; i++)
     {
         width_chars = strlen (dialog_prop_get_text (i, dialog, &val));
-        gtk_entry_set_width_chars (GTK_ENTRY (dialog->entry[i]), width_chars);
+        gtk_entry_set_max_length (GTK_ENTRY (dialog->entry[i]), width_chars);
     }
 }
 
@@ -309,7 +301,7 @@ static char convbuffer[CONV_BUFSIZE];
  * also makes it endian safe (i think)
  */
 
-static unsigned int pow2(int p)
+inline static unsigned int pow2(int p)
 {
     unsigned int i = 0, r = 1;
     for (i = 0; i < p; i++)
@@ -317,7 +309,7 @@ static unsigned int pow2(int p)
     return r;
 }
 
-static unsigned long long int llpow2(int p)
+inline static unsigned long long int llpow2(int p)
 {
     unsigned int i = 0;
     unsigned long long int r = 1;
@@ -326,7 +318,7 @@ static unsigned long long int llpow2(int p)
     return r;
 }
 
-char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i, local = 0;
     for (i = 0; i < 7; i++)
@@ -337,7 +329,7 @@ char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-char *HexConvert_US8(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_US8(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i, local = 0;
     for (i = 0; i < 8; i++)
@@ -350,7 +342,7 @@ char *HexConvert_US8(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-char *HexConvert_S16(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_S16(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[2];
     int i, local = 0;
@@ -374,7 +366,7 @@ char *HexConvert_S16(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-char *HexConvert_US16(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_US16(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[2];
     int i, local = 0;
@@ -401,7 +393,7 @@ char *HexConvert_US16(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-char *HexConvert_S32(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_S32(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[4];
     int i, local = 0;
@@ -433,7 +425,7 @@ char *HexConvert_S32(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[4];
     unsigned int i, local = 0;
@@ -467,7 +459,7 @@ char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[8];
     long long i, local = 0;
@@ -515,7 +507,7 @@ char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[8];
     long long unsigned i, local = 0;
@@ -568,7 +560,7 @@ char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop)
 /* for floats we just cast them, can't be bothered
  * interpretting them properly
  */
-char *HexConvert_32float(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_32float(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     union
     {
@@ -606,7 +598,7 @@ char *HexConvert_32float(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     union
     {
@@ -653,7 +645,7 @@ char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *prop)
 }
 
 /* these three care not for endianness, they take the input as a stream */
-char *HexConvert_hex(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_hex(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i;
     int local = 0;
@@ -695,7 +687,7 @@ char *HexConvert_hex(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-char *HexConvert_oct(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_oct(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i;
     int local = 0;
@@ -737,7 +729,7 @@ char *HexConvert_oct(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-char *HexConvert_bin(HexDialogVal64 *val, HexConversionProperties *prop)
+static char *HexConvert_bin(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i;
 
@@ -757,5 +749,3 @@ char *HexConvert_bin(HexDialogVal64 *val, HexConversionProperties *prop)
     convbuffer[i] = '\0';
     return convbuffer;
 }
-
-

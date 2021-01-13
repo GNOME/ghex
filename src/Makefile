@@ -10,7 +10,7 @@ CFLAGS=-Wall -Wextra -std=c11 -pedantic \
 
 .PHONY: clean compile-resources
 
-STUB: gtkhex.o hex-document.o ghex-application-window.o conversions-pane.o resources.o
+STUB: gtkhex.o hex-document.o ghex-application-window.o hex-dialog.o resources.o
 
 compile-resources:
 	glib-compile-resources ghex.gresource.xml --target=resources.c --generate-source
