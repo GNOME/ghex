@@ -178,11 +178,12 @@ find_cancel_cb(GtkButton *button, gpointer user_data)
 	GtkWidget *widget = GTK_WIDGET(user_data);
 	
 	g_return_if_fail (FIND_IS_DIALOG(self));
+	g_return_if_fail (GTK_IS_HEX(self->gh));
 
 	(void)button;	/* unused */
 
 	if (self->auto_highlight)
-		gtk_hex_delete_autohighlight(self->f_gh, self->auto_highlight);
+		gtk_hex_delete_autohighlight(self->gh, self->auto_highlight);
 
 	self->auto_highlight = NULL;
 
@@ -208,6 +209,7 @@ find_next_cb(GtkButton *button, gpointer user_data)
 	cursor_pos = gtk_hex_get_cursor(self->gh);
 
 	if ((str_len = get_search_string(self->f_doc, &str)) == 0) {
+		g_debug(_("There is no string to search for!"));
 		// FIXME
 //		display_error_dialog (self, _("There is no string to search for!"));
 		return;
