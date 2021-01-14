@@ -34,7 +34,7 @@ G_BEGIN_DECLS
 #define HEX_DOCUMENT_TYPE          (hex_document_get_type())
 #define HEX_DOCUMENT(obj)          G_TYPE_CHECK_INSTANCE_CAST (obj, hex_document_get_type (), HexDocument)
 #define HEX_DOCUMENT_CLASS(klass)  G_TYPE_CHECK_CLASS_CAST (klass, hex_document_get_type (), HexDocumentClass)
-#define IS_HEX_DOCUMENT(obj)       G_TYPE_CHECK_INSTANCE_TYPE (obj, hex_document_get_type ())
+#define HEX_IS_DOCUMENT(obj)       G_TYPE_CHECK_INSTANCE_TYPE (obj, hex_document_get_type ())
 
 typedef struct _HexDocument       HexDocument;
 typedef struct _HexDocumentClass  HexDocumentClass;

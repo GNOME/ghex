@@ -4,6 +4,7 @@
 #include <gtkhex.h>
 #include "ghex-application-window.h"
 #include "hex-dialog.h"
+#include "findreplace.h"
 
 struct _GHexApplicationWindow
 {
@@ -14,6 +15,12 @@ struct _GHexApplicationWindow
 	GtkWidget *dialog_widget;
 	guint statusbar_id;
 	GtkAdjustment *adj;
+
+	// TEST - NOT 100% SURE I WANNA GO THIS ROUTE YET.
+	GtkWidget *find_dialog;
+	GtkWidget *replace_dialog;
+	GtkWidget *jump_dialog;
+
 /*
  * for i in `cat ghex-application-window.ui |grep -i 'id=' |sed -e 's,^\s*,,g' |sed -e 's,.*id=",,' |sed -e 's,">,,'`; do echo $i >> tmp.txt; done
  */
@@ -22,6 +29,7 @@ struct _GHexApplicationWindow
  */
 	GtkWidget *child_box;
 	GtkWidget *conversions_box;
+	GtkWidget *findreplace_box;
 	GtkWidget *pane_toggle_button;
 	GtkWidget *insert_mode_button;
 	GtkWidget *statusbar;
@@ -53,6 +61,61 @@ cursor_moved_cb(GtkHex *gtkhex, gpointer user_data)
 
 
 /* ACTIONS */
+
+static void
+show_find_pane (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+
+	g_return_if_fail (GTK_IS_HEX(self->gh));
+	g_return_if_fail (GTK_IS_WIDGET(self->find_dialog));
+
+	(void)parameter, (void)action_name;		/* unused */
+
+	gtk_widget_hide (self->replace_dialog);
+	gtk_widget_hide (self->jump_dialog);
+
+	gtk_widget_show (self->find_dialog);
+}
+
+static void
+show_replace_pane (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+
+	g_return_if_fail (GTK_IS_HEX(self->gh));
+	g_return_if_fail (GTK_IS_WIDGET(self->replace_dialog));
+
+	(void)parameter, (void)action_name;		/* unused */
+
+	gtk_widget_hide (self->jump_dialog);
+	gtk_widget_hide (self->find_dialog);
+
+	gtk_widget_show (self->replace_dialog);
+}
+
+static void
+show_jump_pane (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+
+	g_return_if_fail (GTK_IS_HEX(self->gh));
+	g_return_if_fail (GTK_IS_WIDGET(self->jump_dialog));
+
+	(void)parameter, (void)action_name;		/* unused */
+
+	gtk_widget_hide (self->replace_dialog);
+	gtk_widget_hide (self->find_dialog);
+
+	gtk_widget_show (self->jump_dialog);
+}
+
 
 static void
 toggle_conversions (GtkWidget *widget,
@@ -120,7 +183,7 @@ ghex_application_window_init(GHexApplicationWindow *self)
 	self->dialog_widget = hex_dialog_getview (self->dialog);
 
 	gtk_box_append (GTK_BOX(self->conversions_box), self->dialog_widget);
-	gtk_widget_set_visible (self->conversions_box, FALSE);
+	gtk_widget_hide (self->conversions_box);
 
 	/* CSS - conversions_box */
 	context = gtk_widget_get_style_context (self->conversions_box);
@@ -136,6 +199,22 @@ ghex_application_window_init(GHexApplicationWindow *self)
 	                                GTK_STYLE_PROVIDER (provider),
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
+	/* Get find_dialog and friends geared up */
+
+	self->find_dialog = find_dialog_new ();
+	gtk_widget_set_hexpand (self->find_dialog, TRUE);
+	gtk_box_append (GTK_BOX(self->findreplace_box), self->find_dialog);
+	gtk_widget_hide (self->find_dialog);
+
+	self->replace_dialog = replace_dialog_new ();
+	gtk_widget_set_hexpand (self->replace_dialog, TRUE);
+	gtk_box_append (GTK_BOX(self->findreplace_box), self->replace_dialog);
+	gtk_widget_hide (self->replace_dialog);
+
+	self->jump_dialog = jump_dialog_new ();
+	gtk_widget_set_hexpand (self->jump_dialog, TRUE);
+	gtk_box_append (GTK_BOX(self->findreplace_box), self->jump_dialog);
+	gtk_widget_hide (self->jump_dialog);
 
 	// TEST
 	set_statusbar(self, "Offset: 0x0");
@@ -186,7 +265,18 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_install_action (widget_class, "ghex.insert-mode",
 			NULL,	// GVariant string param_type
 			toggle_insert_mode);
+	
+	gtk_widget_class_install_action (widget_class, "ghex.find",
+			NULL,	// GVariant string param_type
+			show_find_pane);
 
+	gtk_widget_class_install_action (widget_class, "ghex.replace",
+			NULL,	// GVariant string param_type
+			show_replace_pane);
+
+	gtk_widget_class_install_action (widget_class, "ghex.jump",
+			NULL,	// GVariant string param_type
+			show_jump_pane);
 	/* 
 	 * for i in `cat tmp.txt`; do echo "gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow, ${i});"; done
 	 */
@@ -195,6 +285,8 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			conversions_box);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
+			findreplace_box);
+	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			pane_toggle_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			insert_mode_button);
@@ -202,6 +294,8 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			statusbar);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			scrollbar);
+
+
 }
 
 GtkWidget *
@@ -226,4 +320,10 @@ ghex_application_window_add_hex(GHexApplicationWindow *self, GtkHex *gh)
 	/* Setup scrollbar */
 	self->adj = gtk_hex_get_adjustment(gh);
 	gtk_scrollbar_set_adjustment (GTK_SCROLLBAR(self->scrollbar), self->adj);
+
+	/* Setup find_dialog & friends. */
+
+	find_dialog_set_hex (FIND_DIALOG(self->find_dialog), self->gh);
+	replace_dialog_set_hex (REPLACE_DIALOG(self->replace_dialog), self->gh);
+	jump_dialog_set_hex (JUMP_DIALOG(self->jump_dialog), self->gh);
 }

@@ -55,11 +55,6 @@
 
 /* LAR - defines copied from the old header. */
 
-/* how to group bytes? */
-#define GROUP_BYTE 1
-#define GROUP_WORD 2
-#define GROUP_LONG 4
-
 #define LOWER_NIBBLE TRUE
 #define UPPER_NIBBLE FALSE
 
@@ -1232,7 +1227,6 @@ recalc_displays(GtkHex *gh)
 	gtk_style_context_get_border (context, &border);
 #endif
 
-
 	/*
 	 * Only change the value of the adjustment to put the cursor on screen
 	 * if the cursor is currently within the displayed portion.
@@ -1296,7 +1290,9 @@ recalc_displays(GtkHex *gh)
 	g_return_if_fail (gh->cpl > 0);
 #endif
 
-	if (gh->document->file_size == 0)
+	// TEST
+	if (gh->document->file_size == 0 || gh->cpl == 0)
+//	if (gh->document->file_size == 0)
 		gh->lines = 1;
 	else {
 		gh->lines = gh->document->file_size / gh->cpl;
@@ -1334,11 +1330,19 @@ recalc_displays(GtkHex *gh)
 	gh->disp_buffer = g_malloc ((xcpl + 1) * (gh->vis_lines + 1));
 
 	/* calculate new display position */
-	value = MIN (gh->top_line * old_cpl / gh->cpl, gh->lines - gh->vis_lines);
+	if (gh->cpl == 0)	// TEST to avoid divide by zero
+		value = 0;
+	else
+		value = MIN (gh->top_line * old_cpl / gh->cpl, gh->lines - gh->vis_lines);
+
+	/* clamp value */
 	value = MAX (0, value);
 
 	/* keep cursor on screen if it was on screen before */
-	if (scroll_to_cursor &&
+	if (gh->cpl == 0) {		// TEST to avoid divide by zero
+		value = 0;
+	}
+	else if (scroll_to_cursor &&
 	    ((gh->cursor_pos / gh->cpl < value) ||
 	     (gh->cursor_pos / gh->cpl > value + gh->vis_lines - 1))) {
 		value = MIN (gh->cursor_pos / gh->cpl, gh->lines - gh->vis_lines);
@@ -3516,4 +3520,12 @@ gtk_hex_get_adjustment(GtkHex *gh)
 	g_return_if_fail (GTK_IS_ADJUSTMENT(gh->adj));
 
 	return gh->adj;
+}
+
+HexDocument *
+gtk_hex_get_document (GtkHex *gh)
+{
+	g_return_val_if_fail (HEX_IS_DOCUMENT(gh->document), NULL);
+
+	return gh->document;
 }

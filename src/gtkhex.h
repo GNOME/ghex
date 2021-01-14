@@ -42,6 +42,12 @@ G_BEGIN_DECLS
 #define GTK_TYPE_HEX (gtk_hex_get_type ())
 G_DECLARE_FINAL_TYPE(GtkHex, gtk_hex, GTK, HEX, GtkWidget)
 
+/* DEFINES */
+/* how to group bytes? */
+#define GROUP_BYTE 1
+#define GROUP_WORD 2
+#define GROUP_LONG 4
+
 /* OPAQUE DATATYPES */
 typedef struct _GtkHex_AutoHighlight GtkHex_AutoHighlight;
 
@@ -84,6 +90,7 @@ GtkHex_AutoHighlight *gtk_hex_insert_autohighlight(GtkHex *gh,
 void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl);
 
 GtkAdjustment *gtk_hex_get_adjustment(GtkHex *gh);
+HexDocument *gtk_hex_get_document (GtkHex *gh);
 
 G_END_DECLS
 

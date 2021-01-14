@@ -31,12 +31,14 @@
 		<!-- OTHER COMMON TASKS -->
 		<section>
 			<item>
-				<attribute name="label" translatable="yes">_Go to Byte</attribute>
-				<attribute name="icon">go-jump-symbolic</attribute>
-				<attribute name="action">ghex.goto</attribute>
+				<attribute name="label" translatable="yes">Find and _Replace</attribute>
+				<attribute name="action">ghex.replace</attribute>
+			</item>
+			<item>
+				<attribute name="label" translatable="yes">_Jump to Byte</attribute>
+				<attribute name="action">ghex.jump</attribute>
 			</item>
 		</section>
-
 
 		<!-- SUBMENUS -->
 		<section>
@@ -46,15 +48,11 @@
 				<attribute name="label" translatable="yes">_Tools</attribute>
 				<item>
 					<attribute name="label" translatable="yes">_Character Table</attribute>
-					<attribute name="action">ghex.goto</attribute>
+					<attribute name="action">ghex.char-table</attribute>
 				</item>
 				<item>
 					<attribute name="label" translatable="yes">_Base Converter</attribute>
-					<attribute name="action">ghex.goto</attribute>
-				</item>
-				<item>
-					<attribute name="label" translatable="yes">_Type Conversion</attribute>
-					<attribute name="action">ghex.goto</attribute>
+					<attribute name="action">ghex.base-converter</attribute>
 				</item>
 			</submenu>
 
@@ -63,15 +61,15 @@
 				<attribute name="label" translatable="yes">G_roup Data As</attribute>
 				<item>
 					<attribute name="label" translatable="yes">_Bytes</attribute>
-					<attribute name="action">ghex.goto</attribute>
+					<attribute name="action">ghex.group-bytes</attribute>
 				</item>
 				<item>
 					<attribute name="label" translatable="yes">_Words</attribute>
-					<attribute name="action">ghex.goto</attribute>
+					<attribute name="action">ghex.group-words</attribute>
 				</item>
 				<item>
 					<attribute name="label" translatable="yes">_Longwords</attribute>
-					<attribute name="action">ghex.goto</attribute>
+					<attribute name="action">ghex.group-long</attribute>
 				</item>
 			</submenu>
 		</section>
@@ -127,7 +125,7 @@
 						<property name="valign">center</property>
 						<property name="icon-name">edit-find-symbolic</property>
 						<property name="action-name">ghex.find</property>
-						<property name="tooltip-text" translatable="yes">Find and replace</property>
+						<property name="tooltip-text" translatable="yes">Find</property>
 					</object>
 				</child>
 
@@ -159,8 +157,20 @@
 					</object> <!-- child_box -->
 				</child> <!-- child_box -->
 
+				<!-- "statusbar" separator -->
 				<child>
 					<object class="GtkSeparator">
+						<property name="orientation">horizontal</property>
+					</object>
+				</child>
+
+				<child> <!-- box to put the `findreplace' dialogs. -->
+					<object class="GtkBox" id="findreplace_box" />
+				</child>
+
+				<!-- "findreplace" separator which comes and goes. -->
+				<child>
+					<object class="GtkSeparator" -->
 						<property name="orientation">horizontal</property>
 					</object>
 				</child>
