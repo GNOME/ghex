@@ -681,20 +681,20 @@ replace_dialog_init (ReplaceDialog *self)
 	self->next = gtk_button_new_with_mnemonic (_("Find _Next"));
 	g_signal_connect (G_OBJECT (self->next),
 					  "clicked", G_CALLBACK(replace_next_cb),
-					  NULL);
+					  self);
 	gtk_box_append (GTK_BOX(self->hbox), self->next);
 	gtk_widget_set_receives_default (self->next, TRUE);
 
 	self->replace = gtk_button_new_with_mnemonic (_("_Replace"));
 	g_signal_connect (G_OBJECT (self->replace),
 					  "clicked", G_CALLBACK(replace_one_cb),
-					  NULL);
+					  self);
 	gtk_box_append (GTK_BOX(self->hbox), self->replace);
 
 	self->replace_all= gtk_button_new_with_mnemonic (_("Replace _All"));
 	g_signal_connect (G_OBJECT (self->replace_all),
 					  "clicked", G_CALLBACK(replace_all_cb),
-					  NULL);
+					  self);
 	gtk_box_append (GTK_BOX(self->hbox), self->replace_all);
 
 	self->close = gtk_button_new_with_mnemonic (_("_Close"));
