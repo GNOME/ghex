@@ -69,6 +69,7 @@ void gtk_hex_show_offsets(GtkHex *, gboolean);
 void gtk_hex_set_font(GtkHex *, PangoFontMetrics *,
 		const PangoFontDescription *);
 
+gboolean gtk_hex_get_insert_mode(GtkHex *gh);
 void gtk_hex_set_insert_mode(GtkHex *, gboolean);
 
 void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines);

@@ -1,3 +1,5 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* chartable.c - a window with a character table
 
@@ -31,12 +33,14 @@
 #include <gdk/gdkkeysyms.h>
 #include <glib/gi18n.h>
 
+#include <gtkhex.h>
 #include "chartable.h"
-#include "ghex-window.h"
-#include "ui.h"
+//#include "ghex-window.h"
+//#include "ui.h"
 
 GtkWidget *char_table = NULL;
 static GtkTreeSelection *sel_row = NULL;
+static GtkHex *gh_glob = NULL;
 
 static char *ascii_non_printable_label[] = {
 	"NUL",
@@ -76,27 +80,34 @@ static char *ascii_non_printable_label[] = {
 static void
 insert_char(GtkTreeView *treeview, GtkTreeModel *model)
 {
-	GHexWindow *win;
 	GtkTreeIter iter;
 	GtkTreeSelection *selection;
 	GValue value = { 0 };
+	HexDocument *doc;
+
+	g_return_if_fail (GTK_IS_HEX(gh_glob));
+
+	doc = gtk_hex_get_document (gh_glob);
 
 	selection = gtk_tree_view_get_selection(treeview);
-	if(!gtk_tree_selection_get_selected(selection, &model, &iter))
+	if (! gtk_tree_selection_get_selected (selection, &model, &iter))
 		return;
+
 	gtk_tree_model_get_value(model, &iter, 2, &value);
-	if(selection == sel_row) {
-		win = ghex_window_get_active();
-		if(win->gh) {
-			hex_document_set_byte(win->gh->document, (guchar)atoi(g_value_get_string(&value)), win->gh->cursor_pos,
-								  win->gh->insert, TRUE);
-			gtk_hex_set_cursor(win->gh, win->gh->cursor_pos + 1);
-		}
+	if (selection == sel_row) {
+		hex_document_set_byte (doc,
+				(guchar)atoi(g_value_get_string(&value)),
+				gtk_hex_get_cursor (gh_glob),
+				gtk_hex_get_insert_mode (gh_glob),
+				TRUE);	// undoable
+
+		gtk_hex_set_cursor (gh_glob, gtk_hex_get_cursor (gh_glob) + 1);
 	}
 	g_value_unset(&value);
 	sel_row = selection;
 }
 
+#if 0
 static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *event, gpointer data)
 {
 	GtkTreeModel *model = GTK_TREE_MODEL(data);
@@ -105,14 +116,18 @@ static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *e
 		insert_char(treeview, model);
 	return FALSE;
 }
+#endif
 
 static void hide_chartable_cb (GtkWidget *widget, GtkWidget *win)
 {
     /* widget may be NULL if called from keypress cb! */
-	ghex_window_sync_char_table_item(NULL, FALSE);
-	gtk_widget_hide(win);
+	// FIXME - commenting out for now to get to build.
+//	ghex_window_sync_char_table_item (NULL, FALSE);
+	gtk_widget_hide (win);
 }
 
+// REWRITE FOR EVENT CONTROLLERS
+#if 0
 static gint char_table_key_press_cb (GtkWindow *w, GdkEventKey *e, gpointer data)
 {
 	if (e->keyval == GDK_KEY_Escape) {
@@ -140,12 +155,13 @@ char_table_delete_event_cb(GtkWidget *widget, GdkEventAny *e, gpointer user_data
 	gtk_widget_hide(widget);
 	return TRUE;
 }
+#endif
 
-GtkWidget *create_char_table()
+GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 {
 	static gchar *fmt[] = { NULL, "%02X", "%03d", "%03o" };
 	static gchar *titles[] = {  N_("ASCII"), N_("Hex"), N_("Decimal"),
-								N_("Octal"), N_("Binary") };
+		N_("Octal"), N_("Binary") };
 	gchar *real_titles[5];
 	GtkWidget *ct, *sw, *ctv, *cbtn, *vbox, *hbox, *lbl;
 	GtkListStore *store;
@@ -156,19 +172,41 @@ GtkWidget *create_char_table()
 	int i, col;
 	gchar *label, ascii_printable_label[2], bin_label[9], *row[5];
 
-	ct = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	g_signal_connect(G_OBJECT(ct), "delete_event",
-					 G_CALLBACK(char_table_delete_event_cb), NULL);
-	g_signal_connect(G_OBJECT(ct), "key_press_event",
-					 G_CALLBACK(char_table_key_press_cb), NULL);
+	/* set global GtkHex widget */
+	g_assert (GTK_IS_HEX(gh));
+	gh_glob = gh;
+
+	/* Create our char table window and set as child of parent window,
+	 * if requested.
+	 */
+	ct = gtk_window_new ();
+
+	if (parent_win) {
+		g_assert (GTK_IS_WINDOW (parent_win));
+
+		gtk_window_set_transient_for (GTK_WINDOW(ct), parent_win);
+	}
+
+	// TODO
+//	g_signal_connect(G_OBJECT(ct), "close-request",
+//					 G_CALLBACK(char_table_close_request_cb), NULL);
+	// handles esc - possibly rewrite to use Event Controllers. 
+//	g_signal_connect(G_OBJECT(ct), "key_press_event",
+//					 G_CALLBACK(char_table_key_press_cb), NULL);
+//
 	gtk_window_set_title(GTK_WINDOW(ct), _("Character table"));
-	sw = gtk_scrolled_window_new(NULL, NULL);
-	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+
+	sw = gtk_scrolled_window_new ();
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw),
+			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+
 	for(i = 0; i < 5; i++)
 		real_titles[i] = _(titles[i]);
+
 	store = gtk_list_store_new(5, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 	cell_renderer = gtk_cell_renderer_text_new();
 	ctv = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+
 	for (i = 0; i < 5; i++) {
 		column = gtk_tree_view_column_new_with_attributes (real_titles[i], cell_renderer, "text", i, NULL);
 		gtk_tree_view_append_column(GTK_TREE_VIEW(ctv), column);
@@ -217,37 +255,41 @@ GtkWidget *create_char_table()
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW (ctv));
 	gtk_tree_selection_set_mode(selection, GTK_SELECTION_SINGLE);
 
+	// REWRITE
+#if 0
 	g_signal_connect(G_OBJECT(ct), "delete-event",
 					 G_CALLBACK(delete_event_cb), ct);
 	g_signal_connect(G_OBJECT(ctv), "button_press_event",
 					 G_CALLBACK(select_chartable_row_cb), GTK_TREE_MODEL(store));
 	g_signal_connect(G_OBJECT(ctv), "key_press_event",
 					 G_CALLBACK(key_press_cb), GTK_TREE_MODEL(store));
+#endif
+
 	gtk_widget_grab_focus(ctv);
 
-	cbtn = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
+	cbtn = gtk_button_new_with_mnemonic (_("_Close"));
 	gtk_widget_show(cbtn);
 	g_signal_connect(G_OBJECT (cbtn), "clicked",
 					G_CALLBACK(hide_chartable_cb), ct);
 
 	lbl = gtk_label_new ("");
-	gtk_widget_show(lbl);
-
 	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 4);
-	gtk_widget_show(vbox);
-
 	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
-	gtk_widget_show(hbox);
 
+	gtk_box_append (GTK_BOX(vbox), sw);
+	gtk_box_append (GTK_BOX(hbox), lbl);
+	gtk_box_append (GTK_BOX(hbox), cbtn);
+	gtk_box_append (GTK_BOX(vbox), hbox);
+
+#if 0
 	gtk_box_pack_start(GTK_BOX(vbox), sw, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, TRUE, TRUE, 4);
 	gtk_box_pack_start(GTK_BOX(hbox), cbtn, FALSE, TRUE, 12);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+#endif
 
-	gtk_container_add(GTK_CONTAINER(sw), ctv);
-	gtk_container_add(GTK_CONTAINER(ct), vbox);
-	gtk_widget_show(ctv);
-	gtk_widget_show(sw);
+	gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW(sw), ctv);
+	gtk_window_set_child (GTK_WINDOW (ct), vbox);
 
 	gtk_widget_set_size_request(ct, 320, 256);
 

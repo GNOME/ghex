@@ -5,6 +5,7 @@
 #include "ghex-application-window.h"
 #include "hex-dialog.h"
 #include "findreplace.h"
+#include "chartable.h"
 
 struct _GHexApplicationWindow
 {
@@ -20,6 +21,7 @@ struct _GHexApplicationWindow
 	GtkWidget *find_dialog;
 	GtkWidget *replace_dialog;
 	GtkWidget *jump_dialog;
+	GtkWidget *chartable;
 
 /*
  * for i in `cat ghex-application-window.ui |grep -i 'id=' |sed -e 's,^\s*,,g' |sed -e 's,.*id=",,' |sed -e 's,">,,'`; do echo $i >> tmp.txt; done
@@ -61,6 +63,31 @@ cursor_moved_cb(GtkHex *gtkhex, gpointer user_data)
 
 
 /* ACTIONS */
+
+static void
+show_chartable (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+
+	g_return_if_fail (GTK_IS_HEX(self->gh));
+	g_return_if_fail (GTK_IS_WIDGET(self->find_dialog));
+
+	(void)parameter, (void)action_name;		/* unused */
+
+	if (! self->chartable) {
+		self->chartable = create_char_table (GTK_WINDOW(self), self->gh);
+		gtk_widget_show (self->chartable);
+	}
+	else if (gtk_widget_is_visible (self->chartable)) {
+		gtk_widget_hide (self->chartable);
+	}
+	else {
+		gtk_widget_show (self->chartable);
+	}
+}
+
 
 static void
 show_find_pane (GtkWidget *widget,
@@ -277,6 +304,12 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_install_action (widget_class, "ghex.jump",
 			NULL,	// GVariant string param_type
 			show_jump_pane);
+
+	gtk_widget_class_install_action (widget_class, "ghex.chartable",
+			NULL,	// GVariant string param_type
+			show_chartable);
+
+
 	/* 
 	 * for i in `cat tmp.txt`; do echo "gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow, ${i});"; done
 	 */

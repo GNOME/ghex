@@ -3529,3 +3529,11 @@ gtk_hex_get_document (GtkHex *gh)
 
 	return gh->document;
 }
+
+gboolean
+gtk_hex_get_insert_mode (GtkHex *gh)
+{
+	g_assert (GTK_IS_HEX (gh));
+
+	return gh->insert;
+}

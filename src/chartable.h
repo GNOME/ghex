@@ -21,17 +21,18 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef __GHEX_CHARTABLE_H__
-#define __GHEX_CHARTABLE_H__
+#ifndef GHEX_CHARTABLE_H
+#define GHEX_CHARTABLE_H
 
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
-GtkWidget *create_char_table(void);
+GtkWidget *create_char_table (GtkWindow *parent_win, /* can-NULL */
+		GtkHex *gh);
 
 extern GtkWidget *char_table;
 
 G_END_DECLS
 
-#endif /* !__GHEX_CHARTABLE_H__ */
+#endif /* GHEX_CHARTABLE_H */
