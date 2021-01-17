@@ -141,6 +141,7 @@ struct _GtkHex
 
 	GtkWidget *xdisp, *adisp;	/* DrawingArea */
 	GtkWidget *offsets;			/* DrawingArea */
+	GtkWidget *scrollbar;
 
 	PangoLayout *xlayout, *alayout, *olayout;
 
@@ -2816,7 +2817,7 @@ static void gtk_hex_document_changed(HexDocument* doc, gpointer change_data,
 
 
 static void
-gtk_hex_class_init(GtkHexClass *klass)
+gtk_hex_class_init (GtkHexClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
@@ -3009,10 +3010,6 @@ gtk_hex_init(GtkHex *gh)
 	                                GTK_STYLE_PROVIDER (provider),
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-	/* Initialize Adjustment */
-
-	gh->adj = gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-
 	/* Setup offsets widget. */
 
 	gh->offsets = gtk_drawing_area_new();
@@ -3044,7 +3041,7 @@ gtk_hex_init(GtkHex *gh)
 	/* Setup our Hex drawing area. */
 
 	gh->xdisp = gtk_drawing_area_new();
-	gtk_widget_set_parent (gh->xdisp, GTK_WIDGET (gh));
+	gtk_widget_set_parent (gh->xdisp, widget);
 	gtk_widget_set_hexpand (gh->xdisp, TRUE);
 
 	/* Create the pango layout for the widget */
@@ -3088,7 +3085,7 @@ gtk_hex_init(GtkHex *gh)
 	/* Setup our ASCII widget. */
 
 	gh->adisp = gtk_drawing_area_new();
-	gtk_widget_set_parent (gh->adisp, GTK_WIDGET (gh));
+	gtk_widget_set_parent (gh->adisp, widget);
 	gtk_widget_set_halign (gh->adisp, GTK_ALIGN_START);
 	gtk_widget_set_hexpand (gh->adisp, FALSE);
 	gtk_widget_set_name (gh->adisp, "asciidisplay");
@@ -3134,6 +3131,15 @@ gtk_hex_init(GtkHex *gh)
 	gtk_widget_set_size_request (gh->xdisp,
 			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
 
+
+	/* Initialize Adjustment */
+
+	gh->adj = gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+
+	/* Setup scrollbar. */
+	gh->scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL,
+			gh->adj);
+	gtk_widget_set_parent (gh->scrollbar, widget);
 
 	/* Connect gestures to ascii/hex drawing areas.
 	 */
@@ -3517,7 +3523,7 @@ void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines)
 GtkAdjustment *
 gtk_hex_get_adjustment(GtkHex *gh)
 {
-	g_return_if_fail (GTK_IS_ADJUSTMENT(gh->adj));
+	g_return_val_if_fail (GTK_IS_ADJUSTMENT(gh->adj), NULL);
 
 	return gh->adj;
 }
@@ -3536,4 +3542,12 @@ gtk_hex_get_insert_mode (GtkHex *gh)
 	g_assert (GTK_IS_HEX (gh));
 
 	return gh->insert;
+}
+
+guint
+gtk_hex_get_group_type (GtkHex *gh)
+{
+	g_assert (GTK_IS_HEX (gh));
+
+	return gh->group_type;
 }

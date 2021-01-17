@@ -3,14 +3,14 @@
 DEBUG=-g -DENABLE_DEBUG
 CC=gcc
 GTK_CFLAGS=$(shell pkg-config --libs --cflags gtk4)
-CFLAGS=-Wall -Wextra -std=c11 -pedantic \
+CFLAGS=-Wall -Wextra -Werror=implicit -std=c11 -pedantic \
        $(GTK_CFLAGS) \
        -I../build -I. \
        $(DEBUG)
 
 .PHONY: clean compile-resources
 
-STUB: gtkhex.o hex-document.o ghex-application-window.o hex-dialog.o findreplace.o chartable.o resources.o
+STUB: gtkhex.o hex-document.o ghex-application-window.o hex-dialog.o findreplace.o chartable.o converter.o resources.o
 
 compile-resources:
 	glib-compile-resources ghex.gresource.xml --target=resources.c --generate-source

@@ -52,7 +52,7 @@
 				</item>
 				<item>
 					<attribute name="label" translatable="yes">_Base Converter</attribute>
-					<attribute name="action">ghex.base-converter</attribute>
+					<attribute name="action">ghex.converter</attribute>
 				</item>
 			</submenu>
 
@@ -121,7 +121,7 @@
 				</child>
 
 				<child type="end">
-					<object class="GtkButton">
+					<object class="GtkButton" id="find_button">
 						<property name="valign">center</property>
 						<property name="icon-name">edit-find-symbolic</property>
 						<property name="action-name">ghex.find</property>
@@ -143,16 +143,19 @@
 		<child> <!-- main vert gtkbox -->
 			<object class="GtkBox"> <!-- main vert gtkbox -->
 				<property name="orientation">vertical</property>
-				<child> <!-- child_box for gtkhex widget and scrollbar -->
+
+				<child> <!-- child_box for notebook -->
 					<object class="GtkBox" id="child_box">
 						<property name="orientation">horizontal</property>
 						<property name="homogeneous">false</property>
-						<child>
-							<object class="GtkScrollbar" id="scrollbar">
-								<property name="orientation">vertical</property>
-								<property name="hexpand">false</property>
-								<property name="halign">end</property>
-							</object>
+
+						<child> <!-- hex_notebook - tabs for GtkHex widget -->
+							<object class="GtkNotebook" id="hex_notebook">
+								<property name="enable-popup">true</property>
+								<property name="group-name">hex</property>
+								<property name="scrollable">true</property>
+								<property name="vexpand">true</property>
+							</object>	
 						</child>
 					</object> <!-- child_box -->
 				</child> <!-- child_box -->

@@ -38,7 +38,8 @@
 //#include "ghex-window.h"
 //#include "ui.h"
 
-GtkWidget *char_table = NULL;
+/* STATIC GLOBALS */
+
 static GtkTreeSelection *sel_row = NULL;
 static GtkHex *gh_glob = NULL;
 
@@ -78,7 +79,7 @@ static char *ascii_non_printable_label[] = {
 };
 
 static void
-insert_char(GtkTreeView *treeview, GtkTreeModel *model)
+insert_char (GtkTreeView *treeview, GtkTreeModel *model)
 {
 	GtkTreeIter iter;
 	GtkTreeSelection *selection;
@@ -107,6 +108,20 @@ insert_char(GtkTreeView *treeview, GtkTreeModel *model)
 	sel_row = selection;
 }
 
+static void
+chartable_row_activated_cb (GtkTreeView *tree_view,
+		GtkTreePath *path,
+		GtkTreeViewColumn *column,
+		gpointer user_data)
+{
+	GtkTreeModel *model = GTK_TREE_MODEL(user_data);
+
+	g_debug("%s: start", __func__);
+
+	insert_char (tree_view, model);
+}
+
+
 #if 0
 static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *event, gpointer data)
 {
@@ -118,44 +133,14 @@ static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *e
 }
 #endif
 
-static void hide_chartable_cb (GtkWidget *widget, GtkWidget *win)
+static void hide_chartable_cb (GtkButton *button, gpointer user_data)
 {
-    /* widget may be NULL if called from keypress cb! */
-	// FIXME - commenting out for now to get to build.
-//	ghex_window_sync_char_table_item (NULL, FALSE);
-	gtk_widget_hide (win);
-}
+	GtkWindow *win = GTK_WINDOW(user_data);
 
-// REWRITE FOR EVENT CONTROLLERS
-#if 0
-static gint char_table_key_press_cb (GtkWindow *w, GdkEventKey *e, gpointer data)
-{
-	if (e->keyval == GDK_KEY_Escape) {
-		hide_chartable_cb(NULL, GTK_WIDGET(w));
-		return TRUE;
-	}
-	return FALSE;
-}
+	(void)button;	/* unused */
 
-static gint key_press_cb (GtkTreeView *treeview, GdkEventKey *e, gpointer data)
-{
-	GtkTreeModel *model = GTK_TREE_MODEL(data);
-
-	if (e->keyval == GDK_KEY_Return) {
-		insert_char(treeview, model);
-		return TRUE;
-	}
-	return FALSE;
+	gtk_window_close (win);
 }
-
-static gboolean
-char_table_delete_event_cb(GtkWidget *widget, GdkEventAny *e, gpointer user_data)
-{
-	ghex_window_sync_char_table_item(NULL, FALSE);
-	gtk_widget_hide(widget);
-	return TRUE;
-}
-#endif
 
 GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 {
@@ -187,13 +172,6 @@ GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 		gtk_window_set_transient_for (GTK_WINDOW(ct), parent_win);
 	}
 
-	// TODO
-//	g_signal_connect(G_OBJECT(ct), "close-request",
-//					 G_CALLBACK(char_table_close_request_cb), NULL);
-	// handles esc - possibly rewrite to use Event Controllers. 
-//	g_signal_connect(G_OBJECT(ct), "key_press_event",
-//					 G_CALLBACK(char_table_key_press_cb), NULL);
-//
 	gtk_window_set_title(GTK_WINDOW(ct), _("Character table"));
 
 	sw = gtk_scrolled_window_new ();
@@ -206,6 +184,8 @@ GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 	store = gtk_list_store_new(5, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 	cell_renderer = gtk_cell_renderer_text_new();
 	ctv = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+	gtk_widget_set_hexpand (ctv, TRUE);
+	gtk_widget_set_vexpand (ctv, TRUE);
 
 	for (i = 0; i < 5; i++) {
 		column = gtk_tree_view_column_new_with_attributes (real_titles[i], cell_renderer, "text", i, NULL);
@@ -255,6 +235,9 @@ GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW (ctv));
 	gtk_tree_selection_set_mode(selection, GTK_SELECTION_SINGLE);
 
+	g_signal_connect (ctv, "row-activated",
+			G_CALLBACK(chartable_row_activated_cb), GTK_TREE_MODEL(store));
+
 	// REWRITE
 #if 0
 	g_signal_connect(G_OBJECT(ct), "delete-event",
@@ -268,7 +251,6 @@ GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 	gtk_widget_grab_focus(ctv);
 
 	cbtn = gtk_button_new_with_mnemonic (_("_Close"));
-	gtk_widget_show(cbtn);
 	g_signal_connect(G_OBJECT (cbtn), "clicked",
 					G_CALLBACK(hide_chartable_cb), ct);
 
@@ -291,7 +273,7 @@ GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 	gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW(sw), ctv);
 	gtk_window_set_child (GTK_WINDOW (ct), vbox);
 
-	gtk_widget_set_size_request(ct, 320, 256);
+	gtk_widget_set_size_request(ct, 320, 320);
 
 	return ct;
 }

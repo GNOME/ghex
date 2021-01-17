@@ -11,8 +11,12 @@ G_DECLARE_FINAL_TYPE (GHexApplicationWindow, ghex_application_window,
 				GHEX, APPLICATION_WINDOW,
 				GtkApplicationWindow)
 
-GtkWidget *	ghex_application_window_new(void);
-void		ghex_application_window_add_hex(GHexApplicationWindow *self,
+GtkWidget *	ghex_application_window_new (GtkApplication *app);
+void		ghex_application_window_add_hex (GHexApplicationWindow *self,
+				GtkHex *gh);
+void		ghex_application_window_set_hex (GHexApplicationWindow *self,
+				GtkHex *gh);
+void		ghex_application_window_activate_tab (GHexApplicationWindow *self,
 				GtkHex *gh);
 
 #endif

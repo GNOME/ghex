@@ -63,6 +63,7 @@ guint gtk_hex_get_cursor(GtkHex *);
 guchar gtk_hex_get_byte(GtkHex *, guint);
 
 void gtk_hex_set_group_type(GtkHex *, guint);
+guint gtk_hex_get_group_type (GtkHex *gh);
 
 void gtk_hex_set_starting_offset(GtkHex *, gint);
 void gtk_hex_show_offsets(GtkHex *, gboolean);

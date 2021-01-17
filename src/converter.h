@@ -1,3 +1,5 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* gtkhex.h - definition of a GtkHex widget, modified for use with GnomeMDI
 
@@ -21,28 +23,17 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef __GHEX_CONVERTER_H__
-#define __GHEX_CONVERTER_H__
+#ifndef GHEX_CONVERTER_H
+#define GHEX_CONVERTER_H
 
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
-typedef struct _Converter {
-	GtkWidget *window;
-	GtkWidget *entry[5];
-	GtkWidget *close;
-	GtkWidget *get;
+GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
+		GtkHex *gh);
 
-	gulong value;
-} Converter;
-
-/* Defined in converter.c: used by close_cb and converter_cb */
-extern GtkWidget *converter_get;
-extern Converter *converter;
-
-Converter *create_converter(void);
 
 G_END_DECLS
 
-#endif /* !__GHEX_CONVERTER_H__ */
+#endif /* GHEX_CONVERTER_H */
