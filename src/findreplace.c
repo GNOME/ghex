@@ -47,6 +47,11 @@
 
 /* GOBJECT DEFINITIONS */
 
+enum signal_types {
+	CLOSED,
+	LAST_SIGNAL
+};
+
 struct _JumpDialog {
 	GtkWidget parent_instance;
 
@@ -56,6 +61,8 @@ struct _JumpDialog {
 	GtkWidget *int_entry;
 	GtkWidget *ok, *cancel;
 };
+
+static guint jump_signals[LAST_SIGNAL];
 
 G_DEFINE_TYPE (JumpDialog, jump_dialog, GTK_TYPE_WIDGET)
 
@@ -73,6 +80,8 @@ struct _FindDialog {
 	GtkHex_AutoHighlight *auto_highlight;
 };
 
+static guint find_signals[LAST_SIGNAL];
+
 G_DEFINE_TYPE (FindDialog, find_dialog, GTK_TYPE_WIDGET)
 
 struct _ReplaceDialog {
@@ -89,6 +98,8 @@ struct _ReplaceDialog {
 	GtkHex_AutoHighlight *auto_highlight;
 }; 
 
+static guint replace_signals[LAST_SIGNAL];
+
 G_DEFINE_TYPE (ReplaceDialog, replace_dialog, GTK_TYPE_WIDGET)
 
 /* PRIVATE FUNCTION DECLARATIONS */
@@ -96,7 +107,8 @@ G_DEFINE_TYPE (ReplaceDialog, replace_dialog, GTK_TYPE_WIDGET)
 //static gint find_delete_event_cb(GtkWidget *w, GdkEventAny *e,
 //		FindDialog *dialog);
 static void find_cancel_cb(GtkButton *button, gpointer user_data);
-static void cancel_cb (GtkButton *button, gpointer user_data);
+static void replace_cancel_cb (GtkButton *button, gpointer user_data);
+static void jump_cancel_cb (GtkButton *button, gpointer user_data);
 static void find_next_cb(GtkButton *button, gpointer user_data);
 static void find_prev_cb(GtkButton *button, gpointer user_data);
 static void replace_next_cb(GtkButton *button, gpointer user_data);
@@ -157,18 +169,28 @@ static gint find_delete_event_cb(GtkWidget *w, GdkEventAny *e, FindDialog *dialo
 }
 #endif
 
-// FIXME - this is kind of a crappy hack to get this to build
-// Revisit.
 static void
-cancel_cb (GtkButton *button, gpointer user_data)
+replace_cancel_cb (GtkButton *button, gpointer user_data)
 {
-	GtkWidget *widget = GTK_WIDGET(user_data);
-
-	g_return_if_fail (GTK_IS_WIDGET(widget));
+	ReplaceDialog *self = REPLACE_DIALOG(user_data);
 
 	(void)button;	/* unused */
 
-	gtk_widget_hide (widget);
+	g_signal_emit(self,
+			replace_signals[CLOSED],
+			0);	// GQuark detail (just set to 0 if unknown)
+}
+
+static void
+jump_cancel_cb (GtkButton *button, gpointer user_data)
+{
+	JumpDialog *self = JUMP_DIALOG(user_data);
+
+	(void)button;	/* unused */
+
+	g_signal_emit(self,
+			jump_signals[CLOSED],
+			0);	// GQuark detail (just set to 0 if unknown)
 }
 
 static void
@@ -187,7 +209,9 @@ find_cancel_cb(GtkButton *button, gpointer user_data)
 
 	self->auto_highlight = NULL;
 
-	gtk_widget_hide(self);
+	g_signal_emit(self,
+			find_signals[CLOSED],
+			0);	// GQuark detail (just set to 0 if unknown)
 }
 
 static void
@@ -634,6 +658,22 @@ find_dialog_class_init(FindDialogClass *klass)
 	 */
 	gtk_widget_class_set_layout_manager_type (widget_class,
 			GTK_TYPE_BOX_LAYOUT);
+
+	/* SIGNALS */
+
+	find_signals[CLOSED] = g_signal_new_class_handler("closed",
+			G_OBJECT_CLASS_TYPE(object_class),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		/* GCallback class_handler: */
+			NULL,
+		/* no accumulator or accu_data */
+			NULL, NULL,
+		/* GSignalCMarshaller c_marshaller: */
+			NULL,		/* use generic marshaller */
+		/* GType return_type: */
+			G_TYPE_NONE,
+		/* guint n_params: */
+			0);
 }
 
 GtkWidget *
@@ -699,7 +739,7 @@ replace_dialog_init (ReplaceDialog *self)
 
 	self->close = gtk_button_new_with_mnemonic (_("_Close"));
 	g_signal_connect (G_OBJECT (self->close),
-					  "clicked", G_CALLBACK(cancel_cb),
+					  "clicked", G_CALLBACK(replace_cancel_cb),
 					  self);
 	gtk_box_append (GTK_BOX(self->hbox), self->close);
 
@@ -763,6 +803,20 @@ replace_dialog_class_init(ReplaceDialogClass *klass)
 	 */
 	gtk_widget_class_set_layout_manager_type (widget_class,
 			GTK_TYPE_BOX_LAYOUT);
+
+	replace_signals[CLOSED] = g_signal_new_class_handler("closed",
+			G_OBJECT_CLASS_TYPE(object_class),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		/* GCallback class_handler: */
+			NULL,
+		/* no accumulator or accu_data */
+			NULL, NULL,
+		/* GSignalCMarshaller c_marshaller: */
+			NULL,		/* use generic marshaller */
+		/* GType return_type: */
+			G_TYPE_NONE,
+		/* guint n_params: */
+			0);
 }
 
 GtkWidget *
@@ -831,7 +885,7 @@ jump_dialog_init (JumpDialog *self)
 
 	self->cancel = gtk_button_new_with_mnemonic (_("_Close"));
 	g_signal_connect (G_OBJECT (self->cancel),
-					  "clicked", G_CALLBACK(cancel_cb),
+					  "clicked", G_CALLBACK(jump_cancel_cb),
 					  self);
 	gtk_box_append (GTK_BOX(self->box), self->cancel);
 
@@ -889,6 +943,20 @@ jump_dialog_class_init(JumpDialogClass *klass)
 	 */
 	gtk_widget_class_set_layout_manager_type (widget_class,
 			GTK_TYPE_BOX_LAYOUT);
+
+	jump_signals[CLOSED] = g_signal_new_class_handler("closed",
+			G_OBJECT_CLASS_TYPE(object_class),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		/* GCallback class_handler: */
+			NULL,
+		/* no accumulator or accu_data */
+			NULL, NULL,
+		/* GSignalCMarshaller c_marshaller: */
+			NULL,		/* use generic marshaller */
+		/* GType return_type: */
+			G_TYPE_NONE,
+		/* guint n_params: */
+			0);
 }
 
 GtkWidget *

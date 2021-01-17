@@ -83,10 +83,15 @@ struct _GHexApplicationWindow
 	GtkWidget *statusbar;
 };
 
+/* GHexApplicationWindow - Globals for Properties and Signals */
+
 typedef enum
 {
 	PROP_CHARTABLE_OPEN = 1,
 	PROP_CONVERTER_OPEN,
+	PROP_FIND_OPEN,
+	PROP_REPLACE_OPEN,
+	PROP_JUMP_OPEN,
 	N_PROPERTIES
 } GHexApplicationWindowProperty;
 
@@ -100,11 +105,16 @@ G_DEFINE_TYPE (GHexApplicationWindow, ghex_application_window,
 
 /* FUNCTION DECLARATIONS */
 
-/* NOTE: see also SET_SHOW_TEMPLATE macro defined below. */
+/* NOTE: see also *SET_SHOW_TEMPLATE macros defined below. */
 static void ghex_application_window_set_show_chartable (GHexApplicationWindow *self,
 		gboolean show);
-
 static void ghex_application_window_set_show_converter (GHexApplicationWindow *self,
+		gboolean show);
+static void ghex_application_window_set_show_find (GHexApplicationWindow *self,
+		gboolean show);
+static void ghex_application_window_set_show_replace (GHexApplicationWindow *self,
+		gboolean show);
+static void ghex_application_window_set_show_jump (GHexApplicationWindow *self,
 		gboolean show);
 
 static void set_statusbar(GHexApplicationWindow *self, const char *str);
@@ -169,18 +179,45 @@ notebook_page_removed_cb (GtkNotebook *notebook,
  * public property getter/setter function if we add more properties here.
  */
 static void
+find_close_cb (FindDialog *dialog,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+
+	(void)dialog;
+
+	ghex_application_window_set_show_find (self, FALSE);
+}
+
+static void
+replace_close_cb (ReplaceDialog *dialog,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+
+	(void)dialog;
+
+	ghex_application_window_set_show_replace (self, FALSE);
+}
+
+static void
+jump_close_cb (JumpDialog *dialog,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+
+	(void)dialog;
+
+	ghex_application_window_set_show_jump (self, FALSE);
+}
+
+static void
 chartable_close_cb (GtkWindow *window,
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-	GValue val = G_VALUE_INIT;
 
-	g_value_init (&val, G_TYPE_BOOLEAN);
-	g_value_set_boolean (&val, FALSE);
-	
-	g_object_set_property (G_OBJECT(self), "chartable-open", &val);
-
-	g_value_unset (&val);
+	ghex_application_window_set_show_chartable (self, FALSE);
 }
 
 static void
@@ -188,14 +225,8 @@ converter_close_cb (GtkWindow *window,
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-	GValue val = G_VALUE_INIT;
 
-	g_value_init (&val, G_TYPE_BOOLEAN);
-	g_value_set_boolean (&val, FALSE);
-	
-	g_object_set_property (G_OBJECT(self), "converter-open", &val);
-
-	g_value_unset (&val);
+	ghex_application_window_set_show_converter (self, FALSE);
 }
 
 static void
@@ -240,7 +271,7 @@ cursor_moved_cb (GtkHex *gh, gpointer user_data)
 
 /* ACTIONS */
 
-#define SET_SHOW_TEMPLATE(WIDGET, SETUP_FUNC)								\
+#define DIALOG_SET_SHOW_TEMPLATE(WIDGET, SETUP_FUNC, PROP_ARR_ENTRY)		\
 static void																	\
 ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 		gboolean show)														\
@@ -259,10 +290,31 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 		if (gtk_widget_is_visible (self->WIDGET))							\
 			gtk_widget_hide (self->WIDGET);									\
 	}																		\
-}														/* SET_SHOW_TEMPLATE */
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_ARR_ENTRY]);	\
+}												/* DIALOG_SET_SHOW_TEMPLATE */
 
-SET_SHOW_TEMPLATE(chartable, setup_chartable(self))
-SET_SHOW_TEMPLATE(converter, setup_converter(self))
+DIALOG_SET_SHOW_TEMPLATE(chartable, setup_chartable(self), PROP_CHARTABLE_OPEN)
+DIALOG_SET_SHOW_TEMPLATE(converter, setup_converter(self), PROP_CONVERTER_OPEN)
+
+#define PANE_SET_SHOW_TEMPLATE(WIDGET, OTHER1, OTHER2, PROP_ARR_ENTRY)		\
+static void																	\
+ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
+		gboolean show)														\
+{																			\
+	g_debug("%s: start - show: %d", __func__, show);						\
+	if (show) {																\
+		ghex_application_window_set_show_ ## OTHER1 (self, FALSE);			\
+		ghex_application_window_set_show_ ## OTHER2 (self, FALSE);			\
+		gtk_widget_show (self->WIDGET ## _dialog);							\
+	} else {																\
+		gtk_widget_hide (self->WIDGET ## _dialog);							\
+	}																		\
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_ARR_ENTRY]);	\
+}												/* PANE_SET_SHOW_TEMPLATE */
+
+PANE_SET_SHOW_TEMPLATE(find,		replace, jump,	PROP_FIND_OPEN)
+PANE_SET_SHOW_TEMPLATE(replace,		find, jump,		PROP_REPLACE_OPEN)
+PANE_SET_SHOW_TEMPLATE(jump,		find, replace,	PROP_JUMP_OPEN)
 
 /* convenience helper function to build a GtkHex widget pre-loaded with
  * a hex document, from a GFile *.
@@ -350,61 +402,6 @@ open_file (GtkWidget *widget,
 	g_signal_connect (file_sel, "response",
 			G_CALLBACK(open_response_cb), self);
 }
-
-static void
-show_find_pane (GtkWidget *widget,
-		const char *action_name,
-		GVariant *parameter)
-{
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
-
-	g_return_if_fail (GTK_IS_HEX(self->gh));
-	g_return_if_fail (GTK_IS_WIDGET(self->find_dialog));
-
-	(void)parameter, (void)action_name;		/* unused */
-
-	gtk_widget_hide (self->replace_dialog);
-	gtk_widget_hide (self->jump_dialog);
-
-	gtk_widget_show (self->find_dialog);
-}
-
-static void
-show_replace_pane (GtkWidget *widget,
-		const char *action_name,
-		GVariant *parameter)
-{
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
-
-	g_return_if_fail (GTK_IS_HEX(self->gh));
-	g_return_if_fail (GTK_IS_WIDGET(self->replace_dialog));
-
-	(void)parameter, (void)action_name;		/* unused */
-
-	gtk_widget_hide (self->jump_dialog);
-	gtk_widget_hide (self->find_dialog);
-
-	gtk_widget_show (self->replace_dialog);
-}
-
-static void
-show_jump_pane (GtkWidget *widget,
-		const char *action_name,
-		GVariant *parameter)
-{
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
-
-	g_return_if_fail (GTK_IS_HEX(self->gh));
-	g_return_if_fail (GTK_IS_WIDGET(self->jump_dialog));
-
-	(void)parameter, (void)action_name;		/* unused */
-
-	gtk_widget_hide (self->replace_dialog);
-	gtk_widget_hide (self->find_dialog);
-
-	gtk_widget_show (self->jump_dialog);
-}
-
 
 static void
 toggle_conversions (GtkWidget *widget,
@@ -536,6 +533,21 @@ ghex_application_window_set_property (GObject *object,
 					g_value_get_boolean (value));
 			break;
 
+		case PROP_FIND_OPEN:
+			ghex_application_window_set_show_find (self,
+					g_value_get_boolean (value));
+			break;
+
+		case PROP_REPLACE_OPEN:
+			ghex_application_window_set_show_replace (self,
+					g_value_get_boolean (value));
+			break;
+
+		case PROP_JUMP_OPEN:
+			ghex_application_window_set_show_jump (self,
+					g_value_get_boolean (value));
+			break;
+
 		default:
 			/* We don't have any other property... */
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -563,6 +575,24 @@ ghex_application_window_get_property (GObject *object,
 			g_value_set_boolean (value,
 					GTK_IS_WIDGET(self->converter) &&
 						gtk_widget_get_visible (self->converter));
+			break;
+
+		case PROP_FIND_OPEN:
+			g_value_set_boolean (value,
+					GTK_IS_WIDGET(self->find_dialog) &&
+						gtk_widget_get_visible (self->find_dialog));
+			break;
+
+		case PROP_REPLACE_OPEN:
+			g_value_set_boolean (value,
+					GTK_IS_WIDGET(self->replace_dialog) &&
+						gtk_widget_get_visible (self->replace_dialog));
+			break;
+
+		case PROP_JUMP_OPEN:
+			g_value_set_boolean (value,
+					GTK_IS_WIDGET(self->jump_dialog) &&
+						gtk_widget_get_visible (self->jump_dialog));
 			break;
 
 		default:
@@ -753,16 +783,22 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	gtk_widget_set_hexpand (self->find_dialog, TRUE);
 	gtk_box_append (GTK_BOX(self->findreplace_box), self->find_dialog);
 	gtk_widget_hide (self->find_dialog);
+	g_signal_connect (self->find_dialog, "closed",
+			G_CALLBACK(find_close_cb), self);
 
 	self->replace_dialog = replace_dialog_new ();
 	gtk_widget_set_hexpand (self->replace_dialog, TRUE);
 	gtk_box_append (GTK_BOX(self->findreplace_box), self->replace_dialog);
 	gtk_widget_hide (self->replace_dialog);
+	g_signal_connect (self->replace_dialog, "closed",
+			G_CALLBACK(replace_close_cb), self);
 
 	self->jump_dialog = jump_dialog_new ();
 	gtk_widget_set_hexpand (self->jump_dialog, TRUE);
 	gtk_box_append (GTK_BOX(self->findreplace_box), self->jump_dialog);
 	gtk_widget_hide (self->jump_dialog);
+	g_signal_connect (self->jump_dialog, "closed",
+			G_CALLBACK(jump_close_cb), self);
 
 	clear_statusbar (self);
 
@@ -810,16 +846,38 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			"Character table open",
 			"Whether the character table dialog is currently open",
 			FALSE,	// gboolean default_value
-			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
 	properties[PROP_CONVERTER_OPEN] =
 		g_param_spec_boolean ("converter-open",
 			"Base converter open",
 			"Whether the base converter dialog is currently open",
 			FALSE,	// gboolean default_value
-			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+
+	properties[PROP_FIND_OPEN] =
+		g_param_spec_boolean ("find-open",
+			"Find pane open",
+			"Whether the Find pane is currently open",
+			FALSE,	// gboolean default_value
+			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+
+	properties[PROP_REPLACE_OPEN] =
+		g_param_spec_boolean ("replace-open",
+			"Replace pane open",
+			"Whether the Find and Replace pane is currently open",
+			FALSE,	// gboolean default_value
+			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+
+	properties[PROP_JUMP_OPEN] =
+		g_param_spec_boolean ("jump-open",
+			"Jump pane open",
+			"Whether the Jump to Byte pane is currently open",
+			FALSE,	// gboolean default_value
+			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
+
 
 	/* ACTIONS */
 
@@ -834,18 +892,15 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_install_action (widget_class, "ghex.insert-mode",
 			NULL,	// GVariant string param_type
 			toggle_insert_mode);
-	
-	gtk_widget_class_install_action (widget_class, "ghex.find",
-			NULL,	// GVariant string param_type
-			show_find_pane);
 
-	gtk_widget_class_install_action (widget_class, "ghex.replace",
-			NULL,	// GVariant string param_type
-			show_replace_pane);
+	gtk_widget_class_install_property_action (widget_class,
+			"ghex.find", "find-open");
 
-	gtk_widget_class_install_action (widget_class, "ghex.jump",
-			NULL,	// GVariant string param_type
-			show_jump_pane);
+	gtk_widget_class_install_property_action (widget_class,
+			"ghex.replace", "replace-open");
+
+	gtk_widget_class_install_property_action (widget_class,
+			"ghex.jump", "jump-open");
 
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.chartable", "chartable-open");
