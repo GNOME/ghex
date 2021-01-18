@@ -365,6 +365,7 @@ notebook_switch_page_cb (GtkNotebook *notebook,
 		GHEX_APPLICATION_WINDOW(user_data);
 	GHexNotebookTab *tab =
 		GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook, page));
+	HexDocument *doc;
 
 	g_return_if_fail (GHEX_IS_NOTEBOOK_TAB(tab));
 
@@ -373,8 +374,13 @@ notebook_switch_page_cb (GtkNotebook *notebook,
 
 	if (tab->gh != self->gh) {
 		ghex_application_window_set_hex (self, tab->gh);
-		ghex_application_window_activate_tab (self, tab->gh);
+		ghex_application_window_activate_tab (self, self->gh);
 	}
+
+	/* Assess saveability based on new tab we've switched to */
+	doc = gtk_hex_get_document (self->gh);
+	ghex_application_window_set_can_save (self,
+			hex_document_has_changed (doc));
 }
 
 static void
