@@ -144,12 +144,49 @@ static void ghex_application_window_set_show_jump (GHexApplicationWindow *self,
 		gboolean show);
 static void ghex_application_window_set_can_save (GHexApplicationWindow *self,
 		gboolean can_save);
+static void ghex_application_window_remove_tab (GHexApplicationWindow *self,
+		GHexNotebookTab *tab);
+GHexNotebookTab * ghex_application_window_get_current_tab (GHexApplicationWindow *self);
 
 static void set_statusbar(GHexApplicationWindow *self, const char *str);
 static void update_status_message (GHexApplicationWindow *self);
 
 
 /* GHexApplicationWindow -- PRIVATE FUNCTIONS */
+
+// FIXME - This could be the wrong approach. I don't know if we can
+// guarantee the tab will be un-switchable while the dialog is up.
+	
+GHexNotebookTab *
+ghex_application_window_get_current_tab (GHexApplicationWindow *self)
+{
+	GtkNotebook *notebook;
+	GHexNotebookTab *tab;
+
+	g_return_val_if_fail (GTK_IS_NOTEBOOK (self->hex_notebook), NULL);
+	g_return_val_if_fail (GTK_IS_HEX (self->gh), NULL);
+
+	notebook = GTK_NOTEBOOK(self->hex_notebook);
+
+	tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,
+					GTK_WIDGET(self->gh)));
+	g_return_val_if_fail (GHEX_IS_NOTEBOOK_TAB (tab), NULL);
+
+	return tab;
+}
+
+static void
+ghex_application_window_remove_tab (GHexApplicationWindow *self,
+		GHexNotebookTab *tab)
+{
+		GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
+		int page_num;
+
+		page_num = gtk_notebook_page_num (notebook,
+				GTK_WIDGET(tab->gh));
+
+		gtk_notebook_remove_page (notebook, page_num);
+}
 
 static void
 file_save (GHexApplicationWindow *self)
@@ -174,26 +211,32 @@ file_save (GHexApplicationWindow *self)
 	}
 }
 
-
 static void
 close_doc_response_cb (GtkDialog *dialog,
 		int        response_id,
 		gpointer   user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	GHexNotebookTab *tab;
+	
+	tab = ghex_application_window_get_current_tab (self);
 
-	/* Bail out if user didn't click Save. */
-	if (response_id != GTK_RESPONSE_ACCEPT) {
-		g_debug ("%s: User did NOT click Save.",	__func__);
-		goto end;
+	if (response_id == GTK_RESPONSE_ACCEPT)
+	{
+		g_debug ("%s: Decided to SAVE changes.",
+				__func__);
+		file_save (self);
+		ghex_application_window_remove_tab (self, tab);
 	}
-
-	g_debug ("%s: Decided to SAVE changes.",
-			__func__);
-
-	file_save (self);
-
-end:
+	else if (response_id == GTK_RESPONSE_REJECT)
+	{
+		g_debug ("%s: Decided NOT to save changes.", __func__);
+		ghex_application_window_remove_tab (self, tab);
+	}
+	else
+	{
+		g_debug ("%s: User doesn't know WHAT they wanna do!.", __func__);
+	}
 	gtk_window_destroy (GTK_WINDOW(dialog));
 }
 
@@ -305,11 +348,10 @@ tab_close_cb (GHexNotebookTab *tab,
 
 	if (hex_document_has_changed (doc))
 	{
-		g_debug("%s: There are unsaved changes.", __func__);
 		close_doc_confirmation_dialog (self);
 	}
 	else {
-		g_debug("%s: No unsaved changes.", __func__);
+		ghex_application_window_remove_tab (self, tab);
 	}
 }
 
