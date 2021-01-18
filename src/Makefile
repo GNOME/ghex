@@ -4,6 +4,7 @@ DEBUG=-g -DENABLE_DEBUG
 CC=gcc
 GTK_CFLAGS=$(shell pkg-config --libs --cflags gtk4)
 CFLAGS=-Wall -Wextra -Werror=implicit -std=c11 -pedantic \
+       -Wno-unused-variable -Wno-unused-parameter \
        $(GTK_CFLAGS) \
        -I../build -I. \
        $(DEBUG)

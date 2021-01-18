@@ -86,6 +86,8 @@ struct _HexDocumentClass
 	void (*undo)(HexDocument *);
 	void (*redo)(HexDocument *);
 	void (*undo_stack_forget)(HexDocument *);
+	void (*file_name_changed)(HexDocument *);
+	void (*file_saved)(HexDocument *);
 };
 
 GType       hex_document_get_type(void);
@@ -126,6 +128,7 @@ void        hex_document_remove_view(HexDocument *doc, GtkWidget *view);
 GtkWidget   *hex_document_add_view(HexDocument *doc);
 const GList *hex_document_get_list(void);
 gboolean    hex_document_is_writable(HexDocument *doc);
+gboolean    hex_document_change_file_name (HexDocument *doc, const char *new_file_name);
 
 G_END_DECLS
 

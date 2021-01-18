@@ -58,6 +58,8 @@ enum {
 	UNDO,
 	REDO,
 	UNDO_STACK_FORGET,
+	FILE_NAME_CHANGED,
+	FILE_SAVED,
 	LAST_SIGNAL
 };
 
@@ -328,6 +330,7 @@ hex_document_class_init (HexDocumentClass *klass)
 	klass->undo = hex_document_real_undo;
 	klass->redo = hex_document_real_redo;
 	klass->undo_stack_forget = NULL;
+	klass->file_name_changed = NULL;
 
 	hex_signals[DOCUMENT_CHANGED] = 
 		g_signal_new ("document-changed",
@@ -362,6 +365,26 @@ hex_document_class_init (HexDocumentClass *klass)
 					  G_TYPE_FROM_CLASS(gobject_class),
 					  G_SIGNAL_RUN_FIRST,
 					  G_STRUCT_OFFSET (HexDocumentClass, undo_stack_forget),
+					  NULL,
+					  NULL,
+					  NULL,
+					  G_TYPE_NONE, 0);
+
+	hex_signals[FILE_NAME_CHANGED] = 
+		g_signal_new ("file-name-changed",
+					  G_TYPE_FROM_CLASS(gobject_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (HexDocumentClass, file_name_changed),
+					  NULL,
+					  NULL,
+					  NULL,
+					  G_TYPE_NONE, 0);
+
+	hex_signals[FILE_SAVED] =
+		g_signal_new ("file-saved",
+					  G_TYPE_FROM_CLASS(gobject_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (HexDocumentClass, file_saved),
 					  NULL,
 					  NULL,
 					  NULL,
@@ -685,7 +708,6 @@ hex_document_write_to_file(HexDocument *doc, FILE *file)
 		ret = fwrite(doc->gap_pos + doc->gap_size, 1, exp_len, file);
 		ret = (ret == exp_len)?TRUE:FALSE;
 	}
-
 	return ret;
 }
 
@@ -705,7 +727,7 @@ hex_document_write(HexDocument *doc)
 			doc->changed = FALSE;
 		}
 	}
-
+	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_SAVED], 0);
 	return ret;
 }
 
@@ -1106,4 +1128,32 @@ const GList *
 hex_document_get_list()
 {
 	return doc_list;
+}
+
+gboolean
+hex_document_change_file_name (HexDocument *doc, const char *new_file_name)
+{
+	char *new_path_end = NULL;
+
+	if(doc->file_name)
+		g_free(doc->file_name);
+	if(doc->path_end)
+		g_free(doc->path_end);
+
+	doc->file_name = g_strdup(new_file_name);
+	doc->changed = FALSE;
+
+	new_path_end = g_path_get_basename (doc->file_name);
+	doc->path_end = g_filename_to_utf8 (new_path_end, -1, NULL, NULL, NULL);
+
+	if (new_path_end)
+		g_free (new_path_end);
+
+
+	if (doc->file_name && doc->path_end) {
+		g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
+		return TRUE;
+	} else {
+		return FALSE;
+	}
 }

@@ -17,7 +17,6 @@
  */
 #define offset_fmt	"0x%X"
 
-
 /* GHexNotebookTab GOBJECT DEFINITION */
 
 /* This is just an object internal to the app window widget, so we don't
@@ -26,6 +25,11 @@
 #define GHEX_TYPE_NOTEBOOK_TAB (ghex_notebook_tab_get_type ())
 G_DECLARE_FINAL_TYPE (GHexNotebookTab, ghex_notebook_tab, GHEX, NOTEBOOK_TAB,
 				GtkWidget)
+
+enum notebook_signal_types {
+	CLOSED,
+	NOTEBOOK_LAST_SIGNAL
+};
 
 struct _GHexNotebookTab
 {
@@ -36,6 +40,8 @@ struct _GHexNotebookTab
 	GtkHex *gh;				/* GtkHex widget activated when tab is clicked */
 };
 
+static guint notebook_signals[NOTEBOOK_LAST_SIGNAL];
+
 G_DEFINE_TYPE (GHexNotebookTab, ghex_notebook_tab, GTK_TYPE_WIDGET)
 
 /* GHexNotebookTab - Internal Method Decls */
@@ -43,6 +49,7 @@ G_DEFINE_TYPE (GHexNotebookTab, ghex_notebook_tab, GTK_TYPE_WIDGET)
 static GtkWidget * ghex_notebook_tab_new (void);
 static void ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh);
 static const char * ghex_notebook_tab_get_filename (GHexNotebookTab *self);
+static void ghex_notebook_tab_refresh_file_name (GHexNotebookTab *self);
 
 /* ---- */
 
@@ -60,6 +67,7 @@ struct _GHexApplicationWindow
 	guint statusbar_id;
 	GtkAdjustment *adj;
 	GList *gh_list;
+	gboolean can_save;
 
 	// TEST - NOT 100% SURE I WANNA GO THIS ROUTE YET.
 	GtkWidget *find_dialog;
@@ -77,7 +85,6 @@ struct _GHexApplicationWindow
 	GtkWidget *hex_notebook;
 	GtkWidget *conversions_box;
 	GtkWidget *findreplace_box;
-	GtkWidget *find_button;
 	GtkWidget *pane_toggle_button;
 	GtkWidget *insert_mode_button;
 	GtkWidget *statusbar;
@@ -92,10 +99,29 @@ typedef enum
 	PROP_FIND_OPEN,
 	PROP_REPLACE_OPEN,
 	PROP_JUMP_OPEN,
+	PROP_CAN_SAVE,
 	N_PROPERTIES
 } GHexApplicationWindowProperty;
 
 static GParamSpec *properties[N_PROPERTIES] = { NULL, };
+
+/* "Main" actions that should all be greyed out and enabled around the same
+ * time - eg, state goes from 'no doc loaded' to 'doc loaded'.
+ *
+ * Don't put open here, as even when we can do nothing else, the user
+ * still can open a document.
+ */
+static const char *main_actions[] = {
+	"ghex.save-as",
+	"ghex.show-conversions",
+	"ghex.insert-mode",
+	"ghex.find",
+	"ghex.replace",
+	"ghex.jump",
+	"ghex.chartable",
+	"ghex.converter",
+	NULL				/* last action */
+};
 
 G_DEFINE_TYPE (GHexApplicationWindow, ghex_application_window,
 		GTK_TYPE_APPLICATION_WINDOW)
@@ -116,12 +142,176 @@ static void ghex_application_window_set_show_replace (GHexApplicationWindow *sel
 		gboolean show);
 static void ghex_application_window_set_show_jump (GHexApplicationWindow *self,
 		gboolean show);
+static void ghex_application_window_set_can_save (GHexApplicationWindow *self,
+		gboolean can_save);
 
 static void set_statusbar(GHexApplicationWindow *self, const char *str);
 static void update_status_message (GHexApplicationWindow *self);
 
 
-/* PRIVATE FUNCTIONS */
+/* GHexApplicationWindow -- PRIVATE FUNCTIONS */
+
+static void
+file_save (GHexApplicationWindow *self)
+{
+	HexDocument *doc;
+
+	g_return_if_fail (GTK_IS_HEX (self->gh));
+
+	doc = gtk_hex_get_document (self->gh);
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+
+	if (hex_document_write (doc))
+	{
+		/* we're happy... */
+		g_debug ("%s: File saved successfully.", __func__);
+	}
+	else
+	{
+		g_debug("%s: NOT IMPLEMENTED - show following message in GUI:",
+				__func__);
+		g_debug(_("Error saving file!"));
+	}
+}
+
+
+static void
+close_doc_response_cb (GtkDialog *dialog,
+		int        response_id,
+		gpointer   user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+
+	/* Bail out if user didn't click Save. */
+	if (response_id != GTK_RESPONSE_ACCEPT) {
+		g_debug ("%s: User did NOT click Save.",	__func__);
+		goto end;
+	}
+
+	g_debug ("%s: Decided to SAVE changes.",
+			__func__);
+
+	file_save (self);
+
+end:
+	gtk_window_destroy (GTK_WINDOW(dialog));
+}
+
+static void
+close_doc_confirmation_dialog (GHexApplicationWindow *self)
+{
+	GtkWidget *dialog;
+
+	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
+			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+			GTK_MESSAGE_QUESTION,
+			GTK_BUTTONS_NONE,
+			(_("<big><b>You have unsaved changes.</b></big>\n\n"
+			   "Would you like to save your changes?")));
+
+	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
+			_("_Save Changes"),		GTK_RESPONSE_ACCEPT,
+			_("_Discard Changes"),	GTK_RESPONSE_REJECT,
+			NULL);
+
+	g_signal_connect (dialog, "response",
+			G_CALLBACK(close_doc_response_cb), self);
+
+	gtk_widget_show (dialog);
+}
+
+static void
+enable_all_actions (GHexApplicationWindow *self, gboolean enable)
+{
+	GHexApplicationWindowClass *klass =
+		g_type_class_peek (GHEX_TYPE_APPLICATION_WINDOW);
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+	guint i = 0;
+	/* Note: don't be tempted to omit any of these and pass NULL to the
+	 * function below. The docs do not say you can do this, and looking at the
+	 * gtkwidget.c source code, doing so may result in dereferencing a NULL ptr
+	 */
+	GType owner;
+	const char *action_name;
+	const GVariantType *parameter_type;
+	const char *property_name;
+
+	while (gtk_widget_class_query_action (widget_class,
+			i,
+			&owner,
+			&action_name,
+			&parameter_type,
+			&property_name))
+	{
+		g_debug("%s: action %u : %s - setting enabled: %d",
+				__func__, i, action_name, enable);
+
+		gtk_widget_action_set_enabled (GTK_WIDGET(self),
+				action_name, enable);
+		++i;
+	}
+}
+
+/* Kinda like enable_all_actions, but only for ghex-specific ones. */
+static void
+enable_main_actions (GHexApplicationWindow *self, gboolean enable)
+{
+	for (int i = 0; main_actions[i] != NULL; ++i)
+	{
+		g_debug("%s: action %d : %s - setting enabled: %d",
+				__func__, i, main_actions[i], enable);
+		
+		gtk_widget_action_set_enabled (GTK_WIDGET(self),
+				main_actions[i], enable);
+	}
+}
+
+/* GHexApplicationWindow -- CALLBACKS */
+static void
+ghex_application_window_file_saved_cb (HexDocument *doc,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+
+	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
+
+	ghex_application_window_set_can_save (self,
+			hex_document_has_changed (doc));
+}
+
+static void
+ghex_application_window_document_changed_cb (HexDocument *doc,
+		gpointer change_data,
+		gboolean push_undo,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+
+	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
+
+	ghex_application_window_set_can_save (self,
+			hex_document_has_changed (doc));
+}
+
+static void
+tab_close_cb (GHexNotebookTab *tab,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	HexDocument *doc;
+
+	doc = gtk_hex_get_document (self->gh);
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+
+	if (hex_document_has_changed (doc))
+	{
+		g_debug("%s: There are unsaved changes.", __func__);
+		close_doc_confirmation_dialog (self);
+	}
+	else {
+		g_debug("%s: No unsaved changes.", __func__);
+	}
+}
 
 static void
 notebook_switch_page_cb (GtkNotebook *notebook,
@@ -136,8 +326,8 @@ notebook_switch_page_cb (GtkNotebook *notebook,
 
 	g_return_if_fail (GHEX_IS_NOTEBOOK_TAB(tab));
 
-	printf("%s: start - tab: %p\n",
-			__func__, tab);
+	printf("%s: start - tab: %p - tab->gh: %p - self->gh: %p\n",
+			__func__, (void *)tab, (void *)tab->gh, (void *)self->gh);
 
 	if (tab->gh != self->gh) {
 		ghex_application_window_set_hex (self, tab->gh);
@@ -156,7 +346,7 @@ notebook_page_added_cb (GtkNotebook *notebook,
 	/* Let's play this super dumb. If a page is added, that will generally
 	 * mind the Find button should be activated. Change if necessary.
 	 */
-	gtk_widget_set_sensitive (self->find_button, TRUE);
+	enable_main_actions (self, TRUE);
 }
 
 static void
@@ -171,7 +361,7 @@ notebook_page_removed_cb (GtkNotebook *notebook,
 			__func__, gtk_notebook_get_n_pages(notebook));
 
 	if (gtk_notebook_get_n_pages (notebook) == 0) {
-		gtk_widget_set_sensitive (self->find_button, FALSE);
+		enable_main_actions (self, FALSE);
 	}
 }
 
@@ -236,7 +426,7 @@ setup_chartable (GHexApplicationWindow *self)
 
 	self->chartable = create_char_table (GTK_WINDOW(self), self->gh);
 
-    g_signal_connect(G_OBJECT(self->chartable), "close-request",
+    g_signal_connect(self->chartable, "close-request",
                      G_CALLBACK(chartable_close_cb), self);
 }
 
@@ -247,7 +437,7 @@ setup_converter (GHexApplicationWindow *self)
 
 	self->converter = create_converter (GTK_WINDOW(self), self->gh);
 
-	g_signal_connect(G_OBJECT(self->converter), "close-request",
+	g_signal_connect(self->converter, "close-request",
                      G_CALLBACK(converter_close_cb), self);
 }
 
@@ -316,6 +506,141 @@ PANE_SET_SHOW_TEMPLATE(find,		replace, jump,	PROP_FIND_OPEN)
 PANE_SET_SHOW_TEMPLATE(replace,		find, jump,		PROP_REPLACE_OPEN)
 PANE_SET_SHOW_TEMPLATE(jump,		find, replace,	PROP_JUMP_OPEN)
 
+static void
+ghex_application_window_set_can_save (GHexApplicationWindow *self,
+		gboolean can_save)
+{
+	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
+
+	self->can_save = can_save;
+	g_debug("%s: start - can_save: %d", __func__, can_save);
+
+	gtk_widget_action_set_enabled (GTK_WIDGET(self),
+			"ghex.save", can_save);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_CAN_SAVE]);
+}
+
+/* For now, at least, this is a mostly pointless wrapper around 'file_save'.
+ */
+static void
+save_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+
+	file_save (self);
+}
+
+/* save_as helper */
+static void
+save_as_response_cb (GtkNativeDialog *dialog,
+		int resp,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
+	HexDocument *doc;
+	GFile *gfile;
+	char *new_file_path;
+	FILE *file;
+	gchar *gtk_file_name;
+
+	/* If user doesn't click Save, just bail out now. */
+	if (resp != GTK_RESPONSE_ACCEPT)
+		goto end;
+
+	/* Fetch doc. No need for sanity checks as this is just a helper. */
+	doc = gtk_hex_get_document (self->gh);
+
+	/* Get filename. */
+	gfile = gtk_file_chooser_get_file (chooser);
+	new_file_path = g_file_get_path (gfile);
+	g_clear_object (&gfile);
+
+	g_debug("%s: GONNA OPEN FILE FOR WRITING: %s",
+			__func__, new_file_path);
+
+	file = fopen(new_file_path, "wb");
+
+	/* Sanity check */
+	if (file == NULL) {
+		g_debug ("%s: Error dialog not implemented! Can't open file rw!",
+				__func__);
+		goto end;
+	}
+
+	if (hex_document_write_to_file (doc, file))
+	{
+		gboolean change_ok;
+		char *gtk_file_name;
+
+		change_ok = hex_document_change_file_name (doc, new_file_path);
+
+		/* "set window to file-name" 
+		 * if (change_ok) ..... */
+
+		gtk_file_name = g_filename_to_utf8 (doc->file_name,
+				-1, NULL, NULL, NULL);
+
+		g_debug("%s: NOT IMPLEMENTED - show following message in GUI:",
+				__func__);
+		g_debug(_("Saved buffer to file %s"), gtk_file_name);
+
+		g_free(gtk_file_name);
+	}
+	else
+	{
+		g_debug("%s: NOT IMPLEMENTED - show following message in GUI:",
+				__func__);
+		g_debug(_("Error saving file!"));
+	}
+	fclose(file);
+
+end:
+	g_debug("%s: END.", __func__);
+	g_object_unref (dialog);
+}
+
+static void
+save_as (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+	GtkFileChooserNative *file_sel;
+	GtkResponseType resp;
+	HexDocument *doc;
+	GFile *existing_file;
+
+	g_return_if_fail (GTK_IS_HEX (self->gh));
+
+	doc = gtk_hex_get_document (self->gh);
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+
+	existing_file = g_file_new_for_path (doc->file_name);
+
+	file_sel =
+		gtk_file_chooser_native_new (_("Select a file to save buffer as"),
+				GTK_WINDOW(self),
+				GTK_FILE_CHOOSER_ACTION_SAVE,
+				NULL,	// const char *accept_label } NULL == default.
+				NULL);	// const char *cancel_label }
+
+	/* Default suggested file == existing file. */
+	gtk_file_chooser_set_file (GTK_FILE_CHOOSER(file_sel), existing_file,
+			NULL);	// GError **error
+
+	g_signal_connect (file_sel, "response",
+			G_CALLBACK(save_as_response_cb), self);
+
+	gtk_native_dialog_show (GTK_NATIVE_DIALOG(file_sel));
+
+	/* Clear the GFile ptr which is no longer necessary. */
+	g_clear_object (&existing_file);
+}
+
 /* convenience helper function to build a GtkHex widget pre-loaded with
  * a hex document, from a GFile *.
  */
@@ -324,7 +649,6 @@ new_gh_from_gfile (GFile *file)
 {
 	char *path;
 	GFileInfo *info;
-	const char *name;
 	GError *error = NULL;
 	HexDocument *doc;
 	GtkHex *gh;
@@ -335,7 +659,6 @@ new_gh_from_gfile (GFile *file)
 			G_FILE_QUERY_INFO_NONE,				// GFileQueryInfoFlags flags
 			NULL,								// GCancellable *cancellable
 			&error);
-	name = g_file_info_get_display_name (info);
 
 	g_debug("%s: path acc. to GFile: %s",
 			__func__, path);
@@ -354,7 +677,7 @@ new_gh_from_gfile (GFile *file)
 }
 
 static void
-open_response_cb (GtkDialog *dialog,
+open_response_cb (GtkNativeDialog *dialog,
 		int resp,
 		gpointer user_data)
 {
@@ -363,7 +686,7 @@ open_response_cb (GtkDialog *dialog,
 	GFile *file;
 	GtkHex *gh;
 
-	if (resp == GTK_RESPONSE_OK)
+	if (resp == GTK_RESPONSE_ACCEPT)
 	{
 		file = gtk_file_chooser_get_file (chooser);
 		gh = new_gh_from_gfile (file);
@@ -377,7 +700,7 @@ open_response_cb (GtkDialog *dialog,
 		g_debug ("%s: User didn't click Open. Bail out.",
 				__func__);
 	}
-	gtk_window_destroy (GTK_WINDOW(dialog));
+	g_object_unref (dialog);
 }
 
 static void
@@ -386,21 +709,20 @@ open_file (GtkWidget *widget,
 		GVariant *parameter)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
-	GtkWidget *file_sel;
+	GtkFileChooserNative *file_sel;
 	GtkResponseType resp;
 
-	file_sel = gtk_file_chooser_dialog_new (_("Select a file to open"),
-			GTK_WINDOW(self),
-			GTK_FILE_CHOOSER_ACTION_OPEN,
-			_("_Cancel"), GTK_RESPONSE_CANCEL,
-			_("_Open"), GTK_RESPONSE_OK,
-			NULL);
-
-	gtk_window_set_modal (GTK_WINDOW(file_sel), TRUE);
-	gtk_widget_show (file_sel);
+	file_sel =
+		gtk_file_chooser_native_new (_("Select a file to open"),
+				GTK_WINDOW(self),
+				GTK_FILE_CHOOSER_ACTION_OPEN,
+				NULL,	// const char *accept_label } NULL == default.
+				NULL);	// const char *cancel_label }
 
 	g_signal_connect (file_sel, "response",
 			G_CALLBACK(open_response_cb), self);
+
+	gtk_native_dialog_show (GTK_NATIVE_DIALOG(file_sel));
 }
 
 static void
@@ -548,6 +870,11 @@ ghex_application_window_set_property (GObject *object,
 					g_value_get_boolean (value));
 			break;
 
+		case PROP_CAN_SAVE:
+			ghex_application_window_set_can_save (self,
+					g_value_get_boolean (value));
+			break;
+
 		default:
 			/* We don't have any other property... */
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -595,6 +922,10 @@ ghex_application_window_get_property (GObject *object,
 						gtk_widget_get_visible (self->jump_dialog));
 			break;
 
+		case PROP_CAN_SAVE:
+			g_value_set_boolean (value, self->can_save);
+			break;
+
 		default:
 			/* We don't have any other property... */
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -604,12 +935,53 @@ ghex_application_window_get_property (GObject *object,
 
 /* GHexNotebookTab -- CALLBACKS */
 
+/* _document_changed_cb helper fcn. */
 static void
-dumb_click_cb (GtkButton *button,
+tab_bold_label (GHexNotebookTab *self, gboolean bold)
+{
+	GtkLabel *label = GTK_LABEL(self->label);
+	const char *text;
+	char *new = NULL;
+
+	text = gtk_label_get_text (label);
+
+	if (bold) {
+		new = g_strdup_printf("<b>%s</b>", text);
+	}
+	else {
+		new = g_strdup (text);
+	}
+	gtk_label_set_markup (label, new);
+	g_free (new);
+}
+
+static void
+ghex_notebook_tab_document_changed_cb (HexDocument *doc,
+		gpointer change_data,
+		gboolean push_undo,
+		gpointer user_data)
+{
+	GHexNotebookTab *self = GHEX_NOTEBOOK_TAB(user_data);
+
+	g_debug ("%s: DETECTED DOC CHANGED.", __func__);
+
+	(void)change_data, (void)push_undo; 	/* unused */
+
+	tab_bold_label (self, hex_document_has_changed (doc));
+}
+
+static void
+ghex_notebook_tab_close_click_cb (GtkButton *button,
                gpointer   user_data)
 {
-	g_debug("%s: clicked btn: %p",
+	GHexNotebookTab *self = GHEX_NOTEBOOK_TAB(user_data);
+
+	g_debug("%s: clicked btn: %p - EMITTING CLOSED SIGNAL",
 			__func__, (void *)button);
+
+	g_signal_emit(self,
+			notebook_signals[CLOSED],
+			0);	// GQuark detail (just set to 0 if unknown)
 }
 
 
@@ -644,8 +1016,8 @@ ghex_notebook_tab_init (GHexNotebookTab *self)
 	 * because this only pertains to the label of the tab and not the
 	 * tab as a whole.
 	 */
-    g_signal_connect(self->close_btn, "clicked",
-                     G_CALLBACK(dumb_click_cb), self);
+    g_signal_connect (self->close_btn, "clicked",
+                     G_CALLBACK(ghex_notebook_tab_close_click_cb), self);
 }
 
 static void
@@ -682,9 +1054,40 @@ ghex_notebook_tab_class_init (GHexNotebookTabClass *klass)
 	/* Layout manager: box-style layout. */
 	gtk_widget_class_set_layout_manager_type (widget_class,
 			GTK_TYPE_BOX_LAYOUT);
+
+	/* SIGNALS */
+
+	notebook_signals[CLOSED] = g_signal_new_class_handler("closed",
+			G_OBJECT_CLASS_TYPE(object_class),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		/* GCallback class_handler: */
+			NULL,
+		/* no accumulator or accu_data */
+			NULL, NULL,
+		/* GSignalCMarshaller c_marshaller: */
+			NULL,		/* use generic marshaller */
+		/* GType return_type: */
+			G_TYPE_NONE,
+		/* guint n_params: */
+			0);
 }
 
 /* GHexNotebookTab - Internal Methods */ 
+
+static void
+ghex_notebook_tab_refresh_file_name (GHexNotebookTab *self)
+{
+	HexDocument *doc;
+	char *basename;
+
+   	doc = gtk_hex_get_document (self->gh);
+	basename = g_path_get_basename (doc->file_name);
+
+	gtk_label_set_markup (GTK_LABEL(self->label), basename);
+	tab_bold_label (self, hex_document_has_changed (doc));
+
+	g_free (basename);
+}
 
 static GtkWidget *
 ghex_notebook_tab_new (void)
@@ -698,7 +1101,6 @@ static void
 ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh)
 {
 	HexDocument *doc;
-	char *basename;
 
 	/* Do some sanity checks, as this method requires that some ducks be in
 	 * a row -- we need a valid GtkHex that is pre-loaded with a valid
@@ -714,11 +1116,17 @@ ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh)
 	self->gh = gh;
 
 	/* Set name of tab. */
-	basename = g_path_get_basename (doc->file_name);
+	ghex_notebook_tab_refresh_file_name (self);
 
-	gtk_label_set_text (GTK_LABEL(self->label), basename);
+	/* HexDocument - Setup signals */
+	g_signal_connect (doc, "document-changed",
+			G_CALLBACK(ghex_notebook_tab_document_changed_cb), self);
 
-	g_free (basename);
+	g_signal_connect_swapped (doc, "file-name-changed",
+			G_CALLBACK(ghex_notebook_tab_refresh_file_name), self);
+
+	g_signal_connect_swapped (doc, "file-saved",
+			G_CALLBACK(ghex_notebook_tab_refresh_file_name), self);
 }
 
 static const char *
@@ -802,8 +1210,12 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
 	clear_statusbar (self);
 
-	/* Grey out Find button at the beginning */
-	gtk_widget_set_sensitive (self->find_button, FALSE);
+	/* Grey out main actions at the beginning */
+	enable_main_actions (self, FALSE);
+
+	/* Grey out save (special case - it's not lumped in with mains */
+	gtk_widget_action_set_enabled (GTK_WIDGET(self),
+			"ghex.save", FALSE);
 }
 
 static void
@@ -876,6 +1288,13 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			FALSE,	// gboolean default_value
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
+	properties[PROP_CAN_SAVE] =
+		g_param_spec_boolean ("can-save",
+			"Can save",
+			"Whether the Save button should currently be clickable",
+			FALSE,	// gboolean default_value
+			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
 
@@ -884,6 +1303,14 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_install_action (widget_class, "ghex.open",
 			NULL,	// GVariant string param_type
 			open_file);
+
+	gtk_widget_class_install_action (widget_class, "ghex.save",
+			NULL,	// GVariant string param_type
+			save_action);
+
+	gtk_widget_class_install_action (widget_class, "ghex.save-as",
+			NULL,	// GVariant string param_type
+			save_as);
 
 	gtk_widget_class_install_action (widget_class, "ghex.show-conversions",
 			NULL,	// GVariant string param_type
@@ -922,8 +1349,6 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			conversions_box);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			findreplace_box);
-	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
-			find_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			pane_toggle_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
@@ -983,6 +1408,7 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	g_return_if_fail (HEX_IS_DOCUMENT(doc));
 
 	/* Add this GtkHex to our internal list */
+	// FIXME / TODO - used for nothing rn.
 	self->gh_list = g_list_append (self->gh_list, gh);
 
 	/* Set this GtkHex as the current viewed gh if there is no currently
@@ -994,6 +1420,8 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	tab = ghex_notebook_tab_new ();
 	printf ("%s: CREATED TAB -- %p\n", __func__, (void *)tab);
 	ghex_notebook_tab_add_hex (GHEX_NOTEBOOK_TAB(tab), gh);
+	g_signal_connect (tab, "closed",
+			G_CALLBACK(tab_close_cb), self);
 
 	gtk_notebook_append_page (GTK_NOTEBOOK(self->hex_notebook),
 			GTK_WIDGET(gh),
@@ -1006,8 +1434,14 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 			ghex_notebook_tab_get_filename (GHEX_NOTEBOOK_TAB(tab)));
 
 	/* Setup signals */
-    g_signal_connect(G_OBJECT(gh), "cursor-moved",
-                     G_CALLBACK(cursor_moved_cb), self);
+    g_signal_connect (gh, "cursor-moved",
+			G_CALLBACK(cursor_moved_cb), self);
+
+	g_signal_connect (doc, "document-changed",
+			G_CALLBACK(ghex_application_window_document_changed_cb), self);
+
+	g_signal_connect (doc, "file-saved",
+			G_CALLBACK(ghex_application_window_file_saved_cb), self);
 
 	/* Setup find_dialog & friends. */
 
