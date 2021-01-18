@@ -82,6 +82,7 @@ struct _GHexApplicationWindow
 
 /* for i in `cat tmp.txt`; do echo GtkWidget *${i}; done
  */
+	GtkWidget *no_doc_label;
 	GtkWidget *hex_notebook;
 	GtkWidget *conversions_box;
 	GtkWidget *findreplace_box;
@@ -129,7 +130,7 @@ G_DEFINE_TYPE (GHexApplicationWindow, ghex_application_window,
 /* ---- */
 
 
-/* FUNCTION DECLARATIONS */
+/* PRIVATE FORWARD DECLARATIONS */
 
 /* NOTE: see also *SET_SHOW_TEMPLATE macros defined below. */
 static void ghex_application_window_set_show_chartable (GHexApplicationWindow *self,
@@ -150,6 +151,7 @@ GHexNotebookTab * ghex_application_window_get_current_tab (GHexApplicationWindow
 
 static void set_statusbar(GHexApplicationWindow *self, const char *str);
 static void update_status_message (GHexApplicationWindow *self);
+static void update_gui_data (GHexApplicationWindow *self);
 
 
 /* GHexApplicationWindow -- PRIVATE FUNCTIONS */
@@ -346,11 +348,9 @@ tab_close_cb (GHexNotebookTab *tab,
 	doc = gtk_hex_get_document (self->gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	if (hex_document_has_changed (doc))
-	{
+	if (hex_document_has_changed (doc)) {
 		close_doc_confirmation_dialog (self);
-	}
-	else {
+	} else {
 		ghex_application_window_remove_tab (self, tab);
 	}
 }
@@ -381,6 +381,9 @@ notebook_switch_page_cb (GtkNotebook *notebook,
 	doc = gtk_hex_get_document (self->gh);
 	ghex_application_window_set_can_save (self,
 			hex_document_has_changed (doc));
+
+	/* Update dialogs, offset status bar, etc. */
+	update_gui_data (self);
 }
 
 static void
@@ -391,9 +394,13 @@ notebook_page_added_cb (GtkNotebook *notebook,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	
+	g_assert (GTK_WIDGET(notebook) == self->hex_notebook);
+
 	/* Let's play this super dumb. If a page is added, that will generally
-	 * mind the Find button should be activated. Change if necessary.
+	 * mean we don't have to count the pages to see if we have > 0.
 	 */
+	gtk_widget_show (self->hex_notebook);
+	gtk_widget_hide (self->no_doc_label);
 	enable_main_actions (self, TRUE);
 }
 
@@ -405,11 +412,15 @@ notebook_page_removed_cb (GtkNotebook *notebook,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
+	g_assert (GTK_WIDGET(notebook) == self->hex_notebook);
+	
 	g_debug("%s: n_pages: %d",
 			__func__, gtk_notebook_get_n_pages(notebook));
 
 	if (gtk_notebook_get_n_pages (notebook) == 0) {
 		enable_main_actions (self, FALSE);
+		gtk_widget_hide (self->hex_notebook);
+		gtk_widget_show (self->no_doc_label);
 	}
 }
 
@@ -490,21 +501,43 @@ setup_converter (GHexApplicationWindow *self)
 }
 
 static void
+update_gui_data (GHexApplicationWindow *self)
+{
+	int current_pos;
+	HexDialogVal64 val;
+
+	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
+	g_return_if_fail (GTK_IS_HEX (self->gh));
+
+	current_pos = gtk_hex_get_cursor (self->gh);
+	update_status_message (self);
+
+	for (int i = 0; i < 8; i++)
+	{
+		/* returns 0 on buffer overflow, which is what we want */
+		val.v[i] = gtk_hex_get_byte (self->gh, current_pos+i);
+	}
+	hex_dialog_updateview (self->dialog, &val);
+}
+
+static void
 cursor_moved_cb (GtkHex *gh, gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	int current_pos;
 	HexDialogVal64 val;
 
-	current_pos = gtk_hex_get_cursor (gh);
-	update_status_message (self);
-
-	for (int i = 0; i < 8; i++)
-	{
-		/* returns 0 on buffer overflow, which is what we want */
-		val.v[i] = gtk_hex_get_byte (gh, current_pos+i);
+	/* If the cursor has been moved by a function call for a GtkHex that is
+	 * *not* in view, we're not interested. */
+	if (self->gh != gh) {
+		g_debug("%s: Cursor has been moved for a GtkHex widget not in view: "
+				"%p (currently in view == %p)",
+				__func__, (void *)gh, (void *)self->gh);
+		return;
 	}
-	hex_dialog_updateview (self->dialog, &val);
+	else {
+		update_gui_data (self);
+	}
 }
 
 /* ACTIONS */
@@ -1391,6 +1424,8 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	/* 
 	 * for i in `cat tmp.txt`; do echo "gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow, ${i});"; done
 	 */
+	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
+			no_doc_label);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			hex_notebook);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,

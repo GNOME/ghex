@@ -144,10 +144,23 @@
 			<object class="GtkBox"> <!-- main vert gtkbox -->
 				<property name="orientation">vertical</property>
 
-				<child> <!-- child_box for notebook -->
+				<child> <!-- child_box for notebook & content area -->
 					<object class="GtkBox" id="child_box">
 						<property name="orientation">horizontal</property>
 						<property name="homogeneous">false</property>
+						<property name="vexpand">true</property>
+						<property name="hexpand">true</property>
+
+						<child> <!-- label showing no doc loaded -->
+							<object class="GtkLabel" id="no_doc_label">
+								<property name="use-markup">true</property>
+								<property name="label" translatable="yes">&lt;big&gt;&lt;i&gt;No file loaded.&lt;/i&gt;&lt;/big&gt;</property>
+								<property name="halign">center</property>
+								<property name="valign">center</property>
+								<property name="hexpand">true</property>
+								<property name="vexpand">true</property>
+							</object>
+						</child> <!-- label showing no doc loaded -->
 
 						<child> <!-- hex_notebook - tabs for GtkHex widget -->
 							<object class="GtkNotebook" id="hex_notebook">
@@ -155,8 +168,12 @@
 								<property name="group-name">hex</property>
 								<property name="scrollable">true</property>
 								<property name="vexpand">true</property>
+								<property name="hexpand">true</property>
+								<!-- invisible by default to show the no_doc_label -->
+								<property name="visible">false</property>
 							</object>	
-						</child>
+						</child> <!-- hex_notebook -->
+
 					</object> <!-- child_box -->
 				</child> <!-- child_box -->
 
