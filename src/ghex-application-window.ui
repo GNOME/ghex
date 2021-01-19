@@ -153,8 +153,11 @@
 
 						<child> <!-- label showing no doc loaded -->
 							<object class="GtkLabel" id="no_doc_label">
+								<style>
+									<class name="title" />
+								</style>
 								<property name="use-markup">true</property>
-								<property name="label" translatable="yes">&lt;big&gt;&lt;i&gt;No file loaded.&lt;/i&gt;&lt;/big&gt;</property>
+								<property name="label" translatable="yes">No file loaded.</property>
 								<property name="halign">center</property>
 								<property name="valign">center</property>
 								<property name="hexpand">true</property>

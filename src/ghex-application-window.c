@@ -181,13 +181,14 @@ static void
 ghex_application_window_remove_tab (GHexApplicationWindow *self,
 		GHexNotebookTab *tab)
 {
-		GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
-		int page_num;
+	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
+	int page_num;
 
-		page_num = gtk_notebook_page_num (notebook,
-				GTK_WIDGET(tab->gh));
+	page_num = gtk_notebook_page_num (notebook,
+			GTK_WIDGET(tab->gh));
 
-		gtk_notebook_remove_page (notebook, page_num);
+	gtk_notebook_remove_page (notebook, page_num);
+	g_object_unref (tab);
 }
 
 static void
@@ -211,6 +212,127 @@ file_save (GHexApplicationWindow *self)
 				__func__);
 		g_debug(_("Error saving file!"));
 	}
+}
+
+static void
+do_close_window (GHexApplicationWindow *self)
+{
+	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
+	
+	g_object_unref (self);
+}
+
+static void
+close_all_tabs (GHexApplicationWindow *self)
+{
+	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
+	int i;
+
+	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));
+
+	g_debug("%s: %d", __func__, gtk_notebook_get_n_pages (notebook));
+
+	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i)
+	{
+		GHexNotebookTab *tab;
+		GtkHex *gh;
+
+		g_debug ("%s: Working on %d'th page", __func__, i);
+
+		gh = GTK_HEX(gtk_notebook_get_nth_page (notebook, i));
+		g_return_if_fail (GTK_IS_HEX (gh));
+
+		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,
+					GTK_WIDGET(gh)));
+		g_return_if_fail (GHEX_IS_NOTEBOOK_TAB (tab));
+
+		ghex_application_window_remove_tab (self, tab);
+	}
+}
+
+static void
+close_all_tabs_response_cb (GtkDialog *dialog,
+		int        response_id,
+		gpointer   user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	
+	/* Regardless of what the user chose, get rid of the dialog. */
+	gtk_window_destroy (GTK_WINDOW(dialog));
+
+	if (response_id == GTK_RESPONSE_ACCEPT)
+	{
+		g_debug ("%s: Decided to CLOSE despite changes.",	__func__);
+		close_all_tabs (self);
+		do_close_window (self);
+	}
+}
+
+static void
+close_all_tabs_confirmation_dialog (GHexApplicationWindow *self)
+{
+	GtkWidget *dialog;
+
+	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
+			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+			GTK_MESSAGE_QUESTION,
+			GTK_BUTTONS_NONE,
+			(_("<b>You have one or more files open with unsaved changes.</b>\n\n"
+			   "Are you sure you want to close the window?\n\n")));
+
+	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
+			_("_Close Anyway"),		GTK_RESPONSE_ACCEPT,
+			_("_Go Back"),			GTK_RESPONSE_REJECT,
+			NULL);
+
+	g_signal_connect (dialog, "response",
+			G_CALLBACK(close_all_tabs_response_cb), self);
+
+	gtk_widget_show (dialog);
+}
+
+static void
+check_close_window (GHexApplicationWindow *self)
+{
+	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
+	gboolean unsaved_found = FALSE;
+	int i;
+
+	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));
+
+	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i)
+	{
+		GtkHex *gh;
+		HexDocument *doc = NULL;
+
+		gh = GTK_HEX(gtk_notebook_get_nth_page (notebook, i));
+		g_return_if_fail (GTK_IS_HEX (gh));
+
+		doc = gtk_hex_get_document (gh);
+		g_return_if_fail (HEX_IS_DOCUMENT (doc));
+
+		if (hex_document_has_changed (doc))
+			unsaved_found = TRUE;
+	}
+
+	if (unsaved_found) {
+		close_all_tabs_confirmation_dialog (self);
+	} else {
+		close_all_tabs (self);
+		do_close_window (self);
+	}
+}
+
+static gboolean
+close_request_cb (GtkWindow *window,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+
+	g_debug ("%s: Window wants to be closed.",	__func__);
+	check_close_window (self);
+
+	return GDK_EVENT_STOP;
 }
 
 static void
@@ -369,7 +491,7 @@ notebook_switch_page_cb (GtkNotebook *notebook,
 
 	g_return_if_fail (GHEX_IS_NOTEBOOK_TAB(tab));
 
-	printf("%s: start - tab: %p - tab->gh: %p - self->gh: %p\n",
+	g_debug ("%s: start - tab: %p - tab->gh: %p - self->gh: %p",
 			__func__, (void *)tab, (void *)tab->gh, (void *)self->gh);
 
 	if (tab->gh != self->gh) {
@@ -414,11 +536,13 @@ notebook_page_removed_cb (GtkNotebook *notebook,
 
 	g_assert (GTK_WIDGET(notebook) == self->hex_notebook);
 	
-	g_debug("%s: n_pages: %d",
-			__func__, gtk_notebook_get_n_pages(notebook));
-
 	if (gtk_notebook_get_n_pages (notebook) == 0) {
 		enable_main_actions (self, FALSE);
+		ghex_application_window_set_show_find (self, FALSE);
+		ghex_application_window_set_show_replace (self, FALSE);
+		ghex_application_window_set_show_jump (self, FALSE);
+		ghex_application_window_set_show_chartable (self, FALSE);
+		ghex_application_window_set_show_converter (self, FALSE);
 		gtk_widget_hide (self->hex_notebook);
 		gtk_widget_show (self->no_doc_label);
 	}
@@ -1255,7 +1379,12 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	                                GTK_STYLE_PROVIDER (provider),
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-	/* Setup notebook */
+	/* Setup signals */
+
+	g_signal_connect (self, "close-request",
+			G_CALLBACK(close_request_cb), self);
+
+	/* Setup notebook signals */
 
 	g_signal_connect (self->hex_notebook, "switch-page",
 			G_CALLBACK(notebook_switch_page_cb), self);
@@ -1501,7 +1630,7 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 
 	/* Generate a tab */
 	tab = ghex_notebook_tab_new ();
-	printf ("%s: CREATED TAB -- %p\n", __func__, (void *)tab);
+	g_debug ("%s: CREATED TAB -- %p", __func__, (void *)tab);
 	ghex_notebook_tab_add_hex (GHEX_NOTEBOOK_TAB(tab), gh);
 	g_signal_connect (tab, "closed",
 			G_CALLBACK(tab_close_cb), self);
@@ -1509,6 +1638,14 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	gtk_notebook_append_page (GTK_NOTEBOOK(self->hex_notebook),
 			GTK_WIDGET(gh),
 			tab);
+
+	/* FIXME - this seems to result in GTK_IS_BOX assertion failures.
+	 * These seem harmless as everything still seems to *work*, but just
+	 * documenting it here in case it becomes an issue in future.
+	 */
+	gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK(self->hex_notebook),
+			GTK_WIDGET(gh),
+			TRUE);
 
 	/* set text of context menu tab switcher to the filename rather than
 	 * 'Page X' */
