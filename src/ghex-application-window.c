@@ -11,6 +11,7 @@
 #include "chartable.h"
 #include "converter.h"
 #include "preferences.h"
+#include "common-ui.h"
 
 /* DEFINES */
 
@@ -986,6 +987,19 @@ toggle_conversions (GtkWidget *widget,
 
 
 static void
+open_about (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+	GtkWidget *prefs_dialog;
+
+	(void)parameter, (void)action_name;		/* unused */
+
+	common_about_cb (GTK_WINDOW(self));
+}
+
+static void
 open_preferences (GtkWidget *widget,
 		const char *action_name,
 		GVariant *parameter)
@@ -995,8 +1009,7 @@ open_preferences (GtkWidget *widget,
 
 	(void)parameter, (void)action_name;		/* unused */
 
-	// TEST
-	prefs_dialog = create_preferences_dialog();
+	prefs_dialog = create_preferences_dialog (GTK_WINDOW(self));
 	gtk_widget_show (prefs_dialog);
 }
 
@@ -1588,6 +1601,10 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_install_action (widget_class, "ghex.preferences",
 			NULL,	// GVariant string param_type
 			open_preferences);
+
+	gtk_widget_class_install_action (widget_class, "ghex.about",
+			NULL,	// GVariant string param_type
+			open_about);
 
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.find", "find-open");

@@ -24,16 +24,23 @@
    Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
+#include "preferences.h"
+
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif /* HAVE_CONFIG_H */
 
-#include "preferences.h"
+/* CONSTANTS */
 
-/* provides ``settings'' and def_* globals, as well as GHEX_PREF_* defines. */
-#include "configuration.h"
+#ifdef HAVE_CONFIG_H
+#  define SHADED_BOX_MAX				CONFIG_H_SHADED_BOX_MAX
+#else
+#  define SHADED_BOX_MAX				1000
+#endif
 
 #define PREFS_RESOURCE "/org/gnome/ghex/preferences.ui"
+
+/* MACROS */
 
 #define GET_WIDGET(X) \
 	X = GTK_WIDGET(gtk_builder_get_object (builder, #X)); \
@@ -79,6 +86,8 @@ static GtkWidget *long_chkbtn;
 static GtkWidget *shaded_box_chkbtn;
 static GtkWidget *shaded_box_spinbtn;
 static GtkWidget *shaded_box_box;
+static GtkWidget *close_button;
+static GtkWidget *help_button;
 
 /* PRIVATE DECLARATIONS */
 
@@ -127,9 +136,30 @@ do_css_stuff(void)
 #undef APPLY_PROVIDER_TO
 
 static void
-shaded_box_spinbtn_value_changed_cb (GtkSpinButton *spin_button,
+close_clicked_cb (GtkButton *button,
 		gpointer user_data)
 {
+	(void)user_data;	/* unused */
+	g_return_if_fail (GTK_IS_WINDOW (prefs_dialog));
+
+	gtk_window_destroy (GTK_WINDOW(prefs_dialog));
+}
+
+static void
+help_clicked_cb (GtkButton *button,
+		gpointer user_data)
+{
+	(void)user_data;	/* unused */
+	g_return_if_fail (GTK_IS_WINDOW (prefs_dialog));
+
+	common_help_cb (GTK_WINDOW(prefs_dialog));
+}
+
+/* wee helper */
+static void
+sync_shaded_box_size_with_spinbtn (void)
+{
+	GtkSpinButton *spin_button = GTK_SPIN_BUTTON(shaded_box_spinbtn);
 	/* we _want_ implicit conversion here. */
 	guint tmp = gtk_spin_button_get_value_as_int (spin_button);
 
@@ -138,6 +168,15 @@ shaded_box_spinbtn_value_changed_cb (GtkSpinButton *spin_button,
 				GHEX_PREF_BOX_SIZE,
 				tmp);
 	}
+}
+
+static void
+shaded_box_spinbtn_value_changed_cb (GtkSpinButton *spin_button,
+		gpointer user_data)
+{
+	(void)spin_button, (void)user_data; /* unused */
+
+	sync_shaded_box_size_with_spinbtn ();
 }
 
 static void
@@ -152,6 +191,14 @@ shaded_box_chkbtn_toggled_cb (GtkCheckButton *checkbutton,
 
 	gtk_widget_set_sensitive (shaded_box_box,
 			checked ? TRUE : FALSE);
+
+	if (checked) {
+		sync_shaded_box_size_with_spinbtn ();
+	} else if (shaded_box_size) {
+		g_settings_set_uint (settings,
+				GHEX_PREF_BOX_SIZE,
+				0);
+	}
 }
 
 static void
@@ -297,6 +344,14 @@ setup_signals (void)
 
 	g_signal_connect (shaded_box_spinbtn, "value-changed",
 			G_CALLBACK(shaded_box_spinbtn_value_changed_cb), NULL);
+
+	/* close and help */
+
+	g_signal_connect (close_button, "clicked",
+			G_CALLBACK(close_clicked_cb), NULL);
+
+	g_signal_connect (help_button, "clicked",
+			G_CALLBACK(help_clicked_cb), NULL);
 }
 
 /* put all of your GET_WIDGET calls other than the main prefs_dialog widget
@@ -359,6 +414,8 @@ grab_widget_values_from_settings (void)
 static void
 init_widgets (void)
 {
+	GET_WIDGET (prefs_dialog);
+
 	GET_WIDGET (font_button);
 	GET_WIDGET (data_font_button);
 	GET_WIDGET (header_font_button);
@@ -369,13 +426,20 @@ init_widgets (void)
 	GET_WIDGET (shaded_box_chkbtn);
 	GET_WIDGET (shaded_box_spinbtn);
 	GET_WIDGET (shaded_box_box);
+	GET_WIDGET (close_button);
+	GET_WIDGET (help_button);
 
 	/* Make certain font choosers only allow monospace fonts. */
 	monospace_only (font_button);
 	monospace_only (data_font_button);
 
 	/* shaded box entry */
-	shaded_box_adj = GTK_ADJUSTMENT(gtk_adjustment_new(0, 0, 1000, 1, 10, 0));
+	shaded_box_adj = GTK_ADJUSTMENT(gtk_adjustment_new(1,
+				1,				/* min; no point in having 0 if ineffective */
+				SHADED_BOX_MAX,
+				1,				/* step incr */
+				10,				/* page incr */
+				0));			/* page size */
 	gtk_spin_button_set_adjustment (GTK_SPIN_BUTTON(shaded_box_spinbtn),
 			shaded_box_adj);
 }
@@ -383,7 +447,7 @@ init_widgets (void)
 /* PUBLIC FUNCTIONS */
 
 GtkWidget *
-create_preferences_dialog (void)
+create_preferences_dialog (GtkWindow *parent)
 {
 	builder = gtk_builder_new_from_resource (PREFS_RESOURCE);
 
@@ -392,7 +456,10 @@ create_preferences_dialog (void)
 	grab_widget_values_from_settings ();
 	setup_signals ();
 
-	GET_WIDGET (prefs_dialog);
+	if (parent) {
+		g_assert (GTK_IS_WINDOW (parent));
 
+		gtk_window_set_transient_for (GTK_WINDOW(prefs_dialog), parent);
+	}
 	return prefs_dialog;
 }

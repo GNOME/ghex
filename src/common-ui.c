@@ -1,7 +1,10 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* ui.c - main menus and callbacks; utility functions
+/* common-ui.c - Common UI utility functions
 
    Copyright (C) 1998 - 2004 Free Software Foundation
+   Copyright © 2021 Logan Rathbone
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -18,24 +21,16 @@
    If not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-   Author: Jaka Mocnik <jaka@gnu.org>
+   Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#include <config.h>
-#include <string.h>
-#include <unistd.h> /* for F_OK and W_OK */
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
 
-#include <gtk/gtk.h>
-#include <glib/gi18n.h>
+#include "common-ui.h"
 
-
-#include "ui.h"
-#include "ghex-window.h"
-#include "findreplace.h"
-#include "converter.h"
-#include "print.h"
-#include "chartable.h"
-
+#if 0
 static void ghex_print(GtkHex *gh, gboolean preview);
 
 guint group_type[3] = {
@@ -111,19 +106,21 @@ create_dialog_title(GtkWidget *window, gchar *title)
 		return;
 
 	win = ghex_window_get_active();
-
-#if defined(__GNUC__) && (__GNUC__ > 4)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wformat-nonliteral"
-#endif
-	if(win != NULL && win->gh != NULL)
-		full_title = g_strdup_printf(title, win->gh->document->path_end);
-	else
-		full_title = g_strdup_printf(title, "");
-#if defined(__GNUC__) && (__GNUC__ > 4)
-#pragma GCC diagnostic pop
 #endif
 
+//#if defined(__GNUC__) && (__GNUC__ > 4)
+//#pragma GCC diagnostic push
+//#pragma GCC diagnostic ignored "-Wformat-nonliteral"
+//#endif
+//	if(win != NULL && win->gh != NULL)
+//		full_title = g_strdup_printf(title, win->gh->document->path_end);
+//	else
+//		full_title = g_strdup_printf(title, "");
+//#if defined(__GNUC__) && (__GNUC__ > 4)
+//#pragma GCC diagnostic pop
+//#endif
+
+#if 0
 	if(full_title) {
 		gtk_window_set_title(GTK_WINDOW(window), full_title);
 		g_free(full_title);
@@ -198,38 +195,88 @@ about_cb (GtkAction  *action,
 	g_free (license_translated);
 	g_free (copyright);
 }
+#endif
 
 void
-help_cb (GtkAction  *action,
-         GHexWindow *window)
+common_help_cb (GtkWindow *parent)
 {
-	GError *error = NULL;
-
-	gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (window)),
+	gtk_show_uri (parent,
 	              "help:ghex",
-	              gtk_get_current_event_time (),
-	              &error);
-
-	if (error != NULL) {
-		GtkWidget *dialog;
-		dialog = gtk_message_dialog_new (NULL,
-						GTK_DIALOG_MODAL,
-						GTK_MESSAGE_ERROR,
-						GTK_BUTTONS_CLOSE,
-						_("There was an error displaying help: \n%s"),
-						error->message);
-
-		g_signal_connect (G_OBJECT (dialog), "response",
-				  G_CALLBACK (gtk_widget_destroy),
-				  NULL);
-
-		gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-		gtk_window_present (GTK_WINDOW (dialog));
-
-		g_error_free (error);
-	}
+	              GDK_CURRENT_TIME);
 }
 
+
+void
+common_about_cb (GtkWindow *parent)
+{
+	char *copyright;
+	char *license_translated;
+
+	g_return_if_fail (GTK_IS_WINDOW(parent));
+
+	const char *authors[] = {
+		"Jaka Mo\304\215nik",
+		"Chema Celorio",
+		"Shivram Upadhyayula",
+		"Rodney Dawes",
+		"Jonathon Jongsma",
+		"Kalev Lember",
+		"Logan Rathbone",
+		NULL
+	};
+
+	const char *documentation_credits[] = {
+		"Jaka Mo\304\215nik",
+		"Sun GNOME Documentation Team",
+		NULL
+	};
+
+	const char *license[] = {
+		N_("This program is free software; you can redistribute it and/or modify "
+		   "it under the terms of the GNU General Public License as published by "
+		   "the Free Software Foundation; either version 2 of the License, or "
+		   "(at your option) any later version."),
+		N_("This program is distributed in the hope that it will be useful, "
+		   "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+		   "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+		   "GNU General Public License for more details."),
+		N_("You should have received a copy of the GNU General Public License "
+		   "along with this program; if not, write to the Free Software Foundation, Inc., "
+		   "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA")
+	};
+	license_translated = g_strjoin ("\n\n",
+	                                _(license[0]),
+	                                _(license[1]),
+	                                _(license[2]),
+	                                NULL);
+
+	/* Translators: these two strings here indicate the copyright time span,
+	   e.g. 1998-2018. */
+	copyright = g_strdup_printf (_("Copyright © %Id–%Id The GHex authors"),
+			1998, 2021);
+
+	gtk_show_about_dialog (parent,
+	                       "authors", authors,
+	                       "comments", _("A binary file editor"),
+	                       "copyright", copyright,
+	                       "documenters", documentation_credits,
+	                       "license", license_translated,
+	                       "logo-icon-name", "org.gnome.GHex",
+	                       "program-name", "GHex",
+	                       "title", _("About GHex"),
+	                       "translator-credits", _("translator-credits"),
+	                       "version", PACKAGE_VERSION,
+	                       "website", "https://wiki.gnome.org/Apps/Ghex",
+	                       "website-label", _("GHex Website"),
+	                       "wrap-license", TRUE,
+	                       NULL);
+
+	g_free (license_translated);
+	g_free (copyright);
+}
+
+
+#if 0
 void 
 paste_cb (GtkAction *action,
           gpointer   user_data)
@@ -436,9 +483,6 @@ export_html_cb (GtkAction *action,
 										   GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 										   GTK_STOCK_SAVE, GTK_RESPONSE_OK,
 										   NULL);
-#if 0
-	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(file_sel), doc->file_name);
-#endif
 	gtk_window_set_modal(GTK_WINDOW(file_sel), TRUE);
 	gtk_window_set_position(GTK_WINDOW (file_sel), GTK_WIN_POS_MOUSE);
 	gtk_widget_show(file_sel);
@@ -915,4 +959,5 @@ remove_view_cb (GtkAction *action,
 
 	ghex_window_close(win);
 }
+#endif
 

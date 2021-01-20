@@ -1,7 +1,7 @@
 /* vim: colorcolumn=80 ts=4 sw=4
  */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* preferences.h - Declarations pertaining to preferences
+/* common-ui.h - Common UI utility functions
 
    Copyright (C) 2004 Free Software Foundation
    Copyright © 2021 Logan Rathbone
@@ -24,21 +24,21 @@
    Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef GHEX_PREFERENCES_H
-#define GHEX_PREFERENCES_H
+#ifndef COMMON_UI_H
+#define COMMON_UI_H
 
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
-#include <string.h>
-#include <gtkhex.h>	/* for GROUP_* enums */
 
 #include "configuration.h"
-#include "common-ui.h"
 
 G_BEGIN_DECLS
 
-GtkWidget *	create_preferences_dialog (GtkWindow *parent);
+/* various ui convenience functions */
+
+void common_help_cb (GtkWindow *parent);
+void common_about_cb (GtkWindow *parent);
 
 G_END_DECLS
 
-#endif /* GHEX_PREFERENCES_H */
+#endif /* COMMON_UI_H */

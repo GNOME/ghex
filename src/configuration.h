@@ -28,9 +28,6 @@
 
 #include <gtk/gtk.h>
 
-#include "preferences.h"
-#include "configuration.h"
-
 G_BEGIN_DECLS
 
 /* GSettings keys */

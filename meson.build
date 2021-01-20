@@ -31,6 +31,8 @@ i18n = import('i18n')
 
 cc = meson.get_compiler('c')
 
+shaded_box_max = 1000
+
 ghex_conf = configuration_data()
 ghex_conf.set_quoted('PACKAGE_NAME', meson.project_name())
 ghex_conf.set_quoted('PACKAGE_VERSION', meson.project_version())
@@ -42,6 +44,8 @@ ghex_conf.set_quoted('PACKAGE_LOCALE_DIR', ghex_localedir)
 ghex_conf.set('VERSION', 'PACKAGE_VERSION')
 ghex_conf.set('GETTEXT_PACKAGE', 'PACKAGE_NAME')
 ghex_conf.set('LOCALEDIR', 'PACKAGE_LOCALE_DIR')
+
+ghex_conf.set('CONFIG_H_SHADED_BOX_MAX', shaded_box_max)
 
 ghex_conf.set_quoted('LIBGTKHEX_RELEASE_STRING', 'gtkhex-@0@.0'.format(libghex_version_major))
 

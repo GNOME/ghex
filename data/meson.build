@@ -1,8 +1,3 @@
-install_data(
-  'org.gnome.GHex.gschema.xml',
-  install_dir: ghex_schemasdir
-)
-
 ghex_desktop = i18n.merge_file(
   input: 'org.gnome.GHex.desktop.in',
   output: 'org.gnome.GHex.desktop',
@@ -33,6 +28,8 @@ pkg_conf.set('includedir', ghex_includedir)
 
 pkg_conf.set('VERSION', meson.project_version())
 
+pkg_conf.set_quoted('XML_SHADED_BOX_MAX', shaded_box_max.to_string())
+
 configure_file(
   input: 'gtkhex-4.pc.in',
   output: 'gtkhex-4.pc',
@@ -41,12 +38,20 @@ configure_file(
   install: true
 )
 
+configure_file(
+  input: 'org.gnome.GHex.gschema.xml.in',
+  output: 'org.gnome.GHex.gschema.xml',
+  configuration: pkg_conf,
+  install_dir: ghex_schemasdir,
+  install: true
+)
+
 ghex_appdata = i18n.merge_file(
   input: 'org.gnome.GHex.appdata.xml.in',
   output: 'org.gnome.GHex.appdata.xml',
   po_dir: ghex_po_dir,
   install_dir: ghex_appdatadir,
-  install: true,
+  install: true
 )
 
 appstream_util_prg = find_program(
