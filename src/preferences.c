@@ -41,6 +41,10 @@
 
 /* PRIVATE DATATYPES */
 
+/* The types of fonts that can be set via font choosers. I suppose we could
+ * just compare the pointer values since they're global, but that would break
+ * if the structure were ever changed to de-global-ify them.
+ */
 typedef enum {
 	GUI_FONT,
 	DATA_FONT,
@@ -104,7 +108,7 @@ do_css_stuff(void)
 										"  padding-right: 24px;\n"
 										"}\n", -1);
 
-	APPLY_PROVIDER_TO(box_provider, content_area_box);
+	APPLY_PROVIDER_TO (box_provider, content_area_box);
 
 	/* padding for our frames (they look god-awful without a bit) */
 	frame_provider = gtk_css_provider_new ();
@@ -113,11 +117,68 @@ do_css_stuff(void)
 										"  padding: 12px;\n"
 										"}\n",	-1);
 
-	APPLY_PROVIDER_TO(frame_provider, font_frame);
-	APPLY_PROVIDER_TO(frame_provider, group_type_frame);
-	APPLY_PROVIDER_TO(frame_provider, print_font_frame);
+	APPLY_PROVIDER_TO (frame_provider, font_frame);
+	APPLY_PROVIDER_TO (frame_provider, group_type_frame);
+	APPLY_PROVIDER_TO (frame_provider, print_font_frame);
 }
 #undef APPLY_PROVIDER_TO
+
+static void
+shaded_box_spinbtn_value_changed_cb (GtkSpinButton *spin_button,
+		gpointer user_data)
+{
+	g_debug ("%s: NOT IMPLEMENTED - value: %f",
+			__func__, gtk_spin_button_get_value (spin_button));
+}
+
+static void
+shaded_box_chkbtn_toggled_cb (GtkCheckButton *checkbutton,
+		gpointer user_data)
+{
+	gboolean checked;
+
+	(void)user_data;	/* unused */
+
+	checked = gtk_check_button_get_active (checkbutton);
+
+	gtk_widget_set_sensitive (shaded_box_box,
+			checked ? TRUE : FALSE);
+}
+
+static void
+show_offsets_set_cb (GtkCheckButton *checkbutton,
+		gpointer user_data)
+{
+	gboolean show_or_hide;
+
+	(void)user_data;	/* unused */
+
+	show_or_hide = gtk_check_button_get_active (checkbutton);
+
+	g_settings_set_boolean (settings,
+			GHEX_PREF_OFFSETS_COLUMN,
+			show_or_hide);
+}
+
+static void
+group_type_set_cb (GtkCheckButton *checkbutton,
+		gpointer user_data)
+{
+	int group_type = GPOINTER_TO_INT(user_data);
+
+	/* this signal activate when the state *changes*, so we still need to see
+	 * whether or not the button associated with our enum is *checked or not.
+	 */
+	if (gtk_check_button_get_active (checkbutton))
+	{
+		g_debug ("%s: active. - group_type: %d",
+				__func__, group_type);
+
+		g_settings_set_enum (settings,
+				GHEX_PREF_GROUP,
+				group_type);
+	}
+}
 
 /* note the lack of const and the ugly cast below. This is to silence a
  * warning about incompatible types.
@@ -139,51 +200,65 @@ static void
 font_set_cb (GtkFontButton *widget,
 		gpointer user_data)
 {
+	GtkFontChooser *chooser = GTK_FONT_CHOOSER(widget);
 	FontType type = GPOINTER_TO_INT(user_data);
 	char *tmp;
-	char **global;
 	char *pref;
-	GtkFontChooser *chooser = GTK_FONT_CHOOSER(widget);
 
-	if (type == GUI_FONT) {
-		global = &def_font_name;
-		pref = GHEX_PREF_FONT;
-	} else if (type == DATA_FONT) {
-		global = &data_font_name;
-		pref = GHEX_PREF_DATA_FONT;
-	} else if (type == HEADER_FONT) {
-		global = &header_font_name;
-		pref = GHEX_PREF_HEADER_FONT;
-	} else {
-		g_error ("%s: Programmer error - invalid enum passed to function.",
-				__func__);
+	switch (type)
+	{
+		case GUI_FONT:
+			pref = GHEX_PREF_FONT;
+			break;
+
+		case DATA_FONT:
+			pref = GHEX_PREF_DATA_FONT;
+			break;
+
+		case HEADER_FONT:
+			pref = GHEX_PREF_HEADER_FONT;
+			break;
+
+		default:
+			g_error ("%s: Programmer error - invalid enum passed to function.",
+					__func__);
+			break;
 	}
-
 	tmp = gtk_font_chooser_get_font (chooser);
 
 	if (tmp) {
-		if (*global)
-			g_free (*global);
-		*global = tmp;
 		g_settings_set_string (settings,
 				pref,
-				*global);
-	} else {
-		g_warning ("%s: No chosen font detected. Doing nothing.", __func__);
+				tmp);
+		g_free (tmp);
 	}
+	else {
+		g_warning ("%s: No chosen font detected. Doing nothing.",
+				__func__);
+	}
+}
 
-	printf("TEST - def_font_name: %s - data_font_name: %s - header_font_name: %s\n", def_font_name, data_font_name, header_font_name);
+/* Quick helper function for setup_signals. */
+static void
+monospace_only (GtkWidget *font_button)
+{
+	GtkFontChooser *chooser = GTK_FONT_CHOOSER(font_button);
+
+	g_return_if_fail (GTK_IS_FONT_CHOOSER (chooser));
+
+	gtk_font_chooser_set_filter_func (chooser,
+			(GtkFontFilterFunc)monospace_font_filter,
+			NULL, NULL);	/* no user data, no destroy func for same. */
 }
 
 static void
 setup_signals (void)
 {
-	/* font_button */
+	/* font_buttons */
 
-	/* Make font chooser only allow monospace fonts. */
-	gtk_font_chooser_set_filter_func (GTK_FONT_CHOOSER(font_button),
-			(GtkFontFilterFunc)monospace_font_filter,
-			NULL, NULL);	/* no user data, no destroy func for same. */
+	/* Make certain font choosers only allow monospace fonts. */
+	monospace_only (font_button);
+	monospace_only (data_font_button);
 
 	g_signal_connect (font_button, "font-set",
 			G_CALLBACK(font_set_cb), GINT_TO_POINTER(GUI_FONT));
@@ -194,6 +269,29 @@ setup_signals (void)
 	g_signal_connect (header_font_button, "font-set",
 			G_CALLBACK(font_set_cb), GINT_TO_POINTER(HEADER_FONT));
 
+	/* group type checkbuttons */
+
+	g_signal_connect (bytes_chkbtn, "toggled",
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(GROUP_BYTE));
+
+	g_signal_connect (words_chkbtn, "toggled",
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(GROUP_WORD));
+
+	g_signal_connect (long_chkbtn, "toggled",
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(GROUP_LONG));
+
+	/* show offsets checkbutton */
+
+	g_signal_connect (show_offsets_chkbtn, "toggled",
+			G_CALLBACK(show_offsets_set_cb), NULL);
+
+	/* shaded box for printing */
+
+	g_signal_connect (shaded_box_chkbtn, "toggled",
+			G_CALLBACK(shaded_box_chkbtn_toggled_cb), NULL);
+
+	g_signal_connect (shaded_box_spinbtn, "value-changed",
+			G_CALLBACK(shaded_box_spinbtn_value_changed_cb), NULL);
 }
 
 /* put all of your GET_WIDGET calls other than the main prefs_dialog widget
@@ -220,24 +318,37 @@ grab_widget_values_from_settings (void)
 
 	/* group_type radio buttons
 	 */
-	if (def_group_type == GROUP_BYTE) {
-		gtk_check_button_set_active (GTK_CHECK_BUTTON(bytes_chkbtn), TRUE);
-	} else if (def_group_type == GROUP_WORD) {
-		gtk_check_button_set_active (GTK_CHECK_BUTTON(words_chkbtn), TRUE);
-	} else if (def_group_type == GROUP_LONG) {
-		gtk_check_button_set_active (GTK_CHECK_BUTTON(long_chkbtn), TRUE);
-	} else {
-		g_warning ("group_type option invalid; falling back to BYTES.");
-		gtk_check_button_set_active (GTK_CHECK_BUTTON(bytes_chkbtn), TRUE);
+	switch (def_group_type) {
+		case GROUP_BYTE:
+			gtk_check_button_set_active (GTK_CHECK_BUTTON(bytes_chkbtn),
+					TRUE);
+			break;
+
+		case GROUP_WORD:
+			gtk_check_button_set_active (GTK_CHECK_BUTTON(words_chkbtn),
+					TRUE);
+			break;
+
+		case GROUP_LONG:
+			gtk_check_button_set_active (GTK_CHECK_BUTTON(long_chkbtn),
+					TRUE);
+			break;
+
+		default:
+			g_warning ("group_type option invalid; falling back to BYTES.");
+			gtk_check_button_set_active (GTK_CHECK_BUTTON(bytes_chkbtn),
+					TRUE);
+			break;
 	}
 
 	/* shaded_box_* */
 	gtk_check_button_set_active (GTK_CHECK_BUTTON(shaded_box_chkbtn),
 			shaded_box_size > 0 ? TRUE : FALSE);
-	gtk_widget_set_sensitive (shaded_box_box,
-			shaded_box_size > 0 ? TRUE : FALSE);
+
 	gtk_spin_button_set_value (GTK_SPIN_BUTTON(shaded_box_spinbtn),
 			shaded_box_size);
+
+	shaded_box_chkbtn_toggled_cb (GTK_CHECK_BUTTON(shaded_box_chkbtn), NULL);
 }
 
 static void
