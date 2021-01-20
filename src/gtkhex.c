@@ -2972,15 +2972,12 @@ gtk_hex_init(GtkHex *gh)
 
 	gh->auto_highlight = NULL;
 
-	// GTK4 - TEST - DON'T KNOW IF NECESSARY FOR KEYBOARD STUFF - FIXME
 	gtk_widget_set_can_focus (widget, TRUE);
 	gtk_widget_set_focusable (widget, TRUE);
 
 	gtk_widget_set_vexpand (widget, TRUE);
 	gtk_widget_set_hexpand (widget, TRUE);
 
-	// API CHANGE - FIXME REWRITE.
-//	gtk_widget_set_events(GTK_WIDGET(gh), GDK_KEY_PRESS_MASK);
 
 	/* Init CSS */
 

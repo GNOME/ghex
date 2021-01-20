@@ -1,7 +1,10 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* preferences.c - setting the preferences
+/* FIXME.c - a window with a character table
 
-   Copyright (C) 1998 - 2004 Free Software Foundation
+   Copyright © 1998 - 2004 Free Software Foundation
+   Copyright © 2021 Logan Rathbone
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -18,596 +21,253 @@
    If not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-   Author: Jaka Mocnik <jaka@gnu.org>
+   Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif /* HAVE_CONFIG_H */
 
-#include <gtk/gtk.h>
-#include <glib/gi18n.h>
-
 #include "preferences.h"
+
+/* provides ``settings'' and def_* globals, as well as GHEX_PREF_* defines. */
 #include "configuration.h"
-#include "ghex-window.h"
-#include "ui.h"
 
-#define MAX_MAX_UNDO_DEPTH 100000
+#define PREFS_RESOURCE "/org/gnome/ghex/preferences.ui"
 
-static void select_font_cb(GtkWidget *w, PropertyUI *pui);
-static void select_display_font_cb(GtkWidget *w, PropertyUI *pui);
-static void max_undo_changed_cb(GtkAdjustment *adj, PropertyUI *pui);
-static void box_size_changed_cb(GtkAdjustment *adj, PropertyUI *pui);
-static void offset_cb(GtkWidget *w, PropertyUI *pui);
-static void prefs_response_cb(GtkDialog *dlg, gint response, PropertyUI *pui);
-static void offsets_col_cb(GtkToggleButton *tb, PropertyUI *pui);
-static void group_type_cb(GtkRadioButton *rd, PropertyUI *pui);
-static void format_activated_cb(GtkEntry *entry, PropertyUI *pui);
-static gboolean format_focus_out_event_cb(GtkEntry *entry, GdkEventFocus *event,
-										  PropertyUI *pui);
+#define GET_WIDGET(X) \
+	X = GTK_WIDGET(gtk_builder_get_object (builder, #X)); \
+	g_assert (GTK_IS_WIDGET (X))
 
-PropertyUI *prefs_ui = NULL;
+/* PRIVATE DATATYPES */
 
-PropertyUI *
-create_prefs_dialog()
-{
-	GtkWidget *vbox, *label, *frame, *box, *fbox, *flabel, *grid;
-	GtkAdjustment *undo_adj, *box_adj;
-	GtkWidget *notebook;
+typedef enum {
+	GUI_FONT,
+	DATA_FONT,
+	HEADER_FONT
+} FontType;
 
-	GSList *group;
-	PropertyUI *pui;
+/* STATIC GLOBALS */
 
-	int i;
+static GtkBuilder *builder;
 
-	gboolean gail_up;
+/* use GET_WIDGET(X) macro to set these from builder, where
+ * X == var name == builder id name. Don't include quotation marks.
+ */
+/* main widget */
+static GtkWidget *prefs_dialog;
 
-	pui = g_new0(PropertyUI, 1);
-	
-	pui->pbox = gtk_dialog_new();
-	gtk_window_set_title(GTK_WINDOW(pui->pbox), _("GHex Preferences"));
-	
-	gtk_dialog_add_button (GTK_DIALOG (pui->pbox),
-						   GTK_STOCK_CLOSE,
-						   GTK_RESPONSE_CLOSE);
+/* for css stuff */
+static GtkWidget *content_area_box;
+static GtkWidget *font_frame, *group_type_frame, *print_font_frame;
 
-	gtk_dialog_add_button (GTK_DIALOG (pui->pbox),
-						   GTK_STOCK_HELP,
-						   GTK_RESPONSE_HELP);
+/* widgets that interact with settings */
+static GtkWidget *font_button;
+static GtkWidget *data_font_button;
+static GtkWidget *header_font_button;
+static GtkWidget *show_offsets_chkbtn;
+static GtkWidget *bytes_chkbtn;
+static GtkWidget *words_chkbtn;
+static GtkWidget *long_chkbtn;
+static GtkWidget *shaded_box_chkbtn;
+static GtkWidget *shaded_box_spinbtn;
+static GtkWidget *shaded_box_box;
 
-	g_signal_connect(G_OBJECT(pui->pbox), "response",
-					 G_CALLBACK(prefs_response_cb), pui);
-
-	g_signal_connect(G_OBJECT(pui->pbox), "delete-event",
-					 G_CALLBACK (gtk_widget_hide_on_delete),
-					 NULL);
-
-	notebook = gtk_notebook_new();
-	gtk_widget_show(notebook);
-	gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(pui->pbox))), notebook);
-
-	/* editing page */
-	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-	gtk_widget_show(vbox);
-
-	/* max undo levels */
-	undo_adj = GTK_ADJUSTMENT(gtk_adjustment_new(MIN(max_undo_depth, MAX_MAX_UNDO_DEPTH),
-												 0, MAX_MAX_UNDO_DEPTH, 1, 10, 0));
-
-	box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_widget_show(box);
-
-	label = gtk_label_new_with_mnemonic(_("_Maximum number of undo levels:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, 8);
-	gtk_widget_show(label);
-						  
-	pui->undo_spin = gtk_spin_button_new(undo_adj, 1, 0);
-	gtk_box_pack_end (GTK_BOX(box), GTK_WIDGET(pui->undo_spin), FALSE, TRUE, 8);
-	gtk_widget_show(pui->undo_spin);
-
-	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 8);
-
-	/* cursor offset format */
-	box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_widget_show(box);
-
-	gtk_label_set_mnemonic_widget(GTK_LABEL(label), pui->undo_spin);
-
-	gail_up = GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(label)) ;
-
-	if (gail_up) {
-		add_atk_namedesc (pui->undo_spin, _("Undo levels"), _("Select maximum number of undo levels"));
-		add_atk_relation (pui->undo_spin, label, ATK_RELATION_LABELLED_BY);
-	}
-
-	label = gtk_label_new_with_mnemonic(_("_Show cursor offset in statusbar as:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, 8);
-	gtk_widget_show(label);
-
-	pui->format = gtk_entry_new();
-	g_signal_connect(G_OBJECT(pui->format), "activate",
-					 G_CALLBACK(format_activated_cb), pui);
-	g_signal_connect(G_OBJECT(pui->format), "focus_out_event",
-					 G_CALLBACK(format_focus_out_event_cb), pui);
-	gtk_box_pack_start (GTK_BOX(box), pui->format, TRUE, TRUE, 8);
-	gtk_widget_show(pui->format);
-
-	pui->offset_menu = gtk_combo_box_text_new();
-	gtk_label_set_mnemonic_widget (GTK_LABEL(label), pui->offset_menu);
-	gtk_widget_show(pui->offset_menu);
-	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(pui->offset_menu),
-								   _("Decimal"));
-	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(pui->offset_menu),
-								   _("Hexadecimal"));
-	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(pui->offset_menu),
-								   _("Custom"));
-	g_signal_connect(G_OBJECT(pui->offset_menu), "changed",
-					 G_CALLBACK(offset_cb), pui);
-	gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(pui->offset_menu),
-					 FALSE, TRUE, 8);
-
-	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, TRUE, 4);
-
-	if (gail_up) {
-		add_atk_namedesc (pui->format, "format_entry", _("Enter the cursor offset format"));
-		add_atk_namedesc (pui->offset_menu, "format_combobox", _("Select the cursor offset format"));
-		add_atk_relation (label, pui->format, ATK_RELATION_LABEL_FOR);
-		add_atk_relation (pui->format, label, ATK_RELATION_LABELLED_BY);
-		add_atk_relation (label, pui->offset_menu, ATK_RELATION_LABEL_FOR);
-		add_atk_relation (pui->offset_menu, label, ATK_RELATION_LABELLED_BY);
-		add_atk_relation (pui->format, pui->offset_menu, ATK_RELATION_CONTROLLED_BY);
-		add_atk_relation (pui->offset_menu, pui->format, ATK_RELATION_CONTROLLER_FOR);
-	}
-
-	/* show offsets check button */
-	pui->offsets_col = gtk_check_button_new_with_mnemonic(_("Sh_ow offsets column"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->offsets_col), show_offsets_column);
-	gtk_box_pack_start(GTK_BOX(vbox), pui->offsets_col, FALSE, TRUE, 4);
-	gtk_widget_show(pui->offsets_col);
-
-	label = gtk_label_new(_("Editing"));
-	gtk_widget_show(label);
-	gtk_notebook_append_page (GTK_NOTEBOOK(notebook), vbox, label);
-
-	/* display page */
-	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-	gtk_widget_show(vbox);
-	
-	/* display font */
-	frame = gtk_frame_new(_("Font"));
-	gtk_container_set_border_width(GTK_CONTAINER(frame), 4);
-	gtk_widget_show(frame);
-	
-	fbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
-	pui->font_button = gtk_font_button_new();
-	gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->font_button),
-								  def_font_name);
-	g_signal_connect (pui->font_button, "font-set",
-	                  G_CALLBACK (select_display_font_cb), pui);
-	flabel = gtk_label_new("");
-	gtk_label_set_mnemonic_widget (GTK_LABEL (flabel), pui->font_button);
-	gtk_widget_show(flabel);
-	gtk_widget_show(GTK_WIDGET(pui->font_button));
-	gtk_container_set_border_width(GTK_CONTAINER(fbox), 4);
-	gtk_box_pack_start (GTK_BOX (fbox), GTK_WIDGET(pui->font_button), FALSE, TRUE, 12);
-	
-	gtk_widget_show(fbox);
-	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(fbox));
-	
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 4);
-	
-	/* default group type */
-	frame = gtk_frame_new(_("Default Group Type"));
-	gtk_container_set_border_width(GTK_CONTAINER(frame), 4);
-	gtk_widget_show(frame);
-
-	box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-	gtk_widget_show(box);
-	group = NULL;
-	for(i = 0; i < 3; i++) {
-		pui->group_type[i] = GTK_RADIO_BUTTON(gtk_radio_button_new_with_mnemonic(group, _(group_type_label[i])));
-		gtk_widget_show(GTK_WIDGET(pui->group_type[i]));
-		gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(pui->group_type[i]), TRUE, TRUE, 2);
-		group = gtk_radio_button_get_group(pui->group_type[i]);
-	}
-	gtk_container_add(GTK_CONTAINER(frame), box);
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 4);
-	
-	label = gtk_label_new(_("Display"));
-	gtk_widget_show(label);
-	gtk_notebook_append_page (GTK_NOTEBOOK(notebook), vbox, label);
-	
-	/* printing page */
-	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-	gtk_widget_show(vbox);
-
-	/* paper selection */
-	frame = gtk_frame_new(_("Paper size"));
-	gtk_container_set_border_width(GTK_CONTAINER(frame), 4);
-	gtk_widget_show(frame);
-
-	/* data & header font selection */
-	frame = gtk_frame_new(_("Fonts"));
-	gtk_container_set_border_width(GTK_CONTAINER(frame), 4);
-	gtk_widget_show(frame);
-
-	grid = gtk_grid_new ();
-	g_object_set (grid,
-	              "orientation", GTK_ORIENTATION_VERTICAL,
-	              "row-spacing", 6,
-	              "column-spacing", 12,
-	              NULL);
-	gtk_widget_show (grid);
-
-	label = gtk_label_new_with_mnemonic(_("_Data font:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_widget_show(label);
-	gtk_container_add (GTK_CONTAINER (grid), label);
-
-	pui->df_button = gtk_font_button_new_with_font(def_font_name);
-	g_signal_connect (G_OBJECT (pui->df_button), "font_set",
-					  G_CALLBACK (select_font_cb), pui);
-	pui->df_label = gtk_label_new("");
-	gtk_label_set_mnemonic_widget (GTK_LABEL (pui->df_label), pui->df_button);
-
-	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pui->df_button);
-
-	if (gail_up) {
-		add_atk_namedesc (pui->df_button, _("Data font"), _("Select the data font"));
-		add_atk_relation (pui->df_button, label, ATK_RELATION_LABELLED_BY);
-	}	
-	
-	gtk_widget_set_hexpand (pui->df_button, TRUE);
-	gtk_widget_show(pui->df_button);
-	gtk_grid_attach_next_to (GTK_GRID (grid), pui->df_button, label,
-	                         GTK_POS_RIGHT, 1, 1);
-
-	label = gtk_label_new_with_mnemonic(_("Header fo_nt:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_widget_show(label);
-	gtk_container_add (GTK_CONTAINER (grid), label);
-	pui->hf_button = gtk_font_button_new_with_font(def_font_name);
-	g_signal_connect (G_OBJECT (pui->hf_button), "font_set",
-					  G_CALLBACK (select_font_cb), pui);
-	pui->hf_label = gtk_label_new("");
-	gtk_label_set_mnemonic_widget (GTK_LABEL (pui->hf_label), pui->hf_button);
-
-	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pui->hf_button);
-
-	if (gail_up) {
-		add_atk_namedesc (pui->hf_button, _("Header font"), _("Select the header font"));
-		add_atk_relation (pui->hf_button, label, ATK_RELATION_LABELLED_BY);
-	}
-
-	gtk_widget_set_hexpand (pui->hf_button, TRUE);
-	gtk_widget_show(pui->hf_button);
-	gtk_grid_attach_next_to (GTK_GRID (grid), pui->hf_button, label,
-	                         GTK_POS_RIGHT, 1, 1);
-
-	label = gtk_label_new("");
-	gtk_widget_set_hexpand (label, TRUE);
-	gtk_widget_show(label);
-	gtk_grid_attach (GTK_GRID (grid), label, 2, 1, 1, 1);
-
-	gtk_container_add (GTK_CONTAINER (frame), grid);
-
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE,
-					   4);
-
-	/* shaded box entry */
-	box_adj = GTK_ADJUSTMENT(gtk_adjustment_new(0, 0, 1000, 1, 10, 0));
-
-	box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_widget_show(box);
-
-	label = gtk_label_new_with_mnemonic(_("_Print shaded box over:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 1.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, TRUE, TRUE, 4);
-	gtk_widget_show(label);
-						  
-	pui->box_size_spin = gtk_spin_button_new(box_adj, 1, 0);
-	gtk_box_pack_start (GTK_BOX(box), GTK_WIDGET(pui->box_size_spin), FALSE, TRUE, 8);
-	gtk_widget_show(pui->box_size_spin);
-
-	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pui->box_size_spin);
-
-	if (gail_up) {
-		add_atk_namedesc (pui->box_size_spin, _("Box size"), _("Select size of box (in number of lines)"));
-		add_atk_relation (pui->box_size_spin, label, ATK_RELATION_LABELLED_BY);
-	}
-
-	label = gtk_label_new(_("lines (0 for no box)"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_box_pack_start (GTK_BOX(box), label, FALSE, TRUE, 4);
-	gtk_widget_show(label);
-
-	gtk_box_pack_start(GTK_BOX(vbox), box, TRUE, TRUE, 4);
-
-	label = gtk_label_new(_("Printing"));
-	gtk_widget_show(label);
-	gtk_notebook_append_page(GTK_NOTEBOOK(notebook), vbox, label);
-
-	for(i = 0; i < 3; i++)
-		g_signal_connect(G_OBJECT(pui->group_type[i]), "clicked",
-						 G_CALLBACK(group_type_cb), pui);
-	g_signal_connect(G_OBJECT(pui->offsets_col), "toggled",
-					 G_CALLBACK(offsets_col_cb), pui);
-	g_signal_connect(G_OBJECT(undo_adj), "value-changed",
-					 G_CALLBACK(max_undo_changed_cb), pui);
-	g_signal_connect(G_OBJECT(box_adj), "value-changed",
-					 G_CALLBACK(box_size_changed_cb), pui);
-
-	return pui;
-}
+/* PRIVATE DECLARATIONS */
 
 
-void set_current_prefs(PropertyUI *pui) {
-	int i;
 
-	for(i = 0; i < 3; i++)
-		if(def_group_type == group_type[i]) {
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->group_type[i]), TRUE);
-			break;
-		}
-	
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pui->offsets_col), show_offsets_column);
-	gtk_spin_button_set_value(GTK_SPIN_BUTTON(pui->undo_spin), (gfloat)max_undo_depth);
-	gtk_spin_button_set_value(GTK_SPIN_BUTTON(pui->box_size_spin), (gfloat)shaded_box_size);
+/* PRIVATE FUNCTIONS */
 
-	gtk_widget_set_sensitive(pui->format, FALSE);
-	gtk_entry_set_text(GTK_ENTRY(pui->format), offset_fmt);
-	if(strcmp(offset_fmt, "%d") == 0)
-		gtk_combo_box_set_active(GTK_COMBO_BOX(pui->offset_menu), 0);
-	else if(strcmp(offset_fmt, "0x%X") == 0)
-		gtk_combo_box_set_active(GTK_COMBO_BOX(pui->offset_menu), 1);
-	else {
-		gtk_combo_box_set_active(GTK_COMBO_BOX(pui->offset_menu), 2);
-		gtk_widget_set_sensitive(pui->format, TRUE);
-	}
-
-	if(header_font_name)
-		gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->hf_button),
-			 header_font_name);
-	if(data_font_name)
-		gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->df_button),
-			 data_font_name);
-	if(def_font_name)
-		gtk_font_button_set_font_name(GTK_FONT_BUTTON(pui->font_button),
-									  def_font_name);
-
-	gtk_dialog_set_default_response(GTK_DIALOG(pui->pbox), GTK_RESPONSE_CLOSE);
-}
-
+#define APPLY_PROVIDER_TO(PROVIDER, WIDGET)									\
+	context = gtk_widget_get_style_context (WIDGET);						\
+	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER(PROVIDER),	\
+			GTK_STYLE_PROVIDER_PRIORITY_APPLICATION)
 static void
-max_undo_changed_cb(GtkAdjustment *adj, PropertyUI *pui)
+do_css_stuff(void)
 {
-	if((guint)gtk_adjustment_get_value(adj) != max_undo_depth) {
-		max_undo_depth = gtk_spin_button_get_value_as_int
-			(GTK_SPIN_BUTTON(pui->undo_spin));
-		g_settings_set (settings,
-		                GHEX_PREF_MAX_UNDO_DEPTH,
-		                "u",
-		                max_undo_depth);
-	}
+	GtkStyleContext *context;
+	GtkCssProvider *box_provider, *frame_provider;
+
+	/* Grab layout-oriented widgets and set CSS styling. */
+	GET_WIDGET (content_area_box);
+	GET_WIDGET (font_frame);
+	GET_WIDGET (group_type_frame);
+	GET_WIDGET (print_font_frame);
+
+	
+	/* overall padding for content area: */
+	box_provider = gtk_css_provider_new ();
+	gtk_css_provider_load_from_data (box_provider,
+										"* {\n"
+										"  padding-left: 24px;\n"
+										"  padding-right: 24px;\n"
+										"}\n", -1);
+
+	APPLY_PROVIDER_TO(box_provider, content_area_box);
+
+	/* padding for our frames (they look god-awful without a bit) */
+	frame_provider = gtk_css_provider_new ();
+	gtk_css_provider_load_from_data (frame_provider,
+										"* {\n"
+										"  padding: 12px;\n"
+										"}\n",	-1);
+
+	APPLY_PROVIDER_TO(frame_provider, font_frame);
+	APPLY_PROVIDER_TO(frame_provider, group_type_frame);
+	APPLY_PROVIDER_TO(frame_provider, print_font_frame);
 }
+#undef APPLY_PROVIDER_TO
 
-static void
-box_size_changed_cb(GtkAdjustment *adj, PropertyUI *pui)
-{
-	if((guint)gtk_adjustment_get_value(adj) != shaded_box_size) {
-		shaded_box_size = gtk_spin_button_get_value_as_int
-			(GTK_SPIN_BUTTON(pui->box_size_spin));
-		g_settings_set (settings,
-		                GHEX_PREF_BOX_SIZE,
-		                "u",
-		                shaded_box_size);
-	}
-}
-
-static void
-offsets_col_cb(GtkToggleButton *tb, PropertyUI *pui)
-{
-	show_offsets_column = gtk_toggle_button_get_active
-		(GTK_TOGGLE_BUTTON(pui->offsets_col));
-	g_settings_set_boolean (settings,
-	                        GHEX_PREF_OFFSETS_COLUMN,
-	                        show_offsets_column);
-}
-
-static void
-group_type_cb(GtkRadioButton *rd, PropertyUI *pui)
-{
-	int i;
-
-	for(i = 0; i < 3; i++)
-		if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(pui->group_type[i]))) {
-			def_group_type = group_type[i];
-			break;
-		}
-	g_settings_set_enum (settings,
-	                     GHEX_PREF_GROUP,
-	                     def_group_type);
-}
-
-static void
-prefs_response_cb(GtkDialog *dlg, gint response, PropertyUI *pui)
-{
-	GError *error = NULL;
-
-	switch(response) {
-	case GTK_RESPONSE_HELP:
-		gtk_show_uri (NULL, "help:ghex/ghex-prefs",  gtk_get_current_event_time (), &error);
-		if(NULL != error) {
-			GtkWidget *dialog;
-			dialog = gtk_message_dialog_new
-				(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
-				 _("There was an error displaying help: \n%s"),
-				 error->message);
-			g_signal_connect(G_OBJECT (dialog), "response",
-							 G_CALLBACK (gtk_widget_destroy),
-							 NULL);
-			gtk_window_set_resizable(GTK_WINDOW (dialog), FALSE);
-			gtk_window_present (GTK_WINDOW (dialog));
-
-			g_error_free(error);
-		}
-		break;
-	case GTK_RESPONSE_CLOSE:
-		gtk_widget_hide(pui->pbox);
-		break;
-	default:
-		gtk_widget_hide(pui->pbox);
-		break;
-	}
-}
-
-static void
-select_display_font_cb(GtkWidget *w, PropertyUI *pui)
-{
-	PangoFontMetrics *new_metrics;
-	PangoFontDescription *new_desc;
-
-	if(strcmp(gtk_font_button_get_font_name
-			  (GTK_FONT_BUTTON(pui->font_button)),
-			  def_font_name) != 0) {
-		if((new_metrics = gtk_hex_load_font
-			(gtk_font_button_get_font_name
-			 (GTK_FONT_BUTTON(pui->font_button)))) != NULL) {
-			new_desc = pango_font_description_from_string
-				(gtk_font_button_get_font_name
-				 (GTK_FONT_BUTTON (pui->font_button)));
-			if (def_metrics)
-				pango_font_metrics_unref (def_metrics);
-			if (def_font_desc)
-				pango_font_description_free (def_font_desc);
-			def_metrics = new_metrics;
-			if(def_font_name)
-				g_free(def_font_name);
-			def_font_name = g_strdup
-				(gtk_font_button_get_font_name
-				 (GTK_FONT_BUTTON(pui->font_button)));
-			def_font_desc = new_desc;
-			g_settings_set_string (settings,
-			                       GHEX_PREF_FONT,
-			                       def_font_name);
-		}
-		else
-			display_error_dialog (ghex_window_get_active(),
-								  _("Can not open desired font!"));
-	}
-}
-
-static void
-select_font_cb(GtkWidget *w, PropertyUI *pui)
-{
-	if(w == pui->df_button) {
-		if(data_font_name)
-			g_free(data_font_name);
-		data_font_name = g_strdup(gtk_font_button_get_font_name
-								  (GTK_FONT_BUTTON (pui->df_button)));
-		g_settings_set_string (settings,
-		                       GHEX_PREF_DATA_FONT,
-		                       data_font_name);
-	}
-	else if(w == pui->hf_button) {
-		if(header_font_name)
-			g_free(header_font_name);
-		header_font_name = g_strdup(gtk_font_button_get_font_name
-									(GTK_FONT_BUTTON (pui->hf_button)));
-		g_settings_set_string (settings,
-		                       GHEX_PREF_HEADER_FONT,
-		                       header_font_name);
-	}
-}
-
-static void
-update_offset_fmt_from_entry(GtkEntry *entry, PropertyUI *pui)
-{
-	int i, len;
-	gchar *old_offset_fmt;
-	gboolean expect_spec;
-	const GList *win_list;
-
-	old_offset_fmt = offset_fmt;
-	offset_fmt = g_strdup(gtk_entry_get_text(GTK_ENTRY(pui->format)));
-	/* check for a valid format string */
-	len = strlen(offset_fmt);
-	expect_spec = FALSE;
-	for(i = 0; i < len; i++) {
-		if(offset_fmt[i] == '%')
-			expect_spec = TRUE;
-		if( expect_spec &&
-			( (offset_fmt[i] >= 'a' && offset_fmt[i] <= 'z') ||
-			  (offset_fmt[i] >= 'A' && offset_fmt[i] <= 'Z') ) ) {
-			expect_spec = FALSE;
-			if(offset_fmt[i] != 'x' && offset_fmt[i] != 'd' &&
-			   offset_fmt[i] != 'o' && offset_fmt[i] != 'X' &&
-			   offset_fmt[i] != 'P' && offset_fmt[i] != 'p') {
-				GtkWidget *msg_dialog;
-
-				g_free(offset_fmt);
-				offset_fmt = old_offset_fmt;
-				gtk_entry_set_text(GTK_ENTRY(pui->format), old_offset_fmt);
-				msg_dialog =
-					gtk_message_dialog_new(GTK_WINDOW(pui->pbox),
-										   GTK_DIALOG_MODAL|
-										   GTK_DIALOG_DESTROY_WITH_PARENT,
-										   GTK_MESSAGE_ERROR,
-										   GTK_BUTTONS_OK,
-										   _("The offset format string contains invalid format specifier.\n"
-											 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."));
-				gtk_dialog_run(GTK_DIALOG(msg_dialog));
-				gtk_widget_destroy(msg_dialog);
-				gtk_widget_grab_focus(pui->format);
-				break;
-			}
-		}
-	}
-	if(offset_fmt != old_offset_fmt)
-		g_free(old_offset_fmt);
-	g_settings_set_string (settings,
-	                       GHEX_PREF_OFFSET_FORMAT,
-	                       offset_fmt);
-	win_list = ghex_window_get_list();
-	while(NULL != win_list) {
-		ghex_window_update_status_message((GHexWindow *)win_list->data);
-		win_list = win_list->next;
-	}
-}
-
+/* note the lack of const and the ugly cast below. This is to silence a
+ * warning about incompatible types.
+ */
 static gboolean
-format_focus_out_event_cb(GtkEntry *entry, GdkEventFocus *event, PropertyUI *pui)
+monospace_font_filter (/* const */ PangoFontFamily *family,
+		const PangoFontFace *face,
+		gpointer data)
 {
-	update_offset_fmt_from_entry(entry, pui);
-	return FALSE;
+	(void)face, (void)data;
+
+	if (pango_font_family_is_monospace (family))
+		return TRUE;
+	else
+		return FALSE;
 }
 
 static void
-format_activated_cb(GtkEntry *entry, PropertyUI *pui)
+font_set_cb (GtkFontButton *widget,
+		gpointer user_data)
 {
-	update_offset_fmt_from_entry(entry, pui);
-}
+	FontType type = GPOINTER_TO_INT(user_data);
+	char *tmp;
+	char **global;
+	char *pref;
+	GtkFontChooser *chooser = GTK_FONT_CHOOSER(widget);
 
-static void
-offset_cb(GtkWidget *w, PropertyUI *pui)
-{
-	int i = gtk_combo_box_get_active(GTK_COMBO_BOX(w)); 
-
-	switch(i) {
-	case 0:
-		gtk_entry_set_text(GTK_ENTRY(pui->format), "%d");
-		gtk_widget_set_sensitive(pui->format, FALSE);
-		break;
-	case 1:
-		gtk_entry_set_text(GTK_ENTRY(pui->format), "0x%X");
-		gtk_widget_set_sensitive(pui->format, FALSE);
-		break;
-	case 2:
-		gtk_widget_set_sensitive(pui->format, TRUE);
-		break;
+	if (type == GUI_FONT) {
+		global = &def_font_name;
+		pref = GHEX_PREF_FONT;
+	} else if (type == DATA_FONT) {
+		global = &data_font_name;
+		pref = GHEX_PREF_DATA_FONT;
+	} else if (type == HEADER_FONT) {
+		global = &header_font_name;
+		pref = GHEX_PREF_HEADER_FONT;
+	} else {
+		g_error ("%s: Programmer error - invalid enum passed to function.",
+				__func__);
 	}
-	update_offset_fmt_from_entry(GTK_ENTRY(pui->format), pui);
+
+	tmp = gtk_font_chooser_get_font (chooser);
+
+	if (tmp) {
+		if (*global)
+			g_free (*global);
+		*global = tmp;
+		g_settings_set_string (settings,
+				pref,
+				*global);
+	} else {
+		g_warning ("%s: No chosen font detected. Doing nothing.", __func__);
+	}
+
+	printf("TEST - def_font_name: %s - data_font_name: %s - header_font_name: %s\n", def_font_name, data_font_name, header_font_name);
+}
+
+static void
+setup_signals (void)
+{
+	/* font_button */
+
+	/* Make font chooser only allow monospace fonts. */
+	gtk_font_chooser_set_filter_func (GTK_FONT_CHOOSER(font_button),
+			(GtkFontFilterFunc)monospace_font_filter,
+			NULL, NULL);	/* no user data, no destroy func for same. */
+
+	g_signal_connect (font_button, "font-set",
+			G_CALLBACK(font_set_cb), GINT_TO_POINTER(GUI_FONT));
+
+	g_signal_connect (data_font_button, "font-set",
+			G_CALLBACK(font_set_cb), GINT_TO_POINTER(DATA_FONT));
+
+	g_signal_connect (header_font_button, "font-set",
+			G_CALLBACK(font_set_cb), GINT_TO_POINTER(HEADER_FONT));
+
+}
+
+/* put all of your GET_WIDGET calls other than the main prefs_dialog widget
+ * and CSS-only stuff in here, please.
+ */
+static void
+grab_widget_values_from_settings (void)
+{
+	/* font_button */
+	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(font_button),
+			def_font_name);
+
+	/* data_font_button */
+	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(data_font_button),
+			data_font_name);
+
+	/* header_font_button */
+	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(header_font_button),
+			header_font_name);
+
+	/* show_offsets_chkbtn */
+	gtk_check_button_set_active (GTK_CHECK_BUTTON(show_offsets_chkbtn),
+			show_offsets_column);
+
+	/* group_type radio buttons
+	 */
+	if (def_group_type == GROUP_BYTE) {
+		gtk_check_button_set_active (GTK_CHECK_BUTTON(bytes_chkbtn), TRUE);
+	} else if (def_group_type == GROUP_WORD) {
+		gtk_check_button_set_active (GTK_CHECK_BUTTON(words_chkbtn), TRUE);
+	} else if (def_group_type == GROUP_LONG) {
+		gtk_check_button_set_active (GTK_CHECK_BUTTON(long_chkbtn), TRUE);
+	} else {
+		g_warning ("group_type option invalid; falling back to BYTES.");
+		gtk_check_button_set_active (GTK_CHECK_BUTTON(bytes_chkbtn), TRUE);
+	}
+
+	/* shaded_box_* */
+	gtk_check_button_set_active (GTK_CHECK_BUTTON(shaded_box_chkbtn),
+			shaded_box_size > 0 ? TRUE : FALSE);
+	gtk_widget_set_sensitive (shaded_box_box,
+			shaded_box_size > 0 ? TRUE : FALSE);
+	gtk_spin_button_set_value (GTK_SPIN_BUTTON(shaded_box_spinbtn),
+			shaded_box_size);
+}
+
+static void
+init_widgets (void)
+{
+	GET_WIDGET (font_button);
+	GET_WIDGET (data_font_button);
+	GET_WIDGET (header_font_button);
+	GET_WIDGET (show_offsets_chkbtn);
+	GET_WIDGET (bytes_chkbtn);
+	GET_WIDGET (words_chkbtn);
+	GET_WIDGET (long_chkbtn);
+	GET_WIDGET (shaded_box_chkbtn);
+	GET_WIDGET (shaded_box_spinbtn);
+	GET_WIDGET (shaded_box_box);
+}
+
+/* PUBLIC FUNCTIONS */
+
+GtkWidget *
+create_preferences_dialog (void)
+{
+	builder = gtk_builder_new_from_resource (PREFS_RESOURCE);
+
+	do_css_stuff ();
+	init_widgets ();
+	grab_widget_values_from_settings ();
+	setup_signals ();
+
+	GET_WIDGET (prefs_dialog);
+
+	return prefs_dialog;
 }

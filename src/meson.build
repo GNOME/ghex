@@ -49,7 +49,7 @@ libghex_dep = declare_dependency(
 ghex_sources = [
   'chartable.c',
   'chartable.h',
-  'config.c',
+  'configuration.c',
   'configuration.h',
   'converter.c',
   'converter.h',

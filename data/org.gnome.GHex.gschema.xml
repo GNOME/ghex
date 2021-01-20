@@ -1,35 +1,35 @@
+<!-- vim: ts=4 sw=4
+-->
 <schemalist>
 
-  <enum id="org.gnome.GHex.GroupType">
-    <value nick="bytes" value="1"/>
-    <value nick="words" value="2"/>
-    <value nick="longwords" value="4"/>
-  </enum>
+	<!-- it does not appear possible to automate this with meson presently.
+		See: https://github.com/mesonbuild/meson/issues/1687
+	-->
+	<enum id="org.gnome.GHex.GroupType">
+		<value nick="bytes" value="1"/>
+		<value nick="words" value="2"/>
+		<value nick="longwords" value="4"/>
+	</enum>
 
-  <schema id="org.gnome.GHex" path="/org/gnome/ghex/">
-    <key name="font" type="s">
-      <default>'Monospace 12'</default>
-    </key>
-    <key name="group-data-by" enum="org.gnome.GHex.GroupType">
-      <default>'bytes'</default>
-    </key>
-    <key name="max-undo-depth" type="u">
-      <default>100</default>
-    </key>
-    <key name="offset-format" type="s">
-      <default>'0x%X'</default>
-    </key>
-    <key name="print-font-data" type="s">
-      <default>'Courier 10'</default>
-    </key>
-    <key name="print-font-header" type="s">
-      <default>'Helvetica 12'</default>
-    </key>
-    <key name="print-shaded-rows" type="u">
-      <default>0</default>
-    </key>
-    <key name="show-offsets" type="b">
-      <default>true</default>
-    </key>
-  </schema>
+	<schema id="org.gnome.GHex" path="/org/gnome/ghex/">
+		<key name="font" type="s">
+			<default>'Monospace 12'</default>
+		</key>
+		<key name="group-data-by" enum="org.gnome.GHex.GroupType">
+			<default>'bytes'</default>
+		</key>
+		<key name="print-font-data" type="s">
+			<default>'Monospace 10'</default>
+		</key>
+		<key name="print-font-header" type="s">
+			<default>'Sans 12'</default>
+		</key>
+		<key name="print-shaded-rows" type="u">
+			<default>0</default>
+		</key>
+		<key name="show-offsets" type="b">
+			<default>false</default>
+		</key>
+	</schema>
+
 </schemalist>

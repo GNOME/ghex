@@ -263,13 +263,6 @@ GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 	gtk_box_append (GTK_BOX(hbox), cbtn);
 	gtk_box_append (GTK_BOX(vbox), hbox);
 
-#if 0
-	gtk_box_pack_start(GTK_BOX(vbox), sw, TRUE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), lbl, TRUE, TRUE, 4);
-	gtk_box_pack_start(GTK_BOX(hbox), cbtn, FALSE, TRUE, 12);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-#endif
-
 	gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW(sw), ctv);
 	gtk_window_set_child (GTK_WINDOW (ct), vbox);
 

@@ -4,10 +4,13 @@
 #include <gtkhex.h>
 
 #include "ghex-application-window.h"
+
+#include "configuration.h"
 #include "hex-dialog.h"
 #include "findreplace.h"
 #include "chartable.h"
 #include "converter.h"
+#include "preferences.h"
 
 /* DEFINES */
 
@@ -69,19 +72,13 @@ struct _GHexApplicationWindow
 	GList *gh_list;
 	gboolean can_save;
 
-	// TEST - NOT 100% SURE I WANNA GO THIS ROUTE YET.
 	GtkWidget *find_dialog;
 	GtkWidget *replace_dialog;
 	GtkWidget *jump_dialog;
 	GtkWidget *chartable;
 	GtkWidget *converter;
 
-/*
- * for i in `cat ghex-application-window.ui |grep -i 'id=' |sed -e 's,^\s*,,g' |sed -e 's,.*id=",,' |sed -e 's,">,,'`; do echo $i >> tmp.txt; done
- */
-
-/* for i in `cat tmp.txt`; do echo GtkWidget *${i}; done
- */
+	/* From GtkBuilder: */
 	GtkWidget *no_doc_label;
 	GtkWidget *hex_notebook;
 	GtkWidget *conversions_box;
@@ -159,6 +156,35 @@ static void update_gui_data (GHexApplicationWindow *self);
 // FIXME - This could be the wrong approach. I don't know if we can
 // guarantee the tab will be un-switchable while the dialog is up.
 	
+static void
+settings_offsets_column_changed_cb (GSettings   *settings,
+		const gchar	*key,
+		gpointer 	user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
+	int i;
+
+	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));
+
+	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i)
+	{
+		GHexNotebookTab *tab;
+		GtkHex *gh;
+
+		g_debug ("%s: Working on %d'th page", __func__, i);
+
+		gh = GTK_HEX(gtk_notebook_get_nth_page (notebook, i));
+		g_return_if_fail (GTK_IS_HEX (gh));
+
+		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,
+					GTK_WIDGET(gh)));
+		g_return_if_fail (GHEX_IS_NOTEBOOK_TAB (tab));
+
+		gtk_hex_show_offsets (gh, show_offsets_column);
+	}
+}
+
 GHexNotebookTab *
 ghex_application_window_get_current_tab (GHexApplicationWindow *self)
 {
@@ -184,10 +210,18 @@ ghex_application_window_remove_tab (GHexApplicationWindow *self,
 	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
 	int page_num;
 
+	g_return_if_fail (GTK_IS_HEX(tab->gh));
+
 	page_num = gtk_notebook_page_num (notebook,
 			GTK_WIDGET(tab->gh));
 
 	gtk_notebook_remove_page (notebook, page_num);
+
+	/* FIXME - remove as a possible optimization - but let's keep it in
+	 * for now for debugging purposes. */
+	g_return_if_fail (g_list_find (self->gh_list, tab->gh));
+	self->gh_list = g_list_remove (self->gh_list, tab->gh);
+
 	g_object_unref (tab);
 }
 
@@ -871,8 +905,8 @@ new_gh_from_gfile (GFile *file)
 	doc = hex_document_new_from_file (path);
 	gh = GTK_HEX(gtk_hex_new (doc));
 
-	// FIXME - should be based on settings
-	gtk_hex_show_offsets (gh, TRUE);
+	/* Initialize whether offsets should be shown based on setting. */
+	gtk_hex_show_offsets (gh, show_offsets_column);
 
 	if (error)	g_error_free (error);
 	g_clear_object (&info);
@@ -948,6 +982,22 @@ toggle_conversions (GtkWidget *widget,
 		gtk_button_set_icon_name (GTK_BUTTON(self->pane_toggle_button),
 				"pan-down-symbolic");
 	}
+}
+
+
+static void
+open_preferences (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+	GtkWidget *prefs_dialog;
+
+	(void)parameter, (void)action_name;		/* unused */
+
+	// TEST
+	prefs_dialog = create_preferences_dialog();
+	gtk_widget_show (prefs_dialog);
 }
 
 static void
@@ -1384,6 +1434,11 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	g_signal_connect (self, "close-request",
 			G_CALLBACK(close_request_cb), self);
 
+	/* Signals - SETTINGS */
+
+    g_signal_connect (settings, "changed::" GHEX_PREF_OFFSETS_COLUMN,
+                      G_CALLBACK (settings_offsets_column_changed_cb), self);
+
 	/* Setup notebook signals */
 
 	g_signal_connect (self->hex_notebook, "switch-page",
@@ -1530,6 +1585,10 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			NULL,	// GVariant string param_type
 			toggle_insert_mode);
 
+	gtk_widget_class_install_action (widget_class, "ghex.preferences",
+			NULL,	// GVariant string param_type
+			open_preferences);
+
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.find", "find-open");
 
@@ -1668,4 +1727,12 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	find_dialog_set_hex (FIND_DIALOG(self->find_dialog), self->gh);
 	replace_dialog_set_hex (REPLACE_DIALOG(self->replace_dialog), self->gh);
 	jump_dialog_set_hex (JUMP_DIALOG(self->jump_dialog), self->gh);
+}
+
+GList *
+ghex_application_window_get_list (GHexApplicationWindow *self)
+{
+	g_return_val_if_fail (GHEX_IS_APPLICATION_WINDOW (self), NULL);
+
+	return self->gh_list;
 }

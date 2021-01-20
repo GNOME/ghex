@@ -1,5 +1,7 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* config.c - configuration loading/saving via gnome-config routines
+/* configuration.c - configuration loading/saving via GSettings
 
    Copyright (C) 1997 - 2004 Free Software Foundation
 
@@ -28,36 +30,24 @@
 #include <string.h>
 
 #include "configuration.h"
-#include "gtkhex.h"
-#include "ghex-window.h"
 
-#define DEFAULT_FONT "Monospace 12"
+GSettings *settings;
 
-GSettings *settings = NULL;
-
-gint def_group_type = GROUP_BYTE;
-guint max_undo_depth;
-gchar *offset_fmt = NULL;
-PangoFontMetrics *def_metrics = NULL; /* Changes for Gnome 2.0 */
-PangoFontDescription *def_font_desc = NULL;
-gchar *def_font_name = NULL;
-gboolean show_offsets_column = TRUE;
+int def_group_type;
+char *def_font_name;
+char *header_font_name;
+char *data_font_name;
+guint shaded_box_size;
+gboolean show_offsets_column;
 
 static void
 offsets_column_changed_cb (GSettings   *settings,
                            const gchar *key,
                            gpointer     user_data)
 {
-    const GList *winn;
     gboolean show_off = g_settings_get_boolean (settings, key);
 
     show_offsets_column = show_off;
-    winn = ghex_window_get_list ();
-    while (winn) {
-        if (GHEX_WINDOW (winn->data)->gh)
-            gtk_hex_show_offsets (GHEX_WINDOW (winn->data)->gh, show_off);
-        winn = g_list_next (winn);
-    }
 }
 
 static void
@@ -69,22 +59,6 @@ group_changed_cb (GSettings   *settings,
 }
 
 static void
-max_undo_depth_changed_cb (GSettings   *settings,
-                           const gchar *key,
-                           gpointer     user_data)
-{
-    const GList *docn;
-
-    g_settings_get (settings, key, "u", &max_undo_depth);
-
-    docn = hex_document_get_list ();
-    while (docn) {
-        hex_document_set_max_undo (HEX_DOCUMENT (docn->data), max_undo_depth);
-        docn = g_list_next (docn);
-    }
-}
-
-static void
 box_size_changed_cb (GSettings   *settings,
                      const gchar *key,
                      gpointer     user_data)
@@ -93,73 +67,18 @@ box_size_changed_cb (GSettings   *settings,
 }
 
 static void
-offset_format_changed_cb (GSettings   *settings,
-                          const gchar *key,
-                          gpointer     user_data)
-{
-    gchar *old_offset_fmt = offset_fmt;
-    gint len, i;
-    gboolean expect_spec;
-
-    offset_fmt = g_strdup (g_settings_get_string (settings, key));
-
-    /* check for a valid format string */
-    len = strlen (offset_fmt);
-    expect_spec = FALSE;
-    for (i = 0; i < len; i++) {
-        if (offset_fmt[i] == '%')
-            expect_spec = TRUE;
-        if (expect_spec &&
-            ((offset_fmt[i] >= 'a' && offset_fmt[i] <= 'z') ||
-             (offset_fmt[i] >= 'A' && offset_fmt[i] <= 'Z'))) {
-            expect_spec = FALSE;
-            if (offset_fmt[i] != 'x' && offset_fmt[i] != 'd' &&
-                offset_fmt[i] != 'o' && offset_fmt[i] != 'X' &&
-                offset_fmt[i] != 'P' && offset_fmt[i] != 'p') {
-                g_free (offset_fmt);
-                offset_fmt = old_offset_fmt;
-                g_settings_set_string (settings, GHEX_PREF_OFFSET_FORMAT, "%X");
-            }
-        }
-    }
-    if (offset_fmt != old_offset_fmt)
-        g_free (old_offset_fmt);
-}
-
-static void
 font_changed_cb (GSettings   *settings,
                  const gchar *key,
                  gpointer     user_data)
 {
-    const GList *winn;
     const gchar *font_name = g_settings_get_string (settings, key);
-    PangoFontMetrics *new_metrics;
-    PangoFontDescription *new_desc;
 
     g_return_if_fail (font_name != NULL);
 
-    if ((new_metrics = gtk_hex_load_font (font_name)) != NULL) {
-        new_desc = pango_font_description_from_string (font_name);
-        winn = ghex_window_get_list ();
-        while (winn) {
-            if (GHEX_WINDOW (winn->data)->gh)
-                gtk_hex_set_font (GHEX_WINDOW (winn->data)->gh, new_metrics, new_desc);
-            winn = g_list_next (winn);
-        }
+	if (def_font_name)
+		g_free (def_font_name);
 
-        if (def_metrics)
-            pango_font_metrics_unref (def_metrics);
-
-        if (def_font_desc)
-            pango_font_description_free (def_font_desc);
-
-        if (def_font_name)
-            g_free (def_font_name);
-
-        def_metrics = new_metrics;
-        def_font_name = g_strdup (font_name);
-        def_font_desc = new_desc;
-    }
+	def_font_name = g_strdup (font_name);
 }
 
 static void
@@ -196,18 +115,9 @@ void ghex_init_configuration ()
                       G_CALLBACK (group_changed_cb), NULL);
     group_changed_cb (settings, GHEX_PREF_GROUP, NULL);
 
-    g_signal_connect (settings, "changed::" GHEX_PREF_MAX_UNDO_DEPTH,
-                      G_CALLBACK (max_undo_depth_changed_cb), NULL);
-    max_undo_depth_changed_cb (settings, GHEX_PREF_MAX_UNDO_DEPTH, NULL);
-
     g_signal_connect (settings, "changed::" GHEX_PREF_BOX_SIZE,
                       G_CALLBACK (box_size_changed_cb), NULL);
     box_size_changed_cb (settings, GHEX_PREF_BOX_SIZE, NULL);
-
-
-    g_signal_connect (settings, "changed::" GHEX_PREF_OFFSET_FORMAT,
-                      G_CALLBACK (offset_format_changed_cb), NULL);
-    offset_format_changed_cb (settings, GHEX_PREF_OFFSET_FORMAT, NULL);
 
     g_signal_connect (settings, "changed::" GHEX_PREF_FONT,
                       G_CALLBACK (font_changed_cb), NULL);

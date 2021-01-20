@@ -3,6 +3,7 @@
 
 #include <gtkhex.h>
 #include "ghex-application-window.h"
+#include "configuration.h"
 
 static void
 activate (GtkApplication *app,
@@ -23,6 +24,8 @@ main (int argc, char *argv[])
 {
 	GtkApplication *app;
 	int status;
+
+	ghex_init_configuration ();
 
 	app = gtk_application_new("org.gtk.example", G_APPLICATION_FLAGS_NONE);
 	g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);

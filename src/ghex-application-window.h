@@ -18,5 +18,6 @@ void		ghex_application_window_set_hex (GHexApplicationWindow *self,
 				GtkHex *gh);
 void		ghex_application_window_activate_tab (GHexApplicationWindow *self,
 				GtkHex *gh);
+GList *		ghex_application_window_get_list (GHexApplicationWindow *self);
 
 #endif
