@@ -65,6 +65,9 @@ static GtkWidget *prefs_dialog;
 static GtkWidget *content_area_box;
 static GtkWidget *font_frame, *group_type_frame, *print_font_frame;
 
+/* for spinbtn */
+static GtkAdjustment *shaded_box_adj;
+
 /* widgets that interact with settings */
 static GtkWidget *font_button;
 static GtkWidget *data_font_button;
@@ -127,8 +130,14 @@ static void
 shaded_box_spinbtn_value_changed_cb (GtkSpinButton *spin_button,
 		gpointer user_data)
 {
-	g_debug ("%s: NOT IMPLEMENTED - value: %f",
-			__func__, gtk_spin_button_get_value (spin_button));
+	/* we _want_ implicit conversion here. */
+	guint tmp = gtk_spin_button_get_value_as_int (spin_button);
+
+	if (tmp != shaded_box_size) {
+		g_settings_set_uint (settings,
+				GHEX_PREF_BOX_SIZE,
+				tmp);
+	}
 }
 
 static void
@@ -238,7 +247,7 @@ font_set_cb (GtkFontButton *widget,
 	}
 }
 
-/* Quick helper function for setup_signals. */
+/* Quick helper function for font buttons */
 static void
 monospace_only (GtkWidget *font_button)
 {
@@ -255,10 +264,6 @@ static void
 setup_signals (void)
 {
 	/* font_buttons */
-
-	/* Make certain font choosers only allow monospace fonts. */
-	monospace_only (font_button);
-	monospace_only (data_font_button);
 
 	g_signal_connect (font_button, "font-set",
 			G_CALLBACK(font_set_cb), GINT_TO_POINTER(GUI_FONT));
@@ -364,6 +369,15 @@ init_widgets (void)
 	GET_WIDGET (shaded_box_chkbtn);
 	GET_WIDGET (shaded_box_spinbtn);
 	GET_WIDGET (shaded_box_box);
+
+	/* Make certain font choosers only allow monospace fonts. */
+	monospace_only (font_button);
+	monospace_only (data_font_button);
+
+	/* shaded box entry */
+	shaded_box_adj = GTK_ADJUSTMENT(gtk_adjustment_new(0, 0, 1000, 1, 10, 0));
+	gtk_spin_button_set_adjustment (GTK_SPIN_BUTTON(shaded_box_spinbtn),
+			shaded_box_adj);
 }
 
 /* PUBLIC FUNCTIONS */
