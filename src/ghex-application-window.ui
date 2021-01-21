@@ -61,15 +61,19 @@
 				<attribute name="label" translatable="yes">G_roup Data As</attribute>
 				<item>
 					<attribute name="label" translatable="yes">_Bytes</attribute>
-					<attribute name="action">ghex.group-bytes</attribute>
+					<!-- use 'win' prefix for these because that's what gets set automatically by g_settings_create_action in _init -->
+					<attribute name="action">win.group-data-by</attribute>
+					<attribute name="target">bytes</attribute>
 				</item>
 				<item>
 					<attribute name="label" translatable="yes">_Words</attribute>
-					<attribute name="action">ghex.group-words</attribute>
+					<attribute name="action">win.group-data-by</attribute>
+					<attribute name="target">words</attribute>
 				</item>
 				<item>
 					<attribute name="label" translatable="yes">_Longwords</attribute>
-					<attribute name="action">ghex.group-long</attribute>
+					<attribute name="action">win.group-data-by</attribute>
+					<attribute name="target">longwords</attribute>
 				</item>
 			</submenu>
 		</section>

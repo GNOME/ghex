@@ -66,6 +66,7 @@ struct _GHexApplicationWindow
 	GtkApplicationWindow parent_instance;
 
 	GtkHex *gh;
+	GtkCssProvider *provider;
 	HexDialog *dialog;
 	GtkWidget *dialog_widget;
 	guint statusbar_id;
@@ -154,37 +155,254 @@ static void update_gui_data (GHexApplicationWindow *self);
 
 /* GHexApplicationWindow -- PRIVATE FUNCTIONS */
 
-// FIXME - This could be the wrong approach. I don't know if we can
-// guarantee the tab will be un-switchable while the dialog is up.
-	
+/* This function was written by Matthias Clasen and is included somewhere in
+ * the GTK source tree.. I believe it is also included in libdazzle, but I
+ * didn't want to include a whole dependency just for one function. LGPL, but
+ * credit where credit is due!
+ */
+static char *
+pango_font_description_to_css (PangoFontDescription *desc)
+{
+	GString *s;
+	PangoFontMask set;
+
+	s = g_string_new ("* { ");
+
+	set = pango_font_description_get_set_fields (desc);
+	if (set & PANGO_FONT_MASK_FAMILY)
+	{
+		g_string_append (s, "font-family: ");
+		g_string_append (s, pango_font_description_get_family (desc));
+		g_string_append (s, "; ");
+	}
+	if (set & PANGO_FONT_MASK_STYLE)
+	{
+		switch (pango_font_description_get_style (desc))
+		{
+			case PANGO_STYLE_NORMAL:
+				g_string_append (s, "font-style: normal; ");
+				break;
+			case PANGO_STYLE_OBLIQUE:
+				g_string_append (s, "font-style: oblique; ");
+				break;
+			case PANGO_STYLE_ITALIC:
+				g_string_append (s, "font-style: italic; ");
+				break;
+		}
+	}
+	if (set & PANGO_FONT_MASK_VARIANT)
+	{
+		switch (pango_font_description_get_variant (desc))
+		{
+			case PANGO_VARIANT_NORMAL:
+				g_string_append (s, "font-variant: normal; ");
+				break;
+			case PANGO_VARIANT_SMALL_CAPS:
+				g_string_append (s, "font-variant: small-caps; ");
+				break;
+		}
+	}
+	if (set & PANGO_FONT_MASK_WEIGHT)
+	{
+		switch (pango_font_description_get_weight (desc))
+		{
+			case PANGO_WEIGHT_THIN:
+				g_string_append (s, "font-weight: 100; ");
+				break;
+			case PANGO_WEIGHT_ULTRALIGHT:
+				g_string_append (s, "font-weight: 200; ");
+				break;
+			case PANGO_WEIGHT_LIGHT:
+			case PANGO_WEIGHT_SEMILIGHT:
+				g_string_append (s, "font-weight: 300; ");
+				break;
+			case PANGO_WEIGHT_BOOK:
+			case PANGO_WEIGHT_NORMAL:
+				g_string_append (s, "font-weight: 400; ");
+				break;
+			case PANGO_WEIGHT_MEDIUM:
+				g_string_append (s, "font-weight: 500; ");
+				break;
+			case PANGO_WEIGHT_SEMIBOLD:
+				g_string_append (s, "font-weight: 600; ");
+				break;
+			case PANGO_WEIGHT_BOLD:
+				g_string_append (s, "font-weight: 700; ");
+				break;
+			case PANGO_WEIGHT_ULTRABOLD:
+				g_string_append (s, "font-weight: 800; ");
+				break;
+			case PANGO_WEIGHT_HEAVY:
+			case PANGO_WEIGHT_ULTRAHEAVY:
+				g_string_append (s, "font-weight: 900; ");
+				break;
+		}
+	}
+	if (set & PANGO_FONT_MASK_STRETCH)
+	{
+		switch (pango_font_description_get_stretch (desc))
+		{
+			case PANGO_STRETCH_ULTRA_CONDENSED:
+				g_string_append (s, "font-stretch: ultra-condensed; ");
+				break;
+			case PANGO_STRETCH_EXTRA_CONDENSED:
+				g_string_append (s, "font-stretch: extra-condensed; ");
+				break;
+			case PANGO_STRETCH_CONDENSED:
+				g_string_append (s, "font-stretch: condensed; ");
+				break;
+			case PANGO_STRETCH_SEMI_CONDENSED:
+				g_string_append (s, "font-stretch: semi-condensed; ");
+				break;
+			case PANGO_STRETCH_NORMAL:
+				g_string_append (s, "font-stretch: normal; ");
+				break;
+			case PANGO_STRETCH_SEMI_EXPANDED:
+				g_string_append (s, "font-stretch: semi-expanded; ");
+				break;
+			case PANGO_STRETCH_EXPANDED:
+				g_string_append (s, "font-stretch: expanded; ");
+				break;
+			case PANGO_STRETCH_EXTRA_EXPANDED:
+				g_string_append (s, "font-stretch: extra-expanded; ");
+				break;
+			case PANGO_STRETCH_ULTRA_EXPANDED:
+				g_string_append (s, "font-stretch: ultra-expanded; ");
+				break;
+		}
+	}
+	if (set & PANGO_FONT_MASK_SIZE)
+	{
+		g_string_append_printf (s, "font-size: %dpt",
+				pango_font_description_get_size (desc) / PANGO_SCALE);
+	}
+
+	g_string_append (s, "}");
+
+	return g_string_free (s, FALSE);
+}
+
+/* set_*_from_settings
+ * These functions all basically set properties from the GSettings global
+ * variables. They should be used when a new gh is created, and when we're
+ * `foreaching` through all of our tabs via a settings-change cb. See also
+ * the `SETTINGS_CHANGED_GH_FOREACH_{START,END}` macros below.
+ */
+static void
+set_css_provider_font_from_settings (GHexApplicationWindow *self)
+{
+	PangoFontDescription *desc;
+	char *css_str;
+
+	desc = pango_font_description_from_string (def_font_name);
+	css_str = pango_font_description_to_css (desc);
+
+	g_debug("%s: css_str: %s", __func__, css_str);
+
+	gtk_css_provider_load_from_data (GTK_STYLE_PROVIDER(self->provider),
+			css_str, -1);
+}
+
+static void
+set_gtkhex_font_from_settings (GHexApplicationWindow *self, GtkHex *gh)
+{
+	GtkStyleContext *context;
+
+	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (GTK_IS_STYLE_PROVIDER(self->provider));
+
+	context = gtk_widget_get_style_context (GTK_WIDGET(gh));
+
+	gtk_style_context_add_provider (context,
+			GTK_STYLE_PROVIDER (self->provider),
+			GTK_STYLE_PROVIDER_PRIORITY_SETTINGS);
+}
+
+static void
+set_gtkhex_offsets_column_from_settings (GtkHex *gh)
+{
+	gtk_hex_show_offsets (gh, show_offsets_column);
+}
+
+static void
+set_gtkhex_group_type_from_settings (GtkHex *gh)
+{
+	gtk_hex_set_group_type (gh, def_group_type);
+}
+
+
+/* Common macro for the `settings*changed_cb` stuff.
+ * Between _START and _END, put in function calls that use `gh` to be applied
+ * to each gh in a tab. Technically you'll also have access to `notebook`
+ * and `tab`, but there is generally no reason to directly access these.
+ */
+#define SETTINGS_CHANGED_GH_FOREACH_START									\
+{																			\
+	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);				\
+	int i;																	\
+	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));							\
+	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i) {			\
+		GHexNotebookTab *tab;												\
+		GtkHex *gh;															\
+		g_debug ("%s: Working on %d'th page", __func__, i);					\
+		gh = GTK_HEX(gtk_notebook_get_nth_page (notebook, i));				\
+		g_return_if_fail (GTK_IS_HEX (gh));									\
+		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,		\
+					GTK_WIDGET(gh)));										\
+		g_return_if_fail (GHEX_IS_NOTEBOOK_TAB (tab));						\
+/* !SETTINGS_CHANGED_GH_FOREACH_START */
+
+#define SETTINGS_CHANGED_GH_FOREACH_END										\
+	} 																		\
+}																			\
+/* !SETTINGS_CHANGED_GH_FOREACH_END	*/
+
+
+static void
+settings_font_changed_cb (GSettings   *settings,
+		const gchar	*key,
+		gpointer 	user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+
+	SETTINGS_CHANGED_GH_FOREACH_START
+
+	set_css_provider_font_from_settings (self);
+	set_gtkhex_font_from_settings (self, gh);
+
+	SETTINGS_CHANGED_GH_FOREACH_END
+}
+
 static void
 settings_offsets_column_changed_cb (GSettings   *settings,
 		const gchar	*key,
 		gpointer 	user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
-	int i;
 
-	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));
+	SETTINGS_CHANGED_GH_FOREACH_START
 
-	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i)
-	{
-		GHexNotebookTab *tab;
-		GtkHex *gh;
+	set_gtkhex_offsets_column_from_settings (gh);
 
-		g_debug ("%s: Working on %d'th page", __func__, i);
-
-		gh = GTK_HEX(gtk_notebook_get_nth_page (notebook, i));
-		g_return_if_fail (GTK_IS_HEX (gh));
-
-		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,
-					GTK_WIDGET(gh)));
-		g_return_if_fail (GHEX_IS_NOTEBOOK_TAB (tab));
-
-		gtk_hex_show_offsets (gh, show_offsets_column);
-	}
+	SETTINGS_CHANGED_GH_FOREACH_END
 }
+
+static void
+settings_group_type_changed_cb (GSettings   *settings,
+		const gchar	*key,
+		gpointer 	user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+
+	SETTINGS_CHANGED_GH_FOREACH_START
+
+	set_gtkhex_group_type_from_settings (gh);
+
+	SETTINGS_CHANGED_GH_FOREACH_END
+}
+
+/* ! settings*changed_cb 's */
+
 
 GHexNotebookTab *
 ghex_application_window_get_current_tab (GHexApplicationWindow *self)
@@ -906,9 +1124,6 @@ new_gh_from_gfile (GFile *file)
 	doc = hex_document_new_from_file (path);
 	gh = GTK_HEX(gtk_hex_new (doc));
 
-	/* Initialize whether offsets should be shown based on setting. */
-	gtk_hex_show_offsets (gh, show_offsets_column);
-
 	if (error)	g_error_free (error);
 	g_clear_object (&info);
 	g_clear_object (&file);
@@ -1417,7 +1632,8 @@ ghex_application_window_init (GHexApplicationWindow *self)
 {
 	GtkWidget *widget = GTK_WIDGET(self);
 	GtkStyleContext *context;
-	GtkCssProvider *provider;
+	GtkCssProvider *conversions_box_provider;
+	GAction *action;
 
 	gtk_widget_init_template (widget);
 
@@ -1428,19 +1644,24 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	gtk_box_append (GTK_BOX(self->conversions_box), self->dialog_widget);
 	gtk_widget_hide (self->conversions_box);
 
-	/* CSS - conversions_box */
-	context = gtk_widget_get_style_context (self->conversions_box);
-	provider = gtk_css_provider_new ();
+	/* CSS - provider for GtkHex widget */
 
-	gtk_css_provider_load_from_data (provider,
+	self->provider = gtk_css_provider_new ();
+
+	/* CSS - conversions_box */
+
+	context = gtk_widget_get_style_context (self->conversions_box);
+	conversions_box_provider = gtk_css_provider_new ();
+
+	gtk_css_provider_load_from_data (conversions_box_provider,
 									 "box {\n"
 									 "   padding: 20px;\n"
 									 "}\n", -1);
 
 	/* add the provider to our widget's style context. */
 	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (provider),
-	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+			GTK_STYLE_PROVIDER (conversions_box_provider),
+			GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 	/* Setup signals */
 
@@ -1451,6 +1672,23 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
     g_signal_connect (settings, "changed::" GHEX_PREF_OFFSETS_COLUMN,
                       G_CALLBACK (settings_offsets_column_changed_cb), self);
+
+    g_signal_connect (settings, "changed::" GHEX_PREF_FONT,
+                      G_CALLBACK (settings_font_changed_cb), self);
+
+    g_signal_connect (settings, "changed::" GHEX_PREF_GROUP,
+                      G_CALLBACK (settings_group_type_changed_cb), self);
+
+
+	/* Actions - SETTINGS */
+
+	/* for the 'group data by' stuff. There isn't a function to do this from
+	 * class-init, so we end up with the 'win' namespace when we do it from
+	 * here. Be aware of that.
+	 */
+	action = g_settings_create_action (settings,
+			GHEX_PREF_GROUP);
+	g_action_map_add_action (G_ACTION_MAP(self), action);
 
 	/* Setup notebook signals */
 
@@ -1518,16 +1756,38 @@ ghex_application_window_finalize(GObject *gobject)
 	G_OBJECT_CLASS(ghex_application_window_parent_class)->finalize(gobject);
 }
 
+#if 0
+static void
+ghex_application_window_startup (GApplication *app)
+{
+	GtkBuilder *builder;
+
+	/* chain up */
+	G_APPLICATION_CLASS(ghex_application_window_parent_class)->startup (app);
+
+	builder = gtk_builder_new_from_resource (builder,
+			"/org/gnome/ghex/ghex-application-window.ui", NULL);
+
+	gtk_application_set_menubar (GTK_APPLICATION (app),
+			G_MENU_MODEL (gtk_builder_get_object (builder, "menubar")));
+
+	g_object_unref (builder);
+}
+#endif
+
 static void
 ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+//	GApplicationClass *app_class = G_APPLICATION_CLASS (class);
 
 	object_class->dispose = ghex_application_window_dispose;
 	object_class->finalize = ghex_application_window_finalize;
 	object_class->get_property = ghex_application_window_get_property;
 	object_class->set_property = ghex_application_window_set_property;
+
+//	app_class->startup = ghex_application_window_startup;
 
 	/* PROPERTIES */
 
@@ -1606,6 +1866,7 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			NULL,	// GVariant string param_type
 			open_about);
 
+
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.find", "find-open");
 
@@ -1620,6 +1881,13 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.converter", "converter-open");
+
+
+
+//	gtk_widget_class_install_action (widget_class, "win.group-data-by",
+//			"i",	// GVariant string param_type
+//			NULL);
+
 
 	/* WIDGET TEMPLATE .UI */
 
@@ -1694,6 +1962,12 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (HEX_IS_DOCUMENT(doc));
+
+	/* Setup GtkHex based on settings. */
+	set_css_provider_font_from_settings (self);
+	set_gtkhex_font_from_settings (self, gh);
+	set_gtkhex_offsets_column_from_settings (gh);
+	set_gtkhex_group_type_from_settings (gh);
 
 	/* Add this GtkHex to our internal list */
 	// FIXME / TODO - used for nothing rn.

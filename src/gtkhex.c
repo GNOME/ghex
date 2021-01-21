@@ -3005,7 +3005,7 @@ gtk_hex_init(GtkHex *gh)
 	/* add the provider to our widget's style context. */
 	gtk_style_context_add_provider (context,
 	                                GTK_STYLE_PROVIDER (provider),
-	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	                                GTK_STYLE_PROVIDER_PRIORITY_FALLBACK);
 
 	/* Setup offsets widget. */
 

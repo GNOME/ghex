@@ -65,8 +65,8 @@ ghex_sources = [
   'preferences.h',
   'print.c',
   'print.h',
-  'ui.c',
-  'ui.h'
+  'common-ui.c',
+  'common-ui.h'
 ]
 
 ghex_deps = [
