@@ -86,6 +86,8 @@ static GtkWidget *long_chkbtn;
 static GtkWidget *shaded_box_chkbtn;
 static GtkWidget *shaded_box_spinbtn;
 static GtkWidget *shaded_box_box;
+static GtkWidget *dark_mode_switch;
+static GtkWidget *system_default_chkbtn;
 static GtkWidget *close_button;
 static GtkWidget *help_button;
 
@@ -307,6 +309,52 @@ monospace_only (GtkWidget *font_button)
 			NULL, NULL);	/* no user data, no destroy func for same. */
 }
 
+static gboolean
+dark_mode_set_cb (GtkSwitch *widget,
+		gboolean state,
+		gpointer user_data)
+{
+	int dark_mode;
+
+	(void)user_data;	/* unused */
+
+	if (state)
+		dark_mode = DARK_MODE_ON;
+	else
+		dark_mode = DARK_MODE_OFF;
+
+	g_settings_set_enum (settings,
+			GHEX_PREF_DARK_MODE,
+			dark_mode);
+
+	return GDK_EVENT_PROPAGATE;
+}
+
+static void
+system_default_set_cb (GtkCheckButton *checkbutton,
+		gpointer user_data)
+{
+	gboolean checked;
+	int dark_mode;
+
+	(void)user_data;	/* unused */
+
+	checked = gtk_check_button_get_active (checkbutton);
+
+	gtk_widget_set_sensitive (dark_mode_switch,
+			checked ? FALSE : TRUE);
+
+	if (checked) {
+		dark_mode = DARK_MODE_SYSTEM;
+	} else {
+		dark_mode = gtk_switch_get_active (GTK_SWITCH(dark_mode_switch)) ?
+			DARK_MODE_ON : DARK_MODE_OFF;
+	}
+	g_settings_set_enum (settings,
+			GHEX_PREF_DARK_MODE,
+			dark_mode);
+}
+
 static void
 setup_signals (void)
 {
@@ -320,6 +368,14 @@ setup_signals (void)
 
 	g_signal_connect (header_font_button, "font-set",
 			G_CALLBACK(font_set_cb), GINT_TO_POINTER(HEADER_FONT));
+
+	/* dark mode */
+
+	g_signal_connect (dark_mode_switch, "state-set",
+			G_CALLBACK(dark_mode_set_cb), NULL);
+
+	g_signal_connect (system_default_chkbtn, "toggled",
+			G_CALLBACK(system_default_set_cb), NULL);
 
 	/* group type checkbuttons */
 
@@ -354,15 +410,33 @@ setup_signals (void)
 			G_CALLBACK(help_clicked_cb), NULL);
 }
 
-/* put all of your GET_WIDGET calls other than the main prefs_dialog widget
- * and CSS-only stuff in here, please.
- */
 static void
 grab_widget_values_from_settings (void)
 {
+	GtkSettings *gtk_settings;
+
 	/* font_button */
 	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(font_button),
 			def_font_name);
+
+	/* dark mode stuff */
+
+	/* Set switch to appropriate position and grey out if system default */
+	if (def_dark_mode == DARK_MODE_SYSTEM)
+	{
+		gtk_check_button_set_active (GTK_CHECK_BUTTON(system_default_chkbtn),
+				TRUE);
+		gtk_widget_set_sensitive (dark_mode_switch, FALSE);
+		gtk_switch_set_state (GTK_SWITCH(dark_mode_switch),
+				sys_default_is_dark);
+	} else
+	{
+		gtk_check_button_set_active (GTK_CHECK_BUTTON(system_default_chkbtn),
+				FALSE);
+		gtk_widget_set_sensitive (dark_mode_switch, TRUE);
+		gtk_switch_set_state (GTK_SWITCH(dark_mode_switch),
+				def_dark_mode == DARK_MODE_ON ? TRUE : FALSE);
+	}
 
 	/* data_font_button */
 	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(data_font_button),
@@ -426,6 +500,8 @@ init_widgets (void)
 	GET_WIDGET (shaded_box_chkbtn);
 	GET_WIDGET (shaded_box_spinbtn);
 	GET_WIDGET (shaded_box_box);
+	GET_WIDGET (dark_mode_switch);
+	GET_WIDGET (system_default_chkbtn);
 	GET_WIDGET (close_button);
 	GET_WIDGET (help_button);
 

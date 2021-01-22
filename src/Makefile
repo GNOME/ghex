@@ -12,7 +12,7 @@ CFLAGS=-Wall -Wextra -Werror=implicit -std=c11 -pedantic \
 
 .PHONY: clean compile-resources
 
-STUB: gtkhex.o hex-document.o ghex-application-window.o hex-dialog.o findreplace.o chartable.o converter.o resources.o configuration.o preferences.o common-ui.o
+STUB: gtkhex.o hex-document.o ghex-application-window.o hex-dialog.o findreplace.o chartable.o converter.o resources.o configuration.o preferences.o common-ui.o print.o
 
 compile-resources:
 	glib-compile-resources ghex.gresource.xml --target=resources.c --generate-source

@@ -3,7 +3,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* common-ui.h - Common UI utility functions
 
-   Copyright (C) 2004 Free Software Foundation
+   Copyright © 2004 Free Software Foundation
    Copyright © 2021 Logan Rathbone
 
    GHex is free software; you can redistribute it and/or
@@ -29,8 +29,10 @@
 
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
+#include <gtkhex.h>
 
 #include "configuration.h"
+#include "print.h"
 
 G_BEGIN_DECLS
 
@@ -38,6 +40,8 @@ G_BEGIN_DECLS
 
 void common_help_cb (GtkWindow *parent);
 void common_about_cb (GtkWindow *parent);
+void common_print (GtkWindow *parent, GtkHex *gh, gboolean preview);
+void display_error_dialog (GtkWindow *parent, const char *msg);
 
 G_END_DECLS
 

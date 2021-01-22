@@ -1,3 +1,5 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* hex-document.c - implementation of a hex document
 
@@ -1157,3 +1159,26 @@ hex_document_change_file_name (HexDocument *doc, const char *new_file_name)
 		return FALSE;
 	}
 }
+
+gboolean
+hex_document_can_undo (HexDocument *doc)
+{
+	if (! doc->undo_max)
+		return FALSE;
+	else if (doc->undo_top)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+gboolean
+hex_document_can_redo (HexDocument *doc)
+{
+	if (! doc->undo_stack)
+		return FALSE;
+	else if (doc->undo_stack != doc->undo_top)
+		return TRUE;
+	else
+		return FALSE;
+}
+

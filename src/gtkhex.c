@@ -240,7 +240,7 @@ popup_context_menu(GtkWidget *widget, double x, double y)
 	g_object_unref (builder);
 }
 
-/* ACTIONS - just wrappers around callbacks for this widget. */
+/* ACTIONS */
 
 static void
 copy_action (GtkWidget *widget,
@@ -254,6 +254,72 @@ copy_action (GtkWidget *widget,
 	(void)action_name, (void)parameter;
 
 	gtk_hex_copy_to_clipboard (gh);
+}
+
+static void
+redo_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GtkHex *gh = GTK_HEX(widget);
+	HexDocument *doc;
+	HexChangeData *cd;
+
+	(void)action_name, (void)parameter;
+
+	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (HEX_IS_DOCUMENT(gh->document));
+
+	/* shorthand. */
+	doc = gh->document;
+
+	if (doc->undo_stack && doc->undo_top != doc->undo_stack) {
+		hex_document_redo(doc);
+
+		cd = doc->undo_top->data;
+
+		gtk_hex_set_cursor(gh, cd->start);
+		gtk_hex_set_nibble(gh, cd->lower_nibble);
+	}
+}
+
+static void
+doc_undo_redo_cb (HexDocument *doc, gpointer user_data)
+{
+	GtkHex *gh = GTK_HEX(user_data);
+	g_return_if_fail (GTK_IS_HEX (gh));
+	
+	gtk_widget_action_set_enabled (GTK_WIDGET(gh),
+			"gtkhex.undo", hex_document_can_undo (doc));
+	gtk_widget_action_set_enabled (GTK_WIDGET(gh),
+			"gtkhex.redo", hex_document_can_redo (doc));
+}
+
+static void
+undo_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GtkHex *gh = GTK_HEX(widget);
+	HexDocument *doc;
+	HexChangeData *cd;
+
+	(void)action_name, (void)parameter;
+
+	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (HEX_IS_DOCUMENT(gh->document));
+
+	/* shorthand */
+	doc = gh->document;
+
+	if (doc->undo_top) {
+		cd = doc->undo_top->data;
+
+		hex_document_undo(doc);
+
+		gtk_hex_set_cursor(gh, cd->start);
+		gtk_hex_set_nibble(gh, cd->lower_nibble);
+	}
 }
 
 /*
@@ -2809,12 +2875,22 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 	}
 }
 
-static void gtk_hex_document_changed(HexDocument* doc, gpointer change_data,
+static void
+gtk_hex_document_changed (HexDocument* doc, gpointer change_data,
         gboolean push_undo, gpointer data)
 {
-    gtk_hex_real_data_changed (GTK_HEX(data), change_data);
-}
+	GtkHex *gh = GTK_HEX(data);
+	g_return_if_fail (GTK_IS_HEX (gh));
 
+	TEST_DEBUG_FUNCTION_START
+
+    gtk_hex_real_data_changed (gh, change_data);
+
+	gtk_widget_action_set_enabled (GTK_WIDGET(gh),
+			"gtkhex.undo", hex_document_can_undo (doc));
+	gtk_widget_action_set_enabled (GTK_WIDGET(gh),
+			"gtkhex.redo", hex_document_can_redo (doc));
+}
 
 static void
 gtk_hex_class_init (GtkHexClass *klass)
@@ -2894,9 +2970,16 @@ gtk_hex_class_init (GtkHexClass *klass)
 			NULL,   // GVariant string param_type
 			copy_action);
 
+	gtk_widget_class_install_action (widget_class, "gtkhex.undo",
+			NULL,   // GVariant string param_type
+			undo_action);
 
-	/* SHORTCUTS (not to be confused with keybindings, which are set up
-	 * in gtk_hex_init) */
+	gtk_widget_class_install_action (widget_class, "gtkhex.redo",
+			NULL,   // GVariant string param_type
+			redo_action);
+
+	/* SHORTCUTS FOR ACTIONS (not to be confused with keybindings, which are
+	 * set up in gtk_hex_init) */
 
 	/* Ctrl+c - copy */
 	gtk_widget_class_add_binding_action (widget_class,
@@ -3240,6 +3323,14 @@ gtk_hex_init(GtkHex *gh)
 
 	g_signal_connect(G_OBJECT(gh->adj), "value-changed",
 					 G_CALLBACK(display_scrolled), gh);
+
+	/* ACTIONS - Undo / Redo should start out disabled. */
+
+	gtk_widget_action_set_enabled (GTK_WIDGET(gh),
+			"gtkhex.undo", FALSE);
+	gtk_widget_action_set_enabled (GTK_WIDGET(gh),
+			"gtkhex.redo", FALSE);
+
 }
 
 GtkWidget *gtk_hex_new(HexDocument *owner) {
@@ -3249,8 +3340,18 @@ GtkWidget *gtk_hex_new(HexDocument *owner) {
 	g_return_val_if_fail (gh != NULL, NULL);
 
 	gh->document = owner;
+
+	/* Setup document signals (can't do in _init because we don't have
+	 * access to that object yet.
+	 */
     g_signal_connect (G_OBJECT (gh->document), "document-changed",
             G_CALLBACK (gtk_hex_document_changed), gh);
+
+    g_signal_connect (G_OBJECT (gh->document), "undo",
+            G_CALLBACK (doc_undo_redo_cb), gh);
+	
+    g_signal_connect (G_OBJECT (gh->document), "redo",
+            G_CALLBACK (doc_undo_redo_cb), gh);
 	
 	return GTK_WIDGET(gh);
 }

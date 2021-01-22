@@ -1,3 +1,5 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* print.h - printing related stuff for ghex
 
@@ -21,12 +23,13 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef __GHEX_PRINT_H__
-#define __GHEX_PRINT_H__
+#ifndef GHEX_PRINT_H
+#define GHEX_PRINT_H
 
 #include <gtk/gtk.h>
-
-#include "hex-document.h"
+#include <glib/gi18n.h>
+#include <gtkhex.h>
+#include <hex-document.h>
 
 G_BEGIN_DECLS
 
@@ -40,34 +43,36 @@ struct _GHexPrintJobInfo {
 	PangoFontDescription *d_font, *h_font;
 	HexDocument *doc;
 
-	int   pages;
-	gint range;
-	gint page_first;
-	gint page_last;
+	int pages;
+	int range;
+	int page_first;
+	int page_last;
 
-	gdouble header_height;
+	double header_height;
 	
-	gint font_char_width;
-	gint font_char_height;
+	int font_char_width;
+	int font_char_height;
 
-	int   bytes_per_row, rows_per_page;
-	gdouble pad_size;
-	int   offset_chars ; /* How many chars are used in the offset window */
-	int   gt;            /* group_type */
+	int  bytes_per_row, rows_per_page;
+	double pad_size;
+	int offset_chars ; /* How many chars are used in the offset window */
+	int gt;            /* group_type */
 	gboolean preview;
 };
 
-/* printing */
+/* FUNCTION DECLARATIONS */
+
 void begin_print (GtkPrintOperation *operation,
                   GtkPrintContext   *context,
                   gpointer           data);
 void print_page (GtkPrintOperation *operation,
                  GtkPrintContext   *context,
-                 gint               page_nr,
+                 int               page_nr,
                  gpointer           data);
-GHexPrintJobInfo *ghex_print_job_info_new(HexDocument *doc, guint group_type);
+GHexPrintJobInfo *ghex_print_job_info_new (HexDocument *doc,
+		guint group_type);
 void ghex_print_job_info_destroy(GHexPrintJobInfo *pji);
 
 G_END_DECLS
 
-#endif /* !__GHEX_PRINT_H__ */
+#endif /* GHEX_PRINT_H */

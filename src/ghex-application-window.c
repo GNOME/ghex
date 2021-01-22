@@ -113,6 +113,9 @@ static GParamSpec *properties[N_PROPERTIES] = { NULL, };
  */
 static const char *main_actions[] = {
 	"ghex.save-as",
+	"ghex.print",
+	"ghex.print-preview",
+	"win.group-data-by",
 	"ghex.show-conversions",
 	"ghex.insert-mode",
 	"ghex.find",
@@ -299,7 +302,7 @@ set_css_provider_font_from_settings (GHexApplicationWindow *self)
 
 	g_debug("%s: css_str: %s", __func__, css_str);
 
-	gtk_css_provider_load_from_data (GTK_STYLE_PROVIDER(self->provider),
+	gtk_css_provider_load_from_data (self->provider,
 			css_str, -1);
 }
 
@@ -330,6 +333,28 @@ set_gtkhex_group_type_from_settings (GtkHex *gh)
 	gtk_hex_set_group_type (gh, def_group_type);
 }
 
+static void
+set_dark_mode_from_settings (GHexApplicationWindow *self)
+{
+	GtkSettings *gtk_settings;
+
+	gtk_settings = gtk_settings_get_default ();
+
+	g_debug ("%s: def_dark_mode: %d", __func__, def_dark_mode);
+
+	if (def_dark_mode == DARK_MODE_SYSTEM) {
+		g_object_set (G_OBJECT(gtk_settings),
+				"gtk-application-prefer-dark-theme",
+				sys_default_is_dark,
+				NULL);
+	} else {
+		g_object_set (G_OBJECT(gtk_settings),
+				"gtk-application-prefer-dark-theme",
+				def_dark_mode == DARK_MODE_ON ? TRUE : FALSE,
+				NULL);
+	}
+}
+	
 
 /* Common macro for the `settings*changed_cb` stuff.
  * Between _START and _END, put in function calls that use `gh` to be applied
@@ -708,6 +733,12 @@ ghex_application_window_document_changed_cb (HexDocument *doc,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
+
+	/* The appwindow as a whole not interested in any document changes that
+	 * don't pertain to the one that is actually in view.
+	 */
+	if (doc != gtk_hex_get_document (self->gh))
+		return;
 
 	ghex_application_window_set_can_save (self,
 			hex_document_has_changed (doc));
@@ -1097,6 +1128,32 @@ save_as (GtkWidget *widget,
 
 	/* Clear the GFile ptr which is no longer necessary. */
 	g_clear_object (&existing_file);
+}
+
+static void
+print_preview (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+
+	g_return_if_fail (GTK_IS_HEX(self->gh));
+	(void)widget, (void)action_name, (void)parameter;	/* unused */
+
+	common_print (GTK_WINDOW(self), self->gh, /* preview: */ TRUE);
+}
+
+static void
+do_print (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+
+	g_return_if_fail (GTK_IS_HEX(self->gh));
+	(void)widget, (void)action_name, (void)parameter;	/* unused */
+
+	common_print (GTK_WINDOW(self), self->gh, /* preview: */ FALSE);
 }
 
 /* convenience helper function to build a GtkHex widget pre-loaded with
@@ -1637,6 +1694,12 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
 	gtk_widget_init_template (widget);
 
+	/* Cache system default of prefer-dark-mode; gtk does not do this. This
+	 * is run here as it cannot be done until we have a 'screen'. */
+	get_sys_default_is_dark ();
+	/* Do dark mode if requested */
+	set_dark_mode_from_settings (self);
+
 	/* Setup conversions box and pane */
 	self->dialog = hex_dialog_new ();
 	self->dialog_widget = hex_dialog_getview (self->dialog);
@@ -1679,6 +1742,8 @@ ghex_application_window_init (GHexApplicationWindow *self)
     g_signal_connect (settings, "changed::" GHEX_PREF_GROUP,
                       G_CALLBACK (settings_group_type_changed_cb), self);
 
+    g_signal_connect_swapped (settings, "changed::" GHEX_PREF_DARK_MODE,
+                      G_CALLBACK (set_dark_mode_from_settings), self);
 
 	/* Actions - SETTINGS */
 
@@ -1850,6 +1915,14 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			NULL,	// GVariant string param_type
 			save_as);
 
+	gtk_widget_class_install_action (widget_class, "ghex.print",
+			NULL,	// GVariant string param_type
+			do_print);
+
+	gtk_widget_class_install_action (widget_class, "ghex.print-preview",
+			NULL,	// GVariant string param_type
+			print_preview);
+
 	gtk_widget_class_install_action (widget_class, "ghex.show-conversions",
 			NULL,	// GVariant string param_type
 			toggle_conversions);
@@ -1881,12 +1954,6 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.converter", "converter-open");
-
-
-
-//	gtk_widget_class_install_action (widget_class, "win.group-data-by",
-//			"i",	// GVariant string param_type
-//			NULL);
 
 
 	/* WIDGET TEMPLATE .UI */

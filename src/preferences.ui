@@ -37,18 +37,45 @@
 
 										<child> <!-- font_frame -->
 											<object class="GtkFrame" id="font_frame">
+
 												<child type="label">
 													<object class="GtkLabel" id="font_frame_label">
 														<property name="label" translatable="yes">Font</property>
 													</object>
 												</child>
+
 												<child>
 													<object class="GtkFontButton" id="font_button">
 														<property name="halign">start</property>
 													</object>
 												</child>
+
 											</object>
 										</child> <!-- /font_frame -->
+
+										<child> <!-- dark mode hbox -->
+											<object class="GtkBox">
+												<property name="orientation">horizontal</property>
+												<property name="spacing">18</property>
+
+												<child>
+													<object class="GtkLabel" id="dark_mode_label">
+														<property name="label" translatable="yes">Dark Mode</property>
+													</object>
+												</child>
+												<child>
+													<object class="GtkSwitch" id="dark_mode_switch">
+														<property name="active">false</property>
+													</object>
+												</child>
+												<child>
+													<object class="GtkCheckButton" id="system_default_chkbtn">
+														<property name="label" translatable="yes">Use system default</property>
+													</object>
+												</child>
+
+											</object>
+										</child> <!-- /dark mode hbox -->
 
 										<child> <!-- group_type_frame -->
 											<object class="GtkFrame" id="group_type_frame">

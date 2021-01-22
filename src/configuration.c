@@ -37,6 +37,10 @@ char *header_font_name;
 char *data_font_name;
 guint shaded_box_size;
 gboolean show_offsets_column;
+int def_dark_mode;
+/* Will default to false here. We can't set it until we get a 'screen', so
+ * we'll save calling get_sys_default_is_dark() until GHex launches. */
+gboolean sys_default_is_dark;
 
 static void
 offsets_column_changed_cb (GSettings   *settings,
@@ -54,6 +58,25 @@ group_changed_cb (GSettings   *settings,
                   gpointer     user_data)
 {
     def_group_type = g_settings_get_enum (settings, key);
+}
+
+static void
+dark_mode_changed_cb (GSettings   *settings,
+                  const gchar *key,
+                  gpointer     user_data)
+{
+    def_dark_mode = g_settings_get_enum (settings, key);
+}
+
+void
+get_sys_default_is_dark (void)
+{
+	GtkSettings *gtk_settings;
+
+	gtk_settings = gtk_settings_get_default ();
+	g_object_get (gtk_settings,
+			"gtk-application-prefer-dark-theme", &sys_default_is_dark,
+			NULL);
 }
 
 static void
@@ -112,6 +135,10 @@ void ghex_init_configuration ()
     g_signal_connect (settings, "changed::" GHEX_PREF_GROUP,
                       G_CALLBACK (group_changed_cb), NULL);
     group_changed_cb (settings, GHEX_PREF_GROUP, NULL);
+
+    g_signal_connect (settings, "changed::" GHEX_PREF_DARK_MODE,
+                      G_CALLBACK (dark_mode_changed_cb), NULL);
+    dark_mode_changed_cb (settings, GHEX_PREF_DARK_MODE, NULL);
 
     g_signal_connect (settings, "changed::" GHEX_PREF_BOX_SIZE,
                       G_CALLBACK (box_size_changed_cb), NULL);
