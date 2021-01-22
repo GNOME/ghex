@@ -1079,9 +1079,11 @@ save_as_response_cb (GtkNativeDialog *dialog,
 
 		change_ok = hex_document_change_file_name (doc, new_file_path);
 
-		/* "set window to file-name" 
-		 * if (change_ok) ..... */
-
+		if (! change_ok) {
+			g_error ("%s: There was a fatal error changing the name of the "
+					"file path. This should NOT happen and may be indicative "
+					"of a bug or programer error. Please file a bug report.");
+		}
 		gtk_file_name = g_filename_to_utf8 (doc->file_name,
 				-1, NULL, NULL, NULL);
 
@@ -1093,9 +1095,10 @@ save_as_response_cb (GtkNativeDialog *dialog,
 	}
 	else
 	{
-		g_debug("%s: NOT IMPLEMENTED - show following message in GUI:",
-				__func__);
-		g_debug(_("Error saving file!"));
+		display_error_dialog (GTK_WINDOW(self),
+				_("There was an error saving the file to the path specified."
+					"\n\n"
+					"You may not have the required permissions."));
 	}
 	fclose(file);
 

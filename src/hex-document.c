@@ -1151,7 +1151,6 @@ hex_document_change_file_name (HexDocument *doc, const char *new_file_name)
 	if (new_path_end)
 		g_free (new_path_end);
 
-
 	if (doc->file_name && doc->path_end) {
 		g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
 		return TRUE;

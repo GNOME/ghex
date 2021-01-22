@@ -2320,7 +2320,7 @@ void gtk_hex_delete_selection(GtkHex *gh)
 	start = MIN(gh->selection.start, gh->selection.end);
 	end = MAX(gh->selection.start, gh->selection.end);
 
-	gtk_hex_set_selection(gh, 0, 0);
+	gtk_hex_clear_selection (gh);
 
 	if(start != end) {
 		if(start < gh->cursor_pos)
