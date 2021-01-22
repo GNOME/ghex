@@ -2988,6 +2988,20 @@ gtk_hex_class_init (GtkHexClass *klass)
 			"gtkhex.copy",
 			NULL);	// no args.
 
+	/* Ctrl+z - undo */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_z,
+			GDK_CONTROL_MASK,
+			"gtkhex.undo",
+			NULL);	// no args.
+
+	/* Ctrl+y - redo */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_y,
+			GDK_CONTROL_MASK,
+			"gtkhex.redo",
+			NULL);	// no args.
+
 	// API CHANGES
 //	klass->primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 //	klass->clipboard = gtk_clipboard_get(GDK_NONE);

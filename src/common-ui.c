@@ -3,7 +3,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* common-ui.c - Common UI utility functions
 
-   Copyright (C) 1998 - 2004 Free Software Foundation
+   Copyright © 1998 - 2004 Free Software Foundation
    Copyright © 2021 Logan Rathbone
 
    GHex is free software; you can redistribute it and/or

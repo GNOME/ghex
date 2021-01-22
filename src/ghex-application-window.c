@@ -113,6 +113,7 @@ static GParamSpec *properties[N_PROPERTIES] = { NULL, };
  */
 static const char *main_actions[] = {
 	"ghex.save-as",
+	"ghex.revert",
 	"ghex.print",
 	"ghex.print-preview",
 	"win.group-data-by",
@@ -646,13 +647,22 @@ static void
 close_doc_confirmation_dialog (GHexApplicationWindow *self)
 {
 	GtkWidget *dialog;
+	HexDocument *doc;
+
+	g_return_if_fail (GTK_IS_HEX (self->gh));
+
+	doc = gtk_hex_get_document (self->gh);
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
 			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 			GTK_MESSAGE_QUESTION,
 			GTK_BUTTONS_NONE,
-			(_("<big><b>You have unsaved changes.</b></big>\n\n"
-			   "Would you like to save your changes?")));
+			/* Translators: %s is the filename that is currently being
+			 * edited. */
+			_("<big><b>%s has been edited since opening.</b></big>\n\n"
+			   "Would you like to save your changes?"),
+			doc->path_end);
 
 	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
 			_("_Save Changes"),		GTK_RESPONSE_ACCEPT,
@@ -1006,6 +1016,8 @@ ghex_application_window_set_can_save (GHexApplicationWindow *self,
 
 	gtk_widget_action_set_enabled (GTK_WIDGET(self),
 			"ghex.save", can_save);
+	gtk_widget_action_set_enabled (GTK_WIDGET(self),
+			"ghex.revert", can_save);
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_CAN_SAVE]);
 }
@@ -1130,6 +1142,73 @@ save_as (GtkWidget *widget,
 	g_clear_object (&existing_file);
 }
 
+
+static void
+revert_response_cb (GtkDialog *dialog,
+		int response_id,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	HexDocument *doc;
+	char *gtk_file_name;
+
+	if (response_id != GTK_RESPONSE_ACCEPT)
+		goto end;
+
+	doc = gtk_hex_get_document (self->gh);
+	gtk_file_name = g_filename_to_utf8 (doc->file_name,
+			-1, NULL, NULL, NULL);
+
+	hex_document_read (doc);
+
+	g_free(gtk_file_name);
+
+end:
+	gtk_window_destroy (GTK_WINDOW(dialog));
+}
+
+static void
+revert (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+   	HexDocument *doc;
+	GtkWidget *dialog;
+	gint reply;
+	
+	g_return_if_fail (GTK_IS_HEX (self->gh));
+
+	doc = gtk_hex_get_document (self->gh);
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+
+	/* Yes, this *is* a programmer error. The Revert menu should not be shown
+	 * to the user at all if there is nothing to revert. */
+	g_return_if_fail (hex_document_has_changed (doc));
+
+	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
+			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+			GTK_MESSAGE_QUESTION,
+			GTK_BUTTONS_NONE,
+			/* Translators: %s here is the filename the user is being asked to
+			 * confirm whether they want to revert. */
+			_("<big><b>Are you sure you want to revert %s?</b></big>\n\n"
+			"Your changes will be lost.\n\n"
+			"This action cannot be undone."),
+			doc->path_end);
+
+	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
+			_("_Revert"), GTK_RESPONSE_ACCEPT,
+			_("_Go Back"), GTK_RESPONSE_REJECT,
+			NULL);
+	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_REJECT);
+
+	g_signal_connect (dialog, "response",
+			G_CALLBACK (revert_response_cb), self);
+
+	gtk_widget_show (dialog);
+}
+			
 static void
 print_preview (GtkWidget *widget,
 		const char *action_name,
@@ -1618,15 +1697,11 @@ static void
 ghex_notebook_tab_refresh_file_name (GHexNotebookTab *self)
 {
 	HexDocument *doc;
-	char *basename;
 
    	doc = gtk_hex_get_document (self->gh);
-	basename = g_path_get_basename (doc->file_name);
 
-	gtk_label_set_markup (GTK_LABEL(self->label), basename);
+	gtk_label_set_markup (GTK_LABEL(self->label), doc->path_end);
 	tab_bold_label (self, hex_document_has_changed (doc));
-
-	g_free (basename);
 }
 
 static GtkWidget *
@@ -1894,7 +1969,7 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	properties[PROP_CAN_SAVE] =
 		g_param_spec_boolean ("can-save",
 			"Can save",
-			"Whether the Save button should currently be clickable",
+			"Whether the Save (or Revert) button should currently be clickable",
 			FALSE,	// gboolean default_value
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
@@ -1914,6 +1989,10 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_install_action (widget_class, "ghex.save-as",
 			NULL,	// GVariant string param_type
 			save_as);
+
+	gtk_widget_class_install_action (widget_class, "ghex.revert",
+			NULL,	// GVariant string param_type
+			revert);
 
 	gtk_widget_class_install_action (widget_class, "ghex.print",
 			NULL,	// GVariant string param_type
