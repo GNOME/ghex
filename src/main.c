@@ -1,7 +1,10 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* main.c - genesis of a GHex application
 
-   Copyright (C) 1998 - 2004 Free Software Foundation
+   Copyright © 1998 - 2004 Free Software Foundation
+   Copyright © 2021 Logan Rathbone
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -18,28 +21,21 @@
    If not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-   Author: Jaka Mocnik <jaka@gnu.org>
+   Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
+#include <locale.h>
 #include <config.h>
-#include <glib/gi18n.h>
 
-#include "configuration.h"
-#include "ghex-window.h"
+#include "ghex-application-window.h"
 
-/* Command line options */
-static gchar *geometry = NULL;
-static gchar **args_remaining = NULL;
-
-static GOptionEntry options[] = {
-        { "geometry", 'g', 0, G_OPTION_ARG_STRING, &geometry, N_("X geometry specification (see \"X\" man page)."), N_("GEOMETRY") },
-        { G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &args_remaining, NULL, N_("FILES") },
-        { NULL }
-};
-
+/* FIXME - TEST ON WIN32.
+ * This is one of the few functions in this file that has been ripped verbatim
+ * from the old main.c. It might work. Maybe.
+ */
 #ifdef G_OS_WIN32
-static gchar *
-_ghex_win32_locale_dir (void)
+static char *
+ghex_win32_locale_dir (void)
 {
     gchar *install_dir;
     gchar *locale_dir = NULL;
@@ -59,98 +55,57 @@ _ghex_win32_locale_dir (void)
 }
 #endif
 
-static gchar *
+static char *
 ghex_locale_dir (void)
 {
 #ifdef G_OS_WIN32
-    return _ghex_win32_locale_dir ();
+    return ghex_win32_locale_dir ();
 #else
     return g_strdup (LOCALEDIR);
 #endif
 }
 
 static void
-ghex_activate (GApplication *application,
-               gpointer      unused)
+activate (GtkApplication *app,
+	gpointer user_data)
 {
-    GList *windows = gtk_application_get_windows (GTK_APPLICATION (application));
-    gtk_window_present (GTK_WINDOW (windows->data));
+	GtkWidget *window;
+
+	(void)user_data;	/* unused */
+
+	window = ghex_application_window_new (app);
+
+	gtk_window_set_application (GTK_WINDOW(window), app);
+	gtk_window_present (GTK_WINDOW(window));
 }
 
 int
-main(int argc, char **argv)
+main (int argc, char *argv[])
 {
-	GtkWidget *win;
-	GError *error = NULL;
-	GtkApplication *application;
-	gchar *locale_dir;
-	gint retval;
+	GtkApplication *app;
+	char *locale_dir;
+	int status;
 
+	/* boilerplate i18n stuff */
+	setlocale (LC_ALL, "");
 	locale_dir = ghex_locale_dir ();
 	bindtextdomain (GETTEXT_PACKAGE, locale_dir);
 	g_free (locale_dir);
 
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
+	/* </i18n> */
 
-	/* Initialize GTK+ program */
-	if (!gtk_init_with_args (&argc, &argv,
-	                         _("- GTK+ binary editor"),
-	                         options,
-	                         GETTEXT_PACKAGE,
-	                         &error)) {
-		g_printerr (_("%s\nRun '%s --help' to see a full list of available command line options.\n"),
-		            error->message, argv[0]);
-		g_error_free (error);
-		return 1;
-	}
+	ghex_init_configuration ();
 
-	/* Set default window icon */
-	gtk_window_set_default_icon_name ("org.gnome.GHex");
+	/* FIXME - don't know if NON_UNIQUE is correct for this context. */
+	app = gtk_application_new("org.gnome.GHex", G_APPLICATION_NON_UNIQUE);
+	g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
+	g_application_register (G_APPLICATION (app), NULL, NULL);
 
-	/* load preferences */
-	ghex_init_configuration();
+	status = g_application_run (G_APPLICATION(app), argc, argv);
 
-	/* accessibility setup */
-	setup_factory();
+	g_object_unref(app);
 
-	application = gtk_application_new ("org.gnome.GHex",
-	                                   G_APPLICATION_NON_UNIQUE);
-	g_signal_connect (application, "activate",
-	                  G_CALLBACK (ghex_activate), NULL);
-
-	g_application_register (G_APPLICATION (application), NULL, NULL);
-
-	if (args_remaining != NULL) {
-		gchar **filename;
-		for (filename = args_remaining; *filename != NULL; filename++) {
-			if (g_file_test (*filename, G_FILE_TEST_EXISTS)) {
-				win = ghex_window_new_from_file (application, *filename);
-				if(win != NULL) {
-					if(geometry) {
-						if(!gtk_window_parse_geometry(GTK_WINDOW(win), geometry))
-							g_warning(_("Invalid geometry string \"%s\"\n"), geometry);
-						geometry = NULL;
-					}
-					gtk_widget_show(win);
-				}
-			}
-		}
-	}
-
-	if(ghex_window_get_list() == NULL) {
-		win = ghex_window_new (application);
-		if(geometry) {
-			if(!gtk_window_parse_geometry(GTK_WINDOW(win), geometry))
-				g_warning(_("Invalid geometry string \"%s\"\n"), geometry);
-			geometry = NULL;
-		}
-		gtk_widget_show(win);
-	}
-	else win = GTK_WIDGET(ghex_window_get_list()->data);
-
-	retval = g_application_run (G_APPLICATION (application), argc, argv);
-	g_object_unref (application);
-
-	return retval;
+	return status;
 }

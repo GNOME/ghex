@@ -41,6 +41,8 @@
 
 #ifdef ENABLE_DEBUG
 #define TEST_DEBUG_FUNCTION_START g_debug ("%s: start", __func__);
+#else
+#define TEST_DEBUG_FUNCTION_START /* */
 #endif
 
 #define NOT_IMPLEMENTED \
@@ -1486,8 +1488,8 @@ scroll_cb (GtkEventControllerScroll *controller,
 	double old_value, new_value;
 
 	TEST_DEBUG_FUNCTION_START
-	g_return_if_fail (GTK_IS_HEX(gh));
-//	g_return_if_fail (GTK_IS_WIDGET(widget));
+
+	g_return_val_if_fail (GTK_IS_HEX(gh), FALSE);
 
 	old_value = gtk_adjustment_get_value(gh->adj);
 	new_value = old_value + dy;
@@ -1772,7 +1774,7 @@ ascii_pressed_cb (GtkGestureClick *gesture,
 	/* Middle-click press. */
 	else if (button == GDK_BUTTON_MIDDLE)
 	{
-		g_debug("%s: MIDDLE CLICK - NOT IMPLEMENTED.");
+		g_debug("%s: MIDDLE CLICK - NOT IMPLEMENTED.", __func__);
 #if 0
 		GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
 		gchar *text;

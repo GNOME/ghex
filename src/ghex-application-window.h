@@ -5,6 +5,16 @@
 #define GHEX_APPLICATION_WINDOW_H
 
 #include <gtk/gtk.h>
+#include <gtkhex.h>
+#include <glib/gi18n.h>
+
+#include "configuration.h"
+#include "hex-dialog.h"
+#include "findreplace.h"
+#include "chartable.h"
+#include "converter.h"
+#include "preferences.h"
+#include "common-ui.h"
 
 #define GHEX_TYPE_APPLICATION_WINDOW (ghex_application_window_get_type ())
 G_DECLARE_FINAL_TYPE (GHexApplicationWindow, ghex_application_window,

@@ -9,9 +9,7 @@ libghex_headers = [
 ]
 
 libghex_deps = [
-  atk_dep,
   gtk_dep,
-  gail_dep
 ]
 
 libghex_c_args = [
@@ -46,31 +44,34 @@ libghex_dep = declare_dependency(
   sources: libghex_headers
 )
 
+# for i in `ls *.{c,h}`; do echo "  '${i}',"; done
 ghex_sources = [
   'chartable.c',
   'chartable.h',
+  'common-ui.c',
+  'common-ui.h',
   'configuration.c',
   'configuration.h',
   'converter.c',
   'converter.h',
   'findreplace.c',
   'findreplace.h',
-  'ghex-window.c',
-  'ghex-window.h',
+  'ghex-application-window.c',
+  'ghex-application-window.h',
+  'gtkhex.c',
+  'gtkhex.h',
   'hex-dialog.c',
   'hex-dialog.h',
-  'hex-document-ui.c',
+  'hex-document.c',
+  'hex-document.h',
   'main.c',
   'preferences.c',
   'preferences.h',
   'print.c',
-  'print.h',
-  'common-ui.c',
-  'common-ui.h'
+  'print.h'
 ]
 
 ghex_deps = [
-  atk_dep,
   gio_dep,
   gtk_dep
 ]

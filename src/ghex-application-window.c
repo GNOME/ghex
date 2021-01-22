@@ -1,17 +1,7 @@
 /* vim: ts=4 sw=4 colorcolumn=80
  */
-#include <glib/gi18n.h>
-#include <gtkhex.h>
 
 #include "ghex-application-window.h"
-
-#include "configuration.h"
-#include "hex-dialog.h"
-#include "findreplace.h"
-#include "chartable.h"
-#include "converter.h"
-#include "preferences.h"
-#include "common-ui.h"
 
 /* DEFINES */
 
@@ -277,7 +267,7 @@ pango_font_description_to_css (PangoFontDescription *desc)
 	}
 	if (set & PANGO_FONT_MASK_SIZE)
 	{
-		g_string_append_printf (s, "font-size: %dpt",
+		g_string_append_printf (s, "font-size: %dpt; ",
 				pango_font_description_get_size (desc) / PANGO_SCALE);
 	}
 
@@ -480,16 +470,16 @@ file_save (GHexApplicationWindow *self)
 	doc = gtk_hex_get_document (self->gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	if (hex_document_write (doc))
-	{
+	if (hex_document_write (doc)) {
 		/* we're happy... */
 		g_debug ("%s: File saved successfully.", __func__);
 	}
-	else
-	{
-		g_debug("%s: NOT IMPLEMENTED - show following message in GUI:",
-				__func__);
-		g_debug(_("Error saving file!"));
+	else {
+		display_error_dialog (GTK_WINDOW(self),
+				_("There was an error saving the file."
+				"\n\n"
+				"You permissions of the file may have been changed "
+				"by another program, or the file may have become corrupted."));
 	}
 }
 
@@ -675,6 +665,11 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self)
 	gtk_widget_show (dialog);
 }
 
+/* FIXME / TODO - I could see this function being useful, but right now it is
+ * not used by anything, so I'm disabling it to silence warnings about unused
+ * functions.
+ */
+#if 0
 static void
 enable_all_actions (GHexApplicationWindow *self, gboolean enable)
 {
@@ -706,6 +701,7 @@ enable_all_actions (GHexApplicationWindow *self, gboolean enable)
 		++i;
 	}
 }
+#endif
 
 /* Kinda like enable_all_actions, but only for ghex-specific ones. */
 static void
@@ -1082,14 +1078,11 @@ save_as_response_cb (GtkNativeDialog *dialog,
 		if (! change_ok) {
 			g_error ("%s: There was a fatal error changing the name of the "
 					"file path. This should NOT happen and may be indicative "
-					"of a bug or programer error. Please file a bug report.");
+					"of a bug or programer error. Please file a bug report.",
+					__func__);
 		}
 		gtk_file_name = g_filename_to_utf8 (doc->file_name,
 				-1, NULL, NULL, NULL);
-
-		g_debug("%s: NOT IMPLEMENTED - show following message in GUI:",
-				__func__);
-		g_debug(_("Saved buffer to file %s"), gtk_file_name);
 
 		g_free(gtk_file_name);
 	}

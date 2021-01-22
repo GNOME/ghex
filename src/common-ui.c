@@ -24,9 +24,7 @@
    Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
+#include <config.h>		/* Not optional for this. */
 
 #include "common-ui.h"
 
