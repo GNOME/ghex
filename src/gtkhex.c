@@ -30,19 +30,30 @@
    Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#include <config.h>
+#include "gtkhex.h"
 
 #include <string.h>
 
-#include "hex-document.h"
-#include "gtkhex.h"
+/* Not optional. */
+#include <config.h>
+
+/* Don't move these from the source file as they are not part of the public
+ * header.
+ */
+#include "gtkhex-layout-manager.h"
 
 /* LAR - TEMPORARY FOR TESTING ONLY */
 
 #ifdef ENABLE_DEBUG
-#define TEST_DEBUG_FUNCTION_START g_debug ("%s: start", __func__);
+#define TEST_DEBUG_FUNCTION_START g_debug ("%s: [START]", __func__);
 #else
 #define TEST_DEBUG_FUNCTION_START /* */
+#endif
+
+#ifdef ENABLE_DEBUG
+#define TEST_DEBUG_FUNCTION_END g_debug ("%s: [END]", __func__);
+#else
+#define TEST_DEBUG_FUNCTION_END /* */
 #endif
 
 #define NOT_IMPLEMENTED \
@@ -53,7 +64,7 @@
 //#define CSS_NAME "entry"
 
 /* default minimum drawing area size (for ascii and hex widgets) in pixels. */
-#define DEFAULT_DA_SIZE 100
+#define DEFAULT_DA_SIZE 50
 
 /* LAR - defines copied from the old header. */
 
@@ -83,6 +94,7 @@ enum {
 	CUT_CLIPBOARD_SIGNAL,
 	COPY_CLIPBOARD_SIGNAL,
 	PASTE_CLIPBOARD_SIGNAL,
+	DRAW_COMPLETE_SIGNAL,
 	LAST_SIGNAL
 };
 
@@ -139,6 +151,7 @@ struct _GtkHex
 
 	HexDocument *document;
 
+	GtkLayoutManager *layout_manager;
 	GtkWidget *box;				/* main box for layout */
 
 	GtkWidget *xdisp, *adisp;	/* DrawingArea */
@@ -399,6 +412,11 @@ get_char_width (GtkHex *gh)
 	/* scale down from pango units to pixels */
 	width = PANGO_PIXELS(width);
 	
+	/* update layout manager */
+	if (GTK_IS_HEX_LAYOUT(gh->layout_manager)) {
+		gtk_hex_layout_set_char_width (gh->layout_manager, width);
+	}
+
 	return width;
 }
 
@@ -625,8 +643,6 @@ render_xc (GtkHex *gh,
 	static guchar c[2];
 
 	g_return_if_fail (gtk_widget_get_realized (gh->xdisp));
-
-	TEST_DEBUG_FUNCTION_START
 
 	context = gtk_widget_get_style_context (gh->xdisp);
 	state = gtk_widget_get_state_flags (gh->xdisp);
@@ -941,15 +957,10 @@ render_hex_lines (GtkHex *gh,
 	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET(gh)));
 	g_return_if_fail (gh->cpl > 0);
 
-	TEST_DEBUG_FUNCTION_START
-
 	context = gtk_widget_get_style_context (widget);
 	state = gtk_widget_get_state_flags (widget);
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 	gtk_widget_get_allocation (widget, &allocation);
-
-	g_debug("%s: WIDTH: %d HEIGHT: %d",
-			__func__, allocation.width, allocation.height);
 
 	/* render background. */
 	gtk_render_background (context, cr,
@@ -966,9 +977,9 @@ render_hex_lines (GtkHex *gh,
 	 * it to make it clearer?
 	 */
 	frm_len = format_xblock (gh, gh->disp_buffer,
-			(gh->top_line+min_lines)*gh->cpl,
-			MIN((gh->top_line+max_lines+1)*gh->cpl,
-				gh->document->file_size) );
+			(gh->top_line + min_lines) * gh->cpl,
+			MIN( (gh->top_line + max_lines + 1) * gh->cpl,
+				gh->document->file_size ));
 	
 	for (int i = min_lines; i <= max_lines; i++)
 	{
@@ -991,9 +1002,6 @@ render_hex_lines (GtkHex *gh,
 				gh->xlayout);
 	}
 	
-	// TEST
-	g_debug("%s: cursor_line: %d - min_lines: %d - max_lines: %d - cursor_shown: %d",
-			__func__, cursor_line, min_lines, max_lines, gh->cursor_shown);
 	if ( (cursor_line >= min_lines) && (cursor_line <= max_lines) &&
 			(gh->cursor_shown) )
 	{
@@ -1017,8 +1025,6 @@ render_ascii_lines (GtkHex *gh,
 	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET(gh)));
 	g_return_if_fail (gh->cpl);
 
-	TEST_DEBUG_FUNCTION_START
-
 	context = gtk_widget_get_style_context (widget);
 	state = gtk_widget_get_state_flags (widget);
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
@@ -1035,9 +1041,9 @@ render_ascii_lines (GtkHex *gh,
 	max_lines = MIN(max_lines, gh->lines);
 	
 	frm_len = format_ablock (gh, gh->disp_buffer,
-			(gh->top_line+min_lines)*gh->cpl,
-			MIN((gh->top_line+max_lines+1)*gh->cpl,
-				gh->document->file_size));
+			(gh->top_line + min_lines) * gh->cpl,
+			MIN( (gh->top_line + max_lines + 1) * gh->cpl,
+				gh->document->file_size ));
 	
 	for (int i = min_lines; i <= max_lines; i++)
 	{
@@ -1078,8 +1084,6 @@ render_offsets (GtkHex *gh,
 	GtkStyleContext *context;
 	/* offset chars (8) + 1 (null terminator) */
 	char offstr[9];
-
-	TEST_DEBUG_FUNCTION_START 
 
 	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET (gh)));
 
@@ -1126,8 +1130,9 @@ hex_draw (GtkDrawingArea *drawing_area,
 	GtkHex *gh = GTK_HEX(user_data);
 	int xcpl = 0;
 
-	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail(GTK_IS_HEX(gh));
+
+	TEST_DEBUG_FUNCTION_START
 
 	/* Here's the idea here:  the hex drawing widget can expand at will,
 	 * and we generate our cpl as a whole and to be passed to the ascii draw
@@ -1136,9 +1141,6 @@ hex_draw (GtkDrawingArea *drawing_area,
 	 * Thus, we need to do some calculations in this function before drawing
 	 * the hex lines and before proceeding to draw the ascii widget.
 	 */
-
-	g_debug("%s: width: %d - height: %d",
-			__func__, width, height);
 
 	/* Total number of characters that can be displayed per line on the hex
 	 * widget (xcpl) is the simplest calculation:
@@ -1169,11 +1171,7 @@ hex_draw (GtkDrawingArea *drawing_area,
 	/* pixel width of ascii drawing area */
 	gh->adisp_width = gh->cpl * gh->char_width;
 
-	/* set visible lines */
-	gh->vis_lines = height / gh->char_height;
-
 	/* If gh->cpl is not greater than 0, something has gone wrong. */
-	g_debug("%s: gh->cpl: %d", __func__, gh->cpl);
 	g_return_if_fail (gh->cpl > 0);
 
 	/* Now that we have gh->cpl defined, run this function to bump all
@@ -1185,6 +1183,8 @@ hex_draw (GtkDrawingArea *drawing_area,
 	 * lines!
 	 */
 	render_hex_lines (gh, cr, 0, gh->vis_lines);
+
+	TEST_DEBUG_FUNCTION_END
 }
 
 
@@ -1197,13 +1197,9 @@ ascii_draw (GtkDrawingArea *drawing_area,
 {
 	GtkHex *gh = GTK_HEX(user_data);
 
-	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail(GTK_IS_HEX(gh));
 
-	gtk_drawing_area_set_content_width (drawing_area, gh->adisp_width);
-
-	g_debug("%s: width: %d - height: %d",
-			__func__, width, height);
+	TEST_DEBUG_FUNCTION_START
 
 	render_ascii_lines (gh, cr, 0, gh->vis_lines);
 
@@ -1224,6 +1220,8 @@ ascii_draw (GtkDrawingArea *drawing_area,
 
 	render_ascii_lines (gh, cr, imin, imax);
 #endif
+
+	TEST_DEBUG_FUNCTION_END
 }
 
 static void
@@ -1234,17 +1232,7 @@ offsets_draw (GtkDrawingArea *drawing_area,
                            gpointer user_data)
 {
 	GtkHex *gh = GTK_HEX(user_data);
-
 	g_return_if_fail(GTK_IS_HEX(gh));
-	TEST_DEBUG_FUNCTION_START 
-
-	/* FIXME - MAGIC NUMBER - set the width to 8 + 1 = 9 characters
-	 * (this is fixed based on offset length always being 8 chars.)  */
-	gtk_drawing_area_set_content_width (drawing_area,
-			9 * gh->char_width);
-
-	g_debug("%s: width: %d - height: %d",
-			__func__, width, height);
 
 	render_offsets (gh, cr, 0, gh->vis_lines);
 
@@ -1268,9 +1256,7 @@ offsets_draw (GtkDrawingArea *drawing_area,
 #endif
 }
 
-// FIXME - CLEAN UP THIS MESS! Not touching it right now because I don't
-// know whether we'll need to 'revive' some variables that aren't really
-// used here, like 'old_cpl'
+// FIXME - CLEAN UP FURTHER.
 /*
  * this calculates how many bytes we can stuff into one line and how many
  * lines we can display according to the current size of the widget
@@ -1279,87 +1265,12 @@ static void
 recalc_displays(GtkHex *gh)
 {
 	GtkWidget *widget = GTK_WIDGET (gh);
-	int old_cpl = gh->cpl;
-	gboolean scroll_to_cursor;
-	gdouble value;
-	int total_cpl, xcpl;
-	// TEST
-	GtkStyleContext *context;
-	GtkBorder padding;
-	GtkBorder border;
-
-	// TEST - no longer needed??
-#if 0
-	context = gtk_widget_get_style_context (widget);
-
-	gtk_style_context_get_padding (context, &padding);
-	gtk_style_context_get_border (context, &border);
-#endif
+	int xcpl;
 
 	/*
 	 * Only change the value of the adjustment to put the cursor on screen
 	 * if the cursor is currently within the displayed portion.
 	 */
-	// FIXME - WTF??
-	scroll_to_cursor = (gh->cpl == 0) ||
-		((gh->cursor_pos / gh->cpl >= gtk_adjustment_get_value (gh->adj)) &&
-		 (gh->cursor_pos / gh->cpl <= gtk_adjustment_get_value (gh->adj) +
-			  gh->vis_lines - 1));
-	
-	// TEST - no longer needed?
-#if 0
-	gh->xdisp_width = 1;
-	gh->adisp_width = 1;
-#endif
-
-#if 0
-	// API CHANGE
-	total_width -= 20 +		// LAR DUMB TEST
-	               2 * padding.left + 2 * padding.right + req.width;
-
-//	total_width -= 2*gtk_container_get_border_width(GTK_CONTAINER(gh)) +
-//	               2 * padding.left + 2 * padding.right + req.width;
-
-	if(gh->show_offsets)
-		total_width -= padding.left + padding.right + 9 * gh->char_width;
-#endif
-
-	// TEST - MOVED TO HEX_DRAW
-#if 0
-	// TEST - DUMB HACK
-	total_width = total_width - padding.left - padding.right - 
-		border.left - border.right - 100;
-
-	total_cpl = total_width / gh->char_width;
-
-	/* Sanity check. */
-	if (total_cpl == 0 || total_width < 0) {
-		gh->cpl = gh->lines = gh->vis_lines = 0;
-		g_critical("%s: Something has gone wrong; total cpl is 0 or "
-				"width is too small.");
-		return;
-	}
-	
-	/* calculate how many bytes we can stuff in one line */
-	gh->cpl = 0;
-	do {
-		if (gh->cpl % gh->group_type == 0 && total_cpl < gh->group_type * 3)
-			break;
-		
-		gh->cpl++;        /* just added one more char */
-		total_cpl -= 3;   /* 2 for xdisp, 1 for adisp */
-		
-		if (gh->cpl % gh->group_type == 0)	/* just ended a group */
-			total_cpl--;
-
-	} while (total_cpl > 0);
-
-	/* If gh->cpl is not greater than 0, something has gone wrong. */
-	g_debug("%s: gh->cpl: %d", __func__, gh->cpl);
-	g_return_if_fail (gh->cpl > 0);
-#endif
-
-	// TEST
 	if (gh->document->file_size == 0 || gh->cpl == 0)
 //	if (gh->document->file_size == 0)
 		gh->lines = 1;
@@ -1369,40 +1280,32 @@ recalc_displays(GtkHex *gh)
 			gh->lines++;
 	}
 
-	// TEST - TRYING MOVING TO HEX_DRAW
-#if 0
-	/* set visible lines */
-	gh->vis_lines = height / gh->char_height;
-#endif
-
-	// MOVED TO HEX_DRAW
-#if 0
-	/* display width of ascii drawing area */
-	gh->adisp_width = gh->cpl * gh->char_width;
-#endif
 	/* set number of hex characters per line */
+	// FIXME - different than 'xcpl' in hex_draw. confusing.
 	xcpl = gh->cpl * 2 + (gh->cpl - 1) / gh->group_type;
-
-#if 0
-	/* display width of hex drawing area */
-	gh->xdisp_width = xcpl * gh->char_width;
-
-	gh->extra_width = total_width - gh->xdisp_width - gh->adisp_width;
-	g_debug("%s: TOTAL_WIDTH: %d - GH->ADISP_WIDTH: %d - GH->XDISP_WIDTH: %d - GH->EXTRA_WIDTH: %d",
-			__func__,
-			total_width, gh->adisp_width, gh->xdisp_width, gh->extra_width);
-#endif
 
 	if (gh->disp_buffer)
 		g_free (gh->disp_buffer);
 	
 	gh->disp_buffer = g_malloc ((xcpl + 1) * (gh->vis_lines + 1));
+}
+
+static void
+recalc_scrolling (GtkHex *gh)
+{
+	gboolean scroll_to_cursor;
+	gdouble value;
+
+	scroll_to_cursor = (gh->cpl == 0) ||
+		((gh->cursor_pos / gh->cpl >= gtk_adjustment_get_value (gh->adj)) &&
+		 (gh->cursor_pos / gh->cpl <= gtk_adjustment_get_value (gh->adj) +
+			  gh->vis_lines - 1));
 
 	/* calculate new display position */
 	if (gh->cpl == 0)	// TEST to avoid divide by zero
 		value = 0;
 	else
-		value = MIN (gh->top_line * old_cpl / gh->cpl, gh->lines - gh->vis_lines);
+		value = MIN (gh->top_line, gh->lines - gh->vis_lines);
 
 	/* clamp value */
 	value = MAX (0, value);
@@ -1433,7 +1336,7 @@ recalc_displays(GtkHex *gh)
  * connected to value-changed signal of scrollbar's GtkAdjustment
  */
 static void
-display_scrolled(GtkAdjustment *adj, GtkHex *gh)
+display_scrolled (GtkAdjustment *adj, GtkHex *gh)
 {
 	gint dx;
 	gint dy;
@@ -1443,20 +1346,25 @@ display_scrolled(GtkAdjustment *adj, GtkHex *gh)
 	g_return_if_fail (gtk_widget_is_drawable (gh->xdisp) &&
 			gtk_widget_is_drawable (gh->adisp));
 
-	g_debug("%s: ADJ: %f",
+	g_debug("%s: ADJ - VALUE: %f",
 			__func__,
-			gtk_adjustment_get_page_size (gh->adj));
+			gtk_adjustment_get_value (gh->adj));
 
-	gh->top_line = gtk_adjustment_get_value(adj);
+	gh->top_line = gtk_adjustment_get_value (adj);
 
 	gtk_hex_update_all_auto_highlights(gh, TRUE, TRUE);
 	gtk_hex_invalidate_all_highlights(gh);
 
-	// TEST FOR SCROLLING - yes it's needed.. not the best appraoch, but for
-	// now it works.
+	/* FIXME - this works, but feels hackish. The problem is, _snapshot_child
+	 * does nothing if it 'detects' that a widget does not need to be redrawn
+	 * which is what it seems to think re: our drawing areas on a scroll event.
+	 */
 	gtk_widget_queue_draw (GTK_WIDGET(gh->adisp));
 	gtk_widget_queue_draw (GTK_WIDGET(gh->xdisp));
 	gtk_widget_queue_draw (GTK_WIDGET(gh->offsets));
+	gtk_widget_queue_draw (GTK_WIDGET(gh));
+
+	TEST_DEBUG_FUNCTION_END
 }
 
 /*
@@ -1475,7 +1383,6 @@ scroll_timeout_handler(GtkHex *gh)
 	return TRUE;
 }
 
-/* REWRITE */
 static gboolean
 scroll_cb (GtkEventControllerScroll *controller,
                double                    dx,
@@ -1483,11 +1390,8 @@ scroll_cb (GtkEventControllerScroll *controller,
                gpointer                  user_data)
 {
 	GtkHex *gh = GTK_HEX (user_data);
-//	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
 	guint button;
 	double old_value, new_value;
-
-	TEST_DEBUG_FUNCTION_START
 
 	g_return_val_if_fail (GTK_IS_HEX(gh), FALSE);
 
@@ -1513,15 +1417,11 @@ hex_pressed_cb (GtkGestureClick *gesture,
 	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
 	guint button;
 
-	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (GTK_IS_WIDGET(widget));
 
 	button = gtk_gesture_single_get_current_button
 		(GTK_GESTURE_SINGLE(gesture));
-
-	g_debug("%s: n_press: %d, x: %f - y: %f - button: %u",
-			__func__, n_press, x, y, button);
 
 	/* Single-press */
 	if (button == GDK_BUTTON_PRIMARY)
@@ -1591,7 +1491,6 @@ hex_released_cb (GtkGestureClick *gesture,
 	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
 	guint button;
 
-	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (GTK_IS_WIDGET(widget));
 
@@ -1612,6 +1511,8 @@ hex_released_cb (GtkGestureClick *gesture,
 	}
 }
 
+// FIXME - UNUSED FOR NOW - HERE'S BOILERPLATE IF NEEDED LATER
+#if 0
 static void
 hex_drag_begin_cb (GtkGestureDrag *gesture,
                double          start_x,
@@ -1622,7 +1523,6 @@ hex_drag_begin_cb (GtkGestureDrag *gesture,
 	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
 	guint button;
 
-	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (GTK_IS_WIDGET(widget));
 
@@ -1641,13 +1541,13 @@ hex_drag_end_cb (GtkGestureDrag *gesture,
 	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
 	guint button;
 
-	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (GTK_IS_WIDGET(widget));
 
 	g_debug("%s: offset_x: %f - offset_y: %f",
 			__func__, offset_x, offset_y);
 }
+#endif
 
 static void
 hex_drag_update_cb (GtkGestureDrag *gesture,
@@ -1658,34 +1558,18 @@ hex_drag_update_cb (GtkGestureDrag *gesture,
 	GtkHex *gh = GTK_HEX (user_data);
 	GtkWidget *widget = GTK_WIDGET (gh->xdisp);
 	guint button;
-
-	// TEST
 	double start_x, start_y;
 	double x, y;
-
-	// TEST - FROM OLD CODE:
 	GtkAllocation allocation;
 
-	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (GTK_IS_WIDGET(widget));
 
-	g_debug("%s: offset_x: %f - offset_y: %f",
-			__func__, offset_x, offset_y);
-
-	gtk_widget_get_allocation(widget, &allocation);
-
-	g_debug("%s: allocation: x: %d - y: %d - width: %d - height: %d",
-			__func__,
-			allocation.x, allocation.y, allocation.width, allocation.height);
-
-	gtk_gesture_drag_get_start_point(gesture, &start_x, &start_y);
+	gtk_widget_get_allocation (widget, &allocation);
+	gtk_gesture_drag_get_start_point (gesture, &start_x, &start_y);
 
 	x = start_x + offset_x;
 	y = start_y + offset_y;
-
-	g_debug("%s: x: %f - y: %f",
-			__func__, x, y);
 
 	if (y < 0) {
 		gh->scroll_dir = -1;
@@ -1702,8 +1586,6 @@ hex_drag_update_cb (GtkGestureDrag *gesture,
 							  G_SOURCE_FUNC(scroll_timeout_handler),
 							  gh);
 		}
-		// FIXME - don't really like this - seems like it's setting up for
-		// silent failure. Maybe put a debugging msg once understand better.
 		return;
 	}
 	else {
@@ -1731,15 +1613,11 @@ ascii_pressed_cb (GtkGestureClick *gesture,
 	GtkWidget *widget = GTK_WIDGET (gh->adisp);
 	guint button;
 
-	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (GTK_IS_WIDGET(widget));
 
 	button = gtk_gesture_single_get_current_button
 		(GTK_GESTURE_SINGLE(gesture));
-
-	g_debug("%s: n_press: %d, x: %f - y: %f",
-			__func__, n_press, x, y);
 
 	/* Single-press */
 	if (button == GDK_BUTTON_PRIMARY)
@@ -1767,8 +1645,6 @@ ascii_pressed_cb (GtkGestureClick *gesture,
 	/* Right-click */
 	else if (button == GDK_BUTTON_SECONDARY)
 	{
-		g_debug("%s: RIGHT CLICK - TRYING TO POPUP CONTEXT MENU.", __func__);
-
 		popup_context_menu(widget, x, y);
 	}
 	/* Middle-click press. */
@@ -1809,7 +1685,6 @@ ascii_released_cb (GtkGestureClick *gesture,
 	GtkWidget *widget = GTK_WIDGET (gh->adisp);
 	guint button;
 
-	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (GTK_IS_WIDGET(widget));
 
@@ -1841,34 +1716,18 @@ ascii_drag_update_cb (GtkGestureDrag *gesture,
 	GtkHex *gh = GTK_HEX (user_data);
 	GtkWidget *widget = GTK_WIDGET (gh->adisp);
 	guint button;
-
-	// TEST
 	double start_x, start_y;
 	double x, y;
-
-	// TEST - FROM OLD CODE:
 	GtkAllocation allocation;
 
-	TEST_DEBUG_FUNCTION_START 
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (GTK_IS_WIDGET(widget));
 
-	g_debug("%s: offset_x: %f - offset_y: %f",
-			__func__, offset_x, offset_y);
-
 	gtk_widget_get_allocation(widget, &allocation);
-
-	g_debug("%s: allocation: x: %d - y: %d - width: %d - height: %d",
-			__func__,
-			allocation.x, allocation.y, allocation.width, allocation.height);
-
 	gtk_gesture_drag_get_start_point(gesture, &start_x, &start_y);
 
 	x = start_x + offset_x;
 	y = start_y + offset_y;
-
-	g_debug("%s: x: %f - y: %f",
-			__func__, x, y);
 
 	if (y < 0) {
 		gh->scroll_dir = -1;
@@ -1885,8 +1744,6 @@ ascii_drag_update_cb (GtkGestureDrag *gesture,
 							  G_SOURCE_FUNC(scroll_timeout_handler),
 							  gh);
 		}
-		// FIXME - don't really like this - seems like it's setting up for
-		// silent failure. Maybe put a debugging msg once understand better.
 		return;
 	}
 	else {
@@ -1913,8 +1770,6 @@ key_press_cb (GtkEventControllerKey *controller,
 	GtkWidget *widget = GTK_WIDGET(user_data);
 	gboolean ret = TRUE;
 
-	TEST_DEBUG_FUNCTION_START
-
 	hide_cursor(gh);
 
 	/* don't trample over Ctrl */
@@ -1932,7 +1787,7 @@ key_press_cb (GtkEventControllerKey *controller,
 	}
 
 	switch(keyval) {
-		// TEST - COPY
+		// FIXME TEST - COPY
 	case GDK_KEY_F12:
 		g_debug("F12 PRESSED - TESTING CLIPBOARD COPY");
 		gtk_hex_copy_to_clipboard (gh);
@@ -2096,8 +1951,6 @@ key_release_cb (GtkEventControllerKey *controller,
 	GtkWidget *widget = GTK_WIDGET(user_data);
 	gboolean ret = TRUE;
 
-	TEST_DEBUG_FUNCTION_START
-
 	/* avoid shift key getting 'stuck' */
 
 	if (state & GDK_SHIFT_MASK) {
@@ -2111,8 +1964,6 @@ show_offsets_widget(GtkHex *gh)
 {
 	g_return_if_fail (GTK_IS_WIDGET (gh->offsets));
 
-	TEST_DEBUG_FUNCTION_START 
-
 	gtk_widget_show (gh->offsets);
 }
 
@@ -2121,8 +1972,6 @@ hide_offsets_widget(GtkHex *gh)
 {
 	g_return_if_fail (gtk_widget_get_realized (gh->offsets));
 
-	TEST_DEBUG_FUNCTION_START 
-
 	gtk_widget_hide (gh->offsets);
 }
 
@@ -2130,7 +1979,8 @@ hide_offsets_widget(GtkHex *gh)
 /*
  * default data_changed signal handler
  */
-static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
+static void gtk_hex_real_data_changed (GtkHex *gh, gpointer data)
+{
 	HexChangeData *change_data = (HexChangeData *)data;
 	gint start_line, end_line;
 	guint lines;
@@ -2180,22 +2030,26 @@ static void gtk_hex_real_data_changed(GtkHex *gh, gpointer data) {
     {
         invalidate_offsets (gh, start_line, end_line);
     }
+
+	TEST_DEBUG_FUNCTION_END
 }
 
 static void
-bytes_changed(GtkHex *gh, int start, int end)
+bytes_changed (GtkHex *gh, int start, int end)
 {
 	int start_line;
 	int end_line;
 
-	g_return_if_fail(gh->cpl);	/* check for divide-by-zero issues */
+	g_return_if_fail (gh->cpl);	/* check for divide-by-zero issues */
 
-	start_line = start/gh->cpl - gh->top_line;
-	start_line = MAX(start_line, 0);
+	start_line = start / gh->cpl - gh->top_line;
+	start_line = MAX (start_line, 0);
 
-	end_line = end/gh->cpl - gh->top_line;
+	end_line = end / gh->cpl - gh->top_line;
 
-	g_return_if_fail(end_line >=0 && start_line <= gh->vis_lines);
+	/* Nothing needs to be done in some instances */
+	if (end_line < 0 || start_line > gh->vis_lines)
+		return;
 
     invalidate_hex_lines (gh, start_line, end_line);
     invalidate_ascii_lines (gh, start_line, end_line);
@@ -2607,6 +2461,18 @@ static void gtk_hex_real_paste_from_clipboard(GtkHex *gh,
 #endif
 }
 
+static void
+gtk_hex_real_draw_complete (GtkHex *gh,
+		gpointer user_data)
+{
+	TEST_DEBUG_FUNCTION_START
+
+	(void)user_data;
+	recalc_scrolling (gh);
+
+	TEST_DEBUG_FUNCTION_END
+}
+
 static void gtk_hex_finalize(GObject *gobject) {
 	GtkHex *gh = GTK_HEX(gobject);
 	
@@ -2627,200 +2493,6 @@ static void gtk_hex_finalize(GObject *gobject) {
 	G_OBJECT_CLASS(gtk_hex_parent_class)->finalize(gobject);
 }
 
-
-
-// REWRITE FOR GESTURES/EVENT CONTROLLERS
-#if 0
-static gboolean gtk_hex_key_press(GtkWidget *w, GdkEventKey *event) {
-	GtkHex *gh = GTK_HEX(w);
-	gint ret = TRUE;
-
-	hide_cursor(gh);
-
-	if(!(event->state & GDK_SHIFT_MASK)) {
-		gh->selecting = FALSE;
-	}
-	else {
-		gh->selecting = TRUE;
-	}
-	switch(event->keyval) {
-	case GDK_KEY_BackSpace:
-		if(gh->cursor_pos > 0) {
-			hex_document_set_data(gh->document, gh->cursor_pos - 1,
-								  0, 1, NULL, TRUE);
-			if (gh->selecting)
-				gh->selecting = FALSE;
-			gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
-		}
-		break;
-	case GDK_KEY_Tab:
-	case GDK_KEY_KP_Tab:
-		if (gh->active_view == VIEW_ASCII) {
-			gh->active_view = VIEW_HEX;
-		}
-		else {
-			gh->active_view = VIEW_ASCII;
-		}
-		break;
-	case GDK_KEY_Delete:
-		if(gh->cursor_pos < gh->document->file_size) {
-			hex_document_set_data(gh->document, gh->cursor_pos,
-								  0, 1, NULL, TRUE);
-			gtk_hex_set_cursor(gh, gh->cursor_pos);
-		}
-		break;
-	case GDK_KEY_Up:
-		gtk_hex_set_cursor(gh, gh->cursor_pos - gh->cpl);
-		break;
-	case GDK_KEY_Down:
-		gtk_hex_set_cursor(gh, gh->cursor_pos + gh->cpl);
-		break;
-	case GDK_KEY_Page_Up:
-		gtk_hex_set_cursor(gh, MAX(0, (gint)gh->cursor_pos - gh->vis_lines*gh->cpl));
-		break;
-	case GDK_KEY_Page_Down:
-		gtk_hex_set_cursor(gh, MIN((gint)gh->document->file_size, (gint)gh->cursor_pos + gh->vis_lines*gh->cpl));
-		break;
-	default:
-		if (event->state & GDK_MOD1_MASK) {
-			show_cursor(gh);
-			return FALSE;
-		}
-		if(gh->active_view == VIEW_HEX)
-			switch(event->keyval) {
-			case GDK_KEY_Left:
-				if(!(event->state & GDK_SHIFT_MASK)) {
-					gh->lower_nibble = !gh->lower_nibble;
-					if(gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
-				}
-				else {
-					gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
-				}
-				break;
-			case GDK_KEY_Right:
-				if(gh->cursor_pos >= gh->document->file_size)
-					break;
-				if(!(event->state & GDK_SHIFT_MASK)) {
-					gh->lower_nibble = !gh->lower_nibble;
-					if(!gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else {
-					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				break;
-			default:
-				if(event->length != 1)
-					ret = FALSE;
-				else if((event->keyval >= '0')&&(event->keyval <= '9')) {
-					hex_document_set_nibble(gh->document, event->keyval - '0',
-											gh->cursor_pos, gh->lower_nibble,
-											gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gh->lower_nibble = !gh->lower_nibble;
-					if(!gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else if((event->keyval >= 'A')&&(event->keyval <= 'F')) {
-					hex_document_set_nibble(gh->document, event->keyval - 'A' + 10,
-											gh->cursor_pos, gh->lower_nibble,
-											gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gh->lower_nibble = !gh->lower_nibble;
-					if(!gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else if((event->keyval >= 'a')&&(event->keyval <= 'f')) {
-					hex_document_set_nibble(gh->document, event->keyval - 'a' + 10,
-											gh->cursor_pos, gh->lower_nibble,
-											gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gh->lower_nibble = !gh->lower_nibble;
-					if(!gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else if((event->keyval >= GDK_KEY_KP_0)&&(event->keyval <= GDK_KEY_KP_9)) {
-					hex_document_set_nibble(gh->document, event->keyval - GDK_KEY_KP_0,
-											gh->cursor_pos, gh->lower_nibble,
-											gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gh->lower_nibble = !gh->lower_nibble;
-					if(!gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else
-					ret = FALSE;
-
-				break;      
-			}
-		else if(gh->active_view == VIEW_ASCII)
-			switch(event->keyval) {
-			case GDK_KEY_Left:
-				gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
-				break;
-			case GDK_KEY_Right:
-				gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				break;
-			default:
-				if(event->length != 1)
-					ret = FALSE;
-				else if(is_displayable(event->keyval)) {
-					hex_document_set_byte(gh->document, event->keyval,
-										  gh->cursor_pos, gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else if((event->keyval >= GDK_KEY_KP_0)&&(event->keyval <= GDK_KEY_KP_9)) {
-					hex_document_set_byte(gh->document, event->keyval - GDK_KEY_KP_0 + '0',
-											gh->cursor_pos, gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else
-					ret = FALSE;
-
-				break;
-			}
-		break;
-	}
-
-	show_cursor(gh);
-	
-	return ret;
-}
-#endif
-
-// SWITCH TO GESTURES/EVENT CONTROLLERS
-#if 0
-static gboolean gtk_hex_key_release(GtkWidget *w, GdkEventKey *event) {
-	GtkHex *gh = GTK_HEX(w);
-
-	if (event->keyval == GDK_KEY_Shift_L || event->keyval == GDK_KEY_Shift_R) {
-		gh->selecting = FALSE;
-	}
-
-	return TRUE;
-}
-
-static gboolean gtk_hex_button_release(GtkWidget *w, GdkEventButton *event) {
-	GtkHex *gh = GTK_HEX(w);
-
-	if(event->state & GDK_SHIFT_MASK) {
-		gh->selecting = FALSE;
-	}
-
-	return TRUE;
-}
-#endif
-
-
 static void
 gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 {
@@ -2830,7 +2502,7 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 	cairo_t *cr;
 	GtkWidget *child;
 
-	TEST_DEBUG_FUNCTION_START 
+	TEST_DEBUG_FUNCTION_START
 
 	/* Update character width & height */
 	gh->char_width = get_char_width(gh);
@@ -2854,27 +2526,18 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 
 	cr = gtk_snapshot_append_cairo (snapshot, &rect);
 
-	g_debug("%s: width: %f - height: %f",
-			__func__, width, height);
-
-	// TEST for trying render_xc
-	show_cursor(gh);
-
-	/* queue draw functions for drawing areas - order matters here as
-	 * we're pegging certain elements of the ascii widget being drawn
-	 * to after the hex widget is drawn.
+	/* queue child draw functions
 	 */
-	gtk_widget_snapshot_child (widget, gh->xdisp, snapshot);
-	gtk_widget_snapshot_child (widget, gh->adisp, snapshot);
-
-	/* queue draw functions for other children */
 	for (child = gtk_widget_get_first_child (widget);
-							/* don't draw these as we already did above. */
-			child != NULL && child != gh->xdisp && child != gh->adisp;
+			child != NULL;
 			child = gtk_widget_get_next_sibling (child))
 	{
 		gtk_widget_snapshot_child (widget, child, snapshot);
 	}
+
+	g_signal_emit_by_name(G_OBJECT(gh), "draw-complete");
+
+	TEST_DEBUG_FUNCTION_END
 }
 
 static void
@@ -2883,8 +2546,6 @@ gtk_hex_document_changed (HexDocument* doc, gpointer change_data,
 {
 	GtkHex *gh = GTK_HEX(data);
 	g_return_if_fail (GTK_IS_HEX (gh));
-
-	TEST_DEBUG_FUNCTION_START
 
     gtk_hex_real_data_changed (gh, change_data);
 
@@ -2902,7 +2563,7 @@ gtk_hex_class_init (GtkHexClass *klass)
 
 	/* Layout manager: box-style layout. */
 	gtk_widget_class_set_layout_manager_type (widget_class,
-			GTK_TYPE_BOX_LAYOUT);
+			GTK_TYPE_HEX_LAYOUT);
 
 	/* CSS name */
 
@@ -2966,6 +2627,16 @@ gtk_hex_class_init (GtkHexClass *klass)
 				G_TYPE_NONE,
 				0);
 	
+	gtkhex_signals[DRAW_COMPLETE_SIGNAL] = 
+		g_signal_new_class_handler ("draw-complete",
+				G_OBJECT_CLASS_TYPE(object_class),
+				G_SIGNAL_RUN_FIRST,
+				G_CALLBACK(gtk_hex_real_draw_complete),
+				NULL, NULL,
+				NULL,
+				G_TYPE_NONE,
+				0);
+
 	/* ACTIONS */
 
 	gtk_widget_class_install_action (widget_class, "gtkhex.copy",
@@ -3004,30 +2675,7 @@ gtk_hex_class_init (GtkHexClass *klass)
 			"gtkhex.redo",
 			NULL);	// no args.
 
-	// API CHANGES
-//	klass->primary = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
-//	klass->clipboard = gtk_clipboard_get(GDK_NONE);
-
-	// LAR - NOTE - GTK4, THIS IS ONLY CALLED IF THE WIDGET DOES *NOT* HAVE
-	// A LAYOUT MANAGER
-	//
-	// POSSIBLE TODO - subclass a GtkLayoutManager and set the `allocate'
-	// vfunc.
-//	GTK_WIDGET_CLASS(klass)->size_allocate = gtk_hex_size_allocate;
-
-	
-	// GONESVILLE WITH GTK4
-//	GTK_WIDGET_CLASS(klass)->get_preferred_width = gtk_hex_get_preferred_width;
-//	GTK_WIDGET_CLASS(klass)->get_preferred_height = gtk_hex_get_preferred_height;
-	// LAR - no can do, gtk4 - just seems to draw a border??
-//	LAR - TEST FOR GTK4
 	widget_class->snapshot = gtk_hex_snapshot;
-
-//	GTK4 API CHANGES - SWITCH TO GESTURES / EVENT CONTROLLERS
-//	GTK_WIDGET_CLASS(klass)->key_press_event = gtk_hex_key_press;
-//	GTK_WIDGET_CLASS(klass)->key_release_event = gtk_hex_key_release;
-//	GTK_WIDGET_CLASS(klass)->button_release_event = gtk_hex_button_release;
-
 	object_class->finalize = gtk_hex_finalize;
 }
 
@@ -3036,11 +2684,15 @@ gtk_hex_init(GtkHex *gh)
 {
 	GtkWidget *widget = GTK_WIDGET(gh);
 
+	GtkHexLayoutChild *child_info;
+
 	GtkCssProvider *provider;
 	GtkStyleContext *context;
 
 	GtkGesture *gesture;
 	GtkEventController *controller;
+
+	gh->layout_manager = gtk_widget_get_layout_manager (widget);
 
 	gh->disp_buffer = NULL;
 	gh->default_cpl = DEFAULT_CPL;
@@ -3074,8 +2726,8 @@ gtk_hex_init(GtkHex *gh)
 	gtk_widget_set_can_focus (widget, TRUE);
 	gtk_widget_set_focusable (widget, TRUE);
 
-	gtk_widget_set_vexpand (widget, TRUE);
-	gtk_widget_set_hexpand (widget, TRUE);
+//	gtk_widget_set_vexpand (widget, TRUE);
+//	gtk_widget_set_hexpand (widget, TRUE);
 
 
 	/* Init CSS */
@@ -3110,8 +2762,12 @@ gtk_hex_init(GtkHex *gh)
 
 	gh->offsets = gtk_drawing_area_new();
 	gtk_widget_set_parent (gh->offsets, widget);
-	gtk_widget_set_halign (gh->offsets, GTK_ALIGN_START);
-	gtk_widget_set_hexpand (gh->offsets, FALSE);
+	child_info = GTK_HEX_LAYOUT_CHILD (gtk_layout_manager_get_layout_child
+			(gh->layout_manager, gh->offsets));
+	gtk_hex_layout_child_set_column (child_info, OFFSETS_COLUMN);
+
+//	gtk_widget_set_halign (gh->offsets, GTK_ALIGN_START);
+//	gtk_widget_set_hexpand (gh->offsets, FALSE);
 
 	/* Create the pango layout for the widget */
 	gh->olayout = gtk_widget_create_pango_layout (gh->offsets, "");
@@ -3127,49 +2783,26 @@ gtk_hex_init(GtkHex *gh)
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->offsets));
 	gtk_style_context_add_class (context, "header");
 
-
 	/* hide it by default. */
 	gtk_widget_hide (gh->offsets);
-
-
 
 
 	/* Setup our Hex drawing area. */
 
 	gh->xdisp = gtk_drawing_area_new();
 	gtk_widget_set_parent (gh->xdisp, widget);
-	gtk_widget_set_hexpand (gh->xdisp, TRUE);
+	child_info = GTK_HEX_LAYOUT_CHILD (gtk_layout_manager_get_layout_child
+			(gh->layout_manager, gh->xdisp));
+	gtk_hex_layout_child_set_column (child_info, HEX_COLUMN);
 
 	/* Create the pango layout for the widget */
 	gh->xlayout = gtk_widget_create_pango_layout (gh->xdisp, "");
-
-	// TEST / MONITOR - not sure if needed for keyboard events. - NOT
-	// needed for mouse events.
-//	gtk_widget_set_can_focus (gh->xdisp, TRUE);
 
 	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (gh->xdisp),
 			hex_draw,	// GtkDrawingAreaDrawFunc draw_func,
 			gh,			// gpointer user_data,
 			NULL);		// GDestroyNotify destroy);
 
-
-
-	// REWRITE - LAR
-#if 0
-
-	gtk_widget_set_events (gh->xdisp, GDK_EXPOSURE_MASK |
-			GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
-			GDK_BUTTON_MOTION_MASK | GDK_SCROLL_MASK);
-
-	g_signal_connect(G_OBJECT(gh->xdisp), "button_press_event",
-					 G_CALLBACK(hex_button_cb), gh);
-	g_signal_connect(G_OBJECT(gh->xdisp), "button_release_event",
-					 G_CALLBACK(hex_button_cb), gh);
-	g_signal_connect(G_OBJECT(gh->xdisp), "motion_notify_event",
-					 G_CALLBACK(hex_motion_cb), gh);
-	g_signal_connect(G_OBJECT(gh->xdisp), "scroll_event",
-					 G_CALLBACK(hex_scroll_cb), gh);
-#endif
 
 	/* Set context var to hex widget's context... */
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->xdisp));
@@ -3182,15 +2815,14 @@ gtk_hex_init(GtkHex *gh)
 
 	gh->adisp = gtk_drawing_area_new();
 	gtk_widget_set_parent (gh->adisp, widget);
-	gtk_widget_set_halign (gh->adisp, GTK_ALIGN_START);
-	gtk_widget_set_hexpand (gh->adisp, FALSE);
+	child_info = GTK_HEX_LAYOUT_CHILD (gtk_layout_manager_get_layout_child
+			(gh->layout_manager, gh->adisp));
+	gtk_hex_layout_child_set_column (child_info, ASCII_COLUMN);
+
 	gtk_widget_set_name (gh->adisp, "asciidisplay");
 	
 	/* Create the pango layout for the widget */
 	gh->alayout = gtk_widget_create_pango_layout (gh->adisp, "");
-
-	// LAR - TEST  - dont' know if needed - NOT needed for mouse clicks.
-//	gtk_widget_set_can_focus (gh->adisp, TRUE);
 
 	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (gh->adisp),
 			ascii_draw,	/* GtkDrawingAreaDrawFunc draw_func, */
@@ -3204,29 +2836,12 @@ gtk_hex_init(GtkHex *gh)
 	                                GTK_STYLE_PROVIDER (provider),
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-	// LAR - REWRITE
-#if 0
-	gtk_widget_set_events (gh->adisp, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK
-			| GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK |
-			GDK_SCROLL_MASK);
-
-	g_signal_connect(G_OBJECT(gh->adisp), "button_press_event",
-					 G_CALLBACK(ascii_button_cb), gh);
-	g_signal_connect(G_OBJECT(gh->adisp), "button_release_event",
-					 G_CALLBACK(ascii_button_cb), gh);
-	g_signal_connect(G_OBJECT(gh->adisp), "motion_notify_event",
-					 G_CALLBACK(ascii_motion_cb), gh);
-	g_signal_connect(G_OBJECT(gh->adisp), "scroll_event",
-					 G_CALLBACK(ascii_scroll_cb), gh);
-#endif
-
 	/* Set a minimum size for hex/ascii drawing areas. */
 
 	gtk_widget_set_size_request (gh->adisp,
 			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
 	gtk_widget_set_size_request (gh->xdisp,
 			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
-
 
 	/* Initialize Adjustment */
 
@@ -3235,7 +2850,11 @@ gtk_hex_init(GtkHex *gh)
 	/* Setup scrollbar. */
 	gh->scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL,
 			gh->adj);
+
 	gtk_widget_set_parent (gh->scrollbar, widget);
+	child_info = GTK_HEX_LAYOUT_CHILD (gtk_layout_manager_get_layout_child
+			(gh->layout_manager, gh->scrollbar));
+	gtk_hex_layout_child_set_column (child_info, SCROLLBAR_COLUMN);
 
 	/* Connect gestures to ascii/hex drawing areas.
 	 */
@@ -3260,12 +2879,15 @@ gtk_hex_init(GtkHex *gh)
 	/* drag gestures */
 	gesture = gtk_gesture_drag_new ();
 
+	// TODO - IF NEEDED
+#if 0
 	g_signal_connect (gesture, "drag-begin",
 			G_CALLBACK(hex_drag_begin_cb),
 			gh);
 	g_signal_connect (gesture, "drag-end",
 			G_CALLBACK(hex_drag_end_cb),
 			gh);
+#endif
 	g_signal_connect (gesture, "drag-update",
 			G_CALLBACK (hex_drag_update_cb),
 			gh);
@@ -3346,7 +2968,6 @@ gtk_hex_init(GtkHex *gh)
 			"gtkhex.undo", FALSE);
 	gtk_widget_action_set_enabled (GTK_WIDGET(gh),
 			"gtkhex.redo", FALSE);
-
 }
 
 GtkWidget *gtk_hex_new(HexDocument *owner) {
@@ -3551,8 +3172,6 @@ void gtk_hex_set_group_type(GtkHex *gh, guint gt) {
  */
 void gtk_hex_show_offsets(GtkHex *gh, gboolean show)
 {
-	TEST_DEBUG_FUNCTION_START
-
 	g_return_if_fail(gh != NULL);
 	g_return_if_fail(GTK_IS_HEX(gh));
 

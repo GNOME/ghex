@@ -7,12 +7,11 @@ CFLAGS=-Wall -Wextra -Werror=implicit -std=c11 -pedantic \
        -Wno-unused-variable -Wno-unused-parameter \
        $(GTK_CFLAGS) \
        -I../build -I. \
-       -DHAVE_CONFIG_H \
        $(DEBUG)
 
 .PHONY: clean compile-resources
 
-STUB: gtkhex.o hex-document.o ghex-application-window.o hex-dialog.o findreplace.o chartable.o converter.o resources.o configuration.o preferences.o common-ui.o print.o
+main: gtkhex.o hex-document.o ghex-application-window.o hex-dialog.o findreplace.o chartable.o converter.o resources.o configuration.o preferences.o common-ui.o print.o gtkhex-layout-manager.o
 
 compile-resources:
 	glib-compile-resources ghex.gresource.xml --target=resources.c --generate-source

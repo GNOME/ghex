@@ -24,7 +24,13 @@
 #ifndef GHEX_CHARTABLE_H
 #define GHEX_CHARTABLE_H
 
+#include <stdlib.h>
+
 #include <gtk/gtk.h>
+#include <glib/gi18n.h>
+
+#include "gtkhex.h"
+#include "common-ui.h"
 
 G_BEGIN_DECLS
 

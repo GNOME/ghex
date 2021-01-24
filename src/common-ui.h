@@ -29,8 +29,8 @@
 
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
-#include <gtkhex.h>
 
+#include "gtkhex.h"
 #include "configuration.h"
 #include "print.h"
 
@@ -42,6 +42,7 @@ void common_help_cb (GtkWindow *parent);
 void common_about_cb (GtkWindow *parent);
 void common_print (GtkWindow *parent, GtkHex *gh, gboolean preview);
 void display_error_dialog (GtkWindow *parent, const char *msg);
+void display_info_dialog (GtkWindow *parent, const char *msg);
 
 G_END_DECLS
 

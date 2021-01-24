@@ -4,6 +4,8 @@
 /* chartable.c - a window with a character table
 
    Copyright (C) 1998 - 2004 Free Software Foundation
+   Copyright © 2005-2020 FIXME
+   Copyright © Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -20,23 +22,14 @@
    If not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-   Author: Jaka Mocnik <jaka@gnu.org>
+   Original Author: Jaka Mocnik <jaka@gnu.org>
 */
+
+#include "chartable.h"
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif /* HAVE_CONFIG_H */
-
-#include <stdlib.h>
-
-#include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
-#include <glib/gi18n.h>
-
-#include <gtkhex.h>
-#include "chartable.h"
-//#include "ghex-window.h"
-//#include "ui.h"
 
 /* STATIC GLOBALS */
 
@@ -121,19 +114,23 @@ chartable_row_activated_cb (GtkTreeView *tree_view,
 	insert_char (tree_view, model);
 }
 
-
-#if 0
-static gboolean select_chartable_row_cb(GtkTreeView *treeview, GdkEventButton *event, gpointer data)
+static void
+inbtn_clicked_cb (GtkButton *button, gpointer user_data)
 {
-	GtkTreeModel *model = GTK_TREE_MODEL(data);
+	GtkTreeView *treeview = GTK_TREE_VIEW(user_data);
+	GtkTreeModel *model;
 
-	if(event->type == GDK_2BUTTON_PRESS)
-		insert_char(treeview, model);
-	return FALSE;
+	g_return_if_fail (GTK_IS_TREE_VIEW(treeview));
+
+	(void)button;	/* unused */
+
+	model = gtk_tree_view_get_model (treeview);
+
+	insert_char (treeview, model);
 }
-#endif
 
-static void hide_chartable_cb (GtkButton *button, gpointer user_data)
+static void
+hide_chartable_cb (GtkButton *button, gpointer user_data)
 {
 	GtkWindow *win = GTK_WINDOW(user_data);
 
@@ -148,7 +145,7 @@ GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 	static gchar *titles[] = {  N_("ASCII"), N_("Hex"), N_("Decimal"),
 		N_("Octal"), N_("Binary") };
 	gchar *real_titles[5];
-	GtkWidget *ct, *sw, *ctv, *cbtn, *vbox, *hbox, *lbl;
+	GtkWidget *ct, *sw, *ctv, *inbtn, *cbtn, *vbox, *hbox, *lbl;
 	GtkListStore *store;
 	GtkCellRenderer *cell_renderer;
 	GtkTreeViewColumn *column;
@@ -238,17 +235,11 @@ GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 	g_signal_connect (ctv, "row-activated",
 			G_CALLBACK(chartable_row_activated_cb), GTK_TREE_MODEL(store));
 
-	// REWRITE
-#if 0
-	g_signal_connect(G_OBJECT(ct), "delete-event",
-					 G_CALLBACK(delete_event_cb), ct);
-	g_signal_connect(G_OBJECT(ctv), "button_press_event",
-					 G_CALLBACK(select_chartable_row_cb), GTK_TREE_MODEL(store));
-	g_signal_connect(G_OBJECT(ctv), "key_press_event",
-					 G_CALLBACK(key_press_cb), GTK_TREE_MODEL(store));
-#endif
-
 	gtk_widget_grab_focus(ctv);
+
+	inbtn = gtk_button_new_with_mnemonic (_("_Insert Character"));
+	g_signal_connect(G_OBJECT (inbtn), "clicked",
+					G_CALLBACK(inbtn_clicked_cb), ctv);
 
 	cbtn = gtk_button_new_with_mnemonic (_("_Close"));
 	g_signal_connect(G_OBJECT (cbtn), "clicked",
@@ -260,6 +251,7 @@ GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 
 	gtk_box_append (GTK_BOX(vbox), sw);
 	gtk_box_append (GTK_BOX(hbox), lbl);
+	gtk_box_append (GTK_BOX(hbox), inbtn);
 	gtk_box_append (GTK_BOX(hbox), cbtn);
 	gtk_box_append (GTK_BOX(vbox), hbox);
 

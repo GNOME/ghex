@@ -1,6 +1,7 @@
 libghex_sources = [
   'gtkhex.c',
-  'hex-document.c'
+  'hex-document.c',
+  'gtkhex-layout-manager.c'
 ]
 
 libghex_headers = [
@@ -60,6 +61,8 @@ ghex_sources = [
   'ghex-application-window.h',
   'gtkhex.c',
   'gtkhex.h',
+  'gtkhex-layout-manager.c',
+  'gtkhex-layout-manager.h',
   'hex-dialog.c',
   'hex-dialog.h',
   'hex-document.c',

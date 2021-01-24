@@ -30,19 +30,13 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
-#include <gtk/gtk.h>
-#include <glib/gi18n.h>
-
 #include "findreplace.h"
-//#include "ui.h"
-#include "gtkhex.h"
-#include "configuration.h"
+
+/* Not optional. */
+#include <config.h>
 
 /* DEFINES */
+
 #define JUMP_DIALOG_CSS_NAME "jumpdialog"
 
 /* GOBJECT DEFINITIONS */
@@ -104,8 +98,6 @@ G_DEFINE_TYPE (ReplaceDialog, replace_dialog, GTK_TYPE_WIDGET)
 
 /* PRIVATE FUNCTION DECLARATIONS */
 
-//static gint find_delete_event_cb(GtkWidget *w, GdkEventAny *e,
-//		FindDialog *dialog);
 static void find_cancel_cb(GtkButton *button, gpointer user_data);
 static void replace_cancel_cb (GtkButton *button, gpointer user_data);
 static void jump_cancel_cb (GtkButton *button, gpointer user_data);
@@ -121,11 +113,11 @@ static gint get_search_string(HexDocument *doc, gchar **str);
 static GtkWidget *
 create_hex_view(HexDocument *doc)
 {
-    GtkWidget *gh = hex_document_add_view(doc);
+    GtkWidget *gh = hex_document_add_view (doc);
 
-	// TEST
-	gtk_hex_set_group_type(GTK_HEX(gh), GROUP_BYTE);
-//	gtk_hex_set_group_type(GTK_HEX(gh), def_group_type);
+	gtk_widget_set_hexpand (gh, TRUE);
+
+	gtk_hex_set_group_type (GTK_HEX(gh), def_group_type);
 
 	// FIXME - JUST DELETE?
 #if 0
@@ -134,8 +126,8 @@ create_hex_view(HexDocument *doc)
     }
 #endif
 
-    gtk_hex_set_insert_mode(GTK_HEX(gh), TRUE);
-    gtk_hex_set_geometry(GTK_HEX(gh), 16, 4);
+    gtk_hex_set_insert_mode (GTK_HEX(gh), TRUE);
+    gtk_hex_set_geometry (GTK_HEX(gh), 16, 4);
 
     return gh;
 }
@@ -151,23 +143,6 @@ static gint get_search_string(HexDocument *doc, gchar **str)
 
 	return size;
 }
-
-#if 0
-/* find and advanced find need special close dialogs, since they
- * need to do stuff with the highlights
- */
-static gint find_delete_event_cb(GtkWidget *w, GdkEventAny *e, FindDialog *dialog)
-{
-	GHexWindow *win = ghex_window_get_active();
-	GtkHex *gh = win->gh;
-	
-	if (dialog->auto_highlight) gtk_hex_delete_autohighlight(gh, dialog->auto_highlight);
-	dialog->auto_highlight = NULL;
-	gtk_widget_hide(w);
-
-	return TRUE;
-}
-#endif
 
 static void
 replace_cancel_cb (GtkButton *button, gpointer user_data)
@@ -219,6 +194,7 @@ find_next_cb(GtkButton *button, gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	guint offset, str_len;
@@ -229,13 +205,16 @@ find_next_cb(GtkButton *button, gpointer user_data)
 
 	(void)button;	/* unused */
 
+	parent = GTK_WINDOW(gtk_widget_get_native (widget));
+	if (! GTK_IS_WINDOW(parent))
+		parent = NULL;
+
 	doc = gtk_hex_get_document(self->gh);
 	cursor_pos = gtk_hex_get_cursor(self->gh);
 
-	if ((str_len = get_search_string(self->f_doc, &str)) == 0) {
-		g_debug(_("There is no string to search for!"));
-		// FIXME
-//		display_error_dialog (self, _("There is no string to search for!"));
+	if ((str_len = get_search_string(self->f_doc, &str)) == 0)
+	{
+		display_error_dialog (parent, _("There is no string to search for!"));
 		return;
 	}
 
@@ -256,9 +235,7 @@ find_next_cb(GtkButton *button, gpointer user_data)
 		gtk_hex_set_cursor(self->gh, offset);
 	}
 	else {
-		// FIXME - NOT IMPLEMENTED
-//		ghex_window_flash(win, _("End Of File reached"));
-//		display_info_dialog(self, _("String was not found!\n"));
+		display_info_dialog (parent, _("String was not found!\n"));
 	}
 
 	if (str)
@@ -270,6 +247,7 @@ find_prev_cb(GtkButton *button, gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	guint offset, str_len;
@@ -280,12 +258,15 @@ find_prev_cb(GtkButton *button, gpointer user_data)
 
 	(void)button;	/* unused */
 
+	parent = GTK_WINDOW(gtk_widget_get_native (widget));
+	if (! GTK_IS_WINDOW(parent))
+		parent = NULL;
+
 	doc = gtk_hex_get_document(self->gh);
 	cursor_pos = gtk_hex_get_cursor(self->gh);
 
 	if ((str_len = get_search_string(self->f_doc, &str)) == 0) {
-		// FIXME
-//		display_error_dialog (self, _("There is no string to search for!"));
+		display_error_dialog (parent, _("There is no string to search for!"));
 		return;
 	}
 
@@ -304,9 +285,7 @@ find_prev_cb(GtkButton *button, gpointer user_data)
 		gtk_hex_set_cursor(self->gh, offset);
 	}
 	else {
-		// FIXME - NOT IMPLEMENTED
-//		ghex_window_flash(win, _("Beginning Of File reached"));
-//		display_info_dialog(self, _("String was not found!\n"));
+		display_info_dialog (parent, _("String was not found!\n"));
 	}
 	if (str)
 		g_free(str);
@@ -317,6 +296,7 @@ goto_byte_cb(GtkButton *button, gpointer user_data)
 {
 	JumpDialog *self = JUMP_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	GtkEntry *entry;
@@ -330,6 +310,10 @@ goto_byte_cb(GtkButton *button, gpointer user_data)
 	g_return_if_fail (GTK_IS_HEX(self->gh));
 
 	(void)button;	/* unused */
+
+	parent = GTK_WINDOW(gtk_widget_get_native (widget));
+	if (! GTK_IS_WINDOW(parent))
+		parent = NULL;
 
 	doc = gtk_hex_get_document(self->gh);
 	cursor_pos = gtk_hex_get_cursor(self->gh);
@@ -352,8 +336,7 @@ goto_byte_cb(GtkButton *button, gpointer user_data)
 	}
 	
 	if (len == 0) {
-		// FIXME
-//		display_error_dialog (self, _("No offset has been specified!"));
+		display_error_dialog (parent, _("No offset has been specified!"));
 		return;
 	}
 
@@ -377,36 +360,27 @@ goto_byte_cb(GtkButton *button, gpointer user_data)
 		(sscanf(byte_str, "%d", &byte) == 1))) {
 		if(is_relative) {
 			if(is_relative == -1 && byte > cursor_pos) {
-				// FIXME
-#if 0
-				display_error_dialog(self,
+				display_error_dialog(parent,
 								 _("The specified offset is beyond the "
 								" file boundaries!"));
-#endif
 				return;
 			}
 			byte = byte * is_relative + cursor_pos;
 		}
 		if (byte >= doc->file_size) {
-			// FIXME
-#if 0
-			display_error_dialog(self,
+			display_error_dialog(parent,
 								 _("Can not position cursor beyond the "
 								   "End Of File!"));
-#endif
 		} else {
 			gtk_hex_set_cursor(self->gh, byte);
 		}
 	}
 	else {
-		// FIXME
-#if 0
-		display_error_dialog(self,
+		display_error_dialog(parent,
 				_("You may only give the offset as:\n"
 					"  - a positive decimal number, or\n"
 					"  - a hex number, beginning with '0x', or\n"
 					"  - a '+' or '-' sign, followed by a relative offset"));
-#endif
 	}
 }
 
@@ -415,6 +389,7 @@ replace_next_cb (GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	guint offset, str_len;
@@ -423,12 +398,15 @@ replace_next_cb (GtkButton *button, gpointer user_data)
 	g_return_if_fail (REPLACE_IS_DIALOG(self));
 	g_return_if_fail (GTK_IS_HEX(self->gh));
 
+	parent = GTK_WINDOW(gtk_widget_get_native (widget));
+	if (! GTK_IS_WINDOW(parent))
+		parent = NULL;
+
 	doc = gtk_hex_get_document (self->gh);
 	cursor_pos = gtk_hex_get_cursor (self->gh);
 
 	if ((str_len = get_search_string(self->f_doc, &str)) == 0) {
-		// FIXME
-//		display_error_dialog (self, _("There is no string to search for!"));
+		display_error_dialog (parent, _("There is no string to search for!"));
 		return;
 	}
 
@@ -438,9 +416,7 @@ replace_next_cb (GtkButton *button, gpointer user_data)
 		gtk_hex_set_cursor(self->gh, offset);
 	}
 	else {
-		// FIXME - NOT IMPLEMENTED
-//		display_info_dialog (self, _("String was not found!\n"));
-//		ghex_window_flash(win, _("End Of File reached"));
+		display_info_dialog (parent, _("String was not found!\n"));
 	}
 
 	if (str)
@@ -452,6 +428,7 @@ replace_one_cb(GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	gchar *find_str = NULL, *rep_str = NULL;
@@ -462,12 +439,15 @@ replace_one_cb(GtkButton *button, gpointer user_data)
 
 	(void)button;	/* unused */
 
+	parent = GTK_WINDOW(gtk_widget_get_native (widget));
+	if (! GTK_IS_WINDOW(parent))
+		parent = NULL;
+
 	doc = gtk_hex_get_document (self->gh);
 	cursor_pos = gtk_hex_get_cursor (self->gh);
 	
 	if ((find_len = get_search_string(self->f_doc, &find_str)) == 0) {
-		// FIXME
-//		display_error_dialog (self, _("There is no string to search for!"));
+		display_error_dialog (parent, _("There is no string to search for!"));
 		return;
 	}
 	rep_len = get_search_string(self->r_doc, &rep_str);
@@ -487,9 +467,7 @@ replace_one_cb(GtkButton *button, gpointer user_data)
 		gtk_hex_set_cursor(self->gh, offset);
 	}
 	else {
-		// FIXME - NOT IMPLEMENTED
-//		display_info_dialog(self, _("End Of File reached!"));
-//		ghex_window_flash(win, _("End Of File reached!"));
+		display_info_dialog (parent, _("String was not found!"));
 	}
 
 clean_up:
@@ -505,9 +483,10 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
-	gchar *find_str = NULL, *rep_str = NULL, *flash;
+	gchar *find_str = NULL, *rep_str = NULL;
 	guint find_len, rep_len, offset, count;
 
 	g_return_if_fail (REPLACE_IS_DIALOG(self));
@@ -515,12 +494,15 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 
 	(void)button;	/* unused */
 
+	parent = GTK_WINDOW(gtk_widget_get_native (widget));
+	if (! GTK_IS_WINDOW(parent))
+		parent = NULL;
+
 	doc = gtk_hex_get_document (self->gh);
 	cursor_pos = gtk_hex_get_cursor (self->gh);
 
 	if ((find_len = get_search_string(self->f_doc, &find_str)) == 0) {
-		// FIXME
-//		display_error_dialog (self, _("There is no string to search for!"));
+		display_error_dialog (parent, _("There is no string to search for!"));
 		return;
 	}
 	rep_len = get_search_string(self->r_doc, &rep_str);
@@ -541,17 +523,9 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	gtk_hex_set_cursor(self->gh, MIN(offset, doc->file_size));  
 
 	if(count == 0) {
-		// FIXME
-//		display_info_dialog (self, _("No occurrences were found."));
+		display_info_dialog (parent, _("No occurrences were found."));
 	}
 	
-	flash = g_strdup_printf(ngettext("Replaced %d occurrence.",
-									 "Replaced %d occurrences.",
-									 count), count);
-	// FIXME - NOT IMPLEMENTED
-//	ghex_window_flash(win, flash);
-	g_free(flash);
-
 clean_up:
 	if (find_str)
 		g_free(find_str);
@@ -620,7 +594,6 @@ find_dialog_init (FindDialog *self)
 }
 
 
-// TODO - see: find_delete_event_cb for some possible destructor hints here?
 static void
 find_dialog_dispose(GObject *object)
 {
@@ -866,7 +839,7 @@ jump_dialog_init (JumpDialog *self)
 
 	/* Widget */
 
-	self->box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+	self->box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
 	gtk_widget_set_parent (self->box, widget);
 	
 	/* FIXME/TODO - this is not very intuitive. */

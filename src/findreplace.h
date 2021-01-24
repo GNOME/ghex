@@ -29,9 +29,11 @@
 #define FINDREPLACE_H 
 
 #include <gtk/gtk.h>
+#include <glib/gi18n.h>
 
 #include "gtkhex.h"
-#include "findreplace.h"
+#include "configuration.h"
+#include "common-ui.h"
 
 G_BEGIN_DECLS
 

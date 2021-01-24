@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TEST_PROG="./STUB"
+TEST_PROG="./main"
 
 # GTK_DEBUG=interactive \
 	G_ENABLE_DIAGNOSTIC=1 \

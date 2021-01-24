@@ -24,9 +24,10 @@
    Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#include <config.h>		/* Not optional for this. */
-
 #include "common-ui.h"
+
+/* Not optional. */
+#include <config.h>
 
 #if 0
 static void ghex_print(GtkHex *gh, gboolean preview);
@@ -892,27 +893,39 @@ common_print (GtkWindow *parent, GtkHex *gh, gboolean preview)
 	g_free (gtk_file_name);
 }
 
-void
-display_error_dialog (GtkWindow *parent, const char *msg)
+static void
+display_dialog (GtkWindow *parent, const char *msg, GtkMessageType type)
 {
-	GtkWidget *error_dlg;
+	GtkWidget *dialog;
 
 	g_return_if_fail (GTK_IS_WINDOW(parent));
 	g_return_if_fail (msg);
 
-	error_dlg = gtk_message_dialog_new (parent,
+	dialog = gtk_message_dialog_new (parent,
 			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-			GTK_MESSAGE_ERROR,
+			type,
 			GTK_BUTTONS_CLOSE,
 			"%s", msg);
 
-	gtk_dialog_set_default_response (GTK_DIALOG (error_dlg),
+	gtk_dialog_set_default_response (GTK_DIALOG (dialog),
 			GTK_RESPONSE_CLOSE);
-	gtk_window_set_resizable (GTK_WINDOW (error_dlg), FALSE);
-	gtk_widget_show (error_dlg);
+	gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+	gtk_widget_show (dialog);
 
-	g_signal_connect (error_dlg, "response",
+	g_signal_connect (dialog, "response",
 			G_CALLBACK (gtk_window_destroy), NULL);
+}
+
+void
+display_error_dialog (GtkWindow *parent, const char *msg)
+{
+	display_dialog (parent, msg, GTK_MESSAGE_ERROR);
+}
+
+void
+display_info_dialog (GtkWindow *parent, const char *msg)
+{
+	display_dialog (parent, msg, GTK_MESSAGE_INFO);
 }
 
 #if 0
