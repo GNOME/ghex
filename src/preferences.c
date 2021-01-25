@@ -1,10 +1,16 @@
 /* vim: colorcolumn=80 ts=4 sw=4
  */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* FIXME.c - a window with a character table
+/* preferences.c - Preferences dialog for GHex
 
    Copyright © 1998 - 2004 Free Software Foundation
-   Copyright © 2021 Logan Rathbone
+
+   Copyright © 2005-2020 Various individual contributors, including
+   but not limited to: Jonathon Jongsma, Kalev Lember, who continued
+   to maintain the source code under the licensing terms described
+   herein and below.
+
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as

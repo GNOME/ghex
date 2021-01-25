@@ -32,9 +32,6 @@
 
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<0x7F))?1:0)
 
-char *data_font_name, *header_font_name;
-guint shaded_box_size;
-
 static void print_header(GHexPrintJobInfo *pji, unsigned int page);
 static void print_row(GHexPrintJobInfo *pji, unsigned int offset,
 					  unsigned int bytes, int row);

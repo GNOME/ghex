@@ -28,8 +28,10 @@
 
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
-#include <gtkhex.h>
-#include <hex-document.h>
+
+#include "gtkhex.h"
+#include "hex-document.h"
+#include "configuration.h"
 
 G_BEGIN_DECLS
 

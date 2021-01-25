@@ -4,6 +4,12 @@
 /* common-ui.h - Common UI utility functions
 
    Copyright © 2004 Free Software Foundation
+
+   Copyright © 2005-2020 Various individual contributors, including
+   but not limited to: Jonathon Jongsma, Kalev Lember, who continued
+   to maintain the source code under the licensing terms described
+   herein and below.
+
    Copyright © 2021 Logan Rathbone
 
    GHex is free software; you can redistribute it and/or

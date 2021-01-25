@@ -36,7 +36,6 @@ struct _GtkHexLayout {
 	GtkWidget *ascii;
 
 	guint char_width;
-//	guint group_type;
 
 	int hex_width;
 	int ascii_width;
@@ -205,8 +204,6 @@ gtk_hex_layout_measure (GtkLayoutManager *layout_manager,
 		minimum_size = MAX (minimum_size, child_min);
 		natural_size = MAX (natural_size, child_nat);
 	}
-
-	// TEST - I have no idea what I'm supposed to be doing here.
 
 	if (minimum != NULL)
 		*minimum = minimum_size;

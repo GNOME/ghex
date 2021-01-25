@@ -1,3 +1,62 @@
+==============
+GHex 4.alpha.1
+==============
+
+This is the first alpha GHex release featuring GTK 4 support. It is close to a
+rewrite in most areas, but some areas, such as the hex-document portion of the
+gtkhex library, are more or less straight ports to the new APIs.
+
+As a result, this will require some substantial testing and translation
+updates.
+
+I have tried to write new GHex code in such a way that it is cleaner, easier
+to follow, and more commented than the old code that has been straight-ported.
+I was not able to do as substantial a reorganization of the old code as I
+would have liked for this alpha, but efforts will be ongoing. One of my goals
+is to make this code more hacker-friendly in general, especially to newcomers.
+
+Visibly to the end user, some new features include:
+
+ - More modern and up-to-date look and feel, consistent with the GNOME HIG.
+ - Tabbed interface.
+ - Dark Mode (by default, the GTK system default is used, but can be
+   overridden with a checkbox and a switch in the Preferences dialog).
+ - Custom clipboard data, for less error-prone copying and pasting of binary
+   data; this will fall back to plaintext when unavailable.
+
+I'll break up the known issues into two categories:  items I would consider to
+be blockers for beta, and other known issues, which will be earmarked for
+priority after 4.0 (ie, 4.2).
+
+Blockers for Beta:
+ - I believe we require a "New Document" feature. This will not be difficult
+   to implement, but I have not got around to it yet. This will be greatly
+   beneficial, if nothing other than to provide a "scratchpad" for users to copy
+   and paste binary data, while reaping the benefit of the new custom copy/paste
+   data code.
+ - Drag and drop support.
+ - Fixes for lots of UI imperfections, including widgets not grabbing focus
+   when they should; also there are some obvious missing keybindings.
+ - The ability to select a single hex byte is not intuitive; it works, but
+   better visible feedback is needed (this is not different from GHex3, in
+   fairness).
+ - Fix the many compiler warnings that currently ensue, mostly from old code
+   that has been straight-ported.
+
+Other known issues:
+ - Some GTK failed assertion warnings upon closing of tabs without saving, and
+   reordering of tabs. These seem harmless and it is possible some are just
+   papercuts of a GTK 4.0 release, so I only monitor these for now.
+ - The hex-document portion of the gtkhex library is a relic of code written
+   in the 90s, and it shows. Some more sophisticated caching and memory
+   management is in order as opposed to simply calling g_malloc on basically
+   the entirety of the file being opened.
+ - The gtkhex library contains a lot of duplicitous code. In my view
+   substantial function "pairs" should be merged into one, or made more
+   generic. I will work on this post-4.0.
+
+(Logan Rathbone <poprocks@gmail.com>)
+
 ===========
 GHex 3.18.4
 ===========

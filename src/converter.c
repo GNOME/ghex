@@ -5,6 +5,13 @@
 
    Copyright (C) 1998 - 2004 Free Software Foundation
 
+   Copyright © 2005-2020 Various individual contributors, including
+   but not limited to: Jonathon Jongsma, Kalev Lember, who continued
+   to maintain the source code under the licensing terms described
+   herein and below.
+
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
    published by the Free Software Foundation; either version 2 of the
@@ -20,8 +27,8 @@
    If not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-   Authors:
-   Jaka Mocnik <jaka@gnu.org>
+   Original authors of this file:
+   Jaka Mocnik <jaka@gnu.org> (Original GHex author)
    Chema Celorio <chema@gnome.org>
 */
 
@@ -38,7 +45,6 @@
 
 #include "gtkhex.h"
 #include "converter.h"
-//#include "ghex-window.h"
 
 /* OPAQUE DATATYPES */
 
@@ -150,7 +156,7 @@ create_converter_entry(const gchar *name, GtkWidget *grid, gint pos, gint base)
 	gtk_widget_set_hexpand (entry, TRUE);
 	gtk_grid_attach (GTK_GRID (grid), entry, 1, pos, 1, 1);
 
-	// A11Y - REWRITE IF REQUIRED 
+	/* TODO: A11Y - REWRITE IF REQUIRED  */
 #if 0
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (entry))) {
 		g_snprintf (str, BUFFER_LEN, "Displays the value at cursor in %s", name+1);
@@ -229,7 +235,7 @@ GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
 
 	gtk_grid_attach (GTK_GRID (grid), converter_get, 0, 5, 2, 1);
 
-	// A11Y - REWRITE IF REQUIRED 
+	/* TODO - A11Y - REWRITE IF REQUIRED  */
 #if 0
 	if (GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(converter_get))) {
 		add_atk_namedesc (converter_get, _("Get cursor value"), _("Gets the value at cursor in binary, octal, decimal, hex and ASCII"));

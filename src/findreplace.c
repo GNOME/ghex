@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021 Logan Rathbone
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -113,13 +113,14 @@ static gint get_search_string(HexDocument *doc, gchar **str);
 static GtkWidget *
 create_hex_view(HexDocument *doc)
 {
+	/* Not going to bother reffing, since add_view does this internally. */
     GtkWidget *gh = hex_document_add_view (doc);
 
 	gtk_widget_set_hexpand (gh, TRUE);
 
 	gtk_hex_set_group_type (GTK_HEX(gh), def_group_type);
 
-	// FIXME - JUST DELETE?
+	/* FIXME - FONT - not implemented. */
 #if 0
     if (def_metrics && def_font_desc) {
 	    gtk_hex_set_font(GTK_HEX(gh), def_metrics, def_font_desc);
@@ -153,7 +154,7 @@ replace_cancel_cb (GtkButton *button, gpointer user_data)
 
 	g_signal_emit(self,
 			replace_signals[CLOSED],
-			0);	// GQuark detail (just set to 0 if unknown)
+			0);	/* GQuark detail (just set to 0 if unknown) */
 }
 
 static void
@@ -165,7 +166,7 @@ jump_cancel_cb (GtkButton *button, gpointer user_data)
 
 	g_signal_emit(self,
 			jump_signals[CLOSED],
-			0);	// GQuark detail (just set to 0 if unknown)
+			0);	/* GQuark detail (just set to 0 if unknown) */
 }
 
 static void
@@ -186,7 +187,7 @@ find_cancel_cb(GtkButton *button, gpointer user_data)
 
 	g_signal_emit(self,
 			find_signals[CLOSED],
-			0);	// GQuark detail (just set to 0 if unknown)
+			0);	/* GQuark detail (just set to 0 if unknown) */
 }
 
 static void
@@ -224,9 +225,10 @@ find_next_cb(GtkButton *button, gpointer user_data)
 	self->auto_highlight = NULL;
 	self->auto_highlight = gtk_hex_insert_autohighlight(self->gh,
 			str, str_len);
-	// FIXME - oh dang maybe I shouldn't gave got rid of this - maybe
-	// there's a way to replicate this with states. :(
-//			, "red");
+	/* FIXME - due to the restructuring we lost our ability to add custom
+	 * colour - maybe there's a way to replicate this with states. :(
+			, "red");
+	*/
 
 	if (hex_document_find_forward(doc,
 								 cursor_pos + 1,
@@ -276,8 +278,9 @@ find_prev_cb(GtkButton *button, gpointer user_data)
 	self->auto_highlight = NULL;
 	self->auto_highlight = gtk_hex_insert_autohighlight(self->gh,
 			str, str_len);
-	// FIXME - restore our purdy colours
-			//, "red");
+	/* FIXME - restore our purdy colours
+			, "red");
+	*/
 
 	if (hex_document_find_backward(doc,
 				cursor_pos, str, str_len, &offset))
@@ -599,6 +602,8 @@ find_dialog_dispose(GObject *object)
 {
 	FindDialog *self = FIND_DIALOG(object);
 
+	g_clear_pointer (&self->vbox, gtk_widget_unparent);
+
 	/* Boilerplate: chain up
 	 */
 	G_OBJECT_CLASS(find_dialog_parent_class)->dispose(object);
@@ -744,6 +749,8 @@ replace_dialog_dispose(GObject *object)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(object);
 
+	g_clear_pointer (&self->vbox, gtk_widget_unparent);
+
 	/* Boilerplate: chain up
 	 */
 	G_OBJECT_CLASS(replace_dialog_parent_class)->dispose(object);
@@ -880,6 +887,8 @@ static void
 jump_dialog_dispose(GObject *object)
 {
 	JumpDialog *self = JUMP_DIALOG(object);
+
+	g_clear_pointer (&self->box, gtk_widget_unparent);
 
 	/* Boilerplate: chain up
 	 */

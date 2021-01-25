@@ -26,10 +26,6 @@
 
 /* DEFINES */
 
-/* FIXME/TODO - this was an option before. Not sure I see the point in
- * it. Will consider keeping it hardcoded - but if I do, it might need to
- * be moved.
- */
 #define offset_fmt	"0x%X"
 
 /* GHexNotebookTab GOBJECT DEFINITION */
@@ -1143,12 +1139,12 @@ save_as (GtkWidget *widget,
 		gtk_file_chooser_native_new (_("Select a file to save buffer as"),
 				GTK_WINDOW(self),
 				GTK_FILE_CHOOSER_ACTION_SAVE,
-				NULL,	// const char *accept_label } NULL == default.
-				NULL);	// const char *cancel_label }
+				NULL,	/* const char *accept_label } NULL == default.	*/
+				NULL);	/* const char *cancel_label }					*/
 
 	/* Default suggested file == existing file. */
 	gtk_file_chooser_set_file (GTK_FILE_CHOOSER(file_sel), existing_file,
-			NULL);	// GError **error
+			NULL);	/* GError **error */
 
 	g_signal_connect (file_sel, "response",
 			G_CALLBACK(save_as_response_cb), self);
@@ -1269,8 +1265,8 @@ new_gh_from_gfile (GFile *file)
 	path = g_file_get_path (my_file);
 	info = g_file_query_info (my_file,
 			G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
-			G_FILE_QUERY_INFO_NONE,				// GFileQueryInfoFlags flags
-			NULL,								// GCancellable *cancellable
+			G_FILE_QUERY_INFO_NONE,			/* GFileQueryInfoFlags flags */
+			NULL,							/* GCancellable *cancellable */
 			&error);
 
 	g_debug("%s: path acc. to GFile: %s",
@@ -1278,6 +1274,8 @@ new_gh_from_gfile (GFile *file)
 
 	doc = hex_document_new_from_file (path);
 	gh = GTK_HEX(gtk_hex_new (doc));
+
+	g_return_val_if_fail (GTK_IS_HEX (gh), NULL);
 
 	if (error)	g_error_free (error);
 	g_clear_object (&info);
@@ -1322,8 +1320,8 @@ open_file (GtkWidget *widget,
 		gtk_file_chooser_native_new (_("Select a file to open"),
 				GTK_WINDOW(self),
 				GTK_FILE_CHOOSER_ACTION_OPEN,
-				NULL,	// const char *accept_label } NULL == default.
-				NULL);	// const char *cancel_label }
+				NULL,	/* const char *accept_label } NULL == default.	*/
+				NULL);	/* const char *cancel_label }					*/
 
 	g_signal_connect (file_sel, "response",
 			G_CALLBACK(open_response_cb), self);
@@ -1610,12 +1608,9 @@ ghex_notebook_tab_close_click_cb (GtkButton *button,
 {
 	GHexNotebookTab *self = GHEX_NOTEBOOK_TAB(user_data);
 
-	g_debug("%s: clicked btn: %p - EMITTING CLOSED SIGNAL",
-			__func__, (void *)button);
-
 	g_signal_emit(self,
 			notebook_signals[CLOSED],
-			0);	// GQuark detail (just set to 0 if unknown)
+			0);		/* GQuark detail (just set to 0 if unknown) */
 }
 
 
@@ -1658,6 +1653,16 @@ static void
 ghex_notebook_tab_dispose (GObject *object)
 {
 	GHexNotebookTab *self = GHEX_NOTEBOOK_TAB(object);
+	GtkWidget *widget = GTK_WIDGET(self);
+	GtkWidget *child;
+
+	/* Unparent children
+	 */
+	g_clear_pointer (&self->label, gtk_widget_unparent);
+	g_clear_pointer (&self->close_btn, gtk_widget_unparent);
+
+	/* Unref GtkHex widget associated with tab */
+	g_object_unref (self->gh);
 
 	/* Boilerplate: chain up
 	 */
@@ -1743,6 +1748,7 @@ ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh)
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	/* Associate this notebook tab with a GtkHex widget. */
+	g_object_ref (gh);
 	self->gh = gh;
 
 	/* Set name of tab. */
@@ -1893,6 +1899,22 @@ static void
 ghex_application_window_dispose(GObject *object)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(object);
+	GtkWidget *widget = GTK_WIDGET(self);
+	GtkWidget *child;
+
+	/* Unparent children
+	 */
+	g_clear_pointer (&self->find_dialog, gtk_widget_unparent);
+	g_clear_pointer (&self->replace_dialog, gtk_widget_unparent);
+	g_clear_pointer (&self->jump_dialog, gtk_widget_unparent);
+	g_clear_pointer (&self->chartable, gtk_widget_unparent);
+	g_clear_pointer (&self->converter, gtk_widget_unparent);
+
+	/* Clear CSS provider */
+	g_clear_object (&self->provider);
+
+	/* Unref GtkHex */
+	g_list_free_full (g_steal_pointer (&self->gh_list), g_object_unref);
 
 	/* Boilerplate: chain up
 	 */
@@ -1935,14 +1957,11 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
-//	GApplicationClass *app_class = G_APPLICATION_CLASS (class);
 
 	object_class->dispose = ghex_application_window_dispose;
 	object_class->finalize = ghex_application_window_finalize;
 	object_class->get_property = ghex_application_window_get_property;
 	object_class->set_property = ghex_application_window_set_property;
-
-//	app_class->startup = ghex_application_window_startup;
 
 	/* PROPERTIES */
 
@@ -1950,42 +1969,42 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 		g_param_spec_boolean ("chartable-open",
 			"Character table open",
 			"Whether the character table dialog is currently open",
-			FALSE,	// gboolean default_value
+			FALSE,	/* gboolean default_value */
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
 	properties[PROP_CONVERTER_OPEN] =
 		g_param_spec_boolean ("converter-open",
 			"Base converter open",
 			"Whether the base converter dialog is currently open",
-			FALSE,	// gboolean default_value
+			FALSE,	/* gboolean default_value */
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
 	properties[PROP_FIND_OPEN] =
 		g_param_spec_boolean ("find-open",
 			"Find pane open",
 			"Whether the Find pane is currently open",
-			FALSE,	// gboolean default_value
+			FALSE,	/* gboolean default_value */
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
 	properties[PROP_REPLACE_OPEN] =
 		g_param_spec_boolean ("replace-open",
 			"Replace pane open",
 			"Whether the Find and Replace pane is currently open",
-			FALSE,	// gboolean default_value
+			FALSE,	/* gboolean default_value */
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
 	properties[PROP_JUMP_OPEN] =
 		g_param_spec_boolean ("jump-open",
 			"Jump pane open",
 			"Whether the Jump to Byte pane is currently open",
-			FALSE,	// gboolean default_value
+			FALSE,	/* gboolean default_value */
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
 	properties[PROP_CAN_SAVE] =
 		g_param_spec_boolean ("can-save",
 			"Can save",
 			"Whether the Save (or Revert) button should currently be clickable",
-			FALSE,	// gboolean default_value
+			FALSE,	/* gboolean default_value */
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
@@ -1994,43 +2013,43 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	/* ACTIONS */
 
 	gtk_widget_class_install_action (widget_class, "ghex.open",
-			NULL,	// GVariant string param_type
+			NULL,	/* GVariant string param_type */
 			open_file);
 
 	gtk_widget_class_install_action (widget_class, "ghex.save",
-			NULL,	// GVariant string param_type
+			NULL,	/* GVariant string param_type */
 			save_action);
 
 	gtk_widget_class_install_action (widget_class, "ghex.save-as",
-			NULL,	// GVariant string param_type
+			NULL,	/* GVariant string param_type */
 			save_as);
 
 	gtk_widget_class_install_action (widget_class, "ghex.revert",
-			NULL,	// GVariant string param_type
+			NULL,	/* GVariant string param_type */
 			revert);
 
 	gtk_widget_class_install_action (widget_class, "ghex.print",
-			NULL,	// GVariant string param_type
+			NULL,	/* GVariant string param_type */
 			do_print);
 
 	gtk_widget_class_install_action (widget_class, "ghex.print-preview",
-			NULL,	// GVariant string param_type
+			NULL,	/* GVariant string param_type */
 			print_preview);
 
 	gtk_widget_class_install_action (widget_class, "ghex.show-conversions",
-			NULL,	// GVariant string param_type
+			NULL,	/* GVariant string param_type */
 			toggle_conversions);
 
 	gtk_widget_class_install_action (widget_class, "ghex.insert-mode",
-			NULL,	// GVariant string param_type
+			NULL,	/* GVariant string param_type */
 			toggle_insert_mode);
 
 	gtk_widget_class_install_action (widget_class, "ghex.preferences",
-			NULL,	// GVariant string param_type
+			NULL,	/* GVariant string param_type */
 			open_preferences);
 
 	gtk_widget_class_install_action (widget_class, "ghex.about",
-			NULL,	// GVariant string param_type
+			NULL,	/* GVariant string param_type */
 			open_about);
 
 
@@ -2119,9 +2138,11 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 		GtkHex *gh)
 {
 	GtkWidget *tab;
-	HexDocument *doc = gtk_hex_get_document (gh);
+	HexDocument *doc;
 
 	g_return_if_fail (GTK_IS_HEX(gh));
+
+	doc = gtk_hex_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT(doc));
 
 	/* Setup GtkHex based on settings. */
@@ -2130,12 +2151,14 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	set_gtkhex_offsets_column_from_settings (gh);
 	set_gtkhex_group_type_from_settings (gh);
 
-	/* Add this GtkHex to our internal list */
-	// FIXME / TODO - used for nothing rn.
+	/* Add this GtkHex to our internal list
+	 */
 	self->gh_list = g_list_append (self->gh_list, gh);
+	g_object_ref (gh);
 
 	/* Set this GtkHex as the current viewed gh if there is no currently
-	 * open document */
+	 * open document
+	 */
 	if (! self->gh)
 		ghex_application_window_set_hex (self, gh);
 

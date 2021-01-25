@@ -3,9 +3,14 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* chartable.c - a window with a character table
 
-   Copyright (C) 1998 - 2004 Free Software Foundation
-   Copyright © 2005-2020 FIXME
-   Copyright © Logan Rathbone <poprocks@gmail.com>
+   Copyright © 1998 - 2004 Free Software Foundation
+
+   Copyright © 2005-2020 Various individual contributors, including
+   but not limited to: Jonathon Jongsma, Kalev Lember, who continued
+   to maintain the source code under the licensing terms described
+   herein and below.
+
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -93,7 +98,7 @@ insert_char (GtkTreeView *treeview, GtkTreeModel *model)
 				(guchar)atoi(g_value_get_string(&value)),
 				gtk_hex_get_cursor (gh_glob),
 				gtk_hex_get_insert_mode (gh_glob),
-				TRUE);	// undoable
+				TRUE);	/* undoable */
 
 		gtk_hex_set_cursor (gh_glob, gtk_hex_get_cursor (gh_glob) + 1);
 	}

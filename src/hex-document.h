@@ -1,7 +1,16 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* hex-document.h
 
    Copyright (C) 1998 - 2002 Free Software Foundation
+
+   Copyright © 2003-2020 Various individual contributors, including
+   but not limited to: Jonathon Jongsma, Kalev Lember, who continued
+   to maintain the source code under the licensing terms described
+   herein and below.
+
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -130,7 +139,8 @@ void        hex_document_remove_view(HexDocument *doc, GtkWidget *view);
 GtkWidget   *hex_document_add_view(HexDocument *doc);
 const GList *hex_document_get_list(void);
 gboolean    hex_document_is_writable(HexDocument *doc);
-gboolean    hex_document_change_file_name (HexDocument *doc, const char *new_file_name);
+gboolean    hex_document_change_file_name (HexDocument *doc,
+		const char *new_file_name);
 gboolean    hex_document_can_undo (HexDocument *doc);
 gboolean    hex_document_can_redo (HexDocument *doc);
 

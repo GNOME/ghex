@@ -9,7 +9,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021 Logan Rathbone
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -43,12 +43,14 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE(GtkHex, gtk_hex, GTK, HEX, GtkWidget)
 
 /* DEFINES */
+
 /* how to group bytes? */
 #define GROUP_BYTE 1
 #define GROUP_WORD 2
 #define GROUP_LONG 4
 
 /* OPAQUE DATATYPES */
+
 typedef struct _GtkHex_AutoHighlight GtkHex_AutoHighlight;
 
 /* PUBLIC METHOD DECLARATIONS */

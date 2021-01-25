@@ -3,6 +3,13 @@
  * Copright (c) David Hammerton 2003
  * David Hammerton <crazney@crazney.net>
  *
+ * Copyright © 2004-2020 Various individual contributors, including
+ * but not limited to: Jonathon Jongsma, Kalev Lember, who continued to
+ * maintain the source code under the licensing terms described
+ * herein and below.
+ *
+ * Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+ *
  *  GHex is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU General Public License as
  *  published by the Free Software Foundation; either version 2 of the

@@ -4,8 +4,13 @@
 /* findreplace.h - types related to find and replace dialogs
 
    Copyright (C) 2004 Free Software Foundation
-   Copyright (C) 2005-2020 FIXME
-   Copyright © 2021 Logan Rathbone
+
+   Copyright © 2005-2020 Various individual contributors, including
+   but not limited to: Jonathon Jongsma, Kalev Lember, who continued
+   to maintain the source code under the licensing terms described
+   herein and below.
+
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -44,7 +49,8 @@ G_DECLARE_FINAL_TYPE (JumpDialog, jump_dialog, JUMP, DIALOG, GtkWidget)
 G_DECLARE_FINAL_TYPE (FindDialog, find_dialog, FIND, DIALOG, GtkWidget)
 
 #define REPLACE_TYPE_DIALOG (replace_dialog_get_type ())
-G_DECLARE_FINAL_TYPE (ReplaceDialog, replace_dialog, REPLACE, DIALOG, GtkWidget)
+G_DECLARE_FINAL_TYPE (ReplaceDialog, replace_dialog, REPLACE, DIALOG,
+		GtkWidget)
 
 /* PUBLIC METHOD DECLARATIONS */
 

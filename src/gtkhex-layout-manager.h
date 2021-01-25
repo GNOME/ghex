@@ -27,6 +27,8 @@
 
 #include <gtk/gtk.h>
 
+G_BEGIN_DECLS
+
 #define GTK_TYPE_HEX_LAYOUT (gtk_hex_layout_get_type ())
 G_DECLARE_FINAL_TYPE (GtkHexLayout, gtk_hex_layout, GTK, HEX_LAYOUT,
 		GtkLayoutManager)
@@ -49,4 +51,6 @@ void				gtk_hex_layout_set_char_width (GtkHexLayout *layout,
 void				gtk_hex_layout_child_set_column (GtkHexLayoutChild *child,
 						GtkHexLayoutColumn column);
 
-#endif
+G_END_DECLS
+
+#endif	/* GTK_HEX_LAYOUT_MANAGER_H */
