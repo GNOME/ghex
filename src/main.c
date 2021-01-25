@@ -126,18 +126,17 @@ main (int argc, char *argv[])
 
 	ghex_init_configuration ();
 
-	/* FIXME - not 100% decided on NON_UNIQUE for this as yet. */
 	app = gtk_application_new ("org.gnome.GHex",
-			G_APPLICATION_NON_UNIQUE | G_APPLICATION_HANDLES_OPEN);
+			G_APPLICATION_HANDLES_OPEN);
 
-	g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
+	g_signal_connect (app, "activate", G_CALLBACK(activate), NULL);
 	g_signal_connect (app, "open", G_CALLBACK(open), NULL);
 
 	g_application_register (G_APPLICATION (app), NULL, NULL);
 
 	status = g_application_run (G_APPLICATION(app), argc, argv);
 
-	g_object_unref(app);
+	g_object_unref (app);
 
 	return status;
 }

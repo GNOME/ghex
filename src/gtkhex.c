@@ -2938,6 +2938,20 @@ gtk_hex_class_init (GtkHexClass *klass)
 			"gtkhex.copy",
 			NULL);	// no args.
 
+	/* Ctrl+x - cut */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_x,
+			GDK_CONTROL_MASK,
+			"gtkhex.cut",
+			NULL);	// no args.
+
+	/* Ctrl+v - paste */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_v,
+			GDK_CONTROL_MASK,
+			"gtkhex.paste",
+			NULL);	// no args.
+
 	/* Ctrl+z - undo */
 	gtk_widget_class_add_binding_action (widget_class,
 			GDK_KEY_z,
