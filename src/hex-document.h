@@ -47,7 +47,9 @@ typedef enum {
 
 struct _HexChangeData
 {
-	guint start, end, rep_len;
+	guint start, end;
+	/* length to replace (overwrite); (0 to insert without overwriting) */
+	guint rep_len;
 	gboolean lower_nibble;
 	gboolean insert;
 	HexChangeType type;

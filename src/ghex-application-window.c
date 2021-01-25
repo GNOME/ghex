@@ -1258,14 +1258,16 @@ do_print (GtkWidget *widget,
 static GtkHex *
 new_gh_from_gfile (GFile *file)
 {
+	GFile *my_file;
 	char *path;
 	GFileInfo *info;
 	GError *error = NULL;
 	HexDocument *doc;
 	GtkHex *gh;
 
-	path = g_file_get_path (file);
-	info = g_file_query_info (file,
+	my_file = g_object_ref (file);
+	path = g_file_get_path (my_file);
+	info = g_file_query_info (my_file,
 			G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
 			G_FILE_QUERY_INFO_NONE,				// GFileQueryInfoFlags flags
 			NULL,								// GCancellable *cancellable
@@ -1279,7 +1281,7 @@ new_gh_from_gfile (GFile *file)
 
 	if (error)	g_error_free (error);
 	g_clear_object (&info);
-	g_clear_object (&file);
+	g_object_unref (my_file);
 
 	return gh;
 }
@@ -1292,16 +1294,12 @@ open_response_cb (GtkNativeDialog *dialog,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	GtkFileChooser *chooser = GTK_FILE_CHOOSER (dialog);
 	GFile *file;
-	GtkHex *gh;
 
 	if (resp == GTK_RESPONSE_ACCEPT)
 	{
 		file = gtk_file_chooser_get_file (chooser);
-		gh = new_gh_from_gfile (file);
 
-		ghex_application_window_add_hex (self, gh);
-		ghex_application_window_set_hex (self, gh);
-		ghex_application_window_activate_tab (self, gh);
+		ghex_application_window_open_file (self, file);
 	}
 	else
 	{
@@ -2189,4 +2187,22 @@ ghex_application_window_get_list (GHexApplicationWindow *self)
 	g_return_val_if_fail (GHEX_IS_APPLICATION_WINDOW (self), NULL);
 
 	return self->gh_list;
+}
+
+void
+ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
+{
+	GtkHex *gh;
+	GFile *my_file;
+
+	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW(self));
+
+	my_file = g_object_ref (file);
+	gh = new_gh_from_gfile (my_file);
+
+	ghex_application_window_add_hex (self, gh);
+	ghex_application_window_set_hex (self, gh);
+	ghex_application_window_activate_tab (self, gh);
+
+	g_object_unref (my_file);
 }

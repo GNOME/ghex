@@ -29,6 +29,8 @@
 
 #include "ghex-application-window.h"
 
+static GtkWindow *window = NULL;
+
 /* FIXME - TEST ON WIN32.
  * This is one of the few functions in this file that has been ripped verbatim
  * from the old main.c. It might work. Maybe.
@@ -44,7 +46,8 @@ ghex_win32_locale_dir (void)
     install_dir = g_win32_get_package_installation_directory_of_module (NULL);
 
     if (install_dir) {
-        utf8_locale_dir = g_build_filename (install_dir, "share", "locale", NULL);
+        utf8_locale_dir = g_build_filename (install_dir,
+				"share", "locale", NULL);
         locale_dir = g_win32_locale_filename_from_utf8 (utf8_locale_dir);
 
         g_free (install_dir);
@@ -66,17 +69,42 @@ ghex_locale_dir (void)
 }
 
 static void
+do_app_window (GtkApplication *app)
+{
+	if (! window)
+		window = GTK_WINDOW(ghex_application_window_new (app));
+	else
+		g_return_if_fail (GHEX_IS_APPLICATION_WINDOW
+				(GHEX_APPLICATION_WINDOW(window)));
+}
+
+static void
 activate (GtkApplication *app,
 	gpointer user_data)
 {
-	GtkWidget *window;
-
 	(void)user_data;	/* unused */
 
-	window = ghex_application_window_new (app);
+	do_app_window (app);
 
-	gtk_window_set_application (GTK_WINDOW(window), app);
-	gtk_window_present (GTK_WINDOW(window));
+	gtk_window_set_application (window, app);
+	gtk_window_present (window);
+}
+
+static void
+open (GApplication *application,
+		GFile **files,
+		int n_files,
+		const char *hint,
+		gpointer user_data)
+{
+	GHexApplicationWindow *app_win;
+
+	if (n_files > 1)
+		g_warning ("Can only open a single file");
+
+	activate (GTK_APPLICATION(application), NULL);
+	app_win = GHEX_APPLICATION_WINDOW(window);
+	ghex_application_window_open_file (app_win, files[0]);
 }
 
 int
@@ -98,9 +126,13 @@ main (int argc, char *argv[])
 
 	ghex_init_configuration ();
 
-	/* FIXME - don't know if NON_UNIQUE is correct for this context. */
-	app = gtk_application_new("org.gnome.GHex", G_APPLICATION_NON_UNIQUE);
+	/* FIXME - not 100% decided on NON_UNIQUE for this as yet. */
+	app = gtk_application_new ("org.gnome.GHex",
+			G_APPLICATION_NON_UNIQUE | G_APPLICATION_HANDLES_OPEN);
+
 	g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
+	g_signal_connect (app, "open", G_CALLBACK(open), NULL);
+
 	g_application_register (G_APPLICATION (app), NULL, NULL);
 
 	status = g_application_run (G_APPLICATION(app), argc, argv);

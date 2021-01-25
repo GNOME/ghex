@@ -135,6 +135,35 @@ struct _GtkHex_AutoHighlight
 	GtkHex_AutoHighlight *next, *prev;
 };
 
+/* GtkHexPasteData - allow us to get around the issue of C-strings being
+ * nul-teminated, so we can paste `0x00`'s cleanly.
+ */
+#define GTK_TYPE_HEX_PASTE_DATA (gtk_hex_paste_data_get_type ())
+G_DECLARE_FINAL_TYPE (GtkHexPasteData, gtk_hex_paste_data, GTK, HEX_PASTE_DATA,
+		GObject)
+
+#define GTK_HEX_PASTE_DATA_MAGIC 256
+
+/* GtkHexPasteData - Method Declarations */
+
+static GtkHexPasteData * gtk_hex_paste_data_new (guchar *doc_data,
+		guint elems);
+
+/* GtkHexPasteData - GObject Definition */
+
+struct _GtkHexPasteData
+{
+	GObject parent_instance;
+
+	guchar *doc_data;
+	int *paste_data;
+	guint elems;
+};
+
+G_DEFINE_TYPE (GtkHexPasteData, gtk_hex_paste_data, G_TYPE_OBJECT)
+
+/* </GtkHexPasteData Decls> */
+
 /* TODO / NOTE - 'GtkHexClass' previously had these members:
  *		GtkClipboard *clipboard, *primary;
  * so when you see ->clipboard and ->primary, these are related to
@@ -227,8 +256,151 @@ static void gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
 		gboolean delete, gboolean add);
 
 static void recalc_displays(GtkHex *gh);
+static char *doc_data_to_string (const guchar *data, guint len);
+
+/* GtkHexPasteData - Helper Functions */
+
+/* Helper function for the copy and paste stuff, since the data returned by
+ * hex_document_get_data is NOT null-temrinated.
+ *
+ * String returned should be freed with g_free.
+ */
+static char *
+doc_data_to_string (const guchar *data, guint len)
+{
+	char *str;
+
+	str = g_malloc (len + 1);
+	memcpy (str, data, len);
+	str[len] = '\0';
+
+	return str;
+}
+
+/* Creates a magic_int_array for GtkHexPasteData. Should be freed with g_free.
+ */
+static int *
+doc_data_to_magic_int_array (const guchar *data, guint len)
+{
+	int *arr = 0;
+	guint i;
+
+	arr = g_malloc (len * (sizeof *arr));
+
+	for (i = 0; i < len; ++i)
+	{
+		arr[i] = data[i];
+
+		if (arr[i] == 0)
+			arr[i] = GTK_HEX_PASTE_DATA_MAGIC;
+	}
+	return arr;
+}
+
+static guchar *
+magic_int_array_to_data (int *arr, guint len)
+{
+	guchar *data;
+	guint i;
+
+	data = g_malloc (len);
+
+	for (i = 0;
+			i < len;
+			++i, ++arr, ++data)
+	{
+		g_assert (arr);
+
+		if (*arr == GTK_HEX_PASTE_DATA_MAGIC) {
+			*data = 0;
+		} else if (*arr < GTK_HEX_PASTE_DATA_MAGIC) {
+			*data = *arr;
+		} else {
+			g_error ("%s: Programmer error. Nothing in a magic_int_array "
+					"shall be greater than %d",
+					__func__,
+					GTK_HEX_PASTE_DATA_MAGIC);
+		}
+	}
+	return data;
+}
+
+// TEST - this transforms certain problematic characters for copy/paste
+// to a '?'. Maybe find a home for this guy at some point.
+#if 0
+{
+	char *cp;
+		for (cp = text; *cp != '\0'; ++cp)
+		{
+			if (! is_copyable(*cp))
+				*cp = '?';
+		}
+}
+#endif
+		
+/* GtkHexPasteData - Constructors and Destructors */
+
+static void
+gtk_hex_paste_data_init (GtkHexPasteData *self)
+{
+	g_debug ("%s: doc_data: %p - elems: %u",
+			__func__, (void *)self->doc_data, self->elems);
+
+}
+
+static void
+gtk_hex_paste_data_class_init (GtkHexPasteDataClass *klass)
+{
+	/* <boilerplate> */
+//	GObjectClass *object_class = G_OBJECT_CLASS(klass);
+
+//	object_class->dispose = demo_widget_dispose;
+//	object_class->finalize = demo_widget_finalize;
+	/* </boilerplate> */
+}
 
 
+/* GtkHexPasteData - Method Definitions (all private) */
+
+static GtkHexPasteData *
+gtk_hex_paste_data_new (guchar *doc_data, guint elems)
+{
+	GtkHexPasteData *self;
+
+	g_return_val_if_fail (doc_data, NULL);
+	g_return_val_if_fail (elems, NULL);
+
+	self = g_object_new (GTK_TYPE_HEX_PASTE_DATA, NULL);
+
+	self->doc_data = doc_data;
+	self->elems = elems;
+
+	self->paste_data = doc_data_to_magic_int_array (self->doc_data,
+			self->elems);
+
+	g_debug ("%s: doc_data: %p - elems: %u",
+			__func__, (void *)self->doc_data, self->elems);
+
+	g_assert (self->paste_data);
+
+	return self;
+}
+
+/* String returned should be freed with g_free. */
+static char *
+gtk_hex_paste_data_get_string (GtkHexPasteData *self)
+{
+	char *string;
+
+	g_return_val_if_fail (self->doc_data, NULL);
+	g_return_val_if_fail (self->elems, NULL);
+
+	string = doc_data_to_string (self->doc_data, self->elems);
+
+	return string;
+}
+
+/* GtkHex - Method Definitions */
 
 static void
 popup_context_menu(GtkWidget *widget, double x, double y)
@@ -269,6 +441,34 @@ copy_action (GtkWidget *widget,
 	(void)action_name, (void)parameter;
 
 	gtk_hex_copy_to_clipboard (gh);
+}
+
+static void
+cut_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GtkHex *gh = GTK_HEX(widget);
+
+	g_return_if_fail (GTK_IS_HEX(gh));
+
+	(void)action_name, (void)parameter;
+
+	gtk_hex_cut_to_clipboard (gh);
+}
+
+static void
+paste_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GtkHex *gh = GTK_HEX(widget);
+
+	g_return_if_fail (GTK_IS_HEX(gh));
+
+	(void)action_name, (void)parameter;
+
+	gtk_hex_paste_from_clipboard (gh);
 }
 
 static void
@@ -1341,14 +1541,8 @@ display_scrolled (GtkAdjustment *adj, GtkHex *gh)
 	gint dx;
 	gint dy;
 
-	TEST_DEBUG_FUNCTION_START
-
 	g_return_if_fail (gtk_widget_is_drawable (gh->xdisp) &&
 			gtk_widget_is_drawable (gh->adisp));
-
-	g_debug("%s: ADJ - VALUE: %f",
-			__func__,
-			gtk_adjustment_get_value (gh->adj));
 
 	gh->top_line = gtk_adjustment_get_value (adj);
 
@@ -1363,8 +1557,6 @@ display_scrolled (GtkAdjustment *adj, GtkHex *gh)
 	gtk_widget_queue_draw (GTK_WIDGET(gh->xdisp));
 	gtk_widget_queue_draw (GTK_WIDGET(gh->offsets));
 	gtk_widget_queue_draw (GTK_WIDGET(gh));
-
-	TEST_DEBUG_FUNCTION_END
 }
 
 /*
@@ -1956,6 +2148,8 @@ key_release_cb (GtkEventControllerKey *controller,
 	if (state & GDK_SHIFT_MASK) {
 		gh->selecting = FALSE;
 	}
+
+	return ret;
 }
 
 
@@ -2382,84 +2576,158 @@ gtk_hex_real_copy_to_clipboard (GtkHex *gh)
 {
 	GtkWidget *widget = GTK_WIDGET(gh);
 	GdkClipboard *clipboard;
-	int start_pos, end_pos;
+	GtkHexPasteData *paste;
+	GdkContentProvider *provider_union;
+	GdkContentProvider *provider_array[2];
+	guint start_pos, end_pos, len;
+	guchar *doc_data;
+	char *string;
 
 	TEST_DEBUG_FUNCTION_START
 
-	start_pos = MIN(gh->selection.start, gh->selection.end);
-	end_pos = MAX(gh->selection.start, gh->selection.end);
-
 	clipboard = gtk_widget_get_clipboard (widget);
 
-	if(start_pos != end_pos) {
-		char *text;
-		char *cp;
-		
-		text = hex_document_get_data(gh->document,
-				start_pos,
-				end_pos - start_pos);
-
-		// TEST
-
-		for (cp = text; *cp != '\0'; ++cp)
-		{
-//			if (! is_displayable(*cp))
-			if (! is_copyable(*cp))
-				*cp = '?';
-		}
-
-		printf("%s\n", text);
-
-		gdk_clipboard_set_text (clipboard, text);
-
-		g_free(text);
-	}
-
-#if 0
-	gint start_pos; 
-	gint end_pos;
-	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
-
 	start_pos = MIN(gh->selection.start, gh->selection.end);
 	end_pos = MAX(gh->selection.start, gh->selection.end);
- 
-	if(start_pos != end_pos) {
-		guchar *text = hex_document_get_data(gh->document, start_pos,
-				end_pos - start_pos);
-		gtk_clipboard_set_text(klass->clipboard, text, end_pos - start_pos);
-		g_free(text);
-	}
-#endif
+
+	/* +1 because we're counting the number of characters to grab here.
+	 * You have to actually include the first character in the range.
+	 */
+	len = end_pos - start_pos + 1;
+	g_return_if_fail (len);
+
+	/* Grab the raw data from the HexDocument. */
+	doc_data = hex_document_get_data (gh->document, start_pos, len);
+
+	/* Setup a union of HexPasteData and a plain C string */
+	paste = gtk_hex_paste_data_new (doc_data, len);
+	g_return_if_fail (GTK_IS_HEX_PASTE_DATA(paste));
+	string = gtk_hex_paste_data_get_string (paste);
+
+	provider_array[0] =
+		gdk_content_provider_new_typed (GTK_TYPE_HEX_PASTE_DATA, paste);
+	provider_array[1] =
+		gdk_content_provider_new_typed (G_TYPE_STRING, string);
+
+	provider_union = gdk_content_provider_new_union (provider_array, 2);
+
+	/* Finally, set our content to our newly created union. */
+	gdk_clipboard_set_content (clipboard, provider_union);
+
+	TEST_DEBUG_FUNCTION_END
 }
 
-static void gtk_hex_real_cut_to_clipboard(GtkHex *gh,
+static void
+gtk_hex_real_cut_to_clipboard(GtkHex *gh,
 		gpointer user_data)
 {
-	if(gh->selection.start != -1 && gh->selection.end != -1) {
+	(void)user_data;
+
+	if (gh->selection.start != -1 && gh->selection.end != -1) {
 		gtk_hex_real_copy_to_clipboard(gh);
 		gtk_hex_delete_selection(gh);
 	}
 }
 
-static void gtk_hex_real_paste_from_clipboard(GtkHex *gh,
+static void
+plaintext_paste_received_cb (GObject *source_object,
+		GAsyncResult *result,
 		gpointer user_data)
 {
-	g_debug("%s: NOT IMPLEMENTED", __func__);
+	GtkHex *gh = GTK_HEX(user_data);
+	GdkClipboard *clipboard;
+	char *text;
+	GError *error = NULL;
 
-	// API CHANGES - clipboard stuff
-#if 0
-	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
-	gchar *text;
+	g_debug ("%s: We DON'T have our special HexPasteData. Falling back "
+			"to plaintext paste.",
+			__func__);
 
-	text = gtk_clipboard_wait_for_text(klass->clipboard);
-	if(text) {
-		hex_document_set_data(gh->document, gh->cursor_pos,
-							  strlen(text), 0, text, TRUE);
+	clipboard = GDK_CLIPBOARD (source_object);
+
+	/* Get the resulting text of the read operation */
+	text = gdk_clipboard_read_text_finish (clipboard, result, &error);
+
+	if (text) {
+		hex_document_set_data (gh->document,
+				gh->cursor_pos,
+				strlen(text),
+				0,	/* rep_len (0 to insert w/o replacing; what we want) */
+				(guchar *)text,
+				TRUE);
+
 		gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
+		
 		g_free(text);
 	}
-#endif
+	else {
+		g_critical ("Error pasting text: %s", 
+				error->message);
+		g_error_free (error);
+	}
 }
+
+
+static void
+gtk_hex_real_paste_from_clipboard (GtkHex *gh,
+		gpointer user_data)
+{
+	GtkWidget *widget = GTK_WIDGET(gh);
+	GdkClipboard *clipboard;
+	GdkContentProvider *content;
+	GValue value = G_VALUE_INIT;
+	GtkHexPasteData *paste;
+	gboolean have_hex_paste_data = FALSE;
+
+	TEST_DEBUG_FUNCTION_START
+
+	(void)user_data;
+
+	clipboard = gtk_widget_get_clipboard (widget);
+	content = gdk_clipboard_get_content (clipboard);
+	g_value_init (&value, GTK_TYPE_HEX_PASTE_DATA);
+
+	/* If the clipboard contains our special HexPasteData, we'll use it.
+	 * If not, just fall back to plaintext.
+	 *
+	 * Note the double test here; it seems the test is semi-superfluous for
+	 * *this* purpose because _get_content will itself return NULL if the
+	 * clipboard data we're getting is not owned by the process; that will
+	 * pretty much *always* be the case when we're falling back to plaintext,
+	 * ie, when pasting from external apps. Oh well.
+	 */
+	have_hex_paste_data =
+		GDK_IS_CONTENT_PROVIDER (content) &&
+		gdk_content_provider_get_value (content,
+				&value,
+				NULL);	/* GError - NULL to ignore */
+
+	if (have_hex_paste_data)
+	{
+		g_debug("%s: We HAVE our special HexPasteData.",
+				__func__);
+
+		paste = GTK_HEX_PASTE_DATA(g_value_get_object (&value));
+
+		hex_document_set_data (gh->document,
+				gh->cursor_pos,
+				paste->elems,
+				0,	/* rep_len (0 to insert w/o replacing; what we want) */
+				paste->doc_data,
+				TRUE);
+
+		gtk_hex_set_cursor(gh, gh->cursor_pos + paste->elems);
+	}
+	else {
+		gdk_clipboard_read_text_async (clipboard,
+				NULL,	/* GCancellable *cancellable */
+				plaintext_paste_received_cb,
+				gh);
+	}
+
+	TEST_DEBUG_FUNCTION_END
+}
+
 
 static void
 gtk_hex_real_draw_complete (GtkHex *gh,
@@ -2473,7 +2741,8 @@ gtk_hex_real_draw_complete (GtkHex *gh,
 	TEST_DEBUG_FUNCTION_END
 }
 
-static void gtk_hex_finalize(GObject *gobject) {
+static void
+gtk_hex_finalize (GObject *gobject) {
 	GtkHex *gh = GTK_HEX(gobject);
 	
 	if (gh->disp_buffer)
@@ -2642,6 +2911,14 @@ gtk_hex_class_init (GtkHexClass *klass)
 	gtk_widget_class_install_action (widget_class, "gtkhex.copy",
 			NULL,   // GVariant string param_type
 			copy_action);
+
+	gtk_widget_class_install_action (widget_class, "gtkhex.cut",
+			NULL,   // GVariant string param_type
+			cut_action);
+
+	gtk_widget_class_install_action (widget_class, "gtkhex.paste",
+			NULL,   // GVariant string param_type
+			paste_action);
 
 	gtk_widget_class_install_action (widget_class, "gtkhex.undo",
 			NULL,   // GVariant string param_type

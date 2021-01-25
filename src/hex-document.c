@@ -509,15 +509,17 @@ hex_document_get_data(HexDocument *doc, guint offset, guint len)
 	guint i;
 
 	ptr = doc->buffer + offset;
-	if(ptr >= doc->gap_pos)
+
+	if (ptr >= doc->gap_pos)
 		ptr += doc->gap_size;
-	dptr = data = g_malloc(sizeof(guchar)*len);
-	i = 0;
-	while(i < len) {
-		if(ptr >= doc->gap_pos && ptr < doc->gap_pos + doc->gap_size)
+
+	dptr = data = g_malloc(len * sizeof(guchar));
+
+	for (i = 0; i < len; ++i) {
+		if (ptr >= doc->gap_pos && ptr < doc->gap_pos + doc->gap_size)
 			ptr += doc->gap_size;
+
 		*dptr++ = *ptr++;
-		i++;
 	}
 
 	return data;
