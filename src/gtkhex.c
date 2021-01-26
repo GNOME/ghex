@@ -1823,12 +1823,12 @@ key_press_cb (GtkEventControllerKey *controller,
 	GtkWidget *widget = GTK_WIDGET(user_data);
 	gboolean ret = TRUE;
 
-	hide_cursor(gh);
-
 	/* don't trample over Ctrl */
 	if (state & GDK_CONTROL_MASK) {
 		return FALSE;
 	}
+
+	hide_cursor(gh);
 
 	/* Figure out if we're holding shift or not. */
 	if (! (state & GDK_SHIFT_MASK)) {

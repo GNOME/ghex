@@ -55,16 +55,16 @@ G_DECLARE_FINAL_TYPE (ReplaceDialog, replace_dialog, REPLACE, DIALOG,
 /* PUBLIC METHOD DECLARATIONS */
 
 /* FindDialog */
-GtkWidget *find_dialog_new(void);
-void find_dialog_set_hex(FindDialog *self, GtkHex *gh);
+GtkWidget *find_dialog_new (void);
+void find_dialog_set_hex (FindDialog *self, GtkHex *gh);
 
 /* ReplaceDialog */
-GtkWidget *replace_dialog_new(void);
-void replace_dialog_set_hex(ReplaceDialog *self, GtkHex *gh);
+GtkWidget *replace_dialog_new (void);
+void replace_dialog_set_hex (ReplaceDialog *self, GtkHex *gh);
 
 /* JumpDialog */
-GtkWidget *jump_dialog_new(void);
-void jump_dialog_set_hex(JumpDialog *self, GtkHex *gh);
+GtkWidget *jump_dialog_new (void);
+void jump_dialog_set_hex (JumpDialog *self, GtkHex *gh);
 
 G_END_DECLS
 

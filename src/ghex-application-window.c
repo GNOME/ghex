@@ -157,7 +157,7 @@ static void ghex_application_window_set_can_save (GHexApplicationWindow *self,
 		gboolean can_save);
 static void ghex_application_window_remove_tab (GHexApplicationWindow *self,
 		GHexNotebookTab *tab);
-GHexNotebookTab * ghex_application_window_get_current_tab (GHexApplicationWindow *self);
+static GHexNotebookTab * ghex_application_window_get_current_tab (GHexApplicationWindow *self);
 
 static void set_statusbar(GHexApplicationWindow *self, const char *str);
 static void update_status_message (GHexApplicationWindow *self);
@@ -436,8 +436,15 @@ settings_group_type_changed_cb (GSettings   *settings,
 
 /* ! settings*changed_cb 's */
 
+static void
+refresh_dialogs (GHexApplicationWindow *self)
+{
+	find_dialog_set_hex (FIND_DIALOG(self->find_dialog), self->gh);
+	replace_dialog_set_hex (REPLACE_DIALOG(self->replace_dialog), self->gh);
+	jump_dialog_set_hex (JUMP_DIALOG(self->jump_dialog), self->gh);
+}
 
-GHexNotebookTab *
+static GHexNotebookTab *
 ghex_application_window_get_current_tab (GHexApplicationWindow *self)
 {
 	GtkNotebook *notebook;
@@ -1008,6 +1015,7 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 		ghex_application_window_set_show_ ## OTHER1 (self, FALSE);			\
 		ghex_application_window_set_show_ ## OTHER2 (self, FALSE);			\
 		gtk_widget_show (self->WIDGET ## _dialog);							\
+		gtk_widget_grab_focus (self->WIDGET ## _dialog);					\
 	} else {																\
 		gtk_widget_hide (self->WIDGET ## _dialog);							\
 	}																		\
@@ -2116,6 +2124,7 @@ ghex_application_window_activate_tab (GHexApplicationWindow *self,
 			__func__, page_num);
 
 	gtk_notebook_set_current_page (notebook, page_num);
+	gtk_widget_grab_focus (GTK_WIDGET(gh));
 }
 
 void
@@ -2131,6 +2140,10 @@ ghex_application_window_set_hex (GHexApplicationWindow *self,
 			__func__, (void *)gh);
 
 	self->gh = gh;
+
+	/* Update dialogs: */
+
+	refresh_dialogs (self);
 }
 
 void
@@ -2196,12 +2209,6 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 
 	g_signal_connect (doc, "file-saved",
 			G_CALLBACK(ghex_application_window_file_saved_cb), self);
-
-	/* Setup find_dialog & friends. */
-
-	find_dialog_set_hex (FIND_DIALOG(self->find_dialog), self->gh);
-	replace_dialog_set_hex (REPLACE_DIALOG(self->replace_dialog), self->gh);
-	jump_dialog_set_hex (JUMP_DIALOG(self->jump_dialog), self->gh);
 }
 
 GList *
