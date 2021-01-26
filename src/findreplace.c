@@ -46,10 +46,20 @@ enum signal_types {
 	LAST_SIGNAL
 };
 
-struct _JumpDialog {
-	GtkWidget parent_instance;
+static guint signals[LAST_SIGNAL];
 
+typedef struct
+{
 	GtkHex *gh;
+	GtkHex_AutoHighlight *auto_highlight;
+
+} PaneDialogPrivate;
+
+G_DEFINE_TYPE_WITH_PRIVATE (PaneDialog, pane_dialog, GTK_TYPE_WIDGET)
+
+
+struct _JumpDialog {
+	PaneDialog parent_instance;
 
 	GtkWidget *box;
 	GtkWidget *label;
@@ -57,15 +67,10 @@ struct _JumpDialog {
 	GtkWidget *ok, *cancel;
 };
 
-static guint jump_signals[LAST_SIGNAL];
-
-G_DEFINE_TYPE (JumpDialog, jump_dialog, GTK_TYPE_WIDGET)
+G_DEFINE_TYPE (JumpDialog, jump_dialog, PANE_TYPE_DIALOG)
 
 struct _FindDialog {
-	GtkWidget parent_instance;
-
-	GtkHex *gh;
-	GtkHex_AutoHighlight *auto_highlight;
+	PaneDialog parent_instance;
 
 	HexDocument *f_doc;
 	GtkWidget *f_gh;
@@ -76,15 +81,10 @@ struct _FindDialog {
 	GtkWidget *f_next, *f_prev, *f_clear, *f_close;
 };
 
-static guint find_signals[LAST_SIGNAL];
-
-G_DEFINE_TYPE (FindDialog, find_dialog, GTK_TYPE_WIDGET)
+G_DEFINE_TYPE (FindDialog, find_dialog, PANE_TYPE_DIALOG)
 
 struct _ReplaceDialog {
-	GtkWidget parent_instance;
-
-	GtkHex *gh;
-	GtkHex_AutoHighlight *auto_highlight;
+	PaneDialog parent_instance;
 
 	GtkWidget *f_gh, *r_gh;
 	HexDocument *f_doc, *r_doc;
@@ -95,15 +95,11 @@ struct _ReplaceDialog {
 	GtkWidget *replace, *replace_all, *next, *clear, *close;
 }; 
 
-static guint replace_signals[LAST_SIGNAL];
-
-G_DEFINE_TYPE (ReplaceDialog, replace_dialog, GTK_TYPE_WIDGET)
+G_DEFINE_TYPE (ReplaceDialog, replace_dialog, PANE_TYPE_DIALOG)
 
 /* PRIVATE FUNCTION DECLARATIONS */
 
-static void find_cancel_cb (GtkButton *button, gpointer user_data);
-static void replace_cancel_cb (GtkButton *button, gpointer user_data);
-static void jump_cancel_cb (GtkButton *button, gpointer user_data);
+static void common_cancel_cb (GtkButton *button, gpointer user_data);
 static void find_next_cb (GtkButton *button, gpointer user_data);
 static void find_prev_cb (GtkButton *button, gpointer user_data);
 static void find_clear_cb (GtkButton *button, gpointer user_data);
@@ -151,47 +147,28 @@ static gint get_search_string(HexDocument *doc, gchar **str)
 }
 
 static void
-replace_cancel_cb (GtkButton *button, gpointer user_data)
+pane_dialog_real_close (PaneDialog *self)
 {
-	ReplaceDialog *self = REPLACE_DIALOG(user_data);
+	PaneDialogPrivate *priv = pane_dialog_get_instance_private (self);
 
-	(void)button;	/* unused */
+	if (priv->auto_highlight && priv->gh) {
+		gtk_hex_delete_autohighlight (priv->gh, priv->auto_highlight);
+	}
+	priv->auto_highlight = NULL;
 
-	g_signal_emit(self,
-			replace_signals[CLOSED],
-			0);	/* GQuark detail (just set to 0 if unknown) */
+	gtk_widget_hide (GTK_WIDGET(self));
 }
 
 static void
-jump_cancel_cb (GtkButton *button, gpointer user_data)
+common_cancel_cb (GtkButton *button, gpointer user_data)
 {
-	JumpDialog *self = JUMP_DIALOG(user_data);
+	PaneDialog *self = PANE_DIALOG(user_data);
 
 	(void)button;	/* unused */
+	g_return_if_fail (PANE_IS_DIALOG (self));
 
 	g_signal_emit(self,
-			jump_signals[CLOSED],
-			0);	/* GQuark detail (just set to 0 if unknown) */
-}
-
-static void
-find_cancel_cb (GtkButton *button, gpointer user_data)
-{
-	FindDialog *self = FIND_DIALOG(user_data);
-	GtkWidget *widget = GTK_WIDGET(user_data);
-	
-	g_return_if_fail (FIND_IS_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(self->gh));
-
-	(void)button;	/* unused */
-
-	if (self->auto_highlight)
-		gtk_hex_delete_autohighlight (self->gh, self->auto_highlight);
-
-	self->auto_highlight = NULL;
-
-	g_signal_emit(self,
-			find_signals[CLOSED],
+			signals[CLOSED],
 			0);	/* GQuark detail (just set to 0 if unknown) */
 }
 
@@ -200,23 +177,25 @@ find_next_cb (GtkButton *button, gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	PaneDialogPrivate *priv;
 	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	guint offset, str_len;
 	gchar *str;
 	
-	g_return_if_fail (FIND_IS_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(self->gh));
-
 	(void)button;	/* unused */
+	g_return_if_fail (FIND_IS_DIALOG(self));
+
+	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
+	g_return_if_fail (GTK_IS_HEX(priv->gh));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = gtk_hex_get_document(self->gh);
-	cursor_pos = gtk_hex_get_cursor(self->gh);
+	doc = gtk_hex_get_document (priv->gh);
+	cursor_pos = gtk_hex_get_cursor (priv->gh);
 
 	if ((str_len = get_search_string(self->f_doc, &str)) == 0)
 	{
@@ -224,11 +203,11 @@ find_next_cb (GtkButton *button, gpointer user_data)
 		return;
 	}
 
-	if (self->auto_highlight)
-		gtk_hex_delete_autohighlight(self->gh, self->auto_highlight);
+	if (priv->auto_highlight)
+		gtk_hex_delete_autohighlight(priv->gh, priv->auto_highlight);
 
-	self->auto_highlight = NULL;
-	self->auto_highlight = gtk_hex_insert_autohighlight(self->gh,
+	priv->auto_highlight = NULL;
+	priv->auto_highlight = gtk_hex_insert_autohighlight(priv->gh,
 			str, str_len);
 	/* FIXME - due to the restructuring we lost our ability to add custom
 	 * colour - maybe there's a way to replicate this with states. :(
@@ -239,7 +218,7 @@ find_next_cb (GtkButton *button, gpointer user_data)
 				cursor_pos + 1,
 				str, str_len, &offset))
 	{
-		gtk_hex_set_cursor(self->gh, offset);
+		gtk_hex_set_cursor(priv->gh, offset);
 	}
 	else {
 		display_info_dialog (parent, _("String was not found!\n"));
@@ -254,34 +233,36 @@ find_prev_cb (GtkButton *button, gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	PaneDialogPrivate *priv;
 	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	guint offset, str_len;
 	gchar *str;
 	
-	g_return_if_fail (FIND_IS_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(self->gh));
-
 	(void)button;	/* unused */
+	g_return_if_fail (FIND_IS_DIALOG(self));
+
+	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
+	g_return_if_fail (GTK_IS_HEX(priv->gh));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = gtk_hex_get_document(self->gh);
-	cursor_pos = gtk_hex_get_cursor(self->gh);
+	doc = gtk_hex_get_document (priv->gh);
+	cursor_pos = gtk_hex_get_cursor (priv->gh);
 
-	if ((str_len = get_search_string(self->f_doc, &str)) == 0) {
+	if ((str_len = get_search_string (self->f_doc, &str)) == 0) {
 		display_error_dialog (parent, _("There is no string to search for!"));
 		return;
 	}
 
-	if (self->auto_highlight)
-		gtk_hex_delete_autohighlight(self->gh, self->auto_highlight);
+	if (priv->auto_highlight)
+		gtk_hex_delete_autohighlight(priv->gh, priv->auto_highlight);
 
-	self->auto_highlight = NULL;
-	self->auto_highlight = gtk_hex_insert_autohighlight(self->gh,
+	priv->auto_highlight = NULL;
+	priv->auto_highlight = gtk_hex_insert_autohighlight(priv->gh,
 			str, str_len);
 	/* FIXME - restore our purdy colours
 			, "red");
@@ -290,7 +271,7 @@ find_prev_cb (GtkButton *button, gpointer user_data)
 	if (hex_document_find_backward(doc,
 				cursor_pos, str, str_len, &offset))
 	{
-		gtk_hex_set_cursor(self->gh, offset);
+		gtk_hex_set_cursor(priv->gh, offset);
 	}
 	else {
 		display_info_dialog (parent, _("String was not found!\n"));
@@ -326,6 +307,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 {
 	JumpDialog *self = JUMP_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	PaneDialogPrivate *priv;
 	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
@@ -336,17 +318,18 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	gboolean is_hex;
 	const gchar *byte_str;
 	
-	g_return_if_fail (JUMP_IS_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(self->gh));
-
 	(void)button;	/* unused */
+	g_return_if_fail (JUMP_IS_DIALOG(self));
 
+	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
+	g_return_if_fail (GTK_IS_HEX(priv->gh));
+	
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = gtk_hex_get_document(self->gh);
-	cursor_pos = gtk_hex_get_cursor(self->gh);
+	doc = gtk_hex_get_document(priv->gh);
+	cursor_pos = gtk_hex_get_cursor(priv->gh);
 
 	entry = GTK_ENTRY(self->int_entry);
 	buffer = gtk_entry_get_buffer (entry);
@@ -402,7 +385,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 								 _("Can not position cursor beyond the "
 								   "End Of File!"));
 		} else {
-			gtk_hex_set_cursor(self->gh, byte);
+			gtk_hex_set_cursor(priv->gh, byte);
 		}
 	}
 	else {
@@ -419,21 +402,25 @@ replace_next_cb (GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	PaneDialogPrivate *priv;
 	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	guint offset, str_len;
 	gchar *str = NULL;
 
+	(void)button;	/* unused */
 	g_return_if_fail (REPLACE_IS_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(self->gh));
+
+	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
+	g_return_if_fail (GTK_IS_HEX (priv->gh));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = gtk_hex_get_document (self->gh);
-	cursor_pos = gtk_hex_get_cursor (self->gh);
+	doc = gtk_hex_get_document (priv->gh);
+	cursor_pos = gtk_hex_get_cursor (priv->gh);
 
 	if ((str_len = get_search_string(self->f_doc, &str)) == 0) {
 		display_error_dialog (parent, _("There is no string to search for!"));
@@ -443,7 +430,7 @@ replace_next_cb (GtkButton *button, gpointer user_data)
 	if (hex_document_find_forward(doc,
 								 cursor_pos + 1, str, str_len, &offset))
 	{
-		gtk_hex_set_cursor(self->gh, offset);
+		gtk_hex_set_cursor(priv->gh, offset);
 	}
 	else {
 		display_info_dialog (parent, _("String was not found!\n"));
@@ -458,23 +445,25 @@ replace_one_cb(GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	PaneDialogPrivate *priv;
 	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	gchar *find_str = NULL, *rep_str = NULL;
 	guint find_len, rep_len, offset;
 
-	g_return_if_fail (REPLACE_IS_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(self->gh));
-
 	(void)button;	/* unused */
+	g_return_if_fail (REPLACE_IS_DIALOG(self));
+
+	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
+	g_return_if_fail (GTK_IS_HEX (priv->gh));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = gtk_hex_get_document (self->gh);
-	cursor_pos = gtk_hex_get_cursor (self->gh);
+	doc = gtk_hex_get_document (priv->gh);
+	cursor_pos = gtk_hex_get_cursor (priv->gh);
 	
 	if ((find_len = get_search_string(self->f_doc, &find_str)) == 0) {
 		display_error_dialog (parent, _("There is no string to search for!"));
@@ -494,7 +483,7 @@ replace_one_cb(GtkButton *button, gpointer user_data)
 	if (hex_document_find_forward(doc, cursor_pos + rep_len,
 				find_str, find_len, &offset))
 	{
-		gtk_hex_set_cursor(self->gh, offset);
+		gtk_hex_set_cursor(priv->gh, offset);
 	}
 	else {
 		display_info_dialog (parent, _("String was not found!"));
@@ -513,23 +502,25 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
+	PaneDialogPrivate *priv;
 	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	gchar *find_str = NULL, *rep_str = NULL;
 	guint find_len, rep_len, offset, count;
 
-	g_return_if_fail (REPLACE_IS_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(self->gh));
-
 	(void)button;	/* unused */
+	g_return_if_fail (REPLACE_IS_DIALOG (self));
+
+	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
+	g_return_if_fail (GTK_IS_HEX (priv->gh));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = gtk_hex_get_document (self->gh);
-	cursor_pos = gtk_hex_get_cursor (self->gh);
+	doc = gtk_hex_get_document (priv->gh);
+	cursor_pos = gtk_hex_get_cursor (priv->gh);
 
 	if ((find_len = get_search_string(self->f_doc, &find_str)) == 0) {
 		display_error_dialog (parent, _("There is no string to search for!"));
@@ -550,7 +541,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 		count++;
 	}
 	
-	gtk_hex_set_cursor(self->gh, MIN(offset, doc->file_size));  
+	gtk_hex_set_cursor(priv->gh, MIN(offset, doc->file_size));  
 
 	if(count == 0) {
 		display_info_dialog (parent, _("No occurrences were found."));
@@ -595,16 +586,151 @@ replace_clear_cb (GtkButton *button, gpointer user_data)
 }
 
 
+static gboolean
+pane_dialog_key_press_cb (GtkEventControllerKey *controller,
+               guint                  keyval,
+               guint                  keycode,
+               GdkModifierType        state,
+               gpointer               user_data)
+{
+	PaneDialog *self = PANE_DIALOG(user_data);
+	GtkWidget *widget = GTK_WIDGET(user_data);
+
+	switch (keyval)
+	{
+		case GDK_KEY_Escape:
+			g_signal_emit(self,
+					signals[CLOSED],
+					0);
+			return TRUE;
+			break;
+
+		default:
+			break;
+	}
+	return FALSE;
+}
+
+
 /* PRIVATE METHOD DEFINITIONS */
+
+/* PaneDialog (generic base) */
+static void
+pane_dialog_init (PaneDialog *self)
+{
+	GtkEventController *controller;
+
+	controller = gtk_event_controller_key_new ();
+
+	g_signal_connect(controller, "key-pressed",
+			G_CALLBACK(pane_dialog_key_press_cb),
+			self);
+
+	gtk_widget_add_controller (GTK_WIDGET(self),
+			GTK_EVENT_CONTROLLER(controller));
+}
+
+static void
+pane_dialog_dispose (GObject *object)
+{
+	PaneDialog *self = PANE_DIALOG(object);
+
+	/* Boilerplate: chain up
+	 */
+	G_OBJECT_CLASS(pane_dialog_parent_class)->dispose(object);
+}
+
+
+static void
+pane_dialog_finalize (GObject *gobject)
+{
+	/* here, you would free stuff. I've got nuthin' for ya. */
+
+	/* --- */
+
+	/* Boilerplate: chain up
+	 */
+	G_OBJECT_CLASS(pane_dialog_parent_class)->finalize(gobject);
+}
+
+
+static void
+pane_dialog_class_init (PaneDialogClass *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS(klass);
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+
+	/* <boilerplate> */
+	object_class->dispose = pane_dialog_dispose;
+	object_class->finalize = pane_dialog_finalize;
+	/* </boilerplate> */
+
+	klass->closed = pane_dialog_real_close;
+
+	/* set the box-type layout manager for this Pane dialog widget.
+	 */
+	gtk_widget_class_set_layout_manager_type (widget_class,
+			GTK_TYPE_BOX_LAYOUT);
+
+	/* SIGNALS */
+
+	signals[CLOSED] = 
+		g_signal_new ("closed",
+					  G_OBJECT_CLASS_TYPE(object_class),
+					  G_SIGNAL_RUN_FIRST,
+					  G_STRUCT_OFFSET (PaneDialogClass, closed),
+					  NULL,
+					  NULL,
+					  NULL,
+					  G_TYPE_NONE, 0);
+}
+
+#if 0
+GtkWidget *
+pane_dialog_new (void)
+{
+	return g_object_new (PANE_TYPE_DIALOG, NULL);
+}
+#endif
+
+void
+pane_dialog_set_hex (PaneDialog *self, GtkHex *gh)
+{
+	PaneDialogPrivate *priv;
+
+	g_return_if_fail (PANE_IS_DIALOG(self));
+	g_return_if_fail (GTK_IS_HEX(gh));
+
+	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
+
+	g_debug("%s: setting GtkHex of PaneDialog %p to: %p",
+			__func__, (void *)self, (void *)gh);
+
+	/* Clear auto-highlight if any.
+	 */
+	if (priv->auto_highlight)
+		gtk_hex_delete_autohighlight (priv->gh, priv->auto_highlight);
+	priv->auto_highlight = NULL;
+
+	priv->gh = gh;
+}
+
+void
+pane_dialog_close (PaneDialog *self)
+{
+	g_return_if_fail (PANE_IS_DIALOG (self));
+
+	g_signal_emit(self,
+			signals[CLOSED],
+			0);	/* GQuark detail (just set to 0 if unknown) */
+}
 
 /* FindDialog */
 
 static void
 find_dialog_init (FindDialog *self)
 {
-	/* Yes, we could use these newfangled layout managers, but I'm a bit lazy
-	 * right now.
-	 */
+	/* Setup our root container. */
 	self->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_set_parent (self->vbox, GTK_WIDGET(self));
 
@@ -638,7 +764,7 @@ find_dialog_init (FindDialog *self)
 	gtk_widget_set_hexpand (self->f_close, TRUE);
 	gtk_widget_set_halign (self->f_close, GTK_ALIGN_END);
 	g_signal_connect (G_OBJECT (self->f_close), "clicked",
-			G_CALLBACK(find_cancel_cb), self);
+			G_CALLBACK(common_cancel_cb), self);
 	gtk_box_append (GTK_BOX(self->hbox), self->f_close);
 
 	/* FIXME / TODO - just keeping these strings alive for adaptation into
@@ -706,52 +832,14 @@ find_dialog_class_init(FindDialogClass *klass)
 	/* </boilerplate> */
 
 	widget_class->grab_focus = find_dialog_grab_focus;
-
-	/* set the box-type layout manager for this Find dialog widget.
-	 */
-	gtk_widget_class_set_layout_manager_type (widget_class,
-			GTK_TYPE_BOX_LAYOUT);
-
-	/* SIGNALS */
-
-	find_signals[CLOSED] = g_signal_new_class_handler("closed",
-			G_OBJECT_CLASS_TYPE(object_class),
-			G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-		/* GCallback class_handler: */
-			NULL,
-		/* no accumulator or accu_data */
-			NULL, NULL,
-		/* GSignalCMarshaller c_marshaller: */
-			NULL,		/* use generic marshaller */
-		/* GType return_type: */
-			G_TYPE_NONE,
-		/* guint n_params: */
-			0);
 }
 
 GtkWidget *
 find_dialog_new (void)
 {
-	return g_object_new(FIND_TYPE_DIALOG, NULL);
+	return g_object_new (FIND_TYPE_DIALOG, NULL);
 }
 
-void
-find_dialog_set_hex (FindDialog *self, GtkHex *gh)
-{
-	g_return_if_fail (FIND_IS_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(gh));
-
-	g_debug("%s: setting GtkHex of FindDialog to: %p",
-			__func__, (void *)gh);
-
-	/* Clear auto-highlight if any.
-	 */
-	if (self->auto_highlight)
-		gtk_hex_delete_autohighlight (self->gh, self->auto_highlight);
-	self->auto_highlight = NULL;
-
-	self->gh = gh;
-}
 
 /* ReplaceDialog */
 
@@ -807,7 +895,7 @@ replace_dialog_init (ReplaceDialog *self)
 	gtk_widget_set_hexpand (self->close, TRUE);
 	gtk_widget_set_halign (self->close, GTK_ALIGN_END);
 	g_signal_connect (G_OBJECT (self->close),
-					  "clicked", G_CALLBACK(replace_cancel_cb),
+					  "clicked", G_CALLBACK(common_cancel_cb),
 					  self);
 	gtk_box_append (GTK_BOX(self->hbox), self->close);
 
@@ -878,25 +966,6 @@ replace_dialog_class_init(ReplaceDialogClass *klass)
 	/* </boilerplate> */
 
 	widget_class->grab_focus = replace_dialog_grab_focus;
-
-	/* set the box-type layout manager for this Find dialog widget.
-	 */
-	gtk_widget_class_set_layout_manager_type (widget_class,
-			GTK_TYPE_BOX_LAYOUT);
-
-	replace_signals[CLOSED] = g_signal_new_class_handler("closed",
-			G_OBJECT_CLASS_TYPE(object_class),
-			G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-		/* GCallback class_handler: */
-			NULL,
-		/* no accumulator or accu_data */
-			NULL, NULL,
-		/* GSignalCMarshaller c_marshaller: */
-			NULL,		/* use generic marshaller */
-		/* GType return_type: */
-			G_TYPE_NONE,
-		/* guint n_params: */
-			0);
 }
 
 GtkWidget *
@@ -904,25 +973,6 @@ replace_dialog_new(void)
 {
 	return g_object_new(REPLACE_TYPE_DIALOG, NULL);
 }
-
-void
-replace_dialog_set_hex (ReplaceDialog *self, GtkHex *gh)
-{
-	g_return_if_fail (REPLACE_IS_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(gh));
-
-	g_debug("%s: setting GtkHex of ReplaceDialog to: %p",
-			__func__, (void *)gh);
-
-	/* Clear auto-highlight if any.
-	 */
-	if (self->auto_highlight)
-		gtk_hex_delete_autohighlight (self->gh, self->auto_highlight);
-	self->auto_highlight = NULL;
-
-	self->gh = gh;
-}
-
 
 /* JumpDialog */
 
@@ -971,7 +1021,7 @@ jump_dialog_init (JumpDialog *self)
 
 	self->cancel = gtk_button_new_with_mnemonic (_("_Close"));
 	g_signal_connect (G_OBJECT (self->cancel),
-					  "clicked", G_CALLBACK(jump_cancel_cb),
+					  "clicked", G_CALLBACK(common_cancel_cb),
 					  self);
 	gtk_box_append (GTK_BOX(self->box), self->cancel);
 
@@ -998,7 +1048,7 @@ jump_dialog_grab_focus (GtkWidget *widget)
 }
 
 static void
-jump_dialog_dispose(GObject *object)
+jump_dialog_dispose (GObject *object)
 {
 	JumpDialog *self = JUMP_DIALOG(object);
 
@@ -1010,7 +1060,7 @@ jump_dialog_dispose(GObject *object)
 }
 
 static void
-jump_dialog_finalize(GObject *gobject)
+jump_dialog_finalize (GObject *gobject)
 {
 	/* here, you would free stuff. I've got nuthin' for ya. */
 
@@ -1022,7 +1072,7 @@ jump_dialog_finalize(GObject *gobject)
 }
 
 static void
-jump_dialog_class_init(JumpDialogClass *klass)
+jump_dialog_class_init (JumpDialogClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
@@ -1036,41 +1086,10 @@ jump_dialog_class_init(JumpDialogClass *klass)
 
 	/* CSS */
 	gtk_widget_class_set_css_name (widget_class, JUMP_DIALOG_CSS_NAME);
-
-	/* set the box-type layout manager for this Find dialog widget.
-	 */
-	gtk_widget_class_set_layout_manager_type (widget_class,
-			GTK_TYPE_BOX_LAYOUT);
-
-	jump_signals[CLOSED] = g_signal_new_class_handler("closed",
-			G_OBJECT_CLASS_TYPE(object_class),
-			G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-		/* GCallback class_handler: */
-			NULL,
-		/* no accumulator or accu_data */
-			NULL, NULL,
-		/* GSignalCMarshaller c_marshaller: */
-			NULL,		/* use generic marshaller */
-		/* GType return_type: */
-			G_TYPE_NONE,
-		/* guint n_params: */
-			0);
 }
 
 GtkWidget *
 jump_dialog_new(void)
 {
 	return g_object_new(JUMP_TYPE_DIALOG, NULL);
-}
-
-void
-jump_dialog_set_hex (JumpDialog *self, GtkHex *gh)
-{
-	g_return_if_fail (JUMP_IS_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(gh));
-
-	g_debug("%s: setting GtkHex of JumpDialog to: %p",
-			__func__, (void *)gh);
-
-	self->gh = gh;
 }

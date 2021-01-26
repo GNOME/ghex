@@ -42,29 +42,45 @@
 
 G_BEGIN_DECLS
 
+#define PANE_TYPE_DIALOG pane_dialog_get_type ()
+G_DECLARE_DERIVABLE_TYPE (PaneDialog, pane_dialog, PANE, DIALOG, GtkWidget)
+
+
+struct _PaneDialogClass
+{
+	GtkWidgetClass parent_class;
+
+	void (*closed) (PaneDialog  *self);
+
+	/* Padding to allow adding up to 12 new virtual functions without
+	 * breaking ABI. */
+	gpointer padding[12];
+};
+
 #define JUMP_TYPE_DIALOG (jump_dialog_get_type ())
-G_DECLARE_FINAL_TYPE (JumpDialog, jump_dialog, JUMP, DIALOG, GtkWidget)
+G_DECLARE_FINAL_TYPE (JumpDialog, jump_dialog, JUMP, DIALOG, PaneDialog)
 
 #define FIND_TYPE_DIALOG (find_dialog_get_type ())
-G_DECLARE_FINAL_TYPE (FindDialog, find_dialog, FIND, DIALOG, GtkWidget)
+G_DECLARE_FINAL_TYPE (FindDialog, find_dialog, FIND, DIALOG, PaneDialog)
 
 #define REPLACE_TYPE_DIALOG (replace_dialog_get_type ())
 G_DECLARE_FINAL_TYPE (ReplaceDialog, replace_dialog, REPLACE, DIALOG,
-		GtkWidget)
+		PaneDialog)
 
 /* PUBLIC METHOD DECLARATIONS */
 
+/* PaneDialog (generic) */
+void pane_dialog_set_hex (PaneDialog *self, GtkHex *gh);
+void pane_dialog_close (PaneDialog *self);
+
 /* FindDialog */
 GtkWidget *find_dialog_new (void);
-void find_dialog_set_hex (FindDialog *self, GtkHex *gh);
 
 /* ReplaceDialog */
 GtkWidget *replace_dialog_new (void);
-void replace_dialog_set_hex (ReplaceDialog *self, GtkHex *gh);
 
 /* JumpDialog */
 GtkWidget *jump_dialog_new (void);
-void jump_dialog_set_hex (JumpDialog *self, GtkHex *gh);
 
 G_END_DECLS
 

@@ -439,9 +439,9 @@ settings_group_type_changed_cb (GSettings   *settings,
 static void
 refresh_dialogs (GHexApplicationWindow *self)
 {
-	find_dialog_set_hex (FIND_DIALOG(self->find_dialog), self->gh);
-	replace_dialog_set_hex (REPLACE_DIALOG(self->replace_dialog), self->gh);
-	jump_dialog_set_hex (JUMP_DIALOG(self->jump_dialog), self->gh);
+	pane_dialog_set_hex (PANE_DIALOG(self->find_dialog), self->gh);
+	pane_dialog_set_hex (PANE_DIALOG(self->replace_dialog), self->gh);
+	pane_dialog_set_hex (PANE_DIALOG(self->jump_dialog), self->gh);
 }
 
 static GHexNotebookTab *
@@ -872,8 +872,7 @@ find_close_cb (FindDialog *dialog,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
 	(void)dialog;
-
-	ghex_application_window_set_show_find (self, FALSE);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);
 }
 
 static void
@@ -884,7 +883,7 @@ replace_close_cb (ReplaceDialog *dialog,
 
 	(void)dialog;
 
-	ghex_application_window_set_show_replace (self, FALSE);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_OPEN]);
 }
 
 static void
@@ -895,7 +894,7 @@ jump_close_cb (JumpDialog *dialog,
 
 	(void)dialog;
 
-	ghex_application_window_set_show_jump (self, FALSE);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_JUMP_OPEN]);
 }
 
 static void
@@ -1005,6 +1004,9 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 DIALOG_SET_SHOW_TEMPLATE(chartable, setup_chartable(self), PROP_CHARTABLE_OPEN)
 DIALOG_SET_SHOW_TEMPLATE(converter, setup_converter(self), PROP_CONVERTER_OPEN)
 
+/* Note that in this macro, it's up to the "closed" cb functions to notify
+ * by pspec; otherwise, you get in an infinite loop
+ */
 #define PANE_SET_SHOW_TEMPLATE(WIDGET, OTHER1, OTHER2, PROP_ARR_ENTRY)		\
 static void																	\
 ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
@@ -1016,10 +1018,11 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 		ghex_application_window_set_show_ ## OTHER2 (self, FALSE);			\
 		gtk_widget_show (self->WIDGET ## _dialog);							\
 		gtk_widget_grab_focus (self->WIDGET ## _dialog);					\
+		g_object_notify_by_pspec (G_OBJECT(self),							\
+				properties[PROP_ARR_ENTRY]);								\
 	} else {																\
-		gtk_widget_hide (self->WIDGET ## _dialog);							\
+		g_signal_emit_by_name (self->WIDGET ## _dialog, "closed");			\
 	}																		\
-	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_ARR_ENTRY]);	\
 }												/* PANE_SET_SHOW_TEMPLATE */
 
 PANE_SET_SHOW_TEMPLATE(find,		replace, jump,	PROP_FIND_OPEN)
@@ -2060,7 +2063,6 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			NULL,	/* GVariant string param_type */
 			open_about);
 
-
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.find", "find-open");
 
@@ -2076,6 +2078,28 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.converter", "converter-open");
 
+	/* SHORTCUTS */
+
+	/* Ctrl+F - find */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_f,
+			GDK_CONTROL_MASK,
+			"ghex.find",
+			NULL);	/* no args. */
+
+	/* Ctrl+H - replace */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_h,
+			GDK_CONTROL_MASK,
+			"ghex.replace",
+			NULL);	/* no args. */
+
+	/* Ctrl+J - jump */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_j,
+			GDK_CONTROL_MASK,
+			"ghex.jump",
+			NULL);	/* no args. */
 
 	/* WIDGET TEMPLATE .UI */
 
