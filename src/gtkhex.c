@@ -58,8 +58,8 @@
 /* ENUMS */
 
 enum {
-	LOWER_NIBBLE,
-	UPPER_NIBBLE
+	UPPER_NIBBLE,
+	LOWER_NIBBLE
 };
 
 enum {
