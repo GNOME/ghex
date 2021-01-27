@@ -115,16 +115,8 @@ create_hex_view (HexDocument *doc)
     GtkWidget *gh = hex_document_add_view (doc);
 
 	gtk_widget_set_hexpand (gh, TRUE);
-
 	gtk_hex_set_group_type (GTK_HEX(gh), def_group_type);
-
-	/* FIXME - FONT - not implemented. */
-#if 0
-    if (def_metrics && def_font_desc) {
-	    gtk_hex_set_font(GTK_HEX(gh), def_metrics, def_font_desc);
-    }
-#endif
-
+	common_set_gtkhex_font_from_settings (gh);
     gtk_hex_set_insert_mode (GTK_HEX(gh), TRUE);
     gtk_hex_set_geometry (GTK_HEX(gh), 16, 4);
 

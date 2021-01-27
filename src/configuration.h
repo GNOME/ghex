@@ -65,6 +65,7 @@ extern int			def_dark_mode;
 extern gboolean		sys_default_is_dark;
 
 extern GSettings	*settings;
+extern GtkCssProvider *provider;
 
 /* Initializes the gsettings client */
 void ghex_init_configuration (void);

@@ -37,6 +37,8 @@
 #include "configuration.h"
 
 GSettings *settings;
+/* Global CSS provider for our GtkHex widgets */
+GtkCssProvider *provider;
 
 int def_group_type;
 char *def_font_name;
@@ -131,9 +133,10 @@ header_font_changed_cb (GSettings   *settings,
 
 void ghex_init_configuration ()
 {
-    settings = g_settings_new ("org.gnome.GHex");
+	/* GSettings */
 
-    g_return_if_fail (settings != NULL);
+    settings = g_settings_new ("org.gnome.GHex");
+    g_return_if_fail (settings);
 
     g_signal_connect (settings, "changed::" GHEX_PREF_OFFSETS_COLUMN,
                       G_CALLBACK (offsets_column_changed_cb), NULL);
@@ -163,4 +166,8 @@ void ghex_init_configuration ()
     g_signal_connect (settings, "changed::" GHEX_PREF_HEADER_FONT,
                       G_CALLBACK (header_font_changed_cb), NULL);
     header_font_changed_cb (settings, GHEX_PREF_HEADER_FONT, NULL);
+
+	/* Global CSS provider */
+
+	provider = gtk_css_provider_new ();
 }

@@ -73,9 +73,9 @@ struct _GHexApplicationWindow
 	GtkApplicationWindow parent_instance;
 
 	GtkHex *gh;
-	GtkCssProvider *provider;
 	HexDialog *dialog;
 	GtkWidget *dialog_widget;
+	GtkCssProvider *conversions_box_provider;
 	guint statusbar_id;
 	GtkAdjustment *adj;
 	GList *gh_list;
@@ -166,168 +166,12 @@ static void update_gui_data (GHexApplicationWindow *self);
 
 /* GHexApplicationWindow -- PRIVATE FUNCTIONS */
 
-/* This function was written by Matthias Clasen and is included somewhere in
- * the GTK source tree.. I believe it is also included in libdazzle, but I
- * didn't want to include a whole dependency just for one function. LGPL, but
- * credit where credit is due!
- */
-static char *
-pango_font_description_to_css (PangoFontDescription *desc)
-{
-	GString *s;
-	PangoFontMask set;
-
-	s = g_string_new ("* { ");
-
-	set = pango_font_description_get_set_fields (desc);
-	if (set & PANGO_FONT_MASK_FAMILY)
-	{
-		g_string_append (s, "font-family: ");
-		g_string_append (s, pango_font_description_get_family (desc));
-		g_string_append (s, "; ");
-	}
-	if (set & PANGO_FONT_MASK_STYLE)
-	{
-		switch (pango_font_description_get_style (desc))
-		{
-			case PANGO_STYLE_NORMAL:
-				g_string_append (s, "font-style: normal; ");
-				break;
-			case PANGO_STYLE_OBLIQUE:
-				g_string_append (s, "font-style: oblique; ");
-				break;
-			case PANGO_STYLE_ITALIC:
-				g_string_append (s, "font-style: italic; ");
-				break;
-		}
-	}
-	if (set & PANGO_FONT_MASK_VARIANT)
-	{
-		switch (pango_font_description_get_variant (desc))
-		{
-			case PANGO_VARIANT_NORMAL:
-				g_string_append (s, "font-variant: normal; ");
-				break;
-			case PANGO_VARIANT_SMALL_CAPS:
-				g_string_append (s, "font-variant: small-caps; ");
-				break;
-		}
-	}
-	if (set & PANGO_FONT_MASK_WEIGHT)
-	{
-		switch (pango_font_description_get_weight (desc))
-		{
-			case PANGO_WEIGHT_THIN:
-				g_string_append (s, "font-weight: 100; ");
-				break;
-			case PANGO_WEIGHT_ULTRALIGHT:
-				g_string_append (s, "font-weight: 200; ");
-				break;
-			case PANGO_WEIGHT_LIGHT:
-			case PANGO_WEIGHT_SEMILIGHT:
-				g_string_append (s, "font-weight: 300; ");
-				break;
-			case PANGO_WEIGHT_BOOK:
-			case PANGO_WEIGHT_NORMAL:
-				g_string_append (s, "font-weight: 400; ");
-				break;
-			case PANGO_WEIGHT_MEDIUM:
-				g_string_append (s, "font-weight: 500; ");
-				break;
-			case PANGO_WEIGHT_SEMIBOLD:
-				g_string_append (s, "font-weight: 600; ");
-				break;
-			case PANGO_WEIGHT_BOLD:
-				g_string_append (s, "font-weight: 700; ");
-				break;
-			case PANGO_WEIGHT_ULTRABOLD:
-				g_string_append (s, "font-weight: 800; ");
-				break;
-			case PANGO_WEIGHT_HEAVY:
-			case PANGO_WEIGHT_ULTRAHEAVY:
-				g_string_append (s, "font-weight: 900; ");
-				break;
-		}
-	}
-	if (set & PANGO_FONT_MASK_STRETCH)
-	{
-		switch (pango_font_description_get_stretch (desc))
-		{
-			case PANGO_STRETCH_ULTRA_CONDENSED:
-				g_string_append (s, "font-stretch: ultra-condensed; ");
-				break;
-			case PANGO_STRETCH_EXTRA_CONDENSED:
-				g_string_append (s, "font-stretch: extra-condensed; ");
-				break;
-			case PANGO_STRETCH_CONDENSED:
-				g_string_append (s, "font-stretch: condensed; ");
-				break;
-			case PANGO_STRETCH_SEMI_CONDENSED:
-				g_string_append (s, "font-stretch: semi-condensed; ");
-				break;
-			case PANGO_STRETCH_NORMAL:
-				g_string_append (s, "font-stretch: normal; ");
-				break;
-			case PANGO_STRETCH_SEMI_EXPANDED:
-				g_string_append (s, "font-stretch: semi-expanded; ");
-				break;
-			case PANGO_STRETCH_EXPANDED:
-				g_string_append (s, "font-stretch: expanded; ");
-				break;
-			case PANGO_STRETCH_EXTRA_EXPANDED:
-				g_string_append (s, "font-stretch: extra-expanded; ");
-				break;
-			case PANGO_STRETCH_ULTRA_EXPANDED:
-				g_string_append (s, "font-stretch: ultra-expanded; ");
-				break;
-		}
-	}
-	if (set & PANGO_FONT_MASK_SIZE)
-	{
-		g_string_append_printf (s, "font-size: %dpt; ",
-				pango_font_description_get_size (desc) / PANGO_SCALE);
-	}
-
-	g_string_append (s, "}");
-
-	return g_string_free (s, FALSE);
-}
-
 /* set_*_from_settings
  * These functions all basically set properties from the GSettings global
  * variables. They should be used when a new gh is created, and when we're
  * `foreaching` through all of our tabs via a settings-change cb. See also
  * the `SETTINGS_CHANGED_GH_FOREACH_{START,END}` macros below.
  */
-static void
-set_css_provider_font_from_settings (GHexApplicationWindow *self)
-{
-	PangoFontDescription *desc;
-	char *css_str;
-
-	desc = pango_font_description_from_string (def_font_name);
-	css_str = pango_font_description_to_css (desc);
-
-	g_debug("%s: css_str: %s", __func__, css_str);
-
-	gtk_css_provider_load_from_data (self->provider,
-			css_str, -1);
-}
-
-static void
-set_gtkhex_font_from_settings (GHexApplicationWindow *self, GtkHex *gh)
-{
-	GtkStyleContext *context;
-
-	g_return_if_fail (GTK_IS_HEX(gh));
-	g_return_if_fail (GTK_IS_STYLE_PROVIDER(self->provider));
-
-	context = gtk_widget_get_style_context (GTK_WIDGET(gh));
-
-	gtk_style_context_add_provider (context,
-			GTK_STYLE_PROVIDER (self->provider),
-			GTK_STYLE_PROVIDER_PRIORITY_SETTINGS);
-}
 
 static void
 set_gtkhex_offsets_column_from_settings (GtkHex *gh)
@@ -400,8 +244,7 @@ settings_font_changed_cb (GSettings   *settings,
 
 	SETTINGS_CHANGED_GH_FOREACH_START
 
-	set_css_provider_font_from_settings (self);
-	set_gtkhex_font_from_settings (self, gh);
+	common_set_gtkhex_font_from_settings (gh);
 
 	SETTINGS_CHANGED_GH_FOREACH_END
 }
@@ -1815,7 +1658,6 @@ ghex_application_window_init (GHexApplicationWindow *self)
 {
 	GtkWidget *widget = GTK_WIDGET(self);
 	GtkStyleContext *context;
-	GtkCssProvider *conversions_box_provider;
 	GAction *action;
 
 	gtk_widget_init_template (widget);
@@ -1833,23 +1675,19 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	gtk_box_append (GTK_BOX(self->conversions_box), self->dialog_widget);
 	gtk_widget_hide (self->conversions_box);
 
-	/* CSS - provider for GtkHex widget */
-
-	self->provider = gtk_css_provider_new ();
-
 	/* CSS - conversions_box */
 
 	context = gtk_widget_get_style_context (self->conversions_box);
-	conversions_box_provider = gtk_css_provider_new ();
+	self->conversions_box_provider = gtk_css_provider_new ();
 
-	gtk_css_provider_load_from_data (conversions_box_provider,
+	gtk_css_provider_load_from_data (self->conversions_box_provider,
 									 "box {\n"
 									 "   padding: 12px;\n"
 									 "}\n", -1);
 
 	/* add the provider to our widget's style context. */
 	gtk_style_context_add_provider (context,
-			GTK_STYLE_PROVIDER (conversions_box_provider),
+			GTK_STYLE_PROVIDER (self->conversions_box_provider),
 			GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 	/* Setup signals */
@@ -1940,11 +1778,11 @@ ghex_application_window_dispose(GObject *object)
 	g_clear_pointer (&self->chartable, gtk_widget_unparent);
 	g_clear_pointer (&self->converter, gtk_widget_unparent);
 
-	/* Clear CSS provider */
-	g_clear_object (&self->provider);
-
 	/* Unref GtkHex */
 	g_list_free_full (g_steal_pointer (&self->gh_list), g_object_unref);
+
+	/* Clear conversions box CSS provider */
+	g_clear_object (&self->conversions_box_provider);
 
 	/* Boilerplate: chain up
 	 */
@@ -2205,9 +2043,10 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	doc = gtk_hex_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT(doc));
 
-	/* Setup GtkHex based on settings. */
-	set_css_provider_font_from_settings (self);
-	set_gtkhex_font_from_settings (self, gh);
+	/* GtkHex: Setup based on global settings. */
+	common_set_gtkhex_font_from_settings (gh);
+
+	/* GtkHex: Sync up appwindow-specific settings. */
 	set_gtkhex_offsets_column_from_settings (gh);
 	set_gtkhex_group_type_from_settings (gh);
 
