@@ -134,18 +134,15 @@ create_dialog_prop (HexDialogEntryTypes type,
     GtkWidget *label;
 
     label = gtk_label_new(_(HexDialogEntries[type].name));
-    gtk_widget_set_hexpand (label, TRUE);
 	gtk_widget_set_halign (label, GTK_ALIGN_END);
     gtk_grid_attach (GTK_GRID (grid), label,
                      xpos, ypos, 1, 1);
-    gtk_widget_show(label);
 
     dialog->entry[type] = gtk_entry_new();
     gtk_editable_set_editable(GTK_EDITABLE(dialog->entry[type]), FALSE);
     gtk_widget_set_hexpand (dialog->entry[type], TRUE);
     gtk_grid_attach (GTK_GRID (grid), dialog->entry[type],
                      xpos+1, ypos, 1, 1);
-    gtk_widget_show(dialog->entry[type]);
 }
 
 static void
@@ -177,13 +174,11 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
 
     grid = gtk_grid_new ();
     gtk_grid_set_row_spacing (GTK_GRID(grid), 6);
-    gtk_grid_set_column_spacing (GTK_GRID(grid), 6);
-    gtk_widget_show (grid);
+    gtk_grid_set_column_spacing (GTK_GRID(grid), 12);
 
-    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 12);
     gtk_widget_set_vexpand (GTK_WIDGET (vbox), FALSE);
     gtk_box_append (GTK_BOX (vbox), grid);
-    gtk_widget_show (vbox);
 
     create_dialog_prop (S8, dialog, grid, 0, 0);
     create_dialog_prop (US8, dialog, grid, 0, 1);
@@ -206,31 +201,27 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
 
     hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_append(GTK_BOX(vbox), hbox);
-    gtk_widget_show(hbox);
 
     dialog->config_endian = gtk_check_button_new_with_label(_("Show little endian decoding"));
     gtk_check_button_set_active(GTK_CHECK_BUTTON(dialog->config_endian), TRUE);
     g_signal_connect(G_OBJECT(dialog->config_endian), "toggled",
                      G_CALLBACK(config_toggled_cb), dialog);
-    gtk_widget_show(dialog->config_endian);
     gtk_box_append(GTK_BOX(hbox), dialog->config_endian);
 
     dialog->config_hex = gtk_check_button_new_with_label(_("Show unsigned and float as hexadecimal"));
     g_signal_connect(G_OBJECT(dialog->config_hex), "toggled",
                      G_CALLBACK(config_toggled_cb), dialog);
-    gtk_widget_show(dialog->config_hex);
     gtk_box_append(GTK_BOX(hbox), dialog->config_hex);
 
     label = gtk_label_new(_("Stream Length:"));
+	gtk_widget_set_halign (label, GTK_ALIGN_END);
     gtk_grid_attach (GTK_GRID (grid), label, 4, 3, 1, 1);
-    gtk_widget_show(label);
 
     adjuster = (GtkAdjustment *)gtk_adjustment_new(8.0, 1.0, 32.0, 1.0, 8.0, 0);
     spin = gtk_spin_button_new(adjuster, 1.0, 0);
     g_signal_connect(G_OBJECT(spin), "value-changed",
                      G_CALLBACK(config_spinchange_cb), dialog);
     gtk_grid_attach (GTK_GRID (grid), spin, 5, 3, 1, 1);
-    gtk_widget_show(spin);
 
     return vbox;
 }
