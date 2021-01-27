@@ -57,6 +57,31 @@ typedef struct
 
 G_DEFINE_TYPE_WITH_PRIVATE (PaneDialog, pane_dialog, GTK_TYPE_WIDGET)
 
+typedef struct {
+	HexDocument *f_doc;
+	GtkWidget *f_gh;
+
+	GtkWidget *frame;
+	GtkWidget *vbox;
+	GtkWidget *hbox;
+	GtkWidget *f_next, *f_prev, *f_clear;
+	GtkWidget *close;
+
+} FindDialogPrivate;
+
+G_DEFINE_TYPE_WITH_PRIVATE (FindDialog, find_dialog, PANE_TYPE_DIALOG)
+
+struct _ReplaceDialog {
+	FindDialog parent_instance;
+
+	GtkWidget *r_gh;
+	HexDocument *r_doc;
+
+	GtkWidget *r_frame;
+	GtkWidget *replace, *replace_all;
+}; 
+
+G_DEFINE_TYPE (ReplaceDialog, replace_dialog, FIND_TYPE_DIALOG)
 
 struct _JumpDialog {
 	PaneDialog parent_instance;
@@ -69,33 +94,6 @@ struct _JumpDialog {
 
 G_DEFINE_TYPE (JumpDialog, jump_dialog, PANE_TYPE_DIALOG)
 
-struct _FindDialog {
-	PaneDialog parent_instance;
-
-	HexDocument *f_doc;
-	GtkWidget *f_gh;
-
-	GtkWidget *frame;
-	GtkWidget *vbox;
-	GtkWidget *hbox;
-	GtkWidget *f_next, *f_prev, *f_clear, *f_close;
-};
-
-G_DEFINE_TYPE (FindDialog, find_dialog, PANE_TYPE_DIALOG)
-
-struct _ReplaceDialog {
-	PaneDialog parent_instance;
-
-	GtkWidget *f_gh, *r_gh;
-	HexDocument *f_doc, *r_doc;
-
-	GtkWidget *vbox;
-	GtkWidget *hbox;
-	GtkWidget *f_frame, *r_frame;
-	GtkWidget *replace, *replace_all, *next, *clear, *close;
-}; 
-
-G_DEFINE_TYPE (ReplaceDialog, replace_dialog, PANE_TYPE_DIALOG)
 
 /* PRIVATE FUNCTION DECLARATIONS */
 
@@ -103,7 +101,6 @@ static void common_cancel_cb (GtkButton *button, gpointer user_data);
 static void find_next_cb (GtkButton *button, gpointer user_data);
 static void find_prev_cb (GtkButton *button, gpointer user_data);
 static void find_clear_cb (GtkButton *button, gpointer user_data);
-static void replace_next_cb (GtkButton *button, gpointer user_data);
 static void replace_one_cb (GtkButton *button, gpointer user_data);
 static void replace_all_cb (GtkButton *button, gpointer user_data);
 static void replace_clear_cb (GtkButton *button, gpointer user_data);
@@ -172,23 +169,36 @@ common_cancel_cb (GtkButton *button, gpointer user_data)
 			0);	/* GQuark detail (just set to 0 if unknown) */
 }
 
+/* Small helper function. */
+static void
+no_string_dialog (GtkWindow *parent)
+{
+	display_error_dialog (parent,
+			_("No string provided."));
+}
+
 static void
 find_next_cb (GtkButton *button, gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
 	PaneDialogPrivate *priv;
+	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	guint offset, str_len;
 	gchar *str;
+	static gboolean found = FALSE;
 	
 	(void)button;	/* unused */
+
 	g_return_if_fail (FIND_IS_DIALOG(self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(priv->gh));
+	g_return_if_fail (GTK_IS_HEX (priv->gh));
+	f_priv = find_dialog_get_instance_private (self);
+	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
@@ -197,11 +207,13 @@ find_next_cb (GtkButton *button, gpointer user_data)
 	doc = gtk_hex_get_document (priv->gh);
 	cursor_pos = gtk_hex_get_cursor (priv->gh);
 
-	if ((str_len = get_search_string(self->f_doc, &str)) == 0)
+	if ((str_len = get_search_string (f_priv->f_doc, &str)) == 0)
 	{
-		display_error_dialog (parent, _("There is no string to search for!"));
+		no_string_dialog (parent);
 		return;
 	}
+
+	/* Insert auto-highlights of search string */
 
 	if (priv->auto_highlight)
 		gtk_hex_delete_autohighlight(priv->gh, priv->auto_highlight);
@@ -214,14 +226,28 @@ find_next_cb (GtkButton *button, gpointer user_data)
 			, "red");
 	*/
 
+	/* Search for requested string */
+
 	if (hex_document_find_forward (doc,
-				cursor_pos + 1,
+				(found == FALSE) ? cursor_pos : cursor_pos + 1,
 				str, str_len, &offset))
 	{
+		found = TRUE;
 		gtk_hex_set_cursor(priv->gh, offset);
 	}
 	else {
-		display_info_dialog (parent, _("String was not found!\n"));
+		char *dialog_str;
+
+		if (found)
+			dialog_str = g_strdup (_("End of file reached.\n\n"
+						"No further matches found."));
+		else
+			dialog_str = g_strdup (_("End of file reached.\n\n"
+						"String was not found."));
+
+		display_info_dialog (parent, dialog_str);
+		found = FALSE;
+		g_free (dialog_str);
 	}
 
 	if (str)
@@ -234,17 +260,22 @@ find_prev_cb (GtkButton *button, gpointer user_data)
 	FindDialog *self = FIND_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
 	PaneDialogPrivate *priv;
+	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
 	guint offset, str_len;
 	gchar *str;
+	static gboolean found = FALSE;
 	
 	(void)button;	/* unused */
+
 	g_return_if_fail (FIND_IS_DIALOG(self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(priv->gh));
+	g_return_if_fail (GTK_IS_HEX (priv->gh));
+	f_priv = find_dialog_get_instance_private (self);
+	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
@@ -253,10 +284,13 @@ find_prev_cb (GtkButton *button, gpointer user_data)
 	doc = gtk_hex_get_document (priv->gh);
 	cursor_pos = gtk_hex_get_cursor (priv->gh);
 
-	if ((str_len = get_search_string (self->f_doc, &str)) == 0) {
-		display_error_dialog (parent, _("There is no string to search for!"));
+	if ((str_len = get_search_string (f_priv->f_doc, &str)) == 0)
+	{
+		no_string_dialog (parent);
 		return;
 	}
+
+	/* Insert auto-highlights of search string */
 
 	if (priv->auto_highlight)
 		gtk_hex_delete_autohighlight(priv->gh, priv->auto_highlight);
@@ -268,13 +302,28 @@ find_prev_cb (GtkButton *button, gpointer user_data)
 			, "red");
 	*/
 
-	if (hex_document_find_backward(doc,
+	/* Search for requested string */
+	
+	if (hex_document_find_backward (doc,
 				cursor_pos, str, str_len, &offset))
 	{
+		found = TRUE;
 		gtk_hex_set_cursor(priv->gh, offset);
 	}
 	else {
-		display_info_dialog (parent, _("String was not found!\n"));
+		char *dialog_str;
+
+		if (found)
+			dialog_str = g_strdup (_("Beginning of file reached.\n\n"
+						"No further matches found."));
+		else
+			dialog_str = g_strdup (_("Beginning of file reached.\n\n"
+						"String was not found."));
+
+		display_info_dialog (parent, dialog_str);
+		found = FALSE;
+
+		g_free (dialog_str);
 	}
 	if (str)
 		g_free(str);
@@ -284,20 +333,26 @@ static void
 find_clear_cb (GtkButton *button, gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
+	FindDialogPrivate *f_priv;
 	GtkWidget *widget = GTK_WIDGET(user_data);
 	GtkWidget *new_gh;
 	HexDocument *new_doc;
 
-	g_return_if_fail (GTK_IS_HEX (self->f_gh));
-	g_return_if_fail (HEX_IS_DOCUMENT (self->f_doc));
+	(void)user_data;
+
+	g_return_if_fail (FIND_IS_DIALOG (self));
+
+	f_priv = find_dialog_get_instance_private (self);
+	g_return_if_fail (GTK_IS_HEX (f_priv->f_gh));
+	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
 
 	new_doc = hex_document_new ();
 	new_gh = create_hex_view (new_doc);
 
-	gtk_frame_set_child (GTK_FRAME(self->frame), new_gh);
+	gtk_frame_set_child (GTK_FRAME(f_priv->frame), new_gh);
 
-	self->f_doc = new_doc;
-	self->f_gh = new_gh;
+	f_priv->f_doc = new_doc;
+	f_priv->f_gh = new_gh;
 
 	gtk_widget_grab_focus (widget);
 }
@@ -319,6 +374,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	const gchar *byte_str;
 	
 	(void)button;	/* unused */
+
 	g_return_if_fail (JUMP_IS_DIALOG(self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
@@ -349,7 +405,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	}
 	
 	if (len == 0) {
-		display_error_dialog (parent, _("No offset has been specified!"));
+		display_error_dialog (parent, _("No offset has been specified."));
 		return;
 	}
 
@@ -375,7 +431,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 			if(is_relative == -1 && byte > cursor_pos) {
 				display_error_dialog(parent,
 								 _("The specified offset is beyond the "
-								" file boundaries!"));
+								" file boundaries."));
 				return;
 			}
 			byte = byte * is_relative + cursor_pos;
@@ -383,7 +439,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 		if (byte >= doc->file_size) {
 			display_error_dialog(parent,
 								 _("Can not position cursor beyond the "
-								   "End Of File!"));
+								   "end of file."));
 		} else {
 			gtk_hex_set_cursor(priv->gh, byte);
 		}
@@ -398,54 +454,12 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 }
 
 static void
-replace_next_cb (GtkButton *button, gpointer user_data)
+replace_one_cb (GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
 	PaneDialogPrivate *priv;
-	GtkWindow *parent;
-	HexDocument *doc;
-	guint cursor_pos;
-	guint offset, str_len;
-	gchar *str = NULL;
-
-	(void)button;	/* unused */
-	g_return_if_fail (REPLACE_IS_DIALOG(self));
-
-	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX (priv->gh));
-
-	parent = GTK_WINDOW(gtk_widget_get_native (widget));
-	if (! GTK_IS_WINDOW(parent))
-		parent = NULL;
-
-	doc = gtk_hex_get_document (priv->gh);
-	cursor_pos = gtk_hex_get_cursor (priv->gh);
-
-	if ((str_len = get_search_string(self->f_doc, &str)) == 0) {
-		display_error_dialog (parent, _("There is no string to search for!"));
-		return;
-	}
-
-	if (hex_document_find_forward(doc,
-								 cursor_pos + 1, str, str_len, &offset))
-	{
-		gtk_hex_set_cursor(priv->gh, offset);
-	}
-	else {
-		display_info_dialog (parent, _("String was not found!\n"));
-	}
-
-	if (str)
-		g_free(str);
-}
-
-static void
-replace_one_cb(GtkButton *button, gpointer user_data)
-{
-	ReplaceDialog *self = REPLACE_DIALOG(user_data);
-	GtkWidget *widget = GTK_WIDGET(user_data);
-	PaneDialogPrivate *priv;
+	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
@@ -458,6 +472,10 @@ replace_one_cb(GtkButton *button, gpointer user_data)
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 	g_return_if_fail (GTK_IS_HEX (priv->gh));
 
+	f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
+	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
+	g_return_if_fail (HEX_IS_DOCUMENT (self->r_doc));
+
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
@@ -465,8 +483,9 @@ replace_one_cb(GtkButton *button, gpointer user_data)
 	doc = gtk_hex_get_document (priv->gh);
 	cursor_pos = gtk_hex_get_cursor (priv->gh);
 	
-	if ((find_len = get_search_string(self->f_doc, &find_str)) == 0) {
-		display_error_dialog (parent, _("There is no string to search for!"));
+	if ((find_len = get_search_string(f_priv->f_doc, &find_str)) == 0)
+	{
+		no_string_dialog (parent);
 		return;
 	}
 	rep_len = get_search_string(self->r_doc, &rep_str);
@@ -486,7 +505,7 @@ replace_one_cb(GtkButton *button, gpointer user_data)
 		gtk_hex_set_cursor(priv->gh, offset);
 	}
 	else {
-		display_info_dialog (parent, _("String was not found!"));
+		display_info_dialog (parent, _("String was not found."));
 	}
 
 clean_up:
@@ -503,6 +522,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
 	PaneDialogPrivate *priv;
+	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
 	guint cursor_pos;
@@ -514,6 +534,9 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 	g_return_if_fail (GTK_IS_HEX (priv->gh));
+	f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
+	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
+	g_return_if_fail (HEX_IS_DOCUMENT (self->r_doc));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
@@ -522,8 +545,9 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	doc = gtk_hex_get_document (priv->gh);
 	cursor_pos = gtk_hex_get_cursor (priv->gh);
 
-	if ((find_len = get_search_string(self->f_doc, &find_str)) == 0) {
-		display_error_dialog (parent, _("There is no string to search for!"));
+	if ((find_len = get_search_string(f_priv->f_doc, &find_str)) == 0)
+	{
+		no_string_dialog (parent);
 		return;
 	}
 	rep_len = get_search_string(self->r_doc, &rep_str);
@@ -543,7 +567,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	
 	gtk_hex_set_cursor(priv->gh, MIN(offset, doc->file_size));  
 
-	if(count == 0) {
+	if (count == 0) {
 		display_info_dialog (parent, _("No occurrences were found."));
 	}
 	
@@ -560,31 +584,22 @@ replace_clear_cb (GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
-	
-	GtkWidget *new_f_gh, *new_r_gh;
-	HexDocument *new_f_doc, *new_r_doc;
+	GtkWidget *new_r_gh;
+	HexDocument *new_r_doc;
 
-	g_return_if_fail (GTK_IS_HEX (self->f_gh));
 	g_return_if_fail (GTK_IS_HEX (self->r_gh));
-	g_return_if_fail (HEX_IS_DOCUMENT (self->f_doc));
 	g_return_if_fail (HEX_IS_DOCUMENT (self->r_doc));
 
-	new_f_doc = hex_document_new ();
 	new_r_doc = hex_document_new ();
-	new_f_gh = create_hex_view (new_f_doc);
 	new_r_gh = create_hex_view (new_r_doc);
 
-	gtk_frame_set_child (GTK_FRAME(self->f_frame), new_f_gh);
 	gtk_frame_set_child (GTK_FRAME(self->r_frame), new_r_gh);
 
-	self->f_doc = new_f_doc;
 	self->r_doc = new_r_doc;
-	self->f_gh = new_f_gh;
 	self->r_gh = new_r_gh;
 
 	gtk_widget_grab_focus (widget);
 }
-
 
 static gboolean
 pane_dialog_key_press_cb (GtkEventControllerKey *controller,
@@ -730,42 +745,44 @@ pane_dialog_close (PaneDialog *self)
 static void
 find_dialog_init (FindDialog *self)
 {
+	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
+
 	/* Setup our root container. */
-	self->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-	gtk_widget_set_parent (self->vbox, GTK_WIDGET(self));
+	f_priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+	gtk_widget_set_parent (f_priv->vbox, GTK_WIDGET(self));
 
-	self->frame = gtk_frame_new(_("Find String"));
-	self->f_doc = hex_document_new();
-	self->f_gh = create_hex_view(self->f_doc);
-	gtk_frame_set_child (GTK_FRAME(self->frame), self->f_gh);
-	gtk_box_append (GTK_BOX(self->vbox), self->frame);
+	f_priv->frame = gtk_frame_new(_("Find String"));
+	f_priv->f_doc = hex_document_new();
+	f_priv->f_gh = create_hex_view(f_priv->f_doc);
+	gtk_frame_set_child (GTK_FRAME(f_priv->frame), f_priv->f_gh);
+	gtk_box_append (GTK_BOX(f_priv->vbox), f_priv->frame);
 	
-	self->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_append (GTK_BOX(self->vbox), self->hbox);
+	f_priv->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+	gtk_box_append (GTK_BOX(f_priv->vbox), f_priv->hbox);
 
-	self->f_next = gtk_button_new_with_mnemonic (_("Find _Next"));
-	g_signal_connect (G_OBJECT (self->f_next), "clicked",
+	f_priv->f_next = gtk_button_new_with_mnemonic (_("Find _Next"));
+	g_signal_connect (G_OBJECT (f_priv->f_next), "clicked",
 					  G_CALLBACK(find_next_cb), self);
-	gtk_widget_set_receives_default (self->f_next, TRUE);
-	gtk_box_append (GTK_BOX(self->hbox), self->f_next);
+	gtk_widget_set_receives_default (f_priv->f_next, TRUE);
+	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->f_next);
 
-	self->f_prev = gtk_button_new_with_mnemonic (_("Find _Previous"));
-	g_signal_connect (G_OBJECT (self->f_prev), "clicked",
+	f_priv->f_prev = gtk_button_new_with_mnemonic (_("Find _Previous"));
+	g_signal_connect (G_OBJECT (f_priv->f_prev), "clicked",
 					  G_CALLBACK(find_prev_cb), self);
-	gtk_box_append (GTK_BOX(self->hbox), self->f_prev);
+	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->f_prev);
 
-	self->f_clear = gtk_button_new_with_mnemonic (_("_Clear"));
-	g_signal_connect (G_OBJECT (self->f_clear), "clicked",
+	f_priv->f_clear = gtk_button_new_with_mnemonic (_("_Clear"));
+	g_signal_connect (G_OBJECT (f_priv->f_clear), "clicked",
 					  G_CALLBACK(find_clear_cb), self);
-	gtk_box_append (GTK_BOX(self->hbox), self->f_clear);
+	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->f_clear);
 
-	self->f_close = gtk_button_new_from_icon_name ("window-close-symbolic");
-	gtk_button_set_has_frame (GTK_BUTTON(self->f_close), FALSE);
-	gtk_widget_set_hexpand (self->f_close, TRUE);
-	gtk_widget_set_halign (self->f_close, GTK_ALIGN_END);
-	g_signal_connect (G_OBJECT (self->f_close), "clicked",
+	f_priv->close = gtk_button_new_from_icon_name ("window-close-symbolic");
+	gtk_button_set_has_frame (GTK_BUTTON(f_priv->close), FALSE);
+	gtk_widget_set_hexpand (f_priv->close, TRUE);
+	gtk_widget_set_halign (f_priv->close, GTK_ALIGN_END);
+	g_signal_connect (G_OBJECT (f_priv->close), "clicked",
 			G_CALLBACK(common_cancel_cb), self);
-	gtk_box_append (GTK_BOX(self->hbox), self->f_close);
+	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->close);
 
 	/* FIXME / TODO - just keeping these strings alive for adaptation into
 	 * the new accessibility framework if possible, since they have likely
@@ -792,16 +809,18 @@ static gboolean
 find_dialog_grab_focus (GtkWidget *widget)
 {
 	FindDialog *self = FIND_DIALOG(widget);
+	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
 
-	return gtk_widget_grab_focus (self->f_gh);
+	return gtk_widget_grab_focus (f_priv->f_gh);
 }
 
 static void
 find_dialog_dispose(GObject *object)
 {
 	FindDialog *self = FIND_DIALOG(object);
+	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
 
-	g_clear_pointer (&self->vbox, gtk_widget_unparent);
+	g_clear_pointer (&f_priv->vbox, gtk_widget_unparent);
 
 	/* Boilerplate: chain up
 	 */
@@ -821,7 +840,7 @@ find_dialog_finalize(GObject *gobject)
 }
 
 static void
-find_dialog_class_init(FindDialogClass *klass)
+find_dialog_class_init (FindDialogClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
@@ -846,96 +865,53 @@ find_dialog_new (void)
 static void
 replace_dialog_init (ReplaceDialog *self)
 {
-	self->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-	gtk_widget_set_parent (self->vbox, GTK_WIDGET(self));
+	FindDialogPrivate *f_priv =
+		find_dialog_get_instance_private (FIND_DIALOG(self));
 
-	self->f_doc = hex_document_new ();
-	self->f_gh = create_hex_view (self->f_doc);
-
-	self->f_frame = gtk_frame_new (_("Find String"));
-	gtk_frame_set_child (GTK_FRAME(self->f_frame), self->f_gh); 
-	gtk_box_append (GTK_BOX(self->vbox), self->f_frame);
-	
 	self->r_doc = hex_document_new();
 	self->r_gh = create_hex_view (self->r_doc);
+
 	self->r_frame = gtk_frame_new(_("Replace With"));
 	gtk_frame_set_child (GTK_FRAME(self->r_frame), self->r_gh);
-	gtk_box_append (GTK_BOX(self->vbox), self->r_frame);
-
-	self->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_append (GTK_BOX(self->vbox), self->hbox);
-
-	self->next = gtk_button_new_with_mnemonic (_("Find _Next"));
-	g_signal_connect (G_OBJECT (self->next),
-					  "clicked", G_CALLBACK(replace_next_cb),
-					  self);
-	gtk_box_append (GTK_BOX(self->hbox), self->next);
-	gtk_widget_set_receives_default (self->next, TRUE);
+	gtk_box_insert_child_after (GTK_BOX(f_priv->vbox),
+			self->r_frame, f_priv->frame);
 
 	self->replace = gtk_button_new_with_mnemonic (_("_Replace"));
 	g_signal_connect (G_OBJECT (self->replace),
 					  "clicked", G_CALLBACK(replace_one_cb),
 					  self);
-	gtk_box_append (GTK_BOX(self->hbox), self->replace);
+	gtk_box_insert_child_after (GTK_BOX(f_priv->hbox),
+			self->replace, f_priv->f_prev);
 
 	self->replace_all = gtk_button_new_with_mnemonic (_("Replace _All"));
 	g_signal_connect (G_OBJECT (self->replace_all),
 					  "clicked", G_CALLBACK(replace_all_cb),
 					  self);
-	gtk_box_append (GTK_BOX(self->hbox), self->replace_all);
+	gtk_box_insert_child_after (GTK_BOX(f_priv->hbox),
+			self->replace_all, self->replace);
 
-	self->clear = gtk_button_new_with_mnemonic (_("_Clear"));
-	g_signal_connect (G_OBJECT (self->clear),
+	g_signal_connect (G_OBJECT (f_priv->f_clear),
 					  "clicked", G_CALLBACK(replace_clear_cb),
 					  self);
-	gtk_box_append (GTK_BOX(self->hbox), self->clear);
 	
-	self->close = gtk_button_new_from_icon_name ("window-close-symbolic");
-	gtk_button_set_has_frame (GTK_BUTTON(self->close), FALSE);
-	gtk_widget_set_hexpand (self->close, TRUE);
-	gtk_widget_set_halign (self->close, GTK_ALIGN_END);
-	g_signal_connect (G_OBJECT (self->close),
-					  "clicked", G_CALLBACK(common_cancel_cb),
-					  self);
-	gtk_box_append (GTK_BOX(self->hbox), self->close);
-
 	/* FIXME/TODO - preserve translated strings for a11y */
 
 	g_debug("%s: preserved strings for a11y - Ignore.", __func__);
 
-	g_debug(_("Find Data"));
-	g_debug(_("Enter the hex data or ASCII data to search for"));
-
 	g_debug(_("Replace Data"));
 	g_debug(_("Enter the hex data or ASCII data to replace with"));
-
-	g_debug(_("Find next"));
-	g_debug(_("Finds the next occurrence of the search string"));
 
 	g_debug(_("Replace"));
 	g_debug(_("Replaces the search string with the replace string"));
 
 	g_debug(_("Replace All"));
 	g_debug(_("Replaces all occurrences of the search string with the replace string"));
-
-	g_debug(_("Cancel"));
-	g_debug(_("Closes find and replace data window"));
-}
-
-static gboolean 
-replace_dialog_grab_focus (GtkWidget *widget)
-{
-	ReplaceDialog *self = REPLACE_DIALOG(widget);
-
-	return gtk_widget_grab_focus (self->f_gh);
 }
 
 static void
 replace_dialog_dispose(GObject *object)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(object);
-
-	g_clear_pointer (&self->vbox, gtk_widget_unparent);
 
 	/* Boilerplate: chain up
 	 */
@@ -955,7 +931,7 @@ replace_dialog_finalize(GObject *gobject)
 }
 
 static void
-replace_dialog_class_init(ReplaceDialogClass *klass)
+replace_dialog_class_init (ReplaceDialogClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
@@ -964,8 +940,6 @@ replace_dialog_class_init(ReplaceDialogClass *klass)
 	object_class->dispose = replace_dialog_dispose;
 	object_class->finalize = replace_dialog_finalize;
 	/* </boilerplate> */
-
-	widget_class->grab_focus = replace_dialog_grab_focus;
 }
 
 GtkWidget *
@@ -1019,7 +993,10 @@ jump_dialog_init (JumpDialog *self)
 	gtk_box_append (GTK_BOX(self->box), self->ok);
 	gtk_widget_set_receives_default (self->ok, TRUE);
 
-	self->cancel = gtk_button_new_with_mnemonic (_("_Close"));
+	self->cancel = gtk_button_new_from_icon_name ("window-close-symbolic");
+	gtk_widget_set_hexpand (self->cancel, TRUE);
+	gtk_widget_set_halign (self->cancel, GTK_ALIGN_END);
+	gtk_button_set_has_frame (GTK_BUTTON(self->cancel), FALSE);
 	g_signal_connect (G_OBJECT (self->cancel),
 					  "clicked", G_CALLBACK(common_cancel_cb),
 					  self);

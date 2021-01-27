@@ -45,7 +45,6 @@ G_BEGIN_DECLS
 #define PANE_TYPE_DIALOG pane_dialog_get_type ()
 G_DECLARE_DERIVABLE_TYPE (PaneDialog, pane_dialog, PANE, DIALOG, GtkWidget)
 
-
 struct _PaneDialogClass
 {
 	GtkWidgetClass parent_class;
@@ -57,15 +56,24 @@ struct _PaneDialogClass
 	gpointer padding[12];
 };
 
-#define JUMP_TYPE_DIALOG (jump_dialog_get_type ())
-G_DECLARE_FINAL_TYPE (JumpDialog, jump_dialog, JUMP, DIALOG, PaneDialog)
-
 #define FIND_TYPE_DIALOG (find_dialog_get_type ())
-G_DECLARE_FINAL_TYPE (FindDialog, find_dialog, FIND, DIALOG, PaneDialog)
+G_DECLARE_DERIVABLE_TYPE (FindDialog, find_dialog, FIND, DIALOG, PaneDialog)
+
+struct _FindDialogClass
+{
+	PaneDialogClass parent_class;
+
+	/* Padding to allow adding up to 12 new virtual functions without
+	 * breaking ABI. */
+	gpointer padding[12];
+};
 
 #define REPLACE_TYPE_DIALOG (replace_dialog_get_type ())
 G_DECLARE_FINAL_TYPE (ReplaceDialog, replace_dialog, REPLACE, DIALOG,
-		PaneDialog)
+		FindDialog)
+
+#define JUMP_TYPE_DIALOG (jump_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (JumpDialog, jump_dialog, JUMP, DIALOG, PaneDialog)
 
 /* PUBLIC METHOD DECLARATIONS */
 
