@@ -741,7 +741,24 @@ enable_main_actions (GHexApplicationWindow *self, gboolean enable)
 	}
 }
 
+
 /* GHexApplicationWindow -- CALLBACKS */
+
+static gboolean
+close_tab_shortcut_cb (GtkWidget *widget,
+		GVariant *args,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+	GHexNotebookTab *tab = ghex_application_window_get_current_tab (self);
+
+	g_return_val_if_fail (GHEX_IS_NOTEBOOK_TAB (tab), FALSE);
+
+	g_signal_emit_by_name (tab, "closed");
+
+	return TRUE;
+}
+
 static void
 ghex_application_window_file_saved_cb (HexDocument *doc,
 		gpointer user_data)
@@ -780,6 +797,8 @@ tab_close_cb (GHexNotebookTab *tab,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	HexDocument *doc;
+
+	g_debug ("%s: start", __func__);
 
 	doc = gtk_hex_get_document (self->gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
@@ -1709,7 +1728,7 @@ ghex_notebook_tab_class_init (GHexNotebookTabClass *klass)
 
 	notebook_signals[CLOSED] = g_signal_new_class_handler("closed",
 			G_OBJECT_CLASS_TYPE(object_class),
-			G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+			G_SIGNAL_RUN_FIRST,
 		/* GCallback class_handler: */
 			NULL,
 		/* no accumulator or accu_data */
@@ -2101,14 +2120,18 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			"ghex.jump",
 			NULL);	/* no args. */
 
+	/* Ctrl+W - close tab */
+	gtk_widget_class_add_binding (widget_class,
+			GDK_KEY_w,
+			GDK_CONTROL_MASK,
+			close_tab_shortcut_cb,
+			NULL);
+
 	/* WIDGET TEMPLATE .UI */
 
 	gtk_widget_class_set_template_from_resource (widget_class,
 					"/org/gnome/ghex/ghex-application-window.ui");
 
-	/* 
-	 * for i in `cat tmp.txt`; do echo "gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow, ${i});"; done
-	 */
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			no_doc_label);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
