@@ -1,3 +1,5 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copright © David Hammerton 2003
@@ -124,7 +126,7 @@ hex_dialog_new (void)
 }
 
 static void
-create_dialog_prop(HexDialogEntryTypes type,
+create_dialog_prop (HexDialogEntryTypes type,
                                HexDialog *dialog,
                                GtkWidget *grid,
                                gint xpos, gint ypos)
@@ -133,6 +135,7 @@ create_dialog_prop(HexDialogEntryTypes type,
 
     label = gtk_label_new(_(HexDialogEntries[type].name));
     gtk_widget_set_hexpand (label, TRUE);
+	gtk_widget_set_halign (label, GTK_ALIGN_END);
     gtk_grid_attach (GTK_GRID (grid), label,
                      xpos, ypos, 1, 1);
     gtk_widget_show(label);
@@ -173,8 +176,8 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     GtkWidget *spin;
 
     grid = gtk_grid_new ();
-    gtk_grid_set_row_spacing (GTK_GRID (grid), 4);
-    gtk_grid_set_column_spacing (GTK_GRID (grid), 4);
+    gtk_grid_set_row_spacing (GTK_GRID(grid), 6);
+    gtk_grid_set_column_spacing (GTK_GRID(grid), 6);
     gtk_widget_show (grid);
 
     vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);

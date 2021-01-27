@@ -1844,7 +1844,7 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
 	gtk_css_provider_load_from_data (conversions_box_provider,
 									 "box {\n"
-									 "   padding: 20px;\n"
+									 "   padding: 12px;\n"
 									 "}\n", -1);
 
 	/* add the provider to our widget's style context. */

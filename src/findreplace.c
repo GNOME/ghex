@@ -243,7 +243,7 @@ find_next_cb (GtkButton *button, gpointer user_data)
 						"No further matches found."));
 		else
 			dialog_str = g_strdup (_("End of file reached.\n\n"
-						"String was not found."));
+						"No occurrences found from cursor."));
 
 		display_info_dialog (parent, dialog_str);
 		found = FALSE;
@@ -318,7 +318,7 @@ find_prev_cb (GtkButton *button, gpointer user_data)
 						"No further matches found."));
 		else
 			dialog_str = g_strdup (_("Beginning of file reached.\n\n"
-						"String was not found."));
+						"No occurrences found from cursor."));
 
 		display_info_dialog (parent, dialog_str);
 		found = FALSE;
