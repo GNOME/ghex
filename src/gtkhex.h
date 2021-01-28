@@ -36,18 +36,12 @@
 #include <gdk/gdk.h>
 
 #include <hex-document.h>
+#include <gtkhex-layout-manager.h>
 
 G_BEGIN_DECLS
 
 #define GTK_TYPE_HEX (gtk_hex_get_type ())
 G_DECLARE_FINAL_TYPE(GtkHex, gtk_hex, GTK, HEX, GtkWidget)
-
-/* DEFINES */
-
-/* how to group bytes? */
-#define GROUP_BYTE 1
-#define GROUP_WORD 2
-#define GROUP_LONG 4
 
 /* OPAQUE DATATYPES */
 
@@ -67,7 +61,6 @@ guchar gtk_hex_get_byte(GtkHex *, guint);
 void gtk_hex_set_group_type(GtkHex *, guint);
 guint gtk_hex_get_group_type (GtkHex *gh);
 
-void gtk_hex_set_starting_offset(GtkHex *, gint);
 void gtk_hex_show_offsets(GtkHex *, gboolean);
 void gtk_hex_set_font(GtkHex *, PangoFontMetrics *,
 		const PangoFontDescription *);

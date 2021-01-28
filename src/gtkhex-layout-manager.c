@@ -36,9 +36,10 @@ struct _GtkHexLayout {
 	GtkWidget *ascii;
 
 	guint char_width;
+	guint group_type;
 
-	int hex_width;
-	int ascii_width;
+	int cpl;
+	int hex_cpl;
 };
 
 G_DEFINE_TYPE (GtkHexLayout, gtk_hex_layout, GTK_TYPE_LAYOUT_MANAGER)
@@ -51,7 +52,6 @@ struct _GtkHexLayoutChild {
 
 enum {
   PROP_CHILD_COLUMN = 1,
-
   N_CHILD_PROPERTIES
 };
 
@@ -211,6 +211,27 @@ gtk_hex_layout_measure (GtkLayoutManager *layout_manager,
 		*natural = natural_size;
 }
 
+/* Helper */
+static void
+get_cpl_from_ascii_width (GtkHexLayout *self, int width)
+{
+	int hex_cpl, ascii_cpl;
+
+	g_debug ("%s: GROUP_TYPE: %u", __func__, self->group_type);
+
+	/* Hex characters per line is a simple calculation: */
+
+	ascii_cpl = width / self->char_width;
+	while (ascii_cpl % self->group_type != 0)
+		--ascii_cpl;
+
+	hex_cpl = ascii_cpl * 2;
+   	hex_cpl += ascii_cpl / self->group_type;
+
+	self->hex_cpl = hex_cpl;
+	self->cpl = ascii_cpl;
+}
+
 static void
 gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 		GtkWidget        *widget,
@@ -240,12 +261,12 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 		if (! gtk_widget_should_layout (child))
 			continue;
 
-		/* Get preferred size of the child widget
-		 */
+		/* Get preferred size of the child widget */
+
 		gtk_widget_get_preferred_size (child, &child_req, NULL);
 
-		/* Setup allocation depending on what column we're in.
-		 */
+		/* Setup allocation depending on what column we're in. */
+
 		child_info =
 			GTK_HEX_LAYOUT_CHILD(gtk_layout_manager_get_layout_child (layout_manager,
 						child));
@@ -268,7 +289,8 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 				scr_alloc.height = height;
 				break;
 			default:
-				g_error ("%s: Programming error. The requested column is invalid.",
+				g_error ("%s: Programming error. "
+						"The requested column is invalid.",
 						__func__);
 				break;
 		}
@@ -283,12 +305,12 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 		if (! gtk_widget_should_layout (child))
 			continue;
 
-		/* Get preferred size of the child widget
-		 */
+		/* Get preferred size of the child widget */
+
 		gtk_widget_get_preferred_size (child, &child_req, NULL);
 
-		/* Setup allocation depending on what column we're in.
-		 */
+		/* Setup allocation depending on what column we're in. */
+
 		child_info =
 			GTK_HEX_LAYOUT_CHILD(gtk_layout_manager_get_layout_child
 					(layout_manager, child));
@@ -320,6 +342,9 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 						* HEX_RATIO;
 				}
 				tmp_alloc = asc_alloc;
+
+				get_cpl_from_ascii_width (self, asc_alloc.width);
+
 				break;
 
 			case SCROLLBAR_COLUMN:
@@ -373,9 +398,9 @@ gtk_hex_layout_class_init (GtkHexLayoutClass *klass)
 static void
 gtk_hex_layout_init (GtkHexLayout *self)
 {
-	g_debug ("%s: TEST - SETTING A DEFAULT MINIMUM CHAR-WIDTH",
-			__func__);
+	/* FIXME - dumb test initial default */
 	self->char_width = 20;
+	self->group_type = GROUP_BYTE;
 }
 
 /* GtkHexLayout - Public Methods */
@@ -392,6 +417,26 @@ gtk_hex_layout_set_char_width (GtkHexLayout *layout, guint width)
 	layout->char_width = width;
 
 	gtk_layout_manager_layout_changed (GTK_LAYOUT_MANAGER(layout));
+}
+
+void
+gtk_hex_layout_set_group_type (GtkHexLayout *layout, guint group_type)
+{
+	layout->group_type = group_type;
+
+	gtk_layout_manager_layout_changed (GTK_LAYOUT_MANAGER(layout));
+}
+
+int
+gtk_hex_layout_get_cpl (GtkHexLayout *layout)
+{
+	return layout->cpl;
+}
+
+int
+gtk_hex_layout_get_hex_cpl (GtkHexLayout *layout)
+{
+	return layout->hex_cpl;
 }
 
 /* GtkHexLayoutChild - Public Methods */

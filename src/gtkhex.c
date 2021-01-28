@@ -40,7 +40,6 @@
 /* Don't move these from the source file as they are not part of the public
  * header.
  */
-#include "gtkhex-layout-manager.h"
 
 /* DEFINES */
 
@@ -51,6 +50,7 @@
 #define DEFAULT_CPL 32
 #define DEFAULT_LINES 10
 #define SCROLL_TIMEOUT 100
+#define STARTING_OFFSET 0
 
 #define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
 #define is_copyable(c) (is_displayable(c) || (c) == 0x0a || (c) == 0x0d)
@@ -186,7 +186,6 @@ struct _GtkHex
 	int scroll_dir;
 	guint scroll_timeout;
 	gboolean show_offsets;
-	int starting_offset;
 	gboolean insert;
 	gboolean selecting;
 
@@ -199,7 +198,7 @@ struct _GtkHex
 	int default_lines;
 };
 
-G_DEFINE_TYPE(GtkHex, gtk_hex, GTK_TYPE_WIDGET)
+G_DEFINE_TYPE (GtkHex, gtk_hex, GTK_TYPE_WIDGET)
 
 /* ----- */
 
@@ -574,7 +573,8 @@ get_char_width (GtkHex *gh)
 	
 	/* update layout manager */
 	if (GTK_IS_HEX_LAYOUT(gh->layout_manager)) {
-		gtk_hex_layout_set_char_width (gh->layout_manager, width);
+		gtk_hex_layout_set_char_width (GTK_HEX_LAYOUT(gh->layout_manager),
+				width);
 	}
 	return width;
 }
@@ -602,6 +602,8 @@ format_xblock(GtkHex *gh, gchar *out, guint start, guint end)
 	int i, j, low, high;
 	guchar c;
 
+	g_debug ("%s: GOT GROUP TYPE: %u", __func__, gh->group_type);
+
 	for(i = start + 1, j = 0; i <= end; i++) {
 		c = gtk_hex_get_byte(gh, i - 1);
 		low = c & 0x0F;
@@ -610,7 +612,7 @@ format_xblock(GtkHex *gh, gchar *out, guint start, guint end)
 		out[j++] = ((high < 10)?(high + '0'):(high - 10 + 'A'));
 		out[j++] = ((low < 10)?(low + '0'):(low - 10 + 'A'));
 		
-		if(i%gh->group_type == 0)
+		if (i % gh->group_type == 0)
 			out[j++] = ' ';
 	}
 	return j;
@@ -881,12 +883,12 @@ render_hex_highlights (GtkHex *gh,
                        gint cursor_line)
 {
 	GtkHex_Highlight *curHighlight = &gh->selection;
-	gint xcpl = gh->cpl*2 + gh->cpl/gh->group_type;
-
 	GtkHex_AutoHighlight *nextList = gh->auto_highlight;
 	GtkStateFlags state;
 	GtkStyleContext *context;
+	int hex_cpl;
 
+	hex_cpl = gtk_hex_layout_get_hex_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
 	context = gtk_widget_get_style_context (gh->xdisp);
 	gtk_style_context_save (context);
 
@@ -919,7 +921,7 @@ render_hex_highlights (GtkHex *gh,
 				if (cursor_line == el)
 					len = 2*(end%gh->cpl + 1) + (end%gh->cpl)/gh->group_type;
 				else
-					len = xcpl;
+					len = hex_cpl;
 
 				len = len - cursor_off;
 
@@ -947,7 +949,7 @@ render_hex_highlights (GtkHex *gh,
 				gtk_render_background (context, cr,
 				                 0,
 				                 cursor_line * gh->char_height,
-				                 xcpl * gh->char_width,
+				                 hex_cpl * gh->char_width,
 				                 gh->char_height);
 			}
 		}
@@ -1115,11 +1117,15 @@ render_hex_lines (GtkHex *gh,
 	GtkStateFlags state;
 	GtkStyleContext *context;
 	int cursor_line;
-	int xcpl = gh->cpl * 2 + gh->cpl / gh->group_type;
 	int frm_len;
+	int hex_cpl;
 
 	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET(gh)));
 	g_return_if_fail (gh->cpl > 0);
+
+	hex_cpl = gtk_hex_layout_get_hex_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
+	g_debug ("%s: GROUP TYPE: %u", __func__, gh->group_type);
+	g_debug ("%s: HEX_CPL: %d", __func__, hex_cpl);
 
 	context = gtk_widget_get_style_context (widget);
 	state = gtk_widget_get_state_flags (widget);
@@ -1145,7 +1151,7 @@ render_hex_lines (GtkHex *gh,
 	
 	for (int i = min_lines; i <= max_lines; i++)
 	{
-		int tmp = frm_len - ((i - min_lines) * xcpl);
+		int tmp = frm_len - ((i - min_lines) * hex_cpl);
 
 		if (tmp <= 0)
 			break;
@@ -1155,8 +1161,8 @@ render_hex_lines (GtkHex *gh,
 		/* Set pango layout to the line of hex to render. */
 
 		pango_layout_set_text (gh->xlayout,
-				gh->disp_buffer + (i - min_lines) * xcpl,
-				MIN(xcpl, tmp));
+				gh->disp_buffer + (i - min_lines) * hex_cpl,
+				MIN(hex_cpl, tmp));
 
 		gtk_render_layout (context, cr,
 				/* x: */ 0,
@@ -1252,7 +1258,7 @@ render_offsets (GtkHex *gh,
 	context = gtk_widget_get_style_context (widget);
 	state = gtk_widget_get_state_flags (widget);
 
-	gtk_widget_get_allocation(widget, &allocation);
+	gtk_widget_get_allocation (widget, &allocation);
 
 	/* render background. */
 	gtk_render_background (context, cr,
@@ -1268,7 +1274,7 @@ render_offsets (GtkHex *gh,
 	for (int i = min_lines; i <= max_lines; i++) {
 		/* generate offset string and place in temporary buffer */
 		sprintf(offstr, "%08X",
-				(gh->top_line + i) * gh->cpl + gh->starting_offset);
+				(gh->top_line + i) * gh->cpl + STARTING_OFFSET);
 
 		/* build pango layout for offset line; draw line with gtk. */
 		pango_layout_set_text (gh->olayout, offstr, 8);
@@ -1289,51 +1295,13 @@ hex_draw (GtkDrawingArea *drawing_area,
                            gpointer user_data)
 {
 	GtkHex *gh = GTK_HEX(user_data);
-	int xcpl = 0;
 
 	g_return_if_fail (GTK_IS_HEX(gh));
-
-	/* Total number of characters that can be displayed per line on the hex
-	 * widget (xcpl) is the simplest calculation:
-	 */
-	xcpl = width / gh->char_width;
-
-	/* FIXME - This doesn't quite jibe with our new layout manager. Our
-	 * calculations here are fine, but the layout manager has no knowledge
-	 * of it, so sometimes characters get cut off if using larger group
-	 * types.
-	 */
-	/* Next, extrapolate the number of ASCII characters per line; this is
-	 * dependent upon the 'grouping' (ie, hex: 2 characters followed by a
-	 * space, a 'word' (2 hex characters together followed by a space, ie,
-	 * 4 + space... this is best illustrated with an example.
-	 *
-	 * given 16 xcpl, 'word' grouping:
-	 *
-	 * 16 [xcpl] / (2 [fixed value; # characters in a hex pair] * 4
-	 * [gh->group_type] + 1 [space]) == 1
-	 *
-	 * Meaning: 1 full word only can fit on a hex line, in this hypothetical,
-	 * then multiply the result by the group type again to get the number of
-	 * _characters_ (ascii) that this represents. (4 * 1 = 4 in this case)
-	 * Whew!
-	 */
-	gh->cpl = xcpl / (2 * gh->group_type + 1);
-	gh->cpl *= gh->group_type;
-
-	/* pixel width of hex drawing area */
-	gh->xdisp_width = xcpl * gh->char_width;
-
-	/* pixel width of ascii drawing area */
-	gh->adisp_width = gh->cpl * gh->char_width;
-
-	/* If gh->cpl is not greater than 0, something has gone wrong. */
-	g_return_if_fail (gh->cpl > 0);
 
 	/* Now that we have gh->cpl defined, run this function to bump all
 	 * required values:
 	 */
-	recalc_displays(gh);
+	recalc_displays (gh);
 
 	/* Finally, we can do what we wanted to do to begin with: draw our hex
 	 * lines!
@@ -1372,10 +1340,12 @@ offsets_draw (GtkDrawingArea *drawing_area,
  * lines we can display according to the current size of the widget
  */
 static void
-recalc_displays(GtkHex *gh)
+recalc_displays (GtkHex *gh)
 {
 	GtkWidget *widget = GTK_WIDGET (gh);
-	int xcpl;
+	int hex_cpl;
+
+	hex_cpl = gtk_hex_layout_get_hex_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
 
 	/*
 	 * Only change the value of the adjustment to put the cursor on screen
@@ -1389,15 +1359,10 @@ recalc_displays(GtkHex *gh)
 			gh->lines++;
 	}
 
-	/* FIXME - different than 'xcpl' in hex_draw. confusing.
-	 */
-	/* set number of hex characters per line */
-	xcpl = gh->cpl * 2 + (gh->cpl - 1) / gh->group_type;
-
 	if (gh->disp_buffer)
 		g_free (gh->disp_buffer);
 	
-	gh->disp_buffer = g_malloc ((xcpl + 1) * (gh->vis_lines + 1));
+	gh->disp_buffer = g_malloc ((hex_cpl + 1) * (gh->vis_lines + 1));
 }
 
 static void
@@ -2466,6 +2431,9 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 	gh->char_width = get_char_width(gh);
 	gh->char_height = get_char_height(gh);
 
+	/* Get cpl from layout manager */
+	gh->cpl = gtk_hex_layout_get_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
+
 	/* get width and height, implicitly converted to floats so we can pass
 	 * to graphene_rect_init below. */
 	width = gtk_widget_get_allocated_width (widget);
@@ -2725,9 +2693,7 @@ gtk_hex_init(GtkHex *gh)
 	gh->scroll_timeout = -1;
 
 	gh->document = NULL;
-	gh->starting_offset = 0;
 
-	gh->xdisp_width = gh->adisp_width = DEFAULT_DA_SIZE;
 	gh->extra_width = 0;
 	gh->active_view = VIEW_HEX;
 	gh->group_type = GROUP_BYTE;
@@ -3284,6 +3250,9 @@ gtk_hex_set_group_type (GtkHex *gh, guint gt)
 
 	hide_cursor(gh);
 	gh->group_type = gt;
+
+	gtk_hex_layout_set_group_type (GTK_HEX_LAYOUT(gh->layout_manager), gt);
+
 #if 0
 	gtk_widget_get_allocation(GTK_WIDGET(gh), &allocation);
 	recalc_displays(gh, allocation.width, allocation.height);
@@ -3310,14 +3279,6 @@ gtk_hex_show_offsets(GtkHex *gh, gboolean show)
 		show_offsets_widget(gh);
 	else
 		hide_offsets_widget(gh);
-}
-
-void
-gtk_hex_set_starting_offset (GtkHex *gh, gint starting_offset)
-{
-	g_return_if_fail (gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
-	gh->starting_offset = starting_offset;
 }
 
 void

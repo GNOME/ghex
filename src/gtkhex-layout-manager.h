@@ -29,6 +29,11 @@
 
 G_BEGIN_DECLS
 
+/* how to group bytes? */
+#define GROUP_BYTE 1
+#define GROUP_WORD 2
+#define GROUP_LONG 4
+
 #define GTK_TYPE_HEX_LAYOUT (gtk_hex_layout_get_type ())
 G_DECLARE_FINAL_TYPE (GtkHexLayout, gtk_hex_layout, GTK, HEX_LAYOUT,
 		GtkLayoutManager)
@@ -50,6 +55,10 @@ void				gtk_hex_layout_set_char_width (GtkHexLayout *layout,
 						guint width);
 void				gtk_hex_layout_child_set_column (GtkHexLayoutChild *child,
 						GtkHexLayoutColumn column);
+int					gtk_hex_layout_get_cpl (GtkHexLayout *layout);
+int 				gtk_hex_layout_get_hex_cpl (GtkHexLayout *layout);
+void				gtk_hex_layout_set_group_type (GtkHexLayout *layout,
+						guint group_type);
 
 G_END_DECLS
 
