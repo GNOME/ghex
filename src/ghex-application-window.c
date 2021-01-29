@@ -1121,6 +1121,23 @@ do_print (GtkWidget *widget,
 	common_print (GTK_WINDOW(self), self->gh, /* preview: */ FALSE);
 }
 
+static void
+new_file (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+	HexDocument *doc;
+	GtkHex *gh;
+
+	doc = hex_document_new ();
+	gh = GTK_HEX(gtk_hex_new (doc));
+
+	ghex_application_window_add_hex (self, gh);
+	ghex_application_window_set_hex (self, gh);
+	ghex_application_window_activate_tab (self, gh);
+}
+
 /* convenience helper function to build a GtkHex widget pre-loaded with
  * a hex document, from a GFile *.
  */
@@ -1879,6 +1896,10 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 
 
 	/* ACTIONS */
+
+	gtk_widget_class_install_action (widget_class, "ghex.new",
+			NULL,	/* GVariant string param_type */
+			new_file);
 
 	gtk_widget_class_install_action (widget_class, "ghex.open",
 			NULL,	/* GVariant string param_type */

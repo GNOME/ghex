@@ -2422,38 +2422,30 @@ static void
 gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 {
 	GtkHex *gh = GTK_HEX(widget);
-	graphene_rect_t rect;
-	float width, height;
-	cairo_t *cr;
 	GtkWidget *child;
+	float height;
 
 	/* Update character width & height */
 	gh->char_width = get_char_width(gh);
 	gh->char_height = get_char_height(gh);
 
 	/* Get cpl from layout manager */
-	gh->cpl = gtk_hex_layout_get_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
-
-	/* get width and height, implicitly converted to floats so we can pass
-	 * to graphene_rect_init below. */
-	width = gtk_widget_get_allocated_width (widget);
 	height = gtk_widget_get_allocated_height (widget);
+	gh->cpl = gtk_hex_layout_get_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
 
 	/* set visible lines - do this here and now as we can use the height
 	 * of the widget as a whole.  */
 	gh->vis_lines = height / gh->char_height;
 
-	/* get a graphene rect so we can pass it to the next function and draw
-	 * with cairo, which is all we want to do anyway. */
-	graphene_rect_init (&rect,
-		/* float x: */	0.0f,
-		/* float y: */	0.0f,
-			width, height);
-
-	cr = gtk_snapshot_append_cairo (snapshot, &rect);
-
 	/* queue child draw functions
 	 */
+
+	/* manually specify these as sometimes _snapshot_child doesn't `think'
+	 * they need to be redrawn. */
+	gtk_widget_queue_draw (gh->offsets);
+	gtk_widget_queue_draw (gh->xdisp);
+	gtk_widget_queue_draw (gh->adisp);
+
 	for (child = gtk_widget_get_first_child (widget);
 			child != NULL;
 			child = gtk_widget_get_next_sibling (child))
