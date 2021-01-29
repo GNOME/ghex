@@ -80,6 +80,7 @@ struct _GHexApplicationWindow
 	GtkAdjustment *adj;
 	GList *gh_list;
 	gboolean can_save;
+	gboolean insert_mode;
 
 	GtkWidget *find_dialog;
 	GtkWidget *replace_dialog;
@@ -107,6 +108,7 @@ typedef enum
 	PROP_REPLACE_OPEN,
 	PROP_JUMP_OPEN,
 	PROP_CAN_SAVE,
+	PROP_INSERT_MODE,
 	N_PROPERTIES
 } GHexApplicationWindowProperty;
 
@@ -162,15 +164,42 @@ static GHexNotebookTab * ghex_application_window_get_current_tab (GHexApplicatio
 static void set_statusbar(GHexApplicationWindow *self, const char *str);
 static void update_status_message (GHexApplicationWindow *self);
 static void update_gui_data (GHexApplicationWindow *self);
-
+static gboolean assess_can_save (HexDocument *doc);
 
 /* GHexApplicationWindow -- PRIVATE FUNCTIONS */
+
+/* Common macro to apply something to the 'gh' of each tab of the notebook.
+ *
+ * Between _START and _END, put in function calls that use `gh` to be applied
+ * to each gh in a tab. Technically you'll also have access to `notebook`
+ * and `tab`, but there is generally no reason to directly access these.
+ */
+#define NOTEBOOK_GH_FOREACH_START											\
+{																			\
+	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);				\
+	int i;																	\
+	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));							\
+	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i) {			\
+		GHexNotebookTab *tab;												\
+		GtkHex *gh;															\
+		g_debug ("%s: Working on %d'th page", __func__, i);					\
+		gh = GTK_HEX(gtk_notebook_get_nth_page (notebook, i));				\
+		g_return_if_fail (GTK_IS_HEX (gh));									\
+		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,		\
+					GTK_WIDGET(gh)));										\
+		g_return_if_fail (GHEX_IS_NOTEBOOK_TAB (tab));						\
+/* !NOTEBOOK_GH_FOREACH_START */
+
+#define NOTEBOOK_GH_FOREACH_END												\
+	} 																		\
+}																			\
+/* !NOTEBOOK_GH_FOREACH_END	*/
 
 /* set_*_from_settings
  * These functions all basically set properties from the GSettings global
  * variables. They should be used when a new gh is created, and when we're
  * `foreaching` through all of our tabs via a settings-change cb. See also
- * the `SETTINGS_CHANGED_GH_FOREACH_{START,END}` macros below.
+ * the `NOTEBOOK_GH_FOREACH_{START,END}` macros above.
  */
 
 static void
@@ -208,33 +237,6 @@ set_dark_mode_from_settings (GHexApplicationWindow *self)
 }
 	
 
-/* Common macro for the `settings*changed_cb` stuff.
- * Between _START and _END, put in function calls that use `gh` to be applied
- * to each gh in a tab. Technically you'll also have access to `notebook`
- * and `tab`, but there is generally no reason to directly access these.
- */
-#define SETTINGS_CHANGED_GH_FOREACH_START									\
-{																			\
-	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);				\
-	int i;																	\
-	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));							\
-	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i) {			\
-		GHexNotebookTab *tab;												\
-		GtkHex *gh;															\
-		g_debug ("%s: Working on %d'th page", __func__, i);					\
-		gh = GTK_HEX(gtk_notebook_get_nth_page (notebook, i));				\
-		g_return_if_fail (GTK_IS_HEX (gh));									\
-		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,		\
-					GTK_WIDGET(gh)));										\
-		g_return_if_fail (GHEX_IS_NOTEBOOK_TAB (tab));						\
-/* !SETTINGS_CHANGED_GH_FOREACH_START */
-
-#define SETTINGS_CHANGED_GH_FOREACH_END										\
-	} 																		\
-}																			\
-/* !SETTINGS_CHANGED_GH_FOREACH_END	*/
-
-
 static void
 settings_font_changed_cb (GSettings   *settings,
 		const gchar	*key,
@@ -242,11 +244,11 @@ settings_font_changed_cb (GSettings   *settings,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	SETTINGS_CHANGED_GH_FOREACH_START
+	NOTEBOOK_GH_FOREACH_START
 
 	common_set_gtkhex_font_from_settings (gh);
 
-	SETTINGS_CHANGED_GH_FOREACH_END
+	NOTEBOOK_GH_FOREACH_END
 }
 
 static void
@@ -256,11 +258,11 @@ settings_offsets_column_changed_cb (GSettings   *settings,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	SETTINGS_CHANGED_GH_FOREACH_START
+	NOTEBOOK_GH_FOREACH_START
 
 	set_gtkhex_offsets_column_from_settings (gh);
 
-	SETTINGS_CHANGED_GH_FOREACH_END
+	NOTEBOOK_GH_FOREACH_END
 }
 
 static void
@@ -270,11 +272,11 @@ settings_group_type_changed_cb (GSettings   *settings,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	SETTINGS_CHANGED_GH_FOREACH_START
+	NOTEBOOK_GH_FOREACH_START
 
 	set_gtkhex_group_type_from_settings (gh);
 
-	SETTINGS_CHANGED_GH_FOREACH_END
+	NOTEBOOK_GH_FOREACH_END
 }
 
 /* ! settings*changed_cb 's */
@@ -602,6 +604,18 @@ close_tab_shortcut_cb (GtkWidget *widget,
 	return TRUE;
 }
 
+static gboolean
+assess_can_save (HexDocument *doc)
+{
+	gboolean can_save = FALSE;
+
+	/* Can't save if we have a new document that is still untitled. */
+	if (doc->file_name)
+		can_save = hex_document_has_changed (doc);
+
+	return can_save;
+}
+
 static void
 ghex_application_window_file_saved_cb (HexDocument *doc,
 		gpointer user_data)
@@ -610,8 +624,7 @@ ghex_application_window_file_saved_cb (HexDocument *doc,
 
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
 
-	ghex_application_window_set_can_save (self,
-			hex_document_has_changed (doc));
+	ghex_application_window_set_can_save (self, assess_can_save (doc));
 }
 
 static void
@@ -630,8 +643,7 @@ ghex_application_window_document_changed_cb (HexDocument *doc,
 	if (doc != gtk_hex_get_document (self->gh))
 		return;
 
-	ghex_application_window_set_can_save (self,
-			hex_document_has_changed (doc));
+	ghex_application_window_set_can_save (self, assess_can_save (doc));
 }
 
 static void
@@ -659,8 +671,7 @@ notebook_switch_page_cb (GtkNotebook *notebook,
 		guint        page_num,
 		gpointer     user_data)
 {
-	GHexApplicationWindow *self =
-		GHEX_APPLICATION_WINDOW(user_data);
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	GHexNotebookTab *tab =
 		GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook, page));
 	HexDocument *doc;
@@ -677,8 +688,7 @@ notebook_switch_page_cb (GtkNotebook *notebook,
 
 	/* Assess saveability based on new tab we've switched to */
 	doc = gtk_hex_get_document (self->gh);
-	ghex_application_window_set_can_save (self,
-			hex_document_has_changed (doc));
+	ghex_application_window_set_can_save (self, assess_can_save (doc));
 
 	/* Update dialogs, offset status bar, etc. */
 	update_gui_data (self);
@@ -891,6 +901,8 @@ PANE_SET_SHOW_TEMPLATE(find,		replace, jump,	PROP_FIND_OPEN)
 PANE_SET_SHOW_TEMPLATE(replace,		find, jump,		PROP_REPLACE_OPEN)
 PANE_SET_SHOW_TEMPLATE(jump,		find, replace,	PROP_JUMP_OPEN)
 
+/* Property setters without templates: */
+
 static void
 ghex_application_window_set_can_save (GHexApplicationWindow *self,
 		gboolean can_save)
@@ -906,6 +918,23 @@ ghex_application_window_set_can_save (GHexApplicationWindow *self,
 			"ghex.revert", can_save);
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_CAN_SAVE]);
+}
+
+static void
+ghex_application_window_set_insert_mode (GHexApplicationWindow *self,
+		gboolean insert_mode)
+{
+	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
+
+	self->insert_mode = insert_mode;
+
+	NOTEBOOK_GH_FOREACH_START
+
+	gtk_hex_set_insert_mode(gh, insert_mode);
+
+	NOTEBOOK_GH_FOREACH_END
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_INSERT_MODE]);
 }
 
 /* For now, at least, this is a mostly pointless wrapper around 'file_save'.
@@ -1267,25 +1296,6 @@ open_preferences (GtkWidget *widget,
 	gtk_widget_show (prefs_dialog);
 }
 
-static void
-toggle_insert_mode (GtkWidget *widget,
-		const char *action_name,
-		GVariant *parameter)
-{
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
-
-	(void)parameter, (void)action_name;		/* unused */
-
-	/* this tests whether the button is pressed AFTER its state has changed. */
-	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(self->insert_mode_button))) {
-		g_debug("%s: TOGGLING INSERT MODE", __func__);
-		gtk_hex_set_insert_mode(self->gh, TRUE);
-	} else {
-		g_debug("%s: UNTOGGLING INSERT MODE", __func__);
-		gtk_hex_set_insert_mode(self->gh, FALSE);
-	}
-}
-
 /* --- */
 
 static void
@@ -1397,6 +1407,11 @@ ghex_application_window_set_property (GObject *object,
 					g_value_get_boolean (value));
 			break;
 
+		case PROP_INSERT_MODE:
+			ghex_application_window_set_insert_mode (self,
+					g_value_get_boolean (value));
+			break;
+
 		default:
 			/* We don't have any other property... */
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -1446,6 +1461,10 @@ ghex_application_window_get_property (GObject *object,
 
 		case PROP_CAN_SAVE:
 			g_value_set_boolean (value, self->can_save);
+			break;
+
+		case PROP_INSERT_MODE:
+			g_value_set_boolean (value, self->insert_mode);
 			break;
 
 		default:
@@ -1842,6 +1861,8 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+	GParamFlags prop_flags = G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS |
+		G_PARAM_EXPLICIT_NOTIFY;
 
 	object_class->dispose = ghex_application_window_dispose;
 	object_class->finalize = ghex_application_window_finalize;
@@ -1850,47 +1871,55 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 
 	/* PROPERTIES */
 
+
 	properties[PROP_CHARTABLE_OPEN] =
 		g_param_spec_boolean ("chartable-open",
 			"Character table open",
 			"Whether the character table dialog is currently open",
 			FALSE,	/* gboolean default_value */
-			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+			prop_flags);
 
 	properties[PROP_CONVERTER_OPEN] =
 		g_param_spec_boolean ("converter-open",
 			"Base converter open",
 			"Whether the base converter dialog is currently open",
 			FALSE,	/* gboolean default_value */
-			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+			prop_flags);
 
 	properties[PROP_FIND_OPEN] =
 		g_param_spec_boolean ("find-open",
 			"Find pane open",
 			"Whether the Find pane is currently open",
 			FALSE,	/* gboolean default_value */
-			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+			prop_flags);
 
 	properties[PROP_REPLACE_OPEN] =
 		g_param_spec_boolean ("replace-open",
 			"Replace pane open",
 			"Whether the Find and Replace pane is currently open",
 			FALSE,	/* gboolean default_value */
-			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+			prop_flags);
 
 	properties[PROP_JUMP_OPEN] =
 		g_param_spec_boolean ("jump-open",
 			"Jump pane open",
 			"Whether the Jump to Byte pane is currently open",
 			FALSE,	/* gboolean default_value */
-			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+			prop_flags);
 
 	properties[PROP_CAN_SAVE] =
 		g_param_spec_boolean ("can-save",
 			"Can save",
 			"Whether the Save (or Revert) button should currently be clickable",
 			FALSE,	/* gboolean default_value */
-			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+			prop_flags);
+	
+	properties[PROP_INSERT_MODE] =
+		g_param_spec_boolean ("insert-mode",
+			"Insert mode",
+			"Whether insert-mode (versus overwrite) is currently engaged",
+			FALSE,	/* gboolean default_value */
+			prop_flags);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
@@ -1929,10 +1958,6 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			NULL,	/* GVariant string param_type */
 			toggle_conversions);
 
-	gtk_widget_class_install_action (widget_class, "ghex.insert-mode",
-			NULL,	/* GVariant string param_type */
-			toggle_insert_mode);
-
 	gtk_widget_class_install_action (widget_class, "ghex.preferences",
 			NULL,	/* GVariant string param_type */
 			open_preferences);
@@ -1955,6 +1980,9 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.converter", "converter-open");
+
+	gtk_widget_class_install_property_action (widget_class,
+			"ghex.insert-mode", "insert-mode");
 
 	/* SHORTCUTS */
 
@@ -2070,6 +2098,9 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	/* GtkHex: Sync up appwindow-specific settings. */
 	set_gtkhex_offsets_column_from_settings (gh);
 	set_gtkhex_group_type_from_settings (gh);
+	
+	/* GtkHex: Set insert mode based on our global appwindow prop */
+	gtk_hex_set_insert_mode (gh, self->insert_mode);
 
 	/* Add this GtkHex to our internal list
 	 */
