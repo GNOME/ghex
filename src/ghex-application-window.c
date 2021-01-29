@@ -578,9 +578,6 @@ enable_main_actions (GHexApplicationWindow *self, gboolean enable)
 {
 	for (int i = 0; main_actions[i] != NULL; ++i)
 	{
-		g_debug("%s: action %d : %s - setting enabled: %d",
-				__func__, i, main_actions[i], enable);
-		
 		gtk_widget_action_set_enabled (GTK_WIDGET(self),
 				main_actions[i], enable);
 	}

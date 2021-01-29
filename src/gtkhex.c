@@ -114,14 +114,11 @@ struct _GtkHex_AutoHighlight
 	GtkHex_AutoHighlight *next, *prev;
 };
 
-/* GtkHexPasteData - allow us to get around the issue of C-strings being
- * nul-teminated, so we can paste `0x00`'s cleanly.
- */
+/* GtkHexPasteData - allow us to implement copy/pasting which is more
+ * flexible than standard C-strings */
 #define GTK_TYPE_HEX_PASTE_DATA (gtk_hex_paste_data_get_type ())
 G_DECLARE_FINAL_TYPE (GtkHexPasteData, gtk_hex_paste_data, GTK, HEX_PASTE_DATA,
 		GObject)
-
-#define GTK_HEX_PASTE_DATA_MAGIC 256
 
 /* GtkHexPasteData - Method Declarations */
 
@@ -135,7 +132,6 @@ struct _GtkHexPasteData
 	GObject parent_instance;
 
 	guchar *doc_data;
-	int *paste_data;
 	guint elems;
 };
 
@@ -250,53 +246,6 @@ doc_data_to_string (const guchar *data, guint len)
 	return str;
 }
 
-/* Creates a magic_int_array for GtkHexPasteData. Should be freed with g_free.
- */
-static int *
-doc_data_to_magic_int_array (const guchar *data, guint len)
-{
-	int *arr = 0;
-	guint i;
-
-	arr = g_malloc (len * (sizeof *arr));
-
-	for (i = 0; i < len; ++i)
-	{
-		arr[i] = data[i];
-
-		if (arr[i] == 0)
-			arr[i] = GTK_HEX_PASTE_DATA_MAGIC;
-	}
-	return arr;
-}
-
-static guchar *
-magic_int_array_to_data (int *arr, guint len)
-{
-	guchar *data;
-	guint i;
-
-	data = g_malloc (len);
-
-	for (i = 0;
-			i < len;
-			++i, ++arr, ++data)
-	{
-		g_assert (arr);
-
-		if (*arr == GTK_HEX_PASTE_DATA_MAGIC) {
-			*data = 0;
-		} else if (*arr < GTK_HEX_PASTE_DATA_MAGIC) {
-			*data = *arr;
-		} else {
-			g_error ("%s: Programmer error. Nothing in a magic_int_array "
-					"shall be greater than %d",
-					__func__,
-					GTK_HEX_PASTE_DATA_MAGIC);
-		}
-	}
-	return data;
-}
 
 /* FIXME/TODO - this transforms certain problematic characters for copy/paste
  * to a '?'. Maybe find a home for this guy at some point.
@@ -339,11 +288,6 @@ gtk_hex_paste_data_new (guchar *doc_data, guint elems)
 
 	self->doc_data = doc_data;
 	self->elems = elems;
-
-	self->paste_data = doc_data_to_magic_int_array (self->doc_data,
-			self->elems);
-
-	g_assert (self->paste_data);
 
 	return self;
 }
@@ -602,9 +546,7 @@ format_xblock(GtkHex *gh, gchar *out, guint start, guint end)
 	int i, j, low, high;
 	guchar c;
 
-	g_debug ("%s: GOT GROUP TYPE: %u", __func__, gh->group_type);
-
-	for(i = start + 1, j = 0; i <= end; i++) {
+	for (i = start + 1, j = 0; i <= end; i++) {
 		c = gtk_hex_get_byte(gh, i - 1);
 		low = c & 0x0F;
 		high = (c & 0xF0) >> 4;
@@ -1124,9 +1066,6 @@ render_hex_lines (GtkHex *gh,
 	g_return_if_fail (gh->cpl > 0);
 
 	hex_cpl = gtk_hex_layout_get_hex_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
-	g_debug ("%s: GROUP TYPE: %u", __func__, gh->group_type);
-	g_debug ("%s: HEX_CPL: %d", __func__, hex_cpl);
-
 	context = gtk_widget_get_style_context (widget);
 	state = gtk_widget_get_state_flags (widget);
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
