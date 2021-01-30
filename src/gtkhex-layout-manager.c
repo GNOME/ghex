@@ -217,8 +217,6 @@ get_cpl_from_ascii_width (GtkHexLayout *self, int width)
 {
 	int hex_cpl, ascii_cpl;
 
-	g_debug ("%s: GROUP_TYPE: %u", __func__, self->group_type);
-
 	/* Hex characters per line is a simple calculation: */
 
 	ascii_cpl = width / self->char_width;

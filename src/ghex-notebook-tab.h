@@ -22,39 +22,26 @@
    Original GHex Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef GHEX_APPLICATION_WINDOW_H
-#define GHEX_APPLICATION_WINDOW_H
+#ifndef GHEX_NOTEBOOK_TAB_H
+#define GHEX_NOTEBOOK_TAB_H
 
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 
 #include "gtkhex.h"
-#include "configuration.h"
-#include "ghex-notebook-tab.h"
-#include "hex-dialog.h"
-#include "findreplace.h"
-#include "chartable.h"
-#include "converter.h"
-#include "preferences.h"
-#include "common-ui.h"
 
 G_BEGIN_DECLS
 
-#define GHEX_TYPE_APPLICATION_WINDOW (ghex_application_window_get_type ())
-G_DECLARE_FINAL_TYPE (GHexApplicationWindow, ghex_application_window,
-				GHEX, APPLICATION_WINDOW,
-				GtkApplicationWindow)
+#define GHEX_TYPE_NOTEBOOK_TAB (ghex_notebook_tab_get_type ())
+G_DECLARE_FINAL_TYPE (GHexNotebookTab, ghex_notebook_tab, GHEX, NOTEBOOK_TAB,
+				GtkWidget)
 
-GtkWidget *	ghex_application_window_new (GtkApplication *app);
-void		ghex_application_window_add_hex (GHexApplicationWindow *self,
-				GtkHex *gh);
-void		ghex_application_window_set_hex (GHexApplicationWindow *self,
-				GtkHex *gh);
-void		ghex_application_window_activate_tab (GHexApplicationWindow *self,
-				GtkHex *gh);
-GList *		ghex_application_window_get_list (GHexApplicationWindow *self);
-void		ghex_application_window_open_file (GHexApplicationWindow *self,
-				GFile *file);
+/* Method Declarations */
+
+GtkWidget * 	ghex_notebook_tab_new (void);
+void 			ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh);
+const char * 	ghex_notebook_tab_get_filename (GHexNotebookTab *self);
+GtkHex * 		ghex_notebook_tab_get_hex (GHexNotebookTab *self);
 
 G_END_DECLS
 

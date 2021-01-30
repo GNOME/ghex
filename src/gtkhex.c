@@ -737,7 +737,7 @@ render_xc (GtkHex *gh,
 	state = gtk_widget_get_state_flags (gh->xdisp);
 
 	if (get_xcoords (gh, gh->cursor_pos, &cx, &cy)) {
-		format_xbyte(gh, gh->cursor_pos, c);
+		format_xbyte (gh, gh->cursor_pos, c);
 		if (gh->lower_nibble) {
 			cx += gh->char_width;
 			i = 1;
@@ -859,7 +859,7 @@ render_hex_highlights (GtkHex *gh,
 
 			if (cursor_line == sl)
 			{
-				cursor_off = 2*(start%gh->cpl) + (start%gh->cpl)/gh->group_type;
+				cursor_off = 2 * (start % gh->cpl) + (start % gh->cpl) / gh->group_type;
 				if (cursor_line == el)
 					len = 2*(end%gh->cpl + 1) + (end%gh->cpl)/gh->group_type;
 				else
@@ -2953,7 +2953,7 @@ gtk_hex_get_selection (GtkHex *gh, gint *start, gint *end)
 {
 	gint ss, se;
 
-	if(gh->selection.start > gh->selection.end) {
+	if (gh->selection.start > gh->selection.end) {
 		se = gh->selection.start;
 		ss = gh->selection.end;
 	}
@@ -3061,7 +3061,7 @@ gtk_hex_set_cursor(GtkHex *gh, gint index) {
 
 		if(index == gh->document->file_size)
 			gh->lower_nibble = FALSE;
-		
+
 		if(gh->selecting) {
 			gtk_hex_set_selection(gh, gh->selection.start, gh->cursor_pos);
 			bytes_changed (gh,

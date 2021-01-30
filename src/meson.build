@@ -59,6 +59,8 @@ ghex_sources = [
   'findreplace.h',
   'ghex-application-window.c',
   'ghex-application-window.h',
+  'ghex-notebook-tab.c',
+  'ghex-notebook-tab.h',
   'hex-dialog.c',
   'hex-dialog.h',
   'main.c',
