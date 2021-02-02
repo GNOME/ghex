@@ -31,6 +31,7 @@
 */
 
 #include "gtkhex.h"
+#include "gtkhex-layout-manager.h"
 
 #include <string.h>
 
@@ -113,31 +114,6 @@ struct _GtkHex_AutoHighlight
 	GtkHex_Highlight *highlights;
 	GtkHex_AutoHighlight *next, *prev;
 };
-
-/* GtkHexPasteData - allow us to implement copy/pasting which is more
- * flexible than standard C-strings */
-#define GTK_TYPE_HEX_PASTE_DATA (gtk_hex_paste_data_get_type ())
-G_DECLARE_FINAL_TYPE (GtkHexPasteData, gtk_hex_paste_data, GTK, HEX_PASTE_DATA,
-		GObject)
-
-/* GtkHexPasteData - Method Declarations */
-
-static GtkHexPasteData * gtk_hex_paste_data_new (guchar *doc_data,
-		guint elems);
-
-/* GtkHexPasteData - GObject Definition */
-
-struct _GtkHexPasteData
-{
-	GObject parent_instance;
-
-	guchar *doc_data;
-	guint elems;
-};
-
-G_DEFINE_TYPE (GtkHexPasteData, gtk_hex_paste_data, G_TYPE_OBJECT)
-
-/* </GtkHexPasteData Decls> */
 
 
 /* ------------------------------
@@ -225,86 +201,6 @@ static void gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
 		gboolean delete, gboolean add);
 
 static void recalc_displays(GtkHex *gh);
-static char *doc_data_to_string (const guchar *data, guint len);
-
-/* GtkHexPasteData - Helper Functions */
-
-/* Helper function for the copy and paste stuff, since the data returned by
- * hex_document_get_data is NOT null-temrinated.
- *
- * String returned should be freed with g_free.
- */
-static char *
-doc_data_to_string (const guchar *data, guint len)
-{
-	char *str;
-
-	str = g_malloc (len + 1);
-	memcpy (str, data, len);
-	str[len] = '\0';
-
-	return str;
-}
-
-
-/* FIXME/TODO - this transforms certain problematic characters for copy/paste
- * to a '?'. Maybe find a home for this guy at some point.
- */
-#if 0
-{
-	char *cp;
-		for (cp = text; *cp != '\0'; ++cp)
-		{
-			if (! is_copyable(*cp))
-				*cp = '?';
-		}
-}
-#endif
-		
-/* GtkHexPasteData - Constructors and Destructors */
-
-static void
-gtk_hex_paste_data_init (GtkHexPasteData *self)
-{
-}
-
-static void
-gtk_hex_paste_data_class_init (GtkHexPasteDataClass *klass)
-{
-}
-
-
-/* GtkHexPasteData - Method Definitions (all private) */
-
-static GtkHexPasteData *
-gtk_hex_paste_data_new (guchar *doc_data, guint elems)
-{
-	GtkHexPasteData *self;
-
-	g_return_val_if_fail (doc_data, NULL);
-	g_return_val_if_fail (elems, NULL);
-
-	self = g_object_new (GTK_TYPE_HEX_PASTE_DATA, NULL);
-
-	self->doc_data = doc_data;
-	self->elems = elems;
-
-	return self;
-}
-
-/* String returned should be freed with g_free. */
-static char *
-gtk_hex_paste_data_get_string (GtkHexPasteData *self)
-{
-	char *string;
-
-	g_return_val_if_fail (self->doc_data, NULL);
-	g_return_val_if_fail (self->elems, NULL);
-
-	string = doc_data_to_string (self->doc_data, self->elems);
-
-	return string;
-}
 
 /* GtkHex - Method Definitions */
 
@@ -2326,19 +2222,24 @@ gtk_hex_real_paste_from_clipboard (GtkHex *gh,
 
 	if (have_hex_paste_data)
 	{
+		guchar *doc_data;
+		guint elems;
+
 		g_debug("%s: We HAVE our special HexPasteData.",
 				__func__);
 
 		paste = GTK_HEX_PASTE_DATA(g_value_get_object (&value));
+		doc_data = gtk_hex_paste_data_get_doc_data (paste);
+		elems = gtk_hex_paste_data_get_elems (paste);
 
 		hex_document_set_data (gh->document,
 				gh->cursor_pos,
-				paste->elems,
+				elems,
 				0,	/* rep_len (0 to insert w/o replacing; what we want) */
-				paste->doc_data,
+				doc_data,
 				TRUE);
 
-		gtk_hex_set_cursor(gh, gh->cursor_pos + paste->elems);
+		gtk_hex_set_cursor (gh, gh->cursor_pos + elems);
 	}
 	else {
 		gdk_clipboard_read_text_async (clipboard,

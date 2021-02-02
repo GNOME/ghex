@@ -1,6 +1,6 @@
 /* vim: ts=4 sw=4 colorcolumn=80
  * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* ghex-application-window.c - GHex main application window
+/* ghex-application-window.h - GHex main application window declarations
 
    Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
@@ -55,6 +55,7 @@ void		ghex_application_window_activate_tab (GHexApplicationWindow *self,
 GList *		ghex_application_window_get_list (GHexApplicationWindow *self);
 void		ghex_application_window_open_file (GHexApplicationWindow *self,
 				GFile *file);
+GtkHex *	ghex_application_window_get_hex (GHexApplicationWindow *self);
 
 G_END_DECLS
 

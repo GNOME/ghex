@@ -27,12 +27,10 @@
 
 #include <gtk/gtk.h>
 
-G_BEGIN_DECLS
+/* Not a circular dep; this is just for the GROUP_* enums defined there. */
+#include "gtkhex.h"
 
-/* how to group bytes? */
-#define GROUP_BYTE 1
-#define GROUP_WORD 2
-#define GROUP_LONG 4
+G_BEGIN_DECLS
 
 #define GTK_TYPE_HEX_LAYOUT (gtk_hex_layout_get_type ())
 G_DECLARE_FINAL_TYPE (GtkHexLayout, gtk_hex_layout, GTK, HEX_LAYOUT,

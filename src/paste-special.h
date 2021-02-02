@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* paste-special.h - Declarations for paste special dialog
 
-<!-- vim:ts=4 sw=4
--->
-<!--
    Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
@@ -21,13 +21,23 @@
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
    Original GHex Author: Jaka Mocnik <jaka@gnu.org>
--->
+*/
 
-<gresources>
-	<gresource prefix="/org/gnome/ghex">
-		<file preprocess="xml-stripblanks" compressed="true">ghex-application-window.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">context-menu.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">preferences.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">paste-special.ui</file>
-	</gresource>
-</gresources>
+#ifndef PASTE_SPECIAL_H
+#define PASTE_SPECIAL_H
+
+#include <gtk/gtk.h>
+#include <glib/gi18n.h>
+
+#include "gtkhex.h"
+#include "gtkhex-paste-data.h"
+#include "ghex-application-window.h"
+
+G_BEGIN_DECLS
+
+GtkWidget *	create_paste_special_dialog (GHexApplicationWindow *parent,
+		GdkClipboard *clip);
+
+G_END_DECLS
+
+#endif /* PASTE_SPECIAL_H */

@@ -23,6 +23,9 @@
 */
 
 #include "ghex-application-window.h"
+// FIXME - not sure I want this to be a dep. Needs to be in the .C file
+// due to both headers requiring each other
+#include "paste-special.h"
 
 /* DEFINES */
 
@@ -561,6 +564,27 @@ close_tab_shortcut_cb (GtkWidget *widget,
 	g_return_val_if_fail (GHEX_IS_NOTEBOOK_TAB (tab), FALSE);
 
 	g_signal_emit_by_name (tab, "closed");
+
+	return TRUE;
+}
+
+
+static gboolean
+paste_special_shortcut_cb (GtkWidget *widget,
+		GVariant *args,
+		gpointer user_data)
+{
+	// TEST
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+	GdkClipboard *clipboard;
+	GtkWidget *paste_special_dialog;
+
+	g_return_val_if_fail (GTK_IS_HEX (self->gh), FALSE);
+
+	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(self->gh));
+	paste_special_dialog = create_paste_special_dialog (self,
+			clipboard);
+	gtk_widget_show (paste_special_dialog);
 
 	return TRUE;
 }
@@ -1763,6 +1787,13 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			close_tab_shortcut_cb,
 			NULL);
 
+	/* Ctrl+Shift+V - paste special */
+	gtk_widget_class_add_binding (widget_class,
+			GDK_KEY_v,
+			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+			paste_special_shortcut_cb,
+			NULL);
+
 	/* WIDGET TEMPLATE .UI */
 
 	gtk_widget_class_set_template_from_resource (widget_class,
@@ -1922,4 +1953,12 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 	ghex_application_window_activate_tab (self, gh);
 
 	g_object_unref (my_file);
+}
+
+GtkHex *
+ghex_application_window_get_hex (GHexApplicationWindow *self)
+{
+	g_return_val_if_fail (GHEX_IS_APPLICATION_WINDOW (self), NULL);
+
+	return self->gh;
 }

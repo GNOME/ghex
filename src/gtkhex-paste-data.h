@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+/* vim: ts=4 sw=4 colorcolumn=80
+ * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* gtkhex-paste-data.h - declaration of paste data for GtkHex
 
-<!-- vim:ts=4 sw=4
--->
-<!--
    Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
@@ -21,13 +20,28 @@
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
    Original GHex Author: Jaka Mocnik <jaka@gnu.org>
--->
+*/
 
-<gresources>
-	<gresource prefix="/org/gnome/ghex">
-		<file preprocess="xml-stripblanks" compressed="true">ghex-application-window.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">context-menu.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">preferences.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">paste-special.ui</file>
-	</gresource>
-</gresources>
+#ifndef GTKHEX_PASTE_DATA_H
+#define GTKHEX_PASTE_DATA_H
+
+#include <glib-object.h>
+
+#include <hex-document.h>
+
+G_BEGIN_DECLS
+
+#define GTK_TYPE_HEX_PASTE_DATA (gtk_hex_paste_data_get_type ())
+G_DECLARE_FINAL_TYPE (GtkHexPasteData, gtk_hex_paste_data, GTK, HEX_PASTE_DATA,
+		GObject)
+
+/* Method Declarations */
+
+GtkHexPasteData *	gtk_hex_paste_data_new (guchar *doc_data, guint elems);
+char *				gtk_hex_paste_data_get_string (GtkHexPasteData *self);
+guchar *			gtk_hex_paste_data_get_doc_data (GtkHexPasteData *self);
+guint				gtk_hex_paste_data_get_elems (GtkHexPasteData *self);
+
+G_END_DECLS
+
+#endif		/* GTKHEX_PASTE_DATA_H */

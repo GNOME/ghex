@@ -1,12 +1,14 @@
 libghex_sources = [
   'gtkhex.c',
   'hex-document.c',
-  'gtkhex-layout-manager.c'
+  'gtkhex-layout-manager.c',
+  'gtkhex-paste-data.c'
 ]
 
 libghex_headers = [
   'hex-document.h',
-  'gtkhex.h'
+  'gtkhex.h',
+  'gtkhex-paste-data.h'
 ]
 
 libghex_deps = [
@@ -61,9 +63,13 @@ ghex_sources = [
   'ghex-application-window.h',
   'ghex-notebook-tab.c',
   'ghex-notebook-tab.h',
+  'gtkhex-paste-data.c',
+  'gtkhex-paste-data.h',
   'hex-dialog.c',
   'hex-dialog.h',
   'main.c',
+  'paste-special.c',
+  'paste-special.h',
   'preferences.c',
   'preferences.h',
   'print.c',

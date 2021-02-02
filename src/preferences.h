@@ -36,6 +36,7 @@
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include <string.h>
+
 #include <gtkhex.h>	/* for GROUP_* enums */
 
 #include "configuration.h"

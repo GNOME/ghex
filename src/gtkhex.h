@@ -33,12 +33,20 @@
 #define GTKHEX_H
 
 #include <gtk/gtk.h>
-#include <gdk/gdk.h>
 
 #include <hex-document.h>
-#include <gtkhex-layout-manager.h>
+#include <gtkhex-paste-data.h>
 
 G_BEGIN_DECLS
+
+/* CONSTANTS */
+
+/* how to group bytes? */
+#define GROUP_BYTE 1
+#define GROUP_WORD 2
+#define GROUP_LONG 4
+
+/* GOBJECT DECLARATION */
 
 #define GTK_TYPE_HEX (gtk_hex_get_type ())
 G_DECLARE_FINAL_TYPE(GtkHex, gtk_hex, GTK, HEX, GtkWidget)
