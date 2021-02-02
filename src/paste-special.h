@@ -32,6 +32,7 @@
 #include "gtkhex.h"
 #include "gtkhex-paste-data.h"
 #include "ghex-application-window.h"
+#include "common-ui.h"
 
 G_BEGIN_DECLS
 

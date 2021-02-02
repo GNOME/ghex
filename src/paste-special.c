@@ -36,12 +36,21 @@
 	g_assert (GTK_IS_WIDGET (X))
 
 /* ENUMS AND DATATYPES */
+
+#define HEX_PASTE_ERROR hex_paste_error_quark ()
+G_DEFINE_QUARK (hex-paste-error-quark, hex_paste_error)
+
+typedef enum {
+	HEX_PASTE_ERROR_INVALID
+
+} HexPasteError;
+
 enum mime_types {
 	NO_MIME,
 	PLAINTEXT_MIME,
 	UTF_PLAINTEXT_MIME,
 	LAST_MIME
-} MimeType;
+};
 
 typedef enum {
 	NO_SUBTYPE,
@@ -135,7 +144,7 @@ mime_sub_type_label_new (KnownMimeType *known_type)
 /* PRIVATE FUNCTIONS */
 
 static GString *
-delimited_hex_to_gstring (const char *hex_str)
+delimited_hex_to_gstring (const char *hex_str, GError **err)
 {
 	char *copy;
 	char *cp;
@@ -169,6 +178,13 @@ delimited_hex_to_gstring (const char *hex_str)
 
 fail:
 	g_debug ("%s: Invalid hex format detected", __func__);
+	g_set_error (err,
+			HEX_PASTE_ERROR,
+			HEX_PASTE_ERROR_INVALID,
+			"Paste failed; invalid hex format.\n\n"
+			"The string must be in the format of space-delineated "
+			"hex byte pairs.\n\n"
+			"For example: \"FF 3D 99 0A\"");
 	g_free (copy);
 	return NULL;
 }
@@ -182,17 +198,22 @@ delimited_paste_received_cb (GObject *source_object,
 	HexDocument *doc;
 	char *text;
 	GString *buf = NULL;
+	GError *err = NULL; 
 
 	/* Get the resulting text of the read operation */
 	text = gdk_clipboard_read_text_finish (GDK_CLIPBOARD(source_object),
 			result,
 			NULL);	/* GError */
 
-	buf = delimited_hex_to_gstring (text);
+	buf = delimited_hex_to_gstring (text, &err);
 	if (! buf)
 	{
 		g_debug ("%s: Received invalid delimeter string. Returning.",
 				__func__);
+		if (err) {
+			display_error_dialog (GTK_WINDOW(app_window), err->message);
+			g_error_free (err);
+		}
 		return;
 	}
 
@@ -417,7 +438,7 @@ init_mime_hash (void)
 				ASCII_PLAINTEXT));
 
 	LIST = g_slist_append (LIST, create_known_mime_sub_type (MIME,
-				_("Plain text (as delimited hex pairs)"),
+				_("Plain text (as space-delimited hex pairs)"),
 				HEX_PLAINTEXT));
 
 	g_hash_table_insert (mime_hash,
