@@ -39,6 +39,9 @@ G_BEGIN_DECLS
 GtkWidget *	create_paste_special_dialog (GHexApplicationWindow *parent,
 		GdkClipboard *clip);
 
+GtkWidget *	create_copy_special_dialog (GHexApplicationWindow *parent,
+		GdkClipboard *clip);
+
 G_END_DECLS
 
 #endif /* PASTE_SPECIAL_H */

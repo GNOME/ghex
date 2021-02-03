@@ -54,6 +54,8 @@ struct _GHexApplicationWindow
 	GtkWidget *jump_dialog;
 	GtkWidget *chartable;
 	GtkWidget *converter;
+	GtkWidget *paste_special_dialog;
+	GtkWidget *copy_special_dialog;
 
 	/* From GtkBuilder: */
 	GtkWidget *no_doc_label;
@@ -568,23 +570,44 @@ close_tab_shortcut_cb (GtkWidget *widget,
 	return TRUE;
 }
 
+static gboolean
+copy_special_shortcut_cb (GtkWidget *widget,
+		GVariant *args,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+	GdkClipboard *clipboard;
+
+	g_return_val_if_fail (GTK_IS_HEX (self->gh), FALSE);
+
+	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(self->gh));
+
+	if (! GTK_IS_WIDGET (self->copy_special_dialog)) {
+		self->copy_special_dialog = create_copy_special_dialog (self,
+				clipboard);
+	}
+	gtk_widget_show (self->copy_special_dialog);
+
+	return TRUE;
+}
 
 static gboolean
 paste_special_shortcut_cb (GtkWidget *widget,
 		GVariant *args,
 		gpointer user_data)
 {
-	// TEST
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 	GdkClipboard *clipboard;
-	GtkWidget *paste_special_dialog;
 
 	g_return_val_if_fail (GTK_IS_HEX (self->gh), FALSE);
 
 	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(self->gh));
-	paste_special_dialog = create_paste_special_dialog (self,
-			clipboard);
-	gtk_widget_show (paste_special_dialog);
+
+	if (! GTK_IS_WIDGET (self->paste_special_dialog)) {
+		self->paste_special_dialog = create_paste_special_dialog (self,
+				clipboard);
+	}
+	gtk_widget_show (self->paste_special_dialog);
 
 	return TRUE;
 }
@@ -1792,6 +1815,13 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			GDK_KEY_v,
 			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
 			paste_special_shortcut_cb,
+			NULL);
+
+	/* Ctrl+Shift+C - copy special */
+	gtk_widget_class_add_binding (widget_class,
+			GDK_KEY_c,
+			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+			copy_special_shortcut_cb,
 			NULL);
 
 	/* WIDGET TEMPLATE .UI */
