@@ -54,6 +54,7 @@ struct _GHexApplicationWindow
 	GtkWidget *jump_dialog;
 	GtkWidget *chartable;
 	GtkWidget *converter;
+	GtkWidget *prefs_dialog;
 	GtkWidget *paste_special_dialog;
 	GtkWidget *copy_special_dialog;
 
@@ -1283,7 +1284,6 @@ open_about (GtkWidget *widget,
 		GVariant *parameter)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
-	GtkWidget *prefs_dialog;
 
 	(void)parameter, (void)action_name;		/* unused */
 
@@ -1296,12 +1296,13 @@ open_preferences (GtkWidget *widget,
 		GVariant *parameter)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
-	GtkWidget *prefs_dialog;
 
 	(void)parameter, (void)action_name;		/* unused */
 
-	prefs_dialog = create_preferences_dialog (GTK_WINDOW(self));
-	gtk_widget_show (prefs_dialog);
+	if (! GTK_IS_WIDGET (self->prefs_dialog)) {
+		self->prefs_dialog = create_preferences_dialog (GTK_WINDOW(self));
+	}
+	gtk_widget_show (self->prefs_dialog);
 }
 
 /* --- */
