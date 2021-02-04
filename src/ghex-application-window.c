@@ -103,6 +103,8 @@ static const char *main_actions[] = {
 	"ghex.jump",
 	"ghex.chartable",
 	"ghex.converter",
+	"ghex.copy-special",
+	"ghex.paste-special",
 	NULL				/* last action */
 };
 
@@ -571,15 +573,16 @@ close_tab_shortcut_cb (GtkWidget *widget,
 	return TRUE;
 }
 
-static gboolean
-copy_special_shortcut_cb (GtkWidget *widget,
-		GVariant *args,
-		gpointer user_data)
+static void
+copy_special (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 	GdkClipboard *clipboard;
 
-	g_return_val_if_fail (GTK_IS_HEX (self->gh), FALSE);
+	(void)action_name; (void)parameter;
+	g_return_if_fail (GTK_IS_HEX (self->gh));
 
 	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(self->gh));
 
@@ -588,19 +591,18 @@ copy_special_shortcut_cb (GtkWidget *widget,
 				clipboard);
 	}
 	gtk_widget_show (self->copy_special_dialog);
-
-	return TRUE;
 }
 
-static gboolean
-paste_special_shortcut_cb (GtkWidget *widget,
-		GVariant *args,
-		gpointer user_data)
+static void 
+paste_special (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 	GdkClipboard *clipboard;
 
-	g_return_val_if_fail (GTK_IS_HEX (self->gh), FALSE);
+	(void)action_name; (void)parameter;
+	g_return_if_fail (GTK_IS_HEX (self->gh));
 
 	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(self->gh));
 
@@ -609,8 +611,6 @@ paste_special_shortcut_cb (GtkWidget *widget,
 				clipboard);
 	}
 	gtk_widget_show (self->paste_special_dialog);
-
-	return TRUE;
 }
 
 static gboolean
@@ -1743,6 +1743,14 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			NULL,	/* GVariant string param_type */
 			revert);
 
+	gtk_widget_class_install_action (widget_class, "ghex.copy-special",
+			NULL,	/* GVariant string param_type */
+			copy_special);
+
+	gtk_widget_class_install_action (widget_class, "ghex.paste-special",
+			NULL,	/* GVariant string param_type */
+			paste_special);
+
 	gtk_widget_class_install_action (widget_class, "ghex.print",
 			NULL,	/* GVariant string param_type */
 			do_print);
@@ -1804,25 +1812,25 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			"ghex.jump",
 			NULL);	/* no args. */
 
+	/* Ctrl+Shift+V - paste special */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_v,
+			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+			"ghex.paste-special",
+			NULL);
+
+	/* Ctrl+Shift+C - copy special */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_c,
+			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+			"ghex.copy-special",
+			NULL);
+
 	/* Ctrl+W - close tab */
 	gtk_widget_class_add_binding (widget_class,
 			GDK_KEY_w,
 			GDK_CONTROL_MASK,
 			close_tab_shortcut_cb,
-			NULL);
-
-	/* Ctrl+Shift+V - paste special */
-	gtk_widget_class_add_binding (widget_class,
-			GDK_KEY_v,
-			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
-			paste_special_shortcut_cb,
-			NULL);
-
-	/* Ctrl+Shift+C - copy special */
-	gtk_widget_class_add_binding (widget_class,
-			GDK_KEY_c,
-			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
-			copy_special_shortcut_cb,
 			NULL);
 
 	/* WIDGET TEMPLATE .UI */
