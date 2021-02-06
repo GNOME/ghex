@@ -303,9 +303,9 @@ delimited_hex_copy (void)
 
 	hex_str = hex_paste_data_to_delimited_hex ();
 
-	// FIXME - Maybe this should be set up as a union? Not sure what would
-	// best satisfy the principle of least astonishment (POLA).
-	
+	/* FIXME - Maybe this should be set up as a union? Not sure what would
+	 * best satisfy the principle of least astonishment (POLA).
+	 */
 	if (hex_str)
 		gdk_clipboard_set_text (clipboard, hex_str);
 }

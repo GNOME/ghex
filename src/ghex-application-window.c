@@ -23,8 +23,9 @@
 */
 
 #include "ghex-application-window.h"
-// FIXME - not sure I want this to be a dep. Needs to be in the .C file
-// due to both headers requiring each other
+
+/* These aren't co-dependencies per se, but they call functions from each
+ * other, so keep this header here in the source file to avoid issues. */
 #include "paste-special.h"
 
 /* DEFINES */
