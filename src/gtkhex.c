@@ -215,7 +215,7 @@ popup_context_menu(GtkWidget *widget, double x, double y)
 	rect.x = x;
 	rect.y = y;
 
-	builder = gtk_builder_new_from_resource ("/org/gnome/ghex/context-menu.ui");
+	builder = gtk_builder_new_from_resource ("/org/gnome/GHex/context-menu.ui");
 	menu = G_MENU_MODEL(gtk_builder_get_object (builder, "context-menu"));
 	popover = gtk_popover_menu_new_from_model (menu);
 

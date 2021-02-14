@@ -27,7 +27,7 @@
 
 /* DEFINES */
 
-#define PASTE_SPECIAL_RESOURCE "/org/gnome/ghex/paste-special.ui"
+#define PASTE_SPECIAL_RESOURCE "/org/gnome/GHex/paste-special.ui"
 
 /* MACROS */
 
