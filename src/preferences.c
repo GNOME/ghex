@@ -44,7 +44,7 @@
 #  define SHADED_BOX_MAX				1000
 #endif
 
-#define PREFS_RESOURCE "/org/gnome/ghex/preferences.ui"
+#define PREFS_RESOURCE "/org/gnome/GHex/preferences.ui"
 
 /* MACROS */
 
@@ -142,16 +142,6 @@ do_css_stuff(void)
 	APPLY_PROVIDER_TO (frame_provider, print_font_frame);
 }
 #undef APPLY_PROVIDER_TO
-
-static void
-close_clicked_cb (GtkButton *button,
-		gpointer user_data)
-{
-	(void)user_data;	/* unused */
-	g_return_if_fail (GTK_IS_WINDOW (prefs_dialog));
-
-	gtk_window_destroy (GTK_WINDOW(prefs_dialog));
-}
 
 static void
 help_clicked_cb (GtkButton *button,
@@ -409,8 +399,8 @@ setup_signals (void)
 
 	/* close and help */
 
-	g_signal_connect (close_button, "clicked",
-			G_CALLBACK(close_clicked_cb), NULL);
+	g_signal_connect_swapped (close_button, "clicked",
+			G_CALLBACK(gtk_window_destroy), prefs_dialog);
 
 	g_signal_connect (help_button, "clicked",
 			G_CALLBACK(help_clicked_cb), NULL);

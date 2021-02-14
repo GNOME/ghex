@@ -587,7 +587,8 @@ copy_special (GtkWidget *widget,
 
 	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(self->gh));
 
-	if (! GTK_IS_WIDGET (self->copy_special_dialog)) {
+	if (! GTK_IS_WIDGET (self->copy_special_dialog) ||
+			! gtk_widget_get_visible (self->copy_special_dialog)) {
 		self->copy_special_dialog = create_copy_special_dialog (self,
 				clipboard);
 	}
@@ -607,7 +608,8 @@ paste_special (GtkWidget *widget,
 
 	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(self->gh));
 
-	if (! GTK_IS_WIDGET (self->paste_special_dialog)) {
+	if (! GTK_IS_WIDGET (self->paste_special_dialog) ||
+			gtk_widget_get_visible (self->paste_special_dialog)) {
 		self->paste_special_dialog = create_paste_special_dialog (self,
 				clipboard);
 	}
@@ -1300,7 +1302,8 @@ open_preferences (GtkWidget *widget,
 
 	(void)parameter, (void)action_name;		/* unused */
 
-	if (! GTK_IS_WIDGET (self->prefs_dialog)) {
+	if (! GTK_IS_WIDGET (self->prefs_dialog) ||
+			! gtk_widget_get_visible (self->prefs_dialog)) {
 		self->prefs_dialog = create_preferences_dialog (GTK_WINDOW(self));
 	}
 	gtk_widget_show (self->prefs_dialog);
@@ -1309,7 +1312,7 @@ open_preferences (GtkWidget *widget,
 /* --- */
 
 static void
-set_statusbar(GHexApplicationWindow *self, const char *str)
+set_statusbar (GHexApplicationWindow *self, const char *str)
 {
 	guint id = 
 		gtk_statusbar_get_context_id (GTK_STATUSBAR(self->statusbar),
@@ -1635,25 +1638,6 @@ ghex_application_window_finalize(GObject *gobject)
 	G_OBJECT_CLASS(ghex_application_window_parent_class)->finalize(gobject);
 }
 
-#if 0
-static void
-ghex_application_window_startup (GApplication *app)
-{
-	GtkBuilder *builder;
-
-	/* chain up */
-	G_APPLICATION_CLASS(ghex_application_window_parent_class)->startup (app);
-
-	builder = gtk_builder_new_from_resource (builder,
-			"/org/gnome/ghex/ghex-application-window.ui", NULL);
-
-	gtk_application_set_menubar (GTK_APPLICATION (app),
-			G_MENU_MODEL (gtk_builder_get_object (builder, "menubar")));
-
-	g_object_unref (builder);
-}
-#endif
-
 static void
 ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 {
@@ -1837,7 +1821,7 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	/* WIDGET TEMPLATE .UI */
 
 	gtk_widget_class_set_template_from_resource (widget_class,
-					"/org/gnome/ghex/ghex-application-window.ui");
+					"/org/gnome/GHex/ghex-application-window.ui");
 
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			no_doc_label);
