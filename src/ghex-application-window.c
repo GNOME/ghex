@@ -1776,6 +1776,15 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 
 	/* SHORTCUTS */
 
+	/* ensure these are synced with help-overlay.ui */
+
+	/* F1 - show about dialog */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_F1,
+			0,
+			"ghex.about",
+			NULL);	/* no args. */
+
 	/* Ctrl+F - find */
 	gtk_widget_class_add_binding_action (widget_class,
 			GDK_KEY_f,
@@ -1809,6 +1818,13 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			GDK_KEY_c,
 			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
 			"ghex.copy-special",
+			NULL);
+
+	/* Ctrl+P - print */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_p,
+			GDK_CONTROL_MASK,
+			"ghex.print",
 			NULL);
 
 	/* Ctrl+W - close tab */

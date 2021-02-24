@@ -1,29 +1,119 @@
 <!-- vim: ts=2 sw=2
 -->
+
+<!-- ensure these are synced with ghex-application-window.c -->
+
 <interface>
 	<object class="GtkShortcutsWindow" id="help_overlay">
 		<child>
 			<object class="GtkShortcutsSection">
+				<property name="max-height">12</property>
+
 				<child>
 					<object class="GtkShortcutsGroup">
-						<property name="title">General</property>
-
+						<property name="title" translatable="true">Find and Replace</property>
+						
 						<child>
 							<object class="GtkShortcutsShortcut">
-								<property name="accelerator">F1</property>
-								<property name="title">Show About Dialog</property>
+								<property name="accelerator">&lt;Control&gt;f</property>
+								<property name="title" translatable="true">Find</property>
 							</object>
 						</child>
 
 						<child>
 							<object class="GtkShortcutsShortcut">
-								<property name="accelerator">&lt;Control&gt;f</property>
-								<property name="title">Find</property>
+								<property name="accelerator">&lt;Control&gt;h</property>
+								<property name="title" translatable="true">Find and replace</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;j</property>
+								<property name="title" translatable="true">Jump to byte</property>
 							</object>
 						</child>
 
 					</object>
-				</child>
+				</child> <!-- /Find and Replace -->
+
+				<child>
+					<object class="GtkShortcutsGroup">
+						<property name="title" translatable="true">Clipboard</property>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;&lt;Shift&gt;c</property>
+								<property name="title" translatable="true">Copy special</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;&lt;Shift&gt;v</property>
+								<property name="title" translatable="true">Paste special</property>
+							</object>
+						</child>
+
+					</object>
+				</child> <!-- /Data Operations -->
+
+				<child>
+					<object class="GtkShortcutsGroup">
+						<property name="title" translatable="true">Files</property>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;w</property>
+								<property name="title" translatable="true">Close tab</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;s</property>
+								<property name="title" translatable="true">Save file</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;Page_Down</property>
+								<property name="title" translatable="true">Switch to next tab</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;Page_Up</property>
+								<property name="title" translatable="true">Switch to previous tab</property>
+							</object>
+						</child>
+
+					</object>
+				</child> <!-- /Files -->
+
+				<child>
+					<object class="GtkShortcutsGroup">
+						<property name="title" translatable="true">General</property>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">F1</property>
+								<property name="title" translatable="true">Show About dialog</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;p</property>
+								<property name="title" translatable="true">Print the hex file</property>
+							</object>
+						</child>
+
+					</object>
+				</child> <!-- /General -->
+
 			</object>
 		</child>
 	</object>
