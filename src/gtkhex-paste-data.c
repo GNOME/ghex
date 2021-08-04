@@ -31,8 +31,8 @@ struct _GtkHexPasteData
 {
 	GObject parent_instance;
 
-	guchar *doc_data;
-	guint elems;
+	char *doc_data;
+	int elems;
 };
 
 G_DEFINE_TYPE (GtkHexPasteData, gtk_hex_paste_data, G_TYPE_OBJECT)
@@ -46,7 +46,7 @@ G_DEFINE_TYPE (GtkHexPasteData, gtk_hex_paste_data, G_TYPE_OBJECT)
  * String returned should be freed with g_free.
  */
 static char *
-doc_data_to_string (const guchar *data, guint len)
+doc_data_to_string (const char *data, int len)
 {
 	char *str;
 
@@ -89,7 +89,7 @@ gtk_hex_paste_data_class_init (GtkHexPasteDataClass *klass)
 /* Public Method Definitions */
 
 GtkHexPasteData *
-gtk_hex_paste_data_new (guchar *doc_data, guint elems)
+gtk_hex_paste_data_new (char *doc_data, int elems)
 {
 	GtkHexPasteData *self;
 
@@ -118,7 +118,7 @@ gtk_hex_paste_data_get_string (GtkHexPasteData *self)
 	return string;
 }
 
-guchar *
+char *
 gtk_hex_paste_data_get_doc_data (GtkHexPasteData *self)
 {
 	g_return_val_if_fail (self->doc_data, NULL);
@@ -126,7 +126,7 @@ gtk_hex_paste_data_get_doc_data (GtkHexPasteData *self)
 	return self->doc_data;
 }
 
-guint
+int
 gtk_hex_paste_data_get_elems (GtkHexPasteData *self)
 {
 	return self->elems;

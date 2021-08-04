@@ -37,10 +37,10 @@ G_DECLARE_FINAL_TYPE (GtkHexPasteData, gtk_hex_paste_data, GTK, HEX_PASTE_DATA,
 
 /* Method Declarations */
 
-GtkHexPasteData *	gtk_hex_paste_data_new (guchar *doc_data, guint elems);
+GtkHexPasteData *	gtk_hex_paste_data_new (char *doc_data, int elems);
 char *				gtk_hex_paste_data_get_string (GtkHexPasteData *self);
-guchar *			gtk_hex_paste_data_get_doc_data (GtkHexPasteData *self);
-guint				gtk_hex_paste_data_get_elems (GtkHexPasteData *self);
+char *			gtk_hex_paste_data_get_doc_data (GtkHexPasteData *self);
+int				gtk_hex_paste_data_get_elems (GtkHexPasteData *self);
 
 G_END_DECLS
 

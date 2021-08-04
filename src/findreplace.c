@@ -116,7 +116,7 @@ create_hex_view (HexDocument *doc)
 
 	gtk_widget_set_hexpand (gh, TRUE);
 	gtk_hex_set_group_type (GTK_HEX(gh), def_group_type);
-	common_set_gtkhex_font_from_settings (gh);
+	common_set_gtkhex_font_from_settings (GTK_HEX(gh));
     gtk_hex_set_insert_mode (GTK_HEX(gh), TRUE);
     gtk_hex_set_geometry (GTK_HEX(gh), 16, 4);
 
@@ -178,9 +178,9 @@ find_next_cb (GtkButton *button, gpointer user_data)
 	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
-	guint cursor_pos;
-	guint offset, str_len;
-	gchar *str;
+	int cursor_pos;
+	int offset, str_len;
+	char *str;
 	static gboolean found = FALSE;
 	
 	(void)button;	/* unused */
@@ -454,9 +454,9 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
-	guint cursor_pos;
-	gchar *find_str = NULL, *rep_str = NULL;
-	guint find_len, rep_len, offset;
+	int cursor_pos;
+	char *find_str = NULL, *rep_str = NULL;
+	int find_len, rep_len, offset;
 
 	(void)button;	/* unused */
 	g_return_if_fail (REPLACE_IS_DIALOG(self));
@@ -517,9 +517,9 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
-	guint cursor_pos;
-	gchar *find_str = NULL, *rep_str = NULL;
-	guint find_len, rep_len, offset, count;
+	int cursor_pos;
+	char *find_str = NULL, *rep_str = NULL;
+	int find_len, rep_len, offset, count;
 
 	(void)button;	/* unused */
 	g_return_if_fail (REPLACE_IS_DIALOG (self));

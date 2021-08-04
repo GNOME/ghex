@@ -1,6 +1,6 @@
 /* vim: ts=4 sw=4 colorcolumn=80
  * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex-layout-manager.h - declaration of a GtkHex layout manager
+/* gtkhex-layout-manager.c - definition of a GtkHex layout manager
 
    Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
@@ -179,7 +179,6 @@ gtk_hex_layout_measure (GtkLayoutManager *layout_manager,
 		int				*minimum_baseline,
 		int				*natural_baseline)
 {
-	GtkHexLayoutChild *child_info;
 	GtkWidget *child;
 	int minimum_size = 0;
 	int natural_size = 0;
@@ -192,10 +191,6 @@ gtk_hex_layout_measure (GtkLayoutManager *layout_manager,
 
 		if (!gtk_widget_should_layout (child))
 			continue;
-
-		child_info =
-			GTK_HEX_LAYOUT_CHILD(gtk_layout_manager_get_layout_child
-					(layout_manager, child));
 
 		gtk_widget_measure (child, orientation,
 				/* for-size: */ -1,		/* == unknown. */
@@ -240,7 +235,6 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 	GtkHexLayout *self = GTK_HEX_LAYOUT (layout_manager);
 	GtkHexLayoutChild *child_info;
 	GtkWidget *child;
-	gboolean have_offsets = FALSE;
 	gboolean have_hex = FALSE;
 	gboolean have_ascii = FALSE;
 	GtkAllocation base_alloc = {.x = 0, .y = 0, .width = 0, .height = height};
@@ -272,7 +266,6 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 		switch (child_info->column)
 		{
 			case OFFSETS_COLUMN:
-				have_offsets = TRUE;
 				off_alloc.width = OFFSETS_CPL * self->char_width;
 				break;
 			case HEX_COLUMN:

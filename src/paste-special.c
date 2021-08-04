@@ -162,8 +162,8 @@ static char *
 hex_paste_data_to_delimited_hex (void)
 {
 	GString *buf;
-	guchar *doc_data = NULL;
-	guint elems;
+	char *doc_data = NULL;
+	int elems;
 	char *ret_str;
 
 	g_return_val_if_fail (GTK_IS_HEX_PASTE_DATA (hex_paste_data), NULL);
@@ -172,7 +172,7 @@ hex_paste_data_to_delimited_hex (void)
 	doc_data = gtk_hex_paste_data_get_doc_data (hex_paste_data);
 	elems = gtk_hex_paste_data_get_elems (hex_paste_data);
 
-	for (guint i = 0; i < elems; ++i)
+	for (int i = 0; i < elems; ++i)
 	{
 		g_string_append_printf (buf, "%.2X", doc_data[i]);
 
@@ -269,7 +269,7 @@ delimited_paste_received_cb (GObject *source_object,
 			gtk_hex_get_cursor (gh),
 			buf->len,
 			0,	/* rep_len (0 to insert w/o replacing; what we want) */
-			(guchar *)buf->str,
+			buf->str,
 			TRUE);
 }
 

@@ -2098,8 +2098,8 @@ gtk_hex_real_copy_to_clipboard (GtkHex *gh)
 	GtkHexPasteData *paste;
 	GdkContentProvider *provider_union;
 	GdkContentProvider *provider_array[2];
-	guint start_pos, end_pos, len;
-	guchar *doc_data;
+	int start_pos, end_pos, len;
+	char *doc_data;
 	char *string;
 
 	clipboard = gtk_widget_get_clipboard (widget);
@@ -2168,7 +2168,7 @@ plaintext_paste_received_cb (GObject *source_object,
 				gh->cursor_pos,
 				strlen(text),
 				0,	/* rep_len (0 to insert w/o replacing; what we want) */
-				(guchar *)text,
+				text,
 				TRUE);
 
 		gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
@@ -2216,8 +2216,8 @@ gtk_hex_real_paste_from_clipboard (GtkHex *gh,
 
 	if (have_hex_paste_data)
 	{
-		guchar *doc_data;
-		guint elems;
+		char *doc_data;
+		int elems;
 
 		g_debug("%s: We HAVE our special HexPasteData.",
 				__func__);
