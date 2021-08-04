@@ -64,7 +64,7 @@ void gtk_hex_set_cursor_xy(GtkHex *, gint, gint);
 void gtk_hex_set_nibble(GtkHex *, gint);
 
 guint gtk_hex_get_cursor(GtkHex *);
-guchar gtk_hex_get_byte(GtkHex *, guint);
+guchar gtk_hex_get_byte(GtkHex *, int);
 
 void gtk_hex_set_group_type(GtkHex *, guint);
 guint gtk_hex_get_group_type (GtkHex *gh);

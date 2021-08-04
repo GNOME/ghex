@@ -26,6 +26,15 @@ ghex_iconsdir = join_paths(ghex_datadir, 'icons')
 ghex_root_dir = include_directories('.')
 ghex_po_dir = join_paths(meson.source_root(), 'po')
 
+# warning cflags
+warning_cflags = [
+  '-Wno-unused-variable',
+  '-Wno-unused-parameter'
+]
+c_compiler = meson.get_compiler('c')
+supported_warning_cflags = c_compiler.get_supported_arguments(warning_cflags)
+add_global_arguments(supported_warning_cflags, language : 'c')
+
 gnome = import('gnome')
 i18n = import('i18n')
 

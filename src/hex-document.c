@@ -50,8 +50,8 @@ static void hex_document_real_changed   (HexDocument *doc,
 static void hex_document_real_redo      (HexDocument *doc);
 static void hex_document_real_undo      (HexDocument *doc);
 static void move_gap_to                 (HexDocument *doc,
-										 guint offset,
-								  	     gint min_size);
+										 int offset,
+								  	     int min_size);
 static void free_stack                  (GList *stack);
 static gint undo_stack_push             (HexDocument *doc,
 									     HexChangeData *change_data);
@@ -220,12 +220,12 @@ get_document_attributes(HexDocument *doc)
 
 
 static void
-move_gap_to(HexDocument *doc, guint offset, gint min_size)
+move_gap_to(HexDocument *doc, int offset, int min_size)
 {
-	guchar *tmp, *buf_ptr, *tmp_ptr;
+	char *tmp, *buf_ptr, *tmp_ptr;
 
 	if(doc->gap_size < min_size) {
-		tmp = g_malloc(sizeof(guchar)*doc->file_size);
+		tmp = g_malloc(doc->file_size);
 		buf_ptr = doc->buffer;
 		tmp_ptr = tmp;
 		while(buf_ptr < doc->gap_pos)
@@ -236,7 +236,7 @@ move_gap_to(HexDocument *doc, guint offset, gint min_size)
 
 		doc->gap_size = MAX(min_size, 32);
 		doc->buffer_size = doc->file_size + doc->gap_size;
-		doc->buffer = g_realloc(doc->buffer, sizeof(guchar)*doc->buffer_size);
+		doc->buffer = g_realloc(doc->buffer, doc->buffer_size);
 		doc->gap_pos = doc->buffer + offset;
 
 		buf_ptr = doc->buffer;
@@ -456,7 +456,7 @@ hex_document_new()
 	doc->gap_size = 100;
 	doc->file_size = 0;
 	doc->buffer_size = doc->file_size + doc->gap_size;
-	doc->gap_pos = doc->buffer = (guchar *)g_malloc(doc->buffer_size);
+	doc->gap_pos = doc->buffer = g_malloc(doc->buffer_size);
 
 	doc->path_end = g_strdup(_("New document"));
 
@@ -473,11 +473,11 @@ hex_document_new_from_file(const gchar *name)
 	doc = HEX_DOCUMENT (g_object_new (hex_document_get_type(), NULL));
 	g_return_val_if_fail (doc != NULL, NULL);
 
-	doc->file_name = (gchar *)g_strdup(name);
+	doc->file_name = g_strdup(name);
 	if(get_document_attributes(doc)) {
 		doc->gap_size = 100;
 		doc->buffer_size = doc->file_size + doc->gap_size;
-		doc->buffer = (guchar *)g_malloc(doc->buffer_size);
+		doc->buffer = g_malloc(doc->buffer_size);
 
 		/* find the start of the filename without path */
 		path_end = g_path_get_basename (doc->file_name);
@@ -494,8 +494,8 @@ hex_document_new_from_file(const gchar *name)
 	return NULL;
 }
 
-guchar
-hex_document_get_byte(HexDocument *doc, guint offset)
+char
+hex_document_get_byte(HexDocument *doc, int offset)
 {
 	if(offset < doc->file_size) {
 		if(doc->gap_pos <= doc->buffer + offset)
@@ -506,18 +506,18 @@ hex_document_get_byte(HexDocument *doc, guint offset)
 		return 0;
 }
 
-guchar *
-hex_document_get_data(HexDocument *doc, guint offset, guint len)
+char *
+hex_document_get_data(HexDocument *doc, int offset, int len)
 {
-	guchar *ptr, *data, *dptr;
-	guint i;
+	char *ptr, *data, *dptr;
+	int i;
 
 	ptr = doc->buffer + offset;
 
 	if (ptr >= doc->gap_pos)
 		ptr += doc->gap_size;
 
-	dptr = data = g_malloc(len * sizeof(guchar));
+	dptr = data = g_malloc(len);
 
 	for (i = 0; i < len; ++i) {
 		if (ptr >= doc->gap_pos && ptr < doc->gap_pos + doc->gap_size)
@@ -530,7 +530,7 @@ hex_document_get_data(HexDocument *doc, guint offset, guint len)
 }
 
 void
-hex_document_set_nibble(HexDocument *doc, guchar val, guint offset,
+hex_document_set_nibble(HexDocument *doc, char val, int offset,
 						gboolean lower_nibble, gboolean insert,
 						gboolean undoable)
 {
@@ -570,7 +570,7 @@ hex_document_set_nibble(HexDocument *doc, guchar val, guint offset,
 }
 
 void
-hex_document_set_byte(HexDocument *doc, guchar val, guint offset,
+hex_document_set_byte(HexDocument *doc, char val, int offset,
 					  gboolean insert, gboolean undoable)
 {
 	static HexChangeData change_data;
@@ -604,11 +604,11 @@ hex_document_set_byte(HexDocument *doc, guchar val, guint offset,
 }
 
 void
-hex_document_set_data(HexDocument *doc, guint offset, guint len,
-					  guint rep_len, guchar *data, gboolean undoable)
+hex_document_set_data (HexDocument *doc, int offset, int len,
+					  int rep_len, char *data, gboolean undoable)
 {
-	guint i;
-	guchar *ptr;
+	int i;
+	char *ptr;
 	static HexChangeData change_data;
 
 	if(offset <= doc->file_size) {
@@ -673,6 +673,7 @@ hex_document_read(HexDocument *doc)
 {
 	FILE *file;
 	static HexChangeData change_data;
+	int fread_as_int;
 
 	if(doc->file_name == NULL)
 		return FALSE;
@@ -684,10 +685,13 @@ hex_document_read(HexDocument *doc)
 		return FALSE;
 
 	doc->gap_size = doc->buffer_size - doc->file_size;
-	if(fread(doc->buffer + doc->gap_size, 1, doc->file_size, file) != doc->file_size)
+
+	fread_as_int = fread(doc->buffer + doc->gap_size, 1, doc->file_size, file);
+	if (fread_as_int != doc->file_size)
 	{
 		g_return_val_if_reached(FALSE);
 	}
+
 	doc->gap_pos = doc->buffer;
 	fclose(file);
 	undo_stack_free(doc);
@@ -703,13 +707,13 @@ hex_document_read(HexDocument *doc)
 gint
 hex_document_write_to_file(HexDocument *doc, FILE *file)
 {
-	gint ret = TRUE;
-	size_t exp_len;
+	int ret = TRUE;
+	int exp_len;
 
 	if(doc->gap_pos > doc->buffer) {
 		exp_len = MIN(doc->file_size, doc->gap_pos - doc->buffer);
 		ret = fwrite(doc->buffer, 1, exp_len, file);
-		ret = (ret == exp_len)?TRUE:FALSE;
+		ret = (ret == exp_len) ? TRUE : FALSE;
 	}
 	if(doc->gap_pos < doc->buffer + doc->file_size) {
 		exp_len = doc->file_size - (size_t)(doc->gap_pos - doc->buffer);
@@ -754,7 +758,7 @@ hex_document_has_changed(HexDocument *doc)
 }
 
 void
-hex_document_set_max_undo(HexDocument *doc, guint max_undo)
+hex_document_set_max_undo(HexDocument *doc, int max_undo)
 {
 	if(doc->undo_max != max_undo) {
 		if(doc->undo_max > max_undo)
@@ -772,10 +776,10 @@ ignore_dialog_cb(GtkDialog *dialog, gpointer user_data)
 	return TRUE;
 }
 
-gint
-hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
-						 guint start, guint end, guint cpl, guint lpp,
-						 guint cpw)
+int
+hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
+						 int start, int end, int cpl, int lpp,
+						 int cpw)
 {
 	GtkWidget *progress_dialog, *progress_bar;
 	FILE *file;
@@ -959,14 +963,15 @@ hex_document_export_html(HexDocument *doc, gchar *html_path, gchar *base_name,
 	return TRUE;
 }
 
-gint
-hex_document_compare_data(HexDocument *doc, guchar *s2, gint pos, gint len)
+int
+hex_document_compare_data(HexDocument *doc, char *s2, int pos, int len)
 {
-	guchar c1;
-	guint i;
+	char c1;
 
-	for(i = 0; i < len; i++, s2++) {
+	for (int i = 0; i < len; i++, s2++)
+	{
 		c1 = hex_document_get_byte(doc, pos + i);
+
 		if(c1 != (*s2))
 			return (c1 - (*s2));
 	}
@@ -974,15 +979,17 @@ hex_document_compare_data(HexDocument *doc, guchar *s2, gint pos, gint len)
 	return 0;
 }
 
-gint
-hex_document_find_forward(HexDocument *doc, guint start, guchar *what,
-						  gint len, guint *found)
+int
+hex_document_find_forward (HexDocument *doc, int start, char *what,
+						  int len, int *found)
 {
-	guint pos;
+	int pos;
 	
 	pos = start;
-	while(pos < doc->file_size) {
-		if(hex_document_compare_data(doc, what, pos, len) == 0) {
+	while (pos < doc->file_size)
+	{
+		if (hex_document_compare_data(doc, what, pos, len) == 0)
+		{
 			*found = pos;
 			return TRUE;
 		}
@@ -993,7 +1000,7 @@ hex_document_find_forward(HexDocument *doc, guint start, guchar *what,
 }
 
 gint
-hex_document_find_backward(HexDocument *doc, guint start, guchar *what,
+hex_document_find_backward(HexDocument *doc, guint start, char *what,
 						   gint len, guint *found)
 {
 	guint pos;
@@ -1029,11 +1036,11 @@ static void
 hex_document_real_undo(HexDocument *doc)
 {
 	HexChangeData *cd;
-	gint len;
-	guchar *rep_data;
-	gchar c_val;
+	int len;
+	char *rep_data;
+	char c_val;
 
-	cd = (HexChangeData *)doc->undo_top->data;
+	cd = doc->undo_top->data;
 
 	switch(cd->type) {
 	case HEX_CHANGE_BYTE:
@@ -1086,9 +1093,9 @@ static void
 hex_document_real_redo(HexDocument *doc)
 {
 	HexChangeData *cd;
-	gint len;
-	guchar *rep_data;
-	gchar c_val;
+	int len;
+	char *rep_data;
+	char c_val;
 
 	undo_stack_ascend(doc);
 

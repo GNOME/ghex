@@ -56,14 +56,14 @@ typedef enum {
 
 struct _HexChangeData
 {
-	guint start, end;
+	int start, end;
 	/* length to replace (overwrite); (0 to insert without overwriting) */
-	guint rep_len;
+	int rep_len;
 	gboolean lower_nibble;
 	gboolean insert;
 	HexChangeType type;
-	gchar *v_string;
-	gchar v_byte;
+	char *v_string;
+	char v_byte;
 };
 
 struct _HexDocument
@@ -72,21 +72,21 @@ struct _HexDocument
 
 	GList *views;      /* a list of GtkHex widgets showing this document */
 	
-	gchar *file_name;
-	gchar *path_end;
+	char *file_name;
+	char *path_end;
 
-	guchar *buffer;    /* data buffer */
-	guchar *gap_pos;   /* pointer to the start of insertion gap */
-	gint gap_size;     /* insertion gap size */
-	guint buffer_size; /* buffer size = file size + gap size */
-	guint file_size;   /* real file size */
+	char *buffer;    /* data buffer */
+	char *gap_pos;   /* pointer to the start of insertion gap */
+	int gap_size;     /* insertion gap size */
+	int buffer_size; /* buffer size = file size + gap size */
+	int file_size;   /* real file size */
 
 	gboolean changed;
 
 	GList *undo_stack; /* stack base */
 	GList *undo_top;   /* top of the stack (for redo) */
-	guint undo_depth;  /* number of els on stack */
-	guint undo_max;    /* max undo depth */
+	int undo_depth;  /* number of els on stack */
+	int undo_max;    /* max undo depth */
 };
 
 struct _HexDocumentClass
@@ -103,38 +103,34 @@ struct _HexDocumentClass
 
 GType       hex_document_get_type(void);
 HexDocument *hex_document_new(void);
-HexDocument *hex_document_new_from_file(const gchar *name);
-void        hex_document_set_data(HexDocument *doc, guint offset,
-		guint len, guint rep_len, guchar *data,
-		gboolean undoable);
-void        hex_document_set_byte(HexDocument *doc, guchar val, guint offset,
+HexDocument *hex_document_new_from_file(const char *name);
+void        hex_document_set_data(HexDocument *doc, int offset,
+		int len, int rep_len, char *data, gboolean undoable);
+void        hex_document_set_byte(HexDocument *doc, char val, int offset,
 		gboolean insert, gboolean undoable);
-void        hex_document_set_nibble(HexDocument *doc, guchar val,
-		guint offset, gboolean lower_nibble,
-		gboolean insert, gboolean undoable);
-guchar      hex_document_get_byte(HexDocument *doc, guint offset);
-guchar      *hex_document_get_data(HexDocument *doc, guint offset, guint len);
+void        hex_document_set_nibble(HexDocument *doc, char val,
+		int offset, gboolean lower_nibble, gboolean insert, gboolean undoable);
+char        hex_document_get_byte(HexDocument *doc, int offset);
+char        *hex_document_get_data(HexDocument *doc, int offset, int len);
 void        hex_document_delete_data(HexDocument *doc, guint offset,
 		guint len, gboolean undoable);
-gint        hex_document_read(HexDocument *doc);
-gint        hex_document_write(HexDocument *doc);
-gint        hex_document_write_to_file(HexDocument *doc, FILE *file);
-gint        hex_document_export_html(HexDocument *doc,
-		gchar *html_path, gchar *base_name,
-		guint start, guint end,
-		guint cpl, guint lpp, guint cpw);
+int        hex_document_read(HexDocument *doc);
+int        hex_document_write(HexDocument *doc);
+int        hex_document_write_to_file(HexDocument *doc, FILE *file);
+int        hex_document_export_html(HexDocument *doc, char *html_path,
+		char *base_name, int start, int end, int cpl, int lpp, int cpw);
 gboolean    hex_document_has_changed(HexDocument *doc);
 void        hex_document_changed(HexDocument *doc, gpointer change_data,
 		gboolean push_undo);
-void        hex_document_set_max_undo(HexDocument *doc, guint max_undo);
+void        hex_document_set_max_undo(HexDocument *doc, int max_undo);
 gboolean    hex_document_undo(HexDocument *doc);
 gboolean    hex_document_redo(HexDocument *doc);
-gint        hex_document_compare_data(HexDocument *doc, guchar *s2,
-		gint pos, gint len);
-gint        hex_document_find_forward(HexDocument *doc, guint start,
-		guchar *what, gint len, guint *found);
-gint        hex_document_find_backward(HexDocument *doc, guint start,
-		guchar *what, gint len, guint *found);
+int        hex_document_compare_data(HexDocument *doc, char *s2,
+		int pos, int len);
+int        hex_document_find_forward(HexDocument *doc, int start,
+		char *what, int len, int *found);
+int        hex_document_find_backward(HexDocument *doc, guint start,
+		char *what, int len, guint *found);
 void        hex_document_remove_view(HexDocument *doc, GtkWidget *view);
 GtkWidget   *hex_document_add_view(HexDocument *doc);
 const GList *hex_document_get_list(void);

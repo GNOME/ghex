@@ -142,7 +142,7 @@ struct _GtkHex
 	guint char_width, char_height;
 	guint button;
 
-	guint cursor_pos;
+	int cursor_pos;
 	GtkHex_Highlight selection;
 	gint lower_nibble;
 
@@ -341,9 +341,9 @@ undo_action (GtkWidget *widget,
  * to cursor coordinates.
  */
 static void
-hex_to_pointer (GtkHex *gh, guint mx, guint my)
+hex_to_pointer (GtkHex *gh, int mx, int my)
 {
-	guint cx, cy, x;
+	int cx, cy, x;
 	
 	cy = gh->top_line + my/gh->char_height;
 	
@@ -437,7 +437,7 @@ format_xbyte (GtkHex *gh, gint pos, gchar buf[2]) {
  * into displayable text in hex or ascii, respectively
  */
 gint
-format_xblock(GtkHex *gh, gchar *out, guint start, guint end)
+format_xblock(GtkHex *gh, gchar *out, int start, int end)
 {
 	int i, j, low, high;
 	guchar c;
@@ -456,8 +456,8 @@ format_xblock(GtkHex *gh, gchar *out, guint start, guint end)
 	return j;
 }
 
-static gint
-format_ablock (GtkHex *gh, gchar *out, guint start, guint end)
+static int
+format_ablock (GtkHex *gh, char *out, int start, int end)
 {
 	int i, j;
 	guchar c;
@@ -476,10 +476,10 @@ format_ablock (GtkHex *gh, gchar *out, guint start, guint end)
  * get_[x|a]coords() translates offset from the beginning of
  * the block into x,y coordinates of the xdisp/adisp, respectively
  */
-static gint
-get_xcoords(GtkHex *gh, gint pos, gint *x, gint *y)
+static int
+get_xcoords(GtkHex *gh, int pos, int *x, int *y)
 {
-	gint cx, cy, spaces;
+	int cx, cy, spaces;
 	
 	if(gh->cpl == 0)
 		return FALSE;
@@ -563,8 +563,8 @@ render_ac (GtkHex *gh,
 	GdkRGBA fg_color;
 	GtkStateFlags state;
 	GtkStyleContext *context;
-	gint cx, cy;
-	static guchar c[2] = "\0\0";
+	int cx, cy;
+	static char c[2] = "\0\0";
 	
 	g_return_if_fail (gtk_widget_get_realized (gh->adisp));
 
@@ -624,8 +624,8 @@ render_xc (GtkHex *gh,
 	GdkRGBA fg_color;
 	GtkStateFlags state;
 	GtkStyleContext *context;
-	gint cx, cy, i;
-	static guchar c[2];
+	int cx, cy, i;
+	static char c[2];
 
 	g_return_if_fail (gtk_widget_get_realized (gh->xdisp));
 
@@ -952,7 +952,6 @@ render_hex_lines (GtkHex *gh,
 {
 	GtkWidget *widget = gh->xdisp;
 	GtkAllocation allocation;
-	GtkStateFlags state;
 	GtkStyleContext *context;
 	int cursor_line;
 	int frm_len;
@@ -963,7 +962,6 @@ render_hex_lines (GtkHex *gh,
 
 	hex_cpl = gtk_hex_layout_get_hex_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
 	context = gtk_widget_get_style_context (widget);
-	state = gtk_widget_get_state_flags (widget);
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 	gtk_widget_get_allocation (widget, &allocation);
 
@@ -979,10 +977,10 @@ render_hex_lines (GtkHex *gh,
 
 	/* FIXME -  Maybe break this down/comment it to make it clearer?
 	 */
-	frm_len = format_xblock (gh, gh->disp_buffer,
+	frm_len = format_xblock (gh, (char *)gh->disp_buffer,
 			(gh->top_line + min_lines) * gh->cpl,
 			MIN( (gh->top_line + max_lines + 1) * gh->cpl,
-				gh->document->file_size ));
+				(int)gh->document->file_size ));
 	
 	for (int i = min_lines; i <= max_lines; i++)
 	{
@@ -996,7 +994,7 @@ render_hex_lines (GtkHex *gh,
 		/* Set pango layout to the line of hex to render. */
 
 		pango_layout_set_text (gh->xlayout,
-				gh->disp_buffer + (i - min_lines) * hex_cpl,
+				(char *)gh->disp_buffer + (i - min_lines) * hex_cpl,
 				MIN(hex_cpl, tmp));
 
 		gtk_render_layout (context, cr,
@@ -1020,16 +1018,14 @@ render_ascii_lines (GtkHex *gh,
 {
 	GtkWidget *widget = gh->adisp;
 	GtkAllocation allocation;
-	GtkStateFlags state;
 	GtkStyleContext *context;
 	int frm_len;
-	guint cursor_line;
+	int cursor_line;
 
 	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET(gh)));
 	g_return_if_fail (gh->cpl);
 
 	context = gtk_widget_get_style_context (widget);
-	state = gtk_widget_get_state_flags (widget);
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 	gtk_widget_get_allocation(widget, &allocation);
 
@@ -1043,10 +1039,10 @@ render_ascii_lines (GtkHex *gh,
 	max_lines = MIN(max_lines, gh->vis_lines);
 	max_lines = MIN(max_lines, gh->lines);
 	
-	frm_len = format_ablock (gh, gh->disp_buffer,
+	frm_len = format_ablock (gh, (char *)gh->disp_buffer,
 			(gh->top_line + min_lines) * gh->cpl,
 			MIN( (gh->top_line + max_lines + 1) * gh->cpl,
-				gh->document->file_size ));
+				(int)gh->document->file_size ));
 	
 	for (int i = min_lines; i <= max_lines; i++)
 	{
@@ -1057,7 +1053,7 @@ render_ascii_lines (GtkHex *gh,
 		render_ascii_highlights (gh, cr, i);
 
 		pango_layout_set_text (gh->alayout,
-				gh->disp_buffer + (i - min_lines) * gh->cpl,
+				(char *)gh->disp_buffer + (i - min_lines) * gh->cpl,
 				MIN(gh->cpl, tmp));
 
 		gtk_render_layout (context, cr,
@@ -1083,7 +1079,6 @@ render_offsets (GtkHex *gh,
 	GtkWidget *widget = gh->offsets;
 	GdkRGBA fg_color;
 	GtkAllocation allocation;
-	GtkStateFlags state;
 	GtkStyleContext *context;
 	/* offset chars (8) + 1 (null terminator) */
 	char offstr[9];
@@ -1091,7 +1086,6 @@ render_offsets (GtkHex *gh,
 	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET (gh)));
 
 	context = gtk_widget_get_style_context (widget);
-	state = gtk_widget_get_state_flags (widget);
 
 	gtk_widget_get_allocation (widget, &allocation);
 
@@ -1279,7 +1273,7 @@ scroll_timeout_handler(GtkHex *gh)
 		gtk_hex_set_cursor (gh, MAX(0, (int)(gh->cursor_pos - gh->cpl)));
 	}
 	else if (gh->scroll_dir > 0) {
-		gtk_hex_set_cursor(gh, MIN(gh->document->file_size - 1,
+		gtk_hex_set_cursor(gh, MIN((int)gh->document->file_size - 1,
 						gh->cursor_pos + gh->cpl));
 	}
 	return TRUE;
@@ -1660,7 +1654,7 @@ key_press_cb (GtkEventControllerKey *controller,
 		}
 		break;
 	case GDK_KEY_Delete:
-		if(gh->cursor_pos < gh->document->file_size) {
+		if(gh->cursor_pos < (int)gh->document->file_size) {
 			hex_document_set_data(gh->document, gh->cursor_pos,
 								  0, 1, NULL, TRUE);
 			gtk_hex_set_cursor(gh, gh->cursor_pos);
@@ -1696,7 +1690,7 @@ key_press_cb (GtkEventControllerKey *controller,
 				}
 				break;
 			case GDK_KEY_Right:
-				if(gh->cursor_pos >= gh->document->file_size)
+				if(gh->cursor_pos >= (int)gh->document->file_size)
 					break;
 				if(!(state & GDK_SHIFT_MASK)) {
 					gh->lower_nibble = !gh->lower_nibble;
@@ -1832,8 +1826,8 @@ hide_offsets_widget(GtkHex *gh)
 static void gtk_hex_real_data_changed (GtkHex *gh, gpointer data)
 {
 	HexChangeData *change_data = (HexChangeData *)data;
-	gint start_line, end_line;
-	guint lines;
+	int start_line, end_line;
+	int lines;
 
 	if(gh->cpl == 0)
 		return;
@@ -2004,10 +1998,10 @@ gtk_hex_compare_data (GtkHex *gh, guchar *cmp, guint pos, gint len)
 
 static gboolean
 gtk_hex_find_limited (GtkHex *gh, gchar *find, int findlen,
-		guint lower, guint upper,
-		guint *found)
+		int lower, int upper,
+		int *found)
 {
-	guint pos = lower;
+	int pos = lower;
 
 	while (pos < upper)
 	{
@@ -2028,11 +2022,11 @@ static void
 gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
 		gboolean delete, gboolean add)
 {
-	gint del_min, del_max;
-	gint add_min, add_max;
-	guint foundpos = -1;
-	gint prev_min = ahl->view_min;
-	gint prev_max = ahl->view_max;
+	int del_min, del_max;
+	int add_min, add_max;
+	int foundpos = -1;
+	int prev_min = ahl->view_min;
+	int prev_max = ahl->view_max;
 	GtkHex_Highlight *cur;
 
 	ahl->view_min = gh->top_line * gh->cpl;
@@ -2880,8 +2874,8 @@ gtk_hex_clear_selection(GtkHex *gh)
 void
 gtk_hex_delete_selection(GtkHex *gh)
 {
-	guint start;
-	guint end;
+	int start;
+	int end;
 
 	start = MIN(gh->selection.start, gh->selection.end);
 	end = MAX(gh->selection.start, gh->selection.end);
@@ -2928,16 +2922,16 @@ gtk_hex_set_nibble (GtkHex *gh, gint lower_nibble)
  * moves cursor to byte index
  */
 void
-gtk_hex_set_cursor(GtkHex *gh, gint index) {
-	guint y;
-	guint old_pos = gh->cursor_pos;
+gtk_hex_set_cursor(GtkHex *gh, int index) {
+	int y;
+	int old_pos = gh->cursor_pos;
 
 	g_return_if_fail(gh != NULL);
 	g_return_if_fail(GTK_IS_HEX(gh));
 
-	if ((index >= 0) && (index <= gh->document->file_size))
+	if ((index >= 0) && (index <= (int)gh->document->file_size))
 	{
-		if(!gh->insert && index == gh->document->file_size)
+		if(!gh->insert && index == (int)gh->document->file_size)
 			index--;
 
 		index = MAX(index, 0);
@@ -2960,7 +2954,7 @@ gtk_hex_set_cursor(GtkHex *gh, gint index) {
 			gtk_adjustment_set_value(gh->adj, y);
 		}      
 
-		if(index == gh->document->file_size)
+		if(index == (int)gh->document->file_size)
 			gh->lower_nibble = FALSE;
 
 		if(gh->selecting) {
@@ -2988,10 +2982,10 @@ gtk_hex_set_cursor(GtkHex *gh, gint index) {
  * currently visible part)
  */
 void
-gtk_hex_set_cursor_xy (GtkHex *gh, gint x, gint y)
+gtk_hex_set_cursor_xy (GtkHex *gh, int x, int y)
 {
-	gint cp;
-	guint old_pos = gh->cursor_pos;
+	int cp;
+	int old_pos = gh->cursor_pos;
 
 	g_return_if_fail(gh != NULL);
 	g_return_if_fail(GTK_IS_HEX(gh));
@@ -2999,9 +2993,9 @@ gtk_hex_set_cursor_xy (GtkHex *gh, gint x, gint y)
 	cp = y*gh->cpl + x;
 
 	if ((y >= 0) && (y < gh->lines) && (x >= 0) &&
-	   (x < gh->cpl) && (cp <= gh->document->file_size))
+	   (x < gh->cpl) && (cp <= (int)gh->document->file_size))
 	{
-		if (!gh->insert && cp == gh->document->file_size)
+		if (!gh->insert && cp == (int)gh->document->file_size)
 			cp--;
 
 		cp = MAX(cp, 0);
@@ -3055,12 +3049,12 @@ gtk_hex_get_cursor(GtkHex *gh)
  * returns value of the byte at position offset
  */
 guchar
-gtk_hex_get_byte (GtkHex *gh, guint offset)
+gtk_hex_get_byte (GtkHex *gh, int offset)
 {
 	g_return_val_if_fail(gh != NULL, 0);
 	g_return_val_if_fail(GTK_IS_HEX(gh), 0);
 
-	if((offset >= 0) && (offset < gh->document->file_size))
+	if((offset >= 0) && (offset < (int)gh->document->file_size))
 		return hex_document_get_byte(gh->document, offset);
 
 	return 0;
@@ -3122,8 +3116,8 @@ gtk_hex_set_insert_mode (GtkHex *gh, gboolean insert)
 	gh->insert = insert;
 
 	if(!gh->insert && gh->cursor_pos > 0) {
-		if(gh->cursor_pos >= gh->document->file_size)
-			gh->cursor_pos = gh->document->file_size - 1;
+		if(gh->cursor_pos >= (int)gh->document->file_size)
+			gh->cursor_pos = (int)gh->document->file_size - 1;
 	}
 }
 
@@ -3134,7 +3128,7 @@ gtk_hex_insert_autohighlight(GtkHex *gh,
 {
 	GtkHex_AutoHighlight *new = g_malloc0(sizeof(GtkHex_AutoHighlight));
 
-	new->search_string = g_memdup(search, len);
+	new->search_string = g_memdup2 (search, len);
 	new->search_len = len;
 
 	new->highlights = NULL;
