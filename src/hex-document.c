@@ -412,6 +412,7 @@ hex_document_init (HexDocument *doc)
 	doc->undo_max = DEFAULT_UNDO_DEPTH;
 }
 
+/* TODO - reimplement using modern macros. */
 GType
 hex_document_get_type (void)
 {
@@ -422,12 +423,12 @@ hex_document_get_type (void)
 			sizeof (HexDocumentClass),
 			NULL,		/* base_init */
 			NULL,		/* base_finalize */
-			(GClassInitFunc) hex_document_class_init,
+			(GClassInitFunc)(void (*)(void)) hex_document_class_init,
 			NULL,		/* class_finalize */
 			NULL,		/* class_data */
 			sizeof (HexDocument),
 			0,
-			(GInstanceInitFunc) hex_document_init
+			(GInstanceInitFunc)(void (*)(void)) hex_document_init
 		};
 	
 		doc_type = g_type_register_static (G_TYPE_OBJECT,
