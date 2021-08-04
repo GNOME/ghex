@@ -287,10 +287,10 @@ redo_action (GtkWidget *widget,
 	/* shorthand. */
 	doc = gh->document;
 
-	if (doc->undo_stack && doc->undo_top != doc->undo_stack) {
+	if (hex_document_can_redo (doc)) {
 		hex_document_redo(doc);
 
-		cd = doc->undo_top->data;
+		cd = hex_document_get_undo_data (doc);
 
 		gtk_hex_set_cursor(gh, cd->start);
 		gtk_hex_set_nibble(gh, cd->lower_nibble);
@@ -326,8 +326,8 @@ undo_action (GtkWidget *widget,
 	/* shorthand */
 	doc = gh->document;
 
-	if (doc->undo_top) {
-		cd = doc->undo_top->data;
+	if (hex_document_can_undo (doc)) {
+		cd = hex_document_get_undo_data (doc);
 
 		hex_document_undo(doc);
 

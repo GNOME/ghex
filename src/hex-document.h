@@ -73,7 +73,7 @@ struct _HexDocument
 	GList *views;      /* a list of GtkHex widgets showing this document */
 	
 	char *file_name;
-	char *path_end;
+	char *basename;
 
 	char *buffer;    /* data buffer */
 	char *gap_pos;   /* pointer to the start of insertion gap */
@@ -139,6 +139,10 @@ gboolean    hex_document_change_file_name (HexDocument *doc,
 		const char *new_file_name);
 gboolean    hex_document_can_undo (HexDocument *doc);
 gboolean    hex_document_can_redo (HexDocument *doc);
+const char	*hex_document_get_file_name (HexDocument *doc);
+const char	*hex_document_get_basename (HexDocument *doc);
+int			hex_document_get_file_size (HexDocument *doc);
+HexChangeData *hex_document_get_undo_data (HexDocument *doc);
 
 G_END_DECLS
 

@@ -255,10 +255,12 @@ get_cursor_val_cb(GtkButton *button, Converter *conv)
 	guint val, start;
 	guint group_type;
 	HexDocument *doc;
+	int file_size;
 
 	g_return_if_fail (GTK_IS_HEX(conv->gh));
 
 	doc = gtk_hex_get_document (conv->gh);
+	file_size = hex_document_get_file_size (doc);
 	group_type = gtk_hex_get_group_type (conv->gh);
 	start = gtk_hex_get_cursor (conv->gh);
 	start = start - start % group_type;
@@ -269,7 +271,7 @@ get_cursor_val_cb(GtkButton *button, Converter *conv)
 		val |= gtk_hex_get_byte(conv->gh, start);
 		start++;
 	} while((start % group_type != 0) &&
-			(start < doc->file_size) );
+			(start < file_size) );
 
 	set_values(conv, val);
 }

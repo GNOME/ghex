@@ -188,7 +188,8 @@ refresh_file_name (GHexNotebookTab *self)
 
    	doc = gtk_hex_get_document (self->gh);
 
-	gtk_label_set_markup (GTK_LABEL(self->label), doc->path_end);
+	gtk_label_set_markup (GTK_LABEL(self->label),
+			hex_document_get_basename (doc));
 	tab_bold_label (self, hex_document_has_changed (doc));
 }
 

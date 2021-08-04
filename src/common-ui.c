@@ -291,15 +291,16 @@ common_print (GtkWindow *parent, GtkHex *gh, gboolean preview)
 	HexDocument *doc;
 	GtkPrintOperationResult result;
 	GError *error = NULL;
-	char *basename;
 	char *gtk_file_name;
+	char *basename;
 
 	g_return_if_fail (GTK_IS_HEX (gh));
 
 	doc = gtk_hex_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	gtk_file_name = g_filename_to_utf8 (doc->file_name, -1, NULL, NULL, NULL);
+	gtk_file_name = g_filename_to_utf8 (hex_document_get_file_name (doc),
+			-1, NULL, NULL, NULL);
 	basename = g_filename_display_basename (gtk_file_name);
 
 	job = ghex_print_job_info_new (doc, gtk_hex_get_group_type (gh));

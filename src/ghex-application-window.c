@@ -494,7 +494,7 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self)
 			 * edited. */
 			_("<big><b>%s has been edited since opening.</b></big>\n\n"
 			   "Would you like to save your changes?"),
-			doc->path_end);
+			hex_document_get_basename (doc));
 
 	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
 			_("_Save Changes"),		GTK_RESPONSE_ACCEPT,
@@ -622,7 +622,7 @@ assess_can_save (HexDocument *doc)
 	gboolean can_save = FALSE;
 
 	/* Can't save if we have a new document that is still untitled. */
-	if (doc->file_name)
+	if (hex_document_get_file_name (doc))
 		can_save = hex_document_has_changed (doc);
 
 	return can_save;
@@ -1012,7 +1012,7 @@ save_as_response_cb (GtkNativeDialog *dialog,
 					"of a bug or programer error. Please file a bug report.",
 					__func__);
 		}
-		gtk_file_name = g_filename_to_utf8 (doc->file_name,
+		gtk_file_name = g_filename_to_utf8 (hex_document_get_file_name (doc),
 				-1, NULL, NULL, NULL);
 
 		g_free(gtk_file_name);
@@ -1047,7 +1047,7 @@ save_as (GtkWidget *widget,
 	doc = gtk_hex_get_document (self->gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	existing_file = g_file_new_for_path (doc->file_name);
+	existing_file = g_file_new_for_path (hex_document_get_file_name (doc));
 
 	file_sel =
 		gtk_file_chooser_native_new (_("Select a file to save buffer as"),
@@ -1083,7 +1083,7 @@ revert_response_cb (GtkDialog *dialog,
 		goto end;
 
 	doc = gtk_hex_get_document (self->gh);
-	gtk_file_name = g_filename_to_utf8 (doc->file_name,
+	gtk_file_name = g_filename_to_utf8 (hex_document_get_file_name (doc),
 			-1, NULL, NULL, NULL);
 
 	hex_document_read (doc);
@@ -1122,7 +1122,7 @@ revert (GtkWidget *widget,
 			_("<big><b>Are you sure you want to revert %s?</b></big>\n\n"
 			"Your changes will be lost.\n\n"
 			"This action cannot be undone."),
-			doc->path_end);
+			hex_document_get_basename (doc));
 
 	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
 			_("_Revert"), GTK_RESPONSE_ACCEPT,

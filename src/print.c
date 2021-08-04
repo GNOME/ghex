@@ -46,8 +46,10 @@ static void print_shaded_box( GHexPrintJobInfo *pji, guint row, guint rows);
 static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 {
 	PangoLayout *layout;
+
+	const char *file_name = hex_document_get_file_name (pji->doc);
 	cairo_t *cr = gtk_print_context_get_cairo_context (pji->pc);
-	char *text1 = g_filename_to_utf8 (pji->doc->file_name, -1, NULL,
+	char *text1 = g_filename_to_utf8 (file_name, -1, NULL,
 									   NULL, NULL);
 	char *text2 = g_strdup_printf (_("Page: %i/%i"), page, pji->pages);
 	char *pagetext = g_strdup_printf ("%d", page);
@@ -290,6 +292,7 @@ begin_print (GtkPrintOperation *operation,
     pji->pc = context;
     int font_width, font_height;
     int printable_width, printable_height;
+	int file_size = hex_document_get_file_size (pji->doc);
 
     layout = gtk_print_context_create_pango_layout (context);
     pango_layout_set_text (layout, " ", -1);
@@ -318,7 +321,7 @@ begin_print (GtkPrintOperation *operation,
     pji->bytes_per_row *= pji->gt;
     pji->rows_per_page = (printable_height - pji->header_height) /
                           pji->font_char_height - 2;
-    pji->pages = (((pji->doc->file_size/pji->bytes_per_row) + 1)/
+    pji->pages = (((file_size/pji->bytes_per_row) + 1)/
                    pji->rows_per_page) + 1;
     gtk_print_operation_set_n_pages (pji->master, pji->pages);
 }
@@ -329,7 +332,7 @@ print_page (GtkPrintOperation *operation,
             int               page_nr,
             gpointer           data)
 {
-	int j, max_row;
+	int j, max_row, file_size;
 
 	GHexPrintJobInfo *pji = (GHexPrintJobInfo *)data;
 	g_return_if_fail(pji != NULL);
@@ -337,10 +340,12 @@ print_page (GtkPrintOperation *operation,
 	pji->pc = context;
 	g_return_if_fail(pji->pc != NULL);
 
+	file_size = hex_document_get_file_size (pji->doc);
+
 	print_header (pji, page_nr+1);
 	max_row = (pji->bytes_per_row*pji->rows_per_page*(page_nr+1) >
-			pji->doc->file_size ?
-			(int)((pji->doc->file_size-1)-
+			file_size ?
+			(int)((file_size-1)-
 			      (pji->bytes_per_row *
 			       pji->rows_per_page*(page_nr))) /
 			       pji->bytes_per_row + 1:
@@ -350,10 +355,10 @@ print_page (GtkPrintOperation *operation,
 		int file_offset = pji->bytes_per_row*(j - 1) +
 			pji->bytes_per_row*pji->rows_per_page*(page_nr);
 		int length = (file_offset + pji->bytes_per_row >
-			pji->doc->file_size ?
-			pji->doc->file_size - file_offset :
+			file_size ?
+			file_size - file_offset :
 			pji->bytes_per_row);
-		if (file_offset >= pji->doc->file_size)
+		if (file_offset >= file_size)
 			break;
 		print_row (pji, file_offset, length, j);
 	}

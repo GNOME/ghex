@@ -123,12 +123,13 @@ create_hex_view (HexDocument *doc)
     return gh;
 }
 
-static gint get_search_string(HexDocument *doc, gchar **str)
+static int
+get_search_string (HexDocument *doc, char **str)
 {
-	guint size = doc->file_size;
+	int size = hex_document_get_file_size (doc);
 	
 	if (size > 0)
-		*str = (gchar *)hex_document_get_data(doc, 0, size);
+		*str = hex_document_get_data(doc, 0, size);
 	else
 		*str = NULL;
 
@@ -364,6 +365,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	gint is_relative = 0;
 	gboolean is_hex;
 	const gchar *byte_str;
+	int file_size;
 	
 	(void)button;	/* unused */
 
@@ -378,6 +380,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 
 	doc = gtk_hex_get_document(priv->gh);
 	cursor_pos = gtk_hex_get_cursor(priv->gh);
+	file_size = hex_document_get_file_size (doc);
 
 	entry = GTK_ENTRY(self->int_entry);
 	buffer = gtk_entry_get_buffer (entry);
@@ -428,7 +431,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 			}
 			byte = byte * is_relative + cursor_pos;
 		}
-		if (byte >= doc->file_size) {
+		if (byte >= file_size) {
 			display_error_dialog(parent,
 								 _("Can not position cursor beyond the "
 								   "end of file."));
@@ -457,6 +460,7 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	int cursor_pos;
 	char *find_str = NULL, *rep_str = NULL;
 	int find_len, rep_len, offset;
+	int file_size;
 
 	(void)button;	/* unused */
 	g_return_if_fail (REPLACE_IS_DIALOG(self));
@@ -474,6 +478,7 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 
 	doc = gtk_hex_get_document (priv->gh);
 	cursor_pos = gtk_hex_get_cursor (priv->gh);
+	file_size = hex_document_get_file_size (doc);
 	
 	if ((find_len = get_search_string(f_priv->f_doc, &find_str)) == 0)
 	{
@@ -482,7 +487,7 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	}
 	rep_len = get_search_string(self->r_doc, &rep_str);
 	
-	if (find_len > doc->file_size - cursor_pos)
+	if (find_len > file_size - cursor_pos)
 		goto clean_up;
 	
 	if (hex_document_compare_data(doc, find_str, cursor_pos, find_len) == 0)
@@ -520,6 +525,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	int cursor_pos;
 	char *find_str = NULL, *rep_str = NULL;
 	int find_len, rep_len, offset, count;
+	int file_size;
 
 	(void)button;	/* unused */
 	g_return_if_fail (REPLACE_IS_DIALOG (self));
@@ -536,6 +542,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 
 	doc = gtk_hex_get_document (priv->gh);
 	cursor_pos = gtk_hex_get_cursor (priv->gh);
+	file_size = hex_document_get_file_size (doc);
 
 	if ((find_len = get_search_string(f_priv->f_doc, &find_str)) == 0)
 	{
@@ -544,7 +551,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	}
 	rep_len = get_search_string(self->r_doc, &rep_str);
 
-	if (find_len > doc->file_size - cursor_pos)
+	if (find_len > file_size - cursor_pos)
 		goto clean_up;
 	
 	count = 0;
@@ -557,7 +564,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 		count++;
 	}
 	
-	gtk_hex_set_cursor(priv->gh, MIN(offset, doc->file_size));  
+	gtk_hex_set_cursor(priv->gh, MIN(offset, file_size));  
 
 	if (count == 0) {
 		display_info_dialog (parent, _("No occurrences were found."));

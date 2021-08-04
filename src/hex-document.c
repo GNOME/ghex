@@ -302,8 +302,8 @@ hex_document_finalize(GObject *obj)
 	if(hex->file_name)
 		g_free(hex->file_name);
 
-	if(hex->path_end)
-		g_free(hex->path_end);
+	if(hex->basename)
+		g_free(hex->basename);
 
 	undo_stack_free(hex);
 
@@ -459,7 +459,7 @@ hex_document_new()
 	doc->buffer_size = doc->file_size + doc->gap_size;
 	doc->gap_pos = doc->buffer = g_malloc(doc->buffer_size);
 
-	doc->path_end = g_strdup(_("New document"));
+	doc->basename = g_strdup(_("New document"));
 
 	doc_list = g_list_append(doc_list, doc);
 	return doc;
@@ -469,7 +469,7 @@ HexDocument *
 hex_document_new_from_file(const gchar *name)
 {
 	HexDocument *doc;
-	gchar *path_end;
+	char *basename;
 
 	doc = HEX_DOCUMENT (g_object_new (hex_document_get_type(), NULL));
 	g_return_val_if_fail (doc != NULL, NULL);
@@ -481,9 +481,9 @@ hex_document_new_from_file(const gchar *name)
 		doc->buffer = g_malloc(doc->buffer_size);
 
 		/* find the start of the filename without path */
-		path_end = g_path_get_basename (doc->file_name);
-		doc->path_end = g_filename_to_utf8 (path_end, -1, NULL, NULL, NULL);
-		g_free (path_end);
+		basename = g_path_get_basename (doc->file_name);
+		doc->basename = g_filename_to_utf8 (basename, -1, NULL, NULL, NULL);
+		g_free (basename);
 
 		if(hex_document_read(doc)) {
 			doc_list = g_list_append(doc_list, doc);
@@ -812,7 +812,7 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 	fprintf(file, "<CENTER>");
 	fprintf(file, "<TABLE BORDER=\"0\" CELLSPACING=\"0\" CELLPADDING=\"0\">\n");
 	fprintf(file, "<TR>\n<TD COLSPAN=\"3\"><B>%s</B></TD>\n</TR>\n",
-			doc->file_name?doc->file_name:doc->path_end);
+			doc->file_name?doc->file_name:doc->basename);
 	fprintf(file, "<TR>\n<TD COLSPAN=\"3\">&nbsp;</TD>\n</TR>\n");
 	for(page = 0; page < pages; page++) {
 		fprintf(file, "<TR>\n<TD>\n<A HREF=\"%s%08d.html\"><PRE>", base_name, page);
@@ -884,7 +884,7 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 		fprintf(file, "\n</TD>\n");
 		fprintf(file, "<TD WIDTH=\"33%%\" ALIGN=\"CENTER\">\n");
 		fprintf(file, "<A HREF=\"%s.html\">", base_name);
-		fprintf(file, "%s:", doc->path_end);
+		fprintf(file, "%s:", doc->basename);
 		fprintf(file, "</A>");
 		fprintf(file, " %d/%d", page+1, pages);
 		fprintf(file, "\n</TD>\n");
@@ -1145,19 +1145,19 @@ hex_document_change_file_name (HexDocument *doc, const char *new_file_name)
 
 	if(doc->file_name)
 		g_free(doc->file_name);
-	if(doc->path_end)
-		g_free(doc->path_end);
+	if(doc->basename)
+		g_free(doc->basename);
 
 	doc->file_name = g_strdup(new_file_name);
 	doc->changed = FALSE;
 
 	new_path_end = g_path_get_basename (doc->file_name);
-	doc->path_end = g_filename_to_utf8 (new_path_end, -1, NULL, NULL, NULL);
+	doc->basename = g_filename_to_utf8 (new_path_end, -1, NULL, NULL, NULL);
 
 	if (new_path_end)
 		g_free (new_path_end);
 
-	if (doc->file_name && doc->path_end) {
+	if (doc->file_name && doc->basename) {
 		g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
 		return TRUE;
 	} else {
@@ -1185,4 +1185,28 @@ hex_document_can_redo (HexDocument *doc)
 		return TRUE;
 	else
 		return FALSE;
+}
+
+const char *
+hex_document_get_file_name (HexDocument *doc)
+{
+	return doc->file_name;
+}
+
+const char *
+hex_document_get_basename (HexDocument *doc)
+{
+	return doc->basename;
+}
+
+int
+hex_document_get_file_size (HexDocument *doc)
+{
+	return doc->file_size;
+}
+
+HexChangeData *
+hex_document_get_undo_data (HexDocument *doc)
+{
+	return doc->undo_top->data;
 }
