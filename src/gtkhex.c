@@ -1379,9 +1379,9 @@ hex_released_cb (GtkGestureClick *gesture,
 	/* Single-click */
 	if (button == GDK_BUTTON_PRIMARY && n_press == 1)
 	{
-		if (gh->scroll_timeout != -1) {
+		if (gh->scroll_timeout != 0) {
 			g_source_remove(gh->scroll_timeout);
-			gh->scroll_timeout = -1;
+			gh->scroll_timeout = 0;
 			gh->scroll_dir = 0;
 		}
 		gh->selecting = FALSE;
@@ -1458,7 +1458,7 @@ hex_drag_update_cb (GtkGestureDrag *gesture,
 	}
 
 	if (gh->scroll_dir != 0) {
-		if (gh->scroll_timeout == -1) {
+		if (gh->scroll_timeout == 0) {
 			gh->scroll_timeout =
 				g_timeout_add(SCROLL_TIMEOUT,
 							  G_SOURCE_FUNC(scroll_timeout_handler),
@@ -1467,9 +1467,9 @@ hex_drag_update_cb (GtkGestureDrag *gesture,
 		return;
 	}
 	else {
-		if (gh->scroll_timeout != -1) {
+		if (gh->scroll_timeout != 0) {
 			g_source_remove(gh->scroll_timeout);
-			gh->scroll_timeout = -1;
+			gh->scroll_timeout = 0;
 		}
 	}
 			
@@ -1551,9 +1551,9 @@ ascii_released_cb (GtkGestureClick *gesture,
 	/* Single-click */
 	if (button == GDK_BUTTON_PRIMARY && n_press == 1)
 	{
-		if (gh->scroll_timeout != -1) {
+		if (gh->scroll_timeout != 0) {
 			g_source_remove(gh->scroll_timeout);
-			gh->scroll_timeout = -1;
+			gh->scroll_timeout = 0;
 			gh->scroll_dir = 0;
 		}
 		gh->selecting = FALSE;
@@ -1592,7 +1592,7 @@ ascii_drag_update_cb (GtkGestureDrag *gesture,
 	}
 
 	if (gh->scroll_dir != 0) {
-		if (gh->scroll_timeout == -1) {
+		if (gh->scroll_timeout == 0) {
 			gh->scroll_timeout =
 				g_timeout_add(SCROLL_TIMEOUT,
 							  G_SOURCE_FUNC(scroll_timeout_handler),
@@ -1601,9 +1601,9 @@ ascii_drag_update_cb (GtkGestureDrag *gesture,
 		return;
 	}
 	else {
-		if (gh->scroll_timeout != -1) {
+		if (gh->scroll_timeout != 0) {
 			g_source_remove(gh->scroll_timeout);
-			gh->scroll_timeout = -1;
+			gh->scroll_timeout = 0;
 		}
 	}
 
@@ -2522,7 +2522,7 @@ gtk_hex_init(GtkHex *gh)
 	gh->default_cpl = DEFAULT_CPL;
 	gh->default_lines = DEFAULT_LINES;
 
-	gh->scroll_timeout = -1;
+	gh->scroll_timeout = 0;
 
 	gh->document = NULL;
 
