@@ -41,9 +41,9 @@
 #include <sys/stat.h>
 #include <string.h>
 
-static void hex_document_class_init     (HexDocumentClass *);
-static void hex_document_init           (HexDocument *doc);
-static void hex_document_finalize       (GObject *obj);
+//static void hex_document_class_init     (HexDocumentClass *);
+//static void hex_document_init           (HexDocument *doc);
+
 static void hex_document_real_changed   (HexDocument *doc,
 										 gpointer change_data,
 										 gboolean undoable);
@@ -72,11 +72,37 @@ enum {
 	LAST_SIGNAL
 };
 
-static gint hex_signals[LAST_SIGNAL];
+static guint hex_signals[LAST_SIGNAL];
 
-static GObjectClass *parent_class = NULL;
 
-static GList *doc_list = NULL;
+/* GOBJECT DEFINITION */
+
+struct _HexDocument
+{
+	GObject object;
+
+	GList *views;      /* a list of GtkHex widgets showing this document */
+	
+	char *file_name;
+	char *basename;
+
+	char *buffer;    /* data buffer */
+	char *gap_pos;   /* pointer to the start of insertion gap */
+	int gap_size;     /* insertion gap size */
+	int buffer_size; /* buffer size = file size + gap size */
+	int file_size;   /* real file size */
+
+	gboolean changed;
+
+	GList *undo_stack; /* stack base */
+	GList *undo_top;   /* top of the stack (for redo) */
+	int undo_depth;  /* number of els on stack */
+	int undo_max;    /* max undo depth */
+};
+
+G_DEFINE_TYPE (HexDocument, hex_document, G_TYPE_OBJECT)
+
+/* ---- */
 
 static void
 free_stack(GList *stack)
@@ -290,33 +316,31 @@ hex_document_remove_view(HexDocument *doc, GtkWidget *view)
 }
 
 static void
-hex_document_finalize(GObject *obj)
+hex_document_finalize (GObject *obj)
 {
-	HexDocument *hex;
+	HexDocument *doc;
 	
-	hex = HEX_DOCUMENT(obj);
+	doc = HEX_DOCUMENT(obj);
 	
-	if(hex->buffer)
-		g_free(hex->buffer);
+	if (doc->buffer)
+		g_free (doc->buffer);
 	
-	if(hex->file_name)
-		g_free(hex->file_name);
+	if (doc->file_name)
+		g_free (doc->file_name);
 
-	if(hex->basename)
-		g_free(hex->basename);
+	if (doc->basename)
+		g_free (doc->basename);
 
-	undo_stack_free(hex);
+	undo_stack_free (doc);
 
-	while(hex->views)
-		hex_document_remove_view(hex, (GtkWidget *)hex->views->data);
+	while (doc->views)
+		hex_document_remove_view(doc, GTK_WIDGET(doc->views->data));
 
-	doc_list = g_list_remove(doc_list, hex);
-
-	G_OBJECT_CLASS (parent_class)->finalize (obj);
+	G_OBJECT_CLASS(hex_document_parent_class)->finalize (obj);
 }
 
 static void
-hex_document_real_changed(HexDocument *doc, gpointer change_data,
+hex_document_real_changed (HexDocument *doc, gpointer change_data,
 						  gboolean push_undo)
 {
 	if(push_undo && doc->undo_max > 0)
@@ -328,141 +352,82 @@ hex_document_class_init (HexDocumentClass *klass)
 {
 	GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
 	
-	parent_class = g_type_class_peek_parent(klass);
-	
 	gobject_class->finalize = hex_document_finalize;
 	
-	klass->document_changed = hex_document_real_changed;
-	klass->undo = hex_document_real_undo;
-	klass->redo = hex_document_real_redo;
-	klass->undo_stack_forget = NULL;
-	klass->file_name_changed = NULL;
+	hex_signals[DOCUMENT_CHANGED] =
+		g_signal_new_class_handler ("document-changed",
+				G_OBJECT_CLASS_TYPE (gobject_class),
+				G_SIGNAL_RUN_FIRST,
+				G_CALLBACK(hex_document_real_changed),
+				NULL, NULL, NULL,
+				G_TYPE_NONE,
+				2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
 
-	hex_signals[DOCUMENT_CHANGED] = 
-		g_signal_new ("document-changed",
-					  G_TYPE_FROM_CLASS(gobject_class),
-					  G_SIGNAL_RUN_FIRST,
-					  G_STRUCT_OFFSET (HexDocumentClass, document_changed),
-					  NULL,
-					  NULL,
-					  NULL,
-					  G_TYPE_NONE,
-					  2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
 	hex_signals[UNDO] = 
-		g_signal_new ("undo",
-					  G_TYPE_FROM_CLASS(gobject_class),
-					  G_SIGNAL_RUN_FIRST,
-					  G_STRUCT_OFFSET (HexDocumentClass, undo),
-					  NULL,
-					  NULL,
-					  NULL,
-					  G_TYPE_NONE, 0);
+		g_signal_new_class_handler ("undo",
+				G_OBJECT_CLASS_TYPE (gobject_class),
+				G_SIGNAL_RUN_FIRST,
+				G_CALLBACK(hex_document_real_undo),
+				NULL, NULL, NULL,
+				G_TYPE_NONE,
+				0);
+
 	hex_signals[REDO] = 
-		g_signal_new ("redo",
-					  G_TYPE_FROM_CLASS(gobject_class),
-					  G_SIGNAL_RUN_FIRST,
-					  G_STRUCT_OFFSET (HexDocumentClass, redo),
-					  NULL,
-					  NULL,
-					  NULL,
-					  G_TYPE_NONE, 0);
+		g_signal_new_class_handler ("redo",
+				G_OBJECT_CLASS_TYPE (gobject_class),
+				G_SIGNAL_RUN_FIRST,
+				G_CALLBACK(hex_document_real_redo),
+				NULL, NULL, NULL,
+				G_TYPE_NONE,
+				0);
+
 	hex_signals[UNDO_STACK_FORGET] = 
-		g_signal_new ("undo_stack_forget",
-					  G_TYPE_FROM_CLASS(gobject_class),
-					  G_SIGNAL_RUN_FIRST,
-					  G_STRUCT_OFFSET (HexDocumentClass, undo_stack_forget),
-					  NULL,
-					  NULL,
-					  NULL,
-					  G_TYPE_NONE, 0);
+		g_signal_new_class_handler ("undo_stack_forget",
+				G_OBJECT_CLASS_TYPE (gobject_class),
+				G_SIGNAL_RUN_FIRST,
+				NULL,
+				NULL, NULL, NULL,
+				G_TYPE_NONE,
+				0);
 
 	hex_signals[FILE_NAME_CHANGED] = 
-		g_signal_new ("file-name-changed",
-					  G_TYPE_FROM_CLASS(gobject_class),
-					  G_SIGNAL_RUN_FIRST,
-					  G_STRUCT_OFFSET (HexDocumentClass, file_name_changed),
-					  NULL,
-					  NULL,
-					  NULL,
-					  G_TYPE_NONE, 0);
+		g_signal_new_class_handler ("file-name-changed",
+				G_OBJECT_CLASS_TYPE (gobject_class),
+				G_SIGNAL_RUN_FIRST,
+				NULL,
+				NULL, NULL, NULL,
+				G_TYPE_NONE,
+				0);
 
 	hex_signals[FILE_SAVED] =
-		g_signal_new ("file-saved",
-					  G_TYPE_FROM_CLASS(gobject_class),
-					  G_SIGNAL_RUN_FIRST,
-					  G_STRUCT_OFFSET (HexDocumentClass, file_saved),
-					  NULL,
-					  NULL,
-					  NULL,
-					  G_TYPE_NONE, 0);
+		g_signal_new_class_handler ("file-saved",
+				G_OBJECT_CLASS_TYPE (gobject_class),
+				G_SIGNAL_RUN_FIRST,
+				NULL,
+				NULL, NULL, NULL,
+				G_TYPE_NONE,
+				0);
 }
 
 static void
 hex_document_init (HexDocument *doc)
 {
-	doc->buffer = NULL;
-	doc->buffer_size = 0;
-	doc->file_size = 0;
-	doc->gap_pos = NULL;
-	doc->gap_size = 0;
-	doc->changed = FALSE;
-	doc->undo_stack = NULL;
-	doc->undo_top = NULL;
-	doc->undo_depth = 0;
 	doc->undo_max = DEFAULT_UNDO_DEPTH;
+	doc->file_name = NULL;
+	doc->gap_size = 100;
+	doc->file_size = 0;
+	doc->buffer_size = doc->file_size + doc->gap_size;
+	doc->gap_pos = doc->buffer = g_malloc(doc->buffer_size);
+	doc->basename = g_strdup(_("New document"));
 }
-
-/* TODO - reimplement using modern macros. */
-GType
-hex_document_get_type (void)
-{
-	static GType doc_type = 0;
-	
-	if (!doc_type) {
-		static const GTypeInfo doc_info = {
-			sizeof (HexDocumentClass),
-			NULL,		/* base_init */
-			NULL,		/* base_finalize */
-			(GClassInitFunc)(void (*)(void)) hex_document_class_init,
-			NULL,		/* class_finalize */
-			NULL,		/* class_data */
-			sizeof (HexDocument),
-			0,
-			(GInstanceInitFunc)(void (*)(void)) hex_document_init
-		};
-	
-		doc_type = g_type_register_static (G_TYPE_OBJECT,
-				"HexDocument",
-				&doc_info,
-				0);	
-	}
-
-	return doc_type;
-}
-
 
 /*-------- public API starts here --------*/
 
 
 HexDocument *
-hex_document_new()
+hex_document_new (void)
 {
-	HexDocument *doc;
-
-	doc = HEX_DOCUMENT (g_object_new (hex_document_get_type(), NULL));
-	g_return_val_if_fail (doc != NULL, NULL);
-
-	doc->file_name = NULL;
-
-	doc->gap_size = 100;
-	doc->file_size = 0;
-	doc->buffer_size = doc->file_size + doc->gap_size;
-	doc->gap_pos = doc->buffer = g_malloc(doc->buffer_size);
-
-	doc->basename = g_strdup(_("New document"));
-
-	doc_list = g_list_append(doc_list, doc);
-	return doc;
+	return g_object_new (HEX_TYPE_DOCUMENT, NULL);
 }
 
 HexDocument *
@@ -471,11 +436,14 @@ hex_document_new_from_file(const gchar *name)
 	HexDocument *doc;
 	char *basename;
 
-	doc = HEX_DOCUMENT (g_object_new (hex_document_get_type(), NULL));
-	g_return_val_if_fail (doc != NULL, NULL);
+	doc = hex_document_new ();
 
-	doc->file_name = g_strdup(name);
-	if(get_document_attributes(doc)) {
+	g_return_val_if_fail (doc, NULL);
+
+	doc->file_name = g_strdup (name);
+
+	if (get_document_attributes (doc))
+	{
 		doc->gap_size = 100;
 		doc->buffer_size = doc->file_size + doc->gap_size;
 		doc->buffer = g_malloc(doc->buffer_size);
@@ -485,12 +453,10 @@ hex_document_new_from_file(const gchar *name)
 		doc->basename = g_filename_to_utf8 (basename, -1, NULL, NULL, NULL);
 		g_free (basename);
 
-		if(hex_document_read(doc)) {
-			doc_list = g_list_append(doc_list, doc);
+		if (hex_document_read (doc))
 			return doc;
-		}
 	}
-	g_object_unref(G_OBJECT(doc));
+	g_object_unref (doc);
 	
 	return NULL;
 }
@@ -1023,7 +989,7 @@ hex_document_find_backward(HexDocument *doc, guint start, char *what,
 }
 
 gboolean
-hex_document_undo(HexDocument *doc)
+hex_document_undo (HexDocument *doc)
 {
 	if(doc->undo_top == NULL)
 		return FALSE;
@@ -1034,7 +1000,7 @@ hex_document_undo(HexDocument *doc)
 }
 
 static void
-hex_document_real_undo(HexDocument *doc)
+hex_document_real_undo (HexDocument *doc)
 {
 	HexChangeData *cd;
 	int len;
@@ -1130,12 +1096,6 @@ hex_document_real_redo(HexDocument *doc)
 	}
 
 	hex_document_changed(doc, cd, FALSE);
-}
-
-const GList *
-hex_document_get_list()
-{
-	return doc_list;
 }
 
 gboolean

@@ -980,7 +980,7 @@ render_hex_lines (GtkHex *gh,
 	frm_len = format_xblock (gh, (char *)gh->disp_buffer,
 			(gh->top_line + min_lines) * gh->cpl,
 			MIN( (gh->top_line + max_lines + 1) * gh->cpl,
-				(int)gh->document->file_size ));
+				hex_document_get_file_size (gh->document) ));
 	
 	for (int i = min_lines; i <= max_lines; i++)
 	{
@@ -1042,7 +1042,7 @@ render_ascii_lines (GtkHex *gh,
 	frm_len = format_ablock (gh, (char *)gh->disp_buffer,
 			(gh->top_line + min_lines) * gh->cpl,
 			MIN( (gh->top_line + max_lines + 1) * gh->cpl,
-				(int)gh->document->file_size ));
+				hex_document_get_file_size (gh->document) ));
 	
 	for (int i = min_lines; i <= max_lines; i++)
 	{
@@ -1173,18 +1173,20 @@ recalc_displays (GtkHex *gh)
 {
 	GtkWidget *widget = GTK_WIDGET (gh);
 	int hex_cpl;
+	int file_size;
 
 	hex_cpl = gtk_hex_layout_get_hex_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
+	file_size = hex_document_get_file_size (gh->document);
 
 	/*
 	 * Only change the value of the adjustment to put the cursor on screen
 	 * if the cursor is currently within the displayed portion.
 	 */
-	if (gh->document->file_size == 0 || gh->cpl == 0)
+	if (file_size == 0 || gh->cpl == 0)
 		gh->lines = 1;
 	else {
-		gh->lines = gh->document->file_size / gh->cpl;
-		if (gh->document->file_size % gh->cpl)
+		gh->lines = file_size / gh->cpl;
+		if (file_size % gh->cpl)
 			gh->lines++;
 	}
 
@@ -1273,7 +1275,7 @@ scroll_timeout_handler(GtkHex *gh)
 		gtk_hex_set_cursor (gh, MAX(0, (int)(gh->cursor_pos - gh->cpl)));
 	}
 	else if (gh->scroll_dir > 0) {
-		gtk_hex_set_cursor(gh, MIN((int)gh->document->file_size - 1,
+		gtk_hex_set_cursor(gh, MIN(hex_document_get_file_size (gh->document) - 1,
 						gh->cursor_pos + gh->cpl));
 	}
 	return TRUE;
@@ -1616,6 +1618,11 @@ key_press_cb (GtkEventControllerKey *controller,
 	GtkHex *gh = GTK_HEX(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
 	gboolean ret = TRUE;
+	int file_size;
+
+	g_return_val_if_fail (HEX_IS_DOCUMENT (gh->document), FALSE);
+
+	file_size = hex_document_get_file_size (gh->document);
 
 	/* don't trample over Ctrl */
 	if (state & GDK_CONTROL_MASK) {
@@ -1654,7 +1661,7 @@ key_press_cb (GtkEventControllerKey *controller,
 		}
 		break;
 	case GDK_KEY_Delete:
-		if(gh->cursor_pos < (int)gh->document->file_size) {
+		if (gh->cursor_pos < file_size) {
 			hex_document_set_data(gh->document, gh->cursor_pos,
 								  0, 1, NULL, TRUE);
 			gtk_hex_set_cursor(gh, gh->cursor_pos);
@@ -1667,10 +1674,12 @@ key_press_cb (GtkEventControllerKey *controller,
 		gtk_hex_set_cursor(gh, gh->cursor_pos + gh->cpl);
 		break;
 	case GDK_KEY_Page_Up:
-		gtk_hex_set_cursor(gh, MAX(0, (gint)gh->cursor_pos - gh->vis_lines*gh->cpl));
+		gtk_hex_set_cursor(gh, MAX(0, gh->cursor_pos - gh->vis_lines*gh->cpl));
 		break;
 	case GDK_KEY_Page_Down:
-		gtk_hex_set_cursor(gh, MIN((gint)gh->document->file_size, (gint)gh->cursor_pos + gh->vis_lines*gh->cpl));
+		gtk_hex_set_cursor(gh,
+				MIN(file_size,
+					gh->cursor_pos + gh->vis_lines*gh->cpl));
 		break;
 	default:
 		if (state & GDK_ALT_MASK) {
@@ -1690,7 +1699,7 @@ key_press_cb (GtkEventControllerKey *controller,
 				}
 				break;
 			case GDK_KEY_Right:
-				if(gh->cursor_pos >= (int)gh->document->file_size)
+				if(gh->cursor_pos >= file_size)
 					break;
 				if(!(state & GDK_SHIFT_MASK)) {
 					gh->lower_nibble = !gh->lower_nibble;
@@ -1823,20 +1832,26 @@ hide_offsets_widget(GtkHex *gh)
 /*
  * default data_changed signal handler
  */
-static void gtk_hex_real_data_changed (GtkHex *gh, gpointer data)
+static void
+gtk_hex_real_data_changed (GtkHex *gh, gpointer data)
 {
 	HexChangeData *change_data = (HexChangeData *)data;
 	int start_line, end_line;
 	int lines;
+	int file_size;
 
-	if(gh->cpl == 0)
+	g_return_if_fail (HEX_IS_DOCUMENT (gh->document));
+
+	file_size = hex_document_get_file_size (gh->document);
+
+	if (gh->cpl == 0)
 		return;
 
-	if(change_data->start - change_data->end + 1 != change_data->rep_len) {
-		lines = gh->document->file_size / gh->cpl;
-		if(gh->document->file_size % gh->cpl)
+	if (change_data->start - change_data->end + 1 != change_data->rep_len) {
+		lines = file_size / gh->cpl;
+		if (file_size % gh->cpl)
 			lines++;
-		if(lines != gh->lines) {
+		if (lines != gh->lines) {
 			gh->lines = lines;
 			gtk_adjustment_set_value(gh->adj, MIN(gtk_adjustment_get_value(gh->adj), gh->lines - gh->vis_lines));
 			gtk_adjustment_set_value(gh->adj, MAX(0, gtk_adjustment_get_value(gh->adj)));
@@ -1942,12 +1957,15 @@ gtk_hex_insert_highlight (GtkHex *gh,
 		gint start, gint end)
 {
 	GdkRGBA rgba;
-	gint length = gh->document->file_size;
+	int file_size;
 
+	g_return_val_if_fail (HEX_IS_DOCUMENT (gh->document), NULL);
+
+	file_size = hex_document_get_file_size (gh->document);
 	GtkHex_Highlight *new = g_malloc0(sizeof(GtkHex_Highlight));
 
-	new->start = CLAMP(MIN(start, end), 0, length);
-	new->end = MIN(MAX(start, end), length);
+	new->start = CLAMP(MIN(start, end), 0, file_size);
+	new->end = MIN(MAX(start, end), file_size);
 
 	new->valid = FALSE;
 
@@ -2815,17 +2833,21 @@ gtk_hex_paste_from_clipboard (GtkHex *gh)
 void
 gtk_hex_set_selection (GtkHex *gh, gint start, gint end)
 {
-	gint length = gh->document->file_size;
-	gint oe, os, ne, ns;
+	int file_size;
+	int oe, os, ne, ns;
+
+	g_return_if_fail (HEX_IS_DOCUMENT (gh->document));
+
+	file_size = hex_document_get_file_size (gh->document);
 
 	if (end < 0)
-		end = length;
+		end = file_size;
 
 	os = MIN(gh->selection.start, gh->selection.end);
 	oe = MAX(gh->selection.start, gh->selection.end);
 
-	gh->selection.start = CLAMP(start, 0, length);
-	gh->selection.end = MIN(end, length);
+	gh->selection.start = CLAMP(start, 0, file_size);
+	gh->selection.end = MIN(end, file_size);
 
 	gtk_hex_invalidate_highlight(gh, &gh->selection);
 
@@ -2922,16 +2944,20 @@ gtk_hex_set_nibble (GtkHex *gh, gint lower_nibble)
  * moves cursor to byte index
  */
 void
-gtk_hex_set_cursor(GtkHex *gh, int index) {
+gtk_hex_set_cursor(GtkHex *gh, int index)
+{
 	int y;
-	int old_pos = gh->cursor_pos;
+	int old_pos;
+	int file_size;
 
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
+	g_return_if_fail (GTK_IS_HEX (gh));
 
-	if ((index >= 0) && (index <= (int)gh->document->file_size))
+	old_pos = gh->cursor_pos;
+	file_size = hex_document_get_file_size (gh->document);
+
+	if ((index >= 0) && (index <= file_size))
 	{
-		if(!gh->insert && index == (int)gh->document->file_size)
+		if(!gh->insert && index == file_size)
 			index--;
 
 		index = MAX(index, 0);
@@ -2954,7 +2980,7 @@ gtk_hex_set_cursor(GtkHex *gh, int index) {
 			gtk_adjustment_set_value(gh->adj, y);
 		}      
 
-		if(index == (int)gh->document->file_size)
+		if(index == file_size)
 			gh->lower_nibble = FALSE;
 
 		if(gh->selecting) {
@@ -2985,17 +3011,19 @@ void
 gtk_hex_set_cursor_xy (GtkHex *gh, int x, int y)
 {
 	int cp;
-	int old_pos = gh->cursor_pos;
+	int old_pos;
+	int file_size;
 
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
+	g_return_if_fail (GTK_IS_HEX(gh));
 
+	old_pos = gh->cursor_pos;
 	cp = y*gh->cpl + x;
+	file_size = hex_document_get_file_size (gh->document);
 
 	if ((y >= 0) && (y < gh->lines) && (x >= 0) &&
-	   (x < gh->cpl) && (cp <= (int)gh->document->file_size))
+	   (x < gh->cpl) && (cp <= file_size))
 	{
-		if (!gh->insert && cp == (int)gh->document->file_size)
+		if (!gh->insert && cp == file_size)
 			cp--;
 
 		cp = MAX(cp, 0);
@@ -3051,10 +3079,9 @@ gtk_hex_get_cursor(GtkHex *gh)
 guchar
 gtk_hex_get_byte (GtkHex *gh, int offset)
 {
-	g_return_val_if_fail(gh != NULL, 0);
-	g_return_val_if_fail(GTK_IS_HEX(gh), 0);
+	g_return_val_if_fail (GTK_IS_HEX(gh), 0);
 
-	if((offset >= 0) && (offset < (int)gh->document->file_size))
+	if ((offset >= 0) && (offset < hex_document_get_file_size (gh->document)))
 		return hex_document_get_byte(gh->document, offset);
 
 	return 0;
@@ -3110,14 +3137,16 @@ gtk_hex_show_offsets(GtkHex *gh, gboolean show)
 void
 gtk_hex_set_insert_mode (GtkHex *gh, gboolean insert)
 {
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
+	int file_size;
 
+	g_return_if_fail (HEX_IS_DOCUMENT (gh->document));
+
+	file_size = hex_document_get_file_size (gh->document);
 	gh->insert = insert;
 
-	if(!gh->insert && gh->cursor_pos > 0) {
-		if(gh->cursor_pos >= (int)gh->document->file_size)
-			gh->cursor_pos = (int)gh->document->file_size - 1;
+	if (!gh->insert && gh->cursor_pos > 0) {
+		if (gh->cursor_pos >= file_size)
+			gh->cursor_pos = file_size - 1;
 	}
 }
 

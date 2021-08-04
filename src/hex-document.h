@@ -40,20 +40,15 @@
 
 G_BEGIN_DECLS
 
-#define HEX_DOCUMENT_TYPE          (hex_document_get_type())
-#define HEX_DOCUMENT(obj)          G_TYPE_CHECK_INSTANCE_CAST (obj, hex_document_get_type (), HexDocument)
-#define HEX_DOCUMENT_CLASS(klass)  G_TYPE_CHECK_CLASS_CAST (klass, hex_document_get_type (), HexDocumentClass)
-#define HEX_IS_DOCUMENT(obj)       G_TYPE_CHECK_INSTANCE_TYPE (obj, hex_document_get_type ())
-
-typedef struct _HexDocument       HexDocument;
-typedef struct _HexDocumentClass  HexDocumentClass;
-typedef struct _HexChangeData     HexChangeData;
+#define HEX_TYPE_DOCUMENT hex_document_get_type ()
+G_DECLARE_FINAL_TYPE (HexDocument, hex_document, HEX, DOCUMENT, GObject)
 
 typedef enum {
 	HEX_CHANGE_STRING,
 	HEX_CHANGE_BYTE
 } HexChangeType;
 
+typedef struct _HexChangeData HexChangeData;
 struct _HexChangeData
 {
 	int start, end;
@@ -66,42 +61,7 @@ struct _HexChangeData
 	char v_byte;
 };
 
-struct _HexDocument
-{
-	GObject object;
 
-	GList *views;      /* a list of GtkHex widgets showing this document */
-	
-	char *file_name;
-	char *basename;
-
-	char *buffer;    /* data buffer */
-	char *gap_pos;   /* pointer to the start of insertion gap */
-	int gap_size;     /* insertion gap size */
-	int buffer_size; /* buffer size = file size + gap size */
-	int file_size;   /* real file size */
-
-	gboolean changed;
-
-	GList *undo_stack; /* stack base */
-	GList *undo_top;   /* top of the stack (for redo) */
-	int undo_depth;  /* number of els on stack */
-	int undo_max;    /* max undo depth */
-};
-
-struct _HexDocumentClass
-{
-	GObjectClass parent_class;
-
-	void (*document_changed)(HexDocument *, gpointer, gboolean);
-	void (*undo)(HexDocument *);
-	void (*redo)(HexDocument *);
-	void (*undo_stack_forget)(HexDocument *);
-	void (*file_name_changed)(HexDocument *);
-	void (*file_saved)(HexDocument *);
-};
-
-GType       hex_document_get_type(void);
 HexDocument *hex_document_new(void);
 HexDocument *hex_document_new_from_file(const char *name);
 void        hex_document_set_data(HexDocument *doc, int offset,
@@ -133,7 +93,6 @@ int        hex_document_find_backward(HexDocument *doc, guint start,
 		char *what, int len, guint *found);
 void        hex_document_remove_view(HexDocument *doc, GtkWidget *view);
 GtkWidget   *hex_document_add_view(HexDocument *doc);
-const GList *hex_document_get_list(void);
 gboolean    hex_document_is_writable(HexDocument *doc);
 gboolean    hex_document_change_file_name (HexDocument *doc,
 		const char *new_file_name);
