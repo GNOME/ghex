@@ -879,8 +879,10 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 	}																		\
 	else																	\
 	{																		\
-		if (gtk_widget_is_visible (self->WIDGET))							\
+		if (GTK_IS_WIDGET (self->WIDGET) &&									\
+				gtk_widget_is_visible (self->WIDGET)) {						\
 			gtk_widget_hide (self->WIDGET);									\
+		}																	\
 	}																		\
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_ARR_ENTRY]);	\
 }												/* DIALOG_SET_SHOW_TEMPLATE */
