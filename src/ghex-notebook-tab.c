@@ -132,21 +132,19 @@ ghex_notebook_tab_dispose (GObject *object)
 	/* Unparent children */
 	g_clear_pointer (&self->label, gtk_widget_unparent);
 	g_clear_pointer (&self->close_btn, gtk_widget_unparent);
-
-	/* Unref GtkHex widget associated with tab */
-	g_object_unref (self->gh);
+	g_clear_object (&self->gh);
 
 	/* Boilerplate: chain up */
 	G_OBJECT_CLASS(ghex_notebook_tab_parent_class)->dispose(object);
 }
 
 static void
-ghex_notebook_tab_finalize (GObject *gobject)
+ghex_notebook_tab_finalize (GObject *object)
 {
-	/* here, you would free stuff. I've got nuthin' for ya. */
+	GHexNotebookTab *self = GHEX_NOTEBOOK_TAB(object);
 
 	/* Boilerplate: chain up */
-	G_OBJECT_CLASS(ghex_notebook_tab_parent_class)->finalize(gobject);
+	G_OBJECT_CLASS(ghex_notebook_tab_parent_class)->finalize(object);
 }
 
 static void

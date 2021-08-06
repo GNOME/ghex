@@ -298,8 +298,6 @@ ghex_application_window_remove_tab (GHexApplicationWindow *self,
 	 * for now for debugging purposes. */
 	g_return_if_fail (g_list_find (self->gh_list, tab_gh));
 	self->gh_list = g_list_remove (self->gh_list, tab_gh);
-
-	g_object_unref (tab);
 }
 
 static void
@@ -330,7 +328,7 @@ do_close_window (GHexApplicationWindow *self)
 {
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
 	
-	g_object_unref (self);
+	gtk_window_set_application (GTK_WINDOW(self), NULL);
 }
 
 static void
