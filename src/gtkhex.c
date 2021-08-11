@@ -2906,11 +2906,11 @@ gtk_hex_delete_selection(GtkHex *gh)
 
 	gtk_hex_clear_selection (gh);
 
-	if (start < gh->cursor_pos)
-		gtk_hex_set_cursor (gh, gh->cursor_pos - end + start);
-
 	hex_document_delete_data (gh->document,
 			MIN(start, end), len, TRUE);
+
+//	gtk_hex_set_cursor (gh, gh->cursor_pos - end + start);
+	gtk_hex_set_cursor (gh, gh->cursor_pos);
 }
 
 /*
