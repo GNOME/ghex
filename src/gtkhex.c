@@ -2909,7 +2909,7 @@ gtk_hex_delete_selection(GtkHex *gh)
 	hex_document_delete_data (gh->document,
 			MIN(start, end), len, TRUE);
 
-	gtk_hex_set_cursor (gh, gh->cursor_pos);
+	gtk_hex_set_cursor (gh, start);
 }
 
 /*
