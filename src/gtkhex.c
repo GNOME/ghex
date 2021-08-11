@@ -2896,22 +2896,21 @@ gtk_hex_clear_selection(GtkHex *gh)
 void
 gtk_hex_delete_selection(GtkHex *gh)
 {
-	int start;
-	int end;
+	int start, end, len;
 
 	start = MIN(gh->selection.start, gh->selection.end);
 	end = MAX(gh->selection.start, gh->selection.end);
 
+	len = end - start + 1;
+	g_assert (len);
+
 	gtk_hex_clear_selection (gh);
 
-	if (start != end)
-	{
-		if (start < gh->cursor_pos)
-			gtk_hex_set_cursor (gh, gh->cursor_pos - end + start);
+	if (start < gh->cursor_pos)
+		gtk_hex_set_cursor (gh, gh->cursor_pos - end + start);
 
-		hex_document_delete_data (gh->document,
-				MIN(start, end), end - start, TRUE);
-	}
+	hex_document_delete_data (gh->document,
+			MIN(start, end), len, TRUE);
 }
 
 /*
