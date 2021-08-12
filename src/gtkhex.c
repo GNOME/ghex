@@ -1468,19 +1468,18 @@ void gtk_hex_clear_selection(GtkHex *gh)
 
 void gtk_hex_delete_selection(GtkHex *gh)
 {
-	guint start;
-	guint end;
+	guint start, end, len;
 
 	start = MIN(gh->selection.start, gh->selection.end);
 	end = MAX(gh->selection.start, gh->selection.end);
 
+	len = end - start + 1;
+	g_assert (len);
+
 	gtk_hex_set_selection(gh, 0, 0);
 
-	if(start != end) {
-		if(start < gh->cursor_pos)
-			gtk_hex_set_cursor(gh, gh->cursor_pos - end + start);
-		hex_document_delete_data(gh->document, MIN(start, end), end - start, TRUE);
-	}
+	hex_document_delete_data(gh->document, MIN(start, end), len, TRUE);
+	gtk_hex_set_cursor(gh, start);
 }
 
 static void gtk_hex_validate_highlight(GtkHex *gh, GtkHex_Highlight *hl)
@@ -1684,19 +1683,23 @@ void gtk_hex_paste_from_clipboard(GtkHex *gh)
 
 static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
 {
-	gint start_pos; 
-	gint end_pos;
 	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
+	gint start_pos, end_pos, len;
+	guchar *text;
 
 	start_pos = MIN(gh->selection.start, gh->selection.end);
 	end_pos = MAX(gh->selection.start, gh->selection.end);
+
+	/* +1 because we're counting the number of characters to grab here.
+	 * You have to actually include the first character in the range.
+	 */
+	len = end_pos - start_pos + 1;
+
+	g_return_if_fail (len);
  
-	if(start_pos != end_pos) {
-		guchar *text = hex_document_get_data(gh->document, start_pos,
-											 end_pos - start_pos);
-		gtk_clipboard_set_text(klass->clipboard, text, end_pos - start_pos);
-		g_free(text);
-	}
+	text = hex_document_get_data(gh->document, start_pos, len);
+	gtk_clipboard_set_text(klass->clipboard, text, len);
+	g_free(text);
 }
 
 static void gtk_hex_real_cut_to_clipboard(GtkHex *gh)
