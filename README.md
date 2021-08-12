@@ -11,11 +11,11 @@ other. GHex is a useful tool for working with raw data.
 
 Please see the meson.build file for details.
 
-# Use
+## Use
 
 Please refer to the help files.
 
-# Authors and Copyright Information
+## Authors and Copyright Information
 
 The original author of GHex was Jaka Mocnik, who licensed it under the
 GPLv2+. Please see the COPYING file for a full copy of the licence.
