@@ -53,8 +53,15 @@ enum {
 	LAST_SIGNAL
 };
 
-enum {
+enum ClipboardTargets {
+  TARGET_HEXDATA,
   TARGET_STRING,
+  N_TARGETS
+};
+
+static const GtkTargetEntry clipboard_targets[] = {
+	{ "HEXDATA", 0, TARGET_HEXDATA },
+	{ "STRING", 0, TARGET_STRING }
 };
 
 struct _GtkHex_AutoHighlight
@@ -80,6 +87,9 @@ struct _GtkHexPrivate
 
 	gint default_cpl;
 	gint default_lines;
+
+	guchar *clip_buf;
+	gint clip_buf_len;
 };
 
 static gint gtkhex_signals[LAST_SIGNAL] = { 0 };
@@ -1373,6 +1383,45 @@ static void bytes_changed(GtkHex *gh, gint start, gint end)
     }
 }
 
+static void
+clipboard_get_cb (GtkClipboard *clipboard,
+		GtkSelectionData *selection_data,
+		guint info,
+		gpointer user_data)
+{
+	GtkHex *gh = GTK_HEX(user_data);
+
+	switch (info)
+	{
+		case TARGET_HEXDATA:
+			if (gh->priv->clip_buf)
+			{
+				gtk_selection_data_set (selection_data,
+						gdk_atom_intern ("HEXDATA", FALSE),
+						8,	/* ie, 8-bit characters */
+						gh->priv->clip_buf,
+						gh->priv->clip_buf_len);
+			}
+			break;
+
+		case TARGET_STRING:
+			if (gh->priv->clip_buf)
+			{
+				gtk_selection_data_set (selection_data,
+						GDK_SELECTION_TYPE_STRING,
+						8,	/* ie, 8-bit characters */
+						gh->priv->clip_buf,
+						gh->priv->clip_buf_len);
+			}
+			break;
+
+		default:
+			g_critical ("Invalid clipboard data.");
+			return;
+	}
+
+}
+
 static void primary_get_cb(GtkClipboard *clipboard,
 						   GtkSelectionData *data, guint info,
 						   gpointer user_data) {
@@ -1392,20 +1441,11 @@ static void primary_get_cb(GtkClipboard *clipboard,
 	}
 }
 
-static void primary_clear_cb(GtkClipboard *clipboard,
-							 gpointer user_data_or_owner) {
-}
-
 void gtk_hex_set_selection(GtkHex *gh, gint start, gint end)
 {
 	gint length = gh->document->file_size;
 	gint oe, os, ne, ns;
 	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
-
-	static const GtkTargetEntry targets[] = {
-		{ "STRING", 0, TARGET_STRING }
-	};
-	static const gint n_targets = sizeof(targets) / sizeof(targets[0]);
 
 	if (end < 0)
 		end = length;
@@ -1435,8 +1475,8 @@ void gtk_hex_set_selection(GtkHex *gh, gint start, gint end)
 	}
 
 	if(gh->selection.start != gh->selection.end)
-		gtk_clipboard_set_with_data(klass->primary, targets, n_targets,
-									primary_get_cb, primary_clear_cb,
+		gtk_clipboard_set_with_data(klass->primary, clipboard_targets, N_TARGETS,
+									primary_get_cb, NULL,
 									gh);
 }
 
@@ -1684,8 +1724,8 @@ void gtk_hex_paste_from_clipboard(GtkHex *gh)
 static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
 {
 	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
+
 	gint start_pos, end_pos, len;
-	guchar *text;
 
 	start_pos = MIN(gh->selection.start, gh->selection.end);
 	end_pos = MAX(gh->selection.start, gh->selection.end);
@@ -1694,12 +1734,19 @@ static void gtk_hex_real_copy_to_clipboard(GtkHex *gh)
 	 * You have to actually include the first character in the range.
 	 */
 	len = end_pos - start_pos + 1;
-
 	g_return_if_fail (len);
- 
-	text = hex_document_get_data(gh->document, start_pos, len);
-	gtk_clipboard_set_text(klass->clipboard, text, len);
-	g_free(text);
+
+	g_clear_pointer (&gh->priv->clip_buf, g_free);
+	gh->priv->clip_buf = hex_document_get_data (gh->document,
+			start_pos, len);
+	gh->priv->clip_buf_len = len;
+
+	gtk_clipboard_set_with_data (klass->clipboard,
+			clipboard_targets,
+			N_TARGETS,
+			clipboard_get_cb,
+			NULL,
+			gh);
 }
 
 static void gtk_hex_real_cut_to_clipboard(GtkHex *gh)
@@ -1713,15 +1760,35 @@ static void gtk_hex_real_cut_to_clipboard(GtkHex *gh)
 static void gtk_hex_real_paste_from_clipboard(GtkHex *gh)
 {
 	GtkHexClass *klass = GTK_HEX_CLASS(GTK_WIDGET_GET_CLASS(gh));
-	gchar *text;
+	GtkSelectionData *selection_data = NULL;
+	const guchar *text = NULL;
+	GdkAtom hex_atom = gdk_atom_intern ("HEXDATA", FALSE);
+	int len;
 
-	text = gtk_clipboard_wait_for_text(klass->clipboard);
-	if(text) {
-		hex_document_set_data(gh->document, gh->cursor_pos,
-							  strlen(text), 0, text, TRUE);
-		gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
-		g_free(text);
+	if (gtk_clipboard_wait_is_target_available (klass->clipboard,
+				hex_atom))
+	{
+		selection_data = gtk_clipboard_wait_for_contents (
+				klass->clipboard, hex_atom);
+		text = gtk_selection_data_get_data (selection_data);
+		len = gh->priv->clip_buf_len;
 	}
+	else
+	{
+		selection_data = gtk_clipboard_wait_for_contents (
+				klass->clipboard, GDK_TARGET_STRING);
+		text = gtk_selection_data_get_data (selection_data);
+		len = text ? strlen((char *)text) : 0;
+	}
+
+	if (text && len)
+	{
+		hex_document_set_data(gh->document, gh->cursor_pos,
+				len, 0, text, TRUE);
+		gtk_hex_set_cursor(gh, gh->cursor_pos + len);
+	}
+
+	g_clear_pointer (&selection_data, gtk_selection_data_free);
 }
 
 static void gtk_hex_finalize(GObject *o) {
