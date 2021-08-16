@@ -7,8 +7,6 @@ project(
 
 version_arr = meson.project_version().split('.')
 ghex_version_major = version_arr[0].to_int()
-ghex_version_minor = version_arr[1].to_int()
-ghex_version_micro = version_arr[2].to_int()
 
 libghex_version_major = version_arr[0].to_int()
 
