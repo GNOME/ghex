@@ -9,3 +9,8 @@ flatpak:
         APP_ID: "org.gnome.GHex"
         BUNDLE: "ghex-dev.flatpak"
     extends: .flatpak
+
+nightly:
+    extends: '.publish_nightly'
+    dependencies: ['flatpak']
+    needs: ['flatpak']
