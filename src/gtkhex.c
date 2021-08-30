@@ -1770,15 +1770,17 @@ static void gtk_hex_real_paste_from_clipboard(GtkHex *gh)
 	{
 		selection_data = gtk_clipboard_wait_for_contents (
 				klass->clipboard, hex_atom);
-		text = gtk_selection_data_get_data (selection_data);
-		len = gh->priv->clip_buf_len;
 	}
 	else
 	{
 		selection_data = gtk_clipboard_wait_for_contents (
 				klass->clipboard, GDK_TARGET_STRING);
+	}
+
+	if (selection_data)
+	{
 		text = gtk_selection_data_get_data (selection_data);
-		len = text ? strlen((char *)text) : 0;
+		len = gtk_selection_data_get_length (selection_data);
 	}
 
 	if (text && len)
