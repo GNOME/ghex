@@ -406,14 +406,14 @@ get_char_width (GtkHex *gh)
 	/* generally the digit width returned will be bigger, but let's take
 	 * the max for now and run with it.
 	 */
-	width = MAX(pango_font_metrics_get_approximate_digit_width(metrics),
-				pango_font_metrics_get_approximate_char_width(metrics));
+	width = MAX (pango_font_metrics_get_approximate_digit_width (metrics),
+			pango_font_metrics_get_approximate_char_width (metrics));
 
 	/* scale down from pango units to pixels */
 	width = PANGO_PIXELS(width);
 	
 	/* update layout manager */
-	if (GTK_IS_HEX_LAYOUT(gh->layout_manager)) {
+	if (GTK_IS_HEX_LAYOUT (gh->layout_manager)) {
 		gtk_hex_layout_set_char_width (GTK_HEX_LAYOUT(gh->layout_manager),
 				width);
 	}
@@ -483,15 +483,16 @@ get_xcoords (GtkHex *gh, int pos, int *x, int *y)
 {
 	int cx, cy, spaces;
 	
-	if(gh->cpl == 0)
+	if (gh->cpl == 0)
 		return FALSE;
 	
 	cy = pos / gh->cpl;
 	cy -= gh->top_line;
-	if(cy < 0)
+
+	if (cy < 0)
 		return FALSE;
 	
-	cx = 2*(pos % gh->cpl);
+	cx = 2 * (pos % gh->cpl);
 	spaces = (pos % gh->cpl) / gh->group_type;
 	
 	cx *= gh->char_width;
@@ -2065,8 +2066,8 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 	float height;
 
 	/* Update character width & height */
-	gh->char_width = get_char_width(gh);
-	gh->char_height = get_char_height(gh);
+	gh->char_width = get_char_width (gh);
+	gh->char_height = get_char_height (gh);
 
 	/* Get cpl from layout manager */
 	height = gtk_widget_get_allocated_height (widget);
