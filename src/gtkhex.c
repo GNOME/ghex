@@ -557,28 +557,18 @@ invalidate_ac (GtkHex *gh)
 static void
 render_cursor (GtkHex *gh,
 		cairo_t *cr,
+		GtkWidget *widget,
+		PangoLayout *layout,
+		int y,
 		GtkHexViewType cursor_type)
 {
-	GdkRGBA bg_color;
 	GdkRGBA fg_color;
+	int index;
+	int range[2];
 	GtkStateFlags state;
 	GtkStyleContext *context;
-	int cx, cy, i;
-	static char c[2];		/* zeroed by default, which we want. */
-	GtkWidget *widget;		/* shorthand for relevant drawing area */
-	PangoLayout *layout;	/* shorthand for relevant pango layout */
-	gboolean got_coords = FALSE;
-
-	if (cursor_type == VIEW_HEX)
-	{
-		widget = gh->xdisp;
-		layout = gh->xlayout;
-	}
-	else
-	{
-		widget = gh->adisp;
-		layout = gh->alayout;
-	}
+	cairo_region_t *region;
+	double x1, x2, y1, y2;
 
 	g_return_if_fail (gtk_widget_get_realized (widget));
 
@@ -586,49 +576,59 @@ render_cursor (GtkHex *gh,
 	state = gtk_widget_get_state_flags (widget);
 
 	if (cursor_type == VIEW_HEX)
-		got_coords = get_xcoords (gh, gh->cursor_pos, &cx, &cy);
-	else
-		got_coords = get_acoords (gh, gh->cursor_pos, &cx, &cy);
-
-	/* Bail out in any event if we didn't get coordinates. */
-	if (! got_coords)
 	{
-		g_critical("%s: Something has gone wrong. Can't get coordinates!",
-				__func__);
-		return;
-	}
+		int spaces;
 
-	/* Otherwise, continue. */
-	if (cursor_type == VIEW_HEX)
-	{
-		format_xbyte (gh, gh->cursor_pos, c);
+		spaces = (gh->cursor_pos % gh->cpl) / gh->group_type;
+		index = 2 * (gh->cursor_pos % gh->cpl);
+		index += spaces;
+
 		if (gh->lower_nibble) {
-			cx += gh->char_width;
-			i = 1;
+			range[0] = index + 1;
+			range[1] = index + 2;
 		} else {
-			c[1] = 0;
-			i = 0;
+			range[0] = index;
+			range[1] = index + 1;
 		}
 	}
 	else
 	{
-		c[0] = gtk_hex_get_byte(gh, gh->cursor_pos);
-		if (! is_displayable (c[0]))
-			c[0] = '.';
+		index = gh->cursor_pos % gh->cpl;
+		range[0] = index;
+		range[1] = index + 1;
 	}
 
-	gtk_style_context_save (context);
+	region = gdk_pango_layout_get_clip_region (layout,
+			0,	/* x */
+			y,
+			range,
+			1);
+
+	gdk_cairo_region (cr, region);
+	cairo_save (cr);
+	cairo_clip (cr);
+	cairo_clip_extents (cr, &x1, &y1, &x2, &y2);
+
+	/* Render background - fill bg with default selection colour if we have
+	 * focus on the pane in question; otherwise, draw a solid black box.
+	 */
 
 	if (gh->active_view == cursor_type)
 	{
+		gtk_style_context_save (context);
+
 		state |= GTK_STATE_FLAG_SELECTED;
 		gtk_style_context_set_state (context, state);
 
 		gtk_render_background (context, cr,
-				cx,					/* double x, */
-				cy,					/* double y, */
-				gh->char_width,		/* double width, */
-				gh->char_height - 1);	/* double height */
+				x1,
+				y1,
+				ABS(x2-x1), 
+				ABS(y2-y1));
+
+		gtk_render_layout (context, cr, 0, y, layout);
+
+		gtk_style_context_restore (context);
 	}
 	else
 	{
@@ -637,24 +637,17 @@ render_cursor (GtkHex *gh,
 		cairo_set_source_rgba (cr,
 				fg_color.red, fg_color.green, fg_color.blue,
 				fg_color.alpha);
-		cairo_set_line_width (cr, 1.0);
-		cairo_rectangle (cr, cx + 0.5, cy + 0.5, gh->char_width,
-				gh->char_height - 1);
+		cairo_set_line_width (cr, 1.5);
+
+		cairo_rectangle (cr, x1, y1, ABS(x2-x1), ABS(y2-y1));
+
 		cairo_stroke (cr);
 		cairo_restore (cr);
 	}
 
-	if (cursor_type == VIEW_HEX)
-	{
-		pango_layout_set_text (layout, &c[i], 1);
-	}
-	else
-	{
-		pango_layout_set_text (layout, c, 1);
-	}
+	/* Restore state from cairo_clip */
 
-	gtk_render_layout (context, cr, cx, cy, layout);
-	gtk_style_context_restore (context);
+	cairo_restore (cr);
 }
 
 static void
@@ -872,6 +865,8 @@ render_lines (GtkHex *gh,
 	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET(gh)));
 	g_return_if_fail (gh->cpl);
 
+	/* Setup variables depending on widget type (hex or ascii) */
+
 	if (type == VIEW_HEX)
 	{
 		widget = gh->xdisp;
@@ -891,7 +886,6 @@ render_lines (GtkHex *gh,
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
 	gtk_widget_get_allocation (widget, &allocation);
 
-	/* render background. */
 	gtk_render_background (context, cr,
 			/* x: */		0,
 			/* y: */		min_lines * gh->char_height,
@@ -926,13 +920,16 @@ render_lines (GtkHex *gh,
 				/* x: */ 0,
 				/* y: */ i * gh->char_height,
 				layout);
-	}
 
-	if (cursor_line >= min_lines &&
-			cursor_line <= max_lines &&
-			gh->cursor_shown)
-	{
-		render_cursor (gh, cr, type);
+		if (i == cursor_line)
+		{
+			render_cursor (gh,
+					cr,
+					widget,
+					layout,
+					i * gh->char_height,
+					type);
+		}
 	}
 }
 
