@@ -135,6 +135,8 @@ struct _GtkHex
 
 	PangoLayout *xlayout, *alayout, *olayout;
 
+	GtkWidget *context_menu;
+
 	GtkAdjustment *adj;
 
 	GtkHexViewType active_view;
@@ -205,28 +207,12 @@ static void recalc_displays(GtkHex *gh);
 /* GtkHex - Method Definitions */
 
 static void
-popup_context_menu(GtkWidget *widget, double x, double y)
+popup_context_menu (GtkHex *gh, int x, int y)
 {
-	GtkWidget *popover;
-	GtkBuilder *builder;
-	GMenuModel *menu;
-	GdkRectangle rect = { 0 };
+	GdkRectangle rect = { .x = x, .y = y, .width = 1, .height = 1 };
 
-	rect.x = x;
-	rect.y = y;
-
-	builder = gtk_builder_new_from_resource ("/org/gnome/GHex/context-menu.ui");
-	menu = G_MENU_MODEL(gtk_builder_get_object (builder, "context-menu"));
-	popover = gtk_popover_menu_new_from_model (menu);
-
-	/* required by TFM. */
-	gtk_widget_set_parent (popover, widget);
-
-	gtk_popover_set_pointing_to (GTK_POPOVER(popover), &rect);
-	gtk_popover_popup (GTK_POPOVER(popover));
-
-	g_object_unref (menu);
-	g_object_unref (builder);
+	gtk_popover_set_pointing_to (GTK_POPOVER(gh->context_menu), &rect);
+	gtk_popover_popup (GTK_POPOVER(gh->context_menu));
 }
 
 /* ACTIONS */
@@ -1221,11 +1207,6 @@ pressed_gesture_helper (GtkHex *gh,
 			pressed_gesture_helper (gh, gesture, x, y, type);
 		}
 	}
-	/* Right-click */
-	else if (button == GDK_BUTTON_SECONDARY)
-	{
-		popup_context_menu (widget, x, y);
-	}
 	else
 	{
 		gh->button = 0;
@@ -1265,6 +1246,22 @@ released_gesture_helper (GtkHex *gh,
 		gh->selecting = FALSE;
 		gh->button = 0;
 	}
+}
+
+/* nb: this gesture is only associated with the right-click, so there is
+ * no need to test for that. If the impl in _init changes, this will need
+ * to change
+ */
+static void
+gh_pressed_cb (GtkGestureClick *gesture,
+	int			n_press,
+	double		x,
+	double		y,
+	gpointer	user_data)
+{
+	GtkHex *gh = GTK_HEX (user_data);
+
+	popup_context_menu (gh, x, y);
 }
 
 static void
@@ -2306,7 +2303,7 @@ gtk_hex_class_init (GtkHexClass *klass)
 }
 
 static void
-gtk_hex_init(GtkHex *gh)
+gtk_hex_init (GtkHex *gh)
 {
 	GtkWidget *widget = GTK_WIDGET(gh);
 
@@ -2314,6 +2311,9 @@ gtk_hex_init(GtkHex *gh)
 
 	GtkCssProvider *provider;
 	GtkStyleContext *context;
+
+	GtkBuilder *builder;
+	GMenuModel *menu;
 
 	GtkGesture *gesture;
 	GtkEventController *controller;
@@ -2446,6 +2446,17 @@ gtk_hex_init(GtkHex *gh)
 	gtk_widget_set_size_request (gh->xdisp,
 			DEFAULT_DA_SIZE, DEFAULT_DA_SIZE);
 
+	/* Context Menu */
+
+	builder = gtk_builder_new_from_resource ("/org/gnome/GHex/context-menu.ui");
+	menu = G_MENU_MODEL(gtk_builder_get_object (builder, "context-menu"));
+	gh->context_menu = gtk_popover_menu_new_from_model (menu);
+
+	gtk_widget_set_parent (gh->context_menu, widget);
+
+	g_object_unref (builder);
+	g_object_unref (menu);		/* ref'd by gtk_popover_menu_new_from_model */
+
 	/* Initialize Adjustment */
 	gh->adj = gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
@@ -2458,8 +2469,21 @@ gtk_hex_init(GtkHex *gh)
 			(gh->layout_manager, gh->scrollbar));
 	gtk_hex_layout_child_set_column (child_info, SCROLLBAR_COLUMN);
 
-	/* Connect gestures to ascii/hex drawing areas.
-	 */
+	/* GESTURES */
+
+	/* Whole GtkHex widget (for right-click context menu) */
+
+	gesture = gtk_gesture_click_new ();
+
+	/* listen for right-click only */
+	gtk_gesture_single_set_button (GTK_GESTURE_SINGLE(gesture),
+			GDK_BUTTON_SECONDARY);
+
+	g_signal_connect (gesture, "pressed",
+			G_CALLBACK(gh_pressed_cb),
+			gh);
+
+	gtk_widget_add_controller (widget, GTK_EVENT_CONTROLLER(gesture));
 
 	/* Hex widget: */
 
