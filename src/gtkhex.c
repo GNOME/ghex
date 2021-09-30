@@ -420,20 +420,6 @@ get_char_width (GtkHex *gh)
 	return width;
 }
 
-static void
-format_xbyte (GtkHex *gh, int pos, char buf[2])
-{
-	guint low, high;
-	guchar c;
-
-	c = gtk_hex_get_byte(gh, pos);
-	low = c & 0x0F;
-	high = (c & 0xF0) >> 4;
-	
-	buf[0] = ((high < 10)?(high + '0'):(high - 10 + 'A'));
-	buf[1] = ((low < 10)?(low + '0'):(low - 10 + 'A'));
-}
-
 /*
  * format_[x|a]block() formats contents of the buffer
  * into displayable text in hex or ascii, respectively
@@ -675,19 +661,28 @@ render_highlights (GtkHex *gh,
 	GtkHex_AutoHighlight *nextList = gh->auto_highlight;
 	GtkStateFlags state;
 	GtkStyleContext *context;
-	GtkWidget *widget;	/* shorthand for the hex or ascii drawing area */
+	GtkWidget *widget;		/* shorthand for the hex or ascii drawing area */
+	PangoLayout *layout;	/* shorthand for the hex or ascii pango layout */
 	int hex_cpl;
+	cairo_region_t *region;
+	int y;
+	int range[2];
+	double x1, x2, y1, y2;
 
 	if (type == VIEW_HEX)
 	{
 		widget = gh->xdisp;
+		layout = gh->xlayout;
 	}
 	else
 	{
 		widget = gh->adisp;
+		layout = gh->alayout;
 	}
 
 	hex_cpl = gtk_hex_layout_get_hex_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
+	y = cursor_line * gh->char_height;
+
 	context = gtk_widget_get_style_context (widget);
 	gtk_style_context_save (context);
 
@@ -703,7 +698,7 @@ render_highlights (GtkHex *gh,
 				curHighlight->min_select)
 		{
 			int start, end;
-			int sl, el;
+			int start_line, end_line;
 			int cursor_off = 0;
 			int len;
 
@@ -711,15 +706,16 @@ render_highlights (GtkHex *gh,
 
 			start = MIN(curHighlight->start, curHighlight->end);
 			end = MAX(curHighlight->start, curHighlight->end);
-			sl = curHighlight->start_line;
-			el = curHighlight->end_line;
+			start_line = curHighlight->start_line;
+			end_line = curHighlight->end_line;
 
-			if (cursor_line == sl)
+			if (cursor_line == start_line)
 			{
 				if (type == VIEW_HEX)
 				{
 					cursor_off = 2 * (start % gh->cpl) + (start % gh->cpl) / gh->group_type;
-					if (cursor_line == el)
+
+					if (cursor_line == end_line)
 						len = 2*(end%gh->cpl + 1) + (end%gh->cpl)/gh->group_type;
 					else
 						len = hex_cpl;
@@ -729,21 +725,17 @@ render_highlights (GtkHex *gh,
 				else
 				{
 					cursor_off = start % gh->cpl;
-					if (cursor_line == el)
+
+					if (cursor_line == end_line)
 						len = end - start + 1;
 					else
 						len = gh->cpl - cursor_off;
 				}
 
-				if (len > 0) {
-					gtk_render_background (context, cr,
-							cursor_off * gh->char_width,
-							cursor_line * gh->char_height,
-							len * gh->char_width,
-							gh->char_height);
-				}
+				range[0] = cursor_off;
+				range[1] = cursor_off + len;
 			}
-			else if (cursor_line == el)
+			else if (cursor_line == end_line)
 			{
 				if (type == VIEW_HEX)
 				{
@@ -754,24 +746,36 @@ render_highlights (GtkHex *gh,
 				{
 					cursor_off = end % gh->cpl + 1;
 				}
-				if (cursor_off > 0) {
-					gtk_render_background (context, cr,
-					                 0,
-					                 cursor_line * gh->char_height,
-					                 cursor_off * gh->char_width,
-					                 gh->char_height);
-				}
+
+				range[0] = 0;
+				range[1] = cursor_off;
 			}
-			else if (cursor_line > sl && cursor_line < el)
+			else if (cursor_line > start_line && cursor_line < end_line)
 			{
 				int cpl = (type == VIEW_HEX) ? hex_cpl : gh->cpl;
 
-				gtk_render_background (context, cr,
-				                 0,
-				                 cursor_line * gh->char_height,
-				                 cpl * gh->char_width,
-				                 gh->char_height);
+				range[0] = 0;
+				range[1] = cpl;
 			}
+
+			region = gdk_pango_layout_get_clip_region (layout,
+					0,	/* x */
+					y,
+					range,
+					1);
+
+			gdk_cairo_region (cr, region);
+			cairo_save (cr);
+			cairo_clip (cr);
+			cairo_clip_extents (cr, &x1, &y1, &x2, &y2);
+
+			gtk_render_background (context, cr,
+					x1,
+					y1,
+					ABS(x2-x1),
+					ABS(y2-y1));
+
+			cairo_restore (cr);
 		}
 		curHighlight = curHighlight->next;
 		while (curHighlight == NULL && nextList)
@@ -854,6 +858,7 @@ render_lines (GtkHex *gh,
 		GtkHexViewType type)
 {
 	GtkWidget *widget;
+	GtkStateFlags state;
 	PangoLayout *layout;
 	int (*format_func) (GtkHex *gh, char *out, int start, int end);
 	GtkAllocation allocation;
@@ -910,11 +915,11 @@ render_lines (GtkHex *gh,
 		if (tmp <= 0)
 			break;
 
-		render_highlights (gh, cr, i, type);
-
 		pango_layout_set_text (layout,
 				(char *)gh->disp_buffer + (i - min_lines) * cpl,
 				MIN(cpl, tmp));
+
+		render_highlights (gh, cr, i, type);
 
 		gtk_render_layout (context, cr,
 				/* x: */ 0,
