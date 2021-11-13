@@ -1,151 +1,240 @@
+# Korean translation of GHex for GNOME.
+# Copyright (C) 2002-2021 ghex's authors and contributors.
+# This file is distributed under the same license as the gitg package.
+# Sun Microsystems <gdocteam@sun.com>, 2002, 2003, 2004.
+# Seong-ho Cho <shcho@gnome.org>, 2020-2021.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-08-08 11:36-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: GHex master\n"
+"POT-Creation-Date: 2021-09-08 22:29+0000\n"
+"PO-Revision-Date: 2021-09-23 12:29+0900\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"Language-Team: Korean <gnome-kr@googlegroups.com>\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3.1\n"
 
-#: C/ghex2.xml:27(year)
-msgid "2002"
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Sun Microsystems <gdocteam@sun.com>, 2002, 2003, 2004\n"
+"조성호 <shcho@gnome.org>, 2020, 2021"
+
+#. (itstool) path: articleinfo/title
+#: C/index.docbook:23
+msgid "User manual for GHex"
+msgstr "지헥스 사용자 설명서"
+
+#. (itstool) path: abstract/para
+#: C/index.docbook:26
+msgid ""
+"GHex is a simple binary editor. It lets users view and edit a binary file in "
+"both hex and ascii with a multiple level undo/redo mechanism. Features "
+"include find and replace functions, conversion between binary, octal, "
+"decimal and hexadecimal values, and use of an alternative, user-configurable "
+"MDI concept that lets users edit multiple documents with multiple views of "
+"each."
 msgstr ""
+"지헥스는 간단한 이진 편집기입니다. 사용자가 16진수 및 아스키 방식으로 이진 파"
+"일을 보고 편집할 수 있으며 실행 취소/다시 실행 단계를 여러번 지정하여 활용할 "
+"수 있습니다. 찾기 밎 바꾸기, 2진, 8진, 10진, 16진값 변환, 여러 뷰로 사용자가 "
+"여러 문서를 편집할 수 있는 대안 방식 사용자 구성형 MDI 기능을 갖추고 있습니"
+"다."
 
-#: C/ghex2.xml:31(year)
-msgid "1998"
+#. (itstool) path: articleinfo/copyright
+#: C/index.docbook:36
+msgid ""
+"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
+"Microsystems</holder>"
 msgstr ""
+"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
+"Microsystems</holder>"
 
-#: C/ghex2.xml:32(year)
-msgid "1999"
+#. (itstool) path: articleinfo/copyright
+#: C/index.docbook:42
+msgid "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+msgstr "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+
+#. (itstool) path: publisher/publishername
+#. (itstool) path: revdescription/para
+#: C/index.docbook:54 C/index.docbook:99 C/index.docbook:107
+#: C/index.docbook:115 C/index.docbook:123 C/index.docbook:131
+#: C/index.docbook:139 C/index.docbook:149
+msgid "GNOME Documentation Project"
+msgstr "그놈 문서 프로젝트"
+
+#. (itstool) path: authorgroup/author
+#: C/index.docbook:63
+msgid ""
+"<firstname>Sun</firstname> <surname>GNOME Documentation Team</surname> "
+"<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
+"affiliation>"
 msgstr ""
+"<firstname>Sun</firstname> <surname>GNOME Documentation Team</surname> "
+"<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
+"affiliation>"
 
-#: C/ghex2.xml:33(year) C/ghex2.xml:126(date)
-msgid "2000"
-msgstr "2000년"
-
-#: C/ghex2.xml:34(holder)
-msgid "Jaka Mocnik"
+#. (itstool) path: authorgroup/author
+#: C/index.docbook:71
+msgid ""
+"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
+"<orgname>GNOME Documentation Project</orgname> <address> <email>jaka@gnu."
+"org</email> </address> </affiliation>"
 msgstr ""
+"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
+"<orgname>GNOME Documentation Project</orgname> <address> <email>jaka@gnu."
+"org</email> </address> </affiliation>"
 
-#: C/ghex2.xml:54(firstname)
-msgid "Sun"
+#. (itstool) path: revdescription/para
+#: C/index.docbook:98 C/index.docbook:106 C/index.docbook:114
+#: C/index.docbook:122 C/index.docbook:130 C/index.docbook:138
+msgid "Sun GNOME Documentation Team"
+msgstr "썬 그놈 문서 팀"
+
+#. (itstool) path: revhistory/revision
+#: C/index.docbook:94
+msgid ""
+"<revnumber>GHex Manual V2.5</revnumber> <date>December 2005</date> <_:"
+"revdescription-1/>"
 msgstr ""
+"<revnumber>지헥스 설명서 V2.5</revnumber> <date>2005년 12월</date> <_:"
+"revdescription-1/>"
 
-#: C/ghex2.xml:55(surname)
-msgid "GNOME Documentation Team"
-msgstr "그놈 문서 팀"
-
-#: C/ghex2.xml:58(email)
-msgid "gdocteam@sun.com"
+#. (itstool) path: revhistory/revision
+#: C/index.docbook:102
+msgid ""
+"<revnumber>GHex Manual V2.4</revnumber> <date>April 2003</date> <_:"
+"revdescription-1/>"
 msgstr ""
+"<revnumber>지헥스 설명서 V2.4</revnumber> <date>2003년 4월</date> <_:"
+"revdescription-1/>"
 
-#: C/ghex2.xml:62(firstname)
-msgid "Jaka"
+#. (itstool) path: revhistory/revision
+#: C/index.docbook:110
+msgid ""
+"<revnumber>GHex Manual V2.3</revnumber> <date>August 2002</date> <_:"
+"revdescription-1/>"
 msgstr ""
+"<revnumber>지헥스 설명서 V2.3</revnumber> <date>2002년 8월</date> <_:"
+"revdescription-1/>"
 
-#: C/ghex2.xml:63(surname)
-msgid "Mocnik"
+#. (itstool) path: revhistory/revision
+#: C/index.docbook:118
+msgid ""
+"<revnumber>GHex Manual V2.2</revnumber> <date>August 2002</date> <_:"
+"revdescription-1/>"
 msgstr ""
+"<revnumber>지헥스 설명서 V2.2</revnumber> <date>2002년 8월</date> <_:"
+"revdescription-1/>"
 
-#: C/ghex2.xml:66(email)
-msgid "jaka@gnu.org"
+#. (itstool) path: revhistory/revision
+#: C/index.docbook:126
+msgid ""
+"<revnumber>GHex Manual V2.1</revnumber> <date>July 2002</date> <_:"
+"revdescription-1/>"
 msgstr ""
+"<revnumber>지헥스 설명서 V2.1</revnumber> <date>2002년 7월</date> <_:"
+"revdescription-1/>"
 
-#: C/ghex2.xml:95(revnumber)
-msgid "GHex Manual V2.2"
-msgstr "GHex 설명서 V2.2"
+#. (itstool) path: revhistory/revision
+#: C/index.docbook:134
+msgid ""
+"<revnumber>GHex Manual V2.0</revnumber> <date>March 2002</date> <_:"
+"revdescription-1/>"
+msgstr ""
+"<revnumber>지헥스 설명서 V2.0</revnumber> <date>2002년 3월</date> <_:"
+"revdescription-1/>"
 
-#: C/ghex2.xml:96(date)
-msgid "August 2002"
-msgstr "2002년 8월"
-
-#: C/ghex2.xml:105(revnumber)
-msgid "GHex Manual V2.1"
-msgstr "GHex 설명서 V2.1"
-
-#: C/ghex2.xml:106(date)
-msgid "July 2002"
-msgstr "2002년 7월"
-
-#: C/ghex2.xml:115(revnumber)
-msgid "GHex Manual V2.0"
-msgstr "GHex 설명서 V2.0"
-
-#: C/ghex2.xml:116(date)
-msgid "March 2002"
-msgstr "2002년 3월"
-
-#: C/ghex2.xml:125(revnumber)
-msgid "GHex Manual V1.0"
-msgstr "GHex 설명서 V1.0"
-
-#: C/ghex2.xml:128(para)
+#. (itstool) path: revdescription/para
+#: C/index.docbook:146
 msgid "Jaka Mocnik <email>jaka@gnu.org</email>"
+msgstr "Jaka Mocnik <email>jaka@gnu.org</email>"
+
+#. (itstool) path: revhistory/revision
+#: C/index.docbook:142
+msgid ""
+"<revnumber>GHex Manual V1.0</revnumber> <date>2000</date> <_:"
+"revdescription-1/>"
 msgstr ""
+"<revnumber>지헥스 설명서 V1.0</revnumber> <date>2000년</date> <_:"
+"revdescription-1/>"
 
-#: C/ghex2.xml:136(releaseinfo)
-msgid "This manual describes version 1.99.0.1 of GHex."
-msgstr "이 설명서에서는 GHex의 버전 1.99.0.1에 대해 설명합니다."
+#. (itstool) path: articleinfo/releaseinfo
+#: C/index.docbook:154
+msgid "This manual describes version 2.19 of GHex."
+msgstr "이 설명서는 지헥스 버전 2.19를 설명합니다."
 
-#: C/ghex2.xml:139(title)
+#. (itstool) path: legalnotice/title
+#: C/index.docbook:157
 msgid "Feedback"
 msgstr "피드백"
 
-#: C/ghex2.xml:140(para)
+#. (itstool) path: legalnotice/para
+#: C/index.docbook:158
 msgid ""
 "To report a bug or make a suggestion regarding the GHex application or this "
-"manual, follow the directions in the <ulink url=\"ghelp:gnome-feedback\" "
-"type=\"help\">GNOME Feedback Page</ulink>."
+"manual, follow the directions in the <ulink url=\"help:gnome-feedback\" type="
+"\"help\">GNOME Feedback Page</ulink>."
 msgstr ""
-"GHex 응용프로그램 또는 이 설명서에 대한 버그를 보고하거나 의견을 제시하려면 "
-"<ulink url=\"ghelp:gnome-feedback\" type=\"help\">그놈 피드백 페이지</ulink>"
-"에 있는 지시 사항을 따르십시오."
+"지헥스 프로그램 또는 설명서의 버그를 보고하거나 의견을 제시하려면 <ulink url="
+"\"ghelp:gnome-feedback\" type=\"help\">그놈 피드백 페이지</ulink>에 있는 지침"
+"을 따르십시오."
 
-#: C/ghex2.xml:150(primary)
-msgid "GHex"
-msgstr ""
+#. (itstool) path: article/indexterm
+#: C/index.docbook:164
+msgid "<primary>GHex</primary>"
+msgstr "<primary>지헥스</primary>"
 
-#: C/ghex2.xml:159(title)
+#. (itstool) path: sect1/title
+#: C/index.docbook:174
 msgid "Introduction"
 msgstr "소개"
 
-#: C/ghex2.xml:160(para)
+#. (itstool) path: sect1/para
+#: C/index.docbook:175
 msgid ""
 "The <application>GHex</application> application enables you to perform the "
 "following actions:"
 msgstr ""
-"<application>GHex</application> 응용프로그램을 사용하면 다음 작업을 수행할 "
-"수 있습니다."
+"<application>지헥스</application> 프로그램을 사용하면 다음 작업을 수행할 수 "
+"있습니다:"
 
-#: C/ghex2.xml:162(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:177
 msgid "View a file in ASCII or hexadecimal format simultaneously."
-msgstr "파일을 ASCII와 16진수 형식으로 동시에 봅니다."
+msgstr "파일을 아스키 또는 16진수 형식으로 동시에 봅니다."
 
-#: C/ghex2.xml:164(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:179
 msgid "Edit a file in either ASCII or hexadecimal format."
-msgstr "파일을 ASCII 또는 16진수 형식으로 편집합니다."
+msgstr "파일을 아스키 또는 16진수 형식으로 편집합니다."
 
-#: C/ghex2.xml:172(title)
+#. (itstool) path: sect1/title
+#: C/index.docbook:187
 msgid "Getting Started"
 msgstr "시작하기"
 
-#: C/ghex2.xml:177(title)
+#. (itstool) path: sect2/title
+#: C/index.docbook:192
 msgid "To Start GHex"
-msgstr "GHex을(를) 시작하려면"
+msgstr "지헥스 시작하기"
 
-#: C/ghex2.xml:179(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:194
 msgid "You can start <application>GHex</application> in the following ways:"
 msgstr ""
-"다음과 같은 방법으로 <application>GHex</application>을(를) 시작할 수 있습니"
-"다."
+"다음과 같은 방법으로 <application>지헥스</application>를 시작할 수 있습니다:"
 
-#: C/ghex2.xml:182(term)
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:197
 msgid "<guimenu>Applications</guimenu> menu"
-msgstr "<guimenu>응용프로그램</guimenu> 메뉴"
+msgstr "<guimenu>프로그램</guimenu> 메뉴"
 
-#: C/ghex2.xml:184(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:199
 msgid ""
 "Choose <menuchoice><guisubmenu>Accessories</guisubmenu><guimenuitem>Hex "
 "Editor</guimenuitem></menuchoice>."
@@ -153,63 +242,23 @@ msgstr ""
 "<menuchoice><guisubmenu>액세서리</guisubmenu><guimenuitem>16진수 편집기</"
 "guimenuitem></menuchoice>를 선택합니다."
 
-#: C/ghex2.xml:192(term)
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:203
 msgid "Command line"
-msgstr "명령줄"
+msgstr "명령행"
 
-#: C/ghex2.xml:194(para)
-msgid ""
-"You can open a single file or multiple files when you run <application>GHex</"
-"application> from a command line. To open multiple files from a command "
-"line, type the following command, then press <keycap>Return</keycap>:"
-msgstr ""
-"명령줄에서 <application>GHex</application>을(를) 실행할 파일을 하나 또는 여"
-"러 개 열 수 있습니다. 명령줄에서 파일을 여러 개 열려면 다음 명령을 입력한 다"
-"음 <keycap>Return</keycap> 키를 누릅니다."
+#. (itstool) path: listitem/para
+#: C/index.docbook:205
+msgid "Execute the following command: <command>ghex</command>"
+msgstr "다음 명령을 실행합니다: <command>ghex</command>"
 
-#: C/ghex2.xml:195(command)
-msgid "ghex2"
-msgstr ""
-
-#: C/ghex2.xml:195(replaceable)
-msgid "file1.txt"
-msgstr ""
-
-#: C/ghex2.xml:195(replaceable)
-msgid "file2.txt"
-msgstr ""
-
-#: C/ghex2.xml:196(para)
-msgid ""
-"where <replaceable>file1.txt</replaceable> and <replaceable>file2.txt</"
-"replaceable> are the names of the files you want to open."
-msgstr ""
-"여기에서 <replaceable>file1.txt</replaceable>와 <replaceable>file2.txt</"
-"replaceable>는 열려는 파일의 이름입니다."
-
-#: C/ghex2.xml:203(title)
-msgid "When You Start GHex"
-msgstr "GHex 시작"
-
-#: C/ghex2.xml:205(para)
-msgid ""
-"When you start <application>GHex</application>, the following window is "
-"displayed."
-msgstr "<application>GHex</application>을(를) 시작하면 다음 창이 표시됩니다."
-
-#: C/ghex2.xml:209(title)
-msgid "GHex Window Before You Open a File"
-msgstr "파일을 열기 전의 GHex 창"
-
-#: C/ghex2.xml:216(phrase)
-msgid "Shows GHex main window before you open a file."
-msgstr "파일을 열기 전에 GHex 주 창을 표시합니다."
-
-#: C/ghex2.xml:229(title)
+#. (itstool) path: sect2/title
+#: C/index.docbook:215
 msgid "To Open a File"
-msgstr "파일을 열려면"
+msgstr "파일 열기"
 
-#: C/ghex2.xml:230(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:216
 msgid ""
 "To open a file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Open</"
 "guimenuitem></menuchoice>. Select the file that you want to open, then click "
@@ -219,111 +268,165 @@ msgid ""
 msgstr ""
 "파일을 열려면 <menuchoice><guimenu>파일</guimenu><guimenuitem>열기</"
 "guimenuitem></menuchoice>를 선택합니다. 열려는 파일을 선택한 다음 <guibutton>"
-"확인</guibutton>을 클릭합니다. <application>GHex</application>에서는 파일을 "
-"여러 개 열 수 있습니다. <application>GHex</application>은(는) 새 창에 각 파일"
-"을 표시합니다."
+"확인</guibutton>을 클릭합니다. <application>지헥스</application>에서는 여러 "
+"파일을 열 수 있습니다. <application>지헥스</application>는 새 창에 각 파일 내"
+"용을 표시합니다."
 
-#: C/ghex2.xml:234(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:217
 msgid ""
 "When you open a file in <application>GHex</application>, the application "
 "displays the file in the following window."
 msgstr ""
-"<application>GHex</application>에서 파일을 열면 다음 창에 파일이 표시됩니다."
+"<application>지헥스</application>에서 파일을 열면 다음 창에 파일이 표시됩니"
+"다."
 
-#: C/ghex2.xml:238(title)
+#. (itstool) path: figure/title
+#: C/index.docbook:221
 msgid "GHex Window with an Open File"
-msgstr "파일이 열려 있는 GHex 창"
+msgstr "파일이 열려 있는 지헥스 창"
 
-#: C/ghex2.xml:245(phrase)
-msgid "Shows GHex main window with an open file"
-msgstr "파일이 열려 있는 GHex 주 창을 표시합니다."
+#. (itstool) path: imageobject/imagedata
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/index.docbook:225
+msgctxt "_"
+msgid ""
+"external ref='figures/ghex_window_open.png' "
+"md5='31fc4c732edba8668056e88d1f4239f2'"
+msgstr ""
+"external ref='figures/ghex_window_open.png' "
+"md5='31fc4c732edba8668056e88d1f4239f2'"
 
-#: C/ghex2.xml:252(para)
+#. (itstool) path: screenshot/mediaobject
+#: C/index.docbook:223
+msgid ""
+"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
+"\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window with an "
+"open file</phrase> </textobject>"
+msgstr ""
+"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
+"\"PNG\"/> </imageobject> <textobject> <phrase>파일을 연 상태의 지헥스 메인 창"
+"을 나타냅니다</phrase> </textobject>"
+
+#. (itstool) path: sect2/para
+#: C/index.docbook:235
 msgid ""
 "The <application>GHex</application> window contains the following elements:"
-msgstr "<application>GHex</application> 창에는 다음 요소가 들어 있습니다."
+msgstr "<application>지헥스</application> 창에는 다음 요소가 들어있습니다:"
 
-#: C/ghex2.xml:255(term)
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:238
 msgid "Menubar"
 msgstr "메뉴 모음"
 
-#: C/ghex2.xml:257(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:240
 msgid ""
 "The menus on the menubar contain all the commands that you need to work with "
 "files in <application>GHex</application>."
 msgstr ""
-"메뉴 모음의 메뉴에는 <application>GHex</application>에서 파일 작업을 수행하"
+"메뉴 모음의 메뉴에는 <application>지헥스</application>에서 파일 작업을 수행하"
 "는 데 필요한 명령이 모두 들어 있습니다."
 
-#: C/ghex2.xml:261(term)
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:244
 msgid "Cursor offsets column"
 msgstr "커서 오프셋 열"
 
-#: C/ghex2.xml:263(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:246
 msgid ""
 "The cursor offset is the distance between the beginning of the file and the "
 "first byte in each line. By default, <application>GHex</application> "
 "displays the cursor offsets column to the left of the hexadecimal view."
 msgstr ""
 "커서 오프셋은 파일 시작 부분과 각 줄의 첫 바이트 간의 거리입니다. 기본적으로 "
-"<application>GHex</application>은(는) 16진수 보기의 왼쪽에 커서 오프셋 열을 "
-"표시합니다."
+"<application>지헥스</application>는 16진수 보기의 왼쪽에 커서 오프셋 열을 표"
+"시합니다."
 
-#: C/ghex2.xml:268(term)
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:250
 msgid "Display pane on left side"
 msgstr "왼쪽 표시 창"
 
-#: C/ghex2.xml:270(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:252
 msgid ""
 "The display pane on the left side of the display area displays a hexadecimal "
 "view of the file."
-msgstr "표시 영역의 왼쪽 표시 창에는 파일의 16진수 보기가 표시됩니다."
+msgstr "표시 영역의 왼쪽 표시 창에는 파일의 16진수 보기가 나타납니다."
 
-#: C/ghex2.xml:274(term)
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:256
 msgid "Display pane on right side"
 msgstr "오른쪽 표시 창"
 
-#: C/ghex2.xml:276(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:258
 msgid ""
 "The display pane on the right side of the display area displays an ASCII "
 "view of the file."
-msgstr "표시 영역의 오른쪽 표시 창에는 파일의 ASCII 보기가 표시됩니다."
+msgstr "표시 영역의 오른쪽 표시 창에는 파일의 아스키 보기가 나타납니다."
 
-#: C/ghex2.xml:286(title)
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:262
+msgid "Type conversion dialog"
+msgstr "형 변환 대화상자"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:264
+msgid ""
+"The type conversion dialog below the display area displays the value of the "
+"selected character in several different numeric types."
+msgstr ""
+"표시 영역 하단 형 변환 대화상자에서는 다양한 숫자 형식으로 선택한 문자 값을 "
+"나타냅니다."
+
+#. (itstool) path: sect1/title
+#: C/index.docbook:274
 msgid "Usage"
 msgstr "사용"
 
-#: C/ghex2.xml:291(title)
+#. (itstool) path: sect2/title
+#: C/index.docbook:279
 msgid "To Edit a File"
-msgstr "파일을 편집하려면"
+msgstr "파일을 편집하기"
 
-#: C/ghex2.xml:292(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:280
 msgid "To edit a file, perform the following steps:"
-msgstr "파일을 편집하려면 다음 단계를 수행합니다."
+msgstr "파일을 편집하려면 다음 단계를 수행합니다:"
 
-#: C/ghex2.xml:294(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:282
 msgid ""
 "Click in the hexadecimal or ASCII view of the file. The view in which the "
 "cursor is active displays a full cursor. The view in which the cursor is not "
 "active displays an outline of the cursor."
 msgstr ""
-"파일의 16진수 보기 또는 ASCII 보기를 클릭합니다. 커서가 활성화되어 있는 보기"
+"파일의 16진수 보기 또는 아스키 보기를 클릭합니다. 커서가 활성화되어 있는 보기"
 "에는 전체 커서가 표시됩니다. 커서가 활성화되어 있지 않은 보기에는 커서의 윤곽"
 "만 표시됩니다."
 
-#: C/ghex2.xml:296(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:284
 msgid "Use any of the following methods to move the cursor around the file:"
-msgstr "다음 방법 중 하나를 사용하여 커서를 파일 주변으로 이동시킵니다."
+msgstr "다음 한가지 방법을 활용하여 커서를 파일 주변으로 옮겨둡니다:"
 
-#: C/ghex2.xml:298(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:286
 msgid ""
-"Scroll through the file using the scrollbar on the window or the arrow keys "
-"on the keyboard."
+"Use the scrollbar on the window or the arrow keys on the keyboard to scroll "
+"through the file."
 msgstr ""
-"창에서 스크롤 바를 사용하거나 키보드에 있는 화살표 키를 사용하여 파일을 스크"
-"롤합니다."
+"파일 내용을 스크롤하려면 창의 스크롤 표시줄을 활용하거나 키보드의 화살표 키"
+"를 활용합니다."
 
-#: C/ghex2.xml:300(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:288
 msgid ""
 "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Goto Byte</"
 "guimenuitem></menuchoice>, type the cursor offset as a decimal or "
@@ -335,40 +438,80 @@ msgstr ""
 "<guibutton>확인</guibutton>을 클릭합니다. 16진수 값은 0x 다음에 오프셋을 지정"
 "하는 형식이어야 합니다(예: 0x3)."
 
-#: C/ghex2.xml:307(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:292
 msgid ""
-"Edit the ASCII format in the same way you edit a normal text file. Edit the "
-"hexadecimal format using the values 0 to 9 and a to f."
+"Edit the ASCII format in the same way you edit a normal text file. To edit "
+"the hexadecimal format, use the values 0 to 9 and a to f."
 msgstr ""
-"일반 텍스트 파일을 편집하는 것과 동일한 방식으로 ASCII 형식을 편집합니다. "
+"일반 텍스트 파일을 편집하는 것과 동일한 방식으로 아스키 형식을 편집합니다. "
 "0˜9 및 a˜f 값을 사용하여 16진수 형식을 편집합니다."
 
-#: C/ghex2.xml:310(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:295
 msgid ""
-"To insert data without overwriting existing data, choose "
+"To insert data and not overwrite existing data, choose "
 "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Insert Mode</guimenuitem></"
 "menuchoice>."
 msgstr ""
-"기존 데이터를 겹쳐쓰지 않고 데이터를 삽입하려면 <menuchoice><guimenu>편집</"
+"기존 데이터를 덮어쓰지 않고 데이터를 삽입하려면, <menuchoice><guimenu>편집</"
 "guimenu><guimenuitem>삽입 모드</guimenuitem></menuchoice>를 선택합니다."
 
-#: C/ghex2.xml:319(title)
+#. (itstool) path: sect2/para
+#: C/index.docbook:296
+msgid ""
+"To cut, copy, and paste data, choose <menuchoice><guimenu>Edit</"
+"guimenu><guimenuitem>Cut</guimenuitem></menuchoice>, "
+"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></"
+"menuchoice>, and <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</"
+"guimenuitem></menuchoice>."
+msgstr ""
+"데이터를 잘라내기, 복사, 붙여넣기 하려면, <menuchoice><guimenu>편집</"
+"guimenu><guimenuitem>잘라내기</guimenuitem></menuchoice>, "
+"<menuchoice><guimenu>편집</guimenu><guimenuitem>복사</guimenuitem></"
+"menuchoice>,  <menuchoice><guimenu>편집</guimenu><guimenuitem>붙여넣기</"
+"guimenuitem></menuchoice>를 선택합니다."
+
+#. (itstool) path: sect2/para
+#: C/index.docbook:297
+msgid ""
+"To undo an edit, choose <menuchoice><guimenu>Edit</"
+"guimenu><guimenuitem>Undo</guimenuitem></menuchoice>. To redo an edit, "
+"choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Redo</guimenuitem></"
+"menuchoice>. The number of previous edits that you can undo is determined by "
+"the <guilabel>Maximum number of undo levels</guilabel> setting in the <xref "
+"linkend=\"ghex-prefs-editing\"/> tabbed section of the "
+"<guilabel>Preferences</guilabel> dialog."
+msgstr ""
+"편집 내용을 되돌리려면 <menuchoice><guimenu>편집</guimenu><guimenuitem>실행 "
+"취소</guimenuitem></menuchoice>를 선택합니다. 편집 동작을 다시 실행하려면 "
+"<menuchoice><guimenu>편집</guimenu><guimenuitem>다시 실행</guimenuitem></"
+"menuchoice>을 선택합니다. 실행 취소할 수 있는 이전 편집 되돌리기 횟수는 "
+"<guilabel>기본 설정</guilabel> 대화상자의 <xref linkend=\"ghex-prefs-editing"
+"\"/> 탭 부분에 있는 <guilabel>실행 취소 최대 횟수</guilabel>에서 결정한 값을 "
+"따릅니다."
+
+#. (itstool) path: sect2/title
+#: C/index.docbook:303
 msgid "To Save a File"
 msgstr "파일을 저장하려면"
 
-#: C/ghex2.xml:320(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:304
 msgid "You can save a file in the following ways:"
-msgstr "다음과 같은 방법으로 파일을 저장할 수 있습니다."
+msgstr "다음과 같은 방법으로 파일을 저장할 수 있습니다:"
 
-#: C/ghex2.xml:322(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:306
 msgid ""
 "To save changes to the current file, choose <menuchoice><guimenu>File</"
 "guimenu><guimenuitem>Save</guimenuitem></menuchoice>."
 msgstr ""
-"현재 파일에 대한 변경 내용을 저장하려면 <menuchoice><guimenu>파일</"
+"현재 파일의 바뀐 내용을 저장하려면 <menuchoice><guimenu>파일</"
 "guimenu><guimenuitem>저장</guimenuitem></menuchoice>을 선택합니다."
 
-#: C/ghex2.xml:327(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:308
 msgid ""
 "To save the current file under a new filename, choose "
 "<menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></"
@@ -380,17 +523,40 @@ msgstr ""
 "다. <guilabel>버퍼를 다른 이름으로 저장할 파일 선택</guilabel> 대화 상자에 파"
 "일 이름을 입력한 다음 <guibutton>확인</guibutton>을 클릭합니다."
 
-#: C/ghex2.xml:338(title)
+#. (itstool) path: sect2/title
+#: C/index.docbook:316
+msgid "To Revert to the Last Saved Version of a File"
+msgstr "파일의 최근 저장 버전으로 복원하기"
+
+#. (itstool) path: sect2/para
+#: C/index.docbook:317
+msgid ""
+"To revert to the last version of the current file that you saved and undo "
+"all of the edits that you made to the file since you last saved the file, "
+"choose <menuchoice><guimenu>File</guimenu><guimenuitem>Revert</guimenuitem></"
+"menuchoice>, then click <guibutton>Yes</guibutton> in the "
+"<guilabel>Question</guilabel> dialog."
+msgstr ""
+"최근 파일을 저장한 이래로 편집한 모든 내용을 현재 파일의 최근 버전으로 복원하"
+"려면, <menuchoice><guimenu>파일</guimenu><guimenuitem>되돌리기</"
+"guimenuitem></menuchoice>를 선택한 다음, <guilabel>질문</guilabel> 대화상자에"
+"서 <guibutton>예</guibutton>를 누릅니다."
+
+#. (itstool) path: sect2/title
+#: C/index.docbook:323
 msgid "To Find Data in a File"
 msgstr "파일에서 데이터를 찾으려면"
 
-#: C/ghex2.xml:339(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:324
 msgid ""
 "To search a file for a hexadecimal or ASCII string, perform the following "
 "steps:"
-msgstr "파일에서 16진수 또는 ASCII 문자열을 검색하려면 다음 단계를 수행합니다."
+msgstr ""
+"파일에서 16진수 또는 아스키 문자열을 검색하려면 다음 단계를 수행합니다:"
 
-#: C/ghex2.xml:341(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:326
 msgid ""
 "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find</guimenuitem></"
 "menuchoice>."
@@ -398,53 +564,174 @@ msgstr ""
 "<menuchoice><guimenu>편집</guimenu><guimenuitem>찾기</guimenuitem></"
 "menuchoice>를 선택합니다."
 
-#: C/ghex2.xml:346(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:328
 msgid ""
 "In the <guilabel>Find Data</guilabel> dialog, choose one of the following "
 "options:"
 msgstr ""
 "<guilabel>데이터 찾기</guilabel> 대화 상자에서 다음 옵션 중 하나를 선택합니"
-"다."
+"다:"
 
-#: C/ghex2.xml:348(guilabel)
-msgid "Search for hex data"
-msgstr "16진수 데이터 찾기"
+#. (itstool) path: listitem/para
+#: C/index.docbook:330 C/index.docbook:379
+msgid "<guilabel>Search for hex data</guilabel>"
+msgstr "<guilabel>16진수 데이터 검색</guilabel>"
 
-#: C/ghex2.xml:350(guilabel)
-msgid "Search for ASCII data"
-msgstr "ASCII 데이터 찾기"
+#. (itstool) path: listitem/para
+#: C/index.docbook:332 C/index.docbook:381
+msgid "<guilabel>Search for ASCII data</guilabel>"
+msgstr "<guilabel>아스키 데이터 검색</guilabel>"
 
-#: C/ghex2.xml:354(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:336 C/index.docbook:385
 msgid "Type the string that you want to find."
 msgstr "찾을 문자열을 입력합니다."
 
-#: C/ghex2.xml:356(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:338 C/index.docbook:358
 msgid ""
 "Click <guibutton>Find Next</guibutton> to find the next occurrence of the "
 "string."
 msgstr ""
 "동일한 다음 문자열을 찾으려면 <guibutton>다음 찾기</guibutton>를 클릭합니다."
 
-#: C/ghex2.xml:358(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:340 C/index.docbook:360
 msgid ""
 "Click <guibutton>Find Previous</guibutton> to find the previous occurrence "
 "of the string."
 msgstr ""
 "동일한 이전 문자열을 찾으려면 <guibutton>이전 찾기</guibutton>를 클릭합니다."
 
-#: C/ghex2.xml:367(title)
+#. (itstool) path: listitem/para
+#: C/index.docbook:342 C/index.docbook:392 C/index.docbook:407
+msgid ""
+"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find Data</"
+"guilabel> dialog."
+msgstr ""
+"<guilabel>데이터 찾기</guilabel> 대화상자를 닫으려면 <guibutton>취소</"
+"guibutton>를 누릅니다."
+
+#. (itstool) path: sect2/title
+#: C/index.docbook:350
+msgid "To Perform an Advanced Find"
+msgstr "고급 찾기 실행"
+
+#. (itstool) path: sect2/para
+#: C/index.docbook:351
+msgid "To perform an advanced find, perform the following steps:"
+msgstr "파일을 편집하려면 다음 단계를 수행합니다:"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:353 C/index.docbook:373 C/index.docbook:401
+msgid ""
+"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Advanced Find</"
+"guimenuitem></menuchoice>."
+msgstr ""
+"<menuchoice><guimenu>편집</guimenu><guimenuitem>고급 찾기</guimenuitem></"
+"menuchoice>를 선택합니다."
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:355
+msgid ""
+"In the <guilabel>Find Data</guilabel> dialog, select the required search "
+"criteria. For information about how to add new search criteria, see <xref "
+"linkend=\"ghex-search-criteria-add\"/>."
+msgstr ""
+"<guilabel>데이터 찾기</guilabel> 대화상자에서, 필요한 검색 어구를 선택합니"
+"다. 새 검색 어구 추가 방법을 알아보려면 <xref linkend=\"ghex-search-criteria-"
+"add\"/>을(를) 살펴봅니다."
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:362
+msgid ""
+"Click <guibutton>Close</guibutton> to close the <guilabel>Find Data</"
+"guilabel> dialog."
+msgstr ""
+"<guilabel>데이터 찾기</guilabel> 대화상자를 닫으려면 <guibutton>닫기</"
+"guibutton>를 누릅니다."
+
+#. (itstool) path: sect2/title
+#: C/index.docbook:370
+msgid "To Add Search Criteria"
+msgstr "검색 어구를 추가하기"
+
+#. (itstool) path: sect2/para
+#: C/index.docbook:371
+msgid "To add search criteria, perform the following steps:"
+msgstr "파일을 편집하려면 다음 단계를 수행합니다:"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:375
+msgid ""
+"In the <guilabel>Find Data</guilabel> dialog, click <guibutton>Add New</"
+"guibutton>."
+msgstr ""
+"<guilabel>데이터 찾기</guilabel> 대화 상자에서 <guibutton>새로 추가</"
+"guibutton>를 누릅니다."
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:377
+msgid ""
+"In the <guilabel>Find Data: Add Search</guilabel> dialog, choose one of the "
+"following options:"
+msgstr ""
+"<guilabel>데이터 찾기: 검색 추가</guilabel> 대화 상자에서 다음 옵션 중 하나"
+"를 선택합니다:"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:387
+msgid ""
+"Use the color wheel or the spin boxes to select a color to highlight the "
+"search criteria."
+msgstr ""
+"검색 어구를 강조할 색상을 선택하려면 색상 휠 또는 스핀 상자를 사용합니다."
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:390
+msgid "Click <guibutton>Add</guibutton>."
+msgstr "<guibutton>추가</guibutton>를 누릅니다."
+
+#. (itstool) path: sect2/title
+#: C/index.docbook:398
+msgid "To Remove Search Criteria"
+msgstr "검색 어구를 제거하기"
+
+#. (itstool) path: sect2/para
+#: C/index.docbook:399
+msgid "To remove search criteria, perform the following steps:"
+msgstr "검색 어구를 제거하려면 다음 단계를 수행합니다:"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:403
+msgid ""
+"In the <guilabel>Find Data</guilabel> dialog, select the search criteria "
+"that you want to remove."
+msgstr ""
+"<guilabel>데이터 찾기</guilabel> 대화 상자에서 제거할 검색 어구를 선택합니다."
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:405
+msgid "Click <guibutton>Remove Selected</guibutton>."
+msgstr "<guibutton>선택 항목 제거</guibutton>를 누릅니다."
+
+#. (itstool) path: sect2/title
+#: C/index.docbook:415
 msgid "To Find and Replace Data in a File"
 msgstr "파일에서 데이터를 찾아 바꾸려면"
 
-#: C/ghex2.xml:368(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:416
 msgid ""
 "To search a file for a hexadecimal or ASCII string and then replace the "
 "string, perform the following steps:"
 msgstr ""
-"파일에서 16진수 또는 ASCII 문자열을 검색하여 이 문자열을 다른 문자열로 바꾸려"
-"면 다음 단계를 수행합니다."
+"파일에서 16진수 또는 아스키 문자열을 검색하여 다른 문자열로 바꾸려면 다음 단"
+"계를 수행합니다:"
 
-#: C/ghex2.xml:370(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:418
 msgid ""
 "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Replace</"
 "guimenuitem></menuchoice>."
@@ -452,38 +739,45 @@ msgstr ""
 "<menuchoice><guimenu>편집</guimenu><guimenuitem>바꾸기</guimenuitem></"
 "menuchoice>를 선택합니다."
 
-#: C/ghex2.xml:375(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:420
 msgid ""
 "In the <guilabel>Find &amp; Replace Data</guilabel> dialog, choose one of "
 "the following options:"
 msgstr ""
 "<guilabel>데이터 찾기 및 바꾸기</guilabel> 대화 상자에서 다음 옵션 중 하나를 "
-"선택합니다."
+"선택합니다:"
 
-#: C/ghex2.xml:377(guilabel)
-msgid "Replace hex data"
-msgstr "16진수 데이터 바꾸기"
+#. (itstool) path: listitem/para
+#: C/index.docbook:422
+msgid "<guilabel>Replace hex data</guilabel>"
+msgstr "<guilabel>16진수 데이터 바꾸기</guilabel>"
 
-#: C/ghex2.xml:379(guilabel)
-msgid "Replace ASCII data"
-msgstr "ASCII 데이터 바꾸기"
+#. (itstool) path: listitem/para
+#: C/index.docbook:424
+msgid "<guilabel>Replace ASCII data</guilabel>"
+msgstr "<guilabel>아스키 데이터 바꾸기</guilabel>"
 
-#: C/ghex2.xml:383(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:428
 msgid "In the first text box, type the string that you want to find."
 msgstr "첫 번째 텍스트 상자에는 찾을 문자열을 입력합니다."
 
-#: C/ghex2.xml:385(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:430
 msgid ""
 "In the second text box, type the string that you want to use to replace the "
 "string that you find."
 msgstr ""
 "두 번째 텍스트 상자에는 찾은 문자열을 바꾸는 데 사용할 문자열을 입력합니다."
 
-#: C/ghex2.xml:387(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:432
 msgid "Click <guibutton>Find Next</guibutton>."
 msgstr "<guibutton>다음 찾기</guibutton>를 클릭합니다."
 
-#: C/ghex2.xml:389(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:434
 msgid ""
 "Click <guibutton>Replace</guibutton> to replace the current occurrence of "
 "the string or click <guibutton>Replace All</guibutton> to replace all "
@@ -493,21 +787,33 @@ msgstr ""
 "<guibutton>모두 바꾸기</guibutton>를 클릭하여 일치하는 모든 문자열을 바꿉니"
 "다."
 
-#: C/ghex2.xml:397(title)
+#. (itstool) path: listitem/para
+#: C/index.docbook:436
+msgid ""
+"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find &amp; "
+"Replace Data</guilabel> dialog."
+msgstr ""
+"<guilabel>데이터 찾기 및 바꾸기</guilabel> 대화상자를 닫으려면 <guibutton>취"
+"소</guibutton>를 누릅니다."
+
+#. (itstool) path: sect2/title
+#: C/index.docbook:444
 msgid "To Add or Remove Additional Views of a File"
 msgstr "파일에 대한 보기를 추가하거나 제거하려면"
 
-#: C/ghex2.xml:398(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:445
 msgid ""
 "To add another view of the current file to your <application>GHex</"
-"application> window or to the desktop, choose <menuchoice><guimenu>View</"
+"application> window, choose <menuchoice><guimenu>View</"
 "guimenu><guimenuitem>Add View</guimenuitem></menuchoice>."
 msgstr ""
-"<application>GHex</application> 창이나 바탕 화면에 현재 파일의 보기를 추가하"
-"려면 <menuchoice><guimenu>보기</guimenu><guimenuitem>보기 추가</"
-"guimenuitem></menuchoice>를 선택합니다."
+"<application>지헥스</application> 창이나 현재 파일의 보기를 추가하려면 "
+"<menuchoice><guimenu>보기</guimenu><guimenuitem>보기 추가</guimenuitem></"
+"menuchoice>를 선택합니다."
 
-#: C/ghex2.xml:402(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:446
 msgid ""
 "To remove a view of the current file, choose <menuchoice><guimenu>View</"
 "guimenu><guimenuitem>Remove View</guimenuitem></menuchoice>. If you remove "
@@ -515,78 +821,120 @@ msgid ""
 msgstr ""
 "현재 파일의 보기를 제거하려면 <menuchoice><guimenu>보기</"
 "guimenu><guimenuitem>보기 제거</guimenuitem></menuchoice>를 선택합니다. 열려 "
-"있는 마지막 보기를 제거하면 응용프로그램이 종료됩니다."
+"있는 마지막 보기를 제거하면 프로그램을 빠져나갑니다."
 
-#: C/ghex2.xml:411(title)
+#. (itstool) path: sect2/title
+#: C/index.docbook:452
+msgid "To Change the Data Group Type"
+msgstr "데이터 그룹 형식 바꾸기"
+
+#. (itstool) path: sect2/para
+#: C/index.docbook:453
+msgid ""
+"To change how <application>GHex</application> displays the hexadecimal "
+"content of a file in the <application>GHex</application> window, choose "
+"<menuchoice><guimenu>View</guimenu><guimenuitem>Group Data As</guimenuitem></"
+"menuchoice>, then select one of the following menu items:"
+msgstr ""
+"<application>지헥스</application> 창의 16진수 파일 내용 보기 방식을 바꾸려면 "
+"<menuchoice><guimenu>보기</guimenu><guimenuitem>데이터 묶기</guimenuitem></"
+"menuchoice>를 선택한 후, 다음 메뉴 항목 중 하나를 선택합니다:"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:455 C/index.docbook:634
+msgid "<guilabel>Bytes</guilabel> - single bytes"
+msgstr "<guilabel>바이트</guilabel> - 단일 바이트"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:457 C/index.docbook:636
+msgid "<guilabel>Words</guilabel> - groups of two bytes"
+msgstr "<guilabel>단어</guilabel> - 2바이트 그룹"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:459 C/index.docbook:638
+msgid "<guilabel>Longwords</guilabel> - groups of four bytes"
+msgstr "<guilabel>긴 단어</guilabel> - 4바이트 그룹"
+
+#. (itstool) path: sect2/title
+#: C/index.docbook:467
 msgid "To Export the GHex Display to HTML"
-msgstr "GHex에 표시된 내용을 HTML로 내보내려면"
+msgstr "지헥스에 나타난 내용을 HTML로 내보내려면"
 
-#: C/ghex2.xml:416(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:469
 msgid ""
 "Creates a separate HTML file for each page of data that is displayed in the "
 "<application>GHex</application> window."
 msgstr ""
-"<application>GHex</application> 창에 표시되는 각 데이터 페이지에 대해 별도의 "
-"HTML 파일을 만듭니다."
+"<application>지헥스</application> 창에 나타난 각 데이터 페이지의 개별 HTML 파"
+"일을 만듭니다."
 
-#: C/ghex2.xml:418(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:471
 msgid "Uses the HTML filename that you specify as the basis for the filename."
 msgstr "기본 파일 이름으로 지정한 HTML 파일 이름을 사용합니다."
 
-#: C/ghex2.xml:420(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:473
 msgid "Appends a page number to the filename to differentiate the files."
 msgstr "파일 이름에 페이지 번호를 첨가하여 파일을 구분합니다."
 
-#: C/ghex2.xml:412(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:468
 msgid ""
 "To export the data contained in the <application>GHex</application> window "
 "to HTML, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Save As "
 "HTML</guimenuitem></menuchoice>. Choose a directory and specify a filename "
 "for the HTML file, then click <guibutton>OK</guibutton>. <application>GHex</"
-"application> implements the following actions: <placeholder-1/> For example, "
-"if you specify the filename <filename>log.html</filename>, "
+"application> implements the following actions: <_:itemizedlist-1/> For "
+"example, if you specify the filename <filename>log.html</filename>, "
 "<application>GHex</application> creates a series of HTML files named "
 "<filename>log00000000.html</filename>, <filename>log00000001.html</"
 "filename>, <filename>log00000002.html</filename>, and so on."
 msgstr ""
-"<application>GHex</application> 창에 포함된 데이터를 HTML로 내보내려면 "
+"<application>지헥스</application> 창에 나타난 데이터를 HTML로 내보내려면 "
 "<menuchoice><guimenu>파일</guimenu><guimenuitem>HTML로 저장</guimenuitem></"
-"menuchoice>을 선택합니다. 디렉토리를 선택하고 HTML 파일의 이름을 지정한 다음 "
-"<guibutton>확인</guibutton>을 클릭합니다. <application>GHex</application>은"
-"(는) 다음 작업을 구현합니다. <placeholder-1/> 예를 들어, 파일 이름을 "
-"<filename>log.html</filename>로 지정하면 <application>GHex</application>이"
+"menuchoice>을 선택합니다. 디렉터리를 선택하고 HTML 파일의 이름을 지정한 다음 "
+"<guibutton>확인</guibutton>을 누릅니다. <application>지헥스</application>는 "
+"다음 동작을 진행합니다. <placeholder-1/> 예를 들어, 파일 이름을 "
+"<filename>log.html</filename>로 지정하면 <application>지헥스</application>이"
 "(가) <filename>log00000000.html</filename>, <filename>log00000001.html</"
 "filename>, <filename>log00000002.html</filename> 등의 이름을 가진 HTML 파일"
 "을 만듭니다."
 
-#: C/ghex2.xml:428(title)
+#. (itstool) path: sect2/title
+#: C/index.docbook:481
 msgid "To View a Character Table"
 msgstr "문자 테이블을 보려면"
 
-#: C/ghex2.xml:429(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:482
 msgid ""
 "To view a table that contains the ASCII, hexadecimal, decimal, octal, and "
 "binary representations for the values 0 to 255, choose "
 "<menuchoice><guimenu>Windows</guimenu><guimenuitem>Character Table</"
 "guimenuitem></menuchoice>."
 msgstr ""
-"0˜255 값에 대한 ASCII, 16진수, 10진수, 8진수 및 2진수 표현이 포함된 테"
-"이블을 표시하려면 <menuchoice><guimenu>창</guimenu><guimenuitem>문자 테이블</"
+"0˜255 값에 대한 아스키, 16진수, 10진수, 8진수 및 2진수 표현이 들어간 테이블"
+"을 표시하려면 <menuchoice><guimenu>창</guimenu><guimenuitem>문자 테이블</"
 "guimenuitem></menuchoice>을 선택합니다."
 
-#: C/ghex2.xml:438(title)
+#. (itstool) path: sect2/title
+#: C/index.docbook:488
 msgid "To View Data Conversions"
 msgstr "데이터 변환을 보려면"
 
-#: C/ghex2.xml:439(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:489
 msgid ""
 "To display the binary, decimal, hexadecimal, and ASCII conversions for up to "
 "four bytes of data, perform the following steps:"
 msgstr ""
-"최대 4바이트 데이터에 대해 2진수, 10진수, 16진수 및 ASCII 변환을 표시하려면 "
-"다음 단계를 수행합니다."
+"최대 4바이트 데이터에 대해 2진수, 10진수, 16진수 및 아스키 변환을 표시하려면 "
+"다음 단계를 수행합니다:"
 
-#: C/ghex2.xml:441(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:491
 msgid ""
 "Choose <menuchoice><guimenu>Windows</guimenu><guimenuitem>Base Converter</"
 "guimenuitem></menuchoice>."
@@ -594,11 +942,13 @@ msgstr ""
 "<menuchoice><guimenu>창</guimenu><guimenuitem>기본 변환기</guimenuitem></"
 "menuchoice>를 선택합니다."
 
-#: C/ghex2.xml:446(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:493
 msgid "Perform one of the following actions:"
-msgstr "다음 작업 중 하나를 수행합니다."
+msgstr "다음 작업 중 하나를 수행합니다:"
 
-#: C/ghex2.xml:448(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:495
 msgid ""
 "Type the data that you want to convert in one of the fields in the "
 "<guilabel>Base Converter</guilabel> dialog, then press <keycap>Return</"
@@ -607,27 +957,149 @@ msgstr ""
 "<guilabel>기본 변환기</guilabel> 대화 상자의 필드 중 하나에 변환할 데이터를 "
 "입력한 다음 <keycap>Return</keycap> 키를 누릅니다."
 
-#: C/ghex2.xml:451(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:497
 msgid ""
 "To display the conversions for the data at the cursor position in the "
 "current file, click on the <guibutton>Get cursor value</guibutton> button."
 msgstr ""
 "현재 파일의 커서 위치에 있는 데이터의 변환을 표시하려면 <guibutton>커서 값 가"
-"져오기</guibutton> 버튼을 클릭합니다."
+"져오기</guibutton> 단추를 누릅니다."
 
-#: C/ghex2.xml:455(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:500
 msgid ""
 "<application>GHex</application> updates the values of the other fields to "
 "display the data conversions."
 msgstr ""
-"<application>GHex</application>은(는) 다른 필드의 값을 갱신하여 데이터 변환"
-"을 표시합니다."
+"<application>지헥스</application>은(는) 다른 필드의 값을 새로 고쳐가며 데이"
+"터 변환을 표시합니다."
 
-#: C/ghex2.xml:464(title)
+#. (itstool) path: listitem/para
+#: C/index.docbook:502
+msgid ""
+"Click <guibutton>Close</guibutton> to close the <guilabel>Base Converter</"
+"guilabel> dialog."
+msgstr ""
+"<guilabel>진수 변환</guilabel> 대화상자를 닫으려면 <guibutton>취소</"
+"guibutton>를 누릅니다."
+
+#. (itstool) path: sect2/title
+#: C/index.docbook:510
+msgid "To Show or Hide the Type Conversion Dialog"
+msgstr "형 변환 대화상자 나타내거나 숨기기"
+
+#. (itstool) path: sect2/para
+#: C/index.docbook:511
+msgid ""
+"To show or hide the type conversion dialog, choose "
+"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Type Conversion Dialog</"
+"guimenuitem></menuchoice>."
+msgstr ""
+"형 변환 대화상자를 표시하거나 숨기려면, <menuchoice><guimenu>창</"
+"guimenu><guimenuitem>형 변환 대화상자</guimenuitem></menuchoice>을 선택합니"
+"다."
+
+#. (itstool) path: sect2/para
+#: C/index.docbook:512
+msgid ""
+"The type conversion dialog displays the value of the selected character in "
+"the following representations:"
+msgstr "형 변환 대화상자에서는 다음 방식으로 선택한 문자 값을 나타냅니다:"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:515
+msgid "<guilabel>Signed 8 bit</guilabel>"
+msgstr "<guilabel>부호화 8 비트</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:518
+msgid "<guilabel>Unsigned 8 bit</guilabel>"
+msgstr "<guilabel>무부호 8 비트</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:521
+msgid "<guilabel>Signed 16 bit</guilabel>"
+msgstr "<guilabel>부호화 16 비트</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:524
+msgid "<guilabel>Unsigned 16 bit</guilabel>"
+msgstr "<guilabel>무부호 16 비트</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:527
+msgid "<guilabel>Signed 32 bit</guilabel>"
+msgstr "<guilabel>부호화 32 비트</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:530
+msgid "<guilabel>Unsigned 32 bit</guilabel>"
+msgstr "<guilabel>무부호 32 비트</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:533
+msgid "<guilabel>32 bit float</guilabel>"
+msgstr "<guilabel>32 비트 실수형</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:536
+msgid "<guilabel>64 bit float</guilabel>"
+msgstr "<guilabel>64 비트 실수형</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:539
+msgid "<guilabel>Hexadecimal</guilabel>"
+msgstr "<guilabel>16진수</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:542
+msgid "<guilabel>Octal</guilabel>"
+msgstr "<guilabel>8진</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:545
+msgid "<guilabel>Binary</guilabel>"
+msgstr "<guilabel>2진</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:548
+msgid "<guilabel>Stream Length</guilabel>"
+msgstr "<guilabel>스트림 길이</guilabel>"
+
+#. (itstool) path: sect2/para
+#: C/index.docbook:551
+msgid "The type conversion dialog also contains the following options:"
+msgstr "형 변환 대화상자에는 다음 옵션이 들어있습니다:"
+
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:554
+msgid "<guilabel>Show little endian decoding</guilabel>"
+msgstr "<guilabel>리틀 엔디안 디코딩 표시</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:556
+msgid "Select this option to show little endian decoding."
+msgstr "리틀 엔디안 디코딩 방식으로 표시하려면 이 옵션을 선택합니다."
+
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:560
+msgid "<guilabel>Show unsigned and float as hexadecimal</guilabel>"
+msgstr "<guilabel>무부호 및 실수형은 16진수로 표시</guilabel>"
+
+#. (itstool) path: listitem/para
+#: C/index.docbook:562
+msgid ""
+"Select this option to show unsigned and float numbers as hexadecimal numbers."
+msgstr "무부호형 및 실수형 숫자를 16진수로 표시하려면 이 옵션을 선택합니다."
+
+#. (itstool) path: sect2/title
+#: C/index.docbook:571
 msgid "To Print a File"
 msgstr "파일을 인쇄하려면"
 
-#: C/ghex2.xml:465(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:572
 msgid ""
 "To print a file, choose <menuchoice><guimenu>File</"
 "guimenu><guimenuitem>Print</guimenuitem></menuchoice>. Select the print "
@@ -638,7 +1110,8 @@ msgstr ""
 "guimenuitem></menuchoice>를 선택합니다. <guilabel>인쇄</guilabel> 대화 상자에"
 "서 필요한 인쇄 옵션을 선택한 다음 <guibutton>확인</guibutton>을 클릭합니다."
 
-#: C/ghex2.xml:469(para)
+#. (itstool) path: sect2/para
+#: C/index.docbook:573
 msgid ""
 "To preview a printed copy of the file, choose <menuchoice><guimenu>File</"
 "guimenu><guimenuitem>Print Preview</guimenuitem></menuchoice>."
@@ -646,173 +1119,184 @@ msgstr ""
 "파일의 인쇄 사본을 미리 보려면 <menuchoice><guimenu>파일</"
 "guimenu><guimenuitem>인쇄 미리 보기</guimenuitem></menuchoice>를 선택합니다."
 
-#: C/ghex2.xml:481(title)
+#. (itstool) path: sect1/title
+#: C/index.docbook:581
 msgid "Preferences"
-msgstr "환경 설정"
+msgstr "기본 설정"
 
-#: C/ghex2.xml:482(para)
+#. (itstool) path: sect1/para
+#: C/index.docbook:582
 msgid ""
 "To configure <application>GHex</application>, choose "
 "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></"
 "menuchoice>. The <guilabel>Preferences</guilabel> dialog contains the "
 "following tabbed sections:"
 msgstr ""
-"<application>GHex</application>을(를) 구성하려면 <menuchoice><guimenu>편집</"
-"guimenu><guimenuitem>환경 설정</guimenuitem></menuchoice>을 선택합니다. "
-"<guilabel>환경 설정</guilabel> 대화 상자는 다음 탭 섹션으로 구성되어 있습니"
-"다."
+"<application>지헥스</application>을 구성하려면 <menuchoice><guimenu>편집</"
+"guimenu><guimenuitem>기본 설정</guimenuitem></menuchoice>을 선택합니다. "
+"<guilabel>기본 설정</guilabel> 대화 상자는 다음 탭 섹션이 들어 있습니다:"
 
-#: C/ghex2.xml:498(title)
+#. (itstool) path: sect2/title
+#: C/index.docbook:595
 msgid "Editing"
 msgstr "편집"
 
-#: C/ghex2.xml:501(guilabel)
-msgid "Maximum number of undo levels"
-msgstr "실행 취소 최대 횟수"
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:598
+msgid "<guilabel>Maximum number of undo levels</guilabel>"
+msgstr "<guilabel>실행 취소 최대 횟수</guilabel>"
 
-#: C/ghex2.xml:503(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:600
 msgid ""
-"Use this spin box to specify the maximum number of edits that you can undo "
-"using the <guimenuitem>Undo</guimenuitem> menu item on the <guimenu>Edit</"
-"guimenu> menu."
-msgstr ""
-"이 스핀 상자를 사용하면 <guimenu>편집</guimenu> 메뉴의 <guimenuitem>실행 취소"
-"</guimenuitem> 메뉴 항목을 통해 취소할 수 있는 편집 내용의 최대 개수를 지정"
-"할 수 있습니다."
+"Use this spin box to specify the maximum number of edits that you can undo."
+msgstr "실행 취소 최대 횟수를 지정하려면 이 스핀 상자를 활용합니다."
 
-#: C/ghex2.xml:509(guilabel)
-msgid "Show cursor offset in statusbar as"
-msgstr "상태 표시줄에서 커서 오프셋을 표시하는 방법"
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:604
+msgid "<guilabel>Show cursor offset in statusbar as</guilabel>"
+msgstr "<guilabel>상태 표시줄에 커서 오프셋 표시</guilabel>"
 
-#: C/ghex2.xml:511(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:606
 msgid ""
-"Use this drop-down list box to select the format in which the cursor offset "
-"is displayed. The format can be decimal, hexadecimal, or a custom print "
-"style string that only contains the format specifiers x, o, and s."
+"Use this drop-down list to select the format in which the cursor offset is "
+"displayed. The format can be decimal, hexadecimal, or a custom print style "
+"string that only contains the format specifiers x, o, and s."
 msgstr ""
-"이 드롭다운 목록 상자를 사용하여 커서 오프셋의 표시 형식을 선택합니다. 10진수"
-"나 16진수 형식을 사용할 수도 있고 형식 지정자 x, o, s만 포함하는 사용자 정의 "
-"인쇄 스타일 문자열 형식을 사용할 수도 있습니다."
+"어떤 형식으로 커서 오프셋을 나타낼 지 선택하려면 이 드롭 다운 목록을 활용합니"
+"다. 형식은 10진, 16진 또는 x, o, s 형식 지정자가 들어간 개별 출력 방식 문자"
+"가 될 수 있습니다."
 
-#: C/ghex2.xml:517(guilabel)
-msgid "Show offsets column"
-msgstr "오프셋 열 표시"
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:610
+msgid "<guilabel>Show offsets column</guilabel>"
+msgstr "<guilabel>오프셋 열 표시</guilabel>"
 
-#: C/ghex2.xml:519(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:612
 msgid ""
 "Select this option to display the cursor offsets in a column to the left of "
 "the hexadecimal view of the <application>GHex</application> window."
 msgstr ""
-"커서 오프셋을 <application>GHex</application> 창의 16진수 보기 왼쪽 열에 표시"
-"하려면 이 옵션을 선택합니다."
+"커서 오프셋을 <application>지헥스</application> 창의 16진수 보기 왼쪽 열에 표"
+"시하려면 이 옵션을 선택합니다."
 
-#: C/ghex2.xml:530(title)
+#. (itstool) path: sect2/title
+#: C/index.docbook:621
 msgid "Display"
 msgstr "표시"
 
-#: C/ghex2.xml:533(guilabel)
-msgid "Font"
-msgstr "글꼴"
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:624
+msgid "<guilabel>Font</guilabel>"
+msgstr "<guilabel>글꼴</guilabel>"
 
-#: C/ghex2.xml:535(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:626
 msgid ""
-"Click on this button to display the font selector dialog. Use the font "
-"selector dialog to edit the existing font information or type new font "
-"information. Specify a font type, style, and size for displaying the "
-"contents of files in <application>GHex</application>, then click "
-"<guibutton>OK</guibutton>. The font information that you specify is "
-"displayed on the <guilabel>Font</guilabel> button."
+"Use the font selector list boxes to edit the existing font information or "
+"type new font information. Specify a font type, style, and size to display "
+"the contents of files in <application>GHex</application>."
 msgstr ""
-"글꼴 선택 대화 상자를 표시하려면 이 버튼을 클릭합니다. 글꼴 선택 대화 상자를 "
-"사용하여 기존 글꼴 정보를 편집하거나 새 글꼴 정보를 입력합니다. "
-"<application>GHex</application>에 파일 내용을 표시하기 위한 글꼴 유형, 스타"
-"일 및 크기를 지정한 다음 <guibutton>확인</guibutton>을 클릭합니다. 지정된 글"
-"꼴 정보는 <guilabel>글꼴</guilabel> 버튼에 표시됩니다."
+"기존 글꼴 정보를 편집하거나 새 글꼴 정보를 입력하려면 글꼴 선택 목록을 활용합"
+"니다. <application>지헥스</application>에서 파일의 내용을 나타낼 글꼴 형식, "
+"모양새, 크기를 지정합니다."
 
-#: C/ghex2.xml:541(guilabel)
-msgid "Default Group Type"
-msgstr "기본 그룹 유형"
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:630
+msgid "<guilabel>Default Group Type</guilabel>"
+msgstr "<guilabel>기본 그룹 형식</guilabel>"
 
-#: C/ghex2.xml:543(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:632
 msgid ""
-"Select how the application displays the hexadecimal content of a file in the "
-"<application>GHex</application> window. The options are as follows:"
+"Select one of the following options to specify how <application>GHex</"
+"application> displays the hexadecimal content of a file in the "
+"<application>GHex</application> window:"
 msgstr ""
-"응용프로그램이 <application>GHex</application> 창에 16진수 파일 내용을 표시하"
-"는 방식을 선택합니다. 다음과 같은 옵션이 제공됩니다."
+"<application>지헥스</application>가 파일의 16진수 내용을 <application>지헥스"
+"</application> 창에 보여주는 방식을 지정하려면 다음 옵션 중 하나를 선택합니"
+"다:"
 
-#: C/ghex2.xml:545(para)
-msgid "<guilabel>Bytes</guilabel> - single bytes."
-msgstr "<guilabel>바이트</guilabel> - 단일 바이트"
-
-#: C/ghex2.xml:547(para)
-msgid "<guilabel>Words</guilabel> - groups of two bytes."
-msgstr "<guilabel>단어</guilabel> - 2바이트 그룹"
-
-#: C/ghex2.xml:549(para)
-msgid "<guilabel>Longwords</guilabel> - groups of four bytes."
-msgstr "<guilabel>긴 단어</guilabel> - 4바이트 그룹"
-
-#: C/ghex2.xml:563(title)
+#. (itstool) path: sect2/title
+#: C/index.docbook:649
 msgid "Printing"
 msgstr "인쇄"
 
-#: C/ghex2.xml:566(guilabel)
-msgid "Data font"
-msgstr "데이터 글꼴"
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:652
+msgid "<guilabel>Data font</guilabel>"
+msgstr "<guilabel>데이터 글꼴</guilabel>"
 
-#: C/ghex2.xml:568(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:654
 msgid ""
-"Click on the <guibutton>Data font</guibutton> button to specify the size of "
-"the font to use to print the data contained in a file."
+"Click on the <guibutton>Data font</guibutton> button to specify the font "
+"type, style, and size to use to print the data contained in a file."
 msgstr ""
-"파일에 포함된 데이터를 인쇄하는 데 사용할 글꼴의 크기를 지정하려면 "
-"<guibutton>데이터 글꼴</guibutton> 버튼을 클릭합니다."
+"파일에 들어있는 데이터를 인쇄할 때 활용할 글꼴 형식, 모양새, 크기를 지정하려"
+"면 <guibutton>데이터 글꼴</guibutton>을 누릅니다."
 
-#: C/ghex2.xml:574(guilabel)
-msgid "Header font"
-msgstr "헤더 글꼴"
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:658
+msgid "<guilabel>Header font</guilabel>"
+msgstr "<guilabel>헤더 글꼴</guilabel>"
 
-#: C/ghex2.xml:576(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:660
 msgid ""
-"Click on the <guibutton>Header font</guibutton> button to specify the size "
-"of the font to use to print the header information that is contained in the "
-"file."
+"Click on the <guibutton>Header font</guibutton> button to specify the font "
+"type, style, and size to use to print the header information that is "
+"contained in the file."
 msgstr ""
-"파일에 포함된 헤더 정보를 인쇄하는 데 사용할 글꼴의 크기를 지정하려면 "
-"<guibutton>헤더 글꼴</guibutton> 버튼을 클릭합니다."
+"파일에 들어있는 헤더 정보를 인쇄할 때 활용할 글꼴 형식, 모양새, 크기를 지정하"
+"려면 <guibutton>헤더 글꼴</guibutton> 단추를 누릅니다."
 
-#: C/ghex2.xml:582(guilabel)
-msgid "Print shaded box over"
-msgstr "테두리 그리기"
+#. (itstool) path: varlistentry/term
+#: C/index.docbook:664
+msgid "<guilabel>Print shaded box over</guilabel>"
+msgstr "<guilabel>음영 상자 인쇄</guilabel>"
 
-#: C/ghex2.xml:584(para)
+#. (itstool) path: listitem/para
+#: C/index.docbook:666
 msgid ""
 "Use this spin box to specify the number of lines that <application>GHex</"
-"application> prints with a surrounding shaded box. If the value of the spin "
-"box is 10, <application>GHex</application> prints the first 10 lines of the "
-"file within a shaded box."
+"application> alternately prints with a surrounding shaded box. If the value "
+"of the spin box is 10, <application>GHex</application> prints the first 10 "
+"lines of the file without a shaded box, the next 10 lines with a shaded box, "
+"and so on. If the value of the spin box is 0, <application>GHex</"
+"application> does not print any shaded box."
 msgstr ""
-"이 스핀 상자를 사용하여 <application>GHex</application>이(가) 테두리 안에 인"
-"쇄할 줄 수를 지정합니다. 스핀 상자의 값이 10이면 <application>GHex</"
-"application>은(는) 파일의 처음 10줄에 대해 테두리를 인쇄합니다."
+"<application>지헥스</application>에서 음영으로 둘러싸인 상자로 인쇄할 여러줄"
+"을 지정하려면 스핀 상자를 활용합니다. 스핀 상자의 값을 10으로 지정하면, "
+"<application>지헥스</application> 에서 파일의 첫 10줄은 음영 처리를 하지 않"
+"은 상자로 인쇄하고 다음 10줄은 음영처리를 하는 식으로 번갈아가며 인쇄합니다. "
+"음영 상자 값이 0이면, <application>지헥스</application>에서 음영 영역을 인쇄"
+"하지 않습니다."
 
-#: C/legal.xml:2(para)
+#. (itstool) path: para/ulink
+#: C/legal.xml:9
+msgid "link"
+msgstr "링크"
+
+#. (itstool) path: legalnotice/para
+#: C/legal.xml:2
 msgid ""
 "Permission is granted to copy, distribute and/or modify this document under "
 "the terms of the GNU Free Documentation License (GFDL), Version 1.1 or any "
 "later version published by the Free Software Foundation with no Invariant "
 "Sections, no Front-Cover Texts, and no Back-Cover Texts. You can find a copy "
-"of the GFDL at this <ulink type=\"help\" url=\"ghelp:fdl\">link</ulink> or "
-"in the file COPYING-DOCS distributed with this manual."
+"of the GFDL at this <_:ulink-1/> or in the file COPYING-DOCS distributed "
+"with this manual."
 msgstr ""
-"본 설명서는 프리 소프트웨어 재단(FSF)에서 발행한 GNU 자유 문서 라이센스"
-"(GFDL) 버전 1.1 이상의 조항에 따라 변경 불가 부분, 앞 표지 텍스트 및 뒷 표지 "
-"텍스트를 제외하고 복사, 수정 및/또는 배포할 수 있습니다. GFDL의 사본은 "
-"<ulink type=\"help\" url=\"ghelp:fdl\">링크</ulink> 또는 본 설명서와 함께 배"
-"포된 COPYING-DOCS 파일에서 찾을 수 있습니다."
+"본 설명서는 자유 소프트웨어 재단에서 발행한 GNU 자유 문서 라이선스 버전 1.1 "
+"이상의 조항에 따라 변경 불가 부분, 앞 표지 텍스트 및 뒷 표지 텍스트를 제외하"
+"고 복사, 수정 및/또는 배포할 수 있습니다. GFDL의 사본은 <_:ulink-1/> 또는 본 "
+"설명서와 묶음으로 배포하는 COPYING-DOCS 파일에서 찾을 수 있습니다."
 
-#: C/legal.xml:12(para)
+#. (itstool) path: legalnotice/para
+#: C/legal.xml:12
 msgid ""
 "This manual is part of a collection of GNOME manuals distributed under the "
 "GFDL. If you want to distribute this manual separately from the collection, "
@@ -820,10 +1304,11 @@ msgid ""
 "section 6 of the license."
 msgstr ""
 "본 설명서는 GFDL에 따라 배포된 그놈 설명서 컬렉션의 일부입니다. 본 설명서를 "
-"컬렉션과 별도로 배포하려는 경우에는 라이센스 조항 6에 따라 라이센스 사본을 설"
+"컬렉션과 별도로 배포하려는 경우에는 라이선스 조항 6에 따라 라이선스 사본을 설"
 "명서에 추가하면 됩니다."
 
-#: C/legal.xml:19(para)
+#. (itstool) path: legalnotice/para
+#: C/legal.xml:19
 msgid ""
 "Many of the names used by companies to distinguish their products and "
 "services are claimed as trademarks. Where those names appear in any GNOME "
@@ -831,11 +1316,12 @@ msgid ""
 "aware of those trademarks, then the names are in capital letters or initial "
 "capital letters."
 msgstr ""
-"기업의 제품과 서비스를 식별하기 위해 사용된 많은 이름은 상표로 간주됩니다. 그"
+"기업의 제품 및 서비스 식별 용도로 활용하는 많은 이름은 상표로 간주합니다. 그"
 "놈 문서에 사용된 이름과 그놈 문서 프로젝트의 구성원은 해당 상표로, 모두 대문"
-"자로 표시되거나 첫 글자가 대문자로 표시되어 있습니다."
+"자로 표시하거나 첫 글자를 대문자로 표시합니다."
 
-#: C/legal.xml:35(para)
+#. (itstool) path: listitem/para
+#: C/legal.xml:35
 msgid ""
 "DOCUMENT IS PROVIDED ON AN \"AS IS\" BASIS, WITHOUT WARRANTY OF ANY KIND, "
 "EITHER EXPRESSED OR IMPLIED, INCLUDING, WITHOUT LIMITATION, WARRANTIES THAT "
@@ -849,15 +1335,16 @@ msgid ""
 "ESSENTIAL PART OF THIS LICENSE. NO USE OF ANY DOCUMENT OR MODIFIED VERSION "
 "OF THE DOCUMENT IS AUTHORIZED HEREUNDER EXCEPT UNDER THIS DISCLAIMER; AND"
 msgstr ""
-"문서는 \"있는 그대로\"로 제공되며 상품성, 특정 목적에의 적합성 또는 준수에 대"
-"한 보증을 비롯한 일체의 명시적 또는 암시적인 보증을 제한 없이 부인합니다. 문"
-"서 및 수정판의 품질, 정확성 및 성능에 대한 책임은 전적으로 사용자에게 있습니"
-"다. 문서 또는 수정판에 대한 오류를 입증하려면 사용자(원저작자, 저작자 또는 배"
-"포자 아님)는 필요한 서비스, 수리 및 수정 비용을 부담해야 합니다. 본 보증 부인"
-"은 라이센스의 필수 부분에 해당합니다. 본 보증 부인을 따르지 않는 모든 문서나 "
-"수정판은 사용할 수 없습니다."
+"문서는 \"있는 그대로\" 제공되며 상품성, 특정 목적의 적합성 또는 준수에 대한 "
+"보증을 비롯한 일체의 명시적 또는 암시적인 보증을 제한 없이 부인합니다. 문서 "
+"및 수정판의 품질, 정확성 및 성능에 대한 책임은 전적으로 사용자에게 있습니다. "
+"문서 또는 수정판에 대한 오류를 입증하려면 사용자(원저작자, 저작자 또는 배포"
+"자 아님)는 필요한 서비스, 수리 및 수정 비용을 부담해야 합니다. 본 면책 조항"
+"은 라이선스의 필수 부분에 해당합니다. 본 면책 조항을 따르지 않는 모든 문서나 "
+"수정판은 사용할 수 없습니다.호"
 
-#: C/legal.xml:55(para)
+#. (itstool) path: listitem/para
+#: C/legal.xml:55
 msgid ""
 "UNDER NO CIRCUMSTANCES AND UNDER NO LEGAL THEORY, WHETHER IN TORT (INCLUDING "
 "NEGLIGENCE), CONTRACT, OR OTHERWISE, SHALL THE AUTHOR, INITIAL WRITER, ANY "
@@ -877,27 +1364,12 @@ msgstr ""
 "론 하에서도 본 문서 또는 수정판의 저작자, 원저자, 모든 배포자 또는 공급자는 "
 "책임을 지지 않습니다."
 
-#: C/legal.xml:28(para)
+#. (itstool) path: legalnotice/para
+#: C/legal.xml:28
 msgid ""
 "DOCUMENT AND MODIFIED VERSIONS OF THE DOCUMENT ARE PROVIDED UNDER THE TERMS "
 "OF THE GNU FREE DOCUMENTATION LICENSE WITH THE FURTHER UNDERSTANDING THAT: "
-"<placeholder-1/>"
+"<_:orderedlist-1/>"
 msgstr ""
-"문서 및 수정판은 다음 GNU 자유 문서 라이센스의 조항에 따라 제공됩니다. "
-"<placeholder-1/>"
-
-#: C/ghex2-C.omf:10(title)
-msgid "GHex Manual V2.5"
-msgstr "GHex"
-
-#: C/ghex2-C.omf:13(date)
-msgid "2004-03-04"
-msgstr "2002-08-28"
-
-#: C/ghex2-C.omf:18(description)
-msgid "User manual for GHex."
-msgstr "GHex 사용자 설명서입니다."
-
-#: C/ghex2-C.omf:21(type)
-msgid "user's guide"
-msgstr ""
+"문서 및 수정판은 다음 GNU 자유 문서 라이선스의 조항에 따라 제공됩니다. <_:"
+"orderedlist-1/>"
