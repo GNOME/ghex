@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the ghex package.
 #
 # Jaka Močnik <jaka.mocnik@kiss.uni-lj.si>, 2000.
-# Matej Urbančič <mateju@svn.gnome.org>, 2009–2019.
+# Matej Urbančič <mateju@svn.gnome.org>, 2009–2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
 "POT-Creation-Date: 2019-01-07 10:19+0000\n"
-"PO-Revision-Date: 2019-01-26 15:47+0100\n"
+"PO-Revision-Date: 2021-11-16 18:09+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/org.gnome.GHex.appdata.xml.in:6
 msgid "GNOME Hex Editor"
@@ -32,7 +32,7 @@ msgstr "Pregled in urejanje dvojiških datotek"
 
 #: data/org.gnome.GHex.appdata.xml.in:9
 msgid "GHex is a hex editor for the GNOME desktop."
-msgstr "GHex je urejevalnik šestnajstiškega zapisa datotek za namizje GNOME"
+msgstr "GHex je šestnajstiški urejevalnik za namizje GNOME."
 
 #: data/org.gnome.GHex.appdata.xml.in:12
 msgid ""
@@ -116,7 +116,7 @@ msgstr "_Šestnajstiško:"
 
 #: src/converter.c:261
 msgid "_ASCII:"
-msgstr "_ASCII"
+msgstr "_ASCII:"
 
 #. get cursor button
 #: src/converter.c:265
@@ -176,7 +176,7 @@ msgstr "Najdi predhodno"
 
 #: src/findreplace.c:140
 msgid "Finds the previous occurrence of the search string "
-msgstr "Najde predhodni primer iskanega niza"
+msgstr "Najde predhodni primer iskanega niza "
 
 #: src/findreplace.c:141 src/findreplace.c:418 src/findreplace.c:469
 msgid "Cancel"
@@ -321,7 +321,7 @@ msgstr "Dosežen je začetek datoteke"
 
 #: src/findreplace.c:601
 msgid "There is no active document to move the cursor in!"
-msgstr "Ni dejavnega dokumenta v katerem naj bi se premaknila kazalka!"
+msgstr "Ni dejavnega dokumenta, v katerem naj bi se premaknila kazalka!"
 
 #: src/findreplace.c:619
 msgid "No offset has been specified!"
@@ -344,8 +344,8 @@ msgid ""
 msgstr ""
 "Odmik je dovoljeno podati kot:\n"
 "  - pozitivno desetiško število,\n"
-"  - šestnajstiško število, začeto z '0x', ali \n"
-"  - število začeto s '+' ali z '-' in nato relativno vrednost odmika"
+"  - šestnajstiško število, začeto z »0x«, ali \n"
+"  - število začeto s » + « ali z » - « in nato relativno vrednost odmika"
 
 #: src/findreplace.c:705
 msgid "There is no active buffer to replace data in!"
@@ -353,7 +353,7 @@ msgstr "Ni dejavnega medpomnilnika za zamenjavo podatkov!"
 
 #: src/findreplace.c:730 src/findreplace.c:731
 msgid "End Of File reached!"
-msgstr "Dosežen je konec datoteke"
+msgstr "Dosežen je konec datoteke!"
 
 #: src/findreplace.c:750
 msgid "There is no active document to replace data in!"
@@ -601,7 +601,7 @@ msgstr "Pomoč za delo s programom"
 
 #: src/ghex-window.c:418
 msgid "_About"
-msgstr "_O programu..."
+msgstr "_O programu"
 
 #: src/ghex-window.c:419
 msgid "About this application"
@@ -830,7 +830,7 @@ msgstr "Naslednja stran"
 
 #: src/main.c:36
 msgid "X geometry specification (see \"X\" man page)."
-msgstr "Določilo geometrije okna (glej stran z navodili \"X\")."
+msgstr "Določilo geometrije okna (glej stran z navodili »X«)."
 
 #: src/main.c:36
 msgid "GEOMETRY"
@@ -857,7 +857,7 @@ msgstr ""
 #: src/main.c:133 src/main.c:146
 #, c-format
 msgid "Invalid geometry string \"%s\"\n"
-msgstr "Neveljaven geometrijski niz \"%s\"\n"
+msgstr "Neveljaven geometrijski niz »%s«\n"
 
 #: src/preferences.c:69
 msgid "GHex Preferences"
@@ -865,7 +865,7 @@ msgstr "Možnosti GHex"
 
 #: src/preferences.c:101
 msgid "_Maximum number of undo levels:"
-msgstr "_Največje število razveljavitev"
+msgstr "_Največje število razveljavitev:"
 
 #: src/preferences.c:121
 msgid "Undo levels"
@@ -930,7 +930,7 @@ msgstr "Pisave"
 
 #: src/preferences.c:245
 msgid "_Data font:"
-msgstr "Pisava _podatkov"
+msgstr "Pisava _podatkov:"
 
 #: src/preferences.c:259
 msgid "Data font"
@@ -991,7 +991,7 @@ msgid ""
 "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
 msgstr ""
 "Zapis odmika vsebuje nedovoljena določila.\n"
-"Uporabiti je mogoče le 'x', 'X', 'p', 'P', 'd' in 'o'!"
+"Uporabiti je mogoče le »x«, »X«, »p«, »P«, »d« in »o«!"
 
 #: src/print.c:57
 #, c-format
@@ -1058,10 +1058,10 @@ msgstr "O programu"
 #: src/ui.c:191
 msgid "translator-credits"
 msgstr ""
+"Matej Urbančič <mateju@src.gnome.org>\n"
 "Matic Žgur <mr.zgur@gmail.com>\n"
 "Matjaž Horvat <m@owca.info>\n"
-"Tilen Travnik <tilen.travnik@guest.arnes.si>\n"
-"Matej Urbančič <mateju@svn.gnome.org>"
+"Tilen Travnik <tilen.travnik@guest.arnes.si>"
 
 #: src/ui.c:194
 msgid "GHex Website"
@@ -1086,7 +1086,7 @@ msgstr "Izbor imenika in datoteke za vir HTML"
 
 #: src/ui.c:465
 msgid "You need to specify a base name for the HTML files."
-msgstr "Izbrati je treba osnovno ime za datoteke HTML"
+msgstr "Izbrati je treba osnovno ime za datoteke HTML."
 
 #: src/ui.c:476 src/ui.c:502
 msgid "You don't have the permission to write to the selected path.\n"
