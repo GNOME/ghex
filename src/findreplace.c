@@ -83,6 +83,49 @@ static GtkWidget *create_hex_view(HexDocument *doc)
     return gh;
 }
 
+/* Helper functions to set up copy/paste keybindings */
+static gboolean
+keypress_cb (GtkWidget *dialog, GdkEventKey *event, gpointer user_data)
+{
+	GtkWidget *gh = gtk_window_get_focus (GTK_WINDOW(dialog));
+
+	/* If there isn't a GtkHex widget with focus, bail out. */
+	if (! GTK_IS_HEX (gh)) goto out;
+
+	/* Otherwise, handle clipboard shortcuts. */
+	if (event->state & GDK_CONTROL_MASK)
+	{
+		switch (event->keyval)
+		{
+			case 'c':
+				gtk_hex_copy_to_clipboard (GTK_HEX(gh));
+				return GDK_EVENT_STOP;
+				break;
+
+			case 'x':
+				gtk_hex_cut_to_clipboard (GTK_HEX(gh));
+				return GDK_EVENT_STOP;
+				break;
+
+			case 'v':
+				gtk_hex_paste_from_clipboard (GTK_HEX(gh));
+				return GDK_EVENT_STOP;
+				break;
+		}
+	}
+out:
+	return GDK_EVENT_PROPAGATE;
+}
+
+static void
+setup_clipboard_keybindings (GtkWidget *dialog)
+{
+	/* sanity check: all find/replace/etc. dialogs are GtkDialogs at their core */
+	g_assert (GTK_IS_DIALOG (dialog));
+
+	g_signal_connect (dialog, "key-press-event", G_CALLBACK(keypress_cb), NULL);
+}
+
 FindDialog *create_find_dialog()
 {
 	FindDialog *dialog;
@@ -133,6 +176,8 @@ FindDialog *create_find_dialog()
 
 	gtk_container_set_border_width(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), 2);
 	gtk_box_set_spacing(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), 2);
+
+	setup_clipboard_keybindings (dialog->window);
 
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (dialog->f_gh))) {
 		add_atk_namedesc (dialog->f_gh, _("Find Data"), _("Enter the hex data or ASCII data to search for"));
@@ -193,6 +238,8 @@ static AdvancedFind_AddDialog *create_advanced_find_add_dialog(AdvancedFindDialo
 					   TRUE, TRUE, 0);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
+
+	setup_clipboard_keybindings (dialog->window);
 
 	return dialog;
 }
@@ -408,6 +455,8 @@ ReplaceDialog *create_replace_dialog()
 	
 	gtk_container_set_border_width(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), 2);
 	gtk_box_set_spacing(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog->window))), 2);
+
+	setup_clipboard_keybindings (dialog->window);
 
 	if (GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(dialog->f_gh))) {
 		add_atk_namedesc (dialog->f_gh, _("Find Data"), _("Enter the hex data or ASCII data to search for"));
