@@ -262,7 +262,6 @@ redo_action (GtkWidget *widget,
 		GVariant *parameter)
 {
 	GtkHex *gh = GTK_HEX(widget);
-	HexDocument *doc;
 	HexChangeData *cd;
 
 	(void)action_name, (void)parameter;
@@ -270,16 +269,14 @@ redo_action (GtkWidget *widget,
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (HEX_IS_DOCUMENT(gh->document));
 
-	/* shorthand. */
-	doc = gh->document;
+	if (hex_document_can_redo (gh->document))
+	{
+		hex_document_redo (gh->document);
 
-	if (hex_document_can_redo (doc)) {
-		hex_document_redo(doc);
+		cd = hex_document_get_undo_data (gh->document);
 
-		cd = hex_document_get_undo_data (doc);
-
-		gtk_hex_set_cursor(gh, cd->start);
-		gtk_hex_set_nibble(gh, cd->lower_nibble);
+		gtk_hex_set_cursor (gh, cd->start);
+		gtk_hex_set_nibble (gh, cd->lower_nibble);
 	}
 }
 
@@ -301,7 +298,6 @@ undo_action (GtkWidget *widget,
 		GVariant *parameter)
 {
 	GtkHex *gh = GTK_HEX(widget);
-	HexDocument *doc;
 	HexChangeData *cd;
 
 	(void)action_name, (void)parameter;
@@ -309,16 +305,14 @@ undo_action (GtkWidget *widget,
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (HEX_IS_DOCUMENT(gh->document));
 
-	/* shorthand */
-	doc = gh->document;
+	if (hex_document_can_undo (gh->document))
+	{
+		cd = hex_document_get_undo_data (gh->document);
 
-	if (hex_document_can_undo (doc)) {
-		cd = hex_document_get_undo_data (doc);
+		hex_document_undo (gh->document);
 
-		hex_document_undo(doc);
-
-		gtk_hex_set_cursor(gh, cd->start);
-		gtk_hex_set_nibble(gh, cd->lower_nibble);
+		gtk_hex_set_cursor (gh, cd->start);
+		gtk_hex_set_nibble (gh, cd->lower_nibble);
 	}
 }
 
@@ -1124,11 +1118,15 @@ display_scrolled (GtkAdjustment *adj, GtkHex *gh)
 static gboolean
 scroll_timeout_handler(GtkHex *gh)
 {
-	if (gh->scroll_dir < 0) {
-		gtk_hex_set_cursor (gh, MAX(0, (int)(gh->cursor_pos - gh->cpl)));
+	if (gh->scroll_dir < 0)
+	{
+		gtk_hex_set_cursor (gh,
+				MAX (0, (int)(gh->cursor_pos - gh->cpl)));
 	}
-	else if (gh->scroll_dir > 0) {
-		gtk_hex_set_cursor(gh, MIN(hex_document_get_file_size (gh->document) - 1,
+	else if (gh->scroll_dir > 0)
+	{
+		gtk_hex_set_cursor (gh,
+				MIN (hex_document_get_file_size (gh->document) - 1,
 						gh->cursor_pos + gh->cpl));
 	}
 	return TRUE;
@@ -2735,7 +2733,7 @@ gtk_hex_set_nibble (GtkHex *gh, int lower_nibble)
  * moves cursor to byte index
  */
 void
-gtk_hex_set_cursor(GtkHex *gh, int index)
+gtk_hex_set_cursor (GtkHex *gh, int index)
 {
 	int y;
 	int old_pos;
@@ -2748,7 +2746,7 @@ gtk_hex_set_cursor(GtkHex *gh, int index)
 
 	if ((index >= 0) && (index <= file_size))
 	{
-		if(!gh->insert && index == file_size)
+		if (!gh->insert && index == file_size)
 			index--;
 
 		index = MAX(index, 0);
@@ -2757,39 +2755,46 @@ gtk_hex_set_cursor(GtkHex *gh, int index)
 		
 		gh->cursor_pos = index;
 
-		if(gh->cpl == 0)
+		if (gh->cpl == 0)
 			return;
 		
 		y = index / gh->cpl;
-		if(y >= gh->top_line + gh->vis_lines) {
-			gtk_adjustment_set_value(gh->adj,
-					MIN(y - gh->vis_lines + 1, gh->lines - gh->vis_lines));
-			gtk_adjustment_set_value(gh->adj,
-					MAX(gtk_adjustment_get_value(gh->adj), 0));
+		if (y >= gh->top_line + gh->vis_lines)
+		{
+			gtk_adjustment_set_value (gh->adj,
+					MIN (y - gh->vis_lines + 1, gh->lines - gh->vis_lines));
+
+			gtk_adjustment_set_value (gh->adj,
+					MAX (gtk_adjustment_get_value(gh->adj), 0));
 		}
-		else if (y < gh->top_line) {
-			gtk_adjustment_set_value(gh->adj, y);
+		else if (y < gh->top_line)
+		{
+			gtk_adjustment_set_value (gh->adj, y);
 		}      
 
 		if(index == file_size)
 			gh->lower_nibble = FALSE;
 
-		if(gh->selecting) {
+		if(gh->selecting)
+		{
 			gtk_hex_set_selection(gh, gh->selection.start, gh->cursor_pos);
+
 			bytes_changed (gh,
-					MIN(gh->cursor_pos, old_pos), MAX(gh->cursor_pos,
-						old_pos));
+					MIN (gh->cursor_pos, old_pos),
+					MAX (gh->cursor_pos, old_pos));
 		}
-		else {
-			guint start = MIN(gh->selection.start, gh->selection.end);
-			guint end = MAX(gh->selection.start, gh->selection.end);
-			bytes_changed(gh, start, end);
+		else
+		{
+			guint start = MIN (gh->selection.start, gh->selection.end);
+			guint end = MAX (gh->selection.start, gh->selection.end);
+
+			bytes_changed (gh, start, end);
 			gh->selection.end = gh->selection.start = gh->cursor_pos;
 		}
 
-		g_signal_emit_by_name(G_OBJECT(gh), "cursor-moved");
+		g_signal_emit_by_name (gh, "cursor-moved");
 
-		bytes_changed(gh, old_pos, old_pos);
+		bytes_changed (gh, old_pos, old_pos);
 		show_cursor (gh, TRUE);
 	}
 }
@@ -2935,10 +2940,8 @@ gtk_hex_set_insert_mode (GtkHex *gh, gboolean insert)
 	file_size = hex_document_get_file_size (gh->document);
 	gh->insert = insert;
 
-	if (!gh->insert && gh->cursor_pos > 0) {
-		if (gh->cursor_pos >= file_size)
+	if (!gh->insert && gh->cursor_pos > 0 && gh->cursor_pos >= file_size)
 			gh->cursor_pos = file_size - 1;
-	}
 }
 
 GtkHex_AutoHighlight *
