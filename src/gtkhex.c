@@ -535,11 +535,22 @@ render_cursor (GtkHex *gh,
 	GtkStyleContext *context;
 	cairo_region_t *region;
 	double x1, x2, y1, y2;
+	gboolean at_file_end = FALSE;
+	gboolean at_new_row = FALSE;
 
 	g_return_if_fail (gtk_widget_get_realized (widget));
 
 	context = gtk_widget_get_style_context (widget);
 	state = gtk_widget_get_state_flags (widget);
+
+	/* Find out if we're at the end of the row and/or the end of the file,
+	 * since this will make a difference when in insert mode
+	 */
+	if (gh->cursor_pos >= hex_document_get_file_size (gh->document))
+		at_file_end = TRUE;
+
+	if (gh->cursor_pos % gh->cpl == 0)
+		at_new_row = TRUE;
 
 	if (cursor_type == VIEW_HEX)
 	{
@@ -557,11 +568,25 @@ render_cursor (GtkHex *gh,
 			range[1] = index + 1;
 		}
 	}
-	else
+	else	/* VIEW_ASCII */
 	{
 		index = gh->cursor_pos % gh->cpl;
 		range[0] = index;
 		range[1] = index + 1;
+	}
+
+	if (gh->insert && at_file_end)
+	{
+		if (at_new_row)
+		{
+			range[0] = 0;
+			range[1] = 1;
+		}
+		else
+		{
+			--range[0];
+			--range[1];
+		}
 	}
 
 	region = gdk_pango_layout_get_clip_region (layout,
@@ -569,6 +594,14 @@ render_cursor (GtkHex *gh,
 			y,
 			range,
 			1);
+
+	if (gh->insert && at_file_end && !at_new_row)
+	{
+		cairo_rectangle_int_t tmp_rect = { 0 };
+
+		cairo_region_get_extents (region, &tmp_rect);
+		cairo_region_translate (region, tmp_rect.width, 0);
+	}
 
 	gdk_cairo_region (cr, region);
 	cairo_save (cr);
@@ -578,7 +611,6 @@ render_cursor (GtkHex *gh,
 	/* Render background - fill bg with default selection colour if we have
 	 * focus on the pane in question; otherwise, draw a solid black box.
 	 */
-
 	if (gh->active_view == cursor_type)
 	{
 		gtk_style_context_save (context);
@@ -592,7 +624,13 @@ render_cursor (GtkHex *gh,
 				ABS(x2-x1), 
 				ABS(y2-y1));
 
-		gtk_render_layout (context, cr, 0, y, layout);
+		/* Don't render layout if we're in insert mode and at file end, since
+		 * the cursor should be blank at that point.
+		 */
+		if (at_file_end && gh->insert)
+			;
+		else
+			gtk_render_layout (context, cr, 0, y, layout);
 
 		gtk_style_context_restore (context);
 	}
@@ -830,6 +868,10 @@ invalidate_offsets (GtkHex *gh,
  * [0 .. gh->vis_lines-1] AND NOT [0 .. gh->lines]!
  */
 
+#define DO_RENDER_CURSOR \
+			render_cursor (gh, cr, widget, layout,				\
+					cursor_line * gh->char_height,	/* y */		\
+					type);
 static void
 render_lines (GtkHex *gh,
 		cairo_t *cr,
@@ -846,6 +888,8 @@ render_lines (GtkHex *gh,
 	int frm_len;
 	int cursor_line;
 	int cpl;
+	gboolean cursor_drawn = FALSE;
+	int i;
 
 	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET(gh)));
 	g_return_if_fail (gh->cpl);
@@ -888,7 +932,7 @@ render_lines (GtkHex *gh,
 			MIN( (gh->top_line + max_lines + 1) * gh->cpl,
 				hex_document_get_file_size (gh->document) ));
 	
-	for (int i = min_lines; i <= max_lines; i++)
+	for (i = min_lines; i <= max_lines; i++)
 	{
 		int tmp = frm_len - ((i - min_lines) * cpl);
 
@@ -908,13 +952,14 @@ render_lines (GtkHex *gh,
 
 		if (i == cursor_line)
 		{
-			render_cursor (gh,
-					cr,
-					widget,
-					layout,
-					i * gh->char_height,
-					type);
+			DO_RENDER_CURSOR
+			cursor_drawn = TRUE;
 		}
+	}
+
+	if (! cursor_drawn)
+	{
+		DO_RENDER_CURSOR
 	}
 }
 
