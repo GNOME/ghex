@@ -32,9 +32,7 @@
 
 #include "common-ui.h"
 
-/* Not optional. */
 #include <config.h>
-
 
 /* helper for common_set_gtkhex_font_from_settings.
  * 
@@ -262,7 +260,7 @@ common_about_cb (GtkWindow *parent)
 	                       "copyright", copyright,
 	                       "documenters", documentation_credits,
 	                       "license", license_translated,
-	                       "logo-icon-name", "org.gnome.GHex",
+	                       "logo-icon-name", APP_ID,
 	                       "program-name", "GHex",
 	                       "title", _("About GHex"),
 	                       "translator-credits", _("translator-credits"),

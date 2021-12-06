@@ -28,9 +28,10 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <config.h>
-#include <glib-object.h>
+#include "hex-dialog.h"
+#include "gtkhex.h"
 
+#include <glib-object.h>
 #include <glib/gi18n.h>
 
 #include <stdio.h>
@@ -39,8 +40,7 @@
 #include <string.h>
 #include <math.h>
 
-#include "gtkhex.h"
-#include "hex-dialog.h"
+#include <config.h>
 
 struct _HexDialog
 {

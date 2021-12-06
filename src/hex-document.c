@@ -30,7 +30,6 @@
    Author: Jaka Mocnik <jaka@gnu.org>
  */
 
-#include <config.h>
 #include <glib-object.h>
 #include <glib/gi18n.h>
 
@@ -41,8 +40,7 @@
 #include <sys/stat.h>
 #include <string.h>
 
-//static void hex_document_class_init     (HexDocumentClass *);
-//static void hex_document_init           (HexDocument *doc);
+#include <config.h>
 
 static void hex_document_real_changed   (HexDocument *doc,
 										 gpointer change_data,

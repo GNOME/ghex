@@ -24,11 +24,9 @@
    Printing module by: Chema Celorio <chema@celorio.com>
 */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif /* HAVE_CONFIG_H */
-
 #include "print.h"
+
+#include <config.h>
 
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<0x7F))?1:0)
 

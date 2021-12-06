@@ -35,7 +35,6 @@
 
 #include <string.h>
 
-/* Not optional. */
 #include <config.h>
 
 /* Don't move these from the source file as they are not part of the public

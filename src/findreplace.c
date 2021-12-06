@@ -32,7 +32,6 @@
 
 #include "findreplace.h"
 
-/* Not optional. */
 #include <config.h>
 
 /* DEFINES */

@@ -30,10 +30,11 @@
    Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#include <locale.h>
-#include <config.h>
-
 #include "ghex-application-window.h"
+
+#include <locale.h>
+
+#include <config.h>
 
 static GtkWindow *window = NULL;
 
@@ -132,8 +133,7 @@ main (int argc, char *argv[])
 
 	ghex_init_configuration ();
 
-	app = gtk_application_new ("org.gnome.GHex",
-			G_APPLICATION_HANDLES_OPEN);
+	app = gtk_application_new (APP_ID, G_APPLICATION_HANDLES_OPEN);
 
 	g_signal_connect (app, "activate", G_CALLBACK(activate), NULL);
 	g_signal_connect (app, "open", G_CALLBACK(open), NULL);

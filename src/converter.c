@@ -32,9 +32,8 @@
    Chema Celorio <chema@gnome.org>
 */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif /* HAVE_CONFIG_H */
+#include "gtkhex.h"
+#include "converter.h"
 
 #include <ctype.h>      /* for isdigit */
 #include <stdlib.h>     /* for strtoul */
@@ -43,8 +42,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <glib/gi18n.h>
 
-#include "gtkhex.h"
-#include "converter.h"
+#include <config.h>
 
 /* OPAQUE DATATYPES */
 

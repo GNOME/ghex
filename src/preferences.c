@@ -32,19 +32,12 @@
 
 #include "preferences.h"
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif /* HAVE_CONFIG_H */
+#include <config.h>
 
 /* CONSTANTS */
 
-#ifdef HAVE_CONFIG_H
-#  define SHADED_BOX_MAX				CONFIG_H_SHADED_BOX_MAX
-#else
-#  define SHADED_BOX_MAX				1000
-#endif
-
-#define PREFS_RESOURCE "/org/gnome/GHex/preferences.ui"
+#define SHADED_BOX_MAX	CONFIG_H_SHADED_BOX_MAX
+#define PREFS_RESOURCE	"/org/gnome/GHex/preferences.ui"
 
 /* MACROS */
 

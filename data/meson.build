@@ -1,6 +1,21 @@
-ghex_desktop = i18n.merge_file(
-  input: 'org.gnome.GHex.desktop.in',
-  output: 'org.gnome.GHex.desktop',
+if get_option('development')
+  app_name = 'GHex (Development)'
+else    
+  app_name = 'GHex'
+endif
+
+desktop_file_in_config = configuration_data()
+desktop_file_in_config.set('app_id', app_id)
+desktop_file_in_config.set('app_name', app_name)
+desktop_file_in = configure_file(
+          input: 'org.gnome.GHex.desktop.in.in',
+         output: '@0@.desktop.in'.format(app_id),
+  configuration: desktop_file_in_config,
+)
+
+desktop_file = i18n.merge_file(
+  input: desktop_file_in,
+  output: '@0@.desktop'.format(app_id),
   po_dir: ghex_po_dir,
   type: 'desktop',
   install_dir: ghex_applicationsdir,
@@ -16,7 +31,7 @@ if desktop_file_validate_prg.found()
   test(
     'Validate desktop file',
     desktop_file_validate_prg,
-    args: [ghex_desktop]
+    args: [desktop_file]
   )
 endif
 
@@ -28,7 +43,6 @@ pkg_conf.set('includedir', ghex_includedir)
 
 pkg_conf.set('VERSION', meson.project_version())
 
-pkg_conf.set_quoted('XML_SHADED_BOX_MAX', shaded_box_max.to_string())
 
 configure_file(
   input: 'gtkhex-4.pc.in',
@@ -38,10 +52,13 @@ configure_file(
   install: true
 )
 
+schema_conf = configuration_data()
+schema_conf.set_quoted('XML_SHADED_BOX_MAX', shaded_box_max.to_string())
+
 configure_file(
   input: 'org.gnome.GHex.gschema.xml.in',
   output: 'org.gnome.GHex.gschema.xml',
-  configuration: pkg_conf,
+  configuration: schema_conf,
   install_dir: ghex_schemasdir,
   install: true
 )
