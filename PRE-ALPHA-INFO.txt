@@ -1,0 +1,44 @@
+GHex 4 pre-alpha information
+============================
+
+GHex 4 is currently in pre-alpha state.  As it has been substantially reworked
+from GHex 3.x and, as of the time of writing, has only been recently merged to
+the `master` branch (December 2021), it will require some substantial testing
+and translation updates.
+
+I have tried to write new GHex code in such a way that it is cleaner, easier
+to follow, and more commented than the old code that has been straight-ported.
+I was not able to do as substantial a reorganization of the old code as I
+would have liked for this pre-alpha merge, but efforts will be ongoing. One of
+my goals is to make this code more hacker-friendly in general, especially to
+newcomers.
+
+Visibly to the end user, some new features include:
+
+ - More modern and up-to-date look and feel, consistent with the GNOME HIG.
+ - Tabbed interface.
+ - Dark Mode (by default, the GTK system default is used, but can be
+   overridden with a checkbox and a switch in the Preferences dialog).
+ - Custom clipboard data, for less error-prone copying and pasting of binary
+   data; this will fall back to plaintext when unavailable.
+
+I'll break up the known issues into two categories:  items I would consider to
+be blockers for a stable release, and other known issues, which will be
+earmarked for priority after the first stable release of GHex 4.
+
+Blockers for stable release:
+ - Fixes for lots of UI imperfections, including widgets not grabbing focus
+   when they should; also there are some obvious missing keybindings.
+ - The offsets column shows some spurious lines when a file is first loaded.
+   This can be cleared by clicking anywhere on the hex widget to clear it.
+ - The hex-document portion of the gtkhex library is a relic of code written
+   in the 90s, and it shows. Some more sophisticated caching and memory
+   management is in order as opposed to simply calling g_malloc on basically
+   the entirety of the file being opened. This can cause unstable and
+   unpredictable behaviour when very large files are loaded.
+
+Other known issues to be addressed in a future version:
+ - The layout manager does not currently work perfectly with group types other
+   than 'byte'; the allocation of space is poor.
+
+(Logan Rathbone <poprocks@gmail.com>)
