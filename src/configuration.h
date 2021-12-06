@@ -1,7 +1,16 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* print.h - printing related stuff for ghex
+/* configuration.h - constants and declarations for GSettings
 
    Copyright (C) 1998 - 2004 Free Software Foundation
+
+   Copyright © 2005-2020 Various individual contributors, including
+   but not limited to: Jonathon Jongsma, Kalev Lember, who continued
+   to maintain the source code under the licensing terms described
+   herein and below.
+
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -18,49 +27,53 @@
    If not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-   Author: Jaka Mocnik <jaka@gnu.org>
+   Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef __GHEX_CONFIGURATION_H__
-#define __GHEX_CONFIGURATION_H__
+#ifndef GHEX_CONFIGURATION_H
+#define GHEX_CONFIGURATION_H
 
 #include <gtk/gtk.h>
-
-#include "preferences.h"
-#include "configuration.h"
 
 G_BEGIN_DECLS
 
 /* GSettings keys */
-#define GHEX_PREF_FONT               "font"
-#define GHEX_PREF_GROUP              "group-data-by"
-#define GHEX_PREF_MAX_UNDO_DEPTH     "max-undo-depth"
-#define GHEX_PREF_OFFSET_FORMAT      "offset-format"
-#define GHEX_PREF_DATA_FONT          "print-font-data"
-#define GHEX_PREF_HEADER_FONT        "print-font-header"
-#define GHEX_PREF_BOX_SIZE           "print-shaded-rows"
-#define GHEX_PREF_OFFSETS_COLUMN     "show-offsets"
+#define GHEX_PREF_FONT				"font"
+#define GHEX_PREF_GROUP				"group-data-by"
+#define GHEX_PREF_DATA_FONT			"print-font-data"
+#define GHEX_PREF_HEADER_FONT		"print-font-header"
+#define GHEX_PREF_BOX_SIZE			"print-shaded-rows"
+#define GHEX_PREF_OFFSETS_COLUMN	"show-offsets"
+#define GHEX_PREF_DARK_MODE			"dark-mode"
 
-/* our preferred settings; as only one copy of them is required,
-   we'll make them global vars, although this is a bit ugly */
-extern PangoFontMetrics *def_metrics;
-extern PangoFontDescription *def_font_desc;
+enum dark_mode {
+	DARK_MODE_OFF,
+	DARK_MODE_ON,
+	DARK_MODE_SYSTEM
+};
 
-extern gchar      *def_font_name;
-extern gchar      *data_font_name, *header_font_name;
-extern gdouble    data_font_size, header_font_size;    
-extern guint      max_undo_depth;
-extern gchar      *offset_fmt;
-extern gboolean   show_offsets_column;
+/* Our preferred settings; as only one copy of them is required,
+ * we'll make them global vars, though this is a bit ugly.
+ */
+extern char			*def_font_name;
+extern char			*data_font_name, *header_font_name;
+extern char			*offset_fmt;
+extern gboolean		show_offsets_column;
+extern guint		shaded_box_size;
+extern int			def_group_type;
+extern int			def_dark_mode;
+extern gboolean		sys_default_is_dark;
 
-extern guint      shaded_box_size;
-extern gint       def_group_type;
-
-extern GSettings *settings;
+extern GSettings	*settings;
+extern GtkCssProvider *provider;
 
 /* Initializes the gsettings client */
 void ghex_init_configuration (void);
 
+/* Cache the system default of prefer-dark-theme as gtk does not do this for
+ * us. */
+void get_sys_default_is_dark (void);
+
 G_END_DECLS
 
-#endif /* !__GHEX_CONFIGURATION_H__ */
+#endif /* GHEX_CONFIGURATION_H */

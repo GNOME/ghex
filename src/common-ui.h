@@ -1,16 +1,16 @@
 /* vim: colorcolumn=80 ts=4 sw=4
  */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex.h - definition of a GtkHex widget, modified for use with GnomeMDI
+/* common-ui.h - Common UI utility functions
 
-   Copyright (C) 2004 Free Software Foundation
+   Copyright © 2004 Free Software Foundation
 
    Copyright © 2005-2020 Various individual contributors, including
    but not limited to: Jonathon Jongsma, Kalev Lember, who continued
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021 Logan Rathbone
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -30,16 +30,27 @@
    Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef GHEX_CONVERTER_H
-#define GHEX_CONVERTER_H
+#ifndef COMMON_UI_H
+#define COMMON_UI_H
 
 #include <gtk/gtk.h>
+#include <glib/gi18n.h>
+
+#include "gtkhex.h"
+#include "configuration.h"
+#include "print.h"
 
 G_BEGIN_DECLS
 
-GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
-		GtkHex *gh);
+/* various ui convenience functions */
+
+void common_help_cb (GtkWindow *parent);
+void common_about_cb (GtkWindow *parent);
+void common_print (GtkWindow *parent, GtkHex *gh, gboolean preview);
+void common_set_gtkhex_font_from_settings (GtkHex *gh);
+void display_error_dialog (GtkWindow *parent, const char *msg);
+void display_info_dialog (GtkWindow *parent, const char *msg);
 
 G_END_DECLS
 
-#endif /* GHEX_CONVERTER_H */
+#endif /* COMMON_UI_H */

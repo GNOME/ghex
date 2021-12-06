@@ -1,22 +1,18 @@
 libghex_sources = [
-  'accessiblegtkhex.c',
-  'accessiblegtkhex.h',
-  'accessiblegtkhexfactory.c',
-  'accessiblegtkhexfactory.h',
   'gtkhex.c',
-  'gtkhex-private.h',
-  'hex-document.c'
+  'hex-document.c',
+  'gtkhex-layout-manager.c',
+  'gtkhex-paste-data.c'
 ]
 
 libghex_headers = [
   'hex-document.h',
-  'gtkhex.h'
+  'gtkhex.h',
+  'gtkhex-paste-data.h'
 ]
 
 libghex_deps = [
-  atk_dep,
   gtk_dep,
-  gail_dep
 ]
 
 libghex_c_args = [
@@ -51,33 +47,36 @@ libghex_dep = declare_dependency(
   sources: libghex_headers
 )
 
+# for i in `ls *.{c,h}`; do echo "  '${i}',"; done
 ghex_sources = [
   'chartable.c',
   'chartable.h',
-  'config.c',
+  'common-ui.c',
+  'common-ui.h',
+  'configuration.c',
   'configuration.h',
   'converter.c',
   'converter.h',
-  'factory.c',
-  'factory.h',
   'findreplace.c',
   'findreplace.h',
-  'ghex-window.c',
-  'ghex-window.h',
+  'ghex-application-window.c',
+  'ghex-application-window.h',
+  'ghex-notebook-tab.c',
+  'ghex-notebook-tab.h',
+  'gtkhex-paste-data.c',
+  'gtkhex-paste-data.h',
   'hex-dialog.c',
   'hex-dialog.h',
-  'hex-document-ui.c',
   'main.c',
+  'paste-special.c',
+  'paste-special.h',
   'preferences.c',
   'preferences.h',
   'print.c',
-  'print.h',
-  'ui.c',
-  'ui.h'
+  'print.h'
 ]
 
 ghex_deps = [
-  atk_dep,
   gio_dep,
   gtk_dep
 ]

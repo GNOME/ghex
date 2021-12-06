@@ -1,7 +1,9 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex-private.h - private GtkHex API; used by accessibility code
+/* paste-special.h - Declarations for paste special dialog
 
-   Copyright (C) 1997 - 2004 Free Software Foundation
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -18,19 +20,28 @@
    If not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-   Author: Jaka Mocnik <jaka@gnu.org>
+   Original GHex Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef __GTKHEX_PRIVATE_H__
-#define __GTKHEX_PRIVATE_H__
+#ifndef PASTE_SPECIAL_H
+#define PASTE_SPECIAL_H
+
+#include <gtk/gtk.h>
+#include <glib/gi18n.h>
 
 #include "gtkhex.h"
+#include "gtkhex-paste-data.h"
+#include "ghex-application-window.h"
+#include "common-ui.h"
 
-#define VIEW_HEX 1
-#define VIEW_ASCII 2
+G_BEGIN_DECLS
 
-gint format_ablock(GtkHex *gh, gchar *out, guint start, guint end);
-gint format_xblock(GtkHex *gh, gchar *out, guint start, guint end);
-void format_xbyte(GtkHex *gh, gint pos, gchar buf[2]);
+GtkWidget *	create_paste_special_dialog (GHexApplicationWindow *parent,
+		GdkClipboard *clip);
 
-#endif /* __GTKHEX_PRIVATE_H__ */
+GtkWidget *	create_copy_special_dialog (GHexApplicationWindow *parent,
+		GdkClipboard *clip);
+
+G_END_DECLS
+
+#endif /* PASTE_SPECIAL_H */

@@ -3,6 +3,13 @@
  * Copright (c) David Hammerton 2003
  * David Hammerton <crazney@crazney.net>
  *
+ * Copyright © 2004-2020 Various individual contributors, including
+ * but not limited to: Jonathon Jongsma, Kalev Lember, who continued to
+ * maintain the source code under the licensing terms described
+ * herein and below.
+ *
+ * Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+ *
  *  GHex is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU General Public License as
  *  published by the Free Software Foundation; either version 2 of the
@@ -19,19 +26,10 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef __HEX_DIALOG_H__
-#define __HEX_DIALOG_H__
+#ifndef HEX_DIALOG_H
+#define HEX_DIALOG_H
 
-#include <glib-object.h>
-
-#define HEX_DIALOG_TYPE           (hex_dialog_get_type())
-#define HEX_DIALOG(obj)           G_TYPE_CHECK_INSTANCE_CAST (obj, hex_dialog_get_type (), HexDialog)
-#define HEX_DIALOG_CLASS(klass)   G_TYPE_CHECK_CLASS_CAST (klass, hex_dialog_get_type (), HexDialogClass)
-#define IS_HEX_DIALOG(obj)        G_TYPE_CHECK_INSTANCE_TYPE (obj, hex_dialog_get_type ())
-
-
-typedef struct _HexDialog       HexDialog;
-typedef struct _HexDialogClass  HexDialogClass;
+#include <gtk/gtk.h>
 
 typedef enum
 {
@@ -69,27 +67,15 @@ typedef struct
     guchar streamBitsHint;
 } HexConversionProperties;
 
-struct _HexDialog
-{
-    GObject gobject;
-
-    GtkWidget *entry[ENTRY_MAX];
-    GtkWidget *config_endian;
-    GtkWidget *config_hex;
-    HexConversionProperties properties;
-    HexDialogVal64 val;
-};
-
-struct _HexDialogClass
-{
-    GObjectClass parent_class;
-};
-
-GType        hex_dialog_get_type(void);
-HexDialog    *hex_dialog_new(void);
-GtkWidget    *hex_dialog_getview(HexDialog *);
-void         hex_dialog_updateview(HexDialog *dialog, HexDialogVal64 *val);
+#define HEX_TYPE_DIALOG (hex_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (HexDialog, hex_dialog, HEX, DIALOG, GObject)
 
 
-#endif /* __HEX_DIALOG_H__ */
+/* PUBLIC METHOD DECLARATIONS */
 
+HexDialog    *hex_dialog_new (void);
+GtkWidget    *hex_dialog_getview (HexDialog *);
+void         hex_dialog_updateview (HexDialog *dialog, HexDialogVal64 *val);
+
+
+#endif /* HEX_DIALOG_H */

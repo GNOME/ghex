@@ -1,3 +1,5 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* print.c - print a HexDocument
 
@@ -22,27 +24,18 @@
    Printing module by: Chema Celorio <chema@celorio.com>
 */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif /* HAVE_CONFIG_H */
-
-#include <glib/gi18n.h>
-
 #include "print.h"
-#include "gtkhex.h"
-#include "ui.h"
+
+#include <config.h>
 
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<0x7F))?1:0)
-
-gchar *data_font_name, *header_font_name;
-guint shaded_box_size;
 
 static void print_header(GHexPrintJobInfo *pji, unsigned int page);
 static void print_row(GHexPrintJobInfo *pji, unsigned int offset,
 					  unsigned int bytes, int row);
-static void format_hex(HexDocument *doc, guint gt, gchar *out,
+static void format_hex(HexDocument *doc, guint gt, char *out,
 					   guint start, guint end);
-static void format_ascii(HexDocument *doc, gchar *out,
+static void format_ascii(HexDocument *doc, char *out,
 						 guint start, guint end);
 static void print_shaded_boxes( GHexPrintJobInfo *pji, guint page,
 								guint max_row);
@@ -51,13 +44,15 @@ static void print_shaded_box( GHexPrintJobInfo *pji, guint row, guint rows);
 static void print_header(GHexPrintJobInfo *pji, unsigned int page)
 {
 	PangoLayout *layout;
+
+	const char *file_name = hex_document_get_file_name (pji->doc);
 	cairo_t *cr = gtk_print_context_get_cairo_context (pji->pc);
-	gchar *text1 = g_filename_to_utf8 (pji->doc->file_name, -1, NULL,
+	char *text1 = g_filename_to_utf8 (file_name, -1, NULL,
 									   NULL, NULL);
-	gchar *text2 = g_strdup_printf (_("Page: %i/%i"), page, pji->pages);
-	gchar *pagetext = g_strdup_printf ("%d", page);
-	gdouble x, y;
-	gint width, height;
+	char *text2 = g_strdup_printf (_("Page: %i/%i"), page, pji->pages);
+	char *pagetext = g_strdup_printf ("%d", page);
+	double x, y;
+	int width, height;
 
 	layout = gtk_print_context_create_pango_layout (pji->pc);
 	pango_layout_set_text (layout, pagetext, -1);
@@ -99,13 +94,14 @@ static void print_row(GHexPrintJobInfo *pji, unsigned int offset,
 					  unsigned int bytes, int row)
 {
 	PangoLayout *layout;
-	gdouble x, y;
+	double x, y;
 	const int TEMP_LEN = 256;
-	gchar *temp = g_malloc(TEMP_LEN + 1);
+	char *temp = g_malloc(TEMP_LEN + 1);
 	cairo_t *cr = gtk_print_context_get_cairo_context (pji->pc);
 
 	y = pji->header_height +
 		(pji->font_char_height*(row + 1));
+
 	/* Print Offset */ 
 	cairo_move_to (cr, 0, y);
 	layout = gtk_print_context_create_pango_layout (pji->pc);
@@ -115,6 +111,7 @@ static void print_row(GHexPrintJobInfo *pji, unsigned int offset,
 	pango_layout_set_indent (layout, 0);
 	pango_cairo_show_layout (cr, layout);
 	g_object_unref (layout);
+
 	/* Print Hex */
 	x = pji->font_char_width*pji->offset_chars +
 		pji->pad_size ;
@@ -142,13 +139,13 @@ static void print_row(GHexPrintJobInfo *pji, unsigned int offset,
 	g_free(temp);
 }
 
-static void format_hex(HexDocument *doc, guint gt, gchar *out,
-					   guint start, guint end)
+static void format_hex (HexDocument *doc, guint gt, char *out,
+		guint start, guint end)
 {
-	gint i, j, low, high;
+	int i, j, low, high;
 	guchar c;
 
-	for(i = start + 1, j = 0; i <= end; i++) {
+	for (i = start + 1, j = 0; i <= end; i++) {
 		c = hex_document_get_byte(doc, i - 1);
 		low = c & 0x0F;
 		high = (c & 0xF0) >> 4;
@@ -156,18 +153,19 @@ static void format_hex(HexDocument *doc, guint gt, gchar *out,
 		out[j++] = ((high < 10)?(high + '0'):(high - 10 + 'A'));
 		out[j++] = ((low < 10)?(low + '0'):(low - 10 + 'A'));
 
-		if(i % gt == 0)
+		if (i % gt == 0)
           out[j++] = ' ';
 	}
 	out[j++] = 0;
 }
 
-static void format_ascii(HexDocument *doc, gchar *out, guint start, guint end)
+static void format_ascii (HexDocument *doc,
+		char *out, guint start, guint end)
 {
-	gint i, j;
+	int i, j;
 	guchar c;
 
-	for(i = start, j = 0; i < end; i++, j++) {
+	for (i = start, j = 0; i < end; i++, j++) {
 		c = hex_document_get_byte(doc, i);
 		if (is_printable(c))
 			out[j] = c;
@@ -178,24 +176,26 @@ static void format_ascii(HexDocument *doc, gchar *out, guint start, guint end)
 }
 
 static void print_shaded_boxes(GHexPrintJobInfo *pji, guint page,
-							   guint max_row)
+		guint max_row)
 {
 	guint i;
 	guint box_size = shaded_box_size;
 
-	if(box_size == 0)
+	if (box_size == 0)
 		return;
 
-	for(i = box_size + 1;
+	for (i = box_size + 1;
 		i <= pji->rows_per_page && i <= max_row;
 		i += box_size*2)
+	{
 		print_shaded_box (pji, i+1, ((i + box_size - 1) > max_row ?
 								  max_row - i + 1 : box_size));
+	}
 }
 
-static void print_shaded_box(GHexPrintJobInfo *pji, guint row, guint rows)
+static void print_shaded_box (GHexPrintJobInfo *pji, guint row, guint rows)
 {
-	gdouble box_top;
+	double box_top;
 	cairo_t *cr = gtk_print_context_get_cairo_context (pji->pc);
 
 	box_top = pji->header_height + row * pji->font_char_height;
@@ -221,7 +221,7 @@ static void print_shaded_box(GHexPrintJobInfo *pji, guint row, guint rows)
  * Creates a new GHexPrintJobInfo object.
  **/
 GHexPrintJobInfo *
-ghex_print_job_info_new(HexDocument *doc, guint group_type)
+ghex_print_job_info_new (HexDocument *doc, guint group_type)
 {
 	GHexPrintJobInfo *pji;
 	PangoFontDescription *d_font;
@@ -266,7 +266,7 @@ ghex_print_job_info_new(HexDocument *doc, guint group_type)
  * Destroys the GHexPrintJobInfo object pointed to by pji.
  **/
 void
-ghex_print_job_info_destroy(GHexPrintJobInfo *pji)
+ghex_print_job_info_destroy (GHexPrintJobInfo *pji)
 {
 	pango_font_description_free (pji->h_font);
 	pango_font_description_free (pji->d_font);
@@ -288,8 +288,9 @@ begin_print (GtkPrintOperation *operation,
     PangoLayout *layout;
     GHexPrintJobInfo *pji = (GHexPrintJobInfo *)data;
     pji->pc = context;
-    gint font_width, font_height;
-    gint printable_width, printable_height;
+    int font_width, font_height;
+    int printable_width, printable_height;
+	int file_size = hex_document_get_file_size (pji->doc);
 
     layout = gtk_print_context_create_pango_layout (context);
     pango_layout_set_text (layout, " ", -1);
@@ -318,7 +319,7 @@ begin_print (GtkPrintOperation *operation,
     pji->bytes_per_row *= pji->gt;
     pji->rows_per_page = (printable_height - pji->header_height) /
                           pji->font_char_height - 2;
-    pji->pages = (((pji->doc->file_size/pji->bytes_per_row) + 1)/
+    pji->pages = (((file_size/pji->bytes_per_row) + 1)/
                    pji->rows_per_page) + 1;
     gtk_print_operation_set_n_pages (pji->master, pji->pages);
 }
@@ -326,10 +327,10 @@ begin_print (GtkPrintOperation *operation,
 void
 print_page (GtkPrintOperation *operation,
             GtkPrintContext   *context,
-            gint               page_nr,
+            int               page_nr,
             gpointer           data)
 {
-	gint j, max_row;
+	int j, max_row, file_size;
 
 	GHexPrintJobInfo *pji = (GHexPrintJobInfo *)data;
 	g_return_if_fail(pji != NULL);
@@ -337,10 +338,12 @@ print_page (GtkPrintOperation *operation,
 	pji->pc = context;
 	g_return_if_fail(pji->pc != NULL);
 
+	file_size = hex_document_get_file_size (pji->doc);
+
 	print_header (pji, page_nr+1);
 	max_row = (pji->bytes_per_row*pji->rows_per_page*(page_nr+1) >
-			pji->doc->file_size ?
-			(int)((pji->doc->file_size-1)-
+			file_size ?
+			(int)((file_size-1)-
 			      (pji->bytes_per_row *
 			       pji->rows_per_page*(page_nr))) /
 			       pji->bytes_per_row + 1:
@@ -350,12 +353,11 @@ print_page (GtkPrintOperation *operation,
 		int file_offset = pji->bytes_per_row*(j - 1) +
 			pji->bytes_per_row*pji->rows_per_page*(page_nr);
 		int length = (file_offset + pji->bytes_per_row >
-			pji->doc->file_size ?
-			pji->doc->file_size - file_offset :
+			file_size ?
+			file_size - file_offset :
 			pji->bytes_per_row);
-		if (file_offset >= pji->doc->file_size)
+		if (file_offset >= file_size)
 			break;
 		print_row (pji, file_offset, length, j);
 	}
 }
-

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- vim:ts=4 sw=4
+-->
+<!--
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+
+   GHex is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License as
+   published by the Free Software Foundation; either version 2 of the
+   License, or (at your option) any later version.
+
+   GHex is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with GHex; see the file COPYING.
+   If not, write to the Free Software Foundation, Inc.,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+   Original GHex Author: Jaka Mocnik <jaka@gnu.org>
+-->
+
+<interface>
+	<menu id="hamburger_menu">
+		<!-- "FILE" -->
+		<section>
+			<item>
+				<attribute name="label" translatable="yes">_New</attribute>
+				<attribute name="action">ghex.new</attribute>
+			</item>
+			<item>
+				<attribute name="label" translatable="yes">Save _As</attribute>
+				<attribute name="action">ghex.save-as</attribute>
+			</item>
+			<item>
+				<attribute name="label" translatable="yes">_Revert</attribute>
+				<attribute name="action">ghex.revert</attribute>
+			</item>
+		</section>
+
+		<section>
+			<item>
+				<attribute name="label" translatable="yes">_Print</attribute>
+				<attribute name="action">ghex.print</attribute>
+			</item>
+			<item>
+				<attribute name="label" translatable="yes">Print Previe_w</attribute>
+				<attribute name="action">ghex.print-preview</attribute>
+			</item>
+		</section>
+
+		<!-- OTHER COMMON TASKS -->
+		<section>
+			<item>
+				<attribute name="label" translatable="yes">Find and _Replace</attribute>
+				<attribute name="action">ghex.replace</attribute>
+			</item>
+			<item>
+				<attribute name="label" translatable="yes">_Jump to Byte</attribute>
+				<attribute name="action">ghex.jump</attribute>
+			</item>
+		</section>
+
+		<!-- SUBMENUS -->
+		<section>
+
+			<!-- EDIT -->
+			<submenu>
+				<attribute name="label" translatable="yes">_Edit</attribute>
+				<item>
+					<attribute name="label" translatable="yes">_Copy Special</attribute>
+					<attribute name="action">ghex.copy-special</attribute>
+				</item>
+				<item>
+					<attribute name="label" translatable="yes">_Paste Special</attribute>
+					<attribute name="action">ghex.paste-special</attribute>
+				</item>
+			</submenu>
+
+			<!-- TOOLS -->
+			<submenu>
+				<attribute name="label" translatable="yes">_Tools</attribute>
+				<item>
+					<attribute name="label" translatable="yes">_Character Table</attribute>
+					<attribute name="action">ghex.chartable</attribute>
+				</item>
+				<item>
+					<attribute name="label" translatable="yes">_Base Converter</attribute>
+					<attribute name="action">ghex.converter</attribute>
+				</item>
+			</submenu>
+
+			<!-- GROUP DATA AS -->
+			<submenu>
+				<attribute name="label" translatable="yes">G_roup Data As</attribute>
+				<item>
+					<attribute name="label" translatable="yes">_Bytes</attribute>
+					<!-- use 'win' prefix for these because that's what gets set automatically by g_settings_create_action in _init -->
+					<attribute name="action">win.group-data-by</attribute>
+					<attribute name="target">bytes</attribute>
+				</item>
+				<item>
+					<attribute name="label" translatable="yes">_Words</attribute>
+					<attribute name="action">win.group-data-by</attribute>
+					<attribute name="target">words</attribute>
+				</item>
+				<item>
+					<attribute name="label" translatable="yes">_Longwords</attribute>
+					<attribute name="action">win.group-data-by</attribute>
+					<attribute name="target">longwords</attribute>
+				</item>
+			</submenu>
+		</section>
+
+		<!-- PREFS AND ABOUT -->
+		<section>
+			<item>
+				<attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+				<attribute name="action">win.show-help-overlay</attribute>
+			</item>
+
+			<item>
+				<attribute name="label" translatable="yes">_Preferences</attribute>
+				<attribute name="action">ghex.preferences</attribute>
+			</item>
+
+			<item>
+				<attribute name="label" translatable="yes">_About GHex</attribute>
+				<attribute name="action">ghex.about</attribute>
+			</item>
+
+		</section>
+	</menu>
+
+	<template class="GHexApplicationWindow" parent="GtkApplicationWindow">
+		<property name="title" translatable="yes">GHex</property>
+		<property name="default-width">800</property>
+		<property name="default-height">600</property>
+		<property name="icon-name">org.gnome.GHex</property>
+
+		<child type="titlebar">
+			<object class="GtkHeaderBar" id="headerbar">
+				<property name="show-title-buttons">true</property>
+
+				<child>
+					<object class="GtkButton">
+						<property name="valign">center</property>
+						<property name="label">Open</property>
+						<property name="action-name">ghex.open</property>
+						<property name="tooltip-text" translatable="yes">Open a file for hex editing</property>
+					</object>
+				</child>
+
+				<child type="end">
+					<object class="GtkMenuButton" id="hamburger_menu_button">
+						<property name="valign">center</property>
+						<property name="menu-model">hamburger_menu</property>
+						<property name="icon-name">open-menu-symbolic</property>
+						<accessibility>
+							<property name="label" translatable="yes">Main menu</property>
+						</accessibility>
+					</object>
+				</child>
+
+				<child type="end">
+					<object class="GtkToggleButton" id="find_button">
+						<property name="valign">center</property>
+						<property name="icon-name">edit-find-symbolic</property>
+						<property name="action-name">ghex.find</property>
+						<property name="tooltip-text" translatable="yes">Find</property>
+					</object>
+				</child>
+
+				<child type="end">
+					<object class="GtkButton">
+						<property name="valign">center</property>
+						<property name="icon-name">document-save-symbolic</property>
+						<property name="action-name">ghex.save</property>
+						<property name="tooltip-text" translatable="yes">Save document</property>
+					</object>
+				</child>
+			</object> <!-- headerbar -->
+		</child> <!-- titlebar -->
+
+		<child> <!-- main vert gtkbox -->
+			<object class="GtkBox"> <!-- main vert gtkbox -->
+				<property name="orientation">vertical</property>
+
+				<child> <!-- child_box for notebook & content area -->
+					<object class="GtkBox" id="child_box">
+						<property name="orientation">horizontal</property>
+						<property name="homogeneous">false</property>
+						<property name="vexpand">true</property>
+						<property name="hexpand">true</property>
+
+						<child> <!-- label showing no doc loaded -->
+							<object class="GtkLabel" id="no_doc_label">
+								<style>
+									<class name="title" />
+								</style>
+								<property name="use-markup">true</property>
+								<property name="label" translatable="yes">No file loaded.</property>
+								<property name="halign">center</property>
+								<property name="valign">center</property>
+								<property name="hexpand">true</property>
+								<property name="vexpand">true</property>
+							</object>
+						</child> <!-- label showing no doc loaded -->
+
+						<child> <!-- hex_notebook - tabs for GtkHex widget -->
+							<object class="GtkNotebook" id="hex_notebook">
+								<property name="enable-popup">true</property>
+								<property name="group-name">hex</property>
+								<property name="scrollable">true</property>
+								<property name="vexpand">true</property>
+								<property name="hexpand">true</property>
+								<!-- invisible by default to show the no_doc_label -->
+								<property name="visible">false</property>
+							</object>	
+						</child> <!-- hex_notebook -->
+
+					</object> <!-- child_box -->
+				</child> <!-- child_box -->
+
+				<!-- "statusbar" separator -->
+				<child>
+					<object class="GtkSeparator">
+						<property name="orientation">horizontal</property>
+					</object>
+				</child>
+
+				<child> <!-- box to put the `findreplace' dialogs. -->
+					<object class="GtkBox" id="findreplace_box" />
+				</child>
+
+				<!-- "findreplace" separator which comes and goes. -->
+				<child>
+					<object class="GtkSeparator">
+						<property name="orientation">horizontal</property>
+					</object>
+				</child>
+
+				<child> <!-- box just to put the conversions_pane; APPEND -->
+					<object class="GtkBox" id="conversions_box" />
+				</child>
+
+
+				<child> <!-- status_box -->
+					<object class="GtkBox" id="status_box">
+						<property name="orientation">horizontal</property>
+						<property name="homogeneous">false</property>
+
+
+						<child>
+							<object class="GtkStatusbar" id="statusbar">
+								<property name="hexpand">true</property>
+							</object>
+						</child>
+
+						<child> <!-- insert_mode_button -->
+							<object class="GtkToggleButton" id="insert_mode_button">
+								<property name="valign">center</property>
+								<property name="halign">end</property>
+								<property name="icon-name">insert-text-symbolic</property>
+								<property name="action-name">ghex.insert-mode</property>
+								<property name="tooltip-text" translatable="yes">Toggle insert mode (add data to file rather than replace existing data)</property>
+							</object>
+						</child> <!-- insert_mode_button -->
+
+						<!-- pane toggle btn -->
+						<child>
+							<object class="GtkButton" id="pane_toggle_button">
+								<property name="valign">center</property>
+								<property name="halign">end</property>
+								<property name="icon-name">pan-up-symbolic</property>
+								<property name="has-frame">false</property>
+								<property name="action-name">ghex.show-conversions</property>
+								<property name="tooltip-text" translatable="yes">Toggle a pane showing various numeric conversions</property>
+							</object>
+						</child>
+
+					</object> <!-- status_box -->
+				</child> <!-- status_box -->
+
+			</object> <!-- main vert gtkbox -->
+		</child> <!-- main vert gtkbox -->
+	</template>
+
+</interface>

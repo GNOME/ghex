@@ -1,14 +1,6 @@
-/* vim: colorcolumn=80 ts=4 sw=4
- */
-/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex.h - definition of a GtkHex widget, modified for use with GnomeMDI
-
-   Copyright (C) 2004 Free Software Foundation
-
-   Copyright © 2005-2020 Various individual contributors, including
-   but not limited to: Jonathon Jongsma, Kalev Lember, who continued
-   to maintain the source code under the licensing terms described
-   herein and below.
+/* vim: ts=4 sw=4 colorcolumn=80
+ * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* ghex-application-window.c - GHex main application window
 
    Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
@@ -27,19 +19,30 @@
    If not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-   Original Author: Jaka Mocnik <jaka@gnu.org>
+   Original GHex Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef GHEX_CONVERTER_H
-#define GHEX_CONVERTER_H
+#ifndef GHEX_NOTEBOOK_TAB_H
+#define GHEX_NOTEBOOK_TAB_H
 
 #include <gtk/gtk.h>
+#include <glib/gi18n.h>
+
+#include "gtkhex.h"
 
 G_BEGIN_DECLS
 
-GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
-		GtkHex *gh);
+#define GHEX_TYPE_NOTEBOOK_TAB (ghex_notebook_tab_get_type ())
+G_DECLARE_FINAL_TYPE (GHexNotebookTab, ghex_notebook_tab, GHEX, NOTEBOOK_TAB,
+				GtkWidget)
+
+/* Method Declarations */
+
+GtkWidget * 	ghex_notebook_tab_new (void);
+void 			ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh);
+const char * 	ghex_notebook_tab_get_filename (GHexNotebookTab *self);
+GtkHex * 		ghex_notebook_tab_get_hex (GHexNotebookTab *self);
 
 G_END_DECLS
 
-#endif /* GHEX_CONVERTER_H */
+#endif

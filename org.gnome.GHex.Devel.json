@@ -1,9 +1,10 @@
 {
-    "app-id": "org.gnome.GHex",
+    "app-id": "org.gnome.GHex.Devel",
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk": "org.gnome.Sdk",
     "command": "ghex",
+    "branch": "gtk4-port",
     "finish-args": [
         /* X11 + XShm */
         "--share=ipc", "--socket=x11",
@@ -18,7 +19,9 @@
     "modules": [
         {
             "name": "ghex",
+	    "builddir" : true,
             "buildsystem": "meson",
+            "config-opts" : [ "-Ddevelopment=true" ],
             "sources": [{
                 "type": "git",
                 "url": "https://gitlab.gnome.org/GNOME/ghex.git"

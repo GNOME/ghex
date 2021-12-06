@@ -1,7 +1,16 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* findreplace.h - types related to find and replace dialogs
 
    Copyright (C) 2004 Free Software Foundation
+
+   Copyright © 2005-2020 Various individual contributors, including
+   but not limited to: Jonathon Jongsma, Kalev Lember, who continued
+   to maintain the source code under the licensing terms described
+   herein and below.
+
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -21,86 +30,66 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef __FINDREPLACE_H__
-#define __FINDREPLACE_H__ 
+#ifndef FINDREPLACE_H
+#define FINDREPLACE_H 
 
 #include <gtk/gtk.h>
+#include <glib/gi18n.h>
 
 #include "gtkhex.h"
-#include "findreplace.h"
-#include "ghex-window.h"
+#include "configuration.h"
+#include "common-ui.h"
 
 G_BEGIN_DECLS
 
-typedef struct _JumpDialog JumpDialog;
+#define PANE_TYPE_DIALOG pane_dialog_get_type ()
+G_DECLARE_DERIVABLE_TYPE (PaneDialog, pane_dialog, PANE, DIALOG, GtkWidget)
 
-struct _JumpDialog {
-	GtkWidget *window;
-	GtkWidget *int_entry;
-	GtkWidget *ok, *cancel;
+struct _PaneDialogClass
+{
+	GtkWidgetClass parent_class;
+
+	void (*closed) (PaneDialog  *self);
+
+	/* Padding to allow adding up to 12 new virtual functions without
+	 * breaking ABI. */
+	gpointer padding[12];
 };
 
-typedef struct _FindDialog FindDialog;
-typedef struct _ReplaceDialog ReplaceDialog;
+#define FIND_TYPE_DIALOG (find_dialog_get_type ())
+G_DECLARE_DERIVABLE_TYPE (FindDialog, find_dialog, FIND, DIALOG, PaneDialog)
 
-struct _ReplaceDialog {
-	GtkWidget *window;
-	GtkWidget *f_gh, *r_gh;
-	HexDocument *f_doc, *r_doc;
-	GtkWidget *replace, *replace_all, *next, *close;
-	
-	GtkHex_AutoHighlight *auto_highlight;
-}; 
+struct _FindDialogClass
+{
+	PaneDialogClass parent_class;
 
-struct _FindDialog {
-	GtkWidget *window;
-	GtkWidget *frame;
-	GtkWidget *vbox;
-	GtkWidget *hbox;
-	HexDocument *f_doc;
-	GtkWidget *f_gh;
-	GtkWidget *f_next, *f_prev, *f_close;
-	
-	GtkHex_AutoHighlight *auto_highlight;
+	/* Padding to allow adding up to 12 new virtual functions without
+	 * breaking ABI. */
+	gpointer padding[12];
 };
 
-typedef struct _AdvancedFindDialog AdvancedFindDialog;
-typedef struct _AdvancedFind_AddDialog AdvancedFind_AddDialog;
+#define REPLACE_TYPE_DIALOG (replace_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (ReplaceDialog, replace_dialog, REPLACE, DIALOG,
+		FindDialog)
 
-struct _AdvancedFindDialog {
-	GHexWindow *parent;
-	AdvancedFind_AddDialog *addDialog;
+#define JUMP_TYPE_DIALOG (jump_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (JumpDialog, jump_dialog, JUMP, DIALOG, PaneDialog)
 
-	GtkWidget *window;
-	GtkWidget *hbox;
-	GtkWidget *vbox;
-	GtkListStore *list;
-	GtkWidget *tree;
-	GtkWidget *f_next, *f_prev;
-	GtkWidget *f_new, *f_remove;
-	GtkWidget *f_close;
-};
+/* PUBLIC METHOD DECLARATIONS */
 
-struct _AdvancedFind_AddDialog {
-	AdvancedFindDialog *parent;
-  
-	GtkWidget *window;
-	GtkWidget *f_gh;
-	HexDocument *f_doc;
-	GtkWidget *colour;
-};
+/* PaneDialog (generic) */
+void pane_dialog_set_hex (PaneDialog *self, GtkHex *gh);
+void pane_dialog_close (PaneDialog *self);
 
-extern FindDialog     *find_dialog;
-extern ReplaceDialog  *replace_dialog;
-extern JumpDialog     *jump_dialog;
+/* FindDialog */
+GtkWidget *find_dialog_new (void);
 
-/* creation of dialogs */
-FindDialog         *create_find_dialog         (void);
-ReplaceDialog      *create_replace_dialog      (void);
-JumpDialog         *create_jump_dialog         (void);
-AdvancedFindDialog *create_advanced_find_dialog(GHexWindow *parent);
-void               delete_advanced_find_dialog (AdvancedFindDialog *dialog);
+/* ReplaceDialog */
+GtkWidget *replace_dialog_new (void);
+
+/* JumpDialog */
+GtkWidget *jump_dialog_new (void);
 
 G_END_DECLS
 
-#endif /* !__FINDREPLACE_H__ */
+#endif /* FINDREPLACE_H */

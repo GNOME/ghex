@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- vim:ts=4 sw=4
+<!-- vim: colorcolumn=80 ts=4 sw=4
 -->
 <!--
    Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
@@ -23,14 +23,31 @@
    Original GHex Author: Jaka Mocnik <jaka@gnu.org>
 -->
 
-<gresources>
-	<gresource prefix="/org/gnome/GHex">
-		<file preprocess="xml-stripblanks" compressed="true">ghex-application-window.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">context-menu.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">preferences.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">paste-special.ui</file>
-	</gresource>
-	<gresource prefix="/org/gnome/GHex/gtk">
-		<file preprocess="xml-stripblanks">help-overlay.ui</file>
-	</gresource>
-</gresources>
+<interface>
+	<menu id='context-menu'>
+		<section>
+			<item>
+				<attribute name='label' translatable='yes'>_Undo</attribute>
+				<attribute name='action'>gtkhex.undo</attribute>
+			</item>
+			<item>
+				<attribute name='label' translatable='yes'>_Redo</attribute>
+				<attribute name='action'>gtkhex.redo</attribute>
+			</item>
+		</section>
+		<section>
+			<item>
+				<attribute name='label' translatable='yes'>Cu_t</attribute>
+				<attribute name='action'>gtkhex.cut</attribute>
+			</item>
+			<item>
+				<attribute name='label' translatable='yes'>_Copy</attribute>
+				<attribute name='action'>gtkhex.copy</attribute>
+			</item>
+			<item>
+				<attribute name='label' translatable='yes'>_Paste</attribute>
+				<attribute name='action'>gtkhex.paste</attribute>
+			</item>
+		</section>
+	</menu>
+</interface>

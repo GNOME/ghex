@@ -1,0 +1,44 @@
+<!-- vim: ts=4 sw=4
+-->
+<schemalist>
+
+	<!-- it does not appear possible to automate this (enums) with meson presently.
+		See: https://github.com/mesonbuild/meson/issues/1687
+	-->
+	<enum id="org.gnome.GHex.GroupType">
+		<value nick="bytes" value="1"/>
+		<value nick="words" value="2"/>
+		<value nick="longwords" value="4"/>
+	</enum>
+	<enum id="org.gnome.GHex.DarkMode">
+		<value nick="off" value="0"/>
+		<value nick="on" value="1"/>
+		<value nick="system" value="2"/>
+	</enum>
+
+	<schema id="org.gnome.GHex" path="/org/gnome/ghex/">
+		<key name="font" type="s">
+			<default>'Monospace 12'</default>
+		</key>
+		<key name="group-data-by" enum="org.gnome.GHex.GroupType">
+			<default>'bytes'</default>
+		</key>
+		<key name="print-font-data" type="s">
+			<default>'Monospace 10'</default>
+		</key>
+		<key name="print-font-header" type="s">
+			<default>'Sans 12'</default>
+		</key>
+		<key name="print-shaded-rows" type="u">
+			<range min="0" max=@XML_SHADED_BOX_MAX@/>
+			<default>0</default>
+		</key>
+		<key name="show-offsets" type="b">
+			<default>true</default>
+		</key>
+		<key name="dark-mode" enum="org.gnome.GHex.DarkMode">
+			<default>'system'</default>
+		</key>
+	</schema>
+
+</schemalist>

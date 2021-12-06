@@ -3,14 +3,15 @@ include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_
 flatpak:
     image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
     variables:
-        MANIFEST_PATH: "org.gnome.GHex.json"
+        MANIFEST_PATH: "org.gnome.GHex.Devel.json"
         FLATPAK_MODULE: "ghex"
+        APP_ID: "org.gnome.GHex.Devel"
         RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
-        APP_ID: "org.gnome.GHex"
         BUNDLE: "ghex-dev.flatpak"
+        BRANCH: "gtk4-port"
     extends: .flatpak
 
 nightly:
     extends: '.publish_nightly'
-    dependencies: ['flatpak']
     needs: ['flatpak']
+    dependencies: ['flatpak']

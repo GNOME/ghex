@@ -1,7 +1,16 @@
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* print.h - printing related stuff for ghex
+/* preferences.h - Declarations pertaining to preferences
 
    Copyright (C) 2004 Free Software Foundation
+
+   Copyright © 2005-2020 Various individual contributors, including
+   but not limited to: Jonathon Jongsma, Kalev Lember, who continued
+   to maintain the source code under the licensing terms described
+   herein and below.
+
+   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -18,33 +27,25 @@
    If not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-   Author: Jaka Mocnik <jaka@gnu.org>
+   Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef __GHEX_PREFERENCES_H__
-#define __GHEX_PREFERENCES_H__
+#ifndef GHEX_PREFERENCES_H
+#define GHEX_PREFERENCES_H
+
+#include <gtk/gtk.h>
+#include <glib/gi18n.h>
+#include <string.h>
+
+#include <gtkhex.h>	/* for GROUP_* enums */
+
+#include "configuration.h"
+#include "common-ui.h"
 
 G_BEGIN_DECLS
 
-typedef struct _PropertyUI PropertyUI;
-struct _PropertyUI {
-	GtkWidget *pbox;
-	GtkRadioButton *group_type[3];
-	GtkWidget *font_button, *undo_spin, *box_size_spin;
-	GtkWidget *offset_menu, *offset_choice[3];
-	GtkWidget *format, *offsets_col;
-	GtkWidget *paper_sel, *print_font_sel;
-	GtkWidget *df_button, *hf_button;
-	GtkWidget *df_label, *hf_label;
-};
-
-extern PropertyUI *prefs_ui;
-extern guint group_type[3];
-extern gchar *group_type_label[3];
-
-PropertyUI *create_prefs_dialog(void);
-void       set_current_prefs(PropertyUI *pui);
+GtkWidget *	create_preferences_dialog (GtkWindow *parent);
 
 G_END_DECLS
 
-#endif /* !__GHEX_PREFERENCES_H__ */
+#endif /* GHEX_PREFERENCES_H */
