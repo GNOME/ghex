@@ -63,9 +63,17 @@ configure_file(
   install: true
 )
 
-ghex_appdata = i18n.merge_file(
-  input: 'org.gnome.GHex.appdata.xml.in',
-  output: 'org.gnome.GHex.appdata.xml',
+appdata_in_conf = configuration_data()
+appdata_in_conf.set('app_id', app_id)
+appdata_in = configure_file(
+  input: 'org.gnome.GHex.appdata.xml.in.in',
+  output: '@0@.appdata.xml.in'.format(app_id),
+  configuration: appdata_in_conf,
+)
+
+appdata = i18n.merge_file(
+  input: appdata_in,
+  output: '@0@.appdata.xml'.format(app_id),
   po_dir: ghex_po_dir,
   install_dir: ghex_appdatadir,
   install: true
@@ -80,6 +88,6 @@ if appstream_util_prg.found()
   test(
     'Validate appstream file',
     appstream_util_prg,
-    args: ['validate-relax', '--nonet', ghex_appdata]
+    args: ['validate-relax', '--nonet', appdata]
   )
 endif
