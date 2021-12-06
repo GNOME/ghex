@@ -19,7 +19,9 @@
     "modules": [
         {
             "name": "ghex",
+	    "builddir" : true,
             "buildsystem": "meson",
+            "config-opts" : [ "-Ddevelopment=true" ],
             "sources": [{
                 "type": "git",
                 "url": "https://gitlab.gnome.org/GNOME/ghex.git"
