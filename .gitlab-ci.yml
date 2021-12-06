@@ -3,7 +3,7 @@ include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_
 flatpak:
     image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
     variables:
-        MANIFEST_PATH: "org.gnome.GHex.json"
+        MANIFEST_PATH: "org.gnome.GHex.Devel.json"
         MESON_ARGS: "-Ddevelopment=true"
         FLATPAK_MODULE: "ghex"
         APP_ID: "org.gnome.GHex"
