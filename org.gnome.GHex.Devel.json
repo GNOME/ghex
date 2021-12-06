@@ -6,15 +6,14 @@
     "command": "ghex",
     "branch": "master",
     "finish-args": [
-        /* X11 + XShm */
-        "--share=ipc", "--socket=x11",
-        /* Wayland */
+        "--device=dri",
+        "--share=ipc",
+        "--socket=fallback-x11",
         "--socket=wayland",
-        /* Filesystem */
-        "--filesystem=host",
-        /* dconf */
-        "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
-        "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+        "--talk-name=org.gtk.vfs",
+        "--talk-name=org.gtk.vfs.*",
+        "--filesystem=xdg-run/gvfsd",
+        "--filesystem=host"
     ],
     "modules": [
         {
