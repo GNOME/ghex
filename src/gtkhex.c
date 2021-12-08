@@ -2486,7 +2486,7 @@ gtk_hex_init (GtkHex *gh)
 
 	/* Context Menu */
 
-	builder = gtk_builder_new_from_resource ("/org/gnome/GHex/context-menu.ui");
+	builder = gtk_builder_new_from_resource (RESOURCE_BASE_PATH "/context-menu.ui");
 	menu = G_MENU_MODEL(gtk_builder_get_object (builder, "context-menu"));
 	gh->context_menu = gtk_popover_menu_new_from_model (menu);
 

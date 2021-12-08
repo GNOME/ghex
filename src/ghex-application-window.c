@@ -28,6 +28,8 @@
  * other, so keep this header here in the source file to avoid issues. */
 #include "paste-special.h"
 
+#include <config.h>
+
 /* DEFINES */
 
 #define offset_fmt	"0x%X"
@@ -1837,7 +1839,7 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	/* WIDGET TEMPLATE .UI */
 
 	gtk_widget_class_set_template_from_resource (widget_class,
-					"/org/gnome/GHex/ghex-application-window.ui");
+					RESOURCE_BASE_PATH "/ghex-application-window.ui");
 
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			no_doc_label);

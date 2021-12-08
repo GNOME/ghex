@@ -25,9 +25,11 @@
 
 #include "paste-special.h"
 
+#include <config.h>
+
 /* DEFINES */
 
-#define PASTE_SPECIAL_RESOURCE "/org/gnome/GHex/paste-special.ui"
+#define PASTE_SPECIAL_RESOURCE		RESOURCE_BASE_PATH "/paste-special.ui"
 
 /* MACROS */
 

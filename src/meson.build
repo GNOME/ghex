@@ -81,10 +81,27 @@ ghex_deps = [
   gtk_dep
 ]
 
-ghex_res = gnome.compile_resources(
+src_conf = configuration_data()
+src_conf.set('app_id', app_id)
+src_conf.set('resource_base_path', resource_base_path)
+
+app_ui = configure_file(
+  input: 'ghex-application-window.ui.in',
+  output: 'ghex-application-window.ui',
+  configuration: src_conf
+)
+
+res_in = configure_file(
+  input: 'ghex.gresource.xml.in',
+  output: 'ghex.gresource.xml',
+  configuration: src_conf
+)
+
+res = gnome.compile_resources(
   'ghex-resources',
-  'ghex.gresource.xml',
-  c_name: 'ghex'
+  res_in,
+  c_name: 'ghex',
+  dependencies: app_ui
 )
 
 ghex_c_args = [
@@ -93,7 +110,7 @@ ghex_c_args = [
 
 ghex = executable(
   meson.project_name(),
-  ghex_sources + ghex_res,
+  ghex_sources + res,
   include_directories: ghex_root_dir,
   dependencies: ghex_deps + [libghex_dep, ],
   c_args: ghex_c_args,

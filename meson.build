@@ -7,8 +7,10 @@ project(
 
 if get_option('development')
   app_id = 'org.gnome.GHex.Devel'
+  resource_base_path = '/org/gnome/GHex/Devel'
 else
   app_id = 'org.gnome.GHex'
+  resource_base_path = '/org/gnome/GHex'
 endif
 
 version_arr = meson.project_version().split('.')
@@ -49,6 +51,7 @@ shaded_box_max = 1000
 
 config_h = configuration_data()
 config_h.set_quoted('APP_ID', app_id)
+config_h.set_quoted('RESOURCE_BASE_PATH', resource_base_path)
 config_h.set_quoted('PACKAGE_NAME', meson.project_name())
 config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
 config_h.set_quoted('PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), meson.project_version()))

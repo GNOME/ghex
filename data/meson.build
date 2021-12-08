@@ -7,6 +7,7 @@ endif
 desktop_file_in_config = configuration_data()
 desktop_file_in_config.set('app_id', app_id)
 desktop_file_in_config.set('app_name', app_name)
+
 desktop_file_in = configure_file(
           input: 'org.gnome.GHex.desktop.in.in',
          output: '@0@.desktop.in'.format(app_id),
@@ -53,11 +54,13 @@ configure_file(
 )
 
 schema_conf = configuration_data()
-schema_conf.set_quoted('XML_SHADED_BOX_MAX', shaded_box_max.to_string())
+schema_conf.set('shaded_box_max', shaded_box_max)
+schema_conf.set('app_id', app_id)
+schema_conf.set('resource_base_path', resource_base_path)
 
 configure_file(
   input: 'org.gnome.GHex.gschema.xml.in',
-  output: 'org.gnome.GHex.gschema.xml',
+  output: '@0@.gschema.xml'.format(app_id),
   configuration: schema_conf,
   install_dir: ghex_schemasdir,
   install: true

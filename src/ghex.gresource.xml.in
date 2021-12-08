@@ -24,13 +24,13 @@
 -->
 
 <gresources>
-	<gresource prefix="/org/gnome/GHex">
+	<gresource prefix="@resource_base_path@">
 		<file preprocess="xml-stripblanks" compressed="true">ghex-application-window.ui</file>
 		<file preprocess="xml-stripblanks" compressed="true">context-menu.ui</file>
 		<file preprocess="xml-stripblanks" compressed="true">preferences.ui</file>
 		<file preprocess="xml-stripblanks" compressed="true">paste-special.ui</file>
 	</gresource>
-	<gresource prefix="/org/gnome/GHex/gtk">
+	<gresource prefix="@resource_base_path@/gtk">
 		<file preprocess="xml-stripblanks">help-overlay.ui</file>
 	</gresource>
 </gresources>

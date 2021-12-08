@@ -133,7 +133,7 @@ void ghex_init_configuration ()
 {
 	/* GSettings */
 
-    settings = g_settings_new ("org.gnome.GHex");
+    settings = g_settings_new (APP_ID);
     g_return_if_fail (settings);
 
     g_signal_connect (settings, "changed::" GHEX_PREF_OFFSETS_COLUMN,

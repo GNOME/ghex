@@ -36,8 +36,8 @@
 
 /* CONSTANTS */
 
-#define SHADED_BOX_MAX	CONFIG_H_SHADED_BOX_MAX
-#define PREFS_RESOURCE	"/org/gnome/GHex/preferences.ui"
+#define SHADED_BOX_MAX		CONFIG_H_SHADED_BOX_MAX
+#define PREFS_RESOURCE		RESOURCE_BASE_PATH "/preferences.ui"
 
 /* MACROS */
 
