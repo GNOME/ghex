@@ -604,7 +604,7 @@ render_cursor (GtkHex *gh,
 	cairo_clip_extents (cr, &x1, &y1, &x2, &y2);
 
 	/* Render background - fill bg with default selection colour if we have
-	 * focus on the pane in question; otherwise, draw a solid black box.
+	 * focus on the pane in question; otherwise, draw a solid box.
 	 */
 	if (gh->active_view == cursor_type)
 	{
@@ -898,13 +898,15 @@ render_lines (GtkHex *gh,
 		format_func = format_xblock;
 		cpl = gtk_hex_layout_get_hex_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
 	}
-	else
+	else	/* VIEW_ASCII */
 	{
 		widget = gh->adisp;
 		layout = gh->alayout;
 		format_func = format_ablock;
 		cpl = gh->cpl;
 	}
+
+	/* Grab styling and render the (blank) background. */
 
 	context = gtk_widget_get_style_context (widget);
 	cursor_line = gh->cursor_pos / gh->cpl - gh->top_line;
@@ -916,6 +918,20 @@ render_lines (GtkHex *gh,
 			/* width: */	allocation.width,
 			/* height: */	(max_lines - min_lines + 1) * gh->char_height);
 
+	/* If it's a blank canvass, we know there'll be no lines to render. But we
+	 * draw a single space in the pango layout as a workaround for the fact
+	 * that it will have no context as to how large to draw the cursor.
+	 */
+	if (hex_document_get_file_size (gh->document) == 0 &&
+			! hex_document_has_changed (gh->document))
+	{
+		pango_layout_set_text (layout, " ", -1);
+		goto no_more_lines_to_draw;
+	}
+
+	/* Work out how many lines need to be drawn, and draw them from the
+	 * buffer.
+	 */
 	max_lines = MIN(max_lines, gh->vis_lines);
 	max_lines = MIN(max_lines, gh->lines);
 
@@ -952,11 +968,13 @@ render_lines (GtkHex *gh,
 		}
 	}
 
+no_more_lines_to_draw:
 	if (! cursor_drawn)
 	{
 		DO_RENDER_CURSOR
 	}
 }
+#undef DO_RENDER_CURSOR
 
 static void
 render_offsets (GtkHex *gh,
