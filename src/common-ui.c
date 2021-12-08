@@ -210,6 +210,7 @@ common_about_cb (GtkWindow *parent)
 {
 	char *copyright;
 	char *license_translated;
+	char *version;
 
 	g_return_if_fail (GTK_IS_WINDOW(parent));
 
@@ -254,6 +255,15 @@ common_about_cb (GtkWindow *parent)
 	copyright = g_strdup_printf (_("Copyright © %d–%d The GHex authors"),
 			1998, 2021);
 
+	if (strstr (APP_ID, "Devel"))
+		version = g_strdup_printf ("%s (Running against GTK %d.%d.%d)",
+				PACKAGE_VERSION,
+				gtk_get_major_version (),
+				gtk_get_minor_version (),
+				gtk_get_micro_version ());
+	else
+		version = PACKAGE_VERSION;
+
 	gtk_show_about_dialog (parent,
 	                       "authors", authors,
 	                       "comments", _("A binary file editor"),
@@ -261,10 +271,11 @@ common_about_cb (GtkWindow *parent)
 	                       "documenters", documentation_credits,
 	                       "license", license_translated,
 	                       "logo-icon-name", APP_ID,
-	                       "program-name", "GHex",
+	                       "program-name",
+						   strstr (APP_ID, "Devel") ? "GHex (Development)" : "GHex",
 	                       "title", _("About GHex"),
 	                       "translator-credits", _("translator-credits"),
-	                       "version", PACKAGE_VERSION,
+	                       "version", version,
 	                       "website", "https://wiki.gnome.org/Apps/Ghex",
 	                       "website-label", _("GHex Website"),
 	                       "wrap-license", TRUE,

@@ -322,7 +322,6 @@ toggle_hex_action (GtkWidget *widget,
 
 	gh->active_view = VIEW_HEX;
 	gtk_widget_queue_draw (widget);
-//	show_cursor (gh, TRUE);
 }
 
 static void
@@ -334,7 +333,6 @@ toggle_ascii_action (GtkWidget *widget,
 
 	gh->active_view = VIEW_ASCII;
 	gtk_widget_queue_draw (widget);
-//	show_cursor (gh, TRUE);
 }
 
 /*
@@ -3033,11 +3031,7 @@ gtk_hex_set_group_type (GtkHex *gh, guint gt)
 void
 gtk_hex_show_offsets(GtkHex *gh, gboolean show)
 {
-	g_return_if_fail(gh != NULL);
-	g_return_if_fail(GTK_IS_HEX(gh));
-
-	if (gh->show_offsets == show)
-		return;
+	g_return_if_fail (GTK_IS_HEX (gh));
 
 	gh->show_offsets = show;
 	if (show)
