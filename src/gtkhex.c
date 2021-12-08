@@ -199,6 +199,8 @@ static void gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
 
 static void recalc_displays(GtkHex *gh);
 
+static void show_cursor (GtkHex *gh, gboolean show);
+
 /* GtkHex - Method Definitions */
 
 static void
@@ -309,6 +311,30 @@ undo_action (GtkWidget *widget,
 		gtk_hex_set_cursor (gh, cd->start);
 		gtk_hex_set_nibble (gh, cd->lower_nibble);
 	}
+}
+
+static void
+toggle_hex_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GtkHex *gh = GTK_HEX (widget);
+
+	gh->active_view = VIEW_HEX;
+	gtk_widget_queue_draw (widget);
+//	show_cursor (gh, TRUE);
+}
+
+static void
+toggle_ascii_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GtkHex *gh = GTK_HEX (widget);
+
+	gh->active_view = VIEW_ASCII;
+	gtk_widget_queue_draw (widget);
+//	show_cursor (gh, TRUE);
 }
 
 /*
@@ -1467,8 +1493,8 @@ key_press_cb (GtkEventControllerKey *controller,
 
 	file_size = hex_document_get_file_size (gh->document);
 
-	/* don't trample over Ctrl */
-	if (state & GDK_CONTROL_MASK) {
+	/* don't trample over Ctrl or Alt (reserved for actions) */
+	if (state & GDK_CONTROL_MASK || state & GDK_ALT_MASK) {
 		return FALSE;
 	}
 
@@ -1484,152 +1510,162 @@ key_press_cb (GtkEventControllerKey *controller,
 
 	/* FIXME - This could use a cleanup. Mostly flown in from old code.
 	 */
-	switch(keyval) {
-	case GDK_KEY_BackSpace:
-		if(gh->cursor_pos > 0) {
-			hex_document_set_data(gh->document, gh->cursor_pos - 1,
-								  0, 1, NULL, TRUE);
-			if (gh->selecting)
-				gh->selecting = FALSE;
-			gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
-		}
-		break;
-	case GDK_KEY_Tab:
-	case GDK_KEY_KP_Tab:
-		if (gh->active_view == VIEW_ASCII) {
-			gh->active_view = VIEW_HEX;
-		}
-		else {
-			gh->active_view = VIEW_ASCII;
-		}
-		break;
-	case GDK_KEY_Delete:
-		if (gh->cursor_pos < file_size) {
-			hex_document_set_data(gh->document, gh->cursor_pos,
-								  0, 1, NULL, TRUE);
-			gtk_hex_set_cursor(gh, gh->cursor_pos);
-		}
-		break;
-	case GDK_KEY_Up:
-		gtk_hex_set_cursor(gh, gh->cursor_pos - gh->cpl);
-		break;
-	case GDK_KEY_Down:
-		gtk_hex_set_cursor(gh, gh->cursor_pos + gh->cpl);
-		break;
-	case GDK_KEY_Page_Up:
-		gtk_hex_set_cursor(gh, MAX(0, gh->cursor_pos - gh->vis_lines*gh->cpl));
-		break;
-	case GDK_KEY_Page_Down:
-		gtk_hex_set_cursor(gh,
-				MIN(file_size,
-					gh->cursor_pos + gh->vis_lines*gh->cpl));
-		break;
-	default:
-		if (state & GDK_ALT_MASK) {
-			show_cursor (gh, TRUE);
-			return FALSE;
-		}
-		if(gh->active_view == VIEW_HEX)
-			switch(keyval) {
-			case GDK_KEY_Left:
-				if(!(state & GDK_SHIFT_MASK)) {
-					gh->lower_nibble = !gh->lower_nibble;
-					if(gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
-				}
-				else {
-					gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
-				}
-				break;
-			case GDK_KEY_Right:
-				if(gh->cursor_pos >= file_size)
-					break;
-				if(!(state & GDK_SHIFT_MASK)) {
-					gh->lower_nibble = !gh->lower_nibble;
-					if(!gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else {
-					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				break;
-			default:
-				if((keyval >= '0')&&(keyval <= '9')) {
-					hex_document_set_nibble(gh->document, keyval - '0',
-											gh->cursor_pos, gh->lower_nibble,
-											gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gh->lower_nibble = !gh->lower_nibble;
-					if(!gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else if((keyval >= 'A')&&(keyval <= 'F')) {
-					hex_document_set_nibble(gh->document, keyval - 'A' + 10,
-											gh->cursor_pos, gh->lower_nibble,
-											gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gh->lower_nibble = !gh->lower_nibble;
-					if(!gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else if((keyval >= 'a')&&(keyval <= 'f')) {
-					hex_document_set_nibble(gh->document, keyval - 'a' + 10,
-											gh->cursor_pos, gh->lower_nibble,
-											gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gh->lower_nibble = !gh->lower_nibble;
-					if(!gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else if((keyval >= GDK_KEY_KP_0)&&(keyval <= GDK_KEY_KP_9)) {
-					hex_document_set_nibble(gh->document, keyval - GDK_KEY_KP_0,
-											gh->cursor_pos, gh->lower_nibble,
-											gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gh->lower_nibble = !gh->lower_nibble;
-					if(!gh->lower_nibble)
-						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else
-					ret = FALSE;
-
-				break;      
-			}
-		else if(gh->active_view == VIEW_ASCII)
-			switch(keyval) {
-			case GDK_KEY_Left:
+	switch(keyval)
+	{
+		case GDK_KEY_BackSpace:
+			if (gh->cursor_pos > 0) {
+				hex_document_set_data(gh->document, gh->cursor_pos - 1,
+						0, 1, NULL, TRUE);
+				if (gh->selecting)
+					gh->selecting = FALSE;
 				gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
-				break;
-			case GDK_KEY_Right:
-				gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				break;
-			default:
-				if(is_displayable(keyval)) {
-					hex_document_set_byte(gh->document, keyval,
-										  gh->cursor_pos, gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else if((keyval >= GDK_KEY_KP_0)&&(keyval <= GDK_KEY_KP_9)) {
-					hex_document_set_byte(gh->document, keyval - GDK_KEY_KP_0 + '0',
-											gh->cursor_pos, gh->insert, TRUE);
-					if (gh->selecting)
-						gh->selecting = FALSE;
-					gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-				}
-				else
-					ret = FALSE;
-
-				break;
 			}
-		break;
-	}
+			break;
 
+		case GDK_KEY_Delete:
+			if (gh->cursor_pos < file_size) {
+				hex_document_set_data(gh->document, gh->cursor_pos,
+						0, 1, NULL, TRUE);
+				gtk_hex_set_cursor(gh, gh->cursor_pos);
+			}
+			break;
+
+		case GDK_KEY_Up:
+			gtk_hex_set_cursor(gh, gh->cursor_pos - gh->cpl);
+			break;
+
+		case GDK_KEY_Down:
+			gtk_hex_set_cursor(gh, gh->cursor_pos + gh->cpl);
+			break;
+
+		case GDK_KEY_Page_Up:
+			gtk_hex_set_cursor(gh, MAX(0, gh->cursor_pos - gh->vis_lines*gh->cpl));
+			break;
+
+		case GDK_KEY_Page_Down:
+			gtk_hex_set_cursor(gh, MIN(file_size,
+						gh->cursor_pos + gh->vis_lines*gh->cpl));
+			break;
+
+		default:
+			if (gh->active_view == VIEW_HEX)
+			{
+				switch(keyval)
+				{
+					case GDK_KEY_Left:
+						if (state & GDK_SHIFT_MASK) {
+							gtk_hex_set_cursor (gh, gh->cursor_pos - 1);
+						}
+						else {
+							gh->lower_nibble = !gh->lower_nibble;
+							if (gh->lower_nibble)
+								gtk_hex_set_cursor (gh, gh->cursor_pos - 1);
+						}
+						break;
+
+					case GDK_KEY_Right:
+						if (gh->cursor_pos >= file_size)
+							break;
+
+						if (state & GDK_SHIFT_MASK) {
+							gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+						}
+						else {
+							gh->lower_nibble = !gh->lower_nibble;
+							if(!gh->lower_nibble)
+								gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+						}
+						break;
+
+					default:
+						if (keyval >= '0' && keyval <= '9')
+						{
+							hex_document_set_nibble(gh->document, keyval - '0',
+									gh->cursor_pos, gh->lower_nibble,
+									gh->insert, TRUE);
+							if (gh->selecting)
+								gh->selecting = FALSE;
+							gh->lower_nibble = !gh->lower_nibble;
+							if(!gh->lower_nibble)
+								gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+						}
+						else if (keyval >= 'A' && keyval <= 'F')
+						{
+							hex_document_set_nibble(gh->document, keyval - 'A' + 10,
+									gh->cursor_pos, gh->lower_nibble,
+									gh->insert, TRUE);
+							if (gh->selecting)
+								gh->selecting = FALSE;
+							gh->lower_nibble = !gh->lower_nibble;
+							if (!gh->lower_nibble)
+								gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+						}
+						else if (keyval >= 'a' && keyval <= 'f')
+						{
+							hex_document_set_nibble(gh->document, keyval - 'a' + 10,
+									gh->cursor_pos, gh->lower_nibble,
+									gh->insert, TRUE);
+							if (gh->selecting)
+								gh->selecting = FALSE;
+							gh->lower_nibble = !gh->lower_nibble;
+							if (!gh->lower_nibble)
+								gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+						}
+						else if (keyval >= GDK_KEY_KP_0 && keyval <= GDK_KEY_KP_9)
+						{
+							hex_document_set_nibble(gh->document, keyval - GDK_KEY_KP_0,
+									gh->cursor_pos, gh->lower_nibble,
+									gh->insert, TRUE);
+							if (gh->selecting)
+								gh->selecting = FALSE;
+							gh->lower_nibble = !gh->lower_nibble;
+							if(!gh->lower_nibble)
+								gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+						}
+						else
+							ret = FALSE;
+
+						break;      
+				}
+			}
+			else	/* VIEW_ASCII */
+			{
+				switch (keyval)
+				{
+					case GDK_KEY_Left:
+						gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
+						break;
+
+					case GDK_KEY_Right:
+						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+						break;
+
+					default:
+						if (is_displayable (keyval))
+						{
+							hex_document_set_byte(gh->document, keyval,
+									gh->cursor_pos, gh->insert, TRUE);
+							if (gh->selecting)
+								gh->selecting = FALSE;
+							gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+						}
+						else if (keyval >= GDK_KEY_KP_0 && keyval <= GDK_KEY_KP_9)
+						{
+							hex_document_set_byte(gh->document, keyval - GDK_KEY_KP_0 + '0',
+									gh->cursor_pos, gh->insert, TRUE);
+							if (gh->selecting)
+								gh->selecting = FALSE;
+							gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+						}
+						else
+						{
+							ret = FALSE;
+						}
+						break;
+				}
+			}
+			break;
+	}
 	show_cursor (gh, TRUE);
 	
 	return ret;
@@ -2319,6 +2355,14 @@ gtk_hex_class_init (GtkHexClass *klass)
 			NULL,
 			redo_action);
 
+	gtk_widget_class_install_action (widget_class, "gtkhex.toggle-hex",
+			NULL,
+			toggle_hex_action);
+
+	gtk_widget_class_install_action (widget_class, "gtkhex.toggle-ascii",
+			NULL,
+			toggle_ascii_action);
+
 	/* SHORTCUTS FOR ACTIONS (not to be confused with keybindings, which are
 	 * set up in gtk_hex_init) */
 
@@ -2355,6 +2399,20 @@ gtk_hex_class_init (GtkHexClass *klass)
 			GDK_KEY_y,
 			GDK_CONTROL_MASK,
 			"gtkhex.redo",
+			NULL);
+
+	/* Alt+Left - toggle hex display */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_Left,
+			GDK_ALT_MASK,
+			"gtkhex.toggle-hex",
+			NULL);
+
+	/* Alt+Right - toggle ascii display */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_Right,
+			GDK_ALT_MASK,
+			"gtkhex.toggle-ascii",
 			NULL);
 }
 

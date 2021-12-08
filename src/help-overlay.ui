@@ -11,6 +11,76 @@
 
 				<child>
 					<object class="GtkShortcutsGroup">
+						<property name="title" translatable="true">Files</property>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;n</property>
+								<property name="title" translatable="true">New blank hex buffer</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;o</property>
+								<property name="title" translatable="true">Open a file for editing</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;s</property>
+								<property name="title" translatable="true">Save file</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;&lt;Shift&gt;s</property>
+								<property name="title" translatable="true">Save as</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;w</property>
+								<property name="title" translatable="true">Close tab</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;p</property>
+								<property name="title" translatable="true">Print the hex file</property>
+							</object>
+						</child>
+
+					</object>
+				</child> <!-- /Files -->
+
+				<child>
+					<object class="GtkShortcutsGroup">
+						<property name="title" translatable="true">Undo and Redo</property>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;z</property>
+								<property name="title" translatable="true">Undo</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;y</property>
+								<property name="title" translatable="true">Redo</property>
+							</object>
+						</child>
+
+					</object>
+				</child> <!-- /Undo and Redo -->
+
+				<child>
+					<object class="GtkShortcutsGroup">
 						<property name="title" translatable="true">Find and Replace</property>
 						
 						<child>
@@ -27,19 +97,33 @@
 							</object>
 						</child>
 
-						<child>
-							<object class="GtkShortcutsShortcut">
-								<property name="accelerator">&lt;Control&gt;j</property>
-								<property name="title" translatable="true">Jump to byte</property>
-							</object>
-						</child>
-
 					</object>
 				</child> <!-- /Find and Replace -->
 
 				<child>
 					<object class="GtkShortcutsGroup">
 						<property name="title" translatable="true">Clipboard</property>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;c</property>
+								<property name="title" translatable="true">Copy</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;x</property>
+								<property name="title" translatable="true">Cut</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;v</property>
+								<property name="title" translatable="true">Paste</property>
+							</object>
+						</child>
 
 						<child>
 							<object class="GtkShortcutsShortcut">
@@ -56,30 +140,23 @@
 						</child>
 
 					</object>
-				</child> <!-- /Data Operations -->
+				</child> <!-- /Clipboard -->
 
 				<child>
 					<object class="GtkShortcutsGroup">
-						<property name="title" translatable="true">Files</property>
+						<property name="title" translatable="true">Navigation</property>
 
 						<child>
 							<object class="GtkShortcutsShortcut">
-								<property name="accelerator">&lt;Control&gt;w</property>
-								<property name="title" translatable="true">Close tab</property>
+								<property name="accelerator">&lt;Alt&gt;Left</property>
+								<property name="title" translatable="true">Toggle left (hex) display</property>
 							</object>
 						</child>
 
 						<child>
 							<object class="GtkShortcutsShortcut">
-								<property name="accelerator">&lt;Control&gt;s</property>
-								<property name="title" translatable="true">Save file</property>
-							</object>
-						</child>
-
-						<child>
-							<object class="GtkShortcutsShortcut">
-								<property name="accelerator">&lt;Control&gt;Page_Down</property>
-								<property name="title" translatable="true">Switch to next tab</property>
+								<property name="accelerator">&lt;Alt&gt;Right</property>
+								<property name="title" translatable="true">Toggle right (ASCII) display</property>
 							</object>
 						</child>
 
@@ -90,8 +167,22 @@
 							</object>
 						</child>
 
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;Page_Down</property>
+								<property name="title" translatable="true">Switch to next tab</property>
+							</object>
+						</child>
+						
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;j</property>
+								<property name="title" translatable="true">Jump to byte</property>
+							</object>
+						</child>
+
 					</object>
-				</child> <!-- /Files -->
+				</child> <!-- /Navigation -->
 
 				<child>
 					<object class="GtkShortcutsGroup">
@@ -106,8 +197,8 @@
 
 						<child>
 							<object class="GtkShortcutsShortcut">
-								<property name="accelerator">&lt;Control&gt;p</property>
-								<property name="title" translatable="true">Print the hex file</property>
+								<property name="accelerator">Insert</property>
+								<property name="title" translatable="true">Toggle insert mode</property>
 							</object>
 						</child>
 

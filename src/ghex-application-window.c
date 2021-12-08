@@ -1787,6 +1787,18 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			"ghex.about",
 			NULL);	/* no args. */
 
+	/* Insert - toggle insert mode */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_Insert,
+			0,
+			"ghex.insert-mode",
+			NULL);	/* no args. */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_Insert,
+			0,
+			"ghex.insert-mode",
+			NULL);	/* no args. */
+
 	/* Ctrl+F - find */
 	gtk_widget_class_add_binding_action (widget_class,
 			GDK_KEY_f,
@@ -1822,6 +1834,34 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			"ghex.copy-special",
 			NULL);
 
+	/* Ctrl+N - new */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_n,
+			GDK_CONTROL_MASK,
+			"ghex.new",
+			NULL);
+
+	/* Ctrl+O - open */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_o,
+			GDK_CONTROL_MASK,
+			"ghex.open",
+			NULL);
+
+	/* Ctrl+S - save */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_s,
+			GDK_CONTROL_MASK,
+			"ghex.save",
+			NULL);
+
+	/* Ctrl+Shift+S - save as */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_s,
+			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+			"ghex.save-as",
+			NULL);
+
 	/* Ctrl+P - print */
 	gtk_widget_class_add_binding_action (widget_class,
 			GDK_KEY_p,
@@ -1835,6 +1875,9 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			GDK_CONTROL_MASK,
 			close_tab_shortcut_cb,
 			NULL);
+
+	/* In case you're looking for Ctrl+PageUp & PageDown - those are baked in
+	 * via GtkNotebook */
 
 	/* WIDGET TEMPLATE .UI */
 
