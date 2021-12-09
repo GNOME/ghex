@@ -320,7 +320,7 @@ file_save (GHexApplicationWindow *self)
 		display_error_dialog (GTK_WINDOW(self),
 				_("There was an error saving the file."
 				"\n\n"
-				"You permissions of the file may have been changed "
+				"Your permissions of the file may have been changed "
 				"by another program, or the file may have become corrupted."));
 	}
 }
