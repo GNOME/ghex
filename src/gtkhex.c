@@ -562,6 +562,7 @@ render_cursor (GtkHex *gh,
 
 	context = gtk_widget_get_style_context (widget);
 	state = gtk_widget_get_state_flags (widget);
+	gtk_style_context_get_color (context, &fg_color);
 
 	/* Find out if we're at the end of the row and/or the end of the file,
 	 * since this will make a difference when in insert mode
@@ -597,13 +598,10 @@ render_cursor (GtkHex *gh,
 
 	if (gh->insert && at_file_end)
 	{
-		if (at_new_row)
-		{
+		if (at_new_row) {
 			range[0] = 0;
 			range[1] = 1;
-		}
-		else
-		{
+		} else {
 			--range[0];
 			--range[1];
 		}
@@ -628,14 +626,30 @@ render_cursor (GtkHex *gh,
 	cairo_clip (cr);
 	cairo_clip_extents (cr, &x1, &y1, &x2, &y2);
 
-	/* Render background - fill bg with default selection colour if we have
-	 * focus on the pane in question; otherwise, draw a solid box.
+	/* - If don't have focus: draw dashed square.
+	 * - If have focus, draw filled in square (colour defined w/ css using
+	 *   `:checked` pseudoclass) if the pane we're drawing is selected;
+	 *   otherwise, draw a solid square.
 	 */
-	if (gh->active_view == cursor_type)
+	if (! gtk_widget_has_focus (GTK_WIDGET(gh)))
+	{
+		cairo_save (cr);
+		cairo_set_source_rgba (cr,
+				fg_color.red, fg_color.green, fg_color.blue, 0.75);
+
+		cairo_set_line_width (cr, 1.5);
+		cairo_set_dash (cr, (double[]){1.0}, 1, 0.0);
+
+		cairo_rectangle (cr, x1, y1, ABS(x2-x1), ABS(y2-y1));
+
+		cairo_stroke (cr);
+		cairo_restore (cr);
+	}
+	else if (gh->active_view == cursor_type)
 	{
 		gtk_style_context_save (context);
 
-		state |= GTK_STATE_FLAG_SELECTED;
+		state |= GTK_STATE_FLAG_CHECKED;
 		gtk_style_context_set_state (context, state);
 
 		gtk_render_background (context, cr,
@@ -656,11 +670,9 @@ render_cursor (GtkHex *gh,
 	}
 	else
 	{
-		gtk_style_context_get_color (context, &fg_color);
 		cairo_save (cr);
 		cairo_set_source_rgba (cr,
-				fg_color.red, fg_color.green, fg_color.blue,
-				fg_color.alpha);
+				fg_color.red, fg_color.green, fg_color.blue, fg_color.alpha);
 		cairo_set_line_width (cr, 1.5);
 
 		cairo_rectangle (cr, x1, y1, ABS(x2-x1), ABS(y2-y1));
@@ -668,10 +680,7 @@ render_cursor (GtkHex *gh,
 		cairo_stroke (cr);
 		cairo_restore (cr);
 	}
-
-	/* Restore state from cairo_clip */
-
-	cairo_restore (cr);
+	cairo_restore (cr);		/* from cairo_clip above */
 }
 
 static void
@@ -739,7 +748,14 @@ render_highlights (GtkHex *gh,
 		if (is_autohighlight)
 			state |= GTK_STATE_FLAG_LINK;
 		else
+		{
 			state |= GTK_STATE_FLAG_SELECTED;
+
+			if (gtk_widget_has_focus (GTK_WIDGET(gh)))
+			{
+				state |= GTK_STATE_FLAG_FOCUS_WITHIN;
+			}
+		}
 
 		gtk_style_context_set_state (context, state);
 

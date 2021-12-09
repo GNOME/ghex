@@ -9,6 +9,11 @@ hex {
 	background-color: alpha(red, 0.5);
 }
 
+.view:checked {
+	color: @theme_bg_color;
+	background-color: alpha(@theme_fg_color, 0.9);
+}
+
 #offsets {
 	background-color: shade(@theme_bg_color, 0.95);
 }
