@@ -88,7 +88,6 @@ struct _GtkHex_Highlight
 	int start, end;
 	int start_line, end_line;
 	GdkRGBA *bg_color; /* NULL to use the style color */
-	int min_select;
 
 	GtkHex_Highlight *prev, *next;
 	gboolean valid;
@@ -694,17 +693,15 @@ render_highlights (GtkHex *gh,
 		int cursor_line,
 		GtkHexViewType type)
 {
-	GtkHex_Highlight *curHighlight = &gh->selection;
-	GtkHex_AutoHighlight *nextList = gh->auto_highlight;
-	GtkStateFlags state;
-	GtkStyleContext *context;
+	/* Shorthand tracers to walk through highlight lists */
+	GtkHex_Highlight *highlight = &gh->selection;
+	GtkHex_AutoHighlight *auto_highlight = gh->auto_highlight;
 	GtkWidget *widget;		/* shorthand for the hex or ascii drawing area */
 	PangoLayout *layout;	/* shorthand for the hex or ascii pango layout */
+	GtkStyleContext *context;
 	int hex_cpl;
 	cairo_region_t *region;
 	int y;
-	int range[2];
-	double x1, x2, y1, y2;
 
 	if (type == VIEW_HEX)
 	{
@@ -723,106 +720,112 @@ render_highlights (GtkHex *gh,
 	context = gtk_widget_get_style_context (widget);
 	gtk_style_context_save (context);
 
-	state = gtk_widget_get_state_flags (widget);
-	state |= GTK_STATE_FLAG_SELECTED;
-	gtk_style_context_set_state (context, state);
+	gtk_style_context_set_state (context,
+			gtk_widget_get_state_flags (widget) | GTK_STATE_FLAG_SELECTED);
 
-	cairo_save (cr);
-
-	while (curHighlight)
+	while (highlight)
 	{
-		if (ABS(curHighlight->start - curHighlight->end) >=
-				curHighlight->min_select)
+		int cursor_off = 0;
+		int len;
+
+		int range[2];
+		double x1, x2, y1, y2;
+
+		/* Shorthands for readability of this loop */
+		int start, end, start_line, end_line;
+
+		gtk_hex_validate_highlight (gh, highlight);
+
+		start = MIN(highlight->start, highlight->end);
+		end = MAX(highlight->start, highlight->end);
+		start_line = highlight->start_line;
+		end_line = highlight->end_line;
+
+		if (start == end)
+			goto end_of_loop;
+
+		if (cursor_line == start_line)
 		{
-			int start, end;
-			int start_line, end_line;
-			int cursor_off = 0;
-			int len;
+			if (type == VIEW_HEX) {
+				cursor_off = 2 * (start % gh->cpl) +
+					(start % gh->cpl) / gh->group_type;
 
-			gtk_hex_validate_highlight (gh, curHighlight);
-
-			start = MIN(curHighlight->start, curHighlight->end);
-			end = MAX(curHighlight->start, curHighlight->end);
-			start_line = curHighlight->start_line;
-			end_line = curHighlight->end_line;
-
-			if (cursor_line == start_line)
-			{
-				if (type == VIEW_HEX)
-				{
-					cursor_off = 2 * (start % gh->cpl) + (start % gh->cpl) / gh->group_type;
-
-					if (cursor_line == end_line)
-						len = 2*(end%gh->cpl + 1) + (end%gh->cpl)/gh->group_type;
-					else
-						len = hex_cpl;
-
-					len = len - cursor_off;
-				}
-				else
-				{
-					cursor_off = start % gh->cpl;
-
-					if (cursor_line == end_line)
-						len = end - start + 1;
-					else
-						len = gh->cpl - cursor_off;
-				}
-
-				range[0] = cursor_off;
-				range[1] = cursor_off + len;
-			}
-			else if (cursor_line == end_line)
-			{
-				if (type == VIEW_HEX)
-				{
-					cursor_off = 2 * (end % gh->cpl + 1) + 
+				if (cursor_line == end_line)
+					len = 2 * (end % gh->cpl + 1) +
 						(end % gh->cpl) / gh->group_type;
-				}
 				else
-				{
-					cursor_off = end % gh->cpl + 1;
-				}
+					len = hex_cpl;
 
-				range[0] = 0;
-				range[1] = cursor_off;
+				len = len - cursor_off;
 			}
-			else if (cursor_line > start_line && cursor_line < end_line)
-			{
-				int cpl = (type == VIEW_HEX) ? hex_cpl : gh->cpl;
+			else {	/* VIEW_ASCII */
+				cursor_off = start % gh->cpl;
 
-				range[0] = 0;
-				range[1] = cpl;
+				if (cursor_line == end_line)
+					len = end - start + 1;
+				else
+					len = gh->cpl - cursor_off;
 			}
 
-			region = gdk_pango_layout_get_clip_region (layout,
-					0,	/* x */
-					y,
-					range,
-					1);
-
-			gdk_cairo_region (cr, region);
-			cairo_save (cr);
-			cairo_clip (cr);
-			cairo_clip_extents (cr, &x1, &y1, &x2, &y2);
-
-			gtk_render_background (context, cr,
-					x1,
-					y1,
-					ABS(x2-x1),
-					ABS(y2-y1));
-
-			cairo_restore (cr);
+			range[0] = cursor_off;
+			range[1] = cursor_off + len;
 		}
-		curHighlight = curHighlight->next;
-		while (curHighlight == NULL && nextList)
+		else if (cursor_line == end_line)
 		{
-			curHighlight = nextList->highlights;
-			nextList = nextList->next;
+			if (type == VIEW_HEX) {
+				cursor_off = 2 * (end % gh->cpl + 1) + 
+					(end % gh->cpl) / gh->group_type;
+			}
+			else {	/* VIEW_ASCII */
+				cursor_off = end % gh->cpl + 1;
+			}
+
+			range[0] = 0;
+			range[1] = cursor_off;
+		}
+		else if (cursor_line > start_line && cursor_line < end_line)
+		{
+			int cpl = (type == VIEW_HEX) ? hex_cpl : gh->cpl;
+
+			range[0] = 0;
+			range[1] = cpl;
+		}
+		else
+			goto end_of_loop;
+
+		cairo_save (cr);
+
+		region = gdk_pango_layout_get_clip_region (layout,
+				0,	/* x */
+				y,
+				range,
+				1);
+
+		gdk_cairo_region (cr, region);
+		cairo_clip (cr);
+		cairo_clip_extents (cr, &x1, &y1, &x2, &y2);
+
+		gtk_render_background (context, cr,
+				x1,
+				y1,
+				ABS(x2-x1),
+				ABS(y2-y1));
+
+		cairo_restore (cr);
+
+end_of_loop:
+		highlight = highlight->next;
+
+		/* if there are no selection highlights left, look for auto-highlights
+		 */
+		while (highlight == NULL && auto_highlight)
+		{
+			highlight = auto_highlight->highlights;
+			auto_highlight = auto_highlight->next;
 		}
 	}
-	cairo_restore (cr);
 	gtk_style_context_restore (context);
+	gtk_widget_queue_draw (GTK_WIDGET(gh));
 }
 
 /* FIXME - Previously, this function was more sophisticated, and only
@@ -1839,14 +1842,12 @@ gtk_hex_insert_highlight (GtkHex *gh,
 	g_return_val_if_fail (HEX_IS_DOCUMENT (gh->document), NULL);
 
 	file_size = hex_document_get_file_size (gh->document);
-	GtkHex_Highlight *new = g_malloc0(sizeof(GtkHex_Highlight));
+	GtkHex_Highlight *new = g_new0 (GtkHex_Highlight, 1);
 
 	new->start = CLAMP(MIN(start, end), 0, file_size);
 	new->end = MIN(MAX(start, end), file_size);
 
 	new->valid = FALSE;
-
-	new->min_select = 0;
 
 	new->prev = NULL;
 	new->next = ahl->highlights;
@@ -2453,7 +2454,6 @@ gtk_hex_init (GtkHex *gh)
 
 	gh->selection.start = gh->selection.end = 0;
 	gh->selection.bg_color = NULL;
-	gh->selection.min_select = 1;
 	gh->selection.next = gh->selection.prev = NULL;
 	gh->selection.valid = FALSE;
 
@@ -3059,7 +3059,7 @@ gtk_hex_insert_autohighlight(GtkHex *gh,
 		const char *search,
 		int len)
 {
-	GtkHex_AutoHighlight *new = g_malloc0(sizeof(GtkHex_AutoHighlight));
+	GtkHex_AutoHighlight *new = g_new0 (GtkHex_AutoHighlight, 1);
 
 	new->search_string = g_memdup2 (search, len);
 	new->search_len = len;
