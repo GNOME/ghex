@@ -32,6 +32,7 @@
 
 #include "gtkhex.h"
 #include "gtkhex-layout-manager.h"
+#include "common-macros.h"
 
 #include <string.h>
 
@@ -43,7 +44,6 @@
 
 /* DEFINES */
 
-#define CSS_NAME "hex"
 /* default minimum drawing area size (for ascii and hex widgets) in pixels. */
 #define DEFAULT_DA_SIZE 50
 /* default characters per line (cpl) */
@@ -87,10 +87,10 @@ struct _GtkHex_Highlight
 {
 	int start, end;
 	int start_line, end_line;
-	GdkRGBA *bg_color; /* NULL to use the style color */
+
+	gboolean valid;
 
 	GtkHex_Highlight *prev, *next;
-	gboolean valid;
 };
 
 /* used to automatically highlight all visible occurrences
@@ -122,6 +122,8 @@ struct _GtkHex
 	HexDocument *document;
 
 	GtkLayoutManager *layout_manager;
+
+	GtkCssProvider *provider;
 
 	GtkWidget *xdisp, *adisp;	/* DrawingArea */
 	GtkWidget *offsets;			/* DrawingArea */
@@ -699,9 +701,11 @@ render_highlights (GtkHex *gh,
 	GtkWidget *widget;		/* shorthand for the hex or ascii drawing area */
 	PangoLayout *layout;	/* shorthand for the hex or ascii pango layout */
 	GtkStyleContext *context;
+	GtkStateFlags state;
 	int hex_cpl;
 	cairo_region_t *region;
 	int y;
+	gboolean is_autohighlight = FALSE;
 
 	if (type == VIEW_HEX)
 	{
@@ -717,12 +721,6 @@ render_highlights (GtkHex *gh,
 	hex_cpl = gtk_hex_layout_get_hex_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
 	y = cursor_line * gh->char_height;
 
-	context = gtk_widget_get_style_context (widget);
-	gtk_style_context_save (context);
-
-	gtk_style_context_set_state (context,
-			gtk_widget_get_state_flags (widget) | GTK_STATE_FLAG_SELECTED);
-
 	while (highlight)
 	{
 		int cursor_off = 0;
@@ -733,6 +731,17 @@ render_highlights (GtkHex *gh,
 
 		/* Shorthands for readability of this loop */
 		int start, end, start_line, end_line;
+
+		context = gtk_widget_get_style_context (widget);
+		gtk_style_context_save (context);
+
+		state = gtk_style_context_get_state (context);
+		if (is_autohighlight)
+			state |= GTK_STATE_FLAG_LINK;
+		else
+			state |= GTK_STATE_FLAG_SELECTED;
+
+		gtk_style_context_set_state (context, state);
 
 		gtk_hex_validate_highlight (gh, highlight);
 
@@ -822,10 +831,10 @@ end_of_loop:
 		{
 			highlight = auto_highlight->highlights;
 			auto_highlight = auto_highlight->next;
+			is_autohighlight = TRUE;
 		}
+		gtk_style_context_restore (context);
 	}
-	gtk_style_context_restore (context);
-	gtk_widget_queue_draw (GTK_WIDGET(gh));
 }
 
 /* FIXME - Previously, this function was more sophisticated, and only
@@ -1836,7 +1845,6 @@ gtk_hex_insert_highlight (GtkHex *gh,
 		GtkHex_AutoHighlight *ahl,
 		int start, int end)
 {
-	GdkRGBA rgba;
 	int file_size;
 
 	g_return_val_if_fail (HEX_IS_DOCUMENT (gh->document), NULL);
@@ -2262,7 +2270,7 @@ gtk_hex_class_init (GtkHexClass *klass)
 
 	/* CSS name */
 
-	gtk_widget_class_set_css_name (widget_class, CSS_NAME);
+	gtk_widget_class_set_css_name (widget_class, "hex");
 
 	/* SIGNALS */
 
@@ -2422,7 +2430,6 @@ gtk_hex_init (GtkHex *gh)
 
 	GtkHexLayoutChild *child_info;
 
-	GtkCssProvider *provider;
 	GtkStyleContext *context;
 
 	GtkBuilder *builder;
@@ -2453,7 +2460,6 @@ gtk_hex_init (GtkHex *gh)
 	gh->selecting = FALSE;
 
 	gh->selection.start = gh->selection.end = 0;
-	gh->selection.bg_color = NULL;
 	gh->selection.next = gh->selection.prev = NULL;
 	gh->selection.valid = FALSE;
 
@@ -2464,23 +2470,15 @@ gtk_hex_init (GtkHex *gh)
 
 	/* Init CSS */
 
-	/* Set context var to the widget's context at large. */
-	context = gtk_widget_get_style_context (widget);
+	context = gtk_widget_get_style_context (GTK_WIDGET (widget));
 
-	/* set up a provider so we can feed CSS through C code. */
-	provider = gtk_css_provider_new ();
-	gtk_css_provider_load_from_data (GTK_CSS_PROVIDER (provider),
-									CSS_NAME " {\n"
-									 "   font-family: Monospace;\n"
-									 "   font-size: 12pt;\n"
-	                                 "   padding-left: 12px;\n"
-	                                 "   padding-right: 12px;\n"
-	                                 "}\n", -1);
+	gh->provider = gtk_css_provider_new ();
+	gtk_css_provider_load_from_resource (GTK_CSS_PROVIDER (gh->provider),
+		RESOURCE_BASE_PATH "/css/ghex.css");
 
-	/* add the provider to our widget's style context. */
 	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (provider),
-	                                GTK_STYLE_PROVIDER_PRIORITY_FALLBACK);
+	                                GTK_STYLE_PROVIDER (gh->provider),
+	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 	/* Setup offsets widget. */
 
@@ -2498,8 +2496,8 @@ gtk_hex_init (GtkHex *gh)
 			gh,
 			NULL);		/* GDestroyNotify destroy); */
 
-	context = gtk_widget_get_style_context (GTK_WIDGET (gh->offsets));
-	gtk_style_context_add_class (context, "header");
+	gtk_widget_set_name (gh->offsets, "offsets");
+	APPLY_PROVIDER_TO (gh->provider, gh->offsets);
 
 	/* hide it by default. */
 	gtk_widget_hide (gh->offsets);
@@ -2521,13 +2519,17 @@ gtk_hex_init (GtkHex *gh)
 			gh,
 			NULL);		/* GDestroyNotify destroy); */
 
-	/* Set context var to hex widget's context */
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->xdisp));
-	/* ... and add view class so we get certain theme colours for free. */
+
+	/* Add view class so we get certain theme colours for free. */
 	gtk_style_context_add_class (context, "view");
+
 	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (provider),
+	                                GTK_STYLE_PROVIDER (gh->provider),
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+	gtk_widget_set_name (gh->xdisp, "hex-display");
+
 	/* Setup our ASCII widget. */
 
 	gh->adisp = gtk_drawing_area_new();
@@ -2548,8 +2550,10 @@ gtk_hex_init (GtkHex *gh)
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->adisp));
 	gtk_style_context_add_class (context, "view");
 	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (provider),
+	                                GTK_STYLE_PROVIDER (gh->provider),
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+	gtk_widget_set_name (gh->adisp, "ascii-display");
 
 	/* Set a minimum size for hex/ascii drawing areas. */
 
@@ -3055,7 +3059,7 @@ gtk_hex_set_insert_mode (GtkHex *gh, gboolean insert)
 }
 
 GtkHex_AutoHighlight *
-gtk_hex_insert_autohighlight(GtkHex *gh,
+gtk_hex_insert_autohighlight (GtkHex *gh,
 		const char *search,
 		int len)
 {
@@ -3074,7 +3078,7 @@ gtk_hex_insert_autohighlight(GtkHex *gh,
 	new->view_min = 0;
 	new->view_max = 0;
 
-	gtk_hex_update_auto_highlight(gh, new, FALSE, TRUE);
+	gtk_hex_update_auto_highlight (gh, new, FALSE, TRUE);
 
 	return new;
 }

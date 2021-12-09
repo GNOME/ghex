@@ -212,10 +212,6 @@ find_next_cb (GtkButton *button, gpointer user_data)
 	priv->auto_highlight = NULL;
 	priv->auto_highlight = gtk_hex_insert_autohighlight(priv->gh,
 			str, str_len);
-	/* FIXME - due to the restructuring we lost our ability to add custom
-	 * colour - maybe there's a way to replicate this with states. :(
-			, "red");
-	*/
 
 	/* Search for requested string */
 
@@ -289,9 +285,6 @@ find_prev_cb (GtkButton *button, gpointer user_data)
 	priv->auto_highlight = NULL;
 	priv->auto_highlight = gtk_hex_insert_autohighlight(priv->gh,
 			str, str_len);
-	/* FIXME - restore our purdy colours
-			, "red");
-	*/
 
 	/* Search for requested string */
 	

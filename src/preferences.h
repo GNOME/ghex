@@ -41,6 +41,7 @@
 
 #include "configuration.h"
 #include "common-ui.h"
+#include "common-macros.h"
 
 G_BEGIN_DECLS
 

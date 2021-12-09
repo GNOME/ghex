@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+/* vim: colorcolumn=80 ts=4 sw=4
+ */
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
+/* common-macros.h - Common macros for GHex
 
-<!-- vim:ts=4 sw=4
--->
-<!--
    Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
@@ -21,19 +21,16 @@
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
    Original GHex Author: Jaka Mocnik <jaka@gnu.org>
--->
+*/
 
-<gresources>
-	<gresource prefix="@resource_base_path@">
-		<file preprocess="xml-stripblanks" compressed="true">ghex-application-window.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">context-menu.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">preferences.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">paste-special.ui</file>
-	</gresource>
-	<gresource prefix="@resource_base_path@/css">
-		<file>ghex.css</file>
-	</gresource>
-	<gresource prefix="@resource_base_path@/gtk">
-		<file preprocess="xml-stripblanks">help-overlay.ui</file>
-	</gresource>
-</gresources>
+#define GET_WIDGET(X) 														\
+	X = GTK_WIDGET(gtk_builder_get_object (builder, #X));					\
+	g_assert (GTK_IS_WIDGET (X));
+
+#define APPLY_PROVIDER_TO(PROVIDER, WIDGET)									\
+{																			\
+	GtkStyleContext *_context;												\
+	_context = gtk_widget_get_style_context (GTK_WIDGET(WIDGET));			\
+	gtk_style_context_add_provider (_context, GTK_STYLE_PROVIDER(PROVIDER),	\
+			GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);						\
+}

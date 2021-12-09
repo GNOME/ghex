@@ -31,12 +31,6 @@
 
 #define PASTE_SPECIAL_RESOURCE		RESOURCE_BASE_PATH "/paste-special.ui"
 
-/* MACROS */
-
-#define GET_WIDGET(X) \
-	X = GTK_WIDGET(gtk_builder_get_object (builder, #X)); \
-	g_assert (GTK_IS_WIDGET (X))
-
 /* ENUMS AND DATATYPES */
 
 #define HEX_PASTE_ERROR hex_paste_error_quark ()

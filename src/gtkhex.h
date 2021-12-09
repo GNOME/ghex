@@ -89,10 +89,9 @@ gboolean gtk_hex_get_selection(GtkHex *gh, gint *start, gint *end);
 void gtk_hex_clear_selection(GtkHex *gh);
 void gtk_hex_delete_selection(GtkHex *gh);
 
-GtkHex_AutoHighlight *gtk_hex_insert_autohighlight(GtkHex *gh,
-		const gchar *search,
-		gint len);
-void gtk_hex_delete_autohighlight(GtkHex *gh, GtkHex_AutoHighlight *ahl);
+GtkHex_AutoHighlight *
+gtk_hex_insert_autohighlight (GtkHex *gh, const char *search, int len);
+void gtk_hex_delete_autohighlight (GtkHex *gh, GtkHex_AutoHighlight *ahl);
 
 GtkAdjustment *gtk_hex_get_adjustment(GtkHex *gh);
 HexDocument *gtk_hex_get_document (GtkHex *gh);

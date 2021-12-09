@@ -39,12 +39,6 @@
 #define SHADED_BOX_MAX		CONFIG_H_SHADED_BOX_MAX
 #define PREFS_RESOURCE		RESOURCE_BASE_PATH "/preferences.ui"
 
-/* MACROS */
-
-#define GET_WIDGET(X) \
-	X = GTK_WIDGET(gtk_builder_get_object (builder, #X)); \
-	g_assert (GTK_IS_WIDGET (X))
-
 /* PRIVATE DATATYPES */
 
 /* The types of fonts that can be set via font choosers. I suppose we could
@@ -90,20 +84,11 @@ static GtkWidget *system_default_chkbtn;
 static GtkWidget *close_button;
 static GtkWidget *help_button;
 
-/* PRIVATE DECLARATIONS */
-
-
-
 /* PRIVATE FUNCTIONS */
 
-#define APPLY_PROVIDER_TO(PROVIDER, WIDGET)									\
-	context = gtk_widget_get_style_context (WIDGET);						\
-	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER(PROVIDER),	\
-			GTK_STYLE_PROVIDER_PRIORITY_APPLICATION)
 static void
 do_css_stuff(void)
 {
-	GtkStyleContext *context;
 	GtkCssProvider *box_provider, *frame_provider;
 
 	/* Grab layout-oriented widgets and set CSS styling. */
@@ -134,7 +119,6 @@ do_css_stuff(void)
 	APPLY_PROVIDER_TO (frame_provider, group_type_frame);
 	APPLY_PROVIDER_TO (frame_provider, print_font_frame);
 }
-#undef APPLY_PROVIDER_TO
 
 static void
 help_clicked_cb (GtkButton *button,
