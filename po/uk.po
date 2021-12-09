@@ -3,1017 +3,96 @@
 #
 # Yuri Syrota <rasta@renome.rovno.ua>, 1999.
 # Maxim Dziumanenko <mvd@mylinux.ua>, 2005.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2019-11-22 20:16+0000\n"
-"PO-Revision-Date: 2020-03-29 15:28+0300\n"
+"POT-Creation-Date: 2021-12-09 12:25+0000\n"
+"PO-Revision-Date: 2021-12-09 23:55+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
-"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 20.03.70\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 20.12.0\n"
 
-#: data/org.gnome.GHex.appdata.xml.in:6
-#| msgid "GNOME Hexadecimal Editor"
-msgid "GNOME Hex Editor"
-msgstr "Шістнадцятковий редактор для GNOME"
+#: data/org.gnome.GHex.appdata.xml.in.in:6
+msgid "GHex"
+msgstr "GHex"
 
-#: data/org.gnome.GHex.appdata.xml.in:7 data/org.gnome.GHex.desktop.in:5
+#: data/org.gnome.GHex.appdata.xml.in.in:7 data/org.gnome.GHex.desktop.in.in:6
 msgid "Inspect and edit binary files"
 msgstr "Вивчення та редагування двійкових файлів"
 
-#: data/org.gnome.GHex.appdata.xml.in:9
+#: data/org.gnome.GHex.appdata.xml.in.in:9
 msgid "GHex is a hex editor for the GNOME desktop."
 msgstr "GHex — шістнадцятковий редактор для середовища GNOME."
 
-#: data/org.gnome.GHex.appdata.xml.in:12
+#: data/org.gnome.GHex.appdata.xml.in.in:12
 msgid ""
 "GHex can load raw data from binary files and display them for editing in the "
 "traditional hex editor view. The display is split in two columns, with "
 "hexadecimal values in one column and the ASCII representation in the other. "
 "A useful tool for working with raw data."
 msgstr ""
-"GHex може завантажувати необроблені дані з двійкових файлів і показувати їх"
-" для редагування у традиційному форматі шістнадцяткового редактора. Панель"
-" показу програми поділено на два стовпчики — у одному зі стовпчиків показано"
-" шістнадцяткові значення, а у другому — представлення цих значень символами"
-" ASCII. Корисний інструмент для роботи із необробленими даними."
+"GHex може завантажувати необроблені дані з двійкових файлів і показувати їх "
+"для редагування у традиційному форматі шістнадцяткового редактора. Панель "
+"показу програми поділено на два стовпчики — у одному зі стовпчиків показано "
+"шістнадцяткові значення, а у другому — представлення цих значень символами "
+"ASCII. Корисний інструмент для роботи із необробленими даними."
 
-#: data/org.gnome.GHex.appdata.xml.in:44
-msgid "The GNOME Project"
-msgstr "Проєкт GNOME"
+#: data/org.gnome.GHex.appdata.xml.in.in:44
+msgid "Logan Rathbone"
+msgstr ""
+"Logan Rathbone"
 
-#: data/org.gnome.GHex.desktop.in:3 src/ghex-window.c:662
-#: src/ghex-window.c:1106
-msgid "GHex"
-msgstr "GHex"
-
-#: data/org.gnome.GHex.desktop.in:4
+#: data/org.gnome.GHex.desktop.in.in:5
 msgid "Hex Editor"
 msgstr "Шістнадцятковий редактор"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
-#: data/org.gnome.GHex.desktop.in:7
+#: data/org.gnome.GHex.desktop.in.in:8
 msgid "binary;debug;"
 msgstr "binary;debug;двійковий;бінарний;діагностика;зневадження;"
 
-#: src/chartable.c:147
+#: src/chartable.c:148
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:147
+#: src/chartable.c:148
 msgid "Hex"
 msgstr "Шістнадцяткова"
 
-#: src/chartable.c:147 src/preferences.c:142
+#: src/chartable.c:148
 msgid "Decimal"
 msgstr "Десяткова"
 
-#: src/chartable.c:148
+#: src/chartable.c:149
 msgid "Octal"
 msgstr "Вісімкова"
 
-#: src/chartable.c:148
+#: src/chartable.c:149
 msgid "Binary"
 msgstr "Двійкова"
 
-#: src/chartable.c:164
+#: src/chartable.c:175
 msgid "Character table"
 msgstr "Таблиця символів"
 
-#: src/converter.c:232
-msgid "Base Converter"
-msgstr "Конвертор систем числення"
-
-#. entries
-#: src/converter.c:253
-msgid "_Binary:"
-msgstr "_Двійкове:"
-
-#: src/converter.c:255
-msgid "_Octal:"
-msgstr "_Вісімкове:"
-
-#: src/converter.c:257
-msgid "_Decimal:"
-msgstr "_Десяткове:"
-
-#: src/converter.c:259
-msgid "_Hex:"
-msgstr "_Шістнадцяткове:"
-
-#: src/converter.c:261
-msgid "_ASCII:"
-msgstr "_ASCII:"
-
-#. get cursor button
-#: src/converter.c:265
-msgid "_Get cursor value"
-msgstr "_Взяти значення під курсором"
-
-#: src/converter.c:279
-msgid "Get cursor value"
-msgstr "Взяти значення під курсором"
-
-#: src/converter.c:279
-msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
-msgstr ""
-"Взяти значення в позиції курсора у двійковій, вісімковій, десятковій, "
-"шістнадцятковій формі та ASCII"
-
-#: src/converter.c:419
-msgid "ERROR"
-msgstr "ПОМИЛКА"
-
-#: src/findreplace.c:97 src/findreplace.c:221 src/ui.c:892
-#, c-format
-msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): пошук даних"
-
-#: src/findreplace.c:101 src/findreplace.c:161 src/findreplace.c:359
-msgid "Find String"
-msgstr "Пошук рядка"
-
-#: src/findreplace.c:108 src/findreplace.c:258
-msgid "Find _Next"
-msgstr "Знайти _наступне"
-
-#: src/findreplace.c:115 src/findreplace.c:267
-msgid "Find _Previous"
-msgstr "Знайти _попереднє"
-
-#: src/findreplace.c:138 src/findreplace.c:413
-msgid "Find Data"
-msgstr "Знайти дані"
-
-#: src/findreplace.c:138 src/findreplace.c:413
-msgid "Enter the hex data or ASCII data to search for"
-msgstr "Введіть шістнадцяткові дані ASCII дані для пошуку"
-
-#: src/findreplace.c:139
-msgid "Find Next"
-msgstr "Шукати наступне"
-
-#: src/findreplace.c:139 src/findreplace.c:415
-msgid "Finds the next occurrence of the search string"
-msgstr "Знати наступне входження рядка пошуку"
-
-#: src/findreplace.c:140
-msgid "Find previous"
-msgstr "Знайти попереднє"
-
-#: src/findreplace.c:140
-msgid "Finds the previous occurrence of the search string "
-msgstr "Знати попереднє входження рядка пошуку"
-
-#: src/findreplace.c:141 src/findreplace.c:418 src/findreplace.c:469
-msgid "Cancel"
-msgstr "Скасувати"
-
-#: src/findreplace.c:141
-msgid "Closes find data window"
-msgstr "Закрити вікно пошуку даних"
-
-#: src/findreplace.c:157
-#, c-format
-msgid "GHex (%s): Find Data: Add search"
-msgstr "GHex (%s): пошук даних: Додавання пошуку"
-
-#: src/findreplace.c:179
-msgid "Add"
-msgstr "Додати"
-
-#: src/findreplace.c:235
-msgid "Search String"
-msgstr "Пошук рядка"
-
-#: src/findreplace.c:243
-msgid "Highlight Colour"
-msgstr "Колір підсвічення"
-
-#: src/findreplace.c:280
-msgid "_Add New"
-msgstr "_Додати новий"
-
-#: src/findreplace.c:289
-msgid "_Remove Selected"
-msgstr "В_идалити виділене"
-
-#: src/findreplace.c:309
-msgid "Close"
-msgstr "Закрити"
-
-#: src/findreplace.c:309
-msgid "Closes advanced find window"
-msgstr "Закрити додаткове вікно пошуку"
-
-#: src/findreplace.c:355 src/ui.c:890
-#, c-format
-msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): знайти та замінити дані"
-
-#: src/findreplace.c:368
-msgid "Replace With"
-msgstr "Замінити на"
-
-#: src/findreplace.c:375
-msgid "Find _next"
-msgstr "Знайти _наступне"
-
-#: src/findreplace.c:383
-msgid "_Replace"
-msgstr "За_мінити"
-
-#: src/findreplace.c:391
-msgid "Replace _All"
-msgstr "Замінити _все"
-
-#: src/findreplace.c:414
-msgid "Replace Data"
-msgstr "Замінити дані"
-
-#: src/findreplace.c:414
-msgid "Enter the hex data or ASCII data to replace with"
-msgstr "Введіть шістнадцяткові чи  ASCII дані для заміни"
-
-#: src/findreplace.c:415
-msgid "Find next"
-msgstr "Знайти наступне"
-
-#: src/findreplace.c:416
-msgid "Replace"
-msgstr "Замінити"
-
-#: src/findreplace.c:416
-msgid "Replaces the search string with the replace string"
-msgstr "Замінити рядок пошуку рядком заміни"
-
-#: src/findreplace.c:417
-msgid "Replace All"
-msgstr "Замінити все"
-
-#: src/findreplace.c:417
-msgid "Replaces all occurrences of the search string with the replace string"
-msgstr "Замінити всі екземпляри рядка пошуку рядком заміни"
-
-#: src/findreplace.c:418
-msgid "Closes find and replace data window"
-msgstr "Закрити вікно пошуку і заміни даних"
-
-#: src/findreplace.c:434 src/ui.c:888
-#, c-format
-msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): перескочити до байта"
-
-#: src/findreplace.c:467
-msgid "Jump to byte"
-msgstr "Перейти до байта"
-
-#: src/findreplace.c:467
-msgid "Enter the byte to jump to"
-msgstr "Введіть байт, до якого потрібно перейти"
-
-#: src/findreplace.c:468
-msgid "OK"
-msgstr "Гаразд"
-
-#: src/findreplace.c:468
-msgid "Jumps to the specified byte"
-msgstr "Перейти до вказаного байта"
-
-#: src/findreplace.c:469
-msgid "Closes jump to byte window"
-msgstr "Закрити вікно переходу"
-
-#: src/findreplace.c:532 src/findreplace.c:566 src/findreplace.c:673
-msgid "There is no active document to search!"
-msgstr "Немає активних документів для пошуку!"
-
-#: src/findreplace.c:539 src/findreplace.c:573 src/findreplace.c:680
-#: src/findreplace.c:714 src/findreplace.c:759
-msgid "There is no string to search for!"
-msgstr "Немає рядка для пошуку!"
-
-#: src/findreplace.c:551 src/findreplace.c:689 src/findreplace.c:879
-msgid "End Of File reached"
-msgstr "Досягнуто кінець файлу"
-
-#: src/findreplace.c:552 src/findreplace.c:585 src/findreplace.c:688
-#: src/findreplace.c:880 src/findreplace.c:903
-msgid "String was not found!\n"
-msgstr "Рядок не знайдено!\n"
-
-#: src/findreplace.c:584 src/findreplace.c:902
-msgid "Beginning Of File reached"
-msgstr "Досягнуто початок файлу"
-
-#: src/findreplace.c:601
-msgid "There is no active document to move the cursor in!"
-msgstr "Немає активних документів для переміщення курсора!"
-
-#: src/findreplace.c:619
-msgid "No offset has been specified!"
-msgstr "Не вказано зміщення!"
-
-#: src/findreplace.c:644
-msgid "The specified offset is beyond the  file boundaries!"
-msgstr "Вказаний відступ перебуває за межами файла!"
-
-#: src/findreplace.c:652
-msgid "Can not position cursor beyond the End Of File!"
-msgstr "Неможливо встановити курсор за межами файла!"
-
-#: src/findreplace.c:659
-#| msgid ""
-#| "You may only give the offset as:\n"
-#| "  - a positive decimal number, or\n"
-#| "  - a hex number, beginning with '0x'"
-msgid ""
-"You may only give the offset as:\n"
-"  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x', or\n"
-"  - a '+' or '-' sign, followed by a relative offset"
-msgstr ""
-"Зсув можна вказати лише як:\n"
-"  - додатне десяткове число, чи\n"
-"  - шістнадцяткове число, що починається з «0x», чи\n"
-"  - знак «+» або «-» із наступним відносним відступом"
-
-#: src/findreplace.c:705
-msgid "There is no active buffer to replace data in!"
-msgstr "Немає діючих буферів для заміни даних"
-
-#: src/findreplace.c:730 src/findreplace.c:731
-msgid "End Of File reached!"
-msgstr "Досягнуто кінець файлу!"
-
-#: src/findreplace.c:750
-msgid "There is no active document to replace data in!"
-msgstr "Немає активних документів для заміни даних!"
-
-#: src/findreplace.c:780
-msgid "No occurrences were found."
-msgstr "Не виявлено входжень."
-
-#: src/findreplace.c:783
-#, c-format
-#| msgid "Replaced %d occurrences."
-msgid "Replaced %d occurrence."
-msgid_plural "Replaced %d occurrences."
-msgstr[0] "Змінено %d відповідник."
-msgstr[1] "Змінено %d відповідники."
-msgstr[2] "Замінено %d відповідників."
-
-#: src/findreplace.c:823
-msgid "No string to search for!"
-msgstr "Немає рядка для пошуку!"
-
-#: src/ghex-window.c:88
-#, c-format
-msgid ""
-"Can not open URI:\n"
-"%s"
-msgstr ""
-"Не вдається відкрити URI:\n"
-"%s"
-
-#: src/ghex-window.c:109
-#, c-format
-msgid ""
-"Can not open file:\n"
-"%s"
-msgstr ""
-"Не вдається відкрити файл:\n"
-"%s"
-
-#: src/ghex-window.c:338
-msgid "_File"
-msgstr "_Файл"
-
-#: src/ghex-window.c:339
-msgid "_Edit"
-msgstr "_Правка"
-
-#: src/ghex-window.c:340
-msgid "_View"
-msgstr "_Вигляд"
-
-#: src/ghex-window.c:341
-msgid "_Group Data As"
-msgstr "_Групувати дані за"
-
-#. View submenu
-#: src/ghex-window.c:342
-msgid "_Windows"
-msgstr "В_ікна"
-
-#: src/ghex-window.c:343
-msgid "_Help"
-msgstr "_Довідка"
-
-#. File menu
-#: src/ghex-window.c:346
-msgid "_Open..."
-msgstr "_Відкрити..."
-
-#: src/ghex-window.c:347
-msgid "Open a file"
-msgstr "Відкрити файл"
-
-#: src/ghex-window.c:349
-msgid "_Save"
-msgstr "З_берегти"
-
-#: src/ghex-window.c:350
-msgid "Save the current file"
-msgstr "Зберегти поточний файл"
-
-#: src/ghex-window.c:352
-msgid "Save _As..."
-msgstr "Зберегти _як..."
-
-#: src/ghex-window.c:353
-msgid "Save the current file with a different name"
-msgstr "Зберегти поточний файл з іншою назвою"
-
-#: src/ghex-window.c:355
-msgid "Save As _HTML..."
-msgstr "Зберегти _як HTML..."
-
-#: src/ghex-window.c:356
-msgid "Export data to HTML source"
-msgstr "Експортувати дані в HTML код"
-
-#: src/ghex-window.c:358
-msgid "_Revert"
-msgstr "Від_новити"
-
-#: src/ghex-window.c:359
-msgid "Revert to a saved version of the file"
-msgstr "Повернутись до збереженої версії файла"
-
-#: src/ghex-window.c:361
-msgid "_Print"
-msgstr "_Друк"
-
-#: src/ghex-window.c:362
-msgid "Print the current file"
-msgstr "Надрукувати поточний файл"
-
-#: src/ghex-window.c:364
-msgid "Print Previe_w..."
-msgstr "_Попередній перегляд..."
-
-#: src/ghex-window.c:365
-msgid "Preview printed data"
-msgstr "Перегляд даних, що підлягають друку"
-
-#: src/ghex-window.c:367
+#: src/chartable.c:243
+#| msgid "_Insert Mode"
+msgid "_Insert Character"
+msgstr "_Вставити символ"
+
+#: src/chartable.c:247 src/converter.c:195 src/paste-special.ui:55
+#: src/preferences.ui:255
 msgid "_Close"
 msgstr "_Закрити"
 
-#: src/ghex-window.c:368
-msgid "Close the current file"
-msgstr "Закрити поточний файл"
-
-#: src/ghex-window.c:370
-msgid "E_xit"
-msgstr "Ви_йти"
-
-#: src/ghex-window.c:371
-msgid "Exit the program"
-msgstr "Вийти з програми"
-
-#. Edit menu
-#: src/ghex-window.c:375
-msgid "_Undo"
-msgstr "В_ернути"
-
-#: src/ghex-window.c:376
-msgid "Undo the last action"
-msgstr "Вернути останню дію"
-
-#: src/ghex-window.c:378
-msgid "_Redo"
-msgstr "Повт_орити"
-
-#: src/ghex-window.c:379
-msgid "Redo the undone action"
-msgstr "Повторити відмінену дію"
-
-#: src/ghex-window.c:381
-msgid "_Copy"
-msgstr "_Копіювати"
-
-#: src/ghex-window.c:382
-msgid "Copy selection to clipboard"
-msgstr "Скопіювати вибране у кишеню"
-
-#: src/ghex-window.c:384
-msgid "Cu_t"
-msgstr "Ви_різати"
-
-#: src/ghex-window.c:385
-msgid "Cut selection"
-msgstr "Вирізати вибране"
-
-#: src/ghex-window.c:387
-msgid "Pa_ste"
-msgstr "Вс_тавити"
-
-#: src/ghex-window.c:388
-msgid "Paste data from clipboard"
-msgstr "Вставити дані з кишені"
-
-#: src/ghex-window.c:390
-msgid "_Find"
-msgstr "З_найти"
-
-#: src/ghex-window.c:391
-msgid "Search for a string"
-msgstr "Пошук рядка"
-
-#: src/ghex-window.c:393
-msgid "_Advanced Find"
-msgstr "_Розширений пошук"
-
-#: src/ghex-window.c:394
-msgid "Advanced Find"
-msgstr "Розширений пошук"
-
-#: src/ghex-window.c:396
-#| msgid "Replace"
-msgid "R_eplace"
-msgstr "За_мінити"
-
-#: src/ghex-window.c:397
-msgid "Replace a string"
-msgstr "Замінити рядок"
-
-#: src/ghex-window.c:399
-msgid "_Goto Byte..."
-msgstr "Пере_йти до байта..."
-
-#: src/ghex-window.c:400
-msgid "Jump to a certain position"
-msgstr "Перескочити у дану позицію"
-
-#: src/ghex-window.c:402
-msgid "_Preferences"
-msgstr "П_араметри"
-
-#: src/ghex-window.c:403
-msgid "Configure the application"
-msgstr "Налаштувати програму"
-
-#. View menu
-#: src/ghex-window.c:407
-msgid "_Add View"
-msgstr "_Додати вигляд"
-
-#: src/ghex-window.c:408
-msgid "Add a new view to the buffer"
-msgstr "Створення нового вигляду для буфера"
-
-#: src/ghex-window.c:410
-msgid "_Remove View"
-msgstr "В_идалити вигляд"
-
-#: src/ghex-window.c:411
-msgid "Remove the current view of the buffer"
-msgstr "Видалення вікна перегляду буфера"
-
-#. Help menu
-#: src/ghex-window.c:415
-msgid "_Contents"
-msgstr "_Зміст"
-
-#: src/ghex-window.c:416
-msgid "Help on this application"
-msgstr "Довідка про цей додаток"
-
-#: src/ghex-window.c:418
-msgid "_About"
-msgstr "_Про програму"
-
-#: src/ghex-window.c:419
-msgid "About this application"
-msgstr "Про цю програму..."
-
-#. Edit menu
-#: src/ghex-window.c:426
-msgid "_Insert Mode"
-msgstr "Режим _вставки"
-
-#: src/ghex-window.c:427
-msgid "Insert/overwrite data"
-msgstr "Вставляти/переписувати дані"
-
-#. Windows menu
-#: src/ghex-window.c:431
-#| msgid "Character _Table..."
-msgid "Character _Table"
-msgstr "_Таблиця символів"
-
-#: src/ghex-window.c:432
-msgid "Show the character table"
-msgstr "Показати таблицю символів"
-
-#: src/ghex-window.c:434
-msgid "_Base Converter"
-msgstr "Перетворювач систем _числення"
-
-#: src/ghex-window.c:435
-msgid "Open base conversion dialog"
-msgstr "Відкрити основний діалог перекодування"
-
-#: src/ghex-window.c:437
-msgid "Type Conversion _Dialog"
-msgstr "_Діалог перетворення типів"
-
-#: src/ghex-window.c:438
-msgid "Show the type conversion dialog in the edit window"
-msgstr "Показати діалог бесіди у вікні редагування"
-
-#: src/ghex-window.c:444 src/ui.c:48
-msgid "_Bytes"
-msgstr "_Байти"
-
-#: src/ghex-window.c:445
-msgid "Group data by 8 bits"
-msgstr "Групування даних по 8 бітів"
-
-#: src/ghex-window.c:446 src/ui.c:49
-msgid "_Words"
-msgstr "_Слова"
-
-#: src/ghex-window.c:447
-msgid "Group data by 16 bits"
-msgstr "Групування даних по 16 бітів"
-
-#: src/ghex-window.c:448 src/ui.c:50
-msgid "_Longwords"
-msgstr "_Довгі слова"
-
-#: src/ghex-window.c:449
-msgid "Group data by 32 bits"
-msgstr "Групування даних по 32 біти"
-
-#: src/ghex-window.c:787
-#, c-format
-msgid "Offset: %s"
-msgstr "Зміщення: %s"
-
-#: src/ghex-window.c:790
-#, c-format
-msgid "; %s bytes from %s to %s selected"
-msgstr "; виділено %s байтів від %s до %s"
-
-#: src/ghex-window.c:1066
-#, c-format
-msgid "Activate file %s"
-msgstr "Активувати файл %s"
-
-#: src/ghex-window.c:1102
-#, c-format
-msgid "%s - GHex"
-msgstr "GHex - %s"
-
-#: src/ghex-window.c:1224
-msgid "Select a file to save buffer as"
-msgstr "Виберіть файл для збереження буфера"
-
-#: src/ghex-window.c:1256
-#, c-format
-msgid ""
-"File %s exists.\n"
-"Do you want to overwrite it?"
-msgstr ""
-"Файл \"%s\" існує.\n"
-"Чи хочете ви переписати його?"
-
-#: src/ghex-window.c:1282 src/ui.c:310
-#, c-format
-msgid "Saved buffer to file %s"
-msgstr "Зберегти буфер у файлі %s."
-
-#: src/ghex-window.c:1289
-msgid "Error saving file!"
-msgstr "Помилка збереження файла!"
-
-#: src/ghex-window.c:1295
-msgid "Can't open file for writing!"
-msgstr "Неможливо відкрити файл для запису!"
-
-#: src/ghex-window.c:1340
-#, c-format
-msgid ""
-"File %s has changed since last save.\n"
-"Do you want to save changes?"
-msgstr ""
-"Файл %s змінено з часу останнього збереження.\n"
-"Зберегти зміни?"
-
-#: src/ghex-window.c:1344
-msgid "Do_n't save"
-msgstr "_Не зберігати"
-
-#: src/ghex-window.c:1364 src/ui.c:298
-msgid "You don't have the permissions to save the file!"
-msgstr "Ви не маєте достатньо прав, щоб зберегти файл!"
-
-#: src/ghex-window.c:1368 src/ui.c:303
-#| msgid "An error occured while saving file!"
-msgid "An error occurred while saving file!"
-msgstr "Помилка під час спроби зберегти файл!"
-
-#: src/hex-dialog.c:61
-msgid "Signed 8 bit:"
-msgstr "Зі знаком 8 біт:"
-
-#: src/hex-dialog.c:62
-msgid "Unsigned 8 bit:"
-msgstr "Без знаку 8 біт:"
-
-#: src/hex-dialog.c:63
-msgid "Signed 16 bit:"
-msgstr "Зі знаком 16 біт:"
-
-#: src/hex-dialog.c:64
-msgid "Unsigned 16 bit:"
-msgstr "Без знаку 16 біт:"
-
-#: src/hex-dialog.c:65
-msgid "Signed 32 bit:"
-msgstr "Зі знаком 32 біт:"
-
-#: src/hex-dialog.c:66
-msgid "Unsigned 32 bit:"
-msgstr "Без знаку 32 біт:"
-
-#: src/hex-dialog.c:67
-#| msgid "Signed 16 bit:"
-msgid "Signed 64 bit:"
-msgstr "64-бітове зі знаком:"
-
-#: src/hex-dialog.c:68
-#| msgid "Unsigned 16 bit:"
-msgid "Unsigned 64 bit:"
-msgstr "64-бітове без знаку:"
-
-#: src/hex-dialog.c:69
-msgid "Float 32 bit:"
-msgstr "Дійсне 32-бітове:"
-
-#: src/hex-dialog.c:70
-msgid "Float 64 bit:"
-msgstr "Дійсне 64-бітове:"
-
-#: src/hex-dialog.c:71
-msgid "Hexadecimal:"
-msgstr "Шістнадцяткове:"
-
-#: src/hex-dialog.c:72
-msgid "Octal:"
-msgstr "Вісімкове:"
-
-#: src/hex-dialog.c:73
-msgid "Binary:"
-msgstr "Двійкове:"
-
-#: src/hex-dialog.c:214
-msgid "Show little endian decoding"
-msgstr "Показувати у розшифровці little endian"
-
-#: src/hex-dialog.c:221
-msgid "Show unsigned and float as hexadecimal"
-msgstr "Показувати беззнакові та з рухомою комою як шістнадцяткові"
-
-#: src/hex-dialog.c:227
-msgid "Stream Length:"
-msgstr "Довжина потоку:"
-
-#: src/hex-dialog.c:250
-msgid "FIXME: no conversion function"
-msgstr "FIXME: немає функції перетворення"
-
-#: src/hex-document.c:435
-msgid "New document"
-msgstr "Новий документ"
-
-#: src/hex-document.c:784
-#, c-format
-msgid "Page"
-msgstr "Сторінка"
-
-#: src/hex-document.c:790 src/hex-document.c:915
-#, c-format
-msgid "Hex dump generated by"
-msgstr "Шістнадцятковий дамп згенеровано за"
-
-#: src/hex-document.c:801
-msgid "Saving to HTML..."
-msgstr "Збереження у HTML..."
-
-#: src/hex-document.c:838
-#, c-format
-msgid "Previous page"
-msgstr "Попередня сторінка"
-
-#: src/hex-document.c:853
-#, c-format
-msgid "Next page"
-msgstr "наступна сторінка"
-
-#: src/main.c:36
-msgid "X geometry specification (see \"X\" man page)."
-msgstr "Геометрія вікна (див. сторінку посібника для системи \"X\")."
-
-#: src/main.c:36
-msgid "GEOMETRY"
-msgstr "ГЕОМЕТРІЯ"
-
-#: src/main.c:37
-msgid "FILES"
-msgstr "ФАЙЛИ"
-
-#: src/main.c:99
-#| msgid "The gnome binary editor"
-msgid "- GTK+ binary editor"
-msgstr " – редактор двійкових даних на основі GTK+"
-
-#: src/main.c:103
-#, c-format
-msgid ""
-"%s\n"
-"Run '%s --help' to see a full list of available command line options.\n"
-msgstr ""
-"%s\n"
-"Виконайте «%s --help» щоб побачити повний список наявних параметрів "
-"командного рядка.\n"
-
-#: src/main.c:133 src/main.c:146
-#, c-format
-msgid "Invalid geometry string \"%s\"\n"
-msgstr "Неправильний рядок геометрії \"%s\"\n"
-
-#: src/preferences.c:69
-msgid "GHex Preferences"
-msgstr "Властивості GHex"
-
-#: src/preferences.c:101
-msgid "_Maximum number of undo levels:"
-msgstr "_Максимальна кількість скасувань дій:"
-
-#: src/preferences.c:121
-msgid "Undo levels"
-msgstr "Кількість скасувань дій"
-
-#: src/preferences.c:121
-msgid "Select maximum number of undo levels"
-msgstr "Виберіть максимальну кількість скасувань дій"
-
-#: src/preferences.c:125
-#| msgid "Show cursor offset in statusbar as:"
-msgid "_Show cursor offset in statusbar as:"
-msgstr "По_казувати зміщення курсора на смужці стану як:"
-
-#: src/preferences.c:144
-msgid "Hexadecimal"
-msgstr "Шістнадцятковий"
-
-#: src/preferences.c:146
-msgid "Custom"
-msgstr "Нетиповий"
-
-#: src/preferences.c:155
-msgid "Enter the cursor offset format"
-msgstr "Введіть формат зміщення курсора"
-
-#: src/preferences.c:156
-msgid "Select the cursor offset format"
-msgstr "Виберіть формат зміщення курсора"
-
-#. show offsets check button
-#: src/preferences.c:166
-#| msgid "Show offsets column"
-msgid "Sh_ow offsets column"
-msgstr "П_оказувати стовпчик зміщень"
-
-#: src/preferences.c:171
-msgid "Editing"
-msgstr "Редагування"
-
-#. display font
-#: src/preferences.c:180
-msgid "Font"
-msgstr "Шрифт"
-
-#. default group type
-#: src/preferences.c:203
-msgid "Default Group Type"
-msgstr "Типове групування"
-
-#: src/preferences.c:219
-msgid "Display"
-msgstr "Представлення"
-
-#. paper selection
-#: src/preferences.c:228
-msgid "Paper size"
-msgstr "Розмір паперу"
-
-#. data & header font selection
-#: src/preferences.c:233
-msgid "Fonts"
-msgstr "Шрифти"
-
-#: src/preferences.c:245
-msgid "_Data font:"
-msgstr "Шрифт _даних:"
-
-#: src/preferences.c:259
-msgid "Data font"
-msgstr "Шрифт даних"
-
-#: src/preferences.c:259
-msgid "Select the data font"
-msgstr "Виберіть шрифт даних"
-
-#: src/preferences.c:268
-msgid "Header fo_nt:"
-msgstr "Шрифт за_головка:"
-
-#: src/preferences.c:281
-msgid "Header font"
-msgstr "Шрифт заголовка"
-
-#: src/preferences.c:281
-msgid "Select the header font"
-msgstr "Виберіть шрифт заголовка"
-
-#: src/preferences.c:306
-msgid "_Print shaded box over:"
-msgstr "_Друкувати смужку над:"
-
-#: src/preferences.c:318
-msgid "Box size"
-msgstr "Розмір смужки"
-
-#: src/preferences.c:318
-msgid "Select size of box (in number of lines)"
-msgstr "Виберіть  розмір смужки (кількість рядків)"
-
-#: src/preferences.c:322
-msgid "lines (0 for no box)"
-msgstr "рядка (0 - без смужки)"
-
-#: src/preferences.c:329
-msgid "Printing"
-msgstr "Друкування"
-
-#: src/preferences.c:447 src/ui.c:219
-#, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-"Помилка під час показу довідки: \n"
-"%s"
-
-#: src/preferences.c:499
-msgid "Can not open desired font!"
-msgstr "Неможливо завантажити вказаний шрифт!"
-
-#: src/preferences.c:560
-msgid ""
-"The offset format string contains invalid format specifier.\n"
-"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
-msgstr ""
-"Рядок формату зміщення містить невірний специфікатор.\n"
-"Дозволяються лише \"x\", \"X\", \"p\", \"P\", \"d\" і \"o\"."
-
-#: src/print.c:57
-#, c-format
-msgid "Page: %i/%i"
-msgstr "Сторінка: %i/%i"
-
-#: src/ui.c:55
-msgid "hex data"
-msgstr "шістнадцяткові дані"
-
-#: src/ui.c:56
-msgid "ASCII data"
-msgstr "ASCII дані"
-
-#: src/ui.c:160
+#: src/common-ui.c:235
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -1026,7 +105,7 @@ msgstr ""
 "Foundation тексту цієї ліцензії версії 2 або (якщо вам того хочеться) будь-"
 "якої пізнішої версії."
 
-#: src/ui.c:164
+#: src/common-ui.c:239
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -1038,7 +117,7 @@ msgstr ""
 "або ПРИДАТНОСТІ ДЛЯ ВИКОРИСТАННЯ З ПЕВНОЮ МЕТОЮ. Докладніше про це можна "
 "дізнатися з GNU General Public License."
 
-#: src/ui.c:168
+#: src/common-ui.c:243
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
@@ -1050,69 +129,1048 @@ msgstr ""
 
 #. Translators: these two strings here indicate the copyright time span,
 #. e.g. 1998-2018.
-#: src/ui.c:180
-msgid "Copyright © %Id–%Id The GHex authors"
-msgstr "© Автори GHex, %Id–%Id"
+#: src/common-ui.c:255
+#, c-format
+#| msgid "Copyright © %Id–%Id The GHex authors"
+msgid "Copyright © %d–%d The GHex authors"
+msgstr "© Автори GHex, %d–%d"
 
-#: src/ui.c:184
-#| msgid "GHex, a binary file editor"
+#: src/common-ui.c:269
 msgid "A binary file editor"
 msgstr "Редактор двійкових даних"
 
-#: src/ui.c:190
-#| msgid "_About"
+#: src/common-ui.c:276
 msgid "About GHex"
 msgstr "Про GHex"
 
-#: src/ui.c:191
+#: src/common-ui.c:277
 msgid "translator-credits"
 msgstr ""
 "Максим Дзюманенко <dziumanenko@gmail.com>\n"
 "Юрій Чорноіван <yurchor@ukr.net>"
 
-#: src/ui.c:194
+#: src/common-ui.c:280
 msgid "GHex Website"
 msgstr "Сайт GHex"
 
-#: src/ui.c:328
+#. Translators: This is an error string for a print-related error
+#. * dialog.  The %s is the error generated by GError.
+#: src/common-ui.c:347
+#, c-format
+#| msgid "An error occurred while saving file!"
+msgid "An error has occurred: %s"
+msgstr "Сталася помилка: %s"
+
+#: src/converter.c:192
+msgid "Base Converter"
+msgstr "Конвертор систем числення"
+
+#. entries
+#: src/converter.c:217
+msgid "_Binary:"
+msgstr "_Двійкове:"
+
+#: src/converter.c:219
+msgid "_Octal:"
+msgstr "_Вісімкове:"
+
+#: src/converter.c:221
+msgid "_Decimal:"
+msgstr "_Десяткове:"
+
+#: src/converter.c:223
+msgid "_Hex:"
+msgstr "_Шістнадцяткове:"
+
+#: src/converter.c:225
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+#. get cursor button
+#: src/converter.c:229
+msgid "_Get cursor value"
+msgstr "_Взяти значення під курсором"
+
+#: src/converter.c:239
+msgid "Get cursor value"
+msgstr "Взяти значення під курсором"
+
+#: src/converter.c:239
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"Взяти значення в позиції курсора у двійковій, вісімковій, десятковій, "
+"шістнадцятковій формі та ASCII"
+
+#: src/converter.c:385
+msgid "ERROR"
+msgstr "ПОМИЛКА"
+
+#: src/findreplace.c:168
+msgid "No string provided."
+msgstr ""
+"Не надано рядка."
+
+#: src/findreplace.c:233
+msgid ""
+"End of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+"Досягнуто кінця файла.\n"
+"\n"
+"Більше збігів не виявлено."
+
+#: src/findreplace.c:236
+msgid ""
+"End of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+"Досягнуто кінця файла.\n"
+"\n"
+"Від курсора збігів не виявлено."
+
+#: src/findreplace.c:308
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+"Досягнуто початку файла.\n"
+"\n"
+"Більше збігів не виявлено."
+
+#: src/findreplace.c:311
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+"Досягнуто початку файла.\n"
+"\n"
+"Від курсора збігів не виявлено."
+
+#: src/findreplace.c:401
+#| msgid "No offset has been specified!"
+msgid "No offset has been specified."
+msgstr "Не вказано зміщення."
+
+#: src/findreplace.c:426
+#| msgid "The specified offset is beyond the  file boundaries!"
+msgid "The specified offset is beyond the  file boundaries."
+msgstr "Вказаний відступ перебуває за межами файла."
+
+#: src/findreplace.c:434
+#| msgid "Can not position cursor beyond the End Of File!"
+msgid "Can not position cursor beyond the end of file."
+msgstr "Неможливо встановити курсор за межами файла!"
+
+#: src/findreplace.c:442
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+"Зсув можна вказати лише як:\n"
+"  - додатне десяткове число, чи\n"
+"  - шістнадцяткове число, що починається з «0x», чи\n"
+"  - знак «+» або «-» із наступним відносним відступом"
+
+#: src/findreplace.c:503
+#| msgid "String was not found!\n"
+msgid "String was not found."
+msgstr "Рядок не знайдено."
+
+#: src/findreplace.c:568
+msgid "No occurrences were found."
+msgstr "Не виявлено входжень."
+
+#: src/findreplace.c:751
+msgid "Find String"
+msgstr "Пошук рядка"
+
+#: src/findreplace.c:760
+msgid "Find _Next"
+msgstr "Знайти _наступне"
+
+#: src/findreplace.c:766
+msgid "Find _Previous"
+msgstr "Знайти _попереднє"
+
+#: src/findreplace.c:771
+msgid "_Clear"
+msgstr ""
+"О_чистити"
+
+#: src/findreplace.c:792
+msgid "Find Data"
+msgstr "Знайти дані"
+
+#: src/findreplace.c:793
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Введіть шістнадцяткові дані ASCII дані для пошуку"
+
+#: src/findreplace.c:795
+msgid "Find Next"
+msgstr "Шукати наступне"
+
+#: src/findreplace.c:796
+msgid "Finds the next occurrence of the search string"
+msgstr "Знати наступне входження рядка пошуку"
+
+#: src/findreplace.c:798
+msgid "Find previous"
+msgstr "Знайти попереднє"
+
+#: src/findreplace.c:799
+msgid "Finds the previous occurrence of the search string "
+msgstr "Знати попереднє входження рядка пошуку"
+
+#: src/findreplace.c:801
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: src/findreplace.c:802
+msgid "Closes find data window"
+msgstr "Закрити вікно пошуку даних"
+
+#: src/findreplace.c:871
+msgid "Replace With"
+msgstr "Замінити на"
+
+#: src/findreplace.c:876
+msgid "_Replace"
+msgstr "За_мінити"
+
+#: src/findreplace.c:883
+msgid "Replace _All"
+msgstr "Замінити _все"
+
+#: src/findreplace.c:898
+msgid "Replace Data"
+msgstr "Замінити дані"
+
+#: src/findreplace.c:899
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Введіть шістнадцяткові чи  ASCII дані для заміни"
+
+#: src/findreplace.c:901
+msgid "Replace"
+msgstr "Замінити"
+
+#: src/findreplace.c:902
+msgid "Replaces the search string with the replace string"
+msgstr "Замінити рядок пошуку рядком заміни"
+
+#: src/findreplace.c:904
+msgid "Replace All"
+msgstr "Замінити все"
+
+#: src/findreplace.c:905
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Замінити всі екземпляри рядка пошуку рядком заміни"
+
+#. FIXME/TODO - this is not very intuitive.
+#: src/findreplace.c:980
+#| msgid "Jump to byte"
+msgid "Jump to byte (enter offset):"
+msgstr "Перейти до байта (введіть зсув):"
+
+#: src/findreplace.c:986
+msgid "_Jump"
+msgstr ""
+"Пере_йти"
+
+#: src/findreplace.c:1006
+msgid "Jump to byte"
+msgstr "Перейти до байта"
+
+#: src/findreplace.c:1007
+msgid "Enter the byte to jump to"
+msgstr "Введіть байт, до якого потрібно перейти"
+
+#: src/findreplace.c:1009
+msgid "Jump"
+msgstr ""
+"Перейти"
+
+#: src/findreplace.c:1010
+msgid "Jumps to the specified byte"
+msgstr "Перейти до вказаного байта"
+
+#: src/findreplace.c:1012
+msgid "Close"
+msgstr "Закрити"
+
+#: src/findreplace.c:1013
+msgid "Closes jump to byte window"
+msgstr "Закрити вікно переходу"
+
+#: src/ghex-application-window.c:321
+msgid ""
+"There was an error saving the file.\n"
+"\n"
+"You permissions of the file may have been changed by another program, or the "
+"file may have become corrupted."
+msgstr ""
+"Помилка при збереженні файла.\n"
+"\n"
+"Можливо, ваші права доступ до файла було змінено іншою програмою, або файл могло бути пошкоджено."
+
+#: src/ghex-application-window.c:391
+msgid ""
+"<b>You have one or more files open with unsaved changes.</b>\n"
+"\n"
+"Are you sure you want to close the window?\n"
+"\n"
+msgstr ""
+"<b>У вас один або декілька файлів із незбереженими змінами.</b>\n"
+"\n"
+"Ви справді хочете закрити вікно?\n"
+"\n"
+
+#: src/ghex-application-window.c:395
+#| msgid "_Close"
+msgid "_Close Anyway"
+msgstr "_Закрити попри це"
+
+#: src/ghex-application-window.c:396 src/ghex-application-window.c:1131
+msgid "_Go Back"
+msgstr ""
+"П_овернутися"
+
+#. Translators: %s is the filename that is currently being
+#. * edited.
+#: src/ghex-application-window.c:495
+#, c-format
+msgid ""
+"<big><b>%s has been edited since opening.</b></big>\n"
+"\n"
+"Would you like to save your changes?"
+msgstr ""
+"<big><b>%s було змінено з моменту відкриття.</b></big>\n"
+"\n"
+"Хочете зберегти внесені зміни?"
+
+#: src/ghex-application-window.c:500
+msgid "_Save Changes"
+msgstr ""
+"З_берегти зміни"
+
+#: src/ghex-application-window.c:501
+msgid "_Discard Changes"
+msgstr ""
+"_Відкинути зміни"
+
+#: src/ghex-application-window.c:1025
+msgid ""
+"There was an error saving the file to the path specified.\n"
+"\n"
+"You may not have the required permissions."
+msgstr ""
+"Під час спроби збереження файла до вказаного каталогу сталася помилка.\n"
+"\n"
+"Можливо, у вас немає потрібних для запису прав доступу."
+
+#: src/ghex-application-window.c:1055
+msgid "Select a file to save buffer as"
+msgstr "Виберіть файл для збереження буфера"
+
+#. Translators: %s here is the filename the user is being asked to
+#. * confirm whether they want to revert.
+#: src/ghex-application-window.c:1124
+#, c-format
+msgid ""
+"<big><b>Are you sure you want to revert %s?</b></big>\n"
+"\n"
+"Your changes will be lost.\n"
+"\n"
+"This action cannot be undone."
+msgstr ""
+"<big><b>Ви справді хочете повернутися до попередньої версії %s?</b></big>\n"
+"\n"
+"Внесені вами зміни буде втрачено.\n"
+"\n"
+"Наслідки цієї дії не можна буде скасувати."
+
+#: src/ghex-application-window.c:1130
+msgid "_Revert"
+msgstr "Від_новити"
+
+#: src/ghex-application-window.c:1253
 msgid "Select a file to open"
 msgstr "Вибрати файл для відкриття"
 
-#: src/ui.c:360
+#: src/ghex-application-window.c:1357
 #, c-format
-msgid "Loaded file %s"
-msgstr "Завантажено файл %s"
+msgid "Offset: %s"
+msgstr "Зміщення: %s"
 
-#: src/ui.c:368
-msgid "Can not open file!"
-msgstr "Неможливо відкрити файл!"
+#: src/ghex-application-window.c:1360
+#, c-format
+msgid "; %s bytes from %s to %s selected"
+msgstr "; виділено %s байтів від %s до %s"
 
-#: src/ui.c:433
-msgid "Select path and file name for the HTML source"
-msgstr "Виберіть шлях та назву файла у форматі HTML"
+#. Set up our label to hold the document name and the close button.
+#: src/ghex-notebook-tab.c:108
+#| msgid "New document"
+msgid "Untitled document"
+msgstr "Документ без заголовка"
 
-#: src/ui.c:465
-msgid "You need to specify a base name for the HTML files."
-msgstr "Необхідно вказати базову назву для файлів у форматі HTML."
+#: src/hex-dialog.c:77
+msgid "Signed 8 bit:"
+msgstr "Зі знаком 8 біт:"
 
-#: src/ui.c:476 src/ui.c:502
-msgid "You don't have the permission to write to the selected path.\n"
-msgstr "Ви не маєте права на запис у вибраний каталог.\n"
+#: src/hex-dialog.c:78
+msgid "Unsigned 8 bit:"
+msgstr "Без знаку 8 біт:"
 
-#: src/ui.c:488
-msgid ""
-"Saving to HTML will overwrite some files.\n"
-"Do you want to proceed?"
+#: src/hex-dialog.c:79
+msgid "Signed 16 bit:"
+msgstr "Зі знаком 16 біт:"
+
+#: src/hex-dialog.c:80
+msgid "Unsigned 16 bit:"
+msgstr "Без знаку 16 біт:"
+
+#: src/hex-dialog.c:81
+msgid "Signed 32 bit:"
+msgstr "Зі знаком 32 біт:"
+
+#: src/hex-dialog.c:82
+msgid "Unsigned 32 bit:"
+msgstr "Без знаку 32 біт:"
+
+#: src/hex-dialog.c:83
+msgid "Signed 64 bit:"
+msgstr "64-бітове зі знаком:"
+
+#: src/hex-dialog.c:84
+msgid "Unsigned 64 bit:"
+msgstr "64-бітове без знаку:"
+
+#: src/hex-dialog.c:85
+msgid "Float 32 bit:"
+msgstr "Дійсне 32-бітове:"
+
+#: src/hex-dialog.c:86
+msgid "Float 64 bit:"
+msgstr "Дійсне 64-бітове:"
+
+#: src/hex-dialog.c:87
+msgid "Hexadecimal:"
+msgstr "Шістнадцяткове:"
+
+#: src/hex-dialog.c:88
+msgid "Octal:"
+msgstr "Вісімкове:"
+
+#: src/hex-dialog.c:89
+msgid "Binary:"
+msgstr "Двійкове:"
+
+#: src/hex-dialog.c:205
+msgid "Show little endian decoding"
+msgstr "Показувати у розшифровці little endian"
+
+#: src/hex-dialog.c:211
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Показувати беззнакові та з рухомою комою як шістнадцяткові"
+
+#: src/hex-dialog.c:216
+msgid "Stream Length:"
+msgstr "Довжина потоку:"
+
+#: src/hex-dialog.c:238
+msgid "FIXME: no conversion function"
+msgstr "FIXME: немає функції перетворення"
+
+#: src/hex-document.c:419
+msgid "New document"
+msgstr "Новий документ"
+
+#: src/hex-document.c:783
+#, c-format
+msgid "Page"
+msgstr "Сторінка"
+
+#: src/hex-document.c:789 src/hex-document.c:920
+#, c-format
+msgid "Hex dump generated by"
+msgstr "Шістнадцятковий дамп згенеровано за"
+
+#: src/hex-document.c:801
+msgid "Saving to HTML..."
+msgstr "Збереження у HTML..."
+
+#: src/hex-document.c:843
+#, c-format
+msgid "Previous page"
+msgstr "Попередня сторінка"
+
+#: src/hex-document.c:858
+#, c-format
+msgid "Next page"
+msgstr "наступна сторінка"
+
+#: src/paste-special.c:318
+#| msgid "GHex (%s): Find Data"
+msgid "GHex Paste Data"
+msgstr "Вставлення даних GHex"
+
+#: src/paste-special.c:412
+msgid "_Copy"
+msgstr "_Копіювати"
+
+#: src/paste-special.c:414
+msgid "Copy Special"
 msgstr ""
-"Збереження у форматі HTML перепише деякі файли.\n"
-"Чи хочете ви продовжити?"
+"Спеціальне копіювання"
 
-#: src/ui.c:756
-#, c-format
-msgid "Really revert file %s?"
-msgstr "Справді відновити файл %s?"
+#: src/paste-special.c:530
+msgid "Plain text (as ASCII)"
+msgstr ""
+"Звичайний текст (як ASCII)"
 
-#: src/ui.c:770
+#: src/paste-special.c:534
+msgid "Plain text (as space-delimited hex pairs)"
+msgstr ""
+"Звичайний текст (як відокремлені пробілами шістн. пари)"
+
+#: src/paste-special.c:551
+msgid "Plain text (Unicode)"
+msgstr ""
+"Звичайний текст (Unicode)"
+
+#. paste_special_dialog
+#: src/paste-special.ui:28
+msgid "Paste Special"
+msgstr ""
+"Спеціальне вставлення"
+
+#: src/paste-special.ui:49
+msgid "_Paste"
+msgstr ""
+"Вст_авити"
+
+#. prefs_dialog
+#: src/preferences.ui:29
+#| msgid "_Preferences"
+msgid "Preferences"
+msgstr "Налаштування"
+
+#: src/preferences.ui:52
+msgid "Display"
+msgstr "Представлення"
+
+#: src/preferences.ui:63
+msgid "Font"
+msgstr "Шрифт"
+
+#: src/preferences.ui:83
+msgid "Dark Mode"
+msgstr ""
+"Темний режим"
+
+#: src/preferences.ui:93
+msgid "Use system default"
+msgstr ""
+"Типовий системний"
+
+#: src/preferences.ui:102
+#| msgid "Default Group Type"
+msgid "Hex Group Type"
+msgstr "Тип групування шістнадцяткових"
+
+#: src/preferences.ui:108
+#| msgid "_Bytes"
+msgid "Bytes"
+msgstr "Байти"
+
+#: src/preferences.ui:114
+#| msgid "_Words"
+msgid "Words"
+msgstr "Слова"
+
+#: src/preferences.ui:120
+#| msgid "_Longwords"
+msgid "Longwords"
+msgstr "Довгі слова"
+
+#: src/preferences.ui:132
+#| msgid "Sh_ow offsets column"
+msgid "Show offsets column"
+msgstr "Показувати стовпчик зміщень"
+
+#: src/preferences.ui:143
+msgid "Printing"
+msgstr "Друкування"
+
+#: src/preferences.ui:153
+msgid "Fonts"
+msgstr "Шрифти"
+
+#: src/preferences.ui:166
+#| msgid "_Data font:"
+msgid "Data font:"
+msgstr "Шрифт даних:"
+
+#: src/preferences.ui:176
+#| msgid "Header fo_nt:"
+msgid "Header font:"
+msgstr "Шрифт заголовка:"
+
+#: src/preferences.ui:215
+msgid "Print alternating shaded rows"
+msgstr ""
+"Малювання рядків різними кольорами"
+
+#: src/preferences.ui:227
+msgid "Span across lines:"
+msgstr ""
+"Розбиття довгих рядків:"
+
+#: src/preferences.ui:249
+msgid "_Help"
+msgstr "_Довідка"
+
+#: src/print.c:52
 #, c-format
-msgid "Reverted buffer from file %s"
-msgstr "Відновлений буфер з файла %s"
+msgid "Page: %i/%i"
+msgstr "Сторінка: %i/%i"
+
+#~| msgid "GNOME Hexadecimal Editor"
+#~ msgid "GNOME Hex Editor"
+#~ msgstr "Шістнадцятковий редактор для GNOME"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "Проєкт GNOME"
+
+#~ msgid "GHex (%s): Find Data: Add search"
+#~ msgstr "GHex (%s): пошук даних: Додавання пошуку"
+
+#~ msgid "Add"
+#~ msgstr "Додати"
+
+#~ msgid "Search String"
+#~ msgstr "Пошук рядка"
+
+#~ msgid "Highlight Colour"
+#~ msgstr "Колір підсвічення"
+
+#~ msgid "_Add New"
+#~ msgstr "_Додати новий"
+
+#~ msgid "_Remove Selected"
+#~ msgstr "В_идалити виділене"
+
+#~ msgid "Closes advanced find window"
+#~ msgstr "Закрити додаткове вікно пошуку"
+
+#~ msgid "GHex (%s): Find & Replace Data"
+#~ msgstr "GHex (%s): знайти та замінити дані"
+
+#~ msgid "Find _next"
+#~ msgstr "Знайти _наступне"
+
+#~ msgid "Find next"
+#~ msgstr "Знайти наступне"
+
+#~ msgid "Closes find and replace data window"
+#~ msgstr "Закрити вікно пошуку і заміни даних"
+
+#~ msgid "GHex (%s): Jump To Byte"
+#~ msgstr "GHex (%s): перескочити до байта"
+
+#~ msgid "OK"
+#~ msgstr "Гаразд"
+
+#~ msgid "There is no active document to search!"
+#~ msgstr "Немає активних документів для пошуку!"
+
+#~ msgid "There is no string to search for!"
+#~ msgstr "Немає рядка для пошуку!"
+
+#~ msgid "End Of File reached"
+#~ msgstr "Досягнуто кінець файлу"
+
+#~ msgid "Beginning Of File reached"
+#~ msgstr "Досягнуто початок файлу"
+
+#~ msgid "There is no active document to move the cursor in!"
+#~ msgstr "Немає активних документів для переміщення курсора!"
+
+#~ msgid "There is no active buffer to replace data in!"
+#~ msgstr "Немає діючих буферів для заміни даних"
+
+#~ msgid "End Of File reached!"
+#~ msgstr "Досягнуто кінець файлу!"
+
+#~ msgid "There is no active document to replace data in!"
+#~ msgstr "Немає активних документів для заміни даних!"
+
+#~| msgid "Replaced %d occurrences."
+#~ msgid "Replaced %d occurrence."
+#~ msgid_plural "Replaced %d occurrences."
+#~ msgstr[0] "Змінено %d відповідник."
+#~ msgstr[1] "Змінено %d відповідники."
+#~ msgstr[2] "Замінено %d відповідників."
+
+#~ msgid "No string to search for!"
+#~ msgstr "Немає рядка для пошуку!"
+
+#~ msgid ""
+#~ "Can not open URI:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Не вдається відкрити URI:\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Can not open file:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Не вдається відкрити файл:\n"
+#~ "%s"
+
+#~ msgid "_File"
+#~ msgstr "_Файл"
+
+#~ msgid "_Edit"
+#~ msgstr "_Правка"
+
+#~ msgid "_View"
+#~ msgstr "_Вигляд"
+
+#~ msgid "_Group Data As"
+#~ msgstr "_Групувати дані за"
+
+#~ msgid "_Windows"
+#~ msgstr "В_ікна"
+
+#~ msgid "_Open..."
+#~ msgstr "_Відкрити..."
+
+#~ msgid "Open a file"
+#~ msgstr "Відкрити файл"
+
+#~ msgid "_Save"
+#~ msgstr "З_берегти"
+
+#~ msgid "Save the current file"
+#~ msgstr "Зберегти поточний файл"
+
+#~ msgid "Save _As..."
+#~ msgstr "Зберегти _як..."
+
+#~ msgid "Save the current file with a different name"
+#~ msgstr "Зберегти поточний файл з іншою назвою"
+
+#~ msgid "Save As _HTML..."
+#~ msgstr "Зберегти _як HTML..."
+
+#~ msgid "Export data to HTML source"
+#~ msgstr "Експортувати дані в HTML код"
+
+#~ msgid "Revert to a saved version of the file"
+#~ msgstr "Повернутись до збереженої версії файла"
+
+#~ msgid "_Print"
+#~ msgstr "_Друк"
+
+#~ msgid "Print the current file"
+#~ msgstr "Надрукувати поточний файл"
+
+#~ msgid "Print Previe_w..."
+#~ msgstr "_Попередній перегляд..."
+
+#~ msgid "Preview printed data"
+#~ msgstr "Перегляд даних, що підлягають друку"
+
+#~ msgid "Close the current file"
+#~ msgstr "Закрити поточний файл"
+
+#~ msgid "E_xit"
+#~ msgstr "Ви_йти"
+
+#~ msgid "Exit the program"
+#~ msgstr "Вийти з програми"
+
+#~ msgid "_Undo"
+#~ msgstr "В_ернути"
+
+#~ msgid "Undo the last action"
+#~ msgstr "Вернути останню дію"
+
+#~ msgid "_Redo"
+#~ msgstr "Повт_орити"
+
+#~ msgid "Redo the undone action"
+#~ msgstr "Повторити відмінену дію"
+
+#~ msgid "Copy selection to clipboard"
+#~ msgstr "Скопіювати вибране у кишеню"
+
+#~ msgid "Cu_t"
+#~ msgstr "Ви_різати"
+
+#~ msgid "Cut selection"
+#~ msgstr "Вирізати вибране"
+
+#~ msgid "Pa_ste"
+#~ msgstr "Вс_тавити"
+
+#~ msgid "Paste data from clipboard"
+#~ msgstr "Вставити дані з кишені"
+
+#~ msgid "_Find"
+#~ msgstr "З_найти"
+
+#~ msgid "Search for a string"
+#~ msgstr "Пошук рядка"
+
+#~ msgid "_Advanced Find"
+#~ msgstr "_Розширений пошук"
+
+#~ msgid "Advanced Find"
+#~ msgstr "Розширений пошук"
+
+#~| msgid "Replace"
+#~ msgid "R_eplace"
+#~ msgstr "За_мінити"
+
+#~ msgid "Replace a string"
+#~ msgstr "Замінити рядок"
+
+#~ msgid "_Goto Byte..."
+#~ msgstr "Пере_йти до байта..."
+
+#~ msgid "Jump to a certain position"
+#~ msgstr "Перескочити у дану позицію"
+
+#~ msgid "Configure the application"
+#~ msgstr "Налаштувати програму"
+
+#~ msgid "_Add View"
+#~ msgstr "_Додати вигляд"
+
+#~ msgid "Add a new view to the buffer"
+#~ msgstr "Створення нового вигляду для буфера"
+
+#~ msgid "_Remove View"
+#~ msgstr "В_идалити вигляд"
+
+#~ msgid "Remove the current view of the buffer"
+#~ msgstr "Видалення вікна перегляду буфера"
+
+#~ msgid "_Contents"
+#~ msgstr "_Зміст"
+
+#~ msgid "Help on this application"
+#~ msgstr "Довідка про цей додаток"
+
+#~ msgid "_About"
+#~ msgstr "_Про програму"
+
+#~ msgid "About this application"
+#~ msgstr "Про цю програму..."
+
+#~ msgid "Insert/overwrite data"
+#~ msgstr "Вставляти/переписувати дані"
+
+#~| msgid "Character _Table..."
+#~ msgid "Character _Table"
+#~ msgstr "_Таблиця символів"
+
+#~ msgid "Show the character table"
+#~ msgstr "Показати таблицю символів"
+
+#~ msgid "_Base Converter"
+#~ msgstr "Перетворювач систем _числення"
+
+#~ msgid "Open base conversion dialog"
+#~ msgstr "Відкрити основний діалог перекодування"
+
+#~ msgid "Type Conversion _Dialog"
+#~ msgstr "_Діалог перетворення типів"
+
+#~ msgid "Show the type conversion dialog in the edit window"
+#~ msgstr "Показати діалог бесіди у вікні редагування"
+
+#~ msgid "Group data by 8 bits"
+#~ msgstr "Групування даних по 8 бітів"
+
+#~ msgid "Group data by 16 bits"
+#~ msgstr "Групування даних по 16 бітів"
+
+#~ msgid "Group data by 32 bits"
+#~ msgstr "Групування даних по 32 біти"
+
+#~ msgid "Activate file %s"
+#~ msgstr "Активувати файл %s"
+
+#~ msgid "%s - GHex"
+#~ msgstr "GHex - %s"
+
+#~ msgid ""
+#~ "File %s exists.\n"
+#~ "Do you want to overwrite it?"
+#~ msgstr ""
+#~ "Файл \"%s\" існує.\n"
+#~ "Чи хочете ви переписати його?"
+
+#~ msgid "Saved buffer to file %s"
+#~ msgstr "Зберегти буфер у файлі %s."
+
+#~ msgid "Error saving file!"
+#~ msgstr "Помилка збереження файла!"
+
+#~ msgid "Can't open file for writing!"
+#~ msgstr "Неможливо відкрити файл для запису!"
+
+#~ msgid ""
+#~ "File %s has changed since last save.\n"
+#~ "Do you want to save changes?"
+#~ msgstr ""
+#~ "Файл %s змінено з часу останнього збереження.\n"
+#~ "Зберегти зміни?"
+
+#~ msgid "Do_n't save"
+#~ msgstr "_Не зберігати"
+
+#~ msgid "You don't have the permissions to save the file!"
+#~ msgstr "Ви не маєте достатньо прав, щоб зберегти файл!"
+
+#~ msgid "X geometry specification (see \"X\" man page)."
+#~ msgstr "Геометрія вікна (див. сторінку посібника для системи \"X\")."
+
+#~ msgid "GEOMETRY"
+#~ msgstr "ГЕОМЕТРІЯ"
+
+#~ msgid "FILES"
+#~ msgstr "ФАЙЛИ"
+
+#~| msgid "The gnome binary editor"
+#~ msgid "- GTK+ binary editor"
+#~ msgstr " – редактор двійкових даних на основі GTK+"
+
+#~ msgid ""
+#~ "%s\n"
+#~ "Run '%s --help' to see a full list of available command line options.\n"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Виконайте «%s --help» щоб побачити повний список наявних параметрів "
+#~ "командного рядка.\n"
+
+#~ msgid "Invalid geometry string \"%s\"\n"
+#~ msgstr "Неправильний рядок геометрії \"%s\"\n"
+
+#~ msgid "GHex Preferences"
+#~ msgstr "Властивості GHex"
+
+#~ msgid "_Maximum number of undo levels:"
+#~ msgstr "_Максимальна кількість скасувань дій:"
+
+#~ msgid "Undo levels"
+#~ msgstr "Кількість скасувань дій"
+
+#~ msgid "Select maximum number of undo levels"
+#~ msgstr "Виберіть максимальну кількість скасувань дій"
+
+#~| msgid "Show cursor offset in statusbar as:"
+#~ msgid "_Show cursor offset in statusbar as:"
+#~ msgstr "По_казувати зміщення курсора на смужці стану як:"
+
+#~ msgid "Hexadecimal"
+#~ msgstr "Шістнадцятковий"
+
+#~ msgid "Custom"
+#~ msgstr "Нетиповий"
+
+#~ msgid "Enter the cursor offset format"
+#~ msgstr "Введіть формат зміщення курсора"
+
+#~ msgid "Select the cursor offset format"
+#~ msgstr "Виберіть формат зміщення курсора"
+
+#~ msgid "Editing"
+#~ msgstr "Редагування"
+
+#~ msgid "Paper size"
+#~ msgstr "Розмір паперу"
+
+#~ msgid "Data font"
+#~ msgstr "Шрифт даних"
+
+#~ msgid "Select the data font"
+#~ msgstr "Виберіть шрифт даних"
+
+#~ msgid "Header font"
+#~ msgstr "Шрифт заголовка"
+
+#~ msgid "Select the header font"
+#~ msgstr "Виберіть шрифт заголовка"
+
+#~ msgid "_Print shaded box over:"
+#~ msgstr "_Друкувати смужку над:"
+
+#~ msgid "Box size"
+#~ msgstr "Розмір смужки"
+
+#~ msgid "Select size of box (in number of lines)"
+#~ msgstr "Виберіть  розмір смужки (кількість рядків)"
+
+#~ msgid "lines (0 for no box)"
+#~ msgstr "рядка (0 - без смужки)"
+
+#~ msgid ""
+#~ "There was an error displaying help: \n"
+#~ "%s"
+#~ msgstr ""
+#~ "Помилка під час показу довідки: \n"
+#~ "%s"
+
+#~ msgid "Can not open desired font!"
+#~ msgstr "Неможливо завантажити вказаний шрифт!"
+
+#~ msgid ""
+#~ "The offset format string contains invalid format specifier.\n"
+#~ "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+#~ msgstr ""
+#~ "Рядок формату зміщення містить невірний специфікатор.\n"
+#~ "Дозволяються лише \"x\", \"X\", \"p\", \"P\", \"d\" і \"o\"."
+
+#~ msgid "hex data"
+#~ msgstr "шістнадцяткові дані"
+
+#~ msgid "ASCII data"
+#~ msgstr "ASCII дані"
+
+#~ msgid "Loaded file %s"
+#~ msgstr "Завантажено файл %s"
+
+#~ msgid "Can not open file!"
+#~ msgstr "Неможливо відкрити файл!"
+
+#~ msgid "Select path and file name for the HTML source"
+#~ msgstr "Виберіть шлях та назву файла у форматі HTML"
+
+#~ msgid "You need to specify a base name for the HTML files."
+#~ msgstr "Необхідно вказати базову назву для файлів у форматі HTML."
+
+#~ msgid "You don't have the permission to write to the selected path.\n"
+#~ msgstr "Ви не маєте права на запис у вибраний каталог.\n"
+
+#~ msgid ""
+#~ "Saving to HTML will overwrite some files.\n"
+#~ "Do you want to proceed?"
+#~ msgstr ""
+#~ "Збереження у форматі HTML перепише деякі файли.\n"
+#~ "Чи хочете ви продовжити?"
+
+#~ msgid "Really revert file %s?"
+#~ msgstr "Справді відновити файл %s?"
+
+#~ msgid "Reverted buffer from file %s"
+#~ msgstr "Відновлений буфер з файла %s"
