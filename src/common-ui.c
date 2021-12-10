@@ -42,12 +42,18 @@
  * credit where credit is due!
  */
 static char *
-pango_font_description_to_css (PangoFontDescription *desc)
+pango_font_description_to_css (PangoFontDescription *desc,
+		const char *selector)
 {
 	GString *s;
 	PangoFontMask set;
+	char *tmp;
 
-	s = g_string_new ("* { ");
+	g_assert (selector);
+
+	tmp = g_strdup_printf ("%s { ", selector);
+	s = g_string_new (tmp);
+	g_free (tmp);
 
 	set = pango_font_description_get_set_fields (desc);
 	if (set & PANGO_FONT_MASK_FAMILY)
@@ -172,27 +178,23 @@ set_css_provider_font_from_settings (void)
 	char *css_str;
 
 	desc = pango_font_description_from_string (def_font_name);
-	css_str = pango_font_description_to_css (desc);
+	css_str = pango_font_description_to_css (desc, ".hex");
 
 	gtk_css_provider_load_from_data (provider,
 			css_str, -1);
+	g_free (css_str);
 }
 
 void
 common_set_gtkhex_font_from_settings (GtkHex *gh)
 {
-	GtkStyleContext *context;
-
 	g_return_if_fail (GTK_IS_HEX(gh));
 	g_return_if_fail (GTK_IS_STYLE_PROVIDER(provider));
-
-	/* Get context for the requested GtkHex widget. */
-	context = gtk_widget_get_style_context (GTK_WIDGET(gh));
 
 	/* Ensure global provider and settings are in sync font-wise. */
 	set_css_provider_font_from_settings ();
 
-	gtk_style_context_add_provider (context,
+	gtk_style_context_add_provider_for_display (gdk_display_get_default (),
 			GTK_STYLE_PROVIDER (provider),
 			GTK_STYLE_PROVIDER_PRIORITY_SETTINGS);
 }

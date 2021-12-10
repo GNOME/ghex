@@ -1,23 +1,36 @@
-hex {
+.hex {
 	font-family: Monospace;
 	font-size: 12pt;
-	padding-left: 12px;
-	padding-right: 12px;
+	font-feature-settings: "tnum";
+	color: @theme_fg_color;
+	background-color: @theme_bg_color;
 }
 
-.view:link {
+.hex:selected {
+	color: @theme_selected_fg_color;
+	background-color: @theme_selected_bg_color;
+}
+
+.hex:link {
 	background-color: alpha(red, 0.5);
 }
 
-.view:checked {
+.hex:checked {
 	color: @theme_bg_color;
 	background-color: alpha(@theme_fg_color, 0.9);
 }
 
-#offsets {
+.hex #offsets {
 	background-color: shade(@theme_bg_color, 0.95);
+	padding-left: 8px;
+	border-right: solid @borders 2px;
 }
 
-#hex-display {
+.hex #hex-display {
 	border-right: dotted 2px @borders;
+	padding-left: 8px;
+}
+
+.hex #ascii-display {
+	padding-left: 8px;
 }

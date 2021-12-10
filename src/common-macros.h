@@ -27,6 +27,9 @@
 	X = GTK_WIDGET(gtk_builder_get_object (builder, #X));					\
 	g_assert (GTK_IS_WIDGET (X));
 
+/* Note - only use this macro for application-specific (as opposed to theme/
+ * widget-specific) operations.
+ */
 #define APPLY_PROVIDER_TO(PROVIDER, WIDGET)									\
 {																			\
 	GtkStyleContext *_context;												\

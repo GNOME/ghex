@@ -2286,7 +2286,7 @@ gtk_hex_class_init (GtkHexClass *klass)
 
 	/* CSS name */
 
-	gtk_widget_class_set_css_name (widget_class, "hex");
+	gtk_widget_class_set_css_name (widget_class, "hexwidget");
 
 	/* SIGNALS */
 
@@ -2488,13 +2488,15 @@ gtk_hex_init (GtkHex *gh)
 
 	context = gtk_widget_get_style_context (GTK_WIDGET (widget));
 
+	/* Add common custom `.hex` style class */
+	gtk_style_context_add_class (context, "hex");
+
 	gh->provider = gtk_css_provider_new ();
 	gtk_css_provider_load_from_resource (GTK_CSS_PROVIDER (gh->provider),
 		RESOURCE_BASE_PATH "/css/ghex.css");
 
-	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (gh->provider),
-	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (gh->provider),
+			GTK_STYLE_PROVIDER_PRIORITY_THEME);
 
 	/* Setup offsets widget. */
 
@@ -2512,8 +2514,15 @@ gtk_hex_init (GtkHex *gh)
 			gh,
 			NULL);		/* GDestroyNotify destroy); */
 
+	context = gtk_widget_get_style_context (GTK_WIDGET (gh->offsets));
+
+	gtk_style_context_add_class (context, "hex");
+
+	gtk_style_context_add_provider (context,
+	                                GTK_STYLE_PROVIDER (gh->provider),
+	                                GTK_STYLE_PROVIDER_PRIORITY_THEME);
+
 	gtk_widget_set_name (gh->offsets, "offsets");
-	APPLY_PROVIDER_TO (gh->provider, gh->offsets);
 
 	/* hide it by default. */
 	gtk_widget_hide (gh->offsets);
@@ -2537,12 +2546,10 @@ gtk_hex_init (GtkHex *gh)
 
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->xdisp));
 
-	/* Add view class so we get certain theme colours for free. */
-	gtk_style_context_add_class (context, "view");
+	gtk_style_context_add_class (context, "hex");
 
-	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (gh->provider),
-	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (gh->provider),
+			GTK_STYLE_PROVIDER_PRIORITY_THEME);
 
 	gtk_widget_set_name (gh->xdisp, "hex-display");
 
@@ -2562,12 +2569,10 @@ gtk_hex_init (GtkHex *gh)
 			gh,
 			NULL);		/* GDestroyNotify destroy); */
 
-	/* Rinse and repeat as above for ascii widget / context / view. */
 	context = gtk_widget_get_style_context (GTK_WIDGET (gh->adisp));
-	gtk_style_context_add_class (context, "view");
-	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (gh->provider),
-	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	gtk_style_context_add_class (context, "hex");
+	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (gh->provider),
+			GTK_STYLE_PROVIDER_PRIORITY_THEME);
 
 	gtk_widget_set_name (gh->adisp, "ascii-display");
 
