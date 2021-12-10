@@ -2616,8 +2616,15 @@ gtk_hex_init (GtkHex *gh)
 	gh->adj = gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
 	/* Setup scrollbar. */
+
 	gh->scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL,
 			gh->adj);
+
+	context = gtk_widget_get_style_context (GTK_WIDGET (gh->scrollbar));
+	gtk_style_context_add_class (context, "hex");
+	gtk_style_context_add_provider (context,
+	                                GTK_STYLE_PROVIDER (gh->provider),
+	                                GTK_STYLE_PROVIDER_PRIORITY_THEME);
 
 	gtk_widget_set_parent (gh->scrollbar, widget);
 	child_info = GTK_HEX_LAYOUT_CHILD (gtk_layout_manager_get_layout_child
