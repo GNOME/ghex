@@ -693,6 +693,10 @@ find_dialog_init (FindDialog *self)
 	f_priv->f_gh = create_hex_view(f_priv->f_doc);
 	gtk_frame_set_child (GTK_FRAME(f_priv->frame), f_priv->f_gh);
 	gtk_box_append (GTK_BOX(f_priv->vbox), f_priv->frame);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->frame),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			_("Enter the hex data or ASCII data to search for"),
+			-1);
 	
 	f_priv->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_append (GTK_BOX(f_priv->vbox), f_priv->hbox);
@@ -702,16 +706,28 @@ find_dialog_init (FindDialog *self)
 					  G_CALLBACK(find_next_cb), self);
 	gtk_widget_set_receives_default (f_priv->f_next, TRUE);
 	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->f_next);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->f_next),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			_("Finds the next occurrence of the search string"),
+			-1);
 
 	f_priv->f_prev = gtk_button_new_with_mnemonic (_("Find _Previous"));
 	g_signal_connect (G_OBJECT (f_priv->f_prev), "clicked",
 					  G_CALLBACK(find_prev_cb), self);
 	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->f_prev);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->f_prev),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			_("Finds the previous occurrence of the search string"),
+			-1);
 
 	f_priv->f_clear = gtk_button_new_with_mnemonic (_("_Clear"));
 	g_signal_connect (G_OBJECT (f_priv->f_clear), "clicked",
 					  G_CALLBACK(find_clear_cb), self);
 	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->f_clear);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->f_clear),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			_("Clears the data you are searching for"),
+			-1);
 
 	f_priv->close = gtk_button_new_from_icon_name ("window-close-symbolic");
 	gtk_button_set_has_frame (GTK_BUTTON(f_priv->close), FALSE);
@@ -720,26 +736,14 @@ find_dialog_init (FindDialog *self)
 	g_signal_connect (G_OBJECT (f_priv->close), "clicked",
 			G_CALLBACK(common_cancel_cb), self);
 	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->close);
-
-	/* FIXME / TODO - just keeping these strings alive for adaptation into
-	 * the new accessibility framework if possible, since they have likely
-	 * already been translated.
-	 */
-	g_debug("%s: The following strings are just being preserved for "
-			"adaptation into the new accessibility framework. Ignore.",
-			__func__);
-
-	g_debug(_("Find Data"));
-	g_debug(_("Enter the hex data or ASCII data to search for"));
-
-	g_debug(_("Find Next"));
-	g_debug(_("Finds the next occurrence of the search string"));
-
-	g_debug(_("Find previous"));
-	g_debug(_("Finds the previous occurrence of the search string "));
-
-	g_debug(_("Cancel"));
-	g_debug(_("Closes find data window"));
+	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->close),
+			GTK_ACCESSIBLE_PROPERTY_LABEL,
+			_("Close"),
+			-1);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->close),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			_("Closes the find pane"),
+			-1);
 }
 
 static gboolean 
@@ -815,6 +819,10 @@ replace_dialog_init (ReplaceDialog *self)
 	gtk_frame_set_child (GTK_FRAME(self->r_frame), self->r_gh);
 	gtk_box_insert_child_after (GTK_BOX(f_priv->vbox),
 			self->r_frame, f_priv->frame);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(self->r_frame),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			("Enter the hex data or ASCII data to replace with"),
+			-1);
 
 	self->replace = gtk_button_new_with_mnemonic (_("_Replace"));
 	g_signal_connect (G_OBJECT (self->replace),
@@ -822,6 +830,10 @@ replace_dialog_init (ReplaceDialog *self)
 					  self);
 	gtk_box_insert_child_after (GTK_BOX(f_priv->hbox),
 			self->replace, f_priv->f_prev);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(self->replace),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			("Replaces the search string with the replace string"),
+			-1);
 
 	self->replace_all = gtk_button_new_with_mnemonic (_("Replace _All"));
 	g_signal_connect (G_OBJECT (self->replace_all),
@@ -829,23 +841,14 @@ replace_dialog_init (ReplaceDialog *self)
 					  self);
 	gtk_box_insert_child_after (GTK_BOX(f_priv->hbox),
 			self->replace_all, self->replace);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(self->replace_all),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			_("Replaces all occurrences of the search string with the replace string"),
+			-1);
 
 	g_signal_connect (G_OBJECT (f_priv->f_clear),
 					  "clicked", G_CALLBACK(replace_clear_cb),
 					  self);
-	
-	/* FIXME/TODO - preserve translated strings for a11y */
-
-	g_debug("%s: preserved strings for a11y - Ignore.", __func__);
-
-	g_debug(_("Replace Data"));
-	g_debug(_("Enter the hex data or ASCII data to replace with"));
-
-	g_debug(_("Replace"));
-	g_debug(_("Replaces the search string with the replace string"));
-
-	g_debug(_("Replace All"));
-	g_debug(_("Replaces all occurrences of the search string with the replace string"));
 }
 
 static void
@@ -920,7 +923,15 @@ jump_dialog_init (JumpDialog *self)
 	gtk_widget_set_parent (self->box, widget);
 	
 	self->label = gtk_label_new (_("Jump to byte (enter offset):"));
-	self->int_entry = gtk_entry_new();
+	self->int_entry = gtk_entry_new ();
+	gtk_accessible_update_property (GTK_ACCESSIBLE(self->int_entry),
+		GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+		_("Enter the offset byte to jump to. The default is decimal format, but "
+			"other format strings are supported such as hexidecimal format, if "
+			"C-style notation using the '0x' prefix is used. If your string is "
+			"not recognized, a dialog will be presented explaining the valid "
+			"formats of strings accepted."),
+			-1);
 
 	/* In GTK4, you can't expect GtkEntry itself to report correctly whether
 	 * it has focus, (has-focus will == FALSE even though it looks focused...
@@ -938,6 +949,10 @@ jump_dialog_init (JumpDialog *self)
 					  self);
 	gtk_box_append (GTK_BOX(self->box), self->ok);
 	gtk_widget_set_receives_default (self->ok, TRUE);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(self->ok),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			_("Jumps to the specified byte"),
+			-1);
 
 	self->cancel = gtk_button_new_from_icon_name ("window-close-symbolic");
 	gtk_widget_set_hexpand (self->cancel, TRUE);
@@ -948,18 +963,14 @@ jump_dialog_init (JumpDialog *self)
 					  self);
 	gtk_box_append (GTK_BOX(self->box), self->cancel);
 
-	/* FIXME/TODO - preserve strings for a11y */
-	
-	g_debug("%s: preserving strings for a11y. Safely ignore.", __func__);
-
-	g_debug(_("Jump to byte"));
-	g_debug(_("Enter the byte to jump to"));
-
-	g_debug(_("Jump"));
-	g_debug(_("Jumps to the specified byte"));
-
-	g_debug(_("Close"));
-	g_debug(_("Closes jump to byte window"));
+	gtk_accessible_update_property (GTK_ACCESSIBLE(self->cancel),
+			GTK_ACCESSIBLE_PROPERTY_LABEL,
+			_("Close"),
+			-1);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(self->cancel),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			_("Closes the jump-to-byte pane"),
+			-1);
 }
 
 static gboolean 

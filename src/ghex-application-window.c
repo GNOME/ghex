@@ -458,21 +458,20 @@ close_doc_response_cb (GtkDialog *dialog,
 
 	if (response_id == GTK_RESPONSE_ACCEPT)
 	{
-		g_debug ("%s: Decided to SAVE changes.",
-				__func__);
 		file_save (self);
 		ghex_application_window_remove_tab (self, tab);
 	}
 	else if (response_id == GTK_RESPONSE_REJECT)
 	{
-		g_debug ("%s: Decided NOT to save changes.", __func__);
 		ghex_application_window_remove_tab (self, tab);
 	}
-	else
-	{
-		g_debug ("%s: User doesn't know WHAT they wanna do!.", __func__);
-	}
+
 	gtk_window_destroy (GTK_WINDOW(dialog));
+
+	/* GtkNotebook likes to grab the focus. Possible TODO would be to subclass
+	 * GtkNotebook so we can maintain the grab on the gh widget more easily.
+	 */
+	gtk_widget_grab_focus (GTK_WIDGET (self->gh));
 }
 
 static void
@@ -499,6 +498,7 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self)
 	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
 			_("_Save Changes"),		GTK_RESPONSE_ACCEPT,
 			_("_Discard Changes"),	GTK_RESPONSE_REJECT,
+			_("_Go Back"),			GTK_RESPONSE_CANCEL,
 			NULL);
 
 	g_signal_connect (dialog, "response",
@@ -867,6 +867,7 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 		if (GTK_IS_WIDGET (self->WIDGET) &&									\
 				gtk_widget_is_visible (self->WIDGET)) {						\
 			gtk_widget_hide (self->WIDGET);									\
+			gtk_widget_grab_focus (GTK_WIDGET(self->gh));					\
 		}																	\
 	}																		\
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_ARR_ENTRY]);	\
