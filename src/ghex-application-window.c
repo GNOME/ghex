@@ -746,39 +746,24 @@ notebook_page_removed_cb (GtkNotebook *notebook,
 	}
 }
 
-/* POSSIBLE TODO - this is fine for a one-off, but should have a more generic
- * public property getter/setter function if we add more properties here.
- */
 static void
-find_close_cb (FindDialog *dialog,
-		gpointer user_data)
+pane_close_cb (PaneDialog *pane, gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	(void)dialog;
-	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);
-}
+	g_return_if_fail (PANE_IS_DIALOG (pane));
 
-static void
-replace_close_cb (ReplaceDialog *dialog,
-		gpointer user_data)
-{
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	gtk_widget_grab_focus (GTK_WIDGET(self->gh));
 
-	(void)dialog;
-
-	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_OPEN]);
-}
-
-static void
-jump_close_cb (JumpDialog *dialog,
-		gpointer user_data)
-{
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-
-	(void)dialog;
-
-	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_JUMP_OPEN]);
+	if (FIND_IS_DIALOG (pane)) {
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);
+	}
+	else if (REPLACE_IS_DIALOG (pane)) {
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_OPEN]);
+	}
+	else if (JUMP_IS_DIALOG (pane)) {
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_JUMP_OPEN]);
+	}
 }
 
 static void
@@ -1576,21 +1561,21 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	gtk_box_append (GTK_BOX(self->findreplace_box), self->find_dialog);
 	gtk_widget_hide (self->find_dialog);
 	g_signal_connect (self->find_dialog, "closed",
-			G_CALLBACK(find_close_cb), self);
+			G_CALLBACK(pane_close_cb), self);
 
 	self->replace_dialog = replace_dialog_new ();
 	gtk_widget_set_hexpand (self->replace_dialog, TRUE);
 	gtk_box_append (GTK_BOX(self->findreplace_box), self->replace_dialog);
 	gtk_widget_hide (self->replace_dialog);
 	g_signal_connect (self->replace_dialog, "closed",
-			G_CALLBACK(replace_close_cb), self);
+			G_CALLBACK(pane_close_cb), self);
 
 	self->jump_dialog = jump_dialog_new ();
 	gtk_widget_set_hexpand (self->jump_dialog, TRUE);
 	gtk_box_append (GTK_BOX(self->findreplace_box), self->jump_dialog);
 	gtk_widget_hide (self->jump_dialog);
 	g_signal_connect (self->jump_dialog, "closed",
-			G_CALLBACK(jump_close_cb), self);
+			G_CALLBACK(pane_close_cb), self);
 
 	clear_statusbar (self);
 
