@@ -279,6 +279,16 @@ redo_action (GtkWidget *widget,
 }
 
 static void
+state_flags_changed_cb (GtkWidget *widget, GtkStateFlags flags,
+		gpointer user_data)
+{
+	GtkHex *gh = GTK_HEX(widget);
+
+	if (flags | GTK_STATE_FLAG_FOCUS_WITHIN)
+		gtk_widget_queue_draw (widget);
+}
+
+static void
 doc_undo_redo_cb (HexDocument *doc, gpointer user_data)
 {
 	GtkHex *gh = GTK_HEX(user_data);
@@ -751,12 +761,11 @@ render_highlights (GtkHex *gh,
 			state |= GTK_STATE_FLAG_LINK;
 		else
 		{
-			state |= GTK_STATE_FLAG_SELECTED;
-
 			if (gtk_widget_has_focus (GTK_WIDGET(gh)))
 			{
 				state |= GTK_STATE_FLAG_FOCUS_WITHIN;
 			}
+			state |= GTK_STATE_FLAG_SELECTED;
 		}
 
 		gtk_style_context_set_state (context, state);
@@ -2606,6 +2615,11 @@ gtk_hex_init (GtkHex *gh)
 	child_info = GTK_HEX_LAYOUT_CHILD (gtk_layout_manager_get_layout_child
 			(gh->layout_manager, gh->scrollbar));
 	gtk_hex_layout_child_set_column (child_info, SCROLLBAR_COLUMN);
+	
+	/* SETUP SIGNALS */
+
+	g_signal_connect (widget, "state-flags-changed",
+			G_CALLBACK(state_flags_changed_cb), NULL);
 
 	/* GESTURES */
 
