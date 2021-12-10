@@ -1164,6 +1164,7 @@ new_file (GtkWidget *widget,
 	ghex_application_window_add_hex (self, gh);
 	ghex_application_window_set_hex (self, gh);
 	ghex_application_window_activate_tab (self, gh);
+	ghex_application_window_set_insert_mode (self, TRUE);
 }
 
 /* convenience helper function to build a GtkHex widget pre-loaded with
