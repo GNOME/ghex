@@ -72,7 +72,7 @@ gtk_hex_layout_column_get_type (void)
 	};
 	if (! hex_layout_column_type) {
 		hex_layout_column_type =
-			g_enum_register_static ("GstAudioParseFormat", format_types);
+			g_enum_register_static ("GtkHexLayoutColumn", format_types);
 	}
 	return hex_layout_column_type;
 }
