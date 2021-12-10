@@ -93,6 +93,7 @@ struct _JumpDialog {
 	GtkWidget *label;
 	GtkWidget *int_entry;
 	GtkWidget *ok, *cancel;
+	GtkEventController *focus_controller;
 };
 
 G_DEFINE_TYPE (JumpDialog, jump_dialog, PANE_TYPE_DIALOG)
@@ -231,6 +232,7 @@ find_common (FindDialog *self, enum FindDirection direction,
 	{
 		found = TRUE;
 		gtk_hex_set_cursor (priv->gh, offset);
+		gtk_widget_grab_focus (GTK_WIDGET(priv->gh));
 	}
 	else
 	{
@@ -378,7 +380,9 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 								 _("Can not position cursor beyond the "
 								   "end of file."));
 		} else {
-			gtk_hex_set_cursor(priv->gh, byte);
+			/* SUCCESS */
+			gtk_hex_set_cursor (priv->gh, byte);
+			gtk_widget_grab_focus (GTK_WIDGET(priv->gh));
 		}
 	}
 	else {
@@ -744,6 +748,9 @@ find_dialog_grab_focus (GtkWidget *widget)
 	FindDialog *self = FIND_DIALOG(widget);
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
 
+	if (gtk_widget_has_focus (f_priv->f_gh))
+		return FALSE;
+
 	return gtk_widget_grab_focus (f_priv->f_gh);
 }
 
@@ -915,6 +922,13 @@ jump_dialog_init (JumpDialog *self)
 	self->label = gtk_label_new (_("Jump to byte (enter offset):"));
 	self->int_entry = gtk_entry_new();
 
+	/* In GTK4, you can't expect GtkEntry itself to report correctly whether
+	 * it has focus, (has-focus will == FALSE even though it looks focused...
+	 * so we add an event controller manually and track that. Thanks to mclasen
+	 */
+	self->focus_controller = gtk_event_controller_focus_new ();
+	gtk_widget_add_controller (self->int_entry, self->focus_controller);
+	
 	gtk_box_append (GTK_BOX(self->box), self->label);
 	gtk_box_append (GTK_BOX(self->box), self->int_entry);
 
@@ -952,8 +966,15 @@ static gboolean
 jump_dialog_grab_focus (GtkWidget *widget)
 {
 	JumpDialog *self = JUMP_DIALOG(widget);
+	gboolean retval;
 
-	return gtk_widget_grab_focus (self->int_entry);
+	if (gtk_event_controller_focus_contains_focus (
+				GTK_EVENT_CONTROLLER_FOCUS(self->focus_controller)))
+		retval = FALSE;
+	else
+		retval = gtk_widget_grab_focus (self->int_entry);
+
+	return retval;
 }
 
 static void

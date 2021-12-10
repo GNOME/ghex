@@ -1522,7 +1522,7 @@ key_press_cb (GtkEventControllerKey *controller,
 {
 	GtkHex *gh = GTK_HEX(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
-	gboolean ret = TRUE;
+	gboolean ret = GDK_EVENT_PROPAGATE;
 	int file_size;
 
 	g_return_val_if_fail (HEX_IS_DOCUMENT (gh->document), FALSE);
@@ -1537,12 +1537,10 @@ key_press_cb (GtkEventControllerKey *controller,
 	show_cursor (gh, FALSE);
 
 	/* Figure out if we're holding shift or not. */
-	if (! (state & GDK_SHIFT_MASK)) {
-		gh->selecting = FALSE;
-	}
-	else {
+	if (state & GDK_SHIFT_MASK)
 		gh->selecting = TRUE;
-	}
+	else
+		gh->selecting = FALSE;
 
 	/* FIXME - This could use a cleanup. Mostly flown in from old code.
 	 */
@@ -1550,37 +1548,43 @@ key_press_cb (GtkEventControllerKey *controller,
 	{
 		case GDK_KEY_BackSpace:
 			if (gh->cursor_pos > 0) {
-				hex_document_set_data(gh->document, gh->cursor_pos - 1,
+				hex_document_set_data (gh->document, gh->cursor_pos - 1,
 						0, 1, NULL, TRUE);
 				if (gh->selecting)
 					gh->selecting = FALSE;
-				gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
+				gtk_hex_set_cursor (gh, gh->cursor_pos - 1);
+				ret = GDK_EVENT_STOP;
 			}
 			break;
 
 		case GDK_KEY_Delete:
 			if (gh->cursor_pos < file_size) {
-				hex_document_set_data(gh->document, gh->cursor_pos,
+				hex_document_set_data (gh->document, gh->cursor_pos,
 						0, 1, NULL, TRUE);
-				gtk_hex_set_cursor(gh, gh->cursor_pos);
+				gtk_hex_set_cursor (gh, gh->cursor_pos);
+				ret = GDK_EVENT_STOP;
 			}
 			break;
 
 		case GDK_KEY_Up:
-			gtk_hex_set_cursor(gh, gh->cursor_pos - gh->cpl);
+			gtk_hex_set_cursor (gh, gh->cursor_pos - gh->cpl);
+			ret = GDK_EVENT_STOP;
 			break;
 
 		case GDK_KEY_Down:
-			gtk_hex_set_cursor(gh, gh->cursor_pos + gh->cpl);
+			gtk_hex_set_cursor (gh, gh->cursor_pos + gh->cpl);
+			ret = GDK_EVENT_STOP;
 			break;
 
 		case GDK_KEY_Page_Up:
-			gtk_hex_set_cursor(gh, MAX(0, gh->cursor_pos - gh->vis_lines*gh->cpl));
+			gtk_hex_set_cursor (gh, MAX(0, gh->cursor_pos - gh->vis_lines*gh->cpl));
+			ret = GDK_EVENT_STOP;
 			break;
 
 		case GDK_KEY_Page_Down:
 			gtk_hex_set_cursor(gh, MIN(file_size,
 						gh->cursor_pos + gh->vis_lines*gh->cpl));
+			ret = GDK_EVENT_STOP;
 			break;
 
 		default:
@@ -1597,70 +1601,75 @@ key_press_cb (GtkEventControllerKey *controller,
 							if (gh->lower_nibble)
 								gtk_hex_set_cursor (gh, gh->cursor_pos - 1);
 						}
+						ret = GDK_EVENT_STOP;
 						break;
 
 					case GDK_KEY_Right:
-						if (gh->cursor_pos >= file_size)
+						if (gh->cursor_pos >= file_size) {
+							ret = GDK_EVENT_STOP;
 							break;
+						}
 
 						if (state & GDK_SHIFT_MASK) {
-							gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+							gtk_hex_set_cursor (gh, gh->cursor_pos + 1);
 						}
 						else {
 							gh->lower_nibble = !gh->lower_nibble;
-							if(!gh->lower_nibble)
-								gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+							if (!gh->lower_nibble)
+								gtk_hex_set_cursor (gh, gh->cursor_pos + 1);
 						}
+						ret = GDK_EVENT_STOP;
 						break;
 
 					default:
 						if (keyval >= '0' && keyval <= '9')
 						{
-							hex_document_set_nibble(gh->document, keyval - '0',
+							hex_document_set_nibble (gh->document, keyval - '0',
 									gh->cursor_pos, gh->lower_nibble,
 									gh->insert, TRUE);
 							if (gh->selecting)
 								gh->selecting = FALSE;
 							gh->lower_nibble = !gh->lower_nibble;
-							if(!gh->lower_nibble)
-								gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+							if (!gh->lower_nibble)
+								gtk_hex_set_cursor (gh, gh->cursor_pos + 1);
+							ret = GDK_EVENT_STOP;
 						}
 						else if (keyval >= 'A' && keyval <= 'F')
 						{
-							hex_document_set_nibble(gh->document, keyval - 'A' + 10,
+							hex_document_set_nibble (gh->document, keyval - 'A' + 10,
 									gh->cursor_pos, gh->lower_nibble,
 									gh->insert, TRUE);
 							if (gh->selecting)
 								gh->selecting = FALSE;
 							gh->lower_nibble = !gh->lower_nibble;
 							if (!gh->lower_nibble)
-								gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+								gtk_hex_set_cursor (gh, gh->cursor_pos + 1);
+							ret = GDK_EVENT_STOP;
 						}
 						else if (keyval >= 'a' && keyval <= 'f')
 						{
-							hex_document_set_nibble(gh->document, keyval - 'a' + 10,
+							hex_document_set_nibble (gh->document, keyval - 'a' + 10,
 									gh->cursor_pos, gh->lower_nibble,
 									gh->insert, TRUE);
 							if (gh->selecting)
 								gh->selecting = FALSE;
 							gh->lower_nibble = !gh->lower_nibble;
 							if (!gh->lower_nibble)
-								gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+								gtk_hex_set_cursor (gh, gh->cursor_pos + 1);
+							ret = GDK_EVENT_STOP;
 						}
 						else if (keyval >= GDK_KEY_KP_0 && keyval <= GDK_KEY_KP_9)
 						{
-							hex_document_set_nibble(gh->document, keyval - GDK_KEY_KP_0,
+							hex_document_set_nibble (gh->document, keyval - GDK_KEY_KP_0,
 									gh->cursor_pos, gh->lower_nibble,
 									gh->insert, TRUE);
 							if (gh->selecting)
 								gh->selecting = FALSE;
 							gh->lower_nibble = !gh->lower_nibble;
-							if(!gh->lower_nibble)
-								gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+							if (!gh->lower_nibble)
+								gtk_hex_set_cursor (gh, gh->cursor_pos + 1);
+							ret = GDK_EVENT_STOP;
 						}
-						else
-							ret = FALSE;
-
 						break;      
 				}
 			}
@@ -1669,33 +1678,33 @@ key_press_cb (GtkEventControllerKey *controller,
 				switch (keyval)
 				{
 					case GDK_KEY_Left:
-						gtk_hex_set_cursor(gh, gh->cursor_pos - 1);
+						gtk_hex_set_cursor (gh, gh->cursor_pos - 1);
+						ret = GDK_EVENT_STOP;
 						break;
 
 					case GDK_KEY_Right:
-						gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+						gtk_hex_set_cursor (gh, gh->cursor_pos + 1);
+						ret = GDK_EVENT_STOP;
 						break;
 
 					default:
 						if (is_displayable (keyval))
 						{
-							hex_document_set_byte(gh->document, keyval,
+							hex_document_set_byte (gh->document, keyval,
 									gh->cursor_pos, gh->insert, TRUE);
 							if (gh->selecting)
 								gh->selecting = FALSE;
-							gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
+							gtk_hex_set_cursor (gh, gh->cursor_pos + 1);
+							ret = GDK_EVENT_STOP;
 						}
 						else if (keyval >= GDK_KEY_KP_0 && keyval <= GDK_KEY_KP_9)
 						{
-							hex_document_set_byte(gh->document, keyval - GDK_KEY_KP_0 + '0',
+							hex_document_set_byte (gh->document, keyval - GDK_KEY_KP_0 + '0',
 									gh->cursor_pos, gh->insert, TRUE);
 							if (gh->selecting)
 								gh->selecting = FALSE;
-							gtk_hex_set_cursor(gh, gh->cursor_pos + 1);
-						}
-						else
-						{
-							ret = FALSE;
+							gtk_hex_set_cursor (gh, gh->cursor_pos + 1);
+							ret = GDK_EVENT_STOP;
 						}
 						break;
 				}
@@ -1703,7 +1712,6 @@ key_press_cb (GtkEventControllerKey *controller,
 			break;
 	}
 	show_cursor (gh, TRUE);
-	
 	return ret;
 }
 
@@ -1716,7 +1724,7 @@ key_release_cb (GtkEventControllerKey *controller,
 {
 	GtkHex *gh = GTK_HEX(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
-	gboolean ret = TRUE;
+	gboolean ret = GDK_EVENT_PROPAGATE;
 
 	/* avoid shift key getting 'stuck'
 	 */
