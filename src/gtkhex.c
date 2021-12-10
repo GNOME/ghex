@@ -421,8 +421,9 @@ get_char_width (GtkHex *gh)
 }
 
 /*
- * format_[x|a]block() formats contents of the buffer
- * into displayable text in hex or ascii, respectively
+ * format_[x|a]block() formats contents of the buffer (out) into displayable
+ * text in hex or ascii, respectively.
+ * Returns: length of resulting number of bytes/characters in buffer.
  */
 static int
 format_xblock (GtkHex *gh, char *out, int start, int end)
@@ -430,13 +431,14 @@ format_xblock (GtkHex *gh, char *out, int start, int end)
 	int i, j, low, high;
 	guchar c;
 
-	for (i = start + 1, j = 0; i <= end; i++) {
+	for (i = start + 1, j = 0; i <= end; i++)
+	{
 		c = gtk_hex_get_byte(gh, i - 1);
 		low = c & 0x0F;
 		high = (c & 0xF0) >> 4;
 		
-		out[j++] = ((high < 10)?(high + '0'):(high - 10 + 'A'));
-		out[j++] = ((low < 10)?(low + '0'):(low - 10 + 'A'));
+		out[j++] = (high < 10) ? (high + '0') : (high - 10 + 'A');
+		out[j++] = (low < 10) ? (low + '0') : (low - 10 + 'A');
 		
 		if (i % gh->group_type == 0)
 			out[j++] = ' ';
@@ -1047,7 +1049,6 @@ render_offsets (GtkHex *gh,
 
 	gtk_widget_get_allocation (widget, &allocation);
 
-	/* render background. */
 	gtk_render_background (context, cr,
 			/* x: */		0,
 			/* y: */		min_lines * gh->char_height,

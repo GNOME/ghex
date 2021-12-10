@@ -21,16 +21,18 @@
 }
 
 .hex #offsets {
-	background-color: shade(@theme_bg_color, 0.95);
-	padding-left: 8px;
+        padding-left: 12px;
+	padding-right: 12px;
 	border-right: solid @borders 2px;
+	background-color: shade(@theme_bg_color, 0.9);
 }
 
 .hex #hex-display {
-	border-right: dotted 2px @borders;
-	padding-left: 8px;
+        border-right: dotted 2px @borders;
+        padding-left: 12px;
 }
 
 .hex #ascii-display {
-	padding-left: 8px;
+        padding-left: 12px;
 }
+

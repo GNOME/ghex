@@ -24,7 +24,10 @@
 
 #include "gtkhex-layout-manager.h"
 
-#define OFFSETS_CPL		10
+/* The CPL of the offsets column is constant; easier to just punch it in here
+ * than to use config.h. Don't change unless you change code in gtkhex.c as well.
+ */
+#define OFFSETS_CPL		8
 #define HEX_RATIO		0.75
 #define ASCII_RATIO		0.25
 
@@ -208,13 +211,25 @@ gtk_hex_layout_measure (GtkLayoutManager *layout_manager,
 
 /* Helper */
 static void
-get_cpl_from_ascii_width (GtkHexLayout *self, int width)
+get_cpl_from_ascii_width (GtkHexLayout *self, GtkWidget *widget, int width)
 {
 	int hex_cpl, ascii_cpl;
+	int real_width;
+	GtkStyleContext *context;
+	GtkBorder margins, padding;
 
-	/* Hex characters per line is a simple calculation: */
+	/* Need to grab padding and margins - can't assume that the number of
+	 * ascii chars that can be crammed into the widget is equal to its width
+	 * divided by the width of a single character.
+	 */
+	context = gtk_widget_get_style_context (widget);
+	gtk_style_context_get_margin (context, &margins);
+	gtk_style_context_get_padding (context, &padding);
 
-	ascii_cpl = width / self->char_width;
+	real_width = width -
+		margins.left - margins.right - padding.left - padding.right;
+
+	ascii_cpl = real_width / self->char_width;
 	while (ascii_cpl % self->group_type != 0)
 		--ascii_cpl;
 
@@ -237,11 +252,12 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 	GtkWidget *child;
 	gboolean have_hex = FALSE;
 	gboolean have_ascii = FALSE;
-	GtkAllocation base_alloc = {.x = 0, .y = 0, .width = 0, .height = height};
-	GtkAllocation off_alloc = base_alloc;	/* GdkRectangle */
-	GtkAllocation hex_alloc = base_alloc;
-	GtkAllocation asc_alloc = base_alloc;
-	GtkAllocation scr_alloc = base_alloc;
+#define BASE_ALLOC {.x = 0, .y = 0, .width = 0, .height = height}
+	GtkAllocation off_alloc = BASE_ALLOC;
+	GtkAllocation hex_alloc = BASE_ALLOC;
+	GtkAllocation asc_alloc = BASE_ALLOC;
+	GtkAllocation scr_alloc = BASE_ALLOC;
+#undef BASE_ALLOC
 	GtkAllocation tmp_alloc = {0};
 
 	for (child = gtk_widget_get_first_child (widget);
@@ -257,31 +273,46 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 
 		gtk_widget_get_preferred_size (child, &child_req, NULL);
 
-		/* Setup allocation depending on what column we're in. */
+		/* Setup allocation depending on what column we're in.
+		 * This loop is run through again once we obtain some initial values. */
 
-		child_info =
-			GTK_HEX_LAYOUT_CHILD(gtk_layout_manager_get_layout_child (layout_manager,
-						child));
+		child_info = GTK_HEX_LAYOUT_CHILD(
+				gtk_layout_manager_get_layout_child (layout_manager, child));
 
 		switch (child_info->column)
 		{
 			case OFFSETS_COLUMN:
-				off_alloc.width = OFFSETS_CPL * self->char_width;
+			{
+				GtkStyleContext *context = gtk_widget_get_style_context (child);
+				GtkBorder margins, padding, borders;
+
+				gtk_style_context_get_margin (context, &margins);
+				gtk_style_context_get_padding (context, &padding);
+				gtk_style_context_get_border (context, &borders);
+
+				off_alloc.width = OFFSETS_CPL * self->char_width +
+					margins.left + margins.right +
+					padding.left + padding.right +
+					borders.left + borders.right;
+			}
 				break;
+
 			case HEX_COLUMN:
 				have_hex = TRUE;
 				break;
+
 			case ASCII_COLUMN:
 				have_ascii = TRUE;
 				break;
+
 			case SCROLLBAR_COLUMN:
 				scr_alloc.x = width;
 				scr_alloc.width = child_req.width;
 				scr_alloc.height = height;
 				break;
+
 			default:
-				g_error ("%s: Programming error. "
-						"The requested column is invalid.",
+				g_error ("%s: Programmer error. Requested column invalid.",
 						__func__);
 				break;
 		}
@@ -302,9 +333,8 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 
 		/* Setup allocation depending on what column we're in. */
 
-		child_info =
-			GTK_HEX_LAYOUT_CHILD(gtk_layout_manager_get_layout_child
-					(layout_manager, child));
+		child_info = GTK_HEX_LAYOUT_CHILD(
+				gtk_layout_manager_get_layout_child (layout_manager, child));
 
 		switch (child_info->column)
 		{
@@ -315,6 +345,7 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 			case HEX_COLUMN:
 				hex_alloc.width = width - off_alloc.width;
 				hex_alloc.width -= scr_alloc.width;
+
 				if (have_ascii) {
 					hex_alloc.width *= HEX_RATIO;
 					hex_alloc.x += off_alloc.width;
@@ -327,6 +358,7 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 				asc_alloc.width = width;
 				asc_alloc.width -= off_alloc.width;
 				asc_alloc.width -= scr_alloc.width;
+
 				if (have_hex) {
 					asc_alloc.width *= ASCII_RATIO;
 					asc_alloc.x += (width - off_alloc.width - scr_alloc.width)
@@ -334,7 +366,7 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 				}
 				tmp_alloc = asc_alloc;
 
-				get_cpl_from_ascii_width (self, asc_alloc.width);
+				get_cpl_from_ascii_width (self, child, asc_alloc.width);
 
 				break;
 
@@ -343,7 +375,7 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 				break;
 
 			default:
-				g_error ("%s: Programming error. The requested column is invalid.",
+				g_error ("%s: Programmer error. The requested column is invalid.",
 						__func__);
 				break;
 		}
