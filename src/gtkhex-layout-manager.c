@@ -306,7 +306,7 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 				break;
 
 			case SCROLLBAR_COLUMN:
-				scr_alloc.x = width;
+				scr_alloc.x = width - child_req.width;
 				scr_alloc.width = child_req.width;
 				scr_alloc.height = height;
 				break;
