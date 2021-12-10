@@ -45,6 +45,11 @@ enum signal_types {
 	LAST_SIGNAL
 };
 
+enum FindDirection {
+	FIND_FORWARD,
+	FIND_BACKWARD
+};
+
 static guint signals[LAST_SIGNAL];
 
 typedef struct
@@ -169,10 +174,10 @@ no_string_dialog (GtkWindow *parent)
 }
 
 static void
-find_next_cb (GtkButton *button, gpointer user_data)
+find_common (FindDialog *self, enum FindDirection direction,
+		const char *found_msg, const char *not_found_msg)
 {
-	FindDialog *self = FIND_DIALOG(user_data);
-	GtkWidget *widget = GTK_WIDGET(user_data);
+	GtkWidget *widget = GTK_WIDGET(self);
 	PaneDialogPrivate *priv;
 	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
@@ -182,8 +187,6 @@ find_next_cb (GtkButton *button, gpointer user_data)
 	char *str;
 	static gboolean found = FALSE;
 	
-	(void)button;	/* unused */
-
 	g_return_if_fail (FIND_IS_DIALOG(self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
@@ -207,110 +210,58 @@ find_next_cb (GtkButton *button, gpointer user_data)
 	/* Insert auto-highlights of search string */
 
 	if (priv->auto_highlight)
-		gtk_hex_delete_autohighlight(priv->gh, priv->auto_highlight);
+		gtk_hex_delete_autohighlight (priv->gh, priv->auto_highlight);
 
 	priv->auto_highlight = NULL;
 	priv->auto_highlight = gtk_hex_insert_autohighlight(priv->gh,
 			str, str_len);
 
 	/* Search for requested string */
-
-	if (hex_document_find_forward (doc,
-				(found == FALSE) ? cursor_pos : cursor_pos + 1,
-				str, str_len, &offset))
+	
+	if (direction == FIND_FORWARD 
+		?
+			hex_document_find_forward (doc,
+				found == FALSE ? cursor_pos : cursor_pos + 1,
+				str, str_len, &offset)
+			
+		:
+			hex_document_find_backward (doc,
+				cursor_pos, str, str_len, &offset)
+			)
 	{
 		found = TRUE;
-		gtk_hex_set_cursor(priv->gh, offset);
+		gtk_hex_set_cursor (priv->gh, offset);
 	}
-	else {
-		char *dialog_str;
+	else
+	{
+		display_info_dialog (parent, found ? found_msg : not_found_msg);
 
-		if (found)
-			dialog_str = g_strdup (_("End of file reached.\n\n"
-						"No further matches found."));
-		else
-			dialog_str = g_strdup (_("End of file reached.\n\n"
-						"No occurrences found from cursor."));
-
-		display_info_dialog (parent, dialog_str);
 		found = FALSE;
-		g_free (dialog_str);
 	}
-
-	if (str)
-		g_free(str);
 }
 
 static void
 find_prev_cb (GtkButton *button, gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
-	GtkWidget *widget = GTK_WIDGET(user_data);
-	PaneDialogPrivate *priv;
-	FindDialogPrivate *f_priv;
-	GtkWindow *parent;
-	HexDocument *doc;
-	guint cursor_pos;
-	guint offset, str_len;
-	gchar *str;
-	static gboolean found = FALSE;
-	
-	(void)button;	/* unused */
 
-	g_return_if_fail (FIND_IS_DIALOG(self));
+	find_common (self, FIND_BACKWARD,
+			_("Beginning of file reached.\n\n"
+				"No further matches found."),
+			_("Beginning of file reached.\n\n"
+				"No occurrences found from cursor."));
+}
 
-	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX (priv->gh));
-	f_priv = find_dialog_get_instance_private (self);
-	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
+static void
+find_next_cb (GtkButton *button, gpointer user_data)
+{
+	FindDialog *self = FIND_DIALOG(user_data);
 
-	parent = GTK_WINDOW(gtk_widget_get_native (widget));
-	if (! GTK_IS_WINDOW(parent))
-		parent = NULL;
-
-	doc = gtk_hex_get_document (priv->gh);
-	cursor_pos = gtk_hex_get_cursor (priv->gh);
-
-	if ((str_len = get_search_string (f_priv->f_doc, &str)) == 0)
-	{
-		no_string_dialog (parent);
-		return;
-	}
-
-	/* Insert auto-highlights of search string */
-
-	if (priv->auto_highlight)
-		gtk_hex_delete_autohighlight(priv->gh, priv->auto_highlight);
-
-	priv->auto_highlight = NULL;
-	priv->auto_highlight = gtk_hex_insert_autohighlight(priv->gh,
-			str, str_len);
-
-	/* Search for requested string */
-	
-	if (hex_document_find_backward (doc,
-				cursor_pos, str, str_len, &offset))
-	{
-		found = TRUE;
-		gtk_hex_set_cursor(priv->gh, offset);
-	}
-	else {
-		char *dialog_str;
-
-		if (found)
-			dialog_str = g_strdup (_("Beginning of file reached.\n\n"
-						"No further matches found."));
-		else
-			dialog_str = g_strdup (_("Beginning of file reached.\n\n"
-						"No occurrences found from cursor."));
-
-		display_info_dialog (parent, dialog_str);
-		found = FALSE;
-
-		g_free (dialog_str);
-	}
-	if (str)
-		g_free(str);
+	find_common (self, FIND_FORWARD,
+			_("End of file reached.\n\n"
+				"No further matches found."),
+			_("End of file reached.\n\n"
+				"No occurrences found from cursor."));
 }
 
 static void
@@ -349,11 +300,11 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	PaneDialogPrivate *priv;
 	GtkWindow *parent;
 	HexDocument *doc;
-	guint cursor_pos;
+	int cursor_pos;
 	GtkEntry *entry;
 	GtkEntryBuffer *buffer;
-	guint byte = 2, len, i;
-	gint is_relative = 0;
+	int byte = 2, len, i;
+	int is_relative = 0;
 	gboolean is_hex;
 	const gchar *byte_str;
 	int file_size;
@@ -690,14 +641,6 @@ pane_dialog_class_init (PaneDialogClass *klass)
 					  G_TYPE_NONE, 0);
 }
 
-#if 0
-GtkWidget *
-pane_dialog_new (void)
-{
-	return g_object_new (PANE_TYPE_DIALOG, NULL);
-}
-#endif
-
 void
 pane_dialog_set_hex (PaneDialog *self, GtkHex *gh)
 {
@@ -969,7 +912,6 @@ jump_dialog_init (JumpDialog *self)
 	self->box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
 	gtk_widget_set_parent (self->box, widget);
 	
-	/* FIXME/TODO - this is not very intuitive. */
 	self->label = gtk_label_new (_("Jump to byte (enter offset):"));
 	self->int_entry = gtk_entry_new();
 

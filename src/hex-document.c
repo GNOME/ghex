@@ -964,11 +964,11 @@ hex_document_find_forward (HexDocument *doc, int start, char *what,
 	return FALSE;
 }
 
-gint
-hex_document_find_backward(HexDocument *doc, guint start, char *what,
-						   gint len, guint *found)
+int
+hex_document_find_backward (HexDocument *doc, int start, char *what,
+						   int len, int *found)
 {
-	guint pos;
+	int pos;
 	
 	pos = start;
 

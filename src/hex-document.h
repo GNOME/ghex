@@ -89,8 +89,8 @@ int        hex_document_compare_data(HexDocument *doc, char *s2,
 		int pos, int len);
 int        hex_document_find_forward(HexDocument *doc, int start,
 		char *what, int len, int *found);
-int        hex_document_find_backward(HexDocument *doc, guint start,
-		char *what, int len, guint *found);
+int        hex_document_find_backward(HexDocument *doc, int start,
+		char *what, int len, int *found);
 void        hex_document_remove_view(HexDocument *doc, GtkWidget *view);
 GtkWidget   *hex_document_add_view(HexDocument *doc);
 gboolean    hex_document_is_writable(HexDocument *doc);
