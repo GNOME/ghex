@@ -50,15 +50,15 @@
 			</object>
 		</child>
 		<child type="action">
-			<object class="GtkButton" id="close_button">
+			<object class="GtkButton" id="cancel_button">
 				<property name="use-underline">true</property>
-				<property name="label" translatable="yes">_Close</property>
+				<property name="label" translatable="yes">_Cancel</property>
 			</object>
 		</child>
 
 		<action-widgets>
 			<action-widget response="accept" default="true">paste_button</action-widget>
-			<action-widget response="close">close_button</action-widget>
+			<action-widget response="cancel">cancel_button</action-widget>
 		</action-widgets>
 	</object> <!-- /paste_special_dialog -->
 

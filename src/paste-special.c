@@ -81,7 +81,7 @@ G_DEFINE_TYPE (MimeSubTypeLabel, mime_sub_type_label, GTK_TYPE_WIDGET)
 /* PRIVATE FORWARD DECLARATIONS */
 static void dialog_response_cb (GtkDialog *dialog, int response_id,
 		gpointer user_data);
-static gboolean destroy_paste_special_dialog (void);
+static void destroy_paste_special_dialog (void);
 
 /* STATIC GLOBALS */
 
@@ -97,9 +97,8 @@ static GtkWidget *hex_paste_data_label;
  * X == var name == builder id name. Don't include quotation marks. */
 
 static GtkWidget *paste_special_dialog;
-
 static GtkWidget *paste_button;
-static GtkWidget *close_button;
+static GtkWidget *cancel_button;
 static GtkWidget *paste_special_listbox;
 
 /* MimeSubTypeLabel - Constructors and Destructors */
@@ -211,7 +210,6 @@ delimited_hex_to_gstring (const char *hex_str, GError **err)
 
 	g_free (copy);
 
-	g_debug ("%s: buf->str: %s", __func__, buf->str);
 	return buf;
 
 fail:
@@ -219,10 +217,10 @@ fail:
 	g_set_error (err,
 			HEX_PASTE_ERROR,
 			HEX_PASTE_ERROR_INVALID,
-			"Paste failed; invalid hex format.\n\n"
+			_("Paste failed; invalid hex format.\n\n"
 			"The string must be in the format of space-delineated "
 			"hex byte pairs.\n\n"
-			"For example: \"FF 3D 99 0A\"");
+			"For example: \"FF 3D 99 0A\""));
 	g_free (copy);
 	return NULL;
 }
@@ -332,7 +330,7 @@ row_activated_cb (GtkListBox *box,
 
 	g_return_if_fail (GTK_IS_WIDGET(child));
 
-	if (MIME_SUB_TYPE_IS_LABEL(child))
+	if (MIME_SUB_TYPE_IS_LABEL (child))
 	{
 		MimeSubTypeLabel *label = MIME_SUB_TYPE_LABEL(child);
 
@@ -377,6 +375,7 @@ row_activated_cb (GtkListBox *box,
 			STANDARD_PASTE
 		}
 	}
+	destroy_paste_special_dialog ();
 }
 #undef STANDARD_PASTE
 #undef STANDARD_COPY
@@ -386,7 +385,7 @@ common_init_widgets (void)
 {
 	GET_WIDGET (paste_special_dialog);
 	GET_WIDGET (paste_button);
-	GET_WIDGET (close_button);
+	GET_WIDGET (cancel_button);
 	GET_WIDGET (paste_special_listbox);
 
 	gtk_list_box_set_activate_on_single_click (GTK_LIST_BOX(paste_special_listbox),
@@ -449,28 +448,20 @@ mime_hash_func (gconstpointer key)
 	guint hash = NO_MIME;
 	char *cp;
 
-	g_debug ("%s: str: %s", __func__, str);
-
 	/* strip off parameters. */
 	cp = strtok(str, ";");
-
-	g_debug ("%s: cp: %s", __func__, cp);
 
 	if (g_ascii_strcasecmp (str, "text/plain") == 0)
 	{
 		char *utf_str = "charset=utf";
 
 		hash = PLAINTEXT_MIME;
-
 		cp = strtok (NULL, ";");
-
-		g_debug ("%s: cp after 2nd strtok: %s", __func__, cp);
 
 		if (cp && g_ascii_strncasecmp (cp, utf_str, strlen(utf_str)) == 0)
 			hash = UTF_PLAINTEXT_MIME;
 	}
 	g_free (str);
-	g_debug ("%s: returning: %u", __func__, hash);
 	return hash;
 }
 
@@ -483,15 +474,12 @@ mime_hash_equal (gconstpointer a,
 	char *cp1, *cp2;
 	gboolean retval = FALSE;
 
-	g_debug ("%s: str1: %s - str2: %s", __func__, str1, str2);
-
 	if (g_ascii_strcasecmp(str1, str2) == 0)
 		retval = TRUE;
 
 	g_free (str1);
 	g_free (str2);
 
-	g_debug ("%s: returning: %d", __func__, retval);
 	return retval;
 }
 
@@ -668,13 +656,10 @@ copy_special_populate_listbox (void)
 	}
 }
 
-static gboolean
+static void
 destroy_paste_special_dialog (void)
 {
-	g_debug ("%s: START", __func__);
-
-	g_return_val_if_fail (GTK_IS_WINDOW (paste_special_dialog),
-			GDK_EVENT_PROPAGATE);
+	g_return_if_fail (GTK_IS_WINDOW (paste_special_dialog));
 
 	if (builder)
 		g_clear_object (&builder);
@@ -687,8 +672,6 @@ destroy_paste_special_dialog (void)
 		hex_paste_data = NULL;
 
 	gtk_window_destroy (GTK_WINDOW(paste_special_dialog));
-
-	return GDK_EVENT_STOP;
 }
 
 static void
@@ -698,9 +681,6 @@ dialog_response_cb (GtkDialog *dialog,
 {
 	GtkListBoxRow *row;
 
-	g_debug ("%s: START -- response_id: %d",
-			__func__, response_id);
-
 	switch (response_id)
 	{
 		case GTK_RESPONSE_ACCEPT:
@@ -709,7 +689,6 @@ dialog_response_cb (GtkDialog *dialog,
 			g_signal_emit_by_name (row, "activate");
 			break;
 
-		/* This should cover both delete events and close. */
 		default:
 			destroy_paste_special_dialog ();
 			break;

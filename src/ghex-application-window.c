@@ -587,12 +587,15 @@ copy_special (GtkWidget *widget,
 
 	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(self->gh));
 
-	if (! GTK_IS_WIDGET (self->copy_special_dialog) ||
-			! gtk_widget_get_visible (self->copy_special_dialog)) {
+	if (! self->copy_special_dialog)
+	{
 		self->copy_special_dialog = create_copy_special_dialog (self,
 				clipboard);
+		g_object_add_weak_pointer (G_OBJECT(self->copy_special_dialog),
+				(gpointer *)&self->copy_special_dialog);
 	}
-	gtk_widget_show (self->copy_special_dialog);
+
+	gtk_window_present (GTK_WINDOW(self->copy_special_dialog));
 }
 
 static void 
@@ -608,12 +611,15 @@ paste_special (GtkWidget *widget,
 
 	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(self->gh));
 
-	if (! GTK_IS_WIDGET (self->paste_special_dialog) ||
-			gtk_widget_get_visible (self->paste_special_dialog)) {
+	if (! self->paste_special_dialog)
+	{
 		self->paste_special_dialog = create_paste_special_dialog (self,
 				clipboard);
+		g_object_add_weak_pointer (G_OBJECT(self->paste_special_dialog),
+				(gpointer *)&self->paste_special_dialog);
 	}
-	gtk_widget_show (self->paste_special_dialog);
+
+	gtk_window_present (GTK_WINDOW(self->paste_special_dialog));
 }
 
 static gboolean
