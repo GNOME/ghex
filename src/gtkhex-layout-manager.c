@@ -28,15 +28,9 @@
  * than to use config.h. Don't change unless you change code in gtkhex.c as well.
  */
 #define OFFSETS_CPL		8
-#define HEX_RATIO		0.75
-#define ASCII_RATIO		0.25
 
 struct _GtkHexLayout {
 	GtkLayoutManager parent_instance;
-
-	GtkWidget *offets;
-	GtkWidget *hex;
-	GtkWidget *ascii;
 
 	guint char_width;
 	guint group_type;
@@ -209,69 +203,36 @@ gtk_hex_layout_measure (GtkLayoutManager *layout_manager,
 		*natural = natural_size;
 }
 
-/* Helper */
-static void
-get_cpl_from_ascii_width (GtkHexLayout *self, GtkWidget *widget, int width)
-{
-	int hex_cpl, ascii_cpl;
-	int real_width;
-	GtkStyleContext *context;
-	GtkBorder margins, padding;
-
-	/* Need to grab padding and margins - can't assume that the number of
-	 * ascii chars that can be crammed into the widget is equal to its width
-	 * divided by the width of a single character.
-	 */
-	context = gtk_widget_get_style_context (widget);
-	gtk_style_context_get_margin (context, &margins);
-	gtk_style_context_get_padding (context, &padding);
-
-	real_width = width -
-		margins.left - margins.right - padding.left - padding.right;
-
-	ascii_cpl = real_width / self->char_width;
-	while (ascii_cpl % self->group_type != 0)
-		--ascii_cpl;
-
-	hex_cpl = ascii_cpl * 2;
-   	hex_cpl += ascii_cpl / self->group_type;
-
-	self->hex_cpl = hex_cpl;
-	self->cpl = ascii_cpl;
-}
-
 static void
 gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 		GtkWidget        *widget,
-		int               width,
-		int               height,
-		int               baseline)
+		int               full_width,
+		int               full_height,
+		int               baseline)		/* N/A */
 {
 	GtkHexLayout *self = GTK_HEX_LAYOUT (layout_manager);
-	GtkHexLayoutChild *child_info;
 	GtkWidget *child;
 	gboolean have_hex = FALSE;
 	gboolean have_ascii = FALSE;
-#define BASE_ALLOC {.x = 0, .y = 0, .width = 0, .height = height}
+#define BASE_ALLOC {.x = 0, .y = 0, .width = 0, .height = full_height}
 	GtkAllocation off_alloc = BASE_ALLOC;
 	GtkAllocation hex_alloc = BASE_ALLOC;
 	GtkAllocation asc_alloc = BASE_ALLOC;
-	GtkAllocation scr_alloc = BASE_ALLOC;
+	GtkAllocation sbar_alloc = BASE_ALLOC;
 #undef BASE_ALLOC
-	GtkAllocation tmp_alloc = {0};
+
+	int avail_width = full_width;
+	GtkWidget *hex = NULL, *ascii = NULL, *offsets = NULL, *scrollbar = NULL;
 
 	for (child = gtk_widget_get_first_child (widget);
 			child != NULL;
 			child = gtk_widget_get_next_sibling (child))
 	{
-		GtkRequisition child_req = { .width = 0, .height = 0 };
+		GtkHexLayoutChild *child_info;
 
+		/* If it's invisible, etc., this should fail. */
 		if (! gtk_widget_should_layout (child))
 			continue;
-
-		/* Get preferred size of the child widget */
-
-		gtk_widget_get_preferred_size (child, &child_req, NULL);
 
 		/* Setup allocation depending on what column we're in.
 		 * This loop is run through again once we obtain some initial values. */
@@ -281,109 +242,161 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 
 		switch (child_info->column)
 		{
-			case OFFSETS_COLUMN:
-			{
-				GtkStyleContext *context = gtk_widget_get_style_context (child);
-				GtkBorder margins, padding, borders;
-
-				gtk_style_context_get_margin (context, &margins);
-				gtk_style_context_get_padding (context, &padding);
-				gtk_style_context_get_border (context, &borders);
-
-				off_alloc.width = OFFSETS_CPL * self->char_width +
-					margins.left + margins.right +
-					padding.left + padding.right +
-					borders.left + borders.right;
-			}
+			case OFFSETS_COLUMN:	offsets = child;
 				break;
-
-			case HEX_COLUMN:
-				have_hex = TRUE;
+			case HEX_COLUMN:		hex = child;
 				break;
-
-			case ASCII_COLUMN:
-				have_ascii = TRUE;
+			case ASCII_COLUMN:		ascii = child;
 				break;
-
-			case SCROLLBAR_COLUMN:
-				scr_alloc.x = width - child_req.width;
-				scr_alloc.width = child_req.width;
-				scr_alloc.height = height;
+			case SCROLLBAR_COLUMN:	scrollbar = child;
 				break;
-
+				/* We won't test for this each loop. */
 			default:
 				g_error ("%s: Programmer error. Requested column invalid.",
 						__func__);
 				break;
 		}
 	}
-	
-	for (child = gtk_widget_get_first_child (widget);
-			child != NULL;
-			child = gtk_widget_get_next_sibling (child))
+
+	/* Order doesn't really matter for the offsets & scrollbar columns since
+	 * they're essentially fixed, so let's do those first.
+	 */
+	if (offsets)
 	{
-		GtkRequisition child_req = { .width = 0, .height = 0 };
+		GtkBorder margins, padding, borders;
+		GtkStyleContext *context = gtk_widget_get_style_context (offsets);
 
-		if (! gtk_widget_should_layout (child))
-			continue;
+		gtk_style_context_get_margin (context, &margins);
+		gtk_style_context_get_padding (context, &padding);
+		gtk_style_context_get_border (context, &borders);
 
-		/* Get preferred size of the child widget */
+		/* nb: offsets always goes at x coordinate 0 so just leave it as it's
+		 * zeroed out anyway. */
 
-		gtk_widget_get_preferred_size (child, &child_req, NULL);
+		off_alloc.width = OFFSETS_CPL * self->char_width +
+			margins.left + margins.right +
+			padding.left + padding.right +
+			borders.left + borders.right;
 
-		/* Setup allocation depending on what column we're in. */
-
-		child_info = GTK_HEX_LAYOUT_CHILD(
-				gtk_layout_manager_get_layout_child (layout_manager, child));
-
-		switch (child_info->column)
-		{
-			case OFFSETS_COLUMN:
-				tmp_alloc = off_alloc;
-				break;
-
-			case HEX_COLUMN:
-				hex_alloc.width = width - off_alloc.width;
-				hex_alloc.width -= scr_alloc.width;
-
-				if (have_ascii) {
-					hex_alloc.width *= HEX_RATIO;
-					hex_alloc.x += off_alloc.width;
-				}
-				tmp_alloc = hex_alloc;
-				break;
-
-			case ASCII_COLUMN:
-				asc_alloc.x += off_alloc.width;
-				asc_alloc.width = width;
-				asc_alloc.width -= off_alloc.width;
-				asc_alloc.width -= scr_alloc.width;
-
-				if (have_hex) {
-					asc_alloc.width *= ASCII_RATIO;
-					asc_alloc.x += (width - off_alloc.width - scr_alloc.width)
-						* HEX_RATIO;
-				}
-				tmp_alloc = asc_alloc;
-
-				get_cpl_from_ascii_width (self, child, asc_alloc.width);
-
-				break;
-
-			case SCROLLBAR_COLUMN:
-				tmp_alloc = scr_alloc;
-				break;
-
-			default:
-				g_error ("%s: Programmer error. The requested column is invalid.",
-						__func__);
-				break;
-		}
-
-		gtk_widget_size_allocate (child,
-			&tmp_alloc,
-			-1);	/* baseline, or -1 */
+		avail_width -= off_alloc.width;
 	}
+
+	if (scrollbar)
+	{
+		GtkRequisition req = { .width = 0, .height = 0 };
+		gtk_widget_get_preferred_size (scrollbar, &req, NULL);
+
+		/* It's always going to be its full width and will always be to the far
+		 * right, so just plop it there.
+		 */
+		sbar_alloc.x = full_width - req.width;
+		sbar_alloc.width = req.width;
+		sbar_alloc.height = full_height;
+
+		avail_width -= sbar_alloc.width;
+	}
+
+	/* Let's measure ascii next, as hex's width is essentially locked to it, if
+	 * it's visible. Since hex and ascii are both drawing areas, they both
+	 * default to preferring a width of 0, so we have to measure completely.
+	 */
+	if (ascii)
+	{
+		int ascii_max_width;
+
+		/* Use width of offsets (if any) as baseline for x posn of ascii and
+		 * go from there.
+		 */
+		asc_alloc.x = off_alloc.width;
+
+		ascii_max_width = asc_alloc.width =
+			full_width - off_alloc.width - sbar_alloc.width;
+
+		if (hex)
+		{
+			GtkStyleContext *context;
+			int tot_cpl, hex_cpl, ascii_cpl;
+			int max_width_left = ascii_max_width;
+
+			GtkBorder hex_margins, hex_padding;
+			GtkBorder asc_margins, asc_padding;
+
+			context = gtk_widget_get_style_context (hex);
+			gtk_style_context_get_margin (context, &hex_margins);
+			gtk_style_context_get_padding (context, &hex_padding);
+
+			max_width_left = max_width_left - 
+				hex_margins.left - hex_margins.right -
+				hex_padding.left - hex_padding.right;
+
+			context = gtk_widget_get_style_context (ascii);
+			gtk_style_context_get_margin (context, &asc_margins);
+			gtk_style_context_get_padding (context, &asc_padding);
+
+			max_width_left = max_width_left - 
+				asc_margins.left - asc_margins.right -
+				asc_padding.left - asc_padding.right;
+
+			tot_cpl = max_width_left / self->char_width;
+
+			/* Calculate how many hex vs. ascii characters can be stuffed
+			 * on one line.
+			 */
+			ascii_cpl = 0;
+			do {
+				if (ascii_cpl % self->group_type == 0 &&
+						tot_cpl < self->group_type * 3)
+					break;
+		
+				++ascii_cpl;
+				tot_cpl -= 3;   /* 2 for hex disp, 1 for ascii disp */
+		
+				if (ascii_cpl % self->group_type == 0) /* just ended a group */
+					tot_cpl--;
+			}
+			while (tot_cpl > 0);
+
+			hex_cpl = ascii_cpl * 2 + ascii_cpl / self->group_type;
+
+			asc_alloc.width = ascii_cpl * self->char_width;
+			hex_alloc.width = max_width_left - asc_alloc.width;
+
+			/* add back the margins and padding prev. deducted from values.
+			 */
+			asc_alloc.width += asc_margins.left + asc_margins.right +
+				asc_padding.left + asc_padding.right;
+
+			hex_alloc.width += hex_margins.left + hex_margins.right +
+				hex_padding.left + hex_padding.right;
+
+			hex_alloc.x = off_alloc.width;
+			asc_alloc.x = hex_alloc.x + hex_alloc.width;
+
+			self->hex_cpl = hex_cpl;
+			self->cpl = ascii_cpl;
+		}
+	}
+
+	/* Already determined what to do if have ascii and hex together */
+	if (hex && !ascii)
+	{
+		hex_alloc.x = off_alloc.width;
+		hex_alloc.width = full_width - off_alloc.width - sbar_alloc.width;
+
+		/* TODO - get_cpl_from_hex_width ()
+		self->hex_cpl = ???
+		self->cpl = ???
+		*/
+	}
+
+	if (offsets)
+		gtk_widget_size_allocate (offsets, &off_alloc, -1);
+	if (scrollbar)
+		gtk_widget_size_allocate (scrollbar, &sbar_alloc, -1);
+	if (hex)
+		gtk_widget_size_allocate (hex, &hex_alloc, -1);
+	if (ascii)
+		gtk_widget_size_allocate (ascii, &asc_alloc, -1);
 }
 
 static GtkSizeRequestMode
