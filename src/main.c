@@ -36,6 +36,16 @@
 
 #include <config.h>
 
+GOptionEntry entries[] = {
+	{	.long_name = 	"version",
+		.short_name =	'v',
+		.flags = 		G_OPTION_FLAG_NONE,
+		.arg =			G_OPTION_ARG_NONE,
+		.description =	N_("Show the application version"),
+	},
+	{ NULL }
+};
+
 static GtkWindow *window = NULL;
 
 /* FIXME - TEST ON WIN32.
@@ -83,6 +93,20 @@ do_app_window (GtkApplication *app)
 	else
 		g_return_if_fail (GHEX_IS_APPLICATION_WINDOW
 				(GHEX_APPLICATION_WINDOW(window)));
+}
+
+static int
+handle_local_options (GApplication *application,
+		GVariantDict *options,
+		gpointer      user_data)
+{
+	if (g_variant_dict_contains (options, "version"))
+	{
+		g_print (_("This is GHex, version %s\n"), PACKAGE_VERSION);
+
+		return 0;	/* exit successfully (see TFM) */
+	}
+	return -1;		/* let processing continue (see TFM) */
 }
 
 static void
@@ -135,8 +159,15 @@ main (int argc, char *argv[])
 
 	app = gtk_application_new (APP_ID, G_APPLICATION_HANDLES_OPEN);
 
+	g_application_add_main_option_entries (G_APPLICATION(app), entries);
+
+	g_application_set_option_context_summary (G_APPLICATION(app),
+			_("GHex - A hex editor for the GNOME desktop"));;
+
 	g_signal_connect (app, "activate", G_CALLBACK(activate), NULL);
 	g_signal_connect (app, "open", G_CALLBACK(open), NULL);
+	g_signal_connect (app, "handle-local-options",
+			G_CALLBACK(handle_local_options), NULL);
 
 	g_application_register (G_APPLICATION (app), NULL, NULL);
 
