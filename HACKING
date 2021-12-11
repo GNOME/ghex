@@ -1,32 +1,82 @@
+GHEX HACKING GUIDE
+==================
+
+INTRODUCTION
+------------
+
+Welcome! By way of introduction, first let it be stated that we aim for the
+GHex project to be as hacker-friendly as possible, especially for newcomers.
+
+No suggestion or question is dumb, and everyone who puts forth a genuine effort
+will be treated with utmost respect within this project.
+
+Although GHex is part of the GNOME Extra Apps family, I adopt fully the GNOME
+Code of Conduct, as well as the common-sense principle of "Be Excellent to
+Each Other."
+
 HOW TO BUILD FROM GIT
+---------------------
 
-	First install the build dependencies (i.e. libraries that ghex uses).
-	If you're on Debian or Ubuntu you can install the build dependencies
-	of the distro packaged version of ghex using the command:
+First install the build dependencies (i.e. libraries that ghex uses).
+If you're on Debian or Ubuntu you can install the build dependencies
+of the distro packaged version of ghex using the command:
 
-		sudo apt-get build-dep ghex
+	sudo apt-get build-dep ghex
 
-	If you're on Fedora, the equivalent command is:
+If you're on Fedora, the equivalent command is:
 
-		sudo yum-builddep ghex
+	sudo yum-builddep ghex
 
-	Other distributions have similar commands for their package managers.
-	Of course, there is no guarantee that the build dependencies of the
-	distro packaged version is the same as the git version, but in practice
-	the former gets you quite far and if not, autogen.sh will tell you
-	what is missing during the next step.
+Other distributions have similar commands for their package managers.
+Of course, there is no guarantee that the build dependencies of the
+distro packaged version is the same as the git version, but in practice
+the former gets you quite far and if not, autogen.sh will tell you
+what is missing during the next step.
 
-	To configure and build the git version of ghex, run:
+To configure and build the git version of ghex, run:
 
-		git clone git@gitlab.gnome.org:GNOME/ghex.git      # Using SSH
-		git clone https://gitlab.gnome.org/GNOME/ghex.git  # Using HTTPS
-		cd ghex
-		meson build
-		cd build
-		ninja-build
-		sudo ninja-build install
+	git clone git@gitlab.gnome.org:GNOME/ghex.git      # Using SSH
+	git clone https://gitlab.gnome.org/GNOME/ghex.git  # Using HTTPS
+	cd ghex
+	meson build
+	cd build
+	ninja-build
+	sudo ninja-build install
 
+For instructions on how to prepare a patch, see:
 
-	For instructions on how to prepare a patch, see:
+	https://wiki.gnome.org/Git/Developers#Contributing_patches
 
-		https://wiki.gnome.org/Git/Developers#Contributing_patches
+CODING STYLE
+------------
+
+We all have our relgious beliefs when it comes to coding styles. At the GHex
+project, we are not uber-pedantic when it comes to these things, but I do
+believe that consistency within a codebase is important. To that end, here are
+some basic principles that apply:
+
+- To the extent possible, let's keep our user interface defined in .ui files,
+  and reserve our C code for callbacks and things that C is actually good for,
+  like, you know, programming!  In the GHex project, this mainly applies to new
+  UI features; pre-existing features that have been with GHex for a long time and
+  have been done programmatically can continue to be updated and ported to new
+  APIs as necessary.
+
+* Tabs, not spaces. I prefer tab-shifts and shift-widths of 4, but that's the
+  beauty of tabs! You can define them to be whatever you want them to be!
+
+* When it comes to function definitions, I prefer the usual GNOME/GTK style,
+  which is basically K&R style except with the return type on a separate line
+  from the function name and parameters.
+
+* When it comes to if, etc. statements, I'm not super picky. I just want the
+  code to be as readable as possible. I prefer spaces between `if` and the
+  opening parenthesis.
+
+* Keep a maximum of approximately 80 characters per line, please. I don't mind
+  going a bit over, but I don't have the best eyesight and tend to look at code
+  in vim with the source file in one column and the header in another, so keeping
+  things at 80 characters keeps things relatively readable in 2-column displays
+  without ugly wrapping.
+
+* No mid-block declarations.
