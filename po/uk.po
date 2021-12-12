@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2021-12-11 17:44+0000\n"
-"PO-Revision-Date: 2021-12-11 20:36+0200\n"
+"POT-Creation-Date: 2021-12-12 12:45+0000\n"
+"PO-Revision-Date: 2021-12-12 19:25+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
@@ -32,11 +32,6 @@ msgid "GHex is a hex editor for the GNOME desktop."
 msgstr "GHex — шістнадцятковий редактор для середовища GNOME."
 
 #: data/org.gnome.GHex.appdata.xml.in.in:12
-#| msgid ""
-#| "GHex can load raw data from binary files and display them for editing in "
-#| "the traditional hex editor view. The display is split in two columns, "
-#| "with hexadecimal values in one column and the ASCII representation in the "
-#| "other. A useful tool for working with raw data."
 msgid ""
 "GHex can load raw data from binary files and display them for editing in the "
 "traditional hex editor view. The display is split in two columns, with "
@@ -302,7 +297,6 @@ msgid "Find _Previous"
 msgstr "Знайти _попереднє"
 
 #: src/findreplace.c:720
-#| msgid "Finds the previous occurrence of the search string "
 msgid "Finds the previous occurrence of the search string"
 msgstr "Знайти попереднє входження рядка пошуку"
 
@@ -311,7 +305,6 @@ msgid "_Clear"
 msgstr "О_чистити"
 
 #: src/findreplace.c:729
-#| msgid "Enter the hex data or ASCII data to search for"
 msgid "Clears the data you are searching for"
 msgstr "Вилучає дані, які ви шукали"
 
@@ -320,7 +313,6 @@ msgid "Close"
 msgstr "Закрити"
 
 #: src/findreplace.c:745
-#| msgid "Closes find data window"
 msgid "Closes the find pane"
 msgstr "Закриває панель пошуку"
 
@@ -351,7 +343,11 @@ msgid ""
 "using the '0x' prefix is used. If your string is not recognized, a dialog "
 "will be presented explaining the valid formats of strings accepted."
 msgstr ""
-"Введіть байт зсуву, до якого слід перейти. Типовим є десятковий формат, але передбачено і підтримку інших форматувань рядків, зокрема шістнадцяткового формату, якщо використано позначення у стилі Сі із використанням префікса «0x». Якщо ваш рядок не буде розпізнано, програма покаже діалогове вікно із поясненням щодо прийнятних форматувань рядків."
+"Введіть байт зсуву, до якого слід перейти. Типовим є десятковий формат, але "
+"передбачено і підтримку інших форматувань рядків, зокрема шістнадцяткового "
+"формату, якщо використано позначення у стилі Сі із використанням префікса "
+"«0x». Якщо ваш рядок не буде розпізнано, програма покаже діалогове вікно із "
+"поясненням щодо прийнятних форматувань рядків."
 
 #: src/findreplace.c:946
 msgid "_Jump"
@@ -362,7 +358,6 @@ msgid "Jumps to the specified byte"
 msgstr "Перейти до вказаного байта"
 
 #: src/findreplace.c:972
-#| msgid "Closes jump to byte window"
 msgid "Closes the jump-to-byte pane"
 msgstr "Закриває панель переходу до байта"
 
@@ -570,6 +565,22 @@ msgstr "Попередня сторінка"
 msgid "Next page"
 msgstr "наступна сторінка"
 
+#: src/main.c:44
+#| msgid "Configure the application"
+msgid "Show the application version"
+msgstr "Показати версію програми"
+
+#: src/main.c:105
+#, c-format
+msgid "This is GHex, version %s\n"
+msgstr ""
+"Це GHex, версія %s\n"
+
+#: src/main.c:165
+#| msgid "GHex is a hex editor for the GNOME desktop."
+msgid "GHex - A hex editor for the GNOME desktop"
+msgstr "GHex — шістнадцятковий редактор для середовища GNOME."
+
 #: src/paste-special.c:220
 #, c-format
 msgid ""
@@ -581,7 +592,8 @@ msgid ""
 msgstr ""
 "Не вдалося вставити. Некоректний формат шістнадцяткових чисел.\n"
 "\n"
-"Рядок має бути вказано у форматі відокремлених пробілами пар шістнадцяткових байтів.\n"
+"Рядок має бути вказано у форматі відокремлених пробілами пар шістнадцяткових "
+"байтів.\n"
 "\n"
 "Приклад: «FF 3D 99 0A»"
 
@@ -619,7 +631,6 @@ msgid "_Paste"
 msgstr "Вст_авити"
 
 #: src/paste-special.ui:55
-#| msgid "Cancel"
 msgid "_Cancel"
 msgstr "_Скасувати"
 
@@ -938,9 +949,6 @@ msgstr "Сторінка: %i/%i"
 
 #~ msgid "Jump to a certain position"
 #~ msgstr "Перескочити у дану позицію"
-
-#~ msgid "Configure the application"
-#~ msgstr "Налаштувати програму"
 
 #~ msgid "_Add View"
 #~ msgstr "_Додати вигляд"
