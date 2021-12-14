@@ -109,14 +109,16 @@ static void replace_one_cb (GtkButton *button, gpointer user_data);
 static void replace_all_cb (GtkButton *button, gpointer user_data);
 static void replace_clear_cb (GtkButton *button, gpointer user_data);
 static void goto_byte_cb (GtkButton *button, gpointer user_data);
-static gint get_search_string (HexDocument *doc, gchar **str);
+static size_t get_search_string (HexDocument *doc, gchar **str);
 
 
 static GtkWidget *
 create_hex_view (HexDocument *doc)
 {
-	/* Not going to bother reffing, since add_view does this internally. */
-    GtkWidget *gh = hex_document_add_view (doc);
+	GtkWidget *gh;
+
+	gh = gtk_hex_new (doc);
+	g_object_ref (gh);
 
 	gtk_widget_set_hexpand (gh, TRUE);
 	gtk_hex_set_group_type (GTK_HEX(gh), def_group_type);
@@ -127,13 +129,13 @@ create_hex_view (HexDocument *doc)
     return gh;
 }
 
-static int
+static size_t
 get_search_string (HexDocument *doc, char **str)
 {
-	int size = hex_document_get_file_size (doc);
+	size_t size = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 	
 	if (size > 0)
-		*str = hex_document_get_data(doc, 0, size);
+		*str = hex_buffer_get_data (hex_document_get_buffer (doc), 0, size);
 	else
 		*str = NULL;
 
@@ -184,7 +186,8 @@ find_common (FindDialog *self, enum FindDirection direction,
 	GtkWindow *parent;
 	HexDocument *doc;
 	int cursor_pos;
-	int offset, str_len;
+	int str_len;
+	size_t offset;
 	char *str;
 	static gboolean found = FALSE;
 	
@@ -309,7 +312,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	int is_relative = 0;
 	gboolean is_hex;
 	const gchar *byte_str;
-	int file_size;
+	size_t payload;
 	
 	(void)button;	/* unused */
 
@@ -324,7 +327,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 
 	doc = gtk_hex_get_document(priv->gh);
 	cursor_pos = gtk_hex_get_cursor(priv->gh);
-	file_size = hex_document_get_file_size (doc);
+	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 
 	entry = GTK_ENTRY(self->int_entry);
 	buffer = gtk_entry_get_buffer (entry);
@@ -375,7 +378,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 			}
 			byte = byte * is_relative + cursor_pos;
 		}
-		if (byte >= file_size) {
+		if (byte >= payload) {
 			display_error_dialog(parent,
 								 _("Can not position cursor beyond the "
 								   "end of file."));
@@ -405,8 +408,9 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	HexDocument *doc;
 	int cursor_pos;
 	char *find_str = NULL, *rep_str = NULL;
-	int find_len, rep_len, offset;
-	int file_size;
+	int find_len, rep_len;
+	size_t offset;
+	size_t payload;
 
 	(void)button;	/* unused */
 	g_return_if_fail (REPLACE_IS_DIALOG(self));
@@ -424,7 +428,7 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 
 	doc = gtk_hex_get_document (priv->gh);
 	cursor_pos = gtk_hex_get_cursor (priv->gh);
-	file_size = hex_document_get_file_size (doc);
+	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 	
 	if ((find_len = get_search_string(f_priv->f_doc, &find_str)) == 0)
 	{
@@ -433,7 +437,7 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	}
 	rep_len = get_search_string(self->r_doc, &rep_str);
 	
-	if (find_len > file_size - cursor_pos)
+	if (find_len > payload - cursor_pos)
 		goto clean_up;
 	
 	if (hex_document_compare_data(doc, find_str, cursor_pos, find_len) == 0)
@@ -470,8 +474,9 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	HexDocument *doc;
 	int cursor_pos;
 	char *find_str = NULL, *rep_str = NULL;
-	int find_len, rep_len, offset, count;
-	int file_size;
+	size_t find_len, rep_len, count;
+	size_t offset;
+	size_t payload;
 
 	(void)button;	/* unused */
 	g_return_if_fail (REPLACE_IS_DIALOG (self));
@@ -488,7 +493,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 
 	doc = gtk_hex_get_document (priv->gh);
 	cursor_pos = gtk_hex_get_cursor (priv->gh);
-	file_size = hex_document_get_file_size (doc);
+	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 
 	if ((find_len = get_search_string(f_priv->f_doc, &find_str)) == 0)
 	{
@@ -497,7 +502,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	}
 	rep_len = get_search_string(self->r_doc, &rep_str);
 
-	if (find_len > file_size - cursor_pos)
+	if (find_len > payload - (unsigned)cursor_pos)
 		goto clean_up;
 	
 	count = 0;
@@ -510,7 +515,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 		count++;
 	}
 	
-	gtk_hex_set_cursor(priv->gh, MIN(offset, file_size));  
+	gtk_hex_set_cursor(priv->gh, MIN(offset, payload));  
 
 	if (count == 0) {
 		display_info_dialog (parent, _("No occurrences were found."));

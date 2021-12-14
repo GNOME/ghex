@@ -36,7 +36,11 @@ struct _GHexNotebookTab
 	GtkWidget *label;
 	GtkWidget *close_btn;
 	GtkHex *gh;				/* GtkHex widget activated when tab is clicked */
+
+	GFileMonitor *monitor;
 };
+
+static char *untitled_label = N_("Untitled document");
 
 static guint signals[LAST_SIGNAL];
 
@@ -105,7 +109,7 @@ ghex_notebook_tab_init (GHexNotebookTab *self)
 	
 	/* Set up our label to hold the document name and the close button. */
 
-	self->label = gtk_label_new (_("Untitled document"));
+	self->label = gtk_label_new (_(untitled_label));
 	self->close_btn = gtk_button_new ();
 
 	gtk_widget_set_halign (self->close_btn, GTK_ALIGN_END);
@@ -132,7 +136,7 @@ ghex_notebook_tab_dispose (GObject *object)
 	/* Unparent children */
 	g_clear_pointer (&self->label, gtk_widget_unparent);
 	g_clear_pointer (&self->close_btn, gtk_widget_unparent);
-	g_clear_object (&self->gh);
+	g_object_unref (self->gh);
 
 	/* Boilerplate: chain up */
 	G_OBJECT_CLASS(ghex_notebook_tab_parent_class)->dispose(object);
@@ -183,12 +187,21 @@ static void
 refresh_file_name (GHexNotebookTab *self)
 {
 	HexDocument *doc;
+	char *basename;
+	GFile *file;
 
    	doc = gtk_hex_get_document (self->gh);
+	file = hex_document_get_file (doc);
 
-	gtk_label_set_markup (GTK_LABEL(self->label),
-			hex_document_get_basename (doc));
+	if (G_IS_FILE (file))
+		basename = g_file_get_basename (hex_document_get_file (doc));
+	else
+		basename = g_strdup (_(untitled_label));
+
+	gtk_label_set_markup (GTK_LABEL(self->label), basename);
 	tab_bold_label (self, hex_document_has_changed (doc));
+
+	g_free (basename);
 }
 
 /* Public Methods */
@@ -227,10 +240,10 @@ ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh)
 	g_signal_connect (doc, "document-changed",
 			G_CALLBACK(ghex_notebook_tab_document_changed_cb), self);
 
-	g_signal_connect_swapped (doc, "file-name-changed",
+	g_signal_connect_swapped (doc, "file-saved",
 			G_CALLBACK(refresh_file_name), self);
 
-	g_signal_connect_swapped (doc, "file-saved",
+	g_signal_connect_swapped (doc, "file-name-changed",
 			G_CALLBACK(refresh_file_name), self);
 }
 

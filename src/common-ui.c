@@ -87,6 +87,8 @@ pango_font_description_to_css (PangoFontDescription *desc,
 			case PANGO_VARIANT_SMALL_CAPS:
 				g_string_append (s, "font-variant: small-caps; ");
 				break;
+			default:
+				break;
 		}
 	}
 	if (set & PANGO_FONT_MASK_WEIGHT)
@@ -302,7 +304,6 @@ common_print (GtkWindow *parent, GtkHex *gh, gboolean preview)
 	HexDocument *doc;
 	GtkPrintOperationResult result;
 	GError *error = NULL;
-	char *gtk_file_name;
 	char *basename;
 
 	g_return_if_fail (GTK_IS_HEX (gh));
@@ -310,9 +311,7 @@ common_print (GtkWindow *parent, GtkHex *gh, gboolean preview)
 	doc = gtk_hex_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	gtk_file_name = g_filename_to_utf8 (hex_document_get_file_name (doc),
-			-1, NULL, NULL, NULL);
-	basename = g_filename_display_basename (gtk_file_name);
+	basename = g_file_get_basename (hex_document_get_file (doc));
 
 	job = ghex_print_job_info_new (doc, gtk_hex_get_group_type (gh));
 	job->master = gtk_print_operation_new ();
@@ -356,7 +355,6 @@ common_print (GtkWindow *parent, GtkHex *gh, gboolean preview)
 	}
 	ghex_print_job_info_destroy (job);
 	g_free (basename);
-	g_free (gtk_file_name);
 }
 
 static void

@@ -479,11 +479,14 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self)
 {
 	GtkWidget *dialog;
 	HexDocument *doc;
+	char *basename = NULL;
 
 	g_return_if_fail (GTK_IS_HEX (self->gh));
 
 	doc = gtk_hex_get_document (self->gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+
+	basename = g_file_get_basename (hex_document_get_file (doc));
 
 	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
 			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -493,7 +496,7 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self)
 			 * edited. */
 			_("<big><b>%s has been edited since opening.</b></big>\n\n"
 			   "Would you like to save your changes?"),
-			hex_document_get_basename (doc));
+			basename);
 
 	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
 			_("_Save Changes"),		GTK_RESPONSE_ACCEPT,
@@ -505,6 +508,7 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self)
 			G_CALLBACK(close_doc_response_cb), self);
 
 	gtk_widget_show (dialog);
+	g_free (basename);
 }
 
 /* FIXME / TODO - I could see this function being useful, but right now it is
@@ -626,9 +630,10 @@ static gboolean
 assess_can_save (HexDocument *doc)
 {
 	gboolean can_save = FALSE;
+	GFile *file = hex_document_get_file (doc);
 
 	/* Can't save if we have a new document that is still untitled. */
-	if (hex_document_get_file_name (doc))
+	if (G_IS_FILE (file)  &&  g_file_peek_path (file))
 		can_save = hex_document_has_changed (doc);
 
 	return can_save;
@@ -965,9 +970,6 @@ save_as_response_cb (GtkNativeDialog *dialog,
 	GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
 	HexDocument *doc;
 	GFile *gfile;
-	char *new_file_path;
-	FILE *file;
-	gchar *gtk_file_name;
 
 	/* If user doesn't click Save, just bail out now. */
 	if (resp != GTK_RESPONSE_ACCEPT)
@@ -976,53 +978,28 @@ save_as_response_cb (GtkNativeDialog *dialog,
 	/* Fetch doc. No need for sanity checks as this is just a helper. */
 	doc = gtk_hex_get_document (self->gh);
 
-	/* Get filename. */
 	gfile = gtk_file_chooser_get_file (chooser);
-	new_file_path = g_file_get_path (gfile);
-	g_clear_object (&gfile);
 
-	g_debug("%s: GONNA OPEN FILE FOR WRITING: %s",
-			__func__, new_file_path);
-
-	file = fopen(new_file_path, "wb");
-
-	/* Sanity check */
-	if (file == NULL) {
-		g_debug ("%s: Error dialog not implemented! Can't open file rw!",
-				__func__);
-		goto end;
-	}
-
-	if (hex_document_write_to_file (doc, file))
-	{
-		gboolean change_ok;
-		char *gtk_file_name;
-
-		change_ok = hex_document_change_file_name (doc, new_file_path);
-
-		if (! change_ok) {
-			g_error ("%s: There was a fatal error changing the name of the "
-					"file path. This should NOT happen and may be indicative "
-					"of a bug or programer error. Please file a bug report.",
-					__func__);
-		}
-		gtk_file_name = g_filename_to_utf8 (hex_document_get_file_name (doc),
-				-1, NULL, NULL, NULL);
-
-		g_free(gtk_file_name);
-	}
-	else
+	if (! hex_document_write_to_file (doc, gfile))
 	{
 		display_error_dialog (GTK_WINDOW(self),
 				_("There was an error saving the file to the path specified."
 					"\n\n"
 					"You may not have the required permissions."));
+		goto end;
 	}
-	fclose(file);
+
+	if (hex_document_set_file (doc, gfile))
+	{
+		hex_document_read (doc);
+	}
+	else
+	{
+		g_warning ("%s: error resetting file...", __func__);
+	}
 
 end:
-	g_debug("%s: END.", __func__);
-	g_object_unref (dialog);
+	gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (dialog));
 }
 
 static void
@@ -1034,14 +1011,11 @@ save_as (GtkWidget *widget,
 	GtkFileChooserNative *file_sel;
 	GtkResponseType resp;
 	HexDocument *doc;
-	GFile *existing_file;
 
 	g_return_if_fail (GTK_IS_HEX (self->gh));
 
 	doc = gtk_hex_get_document (self->gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
-
-	existing_file = g_file_new_for_path (hex_document_get_file_name (doc));
 
 	file_sel =
 		gtk_file_chooser_native_new (_("Select a file to save buffer as"),
@@ -1051,16 +1025,14 @@ save_as (GtkWidget *widget,
 				NULL);	/* const char *cancel_label }					*/
 
 	/* Default suggested file == existing file. */
-	gtk_file_chooser_set_file (GTK_FILE_CHOOSER(file_sel), existing_file,
+	gtk_file_chooser_set_file (GTK_FILE_CHOOSER(file_sel),
+			hex_document_get_file (doc),
 			NULL);	/* GError **error */
 
 	g_signal_connect (file_sel, "response",
 			G_CALLBACK(save_as_response_cb), self);
 
 	gtk_native_dialog_show (GTK_NATIVE_DIALOG(file_sel));
-
-	/* Clear the GFile ptr which is no longer necessary. */
-	g_clear_object (&existing_file);
 }
 
 
@@ -1071,18 +1043,13 @@ revert_response_cb (GtkDialog *dialog,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	HexDocument *doc;
-	char *gtk_file_name;
 
 	if (response_id != GTK_RESPONSE_ACCEPT)
 		goto end;
 
 	doc = gtk_hex_get_document (self->gh);
-	gtk_file_name = g_filename_to_utf8 (hex_document_get_file_name (doc),
-			-1, NULL, NULL, NULL);
 
 	hex_document_read (doc);
-
-	g_free(gtk_file_name);
 
 end:
 	gtk_window_destroy (GTK_WINDOW(dialog));
@@ -1097,6 +1064,7 @@ revert (GtkWidget *widget,
    	HexDocument *doc;
 	GtkWidget *dialog;
 	gint reply;
+	char *basename = NULL;
 	
 	g_return_if_fail (GTK_IS_HEX (self->gh));
 
@@ -1107,6 +1075,8 @@ revert (GtkWidget *widget,
 	 * to the user at all if there is nothing to revert. */
 	g_return_if_fail (hex_document_has_changed (doc));
 
+	basename = g_file_get_basename (hex_document_get_file (doc));
+
 	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
 			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 			GTK_MESSAGE_QUESTION,
@@ -1116,7 +1086,7 @@ revert (GtkWidget *widget,
 			_("<big><b>Are you sure you want to revert %s?</b></big>\n\n"
 			"Your changes will be lost.\n\n"
 			"This action cannot be undone."),
-			hex_document_get_basename (doc));
+			basename);
 
 	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
 			_("_Revert"), GTK_RESPONSE_ACCEPT,
@@ -1128,6 +1098,7 @@ revert (GtkWidget *widget,
 			G_CALLBACK (revert_response_cb), self);
 
 	gtk_widget_show (dialog);
+	g_free (basename);
 }
 			
 static void
@@ -1180,32 +1151,15 @@ new_file (GtkWidget *widget,
 static GtkHex *
 new_gh_from_gfile (GFile *file)
 {
-	GFile *my_file;
-	char *path;
-	GFileInfo *info;
-	GError *error = NULL;
 	HexDocument *doc;
 	GtkHex *gh;
 
-	my_file = g_object_ref (file);
-	path = g_file_get_path (my_file);
-	info = g_file_query_info (my_file,
-			G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
-			G_FILE_QUERY_INFO_NONE,			/* GFileQueryInfoFlags flags */
-			NULL,							/* GCancellable *cancellable */
-			&error);
-
-	g_debug("%s: path acc. to GFile: %s",
-			__func__, path);
-
-	doc = hex_document_new_from_file (path);
+	doc = hex_document_new_from_file (file);
+	/* FIXME - just return NULL and handle error in user-friendly manner? */
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), NULL);
+		
 	gh = GTK_HEX(gtk_hex_new (doc));
-
 	g_return_val_if_fail (GTK_IS_HEX (gh), NULL);
-
-	if (error)	g_error_free (error);
-	g_clear_object (&info);
-	g_object_unref (my_file);
 
 	return gh;
 }
@@ -2019,18 +1973,22 @@ void
 ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 {
 	GtkHex *gh;
-	GFile *my_file;
 
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW(self));
 
-	my_file = g_object_ref (file);
-	gh = new_gh_from_gfile (my_file);
+	/* If we get it from the GApp :open signal, it's tfr:none - once
+	 * HexDocument gets hold of it, though, it _refs it itself so we don't need
+	 * to hold onto it.
+	 */
+	g_object_ref (file);
+
+	gh = new_gh_from_gfile (file);
 
 	ghex_application_window_add_hex (self, gh);
 	ghex_application_window_set_hex (self, gh);
 	ghex_application_window_activate_tab (self, gh);
 
-	g_object_unref (my_file);
+	g_object_unref (file);
 }
 
 GtkHex *

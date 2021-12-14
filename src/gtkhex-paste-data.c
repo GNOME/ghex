@@ -41,7 +41,7 @@ G_DEFINE_TYPE (GtkHexPasteData, gtk_hex_paste_data, G_TYPE_OBJECT)
 /* Helper Functions */
 
 /* Helper function for the copy and paste stuff, since the data returned by
- * hex_document_get_data is NOT null-temrinated.
+ * hex_buffer_get_data is NOT null-temrinated.
  *
  * String returned should be freed with g_free.
  */

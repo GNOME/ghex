@@ -1,12 +1,15 @@
 libghex_sources = [
   'gtkhex.c',
-  'hex-document.c',
+  'hex-buffer-iface.c',	      # TEST
+  'hex-buffer-malloc.c',      # TEST
   'gtkhex-layout-manager.c',
-  'gtkhex-paste-data.c'
+  'gtkhex-paste-data.c',
+  'hex-document.c'
 ]
 
 libghex_headers = [
   'hex-document.h',
+  'hex-buffer-iface.h',
   'gtkhex.h',
   'gtkhex-paste-data.h'
 ]
@@ -16,7 +19,7 @@ libghex_deps = [
 ]
 
 libghex_c_args = [
-  '-DG_LOG_DOMAIN="libgtkhex-3"'
+  '-DG_LOG_DOMAIN="libgtkhex-4"'
 ]
 
 libghex_link_args = cc.get_supported_link_arguments([

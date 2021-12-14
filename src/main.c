@@ -130,12 +130,14 @@ open (GApplication *application,
 {
 	GHexApplicationWindow *app_win;
 
-	if (n_files > 1)
-		g_warning ("Can only open a single file");
+//	if (n_files > 1)
+//		g_warning ("Can only open a single file");
 
 	activate (GTK_APPLICATION(application), NULL);
 	app_win = GHEX_APPLICATION_WINDOW(window);
-	ghex_application_window_open_file (app_win, files[0]);
+
+	for (int i = 0; i < n_files; ++i)
+		ghex_application_window_open_file (app_win, files[i]);
 }
 
 int

@@ -55,6 +55,9 @@
 #define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
 #define is_copyable(c) (is_displayable(c) || (c) == 0x0a || (c) == 0x0d)
 
+#define HEX_BUFFER_PAYLOAD(X)	\
+	hex_buffer_get_payload_size (hex_document_get_buffer (X))
+
 /* ENUMS */
 
 enum {
@@ -579,7 +582,7 @@ render_cursor (GtkHex *gh,
 	/* Find out if we're at the end of the row and/or the end of the file,
 	 * since this will make a difference when in insert mode
 	 */
-	if (gh->cursor_pos >= hex_document_get_file_size (gh->document))
+	if (gh->cursor_pos >= HEX_BUFFER_PAYLOAD (gh->document))
 		at_file_end = TRUE;
 
 	if (gh->cursor_pos % gh->cpl == 0)
@@ -985,7 +988,7 @@ render_lines (GtkHex *gh,
 	 * draw a single space in the pango layout as a workaround for the fact
 	 * that it will have no context as to how large to draw the cursor.
 	 */
-	if (hex_document_get_file_size (gh->document) == 0 &&
+	if (HEX_BUFFER_PAYLOAD (gh->document) == 0 &&
 			! hex_document_has_changed (gh->document))
 	{
 		pango_layout_set_text (layout, " ", -1);
@@ -1004,7 +1007,7 @@ render_lines (GtkHex *gh,
 			(char *)gh->disp_buffer,
 			(gh->top_line + min_lines) * gh->cpl,
 			MIN( (gh->top_line + max_lines + 1) * gh->cpl,
-				hex_document_get_file_size (gh->document) ));
+				HEX_BUFFER_PAYLOAD (gh->document) ));
 	
 	for (i = min_lines; i <= max_lines; i++)
 	{
@@ -1141,20 +1144,20 @@ recalc_displays (GtkHex *gh)
 {
 	GtkWidget *widget = GTK_WIDGET (gh);
 	int hex_cpl;
-	int file_size;
+	size_t payload_size;
 
 	hex_cpl = gtk_hex_layout_get_hex_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
-	file_size = hex_document_get_file_size (gh->document);
+	payload_size = HEX_BUFFER_PAYLOAD (gh->document);
 
 	/*
 	 * Only change the value of the adjustment to put the cursor on screen
 	 * if the cursor is currently within the displayed portion.
 	 */
-	if (file_size == 0 || gh->cpl == 0)
+	if (payload_size == 0 || gh->cpl == 0)
 		gh->lines = 1;
 	else {
-		gh->lines = file_size / gh->cpl;
-		if (file_size % gh->cpl)
+		gh->lines = payload_size / gh->cpl;
+		if (payload_size % gh->cpl)
 			gh->lines++;
 	}
 
@@ -1246,7 +1249,7 @@ scroll_timeout_handler(GtkHex *gh)
 	else if (gh->scroll_dir > 0)
 	{
 		gtk_hex_set_cursor (gh,
-				MIN (hex_document_get_file_size (gh->document) - 1,
+				MIN (HEX_BUFFER_PAYLOAD (gh->document) - 1,
 						gh->cursor_pos + gh->cpl));
 	}
 	return TRUE;
@@ -1523,11 +1526,11 @@ key_press_cb (GtkEventControllerKey *controller,
 	GtkHex *gh = GTK_HEX(user_data);
 	GtkWidget *widget = GTK_WIDGET(user_data);
 	gboolean ret = GDK_EVENT_PROPAGATE;
-	int file_size;
+	size_t payload_size;
 
 	g_return_val_if_fail (HEX_IS_DOCUMENT (gh->document), FALSE);
 
-	file_size = hex_document_get_file_size (gh->document);
+	payload_size = HEX_BUFFER_PAYLOAD (gh->document);
 
 	/* don't trample over Ctrl or Alt (reserved for actions) */
 	if (state & GDK_CONTROL_MASK || state & GDK_ALT_MASK) {
@@ -1558,7 +1561,7 @@ key_press_cb (GtkEventControllerKey *controller,
 			break;
 
 		case GDK_KEY_Delete:
-			if (gh->cursor_pos < file_size) {
+			if (gh->cursor_pos < payload_size) {
 				hex_document_set_data (gh->document, gh->cursor_pos,
 						0, 1, NULL, TRUE);
 				gtk_hex_set_cursor (gh, gh->cursor_pos);
@@ -1577,12 +1580,12 @@ key_press_cb (GtkEventControllerKey *controller,
 			break;
 
 		case GDK_KEY_Page_Up:
-			gtk_hex_set_cursor (gh, MAX(0, gh->cursor_pos - gh->vis_lines*gh->cpl));
+			gtk_hex_set_cursor (gh, MAX (0, gh->cursor_pos - gh->vis_lines*gh->cpl));
 			ret = GDK_EVENT_STOP;
 			break;
 
 		case GDK_KEY_Page_Down:
-			gtk_hex_set_cursor(gh, MIN(file_size,
+			gtk_hex_set_cursor(gh, MIN (payload_size,
 						gh->cursor_pos + gh->vis_lines*gh->cpl));
 			ret = GDK_EVENT_STOP;
 			break;
@@ -1605,7 +1608,7 @@ key_press_cb (GtkEventControllerKey *controller,
 						break;
 
 					case GDK_KEY_Right:
-						if (gh->cursor_pos >= file_size) {
+						if (gh->cursor_pos >= payload_size) {
 							ret = GDK_EVENT_STOP;
 							break;
 						}
@@ -1761,18 +1764,18 @@ gtk_hex_real_data_changed (GtkHex *gh, gpointer data)
 	HexChangeData *change_data = (HexChangeData *)data;
 	int start_line, end_line;
 	int lines;
-	int file_size;
+	size_t payload_size;
 
 	g_return_if_fail (HEX_IS_DOCUMENT (gh->document));
 
-	file_size = hex_document_get_file_size (gh->document);
+	payload_size = HEX_BUFFER_PAYLOAD (gh->document);
 
 	if (gh->cpl == 0)
 		return;
 
 	if (change_data->start - change_data->end + 1 != change_data->rep_len) {
-		lines = file_size / gh->cpl;
-		if (file_size % gh->cpl)
+		lines = payload_size / gh->cpl;
+		if (payload_size % gh->cpl)
 			lines++;
 		if (lines != gh->lines) {
 			gh->lines = lines;
@@ -1879,15 +1882,15 @@ gtk_hex_insert_highlight (GtkHex *gh,
 		GtkHex_AutoHighlight *ahl,
 		int start, int end)
 {
-	int file_size;
+	size_t payload_size;
 
 	g_return_val_if_fail (HEX_IS_DOCUMENT (gh->document), NULL);
 
-	file_size = hex_document_get_file_size (gh->document);
+	payload_size = HEX_BUFFER_PAYLOAD (gh->document);
 	GtkHex_Highlight *new = g_new0 (GtkHex_Highlight, 1);
 
-	new->start = CLAMP(MIN(start, end), 0, file_size);
-	new->end = MIN(MAX(start, end), file_size);
+	new->start = CLAMP(MIN(start, end), 0, payload_size);
+	new->end = MIN(MAX(start, end), payload_size);
 
 	new->valid = FALSE;
 
@@ -2052,7 +2055,8 @@ gtk_hex_real_copy_to_clipboard (GtkHex *gh)
 	g_return_if_fail (len);
 
 	/* Grab the raw data from the HexDocument. */
-	doc_data = hex_document_get_data (gh->document, start_pos, len);
+	doc_data = hex_buffer_get_data (hex_document_get_buffer(gh->document),
+			start_pos, len);
 
 	/* Setup a union of HexPasteData and a plain C string */
 	paste = gtk_hex_paste_data_new (doc_data, len);
@@ -2266,6 +2270,8 @@ gtk_hex_dispose (GObject *object)
 	g_clear_object (&gh->xlayout);
 	g_clear_object (&gh->alayout);
 	g_clear_object (&gh->olayout);
+
+	g_object_unref (&gh->document);
 	
 	/* Chain up */
 	G_OBJECT_CLASS(gtk_hex_parent_class)->dispose(object);
@@ -2793,21 +2799,21 @@ gtk_hex_paste_from_clipboard (GtkHex *gh)
 void
 gtk_hex_set_selection (GtkHex *gh, int start, int end)
 {
-	int file_size;
+	size_t payload_size;
 	int oe, os, ne, ns;
 
 	g_return_if_fail (HEX_IS_DOCUMENT (gh->document));
 
-	file_size = hex_document_get_file_size (gh->document);
+	payload_size = HEX_BUFFER_PAYLOAD (gh->document);
 
 	if (end < 0)
-		end = file_size;
+		end = payload_size;
 
 	os = MIN(gh->selection.start, gh->selection.end);
 	oe = MAX(gh->selection.start, gh->selection.end);
 
-	gh->selection.start = CLAMP(start, 0, file_size);
-	gh->selection.end = MIN(end, file_size);
+	gh->selection.start = CLAMP(start, 0, payload_size);
+	gh->selection.end = MIN(end, payload_size);
 
 	gtk_hex_invalidate_highlight(gh, &gh->selection);
 
@@ -2906,16 +2912,16 @@ gtk_hex_set_cursor (GtkHex *gh, int index)
 {
 	int y;
 	int old_pos;
-	int file_size;
+	size_t payload_size;
 
 	g_return_if_fail (GTK_IS_HEX (gh));
 
 	old_pos = gh->cursor_pos;
-	file_size = hex_document_get_file_size (gh->document);
+	payload_size = HEX_BUFFER_PAYLOAD (gh->document);
 
-	if ((index >= 0) && (index <= file_size))
+	if ((index >= 0) && (index <= payload_size))
 	{
-		if (!gh->insert && index == file_size)
+		if (!gh->insert && index == payload_size)
 			index--;
 
 		index = MAX(index, 0);
@@ -2941,10 +2947,10 @@ gtk_hex_set_cursor (GtkHex *gh, int index)
 			gtk_adjustment_set_value (gh->adj, y);
 		}      
 
-		if(index == file_size)
+		if (index == payload_size)
 			gh->lower_nibble = FALSE;
 
-		if(gh->selecting)
+		if (gh->selecting)
 		{
 			gtk_hex_set_selection(gh, gh->selection.start, gh->cursor_pos);
 
@@ -2977,18 +2983,18 @@ gtk_hex_set_cursor_xy (GtkHex *gh, int x, int y)
 {
 	int cp;
 	int old_pos;
-	int file_size;
+	size_t payload_size;
 
 	g_return_if_fail (GTK_IS_HEX(gh));
 
 	old_pos = gh->cursor_pos;
 	cp = y*gh->cpl + x;
-	file_size = hex_document_get_file_size (gh->document);
+	payload_size = HEX_BUFFER_PAYLOAD (gh->document);
 
 	if ((y >= 0) && (y < gh->lines) && (x >= 0) &&
-	   (x < gh->cpl) && (cp <= file_size))
+	   (x < gh->cpl) && (cp <= payload_size))
 	{
-		if (!gh->insert && cp == file_size)
+		if (!gh->insert && cp == payload_size)
 			cp--;
 
 		cp = MAX(cp, 0);
@@ -3046,8 +3052,8 @@ gtk_hex_get_byte (GtkHex *gh, int offset)
 {
 	g_return_val_if_fail (GTK_IS_HEX(gh), 0);
 
-	if ((offset >= 0) && (offset < hex_document_get_file_size (gh->document)))
-		return hex_document_get_byte(gh->document, offset);
+	if ((offset >= 0) && (offset < HEX_BUFFER_PAYLOAD (gh->document)))
+		return hex_buffer_get_byte (hex_document_get_buffer (gh->document), offset);
 
 	return 0;
 }
@@ -3098,15 +3104,15 @@ gtk_hex_show_offsets(GtkHex *gh, gboolean show)
 void
 gtk_hex_set_insert_mode (GtkHex *gh, gboolean insert)
 {
-	int file_size;
+	size_t payload_size;
 
 	g_return_if_fail (HEX_IS_DOCUMENT (gh->document));
 
-	file_size = hex_document_get_file_size (gh->document);
+	payload_size = HEX_BUFFER_PAYLOAD (gh->document);
 	gh->insert = insert;
 
-	if (!gh->insert && gh->cursor_pos > 0 && gh->cursor_pos >= file_size)
-			gh->cursor_pos = file_size - 1;
+	if (!gh->insert && gh->cursor_pos > 0 && gh->cursor_pos >= payload_size)
+			gh->cursor_pos = payload_size - 1;
 }
 
 GtkHex_AutoHighlight *

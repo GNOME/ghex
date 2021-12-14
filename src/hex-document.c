@@ -35,6 +35,11 @@
 
 #include <gtkhex.h>
 
+/* FIXME / TODO - Allow for swappability. Hardcoding for now for testing
+ * purposes.
+ */
+#include "hex-buffer-malloc.h"
+
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -47,16 +52,12 @@ static void hex_document_real_changed   (HexDocument *doc,
 										 gboolean undoable);
 static void hex_document_real_redo      (HexDocument *doc);
 static void hex_document_real_undo      (HexDocument *doc);
-static void move_gap_to                 (HexDocument *doc,
-										 int offset,
-								  	     int min_size);
 static void free_stack                  (GList *stack);
 static gint undo_stack_push             (HexDocument *doc,
 									     HexChangeData *change_data);
 static void undo_stack_descend          (HexDocument *doc);
 static void undo_stack_ascend           (HexDocument *doc);
 static void undo_stack_free             (HexDocument *doc);
-static gboolean get_document_attributes (HexDocument *doc);
 
 #define DEFAULT_UNDO_DEPTH 1024
 
@@ -79,18 +80,9 @@ struct _HexDocument
 {
 	GObject object;
 
-	GList *views;      /* a list of GtkHex widgets showing this document */
-	
-	char *file_name;
-	char *basename;
-
-	char *buffer;    /* data buffer */
-	char *gap_pos;   /* pointer to the start of insertion gap */
-	int gap_size;     /* insertion gap size */
-	int buffer_size; /* buffer size = file size + gap size */
-	int file_size;   /* real file size */
-
+	GFile *file;
 	gboolean changed;
+	HexBuffer *buffer;
 
 	GList *undo_stack; /* stack base */
 	GList *undo_top;   /* top of the stack (for redo) */
@@ -224,115 +216,23 @@ undo_stack_free(HexDocument *doc)
 	g_signal_emit(G_OBJECT(doc), hex_signals[UNDO_STACK_FORGET], 0);
 }
 
-static gboolean
-get_document_attributes(HexDocument *doc)
-{
-	static struct stat stats;
-
-	if(doc->file_name == NULL)
-		return FALSE;
-
-	if(!stat(doc->file_name, &stats) &&
-	   S_ISREG(stats.st_mode)) {
-		doc->file_size = stats.st_size;
-
-		return TRUE;
-	}
-
-	return FALSE;
-}
-
-
 static void
-move_gap_to(HexDocument *doc, int offset, int min_size)
+hex_document_dispose (GObject *obj)
 {
-	char *tmp, *buf_ptr, *tmp_ptr;
-
-	if(doc->gap_size < min_size) {
-		tmp = g_malloc(doc->file_size);
-		buf_ptr = doc->buffer;
-		tmp_ptr = tmp;
-		while(buf_ptr < doc->gap_pos)
-			*tmp_ptr++ = *buf_ptr++;
-		buf_ptr += doc->gap_size;
-		while(buf_ptr < doc->buffer + doc->buffer_size)
-			*tmp_ptr++ = *buf_ptr++;
-
-		doc->gap_size = MAX(min_size, 32);
-		doc->buffer_size = doc->file_size + doc->gap_size;
-		doc->buffer = g_realloc(doc->buffer, doc->buffer_size);
-		doc->gap_pos = doc->buffer + offset;
-
-		buf_ptr = doc->buffer;
-		tmp_ptr = tmp;
-		
-		while(buf_ptr < doc->gap_pos)
-			*buf_ptr++ = *tmp_ptr++;
-		buf_ptr += doc->gap_size;
-		while(buf_ptr < doc->buffer + doc->buffer_size)
-			*buf_ptr++ = *tmp_ptr++;
-
-		g_free(tmp);
-	}
-	else {
-		if(doc->buffer + offset < doc->gap_pos) {
-			buf_ptr = doc->gap_pos + doc->gap_size - 1;
-			while(doc->gap_pos > doc->buffer + offset)
-				*buf_ptr-- = *(--doc->gap_pos);
-		}
-		else if(doc->buffer + offset > doc->gap_pos) {
-			buf_ptr = doc->gap_pos + doc->gap_size;
-			while(doc->gap_pos < doc->buffer + offset)
-				*doc->gap_pos++ = *buf_ptr++;
-		}
-	}
-}
-
-GtkWidget *
-hex_document_add_view(HexDocument *doc)
-{
-	GtkWidget *new_view;
+	HexDocument *doc = HEX_DOCUMENT(obj);
 	
-	new_view = gtk_hex_new(doc);
+	if (doc->file)
+		g_object_unref (doc->file);
 
-	g_object_ref (new_view);
-
-	doc->views = g_list_append(doc->views, new_view);
-
-	return new_view;
-}
-
-void
-hex_document_remove_view(HexDocument *doc, GtkWidget *view)
-{
-	if(g_list_index(doc->views, view) == -1)
-		return;
-
-	doc->views = g_list_remove(doc->views, view);
-
-	g_object_unref(view);
+	G_OBJECT_CLASS(hex_document_parent_class)->dispose (obj);
 }
 
 static void
 hex_document_finalize (GObject *obj)
 {
-	HexDocument *doc;
+	HexDocument *doc = HEX_DOCUMENT (obj);
 	
-	doc = HEX_DOCUMENT(obj);
-	
-	if (doc->buffer)
-		g_free (doc->buffer);
-	
-	if (doc->file_name)
-		g_free (doc->file_name);
-
-	if (doc->basename)
-		g_free (doc->basename);
-
 	undo_stack_free (doc);
-
-	while (doc->views)
-		hex_document_remove_view(doc, GTK_WIDGET(doc->views->data));
 
 	G_OBJECT_CLASS(hex_document_parent_class)->finalize (obj);
 }
@@ -351,6 +251,7 @@ hex_document_class_init (HexDocumentClass *klass)
 	GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
 	
 	gobject_class->finalize = hex_document_finalize;
+	gobject_class->dispose= hex_document_dispose;
 	
 	hex_signals[DOCUMENT_CHANGED] =
 		g_signal_new_class_handler ("document-changed",
@@ -410,13 +311,8 @@ hex_document_class_init (HexDocumentClass *klass)
 static void
 hex_document_init (HexDocument *doc)
 {
+	doc->buffer = HEX_BUFFER(hex_buffer_malloc_new (NULL));
 	doc->undo_max = DEFAULT_UNDO_DEPTH;
-	doc->file_name = NULL;
-	doc->gap_size = 100;
-	doc->file_size = 0;
-	doc->buffer_size = doc->file_size + doc->gap_size;
-	doc->gap_pos = doc->buffer = g_malloc(doc->buffer_size);
-	doc->basename = g_strdup(_("New document"));
 }
 
 /*-------- public API starts here --------*/
@@ -428,283 +324,210 @@ hex_document_new (void)
 	return g_object_new (HEX_TYPE_DOCUMENT, NULL);
 }
 
+gboolean
+hex_document_set_file (HexDocument *doc, GFile *file)
+{
+	gboolean had_prev_file = FALSE;
+
+	if (! hex_buffer_set_file (doc->buffer, file)) {
+		g_debug ("%s: Invalid file", __func__);
+		return FALSE;
+	}
+
+	if (G_IS_FILE (doc->file)) {
+		had_prev_file = TRUE;
+		g_object_unref (doc->file);
+	}
+
+	doc->file = g_object_ref (file);
+
+	if (had_prev_file)
+		g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
+
+	if (! hex_document_read (doc))
+	{
+		g_debug ("%s: Unable to load/read file", __func__);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
 HexDocument *
-hex_document_new_from_file(const gchar *name)
+hex_document_new_from_file (GFile *file)
 {
 	HexDocument *doc;
-	char *basename;
 
+	g_return_val_if_fail (G_IS_FILE (file), NULL);
+	
 	doc = hex_document_new ();
-
 	g_return_val_if_fail (doc, NULL);
 
-	doc->file_name = g_strdup (name);
-
-	if (get_document_attributes (doc))
+	if (! hex_document_set_file (doc, file))
 	{
-		doc->gap_size = 100;
-		doc->buffer_size = doc->file_size + doc->gap_size;
-		doc->buffer = g_malloc(doc->buffer_size);
-
-		/* find the start of the filename without path */
-		basename = g_path_get_basename (doc->file_name);
-		doc->basename = g_filename_to_utf8 (basename, -1, NULL, NULL, NULL);
-		g_free (basename);
-
-		if (hex_document_read (doc))
-			return doc;
-	}
-	g_object_unref (doc);
-	
-	return NULL;
-}
-
-char
-hex_document_get_byte(HexDocument *doc, int offset)
-{
-	if(offset < doc->file_size) {
-		if(doc->gap_pos <= doc->buffer + offset)
-			offset += doc->gap_size;
-		return doc->buffer[offset];
-	}
-	else
-		return 0;
-}
-
-char *
-hex_document_get_data(HexDocument *doc, int offset, int len)
-{
-	char *ptr, *data, *dptr;
-	int i;
-
-	ptr = doc->buffer + offset;
-
-	if (ptr >= doc->gap_pos)
-		ptr += doc->gap_size;
-
-	dptr = data = g_malloc(len);
-
-	for (i = 0; i < len; ++i) {
-		if (ptr >= doc->gap_pos && ptr < doc->gap_pos + doc->gap_size)
-			ptr += doc->gap_size;
-
-		*dptr++ = *ptr++;
+		g_object_unref (doc);
 	}
 
-	return data;
+	return doc;
 }
 
 void
-hex_document_set_nibble(HexDocument *doc, char val, int offset,
+hex_document_set_nibble (HexDocument *doc, char val, size_t offset,
 						gboolean lower_nibble, gboolean insert,
 						gboolean undoable)
 {
+	static HexChangeData tmp_change_data;
 	static HexChangeData change_data;
+	char tmp_data[2] = {0};		/* 1 char + NUL */
 
-	if(offset <= doc->file_size) {
-		if(!insert && offset == doc->file_size)
-			return;
+	doc->changed = TRUE;
+	tmp_change_data.start = offset;
+	tmp_change_data.end = offset;
+	tmp_change_data.v_string = NULL;
+	tmp_change_data.type = HEX_CHANGE_BYTE;
+	tmp_change_data.lower_nibble = lower_nibble;
+	tmp_change_data.insert = insert;
 
-		doc->changed = TRUE;
-		change_data.start = offset;
-		change_data.end = offset;
-		change_data.v_string = NULL;
-		change_data.type = HEX_CHANGE_BYTE;
-		change_data.lower_nibble = lower_nibble;
-		change_data.insert = insert;
-		if(!lower_nibble && insert) {
-			move_gap_to(doc, offset, 1);
-			doc->gap_size--;
-			doc->gap_pos++;
-			doc->file_size++;
-			change_data.rep_len = 0;
-			if(offset == doc->file_size)
-				doc->buffer[offset] = 0;
-		}
-		else {
-			if(doc->buffer + offset >= doc->gap_pos)
-				offset += doc->gap_size;
-			change_data.rep_len = 1;
-		}
+	tmp_change_data.v_byte = hex_buffer_get_byte (doc->buffer, offset);
 
-		change_data.v_byte = doc->buffer[offset];
-		doc->buffer[offset] = (doc->buffer[offset] & (lower_nibble?0xF0:0x0F)) | (lower_nibble?val:(val << 4));
+	/* If in insert mode and on lower nibble, let the user enter the 2nd
+	 * nibble on the selected byte, and don't insert a new byte until the
+	 * next keystroke. nb: This has the side effect of only letting you
+	 * insert a new byte if you're on the upper nibble...
+	 */
+	if (!lower_nibble && insert)
+		tmp_change_data.rep_len = 0;
+	else
+		tmp_change_data.rep_len = 1;
 
-	 	hex_document_changed(doc, &change_data, undoable);
+	/* some 80s C magic right here, folks */
+	snprintf (tmp_data, 2, "%c",
+			(tmp_change_data.v_byte & (lower_nibble ? 0xF0 : 0x0F)) |
+			(lower_nibble ? val : (val << 4)));
+
+	if (hex_buffer_set_data (doc->buffer, offset, 1, tmp_change_data.rep_len,
+				tmp_data))
+	{
+		change_data = tmp_change_data;
+		hex_document_changed (doc, &change_data, undoable);
 	}
 }
 
 void
-hex_document_set_byte(HexDocument *doc, char val, int offset,
+hex_document_set_byte (HexDocument *doc, char val, size_t offset,
 					  gboolean insert, gboolean undoable)
 {
+	static HexChangeData tmp_change_data;
 	static HexChangeData change_data;
+	char tmp_data[2] = {0};		/* 1 char + NUL */
 
-	if(offset <= doc->file_size) {
-		if(!insert && offset == doc->file_size)
-			return;
+	doc->changed = TRUE;
+	tmp_change_data.start = offset;
+	tmp_change_data.end = offset;
+	tmp_change_data.rep_len = (insert ? 0 : 1);
+	tmp_change_data.v_string = NULL;
+	tmp_change_data.type = HEX_CHANGE_BYTE;
+	tmp_change_data.lower_nibble = FALSE;
+	tmp_change_data.insert = insert;
 
-		doc->changed = TRUE;
-		change_data.start = offset;
-		change_data.end = offset;
-		change_data.rep_len = (insert?0:1);
-		change_data.v_string = NULL;
-		change_data.type = HEX_CHANGE_BYTE;
-		change_data.lower_nibble = FALSE;
-		change_data.insert = insert;
-		if(insert) {
-			move_gap_to(doc, offset, 1);
-			doc->gap_size--;
-			doc->gap_pos++;
-			doc->file_size++;
-		}
-		else if(doc->buffer + offset >= doc->gap_pos)
-			offset += doc->gap_size;
-			
-		change_data.v_byte = doc->buffer[offset];
-		doc->buffer[offset] = val;
+	tmp_change_data.v_byte = hex_buffer_get_byte (doc->buffer, offset);
 
-	 	hex_document_changed(doc, &change_data, undoable);
+	snprintf (tmp_data, 2, "%c", val);
+
+	if (hex_buffer_set_data (doc->buffer, offset, 1, tmp_change_data.rep_len,
+				tmp_data))
+	{
+		change_data = tmp_change_data;
+		hex_document_changed (doc, &change_data, undoable);
 	}
 }
 
 void
-hex_document_set_data (HexDocument *doc, int offset, int len,
-					  int rep_len, char *data, gboolean undoable)
+hex_document_set_data (HexDocument *doc, size_t offset, size_t len,
+					  size_t rep_len, char *data, gboolean undoable)
 {
 	int i;
 	char *ptr;
+	static HexChangeData tmp_change_data;
 	static HexChangeData change_data;
 
-	if(offset <= doc->file_size) {
-		if(doc->file_size - offset < rep_len)
-			rep_len -= doc->file_size - offset;
+	doc->changed = TRUE;
 
-		doc->changed = TRUE;
-		
-		change_data.v_string = g_realloc(change_data.v_string, rep_len);
-		change_data.start = offset;
-		change_data.end = change_data.start + len - 1;
-		change_data.rep_len = rep_len;
-		change_data.type = HEX_CHANGE_STRING;
-		change_data.lower_nibble = FALSE;
-		
-		i = 0;
-		ptr = &doc->buffer[offset];
-		if(ptr >= doc->gap_pos)
-			ptr += doc->gap_size;
-		while(offset + i < doc->file_size && i < rep_len) {
-			if(ptr >= doc->gap_pos && ptr < doc->gap_pos + doc->gap_size)
-				ptr += doc->gap_size;
-			change_data.v_string[i] = *ptr++;
-			i++;
-		}
-		
-		if(rep_len == len) {
-			if(doc->buffer + offset >= doc->gap_pos)
-				offset += doc->gap_size;
-		}
-		else {
-			if(rep_len > len) {
-				move_gap_to(doc, offset + rep_len, 1);
-			}
-			else if(rep_len < len) {
-				move_gap_to(doc, offset + rep_len, len - rep_len);
-			}
-			doc->gap_pos -= (gint)rep_len - (gint)len;
-			doc->gap_size += (gint)rep_len - (gint)len;
-			doc->file_size += (gint)len - (gint)rep_len;
-		}
-		
-		ptr = &doc->buffer[offset];
-		i = 0;
-		while(offset + i < doc->buffer_size && i < len) {
-			*ptr++ = *data++;
-			i++;
-		}
-		
-		hex_document_changed(doc, &change_data, undoable);
+	tmp_change_data.start = offset;
+	tmp_change_data.end = tmp_change_data.start + len - 1;
+	tmp_change_data.rep_len = rep_len;
+	tmp_change_data.type = HEX_CHANGE_STRING;
+	tmp_change_data.lower_nibble = FALSE;
+
+	g_clear_pointer (&tmp_change_data.v_string, g_free);
+
+	tmp_change_data.v_string = hex_buffer_get_data (doc->buffer,
+			tmp_change_data.start, tmp_change_data.rep_len);
+
+	if (hex_buffer_set_data (doc->buffer, offset, len, rep_len, data))
+	{
+		change_data = tmp_change_data;
+		hex_document_changed (doc, &change_data, undoable);
 	}
 }
 
 void
 hex_document_delete_data(HexDocument *doc, guint offset, guint len, gboolean undoable)
 {
-	hex_document_set_data(doc, offset, 0, len, NULL, undoable);
+	hex_document_set_data (doc, offset, 0, len, NULL, undoable);
 }
 
-gint
-hex_document_read(HexDocument *doc)
+gboolean
+hex_document_read (HexDocument *doc)
 {
-	FILE *file;
 	static HexChangeData change_data;
-	int fread_as_int;
+	size_t payload;
 
-	if(doc->file_name == NULL)
+	g_return_val_if_fail (G_IS_FILE (doc->file), FALSE);
+
+	/* Read the actual file on disk into the buffer */
+	if (!hex_buffer_read (doc->buffer))
 		return FALSE;
 
-	if(!get_document_attributes(doc))
-		return FALSE;
-
-	if((file = fopen(doc->file_name, "r")) == NULL)
-		return FALSE;
-
-	doc->gap_size = doc->buffer_size - doc->file_size;
-
-	fread_as_int = fread(doc->buffer + doc->gap_size, 1, doc->file_size, file);
-	if (fread_as_int != doc->file_size)
-	{
-		g_return_val_if_reached(FALSE);
-	}
-
-	doc->gap_pos = doc->buffer;
-	fclose(file);
 	undo_stack_free(doc);
 
+	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
+
 	change_data.start = 0;
-	change_data.end = doc->file_size - 1;
+	change_data.end = payload - 1;
 	doc->changed = FALSE;
-	hex_document_changed(doc, &change_data, FALSE);
+	hex_document_changed (doc, &change_data, FALSE);
 
 	return TRUE;
 }
 
-gint
-hex_document_write_to_file(HexDocument *doc, FILE *file)
+gboolean
+hex_document_write_to_file (HexDocument *doc, GFile *file)
 {
-	int ret = TRUE;
-	int exp_len;
-
-	if(doc->gap_pos > doc->buffer) {
-		exp_len = MIN(doc->file_size, doc->gap_pos - doc->buffer);
-		ret = fwrite(doc->buffer, 1, exp_len, file);
-		ret = (ret == exp_len) ? TRUE : FALSE;
-	}
-	if(doc->gap_pos < doc->buffer + doc->file_size) {
-		exp_len = doc->file_size - (size_t)(doc->gap_pos - doc->buffer);
-		ret = fwrite(doc->gap_pos + doc->gap_size, 1, exp_len, file);
-		ret = (ret == exp_len)?TRUE:FALSE;
-	}
-	return ret;
+	return hex_buffer_write_to_file (doc->buffer, file);
 }
 
-gint
-hex_document_write(HexDocument *doc)
+gboolean
+hex_document_write (HexDocument *doc)
 {
-	FILE *file;
-	gint ret = FALSE;
+	gboolean ret = FALSE;
+	char *path = NULL;
 
-	if(doc->file_name == NULL)
-		return FALSE;
+	g_return_val_if_fail (G_IS_FILE (doc->file), FALSE);
 
-	if((file = fopen(doc->file_name, "wb")) != NULL) {
-		ret = hex_document_write_to_file(doc, file);
-		fclose(file);
-		if(ret) {
-			doc->changed = FALSE;
-		}
+	path = g_file_get_path (doc->file);
+	if (! path)
+		goto out;
+
+	ret = hex_buffer_write_to_file (doc->buffer, doc->file);
+	if (ret)
+	{
+		doc->changed = FALSE;
+		g_signal_emit (G_OBJECT(doc), hex_signals[FILE_SAVED], 0);
 	}
-	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_SAVED], 0);
+
+out:
+	g_free (path);
 	return ret;
 }
 
@@ -732,26 +555,21 @@ hex_document_set_max_undo(HexDocument *doc, int max_undo)
 	}
 }
 
-static gboolean
-ignore_dialog_cb(GtkDialog *dialog, gpointer user_data)
-{
-	/* unused, as this function just ignores user input. */
-	(void)dialog, (void)user_data;
-
-	return TRUE;
-}
-
-int
+gboolean
 hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
-						 int start, int end, int cpl, int lpp,
-						 int cpw)
+						 size_t start, size_t end, guint cpl, guint lpp,
+						 guint cpw)
 {
-	GtkWidget *progress_dialog, *progress_bar;
 	FILE *file;
-	int page, line, pos, lines, pages, c;
+	guint page, line, pos, lines, pages, c;
 	gchar *page_name, b;
-	gint update_pages;
 	gchar *progress_str;
+	size_t payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
+	char *basename;
+
+	basename = g_file_get_basename (doc->file);
+	if (! basename)
+		basename = g_strdup (_("Untitled"));
 
 	lines = (end - start)/cpl;
 	if((end - start)%cpl != 0)
@@ -759,7 +577,6 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 	pages = lines/lpp;
 	if(lines%lpp != 0)
 		pages++;
-	update_pages = pages/1000 + 1;
 
 	/* top page */
 	page_name = g_strdup_printf("%s/%s.html", html_path, base_name);
@@ -776,13 +593,13 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 	fprintf(file, "<CENTER>");
 	fprintf(file, "<TABLE BORDER=\"0\" CELLSPACING=\"0\" CELLPADDING=\"0\">\n");
 	fprintf(file, "<TR>\n<TD COLSPAN=\"3\"><B>%s</B></TD>\n</TR>\n",
-			doc->file_name?doc->file_name:doc->basename);
+			basename);
 	fprintf(file, "<TR>\n<TD COLSPAN=\"3\">&nbsp;</TD>\n</TR>\n");
 	for(page = 0; page < pages; page++) {
 		fprintf(file, "<TR>\n<TD>\n<A HREF=\"%s%08d.html\"><PRE>", base_name, page);
 		fprintf(file, _("Page"));
 		fprintf(file, " %d</PRE></A>\n</TD>\n<TD>&nbsp;</TD>\n<TD VALIGN=\"CENTER\"><PRE>%08x -", page+1, page*cpl*lpp);
-		fprintf(file, " %08x</PRE></TD>\n</TR>\n", MIN((page+1)*cpl*lpp-1, doc->file_size-1));
+		fprintf(file, " %08lx</PRE></TD>\n</TR>\n", MIN((page+1)*cpl*lpp-1, payload-1));
 	}
 	fprintf(file, "</TABLE>\n</CENTER>\n");
 	fprintf(file, "<HR WIDTH=\"100%%\">");
@@ -791,38 +608,10 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 	fprintf(file, "</BODY>\n</HTML>\n");
 	fclose(file);
 
-	progress_dialog = gtk_dialog_new();
-	gtk_window_set_resizable(GTK_WINDOW(progress_dialog), FALSE);
-	gtk_window_set_modal(GTK_WINDOW(progress_dialog), TRUE);
-
-	g_signal_connect(G_OBJECT(progress_dialog), "close",
-					 G_CALLBACK(ignore_dialog_cb), NULL);
-	gtk_window_set_title(GTK_WINDOW(progress_dialog),
-						 _("Saving to HTML..."));
-
-	progress_bar = gtk_progress_bar_new();
-	gtk_widget_show(progress_bar);
-
-	gtk_box_append (GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG (progress_dialog))),
-			progress_bar);
-	gtk_widget_show(progress_dialog);
-
 	pos = start;
 	g_object_ref(G_OBJECT(doc));
-	for(page = 0; page < pages; page++) {
-		if((page%update_pages) == 0) {
-			gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(progress_bar),
-					(gdouble)page/(gdouble)pages);
-			progress_str = g_strdup_printf("%d/%d", page, pages);
-			gtk_progress_bar_set_text(GTK_PROGRESS_BAR(progress_bar),
-									  progress_str);
-			g_free(progress_str);
-
-			while (g_main_context_pending (NULL)) {	/* GMainContext - NULL == default */
-				g_main_context_iteration (NULL,	/* " " */
-						FALSE);		/* gboolean may_block */
-			}
-		}
+	for(page = 0; page < pages; page++)
+	{
 		/* write page header */
 		page_name = g_strdup_printf("%s/%s%08d.html",
 									html_path, base_name, page);
@@ -848,7 +637,7 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 		fprintf(file, "\n</TD>\n");
 		fprintf(file, "<TD WIDTH=\"33%%\" ALIGN=\"CENTER\">\n");
 		fprintf(file, "<A HREF=\"%s.html\">", base_name);
-		fprintf(file, "%s:", doc->basename);
+		fprintf(file, "%s:", basename);
 		fprintf(file, "</A>");
 		fprintf(file, " %d/%d", page+1, pages);
 		fprintf(file, "\n</TD>\n");
@@ -868,7 +657,7 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 		fprintf(file, "<TABLE BORDER=\"1\" CELLSPACING=\"2\" CELLPADDING=\"2\">\n");
 		fprintf(file, "<TR>\n<TD>\n");
 		fprintf(file, "<TABLE BORDER=\"0\" CELLSPACING=\"0\" CELLPADDING=\"0\">\n");
-		for(line = 0; line < lpp && pos + line*cpl < doc->file_size; line++) {
+		for(line = 0; line < lpp && pos + line*cpl < payload; line++) {
 		/* offset of line*/
 			fprintf(file, "<TR>\n<TD>\n");
 			fprintf(file, "<PRE>%08x</PRE>\n", pos + line*cpl);
@@ -882,7 +671,7 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 			/* hex data */
 			fprintf(file, "<TR>\n<TD>\n<PRE>");
 			while(pos + c < end) {
-				fprintf(file, "%02x", hex_document_get_byte(doc, pos + c));
+				fprintf(file, "%02x", hex_buffer_get_byte (doc->buffer, pos + c));
 				c++;
 				if(c%cpl == 0)
 					break;
@@ -899,7 +688,7 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 			/* ascii data */
 			fprintf(file, "<TR>\n<TD>\n<PRE>");
 			while(pos + c < end) {
-				b = hex_document_get_byte(doc, pos + c);
+				b = hex_buffer_get_byte (doc->buffer, pos + c);
 				if(b >= 0x20)
 					fprintf(file, "%c", b);
 				else
@@ -922,8 +711,8 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 		fprintf(file, "</BODY>\n</HTML>\n");
 		fclose(file);
 	}
+	g_free (basename);
 	g_object_unref(G_OBJECT(doc));
-	gtk_window_destroy(GTK_WINDOW (progress_dialog));
 
 	return TRUE;
 }
@@ -935,7 +724,7 @@ hex_document_compare_data(HexDocument *doc, char *s2, int pos, int len)
 
 	for (int i = 0; i < len; i++, s2++)
 	{
-		c1 = hex_document_get_byte(doc, pos + i);
+		c1 = hex_buffer_get_byte (doc->buffer, pos + i);
 
 		if(c1 != (*s2))
 			return (c1 - (*s2));
@@ -944,14 +733,16 @@ hex_document_compare_data(HexDocument *doc, char *s2, int pos, int len)
 	return 0;
 }
 
-int
-hex_document_find_forward (HexDocument *doc, int start, char *what,
-						  int len, int *found)
+gboolean
+hex_document_find_forward (HexDocument *doc, size_t start, char *what,
+						  size_t len, size_t *found)
 {
-	int pos;
-	
+	size_t pos;
+	size_t payload = hex_buffer_get_payload_size (
+			hex_document_get_buffer (doc));
+
 	pos = start;
-	while (pos < doc->file_size)
+	while (pos < payload)
 	{
 		if (hex_document_compare_data(doc, what, pos, len) == 0)
 		{
@@ -964,11 +755,11 @@ hex_document_find_forward (HexDocument *doc, int start, char *what,
 	return FALSE;
 }
 
-int
-hex_document_find_backward (HexDocument *doc, int start, char *what,
-						   int len, int *found)
+gboolean
+hex_document_find_backward (HexDocument *doc, size_t start, char *what,
+						   size_t len, size_t *found)
 {
-	int pos;
+	size_t pos;
 	
 	pos = start;
 
@@ -1001,16 +792,22 @@ static void
 hex_document_real_undo (HexDocument *doc)
 {
 	HexChangeData *cd;
-	int len;
+	size_t len;
 	char *rep_data;
 	char c_val;
 
 	cd = doc->undo_top->data;
 
 	switch(cd->type) {
+
 	case HEX_CHANGE_BYTE:
-		if(cd->start >= 0 && cd->end < doc->file_size) {
-			c_val = hex_document_get_byte(doc, cd->start);
+	{
+		size_t payload = hex_buffer_get_payload_size (
+				hex_document_get_buffer (doc));
+
+		if (cd->end < payload)
+		{
+			c_val = hex_buffer_get_byte (doc->buffer, cd->start);
 			if(cd->rep_len > 0)
 				hex_document_set_byte(doc, cd->v_byte, cd->start, FALSE, FALSE);
 			else if(cd->rep_len == 0)
@@ -1019,28 +816,23 @@ hex_document_real_undo (HexDocument *doc)
 				hex_document_set_byte(doc, cd->v_byte, cd->start, TRUE, FALSE);
 			cd->v_byte = c_val;
 		}
+	}
 		break;
+
 	case HEX_CHANGE_STRING:
 		len = cd->end - cd->start + 1;
-		rep_data = hex_document_get_data(doc, cd->start, len);
-		hex_document_set_data(doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
+		rep_data = hex_buffer_get_data (doc->buffer, cd->start, len);
+		hex_document_set_data (doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
 		g_free(cd->v_string);
 		cd->end = cd->start + cd->rep_len - 1;
 		cd->rep_len = len;
 		cd->v_string = rep_data;
 		break;
-	}
+	}	/* switch */
 
 	hex_document_changed(doc, cd, FALSE);
 
 	undo_stack_descend(doc);
-}
-
-gboolean
-hex_document_is_writable(HexDocument *doc)
-{
-	return (doc->file_name != NULL &&
-			access(doc->file_name, W_OK) == 0);
 }
 
 gboolean 
@@ -1067,9 +859,15 @@ hex_document_real_redo(HexDocument *doc)
 	cd = (HexChangeData *)doc->undo_top->data;
 
 	switch(cd->type) {
+
 	case HEX_CHANGE_BYTE:
-		if(cd->start >= 0 && cd->end <= doc->file_size) {
-			c_val = hex_document_get_byte(doc, cd->start);
+	{
+		size_t payload = hex_buffer_get_payload_size (
+				hex_document_get_buffer (doc));
+
+		if (cd->end <= payload)
+		{
+			c_val = hex_buffer_get_byte (doc->buffer, cd->start);
 			if(cd->rep_len > 0)
 				hex_document_set_byte(doc, cd->v_byte, cd->start, FALSE, FALSE);
 			else if(cd->rep_len == 0)
@@ -1081,11 +879,13 @@ hex_document_real_redo(HexDocument *doc)
 				hex_document_set_byte(doc, cd->v_byte, cd->start, TRUE, FALSE);
 			cd->v_byte = c_val;
 		}
+	}
 		break;
+
 	case HEX_CHANGE_STRING:
 		len = cd->end - cd->start + 1;
-		rep_data = hex_document_get_data(doc, cd->start, len);
-		hex_document_set_data(doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
+		rep_data = hex_buffer_get_data (doc->buffer, cd->start, len);
+		hex_document_set_data (doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
 		g_free(cd->v_string);
 		cd->end = cd->start + cd->rep_len - 1;
 		cd->rep_len = len;
@@ -1094,33 +894,6 @@ hex_document_real_redo(HexDocument *doc)
 	}
 
 	hex_document_changed(doc, cd, FALSE);
-}
-
-gboolean
-hex_document_change_file_name (HexDocument *doc, const char *new_file_name)
-{
-	char *new_path_end = NULL;
-
-	if(doc->file_name)
-		g_free(doc->file_name);
-	if(doc->basename)
-		g_free(doc->basename);
-
-	doc->file_name = g_strdup(new_file_name);
-	doc->changed = FALSE;
-
-	new_path_end = g_path_get_basename (doc->file_name);
-	doc->basename = g_filename_to_utf8 (new_path_end, -1, NULL, NULL, NULL);
-
-	if (new_path_end)
-		g_free (new_path_end);
-
-	if (doc->file_name && doc->basename) {
-		g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
-		return TRUE;
-	} else {
-		return FALSE;
-	}
 }
 
 gboolean
@@ -1145,26 +918,20 @@ hex_document_can_redo (HexDocument *doc)
 		return FALSE;
 }
 
-const char *
-hex_document_get_file_name (HexDocument *doc)
-{
-	return doc->file_name;
-}
-
-const char *
-hex_document_get_basename (HexDocument *doc)
-{
-	return doc->basename;
-}
-
-int
-hex_document_get_file_size (HexDocument *doc)
-{
-	return doc->file_size;
-}
-
 HexChangeData *
 hex_document_get_undo_data (HexDocument *doc)
 {
 	return doc->undo_top->data;
+}
+
+HexBuffer *
+hex_document_get_buffer (HexDocument *doc)
+{
+	return doc->buffer;
+}
+
+GFile *
+hex_document_get_file (HexDocument *doc)
+{
+	return doc->file;
 }
