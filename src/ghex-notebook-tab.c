@@ -36,8 +36,6 @@ struct _GHexNotebookTab
 	GtkWidget *label;
 	GtkWidget *close_btn;
 	GtkHex *gh;				/* GtkHex widget activated when tab is clicked */
-
-	GFileMonitor *monitor;
 };
 
 static char *untitled_label = N_("Untitled document");

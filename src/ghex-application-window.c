@@ -94,6 +94,7 @@ static GParamSpec *properties[N_PROPERTIES] = { NULL, };
  * still can open a document.
  */
 static const char *main_actions[] = {
+	"ghex.save",
 	"ghex.save-as",
 	"ghex.revert",
 	"ghex.print",
@@ -293,6 +294,9 @@ ghex_application_window_remove_tab (GHexApplicationWindow *self,
 	tab_gh = ghex_notebook_tab_get_hex (tab);
 	g_return_if_fail (GTK_IS_HEX(tab_gh));
 
+	/* unref our additional ref we made to gh in _add_hex */
+	g_object_unref (tab_gh);
+
 	page_num = gtk_notebook_page_num (notebook, GTK_WIDGET(tab_gh));
 	gtk_notebook_remove_page (notebook, page_num);
 
@@ -300,6 +304,8 @@ ghex_application_window_remove_tab (GHexApplicationWindow *self,
 	 * for now for debugging purposes. */
 	g_return_if_fail (g_list_find (self->gh_list, tab_gh));
 	self->gh_list = g_list_remove (self->gh_list, tab_gh);
+
+	update_gui_data (self);
 }
 
 static void
@@ -479,6 +485,8 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self)
 {
 	GtkWidget *dialog;
 	HexDocument *doc;
+	GFile *file;
+	char *message;
 	char *basename = NULL;
 
 	g_return_if_fail (GTK_IS_HEX (self->gh));
@@ -486,17 +494,29 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self)
 	doc = gtk_hex_get_document (self->gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	basename = g_file_get_basename (hex_document_get_file (doc));
+	if (G_IS_FILE (file = hex_document_get_file (doc)))
+		basename = g_file_get_basename (hex_document_get_file (doc));
+
+	if (basename) {
+		message = g_strdup_printf (
+				/* Translators: %s is the filename that is currently being
+				 * edited. */
+				_("<big><b>%s has been edited since opening.</b></big>\n\n"
+			   "Would you like to save your changes?"), basename);
+		g_free (basename);
+	}
+	else {
+		message = g_strdup (
+				_("<b>The buffer has been edited since opening.</b>\n\n"
+			   "Would you like to save your changes?"));
+	}
 
 	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
 			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 			GTK_MESSAGE_QUESTION,
 			GTK_BUTTONS_NONE,
-			/* Translators: %s is the filename that is currently being
-			 * edited. */
-			_("<big><b>%s has been edited since opening.</b></big>\n\n"
-			   "Would you like to save your changes?"),
-			basename);
+			message);
+	g_free (message);
 
 	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
 			_("_Save Changes"),		GTK_RESPONSE_ACCEPT,
@@ -508,7 +528,6 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self)
 			G_CALLBACK(close_doc_response_cb), self);
 
 	gtk_widget_show (dialog);
-	g_free (basename);
 }
 
 /* FIXME / TODO - I could see this function being useful, but right now it is
@@ -818,16 +837,57 @@ setup_converter (GHexApplicationWindow *self)
 }
 
 static void
+update_titlebar (GHexApplicationWindow *self)
+{
+	HexDocument *doc = gtk_hex_get_document (self->gh);
+	GFile *file;
+
+	if (GTK_IS_HEX (self->gh) &&
+			/* This is kind of cheap, but checking at this exact time whether
+			 * we hold any further references to gh doesn't seem to work
+			 * reliably.
+			 */
+			gtk_notebook_get_n_pages (GTK_NOTEBOOK(self->hex_notebook)))
+	{
+		char *basename;
+		char *title;
+
+		if (G_IS_FILE (file = hex_document_get_file (doc)))
+			basename = g_file_get_basename (file);
+		else
+			/* Translators: this is the string for an untitled buffer that will
+			 * be displayed in the titlebar when a user does File->New
+			 */
+			basename = g_strdup (_("Untitled"));
+
+		title = g_strdup_printf ("%s - GHex", basename);
+		gtk_window_set_title (GTK_WINDOW(self), title);
+
+		g_free (basename);
+		g_free (title);
+	}
+	else
+	{
+		gtk_window_set_title (GTK_WINDOW(self), "GHex");
+	}
+}
+
+static void
 update_gui_data (GHexApplicationWindow *self)
 {
 	int current_pos;
 	HexDialogVal64 val;
+	char *titlebar_label;
 
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
-	g_return_if_fail (GTK_IS_HEX (self->gh));
 
-	current_pos = gtk_hex_get_cursor (self->gh);
 	update_status_message (self);
+	update_titlebar (self);
+
+	if (GTK_IS_HEX (self->gh))
+	{
+		current_pos = gtk_hex_get_cursor (self->gh);
+	}
 
 	for (int i = 0; i < 8; i++)
 	{
