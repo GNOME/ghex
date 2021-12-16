@@ -158,7 +158,6 @@ static gboolean assess_can_save (HexDocument *doc);
 	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i) {			\
 		GHexNotebookTab *tab;												\
 		GtkHex *gh;															\
-		g_debug ("%s: Working on %d'th page", __func__, i);					\
 		gh = GTK_HEX(gtk_notebook_get_nth_page (notebook, i));				\
 		g_return_if_fail (GTK_IS_HEX (gh));									\
 		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,		\
@@ -196,8 +195,6 @@ set_dark_mode_from_settings (GHexApplicationWindow *self)
 	GtkSettings *gtk_settings;
 
 	gtk_settings = gtk_settings_get_default ();
-
-	g_debug ("%s: def_dark_mode: %d", __func__, def_dark_mode);
 
 	if (def_dark_mode == DARK_MODE_SYSTEM) {
 		g_object_set (G_OBJECT(gtk_settings),
@@ -354,8 +351,6 @@ close_all_tabs (GHexApplicationWindow *self)
 		GHexNotebookTab *tab;
 		GtkHex *gh;
 
-		g_debug ("%s: Working on %d'th page", __func__, i);
-
 		gh = GTK_HEX(gtk_notebook_get_nth_page (notebook, i));
 		g_return_if_fail (GTK_IS_HEX (gh));
 
@@ -446,7 +441,6 @@ close_request_cb (GtkWindow *window,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	g_debug ("%s: Window wants to be closed.",	__func__);
 	check_close_window (self);
 
 	return GDK_EVENT_STOP;
@@ -695,8 +689,6 @@ tab_close_cb (GHexNotebookTab *tab,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	HexDocument *doc;
 
-	g_debug ("%s: start", __func__);
-
 	doc = gtk_hex_get_document (self->gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
@@ -907,9 +899,6 @@ cursor_moved_cb (GtkHex *gh, gpointer user_data)
 	/* If the cursor has been moved by a function call for a GtkHex that is
 	 * *not* in view, we're not interested. */
 	if (self->gh != gh) {
-		g_debug("%s: Cursor has been moved for a GtkHex widget not in view: "
-				"%p (currently in view == %p)",
-				__func__, (void *)gh, (void *)self->gh);
 		return;
 	}
 	else {
@@ -924,8 +913,6 @@ static void																	\
 ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 		gboolean show)														\
 {																			\
-	g_debug("%s: start - show: %d", __func__, show);						\
-																			\
 	if (show)																\
 	{																		\
 		if (! GTK_IS_WIDGET(self->WIDGET)) {								\
@@ -955,7 +942,6 @@ static void																	\
 ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 		gboolean show)														\
 {																			\
-	g_debug("%s: start - show: %d", __func__, show);						\
 	if (show) {																\
 		ghex_application_window_set_show_ ## OTHER1 (self, FALSE);			\
 		ghex_application_window_set_show_ ## OTHER2 (self, FALSE);			\
@@ -981,7 +967,6 @@ ghex_application_window_set_can_save (GHexApplicationWindow *self,
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
 
 	self->can_save = can_save;
-	g_debug("%s: start - can_save: %d", __func__, can_save);
 
 	gtk_widget_action_set_enabled (GTK_WIDGET(self),
 			"ghex.save", can_save);
@@ -1926,8 +1911,6 @@ ghex_application_window_activate_tab (GHexApplicationWindow *self,
 	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));
 
 	page_num = gtk_notebook_page_num (notebook, GTK_WIDGET(gh));
-	g_debug ("%s: got page_num: %d - setting notebook to that page.",
-			__func__, page_num);
 
 	gtk_notebook_set_current_page (notebook, page_num);
 	gtk_widget_grab_focus (GTK_WIDGET(gh));
@@ -1987,7 +1970,6 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 
 	/* Generate a tab */
 	tab = ghex_notebook_tab_new ();
-	g_debug ("%s: CREATED TAB -- %p", __func__, (void *)tab);
 	ghex_notebook_tab_add_hex (GHEX_NOTEBOOK_TAB(tab), gh);
 	g_signal_connect (tab, "closed",
 			G_CALLBACK(tab_close_cb), self);

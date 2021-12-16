@@ -38,7 +38,8 @@
 /* FIXME / TODO - Allow for swappability. Hardcoding for now for testing
  * purposes.
  */
-#include "hex-buffer-malloc.h"
+//#include "hex-buffer-malloc.h"
+#include "hex-buffer-mmap.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -311,7 +312,9 @@ hex_document_class_init (HexDocumentClass *klass)
 static void
 hex_document_init (HexDocument *doc)
 {
-	doc->buffer = HEX_BUFFER(hex_buffer_malloc_new (NULL));
+//	doc->buffer = HEX_BUFFER(hex_buffer_malloc_new (NULL));
+	// TEST
+	doc->buffer = HEX_BUFFER(hex_buffer_mmap_new (NULL));
 	doc->undo_max = DEFAULT_UNDO_DEPTH;
 }
 

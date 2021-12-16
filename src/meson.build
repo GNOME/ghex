@@ -2,6 +2,7 @@ libghex_sources = [
   'gtkhex.c',
   'hex-buffer-iface.c',	      # TEST
   'hex-buffer-malloc.c',      # TEST
+  'hex-buffer-mmap.c',        # TEST
   'gtkhex-layout-manager.c',
   'gtkhex-paste-data.c',
   'hex-document.c'

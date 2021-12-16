@@ -24,6 +24,8 @@
 
 #include <errno.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
 #include <sys/mman.h>
 
 G_BEGIN_DECLS
@@ -31,7 +33,7 @@ G_BEGIN_DECLS
 #define HEX_TYPE_BUFFER_MMAP hex_buffer_mmap_get_type ()
 G_DECLARE_FINAL_TYPE (HexBufferMmap, hex_buffer_mmap, HEX, BUFFER_MMAP, GObject)
 
-HexBufferMmap *hex_buffer_mmap_new (char *path);
+HexBufferMmap *hex_buffer_mmap_new (GFile *file);
 
 G_END_DECLS
 #endif

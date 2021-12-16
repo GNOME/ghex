@@ -13,8 +13,6 @@
  * Copyright © 2021 Logan Rathbone
  */
 
-// WIP -- NOT WORKING CODE!!
-
 #include "hex-buffer-mmap.h"
 
 #define HEX_BUFFER_MMAP_ERROR hex_buffer_mmap_error_quark ()
@@ -24,19 +22,27 @@ hex_buffer_mmap_error_quark (void)
   return g_quark_from_static_string ("hex-buffer-mmap-error-quark");
 }
 
+static char *invalid_path_msg = N_("The file appears to have an invalid path.");
+
 struct _HexBufferMmap
 {
 	GObject parent_instance;
 
+	GFile *file;
 	GError *error;		/* no custom codes; use codes from errno */
 	int last_errno;		/* cache in case we need to re-report errno error. */
 
-	char *data;
+	char *data;			/* buffer for modification and info */
 	size_t payload;
 	size_t mapped;
 	size_t gap;
-	int fd;
-	char *path;
+	char *tmpfile_path;	/* path to buffer tmpfile in mkstemp format */
+	int fd;				/* file descriptor of tmpfile. */
+
+	char *clean;		/* unmodified content, mmap'ed */
+	size_t clean_bytes;
+	int clean_fd;
+
 	size_t pagesize;	/* is only fetched once and cached. */
 };
 
@@ -45,23 +51,8 @@ static void hex_buffer_mmap_iface_init (HexBufferInterface *iface);
 G_DEFINE_TYPE_WITH_CODE (HexBufferMmap, hex_buffer_mmap, G_TYPE_OBJECT,
 		G_IMPLEMENT_INTERFACE (HEX_TYPE_BUFFER, hex_buffer_mmap_iface_init))
 
+
 /* PRIVATE FUNCTIONS */
-
-// text.c
-
-
-
-
-
-
-// file.c
-
-
-
-
-
-
-// buffer.c
 
 /* Helper wrapper for g_set_error and to cache errno */
 static void
@@ -76,6 +67,7 @@ set_error (HexBufferMmap *self, const char *blurb)
 	 * (eg, 'No such file or directory').
 	 */
 		message = g_strdup_printf (_("%s: %s"), blurb, g_strerror (errno));
+		g_debug ("%s: %s", __func__, message);
 	}
 
 	g_set_error (&self->error,
@@ -102,6 +94,7 @@ static void
 hex_buffer_mmap_init (HexBufferMmap *self)
 {
 	self->pagesize = getpagesize ();
+	self->fd = -1;
 }
 
 static void
@@ -123,10 +116,10 @@ hex_buffer_mmap_finalize (GObject *gobject)
 	if (self->fd >= 0)
 	{
 		close (self->fd);
-		unlink (self->path);
+		unlink (self->tmpfile_path);
 	}
 
-	g_free (self->path);
+	g_free (self->tmpfile_path);
 
 	/* chain up */
 	G_OBJECT_CLASS(hex_buffer_mmap_parent_class)->finalize (gobject);
@@ -141,34 +134,7 @@ hex_buffer_mmap_class_init (HexBufferMmapClass *klass)
 	gobject_class->dispose = hex_buffer_mmap_dispose;
 }
 
-
-/* PUBLIC FUNCTIONS */
-
-// was: buffer_create
-HexBufferMmap *
-hex_buffer_mmap_new (char *path)
-{
-	HexBufferMmap *self = g_object_new (HEX_TYPE_BUFFER_MMAP, NULL);
-
-	if (path && *path)
-	{
-		self->path = g_strdup ("hexmmapbufXXXXXX");
-		errno = 0;
-		self->fd = mkstemp (self->path);
-
-		if (self->fd < 0) {
-			set_error (self, _("Failed to open file"));
-		}
-	}
-	else
-	{
-		self->fd = -1;
-	}
-	return self;
-}
-
-// was: place_gap
-void	/* FIXME - make static if possible? */
+static void
 hex_buffer_mmap_place_gap (HexBufferMmap *self, size_t offset)
 {
 	g_return_if_fail (HEX_IS_BUFFER_MMAP (self));
@@ -193,10 +159,7 @@ hex_buffer_mmap_place_gap (HexBufferMmap *self, size_t offset)
 		memset (self->data + self->gap, ' ', gapsize);
 }
 
-
-
-// was: resize
-void	/* FIXME - make static if possible? */
+static void
 hex_buffer_mmap_resize (HexBufferMmap *self, size_t payload_bytes)
 {
 	void *p;
@@ -224,7 +187,7 @@ hex_buffer_mmap_resize (HexBufferMmap *self, size_t payload_bytes)
 		{
 			char *errmsg = g_strdup_printf (
 					_("Could not adjust %s from %lu to %lu bytes"),
-						self->path, (long)self->mapped, (long)map_bytes);
+					self->tmpfile_path, (long)self->mapped, (long)map_bytes);
 
 			set_error (self, errmsg);
 			g_free (errmsg);
@@ -297,14 +260,11 @@ done:
 	if (offset + bytes > self->payload)		\
 		bytes = self->payload - offset;		\
 
-// was: buffer_raw		- gets raw ptr to data - does not copy
-// can't pass a pointer to a NULL cp with this, so I added a sanity check
 size_t
 hex_buffer_mmap_raw (HexBufferMmap *self,
 		char **out, size_t offset, size_t bytes)
 {
 	g_assert (HEX_IS_BUFFER_MMAP (self));
-	g_assert (*out != NULL);
 	
 	ADJUST_OFFSET_AND_BYTES
 
@@ -323,13 +283,8 @@ hex_buffer_mmap_raw (HexBufferMmap *self,
 	return bytes;
 }
 
-
-
-
-// was: buffer_get	- gets & copies data - need to allocate 1st!!!
-//
 size_t
-hex_buffer_mmap_get (HexBufferMmap *self,
+hex_buffer_mmap_copy_data (HexBufferMmap *self,
 		void *out, size_t offset, size_t bytes)
 {
 	size_t left;
@@ -362,7 +317,6 @@ hex_buffer_mmap_get (HexBufferMmap *self,
 	return bytes;
 }
 
-// was: buffer_delete
 size_t
 hex_buffer_mmap_delete (HexBufferMmap *self,
 		     size_t offset, size_t bytes)
@@ -378,9 +332,7 @@ hex_buffer_mmap_delete (HexBufferMmap *self,
 }
 #undef ADJUST_OFFSET_AND_BYTES
 
-// was: buffer_insert
-//
-size_t
+static size_t
 hex_buffer_mmap_insert (HexBufferMmap *self,
 		const void *in, size_t offset, size_t bytes)
 {
@@ -407,8 +359,6 @@ hex_buffer_mmap_insert (HexBufferMmap *self,
 	return bytes;
 }
 
-// was: buffer_move
-//
 size_t
 hex_buffer_mmap_move (HexBufferMmap *to,
 		size_t to_offset,
@@ -424,8 +374,6 @@ hex_buffer_mmap_move (HexBufferMmap *to,
 	return hex_buffer_mmap_delete (from, from_offset, bytes);
 }
 
-// was: buffer_snap
-//
 void 
 hex_buffer_mmap_snap (HexBufferMmap *self)
 {
@@ -440,13 +388,252 @@ hex_buffer_mmap_snap (HexBufferMmap *self)
 	}
 }
 
+char * hex_buffer_mmap_get_data (HexBuffer *buf,
+		size_t offset,
+		size_t len)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
+	char *data;
+
+	data = g_malloc (len);
+	hex_buffer_mmap_copy_data (self, data, offset, len);
+
+	return data;
+}
+
+char hex_buffer_mmap_get_byte (HexBuffer *buf,
+		size_t offset)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
+	char *cp;
+	char c;
+
+	cp = hex_buffer_mmap_get_data (buf, offset, 1);
+	c = *cp;
+	
+	return c;
+}
+
+static size_t
+hex_buffer_mmap_get_payload_size (HexBuffer *buf)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
+
+	return self->payload;
+}
+
+static gboolean
+hex_buffer_mmap_set_file (HexBuffer *buf, GFile *file)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
+	const char *file_path;
+
+	g_return_val_if_fail (G_IS_FILE (file), FALSE);
+
+	file_path = g_file_peek_path (file);
+	if (! file_path)
+	{
+		set_error (self, _(invalid_path_msg));
+		return FALSE;
+	}
+	self->file = file;
+
+	return TRUE;
+}
+
+/* helper */
+static int
+create_fd_from_path (HexBufferMmap *self, const char *path)
+{
+	int fd = -1;
+	struct stat statbuf;
+
+	errno = 0;
+
+	if (stat (path, &statbuf))
+	{
+		if (errno != ENOENT) {
+			set_error (self,
+				_("Unable to retrieve file or directory information"));
+			return -1;
+		}
+
+		errno = 0;
+		fd = open(path, O_CREAT|O_TRUNC|O_RDWR,
+				S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
+
+		if (fd < 0) {
+			set_error (self, _("Unable to create file"));
+			return -1;
+		}
+	} 
+	else
+	{
+		/* FIXME - this is probably overkill - hex editor users may wish to
+		 * open a 'non-regular' file.
+		 */
+		if (!S_ISREG(statbuf.st_mode)) {
+			set_error (self, _("Not a regular file"));
+			return -1;
+		}
+
+		fd = open (path, O_RDWR);
+
+		if (fd < 0) {
+			errno = 0;
+			fd = open (path, O_RDONLY);
+			if (fd < 0) {
+				set_error (self, _("Unable to open file for reading"));
+				return -1;
+			}
+		}
+	}
+	return fd;
+}
+
+static gboolean
+create_buffer (HexBufferMmap *self)
+{
+	self->tmpfile_path = g_strdup ("hexmmapbufXXXXXX");
+	errno = 0;
+	self->fd = mkstemp (self->tmpfile_path);
+
+	if (self->fd < 0) {
+		set_error (self, _("Failed to open temporary file."));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+hex_buffer_mmap_read (HexBuffer *buf)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
+	void *p;
+	size_t bytes = 0;
+	size_t pages;
+	const char *file_path;
+	int tmp_clean_fd;
+
+	g_return_val_if_fail (G_IS_FILE (self->file), FALSE);
+
+	file_path = g_file_peek_path (self->file);
+	if (! file_path)
+	{
+		set_error (self, _(invalid_path_msg));
+		return FALSE;
+	}
+
+	bytes = hex_buffer_util_get_file_size (self->file);
+	pages = (bytes + self->pagesize - 1) / self->pagesize;
+
+	/* Set up a clean buffer (read-only memory mapped version of O.G. file)
+	 */
+	if (self->clean)
+		munmap (self->clean, self->clean_bytes);
+
+	self->clean_bytes = bytes;
+	self->clean = NULL;
+
+	if (!pages)
+		return FALSE;
+
+	tmp_clean_fd = create_fd_from_path (self, file_path);
+	if (tmp_clean_fd < 0)
+		return FALSE;
+
+	self->clean_fd = tmp_clean_fd;
+
+	p = mmap (0, pages * self->pagesize, PROT_READ, MAP_SHARED,
+			self->clean_fd, 0);
+
+	if (p == MAP_FAILED)
+		return FALSE;
+
+	self->clean = p;
+
+	/* Create dirty buffer for writing etc. */
+	create_buffer (self);
+
+	/* FIXME/TODO - sanity check against # of bytes read? */
+	hex_buffer_mmap_insert (self, self->clean, 0, self->clean_bytes);
+
+	return TRUE;
+}
+
+static gboolean hex_buffer_mmap_set_data (HexBuffer *buf,
+		size_t offset,
+		size_t len,
+		size_t rep_len,
+		char *data)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
+
+	if (offset > self->payload)
+	{
+		g_debug ("%s: offset greater than payload size; returning.", __func__);
+		return FALSE;
+	}
+
+	hex_buffer_mmap_insert (self, data, offset, len);
+	hex_buffer_mmap_delete (self, offset + len, rep_len);
+
+	return TRUE;
+}
+
+static gboolean hex_buffer_mmap_write_to_file (HexBuffer *buf,
+		GFile *file)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
+	char *raw;
+	gboolean retval;
+
+	g_return_val_if_fail (G_IS_FILE (self->file), FALSE);
+
+	hex_buffer_mmap_raw (self, &raw, 0, self->payload);
+
+	retval = g_file_replace_contents (self->file,
+		/* const char* contents, */			raw,	
+		/* gsize length, */					self->payload,
+		/* const char* etag, */				NULL,
+		/* gboolean make_backup, */			FALSE,	/* FIXME - make optional? */
+		/* GFileCreateFlags flags, */		G_FILE_CREATE_NONE,
+		/* char** new_etag, */				NULL,
+		/* GCancellable* cancellable, */	NULL,	/* FIXME */
+		/* GError** error */				&self->error);
+
+	return retval;
+}
+
+/* PUBLIC FUNCTIONS */
+
+HexBufferMmap *
+hex_buffer_mmap_new (GFile *file)
+{
+	HexBufferMmap *self = g_object_new (HEX_TYPE_BUFFER_MMAP, NULL);
+
+	if (file)
+	{
+		/* If a path is provided but it can't be set, nullify the object */
+		if (! hex_buffer_mmap_set_file (HEX_BUFFER(self), file))
+			g_clear_object (&self);
+	}
+
+	return self;
+}
+
 /* INTERFACE IMPLEMENTATION FUNCTIONS */
 
 static void
 hex_buffer_mmap_iface_init (HexBufferInterface *iface)
 {
-#if 0
-	iface->blah = blah_blah_function;
-#endif
+	iface->get_data = hex_buffer_mmap_get_data;
+	iface->get_byte = hex_buffer_mmap_get_byte;
+	iface->set_data = hex_buffer_mmap_set_data;
+	iface->set_file = hex_buffer_mmap_set_file;
+	iface->read = hex_buffer_mmap_read;
+	iface->write_to_file = hex_buffer_mmap_write_to_file;
+	iface->get_payload_size = hex_buffer_mmap_get_payload_size;
 }
 

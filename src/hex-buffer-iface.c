@@ -112,3 +112,16 @@ hex_buffer_get_payload_size (HexBuffer *self)
 
 	return iface->get_payload_size (self);
 }
+
+/* Utility functions */
+
+size_t	/* converted from guint64 at the backend anyway... */
+hex_buffer_util_get_file_size (GFile *file)
+{
+	GFileInfo *info;
+
+	info = g_file_query_info (file,
+			G_FILE_ATTRIBUTE_STANDARD_SIZE, G_FILE_QUERY_INFO_NONE, NULL, NULL);
+
+	return g_file_info_get_size (info);
+}
