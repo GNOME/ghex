@@ -36,9 +36,8 @@
 #include <stdio.h>
 
 #include <glib-object.h>
-#include <gtk/gtk.h>
 
-#include "hex-buffer-iface.h"
+#include <hex-buffer-iface.h>
 
 G_BEGIN_DECLS
 

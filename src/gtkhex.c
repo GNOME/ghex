@@ -207,15 +207,6 @@ static void show_cursor (GtkHex *gh, gboolean show);
 
 /* GtkHex - Method Definitions */
 
-static void
-popup_context_menu (GtkHex *gh, int x, int y)
-{
-	GdkRectangle rect = { .x = x, .y = y, .width = 1, .height = 1 };
-
-	gtk_popover_set_pointing_to (GTK_POPOVER(gh->context_menu), &rect);
-	gtk_popover_popup (GTK_POPOVER(gh->context_menu));
-}
-
 /* ACTIONS */
 
 static void
@@ -1382,7 +1373,8 @@ gh_pressed_cb (GtkGestureClick *gesture,
 {
 	GtkHex *gh = GTK_HEX (user_data);
 
-	popup_context_menu (gh, x, y);
+	gtk_hex_layout_set_cursor_pos (GTK_HEX_LAYOUT(gh->layout_manager), x, y);
+	gtk_popover_popup (GTK_POPOVER(gh->context_menu));
 }
 
 static void
@@ -2261,9 +2253,11 @@ gtk_hex_dispose (GObject *object)
 	g_clear_pointer (&gh->offsets, gtk_widget_unparent);
 	g_clear_pointer (&gh->scrollbar, gtk_widget_unparent);
 
-	/* Clear layout manager
+	/* FIXME - This results in assertion errors upon exit. I have been told
+	 * by ebassi on IRC (16-Dec-2021) that this may be a bug in gtk. See:
+	 * https://gitlab.gnome.org/GNOME/gtk/-/issues/4548
 	 */
-	g_clear_object (&gh->layout_manager);
+	g_clear_pointer (&gh->context_menu, gtk_widget_unparent);
 
 	/* Clear pango layouts
 	 */
@@ -2271,7 +2265,7 @@ gtk_hex_dispose (GObject *object)
 	g_clear_object (&gh->alayout);
 	g_clear_object (&gh->olayout);
 
-	g_object_unref (&gh->document);
+	g_clear_object (&gh->document);
 	
 	/* Chain up */
 	G_OBJECT_CLASS(gtk_hex_parent_class)->dispose(object);

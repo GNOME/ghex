@@ -16,7 +16,7 @@
 #ifndef HEX_DOCUMENT_MALLOC_H
 #define HEX_DOCUMENT_MALLOC_H
 
-#include "hex-buffer-iface.h"
+#include <hex-buffer-iface.h>
 
 #define _GNU_SOURCE
 

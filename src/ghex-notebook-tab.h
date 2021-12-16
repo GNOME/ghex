@@ -38,8 +38,7 @@ G_DECLARE_FINAL_TYPE (GHexNotebookTab, ghex_notebook_tab, GHEX, NOTEBOOK_TAB,
 
 /* Method Declarations */
 
-GtkWidget * 	ghex_notebook_tab_new (void);
-void 			ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh);
+GtkWidget * 	ghex_notebook_tab_new (GtkHex *gh);
 const char * 	ghex_notebook_tab_get_filename (GHexNotebookTab *self);
 GtkHex * 		ghex_notebook_tab_get_hex (GHexNotebookTab *self);
 

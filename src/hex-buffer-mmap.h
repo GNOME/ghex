@@ -13,12 +13,10 @@
  * Copyright © 2021 Logan Rathbone
  */
 
-// WIP - NOT WORKING CODE!
-
 #ifndef HEX_DOCUMENT_MMAP_H
 #define HEX_DOCUMENT_MMAP_H
 
-#include "hex-buffer-iface.h"
+#include <hex-buffer-iface.h>
 
 #define _GNU_SOURCE
 

@@ -112,6 +112,7 @@ hex_buffer_mmap_finalize (GObject *gobject)
 	HexBufferMmap *self = HEX_BUFFER_MMAP (gobject);
 
 	munmap (self->data, self->mapped);
+	munmap (self->clean, self->clean_bytes);
 
 	if (self->fd >= 0)
 	{
@@ -636,4 +637,3 @@ hex_buffer_mmap_iface_init (HexBufferInterface *iface)
 	iface->write_to_file = hex_buffer_mmap_write_to_file;
 	iface->get_payload_size = hex_buffer_mmap_get_payload_size;
 }
-

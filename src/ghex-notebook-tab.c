@@ -25,7 +25,7 @@
 #include "ghex-notebook-tab.h"
 
 enum signal_types {
-	CLOSED,
+	CLOSE_REQUEST,
 	LAST_SIGNAL
 };
 
@@ -87,7 +87,7 @@ ghex_notebook_tab_close_click_cb (GtkButton *button,
 	GHexNotebookTab *self = GHEX_NOTEBOOK_TAB(user_data);
 
 	g_signal_emit(self,
-			signals[CLOSED],
+			signals[CLOSE_REQUEST],
 			0);		/* GQuark detail (just set to 0 if unknown) */
 }
 
@@ -134,8 +134,7 @@ ghex_notebook_tab_dispose (GObject *object)
 	/* Unparent children */
 	g_clear_pointer (&self->label, gtk_widget_unparent);
 	g_clear_pointer (&self->close_btn, gtk_widget_unparent);
-	g_object_unref (self->gh);
-
+	
 	/* Boilerplate: chain up */
 	G_OBJECT_CLASS(ghex_notebook_tab_parent_class)->dispose(object);
 }
@@ -164,7 +163,7 @@ ghex_notebook_tab_class_init (GHexNotebookTabClass *klass)
 
 	/* SIGNALS */
 
-	signals[CLOSED] = g_signal_new_class_handler("closed",
+	signals[CLOSE_REQUEST] = g_signal_new_class_handler("close-request",
 			G_OBJECT_CLASS_TYPE(object_class),
 			G_SIGNAL_RUN_FIRST,
 		/* GCallback class_handler: */
@@ -202,17 +201,7 @@ refresh_file_name (GHexNotebookTab *self)
 	g_free (basename);
 }
 
-/* Public Methods */
- 
-GtkWidget *
-ghex_notebook_tab_new (void)
-{
-	return g_object_new (GHEX_TYPE_NOTEBOOK_TAB,
-			/* no properties to set */
-			NULL);
-}
-
-void
+static void
 ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh)
 {
 	HexDocument *doc;
@@ -228,8 +217,9 @@ ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh)
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	/* Associate this notebook tab with a GtkHex widget. */
-	g_object_ref (gh);
 	self->gh = gh;
+
+	g_object_add_weak_pointer (G_OBJECT(self->gh), (gpointer *)&self->gh);
 
 	/* Set name of tab. */
 	refresh_file_name (self);
@@ -245,6 +235,17 @@ ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh)
 			G_CALLBACK(refresh_file_name), self);
 }
 
+/* Public Methods */
+ 
+GtkWidget *
+ghex_notebook_tab_new (GtkHex *gh)
+{
+	GHexNotebookTab *self = g_object_new (GHEX_TYPE_NOTEBOOK_TAB, NULL);
+	ghex_notebook_tab_add_hex (self, gh);
+
+	return GTK_WIDGET(self);
+}
+
 const char *
 ghex_notebook_tab_get_filename (GHexNotebookTab *self)
 {
@@ -257,7 +258,7 @@ ghex_notebook_tab_get_filename (GHexNotebookTab *self)
 GtkHex *
 ghex_notebook_tab_get_hex (GHexNotebookTab *self)
 {
-	g_return_val_if_fail (GTK_IS_HEX (self->gh), NULL);
+	g_return_val_if_fail (GHEX_IS_NOTEBOOK_TAB (self), NULL);
 
 	return self->gh;
 }
