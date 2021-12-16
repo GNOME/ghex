@@ -660,9 +660,6 @@ pane_dialog_set_hex (PaneDialog *self, GtkHex *gh)
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 
-	g_debug("%s: setting GtkHex of PaneDialog %p to: %p",
-			__func__, (void *)self, (void *)gh);
-
 	/* Clear auto-highlight if any.
 	 */
 	if (priv->auto_highlight)

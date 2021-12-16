@@ -33,6 +33,12 @@
 /* DEFINES */
 
 #define offset_fmt	"0x%X"
+#define ACTIVE_GH	\
+	(ghex_application_window_get_hex (self))
+
+#ifndef EXPERIMENTAL_MMAP
+static GFile *tmp_global_gfile_for_nag_screen;
+#endif
 
 /* ----------------------- */
 /* MAIN GOBJECT DEFINITION */
@@ -48,7 +54,6 @@ struct _GHexApplicationWindow
 	GtkCssProvider *conversions_box_provider;
 	guint statusbar_id;
 	GtkAdjustment *adj;
-	GList *gh_list;
 	gboolean can_save;
 	gboolean insert_mode;
 
@@ -158,7 +163,6 @@ static gboolean assess_can_save (HexDocument *doc);
 	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i) {			\
 		GHexNotebookTab *tab;												\
 		GtkHex *gh;															\
-		g_debug ("%s: Working on %d'th page", __func__, i);					\
 		gh = GTK_HEX(gtk_notebook_get_nth_page (notebook, i));				\
 		g_return_if_fail (GTK_IS_HEX (gh));									\
 		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,		\
@@ -196,8 +200,6 @@ set_dark_mode_from_settings (GHexApplicationWindow *self)
 	GtkSettings *gtk_settings;
 
 	gtk_settings = gtk_settings_get_default ();
-
-	g_debug ("%s: def_dark_mode: %d", __func__, def_dark_mode);
 
 	if (def_dark_mode == DARK_MODE_SYSTEM) {
 		g_object_set (G_OBJECT(gtk_settings),
@@ -260,25 +262,32 @@ settings_group_type_changed_cb (GSettings   *settings,
 static void
 refresh_dialogs (GHexApplicationWindow *self)
 {
-	pane_dialog_set_hex (PANE_DIALOG(self->find_dialog), self->gh);
-	pane_dialog_set_hex (PANE_DIALOG(self->replace_dialog), self->gh);
-	pane_dialog_set_hex (PANE_DIALOG(self->jump_dialog), self->gh);
+	if (ACTIVE_GH)
+	{
+		pane_dialog_set_hex (PANE_DIALOG(self->find_dialog), ACTIVE_GH);
+		pane_dialog_set_hex (PANE_DIALOG(self->replace_dialog), ACTIVE_GH);
+		pane_dialog_set_hex (PANE_DIALOG(self->jump_dialog), ACTIVE_GH);
+	}
 }
 
 static GHexNotebookTab *
 ghex_application_window_get_current_tab (GHexApplicationWindow *self)
 {
 	GtkNotebook *notebook;
+	GtkHex *gh;
 	GHexNotebookTab *tab;
 
 	g_return_val_if_fail (GTK_IS_NOTEBOOK (self->hex_notebook), NULL);
-	g_return_val_if_fail (GTK_IS_HEX (self->gh), NULL);
 
 	notebook = GTK_NOTEBOOK(self->hex_notebook);
+	gh = GTK_HEX(gtk_notebook_get_nth_page (notebook,
+			gtk_notebook_get_current_page (notebook)));
 
-	tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,
-					GTK_WIDGET(self->gh)));
-	g_return_val_if_fail (GHEX_IS_NOTEBOOK_TAB (tab), NULL);
+	if (gh)
+		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,
+					GTK_WIDGET(gh)));
+	else
+		tab = NULL;
 
 	return tab;
 }
@@ -294,16 +303,8 @@ ghex_application_window_remove_tab (GHexApplicationWindow *self,
 	tab_gh = ghex_notebook_tab_get_hex (tab);
 	g_return_if_fail (GTK_IS_HEX(tab_gh));
 
-	/* unref our additional ref we made to gh in _add_hex */
-	g_object_unref (tab_gh);
-
 	page_num = gtk_notebook_page_num (notebook, GTK_WIDGET(tab_gh));
 	gtk_notebook_remove_page (notebook, page_num);
-
-	/* FIXME - remove as a possible optimization - but let's keep it in
-	 * for now for debugging purposes. */
-	g_return_if_fail (g_list_find (self->gh_list, tab_gh));
-	self->gh_list = g_list_remove (self->gh_list, tab_gh);
 
 	update_gui_data (self);
 }
@@ -313,9 +314,9 @@ file_save (GHexApplicationWindow *self)
 {
 	HexDocument *doc;
 
-	g_return_if_fail (GTK_IS_HEX (self->gh));
+	g_return_if_fail (GTK_IS_HEX (ACTIVE_GH));
 
-	doc = gtk_hex_get_document (self->gh);
+	doc = gtk_hex_get_document (ACTIVE_GH);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	if (hex_document_write (doc)) {
@@ -353,8 +354,6 @@ close_all_tabs (GHexApplicationWindow *self)
 	{
 		GHexNotebookTab *tab;
 		GtkHex *gh;
-
-		g_debug ("%s: Working on %d'th page", __func__, i);
 
 		gh = GTK_HEX(gtk_notebook_get_nth_page (notebook, i));
 		g_return_if_fail (GTK_IS_HEX (gh));
@@ -446,7 +445,6 @@ close_request_cb (GtkWindow *window,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	g_debug ("%s: Window wants to be closed.",	__func__);
 	check_close_window (self);
 
 	return GDK_EVENT_STOP;
@@ -477,11 +475,12 @@ close_doc_response_cb (GtkDialog *dialog,
 	/* GtkNotebook likes to grab the focus. Possible TODO would be to subclass
 	 * GtkNotebook so we can maintain the grab on the gh widget more easily.
 	 */
-	gtk_widget_grab_focus (GTK_WIDGET (self->gh));
+	gtk_widget_grab_focus (GTK_WIDGET (ACTIVE_GH));
 }
 
 static void
-close_doc_confirmation_dialog (GHexApplicationWindow *self)
+close_doc_confirmation_dialog (GHexApplicationWindow *self,
+		GHexNotebookTab *tab)
 {
 	GtkWidget *dialog;
 	HexDocument *doc;
@@ -489,9 +488,8 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self)
 	char *message;
 	char *basename = NULL;
 
-	g_return_if_fail (GTK_IS_HEX (self->gh));
-
-	doc = gtk_hex_get_document (self->gh);
+	GtkHex *gh = ghex_notebook_tab_get_hex (tab);
+	doc = gtk_hex_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	if (G_IS_FILE (file = hex_document_get_file (doc)))
@@ -606,9 +604,9 @@ copy_special (GtkWidget *widget,
 	GdkClipboard *clipboard;
 
 	(void)action_name; (void)parameter;
-	g_return_if_fail (GTK_IS_HEX (self->gh));
+	g_return_if_fail (GTK_IS_HEX (ACTIVE_GH));
 
-	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(self->gh));
+	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(ACTIVE_GH));
 
 	if (! self->copy_special_dialog)
 	{
@@ -630,9 +628,9 @@ paste_special (GtkWidget *widget,
 	GdkClipboard *clipboard;
 
 	(void)action_name; (void)parameter;
-	g_return_if_fail (GTK_IS_HEX (self->gh));
+	g_return_if_fail (GTK_IS_HEX (ACTIVE_GH));
 
-	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(self->gh));
+	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(ACTIVE_GH));
 
 	if (! self->paste_special_dialog)
 	{
@@ -682,26 +680,26 @@ ghex_application_window_document_changed_cb (HexDocument *doc,
 	/* The appwindow as a whole not interested in any document changes that
 	 * don't pertain to the one that is actually in view.
 	 */
-	if (doc != gtk_hex_get_document (self->gh))
+	if (doc != gtk_hex_get_document (ACTIVE_GH))
 		return;
 
 	ghex_application_window_set_can_save (self, assess_can_save (doc));
 }
 
 static void
-tab_close_cb (GHexNotebookTab *tab,
+tab_close_request_cb (GHexNotebookTab *tab,
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	HexDocument *doc;
+	GtkHex *gh;
 
-	g_debug ("%s: start", __func__);
-
-	doc = gtk_hex_get_document (self->gh);
+	gh = ghex_notebook_tab_get_hex (tab);
+	doc = gtk_hex_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	if (hex_document_has_changed (doc)) {
-		close_doc_confirmation_dialog (self);
+		close_doc_confirmation_dialog (self, tab);
 	} else {
 		ghex_application_window_remove_tab (self, tab);
 	}
@@ -714,22 +712,14 @@ notebook_switch_page_cb (GtkNotebook *notebook,
 		gpointer     user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-	GHexNotebookTab *tab;
-	GtkHex *tab_gh;
 	HexDocument *doc;
 
-	tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook, page));
-	g_return_if_fail (GHEX_IS_NOTEBOOK_TAB (tab));
-	tab_gh = ghex_notebook_tab_get_hex (tab);
-	g_return_if_fail (GTK_IS_HEX (tab_gh));
+	if (! ACTIVE_GH)	return;
 
-	if (tab_gh != self->gh) {
-		ghex_application_window_set_hex (self, tab_gh);
-		ghex_application_window_activate_tab (self, self->gh);
-	}
+	refresh_dialogs (self);
 
 	/* Assess saveability based on new tab we've switched to */
-	doc = gtk_hex_get_document (self->gh);
+	doc = gtk_hex_get_document (ACTIVE_GH);
 	ghex_application_window_set_can_save (self, assess_can_save (doc));
 
 	/* Update dialogs, offset status bar, etc. */
@@ -783,7 +773,8 @@ pane_close_cb (PaneDialog *pane, gpointer user_data)
 
 	g_return_if_fail (PANE_IS_DIALOG (pane));
 
-	gtk_widget_grab_focus (GTK_WIDGET(self->gh));
+	if (ACTIVE_GH)
+		gtk_widget_grab_focus (GTK_WIDGET(ACTIVE_GH));
 
 	if (FIND_IS_DIALOG (pane)) {
 		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);
@@ -817,9 +808,9 @@ converter_close_cb (GtkWindow *window,
 static void
 setup_chartable (GHexApplicationWindow *self)
 {
-	g_return_if_fail (GTK_IS_HEX(self->gh));
+	g_return_if_fail (GTK_IS_HEX(ACTIVE_GH));
 
-	self->chartable = create_char_table (GTK_WINDOW(self), self->gh);
+	self->chartable = create_char_table (GTK_WINDOW(self), ACTIVE_GH);
 
     g_signal_connect(self->chartable, "close-request",
                      G_CALLBACK(chartable_close_cb), self);
@@ -828,9 +819,9 @@ setup_chartable (GHexApplicationWindow *self)
 static void
 setup_converter (GHexApplicationWindow *self)
 {
-	g_return_if_fail (GTK_IS_HEX(self->gh));
+	g_return_if_fail (GTK_IS_HEX(ACTIVE_GH));
 
-	self->converter = create_converter (GTK_WINDOW(self), self->gh);
+	self->converter = create_converter (GTK_WINDOW(self), ACTIVE_GH);
 
 	g_signal_connect(self->converter, "close-request",
                      G_CALLBACK(converter_close_cb), self);
@@ -839,10 +830,9 @@ setup_converter (GHexApplicationWindow *self)
 static void
 update_titlebar (GHexApplicationWindow *self)
 {
-	HexDocument *doc = gtk_hex_get_document (self->gh);
 	GFile *file;
 
-	if (GTK_IS_HEX (self->gh) &&
+	if (ACTIVE_GH	&&
 			/* This is kind of cheap, but checking at this exact time whether
 			 * we hold any further references to gh doesn't seem to work
 			 * reliably.
@@ -851,6 +841,7 @@ update_titlebar (GHexApplicationWindow *self)
 	{
 		char *basename;
 		char *title;
+		HexDocument *doc = gtk_hex_get_document (ACTIVE_GH);
 
 		if (G_IS_FILE (file = hex_document_get_file (doc)))
 			basename = g_file_get_basename (file);
@@ -884,17 +875,17 @@ update_gui_data (GHexApplicationWindow *self)
 	update_status_message (self);
 	update_titlebar (self);
 
-	if (GTK_IS_HEX (self->gh))
+	if (ACTIVE_GH)
 	{
-		current_pos = gtk_hex_get_cursor (self->gh);
-	}
+		current_pos = gtk_hex_get_cursor (ACTIVE_GH);
 
-	for (int i = 0; i < 8; i++)
-	{
-		/* returns 0 on buffer overflow, which is what we want */
-		val.v[i] = gtk_hex_get_byte (self->gh, current_pos+i);
+		for (int i = 0; i < 8; i++)
+		{
+			/* returns 0 on buffer overflow, which is what we want */
+			val.v[i] = gtk_hex_get_byte (ACTIVE_GH, current_pos+i);
+		}
+		hex_dialog_updateview (self->dialog, &val);
 	}
-	hex_dialog_updateview (self->dialog, &val);
 }
 
 static void
@@ -906,10 +897,7 @@ cursor_moved_cb (GtkHex *gh, gpointer user_data)
 
 	/* If the cursor has been moved by a function call for a GtkHex that is
 	 * *not* in view, we're not interested. */
-	if (self->gh != gh) {
-		g_debug("%s: Cursor has been moved for a GtkHex widget not in view: "
-				"%p (currently in view == %p)",
-				__func__, (void *)gh, (void *)self->gh);
+	if (ACTIVE_GH != gh) {
 		return;
 	}
 	else {
@@ -924,8 +912,6 @@ static void																	\
 ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 		gboolean show)														\
 {																			\
-	g_debug("%s: start - show: %d", __func__, show);						\
-																			\
 	if (show)																\
 	{																		\
 		if (! GTK_IS_WIDGET(self->WIDGET)) {								\
@@ -938,7 +924,7 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 		if (GTK_IS_WIDGET (self->WIDGET) &&									\
 				gtk_widget_is_visible (self->WIDGET)) {						\
 			gtk_widget_hide (self->WIDGET);									\
-			gtk_widget_grab_focus (GTK_WIDGET(self->gh));					\
+			gtk_widget_grab_focus (GTK_WIDGET(ACTIVE_GH));					\
 		}																	\
 	}																		\
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_ARR_ENTRY]);	\
@@ -955,7 +941,6 @@ static void																	\
 ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 		gboolean show)														\
 {																			\
-	g_debug("%s: start - show: %d", __func__, show);						\
 	if (show) {																\
 		ghex_application_window_set_show_ ## OTHER1 (self, FALSE);			\
 		ghex_application_window_set_show_ ## OTHER2 (self, FALSE);			\
@@ -981,7 +966,6 @@ ghex_application_window_set_can_save (GHexApplicationWindow *self,
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
 
 	self->can_save = can_save;
-	g_debug("%s: start - can_save: %d", __func__, can_save);
 
 	gtk_widget_action_set_enabled (GTK_WIDGET(self),
 			"ghex.save", can_save);
@@ -1036,7 +1020,7 @@ save_as_response_cb (GtkNativeDialog *dialog,
 		goto end;
 
 	/* Fetch doc. No need for sanity checks as this is just a helper. */
-	doc = gtk_hex_get_document (self->gh);
+	doc = gtk_hex_get_document (ACTIVE_GH);
 
 	gfile = gtk_file_chooser_get_file (chooser);
 
@@ -1072,9 +1056,9 @@ save_as (GtkWidget *widget,
 	GtkResponseType resp;
 	HexDocument *doc;
 
-	g_return_if_fail (GTK_IS_HEX (self->gh));
+	g_return_if_fail (GTK_IS_HEX (ACTIVE_GH));
 
-	doc = gtk_hex_get_document (self->gh);
+	doc = gtk_hex_get_document (ACTIVE_GH);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	file_sel =
@@ -1107,7 +1091,7 @@ revert_response_cb (GtkDialog *dialog,
 	if (response_id != GTK_RESPONSE_ACCEPT)
 		goto end;
 
-	doc = gtk_hex_get_document (self->gh);
+	doc = gtk_hex_get_document (ACTIVE_GH);
 
 	hex_document_read (doc);
 
@@ -1126,9 +1110,9 @@ revert (GtkWidget *widget,
 	gint reply;
 	char *basename = NULL;
 	
-	g_return_if_fail (GTK_IS_HEX (self->gh));
+	g_return_if_fail (GTK_IS_HEX (ACTIVE_GH));
 
-	doc = gtk_hex_get_document (self->gh);
+	doc = gtk_hex_get_document (ACTIVE_GH);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	/* Yes, this *is* a programmer error. The Revert menu should not be shown
@@ -1168,10 +1152,10 @@ print_preview (GtkWidget *widget,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 
-	g_return_if_fail (GTK_IS_HEX(self->gh));
+	g_return_if_fail (GTK_IS_HEX(ACTIVE_GH));
 	(void)widget, (void)action_name, (void)parameter;	/* unused */
 
-	common_print (GTK_WINDOW(self), self->gh, /* preview: */ TRUE);
+	common_print (GTK_WINDOW(self), ACTIVE_GH, /* preview: */ TRUE);
 }
 
 static void
@@ -1181,10 +1165,10 @@ do_print (GtkWidget *widget,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 
-	g_return_if_fail (GTK_IS_HEX(self->gh));
+	g_return_if_fail (GTK_IS_HEX(ACTIVE_GH));
 	(void)widget, (void)action_name, (void)parameter;	/* unused */
 
-	common_print (GTK_WINDOW(self), self->gh, /* preview: */ FALSE);
+	common_print (GTK_WINDOW(self), ACTIVE_GH, /* preview: */ FALSE);
 }
 
 static void
@@ -1200,14 +1184,11 @@ new_file (GtkWidget *widget,
 	gh = GTK_HEX(gtk_hex_new (doc));
 
 	ghex_application_window_add_hex (self, gh);
-	ghex_application_window_set_hex (self, gh);
+	refresh_dialogs (self);
 	ghex_application_window_activate_tab (self, gh);
 	ghex_application_window_set_insert_mode (self, TRUE);
 }
 
-/* convenience helper function to build a GtkHex widget pre-loaded with
- * a hex document, from a GFile *.
- */
 static GtkHex *
 new_gh_from_gfile (GFile *file)
 {
@@ -1219,7 +1200,6 @@ new_gh_from_gfile (GFile *file)
 	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), NULL);
 		
 	gh = GTK_HEX(gtk_hex_new (doc));
-	g_return_val_if_fail (GTK_IS_HEX (gh), NULL);
 
 	return gh;
 }
@@ -1248,7 +1228,7 @@ open_response_cb (GtkNativeDialog *dialog,
 }
 
 static void
-open_file (GtkWidget *widget,
+open_file_action (GtkWidget *widget,
 		const char *action_name,
 		GVariant *parameter)
 {
@@ -1347,11 +1327,12 @@ clear_statusbar (GHexApplicationWindow *self)
 static void
 update_status_message (GHexApplicationWindow *self)
 {
-	gchar fmt[FMT_LEN], status[STATUS_LEN];
-	gint current_pos;
-	gint ss, se, len;
+	char fmt[FMT_LEN], status[STATUS_LEN];
+	int current_pos;
+	int ss, se, len;
 
-	if (! GTK_IS_HEX(self->gh)) {
+	if (! ACTIVE_GH)
+	{
 		clear_statusbar (self);
 		return;
 	}
@@ -1360,10 +1341,10 @@ update_status_message (GHexApplicationWindow *self)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wformat-nonliteral"
 #endif
-	current_pos = gtk_hex_get_cursor(self->gh);
+	current_pos = gtk_hex_get_cursor(ACTIVE_GH);
 	if (g_snprintf(fmt, FMT_LEN, _("Offset: %s"), offset_fmt) < FMT_LEN) {
 		g_snprintf(status, STATUS_LEN, fmt, current_pos);
-		if (gtk_hex_get_selection(self->gh, &ss, &se)) {
+		if (gtk_hex_get_selection(ACTIVE_GH, &ss, &se)) {
 			if (g_snprintf(fmt, FMT_LEN, _("; %s bytes from %s to %s selected"),
 						offset_fmt, offset_fmt, offset_fmt) < FMT_LEN) {
 				len = strlen(status);
@@ -1624,9 +1605,6 @@ ghex_application_window_dispose(GObject *object)
 	g_clear_pointer (&self->chartable, gtk_widget_unparent);
 	g_clear_pointer (&self->converter, gtk_widget_unparent);
 
-	/* Unref GtkHex */
-	g_list_free_full (g_steal_pointer (&self->gh_list), g_object_unref);
-
 	/* Clear conversions box CSS provider */
 	g_clear_object (&self->conversions_box_provider);
 
@@ -1723,7 +1701,7 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 
 	gtk_widget_class_install_action (widget_class, "ghex.open",
 			NULL,	/* GVariant string param_type */
-			open_file);
+			open_file_action);
 
 	gtk_widget_class_install_action (widget_class, "ghex.save",
 			NULL,	/* GVariant string param_type */
@@ -1926,30 +1904,9 @@ ghex_application_window_activate_tab (GHexApplicationWindow *self,
 	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));
 
 	page_num = gtk_notebook_page_num (notebook, GTK_WIDGET(gh));
-	g_debug ("%s: got page_num: %d - setting notebook to that page.",
-			__func__, page_num);
 
 	gtk_notebook_set_current_page (notebook, page_num);
 	gtk_widget_grab_focus (GTK_WIDGET(gh));
-}
-
-void
-ghex_application_window_set_hex (GHexApplicationWindow *self,
-		GtkHex *gh)
-{
-	HexDocument *doc = gtk_hex_get_document (gh);
-
-	g_return_if_fail (GTK_IS_HEX(gh));
-	g_return_if_fail (HEX_IS_DOCUMENT(doc));
-
-	g_debug ("%s: Setting active gh to: %p",
-			__func__, (void *)gh);
-
-	self->gh = gh;
-
-	/* Update dialogs: */
-
-	refresh_dialogs (self);
 }
 
 void
@@ -1974,23 +1931,11 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	/* GtkHex: Set insert mode based on our global appwindow prop */
 	gtk_hex_set_insert_mode (gh, self->insert_mode);
 
-	/* Add this GtkHex to our internal list
-	 */
-	self->gh_list = g_list_append (self->gh_list, gh);
-	g_object_ref (gh);
-
-	/* Set this GtkHex as the current viewed gh if there is no currently
-	 * open document
-	 */
-	if (! self->gh)
-		ghex_application_window_set_hex (self, gh);
-
 	/* Generate a tab */
-	tab = ghex_notebook_tab_new ();
-	g_debug ("%s: CREATED TAB -- %p", __func__, (void *)tab);
-	ghex_notebook_tab_add_hex (GHEX_NOTEBOOK_TAB(tab), gh);
-	g_signal_connect (tab, "closed",
-			G_CALLBACK(tab_close_cb), self);
+	tab = ghex_notebook_tab_new (gh);
+
+	g_signal_connect (tab, "close-request",
+			G_CALLBACK(tab_close_request_cb), self);
 
 	gtk_notebook_append_page (GTK_NOTEBOOK(self->hex_notebook),
 			GTK_WIDGET(gh),
@@ -2021,20 +1966,76 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 			G_CALLBACK(ghex_application_window_file_saved_cb), self);
 }
 
-GList *
-ghex_application_window_get_list (GHexApplicationWindow *self)
+#ifndef EXPERIMENTAL_MMAP
+/* Helper */
+static void
+nag_screen_response_cb (GtkDialog *nag_screen,
+		int response,
+		gpointer user_data)
 {
-	g_return_val_if_fail (GHEX_IS_APPLICATION_WINDOW (self), NULL);
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW (user_data);
 
-	return self->gh_list;
+	switch (response)
+	{
+		case GTK_RESPONSE_YES:
+			ghex_application_window_open_file (self,
+					tmp_global_gfile_for_nag_screen);
+			break;
+
+		default:
+			break;
+	}
+	gtk_window_destroy (GTK_WINDOW(nag_screen));
 }
+
+/* Helper */
+static void
+do_nag_screen (GHexApplicationWindow *self)
+{
+		GtkWidget *nag_screen;
+		char *msg = _("You are attempting to open a file 1GB or larger.\n\n"
+				"This can make GHex and your machine unstable as the file "
+				"will be loaded into memory.\n\n"
+				"Are you sure you want to proceed?\n\n"
+				"This message will not be shown again for the remainder of "
+				"this GHex session.\n\n"
+				"This limitation will be removed in a future version of GHex.");
+	
+		g_printerr (msg); g_printerr ("\n");
+
+		nag_screen = gtk_message_dialog_new (GTK_WINDOW(self),
+				GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+				GTK_MESSAGE_WARNING,
+				GTK_BUTTONS_YES_NO,
+				msg);
+		g_signal_connect (nag_screen, "response",
+				G_CALLBACK(nag_screen_response_cb), self);
+		gtk_widget_show (nag_screen);
+}
+#endif
 
 void
 ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 {
 	GtkHex *gh;
+#ifndef EXPERIMENTAL_MMAP
+	static gboolean nag_screen_shown = FALSE;
+#endif
 
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW(self));
+
+#ifndef EXPERIMENTAL_MMAP
+	if (! nag_screen_shown)
+		/* FIXME: Temporary nag-screen until we get the underlying issues
+		 * sorted. */
+		if (hex_buffer_util_get_file_size (file) >= 1073741824)
+		{
+			nag_screen_shown = TRUE;
+			tmp_global_gfile_for_nag_screen = file;
+			do_nag_screen (self);
+			return;
+		}
+#endif
 
 	/* If we get it from the GApp :open signal, it's tfr:none - once
 	 * HexDocument gets hold of it, though, it _refs it itself so we don't need
@@ -2045,16 +2046,23 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 	gh = new_gh_from_gfile (file);
 
 	ghex_application_window_add_hex (self, gh);
-	ghex_application_window_set_hex (self, gh);
+	refresh_dialogs (self);
 	ghex_application_window_activate_tab (self, gh);
 
 	g_object_unref (file);
 }
-
+			
 GtkHex *
 ghex_application_window_get_hex (GHexApplicationWindow *self)
 {
+	GHexNotebookTab *tab;
+	GtkHex *gh = NULL;
+
 	g_return_val_if_fail (GHEX_IS_APPLICATION_WINDOW (self), NULL);
 
-	return self->gh;
+	tab = ghex_application_window_get_current_tab (self);
+	if (tab)
+		gh = ghex_notebook_tab_get_hex (tab);
+
+	return gh;
 }

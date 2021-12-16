@@ -28,32 +28,10 @@ G_DEFINE_TYPE_WITH_CODE (HexBufferMalloc, hex_buffer_malloc, G_TYPE_OBJECT,
 
 /* PRIVATE FUNCTIONS */
 
-static off_t
-get_file_size (GFile *file)
-{
-	GFileInfo *info;
-
-	info = g_file_query_info (file,
-			G_FILE_ATTRIBUTE_STANDARD_SIZE, G_FILE_QUERY_INFO_NONE, NULL, NULL);
-
-	return g_file_info_get_size (info);
-	
-#if 0
-	static struct stat stats;
-
-	if (stat(file_name, &stats) == 0  &&  S_ISREG(stats.st_mode))
-	{
-		return stats.st_size;
-	}
-	else
-		return 0;
-#endif
-}
-
 static gboolean
 update_payload_size_from_file (HexBufferMalloc *self)
 {
-	self->payload_size = get_file_size (self->file);
+	self->payload_size = hex_buffer_util_get_file_size (self->file);
 
 	if (!self->payload_size)
 	{

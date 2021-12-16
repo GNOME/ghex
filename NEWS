@@ -1,3 +1,43 @@
+==============
+GHex 4.alpha.1
+==============
+
+This is the first alpha release of GHex with GTK4 support.  As it has been
+substantially reworked from GHex 3.x, it will require some substantial testing
+and translation updates.
+
+Visibly to the end user, some new features include:
+
+ - More modern and up-to-date look and feel, consistent with the GNOME HIG.
+
+ - Tabbed interface.
+
+ - Dark Mode (by default, the GTK system-wide "prefer-dark-theme" setting is
+   used, but can be overridden with a checkbox and a switch in the Preferences
+   dialog).
+
+ - libadwaita colour compatibility; if you use the Adwaita theme and GNOME
+   apps that utilize libadwaita, GHex will (read: should) match the colour
+   scheme. libadwaita is not a planned dependency for GHex at this time as many
+   of its users are GTK users who do not run GNOME, and I want to keep GHex's
+   dependency requirements to a minimum.
+
+ - Custom clipboard data, for less error-prone copying and pasting of binary
+   data; this will fall back to plaintext when unavailable.
+
+ - Copy and Paste Special dialogs, which allow you to, for instance, copy and
+   paste hex pairs from GHex into other applications, and to paste hex pairs
+   from other applications into GHex.
+
+Changes:
+
+ - Port and rework for GTK4 (Logan Rathbone)
+
+Translation Updates:
+
+ - Yuri Chornoivan (uk)
+ - Piotr Drąg (update POTFILES.in and .desktop file)
+
 ===========
 GHex 3.41.1
 ===========

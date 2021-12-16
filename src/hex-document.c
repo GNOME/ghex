@@ -30,22 +30,25 @@
    Author: Jaka Mocnik <jaka@gnu.org>
  */
 
-#include <glib-object.h>
-#include <glib/gi18n.h>
-
-#include <gtkhex.h>
-
-/* FIXME / TODO - Allow for swappability. Hardcoding for now for testing
- * purposes.
- */
-#include "hex-buffer-malloc.h"
+#include "hex-document.h"
 
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <string.h>
 
+#include <glib/gi18n.h>
+
 #include <config.h>
+
+/* FIXME / TODO - Allow for swappability. Hardcoding for now for testing
+ * purposes. Keep this include below config.h, as it is (un)def'd there.
+ */
+#ifdef EXPERIMENTAL_MMAP
+#  include "hex-buffer-mmap.h"
+#else
+#  include "hex-buffer-malloc.h"
+#endif
 
 static void hex_document_real_changed   (HexDocument *doc,
 										 gpointer change_data,
@@ -114,10 +117,6 @@ undo_stack_push(HexDocument *doc, HexChangeData *change_data)
 	HexChangeData *cd;
 	GList *stack_rest;
 
-#ifdef ENABLE_DEBUG
-	g_message("undo_stack_push");
-#endif
-
 	if(doc->undo_stack != doc->undo_top) {
 		stack_rest = doc->undo_stack;
 		doc->undo_stack = doc->undo_top;
@@ -137,16 +136,8 @@ undo_stack_push(HexDocument *doc, HexChangeData *change_data)
 
 		doc->undo_depth++;
 
-#ifdef ENABLE_DEBUG
-		g_message("depth at: %d", doc->undo_depth);
-#endif
-
 		if(doc->undo_depth > doc->undo_max) {
 			GList *last;
-
-#ifdef ENABLE_DEBUG
-			g_message("forget last undo");
-#endif
 
 			last = g_list_last(doc->undo_stack);
 			doc->undo_stack = g_list_remove_link(doc->undo_stack, last);
@@ -166,28 +157,16 @@ undo_stack_push(HexDocument *doc, HexChangeData *change_data)
 static void
 undo_stack_descend(HexDocument *doc)
 {
-#ifdef ENABLE_DEBUG
-	g_message("undo_stack_descend");
-#endif
-
 	if(doc->undo_top == NULL)
 		return;
 
 	doc->undo_top = doc->undo_top->next;
 	doc->undo_depth--;
-
-#ifdef ENABLE_DEBUG
-	g_message("undo depth at: %d", doc->undo_depth);
-#endif
 }
 
 static void
 undo_stack_ascend(HexDocument *doc)
 {
-#ifdef ENABLE_DEBUG
-	g_message("undo_stack_ascend");
-#endif
-
 	if(doc->undo_stack == NULL || doc->undo_top == doc->undo_stack)
 		return;
 
@@ -201,10 +180,6 @@ undo_stack_ascend(HexDocument *doc)
 static void
 undo_stack_free(HexDocument *doc)
 {
-#ifdef ENABLE_DEBUG
-	g_message("undo_stack_free");
-#endif
-
 	if(doc->undo_stack == NULL)
 		return;
 
@@ -223,6 +198,8 @@ hex_document_dispose (GObject *obj)
 	
 	if (doc->file)
 		g_object_unref (doc->file);
+
+	g_clear_object (&doc->buffer);
 
 	G_OBJECT_CLASS(hex_document_parent_class)->dispose (obj);
 }
@@ -311,7 +288,11 @@ hex_document_class_init (HexDocumentClass *klass)
 static void
 hex_document_init (HexDocument *doc)
 {
+#ifdef EXPERIMENTAL_MMAP
+	doc->buffer = HEX_BUFFER(hex_buffer_mmap_new (NULL));
+#else
 	doc->buffer = HEX_BUFFER(hex_buffer_malloc_new (NULL));
+#endif
 	doc->undo_max = DEFAULT_UNDO_DEPTH;
 }
 

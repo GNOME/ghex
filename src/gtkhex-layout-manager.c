@@ -37,6 +37,8 @@ struct _GtkHexLayout {
 
 	int cpl;
 	int hex_cpl;
+
+	int cursor_x, cursor_y;
 };
 
 G_DEFINE_TYPE (GtkHexLayout, gtk_hex_layout, GTK_TYPE_LAYOUT_MANAGER)
@@ -62,6 +64,7 @@ gtk_hex_layout_column_get_type (void)
 {
 	static GType hex_layout_column_type = 0;
 	static const GEnumValue format_types[] = {
+		{NO_COLUMN, "No column", "no-column"},
 		{OFFSETS_COLUMN, "Offsets", "offsets"},
 		{HEX_COLUMN, "Hex", "hex"},
 		{ASCII_COLUMN, "ASCII", "ascii"},
@@ -150,7 +153,7 @@ gtk_hex_layout_child_class_init (GtkHexLayoutChildClass *klass)
 			"Column type",
 			"The column type of a child of a hex layout",
 			GTK_HEX_LAYOUT_COLUMN,
-			HEX_COLUMN,
+			NO_COLUMN,
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS |
 				G_PARAM_EXPLICIT_NOTIFY);
 
@@ -230,6 +233,12 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 	{
 		GtkHexLayoutChild *child_info;
 
+		if (GTK_IS_POPOVER (child))
+		{
+			gtk_popover_set_pointing_to (GTK_POPOVER(child),
+					&(const GdkRectangle){ self->cursor_x, self->cursor_y, 1, 1 });
+		}
+
 		/* If it's invisible, etc., this should fail. */
 		if (! gtk_widget_should_layout (child))
 			continue;
@@ -250,6 +259,30 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 				break;
 			case SCROLLBAR_COLUMN:	scrollbar = child;
 				break;
+
+			case NO_COLUMN:
+			{
+#if 0
+				GtkRequisition child_req;
+				GtkAllocation alloc = {0};
+
+				gtk_widget_get_preferred_size (child, &child_req, NULL);
+
+				alloc.height = child_req.height;
+				alloc.width = child_req.width;
+
+				if (GTK_IS_POPOVER (child))
+				{
+					alloc.x = self->cursor_x;
+					alloc.y = self->cursor_y;
+				}
+
+				gtk_widget_size_allocate (child, &alloc, -1);
+				return;
+#endif
+			}
+				break;
+
 				/* We won't test for this each loop. */
 			default:
 				g_error ("%s: Programmer error. Requested column invalid.",
@@ -473,6 +506,13 @@ int
 gtk_hex_layout_get_hex_cpl (GtkHexLayout *layout)
 {
 	return layout->hex_cpl;
+}
+
+void
+gtk_hex_layout_set_cursor_pos (GtkHexLayout *layout, int x, int y)
+{
+	layout->cursor_x = x;
+	layout->cursor_y = y;
 }
 
 /* GtkHexLayoutChild - Public Methods */

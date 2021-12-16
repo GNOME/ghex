@@ -119,6 +119,11 @@ activate (GtkApplication *app,
 
 	gtk_window_set_application (window, app);
 	gtk_window_present (window);
+
+#ifdef EXPERIMENTAL_MMAP
+	g_warning ("Your build has the HIGHLY EXPERIMENTAL `mmap` backend enabled. "
+			"Use with care! Do NOT trust this with any important data!");
+#endif
 }
 
 static void
@@ -129,9 +134,6 @@ open (GApplication *application,
 		gpointer user_data)
 {
 	GHexApplicationWindow *app_win;
-
-//	if (n_files > 1)
-//		g_warning ("Can only open a single file");
 
 	activate (GTK_APPLICATION(application), NULL);
 	app_win = GHEX_APPLICATION_WINDOW(window);

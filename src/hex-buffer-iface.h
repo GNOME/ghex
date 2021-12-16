@@ -55,7 +55,7 @@ struct _HexBufferInterface
 	gpointer padding[12];
 };
 
-
+/* Interface functions */
 
 char * hex_buffer_get_data (HexBuffer *self,
 		size_t offset,
@@ -80,6 +80,9 @@ gboolean hex_buffer_write_to_file (HexBuffer *self,
 
 size_t hex_buffer_get_payload_size (HexBuffer *self);
 
+/* Common utility functions */
+
+size_t hex_buffer_util_get_file_size (GFile *file);
 
 G_END_DECLS
 #endif

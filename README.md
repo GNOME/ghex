@@ -7,13 +7,16 @@ a traditional hex editor view. The display is split in two columns, with
 hexadecimal values in one column and the ASCII representation in the
 other. GHex is a useful tool for working with raw data.
 
-## Note re: Pre-Alpha State of GHex 4
+GHex is part of the GNOME Extra Apps family of applications and is not a core
+GNOME application.
 
-The `master` branch now contains GHex 4, which is presently in pre-alpha state.
+## Note re: Alpha State of GHex 4
+
+The `master` branch now contains GHex 4, which is presently in alpha state.
 However, testing is welcome. It may be most easily installed for most users via
 Flatpak, using the `gnome-nightly` repository.
 
-For more information, please see [this document](/PRE-ALPHA-INFO.txt).
+For more information, please see [this document](/ALPHA-INFO.txt).
 
 ## System Requirements
 

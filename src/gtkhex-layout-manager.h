@@ -37,6 +37,7 @@ G_DECLARE_FINAL_TYPE (GtkHexLayout, gtk_hex_layout, GTK, HEX_LAYOUT,
 		GtkLayoutManager)
 
 typedef enum {
+	NO_COLUMN,
 	OFFSETS_COLUMN,
 	HEX_COLUMN,
 	ASCII_COLUMN,
@@ -57,6 +58,8 @@ int					gtk_hex_layout_get_cpl (GtkHexLayout *layout);
 int 				gtk_hex_layout_get_hex_cpl (GtkHexLayout *layout);
 void				gtk_hex_layout_set_group_type (GtkHexLayout *layout,
 						guint group_type);
+void				gtk_hex_layout_set_cursor_pos (GtkHexLayout *layout,
+						int x, int y);
 
 G_END_DECLS
 

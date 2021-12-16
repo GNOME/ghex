@@ -1,6 +1,7 @@
 libghex_sources = [
   'gtkhex.c',
   'hex-buffer-iface.c',	      # TEST
+  'hex-buffer-mmap.c',        # TEST
   'hex-buffer-malloc.c',      # TEST
   'gtkhex-layout-manager.c',
   'gtkhex-paste-data.c',
@@ -10,6 +11,8 @@ libghex_sources = [
 libghex_headers = [
   'hex-document.h',
   'hex-buffer-iface.h',
+  'hex-buffer-malloc.h',
+  'hex-buffer-mmap.h',
   'gtkhex.h',
   'gtkhex-paste-data.h'
 ]

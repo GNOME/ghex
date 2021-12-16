@@ -1,0 +1,97 @@
+GHex 4 alpha information
+========================
+
+GHex 4 is currently in alpha state.  As it has been substantially reworked
+from GHex 3.x and, as of the time of writing, has only been recently merged to
+the `master` branch (December 2021), it will require some substantial testing
+and translation updates.
+
+Visibly to the end user, some new features include:
+
+ - More modern and up-to-date look and feel, consistent with the GNOME HIG.
+
+ - Tabbed interface.
+
+ - Dark Mode (by default, the GTK system-wide "prefer-dark-theme" setting is
+   used, but can be overridden with a checkbox and a switch in the Preferences
+   dialog).
+
+ - libadwaita colour compatibility; if you use the Adwaita theme and GNOME
+   apps that utilize libadwaita, GHex will (read: should) match the colour
+   scheme. libadwaita is not a planned dependency for GHex at this time as many
+   of its users are GTK users who do not run GNOME, and I want to keep GHex's
+   dependency requirements to a minimum.
+
+ - Custom clipboard data, for less error-prone copying and pasting of binary
+   data; this will fall back to plaintext when unavailable.
+
+ - Copy and Paste Special dialogs, which allow you to, for instance, copy and
+   paste hex pairs from GHex into other applications, and to paste hex pairs
+   from other applications into GHex.
+
+I'll break up the known issues into two categories:  items I would consider to
+be blockers for a beta, blockers for stable release, and other known issues,
+which will be earmarked for priority after the first stable release of GHex 4.
+
+Blockers for beta:
+
+ - HexBufferIface (and to a lesser extent, GtkHex and HexDocument): things
+   need to cook a bit more to ensure the API will be stable before moving to
+   beta. This GObject Interface is quite new, and I want to ensure the API is not
+   missing anything glaring before locking it into place. Specifically missing
+   is...
+
+ - ... HexBufferIface/HexDocument: Implement asynchronous API for read/save
+   operations.
+
+Blockers for stable release:
+
+ - Implementation of some missing keybindings.
+
+ - Improvement of some redraw issues, at least on X11 (if you experience this,
+   try just slightly resizing the window).
+
+ - Auto-highlights (ie, from searches) are sometimes not redrawn properly
+   after a window resize.
+
+ - The offsets column shows some spurious lines when a file is first loaded.
+   This can be cleared by clicking anywhere on the hex widget to clear it.
+
+ - Paste Special can sometimes crash when a certain combination of available
+   MIME types is advertised to GHex from other applications.
+
+Other known issues to be addressed in a future version:
+
+ - Assertion errors upon exit - you may see assertion errors like the
+   following:
+
+(ghex:28200): GLib-GObject-WARNING **: 14:36:13.411: instance of invalid non-instantiatable type '-g-type-private--GTypeFlags'
+
+(ghex:28200): GLib-GObject-CRITICAL **: 14:36:13.412: g_signal_handler_disconnect: assertion 'G_TYPE_CHECK_INSTANCE (instance)' failed
+
+(ghex:28200): GLib-GObject-CRITICAL **: 14:36:13.412: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+
+   I am told this may be a bug in GTK relating to the context menu.
+
+ - Memory-mapping of files instead of reading directly into memory.
+   See:  https://gitlab.gnome.org/GNOME/ghex/-/issues/15
+   I have started work on a memory-mapping backend for the HexBuffer
+   interface. If you want to try hacking it, you can enable it at compile-time
+   with `-Dexperimental-mmap=true`.  Note that it is HIGHLY experimental and
+   unstable at this time.  Do NOT trust your data with it in any way, shape or
+   form! You have been warned.
+
+ - Users have requested other features as well. Some will be implemented, some
+   will not, and some will be taken under advisement.
+   See https://gitlab.gnome.org/GNOME/ghex/-/issues for some discussions.
+
+By way of final note, the first stable release of GHex 4 will likely be
+"4.x.0", with "x" being the contemporary GNOME release target. Eg, 4.43.0
+would be the recommended release to couple with GNOME 43.
+
+As GHex is part of the GNOME Extra Apps family, it is not mandatory for it to
+follow the naming convention of its major version number matching the GNOME
+release.  Since it also includes a library, libgtkhex-4, the "4.x" major
+version number is meaningful, and I would rather keep it in place.
+
+(Logan Rathbone <poprocks@gmail.com>)
