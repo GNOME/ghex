@@ -211,7 +211,7 @@ static void print_shaded_box (GHexPrintJobInfo *pji, guint row, guint rows)
 /**
  * ghex_print_job_info_new:
  * @doc: Pointer to the HexDocument to be printed.
- * @group_type: How to group bytes. GROUP_BYTE, GROUP_WORD, or GROUP_LONG.
+ * @group_type: How to group bytes, as GtkHexGroupType.
  *
  * Return value: A pointer to a newly-created GHexPrintJobInfo object.
  * NULL if unable to create.
@@ -219,7 +219,7 @@ static void print_shaded_box (GHexPrintJobInfo *pji, guint row, guint rows)
  * Creates a new GHexPrintJobInfo object.
  **/
 GHexPrintJobInfo *
-ghex_print_job_info_new (HexDocument *doc, guint group_type)
+ghex_print_job_info_new (HexDocument *doc, GtkHexGroupType group_type)
 {
 	GHexPrintJobInfo *pji;
 	PangoFontDescription *d_font;

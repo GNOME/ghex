@@ -2484,7 +2484,7 @@ gtk_hex_init (GtkHex *gh)
 
 	gh->extra_width = 0;
 	gh->active_view = VIEW_HEX;
-	gh->group_type = GROUP_BYTE;
+	gh->group_type = GTK_HEX_GROUP_BYTE;
 	gh->lines = gh->vis_lines = gh->top_line = gh->cpl = 0;
 	gh->cursor_pos = 0;
 	gh->lower_nibble = FALSE;
@@ -3052,9 +3052,6 @@ gtk_hex_get_byte (GtkHex *gh, int offset)
 	return 0;
 }
 
-/*
- * sets data group type (see GROUP_* defines at top of file)
- */
 void
 gtk_hex_set_group_type (GtkHex *gh, guint gt)
 {

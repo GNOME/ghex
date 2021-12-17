@@ -27,7 +27,8 @@
 
 #include <gtk/gtk.h>
 
-/* Not a circular dep; this is just for the GROUP_* enums defined there. */
+/* Not a circular dep; this is just for the GTK_HEX_GROUP_* enums defined
+ * there. */
 #include "gtkhex.h"
 
 G_BEGIN_DECLS

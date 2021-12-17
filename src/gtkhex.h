@@ -39,12 +39,15 @@
 
 G_BEGIN_DECLS
 
-/* CONSTANTS */
+/* ENUMS */
 
-/* how to group bytes? */
-#define GROUP_BYTE 1
-#define GROUP_WORD 2
-#define GROUP_LONG 4
+typedef enum
+{
+	GTK_HEX_GROUP_BYTE		1,
+	GTK_HEX_GROUP_WORD		2,
+	GTK_HEX_GROUP_LONG		4,
+	GTK_HEX_GROUP_QUAD		8
+} GtkHexGroupType;
 
 /* GOBJECT DECLARATION */
 

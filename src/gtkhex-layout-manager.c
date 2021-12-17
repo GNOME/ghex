@@ -469,7 +469,7 @@ gtk_hex_layout_init (GtkHexLayout *self)
 {
 	/* FIXME - dumb test initial default */
 	self->char_width = 20;
-	self->group_type = GROUP_BYTE;
+	self->group_type = GTK_HEX_GROUP_BYTE;
 }
 
 /* GtkHexLayout - Public Methods */
