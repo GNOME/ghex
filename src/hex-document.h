@@ -69,7 +69,7 @@ void        hex_document_set_data(HexDocument *doc, size_t offset, size_t len, s
 void        hex_document_set_byte(HexDocument *doc, char val, size_t offset, gboolean insert, gboolean undoable);
 void        hex_document_set_nibble(HexDocument *doc, char val, size_t offset, gboolean lower_nibble, gboolean insert, gboolean undoable);
 void        hex_document_delete_data(HexDocument *doc, guint offset, guint len, gboolean undoable);
-gboolean   hex_document_read (HexDocument *doc);
+void		hex_document_read (HexDocument *doc);
 gboolean   hex_document_write(HexDocument *doc);
 
 gboolean   hex_document_write_to_file (HexDocument *doc, GFile *file);

@@ -563,6 +563,57 @@ hex_buffer_mmap_read (HexBuffer *buf)
 	return TRUE;
 }
 
+static gboolean
+hex_buffer_mmap_read_finish (HexBuffer *buf,
+		GAsyncResult *result,
+		GError **error)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
+
+	g_return_val_if_fail (g_task_is_valid (result, G_OBJECT(self)), FALSE);
+
+	return g_task_propagate_boolean (G_TASK(result), error);
+}
+
+static void
+hex_buffer_mmap_thread (GTask *task,
+		gpointer source_object,
+		gpointer task_data,
+		GCancellable *cancellable)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP (source_object);
+	gboolean success;
+
+	success = hex_buffer_mmap_read (HEX_BUFFER(self));
+	if (success)
+		g_task_return_boolean (task, TRUE);
+	else
+		g_task_return_error (task, self->error);
+}
+
+
+static void
+hex_buffer_mmap_read_async (HexBuffer *buf,
+		GCancellable *cancellable,
+		GAsyncReadyCallback callback,
+		gpointer user_data)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
+	GTask *task;
+
+	task = g_task_new (self, cancellable, callback, user_data);
+	g_task_run_in_thread (task, hex_buffer_mmap_thread);
+	g_object_unref (task);	/* _run_in_thread takes a ref */
+}
+
+
+
+
+
+
+
+
+
 static gboolean hex_buffer_mmap_set_data (HexBuffer *buf,
 		size_t offset,
 		size_t len,
@@ -594,7 +645,7 @@ static gboolean hex_buffer_mmap_write_to_file (HexBuffer *buf,
 
 	hex_buffer_mmap_raw (self, &raw, 0, self->payload);
 
-	retval = g_file_replace_contents (self->file,
+	retval = g_file_replace_contents (file,
 		/* const char* contents, */			raw,	
 		/* gsize length, */					self->payload,
 		/* const char* etag, */				NULL,
@@ -634,6 +685,8 @@ hex_buffer_mmap_iface_init (HexBufferInterface *iface)
 	iface->set_data = hex_buffer_mmap_set_data;
 	iface->set_file = hex_buffer_mmap_set_file;
 	iface->read = hex_buffer_mmap_read;
+	iface->read_async = hex_buffer_mmap_read_async;
+	iface->read_finish = hex_buffer_mmap_read_finish;
 	iface->write_to_file = hex_buffer_mmap_write_to_file;
 	iface->get_payload_size = hex_buffer_mmap_get_payload_size;
 }

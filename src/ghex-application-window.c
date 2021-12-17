@@ -68,6 +68,7 @@ struct _GHexApplicationWindow
 
 	/* From GtkBuilder: */
 	GtkWidget *no_doc_label;
+	GtkWidget *doc_loading_spinner;
 	GtkWidget *hex_notebook;
 	GtkWidget *conversions_box;
 	GtkWidget *findreplace_box;
@@ -657,7 +658,17 @@ assess_can_save (HexDocument *doc)
 }
 
 static void
-ghex_application_window_file_saved_cb (HexDocument *doc,
+do_doc_loading_spinner (GHexApplicationWindow *self)
+{
+		gtk_widget_hide (self->no_doc_label);
+		gtk_widget_hide (self->hex_notebook);
+
+		gtk_spinner_start (GTK_SPINNER(self->doc_loading_spinner));
+		gtk_widget_show (self->doc_loading_spinner);
+}
+
+static void
+file_saved_cb (HexDocument *doc,
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
@@ -668,13 +679,9 @@ ghex_application_window_file_saved_cb (HexDocument *doc,
 }
 
 static void
-ghex_application_window_document_changed_cb (HexDocument *doc,
-		gpointer change_data,
-		gboolean push_undo,
-		gpointer user_data)
+document_loaded_or_saved_common (GHexApplicationWindow *self,
+		HexDocument *doc)
 {
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
 
 	/* The appwindow as a whole not interested in any document changes that
@@ -684,6 +691,31 @@ ghex_application_window_document_changed_cb (HexDocument *doc,
 		return;
 
 	ghex_application_window_set_can_save (self, assess_can_save (doc));
+}
+
+static void
+file_loaded_cb (HexDocument *doc, gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	
+	gtk_spinner_stop (GTK_SPINNER(self->doc_loading_spinner));
+	gtk_widget_hide (self->doc_loading_spinner);
+	gtk_widget_hide (self->no_doc_label);
+	gtk_widget_show (self->hex_notebook);
+
+	document_loaded_or_saved_common (self, doc);
+}
+
+
+static void
+document_changed_cb (HexDocument *doc,
+		gpointer change_data,
+		gboolean push_undo,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+
+	document_loaded_or_saved_common (self, doc);
 }
 
 static void
@@ -739,8 +771,7 @@ notebook_page_added_cb (GtkNotebook *notebook,
 	/* Let's play this super dumb. If a page is added, that will generally
 	 * mean we don't have to count the pages to see if we have > 0.
 	 */
-	gtk_widget_show (self->hex_notebook);
-	gtk_widget_hide (self->no_doc_label);
+	do_doc_loading_spinner (self);
 	enable_main_actions (self, TRUE);
 }
 
@@ -761,7 +792,10 @@ notebook_page_removed_cb (GtkNotebook *notebook,
 		ghex_application_window_set_show_jump (self, FALSE);
 		ghex_application_window_set_show_chartable (self, FALSE);
 		ghex_application_window_set_show_converter (self, FALSE);
+
 		gtk_widget_hide (self->hex_notebook);
+		gtk_widget_hide (self->doc_loading_spinner);
+		gtk_spinner_stop (GTK_SPINNER(self->doc_loading_spinner));
 		gtk_widget_show (self->no_doc_label);
 	}
 }
@@ -1035,7 +1069,7 @@ save_as_response_cb (GtkNativeDialog *dialog,
 
 	if (hex_document_set_file (doc, gfile))
 	{
-		hex_document_read (doc);
+		do_doc_loading_spinner (self);
 	}
 	else
 	{
@@ -1093,6 +1127,7 @@ revert_response_cb (GtkDialog *dialog,
 
 	doc = gtk_hex_get_document (ACTIVE_GH);
 
+	do_doc_loading_spinner (self);
 	hex_document_read (doc);
 
 end:
@@ -1871,6 +1906,8 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			no_doc_label);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
+			doc_loading_spinner);
+	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			hex_notebook);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			conversions_box);
@@ -1958,11 +1995,14 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
     g_signal_connect (gh, "cursor-moved",
 			G_CALLBACK(cursor_moved_cb), self);
 
+	g_signal_connect (doc, "file-loaded",
+			G_CALLBACK(file_loaded_cb), self);
+
 	g_signal_connect (doc, "document-changed",
-			G_CALLBACK(ghex_application_window_document_changed_cb), self);
+			G_CALLBACK(document_changed_cb), self);
 
 	g_signal_connect (doc, "file-saved",
-			G_CALLBACK(ghex_application_window_file_saved_cb), self);
+			G_CALLBACK(file_saved_cb), self);
 }
 
 #ifndef EXPERIMENTAL_MMAP

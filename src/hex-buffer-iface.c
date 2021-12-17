@@ -76,7 +76,6 @@ hex_buffer_set_file (HexBuffer *self, GFile *file)
 	return iface->set_file (self, file);
 }
 
-
 gboolean
 hex_buffer_read (HexBuffer *self)
 {
@@ -87,6 +86,35 @@ hex_buffer_read (HexBuffer *self)
 	g_return_val_if_fail (iface->read != NULL, FALSE);
 
 	return iface->read (self);
+}
+
+void
+hex_buffer_read_async (HexBuffer *self,
+			GCancellable *cancellable,
+			GAsyncReadyCallback callback,
+			gpointer user_data)
+{
+	HexBufferInterface *iface;
+
+	g_return_if_fail (HEX_IS_BUFFER (self));
+	iface = HEX_BUFFER_GET_IFACE (self);
+	g_return_if_fail (iface->read_async != NULL);
+
+	iface->read_async (self, cancellable, callback, user_data);
+}
+
+gboolean
+hex_buffer_read_finish (HexBuffer *self,
+		GAsyncResult *result,
+		GError **error)
+{
+	HexBufferInterface *iface;
+
+	g_return_val_if_fail (HEX_IS_BUFFER (self), FALSE);
+	iface = HEX_BUFFER_GET_IFACE (self);
+	g_return_val_if_fail (iface->read_finish != NULL, FALSE);
+
+	return iface->read_finish (self, result, error);
 }
 
 gboolean

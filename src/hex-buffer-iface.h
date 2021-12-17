@@ -45,6 +45,15 @@ struct _HexBufferInterface
 
 	gboolean (*read) (HexBuffer *self);
 
+	void (*read_async) (HexBuffer *self,
+			GCancellable *cancellable,
+			GAsyncReadyCallback callback,
+			gpointer user_data);
+
+	gboolean (*read_finish) (HexBuffer *self,
+			GAsyncResult *result,
+			GError **error);
+
 	gboolean (*write_to_file) (HexBuffer *self,
 			GFile *file);
 
@@ -74,6 +83,12 @@ gboolean hex_buffer_set_file (HexBuffer *self,
 		GFile *file);
 
 gboolean hex_buffer_read (HexBuffer *self);
+
+void hex_buffer_read_async (HexBuffer *buf, GCancellable *cancellable,
+		GAsyncReadyCallback callback, gpointer user_data);
+
+gboolean hex_buffer_read_finish (HexBuffer *buf, GAsyncResult *result,
+		GError **error);
 
 gboolean hex_buffer_write_to_file (HexBuffer *self,
 		GFile *file);

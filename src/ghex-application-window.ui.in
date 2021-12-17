@@ -213,7 +213,19 @@
 								<property name="hexpand">true</property>
 								<property name="vexpand">true</property>
 							</object>
-						</child> <!-- label showing no doc loaded -->
+						</child> <!-- /no_doc_label -->
+
+						<child> <!-- label showing no doc loaded -->
+							<object class="GtkSpinner" id="doc_loading_spinner">
+								<property name="spinning">true</property> <!-- doesn't seem to work -->
+								<property name="halign">center</property>
+								<property name="valign">center</property>
+								<property name="hexpand">true</property>
+								<property name="vexpand">true</property>
+								<!-- invisible by default to show the no_doc_label -->
+								<property name="visible">false</property>
+							</object>
+						</child> <!-- /doc_loading_spinner -->
 
 						<child> <!-- hex_notebook - tabs for GtkHex widget -->
 							<object class="GtkNotebook" id="hex_notebook">

@@ -71,6 +71,7 @@ enum {
 	UNDO_STACK_FORGET,
 	FILE_NAME_CHANGED,
 	FILE_SAVED,
+	FILE_LOADED,
 	LAST_SIGNAL
 };
 
@@ -283,6 +284,15 @@ hex_document_class_init (HexDocumentClass *klass)
 				NULL, NULL, NULL,
 				G_TYPE_NONE,
 				0);
+
+	hex_signals[FILE_LOADED] =
+		g_signal_new_class_handler ("file-loaded",
+				G_OBJECT_CLASS_TYPE (gobject_class),
+				G_SIGNAL_RUN_FIRST,
+				NULL,
+				NULL, NULL, NULL,
+				G_TYPE_NONE,
+				0);
 }
 
 static void
@@ -325,11 +335,7 @@ hex_document_set_file (HexDocument *doc, GFile *file)
 	if (had_prev_file)
 		g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
 
-	if (! hex_document_read (doc))
-	{
-		g_debug ("%s: Unable to load/read file", __func__);
-		return FALSE;
-	}
+	hex_document_read (doc);
 
 	return TRUE;
 }
@@ -458,17 +464,25 @@ hex_document_delete_data(HexDocument *doc, guint offset, guint len, gboolean und
 	hex_document_set_data (doc, offset, 0, len, NULL, undoable);
 }
 
-gboolean
-hex_document_read (HexDocument *doc)
+void
+document_ready_cb (GObject *source_object,
+		GAsyncResult *res,
+		gpointer user_data)
 {
+	gboolean success;
+	GError *local_error = NULL;
+	HexBuffer *buf = HEX_BUFFER(source_object);
+	HexDocument *doc = HEX_DOCUMENT(user_data);
 	static HexChangeData change_data;
 	size_t payload;
 
-	g_return_val_if_fail (G_IS_FILE (doc->file), FALSE);
+	success = hex_buffer_read_finish (buf, res, &local_error);
+	g_debug ("%s: DONE -- result: %d", __func__, success);
 
-	/* Read the actual file on disk into the buffer */
-	if (!hex_buffer_read (doc->buffer))
-		return FALSE;
+	if (local_error)
+		g_warning (local_error->message);
+
+	/* Initialize data for new doc */
 
 	undo_stack_free(doc);
 
@@ -476,10 +490,22 @@ hex_document_read (HexDocument *doc)
 
 	change_data.start = 0;
 	change_data.end = payload - 1;
+
 	doc->changed = FALSE;
 	hex_document_changed (doc, &change_data, FALSE);
+	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_LOADED], 0);
+}
 
-	return TRUE;
+void
+hex_document_read (HexDocument *doc)
+{
+	static HexChangeData change_data;
+	size_t payload;
+
+	g_return_if_fail (G_IS_FILE (doc->file));
+
+	/* Read the actual file on disk into the buffer */
+	hex_buffer_read_async (doc->buffer, NULL, document_ready_cb, doc);
 }
 
 gboolean

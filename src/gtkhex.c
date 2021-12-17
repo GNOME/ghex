@@ -2225,7 +2225,21 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 }
 
 static void
-gtk_hex_document_changed (HexDocument* doc, gpointer change_data,
+file_loaded_cb (HexDocument *doc, gpointer data)
+{
+	GtkHex *gh = GTK_HEX(data);
+	g_return_if_fail (GTK_IS_HEX (gh));
+
+	gtk_widget_action_set_enabled (GTK_WIDGET(gh),
+			"gtkhex.undo", hex_document_can_undo (doc));
+	gtk_widget_action_set_enabled (GTK_WIDGET(gh),
+			"gtkhex.redo", hex_document_can_redo (doc));
+
+	gtk_widget_queue_draw (GTK_WIDGET(gh));
+}
+
+static void
+document_changed_cb (HexDocument* doc, gpointer change_data,
         gboolean push_undo, gpointer data)
 {
 	GtkHex *gh = GTK_HEX(data);
@@ -2754,11 +2768,13 @@ gtk_hex_new (HexDocument *owner)
 
 	gh->document = owner;
 
-	/* Setup document signals
-	 * (can't do in _init because we don't have access to that object yet).
-	 */
+	/* Setup document signals */
+
+    g_signal_connect (G_OBJECT (gh->document), "file-loaded",
+            G_CALLBACK (file_loaded_cb), gh);
+
     g_signal_connect (G_OBJECT (gh->document), "document-changed",
-            G_CALLBACK (gtk_hex_document_changed), gh);
+            G_CALLBACK (document_changed_cb), gh);
 
     g_signal_connect (G_OBJECT (gh->document), "undo",
             G_CALLBACK (doc_undo_redo_cb), gh);
