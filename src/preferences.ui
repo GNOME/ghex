@@ -105,19 +105,25 @@
 														<property name="orientation">vertical</property>
 														<child>
 															<object class="GtkCheckButton" id="bytes_chkbtn">
-																<property name="label" translatable="yes">Bytes</property>
+																<property name="label" translatable="yes">Bytes (8-bit)</property>
 																	<!-- note: don't put group="bytes_checkbtn" here. -->
 															</object>
 														</child>
 														<child>
 															<object class="GtkCheckButton" id="words_chkbtn">
-																<property name="label" translatable="yes">Words</property>
+																<property name="label" translatable="yes">Words (16-bit)</property>
 																<property name="group">bytes_chkbtn</property>
 															</object>
 														</child>
 														<child>
 															<object class="GtkCheckButton" id="long_chkbtn">
-																<property name="label" translatable="yes">Longwords</property>
+																<property name="label" translatable="yes">Longwords (32-bit)</property>
+																<property name="group">bytes_chkbtn</property>
+															</object>
+														</child>
+														<child>
+															<object class="GtkCheckButton" id="quad_chkbtn">
+																<property name="label" translatable="yes">Quadwords (64-bit)</property>
 																<property name="group">bytes_chkbtn</property>
 															</object>
 														</child>

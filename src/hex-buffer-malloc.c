@@ -211,7 +211,7 @@ static gboolean
 hex_buffer_malloc_read (HexBuffer *buf)
 {
 	HexBufferMalloc *self = HEX_BUFFER_MALLOC (buf);
-	char *path;
+	char *path = NULL;
 	FILE *file = NULL;
 	size_t fread_ret;
 	gboolean retval = FALSE;
@@ -252,7 +252,7 @@ hex_buffer_malloc_write_to_file (HexBuffer *buf, GFile *file)
 {
 	HexBufferMalloc *self = HEX_BUFFER_MALLOC (buf);
 	char *path = NULL;
-	FILE *fp;
+	FILE *fp = NULL;
 	gboolean ret = FALSE;
 	int exp_len;
 

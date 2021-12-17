@@ -76,6 +76,7 @@ static GtkWidget *show_offsets_chkbtn;
 static GtkWidget *bytes_chkbtn;
 static GtkWidget *words_chkbtn;
 static GtkWidget *long_chkbtn;
+static GtkWidget *quad_chkbtn;
 static GtkWidget *shaded_box_chkbtn;
 static GtkWidget *shaded_box_spinbtn;
 static GtkWidget *shaded_box_box;
@@ -96,7 +97,6 @@ do_css_stuff(void)
 	GET_WIDGET (font_frame);
 	GET_WIDGET (group_type_frame);
 	GET_WIDGET (print_font_frame);
-
 	
 	/* overall padding for content area: */
 	box_provider = gtk_css_provider_new ();
@@ -202,9 +202,6 @@ group_type_set_cb (GtkCheckButton *checkbutton,
 	 */
 	if (gtk_check_button_get_active (checkbutton))
 	{
-		g_debug ("%s: active. - group_type: %d",
-				__func__, group_type);
-
 		g_settings_set_enum (settings,
 				GHEX_PREF_GROUP,
 				group_type);
@@ -361,6 +358,9 @@ setup_signals (void)
 	g_signal_connect (long_chkbtn, "toggled",
 			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(GTK_HEX_GROUP_LONG));
 
+	g_signal_connect (quad_chkbtn, "toggled",
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(GTK_HEX_GROUP_QUAD));
+
 	/* show offsets checkbutton */
 
 	g_signal_connect (show_offsets_chkbtn, "toggled",
@@ -441,6 +441,11 @@ grab_widget_values_from_settings (void)
 					TRUE);
 			break;
 
+		case GTK_HEX_GROUP_QUAD:
+			gtk_check_button_set_active (GTK_CHECK_BUTTON(quad_chkbtn),
+					TRUE);
+			break;
+
 		default:
 			g_warning ("group_type option invalid; falling back to BYTES.");
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(bytes_chkbtn),
@@ -470,6 +475,7 @@ init_widgets (void)
 	GET_WIDGET (bytes_chkbtn);
 	GET_WIDGET (words_chkbtn);
 	GET_WIDGET (long_chkbtn);
+	GET_WIDGET (quad_chkbtn);
 	GET_WIDGET (shaded_box_chkbtn);
 	GET_WIDGET (shaded_box_spinbtn);
 	GET_WIDGET (shaded_box_box);

@@ -1542,8 +1542,7 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	 * class-init, so we end up with the 'win' namespace when we do it from
 	 * here. Be aware of that.
 	 */
-	action = g_settings_create_action (settings,
-			GHEX_PREF_GROUP);
+	action = g_settings_create_action (settings, GHEX_PREF_GROUP);
 	g_action_map_add_action (G_ACTION_MAP(self), action);
 
 	/* Setup notebook signals */
