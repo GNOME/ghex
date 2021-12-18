@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2021-12-18 04:22+0000\n"
-"PO-Revision-Date: 2021-12-18 08:41+0200\n"
+"POT-Creation-Date: 2021-12-18 12:23+0000\n"
+"PO-Revision-Date: 2021-12-18 18:47+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
@@ -272,71 +272,71 @@ msgstr ""
 msgid "String was not found."
 msgstr "Рядок не знайдено."
 
-#: src/findreplace.c:519
+#: src/findreplace.c:520
 msgid "No occurrences were found."
 msgstr "Не виявлено входжень."
 
-#: src/findreplace.c:691
+#: src/findreplace.c:692
 msgid "Find String"
 msgstr "Пошук рядка"
 
-#: src/findreplace.c:698
+#: src/findreplace.c:699
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Введіть шістнадцяткові дані ASCII дані для пошуку"
 
-#: src/findreplace.c:704
+#: src/findreplace.c:705
 msgid "Find _Next"
 msgstr "Знайти _наступне"
 
-#: src/findreplace.c:711
+#: src/findreplace.c:712
 msgid "Finds the next occurrence of the search string"
 msgstr "Знати наступне входження рядка пошуку"
 
-#: src/findreplace.c:714
+#: src/findreplace.c:715
 msgid "Find _Previous"
 msgstr "Знайти _попереднє"
 
-#: src/findreplace.c:720
+#: src/findreplace.c:721
 msgid "Finds the previous occurrence of the search string"
 msgstr "Знайти попереднє входження рядка пошуку"
 
-#: src/findreplace.c:723
+#: src/findreplace.c:724
 msgid "_Clear"
 msgstr "О_чистити"
 
-#: src/findreplace.c:729
+#: src/findreplace.c:730
 msgid "Clears the data you are searching for"
 msgstr "Вилучає дані, які ви шукали"
 
-#: src/findreplace.c:741 src/findreplace.c:968
+#: src/findreplace.c:742 src/findreplace.c:969
 msgid "Close"
 msgstr "Закрити"
 
-#: src/findreplace.c:745
+#: src/findreplace.c:746
 msgid "Closes the find pane"
 msgstr "Закриває панель пошуку"
 
-#: src/findreplace.c:818
+#: src/findreplace.c:819
 msgid "Replace With"
 msgstr "Замінити на"
 
-#: src/findreplace.c:827
+#: src/findreplace.c:828
 msgid "_Replace"
 msgstr "За_мінити"
 
-#: src/findreplace.c:838
+#: src/findreplace.c:839
 msgid "Replace _All"
 msgstr "Замінити _все"
 
-#: src/findreplace.c:846
+#: src/findreplace.c:847
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Замінити всі екземпляри рядка пошуку рядком заміни"
 
-#: src/findreplace.c:925
+#: src/findreplace.c:926
 msgid "Jump to byte (enter offset):"
 msgstr "Перейти до байта (введіть зсув):"
 
-#: src/findreplace.c:929
+#: src/findreplace.c:930
 msgid ""
 "Enter the offset byte to jump to. The default is decimal format, but other "
 "format strings are supported such as hexidecimal format, if C-style notation "
@@ -349,15 +349,15 @@ msgstr ""
 "«0x». Якщо ваш рядок не буде розпізнано, програма покаже діалогове вікно із "
 "поясненням щодо прийнятних форматувань рядків."
 
-#: src/findreplace.c:946
+#: src/findreplace.c:947
 msgid "_Jump"
 msgstr "Пере_йти"
 
-#: src/findreplace.c:954
+#: src/findreplace.c:955
 msgid "Jumps to the specified byte"
 msgstr "Перейти до вказаного байта"
 
-#: src/findreplace.c:972
+#: src/findreplace.c:973
 msgid "Closes the jump-to-byte pane"
 msgstr "Закриває панель переходу до байта"
 
@@ -408,10 +408,6 @@ msgstr ""
 "Хочете зберегти внесені зміни?"
 
 #: src/ghex-application-window.c:509
-#| msgid ""
-#| "<big><b>%s has been edited since opening.</b></big>\n"
-#| "\n"
-#| "Would you like to save your changes?"
 msgid ""
 "<b>The buffer has been edited since opening.</b>\n"
 "\n"
@@ -501,7 +497,8 @@ msgid ""
 msgstr ""
 "Ви робите спробу відкрити файл розміром 1 ГБ або більшим.\n"
 "\n"
-"Це може зробити роботу GHex та вашого комп'ютера нестабільною, оскільки файл буде завантажено до пам'яті.\n"
+"Це може зробити роботу GHex та вашого комп'ютера нестабільною, оскільки файл "
+"буде завантажено до пам'яті.\n"
 "\n"
 "Ви справді хочете виконати цю дію?\n"
 "\n"
@@ -514,11 +511,65 @@ msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
 msgstr ""
-"Під час завантаження бажаного файла сталася помилка. Файла або не існує, або він недоступний, або, можливо, у вас немає прав доступу до файла."
+"Під час завантаження бажаного файла сталася помилка. Файла або не існує, або "
+"він недоступний, або, можливо, у вас немає прав доступу до файла."
 
 #: src/ghex-notebook-tab.c:41
 msgid "Untitled document"
 msgstr "Документ без заголовка"
+
+#: src/hex-buffer-mmap.c:25
+msgid "The file appears to have an invalid path."
+msgstr ""
+"Здається, шлях до файла є некоректним."
+
+#. Translators:  the first '%s' is the blurb indicating some kind of an
+#. * error has occurred (eg, 'An error has occurred', and the the 2nd '%s'
+#. * is the standard error message that will be reported from the system
+#. * (eg, 'No such file or directory').
+#.
+#: src/hex-buffer-mmap.c:69
+#, c-format
+#| msgid "Offset: %s"
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: src/hex-buffer-mmap.c:190
+#, c-format
+msgid "Could not adjust %s from %lu to %lu bytes"
+msgstr ""
+"Не вдалося скоригувати %s з %lu до %lu байтів"
+
+#: src/hex-buffer-mmap.c:239
+#, c-format
+msgid "Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"
+msgstr ""
+"Критична помилка: не вдалося пов'язати пам'ять із файлом (%lu байтів, дескриптор файла %d)"
+
+#: src/hex-buffer-mmap.c:458
+msgid "Unable to retrieve file or directory information"
+msgstr ""
+"Не вдалося отримати дані щодо файла або каталогу"
+
+#: src/hex-buffer-mmap.c:467
+#| msgid "Save the current file"
+msgid "Unable to create file"
+msgstr "Не вдалося створити файл"
+
+#: src/hex-buffer-mmap.c:477
+msgid "Not a regular file"
+msgstr ""
+"Не є звичайним файлом"
+
+#: src/hex-buffer-mmap.c:487
+#| msgid "Can't open file for writing!"
+msgid "Unable to open file for reading"
+msgstr "Не вдалося відкрити файл для читання"
+
+#: src/hex-buffer-mmap.c:503
+msgid "Failed to open temporary file."
+msgstr ""
+"Не вдалося відкрити тимчасовий файл."
 
 #: src/hex-dialog.c:77
 msgid "Signed 8 bit:"
@@ -701,23 +752,19 @@ msgstr "Тип групування шістнадцяткових"
 
 #: src/preferences.ui:108
 msgid "Bytes (8-bit)"
-msgstr ""
-"Байти (8-бітові)"
+msgstr "Байти (8-бітові)"
 
 #: src/preferences.ui:114
 msgid "Words (16-bit)"
-msgstr ""
-"Слова (16-бітові)"
+msgstr "Слова (16-бітові)"
 
 #: src/preferences.ui:120
-#| msgid "Longwords"
 msgid "Longwords (32-bit)"
 msgstr "Довгі слова (32-бітові)"
 
 #: src/preferences.ui:126
 msgid "Quadwords (64-bit)"
-msgstr ""
-"Чотири слова (64-бітові)"
+msgstr "Чотири слова (64-бітові)"
 
 #: src/preferences.ui:138
 msgid "Show offsets column"
@@ -919,9 +966,6 @@ msgstr "Сторінка: %i/%i"
 #~ msgid "_Save"
 #~ msgstr "З_берегти"
 
-#~ msgid "Save the current file"
-#~ msgstr "Зберегти поточний файл"
-
 #~ msgid "Save _As..."
 #~ msgstr "Зберегти _як..."
 
@@ -1083,9 +1127,6 @@ msgstr "Сторінка: %i/%i"
 
 #~ msgid "Error saving file!"
 #~ msgstr "Помилка збереження файла!"
-
-#~ msgid "Can't open file for writing!"
-#~ msgstr "Неможливо відкрити файл для запису!"
 
 #~ msgid ""
 #~ "File %s has changed since last save.\n"
