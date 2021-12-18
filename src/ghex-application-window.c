@@ -738,10 +738,9 @@ tab_close_request_cb (GHexNotebookTab *tab,
 }
 
 static void
-notebook_switch_page_cb (GtkNotebook *notebook,
-		GtkWidget   *page,
-		guint        page_num,
-		gpointer     user_data)
+notebook_page_changed_cb (GtkNotebook *notebook,
+		GParamSpec *pspec,
+		gpointer    user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	HexDocument *doc;
@@ -1582,8 +1581,8 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
 	/* Setup notebook signals */
 
-	g_signal_connect (self->hex_notebook, "switch-page",
-			G_CALLBACK(notebook_switch_page_cb), self);
+	g_signal_connect (self->hex_notebook, "notify::page",
+			G_CALLBACK(notebook_page_changed_cb), self);
 
 	g_signal_connect (self->hex_notebook, "page-added",
 			G_CALLBACK(notebook_page_added_cb), self);

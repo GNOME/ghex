@@ -199,8 +199,6 @@ find_common (FindDialog *self, enum FindDirection direction,
 	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
-	if (! GTK_IS_WINDOW(parent))
-		parent = NULL;
 
 	doc = gtk_hex_get_document (priv->gh);
 	cursor_pos = gtk_hex_get_cursor (priv->gh);

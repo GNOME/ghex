@@ -591,7 +591,6 @@ hex_buffer_mmap_thread (GTask *task,
 		g_task_return_error (task, self->error);
 }
 
-
 static void
 hex_buffer_mmap_read_async (HexBuffer *buf,
 		GCancellable *cancellable,
@@ -605,14 +604,6 @@ hex_buffer_mmap_read_async (HexBuffer *buf,
 	g_task_run_in_thread (task, hex_buffer_mmap_thread);
 	g_object_unref (task);	/* _run_in_thread takes a ref */
 }
-
-
-
-
-
-
-
-
 
 static gboolean hex_buffer_mmap_set_data (HexBuffer *buf,
 		size_t offset,
