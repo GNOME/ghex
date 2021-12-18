@@ -17,8 +17,8 @@ struct _HexBufferMalloc
 	char *gap_pos;			/* pointer to the start of insertion gap */
 
 	size_t gap_size;		/* insertion gap size */
-	size_t buffer_size;		/* buffer size = file size + gap size */
-	size_t payload_size;
+	gint64 buffer_size;		/* buffer size = file size + gap size */
+	gint64 payload_size;
 };
 
 static void hex_buffer_malloc_iface_init (HexBufferInterface *iface);
@@ -57,7 +57,7 @@ hex_buffer_malloc_set_file (HexBuffer *buf, GFile *file)
 }
 
 static char
-hex_buffer_malloc_get_byte (HexBuffer *buf, size_t offset)
+hex_buffer_malloc_get_byte (HexBuffer *buf, gint64 offset)
 {
 	HexBufferMalloc *self = HEX_BUFFER_MALLOC (buf);
 
@@ -73,7 +73,7 @@ hex_buffer_malloc_get_byte (HexBuffer *buf, size_t offset)
 }
 
 static char *
-hex_buffer_malloc_get_data (HexBuffer *buf, size_t offset, size_t len)
+hex_buffer_malloc_get_data (HexBuffer *buf, gint64 offset, size_t len)
 {
 	HexBufferMalloc *self = HEX_BUFFER_MALLOC (buf);
 	char *ptr, *data, *dptr;
@@ -97,7 +97,7 @@ hex_buffer_malloc_get_data (HexBuffer *buf, size_t offset, size_t len)
 }
 
 static void
-hex_buffer_malloc_place_gap (HexBuffer *buf, size_t offset, size_t min_size)
+hex_buffer_malloc_place_gap (HexBuffer *buf, gint64 offset, size_t min_size)
 {
 	HexBufferMalloc *self = HEX_BUFFER_MALLOC (buf);
 	char *tmp, *buf_ptr, *tmp_ptr;
@@ -152,11 +152,11 @@ hex_buffer_malloc_place_gap (HexBuffer *buf, size_t offset, size_t min_size)
 }
 
 static gboolean
-hex_buffer_malloc_set_data (HexBuffer *buf, size_t offset, size_t len,
+hex_buffer_malloc_set_data (HexBuffer *buf, gint64 offset, size_t len,
 					  size_t rep_len, char *data)
 {
 	HexBufferMalloc *self = HEX_BUFFER_MALLOC (buf);
-	size_t i;
+	gint64 i;
 	char *ptr;
 
 	if (offset > self->payload_size)
@@ -209,7 +209,7 @@ hex_buffer_malloc_read (HexBuffer *buf)
 	HexBufferMalloc *self = HEX_BUFFER_MALLOC (buf);
 	char *path = NULL;
 	FILE *file = NULL;
-	size_t fread_ret;
+	gint64 fread_ret;
 	gboolean retval = FALSE;
 
 	if (! G_IS_FILE (self->file))
@@ -228,6 +228,8 @@ hex_buffer_malloc_read (HexBuffer *buf)
 	self->buffer_size = self->payload_size + self->gap_size;
 	self->buffer = g_malloc (self->buffer_size);                               
 
+	/* FIXME - I believe this will crap out after 4GB on a 32-bit machine
+	 */
 	fread_ret = fread (
 			self->buffer + self->gap_size, 1, self->payload_size, file);
 	if (fread_ret != self->payload_size)
@@ -291,7 +293,7 @@ hex_buffer_malloc_write_to_file (HexBuffer *buf, GFile *file)
 	char *path = NULL;
 	FILE *fp = NULL;
 	gboolean ret = FALSE;
-	int exp_len;
+	gint64 exp_len;
 
 	path = g_file_get_path (file);
 	if (! path)
@@ -304,7 +306,8 @@ hex_buffer_malloc_write_to_file (HexBuffer *buf, GFile *file)
 
 	if (self->gap_pos > self->buffer)
 	{
-		exp_len = MIN (self->payload_size, (size_t)(self->gap_pos - self->buffer));
+		exp_len = MIN (self->payload_size,
+				(gint64)(self->gap_pos - self->buffer));
 		ret = fwrite (self->buffer, 1, exp_len, fp);
 		ret = (ret == exp_len) ? TRUE : FALSE;
 	}
@@ -322,7 +325,7 @@ out:
 	return ret;
 }
 
-static size_t
+static gint64
 hex_buffer_malloc_get_payload_size (HexBuffer *buf)
 {
 	HexBufferMalloc *self = HEX_BUFFER_MALLOC (buf);

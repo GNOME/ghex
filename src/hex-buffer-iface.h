@@ -28,14 +28,14 @@ struct _HexBufferInterface
 	GTypeInterface parent_iface;
 
 	char * (*get_data) (HexBuffer *self,
-			size_t offset,
+			gint64 offset,
 			size_t len);
 
 	char (*get_byte) (HexBuffer *self,
-			size_t offset);
+			gint64 offset);
 
 	gboolean (*set_data) (HexBuffer *self,
-			size_t offset,
+			gint64 offset,
 			size_t len,
 			size_t rep_len,
 			char *data);
@@ -57,7 +57,7 @@ struct _HexBufferInterface
 	gboolean (*write_to_file) (HexBuffer *self,
 			GFile *file);
 
-	size_t (*get_payload_size) (HexBuffer *self);
+	gint64 (*get_payload_size) (HexBuffer *self);
 
 	/* --- padding starts here -- started w/ 12 extra vfuncs --- */
 
@@ -67,14 +67,14 @@ struct _HexBufferInterface
 /* Interface functions */
 
 char * hex_buffer_get_data (HexBuffer *self,
-		size_t offset,
+		gint64 offset,
 		size_t len);
 
 char hex_buffer_get_byte (HexBuffer *self,
-		size_t offset);
+		gint64 offset);
 
 gboolean hex_buffer_set_data (HexBuffer *self,
-		size_t offset,
+		gint64 offset,
 		size_t len,
 		size_t rep_len,
 		char *data);
@@ -93,11 +93,11 @@ gboolean hex_buffer_read_finish (HexBuffer *buf, GAsyncResult *result,
 gboolean hex_buffer_write_to_file (HexBuffer *self,
 		GFile *file);
 
-size_t hex_buffer_get_payload_size (HexBuffer *self);
+gint64 hex_buffer_get_payload_size (HexBuffer *self);
 
 /* Common utility functions */
 
-size_t hex_buffer_util_get_file_size (GFile *file);
+gint64 hex_buffer_util_get_file_size (GFile *file);
 
 G_END_DECLS
 #endif

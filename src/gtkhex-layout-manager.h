@@ -52,13 +52,13 @@ G_DECLARE_FINAL_TYPE (GtkHexLayoutChild, gtk_hex_layout_child,
 
 GtkLayoutManager *	gtk_hex_layout_new (void);
 void				gtk_hex_layout_set_char_width (GtkHexLayout *layout,
-						guint width);
+						int width);
 void				gtk_hex_layout_child_set_column (GtkHexLayoutChild *child,
 						GtkHexLayoutColumn column);
 int					gtk_hex_layout_get_cpl (GtkHexLayout *layout);
 int 				gtk_hex_layout_get_hex_cpl (GtkHexLayout *layout);
 void				gtk_hex_layout_set_group_type (GtkHexLayout *layout,
-						guint group_type);
+						GtkHexGroupType group_type);
 void				gtk_hex_layout_set_cursor_pos (GtkHexLayout *layout,
 						int x, int y);
 

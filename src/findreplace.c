@@ -109,7 +109,7 @@ static void replace_one_cb (GtkButton *button, gpointer user_data);
 static void replace_all_cb (GtkButton *button, gpointer user_data);
 static void replace_clear_cb (GtkButton *button, gpointer user_data);
 static void goto_byte_cb (GtkButton *button, gpointer user_data);
-static size_t get_search_string (HexDocument *doc, gchar **str);
+static gint64 get_search_string (HexDocument *doc, gchar **str);
 
 
 static GtkWidget *
@@ -129,10 +129,10 @@ create_hex_view (HexDocument *doc)
     return gh;
 }
 
-static size_t
+static gint64
 get_search_string (HexDocument *doc, char **str)
 {
-	size_t size = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
+	gint64 size = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 	
 	if (size > 0)
 		*str = hex_buffer_get_data (hex_document_get_buffer (doc), 0, size);
@@ -185,9 +185,9 @@ find_common (FindDialog *self, enum FindDirection direction,
 	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
-	int cursor_pos;
-	int str_len;
-	size_t offset;
+	gint64 cursor_pos;
+	gint64 str_len;
+	gint64 offset;
 	char *str;
 	static gboolean found = FALSE;
 	
@@ -303,14 +303,14 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	PaneDialogPrivate *priv;
 	GtkWindow *parent;
 	HexDocument *doc;
-	int cursor_pos;
+	gint64 cursor_pos;
 	GtkEntry *entry;
 	GtkEntryBuffer *buffer;
 	int byte = 2, len, i;
 	int is_relative = 0;
 	gboolean is_hex;
 	const gchar *byte_str;
-	size_t payload;
+	gint64 payload;
 	
 	(void)button;	/* unused */
 
@@ -404,11 +404,11 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
-	int cursor_pos;
+	gint64 cursor_pos;
 	char *find_str = NULL, *rep_str = NULL;
-	int find_len, rep_len;
-	size_t offset;
-	size_t payload;
+	size_t find_len, rep_len;
+	gint64 offset;
+	gint64 payload;
 
 	(void)button;	/* unused */
 	g_return_if_fail (REPLACE_IS_DIALOG(self));
@@ -433,7 +433,7 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 		no_string_dialog (parent);
 		return;
 	}
-	rep_len = get_search_string(self->r_doc, &rep_str);
+	rep_len = get_search_string (self->r_doc, &rep_str);
 	
 	if (find_len > payload - cursor_pos)
 		goto clean_up;
@@ -470,11 +470,12 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
-	int cursor_pos;
+	gint64 cursor_pos;
 	char *find_str = NULL, *rep_str = NULL;
-	size_t find_len, rep_len, count;
-	size_t offset;
-	size_t payload;
+	size_t find_len, rep_len;
+	int count;
+	gint64 offset;
+	gint64 payload;
 
 	(void)button;	/* unused */
 	g_return_if_fail (REPLACE_IS_DIALOG (self));

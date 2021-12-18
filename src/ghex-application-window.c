@@ -1359,8 +1359,8 @@ static void
 update_status_message (GHexApplicationWindow *self)
 {
 	char fmt[FMT_LEN], status[STATUS_LEN];
-	int current_pos;
-	int ss, se, len;
+	gint64 current_pos, ss, se;
+	int len;
 
 	if (! ACTIVE_GH)
 	{
@@ -1372,10 +1372,10 @@ update_status_message (GHexApplicationWindow *self)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wformat-nonliteral"
 #endif
-	current_pos = gtk_hex_get_cursor(ACTIVE_GH);
+	current_pos = gtk_hex_get_cursor (ACTIVE_GH);
 	if (g_snprintf(fmt, FMT_LEN, _("Offset: %s"), offset_fmt) < FMT_LEN) {
 		g_snprintf(status, STATUS_LEN, fmt, current_pos);
-		if (gtk_hex_get_selection(ACTIVE_GH, &ss, &se)) {
+		if (gtk_hex_get_selection (ACTIVE_GH, &ss, &se)) {
 			if (g_snprintf(fmt, FMT_LEN, _("; %s bytes from %s to %s selected"),
 						offset_fmt, offset_fmt, offset_fmt) < FMT_LEN) {
 				len = strlen(status);

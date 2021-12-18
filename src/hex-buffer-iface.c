@@ -23,7 +23,7 @@ hex_buffer_default_init (HexBufferInterface *iface)
 
 char *
 hex_buffer_get_data (HexBuffer *self,
-		size_t offset,
+		gint64 offset,
 		size_t len)
 {
 	HexBufferInterface *iface;
@@ -37,7 +37,7 @@ hex_buffer_get_data (HexBuffer *self,
 
 char
 hex_buffer_get_byte (HexBuffer *self,
-			size_t offset)
+			gint64 offset)
 {
 	HexBufferInterface *iface;
 
@@ -50,7 +50,7 @@ hex_buffer_get_byte (HexBuffer *self,
 
 gboolean
 hex_buffer_set_data (HexBuffer *self,
-			size_t offset,
+			gint64 offset,
 			size_t len,
 			size_t rep_len,
 			char *data)
@@ -129,7 +129,7 @@ hex_buffer_write_to_file (HexBuffer *self, GFile *file)
 	return iface->write_to_file (self, file);
 }
 
-size_t
+gint64
 hex_buffer_get_payload_size (HexBuffer *self)
 {
 	HexBufferInterface *iface;
@@ -143,7 +143,7 @@ hex_buffer_get_payload_size (HexBuffer *self)
 
 /* Utility functions */
 
-size_t	/* converted from guint64 at the backend anyway... */
+gint64
 hex_buffer_util_get_file_size (GFile *file)
 {
 	GFileInfo *info;

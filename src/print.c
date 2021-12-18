@@ -288,7 +288,7 @@ begin_print (GtkPrintOperation *operation,
     pji->pc = context;
     int font_width, font_height;
     int printable_width, printable_height;
-	size_t payload = hex_buffer_get_payload_size (hex_document_get_buffer (pji->doc));
+	gint64 payload = hex_buffer_get_payload_size (hex_document_get_buffer (pji->doc));
 
     layout = gtk_print_context_create_pango_layout (context);
     pango_layout_set_text (layout, " ", -1);
@@ -329,7 +329,7 @@ print_page (GtkPrintOperation *operation,
             gpointer           data)
 {
 	int j, max_row;
-	size_t payload;
+	gint64 payload;
 
 	GHexPrintJobInfo *pji = (GHexPrintJobInfo *)data;
 	g_return_if_fail(pji != NULL);

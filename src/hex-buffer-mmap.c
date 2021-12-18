@@ -33,14 +33,14 @@ struct _HexBufferMmap
 	int last_errno;		/* cache in case we need to re-report errno error. */
 
 	char *data;			/* buffer for modification and info */
-	size_t payload;
-	size_t mapped;
+	gint64 payload;
+	gint64 mapped;
 	size_t gap;
 	char *tmpfile_path;	/* path to buffer tmpfile in mkstemp format */
 	int fd;				/* file descriptor of tmpfile. */
 
 	char *clean;		/* unmodified content, mmap'ed */
-	size_t clean_bytes;
+	gint64 clean_bytes;
 	int clean_fd;
 
 	size_t pagesize;	/* is only fetched once and cached. */
@@ -82,8 +82,8 @@ set_error (HexBufferMmap *self, const char *blurb)
 	g_free (message);
 }
 
-static inline
-size_t buffer_gap_bytes (HexBufferMmap *self)
+static inline size_t
+buffer_gap_bytes (HexBufferMmap *self)
 {
 	return self->mapped - self->payload;
 }
@@ -136,7 +136,7 @@ hex_buffer_mmap_class_init (HexBufferMmapClass *klass)
 }
 
 static void
-hex_buffer_mmap_place_gap (HexBufferMmap *self, size_t offset)
+hex_buffer_mmap_place_gap (HexBufferMmap *self, gint64 offset)
 {
 	g_return_if_fail (HEX_IS_BUFFER_MMAP (self));
 
@@ -161,13 +161,13 @@ hex_buffer_mmap_place_gap (HexBufferMmap *self, size_t offset)
 }
 
 static void
-hex_buffer_mmap_resize (HexBufferMmap *self, size_t payload_bytes)
+hex_buffer_mmap_resize (HexBufferMmap *self, gint64 payload_bytes)
 {
 	void *p;
 	char *old = self->data;
 	int fd;
 	int mapflags = 0;
-	size_t map_bytes = payload_bytes;
+	gint64 map_bytes = payload_bytes;
 
 	g_return_if_fail (HEX_IS_BUFFER_MMAP (self));
 
@@ -263,7 +263,7 @@ done:
 
 size_t
 hex_buffer_mmap_raw (HexBufferMmap *self,
-		char **out, size_t offset, size_t bytes)
+		char **out, gint64 offset, size_t bytes)
 {
 	g_assert (HEX_IS_BUFFER_MMAP (self));
 	
@@ -286,7 +286,7 @@ hex_buffer_mmap_raw (HexBufferMmap *self,
 
 size_t
 hex_buffer_mmap_copy_data (HexBufferMmap *self,
-		void *out, size_t offset, size_t bytes)
+		void *out, gint64 offset, size_t bytes)
 {
 	size_t left;
 
@@ -320,7 +320,7 @@ hex_buffer_mmap_copy_data (HexBufferMmap *self,
 
 size_t
 hex_buffer_mmap_delete (HexBufferMmap *self,
-		     size_t offset, size_t bytes)
+		     gint64 offset, size_t bytes)
 {
 	g_assert (HEX_IS_BUFFER_MMAP (self));
 
@@ -335,7 +335,7 @@ hex_buffer_mmap_delete (HexBufferMmap *self,
 
 static size_t
 hex_buffer_mmap_insert (HexBufferMmap *self,
-		const void *in, size_t offset, size_t bytes)
+		const void *in, gint64 offset, size_t bytes)
 {
 	g_assert (HEX_IS_BUFFER_MMAP (self));
 
@@ -362,9 +362,9 @@ hex_buffer_mmap_insert (HexBufferMmap *self,
 
 size_t
 hex_buffer_mmap_move (HexBufferMmap *to,
-		size_t to_offset,
+		gint64 to_offset,
 		HexBufferMmap *from,
-		size_t from_offset,
+		gint64 from_offset,
 		size_t bytes)
 {
 	char *raw = NULL;
@@ -390,7 +390,7 @@ hex_buffer_mmap_snap (HexBufferMmap *self)
 }
 
 char * hex_buffer_mmap_get_data (HexBuffer *buf,
-		size_t offset,
+		gint64 offset,
 		size_t len)
 {
 	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
@@ -403,7 +403,7 @@ char * hex_buffer_mmap_get_data (HexBuffer *buf,
 }
 
 char hex_buffer_mmap_get_byte (HexBuffer *buf,
-		size_t offset)
+		gint64 offset)
 {
 	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
 	char *cp;
@@ -415,7 +415,7 @@ char hex_buffer_mmap_get_byte (HexBuffer *buf,
 	return c;
 }
 
-static size_t
+static gint64
 hex_buffer_mmap_get_payload_size (HexBuffer *buf)
 {
 	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
@@ -512,8 +512,8 @@ hex_buffer_mmap_read (HexBuffer *buf)
 {
 	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
 	void *p;
-	size_t bytes = 0;
-	size_t pages;
+	gint64 bytes = 0;
+	gint64 pages;
 	const char *file_path;
 	int tmp_clean_fd;
 
@@ -606,7 +606,7 @@ hex_buffer_mmap_read_async (HexBuffer *buf,
 }
 
 static gboolean hex_buffer_mmap_set_data (HexBuffer *buf,
-		size_t offset,
+		gint64 offset,
 		size_t len,
 		size_t rep_len,
 		char *data)

@@ -32,8 +32,8 @@
 struct _GtkHexLayout {
 	GtkLayoutManager parent_instance;
 
-	guint char_width;
-	guint group_type;
+	int char_width;
+	GtkHexGroupType group_type;
 
 	int cpl;
 	int hex_cpl;
@@ -481,7 +481,7 @@ gtk_hex_layout_new (void)
 }
 
 void
-gtk_hex_layout_set_char_width (GtkHexLayout *layout, guint width)
+gtk_hex_layout_set_char_width (GtkHexLayout *layout, int width)
 {
 	layout->char_width = width;
 
@@ -489,7 +489,8 @@ gtk_hex_layout_set_char_width (GtkHexLayout *layout, guint width)
 }
 
 void
-gtk_hex_layout_set_group_type (GtkHexLayout *layout, guint group_type)
+gtk_hex_layout_set_group_type (GtkHexLayout *layout,
+		GtkHexGroupType group_type)
 {
 	layout->group_type = group_type;
 

@@ -359,7 +359,7 @@ hex_document_new_from_file (GFile *file)
 }
 
 void
-hex_document_set_nibble (HexDocument *doc, char val, size_t offset,
+hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
 						gboolean lower_nibble, gboolean insert,
 						gboolean undoable)
 {
@@ -401,7 +401,7 @@ hex_document_set_nibble (HexDocument *doc, char val, size_t offset,
 }
 
 void
-hex_document_set_byte (HexDocument *doc, char val, size_t offset,
+hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
 					  gboolean insert, gboolean undoable)
 {
 	static HexChangeData tmp_change_data;
@@ -430,7 +430,7 @@ hex_document_set_byte (HexDocument *doc, char val, size_t offset,
 }
 
 void
-hex_document_set_data (HexDocument *doc, size_t offset, size_t len,
+hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
 					  size_t rep_len, char *data, gboolean undoable)
 {
 	int i;
@@ -474,7 +474,7 @@ document_ready_cb (GObject *source_object,
 	HexBuffer *buf = HEX_BUFFER(source_object);
 	HexDocument *doc = HEX_DOCUMENT(user_data);
 	static HexChangeData change_data;
-	size_t payload;
+	gint64 payload;
 
 	success = hex_buffer_read_finish (buf, res, &local_error);
 	g_debug ("%s: DONE -- result: %d", __func__, success);
@@ -500,7 +500,7 @@ void
 hex_document_read (HexDocument *doc)
 {
 	static HexChangeData change_data;
-	size_t payload;
+	gint64 payload;
 
 	g_return_if_fail (G_IS_FILE (doc->file));
 
@@ -564,14 +564,14 @@ hex_document_set_max_undo(HexDocument *doc, int max_undo)
 
 gboolean
 hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
-						 size_t start, size_t end, guint cpl, guint lpp,
+						 gint64 start, gint64 end, guint cpl, guint lpp,
 						 guint cpw)
 {
 	FILE *file;
 	guint page, line, pos, lines, pages, c;
 	gchar *page_name, b;
 	gchar *progress_str;
-	size_t payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
+	gint64 payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 	char *basename;
 
 	basename = g_file_get_basename (doc->file);
@@ -741,11 +741,11 @@ hex_document_compare_data(HexDocument *doc, char *s2, int pos, int len)
 }
 
 gboolean
-hex_document_find_forward (HexDocument *doc, size_t start, char *what,
-						  size_t len, size_t *found)
+hex_document_find_forward (HexDocument *doc, gint64 start, char *what,
+						  size_t len, gint64 *found)
 {
-	size_t pos;
-	size_t payload = hex_buffer_get_payload_size (
+	gint64 pos;
+	gint64 payload = hex_buffer_get_payload_size (
 			hex_document_get_buffer (doc));
 
 	pos = start;
@@ -763,10 +763,10 @@ hex_document_find_forward (HexDocument *doc, size_t start, char *what,
 }
 
 gboolean
-hex_document_find_backward (HexDocument *doc, size_t start, char *what,
-						   size_t len, size_t *found)
+hex_document_find_backward (HexDocument *doc, gint64 start, char *what,
+						   size_t len, gint64 *found)
 {
-	size_t pos;
+	gint64 pos;
 	
 	pos = start;
 
@@ -809,7 +809,7 @@ hex_document_real_undo (HexDocument *doc)
 
 	case HEX_CHANGE_BYTE:
 	{
-		size_t payload = hex_buffer_get_payload_size (
+		gint64 payload = hex_buffer_get_payload_size (
 				hex_document_get_buffer (doc));
 
 		if (cd->end < payload)
@@ -869,7 +869,7 @@ hex_document_real_redo(HexDocument *doc)
 
 	case HEX_CHANGE_BYTE:
 	{
-		size_t payload = hex_buffer_get_payload_size (
+		gint64 payload = hex_buffer_get_payload_size (
 				hex_document_get_buffer (doc));
 
 		if (cd->end <= payload)

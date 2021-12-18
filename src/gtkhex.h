@@ -60,37 +60,33 @@ typedef struct _GtkHex_AutoHighlight GtkHex_AutoHighlight;
 
 /* PUBLIC METHOD DECLARATIONS */
 
-GtkWidget *gtk_hex_new(HexDocument *);
+GtkWidget *gtk_hex_new (HexDocument *owner);
 
-void gtk_hex_set_cursor(GtkHex *, gint);
-void gtk_hex_set_cursor_xy(GtkHex *, gint, gint);
-void gtk_hex_set_nibble(GtkHex *, gint);
+void gtk_hex_set_cursor (GtkHex *gh, gint64 index);
+void gtk_hex_set_cursor_xy (GtkHex *gh, int x, int y);
+void gtk_hex_set_nibble (GtkHex *gh, gboolean lower_nibble);
 
-guint gtk_hex_get_cursor(GtkHex *);
-guchar gtk_hex_get_byte(GtkHex *, int);
+gint64 gtk_hex_get_cursor (GtkHex *gh);
+guchar gtk_hex_get_byte (GtkHex *gh, gint64 offset);
 
-void gtk_hex_set_group_type(GtkHex *, guint);
-guint gtk_hex_get_group_type (GtkHex *gh);
+void gtk_hex_set_group_type (GtkHex *gh, GtkHexGroupType gt);
+GtkHexGroupType gtk_hex_get_group_type (GtkHex *gh);
 
-void gtk_hex_show_offsets(GtkHex *, gboolean);
-void gtk_hex_set_font(GtkHex *, PangoFontMetrics *,
-		const PangoFontDescription *);
+void gtk_hex_show_offsets (GtkHex *gh, gboolean show);
 
-gboolean gtk_hex_get_insert_mode(GtkHex *gh);
-void gtk_hex_set_insert_mode(GtkHex *, gboolean);
+gboolean gtk_hex_get_insert_mode (GtkHex *gh);
+void gtk_hex_set_insert_mode (GtkHex *gh, gboolean insert);
 
-void gtk_hex_set_geometry(GtkHex *gh, gint cpl, gint vis_lines);
+void gtk_hex_set_geometry (GtkHex *gh, int cpl, int vis_lines);
 
-PangoFontMetrics* gtk_hex_load_font (const char *font_name); 
+void gtk_hex_copy_to_clipboard (GtkHex *gh);
+void gtk_hex_cut_to_clipboard (GtkHex *gh);
+void gtk_hex_paste_from_clipboard (GtkHex *gh);
 
-void gtk_hex_copy_to_clipboard(GtkHex *gh);
-void gtk_hex_cut_to_clipboard(GtkHex *gh);
-void gtk_hex_paste_from_clipboard(GtkHex *gh);
-
-void gtk_hex_set_selection(GtkHex *gh, gint start, gint end);
-gboolean gtk_hex_get_selection(GtkHex *gh, gint *start, gint *end);
-void gtk_hex_clear_selection(GtkHex *gh);
-void gtk_hex_delete_selection(GtkHex *gh);
+void gtk_hex_set_selection (GtkHex *gh, gint64 start, gint64 end);
+gboolean gtk_hex_get_selection (GtkHex *gh, gint64 *start, gint64 *end);
+void gtk_hex_clear_selection (GtkHex *gh);
+void gtk_hex_delete_selection (GtkHex *gh);
 
 GtkHex_AutoHighlight *
 gtk_hex_insert_autohighlight (GtkHex *gh, const char *search, int len);

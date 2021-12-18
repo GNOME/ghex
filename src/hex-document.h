@@ -52,7 +52,7 @@ typedef enum {
 typedef struct _HexChangeData HexChangeData;
 struct _HexChangeData
 {
-	size_t start, end;
+	gint64 start, end;
 	/* length to replace (overwrite); (0 to insert without overwriting) */
 	size_t rep_len;
 	gboolean lower_nibble;
@@ -65,26 +65,26 @@ struct _HexChangeData
 
 HexDocument *hex_document_new(void);
 HexDocument *hex_document_new_from_file (GFile *file);
-void        hex_document_set_data(HexDocument *doc, size_t offset, size_t len, size_t rep_len, char *data, gboolean undoable);
-void        hex_document_set_byte(HexDocument *doc, char val, size_t offset, gboolean insert, gboolean undoable);
-void        hex_document_set_nibble(HexDocument *doc, char val, size_t offset, gboolean lower_nibble, gboolean insert, gboolean undoable);
+void        hex_document_set_data(HexDocument *doc, gint64 offset, size_t len, size_t rep_len, char *data, gboolean undoable);
+void        hex_document_set_byte(HexDocument *doc, char val, gint64 offset, gboolean insert, gboolean undoable);
+void        hex_document_set_nibble(HexDocument *doc, char val, gint64 offset, gboolean lower_nibble, gboolean insert, gboolean undoable);
 void        hex_document_delete_data(HexDocument *doc, guint offset, guint len, gboolean undoable);
 void		hex_document_read (HexDocument *doc);
 gboolean   hex_document_write(HexDocument *doc);
 
 gboolean   hex_document_write_to_file (HexDocument *doc, GFile *file);
-gboolean    hex_document_export_html (HexDocument *doc, char *html_path, char *base_name, size_t start, size_t end, guint cpl, guint lpp, guint cpw);
+gboolean    hex_document_export_html (HexDocument *doc, char *html_path, char *base_name, gint64 start, gint64 end, guint cpl, guint lpp, guint cpw);
 gboolean    hex_document_has_changed(HexDocument *doc);
 void        hex_document_changed(HexDocument *doc, gpointer change_data, gboolean push_undo);
 void        hex_document_set_max_undo(HexDocument *doc, int max_undo);
 gboolean    hex_document_undo(HexDocument *doc);
 gboolean    hex_document_redo(HexDocument *doc);
 int        hex_document_compare_data(HexDocument *doc, char *s2, int pos, int len);
-gboolean   hex_document_find_forward (HexDocument *doc, size_t start, char *what, size_t len, size_t *found);
-gboolean   hex_document_find_backward (HexDocument *doc, size_t start, char *what, size_t len, size_t *found);
+gboolean   hex_document_find_forward (HexDocument *doc, gint64 start, char *what, size_t len, gint64 *found);
+gboolean   hex_document_find_backward (HexDocument *doc, gint64 start, char *what, size_t len, gint64 *found);
 gboolean    hex_document_can_undo (HexDocument *doc);
 gboolean    hex_document_can_redo (HexDocument *doc);
-size_t		hex_document_get_file_size (HexDocument *doc);
+gint64		hex_document_get_file_size (HexDocument *doc);
 HexChangeData *hex_document_get_undo_data (HexDocument *doc);
 
 HexBuffer * hex_document_get_buffer (HexDocument *doc);
