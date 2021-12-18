@@ -33,12 +33,8 @@ update_payload_size_from_file (HexBufferMalloc *self)
 {
 	self->payload_size = hex_buffer_util_get_file_size (self->file);
 
-	if (!self->payload_size)
-	{
-		g_warning ("%s: file \"%s\" is size 0 or invalid file...",
-				__func__, g_file_get_path (self->file));
+	if (! self->payload_size)
 		return FALSE;
-	}
 	else
 		return TRUE;
 }

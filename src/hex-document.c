@@ -352,7 +352,7 @@ hex_document_new_from_file (GFile *file)
 
 	if (! hex_document_set_file (doc, file))
 	{
-		g_object_unref (doc);
+		g_clear_object (&doc);
 	}
 
 	return doc;

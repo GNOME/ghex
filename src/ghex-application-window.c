@@ -694,9 +694,9 @@ document_loaded_or_saved_common (GHexApplicationWindow *self,
 }
 
 static void
-file_loaded_cb (HexDocument *doc, gpointer user_data)
+file_loaded_cb (HexDocument *doc, GHexApplicationWindow *self)
 {
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
 	
 	gtk_spinner_stop (GTK_SPINNER(self->doc_loading_spinner));
 	gtk_widget_hide (self->doc_loading_spinner);
@@ -1221,6 +1221,7 @@ new_file (GtkWidget *widget,
 	refresh_dialogs (self);
 	ghex_application_window_activate_tab (self, gh);
 	ghex_application_window_set_insert_mode (self, TRUE);
+	file_loaded_cb (doc, self);
 }
 
 static GtkHex *
@@ -1230,8 +1231,8 @@ new_gh_from_gfile (GFile *file)
 	GtkHex *gh;
 
 	doc = hex_document_new_from_file (file);
-	/* FIXME - just return NULL and handle error in user-friendly manner? */
-	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), NULL);
+	if (! doc)
+		return NULL;
 		
 	gh = GTK_HEX(gtk_hex_new (doc));
 
@@ -1253,11 +1254,7 @@ open_response_cb (GtkNativeDialog *dialog,
 
 		ghex_application_window_open_file (self, file);
 	}
-	else
-	{
-		g_debug ("%s: User didn't click Open. Bail out.",
-				__func__);
-	}
+
 	g_object_unref (dialog);
 }
 
@@ -2082,12 +2079,25 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 	g_object_ref (file);
 
 	gh = new_gh_from_gfile (file);
+	g_object_unref (file);
+
+	if (! gh)
+	{
+		char *error_msg = N_("There was an error loading the requested file. "
+				"The file either no longer exists, is inaccessible, "
+				"or you may not have permission to access the file.");
+
+		display_error_dialog (GTK_WINDOW(self), error_msg);
+
+		/* This fcn is also used to handle open operations on the cmdline. */
+		g_printerr ("%s\n", error_msg);
+
+		return;
+	}
 
 	ghex_application_window_add_hex (self, gh);
 	refresh_dialogs (self);
 	ghex_application_window_activate_tab (self, gh);
-
-	g_object_unref (file);
 }
 			
 GtkHex *

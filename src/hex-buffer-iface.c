@@ -151,5 +151,8 @@ hex_buffer_util_get_file_size (GFile *file)
 	info = g_file_query_info (file,
 			G_FILE_ATTRIBUTE_STANDARD_SIZE, G_FILE_QUERY_INFO_NONE, NULL, NULL);
 
+	if (! info)
+		return 0;
+
 	return g_file_info_get_size (info);
 }
