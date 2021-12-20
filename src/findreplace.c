@@ -203,7 +203,8 @@ find_common (FindDialog *self, enum FindDirection direction,
 	doc = gtk_hex_get_document (priv->gh);
 	cursor_pos = gtk_hex_get_cursor (priv->gh);
 
-	if ((str_len = get_search_string (f_priv->f_doc, &str)) == 0)
+	str_len = get_search_string (f_priv->f_doc, &str);
+	if (str_len == 0)
 	{
 		no_string_dialog (parent);
 		return;
@@ -215,7 +216,7 @@ find_common (FindDialog *self, enum FindDirection direction,
 		gtk_hex_delete_autohighlight (priv->gh, priv->auto_highlight);
 
 	priv->auto_highlight = NULL;
-	priv->auto_highlight = gtk_hex_insert_autohighlight(priv->gh,
+	priv->auto_highlight = gtk_hex_insert_autohighlight (priv->gh,
 			str, str_len);
 
 	/* Search for requested string */

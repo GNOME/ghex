@@ -459,7 +459,8 @@ hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
 }
 
 void
-hex_document_delete_data(HexDocument *doc, guint offset, guint len, gboolean undoable)
+hex_document_delete_data (HexDocument *doc,
+		gint64 offset, size_t len, gboolean undoable)
 {
 	hex_document_set_data (doc, offset, 0, len, NULL, undoable);
 }
@@ -553,7 +554,7 @@ hex_document_has_changed(HexDocument *doc)
 }
 
 void
-hex_document_set_max_undo(HexDocument *doc, int max_undo)
+hex_document_set_max_undo (HexDocument *doc, int max_undo)
 {
 	if(doc->undo_max != max_undo) {
 		if(doc->undo_max > max_undo)
@@ -725,16 +726,19 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 }
 
 int
-hex_document_compare_data(HexDocument *doc, char *s2, int pos, int len)
+hex_document_compare_data (HexDocument *doc,
+		char *what, gint64 pos, size_t len)
 {
-	char c1;
+	char c;
 
-	for (int i = 0; i < len; i++, s2++)
+	g_return_val_if_fail (what, 0);
+
+	for (size_t i = 0; i < len; i++, what++)
 	{
-		c1 = hex_buffer_get_byte (doc->buffer, pos + i);
+		c = hex_buffer_get_byte (doc->buffer, pos + i);
 
-		if(c1 != (*s2))
-			return (c1 - (*s2));
+		if (c != *what)
+			return (c - *what);
 	}
 	
 	return 0;
@@ -751,7 +755,7 @@ hex_document_find_forward (HexDocument *doc, gint64 start, char *what,
 	pos = start;
 	while (pos < payload)
 	{
-		if (hex_document_compare_data(doc, what, pos, len) == 0)
+		if (hex_document_compare_data (doc, what, pos, len) == 0)
 		{
 			*found = pos;
 			return TRUE;
@@ -766,20 +770,18 @@ gboolean
 hex_document_find_backward (HexDocument *doc, gint64 start, char *what,
 						   size_t len, gint64 *found)
 {
-	gint64 pos;
+	gint64 pos = start;
 	
-	pos = start;
-
-	if(pos == 0)
+	if (pos == 0)
 		return FALSE;
 
 	do {
 		pos--;
-		if(hex_document_compare_data(doc, what, pos, len) == 0) {
+		if (hex_document_compare_data (doc, what, pos, len) == 0) {
 			*found = pos;
 			return TRUE;
 		}
-	} while(pos > 0);
+	} while (pos > 0);
 
 	return FALSE;
 }
@@ -843,7 +845,7 @@ hex_document_real_undo (HexDocument *doc)
 }
 
 gboolean 
-hex_document_redo(HexDocument *doc)
+hex_document_redo (HexDocument *doc)
 {
 	if(doc->undo_stack == NULL || doc->undo_top == doc->undo_stack)
 		return FALSE;

@@ -44,7 +44,8 @@ G_BEGIN_DECLS
 #define HEX_TYPE_DOCUMENT hex_document_get_type ()
 G_DECLARE_FINAL_TYPE (HexDocument, hex_document, HEX, DOCUMENT, GObject)
 
-typedef enum {
+typedef enum
+{
 	HEX_CHANGE_STRING,
 	HEX_CHANGE_BYTE
 } HexChangeType;
@@ -53,7 +54,8 @@ typedef struct _HexChangeData HexChangeData;
 struct _HexChangeData
 {
 	gint64 start, end;
-	/* length to replace (overwrite); (0 to insert without overwriting) */
+	/* `replace length`: length to replace (overwrite); (0 to insert without
+	 * overwriting) */
 	size_t rep_len;
 	gboolean lower_nibble;
 	gboolean insert;
@@ -63,33 +65,41 @@ struct _HexChangeData
 };
 
 
-HexDocument *hex_document_new(void);
-HexDocument *hex_document_new_from_file (GFile *file);
-void        hex_document_set_data(HexDocument *doc, gint64 offset, size_t len, size_t rep_len, char *data, gboolean undoable);
-void        hex_document_set_byte(HexDocument *doc, char val, gint64 offset, gboolean insert, gboolean undoable);
-void        hex_document_set_nibble(HexDocument *doc, char val, gint64 offset, gboolean lower_nibble, gboolean insert, gboolean undoable);
-void        hex_document_delete_data(HexDocument *doc, guint offset, guint len, gboolean undoable);
+HexDocument	*hex_document_new(void);
+HexDocument	*hex_document_new_from_file (GFile *file);
+void		hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
+		size_t rep_len, char *data, gboolean undoable);
+void		hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
+		gboolean insert, gboolean undoable);
+void		hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
+		gboolean lower_nibble, gboolean insert, gboolean undoable);
+void		hex_document_delete_data (HexDocument *doc, gint64 offset, 
+		size_t len, gboolean undoable);
 void		hex_document_read (HexDocument *doc);
-gboolean   hex_document_write(HexDocument *doc);
-
-gboolean   hex_document_write_to_file (HexDocument *doc, GFile *file);
-gboolean    hex_document_export_html (HexDocument *doc, char *html_path, char *base_name, gint64 start, gint64 end, guint cpl, guint lpp, guint cpw);
-gboolean    hex_document_has_changed(HexDocument *doc);
-void        hex_document_changed(HexDocument *doc, gpointer change_data, gboolean push_undo);
-void        hex_document_set_max_undo(HexDocument *doc, int max_undo);
-gboolean    hex_document_undo(HexDocument *doc);
-gboolean    hex_document_redo(HexDocument *doc);
-int        hex_document_compare_data(HexDocument *doc, char *s2, int pos, int len);
-gboolean   hex_document_find_forward (HexDocument *doc, gint64 start, char *what, size_t len, gint64 *found);
-gboolean   hex_document_find_backward (HexDocument *doc, gint64 start, char *what, size_t len, gint64 *found);
-gboolean    hex_document_can_undo (HexDocument *doc);
-gboolean    hex_document_can_redo (HexDocument *doc);
+gboolean	hex_document_write (HexDocument *doc);
+gboolean	hex_document_write_to_file (HexDocument *doc, GFile *file);
+gboolean	hex_document_export_html (HexDocument *doc, char *html_path,
+		char *base_name, gint64 start, gint64 end, guint cpl, guint lpp,
+		guint cpw);
+gboolean	hex_document_has_changed (HexDocument *doc);
+void		hex_document_changed (HexDocument *doc,gpointer change_data,
+		gboolean push_undo);
+void		hex_document_set_max_undo (HexDocument *doc, int max_undo);
+gboolean	hex_document_undo (HexDocument *doc);
+gboolean	hex_document_redo (HexDocument *doc);
+int			hex_document_compare_data (HexDocument *doc, char *what,
+		gint64 pos, size_t len);
+gboolean	hex_document_find_forward (HexDocument *doc, gint64 start,
+		char *what, size_t len, gint64 *found);
+gboolean	hex_document_find_backward (HexDocument *doc, gint64 start,
+		char *what, size_t len, gint64 *found);
+gboolean	hex_document_can_undo (HexDocument *doc);
+gboolean	hex_document_can_redo (HexDocument *doc);
 gint64		hex_document_get_file_size (HexDocument *doc);
-HexChangeData *hex_document_get_undo_data (HexDocument *doc);
-
-HexBuffer * hex_document_get_buffer (HexDocument *doc);
-GFile *     hex_document_get_file (HexDocument *doc);
-gboolean    hex_document_set_file (HexDocument *doc, GFile *file);
+GFile *		hex_document_get_file (HexDocument *doc);
+gboolean	hex_document_set_file (HexDocument *doc, GFile *file);
+HexChangeData *	hex_document_get_undo_data (HexDocument *doc);
+HexBuffer * 	hex_document_get_buffer (HexDocument *doc);
 
 G_END_DECLS
 

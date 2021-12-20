@@ -407,12 +407,11 @@ char hex_buffer_mmap_get_byte (HexBuffer *buf,
 {
 	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
 	char *cp;
-	char c;
 
-	cp = hex_buffer_mmap_get_data (buf, offset, 1);
-	c = *cp;
-	
-	return c;
+	if (hex_buffer_mmap_raw (self, &cp, offset, 1))
+		return cp[0];
+	else
+		return 0;
 }
 
 static gint64
