@@ -567,8 +567,11 @@ hex_buffer_mmap_read (HexBuffer *buf)
 	self->clean_bytes = bytes;
 	self->clean = NULL;
 
-	if (!pages)
+	if (! pages)
+	{
+		set_error (self, _("Error reading file"));
 		return FALSE;
+	}
 
 	tmp_clean_fd = create_fd_from_path (self, file_path);
 	if (tmp_clean_fd < 0)
@@ -576,11 +579,15 @@ hex_buffer_mmap_read (HexBuffer *buf)
 
 	self->clean_fd = tmp_clean_fd;
 
+	errno = 0;
 	p = mmap (0, pages * self->pagesize, PROT_READ, MAP_SHARED,
 			self->clean_fd, 0);
 
 	if (p == MAP_FAILED)
+	{
+		set_error (self, _("An error has occurred"));
 		return FALSE;
+	}
 
 	self->clean = p;
 

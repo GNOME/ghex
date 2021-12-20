@@ -335,8 +335,6 @@ hex_document_set_file (HexDocument *doc, GFile *file)
 	if (had_prev_file)
 		g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
 
-	hex_document_read (doc);
-
 	return TRUE;
 }
 
@@ -465,23 +463,45 @@ hex_document_delete_data (HexDocument *doc,
 	hex_document_set_data (doc, offset, 0, len, NULL, undoable);
 }
 
-void
+gboolean
+hex_document_read_finish (HexDocument *doc,
+		GAsyncResult   *result,
+		GError        **error)
+{
+  g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+  g_return_val_if_fail (G_IS_TASK (result), FALSE);
+
+  return g_task_propagate_boolean (G_TASK (result), error);
+}
+
+
+static void
 document_ready_cb (GObject *source_object,
 		GAsyncResult *res,
 		gpointer user_data)
 {
+	static HexChangeData change_data;
+
 	gboolean success;
 	GError *local_error = NULL;
 	HexBuffer *buf = HEX_BUFFER(source_object);
-	HexDocument *doc = HEX_DOCUMENT(user_data);
-	static HexChangeData change_data;
+	GTask *task = G_TASK (user_data);
 	gint64 payload;
+	HexDocument *doc;
 
+	doc = HEX_DOCUMENT(g_task_get_task_data (task));
 	success = hex_buffer_read_finish (buf, res, &local_error);
 	g_debug ("%s: DONE -- result: %d", __func__, success);
 
-	if (local_error)
-		g_warning (local_error->message);
+	if (! success)
+	{
+		if (local_error)
+			g_task_return_error (task, local_error);
+		else
+			g_task_return_boolean (task, FALSE);
+
+		goto cleanup;
+	}
 
 	/* Initialize data for new doc */
 
@@ -495,18 +515,29 @@ document_ready_cb (GObject *source_object,
 	doc->changed = FALSE;
 	hex_document_changed (doc, &change_data, FALSE);
 	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_LOADED], 0);
+	g_task_return_boolean (task, TRUE);
+
+cleanup:
+	g_object_unref (task);
 }
 
 void
-hex_document_read (HexDocument *doc)
+hex_document_read_async (HexDocument *doc,
+		GCancellable *cancellable,	/* FIXME: presently ignored */
+		GAsyncReadyCallback callback,
+		gpointer user_data)
 {
 	static HexChangeData change_data;
+	GTask *task;
 	gint64 payload;
 
 	g_return_if_fail (G_IS_FILE (doc->file));
 
+	task = g_task_new (doc, cancellable, callback, user_data);
+	g_task_set_task_data (task, doc, NULL);
+
 	/* Read the actual file on disk into the buffer */
-	hex_buffer_read_async (doc->buffer, NULL, document_ready_cb, doc);
+	hex_buffer_read_async (doc->buffer, NULL, document_ready_cb, task);
 }
 
 gboolean

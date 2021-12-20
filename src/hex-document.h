@@ -75,7 +75,13 @@ void		hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
 		gboolean lower_nibble, gboolean insert, gboolean undoable);
 void		hex_document_delete_data (HexDocument *doc, gint64 offset, 
 		size_t len, gboolean undoable);
-void		hex_document_read (HexDocument *doc);
+//void		hex_document_read (HexDocument *doc);
+
+void	hex_document_read_async (HexDocument *doc, GCancellable *cancellable,
+		GAsyncReadyCallback callback, gpointer user_data);
+gboolean hex_document_read_finish (HexDocument *doc, GAsyncResult   *result,
+		GError        **error);
+
 gboolean	hex_document_write (HexDocument *doc);
 gboolean	hex_document_write_to_file (HexDocument *doc, GFile *file);
 gboolean	hex_document_export_html (HexDocument *doc, char *html_path,

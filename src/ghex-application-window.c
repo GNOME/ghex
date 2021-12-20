@@ -40,6 +40,9 @@
 static GFile *tmp_global_gfile_for_nag_screen;
 #endif
 
+/* This is dumb, but right now I can't think of a simpler solution. */
+static gpointer extra_user_data;
+
 /* ----------------------- */
 /* MAIN GOBJECT DEFINITION */
 /* ----------------------- */
@@ -658,13 +661,27 @@ assess_can_save (HexDocument *doc)
 }
 
 static void
-do_doc_loading_spinner (GHexApplicationWindow *self)
+show_hex_notebook (GHexApplicationWindow *self)
 {
-		gtk_widget_hide (self->no_doc_label);
-		gtk_widget_hide (self->hex_notebook);
+	gtk_widget_hide (self->doc_loading_spinner);
+	gtk_widget_hide (self->no_doc_label);
+	gtk_widget_show (self->hex_notebook);
+}
 
-		gtk_spinner_start (GTK_SPINNER(self->doc_loading_spinner));
-		gtk_widget_show (self->doc_loading_spinner);
+static void
+show_no_file_loaded_label (GHexApplicationWindow *self)
+{
+	gtk_widget_hide (self->hex_notebook);
+	gtk_widget_hide (self->doc_loading_spinner);
+	gtk_widget_show (self->no_doc_label);
+}
+
+static void
+show_doc_loading_spinner (GHexApplicationWindow *self)
+{
+	gtk_widget_hide (self->no_doc_label);
+	gtk_widget_hide (self->hex_notebook);
+	gtk_widget_show (self->doc_loading_spinner);
 }
 
 static void
@@ -694,15 +711,11 @@ document_loaded_or_saved_common (GHexApplicationWindow *self,
 }
 
 static void
-file_loaded_cb (HexDocument *doc, GHexApplicationWindow *self)
+file_loaded (HexDocument *doc, GHexApplicationWindow *self)
 {
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
 	
-	gtk_spinner_stop (GTK_SPINNER(self->doc_loading_spinner));
-	gtk_widget_hide (self->doc_loading_spinner);
-	gtk_widget_hide (self->no_doc_label);
-	gtk_widget_show (self->hex_notebook);
-
+	show_hex_notebook (self);
 	document_loaded_or_saved_common (self, doc);
 }
 
@@ -770,7 +783,6 @@ notebook_page_added_cb (GtkNotebook *notebook,
 	/* Let's play this super dumb. If a page is added, that will generally
 	 * mean we don't have to count the pages to see if we have > 0.
 	 */
-	do_doc_loading_spinner (self);
 	enable_main_actions (self, TRUE);
 }
 
@@ -792,10 +804,7 @@ notebook_page_removed_cb (GtkNotebook *notebook,
 		ghex_application_window_set_show_chartable (self, FALSE);
 		ghex_application_window_set_show_converter (self, FALSE);
 
-		gtk_widget_hide (self->hex_notebook);
-		gtk_widget_hide (self->doc_loading_spinner);
-		gtk_spinner_stop (GTK_SPINNER(self->doc_loading_spinner));
-		gtk_widget_show (self->no_doc_label);
+		show_no_file_loaded_label (self);
 	}
 }
 
@@ -1068,7 +1077,7 @@ save_as_response_cb (GtkNativeDialog *dialog,
 
 	if (hex_document_set_file (doc, gfile))
 	{
-		do_doc_loading_spinner (self);
+		show_doc_loading_spinner (self);
 	}
 	else
 	{
@@ -1126,8 +1135,10 @@ revert_response_cb (GtkDialog *dialog,
 
 	doc = gtk_hex_get_document (ACTIVE_GH);
 
-	do_doc_loading_spinner (self);
-	hex_document_read (doc);
+	show_doc_loading_spinner (self);
+
+	/* FIXME - error handling */
+	hex_document_read_async (doc, NULL, NULL, NULL);
 
 end:
 	gtk_window_destroy (GTK_WINDOW(dialog));
@@ -1221,22 +1232,7 @@ new_file (GtkWidget *widget,
 	refresh_dialogs (self);
 	ghex_application_window_activate_tab (self, gh);
 	ghex_application_window_set_insert_mode (self, TRUE);
-	file_loaded_cb (doc, self);
-}
-
-static GtkHex *
-new_gh_from_gfile (GFile *file)
-{
-	HexDocument *doc;
-	GtkHex *gh;
-
-	doc = hex_document_new_from_file (file);
-	if (! doc)
-		return NULL;
-		
-	gh = GTK_HEX(gtk_hex_new (doc));
-
-	return gh;
+	file_loaded (doc, self);
 }
 
 static void
@@ -1519,6 +1515,9 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	GAction *action;
 
 	gtk_widget_init_template (widget);
+
+	/* FIXME - setting this property doesn't seem to work in the UI file? */
+	gtk_spinner_start (GTK_SPINNER(self->doc_loading_spinner));
 
 	/* Cache system default of prefer-dark-mode; gtk does not do this. This
 	 * is run here as it cannot be done until we have a 'screen'. */
@@ -1991,9 +1990,6 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
     g_signal_connect (gh, "cursor-moved",
 			G_CALLBACK(cursor_moved_cb), self);
 
-	g_signal_connect (doc, "file-loaded",
-			G_CALLBACK(file_loaded_cb), self);
-
 	g_signal_connect (doc, "document-changed",
 			G_CALLBACK(document_changed_cb), self);
 
@@ -2049,10 +2045,54 @@ do_nag_screen (GHexApplicationWindow *self)
 }
 #endif
 
+
+static void
+doc_read_ready_cb (GObject *source_object,
+		GAsyncResult *res,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	GtkHex *gh = GTK_HEX(extra_user_data);
+	HexDocument *doc = HEX_DOCUMENT(source_object);
+	gboolean result;
+	GError *local_error = NULL;
+
+	result = hex_document_read_finish (doc, res, &local_error);
+
+	if (result)
+	{
+		refresh_dialogs (self);
+		ghex_application_window_activate_tab (self, gh);
+		/* FIXME - RENAME / CLEANUP */
+		file_loaded (doc, self);
+	}
+	else
+	{
+		if (local_error)
+		{
+			ghex_application_window_remove_tab (self, 
+					ghex_application_window_get_current_tab (self));
+			show_no_file_loaded_label (self);
+			display_error_dialog (GTK_WINDOW(self), local_error->message);
+			g_error_free (local_error);
+		}
+		else
+		{
+			char *generic_errmsg = N_("There was an error reading the file.");
+
+			display_error_dialog (GTK_WINDOW(self), generic_errmsg);
+		}
+	}
+	extra_user_data = NULL;
+}
+			
+
+
 void
 ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 {
-	GtkHex *gh;
+	HexDocument *doc;
+	GtkHex *gh = NULL;
 #ifndef EXPERIMENTAL_MMAP
 	static gboolean nag_screen_shown = FALSE;
 #endif
@@ -2077,10 +2117,13 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 	 * to hold onto it.
 	 */
 	g_object_ref (file);
-
-	gh = new_gh_from_gfile (file);
+	doc = hex_document_new_from_file (file);
 	g_object_unref (file);
 
+	if (doc)
+		gh = GTK_HEX(gtk_hex_new (doc));
+
+	/* Display a fairly generic error message if we can't even get this far. */
 	if (! gh)
 	{
 		char *error_msg = N_("There was an error loading the requested file. "
@@ -2094,12 +2137,16 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 
 		return;
 	}
+	/* FIXME - this is kind of cheap and will block all the *other* tabs
+	 * as well, even though there's no need to. But it will do for now.
+	 */
+	show_doc_loading_spinner (self);
 
+	extra_user_data = gh;
 	ghex_application_window_add_hex (self, gh);
-	refresh_dialogs (self);
-	ghex_application_window_activate_tab (self, gh);
+	hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 }
-			
+
 GtkHex *
 ghex_application_window_get_hex (GHexApplicationWindow *self)
 {
