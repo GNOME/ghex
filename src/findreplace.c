@@ -454,11 +454,8 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	}
 
 clean_up:
-	if (find_str)
-		g_free(find_str);
-
-	if(rep_str)
-		g_free(rep_str);
+	g_free(find_str);
+	g_free(rep_str);
 }
 
 static void
@@ -521,11 +518,8 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	}
 	
 clean_up:
-	if (find_str)
-		g_free(find_str);
-
-	if (rep_str)
-		g_free(rep_str);
+	g_free(find_str);
+	g_free(rep_str);
 }
 
 static void
