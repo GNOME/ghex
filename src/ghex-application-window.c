@@ -146,10 +146,13 @@ static void ghex_application_window_remove_tab (GHexApplicationWindow *self,
 		GHexNotebookTab *tab);
 static GHexNotebookTab * ghex_application_window_get_current_tab (GHexApplicationWindow *self);
 
-static void set_statusbar(GHexApplicationWindow *self, const char *str);
+static void set_statusbar (GHexApplicationWindow *self, const char *str);
 static void update_status_message (GHexApplicationWindow *self);
 static void update_gui_data (GHexApplicationWindow *self);
 static gboolean assess_can_save (HexDocument *doc);
+
+static void doc_read_ready_cb (GObject *source_object, GAsyncResult *res,
+		gpointer user_data);
 
 /* GHexApplicationWindow -- PRIVATE FUNCTIONS */
 
@@ -1135,10 +1138,9 @@ revert_response_cb (GtkDialog *dialog,
 
 	doc = gtk_hex_get_document (ACTIVE_GH);
 
+	extra_user_data = ACTIVE_GH;
 	show_doc_loading_spinner (self);
-
-	/* FIXME - error handling */
-	hex_document_read_async (doc, NULL, NULL, NULL);
+	hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 
 end:
 	gtk_window_destroy (GTK_WINDOW(dialog));
@@ -2045,7 +2047,7 @@ do_nag_screen (GHexApplicationWindow *self)
 }
 #endif
 
-
+/* also takes extra_user_data ! Hooray for cheap shortcuts! */
 static void
 doc_read_ready_cb (GObject *source_object,
 		GAsyncResult *res,
@@ -2086,8 +2088,6 @@ doc_read_ready_cb (GObject *source_object,
 	extra_user_data = NULL;
 }
 			
-
-
 void
 ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 {

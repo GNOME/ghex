@@ -2328,8 +2328,7 @@ gtk_hex_dispose (GObject *object)
 	g_clear_object (&gh->alayout);
 	g_clear_object (&gh->olayout);
 
-	g_object_unref (gh->document);
-//	g_clear_object (&gh->document);
+	g_clear_object (&gh->document);
 	
 	/* Chain up */
 	G_OBJECT_CLASS(gtk_hex_parent_class)->dispose(object);

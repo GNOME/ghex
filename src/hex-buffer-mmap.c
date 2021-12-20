@@ -521,6 +521,20 @@ create_fd_from_path (HexBufferMmap *self, const char *path)
 	return fd;
 }
 
+static void
+clear_buffer (HexBufferMmap *self)
+{
+	if (self->fd)
+	{
+		close (self->fd);
+		clear_tmpfile_path (self);
+	}
+	if (self->data)
+		munmap (self->data, self->mapped);
+
+	self->payload = self->mapped = self->gap = 0;
+}
+
 static gboolean
 create_buffer (HexBufferMmap *self)
 {
@@ -592,6 +606,7 @@ hex_buffer_mmap_read (HexBuffer *buf)
 	self->clean = p;
 
 	/* Create dirty buffer for writing etc. */
+	clear_buffer (self);
 	create_buffer (self);
 
 	/* FIXME/TODO - sanity check against # of bytes read? */

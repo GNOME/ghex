@@ -474,7 +474,6 @@ hex_document_read_finish (HexDocument *doc,
   return g_task_propagate_boolean (G_TASK (result), error);
 }
 
-
 static void
 document_ready_cb (GObject *source_object,
 		GAsyncResult *res,
