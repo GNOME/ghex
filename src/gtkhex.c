@@ -104,8 +104,8 @@ struct _GtkHex_AutoHighlight
 	char *search_string;
 	int search_len;
 
-	int view_min;
-	int view_max;
+	gint64 view_min;
+	gint64 view_max;
 
 	GtkHex_Highlight *highlights;
 	GtkHex_AutoHighlight *next, *prev;
@@ -204,8 +204,7 @@ static void gtk_hex_validate_highlight (GtkHex *gh, GtkHex_Highlight *hl);
 static void gtk_hex_invalidate_highlight (GtkHex *gh, GtkHex_Highlight *hl);
 static void gtk_hex_invalidate_all_highlights (GtkHex *gh);
 
-static void gtk_hex_update_all_auto_highlights (GtkHex *gh, gboolean delete,
-		gboolean add);
+static void gtk_hex_update_all_auto_highlights (GtkHex *gh);
 
 static GtkHex_Highlight *gtk_hex_insert_highlight (GtkHex *gh,
 		GtkHex_AutoHighlight *ahl, gint64 start, gint64 end);
@@ -363,7 +362,7 @@ static void
 hex_to_pointer (GtkHex *gh, int mx, int my)
 {
 	int x = 0, cx = 0;
-	int cy;
+	gint64 cy;
 	
 	cy = gh->top_line + my/gh->char_height;
 
@@ -373,7 +372,7 @@ hex_to_pointer (GtkHex *gh, int mx, int my)
 		
 		if (x > mx)
 		{
-			gtk_hex_set_cursor_xy (gh, cx/2, cy);
+			gtk_hex_set_cursor_by_row_and_col (gh, cx/2, cy);
 			gtk_hex_set_nibble (gh, ((cx%2 == 0)?UPPER_NIBBLE:LOWER_NIBBLE));
 			
 			cx = 2*gh->cpl;
@@ -389,11 +388,11 @@ hex_to_pointer (GtkHex *gh, int mx, int my)
 static void
 ascii_to_pointer (GtkHex *gh, int mx, int my)
 {
-	int cy;
+	gint64 cy;
 	
 	cy = gh->top_line + my/gh->char_height;
 	
-	gtk_hex_set_cursor_xy (gh, mx/gh->char_width, cy);
+	gtk_hex_set_cursor_by_row_and_col (gh, mx/gh->char_width, cy);
 }
 
 static int
@@ -487,9 +486,9 @@ format_ablock (GtkHex *gh, char *out, gint64 start, gint64 end)
  * the block into x,y coordinates of the xdisp/adisp, respectively
  */
 static gboolean
-get_xcoords (GtkHex *gh, int pos, int *x, int *y)
+get_xcoords (GtkHex *gh, gint64 pos, int *x, int *y)
 {
-	int cx, cy, spaces;
+	gint64 cx, cy, spaces;
 	
 	if (gh->cpl == 0)
 		return FALSE;
@@ -506,6 +505,13 @@ get_xcoords (GtkHex *gh, int pos, int *x, int *y)
 	cx *= gh->char_width;
 	cy *= gh->char_height;
 	spaces *= gh->char_width;
+
+	/* nb: Having this as an assertion warning is annoying. Happens a lot
+	 * in that case if you scroll way up/down in a big file and suddenly start
+	 * dragging. */
+	if (cx + spaces < INT_MAX && cy < INT_MAX)
+		return FALSE;
+
 	*x = cx + spaces;
 	*y = cy;
 	
@@ -513,9 +519,9 @@ get_xcoords (GtkHex *gh, int pos, int *x, int *y)
 }
 
 static gboolean
-get_acoords (GtkHex *gh, int pos, int *x, int *y)
+get_acoords (GtkHex *gh, gint64 pos, int *x, int *y)
 {
-	int cx, cy;
+	gint64 cx, cy;
 	
 	if (gh->cpl == 0)
 		return FALSE;
@@ -529,6 +535,12 @@ get_acoords (GtkHex *gh, int pos, int *x, int *y)
 	cy *= gh->char_height;
 	cx = gh->char_width*(pos % gh->cpl);
 	
+	/* nb: Having this as an assertion warning is annoying. Happens a lot
+	 * in that case if you scroll way up/down in a big file and suddenly start
+	 * dragging. */
+	if (cy < INT_MAX && cx < INT_MAX)
+		return FALSE;
+
 	*x = cx;
 	*y = cy;
 	
@@ -571,7 +583,7 @@ render_cursor (GtkHex *gh,
 		GtkHexViewType cursor_type)
 {
 	GdkRGBA fg_color;
-	int index;
+	gint64 index;
 	int range[2];
 	GtkStateFlags state;
 	GtkStyleContext *context;
@@ -754,14 +766,14 @@ render_highlights (GtkHex *gh,
 
 	while (highlight)
 	{
-		int cursor_off = 0;
-		int len;
+		gint64 cursor_off = 0;
+		size_t len;
 
 		int range[2];
 		double x1, x2, y1, y2;
 
 		/* Shorthands for readability of this loop */
-		int start, end, start_line, end_line;
+		gint64 start, end, start_line, end_line;
 
 		context = gtk_widget_get_style_context (widget);
 		gtk_style_context_save (context);
@@ -908,8 +920,8 @@ invalidate_lines (GtkHex *gh,
 
 static void
 invalidate_hex_lines (GtkHex *gh,
-                      int imin,
-                      int imax)
+                      int imin,		/* FIXME - imin/imax for next few funcs */
+                      int imax)		/* presently ignored. */
 {
     invalidate_lines (gh, gh->xdisp, imin, imax);
 }
@@ -1148,7 +1160,7 @@ recalc_displays (GtkHex *gh)
 {
 	GtkWidget *widget = GTK_WIDGET (gh);
 	int hex_cpl;
-	size_t payload_size;
+	gint64 payload_size;
 
 	hex_cpl = gtk_hex_layout_get_hex_cpl (GTK_HEX_LAYOUT(gh->layout_manager));
 	payload_size = HEX_BUFFER_PAYLOAD (gh->document);
@@ -1220,13 +1232,13 @@ static void
 display_scrolled (GtkAdjustment *adj, GtkHex *gh)
 {
 	int dx, dy;
-
+	
 	g_return_if_fail (gtk_widget_is_drawable (gh->xdisp) &&
 			gtk_widget_is_drawable (gh->adisp));
 
 	gh->top_line = gtk_adjustment_get_value (adj);
 
-	gtk_hex_update_all_auto_highlights (gh, TRUE, TRUE);
+	gtk_hex_update_all_auto_highlights (gh);
 	gtk_hex_invalidate_all_highlights (gh);
 
 	/* FIXME - this works, but feels hackish. The problem is, _snapshot_child
@@ -1248,7 +1260,7 @@ scroll_timeout_handler (GtkHex *gh)
 	if (gh->scroll_dir < 0)
 	{
 		gtk_hex_set_cursor (gh,
-				MAX (0, (int)(gh->cursor_pos - gh->cpl)));
+				MAX (0, gh->cursor_pos - gh->cpl));
 	}
 	else if (gh->scroll_dir > 0)
 	{
@@ -1270,10 +1282,10 @@ scroll_cb (GtkEventControllerScroll *controller,
 
 	g_return_val_if_fail (GTK_IS_HEX(gh), FALSE);
 
-	old_value = gtk_adjustment_get_value(gh->adj);
+	old_value = gtk_adjustment_get_value (gh->adj);
 	new_value = old_value + dy;
 
-	gtk_adjustment_set_value(gh->adj, new_value);
+	gtk_adjustment_set_value (gh->adj, new_value);
 
 	/* TFM: returns true if scroll event was handled; false otherwise.
 	 */
@@ -1766,8 +1778,8 @@ static void
 gtk_hex_real_data_changed (GtkHex *gh, gpointer data)
 {
 	HexChangeData *change_data = (HexChangeData *)data;
-	int start_line, end_line;
-	int lines;
+	gint64 start_line, end_line;
+	gint64 lines;
 	size_t payload_size;
 
 	g_return_if_fail (HEX_IS_DOCUMENT (gh->document));
@@ -1820,10 +1832,10 @@ gtk_hex_real_data_changed (GtkHex *gh, gpointer data)
 }
 
 static void
-bytes_changed (GtkHex *gh, int start, int end)
+bytes_changed (GtkHex *gh, gint64 start, gint64 end)
 {
-	int start_line;
-	int end_line;
+	gint64 start_line;
+	gint64 end_line;
 
 	/* check for divide-by-zero issues */
 	g_return_if_fail (gh->cpl);
@@ -1871,8 +1883,9 @@ gtk_hex_invalidate_all_highlights (GtkHex *gh)
 
 	while (cur)
 	{
-		gtk_hex_invalidate_highlight(gh, cur);
+		gtk_hex_invalidate_highlight (gh, cur);
 		cur = cur->next;
+
 		while (cur == NULL && nextList)
 		{
 			cur = nextList->highlights;
@@ -1913,7 +1926,7 @@ static void
 gtk_hex_delete_highlight (GtkHex *gh, GtkHex_AutoHighlight *ahl,
 		GtkHex_Highlight *hl)
 {
-	int start, end;
+	gint64 start, end;
 	start = hl->start;
 	end = hl->end;
 	if (hl->prev) hl->prev->next = hl->next;
@@ -1930,12 +1943,12 @@ gtk_hex_delete_highlight (GtkHex *gh, GtkHex_AutoHighlight *ahl,
  * and simply returns a gboolean.
  */
 static gboolean
-gtk_hex_compare_data (GtkHex *gh, guchar *cmp, guint pos, int len)
+gtk_hex_compare_data (GtkHex *gh, guchar *cmp, gint64 pos, int len)
 {
-	int i;
-	for (i = 0; i < len; i++)
+	for (int i = 0; i < len; i++)
 	{
 		guchar c = gtk_hex_get_byte (gh, pos + i);
+
 		if (c != *(cmp + i))
 			return FALSE;
 	}
@@ -1944,14 +1957,13 @@ gtk_hex_compare_data (GtkHex *gh, guchar *cmp, guint pos, int len)
 
 static gboolean
 gtk_hex_find_limited (GtkHex *gh, char *find, int findlen,
-		int lower, int upper,
-		int *found)
+		gint64 lower, gint64 upper, gint64 *found)
 {
-	int pos = lower;
+	gint64 pos = lower;
 
 	while (pos < upper)
 	{
-		if (gtk_hex_compare_data(gh, (guchar *)find, pos, findlen))
+		if (gtk_hex_compare_data (gh, (guchar *)find, pos, findlen))
 		{
 			*found = pos;
 			return TRUE;
@@ -1961,22 +1973,29 @@ gtk_hex_find_limited (GtkHex *gh, char *find, int findlen,
 	return FALSE;
 }
 
-/* removes any highlights that arn't visible
- * adds any new highlights that became visible
- */
-static void
-gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
-		gboolean delete, gboolean add)
-{
-	int del_min, del_max;
-	int add_min, add_max;
-	int foundpos = -1;
-	int prev_min = ahl->view_min;
-	int prev_max = ahl->view_max;
-	GtkHex_Highlight *cur;
 
+/* Helper for the autohighlight functions to set a reasonable default
+ * view_min () and view_max () value.
+ */
+static inline void
+ahl_set_view_min_max (GtkHex *gh, GtkHex_AutoHighlight *ahl)
+{
 	ahl->view_min = gh->top_line * gh->cpl;
 	ahl->view_max = (gh->top_line + gh->vis_lines) * gh->cpl;
+}
+
+static void
+gtk_hex_update_auto_highlight (GtkHex *gh, GtkHex_AutoHighlight *ahl,
+		gboolean delete, gboolean add)
+{
+	gint64 del_min, del_max;
+	gint64 add_min, add_max;
+	gint64 foundpos = -1;
+	gint64 prev_min = ahl->view_min;
+	gint64 prev_max = ahl->view_max;
+	GtkHex_Highlight *cur;
+
+	ahl_set_view_min_max (gh, ahl);
 
 	if (prev_min < ahl->view_min && prev_max < ahl->view_max)
 	{
@@ -2009,29 +2028,45 @@ gtk_hex_update_auto_highlight(GtkHex *gh, GtkHex_AutoHighlight *ahl,
 		if (cur->start >= del_min && cur->start <= del_max)
 		{
 			GtkHex_Highlight *next = cur->next;
-			gtk_hex_delete_highlight(gh, ahl, cur);
+
+			gtk_hex_delete_highlight (gh, ahl, cur);
 			cur = next;
 		}
 		else cur = cur->next;
 	}
+
 	while (add &&
-		   gtk_hex_find_limited(gh, ahl->search_string, ahl->search_len,
-								MAX(add_min, foundpos+1), add_max, &foundpos))
+		   gtk_hex_find_limited (gh, ahl->search_string, ahl->search_len,
+			   /* lower */ MAX(add_min, foundpos+1), add_max, &foundpos))
 	{
-		gtk_hex_insert_highlight(gh, ahl,
+		gtk_hex_insert_highlight (gh, ahl,
 				foundpos, foundpos+(ahl->search_len)-1);
 	}
 }
 
 static void
-gtk_hex_update_all_auto_highlights (GtkHex *gh,
-		gboolean delete, gboolean add)
+gtk_hex_update_all_auto_highlights (GtkHex *gh)
 {
 	GtkHex_AutoHighlight *cur = gh->auto_highlight;
 
+	int mult = 10;
+
+	gint64 top_line_pos = gh->top_line * gh->cpl;
+	gint64 bot_line_pos = (gh->top_line + gh->vis_lines) * gh->cpl;
+
 	while (cur)
 	{
-		gtk_hex_update_auto_highlight(gh, cur, delete, add);
+		/* only refresh possibilities within a certain number of line numbers
+		 */
+		if (top_line_pos - mult * gh->vis_lines * gh->cpl > cur->view_min ||
+			bot_line_pos + mult * gh->vis_lines * gh->cpl < cur->view_max)
+		{
+			/* do nothing */
+		}
+		else
+		{
+			gtk_hex_update_auto_highlight (gh, cur, TRUE, TRUE);
+		}
 		cur = cur->next;
 	}
 }
@@ -2044,7 +2079,8 @@ gtk_hex_real_copy_to_clipboard (GtkHex *gh)
 	GtkHexPasteData *paste;
 	GdkContentProvider *provider_union;
 	GdkContentProvider *provider_array[2];
-	int start_pos, end_pos, len;
+	gint64 start_pos, end_pos;
+	size_t len;
 	char *doc_data;
 	char *string;
 
@@ -2118,7 +2154,7 @@ plaintext_paste_received_cb (GObject *source_object,
 				text,
 				TRUE);
 
-		gtk_hex_set_cursor(gh, gh->cursor_pos + strlen(text));
+		gtk_hex_set_cursor (gh, gh->cursor_pos + strlen(text));
 		
 		g_free(text);
 	}
@@ -2759,8 +2795,8 @@ gtk_hex_init (GtkHex *gh)
 
 	/* Connect signal for adjustment */
 
-	g_signal_connect(G_OBJECT(gh->adj), "value-changed",
-					 G_CALLBACK(display_scrolled), gh);
+	g_signal_connect (gh->adj, "value-changed",
+					 G_CALLBACK (display_scrolled), gh);
 
 	/* ACTIONS - Undo / Redo should start out disabled. */
 
@@ -2884,13 +2920,14 @@ gtk_hex_clear_selection (GtkHex *gh)
 void
 gtk_hex_delete_selection (GtkHex *gh)
 {
-	int start, end, len;
+	gint64 start, end;
+	size_t len;
 
 	start = MIN(gh->selection.start, gh->selection.end);
 	end = MAX(gh->selection.start, gh->selection.end);
 
 	len = end - start + 1;
-	g_assert (len);
+	g_return_if_fail (len);
 
 	gtk_hex_clear_selection (gh);
 
@@ -2932,7 +2969,7 @@ gtk_hex_set_nibble (GtkHex *gh, gboolean lower_nibble)
 void
 gtk_hex_set_cursor (GtkHex *gh, gint64 index)
 {
-	int y;
+	gint64 y;
 	gint64 old_pos;
 	size_t payload_size;
 
@@ -2982,8 +3019,8 @@ gtk_hex_set_cursor (GtkHex *gh, gint64 index)
 		}
 		else
 		{
-			guint start = MIN (gh->selection.start, gh->selection.end);
-			guint end = MAX (gh->selection.start, gh->selection.end);
+			gint64 start = MIN (gh->selection.start, gh->selection.end);
+			gint64 end = MAX (gh->selection.start, gh->selection.end);
 
 			bytes_changed (gh, start, end);
 			gh->selection.end = gh->selection.start = gh->cursor_pos;
@@ -3001,38 +3038,38 @@ gtk_hex_set_cursor (GtkHex *gh, gint64 index)
  * currently visible part)
  */
 void
-gtk_hex_set_cursor_xy (GtkHex *gh, int x, int y)
+gtk_hex_set_cursor_by_row_and_col (GtkHex *gh, int col_x, gint64 line_y)
 {
-	int cp;
-	int old_pos;
-	size_t payload_size;
+	gint64 tmp_cursor_pos;
+	gint64 old_pos;
+	gint64 payload_size;
 
 	g_return_if_fail (GTK_IS_HEX(gh));
 
 	old_pos = gh->cursor_pos;
-	cp = y*gh->cpl + x;
+	tmp_cursor_pos = line_y * gh->cpl + col_x;
 	payload_size = HEX_BUFFER_PAYLOAD (gh->document);
 
-	if ((y >= 0) && (y < gh->lines) && (x >= 0) &&
-	   (x < gh->cpl) && (cp <= payload_size))
+	if ((line_y >= 0) && (line_y < gh->lines) && (col_x >= 0) &&
+	   (col_x < gh->cpl) && (tmp_cursor_pos <= payload_size))
 	{
-		if (!gh->insert && cp == payload_size)
-			cp--;
+		if (!gh->insert && tmp_cursor_pos == payload_size)
+			tmp_cursor_pos--;
 
-		cp = MAX(cp, 0);
+		tmp_cursor_pos = MAX(tmp_cursor_pos, 0);
 
 		show_cursor (gh, FALSE);
 		
-		gh->cursor_pos = cp;
+		gh->cursor_pos = tmp_cursor_pos;
 		
-		if (y >= gh->top_line + gh->vis_lines) {
+		if (line_y >= gh->top_line + gh->vis_lines) {
 			gtk_adjustment_set_value (gh->adj,
-					MIN(y - gh->vis_lines + 1, gh->lines - gh->vis_lines));
+					MIN(line_y - gh->vis_lines + 1, gh->lines - gh->vis_lines));
 			gtk_adjustment_set_value (gh->adj,
 					MAX(0, gtk_adjustment_get_value(gh->adj)));
 		}
-		else if (y < gh->top_line) {
-			gtk_adjustment_set_value(gh->adj, y);
+		else if (line_y < gh->top_line) {
+			gtk_adjustment_set_value(gh->adj, line_y);
 		}      
 	
 		g_signal_emit_by_name(G_OBJECT(gh), "cursor-moved");
@@ -3044,8 +3081,8 @@ gtk_hex_set_cursor_xy (GtkHex *gh, int x, int y)
 						old_pos));
 		}
 		else if (gh->selection.end != gh->selection.start) {
-			guint start = MIN(gh->selection.start, gh->selection.end);
-			guint end = MAX(gh->selection.start, gh->selection.end);
+			gint64 start = MIN(gh->selection.start, gh->selection.end);
+			gint64 end = MAX(gh->selection.start, gh->selection.end);
 			gh->selection.end = gh->selection.start = 0;
 			bytes_changed(gh, start, end);
 		}
@@ -3060,8 +3097,8 @@ gtk_hex_set_cursor_xy (GtkHex *gh, int x, int y)
 gint64
 gtk_hex_get_cursor (GtkHex *gh)
 {
-	g_return_val_if_fail(gh != NULL, -1);
-	g_return_val_if_fail(GTK_IS_HEX(gh), -1);
+	g_return_val_if_fail (gh != NULL, -1);
+	g_return_val_if_fail (GTK_IS_HEX(gh), -1);
 
 	return gh->cursor_pos;
 }
@@ -3142,8 +3179,7 @@ gtk_hex_insert_autohighlight (GtkHex *gh,
 	if (new->next) new->next->prev = new;
 	gh->auto_highlight = new;
 
-	new->view_min = 0;
-	new->view_max = 0;
+	ahl_set_view_min_max (gh, new);
 
 	gtk_hex_update_auto_highlight (gh, new, FALSE, TRUE);
 
@@ -3192,7 +3228,7 @@ gtk_hex_get_document (GtkHex *gh)
 gboolean
 gtk_hex_get_insert_mode (GtkHex *gh)
 {
-	g_assert (GTK_IS_HEX (gh));
+	g_return_val_if_fail (GTK_IS_HEX (gh), FALSE);
 
 	return gh->insert;
 }

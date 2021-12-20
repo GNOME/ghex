@@ -63,7 +63,7 @@ typedef struct _GtkHex_AutoHighlight GtkHex_AutoHighlight;
 GtkWidget *gtk_hex_new (HexDocument *owner);
 
 void gtk_hex_set_cursor (GtkHex *gh, gint64 index);
-void gtk_hex_set_cursor_xy (GtkHex *gh, int x, int y);
+void gtk_hex_set_cursor_by_row_and_col (GtkHex *gh, int col_x, gint64 line_y);
 void gtk_hex_set_nibble (GtkHex *gh, gboolean lower_nibble);
 
 gint64 gtk_hex_get_cursor (GtkHex *gh);

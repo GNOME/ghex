@@ -210,15 +210,6 @@ find_common (FindDialog *self, enum FindDirection direction,
 		return;
 	}
 
-	/* Insert auto-highlights of search string */
-
-	if (priv->auto_highlight)
-		gtk_hex_delete_autohighlight (priv->gh, priv->auto_highlight);
-
-	priv->auto_highlight = NULL;
-	priv->auto_highlight = gtk_hex_insert_autohighlight (priv->gh,
-			str, str_len);
-
 	/* Search for requested string */
 	
 	if (direction == FIND_FORWARD 
@@ -234,6 +225,16 @@ find_common (FindDialog *self, enum FindDirection direction,
 	{
 		found = TRUE;
 		gtk_hex_set_cursor (priv->gh, offset);
+
+		/* If string found, insert auto-highlights of search string */
+
+		if (priv->auto_highlight)
+			gtk_hex_delete_autohighlight (priv->gh, priv->auto_highlight);
+
+		priv->auto_highlight = NULL;
+		priv->auto_highlight = gtk_hex_insert_autohighlight (priv->gh,
+				str, str_len);
+
 		gtk_widget_grab_focus (GTK_WIDGET(priv->gh));
 	}
 	else
@@ -324,8 +325,8 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = gtk_hex_get_document(priv->gh);
-	cursor_pos = gtk_hex_get_cursor(priv->gh);
+	doc = gtk_hex_get_document (priv->gh);
+	cursor_pos = gtk_hex_get_cursor (priv->gh);
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 
 	entry = GTK_ENTRY(self->int_entry);

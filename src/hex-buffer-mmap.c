@@ -54,6 +54,16 @@ G_DEFINE_TYPE_WITH_CODE (HexBufferMmap, hex_buffer_mmap, G_TYPE_OBJECT,
 
 /* PRIVATE FUNCTIONS */
 
+static void
+clear_tmpfile_path (HexBufferMmap *self)
+{
+	if (! self->tmpfile_path)
+		return;
+
+	unlink (self->tmpfile_path);
+	g_clear_pointer (&self->tmpfile_path, g_free);
+}
+
 /* Helper wrapper for g_set_error and to cache errno */
 static void
 set_error (HexBufferMmap *self, const char *blurb)
@@ -117,9 +127,14 @@ hex_buffer_mmap_finalize (GObject *gobject)
 	if (self->fd >= 0)
 	{
 		close (self->fd);
-		unlink (self->tmpfile_path);
+		/* this should happen previously, but it's harmless to run it again
+		 * in finalize in case it didn't happen for some reason
+		 */
+		clear_tmpfile_path (self);
 	}
 
+	/* This will either be spuriously still allocated and non-null (highly
+	 * unlikely or null, so safe to call this in any event. */
 	g_free (self->tmpfile_path);
 
 	/* chain up */
@@ -497,6 +512,7 @@ create_buffer (HexBufferMmap *self)
 	self->tmpfile_path = g_strdup ("hexmmapbufXXXXXX");
 	errno = 0;
 	self->fd = mkstemp (self->tmpfile_path);
+	clear_tmpfile_path (self);
 
 	if (self->fd < 0) {
 		set_error (self, _("Failed to open temporary file."));
