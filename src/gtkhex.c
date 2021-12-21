@@ -1094,7 +1094,8 @@ render_offsets (GtkHex *gh,
 	/* find out how many chars wide our offset column should be based on
 	 * how many chars will be in the last offset marker of the screen */
 	
-	snprintf (buf, BUFLEN-1, "%lX", (gh->top_line + max_lines - 1) * gh->cpl);
+	snprintf (buf, BUFLEN-1, "%lX",
+			MAX ((gh->top_line + max_lines - 1), 0) * gh->cpl);
 	off_cpl = MAX (MIN_CPL, strlen (buf));
 	snprintf (fmt, BUFLEN-1, "%%0%dlX", off_cpl); 
 	gtk_hex_layout_set_offset_cpl (GTK_HEX_LAYOUT(gh->layout_manager), off_cpl);
