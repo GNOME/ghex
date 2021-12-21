@@ -842,9 +842,9 @@ hex_document_find_forward_async (HexDocument *doc,
 	find_data->not_found_msg = not_found_msg;
 
 	task = g_task_new (doc, cancellable, callback, user_data);
+	g_task_set_return_on_cancel (task, TRUE);
 	g_task_set_task_data (task, find_data, g_free);
 	g_task_run_in_thread (task, hex_document_find_forward_thread);
-	g_object_unref (task);	/* _run_in_thread takes a ref */
 }
 
 gboolean
@@ -905,9 +905,9 @@ hex_document_find_backward_async (HexDocument *doc,
 	find_data->not_found_msg = not_found_msg;
 
 	task = g_task_new (doc, cancellable, callback, user_data);
+	g_task_set_return_on_cancel (task, TRUE);
 	g_task_set_task_data (task, find_data, g_free);
 	g_task_run_in_thread (task, hex_document_find_backward_thread);
-	g_object_unref (task);	/* _run_in_thread takes a ref */
 }
 
 gboolean

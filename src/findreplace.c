@@ -70,6 +70,7 @@ typedef struct {
 	GtkWidget *f_next, *f_prev, *f_clear;
 	GtkWidget *close;
 	gboolean found;
+	GCancellable *cancellable;
 
 } FindDialogPrivate;
 
@@ -111,7 +112,8 @@ static void replace_all_cb (GtkButton *button, gpointer user_data);
 static void replace_clear_cb (GtkButton *button, gpointer user_data);
 static void goto_byte_cb (GtkButton *button, gpointer user_data);
 static gint64 get_search_string (HexDocument *doc, gchar **str);
-
+static void pane_dialog_update_busy_state (PaneDialog *self);
+static void mark_gh_busy (GtkHex *gh, gboolean busy);
 
 static GtkWidget *
 create_hex_view (HexDocument *doc)
@@ -157,6 +159,15 @@ pane_dialog_real_close (PaneDialog *self)
 }
 
 static void
+find_cancel_cb (GtkButton *button, gpointer user_data)
+{
+	FindDialog *self = FIND_DIALOG(user_data);
+	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
+
+	g_cancellable_cancel (f_priv->cancellable);
+}
+
+static void
 common_cancel_cb (GtkButton *button, gpointer user_data)
 {
 	PaneDialog *self = PANE_DIALOG(user_data);
@@ -178,6 +189,37 @@ no_string_dialog (GtkWindow *parent)
 }
 
 static void
+set_watch_cursor (GtkWidget *widget, gboolean enabled)
+{
+  if (enabled)
+  {
+    gtk_widget_set_cursor_from_name (widget, "watch");
+  }
+  else
+  {
+    gtk_widget_set_cursor (widget, NULL);
+  }
+}
+
+static void
+mark_gh_busy (GtkHex *gh, gboolean busy)
+{
+	set_watch_cursor (GTK_WIDGET(gh), busy);
+	g_object_set_data (G_OBJECT(gh), "busy", GINT_TO_POINTER(busy));
+}
+
+static gboolean
+gh_is_busy (GtkHex *gh)
+{
+	gpointer data = g_object_get_data (G_OBJECT(gh), "busy");
+
+	if (data)
+		return GPOINTER_TO_INT (data);
+	else
+		return FALSE;
+}
+
+static void
 find_ready_cb (GObject *source_object,
                         GAsyncResult *res,
                         gpointer user_data)
@@ -190,6 +232,14 @@ find_ready_cb (GObject *source_object,
 	GtkWindow *parent = GTK_WINDOW(gtk_widget_get_native (GTK_WIDGET(self)));
 
 	find_data = hex_document_find_finish (doc, res);
+
+	/* Typically this will be due to a cancellation - could theoretically be
+	 * an error, but not much we can do to report a search error anyway.
+	 */
+	if (! find_data)
+		goto out;
+
+	g_object_unref (res);
 
 	if (find_data->found)
 	{
@@ -214,6 +264,10 @@ find_ready_cb (GObject *source_object,
 
 		f_priv->found = FALSE;
 	}
+
+out:
+	mark_gh_busy (priv->gh, FALSE);
+	pane_dialog_update_busy_state (PANE_DIALOG(self));
 }
 
 static void
@@ -253,6 +307,7 @@ find_common (FindDialog *self, enum FindDirection direction,
 	
 	if (direction == FIND_FORWARD)
 	{
+		g_cancellable_reset (f_priv->cancellable);
 		hex_document_find_forward_async (doc,
 				f_priv->found == FALSE ? cursor_pos : cursor_pos + 1,
 				str,
@@ -260,7 +315,7 @@ find_common (FindDialog *self, enum FindDirection direction,
 				&offset,
 				found_msg,
 				not_found_msg,
-				NULL,	/* cancellable */
+				f_priv->cancellable,
 				find_ready_cb,
 				self);
 	}
@@ -278,43 +333,8 @@ find_common (FindDialog *self, enum FindDirection direction,
 				self);
 	}
 
-
-#if 0
-	if (direction == FIND_FORWARD 
-		?
-			hex_document_find_forward (doc,
-				found == FALSE ? cursor_pos : cursor_pos + 1,
-				str, str_len, &offset)
-			
-		:
-			hex_document_find_backward (doc,
-				cursor_pos, str, str_len, &offset)
-			)
-#endif
-
-#if 0
-	{
-		found = TRUE;
-		gtk_hex_set_cursor (priv->gh, offset);
-
-		/* If string found, insert auto-highlights of search string */
-
-		if (priv->auto_highlight)
-			gtk_hex_delete_autohighlight (priv->gh, priv->auto_highlight);
-
-		priv->auto_highlight = NULL;
-		priv->auto_highlight = gtk_hex_insert_autohighlight (priv->gh,
-				str, str_len);
-
-		gtk_widget_grab_focus (GTK_WIDGET(priv->gh));
-	}
-	else
-	{
-		display_info_dialog (parent, found ? found_msg : not_found_msg);
-
-		found = FALSE;
-	}
-#endif
+	mark_gh_busy (priv->gh, TRUE);
+	pane_dialog_update_busy_state (PANE_DIALOG(self));
 }
 
 static void
@@ -718,13 +738,31 @@ pane_dialog_class_init (PaneDialogClass *klass)
 					  G_TYPE_NONE, 0);
 }
 
+/* Helper */
+static void
+pane_dialog_update_busy_state (PaneDialog *self)
+{
+	PaneDialogPrivate *priv = pane_dialog_get_instance_private (self);
+
+	if (FIND_IS_DIALOG (self))
+	{
+		FindDialogPrivate *f_priv;
+		gboolean busy;
+
+		f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
+		busy = gh_is_busy (priv->gh);
+		gtk_widget_set_sensitive (f_priv->f_next, !busy);
+		gtk_widget_set_sensitive (f_priv->f_prev, !busy);
+	}
+}
+
 void
 pane_dialog_set_hex (PaneDialog *self, GtkHex *gh)
 {
 	PaneDialogPrivate *priv;
 
-	g_return_if_fail (PANE_IS_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (PANE_IS_DIALOG (self));
+	g_return_if_fail (GTK_IS_HEX (gh));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 
@@ -735,6 +773,8 @@ pane_dialog_set_hex (PaneDialog *self, GtkHex *gh)
 	priv->auto_highlight = NULL;
 
 	priv->gh = gh;
+
+	pane_dialog_update_busy_state (self);
 }
 
 void
@@ -742,9 +782,7 @@ pane_dialog_close (PaneDialog *self)
 {
 	g_return_if_fail (PANE_IS_DIALOG (self));
 
-	g_signal_emit(self,
-			signals[CLOSED],
-			0);	/* GQuark detail (just set to 0 if unknown) */
+	g_signal_emit(self, signals[CLOSED], 0);
 }
 
 /* FindDialog */
@@ -753,6 +791,8 @@ static void
 find_dialog_init (FindDialog *self)
 {
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
+
+	f_priv->cancellable = g_cancellable_new ();
 
 	/* Setup our root container. */
 	f_priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
@@ -805,6 +845,8 @@ find_dialog_init (FindDialog *self)
 	gtk_widget_set_halign (f_priv->close, GTK_ALIGN_END);
 	g_signal_connect (G_OBJECT (f_priv->close), "clicked",
 			G_CALLBACK(common_cancel_cb), self);
+	g_signal_connect (G_OBJECT (f_priv->close), "clicked",
+			G_CALLBACK(find_cancel_cb), self);
 	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->close);
 	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->close),
 			GTK_ACCESSIBLE_PROPERTY_LABEL,
@@ -829,11 +871,12 @@ find_dialog_grab_focus (GtkWidget *widget)
 }
 
 static void
-find_dialog_dispose(GObject *object)
+find_dialog_dispose (GObject *object)
 {
 	FindDialog *self = FIND_DIALOG(object);
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
 
+	g_clear_object (&f_priv->cancellable);
 	g_clear_pointer (&f_priv->vbox, gtk_widget_unparent);
 
 	/* Boilerplate: chain up
