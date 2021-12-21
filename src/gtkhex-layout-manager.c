@@ -24,10 +24,7 @@
 
 #include "gtkhex-layout-manager.h"
 
-/* The CPL of the offsets column is constant; easier to just punch it in here
- * than to use config.h. Don't change unless you change code in gtkhex.c as well.
- */
-#define OFFSETS_CPL		8
+#define DEFAULT_OFFSET_CPL	8
 
 struct _GtkHexLayout {
 	GtkLayoutManager parent_instance;
@@ -37,6 +34,7 @@ struct _GtkHexLayout {
 
 	int cpl;
 	int hex_cpl;
+	int offset_cpl;
 
 	int cursor_x, cursor_y;
 };
@@ -259,28 +257,7 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 				break;
 			case SCROLLBAR_COLUMN:	scrollbar = child;
 				break;
-
 			case NO_COLUMN:
-			{
-#if 0
-				GtkRequisition child_req;
-				GtkAllocation alloc = {0};
-
-				gtk_widget_get_preferred_size (child, &child_req, NULL);
-
-				alloc.height = child_req.height;
-				alloc.width = child_req.width;
-
-				if (GTK_IS_POPOVER (child))
-				{
-					alloc.x = self->cursor_x;
-					alloc.y = self->cursor_y;
-				}
-
-				gtk_widget_size_allocate (child, &alloc, -1);
-				return;
-#endif
-			}
 				break;
 
 				/* We won't test for this each loop. */
@@ -306,7 +283,7 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 		/* nb: offsets always goes at x coordinate 0 so just leave it as it's
 		 * zeroed out anyway. */
 
-		off_alloc.width = OFFSETS_CPL * self->char_width +
+		off_alloc.width = self->offset_cpl * self->char_width +
 			margins.left + margins.right +
 			padding.left + padding.right +
 			borders.left + borders.right;
@@ -467,6 +444,7 @@ gtk_hex_layout_class_init (GtkHexLayoutClass *klass)
 static void
 gtk_hex_layout_init (GtkHexLayout *self)
 {
+	self->offset_cpl = DEFAULT_OFFSET_CPL;
 	/* FIXME - dumb test initial default */
 	self->char_width = 20;
 	self->group_type = GTK_HEX_GROUP_BYTE;
@@ -514,6 +492,18 @@ gtk_hex_layout_set_cursor_pos (GtkHexLayout *layout, int x, int y)
 {
 	layout->cursor_x = x;
 	layout->cursor_y = y;
+}
+
+void
+gtk_hex_layout_set_offset_cpl (GtkHexLayout *layout, int offset_cpl)
+{
+	layout->offset_cpl = offset_cpl;
+}
+
+int
+gtk_hex_layout_get_offset_cpl (GtkHexLayout *layout)
+{
+	return layout->offset_cpl;
 }
 
 /* GtkHexLayoutChild - Public Methods */

@@ -61,6 +61,9 @@ void				gtk_hex_layout_set_group_type (GtkHexLayout *layout,
 						GtkHexGroupType group_type);
 void				gtk_hex_layout_set_cursor_pos (GtkHexLayout *layout,
 						int x, int y);
+void				gtk_hex_layout_set_offset_cpl (GtkHexLayout *layout,
+						int offset_cpl);
+int					gtk_hex_layout_get_offset_cpl (GtkHexLayout *layout);
 
 G_END_DECLS
 

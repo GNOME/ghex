@@ -1058,6 +1058,8 @@ no_more_lines_to_draw:
 }
 #undef DO_RENDER_CURSOR
 
+#define BUFLEN	32
+#define MIN_CPL	8
 static void
 render_offsets (GtkHex *gh,
                 cairo_t *cr,
@@ -1068,8 +1070,10 @@ render_offsets (GtkHex *gh,
 	GdkRGBA fg_color;
 	GtkAllocation allocation;
 	GtkStyleContext *context;
-	/* offset chars (8) + 1 (null terminator) */
-	char offstr[9];
+	char buf[BUFLEN] = {0};
+	char fmt[BUFLEN] = {0};
+	char off_str[BUFLEN];
+	int off_cpl;
 
 	g_return_if_fail (gtk_widget_get_realized (GTK_WIDGET (gh)));
 
@@ -1087,19 +1091,29 @@ render_offsets (GtkHex *gh,
 	max_lines = MIN(max_lines, gh->vis_lines);
 	max_lines = MIN(max_lines, gh->lines - gh->top_line - 1);
 
+	/* find out how many chars wide our offset column should be based on
+	 * how many chars will be in the last offset marker of the screen */
+	
+	snprintf (buf, BUFLEN-1, "%lX", (gh->top_line + max_lines - 1) * gh->cpl);
+	off_cpl = MAX (MIN_CPL, strlen (buf));
+	snprintf (fmt, BUFLEN-1, "%%0%dlX", off_cpl); 
+	gtk_hex_layout_set_offset_cpl (GTK_HEX_LAYOUT(gh->layout_manager), off_cpl);
+
 	for (int i = min_lines; i <= max_lines; i++) {
 		/* generate offset string and place in temporary buffer */
-		sprintf(offstr, "%08lX",
+		sprintf(off_str, fmt,
 				(gh->top_line + i) * gh->cpl + STARTING_OFFSET);
 
 		/* build pango layout for offset line; draw line with gtk. */
-		pango_layout_set_text (gh->olayout, offstr, 8);
+		pango_layout_set_text (gh->olayout, off_str, off_cpl);
 		gtk_render_layout (context, cr,
 				/* x: */ 0,
 				/* y: */ i * gh->char_height,
 				gh->olayout);
 	}
 }
+#undef BUFLEN
+#undef MIN_CPL
 
 /* draw_func for the hex drawing area
  */
