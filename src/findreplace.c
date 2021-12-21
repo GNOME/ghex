@@ -308,7 +308,8 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	gint64 cursor_pos;
 	GtkEntry *entry;
 	GtkEntryBuffer *buffer;
-	int byte = 2, len, i;
+	gint64 byte = 2;
+	int len, i;
 	int is_relative = 0;
 	gboolean is_hex;
 	const gchar *byte_str;
@@ -367,8 +368,8 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	}
 
 	if((i == len) &&
-	   ((sscanf(byte_str, "0x%x", &byte) == 1) ||
-		(sscanf(byte_str, "%d", &byte) == 1))) {
+	   ((sscanf(byte_str, "0x%lx", &byte) == 1) ||
+		(sscanf(byte_str, "%ld", &byte) == 1))) {
 		if(is_relative) {
 			if(is_relative == -1 && byte > cursor_pos) {
 				display_error_dialog(parent,
