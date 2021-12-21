@@ -509,7 +509,7 @@ get_xcoords (GtkHex *gh, gint64 pos, int *x, int *y)
 	/* nb: Having this as an assertion warning is annoying. Happens a lot
 	 * in that case if you scroll way up/down in a big file and suddenly start
 	 * dragging. */
-	if (cx + spaces < INT_MAX && cy < INT_MAX)
+	if (cx + spaces > INT_MAX && cy > INT_MAX)
 		return FALSE;
 
 	*x = cx + spaces;
@@ -538,7 +538,7 @@ get_acoords (GtkHex *gh, gint64 pos, int *x, int *y)
 	/* nb: Having this as an assertion warning is annoying. Happens a lot
 	 * in that case if you scroll way up/down in a big file and suddenly start
 	 * dragging. */
-	if (cy < INT_MAX && cx < INT_MAX)
+	if (cy > INT_MAX && cx > INT_MAX)
 		return FALSE;
 
 	*x = cx;
@@ -550,28 +550,28 @@ get_acoords (GtkHex *gh, gint64 pos, int *x, int *y)
 static void
 invalidate_xc (GtkHex *gh)
 {
-    GtkWidget *widget = gh->xdisp;
-    int cx, cy;
+	GtkWidget *widget = gh->xdisp;
+	int cx, cy;
 
-    if (get_xcoords (gh, gh->cursor_pos, &cx, &cy))
+	if (get_xcoords (gh, gh->cursor_pos, &cx, &cy))
 	{
-        if (gh->lower_nibble)
-            cx += gh->char_width;
+		if (gh->lower_nibble)
+			cx += gh->char_width;
 
 		gtk_widget_queue_draw (widget);
-    }
+	}
 }
 
 static void
 invalidate_ac (GtkHex *gh)
 {
-    GtkWidget *widget = gh->adisp;
-    int cx, cy;
+	GtkWidget *widget = gh->adisp;
+	int cx, cy;
 
-    if (get_acoords (gh, gh->cursor_pos, &cx, &cy))
+	if (get_acoords (gh, gh->cursor_pos, &cx, &cy))
 	{
 		gtk_widget_queue_draw (widget);
-    }
+	}
 }
 
 static void
