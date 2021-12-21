@@ -50,6 +50,17 @@ typedef enum
 	HEX_CHANGE_BYTE
 } HexChangeType;
 
+typedef struct
+{
+	gboolean found;
+	gint64 start;
+	char *what;
+	size_t len;
+	gint64 offset;
+	const char *found_msg;
+	const char *not_found_msg;
+} HexDocumentFindData;
+
 typedef struct _HexChangeData HexChangeData;
 struct _HexChangeData
 {
@@ -75,7 +86,7 @@ void		hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
 		gboolean lower_nibble, gboolean insert, gboolean undoable);
 void		hex_document_delete_data (HexDocument *doc, gint64 offset, 
 		size_t len, gboolean undoable);
-//void		hex_document_read (HexDocument *doc);
+/* TODO - Reimplement  void		hex_document_read (HexDocument *doc); */
 
 void	hex_document_read_async (HexDocument *doc, GCancellable *cancellable,
 		GAsyncReadyCallback callback, gpointer user_data);
@@ -96,9 +107,23 @@ gboolean	hex_document_redo (HexDocument *doc);
 int			hex_document_compare_data (HexDocument *doc, char *what,
 		gint64 pos, size_t len);
 gboolean	hex_document_find_forward (HexDocument *doc, gint64 start,
-		char *what, size_t len, gint64 *found);
+		char *what, size_t len, gint64 *offset);
+
+void	hex_document_find_forward_async (HexDocument *doc, gint64 start,
+		char *what, size_t len, gint64 *offset, const char *found_msg,
+		const char *not_found_msg, GCancellable *cancellable,
+		GAsyncReadyCallback callback, gpointer user_data);
+
 gboolean	hex_document_find_backward (HexDocument *doc, gint64 start,
-		char *what, size_t len, gint64 *found);
+		char *what, size_t len, gint64 *offset);
+void		hex_document_find_backward_async (HexDocument *doc, gint64 start,
+		char *what, size_t len, gint64 *offset, const char *found_msg,
+		const char *not_found_msg, GCancellable *cancellable,
+		GAsyncReadyCallback callback, gpointer user_data);
+
+HexDocumentFindData *
+hex_document_find_finish (HexDocument *doc, GAsyncResult *result);
+
 gboolean	hex_document_can_undo (HexDocument *doc);
 gboolean	hex_document_can_redo (HexDocument *doc);
 gint64		hex_document_get_file_size (HexDocument *doc);

@@ -69,6 +69,7 @@ typedef struct {
 	GtkWidget *hbox;
 	GtkWidget *f_next, *f_prev, *f_clear;
 	GtkWidget *close;
+	gboolean found;
 
 } FindDialogPrivate;
 
@@ -177,6 +178,45 @@ no_string_dialog (GtkWindow *parent)
 }
 
 static void
+find_ready_cb (GObject *source_object,
+                        GAsyncResult *res,
+                        gpointer user_data)
+{
+	HexDocument *doc = HEX_DOCUMENT (source_object);
+	FindDialog *self = FIND_DIALOG (user_data);
+	HexDocumentFindData *find_data;
+	PaneDialogPrivate *priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
+	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
+	GtkWindow *parent = GTK_WINDOW(gtk_widget_get_native (GTK_WIDGET(self)));
+
+	find_data = hex_document_find_finish (doc, res);
+
+	if (find_data->found)
+	{
+		f_priv->found = TRUE;
+		gtk_hex_set_cursor (priv->gh, find_data->offset);
+
+		/* If string found, insert auto-highlights of search string */
+
+		if (priv->auto_highlight)
+			gtk_hex_delete_autohighlight (priv->gh, priv->auto_highlight);
+
+		priv->auto_highlight = NULL;
+		priv->auto_highlight = gtk_hex_insert_autohighlight (priv->gh,
+				find_data->what, find_data->len);
+
+		gtk_widget_grab_focus (GTK_WIDGET(priv->gh));
+	}
+	else
+	{
+		display_info_dialog (parent,
+			f_priv->found ? find_data->found_msg : find_data->not_found_msg);
+
+		f_priv->found = FALSE;
+	}
+}
+
+static void
 find_common (FindDialog *self, enum FindDirection direction,
 		const char *found_msg, const char *not_found_msg)
 {
@@ -189,7 +229,6 @@ find_common (FindDialog *self, enum FindDirection direction,
 	gint64 str_len;
 	gint64 offset;
 	char *str;
-	static gboolean found = FALSE;
 	
 	g_return_if_fail (FIND_IS_DIALOG(self));
 
@@ -212,6 +251,35 @@ find_common (FindDialog *self, enum FindDirection direction,
 
 	/* Search for requested string */
 	
+	if (direction == FIND_FORWARD)
+	{
+		hex_document_find_forward_async (doc,
+				f_priv->found == FALSE ? cursor_pos : cursor_pos + 1,
+				str,
+				str_len,
+				&offset,
+				found_msg,
+				not_found_msg,
+				NULL,	/* cancellable */
+				find_ready_cb,
+				self);
+	}
+	else	/* FIND_BACKWARD */
+	{
+		hex_document_find_backward_async (doc,
+				cursor_pos,
+				str,
+				str_len,
+				&offset,
+				found_msg,
+				not_found_msg,
+				NULL,
+				find_ready_cb,
+				self);
+	}
+
+
+#if 0
 	if (direction == FIND_FORWARD 
 		?
 			hex_document_find_forward (doc,
@@ -222,6 +290,9 @@ find_common (FindDialog *self, enum FindDirection direction,
 			hex_document_find_backward (doc,
 				cursor_pos, str, str_len, &offset)
 			)
+#endif
+
+#if 0
 	{
 		found = TRUE;
 		gtk_hex_set_cursor (priv->gh, offset);
@@ -243,6 +314,7 @@ find_common (FindDialog *self, enum FindDirection direction,
 
 		found = FALSE;
 	}
+#endif
 }
 
 static void

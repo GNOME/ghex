@@ -77,7 +77,6 @@ enum {
 
 static guint hex_signals[LAST_SIGNAL];
 
-
 /* GOBJECT DEFINITION */
 
 struct _HexDocument
@@ -776,7 +775,7 @@ hex_document_compare_data (HexDocument *doc,
 
 gboolean
 hex_document_find_forward (HexDocument *doc, gint64 start, char *what,
-						  size_t len, gint64 *found)
+						  size_t len, gint64 *offset)
 {
 	gint64 pos;
 	gint64 payload = hex_buffer_get_payload_size (
@@ -787,7 +786,7 @@ hex_document_find_forward (HexDocument *doc, gint64 start, char *what,
 	{
 		if (hex_document_compare_data (doc, what, pos, len) == 0)
 		{
-			*found = pos;
+			*offset = pos;
 			return TRUE;
 		}
 		pos++;
@@ -796,9 +795,61 @@ hex_document_find_forward (HexDocument *doc, gint64 start, char *what,
 	return FALSE;
 }
 
+HexDocumentFindData *
+hex_document_find_finish (HexDocument *doc,
+		GAsyncResult *result)
+{
+	g_return_val_if_fail (g_task_is_valid (result, G_OBJECT(doc)), FALSE);
+
+	return g_task_propagate_pointer (G_TASK(result), NULL);
+}
+
+static void
+hex_document_find_forward_thread (GTask *task,
+		gpointer source_object,
+		gpointer task_data,
+		GCancellable *cancellable)
+{
+	HexDocument *doc = HEX_DOCUMENT (source_object);
+	HexDocumentFindData *find_data = task_data;
+
+	find_data->found = hex_document_find_forward (doc,
+			find_data->start, find_data->what,
+			find_data->len, &find_data->offset);
+
+	g_task_return_pointer (task, find_data, g_free);
+}
+
+void
+hex_document_find_forward_async (HexDocument *doc,
+		gint64 start,
+		char *what,
+		size_t len,
+		gint64 *offset,
+		const char *found_msg,
+		const char *not_found_msg,
+		GCancellable *cancellable,
+		GAsyncReadyCallback callback,
+		gpointer user_data)
+{
+	GTask *task;
+	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1);
+
+	find_data->start = start;
+	find_data->what = what;
+	find_data->len = len;
+	find_data->found_msg = found_msg;
+	find_data->not_found_msg = not_found_msg;
+
+	task = g_task_new (doc, cancellable, callback, user_data);
+	g_task_set_task_data (task, find_data, g_free);
+	g_task_run_in_thread (task, hex_document_find_forward_thread);
+	g_object_unref (task);	/* _run_in_thread takes a ref */
+}
+
 gboolean
 hex_document_find_backward (HexDocument *doc, gint64 start, char *what,
-						   size_t len, gint64 *found)
+						   size_t len, gint64 *offset)
 {
 	gint64 pos = start;
 	
@@ -808,12 +859,55 @@ hex_document_find_backward (HexDocument *doc, gint64 start, char *what,
 	do {
 		pos--;
 		if (hex_document_compare_data (doc, what, pos, len) == 0) {
-			*found = pos;
+			*offset = pos;
 			return TRUE;
 		}
 	} while (pos > 0);
 
 	return FALSE;
+}
+
+static void
+hex_document_find_backward_thread (GTask *task,
+		gpointer source_object,
+		gpointer task_data,
+		GCancellable *cancellable)
+{
+	HexDocument *doc = HEX_DOCUMENT (source_object);
+	HexDocumentFindData *find_data = task_data;
+
+	find_data->found = hex_document_find_backward (doc,
+			find_data->start, find_data->what,
+			find_data->len, &find_data->offset);
+
+	g_task_return_pointer (task, find_data, g_free);
+}
+
+void
+hex_document_find_backward_async (HexDocument *doc,
+		gint64 start,
+		char *what,
+		size_t len,
+		gint64 *offset,
+		const char *found_msg,
+		const char *not_found_msg,
+		GCancellable *cancellable,
+		GAsyncReadyCallback callback,
+		gpointer user_data)
+{
+	GTask *task;
+	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1);
+
+	find_data->start = start;
+	find_data->what = what;
+	find_data->len = len;
+	find_data->found_msg = found_msg;
+	find_data->not_found_msg = not_found_msg;
+
+	task = g_task_new (doc, cancellable, callback, user_data);
+	g_task_set_task_data (task, find_data, g_free);
+	g_task_run_in_thread (task, hex_document_find_backward_thread);
+	g_object_unref (task);	/* _run_in_thread takes a ref */
 }
 
 gboolean
