@@ -32,7 +32,6 @@
 
 /* DEFINES */
 
-#define offset_fmt	"0x%X"
 #define ACTIVE_GH	\
 	(ghex_application_window_get_hex (self))
 
@@ -1346,55 +1345,35 @@ clear_statusbar (GHexApplicationWindow *self)
 	set_statusbar (self, " ");
 }
 
-/* FIXME: This is one of the few functions lifted from the old 'ghex-window.c'.
- * I don't care for the pragmas, etc., so this could be a good candidate for a
- * possible future rewrite.
- */
-#define FMT_LEN    128
-#define STATUS_LEN 128
-
 static void
 update_status_message (GHexApplicationWindow *self)
 {
-	char fmt[FMT_LEN], status[STATUS_LEN];
+	char *status = NULL;
 	gint64 current_pos, ss, se;
 	int len;
 
 	if (! ACTIVE_GH)
+		goto out;
+
+	current_pos = gtk_hex_get_cursor (ACTIVE_GH);
+
+	if (gtk_hex_get_selection (ACTIVE_GH, &ss, &se))
 	{
-		clear_statusbar (self);
-		return;
+		status = g_strdup_printf (
+				_("Offset: 0x%lX; 0x%lX bytes from 0x%lX to 0x%lX selected"),
+				current_pos, se - ss + 1, ss, se);
+	}
+	else {
+		status = g_strdup_printf (_("Offset: 0x%lX"), current_pos);
 	}
 
-#if defined(__GNUC__) && (__GNUC__ > 4)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wformat-nonliteral"
-#endif
-	current_pos = gtk_hex_get_cursor (ACTIVE_GH);
-	if (g_snprintf(fmt, FMT_LEN, _("Offset: %s"), offset_fmt) < FMT_LEN) {
-		g_snprintf(status, STATUS_LEN, fmt, current_pos);
-		if (gtk_hex_get_selection (ACTIVE_GH, &ss, &se)) {
-			if (g_snprintf(fmt, FMT_LEN, _("; %s bytes from %s to %s selected"),
-						offset_fmt, offset_fmt, offset_fmt) < FMT_LEN) {
-				len = strlen(status);
-				if (len < STATUS_LEN) {
-					/* Variables 'ss' and 'se' denotes the offsets of the first
-					 * and the last bytes that are part of the selection. */
-					g_snprintf(status + len, STATUS_LEN - len, fmt, se - ss +
-					1, ss, se);
-				}
-			}
-		}
-#if defined(__GNUC__) && (__GNUC__ > 4)
-#pragma GCC diagnostic pop
-#endif
-		set_statusbar(self, status);
-	}
-	else
-		clear_statusbar (self);
+	set_statusbar (self, status);
+	g_free (status);
+	return;
+	
+out:
+	clear_statusbar (self);
 }
-#undef FMT_LEN
-#undef STATUS_LEN
 
 
 /* PROPERTIES */
