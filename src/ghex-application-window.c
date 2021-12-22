@@ -35,7 +35,7 @@
 #define ACTIVE_GH	\
 	(ghex_application_window_get_hex (self))
 
-#ifndef EXPERIMENTAL_MMAP
+#ifndef BACKEND_MMAP
 static GFile *tmp_global_gfile_for_nag_screen;
 #endif
 
@@ -1978,7 +1978,7 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 			G_CALLBACK(file_saved_cb), self);
 }
 
-#ifndef EXPERIMENTAL_MMAP
+#ifndef BACKEND_MMAP
 /* Helper */
 static void
 nag_screen_response_cb (GtkDialog *nag_screen,
@@ -2072,13 +2072,13 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 {
 	HexDocument *doc;
 	GtkHex *gh = NULL;
-#ifndef EXPERIMENTAL_MMAP
+#ifndef BACKEND_MMAP
 	static gboolean nag_screen_shown = FALSE;
 #endif
 
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW(self));
 
-#ifndef EXPERIMENTAL_MMAP
+#ifndef BACKEND_MMAP
 	if (! nag_screen_shown)
 		/* FIXME: Temporary nag-screen until we get the underlying issues
 		 * sorted. */
