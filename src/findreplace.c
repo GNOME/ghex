@@ -191,14 +191,14 @@ no_string_dialog (GtkWindow *parent)
 static void
 set_watch_cursor (GtkWidget *widget, gboolean enabled)
 {
-  if (enabled)
-  {
-    gtk_widget_set_cursor_from_name (widget, "watch");
-  }
-  else
-  {
-    gtk_widget_set_cursor (widget, NULL);
-  }
+	if (enabled)
+	{
+		gtk_widget_set_cursor_from_name (widget, "watch");
+	}
+	else
+	{
+		gtk_widget_set_cursor (widget, NULL);
+	}
 }
 
 static void

@@ -69,6 +69,7 @@ enum {
 	UNDO_STACK_FORGET,
 	FILE_NAME_CHANGED,
 	FILE_SAVED,
+	FILE_READ_STARTED,
 	FILE_LOADED,
 	LAST_SIGNAL
 };
@@ -275,6 +276,15 @@ hex_document_class_init (HexDocumentClass *klass)
 
 	hex_signals[FILE_SAVED] =
 		g_signal_new_class_handler ("file-saved",
+				G_OBJECT_CLASS_TYPE (gobject_class),
+				G_SIGNAL_RUN_FIRST,
+				NULL,
+				NULL, NULL, NULL,
+				G_TYPE_NONE,
+				0);
+
+	hex_signals[FILE_READ_STARTED] =
+		g_signal_new_class_handler ("file-read-started",
 				G_OBJECT_CLASS_TYPE (gobject_class),
 				G_SIGNAL_RUN_FIRST,
 				NULL,
@@ -529,6 +539,7 @@ hex_document_read_async (HexDocument *doc,
 
 	/* Read the actual file on disk into the buffer */
 	hex_buffer_read_async (doc->buffer, NULL, document_ready_cb, task);
+	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_READ_STARTED], 0);
 }
 
 gboolean

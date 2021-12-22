@@ -204,6 +204,7 @@ gtk_hex_layout_measure (GtkLayoutManager *layout_manager,
 		*natural = natural_size;
 }
 
+#define BASE_ALLOC {.x = 0, .y = 0, .width = 0, .height = full_height}
 static void
 gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 		GtkWidget        *widget,
@@ -215,12 +216,10 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 	GtkWidget *child;
 	gboolean have_hex = FALSE;
 	gboolean have_ascii = FALSE;
-#define BASE_ALLOC {.x = 0, .y = 0, .width = 0, .height = full_height}
 	GtkAllocation off_alloc = BASE_ALLOC;
 	GtkAllocation hex_alloc = BASE_ALLOC;
 	GtkAllocation asc_alloc = BASE_ALLOC;
 	GtkAllocation sbar_alloc = BASE_ALLOC;
-#undef BASE_ALLOC
 
 	int avail_width = full_width;
 	GtkWidget *hex = NULL, *ascii = NULL, *offsets = NULL, *scrollbar = NULL;
@@ -257,7 +256,23 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 				break;
 			case SCROLLBAR_COLUMN:	scrollbar = child;
 				break;
+
 			case NO_COLUMN:
+			{
+				GtkRequisition child_req = {0};
+				GtkAllocation alloc = BASE_ALLOC;
+
+				/* just position the widget in the centre at its preferred
+				 * size. TODO: check v/halign and v/hexand
+				 */
+				gtk_widget_get_preferred_size (child, &child_req, NULL);
+				alloc.width = child_req.width;
+				alloc.height = child_req.height;
+				alloc.x = (full_width / 2) - (alloc.width / 2);
+				alloc.y = (full_height / 2) - (alloc.height / 2);
+				gtk_widget_size_allocate (child, &alloc, -1);
+				return;
+			}
 				break;
 
 				/* We won't test for this each loop. */
@@ -408,6 +423,7 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 	if (ascii)
 		gtk_widget_size_allocate (ascii, &asc_alloc, -1);
 }
+#undef BASE_ALLOC
 
 static GtkSizeRequestMode
 gtk_hex_layout_get_request_mode (GtkLayoutManager *layout_manager,

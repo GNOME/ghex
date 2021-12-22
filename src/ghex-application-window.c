@@ -70,7 +70,6 @@ struct _GHexApplicationWindow
 
 	/* From GtkBuilder: */
 	GtkWidget *no_doc_label;
-	GtkWidget *doc_loading_spinner;
 	GtkWidget *hex_notebook;
 	GtkWidget *conversions_box;
 	GtkWidget *findreplace_box;
@@ -596,7 +595,7 @@ close_tab_shortcut_cb (GtkWidget *widget,
 
 	g_return_val_if_fail (GHEX_IS_NOTEBOOK_TAB (tab), FALSE);
 
-	g_signal_emit_by_name (tab, "closed");
+	g_signal_emit_by_name (tab, "close-request");
 
 	return TRUE;
 }
@@ -665,7 +664,6 @@ assess_can_save (HexDocument *doc)
 static void
 show_hex_notebook (GHexApplicationWindow *self)
 {
-	gtk_widget_hide (self->doc_loading_spinner);
 	gtk_widget_hide (self->no_doc_label);
 	gtk_widget_show (self->hex_notebook);
 }
@@ -674,16 +672,7 @@ static void
 show_no_file_loaded_label (GHexApplicationWindow *self)
 {
 	gtk_widget_hide (self->hex_notebook);
-	gtk_widget_hide (self->doc_loading_spinner);
 	gtk_widget_show (self->no_doc_label);
-}
-
-static void
-show_doc_loading_spinner (GHexApplicationWindow *self)
-{
-	gtk_widget_hide (self->no_doc_label);
-	gtk_widget_hide (self->hex_notebook);
-	gtk_widget_show (self->doc_loading_spinner);
 }
 
 static void
@@ -717,7 +706,6 @@ file_loaded (HexDocument *doc, GHexApplicationWindow *self)
 {
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
 	
-	show_hex_notebook (self);
 	document_loaded_or_saved_common (self, doc);
 	update_gui_data (self);
 }
@@ -1081,7 +1069,6 @@ save_as_response_cb (GtkNativeDialog *dialog,
 
 	if (hex_document_set_file (doc, gfile))
 	{
-		show_doc_loading_spinner (self);
 		extra_user_data = ACTIVE_GH;
 		hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 	}
@@ -1150,7 +1137,6 @@ revert_response_cb (GtkDialog *dialog,
 	doc = gtk_hex_get_document (ACTIVE_GH);
 
 	extra_user_data = ACTIVE_GH;
-	show_doc_loading_spinner (self);
 	hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 
 end:
@@ -1508,10 +1494,6 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	GAction *action;
 
 	gtk_widget_init_template (widget);
-
-	/* FIXME - setting this property doesn't seem to work in the UI file?
-	 * acc. to IRC, 2021-Dec -- KNOWN ISSUE w/ GTK. */
-	gtk_spinner_start (GTK_SPINNER(self->doc_loading_spinner));
 
 	/* Cache system default of prefer-dark-mode; gtk does not do this. This
 	 * is run here as it cannot be done until we have a 'screen'. */
@@ -1895,8 +1877,6 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			no_doc_label);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
-			doc_loading_spinner);
-	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			hex_notebook);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			conversions_box);
@@ -1989,6 +1969,8 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 
 	g_signal_connect (doc, "file-saved",
 			G_CALLBACK(file_saved_cb), self);
+
+	show_hex_notebook (self);
 }
 
 #ifndef BACKEND_MMAP
@@ -2129,13 +2111,9 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 
 		return;
 	}
-	/* FIXME - this is kind of cheap and will block all the *other* tabs
-	 * as well, even though there's no need to. But it will do for now.
-	 */
-	show_doc_loading_spinner (self);
 
-	extra_user_data = gh;
 	ghex_application_window_add_hex (self, gh);
+	extra_user_data = gh;
 	hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 }
 

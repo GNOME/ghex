@@ -131,6 +131,8 @@ struct _GtkHex
 	GtkWidget *offsets;			/* DrawingArea */
 	GtkWidget *scrollbar;
 
+	GtkWidget *busy_spinner;
+
 	PangoLayout *xlayout, *alayout, *olayout;
 
 	GtkWidget *context_menu;
@@ -2289,15 +2291,47 @@ gtk_hex_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 }
 
 static void
+set_busy_state (GtkHex *gh, gboolean busy)
+{
+	GtkWidget *widget = GTK_WIDGET(gh);
+
+	if (busy)
+	{
+		gtk_widget_hide (gh->offsets);
+		gtk_widget_hide (gh->xdisp);
+		gtk_widget_hide (gh->adisp);
+		gtk_widget_hide (gh->scrollbar);
+		gtk_widget_show (gh->busy_spinner);
+	}
+	else
+	{
+		gtk_widget_hide (gh->busy_spinner);
+		gtk_widget_set_visible (gh->offsets, gh->show_offsets);
+		gtk_widget_show (gh->xdisp);
+		gtk_widget_show (gh->adisp);
+		gtk_widget_show (gh->scrollbar);
+	}
+}
+
+static void
+file_read_started_cb (HexDocument *doc, gpointer data)
+{
+	GtkHex *gh = GTK_HEX (data);
+
+	set_busy_state (gh, TRUE);
+}
+
+static void
 file_loaded_cb (HexDocument *doc, gpointer data)
 {
 	GtkHex *gh = GTK_HEX(data);
-	g_return_if_fail (GTK_IS_HEX (gh));
 
 	gtk_widget_action_set_enabled (GTK_WIDGET(gh),
 			"gtkhex.undo", hex_document_can_undo (doc));
 	gtk_widget_action_set_enabled (GTK_WIDGET(gh),
 			"gtkhex.redo", hex_document_can_redo (doc));
+
+	set_busy_state (gh, FALSE);
 
 	gtk_widget_queue_draw (GTK_WIDGET(gh));
 }
@@ -2330,6 +2364,7 @@ gtk_hex_dispose (GObject *object)
 	g_clear_pointer (&gh->adisp, gtk_widget_unparent);
 	g_clear_pointer (&gh->offsets, gtk_widget_unparent);
 	g_clear_pointer (&gh->scrollbar, gtk_widget_unparent);
+	g_clear_pointer (&gh->busy_spinner, gtk_widget_unparent);
 
 	/* FIXME - This results in assertion errors upon exit. I have been told
 	 * by ebassi on IRC (16-Dec-2021) that this may be a bug in gtk. See:
@@ -2708,6 +2743,13 @@ gtk_hex_init (GtkHex *gh)
 			(gh->layout_manager, gh->scrollbar));
 	gtk_hex_layout_child_set_column (child_info, SCROLLBAR_COLUMN);
 	
+	/* Setup busy spinner */
+
+	gh->busy_spinner = gtk_spinner_new ();
+	gtk_spinner_start (GTK_SPINNER(gh->busy_spinner));
+	gtk_widget_set_visible (gh->busy_spinner, FALSE);
+	gtk_widget_set_parent (gh->busy_spinner, widget);
+
 	/* SETUP SIGNALS */
 
 	g_signal_connect (widget, "state-flags-changed",
@@ -2832,6 +2874,9 @@ gtk_hex_new (HexDocument *owner)
 	gh->document = owner;
 
 	/* Setup document signals */
+
+    g_signal_connect (G_OBJECT (gh->document), "file-read-started",
+            G_CALLBACK (file_read_started_cb), gh);
 
     g_signal_connect (G_OBJECT (gh->document), "file-loaded",
             G_CALLBACK (file_loaded_cb), gh);
