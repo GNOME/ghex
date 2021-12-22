@@ -33,8 +33,6 @@
 
 #include <stdio.h>
 #include <errno.h>
-#include <unistd.h>
-#include <sys/stat.h>
 
 G_BEGIN_DECLS
 

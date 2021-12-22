@@ -33,18 +33,16 @@
 #include "hex-document.h"
 
 #include <stdio.h>
-#include <unistd.h>
-#include <sys/stat.h>
 #include <string.h>
 
 #include <glib/gi18n.h>
 
 #include <config.h>
 
-/* FIXME / TODO - Allow for swappability. Hardcoding for now for testing
- * purposes. Keep this include below config.h, as it is (un)def'd there.
+/* TODO - Allow for swappability. Compile-time only for now.
+ * Keep this include below config.h, as it is (un)def'd there.
  */
-#ifdef EXPERIMENTAL_MMAP
+#ifdef BACKEND_MMAP
 #  include "hex-buffer-mmap.h"
 #else
 #  include "hex-buffer-malloc.h"
@@ -297,7 +295,7 @@ hex_document_class_init (HexDocumentClass *klass)
 static void
 hex_document_init (HexDocument *doc)
 {
-#ifdef EXPERIMENTAL_MMAP
+#ifdef BACKEND_MMAP
 	doc->buffer = HEX_BUFFER(hex_buffer_mmap_new (NULL));
 #else
 	doc->buffer = HEX_BUFFER(hex_buffer_malloc_new (NULL));

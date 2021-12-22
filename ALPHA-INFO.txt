@@ -73,14 +73,6 @@ Other known issues to be addressed in a future version:
 
    I am told this may be a bug in GTK relating to the context menu.
 
- - Memory-mapping of files instead of reading directly into memory.
-   See:  https://gitlab.gnome.org/GNOME/ghex/-/issues/15
-   I have started work on a memory-mapping backend for the HexBuffer
-   interface. If you want to try hacking it, you can enable it at compile-time
-   with `-Dexperimental-mmap=true`.  Note that it is HIGHLY experimental and
-   unstable at this time.  Do NOT trust your data with it in any way, shape or
-   form! You have been warned.
-
  - Users have requested other features as well. Some will be implemented, some
    will not, and some will be taken under advisement.
    See https://gitlab.gnome.org/GNOME/ghex/-/issues for some discussions.

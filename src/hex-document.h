@@ -33,11 +33,9 @@
 #ifndef HEX_DOCUMENT_H
 #define HEX_DOCUMENT_H
 
-#include <stdio.h>
-
-#include <glib-object.h>
-
 #include <hex-buffer-iface.h>
+#include <stdio.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 

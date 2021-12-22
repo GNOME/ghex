@@ -1,6 +1,6 @@
 project(
   'ghex', 'c',
-  version: '4.alpha.1',
+  version: '4.alpha.2',
   meson_version: '>=0.53.0',
   license: 'GPL2'
 )
@@ -35,7 +35,8 @@ ghex_po_dir = join_paths(meson.source_root(), 'po')
 # warning cflags
 warning_cflags = [
   '-Wno-unused-variable',
-  '-Wno-unused-parameter'
+  '-Wno-unused-parameter',
+  '-Werror=implicit'
 ]
 c_compiler = meson.get_compiler('c')
 supported_warning_cflags = c_compiler.get_supported_arguments(warning_cflags)
@@ -47,7 +48,7 @@ i18n = import('i18n')
 cc = meson.get_compiler('c')
 
 # nb: this option will likely be removed in a future release
-experimental_mmap = get_option('experimental-mmap')
+buffer_backend = get_option('buffer-backend')
 
 # just to avoid manually punching it into the XML files as well as the source.
 shaded_box_max = 1000
@@ -67,7 +68,10 @@ config_h.set('GETTEXT_PACKAGE', 'PACKAGE_NAME')
 config_h.set('LOCALEDIR', 'PACKAGE_LOCALE_DIR')
 
 config_h.set('CONFIG_H_SHADED_BOX_MAX', shaded_box_max)
-config_h.set('EXPERIMENTAL_MMAP', experimental_mmap)
+
+if buffer_backend == 'mmap'
+  config_h.set('BACKEND_MMAP', true)
+endif
 
 config_h.set_quoted('LIBGTKHEX_RELEASE_STRING', 'gtkhex-@0@.0'.format(libghex_version_major))
 
@@ -76,43 +80,15 @@ config_h.set('DEBUG', get_option('debug'))
 # i18n:  Always enabled
 config_h.set10('ENABLE_NLS', true) 
 
-# Check for required headers and functions
-# FIXME - unistd.h & friends shouldn't be required
-check_headers = [
-  'dlfcn.h',
-  'inttypes.h',
-  'memory.h',
-  'stdint.h',
-  'stdlib.h',
-  'string.h',
-  'sys/stat.h',
-  'sys/types.h',
-  'unistd.h',
-]
-
-foreach h : check_headers
-  cc.has_header(h, required: true)
-endforeach
-
-check_functions = [
-  'pow',
-  'strstr',
-  'strtoul'
-]
-
-foreach f : check_functions
-  if cc.has_function(f) == false
-    error('Required C function not found: @0@'.format(f))
-  endif
-endforeach
-
 # mmap: Check for required headers and fcns
-if experimental_mmap
-  message('Checking dependencies for experimental mmap backend...')
+if buffer_backend == 'mmap'
+  message('Checking dependencies for `mmap` buffer backend...')
 
   check_headers_mmap = [
+    'unistd.h',
+    'fcntl.h',
+    'sys/stat.h',
     'sys/mman.h',
-    'errno.h',
     ]
   foreach h : check_headers_mmap
     cc.has_header(h, required: true)
@@ -160,5 +136,5 @@ summary({'prefix': ghex_prefix,
         }, section: 'Directories')
 
 summary({'Development build': get_option('development'),
-	  'Experimental mmap backend': experimental_mmap,
+	  'Buffer backend': buffer_backend,
         }, section: 'Configuration')

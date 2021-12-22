@@ -29,16 +29,11 @@
  */
 
 #include "hex-dialog.h"
-#include "gtkhex.h"
 
-#include <glib-object.h>
 #include <glib/gi18n.h>
 
 #include <stdio.h>
-#include <unistd.h>
-#include <sys/stat.h>
 #include <string.h>
-#include <math.h>
 
 #include <config.h>
 
