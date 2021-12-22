@@ -153,15 +153,6 @@ create_converter_entry(const gchar *name, GtkWidget *grid, gint pos, gint base)
 	gtk_label_set_mnemonic_widget(GTK_LABEL(label), entry);
 	gtk_widget_set_hexpand (entry, TRUE);
 	gtk_grid_attach (GTK_GRID (grid), entry, 1, pos, 1, 1);
-
-	/* TODO: A11Y - REWRITE IF REQUIRED  */
-#if 0
-	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (entry))) {
-		g_snprintf (str, BUFFER_LEN, "Displays the value at cursor in %s", name+1);
-		add_atk_namedesc (entry, name+1, str);
-		add_atk_relation (entry, label, ATK_RELATION_LABELLED_BY);
-	}
-#endif
        
 	return entry;
 }
@@ -233,16 +224,10 @@ GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
 
 	gtk_grid_attach (GTK_GRID (grid), converter_get, 0, 5, 2, 1);
 
-	/* TODO - A11Y - REWRITE IF REQUIRED  */
-#if 0
-	if (GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(converter_get))) {
-		add_atk_namedesc (converter_get, _("Get cursor value"), _("Gets the value at cursor in binary, octal, decimal, hex and ASCII"));
-		for (i=0; i<5; i++) {
-			add_atk_relation (conv->entry[i], converter_get, ATK_RELATION_CONTROLLED_BY);
-			add_atk_relation (converter_get, conv->entry[i], ATK_RELATION_CONTROLLER_FOR);
-		}
-	}
-#endif
+	gtk_accessible_update_property (GTK_ACCESSIBLE(converter_get),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			_("Gets the value at cursor in binary, octal, decimal, hex and ASCII"),
+			-1);
 
 	return conv->window;
 }
