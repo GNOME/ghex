@@ -719,6 +719,7 @@ file_loaded (HexDocument *doc, GHexApplicationWindow *self)
 	
 	show_hex_notebook (self);
 	document_loaded_or_saved_common (self, doc);
+	update_gui_data (self);
 }
 
 
@@ -929,6 +930,7 @@ update_gui_data (GHexApplicationWindow *self)
 			val.v[i] = gtk_hex_get_byte (ACTIVE_GH, current_pos+i);
 		}
 		hex_dialog_updateview (self->dialog, &val);
+		refresh_dialogs (self);
 	}
 }
 
@@ -1080,10 +1082,15 @@ save_as_response_cb (GtkNativeDialog *dialog,
 	if (hex_document_set_file (doc, gfile))
 	{
 		show_doc_loading_spinner (self);
+		extra_user_data = ACTIVE_GH;
+		hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 	}
 	else
 	{
-		g_warning ("%s: error resetting file...", __func__);
+		display_error_dialog (GTK_WINDOW(self),
+				_("An unknown error has occurred in attempting to reload the "
+					"file you have just saved."));
+		goto end;
 	}
 
 end:
@@ -1099,23 +1106,28 @@ save_as (GtkWidget *widget,
 	GtkFileChooserNative *file_sel;
 	GtkResponseType resp;
 	HexDocument *doc;
+	GFile *default_file;
 
 	g_return_if_fail (GTK_IS_HEX (ACTIVE_GH));
 
 	doc = gtk_hex_get_document (ACTIVE_GH);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	file_sel =
-		gtk_file_chooser_native_new (_("Select a file to save buffer as"),
+	default_file = hex_document_get_file (doc);
+	file_sel = gtk_file_chooser_native_new (
+			_("Select a file to save buffer as"),
 				GTK_WINDOW(self),
 				GTK_FILE_CHOOSER_ACTION_SAVE,
-				NULL,	/* const char *accept_label } NULL == default.	*/
-				NULL);	/* const char *cancel_label }					*/
+				NULL,
+				NULL);
 
 	/* Default suggested file == existing file. */
-	gtk_file_chooser_set_file (GTK_FILE_CHOOSER(file_sel),
-			hex_document_get_file (doc),
-			NULL);	/* GError **error */
+	if (G_IS_FILE (default_file))
+	{
+		gtk_file_chooser_set_file (GTK_FILE_CHOOSER(file_sel),
+				hex_document_get_file (doc),
+				NULL);	/* GError **error */
+	}
 
 	g_signal_connect (file_sel, "response",
 			G_CALLBACK(save_as_response_cb), self);
@@ -1497,7 +1509,8 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
 	gtk_widget_init_template (widget);
 
-	/* FIXME - setting this property doesn't seem to work in the UI file? */
+	/* FIXME - setting this property doesn't seem to work in the UI file?
+	 * acc. to IRC, 2021-Dec -- KNOWN ISSUE w/ GTK. */
 	gtk_spinner_start (GTK_SPINNER(self->doc_loading_spinner));
 
 	/* Cache system default of prefer-dark-mode; gtk does not do this. This

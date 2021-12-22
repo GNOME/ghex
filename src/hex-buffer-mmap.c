@@ -684,7 +684,7 @@ static gboolean hex_buffer_mmap_write_to_file (HexBuffer *buf,
 	char *raw;
 	gboolean retval;
 
-	g_return_val_if_fail (G_IS_FILE (self->file), FALSE);
+	g_return_val_if_fail (G_IS_FILE (file), FALSE);
 
 	hex_buffer_mmap_raw (self, &raw, 0, self->payload);
 

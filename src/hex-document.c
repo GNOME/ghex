@@ -315,22 +315,17 @@ hex_document_new (void)
 gboolean
 hex_document_set_file (HexDocument *doc, GFile *file)
 {
-	gboolean had_prev_file = FALSE;
-
 	if (! hex_buffer_set_file (doc->buffer, file)) {
 		g_debug ("%s: Invalid file", __func__);
 		return FALSE;
 	}
 
 	if (G_IS_FILE (doc->file)) {
-		had_prev_file = TRUE;
 		g_object_unref (doc->file);
 	}
 
 	doc->file = g_object_ref (file);
-
-	if (had_prev_file)
-		g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
+	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
 
 	return TRUE;
 }
