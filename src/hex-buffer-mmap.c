@@ -542,7 +542,7 @@ hex_buffer_mmap_set_file (HexBuffer *buf, GFile *file)
 	}
 
 	self->file = file;
-	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FILE]);
+	g_object_notify (G_OBJECT(self), "file");
 	return TRUE;
 }
 

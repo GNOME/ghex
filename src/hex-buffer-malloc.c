@@ -139,7 +139,7 @@ hex_buffer_malloc_set_file (HexBuffer *buf, GFile *file)
 		self->file = NULL;
 		return FALSE;
 	}
-
+	g_object_notify (G_OBJECT(self), "file");
 	return TRUE;
 }
 
