@@ -37,6 +37,16 @@ hex_buffer_mmap_error_quark (void)
   return g_quark_from_static_string ("hex-buffer-mmap-error-quark");
 }
 
+
+/* PROPERTIES */
+
+enum
+{
+	PROP_FILE = 1,
+	N_PROPERTIES
+};
+static GParamSpec *properties[N_PROPERTIES];
+
 static char *invalid_path_msg = N_("The file appears to have an invalid path.");
 
 struct _HexBufferMmap
@@ -66,6 +76,56 @@ static void hex_buffer_mmap_iface_init (HexBufferInterface *iface);
 G_DEFINE_TYPE_WITH_CODE (HexBufferMmap, hex_buffer_mmap, G_TYPE_OBJECT,
 		G_IMPLEMENT_INTERFACE (HEX_TYPE_BUFFER, hex_buffer_mmap_iface_init))
 
+/* FORWARD DECLARATIONS */
+	
+static gboolean	hex_buffer_mmap_set_file (HexBuffer *buf, GFile *file);
+static GFile *	hex_buffer_mmap_get_file (HexBuffer *buf);
+
+/* PROPERTIES - GETTERS AND SETTERS */
+
+static void
+hex_buffer_mmap_set_property (GObject *object,
+		guint property_id,
+		const GValue *value,
+		GParamSpec *pspec)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP(object);
+	HexBuffer *buf = HEX_BUFFER(object);
+
+	switch (property_id)
+	{
+		case PROP_FILE:
+			hex_buffer_mmap_set_file (buf, g_value_get_object (value));
+			break;
+
+		default:
+			/* We don't have any other property... */
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void
+hex_buffer_mmap_get_property (GObject *object,
+		guint property_id,
+		GValue *value,
+		GParamSpec *pspec)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP(object);
+	HexBuffer *buf = HEX_BUFFER(object);
+
+	switch (property_id)
+	{
+		case PROP_FILE:
+			g_value_set_pointer (value, self->file);
+			break;
+
+		default:
+			/* We don't have any other property... */
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
 
 /* PRIVATE FUNCTIONS */
 
@@ -163,6 +223,11 @@ hex_buffer_mmap_class_init (HexBufferMmapClass *klass)
 	
 	gobject_class->finalize = hex_buffer_mmap_finalize;
 	gobject_class->dispose = hex_buffer_mmap_dispose;
+
+	gobject_class->set_property = hex_buffer_mmap_set_property;
+	gobject_class->get_property = hex_buffer_mmap_get_property;
+
+	g_object_class_override_property (gobject_class, PROP_FILE, "file");
 }
 
 static void
@@ -452,6 +517,15 @@ hex_buffer_mmap_get_payload_size (HexBuffer *buf)
 	return self->payload;
 }
 
+/* transfer: none */
+static GFile *
+hex_buffer_mmap_get_file (HexBuffer *buf)
+{
+	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
+
+	return self->file;
+}
+
 static gboolean
 hex_buffer_mmap_set_file (HexBuffer *buf, GFile *file)
 {
@@ -466,8 +540,9 @@ hex_buffer_mmap_set_file (HexBuffer *buf, GFile *file)
 		set_error (self, _(invalid_path_msg));
 		return FALSE;
 	}
-	self->file = file;
 
+	self->file = file;
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FILE]);
 	return TRUE;
 }
 
@@ -726,6 +801,7 @@ hex_buffer_mmap_iface_init (HexBufferInterface *iface)
 	iface->get_data = hex_buffer_mmap_get_data;
 	iface->get_byte = hex_buffer_mmap_get_byte;
 	iface->set_data = hex_buffer_mmap_set_data;
+	iface->get_file = hex_buffer_mmap_get_file;
 	iface->set_file = hex_buffer_mmap_set_file;
 	iface->read = hex_buffer_mmap_read;
 	iface->read_async = hex_buffer_mmap_read_async;

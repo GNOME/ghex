@@ -26,6 +26,15 @@
 
 #include "hex-buffer-malloc.h"
 
+/* PROPERTIES */
+
+enum
+{
+	PROP_FILE = 1,
+	N_PROPERTIES
+};
+
+static GParamSpec *properties[N_PROPERTIES];
 struct _HexBufferMalloc
 {
 	GObject parent_instance;
@@ -44,6 +53,57 @@ static void hex_buffer_malloc_iface_init (HexBufferInterface *iface);
 G_DEFINE_TYPE_WITH_CODE (HexBufferMalloc, hex_buffer_malloc, G_TYPE_OBJECT,
 		G_IMPLEMENT_INTERFACE (HEX_TYPE_BUFFER, hex_buffer_malloc_iface_init))
 
+/* FORWARD DECLARATIONS */
+	
+static gboolean	hex_buffer_malloc_set_file (HexBuffer *buf, GFile *file);
+static GFile *	hex_buffer_malloc_get_file (HexBuffer *buf);
+
+/* PROPERTIES - GETTERS AND SETTERS */
+
+static void
+hex_buffer_malloc_set_property (GObject *object,
+		guint property_id,
+		const GValue *value,
+		GParamSpec *pspec)
+{
+	HexBufferMalloc *self = HEX_BUFFER_MALLOC(object);
+	HexBuffer *buf = HEX_BUFFER(object);
+
+	switch (property_id)
+	{
+		case PROP_FILE:
+			hex_buffer_malloc_set_file (buf, g_value_get_object (value));
+			break;
+
+		default:
+			/* We don't have any other property... */
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void
+hex_buffer_malloc_get_property (GObject *object,
+		guint property_id,
+		GValue *value,
+		GParamSpec *pspec)
+{
+	HexBufferMalloc *self = HEX_BUFFER_MALLOC(object);
+	HexBuffer *buf = HEX_BUFFER(object);
+
+	switch (property_id)
+	{
+		case PROP_FILE:
+			g_value_set_pointer (value, self->file);
+			break;
+
+		default:
+			/* We don't have any other property... */
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
 /* PRIVATE FUNCTIONS */
 
 static gboolean
@@ -55,6 +115,15 @@ update_payload_size_from_file (HexBufferMalloc *self)
 		return FALSE;
 	else
 		return TRUE;
+}
+
+/* transfer: none */
+static GFile *
+hex_buffer_malloc_get_file (HexBuffer *buf)
+{
+	HexBufferMalloc *self = HEX_BUFFER_MALLOC (buf);
+
+	return self->file;
 }
 
 static gboolean
@@ -389,6 +458,11 @@ hex_buffer_malloc_class_init (HexBufferMallocClass *klass)
 	
 	gobject_class->finalize = hex_buffer_malloc_finalize;
 	gobject_class->dispose = hex_buffer_malloc_dispose;
+
+	gobject_class->set_property = hex_buffer_malloc_set_property;
+	gobject_class->get_property = hex_buffer_malloc_get_property;
+
+	g_object_class_override_property (gobject_class, PROP_FILE, "file");
 }
 
 
@@ -418,6 +492,7 @@ hex_buffer_malloc_iface_init (HexBufferInterface *iface)
 	iface->get_data = hex_buffer_malloc_get_data;
 	iface->get_byte = hex_buffer_malloc_get_byte;
 	iface->set_data = hex_buffer_malloc_set_data;
+	iface->get_file = hex_buffer_malloc_get_file;
 	iface->set_file = hex_buffer_malloc_set_file;
 	iface->read = hex_buffer_malloc_read;
 	iface->read_async = hex_buffer_malloc_read_async;

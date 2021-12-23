@@ -53,6 +53,8 @@ struct _HexBufferInterface
 			size_t rep_len,
 			char *data);
 
+	GFile * (*get_file) (HexBuffer *self);
+
 	gboolean (*set_file) (HexBuffer *self,
 			GFile *file);
 

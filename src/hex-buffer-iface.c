@@ -29,7 +29,12 @@ G_DEFINE_INTERFACE (HexBuffer, hex_buffer, G_TYPE_OBJECT)
 static void
 hex_buffer_default_init (HexBufferInterface *iface)
 {
-    /* add properties and signals to the interface here */
+	g_object_interface_install_property (iface,
+			g_param_spec_object ("file",
+				"File",
+				"File (as GFile) being utilized by the buffer",
+				G_TYPE_FILE,
+				G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY));
 }
 
 /* PUBLIC INTERFACE FUNCTIONS */
