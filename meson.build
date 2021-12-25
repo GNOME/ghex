@@ -5,6 +5,8 @@ project(
   license: 'GPL2'
 )
 
+# Options
+
 if get_option('development')
   app_id = 'org.gnome.GHex.Devel'
   resource_base_path = '/org/gnome/GHex/Devel'
@@ -13,10 +15,16 @@ else
   resource_base_path = '/org/gnome/GHex'
 endif
 
+gir = find_program('g-ir-scanner', required : get_option('introspection'))
+generate_gir = gir.found() and (not meson.is_cross_build() or get_option('introspection').enabled())
+build_gtk_doc = get_option('gtk_doc')
+
+# Directories, variables, etc.
+
 version_arr = meson.project_version().split('.')
 ghex_version_major = version_arr[0].to_int()
 
-libghex_version_major = version_arr[0].to_int()
+libgtkhex_version_major = version_arr[0].to_int()
 
 ghex_prefix = get_option('prefix')
 ghex_libdir = join_paths(ghex_prefix, get_option('libdir'))
@@ -28,6 +36,8 @@ ghex_applicationsdir = join_paths(ghex_datadir, 'applications')
 ghex_schemasdir = join_paths(ghex_datadir, 'glib-2.0/schemas')
 ghex_appdatadir = join_paths(ghex_datadir, 'metainfo')
 ghex_iconsdir = join_paths(ghex_datadir, 'icons')
+ghex_girdir = join_paths(ghex_datadir, 'gir-1.0')
+ghex_typelibdir = join_paths(ghex_libdir, 'girepository-1.0')
 
 ghex_root_dir = include_directories('.')
 ghex_po_dir = join_paths(meson.source_root(), 'po')
@@ -73,7 +83,7 @@ if buffer_backend == 'mmap'
   config_h.set('BACKEND_MMAP', true)
 endif
 
-config_h.set_quoted('LIBGTKHEX_RELEASE_STRING', 'gtkhex-@0@.0'.format(libghex_version_major))
+config_h.set_quoted('LIBGTKHEX_RELEASE_STRING', 'gtkhex-@0@.0'.format(libgtkhex_version_major))
 
 config_h.set('DEBUG', get_option('debug'))
 
@@ -121,6 +131,7 @@ compile_schemas_prg = find_program('glib-compile-schemas', required : false)
 
 subdir('src')
 subdir('data')
+subdir('docs')
 subdir('icons')
 subdir('po')
 subdir('help')
@@ -136,5 +147,6 @@ summary({'prefix': ghex_prefix,
         }, section: 'Directories')
 
 summary({'Development build': get_option('development'),
+	  'Documentation': build_gtk_doc,
 	  'Buffer backend': buffer_backend,
         }, section: 'Configuration')

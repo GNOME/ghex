@@ -1,4 +1,4 @@
-libghex_sources = [
+libgtkhex_sources = [
   'gtkhex.c',
   'hex-buffer-iface.c',	      # TEST
   'hex-buffer-mmap.c',        # TEST
@@ -8,7 +8,7 @@ libghex_sources = [
   'hex-document.c'
 ]
 
-libghex_headers = [
+libgtkhex_headers = [
   'hex-document.h',
   'hex-buffer-iface.h',
   'hex-buffer-malloc.h',
@@ -17,40 +17,40 @@ libghex_headers = [
   'gtkhex-paste-data.h'
 ]
 
-libghex_deps = [
+libgtkhex_deps = [
   gtk_dep,
 ]
 
-libghex_c_args = [
+libgtkhex_c_args = [
   '-DG_LOG_DOMAIN="libgtkhex-4"'
 ]
 
-libghex_link_args = cc.get_supported_link_arguments([
+libgtkhex_link_args = cc.get_supported_link_arguments([
   '-Wl,--no-undefined'
 ])
 
 install_headers(
-  libghex_headers,
-  subdir: 'gtkhex-@0@'.format(libghex_version_major)
+  libgtkhex_headers,
+  subdir: 'gtkhex-@0@'.format(libgtkhex_version_major)
 )
 
-libghex = library(
-  'gtkhex-@0@'.format(libghex_version_major),
-  libghex_sources + libghex_headers,
+libgtkhex = library(
+  'gtkhex-@0@'.format(libgtkhex_version_major),
+  libgtkhex_sources + libgtkhex_headers,
   version: '0.0.0',
   darwin_versions: ['1', '1.0'],
   include_directories: ghex_root_dir,
-  dependencies: libghex_deps,
-  c_args: libghex_c_args,
-  link_args: libghex_link_args,
+  dependencies: libgtkhex_deps,
+  c_args: libgtkhex_c_args,
+  link_args: libgtkhex_link_args,
   install: true
 )
 
-libghex_dep = declare_dependency(
-  link_with: libghex,
+libgtkhex_dep = declare_dependency(
+  link_with: libgtkhex,
   include_directories: ghex_root_dir,
-  dependencies: libghex_deps,
-  sources: libghex_headers
+  dependencies: libgtkhex_deps,
+  sources: libgtkhex_headers
 )
 
 # for i in `ls *.{c,h}`; do echo "  '${i}',"; done
@@ -118,7 +118,31 @@ ghex = executable(
   meson.project_name(),
   ghex_sources + res,
   include_directories: ghex_root_dir,
-  dependencies: ghex_deps + [libghex_dep, ],
+  dependencies: ghex_deps + [libgtkhex_dep, ],
   c_args: ghex_c_args,
   install: true
 )
+
+
+
+if generate_gir
+  gtkhex_gir_sources = [
+    'gtkhex.c',
+    'gtkhex.h',
+  ]
+
+  gtkhex_gir = gnome.generate_gir(libgtkhex,
+                sources: gtkhex_gir_sources,
+              nsversion: libgtkhex_version_major.to_string(),
+              namespace: 'GtkHex',
+          symbol_prefix: 'gtk_hex',
+      identifier_prefix: 'GtkHex',
+              link_with: libgtkhex,
+           dependencies: libgtkhex_deps,
+               includes: [ 'Gtk-4.0' ],
+                install: true,
+        install_dir_gir: ghex_girdir,
+    install_dir_typelib: ghex_typelibdir,
+             extra_args: [ '--warn-all' ],
+  )
+endif
