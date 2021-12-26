@@ -350,16 +350,16 @@ setup_signals (void)
 	/* group type checkbuttons */
 
 	g_signal_connect (bytes_chkbtn, "toggled",
-			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(GTK_HEX_GROUP_BYTE));
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_WIDGET_GROUP_BYTE));
 
 	g_signal_connect (words_chkbtn, "toggled",
-			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(GTK_HEX_GROUP_WORD));
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_WIDGET_GROUP_WORD));
 
 	g_signal_connect (long_chkbtn, "toggled",
-			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(GTK_HEX_GROUP_LONG));
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_WIDGET_GROUP_LONG));
 
 	g_signal_connect (quad_chkbtn, "toggled",
-			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(GTK_HEX_GROUP_QUAD));
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_WIDGET_GROUP_QUAD));
 
 	/* show offsets checkbutton */
 
@@ -426,22 +426,22 @@ grab_widget_values_from_settings (void)
 	/* group_type radio buttons
 	 */
 	switch (def_group_type) {
-		case GTK_HEX_GROUP_BYTE:
+		case HEX_WIDGET_GROUP_BYTE:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(bytes_chkbtn),
 					TRUE);
 			break;
 
-		case GTK_HEX_GROUP_WORD:
+		case HEX_WIDGET_GROUP_WORD:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(words_chkbtn),
 					TRUE);
 			break;
 
-		case GTK_HEX_GROUP_LONG:
+		case HEX_WIDGET_GROUP_LONG:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(long_chkbtn),
 					TRUE);
 			break;
 
-		case GTK_HEX_GROUP_QUAD:
+		case HEX_WIDGET_GROUP_QUAD:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(quad_chkbtn),
 					TRUE);
 			break;

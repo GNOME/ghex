@@ -1,6 +1,6 @@
 /* vim: ts=4 sw=4 colorcolumn=80
  * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex-paste-data.c - Paste data for GtkHex
+/* gtkhex-paste-data.c - Paste data for HexWidget
 
    Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
@@ -27,7 +27,7 @@
 
 /* GObject Definition */
 
-struct _GtkHexPasteData
+struct _HexPasteData
 {
 	GObject parent_instance;
 
@@ -35,7 +35,7 @@ struct _GtkHexPasteData
 	int elems;
 };
 
-G_DEFINE_TYPE (GtkHexPasteData, gtk_hex_paste_data, G_TYPE_OBJECT)
+G_DEFINE_TYPE (HexPasteData, hex_paste_data, G_TYPE_OBJECT)
 
 
 /* Helper Functions */
@@ -76,27 +76,27 @@ doc_data_to_string (const char *data, int len)
 /* Constructors and Destructors */
 
 static void
-gtk_hex_paste_data_init (GtkHexPasteData *self)
+hex_paste_data_init (HexPasteData *self)
 {
 }
 
 static void
-gtk_hex_paste_data_class_init (GtkHexPasteDataClass *klass)
+hex_paste_data_class_init (HexPasteDataClass *klass)
 {
 }
 
 
 /* Public Method Definitions */
 
-GtkHexPasteData *
-gtk_hex_paste_data_new (char *doc_data, int elems)
+HexPasteData *
+hex_paste_data_new (char *doc_data, int elems)
 {
-	GtkHexPasteData *self;
+	HexPasteData *self;
 
 	g_return_val_if_fail (doc_data, NULL);
 	g_return_val_if_fail (elems, NULL);
 
-	self = g_object_new (GTK_TYPE_HEX_PASTE_DATA, NULL);
+	self = g_object_new (HEX_TYPE_PASTE_DATA, NULL);
 
 	self->doc_data = doc_data;
 	self->elems = elems;
@@ -106,7 +106,7 @@ gtk_hex_paste_data_new (char *doc_data, int elems)
 
 /* String returned should be freed with g_free. */
 char *
-gtk_hex_paste_data_get_string (GtkHexPasteData *self)
+hex_paste_data_get_string (HexPasteData *self)
 {
 	char *string;
 
@@ -119,7 +119,7 @@ gtk_hex_paste_data_get_string (GtkHexPasteData *self)
 }
 
 char *
-gtk_hex_paste_data_get_doc_data (GtkHexPasteData *self)
+hex_paste_data_get_doc_data (HexPasteData *self)
 {
 	g_return_val_if_fail (self->doc_data, NULL);
 
@@ -127,7 +127,7 @@ gtk_hex_paste_data_get_doc_data (GtkHexPasteData *self)
 }
 
 int
-gtk_hex_paste_data_get_elems (GtkHexPasteData *self)
+hex_paste_data_get_elems (HexPasteData *self)
 {
 	return self->elems;
 }

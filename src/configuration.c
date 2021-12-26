@@ -35,7 +35,7 @@
 #include "configuration.h"
 
 GSettings *settings;
-/* Global CSS provider for our GtkHex widgets */
+/* Global CSS provider for our HexWidget widgets */
 GtkCssProvider *provider;
 
 int def_group_type;

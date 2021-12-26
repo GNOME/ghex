@@ -47,15 +47,15 @@ G_DECLARE_FINAL_TYPE (GHexApplicationWindow, ghex_application_window,
 
 GtkWidget *	ghex_application_window_new (GtkApplication *app);
 void		ghex_application_window_add_hex (GHexApplicationWindow *self,
-				GtkHex *gh);
+				HexWidget *gh);
 void		ghex_application_window_set_hex (GHexApplicationWindow *self,
-				GtkHex *gh);
+				HexWidget *gh);
 void		ghex_application_window_activate_tab (GHexApplicationWindow *self,
-				GtkHex *gh);
+				HexWidget *gh);
 GList *		ghex_application_window_get_list (GHexApplicationWindow *self);
 void		ghex_application_window_open_file (GHexApplicationWindow *self,
 				GFile *file);
-GtkHex *	ghex_application_window_get_hex (GHexApplicationWindow *self);
+HexWidget *	ghex_application_window_get_hex (GHexApplicationWindow *self);
 
 G_END_DECLS
 

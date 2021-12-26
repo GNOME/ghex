@@ -54,8 +54,8 @@ static guint signals[LAST_SIGNAL];
 
 typedef struct
 {
-	GtkHex *gh;
-	GtkHex_AutoHighlight *auto_highlight;
+	HexWidget *gh;
+	HexWidget_AutoHighlight *auto_highlight;
 
 } PaneDialogPrivate;
 
@@ -113,21 +113,21 @@ static void replace_clear_cb (GtkButton *button, gpointer user_data);
 static void goto_byte_cb (GtkButton *button, gpointer user_data);
 static gint64 get_search_string (HexDocument *doc, gchar **str);
 static void pane_dialog_update_busy_state (PaneDialog *self);
-static void mark_gh_busy (GtkHex *gh, gboolean busy);
+static void mark_gh_busy (HexWidget *gh, gboolean busy);
 
 static GtkWidget *
 create_hex_view (HexDocument *doc)
 {
 	GtkWidget *gh;
 
-	gh = gtk_hex_new (doc);
+	gh = hex_widget_new (doc);
 	g_object_ref (gh);
 
 	gtk_widget_set_hexpand (gh, TRUE);
-	gtk_hex_set_group_type (GTK_HEX(gh), def_group_type);
-	common_set_gtkhex_font_from_settings (GTK_HEX(gh));
-    gtk_hex_set_insert_mode (GTK_HEX(gh), TRUE);
-    gtk_hex_set_geometry (GTK_HEX(gh), 16, 4);
+	hex_widget_set_group_type (HEX_WIDGET(gh), def_group_type);
+	common_set_gtkhex_font_from_settings (HEX_WIDGET(gh));
+    hex_widget_set_insert_mode (HEX_WIDGET(gh), TRUE);
+    hex_widget_set_geometry (HEX_WIDGET(gh), 16, 4);
 
     return gh;
 }
@@ -151,7 +151,7 @@ pane_dialog_real_close (PaneDialog *self)
 	PaneDialogPrivate *priv = pane_dialog_get_instance_private (self);
 
 	if (priv->auto_highlight && priv->gh) {
-		gtk_hex_delete_autohighlight (priv->gh, priv->auto_highlight);
+		hex_widget_delete_autohighlight (priv->gh, priv->auto_highlight);
 	}
 	priv->auto_highlight = NULL;
 
@@ -202,14 +202,14 @@ set_watch_cursor (GtkWidget *widget, gboolean enabled)
 }
 
 static void
-mark_gh_busy (GtkHex *gh, gboolean busy)
+mark_gh_busy (HexWidget *gh, gboolean busy)
 {
 	set_watch_cursor (GTK_WIDGET(gh), busy);
 	g_object_set_data (G_OBJECT(gh), "busy", GINT_TO_POINTER(busy));
 }
 
 static gboolean
-gh_is_busy (GtkHex *gh)
+gh_is_busy (HexWidget *gh)
 {
 	gpointer data = g_object_get_data (G_OBJECT(gh), "busy");
 
@@ -244,15 +244,15 @@ find_ready_cb (GObject *source_object,
 	if (find_data->found)
 	{
 		f_priv->found = TRUE;
-		gtk_hex_set_cursor (priv->gh, find_data->offset);
+		hex_widget_set_cursor (priv->gh, find_data->offset);
 
 		/* If string found, insert auto-highlights of search string */
 
 		if (priv->auto_highlight)
-			gtk_hex_delete_autohighlight (priv->gh, priv->auto_highlight);
+			hex_widget_delete_autohighlight (priv->gh, priv->auto_highlight);
 
 		priv->auto_highlight = NULL;
-		priv->auto_highlight = gtk_hex_insert_autohighlight (priv->gh,
+		priv->auto_highlight = hex_widget_insert_autohighlight (priv->gh,
 				find_data->what, find_data->len);
 
 		gtk_widget_grab_focus (GTK_WIDGET(priv->gh));
@@ -287,14 +287,14 @@ find_common (FindDialog *self, enum FindDirection direction,
 	g_return_if_fail (FIND_IS_DIALOG(self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX (priv->gh));
+	g_return_if_fail (HEX_IS_WIDGET (priv->gh));
 	f_priv = find_dialog_get_instance_private (self);
 	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 
-	doc = gtk_hex_get_document (priv->gh);
-	cursor_pos = gtk_hex_get_cursor (priv->gh);
+	doc = hex_widget_get_document (priv->gh);
+	cursor_pos = hex_widget_get_cursor (priv->gh);
 
 	str_len = get_search_string (f_priv->f_doc, &str);
 	if (str_len == 0)
@@ -375,7 +375,7 @@ find_clear_cb (GtkButton *button, gpointer user_data)
 	g_return_if_fail (FIND_IS_DIALOG (self));
 
 	f_priv = find_dialog_get_instance_private (self);
-	g_return_if_fail (GTK_IS_HEX (f_priv->f_gh));
+	g_return_if_fail (HEX_IS_WIDGET (f_priv->f_gh));
 	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
 
 	new_doc = hex_document_new ();
@@ -412,14 +412,14 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	g_return_if_fail (JUMP_IS_DIALOG(self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX(priv->gh));
+	g_return_if_fail (HEX_IS_WIDGET(priv->gh));
 	
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = gtk_hex_get_document (priv->gh);
-	cursor_pos = gtk_hex_get_cursor (priv->gh);
+	doc = hex_widget_get_document (priv->gh);
+	cursor_pos = hex_widget_get_cursor (priv->gh);
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 
 	entry = GTK_ENTRY(self->int_entry);
@@ -477,7 +477,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 								   "end of file."));
 		} else {
 			/* SUCCESS */
-			gtk_hex_set_cursor (priv->gh, byte);
+			hex_widget_set_cursor (priv->gh, byte);
 			gtk_widget_grab_focus (GTK_WIDGET(priv->gh));
 		}
 	}
@@ -509,7 +509,7 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	g_return_if_fail (REPLACE_IS_DIALOG(self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX (priv->gh));
+	g_return_if_fail (HEX_IS_WIDGET (priv->gh));
 
 	f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
 	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
@@ -519,8 +519,8 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = gtk_hex_get_document (priv->gh);
-	cursor_pos = gtk_hex_get_cursor (priv->gh);
+	doc = hex_widget_get_document (priv->gh);
+	cursor_pos = hex_widget_get_cursor (priv->gh);
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 	
 	if ((find_len = get_search_string(f_priv->f_doc, &find_str)) == 0)
@@ -542,7 +542,7 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	if (hex_document_find_forward(doc, cursor_pos + rep_len,
 				find_str, find_len, &offset))
 	{
-		gtk_hex_set_cursor(priv->gh, offset);
+		hex_widget_set_cursor(priv->gh, offset);
 	}
 	else {
 		display_info_dialog (parent, _("String was not found."));
@@ -573,7 +573,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	g_return_if_fail (REPLACE_IS_DIALOG (self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (GTK_IS_HEX (priv->gh));
+	g_return_if_fail (HEX_IS_WIDGET (priv->gh));
 	f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
 	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
 	g_return_if_fail (HEX_IS_DOCUMENT (self->r_doc));
@@ -582,8 +582,8 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = gtk_hex_get_document (priv->gh);
-	cursor_pos = gtk_hex_get_cursor (priv->gh);
+	doc = hex_widget_get_document (priv->gh);
+	cursor_pos = hex_widget_get_cursor (priv->gh);
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 
 	if ((find_len = get_search_string(f_priv->f_doc, &find_str)) == 0)
@@ -606,7 +606,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 		count++;
 	}
 	
-	gtk_hex_set_cursor(priv->gh, MIN(offset, payload));  
+	hex_widget_set_cursor(priv->gh, MIN(offset, payload));  
 
 	if (count == 0) {
 		display_info_dialog (parent, _("No occurrences were found."));
@@ -625,7 +625,7 @@ replace_clear_cb (GtkButton *button, gpointer user_data)
 	GtkWidget *new_r_gh;
 	HexDocument *new_r_doc;
 
-	g_return_if_fail (GTK_IS_HEX (self->r_gh));
+	g_return_if_fail (HEX_IS_WIDGET (self->r_gh));
 	g_return_if_fail (HEX_IS_DOCUMENT (self->r_doc));
 
 	new_r_doc = hex_document_new ();
@@ -757,19 +757,19 @@ pane_dialog_update_busy_state (PaneDialog *self)
 }
 
 void
-pane_dialog_set_hex (PaneDialog *self, GtkHex *gh)
+pane_dialog_set_hex (PaneDialog *self, HexWidget *gh)
 {
 	PaneDialogPrivate *priv;
 
 	g_return_if_fail (PANE_IS_DIALOG (self));
-	g_return_if_fail (GTK_IS_HEX (gh));
+	g_return_if_fail (HEX_IS_WIDGET (gh));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 
 	/* Clear auto-highlight if any.
 	 */
 	if (priv->auto_highlight)
-		gtk_hex_delete_autohighlight (priv->gh, priv->auto_highlight);
+		hex_widget_delete_autohighlight (priv->gh, priv->auto_highlight);
 	priv->auto_highlight = NULL;
 
 	priv->gh = gh;

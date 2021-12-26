@@ -1,6 +1,6 @@
 /* vim: ts=4 sw=4 colorcolumn=80
  * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex-layout-manager.h - declaration of a GtkHex layout manager
+/* gtkhex-layout-manager.h - declaration of a HexWidget layout manager
 
    Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
@@ -22,19 +22,19 @@
    Original GHex Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef GTK_HEX_LAYOUT_MANAGER_H
-#define GTK_HEX_LAYOUT_MANAGER_H
+#ifndef HEX_WIDGET_LAYOUT_MANAGER_H
+#define HEX_WIDGET_LAYOUT_MANAGER_H
 
 #include <gtk/gtk.h>
 
-/* Not a circular dep; this is just for the GTK_HEX_GROUP_* enums defined
+/* Not a circular dep; this is just for the HEX_WIDGET_GROUP_* enums defined
  * there. */
 #include "gtkhex.h"
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_HEX_LAYOUT (gtk_hex_layout_get_type ())
-G_DECLARE_FINAL_TYPE (GtkHexLayout, gtk_hex_layout, GTK, HEX_LAYOUT,
+#define HEX_TYPE_WIDGET_LAYOUT (hex_widget_layout_get_type ())
+G_DECLARE_FINAL_TYPE (HexWidgetLayout, hex_widget_layout, HEX, WIDGET_LAYOUT,
 		GtkLayoutManager)
 
 typedef enum {
@@ -43,28 +43,27 @@ typedef enum {
 	HEX_COLUMN,
 	ASCII_COLUMN,
 	SCROLLBAR_COLUMN
-} GtkHexLayoutColumn;
+} HexWidgetLayoutColumn;
 
-#define GTK_TYPE_HEX_LAYOUT_CHILD (gtk_hex_layout_child_get_type ())
-G_DECLARE_FINAL_TYPE (GtkHexLayoutChild, gtk_hex_layout_child,
-		GTK, HEX_LAYOUT_CHILD,
-		GtkLayoutChild)
+#define HEX_TYPE_WIDGET_LAYOUT_CHILD (hex_widget_layout_child_get_type ())
+G_DECLARE_FINAL_TYPE (HexWidgetLayoutChild, hex_widget_layout_child,
+		HEX, WIDGET_LAYOUT_CHILD, GtkLayoutChild)
 
-GtkLayoutManager *	gtk_hex_layout_new (void);
-void				gtk_hex_layout_set_char_width (GtkHexLayout *layout,
+GtkLayoutManager *	hex_widget_layout_new (void);
+void				hex_widget_layout_set_char_width (HexWidgetLayout *layout,
 						int width);
-void				gtk_hex_layout_child_set_column (GtkHexLayoutChild *child,
-						GtkHexLayoutColumn column);
-int					gtk_hex_layout_get_cpl (GtkHexLayout *layout);
-int 				gtk_hex_layout_get_hex_cpl (GtkHexLayout *layout);
-void				gtk_hex_layout_set_group_type (GtkHexLayout *layout,
-						GtkHexGroupType group_type);
-void				gtk_hex_layout_set_cursor_pos (GtkHexLayout *layout,
+void				hex_widget_layout_child_set_column (HexWidgetLayoutChild *child,
+						HexWidgetLayoutColumn column);
+int					hex_widget_layout_get_cpl (HexWidgetLayout *layout);
+int 				hex_widget_layout_get_hex_cpl (HexWidgetLayout *layout);
+void				hex_widget_layout_set_group_type (HexWidgetLayout *layout,
+						HexWidgetGroupType group_type);
+void				hex_widget_layout_set_cursor_pos (HexWidgetLayout *layout,
 						int x, int y);
-void				gtk_hex_layout_set_offset_cpl (GtkHexLayout *layout,
+void				hex_widget_layout_set_offset_cpl (HexWidgetLayout *layout,
 						int offset_cpl);
-int					gtk_hex_layout_get_offset_cpl (GtkHexLayout *layout);
+int					hex_widget_layout_get_offset_cpl (HexWidgetLayout *layout);
 
 G_END_DECLS
 
-#endif	/* GTK_HEX_LAYOUT_MANAGER_H */
+#endif	/* HEX_WIDGET_LAYOUT_MANAGER_H */

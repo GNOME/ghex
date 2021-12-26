@@ -88,7 +88,7 @@ static void destroy_paste_special_dialog (void);
 static GtkBuilder *builder;
 static GHexApplicationWindow *app_window;
 static GdkClipboard *clipboard;
-static GtkHexPasteData *hex_paste_data;
+static HexPasteData *hex_paste_data;
 static GHashTable *mime_hash;
 static GSList *known_mime[LAST_MIME];
 static GtkWidget *hex_paste_data_label;
@@ -150,7 +150,7 @@ mime_sub_type_label_new (KnownMimeType *known_type)
 
 /* PRIVATE FUNCTIONS */
 
-/* Note - I looked into reusing the hex block formatting code from GtkHex,
+/* Note - I looked into reusing the hex block formatting code from HexWidget,
  * but honestly, it looks like it'd be more trouble than it's worth.
  */
 static char *
@@ -161,11 +161,11 @@ hex_paste_data_to_delimited_hex (void)
 	int elems;
 	char *ret_str;
 
-	g_return_val_if_fail (GTK_IS_HEX_PASTE_DATA (hex_paste_data), NULL);
+	g_return_val_if_fail (HEX_IS_PASTE_DATA (hex_paste_data), NULL);
 
 	buf = g_string_new (NULL);
-	doc_data = gtk_hex_paste_data_get_doc_data (hex_paste_data);
-	elems = gtk_hex_paste_data_get_elems (hex_paste_data);
+	doc_data = hex_paste_data_get_doc_data (hex_paste_data);
+	elems = hex_paste_data_get_elems (hex_paste_data);
 
 	for (int i = 0; i < elems; ++i)
 	{
@@ -230,7 +230,7 @@ delimited_paste_received_cb (GObject *source_object,
 		GAsyncResult *result,
 		gpointer user_data)
 {
-	GtkHex *gh;
+	HexWidget *gh;
 	HexDocument *doc;
 	char *text;
 	GString *buf = NULL;
@@ -254,13 +254,13 @@ delimited_paste_received_cb (GObject *source_object,
 	}
 
 	gh = ghex_application_window_get_hex (app_window);
-	g_return_if_fail (GTK_IS_HEX (gh));
+	g_return_if_fail (HEX_IS_WIDGET (gh));
 
-	doc = gtk_hex_get_document (gh);
+	doc = hex_widget_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	hex_document_set_data (doc,
-			gtk_hex_get_cursor (gh),
+			hex_widget_get_cursor (gh),
 			buf->len,
 			0,	/* rep_len (0 to insert w/o replacing; what we want) */
 			buf->str,
@@ -286,14 +286,14 @@ delimited_hex_copy (void)
 	char *hex_str = NULL;
 
 	/* Save selection to clipboard as HexPasteData */
-	gtk_hex_copy_to_clipboard (ghex_application_window_get_hex(app_window));
+	hex_widget_copy_to_clipboard (ghex_application_window_get_hex(app_window));
 
 	provider = gdk_clipboard_get_content (clipboard);
 	g_return_if_fail (GDK_IS_CONTENT_PROVIDER(provider));
 
-	g_value_init (&value, GTK_TYPE_HEX_PASTE_DATA);
+	g_value_init (&value, HEX_TYPE_PASTE_DATA);
 	gdk_content_provider_get_value (provider, &value, &error);
-	hex_paste_data = GTK_HEX_PASTE_DATA(g_value_get_object (&value));
+	hex_paste_data = HEX_PASTE_DATA(g_value_get_object (&value));
 
 	hex_str = hex_paste_data_to_delimited_hex ();
 
@@ -318,11 +318,11 @@ row_activated_cb (GtkListBox *box,
 		gpointer user_data)
 {
 #define STANDARD_PASTE \
-	gtk_hex_paste_from_clipboard \
+	hex_widget_paste_from_clipboard \
 		(ghex_application_window_get_hex(app_window));
 
 #define STANDARD_COPY \
-	gtk_hex_copy_to_clipboard \
+	hex_widget_copy_to_clipboard \
 		(ghex_application_window_get_hex(app_window));
 
 	GtkWidget *child = gtk_list_box_row_get_child (row);
@@ -592,13 +592,13 @@ paste_special_populate_listbox (void)
 
 	mime_types = gdk_content_formats_get_mime_types (formats, NULL);
 
-	g_value_init (&value, GTK_TYPE_HEX_PASTE_DATA);
+	g_value_init (&value, HEX_TYPE_PASTE_DATA);
 	have_hex_paste_data = GDK_IS_CONTENT_PROVIDER (provider) &&
 		gdk_content_provider_get_value (provider, &value, &error);
 
 	if (have_hex_paste_data)
 	{
-		hex_paste_data = GTK_HEX_PASTE_DATA(g_value_get_object (&value));
+		hex_paste_data = HEX_PASTE_DATA(g_value_get_object (&value));
 
 		create_hex_paste_data_label ();
 

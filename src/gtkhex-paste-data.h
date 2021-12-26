@@ -1,6 +1,6 @@
 /* vim: ts=4 sw=4 colorcolumn=80
  * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex-paste-data.h - declaration of paste data for GtkHex
+/* gtkhex-paste-data.h - declaration of paste data for HexWidget
 
    Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
@@ -31,16 +31,15 @@
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_HEX_PASTE_DATA (gtk_hex_paste_data_get_type ())
-G_DECLARE_FINAL_TYPE (GtkHexPasteData, gtk_hex_paste_data, GTK, HEX_PASTE_DATA,
-		GObject)
+#define HEX_TYPE_PASTE_DATA (hex_paste_data_get_type ())
+G_DECLARE_FINAL_TYPE (HexPasteData, hex_paste_data, HEX, PASTE_DATA, GObject)
 
 /* Method Declarations */
 
-GtkHexPasteData *	gtk_hex_paste_data_new (char *doc_data, int elems);
-char *				gtk_hex_paste_data_get_string (GtkHexPasteData *self);
-char *			gtk_hex_paste_data_get_doc_data (GtkHexPasteData *self);
-int				gtk_hex_paste_data_get_elems (GtkHexPasteData *self);
+HexPasteData *	hex_paste_data_new (char *doc_data, int elems);
+char *				hex_paste_data_get_string (HexPasteData *self);
+char *			hex_paste_data_get_doc_data (HexPasteData *self);
+int				hex_paste_data_get_elems (HexPasteData *self);
 
 G_END_DECLS
 

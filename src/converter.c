@@ -48,7 +48,7 @@
 
 typedef struct _Converter {
 	GtkWidget *window;
-	GtkHex *gh;
+	HexWidget *gh;
 	GtkWidget *entry[5];
 	GtkWidget *close;
 	GtkWidget *get;
@@ -164,7 +164,7 @@ close_converter(GtkWidget *dialog, int response_id, gpointer user_data)
 }
 
 GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
-		GtkHex *gh)
+		HexWidget *gh)
 {
 	Converter *conv;
 	GtkWidget *grid;
@@ -176,8 +176,8 @@ GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
 	/* set global for usage in other functions. */
 	converter = conv;
 
-	/* set struct's GtkHex widget */
-	g_assert (GTK_IS_HEX(gh));
+	/* set struct's HexWidget widget */
+	g_assert (HEX_IS_WIDGET(gh));
 	conv->gh = gh;
 
 	conv->window = gtk_dialog_new_with_buttons(_("Base Converter"),
@@ -240,18 +240,18 @@ get_cursor_val_cb(GtkButton *button, Converter *conv)
 	HexDocument *doc;
 	size_t payload;
 
-	g_return_if_fail (GTK_IS_HEX(conv->gh));
+	g_return_if_fail (HEX_IS_WIDGET(conv->gh));
 
-	doc = gtk_hex_get_document (conv->gh);
+	doc = hex_widget_get_document (conv->gh);
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
-	group_type = gtk_hex_get_group_type (conv->gh);
-	start = gtk_hex_get_cursor (conv->gh);
+	group_type = hex_widget_get_group_type (conv->gh);
+	start = hex_widget_get_cursor (conv->gh);
 	start = start - start % group_type;
 
 	val = 0;
 	do {
 		val <<= 8;
-		val |= gtk_hex_get_byte(conv->gh, start);
+		val |= hex_widget_get_byte(conv->gh, start);
 		start++;
 	} while((start % group_type != 0) &&
 			(start < payload) );

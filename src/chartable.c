@@ -37,7 +37,7 @@
 /* STATIC GLOBALS */
 
 static GtkTreeSelection *sel_row = NULL;
-static GtkHex *gh_glob = NULL;
+static HexWidget *gh_glob = NULL;
 
 static char *ascii_non_printable_label[] = {
 	"NUL",
@@ -82,9 +82,9 @@ insert_char (GtkTreeView *treeview, GtkTreeModel *model)
 	GValue value = { 0 };
 	HexDocument *doc;
 
-	g_return_if_fail (GTK_IS_HEX(gh_glob));
+	g_return_if_fail (HEX_IS_WIDGET(gh_glob));
 
-	doc = gtk_hex_get_document (gh_glob);
+	doc = hex_widget_get_document (gh_glob);
 
 	selection = gtk_tree_view_get_selection(treeview);
 	if (! gtk_tree_selection_get_selected (selection, &model, &iter))
@@ -94,11 +94,11 @@ insert_char (GtkTreeView *treeview, GtkTreeModel *model)
 	if (selection == sel_row) {
 		hex_document_set_byte (doc,
 				(guchar)atoi(g_value_get_string(&value)),
-				gtk_hex_get_cursor (gh_glob),
-				gtk_hex_get_insert_mode (gh_glob),
+				hex_widget_get_cursor (gh_glob),
+				hex_widget_get_insert_mode (gh_glob),
 				TRUE);	/* undoable */
 
-		gtk_hex_set_cursor (gh_glob, gtk_hex_get_cursor (gh_glob) + 1);
+		hex_widget_set_cursor (gh_glob, hex_widget_get_cursor (gh_glob) + 1);
 	}
 	g_value_unset(&value);
 	sel_row = selection;
@@ -142,7 +142,7 @@ hide_chartable_cb (GtkButton *button, gpointer user_data)
 	gtk_window_close (win);
 }
 
-GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
+GtkWidget *create_char_table(GtkWindow *parent_win, HexWidget *gh)
 {
 	static gchar *fmt[] = { NULL, "%02X", "%03d", "%03o" };
 	static gchar *titles[] = {  N_("ASCII"), N_("Hex"), N_("Decimal"),
@@ -157,8 +157,8 @@ GtkWidget *create_char_table(GtkWindow *parent_win, GtkHex *gh)
 	int i, col;
 	gchar *label, ascii_printable_label[2], bin_label[9], *row[5];
 
-	/* set global GtkHex widget */
-	g_assert (GTK_IS_HEX(gh));
+	/* set global HexWidget widget */
+	g_assert (HEX_IS_WIDGET(gh));
 	gh_glob = gh;
 
 	/* Create our char table window and set as child of parent window,

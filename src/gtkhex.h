@@ -1,6 +1,6 @@
 /* vim: ts=4 sw=4 colorcolumn=80
  * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex.h - declaration of a GtkHex widget
+/* gtkhex.h - declaration of a HexWidget widget
 
    Copyright © 1997 - 2004 Free Software Foundation
 
@@ -43,57 +43,57 @@ G_BEGIN_DECLS
 
 typedef enum
 {
-	GTK_HEX_GROUP_BYTE =		1,
-	GTK_HEX_GROUP_WORD =		2,
-	GTK_HEX_GROUP_LONG =		4,
-	GTK_HEX_GROUP_QUAD =		8
-} GtkHexGroupType;
+	HEX_WIDGET_GROUP_BYTE =		1,
+	HEX_WIDGET_GROUP_WORD =		2,
+	HEX_WIDGET_GROUP_LONG =		4,
+	HEX_WIDGET_GROUP_QUAD =		8
+} HexWidgetGroupType;
 
 /* GOBJECT DECLARATION */
 
-#define GTK_TYPE_HEX (gtk_hex_get_type ())
-G_DECLARE_FINAL_TYPE(GtkHex, gtk_hex, GTK, HEX, GtkWidget)
+#define HEX_TYPE_WIDGET (hex_widget_get_type ())
+G_DECLARE_FINAL_TYPE(HexWidget, hex_widget, HEX, WIDGET, GtkWidget)
 
 /* OPAQUE DATATYPES */
 
-typedef struct _GtkHex_AutoHighlight GtkHex_AutoHighlight;
+typedef struct _HexWidget_AutoHighlight HexWidget_AutoHighlight;
 
 /* PUBLIC METHOD DECLARATIONS */
 
-GtkWidget *gtk_hex_new (HexDocument *owner);
+GtkWidget *hex_widget_new (HexDocument *owner);
 
-void gtk_hex_set_cursor (GtkHex *gh, gint64 index);
-void gtk_hex_set_cursor_by_row_and_col (GtkHex *gh, int col_x, gint64 line_y);
-void gtk_hex_set_nibble (GtkHex *gh, gboolean lower_nibble);
+void hex_widget_set_cursor (HexWidget *gh, gint64 index);
+void hex_widget_set_cursor_by_row_and_col (HexWidget *gh, int col_x, gint64 line_y);
+void hex_widget_set_nibble (HexWidget *gh, gboolean lower_nibble);
 
-gint64 gtk_hex_get_cursor (GtkHex *gh);
-guchar gtk_hex_get_byte (GtkHex *gh, gint64 offset);
+gint64 hex_widget_get_cursor (HexWidget *gh);
+guchar hex_widget_get_byte (HexWidget *gh, gint64 offset);
 
-void gtk_hex_set_group_type (GtkHex *gh, GtkHexGroupType gt);
-GtkHexGroupType gtk_hex_get_group_type (GtkHex *gh);
+void hex_widget_set_group_type (HexWidget *gh, HexWidgetGroupType gt);
+HexWidgetGroupType hex_widget_get_group_type (HexWidget *gh);
 
-void gtk_hex_show_offsets (GtkHex *gh, gboolean show);
+void hex_widget_show_offsets (HexWidget *gh, gboolean show);
 
-gboolean gtk_hex_get_insert_mode (GtkHex *gh);
-void gtk_hex_set_insert_mode (GtkHex *gh, gboolean insert);
+gboolean hex_widget_get_insert_mode (HexWidget *gh);
+void hex_widget_set_insert_mode (HexWidget *gh, gboolean insert);
 
-void gtk_hex_set_geometry (GtkHex *gh, int cpl, int vis_lines);
+void hex_widget_set_geometry (HexWidget *gh, int cpl, int vis_lines);
 
-void gtk_hex_copy_to_clipboard (GtkHex *gh);
-void gtk_hex_cut_to_clipboard (GtkHex *gh);
-void gtk_hex_paste_from_clipboard (GtkHex *gh);
+void hex_widget_copy_to_clipboard (HexWidget *gh);
+void hex_widget_cut_to_clipboard (HexWidget *gh);
+void hex_widget_paste_from_clipboard (HexWidget *gh);
 
-void gtk_hex_set_selection (GtkHex *gh, gint64 start, gint64 end);
-gboolean gtk_hex_get_selection (GtkHex *gh, gint64 *start, gint64 *end);
-void gtk_hex_clear_selection (GtkHex *gh);
-void gtk_hex_delete_selection (GtkHex *gh);
+void hex_widget_set_selection (HexWidget *gh, gint64 start, gint64 end);
+gboolean hex_widget_get_selection (HexWidget *gh, gint64 *start, gint64 *end);
+void hex_widget_clear_selection (HexWidget *gh);
+void hex_widget_delete_selection (HexWidget *gh);
 
-GtkHex_AutoHighlight *
-gtk_hex_insert_autohighlight (GtkHex *gh, const char *search, int len);
-void gtk_hex_delete_autohighlight (GtkHex *gh, GtkHex_AutoHighlight *ahl);
+HexWidget_AutoHighlight *
+hex_widget_insert_autohighlight (HexWidget *gh, const char *search, int len);
+void hex_widget_delete_autohighlight (HexWidget *gh, HexWidget_AutoHighlight *ahl);
 
-GtkAdjustment *gtk_hex_get_adjustment(GtkHex *gh);
-HexDocument *gtk_hex_get_document (GtkHex *gh);
+GtkAdjustment *hex_widget_get_adjustment(HexWidget *gh);
+HexDocument *hex_widget_get_document (HexWidget *gh);
 
 G_END_DECLS
 

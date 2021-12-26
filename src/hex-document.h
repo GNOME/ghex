@@ -59,7 +59,7 @@ typedef enum
  * HexDocumentFindData:
  * @found: whether the string was found
  * @start: start offset of the payload, in bytes
- * @what: (array length=len) a pointer to the data to search within the
+ * @what: (array length=len): a pointer to the data to search within the
  *   #HexDocument
  * @len: length in bytes of the data to be searched for
  * @offset: offset of the found string

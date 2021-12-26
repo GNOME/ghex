@@ -46,8 +46,8 @@ G_BEGIN_DECLS
 
 void common_help_cb (GtkWindow *parent);
 void common_about_cb (GtkWindow *parent);
-void common_print (GtkWindow *parent, GtkHex *gh, gboolean preview);
-void common_set_gtkhex_font_from_settings (GtkHex *gh);
+void common_print (GtkWindow *parent, HexWidget *gh, gboolean preview);
+void common_set_gtkhex_font_from_settings (HexWidget *gh);
 void display_error_dialog (GtkWindow *parent, const char *msg);
 void display_info_dialog (GtkWindow *parent, const char *msg);
 

@@ -1,6 +1,6 @@
 /* vim: ts=4 sw=4 colorcolumn=80
  * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex-layout-manager.c - definition of a GtkHex layout manager
+/* gtkhex-layout-manager.c - definition of a HexWidget layout manager
 
    Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
 
@@ -26,11 +26,11 @@
 
 #define DEFAULT_OFFSET_CPL	8
 
-struct _GtkHexLayout {
+struct _HexWidgetLayout {
 	GtkLayoutManager parent_instance;
 
 	int char_width;
-	GtkHexGroupType group_type;
+	HexWidgetGroupType group_type;
 
 	int cpl;
 	int hex_cpl;
@@ -39,12 +39,12 @@ struct _GtkHexLayout {
 	int cursor_x, cursor_y;
 };
 
-G_DEFINE_TYPE (GtkHexLayout, gtk_hex_layout, GTK_TYPE_LAYOUT_MANAGER)
+G_DEFINE_TYPE (HexWidgetLayout, hex_widget_layout, GTK_TYPE_LAYOUT_MANAGER)
 
-struct _GtkHexLayoutChild {
+struct _HexWidgetLayoutChild {
 	GtkLayoutChild parent_instance;
 
-	GtkHexLayoutColumn column;
+	HexWidgetLayoutColumn column;
 };
 
 enum {
@@ -56,9 +56,9 @@ static GParamSpec *child_props[N_CHILD_PROPERTIES];
 
 /* Some code required to use g_param_spec_enum below. */
 
-#define GTK_HEX_LAYOUT_COLUMN (gtk_hex_layout_column_get_type ())
+#define HEX_WIDGET_LAYOUT_COLUMN (hex_widget_layout_column_get_type ())
 static GType
-gtk_hex_layout_column_get_type (void)
+hex_widget_layout_column_get_type (void)
 {
 	static GType hex_layout_column_type = 0;
 	static const GEnumValue format_types[] = {
@@ -70,24 +70,24 @@ gtk_hex_layout_column_get_type (void)
 	};
 	if (! hex_layout_column_type) {
 		hex_layout_column_type =
-			g_enum_register_static ("GtkHexLayoutColumn", format_types);
+			g_enum_register_static ("HexWidgetLayoutColumn", format_types);
 	}
 	return hex_layout_column_type;
 }
 
 
-G_DEFINE_TYPE (GtkHexLayoutChild, gtk_hex_layout_child, GTK_TYPE_LAYOUT_CHILD)
+G_DEFINE_TYPE (HexWidgetLayoutChild, hex_widget_layout_child, GTK_TYPE_LAYOUT_CHILD)
 
 
 /* LAYOUT CHILD METHODS */
 
 static void
-gtk_hex_layout_child_set_property (GObject *gobject,
+hex_widget_layout_child_set_property (GObject *gobject,
 		guint         prop_id,
 		const GValue *value,
 		GParamSpec   *pspec)
 {
-	GtkHexLayoutChild *self = GTK_HEX_LAYOUT_CHILD(gobject);
+	HexWidgetLayoutChild *self = HEX_WIDGET_LAYOUT_CHILD(gobject);
 
 	switch (prop_id)
 	{
@@ -102,12 +102,12 @@ gtk_hex_layout_child_set_property (GObject *gobject,
 }
 
 static void
-gtk_hex_layout_child_get_property (GObject    *gobject,
+hex_widget_layout_child_get_property (GObject    *gobject,
 		guint       prop_id,
 		GValue     *value,
 		GParamSpec *pspec)
 {
-	GtkHexLayoutChild *self = GTK_HEX_LAYOUT_CHILD(gobject);
+	HexWidgetLayoutChild *self = HEX_WIDGET_LAYOUT_CHILD(gobject);
 
 	switch (prop_id)
 	{
@@ -122,35 +122,35 @@ gtk_hex_layout_child_get_property (GObject    *gobject,
 }
 
 static void
-gtk_hex_layout_child_finalize (GObject *gobject)
+hex_widget_layout_child_finalize (GObject *gobject)
 {
-	GtkHexLayoutChild *self = GTK_HEX_LAYOUT_CHILD (gobject);
+	HexWidgetLayoutChild *self = HEX_WIDGET_LAYOUT_CHILD (gobject);
 
-	G_OBJECT_CLASS (gtk_hex_layout_child_parent_class)->finalize (gobject);
+	G_OBJECT_CLASS (hex_widget_layout_child_parent_class)->finalize (gobject);
 }
 
 static void
-gtk_hex_layout_child_dispose (GObject *gobject)
+hex_widget_layout_child_dispose (GObject *gobject)
 {
-	GtkHexLayoutChild *self = GTK_HEX_LAYOUT_CHILD (gobject);
+	HexWidgetLayoutChild *self = HEX_WIDGET_LAYOUT_CHILD (gobject);
 
-	G_OBJECT_CLASS (gtk_hex_layout_child_parent_class)->finalize (gobject);
+	G_OBJECT_CLASS (hex_widget_layout_child_parent_class)->finalize (gobject);
 }
 
 static void
-gtk_hex_layout_child_class_init (GtkHexLayoutChildClass *klass)
+hex_widget_layout_child_class_init (HexWidgetLayoutChildClass *klass)
 {
 	GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
-	gobject_class->set_property = gtk_hex_layout_child_set_property;
-	gobject_class->get_property = gtk_hex_layout_child_get_property;
-	gobject_class->finalize = gtk_hex_layout_child_finalize;
-	gobject_class->dispose = gtk_hex_layout_child_dispose;
+	gobject_class->set_property = hex_widget_layout_child_set_property;
+	gobject_class->get_property = hex_widget_layout_child_get_property;
+	gobject_class->finalize = hex_widget_layout_child_finalize;
+	gobject_class->dispose = hex_widget_layout_child_dispose;
 
 	child_props[PROP_CHILD_COLUMN] = g_param_spec_enum ("column",
 			"Column type",
 			"The column type of a child of a hex layout",
-			GTK_HEX_LAYOUT_COLUMN,
+			HEX_WIDGET_LAYOUT_COLUMN,
 			NO_COLUMN,
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS |
 				G_PARAM_EXPLICIT_NOTIFY);
@@ -160,7 +160,7 @@ gtk_hex_layout_child_class_init (GtkHexLayoutChildClass *klass)
 }
 
 static void
-gtk_hex_layout_child_init (GtkHexLayoutChild *self)
+hex_widget_layout_child_init (HexWidgetLayoutChild *self)
 {
 }
 
@@ -168,7 +168,7 @@ gtk_hex_layout_child_init (GtkHexLayoutChild *self)
 /* LAYOUT MANAGER METHODS */
 
 static void
-gtk_hex_layout_measure (GtkLayoutManager *layout_manager,
+hex_widget_layout_measure (GtkLayoutManager *layout_manager,
 		GtkWidget		*widget,
 		GtkOrientation	orientation,
 		int				for_size,
@@ -206,13 +206,13 @@ gtk_hex_layout_measure (GtkLayoutManager *layout_manager,
 
 #define BASE_ALLOC {.x = 0, .y = 0, .width = 0, .height = full_height}
 static void
-gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
+hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 		GtkWidget        *widget,
 		int               full_width,
 		int               full_height,
 		int               baseline)		/* N/A */
 {
-	GtkHexLayout *self = GTK_HEX_LAYOUT (layout_manager);
+	HexWidgetLayout *self = HEX_WIDGET_LAYOUT (layout_manager);
 	GtkWidget *child;
 	gboolean have_hex = FALSE;
 	gboolean have_ascii = FALSE;
@@ -228,7 +228,7 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 			child != NULL;
 			child = gtk_widget_get_next_sibling (child))
 	{
-		GtkHexLayoutChild *child_info;
+		HexWidgetLayoutChild *child_info;
 
 		if (GTK_IS_POPOVER (child))
 		{
@@ -243,7 +243,7 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 		/* Setup allocation depending on what column we're in.
 		 * This loop is run through again once we obtain some initial values. */
 
-		child_info = GTK_HEX_LAYOUT_CHILD(
+		child_info = HEX_WIDGET_LAYOUT_CHILD(
 				gtk_layout_manager_get_layout_child (layout_manager, child));
 
 		switch (child_info->column)
@@ -426,7 +426,7 @@ gtk_hex_layout_allocate (GtkLayoutManager *layout_manager,
 #undef BASE_ALLOC
 
 static GtkSizeRequestMode
-gtk_hex_layout_get_request_mode (GtkLayoutManager *layout_manager,
+hex_widget_layout_get_request_mode (GtkLayoutManager *layout_manager,
 		GtkWidget        *widget)
 {
 	/* I understand this is the default return type anyway; but I guess it
@@ -436,46 +436,46 @@ gtk_hex_layout_get_request_mode (GtkLayoutManager *layout_manager,
 }
 
 static GtkLayoutChild *
-gtk_hex_layout_create_layout_child (GtkLayoutManager *manager,
+hex_widget_layout_create_layout_child (GtkLayoutManager *manager,
 		GtkWidget        *widget,
 		GtkWidget        *for_child)
 {
-	return g_object_new (GTK_TYPE_HEX_LAYOUT_CHILD,
+	return g_object_new (HEX_TYPE_WIDGET_LAYOUT_CHILD,
 			"layout-manager", manager,
 			"child-widget", for_child,
 			NULL);
 }
 
 static void
-gtk_hex_layout_class_init (GtkHexLayoutClass *klass)
+hex_widget_layout_class_init (HexWidgetLayoutClass *klass)
 {
 	GtkLayoutManagerClass *layout_class = GTK_LAYOUT_MANAGER_CLASS (klass);
 
-	layout_class->get_request_mode = gtk_hex_layout_get_request_mode;
-	layout_class->measure = gtk_hex_layout_measure;
-	layout_class->allocate = gtk_hex_layout_allocate;
-	layout_class->create_layout_child = gtk_hex_layout_create_layout_child;
+	layout_class->get_request_mode = hex_widget_layout_get_request_mode;
+	layout_class->measure = hex_widget_layout_measure;
+	layout_class->allocate = hex_widget_layout_allocate;
+	layout_class->create_layout_child = hex_widget_layout_create_layout_child;
 }
 
 static void
-gtk_hex_layout_init (GtkHexLayout *self)
+hex_widget_layout_init (HexWidgetLayout *self)
 {
 	self->offset_cpl = DEFAULT_OFFSET_CPL;
 	/* FIXME - dumb test initial default */
 	self->char_width = 20;
-	self->group_type = GTK_HEX_GROUP_BYTE;
+	self->group_type = HEX_WIDGET_GROUP_BYTE;
 }
 
-/* GtkHexLayout - Public Methods */
+/* HexWidgetLayout - Public Methods */
 
 GtkLayoutManager *
-gtk_hex_layout_new (void)
+hex_widget_layout_new (void)
 {
-  return g_object_new (GTK_TYPE_HEX_LAYOUT, NULL);
+  return g_object_new (HEX_TYPE_WIDGET_LAYOUT, NULL);
 }
 
 void
-gtk_hex_layout_set_char_width (GtkHexLayout *layout, int width)
+hex_widget_layout_set_char_width (HexWidgetLayout *layout, int width)
 {
 	layout->char_width = width;
 
@@ -483,8 +483,8 @@ gtk_hex_layout_set_char_width (GtkHexLayout *layout, int width)
 }
 
 void
-gtk_hex_layout_set_group_type (GtkHexLayout *layout,
-		GtkHexGroupType group_type)
+hex_widget_layout_set_group_type (HexWidgetLayout *layout,
+		HexWidgetGroupType group_type)
 {
 	layout->group_type = group_type;
 
@@ -492,43 +492,43 @@ gtk_hex_layout_set_group_type (GtkHexLayout *layout,
 }
 
 int
-gtk_hex_layout_get_cpl (GtkHexLayout *layout)
+hex_widget_layout_get_cpl (HexWidgetLayout *layout)
 {
 	return layout->cpl;
 }
 
 int
-gtk_hex_layout_get_hex_cpl (GtkHexLayout *layout)
+hex_widget_layout_get_hex_cpl (HexWidgetLayout *layout)
 {
 	return layout->hex_cpl;
 }
 
 void
-gtk_hex_layout_set_cursor_pos (GtkHexLayout *layout, int x, int y)
+hex_widget_layout_set_cursor_pos (HexWidgetLayout *layout, int x, int y)
 {
 	layout->cursor_x = x;
 	layout->cursor_y = y;
 }
 
 void
-gtk_hex_layout_set_offset_cpl (GtkHexLayout *layout, int offset_cpl)
+hex_widget_layout_set_offset_cpl (HexWidgetLayout *layout, int offset_cpl)
 {
 	layout->offset_cpl = offset_cpl;
 }
 
 int
-gtk_hex_layout_get_offset_cpl (GtkHexLayout *layout)
+hex_widget_layout_get_offset_cpl (HexWidgetLayout *layout)
 {
 	return layout->offset_cpl;
 }
 
-/* GtkHexLayoutChild - Public Methods */
+/* HexWidgetLayoutChild - Public Methods */
 
 void
-gtk_hex_layout_child_set_column (GtkHexLayoutChild *child,
-		GtkHexLayoutColumn column)
+hex_widget_layout_child_set_column (HexWidgetLayoutChild *child,
+		HexWidgetLayoutColumn column)
 {
-	g_return_if_fail (GTK_IS_HEX_LAYOUT_CHILD (child));
+	g_return_if_fail (HEX_IS_WIDGET_LAYOUT_CHILD (child));
 
 	if (child->column == column)
 		return;

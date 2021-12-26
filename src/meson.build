@@ -129,8 +129,6 @@ if generate_gir
   gtkhex_gir_sources = [
     'gtkhex.c',
     'gtkhex.h',
-  ]
-  hexdocument_gir_sources = [
     'hex-document.c',
     'hex-document.h',
     'hex-buffer-iface.c',
@@ -142,21 +140,7 @@ if generate_gir
   ]
 
   gtkhex_gir = gnome.generate_gir(libgtkhex,
-                sources: gtkhex_gir_sources,
-              nsversion: libgtkhex_version_major.to_string(),
-              namespace: 'Gtk',
-          symbol_prefix: 'gtk',
-              link_with: libgtkhex,
-           dependencies: libgtkhex_deps,
-               includes: [ 'Gtk-4.0' ],
-                install: true,
-        install_dir_gir: ghex_girdir,
-    install_dir_typelib: ghex_typelibdir,
-             extra_args: [ '--warn-all' ],
-  )
-
-  hexdocument_gir = gnome.generate_gir(libgtkhex,
-              sources: hexdocument_gir_sources,
+              sources: gtkhex_gir_sources,
             nsversion: libgtkhex_version_major.to_string(),
             namespace: 'Hex',
         symbol_prefix: 'hex',

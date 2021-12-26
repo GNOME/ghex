@@ -188,9 +188,9 @@ set_css_provider_font_from_settings (void)
 }
 
 void
-common_set_gtkhex_font_from_settings (GtkHex *gh)
+common_set_gtkhex_font_from_settings (HexWidget *gh)
 {
-	g_return_if_fail (GTK_IS_HEX(gh));
+	g_return_if_fail (HEX_IS_WIDGET(gh));
 	g_return_if_fail (GTK_IS_STYLE_PROVIDER(provider));
 
 	/* Ensure global provider and settings are in sync font-wise. */
@@ -298,7 +298,7 @@ common_about_cb (GtkWindow *parent)
  * display the print dialog.
  */
 void
-common_print (GtkWindow *parent, GtkHex *gh, gboolean preview)
+common_print (GtkWindow *parent, HexWidget *gh, gboolean preview)
 {
 	GHexPrintJobInfo *job;
 	HexDocument *doc;
@@ -306,14 +306,14 @@ common_print (GtkWindow *parent, GtkHex *gh, gboolean preview)
 	GError *error = NULL;
 	char *basename;
 
-	g_return_if_fail (GTK_IS_HEX (gh));
+	g_return_if_fail (HEX_IS_WIDGET (gh));
 
-	doc = gtk_hex_get_document (gh);
+	doc = hex_widget_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	basename = g_file_get_basename (hex_document_get_file (doc));
 
-	job = ghex_print_job_info_new (doc, gtk_hex_get_group_type (gh));
+	job = ghex_print_job_info_new (doc, hex_widget_get_group_type (gh));
 	job->master = gtk_print_operation_new ();
 	job->config = gtk_print_settings_new ();
 	gtk_print_settings_set (job->config, GTK_PRINT_SETTINGS_OUTPUT_BASENAME,

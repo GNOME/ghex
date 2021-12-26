@@ -1,7 +1,7 @@
 /* vim: colorcolumn=80 ts=4 sw=4
  */
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* gtkhex.h - definition of a GtkHex widget, modified for use with GnomeMDI
+/* gtkhex.h - definition of a HexWidget widget, modified for use with GnomeMDI
 
    Copyright (C) 2004 Free Software Foundation
 
@@ -38,7 +38,7 @@
 G_BEGIN_DECLS
 
 GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
-		GtkHex *gh);
+		HexWidget *gh);
 
 G_END_DECLS
 

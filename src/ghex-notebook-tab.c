@@ -35,7 +35,7 @@ struct _GHexNotebookTab
 	
 	GtkWidget *label;
 	GtkWidget *close_btn;
-	GtkHex *gh;				/* GtkHex widget activated when tab is clicked */
+	HexWidget *gh;				/* HexWidget widget activated when tab is clicked */
 };
 
 static char *untitled_label = N_("Untitled document");
@@ -187,7 +187,7 @@ refresh_file_name (GHexNotebookTab *self)
 	char *basename;
 	GFile *file;
 
-   	doc = gtk_hex_get_document (self->gh);
+   	doc = hex_widget_get_document (self->gh);
 	file = hex_document_get_file (doc);
 
 	if (G_IS_FILE (file))
@@ -202,21 +202,21 @@ refresh_file_name (GHexNotebookTab *self)
 }
 
 static void
-ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh)
+ghex_notebook_tab_add_hex (GHexNotebookTab *self, HexWidget *gh)
 {
 	HexDocument *doc;
 
 	/* Do some sanity checks, as this method requires that some ducks be in
-	 * a row -- we need a valid GtkHex that is pre-loaded with a valid
+	 * a row -- we need a valid HexWidget that is pre-loaded with a valid
 	 * HexDocument.
 	 */
 	g_return_if_fail (GHEX_IS_NOTEBOOK_TAB (self));
-	g_return_if_fail (GTK_IS_HEX (gh));
+	g_return_if_fail (HEX_IS_WIDGET (gh));
 
-	doc = gtk_hex_get_document (gh);
+	doc = hex_widget_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	/* Associate this notebook tab with a GtkHex widget. */
+	/* Associate this notebook tab with a HexWidget widget. */
 	self->gh = gh;
 
 	g_object_add_weak_pointer (G_OBJECT(self->gh), (gpointer *)&self->gh);
@@ -238,7 +238,7 @@ ghex_notebook_tab_add_hex (GHexNotebookTab *self, GtkHex *gh)
 /* Public Methods */
  
 GtkWidget *
-ghex_notebook_tab_new (GtkHex *gh)
+ghex_notebook_tab_new (HexWidget *gh)
 {
 	GHexNotebookTab *self = g_object_new (GHEX_TYPE_NOTEBOOK_TAB, NULL);
 	ghex_notebook_tab_add_hex (self, gh);
@@ -255,7 +255,7 @@ ghex_notebook_tab_get_filename (GHexNotebookTab *self)
 	return gtk_label_get_text (GTK_LABEL(self->label));
 }
 
-GtkHex *
+HexWidget *
 ghex_notebook_tab_get_hex (GHexNotebookTab *self)
 {
 	g_return_val_if_fail (GHEX_IS_NOTEBOOK_TAB (self), NULL);

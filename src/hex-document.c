@@ -82,7 +82,7 @@ static guint hex_signals[LAST_SIGNAL];
  * HexDocument:
  *
  * `HexDocument` is an object which allows raw data to be loaded,
- * saved and manipulated, intended primarily to be used with the `GtkHex`
+ * saved and manipulated, intended primarily to be used with the `HexWidget`
  * widget.
  */
 struct _HexDocument
@@ -941,7 +941,7 @@ hex_document_export_html (HexDocument *doc,
 /**
  * hex_document_compare_data:
  * @doc: a [class@Hex.Document] object
- * @what: (array length=len) a pointer to the data to compare to data within
+ * @what: (array length=len): a pointer to the data to compare to data within
  *   the #HexDocument
  * @pos: offset position of the #HexDocument data to compare with @what
  * @len: size of the #HexDocument data to compare with @what, in bytes
@@ -972,7 +972,7 @@ hex_document_compare_data (HexDocument *doc,
  * hex_document_find_forward:
  * @doc: a [class@Hex.Document] object
  * @start: starting offset byte of the payload to commence the search
- * @what: (array length=len) a pointer to the data to search within the
+ * @what: (array length=len): a pointer to the data to search within the
  *   #HexDocument
  * @len: length in bytes of the data to be searched for
  * @offset: (out): offset of the found string, if the method returns %TRUE
@@ -1049,7 +1049,7 @@ hex_document_find_forward_thread (GTask *task,
  * hex_document_find_forward_async:
  * @doc: a [class@Hex.Document] object
  * @start: starting offset byte of the payload to commence the search
- * @what: (array length=len) a pointer to the data to search within the
+ * @what: (array length=len): a pointer to the data to search within the
  *   #HexDocument
  * @len: length in bytes of the data to be searched for
  * @offset: (out): offset of the found string, if the method returns %TRUE
@@ -1095,7 +1095,7 @@ hex_document_find_forward_async (HexDocument *doc,
  * hex_document_find_backward:
  * @doc: a [class@Hex.Document] object
  * @start: starting offset byte of the payload to commence the search
- * @what: (array length=len) a pointer to the data to search within the
+ * @what: (array length=len): a pointer to the data to search within the
  *   #HexDocument
  * @len: length in bytes of the data to be searched for
  * @offset: (out): offset of the found string, if the method returns %TRUE
@@ -1150,7 +1150,7 @@ hex_document_find_backward_thread (GTask *task,
  * hex_document_find_backward_async:
  * @doc: a [class@Hex.Document] object
  * @start: starting offset byte of the payload to commence the search
- * @what: (array length=len) a pointer to the data to search within the
+ * @what: (array length=len): a pointer to the data to search within the
  *   #HexDocument
  * @len: length in bytes of the data to be searched for
  * @offset: (out): offset of the found string, if the method returns %TRUE

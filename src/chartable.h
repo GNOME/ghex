@@ -35,7 +35,7 @@
 G_BEGIN_DECLS
 
 GtkWidget *create_char_table (GtkWindow *parent_win, /* can-NULL */
-		GtkHex *gh);
+		HexWidget *gh);
 
 G_END_DECLS
 
