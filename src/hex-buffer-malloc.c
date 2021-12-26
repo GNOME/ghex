@@ -35,6 +35,19 @@ enum
 };
 
 static GParamSpec *properties[N_PROPERTIES];
+
+/**
+ * HexBufferMalloc:
+ * 
+ * #HexBufferMalloc is an object implementing the [iface@Hex.Buffer] interface,
+ * allowing it to be used as a #HexBuffer backend to be used with
+ * [class@Hex.Document].
+ *
+ * #HexBufferMalloc replicates the legacy backend of GHex, reading files
+ * directly into memory as a buffer. This operation tends to be very fast,
+ * but unreliable with larger files. It is not recommended except as a
+ * fallback for systems that are not compatible with other backends.
+ */
 struct _HexBufferMalloc
 {
 	GObject parent_instance;
@@ -468,6 +481,14 @@ hex_buffer_malloc_class_init (HexBufferMallocClass *klass)
 
 /* PUBLIC FUNCTIONS */
 
+/**
+ * hex_buffer_malloc_new:
+ * @file: a #GFile pointing to a valid file on the system
+ *
+ * Create a new #HexBufferMalloc object.
+ *
+ * Returns: a new #HexBufferMalloc object, or %NULL if the operation failed.
+ */
 HexBufferMalloc *
 hex_buffer_malloc_new (GFile *file)
 {

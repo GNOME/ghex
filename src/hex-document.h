@@ -42,12 +42,35 @@ G_BEGIN_DECLS
 #define HEX_TYPE_DOCUMENT hex_document_get_type ()
 G_DECLARE_FINAL_TYPE (HexDocument, hex_document, HEX, DOCUMENT, GObject)
 
+/**
+ * HexChangeType:
+ * @HEX_CHANGE_STRING: the change is a string
+ * @HEX_CHANGE_BYTE: the change is a single byte/character
+ *
+ * Type of change operation.
+ */
 typedef enum
 {
 	HEX_CHANGE_STRING,
 	HEX_CHANGE_BYTE
 } HexChangeType;
 
+/**
+ * HexDocumentFindData:
+ * @found: whether the string was found
+ * @start: start offset of the payload, in bytes
+ * @what: (array length=len) a pointer to the data to search within the
+ *   #HexDocument
+ * @len: length in bytes of the data to be searched for
+ * @offset: offset of the found string
+ * @found_msg: message intended to be displayed by the client if the string
+ *   is found
+ * @not_found_msg: message intended to be displayed by the client if the string
+ *   is not found
+ *
+ * A structure containing metadata about a find operation in a
+ * [class@Hex.Document].
+ */
 typedef struct
 {
 	gboolean found;
@@ -59,6 +82,24 @@ typedef struct
 	const char *not_found_msg;
 } HexDocumentFindData;
 
+/**
+ * HexChangeData:
+ * @start: start offset of the payload, in bytes
+ * @end: end offset of the payload, in bytes
+ * @rep_len: amount of data to replace at @start, or 0 for data to be inserted
+ *   without any overwriting
+ * @lower_nibble: %TRUE if targetting the lower nibble (2nd hex digit) %FALSE
+ *   if targetting the upper nibble (1st hex digit)
+ * @insert: %TRUE if the operation should be insert mode, %FALSE if in
+ *   overwrite mode
+ * @type: [enum@Hex.ChangeType] representing the type of change (ie, a string
+ *   or a single byte)
+ * @v_string: string of the data representing a change, or %NULL
+ * @v_byte: character representing a single byte to be changed, if applicable
+ *
+ * A structure containing metadata about a change made to a
+ * [class@Hex.Document].
+ */
 typedef struct _HexChangeData HexChangeData;
 struct _HexChangeData
 {
@@ -93,8 +134,8 @@ gboolean hex_document_read_finish (HexDocument *doc, GAsyncResult   *result,
 
 gboolean	hex_document_write (HexDocument *doc);
 gboolean	hex_document_write_to_file (HexDocument *doc, GFile *file);
-gboolean	hex_document_export_html (HexDocument *doc, char *html_path,
-		char *base_name, gint64 start, gint64 end, guint cpl, guint lpp,
+gboolean	hex_document_export_html (HexDocument *doc, const char *html_path,
+		const char *base_name, gint64 start, gint64 end, guint cpl, guint lpp,
 		guint cpw);
 gboolean	hex_document_has_changed (HexDocument *doc);
 void		hex_document_changed (HexDocument *doc,gpointer change_data,

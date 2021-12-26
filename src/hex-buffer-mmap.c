@@ -49,6 +49,25 @@ static GParamSpec *properties[N_PROPERTIES];
 
 static char *invalid_path_msg = N_("The file appears to have an invalid path.");
 
+/**
+ * HexBufferMmap:
+ * 
+ * #HexBufferMmap is an object implementing the [iface@Hex.Buffer] interface,
+ * allowing it to be used as a #HexBuffer backend to be used with
+ * [class@Hex.Document].
+ *
+ * Unlike the [class@Hex.BufferMalloc] object, which replicates the legacy
+ * backend of GHex, #HexBufferMmap allows for files to be memory-mapped
+ * by the operating system when being read. This can make files take a bit
+ * longer to load, but once loaded will work much faster and more reliably
+ * with very large files.
+ *
+ * #HexBufferMmap uses the POSIX mmap() function at the backend, which
+ * requires a POSIX system, and also depends on the mremap() function
+ * being present. If the required headers and functions are not found at
+ * compile-time, this backend will not be built, and #HexBufferMalloc can
+ * be used as a fallback.
+ */
 struct _HexBufferMmap
 {
 	GObject parent_instance;
@@ -778,6 +797,14 @@ static gboolean hex_buffer_mmap_write_to_file (HexBuffer *buf,
 
 /* PUBLIC FUNCTIONS */
 
+/**
+ * hex_buffer_mmap_new:
+ * @file: a #GFile pointing to a valid file on the system
+ *
+ * Create a new #HexBufferMmap object.
+ *
+ * Returns: a new #HexBufferMmap object, or %NULL if the operation failed.
+ */
 HexBufferMmap *
 hex_buffer_mmap_new (GFile *file)
 {

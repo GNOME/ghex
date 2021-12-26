@@ -108,7 +108,8 @@ hex_buffer_get_byte (HexBuffer *self,
  * @offset: offset position of the data being requested within the payload
  * @len: size in bytes of the input data being provided
  * @rep_len: amount of bytes to replace/overwrite (if any)
- * @data: (transfer full): a pointer to the data being provided
+ * @data: (array length=len) (transfer full): a pointer to the data being
+ *   provided
  *
  * Set data at of the buffer at a particular offset, replacing some, all or
  * none of the existing data in the buffer as desired.

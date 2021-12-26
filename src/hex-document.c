@@ -323,12 +323,28 @@ hex_document_init (HexDocument *doc)
 /*-------- public API starts here --------*/
 
 
+/**
+ * hex_document_new:
+ *
+ * Create a new empty [class@Hex.Document] object.
+ *
+ * Returns: a new [class@Hex.Document] object.
+ */
 HexDocument *
 hex_document_new (void)
 {
 	return g_object_new (HEX_TYPE_DOCUMENT, NULL);
 }
 
+/**
+ * hex_document_set_file:
+ * @doc: a [class@Hex.Document] object
+ * @file: a #GFile pointing to a valid file on the system
+ *
+ * Set the file of a [class@Hex.Document] object by #GFile.
+ *
+ * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ */
 gboolean
 hex_document_set_file (HexDocument *doc, GFile *file)
 {
@@ -347,6 +363,15 @@ hex_document_set_file (HexDocument *doc, GFile *file)
 	return TRUE;
 }
 
+/**
+ * hex_document_new_from_file:
+ * @file: a #GFile pointing to a valid file on the system
+ *
+ * A convenience method to create a new [class@Hex.Document] from file.
+ *
+ * Returns: a [class@Hex.Document] pre-loaded with a #GFile ready for a
+ * `read` operation, or %NULL if the operation failed.
+ */
 HexDocument *
 hex_document_new_from_file (GFile *file)
 {
@@ -365,6 +390,19 @@ hex_document_new_from_file (GFile *file)
 	return doc;
 }
 
+/**
+ * hex_document_set_nibble:
+ * @doc: a [class@Hex.Document] object
+ * @val: a character to set the nibble as
+ * @offset: offset in bytes within the payload
+ * @lower_nibble: %TRUE if targetting the lower nibble (2nd hex digit) %FALSE
+ *   if targetting the upper nibble (1st hex digit)
+ * @insert: %TRUE if the operation should be insert mode, %FALSE if in
+ *   overwrite mode
+ * @undoable: whether the operation should be undoable
+ *
+ * Set a particular nibble of a #HexDocument. 
+ */
 void
 hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
 						gboolean lower_nibble, gboolean insert,
@@ -407,6 +445,18 @@ hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
 	}
 }
 
+/**
+ * hex_document_set_byte:
+ * @doc: a [class@Hex.Document] object
+ * @val: a character to set the byte as
+ * @offset: offset in bytes within the payload
+ * @insert: %TRUE if the operation should be insert mode, %FALSE if in
+ *   overwrite mode
+ * @undoable: whether the operation should be undoable
+ *
+ * Set a particular byte of a #HexDocument at position `offset` within 
+ * the payload.
+ */
 void
 hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
 					  gboolean insert, gboolean undoable)
@@ -436,6 +486,21 @@ hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
 	}
 }
 
+/**
+ * hex_document_set_data:
+ * @doc: a [class@Hex.Document] object
+ * @offset: offset in bytes within the payload
+ * @len: length in bytes of the data to be set
+ * @rep_len: amount of bytes to replace/overwrite (if any)
+ * @data: (array length=len) (transfer full): a pointer to the data being
+ *   provided
+ * @undoable: whether the operation should be undoable
+ *
+ * A convenience wrapper for [method@Hex.Buffer.set_data]. See the
+ * description of that method for details.
+ *
+ * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ */
 void
 hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
 					  size_t rep_len, char *data, gboolean undoable)
@@ -465,6 +530,15 @@ hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
 	}
 }
 
+/**
+ * hex_document_delete_data:
+ * @doc: a [class@Hex.Document] object
+ * @offset: offset in bytes within the payload
+ * @len: length in bytes of the data to be set
+ * @undoable: whether the operation should be undoable
+ *
+ * Delete data at `offset` of `length` within the buffer.
+ */
 void
 hex_document_delete_data (HexDocument *doc,
 		gint64 offset, size_t len, gboolean undoable)
@@ -472,6 +546,25 @@ hex_document_delete_data (HexDocument *doc,
 	hex_document_set_data (doc, offset, 0, len, NULL, undoable);
 }
 
+/**
+ * hex_document_read_finish:
+ * @doc: a [class@Hex.Document] object
+ * @result: result of the task
+ * @error: (nullable): optional pointer to a #GError object to populate with
+ *   any error returned by the task
+ *
+ * Obtain the result of a completed file read operation.
+ *
+ * This method is mostly a wrapper around [method@Hex.Buffer.read_finish]
+ * but takes some additional steps and emits the appropriate signals
+ * applicable to the document object above and beyond the buffer.
+ *
+ * This method is typically called from the #GAsyncReadyCallback function
+ * passed to [method@Hex.Buffer.read_async] to obtain the result of the
+ * operation.
+ *
+ * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ */
 gboolean
 hex_document_read_finish (HexDocument *doc,
 		GAsyncResult   *result,
@@ -529,6 +622,20 @@ cleanup:
 	g_object_unref (task);
 }
 
+/**
+ * hex_document_read_async:
+ * @doc: a [class@Hex.Document] object
+ * @cancellable: (nullable): a #GCancellable
+ * @callback: (scope async): function to be called when the operation is
+ *   complete
+ *
+ * Read the #GFile into the buffer connected to the #HexDocument object.
+ *
+ * This method is mostly a wrapper around [method@Hex.Buffer.read_async]
+ * but will allow additional steps and appropriate signals to be emitted
+ * applicable to the document object above and beyond the buffer, when
+ * the operation completes.
+ */
 void
 hex_document_read_async (HexDocument *doc,
 		GCancellable *cancellable,	/* FIXME: presently ignored */
@@ -549,12 +656,32 @@ hex_document_read_async (HexDocument *doc,
 	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_READ_STARTED], 0);
 }
 
+/**
+ * hex_document_write_to_file:
+ * @doc: a [class@Hex.Document] object
+ * @file: #GFile to be written to
+ *
+ * Write the buffer to `file`. This can be used for a 'Save As' operation.
+ *
+ * This operation will block.
+ *
+ * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ */
 gboolean
 hex_document_write_to_file (HexDocument *doc, GFile *file)
 {
 	return hex_buffer_write_to_file (doc->buffer, file);
 }
 
+/**
+ * hex_document_write:
+ * @doc: a [class@Hex.Document] object
+ *
+ * Write the buffer to the pre-existing #GFile connected to the #HexDocument
+ * object. This can be used for a 'Save (in place)' operation.
+ *
+ * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ */
 gboolean
 hex_document_write (HexDocument *doc)
 {
@@ -579,20 +706,45 @@ out:
 	return ret;
 }
 
+/**
+ * hex_document_changed:
+ * @doc: a [class@Hex.Document] object
+ * @change_data: pointer to a [struct@Hex.ChangeData] structure
+ * @push_undo: whether the undo stack should be pushed to
+ *
+ * Convenience method to emit the [signal@Hex.Document::document-changed]
+ * signal. This method is mostly only useful for widgets utilizing
+ * #HexDocument.
+ */
 void
-hex_document_changed(HexDocument *doc, gpointer change_data,
+hex_document_changed (HexDocument *doc, gpointer change_data,
 					 gboolean push_undo)
 {
 	g_signal_emit(G_OBJECT(doc), hex_signals[DOCUMENT_CHANGED], 0,
 				  change_data, push_undo);
 }
 
+/**
+ * hex_document_has_changed:
+ * @doc: a [class@Hex.Document] object
+ * 
+ * Method to check whether the #HexDocument has changed.
+ *
+ * Returns: %TRUE if the document has changed, %FALSE otherwise
+ */
 gboolean
-hex_document_has_changed(HexDocument *doc)
+hex_document_has_changed (HexDocument *doc)
 {
 	return doc->changed;
 }
 
+/**
+ * hex_document_set_max_undo:
+ * @doc: a [class@Hex.Document] object
+ * @max_undo: the new maximum size of the undo stack
+ *
+ * Set the maximum size of the #HexDocument undo stack.
+ */
 void
 hex_document_set_max_undo (HexDocument *doc, int max_undo)
 {
@@ -603,10 +755,31 @@ hex_document_set_max_undo (HexDocument *doc, int max_undo)
 	}
 }
 
+/**
+ * hex_document_export_html:
+ * @doc: a [class@Hex.Document] object
+ * @html_path: path to the directory in which the HTML file will be saved
+ * @base_name: the base name of the filename to be saved, without the .html
+ *   extension.
+ * @start: starting offset byte of the payload in the range to save
+ * @end: ending offset byte of the payload in the range to save
+ * @cpl: columns per line
+ * @lpp: lines per page
+ * @cpw: characters per word (for grouping of nibbles)
+ *
+ * Export the #HexDocument to HTML.
+ *
+ * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ */
 gboolean
-hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
-						 gint64 start, gint64 end, guint cpl, guint lpp,
-						 guint cpw)
+hex_document_export_html (HexDocument *doc,
+		const char *html_path,
+		const char *base_name,
+		gint64 start,
+		gint64 end,
+		guint cpl,
+		guint lpp,
+		guint cpw)
 {
 	FILE *file;
 	guint page, line, pos, lines, pages, c;
@@ -765,6 +938,17 @@ hex_document_export_html (HexDocument *doc, char *html_path, char *base_name,
 	return TRUE;
 }
 
+/**
+ * hex_document_compare_data:
+ * @doc: a [class@Hex.Document] object
+ * @what: (array length=len) a pointer to the data to compare to data within
+ *   the #HexDocument
+ * @pos: offset position of the #HexDocument data to compare with @what
+ * @len: size of the #HexDocument data to compare with @what, in bytes
+ *
+ * Returns: 0 if the comparison is an exact match; otherwise, a non-zero
+ *   value comparable to strcmp().
+ */
 int
 hex_document_compare_data (HexDocument *doc,
 		char *what, gint64 pos, size_t len)
@@ -784,6 +968,25 @@ hex_document_compare_data (HexDocument *doc,
 	return 0;
 }
 
+/**
+ * hex_document_find_forward:
+ * @doc: a [class@Hex.Document] object
+ * @start: starting offset byte of the payload to commence the search
+ * @what: (array length=len) a pointer to the data to search within the
+ *   #HexDocument
+ * @len: length in bytes of the data to be searched for
+ * @offset: (out): offset of the found string, if the method returns %TRUE
+ * 
+ * Find a string forwards in a #HexDocument.
+ *
+ * This method will block. For a non-blocking version, use
+ * [method@Hex.Document.find_forward_async], which is also recommended
+ * for GUI operations, as it, unlike this method, allows for easy passing-in
+ * of found/not-found strings to be passed back to the interface.
+ *
+ * Returns: %TRUE if @what was found by the requested operation; %FALSE
+ *   otherwise.
+ */
 gboolean
 hex_document_find_forward (HexDocument *doc, gint64 start, char *what,
 						  size_t len, gint64 *offset)
@@ -806,6 +1009,16 @@ hex_document_find_forward (HexDocument *doc, gint64 start, char *what,
 	return FALSE;
 }
 
+/**
+ * hex_document_find_finish:
+ * @doc: a [class@Hex.Document] object
+ * @result: result of the task
+ * 
+ * Obtain the result of a completed asynchronous find operation (forwards or
+ * backwards).
+ *
+ * Returns: a pointer to a [struct@Hex.DocumentFindData] structure, or %NULL
+ */
 HexDocumentFindData *
 hex_document_find_finish (HexDocument *doc,
 		GAsyncResult *result)
@@ -831,6 +1044,26 @@ hex_document_find_forward_thread (GTask *task,
 	g_task_return_pointer (task, find_data, g_free);
 }
 
+/* CROSSREF: hex-document.h - HexDocumentFindData */
+/**
+ * hex_document_find_forward_async:
+ * @doc: a [class@Hex.Document] object
+ * @start: starting offset byte of the payload to commence the search
+ * @what: (array length=len) a pointer to the data to search within the
+ *   #HexDocument
+ * @len: length in bytes of the data to be searched for
+ * @offset: (out): offset of the found string, if the method returns %TRUE
+ * @found_msg: message intended to be displayed by the client if the string
+ *   is found
+ * @not_found_msg: message intended to be displayed by the client if the string
+ *   is not found
+ * @callback: (scope async): function to be called when the operation is
+ *   complete
+ * 
+ * Non-blocking version of [method@Hex.Document.find_forward]. This is the
+ * function that should generally be used by a GUI client to find a string
+ * forwards in a #HexDocument.
+ */
 void
 hex_document_find_forward_async (HexDocument *doc,
 		gint64 start,
@@ -858,6 +1091,25 @@ hex_document_find_forward_async (HexDocument *doc,
 	g_task_run_in_thread (task, hex_document_find_forward_thread);
 }
 
+/**
+ * hex_document_find_backward:
+ * @doc: a [class@Hex.Document] object
+ * @start: starting offset byte of the payload to commence the search
+ * @what: (array length=len) a pointer to the data to search within the
+ *   #HexDocument
+ * @len: length in bytes of the data to be searched for
+ * @offset: (out): offset of the found string, if the method returns %TRUE
+ * 
+ * Find a string backwards in a #HexDocument.
+ *
+ * This method will block. For a non-blocking version, use
+ * [method@Hex.Document.find_backward_async], which is also recommended
+ * for GUI operations, as it, unlike this method, allows for easy passing-in
+ * of found/not-found strings to be passed back to the interface.
+ *
+ * Returns: %TRUE if @what was found by the requested operation; %FALSE
+ *   otherwise.
+ */
 gboolean
 hex_document_find_backward (HexDocument *doc, gint64 start, char *what,
 						   size_t len, gint64 *offset)
@@ -894,6 +1146,25 @@ hex_document_find_backward_thread (GTask *task,
 	g_task_return_pointer (task, find_data, g_free);
 }
 
+/**
+ * hex_document_find_backward_async:
+ * @doc: a [class@Hex.Document] object
+ * @start: starting offset byte of the payload to commence the search
+ * @what: (array length=len) a pointer to the data to search within the
+ *   #HexDocument
+ * @len: length in bytes of the data to be searched for
+ * @offset: (out): offset of the found string, if the method returns %TRUE
+ * @found_msg: message intended to be displayed by the client if the string
+ *   is found
+ * @not_found_msg: message intended to be displayed by the client if the string
+ *   is not found
+ * @callback: (scope async): function to be called when the operation is
+ *   complete
+ * 
+ * Non-blocking version of [method@Hex.Document.find_backward]. This is the
+ * function that should generally be used by a GUI client to find a string
+ * backwards in a #HexDocument.
+ */
 void
 hex_document_find_backward_async (HexDocument *doc,
 		gint64 start,
@@ -921,6 +1192,14 @@ hex_document_find_backward_async (HexDocument *doc,
 	g_task_run_in_thread (task, hex_document_find_backward_thread);
 }
 
+/**
+ * hex_document_undo:
+ * @doc: a [class@Hex.Document] object
+ *
+ * Perform an undo operation.
+ *
+ * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ */
 gboolean
 hex_document_undo (HexDocument *doc)
 {
@@ -979,6 +1258,14 @@ hex_document_real_undo (HexDocument *doc)
 	undo_stack_descend(doc);
 }
 
+/**
+ * hex_document_redo:
+ * @doc: a [class@Hex.Document] object
+ *
+ * Perform a redo operation.
+ *
+ * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ */
 gboolean 
 hex_document_redo (HexDocument *doc)
 {
@@ -1040,6 +1327,14 @@ hex_document_real_redo(HexDocument *doc)
 	hex_document_changed(doc, cd, FALSE);
 }
 
+/**
+ * hex_document_can_undo:
+ * @doc: a [class@Hex.Document] object
+ *
+ * Determine whether an undo operation is possible.
+ *
+ * Returns: %TRUE if an undo operation is possible; %FALSE otherwise
+ */
 gboolean
 hex_document_can_undo (HexDocument *doc)
 {
@@ -1051,6 +1346,14 @@ hex_document_can_undo (HexDocument *doc)
 		return FALSE;
 }
 
+/**
+ * hex_document_can_redo:
+ * @doc: a [class@Hex.Document] object
+ *
+ * Determine whether a redo operation is possible.
+ *
+ * Returns: %TRUE if a redo operation is possible; %FALSE otherwise
+ */
 gboolean
 hex_document_can_redo (HexDocument *doc)
 {
@@ -1062,18 +1365,45 @@ hex_document_can_redo (HexDocument *doc)
 		return FALSE;
 }
 
+/**
+ * hex_document_get_undo_data:
+ * @doc: a [class@Hex.Document] object
+ *
+ * Get the undo data at the top of the undo stack of a #HexDocument, if any.
+ *
+ * Returns: (transfer none): a pointer to the [struct@Hex.ChangeData]
+ *   structure at the top of the undo stack, or %NULL
+ */
 HexChangeData *
 hex_document_get_undo_data (HexDocument *doc)
 {
 	return doc->undo_top->data;
 }
 
+/**
+ * hex_document_get_buffer:
+ * @doc: a [class@Hex.Document] object
+ *
+ * Get the [iface@Hex.Buffer] connected with the #HexDocument.
+ *
+ * Returns: (transfer none): a pointer to the [iface@Hex.Buffer] connected
+ * with the #HexDocument, or %NULL if no such interface is so connected.
+ */
 HexBuffer *
 hex_document_get_buffer (HexDocument *doc)
 {
 	return doc->buffer;
 }
 
+/**
+ * hex_document_get_file:
+ * @doc: a [class@Hex.Document] object
+ *
+ * Get the #GFile connected with the #HexDocument.
+ *
+ * Returns: (transfer none): the #GFile connected with the #HexDocument,
+ * or %NULL if no such object is so connected.
+ */
 GFile *
 hex_document_get_file (HexDocument *doc)
 {
