@@ -78,6 +78,13 @@ static guint hex_signals[LAST_SIGNAL];
 
 /* GOBJECT DEFINITION */
 
+/**
+ * HexDocument:
+ *
+ * `HexDocument` is an object which allows raw data to be loaded,
+ * saved and manipulated, intended primarily to be used with the `GtkHex`
+ * widget.
+ */
 struct _HexDocument
 {
 	GObject object;

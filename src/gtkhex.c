@@ -117,6 +117,13 @@ struct _GtkHex_AutoHighlight
  * ------------------------------
  */
 
+/**
+ * GtkHex:
+ *
+ * #GtkHex is a widget which can display #HexDocument data as a
+ * side-by-side representation of offets, hexadecimal nibbles, and ASCII
+ * characters.
+ */
 struct _GtkHex
 {
 	GtkWidget parent_instance;
