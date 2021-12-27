@@ -1,0 +1,45 @@
+[library]
+version = "@version@"
+description = "Hex widget and document backend for GTK"
+authors = "The GHex authors"
+license = "GPL-2.1-or-later"
+browse_url = "https://gitlab.gnome.org/GNOME/ghex/"
+repository_url = "https://gitlab.gnome.org/GNOME/ghex.git"
+website_url = "https://gitlab.gnome.org/GNOME/ghex/"
+dependencies = [ "GObject-2.0", "Pango-1.0", "Gdk-4.0", "Gtk-4.0" ]
+search_index = true
+
+  [dependencies."GObject-2.0"]
+  name = "GObject"
+  description = "The base type system library"
+  docs_url = "https://docs.gtk.org/gobject/"
+
+  [dependencies."GLib-2.0"]
+  name = "GLib"
+  description = "The base type system library"
+  docs_url = "https://docs.gtk.org/glib/"
+
+  [dependencies."Gio-2.0"]
+  name = "GIO"
+  description = "GObject Interfaces and Objects, Networking, IPC, and I/O"
+  docs_url = "https://docs.gtk.org/gio/"
+
+  [dependencies."Pango-1.0"]
+  name = "Pango"
+  description = "Text shaping and rendering"
+  docs_url = "https://docs.gtk.org/Pango/"
+
+  [dependencies."Gdk-Pixbuf-2.0"]
+  name = "GdkPixbuf"
+  description = "Image loading library"
+  docs_url = "https://docs.gtk.org/gdk-pixbuf/"
+
+  [dependencies."Gdk-4.0"]
+  name = "GDK"
+  description = "The GTK windowing system abstraction"
+  docs_url = "https://docs.gtk.org/gdk4/"
+
+  [dependencies."Gtk-4.0"]
+  name = "GTK"
+  description = "The GTK toolkit"
+  docs_url = "https://docs.gtk.org/gtk4/"
