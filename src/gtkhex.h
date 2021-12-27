@@ -41,6 +41,15 @@ G_BEGIN_DECLS
 
 /* ENUMS */
 
+/**
+ * HexWidgetGroupType:
+ * @HEX_WIDGET_GROUP_BYTE: group data by byte (8-bit)
+ * @HEX_WIDGET_GROUP_WORD: group data by word (16-bit)
+ * @HEX_WIDGET_GROUP_LONG: group data by long (32-bit)
+ * @HEX_WIDGET_GROUP_QUAD: group data by quadword (64-bit)
+ *
+ * Specifies how data is to be grouped by the #HexWidget.
+ */
 typedef enum
 {
 	HEX_WIDGET_GROUP_BYTE =		1,

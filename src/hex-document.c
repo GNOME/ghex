@@ -498,8 +498,6 @@ hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
  *
  * A convenience wrapper for [method@Hex.Buffer.set_data]. See the
  * description of that method for details.
- *
- * Returns: %TRUE if the operation was successful; %FALSE otherwise.
  */
 void
 hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
