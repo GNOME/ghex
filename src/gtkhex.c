@@ -97,12 +97,12 @@ struct _HexWidget_Highlight
 };
 
 /**
- * HexWidget_AutoHighlight:
+ * HexWidgetAutoHighlight:
  *
  * A structure used to automatically highlight all visible occurrences
  * of a given string.
  */
-struct _HexWidget_AutoHighlight
+struct _HexWidgetAutoHighlight
 {
 	char *search_string;
 	int search_len;
@@ -111,8 +111,40 @@ struct _HexWidget_AutoHighlight
 	gint64 view_max;
 
 	HexWidget_Highlight *highlights;
-	HexWidget_AutoHighlight *next, *prev;
+	HexWidgetAutoHighlight *next, *prev;
 };
+
+HexWidgetAutoHighlight *
+hex_widget_autohighlight_new (void)
+{
+	return g_slice_new0 (HexWidgetAutoHighlight);
+}
+
+void
+hex_widget_autohighlight_free (HexWidgetAutoHighlight *ahl)
+{
+	g_free (ahl->search_string);
+	g_free (ahl);
+}
+
+HexWidgetAutoHighlight *
+hex_widget_autohighlight_copy (HexWidgetAutoHighlight *ahl)
+{
+	HexWidgetAutoHighlight *new = g_slice_new0 (HexWidgetAutoHighlight);
+
+	new->search_string = g_strdup (ahl->search_string);
+	new->search_len = ahl->search_len;
+	new->view_min = ahl->view_min;
+	new->view_max = ahl->view_max;
+	new->highlights = ahl->highlights;
+	new->next = ahl->next;
+	new->prev = ahl->prev;
+
+	return new;
+}
+
+G_DEFINE_BOXED_TYPE (HexWidgetAutoHighlight, hex_widget_autohighlight,
+		hex_widget_autohighlight_copy, hex_widget_autohighlight_free)
 
 
 /* ------------------------------
@@ -177,7 +209,7 @@ struct _HexWidget
 	/* width of the hex display `xdisp` and ascii display `adisp` */
 	int xdisp_width, adisp_width;
 
-	HexWidget_AutoHighlight *auto_highlight;
+	HexWidgetAutoHighlight *auto_highlight;
 
 	/* scroll direction: 0 means no scrolling; a -ve number means we're
 	 * scrolling up, and a +ve number means we're scrolling down. */
@@ -219,12 +251,12 @@ static void hex_widget_invalidate_all_highlights (HexWidget *self);
 static void hex_widget_update_all_auto_highlights (HexWidget *self);
 
 static HexWidget_Highlight *hex_widget_insert_highlight (HexWidget *self,
-		HexWidget_AutoHighlight *ahl, gint64 start, gint64 end);
+		HexWidgetAutoHighlight *ahl, gint64 start, gint64 end);
 
-static void hex_widget_delete_highlight (HexWidget *self, HexWidget_AutoHighlight *ahl,
+static void hex_widget_delete_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
 		HexWidget_Highlight *hl);
 
-static void hex_widget_update_auto_highlight (HexWidget *self, HexWidget_AutoHighlight *ahl,
+static void hex_widget_update_auto_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
 		gboolean delete, gboolean add);
 
 static void recalc_displays (HexWidget *self);
@@ -752,7 +784,7 @@ render_highlights (HexWidget *self,
 {
 	/* Shorthand tracers to walk through highlight lists */
 	HexWidget_Highlight *highlight = &self->selection;
-	HexWidget_AutoHighlight *auto_highlight = self->auto_highlight;
+	HexWidgetAutoHighlight *auto_highlight = self->auto_highlight;
 	GtkWidget *widget;		/* shorthand for the hex or ascii drawing area */
 	PangoLayout *layout;	/* shorthand for the hex or ascii pango layout */
 	GtkStyleContext *context;
@@ -1906,7 +1938,7 @@ static void
 hex_widget_invalidate_all_highlights (HexWidget *self)
 {
 	HexWidget_Highlight *cur = &self->selection;
-	HexWidget_AutoHighlight *nextList = self->auto_highlight;
+	HexWidgetAutoHighlight *nextList = self->auto_highlight;
 
 	while (cur)
 	{
@@ -1923,7 +1955,7 @@ hex_widget_invalidate_all_highlights (HexWidget *self)
 
 static HexWidget_Highlight *
 hex_widget_insert_highlight (HexWidget *self,
-		HexWidget_AutoHighlight *ahl,
+		HexWidgetAutoHighlight *ahl,
 		gint64 start,
 		gint64 end)
 {
@@ -1950,7 +1982,7 @@ hex_widget_insert_highlight (HexWidget *self,
 }
 
 static void
-hex_widget_delete_highlight (HexWidget *self, HexWidget_AutoHighlight *ahl,
+hex_widget_delete_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
 		HexWidget_Highlight *hl)
 {
 	gint64 start, end;
@@ -2005,14 +2037,14 @@ hex_widget_find_limited (HexWidget *self, char *find, int findlen,
  * view_min () and view_max () value.
  */
 static inline void
-ahl_set_view_min_max (HexWidget *self, HexWidget_AutoHighlight *ahl)
+ahl_set_view_min_max (HexWidget *self, HexWidgetAutoHighlight *ahl)
 {
 	ahl->view_min = self->top_line * self->cpl;
 	ahl->view_max = (self->top_line + self->vis_lines) * self->cpl;
 }
 
 static void
-hex_widget_update_auto_highlight (HexWidget *self, HexWidget_AutoHighlight *ahl,
+hex_widget_update_auto_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
 		gboolean delete, gboolean add)
 {
 	gint64 del_min, del_max;
@@ -2074,7 +2106,7 @@ hex_widget_update_auto_highlight (HexWidget *self, HexWidget_AutoHighlight *ahl,
 static void
 hex_widget_update_all_auto_highlights (HexWidget *self)
 {
-	HexWidget_AutoHighlight *cur = self->auto_highlight;
+	HexWidgetAutoHighlight *cur = self->auto_highlight;
 
 	int mult = 10;
 
@@ -3348,12 +3380,21 @@ hex_widget_set_insert_mode (HexWidget *self, gboolean insert)
 			self->cursor_pos = payload_size - 1;
 }
 
-HexWidget_AutoHighlight *
+/**
+ * hex_widget_insert_autohighlight:
+ * @search: (array length=len) (transfer full): search string to auto-highlight
+ * @len: length of the @search string
+ *   
+ * Insert an auto-highlight of a given search string.
+ *
+ * Returns: a newly created [struct@Hex.WidgetAutoHighlight] structure
+ */
+HexWidgetAutoHighlight *
 hex_widget_insert_autohighlight (HexWidget *self,
 		const char *search,
 		int len)
 {
-	HexWidget_AutoHighlight *new = g_new0 (HexWidget_AutoHighlight, 1);
+	HexWidgetAutoHighlight *new = hex_widget_autohighlight_new ();
 
 	new->search_string = g_memdup2 (search, len);
 	new->search_len = len;
@@ -3372,6 +3413,7 @@ hex_widget_insert_autohighlight (HexWidget *self,
 	return new;
 }
 
+/* FIXME - use _free func. */
 /**
  * hex_widget_delete_autohighlight:
  * @ahl: the autohighlight to be deleted
@@ -3379,7 +3421,7 @@ hex_widget_insert_autohighlight (HexWidget *self,
  * Delete the requested autohighlight.
  */
 void hex_widget_delete_autohighlight (HexWidget *self,
-		HexWidget_AutoHighlight *ahl)
+		HexWidgetAutoHighlight *ahl)
 {
 	g_free (ahl->search_string);
 

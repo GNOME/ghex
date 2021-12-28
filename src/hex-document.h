@@ -71,11 +71,14 @@ typedef enum
  * A structure containing metadata about a find operation in a
  * [class@Hex.Document].
  */
+#define HEX_TYPE_DOCUMENT_FIND_DATA (hex_document_find_data_get_type ())
+GType hex_document_find_data_get_type (void) G_GNUC_CONST;
+
 typedef struct
 {
 	gboolean found;
 	gint64 start;
-	char *what;
+	const char *what;
 	size_t len;
 	gint64 offset;
 	const char *found_msg;
@@ -100,8 +103,10 @@ typedef struct
  * A structure containing metadata about a change made to a
  * [class@Hex.Document].
  */
-typedef struct _HexChangeData HexChangeData;
-struct _HexChangeData
+#define HEX_TYPE_CHANGE_DATA (hex_change_data_get_type ())
+GType hex_change_data_get_type (void) G_GNUC_CONST;
+
+typedef struct
 {
 	gint64 start, end;
 	/* `replace length`: length to replace (overwrite); (0 to insert without
@@ -112,10 +117,10 @@ struct _HexChangeData
 	HexChangeType type;
 	char *v_string;
 	char v_byte;
-};
+} HexChangeData;
 
 
-HexDocument	*hex_document_new(void);
+HexDocument	*hex_document_new (void);
 HexDocument	*hex_document_new_from_file (GFile *file);
 void		hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
 		size_t rep_len, char *data, gboolean undoable);
@@ -143,20 +148,20 @@ void		hex_document_changed (HexDocument *doc,gpointer change_data,
 void		hex_document_set_max_undo (HexDocument *doc, int max_undo);
 gboolean	hex_document_undo (HexDocument *doc);
 gboolean	hex_document_redo (HexDocument *doc);
-int			hex_document_compare_data (HexDocument *doc, char *what,
+int			hex_document_compare_data (HexDocument *doc, const char *what,
 		gint64 pos, size_t len);
 gboolean	hex_document_find_forward (HexDocument *doc, gint64 start,
-		char *what, size_t len, gint64 *offset);
+		const char *what, size_t len, gint64 *offset);
 
 void	hex_document_find_forward_async (HexDocument *doc, gint64 start,
-		char *what, size_t len, gint64 *offset, const char *found_msg,
+		const char *what, size_t len, gint64 *offset, const char *found_msg,
 		const char *not_found_msg, GCancellable *cancellable,
 		GAsyncReadyCallback callback, gpointer user_data);
 
 gboolean	hex_document_find_backward (HexDocument *doc, gint64 start,
-		char *what, size_t len, gint64 *offset);
+		const char *what, size_t len, gint64 *offset);
 void		hex_document_find_backward_async (HexDocument *doc, gint64 start,
-		char *what, size_t len, gint64 *offset, const char *found_msg,
+		const char *what, size_t len, gint64 *offset, const char *found_msg,
 		const char *not_found_msg, GCancellable *cancellable,
 		GAsyncReadyCallback callback, gpointer user_data);
 

@@ -65,7 +65,13 @@ G_DECLARE_FINAL_TYPE(HexWidget, hex_widget, HEX, WIDGET, GtkWidget)
 
 /* OPAQUE DATATYPES */
 
-typedef struct _HexWidget_AutoHighlight HexWidget_AutoHighlight;
+#define HEX_TYPE_WIDGET_AUTOHIGHLIGHT (hex_widget_autohighlight_get_type ())
+GType hex_widget_autohighlight_get_type (void) G_GNUC_CONST;
+typedef struct _HexWidgetAutoHighlight HexWidgetAutoHighlight;
+
+HexWidgetAutoHighlight *	hex_widget_autohighlight_new (void);
+HexWidgetAutoHighlight *	hex_widget_autohighlight_copy (HexWidgetAutoHighlight *ahl);
+void	hex_widget_autohighlight_free (HexWidgetAutoHighlight *ahl);
 
 /* PUBLIC METHOD DECLARATIONS */
 
@@ -97,9 +103,9 @@ gboolean hex_widget_get_selection (HexWidget *gh, gint64 *start, gint64 *end);
 void hex_widget_clear_selection (HexWidget *gh);
 void hex_widget_delete_selection (HexWidget *gh);
 
-HexWidget_AutoHighlight *
+HexWidgetAutoHighlight *
 hex_widget_insert_autohighlight (HexWidget *gh, const char *search, int len);
-void hex_widget_delete_autohighlight (HexWidget *gh, HexWidget_AutoHighlight *ahl);
+void hex_widget_delete_autohighlight (HexWidget *gh, HexWidgetAutoHighlight *ahl);
 
 GtkAdjustment *hex_widget_get_adjustment(HexWidget *gh);
 HexDocument *hex_widget_get_document (HexWidget *gh);

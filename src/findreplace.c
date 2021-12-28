@@ -55,7 +55,7 @@ static guint signals[LAST_SIGNAL];
 typedef struct
 {
 	HexWidget *gh;
-	HexWidget_AutoHighlight *auto_highlight;
+	HexWidgetAutoHighlight *auto_highlight;
 
 } PaneDialogPrivate;
 

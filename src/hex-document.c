@@ -76,6 +76,42 @@ enum {
 
 static guint hex_signals[LAST_SIGNAL];
 
+
+/* TODO - come up with _new functions for the GTypes below and actually use
+ * them. */
+
+/* HexDocumentFindData GType Definitions */
+
+static HexDocumentFindData *
+hex_document_find_data_new (void)
+{
+	return g_slice_new0 (HexDocumentFindData);
+}
+
+/* FIXME - unused and could be unreliable. */
+static HexDocumentFindData *
+hex_document_find_data_copy (HexDocumentFindData *data)
+{
+	return g_slice_dup (HexDocumentFindData, data);
+}
+
+G_DEFINE_BOXED_TYPE (HexDocumentFindData, hex_document_find_data,
+		hex_document_find_data_copy, g_free)
+
+
+/* HexChangeData GType Definitions */
+
+/* FIXME - unused and could be unreliable */
+static HexChangeData *
+hex_change_data_copy (HexChangeData *data)
+{
+	return g_slice_dup (HexChangeData, data);
+}
+
+G_DEFINE_BOXED_TYPE (HexChangeData, hex_change_data,
+		hex_change_data_copy, g_free)
+
+
 /* GOBJECT DEFINITION */
 
 /**
@@ -949,7 +985,7 @@ hex_document_export_html (HexDocument *doc,
  */
 int
 hex_document_compare_data (HexDocument *doc,
-		char *what, gint64 pos, size_t len)
+		const char *what, gint64 pos, size_t len)
 {
 	char c;
 
@@ -986,7 +1022,7 @@ hex_document_compare_data (HexDocument *doc,
  *   otherwise.
  */
 gboolean
-hex_document_find_forward (HexDocument *doc, gint64 start, char *what,
+hex_document_find_forward (HexDocument *doc, gint64 start, const char *what,
 						  size_t len, gint64 *offset)
 {
 	gint64 pos;
@@ -1065,7 +1101,7 @@ hex_document_find_forward_thread (GTask *task,
 void
 hex_document_find_forward_async (HexDocument *doc,
 		gint64 start,
-		char *what,
+		const char *what,
 		size_t len,
 		gint64 *offset,
 		const char *found_msg,
@@ -1075,7 +1111,7 @@ hex_document_find_forward_async (HexDocument *doc,
 		gpointer user_data)
 {
 	GTask *task;
-	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1);
+	HexDocumentFindData *find_data = hex_document_find_data_new ();
 
 	find_data->start = start;
 	find_data->what = what;
@@ -1109,7 +1145,7 @@ hex_document_find_forward_async (HexDocument *doc,
  *   otherwise.
  */
 gboolean
-hex_document_find_backward (HexDocument *doc, gint64 start, char *what,
+hex_document_find_backward (HexDocument *doc, gint64 start, const char *what,
 						   size_t len, gint64 *offset)
 {
 	gint64 pos = start;
@@ -1166,7 +1202,7 @@ hex_document_find_backward_thread (GTask *task,
 void
 hex_document_find_backward_async (HexDocument *doc,
 		gint64 start,
-		char *what,
+		const char *what,
 		size_t len,
 		gint64 *offset,
 		const char *found_msg,
