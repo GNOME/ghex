@@ -69,10 +69,6 @@ G_DECLARE_FINAL_TYPE(HexWidget, hex_widget, HEX, WIDGET, GtkWidget)
 GType hex_widget_autohighlight_get_type (void) G_GNUC_CONST;
 typedef struct _HexWidgetAutoHighlight HexWidgetAutoHighlight;
 
-HexWidgetAutoHighlight *	hex_widget_autohighlight_new (void);
-HexWidgetAutoHighlight *	hex_widget_autohighlight_copy (HexWidgetAutoHighlight *ahl);
-void	hex_widget_autohighlight_free (HexWidgetAutoHighlight *ahl);
-
 /* PUBLIC METHOD DECLARATIONS */
 
 GtkWidget *hex_widget_new (HexDocument *owner);

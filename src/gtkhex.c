@@ -114,37 +114,15 @@ struct _HexWidgetAutoHighlight
 	HexWidgetAutoHighlight *next, *prev;
 };
 
-HexWidgetAutoHighlight *
-hex_widget_autohighlight_new (void)
-{
-	return g_slice_new0 (HexWidgetAutoHighlight);
-}
-
-void
-hex_widget_autohighlight_free (HexWidgetAutoHighlight *ahl)
-{
-	g_free (ahl->search_string);
-	g_free (ahl);
-}
-
-HexWidgetAutoHighlight *
+/* FIXME - only defined to create a boxed type and may be unreliable. */
+static HexWidgetAutoHighlight *
 hex_widget_autohighlight_copy (HexWidgetAutoHighlight *ahl)
 {
-	HexWidgetAutoHighlight *new = g_slice_new0 (HexWidgetAutoHighlight);
-
-	new->search_string = g_strdup (ahl->search_string);
-	new->search_len = ahl->search_len;
-	new->view_min = ahl->view_min;
-	new->view_max = ahl->view_max;
-	new->highlights = ahl->highlights;
-	new->next = ahl->next;
-	new->prev = ahl->prev;
-
-	return new;
+	return ahl;
 }
 
 G_DEFINE_BOXED_TYPE (HexWidgetAutoHighlight, hex_widget_autohighlight,
-		hex_widget_autohighlight_copy, hex_widget_autohighlight_free)
+		hex_widget_autohighlight_copy, g_free)
 
 
 /* ------------------------------
@@ -3394,7 +3372,7 @@ hex_widget_insert_autohighlight (HexWidget *self,
 		const char *search,
 		int len)
 {
-	HexWidgetAutoHighlight *new = hex_widget_autohighlight_new ();
+	HexWidgetAutoHighlight *new = g_new0 (HexWidgetAutoHighlight, 1);
 
 	new->search_string = g_memdup2 (search, len);
 	new->search_len = len;
@@ -3427,7 +3405,7 @@ void hex_widget_delete_autohighlight (HexWidget *self,
 
 	while (ahl->highlights)
 	{
-		hex_widget_delete_highlight(self, ahl, ahl->highlights);
+		hex_widget_delete_highlight (self, ahl, ahl->highlights);
 	}
 
 	if (ahl->next) ahl->next->prev = ahl->prev;
@@ -3435,7 +3413,7 @@ void hex_widget_delete_autohighlight (HexWidget *self,
 
 	if (self->auto_highlight == ahl) self->auto_highlight = ahl->next;
 
-	g_free(ahl);
+	g_free (ahl);
 }
 
 /* FIXME - make this actually work. */

@@ -82,17 +82,11 @@ static guint hex_signals[LAST_SIGNAL];
 
 /* HexDocumentFindData GType Definitions */
 
-static HexDocumentFindData *
-hex_document_find_data_new (void)
-{
-	return g_slice_new0 (HexDocumentFindData);
-}
-
 /* FIXME - unused and could be unreliable. */
 static HexDocumentFindData *
 hex_document_find_data_copy (HexDocumentFindData *data)
 {
-	return g_slice_dup (HexDocumentFindData, data);
+	return data;
 }
 
 G_DEFINE_BOXED_TYPE (HexDocumentFindData, hex_document_find_data,
@@ -105,7 +99,7 @@ G_DEFINE_BOXED_TYPE (HexDocumentFindData, hex_document_find_data,
 static HexChangeData *
 hex_change_data_copy (HexChangeData *data)
 {
-	return g_slice_dup (HexChangeData, data);
+	return data;
 }
 
 G_DEFINE_BOXED_TYPE (HexChangeData, hex_change_data,
@@ -147,9 +141,9 @@ free_stack(GList *stack)
 	while(stack) {
 		cd = (HexChangeData *)stack->data;
 		if(cd->v_string)
-			g_free(cd->v_string);
+			g_free (cd->v_string);
 		stack = g_list_remove(stack, cd);
-		g_free(cd);
+		g_free (cd);
 	}
 }
 
@@ -1111,7 +1105,7 @@ hex_document_find_forward_async (HexDocument *doc,
 		gpointer user_data)
 {
 	GTask *task;
-	HexDocumentFindData *find_data = hex_document_find_data_new ();
+	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1);
 
 	find_data->start = start;
 	find_data->what = what;
@@ -1280,7 +1274,7 @@ hex_document_real_undo (HexDocument *doc)
 		len = cd->end - cd->start + 1;
 		rep_data = hex_buffer_get_data (doc->buffer, cd->start, len);
 		hex_document_set_data (doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
-		g_free(cd->v_string);
+		g_free (cd->v_string);
 		cd->end = cd->start + cd->rep_len - 1;
 		cd->rep_len = len;
 		cd->v_string = rep_data;
@@ -1351,7 +1345,7 @@ hex_document_real_redo(HexDocument *doc)
 		len = cd->end - cd->start + 1;
 		rep_data = hex_buffer_get_data (doc->buffer, cd->start, len);
 		hex_document_set_data (doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
-		g_free(cd->v_string);
+		g_free (cd->v_string);
 		cd->end = cd->start + cd->rep_len - 1;
 		cd->rep_len = len;
 		cd->v_string = rep_data;
