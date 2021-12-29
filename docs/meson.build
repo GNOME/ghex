@@ -44,6 +44,6 @@ if get_option('gtk_doc')
     command: docs_cmd,
     build_by_default: true,
     install: true,
-    install_dir: join_paths(docs_dir, gir_apiname),
+    install_dir: docs_dir,
   )
 endif
