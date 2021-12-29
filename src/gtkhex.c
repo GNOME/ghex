@@ -1083,7 +1083,7 @@ render_lines (HexWidget *self,
 	}
 
 no_more_lines_to_draw:
-	if (! cursor_drawn)
+	if (! cursor_drawn && cursor_line <= self->vis_lines)
 	{
 		DO_RENDER_CURSOR
 	}
@@ -3437,7 +3437,6 @@ void hex_widget_delete_autohighlight (HexWidget *self,
 	g_free (ahl);
 }
 
-/* FIXME - make this actually work. */
 /**
  * hex_widget_set_geometry:
  * @cpl: columns per line which should be displayed, or 0 for default
