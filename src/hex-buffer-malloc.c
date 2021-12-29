@@ -425,6 +425,49 @@ out:
 	return ret;
 }
 
+static gboolean
+hex_buffer_malloc_write_to_file_finish (HexBuffer *buf,
+		GAsyncResult *result,
+		GError **error)
+{
+	HexBufferMalloc *self = HEX_BUFFER_MALLOC (buf);
+
+	g_return_val_if_fail (g_task_is_valid (result, G_OBJECT(self)), FALSE);
+
+	return g_task_propagate_boolean (G_TASK(result), error);
+}
+
+static void
+hex_buffer_malloc_write_thread (GTask *task,
+		gpointer source_object,
+		gpointer task_data,
+		GCancellable *cancellable)
+{
+	HexBufferMalloc *self = HEX_BUFFER_MALLOC (source_object);
+	GFile *file = G_FILE (task_data);
+	gboolean success;
+
+	success = hex_buffer_malloc_write_to_file (HEX_BUFFER(self), file);
+
+	g_task_return_boolean (task, success);
+}
+
+static void
+hex_buffer_malloc_write_to_file_async (HexBuffer *buf,
+		GFile *file,
+		GCancellable *cancellable,
+		GAsyncReadyCallback callback,
+		gpointer user_data)
+{
+	HexBufferMalloc *self = HEX_BUFFER_MALLOC (buf);
+	GTask *task;
+
+	task = g_task_new (self, cancellable, callback, user_data);
+	g_task_set_task_data (task, file, NULL);
+	g_task_run_in_thread (task, hex_buffer_malloc_write_thread);
+	g_object_unref (task);	/* _run_in_thread takes a ref */
+}
+
 static gint64
 hex_buffer_malloc_get_payload_size (HexBuffer *buf)
 {
@@ -519,5 +562,7 @@ hex_buffer_malloc_iface_init (HexBufferInterface *iface)
 	iface->read_async = hex_buffer_malloc_read_async;
 	iface->read_finish = hex_buffer_malloc_read_finish;
 	iface->write_to_file = hex_buffer_malloc_write_to_file;
+	iface->write_to_file_async = hex_buffer_malloc_write_to_file_async;
+	iface->write_to_file_finish = hex_buffer_malloc_write_to_file_finish;
 	iface->get_payload_size = hex_buffer_malloc_get_payload_size;
 }

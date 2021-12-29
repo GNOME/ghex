@@ -139,6 +139,15 @@ gboolean hex_document_read_finish (HexDocument *doc, GAsyncResult   *result,
 
 gboolean	hex_document_write (HexDocument *doc);
 gboolean	hex_document_write_to_file (HexDocument *doc, GFile *file);
+void		hex_document_write_to_file_async (HexDocument *doc, GFile *file,
+		GCancellable *cancellable, GAsyncReadyCallback callback,
+		gpointer user_data);
+void		hex_document_write_async (HexDocument *doc,
+		GCancellable *cancellable, GAsyncReadyCallback callback,
+		gpointer user_data);
+gboolean	hex_document_write_finish (HexDocument *doc, GAsyncResult *result,
+		GError **error);
+
 gboolean	hex_document_export_html (HexDocument *doc, const char *html_path,
 		const char *base_name, gint64 start, gint64 end, guint cpl, guint lpp,
 		guint cpw);

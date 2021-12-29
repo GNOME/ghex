@@ -588,7 +588,7 @@ hex_document_delete_data (HexDocument *doc,
  * applicable to the document object above and beyond the buffer.
  *
  * This method is typically called from the #GAsyncReadyCallback function
- * passed to [method@Hex.Buffer.read_async] to obtain the result of the
+ * passed to [method@Hex.Document.read_async] to obtain the result of the
  * operation.
  *
  * Returns: %TRUE if the operation was successful; %FALSE otherwise.
@@ -732,6 +732,143 @@ hex_document_write (HexDocument *doc)
 out:
 	g_free (path);
 	return ret;
+}
+
+/**
+ * hex_document_write_finish:
+ * @doc: a [class@Hex.Document] object
+ * @result: result of the task
+ * @error: (nullable): optional pointer to a #GError object to populate with
+ *   any error returned by the task
+ *
+ * Obtain the result of a completed write-to-file operation.
+ *
+ * Currently, this method is mostly a wrapper around
+ * [method@Hex.Buffer.write_to_file_finish].
+ *
+ * This method is typically called from the #GAsyncReadyCallback function
+ * passed to [method@Hex.Document.write_async] or
+ * [method@Hex.Document.write_to_file_async] to obtain the result of the
+ * operation.
+ *
+ * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ */
+gboolean
+hex_document_write_finish (HexDocument *doc,
+		GAsyncResult *result,
+		GError **error)
+{
+  g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+  g_return_val_if_fail (G_IS_TASK (result), FALSE);
+
+  return g_task_propagate_boolean (G_TASK(result), error);
+}
+
+static void
+write_ready_cb (GObject *source_object,
+		GAsyncResult *res,
+		gpointer user_data)
+{
+	HexBuffer *buf = HEX_BUFFER(source_object);
+	GTask *doc_task = G_TASK(user_data);
+	gboolean success;
+	GError *local_error = NULL;
+
+	success = hex_buffer_write_to_file_finish (buf, res, &local_error);
+	g_debug ("%s: DONE -- result: %d", __func__, success);
+
+	if (success)
+	{
+		g_task_return_boolean (doc_task, TRUE);
+	}
+	else
+	{
+		if (local_error)
+			g_task_return_error (doc_task, local_error);
+		else
+			g_task_return_boolean (doc_task, FALSE);
+	}
+
+	g_object_unref (doc_task);	/* g_task_return_* takes a ref. */
+}
+
+/**
+ * hex_document_write_async:
+ * @doc: a [class@Hex.Document] object
+ * @cancellable: (nullable): a #GCancellable
+ * @callback: (scope async): function to be called when the operation is
+ *   complete
+ *
+ * Write the buffer to the pre-existing #GFile connected to the #HexDocument
+ * object. This can be used for a 'Save (in place)' operation. This is the
+ * non-blocking version of [method@Hex.Document.write].
+ *
+ * Note that for both this method and
+ * [method@Hex.Document.write_to_file_async],
+ * [method@Hex.Document.write_finish] is the method to retrieve the return
+ * value in your #GAsyncReadyCallback function.
+ */
+void
+hex_document_write_async (HexDocument *doc,
+		GCancellable *cancellable,	/* FIXME: presently ignored */
+		GAsyncReadyCallback callback,
+		gpointer user_data)
+{
+	GTask *doc_task;
+	char *path = NULL;
+
+	g_return_if_fail (G_IS_FILE (doc->file));
+
+	path = g_file_get_path (doc->file);
+	if (! path)
+		goto out;
+
+	doc_task = g_task_new (doc, cancellable, callback, user_data);
+
+	hex_buffer_write_to_file_async (doc->buffer,
+			doc->file,
+			NULL,	/* cancellable */
+			write_ready_cb,
+			doc_task);
+
+out:
+	g_free (path);
+}
+
+/**
+ * hex_document_write_to_file_async:
+ * @doc: a [class@Hex.Document] object
+ * @file: #GFile to be written to
+ * @cancellable: (nullable): a #GCancellable
+ * @callback: (scope async): function to be called when the operation is
+ *   complete
+ *
+ * Write the buffer to `file` asynchronously. This can be used for a 'Save As'
+ * operation.  This is the non-blocking version of
+ * [method@Hex.Document.write_to_file].
+ *
+ * Note that for both this method and [method@Hex.Document.write_async],
+ * [method@Hex.Document.write_finish] is the method to retrieve the return
+ * value in your #GAsyncReadyCallback function.
+ */
+void
+hex_document_write_to_file_async (HexDocument *doc,
+		GFile *file,
+		GCancellable *cancellable,	/* FIXME: presently ignored */
+		GAsyncReadyCallback callback,
+		gpointer user_data)
+{
+	GTask *doc_task;
+
+	g_return_if_fail (G_IS_FILE (doc->file));
+
+	doc_task = g_task_new (doc, cancellable, callback, user_data);
+
+	hex_buffer_write_to_file_async (doc->buffer,
+			file,
+			NULL,	/* cancellable */
+			write_ready_cb,
+			doc_task);
 }
 
 /**

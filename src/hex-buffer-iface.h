@@ -72,6 +72,16 @@ struct _HexBufferInterface
 	gboolean (*write_to_file) (HexBuffer *self,
 			GFile *file);
 
+	void (*write_to_file_async) (HexBuffer *self,
+			GFile *file,
+			GCancellable *cancellable,
+			GAsyncReadyCallback callback,
+			gpointer user_data);
+
+	gboolean (*write_to_file_finish) (HexBuffer *self,
+			GAsyncResult *result,
+			GError **error);
+
 	gint64 (*get_payload_size) (HexBuffer *self);
 
 	/* --- padding starts here -- started w/ 12 extra vfuncs --- */
@@ -107,6 +117,16 @@ gboolean hex_buffer_read_finish (HexBuffer *buf, GAsyncResult *result,
 
 gboolean hex_buffer_write_to_file (HexBuffer *self,
 		GFile *file);
+
+void hex_buffer_write_to_file_async (HexBuffer *self,
+		GFile *file,
+		GCancellable *cancellable,
+		GAsyncReadyCallback callback,
+		gpointer user_data);
+
+gboolean hex_buffer_write_to_file_finish (HexBuffer *self,
+		GAsyncResult *result,
+		GError **error);
 
 gint64 hex_buffer_get_payload_size (HexBuffer *self);
 

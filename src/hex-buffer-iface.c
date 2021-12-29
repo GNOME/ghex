@@ -252,6 +252,60 @@ hex_buffer_write_to_file (HexBuffer *self, GFile *file)
 }
 
 /**
+ * hex_buffer_write_to_file_async:
+ * @file: #GFile to write to
+ * @cancellable: (nullable): a #GCancellable
+ * @callback: (scope async): function to be called when the operation is
+ *   complete
+ *
+ * Write the buffer to the #GFile specified. This is the non-blocking
+ * version of [method@Hex.Buffer.write_to_file].
+ */
+void
+hex_buffer_write_to_file_async (HexBuffer *self,
+		GFile *file,
+		GCancellable *cancellable,
+		GAsyncReadyCallback callback,
+		gpointer user_data)
+{
+	HexBufferInterface *iface;
+
+	g_return_if_fail (HEX_IS_BUFFER (self));
+	iface = HEX_BUFFER_GET_IFACE (self);
+	g_return_if_fail (iface->write_to_file_async != NULL);
+
+	iface->write_to_file_async (self, file, cancellable, callback, user_data);
+}
+
+/**
+ * hex_buffer_write_to_file_finish:
+ * @result: result of the task
+ * @error: (nullable): optional pointer to a #GError object to populate with
+ *   any error returned by the task
+ *
+ * Obtain the result of a completed write-to-file operation.
+ *
+ * This method is typically called from the #GAsyncReadyCallback function
+ * passed to [method@Hex.Buffer.write_to_file_async] to obtain the result of
+ * the operation.
+ *
+ * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ */
+gboolean
+hex_buffer_write_to_file_finish (HexBuffer *self,
+		GAsyncResult *result,
+		GError **error)
+{
+	HexBufferInterface *iface;
+
+	g_return_val_if_fail (HEX_IS_BUFFER (self), FALSE);
+	iface = HEX_BUFFER_GET_IFACE (self);
+	g_return_val_if_fail (iface->write_to_file_finish != NULL, FALSE);
+
+	return iface->write_to_file_finish (self, result, error);
+}
+
+/**
  * hex_buffer_get_payload_size:
  * 
  * Get the size of the payload of the buffer, in bytes.
