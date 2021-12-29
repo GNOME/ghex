@@ -1,4 +1,51 @@
 ==============
+GHex 4.alpha.2
+==============
+
+As can be seen from the git logs, many commits have been made since 4.alpha.1.
+The plurality of the effort went into getting as close as possible to an
+API/ABI I'm happy with respect to libgtkhex, and documenting same. To that end,
+the GtkHex widget has been renamed to HexWidget, so that we don't pollute the
+GTK namespace. I recognize that this has been its name for 20+ years, but since
+this is a new impending major release, API can be broken. It is not part of GTK
+and never has been, so placing it under that namespace was confusing.
+
+I was on the fence about calling this a beta, but there have been so many
+changes, so I'll let things cook for a bit and ensure that the API is where I
+want it to be for libgtkhex 4.0.0 before declaring a beta and being in an API
+freeze.
+
+Changes and Bugfixes (Logan Rathbone):
+
+- lib: Rename GtkHex to HexWidget
+- lib/docs: Initial API documentation (gi-docgen required)
+- GUI/settings: support quadwords grouping
+- lib/app: asynchronous APIs for many operations, and integrate with
+  application features
+- Error handling improvements
+- HexBufferIface: Standardize on GFile when it comes to file handling
+- HexWidget: Rework the "busy" spinner to be at the widget level
+- lib: Rework data types so that we have a minimum cursor pos and file
+  size that works with files larger than 2 GB
+- HexBufferMmap: improvements, fixes and optimizations
+- HexWidget: dynamically sized offset column, and fix calculation of offset
+  cols required (#41; thanks to Jonas Stein for reporting)
+- findreplace: watch/busy feedback and cancellable
+- converter: a11y update
+- meson: add `introspection` and `gtk_doc` options
+- meson: remove `experimental-mmap` option; replace with `buffer-backend` (with
+  mmap being the new default, where supported; see meson_options.txt)
+- lib: Make some raw structs into boxed types for GI
+- HexWidget: restore hex_widget_set_geometry API
+- Various code cleanups and miscellaneous bugfixes
+
+Translation Updates:
+
+- Yuri Chornoivan (uk)
+- Enrico Nicoletto (pt_BR)
+- Piotr Drąg (update POTFILES.in)
+
+==============
 GHex 4.alpha.1
 ==============
 

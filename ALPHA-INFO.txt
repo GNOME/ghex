@@ -38,11 +38,7 @@ Blockers for beta:
  - HexBufferIface (and to a lesser extent, GtkHex and HexDocument): things
    need to cook a bit more to ensure the API will be stable before moving to
    beta. This GObject Interface is quite new, and I want to ensure the API is not
-   missing anything glaring before locking it into place. Specifically missing
-   is...
-
- - ... HexBufferIface/HexDocument: Implement asynchronous API for read/save
-   operations.
+   missing anything glaring before locking it into place for beta.
 
 Blockers for stable release:
 
