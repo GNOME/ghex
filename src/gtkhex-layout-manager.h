@@ -63,6 +63,8 @@ void				hex_widget_layout_set_cursor_pos (HexWidgetLayout *layout,
 void				hex_widget_layout_set_offset_cpl (HexWidgetLayout *layout,
 						int offset_cpl);
 int					hex_widget_layout_get_offset_cpl (HexWidgetLayout *layout);
+int					hex_widget_layout_util_hex_cpl_from_ascii_cpl (int ascii_cpl, 
+						HexWidgetGroupType group_type);
 
 G_END_DECLS
 

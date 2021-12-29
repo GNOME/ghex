@@ -127,7 +127,6 @@ create_hex_view (HexDocument *doc)
 	hex_widget_set_group_type (HEX_WIDGET(gh), def_group_type);
 	common_set_gtkhex_font_from_settings (HEX_WIDGET(gh));
     hex_widget_set_insert_mode (HEX_WIDGET(gh), TRUE);
-    hex_widget_set_geometry (HEX_WIDGET(gh), 16, 4);
 
     return gh;
 }

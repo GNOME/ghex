@@ -46,9 +46,6 @@
 
 /* default minimum drawing area size (for ascii and hex widgets) in pixels. */
 #define DEFAULT_DA_SIZE 50
-/* default characters per line (cpl) */
-#define DEFAULT_CPL 32
-#define DEFAULT_LINES 10
 #define SCROLL_TIMEOUT 100
 #define STARTING_OFFSET 0
 
@@ -783,7 +780,13 @@ render_highlights (HexWidget *self,
 		layout = self->alayout;
 	}
 
-	hex_cpl = hex_widget_layout_get_hex_cpl (HEX_WIDGET_LAYOUT(self->layout_manager));
+	if (! self->default_cpl)
+		hex_cpl = hex_widget_layout_get_hex_cpl (
+				HEX_WIDGET_LAYOUT(self->layout_manager));
+	else
+		hex_cpl = hex_widget_layout_util_hex_cpl_from_ascii_cpl (
+				self->default_cpl, self->group_type);
+
 	y = cursor_line * self->char_height;
 
 	while (highlight)
@@ -1002,7 +1005,14 @@ render_lines (HexWidget *self,
 		widget = self->xdisp;
 		layout = self->xlayout;
 		block_format_func = format_xblock;
-		cpl = hex_widget_layout_get_hex_cpl (HEX_WIDGET_LAYOUT(self->layout_manager));
+
+		if (! self->default_cpl)
+			cpl = hex_widget_layout_get_hex_cpl (
+					HEX_WIDGET_LAYOUT(self->layout_manager));
+		else
+			cpl = hex_widget_layout_util_hex_cpl_from_ascii_cpl (
+					self->default_cpl, self->group_type);
+
 	}
 	else	/* VIEW_ASCII */
 	{
@@ -1199,7 +1209,13 @@ recalc_displays (HexWidget *self)
 	int hex_cpl;
 	gint64 payload_size;
 
-	hex_cpl = hex_widget_layout_get_hex_cpl (HEX_WIDGET_LAYOUT(self->layout_manager));
+	if (! self->default_cpl)
+		hex_cpl = hex_widget_layout_get_hex_cpl (
+				HEX_WIDGET_LAYOUT(self->layout_manager));
+	else
+		hex_cpl = hex_widget_layout_util_hex_cpl_from_ascii_cpl (
+				self->default_cpl, self->group_type);
+
 	payload_size = HEX_BUFFER_PAYLOAD (self->document);
 
 	/*
@@ -2279,17 +2295,24 @@ hex_widget_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 	GtkWidget *child;
 	float height;
 
+	height = gtk_widget_get_allocated_height (widget);
+
 	/* Update character width & height */
 	self->char_width = get_char_width (self);
 	self->char_height = get_char_height (self);
 
-	/* Get cpl from layout manager */
-	height = gtk_widget_get_allocated_height (widget);
-	self->cpl = hex_widget_layout_get_cpl (HEX_WIDGET_LAYOUT(self->layout_manager));
+	/* Get cpl from layout manager or geometry (if set) */
+	if (! self->default_cpl)
+		self->cpl = hex_widget_layout_get_cpl (
+				HEX_WIDGET_LAYOUT(self->layout_manager));
+	else
+		self->cpl = self->default_cpl;
 
-	/* set visible lines - do this here and now as we can use the height
-	 * of the widget as a whole.  */
-	self->vis_lines = height / self->char_height;
+	/* set visible lines based on widget height or geometry (if set) */
+	if (! self->default_lines)
+		self->vis_lines = height / self->char_height;
+	else
+		self->vis_lines = self->default_lines;
 
 	/* queue child draw functions
 	 */
@@ -2637,8 +2660,6 @@ hex_widget_init (HexWidget *self)
 	self->layout_manager = gtk_widget_get_layout_manager (widget);
 
 	self->disp_buffer = NULL;
-	self->default_cpl = DEFAULT_CPL;
-	self->default_lines = DEFAULT_LINES;
 
 	self->scroll_timeout = 0;
 
@@ -3419,8 +3440,8 @@ void hex_widget_delete_autohighlight (HexWidget *self,
 /* FIXME - make this actually work. */
 /**
  * hex_widget_set_geometry:
- * @cpl: columns per line which should be displayed
- * @vis_lines: number of lines which should be displayed
+ * @cpl: columns per line which should be displayed, or 0 for default
+ * @vis_lines: number of lines which should be displayed, or 0 for default
  *
  * Set the geometry of the widget to specified dimensions.
  */

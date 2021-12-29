@@ -381,7 +381,8 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 			}
 			while (tot_cpl > 0);
 
-			hex_cpl = ascii_cpl * 2 + ascii_cpl / self->group_type;
+			hex_cpl = hex_widget_layout_util_hex_cpl_from_ascii_cpl (
+					ascii_cpl, self->group_type);
 
 			asc_alloc.width = ascii_cpl * self->char_width;
 			hex_alloc.width = max_width_left - asc_alloc.width;
@@ -540,4 +541,13 @@ hex_widget_layout_child_set_column (HexWidgetLayoutChild *child,
 
 	g_object_notify_by_pspec (G_OBJECT(child),
 			child_props[PROP_CHILD_COLUMN]);
+}
+
+/* Utility functions */
+
+int
+hex_widget_layout_util_hex_cpl_from_ascii_cpl (int ascii_cpl,
+		HexWidgetGroupType group_type)
+{
+	return ascii_cpl * 2 + ascii_cpl / group_type;
 }
