@@ -1601,11 +1601,6 @@ key_press_cb (GtkEventControllerKey *controller,
 
 	payload_size = HEX_BUFFER_PAYLOAD (self->document);
 
-	/* don't trample over Ctrl or Alt (reserved for actions) */
-	if (state & GDK_CONTROL_MASK || state & GDK_ALT_MASK) {
-		return FALSE;
-	}
-
 	show_cursor (self, FALSE);
 
 	/* Figure out if we're holding shift or not. */
@@ -1659,7 +1654,46 @@ key_press_cb (GtkEventControllerKey *controller,
 			ret = GDK_EVENT_STOP;
 			break;
 
+		case GDK_KEY_Home:
+			if (state & GDK_CONTROL_MASK)
+			{
+				hex_widget_set_cursor (self, 0);
+			}
+			else
+			{
+				gint64 line_beg = self->cursor_pos; 
+
+				while (line_beg % self->cpl != 0)
+					--line_beg;
+
+				hex_widget_set_cursor (self, line_beg);
+			}
+			ret = GDK_EVENT_STOP;
+			break;
+
+		case GDK_KEY_End:
+			if (state & GDK_CONTROL_MASK)
+			{
+				hex_widget_set_cursor (self, payload_size);
+			}
+			else
+			{
+				gint64 line_end = self->cursor_pos; 
+
+				while (line_end % self->cpl != self->cpl - 1)
+					++line_end;
+
+				hex_widget_set_cursor (self, MIN (line_end, payload_size));
+			}
+			ret = GDK_EVENT_STOP;
+			break;
+
 		default:
+			/* don't trample over Ctrl or Alt (reserved for actions) */
+			if (state & GDK_CONTROL_MASK || state & GDK_ALT_MASK) {
+				return FALSE;
+			}
+
 			if (self->active_view == VIEW_HEX)
 			{
 				switch(keyval)
