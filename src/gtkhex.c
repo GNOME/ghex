@@ -1149,7 +1149,7 @@ render_offsets (HexWidget *self,
 #undef MIN_CPL
 
 static void
-allocate_buffer (HexWidget *self)
+allocate_display_buffer (HexWidget *self)
 {
 	GtkWidget *widget = GTK_WIDGET (self);
 	int hex_cpl = get_hex_cpl (self);
@@ -1177,7 +1177,7 @@ hex_draw (GtkDrawingArea *drawing_area,
 	 * required values:
 	 */
 	recalc_displays (self);
-	allocate_buffer (self);
+	allocate_display_buffer (self);
 
 	/* Finally, we can do what we wanted to do to begin with: draw our hex
 	 * lines!
@@ -1196,7 +1196,7 @@ ascii_draw (GtkDrawingArea *drawing_area,
 	g_return_if_fail(HEX_IS_WIDGET(self));
 
 	recalc_displays (self);
-	allocate_buffer (self);
+	allocate_display_buffer (self);
 	render_lines (self, cr, 0, self->vis_lines, VIEW_ASCII);
 }
 
