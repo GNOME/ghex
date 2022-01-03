@@ -306,16 +306,6 @@ redo_action (GtkWidget *widget,
 }
 
 static void
-state_flags_changed_cb (GtkWidget *widget, GtkStateFlags flags,
-		gpointer user_data)
-{
-	HexWidget *self = HEX_WIDGET(widget);
-
-	if (flags | GTK_STATE_FLAG_FOCUS_WITHIN)
-		gtk_widget_queue_draw (widget);
-}
-
-static void
 doc_undo_redo_cb (HexDocument *doc, gpointer user_data)
 {
 	HexWidget *self = HEX_WIDGET(user_data);
@@ -751,6 +741,21 @@ show_cursor (HexWidget *self, gboolean show)
 	self->cursor_shown = show;
 }
 
+inline static int
+get_hex_cpl (HexWidget *self)
+{
+	int hex_cpl;
+
+	if (! self->default_cpl)
+		hex_cpl = hex_widget_layout_get_hex_cpl (
+				HEX_WIDGET_LAYOUT(self->layout_manager));
+	else
+		hex_cpl = hex_widget_layout_util_hex_cpl_from_ascii_cpl (
+				self->default_cpl, self->group_type);
+
+	return hex_cpl;
+}
+
 static void
 render_highlights (HexWidget *self,
 		cairo_t *cr,
@@ -780,12 +785,7 @@ render_highlights (HexWidget *self,
 		layout = self->alayout;
 	}
 
-	if (! self->default_cpl)
-		hex_cpl = hex_widget_layout_get_hex_cpl (
-				HEX_WIDGET_LAYOUT(self->layout_manager));
-	else
-		hex_cpl = hex_widget_layout_util_hex_cpl_from_ascii_cpl (
-				self->default_cpl, self->group_type);
+	hex_cpl = get_hex_cpl (self);
 
 	y = cursor_line * self->char_height;
 
@@ -1148,6 +1148,18 @@ render_offsets (HexWidget *self,
 #undef BUFLEN
 #undef MIN_CPL
 
+static void
+allocate_buffer (HexWidget *self)
+{
+	GtkWidget *widget = GTK_WIDGET (self);
+	int hex_cpl = get_hex_cpl (self);
+
+	if (self->disp_buffer)
+		g_free (self->disp_buffer);
+
+	self->disp_buffer = g_malloc ((hex_cpl + 1) * (self->vis_lines + 1));
+}
+
 /* draw_func for the hex drawing area
  */
 static void
@@ -1165,6 +1177,7 @@ hex_draw (GtkDrawingArea *drawing_area,
 	 * required values:
 	 */
 	recalc_displays (self);
+	allocate_buffer (self);
 
 	/* Finally, we can do what we wanted to do to begin with: draw our hex
 	 * lines!
@@ -1182,6 +1195,8 @@ ascii_draw (GtkDrawingArea *drawing_area,
 	HexWidget *self = HEX_WIDGET(user_data);
 	g_return_if_fail(HEX_IS_WIDGET(self));
 
+	recalc_displays (self);
+	allocate_buffer (self);
 	render_lines (self, cr, 0, self->vis_lines, VIEW_ASCII);
 }
 
@@ -1195,6 +1210,7 @@ offsets_draw (GtkDrawingArea *drawing_area,
 	HexWidget *self = HEX_WIDGET(user_data);
 	g_return_if_fail(HEX_IS_WIDGET(self));
 
+	recalc_displays (self);
 	render_offsets (self, cr, 0, self->vis_lines);
 }
 
@@ -1206,15 +1222,7 @@ static void
 recalc_displays (HexWidget *self)
 {
 	GtkWidget *widget = GTK_WIDGET (self);
-	int hex_cpl;
 	gint64 payload_size;
-
-	if (! self->default_cpl)
-		hex_cpl = hex_widget_layout_get_hex_cpl (
-				HEX_WIDGET_LAYOUT(self->layout_manager));
-	else
-		hex_cpl = hex_widget_layout_util_hex_cpl_from_ascii_cpl (
-				self->default_cpl, self->group_type);
 
 	payload_size = HEX_BUFFER_PAYLOAD (self->document);
 
@@ -1229,11 +1237,6 @@ recalc_displays (HexWidget *self)
 		if (payload_size % self->cpl)
 			self->lines++;
 	}
-
-	if (self->disp_buffer)
-		g_free (self->disp_buffer);
-	
-	self->disp_buffer = g_malloc ((hex_cpl + 1) * (self->vis_lines + 1));
 }
 
 static void
@@ -1282,7 +1285,7 @@ recalc_scrolling (HexWidget *self)
  * connected to value-changed signal of scrollbar's GtkAdjustment
  */
 static void
-display_scrolled (GtkAdjustment *adj, HexWidget *self)
+adj_value_changed_cb (GtkAdjustment *adj, HexWidget *self)
 {
 	int dx, dy;
 	
@@ -1294,13 +1297,6 @@ display_scrolled (GtkAdjustment *adj, HexWidget *self)
 	hex_widget_update_all_auto_highlights (self);
 	hex_widget_invalidate_all_highlights (self);
 
-	/* FIXME - this works, but feels hackish. The problem is, _snapshot_child
-	 * does nothing if it 'detects' that a widget does not need to be redrawn
-	 * which is what it seems to think re: our drawing areas on a scroll event.
-	 */
-	gtk_widget_queue_draw (GTK_WIDGET(self->adisp));
-	gtk_widget_queue_draw (GTK_WIDGET(self->xdisp));
-	gtk_widget_queue_draw (GTK_WIDGET(self->offsets));
 	gtk_widget_queue_draw (GTK_WIDGET(self));
 }
 
@@ -2856,9 +2852,6 @@ hex_widget_init (HexWidget *self)
 
 	/* SETUP SIGNALS */
 
-	g_signal_connect (widget, "state-flags-changed",
-			G_CALLBACK(state_flags_changed_cb), NULL);
-
 	/* GESTURES */
 
 	/* Whole HexWidget widget (for right-click context menu) */
@@ -2957,7 +2950,7 @@ hex_widget_init (HexWidget *self)
 	/* Connect signal for adjustment */
 
 	g_signal_connect (self->adj, "value-changed",
-					 G_CALLBACK (display_scrolled), self);
+					 G_CALLBACK (adj_value_changed_cb), self);
 
 	/* ACTIONS - Undo / Redo should start out disabled. */
 
