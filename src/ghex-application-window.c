@@ -2035,20 +2035,20 @@ doc_read_ready_cb (GObject *source_object,
 
 	result = hex_document_read_finish (doc, res, &local_error);
 
+	ghex_application_window_activate_tab (self, gh);
+
 	if (result)
 	{
 		refresh_dialogs (self);
-		ghex_application_window_activate_tab (self, gh);
-		/* FIXME - RENAME / CLEANUP */
 		file_loaded (doc, self);
 	}
 	else
 	{
+		ghex_application_window_remove_tab (self,
+				ghex_application_window_get_current_tab (self));
+
 		if (local_error)
 		{
-			ghex_application_window_remove_tab (self, 
-					ghex_application_window_get_current_tab (self));
-			show_no_file_loaded_label (self);
 			display_error_dialog (GTK_WINDOW(self), local_error->message);
 			g_error_free (local_error);
 		}
