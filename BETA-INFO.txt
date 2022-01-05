@@ -1,7 +1,7 @@
-GHex 4 alpha information
-========================
+GHex 4 beta information
+=======================
 
-GHex 4 is currently in alpha state.  As it has been substantially reworked
+GHex 4 is currently in beta state.  As it has been substantially reworked
 from GHex 3.x and, as of the time of writing, has only been recently merged to
 the `master` branch (December 2021), it will require some substantial testing
 and translation updates.
@@ -33,16 +33,7 @@ I'll break up the known issues into two categories:  items I would consider to
 be blockers for a beta, blockers for stable release, and other known issues,
 which will be earmarked for priority after the first stable release of GHex 4.
 
-Blockers for beta:
-
- - HexBufferIface (and to a lesser extent, GtkHex and HexDocument): things
-   need to cook a bit more to ensure the API will be stable before moving to
-   beta. This GObject Interface is quite new, and I want to ensure the API is not
-   missing anything glaring before locking it into place for beta.
-
 Blockers for stable release:
-
- - Update the help documentation.
 
  - Auto-highlights (ie, from searches) are sometimes not redrawn properly
    after a window resize.
