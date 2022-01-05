@@ -1295,6 +1295,15 @@ toggle_conversions (GtkWidget *widget,
 	}
 }
 
+static void
+open_help (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+
+	gtk_show_uri (GTK_WINDOW (self), "help:" PACKAGE_NAME, GDK_CURRENT_TIME);
+}
 
 static void
 open_about (GtkWidget *widget,
@@ -1744,6 +1753,10 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			NULL,	/* GVariant string param_type */
 			open_preferences);
 
+	gtk_widget_class_install_action (widget_class, "ghex.help",
+			NULL,	/* GVariant string param_type */
+			open_help);
+
 	gtk_widget_class_install_action (widget_class, "ghex.about",
 			NULL,	/* GVariant string param_type */
 			open_about);
@@ -1770,11 +1783,11 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 
 	/* ensure these are synced with help-overlay.ui */
 
-	/* F1 - show about dialog */
+	/* F1 - show help */
 	gtk_widget_class_add_binding_action (widget_class,
 			GDK_KEY_F1,
 			0,
-			"ghex.about",
+			"ghex.help",
 			NULL);	/* no args. */
 
 	/* Insert - toggle insert mode */

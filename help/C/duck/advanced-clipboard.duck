@@ -1,0 +1,117 @@
+= Clipboard features
+  [topic]
+@link[guide >index#advanced]
+
+@revision[version=0.1 date=2022-01-04 status=incomplete]
+
+@credit[author copyright]
+  @name Logan Rathbone
+  @email poprocks@gmail.com
+  @years 2022
+
+As copying and pasting hexadecimal values is not a standard operation in most
+applications, GHex has some unique clipboard features. 
+
+== Basic clipboard operations
+
+Generally, when copying and pasting data within GHex, you need not concern
+yourself with clipboard operations.
+
+Copying and pasting within GHex works in the usual way.
+
+To cut or copy data, highlight the data you would like to cut or copy, and do
+any of the following:
+
+* Right-click anywhere in the hex or ASCII pane to bring up the context menu,
+  and select the appropriate option.
+* To cut, press $keyseq($key(Ctrl)$key(X)).
+* To copy, press $keyseq($key(Ctrl)$key(C)).
+
+To paste data:
+
+* Right-click to bring up the context menu, and click $gui(Paste); or
+* Press $keyseq($key(Ctrl)$key(V)).
+
+== Paste Special
+  [#paste-special]
+
+If you have used other applications, such as text editors or word processors
+with a Paste Special dialog, you may be familiar with this feature.
+
+To activate the Paste Special dialog in GHex:
+
+* Click $gui(Paste Special) from the $gui(Edit) submenu of the $gui(Main menu); or
+* Press $keyseq($key(Shift)$key(Ctrl)$key(V)).
+
+The options that appear when $gui(Paste Special) is activated are context-dependent.
+
+The most common options are described below.
+
+=== GHex Paste Data
+
+This option will only appear if your current clipboard selection contains data
+copied directly from GHex. This represents clipboard data native to GHex, and
+will be pasted into the application as if you had utilized an ordinary
+$gui(Paste) operation.
+
+=== Plain text (as ASCII)
+
+This allows you to paste the data from the clipboard into the GHex buffer,
+forcing GHex to assume the pasted data will be plain ASCII text.
+
+=== Plain text (Unicode)
+
+This allows you to paste the data from the clipboard into the GHex buffer,
+forcing GHex to assume the pasted data will be text encoded in UTF-8 format.
+
+=== Plain text (as space-delimited hex pairs)
+
+This unique option assumes that GHex can expect to receive plain, ASCII text
+that is specifically formatted as hex nibble-pairs, separated by a single space
+each.
+
+This allows hexadecimal data to be pasted back into GHex cleanly.
+
+For example, if $code(48 45 4C 4C 4F) is in the clipboard, selecting this
+option will implicitly convert this hex sequence to an ASCII character sequence
+(in this case, "HELLO"), and insert it into the GHex buffer.
+
+This option can be combined with $gui(Copy Special) to allow an external text
+editor of your choice to edit hex data copied from GHex, and paste it back into
+GHex cleanly.
+
+== Copy Special
+
+Unlike Paste Special, which is a feature present in many ordinary text
+editors and word processors, Copy Special is a feature that was created
+specifically for GHex, and thus may not be familiar to many users.
+
+Copy Special allows you to copy data $em(from) GHex into the format of your
+choice. You may not need this feature unless you intend to paste data from GHex
+into other applications, and would like minute control over how that is done.
+
+To activate the Copy Special dialog in GHex:
+
+* Click $gui(Copy Special) from the $gui(Edit) submenu of the $gui(Main menu); or
+* Press $keyseq($key(Shift)$key(Ctrl)$key(C)).
+
+The options that appear when you activate Copy Special are:
+
+* GHex Paste Data
+* Plain text (as ASCII)
+* Plain text (as space-delimited hex pairs)
+* Plain text (Unicode)
+
+These options work as described above in the $link[>#paste-special] section
+above, but in reverse. In other words, the data copied from GHex $em(to) the
+clipboard will be copied in the specified format.
+
+This allows you to have control over how clipboard data copied from GHex will
+be pasted $em(into) other applications.
+
+This is mostly intended to allow for space-delimited hex pairs to be edited in
+third party applications and then pasted back to GHex cleanly. However, there
+may be other interesting uses for this feature as well. Since GHex, like any
+hex editor, is often used to edit unusual data types, there may be other times
+in which it is desirable for the user to have full control over how the data
+from the buffer is copied to the clipboard.

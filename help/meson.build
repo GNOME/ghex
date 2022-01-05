@@ -1,15 +1,22 @@
+#(cd C; for i in *.{page,xml}; do echo "  '$i',"; done;)
 help_pages = [
-  'index.docbook',
-  'legal.xml'
-]
-
-help_media = [
-  'figures/ghex_window_open.png'
+  'advanced-clipboard.page',
+  'basics-create-new-file.page',
+  'basics-edit-file.page',
+  'basics-find-replace.page',
+  'basics-open-file.page',
+  'basics-save-file.page',
+  'conf-grouptype.page',
+  'conf-preferences.page',
+  'index.page',
+  'tools-chartable.page',
+  'tools-converter.page',
+  'legal.xml',
 ]
 
 gnome.yelp(
   meson.project_name(),
   sources: help_pages,
-  media: help_media,
-  symlink_media: false
 )
+
+# TODO: figures

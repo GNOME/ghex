@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="advanced-clipboard">
+ <info>
+  <link type="guide" xref="index#advanced"/>
+  <revision version="0.1" date="2022-01-04" status="incomplete"/>
+  <credit type="author copyright">
+   <name>Logan Rathbone</name>
+   <email>poprocks@gmail.com</email>
+   <years>2022</years>
+  </credit>
+ </info>
+ <title>Clipboard features</title>
+ <p>As copying and pasting hexadecimal values is not a standard operation in most
+ applications, GHex has some unique clipboard features. </p>
+ <section>
+  <title>Basic clipboard operations</title>
+  <p>Generally, when copying and pasting data within GHex, you need not concern
+  yourself with clipboard operations.</p>
+  <p>Copying and pasting within GHex works in the usual way.</p>
+  <p>To cut or copy data, highlight the data you would like to cut or copy, and do
+  any of the following:</p>
+  <list>
+   <item>
+    <p>Right-click anywhere in the hex or ASCII pane to bring up the context menu,
+    and select the appropriate option.</p>
+   </item>
+   <item>
+    <p>To cut, press <keyseq><key>Ctrl</key><key>X</key></keyseq>.</p>
+   </item>
+   <item>
+    <p>To copy, press <keyseq><key>Ctrl</key><key>C</key></keyseq>.</p>
+   </item>
+  </list>
+  <p>To paste data:</p>
+  <list>
+   <item>
+    <p>Right-click to bring up the context menu, and click <gui>Paste</gui>; or</p>
+   </item>
+   <item>
+    <p>Press <keyseq><key>Ctrl</key><key>V</key></keyseq>.</p>
+   </item>
+  </list>
+ </section>
+ <section id="paste-special">
+  <title>Paste Special</title>
+  <p>If you have used other applications, such as text editors or word processors
+  with a Paste Special dialog, you may be familiar with this feature.</p>
+  <p>To activate the Paste Special dialog in GHex:</p>
+  <list>
+   <item>
+    <p>Click <gui>Paste Special</gui> from the <gui>Edit</gui> submenu of the <gui>Main menu</gui>; or</p>
+   </item>
+   <item>
+    <p>Press <keyseq><key>Shift</key><key>Ctrl</key><key>V</key></keyseq>.</p>
+   </item>
+  </list>
+  <p>The options that appear when <gui>Paste Special</gui> is activated are context-dependent.</p>
+  <p>The most common options are described below.</p>
+  <section>
+   <title>GHex Paste Data</title>
+   <p>This option will only appear if your current clipboard selection contains data
+   copied directly from GHex. This represents clipboard data native to GHex, and
+   will be pasted into the application as if you had utilized an ordinary
+   <gui>Paste</gui> operation.</p>
+  </section>
+  <section>
+   <title>Plain text (as ASCII)</title>
+   <p>This allows you to paste the data from the clipboard into the GHex buffer,
+   forcing GHex to assume the pasted data will be plain ASCII text.</p>
+  </section>
+  <section>
+   <title>Plain text (Unicode)</title>
+   <p>This allows you to paste the data from the clipboard into the GHex buffer,
+   forcing GHex to assume the pasted data will be text encoded in UTF-8 format.</p>
+  </section>
+  <section>
+   <title>Plain text (as space-delimited hex pairs)</title>
+   <p>This unique option assumes that GHex can expect to receive plain, ASCII text
+   that is specifically formatted as hex nibble-pairs, separated by a single space
+   each.</p>
+   <p>This allows hexadecimal data to be pasted back into GHex cleanly.</p>
+   <p>For example, if <code>48 45 4C 4C 4F</code> is in the clipboard, selecting this
+   option will implicitly convert this hex sequence to an ASCII character sequence
+   (in this case, "HELLO"), and insert it into the GHex buffer.</p>
+   <p>This option can be combined with <gui>Copy Special</gui> to allow an external text
+   editor of your choice to edit hex data copied from GHex, and paste it back into
+   GHex cleanly.</p>
+  </section>
+ </section>
+ <section>
+  <title>Copy Special</title>
+  <p>Unlike Paste Special, which is a feature present in many ordinary text
+  editors and word processors, Copy Special is a feature that was created
+  specifically for GHex, and thus may not be familiar to many users.</p>
+  <p>Copy Special allows you to copy data <em>from</em> GHex into the format of your
+  choice. You may not need this feature unless you intend to paste data from GHex
+  into other applications, and would like minute control over how that is done.</p>
+  <p>To activate the Copy Special dialog in GHex:</p>
+  <list>
+   <item>
+    <p>Click <gui>Copy Special</gui> from the <gui>Edit</gui> submenu of the <gui>Main menu</gui>; or</p>
+   </item>
+   <item>
+    <p>Press <keyseq><key>Shift</key><key>Ctrl</key><key>C</key></keyseq>.</p>
+   </item>
+  </list>
+  <p>The options that appear when you activate Copy Special are:</p>
+  <list>
+   <item>
+    <p>GHex Paste Data</p>
+   </item>
+   <item>
+    <p>Plain text (as ASCII)</p>
+   </item>
+   <item>
+    <p>Plain text (as space-delimited hex pairs)</p>
+   </item>
+   <item>
+    <p>Plain text (Unicode)</p>
+   </item>
+  </list>
+  <p>These options work as described above in the <link xref="#paste-special"/> section
+  above, but in reverse. In other words, the data copied from GHex <em>to</em> the
+  clipboard will be copied in the specified format.</p>
+  <p>This allows you to have control over how clipboard data copied from GHex will
+  be pasted <em>into</em> other applications.</p>
+  <p>This is mostly intended to allow for space-delimited hex pairs to be edited in
+  third party applications and then pasted back to GHex cleanly. However, there
+  may be other interesting uses for this feature as well. Since GHex, like any
+  hex editor, is often used to edit unusual data types, there may be other times
+  in which it is desirable for the user to have full control over how the data
+  from the buffer is copied to the clipboard.</p>
+ </section>
+</page>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="basics-edit-file">
+ <info>
+  <link type="guide" xref="index#basics"/>
+  <revision version="0.1" date="2022-01-04" status="incomplete"/>
+  <credit type="author copyright">
+   <name>Logan Rathbone</name>
+   <email>poprocks@gmail.com</email>
+   <years>2022</years>
+  </credit>
+ </info>
+ <title>Editing files</title>
+ <section>
+  <title>Toggling the hex or ASCII panes</title>
+  <p>File can be edited in GHex from either the hex pane or the ASCII pane.</p>
+  <p>To focus either pane to accept your keystrokes, you may click on the appropriate pane, or:</p>
+  <list>
+   <item>
+    <p>Press <keyseq><key>Alt</key><key>Left</key></keyseq> to focus the hex pane, and</p>
+   </item>
+   <item>
+    <p>Press <keyseq><key>Alt</key><key>Right</key></keyseq> to focus the ASCII pane.</p>
+   </item>
+  </list>
+  <p>Use any of the following methods to move the cursor around the file:</p>
+  <list>
+   <item>
+    <p>Use the scrollbar on the window and the mouse to select a byte by clicking on it.</p>
+   </item>
+   <item>
+    <p>Use the arrow keys, <key>Home</key>, <key>End</key>, <key>PageUp</key> or <key>PageDown</key> on the keyboard.</p>
+   </item>
+   <item>
+    <p>Choose <gui>Jump to Byte</gui> from the (Main menu) or press <keyseq><key>Ctrl</key><key>J</key></keyseq>,
+    and enter the cursor offset as a decimal or hexadecimal value.
+    The format of the hexadecimal value must be 0x followed by the offset, for example 0x3.</p>
+   </item>
+  </list>
+ </section>
+ <section>
+  <title>Editing the file using the hex or ASCII pane</title>
+  <p>Edit the ASCII format in the same way you edit a normal text file.</p>
+  <p>To edit the hexadecimal format, use the values 0 to 9 and a to f. This
+  operation is not case-sensitive.</p>
+ </section>
+ <section>
+  <title>Insert mode</title>
+  <p><gui>Insert Mode</gui> can be toggled on or off by pressing <key>Insert</key>, or by
+  clicking the <gui>Toggle insert mode</gui> button in the status bar.</p>
+  <p>When <gui>Insert Mode</gui> is enabled, this means data will be added to the file as
+  opposed to replacing existing data.</p>
+  <p>Unlike traditional text editors, having <gui>Insert Mode</gui> <em>off</em> is
+  considered the default state in GHex, given that hex editors are routinely used
+  to edit existing data in binary files that are very specifically laid out. In
+  some cases, such files may be of a fixed size and increasing or decreasing
+  their size may cause undefined or unwanted behaviour in applications that open
+  them.</p>
+ </section>
+</page>

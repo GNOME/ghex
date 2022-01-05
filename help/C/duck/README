@@ -1,0 +1,26 @@
+NOTE ON DUCKTYPE YELP FILES:
+
+Dated: 5 January 2022
+by: Logan Rathbone <poprocks@gmail.com>
+
+These raw .duck files get converted to standard .page files.
+
+If you have the ``ducktype'' program and all of its dependencies installed
+(via: `pip3 install mallard-ducktype`), you may simply run `make` in this
+directory to build the .page files, and copy them to the `C` directory below.
+
+This should be done after any core help file changes *before* pushing to
+gitlab.
+
+The reason this is done manually here and not as part of every build process,
+is that this ducktype system does not seem to be idiomatic within the GNOME
+ecosystem at this time, or very widely utilized at all. So, I did not want
+this process to blockade people from being able to build GHex with all of its
+help files included as a result of missing some obscure dependencies.
+
+As well, since this ducktype program is not widely adopted, I wouldn't be
+surprised if it went the way of the dodo in the next couple of years, so there
+is no point in putting all kinds of (customized, at that) meson infrastructure
+in place now, only to have to blow it away if ducktype becomes unmaintained.
+If that happens, we'll just quietly delete this directory and start manually
+editing the .page files on a go-forward basis.

@@ -1,0 +1,52 @@
+= Find and replace
+  [topic]
+@link[guide >index#basics]
+
+@revision[version=0.1 date=2022-01-04 status=incomplete]
+
+@credit[author copyright]
+  @name Logan Rathbone
+  @email poprocks@gmail.com
+  @years 2022
+
+== Find pane
+  [#find-pane]
+
+Most basic find operations in GHex can be done by utilizing the $gui(Find) pane.
+
+You may toggle the $gui(Find) pane in the following ways:
+* Click the $gui(Find) button on the header bar.
+* Press $keyseq($key(Ctrl)$key(F)).
+
+In order to easily search for a string in either hex or ASCII format, the
+$gui(Find) pane acts like a miniature hex editor. You enter this string in the
+same way you would edit a file as described in the $link[>basics-edit-file]
+section.
+
+To search for the next occurrence of the requested string in the file from the
+current position of the cursor, click the $gui(Find Next) button.
+
+To search for the previous occurrence of the requested string in the file from
+the current position of the cursor, click the $gui(Find Previous) button.
+
+Your search results will also be automatically highlighted in a different color
+than the standard selection color.
+
+You may close the $gui(Find) pane by pressing $key(Esc) while it is focused, or
+by clicking its own $gui(Close) button in the bottom-right-hand corner of the
+pane.
+
+== Find and Replace pane
+
+The $gui(Find and Replace) pane works a lot like the $gui(Find) pane, except
+that it also allows you to replace the next string, or all strings in the file,
+with string in the $gui(Replace With) field.
+
+To replace the next string from the cursor in the $gui(Find String) field with
+the string in the $gui(Replace With) field, click $gui(Replace).
+
+To replace all instances in the file of the string in the $gui(Find String)
+field with the string in the $gui(Replace With) field, click $gui(Replace All).
+
+In other respects, the $gui(Find and Replace) pane works as described in the
+$link[>#find-pane] section above.

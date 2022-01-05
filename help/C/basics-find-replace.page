@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="basics-find-replace">
+ <info>
+  <link type="guide" xref="index#basics"/>
+  <revision version="0.1" date="2022-01-04" status="incomplete"/>
+  <credit type="author copyright">
+   <name>Logan Rathbone</name>
+   <email>poprocks@gmail.com</email>
+   <years>2022</years>
+  </credit>
+ </info>
+ <title>Find and replace</title>
+ <section id="find-pane">
+  <title>Find pane</title>
+  <p>Most basic find operations in GHex can be done by utilizing the <gui>Find</gui> pane.</p>
+  <p>You may toggle the <gui>Find</gui> pane in the following ways:</p>
+  <list>
+   <item>
+    <p>Click the <gui>Find</gui> button on the header bar.</p>
+   </item>
+   <item>
+    <p>Press <keyseq><key>Ctrl</key><key>F</key></keyseq>.</p>
+   </item>
+  </list>
+  <p>In order to easily search for a string in either hex or ASCII format, the
+  <gui>Find</gui> pane acts like a miniature hex editor. You enter this string in the
+  same way you would edit a file as described in the <link xref="basics-edit-file"/>
+  section.</p>
+  <p>To search for the next occurrence of the requested string in the file from the
+  current position of the cursor, click the <gui>Find Next</gui> button.</p>
+  <p>To search for the previous occurrence of the requested string in the file from
+  the current position of the cursor, click the <gui>Find Previous</gui> button.</p>
+  <p>Your search results will also be automatically highlighted in a different color
+  than the standard selection color.</p>
+  <p>You may close the <gui>Find</gui> pane by pressing <key>Esc</key> while it is focused, or
+  by clicking its own <gui>Close</gui> button in the bottom-right-hand corner of the
+  pane.</p>
+ </section>
+ <section>
+  <title>Find and Replace pane</title>
+  <p>The <gui>Find and Replace</gui> pane works a lot like the <gui>Find</gui> pane, except
+  that it also allows you to replace the next string, or all strings in the file,
+  with string in the <gui>Replace With</gui> field.</p>
+  <p>To replace the next string from the cursor in the <gui>Find String</gui> field with
+  the string in the <gui>Replace With</gui> field, click <gui>Replace</gui>.</p>
+  <p>To replace all instances in the file of the string in the <gui>Find String</gui>
+  field with the string in the <gui>Replace With</gui> field, click <gui>Replace All</gui>.</p>
+  <p>In other respects, the <gui>Find and Replace</gui> pane works as described in the
+  <link xref="#find-pane"/> section above.</p>
+ </section>
+</page>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="tools-converter">
+ <info>
+  <link type="guide" xref="index#tools"/>
+  <revision version="0.1" date="2022-01-04" status="incomplete"/>
+  <credit type="author copyright">
+   <name>Logan Rathbone</name>
+   <email>poprocks@gmail.com</email>
+   <years>2022</years>
+  </credit>
+ </info>
+ <title>Base converter</title>
+ <p>GHex includes a base converter tool which can either be used as a standalone
+ tool to convert values from one format to another, or to obtain the value
+ pointed to by the cursor and to convert that value into various formats.</p>
+ <p>You may access the base converter by selecting <gui>Base Converter</gui> from the
+ <gui>Tools</gui> submenu of the <gui>Main menu</gui>.</p>
+ <p>While the base converter is open, you may still select the hex editor and move
+ the cursor around, as per usual.</p>
+ <p>To convert the value at the cursor position, click the <gui>Get cursor value</gui>
+ button.</p>
+ <p>To convert a value manually, you may type it into any of the fields in the
+ format delimited therein (clearing any pre-existing value as necessary), and
+ press <key>Enter</key>.</p>
+ <p>If you have entered an invalid value, "ERROR" will appear in the field. This
+ error is not fatal and just indicates that an unrecognized value was entered.
+ Simply enter a valid value, or click <gui>Get cursor value</gui> to grab the cursor
+ value and to get some examples of valid values, and try again.</p>
+ <p>The base converter can be closed by clicking the <gui>Close</gui> button.</p>
+</page>
