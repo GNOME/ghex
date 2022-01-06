@@ -21,5 +21,10 @@ gnome.yelp(
 )
 
 if get_option('static-html-help')
-  install_subdir('HTML', install_dir: ghex_docdir)
+  custom_target('static-html-help',
+    output : 'HTML',
+    input : 'HTML.tar.gz',
+    command : [find_program('tar'), 'xvf', '@INPUT@', '-C', '@OUTDIR@'],
+    install : true,
+    install_dir : ghex_docdir)
 endif

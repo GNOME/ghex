@@ -50,7 +50,10 @@ fi
 # razzly-dazzly effects it may provide.
 find $CWD/HTML -name 'highlight.pack.js' |xargs rm
 
+tar czf HTML.tar.gz HTML/
+
 # cleanup
 rm $CWD/LINGUAS
+rm -rf $CWD/HTML
 
-echo "DONE. You may now deploy the './HTML' dir as your static HTML help."
+echo "DONE. You may now deploy the './HTML.tar.gz' tarball in the help/ directory of the GIT repo as static HTML help."
