@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "POT-Creation-Date: 2022-01-05 06:23+0000\n"
-"PO-Revision-Date: 2022-01-05 22:04+0200\n"
+"PO-Revision-Date: 2022-01-06 23:52+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -54,6 +54,7 @@ msgid ""
 "As copying and pasting hexadecimal values is not a standard operation in "
 "most applications, GHex has some unique clipboard features."
 msgstr ""
+"Оскільки копіювання і вставлення шістнадцяткових значень не є стандартною дією у більшості програм, у GHex передбачено унікальні можливості обробки буфера обміну даними."
 
 #. (itstool) path: section/title
 #: C/advanced-clipboard.page:16
@@ -67,11 +68,13 @@ msgid ""
 "Generally, when copying and pasting data within GHex, you need not concern "
 "yourself with clipboard operations."
 msgstr ""
+"Загалом при копіюванні і вставленні даних у GHex, вам не слід перейматися внутрішніми механізмами роботи із буфером обміну даними."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:19
 msgid "Copying and pasting within GHex works in the usual way."
 msgstr ""
+"Копіювання і вставлення у GHex працює у звичний спосіб."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:20
@@ -79,6 +82,7 @@ msgid ""
 "To cut or copy data, highlight the data you would like to cut or copy, and "
 "do any of the following:"
 msgstr ""
+"Щоб вирізати або скопіювати дані, позначте дані, які ви хочете вирізати або скопіювати, і виконайте одну з таких дій:"
 
 #. (itstool) path: item/p
 #: C/advanced-clipboard.page:24
@@ -86,6 +90,7 @@ msgid ""
 "Right-click anywhere in the hex or ASCII pane to bring up the context menu, "
 "and select the appropriate option."
 msgstr ""
+"Клацніть правою кнопкою миші будь-де на панелі шістнадцяткових даних або ASCII, щоб викликати контекстне меню, і виберіть відповідний пункт."
 
 #. (itstool) path: item/p
 #: C/advanced-clipboard.page:28
@@ -110,6 +115,7 @@ msgstr ""
 msgid ""
 "Right-click to bring up the context menu, and click <gui>Paste</gui>; or"
 msgstr ""
+"Клацніть правою кнопкою миші, щоб викликати контекстне меню, і клацніть лівою кнопкою миші на пункті <gui>Вставити</gui>; або"
 
 #. (itstool) path: item/p
 #: C/advanced-clipboard.page:40
@@ -129,6 +135,7 @@ msgid ""
 "If you have used other applications, such as text editors or word processors "
 "with a Paste Special dialog, you may be familiar with this feature."
 msgstr ""
+"Якщо ви користувалися іншими програмами, зокрема текстовими редакторами або текстовими процесорами із вікнами спеціального вставлення, ви, можливо, знайомі із цією можливістю."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:48
@@ -142,11 +149,13 @@ msgid ""
 "Click <gui>Paste Special</gui> from the <gui>Edit</gui> submenu of the "
 "<gui>Main menu</gui>; or"
 msgstr ""
+"Виберіть пункт <gui>Спеціальне вставлення</gui> з підменю <gui>Зміни</gui> з <gui>головного меню</gui>; або"
 
 #. (itstool) path: item/p
 #: C/advanced-clipboard.page:54
 msgid "Press <keyseq><key>Shift</key><key>Ctrl</key><key>V</key></keyseq>."
 msgstr ""
+"Натисніть комбінацію клавіш <keyseq><key>Shift</key><key>Ctrl</key><key>V</key></keyseq>."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:57
@@ -154,11 +163,13 @@ msgid ""
 "The options that appear when <gui>Paste Special</gui> is activated are "
 "context-dependent."
 msgstr ""
+"Варіанти, які буде показано при активації пункту <gui>Спеціальне вставлення</gui>, залежать від контексту."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:58
 msgid "The most common options are described below."
 msgstr ""
+"Найпоширеніші варіанти описано нижче."
 
 #. (itstool) path: section/title
 #. (itstool) path: item/p
@@ -175,6 +186,7 @@ msgid ""
 "GHex, and will be pasted into the application as if you had utilized an "
 "ordinary <gui>Paste</gui> operation."
 msgstr ""
+"Цей варіант буде показано, лише якщо поточний вміст буфера обміну містить дані, які скопійовано безпосередньо з GHex. Він відповідає даним буфера обміну, які є природними для GHex, і ці дані буде вставлено до програми так, наче було використано звичайну дію <gui>Вставити</gui>."
 
 #. (itstool) path: section/title
 #. (itstool) path: item/p
@@ -189,6 +201,7 @@ msgid ""
 "This allows you to paste the data from the clipboard into the GHex buffer, "
 "forcing GHex to assume the pasted data will be plain ASCII text."
 msgstr ""
+"Цей варіант надає вам змогу вставити дані з буфера обміну даними до буфера GHex, примусово вказавши GHex, що слід припускати, що вставлені дані є звичайним текстом із символів ASCII."
 
 #. (itstool) path: section/title
 #. (itstool) path: item/p
@@ -203,6 +216,7 @@ msgid ""
 "This allows you to paste the data from the clipboard into the GHex buffer, "
 "forcing GHex to assume the pasted data will be text encoded in UTF-8 format."
 msgstr ""
+"Цей варіант надає вам змогу вставити дані з буфера обміну даними до буфера GHex, примусово вказавши GHex, що слід припускати, що вставлені дані є текстом у кодуванні UTF-8."
 
 #. (itstool) path: section/title
 #. (itstool) path: item/p
@@ -218,11 +232,13 @@ msgid ""
 "that is specifically formatted as hex nibble-pairs, separated by a single "
 "space each."
 msgstr ""
+"Цей унікальний варіант вказує GHex, що слід очікувати на простий текст ASCII, який є спеціально форматованими парами шістнадцяткових чисел, які відокремлено одинарними пробілами."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:81
 msgid "This allows hexadecimal data to be pasted back into GHex cleanly."
 msgstr ""
+"Цей варіант надає змогу вставляти шістнадцяткові дані назад до GHex без помилок."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:82
@@ -231,6 +247,7 @@ msgid ""
 "this option will implicitly convert this hex sequence to an ASCII character "
 "sequence (in this case, \"HELLO\"), and insert it into the GHex buffer."
 msgstr ""
+"Наприклад, якщо у буфері обміну даних зберігається рядок <code>48 45 4C 4C 4F</code>, вибір цього варіанта призведе до неявного перетворення цієї послідовності шістнадцяткових цифр у послідовність символів ASCII (у цьому прикладі, «HELLO») і вставлення рядка до буфера GHex."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:85
@@ -239,6 +256,7 @@ msgid ""
 "external text editor of your choice to edit hex data copied from GHex, and "
 "paste it back into GHex cleanly."
 msgstr ""
+"Цей варіант можна поєднати із пунктом <gui>Спеціальне копіювання</gui> з метою уможливлення редагування шістнадцяткових даних, які скопійовано з from GHex, у вибраному вами зовнішньому текстовому редакторі із наступним вставленням редагованих даних до GHex."
 
 #. (itstool) path: section/title
 #: C/advanced-clipboard.page:91
@@ -253,6 +271,7 @@ msgid ""
 "editors and word processors, Copy Special is a feature that was created "
 "specifically for GHex, and thus may not be familiar to many users."
 msgstr ""
+"На відміну від спеціального вставлення, можливості, якою можна скористатися у багатьох звичайних текстових редакторах і текстових процесорах, «Спеціальне вставлення» є можливістю, яку було створено спеціально для GHex. Через це, можливо, вона буде дещо незвичною для багатьох користувачів."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:95
@@ -262,11 +281,13 @@ msgid ""
 "from GHex into other applications, and would like minute control over how "
 "that is done."
 msgstr ""
+"«Спеціальне копіювання» надає вам змогу копіювати дані <em>з</em> GHex у вибраному вами форматі. Можливо, це вам не знадобиться, якщо ви не маєте наміру вставляти дані з GHex до інших програм і не потребуєте точного керування тим, як це слід робити."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:98
 msgid "To activate the Copy Special dialog in GHex:"
 msgstr ""
+"Щоб активувати вікно спеціального копіювання у GHex, виконайте такі дії:"
 
 #. (itstool) path: item/p
 #: C/advanced-clipboard.page:101
@@ -274,16 +295,19 @@ msgid ""
 "Click <gui>Copy Special</gui> from the <gui>Edit</gui> submenu of the "
 "<gui>Main menu</gui>; or"
 msgstr ""
+"Виберіть пункт <gui>Спеціальне копіювання</gui> з підменю <gui>Зміни</gui> з <gui>головного меню</gui>; або"
 
 #. (itstool) path: item/p
 #: C/advanced-clipboard.page:104
 msgid "Press <keyseq><key>Shift</key><key>Ctrl</key><key>C</key></keyseq>."
 msgstr ""
+"Натисніть комбінацію клавіш <keyseq><key>Shift</key><key>Ctrl</key><key>C</key></keyseq>"
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:107
 msgid "The options that appear when you activate Copy Special are:"
 msgstr ""
+"Варіантами дій при активації спеціального копіювання є такі:"
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:122
@@ -292,6 +316,7 @@ msgid ""
 "section above, but in reverse. In other words, the data copied from GHex "
 "<em>to</em> the clipboard will be copied in the specified format."
 msgstr ""
+"Ці варіанти працюють так, які описано у розділі <link xref=\"#paste-special\"/> вище, але у зворотному напрямку. Іншими словами, дані, які скопійовано з GHex <em>до</em> буфера обміну даними, буде скопійовано у спеціальному форматі."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:125
@@ -299,6 +324,7 @@ msgid ""
 "This allows you to have control over how clipboard data copied from GHex "
 "will be pasted <em>into</em> other applications."
 msgstr ""
+"Це надає вам змогу керувати тим, як дані з буфера обміну даними, які скопійовано з GHex, буде вставлено <em>до</em> інших програм."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:127
@@ -310,6 +336,7 @@ msgid ""
 "other times in which it is desirable for the user to have full control over "
 "how the data from the buffer is copied to the clipboard."
 msgstr ""
+"Цю можливість, в основному, призначено для забезпечення можливості редагування розділених пробілами пар шістнадцяткових цифр у сторонніх програмах із наступним вставленням результатів до GHex. Втім, можливі інші цікаві використання цієї можливості. Оскільки GHex, як будь-який шістнадцятковий редактор, часто використовують для редагування даних незвичного типу, для користувача може бути бажаним мати повний контроль над тим, як копіюються дані з буфера редагування програми до буфера обміну даними."
 
 #. (itstool) path: page/title
 #: C/basics-create-new-file.page:12
@@ -327,6 +354,7 @@ msgstr "У GHex створити файл можна у такі способи:
 #: C/basics-create-new-file.page:16
 msgid "Select <gui>New</gui> from the <gui>Main menu</gui>."
 msgstr ""
+"Вибрати пункт <gui>Створити</gui> з <gui>головного меню</gui>."
 
 #. (itstool) path: item/p
 #: C/basics-create-new-file.page:19
@@ -340,6 +368,7 @@ msgid ""
 "When a new file is created, GHex will toggle <gui>Insert Mode</gui> on, so "
 "that you may start adding data to your new file right away."
 msgstr ""
+"При створенні нового файла GHex вмикає <gui>Режим вставлення</gui>, щоб ви могли одразу ж розпочати додавання даних до вашого нового файла."
 
 #. (itstool) path: page/title
 #: C/basics-edit-file.page:12
@@ -351,11 +380,13 @@ msgstr "Редагування файлів"
 #: C/basics-edit-file.page:14
 msgid "Toggling the hex or ASCII panes"
 msgstr ""
+"Перемикання між панелями шістнадцяткових даних та даних ASCII"
 
 #. (itstool) path: section/p
 #: C/basics-edit-file.page:15
 msgid "File can be edited in GHex from either the hex pane or the ASCII pane."
 msgstr ""
+"Файл у GHex можна редагувати або на панелі шістнадцяткових даних, або на панелі даних ASCII."
 
 #. (itstool) path: section/p
 #: C/basics-edit-file.page:16
@@ -420,6 +451,7 @@ msgstr ""
 #: C/basics-edit-file.page:41
 msgid "Editing the file using the hex or ASCII pane"
 msgstr ""
+"Редагування файла за допомогою панелі шістнадцяткових даних або панелі ASCII"
 
 #. (itstool) path: section/p
 #: C/basics-edit-file.page:42
@@ -482,6 +514,7 @@ msgstr "Знайти і замінити"
 #: C/basics-find-replace.page:14
 msgid "Find pane"
 msgstr ""
+"Панель пошуку"
 
 #. (itstool) path: section/p
 #: C/basics-find-replace.page:15
@@ -620,6 +653,7 @@ msgstr ""
 #: C/basics-save-file.page:12
 msgid "Saving files"
 msgstr ""
+"Збереження файлів"
 
 #. (itstool) path: page/p
 #: C/basics-save-file.page:13
@@ -641,6 +675,7 @@ msgstr ""
 #: C/conf-grouptype.page:12
 msgid "Hex data grouping"
 msgstr ""
+"Групування шістнадцяткових даних"
 
 #. (itstool) path: page/p
 #: C/conf-grouptype.page:13
@@ -813,6 +848,7 @@ msgstr ""
 #: C/conf-preferences.page:60
 msgid "Shaded rows"
 msgstr ""
+"Затінені рядки"
 
 #. (itstool) path: section/p
 #: C/conf-preferences.page:61
@@ -842,11 +878,13 @@ msgstr ""
 #: C/index.page:12
 msgid "GHex Help"
 msgstr ""
+"Довідка з GHex"
 
 #. (itstool) path: page/p
 #: C/index.page:13
 msgid "GHex is a simple hex editor."
 msgstr ""
+"GHex є простим шістнадцятковим редактором."
 
 #. (itstool) path: page/p
 #: C/index.page:14
