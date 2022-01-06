@@ -1,4 +1,9 @@
+# meson may 'purposely' not provide a docdir variable, but some distros
+# like Slackware still like to specify that docs should be installed in @prefix/doc
+option('docdir', type: 'string', value: 'share/doc', description: 'docdir (defaults to: share/doc)')
+
 option('development', type: 'boolean', value: false, description: 'If this is a development build')
 option('buffer-backend', type : 'combo', choices : ['mmap', 'malloc'], value : 'mmap')
 option('introspection', type: 'feature', value: 'auto', description: 'Generate gir data (requires gobject-introspection)')
 option('gtk_doc', type: 'boolean', value: false, description: 'Build reference manual (requires gtk-doc)')
+option('static-html-help', type: 'boolean', value: false, description: 'Install static HTML help files (for systems without Yelp)')

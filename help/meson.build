@@ -13,10 +13,13 @@ help_pages = [
   'tools-converter.page',
   'legal.xml',
 ]
+# TODO: figures
 
 gnome.yelp(
   meson.project_name(),
   sources: help_pages,
 )
 
-# TODO: figures
+if get_option('static-html-help')
+  install_subdir('HTML', install_dir: ghex_docdir)
+endif

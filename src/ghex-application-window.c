@@ -28,6 +28,8 @@
  * other, so keep this header here in the source file to avoid issues. */
 #include "paste-special.h"
 
+#include <locale.h>
+
 #include <config.h>
 
 /* DEFINES */
@@ -1296,13 +1298,105 @@ toggle_conversions (GtkWidget *widget,
 }
 
 static void
+open_help_ready_cb (GObject *source_object,
+		GAsyncResult *res,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(source_object);
+	gboolean help_success;
+	GError *local_error = NULL;
+
+	help_success = gtk_show_uri_full_finish (GTK_WINDOW(self),
+			res,
+			&local_error);
+
+	/* If we can't handle the help:/// URI scheme, try opening static HTML
+	 * help docs, if they exist.
+	 */
+	if (! help_success)
+	{
+#ifdef STATIC_HTML_HELP
+#define URI_PREFIX "file:" PACKAGE_DOCDIR "/HTML/"
+		char *uri = NULL;
+		GFile *file = NULL;
+		char *locale_str = g_strdup (setlocale (LC_MESSAGES, NULL));
+		char *cp;
+		char *full_errmsg = NULL;
+
+		/* strip off codeset (.*) and modifier (@*) - see ISO/IEC 15897 */
+		strtok (locale_str, ".");
+		cp = strtok (NULL, ".");
+		if (cp)
+			*cp = 0;
+
+		strtok (locale_str, "@");
+		cp = strtok (NULL, "@");
+		if (cp)
+			*cp = 0;
+
+		/* first, try full locale (eg, en_US) ... */
+		uri = g_strdup_printf (URI_PREFIX "%s/" PACKAGE_NAME "/index.html",
+				locale_str);
+
+		file = g_file_new_for_uri (uri);
+
+		/* ... if that didn't work, try stripping the territory (_*) */
+		if (! g_file_query_exists (file, NULL))
+		{
+			g_object_unref (file);
+			g_free (uri);
+
+			strtok (locale_str, "_");
+			cp = strtok (NULL, "_");
+			if (cp)
+				*cp = 0;
+			else
+				goto error;
+
+			uri = g_strdup_printf (URI_PREFIX "%s/" PACKAGE_NAME "/index.html",
+					locale_str);
+			file = g_file_new_for_uri (uri);
+		}
+
+		if (g_file_query_exists (file, NULL))
+		{
+			gtk_show_uri (GTK_WINDOW(self), uri, GDK_CURRENT_TIME);
+			goto out;
+		}
+error:
+		full_errmsg = g_strdup_printf (_("Sorry, but help could not be opened.\n\n"
+					"Various attempts were made to locate the help documentation "
+					"unsuccessfully.\n\n"
+					"Please ensure the application was properly installed.\n\n"
+					"The specific error message is:\n\n"
+					"%s"),
+				local_error->message);
+		display_error_dialog (GTK_WINDOW(self), full_errmsg);
+out:
+		g_clear_object (&file);
+		g_free (uri);
+		g_free (full_errmsg);
+		g_clear_pointer (&local_error, g_error_free);
+#undef URI_PREFIX
+#else
+		display_error_dialog (GTK_WINDOW(self), local_error->message);
+#endif
+	}
+}
+
+static void
 open_help (GtkWidget *widget,
 		const char *action_name,
 		GVariant *parameter)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 
-	gtk_show_uri (GTK_WINDOW (self), "help:" PACKAGE_NAME, GDK_CURRENT_TIME);
+	gtk_show_uri_full (GTK_WINDOW (self),
+			"help:" PACKAGE_NAME,
+			GDK_CURRENT_TIME,
+			NULL,
+			open_help_ready_cb,
+			NULL);
 }
 
 static void

@@ -31,6 +31,7 @@ ghex_libdir = join_paths(ghex_prefix, get_option('libdir'))
 ghex_includedir = join_paths(ghex_prefix, get_option('includedir'))
 ghex_datadir = join_paths(ghex_prefix, get_option('datadir'))
 ghex_localedir = join_paths(ghex_prefix, get_option('localedir'))
+ghex_docdir = join_paths(ghex_prefix, get_option('docdir'))
 ghex_pkgconfigdir = join_paths(ghex_libdir, 'pkgconfig')
 ghex_applicationsdir = join_paths(ghex_datadir, 'applications')
 ghex_schemasdir = join_paths(ghex_datadir, 'glib-2.0/schemas')
@@ -72,6 +73,7 @@ config_h.set_quoted('PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), mes
 config_h.set_quoted('PACKAGE_DATADIR', ghex_datadir)
 config_h.set_quoted('PACKAGE_LIBDIR', ghex_libdir)
 config_h.set_quoted('PACKAGE_LOCALE_DIR', ghex_localedir)
+config_h.set_quoted('PACKAGE_DOCDIR', ghex_docdir)
 
 config_h.set('VERSION', 'PACKAGE_VERSION')
 config_h.set('GETTEXT_PACKAGE', 'PACKAGE_NAME')
@@ -84,6 +86,8 @@ if buffer_backend == 'mmap'
 endif
 
 config_h.set_quoted('LIBGTKHEX_RELEASE_STRING', 'gtkhex-@0@.0'.format(libgtkhex_version_major))
+
+config_h.set('STATIC_HTML_HELP', get_option('static-html-help'))
 
 config_h.set('DEBUG', get_option('debug'))
 
@@ -143,10 +147,12 @@ meson.add_install_script('meson_post_install.py')
 summary({'prefix': ghex_prefix,
         'libdir': ghex_libdir,
         'datadir': ghex_datadir,
+	'docdir': ghex_docdir,
         'includedir': ghex_includedir,
         }, section: 'Directories')
 
 summary({'Development build': get_option('development'),
-	  'Documentation': build_gtk_doc,
 	  'Buffer backend': buffer_backend,
+	  'Static HTML help': get_option('static-html-help'),
+	  'API Documentation': build_gtk_doc,
         }, section: 'Configuration')
