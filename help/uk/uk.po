@@ -2,1281 +2,1027 @@
 # Copyright (C) 2021 ghex's COPYRIGHT HOLDER
 # This file is distributed under the same license as the ghex package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2021.
+# Yuri Chornoivan <yurchor@ukr.net>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
-"POT-Creation-Date: 2021-01-10 20:43+0000\n"
-"PO-Revision-Date: 2021-02-10 11:10+0200\n"
+"POT-Creation-Date: 2022-01-05 06:23+0000\n"
+"PO-Revision-Date: 2022-01-05 22:04+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uk\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 20.11.70\n"
+"X-Generator: Lokalize 20.12.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
-"Юрій Чорноіван <yurchor@ukr.net>"
+msgstr "Юрій Чорноіван <yurchor@ukr.net>"
 
-#. (itstool) path: articleinfo/title
-#: C/index.docbook:23
-msgid "User manual for GHex"
+#. (itstool) path: credit/name
+#: C/advanced-clipboard.page:7 C/basics-create-new-file.page:7
+#: C/basics-edit-file.page:7 C/basics-find-replace.page:7
+#: C/basics-open-file.page:7 C/basics-save-file.page:7 C/conf-grouptype.page:7
+#: C/conf-preferences.page:7 C/index.page:6 C/tools-chartable.page:7
+#: C/tools-converter.page:7
+msgid "Logan Rathbone"
 msgstr ""
-"Підручник користувача GHex"
+"Logan Rathbone"
 
-#. (itstool) path: abstract/para
-#: C/index.docbook:26
+#. (itstool) path: credit/years
+#: C/advanced-clipboard.page:9 C/basics-create-new-file.page:9
+#: C/basics-edit-file.page:9 C/basics-find-replace.page:9
+#: C/basics-open-file.page:9 C/basics-save-file.page:9 C/conf-grouptype.page:9
+#: C/conf-preferences.page:9 C/index.page:8 C/tools-chartable.page:9
+#: C/tools-converter.page:9
+msgid "2022"
+msgstr ""
+"2022"
+
+#. (itstool) path: page/title
+#: C/advanced-clipboard.page:12
+msgid "Clipboard features"
+msgstr ""
+"Можливості буфера обміну даними"
+
+#. (itstool) path: page/p
+#: C/advanced-clipboard.page:13
 msgid ""
-"GHex is a simple binary editor. It lets users view and edit a binary file in "
-"both hex and ascii with a multiple level undo/redo mechanism. Features "
-"include find and replace functions, conversion between binary, octal, "
-"decimal and hexadecimal values, and use of an alternative, user-configurable "
-"MDI concept that lets users edit multiple documents with multiple views of "
-"each."
+"As copying and pasting hexadecimal values is not a standard operation in "
+"most applications, GHex has some unique clipboard features."
 msgstr ""
-"GHex — простий двійковий редактор. За її допомогою користувачі можуть переглядати і редагувати двійкові файли у шістнадцятковому форматі та ASCII із багаторівневим механізмом скасовування та відновлення дій. Серед можливостей програми пошук і заміна, перетворення між двійковими, вісімковими, десятковими та шістнадцятковими значеннями, і використання альтернативної налаштовуваної користувачем парадигми багатопанельного інтерфейсу, який надає користувачам змогу одночасно редагувати декілька документів на декількох панелях."
 
-#. (itstool) path: articleinfo/copyright
-#: C/index.docbook:36
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:16
+msgid "Basic clipboard operations"
+msgstr ""
+"Базові дії із буфером обміну даними"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:17
 msgid ""
-"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
-"Microsystems</holder>"
+"Generally, when copying and pasting data within GHex, you need not concern "
+"yourself with clipboard operations."
 msgstr ""
-"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
-"Microsystems</holder>"
 
-#. (itstool) path: articleinfo/copyright
-#: C/index.docbook:42
-msgid "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:19
+msgid "Copying and pasting within GHex works in the usual way."
 msgstr ""
-"<year>1998–2000</year> <holder>Jaka Mocnik</holder>"
 
-#. (itstool) path: publisher/publishername
-#. (itstool) path: revdescription/para
-#: C/index.docbook:54 C/index.docbook:99 C/index.docbook:107
-#: C/index.docbook:115 C/index.docbook:123 C/index.docbook:131
-#: C/index.docbook:139 C/index.docbook:149
-msgid "GNOME Documentation Project"
-msgstr ""
-"Проєкт з документування GNOME"
-
-#. (itstool) path: authorgroup/author
-#: C/index.docbook:63
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:20
 msgid ""
-"<firstname>Sun</firstname> <surname>GNOME Documentation Team</surname> "
-"<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
-"affiliation>"
+"To cut or copy data, highlight the data you would like to cut or copy, and "
+"do any of the following:"
 msgstr ""
-"<firstname>Sun</firstname> <surname>Команда з документування GNOME</surname> "
-"<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> <"
-"/affiliation>"
 
-#. (itstool) path: authorgroup/author
-#: C/index.docbook:71
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:24
 msgid ""
-"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
-"<orgname>GNOME Documentation Project</orgname> <address> <email>jaka@gnu."
-"org</email> </address> </affiliation>"
+"Right-click anywhere in the hex or ASCII pane to bring up the context menu, "
+"and select the appropriate option."
 msgstr ""
-"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
-"<orgname>Проєкт з документування GNOME</orgname> <address> <email>jaka@gnu."
-"org</email> </address> </affiliation>"
 
-#. (itstool) path: revdescription/para
-#: C/index.docbook:98 C/index.docbook:106 C/index.docbook:114
-#: C/index.docbook:122 C/index.docbook:130 C/index.docbook:138
-msgid "Sun GNOME Documentation Team"
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:28
+msgid "To cut, press <keyseq><key>Ctrl</key><key>X</key></keyseq>."
 msgstr ""
-"Команда документування GNOME фірми Sun"
+"Щоб вирізати, натисніть комбінацію клавіш <keyseq><key>Ctrl</key><key>X</key></keyseq>."
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:94
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:31
+msgid "To copy, press <keyseq><key>Ctrl</key><key>C</key></keyseq>."
+msgstr ""
+"Щоб скопіювати, натисніть комбінацію клавіш <keyseq><key>Ctrl</key><key>C</key></keyseq>."
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:34
+msgid "To paste data:"
+msgstr ""
+"Щоб вставити дані, виконайте такі дії:"
+
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:37
 msgid ""
-"<revnumber>GHex Manual V2.5</revnumber> <date>December 2005</date> <_:"
-"revdescription-1/>"
+"Right-click to bring up the context menu, and click <gui>Paste</gui>; or"
 msgstr ""
-"<revnumber>Підручник з GHex, версія 2.5</revnumber> <date>грудень 2005 року</date> <_:"
-"revdescription-1/>"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:102
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:40
+msgid "Press <keyseq><key>Ctrl</key><key>V</key></keyseq>."
+msgstr ""
+"Натисніть комбінацію клавіш <keyseq><key>Ctrl</key><key>V</key></keyseq>."
+
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:45
+msgid "Paste Special"
+msgstr ""
+"Спеціальне вставлення"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:46
 msgid ""
-"<revnumber>GHex Manual V2.4</revnumber> <date>April 2003</date> <_:"
-"revdescription-1/>"
+"If you have used other applications, such as text editors or word processors "
+"with a Paste Special dialog, you may be familiar with this feature."
 msgstr ""
-"<revnumber>Підручник з GHex, версія 2.4</revnumber> <date>квітень 2003 року</date> <_:"
-"revdescription-1/>"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:110
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:48
+msgid "To activate the Paste Special dialog in GHex:"
+msgstr ""
+"Щоб активувати вікно спеціального вставлення у GHex, виконайте такі дії:"
+
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:51
 msgid ""
-"<revnumber>GHex Manual V2.3</revnumber> <date>August 2002</date> <_:"
-"revdescription-1/>"
+"Click <gui>Paste Special</gui> from the <gui>Edit</gui> submenu of the "
+"<gui>Main menu</gui>; or"
 msgstr ""
-"<revnumber>Підручник з GHex, версія 2.3</revnumber> <date>серпень 2002 року</date> <_:"
-"revdescription-1/>"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:118
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:54
+msgid "Press <keyseq><key>Shift</key><key>Ctrl</key><key>V</key></keyseq>."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:57
 msgid ""
-"<revnumber>GHex Manual V2.2</revnumber> <date>August 2002</date> <_:"
-"revdescription-1/>"
+"The options that appear when <gui>Paste Special</gui> is activated are "
+"context-dependent."
 msgstr ""
-"<revnumber>Підручник з GHex, версія 2.2</revnumber> <date>серпень 2002 року</date> <_:"
-"revdescription-1/>"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:126
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:58
+msgid "The most common options are described below."
+msgstr ""
+
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:60 C/advanced-clipboard.page:110
+msgid "GHex Paste Data"
+msgstr ""
+"Вставлення даних GHex"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:61
 msgid ""
-"<revnumber>GHex Manual V2.1</revnumber> <date>July 2002</date> <_:"
-"revdescription-1/>"
+"This option will only appear if your current clipboard selection contains "
+"data copied directly from GHex. This represents clipboard data native to "
+"GHex, and will be pasted into the application as if you had utilized an "
+"ordinary <gui>Paste</gui> operation."
 msgstr ""
-"<revnumber>Підручник з GHex, версія 2.1</revnumber> <date>липень 2002 року</date> <_:revdescription-1/>"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:134
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:67 C/advanced-clipboard.page:113
+msgid "Plain text (as ASCII)"
+msgstr ""
+"Звичайний текст (як ASCII)"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:68
 msgid ""
-"<revnumber>GHex Manual V2.0</revnumber> <date>March 2002</date> <_:"
-"revdescription-1/>"
+"This allows you to paste the data from the clipboard into the GHex buffer, "
+"forcing GHex to assume the pasted data will be plain ASCII text."
 msgstr ""
-"<revnumber>Підручник з GHex, версія 2.0</revnumber> <date>березень 2002 року</date> <_:revdescription-/>"
 
-#. (itstool) path: revdescription/para
-#: C/index.docbook:146
-msgid "Jaka Mocnik <email>jaka@gnu.org</email>"
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:72 C/advanced-clipboard.page:119
+msgid "Plain text (Unicode)"
 msgstr ""
-"Jaka Mocnik <email>jaka@gnu.org</email>"
+"Звичайний текст (Unicode)"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:142
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:73
 msgid ""
-"<revnumber>GHex Manual V1.0</revnumber> <date>2000</date> <_:"
-"revdescription-1/>"
+"This allows you to paste the data from the clipboard into the GHex buffer, "
+"forcing GHex to assume the pasted data will be text encoded in UTF-8 format."
 msgstr ""
-"<revnumber>Підручник з GHex, версія 1.0</revnumber> <date>2000 рік</date> <_:revdescription-1/>"
 
-#. (itstool) path: articleinfo/releaseinfo
-#: C/index.docbook:154
-msgid "This manual describes version 2.19 of GHex."
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:77 C/advanced-clipboard.page:116
+msgid "Plain text (as space-delimited hex pairs)"
 msgstr ""
-"У цьому підручнику описано версію 2.19 програми GHex."
+"Звичайний текст (як відокремлені пробілами шістн. пари)"
 
-#. (itstool) path: legalnotice/title
-#: C/index.docbook:157
-msgid "Feedback"
-msgstr ""
-"Відгуки"
-
-#. (itstool) path: legalnotice/para
-#: C/index.docbook:158
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:78
 msgid ""
-"To report a bug or make a suggestion regarding the GHex application or this "
-"manual, follow the directions in the <ulink url=\"help:gnome-feedback\" type="
-"\"help\">GNOME Feedback Page</ulink>."
+"This unique option assumes that GHex can expect to receive plain, ASCII text "
+"that is specifically formatted as hex nibble-pairs, separated by a single "
+"space each."
 msgstr ""
-"Щоб повідомити про помилку або внести пропозицію щодо програми GHex або "
-"цього підручника, дотримуйтесь інструкцій на <ulink url=\"help:gnome-feedback\" type=\"help\">сторінці зворотнього зв'язку GNOME</ulink>."
 
-#. (itstool) path: article/indexterm
-#: C/index.docbook:164
-msgid "<primary>GHex</primary>"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:81
+msgid "This allows hexadecimal data to be pasted back into GHex cleanly."
 msgstr ""
-"<primary>GHex</primary>"
 
-#. (itstool) path: sect1/title
-#: C/index.docbook:174
-msgid "Introduction"
-msgstr ""
-"Вступ"
-
-#. (itstool) path: sect1/para
-#: C/index.docbook:175
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:82
 msgid ""
-"The <application>GHex</application> application enables you to perform the "
-"following actions:"
+"For example, if <code>48 45 4C 4C 4F</code> is in the clipboard, selecting "
+"this option will implicitly convert this hex sequence to an ASCII character "
+"sequence (in this case, \"HELLO\"), and insert it into the GHex buffer."
 msgstr ""
-"За допомогою програми <application>GHex</application> ви можете виконувати такі дії:"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:177
-msgid "View a file in ASCII or hexadecimal format simultaneously."
-msgstr ""
-"Переглядати вміст файла у форматах ASCII і шістнадцятковому форматі одночасно."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:179
-msgid "Edit a file in either ASCII or hexadecimal format."
-msgstr ""
-"Редагувати файл у форматі ASCII або шістнадцятковому форматі."
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:187
-msgid "Getting Started"
-msgstr ""
-"Перші кроки"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:192
-msgid "To Start GHex"
-msgstr ""
-"Запуск GHex"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:194
-msgid "You can start <application>GHex</application> in the following ways:"
-msgstr ""
-"Запустити <application>GHex</application> можна так:"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:197
-msgid "<guimenu>Applications</guimenu> menu"
-msgstr ""
-"Меню <guimenu>Програми</guimenu>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:199
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:85
 msgid ""
-"Choose <menuchoice><guisubmenu>Accessories</guisubmenu><guimenuitem>Hex "
-"Editor</guimenuitem></menuchoice>."
+"This option can be combined with <gui>Copy Special</gui> to allow an "
+"external text editor of your choice to edit hex data copied from GHex, and "
+"paste it back into GHex cleanly."
 msgstr ""
-"Вибрати пункт меню <menuchoice><guisubmenu>Утиліти</guisubmenu><guimenuitem>Шістнадцятковий редактор</guimenuitem></menuchoice>."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:203
-msgid "Command line"
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:91
+msgid "Copy Special"
 msgstr ""
-"Командний рядок"
+"Спеціальне копіювання"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:205
-msgid "Execute the following command: <command>ghex</command>"
-msgstr ""
-"Віддати таку команду: <command>ghex</command>"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:215
-msgid "To Open a File"
-msgstr ""
-"Відкриття файла"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:216
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:92
 msgid ""
-"To open a file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Open</"
-"guimenuitem></menuchoice>. Select the file that you want to open, then click "
-"<guibutton>OK</guibutton>. You can open multiple files in <application>GHex</"
-"application>. <application>GHex</application> displays each file in a new "
-"window."
+"Unlike Paste Special, which is a feature present in many ordinary text "
+"editors and word processors, Copy Special is a feature that was created "
+"specifically for GHex, and thus may not be familiar to many users."
 msgstr ""
-"Щоб відкрити файл, скористайтеся пунктом меню <menuchoice><guimenu>Файл</guimenu><guimenuitem>Відкрити</guimenuitem></menuchoice>. Виберіть файл, який ви хочете відкрити, потім натисніть кнопку <guibutton>Гаразд</guibutton>. У <application>GHex</application> ви можете відкрити одночасно декілька файлів. <application>GHex</application> показує вміст кожного файла у новому вікні."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:217
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:95
 msgid ""
-"When you open a file in <application>GHex</application>, the application "
-"displays the file in the following window."
+"Copy Special allows you to copy data <em>from</em> GHex into the format of "
+"your choice. You may not need this feature unless you intend to paste data "
+"from GHex into other applications, and would like minute control over how "
+"that is done."
 msgstr ""
-"Після відкриття вами файла у <application>GHex</application> програма показує його вміст у вікні, зображення якого наведено нижче."
 
-#. (itstool) path: figure/title
-#: C/index.docbook:221
-msgid "GHex Window with an Open File"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:98
+msgid "To activate the Copy Special dialog in GHex:"
 msgstr ""
-"Вікно GHex із відкритим файлом"
 
-#. (itstool) path: imageobject/imagedata
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.docbook:225
-msgctxt "_"
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:101
 msgid ""
-"external ref='figures/ghex_window_open.png' "
-"md5='31fc4c732edba8668056e88d1f4239f2'"
+"Click <gui>Copy Special</gui> from the <gui>Edit</gui> submenu of the "
+"<gui>Main menu</gui>; or"
 msgstr ""
-"external ref='figures/ghex_window_open.png' "
-"md5='31fc4c732edba8668056e88d1f4239f2'"
 
-#. (itstool) path: screenshot/mediaobject
-#: C/index.docbook:223
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:104
+msgid "Press <keyseq><key>Shift</key><key>Ctrl</key><key>C</key></keyseq>."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:107
+msgid "The options that appear when you activate Copy Special are:"
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:122
 msgid ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window with an "
-"open file</phrase> </textobject>"
+"These options work as described above in the <link xref=\"#paste-special\"/> "
+"section above, but in reverse. In other words, the data copied from GHex "
+"<em>to</em> the clipboard will be copied in the specified format."
 msgstr ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Показано вікно GHex із відкритим файлом</phrase> </textobject>"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:235
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:125
 msgid ""
-"The <application>GHex</application> window contains the following elements:"
+"This allows you to have control over how clipboard data copied from GHex "
+"will be pasted <em>into</em> other applications."
 msgstr ""
-"Вікно <application>GHex</application> складається з таких елементів:"
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:238
-msgid "Menubar"
-msgstr ""
-"Панель меню"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:240
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:127
 msgid ""
-"The menus on the menubar contain all the commands that you need to work with "
-"files in <application>GHex</application>."
+"This is mostly intended to allow for space-delimited hex pairs to be edited "
+"in third party applications and then pasted back to GHex cleanly. However, "
+"there may be other interesting uses for this feature as well. Since GHex, "
+"like any hex editor, is often used to edit unusual data types, there may be "
+"other times in which it is desirable for the user to have full control over "
+"how the data from the buffer is copied to the clipboard."
 msgstr ""
-"Меню на панелі меню містить пункти усіх команд, які знадобляться вам для роботи з файлами у <application>GHex</application>."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:244
-msgid "Cursor offsets column"
+#. (itstool) path: page/title
+#: C/basics-create-new-file.page:12
+msgid "Create a new file"
 msgstr ""
-"Стовпчик зміщень курсора"
+"Створити новий файл"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:246
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:13
+#| msgid "You can save a file in the following ways:"
+msgid "In GHex a new file can be created in the following ways:"
+msgstr "У GHex створити файл можна у такі способи:"
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:16
+msgid "Select <gui>New</gui> from the <gui>Main menu</gui>."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:19
+msgid "Press <keyseq><key>Ctrl</key><key>N</key></keyseq>."
+msgstr ""
+"Натисніть комбінацію клавіш <keyseq><key>Ctrl</key><key>N</key></keyseq>"
+
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:22
 msgid ""
-"The cursor offset is the distance between the beginning of the file and the "
-"first byte in each line. By default, <application>GHex</application> "
-"displays the cursor offsets column to the left of the hexadecimal view."
+"When a new file is created, GHex will toggle <gui>Insert Mode</gui> on, so "
+"that you may start adding data to your new file right away."
 msgstr ""
-"Зміщення курсора є відстанню від початку файла до першого байта у кожному з рядків. Типово, <application>GHex</application> показує стовпчик відступів курсора ліворуч від панелі перегляду шістнадцяткових даних."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:250
-msgid "Display pane on left side"
+#. (itstool) path: page/title
+#: C/basics-edit-file.page:12
+#| msgid "Editing"
+msgid "Editing files"
+msgstr "Редагування файлів"
+
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:14
+msgid "Toggling the hex or ASCII panes"
 msgstr ""
-"Панель показу у лівій частині"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:252
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:15
+msgid "File can be edited in GHex from either the hex pane or the ASCII pane."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:16
 msgid ""
-"The display pane on the left side of the display area displays a hexadecimal "
-"view of the file."
+"To focus either pane to accept your keystrokes, you may click on the "
+"appropriate pane, or:"
 msgstr ""
-"Панель показу у лівій частині області показу даних показує дані файла у шістнадцятковому форматі."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:256
-msgid "Display pane on right side"
-msgstr ""
-"Панель показу у правій частині"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:258
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:19
 msgid ""
-"The display pane on the right side of the display area displays an ASCII "
-"view of the file."
+"Press <keyseq><key>Alt</key><key>Left</key></keyseq> to focus the hex pane, "
+"and"
 msgstr ""
-"Панель показу у правій частині області показу даних показує дані файла у форматі ASCII."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:262
-msgid "Type conversion dialog"
-msgstr ""
-"Вікно перетворення типів"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:264
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:22
 msgid ""
-"The type conversion dialog below the display area displays the value of the "
-"selected character in several different numeric types."
+"Press <keyseq><key>Alt</key><key>Right</key></keyseq> to focus the ASCII "
+"pane."
 msgstr ""
-"У вікні перетворення типів, розташованому під областю показу програма показує значення позначеного символу у декількох різних системах числення."
 
-#. (itstool) path: sect1/title
-#: C/index.docbook:274
-msgid "Usage"
-msgstr ""
-"Користування"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:279
-msgid "To Edit a File"
-msgstr ""
-"Редагування файла"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:280
-msgid "To edit a file, perform the following steps:"
-msgstr ""
-"Для внесення змін до файла виконайте такі покрокові дії:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:282
-msgid ""
-"Click in the hexadecimal or ASCII view of the file. The view in which the "
-"cursor is active displays a full cursor. The view in which the cursor is not "
-"active displays an outline of the cursor."
-msgstr ""
-"Клацніть на панелі шістнадцяткового перегляду або перегляду ASCII файла. Панель перегляду, на якій буде активним курсор, покаже повний курсор. На панелі, на якій курсор не є активним, буде показано контур курсора."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:284
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:25
 msgid "Use any of the following methods to move the cursor around the file:"
 msgstr ""
-"Скористайтеся будь-яким із таких способів для пересування курсора вмістом файла:"
+"Скористайтеся будь-яким із таких способів для пересування курсора вмістом "
+"файла:"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:286
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:28
+#| msgid ""
+#| "Use the scrollbar on the window or the arrow keys on the keyboard to "
+#| "scroll through the file."
 msgid ""
-"Use the scrollbar on the window or the arrow keys on the keyboard to scroll "
-"through the file."
+"Use the scrollbar on the window and the mouse to select a byte by clicking "
+"on it."
 msgstr ""
-"Скористайтеся смужкою гортання вікна або клавішами зі стрілочками на клавіатурі для гортання вмісту файла."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:288
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:31
 msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Goto Byte</"
-"guimenuitem></menuchoice>, type the cursor offset as a decimal or "
-"hexadecimal value, then click <guibutton>OK</guibutton>. The format of the "
-"hexadecimal value must be 0x followed by the offset, for example 0x3."
+"Use the arrow keys, <key>Home</key>, <key>End</key>, <key>PageUp</key> or "
+"<key>PageDown</key> on the keyboard."
 msgstr ""
-"Виберіть пункт меню <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Перейти до байта</guimenuitem></menuchoice>, введіть зміщення курсора у форматі десяткового або шістнадцяткового числа, потім натисніть кнопку <guibutton>Гаразд</guibutton>. Перед записом зміщення у шістнадцятковому форматі слід вказати 0x. Приклад: 0x3."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:292
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:34
+#| msgid ""
+#| "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Goto Byte</"
+#| "guimenuitem></menuchoice>, type the cursor offset as a decimal or "
+#| "hexadecimal value, then click <guibutton>OK</guibutton>. The format of "
+#| "the hexadecimal value must be 0x followed by the offset, for example 0x3."
 msgid ""
-"Edit the ASCII format in the same way you edit a normal text file. To edit "
-"the hexadecimal format, use the values 0 to 9 and a to f."
+"Choose <gui>Jump to Byte</gui> from the (Main menu) or press "
+"<keyseq><key>Ctrl</key><key>J</key></keyseq>, and enter the cursor offset as "
+"a decimal or hexadecimal value. The format of the hexadecimal value must be "
+"0x followed by the offset, for example 0x3."
 msgstr ""
-"Редагувати дані у форматі ASCII можна у той самий спосіб, у який ви редагуєте звичайний текстовий файл. Для редагування у шістнадцятковому форматі використовуйте шістнадцяткові цифри: значення від 0 до 9 та літери від a до f."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:295
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:41
+msgid "Editing the file using the hex or ASCII pane"
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:42
+#| msgid ""
+#| "Edit the ASCII format in the same way you edit a normal text file. To "
+#| "edit the hexadecimal format, use the values 0 to 9 and a to f."
+msgid "Edit the ASCII format in the same way you edit a normal text file."
+msgstr ""
+"Редагувати дані у форматі ASCII можна у той самий спосіб, у який ви "
+"редагуєте звичайний текстовий файл."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:43
 msgid ""
-"To insert data and not overwrite existing data, choose "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Insert Mode</guimenuitem></"
-"menuchoice>."
+"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
+"operation is not case-sensitive."
 msgstr ""
-"Щоб вставити дані і перезаписати наявні дані, скористайтеся пунктом меню <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Режим вставки</guimenuitem></menuchoice>."
+"Для редагування у шістнадцятковому форматі використовуйте шістнадцяткові цифри: значення від 0 до 9 та літери "
+"від a до f. Регістр символів не має значення."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:296
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:47
+msgid "Insert mode"
+msgstr ""
+"Режим вставлення"
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:48
 msgid ""
-"To cut, copy, and paste data, choose <menuchoice><guimenu>Edit</"
-"guimenu><guimenuitem>Cut</guimenuitem></menuchoice>, "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></"
-"menuchoice>, and <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</"
-"guimenuitem></menuchoice>."
+"<gui>Insert Mode</gui> can be toggled on or off by pressing <key>Insert</"
+"key>, or by clicking the <gui>Toggle insert mode</gui> button in the status "
+"bar."
 msgstr ""
-"Для вирізання, копіювання і вставлення даних скористайтеся пунктами меню <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Вирізати</guimenuitem></menuchoice>, <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Копіювати</guimenuitem></menuchoice> і <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Вставити</guimenuitem></menuchoice>."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:297
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:50
 msgid ""
-"To undo an edit, choose <menuchoice><guimenu>Edit</"
-"guimenu><guimenuitem>Undo</guimenuitem></menuchoice>. To redo an edit, "
-"choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Redo</guimenuitem></"
-"menuchoice>. The number of previous edits that you can undo is determined by "
-"the <guilabel>Maximum number of undo levels</guilabel> setting in the <xref "
-"linkend=\"ghex-prefs-editing\"/> tabbed section of the "
-"<guilabel>Preferences</guilabel> dialog."
+"When <gui>Insert Mode</gui> is enabled, this means data will be added to the "
+"file as opposed to replacing existing data."
 msgstr ""
-"Щоб скасувати редагування, скористайтеся пунктом меню <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Вернути</guimenuitem></menuchoice>. Щоб повторити скасоване редагування, скористайтеся пунктом меню <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Повторити</guimenuitem></menuchoice>. Кількість попередніх редагувань, які ви можете скасувати визначається параметром <guilabel>Максимальна кількість скасувань дій</guilabel> у розділі із вкладками <xref linkend=\"ghex-prefs-editing\"/> діалогового вікна <guilabel>Параметри</guilabel>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:303
-msgid "To Save a File"
-msgstr ""
-"Збереження файла"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:304
-msgid "You can save a file in the following ways:"
-msgstr ""
-"Зберегти файл можна в один з таких способів:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:306
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:52
 msgid ""
-"To save changes to the current file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Save</guimenuitem></menuchoice>."
+"Unlike traditional text editors, having <gui>Insert Mode</gui> <em>off</em> "
+"is considered the default state in GHex, given that hex editors are "
+"routinely used to edit existing data in binary files that are very "
+"specifically laid out. In some cases, such files may be of a fixed size and "
+"increasing or decreasing their size may cause undefined or unwanted "
+"behaviour in applications that open them."
 msgstr ""
-"Щоб зберегти зміни у поточному файлі, скористайтеся пунктом меню "
-"<menuchoice><guimenu>Файл</"
-"guimenu><guimenuitem>Зберегти</guimenuitem></menuchoice>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:308
+#. (itstool) path: page/title
+#: C/basics-find-replace.page:12
+#| msgid "To Find and Replace Data in a File"
+msgid "Find and replace"
+msgstr "Знайти і замінити"
+
+#. (itstool) path: section/title
+#: C/basics-find-replace.page:14
+msgid "Find pane"
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:15
 msgid ""
-"To save the current file under a new filename, choose "
-"<menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></"
-"menuchoice>. Enter a name for the file in the <guilabel>Select a file to "
-"save buffer as</guilabel> dialog, then click <guibutton>OK</guibutton>."
+"Most basic find operations in GHex can be done by utilizing the <gui>Find</"
+"gui> pane."
 msgstr ""
-"Щоб зберегти поточний файл із новою назвою, скористайтеся пунктом меню <menuchoice><guimenu>Файл</guimenu><guimenuitem>Зберегти як</guimenuitem></menuchoice>. Введіть назву файла у діалоговому вікні <guilabel>Виберіть файл для збереження буфера</guilabel> і натисніть кнопку <guibutton>Гаразд</guibutton>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:316
-msgid "To Revert to the Last Saved Version of a File"
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:16
+#| msgid "You can save a file in the following ways:"
+msgid "You may toggle the <gui>Find</gui> pane in the following ways:"
 msgstr ""
-"Повернення до останньої збереженої версії файла"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:317
+#. (itstool) path: item/p
+#: C/basics-find-replace.page:19
+#| msgid "Click <guibutton>Find Next</guibutton>."
+msgid "Click the <gui>Find</gui> button on the header bar."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/basics-find-replace.page:22
+msgid "Press <keyseq><key>Ctrl</key><key>F</key></keyseq>."
+msgstr ""
+"Натисніть <keyseq><key>Ctrl</key><key>F</key></keyseq>"
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:25
 msgid ""
-"To revert to the last version of the current file that you saved and undo "
-"all of the edits that you made to the file since you last saved the file, "
-"choose <menuchoice><guimenu>File</guimenu><guimenuitem>Revert</guimenuitem></"
-"menuchoice>, then click <guibutton>Yes</guibutton> in the "
-"<guilabel>Question</guilabel> dialog."
+"In order to easily search for a string in either hex or ASCII format, the "
+"<gui>Find</gui> pane acts like a miniature hex editor. You enter this string "
+"in the same way you would edit a file as described in the <link xref="
+"\"basics-edit-file\"/> section."
 msgstr ""
-"Щоб повернутися до останньої збереженої версії поточного файла і скасувати усі редагування, які було виконано з моменту останнього зберігання файла, скористайтеся пунктом меню <menuchoice><guimenu>Файл</guimenu><guimenuitem>Відновити</guimenuitem></menuchoice>, потім натисніть кнопку <guibutton>Так</guibutton> у діалоговому вікні <guilabel>Питання</guilabel>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:323
-msgid "To Find Data in a File"
-msgstr ""
-"Пошук даних у файлі"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:324
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:29
 msgid ""
-"To search a file for a hexadecimal or ASCII string, perform the following "
-"steps:"
+"To search for the next occurrence of the requested string in the file from "
+"the current position of the cursor, click the <gui>Find Next</gui> button."
 msgstr ""
-"Щоб виконати пошук шістнадцяткового рядка або рядка ASCII у файлі, виконайте такі покрокові дії:"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:326
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:31
 msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find</guimenuitem></"
-"menuchoice>."
+"To search for the previous occurrence of the requested string in the file "
+"from the current position of the cursor, click the <gui>Find Previous</gui> "
+"button."
 msgstr ""
-"Виберіть пункт меню <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Знайти</guimenuitem></"
-"menuchoice>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:328
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:33
 msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, choose one of the following "
-"options:"
+"Your search results will also be automatically highlighted in a different "
+"color than the standard selection color."
 msgstr ""
-"У діалоговому вікні <guilabel>Знайти дані</guilabel> виберіть один з таких варіантів:"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:330 C/index.docbook:379
-msgid "<guilabel>Search for hex data</guilabel>"
-msgstr ""
-"<guilabel>Шукати шістнадцяткові дані</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:332 C/index.docbook:381
-msgid "<guilabel>Search for ASCII data</guilabel>"
-msgstr ""
-"<guilabel>Шукати дані ASCII</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:336 C/index.docbook:385
-msgid "Type the string that you want to find."
-msgstr ""
-"Введіть рядок, який ви хочете знайти."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:338 C/index.docbook:358
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:35
 msgid ""
-"Click <guibutton>Find Next</guibutton> to find the next occurrence of the "
-"string."
+"You may close the <gui>Find</gui> pane by pressing <key>Esc</key> while it "
+"is focused, or by clicking its own <gui>Close</gui> button in the bottom-"
+"right-hand corner of the pane."
 msgstr ""
-"Натисніть кнопку <guibutton>Знайти наступне</guibutton>, щоб знайти наступний відповідник шуканого рядка."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:340 C/index.docbook:360
+#. (itstool) path: section/title
+#: C/basics-find-replace.page:40
+#| msgid "To Find and Replace Data in a File"
+msgid "Find and Replace pane"
+msgstr "Панель пошуку із заміною"
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:41
 msgid ""
-"Click <guibutton>Find Previous</guibutton> to find the previous occurrence "
-"of the string."
+"The <gui>Find and Replace</gui> pane works a lot like the <gui>Find</gui> "
+"pane, except that it also allows you to replace the next string, or all "
+"strings in the file, with string in the <gui>Replace With</gui> field."
 msgstr ""
-"Натисніть кнопку <guibutton>Знайти попереднє</guibutton>, щоб знайти попередній відповідник шуканого рядка."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:342 C/index.docbook:392 C/index.docbook:407
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:44
 msgid ""
-"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find Data</"
-"guilabel> dialog."
+"To replace the next string from the cursor in the <gui>Find String</gui> "
+"field with the string in the <gui>Replace With</gui> field, click "
+"<gui>Replace</gui>."
 msgstr ""
-"Натисніть кнопку <guibutton>Скасувати</guibutton>, щоб закрити діалогове вікно <guilabel>Пошук даних</guilabel>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:350
-msgid "To Perform an Advanced Find"
-msgstr ""
-"Виконання розширеного пошуку"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:351
-msgid "To perform an advanced find, perform the following steps:"
-msgstr ""
-"Для виконання розширеного пошуку виконайте такі покрокові дії:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:353 C/index.docbook:373 C/index.docbook:401
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:46
 msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Advanced Find</"
-"guimenuitem></menuchoice>."
+"To replace all instances in the file of the string in the <gui>Find String</"
+"gui> field with the string in the <gui>Replace With</gui> field, click "
+"<gui>Replace All</gui>."
 msgstr ""
-"Виберіть пункт меню <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Розширений пошук</guimenuitem></menuchoice>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:355
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:48
 msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, select the required search "
-"criteria. For information about how to add new search criteria, see <xref "
-"linkend=\"ghex-search-criteria-add\"/>."
+"In other respects, the <gui>Find and Replace</gui> pane works as described "
+"in the <link xref=\"#find-pane\"/> section above."
 msgstr ""
-"У діалоговому вікні <guilabel>Знайти дані</guilabel> виберіть потрібні критерії пошуку. Докладні відомості щодо додавання нового критерію пошуку наведено у розділі <xref "
-"linkend=\"ghex-search-criteria-add\"/>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:362
+#. (itstool) path: page/title
+#: C/basics-open-file.page:12
+#| msgid "To Open a File"
+msgid "Open a file"
+msgstr "Відкрити файл"
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:13
+#| msgid "You can save a file in the following ways:"
+msgid "You may open a file in GHex in the following ways:"
+msgstr "Відкрити файл у GHex можна у такі способи:"
+
+#. (itstool) path: item/p
+#: C/basics-open-file.page:16
+msgid "Click the <gui>Open</gui> button on the header bar."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/basics-open-file.page:19
+msgid "Press <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+msgstr ""
+"Натисніть комбінацію клавіш <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:22
 msgid ""
-"Click <guibutton>Close</guibutton> to close the <guilabel>Find Data</"
-"guilabel> dialog."
+"When you open a file, GHex will not automatically turn <gui>Insert Mode</"
+"gui> on. This is so that data can be immediately edited in place as opposed "
+"to inserting data, which will be what most users want to do when first "
+"opening a pre-existing file."
 msgstr ""
-"Натисніть кнопку <guibutton>Закрити</guibutton>, щоб закрити діалогове вікно <guilabel>Пошук даних</guilabel>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:370
-msgid "To Add Search Criteria"
+#. (itstool) path: page/title
+#: C/basics-save-file.page:12
+msgid "Saving files"
 msgstr ""
-"Додавання критеріїв пошуку"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:371
-msgid "To add search criteria, perform the following steps:"
-msgstr ""
-"Щоб додати критерії пошуку, виконайте такі покрокові дії:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:375
+#. (itstool) path: page/p
+#: C/basics-save-file.page:13
 msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, click <guibutton>Add New</"
-"guibutton>."
+"To save a file in place, maintaining its filename and location, use the "
+"<gui>Save</gui> operation by clicking the <gui>Save</gui> button on the "
+"header bar, or by pressing <keyseq><key>Ctrl</key><key>s</key></keyseq>."
 msgstr ""
-"У діалоговому вікні <guilabel>Знайти дані</guilabel> натисніть кнопку <guibutton>Додати новий</"
-"guibutton>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:377
+#. (itstool) path: page/p
+#: C/basics-save-file.page:16
 msgid ""
-"In the <guilabel>Find Data: Add Search</guilabel> dialog, choose one of the "
-"following options:"
+"To save a file to a filename of your choice, use the <gui>Save As</gui> "
+"operation by clicking <gui>Save As</gui> in the <gui>Main menu</gui>, or by "
+"pressing <keyseq><key>Shift</key><key>Ctrl</key><key>S</key></keyseq>."
 msgstr ""
-"У діалоговому вікні <guilabel>Знайти дані: Додати пошук</guilabel> виберіть один з таких варіантів:"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:387
-msgid ""
-"Use the color wheel or the spin boxes to select a color to highlight the "
-"search criteria."
+#. (itstool) path: page/title
+#: C/conf-grouptype.page:12
+msgid "Hex data grouping"
 msgstr ""
-"Скористайтеся колесом кольорів або полями-лічильниками для вибору кольору підсвічування для відповідників критеріям пошуку."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:390
-msgid "Click <guibutton>Add</guibutton>."
+#. (itstool) path: page/p
+#: C/conf-grouptype.page:13
+msgid "GHex allows data in the hex pane to be grouped in the following ways:"
 msgstr ""
-"Натисніть <guibutton>Додати</guibutton>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:398
-msgid "To Remove Search Criteria"
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:16
+msgid "Bytes (8-bit) <em>this is the default</em>"
 msgstr ""
-"Вилучення критеріїв пошуку"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:399
-msgid "To remove search criteria, perform the following steps:"
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:19
+msgid "Words (16-bit)"
 msgstr ""
-"Щоб вилучити критерії пошуку, виконайте такі покрокові дії:"
+"Слова (16-бітові)"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:403
-msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, select the search criteria "
-"that you want to remove."
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:22
+msgid "Longwords (32-bit)"
 msgstr ""
-"У діалоговому вікні <guilabel>Знайти дані</guilabel> виберіть критерії пошуку даних, які ви хочете вилучити."
+"Довгі слова (32-бітові)"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:405
-msgid "Click <guibutton>Remove Selected</guibutton>."
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:25
+msgid "Quadwords (64-bit)"
 msgstr ""
-"Натисніть <guibutton>Видалити виділене</guibutton>."
+"Чотири слова (64-бітові)"
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:415
-msgid "To Find and Replace Data in a File"
+#. (itstool) path: page/p
+#: C/conf-grouptype.page:28
+msgid "This setting may be changed in two ways:"
 msgstr ""
-"Пошук і заміна даних у файлі"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:416
-msgid ""
-"To search a file for a hexadecimal or ASCII string and then replace the "
-"string, perform the following steps:"
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:31
+msgid "From the <gui>Group Data As</gui> submenu of the <gui>Main menu</gui>."
 msgstr ""
-"Щоб виконати пошук шістнадцяткового рядка або рядка ASCII у файлі і потім його замінити, виконайте такі покрокові дії:"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:418
-msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Replace</"
-"guimenuitem></menuchoice>."
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:34
+msgid "From the <link xref=\"conf-preferences\"/> dialog."
 msgstr ""
-"Виберіть пункт меню <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Замінити</guimenuitem></menuchoice>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:420
-msgid ""
-"In the <guilabel>Find &amp; Replace Data</guilabel> dialog, choose one of "
-"the following options:"
-msgstr ""
-"У діалоговому вікні <guilabel>Знайти і замінити дані</guilabel> виберіть один з таких варіантів:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:422
-msgid "<guilabel>Replace hex data</guilabel>"
-msgstr ""
-"<guilabel>Замінити шістнадцяткові дані</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:424
-msgid "<guilabel>Replace ASCII data</guilabel>"
-msgstr ""
-"<guilabel>Замінити дані ASCII</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:428
-msgid "In the first text box, type the string that you want to find."
-msgstr ""
-"У першому полі для введення тексту введіть рядок, який ви хочете знайти."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:430
-msgid ""
-"In the second text box, type the string that you want to use to replace the "
-"string that you find."
-msgstr ""
-"У другому текстовому полі введіть рядок, яким ви хочете замінити знайдений."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:432
-msgid "Click <guibutton>Find Next</guibutton>."
-msgstr ""
-"Натисніть <guibutton>Знайти наступне</guibutton>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:434
-msgid ""
-"Click <guibutton>Replace</guibutton> to replace the current occurrence of "
-"the string or click <guibutton>Replace All</guibutton> to replace all "
-"occurrences of the string."
-msgstr ""
-"Натисніть кнопку <guibutton>Замірити</guibutton>, щоб замінити поточний відповідник рядка, або кнопку <guibutton>Замірити все</guibutton>, щоб замірити усі відповідники рядка."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:436
-msgid ""
-"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find &amp; "
-"Replace Data</guilabel> dialog."
-msgstr ""
-"Натисніть кнопку <guibutton>Скасувати</guibutton>, щоб закрити діалогове вікно <guilabel>Пошук і заміна даних</guilabel>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:444
-msgid "To Add or Remove Additional Views of a File"
-msgstr ""
-"Додавання або вилучення додаткових панелей перегляду файла"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:445
-msgid ""
-"To add another view of the current file to your <application>GHex</"
-"application> window, choose <menuchoice><guimenu>View</"
-"guimenu><guimenuitem>Add View</guimenuitem></menuchoice>."
-msgstr ""
-"Щоб додати ще одну панель перегляду поточного файла у вікні <application>GHex</application>, скористайтеся пунктом меню <menuchoice><guimenu>Перегляд</"
-"guimenu><guimenuitem>Додати вигляд</guimenuitem></menuchoice>."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:446
-msgid ""
-"To remove a view of the current file, choose <menuchoice><guimenu>View</"
-"guimenu><guimenuitem>Remove View</guimenuitem></menuchoice>. If you remove "
-"the last view that is open, the application exits."
-msgstr ""
-"Щоб вилучити панель перегляду поточного файла, скористайтеся пунктом меню <menuchoice><guimenu>Перегляд</guimenu><guimenuitem>Видалити вигляд</guimenuitem></menuchoice>. Якщо це була остання відкрита панель перегляду, програма завершить свою роботу."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:452
-msgid "To Change the Data Group Type"
-msgstr ""
-"Зміна типу групування даних"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:453
-msgid ""
-"To change how <application>GHex</application> displays the hexadecimal "
-"content of a file in the <application>GHex</application> window, choose "
-"<menuchoice><guimenu>View</guimenu><guimenuitem>Group Data As</guimenuitem></"
-"menuchoice>, then select one of the following menu items:"
-msgstr ""
-"Щоб змінити спосіб, у який <application>GHex</application> показує шістнадцяткові дані у файлі у вікні <application>GHex</application>, скористайтеся пунктом <menuchoice><guimenu>Перегляд</guimenu><guimenuitem>Групувати дані за</guimenuitem></menuchoice>, потім вибрати один з таких пунктів меню:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:455 C/index.docbook:634
-msgid "<guilabel>Bytes</guilabel> - single bytes"
-msgstr ""
-"<guilabel>Байти</guilabel> — окремі байти"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:457 C/index.docbook:636
-msgid "<guilabel>Words</guilabel> - groups of two bytes"
-msgstr ""
-"<guilabel>Слова</guilabel> — групи з двох байтів"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:459 C/index.docbook:638
-msgid "<guilabel>Longwords</guilabel> - groups of four bytes"
-msgstr ""
-"<guilabel>Довгі слова</guilabel> — групи з чотирьох байтів"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:467
-msgid "To Export the GHex Display to HTML"
-msgstr ""
-"Експортування показаних даних GHex до HTML"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:469
-msgid ""
-"Creates a separate HTML file for each page of data that is displayed in the "
-"<application>GHex</application> window."
-msgstr ""
-"Створює окремий файл HTML для кожної зі сторінок даних, які показано у вікні <application>GHex</application>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:471
-msgid "Uses the HTML filename that you specify as the basis for the filename."
-msgstr ""
-"Використовує назву файла HTML, яку ви використовуєте як основу назви файла."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:473
-msgid "Appends a page number to the filename to differentiate the files."
-msgstr ""
-"Дописує номер сторінки до назви файла для розрізнення файлів різних сторінок."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:468
-msgid ""
-"To export the data contained in the <application>GHex</application> window "
-"to HTML, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Save As "
-"HTML</guimenuitem></menuchoice>. Choose a directory and specify a filename "
-"for the HTML file, then click <guibutton>OK</guibutton>. <application>GHex</"
-"application> implements the following actions: <_:itemizedlist-1/> For "
-"example, if you specify the filename <filename>log.html</filename>, "
-"<application>GHex</application> creates a series of HTML files named "
-"<filename>log00000000.html</filename>, <filename>log00000001.html</"
-"filename>, <filename>log00000002.html</filename>, and so on."
-msgstr ""
-"Щоб експортувати дані, що містяться у вікні <application>GHex</application>, у форматі HTML, скористайтеся пунктом меню <menuchoice><guimenu>Файл</guimenu><guimenuitem>Зберегти як HTML</guimenuitem></menuchoice>. Виберіть каталог і вкажіть назву файла HTML, натисніть кнопку <guibutton>Гаразд</guibutton>. У <application>GHex</application> реалізовано такі дії: <_:itemizedlist-1/> Наприклад, якщо ви вкажете назву файла <filename>log.html</filename>, <application>GHex</application> створює набір файлів HTML із назвами <filename>log00000000.html</filename>, <filename>log00000001.html</filename>, <filename>log00000002.html</filename> тощо."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:481
-msgid "To View a Character Table"
-msgstr ""
-"Перегляд таблиці символів"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:482
-msgid ""
-"To view a table that contains the ASCII, hexadecimal, decimal, octal, and "
-"binary representations for the values 0 to 255, choose "
-"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Character Table</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Щоб переглянути таблицю, що містить представлення в ASCII, шістнадцятковому, десятковому, вісімковому та двійковому форматах для значень від 0 до 255, скористайтеся пунктом меню <menuchoice><guimenu>Вікна</guimenu><guimenuitem>Таблиця символів</guimenuitem></menuchoice>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:488
-msgid "To View Data Conversions"
-msgstr ""
-"Перегляд перетворень даних"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:489
-msgid ""
-"To display the binary, decimal, hexadecimal, and ASCII conversions for up to "
-"four bytes of data, perform the following steps:"
-msgstr ""
-"Для перегляду наборів до чотирьох байтів даних у двійковому, десятковому, шістнадцятковому формат та форматі ASCII виконайте такі покрокові дії:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:491
-msgid ""
-"Choose <menuchoice><guimenu>Windows</guimenu><guimenuitem>Base Converter</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Виберіть пункт меню <menuchoice><guimenu>Вікна</guimenu><guimenuitem>Конвертор систем числення</guimenuitem></menuchoice>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:493
-msgid "Perform one of the following actions:"
-msgstr ""
-"Виконайте одну з таких дій:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:495
-msgid ""
-"Type the data that you want to convert in one of the fields in the "
-"<guilabel>Base Converter</guilabel> dialog, then press <keycap>Return</"
-"keycap>."
-msgstr ""
-"Введіть дані, які ви хочете перетворити у одному з полів діалогового вікна <guilabel>Конвертор систем числення</guilabel>, і натисніть клавішу <keycap>Enter</keycap>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:497
-msgid ""
-"To display the conversions for the data at the cursor position in the "
-"current file, click on the <guibutton>Get cursor value</guibutton> button."
-msgstr ""
-"Щоб переглянути перетворення даних у позиції курсора у поточному файлі, натисніть кнопку <guibutton>Взяти значення під курсором</guibutton>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:500
-msgid ""
-"<application>GHex</application> updates the values of the other fields to "
-"display the data conversions."
-msgstr ""
-"<application>GHex</application> оновить значення інших полів з метою показу перетворених даних."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:502
-msgid ""
-"Click <guibutton>Close</guibutton> to close the <guilabel>Base Converter</"
-"guilabel> dialog."
-msgstr ""
-"Натисніть кнопку <guibutton>Закрити</guibutton>, щоб закрити діалогове вікно <guilabel>Конвертор систем числення</guilabel>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:510
-msgid "To Show or Hide the Type Conversion Dialog"
-msgstr ""
-"Показ і приховування діалогового вікна перетворення типів"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:511
-msgid ""
-"To show or hide the type conversion dialog, choose "
-"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Type Conversion Dialog</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Щоб наказати програмі показати або приховати діалогове вікно перетворення типів, скористайтеся пунктом меню <menuchoice><guimenu>Вікна</guimenu><guimenuitem>Діалог перетворення типів</"
-"guimenuitem></menuchoice>."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:512
-msgid ""
-"The type conversion dialog displays the value of the selected character in "
-"the following representations:"
-msgstr ""
-"У діалоговому вікні перетворення типів програма покаже значення позначеного символу у таких представленнях:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:515
-msgid "<guilabel>Signed 8 bit</guilabel>"
-msgstr ""
-"<guilabel>Зі знаком 8 біт</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:518
-msgid "<guilabel>Unsigned 8 bit</guilabel>"
-msgstr ""
-"<guilabel>Без знаку 8 біт</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:521
-msgid "<guilabel>Signed 16 bit</guilabel>"
-msgstr ""
-"<guilabel>Зі знаком 8 біт</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:524
-msgid "<guilabel>Unsigned 16 bit</guilabel>"
-msgstr ""
-"<guilabel>Без знаку 16 біт</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:527
-msgid "<guilabel>Signed 32 bit</guilabel>"
-msgstr ""
-"<guilabel>Зі знаком 32 біт</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:530
-msgid "<guilabel>Unsigned 32 bit</guilabel>"
-msgstr ""
-"<guilabel>Без знаку 32 біт</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:533
-msgid "<guilabel>32 bit float</guilabel>"
-msgstr ""
-"<guilabel>Дійсне 32-бітове</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:536
-msgid "<guilabel>64 bit float</guilabel>"
-msgstr ""
-"<guilabel>Дійсне 64-бітове</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:539
-msgid "<guilabel>Hexadecimal</guilabel>"
-msgstr ""
-"<guilabel>Шістнадцяткове</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:542
-msgid "<guilabel>Octal</guilabel>"
-msgstr ""
-"<guilabel>Вісімковий</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:545
-msgid "<guilabel>Binary</guilabel>"
-msgstr ""
-"<guilabel>Двійковий</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:548
-msgid "<guilabel>Stream Length</guilabel>"
-msgstr ""
-"<guilabel>Довжина потоку</guilabel>"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:551
-msgid "The type conversion dialog also contains the following options:"
-msgstr ""
-"У діалоговому вікні перетворення типів також буде показано такі пункти:"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:554
-msgid "<guilabel>Show little endian decoding</guilabel>"
-msgstr ""
-"<guilabel>Показувати у розшифровці little endian</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:556
-msgid "Select this option to show little endian decoding."
-msgstr ""
-"Позначте цей пункт, щоб наказати програмі показувати декодування із прямим порядком байтів."
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:560
-msgid "<guilabel>Show unsigned and float as hexadecimal</guilabel>"
-msgstr ""
-"<guilabel>Показувати беззнакові та з рухомою комою як шістнадцяткові</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:562
-msgid ""
-"Select this option to show unsigned and float numbers as hexadecimal numbers."
-msgstr ""
-"Позначте цей пункт, щоб переглянути числа без знаку та числа із рухомою крапкою як шістнадцяткові числа."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:571
-msgid "To Print a File"
-msgstr ""
-"Друк до файла"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:572
-msgid ""
-"To print a file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Print</guimenuitem></menuchoice>. Select the print "
-"options that you require in the <guilabel>Print</guilabel> dialog, then "
-"click <guibutton>OK</guibutton>."
-msgstr ""
-"Щоб надрукувати файл, скористайтеся пунктом меню <menuchoice><guimenu>Файл</guimenu><guimenuitem>Друк</guimenuitem></menuchoice>. Виберіть потрібні вам параметри друку за допомогою діалогового вікна <guilabel>Друк</guilabel> і натисніть кнопку <guibutton>Гаразд</guibutton>."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:573
-msgid ""
-"To preview a printed copy of the file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Print Preview</guimenuitem></menuchoice>."
-msgstr ""
-"Щоб попередньо переглянути надруковану копію файла, скористайтеся пунктом меню <menuchoice><guimenu>Файл</guimenu><guimenuitem>Попередній перегляд</guimenuitem></menuchoice>."
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:581
+#. (itstool) path: page/title
+#: C/conf-preferences.page:12
 msgid "Preferences"
-msgstr ""
-"Параметри"
+msgstr "Параметри"
 
-#. (itstool) path: sect1/para
-#: C/index.docbook:582
+#. (itstool) path: page/p
+#: C/conf-preferences.page:13
+msgid "The GHex Preferences dialog is divided into two groups:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/conf-preferences.page:16
+msgid "<em>Display</em>, which pertains to what you see on-screen, and;"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/conf-preferences.page:19
 msgid ""
-"To configure <application>GHex</application>, choose "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></"
-"menuchoice>. The <guilabel>Preferences</guilabel> dialog contains the "
-"following tabbed sections:"
+"<em>Printing</em>, which only affects how hexadecimal files will be printed "
+"on paper, if GHex's printing features are utilized."
 msgstr ""
-"Щоб налаштувати <application>GHex</application>, скористайтеся пунктом меню <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Параметри</guimenuitem></menuchoice>. Діалогове вікно <guilabel>Параметри</guilabel> складається із таких розділів із вкладками:"
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:595
-msgid "Editing"
-msgstr ""
-"Редагування"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:598
-msgid "<guilabel>Maximum number of undo levels</guilabel>"
-msgstr ""
-"<guilabel>Максимальна кількість скасувань дій</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:600
-msgid ""
-"Use this spin box to specify the maximum number of edits that you can undo."
-msgstr ""
-"За допомогою цього поля лічильника можна вказати максимальну кількість редагувань, які ви зможете скасувати."
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:604
-msgid "<guilabel>Show cursor offset in statusbar as</guilabel>"
-msgstr ""
-"<guilabel>Показувати зміщення курсора на смужці стану як</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:606
-msgid ""
-"Use this drop-down list to select the format in which the cursor offset is "
-"displayed. The format can be decimal, hexadecimal, or a custom print style "
-"string that only contains the format specifiers x, o, and s."
-msgstr ""
-"Скористайтеся цим спадним списком для вибору формату, у якому буде показано зміщення курсора. Формат може бути десятковим, шістнадцятковим або рядком визначення нетипового стилю, який складається лише з специфікаторів форматів — x, o і s."
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:610
-msgid "<guilabel>Show offsets column</guilabel>"
-msgstr ""
-"<guilabel>Показувати стовпчик зміщень</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:612
-msgid ""
-"Select this option to display the cursor offsets in a column to the left of "
-"the hexadecimal view of the <application>GHex</application> window."
-msgstr ""
-"Виберіть цей варіант, щоб програма показувала зміщення курсора у стовпчику ліворуч від панелі перегляду шістнадцяткових даних головного вікна <application>GHex</application>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:621
+#. (itstool) path: section/title
+#: C/conf-preferences.page:24
 msgid "Display"
-msgstr ""
-"Представлення"
+msgstr "Представлення"
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:624
-msgid "<guilabel>Font</guilabel>"
+#. (itstool) path: section/title
+#: C/conf-preferences.page:26
+msgid "Font"
 msgstr ""
-"<guilabel>Шрифт</guilabel>"
+"Шрифт"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:626
+#. (itstool) path: section/p
+#: C/conf-preferences.page:27
 msgid ""
-"Use the font selector list boxes to edit the existing font information or "
-"type new font information. Specify a font type, style, and size to display "
-"the contents of files in <application>GHex</application>."
+"This allows you to select a font of your choice for the hex/ASCII editor "
+"only."
 msgstr ""
-"Скористайтеся полями списку вибору шрифту для редагування даних щодо поточного шрифту або введення нових відомостей щодо шрифту. Виберіть тип шрифту, стиль і розмір для показу вмісту файлів у вікні <application>GHex</application>."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:630
-msgid "<guilabel>Default Group Type</guilabel>"
+#. (itstool) path: section/title
+#: C/conf-preferences.page:30
+msgid "Dark Mode"
 msgstr ""
-"<guilabel>Типове групування</guilabel>"
+"Темний режим"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:632
+#. (itstool) path: section/p
+#: C/conf-preferences.page:31
+msgid "This allows you to manually prefer the dark style."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:32
 msgid ""
-"Select one of the following options to specify how <application>GHex</"
-"application> displays the hexadecimal content of a file in the "
-"<application>GHex</application> window:"
+"By default, the <gui>Use system default</gui> checkbox is enabled, uses your "
+"system-wide default for preferring a dark style, which disables the "
+"<gui>Dark Mode</gui> switch from being turned on or off."
 msgstr ""
-"Виберіть один із вказаних нижче варіантів для визначення способу, у який <application>GHex</application> показуватиме шістнадцятковий вміст файла у вікні <application>GHex</application>:"
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:649
+#. (itstool) path: section/p
+#: C/conf-preferences.page:35
+msgid ""
+"By de-selecting this checkbox, you may toggle the <gui>Dark Mode</gui> "
+"switch on or off to manually prefer or not prefer a dark style. Toggling "
+"this switch will take immediate effect, so you should be able to see "
+"instantaneously which style you prefer for GHex."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:39
+msgid ""
+"If you want to go back to the system default, simply check the <gui>User "
+"system default</gui> checkbox back on."
+msgstr ""
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:43
+msgid "Hex Group Type"
+msgstr ""
+"Тип групування шістнадцяткових"
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:44
+msgid ""
+"This allows you to choose how data will be grouped in the hex pane of the "
+"editor."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:46
+msgid "See <link xref=\"conf-grouptype\"/> for more details."
+msgstr ""
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:50
 msgid "Printing"
-msgstr ""
-"Друкування"
+msgstr "Друкування"
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:652
-msgid "<guilabel>Data font</guilabel>"
+#. (itstool) path: section/title
+#: C/conf-preferences.page:52
+msgid "Fonts"
 msgstr ""
-"<guilabel>Шрифт даних</guilabel>"
+"Шрифти"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:654
+#. (itstool) path: section/p
+#: C/conf-preferences.page:53
 msgid ""
-"Click on the <guibutton>Data font</guibutton> button to specify the font "
-"type, style, and size to use to print the data contained in a file."
+"This section allows you to choose the fonts you would like for hex printouts."
 msgstr ""
-"Натисніть кнопку <guibutton>Шрифт даних</guibutton>, щоб вказати тип, стиль і розмір символів шрифту, якими слід скористатися для друку даних, які містяться у файлі."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:658
-msgid "<guilabel>Header font</guilabel>"
-msgstr ""
-"<guilabel>Шрифт заголовка</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:660
+#. (itstool) path: section/p
+#: C/conf-preferences.page:54
 msgid ""
-"Click on the <guibutton>Header font</guibutton> button to specify the font "
-"type, style, and size to use to print the header information that is "
-"contained in the file."
+"<gui>Data font</gui> will apply to the content of your hex document (ie, hex "
+"and ASCII digits)."
 msgstr ""
-"Натисніть кнопку <guibutton>Шрифт заголовка</guibutton>, щоб вказати тип, стиль і розмір символів шрифту, якими слід скористатися для друку даних заголовка, які містяться у файлі."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:664
-msgid "<guilabel>Print shaded box over</guilabel>"
-msgstr ""
-"<guilabel>Друкувати смужку над</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:666
+#. (itstool) path: section/p
+#: C/conf-preferences.page:56
 msgid ""
-"Use this spin box to specify the number of lines that <application>GHex</"
-"application> alternately prints with a surrounding shaded box. If the value "
-"of the spin box is 10, <application>GHex</application> prints the first 10 "
-"lines of the file without a shaded box, the next 10 lines with a shaded box, "
-"and so on. If the value of the spin box is 0, <application>GHex</"
-"application> does not print any shaded box."
+"<gui>Header font</gui> will apply to the header on your printout, which will "
+"show the document title and page number."
 msgstr ""
-"Скористайтеся цим полем лічильника для визначення кількості рядків, які <application>GHex</application> друкуватиме у проміжному затіненому блоці. Якщо у полі буде значення 10, <application>GHex</application> надрукує перші 10 рядків файла у затіненому блоці, наступні 10 рядків — без затінення тощо. Якщо у полі лічильника буде значення 0, <application>GHex</application> не друкуватиме затіненого блоку."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:60
+msgid "Shaded rows"
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:61
+msgid ""
+"If <gui>Print alternating shaded rows</gui> is selected, your printout will "
+"have alternating rows of your hex and ASCII data printed out with a shaded "
+"grey background to make reading each row easier."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:64
+msgid ""
+"Please note that this may use more printer ink/toner than leaving it "
+"disabled."
+msgstr ""
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:65
+msgid ""
+"<gui>Span across lines</gui> allows you to customize how many lines will be "
+"shaded, followed by not shaded, on a repaeated basis. Again, this is simply "
+"for ease of reading. If you want shaded rows but are not sure what to "
+"specify here, leaving it as the default, \"1\", should be fine."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/index.page:12
+msgid "GHex Help"
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/index.page:13
+msgid "GHex is a simple hex editor."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/index.page:14
+#| msgid ""
+#| "The <application>GHex</application> application enables you to perform "
+#| "the following actions:"
+msgid "GHex enables you to perform the following actions:"
+msgstr ""
+"За допомогою програми GHex ви можете виконувати "
+"такі дії:"
+
+#. (itstool) path: item/p
+#: C/index.page:17
+msgid "View a file in ASCII or hexadecimal format simultaneously."
+msgstr ""
+"Переглядати вміст файла у форматах ASCII і шістнадцятковому форматі "
+"одночасно."
+
+#. (itstool) path: item/p
+#: C/index.page:20
+msgid "Edit a file in either ASCII or hexadecimal format."
+msgstr "Редагувати файл у форматі ASCII або шістнадцятковому форматі."
+
+#. (itstool) path: section/title
+#: C/index.page:27
+msgid "Basics"
+msgstr ""
+"Основи"
+
+#. (itstool) path: section/title
+#: C/index.page:33
+msgid "Tools"
+msgstr ""
+"Інструменти"
+
+#. (itstool) path: section/title
+#: C/index.page:39
+msgid "Configuration"
+msgstr ""
+"Налаштування"
+
+#. (itstool) path: section/title
+#: C/index.page:45
+msgid "Advanced topics"
+msgstr ""
+"Розширені теми"
+
+#. (itstool) path: page/title
+#: C/tools-chartable.page:12
+#| msgid "To View a Character Table"
+msgid "Character table"
+msgstr "Таблиця символів"
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:13
+msgid ""
+"GHex includes a handy table of many standard ASCII characters so as to allow "
+"you to easily insert such characters into a file without having to memorize "
+"its decimal or hexidecimal character code."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:16
+msgid ""
+"You may access the character table by selecting <gui>Character Table</gui> "
+"from the <gui>Tools</gui> submenu of the <gui>Main menu</gui>."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:18
+msgid ""
+"While the character table is open, you may still select the hex editor and "
+"move the cursor around, as per usual."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:20
+msgid ""
+"The columns showing the values in various formats such as ASCII, hex, "
+"decimal, etc., are for ease of reference."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:22
+msgid ""
+"The characters in the table can be navigated by clicking on them, or using "
+"the keyboard, in the usual way. When you have highlighted a character you "
+"would like to insert, you may insert that character into the file at the "
+"cursor position in the following ways:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/tools-chartable.page:28
+msgid ""
+"Press <key>Enter</key> or double-click on the character you would like to "
+"insert."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/tools-chartable.page:31
+#| msgid "Click <guibutton>Remove Selected</guibutton>."
+msgid "Click the <gui>Insert Character</gui> button."
+msgstr "Натисніть кнопку <gui>Вставити символ</gui>."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:34
+msgid ""
+"The character table can be closed by clicking the <gui>Close</gui> button."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/tools-converter.page:12
+msgid "Base converter"
+msgstr ""
+"Конвертор систем числення"
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:13
+msgid ""
+"GHex includes a base converter tool which can either be used as a standalone "
+"tool to convert values from one format to another, or to obtain the value "
+"pointed to by the cursor and to convert that value into various formats."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:16
+msgid ""
+"You may access the base converter by selecting <gui>Base Converter</gui> "
+"from the <gui>Tools</gui> submenu of the <gui>Main menu</gui>."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:18
+msgid ""
+"While the base converter is open, you may still select the hex editor and "
+"move the cursor around, as per usual."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:20
+#| msgid ""
+#| "To display the conversions for the data at the cursor position in the "
+#| "current file, click on the <guibutton>Get cursor value</guibutton> button."
+msgid ""
+"To convert the value at the cursor position, click the <gui>Get cursor "
+"value</gui> button."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:22
+msgid ""
+"To convert a value manually, you may type it into any of the fields in the "
+"format delimited therein (clearing any pre-existing value as necessary), and "
+"press <key>Enter</key>."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:25
+msgid ""
+"If you have entered an invalid value, \"ERROR\" will appear in the field. "
+"This error is not fatal and just indicates that an unrecognized value was "
+"entered. Simply enter a valid value, or click <gui>Get cursor value</gui> to "
+"grab the cursor value and to get some examples of valid values, and try "
+"again."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:29
+msgid ""
+"The base converter can be closed by clicking the <gui>Close</gui> button."
+msgstr ""
 
 #. (itstool) path: para/ulink
 #: C/legal.xml:9
 msgid "link"
-msgstr ""
-"посиланням"
+msgstr "посиланням"
 
 #. (itstool) path: legalnotice/para
 #: C/legal.xml:2
@@ -1385,3 +1131,892 @@ msgstr ""
 "ДОКУМЕНТ ТА ЗМІНЕНІ ВЕРСІЇ ДОКУМЕНТУ НАДАЮТЬСЯ КОРИСТУВАЧУ ЗА УМОВАМИ "
 "ЛІЦЕНЗІЇ GNU FREE DOCUMENTATION LICENSE З ПОДАЛЬШИМ РОЗУМІННЯМ ПРО ТЕ, ЩО: "
 "<_:orderedlist-1/>"
+
+#~ msgid "User manual for GHex"
+#~ msgstr "Підручник користувача GHex"
+
+#~ msgid ""
+#~ "GHex is a simple binary editor. It lets users view and edit a binary file "
+#~ "in both hex and ascii with a multiple level undo/redo mechanism. Features "
+#~ "include find and replace functions, conversion between binary, octal, "
+#~ "decimal and hexadecimal values, and use of an alternative, user-"
+#~ "configurable MDI concept that lets users edit multiple documents with "
+#~ "multiple views of each."
+#~ msgstr ""
+#~ "GHex — простий двійковий редактор. За її допомогою користувачі можуть "
+#~ "переглядати і редагувати двійкові файли у шістнадцятковому форматі та "
+#~ "ASCII із багаторівневим механізмом скасовування та відновлення дій. Серед "
+#~ "можливостей програми пошук і заміна, перетворення між двійковими, "
+#~ "вісімковими, десятковими та шістнадцятковими значеннями, і використання "
+#~ "альтернативної налаштовуваної користувачем парадигми багатопанельного "
+#~ "інтерфейсу, який надає користувачам змогу одночасно редагувати декілька "
+#~ "документів на декількох панелях."
+
+#~ msgid ""
+#~ "<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
+#~ "Microsystems</holder>"
+#~ msgstr ""
+#~ "<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
+#~ "Microsystems</holder>"
+
+#~ msgid "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+#~ msgstr "<year>1998–2000</year> <holder>Jaka Mocnik</holder>"
+
+#~ msgid "GNOME Documentation Project"
+#~ msgstr "Проєкт з документування GNOME"
+
+#~ msgid ""
+#~ "<firstname>Sun</firstname> <surname>GNOME Documentation Team</surname> "
+#~ "<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
+#~ "affiliation>"
+#~ msgstr ""
+#~ "<firstname>Sun</firstname> <surname>Команда з документування GNOME</"
+#~ "surname> <affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> "
+#~ "</affiliation>"
+
+#~ msgid ""
+#~ "<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
+#~ "<orgname>GNOME Documentation Project</orgname> <address> <email>jaka@gnu."
+#~ "org</email> </address> </affiliation>"
+#~ msgstr ""
+#~ "<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
+#~ "<orgname>Проєкт з документування GNOME</orgname> <address> "
+#~ "<email>jaka@gnu.org</email> </address> </affiliation>"
+
+#~ msgid "Sun GNOME Documentation Team"
+#~ msgstr "Команда документування GNOME фірми Sun"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.5</revnumber> <date>December 2005</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Підручник з GHex, версія 2.5</revnumber> <date>грудень 2005 "
+#~ "року</date> <_:revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.4</revnumber> <date>April 2003</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Підручник з GHex, версія 2.4</revnumber> <date>квітень 2003 "
+#~ "року</date> <_:revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.3</revnumber> <date>August 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Підручник з GHex, версія 2.3</revnumber> <date>серпень 2002 "
+#~ "року</date> <_:revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.2</revnumber> <date>August 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Підручник з GHex, версія 2.2</revnumber> <date>серпень 2002 "
+#~ "року</date> <_:revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.1</revnumber> <date>July 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Підручник з GHex, версія 2.1</revnumber> <date>липень 2002 "
+#~ "року</date> <_:revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.0</revnumber> <date>March 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Підручник з GHex, версія 2.0</revnumber> <date>березень 2002 "
+#~ "року</date> <_:revdescription-/>"
+
+#~ msgid "Jaka Mocnik <email>jaka@gnu.org</email>"
+#~ msgstr "Jaka Mocnik <email>jaka@gnu.org</email>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V1.0</revnumber> <date>2000</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Підручник з GHex, версія 1.0</revnumber> <date>2000 рік</date> "
+#~ "<_:revdescription-1/>"
+
+#~ msgid "This manual describes version 2.19 of GHex."
+#~ msgstr "У цьому підручнику описано версію 2.19 програми GHex."
+
+#~ msgid "Feedback"
+#~ msgstr "Відгуки"
+
+#~ msgid ""
+#~ "To report a bug or make a suggestion regarding the GHex application or "
+#~ "this manual, follow the directions in the <ulink url=\"help:gnome-feedback"
+#~ "\" type=\"help\">GNOME Feedback Page</ulink>."
+#~ msgstr ""
+#~ "Щоб повідомити про помилку або внести пропозицію щодо програми GHex або "
+#~ "цього підручника, дотримуйтесь інструкцій на <ulink url=\"help:gnome-"
+#~ "feedback\" type=\"help\">сторінці зворотнього зв'язку GNOME</ulink>."
+
+#~ msgid "<primary>GHex</primary>"
+#~ msgstr "<primary>GHex</primary>"
+
+#~ msgid "Introduction"
+#~ msgstr "Вступ"
+
+#~ msgid "Getting Started"
+#~ msgstr "Перші кроки"
+
+#~ msgid "To Start GHex"
+#~ msgstr "Запуск GHex"
+
+#~ msgid "You can start <application>GHex</application> in the following ways:"
+#~ msgstr "Запустити <application>GHex</application> можна так:"
+
+#~ msgid "<guimenu>Applications</guimenu> menu"
+#~ msgstr "Меню <guimenu>Програми</guimenu>"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guisubmenu>Accessories</guisubmenu><guimenuitem>Hex "
+#~ "Editor</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Вибрати пункт меню <menuchoice><guisubmenu>Утиліти</"
+#~ "guisubmenu><guimenuitem>Шістнадцятковий редактор</guimenuitem></"
+#~ "menuchoice>."
+
+#~ msgid "Command line"
+#~ msgstr "Командний рядок"
+
+#~ msgid "Execute the following command: <command>ghex</command>"
+#~ msgstr "Віддати таку команду: <command>ghex</command>"
+
+#~ msgid ""
+#~ "To open a file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Open</guimenuitem></menuchoice>. Select the file "
+#~ "that you want to open, then click <guibutton>OK</guibutton>. You can open "
+#~ "multiple files in <application>GHex</application>. <application>GHex</"
+#~ "application> displays each file in a new window."
+#~ msgstr ""
+#~ "Щоб відкрити файл, скористайтеся пунктом меню <menuchoice><guimenu>Файл</"
+#~ "guimenu><guimenuitem>Відкрити</guimenuitem></menuchoice>. Виберіть файл, "
+#~ "який ви хочете відкрити, потім натисніть кнопку <guibutton>Гаразд</"
+#~ "guibutton>. У <application>GHex</application> ви можете відкрити "
+#~ "одночасно декілька файлів. <application>GHex</application> показує вміст "
+#~ "кожного файла у новому вікні."
+
+#~ msgid ""
+#~ "When you open a file in <application>GHex</application>, the application "
+#~ "displays the file in the following window."
+#~ msgstr ""
+#~ "Після відкриття вами файла у <application>GHex</application> програма "
+#~ "показує його вміст у вікні, зображення якого наведено нижче."
+
+#~ msgid "GHex Window with an Open File"
+#~ msgstr "Вікно GHex із відкритим файлом"
+
+#~ msgctxt "_"
+#~ msgid ""
+#~ "external ref='figures/ghex_window_open.png' "
+#~ "md5='31fc4c732edba8668056e88d1f4239f2'"
+#~ msgstr ""
+#~ "external ref='figures/ghex_window_open.png' "
+#~ "md5='31fc4c732edba8668056e88d1f4239f2'"
+
+#~ msgid ""
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
+#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window with "
+#~ "an open file</phrase> </textobject>"
+#~ msgstr ""
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
+#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Показано вікно GHex із "
+#~ "відкритим файлом</phrase> </textobject>"
+
+#~ msgid ""
+#~ "The <application>GHex</application> window contains the following "
+#~ "elements:"
+#~ msgstr ""
+#~ "Вікно <application>GHex</application> складається з таких елементів:"
+
+#~ msgid "Menubar"
+#~ msgstr "Панель меню"
+
+#~ msgid ""
+#~ "The menus on the menubar contain all the commands that you need to work "
+#~ "with files in <application>GHex</application>."
+#~ msgstr ""
+#~ "Меню на панелі меню містить пункти усіх команд, які знадобляться вам для "
+#~ "роботи з файлами у <application>GHex</application>."
+
+#~ msgid "Cursor offsets column"
+#~ msgstr "Стовпчик зміщень курсора"
+
+#~ msgid ""
+#~ "The cursor offset is the distance between the beginning of the file and "
+#~ "the first byte in each line. By default, <application>GHex</application> "
+#~ "displays the cursor offsets column to the left of the hexadecimal view."
+#~ msgstr ""
+#~ "Зміщення курсора є відстанню від початку файла до першого байта у кожному "
+#~ "з рядків. Типово, <application>GHex</application> показує стовпчик "
+#~ "відступів курсора ліворуч від панелі перегляду шістнадцяткових даних."
+
+#~ msgid "Display pane on left side"
+#~ msgstr "Панель показу у лівій частині"
+
+#~ msgid ""
+#~ "The display pane on the left side of the display area displays a "
+#~ "hexadecimal view of the file."
+#~ msgstr ""
+#~ "Панель показу у лівій частині області показу даних показує дані файла у "
+#~ "шістнадцятковому форматі."
+
+#~ msgid "Display pane on right side"
+#~ msgstr "Панель показу у правій частині"
+
+#~ msgid ""
+#~ "The display pane on the right side of the display area displays an ASCII "
+#~ "view of the file."
+#~ msgstr ""
+#~ "Панель показу у правій частині області показу даних показує дані файла у "
+#~ "форматі ASCII."
+
+#~ msgid "Type conversion dialog"
+#~ msgstr "Вікно перетворення типів"
+
+#~ msgid ""
+#~ "The type conversion dialog below the display area displays the value of "
+#~ "the selected character in several different numeric types."
+#~ msgstr ""
+#~ "У вікні перетворення типів, розташованому під областю показу програма "
+#~ "показує значення позначеного символу у декількох різних системах числення."
+
+#~ msgid "Usage"
+#~ msgstr "Користування"
+
+#~ msgid "To Edit a File"
+#~ msgstr "Редагування файла"
+
+#~ msgid "To edit a file, perform the following steps:"
+#~ msgstr "Для внесення змін до файла виконайте такі покрокові дії:"
+
+#~ msgid ""
+#~ "Click in the hexadecimal or ASCII view of the file. The view in which the "
+#~ "cursor is active displays a full cursor. The view in which the cursor is "
+#~ "not active displays an outline of the cursor."
+#~ msgstr ""
+#~ "Клацніть на панелі шістнадцяткового перегляду або перегляду ASCII файла. "
+#~ "Панель перегляду, на якій буде активним курсор, покаже повний курсор. На "
+#~ "панелі, на якій курсор не є активним, буде показано контур курсора."
+
+#~ msgid ""
+#~ "To insert data and not overwrite existing data, choose "
+#~ "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Insert Mode</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Щоб вставити дані і перезаписати наявні дані, скористайтеся пунктом меню "
+#~ "<menuchoice><guimenu>Зміни</guimenu><guimenuitem>Режим вставки</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "To cut, copy, and paste data, choose <menuchoice><guimenu>Edit</"
+#~ "guimenu><guimenuitem>Cut</guimenuitem></menuchoice>, "
+#~ "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></"
+#~ "menuchoice>, and <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Для вирізання, копіювання і вставлення даних скористайтеся пунктами меню "
+#~ "<menuchoice><guimenu>Зміни</guimenu><guimenuitem>Вирізати</guimenuitem></"
+#~ "menuchoice>, <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Копіювати</"
+#~ "guimenuitem></menuchoice> і <menuchoice><guimenu>Зміни</"
+#~ "guimenu><guimenuitem>Вставити</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "To undo an edit, choose <menuchoice><guimenu>Edit</"
+#~ "guimenu><guimenuitem>Undo</guimenuitem></menuchoice>. To redo an edit, "
+#~ "choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Redo</"
+#~ "guimenuitem></menuchoice>. The number of previous edits that you can undo "
+#~ "is determined by the <guilabel>Maximum number of undo levels</guilabel> "
+#~ "setting in the <xref linkend=\"ghex-prefs-editing\"/> tabbed section of "
+#~ "the <guilabel>Preferences</guilabel> dialog."
+#~ msgstr ""
+#~ "Щоб скасувати редагування, скористайтеся пунктом меню "
+#~ "<menuchoice><guimenu>Зміни</guimenu><guimenuitem>Вернути</guimenuitem></"
+#~ "menuchoice>. Щоб повторити скасоване редагування, скористайтеся пунктом "
+#~ "меню <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Повторити</"
+#~ "guimenuitem></menuchoice>. Кількість попередніх редагувань, які ви можете "
+#~ "скасувати визначається параметром <guilabel>Максимальна кількість "
+#~ "скасувань дій</guilabel> у розділі із вкладками <xref linkend=\"ghex-"
+#~ "prefs-editing\"/> діалогового вікна <guilabel>Параметри</guilabel>."
+
+#~ msgid "To Save a File"
+#~ msgstr "Збереження файла"
+
+#~ msgid ""
+#~ "To save changes to the current file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Save</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Щоб зберегти зміни у поточному файлі, скористайтеся пунктом меню "
+#~ "<menuchoice><guimenu>Файл</guimenu><guimenuitem>Зберегти</guimenuitem></"
+#~ "menuchoice>."
+
+#~ msgid ""
+#~ "To save the current file under a new filename, choose "
+#~ "<menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></"
+#~ "menuchoice>. Enter a name for the file in the <guilabel>Select a file to "
+#~ "save buffer as</guilabel> dialog, then click <guibutton>OK</guibutton>."
+#~ msgstr ""
+#~ "Щоб зберегти поточний файл із новою назвою, скористайтеся пунктом меню "
+#~ "<menuchoice><guimenu>Файл</guimenu><guimenuitem>Зберегти як</"
+#~ "guimenuitem></menuchoice>. Введіть назву файла у діалоговому вікні "
+#~ "<guilabel>Виберіть файл для збереження буфера</guilabel> і натисніть "
+#~ "кнопку <guibutton>Гаразд</guibutton>."
+
+#~ msgid "To Revert to the Last Saved Version of a File"
+#~ msgstr "Повернення до останньої збереженої версії файла"
+
+#~ msgid ""
+#~ "To revert to the last version of the current file that you saved and undo "
+#~ "all of the edits that you made to the file since you last saved the file, "
+#~ "choose <menuchoice><guimenu>File</guimenu><guimenuitem>Revert</"
+#~ "guimenuitem></menuchoice>, then click <guibutton>Yes</guibutton> in the "
+#~ "<guilabel>Question</guilabel> dialog."
+#~ msgstr ""
+#~ "Щоб повернутися до останньої збереженої версії поточного файла і "
+#~ "скасувати усі редагування, які було виконано з моменту останнього "
+#~ "зберігання файла, скористайтеся пунктом меню <menuchoice><guimenu>Файл</"
+#~ "guimenu><guimenuitem>Відновити</guimenuitem></menuchoice>, потім "
+#~ "натисніть кнопку <guibutton>Так</guibutton> у діалоговому вікні "
+#~ "<guilabel>Питання</guilabel>."
+
+#~ msgid "To Find Data in a File"
+#~ msgstr "Пошук даних у файлі"
+
+#~ msgid ""
+#~ "To search a file for a hexadecimal or ASCII string, perform the following "
+#~ "steps:"
+#~ msgstr ""
+#~ "Щоб виконати пошук шістнадцяткового рядка або рядка ASCII у файлі, "
+#~ "виконайте такі покрокові дії:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Виберіть пункт меню <menuchoice><guimenu>Зміни</"
+#~ "guimenu><guimenuitem>Знайти</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, choose one of the following "
+#~ "options:"
+#~ msgstr ""
+#~ "У діалоговому вікні <guilabel>Знайти дані</guilabel> виберіть один з "
+#~ "таких варіантів:"
+
+#~ msgid "<guilabel>Search for hex data</guilabel>"
+#~ msgstr "<guilabel>Шукати шістнадцяткові дані</guilabel>"
+
+#~ msgid "<guilabel>Search for ASCII data</guilabel>"
+#~ msgstr "<guilabel>Шукати дані ASCII</guilabel>"
+
+#~ msgid "Type the string that you want to find."
+#~ msgstr "Введіть рядок, який ви хочете знайти."
+
+#~ msgid ""
+#~ "Click <guibutton>Find Next</guibutton> to find the next occurrence of the "
+#~ "string."
+#~ msgstr ""
+#~ "Натисніть кнопку <guibutton>Знайти наступне</guibutton>, щоб знайти "
+#~ "наступний відповідник шуканого рядка."
+
+#~ msgid ""
+#~ "Click <guibutton>Find Previous</guibutton> to find the previous "
+#~ "occurrence of the string."
+#~ msgstr ""
+#~ "Натисніть кнопку <guibutton>Знайти попереднє</guibutton>, щоб знайти "
+#~ "попередній відповідник шуканого рядка."
+
+#~ msgid ""
+#~ "Click <guibutton>Cancel</guibutton> to close the <guilabel>Find Data</"
+#~ "guilabel> dialog."
+#~ msgstr ""
+#~ "Натисніть кнопку <guibutton>Скасувати</guibutton>, щоб закрити діалогове "
+#~ "вікно <guilabel>Пошук даних</guilabel>."
+
+#~ msgid "To Perform an Advanced Find"
+#~ msgstr "Виконання розширеного пошуку"
+
+#~ msgid "To perform an advanced find, perform the following steps:"
+#~ msgstr "Для виконання розширеного пошуку виконайте такі покрокові дії:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Advanced Find</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Виберіть пункт меню <menuchoice><guimenu>Зміни</"
+#~ "guimenu><guimenuitem>Розширений пошук</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, select the required search "
+#~ "criteria. For information about how to add new search criteria, see <xref "
+#~ "linkend=\"ghex-search-criteria-add\"/>."
+#~ msgstr ""
+#~ "У діалоговому вікні <guilabel>Знайти дані</guilabel> виберіть потрібні "
+#~ "критерії пошуку. Докладні відомості щодо додавання нового критерію пошуку "
+#~ "наведено у розділі <xref linkend=\"ghex-search-criteria-add\"/>."
+
+#~ msgid ""
+#~ "Click <guibutton>Close</guibutton> to close the <guilabel>Find Data</"
+#~ "guilabel> dialog."
+#~ msgstr ""
+#~ "Натисніть кнопку <guibutton>Закрити</guibutton>, щоб закрити діалогове "
+#~ "вікно <guilabel>Пошук даних</guilabel>."
+
+#~ msgid "To Add Search Criteria"
+#~ msgstr "Додавання критеріїв пошуку"
+
+#~ msgid "To add search criteria, perform the following steps:"
+#~ msgstr "Щоб додати критерії пошуку, виконайте такі покрокові дії:"
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, click <guibutton>Add New</"
+#~ "guibutton>."
+#~ msgstr ""
+#~ "У діалоговому вікні <guilabel>Знайти дані</guilabel> натисніть кнопку "
+#~ "<guibutton>Додати новий</guibutton>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data: Add Search</guilabel> dialog, choose one of "
+#~ "the following options:"
+#~ msgstr ""
+#~ "У діалоговому вікні <guilabel>Знайти дані: Додати пошук</guilabel> "
+#~ "виберіть один з таких варіантів:"
+
+#~ msgid ""
+#~ "Use the color wheel or the spin boxes to select a color to highlight the "
+#~ "search criteria."
+#~ msgstr ""
+#~ "Скористайтеся колесом кольорів або полями-лічильниками для вибору кольору "
+#~ "підсвічування для відповідників критеріям пошуку."
+
+#~ msgid "Click <guibutton>Add</guibutton>."
+#~ msgstr "Натисніть <guibutton>Додати</guibutton>."
+
+#~ msgid "To Remove Search Criteria"
+#~ msgstr "Вилучення критеріїв пошуку"
+
+#~ msgid "To remove search criteria, perform the following steps:"
+#~ msgstr "Щоб вилучити критерії пошуку, виконайте такі покрокові дії:"
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, select the search criteria "
+#~ "that you want to remove."
+#~ msgstr ""
+#~ "У діалоговому вікні <guilabel>Знайти дані</guilabel> виберіть критерії "
+#~ "пошуку даних, які ви хочете вилучити."
+
+#~ msgid ""
+#~ "To search a file for a hexadecimal or ASCII string and then replace the "
+#~ "string, perform the following steps:"
+#~ msgstr ""
+#~ "Щоб виконати пошук шістнадцяткового рядка або рядка ASCII у файлі і потім "
+#~ "його замінити, виконайте такі покрокові дії:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Replace</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Виберіть пункт меню <menuchoice><guimenu>Зміни</"
+#~ "guimenu><guimenuitem>Замінити</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find &amp; Replace Data</guilabel> dialog, choose one of "
+#~ "the following options:"
+#~ msgstr ""
+#~ "У діалоговому вікні <guilabel>Знайти і замінити дані</guilabel> виберіть "
+#~ "один з таких варіантів:"
+
+#~ msgid "<guilabel>Replace hex data</guilabel>"
+#~ msgstr "<guilabel>Замінити шістнадцяткові дані</guilabel>"
+
+#~ msgid "<guilabel>Replace ASCII data</guilabel>"
+#~ msgstr "<guilabel>Замінити дані ASCII</guilabel>"
+
+#~ msgid "In the first text box, type the string that you want to find."
+#~ msgstr ""
+#~ "У першому полі для введення тексту введіть рядок, який ви хочете знайти."
+
+#~ msgid ""
+#~ "In the second text box, type the string that you want to use to replace "
+#~ "the string that you find."
+#~ msgstr ""
+#~ "У другому текстовому полі введіть рядок, яким ви хочете замінити "
+#~ "знайдений."
+
+#~ msgid ""
+#~ "Click <guibutton>Replace</guibutton> to replace the current occurrence of "
+#~ "the string or click <guibutton>Replace All</guibutton> to replace all "
+#~ "occurrences of the string."
+#~ msgstr ""
+#~ "Натисніть кнопку <guibutton>Замірити</guibutton>, щоб замінити поточний "
+#~ "відповідник рядка, або кнопку <guibutton>Замірити все</guibutton>, щоб "
+#~ "замірити усі відповідники рядка."
+
+#~ msgid ""
+#~ "Click <guibutton>Cancel</guibutton> to close the <guilabel>Find &amp; "
+#~ "Replace Data</guilabel> dialog."
+#~ msgstr ""
+#~ "Натисніть кнопку <guibutton>Скасувати</guibutton>, щоб закрити діалогове "
+#~ "вікно <guilabel>Пошук і заміна даних</guilabel>."
+
+#~ msgid "To Add or Remove Additional Views of a File"
+#~ msgstr "Додавання або вилучення додаткових панелей перегляду файла"
+
+#~ msgid ""
+#~ "To add another view of the current file to your <application>GHex</"
+#~ "application> window, choose <menuchoice><guimenu>View</"
+#~ "guimenu><guimenuitem>Add View</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Щоб додати ще одну панель перегляду поточного файла у вікні "
+#~ "<application>GHex</application>, скористайтеся пунктом меню "
+#~ "<menuchoice><guimenu>Перегляд</guimenu><guimenuitem>Додати вигляд</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "To remove a view of the current file, choose <menuchoice><guimenu>View</"
+#~ "guimenu><guimenuitem>Remove View</guimenuitem></menuchoice>. If you "
+#~ "remove the last view that is open, the application exits."
+#~ msgstr ""
+#~ "Щоб вилучити панель перегляду поточного файла, скористайтеся пунктом меню "
+#~ "<menuchoice><guimenu>Перегляд</guimenu><guimenuitem>Видалити вигляд</"
+#~ "guimenuitem></menuchoice>. Якщо це була остання відкрита панель "
+#~ "перегляду, програма завершить свою роботу."
+
+#~ msgid "To Change the Data Group Type"
+#~ msgstr "Зміна типу групування даних"
+
+#~ msgid ""
+#~ "To change how <application>GHex</application> displays the hexadecimal "
+#~ "content of a file in the <application>GHex</application> window, choose "
+#~ "<menuchoice><guimenu>View</guimenu><guimenuitem>Group Data As</"
+#~ "guimenuitem></menuchoice>, then select one of the following menu items:"
+#~ msgstr ""
+#~ "Щоб змінити спосіб, у який <application>GHex</application> показує "
+#~ "шістнадцяткові дані у файлі у вікні <application>GHex</application>, "
+#~ "скористайтеся пунктом <menuchoice><guimenu>Перегляд</"
+#~ "guimenu><guimenuitem>Групувати дані за</guimenuitem></menuchoice>, потім "
+#~ "вибрати один з таких пунктів меню:"
+
+#~ msgid "<guilabel>Bytes</guilabel> - single bytes"
+#~ msgstr "<guilabel>Байти</guilabel> — окремі байти"
+
+#~ msgid "<guilabel>Words</guilabel> - groups of two bytes"
+#~ msgstr "<guilabel>Слова</guilabel> — групи з двох байтів"
+
+#~ msgid "<guilabel>Longwords</guilabel> - groups of four bytes"
+#~ msgstr "<guilabel>Довгі слова</guilabel> — групи з чотирьох байтів"
+
+#~ msgid "To Export the GHex Display to HTML"
+#~ msgstr "Експортування показаних даних GHex до HTML"
+
+#~ msgid ""
+#~ "Creates a separate HTML file for each page of data that is displayed in "
+#~ "the <application>GHex</application> window."
+#~ msgstr ""
+#~ "Створює окремий файл HTML для кожної зі сторінок даних, які показано у "
+#~ "вікні <application>GHex</application>."
+
+#~ msgid ""
+#~ "Uses the HTML filename that you specify as the basis for the filename."
+#~ msgstr ""
+#~ "Використовує назву файла HTML, яку ви використовуєте як основу назви "
+#~ "файла."
+
+#~ msgid "Appends a page number to the filename to differentiate the files."
+#~ msgstr ""
+#~ "Дописує номер сторінки до назви файла для розрізнення файлів різних "
+#~ "сторінок."
+
+#~ msgid ""
+#~ "To export the data contained in the <application>GHex</application> "
+#~ "window to HTML, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Save As HTML</guimenuitem></menuchoice>. Choose a "
+#~ "directory and specify a filename for the HTML file, then click "
+#~ "<guibutton>OK</guibutton>. <application>GHex</application> implements the "
+#~ "following actions: <_:itemizedlist-1/> For example, if you specify the "
+#~ "filename <filename>log.html</filename>, <application>GHex</application> "
+#~ "creates a series of HTML files named <filename>log00000000.html</"
+#~ "filename>, <filename>log00000001.html</filename>, <filename>log00000002."
+#~ "html</filename>, and so on."
+#~ msgstr ""
+#~ "Щоб експортувати дані, що містяться у вікні <application>GHex</"
+#~ "application>, у форматі HTML, скористайтеся пунктом меню "
+#~ "<menuchoice><guimenu>Файл</guimenu><guimenuitem>Зберегти як HTML</"
+#~ "guimenuitem></menuchoice>. Виберіть каталог і вкажіть назву файла HTML, "
+#~ "натисніть кнопку <guibutton>Гаразд</guibutton>. У <application>GHex</"
+#~ "application> реалізовано такі дії: <_:itemizedlist-1/> Наприклад, якщо ви "
+#~ "вкажете назву файла <filename>log.html</filename>, <application>GHex</"
+#~ "application> створює набір файлів HTML із назвами <filename>log00000000."
+#~ "html</filename>, <filename>log00000001.html</filename>, "
+#~ "<filename>log00000002.html</filename> тощо."
+
+#~ msgid ""
+#~ "To view a table that contains the ASCII, hexadecimal, decimal, octal, and "
+#~ "binary representations for the values 0 to 255, choose "
+#~ "<menuchoice><guimenu>Windows</guimenu><guimenuitem>Character Table</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Щоб переглянути таблицю, що містить представлення в ASCII, "
+#~ "шістнадцятковому, десятковому, вісімковому та двійковому форматах для "
+#~ "значень від 0 до 255, скористайтеся пунктом меню "
+#~ "<menuchoice><guimenu>Вікна</guimenu><guimenuitem>Таблиця символів</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid "To View Data Conversions"
+#~ msgstr "Перегляд перетворень даних"
+
+#~ msgid ""
+#~ "To display the binary, decimal, hexadecimal, and ASCII conversions for up "
+#~ "to four bytes of data, perform the following steps:"
+#~ msgstr ""
+#~ "Для перегляду наборів до чотирьох байтів даних у двійковому, десятковому, "
+#~ "шістнадцятковому формат та форматі ASCII виконайте такі покрокові дії:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Windows</guimenu><guimenuitem>Base Converter</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Виберіть пункт меню <menuchoice><guimenu>Вікна</"
+#~ "guimenu><guimenuitem>Конвертор систем числення</guimenuitem></menuchoice>."
+
+#~ msgid "Perform one of the following actions:"
+#~ msgstr "Виконайте одну з таких дій:"
+
+#~ msgid ""
+#~ "Type the data that you want to convert in one of the fields in the "
+#~ "<guilabel>Base Converter</guilabel> dialog, then press <keycap>Return</"
+#~ "keycap>."
+#~ msgstr ""
+#~ "Введіть дані, які ви хочете перетворити у одному з полів діалогового "
+#~ "вікна <guilabel>Конвертор систем числення</guilabel>, і натисніть клавішу "
+#~ "<keycap>Enter</keycap>."
+
+#~ msgid ""
+#~ "<application>GHex</application> updates the values of the other fields to "
+#~ "display the data conversions."
+#~ msgstr ""
+#~ "<application>GHex</application> оновить значення інших полів з метою "
+#~ "показу перетворених даних."
+
+#~ msgid ""
+#~ "Click <guibutton>Close</guibutton> to close the <guilabel>Base Converter</"
+#~ "guilabel> dialog."
+#~ msgstr ""
+#~ "Натисніть кнопку <guibutton>Закрити</guibutton>, щоб закрити діалогове "
+#~ "вікно <guilabel>Конвертор систем числення</guilabel>."
+
+#~ msgid "To Show or Hide the Type Conversion Dialog"
+#~ msgstr "Показ і приховування діалогового вікна перетворення типів"
+
+#~ msgid ""
+#~ "To show or hide the type conversion dialog, choose "
+#~ "<menuchoice><guimenu>Windows</guimenu><guimenuitem>Type Conversion "
+#~ "Dialog</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Щоб наказати програмі показати або приховати діалогове вікно перетворення "
+#~ "типів, скористайтеся пунктом меню <menuchoice><guimenu>Вікна</"
+#~ "guimenu><guimenuitem>Діалог перетворення типів</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "The type conversion dialog displays the value of the selected character "
+#~ "in the following representations:"
+#~ msgstr ""
+#~ "У діалоговому вікні перетворення типів програма покаже значення "
+#~ "позначеного символу у таких представленнях:"
+
+#~ msgid "<guilabel>Signed 8 bit</guilabel>"
+#~ msgstr "<guilabel>Зі знаком 8 біт</guilabel>"
+
+#~ msgid "<guilabel>Unsigned 8 bit</guilabel>"
+#~ msgstr "<guilabel>Без знаку 8 біт</guilabel>"
+
+#~ msgid "<guilabel>Signed 16 bit</guilabel>"
+#~ msgstr "<guilabel>Зі знаком 8 біт</guilabel>"
+
+#~ msgid "<guilabel>Unsigned 16 bit</guilabel>"
+#~ msgstr "<guilabel>Без знаку 16 біт</guilabel>"
+
+#~ msgid "<guilabel>Signed 32 bit</guilabel>"
+#~ msgstr "<guilabel>Зі знаком 32 біт</guilabel>"
+
+#~ msgid "<guilabel>Unsigned 32 bit</guilabel>"
+#~ msgstr "<guilabel>Без знаку 32 біт</guilabel>"
+
+#~ msgid "<guilabel>32 bit float</guilabel>"
+#~ msgstr "<guilabel>Дійсне 32-бітове</guilabel>"
+
+#~ msgid "<guilabel>64 bit float</guilabel>"
+#~ msgstr "<guilabel>Дійсне 64-бітове</guilabel>"
+
+#~ msgid "<guilabel>Hexadecimal</guilabel>"
+#~ msgstr "<guilabel>Шістнадцяткове</guilabel>"
+
+#~ msgid "<guilabel>Octal</guilabel>"
+#~ msgstr "<guilabel>Вісімковий</guilabel>"
+
+#~ msgid "<guilabel>Binary</guilabel>"
+#~ msgstr "<guilabel>Двійковий</guilabel>"
+
+#~ msgid "<guilabel>Stream Length</guilabel>"
+#~ msgstr "<guilabel>Довжина потоку</guilabel>"
+
+#~ msgid "The type conversion dialog also contains the following options:"
+#~ msgstr ""
+#~ "У діалоговому вікні перетворення типів також буде показано такі пункти:"
+
+#~ msgid "<guilabel>Show little endian decoding</guilabel>"
+#~ msgstr "<guilabel>Показувати у розшифровці little endian</guilabel>"
+
+#~ msgid "Select this option to show little endian decoding."
+#~ msgstr ""
+#~ "Позначте цей пункт, щоб наказати програмі показувати декодування із "
+#~ "прямим порядком байтів."
+
+#~ msgid "<guilabel>Show unsigned and float as hexadecimal</guilabel>"
+#~ msgstr ""
+#~ "<guilabel>Показувати беззнакові та з рухомою комою як шістнадцяткові</"
+#~ "guilabel>"
+
+#~ msgid ""
+#~ "Select this option to show unsigned and float numbers as hexadecimal "
+#~ "numbers."
+#~ msgstr ""
+#~ "Позначте цей пункт, щоб переглянути числа без знаку та числа із рухомою "
+#~ "крапкою як шістнадцяткові числа."
+
+#~ msgid "To Print a File"
+#~ msgstr "Друк до файла"
+
+#~ msgid ""
+#~ "To print a file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Print</guimenuitem></menuchoice>. Select the print "
+#~ "options that you require in the <guilabel>Print</guilabel> dialog, then "
+#~ "click <guibutton>OK</guibutton>."
+#~ msgstr ""
+#~ "Щоб надрукувати файл, скористайтеся пунктом меню "
+#~ "<menuchoice><guimenu>Файл</guimenu><guimenuitem>Друк</guimenuitem></"
+#~ "menuchoice>. Виберіть потрібні вам параметри друку за допомогою "
+#~ "діалогового вікна <guilabel>Друк</guilabel> і натисніть кнопку "
+#~ "<guibutton>Гаразд</guibutton>."
+
+#~ msgid ""
+#~ "To preview a printed copy of the file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Print Preview</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Щоб попередньо переглянути надруковану копію файла, скористайтеся пунктом "
+#~ "меню <menuchoice><guimenu>Файл</guimenu><guimenuitem>Попередній перегляд</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "To configure <application>GHex</application>, choose "
+#~ "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</"
+#~ "guimenuitem></menuchoice>. The <guilabel>Preferences</guilabel> dialog "
+#~ "contains the following tabbed sections:"
+#~ msgstr ""
+#~ "Щоб налаштувати <application>GHex</application>, скористайтеся пунктом "
+#~ "меню <menuchoice><guimenu>Зміни</guimenu><guimenuitem>Параметри</"
+#~ "guimenuitem></menuchoice>. Діалогове вікно <guilabel>Параметри</guilabel> "
+#~ "складається із таких розділів із вкладками:"
+
+#~ msgid "<guilabel>Maximum number of undo levels</guilabel>"
+#~ msgstr "<guilabel>Максимальна кількість скасувань дій</guilabel>"
+
+#~ msgid ""
+#~ "Use this spin box to specify the maximum number of edits that you can "
+#~ "undo."
+#~ msgstr ""
+#~ "За допомогою цього поля лічильника можна вказати максимальну кількість "
+#~ "редагувань, які ви зможете скасувати."
+
+#~ msgid "<guilabel>Show cursor offset in statusbar as</guilabel>"
+#~ msgstr "<guilabel>Показувати зміщення курсора на смужці стану як</guilabel>"
+
+#~ msgid ""
+#~ "Use this drop-down list to select the format in which the cursor offset "
+#~ "is displayed. The format can be decimal, hexadecimal, or a custom print "
+#~ "style string that only contains the format specifiers x, o, and s."
+#~ msgstr ""
+#~ "Скористайтеся цим спадним списком для вибору формату, у якому буде "
+#~ "показано зміщення курсора. Формат може бути десятковим, шістнадцятковим "
+#~ "або рядком визначення нетипового стилю, який складається лише з "
+#~ "специфікаторів форматів — x, o і s."
+
+#~ msgid "<guilabel>Show offsets column</guilabel>"
+#~ msgstr "<guilabel>Показувати стовпчик зміщень</guilabel>"
+
+#~ msgid ""
+#~ "Select this option to display the cursor offsets in a column to the left "
+#~ "of the hexadecimal view of the <application>GHex</application> window."
+#~ msgstr ""
+#~ "Виберіть цей варіант, щоб програма показувала зміщення курсора у "
+#~ "стовпчику ліворуч від панелі перегляду шістнадцяткових даних головного "
+#~ "вікна <application>GHex</application>."
+
+#~ msgid "<guilabel>Font</guilabel>"
+#~ msgstr "<guilabel>Шрифт</guilabel>"
+
+#~ msgid ""
+#~ "Use the font selector list boxes to edit the existing font information or "
+#~ "type new font information. Specify a font type, style, and size to "
+#~ "display the contents of files in <application>GHex</application>."
+#~ msgstr ""
+#~ "Скористайтеся полями списку вибору шрифту для редагування даних щодо "
+#~ "поточного шрифту або введення нових відомостей щодо шрифту. Виберіть тип "
+#~ "шрифту, стиль і розмір для показу вмісту файлів у вікні "
+#~ "<application>GHex</application>."
+
+#~ msgid "<guilabel>Default Group Type</guilabel>"
+#~ msgstr "<guilabel>Типове групування</guilabel>"
+
+#~ msgid ""
+#~ "Select one of the following options to specify how <application>GHex</"
+#~ "application> displays the hexadecimal content of a file in the "
+#~ "<application>GHex</application> window:"
+#~ msgstr ""
+#~ "Виберіть один із вказаних нижче варіантів для визначення способу, у який "
+#~ "<application>GHex</application> показуватиме шістнадцятковий вміст файла "
+#~ "у вікні <application>GHex</application>:"
+
+#~ msgid "<guilabel>Data font</guilabel>"
+#~ msgstr "<guilabel>Шрифт даних</guilabel>"
+
+#~ msgid ""
+#~ "Click on the <guibutton>Data font</guibutton> button to specify the font "
+#~ "type, style, and size to use to print the data contained in a file."
+#~ msgstr ""
+#~ "Натисніть кнопку <guibutton>Шрифт даних</guibutton>, щоб вказати тип, "
+#~ "стиль і розмір символів шрифту, якими слід скористатися для друку даних, "
+#~ "які містяться у файлі."
+
+#~ msgid "<guilabel>Header font</guilabel>"
+#~ msgstr "<guilabel>Шрифт заголовка</guilabel>"
+
+#~ msgid ""
+#~ "Click on the <guibutton>Header font</guibutton> button to specify the "
+#~ "font type, style, and size to use to print the header information that is "
+#~ "contained in the file."
+#~ msgstr ""
+#~ "Натисніть кнопку <guibutton>Шрифт заголовка</guibutton>, щоб вказати тип, "
+#~ "стиль і розмір символів шрифту, якими слід скористатися для друку даних "
+#~ "заголовка, які містяться у файлі."
+
+#~ msgid "<guilabel>Print shaded box over</guilabel>"
+#~ msgstr "<guilabel>Друкувати смужку над</guilabel>"
+
+#~ msgid ""
+#~ "Use this spin box to specify the number of lines that <application>GHex</"
+#~ "application> alternately prints with a surrounding shaded box. If the "
+#~ "value of the spin box is 10, <application>GHex</application> prints the "
+#~ "first 10 lines of the file without a shaded box, the next 10 lines with a "
+#~ "shaded box, and so on. If the value of the spin box is 0, "
+#~ "<application>GHex</application> does not print any shaded box."
+#~ msgstr ""
+#~ "Скористайтеся цим полем лічильника для визначення кількості рядків, які "
+#~ "<application>GHex</application> друкуватиме у проміжному затіненому "
+#~ "блоці. Якщо у полі буде значення 10, <application>GHex</application> "
+#~ "надрукує перші 10 рядків файла у затіненому блоці, наступні 10 рядків — "
+#~ "без затінення тощо. Якщо у полі лічильника буде значення 0, "
+#~ "<application>GHex</application> не друкуватиме затіненого блоку."
