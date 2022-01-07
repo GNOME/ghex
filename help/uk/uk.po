@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "POT-Creation-Date: 2022-01-05 06:23+0000\n"
-"PO-Revision-Date: 2022-01-06 23:52+0200\n"
+"PO-Revision-Date: 2022-01-07 20:31+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -394,6 +394,7 @@ msgid ""
 "To focus either pane to accept your keystrokes, you may click on the "
 "appropriate pane, or:"
 msgstr ""
+"Щоб перемістити фокус на якусь з панелей, клацніть лівою кнопкою миші на відповідній панелі або виконайте такі дії:"
 
 #. (itstool) path: item/p
 #: C/basics-edit-file.page:19
@@ -401,6 +402,7 @@ msgid ""
 "Press <keyseq><key>Alt</key><key>Left</key></keyseq> to focus the hex pane, "
 "and"
 msgstr ""
+"Натисніть комбінацію клавіш <keyseq><key>Alt</key><key>←</key></keyseq>, щоб перемістити фокус на панель шістнадцяткових даних, і"
 
 #. (itstool) path: item/p
 #: C/basics-edit-file.page:22
@@ -408,6 +410,7 @@ msgid ""
 "Press <keyseq><key>Alt</key><key>Right</key></keyseq> to focus the ASCII "
 "pane."
 msgstr ""
+"Натисніть комбінацію клавіш <keyseq><key>Alt</key><key>→</key></keyseq>, щоб перемістити фокус на панель даних ASCII."
 
 #. (itstool) path: section/p
 #: C/basics-edit-file.page:25
@@ -425,6 +428,7 @@ msgid ""
 "Use the scrollbar on the window and the mouse to select a byte by clicking "
 "on it."
 msgstr ""
+"Скористайтеся смужкою гортання вікна та вказівником миші для позначення байта клацанням на ньому лівою кнопкою миші."
 
 #. (itstool) path: item/p
 #: C/basics-edit-file.page:31
@@ -432,6 +436,7 @@ msgid ""
 "Use the arrow keys, <key>Home</key>, <key>End</key>, <key>PageUp</key> or "
 "<key>PageDown</key> on the keyboard."
 msgstr ""
+"Скористайтеся клавішами зі стрілками, клавішами <key>Home</key>, <key>End</key>, <key>PageUp</key> та <key>PageDown</key> на клавіатурі."
 
 #. (itstool) path: item/p
 #: C/basics-edit-file.page:34
@@ -446,6 +451,7 @@ msgid ""
 "a decimal or hexadecimal value. The format of the hexadecimal value must be "
 "0x followed by the offset, for example 0x3."
 msgstr ""
+"Виберіть пункт <gui>Перейти до байта</gui> з головного меню або натисніть комбінацію клавіш <keyseq><key>Ctrl</key><key>J</key></keyseq> і введіть відступ курсора у форматі десяткового або шістнадцяткового числа. Значення у шістнадцятковому форматі має містити префікс 0x, приклад: 0x3."
 
 #. (itstool) path: section/title
 #: C/basics-edit-file.page:41
@@ -485,6 +491,7 @@ msgid ""
 "key>, or by clicking the <gui>Toggle insert mode</gui> button in the status "
 "bar."
 msgstr ""
+"<gui>Режим вставлення</gui> можна увімкнути або вимкнути натисканням клавіші <key>Insert</key> або кнопки <gui>Перемкнути режим вставлення</gui> на смужці стану."
 
 #. (itstool) path: section/p
 #: C/basics-edit-file.page:50
@@ -492,6 +499,7 @@ msgid ""
 "When <gui>Insert Mode</gui> is enabled, this means data will be added to the "
 "file as opposed to replacing existing data."
 msgstr ""
+"Якщо увімкнено <gui>Режим вставлення</gui>, дані додаватимуться до файла, а не замінюватимуть собою наявні дані."
 
 #. (itstool) path: section/p
 #: C/basics-edit-file.page:52
@@ -503,6 +511,7 @@ msgid ""
 "increasing or decreasing their size may cause undefined or unwanted "
 "behaviour in applications that open them."
 msgstr ""
+"На відміну від традиційних текстових редакторів, стан <gui>Режим вставлення</gui> <em>вимкнено</em> є типовим станом у GHex. Причиною є те, що шістнадцяткові редактори типово використовують для редагування наявних даних у двійкових файлах, які мають дуже специфічне компонування. У певних випадках розмір таких файлів може бути фіксованим, а зміна розміру таких файлів може призвести до невизначеної або небажаної поведінки у програмах, які призначено для відкриття цих файлів."
 
 #. (itstool) path: page/title
 #: C/basics-find-replace.page:12
@@ -522,18 +531,22 @@ msgid ""
 "Most basic find operations in GHex can be done by utilizing the <gui>Find</"
 "gui> pane."
 msgstr ""
+"Базові дії з пошуку у GHex можна виконати за допомогою панелі <gui>пошуку</"
+"gui> pane."
 
 #. (itstool) path: section/p
 #: C/basics-find-replace.page:16
 #| msgid "You can save a file in the following ways:"
 msgid "You may toggle the <gui>Find</gui> pane in the following ways:"
 msgstr ""
+"Викликати панель <gui>пошуку</gui> можна в один з таких способів:"
 
 #. (itstool) path: item/p
 #: C/basics-find-replace.page:19
 #| msgid "Click <guibutton>Find Next</guibutton>."
 msgid "Click the <gui>Find</gui> button on the header bar."
 msgstr ""
+"Натиснути кнопку <gui>Знайти</gui> на панелі заголовка вікна програми."
 
 #. (itstool) path: item/p
 #: C/basics-find-replace.page:22
@@ -549,6 +562,7 @@ msgid ""
 "in the same way you would edit a file as described in the <link xref="
 "\"basics-edit-file\"/> section."
 msgstr ""
+"Для полегшення пошуку рядка у шістнадцятковому форматі або у форматі ASCII панель <gui>пошуку</gui> працює як мініатюрний шістнадцятковий редактор. Ви вводите рядок у той самий спосіб, у який редагували б файл. Цей спосіб описано у розділі <link xref=\"basics-edit-file\"/>."
 
 #. (itstool) path: section/p
 #: C/basics-find-replace.page:29
@@ -556,6 +570,7 @@ msgid ""
 "To search for the next occurrence of the requested string in the file from "
 "the current position of the cursor, click the <gui>Find Next</gui> button."
 msgstr ""
+"Щоб знайти наступний відповідник рядка пошуку у файлі від поточної позиції курсора, натисніть кнопку <gui>Знайти наступний</gui>."
 
 #. (itstool) path: section/p
 #: C/basics-find-replace.page:31
@@ -564,6 +579,7 @@ msgid ""
 "from the current position of the cursor, click the <gui>Find Previous</gui> "
 "button."
 msgstr ""
+"Щоб знайти попередній відповідник рядка пошуку у файлі від поточної позиції курсора, натисніть кнопку <gui>Знайти попередній</gui>."
 
 #. (itstool) path: section/p
 #: C/basics-find-replace.page:33
@@ -571,6 +587,7 @@ msgid ""
 "Your search results will also be automatically highlighted in a different "
 "color than the standard selection color."
 msgstr ""
+"Крім того, результати пошуку буде автоматично підсвічено кольором, який відрізняється від стандартного кольору позначення."
 
 #. (itstool) path: section/p
 #: C/basics-find-replace.page:35
@@ -579,6 +596,7 @@ msgid ""
 "is focused, or by clicking its own <gui>Close</gui> button in the bottom-"
 "right-hand corner of the pane."
 msgstr ""
+"Закрити панель <gui>пошуку</gui> можна натисканням клавіші <key>Esc</key>, якщо панель перебуває у фокусі, або натисканням кнопки <gui>Закрити</gui> у нижньому правому куті панелі."
 
 #. (itstool) path: section/title
 #: C/basics-find-replace.page:40
@@ -593,6 +611,7 @@ msgid ""
 "pane, except that it also allows you to replace the next string, or all "
 "strings in the file, with string in the <gui>Replace With</gui> field."
 msgstr ""
+"Панель <gui>пошук із заміною</gui> працює дуже схоже на панель <gui>пошуку</gui>, але також надає змогу вам замінити наступний відповідний рядок або усі відповідні рядки у файлі рядком з поля <gui>Замінити на</gui>."
 
 #. (itstool) path: section/p
 #: C/basics-find-replace.page:44
@@ -601,6 +620,7 @@ msgid ""
 "field with the string in the <gui>Replace With</gui> field, click "
 "<gui>Replace</gui>."
 msgstr ""
+"Щоб замінити наступний за курсором рядок у полі <gui>Знайти рядок</gui> рядком з поля <gui>Замінити на</gui>, натисніть кнопку <gui>Замінити</gui>."
 
 #. (itstool) path: section/p
 #: C/basics-find-replace.page:46
@@ -609,6 +629,8 @@ msgid ""
 "gui> field with the string in the <gui>Replace With</gui> field, click "
 "<gui>Replace All</gui>."
 msgstr ""
+"Щоб замінити усі екземпляри усі екземпляри рядка з поля <gui>Знайти рядок</"
+"gui> рядком з поля <gui>Замінити на</gui>, натисніть кнопку <gui>Замінити все</gui>"
 
 #. (itstool) path: section/p
 #: C/basics-find-replace.page:48
@@ -616,6 +638,7 @@ msgid ""
 "In other respects, the <gui>Find and Replace</gui> pane works as described "
 "in the <link xref=\"#find-pane\"/> section above."
 msgstr ""
+"В інших аспектах панель <gui>пошуку із заміною</gui> працює так, як описано у розділі <link xref=\"#find-pane\"/> вище."
 
 #. (itstool) path: page/title
 #: C/basics-open-file.page:12
@@ -633,6 +656,7 @@ msgstr "Відкрити файл у GHex можна у такі способи:
 #: C/basics-open-file.page:16
 msgid "Click the <gui>Open</gui> button on the header bar."
 msgstr ""
+"Натиснути кнопку <gui>Відкрити</gui> на панелі заголовка вікна програми."
 
 #. (itstool) path: item/p
 #: C/basics-open-file.page:19
@@ -648,6 +672,7 @@ msgid ""
 "to inserting data, which will be what most users want to do when first "
 "opening a pre-existing file."
 msgstr ""
+"Після відкриття файла GHex не вмикатиме автоматично <gui>Режим вставлення</gui>. Так зроблено, щоб можна було негайно почати редагування на місці, замість вставлення даних, тобто того, чого більшість користувачів очікують після відкриття наявного файла."
 
 #. (itstool) path: page/title
 #: C/basics-save-file.page:12
@@ -662,6 +687,7 @@ msgid ""
 "<gui>Save</gui> operation by clicking the <gui>Save</gui> button on the "
 "header bar, or by pressing <keyseq><key>Ctrl</key><key>s</key></keyseq>."
 msgstr ""
+"Щоб зберегти дані файла на місці без зміни його назви і місця зберігання, скористайтеся дією <gui>Зберегти</gui> натисканням кнопки <gui>Зберегти</gui> на смужці заголовка або комбінації клавіш <keyseq><key>Ctrl</key><key>S</key></keyseq>."
 
 #. (itstool) path: page/p
 #: C/basics-save-file.page:16
@@ -670,6 +696,7 @@ msgid ""
 "operation by clicking <gui>Save As</gui> in the <gui>Main menu</gui>, or by "
 "pressing <keyseq><key>Shift</key><key>Ctrl</key><key>S</key></keyseq>."
 msgstr ""
+"Щоб зберегти файл із вибраною вами назвою, скористайтеся дією <gui>Зберегти як</gui> вибором пункту <gui>Зберегти як</gui> у <gui>головному меню</gui> або натисканням комбінації клавіш <keyseq><key>Shift</key><key>Ctrl</key><key>S</key></keyseq>."
 
 #. (itstool) path: page/title
 #: C/conf-grouptype.page:12
@@ -681,11 +708,13 @@ msgstr ""
 #: C/conf-grouptype.page:13
 msgid "GHex allows data in the hex pane to be grouped in the following ways:"
 msgstr ""
+"У GHex можливі такі групування даних на панелі шістнадцяткових даних:"
 
 #. (itstool) path: item/p
 #: C/conf-grouptype.page:16
 msgid "Bytes (8-bit) <em>this is the default</em>"
 msgstr ""
+"Байти (8-бітовий) <em>типове групування</em>"
 
 #. (itstool) path: item/p
 #: C/conf-grouptype.page:19
@@ -709,16 +738,19 @@ msgstr ""
 #: C/conf-grouptype.page:28
 msgid "This setting may be changed in two ways:"
 msgstr ""
+"Значення цього параметра можна змінити у два способу:"
 
 #. (itstool) path: item/p
 #: C/conf-grouptype.page:31
 msgid "From the <gui>Group Data As</gui> submenu of the <gui>Main menu</gui>."
 msgstr ""
+"З підменю <gui>Групувати дані як</gui> у <gui>головному меню</gui>."
 
 #. (itstool) path: item/p
 #: C/conf-grouptype.page:34
 msgid "From the <link xref=\"conf-preferences\"/> dialog."
 msgstr ""
+"За допомогою діалогового вікна <link xref=\"conf-preferences\"/>."
 
 #. (itstool) path: page/title
 #: C/conf-preferences.page:12
@@ -729,11 +761,13 @@ msgstr "Параметри"
 #: C/conf-preferences.page:13
 msgid "The GHex Preferences dialog is divided into two groups:"
 msgstr ""
+"Діалогове вікно налаштувань GHex поділено на дві групи:"
 
 #. (itstool) path: item/p
 #: C/conf-preferences.page:16
 msgid "<em>Display</em>, which pertains to what you see on-screen, and;"
 msgstr ""
+"<em>Представлення</em>, яка керує тим, що ви бачите на екрані, та"
 
 #. (itstool) path: item/p
 #: C/conf-preferences.page:19
@@ -741,6 +775,7 @@ msgid ""
 "<em>Printing</em>, which only affects how hexadecimal files will be printed "
 "on paper, if GHex's printing features are utilized."
 msgstr ""
+"<em>Друкування</em>, яка стосується лише того, які шістнадцяткові файли буде надруковано на папері, якщо ви скористаєтеся можливостями GHex з друку."
 
 #. (itstool) path: section/title
 #: C/conf-preferences.page:24
@@ -759,6 +794,7 @@ msgid ""
 "This allows you to select a font of your choice for the hex/ASCII editor "
 "only."
 msgstr ""
+"За допомогою цього пункту ви можете вибрати лише шрифт для редактора шістнадцяткових даних та даних ASCII."
 
 #. (itstool) path: section/title
 #: C/conf-preferences.page:30
@@ -770,6 +806,7 @@ msgstr ""
 #: C/conf-preferences.page:31
 msgid "This allows you to manually prefer the dark style."
 msgstr ""
+"За допомогою цього пункту ви можете вибрати для інтерфейсу темний стиль."
 
 #. (itstool) path: section/p
 #: C/conf-preferences.page:32
@@ -778,6 +815,7 @@ msgid ""
 "system-wide default for preferring a dark style, which disables the "
 "<gui>Dark Mode</gui> switch from being turned on or off."
 msgstr ""
+"Типово, буде позначено пункт <gui>Типовий системний</gui>. Такий вибір призводить до використання загальносистемного типового варіанта використання темного стилю і вимикання перемикача <gui>Темний режим</gui>."
 
 #. (itstool) path: section/p
 #: C/conf-preferences.page:35
@@ -787,6 +825,7 @@ msgid ""
 "this switch will take immediate effect, so you should be able to see "
 "instantaneously which style you prefer for GHex."
 msgstr ""
+"Якщо зняти позначення з цього пункту, ви зможете вмикати або вимикати <gui>Темний режим</gui> і задавати вручну перевагу темного стилю. Перемикання буде виконано негайно, отже ви одразу зможете скористатися бажаним для вас стилем інтерфейсу GHex."
 
 #. (itstool) path: section/p
 #: C/conf-preferences.page:39
@@ -794,6 +833,7 @@ msgid ""
 "If you want to go back to the system default, simply check the <gui>User "
 "system default</gui> checkbox back on."
 msgstr ""
+"Якщо ви захочете повернутися до типових для системи налаштувань, просто знову позначте пункт <gui>Типовий системний</gui>."
 
 #. (itstool) path: section/title
 #: C/conf-preferences.page:43
@@ -807,11 +847,13 @@ msgid ""
 "This allows you to choose how data will be grouped in the hex pane of the "
 "editor."
 msgstr ""
+"За допомогою цього пункту можна вибрати спосіб групування даних на панелі шістнадцяткових даних редактора."
 
 #. (itstool) path: section/p
 #: C/conf-preferences.page:46
 msgid "See <link xref=\"conf-grouptype\"/> for more details."
 msgstr ""
+"Див. <link xref=\"conf-grouptype\"/>, щоб дізнатися більше."
 
 #. (itstool) path: section/title
 #: C/conf-preferences.page:50
@@ -829,6 +871,7 @@ msgstr ""
 msgid ""
 "This section allows you to choose the fonts you would like for hex printouts."
 msgstr ""
+"За допомогою цього розділу ви можете вибрати шрифти, які слід використати для друку шістнадцяткових даних."
 
 #. (itstool) path: section/p
 #: C/conf-preferences.page:54
@@ -836,6 +879,7 @@ msgid ""
 "<gui>Data font</gui> will apply to the content of your hex document (ie, hex "
 "and ASCII digits)."
 msgstr ""
+"<gui>Шрифт даних</gui> буде застосовано до даних вашого шістнадцяткового документа (тобто шістнадцяткових цифр та даних ASCII)."
 
 #. (itstool) path: section/p
 #: C/conf-preferences.page:56
@@ -843,6 +887,7 @@ msgid ""
 "<gui>Header font</gui> will apply to the header on your printout, which will "
 "show the document title and page number."
 msgstr ""
+"<gui>Шрифт заголовка</gui> буде застосовано до заголовка надрукованого матеріалу, у якому буде наведено заголовок документа та номер сторінки."
 
 #. (itstool) path: section/title
 #: C/conf-preferences.page:60
@@ -857,6 +902,7 @@ msgid ""
 "have alternating rows of your hex and ASCII data printed out with a shaded "
 "grey background to make reading each row easier."
 msgstr ""
+"Якщо буде позначено пункт <gui>Малювання рядків різними кольорами</gui>, на відбитку сусідні рядки шістнадцяткових даних та даних ASCII буде надруковано із різним тлом (сірим і білим), що може спростити читання рядків."
 
 #. (itstool) path: section/p
 #: C/conf-preferences.page:64
@@ -864,6 +910,7 @@ msgid ""
 "Please note that this may use more printer ink/toner than leaving it "
 "disabled."
 msgstr ""
+"Будь ласка, зауважте, що при цьому може бути витрачено дещо більше чорнила або тонера принтера, ніж якщо не позначати цей пункт."
 
 #. (itstool) path: section/p
 #: C/conf-preferences.page:65
@@ -873,6 +920,7 @@ msgid ""
 "for ease of reading. If you want shaded rows but are not sure what to "
 "specify here, leaving it as the default, \"1\", should be fine."
 msgstr ""
+"За допомогою пункту <gui>Розбиття довгих рядків</gui> ви можете вказати, скільки рядків буде затінено, а потім, скільки рядків буде надруковано без фону, на повторюваній основі. Знову ж таки, це для полегшення читання. Якщо ви хочете бачити затінені рядки, але не певні, яке значення тут вказати, лишіть типове, «1». Має вийти непогано."
 
 #. (itstool) path: page/title
 #: C/index.page:12
@@ -945,6 +993,7 @@ msgid ""
 "you to easily insert such characters into a file without having to memorize "
 "its decimal or hexidecimal character code."
 msgstr ""
+"До складу GHex включено зручну таблицю багатьох стандартних символів ASCII, тому ви зможете легко вставляти такі символи до файла без запам'ятовування їхніх десяткових або шістнадцяткових кодів."
 
 #. (itstool) path: page/p
 #: C/tools-chartable.page:16
@@ -952,6 +1001,7 @@ msgid ""
 "You may access the character table by selecting <gui>Character Table</gui> "
 "from the <gui>Tools</gui> submenu of the <gui>Main menu</gui>."
 msgstr ""
+"Отримати доступ до таблиці символів можна за допомогою пункту <gui>Таблиця символів</gui> у підменю <gui>Засоби</gui> <gui>головного меню</gui>."
 
 #. (itstool) path: page/p
 #: C/tools-chartable.page:18
@@ -959,6 +1009,7 @@ msgid ""
 "While the character table is open, you may still select the hex editor and "
 "move the cursor around, as per usual."
 msgstr ""
+"Ви можете вибрати вікно шістнадцяткового редактора і пересувати у ньому курсор у звичний спосіб, доки відкрито вікно таблиці символів."
 
 #. (itstool) path: page/p
 #: C/tools-chartable.page:20
@@ -966,6 +1017,7 @@ msgid ""
 "The columns showing the values in various formats such as ASCII, hex, "
 "decimal, etc., are for ease of reference."
 msgstr ""
+"Стовпчики із значеннями у різних форматах, зокрема ASCII, шістнадцятковому, десятковому тощо, показано із довідковою метою."
 
 #. (itstool) path: page/p
 #: C/tools-chartable.page:22
@@ -975,6 +1027,7 @@ msgid ""
 "would like to insert, you may insert that character into the file at the "
 "cursor position in the following ways:"
 msgstr ""
+"Здійснювати навігацію символами у таблиці можна клацанням на них або за допомогою клавіатури, у звичний спосіб. Коли буде підсвічено символ, який ви хочете вставити, ви можете вставити цей символ до файла у позиції курсора у один з таких способів:"
 
 #. (itstool) path: item/p
 #: C/tools-chartable.page:28
@@ -982,6 +1035,7 @@ msgid ""
 "Press <key>Enter</key> or double-click on the character you would like to "
 "insert."
 msgstr ""
+"Натисніть клавішу <key>Enter</key> або виконайте подвійне клацання на символі, який ви хочете вставити."
 
 #. (itstool) path: item/p
 #: C/tools-chartable.page:31
@@ -994,6 +1048,7 @@ msgstr "Натисніть кнопку <gui>Вставити символ</gui>
 msgid ""
 "The character table can be closed by clicking the <gui>Close</gui> button."
 msgstr ""
+"Закрити вікно таблиці символів можна за допомогою натискання кнопки <gui>Закрити</gui>."
 
 #. (itstool) path: page/title
 #: C/tools-converter.page:12
@@ -1008,6 +1063,7 @@ msgid ""
 "tool to convert values from one format to another, or to obtain the value "
 "pointed to by the cursor and to convert that value into various formats."
 msgstr ""
+"До складу GHex включено засіб перетворення систем числення, яким можна скористатися як окремим інструментом для перетворення значень з одного формату до іншого або для отримання значень для символу під курсором і перетворення його до різних форматів."
 
 #. (itstool) path: page/p
 #: C/tools-converter.page:16
@@ -1015,6 +1071,7 @@ msgid ""
 "You may access the base converter by selecting <gui>Base Converter</gui> "
 "from the <gui>Tools</gui> submenu of the <gui>Main menu</gui>."
 msgstr ""
+"Отримати доступ до засобу перетворення систем числення за допомогою пункту <gui>Конвертор систем числення</gui> у підменю <gui>Засоби</gui> <gui>головного меню</gui>."
 
 #. (itstool) path: page/p
 #: C/tools-converter.page:18
@@ -1022,6 +1079,7 @@ msgid ""
 "While the base converter is open, you may still select the hex editor and "
 "move the cursor around, as per usual."
 msgstr ""
+"Ви можете вибрати вікно шістнадцяткового редактора і пересувати у ньому курсор у звичний спосіб, доки відкрито вікно конвертора систем числення."
 
 #. (itstool) path: page/p
 #: C/tools-converter.page:20
@@ -1032,6 +1090,7 @@ msgid ""
 "To convert the value at the cursor position, click the <gui>Get cursor "
 "value</gui> button."
 msgstr ""
+"Щоб перетворити значення у позиції курсора, натисніть кнопку <gui>Взяти значення під курсором</gui>."
 
 #. (itstool) path: page/p
 #: C/tools-converter.page:22
@@ -1040,6 +1099,7 @@ msgid ""
 "format delimited therein (clearing any pre-existing value as necessary), and "
 "press <key>Enter</key>."
 msgstr ""
+"Щоб перетворити значення вручну, можете ввести його будь-яке з полів у вказаному міткою форматі (приберіть попереднє значення, якщо це потрібно) і натиснути кнопку <key>Enter</key>."
 
 #. (itstool) path: page/p
 #: C/tools-converter.page:25
@@ -1050,12 +1110,14 @@ msgid ""
 "grab the cursor value and to get some examples of valid values, and try "
 "again."
 msgstr ""
+"Якщо вами буде введено некоректне значення, у полі буде показано повідомлення «ПОМИЛКА». Така помилка не є критичною, програма просто повідомляє вам, що не змогла розпізнати введене значення. Просто введіть коректне значення або натисніть кнопку <gui>Взяти значення під курсором</gui>, щоб захопити значення під курсором і отримати приклади коректних значень, а потім повторіть спробу."
 
 #. (itstool) path: page/p
 #: C/tools-converter.page:29
 msgid ""
 "The base converter can be closed by clicking the <gui>Close</gui> button."
 msgstr ""
+"Закрити вікно конвертора систем числення можна за допомогою натискання кнопки <gui>Закрити</gui>."
 
 #. (itstool) path: para/ulink
 #: C/legal.xml:9
