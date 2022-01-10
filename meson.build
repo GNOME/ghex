@@ -47,7 +47,8 @@ ghex_po_dir = join_paths(meson.source_root(), 'po')
 warning_cflags = [
   '-Wno-unused-variable',
   '-Wno-unused-parameter',
-  '-Werror=implicit'
+  '-Werror=implicit',
+  '-Wformat=2',
 ]
 c_compiler = meson.get_compiler('c')
 supported_warning_cflags = c_compiler.get_supported_arguments(warning_cflags)
