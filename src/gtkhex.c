@@ -1132,10 +1132,14 @@ render_offsets (HexWidget *self,
 	snprintf (fmt, BUFLEN-1, "%%0%dlX", off_cpl); 
 	hex_widget_layout_set_offset_cpl (HEX_WIDGET_LAYOUT(self->layout_manager), off_cpl);
 
-	for (int i = min_lines; i <= max_lines; i++) {
+	for (int i = min_lines; i <= max_lines; i++)
+	{
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-nonliteral"
 		/* generate offset string and place in temporary buffer */
 		sprintf(off_str, fmt,
 				(self->top_line + i) * self->cpl + STARTING_OFFSET);
+#pragma GCC diagnostic pop
 
 		/* build pango layout for offset line; draw line with gtk. */
 		pango_layout_set_text (self->olayout, off_str, off_cpl);

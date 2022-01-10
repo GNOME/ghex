@@ -171,14 +171,18 @@ set_error (HexBufferMmap *self, const char *blurb)
 	 * (eg, 'No such file or directory').
 	 */
 		message = g_strdup_printf (_("%s: %s"), blurb, g_strerror (errno));
-		g_debug ("%s: %s", __func__, message);
 	}
+	else
+	{
+		message = g_strdup (blurb);
+	}
+	g_debug ("%s: %s", __func__, message);
 
 	g_set_error (&self->error,
 			HEX_BUFFER_MMAP_ERROR,
 			errno,
-			message ? message : blurb,
-			g_strerror (errno));
+			"%s",
+			message);
 
 	if (errno)
 		self->last_errno = errno;
