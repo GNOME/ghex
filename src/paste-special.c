@@ -169,7 +169,7 @@ hex_paste_data_to_delimited_hex (void)
 
 	for (int i = 0; i < elems; ++i)
 	{
-		g_string_append_printf (buf, "%.2X", doc_data[i]);
+		g_string_append_printf (buf, "%.2X", (guchar)doc_data[i]);
 
 		if (i < elems - 1)
 			g_string_append_c (buf, ' ');
