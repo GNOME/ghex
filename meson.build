@@ -1,7 +1,7 @@
 project(
   'ghex', 'c',
   version: '4.beta.1',
-  meson_version: '>=0.53.0',
+  meson_version: '>=0.59.0',
   license: 'GPL2'
 )
 
@@ -130,10 +130,6 @@ configure_file(
   configuration: config_h
 )
 
-update_icon_cache_prg = find_program('gtk-update-icon-cache', required : false)
-update_desktop_database_prg = find_program('update-desktop-database', required : false)
-compile_schemas_prg = find_program('glib-compile-schemas', required : false)
-
 subdir('src')
 subdir('data')
 subdir('docs')
@@ -141,7 +137,11 @@ subdir('icons')
 subdir('po')
 subdir('help')
 
-meson.add_install_script('meson_post_install.py')
+gnome.post_install(
+  glib_compile_schemas: true,
+  gtk_update_icon_cache: true,
+  update_desktop_database: true,
+)
 
 ### SUMMARY PRINTOUT ###
 
