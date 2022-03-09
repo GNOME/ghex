@@ -7,1353 +7,1162 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex gnome-3-8\n"
-"POT-Creation-Date: 2015-03-26 18:25+0000\n"
-"PO-Revision-Date: 2015-03-27 13:21+0300\n"
-"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
+"POT-Creation-Date: 2022-01-07 18:42+0000\n"
+"PO-Revision-Date: 2022-03-07 07:22+1000\n"
+"Last-Translator: Ser82-png <sw@atrus.ru>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.3\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Алексей Кабанов <ak099@mail.ru>, 2015"
-
-#. (itstool) path: imagedata
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.docbook:222
-msgctxt "_"
-msgid ""
-"external ref='figures/ghex_window_empty.png' "
-"md5='89b78d734e989c368b82592f385db8dd'"
 msgstr ""
-"external ref='figures/ghex_window_empty.png' "
-"md5='89b78d734e989c368b82592f385db8dd'"
+"Алексей Кабанов <ak099@mail.ru>, 2015\n"
+"Ser82-png <sw@atrus.ru>, 2022"
 
-#. (itstool) path: imagedata
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.docbook:248
-msgctxt "_"
+#. (itstool) path: credit/name
+#: C/advanced-clipboard.page:7 C/basics-create-new-file.page:7
+#: C/basics-edit-file.page:7 C/basics-find-replace.page:7
+#: C/basics-open-file.page:7 C/basics-save-file.page:7 C/conf-grouptype.page:7
+#: C/conf-preferences.page:7 C/index.page:6 C/tools-chartable.page:7
+#: C/tools-converter.page:7
+msgid "Logan Rathbone"
+msgstr "Logan Rathbone"
+
+#. (itstool) path: credit/years
+#: C/advanced-clipboard.page:9 C/basics-create-new-file.page:9
+#: C/basics-edit-file.page:9 C/basics-find-replace.page:9
+#: C/basics-open-file.page:9 C/basics-save-file.page:9 C/conf-grouptype.page:9
+#: C/conf-preferences.page:9 C/index.page:8 C/tools-chartable.page:9
+#: C/tools-converter.page:9
+msgid "2022"
+msgstr "2022"
+
+#. (itstool) path: page/title
+#: C/advanced-clipboard.page:12
+msgid "Clipboard features"
+msgstr "Возможности буфера обмена"
+
+#. (itstool) path: page/p
+#: C/advanced-clipboard.page:13
 msgid ""
-"external ref='figures/ghex_window_open.png' "
-"md5='9c4ae66bb45a43803e1f70abfaede88b'"
+"As copying and pasting hexadecimal values is not a standard operation in "
+"most applications, GHex has some unique clipboard features."
 msgstr ""
-"external ref='figures/ghex_window_open.png' "
-"md5='9c4ae66bb45a43803e1f70abfaede88b'"
+"Поскольку копирование и вставка шестнадцатеричных значений не является "
+"стандартной операцией в большинстве приложений, GHex имеет некоторые "
+"уникальные особенности работы с буфером обмена."
 
-#. (itstool) path: articleinfo/title
-#: C/index.docbook:23
-msgid "User manual for GHex"
-msgstr "Руководство пользователя GHex"
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:16
+msgid "Basic clipboard operations"
+msgstr "Базовые операции с буфером обмена"
 
-#. (itstool) path: abstract/para
-#: C/index.docbook:26
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:17
 msgid ""
-"GHex is a simple binary editor. It lets users view and edit a binary file in "
-"both hex and ascii with a multiple level undo/redo mechanism. Features "
-"include find and replace functions, conversion between binary, octal, "
-"decimal and hexadecimal values, and use of an alternative, user-configurable "
-"MDI concept that lets users edit multiple documents with multiple views of "
-"each."
+"Generally, when copying and pasting data within GHex, you need not concern "
+"yourself with clipboard operations."
 msgstr ""
-"GHex — это простой редактор двоичных файлов. Он позволяет пользователям "
-"просматривать и редактировать двоичные файлы как в 16-ричном, так и в ASCII-"
-"представлении и имеет многоуровневый механизм отмены/возврата последних "
-"изменений. Среди его возможностей функции поиска и замены, преобразование "
-"между двоичными, восьмеричными, десятичными и шестнадцатеричными значениями, "
-"а также использование альтернативного, настраиваемого пользователями MDI-"
-"интерфейса, позволяющего редактировать одновременно несколько документов, "
-"каждый из которых отображается в нескольких представлениях."
+"Как правило, при копировании и вставке данных в GHex вам не нужно "
+"беспокоиться об операциях с буфером обмена."
 
-#. (itstool) path: articleinfo/copyright
-#: C/index.docbook:36
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:19
+msgid "Copying and pasting within GHex works in the usual way."
+msgstr "Копирование и вставка в GHex работает обычным образом."
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:20
 msgid ""
-"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
-"Microsystems</holder>"
+"To cut or copy data, highlight the data you would like to cut or copy, and "
+"do any of the following:"
 msgstr ""
-"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
-"Microsystems</holder>"
+"Чтобы вырезать или скопировать данные, выделите необходимые данные и "
+"выполните одно из следующих действий:"
 
-#. (itstool) path: articleinfo/copyright
-#: C/index.docbook:42
-msgid "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
-msgstr "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
-
-#. (itstool) path: publisher/publishername
-#. (itstool) path: revdescription/para
-#: C/index.docbook:54 C/index.docbook:99 C/index.docbook:107
-#: C/index.docbook:115 C/index.docbook:123 C/index.docbook:131
-#: C/index.docbook:139 C/index.docbook:149
-msgid "GNOME Documentation Project"
-msgstr "Проект документирования GNOME"
-
-#. (itstool) path: authorgroup/author
-#: C/index.docbook:63
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:24
 msgid ""
-"<firstname>Sun</firstname> <surname>GNOME Documentation Team</surname> "
-"<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
-"affiliation>"
+"Right-click anywhere in the hex or ASCII pane to bring up the context menu, "
+"and select the appropriate option."
 msgstr ""
-"<firstname>Sun</firstname> <surname>Команда документирования GNOME</surname> "
-"<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
-"affiliation>"
+"Щёлкните правой кнопкой мыши в любом месте шестнадцатеричной или ASCII-"
+"панели для вызова контекстного меню, и выберите соответствующий параметр."
 
-#. (itstool) path: authorgroup/author
-#: C/index.docbook:71
-msgid ""
-"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
-"<orgname>GNOME Documentation Project</orgname> <address> <email>jaka@gnu."
-"org</email> </address> </affiliation>"
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:28
+msgid "To cut, press <keyseq><key>Ctrl</key><key>X</key></keyseq>."
+msgstr "Чтобы вырезать, нажмите <keyseq><key>Ctrl</key><key>X</key></keyseq>."
+
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:31
+msgid "To copy, press <keyseq><key>Ctrl</key><key>C</key></keyseq>."
 msgstr ""
-"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
-"<orgname>Проект документирования GNOME</orgname> <address> <email>jaka@gnu."
-"org</email> </address> </affiliation>"
+"Чтобы скопировать, нажмите <keyseq><key>Ctrl</key><key>C</key></keyseq>."
 
-#. (itstool) path: revdescription/para
-#: C/index.docbook:98 C/index.docbook:106 C/index.docbook:114
-#: C/index.docbook:122 C/index.docbook:130 C/index.docbook:138
-msgid "Sun GNOME Documentation Team"
-msgstr "Команда документирования GNOME компании Sun"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:34
+msgid "To paste data:"
+msgstr "Чтобы вставить данные:"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:94
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:37
 msgid ""
-"<revnumber>GHex Manual V2.5</revnumber> <date>December 2005</date> <_:"
-"revdescription-1/>"
+"Right-click to bring up the context menu, and click <gui>Paste</gui>; or"
 msgstr ""
-"<revnumber>Руководство пользователя GHex V2.5</revnumber> <date>Декабрь "
-"2005</date> <_:revdescription-1/>"
+"Щёлкните правой кнопкой мыши, чтобы вызвать контекстное меню, и выберите "
+"<gui>Вставить</gui>; или"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:102
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:40
+msgid "Press <keyseq><key>Ctrl</key><key>V</key></keyseq>."
+msgstr "Нажмите <keyseq><key>Ctrl</key><key>V</key></keyseq>."
+
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:45
+msgid "Paste Special"
+msgstr "Специальная вставка"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:46
 msgid ""
-"<revnumber>GHex Manual V2.4</revnumber> <date>April 2003</date> <_:"
-"revdescription-1/>"
+"If you have used other applications, such as text editors or word processors "
+"with a Paste Special dialog, you may be familiar with this feature."
 msgstr ""
-"<revnumber>Руководство пользователя GHex V2.4</revnumber> <date>Апрель 2003</"
-"date> <_:revdescription-1/>"
+"Если вы использовали другие приложения, такие как текстовые редакторы или "
+"текстовые процессоры, имеющие диалоговое окно «Специальная вставка», то вы, "
+"вероятно, уже знакомы с этой функцией."
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:110
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:48
+msgid "To activate the Paste Special dialog in GHex:"
+msgstr "Чтобы активировать диалоговое окно «Специальная вставка» в GHex:"
+
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:51
 msgid ""
-"<revnumber>GHex Manual V2.3</revnumber> <date>August 2002</date> <_:"
-"revdescription-1/>"
+"Click <gui>Paste Special</gui> from the <gui>Edit</gui> submenu of the "
+"<gui>Main menu</gui>; or"
 msgstr ""
-"<revnumber>Руководство пользователя GHex V2.3</revnumber> <date>Август 2002</"
-"date> <_:revdescription-1/>"
+"Щёлкните <gui>Специальная вставка</gui> в подменю <gui>Правка</gui> в "
+"<gui>Главном меню</gui>; или"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:118
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:54
+msgid "Press <keyseq><key>Shift</key><key>Ctrl</key><key>V</key></keyseq>."
+msgstr "Нажмите <keyseq><key>Shift</key><key>Ctrl</key><key>V</key></keyseq>."
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:57
 msgid ""
-"<revnumber>GHex Manual V2.2</revnumber> <date>August 2002</date> <_:"
-"revdescription-1/>"
+"The options that appear when <gui>Paste Special</gui> is activated are "
+"context-dependent."
 msgstr ""
-"<revnumber>Руководство пользователя GHex V2.2</revnumber> <date>Август 2002</"
-"date> <_:revdescription-1/>"
+"Параметры, которые появляются при активации <gui>Специальной вставки</gui>, "
+"зависят от контекста."
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:126
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:58
+msgid "The most common options are described below."
+msgstr "Наиболее распространенные варианты описаны ниже."
+
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:60 C/advanced-clipboard.page:110
+msgid "GHex Paste Data"
+msgstr "Вставка данных GHex"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:61
 msgid ""
-"<revnumber>GHex Manual V2.1</revnumber> <date>July 2002</date> <_:"
-"revdescription-1/>"
+"This option will only appear if your current clipboard selection contains "
+"data copied directly from GHex. This represents clipboard data native to "
+"GHex, and will be pasted into the application as if you had utilized an "
+"ordinary <gui>Paste</gui> operation."
 msgstr ""
-"<revnumber>Руководство пользователя GHex V2.1</revnumber> <date>Июль 2002</"
-"date> <_:revdescription-1/>"
+"Этот вариант появится только в том случае, если ваш буфер обмена содержит "
+"данные, скопированные непосредственно из GHex. Он соответствует данным "
+"буфера обмена, которые являются естественными для GHex, и эти данные будут "
+"вставлены в программу так, как если бы было использовано обычное действие "
+"<gui>Вставить </gui>."
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:134
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:67 C/advanced-clipboard.page:113
+msgid "Plain text (as ASCII)"
+msgstr "Обычный текст (как ASCII)"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:68
 msgid ""
-"<revnumber>GHex Manual V2.0</revnumber> <date>March 2002</date> <_:"
-"revdescription-1/>"
+"This allows you to paste the data from the clipboard into the GHex buffer, "
+"forcing GHex to assume the pasted data will be plain ASCII text."
 msgstr ""
-"<revnumber>Руководство пользователя GHex V2.0</revnumber> <date>Март 2002</"
-"date> <_:revdescription-1/>"
+"Этот вариант позволяет вставить данные из буфера обмена в буфер GHex, "
+"принудительно указав GHex, что следует предполагать, что вставленные данные "
+"являются обычным текстом из символов ASCII."
 
-#. (itstool) path: revdescription/para
-#: C/index.docbook:146
-msgid "Jaka Mocnik <email>jaka@gnu.org</email>"
-msgstr "Jaka Mocnik <email>jaka@gnu.org</email>"
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:72 C/advanced-clipboard.page:119
+msgid "Plain text (Unicode)"
+msgstr "Обычный текст (Unicode)"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:142
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:73
 msgid ""
-"<revnumber>GHex Manual V1.0</revnumber> <date>2000</date> <_:"
-"revdescription-1/>"
+"This allows you to paste the data from the clipboard into the GHex buffer, "
+"forcing GHex to assume the pasted data will be text encoded in UTF-8 format."
 msgstr ""
-"<revnumber>Руководство пользователя GHex V1.0</revnumber> <date>2000</date> "
-"<_:revdescription-1/>"
+"Этот вариант позволяет вставить данные из буфера обмена в буфер GHex, "
+"принудительно указав GHex, что следует предполагать, что вставленные данные "
+"являются обычным текстом из символов UTF-8."
 
-#. (itstool) path: articleinfo/releaseinfo
-#: C/index.docbook:154
-msgid "This manual describes version 2.19 of GHex."
-msgstr "Данное руководство описывает GHex версии 2.19."
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:77 C/advanced-clipboard.page:116
+msgid "Plain text (as space-delimited hex pairs)"
+msgstr "Обычный текст (как разделённые пробелами шестнадцатеричные пары)"
 
-#. (itstool) path: legalnotice/title
-#: C/index.docbook:157
-msgid "Feedback"
-msgstr "Обратная связь"
-
-#. (itstool) path: legalnotice/para
-#: C/index.docbook:158
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:78
 msgid ""
-"To report a bug or make a suggestion regarding the GHex application or this "
-"manual, follow the directions in the <ulink url=\"help:gnome-feedback\" type="
-"\"help\">GNOME Feedback Page</ulink>."
+"This unique option assumes that GHex can expect to receive plain, ASCII text "
+"that is specifically formatted as hex nibble-pairs, separated by a single "
+"space each."
 msgstr ""
-"Для того, чтобы сообщить об ошибке или внести предложение, касающееся "
-"приложения GHex или этого руководства, следуйте инструкциям на <ulink url="
-"\"help:gnome-feedback\" type=\"help\">странице обратной связи GNOME</ulink>."
+"Эта уникальная опция предполагает, что GHex может рассчитывать на получение "
+"простого текста ASCII, который специально отформатирован как "
+"шестнадцатеричные пары полубайтов, разделенные пробелом."
 
-#. (itstool) path: article/indexterm
-#: C/index.docbook:164
-msgid "<primary>GHex</primary>"
-msgstr "<primary>GHex</primary>"
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:174
-msgid "Introduction"
-msgstr "Введение"
-
-#. (itstool) path: sect1/para
-#: C/index.docbook:175
-msgid ""
-"The <application>GHex</application> application enables you to perform the "
-"following actions:"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:81
+msgid "This allows hexadecimal data to be pasted back into GHex cleanly."
 msgstr ""
-"Приложение <application>GHex</application> позволяет выполнять следующие "
-"действия:"
+"Это позволяет аккуратно вставлять шестнадцатеричные данные обратно в GHex."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:177
-msgid "View a file in ASCII or hexadecimal format simultaneously."
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:82
+msgid ""
+"For example, if <code>48 45 4C 4C 4F</code> is in the clipboard, selecting "
+"this option will implicitly convert this hex sequence to an ASCII character "
+"sequence (in this case, \"HELLO\"), and insert it into the GHex buffer."
 msgstr ""
-"Просматривать содержимое файла в ASCII и шестнадцатеричном формате "
-"одновременно."
+"Например, если <code>48 45 4C 4C 4F</code> находится в буфере обмена, выбор "
+"этой опции преобразует данную шестнадцатеричную последовательность в "
+"последовательность символов ASCII (в данном случае «HELLO») и вставляет её в "
+"буфер обмена GHex."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:179
-msgid "Edit a file in either ASCII or hexadecimal format."
-msgstr "Редактировать файл в ASCII или шестнадцатеричном формате."
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:187
-msgid "Getting Started"
-msgstr "Начало работы"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:192
-msgid "To Start GHex"
-msgstr "Запуск GHex"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:194
-msgid "You can start <application>GHex</application> in the following ways:"
-msgstr "Запустить <application>GHex</application> можно следующими способами:"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:197
-msgid "<guimenu>Applications</guimenu> menu"
-msgstr "Меню <guimenu>Приложения</guimenu>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:199
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:85
 msgid ""
-"Choose <menuchoice><guisubmenu>Accessories</guisubmenu><guimenuitem>Hex "
-"Editor</guimenuitem></menuchoice>."
+"This option can be combined with <gui>Copy Special</gui> to allow an "
+"external text editor of your choice to edit hex data copied from GHex, and "
+"paste it back into GHex cleanly."
 msgstr ""
-"Выберите <menuchoice><guisubmenu>Инструменты</guisubmenu><guimenuitem>Hex "
-"Editor</guimenuitem></menuchoice>."
+"Этот параметр можно комбинировать со <gui>Специальным копированием</gui>, "
+"чтобы иметь возможность редактировать шестнадцатеричные данные, "
+"скопированные из GHex, во внешнем редакторе и аккуратно вставлять их обратно "
+"в GHex."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:203
-msgid "Command line"
-msgstr "Командная строка"
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:91
+msgid "Copy Special"
+msgstr "Специальное копирование"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:205
-msgid "Execute the following command: <command>ghex</command>"
-msgstr "Выполните следующую команду: <command>ghex</command>"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:212
-msgid "When You Start GHex"
-msgstr "После запуска GHex"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:214
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:92
 msgid ""
-"When you start <application>GHex</application>, the following window is "
-"displayed."
+"Unlike Paste Special, which is a feature present in many ordinary text "
+"editors and word processors, Copy Special is a feature that was created "
+"specifically for GHex, and thus may not be familiar to many users."
 msgstr ""
-"После запуска <application>GHex</application> отображается следующее окно."
+"В отличие от «Специальной вставки», которая присутствует во многих обычных "
+"текстовых редакторах и текстовых процессорах, «Специальное копирование» — "
+"это функция, созданная специально для GHex, и поэтому она для многих "
+"пользователей может быть незнакома."
 
-#. (itstool) path: figure/title
-#: C/index.docbook:218
-msgid "GHex Window Before You Open a File"
-msgstr "Окно GHex до открытия файла"
-
-#. (itstool) path: screenshot/mediaobject
-#: C/index.docbook:220
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:95
 msgid ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window before "
-"you open a file.</phrase> </textobject>"
+"Copy Special allows you to copy data <em>from</em> GHex into the format of "
+"your choice. You may not need this feature unless you intend to paste data "
+"from GHex into other applications, and would like minute control over how "
+"that is done."
 msgstr ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Показывает главное окно GHex "
-"до открытия файла.</phrase> </textobject>"
+"«Специальное копирование» позволяет копировать данные <em>из</em> GHex в "
+"формат по вашему выбору. Эта функция вам может не понадобиться, если вы не "
+"собираетесь вставлять данные из GHex в другие приложения и не хотите "
+"контролировать результат."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:238
-msgid "To Open a File"
-msgstr "Открытие файла"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:98
+msgid "To activate the Copy Special dialog in GHex:"
+msgstr "Чтобы активировать диалоговое окно «Специальное копирование» в GHex:"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:239
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:101
 msgid ""
-"To open a file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Open</"
-"guimenuitem></menuchoice>. Select the file that you want to open, then click "
-"<guibutton>OK</guibutton>. You can open multiple files in <application>GHex</"
-"application>. <application>GHex</application> displays each file in a new "
-"window."
+"Click <gui>Copy Special</gui> from the <gui>Edit</gui> submenu of the "
+"<gui>Main menu</gui>; or"
 msgstr ""
-"Чтобы открыть файл, выберите <menuchoice><guimenu>Файл</"
-"guimenu><guimenuitem>Открыть</guimenuitem></menuchoice>. Выберите нужный "
-"файл, затем нажмите <guibutton>ОК</guibutton>. <application>GHex</"
-"application> позволяет открыть несколько файлов — каждый из них будет открыт "
-"в отдельном окне."
+"Щёлкните <gui>Специальное копирование</gui> в подменю <gui>Правка</gui> в "
+"<gui>Главном меню</gui>; или"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:240
-msgid ""
-"When you open a file in <application>GHex</application>, the application "
-"displays the file in the following window."
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:104
+msgid "Press <keyseq><key>Shift</key><key>Ctrl</key><key>C</key></keyseq>."
+msgstr "Нажмите <keyseq><key>Shift</key><key>Ctrl</key><key>C</key></keyseq>."
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:107
+msgid "The options that appear when you activate Copy Special are:"
 msgstr ""
-"Когда файл открыт в <application>GHex</application>, окно приложения "
-"принимает следующий вид."
+"Варианты, которые появляются, когда вы активируете «Специальное копирование»:"
 
-#. (itstool) path: figure/title
-#: C/index.docbook:244
-msgid "GHex Window with an Open File"
-msgstr "Окно GHex с открытым файлом"
-
-#. (itstool) path: screenshot/mediaobject
-#: C/index.docbook:246
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:122
 msgid ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window with an "
-"open file</phrase> </textobject>"
+"These options work as described above in the <link xref=\"#paste-special\"/> "
+"section above, but in reverse. In other words, the data copied from GHex "
+"<em>to</em> the clipboard will be copied in the specified format."
 msgstr ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Показывает главное окно GHex с "
-"открытым файлом</phrase> </textobject>"
+"Эти параметры работают так же, как описано выше в разделе <link xref="
+"\"#paste-special\"/>, но в обратном порядке. Другими словами, данные, "
+"скопированные из GHex <em>в</em> буфер обмена, будут скопированы в указанном "
+"формате."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:258
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:125
 msgid ""
-"The <application>GHex</application> window contains the following elements:"
-msgstr "Окно <application>GHex</application> содержит следующие элементы:"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:261
-msgid "Menubar"
-msgstr "Строка меню"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:263
-msgid ""
-"The menus on the menubar contain all the commands that you need to work with "
-"files in <application>GHex</application>."
+"This allows you to have control over how clipboard data copied from GHex "
+"will be pasted <em>into</em> other applications."
 msgstr ""
-"Строка меню содержит все команды, которые понадобятся для работы с файлами в "
-"<application>GHex</application>."
+"Это позволяет вам контролировать, как данные буфера обмена, скопированные из "
+"GHex, будут вставлены <em>в</em> другие приложения."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:267
-msgid "Cursor offsets column"
-msgstr "Столбец смещений"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:269
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:127
 msgid ""
-"The cursor offset is the distance between the beginning of the file and the "
-"first byte in each line. By default, <application>GHex</application> "
-"displays the cursor offsets column to the left of the hexadecimal view."
+"This is mostly intended to allow for space-delimited hex pairs to be edited "
+"in third party applications and then pasted back to GHex cleanly. However, "
+"there may be other interesting uses for this feature as well. Since GHex, "
+"like any hex editor, is often used to edit unusual data types, there may be "
+"other times in which it is desirable for the user to have full control over "
+"how the data from the buffer is copied to the clipboard."
 msgstr ""
-"Смещение — это расстояние между началом файла и первым байтом в каждой "
-"строке. По умолчанию <application>GHex</application> показывает столбец "
-"смещений слева от шестнадцатеричного представления."
+"Эта функция предназначена для того, чтобы было возможно редактировать "
+"шестнадцатеричные пары с разделителями-пробелами в сторонних приложениях, а "
+"затем аккуратно вставлять их обратно в GHex. Однако у этой функции могут "
+"быть и другие интересные применения. Поскольку GHex, как и любой "
+"шестнадцатеричный редактор, часто используется для редактирования необычных "
+"типов данных, могут быть и другие случаи, когда пользователю желательно "
+"иметь полный контроль над тем, как данные копируются в буфер обмена."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:273
-msgid "Display pane on left side"
-msgstr "Левая панель"
+#. (itstool) path: page/title
+#: C/basics-create-new-file.page:12
+msgid "Create a new file"
+msgstr "Создание нового файла"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:275
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:13
+#| msgid "You can save a file in the following ways:"
+msgid "In GHex a new file can be created in the following ways:"
+msgstr "В GHex создать новый файл можно несколькими способами:"
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:16
+msgid "Select <gui>New</gui> from the <gui>Main menu</gui>."
+msgstr "Выберите <gui>Новый</gui> в <gui>Главном меню</gui>."
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:19
+msgid "Press <keyseq><key>Ctrl</key><key>N</key></keyseq>."
+msgstr "Нажмите <keyseq><key>Ctrl</key><key>N</key></keyseq>."
+
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:22
 msgid ""
-"The display pane on the left side of the display area displays a hexadecimal "
-"view of the file."
+"When a new file is created, GHex will toggle <gui>Insert Mode</gui> on, so "
+"that you may start adding data to your new file right away."
 msgstr ""
-"В левой панели отображается шестнадцатеричное представление содержимого "
-"файла."
+"При создании нового файла GHex включит <gui>Режим вставки</gui>, чтобы вы "
+"могли сразу же начать добавлять данные в новый файл."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:279
-msgid "Display pane on right side"
-msgstr "Правая панель"
+#. (itstool) path: page/title
+#: C/basics-edit-file.page:12
+msgid "Editing files"
+msgstr "Редактирование файлов"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:281
-msgid ""
-"The display pane on the right side of the display area displays an ASCII "
-"view of the file."
-msgstr "В правой панели отображается ASCII-представление содержимого файла."
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:14
+msgid "Toggling the hex or ASCII panes"
+msgstr "Переключение между шестнадцатеричной и ASCII панелями"
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:285
-msgid "Type conversion dialog"
-msgstr "Диалоговое окно преобразования типов"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:287
-msgid ""
-"The type conversion dialog below the display area displays the value of the "
-"selected character in several different numeric types."
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:15
+msgid "File can be edited in GHex from either the hex pane or the ASCII pane."
 msgstr ""
-"Диалоговое окно преобразования типов под областью отображения показывает "
-"значения выбранного символа в нескольких числовых представлениях."
+"В GHex файл можно редактировать либо в шестнадцатеричной панели, либо в "
+"панели ASCII."
 
-#. (itstool) path: sect1/title
-#: C/index.docbook:297
-msgid "Usage"
-msgstr "Использование"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:302
-msgid "To Edit a File"
-msgstr "Редактирование файла"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:303
-msgid "To edit a file, perform the following steps:"
-msgstr "Для редактирования файла сделайте следующее:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:305
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:16
 msgid ""
-"Click in the hexadecimal or ASCII view of the file. The view in which the "
-"cursor is active displays a full cursor. The view in which the cursor is not "
-"active displays an outline of the cursor."
+"To focus either pane to accept your keystrokes, you may click on the "
+"appropriate pane, or:"
 msgstr ""
-"Нажмите на шестнадцатеричное или ASCII-представление файла. В том "
-"представлении, где курсор активен, он отображается закрашенным. В другом "
-"представлении он имеет вид незакрашенного контура."
+"Чтобы переместить фокус на какую-либо панель, вы можете щёлкнуть мышкой на "
+"соответствующую панель или:"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:307
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:19
+msgid ""
+"Press <keyseq><key>Alt</key><key>Left</key></keyseq> to focus the hex pane, "
+"and"
+msgstr ""
+"Нажмите <keyseq><key>Alt</key><key>Стрелка влево</key></keyseq>, чтобы "
+"вывести в фокус шестнадцатеричную панель, и"
+
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:22
+msgid ""
+"Press <keyseq><key>Alt</key><key>Right</key></keyseq> to focus the ASCII "
+"pane."
+msgstr ""
+"Нажмите <keyseq><key>Alt</key><key>Стрелка вправо</key></keyseq>, чтобы "
+"вывести в фокус панель ASCII."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:25
 msgid "Use any of the following methods to move the cursor around the file:"
 msgstr "Перемещать курсор по файлу можно одним из следующих способов:"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:309
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:28
 msgid ""
-"Use the scrollbar on the window or the arrow keys on the keyboard to scroll "
-"through the file."
+"Use the scrollbar on the window and the mouse to select a byte by clicking "
+"on it."
 msgstr ""
-"Используйте полосы прокрутки окна или клавиши со стрелками для перемещения "
-"по файлу."
+"Используйте полосы прокрутки окна и мышь, чтобы выбрать байт, щёлкнув по "
+"нему."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:311
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:31
 msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Goto Byte</"
-"guimenuitem></menuchoice>, type the cursor offset as a decimal or "
-"hexadecimal value, then click <guibutton>OK</guibutton>. The format of the "
-"hexadecimal value must be 0x followed by the offset, for example 0x3."
+"Use the arrow keys, <key>Home</key>, <key>End</key>, <key>PageUp</key> or "
+"<key>PageDown</key> on the keyboard."
 msgstr ""
-"Выберите <menuchoice><guimenu>Правка</guimenu><guimenuitem>Перейти к байту</"
-"guimenuitem></menuchoice>, введите смещение, как десятичное или "
-"шестнадцатеричное значение, затем нажмите <guibutton>ОК</guibutton>. "
-"Шестнадцатеричное значение смещения должно начинаться с 0x, например: 0x3."
+"Используйте клавиши со стрелками, <key>Home</key>, <key>End</key>, "
+"<key>PageUp</key> или <key>PageDown</key>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:315
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:34
 msgid ""
-"Edit the ASCII format in the same way you edit a normal text file. To edit "
-"the hexadecimal format, use the values 0 to 9 and a to f."
+"Choose <gui>Jump to Byte</gui> from the (Main menu) or press "
+"<keyseq><key>Ctrl</key><key>J</key></keyseq>, and enter the cursor offset as "
+"a decimal or hexadecimal value. The format of the hexadecimal value must be "
+"0x followed by the offset, for example 0x3."
 msgstr ""
-"Формат ASCII редактируется, как обычный текстовый файл. Для редактирования "
-"шестнадцатеричного формата используйте цифры от 0 до 9 и буквы от a до f."
+"Выберите <gui>Перейти к байту</gui> (в главном меню) или нажмите "
+"<keyseq><key>Ctrl</key><key>J</key></keyseq>, и введите смещение курсора в "
+"виде десятичного или шестнадцатеричного значения. Шестнадцатеричное значение "
+"смещения должно начинаться с 0x, например: 0x3."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:318
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:41
+msgid "Editing the file using the hex or ASCII pane"
+msgstr ""
+"Редактирование файла с использованием шестнадцатеричной или ASCII-панели"
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:42
+msgid "Edit the ASCII format in the same way you edit a normal text file."
+msgstr "Формат ASCII редактируется, как обычный текстовый файл."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:43
 msgid ""
-"To insert data and not overwrite existing data, choose "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Insert Mode</guimenuitem></"
-"menuchoice>."
+"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
+"operation is not case-sensitive."
 msgstr ""
-"Чтобы вставить данные и не перезаписать существующие данные, выберите "
-"<menuchoice><guimenu>Правка</guimenu><guimenuitem>Режим вставки</"
-"guimenuitem></menuchoice>."
+"Чтобы изменить шестнадцатеричный формат, используйте символы от 0 до 9 и от "
+"a до f. Эта операция не чувствительна к регистру."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:319
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:47
+msgid "Insert mode"
+msgstr "Режим вставки"
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:48
 msgid ""
-"To cut, copy, and paste data, choose <menuchoice><guimenu>Edit</"
-"guimenu><guimenuitem>Cut</guimenuitem></menuchoice>, "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></"
-"menuchoice>, and <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</"
-"guimenuitem></menuchoice>."
+"<gui>Insert Mode</gui> can be toggled on or off by pressing <key>Insert</"
+"key>, or by clicking the <gui>Toggle insert mode</gui> button in the status "
+"bar."
 msgstr ""
-"Чтобы вырезать, копировать или вставить данные, выберите "
-"<menuchoice><guimenu>Правка</guimenu><guimenuitem>Вырезать</guimenuitem></"
-"menuchoice>, <menuchoice><guimenu>Правка</guimenu><guimenuitem>Копировать</"
-"guimenuitem></menuchoice> или <menuchoice><guimenu>Правка</"
-"guimenu><guimenuitem>Вставить</guimenuitem></menuchoice>."
+"<gui>Режим вставки</gui> можно включить или выключить, нажав <key>Insert</"
+"key> или щёлкнув кнопку <gui>Переключить режим вставки</gui> в строке "
+"состояния."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:320
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:50
 msgid ""
-"To undo an edit, choose <menuchoice><guimenu>Edit</"
-"guimenu><guimenuitem>Undo</guimenuitem></menuchoice>. To redo an edit, "
-"choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Redo</guimenuitem></"
-"menuchoice>. The number of previous edits that you can undo is determined by "
-"the <guilabel>Maximum number of undo levels</guilabel> setting in the <xref "
-"linkend=\"ghex-prefs-editing\"/> tabbed section of the "
-"<guilabel>Preferences</guilabel> dialog."
+"When <gui>Insert Mode</gui> is enabled, this means data will be added to the "
+"file as opposed to replacing existing data."
 msgstr ""
-"Чтобы отменить изменение, выберите <menuchoice><guimenu>Правка</"
-"guimenu><guimenuitem>Отменить</guimenuitem></menuchoice>. Для возврата "
-"отменённого изменения выберите <menuchoice><guimenu>Правка</"
-"guimenu><guimenuitem>Повторить</guimenuitem></menuchoice>. Количество "
-"предыдущих изменений, которые можно отменить, определяется параметром "
-"<guilabel>Максимальное число уровней отмены</guilabel> во вкладке <xref "
-"linkend=\"ghex-prefs-editing\"/> диалогового окна <guilabel>Параметры</"
-"guilabel>."
+"Включённый <gui>Режим вставки</gui> означает, что данные будут добавляться в "
+"файл, а не заменять существующие."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:326
-msgid "To Save a File"
-msgstr "Сохранение файла"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:327
-msgid "You can save a file in the following ways:"
-msgstr "Сохранить файл можно следующими способами:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:329
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:52
 msgid ""
-"To save changes to the current file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Save</guimenuitem></menuchoice>."
+"Unlike traditional text editors, having <gui>Insert Mode</gui> <em>off</em> "
+"is considered the default state in GHex, given that hex editors are "
+"routinely used to edit existing data in binary files that are very "
+"specifically laid out. In some cases, such files may be of a fixed size and "
+"increasing or decreasing their size may cause undefined or unwanted "
+"behaviour in applications that open them."
 msgstr ""
-"Для сохранения изменений в текущем файле выберите <menuchoice><guimenu>Файл</"
-"guimenu><guimenuitem>Сохранить</guimenuitem></menuchoice>."
+"В отличие от традиционных текстовых редакторов, по умолчанию в GHex "
+"<gui>режим вставки</gui> <em>выключен</em>, учитывая, что шестнадцатеричные "
+"редакторы обычно используются для редактирования существующих данных в "
+"двоичных файлах, данные в которых очень специфично расположены. В некоторых "
+"случаях такие файлы могут иметь фиксированный размер, и изменение их размера "
+"может привести к неопределенному или нежелательному поведению открывающих их "
+"приложений."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:331
+#. (itstool) path: page/title
+#: C/basics-find-replace.page:12
+msgid "Find and replace"
+msgstr "Найти и заменить"
+
+#. (itstool) path: section/title
+#: C/basics-find-replace.page:14
+msgid "Find pane"
+msgstr "Панель поиска"
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:15
 msgid ""
-"To save the current file under a new filename, choose "
-"<menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></"
-"menuchoice>. Enter a name for the file in the <guilabel>Select a file to "
-"save buffer as</guilabel> dialog, then click <guibutton>OK</guibutton>."
+"Most basic find operations in GHex can be done by utilizing the <gui>Find</"
+"gui> pane."
 msgstr ""
-"Чтобы сохранить текущий файл под новым именем, выберите "
-"<menuchoice><guimenu>Файл</guimenu><guimenuitem>Сохранить как</guimenuitem></"
-"menuchoice>. Укажите имя файла в диалоговом окне <guilabel>Выбрать файл для "
-"сохранения из буфера</guilabel>, затем нажмите <guibutton>ОК</guibutton>."
+"Большинство основных операций поиска в GHex можно выполнить с помощью панели "
+"<gui>Поиска</gui>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:339
-msgid "To Revert to the Last Saved Version of a File"
-msgstr "Возврат к последней сохранённой версии файла"
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:16
+msgid "You may toggle the <gui>Find</gui> pane in the following ways:"
+msgstr "Вы можете переключать панель <gui>Поиска</gui> следующими способами:"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:340
+#. (itstool) path: item/p
+#: C/basics-find-replace.page:19
+#| msgid "Click <guibutton>Find Next</guibutton>."
+msgid "Click the <gui>Find</gui> button on the header bar."
+msgstr "Щёлкните кнопку <gui>Найти</gui> в панели заголовка."
+
+#. (itstool) path: item/p
+#: C/basics-find-replace.page:22
+msgid "Press <keyseq><key>Ctrl</key><key>F</key></keyseq>."
+msgstr "Нажмите <keyseq><key>Ctrl</key><key>F</key></keyseq>."
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:25
 msgid ""
-"To revert to the last version of the current file that you saved and undo "
-"all of the edits that you made to the file since you last saved the file, "
-"choose <menuchoice><guimenu>File</guimenu><guimenuitem>Revert</guimenuitem></"
-"menuchoice>, then click <guibutton>Yes</guibutton> in the "
-"<guilabel>Question</guilabel> dialog."
+"In order to easily search for a string in either hex or ASCII format, the "
+"<gui>Find</gui> pane acts like a miniature hex editor. You enter this string "
+"in the same way you would edit a file as described in the <link xref="
+"\"basics-edit-file\"/> section."
 msgstr ""
-"Для возврата к последней сохранённой версии текущего файла и отмене всех "
-"правок, сделанных после его сохранения, выберите <menuchoice><guimenu>Файл</"
-"guimenu><guimenuitem>Восстановить</guimenuitem></menuchoice>, затем нажмите "
-"<guibutton>Да</guibutton> в <guilabel>диалоговом окне</guilabel>."
+"Чтобы упростить поиск строки в шестнадцатеричном или ASCII-формате, панель "
+"<gui>Поиска</gui> работает как миниатюрный шестнадцатеричный редактор. Вы "
+"вводите здесь строки так же, как при редактировании файла, что описано в "
+"разделе <link xref=\"basics-edit-file\"/>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:346
-msgid "To Find Data in a File"
-msgstr "Поиск данных в файле"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:347
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:29
 msgid ""
-"To search a file for a hexadecimal or ASCII string, perform the following "
-"steps:"
+"To search for the next occurrence of the requested string in the file from "
+"the current position of the cursor, click the <gui>Find Next</gui> button."
 msgstr ""
-"Для поиска в файле шестнадцатеричной или ASCII-строки сделайте следующее:"
+"Чтобы найти следующее совпадение с запрошенной строкой в файле с текущей "
+"позиции курсора, нажмите кнопку <gui>Найти следующее</gui>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:349
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:31
 msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find</guimenuitem></"
-"menuchoice>."
+"To search for the previous occurrence of the requested string in the file "
+"from the current position of the cursor, click the <gui>Find Previous</gui> "
+"button."
 msgstr ""
-"Выберите <menuchoice><guimenu>Правка</guimenu><guimenuitem>Найти</"
-"guimenuitem></menuchoice>."
+"Чтобы найти предыдущее совпадение с запрошенной строкой в файле с текущей "
+"позиции курсора, нажмите кнопку <gui>Найти предыдущее</gui>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:351
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:33
 msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, choose one of the following "
-"options:"
+"Your search results will also be automatically highlighted in a different "
+"color than the standard selection color."
 msgstr ""
-"В диалоговом окне <guilabel>Поиск данных</guilabel> выберите один из "
-"следующих вариантов:"
+"Кроме того, результаты поиска будут автоматически выделены другим цветом, "
+"отличным от стандартного цвета при выделении."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:353 C/index.docbook:402
-msgid "<guilabel>Search for hex data</guilabel>"
-msgstr "<guilabel>Поиск шестнадцатеричных данных</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:355 C/index.docbook:404
-msgid "<guilabel>Search for ASCII data</guilabel>"
-msgstr "<guilabel>Поиск ASCII данных</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:359 C/index.docbook:408
-msgid "Type the string that you want to find."
-msgstr "Наберите строку, которую нужно найти."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:361 C/index.docbook:381
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:35
 msgid ""
-"Click <guibutton>Find Next</guibutton> to find the next occurrence of the "
-"string."
+"You may close the <gui>Find</gui> pane by pressing <key>Esc</key> while it "
+"is focused, or by clicking its own <gui>Close</gui> button in the bottom-"
+"right-hand corner of the pane."
 msgstr ""
-"Нажмите <guibutton>Найти следующее</guibutton>, чтобы найти следующее "
-"вхождение строки."
+"Вы можете закрыть панель <gui>Поиска</gui>, нажав <key>Esc</key>, когда она "
+"находится в фокусе, или щёлкнув кнопку <gui>Закрыть</gui> в правом нижнем "
+"углу панели."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:363 C/index.docbook:383
+#. (itstool) path: section/title
+#: C/basics-find-replace.page:40
+msgid "Find and Replace pane"
+msgstr "Панель поиска и замены"
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:41
 msgid ""
-"Click <guibutton>Find Previous</guibutton> to find the previous occurrence "
-"of the string."
+"The <gui>Find and Replace</gui> pane works a lot like the <gui>Find</gui> "
+"pane, except that it also allows you to replace the next string, or all "
+"strings in the file, with string in the <gui>Replace With</gui> field."
 msgstr ""
-"Нажмите <guibutton>Найти предыдущее</guibutton>, чтобы найти предыдущее "
-"вхождение строки."
+"Панель <gui>Поиска и замены</gui> во многом похожа на панель <gui>Поиска</"
+"gui>, за исключением того, что она также позволяет заменить найденную строку "
+"или все строки в файле строкой в поле <gui>Заменить на</gui>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:365 C/index.docbook:415 C/index.docbook:430
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:44
 msgid ""
-"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find Data</"
-"guilabel> dialog."
+"To replace the next string from the cursor in the <gui>Find String</gui> "
+"field with the string in the <gui>Replace With</gui> field, click "
+"<gui>Replace</gui>."
 msgstr ""
-"Нажмите <guibutton>Отменить</guibutton> для закрытия диалогового окна "
-"<guilabel>Поиск данных</guilabel>."
+"Чтобы заменить следующую за курсором строку, совпадающую со строкой в поле "
+"<gui>Поиск строки</gui>, строкой из поля <gui>Заменить на</gui>, нажмите "
+"<gui>Заменить</gui>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:373
-msgid "To Perform an Advanced Find"
-msgstr "Расширенный поиск"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:374
-msgid "To perform an advanced find, perform the following steps:"
-msgstr "Для выполнения расширенного поиска сделайте следующее:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:376 C/index.docbook:396 C/index.docbook:424
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:46
 msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Advanced Find</"
-"guimenuitem></menuchoice>."
+"To replace all instances in the file of the string in the <gui>Find String</"
+"gui> field with the string in the <gui>Replace With</gui> field, click "
+"<gui>Replace All</gui>."
 msgstr ""
-"Выберите <menuchoice><guimenu>Правка</guimenu><guimenuitem>Расширенный "
-"поиск</guimenuitem></menuchoice>."
+"Чтобы заменить в файле все совпадающие с полем <gui>Поиск строки</gui> "
+"строки строкой в поле <gui>Заменить на</gui>, нажмите <gui>Заменить все</"
+"gui>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:378
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:48
 msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, select the required search "
-"criteria. For information about how to add new search criteria, see <xref "
-"linkend=\"ghex-search-criteria-add\"/>."
+"In other respects, the <gui>Find and Replace</gui> pane works as described "
+"in the <link xref=\"#find-pane\"/> section above."
 msgstr ""
-"В диалоговом окне <guilabel>Поиск данных</guilabel> выберите требуемые "
-"критерии поиска. Как добавлять критерий поиска смотрите <xref linkend=\"ghex-"
-"search-criteria-add\"/>."
+"В остальном панель <gui>Поиска и замены</gui> работает так, как описано в "
+"разделе <link xref=\"#find-pane\"/> выше."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:385
+#. (itstool) path: page/title
+#: C/basics-open-file.page:12
+msgid "Open a file"
+msgstr "Открытие файл"
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:13
+#| msgid "You can save a file in the following ways:"
+msgid "You may open a file in GHex in the following ways:"
+msgstr "Вы можете открыть файл в GHex следующими способами:"
+
+#. (itstool) path: item/p
+#: C/basics-open-file.page:16
+msgid "Click the <gui>Open</gui> button on the header bar."
+msgstr "Щёлкните кнопку <gui>Открыть</gui> в панели заголовка."
+
+#. (itstool) path: item/p
+#: C/basics-open-file.page:19
+msgid "Press <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+msgstr "Нажмите <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:22
 msgid ""
-"Click <guibutton>Close</guibutton> to close the <guilabel>Find Data</"
-"guilabel> dialog."
+"When you open a file, GHex will not automatically turn <gui>Insert Mode</"
+"gui> on. This is so that data can be immediately edited in place as opposed "
+"to inserting data, which will be what most users want to do when first "
+"opening a pre-existing file."
 msgstr ""
-"Нажмите <guibutton>Закрыть</guibutton>, чтобы закрыть диалоговое окно "
-"<guilabel>Поиск данных</guilabel>."
+"Когда вы открываете существующий файл, GHex не будет автоматически включать "
+"<gui>режим вставки</gui>. Это делается для того, чтобы можно было "
+"редактировать имеющиеся данные, а не добавлять новые, что большинство "
+"пользователей хотят сделать при первом открытии уже существующего файла."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:393
-msgid "To Add Search Criteria"
-msgstr "Добавление критерия поиска"
+#. (itstool) path: page/title
+#: C/basics-save-file.page:12
+msgid "Saving files"
+msgstr "Сохранение файлов"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:394
-msgid "To add search criteria, perform the following steps:"
-msgstr "Для добавления критерия поиска сделайте следующее:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:398
+#. (itstool) path: page/p
+#: C/basics-save-file.page:13
 msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, click <guibutton>Add New</"
-"guibutton>."
+"To save a file in place, maintaining its filename and location, use the "
+"<gui>Save</gui> operation by clicking the <gui>Save</gui> button on the "
+"header bar, or by pressing <keyseq><key>Ctrl</key><key>s</key></keyseq>."
 msgstr ""
-"В диалоговом окне <guilabel>Поиск данных</guilabel> нажмите "
-"<guibutton>Добавить</guibutton>."
+"Чтобы сохранить файл не меняя его имени и местоположения, используйте опцию "
+"<gui>Сохранить</gui>, нажав кнопку <gui>Сохранить</gui> в панели заголовка "
+"или <keyseq><key> Ctrl</key><key>s</key></keyseq>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:400
+#. (itstool) path: page/p
+#: C/basics-save-file.page:16
 msgid ""
-"In the <guilabel>Find Data: Add Search</guilabel> dialog, choose one of the "
-"following options:"
+"To save a file to a filename of your choice, use the <gui>Save As</gui> "
+"operation by clicking <gui>Save As</gui> in the <gui>Main menu</gui>, or by "
+"pressing <keyseq><key>Shift</key><key>Ctrl</key><key>S</key></keyseq>."
 msgstr ""
-"В диалоговом окне <guilabel>Поиск данных: Добавить поиск</guilabel> выберите "
-"один из следующих вариантов:"
+"Чтобы при сохранении можно было изменить имя сохраняемого файла, используйте "
+"опцию <gui>Сохранить как</gui>, щёлкнув пункт <gui>Сохранить как</gui> в "
+"<gui>Главном меню</gui> или нажав <keyseq><key>Shift</key><key>Ctrl</"
+"key><key>S</key></keyseq>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:410
-msgid ""
-"Use the color wheel or the spin boxes to select a color to highlight the "
-"search criteria."
+#. (itstool) path: page/title
+#: C/conf-grouptype.page:12
+msgid "Hex data grouping"
+msgstr "Группировка шестнадцатеричных данных"
+
+#. (itstool) path: page/p
+#: C/conf-grouptype.page:13
+msgid "GHex allows data in the hex pane to be grouped in the following ways:"
 msgstr ""
-"Используя цветовой круг или поля выбора числовых значений, выберите цвет для "
-"выделения критерия поиска."
+"GHex позволяет группировать данные в области шестнадцатеричных данных "
+"следующими способами:"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:413
-msgid "Click <guibutton>Add</guibutton>."
-msgstr "Нажмите <guibutton>Добавить</guibutton>."
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:16
+msgid "Bytes (8-bit) <em>this is the default</em>"
+msgstr "Байты (8 бит) <em>значение по умолчанию</em>"
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:421
-msgid "To Remove Search Criteria"
-msgstr "Удаление критерия поиска"
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:19
+msgid "Words (16-bit)"
+msgstr "Слова (16-bit)"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:422
-msgid "To remove search criteria, perform the following steps:"
-msgstr "Для удаления критерия поиска сделайте следующее:"
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:22
+msgid "Longwords (32-bit)"
+msgstr "Длинные слова (32-bit)"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:426
-msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, select the search criteria "
-"that you want to remove."
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:25
+msgid "Quadwords (64-bit)"
+msgstr "Четыре слова (64-bit)"
+
+#. (itstool) path: page/p
+#: C/conf-grouptype.page:28
+msgid "This setting may be changed in two ways:"
+msgstr "Этот параметр можно изменить двумя способами:"
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:31
+msgid "From the <gui>Group Data As</gui> submenu of the <gui>Main menu</gui>."
 msgstr ""
-"В диалоговом окне <guilabel>Поиск данных</guilabel> выберите критерий "
-"поиска, который нужно удалить."
+"Из подменю <gui>Группировать данные как</gui> в <gui>Главном меню</gui>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:428
-msgid "Click <guibutton>Remove Selected</guibutton>."
-msgstr "Нажмите <guibutton>Удалить выделенное</guibutton>."
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:34
+msgid "From the <link xref=\"conf-preferences\"/> dialog."
+msgstr "Из диалогового окна <link xref=\"conf-preferences\"/>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:438
-msgid "To Find and Replace Data in a File"
-msgstr "Поиск и замена данных в файле"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:439
-msgid ""
-"To search a file for a hexadecimal or ASCII string and then replace the "
-"string, perform the following steps:"
-msgstr ""
-"Чтобы найти в файле шестнадцатеричную или ASCII-строку и заменить её другой "
-"строкой, сделайте следующее:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:441
-msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Replace</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Выберите <menuchoice><guimenu>Правка</guimenu><guimenuitem>Заменить</"
-"guimenuitem></menuchoice>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:443
-msgid ""
-"In the <guilabel>Find &amp; Replace Data</guilabel> dialog, choose one of "
-"the following options:"
-msgstr ""
-"В диалоговом окне <guilabel>Найти и заменить данные</guilabel> выберите один "
-"из следующих вариантов:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:445
-msgid "<guilabel>Replace hex data</guilabel>"
-msgstr "<guilabel>Заменить шестнадцатеричные данные</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:447
-msgid "<guilabel>Replace ASCII data</guilabel>"
-msgstr "<guilabel>Заменить ASCII данные</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:451
-msgid "In the first text box, type the string that you want to find."
-msgstr "В первом текстовом поле наберите строку, которую нужно найти."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:453
-msgid ""
-"In the second text box, type the string that you want to use to replace the "
-"string that you find."
-msgstr ""
-"Во втором текстовом поле наберите строку, на которую нужно заменить "
-"найденную строку."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:455
-msgid "Click <guibutton>Find Next</guibutton>."
-msgstr "Нажмите <guibutton>Найти следующее</guibutton>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:457
-msgid ""
-"Click <guibutton>Replace</guibutton> to replace the current occurrence of "
-"the string or click <guibutton>Replace All</guibutton> to replace all "
-"occurrences of the string."
-msgstr ""
-"Нажмите <guibutton>Заменить</guibutton> для замены текущего вхождения строки "
-"или <guibutton>Заменить все</guibutton> для замены всех вхождений строки."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:459
-msgid ""
-"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find &amp; "
-"Replace Data</guilabel> dialog."
-msgstr ""
-"Нажмите <guibutton>Отменить</guibutton>, чтобы закрыть диалоговое окно "
-"<guilabel>Найти и заменить данные</guilabel>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:467
-msgid "To Add or Remove Additional Views of a File"
-msgstr "Добавление или удаление дополнительных окон просмотра файла"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:468
-msgid ""
-"To add another view of the current file to your <application>GHex</"
-"application> window, choose <menuchoice><guimenu>View</"
-"guimenu><guimenuitem>Add View</guimenuitem></menuchoice>."
-msgstr ""
-"Чтобы добавить новое окно просмотра для текущего файла в окно "
-"<application>GHex</application>, выберите <menuchoice><guimenu>Вид</"
-"guimenu><guimenuitem>Добавить окно просмотра</guimenuitem></menuchoice>."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:469
-msgid ""
-"To remove a view of the current file, choose <menuchoice><guimenu>View</"
-"guimenu><guimenuitem>Remove View</guimenuitem></menuchoice>. If you remove "
-"the last view that is open, the application exits."
-msgstr ""
-"Для удаления окна просмотра текущего файла выберите "
-"<menuchoice><guimenu>Вид</guimenu><guimenuitem>Удалить окно просмотра</"
-"guimenuitem></menuchoice>. При закрытии последнего открытого окна просмотра "
-"приложение также будет закрыто."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:475
-msgid "To Change the Data Group Type"
-msgstr "Изменение типа группировки данных"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:476
-msgid ""
-"To change how <application>GHex</application> displays the hexadecimal "
-"content of a file in the <application>GHex</application> window, choose "
-"<menuchoice><guimenu>View</guimenu><guimenuitem>Group Data As</guimenuitem></"
-"menuchoice>, then select one of the following menu items:"
-msgstr ""
-"Для изменения того, как <application>GHex</application> отображает "
-"шестнадцатеричное представление содержимого файла в окне <application>GHex</"
-"application>, выберите <menuchoice><guimenu>Вид</"
-"guimenu><guimenuitem>Группировать данные как</guimenuitem></menuchoice> и "
-"выберите один из следующих элементов меню:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:478 C/index.docbook:657
-msgid "<guilabel>Bytes</guilabel> - single bytes"
-msgstr "<guilabel>Байты</guilabel> — отдельными байтами"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:480 C/index.docbook:659
-msgid "<guilabel>Words</guilabel> - groups of two bytes"
-msgstr "<guilabel>Слова</guilabel> — группами из двух байтов"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:482 C/index.docbook:661
-msgid "<guilabel>Longwords</guilabel> - groups of four bytes"
-msgstr "<guilabel>Двойные слова</guilabel> — группами из четырёх байтов"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:490
-msgid "To Export the GHex Display to HTML"
-msgstr "Экспорт отображения GHex в HTML"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:492
-msgid ""
-"Creates a separate HTML file for each page of data that is displayed in the "
-"<application>GHex</application> window."
-msgstr ""
-"Создаёт отдельный HTML-файл для каждой страницы данных, отображаемой в окне "
-"<application>GHex</application>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:494
-msgid "Uses the HTML filename that you specify as the basis for the filename."
-msgstr ""
-"Использует указанное вами имя HTML-файла как основу для имён других файлов."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:496
-msgid "Appends a page number to the filename to differentiate the files."
-msgstr ""
-"Добавляет номер страницы к имени файла, чтобы можно было отличить файлы."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:491
-msgid ""
-"To export the data contained in the <application>GHex</application> window "
-"to HTML, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Save As "
-"HTML</guimenuitem></menuchoice>. Choose a directory and specify a filename "
-"for the HTML file, then click <guibutton>OK</guibutton>. <application>GHex</"
-"application> implements the following actions: <_:itemizedlist-1/> For "
-"example, if you specify the filename <filename>log.html</filename>, "
-"<application>GHex</application> creates a series of HTML files named "
-"<filename>log00000000.html</filename>, <filename>log00000001.html</"
-"filename>, <filename>log00000002.html</filename>, and so on."
-msgstr ""
-"Для экспорта данных из окна <application>GHex</application> в HTML, выберите "
-"<menuchoice><guimenu>Файл</guimenu><guimenuitem>Сохранить как HTML</"
-"guimenuitem></menuchoice>. Выберите каталог и укажите имя HTML-файла, затем "
-"нажмите <guibutton>ОК</guibutton>. <application>GHex</application> "
-"осуществляет следующие действия: <_:itemizedlist-1/> Например, если указано "
-"имя файла <filename>log.html</filename>, <application>GHex</application> "
-"создаст серию HTML-файлов с именами <filename>log00000000.html</filename>, "
-"<filename>log00000001.html</filename>, <filename>log00000002.html</filename> "
-"и так далее."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:504
-msgid "To View a Character Table"
-msgstr "Просмотр таблицы символов"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:505
-msgid ""
-"To view a table that contains the ASCII, hexadecimal, decimal, octal, and "
-"binary representations for the values 0 to 255, choose "
-"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Character Table</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Для просмотра таблицы, содержащей ASCII, шестнадцатеричные, десятичные, "
-"восьмеричные и двоичные представление для значений от 0 до 255, выберите "
-"<menuchoice><guimenu>Окна</guimenu><guimenuitem>Таблица символов</"
-"guimenuitem></menuchoice>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:511
-msgid "To View Data Conversions"
-msgstr "Конвертер представлений"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:512
-msgid ""
-"To display the binary, decimal, hexadecimal, and ASCII conversions for up to "
-"four bytes of data, perform the following steps:"
-msgstr ""
-"Для преобразования между двоичным, десятичным, шестнадцатеричным и ASCII "
-"представлениями введённого вами значения (до 4 байтов), выполните следующее:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:514
-msgid ""
-"Choose <menuchoice><guimenu>Windows</guimenu><guimenuitem>Base Converter</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Выберите <menuchoice><guimenu>Окна</guimenu><guimenuitem>Конвертер "
-"представлений</guimenuitem></menuchoice>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:516
-msgid "Perform one of the following actions:"
-msgstr "Выполните одно из следующих действий:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:518
-msgid ""
-"Type the data that you want to convert in one of the fields in the "
-"<guilabel>Base Converter</guilabel> dialog, then press <keycap>Return</"
-"keycap>."
-msgstr ""
-"Наберите значение, которое нужно преобразовать, в одном из полей диалогового "
-"окна <guilabel>Конвертер представлений</guilabel> и нажмите <keycap>Enter</"
-"keycap>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:520
-msgid ""
-"To display the conversions for the data at the cursor position in the "
-"current file, click on the <guibutton>Get cursor value</guibutton> button."
-msgstr ""
-"Для показа представлений данных из позиции курсора в текущем файле нажмите "
-"кнопку <guibutton>Взять из положения курсора</guibutton>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:523
-msgid ""
-"<application>GHex</application> updates the values of the other fields to "
-"display the data conversions."
-msgstr ""
-"<application>GHex</application> обновит значения остальных полей для "
-"отображения представлений данных."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:525
-msgid ""
-"Click <guibutton>Close</guibutton> to close the <guilabel>Base Converter</"
-"guilabel> dialog."
-msgstr ""
-"Нажмите <guibutton>Закрыть</guibutton>, чтобы закрыть диалоговое окно "
-"<guilabel>Конвертер представлений</guilabel>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:533
-msgid "To Show or Hide the Type Conversion Dialog"
-msgstr "Отображение и скрытие диалогового окна преобразования типов"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:534
-msgid ""
-"To show or hide the type conversion dialog, choose "
-"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Type Conversion Dialog</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Для отображения или скрытия диалогового окна преобразования типов выберите "
-"<menuchoice><guimenu>Окна</guimenu><guimenuitem>Диалоговое окно "
-"преобразования типов</guimenuitem></menuchoice>."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:535
-msgid ""
-"The type conversion dialog displays the value of the selected character in "
-"the following representations:"
-msgstr ""
-"Диалоговое окно преобразования типов отображает значения выбранного символа "
-"в следующих представлениях:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:538
-msgid "<guilabel>Signed 8 bit</guilabel>"
-msgstr "<guilabel>8 бит со знаком</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:541
-msgid "<guilabel>Unsigned 8 bit</guilabel>"
-msgstr "<guilabel>8 бит без знака</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:544
-msgid "<guilabel>Signed 16 bit</guilabel>"
-msgstr "<guilabel>16 бит со знаком</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:547
-msgid "<guilabel>Unsigned 16 bit</guilabel>"
-msgstr "<guilabel>16 бит без знака</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:550
-msgid "<guilabel>Signed 32 bit</guilabel>"
-msgstr "<guilabel>32 бита со знаком</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:553
-msgid "<guilabel>Unsigned 32 bit</guilabel>"
-msgstr "<guilabel>32 бита без знака</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:556
-msgid "<guilabel>32 bit float</guilabel>"
-msgstr "<guilabel>32 бита с плавающей точкой</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:559
-msgid "<guilabel>64 bit float</guilabel>"
-msgstr "<guilabel>64 бита с плавающей точкой</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:562
-msgid "<guilabel>Hexadecimal</guilabel>"
-msgstr "<guilabel>Шестнадцатеричное</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:565
-msgid "<guilabel>Octal</guilabel>"
-msgstr "<guilabel>Восьмеричное</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:568
-msgid "<guilabel>Binary</guilabel>"
-msgstr "<guilabel>Двоичное</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:571
-msgid "<guilabel>Stream Length</guilabel>"
-msgstr "<guilabel>Длина потока</guilabel>"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:574
-msgid "The type conversion dialog also contains the following options:"
-msgstr ""
-"Диалоговое окно преобразования типов содержит также следующие параметры:"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:577
-msgid "<guilabel>Show little endian decoding</guilabel>"
-msgstr "<guilabel>Показать декодирование от младшего к старшему</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:579
-msgid "Select this option to show little endian decoding."
-msgstr ""
-"Включите, чтобы установить порядок байтов от младшего к старшему (little "
-"endian)."
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:583
-msgid "<guilabel>Show unsigned and float as hexadecimal</guilabel>"
-msgstr ""
-"<guilabel>Показывать беззнаковые и вещественные как шестнадцатеричные</"
-"guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:585
-msgid ""
-"Select this option to show unsigned and float numbers as hexadecimal numbers."
-msgstr ""
-"Включите для отображения целочисленных значений без знака и значений с "
-"плавающей точкой, как шестнадцатеричных чисел."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:594
-msgid "To Print a File"
-msgstr "Печать файла"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:595
-msgid ""
-"To print a file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Print</guimenuitem></menuchoice>. Select the print "
-"options that you require in the <guilabel>Print</guilabel> dialog, then "
-"click <guibutton>OK</guibutton>."
-msgstr ""
-"Чтобы напечатать файл, выберите <menuchoice><guimenu>Файл</"
-"guimenu><guimenuitem>Печать</guimenuitem></menuchoice>. Настройте при "
-"необходимости параметры печати в диалоговом окне <guilabel>Печать</"
-"guilabel>, затем нажмите <guibutton>ОК</guibutton>."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:596
-msgid ""
-"To preview a printed copy of the file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Print Preview</guimenuitem></menuchoice>."
-msgstr ""
-"Для предварительного просмотра отправляемого на печать файла выберите "
-"<menuchoice><guimenu>Файл</guimenu><guimenuitem>Предпросмотр печати</"
-"guimenuitem></menuchoice>."
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:604
+#. (itstool) path: page/title
+#: C/conf-preferences.page:12
 msgid "Preferences"
 msgstr "Параметры"
 
-#. (itstool) path: sect1/para
-#: C/index.docbook:605
-msgid ""
-"To configure <application>GHex</application>, choose "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></"
-"menuchoice>. The <guilabel>Preferences</guilabel> dialog contains the "
-"following tabbed sections:"
+#. (itstool) path: page/p
+#: C/conf-preferences.page:13
+msgid "The GHex Preferences dialog is divided into two groups:"
+msgstr "Диалоговое окно параметров GHex разделено на две группы:"
+
+#. (itstool) path: item/p
+#: C/conf-preferences.page:16
+msgid "<em>Display</em>, which pertains to what you see on-screen, and;"
 msgstr ""
-"Для настройки <application>GHex</application> выберите "
-"<menuchoice><guimenu>Правка</guimenu><guimenuitem>Параметры</guimenuitem></"
-"menuchoice>. Диалоговое окно <guilabel>Параметры</guilabel> содержит "
-"следующие вкладки:"
+"<em>Представление</em> - вкладка, которая имеет отношение к тому, что вы "
+"видите на экране;"
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:618
-msgid "Editing"
-msgstr "Редактирование"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:621
-msgid "<guilabel>Maximum number of undo levels</guilabel>"
-msgstr "<guilabel>Максимальное число уровней отмены</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:623
+#. (itstool) path: item/p
+#: C/conf-preferences.page:19
 msgid ""
-"Use this spin box to specify the maximum number of edits that you can undo."
+"<em>Printing</em>, which only affects how hexadecimal files will be printed "
+"on paper, if GHex's printing features are utilized."
 msgstr ""
-"Используйте это поле для указания максимального числа изменений, которые "
-"можно отменить."
+"<em>Печать</em> - вкладка, которая влияет только на способ печати "
+"шестнадцатеричных файлов на бумаге, если используются функции печати GHex."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:627
-msgid "<guilabel>Show cursor offset in statusbar as</guilabel>"
-msgstr "<guilabel>Показывать смещение в строке состояния как</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:629
-msgid ""
-"Use this drop-down list to select the format in which the cursor offset is "
-"displayed. The format can be decimal, hexadecimal, or a custom print style "
-"string that only contains the format specifiers x, o, and s."
-msgstr ""
-"Этот выпадающий список позволяет выбрать формат для отображения смещения в "
-"файле. Формат может быть десятичным, шестнадцатеричным, или произвольной "
-"строкой, содержащей спецификаторы формата «x», «o» и «s»."
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:633
-msgid "<guilabel>Show offsets column</guilabel>"
-msgstr "<guilabel>Показывать столбец смещений</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:635
-msgid ""
-"Select this option to display the cursor offsets in a column to the left of "
-"the hexadecimal view of the <application>GHex</application> window."
-msgstr ""
-"Установите этот параметр для отображения смещений в столбце слева от "
-"шестнадцатеричного представления содержимого файла в окне <application>GHex</"
-"application>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:644
+#. (itstool) path: section/title
+#: C/conf-preferences.page:24
 msgid "Display"
-msgstr "Отображение"
+msgstr "Представление"
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:647
-msgid "<guilabel>Font</guilabel>"
-msgstr "<guilabel>Шрифт</guilabel>"
+#. (itstool) path: section/title
+#: C/conf-preferences.page:26
+msgid "Font"
+msgstr "Шрифт"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:649
+#. (itstool) path: section/p
+#: C/conf-preferences.page:27
 msgid ""
-"Use the font selector list boxes to edit the existing font information or "
-"type new font information. Specify a font type, style, and size to display "
-"the contents of files in <application>GHex</application>."
+"This allows you to select a font of your choice for the hex/ASCII editor "
+"only."
 msgstr ""
-"Используйте этот элемент управления для изменения существующего шрифта или "
-"выбора нового шрифта. Позволяет указать гарнитуру и размер шрифта для "
-"отображения содержимого файлов в <application>GHex</application>."
+"Этот параметр позволяет вам сменить шрифт только для редактора hex/ASCII."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:653
-msgid "<guilabel>Default Group Type</guilabel>"
-msgstr "<guilabel>Тип группирования по умолчанию</guilabel>"
+#. (itstool) path: section/title
+#: C/conf-preferences.page:30
+msgid "Dark Mode"
+msgstr "Тёмный режим"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:655
+#. (itstool) path: section/p
+#: C/conf-preferences.page:31
+msgid "This allows you to manually prefer the dark style."
+msgstr "Этот параметр позволяет вам вручную установить тёмный стиль."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:32
 msgid ""
-"Select one of the following options to specify how <application>GHex</"
-"application> displays the hexadecimal content of a file in the "
-"<application>GHex</application> window:"
+"By default, the <gui>Use system default</gui> checkbox is enabled, uses your "
+"system-wide default for preferring a dark style, which disables the "
+"<gui>Dark Mode</gui> switch from being turned on or off."
 msgstr ""
-"Выберите один из следующих вариантов, чтобы указать, как <application>GHex</"
-"application> должен отображать шестнадцатеричное содержимое файла в окне "
-"<application>GHex</application>:"
+"По умолчанию отмечен пункт <gui>Использовать системный</gui>. Это позволяет "
+"использовать общесистемные настройки для предпочтения тёмного стиля и "
+"отключает переключатель <gui>Тёмный режим</gui>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:672
+#. (itstool) path: section/p
+#: C/conf-preferences.page:35
+msgid ""
+"By de-selecting this checkbox, you may toggle the <gui>Dark Mode</gui> "
+"switch on or off to manually prefer or not prefer a dark style. Toggling "
+"this switch will take immediate effect, so you should be able to see "
+"instantaneously which style you prefer for GHex."
+msgstr ""
+"Изменив отметку на этом пункте, вы можете включить или отключить <gui>Тёмный "
+"режим</gui>, чтобы вручную выбирать использование тёмного стиля. Изменение "
+"значения этого переключателя вступает в силу немедленно, поэтому вы сможете "
+"сразу увидеть, какой стиль для GHex вам предпочтительнее."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:39
+msgid ""
+"If you want to go back to the system default, simply check the <gui>Use "
+"system default</gui> checkbox back on."
+msgstr ""
+"Если вы хотите вернуться к системным настройкам по умолчанию, просто снова "
+"отметьте пункт <gui>Использовать системный</gui>."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:43
+msgid "Hex Group Type"
+msgstr "Тип группировки шестнадцатеричных данных"
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:44
+msgid ""
+"This allows you to choose how data will be grouped in the hex pane of the "
+"editor."
+msgstr ""
+"Этот параметр позволяет вам выбрать, как данные будут сгруппированы в "
+"шестнадцатеричной панели редактора."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:46
+msgid "See <link xref=\"conf-grouptype\"/> for more details."
+msgstr ""
+"Для более подробной информации смотрите <link xref=\"conf-grouptype\"/>."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:50
 msgid "Printing"
 msgstr "Печать"
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:675
-msgid "<guilabel>Data font</guilabel>"
-msgstr "<guilabel>Шрифт данных</guilabel>"
+#. (itstool) path: section/title
+#: C/conf-preferences.page:52
+msgid "Fonts"
+msgstr "Шрифты"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:677
+#. (itstool) path: section/p
+#: C/conf-preferences.page:53
 msgid ""
-"Click on the <guibutton>Data font</guibutton> button to specify the font "
-"type, style, and size to use to print the data contained in a file."
+"This section allows you to choose the fonts you would like for hex printouts."
 msgstr ""
-"Нажмите кнопку <guibutton>Шрифт данных</guibutton>, чтобы выбрать гарнитуру, "
-"стиль и размер шрифта для отображения содержащихся в файле данных при выводе "
-"на печать."
+"В этом разделе вы можете выбрать шрифты для шестнадцатеричных распечаток."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:681
-msgid "<guilabel>Header font</guilabel>"
-msgstr "<guilabel>Шрифт заголовка</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:683
+#. (itstool) path: section/p
+#: C/conf-preferences.page:54
 msgid ""
-"Click on the <guibutton>Header font</guibutton> button to specify the font "
-"type, style, and size to use to print the header information that is "
-"contained in the file."
+"<gui>Data font</gui> will apply to the content of your hex document (ie, hex "
+"and ASCII digits)."
 msgstr ""
-"Нажмите кнопку <guibutton>Шрифт заголовка</guibutton>, чтобы выбрать "
-"гарнитуру, стиль и размер шрифта для отображения заголовочной информации при "
-"выводе файла на печать."
+"<gui>Шрифт данных</gui> будет применяться для отображения данных вашего "
+"шестнадцатеричного документа (т. е. к шестнадцатеричным и ASCII-цифрам)."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:687
-msgid "<guilabel>Print shaded box over</guilabel>"
-msgstr "<guilabel>Печатать полоску каждые</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:689
+#. (itstool) path: section/p
+#: C/conf-preferences.page:56
 msgid ""
-"Use this spin box to specify the number of lines that <application>GHex</"
-"application> alternately prints with a surrounding shaded box. If the value "
-"of the spin box is 10, <application>GHex</application> prints the first 10 "
-"lines of the file without a shaded box, the next 10 lines with a shaded box, "
-"and so on. If the value of the spin box is 0, <application>GHex</"
-"application> does not print any shaded box."
+"<gui>Header font</gui> will apply to the header on your printout, which will "
+"show the document title and page number."
 msgstr ""
-"В этом поле можно выбрать количество строк, через которое <application>GHex</"
-"application> будет чередовать при выводе на печать обычный текст и текст на "
-"сером фоне. Например, если выбрано значение 10, то <application>GHex</"
-"application> напечатает первые 10 строк файла без серого фона, следующие 10 "
-"строк на сером фоне и так далее. Если значение равно 0, то "
-"<application>GHex</application> не будет печатать серый фон."
+"<gui>Шрифт заголовка</gui> будет применен к заголовку на распечатке, где "
+"будет отображаться название документа и номер страницы."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:60
+msgid "Shaded rows"
+msgstr "Затенение строк"
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:61
+msgid ""
+"If <gui>Print alternating shaded rows</gui> is selected, your printout will "
+"have alternating rows of your hex and ASCII data printed out with a shaded "
+"grey background to make reading each row easier."
+msgstr ""
+"Если выбран параметр <gui>Печатать строки с чередующимся затенением</gui>, "
+"на распечатке будут отображены строки ваших шестнадцатеричных и ASCII-данных "
+"с чередованием серого и белого фона, чтобы облегчить чтение каждой строки."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:64
+msgid ""
+"Please note that this may use more printer ink/toner than leaving it "
+"disabled."
+msgstr ""
+"Обратите внимание, что в этом случае может использоваться больше чернил/"
+"тонера принтером."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:65
+msgid ""
+"<gui>Span across lines</gui> allows you to customize how many lines will be "
+"shaded, followed by not shaded, on a repeated basis. Again, this is simply "
+"for ease of reading. If you want shaded rows but are not sure what to "
+"specify here, leaving it as the default, \"1\", should be fine."
+msgstr ""
+"<gui>Разбивка длинных строк</gui> позволяет настроить, сколько строк будет с "
+"фоном, а сколько без фона на повторяющейся основе. Опять же, это просто для "
+"удобства чтения. Если вам нужны выделенные строки, но вы не знаете, что "
+"здесь указать, оставьте значение по умолчанию - «1», это должно выглядеть "
+"нормально."
+
+#. (itstool) path: page/title
+#: C/index.page:12
+msgid "GHex Help"
+msgstr "Справка по GHex"
+
+#. (itstool) path: page/p
+#: C/index.page:13
+msgid "GHex is a simple hex editor."
+msgstr "GHex - это простой шестнадцатеричный редактор."
+
+#. (itstool) path: page/p
+#: C/index.page:14
+msgid "GHex enables you to perform the following actions:"
+msgstr "GHex позволяет выполнять следующие действия:"
+
+#. (itstool) path: item/p
+#: C/index.page:17
+msgid "View a file in ASCII or hexadecimal format simultaneously."
+msgstr ""
+"Просматривать содержимое файла одновременно в ASCII и шестнадцатеричном "
+"формате."
+
+#. (itstool) path: item/p
+#: C/index.page:20
+msgid "Edit a file in either ASCII or hexadecimal format."
+msgstr "Редактировать файл в ASCII или шестнадцатеричном формате."
+
+#. (itstool) path: section/title
+#: C/index.page:27
+msgid "Basics"
+msgstr "Основное"
+
+#. (itstool) path: section/title
+#: C/index.page:33
+msgid "Tools"
+msgstr "Инструменты"
+
+#. (itstool) path: section/title
+#: C/index.page:39
+msgid "Configuration"
+msgstr "Конфигурация"
+
+#. (itstool) path: section/title
+#: C/index.page:45
+msgid "Advanced topics"
+msgstr "Расширенные темы"
+
+#. (itstool) path: page/title
+#: C/tools-chartable.page:12
+msgid "Character table"
+msgstr "Таблица символов"
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:13
+msgid ""
+"GHex includes a handy table of many standard ASCII characters so as to allow "
+"you to easily insert such characters into a file without having to memorize "
+"its decimal or hexidecimal character code."
+msgstr ""
+"GHex включает в себя удобную таблицу многих стандартных символов ASCII, "
+"чтобы вы могли легко вставлять такие символы в файл без необходимости "
+"запоминать их десятичный или шестнадцатеричный код."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:16
+msgid ""
+"You may access the character table by selecting <gui>Character Table</gui> "
+"from the <gui>Tools</gui> submenu of the <gui>Main menu</gui>."
+msgstr ""
+"Вы можете получить доступ к таблице символов, выбрав <gui>Таблица символов</"
+"gui> в подменю <gui>Инструменты</gui> в <gui>Главном меню</gui>."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:18
+msgid ""
+"While the character table is open, you may still select the hex editor and "
+"move the cursor around, as per usual."
+msgstr ""
+"Пока таблица символов открыта, вы всё ещё можете пользоваться "
+"шестнадцатеричным редактором и перемещать курсор как обычно."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:20
+msgid ""
+"The columns showing the values in various formats such as ASCII, hex, "
+"decimal, etc., are for ease of reference."
+msgstr ""
+"Столбцы, показывающие значения в различных форматах, таких как ASCII, "
+"шестнадцатеричный, десятичный и т. д., предназначены для удобства поиска."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:22
+msgid ""
+"The characters in the table can be navigated by clicking on them, or using "
+"the keyboard, in the usual way. When you have highlighted a character you "
+"would like to insert, you may insert that character into the file at the "
+"cursor position in the following ways:"
+msgstr ""
+"Перемещаться по символам можно щёлкая по ним мышью или используя клавиатуру "
+"обычным способом. Когда вы выделили символ, который хотите вставить, то "
+"можете вставить его в позицию курсора следующими способами:"
+
+#. (itstool) path: item/p
+#: C/tools-chartable.page:28
+msgid ""
+"Press <key>Enter</key> or double-click on the character you would like to "
+"insert."
+msgstr ""
+"Нажмите <key>Enter</key> или дважды щёлкните символ, который хотите вставить."
+
+#. (itstool) path: item/p
+#: C/tools-chartable.page:31
+#| msgid "Click <guibutton>Remove Selected</guibutton>."
+msgid "Click the <gui>Insert Character</gui> button."
+msgstr "Щёлкните кнопку <gui>Вставить символ</gui>."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:34
+msgid ""
+"The character table can be closed by clicking the <gui>Close</gui> button."
+msgstr "Таблицу символов можно закрыть, нажав кнопку <gui>Закрыть</gui>."
+
+#. (itstool) path: page/title
+#: C/tools-converter.page:12
+msgid "Base converter"
+msgstr "Конвертер представлений"
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:13
+msgid ""
+"GHex includes a base converter tool which can either be used as a standalone "
+"tool to convert values from one format to another, or to obtain the value "
+"pointed to by the cursor and to convert that value into various formats."
+msgstr ""
+"GHex включает в себя базовый инструмент преобразования, который можно "
+"использовать как отдельный инструмент для преобразования значений из одного "
+"формата в другой или для получения значения, на которое указывает курсор, и "
+"преобразования этого значения в различные форматы."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:16
+msgid ""
+"You may access the base converter by selecting <gui>Base Converter</gui> "
+"from the <gui>Tools</gui> submenu of the <gui>Main menu</gui>."
+msgstr ""
+"Вы можете получить доступ к базовому конвертеру, выбрав <gui>Конвертер "
+"представлений</gui> в подменю <gui>Инструменты</gui> в <gui>Главном меню</"
+"gui>."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:18
+msgid ""
+"While the base converter is open, you may still select the hex editor and "
+"move the cursor around, as per usual."
+msgstr ""
+"Когда конвертер открыт, вы можете перейти в шестнадцатеричный редактор и "
+"перемещать курсор как обычно."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:20
+msgid ""
+"To convert the value at the cursor position, click the <gui>Get cursor "
+"value</gui> button."
+msgstr ""
+"Чтобы преобразовать значение в позиции курсора, нажмите кнопку <gui>Взять "
+"значение под курсором</gui>."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:22
+msgid ""
+"To convert a value manually, you may type it into any of the fields in the "
+"format delimited therein (clearing any pre-existing value as necessary), and "
+"press <key>Enter</key>."
+msgstr ""
+"Чтобы преобразовать значение вручную, вы можете ввести его в любое из полей "
+"в формате, указанном в нём (при необходимости очистив любое ранее "
+"существовавшее значение), и нажать <key>Enter</key>."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:25
+msgid ""
+"If you have entered an invalid value, \"ERROR\" will appear in the field. "
+"This error is not fatal and just indicates that an unrecognized value was "
+"entered. Simply enter a valid value, or click <gui>Get cursor value</gui> to "
+"grab the cursor value and to get some examples of valid values, and try "
+"again."
+msgstr ""
+"Если вы ввели неверное значение, в поле появится сообщение «ОШИБКА». Эта "
+"ошибка не является критичной и просто указывает на то, что введённое "
+"значение не было распознано. Просто введите правильное значение или нажмите "
+"<gui>Взять значение под курсором</gui>, чтобы захватить значение под "
+"курсором и получить примеры корректных значений, а затем повторите попытку."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:29
+msgid ""
+"The base converter can be closed by clicking the <gui>Close</gui> button."
+msgstr ""
+"Конвертер представлений можно закрыть, нажав кнопку <gui>Закрыть</gui>."
 
 #. (itstool) path: para/ulink
 #: C/legal.xml:9
@@ -1446,16 +1255,15 @@ msgid ""
 "VERSIONS OF THE DOCUMENT, EVEN IF SUCH PARTY SHALL HAVE BEEN INFORMED OF THE "
 "POSSIBILITY OF SUCH DAMAGES."
 msgstr ""
-"НИ ПРИ КАКИХ ОБСТОЯТЕЛЬСТВАХ И НИ ПРИ КАКИХ ПРАВОВЫХ РАССМОТРЕНИЯХ, БУДЬ ТО "
-"ВРЕДА (ВКЛЮЧАЯ ХАЛАТНОСТЬ), ДОГОВОР ИЛИ В ПРОТИВНОМ СЛУЧАЕ, АВТОР, "
-"ПЕРВОНАЧАЛЬНЫЙ АВТОР, ЛЮБОЙ ПОМОЩНИК, ИЛИ ЛЮБОЙ ДИСТРИБЬЮТОР ДОКУМЕНТА ИЛИ "
-"ИЗМЕНЁННОЙ ВЕРСИИ ДОКУМЕНТА, ИЛИ ЛЮБОЙ ПОСТАВЩИК КАКОЙ-ЛИБО ИЗ ТАКИХ СТОРОН, "
-"НЕ НЕСЁТ ОТВЕТСТВЕННОСТИ ПЕРЕД ЛИЦОМ ЗА КАКОЙ-ЛИБО ПРЯМОЙ, КОСВЕННЫЙ, "
-"СПЕЦИАЛЬНЫЙ, СЛУЧАЙНЫЙ, ИЛИ ПОСЛЕДУЮЩИЙ УЩЕРБ ЛЮБОГО ХАРАКТЕРА, ВКЛЮЧАЯ, БЕЗ "
-"ОГРАНИЧЕНИЙ, УЩЕРБ ОТ ПОТЕРИ РЕПУТАЦИИ, РАБОТОСПОСОБНОСТИ, КОМПЬЮТЕРНЫЕ СБОИ "
-"ИЛИ НЕИСПРАВНОСТИ, И ЛЮБЫЕ ДРУГИЕ УБЫТКИ ИЛИ ПОТЕРИ, СВЯЗАННЫЕ С "
-"ИСПОЛЬЗОВАНИЕМ ДОКУМЕНТА ИЛИ ИЗМЕНЁННОЙ ВЕРСИИ ДОКУМЕНТА, ДАЖЕ ЕСЛИ СТОРОНА "
-"БЫЛА ЗАРАНЕЕ ПРОИНФОРМИРОВАНА О ВОЗМОЖНОСТИ ТАКОГО УЩЕРБА."
+"И НИ ПРИ КАКИХ ОБСТОЯТЕЛЬСТВАХ И НИ ПРИ КАКОМ ЗАКОННОМ СПОСОБЕ, НИ ПО КАКОМУ "
+"СОГЛАШЕНИЮ ИЛИ ДРУГОЙ ПРИЧИНЕ, АВТОР, СОЗДАТЕЛЬ ИЛИ ПОМОЩНИКИ НЕ НЕСУТ "
+"ОТВЕТСТВЕННОСТЬ ЗА ПРЯМОЕ, КОСВЕННОЕ, СПЕЦИАЛЬНОЕ, СЛУЧАЙНОЕ ИЛИ "
+"ПРЕДНАМЕРЕННОЕ ПОВРЕЖДЕНИЕ ЛЮБОГО СВОЙСТВА, ВКЛЮЧАЯ БЕЗ ОГРАНИЧЕНИЯ ПОТЕРЮ "
+"ЖЕЛАНИЯ, РАБОТОСПОСОБНОСТИ, КОМПЬЮТЕРНЫЕ СБОИ ИЛИ НЕПРАВИЛЬНОЕ "
+"ВЗАИМОДЕЙСТВИЕ, ВМЕСТЕ ИЛИ ПО-ОТДЕЛЬНОСТИ. НИКАКИЕ ПОВРЕЖДЕНИЯ И ПОТЕРИ НЕ "
+"МОГУТ БЫТЬ ВОЗЛОЖЕНЫ НА АВТОРА ДОКУМЕНТА ИЛИ МОДИФИЦИРОВАННОЙ ВЕРСИИ "
+"ДОКУМЕНТА, ДАЖЕ ЕСЛИ СТОРОНА БЫЛА ПРОИНФОРМИРОВАНА О ВОЗМОЖНОСТИ ТАКИХ "
+"ПОВРЕЖДЕНИЙ."
 
 #. (itstool) path: legalnotice/para
 #: C/legal.xml:28
@@ -1466,3 +1274,911 @@ msgid ""
 msgstr ""
 "ДОКУМЕНТ И ИЗМЕНЁННЫЕ ВЕРСИИ ДОКУМЕНТА ПРЕДОСТАВЛЯЮТСЯ НА УСЛОВИЯХ НА GNU "
 "FREE DOCUMENTATION LICENSE С ДАЛЬНЕЙШИМ ПОНИМАНИЕМ ЧТО: <_:orderedlist-1/>"
+
+#~ msgctxt "_"
+#~ msgid ""
+#~ "external ref='figures/ghex_window_empty.png' "
+#~ "md5='89b78d734e989c368b82592f385db8dd'"
+#~ msgstr ""
+#~ "external ref='figures/ghex_window_empty.png' "
+#~ "md5='89b78d734e989c368b82592f385db8dd'"
+
+#~ msgctxt "_"
+#~ msgid ""
+#~ "external ref='figures/ghex_window_open.png' "
+#~ "md5='9c4ae66bb45a43803e1f70abfaede88b'"
+#~ msgstr ""
+#~ "external ref='figures/ghex_window_open.png' "
+#~ "md5='9c4ae66bb45a43803e1f70abfaede88b'"
+
+#~ msgid "User manual for GHex"
+#~ msgstr "Руководство пользователя GHex"
+
+#~ msgid ""
+#~ "GHex is a simple binary editor. It lets users view and edit a binary file "
+#~ "in both hex and ascii with a multiple level undo/redo mechanism. Features "
+#~ "include find and replace functions, conversion between binary, octal, "
+#~ "decimal and hexadecimal values, and use of an alternative, user-"
+#~ "configurable MDI concept that lets users edit multiple documents with "
+#~ "multiple views of each."
+#~ msgstr ""
+#~ "GHex — это простой редактор двоичных файлов. Он позволяет пользователям "
+#~ "просматривать и редактировать двоичные файлы как в 16-ричном, так и в "
+#~ "ASCII-представлении и имеет многоуровневый механизм отмены/возврата "
+#~ "последних изменений. Среди его возможностей функции поиска и замены, "
+#~ "преобразование между двоичными, восьмеричными, десятичными и "
+#~ "шестнадцатеричными значениями, а также использование альтернативного, "
+#~ "настраиваемого пользователями MDI-интерфейса, позволяющего редактировать "
+#~ "одновременно несколько документов, каждый из которых отображается в "
+#~ "нескольких представлениях."
+
+#~ msgid ""
+#~ "<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
+#~ "Microsystems</holder>"
+#~ msgstr ""
+#~ "<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
+#~ "Microsystems</holder>"
+
+#~ msgid "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+#~ msgstr "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+
+#~ msgid "GNOME Documentation Project"
+#~ msgstr "Проект документирования GNOME"
+
+#~ msgid ""
+#~ "<firstname>Sun</firstname> <surname>GNOME Documentation Team</surname> "
+#~ "<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
+#~ "affiliation>"
+#~ msgstr ""
+#~ "<firstname>Sun</firstname> <surname>Команда документирования GNOME</"
+#~ "surname> <affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> "
+#~ "</affiliation>"
+
+#~ msgid ""
+#~ "<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
+#~ "<orgname>GNOME Documentation Project</orgname> <address> <email>jaka@gnu."
+#~ "org</email> </address> </affiliation>"
+#~ msgstr ""
+#~ "<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
+#~ "<orgname>Проект документирования GNOME</orgname> <address> "
+#~ "<email>jaka@gnu.org</email> </address> </affiliation>"
+
+#~ msgid "Sun GNOME Documentation Team"
+#~ msgstr "Команда документирования GNOME компании Sun"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.5</revnumber> <date>December 2005</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Руководство пользователя GHex V2.5</revnumber> <date>Декабрь "
+#~ "2005</date> <_:revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.4</revnumber> <date>April 2003</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Руководство пользователя GHex V2.4</revnumber> <date>Апрель "
+#~ "2003</date> <_:revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.3</revnumber> <date>August 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Руководство пользователя GHex V2.3</revnumber> <date>Август "
+#~ "2002</date> <_:revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.2</revnumber> <date>August 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Руководство пользователя GHex V2.2</revnumber> <date>Август "
+#~ "2002</date> <_:revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.1</revnumber> <date>July 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Руководство пользователя GHex V2.1</revnumber> <date>Июль "
+#~ "2002</date> <_:revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.0</revnumber> <date>March 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Руководство пользователя GHex V2.0</revnumber> <date>Март "
+#~ "2002</date> <_:revdescription-1/>"
+
+#~ msgid "Jaka Mocnik <email>jaka@gnu.org</email>"
+#~ msgstr "Jaka Mocnik <email>jaka@gnu.org</email>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V1.0</revnumber> <date>2000</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Руководство пользователя GHex V1.0</revnumber> <date>2000</"
+#~ "date> <_:revdescription-1/>"
+
+#~ msgid "This manual describes version 2.19 of GHex."
+#~ msgstr "Данное руководство описывает GHex версии 2.19."
+
+#~ msgid "Feedback"
+#~ msgstr "Обратная связь"
+
+#~ msgid ""
+#~ "To report a bug or make a suggestion regarding the GHex application or "
+#~ "this manual, follow the directions in the <ulink url=\"help:gnome-feedback"
+#~ "\" type=\"help\">GNOME Feedback Page</ulink>."
+#~ msgstr ""
+#~ "Для того, чтобы сообщить об ошибке или внести предложение, касающееся "
+#~ "приложения GHex или этого руководства, следуйте инструкциям на <ulink url="
+#~ "\"help:gnome-feedback\" type=\"help\">странице обратной связи GNOME</"
+#~ "ulink>."
+
+#~ msgid "<primary>GHex</primary>"
+#~ msgstr "<primary>GHex</primary>"
+
+#~ msgid "Introduction"
+#~ msgstr "Введение"
+
+#~ msgid "Getting Started"
+#~ msgstr "Начало работы"
+
+#~ msgid "To Start GHex"
+#~ msgstr "Запуск GHex"
+
+#~ msgid "You can start <application>GHex</application> in the following ways:"
+#~ msgstr ""
+#~ "Запустить <application>GHex</application> можно следующими способами:"
+
+#~ msgid "<guimenu>Applications</guimenu> menu"
+#~ msgstr "Меню <guimenu>Приложения</guimenu>"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guisubmenu>Accessories</guisubmenu><guimenuitem>Hex "
+#~ "Editor</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Выберите <menuchoice><guisubmenu>Инструменты</guisubmenu><guimenuitem>Hex "
+#~ "Editor</guimenuitem></menuchoice>."
+
+#~ msgid "Command line"
+#~ msgstr "Командная строка"
+
+#~ msgid "Execute the following command: <command>ghex</command>"
+#~ msgstr "Выполните следующую команду: <command>ghex</command>"
+
+#~ msgid "When You Start GHex"
+#~ msgstr "После запуска GHex"
+
+#~ msgid ""
+#~ "When you start <application>GHex</application>, the following window is "
+#~ "displayed."
+#~ msgstr ""
+#~ "После запуска <application>GHex</application> отображается следующее окно."
+
+#~ msgid "GHex Window Before You Open a File"
+#~ msgstr "Окно GHex до открытия файла"
+
+#~ msgid ""
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
+#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window "
+#~ "before you open a file.</phrase> </textobject>"
+#~ msgstr ""
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
+#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Показывает главное окно "
+#~ "GHex до открытия файла.</phrase> </textobject>"
+
+#~ msgid ""
+#~ "To open a file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Open</guimenuitem></menuchoice>. Select the file "
+#~ "that you want to open, then click <guibutton>OK</guibutton>. You can open "
+#~ "multiple files in <application>GHex</application>. <application>GHex</"
+#~ "application> displays each file in a new window."
+#~ msgstr ""
+#~ "Чтобы открыть файл, выберите <menuchoice><guimenu>Файл</"
+#~ "guimenu><guimenuitem>Открыть</guimenuitem></menuchoice>. Выберите нужный "
+#~ "файл, затем нажмите <guibutton>ОК</guibutton>. <application>GHex</"
+#~ "application> позволяет открыть несколько файлов — каждый из них будет "
+#~ "открыт в отдельном окне."
+
+#~ msgid ""
+#~ "When you open a file in <application>GHex</application>, the application "
+#~ "displays the file in the following window."
+#~ msgstr ""
+#~ "Когда файл открыт в <application>GHex</application>, окно приложения "
+#~ "принимает следующий вид."
+
+#~ msgid "GHex Window with an Open File"
+#~ msgstr "Окно GHex с открытым файлом"
+
+#~ msgid ""
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
+#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window with "
+#~ "an open file</phrase> </textobject>"
+#~ msgstr ""
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
+#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Показывает главное окно "
+#~ "GHex с открытым файлом</phrase> </textobject>"
+
+#~ msgid ""
+#~ "The <application>GHex</application> window contains the following "
+#~ "elements:"
+#~ msgstr "Окно <application>GHex</application> содержит следующие элементы:"
+
+#~ msgid "Menubar"
+#~ msgstr "Строка меню"
+
+#~ msgid ""
+#~ "The menus on the menubar contain all the commands that you need to work "
+#~ "with files in <application>GHex</application>."
+#~ msgstr ""
+#~ "Строка меню содержит все команды, которые понадобятся для работы с "
+#~ "файлами в <application>GHex</application>."
+
+#~ msgid "Cursor offsets column"
+#~ msgstr "Столбец смещений"
+
+#~ msgid ""
+#~ "The cursor offset is the distance between the beginning of the file and "
+#~ "the first byte in each line. By default, <application>GHex</application> "
+#~ "displays the cursor offsets column to the left of the hexadecimal view."
+#~ msgstr ""
+#~ "Смещение — это расстояние между началом файла и первым байтом в каждой "
+#~ "строке. По умолчанию <application>GHex</application> показывает столбец "
+#~ "смещений слева от шестнадцатеричного представления."
+
+#~ msgid "Display pane on left side"
+#~ msgstr "Левая панель"
+
+#~ msgid ""
+#~ "The display pane on the left side of the display area displays a "
+#~ "hexadecimal view of the file."
+#~ msgstr ""
+#~ "В левой панели отображается шестнадцатеричное представление содержимого "
+#~ "файла."
+
+#~ msgid "Display pane on right side"
+#~ msgstr "Правая панель"
+
+#~ msgid ""
+#~ "The display pane on the right side of the display area displays an ASCII "
+#~ "view of the file."
+#~ msgstr "В правой панели отображается ASCII-представление содержимого файла."
+
+#~ msgid "Type conversion dialog"
+#~ msgstr "Диалоговое окно преобразования типов"
+
+#~ msgid ""
+#~ "The type conversion dialog below the display area displays the value of "
+#~ "the selected character in several different numeric types."
+#~ msgstr ""
+#~ "Диалоговое окно преобразования типов под областью отображения показывает "
+#~ "значения выбранного символа в нескольких числовых представлениях."
+
+#~ msgid "Usage"
+#~ msgstr "Использование"
+
+#~ msgid "To Edit a File"
+#~ msgstr "Редактирование файла"
+
+#~ msgid "To edit a file, perform the following steps:"
+#~ msgstr "Для редактирования файла сделайте следующее:"
+
+#~ msgid ""
+#~ "Click in the hexadecimal or ASCII view of the file. The view in which the "
+#~ "cursor is active displays a full cursor. The view in which the cursor is "
+#~ "not active displays an outline of the cursor."
+#~ msgstr ""
+#~ "Нажмите на шестнадцатеричное или ASCII-представление файла. В том "
+#~ "представлении, где курсор активен, он отображается закрашенным. В другом "
+#~ "представлении он имеет вид незакрашенного контура."
+
+#~ msgid ""
+#~ "To insert data and not overwrite existing data, choose "
+#~ "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Insert Mode</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Чтобы вставить данные и не перезаписать существующие данные, выберите "
+#~ "<menuchoice><guimenu>Правка</guimenu><guimenuitem>Режим вставки</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "To cut, copy, and paste data, choose <menuchoice><guimenu>Edit</"
+#~ "guimenu><guimenuitem>Cut</guimenuitem></menuchoice>, "
+#~ "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></"
+#~ "menuchoice>, and <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Чтобы вырезать, копировать или вставить данные, выберите "
+#~ "<menuchoice><guimenu>Правка</guimenu><guimenuitem>Вырезать</guimenuitem></"
+#~ "menuchoice>, <menuchoice><guimenu>Правка</"
+#~ "guimenu><guimenuitem>Копировать</guimenuitem></menuchoice> или "
+#~ "<menuchoice><guimenu>Правка</guimenu><guimenuitem>Вставить</guimenuitem></"
+#~ "menuchoice>."
+
+#~ msgid ""
+#~ "To undo an edit, choose <menuchoice><guimenu>Edit</"
+#~ "guimenu><guimenuitem>Undo</guimenuitem></menuchoice>. To redo an edit, "
+#~ "choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Redo</"
+#~ "guimenuitem></menuchoice>. The number of previous edits that you can undo "
+#~ "is determined by the <guilabel>Maximum number of undo levels</guilabel> "
+#~ "setting in the <xref linkend=\"ghex-prefs-editing\"/> tabbed section of "
+#~ "the <guilabel>Preferences</guilabel> dialog."
+#~ msgstr ""
+#~ "Чтобы отменить изменение, выберите <menuchoice><guimenu>Правка</"
+#~ "guimenu><guimenuitem>Отменить</guimenuitem></menuchoice>. Для возврата "
+#~ "отменённого изменения выберите <menuchoice><guimenu>Правка</"
+#~ "guimenu><guimenuitem>Повторить</guimenuitem></menuchoice>. Количество "
+#~ "предыдущих изменений, которые можно отменить, определяется параметром "
+#~ "<guilabel>Максимальное число уровней отмены</guilabel> во вкладке <xref "
+#~ "linkend=\"ghex-prefs-editing\"/> диалогового окна <guilabel>Параметры</"
+#~ "guilabel>."
+
+#~ msgid "To Save a File"
+#~ msgstr "Сохранение файла"
+
+#~ msgid ""
+#~ "To save changes to the current file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Save</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Для сохранения изменений в текущем файле выберите "
+#~ "<menuchoice><guimenu>Файл</guimenu><guimenuitem>Сохранить</guimenuitem></"
+#~ "menuchoice>."
+
+#~ msgid ""
+#~ "To save the current file under a new filename, choose "
+#~ "<menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></"
+#~ "menuchoice>. Enter a name for the file in the <guilabel>Select a file to "
+#~ "save buffer as</guilabel> dialog, then click <guibutton>OK</guibutton>."
+#~ msgstr ""
+#~ "Чтобы сохранить текущий файл под новым именем, выберите "
+#~ "<menuchoice><guimenu>Файл</guimenu><guimenuitem>Сохранить как</"
+#~ "guimenuitem></menuchoice>. Укажите имя файла в диалоговом окне "
+#~ "<guilabel>Выбрать файл для сохранения из буфера</guilabel>, затем нажмите "
+#~ "<guibutton>ОК</guibutton>."
+
+#~ msgid "To Revert to the Last Saved Version of a File"
+#~ msgstr "Возврат к последней сохранённой версии файла"
+
+#~ msgid ""
+#~ "To revert to the last version of the current file that you saved and undo "
+#~ "all of the edits that you made to the file since you last saved the file, "
+#~ "choose <menuchoice><guimenu>File</guimenu><guimenuitem>Revert</"
+#~ "guimenuitem></menuchoice>, then click <guibutton>Yes</guibutton> in the "
+#~ "<guilabel>Question</guilabel> dialog."
+#~ msgstr ""
+#~ "Для возврата к последней сохранённой версии текущего файла и отмене всех "
+#~ "правок, сделанных после его сохранения, выберите "
+#~ "<menuchoice><guimenu>Файл</guimenu><guimenuitem>Восстановить</"
+#~ "guimenuitem></menuchoice>, затем нажмите <guibutton>Да</guibutton> в "
+#~ "<guilabel>диалоговом окне</guilabel>."
+
+#~ msgid "To Find Data in a File"
+#~ msgstr "Поиск данных в файле"
+
+#~ msgid ""
+#~ "To search a file for a hexadecimal or ASCII string, perform the following "
+#~ "steps:"
+#~ msgstr ""
+#~ "Для поиска в файле шестнадцатеричной или ASCII-строки сделайте следующее:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Выберите <menuchoice><guimenu>Правка</guimenu><guimenuitem>Найти</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, choose one of the following "
+#~ "options:"
+#~ msgstr ""
+#~ "В диалоговом окне <guilabel>Поиск данных</guilabel> выберите один из "
+#~ "следующих вариантов:"
+
+#~ msgid "<guilabel>Search for hex data</guilabel>"
+#~ msgstr "<guilabel>Поиск шестнадцатеричных данных</guilabel>"
+
+#~ msgid "<guilabel>Search for ASCII data</guilabel>"
+#~ msgstr "<guilabel>Поиск ASCII данных</guilabel>"
+
+#~ msgid "Type the string that you want to find."
+#~ msgstr "Наберите строку, которую нужно найти."
+
+#~ msgid ""
+#~ "Click <guibutton>Find Next</guibutton> to find the next occurrence of the "
+#~ "string."
+#~ msgstr ""
+#~ "Нажмите <guibutton>Найти следующее</guibutton>, чтобы найти следующее "
+#~ "вхождение строки."
+
+#~ msgid ""
+#~ "Click <guibutton>Find Previous</guibutton> to find the previous "
+#~ "occurrence of the string."
+#~ msgstr ""
+#~ "Нажмите <guibutton>Найти предыдущее</guibutton>, чтобы найти предыдущее "
+#~ "вхождение строки."
+
+#~ msgid ""
+#~ "Click <guibutton>Cancel</guibutton> to close the <guilabel>Find Data</"
+#~ "guilabel> dialog."
+#~ msgstr ""
+#~ "Нажмите <guibutton>Отменить</guibutton> для закрытия диалогового окна "
+#~ "<guilabel>Поиск данных</guilabel>."
+
+#~ msgid "To Perform an Advanced Find"
+#~ msgstr "Расширенный поиск"
+
+#~ msgid "To perform an advanced find, perform the following steps:"
+#~ msgstr "Для выполнения расширенного поиска сделайте следующее:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Advanced Find</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Выберите <menuchoice><guimenu>Правка</guimenu><guimenuitem>Расширенный "
+#~ "поиск</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, select the required search "
+#~ "criteria. For information about how to add new search criteria, see <xref "
+#~ "linkend=\"ghex-search-criteria-add\"/>."
+#~ msgstr ""
+#~ "В диалоговом окне <guilabel>Поиск данных</guilabel> выберите требуемые "
+#~ "критерии поиска. Как добавлять критерий поиска смотрите <xref linkend="
+#~ "\"ghex-search-criteria-add\"/>."
+
+#~ msgid ""
+#~ "Click <guibutton>Close</guibutton> to close the <guilabel>Find Data</"
+#~ "guilabel> dialog."
+#~ msgstr ""
+#~ "Нажмите <guibutton>Закрыть</guibutton>, чтобы закрыть диалоговое окно "
+#~ "<guilabel>Поиск данных</guilabel>."
+
+#~ msgid "To Add Search Criteria"
+#~ msgstr "Добавление критерия поиска"
+
+#~ msgid "To add search criteria, perform the following steps:"
+#~ msgstr "Для добавления критерия поиска сделайте следующее:"
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, click <guibutton>Add New</"
+#~ "guibutton>."
+#~ msgstr ""
+#~ "В диалоговом окне <guilabel>Поиск данных</guilabel> нажмите "
+#~ "<guibutton>Добавить</guibutton>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data: Add Search</guilabel> dialog, choose one of "
+#~ "the following options:"
+#~ msgstr ""
+#~ "В диалоговом окне <guilabel>Поиск данных: Добавить поиск</guilabel> "
+#~ "выберите один из следующих вариантов:"
+
+#~ msgid ""
+#~ "Use the color wheel or the spin boxes to select a color to highlight the "
+#~ "search criteria."
+#~ msgstr ""
+#~ "Используя цветовой круг или поля выбора числовых значений, выберите цвет "
+#~ "для выделения критерия поиска."
+
+#~ msgid "Click <guibutton>Add</guibutton>."
+#~ msgstr "Нажмите <guibutton>Добавить</guibutton>."
+
+#~ msgid "To Remove Search Criteria"
+#~ msgstr "Удаление критерия поиска"
+
+#~ msgid "To remove search criteria, perform the following steps:"
+#~ msgstr "Для удаления критерия поиска сделайте следующее:"
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, select the search criteria "
+#~ "that you want to remove."
+#~ msgstr ""
+#~ "В диалоговом окне <guilabel>Поиск данных</guilabel> выберите критерий "
+#~ "поиска, который нужно удалить."
+
+#~ msgid ""
+#~ "To search a file for a hexadecimal or ASCII string and then replace the "
+#~ "string, perform the following steps:"
+#~ msgstr ""
+#~ "Чтобы найти в файле шестнадцатеричную или ASCII-строку и заменить её "
+#~ "другой строкой, сделайте следующее:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Replace</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Выберите <menuchoice><guimenu>Правка</guimenu><guimenuitem>Заменить</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find &amp; Replace Data</guilabel> dialog, choose one of "
+#~ "the following options:"
+#~ msgstr ""
+#~ "В диалоговом окне <guilabel>Найти и заменить данные</guilabel> выберите "
+#~ "один из следующих вариантов:"
+
+#~ msgid "<guilabel>Replace hex data</guilabel>"
+#~ msgstr "<guilabel>Заменить шестнадцатеричные данные</guilabel>"
+
+#~ msgid "<guilabel>Replace ASCII data</guilabel>"
+#~ msgstr "<guilabel>Заменить ASCII данные</guilabel>"
+
+#~ msgid "In the first text box, type the string that you want to find."
+#~ msgstr "В первом текстовом поле наберите строку, которую нужно найти."
+
+#~ msgid ""
+#~ "In the second text box, type the string that you want to use to replace "
+#~ "the string that you find."
+#~ msgstr ""
+#~ "Во втором текстовом поле наберите строку, на которую нужно заменить "
+#~ "найденную строку."
+
+#~ msgid ""
+#~ "Click <guibutton>Replace</guibutton> to replace the current occurrence of "
+#~ "the string or click <guibutton>Replace All</guibutton> to replace all "
+#~ "occurrences of the string."
+#~ msgstr ""
+#~ "Нажмите <guibutton>Заменить</guibutton> для замены текущего вхождения "
+#~ "строки или <guibutton>Заменить все</guibutton> для замены всех вхождений "
+#~ "строки."
+
+#~ msgid ""
+#~ "Click <guibutton>Cancel</guibutton> to close the <guilabel>Find &amp; "
+#~ "Replace Data</guilabel> dialog."
+#~ msgstr ""
+#~ "Нажмите <guibutton>Отменить</guibutton>, чтобы закрыть диалоговое окно "
+#~ "<guilabel>Найти и заменить данные</guilabel>."
+
+#~ msgid "To Add or Remove Additional Views of a File"
+#~ msgstr "Добавление или удаление дополнительных окон просмотра файла"
+
+#~ msgid ""
+#~ "To add another view of the current file to your <application>GHex</"
+#~ "application> window, choose <menuchoice><guimenu>View</"
+#~ "guimenu><guimenuitem>Add View</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Чтобы добавить новое окно просмотра для текущего файла в окно "
+#~ "<application>GHex</application>, выберите <menuchoice><guimenu>Вид</"
+#~ "guimenu><guimenuitem>Добавить окно просмотра</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "To remove a view of the current file, choose <menuchoice><guimenu>View</"
+#~ "guimenu><guimenuitem>Remove View</guimenuitem></menuchoice>. If you "
+#~ "remove the last view that is open, the application exits."
+#~ msgstr ""
+#~ "Для удаления окна просмотра текущего файла выберите "
+#~ "<menuchoice><guimenu>Вид</guimenu><guimenuitem>Удалить окно просмотра</"
+#~ "guimenuitem></menuchoice>. При закрытии последнего открытого окна "
+#~ "просмотра приложение также будет закрыто."
+
+#~ msgid "To Change the Data Group Type"
+#~ msgstr "Изменение типа группировки данных"
+
+#~ msgid ""
+#~ "To change how <application>GHex</application> displays the hexadecimal "
+#~ "content of a file in the <application>GHex</application> window, choose "
+#~ "<menuchoice><guimenu>View</guimenu><guimenuitem>Group Data As</"
+#~ "guimenuitem></menuchoice>, then select one of the following menu items:"
+#~ msgstr ""
+#~ "Для изменения того, как <application>GHex</application> отображает "
+#~ "шестнадцатеричное представление содержимого файла в окне "
+#~ "<application>GHex</application>, выберите <menuchoice><guimenu>Вид</"
+#~ "guimenu><guimenuitem>Группировать данные как</guimenuitem></menuchoice> и "
+#~ "выберите один из следующих элементов меню:"
+
+#~ msgid "<guilabel>Bytes</guilabel> - single bytes"
+#~ msgstr "<guilabel>Байты</guilabel> — отдельными байтами"
+
+#~ msgid "<guilabel>Words</guilabel> - groups of two bytes"
+#~ msgstr "<guilabel>Слова</guilabel> — группами из двух байтов"
+
+#~ msgid "<guilabel>Longwords</guilabel> - groups of four bytes"
+#~ msgstr "<guilabel>Двойные слова</guilabel> — группами из четырёх байтов"
+
+#~ msgid "To Export the GHex Display to HTML"
+#~ msgstr "Экспорт отображения GHex в HTML"
+
+#~ msgid ""
+#~ "Creates a separate HTML file for each page of data that is displayed in "
+#~ "the <application>GHex</application> window."
+#~ msgstr ""
+#~ "Создаёт отдельный HTML-файл для каждой страницы данных, отображаемой в "
+#~ "окне <application>GHex</application>."
+
+#~ msgid ""
+#~ "Uses the HTML filename that you specify as the basis for the filename."
+#~ msgstr ""
+#~ "Использует указанное вами имя HTML-файла как основу для имён других "
+#~ "файлов."
+
+#~ msgid "Appends a page number to the filename to differentiate the files."
+#~ msgstr ""
+#~ "Добавляет номер страницы к имени файла, чтобы можно было отличить файлы."
+
+#~ msgid ""
+#~ "To export the data contained in the <application>GHex</application> "
+#~ "window to HTML, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Save As HTML</guimenuitem></menuchoice>. Choose a "
+#~ "directory and specify a filename for the HTML file, then click "
+#~ "<guibutton>OK</guibutton>. <application>GHex</application> implements the "
+#~ "following actions: <_:itemizedlist-1/> For example, if you specify the "
+#~ "filename <filename>log.html</filename>, <application>GHex</application> "
+#~ "creates a series of HTML files named <filename>log00000000.html</"
+#~ "filename>, <filename>log00000001.html</filename>, <filename>log00000002."
+#~ "html</filename>, and so on."
+#~ msgstr ""
+#~ "Для экспорта данных из окна <application>GHex</application> в HTML, "
+#~ "выберите <menuchoice><guimenu>Файл</guimenu><guimenuitem>Сохранить как "
+#~ "HTML</guimenuitem></menuchoice>. Выберите каталог и укажите имя HTML-"
+#~ "файла, затем нажмите <guibutton>ОК</guibutton>. <application>GHex</"
+#~ "application> осуществляет следующие действия: <_:itemizedlist-1/> "
+#~ "Например, если указано имя файла <filename>log.html</filename>, "
+#~ "<application>GHex</application> создаст серию HTML-файлов с именами "
+#~ "<filename>log00000000.html</filename>, <filename>log00000001.html</"
+#~ "filename>, <filename>log00000002.html</filename> и так далее."
+
+#~ msgid ""
+#~ "To view a table that contains the ASCII, hexadecimal, decimal, octal, and "
+#~ "binary representations for the values 0 to 255, choose "
+#~ "<menuchoice><guimenu>Windows</guimenu><guimenuitem>Character Table</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Для просмотра таблицы, содержащей ASCII, шестнадцатеричные, десятичные, "
+#~ "восьмеричные и двоичные представление для значений от 0 до 255, выберите "
+#~ "<menuchoice><guimenu>Окна</guimenu><guimenuitem>Таблица символов</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid "To View Data Conversions"
+#~ msgstr "Конвертер представлений"
+
+#~ msgid ""
+#~ "To display the binary, decimal, hexadecimal, and ASCII conversions for up "
+#~ "to four bytes of data, perform the following steps:"
+#~ msgstr ""
+#~ "Для преобразования между двоичным, десятичным, шестнадцатеричным и ASCII "
+#~ "представлениями введённого вами значения (до 4 байтов), выполните "
+#~ "следующее:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Windows</guimenu><guimenuitem>Base Converter</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Выберите <menuchoice><guimenu>Окна</guimenu><guimenuitem>Конвертер "
+#~ "представлений</guimenuitem></menuchoice>."
+
+#~ msgid "Perform one of the following actions:"
+#~ msgstr "Выполните одно из следующих действий:"
+
+#~ msgid ""
+#~ "Type the data that you want to convert in one of the fields in the "
+#~ "<guilabel>Base Converter</guilabel> dialog, then press <keycap>Return</"
+#~ "keycap>."
+#~ msgstr ""
+#~ "Наберите значение, которое нужно преобразовать, в одном из полей "
+#~ "диалогового окна <guilabel>Конвертер представлений</guilabel> и нажмите "
+#~ "<keycap>Enter</keycap>."
+
+#~ msgid ""
+#~ "<application>GHex</application> updates the values of the other fields to "
+#~ "display the data conversions."
+#~ msgstr ""
+#~ "<application>GHex</application> обновит значения остальных полей для "
+#~ "отображения представлений данных."
+
+#~ msgid ""
+#~ "Click <guibutton>Close</guibutton> to close the <guilabel>Base Converter</"
+#~ "guilabel> dialog."
+#~ msgstr ""
+#~ "Нажмите <guibutton>Закрыть</guibutton>, чтобы закрыть диалоговое окно "
+#~ "<guilabel>Конвертер представлений</guilabel>."
+
+#~ msgid "To Show or Hide the Type Conversion Dialog"
+#~ msgstr "Отображение и скрытие диалогового окна преобразования типов"
+
+#~ msgid ""
+#~ "To show or hide the type conversion dialog, choose "
+#~ "<menuchoice><guimenu>Windows</guimenu><guimenuitem>Type Conversion "
+#~ "Dialog</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Для отображения или скрытия диалогового окна преобразования типов "
+#~ "выберите <menuchoice><guimenu>Окна</guimenu><guimenuitem>Диалоговое окно "
+#~ "преобразования типов</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "The type conversion dialog displays the value of the selected character "
+#~ "in the following representations:"
+#~ msgstr ""
+#~ "Диалоговое окно преобразования типов отображает значения выбранного "
+#~ "символа в следующих представлениях:"
+
+#~ msgid "<guilabel>Signed 8 bit</guilabel>"
+#~ msgstr "<guilabel>8 бит со знаком</guilabel>"
+
+#~ msgid "<guilabel>Unsigned 8 bit</guilabel>"
+#~ msgstr "<guilabel>8 бит без знака</guilabel>"
+
+#~ msgid "<guilabel>Signed 16 bit</guilabel>"
+#~ msgstr "<guilabel>16 бит со знаком</guilabel>"
+
+#~ msgid "<guilabel>Unsigned 16 bit</guilabel>"
+#~ msgstr "<guilabel>16 бит без знака</guilabel>"
+
+#~ msgid "<guilabel>Signed 32 bit</guilabel>"
+#~ msgstr "<guilabel>32 бита со знаком</guilabel>"
+
+#~ msgid "<guilabel>Unsigned 32 bit</guilabel>"
+#~ msgstr "<guilabel>32 бита без знака</guilabel>"
+
+#~ msgid "<guilabel>32 bit float</guilabel>"
+#~ msgstr "<guilabel>32 бита с плавающей точкой</guilabel>"
+
+#~ msgid "<guilabel>64 bit float</guilabel>"
+#~ msgstr "<guilabel>64 бита с плавающей точкой</guilabel>"
+
+#~ msgid "<guilabel>Hexadecimal</guilabel>"
+#~ msgstr "<guilabel>Шестнадцатеричное</guilabel>"
+
+#~ msgid "<guilabel>Octal</guilabel>"
+#~ msgstr "<guilabel>Восьмеричное</guilabel>"
+
+#~ msgid "<guilabel>Binary</guilabel>"
+#~ msgstr "<guilabel>Двоичное</guilabel>"
+
+#~ msgid "<guilabel>Stream Length</guilabel>"
+#~ msgstr "<guilabel>Длина потока</guilabel>"
+
+#~ msgid "The type conversion dialog also contains the following options:"
+#~ msgstr ""
+#~ "Диалоговое окно преобразования типов содержит также следующие параметры:"
+
+#~ msgid "<guilabel>Show little endian decoding</guilabel>"
+#~ msgstr "<guilabel>Показать декодирование от младшего к старшему</guilabel>"
+
+#~ msgid "Select this option to show little endian decoding."
+#~ msgstr ""
+#~ "Включите, чтобы установить порядок байтов от младшего к старшему (little "
+#~ "endian)."
+
+#~ msgid "<guilabel>Show unsigned and float as hexadecimal</guilabel>"
+#~ msgstr ""
+#~ "<guilabel>Показывать беззнаковые и вещественные как шестнадцатеричные</"
+#~ "guilabel>"
+
+#~ msgid ""
+#~ "Select this option to show unsigned and float numbers as hexadecimal "
+#~ "numbers."
+#~ msgstr ""
+#~ "Включите для отображения целочисленных значений без знака и значений с "
+#~ "плавающей точкой, как шестнадцатеричных чисел."
+
+#~ msgid "To Print a File"
+#~ msgstr "Печать файла"
+
+#~ msgid ""
+#~ "To print a file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Print</guimenuitem></menuchoice>. Select the print "
+#~ "options that you require in the <guilabel>Print</guilabel> dialog, then "
+#~ "click <guibutton>OK</guibutton>."
+#~ msgstr ""
+#~ "Чтобы напечатать файл, выберите <menuchoice><guimenu>Файл</"
+#~ "guimenu><guimenuitem>Печать</guimenuitem></menuchoice>. Настройте при "
+#~ "необходимости параметры печати в диалоговом окне <guilabel>Печать</"
+#~ "guilabel>, затем нажмите <guibutton>ОК</guibutton>."
+
+#~ msgid ""
+#~ "To preview a printed copy of the file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Print Preview</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Для предварительного просмотра отправляемого на печать файла выберите "
+#~ "<menuchoice><guimenu>Файл</guimenu><guimenuitem>Предпросмотр печати</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "To configure <application>GHex</application>, choose "
+#~ "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</"
+#~ "guimenuitem></menuchoice>. The <guilabel>Preferences</guilabel> dialog "
+#~ "contains the following tabbed sections:"
+#~ msgstr ""
+#~ "Для настройки <application>GHex</application> выберите "
+#~ "<menuchoice><guimenu>Правка</guimenu><guimenuitem>Параметры</"
+#~ "guimenuitem></menuchoice>. Диалоговое окно <guilabel>Параметры</guilabel> "
+#~ "содержит следующие вкладки:"
+
+#~ msgid "<guilabel>Maximum number of undo levels</guilabel>"
+#~ msgstr "<guilabel>Максимальное число уровней отмены</guilabel>"
+
+#~ msgid ""
+#~ "Use this spin box to specify the maximum number of edits that you can "
+#~ "undo."
+#~ msgstr ""
+#~ "Используйте это поле для указания максимального числа изменений, которые "
+#~ "можно отменить."
+
+#~ msgid "<guilabel>Show cursor offset in statusbar as</guilabel>"
+#~ msgstr "<guilabel>Показывать смещение в строке состояния как</guilabel>"
+
+#~ msgid ""
+#~ "Use this drop-down list to select the format in which the cursor offset "
+#~ "is displayed. The format can be decimal, hexadecimal, or a custom print "
+#~ "style string that only contains the format specifiers x, o, and s."
+#~ msgstr ""
+#~ "Этот выпадающий список позволяет выбрать формат для отображения смещения "
+#~ "в файле. Формат может быть десятичным, шестнадцатеричным, или "
+#~ "произвольной строкой, содержащей спецификаторы формата «x», «o» и «s»."
+
+#~ msgid "<guilabel>Show offsets column</guilabel>"
+#~ msgstr "<guilabel>Показывать столбец смещений</guilabel>"
+
+#~ msgid ""
+#~ "Select this option to display the cursor offsets in a column to the left "
+#~ "of the hexadecimal view of the <application>GHex</application> window."
+#~ msgstr ""
+#~ "Установите этот параметр для отображения смещений в столбце слева от "
+#~ "шестнадцатеричного представления содержимого файла в окне "
+#~ "<application>GHex</application>."
+
+#~ msgid "<guilabel>Font</guilabel>"
+#~ msgstr "<guilabel>Шрифт</guilabel>"
+
+#~ msgid ""
+#~ "Use the font selector list boxes to edit the existing font information or "
+#~ "type new font information. Specify a font type, style, and size to "
+#~ "display the contents of files in <application>GHex</application>."
+#~ msgstr ""
+#~ "Используйте этот элемент управления для изменения существующего шрифта "
+#~ "или выбора нового шрифта. Позволяет указать гарнитуру и размер шрифта для "
+#~ "отображения содержимого файлов в <application>GHex</application>."
+
+#~ msgid "<guilabel>Default Group Type</guilabel>"
+#~ msgstr "<guilabel>Тип группирования по умолчанию</guilabel>"
+
+#~ msgid ""
+#~ "Select one of the following options to specify how <application>GHex</"
+#~ "application> displays the hexadecimal content of a file in the "
+#~ "<application>GHex</application> window:"
+#~ msgstr ""
+#~ "Выберите один из следующих вариантов, чтобы указать, как "
+#~ "<application>GHex</application> должен отображать шестнадцатеричное "
+#~ "содержимое файла в окне <application>GHex</application>:"
+
+#~ msgid "<guilabel>Data font</guilabel>"
+#~ msgstr "<guilabel>Шрифт данных</guilabel>"
+
+#~ msgid ""
+#~ "Click on the <guibutton>Data font</guibutton> button to specify the font "
+#~ "type, style, and size to use to print the data contained in a file."
+#~ msgstr ""
+#~ "Нажмите кнопку <guibutton>Шрифт данных</guibutton>, чтобы выбрать "
+#~ "гарнитуру, стиль и размер шрифта для отображения содержащихся в файле "
+#~ "данных при выводе на печать."
+
+#~ msgid "<guilabel>Header font</guilabel>"
+#~ msgstr "<guilabel>Шрифт заголовка</guilabel>"
+
+#~ msgid ""
+#~ "Click on the <guibutton>Header font</guibutton> button to specify the "
+#~ "font type, style, and size to use to print the header information that is "
+#~ "contained in the file."
+#~ msgstr ""
+#~ "Нажмите кнопку <guibutton>Шрифт заголовка</guibutton>, чтобы выбрать "
+#~ "гарнитуру, стиль и размер шрифта для отображения заголовочной информации "
+#~ "при выводе файла на печать."
+
+#~ msgid "<guilabel>Print shaded box over</guilabel>"
+#~ msgstr "<guilabel>Печатать полоску каждые</guilabel>"
+
+#~ msgid ""
+#~ "Use this spin box to specify the number of lines that <application>GHex</"
+#~ "application> alternately prints with a surrounding shaded box. If the "
+#~ "value of the spin box is 10, <application>GHex</application> prints the "
+#~ "first 10 lines of the file without a shaded box, the next 10 lines with a "
+#~ "shaded box, and so on. If the value of the spin box is 0, "
+#~ "<application>GHex</application> does not print any shaded box."
+#~ msgstr ""
+#~ "В этом поле можно выбрать количество строк, через которое "
+#~ "<application>GHex</application> будет чередовать при выводе на печать "
+#~ "обычный текст и текст на сером фоне. Например, если выбрано значение 10, "
+#~ "то <application>GHex</application> напечатает первые 10 строк файла без "
+#~ "серого фона, следующие 10 строк на сером фоне и так далее. Если значение "
+#~ "равно 0, то <application>GHex</application> не будет печатать серый фон."
