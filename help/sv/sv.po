@@ -8,15 +8,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex doc\n"
-"POT-Creation-Date: 2020-01-10 14:31+0000\n"
-"PO-Revision-Date: 2020-02-14 22:02+0100\n"
+"POT-Creation-Date: 2022-01-07 18:42+0000\n"
+"PO-Revision-Date: 2022-03-13 20:18+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -24,1294 +24,1132 @@ msgid "translator-credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>, 2007\n"
 "Josef Andersson <josef.andersson@fripost.org>, 2016\n"
+"Anders Jonsson <anders.jonsson@norsjovallen.se>, 2022\n"
 "\n"
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#. (itstool) path: articleinfo/title
-#: C/index.docbook:23
-msgid "User manual for GHex"
-msgstr "Användarhandbok för GHex"
+#. (itstool) path: credit/name
+#: C/advanced-clipboard.page:7 C/basics-create-new-file.page:7
+#: C/basics-edit-file.page:7 C/basics-find-replace.page:7
+#: C/basics-open-file.page:7 C/basics-save-file.page:7 C/conf-grouptype.page:7
+#: C/conf-preferences.page:7 C/index.page:6 C/tools-chartable.page:7
+#: C/tools-converter.page:7
+msgid "Logan Rathbone"
+msgstr "Logan Rathbone"
 
-#. (itstool) path: abstract/para
-#: C/index.docbook:26
+#. (itstool) path: credit/years
+#: C/advanced-clipboard.page:9 C/basics-create-new-file.page:9
+#: C/basics-edit-file.page:9 C/basics-find-replace.page:9
+#: C/basics-open-file.page:9 C/basics-save-file.page:9 C/conf-grouptype.page:9
+#: C/conf-preferences.page:9 C/index.page:8 C/tools-chartable.page:9
+#: C/tools-converter.page:9
+msgid "2022"
+msgstr "2022"
+
+#. (itstool) path: page/title
+#: C/advanced-clipboard.page:12
+msgid "Clipboard features"
+msgstr "Urklippsfunktioner"
+
+#. (itstool) path: page/p
+#: C/advanced-clipboard.page:13
 msgid ""
-"GHex is a simple binary editor. It lets users view and edit a binary file in "
-"both hex and ascii with a multiple level undo/redo mechanism. Features "
-"include find and replace functions, conversion between binary, octal, "
-"decimal and hexadecimal values, and use of an alternative, user-configurable "
-"MDI concept that lets users edit multiple documents with multiple views of "
-"each."
+"As copying and pasting hexadecimal values is not a standard operation in "
+"most applications, GHex has some unique clipboard features."
 msgstr ""
-"GHex är en enkel binärredigare. Det låter användare se och redigera en "
-"binärfil i både hex och ascii med flera nivåer av mekanismerna ångra/gör om. "
-"Egenskaper är, bland annat, funktionerna sök och ersätt, konvertering mellan "
-"binära, oktala, decimala och hexadecimala värden samt användning av ett "
-"alternativt användarkonfigurerbart MDI-koncept som låter användare redigera "
-"flera dokument med flera olika vyer av varje dokument."
+"Då kopiering och inklistring av hexadecimala värden inte är en "
+"standardåtgärd i de flesta program har GHex några unika urklippsfunktioner."
 
-#. (itstool) path: articleinfo/copyright
-#: C/index.docbook:36
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:16
+msgid "Basic clipboard operations"
+msgstr "Grundläggande urklippsåtgärder"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:17
 msgid ""
-"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
-"Microsystems</holder>"
+"Generally, when copying and pasting data within GHex, you need not concern "
+"yourself with clipboard operations."
 msgstr ""
-"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
-"Microsystems</holder>"
+"Allmänt behöver du inte bry dig om urklippsåtgärder när du klipper ut och "
+"klistrar in data i GHex."
 
-#. (itstool) path: articleinfo/copyright
-#: C/index.docbook:42
-msgid "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
-msgstr "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:19
+msgid "Copying and pasting within GHex works in the usual way."
+msgstr "Kopiering och inklistring i GHex fungerar som vanligt."
 
-#. (itstool) path: publisher/publishername
-#. (itstool) path: revdescription/para
-#: C/index.docbook:54 C/index.docbook:99 C/index.docbook:107
-#: C/index.docbook:115 C/index.docbook:123 C/index.docbook:131
-#: C/index.docbook:139 C/index.docbook:149
-msgid "GNOME Documentation Project"
-msgstr "Dokumentationsprojekt för GNOME"
-
-#. (itstool) path: authorgroup/author
-#: C/index.docbook:63
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:20
 msgid ""
-"<firstname>Sun</firstname> <surname>GNOME Documentation Team</surname> "
-"<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
-"affiliation>"
+"To cut or copy data, highlight the data you would like to cut or copy, and "
+"do any of the following:"
 msgstr ""
-"<firstname>Sun</firstname> <surname>GNOME-dokumentationsteam</surname> "
-"<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
-"affiliation>"
+"För att klippa ut eller kopiera data, markera de data du vill klippa ut "
+"eller kopiera, och gör något av följande:"
 
-#. (itstool) path: authorgroup/author
-#: C/index.docbook:71
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:24
 msgid ""
-"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
-"<orgname>GNOME Documentation Project</orgname> <address> <email>jaka@gnu."
-"org</email> </address> </affiliation>"
+"Right-click anywhere in the hex or ASCII pane to bring up the context menu, "
+"and select the appropriate option."
 msgstr ""
-"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
-"<orgname>Dokumentationsprojekt för GNOME</orgname> <address> <email>jaka@gnu."
-"org</email> </address> </affiliation>"
+"Högerklicka var som helst i hex- eller ASCII-panelen för att få fram "
+"snabbvalsmenyn, och välj lämpligt alternativ."
 
-#. (itstool) path: revdescription/para
-#: C/index.docbook:98 C/index.docbook:106 C/index.docbook:114
-#: C/index.docbook:122 C/index.docbook:130 C/index.docbook:138
-msgid "Sun GNOME Documentation Team"
-msgstr "Suns GNOME-dokumentationsteam"
-
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:94
-msgid ""
-"<revnumber>GHex Manual V2.5</revnumber> <date>December 2005</date> <_:"
-"revdescription-1/>"
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:28
+msgid "To cut, press <keyseq><key>Ctrl</key><key>X</key></keyseq>."
 msgstr ""
-"<revnumber>Handbok för GHex V2.5</revnumber> <date>December 2005</date> <_:"
-"revdescription-1/>"
+"För att klippa ut, tryck ned <keyseq><key>Ctrl</key><key>X</key></keyseq>."
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:102
-msgid ""
-"<revnumber>GHex Manual V2.4</revnumber> <date>April 2003</date> <_:"
-"revdescription-1/>"
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:31
+msgid "To copy, press <keyseq><key>Ctrl</key><key>C</key></keyseq>."
 msgstr ""
-"<revnumber>Handbok för GHex V2.4</revnumber> <date>April 2003</date> <_:"
-"revdescription-1/>"
+"För att kopiera, tryck ned <keyseq><key>Ctrl</key><key>C</key></keyseq>."
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:110
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:34
+msgid "To paste data:"
+msgstr "För att klistra in data:"
+
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:37
 msgid ""
-"<revnumber>GHex Manual V2.3</revnumber> <date>August 2002</date> <_:"
-"revdescription-1/>"
+"Right-click to bring up the context menu, and click <gui>Paste</gui>; or"
 msgstr ""
-"<revnumber>Handbok för GHex V2.3</revnumber> <date>Augusti 2002</date> <_:"
-"revdescription-1/>"
+"Högerklicka för att få fram snabbvalsmenyn, och klicka på <gui>Klistra in</"
+"gui>, eller"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:118
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:40
+msgid "Press <keyseq><key>Ctrl</key><key>V</key></keyseq>."
+msgstr "Tryck ned <keyseq><key>Ctrl</key><key>V</key></keyseq>."
+
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:45
+msgid "Paste Special"
+msgstr "Klista in special"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:46
 msgid ""
-"<revnumber>GHex Manual V2.2</revnumber> <date>August 2002</date> <_:"
-"revdescription-1/>"
+"If you have used other applications, such as text editors or word processors "
+"with a Paste Special dialog, you may be familiar with this feature."
 msgstr ""
-"<revnumber>Handbok för GHex V2.2</revnumber> <date>Augusti 2002</date> <_:"
-"revdescription-1/>"
+"Om du har använt andra program såsom textredigerare eller ordbehandlare med "
+"en Klistra in special-dialog, så kan du vara bekant med denna funktion."
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:126
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:48
+msgid "To activate the Paste Special dialog in GHex:"
+msgstr "För att aktivera Klistra in special-dialogen i GHex:"
+
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:51
 msgid ""
-"<revnumber>GHex Manual V2.1</revnumber> <date>July 2002</date> <_:"
-"revdescription-1/>"
+"Click <gui>Paste Special</gui> from the <gui>Edit</gui> submenu of the "
+"<gui>Main menu</gui>; or"
 msgstr ""
-"<revnumber>Handbok för GHex V2.1</revnumber> <date>Juli 2002</date> <_:"
-"revdescription-1/>"
+"Klicka på <gui>Klistra in special</gui> från undermenyn <gui>Redigera</gui> "
+"i <gui>Huvudmenyn</gui>, eller"
 
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:134
-msgid ""
-"<revnumber>GHex Manual V2.0</revnumber> <date>March 2002</date> <_:"
-"revdescription-1/>"
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:54
+msgid "Press <keyseq><key>Shift</key><key>Ctrl</key><key>V</key></keyseq>."
 msgstr ""
-"<revnumber>Handbok för GHex V2.0</revnumber> <date>Mars 2002</date> <_:"
-"revdescription-1/>"
+"Tryck ned <keyseq><key>Skift</key><key>Ctrl</key><key>V</key></keyseq>."
 
-#. (itstool) path: revdescription/para
-#: C/index.docbook:146
-msgid "Jaka Mocnik <email>jaka@gnu.org</email>"
-msgstr "Jaka Mocnik <email>jaka@gnu.org</email>"
-
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:142
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:57
 msgid ""
-"<revnumber>GHex Manual V1.0</revnumber> <date>2000</date> <_:"
-"revdescription-1/>"
+"The options that appear when <gui>Paste Special</gui> is activated are "
+"context-dependent."
 msgstr ""
-"<revnumber>Handbok för GHex V1.0</revnumber> <date>2000</date> <_:"
-"revdescription-1/>"
+"Alternativen som visas när <gui>Klistra in special</gui> är aktiverat är "
+"sammanhangsberoende."
 
-#. (itstool) path: articleinfo/releaseinfo
-#: C/index.docbook:154
-msgid "This manual describes version 2.19 of GHex."
-msgstr "Den här handboken beskriver version 2.19 av GHex."
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:58
+msgid "The most common options are described below."
+msgstr "De vanligaste alternativen beskrivs nedan."
 
-#. (itstool) path: legalnotice/title
-#: C/index.docbook:157
-msgid "Feedback"
-msgstr "Återkoppling"
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:60 C/advanced-clipboard.page:110
+msgid "GHex Paste Data"
+msgstr "Klistra in GHex-data"
 
-#. (itstool) path: legalnotice/para
-#: C/index.docbook:158
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:61
 msgid ""
-"To report a bug or make a suggestion regarding the GHex application or this "
-"manual, follow the directions in the <ulink url=\"help:gnome-feedback\" type="
-"\"help\">GNOME Feedback Page</ulink>."
+"This option will only appear if your current clipboard selection contains "
+"data copied directly from GHex. This represents clipboard data native to "
+"GHex, and will be pasted into the application as if you had utilized an "
+"ordinary <gui>Paste</gui> operation."
 msgstr ""
-"Om du vill rapportera ett fel eller ge förslag om programmet GHex eller den "
-"här handboken följer du instruktionerna på <ulink url=\"help:gnome-feedback"
-"\" type=\"help\">GNOMEs återkopplingssida</ulink>."
+"Detta alternativ kommer endast visas om din aktuella urklippsmarkering "
+"innehåller data som kopierats direkt från GHex. Detta representerar "
+"urklippsdata inhemska för GHex, och kommer klistras in i programmet som om "
+"du hade använt en vanlig <gui>Klistra in</gui>-åtgärd."
 
-#. (itstool) path: article/indexterm
-#: C/index.docbook:164
-msgid "<primary>GHex</primary>"
-msgstr "<primary>GHex</primary>"
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:67 C/advanced-clipboard.page:113
+msgid "Plain text (as ASCII)"
+msgstr "Vanlig text (som ASCII)"
 
-#. (itstool) path: sect1/title
-#: C/index.docbook:174
-msgid "Introduction"
-msgstr "Introduktion"
-
-#. (itstool) path: sect1/para
-#: C/index.docbook:175
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:68
 msgid ""
-"The <application>GHex</application> application enables you to perform the "
-"following actions:"
+"This allows you to paste the data from the clipboard into the GHex buffer, "
+"forcing GHex to assume the pasted data will be plain ASCII text."
 msgstr ""
-"Med hjälp av programmet <application>GHex</application> kan du göra följande:"
+"Detta låter dig klistra in data från urklipp till GHex-bufferten, och får "
+"GHex att anta att inklistrade data kommer vara vanlig ASCII-text."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:177
-msgid "View a file in ASCII or hexadecimal format simultaneously."
-msgstr "Visa en fil i ASCII-format och hexadecimalt format samtidigt."
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:72 C/advanced-clipboard.page:119
+msgid "Plain text (Unicode)"
+msgstr "Vanlig text (Unicode)"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:179
-msgid "Edit a file in either ASCII or hexadecimal format."
-msgstr "Redigera en fil i antingen ASCII-format eller hexadecimalt format."
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:187
-msgid "Getting Started"
-msgstr "Kom igång"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:192
-msgid "To Start GHex"
-msgstr "Starta GHex"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:194
-msgid "You can start <application>GHex</application> in the following ways:"
-msgstr "Du kan starta <application>GHex</application> på följande sätt:"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:197
-msgid "<guimenu>Applications</guimenu> menu"
-msgstr "<guimenu>Program</guimenu>-menyn"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:199
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:73
 msgid ""
-"Choose <menuchoice><guisubmenu>Accessories</guisubmenu><guimenuitem>Hex "
-"Editor</guimenuitem></menuchoice>."
+"This allows you to paste the data from the clipboard into the GHex buffer, "
+"forcing GHex to assume the pasted data will be text encoded in UTF-8 format."
 msgstr ""
-"Välj <menuchoice><guisubmenu>Tillbehör</"
-"guisubmenu><guimenuitem>Hexadecimalredigerare</guimenuitem></menuchoice>."
+"Detta låter dig klistra in data från urklipp till GHex-bufferten, och får "
+"GHex att anta att inklistrade data kommer vara text kodad i formatet UTF-8."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:203
-msgid "Command line"
-msgstr "Kommandoraden"
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:77 C/advanced-clipboard.page:116
+msgid "Plain text (as space-delimited hex pairs)"
+msgstr "Vanlig text (som blankstegsavgränsade hexpar)"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:205
-msgid "Execute the following command: <command>ghex</command>"
-msgstr "Kör följande kommando: <command>ghex</command>"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:215
-msgid "To Open a File"
-msgstr "Så här öppnar du en fil"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:216
+# Nibble=halvbyte, rymmer ett hextal
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:78
 msgid ""
-"To open a file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Open</"
-"guimenuitem></menuchoice>. Select the file that you want to open, then click "
-"<guibutton>OK</guibutton>. You can open multiple files in <application>GHex</"
-"application>. <application>GHex</application> displays each file in a new "
-"window."
+"This unique option assumes that GHex can expect to receive plain, ASCII text "
+"that is specifically formatted as hex nibble-pairs, separated by a single "
+"space each."
 msgstr ""
-"Om du vill öppna en fil väljer du <menuchoice><guimenu>Arkiv</"
-"guimenu><guimenuitem>Öppna</guimenuitem></menuchoice>. Markera den fil som "
-"du vill öppna och klicka sedan på <guibutton>OK</guibutton>. Det går att "
-"öppna flera filer i <application>GHex</application>. <application>GHex</"
-"application> visar varje fil i ett nytt fönster."
+"Detta unika alternativ antar att GHex kan förvänta sig ta emot vanlig ASCII-"
+"text som specifikt är formaterad som hexadecimala nibble-par, vardera "
+"separerade av ett blanksteg."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:217
-msgid ""
-"When you open a file in <application>GHex</application>, the application "
-"displays the file in the following window."
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:81
+msgid "This allows hexadecimal data to be pasted back into GHex cleanly."
 msgstr ""
-"När du öppnar en fil i <application>GHex</application> visas filen i "
-"följande fönster."
+"Detta möjliggör för hexadecimala data att klistras tillbaka in i GHex utan "
+"problem."
 
-#. (itstool) path: figure/title
-#: C/index.docbook:221
-msgid "GHex Window with an Open File"
-msgstr "GHex med en öppnad fil"
-
-#. (itstool) path: imageobject/imagedata
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.docbook:225
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/ghex_window_open.png' "
-#| "md5='9c4ae66bb45a43803e1f70abfaede88b'"
-msgctxt "_"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:82
 msgid ""
-"external ref='figures/ghex_window_open.png' "
-"md5='31fc4c732edba8668056e88d1f4239f2'"
+"For example, if <code>48 45 4C 4C 4F</code> is in the clipboard, selecting "
+"this option will implicitly convert this hex sequence to an ASCII character "
+"sequence (in this case, \"HELLO\"), and insert it into the GHex buffer."
 msgstr ""
-"external ref='figures/ghex_window_open.png' "
-"md5='31fc4c732edba8668056e88d1f4239f2'"
+"Om exempelvis <code>48 45 4C 4C 4F</code> finns i urklipp kommer att välja "
+"detta alternativ att implicit konvertera denna hexadecimala sekvens till en "
+"ASCII-teckensekvens (i detta fall ”HELLO”) och infoga den i GHex-bufferten."
 
-#. (itstool) path: screenshot/mediaobject
-#: C/index.docbook:223
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:85
 msgid ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window with an "
-"open file</phrase> </textobject>"
+"This option can be combined with <gui>Copy Special</gui> to allow an "
+"external text editor of your choice to edit hex data copied from GHex, and "
+"paste it back into GHex cleanly."
 msgstr ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Visar huvudfönstret för GHex "
-"med en öppen fil</phrase> </textobject>"
+"Detta alternativ kan kombineras med <gui>Kopiera special</gui> för att låta "
+"en extern textredigerare som du väljer redigera hexadecimaldata som "
+"kopierats från GHex, och klistra tillbaka dem i GHex utan problem."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:235
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:91
+msgid "Copy Special"
+msgstr "Kopiera special"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:92
 msgid ""
-"The <application>GHex</application> window contains the following elements:"
-msgstr "<application>GHex</application>-fönstret innehåller följande:"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:238
-msgid "Menubar"
-msgstr "Menyrad"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:240
-msgid ""
-"The menus on the menubar contain all the commands that you need to work with "
-"files in <application>GHex</application>."
+"Unlike Paste Special, which is a feature present in many ordinary text "
+"editors and word processors, Copy Special is a feature that was created "
+"specifically for GHex, and thus may not be familiar to many users."
 msgstr ""
-"Menyerna på menyraden innehåller alla kommandon som du behöver för att "
-"arbeta med filer i <application>GHex</application>."
+"Till skillnad från Klistra in special, som är en funktion som finns i många "
+"vanliga textredigerare och ordbehandlare, så är Kopiera special en funktion "
+"som skapades specifikt för GHex, och därmed kan vara obekant för många "
+"användare."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:244
-msgid "Cursor offsets column"
-msgstr "Markörposition"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:246
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:95
 msgid ""
-"The cursor offset is the distance between the beginning of the file and the "
-"first byte in each line. By default, <application>GHex</application> "
-"displays the cursor offsets column to the left of the hexadecimal view."
+"Copy Special allows you to copy data <em>from</em> GHex into the format of "
+"your choice. You may not need this feature unless you intend to paste data "
+"from GHex into other applications, and would like minute control over how "
+"that is done."
 msgstr ""
-"Markörens position innebär avståndet ifrån början av filen till varje rads "
-"första byte. Normalt visas kolumnen för markörens position till vänster om "
-"den hexadecimala vyn i <application>GHex</application>."
+"Kopiera special låter dig kopiera data <em>från</em> GHex till det format du "
+"väljer. Du kanske inte behöver den här funktionen om du inte tänker klistra "
+"in data från GHex till andra program, och då vill ha exakt kontroll över vad "
+"som sker."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:250
-msgid "Display pane on left side"
-msgstr "Visningsruta till vänster"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:98
+msgid "To activate the Copy Special dialog in GHex:"
+msgstr "För att aktivera dialogrutan Kopiera special i GHex:"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:252
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:101
 msgid ""
-"The display pane on the left side of the display area displays a hexadecimal "
-"view of the file."
+"Click <gui>Copy Special</gui> from the <gui>Edit</gui> submenu of the "
+"<gui>Main menu</gui>; or"
 msgstr ""
-"Visningsrutan till vänster i visningsområdet visar en hexadecimal vy av "
-"filen."
+"Klicka på <gui>Kopiera special</gui> från undermenyn <gui>Redigera</gui> i "
+"<gui>Huvudmenyn</gui>, eller"
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:256
-msgid "Display pane on right side"
-msgstr "Visningsruta till höger"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:258
-msgid ""
-"The display pane on the right side of the display area displays an ASCII "
-"view of the file."
-msgstr "Visningsrutan till höger i visningsområdet visar en ASCII-vy av filen."
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:262
-msgid "Type conversion dialog"
-msgstr "Typkonverteringsdialog"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:264
-msgid ""
-"The type conversion dialog below the display area displays the value of the "
-"selected character in several different numeric types."
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:104
+msgid "Press <keyseq><key>Shift</key><key>Ctrl</key><key>C</key></keyseq>."
 msgstr ""
-"Typkonverteringsdialogen nedan visningsområdet visar värdet av de valda "
-"tecknen som flera olika numeriska typer."
+"Tryck ned <keyseq><key>Skift</key><key>Ctrl</key><key>C</key></keyseq>."
 
-#. (itstool) path: sect1/title
-#: C/index.docbook:274
-msgid "Usage"
-msgstr "Användning"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:107
+msgid "The options that appear when you activate Copy Special are:"
+msgstr "Alternativen som visas när du aktiverar Kopiera special är:"
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:279
-msgid "To Edit a File"
-msgstr "Så här redigerar du en fil"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:280
-msgid "To edit a file, perform the following steps:"
-msgstr "Om du vill redigera en fil, följer du stegen nedan:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:282
+# TODO: 'above' has been doubled.
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:122
 msgid ""
-"Click in the hexadecimal or ASCII view of the file. The view in which the "
-"cursor is active displays a full cursor. The view in which the cursor is not "
-"active displays an outline of the cursor."
+"These options work as described above in the <link xref=\"#paste-special\"/> "
+"section above, but in reverse. In other words, the data copied from GHex "
+"<em>to</em> the clipboard will be copied in the specified format."
 msgstr ""
-"Klicka i filens hexadecimala vy eller ASCII-vy. I den vy där markören är "
-"aktiv visas en fullständig markör. I den andra vyn visas bara markörens "
-"kontur."
+"Dessa alternativ fungerar som beskrivet i avsnittet <link xref=\"#paste-"
+"special\"/> ovan, men omvänt. Med andra ord kommer data kopierade från GHex "
+"<em>till</em> urklipp kopieras i det angivna formatet."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:284
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:125
+msgid ""
+"This allows you to have control over how clipboard data copied from GHex "
+"will be pasted <em>into</em> other applications."
+msgstr ""
+"Detta låter dig styra hur urklippsdata som kopieras från GHex kommer "
+"klistras <em>in</em> i andra program."
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:127
+msgid ""
+"This is mostly intended to allow for space-delimited hex pairs to be edited "
+"in third party applications and then pasted back to GHex cleanly. However, "
+"there may be other interesting uses for this feature as well. Since GHex, "
+"like any hex editor, is often used to edit unusual data types, there may be "
+"other times in which it is desirable for the user to have full control over "
+"how the data from the buffer is copied to the clipboard."
+msgstr ""
+"Detta är främst avsett att låta blankstegsskilda hexpar redigeras i "
+"tredjepartsprogram och sedan klistras tillbaka till GHex utan problem. Det "
+"kan dock även finnas andra intressanta användningsområden för denna "
+"funktion. Då GHex liksom alla hexadecimalredigerare ofta används för att "
+"redigera ovanliga datatyper så kan det finnas andra tider då det är önskvärt "
+"för användaren att ha full kontroll på hur data från bufferten kopieras till "
+"urklipp."
+
+#. (itstool) path: page/title
+#: C/basics-create-new-file.page:12
+msgid "Create a new file"
+msgstr "Skapa en ny fil"
+
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:13
+msgid "In GHex a new file can be created in the following ways:"
+msgstr "I GHex kan en ny fil skapas på följande sätt:"
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:16
+msgid "Select <gui>New</gui> from the <gui>Main menu</gui>."
+msgstr "Välj <gui>Ny</gui> från <gui>Huvudmenyn</gui>."
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:19
+msgid "Press <keyseq><key>Ctrl</key><key>N</key></keyseq>."
+msgstr "Tryck ned <keyseq><key>Ctrl</key><key>N</key></keyseq>."
+
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:22
+msgid ""
+"When a new file is created, GHex will toggle <gui>Insert Mode</gui> on, so "
+"that you may start adding data to your new file right away."
+msgstr ""
+"När en ny fil skapas kommer GHex aktivera <gui>Inskrivningsläge</gui> så att "
+"du kan börja lägga till data till din nya fil omedelbart."
+
+#. (itstool) path: page/title
+#: C/basics-edit-file.page:12
+msgid "Editing files"
+msgstr "Redigera filer"
+
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:14
+msgid "Toggling the hex or ASCII panes"
+msgstr "Växla hexadecimal- eller ASCII-panelerna"
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:15
+msgid "File can be edited in GHex from either the hex pane or the ASCII pane."
+msgstr ""
+"Filer kan redigeras i GHex från antingen hexadecimalpanelen eller ASCII-"
+"panelen."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:16
+msgid ""
+"To focus either pane to accept your keystrokes, you may click on the "
+"appropriate pane, or:"
+msgstr ""
+"För att fokusera endera panel så att den accepterar dina tangenttryck kan du "
+"klicka på lämplig panel, eller:"
+
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:19
+msgid ""
+"Press <keyseq><key>Alt</key><key>Left</key></keyseq> to focus the hex pane, "
+"and"
+msgstr ""
+"Trycka ned <keyseq><key>Alt</key><key>Vänster</key></keyseq> för att "
+"fokusera hexadecimalpanelen, och"
+
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:22
+msgid ""
+"Press <keyseq><key>Alt</key><key>Right</key></keyseq> to focus the ASCII "
+"pane."
+msgstr ""
+"Trycka ned <keyseq><key>Alt</key><key>Höger</key></keyseq> för att fokusera "
+"ASCII-panelen."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:25
 msgid "Use any of the following methods to move the cursor around the file:"
 msgstr "Om du vill flytta markören i filen gör du på något av följande sätt:"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:286
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:28
 msgid ""
-"Use the scrollbar on the window or the arrow keys on the keyboard to scroll "
-"through the file."
+"Use the scrollbar on the window and the mouse to select a byte by clicking "
+"on it."
 msgstr ""
-"Rulla i filen med hjälp av rullningslisten på fönstret, eller använd "
-"tangentbordets piltangenter."
+"Använd fönstrets rullningslist och musen för att välja en byte genom att "
+"klicka på den."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:288
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:31
 msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Goto Byte</"
-"guimenuitem></menuchoice>, type the cursor offset as a decimal or "
-"hexadecimal value, then click <guibutton>OK</guibutton>. The format of the "
-"hexadecimal value must be 0x followed by the offset, for example 0x3."
+"Use the arrow keys, <key>Home</key>, <key>End</key>, <key>PageUp</key> or "
+"<key>PageDown</key> on the keyboard."
 msgstr ""
-"Välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Gå till byte</"
-"guimenuitem></menuchoice>, ange markörpositionen som ett decimalt eller "
-"hexadecimalt värde och klicka sedan på <guibutton>OK</guibutton>. Formatet "
-"på det hexadecimala värdet måste starta med 0x följt av positionen, till "
-"exempel 0x3."
+"Använd piltangenterna, <key>Home</key>, <key>End</key>, <key>PageUp</key> "
+"eller <key>PageDown</key> på tangentbordet."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:292
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:34
 msgid ""
-"Edit the ASCII format in the same way you edit a normal text file. To edit "
-"the hexadecimal format, use the values 0 to 9 and a to f."
+"Choose <gui>Jump to Byte</gui> from the (Main menu) or press "
+"<keyseq><key>Ctrl</key><key>J</key></keyseq>, and enter the cursor offset as "
+"a decimal or hexadecimal value. The format of the hexadecimal value must be "
+"0x followed by the offset, for example 0x3."
 msgstr ""
-"Redigera ASCII på samma sätt som du redigerar i en vanlig textfil. För att "
-"redigera det hexadecimala formatet använder du värdena 0 till 9 och a till f."
+"Välj <gui>Hoppa till byte</gui> (från huvudmenyn) eller tryck ned "
+"<keyseq><key>Ctrl</key><key>J</key></keyseq>, och ange markörpositionen som "
+"ett decimalt eller hexadecimalt värde. Formatet på det hexadecimala värdet "
+"måste vara 0x följt av positionen, till exempel 0x3."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:295
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:41
+msgid "Editing the file using the hex or ASCII pane"
+msgstr "Redigera filen med hexadecimal- eller ASCII-panelen"
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:42
+msgid "Edit the ASCII format in the same way you edit a normal text file."
+msgstr "Redigera ASCII på samma sätt som du redigerar i en vanlig textfil."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:43
 msgid ""
-"To insert data and not overwrite existing data, choose "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Insert Mode</guimenuitem></"
-"menuchoice>."
+"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
+"operation is not case-sensitive."
 msgstr ""
-"För att infoga information utan att skriva över befintlig information väljer "
-"du <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Inskrivningsläge</"
-"guimenuitem></menuchoice>."
+"För att redigera det hexadecimala formatet använder du värdena 0 till 9 och "
+"a till f. Denna åtgärd är inte skiftlägeskänslig."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:296
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:47
+msgid "Insert mode"
+msgstr "Inskrivningsläge"
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:48
 msgid ""
-"To cut, copy, and paste data, choose <menuchoice><guimenu>Edit</"
-"guimenu><guimenuitem>Cut</guimenuitem></menuchoice>, "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></"
-"menuchoice>, and <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</"
-"guimenuitem></menuchoice>."
+"<gui>Insert Mode</gui> can be toggled on or off by pressing <key>Insert</"
+"key>, or by clicking the <gui>Toggle insert mode</gui> button in the status "
+"bar."
 msgstr ""
-"För att klippa ut, kopiera och klistra in data, välj "
-"<menuchoice><guimenu>Redigera</guimenu><guimenuitem>Klipp ut</guimenuitem></"
-"menuchoice>, <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Kopiera</"
-"guimenuitem></menuchoice> och <menuchoice><guimenu>Redigera</"
-"guimenu><guimenuitem>Klistra in</guimenuitem></menuchoice>."
+"<gui>Inskrivningsläge</gui> kan aktiveras/inaktiveras genom att trycka "
+"<key>Insert</key>, eller genom att klicka på knappen <gui>Växla "
+"inskrivningsläge</gui> i statusraden."
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:297
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:50
 msgid ""
-"To undo an edit, choose <menuchoice><guimenu>Edit</"
-"guimenu><guimenuitem>Undo</guimenuitem></menuchoice>. To redo an edit, "
-"choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Redo</guimenuitem></"
-"menuchoice>. The number of previous edits that you can undo is determined by "
-"the <guilabel>Maximum number of undo levels</guilabel> setting in the <xref "
-"linkend=\"ghex-prefs-editing\"/> tabbed section of the "
-"<guilabel>Preferences</guilabel> dialog."
+"When <gui>Insert Mode</gui> is enabled, this means data will be added to the "
+"file as opposed to replacing existing data."
 msgstr ""
-"För att ångra en redigering, välj <menuchoice><guimenu>Redigera</"
-"guimenu><guimenuitem>Ångra</guimenuitem></menuchoice>. För att göra om en "
-"redigering, välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Gör om</"
-"guimenuitem></menuchoice>. Antalet tidigare redigeringar du kan ångra "
-"bestäms av inställningen <guilabel>Maximalt antal ångrasteg</guilabel> i "
-"<xref linkend=\"ghex-prefs-editing\"/> flikarna i dialogen "
-"<guilabel>Inställningar</guilabel>."
+"När <gui>Inskrivningsläge</gui> är aktiverat betyder det att data kommer "
+"läggas till i filen i stället för att ersätta befintliga data."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:303
-msgid "To Save a File"
-msgstr "Så här sparar du en fil"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:304
-msgid "You can save a file in the following ways:"
-msgstr "Du kan spara filen på följande sätt:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:306
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:52
 msgid ""
-"To save changes to the current file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Save</guimenuitem></menuchoice>."
+"Unlike traditional text editors, having <gui>Insert Mode</gui> <em>off</em> "
+"is considered the default state in GHex, given that hex editors are "
+"routinely used to edit existing data in binary files that are very "
+"specifically laid out. In some cases, such files may be of a fixed size and "
+"increasing or decreasing their size may cause undefined or unwanted "
+"behaviour in applications that open them."
 msgstr ""
-"Om du vill spara ändringar som du har gjort i den aktuella filen väljer du "
-"<menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Spara</guimenuitem></"
-"menuchoice>."
+"Till skillnad från traditionella textredigerare anses standardtillståndet i "
+"GHex vara att <gui>Inskrivningsläge</gui> är <em>av</em>, givet att "
+"hexadecimalredigerare rutinmässigt används för att redigera befintliga data "
+"i binärfiler som har en väldigt specifik layout. I vissa fall kan sådana "
+"filer vara av fast filstorlek och att öka eller minska deras storlek kan "
+"orsaka odefinierat eller oönskat beteende i program som öppnar dem."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:308
+#. (itstool) path: page/title
+#: C/basics-find-replace.page:12
+msgid "Find and replace"
+msgstr "Sök och ersätt"
+
+#. (itstool) path: section/title
+#: C/basics-find-replace.page:14
+msgid "Find pane"
+msgstr "Sökpanelen"
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:15
 msgid ""
-"To save the current file under a new filename, choose "
-"<menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></"
-"menuchoice>. Enter a name for the file in the <guilabel>Select a file to "
-"save buffer as</guilabel> dialog, then click <guibutton>OK</guibutton>."
+"Most basic find operations in GHex can be done by utilizing the <gui>Find</"
+"gui> pane."
 msgstr ""
-"Om du vill spara den aktuella filen med ett annat namn väljer du "
-"<menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Spara som</guimenuitem></"
-"menuchoice>. Ange ett namn för filen i dialogen <guilabel>Välj en fil att "
-"spara bufferten som</guilabel> och klicka därefter på <guibutton>OK</"
-"guibutton>."
+"De flesta grundläggande sökåtgärder i GHex kan göras genom att använda "
+"<gui>Sök</gui>-panelen."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:316
-msgid "To Revert to the Last Saved Version of a File"
-msgstr "Att återgå till senast sparad version av en fil"
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:16
+msgid "You may toggle the <gui>Find</gui> pane in the following ways:"
+msgstr "Du kan visa/dölja <gui>Sök</gui>-panelen på följande sätt:"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:317
+#. (itstool) path: item/p
+#: C/basics-find-replace.page:19
+msgid "Click the <gui>Find</gui> button on the header bar."
+msgstr "Klicka på knappen <gui>Sök</gui> i rubrikraden."
+
+#. (itstool) path: item/p
+#: C/basics-find-replace.page:22
+msgid "Press <keyseq><key>Ctrl</key><key>F</key></keyseq>."
+msgstr "Tryck ned <keyseq><key>Ctrl</key><key>F</key></keyseq>."
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:25
 msgid ""
-"To revert to the last version of the current file that you saved and undo "
-"all of the edits that you made to the file since you last saved the file, "
-"choose <menuchoice><guimenu>File</guimenu><guimenuitem>Revert</guimenuitem></"
-"menuchoice>, then click <guibutton>Yes</guibutton> in the "
-"<guilabel>Question</guilabel> dialog."
+"In order to easily search for a string in either hex or ASCII format, the "
+"<gui>Find</gui> pane acts like a miniature hex editor. You enter this string "
+"in the same way you would edit a file as described in the <link "
+"xref=\"basics-edit-file\"/> section."
 msgstr ""
-"För att återgå till senast sparade version av aktuell fil och ångra alla "
-"redigeringar du har gjort i filen sedan du senast sparade den, välj "
-"<menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Återställ</guimenuitem></"
-"menuchoice> och klicka sedan <guibutton>Ja</guibutton> i <guilabel>Fråge</"
-"guilabel>dialogen."
+"För att enkelt söka efter en sträng i antingen hex- eller ASCII-format "
+"agerar <gui>Sök</gui>-panelen som en hexadecimalredigerare i miniatyr. Du "
+"matar in denna sträng på samma sätt som du skulle redigera en fil som "
+"beskrivet i avsnittet <link xref=\"basics-edit-file\"/>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:323
-msgid "To Find Data in a File"
-msgstr "Så här hittar du data i en fil"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:324
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:29
 msgid ""
-"To search a file for a hexadecimal or ASCII string, perform the following "
-"steps:"
+"To search for the next occurrence of the requested string in the file from "
+"the current position of the cursor, click the <gui>Find Next</gui> button."
 msgstr ""
-"Om du vill söka i en fil efter en hexadecimal sträng eller en ASCII-sträng, "
-"följer du stegen nedan:"
+"För att söka efter nästa förekomst av den begärda strängen i filen från "
+"aktuell markörposition, klicka på knappen <gui>Sök nästa</gui>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:326
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:31
 msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find</guimenuitem></"
-"menuchoice>."
+"To search for the previous occurrence of the requested string in the file "
+"from the current position of the cursor, click the <gui>Find Previous</gui> "
+"button."
 msgstr ""
-"Välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Sök</guimenuitem></"
-"menuchoice>."
+"För att söka efter föregående förekomst av den begärda strängen i filen från "
+"aktuell markörposition, klicka på knappen <gui>Sök föregående</gui>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:328
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:33
 msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, choose one of the following "
-"options:"
+"Your search results will also be automatically highlighted in a different "
+"color than the standard selection color."
 msgstr ""
-"I dialogen <guilabel>Sök data</guilabel> väljer du något av följande "
-"alternativ:"
+"Dina sökresultat kommer också automatiskt markeras i en annan färg än "
+"standardmarkeringsfärgen."
 
-# https://bugzilla.gnome.org/show_bug.cgi?id=766921
-#. (itstool) path: listitem/para
-#: C/index.docbook:330 C/index.docbook:379
-msgid "<guilabel>Search for hex data</guilabel>"
-msgstr "<guilabel>Sök efter hex-data</guilabel>"
-
-# https://bugzilla.gnome.org/show_bug.cgi?id=766921
-#. (itstool) path: listitem/para
-#: C/index.docbook:332 C/index.docbook:381
-msgid "<guilabel>Search for ASCII data</guilabel>"
-msgstr "<guilabel>Sök efter ASCII-data</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:336 C/index.docbook:385
-msgid "Type the string that you want to find."
-msgstr "Ange den sträng du vill söka efter."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:338 C/index.docbook:358
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:35
 msgid ""
-"Click <guibutton>Find Next</guibutton> to find the next occurrence of the "
-"string."
+"You may close the <gui>Find</gui> pane by pressing <key>Esc</key> while it "
+"is focused, or by clicking its own <gui>Close</gui> button in the bottom-"
+"right-hand corner of the pane."
 msgstr ""
-"Klicka på <guibutton>Sök nästa</guibutton> för att hitta nästa förekomst av "
-"strängen."
+"Du kan stänga <gui>Sök</gui>-panelen genom att trycka ned <key>Esc</key> "
+"medan den är fokuserad, eller genom att klicka på dess egen <gui>Stäng</gui>-"
+"knapp i panelens nedre högra hörn."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:340 C/index.docbook:360
+#. (itstool) path: section/title
+#: C/basics-find-replace.page:40
+msgid "Find and Replace pane"
+msgstr "Sök och ersätt-panel"
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:41
 msgid ""
-"Click <guibutton>Find Previous</guibutton> to find the previous occurrence "
-"of the string."
+"The <gui>Find and Replace</gui> pane works a lot like the <gui>Find</gui> "
+"pane, except that it also allows you to replace the next string, or all "
+"strings in the file, with string in the <gui>Replace With</gui> field."
 msgstr ""
-"Klicka på <guibutton>Sök föregående</guibutton> för att hitta föregående "
-"förekomst av strängen."
+"<gui>Sök och ersätt</gui>-panelen fungerar i stort sett som <gui>Sök</gui>-"
+"panelen, förutom att den också låter dig ersätta nästa sträng, eller alla "
+"strängar i filen, med strängen i <gui>Ersätt med</gui>-fältet."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:342 C/index.docbook:392 C/index.docbook:407
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:44
 msgid ""
-"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find Data</"
-"guilabel> dialog."
+"To replace the next string from the cursor in the <gui>Find String</gui> "
+"field with the string in the <gui>Replace With</gui> field, click "
+"<gui>Replace</gui>."
 msgstr ""
-"Klicka <guibutton>Avbryt</guibutton> för att stänga dialogen <guilabel>Sök "
-"data</guilabel>."
+"För att ersätta nästa sträng från markören i fältet <gui>Sök sträng</gui> "
+"med strängen i fältet <gui>Ersätt med</gui>, klicka på <gui>Ersätt</gui>."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:350
-msgid "To Perform an Advanced Find"
-msgstr "Att utföra en avancerad sökning"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:351
-msgid "To perform an advanced find, perform the following steps:"
-msgstr "För att utföra en avancerad sökning följer du stegen nedan:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:353 C/index.docbook:373 C/index.docbook:401
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:46
 msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Advanced Find</"
-"guimenuitem></menuchoice>."
+"To replace all instances in the file of the string in the <gui>Find String</"
+"gui> field with the string in the <gui>Replace With</gui> field, click "
+"<gui>Replace All</gui>."
 msgstr ""
-"Välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Avancerad sökning</"
-"guimenuitem></menuchoice>."
+"För att ersätta alla förekomster i filen av strängen i fältet <gui>Sök "
+"sträng</gui> med strängen i fältet <gui>Ersätt med</gui>, klicka på "
+"<gui>Ersätt alla</gui>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:355
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:48
 msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, select the required search "
-"criteria. For information about how to add new search criteria, see <xref "
-"linkend=\"ghex-search-criteria-add\"/>."
+"In other respects, the <gui>Find and Replace</gui> pane works as described "
+"in the <link xref=\"#find-pane\"/> section above."
 msgstr ""
-"I dialogen <guilabel>Sök data</guilabel>, välj de önskade sökkriterierna. "
-"För information om hur man lägger till nya sökkriterier, se <xref linkend="
-"\"ghex-search-criteria-add\"/>."
+"I övrigt fungerar <gui>Sök och ersätt</gui>-panelen som beskrivits i "
+"avsnittet <link xref=\"#find-pane\"/> ovan."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:362
+#. (itstool) path: page/title
+#: C/basics-open-file.page:12
+msgid "Open a file"
+msgstr "Öppna en fil"
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:13
+msgid "You may open a file in GHex in the following ways:"
+msgstr "Du kan öppna en fil i GHex på följande sätt:"
+
+#. (itstool) path: item/p
+#: C/basics-open-file.page:16
+msgid "Click the <gui>Open</gui> button on the header bar."
+msgstr "Klicka på knappen <gui>Öppna</gui> i rubrikraden."
+
+#. (itstool) path: item/p
+#: C/basics-open-file.page:19
+msgid "Press <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+msgstr "Tryck ned <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:22
 msgid ""
-"Click <guibutton>Close</guibutton> to close the <guilabel>Find Data</"
-"guilabel> dialog."
+"When you open a file, GHex will not automatically turn <gui>Insert Mode</"
+"gui> on. This is so that data can be immediately edited in place as opposed "
+"to inserting data, which will be what most users want to do when first "
+"opening a pre-existing file."
 msgstr ""
-"Klicka på <guibutton>Stäng</guibutton> för att stänga dialogen <guilabel>Sök "
-"data</guilabel>."
+"När du öppnar en fil kommer GHex inte automatiskt slå på "
+"<gui>Inskrivningsläge</gui>. Detta är så att data omedelbart kan redigeras "
+"på plats till skillnad från att skriva in data, vilket kommer vara vad de "
+"flesta användare vill göra när de först öppnar en befintlig fil."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:370
-msgid "To Add Search Criteria"
-msgstr "Att lägga till ett sökkriterium"
+#. (itstool) path: page/title
+#: C/basics-save-file.page:12
+msgid "Saving files"
+msgstr "Spara filer"
 
-#. (itstool) path: sect2/para
-#: C/index.docbook:371
-msgid "To add search criteria, perform the following steps:"
-msgstr "För att lägga till ett sökkriterium följer du stegen nedan:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:375
+# TODO: Ctrl *S*
+#. (itstool) path: page/p
+#: C/basics-save-file.page:13
 msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, click <guibutton>Add New</"
-"guibutton>."
+"To save a file in place, maintaining its filename and location, use the "
+"<gui>Save</gui> operation by clicking the <gui>Save</gui> button on the "
+"header bar, or by pressing <keyseq><key>Ctrl</key><key>s</key></keyseq>."
 msgstr ""
-"I dialogen <guilabel>Sök data</guilabel> klicka på <guibutton>Lägg till ny</"
-"guibutton>."
+"För att spara en fil så att dess filnamn och plats behålls, använd åtgärden "
+"<gui>Spara</gui> genom att klicka på knappen <gui>Spara</gui> i rubrikraden, "
+"eller genom att trycka ned <keyseq><key>Ctrl</key><key>S</key></keyseq>."
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:377
+#. (itstool) path: page/p
+#: C/basics-save-file.page:16
 msgid ""
-"In the <guilabel>Find Data: Add Search</guilabel> dialog, choose one of the "
-"following options:"
+"To save a file to a filename of your choice, use the <gui>Save As</gui> "
+"operation by clicking <gui>Save As</gui> in the <gui>Main menu</gui>, or by "
+"pressing <keyseq><key>Shift</key><key>Ctrl</key><key>S</key></keyseq>."
 msgstr ""
-"I dialogen <guilabel>Sök data: Lägg till sökning</guilabel> väljer du något "
-"av följande alternativ:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:387
-msgid ""
-"Use the color wheel or the spin boxes to select a color to highlight the "
-"search criteria."
-msgstr ""
-"Använd färghjulet eller stegningsrutor för att välja en färg att markera "
-"sökkriteriet."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:390
-msgid "Click <guibutton>Add</guibutton>."
-msgstr "Klicka på <guibutton>Lägg till</guibutton>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:398
-msgid "To Remove Search Criteria"
-msgstr "Att ta bort sökkriterier"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:399
-msgid "To remove search criteria, perform the following steps:"
-msgstr "För att ta bort sökkriterier, följ stegen nedan:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:403
-msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, select the search criteria "
-"that you want to remove."
-msgstr ""
-"I dialogen <guilabel>Sök data</guilabel>, välj det sökkriterium du vill ta "
-"bort."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:405
-msgid "Click <guibutton>Remove Selected</guibutton>."
-msgstr "Klicka på <guibutton>Ta bort markerad</guibutton>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:415
-msgid "To Find and Replace Data in a File"
-msgstr "Så här söker du efter och ersätter data i en fil"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:416
-msgid ""
-"To search a file for a hexadecimal or ASCII string and then replace the "
-"string, perform the following steps:"
-msgstr ""
-"Om du vill söka efter en hexadecimal sträng eller ASCII-sträng i en fil och "
-"sedan ersätta strängen med en annan, följer du stegen nedan:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:418
-msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Replace</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Ersätt</"
-"guimenuitem></menuchoice>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:420
-msgid ""
-"In the <guilabel>Find &amp; Replace Data</guilabel> dialog, choose one of "
-"the following options:"
-msgstr ""
-"I dialogen <guilabel>Sök och ersätt data</guilabel> väljer du något av "
-"följande alternativ:"
-
-# https://bugzilla.gnome.org/show_bug.cgi?id=766921
-#. (itstool) path: listitem/para
-#: C/index.docbook:422
-msgid "<guilabel>Replace hex data</guilabel>"
-msgstr "<guilabel>Ersätt hex-data</guilabel>"
-
-# https://bugzilla.gnome.org/show_bug.cgi?id=766921
-#. (itstool) path: listitem/para
-#: C/index.docbook:424
-msgid "<guilabel>Replace ASCII data</guilabel>"
-msgstr "<guilabel>Ersätt ASCII-data</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:428
-msgid "In the first text box, type the string that you want to find."
-msgstr "I den första textrutan anger du den sträng du vill söka efter."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:430
-msgid ""
-"In the second text box, type the string that you want to use to replace the "
-"string that you find."
-msgstr ""
-"I den andra rutan anger du den sträng som du vill ersätta den sökta strängen "
-"med."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:432
-msgid "Click <guibutton>Find Next</guibutton>."
-msgstr "Klicka på <guibutton>Sök nästa</guibutton>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:434
-msgid ""
-"Click <guibutton>Replace</guibutton> to replace the current occurrence of "
-"the string or click <guibutton>Replace All</guibutton> to replace all "
-"occurrences of the string."
-msgstr ""
-"Klicka på <guibutton>Ersätt</guibutton> om du vill ersätta den aktuella "
-"förekomsten av strängen eller klicka på <guibutton>Ersätt alla</guibutton> "
-"om du vill ersätta alla förekomster av strängen."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:436
-msgid ""
-"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find &amp; "
-"Replace Data</guilabel> dialog."
-msgstr ""
-"Klicka <guibutton>Avbryt</guibutton> för att stänga dialogen <guilabel>Sök "
-"och ersätt data</guilabel>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:444
-msgid "To Add or Remove Additional Views of a File"
-msgstr "Så här lägger du till och tar bort ytterligare vyer av en fil"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:445
-msgid ""
-"To add another view of the current file to your <application>GHex</"
-"application> window, choose <menuchoice><guimenu>View</"
-"guimenu><guimenuitem>Add View</guimenuitem></menuchoice>."
-msgstr ""
-"Om du vill lägga till en annan vy av den aktuella filen i <application>GHex</"
-"application>-fönstret eller på skrivbordet välj <menuchoice><guimenu>Visa</"
-"guimenu><guimenuitem>Lägg till vy</guimenuitem></menuchoice>."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:446
-msgid ""
-"To remove a view of the current file, choose <menuchoice><guimenu>View</"
-"guimenu><guimenuitem>Remove View</guimenuitem></menuchoice>. If you remove "
-"the last view that is open, the application exits."
-msgstr ""
-"Om du vill ta bort en vy av den aktuella filen väljer du "
-"<menuchoice><guimenu>Visa</guimenu><guimenuitem>Ta bort vy</guimenuitem></"
-"menuchoice>. Om du tar bort den sista öppna vyn avslutas programmet."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:452
-msgid "To Change the Data Group Type"
-msgstr "Att ändra datagrupptypen"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:453
-msgid ""
-"To change how <application>GHex</application> displays the hexadecimal "
-"content of a file in the <application>GHex</application> window, choose "
-"<menuchoice><guimenu>View</guimenu><guimenuitem>Group Data As</guimenuitem></"
-"menuchoice>, then select one of the following menu items:"
-msgstr ""
-"För att ändra hur <application>GHex</application> visar hexadecimalt "
-"innehåll för en fil, välj i <application>GHex</application>-fönstret "
-"<menuchoice><guimenu>Visa</guimenu><guimenuitem>Gruppera data som</"
-"guimenuitem></menuchoice> och välj sedan ett av följande menyobjekt:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:455 C/index.docbook:634
-msgid "<guilabel>Bytes</guilabel> - single bytes"
-msgstr "<guilabel>Byte</guilabel> - enstaka byte"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:457 C/index.docbook:636
-msgid "<guilabel>Words</guilabel> - groups of two bytes"
-msgstr "<guilabel>Ord</guilabel> - grupper om två byte"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:459 C/index.docbook:638
-msgid "<guilabel>Longwords</guilabel> - groups of four bytes"
-msgstr "<guilabel>Långord</guilabel> - grupper om fyra byte"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:467
-msgid "To Export the GHex Display to HTML"
-msgstr "Så här exporterar du innehållet i GHex-fönstret till HTML"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:469
-msgid ""
-"Creates a separate HTML file for each page of data that is displayed in the "
-"<application>GHex</application> window."
-msgstr ""
-"En separat HTML-fil skapas för varje sida som visas i <application>GHex</"
-"application>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:471
-msgid "Uses the HTML filename that you specify as the basis for the filename."
-msgstr "Det HTML-filnamn som du anger används som basnamn."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:473
-msgid "Appends a page number to the filename to differentiate the files."
-msgstr "Till varje filnamn läggs ett sidnummer för att skilja filerna åt."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:468
-msgid ""
-"To export the data contained in the <application>GHex</application> window "
-"to HTML, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Save As "
-"HTML</guimenuitem></menuchoice>. Choose a directory and specify a filename "
-"for the HTML file, then click <guibutton>OK</guibutton>. <application>GHex</"
-"application> implements the following actions: <_:itemizedlist-1/> For "
-"example, if you specify the filename <filename>log.html</filename>, "
-"<application>GHex</application> creates a series of HTML files named "
-"<filename>log00000000.html</filename>, <filename>log00000001.html</"
-"filename>, <filename>log00000002.html</filename>, and so on."
-msgstr ""
-"För att exportera de data som visas i <application>GHex</application>-"
-"fönstret till HTML väljer du <menuchoice><guimenu>Arkiv</"
-"guimenu><guimenuitem>Spara som HTML</guimenuitem></menuchoice>. Välj en "
-"katalog, ange namnet på HTML-filen och klicka sedan på <guibutton>OK</"
-"guibutton>. Följande utförs av <application>GHex</application>: <_:"
-"itemizedlist-1/> Om du till exempel anger filnamnet <filename>logg.html</"
-"filename> skapar <application>GHex</application> en uppsättning HTML-filer "
-"med namnen <filename>logg00000000.html</filename>, <filename>logg00000001."
-"html</filename>, <filename>logg00000002.html</filename> och så vidare."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:481
-msgid "To View a Character Table"
-msgstr "Så här visar du en teckentabell"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:482
-msgid ""
-"To view a table that contains the ASCII, hexadecimal, decimal, octal, and "
-"binary representations for the values 0 to 255, choose "
-"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Character Table</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Om du vill visa en tabell med ASCII-värdet samt de hexadecimala, decimala, "
-"oktala och binära representationerna för alla värden mellan 0 och 255, "
-"väljer du <menuchoice><guimenu>Fönster</guimenu><guimenuitem>Teckentabell</"
-"guimenuitem></menuchoice>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:488
-msgid "To View Data Conversions"
-msgstr "Så här visar du konverterade data"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:489
-msgid ""
-"To display the binary, decimal, hexadecimal, and ASCII conversions for up to "
-"four bytes of data, perform the following steps:"
-msgstr ""
-"Om du vill visa ASCII-värdet samt den binära, decimala, hexadecimala "
-"representationen av upp till fyra byte data, följer du stegen nedan:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:491
-msgid ""
-"Choose <menuchoice><guimenu>Windows</guimenu><guimenuitem>Base Converter</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Välj <menuchoice><guimenu>Fönster</guimenu><guimenuitem>Baskonverterare</"
-"guimenuitem></menuchoice>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:493
-msgid "Perform one of the following actions:"
-msgstr "Gör något av följande:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:495
-msgid ""
-"Type the data that you want to convert in one of the fields in the "
-"<guilabel>Base Converter</guilabel> dialog, then press <keycap>Return</"
-"keycap>."
-msgstr ""
-"Ange de data som du vill konvertera i något av fälten i dialogrutan "
-"<guilabel>Baskonverterare</guilabel> och tryck på <keycap>Retur</keycap>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:497
-msgid ""
-"To display the conversions for the data at the cursor position in the "
-"current file, click on the <guibutton>Get cursor value</guibutton> button."
-msgstr ""
-"Om du vill visa konverteringarna för de data som finns vid markören klickar "
-"du på knappen <guibutton>Hämta värde vid markör</guibutton>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:500
-msgid ""
-"<application>GHex</application> updates the values of the other fields to "
-"display the data conversions."
-msgstr ""
-"<application>GHex</application> uppdaterar värdena i de andra fälten med de "
-"konverterade värdena."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:502
-msgid ""
-"Click <guibutton>Close</guibutton> to close the <guilabel>Base Converter</"
-"guilabel> dialog."
-msgstr ""
-"Klicka på <guibutton>Stäng</guibutton> för att stänga dialogen "
-"<guilabel>Baskonverterare</guilabel>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:510
-msgid "To Show or Hide the Type Conversion Dialog"
-msgstr "Att visa eller dölja dialogen för typkonvertering"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:511
-msgid ""
-"To show or hide the type conversion dialog, choose "
-"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Type Conversion Dialog</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"För att visa eller dölja dialogen för typkonvertering, välj "
-"<menuchoice><guimenu>Fönster</guimenu><guimenuitem>Typkonverteringsdialogen</"
-"guimenuitem></menuchoice>."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:512
-msgid ""
-"The type conversion dialog displays the value of the selected character in "
-"the following representations:"
-msgstr ""
-"Dialogen för typkonvertering visar värdet på det valda tecknet i följande "
-"representationer:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:515
-msgid "<guilabel>Signed 8 bit</guilabel>"
-msgstr "<guilabel>8-bitars med tecken</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:518
-msgid "<guilabel>Unsigned 8 bit</guilabel>"
-msgstr "<guilabel>Teckenlöst 8-bitars</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:521
-msgid "<guilabel>Signed 16 bit</guilabel>"
-msgstr "<guilabel>16-bitars med tecken</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:524
-msgid "<guilabel>Unsigned 16 bit</guilabel>"
-msgstr "<guilabel>Teckenlöst 16-bitars</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:527
-msgid "<guilabel>Signed 32 bit</guilabel>"
-msgstr "<guilabel>32-bitars med tecken</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:530
-msgid "<guilabel>Unsigned 32 bit</guilabel>"
-msgstr "<guilabel>Teckenlöst 32-bitars</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:533
-msgid "<guilabel>32 bit float</guilabel>"
-msgstr "<guilabel>Flytande 32 bitar:</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:536
-msgid "<guilabel>64 bit float</guilabel>"
-msgstr "<guilabel>Flytande 64 bitar:</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:539
-msgid "<guilabel>Hexadecimal</guilabel>"
-msgstr "<guilabel>Hexadecimalt</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:542
-msgid "<guilabel>Octal</guilabel>"
-msgstr "<guilabel>Oktalt</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:545
-msgid "<guilabel>Binary</guilabel>"
-msgstr "<guilabel>Binärt</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:548
-msgid "<guilabel>Stream Length</guilabel>"
-msgstr "<guilabel>Strömlängd</guilabel>"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:551
-msgid "The type conversion dialog also contains the following options:"
-msgstr "Dialogen för typkonvertering innehåller följande alternativ:"
-
-# Även 'Om­vänd byte­ordning'. Ändras i så fall även i gränssnittsfilen.
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:554
-msgid "<guilabel>Show little endian decoding</guilabel>"
-msgstr "<guilabel>Visa little endian-avkodning</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:556
-msgid "Select this option to show little endian decoding."
-msgstr "Välj detta alternativ för att visa little endian-avkodning."
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:560
-msgid "<guilabel>Show unsigned and float as hexadecimal</guilabel>"
-msgstr "<guilabel>Visa teckenlösa och flyttal hexadecimalt</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:562
-msgid ""
-"Select this option to show unsigned and float numbers as hexadecimal numbers."
-msgstr ""
-"Välj detta alternativ för att visa tal utan tecken och flyttal som "
-"hexadecimala siffror."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:571
-msgid "To Print a File"
-msgstr "Så här skriver du ut en fil"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:572
-msgid ""
-"To print a file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Print</guimenuitem></menuchoice>. Select the print "
-"options that you require in the <guilabel>Print</guilabel> dialog, then "
-"click <guibutton>OK</guibutton>."
-msgstr ""
-"Du skriver ut en fil genom att välja <menuchoice><guimenu>Arkiv</"
-"guimenu><guimenuitem>Skriv ut</guimenuitem></menuchoice>. Ange önskade "
-"alternativ för utskrift i dialogrutan <guilabel>Skriv ut</guilabel> och "
-"klicka sedan på <guibutton>OK</guibutton>."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:573
-msgid ""
-"To preview a printed copy of the file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Print Preview</guimenuitem></menuchoice>."
-msgstr ""
-"Om du vill förhandsgranska filen väljer du <menuchoice><guimenu>Arkiv</"
-"guimenu><guimenuitem>Förhandsgranska</guimenuitem></menuchoice>."
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:581
+"För att spara en fil till ett filnamn du väljer, använd åtgärden <gui>Spara "
+"som</gui> genom att klicka på <gui>Spara som</gui> i <gui>Huvudmenyn</gui>, "
+"eller genom att trycka ned <keyseq><key>Skift</key><key>Ctrl</key><key>S</"
+"key></keyseq>."
+
+#. (itstool) path: page/title
+#: C/conf-grouptype.page:12
+msgid "Hex data grouping"
+msgstr "Hexdatagruppering"
+
+#. (itstool) path: page/p
+#: C/conf-grouptype.page:13
+msgid "GHex allows data in the hex pane to be grouped in the following ways:"
+msgstr "GHex låter data i hexadecimalpanelen grupperas på följande sätt:"
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:16
+msgid "Bytes (8-bit) <em>this is the default</em>"
+msgstr "Byte (8 bitar) <em>detta är standard</em>"
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:19
+msgid "Words (16-bit)"
+msgstr "Ord (16 bitar)"
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:22
+msgid "Longwords (32-bit)"
+msgstr "Långord (32 bitar)"
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:25
+msgid "Quadwords (64-bit)"
+msgstr "Quad-ord (64 bitar)"
+
+#. (itstool) path: page/p
+#: C/conf-grouptype.page:28
+msgid "This setting may be changed in two ways:"
+msgstr "Denna inställning kan ändras på två sätt:"
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:31
+msgid "From the <gui>Group Data As</gui> submenu of the <gui>Main menu</gui>."
+msgstr "Från undermenyn <gui>Gruppera data som</gui> i <gui>Huvudmenyn</gui>."
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:34
+msgid "From the <link xref=\"conf-preferences\"/> dialog."
+msgstr "Från dialogrutan <link xref=\"conf-preferences\"/>."
+
+#. (itstool) path: page/title
+#: C/conf-preferences.page:12
 msgid "Preferences"
 msgstr "Inställningar"
 
-#. (itstool) path: sect1/para
-#: C/index.docbook:582
+#. (itstool) path: page/p
+#: C/conf-preferences.page:13
+msgid "The GHex Preferences dialog is divided into two groups:"
+msgstr "GHex-inställningsdialogen är uppdelad i två grupper:"
+
+#. (itstool) path: item/p
+#: C/conf-preferences.page:16
+msgid "<em>Display</em>, which pertains to what you see on-screen, and;"
+msgstr "<em>Utseende</em>, vilket är vad du ser på skärmen, och:"
+
+#. (itstool) path: item/p
+#: C/conf-preferences.page:19
 msgid ""
-"To configure <application>GHex</application>, choose "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></"
-"menuchoice>. The <guilabel>Preferences</guilabel> dialog contains the "
-"following tabbed sections:"
+"<em>Printing</em>, which only affects how hexadecimal files will be printed "
+"on paper, if GHex's printing features are utilized."
 msgstr ""
-"Om du vill konfigurera <application>GHex</application> väljer du "
-"<menuchoice><guimenu>Redigera</guimenu><guimenuitem>Inställningar</"
-"guimenuitem></menuchoice>. Dialogrutan <guilabel>Inställningar</guilabel> "
-"innehåller följande flikar:"
+"<em>Utskrift</em>, som bara påverkar hur hexadecimala filer kommer skrivas "
+"ut på papper, om utskriftsfunktionerna i GHex används."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:595
-msgid "Editing"
-msgstr "Redigering"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:598
-msgid "<guilabel>Maximum number of undo levels</guilabel>"
-msgstr "<guilabel>Maximalt antal ångrasteg</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:600
-msgid ""
-"Use this spin box to specify the maximum number of edits that you can undo."
-msgstr ""
-"Använd den här stegningsrutan för att ange hur många redigeringar du kan "
-"ångra."
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:604
-msgid "<guilabel>Show cursor offset in statusbar as</guilabel>"
-msgstr "<guilabel>Visa markörpositionen i statusraden som</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:606
-msgid ""
-"Use this drop-down list to select the format in which the cursor offset is "
-"displayed. The format can be decimal, hexadecimal, or a custom print style "
-"string that only contains the format specifiers x, o, and s."
-msgstr ""
-"Använd den här listrutan om du vill ange formatet för hur markörpositionen "
-"visas. Formatet kan vara decimalt, hexadecimalt eller ett eget "
-"utdatamönster, angivet med hjälp av formatkonstanterna x, o och s."
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:610
-msgid "<guilabel>Show offsets column</guilabel>"
-msgstr "<guilabel>Visa avståndskolumn</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:612
-msgid ""
-"Select this option to display the cursor offsets in a column to the left of "
-"the hexadecimal view of the <application>GHex</application> window."
-msgstr ""
-"Markera det här alternativet om du vill att markörens position ska visas i "
-"en kolumn till vänster om den hexadecimala vyn i <application>GHex</"
-"application>."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:621
+#. (itstool) path: section/title
+#: C/conf-preferences.page:24
 msgid "Display"
 msgstr "Utseende"
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:624
-msgid "<guilabel>Font</guilabel>"
-msgstr "<guilabel>Typsnitt</guilabel>"
+#. (itstool) path: section/title
+#: C/conf-preferences.page:26
+msgid "Font"
+msgstr "Typsnitt"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:626
+#. (itstool) path: section/p
+#: C/conf-preferences.page:27
 msgid ""
-"Use the font selector list boxes to edit the existing font information or "
-"type new font information. Specify a font type, style, and size to display "
-"the contents of files in <application>GHex</application>."
+"This allows you to select a font of your choice for the hex/ASCII editor "
+"only."
 msgstr ""
-"Använd typsnittsväljarens listrutor för att redigera befintliga typsnitt "
-"eller ange ny typsnittsinformation. Ange ett typsnitts typ, stil och storlek "
-"för innehållet i <application>GHex</application>."
+"Detta låter dig välja ett typsnitt endast för hexadecimal/ASCII-redigeraren."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:630
-msgid "<guilabel>Default Group Type</guilabel>"
-msgstr "<guilabel>Standardgrupptyp</guilabel>"
+#. (itstool) path: section/title
+#: C/conf-preferences.page:30
+msgid "Dark Mode"
+msgstr "Mörkt läge"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:632
+#. (itstool) path: section/p
+#: C/conf-preferences.page:31
+msgid "This allows you to manually prefer the dark style."
+msgstr "Detta låter dig manuellt välja den mörka stilen."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:32
 msgid ""
-"Select one of the following options to specify how <application>GHex</"
-"application> displays the hexadecimal content of a file in the "
-"<application>GHex</application> window:"
+"By default, the <gui>Use system default</gui> checkbox is enabled, uses your "
+"system-wide default for preferring a dark style, which disables the "
+"<gui>Dark Mode</gui> switch from being turned on or off."
 msgstr ""
-"Välj ett av följande alternativ för att specificera hur <application>GHex</"
-"application> visar hexadecimalt filinnehåll i <application>GHex</"
-"application>-fönstret:"
+"Som standard är kryssrutan <gui>Använd systemstandard</gui> aktiverad, "
+"vilket använder ditt systemomfattande standardvärde för att föredra mörk "
+"stil, vilket hindrar brytaren <gui>Mörkt läge</gui> från att slås på eller "
+"av."
 
-#. (itstool) path: sect2/title
-#: C/index.docbook:649
+#. (itstool) path: section/p
+#: C/conf-preferences.page:35
+msgid ""
+"By de-selecting this checkbox, you may toggle the <gui>Dark Mode</gui> "
+"switch on or off to manually prefer or not prefer a dark style. Toggling "
+"this switch will take immediate effect, so you should be able to see "
+"instantaneously which style you prefer for GHex."
+msgstr ""
+"Genom att avmarkera denna kryssruta kan du växla brytaren <gui>Mörkt läge</"
+"gui> för att manuellt välja att ha en mörk stil eller inte. Att växla denna "
+"brytare får omedelbart verkan, så du bör direkt se vilken stil du föredrar "
+"för GHex."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:39
+msgid ""
+"If you want to go back to the system default, simply check the <gui>Use "
+"system default</gui> checkbox back on."
+msgstr ""
+"Om du vill gå tillbaka till systemets standard kan du helt enkelt kryssa i "
+"kryssrutan <gui>Använd systemstandard</gui> igen."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:43
+msgid "Hex Group Type"
+msgstr "Hexadecimalgrupptyp"
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:44
+msgid ""
+"This allows you to choose how data will be grouped in the hex pane of the "
+"editor."
+msgstr ""
+"Detta låter dig välja hur data kommer grupperas i redigerarens "
+"hexadecimalpanel."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:46
+msgid "See <link xref=\"conf-grouptype\"/> for more details."
+msgstr "Se <link xref=\"conf-grouptype\"/> för mer detaljer."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:50
 msgid "Printing"
 msgstr "Utskrift"
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:652
-msgid "<guilabel>Data font</guilabel>"
-msgstr "<guilabel>Datatypsnitt</guilabel>"
+#. (itstool) path: section/title
+#: C/conf-preferences.page:52
+msgid "Fonts"
+msgstr "Typsnitt"
 
-#. (itstool) path: listitem/para
-#: C/index.docbook:654
+#. (itstool) path: section/p
+#: C/conf-preferences.page:53
 msgid ""
-"Click on the <guibutton>Data font</guibutton> button to specify the font "
-"type, style, and size to use to print the data contained in a file."
-msgstr ""
-"Klicka på knappen <guibutton>Datatypsnitt</guibutton> om du vill ange "
-"typsnitt samt typsnittsstorlek och stil för att skriva ut data från en fil."
+"This section allows you to choose the fonts you would like for hex printouts."
+msgstr "Detta avsnitt låter dig välja typsnitten du vill ha för hexutskrifter."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:658
-msgid "<guilabel>Header font</guilabel>"
-msgstr "<guilabel>Rubriktypsnitt</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:660
+#. (itstool) path: section/p
+#: C/conf-preferences.page:54
 msgid ""
-"Click on the <guibutton>Header font</guibutton> button to specify the font "
-"type, style, and size to use to print the header information that is "
-"contained in the file."
+"<gui>Data font</gui> will apply to the content of your hex document (ie, hex "
+"and ASCII digits)."
 msgstr ""
-"Klicka på knappen <guibutton>Rubriktypsnitt</guibutton> om du vill ange "
-"typsnitt samt typsnittsstorlek och stil för utskrift av rubrikinformation i "
-"filen."
+"<gui>Datatypsnitt</gui> kommer tillämpas på innehållet i ditt hexdokument (d."
+"v.s. hexadecimal- och ASCII-tecken)."
 
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:664
-msgid "<guilabel>Print shaded box over</guilabel>"
-msgstr "<guilabel>Skriv skuggad ruta över</guilabel>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:666
+#. (itstool) path: section/p
+#: C/conf-preferences.page:56
 msgid ""
-"Use this spin box to specify the number of lines that <application>GHex</"
-"application> alternately prints with a surrounding shaded box. If the value "
-"of the spin box is 10, <application>GHex</application> prints the first 10 "
-"lines of the file without a shaded box, the next 10 lines with a shaded box, "
-"and so on. If the value of the spin box is 0, <application>GHex</"
-"application> does not print any shaded box."
+"<gui>Header font</gui> will apply to the header on your printout, which will "
+"show the document title and page number."
 msgstr ""
-"Använd den här stegningsrutan om du vill ange storleken i antal rader för en "
-"skuggad ruta som skrivs ut runt texten av <application>GHex</application>. "
-"Om värdet i stegningsrutan är 10, skriver <application>GHex</application> ut "
-"de första 10 raderna i filen utan en skuggad ruta, nästa 10 rader med en "
-"skuggad ruta och så vidare. Om värdet på stegningsrutan är 0 skriver "
-"<application>GHex</application> inte ut någon skuggad ruta."
+"<gui>Rubriktypsnitt</gui> kommer tillämpas på rubriken för din utskrift, "
+"vilken kommer visa dokumentets titel och sidnummer."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:60
+msgid "Shaded rows"
+msgstr "Skuggade rader"
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:61
+msgid ""
+"If <gui>Print alternating shaded rows</gui> is selected, your printout will "
+"have alternating rows of your hex and ASCII data printed out with a shaded "
+"grey background to make reading each row easier."
+msgstr ""
+"Om <gui>Skriv ut omväxlande skuggade rader</gui> är valt kommer din utskrift "
+"ha att varannan rad av dina hexadecimal- och ASCII-data skrivs ut med en "
+"skuggad grå bakgrund för att göra det lättare att läsa varje rad."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:64
+msgid ""
+"Please note that this may use more printer ink/toner than leaving it "
+"disabled."
+msgstr ""
+"Observera att detta kan använda mer bläck/toner för skrivaren än att lämna "
+"det inaktiverat."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:65
+msgid ""
+"<gui>Span across lines</gui> allows you to customize how many lines will be "
+"shaded, followed by not shaded, on a repeated basis. Again, this is simply "
+"for ease of reading. If you want shaded rows but are not sure what to "
+"specify here, leaving it as the default, \"1\", should be fine."
+msgstr ""
+"<gui>Spänn över rader</gui> låter dig anpassa hur många rader som kommer "
+"skuggas, följt av ej skuggade, vilket omväxlande upprepas. Detta är åter "
+"endast för att vara lätt att läsa. Om du vill ha skuggade rader men inte är "
+"säker på vad du ska ange här bör standardvärdet ”1” fungera bra."
+
+#. (itstool) path: page/title
+#: C/index.page:12
+msgid "GHex Help"
+msgstr "Hjälp för GHex"
+
+#. (itstool) path: page/p
+#: C/index.page:13
+msgid "GHex is a simple hex editor."
+msgstr "GHex är en enkel hexadecimalredigerare."
+
+#. (itstool) path: page/p
+#: C/index.page:14
+msgid "GHex enables you to perform the following actions:"
+msgstr "GHex låter dig utföra följande åtgärder:"
+
+#. (itstool) path: item/p
+#: C/index.page:17
+msgid "View a file in ASCII or hexadecimal format simultaneously."
+msgstr "Visa en fil i ASCII-format och hexadecimalt format samtidigt."
+
+#. (itstool) path: item/p
+#: C/index.page:20
+msgid "Edit a file in either ASCII or hexadecimal format."
+msgstr "Redigera en fil i antingen ASCII-format eller hexadecimalt format."
+
+#. (itstool) path: section/title
+#: C/index.page:27
+msgid "Basics"
+msgstr "Grunder"
+
+#. (itstool) path: section/title
+#: C/index.page:33
+msgid "Tools"
+msgstr "Verktyg"
+
+#. (itstool) path: section/title
+#: C/index.page:39
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#. (itstool) path: section/title
+#: C/index.page:45
+msgid "Advanced topics"
+msgstr "Avancerade ämnen"
+
+#. (itstool) path: page/title
+#: C/tools-chartable.page:12
+msgid "Character table"
+msgstr "Teckentabell"
+
+# TODO: hexadecimal
+#. (itstool) path: page/p
+#: C/tools-chartable.page:13
+msgid ""
+"GHex includes a handy table of many standard ASCII characters so as to allow "
+"you to easily insert such characters into a file without having to memorize "
+"its decimal or hexidecimal character code."
+msgstr ""
+"GHex inkluderar en praktisk tabell över många ASCII-standardtecken så du "
+"lätt kan mata in sådana tecken i en fil utan att behöva komma ihåg dess "
+"decimala eller hexadecimala teckenkoder."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:16
+msgid ""
+"You may access the character table by selecting <gui>Character Table</gui> "
+"from the <gui>Tools</gui> submenu of the <gui>Main menu</gui>."
+msgstr ""
+"Du kan komma åt teckentabellen genom att välja <gui>Teckentabell</gui> från "
+"undermenyn <gui>Verktyg</gui> i <gui>Huvudmenyn</gui>."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:18
+msgid ""
+"While the character table is open, you may still select the hex editor and "
+"move the cursor around, as per usual."
+msgstr ""
+"Medan teckentabellen är öppen kan du fortfarande välja "
+"hexadecimalredigeraren och flytta runt markören som vanligt."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:20
+msgid ""
+"The columns showing the values in various formats such as ASCII, hex, "
+"decimal, etc., are for ease of reference."
+msgstr ""
+"Kolumnerna som visar värdena i olika format såsom ASCII, hexadecimalt och "
+"decimalt är till för att få en enkel överblick."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:22
+msgid ""
+"The characters in the table can be navigated by clicking on them, or using "
+"the keyboard, in the usual way. When you have highlighted a character you "
+"would like to insert, you may insert that character into the file at the "
+"cursor position in the following ways:"
+msgstr ""
+"Tecknen i tabellen kan navigeras genom att klicka på dem eller använda "
+"tangentbordet på vanligt sätt. När du har markerat ett tecken som du vill "
+"infoga kan du infoga det tecknet i filen på markörpositionen på följande "
+"sätt:"
+
+#. (itstool) path: item/p
+#: C/tools-chartable.page:28
+msgid ""
+"Press <key>Enter</key> or double-click on the character you would like to "
+"insert."
+msgstr ""
+"Tryck ned <key>Retur</key> eller dubbelklicka på tecknet som du vill infoga."
+
+#. (itstool) path: item/p
+#: C/tools-chartable.page:31
+msgid "Click the <gui>Insert Character</gui> button."
+msgstr "Klicka på knappen <gui>Infoga tecken</gui>."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:34
+msgid ""
+"The character table can be closed by clicking the <gui>Close</gui> button."
+msgstr ""
+"Teckentabellen kan stängas genom att klicka på knappen <gui>Stäng</gui>."
+
+#. (itstool) path: page/title
+#: C/tools-converter.page:12
+msgid "Base converter"
+msgstr "Baskonverterare"
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:13
+msgid ""
+"GHex includes a base converter tool which can either be used as a standalone "
+"tool to convert values from one format to another, or to obtain the value "
+"pointed to by the cursor and to convert that value into various formats."
+msgstr ""
+"GHex inkluderar ett baskonverterarverktyg som antingen kan användas som ett "
+"fristående verktyg för att konvertera värden från ett format till ett annat, "
+"eller för att erhålla värdet som pekas på av markören och för att konvertera "
+"det värdet till olika format."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:16
+msgid ""
+"You may access the base converter by selecting <gui>Base Converter</gui> "
+"from the <gui>Tools</gui> submenu of the <gui>Main menu</gui>."
+msgstr ""
+"Du kan komma åt baskonverteraren genom att välja <gui>Baskonverterare</gui> "
+"från undermenyn <gui>Verktyg</gui> i <gui>Huvudmenyn</gui>."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:18
+msgid ""
+"While the base converter is open, you may still select the hex editor and "
+"move the cursor around, as per usual."
+msgstr ""
+"Medan baskonverteraren är öppen kan du fortfarande välja "
+"hexadecimalredigeraren och flytta runt markören som vanligt."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:20
+msgid ""
+"To convert the value at the cursor position, click the <gui>Get cursor "
+"value</gui> button."
+msgstr ""
+"För att konvertera värdet på markörens position klickar du på knappen "
+"<gui>Hämta värde vid markör</gui>."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:22
+msgid ""
+"To convert a value manually, you may type it into any of the fields in the "
+"format delimited therein (clearing any pre-existing value as necessary), and "
+"press <key>Enter</key>."
+msgstr ""
+"För att konvertera ett värde manuellt kan du mata in det i vilket som helst "
+"av fälten i formatet som används där (töm befintligt värde om nödvändigt) "
+"och trycka <key>Retur</key>."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:25
+msgid ""
+"If you have entered an invalid value, \"ERROR\" will appear in the field. "
+"This error is not fatal and just indicates that an unrecognized value was "
+"entered. Simply enter a valid value, or click <gui>Get cursor value</gui> to "
+"grab the cursor value and to get some examples of valid values, and try "
+"again."
+msgstr ""
+"Om du har matat in ett ogiltigt värde kommer ”FEL” visas i fältet. Detta fel "
+"är inte ödesdigert och pekar bara på att ett okänt värde matades in. Ange "
+"helt enkelt ett giltigt värde eller klicka på <gui>Hämta värde vid markör</"
+"gui> för att hämta markörvärdet och för att få några exempel på giltiga "
+"värden, och försök igen."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:29
+msgid ""
+"The base converter can be closed by clicking the <gui>Close</gui> button."
+msgstr ""
+"Baskonverteraren kan stängas genom att klicka på knappen <gui>Stäng</gui>."
 
 #. (itstool) path: para/ulink
 #: C/legal.xml:9
@@ -1429,6 +1267,881 @@ msgstr ""
 "VILLKOREN I GNU FREE DOCUMENTATION LICENSE ENDAST UNDER FÖLJANDE "
 "FÖRUTSÄTTNINGAR: <_:orderedlist-1/>"
 
+#~ msgid "User manual for GHex"
+#~ msgstr "Användarhandbok för GHex"
+
+#~ msgid ""
+#~ "GHex is a simple binary editor. It lets users view and edit a binary file "
+#~ "in both hex and ascii with a multiple level undo/redo mechanism. Features "
+#~ "include find and replace functions, conversion between binary, octal, "
+#~ "decimal and hexadecimal values, and use of an alternative, user-"
+#~ "configurable MDI concept that lets users edit multiple documents with "
+#~ "multiple views of each."
+#~ msgstr ""
+#~ "GHex är en enkel binärredigare. Det låter användare se och redigera en "
+#~ "binärfil i både hex och ascii med flera nivåer av mekanismerna ångra/gör "
+#~ "om. Egenskaper är, bland annat, funktionerna sök och ersätt, konvertering "
+#~ "mellan binära, oktala, decimala och hexadecimala värden samt användning "
+#~ "av ett alternativt användarkonfigurerbart MDI-koncept som låter användare "
+#~ "redigera flera dokument med flera olika vyer av varje dokument."
+
+#~ msgid ""
+#~ "<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
+#~ "Microsystems</holder>"
+#~ msgstr ""
+#~ "<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
+#~ "Microsystems</holder>"
+
+#~ msgid "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+#~ msgstr "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+
+#~ msgid "GNOME Documentation Project"
+#~ msgstr "Dokumentationsprojekt för GNOME"
+
+#~ msgid ""
+#~ "<firstname>Sun</firstname> <surname>GNOME Documentation Team</surname> "
+#~ "<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
+#~ "affiliation>"
+#~ msgstr ""
+#~ "<firstname>Sun</firstname> <surname>GNOME-dokumentationsteam</surname> "
+#~ "<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
+#~ "affiliation>"
+
+#~ msgid ""
+#~ "<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
+#~ "<orgname>GNOME Documentation Project</orgname> <address> <email>jaka@gnu."
+#~ "org</email> </address> </affiliation>"
+#~ msgstr ""
+#~ "<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
+#~ "<orgname>Dokumentationsprojekt för GNOME</orgname> <address> "
+#~ "<email>jaka@gnu.org</email> </address> </affiliation>"
+
+#~ msgid "Sun GNOME Documentation Team"
+#~ msgstr "Suns GNOME-dokumentationsteam"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.5</revnumber> <date>December 2005</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Handbok för GHex V2.5</revnumber> <date>December 2005</date> "
+#~ "<_:revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.4</revnumber> <date>April 2003</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Handbok för GHex V2.4</revnumber> <date>April 2003</date> <_:"
+#~ "revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.3</revnumber> <date>August 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Handbok för GHex V2.3</revnumber> <date>Augusti 2002</date> <_:"
+#~ "revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.2</revnumber> <date>August 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Handbok för GHex V2.2</revnumber> <date>Augusti 2002</date> <_:"
+#~ "revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.1</revnumber> <date>July 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Handbok för GHex V2.1</revnumber> <date>Juli 2002</date> <_:"
+#~ "revdescription-1/>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V2.0</revnumber> <date>March 2002</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Handbok för GHex V2.0</revnumber> <date>Mars 2002</date> <_:"
+#~ "revdescription-1/>"
+
+#~ msgid "Jaka Mocnik <email>jaka@gnu.org</email>"
+#~ msgstr "Jaka Mocnik <email>jaka@gnu.org</email>"
+
+#~ msgid ""
+#~ "<revnumber>GHex Manual V1.0</revnumber> <date>2000</date> <_:"
+#~ "revdescription-1/>"
+#~ msgstr ""
+#~ "<revnumber>Handbok för GHex V1.0</revnumber> <date>2000</date> <_:"
+#~ "revdescription-1/>"
+
+#~ msgid "This manual describes version 2.19 of GHex."
+#~ msgstr "Den här handboken beskriver version 2.19 av GHex."
+
+#~ msgid "Feedback"
+#~ msgstr "Återkoppling"
+
+#~ msgid ""
+#~ "To report a bug or make a suggestion regarding the GHex application or "
+#~ "this manual, follow the directions in the <ulink url=\"help:gnome-"
+#~ "feedback\" type=\"help\">GNOME Feedback Page</ulink>."
+#~ msgstr ""
+#~ "Om du vill rapportera ett fel eller ge förslag om programmet GHex eller "
+#~ "den här handboken följer du instruktionerna på <ulink url=\"help:gnome-"
+#~ "feedback\" type=\"help\">GNOMEs återkopplingssida</ulink>."
+
+#~ msgid "<primary>GHex</primary>"
+#~ msgstr "<primary>GHex</primary>"
+
+#~ msgid "Introduction"
+#~ msgstr "Introduktion"
+
+#~ msgid "Getting Started"
+#~ msgstr "Kom igång"
+
+#~ msgid "To Start GHex"
+#~ msgstr "Starta GHex"
+
+#~ msgid "You can start <application>GHex</application> in the following ways:"
+#~ msgstr "Du kan starta <application>GHex</application> på följande sätt:"
+
+#~ msgid "<guimenu>Applications</guimenu> menu"
+#~ msgstr "<guimenu>Program</guimenu>-menyn"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guisubmenu>Accessories</guisubmenu><guimenuitem>Hex "
+#~ "Editor</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Välj <menuchoice><guisubmenu>Tillbehör</"
+#~ "guisubmenu><guimenuitem>Hexadecimalredigerare</guimenuitem></menuchoice>."
+
+#~ msgid "Command line"
+#~ msgstr "Kommandoraden"
+
+#~ msgid "Execute the following command: <command>ghex</command>"
+#~ msgstr "Kör följande kommando: <command>ghex</command>"
+
+#~ msgid ""
+#~ "To open a file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Open</guimenuitem></menuchoice>. Select the file "
+#~ "that you want to open, then click <guibutton>OK</guibutton>. You can open "
+#~ "multiple files in <application>GHex</application>. <application>GHex</"
+#~ "application> displays each file in a new window."
+#~ msgstr ""
+#~ "Om du vill öppna en fil väljer du <menuchoice><guimenu>Arkiv</"
+#~ "guimenu><guimenuitem>Öppna</guimenuitem></menuchoice>. Markera den fil "
+#~ "som du vill öppna och klicka sedan på <guibutton>OK</guibutton>. Det går "
+#~ "att öppna flera filer i <application>GHex</application>. "
+#~ "<application>GHex</application> visar varje fil i ett nytt fönster."
+
+#~ msgid ""
+#~ "When you open a file in <application>GHex</application>, the application "
+#~ "displays the file in the following window."
+#~ msgstr ""
+#~ "När du öppnar en fil i <application>GHex</application> visas filen i "
+#~ "följande fönster."
+
+#~ msgid "GHex Window with an Open File"
+#~ msgstr "GHex med en öppnad fil"
+
+#~| msgctxt "_"
+#~| msgid ""
+#~| "external ref='figures/ghex_window_open.png' "
+#~| "md5='9c4ae66bb45a43803e1f70abfaede88b'"
+#~ msgctxt "_"
+#~ msgid ""
+#~ "external ref='figures/ghex_window_open.png' "
+#~ "md5='31fc4c732edba8668056e88d1f4239f2'"
+#~ msgstr ""
+#~ "external ref='figures/ghex_window_open.png' "
+#~ "md5='31fc4c732edba8668056e88d1f4239f2'"
+
+#~ msgid ""
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" "
+#~ "format=\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main "
+#~ "window with an open file</phrase> </textobject>"
+#~ msgstr ""
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" "
+#~ "format=\"PNG\"/> </imageobject> <textobject> <phrase>Visar huvudfönstret "
+#~ "för GHex med en öppen fil</phrase> </textobject>"
+
+#~ msgid ""
+#~ "The <application>GHex</application> window contains the following "
+#~ "elements:"
+#~ msgstr "<application>GHex</application>-fönstret innehåller följande:"
+
+#~ msgid "Menubar"
+#~ msgstr "Menyrad"
+
+#~ msgid ""
+#~ "The menus on the menubar contain all the commands that you need to work "
+#~ "with files in <application>GHex</application>."
+#~ msgstr ""
+#~ "Menyerna på menyraden innehåller alla kommandon som du behöver för att "
+#~ "arbeta med filer i <application>GHex</application>."
+
+#~ msgid "Cursor offsets column"
+#~ msgstr "Markörposition"
+
+#~ msgid ""
+#~ "The cursor offset is the distance between the beginning of the file and "
+#~ "the first byte in each line. By default, <application>GHex</application> "
+#~ "displays the cursor offsets column to the left of the hexadecimal view."
+#~ msgstr ""
+#~ "Markörens position innebär avståndet ifrån början av filen till varje "
+#~ "rads första byte. Normalt visas kolumnen för markörens position till "
+#~ "vänster om den hexadecimala vyn i <application>GHex</application>."
+
+#~ msgid "Display pane on left side"
+#~ msgstr "Visningsruta till vänster"
+
+#~ msgid ""
+#~ "The display pane on the left side of the display area displays a "
+#~ "hexadecimal view of the file."
+#~ msgstr ""
+#~ "Visningsrutan till vänster i visningsområdet visar en hexadecimal vy av "
+#~ "filen."
+
+#~ msgid "Display pane on right side"
+#~ msgstr "Visningsruta till höger"
+
+#~ msgid ""
+#~ "The display pane on the right side of the display area displays an ASCII "
+#~ "view of the file."
+#~ msgstr ""
+#~ "Visningsrutan till höger i visningsområdet visar en ASCII-vy av filen."
+
+#~ msgid "Type conversion dialog"
+#~ msgstr "Typkonverteringsdialog"
+
+#~ msgid ""
+#~ "The type conversion dialog below the display area displays the value of "
+#~ "the selected character in several different numeric types."
+#~ msgstr ""
+#~ "Typkonverteringsdialogen nedan visningsområdet visar värdet av de valda "
+#~ "tecknen som flera olika numeriska typer."
+
+#~ msgid "Usage"
+#~ msgstr "Användning"
+
+#~ msgid "To Edit a File"
+#~ msgstr "Så här redigerar du en fil"
+
+#~ msgid "To edit a file, perform the following steps:"
+#~ msgstr "Om du vill redigera en fil, följer du stegen nedan:"
+
+#~ msgid ""
+#~ "Click in the hexadecimal or ASCII view of the file. The view in which the "
+#~ "cursor is active displays a full cursor. The view in which the cursor is "
+#~ "not active displays an outline of the cursor."
+#~ msgstr ""
+#~ "Klicka i filens hexadecimala vy eller ASCII-vy. I den vy där markören är "
+#~ "aktiv visas en fullständig markör. I den andra vyn visas bara markörens "
+#~ "kontur."
+
+#~ msgid ""
+#~ "To insert data and not overwrite existing data, choose "
+#~ "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Insert Mode</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "För att infoga information utan att skriva över befintlig information "
+#~ "väljer du <menuchoice><guimenu>Redigera</"
+#~ "guimenu><guimenuitem>Inskrivningsläge</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "To cut, copy, and paste data, choose <menuchoice><guimenu>Edit</"
+#~ "guimenu><guimenuitem>Cut</guimenuitem></menuchoice>, "
+#~ "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></"
+#~ "menuchoice>, and <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "För att klippa ut, kopiera och klistra in data, välj "
+#~ "<menuchoice><guimenu>Redigera</guimenu><guimenuitem>Klipp ut</"
+#~ "guimenuitem></menuchoice>, <menuchoice><guimenu>Redigera</"
+#~ "guimenu><guimenuitem>Kopiera</guimenuitem></menuchoice> och "
+#~ "<menuchoice><guimenu>Redigera</guimenu><guimenuitem>Klistra in</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "To undo an edit, choose <menuchoice><guimenu>Edit</"
+#~ "guimenu><guimenuitem>Undo</guimenuitem></menuchoice>. To redo an edit, "
+#~ "choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Redo</"
+#~ "guimenuitem></menuchoice>. The number of previous edits that you can undo "
+#~ "is determined by the <guilabel>Maximum number of undo levels</guilabel> "
+#~ "setting in the <xref linkend=\"ghex-prefs-editing\"/> tabbed section of "
+#~ "the <guilabel>Preferences</guilabel> dialog."
+#~ msgstr ""
+#~ "För att ångra en redigering, välj <menuchoice><guimenu>Redigera</"
+#~ "guimenu><guimenuitem>Ångra</guimenuitem></menuchoice>. För att göra om en "
+#~ "redigering, välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Gör "
+#~ "om</guimenuitem></menuchoice>. Antalet tidigare redigeringar du kan ångra "
+#~ "bestäms av inställningen <guilabel>Maximalt antal ångrasteg</guilabel> i "
+#~ "<xref linkend=\"ghex-prefs-editing\"/> flikarna i dialogen "
+#~ "<guilabel>Inställningar</guilabel>."
+
+#~ msgid "To Save a File"
+#~ msgstr "Så här sparar du en fil"
+
+#~ msgid ""
+#~ "To save changes to the current file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Save</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Om du vill spara ändringar som du har gjort i den aktuella filen väljer "
+#~ "du <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Spara</guimenuitem></"
+#~ "menuchoice>."
+
+#~ msgid ""
+#~ "To save the current file under a new filename, choose "
+#~ "<menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></"
+#~ "menuchoice>. Enter a name for the file in the <guilabel>Select a file to "
+#~ "save buffer as</guilabel> dialog, then click <guibutton>OK</guibutton>."
+#~ msgstr ""
+#~ "Om du vill spara den aktuella filen med ett annat namn väljer du "
+#~ "<menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Spara som</guimenuitem></"
+#~ "menuchoice>. Ange ett namn för filen i dialogen <guilabel>Välj en fil att "
+#~ "spara bufferten som</guilabel> och klicka därefter på <guibutton>OK</"
+#~ "guibutton>."
+
+#~ msgid "To Revert to the Last Saved Version of a File"
+#~ msgstr "Att återgå till senast sparad version av en fil"
+
+#~ msgid ""
+#~ "To revert to the last version of the current file that you saved and undo "
+#~ "all of the edits that you made to the file since you last saved the file, "
+#~ "choose <menuchoice><guimenu>File</guimenu><guimenuitem>Revert</"
+#~ "guimenuitem></menuchoice>, then click <guibutton>Yes</guibutton> in the "
+#~ "<guilabel>Question</guilabel> dialog."
+#~ msgstr ""
+#~ "För att återgå till senast sparade version av aktuell fil och ångra alla "
+#~ "redigeringar du har gjort i filen sedan du senast sparade den, välj "
+#~ "<menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Återställ</guimenuitem></"
+#~ "menuchoice> och klicka sedan <guibutton>Ja</guibutton> i <guilabel>Fråge</"
+#~ "guilabel>dialogen."
+
+#~ msgid "To Find Data in a File"
+#~ msgstr "Så här hittar du data i en fil"
+
+#~ msgid ""
+#~ "To search a file for a hexadecimal or ASCII string, perform the following "
+#~ "steps:"
+#~ msgstr ""
+#~ "Om du vill söka i en fil efter en hexadecimal sträng eller en ASCII-"
+#~ "sträng, följer du stegen nedan:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Sök</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, choose one of the following "
+#~ "options:"
+#~ msgstr ""
+#~ "I dialogen <guilabel>Sök data</guilabel> väljer du något av följande "
+#~ "alternativ:"
+
+# https://bugzilla.gnome.org/show_bug.cgi?id=766921
+#~ msgid "<guilabel>Search for hex data</guilabel>"
+#~ msgstr "<guilabel>Sök efter hex-data</guilabel>"
+
+# https://bugzilla.gnome.org/show_bug.cgi?id=766921
+#~ msgid "<guilabel>Search for ASCII data</guilabel>"
+#~ msgstr "<guilabel>Sök efter ASCII-data</guilabel>"
+
+#~ msgid "Type the string that you want to find."
+#~ msgstr "Ange den sträng du vill söka efter."
+
+#~ msgid ""
+#~ "Click <guibutton>Find Next</guibutton> to find the next occurrence of the "
+#~ "string."
+#~ msgstr ""
+#~ "Klicka på <guibutton>Sök nästa</guibutton> för att hitta nästa förekomst "
+#~ "av strängen."
+
+#~ msgid ""
+#~ "Click <guibutton>Find Previous</guibutton> to find the previous "
+#~ "occurrence of the string."
+#~ msgstr ""
+#~ "Klicka på <guibutton>Sök föregående</guibutton> för att hitta föregående "
+#~ "förekomst av strängen."
+
+#~ msgid ""
+#~ "Click <guibutton>Cancel</guibutton> to close the <guilabel>Find Data</"
+#~ "guilabel> dialog."
+#~ msgstr ""
+#~ "Klicka <guibutton>Avbryt</guibutton> för att stänga dialogen "
+#~ "<guilabel>Sök data</guilabel>."
+
+#~ msgid "To Perform an Advanced Find"
+#~ msgstr "Att utföra en avancerad sökning"
+
+#~ msgid "To perform an advanced find, perform the following steps:"
+#~ msgstr "För att utföra en avancerad sökning följer du stegen nedan:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Advanced Find</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Avancerad "
+#~ "sökning</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, select the required search "
+#~ "criteria. For information about how to add new search criteria, see <xref "
+#~ "linkend=\"ghex-search-criteria-add\"/>."
+#~ msgstr ""
+#~ "I dialogen <guilabel>Sök data</guilabel>, välj de önskade sökkriterierna. "
+#~ "För information om hur man lägger till nya sökkriterier, se <xref "
+#~ "linkend=\"ghex-search-criteria-add\"/>."
+
+#~ msgid ""
+#~ "Click <guibutton>Close</guibutton> to close the <guilabel>Find Data</"
+#~ "guilabel> dialog."
+#~ msgstr ""
+#~ "Klicka på <guibutton>Stäng</guibutton> för att stänga dialogen "
+#~ "<guilabel>Sök data</guilabel>."
+
+#~ msgid "To Add Search Criteria"
+#~ msgstr "Att lägga till ett sökkriterium"
+
+#~ msgid "To add search criteria, perform the following steps:"
+#~ msgstr "För att lägga till ett sökkriterium följer du stegen nedan:"
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, click <guibutton>Add New</"
+#~ "guibutton>."
+#~ msgstr ""
+#~ "I dialogen <guilabel>Sök data</guilabel> klicka på <guibutton>Lägg till "
+#~ "ny</guibutton>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data: Add Search</guilabel> dialog, choose one of "
+#~ "the following options:"
+#~ msgstr ""
+#~ "I dialogen <guilabel>Sök data: Lägg till sökning</guilabel> väljer du "
+#~ "något av följande alternativ:"
+
+#~ msgid ""
+#~ "Use the color wheel or the spin boxes to select a color to highlight the "
+#~ "search criteria."
+#~ msgstr ""
+#~ "Använd färghjulet eller stegningsrutor för att välja en färg att markera "
+#~ "sökkriteriet."
+
+#~ msgid "Click <guibutton>Add</guibutton>."
+#~ msgstr "Klicka på <guibutton>Lägg till</guibutton>."
+
+#~ msgid "To Remove Search Criteria"
+#~ msgstr "Att ta bort sökkriterier"
+
+#~ msgid "To remove search criteria, perform the following steps:"
+#~ msgstr "För att ta bort sökkriterier, följ stegen nedan:"
+
+#~ msgid ""
+#~ "In the <guilabel>Find Data</guilabel> dialog, select the search criteria "
+#~ "that you want to remove."
+#~ msgstr ""
+#~ "I dialogen <guilabel>Sök data</guilabel>, välj det sökkriterium du vill "
+#~ "ta bort."
+
+#~ msgid ""
+#~ "To search a file for a hexadecimal or ASCII string and then replace the "
+#~ "string, perform the following steps:"
+#~ msgstr ""
+#~ "Om du vill söka efter en hexadecimal sträng eller ASCII-sträng i en fil "
+#~ "och sedan ersätta strängen med en annan, följer du stegen nedan:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Replace</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Välj <menuchoice><guimenu>Redigera</guimenu><guimenuitem>Ersätt</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "In the <guilabel>Find &amp; Replace Data</guilabel> dialog, choose one of "
+#~ "the following options:"
+#~ msgstr ""
+#~ "I dialogen <guilabel>Sök och ersätt data</guilabel> väljer du något av "
+#~ "följande alternativ:"
+
+# https://bugzilla.gnome.org/show_bug.cgi?id=766921
+#~ msgid "<guilabel>Replace hex data</guilabel>"
+#~ msgstr "<guilabel>Ersätt hex-data</guilabel>"
+
+# https://bugzilla.gnome.org/show_bug.cgi?id=766921
+#~ msgid "<guilabel>Replace ASCII data</guilabel>"
+#~ msgstr "<guilabel>Ersätt ASCII-data</guilabel>"
+
+#~ msgid "In the first text box, type the string that you want to find."
+#~ msgstr "I den första textrutan anger du den sträng du vill söka efter."
+
+#~ msgid ""
+#~ "In the second text box, type the string that you want to use to replace "
+#~ "the string that you find."
+#~ msgstr ""
+#~ "I den andra rutan anger du den sträng som du vill ersätta den sökta "
+#~ "strängen med."
+
+#~ msgid ""
+#~ "Click <guibutton>Replace</guibutton> to replace the current occurrence of "
+#~ "the string or click <guibutton>Replace All</guibutton> to replace all "
+#~ "occurrences of the string."
+#~ msgstr ""
+#~ "Klicka på <guibutton>Ersätt</guibutton> om du vill ersätta den aktuella "
+#~ "förekomsten av strängen eller klicka på <guibutton>Ersätt alla</"
+#~ "guibutton> om du vill ersätta alla förekomster av strängen."
+
+#~ msgid ""
+#~ "Click <guibutton>Cancel</guibutton> to close the <guilabel>Find &amp; "
+#~ "Replace Data</guilabel> dialog."
+#~ msgstr ""
+#~ "Klicka <guibutton>Avbryt</guibutton> för att stänga dialogen "
+#~ "<guilabel>Sök och ersätt data</guilabel>."
+
+#~ msgid "To Add or Remove Additional Views of a File"
+#~ msgstr "Så här lägger du till och tar bort ytterligare vyer av en fil"
+
+#~ msgid ""
+#~ "To add another view of the current file to your <application>GHex</"
+#~ "application> window, choose <menuchoice><guimenu>View</"
+#~ "guimenu><guimenuitem>Add View</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Om du vill lägga till en annan vy av den aktuella filen i "
+#~ "<application>GHex</application>-fönstret eller på skrivbordet välj "
+#~ "<menuchoice><guimenu>Visa</guimenu><guimenuitem>Lägg till vy</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "To remove a view of the current file, choose <menuchoice><guimenu>View</"
+#~ "guimenu><guimenuitem>Remove View</guimenuitem></menuchoice>. If you "
+#~ "remove the last view that is open, the application exits."
+#~ msgstr ""
+#~ "Om du vill ta bort en vy av den aktuella filen väljer du "
+#~ "<menuchoice><guimenu>Visa</guimenu><guimenuitem>Ta bort vy</guimenuitem></"
+#~ "menuchoice>. Om du tar bort den sista öppna vyn avslutas programmet."
+
+#~ msgid "To Change the Data Group Type"
+#~ msgstr "Att ändra datagrupptypen"
+
+#~ msgid ""
+#~ "To change how <application>GHex</application> displays the hexadecimal "
+#~ "content of a file in the <application>GHex</application> window, choose "
+#~ "<menuchoice><guimenu>View</guimenu><guimenuitem>Group Data As</"
+#~ "guimenuitem></menuchoice>, then select one of the following menu items:"
+#~ msgstr ""
+#~ "För att ändra hur <application>GHex</application> visar hexadecimalt "
+#~ "innehåll för en fil, välj i <application>GHex</application>-fönstret "
+#~ "<menuchoice><guimenu>Visa</guimenu><guimenuitem>Gruppera data som</"
+#~ "guimenuitem></menuchoice> och välj sedan ett av följande menyobjekt:"
+
+#~ msgid "<guilabel>Bytes</guilabel> - single bytes"
+#~ msgstr "<guilabel>Byte</guilabel> - enstaka byte"
+
+#~ msgid "<guilabel>Words</guilabel> - groups of two bytes"
+#~ msgstr "<guilabel>Ord</guilabel> - grupper om två byte"
+
+#~ msgid "<guilabel>Longwords</guilabel> - groups of four bytes"
+#~ msgstr "<guilabel>Långord</guilabel> - grupper om fyra byte"
+
+#~ msgid "To Export the GHex Display to HTML"
+#~ msgstr "Så här exporterar du innehållet i GHex-fönstret till HTML"
+
+#~ msgid ""
+#~ "Creates a separate HTML file for each page of data that is displayed in "
+#~ "the <application>GHex</application> window."
+#~ msgstr ""
+#~ "En separat HTML-fil skapas för varje sida som visas i <application>GHex</"
+#~ "application>."
+
+#~ msgid ""
+#~ "Uses the HTML filename that you specify as the basis for the filename."
+#~ msgstr "Det HTML-filnamn som du anger används som basnamn."
+
+#~ msgid "Appends a page number to the filename to differentiate the files."
+#~ msgstr "Till varje filnamn läggs ett sidnummer för att skilja filerna åt."
+
+#~ msgid ""
+#~ "To export the data contained in the <application>GHex</application> "
+#~ "window to HTML, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Save As HTML</guimenuitem></menuchoice>. Choose a "
+#~ "directory and specify a filename for the HTML file, then click "
+#~ "<guibutton>OK</guibutton>. <application>GHex</application> implements the "
+#~ "following actions: <_:itemizedlist-1/> For example, if you specify the "
+#~ "filename <filename>log.html</filename>, <application>GHex</application> "
+#~ "creates a series of HTML files named <filename>log00000000.html</"
+#~ "filename>, <filename>log00000001.html</filename>, <filename>log00000002."
+#~ "html</filename>, and so on."
+#~ msgstr ""
+#~ "För att exportera de data som visas i <application>GHex</application>-"
+#~ "fönstret till HTML väljer du <menuchoice><guimenu>Arkiv</"
+#~ "guimenu><guimenuitem>Spara som HTML</guimenuitem></menuchoice>. Välj en "
+#~ "katalog, ange namnet på HTML-filen och klicka sedan på <guibutton>OK</"
+#~ "guibutton>. Följande utförs av <application>GHex</application>: <_:"
+#~ "itemizedlist-1/> Om du till exempel anger filnamnet <filename>logg.html</"
+#~ "filename> skapar <application>GHex</application> en uppsättning HTML-"
+#~ "filer med namnen <filename>logg00000000.html</filename>, "
+#~ "<filename>logg00000001.html</filename>, <filename>logg00000002.html</"
+#~ "filename> och så vidare."
+
+#~ msgid ""
+#~ "To view a table that contains the ASCII, hexadecimal, decimal, octal, and "
+#~ "binary representations for the values 0 to 255, choose "
+#~ "<menuchoice><guimenu>Windows</guimenu><guimenuitem>Character Table</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Om du vill visa en tabell med ASCII-värdet samt de hexadecimala, "
+#~ "decimala, oktala och binära representationerna för alla värden mellan 0 "
+#~ "och 255, väljer du <menuchoice><guimenu>Fönster</"
+#~ "guimenu><guimenuitem>Teckentabell</guimenuitem></menuchoice>."
+
+#~ msgid "To View Data Conversions"
+#~ msgstr "Så här visar du konverterade data"
+
+#~ msgid ""
+#~ "To display the binary, decimal, hexadecimal, and ASCII conversions for up "
+#~ "to four bytes of data, perform the following steps:"
+#~ msgstr ""
+#~ "Om du vill visa ASCII-värdet samt den binära, decimala, hexadecimala "
+#~ "representationen av upp till fyra byte data, följer du stegen nedan:"
+
+#~ msgid ""
+#~ "Choose <menuchoice><guimenu>Windows</guimenu><guimenuitem>Base Converter</"
+#~ "guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Välj <menuchoice><guimenu>Fönster</guimenu><guimenuitem>Baskonverterare</"
+#~ "guimenuitem></menuchoice>."
+
+#~ msgid "Perform one of the following actions:"
+#~ msgstr "Gör något av följande:"
+
+#~ msgid ""
+#~ "Type the data that you want to convert in one of the fields in the "
+#~ "<guilabel>Base Converter</guilabel> dialog, then press <keycap>Return</"
+#~ "keycap>."
+#~ msgstr ""
+#~ "Ange de data som du vill konvertera i något av fälten i dialogrutan "
+#~ "<guilabel>Baskonverterare</guilabel> och tryck på <keycap>Retur</keycap>."
+
+#~ msgid ""
+#~ "<application>GHex</application> updates the values of the other fields to "
+#~ "display the data conversions."
+#~ msgstr ""
+#~ "<application>GHex</application> uppdaterar värdena i de andra fälten med "
+#~ "de konverterade värdena."
+
+#~ msgid ""
+#~ "Click <guibutton>Close</guibutton> to close the <guilabel>Base Converter</"
+#~ "guilabel> dialog."
+#~ msgstr ""
+#~ "Klicka på <guibutton>Stäng</guibutton> för att stänga dialogen "
+#~ "<guilabel>Baskonverterare</guilabel>."
+
+#~ msgid "To Show or Hide the Type Conversion Dialog"
+#~ msgstr "Att visa eller dölja dialogen för typkonvertering"
+
+#~ msgid ""
+#~ "To show or hide the type conversion dialog, choose "
+#~ "<menuchoice><guimenu>Windows</guimenu><guimenuitem>Type Conversion "
+#~ "Dialog</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "För att visa eller dölja dialogen för typkonvertering, välj "
+#~ "<menuchoice><guimenu>Fönster</"
+#~ "guimenu><guimenuitem>Typkonverteringsdialogen</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "The type conversion dialog displays the value of the selected character "
+#~ "in the following representations:"
+#~ msgstr ""
+#~ "Dialogen för typkonvertering visar värdet på det valda tecknet i följande "
+#~ "representationer:"
+
+#~ msgid "<guilabel>Signed 8 bit</guilabel>"
+#~ msgstr "<guilabel>8-bitars med tecken</guilabel>"
+
+#~ msgid "<guilabel>Unsigned 8 bit</guilabel>"
+#~ msgstr "<guilabel>Teckenlöst 8-bitars</guilabel>"
+
+#~ msgid "<guilabel>Signed 16 bit</guilabel>"
+#~ msgstr "<guilabel>16-bitars med tecken</guilabel>"
+
+#~ msgid "<guilabel>Unsigned 16 bit</guilabel>"
+#~ msgstr "<guilabel>Teckenlöst 16-bitars</guilabel>"
+
+#~ msgid "<guilabel>Signed 32 bit</guilabel>"
+#~ msgstr "<guilabel>32-bitars med tecken</guilabel>"
+
+#~ msgid "<guilabel>Unsigned 32 bit</guilabel>"
+#~ msgstr "<guilabel>Teckenlöst 32-bitars</guilabel>"
+
+#~ msgid "<guilabel>32 bit float</guilabel>"
+#~ msgstr "<guilabel>Flytande 32 bitar:</guilabel>"
+
+#~ msgid "<guilabel>64 bit float</guilabel>"
+#~ msgstr "<guilabel>Flytande 64 bitar:</guilabel>"
+
+#~ msgid "<guilabel>Hexadecimal</guilabel>"
+#~ msgstr "<guilabel>Hexadecimalt</guilabel>"
+
+#~ msgid "<guilabel>Octal</guilabel>"
+#~ msgstr "<guilabel>Oktalt</guilabel>"
+
+#~ msgid "<guilabel>Binary</guilabel>"
+#~ msgstr "<guilabel>Binärt</guilabel>"
+
+#~ msgid "<guilabel>Stream Length</guilabel>"
+#~ msgstr "<guilabel>Strömlängd</guilabel>"
+
+#~ msgid "The type conversion dialog also contains the following options:"
+#~ msgstr "Dialogen för typkonvertering innehåller följande alternativ:"
+
+# Även 'Om­vänd byte­ordning'. Ändras i så fall även i gränssnittsfilen.
+#~ msgid "<guilabel>Show little endian decoding</guilabel>"
+#~ msgstr "<guilabel>Visa little endian-avkodning</guilabel>"
+
+#~ msgid "Select this option to show little endian decoding."
+#~ msgstr "Välj detta alternativ för att visa little endian-avkodning."
+
+#~ msgid "<guilabel>Show unsigned and float as hexadecimal</guilabel>"
+#~ msgstr "<guilabel>Visa teckenlösa och flyttal hexadecimalt</guilabel>"
+
+#~ msgid ""
+#~ "Select this option to show unsigned and float numbers as hexadecimal "
+#~ "numbers."
+#~ msgstr ""
+#~ "Välj detta alternativ för att visa tal utan tecken och flyttal som "
+#~ "hexadecimala siffror."
+
+#~ msgid "To Print a File"
+#~ msgstr "Så här skriver du ut en fil"
+
+#~ msgid ""
+#~ "To print a file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Print</guimenuitem></menuchoice>. Select the print "
+#~ "options that you require in the <guilabel>Print</guilabel> dialog, then "
+#~ "click <guibutton>OK</guibutton>."
+#~ msgstr ""
+#~ "Du skriver ut en fil genom att välja <menuchoice><guimenu>Arkiv</"
+#~ "guimenu><guimenuitem>Skriv ut</guimenuitem></menuchoice>. Ange önskade "
+#~ "alternativ för utskrift i dialogrutan <guilabel>Skriv ut</guilabel> och "
+#~ "klicka sedan på <guibutton>OK</guibutton>."
+
+#~ msgid ""
+#~ "To preview a printed copy of the file, choose <menuchoice><guimenu>File</"
+#~ "guimenu><guimenuitem>Print Preview</guimenuitem></menuchoice>."
+#~ msgstr ""
+#~ "Om du vill förhandsgranska filen väljer du <menuchoice><guimenu>Arkiv</"
+#~ "guimenu><guimenuitem>Förhandsgranska</guimenuitem></menuchoice>."
+
+#~ msgid ""
+#~ "To configure <application>GHex</application>, choose "
+#~ "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</"
+#~ "guimenuitem></menuchoice>. The <guilabel>Preferences</guilabel> dialog "
+#~ "contains the following tabbed sections:"
+#~ msgstr ""
+#~ "Om du vill konfigurera <application>GHex</application> väljer du "
+#~ "<menuchoice><guimenu>Redigera</guimenu><guimenuitem>Inställningar</"
+#~ "guimenuitem></menuchoice>. Dialogrutan <guilabel>Inställningar</guilabel> "
+#~ "innehåller följande flikar:"
+
+#~ msgid "<guilabel>Maximum number of undo levels</guilabel>"
+#~ msgstr "<guilabel>Maximalt antal ångrasteg</guilabel>"
+
+#~ msgid ""
+#~ "Use this spin box to specify the maximum number of edits that you can "
+#~ "undo."
+#~ msgstr ""
+#~ "Använd den här stegningsrutan för att ange hur många redigeringar du kan "
+#~ "ångra."
+
+#~ msgid "<guilabel>Show cursor offset in statusbar as</guilabel>"
+#~ msgstr "<guilabel>Visa markörpositionen i statusraden som</guilabel>"
+
+#~ msgid ""
+#~ "Use this drop-down list to select the format in which the cursor offset "
+#~ "is displayed. The format can be decimal, hexadecimal, or a custom print "
+#~ "style string that only contains the format specifiers x, o, and s."
+#~ msgstr ""
+#~ "Använd den här listrutan om du vill ange formatet för hur "
+#~ "markörpositionen visas. Formatet kan vara decimalt, hexadecimalt eller "
+#~ "ett eget utdatamönster, angivet med hjälp av formatkonstanterna x, o och "
+#~ "s."
+
+#~ msgid "<guilabel>Show offsets column</guilabel>"
+#~ msgstr "<guilabel>Visa avståndskolumn</guilabel>"
+
+#~ msgid ""
+#~ "Select this option to display the cursor offsets in a column to the left "
+#~ "of the hexadecimal view of the <application>GHex</application> window."
+#~ msgstr ""
+#~ "Markera det här alternativet om du vill att markörens position ska visas "
+#~ "i en kolumn till vänster om den hexadecimala vyn i <application>GHex</"
+#~ "application>."
+
+#~ msgid "<guilabel>Font</guilabel>"
+#~ msgstr "<guilabel>Typsnitt</guilabel>"
+
+#~ msgid ""
+#~ "Use the font selector list boxes to edit the existing font information or "
+#~ "type new font information. Specify a font type, style, and size to "
+#~ "display the contents of files in <application>GHex</application>."
+#~ msgstr ""
+#~ "Använd typsnittsväljarens listrutor för att redigera befintliga typsnitt "
+#~ "eller ange ny typsnittsinformation. Ange ett typsnitts typ, stil och "
+#~ "storlek för innehållet i <application>GHex</application>."
+
+#~ msgid "<guilabel>Default Group Type</guilabel>"
+#~ msgstr "<guilabel>Standardgrupptyp</guilabel>"
+
+#~ msgid ""
+#~ "Select one of the following options to specify how <application>GHex</"
+#~ "application> displays the hexadecimal content of a file in the "
+#~ "<application>GHex</application> window:"
+#~ msgstr ""
+#~ "Välj ett av följande alternativ för att specificera hur "
+#~ "<application>GHex</application> visar hexadecimalt filinnehåll i "
+#~ "<application>GHex</application>-fönstret:"
+
+#~ msgid "<guilabel>Data font</guilabel>"
+#~ msgstr "<guilabel>Datatypsnitt</guilabel>"
+
+#~ msgid ""
+#~ "Click on the <guibutton>Data font</guibutton> button to specify the font "
+#~ "type, style, and size to use to print the data contained in a file."
+#~ msgstr ""
+#~ "Klicka på knappen <guibutton>Datatypsnitt</guibutton> om du vill ange "
+#~ "typsnitt samt typsnittsstorlek och stil för att skriva ut data från en "
+#~ "fil."
+
+#~ msgid "<guilabel>Header font</guilabel>"
+#~ msgstr "<guilabel>Rubriktypsnitt</guilabel>"
+
+#~ msgid ""
+#~ "Click on the <guibutton>Header font</guibutton> button to specify the "
+#~ "font type, style, and size to use to print the header information that is "
+#~ "contained in the file."
+#~ msgstr ""
+#~ "Klicka på knappen <guibutton>Rubriktypsnitt</guibutton> om du vill ange "
+#~ "typsnitt samt typsnittsstorlek och stil för utskrift av rubrikinformation "
+#~ "i filen."
+
+#~ msgid "<guilabel>Print shaded box over</guilabel>"
+#~ msgstr "<guilabel>Skriv skuggad ruta över</guilabel>"
+
+#~ msgid ""
+#~ "Use this spin box to specify the number of lines that <application>GHex</"
+#~ "application> alternately prints with a surrounding shaded box. If the "
+#~ "value of the spin box is 10, <application>GHex</application> prints the "
+#~ "first 10 lines of the file without a shaded box, the next 10 lines with a "
+#~ "shaded box, and so on. If the value of the spin box is 0, "
+#~ "<application>GHex</application> does not print any shaded box."
+#~ msgstr ""
+#~ "Använd den här stegningsrutan om du vill ange storleken i antal rader för "
+#~ "en skuggad ruta som skrivs ut runt texten av <application>GHex</"
+#~ "application>. Om värdet i stegningsrutan är 10, skriver "
+#~ "<application>GHex</application> ut de första 10 raderna i filen utan en "
+#~ "skuggad ruta, nästa 10 rader med en skuggad ruta och så vidare. Om värdet "
+#~ "på stegningsrutan är 0 skriver <application>GHex</application> inte ut "
+#~ "någon skuggad ruta."
+
 #~ msgctxt "_"
 #~ msgid ""
 #~ "external ref='figures/ghex_window_empty.png' "
@@ -1450,13 +2163,13 @@ msgstr ""
 #~ msgstr "GHex innan någon fil har öppnats"
 
 #~ msgid ""
-#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
-#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window "
-#~ "before you open a file.</phrase> </textobject>"
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" "
+#~ "format=\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main "
+#~ "window before you open a file.</phrase> </textobject>"
 #~ msgstr ""
-#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
-#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Visar huvudfönstret för "
-#~ "GHex innan du öppnar en fil.</phrase> </textobject>"
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" "
+#~ "format=\"PNG\"/> </imageobject> <textobject> <phrase>Visar huvudfönstret "
+#~ "för GHex innan du öppnar en fil.</phrase> </textobject>"
 
 #~ msgid "GHex Manual V2.5"
 #~ msgstr "GHex"
@@ -1530,17 +2243,11 @@ msgstr ""
 #~ msgid "2000"
 #~ msgstr "2000"
 
-#~ msgid "GHex"
-#~ msgstr "GHex"
-
 #~ msgid "Shows GHex main window before you open a file."
 #~ msgstr "Visar huvudfönstret för GHex innan du öppnar någon fil."
 
 #~ msgid "Shows GHex main window with an open file"
 #~ msgstr "Visar huvudfönstret för GHex med en öppen fil"
-
-#~ msgid "Font"
-#~ msgstr "Typsnitt"
 
 #~ msgid "Data font"
 #~ msgstr "Datatypsnitt"
