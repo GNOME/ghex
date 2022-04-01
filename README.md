@@ -10,14 +10,6 @@ other. GHex is a useful tool for working with raw data.
 GHex is part of the GNOME Extra Apps family of applications and is not a core
 GNOME application.
 
-## Note re: Beta State of GHex 4
-
-The `master` branch now contains GHex 4, which is presently in beta state.
-However, testing is welcome. It may be most easily installed for most users via
-Flatpak, using the `gnome-nightly` repository.
-
-For more information, please see [this document](/BETA-INFO.txt).
-
 ## System Requirements
 
 Please see the meson.build file for details.
