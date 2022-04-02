@@ -31,14 +31,17 @@ libgtkhex_link_args = cc.get_supported_link_arguments([
 
 install_headers(
   libgtkhex_headers,
-  subdir: 'gtkhex-@0@'.format(libgtkhex_version_major)
+  subdir: 'gtkhex-@0@'.format(libgtkhex_api_version)
 )
 
+osx_current = libgtkhex_version_major + 1
+lib_osx_version = [osx_current, '@0@.@1@'.format(osx_current, libgtkhex_version_minor)]
+
 libgtkhex = library(
-  'gtkhex-@0@'.format(libgtkhex_version_major),
+  'gtkhex-@0@'.format(libgtkhex_api_version),
   libgtkhex_sources + libgtkhex_headers,
-  version: '0.0.0',
-  darwin_versions: ['1', '1.0'],
+  version: '0.@0@.@1@'.format(libgtkhex_version_major, libgtkhex_version_minor),
+  darwin_versions: lib_osx_version,
   include_directories: ghex_root_dir,
   dependencies: libgtkhex_deps,
   c_args: libgtkhex_c_args,
@@ -141,7 +144,7 @@ if generate_gir
 
   gtkhex_gir = gnome.generate_gir(libgtkhex,
               sources: gtkhex_gir_sources,
-            nsversion: libgtkhex_version_major.to_string(),
+            nsversion: libgtkhex_api_version.to_string(),
             namespace: 'Hex',
         symbol_prefix: 'hex',
             link_with: libgtkhex,

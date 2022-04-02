@@ -1,6 +1,6 @@
 project(
   'ghex', 'c',
-  version: '4.beta.1',
+  version: '42.0',
   meson_version: '>=0.59.0',
   license: 'GPL2'
 )
@@ -24,7 +24,11 @@ build_gtk_doc = get_option('gtk_doc')
 version_arr = meson.project_version().split('.')
 ghex_version_major = version_arr[0].to_int()
 
-libgtkhex_version_major = version_arr[0].to_int()
+# libgtkhex version info
+libgtkhex_api_version   = 4
+libgtkhex_version_major = 0
+libgtkhex_version_minor = 0
+libgtkhex_version_micro = 0
 
 ghex_prefix = get_option('prefix')
 ghex_libdir = join_paths(ghex_prefix, get_option('libdir'))
@@ -41,7 +45,7 @@ ghex_girdir = join_paths(ghex_datadir, 'gir-1.0')
 ghex_typelibdir = join_paths(ghex_libdir, 'girepository-1.0')
 
 ghex_root_dir = include_directories('.')
-ghex_po_dir = join_paths(meson.source_root(), 'po')
+ghex_po_dir = join_paths(meson.project_source_root(), 'po')
 
 # warning cflags
 warning_cflags = [
@@ -86,7 +90,7 @@ if buffer_backend == 'mmap'
   config_h.set('BACKEND_MMAP', true)
 endif
 
-config_h.set_quoted('LIBGTKHEX_RELEASE_STRING', 'gtkhex-@0@.0'.format(libgtkhex_version_major))
+config_h.set_quoted('LIBGTKHEX_RELEASE_STRING', 'gtkhex-@0@.0'.format(libgtkhex_api_version))
 
 config_h.set('STATIC_HTML_HELP', get_option('static-html-help'))
 
