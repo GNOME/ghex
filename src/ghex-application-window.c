@@ -2116,12 +2116,14 @@ do_nag_screen (GHexApplicationWindow *self)
 				"this GHex session.\n\n"
 				"This limitation will be removed in a future version of GHex.");
 	
-		g_printerr (msg); g_printerr ("\n");
+		g_printerr ("%s", msg);
+		g_printerr ("\n");
 
 		nag_screen = gtk_message_dialog_new (GTK_WINDOW(self),
 				GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 				GTK_MESSAGE_WARNING,
 				GTK_BUTTONS_YES_NO,
+				"%s",
 				msg);
 		g_signal_connect (nag_screen, "response",
 				G_CALLBACK(nag_screen_response_cb), self);
