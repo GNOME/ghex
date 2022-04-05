@@ -17,15 +17,13 @@ if get_option('werror')
   gidocgen_common_args += ['--fatal-warnings']
 endif
 
-docs_dir = join_paths(ghex_datadir, 'doc')
-
 if get_option('gtk_doc')
   gtkhex_toml = configure_file(
     input: 'GtkHex.toml.in',
     output: 'GtkHex.toml',
     configuration: toml_conf,
     install: true,
-    install_dir: join_paths(docs_dir, gir_apiname),
+    install_dir: join_paths(ghex_docdir, gir_apiname),
   )
 
   docs_cmd = [
@@ -44,6 +42,6 @@ if get_option('gtk_doc')
     command: docs_cmd,
     build_by_default: true,
     install: true,
-    install_dir: docs_dir,
+    install_dir: ghex_docdir,
   )
 endif
