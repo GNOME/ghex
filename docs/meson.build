@@ -3,7 +3,7 @@ if build_gtk_doc and not get_option('introspection').allowed()
 endif
 
 toml_conf = configuration_data()
-toml_conf.set('version', meson.project_version())
+toml_conf.set('version', libgtkhex_version)
 
 gidocgen = find_program('gi-docgen', required: get_option('gtk_doc'))
 gir_apiname = 'gtkhex-@0@.0'.format(libgtkhex_api_version)
