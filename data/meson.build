@@ -42,8 +42,7 @@ pkg_conf.set('exec_prefix', ghex_prefix)
 pkg_conf.set('libdir', ghex_libdir)
 pkg_conf.set('includedir', ghex_includedir)
 
-pkg_conf.set('VERSION', meson.project_version())
-
+pkg_conf.set('LIBGTKHEX_VERSION', libgtkhex_version)
 
 configure_file(
   input: 'gtkhex-4.pc.in',

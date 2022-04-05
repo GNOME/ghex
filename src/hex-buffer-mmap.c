@@ -853,9 +853,10 @@ hex_buffer_mmap_write_to_file_async (HexBuffer *buf,
  *
  * Create a new #HexBufferMmap object.
  *
- * Returns: a new #HexBufferMmap object, or %NULL if the operation failed.
+ * Returns: a new #HexBufferMmap object, automatically cast to a #HexBuffer
+ * type, or %NULL if the operation failed.
  */
-HexBufferMmap *
+HexBuffer *
 hex_buffer_mmap_new (GFile *file)
 {
 	HexBufferMmap *self = g_object_new (HEX_TYPE_BUFFER_MMAP, NULL);
@@ -867,7 +868,10 @@ hex_buffer_mmap_new (GFile *file)
 			g_clear_object (&self);
 	}
 
-	return self;
+	if (self)
+		return HEX_BUFFER(self);
+	else
+		return NULL;
 }
 
 /* INTERFACE IMPLEMENTATION FUNCTIONS */

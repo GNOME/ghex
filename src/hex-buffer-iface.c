@@ -23,13 +23,15 @@
  */
 
 #include "hex-buffer-iface.h"
+#include "hex-buffer-malloc.h"
+#include <config.h>
 
 /**
  * HexBuffer: 
  * 
  * #HexBuffer is an interface which can be implemented to act as a buffer
  * for [class@Hex.Document] data. This allows for a #HexDocument to be
- * manipulated at the backend by different backends.
+ * manipulated by different backends.
  *
  * Once a file has been loaded into the buffer, it can be read, written
  * to file, etc.
@@ -37,6 +39,11 @@
  * #HexBuffer makes reference to the "payload," which is the size of the
  * substantive data in the buffer, not counting items like padding, a gap,
  * etc. (all dependent upon the underlying implementation).
+ *
+ * Most clients who just want to create an spin up a #HexBuffer object should
+ * look to the [func@Hex.Buffer.util_new] utility function as a starting
+ * point, and then manipulate the returned #HexBuffer object with the methods
+ * documented herein.
  */
 G_DEFINE_INTERFACE (HexBuffer, hex_buffer, G_TYPE_OBJECT)
 
@@ -325,6 +332,77 @@ hex_buffer_get_payload_size (HexBuffer *self)
 }
 
 /* Utility functions */
+
+/**
+ * hex_buffer_util_new:
+ * @plugin: (nullable): the name of the plugin, or %NULL
+ * @file: (nullable): file to initialize the buffer with, or %NULL
+ *
+ * Utility function to create an on object which implements the HexBuffer
+ * interface.
+ *
+ * The `plugin` parameter will be the unique part of the plugin file name (eg,
+ * if the file name is libhex-buffer-mmap.so, you would specify "mmap"). If
+ * `NULL` is passed, the fallback (presently the "malloc" backend, but this is
+ * an implementation detail and may be subject to change) will be used.
+ *
+ * The `file` parameter is a valid #GFile if you would like the buffer
+ * pre-loaded, or %NULL for an empty buffer.
+ *
+ * Returns: (transfer full): a pointer to a valid implementation of a
+ * [iface@Hex.Buffer] interface, pre-cast as type #HexBuffer, or %NULL if
+ * the operation failed.
+ */
+
+HexBuffer * hex_buffer_util_new (const char *plugin, GFile *file)
+{
+	GModule *module;
+	HexBufferNewFunc func = NULL;
+	char *plugin_soname = NULL;
+	char *plugin_path = NULL;
+	char *symbol_name = NULL;
+
+	/* If dynamic loading of plugins isn't even supported on the platform, or
+	 * if NULL is passed, fall right back to `malloc` since it's the only one
+	 * baked in.
+	 */
+	if (!g_module_supported () || !plugin)
+	{
+		g_debug ("Modules not supported or NULL passed - falling back to `malloc` backend.");
+		return hex_buffer_malloc_new (file);
+	}
+
+	plugin_soname = g_strdup_printf ("hex-buffer-%s", plugin);
+	plugin_path = g_module_build_path (PACKAGE_PLUGINDIR, plugin_soname);
+	symbol_name = g_strdup_printf ("hex_buffer_%s_new", plugin);
+	module = g_module_open (plugin_path, G_MODULE_BIND_LAZY);
+
+	if (! module)
+	{
+		g_warning ("Unable to load plugin at %s - falling back to `malloc` backend",
+				plugin_path);
+		func = hex_buffer_malloc_new;
+	}
+	else if (! g_module_symbol (module, symbol_name, (gpointer *)&func) ||
+			func == NULL)
+	{
+		g_warning ("Plugin found at %s - but unable to locate symbol: %s - "
+				"falling back to `malloc` backend.",
+				plugin_path, symbol_name);
+		func = hex_buffer_malloc_new;
+	}
+	else
+	{
+		g_debug ("Loaded plugin: %s", plugin_path);
+	}
+
+/* out: */
+	g_free (plugin_soname);
+	g_free (plugin_path);
+	g_free (symbol_name);
+
+	return func (file);
+}
 
 /**
  * hex_buffer_util_get_file_size:

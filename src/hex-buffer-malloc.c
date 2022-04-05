@@ -530,9 +530,10 @@ hex_buffer_malloc_class_init (HexBufferMallocClass *klass)
  *
  * Create a new #HexBufferMalloc object.
  *
- * Returns: a new #HexBufferMalloc object, or %NULL if the operation failed.
+ * Returns: a new #HexBufferMalloc object, automatically cast to a #HexBuffer
+ * type, or %NULL if the operation failed.
  */
-HexBufferMalloc *
+HexBuffer *
 hex_buffer_malloc_new (GFile *file)
 {
 	HexBufferMalloc *self = g_object_new (HEX_TYPE_BUFFER_MALLOC, NULL);
@@ -544,7 +545,10 @@ hex_buffer_malloc_new (GFile *file)
 			g_clear_object (&self);
 	}
 
-	return self;
+	if (self)
+		return HEX_BUFFER(self);
+	else
+		return NULL;
 }
 
 

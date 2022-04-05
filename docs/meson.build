@@ -6,7 +6,7 @@ toml_conf = configuration_data()
 toml_conf.set('version', meson.project_version())
 
 gidocgen = find_program('gi-docgen', required: get_option('gtk_doc'))
-gir_apiname = 'libgtkhex-@0@.0'.format(libgtkhex_version_major)
+gir_apiname = 'gtkhex-@0@.0'.format(libgtkhex_api_version)
 
 gidocgen_common_args = [
   '--quiet',

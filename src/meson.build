@@ -1,8 +1,7 @@
 libgtkhex_sources = [
   'gtkhex.c',
-  'hex-buffer-iface.c',	      # TEST
-  'hex-buffer-mmap.c',        # TEST
-  'hex-buffer-malloc.c',      # TEST
+  'hex-buffer-iface.c',
+  'hex-buffer-malloc.c',
   'gtkhex-layout-manager.c',
   'gtkhex-paste-data.c',
   'hex-document.c'
@@ -11,18 +10,18 @@ libgtkhex_sources = [
 libgtkhex_headers = [
   'hex-document.h',
   'hex-buffer-iface.h',
-  'hex-buffer-malloc.h',
-  'hex-buffer-mmap.h',
   'gtkhex.h',
   'gtkhex-paste-data.h'
 ]
 
 libgtkhex_deps = [
+  gmodule_dep,
+  gio_dep,
   gtk_dep,
 ]
 
 libgtkhex_c_args = [
-  '-DG_LOG_DOMAIN="libgtkhex-4"'
+  '-DG_LOG_DOMAIN="gtkhex-4"'
 ]
 
 libgtkhex_link_args = cc.get_supported_link_arguments([
@@ -39,7 +38,7 @@ lib_osx_version = [osx_current, '@0@.@1@'.format(osx_current, libgtkhex_version_
 
 libgtkhex = library(
   'gtkhex-@0@'.format(libgtkhex_api_version),
-  libgtkhex_sources + libgtkhex_headers,
+  libgtkhex_sources,
   version: '0.@0@.@1@'.format(libgtkhex_version_major, libgtkhex_version_minor),
   darwin_versions: lib_osx_version,
   include_directories: ghex_root_dir,
@@ -56,38 +55,30 @@ libgtkhex_dep = declare_dependency(
   sources: libgtkhex_headers
 )
 
-# for i in `ls *.{c,h}`; do echo "  '${i}',"; done
+if mmap_backend
+    shared_module('hex-buffer-mmap',
+    sources: 'hex-buffer-mmap.c',
+    c_args: libgtkhex_c_args,
+    dependencies: libgtkhex_dep,
+    install_dir: ghex_plugindir,
+    install: true,
+  )
+endif
+
 ghex_sources = [
   'chartable.c',
-  'chartable.h',
   'common-ui.c',
-  'common-ui.h',
   'configuration.c',
-  'configuration.h',
   'converter.c',
-  'converter.h',
   'findreplace.c',
-  'findreplace.h',
   'ghex-application-window.c',
-  'ghex-application-window.h',
   'ghex-notebook-tab.c',
-  'ghex-notebook-tab.h',
   'gtkhex-paste-data.c',
-  'gtkhex-paste-data.h',
   'hex-dialog.c',
-  'hex-dialog.h',
   'main.c',
   'paste-special.c',
-  'paste-special.h',
   'preferences.c',
-  'preferences.h',
   'print.c',
-  'print.h'
-]
-
-ghex_deps = [
-  gio_dep,
-  gtk_dep
 ]
 
 src_conf = configuration_data()
@@ -121,12 +112,10 @@ ghex = executable(
   meson.project_name(),
   ghex_sources + res,
   include_directories: ghex_root_dir,
-  dependencies: ghex_deps + [libgtkhex_dep, ],
+  dependencies: libgtkhex_dep,
   c_args: ghex_c_args,
   install: true
 )
-
-
 
 if generate_gir
   gtkhex_gir_sources = [
@@ -136,10 +125,6 @@ if generate_gir
     'hex-document.h',
     'hex-buffer-iface.c',
     'hex-buffer-iface.h',
-    'hex-buffer-malloc.c',
-    'hex-buffer-malloc.h',
-    'hex-buffer-mmap.c',
-    'hex-buffer-mmap.h',
   ]
 
   gtkhex_gir = gnome.generate_gir(libgtkhex,
@@ -148,7 +133,7 @@ if generate_gir
             namespace: 'Hex',
         symbol_prefix: 'hex',
             link_with: libgtkhex,
-         dependencies: libgtkhex_deps,
+         dependencies: libgtkhex_dep,
              includes: [ 'Gtk-4.0' ],
               install: true,
       install_dir_gir: ghex_girdir,

@@ -15,6 +15,9 @@ else
   resource_base_path = '/org/gnome/GHex'
 endif
 
+# Backend plugins: (nb: only mmap exists at this time along with malloc, which is baked in)
+mmap_backend = get_option('mmap-buffer-backend')
+
 gir = find_program('g-ir-scanner', required : get_option('introspection'))
 generate_gir = gir.found() and (not meson.is_cross_build() or get_option('introspection').enabled())
 build_gtk_doc = get_option('gtk_doc')
@@ -29,6 +32,7 @@ libgtkhex_api_version   = 4
 libgtkhex_version_major = 0
 libgtkhex_version_minor = 0
 libgtkhex_version_micro = 0
+libgtkhex_version = '@0@.@1@.@2@'.format(libgtkhex_api_version, libgtkhex_version_minor, libgtkhex_version_micro)
 
 ghex_prefix = get_option('prefix')
 ghex_libdir = join_paths(ghex_prefix, get_option('libdir'))
@@ -36,6 +40,7 @@ ghex_includedir = join_paths(ghex_prefix, get_option('includedir'))
 ghex_datadir = join_paths(ghex_prefix, get_option('datadir'))
 ghex_localedir = join_paths(ghex_prefix, get_option('localedir'))
 ghex_docdir = join_paths(ghex_prefix, get_option('docdir'))
+ghex_plugindir = join_paths(ghex_libdir, 'gtkhex-@0@.0'.format(libgtkhex_api_version))
 ghex_pkgconfigdir = join_paths(ghex_libdir, 'pkgconfig')
 ghex_applicationsdir = join_paths(ghex_datadir, 'applications')
 ghex_schemasdir = join_paths(ghex_datadir, 'glib-2.0/schemas')
@@ -63,9 +68,6 @@ i18n = import('i18n')
 
 cc = meson.get_compiler('c')
 
-# nb: this option will likely be removed in a future release
-buffer_backend = get_option('buffer-backend')
-
 # just to avoid manually punching it into the XML files as well as the source.
 shaded_box_max = 1000
 
@@ -77,6 +79,7 @@ config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
 config_h.set_quoted('PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), meson.project_version()))
 config_h.set_quoted('PACKAGE_DATADIR', ghex_datadir)
 config_h.set_quoted('PACKAGE_LIBDIR', ghex_libdir)
+config_h.set_quoted('PACKAGE_PLUGINDIR', ghex_plugindir)
 config_h.set_quoted('PACKAGE_LOCALE_DIR', ghex_localedir)
 config_h.set_quoted('PACKAGE_DOCDIR', ghex_docdir)
 
@@ -86,7 +89,8 @@ config_h.set('LOCALEDIR', 'PACKAGE_LOCALE_DIR')
 
 config_h.set('CONFIG_H_SHADED_BOX_MAX', shaded_box_max)
 
-if buffer_backend == 'mmap'
+# nb: this config.h flag will likely be removed in a future release
+if mmap_backend
   config_h.set('BACKEND_MMAP', true)
 endif
 
@@ -100,7 +104,7 @@ config_h.set('DEBUG', get_option('debug'))
 config_h.set10('ENABLE_NLS', true) 
 
 # mmap: Check for required headers and fcns
-if buffer_backend == 'mmap'
+if mmap_backend
   message('Checking dependencies for `mmap` buffer backend...')
 
   check_headers_mmap = [
@@ -126,6 +130,7 @@ if buffer_backend == 'mmap'
   message('...DONE')
 endif
 
+gmodule_dep = dependency('gmodule-2.0')
 gio_dep = dependency('gio-2.0', version: '>= 2.66.0')
 gtk_dep = dependency('gtk4', version: '>= 4.0.0')
 
@@ -157,7 +162,7 @@ summary({'prefix': ghex_prefix,
         }, section: 'Directories')
 
 summary({'Development build': get_option('development'),
-	  'Buffer backend': buffer_backend,
+	  '`mmap` buffer backend': mmap_backend,
 	  'Static HTML help': get_option('static-html-help'),
 	  'API Documentation': build_gtk_doc,
         }, section: 'Configuration')

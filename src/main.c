@@ -119,12 +119,6 @@ activate (GtkApplication *app,
 
 	gtk_window_set_application (window, app);
 	gtk_window_present (window);
-
-#ifdef BACKEND_MMAP
-	g_debug ("Backend: `mmap`");
-#else
-	g_debug ("Backend: `malloc`");
-#endif
 }
 
 static void

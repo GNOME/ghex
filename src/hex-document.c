@@ -39,15 +39,6 @@
 
 #include <config.h>
 
-/* TODO - Allow for swappability. Compile-time only for now.
- * Keep this include below config.h, as it is (un)def'd there.
- */
-#ifdef BACKEND_MMAP
-#  include "hex-buffer-mmap.h"
-#else
-#  include "hex-buffer-malloc.h"
-#endif
-
 static void hex_document_real_changed   (HexDocument *doc,
 										 gpointer change_data,
 										 gboolean undoable);
@@ -343,10 +334,11 @@ static void
 hex_document_init (HexDocument *doc)
 {
 #ifdef BACKEND_MMAP
-	doc->buffer = HEX_BUFFER(hex_buffer_mmap_new (NULL));
+	doc->buffer = hex_buffer_util_new ("mmap", NULL);
 #else
-	doc->buffer = HEX_BUFFER(hex_buffer_malloc_new (NULL));
+	doc->buffer = hex_buffer_util_new (NULL, NULL);
 #endif
+
 	doc->undo_max = DEFAULT_UNDO_DEPTH;
 }
 

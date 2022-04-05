@@ -39,7 +39,8 @@ G_BEGIN_DECLS
 #define HEX_TYPE_BUFFER_MALLOC hex_buffer_malloc_get_type ()
 G_DECLARE_FINAL_TYPE (HexBufferMalloc, hex_buffer_malloc, HEX, BUFFER_MALLOC, GObject)
 
-HexBufferMalloc *hex_buffer_malloc_new (GFile *file);
+/* HexBufferNewFunc declaration */
+HexBuffer *hex_buffer_malloc_new (GFile *file);
 
 G_END_DECLS
 #endif

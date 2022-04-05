@@ -36,6 +36,19 @@ G_BEGIN_DECLS
 #define HEX_TYPE_BUFFER hex_buffer_get_type ()
 G_DECLARE_INTERFACE (HexBuffer, hex_buffer, HEX, BUFFER, GObject)
 
+/**
+ * HexBufferNewFunc:
+ * @file: #GFile to pass to the function
+ *
+ * Specifies the type of function which the `_new` method of a #HexBuffer
+ * interface implementation must comply with.
+ *
+ * Returns: a pointer to a valid implementaion of a #HexBuffer interface,
+ * pre-cast as the #HexBuffer type.
+ */
+
+typedef HexBuffer * (*HexBufferNewFunc) (GFile *file);
+
 struct _HexBufferInterface
 {
 	GTypeInterface parent_iface;
@@ -133,6 +146,7 @@ gint64 hex_buffer_get_payload_size (HexBuffer *self);
 /* Common utility functions */
 
 gint64 hex_buffer_util_get_file_size (GFile *file);
+HexBuffer * hex_buffer_util_new (const char *plugin, GFile *file);
 
 G_END_DECLS
 #endif
