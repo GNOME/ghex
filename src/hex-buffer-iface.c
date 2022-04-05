@@ -394,6 +394,7 @@ HexBuffer * hex_buffer_util_new (const char *plugin, GFile *file)
 	else
 	{
 		g_debug ("Loaded plugin: %s", plugin_path);
+		g_module_make_resident (module);
 	}
 
 /* out: */
