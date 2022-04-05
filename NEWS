@@ -1,3 +1,55 @@
+=========
+GHex 42.0
+=========
+
+I am pleased to announce GHex 42.0, the first stable release of GHex based on
+GTK4!
+
+Despite earlier statements, I have decided to adopt the newer style of
+versioning for the application, to avoid confusion. The application version
+will represent the version of the GNOME platform that is targetted. The
+library, libgtkhex-4, will have a more traditional version numbering scheme,
+which will be documented in the NEWS file with each GHex release.
+
+This release includes libgtkhex 4.0.0
+
+Many people volunteered their time and skills to provide contributions between
+4.beta.1 and now. These contributions have included bugfixes, documentation
+tweaks, and many translation updates, which is greatly appreciated.
+
+Changes and Bugfixes since 4.beta.1:
+
+- appwindow: Fix format string warnings (David King)
+- paste-special: properly copy hex pairs for higher-order bytes (Logan Rathbone)
+- doc: build devhelp index (Jan Tojnar)
+- build: Use gnome.post_install (Bobby Rong)
+- docs: Remove unused translated ghex_window_open.png image files (Andre Klapper)
+- help: fix typo etc in help (Anders Jonsson)
+- build: Split versioning scheme for app and lib (Logan Rathbone)
+- gtkhex: Segregate mmap backend as plugin (Logan Rathbone)
+
+Translation Updates:
+
+UI translations:
+- Alan Mortensen (da)
+- Anders Jonsson (sv)
+- Asier Sarasua Garmendia (eu)
+- Balázs Úr (hu)
+- Daniel Mustieles (es)
+- Hugo Carvalho (pt)
+- Jiri Grönroos (fi)
+- Marek Černocký (cs)
+- Matheus Barbosa (pt_BR)
+- Rafael Fontenelle (pt_BR)
+- Sergej A (ru)
+- eshagh shahidani (fa)
+- sicklylife (ja)
+
+Doc translations:
+- Anders Jonsson (sv)
+- Sergej A (ru)
+- Yuri Chornoivan (uk)
+
 =============
 GHex 4.beta.1
 =============
