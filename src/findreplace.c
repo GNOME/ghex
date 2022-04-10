@@ -933,7 +933,7 @@ replace_dialog_init (ReplaceDialog *self)
 			self->r_frame, f_priv->frame);
 	gtk_accessible_update_property (GTK_ACCESSIBLE(self->r_frame),
 			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			("Enter the hex data or ASCII data to replace with"),
+			_("Enter the hex data or ASCII data to replace with"),
 			-1);
 
 	self->replace = gtk_button_new_with_mnemonic (_("_Replace"));
@@ -944,7 +944,7 @@ replace_dialog_init (ReplaceDialog *self)
 			self->replace, f_priv->f_prev);
 	gtk_accessible_update_property (GTK_ACCESSIBLE(self->replace),
 			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			("Replaces the search string with the replace string"),
+			_("Replaces the search string with the replace string"),
 			-1);
 
 	self->replace_all = gtk_button_new_with_mnemonic (_("Replace _All"));
