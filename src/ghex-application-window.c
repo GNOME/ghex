@@ -520,7 +520,8 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self,
 			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 			GTK_MESSAGE_QUESTION,
 			GTK_BUTTONS_NONE,
-			"%s",
+			NULL);
+	gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (dialog),
 			message);
 	g_free (message);
 
