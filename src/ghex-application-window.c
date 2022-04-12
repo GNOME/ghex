@@ -813,11 +813,12 @@ pane_close_cb (PaneDialog *pane, gpointer user_data)
 	if (ACTIVE_GH)
 		gtk_widget_grab_focus (GTK_WIDGET(ACTIVE_GH));
 
-	if (FIND_IS_DIALOG (pane)) {
-		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);
-	}
-	else if (REPLACE_IS_DIALOG (pane)) {
+	/* nb: keep this first due to hierarchy (ReplaceDialog @ISA FindDialog) */
+	if (REPLACE_IS_DIALOG (pane)) {
 		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_OPEN]);
+	}
+	else if (FIND_IS_DIALOG (pane)) {
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);
 	}
 	else if (JUMP_IS_DIALOG (pane)) {
 		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_JUMP_OPEN]);
