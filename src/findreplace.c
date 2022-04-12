@@ -69,6 +69,10 @@ typedef struct {
 	GtkWidget *hbox;
 	GtkWidget *f_next, *f_prev, *f_clear;
 	GtkWidget *close;
+	GtkWidget *options_btn;
+	GtkWidget *options_popover;
+	GtkWidget *options_regex;
+	GtkWidget *options_ignore_case;
 	gboolean found;
 	GCancellable *cancellable;
 
@@ -279,6 +283,8 @@ find_common (FindDialog *self, enum FindDirection direction,
 	gint64 str_len;
 	gint64 offset;
 	char *str;
+	HexDocumentFindData *find_data;
+	HexSearchFlags flags;
 	
 	g_return_if_fail (FIND_IS_DIALOG(self));
 
@@ -299,32 +305,35 @@ find_common (FindDialog *self, enum FindDirection direction,
 		return;
 	}
 
+	flags = HEX_SEARCH_NONE;
+	if (gtk_check_button_get_active (GTK_CHECK_BUTTON(f_priv->options_regex)))
+		flags |= HEX_SEARCH_REGEX;
+	if (gtk_check_button_get_active (GTK_CHECK_BUTTON(f_priv->options_ignore_case)))
+		flags |= HEX_SEARCH_IGNORE_CASE;
+
 	/* Search for requested string */
 	
 	if (direction == FIND_FORWARD)
 	{
-		g_cancellable_reset (f_priv->cancellable);
-		hex_document_find_forward_async (doc,
-				f_priv->found == FALSE ? cursor_pos : cursor_pos + 1,
-				str,
-				str_len,
-				&offset,
-				found_msg,
-				not_found_msg,
+		find_data->start = f_priv->found == FALSE ?
+								cursor_pos :
+								cursor_pos + f_priv->last_found_len;
+
+		hex_document_find_forward_full_async (doc,
+				find_data,
+				flags,
 				f_priv->cancellable,
 				find_ready_cb,
 				self);
 	}
 	else	/* FIND_BACKWARD */
 	{
-		hex_document_find_backward_async (doc,
-				cursor_pos,
-				str,
-				str_len,
-				&offset,
-				found_msg,
-				not_found_msg,
-				NULL,
+		find_data->start = cursor_pos;
+
+		hex_document_find_backward_full_async (doc,
+				find_data,
+				flags,
+				f_priv->cancellable,
 				find_ready_cb,
 				self);
 	}
@@ -781,6 +790,7 @@ static void
 find_dialog_init (FindDialog *self)
 {
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
+	GtkBuilder *builder;
 
 	f_priv->cancellable = g_cancellable_new ();
 
@@ -829,9 +839,36 @@ find_dialog_init (FindDialog *self)
 			_("Clears the data you are searching for"),
 			-1);
 
+	builder = gtk_builder_new_from_resource (RESOURCE_BASE_PATH "/find-options.ui");
+	f_priv->options_popover = GTK_WIDGET(
+			gtk_builder_get_object (builder, "find_options_popover"));
+	f_priv->options_regex = GTK_WIDGET(
+			gtk_builder_get_object (builder, "find_options_regex"));
+	f_priv->options_ignore_case = GTK_WIDGET(
+			gtk_builder_get_object (builder, "find_options_ignore_case"));
+
+	f_priv->options_btn = gtk_menu_button_new ();
+	gtk_menu_button_set_icon_name (GTK_MENU_BUTTON(f_priv->options_btn),
+			"emblem-system-symbolic");
+	gtk_menu_button_set_popover (GTK_MENU_BUTTON(f_priv->options_btn),
+			f_priv->options_popover);
+	gtk_widget_set_hexpand (f_priv->options_btn, TRUE);
+	gtk_widget_set_halign (f_priv->options_btn, GTK_ALIGN_END);
+	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->options_btn);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->options_btn),
+			GTK_ACCESSIBLE_PROPERTY_LABEL,
+			_("Find options"),
+			-1);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->options_btn),
+			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+			_("View options of the find pane"),
+			-1);
+
+	g_object_unref (builder);
+
 	f_priv->close = gtk_button_new_from_icon_name ("window-close-symbolic");
 	gtk_button_set_has_frame (GTK_BUTTON(f_priv->close), FALSE);
-	gtk_widget_set_hexpand (f_priv->close, TRUE);
+	gtk_widget_set_hexpand (f_priv->close, FALSE);
 	gtk_widget_set_halign (f_priv->close, GTK_ALIGN_END);
 	g_signal_connect (G_OBJECT (f_priv->close), "clicked",
 			G_CALLBACK(common_cancel_cb), self);
