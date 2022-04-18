@@ -153,8 +153,6 @@ pane_dialog_real_close (PaneDialog *self)
 		hex_widget_delete_autohighlight (priv->gh, priv->auto_highlight);
 	}
 	priv->auto_highlight = NULL;
-
-	gtk_widget_hide (GTK_WIDGET(self));
 }
 
 static void

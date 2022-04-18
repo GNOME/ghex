@@ -254,8 +254,13 @@
 					</object>
 				</child>
 
-				<child> <!-- box to put the `findreplace' dialogs. -->
-					<object class="GtkBox" id="findreplace_box" />
+				<child>
+					<object class="GtkRevealer" id="pane_revealer">
+						<property name="transition-type">slide-up</property>
+						<child> <!-- box to put the `findreplace' dialogs. -->
+							<object class="GtkBox" id="findreplace_box" />
+						</child>
+					</object>
 				</child>
 
 				<!-- "findreplace" separator which comes and goes. -->

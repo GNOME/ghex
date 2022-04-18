@@ -77,6 +77,7 @@ struct _GHexApplicationWindow
 	GtkWidget *pane_toggle_button;
 	GtkWidget *insert_mode_button;
 	GtkWidget *statusbar;
+	GtkWidget *pane_revealer;
 };
 
 /* GHexApplicationWindow - Globals for Properties and Signals */
@@ -811,16 +812,12 @@ pane_close_cb (PaneDialog *pane, gpointer user_data)
 	if (ACTIVE_GH)
 		gtk_widget_grab_focus (GTK_WIDGET(ACTIVE_GH));
 
-	/* nb: keep this first due to hierarchy (ReplaceDialog @ISA FindDialog) */
-	if (REPLACE_IS_DIALOG (pane)) {
-		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_OPEN]);
-	}
-	else if (FIND_IS_DIALOG (pane)) {
-		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);
-	}
-	else if (JUMP_IS_DIALOG (pane)) {
-		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_JUMP_OPEN]);
-	}
+	gtk_revealer_set_transition_type (GTK_REVEALER(self->pane_revealer), GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN);
+	gtk_revealer_set_reveal_child (GTK_REVEALER(self->pane_revealer), FALSE);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_OPEN]);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_JUMP_OPEN]);
 }
 
 static void
@@ -971,28 +968,35 @@ DIALOG_SET_SHOW_TEMPLATE(chartable, setup_chartable(self), PROP_CHARTABLE_OPEN)
 DIALOG_SET_SHOW_TEMPLATE(converter, setup_converter(self), PROP_CONVERTER_OPEN)
 
 /* Note that in this macro, it's up to the "closed" cb functions to notify
- * by pspec; otherwise, you get in an infinite loop
+ * by pspec
  */
-#define PANE_SET_SHOW_TEMPLATE(WIDGET, OTHER1, OTHER2, PROP_ARR_ENTRY)		\
-static void																	\
-ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
-		gboolean show)														\
-{																			\
-	if (show) {																\
-		ghex_application_window_set_show_ ## OTHER1 (self, FALSE);			\
-		ghex_application_window_set_show_ ## OTHER2 (self, FALSE);			\
-		gtk_widget_show (self->WIDGET ## _dialog);							\
-		gtk_widget_grab_focus (self->WIDGET ## _dialog);					\
-		g_object_notify_by_pspec (G_OBJECT(self),							\
-				properties[PROP_ARR_ENTRY]);								\
-	} else {																\
-		g_signal_emit_by_name (self->WIDGET ## _dialog, "closed");			\
-	}																		\
+#define PANE_SET_SHOW_TEMPLATE(WIDGET, OTHER1, OTHER2)								\
+static void																			\
+ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,			\
+		gboolean show)																\
+{																					\
+	if (show) {																		\
+		gtk_widget_hide (self->OTHER1 ## _dialog);									\
+		gtk_widget_hide (self->OTHER2 ## _dialog);									\
+		gtk_widget_show (self->WIDGET ## _dialog);									\
+		gtk_widget_grab_focus (self->WIDGET ## _dialog);							\
+		if (! gtk_revealer_get_reveal_child (GTK_REVEALER(self->pane_revealer)))	\
+		{																			\
+			gtk_revealer_set_transition_type (GTK_REVEALER(self->pane_revealer),	\
+					GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP);							\
+			gtk_revealer_set_reveal_child (GTK_REVEALER(self->pane_revealer), TRUE);\
+		}																			\
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);		\
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_OPEN]);	\
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_JUMP_OPEN]);		\
+	} else {																		\
+		g_signal_emit_by_name (self->WIDGET ## _dialog, "closed");					\
+	}																				\
 }												/* PANE_SET_SHOW_TEMPLATE */
 
-PANE_SET_SHOW_TEMPLATE(find,		replace, jump,	PROP_FIND_OPEN)
-PANE_SET_SHOW_TEMPLATE(replace,		find, jump,		PROP_REPLACE_OPEN)
-PANE_SET_SHOW_TEMPLATE(jump,		find, replace,	PROP_JUMP_OPEN)
+PANE_SET_SHOW_TEMPLATE(find,		replace, jump)
+PANE_SET_SHOW_TEMPLATE(replace,		find, jump)
+PANE_SET_SHOW_TEMPLATE(jump,		find, replace)
 
 /* Property setters without templates: */
 
@@ -1460,6 +1464,21 @@ out:
 	hex_statusbar_clear (HEX_STATUSBAR(self->statusbar));
 }
 
+/* helpers for _get_property */
+
+static gboolean
+get_dialog_visible (GtkWidget *widget)
+{
+	return (GTK_IS_WIDGET(widget) && gtk_widget_get_visible (widget));
+}
+
+static gboolean
+get_pane_visible (GHexApplicationWindow *self, PaneDialog *pane)
+{
+	return (GTK_IS_WIDGET(GTK_WIDGET(pane)) &&
+		gtk_widget_get_visible (GTK_WIDGET(pane)) &&
+		gtk_revealer_get_reveal_child (GTK_REVEALER(self->pane_revealer)));
+}
 
 /* PROPERTIES */
 
@@ -1526,33 +1545,26 @@ ghex_application_window_get_property (GObject *object,
 	switch ((GHexApplicationWindowProperty) property_id)
 	{
 		case PROP_CHARTABLE_OPEN:
-			g_value_set_boolean (value,
-					GTK_IS_WIDGET(self->chartable) &&
-						gtk_widget_get_visible (self->chartable));
+			g_value_set_boolean (value, get_dialog_visible (self->chartable));
 			break;
 
 		case PROP_CONVERTER_OPEN:
-			g_value_set_boolean (value,
-					GTK_IS_WIDGET(self->converter) &&
-						gtk_widget_get_visible (self->converter));
+			g_value_set_boolean (value, get_dialog_visible (self->converter));
 			break;
 
 		case PROP_FIND_OPEN:
 			g_value_set_boolean (value,
-					GTK_IS_WIDGET(self->find_dialog) &&
-						gtk_widget_get_visible (self->find_dialog));
+					get_pane_visible (self, PANE_DIALOG(self->find_dialog)));
 			break;
 
 		case PROP_REPLACE_OPEN:
 			g_value_set_boolean (value,
-					GTK_IS_WIDGET(self->replace_dialog) &&
-						gtk_widget_get_visible (self->replace_dialog));
+					get_pane_visible (self, PANE_DIALOG(self->replace_dialog)));
 			break;
 
 		case PROP_JUMP_OPEN:
 			g_value_set_boolean (value,
-					GTK_IS_WIDGET(self->jump_dialog) &&
-						gtk_widget_get_visible (self->jump_dialog));
+					get_pane_visible (self, PANE_DIALOG(self->jump_dialog)));
 			break;
 
 		case PROP_CAN_SAVE:
@@ -1979,6 +1991,8 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			insert_mode_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			statusbar);
+	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
+			pane_revealer);
 }
 
 GtkWidget *
