@@ -55,6 +55,13 @@ typedef enum
 	HEX_CHANGE_BYTE
 } HexChangeType;
 
+typedef enum
+{
+	HEX_SEARCH_NONE				= 0,
+	HEX_SEARCH_REGEX			= 1 << 0,
+	HEX_SEARCH_IGNORE_CASE		= 1 << 1,
+} HexSearchFlags;
+
 /**
  * HexDocumentFindData:
  * @found: whether the string was found
@@ -80,7 +87,9 @@ typedef struct
 	gint64 start;
 	const char *what;
 	size_t len;
+	HexSearchFlags flags;	/* TODO: Since: 4.1 */
 	gint64 offset;
+	size_t found_len;		/* TODO: Since: 4.1 */
 	const char *found_msg;
 	const char *not_found_msg;
 } HexDocumentFindData;
@@ -159,19 +168,33 @@ gboolean	hex_document_undo (HexDocument *doc);
 gboolean	hex_document_redo (HexDocument *doc);
 int			hex_document_compare_data (HexDocument *doc, const char *what,
 		gint64 pos, size_t len);
+int			hex_document_compare_data_full (HexDocument *doc,
+		HexDocumentFindData *find_data, gint64 pos);
 gboolean	hex_document_find_forward (HexDocument *doc, gint64 start,
 		const char *what, size_t len, gint64 *offset);
+gboolean hex_document_find_forward_full (HexDocument *doc,
+		HexDocumentFindData *find_data);
 
 void	hex_document_find_forward_async (HexDocument *doc, gint64 start,
 		const char *what, size_t len, gint64 *offset, const char *found_msg,
 		const char *not_found_msg, GCancellable *cancellable,
 		GAsyncReadyCallback callback, gpointer user_data);
 
+void	hex_document_find_forward_full_async (HexDocument *doc,
+		HexDocumentFindData *find_data, GCancellable *cancellable,
+		GAsyncReadyCallback callback, gpointer user_data);
+
 gboolean	hex_document_find_backward (HexDocument *doc, gint64 start,
 		const char *what, size_t len, gint64 *offset);
+
+gboolean hex_document_find_backward_full (HexDocument *doc,
+		HexDocumentFindData *find_data);
 void		hex_document_find_backward_async (HexDocument *doc, gint64 start,
 		const char *what, size_t len, gint64 *offset, const char *found_msg,
 		const char *not_found_msg, GCancellable *cancellable,
+		GAsyncReadyCallback callback, gpointer user_data);
+void	hex_document_find_backward_full_async (HexDocument *doc,
+		HexDocumentFindData *find_data, GCancellable *cancellable,
 		GAsyncReadyCallback callback, gpointer user_data);
 
 HexDocumentFindData *
