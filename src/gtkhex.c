@@ -104,6 +104,8 @@ struct _HexWidgetAutoHighlight
 	char *search_string;
 	int search_len;
 
+	HexSearchFlags search_flags;
+
 	gint64 view_min;
 	gint64 view_max;
 
@@ -1951,41 +1953,37 @@ hex_widget_delete_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
 	bytes_changed(self, start, end);
 }
 
-/* stolen from hex_document_compare_data - but uses
- * hex_widget_* stuff rather than hex_document_* directly
- * and simply returns a gboolean.
- */
-static gboolean
-hex_widget_compare_data (HexWidget *self, guchar *cmp, gint64 pos, int len)
-{
-	for (int i = 0; i < len; i++)
-	{
-		guchar c = hex_widget_get_byte (self, pos + i);
-
-		if (c != *(cmp + i))
-			return FALSE;
-	}
-	return TRUE;
-}
-
 static gboolean
 hex_widget_find_limited (HexWidget *self, char *find, int findlen,
-		gint64 lower, gint64 upper, gint64 *found)
+		HexSearchFlags flags, gint64 lower, gint64 upper,
+		gint64 *found, size_t *found_len)
 {
+	gboolean retval = FALSE;
 	gint64 pos = lower;
+	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1);
+
+	find_data->what = find;
+	find_data->len = findlen;
+	find_data->flags = flags;
 
 	while (pos < upper)
 	{
-		if (hex_widget_compare_data (self, (guchar *)find, pos, findlen))
+		if (hex_document_compare_data_full (self->document, find_data, pos)
+				== 0)
 		{
 			*found = pos;
-			return TRUE;
+			*found_len = find_data->found_len;
+
+			retval = TRUE;
+			goto out;
 		}
 		pos++;
 	}
-	return FALSE;
-}
 
+out:
+	g_free (find_data);
+	return retval;
+}
 
 /* Helper for the autohighlight functions to set a reasonable default
  * view_min () and view_max () value.
@@ -2004,6 +2002,7 @@ hex_widget_update_auto_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
 	gint64 del_min, del_max;
 	gint64 add_min, add_max;
 	gint64 foundpos = -1;
+	size_t found_len;
 	gint64 prev_min = ahl->view_min;
 	gint64 prev_max = ahl->view_max;
 	HexWidget_Highlight *cur;
@@ -2045,15 +2044,23 @@ hex_widget_update_auto_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
 			hex_widget_delete_highlight (self, ahl, cur);
 			cur = next;
 		}
-		else cur = cur->next;
+		else
+			cur = cur->next;
 	}
 
 	while (add &&
-		   hex_widget_find_limited (self, ahl->search_string, ahl->search_len,
-			   /* lower */ MAX(add_min, foundpos+1), add_max, &foundpos))
+		   hex_widget_find_limited (self,
+			   ahl->search_string,
+			   ahl->search_len,
+			   ahl->search_flags,
+			   MAX(add_min, foundpos+1),	/* lower */
+			   add_max,						/* upper */
+			   &foundpos,
+			   &found_len))
 	{
 		hex_widget_insert_highlight (self, ahl,
-				foundpos, foundpos+(ahl->search_len)-1);
+				foundpos,
+				foundpos + found_len - 1);
 	}
 }
 
@@ -3341,24 +3348,17 @@ hex_widget_set_insert_mode (HexWidget *self, gboolean insert)
 			self->cursor_pos = payload_size - 1;
 }
 
-/**
- * hex_widget_insert_autohighlight:
- * @search: (array length=len) (transfer full): search string to auto-highlight
- * @len: length of the @search string
- *   
- * Insert an auto-highlight of a given search string.
- *
- * Returns: a newly created [struct@Hex.WidgetAutoHighlight] structure
- */
 HexWidgetAutoHighlight *
-hex_widget_insert_autohighlight (HexWidget *self,
+hex_widget_insert_autohighlight_full (HexWidget *self,
 		const char *search,
-		int len)
+		int len,
+		HexSearchFlags flags)
 {
 	HexWidgetAutoHighlight *new = g_new0 (HexWidgetAutoHighlight, 1);
 
 	new->search_string = g_memdup2 (search, len);
 	new->search_len = len;
+	new->search_flags = flags;
 
 	new->highlights = NULL;
 
@@ -3372,6 +3372,24 @@ hex_widget_insert_autohighlight (HexWidget *self,
 	hex_widget_update_auto_highlight (self, new, FALSE, TRUE);
 
 	return new;
+}
+
+/**
+ * hex_widget_insert_autohighlight:
+ * @search: (array length=len) (transfer full): search string to auto-highlight
+ * @len: length of the @search string
+ *
+ * Insert an auto-highlight of a given search string.
+ *
+ * Returns: a newly created [struct@Hex.WidgetAutoHighlight] structure
+ */
+HexWidgetAutoHighlight *
+hex_widget_insert_autohighlight (HexWidget *self,
+		const char *search,
+		int len)
+{
+	return hex_widget_insert_autohighlight_full (
+			self, search, len, HEX_SEARCH_NONE);
 }
 
 /* FIXME - use _free func. */
