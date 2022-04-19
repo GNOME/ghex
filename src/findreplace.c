@@ -74,6 +74,7 @@ typedef struct {
 	GtkWidget *options_regex;
 	GtkWidget *options_ignore_case;
 	gboolean found;
+	size_t last_found_len;
 	GCancellable *cancellable;
 
 } FindDialogPrivate;
@@ -219,6 +220,20 @@ gh_is_busy (HexWidget *gh)
 		return FALSE;
 }
 
+/* Helper to grab search flags from the GUI */
+static inline HexSearchFlags
+search_flags_from_checkboxes (const FindDialogPrivate *f_priv)
+{
+	HexSearchFlags flags = HEX_SEARCH_NONE;
+
+	if (gtk_check_button_get_active (GTK_CHECK_BUTTON(f_priv->options_regex)))
+		flags |= HEX_SEARCH_REGEX;
+	if (gtk_check_button_get_active (GTK_CHECK_BUTTON(f_priv->options_ignore_case)))
+		flags |= HEX_SEARCH_IGNORE_CASE;
+
+	return flags;
+}
+
 static void
 find_ready_cb (GObject *source_object,
                         GAsyncResult *res,
@@ -227,9 +242,11 @@ find_ready_cb (GObject *source_object,
 	HexDocument *doc = HEX_DOCUMENT (source_object);
 	FindDialog *self = FIND_DIALOG (user_data);
 	HexDocumentFindData *find_data;
+	GTask *task = G_TASK(res);
 	PaneDialogPrivate *priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
 	GtkWindow *parent = GTK_WINDOW(gtk_widget_get_native (GTK_WIDGET(self)));
+	HexSearchFlags flags;
 
 	find_data = hex_document_find_finish (doc, res);
 
@@ -239,11 +256,13 @@ find_ready_cb (GObject *source_object,
 	if (! find_data)
 		goto out;
 
-	g_object_unref (res);
+	flags = search_flags_from_checkboxes (f_priv);
 
 	if (find_data->found)
 	{
 		f_priv->found = TRUE;
+		f_priv->last_found_len = find_data->found_len;
+
 		hex_widget_set_cursor (priv->gh, find_data->offset);
 
 		/* If string found, insert auto-highlights of search string */
@@ -252,8 +271,8 @@ find_ready_cb (GObject *source_object,
 			hex_widget_delete_autohighlight (priv->gh, priv->auto_highlight);
 
 		priv->auto_highlight = NULL;
-		priv->auto_highlight = hex_widget_insert_autohighlight (priv->gh,
-				find_data->what, find_data->len);
+		priv->auto_highlight = hex_widget_insert_autohighlight_full (priv->gh,
+				find_data->what, find_data->len, flags);
 
 		gtk_widget_grab_focus (GTK_WIDGET(priv->gh));
 	}
@@ -264,10 +283,10 @@ find_ready_cb (GObject *source_object,
 
 		f_priv->found = FALSE;
 	}
-
-out:
 	mark_gh_busy (priv->gh, FALSE);
 	pane_dialog_update_busy_state (PANE_DIALOG(self));
+out:
+	g_object_unref (task);
 }
 
 static void
@@ -281,17 +300,13 @@ find_common (FindDialog *self, enum FindDirection direction,
 	HexDocument *doc;
 	gint64 cursor_pos;
 	gint64 str_len;
-	gint64 offset;
 	char *str;
-	HexDocumentFindData *find_data;
-	HexSearchFlags flags;
+	HexDocumentFindData *find_data = NULL;
 	
 	g_return_if_fail (FIND_IS_DIALOG(self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (HEX_IS_WIDGET (priv->gh));
 	f_priv = find_dialog_get_instance_private (self);
-	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 
@@ -305,23 +320,25 @@ find_common (FindDialog *self, enum FindDirection direction,
 		return;
 	}
 
-	flags = HEX_SEARCH_NONE;
-	if (gtk_check_button_get_active (GTK_CHECK_BUTTON(f_priv->options_regex)))
-		flags |= HEX_SEARCH_REGEX;
-	if (gtk_check_button_get_active (GTK_CHECK_BUTTON(f_priv->options_ignore_case)))
-		flags |= HEX_SEARCH_IGNORE_CASE;
-
 	/* Search for requested string */
+
+	find_data = g_new0 (HexDocumentFindData, 1);
+	find_data->what = str;
+	find_data->len = str_len;
+	find_data->found_msg = found_msg;
+	find_data->not_found_msg = not_found_msg;
+	find_data->flags = search_flags_from_checkboxes (f_priv);
 	
+	g_cancellable_reset (f_priv->cancellable);
+
 	if (direction == FIND_FORWARD)
 	{
 		find_data->start = f_priv->found == FALSE ?
 								cursor_pos :
-								cursor_pos + f_priv->last_found_len;
+								cursor_pos + f_priv->last_found_len - 1;
 
 		hex_document_find_forward_full_async (doc,
 				find_data,
-				flags,
 				f_priv->cancellable,
 				find_ready_cb,
 				self);
@@ -332,12 +349,10 @@ find_common (FindDialog *self, enum FindDirection direction,
 
 		hex_document_find_backward_full_async (doc,
 				find_data,
-				flags,
 				f_priv->cancellable,
 				find_ready_cb,
 				self);
 	}
-
 	mark_gh_busy (priv->gh, TRUE);
 	pane_dialog_update_busy_state (PANE_DIALOG(self));
 }
@@ -502,18 +517,14 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	HexDocument *doc;
 	gint64 cursor_pos;
 	char *find_str = NULL, *rep_str = NULL;
-	size_t find_len, rep_len;
-	gint64 offset;
+	size_t find_len, rep_str_len;
 	gint64 payload;
+	HexDocumentFindData *find_data = NULL;
 
 	g_return_if_fail (REPLACE_IS_DIALOG(self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (HEX_IS_WIDGET (priv->gh));
-
 	f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
-	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
-	g_return_if_fail (HEX_IS_DOCUMENT (self->r_doc));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
@@ -523,34 +534,38 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	cursor_pos = hex_widget_get_cursor (priv->gh);
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 	
-	if ((find_len = get_search_string(f_priv->f_doc, &find_str)) == 0)
+	if ((find_len = get_search_string (f_priv->f_doc, &find_str)) == 0	||
+		(rep_str_len = get_search_string (self->r_doc, &rep_str)) == 0)
 	{
 		no_string_dialog (parent);
-		return;
+		goto clean_up;
 	}
-	rep_len = get_search_string (self->r_doc, &rep_str);
 	
 	if (find_len > payload - cursor_pos)
 		goto clean_up;
 	
-	if (hex_document_compare_data(doc, find_str, cursor_pos, find_len) == 0)
+	find_data = g_new0 (HexDocumentFindData, 1);
+	find_data->start = cursor_pos;
+	find_data->what = find_str;
+	find_data->len = find_len;
+	find_data->flags = search_flags_from_checkboxes (f_priv);
+
+	if (hex_document_find_forward_full (doc, find_data))
 	{
-		hex_document_set_data(doc, cursor_pos,
-							  rep_len, find_len, rep_str, TRUE);
+		hex_widget_set_cursor (priv->gh, find_data->offset);
+		cursor_pos = hex_widget_get_cursor (priv->gh);
+		hex_document_set_data (doc,
+				cursor_pos, rep_str_len, find_data->found_len, rep_str, TRUE);
 	}
-	
-	if (hex_document_find_forward(doc, cursor_pos + rep_len,
-				find_str, find_len, &offset))
+	else
 	{
-		hex_widget_set_cursor(priv->gh, offset);
-	}
-	else {
 		display_info_dialog (parent, _("String was not found."));
 	}
 
 clean_up:
 	g_free (find_str);
 	g_free (rep_str);
+	g_free (find_data);
 }
 
 static void
@@ -564,18 +579,15 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	HexDocument *doc;
 	gint64 cursor_pos;
 	char *find_str = NULL, *rep_str = NULL;
-	size_t find_len, rep_len;
-	int count;
-	gint64 offset;
+	size_t find_len, rep_str_len;
 	gint64 payload;
+	HexDocumentFindData *find_data = NULL;
+	int count;
 
 	g_return_if_fail (REPLACE_IS_DIALOG (self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (HEX_IS_WIDGET (priv->gh));
 	f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
-	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
-	g_return_if_fail (HEX_IS_DOCUMENT (self->r_doc));
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 	if (! GTK_IS_WINDOW(parent))
@@ -585,35 +597,41 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	cursor_pos = hex_widget_get_cursor (priv->gh);
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 
-	if ((find_len = get_search_string(f_priv->f_doc, &find_str)) == 0)
+	if ((find_len = get_search_string (f_priv->f_doc, &find_str)) == 0	||
+		(rep_str_len = get_search_string (self->r_doc, &rep_str)) == 0)
 	{
 		no_string_dialog (parent);
-		return;
+		goto clean_up;
 	}
-	rep_len = get_search_string(self->r_doc, &rep_str);
 
-	if (find_len > payload - (unsigned)cursor_pos)
+	if (find_len > payload - cursor_pos)
 		goto clean_up;
 	
-	count = 0;
-	cursor_pos = 0;  
 
-	while(hex_document_find_forward(doc, cursor_pos, find_str, find_len,
-									&offset)) {
-		hex_document_set_data (doc, offset, rep_len, find_len, rep_str, TRUE);
-		cursor_pos = offset + rep_len;
+	find_data = g_new0 (HexDocumentFindData, 1);
+	find_data->start = 0;
+	find_data->what = find_str;
+	find_data->len = find_len;
+	find_data->flags = search_flags_from_checkboxes (f_priv);
+
+	count = 0;
+	while (hex_document_find_forward_full (doc, find_data))
+	{
+
+		hex_document_set_data (doc,
+				find_data->offset, rep_str_len, find_data->found_len, rep_str,
+				TRUE);
 		count++;
 	}
 	
-	hex_widget_set_cursor(priv->gh, MIN(offset, payload));  
-
 	if (count == 0) {
 		display_info_dialog (parent, _("No occurrences were found."));
 	}
 	
 clean_up:
-	g_free(find_str);
-	g_free(rep_str);
+	g_free (find_str);
+	g_free (rep_str);
+	g_free (find_data);
 }
 
 static void
