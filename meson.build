@@ -1,6 +1,6 @@
 project(
   'ghex', 'c',
-  version: '42.0',
+  version: '43.alpha',
   meson_version: '>=0.59.0',
   license: 'GPL2'
 )
@@ -30,7 +30,7 @@ ghex_version_major = version_arr[0].to_int()
 # libgtkhex version info
 libgtkhex_api_version   = 4
 libgtkhex_version_major = 0
-libgtkhex_version_minor = 0
+libgtkhex_version_minor = 1
 libgtkhex_version_micro = 0
 libgtkhex_version = '@0@.@1@.@2@'.format(libgtkhex_api_version, libgtkhex_version_minor, libgtkhex_version_micro)
 
