@@ -617,14 +617,22 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	count = 0;
 	while (hex_document_find_forward_full (doc, find_data))
 	{
-
 		hex_document_set_data (doc,
 				find_data->offset, rep_str_len, find_data->found_len, rep_str,
 				TRUE);
 		count++;
 	}
 	
-	if (count == 0) {
+	if (count)
+	{
+		char *msg;
+		msg = g_strdup_printf (_("Search complete: %d replacements made."),
+					count);
+		display_info_dialog (parent, msg);
+		g_free (msg);
+	}
+	else
+	{
 		display_info_dialog (parent, _("No occurrences were found."));
 	}
 	
