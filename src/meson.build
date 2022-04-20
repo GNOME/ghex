@@ -39,7 +39,8 @@ lib_osx_version = [osx_current, '@0@.@1@'.format(osx_current, libgtkhex_version_
 libgtkhex = library(
   'gtkhex-@0@'.format(libgtkhex_api_version),
   libgtkhex_sources,
-  version: '0.@0@.@1@'.format(libgtkhex_version_major, libgtkhex_version_minor),
+  version: '@0@.@1@.@2@'.format(
+    libgtkhex_version_major, libgtkhex_version_minor, libgtkhex_version_micro),
   darwin_versions: lib_osx_version,
   include_directories: ghex_root_dir,
   dependencies: libgtkhex_deps,
