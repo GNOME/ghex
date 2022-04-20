@@ -56,7 +56,6 @@ struct _GHexApplicationWindow
 	HexDialog *dialog;
 	GtkWidget *dialog_widget;
 	GtkCssProvider *conversions_box_provider;
-	guint statusbar_id;
 	GtkAdjustment *adj;
 	gboolean can_save;
 	gboolean insert_mode;
@@ -146,7 +145,6 @@ static void ghex_application_window_remove_tab (GHexApplicationWindow *self,
 		GHexNotebookTab *tab);
 static GHexNotebookTab * ghex_application_window_get_current_tab (GHexApplicationWindow *self);
 
-static void set_statusbar (GHexApplicationWindow *self, const char *str);
 static void update_status_message (GHexApplicationWindow *self);
 static void update_gui_data (GHexApplicationWindow *self);
 static gboolean assess_can_save (HexDocument *doc);
@@ -1433,23 +1431,6 @@ open_preferences (GtkWidget *widget,
 /* --- */
 
 static void
-set_statusbar (GHexApplicationWindow *self, const char *str)
-{
-	guint id = 
-		gtk_statusbar_get_context_id (GTK_STATUSBAR(self->statusbar),
-				"status");
-
-	gtk_statusbar_pop (GTK_STATUSBAR(self->statusbar), id);
-	gtk_statusbar_push (GTK_STATUSBAR(self->statusbar), id, str);
-}
-
-static void
-clear_statusbar (GHexApplicationWindow *self)
-{
-	set_statusbar (self, " ");
-}
-
-static void
 update_status_message (GHexApplicationWindow *self)
 {
 	char *status = NULL;
@@ -1464,19 +1445,19 @@ update_status_message (GHexApplicationWindow *self)
 	if (hex_widget_get_selection (ACTIVE_GH, &ss, &se))
 	{
 		status = g_strdup_printf (
-				_("Offset: 0x%lX; 0x%lX bytes from 0x%lX to 0x%lX selected"),
+				_("Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x%lX</tt> selected"),
 				current_pos, se - ss + 1, ss, se);
 	}
 	else {
-		status = g_strdup_printf (_("Offset: 0x%lX"), current_pos);
+		status = g_strdup_printf (_("Offset: <tt>0x%lX</tt>"), current_pos);
 	}
 
-	set_statusbar (self, status);
+	hex_statusbar_set_status (HEX_STATUSBAR(self->statusbar), status);
 	g_free (status);
 	return;
 	
 out:
-	clear_statusbar (self);
+	hex_statusbar_clear (HEX_STATUSBAR(self->statusbar));
 }
 
 
@@ -1691,7 +1672,7 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	g_signal_connect (self->jump_dialog, "closed",
 			G_CALLBACK(pane_close_cb), self);
 
-	clear_statusbar (self);
+	hex_statusbar_clear (HEX_STATUSBAR(self->statusbar));
 
 	/* Grey out main actions at the beginning */
 	enable_main_actions (self, FALSE);
