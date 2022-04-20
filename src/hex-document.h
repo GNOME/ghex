@@ -55,6 +55,16 @@ typedef enum
 	HEX_CHANGE_BYTE
 } HexChangeType;
 
+/**
+ * HexSearchFlags:
+ * @HEX_SEARCH_NONE: no search flags (byte-for-byte match)
+ * @HEX_SEARCH_REGEX: regular expression search
+ * @HEX_SEARCH_IGNORE_CASE: case-insensitive search
+ *
+ * Bitwise flags for search options that can be combined as desired.
+ *
+ * Since: 4.2
+ */
 typedef enum
 {
 	HEX_SEARCH_NONE				= 0,
@@ -69,7 +79,10 @@ typedef enum
  * @what: (array length=len): a pointer to the data to search within the
  *   #HexDocument
  * @len: length in bytes of the data to be searched for
+ * @flags: [enum@Hex.SearchFlags] search flags (Since: 4.2)
  * @offset: offset of the found string
+ * @found_len: length of the found string (may be different from the search
+ *   string when dealing with regular expressions, for example) (Since: 4.2)
  * @found_msg: message intended to be displayed by the client if the string
  *   is found
  * @not_found_msg: message intended to be displayed by the client if the string
@@ -87,9 +100,9 @@ typedef struct
 	gint64 start;
 	const char *what;
 	size_t len;
-	HexSearchFlags flags;	/* TODO: Since: 4.1 */
+	HexSearchFlags flags;
 	gint64 offset;
-	size_t found_len;		/* TODO: Since: 4.1 */
+	size_t found_len;
 	const char *found_msg;
 	const char *not_found_msg;
 } HexDocumentFindData;

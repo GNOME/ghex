@@ -1095,6 +1095,22 @@ hex_document_export_html (HexDocument *doc,
 	return TRUE;
 }
 
+/**
+ * hex_document_compare_data_full:
+ * @find_data: a #HexDocumentFindData structure
+ * @pos: offset position of the #HexDocument data to compare with the
+ *   string contained in the `find_data` structure
+ *
+ * Full version of [method@Hex.Document.compare_data] to allow data
+ * comparisons broader than byte-for-byte matches only. However, it is
+ * less convenient than the above since it requires the caller to allocate
+ * and free a #HexDocumentFindData structure.
+ *
+ * Returns: 0 if the comparison is an exact match; otherwise, a non-zero
+ *   value is returned.
+ *
+ * Since: 4.2
+ */
 int
 hex_document_compare_data_full (HexDocument *doc,
 		HexDocumentFindData *find_data,
@@ -1218,6 +1234,23 @@ hex_document_compare_data (HexDocument *doc,
 	return retval;
 }
 
+/**
+ * hex_document_find_forward_full:
+ * @find_data: a #HexDocumentFindData structure
+ *
+ * Full version of [method@Hex.Document.find_forward] which allows for
+ * more flexibility than the above, which is only for a byte-by-byte exact
+ * match. However, it is less convenient to call since the caller must
+ * create and and free a #HexDocumentFindData structure manually.
+ *
+ * This method will block. For a non-blocking version, use
+ * [method@Hex.Document.find_forward_async].
+ *
+ * Returns: %TRUE if the search string contained in `find_data` was found by
+ *   the requested operation; %FALSE otherwise.
+ *
+ * Since: 4.2
+ */
 gboolean
 hex_document_find_forward_full (HexDocument *doc,
 		HexDocumentFindData *find_data)
@@ -1352,10 +1385,20 @@ FUNC_NAME (HexDocument *doc, \
 	g_task_run_in_thread (task, FUNC_TO_CALL); \
 }
 
+/**
+ * hex_document_find_forward_full_async:
+ * @find_data: a #HexDocumentFindData structure
+ * @cancellable: (nullable): a #GCancellable
+ * @callback: (scope async): function to be called when the operation is
+ *   complete
+ *
+ * Non-blocking version of [method@Hex.Document.find_forward_full].
+ *
+ * Since: 4.2
+ */
 FIND_FULL_ASYNC_TEMPLATE(hex_document_find_forward_full_async, 
 		hex_document_find_forward_full_thread)
 
-/* CROSSREF: hex-document.h - HexDocumentFindData */
 /**
  * hex_document_find_forward_async:
  * @doc: a [class@Hex.Document] object
@@ -1408,6 +1451,23 @@ FUNC_NAME (HexDocument *doc, \
 FIND_ASYNC_TEMPLATE(hex_document_find_forward_async,
 		hex_document_find_forward_thread)
 
+/**
+ * hex_document_find_backward_full:
+ * @find_data: a #HexDocumentFindData structure
+ *
+ * Full version of [method@Hex.Document.find_backward] which allows for
+ * more flexibility than the above, which is only for a byte-by-byte exact
+ * match. However, it is less convenient to call since the caller must
+ * create and and free a #HexDocumentFindData structure manually.
+ *
+ * This method will block. For a non-blocking version, use
+ * [method@Hex.Document.find_backward_full_async].
+ *
+ * Returns: %TRUE if the search string contained in `find_data` was found by
+ *   the requested operation; %FALSE otherwise.
+ *
+ * Since: 4.2
+ */
 gboolean
 hex_document_find_backward_full (HexDocument *doc,
 		HexDocumentFindData *find_data)
@@ -1486,6 +1546,17 @@ hex_document_find_backward_thread (GTask *task,
 	g_task_return_pointer (task, find_data, g_free);
 }
 
+/**
+ * hex_document_find_backward_full_async:
+ * @find_data: a #HexDocumentFindData structure
+ * @cancellable: (nullable): a #GCancellable
+ * @callback: (scope async): function to be called when the operation is
+ *   complete
+ *
+ * Non-blocking version of [method@Hex.Document.find_backward_full].
+ *
+ * Since: 4.2
+ */
 FIND_FULL_ASYNC_TEMPLATE(hex_document_find_backward_full_async,
 		hex_document_find_backward_full_thread)
 
@@ -1503,7 +1574,7 @@ FIND_FULL_ASYNC_TEMPLATE(hex_document_find_backward_full_async,
  *   is not found
  * @callback: (scope async): function to be called when the operation is
  *   complete
- * 
+ *
  * Non-blocking version of [method@Hex.Document.find_backward]. This is the
  * function that should generally be used by a GUI client to find a string
  * backwards in a #HexDocument.
