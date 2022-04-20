@@ -1960,7 +1960,7 @@ hex_widget_find_limited (HexWidget *self, char *find, int findlen,
 {
 	gboolean retval = FALSE;
 	gint64 pos = lower;
-	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1);
+	HexDocumentFindData *find_data = hex_document_find_data_new ();
 
 	find_data->what = find;
 	find_data->len = findlen;

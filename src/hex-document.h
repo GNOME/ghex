@@ -221,6 +221,11 @@ gboolean	hex_document_set_file (HexDocument *doc, GFile *file);
 HexChangeData *	hex_document_get_undo_data (HexDocument *doc);
 HexBuffer * 	hex_document_get_buffer (HexDocument *doc);
 
+/* HexDocumentFindData functions */
+
+HexDocumentFindData *hex_document_find_data_new (void);
+HexDocumentFindData *hex_document_find_data_copy (HexDocumentFindData *data);
+
 G_END_DECLS
 
 #endif /* HEX_DOCUMENT_H */

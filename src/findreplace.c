@@ -322,7 +322,7 @@ find_common (FindDialog *self, enum FindDirection direction,
 
 	/* Search for requested string */
 
-	find_data = g_new0 (HexDocumentFindData, 1);
+	find_data = hex_document_find_data_new ();
 	find_data->what = str;
 	find_data->len = str_len;
 	find_data->found_msg = found_msg;
@@ -544,7 +544,7 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	if (find_len > payload - cursor_pos)
 		goto clean_up;
 	
-	find_data = g_new0 (HexDocumentFindData, 1);
+	find_data = hex_document_find_data_new ();
 	find_data->start = cursor_pos;
 	find_data->what = find_str;
 	find_data->len = find_len;
@@ -608,7 +608,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 		goto clean_up;
 	
 
-	find_data = g_new0 (HexDocumentFindData, 1);
+	find_data = hex_document_find_data_new ();
 	find_data->start = 0;
 	find_data->what = find_str;
 	find_data->len = find_len;

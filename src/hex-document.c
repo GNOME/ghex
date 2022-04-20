@@ -69,16 +69,39 @@ enum {
 static guint hex_signals[LAST_SIGNAL];
 
 
-/* TODO - come up with _new functions for the GTypes below and actually use
- * them. */
-
 /* HexDocumentFindData GType Definitions */
 
-/* FIXME - unused and could be unreliable. */
-static HexDocumentFindData *
+/**
+ * hex_document_find_data_new:
+ *
+ * Create a new empty [struct@Hex.DocumentFindData] structure.
+ *
+ * Returns: a new #HexDocumentFindData structure. Can be freed with
+ *   `g_free ()`.
+ *
+ * Since: 4.2
+ */
+HexDocumentFindData *
+hex_document_find_data_new (void)
+{
+	return g_new0 (HexDocumentFindData, 1);
+}
+
+/**
+ * hex_document_find_data_copy:
+ *
+ * Copy a [struct@Hex.DocumentFindData] structure. This function is likely
+ * only useful for language bindings.
+ *
+ * Returns: a newly allocated #HexDocumentFindData structure. Can be freed with
+ *   `g_free ()`.
+ *
+ * Since: 4.2
+ */
+HexDocumentFindData *
 hex_document_find_data_copy (HexDocumentFindData *data)
 {
-	return data;
+	return g_memdup2 (data, sizeof *data);
 }
 
 G_DEFINE_BOXED_TYPE (HexDocumentFindData, hex_document_find_data,
@@ -1222,7 +1245,7 @@ hex_document_compare_data (HexDocument *doc,
 		const char *what, gint64 pos, size_t len)
 {
 	int retval;
-	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1);
+	HexDocumentFindData *find_data = hex_document_find_data_new ();
 
 	find_data->what = what;
 	find_data->len = len;
@@ -1299,7 +1322,7 @@ hex_document_find_forward (HexDocument *doc, gint64 start, const char *what,
 						  size_t len, gint64 *offset)
 {
 	gboolean retval;
-	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1);
+	HexDocumentFindData *find_data = hex_document_find_data_new ();
 
 	find_data->start = start;
 	find_data->what = what;
@@ -1433,7 +1456,7 @@ FUNC_NAME (HexDocument *doc, \
 		gpointer user_data) \
 { \
 	GTask *task; \
-	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1); \
+	HexDocumentFindData *find_data = hex_document_find_data_new (); \
  \
 	find_data->start = start; \
 	find_data->what = what; \
@@ -1512,7 +1535,7 @@ hex_document_find_backward (HexDocument *doc, gint64 start, const char *what,
 						   size_t len, gint64 *offset)
 {
 	gboolean retval;
-	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1);
+	HexDocumentFindData *find_data = hex_document_find_data_new ();
 
 	find_data->start = start;
 	find_data->what = what;
