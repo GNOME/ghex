@@ -3348,6 +3348,20 @@ hex_widget_set_insert_mode (HexWidget *self, gboolean insert)
 			self->cursor_pos = payload_size - 1;
 }
 
+/**
+ * hex_widget_insert_autohighlight_full:
+ * @search: (array length=len) (transfer full): search string to auto-highlight
+ * @len: length of the @search string
+ * @flags: #HexSearchFlags to specify match type
+ *
+ * Full version of [method@Hex.Widget.insert_autohighlight] which allows
+ * for specifying string match types for auto-highlights over and above
+ * exact byte-for-byte string matches.
+ *
+ * Returns: a newly created [struct@Hex.WidgetAutoHighlight] structure
+ *
+ * Since: 4.2
+ */
 HexWidgetAutoHighlight *
 hex_widget_insert_autohighlight_full (HexWidget *self,
 		const char *search,
