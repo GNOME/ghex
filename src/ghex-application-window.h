@@ -31,6 +31,7 @@
 #include "gtkhex.h"
 #include "configuration.h"
 #include "ghex-notebook-tab.h"
+#include "hex-statusbar.h"
 #include "hex-dialog.h"
 #include "findreplace.h"
 #include "chartable.h"

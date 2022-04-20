@@ -76,6 +76,7 @@ ghex_sources = [
   'ghex-notebook-tab.c',
   'gtkhex-paste-data.c',
   'hex-dialog.c',
+  'hex-statusbar.c',
   'main.c',
   'paste-special.c',
   'preferences.c',
