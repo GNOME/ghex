@@ -78,6 +78,7 @@ struct _GHexApplicationWindow
 	GtkWidget *insert_mode_button;
 	GtkWidget *statusbar;
 	GtkWidget *pane_revealer;
+	GtkWidget *conversions_revealer;
 };
 
 /* GHexApplicationWindow - Globals for Properties and Signals */
@@ -1288,15 +1289,21 @@ toggle_conversions (GtkWidget *widget,
 		GVariant *parameter)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+	GtkRevealer *revealer = GTK_REVEALER (self->conversions_revealer);
 
-	(void)parameter, (void)action_name;		/* unused */
-
-	if (gtk_widget_is_visible (self->conversions_box)) {
-		gtk_widget_set_visible (self->conversions_box, FALSE);
+	if (gtk_revealer_get_reveal_child (revealer))
+	{
+		gtk_revealer_set_transition_type (revealer,
+				GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN);
+		gtk_revealer_set_reveal_child (revealer, FALSE);
 		gtk_button_set_icon_name (GTK_BUTTON(self->pane_toggle_button),
 				"pan-up-symbolic");
-	} else {
-		gtk_widget_set_visible (self->conversions_box, TRUE);
+	}
+	else
+	{
+		gtk_revealer_set_transition_type (revealer,
+				GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP);
+		gtk_revealer_set_reveal_child (revealer, TRUE);
 		gtk_button_set_icon_name (GTK_BUTTON(self->pane_toggle_button),
 				"pan-down-symbolic");
 	}
@@ -1605,7 +1612,6 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	self->dialog_widget = hex_dialog_getview (self->dialog);
 
 	gtk_box_append (GTK_BOX(self->conversions_box), self->dialog_widget);
-	gtk_widget_hide (self->conversions_box);
 
 	/* CSS - conversions_box */
 
@@ -1993,6 +1999,8 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			statusbar);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			pane_revealer);
+	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
+			conversions_revealer);
 }
 
 GtkWidget *

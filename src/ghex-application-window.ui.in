@@ -270,10 +270,14 @@
 					</object>
 				</child>
 
-				<child> <!-- box just to put the conversions_pane; APPEND -->
-					<object class="GtkBox" id="conversions_box" />
+				<child>
+					<object class="GtkRevealer" id="conversions_revealer">
+						<property name="transition-type">slide-up</property>
+						<child> <!-- box just to put the conversions_pane; APPEND -->
+							<object class="GtkBox" id="conversions_box" />
+						</child>
+					</object>
 				</child>
-
 
 				<child> <!-- status_box -->
 					<object class="GtkBox" id="status_box">
