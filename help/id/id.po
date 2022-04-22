@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex master\n"
-"POT-Creation-Date: 2012-12-29 21:22+0000\n"
-"PO-Revision-Date: 2013-03-26 16:24+0700\n"
+"Project-Id-Version: ghex help ghex-42\n"
+"POT-Creation-Date: 2022-04-10 11:31+0000\n"
+"PO-Revision-Date: 2022-04-22 19:18+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -16,1196 +16,1258 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 3.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Andika Triwidada <andika@gmail.com>, 2012, 2013"
+msgstr "Andika Triwidada <andika@gmail.com>, 2012, 2013, 2022."
 
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#.
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.docbook:222(imagedata)
-msgctxt "_"
+#. (itstool) path: credit/name
+#: C/advanced-clipboard.page:7 C/basics-create-new-file.page:7
+#: C/basics-edit-file.page:7 C/basics-find-replace.page:7
+#: C/basics-open-file.page:7 C/basics-save-file.page:7 C/conf-grouptype.page:7
+#: C/conf-preferences.page:7 C/index.page:6 C/tools-chartable.page:7
+#: C/tools-converter.page:7
+msgid "Logan Rathbone"
+msgstr "Logan Rathbone"
+
+#. (itstool) path: credit/years
+#: C/advanced-clipboard.page:9 C/basics-create-new-file.page:9
+#: C/basics-edit-file.page:9 C/basics-find-replace.page:9
+#: C/basics-open-file.page:9 C/basics-save-file.page:9 C/conf-grouptype.page:9
+#: C/conf-preferences.page:9 C/index.page:8 C/tools-chartable.page:9
+#: C/tools-converter.page:9
+msgid "2022"
+msgstr "2022"
+
+#. (itstool) path: page/title
+#: C/advanced-clipboard.page:12
+msgid "Clipboard features"
+msgstr "Fitur papan klip"
+
+#. (itstool) path: page/p
+#: C/advanced-clipboard.page:13
+#, fuzzy
 msgid ""
-"external ref='figures/ghex_window_empty.png' "
-"md5='89b78d734e989c368b82592f385db8dd'"
+"As copying and pasting hexadecimal values is not a standard operation in "
+"most applications, GHex has some unique clipboard features."
 msgstr ""
-"external ref='figures/ghex_window_empty.png' "
-"md5='89b78d734e989c368b82592f385db8dd'"
+"Karena menyalin dan menempelkan nilai heksadesimal bukanlah operasi standar "
+"di sebagian besar aplikasi, GHex memiliki beberapa fitur clipboard yang unik."
 
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#.
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.docbook:248(imagedata)
-msgctxt "_"
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:16
+msgid "Basic clipboard operations"
+msgstr "Operasi papan klip dasar"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:17
 msgid ""
-"external ref='figures/ghex_window_open.png' "
-"md5='9c4ae66bb45a43803e1f70abfaede88b'"
+"Generally, when copying and pasting data within GHex, you need not concern "
+"yourself with clipboard operations."
 msgstr ""
-"external ref='figures/ghex_window_open.png' "
-"md5='9c4ae66bb45a43803e1f70abfaede88b'"
+"Umumnya, saat menyalin dan menempelkan data dalam GHex, Anda tidak perlu "
+"menyibukkan diri dengan operasi papan klip."
 
-#: C/index.docbook:23(articleinfo/title)
-msgid "User manual for GHex"
-msgstr "Manual pengguna bagi GHex"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:19
+msgid "Copying and pasting within GHex works in the usual way."
+msgstr "Menyalin dan menempel dalam GHex bekerja dengan cara biasa."
 
-#: C/index.docbook:26(abstract/para)
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:20
+#, fuzzy
 msgid ""
-"GHex is a simple binary editor. It lets users view and edit a binary file in "
-"both hex and ascii with a multiple level undo/redo mechanism. Features "
-"include find and replace functions, conversion between binary, octal, "
-"decimal and hexadecimal values, and use of an alternative, user-configurable "
-"MDI concept that lets users edit multiple documents with multiple views of "
-"each."
+"To cut or copy data, highlight the data you would like to cut or copy, and "
+"do any of the following:"
 msgstr ""
-"GHex adalah penyunting biner yang sederhana. Ia memungkinkan pengguna "
-"melihat dan menyunting berkas biner dalam heksa dan ascii dengan mekanisme "
-"batal/jadi kembali bertingkat. Fiturnya termasuk fungsi cari dan ganti, "
-"konversi antara nilai biner, oktal, desimal, dan heksadesimal, dan "
-"penggunaan konsep MDI alternatif yang dapat diatur oleh pengguna yang "
-"memungkinkan pengguna menyunting banyak dokumen dengan tilikan berganda "
-"untuk masing-masing."
+"Untuk memotong atau menyalin data, sorot data yang ingin Anda potong atau "
+"salin, dan lakukan salah satu hal berikut ini:"
 
-#: C/index.docbook:36(articleinfo/copyright)
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:24
+#, fuzzy
 msgid ""
-"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
-"Microsystems</holder>"
+"Right-click anywhere in the hex or ASCII pane to bring up the context menu, "
+"and select the appropriate option."
 msgstr ""
-"<year>2002</year> <year>2003</year> <year>2004</year> <holder>Sun "
-"Microsystems</holder>"
+"Klik kanan di mana saja di panel hex atau ASCII untuk memunculkan menu "
+"konteks, dan pilih opsi yang sesuai."
 
-#: C/index.docbook:42(articleinfo/copyright)
-msgid "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
-msgstr "<year>1998-2000</year> <holder>Jaka Mocnik</holder>"
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:28
+msgid "To cut, press <keyseq><key>Ctrl</key><key>X</key></keyseq>."
+msgstr "Untuk memotong, tekan <keyseq><key>Ctrl</key><key>X</key></keyseq>."
 
-#: C/index.docbook:54(publisher/publishername)
-#: C/index.docbook:99(revdescription/para)
-#: C/index.docbook:107(revdescription/para)
-#: C/index.docbook:115(revdescription/para)
-#: C/index.docbook:123(revdescription/para)
-#: C/index.docbook:131(revdescription/para)
-#: C/index.docbook:139(revdescription/para)
-#: C/index.docbook:149(revdescription/para)
-msgid "GNOME Documentation Project"
-msgstr "Projek Dokumentasi GNOME"
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:31
+msgid "To copy, press <keyseq><key>Ctrl</key><key>C</key></keyseq>."
+msgstr "Untuk menyalin, tekan <keyseq><key>Ctrl</key><key>C</key></keyseq>."
 
-#: C/index.docbook:63(authorgroup/author)
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:34
+msgid "To paste data:"
+msgstr "Untuk menempel data:"
+
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:37
+#, fuzzy
 msgid ""
-"<firstname>Sun</firstname> <surname>GNOME Documentation Team</surname> "
-"<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
-"affiliation>"
+"Right-click to bring up the context menu, and click <gui>Paste</gui>; or"
 msgstr ""
-"<firstname>Sun</firstname> <surname>GNOME Documentation Team</surname> "
-"<affiliation> <orgname>Sun Microsystems</orgname> <_:address-1/> </"
-"affiliation>"
+"Klik kanan untuk memunculkan menu konteks, dan klik <gui>Tempel</gui>; atau"
 
-#: C/index.docbook:71(authorgroup/author)
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:40
+msgid "Press <keyseq><key>Ctrl</key><key>V</key></keyseq>."
+msgstr "Tekan <keyseq><key>Ctrl</key><key>V</key></keyseq>."
+
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:45
+msgid "Paste Special"
+msgstr "Tempel Khusus"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:46
+#, fuzzy
 msgid ""
-"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
-"<orgname>GNOME Documentation Project</orgname> <address> <email>jaka@gnu."
-"org</email> </address> </affiliation>"
+"If you have used other applications, such as text editors or word processors "
+"with a Paste Special dialog, you may be familiar with this feature."
 msgstr ""
-"<firstname>Jaka</firstname> <surname>Mocnik</surname> <affiliation> "
-"<orgname>GNOME Documentation Project</orgname> <address> <email>jaka@gnu."
-"org</email> </address> </affiliation>"
+"Jika Anda telah menggunakan aplikasi lain, seperti editor teks atau pengolah "
+"kata dengan dialog Tempel Khusus, Anda mungkin akrab dengan fitur ini."
 
-#: C/index.docbook:98(revdescription/para)
-#: C/index.docbook:106(revdescription/para)
-#: C/index.docbook:114(revdescription/para)
-#: C/index.docbook:122(revdescription/para)
-#: C/index.docbook:130(revdescription/para)
-#: C/index.docbook:138(revdescription/para)
-msgid "Sun GNOME Documentation Team"
-msgstr "Tim Dokumentasi GNOME Sun"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:48
+#, fuzzy
+msgid "To activate the Paste Special dialog in GHex:"
+msgstr "Untuk mengaktifkan dialog Tempel Khusus di GHex:"
 
-#: C/index.docbook:94(revhistory/revision)
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:51
+#, fuzzy
 msgid ""
-"<revnumber>GHex Manual V2.5</revnumber> <date>December 2005</date> <_:"
-"revdescription-1/>"
+"Click <gui>Paste Special</gui> from the <gui>Edit</gui> submenu of the "
+"<gui>Main menu</gui>; or"
 msgstr ""
-"<revnumber>GHex Manual V2.5</revnumber> <date>Desember 2005</date> <_:"
-"revdescription-1/>"
+"Klik <gui>Tempel Khusus</gui> dari submenu <gui>Edit</gui> <gui>menu Utama</"
+"gui>; atau"
 
-#: C/index.docbook:102(revhistory/revision)
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:54
+#, fuzzy
+msgid "Press <keyseq><key>Shift</key><key>Ctrl</key><key>V</key></keyseq>."
+msgstr "Tekan <keyseq><key></key><key>ShiftCtrlV</key><key></key></keyseq>."
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:57
+#, fuzzy
 msgid ""
-"<revnumber>GHex Manual V2.4</revnumber> <date>April 2003</date> <_:"
-"revdescription-1/>"
+"The options that appear when <gui>Paste Special</gui> is activated are "
+"context-dependent."
 msgstr ""
-"<revnumber>GHex Manual V2.4</revnumber> <date>April 2003</date> <_:"
-"revdescription-1/>"
+"Opsi yang muncul saat <gui>Paste Special</gui> diaktifkan bergantung pada "
+"konteks."
 
-#: C/index.docbook:110(revhistory/revision)
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:58
+#, fuzzy
+msgid "The most common options are described below."
+msgstr "Opsi yang paling umum dijelaskan di bawah ini."
+
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:60 C/advanced-clipboard.page:110
+msgid "GHex Paste Data"
+msgstr "Data Tempel GHex"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:61
+#, fuzzy
 msgid ""
-"<revnumber>GHex Manual V2.3</revnumber> <date>August 2002</date> <_:"
-"revdescription-1/>"
+"This option will only appear if your current clipboard selection contains "
+"data copied directly from GHex. This represents clipboard data native to "
+"GHex, and will be pasted into the application as if you had utilized an "
+"ordinary <gui>Paste</gui> operation."
 msgstr ""
-"<revnumber>GHex Manual V2.3</revnumber> <date>August 2002</date> <_:"
-"revdescription-1/>"
+"Opsi ini hanya akan muncul jika pilihan clipboard Anda saat ini berisi data "
+"yang disalin langsung dari GHex. Ini mewakili data clipboard asli GHex, dan "
+"akan ditempelkan ke dalam aplikasi seolah-olah Anda telah menggunakan "
+"operasi <gui>Paste</gui> biasa."
 
-#: C/index.docbook:118(revhistory/revision)
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:67 C/advanced-clipboard.page:113
+msgid "Plain text (as ASCII)"
+msgstr "Teks polos (sebagai ASCII)"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:68
+#, fuzzy
 msgid ""
-"<revnumber>GHex Manual V2.2</revnumber> <date>August 2002</date> <_:"
-"revdescription-1/>"
+"This allows you to paste the data from the clipboard into the GHex buffer, "
+"forcing GHex to assume the pasted data will be plain ASCII text."
 msgstr ""
-"<revnumber>GHex Manual V2.2</revnumber> <date>August 2002</date> <_:"
-"revdescription-1/>"
+"Hal ini memungkinkan Anda untuk menempelkan data dari clipboard ke buffer "
+"GHex, memaksa GHex untuk mengasumsikan data yang ditempelkan akan menjadi "
+"teks ASCII biasa."
 
-#: C/index.docbook:126(revhistory/revision)
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:72 C/advanced-clipboard.page:119
+msgid "Plain text (Unicode)"
+msgstr "Teks polos (Unicode)"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:73
+#, fuzzy
 msgid ""
-"<revnumber>GHex Manual V2.1</revnumber> <date>July 2002</date> <_:"
-"revdescription-1/>"
+"This allows you to paste the data from the clipboard into the GHex buffer, "
+"forcing GHex to assume the pasted data will be text encoded in UTF-8 format."
 msgstr ""
-"<revnumber>GHex Manual V2.1</revnumber> <date>July 2002</date> <_:"
-"revdescription-1/>"
+"Hal ini memungkinkan Anda untuk menempelkan data dari clipboard ke buffer "
+"GHex, memaksa GHex untuk mengasumsikan data yang ditempelkan akan menjadi "
+"teks yang dikodekan dalam format UTF-8."
 
-#: C/index.docbook:134(revhistory/revision)
+#. (itstool) path: section/title
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:77 C/advanced-clipboard.page:116
+msgid "Plain text (as space-delimited hex pairs)"
+msgstr "Teks polos (sebagai pasangan heksa yang dibatasi spasi)"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:78
+#, fuzzy
 msgid ""
-"<revnumber>GHex Manual V2.0</revnumber> <date>March 2002</date> <_:"
-"revdescription-1/>"
+"This unique option assumes that GHex can expect to receive plain, ASCII text "
+"that is specifically formatted as hex nibble-pairs, separated by a single "
+"space each."
 msgstr ""
-"<revnumber>GHex Manual V2.0</revnumber> <date>March 2002</date> <_:"
-"revdescription-1/>"
+"Opsi unik ini mengasumsikan bahwa GHex dapat mengharapkan untuk menerima "
+"teks ASCII polos yang secara khusus diformat sebagai pasangan menggigit hex, "
+"dipisahkan oleh satu ruang masing-masing."
 
-#: C/index.docbook:146(revdescription/para)
-msgid "Jaka Mocnik <email>jaka@gnu.org</email>"
-msgstr "Jaka Mocnik <email>jaka@gnu.org</email>"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:81
+#, fuzzy
+msgid "This allows hexadecimal data to be pasted back into GHex cleanly."
+msgstr ""
+"Hal ini memungkinkan data heksadesimal ditempelkan kembali ke GHex dengan "
+"bersih."
 
-#: C/index.docbook:142(revhistory/revision)
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:82
+#, fuzzy
 msgid ""
-"<revnumber>GHex Manual V1.0</revnumber> <date>2000</date> <_:"
-"revdescription-1/>"
+"For example, if <code>48 45 4C 4C 4F</code> is in the clipboard, selecting "
+"this option will implicitly convert this hex sequence to an ASCII character "
+"sequence (in this case, \"HELLO\"), and insert it into the GHex buffer."
 msgstr ""
-"<revnumber>GHex Manual V1.0</revnumber> <date>2000</date> <_:"
-"revdescription-1/>"
+"Misalnya, jika <code>48 45 4C 4C 4F</code> ada di clipboard, memilih opsi "
+"ini secara implisit akan mengubah urutan hex ini menjadi urutan karakter "
+"ASCII (dalam hal ini, \"HELLO\"), dan memasukkannya ke dalam buffer GHex."
 
-#: C/index.docbook:154(articleinfo/releaseinfo)
-msgid "This manual describes version 2.19 of GHex."
-msgstr "Manual ini menjelaskan GHex versi 2.19."
-
-#: C/index.docbook:157(legalnotice/title)
-msgid "Feedback"
-msgstr "Umpan balik"
-
-#: C/index.docbook:158(legalnotice/para)
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:85
+#, fuzzy
 msgid ""
-"To report a bug or make a suggestion regarding the GHex application or this "
-"manual, follow the directions in the <ulink url=\"help:gnome-feedback\" type="
-"\"help\">GNOME Feedback Page</ulink>."
+"This option can be combined with <gui>Copy Special</gui> to allow an "
+"external text editor of your choice to edit hex data copied from GHex, and "
+"paste it back into GHex cleanly."
 msgstr ""
-"Untuk melaporkan sebuah kutu atau memberikan saran tentang aplikasi GHex "
-"atau panduan ini, ikuti petunjuk di <ulink url=\"help:gnome-feedback\" type="
-"\"help\">Halaman Umpan Balik GNOME</ulink>."
+"Opsi ini dapat dikombinasikan dengan <gui>Copy Special</gui> untuk "
+"memungkinkan editor teks eksternal pilihan Anda untuk mengedit data hex yang "
+"disalin dari GHex, dan menempelkannya kembali ke GHex dengan bersih."
 
-#: C/index.docbook:164(article/indexterm)
-msgid "<primary>GHex</primary>"
-msgstr "<primary>GHex</primary>"
+#. (itstool) path: section/title
+#: C/advanced-clipboard.page:91
+msgid "Copy Special"
+msgstr "Salin Khusus"
 
-#: C/index.docbook:174(sect1/title)
-msgid "Introduction"
-msgstr "Perkenalan"
-
-#: C/index.docbook:175(sect1/para)
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:92
+#, fuzzy
 msgid ""
-"The <application>GHex</application> application enables you to perform the "
-"following actions:"
+"Unlike Paste Special, which is a feature present in many ordinary text "
+"editors and word processors, Copy Special is a feature that was created "
+"specifically for GHex, and thus may not be familiar to many users."
 msgstr ""
-"Aplikasi <application>GHex</application> memungkinkan Anda melakukan aksi-"
-"aksi berikut:"
+"Tidak seperti Paste Special, yang merupakan fitur hadir di banyak editor "
+"teks biasa dan pengolah kata, Copy Special adalah fitur yang dibuat khusus "
+"untuk GHex, dan dengan demikian mungkin tidak akrab bagi banyak pengguna."
 
-#: C/index.docbook:177(listitem/para)
-msgid "View a file in ASCII or hexadecimal format simultaneously."
-msgstr "Tilik berkas dalam format ASCII atau heksadesimal secara simultan."
-
-#: C/index.docbook:179(listitem/para)
-msgid "Edit a file in either ASCII or hexadecimal format."
-msgstr "Sunting berkas dalam format ASCII atau heksadesimal."
-
-#: C/index.docbook:187(sect1/title)
-msgid "Getting Started"
-msgstr "Memulai"
-
-#: C/index.docbook:192(sect2/title)
-msgid "To Start GHex"
-msgstr "Untuk Memulai GHex"
-
-#: C/index.docbook:194(sect2/para)
-msgid "You can start <application>GHex</application> in the following ways:"
-msgstr ""
-"Anda dapat memulai <application>GHex</application> dengan cara berikut:"
-
-#: C/index.docbook:197(varlistentry/term)
-msgid "<guimenu>Applications</guimenu> menu"
-msgstr "Menu <guimenu>aplikasi</guimenu>"
-
-#: C/index.docbook:199(listitem/para)
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:95
+#, fuzzy
 msgid ""
-"Choose <menuchoice><guisubmenu>Accessories</guisubmenu><guimenuitem>Hex "
-"Editor</guimenuitem></menuchoice>."
+"Copy Special allows you to copy data <em>from</em> GHex into the format of "
+"your choice. You may not need this feature unless you intend to paste data "
+"from GHex into other applications, and would like minute control over how "
+"that is done."
 msgstr ""
-"Pilih <menuchoice><guisubmenu>Aksesori</guisubmenu><guimenuitem>Penyunting "
-"Heksa</guimenuitem></menuchoice>."
+"Copy Special memungkinkan Anda menyalin data <em>dari</em> GHex ke dalam "
+"format pilihan Anda. Anda mungkin tidak memerlukan fitur ini kecuali Anda "
+"berniat untuk menempelkan data dari GHex ke aplikasi lain, dan ingin kontrol "
+"menit atas bagaimana hal itu dilakukan."
 
-#: C/index.docbook:203(varlistentry/term)
-msgid "Command line"
-msgstr "Baris perintah"
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:98
+#, fuzzy
+msgid "To activate the Copy Special dialog in GHex:"
+msgstr "Untuk mengaktifkan dialog Salin Khusus di GHex:"
 
-#: C/index.docbook:205(listitem/para)
-msgid "Execute the following command: <command>ghex</command>"
-msgstr "Jalankan perintah berikut: <command>ghex</command>"
-
-#: C/index.docbook:212(sect2/title)
-msgid "When You Start GHex"
-msgstr "Ketika Anda Memulai GHex"
-
-#: C/index.docbook:214(sect2/para)
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:101
+#, fuzzy
 msgid ""
-"When you start <application>GHex</application>, the following window is "
-"displayed."
+"Click <gui>Copy Special</gui> from the <gui>Edit</gui> submenu of the "
+"<gui>Main menu</gui>; or"
 msgstr ""
-"Ketika Anda memulai <application>GHex</application>, jendela berikut "
-"ditampilkan."
+"Klik <gui>Salin Khusus</gui> dari submenu <gui>Edit</gui> <gui>menu Utama</"
+"gui>; atau"
 
-#: C/index.docbook:218(figure/title)
-msgid "GHex Window Before You Open a File"
-msgstr "Jendela GHex Sebelum Anda Membuka Berkas"
+#. (itstool) path: item/p
+#: C/advanced-clipboard.page:104
+#, fuzzy
+msgid "Press <keyseq><key>Shift</key><key>Ctrl</key><key>C</key></keyseq>."
+msgstr "Tekan <keyseq><key></key><key>ShiftCtrlC</key><key></key></keyseq>."
 
-#: C/index.docbook:220(screenshot/mediaobject)
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:107
+#, fuzzy
+msgid "The options that appear when you activate Copy Special are:"
+msgstr "Opsi yang muncul saat Anda mengaktifkan Salin Spesial adalah:"
+
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:122
+#, fuzzy
 msgid ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window before "
-"you open a file.</phrase> </textobject>"
+"These options work as described in the <link xref=\"#paste-special\"/> "
+"section above, but in reverse. In other words, the data copied from GHex "
+"<em>to</em> the clipboard will be copied in the specified format."
 msgstr ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Tampilkan jendela utama GHex "
-"sebelum Anda membuka suatu berkas.</phrase> </textobject>"
+"Opsi ini berfungsi seperti yang <link xref=\"#paste-special\"/> dijelaskan "
+"pada bagian di atas, tetapi sebaliknya. Dengan kata lain, data yang disalin "
+"dari GHex <em>ke</em> clipboard akan disalin dalam format yang ditentukan."
 
-#: C/index.docbook:238(sect2/title)
-msgid "To Open a File"
-msgstr "Untuk Membuka Berkas"
-
-#: C/index.docbook:239(sect2/para)
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:125
+#, fuzzy
 msgid ""
-"To open a file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Open</"
-"guimenuitem></menuchoice>. Select the file that you want to open, then click "
-"<guibutton>OK</guibutton>. You can open multiple files in <application>GHex</"
-"application>. <application>GHex</application> displays each file in a new "
-"window."
+"This allows you to have control over how clipboard data copied from GHex "
+"will be pasted <em>into</em> other applications."
 msgstr ""
-"Untuk membuka berkas, pilih <menuchoice><guimenu>Berkas</"
-"guimenu><guimenuitem>Buka</guimenuitem></menuchoice>. Pilih berkas yang "
-"ingin Anda buka, lalu klik <guibutton>OK</guibutton>. Anda dapat membuka "
-"beberapa berkas dalam <application>GHex</application>. <application>GHex</"
-"application> menampilkan setiap berkas dalam jendela baru."
+"Hal ini memungkinkan Anda untuk memiliki kontrol atas bagaimana data "
+"clipboard disalin dari GHex akan ditempelkan <em>ke</em> aplikasi lain."
 
-#: C/index.docbook:240(sect2/para)
+#. (itstool) path: section/p
+#: C/advanced-clipboard.page:127
+#, fuzzy
 msgid ""
-"When you open a file in <application>GHex</application>, the application "
-"displays the file in the following window."
+"This is mostly intended to allow for space-delimited hex pairs to be edited "
+"in third party applications and then pasted back to GHex cleanly. However, "
+"there may be other interesting uses for this feature as well. Since GHex, "
+"like any hex editor, is often used to edit unusual data types, there may be "
+"other times in which it is desirable for the user to have full control over "
+"how the data from the buffer is copied to the clipboard."
 msgstr ""
-"Ketika Anda membuka berkas dalam <application>GHex</application>, aplikasi "
-"menampilkan berkas dalam jendela berikut."
+"Ini sebagian besar dimaksudkan untuk memungkinkan pasangan hex yang dibatasi "
+"ruang untuk diedit dalam aplikasi pihak ketiga dan kemudian ditempelkan "
+"kembali ke GHex dengan bersih. Namun, mungkin ada kegunaan menarik lainnya "
+"untuk fitur ini juga. Karena GHex, seperti editor hex lainnya, sering "
+"digunakan untuk mengedit tipe data yang tidak biasa, mungkin ada saat-saat "
+"lain di mana diinginkan bagi pengguna untuk memiliki kontrol penuh atas "
+"bagaimana data dari buffer disalin ke clipboard."
 
-#: C/index.docbook:244(figure/title)
-msgid "GHex Window with an Open File"
-msgstr "Jendela GHex dengan Buka Berkas"
+#. (itstool) path: page/title
+#: C/basics-create-new-file.page:12
+msgid "Create a new file"
+msgstr "Buat berkas baru"
 
-#: C/index.docbook:246(screenshot/mediaobject)
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:13
+msgid "In GHex a new file can be created in the following ways:"
+msgstr "Anda dapat menyimpan berkas dengan cara-cara berikut:"
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:16
+#, fuzzy
+msgid "Select <gui>New</gui> from the <gui>Main menu</gui>."
+msgstr "Pilih <gui>Baru</gui> dari <gui>menu Utama</gui>."
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:19
+#, fuzzy
+msgid "Press <keyseq><key>Ctrl</key><key>N</key></keyseq>."
+msgstr "Tekan <keyseq><key>CtrlN</key><key></key></keyseq>."
+
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:22
+#, fuzzy
 msgid ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window with an "
-"open file</phrase> </textobject>"
+"When a new file is created, GHex will toggle <gui>Insert Mode</gui> on, so "
+"that you may start adding data to your new file right away."
 msgstr ""
-"<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
-"\"PNG\"/> </imageobject> <textobject> <phrase>Tampilkan jendela utama GHex "
-"dengan suatu buka berkas</phrase> </textobject>"
+"Saat file baru dibuat, GHex akan mengaktifkan <gui>Mode Sisipkan</gui> , "
+"sehingga Anda dapat mulai menambahkan data ke file baru Anda segera."
 
-#: C/index.docbook:258(sect2/para)
+#. (itstool) path: page/title
+#: C/basics-edit-file.page:12
+msgid "Editing files"
+msgstr "Menyunting berkas"
+
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:14
+#, fuzzy
+msgid "Toggling the hex or ASCII panes"
+msgstr "Toggling panel hex atau ASCII"
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:15
+#, fuzzy
+msgid "File can be edited in GHex from either the hex pane or the ASCII pane."
+msgstr "File dapat diedit di GHex baik dari panel hex atau panel ASCII."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:16
+#, fuzzy
 msgid ""
-"The <application>GHex</application> window contains the following elements:"
-msgstr "Jendela <application>GHex</application> memuat elemen-elemen berikut:"
-
-#: C/index.docbook:261(varlistentry/term)
-msgid "Menubar"
-msgstr "Bilah menu"
-
-#: C/index.docbook:263(listitem/para)
-msgid ""
-"The menus on the menubar contain all the commands that you need to work with "
-"files in <application>GHex</application>."
+"To focus either pane to accept your keystrokes, you may click on the "
+"appropriate pane, or:"
 msgstr ""
-"Menu pada bilah menu memuat semua perintah yang Anda perlukan untuk bekerja "
-"dengan berkas dalam <application>GHex</application>."
+"Untuk memfokuskan salah satu panel untuk menerima penekanan tombol Anda, "
+"Anda dapat mengklik panel yang sesuai, atau:"
 
-#: C/index.docbook:267(varlistentry/term)
-msgid "Cursor offsets column"
-msgstr "Kolom ofset kursor"
-
-#: C/index.docbook:269(listitem/para)
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:19
+#, fuzzy
 msgid ""
-"The cursor offset is the distance between the beginning of the file and the "
-"first byte in each line. By default, <application>GHex</application> "
-"displays the cursor offsets column to the left of the hexadecimal view."
+"Press <keyseq><key>Alt</key><key>Left</key></keyseq> to focus the hex pane, "
+"and"
 msgstr ""
-"Ofset kursor adalah jarak antara awal berkas dan byte pertama dalam setiap "
-"baris. Secara bawaan, <application>GHex</application> menampilkan kolom "
-"ofset kursor di kiri tilikan heksadesimal."
+"Tekan <keyseq><key></key><key>AltLeft</key></keyseq> untuk memfokuskan panel "
+"hex, dan"
 
-#: C/index.docbook:273(varlistentry/term)
-msgid "Display pane on left side"
-msgstr "Tampilkan panel di sisi kiri"
-
-#: C/index.docbook:275(listitem/para)
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:22
+#, fuzzy
 msgid ""
-"The display pane on the left side of the display area displays a hexadecimal "
-"view of the file."
+"Press <keyseq><key>Alt</key><key>Right</key></keyseq> to focus the ASCII "
+"pane."
 msgstr ""
-"Panel di sisi kiri wilayah tampilan menunjukkan tilikan heksadesimal dari "
-"berkas."
+"Tekan <keyseq><key>AltRight</key><key></key></keyseq> untuk memfokuskan "
+"panel ASCII."
 
-#: C/index.docbook:279(varlistentry/term)
-msgid "Display pane on right side"
-msgstr "Tampilkan panel di sisi kanan"
-
-#: C/index.docbook:281(listitem/para)
-msgid ""
-"The display pane on the right side of the display area displays an ASCII "
-"view of the file."
-msgstr ""
-"Panel di sisi kanan wilayah tampilan menunjukkan tilikan ASCII dari berkas."
-
-#: C/index.docbook:285(varlistentry/term)
-msgid "Type conversion dialog"
-msgstr "Dialog konversi tipe"
-
-#: C/index.docbook:287(listitem/para)
-msgid ""
-"The type conversion dialog below the display area displays the value of the "
-"selected character in several different numeric types."
-msgstr ""
-"Dialog konversi tipe di bawah wilayah tampilan menunjukkan nilai dari "
-"karakter yang sedang dipilih dalam beberapa tipe numerik yang berbeda."
-
-#: C/index.docbook:297(sect1/title)
-msgid "Usage"
-msgstr "Cara pakai"
-
-#: C/index.docbook:302(sect2/title)
-msgid "To Edit a File"
-msgstr "Untuk Menyunting Berkas"
-
-#: C/index.docbook:303(sect2/para)
-msgid "To edit a file, perform the following steps:"
-msgstr "Untuk menyunting berkas, lakukan langkah-langkah berikut:"
-
-#: C/index.docbook:305(listitem/para)
-msgid ""
-"Click in the hexadecimal or ASCII view of the file. The view in which the "
-"cursor is active displays a full cursor. The view in which the cursor is not "
-"active displays an outline of the cursor."
-msgstr ""
-"Klik dalam tilikan heksadesimal atau ASCII dari berkas. Tilikan tempat "
-"kursor aktif menampilkan kursor penuh. Tilikan tempat kursor tak aktif "
-"menampilkan kerangka kursor."
-
-#: C/index.docbook:307(listitem/para)
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:25
 msgid "Use any of the following methods to move the cursor around the file:"
 msgstr ""
 "Gunakan salah satu dari metoda berikut untuk memindahkan kursor dalam berkas:"
 
-#: C/index.docbook:309(listitem/para)
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:28
 msgid ""
-"Use the scrollbar on the window or the arrow keys on the keyboard to scroll "
-"through the file."
+"Use the scrollbar on the window and the mouse to select a byte by clicking "
+"on it."
 msgstr ""
 "Pakai bilah penggulung pada jendela atau tombol panah pada papan tik untuk "
 "menggulung sepanjang berkas."
 
-#: C/index.docbook:311(listitem/para)
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:31
+#, fuzzy
 msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Goto Byte</"
-"guimenuitem></menuchoice>, type the cursor offset as a decimal or "
-"hexadecimal value, then click <guibutton>OK</guibutton>. The format of the "
-"hexadecimal value must be 0x followed by the offset, for example 0x3."
+"Use the arrow keys, <key>Home</key>, <key>End</key>, <key>PageUp</key> or "
+"<key>PageDown</key> on the keyboard."
+msgstr ""
+"Gunakan tombol panah, <key>Beranda</key>, <key>Akhir,Up</key> <key>Halaman</"
+"key> , atau <key>PageDown</key> pada keyboard."
+
+#. (itstool) path: item/p
+#: C/basics-edit-file.page:34
+#, fuzzy
+#| msgid ""
+#| "Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Goto Byte</"
+#| "guimenuitem></menuchoice>, type the cursor offset as a decimal or "
+#| "hexadecimal value, then click <guibutton>OK</guibutton>. The format of "
+#| "the hexadecimal value must be 0x followed by the offset, for example 0x3."
+msgid ""
+"Choose <gui>Jump to Byte</gui> from the (Main menu) or press "
+"<keyseq><key>Ctrl</key><key>J</key></keyseq>, and enter the cursor offset as "
+"a decimal or hexadecimal value. The format of the hexadecimal value must be "
+"0x followed by the offset, for example 0x3."
 msgstr ""
 "Pilih <menuchoice><guimenu>Sunting</guimenu><guimenuitem>Ke Byte</"
 "guimenuitem></menuchoice>, ketikkan ofset kursor sebagai nilai desimal atau "
 "heksadesimal, lalu klik <guibutton>OK</guibutton>. Format bagi nilai "
 "heksadesimal mesti berupa 0x diikuti dengan ofset, sebagai contoh 0x3a2."
 
-#: C/index.docbook:315(listitem/para)
-msgid ""
-"Edit the ASCII format in the same way you edit a normal text file. To edit "
-"the hexadecimal format, use the values 0 to 9 and a to f."
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:41
+#, fuzzy
+msgid "Editing the file using the hex or ASCII pane"
+msgstr "Mengedit file menggunakan panel hex atau ASCII"
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:42
+msgid "Edit the ASCII format in the same way you edit a normal text file."
 msgstr ""
 "Sunting format ASCII dengan cara yang sama seperti Anda menyunting berkas "
-"teks normal. Untuk menyunting format heksadesimal, gunakan angka 0 sampai 9 "
-"dan huruf a sampai f."
+"teks normal."
 
-#: C/index.docbook:318(sect2/para)
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:43
+#, fuzzy
 msgid ""
-"To insert data and not overwrite existing data, choose "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Insert Mode</guimenuitem></"
-"menuchoice>."
+"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
+"operation is not case-sensitive."
 msgstr ""
-"Untuk menyisipkan data dan tak menimpa data yang telah ada, pilih "
-"<menuchoice><guimenu>Sunting</guimenu><guimenuitem>Mode Sisip</guimenuitem></"
-"menuchoice>."
+"Untuk mengedit format heksadesimal, gunakan nilai 0 hingga 9 dan a hingga f. "
+"Operasi ini tidak peka huruf besar/kecil."
 
-#: C/index.docbook:319(sect2/para)
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:47
+#, fuzzy
+msgid "Insert mode"
+msgstr "Mode Peny_isipan"
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:48
+#, fuzzy
 msgid ""
-"To cut, copy, and paste data, choose <menuchoice><guimenu>Edit</"
-"guimenu><guimenuitem>Cut</guimenuitem></menuchoice>, "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></"
-"menuchoice>, and <menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</"
-"guimenuitem></menuchoice>."
+"<gui>Insert Mode</gui> can be toggled on or off by pressing <key>Insert</"
+"key>, or by clicking the <gui>Toggle insert mode</gui> button in the status "
+"bar."
 msgstr ""
-"Untuk memotong, menyalin, dan menempel data, pilih "
-"<menuchoice><guimenu>Sunting</guimenu><guimenuitem>Potong</guimenuitem></"
-"menuchoice>, <menuchoice><guimenu>Sunting</guimenu><guimenuitem>Salin</"
-"guimenuitem></menuchoice>, dan <menuchoice><guimenu>Sunting</"
-"guimenu><guimenuitem>Tempel</guimenuitem></menuchoice>."
+"<gui>Sisipkan Mode</gui> dapat diaktifkan atau dimatikan dengan menekan "
+"<key>Sisipkan</key>, atau dengan mengklik tombol <gui>Tombol Sisipkan "
+"Sakelar</gui> di bilah status."
 
-#: C/index.docbook:320(sect2/para)
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:50
+#, fuzzy
 msgid ""
-"To undo an edit, choose <menuchoice><guimenu>Edit</"
-"guimenu><guimenuitem>Undo</guimenuitem></menuchoice>. To redo an edit, "
-"choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Redo</guimenuitem></"
-"menuchoice>. The number of previous edits that you can undo is determined by "
-"the <guilabel>Maximum number of undo levels</guilabel> setting in the <xref "
-"linkend=\"ghex-prefs-editing\"/> tabbed section of the "
-"<guilabel>Preferences</guilabel> dialog."
+"When <gui>Insert Mode</gui> is enabled, this means data will be added to the "
+"file as opposed to replacing existing data."
 msgstr ""
-"Untuk membatalkan penyuntingan, pilih <menuchoice><guimenu>Sunting</"
-"guimenu><guimenuitem>Batalkan</guimenuitem></menuchoice>. Untuk menjadikan "
-"lagi suatu penyuntingan pilihlah <menuchoice><guimenu>Sunting</"
-"guimenu><guimenuitem>Jadi Lagi</guimenuitem></menuchoice>. Cacah "
-"penyuntingan sebelumnya yang dapat dibatalkan ditentukan oleh pengaturan "
-"<guilabel>Cacah maksimum tingkat pembatalan</guilabel> dalam <xref linkend="
-"\"ghex-prefs-editing\"/> salah satu tab dari dialog <guilabel>Preferensi</"
-"guilabel>."
+"Ketika <gui>Mode Sisipkan</gui> diaktifkan, ini berarti data akan "
+"ditambahkan ke file sebagai lawan dari mengganti data yang ada."
 
-#: C/index.docbook:326(sect2/title)
-msgid "To Save a File"
-msgstr "Untuk Menyimpan Berkas"
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:52
+#, fuzzy
+msgid ""
+"Unlike traditional text editors, having <gui>Insert Mode</gui> <em>off</em> "
+"is considered the default state in GHex, given that hex editors are "
+"routinely used to edit existing data in binary files that are very "
+"specifically laid out. In some cases, such files may be of a fixed size and "
+"increasing or decreasing their size may cause undefined or unwanted "
+"behaviour in applications that open them."
+msgstr ""
+"Tidak seperti editor teks tradisional, memiliki <gui>Insert Mode</gui> "
+"<em>off</em> dianggap sebagai status default di GHex, mengingat bahwa editor "
+"hex secara rutin digunakan untuk mengedit data yang ada dalam file biner "
+"yang sangat khusus ditata. Dalam beberapa kasus, file tersebut mungkin dari "
+"ukuran tetap dan meningkatkan atau mengurangi ukurannya dapat menyebabkan "
+"perilaku yang tidak terdefinisi atau tidak diinginkan dalam aplikasi yang "
+"membukanya."
 
-#: C/index.docbook:327(sect2/para)
-msgid "You can save a file in the following ways:"
+#. (itstool) path: page/title
+#: C/basics-find-replace.page:12
+msgid "Find and replace"
+msgstr "Cari dan ganti"
+
+#. (itstool) path: section/title
+#: C/basics-find-replace.page:14
+#, fuzzy
+msgid "Find pane"
+msgstr "Menemukan panel"
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:15
+#, fuzzy
+msgid ""
+"Most basic find operations in GHex can be done by utilizing the <gui>Find</"
+"gui> pane."
+msgstr ""
+"Sebagian besar operasi pencarian dasar di GHex dapat dilakukan dengan "
+"memanfaatkan panel <gui>Temukan</gui> ."
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:16
+#, fuzzy
+#| msgid "You can save a file in the following ways:"
+msgid "You may toggle the <gui>Find</gui> pane in the following ways:"
 msgstr "Anda dapat menyimpan berkas dengan cara-cara berikut:"
 
-#: C/index.docbook:329(listitem/para)
-msgid ""
-"To save changes to the current file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Save</guimenuitem></menuchoice>."
-msgstr ""
-"Untuk menyimpan perubahan atas berkas kini, pilih "
-"<menuchoice><guimenu>Berkas</guimenu><guimenuitem>Simpan</guimenuitem></"
-"menuchoice>."
-
-#: C/index.docbook:331(listitem/para)
-msgid ""
-"To save the current file under a new filename, choose "
-"<menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></"
-"menuchoice>. Enter a name for the file in the <guilabel>Select a file to "
-"save buffer as</guilabel> dialog, then click <guibutton>OK</guibutton>."
-msgstr ""
-"Untuk menyimpan berkas kini dengan nama berbeda, pilih "
-"<menuchoice><guimenu>Berkas</guimenu><guimenuitem>Simpan Sebagai</"
-"guimenuitem></menuchoice>. Masukkan sebuah nama bagi berkas dalam dialog "
-"<guilabel>Pilih berkas sebagai tempat menyimpan penyangga</guilabel>, lalu "
-"klik <guibutton>OK</guibutton>."
-
-#: C/index.docbook:339(sect2/title)
-msgid "To Revert to the Last Saved Version of a File"
-msgstr "Untuk Mengembalikan Ke Versi Berkas Yang Terakhir Disimpan"
-
-#: C/index.docbook:340(sect2/para)
-msgid ""
-"To revert to the last version of the current file that you saved and undo "
-"all of the edits that you made to the file since you last saved the file, "
-"choose <menuchoice><guimenu>File</guimenu><guimenuitem>Revert</guimenuitem></"
-"menuchoice>, then click <guibutton>Yes</guibutton> in the "
-"<guilabel>Question</guilabel> dialog."
-msgstr ""
-"Untuk mengembalikan ke versi terakhir dari berkas kini yang Anda simpan dan "
-"membatalkan semua penyuntingan yang Anda lakukan terhadap berkas semenjak "
-"terakhir kali Anda menyimpan berkas, pilih <menuchoice><guimenu>Berkas</"
-"guimenu><guimenuitem>Kembalikan</guimenuitem></menuchoice>, lalu klik "
-"<guibutton>Ya</guibutton> dalam dialog <guilabel>Pertanyaan</guilabel>."
-
-#: C/index.docbook:346(sect2/title)
-msgid "To Find Data in a File"
-msgstr "Untuk Mencari Data Dalam Berkas"
-
-#: C/index.docbook:347(sect2/para)
-msgid ""
-"To search a file for a hexadecimal or ASCII string, perform the following "
-"steps:"
-msgstr ""
-"Untuk mencari suatu string heksadesimal atau ASCII pada berkas, lakukan "
-"langkah-langkah berikut:"
-
-#: C/index.docbook:349(listitem/para)
-msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find</guimenuitem></"
-"menuchoice>."
-msgstr ""
-"Pilih <menuchoice><guimenu>Sunting</guimenu><guimenuitem>Cari</guimenuitem></"
-"menuchoice>."
-
-#: C/index.docbook:351(listitem/para)
-msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, choose one of the following "
-"options:"
-msgstr ""
-"Dalam dialog <guilabel>Cari Data</guilabel>, pilih satu dari opsi berikut:"
-
-#: C/index.docbook:353(listitem/para) C/index.docbook:402(listitem/para)
-msgid "<guilabel>Search for hex data</guilabel>"
-msgstr "<guilabel>Cari data heksa</guilabel>"
-
-#: C/index.docbook:355(listitem/para) C/index.docbook:404(listitem/para)
-msgid "<guilabel>Search for ASCII data</guilabel>"
-msgstr "<guilabel>Cari data ASCII</guilabel>"
-
-#: C/index.docbook:359(listitem/para) C/index.docbook:408(listitem/para)
-msgid "Type the string that you want to find."
-msgstr "Ketikkan string yang ingin Anda cari."
-
-#: C/index.docbook:361(listitem/para) C/index.docbook:381(listitem/para)
-msgid ""
-"Click <guibutton>Find Next</guibutton> to find the next occurrence of the "
-"string."
-msgstr ""
-"Klik <guibutton>Cari Selanjutnya</guibutton> untuk menemukan kemunculan "
-"string selanjutnya."
-
-#: C/index.docbook:363(listitem/para) C/index.docbook:383(listitem/para)
-msgid ""
-"Click <guibutton>Find Previous</guibutton> to find the previous occurrence "
-"of the string."
-msgstr ""
-"Klik <guibutton>Cari Sebelumnya</guibutton> untuk menemukan kemunculan "
-"string sebelumnya."
-
-#: C/index.docbook:365(listitem/para) C/index.docbook:415(listitem/para)
-#: C/index.docbook:430(listitem/para)
-msgid ""
-"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find Data</"
-"guilabel> dialog."
-msgstr ""
-"Klik <guibutton>Batal</guibutton> untuk menutup dialog <guilabel>Cari Data</"
-"guilabel>"
-
-#: C/index.docbook:373(sect2/title)
-msgid "To Perform an Advanced Find"
-msgstr "Untuk Melakukan Pencarian Tingkat Lanjut"
-
-#: C/index.docbook:374(sect2/para)
-msgid "To perform an advanced find, perform the following steps:"
-msgstr ""
-"Untuk melakukan pencarian tingkat lanjut, lakukan langkah-langkah berikut:"
-
-#: C/index.docbook:376(listitem/para) C/index.docbook:396(listitem/para)
-#: C/index.docbook:424(listitem/para)
-msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Advanced Find</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Pilih <menuchoice><guimenu>Sunting</guimenu><guimenuitem>Pencarian Lanjut</"
-"guimenuitem></menuchoice>."
-
-#: C/index.docbook:378(listitem/para)
-msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, select the required search "
-"criteria. For information about how to add new search criteria, see <xref "
-"linkend=\"ghex-search-criteria-add\"/>."
-msgstr ""
-"Dalam dialog <guilabel>Cari Data</guilabel>, pilih kriteria pencarian yang "
-"diperlukan. Untuk informasi tentang bagaimana menambah kriteria pencarian "
-"baru, lihat <xref linkend=\"ghex-search-criteria-add\"/>."
-
-#: C/index.docbook:385(listitem/para)
-msgid ""
-"Click <guibutton>Close</guibutton> to close the <guilabel>Find Data</"
-"guilabel> dialog."
-msgstr ""
-"Klik <guibutton>Tutup</guibutton> untuk menutup dialog <guilabel>Cari Data</"
-"guilabel>."
-
-#: C/index.docbook:393(sect2/title)
-msgid "To Add Search Criteria"
-msgstr "Untuk Menambah Kriteria Pencarian"
-
-#: C/index.docbook:394(sect2/para)
-msgid "To add search criteria, perform the following steps:"
-msgstr "Untuk menambahkan kriteria pencarian, lakukan langkah-langkah berikut:"
-
-#: C/index.docbook:398(listitem/para)
-msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, click <guibutton>Add New</"
-"guibutton>."
-msgstr ""
-"Dalam dialog <guilabel>Cari Data</guilabel>, klik <guibutton>Tambah Baru</"
-"guibutton>."
-
-#: C/index.docbook:400(listitem/para)
-msgid ""
-"In the <guilabel>Find Data: Add Search</guilabel> dialog, choose one of the "
-"following options:"
-msgstr ""
-"Dalam dialog <guilabel>Cari Data: Tambah Pencarian</guilabel>, pilih satu "
-"dari opsi berikut:"
-
-#: C/index.docbook:410(listitem/para)
-msgid ""
-"Use the color wheel or the spin boxes to select a color to highlight the "
-"search criteria."
-msgstr ""
-"Pakai roda warna atau kotak spin untuk memilih suatu warna untuk menyorot "
-"kriteria pencarian."
-
-#: C/index.docbook:413(listitem/para)
-msgid "Click <guibutton>Add</guibutton>."
-msgstr "Klik <guibutton>Tambah</guibutton>."
-
-#: C/index.docbook:421(sect2/title)
-msgid "To Remove Search Criteria"
-msgstr "Untuk Menghapus Kriteria Pencarian"
-
-#: C/index.docbook:422(sect2/para)
-msgid "To remove search criteria, perform the following steps:"
-msgstr "Untuk menghapus kriteria pencarian, lakukan langkah-langkah berikut:"
-
-#: C/index.docbook:426(listitem/para)
-msgid ""
-"In the <guilabel>Find Data</guilabel> dialog, select the search criteria "
-"that you want to remove."
-msgstr ""
-"Pada dialog <guilabel>Temukan Data</guilabel>, pilih kriteria pencarian yang "
-"ingin Anda hapus."
-
-#: C/index.docbook:428(listitem/para)
-msgid "Click <guibutton>Remove Selected</guibutton>."
-msgstr "Klik <guibutton>Hapus Yang Dipilih</guibutton>."
-
-#: C/index.docbook:438(sect2/title)
-msgid "To Find and Replace Data in a File"
-msgstr "Untuk Mencari dan Mengganti Data Dalam Berkas"
-
-#: C/index.docbook:439(sect2/para)
-msgid ""
-"To search a file for a hexadecimal or ASCII string and then replace the "
-"string, perform the following steps:"
-msgstr ""
-"Untuk mencari string heksadesimal atau ASCII dalam berkas lalu menggantikan "
-"string tersebut, lakukan langkah-langkah berikut:"
-
-#: C/index.docbook:441(listitem/para)
-msgid ""
-"Choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Replace</"
-"guimenuitem></menuchoice>."
-msgstr ""
-"Pilih <menuchoice><guimenu>Sunting</guimenu><guimenuitem>Gantikan</"
-"guimenuitem></menuchoice>."
-
-#: C/index.docbook:443(listitem/para)
-msgid ""
-"In the <guilabel>Find &amp; Replace Data</guilabel> dialog, choose one of "
-"the following options:"
-msgstr ""
-"Dalam dialog <guilabel>Cari &amp; Timpa Data</guilabel>, pilih satu dari "
-"opsi berikut:"
-
-#: C/index.docbook:445(listitem/para)
-msgid "<guilabel>Replace hex data</guilabel>"
-msgstr "<guilabel>Gantikan data heksa</guilabel>"
-
-#: C/index.docbook:447(listitem/para)
-msgid "<guilabel>Replace ASCII data</guilabel>"
-msgstr "<guilabel>Gantikan data ASCII</guilabel>"
-
-#: C/index.docbook:451(listitem/para)
-msgid "In the first text box, type the string that you want to find."
-msgstr "Dalam kotak teks pertama, ketikkan string yang ingin Anda cari."
-
-#: C/index.docbook:453(listitem/para)
-msgid ""
-"In the second text box, type the string that you want to use to replace the "
-"string that you find."
-msgstr ""
-"Pada kotak teks kedua, ketikkan string yang ingin Anda pakai untuk "
-"menggantikan string yang Anda temukan."
-
-#: C/index.docbook:455(listitem/para)
-msgid "Click <guibutton>Find Next</guibutton>."
+#. (itstool) path: item/p
+#: C/basics-find-replace.page:19
+#, fuzzy
+#| msgid "Click <guibutton>Find Next</guibutton>."
+msgid "Click the <gui>Find</gui> button on the header bar."
 msgstr "Klik <guibutton>Cari Selanjutnya</guibutton>."
 
-#: C/index.docbook:457(listitem/para)
+#. (itstool) path: item/p
+#: C/basics-find-replace.page:22
+#, fuzzy
+msgid "Press <keyseq><key>Ctrl</key><key>F</key></keyseq>."
+msgstr "Tekan <keyseq><key>Ctrl</key><key>F</key></keyseq>"
+
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:25
+#, fuzzy
 msgid ""
-"Click <guibutton>Replace</guibutton> to replace the current occurrence of "
-"the string or click <guibutton>Replace All</guibutton> to replace all "
-"occurrences of the string."
+"In order to easily search for a string in either hex or ASCII format, the "
+"<gui>Find</gui> pane acts like a miniature hex editor. You enter this string "
+"in the same way you would edit a file as described in the <link xref="
+"\"basics-edit-file\"/> section."
 msgstr ""
-"Klik <guibutton>Gantikan</guibutton> untuk menggantikan kemunculan kini dari "
-"string atau klik <guibutton>Ganti Semua</guibutton> untuk menggantikan semua "
-"kemunculan string."
+"Untuk dengan mudah mencari string dalam format hex atau ASCII, panel "
+"<gui>Find</gui> bertindak seperti editor hex miniatur. Anda memasukkan "
+"string ini dengan cara yang sama seperti yang dijelaskan di bagian ini <link "
+"xref=\"basics-edit-file\"/> ."
 
-#: C/index.docbook:459(listitem/para)
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:29
+#, fuzzy
 msgid ""
-"Click <guibutton>Cancel</guibutton> to close the <guilabel>Find &amp; "
-"Replace Data</guilabel> dialog."
+"To search for the next occurrence of the requested string in the file from "
+"the current position of the cursor, click the <gui>Find Next</gui> button."
 msgstr ""
-"Klik <guibutton>Batal</guibutton> untuk menutup dialog <guilabel>Cari &amp; "
-"Ganti</guilabel>."
+"Untuk mencari kemunculan string berikutnya dalam file dari posisi kursor "
+"saat ini, klik tombol <gui>Temukan Berikutnya</gui> ."
 
-#: C/index.docbook:467(sect2/title)
-msgid "To Add or Remove Additional Views of a File"
-msgstr "Untuk Menambah atau Menghapus Tilikan Tambahan dari Berkas"
-
-#: C/index.docbook:468(sect2/para)
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:31
+#, fuzzy
 msgid ""
-"To add another view of the current file to your <application>GHex</"
-"application> window, choose <menuchoice><guimenu>View</"
-"guimenu><guimenuitem>Add View</guimenuitem></menuchoice>."
+"To search for the previous occurrence of the requested string in the file "
+"from the current position of the cursor, click the <gui>Find Previous</gui> "
+"button."
 msgstr ""
-"Untuk menambah tilikan lain dari berkas kini ke jendela <application>GHex</"
-"application> Anda, pilih <menuchoice><guimenu>Tilikan</"
-"guimenu><guimenuitem>Tambah Tampilan</guimenuitem></menuchoice>."
+"Untuk mencari kemunculan string yang diminta sebelumnya dalam file dari "
+"posisi kursor saat ini, klik tombol <gui>Temukan Sebelumnya</gui> ."
 
-#: C/index.docbook:469(sect2/para)
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:33
+#, fuzzy
 msgid ""
-"To remove a view of the current file, choose <menuchoice><guimenu>View</"
-"guimenu><guimenuitem>Remove View</guimenuitem></menuchoice>. If you remove "
-"the last view that is open, the application exits."
+"Your search results will also be automatically highlighted in a different "
+"color than the standard selection color."
 msgstr ""
-"Untuk menghapus tilikan dari berkas kini, pilih "
-"<menuchoice><guimenu>Tilikan</guimenu><guimenuitem>Buang Tampilan</"
-"guimenuitem></menuchoice>. Bila Anda membuang tilikan terakhir yang terbuka, "
-"aplikasi keluar."
+"Hasil pencarian Anda juga akan secara otomatis disorot dalam warna yang "
+"berbeda dari warna pilihan standar."
 
-#: C/index.docbook:475(sect2/title)
-msgid "To Change the Data Group Type"
-msgstr "Untuk Mengubah Tipe Grup Data"
-
-#: C/index.docbook:476(sect2/para)
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:35
+#, fuzzy
 msgid ""
-"To change how <application>GHex</application> displays the hexadecimal "
-"content of a file in the <application>GHex</application> window, choose "
-"<menuchoice><guimenu>View</guimenu><guimenuitem>Group Data As</guimenuitem></"
-"menuchoice>, then select one of the following menu items:"
+"You may close the <gui>Find</gui> pane by pressing <key>Esc</key> while it "
+"is focused, or by clicking its own <gui>Close</gui> button in the bottom-"
+"right-hand corner of the pane."
 msgstr ""
-"Untuk mengubah bagaimana <application>GHex</application> menampilkan isi "
-"heksadesimal dari suatu berkas dalam jendela <application>GHex</"
-"application>, pilih <menuchoice><guimenu>Tilikan</"
-"guimenu><guimenuitem>Kelompokkan Data Sebagai</guimenuitem></menuchoice>, "
-"lalu pilih satu dari butir menu berikut:"
+"Anda dapat menutup panel <gui>Temukan</gui> dengan menekan <key>Esc</key> "
+"saat difokuskan, atau dengan mengklik tombol <gui>Tutup</gui> sendiri di "
+"sudut kanan bawah panel."
 
-#: C/index.docbook:478(listitem/para) C/index.docbook:657(listitem/para)
-msgid "<guilabel>Bytes</guilabel> - single bytes"
-msgstr "<guibutton>Byte</guibutton> - byte tunggal"
+#. (itstool) path: section/title
+#: C/basics-find-replace.page:40
+#, fuzzy
+#| msgid "To Find and Replace Data in a File"
+msgid "Find and Replace pane"
+msgstr "Untuk Mencari dan Mengganti Data Dalam Berkas"
 
-#: C/index.docbook:480(listitem/para) C/index.docbook:659(listitem/para)
-msgid "<guilabel>Words</guilabel> - groups of two bytes"
-msgstr "<guilabel>Word</guilabel> - grup dua byte"
-
-#: C/index.docbook:482(listitem/para) C/index.docbook:661(listitem/para)
-msgid "<guilabel>Longwords</guilabel> - groups of four bytes"
-msgstr "<guilabel>Longword</guilabel> - grup empat byte"
-
-#: C/index.docbook:490(sect2/title)
-msgid "To Export the GHex Display to HTML"
-msgstr "Untuk Mengekspor Tampilan GHex Ke HTML"
-
-#: C/index.docbook:492(listitem/para)
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:41
+#, fuzzy
 msgid ""
-"Creates a separate HTML file for each page of data that is displayed in the "
-"<application>GHex</application> window."
+"The <gui>Find and Replace</gui> pane works a lot like the <gui>Find</gui> "
+"pane, except that it also allows you to replace the next string, or all "
+"strings in the file, with string in the <gui>Replace With</gui> field."
 msgstr ""
-"Buat berkas HTML terpisah bagi setiap halaman data yang ditampilkan dalam "
-"jendela <application>GHex</application>."
+"Panel <gui>Temukan dan Ganti</gui> bekerja sangat mirip dengan panel "
+"<gui>Temukan</gui> , kecuali bahwa itu juga memungkinkan Anda untuk "
+"mengganti string berikutnya, atau semua string dalam file, dengan string di "
+"bidang <gui>Ganti Dengan</gui> ."
 
-#: C/index.docbook:494(listitem/para)
-msgid "Uses the HTML filename that you specify as the basis for the filename."
-msgstr ""
-"Pakai nama berkas HTML yang Anda nyatakan sebagai dasar bagi nama berkas."
-
-#: C/index.docbook:496(listitem/para)
-msgid "Appends a page number to the filename to differentiate the files."
-msgstr "Tambahkan nomor halaman ke nama berkas untuk membedakan berkas-berkas."
-
-#: C/index.docbook:491(sect2/para)
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:44
+#, fuzzy
 msgid ""
-"To export the data contained in the <application>GHex</application> window "
-"to HTML, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Save As "
-"HTML</guimenuitem></menuchoice>. Choose a directory and specify a filename "
-"for the HTML file, then click <guibutton>OK</guibutton>. <application>GHex</"
-"application> implements the following actions: <_:itemizedlist-1/> For "
-"example, if you specify the filename <filename>log.html</filename>, "
-"<application>GHex</application> creates a series of HTML files named "
-"<filename>log00000000.html</filename>, <filename>log00000001.html</"
-"filename>, <filename>log00000002.html</filename>, and so on."
+"To replace the next string from the cursor in the <gui>Find String</gui> "
+"field with the string in the <gui>Replace With</gui> field, click "
+"<gui>Replace</gui>."
 msgstr ""
-"Untuk mengekspor data yang dimuat dalam jendela <application>GHex</"
-"application> ke HTML, pilih <menuchoice><guimenu>Berkas</"
-"guimenu><guimenuitem>Simpan Sebagai HTML</guimenuitem></menuchoice>. Pilih "
-"suatu direktori dan nyatakan nama berkas bagi berkas HTML, lalu klik "
-"<guibutton>OK</guibutton>. <application>GHex</application> "
-"mengimplementasikan aksi berikut: <_:itemizedlist-1/> Sebagai contoh, bila "
-"Anda menyatakan nama berkas <filename>log.html</filename>, "
-"<application>GHex</application> membuat suatu seri berkas HTML bernama "
-"<filename>log00000000.html</filename>, <filename>log00000001.html</"
-"filename>, <filename>log00000002.html</filename>, dan seterusnya."
+"Untuk mengganti string berikutnya dari kursor di bidang <gui>Temukan String</"
+"gui> dengan string di bidang <gui>Ganti Dengan</gui> , klik <gui>Ganti</gui>."
 
-#: C/index.docbook:504(sect2/title)
-msgid "To View a Character Table"
-msgstr "Untuk Menilik Tabel Karakter"
-
-#: C/index.docbook:505(sect2/para)
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:46
+#, fuzzy
 msgid ""
-"To view a table that contains the ASCII, hexadecimal, decimal, octal, and "
-"binary representations for the values 0 to 255, choose "
-"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Character Table</"
-"guimenuitem></menuchoice>."
+"To replace all instances in the file of the string in the <gui>Find String</"
+"gui> field with the string in the <gui>Replace With</gui> field, click "
+"<gui>Replace All</gui>."
 msgstr ""
-"Untuk menilik suatu tabel yang memuat representasi ASCII, heksadesimal, "
-"desimal, oktal, dan biner bagi nilai-nilai 0 sampai 255, pilih "
-"<menuchoice><guimenu>Jendela</guimenu><guimenuitem>Tabel Karakter</"
-"guimenuitem></menuchoice>."
+"Untuk mengganti semua instans dalam file string di bidang <gui>Temukan "
+"String</gui> dengan string di bidang <gui>Ganti Dengan</gui> , klik "
+"<gui>Ganti Semua</gui>."
 
-#: C/index.docbook:511(sect2/title)
-msgid "To View Data Conversions"
-msgstr "Untuk Meniliki Konversi Data"
-
-#: C/index.docbook:512(sect2/para)
+#. (itstool) path: section/p
+#: C/basics-find-replace.page:48
+#, fuzzy
 msgid ""
-"To display the binary, decimal, hexadecimal, and ASCII conversions for up to "
-"four bytes of data, perform the following steps:"
+"In other respects, the <gui>Find and Replace</gui> pane works as described "
+"in the <link xref=\"#find-pane\"/> section above."
 msgstr ""
-"Untuk menampilkan konversi data biner, desimal, heksadesimal, dan ASCII "
-"untuk sampai dengan empat byte, lakukan langkah-langkah berikut:"
+"Dalam hal lain, panel <gui>Temukan dan Ganti</gui> berfungsi seperti yang "
+"dijelaskan pada bagian di <link xref=\"#find-pane\"/> atas."
 
-#: C/index.docbook:514(listitem/para)
+#. (itstool) path: page/title
+#: C/basics-open-file.page:12
+msgid "Open a file"
+msgstr "Buka sebuah berkas"
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:13
+#, fuzzy
+#| msgid "You can save a file in the following ways:"
+msgid "You may open a file in GHex in the following ways:"
+msgstr "Anda dapat menyimpan berkas dengan cara-cara berikut:"
+
+#. (itstool) path: item/p
+#: C/basics-open-file.page:16
+#, fuzzy
+msgid "Click the <gui>Open</gui> button on the header bar."
+msgstr "Klik tombol <gui>Buka</gui> di bilah header."
+
+#. (itstool) path: item/p
+#: C/basics-open-file.page:19
+msgid "Press <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+msgstr "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:22
+#, fuzzy
 msgid ""
-"Choose <menuchoice><guimenu>Windows</guimenu><guimenuitem>Base Converter</"
-"guimenuitem></menuchoice>."
+"When you open a file, GHex will not automatically turn <gui>Insert Mode</"
+"gui> on. This is so that data can be immediately edited in place as opposed "
+"to inserting data, which will be what most users want to do when first "
+"opening a pre-existing file."
 msgstr ""
-"Pilih <menuchoice><guimenu>Jendela</guimenu><guimenuitem>Konversi Basis</"
-"guimenuitem></menuchoice>."
+"Saat Anda membuka file, GHex tidak akan secara otomatis mengaktifkan "
+"<gui>Mode Sisipkan</gui> . Hal ini agar data dapat segera diedit di tempat "
+"sebagai lawan dari memasukkan data, yang akan menjadi apa yang sebagian "
+"besar pengguna ingin lakukan ketika pertama kali membuka file yang sudah ada "
+"sebelumnya."
 
-#: C/index.docbook:516(listitem/para)
-msgid "Perform one of the following actions:"
-msgstr "Lakukan satu dari aksi-aksi berikut:"
+#. (itstool) path: page/title
+#: C/basics-save-file.page:12
+msgid "Saving files"
+msgstr "Menyimpan berkas"
 
-#: C/index.docbook:518(listitem/para)
+#. (itstool) path: page/p
+#: C/basics-save-file.page:13
+#, fuzzy
 msgid ""
-"Type the data that you want to convert in one of the fields in the "
-"<guilabel>Base Converter</guilabel> dialog, then press <keycap>Return</"
-"keycap>."
+"To save a file in place, maintaining its filename and location, use the "
+"<gui>Save</gui> operation by clicking the <gui>Save</gui> button on the "
+"header bar, or by pressing <keyseq><key>Ctrl</key><key>S</key></keyseq>."
 msgstr ""
-"Ketikkan data yang ingin Anda konversikan dalam satu dari ruas pada dialog "
-"<guilabel>Konversi Basis</guilabel>, lalu tekan <keycap>Return</keycap>."
+"Untuk menyimpan file di tempat, mempertahankan nama file dan lokasinya, "
+"gunakan operasi <gui>Simpan</gui> dengan mengklik tombol <gui>Simpan</gui> "
+"di bilah header, atau dengan menekan <keyseq><key>CtrlS</key><key></key></"
+"keyseq>."
 
-#: C/index.docbook:520(listitem/para)
+#. (itstool) path: page/p
+#: C/basics-save-file.page:16
+#, fuzzy
 msgid ""
-"To display the conversions for the data at the cursor position in the "
-"current file, click on the <guibutton>Get cursor value</guibutton> button."
+"To save a file to a filename of your choice, use the <gui>Save As</gui> "
+"operation by clicking <gui>Save As</gui> in the <gui>Main menu</gui>, or by "
+"pressing <keyseq><key>Shift</key><key>Ctrl</key><key>S</key></keyseq>."
+msgstr ""
+"Untuk menyimpan file ke nama file pilihan Anda, gunakan operasi <gui>Simpan "
+"Sebagai</gui> dengan mengklik <gui>Simpan Seperti</gui> di <gui>menu Utama</"
+"gui>, atau dengan menekan <keyseq><key>ShiftCtrlS</key><key></key><key></"
+"key></keyseq>."
+
+#. (itstool) path: page/title
+#: C/conf-grouptype.page:12
+msgid "Hex data grouping"
+msgstr "Pengelompokan data heksa"
+
+#. (itstool) path: page/p
+#: C/conf-grouptype.page:13
+#, fuzzy
+msgid "GHex allows data in the hex pane to be grouped in the following ways:"
+msgstr "GHex memungkinkan data di panel hex dikelompokkan dengan cara berikut:"
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:16
+#, fuzzy
+msgid "Bytes (8-bit) <em>this is the default</em>"
+msgstr "Byte (8-bit) <em>ini adalah default</em>"
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:19
+msgid "Words (16-bit)"
+msgstr "Word (16-bit)"
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:22
+msgid "Longwords (32-bit)"
+msgstr "Longword (32-bit)"
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:25
+msgid "Quadwords (64-bit)"
+msgstr "Quadword (64-bit)"
+
+#. (itstool) path: page/p
+#: C/conf-grouptype.page:28
+#, fuzzy
+msgid "This setting may be changed in two ways:"
+msgstr "Pengaturan ini dapat diubah dengan dua cara:"
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:31
+#, fuzzy
+msgid "From the <gui>Group Data As</gui> submenu of the <gui>Main menu</gui>."
+msgstr "Dari <gui>Data Grup Sebagai</gui> submenu <gui>dari menu Utama</gui>."
+
+#. (itstool) path: item/p
+#: C/conf-grouptype.page:34
+#, fuzzy
+msgid "From the <link xref=\"conf-preferences\"/> dialog."
+msgstr "Dari <link xref=\"conf-preferences\"/> dialog."
+
+#. (itstool) path: page/title
+#: C/conf-preferences.page:12
+msgid "Preferences"
+msgstr "Preferensi"
+
+#. (itstool) path: page/p
+#: C/conf-preferences.page:13
+#, fuzzy
+msgid "The GHex Preferences dialog is divided into two groups:"
+msgstr "Dialog Preferensi GHex dibagi menjadi dua kelompok:"
+
+#. (itstool) path: item/p
+#: C/conf-preferences.page:16
+#, fuzzy
+msgid "<em>Display</em>, which pertains to what you see on-screen, and;"
+msgstr ""
+"<em>Tampilan</em>, yang berkaitan dengan apa yang Anda lihat di layar, dan;"
+
+#. (itstool) path: item/p
+#: C/conf-preferences.page:19
+#, fuzzy
+msgid ""
+"<em>Printing</em>, which only affects how hexadecimal files will be printed "
+"on paper, if GHex's printing features are utilized."
+msgstr ""
+"<em>Pencetakan</em>, yang hanya mempengaruhi bagaimana file heksadesimal "
+"akan dicetak di atas kertas, jika fitur pencetakan GHex digunakan."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:24
+msgid "Display"
+msgstr "Tampilan"
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:26
+msgid "Font"
+msgstr "Fonta"
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:27
+#, fuzzy
+msgid ""
+"This allows you to select a font of your choice for the hex/ASCII editor "
+"only."
+msgstr ""
+"Ini memungkinkan Anda untuk memilih font pilihan Anda hanya untuk editor "
+"hex / ASCII."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:30
+msgid "Dark Mode"
+msgstr "Mode Gelap"
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:31
+#, fuzzy
+msgid "This allows you to manually prefer the dark style."
+msgstr "Ini memungkinkan Anda untuk secara manual lebih memilih gaya gelap."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:32
+#, fuzzy
+msgid ""
+"By default, the <gui>Use system default</gui> checkbox is enabled, uses your "
+"system-wide default for preferring a dark style, which disables the "
+"<gui>Dark Mode</gui> switch from being turned on or off."
+msgstr ""
+"Secara default, kotak centang <gui>Gunakan sistem default</gui> diaktifkan, "
+"menggunakan default di seluruh sistem Anda untuk lebih memilih gaya gelap, "
+"yang menonaktifkan sakelar <gui>Mode Gelap</gui> agar tidak dinyalakan atau "
+"dimatikan."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:35
+#, fuzzy
+msgid ""
+"By de-selecting this checkbox, you may toggle the <gui>Dark Mode</gui> "
+"switch on or off to manually prefer or not prefer a dark style. Toggling "
+"this switch will take immediate effect, so you should be able to see "
+"instantaneously which style you prefer for GHex."
+msgstr ""
+"Dengan menghapus-memilih kotak centang ini, Anda dapat mengaktifkan atau "
+"menonaktifkan sakelar <gui>Mode Gelap</gui> untuk memilih atau tidak memilih "
+"gaya gelap secara manual. Toggling switch ini akan segera berlaku, jadi Anda "
+"harus dapat melihat secara instan gaya mana yang Anda sukai untuk GHex."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:39
+#, fuzzy
+msgid ""
+"If you want to go back to the system default, simply check the <gui>Use "
+"system default</gui> checkbox back on."
+msgstr ""
+"Jika Anda ingin kembali ke default sistem, cukup centang kotak centang "
+"Gunakan kembali kotak <gui>centang Coba default sistem</gui> ."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:43
+msgid "Hex Group Type"
+msgstr "Tipe Grup Heksa"
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:44
+#, fuzzy
+msgid ""
+"This allows you to choose how data will be grouped in the hex pane of the "
+"editor."
+msgstr ""
+"Ini memungkinkan Anda untuk memilih bagaimana data akan dikelompokkan di "
+"panel hex editor."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:46
+#, fuzzy
+msgid "See <link xref=\"conf-grouptype\"/> for more details."
+msgstr "Lihat <link xref=\"conf-grouptype\"/> untuk lebih jelasnya."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:50
+msgid "Printing"
+msgstr "Pencetakan"
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:52
+msgid "Fonts"
+msgstr "Fonta"
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:53
+#, fuzzy
+msgid ""
+"This section allows you to choose the fonts you would like for hex printouts."
+msgstr ""
+"Bagian ini memungkinkan Anda untuk memilih font yang Anda inginkan untuk "
+"cetakan hex."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:54
+#, fuzzy
+msgid ""
+"<gui>Data font</gui> will apply to the content of your hex document (ie, hex "
+"and ASCII digits)."
+msgstr ""
+"<gui>Font data</gui> akan berlaku untuk konten dokumen hex Anda (yaitu, hex "
+"dan digit ASCII)."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:56
+#, fuzzy
+msgid ""
+"<gui>Header font</gui> will apply to the header on your printout, which will "
+"show the document title and page number."
+msgstr ""
+"<gui>Font header</gui> akan berlaku untuk header pada hasil cetak Anda, yang "
+"akan menampilkan judul dokumen dan nomor halaman."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:60
+#, fuzzy
+msgid "Shaded rows"
+msgstr "Baris berbayang"
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:61
+#, fuzzy
+msgid ""
+"If <gui>Print alternating shaded rows</gui> is selected, your printout will "
+"have alternating rows of your hex and ASCII data printed out with a shaded "
+"grey background to make reading each row easier."
+msgstr ""
+"Jika <gui>baris berbayang bergantian cetak</gui> dipilih, hasil cetak Anda "
+"akan memiliki baris bolak-balik dari data hex dan ASCII Anda yang dicetak "
+"dengan latar belakang abu-abu yang teduh untuk membuat membaca setiap baris "
+"lebih mudah."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:64
+#, fuzzy
+msgid ""
+"Please note that this may use more printer ink/toner than leaving it "
+"disabled."
+msgstr ""
+"Harap dicatat bahwa ini dapat menggunakan lebih banyak tinta / toner printer "
+"daripada membiarkannya dinonaktifkan."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:65
+#, fuzzy
+msgid ""
+"<gui>Span across lines</gui> allows you to customize how many lines will be "
+"shaded, followed by not shaded, on a repeated basis. Again, this is simply "
+"for ease of reading. If you want shaded rows but are not sure what to "
+"specify here, leaving it as the default, \"1\", should be fine."
+msgstr ""
+"<gui>Rentang melintasi garis</gui> memungkinkan Anda untuk menyesuaikan "
+"berapa banyak garis yang akan diarsir, diikuti dengan tidak diarsir, secara "
+"berulang. Sekali lagi, ini hanya untuk kemudahan membaca. Jika Anda ingin "
+"baris teduh tetapi tidak yakin apa yang harus ditentukan di sini, "
+"meninggalkannya sebagai default, \"1\", harus baik-baik saja."
+
+#. (itstool) path: page/title
+#: C/index.page:12
+msgid "GHex Help"
+msgstr "Bantuan GHex"
+
+#. (itstool) path: page/p
+#: C/index.page:13
+msgid "GHex is a simple hex editor."
+msgstr "GHex adalah penyunting heksa sederhana."
+
+#. (itstool) path: page/p
+#: C/index.page:14
+msgid "GHex enables you to perform the following actions:"
+msgstr "GHex memungkinkan Anda untuk melakukan tindakan berikut:"
+
+#. (itstool) path: item/p
+#: C/index.page:17
+msgid "View a file in ASCII or hexadecimal format simultaneously."
+msgstr "Tilik berkas dalam format ASCII atau heksadesimal secara simultan."
+
+#. (itstool) path: item/p
+#: C/index.page:20
+msgid "Edit a file in either ASCII or hexadecimal format."
+msgstr "Sunting berkas dalam format ASCII atau heksadesimal."
+
+#. (itstool) path: section/title
+#: C/index.page:27
+msgid "Basics"
+msgstr "Dasar"
+
+#. (itstool) path: section/title
+#: C/index.page:33
+msgid "Tools"
+msgstr "Perkakas"
+
+#. (itstool) path: section/title
+#: C/index.page:39
+msgid "Configuration"
+msgstr "Konfigurasi"
+
+#. (itstool) path: section/title
+#: C/index.page:45
+msgid "Advanced topics"
+msgstr "Topik lanjut"
+
+#. (itstool) path: page/title
+#: C/tools-chartable.page:12
+msgid "Character table"
+msgstr "Tabel karakter"
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:13
+#, fuzzy
+msgid ""
+"GHex includes a handy table of many standard ASCII characters so as to allow "
+"you to easily insert such characters into a file without having to memorize "
+"its decimal or hexadecimal character code."
+msgstr ""
+"GHex mencakup tabel praktis dari banyak karakter ASCII standar sehingga "
+"memungkinkan Anda untuk dengan mudah memasukkan karakter tersebut ke dalam "
+"file tanpa harus menghafal kode karakter desimal atau heksadesimalnya."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:16
+#, fuzzy
+msgid ""
+"You may access the character table by selecting <gui>Character Table</gui> "
+"from the <gui>Tools</gui> submenu of the <gui>Main menu</gui>."
+msgstr ""
+"Anda dapat mengakses tabel karakter dengan memilih <gui>Tabel Karakter</gui> "
+"dari submenu <gui>Alat</gui> dari <gui>menu Utama</gui>."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:18
+#, fuzzy
+msgid ""
+"While the character table is open, you may still select the hex editor and "
+"move the cursor around, as per usual."
+msgstr ""
+"Saat tabel karakter terbuka, Anda masih dapat memilih editor hex dan "
+"memindahkan kursor, seperti biasa."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:20
+#, fuzzy
+msgid ""
+"The columns showing the values in various formats such as ASCII, hex, "
+"decimal, etc., are for ease of reference."
+msgstr ""
+"Kolom yang menunjukkan nilai dalam berbagai format seperti ASCII, hex, "
+"desimal, dll., Adalah untuk kemudahan referensi."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:22
+#, fuzzy
+msgid ""
+"The characters in the table can be navigated by clicking on them, or using "
+"the keyboard, in the usual way. When you have highlighted a character you "
+"would like to insert, you may insert that character into the file at the "
+"cursor position in the following ways:"
+msgstr ""
+"Karakter dalam tabel dapat dinavigasi dengan mengkliknya, atau menggunakan "
+"keyboard, dengan cara biasa. Ketika Anda telah menyorot karakter yang ingin "
+"Anda sisipkan, Anda dapat memasukkan karakter itu ke dalam file pada posisi "
+"kursor dengan cara berikut:"
+
+#. (itstool) path: item/p
+#: C/tools-chartable.page:28
+#, fuzzy
+msgid ""
+"Press <key>Enter</key> or double-click on the character you would like to "
+"insert."
+msgstr ""
+"Tekan <key>Enter</key> atau klik dua kali pada karakter yang ingin Anda "
+"sisipkan."
+
+#. (itstool) path: item/p
+#: C/tools-chartable.page:31
+#, fuzzy
+#| msgid "Click <guibutton>Remove Selected</guibutton>."
+msgid "Click the <gui>Insert Character</gui> button."
+msgstr "Klik <guibutton>Hapus Yang Dipilih</guibutton>."
+
+#. (itstool) path: page/p
+#: C/tools-chartable.page:34
+#, fuzzy
+msgid ""
+"The character table can be closed by clicking the <gui>Close</gui> button."
+msgstr "Tabel karakter dapat ditutup dengan mengklik tombol <gui>Tutup</gui> ."
+
+#. (itstool) path: page/title
+#: C/tools-converter.page:12
+#, fuzzy
+msgid "Base converter"
+msgstr "Pengubah Basis"
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:13
+#, fuzzy
+msgid ""
+"GHex includes a base converter tool which can either be used as a standalone "
+"tool to convert values from one format to another, or to obtain the value "
+"pointed to by the cursor and to convert that value into various formats."
+msgstr ""
+"GHex mencakup alat konverter dasar yang dapat digunakan sebagai alat mandiri "
+"untuk mengonversi nilai dari satu format ke format lainnya, atau untuk "
+"mendapatkan nilai yang ditunjukkan oleh kursor dan untuk mengubah nilai itu "
+"menjadi berbagai format."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:16
+#, fuzzy
+msgid ""
+"You may access the base converter by selecting <gui>Base Converter</gui> "
+"from the <gui>Tools</gui> submenu of the <gui>Main menu</gui>."
+msgstr ""
+"Anda dapat mengakses konverter dasar dengan memilih <gui>Base Converter</"
+"gui> dari submenu <gui>Alat</gui> dari <gui>menu Utama</gui>."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:18
+#, fuzzy
+msgid ""
+"While the base converter is open, you may still select the hex editor and "
+"move the cursor around, as per usual."
+msgstr ""
+"Saat konverter dasar terbuka, Anda masih dapat memilih editor hex dan "
+"memindahkan kursor, seperti biasa."
+
+#. (itstool) path: page/p
+#: C/tools-converter.page:20
+#, fuzzy
+#| msgid ""
+#| "To display the conversions for the data at the cursor position in the "
+#| "current file, click on the <guibutton>Get cursor value</guibutton> button."
+msgid ""
+"To convert the value at the cursor position, click the <gui>Get cursor "
+"value</gui> button."
 msgstr ""
 "Untuk menampilkan konversi bagi data pada posisi kursor dari berkas kini, "
 "klik pada tombol <guibutton>Ambil nilai kursor</guibutton>."
 
-#: C/index.docbook:523(listitem/para)
+#. (itstool) path: page/p
+#: C/tools-converter.page:22
+#, fuzzy
 msgid ""
-"<application>GHex</application> updates the values of the other fields to "
-"display the data conversions."
+"To convert a value manually, you may type it into any of the fields in the "
+"format delimited therein (clearing any pre-existing value as necessary), and "
+"press <key>Enter</key>."
 msgstr ""
-"<application>GHex</application> memutakhirkan nilai ruas lain untuk "
-"menampilkan konversi data."
+"Untuk mengonversi nilai secara manual, Anda dapat mengetikkannya ke salah "
+"satu bidang dalam format yang dibatasi di dalamnya (membersihkan nilai yang "
+"sudah ada sebelumnya seperlunya), dan tekan <key>Enter</key>."
 
-#: C/index.docbook:525(listitem/para)
+#. (itstool) path: page/p
+#: C/tools-converter.page:25
+#, fuzzy
 msgid ""
-"Click <guibutton>Close</guibutton> to close the <guilabel>Base Converter</"
-"guilabel> dialog."
+"If you have entered an invalid value, \"ERROR\" will appear in the field. "
+"This error is not fatal and just indicates that an unrecognized value was "
+"entered. Simply enter a valid value, or click <gui>Get cursor value</gui> to "
+"grab the cursor value and to get some examples of valid values, and try "
+"again."
 msgstr ""
-"Klik <guibutton>Tutup</guibutton> untuk menutup dialog <guilabel>Konversi "
-"Basis</guilabel>."
+"Jika Anda telah memasukkan nilai yang tidak valid, \"ERROR\" akan muncul di "
+"bidang. Kesalahan ini tidak fatal dan hanya menunjukkan bahwa nilai yang "
+"tidak dikenal dimasukkan. Cukup masukkan nilai yang valid, atau klik "
+"<gui>Dapatkan nilai kursor</gui> untuk mengambil nilai kursor dan untuk "
+"mendapatkan beberapa contoh nilai yang valid, dan coba lagi."
 
-#: C/index.docbook:533(sect2/title)
-msgid "To Show or Hide the Type Conversion Dialog"
-msgstr "Untuk Menampilkan atau Menyembunyikan Dialog Konversi Tipe"
-
-#: C/index.docbook:534(sect2/para)
+#. (itstool) path: page/p
+#: C/tools-converter.page:29
+#, fuzzy
 msgid ""
-"To show or hide the type conversion dialog, choose "
-"<menuchoice><guimenu>Windows</guimenu><guimenuitem>Type Conversion Dialog</"
-"guimenuitem></menuchoice>."
+"The base converter can be closed by clicking the <gui>Close</gui> button."
 msgstr ""
-"Untuk menampilkan atau menyembunyikan dialog konversi tipe, pilih "
-"<menuchoice><guimenu>Jendela</guimenu><guimenuitem>Dialog Pengubah Tipe</"
-"guimenuitem></menuchoice>."
+"Konverter dasar dapat ditutup dengan mengklik tombol <gui>Tutup</gui> ."
 
-#: C/index.docbook:535(sect2/para)
-msgid ""
-"The type conversion dialog displays the value of the selected character in "
-"the following representations:"
-msgstr ""
-"Dialog konversi tipe menampilkan nilai dari karakter yang dipilih dalam "
-"representasi berikut:"
-
-#: C/index.docbook:538(listitem/para)
-msgid "<guilabel>Signed 8 bit</guilabel>"
-msgstr "<guilabel>Signed 8 bit</guilabel>"
-
-#: C/index.docbook:541(listitem/para)
-msgid "<guilabel>Unsigned 8 bit</guilabel>"
-msgstr "<guilabel>Unsigned 8 bit</guilabel>"
-
-#: C/index.docbook:544(listitem/para)
-msgid "<guilabel>Signed 16 bit</guilabel>"
-msgstr "<guilabel>Signed 16 bit</guilabel>"
-
-#: C/index.docbook:547(listitem/para)
-msgid "<guilabel>Unsigned 16 bit</guilabel>"
-msgstr "<guilabel>Unsigned 16 bit</guilabel>"
-
-#: C/index.docbook:550(listitem/para)
-msgid "<guilabel>Signed 32 bit</guilabel>"
-msgstr "<guilabel>Signed 32 bit</guilabel>"
-
-#: C/index.docbook:553(listitem/para)
-msgid "<guilabel>Unsigned 32 bit</guilabel>"
-msgstr "<guilabel>Unsigned 32 bit</guilabel>"
-
-#: C/index.docbook:556(listitem/para)
-msgid "<guilabel>32 bit float</guilabel>"
-msgstr "<guilabel>32 bit float</guilabel>"
-
-#: C/index.docbook:559(listitem/para)
-msgid "<guilabel>64 bit float</guilabel>"
-msgstr "<guilabel>64 bit float</guilabel>"
-
-#: C/index.docbook:562(listitem/para)
-msgid "<guilabel>Hexadecimal</guilabel>"
-msgstr "<guilabel>Heksadesimal</guilabel>"
-
-#: C/index.docbook:565(listitem/para)
-msgid "<guilabel>Octal</guilabel>"
-msgstr "<guilabel>Oktal</guilabel>"
-
-#: C/index.docbook:568(listitem/para)
-msgid "<guilabel>Binary</guilabel>"
-msgstr "<guilabel>Biner</guilabel>"
-
-#: C/index.docbook:571(listitem/para)
-msgid "<guilabel>Stream Length</guilabel>"
-msgstr "<guilabel>Panjang Stream</guilabel>"
-
-#: C/index.docbook:574(sect2/para)
-msgid "The type conversion dialog also contains the following options:"
-msgstr "Dialog konversi tipe juga memuat opsi berikut:"
-
-#: C/index.docbook:577(varlistentry/term)
-msgid "<guilabel>Show little endian decoding</guilabel>"
-msgstr "<guilabel>Perlihatkan decoding little endian</guilabel>"
-
-#: C/index.docbook:579(listitem/para)
-msgid "Select this option to show little endian decoding."
-msgstr "Pilih opsi ini untuk menampilkan enkoding little endian."
-
-#: C/index.docbook:583(varlistentry/term)
-msgid "<guilabel>Show unsigned and float as hexadecimal</guilabel>"
-msgstr "<guilabel>Tampilkan unsigned dan float sebagai heksadesimal</guilabel>"
-
-#: C/index.docbook:585(listitem/para)
-msgid ""
-"Select this option to show unsigned and float numbers as hexadecimal numbers."
-msgstr ""
-"Pilih opsi ini untuk menampilkan bilangan unsigned dan float sebagai angka "
-"heksadesimal."
-
-#: C/index.docbook:594(sect2/title)
-msgid "To Print a File"
-msgstr "Untuk Mencetak Berkas"
-
-#: C/index.docbook:595(sect2/para)
-msgid ""
-"To print a file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Print</guimenuitem></menuchoice>. Select the print "
-"options that you require in the <guilabel>Print</guilabel> dialog, then "
-"click <guibutton>OK</guibutton>."
-msgstr ""
-"Untuk mencetak berkas, pilih <menuchoice><guimenu>Berkas</"
-"guimenu><guimenuitem>Cetak</guimenuitem></menuchoice>. Pilih opsi pencetakan "
-"yang Anda perlukan dalam dialog <guilabel>Cetak</guilabel>, lalu klik "
-"<guibutton>OK</guibutton>."
-
-#: C/index.docbook:596(sect2/para)
-msgid ""
-"To preview a printed copy of the file, choose <menuchoice><guimenu>File</"
-"guimenu><guimenuitem>Print Preview</guimenuitem></menuchoice>."
-msgstr ""
-"Untuk mempratinjau salinan tercetak dari berkas, pilih "
-"<menuchoice><guimenu>Berkas</guimenu><guimenuitem>Pratilik Cetak</"
-"guimenuitem></menuchoice>."
-
-#: C/index.docbook:604(sect1/title)
-msgid "Preferences"
-msgstr "Preferensi"
-
-#: C/index.docbook:605(sect1/para)
-msgid ""
-"To configure <application>GHex</application>, choose "
-"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></"
-"menuchoice>. The <guilabel>Preferences</guilabel> dialog contains the "
-"following tabbed sections:"
-msgstr ""
-"Untuk menata <application>GHex</application>, pilih "
-"<menuchoice><guimenu>Sunting</guimenu><guimenuitem>Preferensi</guimenuitem></"
-"menuchoice>. Dialog <guilabel>Preferensi</guilabel> memuat tab-tab berikut:"
-
-#: C/index.docbook:618(sect2/title)
-msgid "Editing"
-msgstr "Penyuntingan"
-
-#: C/index.docbook:621(varlistentry/term)
-msgid "<guilabel>Maximum number of undo levels</guilabel>"
-msgstr "<guilabel>Pilih nomor maksimum dari tingkat pembatalan</guilabel>"
-
-#: C/index.docbook:623(listitem/para)
-msgid ""
-"Use this spin box to specify the maximum number of edits that you can undo."
-msgstr ""
-"Pakai kotak spin ini untuk menyatakan cacah maksimum penyuntingan yang dapat "
-"dibatalkan."
-
-#: C/index.docbook:627(varlistentry/term)
-msgid "<guilabel>Show cursor offset in statusbar as</guilabel>"
-msgstr "<guilabel>Tampilkan ofset kursor pada bilah status sebagai</guilabel>"
-
-#: C/index.docbook:629(listitem/para)
-msgid ""
-"Use this drop-down list to select the format in which the cursor offset is "
-"displayed. The format can be decimal, hexadecimal, or a custom print style "
-"string that only contains the format specifiers x, o, and s."
-msgstr ""
-"Pakai daftar drop down ini untuk memilih format mana yang dipakai untuk "
-"menampilkan ofset kursor. Format bisa berupa desimal, heksadesimal, atau "
-"string gaya cetak gubahan yang hanya memuat specifier format x, o, dan s."
-
-#: C/index.docbook:633(varlistentry/term)
-msgid "<guilabel>Show offsets column</guilabel>"
-msgstr "<guilabel>Tampilkan kolom ofset</guilabel>"
-
-#: C/index.docbook:635(listitem/para)
-msgid ""
-"Select this option to display the cursor offsets in a column to the left of "
-"the hexadecimal view of the <application>GHex</application> window."
-msgstr ""
-"Pilih opsi ini untuk menampilkan ofset kursor dalam suatu kolom di kiri "
-"tilikan heksadesimal dari jendela <application>GHex</application>."
-
-#: C/index.docbook:644(sect2/title)
-msgid "Display"
-msgstr "Tampilan"
-
-#: C/index.docbook:647(varlistentry/term)
-msgid "<guilabel>Font</guilabel>"
-msgstr "<guilabel>Fonta</guilabel>"
-
-#: C/index.docbook:649(listitem/para)
-msgid ""
-"Use the font selector list boxes to edit the existing font information or "
-"type new font information. Specify a font type, style, and size to display "
-"the contents of files in <application>GHex</application>."
-msgstr ""
-"Pakai kotak daftar pemilih fonta untuk menyunting informasi fonta yang telah "
-"ada atau ketikkan informasi fonta baru. Nyatakan tipe, gaya, dan ukuran "
-"fonta untuk menampilkan isi berkas dalam <application>GHex</application>."
-
-#: C/index.docbook:653(varlistentry/term)
-msgid "<guilabel>Default Group Type</guilabel>"
-msgstr "<guilabel>Tipe Grup Bawaan</guilabel>"
-
-#: C/index.docbook:655(listitem/para)
-msgid ""
-"Select one of the following options to specify how <application>GHex</"
-"application> displays the hexadecimal content of a file in the "
-"<application>GHex</application> window:"
-msgstr ""
-"Pilih satu dari opsi berikut untuk menyatakan bagaimana <application>GHex</"
-"application> menampilkan isi heksadesimal dari berkas dalam jendela "
-"<application>GHex</application>:"
-
-#: C/index.docbook:672(sect2/title)
-msgid "Printing"
-msgstr "Pencetakan"
-
-#: C/index.docbook:675(varlistentry/term)
-msgid "<guilabel>Data font</guilabel>"
-msgstr "<guilabel>Fonta data</guilabel>"
-
-#: C/index.docbook:677(listitem/para)
-msgid ""
-"Click on the <guibutton>Data font</guibutton> button to specify the font "
-"type, style, and size to use to print the data contained in a file."
-msgstr ""
-"Klik pada tombol <guibutton>Fonta data</guibutton> untuk menyatakan tipe, "
-"gaya, dan ukuran fonta yang dipakai untuk mencetak data yang dimuat dalam "
-"berkas."
-
-#: C/index.docbook:681(varlistentry/term)
-msgid "<guilabel>Header font</guilabel>"
-msgstr "<guilabel>Fonta kepala</guilabel>"
-
-#: C/index.docbook:683(listitem/para)
-msgid ""
-"Click on the <guibutton>Header font</guibutton> button to specify the font "
-"type, style, and size to use to print the header information that is "
-"contained in the file."
-msgstr ""
-"Klik pada tombol <guibutton>Fonta tajuk</guibutton> untuk menyatakan tipe, "
-"gaya, dan ukuran fonta yang dipakai untuk mencetak informasi tajuk yang "
-"dimuat dalam berkas."
-
-#: C/index.docbook:687(varlistentry/term)
-msgid "<guilabel>Print shaded box over</guilabel>"
-msgstr "<guilabel>Cetak kotak berbayang</guilabel>"
-
-#: C/index.docbook:689(listitem/para)
-msgid ""
-"Use this spin box to specify the number of lines that <application>GHex</"
-"application> alternately prints with a surrounding shaded box. If the value "
-"of the spin box is 10, <application>GHex</application> prints the first 10 "
-"lines of the file without a shaded box, the next 10 lines with a shaded box, "
-"and so on. If the value of the spin box is 0, <application>GHex</"
-"application> does not print any shaded box."
-msgstr ""
-"Pakai kotak spin ini untuk menyatakan cacah baris yang dicetak oleh "
-"<application>GHex</application> secara bergantian dengan kotak berbayang di "
-"sekitarnya. Bila nilai dari kotak spin adalah 10, <application>GHex</"
-"application> mencetak 10 baris pertama dari berkas tanpa kotak berbayang, 10 "
-"baris berikutnya dengan kotak berbayang, dan seterusnya. Bila nilai dari "
-"kotak spin adalah 0, <application>GHex</application> tak akan mencetak kotak "
-"berbayang."
-
-#: C/legal.xml:9(para/ulink)
+#. (itstool) path: para/ulink
+#: C/legal.xml:9
 msgid "link"
 msgstr "taut"
 
-#: C/legal.xml:2(legalnotice/para)
+#. (itstool) path: legalnotice/para
+#: C/legal.xml:2
 msgid ""
 "Permission is granted to copy, distribute and/or modify this document under "
 "the terms of the GNU Free Documentation License (GFDL), Version 1.1 or any "
@@ -1222,7 +1284,8 @@ msgstr ""
 "dari GFDL pada <_:ulink-1/> ini atau di dalam berkas COPYING-DOCS yang "
 "didistribusikan bersama panduan ini."
 
-#: C/legal.xml:12(legalnotice/para)
+#. (itstool) path: legalnotice/para
+#: C/legal.xml:12
 msgid ""
 "This manual is part of a collection of GNOME manuals distributed under the "
 "GFDL. If you want to distribute this manual separately from the collection, "
@@ -1234,7 +1297,8 @@ msgstr ""
 "koleksi, Anda dapat melakukannya dengan menambahkan salinan lisensi ke "
 "manual, sebagaimana dijelaskan di bagian 6 dari lisensi."
 
-#: C/legal.xml:19(legalnotice/para)
+#. (itstool) path: legalnotice/para
+#: C/legal.xml:19
 msgid ""
 "Many of the names used by companies to distinguish their products and "
 "services are claimed as trademarks. Where those names appear in any GNOME "
@@ -1248,7 +1312,8 @@ msgstr ""
 "disadarkan atas merk dagang tersebut, maka nama-nama adalah dalam huruf "
 "besar atau huruf awal besar."
 
-#: C/legal.xml:35(listitem/para)
+#. (itstool) path: listitem/para
+#: C/legal.xml:35
 msgid ""
 "DOCUMENT IS PROVIDED ON AN \"AS IS\" BASIS, WITHOUT WARRANTY OF ANY KIND, "
 "EITHER EXPRESSED OR IMPLIED, INCLUDING, WITHOUT LIMITATION, WARRANTIES THAT "
@@ -1275,7 +1340,8 @@ msgstr ""
 "DOKUMEN ATAU VERSI YANG DIMODIFIKASI DARI DOKUMEN YANG DIIJINKAN KECUALI DI "
 "BAWAH DISKLAIMER INI, DAN"
 
-#: C/legal.xml:55(listitem/para)
+#. (itstool) path: listitem/para
+#: C/legal.xml:55
 msgid ""
 "UNDER NO CIRCUMSTANCES AND UNDER NO LEGAL THEORY, WHETHER IN TORT (INCLUDING "
 "NEGLIGENCE), CONTRACT, OR OTHERWISE, SHALL THE AUTHOR, INITIAL WRITER, ANY "
@@ -1300,7 +1366,8 @@ msgstr ""
 "DAN VERSI YANG DIMODIFIKASI DARI DOKUMEN, BAHKAN BILA PIHAK TERSEBUT "
 "MESTINYA TELAH DIBERITAHU TENTANG KEMUNGKINAN KERUSAKAN TERSEBUT."
 
-#: C/legal.xml:28(legalnotice/para)
+#. (itstool) path: legalnotice/para
+#: C/legal.xml:28
 msgid ""
 "DOCUMENT AND MODIFIED VERSIONS OF THE DOCUMENT ARE PROVIDED UNDER THE TERMS "
 "OF THE GNU FREE DOCUMENTATION LICENSE WITH THE FURTHER UNDERSTANDING THAT: "
