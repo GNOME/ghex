@@ -105,6 +105,11 @@ typedef struct
 	size_t found_len;
 	const char *found_msg;
 	const char *not_found_msg;
+
+	/*< private >*/
+	gpointer padding1[5];
+	gint64 padding2[5];
+	int padding3[5];
 } HexDocumentFindData;
 
 /**
@@ -139,6 +144,11 @@ typedef struct
 	HexChangeType type;
 	char *v_string;
 	char v_byte;
+
+	/*< private >*/
+	gpointer padding1[5];
+	gint64 padding2[5];
+	int padding3[5];
 } HexChangeData;
 
 
