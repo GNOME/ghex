@@ -911,62 +911,6 @@ end_of_loop:
 	}
 }
 
-/* FIXME - Previously, this function was more sophisticated, and only
- * redrew part of the drawing area requested. Need to make an executive
- * decision as to whether that will be feasible to do for ghex4, or just
- * eliminate those and queue a redraw for the drawing area in question.
- */
-/*
- * when calling invalidate_*_lines() the imin and imax arguments are the
- * numbers of the first and last line TO BE INVALIDATED in the range
- * [0 .. self->vis_lines-1] AND NOT [0 .. self->lines]!
- */
-static void
-invalidate_lines (HexWidget *self,
-                  GtkWidget *widget,
-                  int imin,
-                  int imax)
-{
-#if 0
-    gtk_widget_get_allocation (widget, &allocation);
-#endif
-
-	(void)self, (void)imin, (void)imax; /* unused for now. See comment above. */
-
-    gtk_widget_queue_draw (widget);
-#if 0
-    gtk_widget_queue_draw_area (widget,
-                                0,
-                                imin * self->char_height,
-                                allocation.width,
-                                (imax - imin + 1) * self->char_height);
-#endif
-}
-
-static void
-invalidate_hex_lines (HexWidget *self,
-                      int imin,		/* FIXME - imin/imax for next few funcs */
-                      int imax)		/* presently ignored. */
-{
-    invalidate_lines (self, self->xdisp, imin, imax);
-}
-
-static void
-invalidate_ascii_lines (HexWidget *self,
-                        int imin,
-                        int imax)
-{
-    invalidate_lines (self, self->adisp, imin, imax);
-}
-
-static void
-invalidate_offsets (HexWidget *self,
-                    int imin,
-                    int imax)
-{
-    invalidate_lines (self, self->offsets, imin, imax);
-}
-
 /*
  * when calling render_lines() the min_lines and max_lines arguments are the
  * numbers of the first and last line TO BE DISPLAYED in the range
@@ -1910,12 +1854,7 @@ hex_widget_real_data_changed (HexWidget *self, gpointer data)
 	else
 		end_line = MIN(end_line, self->vis_lines);
 
-    invalidate_hex_lines (self, start_line, end_line);
-    invalidate_ascii_lines (self, start_line, end_line);
-    if (self->show_offsets)
-    {
-        invalidate_offsets (self, start_line, end_line);
-    }
+	gtk_widget_queue_draw (GTK_WIDGET(self));
 }
 
 static void
@@ -1936,13 +1875,7 @@ bytes_changed (HexWidget *self, gint64 start, gint64 end)
 	if (end_line < 0 || start_line > self->vis_lines)
 		return;
 
-    invalidate_hex_lines (self, start_line, end_line);
-    invalidate_ascii_lines (self, start_line, end_line);
-
-    if (self->show_offsets)
-    {
-        invalidate_offsets (self, start_line, end_line);
-    }
+	gtk_widget_queue_draw (GTK_WIDGET(self));
 }
 
 static void
