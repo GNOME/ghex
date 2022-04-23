@@ -169,7 +169,6 @@ common_cancel_cb (GtkButton *button, gpointer user_data)
 {
 	PaneDialog *self = PANE_DIALOG(user_data);
 
-	(void)button;	/* unused */
 	g_return_if_fail (PANE_IS_DIALOG (self));
 
 	g_signal_emit(self,
@@ -367,8 +366,6 @@ find_clear_cb (GtkButton *button, gpointer user_data)
 	GtkWidget *new_gh;
 	HexDocument *new_doc;
 
-	(void)user_data;
-
 	g_return_if_fail (FIND_IS_DIALOG (self));
 
 	f_priv = find_dialog_get_instance_private (self);
@@ -404,8 +401,6 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	const gchar *byte_str;
 	gint64 payload;
 	
-	(void)button;	/* unused */
-
 	g_return_if_fail (JUMP_IS_DIALOG(self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
@@ -502,7 +497,6 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	gint64 offset;
 	gint64 payload;
 
-	(void)button;	/* unused */
 	g_return_if_fail (REPLACE_IS_DIALOG(self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
@@ -566,7 +560,6 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	gint64 offset;
 	gint64 payload;
 
-	(void)button;	/* unused */
 	g_return_if_fail (REPLACE_IS_DIALOG (self));
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));

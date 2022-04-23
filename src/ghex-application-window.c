@@ -537,45 +537,6 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self,
 	gtk_widget_show (dialog);
 }
 
-/* FIXME / TODO - I could see this function being useful, but right now it is
- * not used by anything, so I'm disabling it to silence warnings about unused
- * functions.
- */
-#if 0
-static void
-enable_all_actions (GHexApplicationWindow *self, gboolean enable)
-{
-	GHexApplicationWindowClass *klass =
-		g_type_class_peek (GHEX_TYPE_APPLICATION_WINDOW);
-	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
-	guint i = 0;
-	/* Note: don't be tempted to omit any of these and pass NULL to the
-	 * function below. The docs do not say you can do this, and looking at the
-	 * gtkwidget.c source code, doing so may result in dereferencing a NULL ptr
-	 */
-	GType owner;
-	const char *action_name;
-	const GVariantType *parameter_type;
-	const char *property_name;
-
-	while (gtk_widget_class_query_action (widget_class,
-			i,
-			&owner,
-			&action_name,
-			&parameter_type,
-			&property_name))
-	{
-		g_debug("%s: action %u : %s - setting enabled: %d",
-				__func__, i, action_name, enable);
-
-		gtk_widget_action_set_enabled (GTK_WIDGET(self),
-				action_name, enable);
-		++i;
-	}
-}
-#endif
-
-/* Kinda like enable_all_actions, but only for ghex-specific ones. */
 static void
 enable_main_actions (GHexApplicationWindow *self, gboolean enable)
 {
@@ -612,7 +573,6 @@ copy_special (GtkWidget *widget,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 	GdkClipboard *clipboard;
 
-	(void)action_name; (void)parameter;
 	g_return_if_fail (HEX_IS_WIDGET (ACTIVE_GH));
 
 	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(ACTIVE_GH));
@@ -636,7 +596,6 @@ paste_special (GtkWidget *widget,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 	GdkClipboard *clipboard;
 
-	(void)action_name; (void)parameter;
 	g_return_if_fail (HEX_IS_WIDGET (ACTIVE_GH));
 
 	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(ACTIVE_GH));
@@ -1205,7 +1164,6 @@ print_preview (GtkWidget *widget,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 
 	g_return_if_fail (HEX_IS_WIDGET(ACTIVE_GH));
-	(void)widget, (void)action_name, (void)parameter;	/* unused */
 
 	common_print (GTK_WINDOW(self), ACTIVE_GH, /* preview: */ TRUE);
 }
@@ -1218,7 +1176,6 @@ do_print (GtkWidget *widget,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 
 	g_return_if_fail (HEX_IS_WIDGET(ACTIVE_GH));
-	(void)widget, (void)action_name, (void)parameter;	/* unused */
 
 	common_print (GTK_WINDOW(self), ACTIVE_GH, /* preview: */ FALSE);
 }
@@ -1418,8 +1375,6 @@ open_about (GtkWidget *widget,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 
-	(void)parameter, (void)action_name;		/* unused */
-
 	common_about_cb (GTK_WINDOW(self));
 }
 
@@ -1429,8 +1384,6 @@ open_preferences (GtkWidget *widget,
 		GVariant *parameter)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
-
-	(void)parameter, (void)action_name;		/* unused */
 
 	if (! GTK_IS_WIDGET (self->prefs_dialog) ||
 			! gtk_widget_get_visible (self->prefs_dialog)) {

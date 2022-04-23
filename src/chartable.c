@@ -125,8 +125,6 @@ inbtn_clicked_cb (GtkButton *button, gpointer user_data)
 
 	g_return_if_fail (GTK_IS_TREE_VIEW(treeview));
 
-	(void)button;	/* unused */
-
 	model = gtk_tree_view_get_model (treeview);
 
 	insert_char (treeview, model);
@@ -136,8 +134,6 @@ static void
 hide_chartable_cb (GtkButton *button, gpointer user_data)
 {
 	GtkWindow *win = GTK_WINDOW(user_data);
-
-	(void)button;	/* unused */
 
 	gtk_window_close (win);
 }

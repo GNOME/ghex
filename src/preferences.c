@@ -124,7 +124,6 @@ static void
 help_clicked_cb (GtkButton *button,
 		gpointer user_data)
 {
-	(void)user_data;	/* unused */
 	g_return_if_fail (GTK_IS_WINDOW (prefs_dialog));
 
 	common_help_cb (GTK_WINDOW(prefs_dialog));
@@ -149,8 +148,6 @@ static void
 shaded_box_spinbtn_value_changed_cb (GtkSpinButton *spin_button,
 		gpointer user_data)
 {
-	(void)spin_button, (void)user_data; /* unused */
-
 	sync_shaded_box_size_with_spinbtn ();
 }
 
@@ -159,8 +156,6 @@ shaded_box_chkbtn_toggled_cb (GtkCheckButton *checkbutton,
 		gpointer user_data)
 {
 	gboolean checked;
-
-	(void)user_data;	/* unused */
 
 	checked = gtk_check_button_get_active (checkbutton);
 
@@ -181,8 +176,6 @@ show_offsets_set_cb (GtkCheckButton *checkbutton,
 		gpointer user_data)
 {
 	gboolean show_or_hide;
-
-	(void)user_data;	/* unused */
 
 	show_or_hide = gtk_check_button_get_active (checkbutton);
 
@@ -216,8 +209,6 @@ monospace_font_filter (/* const */ PangoFontFamily *family,
 		const PangoFontFace *face,
 		gpointer data)
 {
-	(void)face, (void)data;
-
 	if (pango_font_family_is_monospace (family))
 		return TRUE;
 	else
@@ -286,8 +277,6 @@ dark_mode_set_cb (GtkSwitch *widget,
 {
 	int dark_mode;
 
-	(void)user_data;	/* unused */
-
 	if (state)
 		dark_mode = DARK_MODE_ON;
 	else
@@ -306,8 +295,6 @@ system_default_set_cb (GtkCheckButton *checkbutton,
 {
 	gboolean checked;
 	int dark_mode;
-
-	(void)user_data;	/* unused */
 
 	checked = gtk_check_button_get_active (checkbutton);
 

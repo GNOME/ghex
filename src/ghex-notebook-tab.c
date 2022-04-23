@@ -75,8 +75,6 @@ ghex_notebook_tab_document_changed_cb (HexDocument *doc,
 {
 	GHexNotebookTab *self = GHEX_NOTEBOOK_TAB(user_data);
 
-	(void)change_data, (void)push_undo; 	/* unused */
-
 	tab_bold_label (self, hex_document_has_changed (doc));
 }
 

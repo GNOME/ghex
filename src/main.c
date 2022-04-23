@@ -113,8 +113,6 @@ static void
 activate (GtkApplication *app,
 	gpointer user_data)
 {
-	(void)user_data;	/* unused */
-
 	do_app_window (app);
 
 	gtk_window_set_application (window, app);

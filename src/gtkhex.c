@@ -250,7 +250,6 @@ copy_action (GtkWidget *widget,
 	HexWidget *self = HEX_WIDGET(widget);
 
 	g_return_if_fail (HEX_IS_WIDGET(self));
-	(void)action_name, (void)parameter;
 
 	hex_widget_copy_to_clipboard (self);
 }
@@ -263,7 +262,6 @@ cut_action (GtkWidget *widget,
 	HexWidget *self = HEX_WIDGET(widget);
 
 	g_return_if_fail (HEX_IS_WIDGET(self));
-	(void)action_name, (void)parameter;
 
 	hex_widget_cut_to_clipboard (self);
 }
@@ -276,7 +274,6 @@ paste_action (GtkWidget *widget,
 	HexWidget *self = HEX_WIDGET(widget);
 
 	g_return_if_fail (HEX_IS_WIDGET(self));
-	(void)action_name, (void)parameter;
 
 	hex_widget_paste_from_clipboard (self);
 }
@@ -288,8 +285,6 @@ redo_action (GtkWidget *widget,
 {
 	HexWidget *self = HEX_WIDGET(widget);
 	HexChangeData *cd;
-
-	(void)action_name, (void)parameter;
 
 	g_return_if_fail (HEX_IS_WIDGET(self));
 	g_return_if_fail (HEX_IS_DOCUMENT(self->document));
@@ -324,8 +319,6 @@ undo_action (GtkWidget *widget,
 {
 	HexWidget *self = HEX_WIDGET(widget);
 	HexChangeData *cd;
-
-	(void)action_name, (void)parameter;
 
 	g_return_if_fail (HEX_IS_WIDGET(self));
 	g_return_if_fail (HEX_IS_DOCUMENT(self->document));
@@ -2139,8 +2132,6 @@ static void
 hex_widget_real_cut_to_clipboard(HexWidget *self,
 		gpointer user_data)
 {
-	(void)user_data;
-
 	if (self->selection.start != -1 && self->selection.end != -1) {
 		hex_widget_real_copy_to_clipboard(self);
 		hex_widget_delete_selection(self);
@@ -2196,8 +2187,6 @@ hex_widget_real_paste_from_clipboard (HexWidget *self,
 	HexPasteData *paste;
 	gboolean have_hex_paste_data = FALSE;
 
-	(void)user_data;	/* unused */
-
 	clipboard = gtk_widget_get_clipboard (widget);
 	content = gdk_clipboard_get_content (clipboard);
 	g_value_init (&value, HEX_TYPE_PASTE_DATA);
@@ -2250,8 +2239,6 @@ static void
 hex_widget_real_draw_complete (HexWidget *self,
 		gpointer user_data)
 {
-	(void)user_data;
-
 	recalc_scrolling (self);
 }
 

@@ -658,7 +658,7 @@ cleanup:
  */
 void
 hex_document_read_async (HexDocument *doc,
-		GCancellable *cancellable,	/* FIXME: presently ignored */
+		GCancellable *cancellable,
 		GAsyncReadyCallback callback,
 		gpointer user_data)
 {
@@ -802,7 +802,7 @@ write_ready_cb (GObject *source_object,
  */
 void
 hex_document_write_async (HexDocument *doc,
-		GCancellable *cancellable,	/* FIXME: presently ignored */
+		GCancellable *cancellable,
 		GAsyncReadyCallback callback,
 		gpointer user_data)
 {
@@ -846,7 +846,7 @@ out:
 void
 hex_document_write_to_file_async (HexDocument *doc,
 		GFile *file,
-		GCancellable *cancellable,	/* FIXME: presently ignored */
+		GCancellable *cancellable,
 		GAsyncReadyCallback callback,
 		gpointer user_data)
 {
@@ -1460,9 +1460,6 @@ hex_document_real_redo(HexDocument *doc)
 				hex_document_set_byte(doc, cd->v_byte, cd->start, FALSE, FALSE);
 			else if(cd->rep_len == 0)
 				hex_document_set_byte(doc, cd->v_byte, cd->start, cd->insert, FALSE);
-#if 0
-				hex_document_delete_data(doc, cd->start, 1, FALSE);
-#endif
 			else
 				hex_document_set_byte(doc, cd->v_byte, cd->start, TRUE, FALSE);
 			cd->v_byte = c_val;

@@ -57,22 +57,6 @@ doc_data_to_string (const char *data, int len)
 	return str;
 }
 
-
-/* FIXME/TODO - this transforms certain problematic characters for copy/paste
- * to a '?'. Maybe find a home for this guy at some point.
- */
-#if 0
-{
-	char *cp;
-		for (cp = text; *cp != '\0'; ++cp)
-		{
-			if (! is_copyable(*cp))
-				*cp = '?';
-		}
-}
-#endif
-		
-
 /* Constructors and Destructors */
 
 static void
