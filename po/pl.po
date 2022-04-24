@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-04-10 11:31+0000\n"
-"PO-Revision-Date: 2022-04-10 14:33+0200\n"
+"POT-Creation-Date: 2022-04-20 19:53+0000\n"
+"PO-Revision-Date: 2022-04-24 12:10+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -319,9 +319,17 @@ msgstr "Zamyka panel wyszukiwania"
 msgid "Replace With"
 msgstr "Zmiana na"
 
+#: src/findreplace.c:936
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Proszę wprowadzić dane szesnastkowo lub ASCII do zastąpienia"
+
 #: src/findreplace.c:939
 msgid "_Replace"
 msgstr "Z_mień"
+
+#: src/findreplace.c:947
+msgid "Replaces the search string with the replace string"
+msgstr "Zastępuje wyszukiwany ciąg nowym"
 
 #: src/findreplace.c:950
 msgid "Replace _All"
@@ -360,7 +368,7 @@ msgstr "Przechodzi do podanego bajtu"
 msgid "Closes the jump-to-byte pane"
 msgstr "Zamyka panel przejścia do bajtu"
 
-#: src/ghex-application-window.c:335
+#: src/ghex-application-window.c:333
 msgid ""
 "There was an error saving the file.\n"
 "\n"
@@ -372,7 +380,7 @@ msgstr ""
 "Uprawnienia użytkownika do pliku mogły zostać zmienione przez inny program "
 "lub plik mógł zostać uszkodzony."
 
-#: src/ghex-application-window.c:403
+#: src/ghex-application-window.c:401
 msgid ""
 "<b>You have one or more files open with unsaved changes.</b>\n"
 "\n"
@@ -384,18 +392,18 @@ msgstr ""
 "Na pewno zamknąć okno?\n"
 "\n"
 
-#: src/ghex-application-window.c:407
+#: src/ghex-application-window.c:405
 msgid "_Close Anyway"
 msgstr "Za_mknij mimo to"
 
-#: src/ghex-application-window.c:408 src/ghex-application-window.c:530
+#: src/ghex-application-window.c:406 src/ghex-application-window.c:529
 #: src/ghex-application-window.c:1184
 msgid "_Go Back"
 msgstr "_Wróć"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:509
+#: src/ghex-application-window.c:507
 #, c-format
 msgid ""
 "<big><b>%s has been edited since opening.</b></big>\n"
@@ -406,7 +414,7 @@ msgstr ""
 "\n"
 "Zapisać wprowadzone zmiany?"
 
-#: src/ghex-application-window.c:515
+#: src/ghex-application-window.c:513
 msgid ""
 "<b>The buffer has been edited since opening.</b>\n"
 "\n"
@@ -416,11 +424,11 @@ msgstr ""
 "\n"
 "Zapisać wprowadzone zmiany?"
 
-#: src/ghex-application-window.c:528
+#: src/ghex-application-window.c:527
 msgid "_Save Changes"
 msgstr "_Zapisz zmiany"
 
-#: src/ghex-application-window.c:529
+#: src/ghex-application-window.c:528
 msgid "_Discard Changes"
 msgstr "_Odrzuć zmiany"
 
@@ -501,17 +509,21 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1465
+#: src/ghex-application-window.c:1448
 #, c-format
-msgid "Offset: 0x%lX; 0x%lX bytes from 0x%lX to 0x%lX selected"
-msgstr "Przesunięcie: 0x%lX; zaznaczono 0x%lX B od 0x%lX do 0x%lX"
+msgid ""
+"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
+"%lX</tt> selected"
+msgstr ""
+"Przesunięcie: <tt>0x%lX</tt>; zaznaczono <tt>0x%lX</tt> B od <tt>0x%lX</tt> "
+"do <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1469
+#: src/ghex-application-window.c:1452
 #, c-format
-msgid "Offset: 0x%lX"
-msgstr "Przesunięcie: 0x%lX"
+msgid "Offset: <tt>0x%lX</tt>"
+msgstr "Przesunięcie: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2111
+#: src/ghex-application-window.c:2094
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -537,11 +549,11 @@ msgstr ""
 "\n"
 "To ograniczenie zostanie usunięte w przyszłej wersji."
 
-#: src/ghex-application-window.c:2167
+#: src/ghex-application-window.c:2150
 msgid "There was an error reading the file."
 msgstr "Wystąpił błąd podczas odczytywania pliku."
 
-#: src/ghex-application-window.c:2213
+#: src/ghex-application-window.c:2196
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -837,9 +849,3 @@ msgstr "Pomo_c"
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Strona: %i/%i"
-
-msgid "Enter the hex data or ASCII data to replace with"
-msgstr "Proszę wprowadzić dane szesnastkowo lub ASCII do zastąpienia"
-
-msgid "Replaces the search string with the replace string"
-msgstr "Zastępuje wyszukiwany ciąg nowym"
