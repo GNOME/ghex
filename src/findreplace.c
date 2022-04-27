@@ -174,11 +174,7 @@ common_cancel_cb (GtkButton *button, gpointer user_data)
 {
 	PaneDialog *self = PANE_DIALOG(user_data);
 
-	g_return_if_fail (PANE_IS_DIALOG (self));
-
-	g_signal_emit(self,
-			signals[CLOSED],
-			0);	/* GQuark detail (just set to 0 if unknown) */
+	g_signal_emit(self, signals[CLOSED], 0);
 }
 
 /* Small helper function. */
@@ -303,8 +299,6 @@ find_common (FindDialog *self, enum FindDirection direction,
 	char *str;
 	HexDocumentFindData *find_data = NULL;
 	
-	g_return_if_fail (FIND_IS_DIALOG(self));
-
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 	f_priv = find_dialog_get_instance_private (self);
 
@@ -385,16 +379,9 @@ static void
 find_clear_cb (GtkButton *button, gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
-	FindDialogPrivate *f_priv;
-	GtkWidget *widget = GTK_WIDGET(user_data);
+	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
 	GtkWidget *new_gh;
 	HexDocument *new_doc;
-
-	g_return_if_fail (FIND_IS_DIALOG (self));
-
-	f_priv = find_dialog_get_instance_private (self);
-	g_return_if_fail (HEX_IS_WIDGET (f_priv->f_gh));
-	g_return_if_fail (HEX_IS_DOCUMENT (f_priv->f_doc));
 
 	new_doc = hex_document_new ();
 	new_gh = create_hex_view (new_doc);
@@ -404,15 +391,14 @@ find_clear_cb (GtkButton *button, gpointer user_data)
 	f_priv->f_doc = new_doc;
 	f_priv->f_gh = new_gh;
 
-	gtk_widget_grab_focus (widget);
+	gtk_widget_grab_focus (GTK_WIDGET(self));
 }
 
 static void
 goto_byte_cb (GtkButton *button, gpointer user_data)
 {
 	JumpDialog *self = JUMP_DIALOG(user_data);
-	GtkWidget *widget = GTK_WIDGET(user_data);
-	PaneDialogPrivate *priv;
+	PaneDialogPrivate *priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 	GtkWindow *parent;
 	HexDocument *doc;
 	gint64 cursor_pos;
@@ -425,12 +411,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	const gchar *byte_str;
 	gint64 payload;
 	
-	g_return_if_fail (JUMP_IS_DIALOG(self));
-
-	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
-	g_return_if_fail (HEX_IS_WIDGET(priv->gh));
-	
-	parent = GTK_WINDOW(gtk_widget_get_native (widget));
+	parent = GTK_WINDOW(gtk_widget_get_native (GTK_WIDGET(self)));
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
@@ -510,7 +491,6 @@ static void
 replace_one_cb (GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
-	GtkWidget *widget = GTK_WIDGET(user_data);
 	PaneDialogPrivate *priv;
 	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
@@ -521,12 +501,10 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	gint64 payload;
 	HexDocumentFindData *find_data = NULL;
 
-	g_return_if_fail (REPLACE_IS_DIALOG(self));
-
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 	f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
 
-	parent = GTK_WINDOW(gtk_widget_get_native (widget));
+	parent = GTK_WINDOW(gtk_widget_get_native (GTK_WIDGET(self)));
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
@@ -584,12 +562,10 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	HexDocumentFindData *find_data = NULL;
 	int count;
 
-	g_return_if_fail (REPLACE_IS_DIALOG (self));
-
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 	f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
 
-	parent = GTK_WINDOW(gtk_widget_get_native (widget));
+	parent = GTK_WINDOW(gtk_widget_get_native (GTK_WIDGET(self)));
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
@@ -607,7 +583,6 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	if (find_len > payload - cursor_pos)
 		goto clean_up;
 	
-
 	find_data = hex_document_find_data_new ();
 	find_data->start = 0;
 	find_data->what = find_str;
@@ -646,12 +621,8 @@ static void
 replace_clear_cb (GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
-	GtkWidget *widget = GTK_WIDGET(user_data);
 	GtkWidget *new_r_gh;
 	HexDocument *new_r_doc;
-
-	g_return_if_fail (HEX_IS_WIDGET (self->r_gh));
-	g_return_if_fail (HEX_IS_DOCUMENT (self->r_doc));
 
 	new_r_doc = hex_document_new ();
 	new_r_gh = create_hex_view (new_r_doc);
@@ -661,7 +632,7 @@ replace_clear_cb (GtkButton *button, gpointer user_data)
 	self->r_doc = new_r_doc;
 	self->r_gh = new_r_gh;
 
-	gtk_widget_grab_focus (widget);
+	gtk_widget_grab_focus (GTK_WIDGET(self));
 }
 
 static gboolean
@@ -713,8 +684,7 @@ pane_dialog_dispose (GObject *object)
 {
 	PaneDialog *self = PANE_DIALOG(object);
 
-	/* Boilerplate: chain up
-	 */
+	/* Chain up */
 	G_OBJECT_CLASS(pane_dialog_parent_class)->dispose(object);
 }
 
@@ -722,12 +692,7 @@ pane_dialog_dispose (GObject *object)
 static void
 pane_dialog_finalize (GObject *gobject)
 {
-	/* here, you would free stuff. I've got nuthin' for ya. */
-
-	/* --- */
-
-	/* Boilerplate: chain up
-	 */
+	/* Chain up */
 	G_OBJECT_CLASS(pane_dialog_parent_class)->finalize(gobject);
 }
 
@@ -738,15 +703,11 @@ pane_dialog_class_init (PaneDialogClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 
-	/* <boilerplate> */
 	object_class->dispose = pane_dialog_dispose;
 	object_class->finalize = pane_dialog_finalize;
-	/* </boilerplate> */
 
 	klass->closed = pane_dialog_real_close;
 
-	/* set the box-type layout manager for this Pane dialog widget.
-	 */
 	gtk_widget_class_set_layout_manager_type (widget_class,
 			GTK_TYPE_BOX_LAYOUT);
 
@@ -932,20 +893,14 @@ find_dialog_dispose (GObject *object)
 	g_clear_object (&f_priv->cancellable);
 	g_clear_pointer (&f_priv->vbox, gtk_widget_unparent);
 
-	/* Boilerplate: chain up
-	 */
+	/* Chain up */
 	G_OBJECT_CLASS(find_dialog_parent_class)->dispose(object);
 }
 
 static void
 find_dialog_finalize(GObject *gobject)
 {
-	/* here, you would free stuff. I've got nuthin' for ya. */
-
-	/* --- */
-
-	/* Boilerplate: chain up
-	 */
+	/* Chain up */
 	G_OBJECT_CLASS(find_dialog_parent_class)->finalize(gobject);
 }
 
@@ -955,10 +910,8 @@ find_dialog_class_init (FindDialogClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 
-	/* <boilerplate> */
 	object_class->dispose = find_dialog_dispose;
 	object_class->finalize = find_dialog_finalize;
-	/* </boilerplate> */
 
 	widget_class->grab_focus = find_dialog_grab_focus;
 }
@@ -1020,22 +973,14 @@ replace_dialog_init (ReplaceDialog *self)
 static void
 replace_dialog_dispose(GObject *object)
 {
-	ReplaceDialog *self = REPLACE_DIALOG(object);
-
-	/* Boilerplate: chain up
-	 */
+	/* Chain up */
 	G_OBJECT_CLASS(replace_dialog_parent_class)->dispose(object);
 }
 
 static void
 replace_dialog_finalize(GObject *gobject)
 {
-	/* here, you would free stuff. I've got nuthin' for ya. */
-
-	/* --- */
-
-	/* Boilerplate: chain up
-	 */
+	/* Chain up */
 	G_OBJECT_CLASS(replace_dialog_parent_class)->finalize(gobject);
 }
 
@@ -1045,10 +990,8 @@ replace_dialog_class_init (ReplaceDialogClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 
-	/* <boilerplate> */
 	object_class->dispose = replace_dialog_dispose;
 	object_class->finalize = replace_dialog_finalize;
-	/* </boilerplate> */
 }
 
 GtkWidget *
@@ -1161,20 +1104,14 @@ jump_dialog_dispose (GObject *object)
 
 	g_clear_pointer (&self->box, gtk_widget_unparent);
 
-	/* Boilerplate: chain up
-	 */
+	/* Chain up */
 	G_OBJECT_CLASS(jump_dialog_parent_class)->dispose(object);
 }
 
 static void
 jump_dialog_finalize (GObject *gobject)
 {
-	/* here, you would free stuff. I've got nuthin' for ya. */
-
-	/* --- */
-
-	/* Boilerplate: chain up
-	 */
+	/* Chain up */
 	G_OBJECT_CLASS(jump_dialog_parent_class)->finalize(gobject);
 }
 
@@ -1184,10 +1121,8 @@ jump_dialog_class_init (JumpDialogClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 
-	/* <boilerplate> */
 	object_class->dispose = jump_dialog_dispose;
 	object_class->finalize = jump_dialog_finalize;
-	/* </boilerplate> */
 
 	widget_class->grab_focus = jump_dialog_grab_focus;
 
