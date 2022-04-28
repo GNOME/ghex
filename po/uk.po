@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-04-28 01:14+0000\n"
-"PO-Revision-Date: 2022-04-28 09:46+0300\n"
+"POT-Creation-Date: 2022-04-28 08:22+0000\n"
+"PO-Revision-Date: 2022-04-28 14:37+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
@@ -21,6 +21,7 @@ msgstr ""
 "X-Generator: Lokalize 20.12.0\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
+#: src/ghex-application-window.ui.in:149
 msgid "GHex"
 msgstr "GHex"
 
@@ -157,6 +158,26 @@ msgstr "Сайт GHex"
 msgid "An error has occurred: %s"
 msgstr "Сталася помилка: %s"
 
+#: src/context-menu.ui:30
+msgid "_Undo"
+msgstr "В_ернути"
+
+#: src/context-menu.ui:34
+msgid "_Redo"
+msgstr "Повт_орити"
+
+#: src/context-menu.ui:40
+msgid "Cu_t"
+msgstr "Ви_різати"
+
+#: src/context-menu.ui:44 src/paste-special.c:405
+msgid "_Copy"
+msgstr "_Копіювати"
+
+#: src/context-menu.ui:48 src/paste-special.ui:49
+msgid "_Paste"
+msgstr "Вст_авити"
+
 #: src/converter.c:183
 msgid "Base Converter"
 msgstr "Конвертор систем числення"
@@ -278,6 +299,56 @@ msgstr "Пошук завершено: виконано %d замін."
 msgid "No occurrences were found."
 msgstr "Не виявлено входжень."
 
+#: src/find-dialog.ui:33
+msgid "Find String"
+msgstr "Пошук рядка"
+
+#: src/find-dialog.ui:35
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Введіть шістнадцяткові дані ASCII дані для пошуку"
+
+#: src/find-dialog.ui:43
+msgid "Find _Next"
+msgstr "Знайти _наступне"
+
+#: src/find-dialog.ui:47
+msgid "Finds the next occurrence of the search string"
+msgstr "Знати наступне входження рядка пошуку"
+
+#: src/find-dialog.ui:52
+msgid "Find _Previous"
+msgstr "Знайти _попереднє"
+
+#: src/find-dialog.ui:55
+msgid "Finds the previous occurrence of the search string"
+msgstr "Знайти попереднє входження рядка пошуку"
+
+#: src/find-dialog.ui:60
+msgid "_Clear"
+msgstr "О_чистити"
+
+#: src/find-dialog.ui:63
+msgid "Clears the data you are searching for"
+msgstr "Вилучає дані, які ви шукали"
+
+#: src/find-dialog.ui:72
+#| msgid "Find previous"
+msgid "Find options"
+msgstr "Параметри пошуку"
+
+#: src/find-dialog.ui:73
+#| msgid "Closes the find pane"
+msgid "View options of the find pane"
+msgstr "Перегляд параметрів панелі пошуку"
+
+#: src/find-dialog.ui:83 src/jump-dialog.ui:59
+msgid "Close"
+msgstr "Закрити"
+
+#: src/find-dialog.ui:84
+msgid "Closes the find pane"
+msgstr "Закриває панель пошуку"
+
 #: src/ghex-application-window.c:335
 msgid ""
 "There was an error saving the file.\n"
@@ -388,7 +459,7 @@ msgstr ""
 "\n"
 "Наслідки цієї дії не можна буде скасувати."
 
-#: src/ghex-application-window.c:1147
+#: src/ghex-application-window.c:1147 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "Від_новити"
 
@@ -470,9 +541,266 @@ msgstr ""
 "Під час завантаження бажаного файла сталася помилка. Файла або не існує, або "
 "він недоступний, або, можливо, у вас немає прав доступу до файла."
 
+#: src/ghex-application-window.ui.in:31
+msgid "_New"
+msgstr "С_творити"
+
+#: src/ghex-application-window.ui.in:35
+#| msgid "Save _As..."
+msgid "Save _As"
+msgstr "Зберегти _як"
+
+#: src/ghex-application-window.ui.in:46
+msgid "_Print"
+msgstr "_Друк"
+
+#: src/ghex-application-window.ui.in:50
+#| msgid "Print Previe_w..."
+msgid "Print Previe_w"
+msgstr "_Попередній перегляд"
+
+#: src/ghex-application-window.ui.in:58
+#| msgid "_Replace"
+msgid "Find and _Replace"
+msgstr "Знайти й за_мінити"
+
+#: src/ghex-application-window.ui.in:62
+#| msgid "Jump to byte"
+msgid "_Jump to Byte"
+msgstr "Пере_йти до байта"
+
+#: src/ghex-application-window.ui.in:72
+msgid "_Edit"
+msgstr "_Правка"
+
+#: src/ghex-application-window.ui.in:74
+#| msgid "Copy Special"
+msgid "_Copy Special"
+msgstr "С_пеціальне копіювання"
+
+#: src/ghex-application-window.ui.in:78
+#| msgid "Paste Special"
+msgid "_Paste Special"
+msgstr "Спе_ціальне вставлення"
+
+#: src/ghex-application-window.ui.in:85
+msgid "_Tools"
+msgstr "_Засоби"
+
+#: src/ghex-application-window.ui.in:87
+#| msgid "Character _Table"
+msgid "_Character Table"
+msgstr "_Таблиця символів"
+
+#: src/ghex-application-window.ui.in:91
+msgid "_Base Converter"
+msgstr "Перетворювач систем _числення"
+
+#: src/ghex-application-window.ui.in:98
+#| msgid "_Group Data As"
+msgid "G_roup Data As"
+msgstr "_Групувати дані за"
+
+#: src/ghex-application-window.ui.in:100
+#| msgid "Bytes (8-bit)"
+msgid "_Bytes (8-bit)"
+msgstr "_Байти (8-бітові)"
+
+#: src/ghex-application-window.ui.in:106
+#| msgid "Words (16-bit)"
+msgid "_Words (16-bit)"
+msgstr "С_лова (16-бітові)"
+
+#: src/ghex-application-window.ui.in:111
+#| msgid "Longwords (32-bit)"
+msgid "_Longwords (32-bit)"
+msgstr "Д_овгі слова (32-бітові)"
+
+#: src/ghex-application-window.ui.in:116
+#| msgid "Quadwords (64-bit)"
+msgid "_Quadwords (64-bit)"
+msgstr "_Чотири слова (64-бітові)"
+
+#: src/ghex-application-window.ui.in:126
+msgid "_Keyboard Shortcuts"
+msgstr "_Клавіатурні скорочення"
+
+#: src/ghex-application-window.ui.in:131
+#| msgid "Preferences"
+msgid "_Preferences"
+msgstr "_Налаштування"
+
+#: src/ghex-application-window.ui.in:136 src/preferences.ui:255
+msgid "_Help"
+msgstr "_Довідка"
+
+#: src/ghex-application-window.ui.in:141
+#| msgid "About GHex"
+msgid "_About GHex"
+msgstr "_Про GHex"
+
+#: src/ghex-application-window.ui.in:163
+#| msgid "Unable to open file for reading"
+msgid "Open a file for hex editing"
+msgstr "Відкрити файл у шістнадцятковому редакторі"
+
+#: src/ghex-application-window.ui.in:173
+msgid "Main menu"
+msgstr "Головне меню"
+
+#: src/ghex-application-window.ui.in:183
+msgid "Find a string in the hex document"
+msgstr "Знайти рядок у шістнадцятковому документі"
+
+#: src/ghex-application-window.ui.in:192
+#| msgid "New document"
+msgid "Save document"
+msgstr "Зберегти документ"
+
+#: src/ghex-application-window.ui.in:215
+msgid "No file loaded."
+msgstr "Не завантажено жодного файла."
+
+#: src/ghex-application-window.ui.in:300
+msgid "Toggle insert mode (add data to file rather than replace existing data)"
+msgstr ""
+"Перемкнути режим вставлення (дописувати дані до файла, а не заміняти наявні"
+" дані)"
+
+#: src/ghex-application-window.ui.in:312
+msgid "Toggle a pane showing various numeric conversions"
+msgstr "Перемкнути панель, на якій показано різні числові перетворення"
+
 #: src/ghex-notebook-tab.c:41
 msgid "Untitled document"
 msgstr "Документ без заголовка"
+
+#: src/help-overlay.ui:14
+#| msgid "_File"
+msgid "Files"
+msgstr "Файли"
+
+#: src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr "Новий порожній шістнадцятковий буфер"
+
+#: src/help-overlay.ui:26
+#| msgid "Unable to open file for reading"
+msgid "Open a file for editing"
+msgstr "Відкрити файл для редагування"
+
+#: src/help-overlay.ui:33
+#| msgid "Loaded file %s"
+msgid "Save file"
+msgstr "Зберегти файл"
+
+#: src/help-overlay.ui:40
+#| msgid "_Save Changes"
+msgid "Save as"
+msgstr "Зберегти як"
+
+#: src/help-overlay.ui:47
+#| msgid "Close"
+msgid "Close tab"
+msgstr "Закрити вкладку"
+
+#: src/help-overlay.ui:54
+#| msgid "Print the current file"
+msgid "Print the hex file"
+msgstr "Надрукувати шістнадцятковий файл"
+
+#: src/help-overlay.ui:63
+msgid "Undo and Redo"
+msgstr "Керування змінами"
+
+#: src/help-overlay.ui:68
+#| msgid "_Undo"
+msgid "Undo"
+msgstr "Скасувати"
+
+#: src/help-overlay.ui:75
+#| msgid "_Redo"
+msgid "Redo"
+msgstr "Повторити"
+
+#: src/help-overlay.ui:84
+#| msgid "Replace"
+msgid "Find and Replace"
+msgstr "Знайти і замінити"
+
+#: src/help-overlay.ui:89
+#| msgid "_Find"
+msgid "Find"
+msgstr "Знайти"
+
+#: src/help-overlay.ui:96
+msgid "Find and replace"
+msgstr "Знайти і замінити"
+
+#: src/help-overlay.ui:105
+msgid "Clipboard"
+msgstr "Буфер обміну"
+
+#: src/help-overlay.ui:110
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "Копіювати"
+
+#: src/help-overlay.ui:117
+#| msgid "Cu_t"
+msgid "Cut"
+msgstr "Вирізати"
+
+#: src/help-overlay.ui:124
+#| msgid "_Paste"
+msgid "Paste"
+msgstr "Вставити"
+
+#: src/help-overlay.ui:131
+#| msgid "Copy Special"
+msgid "Copy special"
+msgstr "Спеціальне копіювання"
+
+#: src/help-overlay.ui:138
+#| msgid "Paste Special"
+msgid "Paste special"
+msgstr "Спеціальне вставлення"
+
+#: src/help-overlay.ui:147
+msgid "Navigation"
+msgstr "Навігація"
+
+#: src/help-overlay.ui:152
+msgid "Toggle left (hex) display"
+msgstr "Перемкнути ліву (шістнадцяткову) панель показу"
+
+#: src/help-overlay.ui:159
+msgid "Toggle right (ASCII) display"
+msgstr "Перемкнути праву (ASCII) панель показу"
+
+#: src/help-overlay.ui:166
+msgid "Switch to previous tab"
+msgstr "Переключитися до попередньої вкладки "
+
+#: src/help-overlay.ui:173
+msgid "Switch to next tab"
+msgstr "Переключитися до наступної вкладки "
+
+#: src/help-overlay.ui:180
+msgid "Jump to byte"
+msgstr "Перейти до байта"
+
+#: src/help-overlay.ui:189
+msgid "General"
+msgstr "Загальне"
+
+#: src/help-overlay.ui:194
+msgid "Show About dialog"
+msgstr "Показати вікно «Про програму»"
+
+#: src/help-overlay.ui:201
+msgid "Toggle insert mode"
+msgstr "Перемкнути режим вставлення"
 
 #: src/hex-buffer-mmap.c:50
 msgid "The file appears to have an invalid path."
@@ -616,6 +944,35 @@ msgstr "Попередня сторінка"
 msgid "Next page"
 msgstr "наступна сторінка"
 
+#: src/jump-dialog.ui:35
+msgid "Jump to byte (enter offset):"
+msgstr "Перейти до байта (введіть зсув):"
+
+#: src/jump-dialog.ui:40
+msgid ""
+"Enter the offset byte to jump to. The default is decimal format, but other "
+"format strings are supported such as hexidecimal format, if C-style notation "
+"using the '0x' prefix is used. If your string is not recognized, a dialog "
+"will be presented explaining the valid formats of strings accepted."
+msgstr ""
+"Введіть байт зсуву, до якого слід перейти. Типовим є десятковий формат, але "
+"передбачено і підтримку інших форматувань рядків, зокрема шістнадцяткового "
+"формату, якщо використано позначення у стилі Сі із використанням префікса "
+"«0x». Якщо ваш рядок не буде розпізнано, програма покаже діалогове вікно із "
+"поясненням щодо прийнятних форматувань рядків."
+
+#: src/jump-dialog.ui:45
+msgid "_Jump"
+msgstr "Пере_йти"
+
+#: src/jump-dialog.ui:49
+msgid "Jumps to the specified byte"
+msgstr "Перейти до вказаного байта"
+
+#: src/jump-dialog.ui:60
+msgid "Closes the jump-to-byte pane"
+msgstr "Закриває панель переходу до байта"
+
 #: src/main.c:44
 msgid "Show the application version"
 msgstr "Показати версію програми"
@@ -649,10 +1006,6 @@ msgstr ""
 msgid "GHex Paste Data"
 msgstr "Вставлення даних GHex"
 
-#: src/paste-special.c:405
-msgid "_Copy"
-msgstr "_Копіювати"
-
 #: src/paste-special.c:407
 msgid "Copy Special"
 msgstr "Спеціальне копіювання"
@@ -673,10 +1026,6 @@ msgstr "Звичайний текст (Unicode)"
 #: src/paste-special.ui:28
 msgid "Paste Special"
 msgstr "Спеціальне вставлення"
-
-#: src/paste-special.ui:49
-msgid "_Paste"
-msgstr "Вст_авити"
 
 #: src/paste-special.ui:55
 msgid "_Cancel"
@@ -751,88 +1100,34 @@ msgstr "Малювання рядків різними кольорами"
 msgid "Span across lines:"
 msgstr "Розбиття довгих рядків:"
 
-#: src/preferences.ui:255
-msgid "_Help"
-msgstr "_Довідка"
-
 #: src/print.c:50
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Сторінка: %i/%i"
 
-#~ msgid "Find String"
-#~ msgstr "Пошук рядка"
+#: src/replace-dialog.ui:28
+msgid "Replace With"
+msgstr "Замінити на"
 
-#~ msgid "Enter the hex data or ASCII data to search for"
-#~ msgstr "Введіть шістнадцяткові дані ASCII дані для пошуку"
+#: src/replace-dialog.ui:30
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Введіть шістнадцяткові чи  ASCII дані для заміни"
 
-#~ msgid "Find _Next"
-#~ msgstr "Знайти _наступне"
+#: src/replace-dialog.ui:35
+msgid "_Replace"
+msgstr "За_мінити"
 
-#~ msgid "Finds the next occurrence of the search string"
-#~ msgstr "Знати наступне входження рядка пошуку"
+#: src/replace-dialog.ui:38
+msgid "Replaces the search string with the replace string"
+msgstr "Замінити рядок пошуку рядком заміни"
 
-#~ msgid "Find _Previous"
-#~ msgstr "Знайти _попереднє"
+#: src/replace-dialog.ui:43
+msgid "Replace _All"
+msgstr "Замінити _все"
 
-#~ msgid "Finds the previous occurrence of the search string"
-#~ msgstr "Знайти попереднє входження рядка пошуку"
-
-#~ msgid "_Clear"
-#~ msgstr "О_чистити"
-
-#~ msgid "Clears the data you are searching for"
-#~ msgstr "Вилучає дані, які ви шукали"
-
-#~ msgid "Close"
-#~ msgstr "Закрити"
-
-#~ msgid "Closes the find pane"
-#~ msgstr "Закриває панель пошуку"
-
-#~ msgid "Replace With"
-#~ msgstr "Замінити на"
-
-#~ msgid "Enter the hex data or ASCII data to replace with"
-#~ msgstr "Введіть шістнадцяткові чи  ASCII дані для заміни"
-
-#~ msgid "_Replace"
-#~ msgstr "За_мінити"
-
-#~ msgid "Replaces the search string with the replace string"
-#~ msgstr "Замінити рядок пошуку рядком заміни"
-
-#~ msgid "Replace _All"
-#~ msgstr "Замінити _все"
-
-#~ msgid ""
-#~ "Replaces all occurrences of the search string with the replace string"
-#~ msgstr "Замінити всі екземпляри рядка пошуку рядком заміни"
-
-#~ msgid "Jump to byte (enter offset):"
-#~ msgstr "Перейти до байта (введіть зсув):"
-
-#~ msgid ""
-#~ "Enter the offset byte to jump to. The default is decimal format, but "
-#~ "other format strings are supported such as hexidecimal format, if C-style "
-#~ "notation using the '0x' prefix is used. If your string is not recognized, "
-#~ "a dialog will be presented explaining the valid formats of strings "
-#~ "accepted."
-#~ msgstr ""
-#~ "Введіть байт зсуву, до якого слід перейти. Типовим є десятковий формат, "
-#~ "але передбачено і підтримку інших форматувань рядків, зокрема "
-#~ "шістнадцяткового формату, якщо використано позначення у стилі Сі із "
-#~ "використанням префікса «0x». Якщо ваш рядок не буде розпізнано, програма "
-#~ "покаже діалогове вікно із поясненням щодо прийнятних форматувань рядків."
-
-#~ msgid "_Jump"
-#~ msgstr "Пере_йти"
-
-#~ msgid "Jumps to the specified byte"
-#~ msgstr "Перейти до вказаного байта"
-
-#~ msgid "Closes the jump-to-byte pane"
-#~ msgstr "Закриває панель переходу до байта"
+#: src/replace-dialog.ui:46
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Замінити всі екземпляри рядка пошуку рядком заміни"
 
 #~ msgid "Get cursor value"
 #~ msgstr "Взяти значення під курсором"
@@ -843,9 +1138,6 @@ msgstr "Сторінка: %i/%i"
 #~ msgid "Words"
 #~ msgstr "Слова"
 
-#~ msgid "New document"
-#~ msgstr "Новий документ"
-
 #~ msgid "Saving to HTML..."
 #~ msgstr "Збереження у HTML..."
 
@@ -855,20 +1147,11 @@ msgstr "Сторінка: %i/%i"
 #~ msgid "Find Next"
 #~ msgstr "Шукати наступне"
 
-#~ msgid "Find previous"
-#~ msgstr "Знайти попереднє"
-
 #~ msgid "Replace Data"
 #~ msgstr "Замінити дані"
 
-#~ msgid "Replace"
-#~ msgstr "Замінити"
-
 #~ msgid "Replace All"
 #~ msgstr "Замінити все"
-
-#~ msgid "Jump to byte"
-#~ msgstr "Перейти до байта"
 
 #~ msgid "Enter the byte to jump to"
 #~ msgstr "Введіть байт, до якого потрібно перейти"
@@ -970,17 +1253,8 @@ msgstr "Сторінка: %i/%i"
 #~ "Не вдається відкрити файл:\n"
 #~ "%s"
 
-#~ msgid "_File"
-#~ msgstr "_Файл"
-
-#~ msgid "_Edit"
-#~ msgstr "_Правка"
-
 #~ msgid "_View"
 #~ msgstr "_Вигляд"
-
-#~ msgid "_Group Data As"
-#~ msgstr "_Групувати дані за"
 
 #~ msgid "_Windows"
 #~ msgstr "В_ікна"
@@ -994,9 +1268,6 @@ msgstr "Сторінка: %i/%i"
 #~ msgid "_Save"
 #~ msgstr "З_берегти"
 
-#~ msgid "Save _As..."
-#~ msgstr "Зберегти _як..."
-
 #~ msgid "Save the current file with a different name"
 #~ msgstr "Зберегти поточний файл з іншою назвою"
 
@@ -1008,15 +1279,6 @@ msgstr "Сторінка: %i/%i"
 
 #~ msgid "Revert to a saved version of the file"
 #~ msgstr "Повернутись до збереженої версії файла"
-
-#~ msgid "_Print"
-#~ msgstr "_Друк"
-
-#~ msgid "Print the current file"
-#~ msgstr "Надрукувати поточний файл"
-
-#~ msgid "Print Previe_w..."
-#~ msgstr "_Попередній перегляд..."
 
 #~ msgid "Preview printed data"
 #~ msgstr "Перегляд даних, що підлягають друку"
@@ -1030,23 +1292,14 @@ msgstr "Сторінка: %i/%i"
 #~ msgid "Exit the program"
 #~ msgstr "Вийти з програми"
 
-#~ msgid "_Undo"
-#~ msgstr "В_ернути"
-
 #~ msgid "Undo the last action"
 #~ msgstr "Вернути останню дію"
-
-#~ msgid "_Redo"
-#~ msgstr "Повт_орити"
 
 #~ msgid "Redo the undone action"
 #~ msgstr "Повторити відмінену дію"
 
 #~ msgid "Copy selection to clipboard"
 #~ msgstr "Скопіювати вибране у кишеню"
-
-#~ msgid "Cu_t"
-#~ msgstr "Ви_різати"
 
 #~ msgid "Cut selection"
 #~ msgstr "Вирізати вибране"
@@ -1056,9 +1309,6 @@ msgstr "Сторінка: %i/%i"
 
 #~ msgid "Paste data from clipboard"
 #~ msgstr "Вставити дані з кишені"
-
-#~ msgid "_Find"
-#~ msgstr "З_найти"
 
 #~ msgid "Search for a string"
 #~ msgstr "Пошук рядка"
@@ -1109,15 +1359,8 @@ msgstr "Сторінка: %i/%i"
 #~ msgid "Insert/overwrite data"
 #~ msgstr "Вставляти/переписувати дані"
 
-#~| msgid "Character _Table..."
-#~ msgid "Character _Table"
-#~ msgstr "_Таблиця символів"
-
 #~ msgid "Show the character table"
 #~ msgstr "Показати таблицю символів"
-
-#~ msgid "_Base Converter"
-#~ msgstr "Перетворювач систем _числення"
 
 #~ msgid "Open base conversion dialog"
 #~ msgstr "Відкрити основний діалог перекодування"
@@ -1263,9 +1506,6 @@ msgstr "Сторінка: %i/%i"
 
 #~ msgid "ASCII data"
 #~ msgstr "ASCII дані"
-
-#~ msgid "Loaded file %s"
-#~ msgstr "Завантажено файл %s"
 
 #~ msgid "Can not open file!"
 #~ msgstr "Неможливо відкрити файл!"
