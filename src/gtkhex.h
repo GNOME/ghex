@@ -101,6 +101,9 @@ void hex_widget_delete_selection (HexWidget *gh);
 
 HexWidgetAutoHighlight *
 hex_widget_insert_autohighlight (HexWidget *gh, const char *search, int len);
+HexWidgetAutoHighlight *
+hex_widget_insert_autohighlight_full (HexWidget *self, const char *search,
+		int len, HexSearchFlags flags);
 void hex_widget_delete_autohighlight (HexWidget *gh, HexWidgetAutoHighlight *ahl);
 
 GtkAdjustment *hex_widget_get_adjustment(HexWidget *gh);

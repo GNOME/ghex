@@ -16,6 +16,7 @@ libgtkhex_headers = [
 
 libgtkhex_deps = [
   gmodule_dep,
+  glib_dep,
   gio_dep,
   gtk_dep,
 ]

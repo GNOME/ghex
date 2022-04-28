@@ -29,7 +29,7 @@ ghex_version_major = version_arr[0].to_int()
 
 # libgtkhex version info
 libgtkhex_api_version   = 4
-libgtkhex_version_major = 0
+libgtkhex_version_major = 1  # for soname (ABI major version) only
 libgtkhex_version_minor = 1
 libgtkhex_version_micro = 0
 libgtkhex_version = '@0@.@1@.@2@'.format(libgtkhex_api_version, libgtkhex_version_minor, libgtkhex_version_micro)
@@ -130,8 +130,10 @@ if mmap_backend
   message('...DONE')
 endif
 
+glib_ver = '>= 2.68.0'
 gmodule_dep = dependency('gmodule-2.0')
-gio_dep = dependency('gio-2.0', version: '>= 2.66.0')
+glib_dep = dependency('glib-2.0', version: glib_ver)
+gio_dep = dependency('gio-2.0', version: glib_ver)
 gtk_dep = dependency('gtk4', version: '>= 4.0.0')
 
 configure_file(

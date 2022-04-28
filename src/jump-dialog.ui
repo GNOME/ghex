@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- vim: ts=2 sw=2
+-->
+<!--
+  Copyright © 2022 Logan Rathbone <poprocks@gmail.com>
+
+	GHex is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License as
+	published by the Free Software Foundation; either version 2 of the
+	License, or (at your option) any later version.
+
+	GHex is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with GHex; see the file COPYING.
+	If not, write to the Free Software Foundation, Inc.,
+	51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+	Original GHex Author: Jaka Mocnik <jaka@gnu.org>
+-->
+
+<interface domain="gtk40">
+	<template class="JumpDialog" parent="PaneDialog">
+
+		<child>
+			<object class="GtkBox" id="box">
+				<property name="orientation">horizontal</property>
+				<property name="spacing">12</property>
+
+				<child><object class="GtkLabel" id="label">
+						<property name="label" translatable="yes">Jump to byte (enter offset):</property>
+				</object></child>
+
+				<child><object class="GtkEntry" id="int_entry">
+						<accessibility>
+							<property name="description" translatable="yes">Enter the offset byte to jump to. The default is decimal format, but other format strings are supported such as hexidecimal format, if C-style notation using the '0x' prefix is used. If your string is not recognized, a dialog will be presented explaining the valid formats of strings accepted.</property>
+						</accessibility>
+				</object></child>
+
+				<child><object class="GtkButton" id="ok">
+						<property name="label" translatable="yes">_Jump</property>
+						<property name="use-underline">true</property>
+						<property name="receives-default">true</property>
+						<accessibility>
+							<property name="description" translatable="yes">Jumps to the specified byte</property>
+						</accessibility>
+				</object></child>
+
+				<child><object class="GtkButton" id="cancel">
+						<property name="icon-name">window-close-symbolic</property>
+						<property name="hexpand">true</property>
+						<property name="halign">end</property>
+						<property name="has-frame">false</property>
+						<accessibility>
+							<property name="label" translatable="yes">Close</property>
+							<property name="description" translatable="yes">Closes the jump-to-byte pane</property>
+						</accessibility>
+				</object></child>
+
+			</object>
+		</child> <!-- box -->
+	</template> <!-- JumpDialog -->
+</interface>

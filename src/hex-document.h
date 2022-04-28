@@ -56,13 +56,33 @@ typedef enum
 } HexChangeType;
 
 /**
+ * HexSearchFlags:
+ * @HEX_SEARCH_NONE: no search flags (byte-for-byte match)
+ * @HEX_SEARCH_REGEX: regular expression search
+ * @HEX_SEARCH_IGNORE_CASE: case-insensitive search
+ *
+ * Bitwise flags for search options that can be combined as desired.
+ *
+ * Since: 4.2
+ */
+typedef enum
+{
+	HEX_SEARCH_NONE				= 0,
+	HEX_SEARCH_REGEX			= 1 << 0,
+	HEX_SEARCH_IGNORE_CASE		= 1 << 1,
+} HexSearchFlags;
+
+/**
  * HexDocumentFindData:
  * @found: whether the string was found
  * @start: start offset of the payload, in bytes
  * @what: (array length=len): a pointer to the data to search within the
  *   #HexDocument
  * @len: length in bytes of the data to be searched for
+ * @flags: [enum@Hex.SearchFlags] search flags (Since: 4.2)
  * @offset: offset of the found string
+ * @found_len: length of the found string (may be different from the search
+ *   string when dealing with regular expressions, for example) (Since: 4.2)
  * @found_msg: message intended to be displayed by the client if the string
  *   is found
  * @not_found_msg: message intended to be displayed by the client if the string
@@ -80,9 +100,16 @@ typedef struct
 	gint64 start;
 	const char *what;
 	size_t len;
+	HexSearchFlags flags;
 	gint64 offset;
+	size_t found_len;
 	const char *found_msg;
 	const char *not_found_msg;
+
+	/*< private >*/
+	gpointer padding1[5];
+	gint64 padding2[5];
+	int padding3[5];
 } HexDocumentFindData;
 
 /**
@@ -117,6 +144,11 @@ typedef struct
 	HexChangeType type;
 	char *v_string;
 	char v_byte;
+
+	/*< private >*/
+	gpointer padding1[5];
+	gint64 padding2[5];
+	int padding3[5];
 } HexChangeData;
 
 
@@ -159,19 +191,33 @@ gboolean	hex_document_undo (HexDocument *doc);
 gboolean	hex_document_redo (HexDocument *doc);
 int			hex_document_compare_data (HexDocument *doc, const char *what,
 		gint64 pos, size_t len);
+int			hex_document_compare_data_full (HexDocument *doc,
+		HexDocumentFindData *find_data, gint64 pos);
 gboolean	hex_document_find_forward (HexDocument *doc, gint64 start,
 		const char *what, size_t len, gint64 *offset);
+gboolean hex_document_find_forward_full (HexDocument *doc,
+		HexDocumentFindData *find_data);
 
 void	hex_document_find_forward_async (HexDocument *doc, gint64 start,
 		const char *what, size_t len, gint64 *offset, const char *found_msg,
 		const char *not_found_msg, GCancellable *cancellable,
 		GAsyncReadyCallback callback, gpointer user_data);
 
+void	hex_document_find_forward_full_async (HexDocument *doc,
+		HexDocumentFindData *find_data, GCancellable *cancellable,
+		GAsyncReadyCallback callback, gpointer user_data);
+
 gboolean	hex_document_find_backward (HexDocument *doc, gint64 start,
 		const char *what, size_t len, gint64 *offset);
+
+gboolean hex_document_find_backward_full (HexDocument *doc,
+		HexDocumentFindData *find_data);
 void		hex_document_find_backward_async (HexDocument *doc, gint64 start,
 		const char *what, size_t len, gint64 *offset, const char *found_msg,
 		const char *not_found_msg, GCancellable *cancellable,
+		GAsyncReadyCallback callback, gpointer user_data);
+void	hex_document_find_backward_full_async (HexDocument *doc,
+		HexDocumentFindData *find_data, GCancellable *cancellable,
 		GAsyncReadyCallback callback, gpointer user_data);
 
 HexDocumentFindData *
@@ -184,6 +230,11 @@ GFile *		hex_document_get_file (HexDocument *doc);
 gboolean	hex_document_set_file (HexDocument *doc, GFile *file);
 HexChangeData *	hex_document_get_undo_data (HexDocument *doc);
 HexBuffer * 	hex_document_get_buffer (HexDocument *doc);
+
+/* HexDocumentFindData functions */
+
+HexDocumentFindData *hex_document_find_data_new (void);
+HexDocumentFindData *hex_document_find_data_copy (HexDocumentFindData *data);
 
 G_END_DECLS
 

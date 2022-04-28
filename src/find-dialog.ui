@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- vim: ts=2 sw=2
+-->
+<!--
+  Copyright © 2022 Logan Rathbone <poprocks@gmail.com>
+
+	GHex is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License as
+	published by the Free Software Foundation; either version 2 of the
+	License, or (at your option) any later version.
+
+	GHex is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with GHex; see the file COPYING.
+	If not, write to the Free Software Foundation, Inc.,
+	51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+	Original GHex Author: Jaka Mocnik <jaka@gnu.org>
+-->
+
+<interface domain="gtk40">
+	<template class="FindDialog" parent="PaneDialog">
+
+		<child><object class="GtkBox" id="vbox">
+				<property name="orientation">vertical</property>
+
+				<child><object class="GtkFrame" id="frame">
+						<property name="label" translatable="yes">Find String</property>
+						<accessibility>
+							<property name="description" translatable="yes">Enter the hex data or ASCII data to search for</property>
+						</accessibility>
+				</object></child> 
+
+				<child><object class="GtkBox" id="hbox">
+						<property name="orientation">horizontal</property>
+
+						<child><object class="GtkButton" id="f_next">
+								<property name="label" translatable="yes">Find _Next</property>
+								<property name="use-underline">true</property>
+								<property name="receives-default">true</property>
+								<accessibility>
+									<property name="description" translatable="yes">Finds the next occurrence of the search string</property>
+								</accessibility>
+						</object></child>
+
+						<child><object class="GtkButton" id="f_prev">
+								<property name="label" translatable="yes">Find _Previous</property>
+								<property name="use-underline">true</property>
+								<accessibility>
+									<property name="description" translatable="yes">Finds the previous occurrence of the search string</property>
+								</accessibility>
+						</object></child>
+
+						<child><object class="GtkButton" id="f_clear">
+								<property name="label" translatable="yes">_Clear</property>
+								<property name="use-underline">true</property>
+								<accessibility>
+									<property name="description" translatable="yes">Clears the data you are searching for</property>
+								</accessibility>
+						</object></child>
+
+						<child><object class="GtkMenuButton" id="options_btn">
+								<property name="hexpand">true</property>
+								<property name="halign">end</property>
+								<property name="icon-name">emblem-system-symbolic</property>
+								<accessibility>
+									<property name="label" translatable="yes">Find options</property>
+									<property name="description" translatable="yes">View options of the find pane</property>
+								</accessibility>
+						</object></child>
+
+						<child><object class="GtkButton" id="close">
+								<property name="icon-name">window-close-symbolic</property>
+								<property name="has-frame">false</property>
+								<property name="hexpand">false</property>
+								<property name="halign">end</property>
+								<accessibility>
+									<property name="label" translatable="yes">Close</property>
+									<property name="description" translatable="yes">Closes the find pane</property>
+								</accessibility>
+						</object></child>
+
+				</object></child> <!-- hbox -->
+		</object></child> <!-- vbox -->
+	</template> <!-- FindDialog -->
+</interface>

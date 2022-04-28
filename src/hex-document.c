@@ -52,6 +52,7 @@ static void undo_stack_ascend           (HexDocument *doc);
 static void undo_stack_free             (HexDocument *doc);
 
 #define DEFAULT_UNDO_DEPTH 1024
+#define REGEX_SEARCH_LEN 1024	/* FIXME/TODO: This is kind of lazy. Stopgap? */
 
 enum {
 	DOCUMENT_CHANGED,
@@ -68,21 +69,43 @@ enum {
 static guint hex_signals[LAST_SIGNAL];
 
 
-/* TODO - come up with _new functions for the GTypes below and actually use
- * them. */
-
 /* HexDocumentFindData GType Definitions */
 
-/* FIXME - unused and could be unreliable. */
-static HexDocumentFindData *
+/**
+ * hex_document_find_data_new:
+ *
+ * Create a new empty [struct@Hex.DocumentFindData] structure.
+ *
+ * Returns: a new #HexDocumentFindData structure. Can be freed with
+ *   `g_free ()`.
+ *
+ * Since: 4.2
+ */
+HexDocumentFindData *
+hex_document_find_data_new (void)
+{
+	return g_new0 (HexDocumentFindData, 1);
+}
+
+/**
+ * hex_document_find_data_copy:
+ *
+ * Copy a [struct@Hex.DocumentFindData] structure. This function is likely
+ * only useful for language bindings.
+ *
+ * Returns: a newly allocated #HexDocumentFindData structure. Can be freed with
+ *   `g_free ()`.
+ *
+ * Since: 4.2
+ */
+HexDocumentFindData *
 hex_document_find_data_copy (HexDocumentFindData *data)
 {
-	return data;
+	return g_memdup2 (data, sizeof *data);
 }
 
 G_DEFINE_BOXED_TYPE (HexDocumentFindData, hex_document_find_data,
 		hex_document_find_data_copy, g_free)
-
 
 /* HexChangeData GType Definitions */
 
@@ -1096,6 +1119,117 @@ hex_document_export_html (HexDocument *doc,
 }
 
 /**
+ * hex_document_compare_data_full:
+ * @find_data: a #HexDocumentFindData structure
+ * @pos: offset position of the #HexDocument data to compare with the
+ *   string contained in the `find_data` structure
+ *
+ * Full version of [method@Hex.Document.compare_data] to allow data
+ * comparisons broader than byte-for-byte matches only. However, it is
+ * less convenient than the above since it requires the caller to allocate
+ * and free a #HexDocumentFindData structure.
+ *
+ * Returns: 0 if the comparison is an exact match; otherwise, a non-zero
+ *   value is returned.
+ *
+ * Since: 4.2
+ */
+int
+hex_document_compare_data_full (HexDocument *doc,
+		HexDocumentFindData *find_data,
+		gint64 pos)
+{
+	char *cp = 0;
+	GError *local_error = NULL;
+	int retval = 1;		/* match will make it zero, so set it non-zero now. */
+
+	g_return_val_if_fail (find_data, 0);
+	g_return_val_if_fail (find_data->what, 0);
+
+	if (find_data->flags & HEX_SEARCH_REGEX)
+	{
+		GRegex *regex;
+		GMatchInfo *match_info;
+		char *regex_search_str;
+		GRegexCompileFlags regex_compile_flags;
+
+		/* GRegex doesn't let you specify the length of the search string, so
+		 * it needs to be NULL-terminated.
+		 */
+		regex_search_str = g_malloc (find_data->len+1);
+		memcpy (regex_search_str, find_data->what, find_data->len);
+		regex_search_str[find_data->len] = 0;
+
+		/* match string doesn't have to be UTF-8 */
+		regex_compile_flags = G_REGEX_RAW;
+
+		if (find_data->flags & HEX_SEARCH_IGNORE_CASE)
+			regex_compile_flags |= G_REGEX_CASELESS;
+
+		regex = g_regex_new (regex_search_str,
+				regex_compile_flags,
+				G_REGEX_MATCH_ANCHORED,
+				&local_error);
+
+		g_free (regex_search_str);
+
+		/* sanity check */
+		if (!regex || local_error)
+		{
+			g_debug ("%s: error: %s", __func__, local_error->message);
+			goto out;
+		}
+
+		cp = hex_buffer_get_data (doc->buffer, pos, REGEX_SEARCH_LEN);
+
+		if (g_regex_match_full (regex, cp,
+					REGEX_SEARCH_LEN,	/* length of string being searched */
+					0,					/* start pos */
+					0,					/* addl match_options */
+					&match_info,
+					&local_error))
+		{
+			char *word = g_match_info_fetch (match_info, 0);
+
+			g_debug ("Found: %s", word);
+			find_data->found_len = strlen (word);
+			g_free (word);
+			retval = 0;
+		}
+		else
+		{
+			if (local_error)
+			{
+				g_debug ("%s: error: %s",
+						__func__,
+						local_error ? local_error->message : NULL);
+			}
+			retval = 1;
+		}
+	}
+	else	/* non regex */
+	{
+		cp = hex_buffer_get_data (doc->buffer, pos, find_data->len);
+
+		if (find_data->flags & HEX_SEARCH_IGNORE_CASE)
+		{
+			retval = g_ascii_strncasecmp (cp, find_data->what, find_data->len);
+		}
+		else
+		{
+			retval = memcmp (cp, find_data->what, find_data->len);
+		}
+
+		if (retval == 0)
+			find_data->found_len = find_data->len;
+	}
+out:
+	g_clear_error (&local_error);
+	g_free (cp);
+	return retval;
+}
+
+/**
  * hex_document_compare_data:
  * @doc: a [class@Hex.Document] object
  * @what: (array length=len): a pointer to the data to compare to data within
@@ -1110,19 +1244,58 @@ int
 hex_document_compare_data (HexDocument *doc,
 		const char *what, gint64 pos, size_t len)
 {
-	char c;
+	int retval;
+	HexDocumentFindData *find_data = hex_document_find_data_new ();
 
-	g_return_val_if_fail (what, 0);
+	find_data->what = what;
+	find_data->len = len;
+	find_data->flags = HEX_SEARCH_NONE;
 
-	for (size_t i = 0; i < len; i++, what++)
+	retval = hex_document_compare_data_full (doc, find_data, pos);
+	g_free (find_data);
+
+	return retval;
+}
+
+/**
+ * hex_document_find_forward_full:
+ * @find_data: a #HexDocumentFindData structure
+ *
+ * Full version of [method@Hex.Document.find_forward] which allows for
+ * more flexibility than the above, which is only for a byte-by-byte exact
+ * match. However, it is less convenient to call since the caller must
+ * create and and free a #HexDocumentFindData structure manually.
+ *
+ * This method will block. For a non-blocking version, use
+ * [method@Hex.Document.find_forward_async].
+ *
+ * Returns: %TRUE if the search string contained in `find_data` was found by
+ *   the requested operation; %FALSE otherwise.
+ *
+ * Since: 4.2
+ */
+gboolean
+hex_document_find_forward_full (HexDocument *doc,
+		HexDocumentFindData *find_data)
+{
+	gint64 pos;
+	gint64 payload = hex_buffer_get_payload_size (
+			hex_document_get_buffer (doc));
+
+	g_return_val_if_fail (find_data != NULL, FALSE);
+
+	pos = find_data->start;
+	while (pos < payload)
 	{
-		c = hex_buffer_get_byte (doc->buffer, pos + i);
-
-		if (c != *what)
-			return (c - *what);
+		if (hex_document_compare_data_full (doc, find_data, pos) == 0)
+		{
+			find_data->offset = pos;
+			return TRUE;
+		}
+		pos++;
 	}
-	
-	return 0;
+
+	return FALSE;
 }
 
 /**
@@ -1148,22 +1321,20 @@ gboolean
 hex_document_find_forward (HexDocument *doc, gint64 start, const char *what,
 						  size_t len, gint64 *offset)
 {
-	gint64 pos;
-	gint64 payload = hex_buffer_get_payload_size (
-			hex_document_get_buffer (doc));
+	gboolean retval;
+	HexDocumentFindData *find_data = hex_document_find_data_new ();
 
-	pos = start;
-	while (pos < payload)
-	{
-		if (hex_document_compare_data (doc, what, pos, len) == 0)
-		{
-			*offset = pos;
-			return TRUE;
-		}
-		pos++;
-	}
+	find_data->start = start;
+	find_data->what = what;
+	find_data->len = len;
+	find_data->flags = HEX_SEARCH_NONE;
 
-	return FALSE;
+	retval = hex_document_find_forward_full (doc, find_data);
+	*offset = find_data->offset;
+
+	g_free (find_data);
+
+	return retval;
 }
 
 /**
@@ -1185,6 +1356,26 @@ hex_document_find_finish (HexDocument *doc,
 	return g_task_propagate_pointer (G_TASK(result), NULL);
 }
 
+#define FIND_FULL_THREAD_TEMPLATE(FUNC_NAME, FUNC_TO_CALL) \
+static void \
+FUNC_NAME (GTask *task, \
+		gpointer source_object, \
+		gpointer task_data, \
+		GCancellable *cancellable) \
+{ \
+	HexDocument *doc = HEX_DOCUMENT (source_object); \
+	HexDocumentFindData *find_data = task_data; \
+ \
+	g_return_if_fail (find_data); \
+ \
+	find_data->found = FUNC_TO_CALL (doc, find_data); \
+ \
+	g_task_return_pointer (task, find_data, g_free); \
+}
+
+FIND_FULL_THREAD_TEMPLATE(hex_document_find_forward_full_thread,
+		hex_document_find_forward_full)
+
 static void
 hex_document_find_forward_thread (GTask *task,
 		gpointer source_object,
@@ -1201,7 +1392,36 @@ hex_document_find_forward_thread (GTask *task,
 	g_task_return_pointer (task, find_data, g_free);
 }
 
-/* CROSSREF: hex-document.h - HexDocumentFindData */
+#define FIND_FULL_ASYNC_TEMPLATE(FUNC_NAME, FUNC_TO_CALL) \
+void \
+FUNC_NAME (HexDocument *doc, \
+		HexDocumentFindData *find_data, \
+		GCancellable *cancellable, \
+		GAsyncReadyCallback callback, \
+		gpointer user_data) \
+{ \
+	GTask *task; \
+ \
+	task = g_task_new (doc, cancellable, callback, user_data); \
+	g_task_set_return_on_cancel (task, TRUE); \
+	g_task_set_task_data (task, find_data, g_free); \
+	g_task_run_in_thread (task, FUNC_TO_CALL); \
+}
+
+/**
+ * hex_document_find_forward_full_async:
+ * @find_data: a #HexDocumentFindData structure
+ * @cancellable: (nullable): a #GCancellable
+ * @callback: (scope async): function to be called when the operation is
+ *   complete
+ *
+ * Non-blocking version of [method@Hex.Document.find_forward_full].
+ *
+ * Since: 4.2
+ */
+FIND_FULL_ASYNC_TEMPLATE(hex_document_find_forward_full_async, 
+		hex_document_find_forward_full_thread)
+
 /**
  * hex_document_find_forward_async:
  * @doc: a [class@Hex.Document] object
@@ -1221,31 +1441,74 @@ hex_document_find_forward_thread (GTask *task,
  * function that should generally be used by a GUI client to find a string
  * forwards in a #HexDocument.
  */
-void
-hex_document_find_forward_async (HexDocument *doc,
-		gint64 start,
-		const char *what,
-		size_t len,
-		gint64 *offset,
-		const char *found_msg,
-		const char *not_found_msg,
-		GCancellable *cancellable,
-		GAsyncReadyCallback callback,
-		gpointer user_data)
+
+#define FIND_ASYNC_TEMPLATE(FUNC_NAME, FUNC_TO_CALL) \
+void \
+FUNC_NAME (HexDocument *doc, \
+		gint64 start, \
+		const char *what, \
+		size_t len, \
+		gint64 *offset, \
+		const char *found_msg, \
+		const char *not_found_msg, \
+		GCancellable *cancellable, \
+		GAsyncReadyCallback callback, \
+		gpointer user_data) \
+{ \
+	GTask *task; \
+	HexDocumentFindData *find_data = hex_document_find_data_new (); \
+ \
+	find_data->start = start; \
+	find_data->what = what; \
+	find_data->len = len; \
+	find_data->found_msg = found_msg; \
+	find_data->not_found_msg = not_found_msg; \
+ \
+	task = g_task_new (doc, cancellable, callback, user_data); \
+	g_task_set_return_on_cancel (task, TRUE); \
+	g_task_set_task_data (task, find_data, g_free); \
+	g_task_run_in_thread (task, FUNC_TO_CALL); \
+	g_object_unref (task);	/* _run_in_thread takes a ref */ \
+}
+
+FIND_ASYNC_TEMPLATE(hex_document_find_forward_async,
+		hex_document_find_forward_thread)
+
+/**
+ * hex_document_find_backward_full:
+ * @find_data: a #HexDocumentFindData structure
+ *
+ * Full version of [method@Hex.Document.find_backward] which allows for
+ * more flexibility than the above, which is only for a byte-by-byte exact
+ * match. However, it is less convenient to call since the caller must
+ * create and and free a #HexDocumentFindData structure manually.
+ *
+ * This method will block. For a non-blocking version, use
+ * [method@Hex.Document.find_backward_full_async].
+ *
+ * Returns: %TRUE if the search string contained in `find_data` was found by
+ *   the requested operation; %FALSE otherwise.
+ *
+ * Since: 4.2
+ */
+gboolean
+hex_document_find_backward_full (HexDocument *doc,
+		HexDocumentFindData *find_data)
 {
-	GTask *task;
-	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1);
+	gint64 pos = find_data->start;
+	
+	if (pos == 0)
+		return FALSE;
 
-	find_data->start = start;
-	find_data->what = what;
-	find_data->len = len;
-	find_data->found_msg = found_msg;
-	find_data->not_found_msg = not_found_msg;
+	do {
+		pos--;
+		if (hex_document_compare_data_full (doc, find_data, pos) == 0) {
+			find_data->offset = pos;
+			return TRUE;
+		}
+	} while (pos > 0);
 
-	task = g_task_new (doc, cancellable, callback, user_data);
-	g_task_set_return_on_cancel (task, TRUE);
-	g_task_set_task_data (task, find_data, g_free);
-	g_task_run_in_thread (task, hex_document_find_forward_thread);
+	return FALSE;
 }
 
 /**
@@ -1271,21 +1534,24 @@ gboolean
 hex_document_find_backward (HexDocument *doc, gint64 start, const char *what,
 						   size_t len, gint64 *offset)
 {
-	gint64 pos = start;
-	
-	if (pos == 0)
-		return FALSE;
+	gboolean retval;
+	HexDocumentFindData *find_data = hex_document_find_data_new ();
 
-	do {
-		pos--;
-		if (hex_document_compare_data (doc, what, pos, len) == 0) {
-			*offset = pos;
-			return TRUE;
-		}
-	} while (pos > 0);
+	find_data->start = start;
+	find_data->what = what;
+	find_data->len = len;
+	find_data->flags = HEX_SEARCH_NONE;
 
-	return FALSE;
+	retval = hex_document_find_backward_full (doc, find_data);
+	*offset = find_data->offset;
+
+	g_free (find_data);
+
+	return retval;
 }
+
+FIND_FULL_THREAD_TEMPLATE(hex_document_find_backward_full_thread,
+		hex_document_find_backward_full)
 
 static void
 hex_document_find_backward_thread (GTask *task,
@@ -1304,6 +1570,20 @@ hex_document_find_backward_thread (GTask *task,
 }
 
 /**
+ * hex_document_find_backward_full_async:
+ * @find_data: a #HexDocumentFindData structure
+ * @cancellable: (nullable): a #GCancellable
+ * @callback: (scope async): function to be called when the operation is
+ *   complete
+ *
+ * Non-blocking version of [method@Hex.Document.find_backward_full].
+ *
+ * Since: 4.2
+ */
+FIND_FULL_ASYNC_TEMPLATE(hex_document_find_backward_full_async,
+		hex_document_find_backward_full_thread)
+
+/**
  * hex_document_find_backward_async:
  * @doc: a [class@Hex.Document] object
  * @start: starting offset byte of the payload to commence the search
@@ -1317,37 +1597,13 @@ hex_document_find_backward_thread (GTask *task,
  *   is not found
  * @callback: (scope async): function to be called when the operation is
  *   complete
- * 
+ *
  * Non-blocking version of [method@Hex.Document.find_backward]. This is the
  * function that should generally be used by a GUI client to find a string
  * backwards in a #HexDocument.
  */
-void
-hex_document_find_backward_async (HexDocument *doc,
-		gint64 start,
-		const char *what,
-		size_t len,
-		gint64 *offset,
-		const char *found_msg,
-		const char *not_found_msg,
-		GCancellable *cancellable,
-		GAsyncReadyCallback callback,
-		gpointer user_data)
-{
-	GTask *task;
-	HexDocumentFindData *find_data = g_new0 (HexDocumentFindData, 1);
-
-	find_data->start = start;
-	find_data->what = what;
-	find_data->len = len;
-	find_data->found_msg = found_msg;
-	find_data->not_found_msg = not_found_msg;
-
-	task = g_task_new (doc, cancellable, callback, user_data);
-	g_task_set_return_on_cancel (task, TRUE);
-	g_task_set_task_data (task, find_data, g_free);
-	g_task_run_in_thread (task, hex_document_find_backward_thread);
-}
+FIND_ASYNC_TEMPLATE(hex_document_find_backward_async,
+		hex_document_find_backward_thread)
 
 /**
  * hex_document_undo:
