@@ -10,7 +10,7 @@
  * permission from Peter Klausler dated December 13, 2021 (see
  * associated git log).
  *
- * Copyright © 2021 Logan Rathbone
+ * Copyright © 2021-2022 Logan Rathbone
  *
  * GHex is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -578,7 +578,7 @@ create_fd_from_path (HexBufferMmap *self, const char *path)
 
 	errno = 0;
 
-	if (stat (path, &statbuf))
+	if (stat (path, &statbuf) != 0)
 	{
 		if (errno != ENOENT) {
 			set_error (self,
@@ -597,11 +597,10 @@ create_fd_from_path (HexBufferMmap *self, const char *path)
 	} 
 	else
 	{
-		/* FIXME - this is probably overkill - hex editor users may wish to
-		 * open a 'non-regular' file.
-		 */
-		if (!S_ISREG(statbuf.st_mode)) {
-			set_error (self, _("Not a regular file"));
+		/* 	We only support regular files and block devices. */
+		if (! S_ISREG(statbuf.st_mode) && ! S_ISBLK(statbuf.st_mode))
+		{
+			set_error (self, _("Not a regular file or block device"));
 			return -1;
 		}
 
@@ -669,7 +668,6 @@ hex_buffer_mmap_read (HexBuffer *buf)
 	}
 
 	bytes = hex_buffer_util_get_file_size (self->file);
-	pages = (bytes + self->pagesize - 1) / self->pagesize;
 
 	/* Set up a clean buffer (read-only memory mapped version of O.G. file)
 	 */
@@ -679,15 +677,23 @@ hex_buffer_mmap_read (HexBuffer *buf)
 	self->clean_bytes = bytes;
 	self->clean = NULL;
 
-	if (! pages)
-	{
-		set_error (self, _("Error reading file"));
-		return FALSE;
-	}
-
 	tmp_clean_fd = create_fd_from_path (self, file_path);
 	if (tmp_clean_fd < 0)
+	{
 		return FALSE;
+	}
+	else if (! self->clean_bytes)	/* block device */
+	{
+		gint64 block_file_size;
+
+		if (ioctl (tmp_clean_fd, BLKGETSIZE64, &block_file_size) != 0)
+		{
+			set_error (self, _("Error attempting to read block device"));
+			return FALSE;
+		}
+		self->clean_bytes = block_file_size;
+	}
+	pages = (self->clean_bytes + self->pagesize - 1) / self->pagesize;
 
 	self->clean_fd = tmp_clean_fd;
 

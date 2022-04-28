@@ -112,6 +112,8 @@ if mmap_backend
     'fcntl.h',
     'sys/stat.h',
     'sys/mman.h',
+    'sys/ioctl.h',
+    'linux/fs.h',
     ]
   foreach h : check_headers_mmap
     cc.has_header(h, required: true)
@@ -120,6 +122,7 @@ if mmap_backend
   check_functions_mmap = [
     'mmap',
     'mremap',
+    'ioctl',
   ]
   foreach f : check_functions_mmap
     if cc.has_function(f) == false
