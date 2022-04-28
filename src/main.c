@@ -113,6 +113,10 @@ static void
 activate (GtkApplication *app,
 	gpointer user_data)
 {
+	/* WORKAROUND https://gitlab.gnome.org/GNOME/gtk/-/issues/4880 */
+
+	g_object_set (gtk_settings_get_default (), "gtk-dialogs-use-header", TRUE, NULL);
+
 	do_app_window (app);
 
 	gtk_window_set_application (window, app);
