@@ -779,53 +779,16 @@ find_dialog_init (FindDialog *self)
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
 	GtkBuilder *builder;
 
+	gtk_widget_init_template (GTK_WIDGET(self));
+
 	f_priv->cancellable = g_cancellable_new ();
 
-	/* Setup our root container. */
-	f_priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-	gtk_widget_set_parent (f_priv->vbox, GTK_WIDGET(self));
-
-	f_priv->frame = gtk_frame_new(_("Find String"));
-	f_priv->f_doc = hex_document_new();
-	f_priv->f_gh = create_hex_view(f_priv->f_doc);
+	/* Setup HexWidget and make child of our frame */
+	f_priv->f_doc = hex_document_new ();
+	f_priv->f_gh = create_hex_view (f_priv->f_doc);
 	gtk_frame_set_child (GTK_FRAME(f_priv->frame), f_priv->f_gh);
-	gtk_box_append (GTK_BOX(f_priv->vbox), f_priv->frame);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->frame),
-			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			_("Enter the hex data or ASCII data to search for"),
-			-1);
 	
-	f_priv->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_append (GTK_BOX(f_priv->vbox), f_priv->hbox);
-
-	f_priv->f_next = gtk_button_new_with_mnemonic (_("Find _Next"));
-	g_signal_connect (G_OBJECT (f_priv->f_next), "clicked",
-					  G_CALLBACK(find_next_cb), self);
-	gtk_widget_set_receives_default (f_priv->f_next, TRUE);
-	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->f_next);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->f_next),
-			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			_("Finds the next occurrence of the search string"),
-			-1);
-
-	f_priv->f_prev = gtk_button_new_with_mnemonic (_("Find _Previous"));
-	g_signal_connect (G_OBJECT (f_priv->f_prev), "clicked",
-					  G_CALLBACK(find_prev_cb), self);
-	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->f_prev);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->f_prev),
-			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			_("Finds the previous occurrence of the search string"),
-			-1);
-
-	f_priv->f_clear = gtk_button_new_with_mnemonic (_("_Clear"));
-	g_signal_connect (G_OBJECT (f_priv->f_clear), "clicked",
-					  G_CALLBACK(find_clear_cb), self);
-	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->f_clear);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->f_clear),
-			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			_("Clears the data you are searching for"),
-			-1);
-
+	/* Setup find options popover as child of our options menubutton */
 	builder = gtk_builder_new_from_resource (RESOURCE_BASE_PATH "/find-options.ui");
 	f_priv->options_popover = GTK_WIDGET(
 			gtk_builder_get_object (builder, "find_options_popover"));
@@ -834,42 +797,17 @@ find_dialog_init (FindDialog *self)
 	f_priv->options_ignore_case = GTK_WIDGET(
 			gtk_builder_get_object (builder, "find_options_ignore_case"));
 
-	f_priv->options_btn = gtk_menu_button_new ();
-	gtk_menu_button_set_icon_name (GTK_MENU_BUTTON(f_priv->options_btn),
-			"emblem-system-symbolic");
 	gtk_menu_button_set_popover (GTK_MENU_BUTTON(f_priv->options_btn),
 			f_priv->options_popover);
-	gtk_widget_set_hexpand (f_priv->options_btn, TRUE);
-	gtk_widget_set_halign (f_priv->options_btn, GTK_ALIGN_END);
-	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->options_btn);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->options_btn),
-			GTK_ACCESSIBLE_PROPERTY_LABEL,
-			_("Find options"),
-			-1);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->options_btn),
-			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			_("View options of the find pane"),
-			-1);
 
 	g_object_unref (builder);
 
-	f_priv->close = gtk_button_new_from_icon_name ("window-close-symbolic");
-	gtk_button_set_has_frame (GTK_BUTTON(f_priv->close), FALSE);
-	gtk_widget_set_hexpand (f_priv->close, FALSE);
-	gtk_widget_set_halign (f_priv->close, GTK_ALIGN_END);
-	g_signal_connect (G_OBJECT (f_priv->close), "clicked",
-			G_CALLBACK(common_cancel_cb), self);
-	g_signal_connect (G_OBJECT (f_priv->close), "clicked",
-			G_CALLBACK(find_cancel_cb), self);
-	gtk_box_append (GTK_BOX(f_priv->hbox), f_priv->close);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->close),
-			GTK_ACCESSIBLE_PROPERTY_LABEL,
-			_("Close"),
-			-1);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(f_priv->close),
-			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			_("Closes the find pane"),
-			-1);
+	/* Setup signals */
+	g_signal_connect (f_priv->f_next, "clicked", G_CALLBACK(find_next_cb), self);
+	g_signal_connect (f_priv->f_prev, "clicked", G_CALLBACK(find_prev_cb), self);
+	g_signal_connect (f_priv->f_clear, "clicked", G_CALLBACK(find_clear_cb), self);
+	g_signal_connect (f_priv->close, "clicked", G_CALLBACK(common_cancel_cb), self);
+	g_signal_connect (f_priv->close, "clicked", G_CALLBACK(find_cancel_cb), self);
 }
 
 static gboolean 
@@ -914,6 +852,25 @@ find_dialog_class_init (FindDialogClass *klass)
 	object_class->finalize = find_dialog_finalize;
 
 	widget_class->grab_focus = find_dialog_grab_focus;
+
+	gtk_widget_class_set_template_from_resource (widget_class,
+			RESOURCE_BASE_PATH "/find-dialog.ui");
+	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
+			vbox);
+	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
+			frame);
+	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
+			hbox);
+	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
+			f_next);
+	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
+			f_prev);
+	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
+			f_clear);
+	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
+			options_btn);
+	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
+			close);
 }
 
 GtkWidget *
@@ -928,46 +885,33 @@ find_dialog_new (void)
 static void
 replace_dialog_init (ReplaceDialog *self)
 {
-	FindDialogPrivate *f_priv =
-		find_dialog_get_instance_private (FIND_DIALOG(self));
+	FindDialogPrivate *f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
+	GtkBuilder *builder;
 
-	self->r_doc = hex_document_new();
+	self->r_doc = hex_document_new ();
 	self->r_gh = create_hex_view (self->r_doc);
 
-	self->r_frame = gtk_frame_new(_("Replace With"));
+	/* Instantiate ReplaceDialog-specific widgets and plug them into the
+	 * FindDialog in the right places.
+	 */
+	builder = gtk_builder_new_from_resource (RESOURCE_BASE_PATH "/replace-dialog.ui");
+
+	self->r_frame = GTK_WIDGET(gtk_builder_get_object (builder, "r_frame"));
 	gtk_frame_set_child (GTK_FRAME(self->r_frame), self->r_gh);
-	gtk_box_insert_child_after (GTK_BOX(f_priv->vbox),
-			self->r_frame, f_priv->frame);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(self->r_frame),
-			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			_("Enter the hex data or ASCII data to replace with"),
-			-1);
+	gtk_box_insert_child_after (GTK_BOX(f_priv->vbox), self->r_frame, f_priv->frame);
 
-	self->replace = gtk_button_new_with_mnemonic (_("_Replace"));
-	g_signal_connect (G_OBJECT (self->replace),
-					  "clicked", G_CALLBACK(replace_one_cb),
-					  self);
-	gtk_box_insert_child_after (GTK_BOX(f_priv->hbox),
-			self->replace, f_priv->f_prev);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(self->replace),
-			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			_("Replaces the search string with the replace string"),
-			-1);
+	self->replace = GTK_WIDGET(gtk_builder_get_object (builder, "replace"));
+	gtk_box_insert_child_after (GTK_BOX(f_priv->hbox), self->replace, f_priv->f_prev);
 
-	self->replace_all = gtk_button_new_with_mnemonic (_("Replace _All"));
-	g_signal_connect (G_OBJECT (self->replace_all),
-					  "clicked", G_CALLBACK(replace_all_cb),
-					  self);
-	gtk_box_insert_child_after (GTK_BOX(f_priv->hbox),
-			self->replace_all, self->replace);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(self->replace_all),
-			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			_("Replaces all occurrences of the search string with the replace string"),
-			-1);
+	self->replace_all = GTK_WIDGET(gtk_builder_get_object (builder, "replace_all"));
+	gtk_box_insert_child_after (GTK_BOX(f_priv->hbox), self->replace_all, self->replace);
 
-	g_signal_connect (G_OBJECT (f_priv->f_clear),
-					  "clicked", G_CALLBACK(replace_clear_cb),
-					  self);
+	g_object_unref (builder);
+
+	/* Setup signals */
+	g_signal_connect (self->replace, "clicked", G_CALLBACK(replace_one_cb), self);
+	g_signal_connect (self->replace_all, "clicked", G_CALLBACK(replace_all_cb), self);
+	g_signal_connect (f_priv->f_clear, "clicked", G_CALLBACK(replace_clear_cb), self);
 }
 
 static void
@@ -1021,26 +965,13 @@ jump_dialog_init (JumpDialog *self)
 									 "   padding-bottom: 6px;\n"
 									 "}\n", -1);
 
-	/* add the provider to our widget's style context. */
 	gtk_style_context_add_provider (context,
 	                                GTK_STYLE_PROVIDER (provider),
 	                                GTK_STYLE_PROVIDER_PRIORITY_SETTINGS);
 
-	/* Widget */
+	/* Widget - template, signals, etc. */
 
-	self->box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
-	gtk_widget_set_parent (self->box, widget);
-	
-	self->label = gtk_label_new (_("Jump to byte (enter offset):"));
-	self->int_entry = gtk_entry_new ();
-	gtk_accessible_update_property (GTK_ACCESSIBLE(self->int_entry),
-		GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-		_("Enter the offset byte to jump to. The default is decimal format, but "
-			"other format strings are supported such as hexidecimal format, if "
-			"C-style notation using the '0x' prefix is used. If your string is "
-			"not recognized, a dialog will be presented explaining the valid "
-			"formats of strings accepted."),
-			-1);
+	gtk_widget_init_template (widget);
 
 	/* In GTK4, you can't expect GtkEntry itself to report correctly whether
 	 * it has focus, (has-focus will == FALSE even though it looks focused...
@@ -1049,37 +980,8 @@ jump_dialog_init (JumpDialog *self)
 	self->focus_controller = gtk_event_controller_focus_new ();
 	gtk_widget_add_controller (self->int_entry, self->focus_controller);
 	
-	gtk_box_append (GTK_BOX(self->box), self->label);
-	gtk_box_append (GTK_BOX(self->box), self->int_entry);
-
-	self->ok = gtk_button_new_with_mnemonic (_("_Jump"));
-	g_signal_connect (G_OBJECT (self->ok),
-					  "clicked", G_CALLBACK(goto_byte_cb),
-					  self);
-	gtk_box_append (GTK_BOX(self->box), self->ok);
-	gtk_widget_set_receives_default (self->ok, TRUE);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(self->ok),
-			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			_("Jumps to the specified byte"),
-			-1);
-
-	self->cancel = gtk_button_new_from_icon_name ("window-close-symbolic");
-	gtk_widget_set_hexpand (self->cancel, TRUE);
-	gtk_widget_set_halign (self->cancel, GTK_ALIGN_END);
-	gtk_button_set_has_frame (GTK_BUTTON(self->cancel), FALSE);
-	g_signal_connect (G_OBJECT (self->cancel),
-					  "clicked", G_CALLBACK(common_cancel_cb),
-					  self);
-	gtk_box_append (GTK_BOX(self->box), self->cancel);
-
-	gtk_accessible_update_property (GTK_ACCESSIBLE(self->cancel),
-			GTK_ACCESSIBLE_PROPERTY_LABEL,
-			_("Close"),
-			-1);
-	gtk_accessible_update_property (GTK_ACCESSIBLE(self->cancel),
-			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-			_("Closes the jump-to-byte pane"),
-			-1);
+	g_signal_connect (self->ok, "clicked", G_CALLBACK(goto_byte_cb), self);
+	g_signal_connect (self->cancel, "clicked", G_CALLBACK(common_cancel_cb), self);
 }
 
 static gboolean 
@@ -1126,8 +1028,15 @@ jump_dialog_class_init (JumpDialogClass *klass)
 
 	widget_class->grab_focus = jump_dialog_grab_focus;
 
-	/* CSS */
 	gtk_widget_class_set_css_name (widget_class, JUMP_DIALOG_CSS_NAME);
+
+	gtk_widget_class_set_template_from_resource (widget_class,
+			RESOURCE_BASE_PATH "/jump-dialog.ui");
+	gtk_widget_class_bind_template_child (widget_class, JumpDialog, box);
+	gtk_widget_class_bind_template_child (widget_class, JumpDialog, label);
+	gtk_widget_class_bind_template_child (widget_class, JumpDialog, int_entry);
+	gtk_widget_class_bind_template_child (widget_class, JumpDialog, ok);
+	gtk_widget_class_bind_template_child (widget_class, JumpDialog, cancel);
 }
 
 GtkWidget *
