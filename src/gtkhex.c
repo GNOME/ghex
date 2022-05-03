@@ -334,8 +334,11 @@ toggle_hex_action (GtkWidget *widget,
 {
 	HexWidget *self = HEX_WIDGET (widget);
 
-	self->active_view = VIEW_HEX;
-	gtk_widget_queue_draw (widget);
+	if (gtk_widget_get_visible (self->xdisp))
+	{
+		self->active_view = VIEW_HEX;
+		gtk_widget_queue_draw (widget);
+	}
 }
 
 static void
@@ -345,8 +348,11 @@ toggle_ascii_action (GtkWidget *widget,
 {
 	HexWidget *self = HEX_WIDGET (widget);
 
-	self->active_view = VIEW_ASCII;
-	gtk_widget_queue_draw (widget);
+	if (gtk_widget_get_visible (self->adisp))
+	{
+		self->active_view = VIEW_ASCII;
+		gtk_widget_queue_draw (widget);
+	}
 }
 
 /*
@@ -3297,6 +3303,9 @@ hex_widget_show_hex_column (HexWidget *self, gboolean show)
 {
 	g_return_if_fail (HEX_IS_WIDGET (self));
 
+	if (!show && gtk_widget_get_visible (self->adisp))
+		self->active_view = VIEW_ASCII;
+
 	gtk_widget_set_visible (self->xdisp, show);
 }
 
@@ -3313,6 +3322,9 @@ void
 hex_widget_show_ascii_column (HexWidget *self, gboolean show)
 {
 	g_return_if_fail (HEX_IS_WIDGET (self));
+
+	if (!show && gtk_widget_get_visible (self->xdisp))
+		self->active_view = VIEW_HEX;
 
 	gtk_widget_set_visible (self->adisp, show);
 }
