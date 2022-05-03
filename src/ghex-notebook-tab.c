@@ -106,6 +106,9 @@ ghex_notebook_tab_init (GHexNotebookTab *self)
 	/* Set up our label to hold the document name and the close button. */
 
 	self->label = gtk_label_new (_(untitled_label));
+	gtk_label_set_ellipsize (GTK_LABEL(self->label), PANGO_ELLIPSIZE_END);
+	gtk_widget_set_hexpand (self->label, TRUE);
+
 	self->close_btn = gtk_button_new ();
 
 	gtk_widget_set_halign (self->close_btn, GTK_ALIGN_END);

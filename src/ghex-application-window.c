@@ -150,6 +150,8 @@ static GHexNotebookTab * ghex_application_window_get_current_tab (GHexApplicatio
 static void update_status_message (GHexApplicationWindow *self);
 static void update_gui_data (GHexApplicationWindow *self);
 static gboolean assess_can_save (HexDocument *doc);
+static void do_close_window (GHexApplicationWindow *self);
+static void close_doc_confirmation_dialog (GHexApplicationWindow *self, GHexNotebookTab *tab);
 
 static void doc_read_ready_cb (GObject *source_object, GAsyncResult *res,
 		gpointer user_data);
@@ -303,7 +305,13 @@ ghex_application_window_remove_tab (GHexApplicationWindow *self,
 	page_num = gtk_notebook_page_num (notebook, GTK_WIDGET(tab_gh));
 	gtk_notebook_remove_page (notebook, page_num);
 
+	if (gtk_notebook_get_n_pages (GTK_NOTEBOOK(self->hex_notebook)) == 1)
+		gtk_notebook_set_show_tabs (GTK_NOTEBOOK(self->hex_notebook), FALSE);
+
 	update_gui_data (self);
+
+	if (gtk_notebook_get_n_pages (GTK_NOTEBOOK(self->hex_notebook)) == 0)
+		do_close_window (self);
 }
 
 static void
@@ -401,8 +409,28 @@ check_close_window (GHexApplicationWindow *self)
 	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
 	gboolean unsaved_found = FALSE;
 	int i;
+	const int num_pages = gtk_notebook_get_n_pages (notebook);
 
-	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i)
+	/* We have only one tab open: */
+	if (num_pages == 1)
+	{
+		GHexNotebookTab *tab = ghex_application_window_get_current_tab (self);
+		HexDocument *doc = hex_widget_get_document (ACTIVE_GH);
+
+		if (hex_document_has_changed (doc))
+		{
+			close_doc_confirmation_dialog (self,
+					ghex_application_window_get_current_tab (self));
+		}
+		else
+		{
+			do_close_window (self);
+		}
+		return;
+	}
+
+	/* We have more than one tab open: */
+	for (i = num_pages - 1; i >= 0; --i)
 	{
 		HexWidget *gh;
 		HexDocument *doc = NULL;
@@ -1969,6 +1997,17 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	gtk_notebook_append_page (GTK_NOTEBOOK(self->hex_notebook),
 			GTK_WIDGET(gh),
 			tab);
+
+	/* Because we ellipsize labels in ghex-notebook-tab, we need to set this
+	 * property to TRUE according to TFM, otherwise all the labels will just
+	 * show up as '...' */
+	g_object_set (gtk_notebook_get_page (GTK_NOTEBOOK(self->hex_notebook), GTK_WIDGET(gh)),
+			"tab-expand", TRUE,
+			NULL);
+
+	/* Only show the tab bar if there's more than one (1) tab. */
+	if (gtk_notebook_get_n_pages (GTK_NOTEBOOK(self->hex_notebook)) > 1)
+		gtk_notebook_set_show_tabs (GTK_NOTEBOOK(self->hex_notebook), TRUE);
 
 	/* FIXME - this seems to result in GTK_IS_BOX assertion failures.
 	 * These seem harmless as everything still seems to *work*, but just
