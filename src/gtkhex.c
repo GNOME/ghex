@@ -1224,7 +1224,7 @@ adj_value_changed_cb (GtkAdjustment *adj, HexWidget *self)
 {
 	int dx, dy;
 	
-	if (! gtk_widget_is_drawable (self->xdisp) ||
+	if (! gtk_widget_is_drawable (self->xdisp) &&
 			! gtk_widget_is_drawable (self->adisp))
 		return;
 
