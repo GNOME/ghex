@@ -166,15 +166,9 @@ static void doc_read_ready_cb (GObject *source_object, GAsyncResult *res,
 {																			\
 	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);				\
 	int i;																	\
-	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));							\
 	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i) {			\
-		GHexNotebookTab *tab;												\
-		HexWidget *gh;															\
-		gh = HEX_WIDGET(gtk_notebook_get_nth_page (notebook, i));				\
-		g_return_if_fail (HEX_IS_WIDGET (gh));									\
-		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,		\
-					GTK_WIDGET(gh)));										\
-		g_return_if_fail (GHEX_IS_NOTEBOOK_TAB (tab));						\
+		HexWidget *gh;														\
+		gh = HEX_WIDGET(gtk_notebook_get_nth_page (notebook, i));			\
 /* !NOTEBOOK_GH_FOREACH_START */
 
 #define NOTEBOOK_GH_FOREACH_END												\
@@ -284,8 +278,6 @@ ghex_application_window_get_current_tab (GHexApplicationWindow *self)
 	HexWidget *gh;
 	GHexNotebookTab *tab;
 
-	g_return_val_if_fail (GTK_IS_NOTEBOOK (self->hex_notebook), NULL);
-
 	notebook = GTK_NOTEBOOK(self->hex_notebook);
 	gh = HEX_WIDGET(gtk_notebook_get_nth_page (notebook,
 			gtk_notebook_get_current_page (notebook)));
@@ -308,8 +300,6 @@ ghex_application_window_remove_tab (GHexApplicationWindow *self,
 	HexWidget *tab_gh;
 
 	tab_gh = ghex_notebook_tab_get_hex (tab);
-	g_return_if_fail (HEX_IS_WIDGET(tab_gh));
-
 	page_num = gtk_notebook_page_num (notebook, GTK_WIDGET(tab_gh));
 	gtk_notebook_remove_page (notebook, page_num);
 
@@ -320,8 +310,6 @@ static void
 file_save (GHexApplicationWindow *self)
 {
 	HexDocument *doc;
-
-	g_return_if_fail (HEX_IS_WIDGET (ACTIVE_GH));
 
 	doc = hex_widget_get_document (ACTIVE_GH);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
@@ -342,8 +330,6 @@ file_save (GHexApplicationWindow *self)
 static void
 do_close_window (GHexApplicationWindow *self)
 {
-	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
-	
 	gtk_window_set_application (GTK_WINDOW(self), NULL);
 }
 
@@ -353,8 +339,6 @@ close_all_tabs (GHexApplicationWindow *self)
 	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
 	int i;
 
-	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));
-
 	g_debug("%s: %d", __func__, gtk_notebook_get_n_pages (notebook));
 
 	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i)
@@ -363,11 +347,8 @@ close_all_tabs (GHexApplicationWindow *self)
 		HexWidget *gh;
 
 		gh = HEX_WIDGET(gtk_notebook_get_nth_page (notebook, i));
-		g_return_if_fail (HEX_IS_WIDGET (gh));
-
 		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,
 					GTK_WIDGET(gh)));
-		g_return_if_fail (GHEX_IS_NOTEBOOK_TAB (tab));
 
 		ghex_application_window_remove_tab (self, tab);
 	}
@@ -421,18 +402,13 @@ check_close_window (GHexApplicationWindow *self)
 	gboolean unsaved_found = FALSE;
 	int i;
 
-	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));
-
 	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i)
 	{
 		HexWidget *gh;
 		HexDocument *doc = NULL;
 
 		gh = HEX_WIDGET(gtk_notebook_get_nth_page (notebook, i));
-		g_return_if_fail (HEX_IS_WIDGET (gh));
-
 		doc = hex_widget_get_document (gh);
-		g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 		if (hex_document_has_changed (doc))
 			unsaved_found = TRUE;
@@ -558,8 +534,6 @@ close_tab_shortcut_cb (GtkWidget *widget,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 	GHexNotebookTab *tab = ghex_application_window_get_current_tab (self);
 
-	g_return_val_if_fail (GHEX_IS_NOTEBOOK_TAB (tab), FALSE);
-
 	g_signal_emit_by_name (tab, "close-request");
 
 	return TRUE;
@@ -644,8 +618,6 @@ file_saved_cb (HexDocument *doc,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
-
 	ghex_application_window_set_can_save (self, assess_can_save (doc));
 }
 
@@ -653,8 +625,6 @@ static void
 document_loaded_or_saved_common (GHexApplicationWindow *self,
 		HexDocument *doc)
 {
-	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
-
 	/* The appwindow as a whole not interested in any document changes that
 	 * don't pertain to the one that is actually in view.
 	 */
@@ -667,8 +637,6 @@ document_loaded_or_saved_common (GHexApplicationWindow *self,
 static void
 file_loaded (HexDocument *doc, GHexApplicationWindow *self)
 {
-	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
-	
 	document_loaded_or_saved_common (self, doc);
 	update_gui_data (self);
 }
@@ -767,8 +735,6 @@ pane_close_cb (PaneDialog *pane, gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	g_return_if_fail (PANE_IS_DIALOG (pane));
-
 	if (ACTIVE_GH)
 		gtk_widget_grab_focus (GTK_WIDGET(ACTIVE_GH));
 
@@ -862,8 +828,6 @@ update_gui_data (GHexApplicationWindow *self)
 	int current_pos;
 	HexDialogVal64 val;
 	char *titlebar_label;
-
-	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
 
 	update_status_message (self);
 	update_titlebar (self);
@@ -964,8 +928,6 @@ static void
 ghex_application_window_set_can_save (GHexApplicationWindow *self,
 		gboolean can_save)
 {
-	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
-
 	self->can_save = can_save;
 
 	gtk_widget_action_set_enabled (GTK_WIDGET(self),
@@ -980,13 +942,11 @@ static void
 ghex_application_window_set_insert_mode (GHexApplicationWindow *self,
 		gboolean insert_mode)
 {
-	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW (self));
-
 	self->insert_mode = insert_mode;
 
 	NOTEBOOK_GH_FOREACH_START
 
-	hex_widget_set_insert_mode(gh, insert_mode);
+	hex_widget_set_insert_mode (gh, insert_mode);
 
 	NOTEBOOK_GH_FOREACH_END
 
@@ -1061,8 +1021,6 @@ save_as (GtkWidget *widget,
 	GtkResponseType resp;
 	HexDocument *doc;
 	GFile *default_file;
-
-	g_return_if_fail (HEX_IS_WIDGET (ACTIVE_GH));
 
 	doc = hex_widget_get_document (ACTIVE_GH);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));

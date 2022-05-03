@@ -251,8 +251,6 @@ copy_action (GtkWidget *widget,
 {
 	HexWidget *self = HEX_WIDGET(widget);
 
-	g_return_if_fail (HEX_IS_WIDGET(self));
-
 	hex_widget_copy_to_clipboard (self);
 }
 
@@ -263,8 +261,6 @@ cut_action (GtkWidget *widget,
 {
 	HexWidget *self = HEX_WIDGET(widget);
 
-	g_return_if_fail (HEX_IS_WIDGET(self));
-
 	hex_widget_cut_to_clipboard (self);
 }
 
@@ -274,8 +270,6 @@ paste_action (GtkWidget *widget,
 		GVariant *parameter)
 {
 	HexWidget *self = HEX_WIDGET(widget);
-
-	g_return_if_fail (HEX_IS_WIDGET(self));
 
 	hex_widget_paste_from_clipboard (self);
 }
@@ -288,8 +282,7 @@ redo_action (GtkWidget *widget,
 	HexWidget *self = HEX_WIDGET(widget);
 	HexChangeData *cd;
 
-	g_return_if_fail (HEX_IS_WIDGET(self));
-	g_return_if_fail (HEX_IS_DOCUMENT(self->document));
+	g_return_if_fail (HEX_IS_DOCUMENT (self->document));
 
 	if (hex_document_can_redo (self->document))
 	{
@@ -306,7 +299,6 @@ static void
 doc_undo_redo_cb (HexDocument *doc, gpointer user_data)
 {
 	HexWidget *self = HEX_WIDGET(user_data);
-	g_return_if_fail (HEX_IS_WIDGET (self));
 	
 	gtk_widget_action_set_enabled (GTK_WIDGET(self),
 			"gtkhex.undo", hex_document_can_undo (doc));
@@ -322,8 +314,7 @@ undo_action (GtkWidget *widget,
 	HexWidget *self = HEX_WIDGET(widget);
 	HexChangeData *cd;
 
-	g_return_if_fail (HEX_IS_WIDGET(self));
-	g_return_if_fail (HEX_IS_DOCUMENT(self->document));
+	g_return_if_fail (HEX_IS_DOCUMENT (self->document));
 
 	if (hex_document_can_undo (self->document))
 	{
@@ -1119,8 +1110,6 @@ hex_draw (GtkDrawingArea *drawing_area,
 {
 	HexWidget *self = HEX_WIDGET(user_data);
 
-	g_return_if_fail (HEX_IS_WIDGET(self));
-
 	/* Now that we have self->cpl defined, run this function to bump all
 	 * required values:
 	 */
@@ -1141,7 +1130,6 @@ ascii_draw (GtkDrawingArea *drawing_area,
                            gpointer user_data)
 {
 	HexWidget *self = HEX_WIDGET(user_data);
-	g_return_if_fail(HEX_IS_WIDGET(self));
 
 	recalc_displays (self);
 	allocate_display_buffer (self, VIEW_ASCII);
@@ -1156,7 +1144,6 @@ offsets_draw (GtkDrawingArea *drawing_area,
                            gpointer user_data)
 {
 	HexWidget *self = HEX_WIDGET(user_data);
-	g_return_if_fail(HEX_IS_WIDGET(self));
 
 	recalc_displays (self);
 	render_offsets (self, cr, 0, self->vis_lines);
@@ -1278,8 +1265,6 @@ scroll_cb (GtkEventControllerScroll *controller,
 	HexWidget *self = HEX_WIDGET (user_data);
 	double old_value, new_value;
 
-	g_return_val_if_fail (HEX_IS_WIDGET(self), FALSE);
-
 	old_value = gtk_adjustment_get_value (self->adj);
 	new_value = old_value + dy;
 
@@ -1306,9 +1291,6 @@ pressed_gesture_helper (HexWidget *self,
 		widget = self->xdisp;
 	else
 		widget = self->adisp;
-
-	g_return_if_fail (HEX_IS_WIDGET(self));
-	g_return_if_fail (GTK_IS_WIDGET(widget));
 
 	button = gtk_gesture_single_get_current_button (GTK_GESTURE_SINGLE(gesture));
 
@@ -1355,18 +1337,8 @@ released_gesture_helper (HexWidget *self,
 		double			y,
 		HexWidgetViewType type)
 {
-	GtkWidget *widget;
-	guint button;
-
-	if (type == VIEW_HEX)
-		widget = self->xdisp;
-	else
-		widget = self->adisp;
-
-	g_return_if_fail (HEX_IS_WIDGET(self));
-	g_return_if_fail (GTK_IS_WIDGET(widget));
-	
-	button = gtk_gesture_single_get_current_button (GTK_GESTURE_SINGLE(gesture));
+	guint button = gtk_gesture_single_get_current_button (
+			GTK_GESTURE_SINGLE(gesture));
 
 	/* Single-click */
 	if (button == GDK_BUTTON_PRIMARY && n_press == 1)
@@ -1439,9 +1411,6 @@ drag_update_helper (HexWidget *self,
 		widget = self->xdisp;
 	else
 		widget = self->adisp;
-
-	g_return_if_fail (HEX_IS_WIDGET(self));
-	g_return_if_fail (GTK_IS_WIDGET(widget));
 
 	gtk_widget_get_allocation (widget, &allocation);
 	gtk_gesture_drag_get_start_point (gesture, &start_x, &start_y);
@@ -2336,7 +2305,6 @@ document_changed_cb (HexDocument* doc, gpointer change_data,
         gboolean push_undo, gpointer data)
 {
 	HexWidget *self = HEX_WIDGET(data);
-	g_return_if_fail (HEX_IS_WIDGET (self));
 
     hex_widget_real_data_changed (self, change_data);
 
