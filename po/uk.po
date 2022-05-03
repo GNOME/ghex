@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-04-28 08:22+0000\n"
-"PO-Revision-Date: 2022-04-28 14:37+0300\n"
+"POT-Creation-Date: 2022-05-03 01:26+0000\n"
+"PO-Revision-Date: 2022-05-03 20:43+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
@@ -59,11 +59,11 @@ msgstr "Шістнадцятковий редактор"
 msgid "binary;debug;"
 msgstr "binary;debug;двійковий;бінарний;діагностика;зневадження;"
 
-#: src/chartable.c:144
+#: src/chartable.c:144 src/find-options.ui:67
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:144
+#: src/chartable.c:144 src/find-options.ui:66
 msgid "Hex"
 msgstr "Шістнадцяткова"
 
@@ -218,11 +218,11 @@ msgstr ""
 msgid "ERROR"
 msgstr "ПОМИЛКА"
 
-#: src/findreplace.c:185
+#: src/findreplace.c:222
 msgid "No string provided."
 msgstr "Не надано рядка."
 
-#: src/findreplace.c:360
+#: src/findreplace.c:397
 msgid ""
 "Beginning of file reached.\n"
 "\n"
@@ -232,7 +232,7 @@ msgstr ""
 "\n"
 "Більше збігів не виявлено."
 
-#: src/findreplace.c:362
+#: src/findreplace.c:399
 msgid ""
 "Beginning of file reached.\n"
 "\n"
@@ -242,7 +242,7 @@ msgstr ""
 "\n"
 "Від курсора збігів не виявлено."
 
-#: src/findreplace.c:372
+#: src/findreplace.c:409
 msgid ""
 "End of file reached.\n"
 "\n"
@@ -252,7 +252,7 @@ msgstr ""
 "\n"
 "Більше збігів не виявлено."
 
-#: src/findreplace.c:374
+#: src/findreplace.c:411
 msgid ""
 "End of file reached.\n"
 "\n"
@@ -262,19 +262,19 @@ msgstr ""
 "\n"
 "Від курсора збігів не виявлено."
 
-#: src/findreplace.c:440
+#: src/findreplace.c:480
 msgid "No offset has been specified."
 msgstr "Не вказано зміщення."
 
-#: src/findreplace.c:465
+#: src/findreplace.c:505
 msgid "The specified offset is beyond the  file boundaries."
 msgstr "Вказаний відступ перебуває за межами файла."
 
-#: src/findreplace.c:473
+#: src/findreplace.c:513
 msgid "Can not position cursor beyond the end of file."
 msgstr "Неможливо встановити курсор за межами файла!"
 
-#: src/findreplace.c:483
+#: src/findreplace.c:523
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
@@ -286,16 +286,16 @@ msgstr ""
 "  - шістнадцяткове число, що починається з «0x», чи\n"
 "  - знак «+» або «-» із наступним відносним відступом"
 
-#: src/findreplace.c:540
+#: src/findreplace.c:580
 msgid "String was not found."
 msgstr "Рядок не знайдено."
 
-#: src/findreplace.c:604
+#: src/findreplace.c:644
 #, c-format
 msgid "Search complete: %d replacements made."
 msgstr "Пошук завершено: виконано %d замін."
 
-#: src/findreplace.c:611
+#: src/findreplace.c:651
 msgid "No occurrences were found."
 msgstr "Не виявлено входжень."
 
@@ -332,12 +332,10 @@ msgid "Clears the data you are searching for"
 msgstr "Вилучає дані, які ви шукали"
 
 #: src/find-dialog.ui:72
-#| msgid "Find previous"
 msgid "Find options"
 msgstr "Параметри пошуку"
 
 #: src/find-dialog.ui:73
-#| msgid "Closes the find pane"
 msgid "View options of the find pane"
 msgstr "Перегляд параметрів панелі пошуку"
 
@@ -348,6 +346,14 @@ msgstr "Закрити"
 #: src/find-dialog.ui:84
 msgid "Closes the find pane"
 msgstr "Закриває панель пошуку"
+
+#: src/find-options.ui:60
+msgid "Show:"
+msgstr "Показ:"
+
+#: src/find-options.ui:68
+msgid "Both"
+msgstr "Обидва"
 
 #: src/ghex-application-window.c:335
 msgid ""
@@ -546,7 +552,6 @@ msgid "_New"
 msgstr "С_творити"
 
 #: src/ghex-application-window.ui.in:35
-#| msgid "Save _As..."
 msgid "Save _As"
 msgstr "Зберегти _як"
 
@@ -555,17 +560,14 @@ msgid "_Print"
 msgstr "_Друк"
 
 #: src/ghex-application-window.ui.in:50
-#| msgid "Print Previe_w..."
 msgid "Print Previe_w"
 msgstr "_Попередній перегляд"
 
 #: src/ghex-application-window.ui.in:58
-#| msgid "_Replace"
 msgid "Find and _Replace"
 msgstr "Знайти й за_мінити"
 
 #: src/ghex-application-window.ui.in:62
-#| msgid "Jump to byte"
 msgid "_Jump to Byte"
 msgstr "Пере_йти до байта"
 
@@ -574,12 +576,10 @@ msgid "_Edit"
 msgstr "_Правка"
 
 #: src/ghex-application-window.ui.in:74
-#| msgid "Copy Special"
 msgid "_Copy Special"
 msgstr "С_пеціальне копіювання"
 
 #: src/ghex-application-window.ui.in:78
-#| msgid "Paste Special"
 msgid "_Paste Special"
 msgstr "Спе_ціальне вставлення"
 
@@ -588,7 +588,6 @@ msgid "_Tools"
 msgstr "_Засоби"
 
 #: src/ghex-application-window.ui.in:87
-#| msgid "Character _Table"
 msgid "_Character Table"
 msgstr "_Таблиця символів"
 
@@ -597,27 +596,22 @@ msgid "_Base Converter"
 msgstr "Перетворювач систем _числення"
 
 #: src/ghex-application-window.ui.in:98
-#| msgid "_Group Data As"
 msgid "G_roup Data As"
 msgstr "_Групувати дані за"
 
 #: src/ghex-application-window.ui.in:100
-#| msgid "Bytes (8-bit)"
 msgid "_Bytes (8-bit)"
 msgstr "_Байти (8-бітові)"
 
 #: src/ghex-application-window.ui.in:106
-#| msgid "Words (16-bit)"
 msgid "_Words (16-bit)"
 msgstr "С_лова (16-бітові)"
 
 #: src/ghex-application-window.ui.in:111
-#| msgid "Longwords (32-bit)"
 msgid "_Longwords (32-bit)"
 msgstr "Д_овгі слова (32-бітові)"
 
 #: src/ghex-application-window.ui.in:116
-#| msgid "Quadwords (64-bit)"
 msgid "_Quadwords (64-bit)"
 msgstr "_Чотири слова (64-бітові)"
 
@@ -626,7 +620,6 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
 #: src/ghex-application-window.ui.in:131
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "_Налаштування"
 
@@ -635,12 +628,10 @@ msgid "_Help"
 msgstr "_Довідка"
 
 #: src/ghex-application-window.ui.in:141
-#| msgid "About GHex"
 msgid "_About GHex"
 msgstr "_Про GHex"
 
 #: src/ghex-application-window.ui.in:163
-#| msgid "Unable to open file for reading"
 msgid "Open a file for hex editing"
 msgstr "Відкрити файл у шістнадцятковому редакторі"
 
@@ -653,7 +644,6 @@ msgid "Find a string in the hex document"
 msgstr "Знайти рядок у шістнадцятковому документі"
 
 #: src/ghex-application-window.ui.in:192
-#| msgid "New document"
 msgid "Save document"
 msgstr "Зберегти документ"
 
@@ -664,8 +654,8 @@ msgstr "Не завантажено жодного файла."
 #: src/ghex-application-window.ui.in:300
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
-"Перемкнути режим вставлення (дописувати дані до файла, а не заміняти наявні"
-" дані)"
+"Перемкнути режим вставлення (дописувати дані до файла, а не заміняти наявні "
+"дані)"
 
 #: src/ghex-application-window.ui.in:312
 msgid "Toggle a pane showing various numeric conversions"
@@ -676,7 +666,6 @@ msgid "Untitled document"
 msgstr "Документ без заголовка"
 
 #: src/help-overlay.ui:14
-#| msgid "_File"
 msgid "Files"
 msgstr "Файли"
 
@@ -685,27 +674,22 @@ msgid "New blank hex buffer"
 msgstr "Новий порожній шістнадцятковий буфер"
 
 #: src/help-overlay.ui:26
-#| msgid "Unable to open file for reading"
 msgid "Open a file for editing"
 msgstr "Відкрити файл для редагування"
 
 #: src/help-overlay.ui:33
-#| msgid "Loaded file %s"
 msgid "Save file"
 msgstr "Зберегти файл"
 
 #: src/help-overlay.ui:40
-#| msgid "_Save Changes"
 msgid "Save as"
 msgstr "Зберегти як"
 
 #: src/help-overlay.ui:47
-#| msgid "Close"
 msgid "Close tab"
 msgstr "Закрити вкладку"
 
 #: src/help-overlay.ui:54
-#| msgid "Print the current file"
 msgid "Print the hex file"
 msgstr "Надрукувати шістнадцятковий файл"
 
@@ -714,22 +698,18 @@ msgid "Undo and Redo"
 msgstr "Керування змінами"
 
 #: src/help-overlay.ui:68
-#| msgid "_Undo"
 msgid "Undo"
 msgstr "Скасувати"
 
 #: src/help-overlay.ui:75
-#| msgid "_Redo"
 msgid "Redo"
 msgstr "Повторити"
 
 #: src/help-overlay.ui:84
-#| msgid "Replace"
 msgid "Find and Replace"
 msgstr "Знайти і замінити"
 
 #: src/help-overlay.ui:89
-#| msgid "_Find"
 msgid "Find"
 msgstr "Знайти"
 
@@ -742,27 +722,22 @@ msgid "Clipboard"
 msgstr "Буфер обміну"
 
 #: src/help-overlay.ui:110
-#| msgid "_Copy"
 msgid "Copy"
 msgstr "Копіювати"
 
 #: src/help-overlay.ui:117
-#| msgid "Cu_t"
 msgid "Cut"
 msgstr "Вирізати"
 
 #: src/help-overlay.ui:124
-#| msgid "_Paste"
 msgid "Paste"
 msgstr "Вставити"
 
 #: src/help-overlay.ui:131
-#| msgid "Copy Special"
 msgid "Copy special"
 msgstr "Спеціальне копіювання"
 
 #: src/help-overlay.ui:138
-#| msgid "Paste Special"
 msgid "Paste special"
 msgstr "Спеціальне вставлення"
 
@@ -982,7 +957,7 @@ msgstr "Показати версію програми"
 msgid "This is GHex, version %s\n"
 msgstr "Це GHex, версія %s\n"
 
-#: src/main.c:162
+#: src/main.c:166
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "GHex — шістнадцятковий редактор для середовища GNOME."
 
