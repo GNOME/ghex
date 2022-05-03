@@ -337,6 +337,9 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 		ascii_max_width = asc_alloc.width =
 			full_width - off_alloc.width - sbar_alloc.width;
 
+		self->cpl = asc_alloc.width / self->char_width - 1;
+		self->hex_cpl = 0;
+
 		if (hex)
 		{
 			GtkStyleContext *context;
@@ -408,6 +411,13 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 	{
 		hex_alloc.x = off_alloc.width;
 		hex_alloc.width = full_width - off_alloc.width - sbar_alloc.width;
+
+		self->hex_cpl = hex_alloc.width / self->char_width;
+		/* FIXME: This is kind of lazy and will be optimized for the 'byte'
+		 * grouptype; rework if possible to adapt to group type. */
+		self->cpl = (hex_alloc.width / self->char_width) / 3;
+		self->hex_cpl = hex_widget_layout_util_hex_cpl_from_ascii_cpl (
+				self->cpl, self->group_type);
 
 		/* TODO - get_cpl_from_hex_width ()
 		self->hex_cpl = ???

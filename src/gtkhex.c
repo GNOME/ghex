@@ -1092,15 +1092,20 @@ render_offsets (HexWidget *self,
 #undef MIN_CPL
 
 static void
-allocate_display_buffer (HexWidget *self)
+allocate_display_buffer (HexWidget *self, HexWidgetViewType type)
 {
 	GtkWidget *widget = GTK_WIDGET (self);
-	int hex_cpl = get_hex_cpl (self);
+	int cpl;
+
+	if (type == VIEW_HEX)
+		cpl = get_hex_cpl (self);
+	else
+		cpl = self->cpl;
 
 	if (self->disp_buffer)
 		g_free (self->disp_buffer);
 
-	self->disp_buffer = g_malloc ((hex_cpl + 1) * (self->vis_lines + 1));
+	self->disp_buffer = g_malloc ((cpl + 1) * (self->vis_lines + 1));
 }
 
 /* draw_func for the hex drawing area
@@ -1120,7 +1125,7 @@ hex_draw (GtkDrawingArea *drawing_area,
 	 * required values:
 	 */
 	recalc_displays (self);
-	allocate_display_buffer (self);
+	allocate_display_buffer (self, VIEW_HEX);
 
 	/* Finally, we can do what we wanted to do to begin with: draw our hex
 	 * lines!
@@ -1139,7 +1144,7 @@ ascii_draw (GtkDrawingArea *drawing_area,
 	g_return_if_fail(HEX_IS_WIDGET(self));
 
 	recalc_displays (self);
-	allocate_display_buffer (self);
+	allocate_display_buffer (self, VIEW_ASCII);
 	render_lines (self, cr, 0, self->vis_lines, VIEW_ASCII);
 }
 
@@ -1232,8 +1237,9 @@ adj_value_changed_cb (GtkAdjustment *adj, HexWidget *self)
 {
 	int dx, dy;
 	
-	g_return_if_fail (gtk_widget_is_drawable (self->xdisp) &&
-			gtk_widget_is_drawable (self->adisp));
+	if (! gtk_widget_is_drawable (self->xdisp) ||
+			! gtk_widget_is_drawable (self->adisp))
+		return;
 
 	self->top_line = gtk_adjustment_get_value (adj);
 
@@ -1779,22 +1785,6 @@ key_release_cb (GtkEventControllerKey *controller,
 	return ret;
 }
 
-static void
-show_offsets_widget(HexWidget *self)
-{
-	g_return_if_fail (GTK_IS_WIDGET (self->offsets));
-
-	gtk_widget_show (self->offsets);
-}
-
-static void
-hide_offsets_widget(HexWidget *self)
-{
-	g_return_if_fail (gtk_widget_get_realized (self->offsets));
-
-	gtk_widget_hide (self->offsets);
-}
-
 /* FIXME - Reorganize/clean up. Mostly flown in from old code.
  */
 /*
@@ -2288,7 +2278,8 @@ hex_widget_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 			child != NULL;
 			child = gtk_widget_get_next_sibling (child))
 	{
-		gtk_widget_snapshot_child (widget, child, snapshot);
+		if (gtk_widget_get_visible (child))
+			gtk_widget_snapshot_child (widget, child, snapshot);
 	}
 
 	g_signal_emit_by_name(G_OBJECT(self), "draw-complete");
@@ -3320,11 +3311,42 @@ hex_widget_show_offsets (HexWidget *self, gboolean show)
 {
 	g_return_if_fail (HEX_IS_WIDGET (self));
 
+	gtk_widget_set_visible (self->offsets, show);
 	self->show_offsets = show;
-	if (show)
-		show_offsets_widget(self);
-	else
-		hide_offsets_widget(self);
+}
+
+/**
+ * hex_widget_show_hex_column:
+ * @show: %TRUE if the hex column should be shown, %FALSE if it should
+ *   be hidden
+ *
+ * Set whether the hex column of the widget should be shown.
+ *
+ * Since: 4.2
+ */
+void
+hex_widget_show_hex_column (HexWidget *self, gboolean show)
+{
+	g_return_if_fail (HEX_IS_WIDGET (self));
+
+	gtk_widget_set_visible (self->xdisp, show);
+}
+
+/**
+ * hex_widget_show_ascii_column:
+ * @show: %TRUE if the ASCII column should be shown, %FALSE if it should
+ *   be hidden
+ *
+ * Set whether the ASCII column of the widget should be shown.
+ *
+ * Since: 4.2
+ */
+void
+hex_widget_show_ascii_column (HexWidget *self, gboolean show)
+{
+	g_return_if_fail (HEX_IS_WIDGET (self));
+
+	gtk_widget_set_visible (self->adisp, show);
 }
 
 /**

@@ -84,6 +84,8 @@ void hex_widget_set_group_type (HexWidget *gh, HexWidgetGroupType gt);
 HexWidgetGroupType hex_widget_get_group_type (HexWidget *gh);
 
 void hex_widget_show_offsets (HexWidget *gh, gboolean show);
+void hex_widget_show_hex_column (HexWidget *self, gboolean show);
+void hex_widget_show_ascii_column (HexWidget *self, gboolean show);
 
 gboolean hex_widget_get_insert_mode (HexWidget *gh);
 void hex_widget_set_insert_mode (HexWidget *gh, gboolean insert);
