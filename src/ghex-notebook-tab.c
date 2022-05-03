@@ -79,14 +79,9 @@ ghex_notebook_tab_document_changed_cb (HexDocument *doc,
 }
 
 static void
-ghex_notebook_tab_close_click_cb (GtkButton *button,
-               gpointer   user_data)
+emit_close_request (GHexNotebookTab *self)
 {
-	GHexNotebookTab *self = GHEX_NOTEBOOK_TAB(user_data);
-
-	g_signal_emit(self,
-			signals[CLOSE_REQUEST],
-			0);		/* GQuark detail (just set to 0 if unknown) */
+	g_signal_emit (self, signals[CLOSE_REQUEST], 0);
 }
 
 
@@ -97,6 +92,7 @@ ghex_notebook_tab_init (GHexNotebookTab *self)
 {
 	GtkWidget *widget = GTK_WIDGET (self);
 	GtkLayoutManager *layout_manager;
+	GtkGesture *gesture;
 
 	/* Set spacing between label and close button. */
 
@@ -119,10 +115,22 @@ ghex_notebook_tab_init (GHexNotebookTab *self)
 	gtk_widget_set_parent (self->label, widget);
 	gtk_widget_set_parent (self->close_btn, widget);
 
+	/* Setup middle click gesture */
+
+	gesture = gtk_gesture_click_new ();
+
+	gtk_gesture_single_set_button (GTK_GESTURE_SINGLE(gesture),
+			GDK_BUTTON_MIDDLE);
+
+	g_signal_connect_swapped (gesture, "pressed",
+			G_CALLBACK(emit_close_request), self);
+
+	gtk_widget_add_controller (widget, GTK_EVENT_CONTROLLER(gesture));
+
 	/* SIGNALS */
 
-    g_signal_connect (self->close_btn, "clicked",
-                     G_CALLBACK(ghex_notebook_tab_close_click_cb), self);
+    g_signal_connect_swapped (self->close_btn, "clicked",
+			G_CALLBACK(emit_close_request), self);
 }
 
 static void
