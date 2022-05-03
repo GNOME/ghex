@@ -73,6 +73,7 @@ typedef struct {
 	GtkWidget *options_popover;
 	GtkWidget *options_regex;
 	GtkWidget *options_ignore_case;
+	GtkWidget *options_show_pane;
 	gboolean found;
 	size_t last_found_len;
 	GCancellable *cancellable;
@@ -158,6 +159,42 @@ pane_dialog_real_close (PaneDialog *self)
 		hex_widget_delete_autohighlight (priv->gh, priv->auto_highlight);
 	}
 	priv->auto_highlight = NULL;
+}
+
+static void
+find_options_show_pane_changed_cb (GtkComboBox *cb, gpointer user_data)
+{
+	FindDialog *self = FIND_DIALOG(user_data);
+	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
+	const char *active_id = gtk_combo_box_get_active_id (cb);
+	gboolean show_ascii, show_hex;
+
+	if (g_strcmp0 (active_id, "ascii") == 0)
+	{
+		show_ascii = TRUE;
+		show_hex = FALSE;
+	}
+	else if (g_strcmp0 (active_id, "hex") == 0)
+	{
+		show_ascii = FALSE;
+		show_hex = TRUE;
+	}
+	else	/* both */
+	{
+		show_ascii = TRUE;
+		show_hex = TRUE;
+	}
+
+	hex_widget_show_hex_column (HEX_WIDGET(f_priv->f_gh), show_hex);
+	hex_widget_show_ascii_column (HEX_WIDGET(f_priv->f_gh), show_ascii);
+
+	if (REPLACE_IS_DIALOG (self))
+	{
+		hex_widget_show_hex_column (HEX_WIDGET(REPLACE_DIALOG(self)->r_gh),
+				show_hex);
+		hex_widget_show_ascii_column (HEX_WIDGET(REPLACE_DIALOG(self)->r_gh),
+				show_ascii);
+	}
 }
 
 static void
@@ -375,6 +412,7 @@ find_next_cb (GtkButton *button, gpointer user_data)
 				"No occurrences found from cursor."));
 }
 
+/* CROSSREF: replace_clear_cb */
 static void
 find_clear_cb (GtkButton *button, gpointer user_data)
 {
@@ -390,6 +428,8 @@ find_clear_cb (GtkButton *button, gpointer user_data)
 
 	f_priv->f_doc = new_doc;
 	f_priv->f_gh = new_gh;
+
+	find_options_show_pane_changed_cb (GTK_COMBO_BOX(f_priv->options_show_pane), self);
 
 	gtk_widget_grab_focus (GTK_WIDGET(self));
 }
@@ -617,10 +657,12 @@ clean_up:
 	g_free (find_data);
 }
 
+/* CROSSREF: find_clear_cb */
 static void
 replace_clear_cb (GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
+	FindDialogPrivate *f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
 	GtkWidget *new_r_gh;
 	HexDocument *new_r_doc;
 
@@ -631,6 +673,8 @@ replace_clear_cb (GtkButton *button, gpointer user_data)
 
 	self->r_doc = new_r_doc;
 	self->r_gh = new_r_gh;
+
+	find_options_show_pane_changed_cb (GTK_COMBO_BOX(f_priv->options_show_pane), self);
 
 	gtk_widget_grab_focus (GTK_WIDGET(self));
 }
@@ -796,6 +840,8 @@ find_dialog_init (FindDialog *self)
 			gtk_builder_get_object (builder, "find_options_regex"));
 	f_priv->options_ignore_case = GTK_WIDGET(
 			gtk_builder_get_object (builder, "find_options_ignore_case"));
+	f_priv->options_show_pane = GTK_WIDGET(
+			gtk_builder_get_object (builder, "find_options_show_pane"));
 
 	gtk_menu_button_set_popover (GTK_MENU_BUTTON(f_priv->options_btn),
 			f_priv->options_popover);
@@ -808,6 +854,8 @@ find_dialog_init (FindDialog *self)
 	g_signal_connect (f_priv->f_clear, "clicked", G_CALLBACK(find_clear_cb), self);
 	g_signal_connect (f_priv->close, "clicked", G_CALLBACK(common_cancel_cb), self);
 	g_signal_connect (f_priv->close, "clicked", G_CALLBACK(find_cancel_cb), self);
+	g_signal_connect (f_priv->options_show_pane, "changed",
+			G_CALLBACK(find_options_show_pane_changed_cb), self);
 }
 
 static gboolean 

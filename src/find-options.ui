@@ -29,27 +29,49 @@
 			<object class="GtkGrid" id="find_options_grid">
 				<property name="column-spacing">6</property>
 				<property name="row-spacing">6</property>
-				<child>
-					<object class="GtkCheckButton" id="find_options_regex">
+
+				<child><object class="GtkCheckButton" id="find_options_regex">
 						<property name="use-underline">true</property>
 						<property name="label">_Regular expressions</property>
 						<layout>
 							<property name="column">0</property>
 							<property name="row">0</property>
 						</layout>
-					</object>
-				</child>
-				<child>
-					<object class="GtkCheckButton" id="find_options_ignore_case">
+				</object></child>
+
+				<child><object class="GtkCheckButton" id="find_options_ignore_case">
 						<property name="use-underline">true</property>
 						<property name="label">_Ignore case</property>
 						<layout>
 							<property name="column">1</property>
 							<property name="row">0</property>
 						</layout>
-					</object>
-				</child>
+				</object></child>
+
+				<child><object class="GtkBox">
+						<property name="orientation">horizontal</property>
+						<property name="spacing">6</property>
+						<layout>
+							<property name="column">0</property>
+							<property name="row">1</property>
+						</layout>
+
+						<child><object class="GtkLabel">
+								<property name="label" translatable="yes">Show:</property>
+						</object></child>
+
+						<child><object class="GtkComboBoxText" id="find_options_show_pane">
+								<property name="hexpand">true</property>
+								<items>
+									<item translatable="yes" id="hex">Hex</item>
+									<item translatable="yes" id="ascii">ASCII</item>
+									<item translatable="yes" id="both">Both</item>
+								</items>
+								<property name="active">2</property>
+						</object></child>
+				</object></child> <!-- hbox -->
+
 			</object> <!-- grid -->
 		</child>
-	</object>
+	</object> <!-- popover -->
 </interface>
