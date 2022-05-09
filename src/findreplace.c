@@ -75,7 +75,6 @@ typedef struct {
 	GtkWidget *options_ignore_case;
 	GtkWidget *options_show_pane;
 	gboolean found;
-	size_t last_found_len;
 	GCancellable *cancellable;
 
 } FindDialogPrivate;
@@ -294,7 +293,6 @@ find_ready_cb (GObject *source_object,
 	if (find_data->found)
 	{
 		f_priv->found = TRUE;
-		f_priv->last_found_len = find_data->found_len;
 
 		hex_widget_set_cursor (priv->gh, find_data->offset);
 
@@ -366,7 +364,7 @@ find_common (FindDialog *self, enum FindDirection direction,
 	{
 		find_data->start = f_priv->found == FALSE ?
 								cursor_pos :
-								cursor_pos + f_priv->last_found_len - 1;
+								cursor_pos + 1;
 
 		hex_document_find_forward_full_async (doc,
 				find_data,
