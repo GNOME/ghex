@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-04-20 19:53+0000\n"
-"PO-Revision-Date: 2022-04-20 23:20+0200\n"
+"POT-Creation-Date: 2022-05-09 17:19+0000\n"
+"PO-Revision-Date: 2022-05-23 11:40+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -23,6 +23,7 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
+#: src/ghex-application-window.ui.in:149
 msgid "GHex"
 msgstr "GHex"
 
@@ -59,35 +60,35 @@ msgstr "Hexadecimalredigerare"
 msgid "binary;debug;"
 msgstr "binär;felsök;debug;"
 
-#: src/chartable.c:148
+#: src/chartable.c:144 src/find-options.ui:67
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:148
+#: src/chartable.c:144 src/find-options.ui:66
 msgid "Hex"
 msgstr "Hexadecimalt"
 
-#: src/chartable.c:148
+#: src/chartable.c:144
 msgid "Decimal"
 msgstr "Decimalt"
 
-#: src/chartable.c:149
+#: src/chartable.c:145
 msgid "Octal"
 msgstr "Oktalt"
 
-#: src/chartable.c:149
+#: src/chartable.c:145
 msgid "Binary"
 msgstr "Binärt"
 
-#: src/chartable.c:175
+#: src/chartable.c:171
 msgid "Character table"
 msgstr "Teckentabell"
 
-#: src/chartable.c:243
+#: src/chartable.c:239
 msgid "_Insert Character"
 msgstr "_Infoga tecken"
 
-#: src/chartable.c:247 src/converter.c:186 src/preferences.ui:261
+#: src/chartable.c:243 src/converter.c:186 src/preferences.ui:261
 msgid "_Close"
 msgstr "S_täng"
 
@@ -164,6 +165,26 @@ msgstr "Webbplatsen för GHex"
 msgid "An error has occurred: %s"
 msgstr "Ett fel har inträffat: %s"
 
+#: src/context-menu.ui:30
+msgid "_Undo"
+msgstr "_Ångra"
+
+#: src/context-menu.ui:34
+msgid "_Redo"
+msgstr "_Gör om"
+
+#: src/context-menu.ui:40
+msgid "Cu_t"
+msgstr "Klipp _ut"
+
+#: src/context-menu.ui:44 src/paste-special.c:405
+msgid "_Copy"
+msgstr "_Kopiera"
+
+#: src/context-menu.ui:48 src/paste-special.ui:49
+msgid "_Paste"
+msgstr "_Klistra in"
+
 #: src/converter.c:183
 msgid "Base Converter"
 msgstr "Baskonverterare"
@@ -204,11 +225,11 @@ msgstr ""
 msgid "ERROR"
 msgstr "FEL"
 
-#: src/findreplace.c:187
+#: src/findreplace.c:221
 msgid "No string provided."
 msgstr "Ingen sträng tillhandahölls."
 
-#: src/findreplace.c:345
+#: src/findreplace.c:395
 msgid ""
 "Beginning of file reached.\n"
 "\n"
@@ -218,7 +239,7 @@ msgstr ""
 "\n"
 "Inga fler matchningar hittades."
 
-#: src/findreplace.c:347
+#: src/findreplace.c:397
 msgid ""
 "Beginning of file reached.\n"
 "\n"
@@ -228,7 +249,7 @@ msgstr ""
 "\n"
 "Inga förekomster hittades från markören."
 
-#: src/findreplace.c:357
+#: src/findreplace.c:407
 msgid ""
 "End of file reached.\n"
 "\n"
@@ -238,7 +259,7 @@ msgstr ""
 "\n"
 "Inga fler matchningar hittades."
 
-#: src/findreplace.c:359
+#: src/findreplace.c:409
 msgid ""
 "End of file reached.\n"
 "\n"
@@ -248,20 +269,20 @@ msgstr ""
 "\n"
 "Inga förekomster hittades från markören."
 
-#: src/findreplace.c:442
+#: src/findreplace.c:478
 msgid "No offset has been specified."
 msgstr "Ingen position har angivits."
 
 # TODO: doubled space
-#: src/findreplace.c:467
+#: src/findreplace.c:503
 msgid "The specified offset is beyond the  file boundaries."
 msgstr "Den angivna positionen ligger utanför filgränserna."
 
-#: src/findreplace.c:475
+#: src/findreplace.c:511
 msgid "Can not position cursor beyond the end of file."
 msgstr "Kan inte placera markören efter filslutet."
 
-#: src/findreplace.c:485
+#: src/findreplace.c:521
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
@@ -273,107 +294,76 @@ msgstr ""
 "  - ett hexadecimalt nummer, som börjar med ”0x” eller\n"
 "  - ett ”+” eller ”-”-tecken, följt av en relativ position"
 
-#: src/findreplace.c:547
+#: src/findreplace.c:578
 msgid "String was not found."
 msgstr "Strängen hittades inte."
 
-#: src/findreplace.c:611
+#: src/findreplace.c:642
+#, c-format
+msgid "Search complete: %d replacements made."
+msgstr "Sökning slutförd: %d ersättningar gjorda."
+
+#: src/findreplace.c:649
 msgid "No occurrences were found."
 msgstr "Inga förekomster hittades."
 
-#: src/findreplace.c:800
+#: src/find-dialog.ui:33
 msgid "Find String"
 msgstr "Sök sträng"
 
-#: src/findreplace.c:807
+#: src/find-dialog.ui:35
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Ange de hexadecimala data eller ASCII-data som ska sökas efter"
 
-#: src/findreplace.c:813
+#: src/find-dialog.ui:43
 msgid "Find _Next"
 msgstr "Sök _nästa"
 
-#: src/findreplace.c:820
+#: src/find-dialog.ui:47
 msgid "Finds the next occurrence of the search string"
 msgstr "Söker nästa förekomst av söksträngen"
 
-#: src/findreplace.c:823
+#: src/find-dialog.ui:52
 msgid "Find _Previous"
 msgstr "Sök _föregående"
 
-#: src/findreplace.c:829
+#: src/find-dialog.ui:55
 msgid "Finds the previous occurrence of the search string"
 msgstr "Söker föregående förekomst av söksträngen"
 
-#: src/findreplace.c:832
+#: src/find-dialog.ui:60
 msgid "_Clear"
 msgstr "_Töm"
 
-#: src/findreplace.c:838
+#: src/find-dialog.ui:63
 msgid "Clears the data you are searching for"
 msgstr "Rensar data du söker efter"
 
-#: src/findreplace.c:852 src/findreplace.c:1080
+#: src/find-dialog.ui:72
+msgid "Find options"
+msgstr "Sökalternativ"
+
+#: src/find-dialog.ui:73
+msgid "View options of the find pane"
+msgstr "Visa alternativ för sökpanelen"
+
+#: src/find-dialog.ui:83 src/jump-dialog.ui:59
 msgid "Close"
 msgstr "Stäng"
 
-#: src/findreplace.c:856
+#: src/find-dialog.ui:84
 msgid "Closes the find pane"
-msgstr "Stänger sökrutan"
+msgstr "Stänger sökpanelen"
 
-#: src/findreplace.c:930
-msgid "Replace With"
-msgstr "Ersätt med"
+#: src/find-options.ui:60
+msgid "Show:"
+msgstr "Visa:"
 
-#: src/findreplace.c:936
-msgid "Enter the hex data or ASCII data to replace with"
-msgstr "Ange den hexadecimala data eller ASCII-data som ska ersättas med"
+#: src/find-options.ui:68
+msgid "Both"
+msgstr "Båda"
 
-#: src/findreplace.c:939
-msgid "_Replace"
-msgstr "_Ersätt"
-
-#: src/findreplace.c:947
-msgid "Replaces the search string with the replace string"
-msgstr "Ersätter söksträngen med ersättningssträngen"
-
-#: src/findreplace.c:950
-msgid "Replace _All"
-msgstr "Ersätt _alla"
-
-#: src/findreplace.c:958
-msgid "Replaces all occurrences of the search string with the replace string"
-msgstr "Ersätter alla förekomster av söksträngen med ersättningssträngen"
-
-#: src/findreplace.c:1037
-msgid "Jump to byte (enter offset):"
-msgstr "Hoppa till byte (ange position):"
-
-#: src/findreplace.c:1041
-msgid ""
-"Enter the offset byte to jump to. The default is decimal format, but other "
-"format strings are supported such as hexidecimal format, if C-style notation "
-"using the '0x' prefix is used. If your string is not recognized, a dialog "
-"will be presented explaining the valid formats of strings accepted."
-msgstr ""
-"Ange positionsbyten att hoppa till. Standard är decimalformat, men andra "
-"formatsträngar stöds, såsom hexidecimalt format om notation i C-stil med "
-"prefixet ”0x” används. Om din sträng inte känns igen kommer en dialogruta "
-"att visas som förklarar de giltiga strängformaten som accepteras."
-
-#: src/findreplace.c:1058
-msgid "_Jump"
-msgstr "_Hoppa"
-
-#: src/findreplace.c:1066
-msgid "Jumps to the specified byte"
-msgstr "Hoppar till den angivna byten"
-
-#: src/findreplace.c:1084
-msgid "Closes the jump-to-byte pane"
-msgstr "Stänger hoppa-till-byte-fönstret"
-
-#: src/ghex-application-window.c:333
+#: src/ghex-application-window.c:331
 msgid ""
 "There was an error saving the file.\n"
 "\n"
@@ -385,7 +375,7 @@ msgstr ""
 "Dina rättigheter för filen kan ha ändrats av ett annat program, eller så kan "
 "filen ha blivit skadad."
 
-#: src/ghex-application-window.c:401
+#: src/ghex-application-window.c:392
 msgid ""
 "<b>You have one or more files open with unsaved changes.</b>\n"
 "\n"
@@ -397,18 +387,18 @@ msgstr ""
 "Är du säker på att du vill stänga fönstret?\n"
 "\n"
 
-#: src/ghex-application-window.c:405
+#: src/ghex-application-window.c:396
 msgid "_Close Anyway"
 msgstr "S_täng ändå"
 
-#: src/ghex-application-window.c:406 src/ghex-application-window.c:529
-#: src/ghex-application-window.c:1184
+#: src/ghex-application-window.c:397 src/ghex-application-window.c:535
+#: src/ghex-application-window.c:1134
 msgid "_Go Back"
 msgstr "_Gå bakåt"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:507
+#: src/ghex-application-window.c:513
 #, c-format
 msgid ""
 "<big><b>%s has been edited since opening.</b></big>\n"
@@ -419,7 +409,7 @@ msgstr ""
 "\n"
 "Vill du spara dina ändringar?"
 
-#: src/ghex-application-window.c:513
+#: src/ghex-application-window.c:519
 msgid ""
 "<b>The buffer has been edited since opening.</b>\n"
 "\n"
@@ -429,22 +419,22 @@ msgstr ""
 "\n"
 "Vill du spara dina ändringar?"
 
-#: src/ghex-application-window.c:527
+#: src/ghex-application-window.c:533
 msgid "_Save Changes"
 msgstr "_Spara ändringar"
 
-#: src/ghex-application-window.c:528
+#: src/ghex-application-window.c:534
 msgid "_Discard Changes"
 msgstr "_Förkasta ändringar"
 
 #. Translators: this is the string for an untitled buffer that will
 #. * be displayed in the titlebar when a user does File->New
 #.
-#: src/ghex-application-window.c:888 src/hex-document.c:950
+#: src/ghex-application-window.c:839 src/hex-document.c:973
 msgid "Untitled"
 msgstr "Namnlös"
 
-#: src/ghex-application-window.c:1067
+#: src/ghex-application-window.c:1019
 msgid ""
 "There was an error saving the file to the path specified.\n"
 "\n"
@@ -454,7 +444,7 @@ msgstr ""
 "\n"
 "Du kanske inte har de nödvändiga rättigheterna."
 
-#: src/ghex-application-window.c:1081
+#: src/ghex-application-window.c:1033
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -462,13 +452,13 @@ msgstr ""
 "Ett okänt fel har inträffat vid försök att på nytt läsa filen du just har "
 "sparat."
 
-#: src/ghex-application-window.c:1108
+#: src/ghex-application-window.c:1058
 msgid "Select a file to save buffer as"
 msgstr "Välj en fil att spara bufferten som"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1177
+#: src/ghex-application-window.c:1127
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -483,15 +473,15 @@ msgstr ""
 "\n"
 "Denna åtgärd kan inte ångras."
 
-#: src/ghex-application-window.c:1183
+#: src/ghex-application-window.c:1133 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Återgå"
 
-#: src/ghex-application-window.c:1269
+#: src/ghex-application-window.c:1217
 msgid "Select a file to open"
 msgstr "Välj en fil att öppna"
 
-#: src/ghex-application-window.c:1368
+#: src/ghex-application-window.c:1322
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -514,7 +504,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1448
+#: src/ghex-application-window.c:1398
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -523,12 +513,12 @@ msgstr ""
 "Position: <tt>0x%lX</tt>; <tt>0x%lX</tt> byte från <tt>0x%lX</tt> till "
 "<tt>0x%lX</tt> markerade"
 
-#: src/ghex-application-window.c:1452
+#: src/ghex-application-window.c:1402
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Position: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2094
+#: src/ghex-application-window.c:2066
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -553,11 +543,11 @@ msgstr ""
 "\n"
 "Denna begränsning kommer att tas bort i en framtida version av GHex."
 
-#: src/ghex-application-window.c:2150
+#: src/ghex-application-window.c:2122
 msgid "There was an error reading the file."
 msgstr "Det uppstod ett fel vid läsning av filen."
 
-#: src/ghex-application-window.c:2196
+#: src/ghex-application-window.c:2168
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -566,9 +556,235 @@ msgstr ""
 "inte längre, är otillgänglig eller så kanske du inte har rättighet att komma "
 "åt filen."
 
+#: src/ghex-application-window.ui.in:31
+msgid "_New"
+msgstr "_Ny"
+
+#: src/ghex-application-window.ui.in:35
+msgid "Save _As"
+msgstr "Spara so_m"
+
+#: src/ghex-application-window.ui.in:46
+msgid "_Print"
+msgstr "Skriv _ut"
+
+#: src/ghex-application-window.ui.in:50
+msgid "Print Previe_w"
+msgstr "_Förhandsgranska"
+
+#: src/ghex-application-window.ui.in:58
+msgid "Find and _Replace"
+msgstr "Sök och _ersätt"
+
+#: src/ghex-application-window.ui.in:62
+msgid "_Jump to Byte"
+msgstr "_Hoppa till byte"
+
+#: src/ghex-application-window.ui.in:72
+msgid "_Edit"
+msgstr "_Redigera"
+
+#: src/ghex-application-window.ui.in:74
+msgid "_Copy Special"
+msgstr "_Kopiera special"
+
+#: src/ghex-application-window.ui.in:78
+msgid "_Paste Special"
+msgstr "K_lista in special"
+
+#: src/ghex-application-window.ui.in:85
+msgid "_Tools"
+msgstr "_Verktyg"
+
+#: src/ghex-application-window.ui.in:87
+msgid "_Character Table"
+msgstr "Te_ckentabell"
+
+#: src/ghex-application-window.ui.in:91
+msgid "_Base Converter"
+msgstr "_Baskonverterare"
+
+#: src/ghex-application-window.ui.in:98
+msgid "G_roup Data As"
+msgstr "G_ruppera data som"
+
+#: src/ghex-application-window.ui.in:100
+msgid "_Bytes (8-bit)"
+msgstr "_Byte (8 bitar)"
+
+#: src/ghex-application-window.ui.in:106
+msgid "_Words (16-bit)"
+msgstr "Or_d (16 bitar)"
+
+#: src/ghex-application-window.ui.in:111
+msgid "_Longwords (32-bit)"
+msgstr "_Långord (32 bitar)"
+
+#: src/ghex-application-window.ui.in:116
+msgid "_Quadwords (64-bit)"
+msgstr "_Quad-ord (64 bitar)"
+
+#: src/ghex-application-window.ui.in:126
+msgid "_Keyboard Shortcuts"
+msgstr "_Tangentbordsgenvägar"
+
+#: src/ghex-application-window.ui.in:131
+msgid "_Preferences"
+msgstr "_Inställningar"
+
+#: src/ghex-application-window.ui.in:136 src/preferences.ui:255
+msgid "_Help"
+msgstr "_Hjälp"
+
+#: src/ghex-application-window.ui.in:141
+msgid "_About GHex"
+msgstr "_Om GHex"
+
+#: src/ghex-application-window.ui.in:163
+msgid "Open a file for hex editing"
+msgstr "Öppna en fil för hexadecimalredigering"
+
+#: src/ghex-application-window.ui.in:173
+msgid "Main menu"
+msgstr "Huvudmeny"
+
+#: src/ghex-application-window.ui.in:183
+msgid "Find a string in the hex document"
+msgstr "Sök en sträng i hexdokumentet"
+
+#: src/ghex-application-window.ui.in:192
+msgid "Save document"
+msgstr "Spara dokument"
+
+#: src/ghex-application-window.ui.in:215
+msgid "No file loaded."
+msgstr "Ingen fil inläst."
+
+#: src/ghex-application-window.ui.in:301
+msgid "Toggle insert mode (add data to file rather than replace existing data)"
+msgstr ""
+"Växla inskrivningsläge (lägg till data till fil snarare än att ersätta "
+"befintliga data)"
+
+#: src/ghex-application-window.ui.in:313
+msgid "Toggle a pane showing various numeric conversions"
+msgstr "Visa/dölj en panel som visar diverse numeriska konverteringar"
+
 #: src/ghex-notebook-tab.c:41
 msgid "Untitled document"
 msgstr "Namnlöst dokument"
+
+#: src/help-overlay.ui:14
+msgid "Files"
+msgstr "Filer"
+
+#: src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr "Ny tom hexbuffert"
+
+#: src/help-overlay.ui:26
+msgid "Open a file for editing"
+msgstr "Öppna en fil för redigering"
+
+#: src/help-overlay.ui:33
+msgid "Save file"
+msgstr "Spara fil"
+
+#: src/help-overlay.ui:40
+msgid "Save as"
+msgstr "Spara som"
+
+#: src/help-overlay.ui:47
+msgid "Close tab"
+msgstr "Stäng flik"
+
+#: src/help-overlay.ui:54
+msgid "Print the hex file"
+msgstr "Skriv ut hexfilen"
+
+#: src/help-overlay.ui:63
+msgid "Undo and Redo"
+msgstr "Ångra och gör om"
+
+#: src/help-overlay.ui:68
+msgid "Undo"
+msgstr "Ångra"
+
+#: src/help-overlay.ui:75
+msgid "Redo"
+msgstr "Gör om"
+
+#: src/help-overlay.ui:84
+msgid "Find and Replace"
+msgstr "Sök och ersätt"
+
+#: src/help-overlay.ui:89
+msgid "Find"
+msgstr "Sök"
+
+#: src/help-overlay.ui:96
+msgid "Find and replace"
+msgstr "Sök och ersätt"
+
+#: src/help-overlay.ui:105
+msgid "Clipboard"
+msgstr "Urklipp"
+
+#: src/help-overlay.ui:110
+msgid "Copy"
+msgstr "Kopiera"
+
+#: src/help-overlay.ui:117
+msgid "Cut"
+msgstr "Klipp ut"
+
+#: src/help-overlay.ui:124
+msgid "Paste"
+msgstr "Klistra in"
+
+#: src/help-overlay.ui:131
+msgid "Copy special"
+msgstr "Kopiera special"
+
+#: src/help-overlay.ui:138
+msgid "Paste special"
+msgstr "Klista in special"
+
+#: src/help-overlay.ui:147
+msgid "Navigation"
+msgstr "Navigering"
+
+#: src/help-overlay.ui:152
+msgid "Toggle left (hex) display"
+msgstr "Visa/dölj vänster vy (hex)"
+
+#: src/help-overlay.ui:159
+msgid "Toggle right (ASCII) display"
+msgstr "Visa/dölj höger vy (ASCII)"
+
+#: src/help-overlay.ui:166
+msgid "Switch to previous tab"
+msgstr "Växla till föregående flik"
+
+#: src/help-overlay.ui:173
+msgid "Switch to next tab"
+msgstr "Växla till nästa flik"
+
+#: src/help-overlay.ui:180
+msgid "Jump to byte"
+msgstr "Hoppa till byte"
+
+#: src/help-overlay.ui:189
+msgid "General"
+msgstr "Allmänt"
+
+#: src/help-overlay.ui:194
+msgid "Show About dialog"
+msgstr "Visa Om-dialog"
+
+#: src/help-overlay.ui:201
+msgid "Toggle insert mode"
+msgstr "Växla inskrivningsläge"
 
 #: src/hex-buffer-mmap.c:50
 msgid "The file appears to have an invalid path."
@@ -691,25 +907,53 @@ msgstr "Strömlängd:"
 msgid "FIXME: no conversion function"
 msgstr "FIXAMIG: ingen konverteringsfunktion"
 
-#: src/hex-document.c:978
+#: src/hex-document.c:1001
 #, c-format
 msgid "Page"
 msgstr "Sida"
 
-#: src/hex-document.c:984 src/hex-document.c:1087
+#: src/hex-document.c:1007 src/hex-document.c:1110
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Hexdump genererad av"
 
-#: src/hex-document.c:1010
+#: src/hex-document.c:1033
 #, c-format
 msgid "Previous page"
 msgstr "Föregående sida"
 
-#: src/hex-document.c:1025
+#: src/hex-document.c:1048
 #, c-format
 msgid "Next page"
 msgstr "Nästa sida"
+
+#: src/jump-dialog.ui:35
+msgid "Jump to byte (enter offset):"
+msgstr "Hoppa till byte (ange position):"
+
+#: src/jump-dialog.ui:40
+msgid ""
+"Enter the offset byte to jump to. The default is decimal format, but other "
+"format strings are supported such as hexidecimal format, if C-style notation "
+"using the '0x' prefix is used. If your string is not recognized, a dialog "
+"will be presented explaining the valid formats of strings accepted."
+msgstr ""
+"Ange positionsbyten att hoppa till. Standard är decimalformat, men andra "
+"formatsträngar stöds, såsom hexidecimalt format om notation i C-stil med "
+"prefixet ”0x” används. Om din sträng inte känns igen kommer en dialogruta "
+"att visas som förklarar de giltiga strängformaten som accepteras."
+
+#: src/jump-dialog.ui:45
+msgid "_Jump"
+msgstr "_Hoppa"
+
+#: src/jump-dialog.ui:49
+msgid "Jumps to the specified byte"
+msgstr "Hoppar till den angivna byten"
+
+#: src/jump-dialog.ui:60
+msgid "Closes the jump-to-byte pane"
+msgstr "Stänger hoppa-till-byte-fönstret"
 
 #: src/main.c:44
 msgid "Show the application version"
@@ -720,7 +964,7 @@ msgstr "Visa programmets version"
 msgid "This is GHex, version %s\n"
 msgstr "Detta är GHex, version %s\n"
 
-#: src/main.c:164
+#: src/main.c:166
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "GHex - En hexadecimalredigerare för GNOME-skrivbordet"
 
@@ -743,10 +987,6 @@ msgstr ""
 msgid "GHex Paste Data"
 msgstr "Klistra in GHex-data"
 
-#: src/paste-special.c:405
-msgid "_Copy"
-msgstr "_Kopiera"
-
 #: src/paste-special.c:407
 msgid "Copy Special"
 msgstr "Kopiera special"
@@ -767,10 +1007,6 @@ msgstr "Vanlig text (Unicode)"
 #: src/paste-special.ui:28
 msgid "Paste Special"
 msgstr "Klista in special"
-
-#: src/paste-special.ui:49
-msgid "_Paste"
-msgstr "_Klistra in"
 
 #: src/paste-special.ui:55
 msgid "_Cancel"
@@ -845,14 +1081,34 @@ msgstr "Skriv ut omväxlande skuggade rader"
 msgid "Span across lines:"
 msgstr "Spänn över rader:"
 
-#: src/preferences.ui:255
-msgid "_Help"
-msgstr "_Hjälp"
-
 #: src/print.c:50
 #, c-format
 msgid "Page: %i/%i"
 msgstr "Sida: %i/%i"
+
+#: src/replace-dialog.ui:28
+msgid "Replace With"
+msgstr "Ersätt med"
+
+#: src/replace-dialog.ui:30
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Ange den hexadecimala data eller ASCII-data som ska ersättas med"
+
+#: src/replace-dialog.ui:35
+msgid "_Replace"
+msgstr "_Ersätt"
+
+#: src/replace-dialog.ui:38
+msgid "Replaces the search string with the replace string"
+msgstr "Ersätter söksträngen med ersättningssträngen"
+
+#: src/replace-dialog.ui:43
+msgid "Replace _All"
+msgstr "Ersätt _alla"
+
+#: src/replace-dialog.ui:46
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Ersätter alla förekomster av söksträngen med ersättningssträngen"
 
 #~ msgid "Get cursor value"
 #~ msgstr "Hämta värde vid markör"
@@ -863,29 +1119,17 @@ msgstr "Sida: %i/%i"
 #~ msgid "Find Next"
 #~ msgstr "Sök nästa"
 
-#~ msgid "Find previous"
-#~ msgstr "Sök föregående"
-
 #~ msgid "Replace Data"
 #~ msgstr "Ersätt data"
 
-#~ msgid "Replace"
-#~ msgstr "Ersätt"
-
 #~ msgid "Replace All"
 #~ msgstr "Ersätt alla"
-
-#~ msgid "Jump to byte"
-#~ msgstr "Hoppa till byte"
 
 #~ msgid "Enter the byte to jump to"
 #~ msgstr "Ange den byte som ska hoppas till"
 
 #~ msgid "Jump"
 #~ msgstr "Hoppa"
-
-#~ msgid "New document"
-#~ msgstr "Nytt dokument"
 
 #~ msgid "Saving to HTML..."
 #~ msgstr "Sparar som HTML…"
@@ -990,17 +1234,8 @@ msgstr "Sida: %i/%i"
 #~ "Kan inte öppna fil:\n"
 #~ "%s"
 
-#~ msgid "_File"
-#~ msgstr "_Arkiv"
-
-#~ msgid "_Edit"
-#~ msgstr "_Redigera"
-
 #~ msgid "_View"
 #~ msgstr "_Visa"
-
-#~ msgid "_Group Data As"
-#~ msgstr "_Gruppera data som"
 
 #~ msgid "_Windows"
 #~ msgstr "_Fönster"
@@ -1014,9 +1249,6 @@ msgstr "Sida: %i/%i"
 #~ msgid "_Save"
 #~ msgstr "_Spara"
 
-#~ msgid "Save _As..."
-#~ msgstr "Spara so_m…"
-
 #~ msgid "Save the current file with a different name"
 #~ msgstr "Spara den aktuella filen med ett annat namn"
 
@@ -1028,15 +1260,6 @@ msgstr "Sida: %i/%i"
 
 #~ msgid "Revert to a saved version of the file"
 #~ msgstr "Återgå till en sparad version av filen"
-
-#~ msgid "_Print"
-#~ msgstr "Skriv _ut"
-
-#~ msgid "Print the current file"
-#~ msgstr "Skriv ut aktuell fil"
-
-#~ msgid "Print Previe_w..."
-#~ msgstr "_Förhandsgranska…"
 
 #~ msgid "Preview printed data"
 #~ msgstr "Förhandsgranska utskrift"
@@ -1050,23 +1273,14 @@ msgstr "Sida: %i/%i"
 #~ msgid "Exit the program"
 #~ msgstr "Avsluta programmet"
 
-#~ msgid "_Undo"
-#~ msgstr "_Ångra"
-
 #~ msgid "Undo the last action"
 #~ msgstr "Ångra den senaste åtgärden"
-
-#~ msgid "_Redo"
-#~ msgstr "_Gör om"
 
 #~ msgid "Redo the undone action"
 #~ msgstr "Gör om den ångrade åtgärden"
 
 #~ msgid "Copy selection to clipboard"
 #~ msgstr "Kopiera markering till urklipp"
-
-#~ msgid "Cu_t"
-#~ msgstr "Klipp _ut"
 
 #~ msgid "Cut selection"
 #~ msgstr "Klipp ut markering"
@@ -1101,9 +1315,6 @@ msgstr "Sida: %i/%i"
 #~ msgid "Jump to a certain position"
 #~ msgstr "Hoppa till en speciell position"
 
-#~ msgid "_Preferences"
-#~ msgstr "_Inställningar"
-
 #~ msgid "_Add View"
 #~ msgstr "_Lägg till vy"
 
@@ -1131,14 +1342,8 @@ msgstr "Sida: %i/%i"
 #~ msgid "Insert/overwrite data"
 #~ msgstr "Skriv in/över data"
 
-#~ msgid "Character _Table"
-#~ msgstr "_Teckentabell"
-
 #~ msgid "Show the character table"
 #~ msgstr "Visa teckentabellen"
-
-#~ msgid "_Base Converter"
-#~ msgstr "_Baskonverterare"
 
 #~ msgid "Open base conversion dialog"
 #~ msgstr "Öppna baskonverteringsfönstret"
@@ -1343,20 +1548,11 @@ msgstr "Sida: %i/%i"
 #~ msgid "Converter..."
 #~ msgstr "Konverterare…"
 
-#~ msgid "Copy"
-#~ msgstr "Kopiera"
-
-#~ msgid "Cut"
-#~ msgstr "Klipp ut"
-
 #~ msgid "Exit"
 #~ msgstr "Avsluta"
 
 #~ msgid "Export to HTML..."
 #~ msgstr "Exportera till HTML…"
-
-#~ msgid "Find"
-#~ msgstr "Sök"
 
 #~ msgid "Goto Byte"
 #~ msgstr "Gå till byte"
@@ -1373,23 +1569,14 @@ msgstr "Sida: %i/%i"
 #~ msgid "Print Preview..."
 #~ msgstr "Förhandsgranska..."
 
-#~ msgid "Redo"
-#~ msgstr "Gör om"
-
 #~ msgid "Remove View"
 #~ msgstr "Ta bort vy"
 
 #~ msgid "Revert"
 #~ msgstr "Återgå"
 
-#~ msgid "Save"
-#~ msgstr "Spara"
-
 #~ msgid "Type Conversion Dialog..."
 #~ msgstr "Typkonverteringsdialogen..."
-
-#~ msgid "Undo"
-#~ msgstr "Ångra"
 
 #~ msgid "_Insert a new preview phrase."
 #~ msgstr "_Infoga en ny förhandsgranskningsfras."
