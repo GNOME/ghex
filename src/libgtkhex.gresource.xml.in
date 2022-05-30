@@ -25,15 +25,9 @@
 
 <gresources>
 	<gresource prefix="@resource_base_path@">
-		<file preprocess="xml-stripblanks" compressed="true">ghex-application-window.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">preferences.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">paste-special.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">find-dialog.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">replace-dialog.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">jump-dialog.ui</file>
-		<file preprocess="xml-stripblanks" compressed="true">find-options.ui</file>
+		<file preprocess="xml-stripblanks" compressed="true">context-menu.ui</file>
 	</gresource>
-	<gresource prefix="@resource_base_path@/gtk">
-		<file preprocess="xml-stripblanks">help-overlay.ui</file>
+	<gresource prefix="@resource_base_path@/css">
+		<file>ghex.css</file>
 	</gresource>
 </gresources>

@@ -37,9 +37,44 @@ install_headers(
 osx_current = libgtkhex_version_major + 1
 lib_osx_version = [osx_current, '@0@.@1@'.format(osx_current, libgtkhex_version_minor)]
 
+src_conf = configuration_data()
+src_conf.set('app_id', app_id)
+src_conf.set('resource_base_path', resource_base_path)
+
+app_ui = configure_file(
+  input: 'ghex-application-window.ui.in',
+  output: 'ghex-application-window.ui',
+  configuration: src_conf
+)
+
+lib_res_in = configure_file(
+  input: 'libgtkhex.gresource.xml.in',
+  output: 'libgtkhex.gresource.xml',
+  configuration: src_conf
+)
+
+lib_res = gnome.compile_resources(
+  'libgtkhex-resources',
+  lib_res_in,
+  c_name: 'libgtkhex'
+)
+
+res_in = configure_file(
+  input: 'ghex.gresource.xml.in',
+  output: 'ghex.gresource.xml',
+  configuration: src_conf
+)
+
+res = gnome.compile_resources(
+  'ghex-resources',
+  res_in,
+  c_name: 'ghex',
+  dependencies: app_ui
+)
+
 libgtkhex = library(
   'gtkhex-@0@'.format(libgtkhex_api_version),
-  libgtkhex_sources,
+  libgtkhex_sources + lib_res,
   version: '@0@.@1@.@2@'.format(
     libgtkhex_version_major, libgtkhex_version_minor, libgtkhex_version_micro),
   darwin_versions: lib_osx_version,
@@ -83,29 +118,6 @@ ghex_sources = [
   'preferences.c',
   'print.c',
 ]
-
-src_conf = configuration_data()
-src_conf.set('app_id', app_id)
-src_conf.set('resource_base_path', resource_base_path)
-
-app_ui = configure_file(
-  input: 'ghex-application-window.ui.in',
-  output: 'ghex-application-window.ui',
-  configuration: src_conf
-)
-
-res_in = configure_file(
-  input: 'ghex.gresource.xml.in',
-  output: 'ghex.gresource.xml',
-  configuration: src_conf
-)
-
-res = gnome.compile_resources(
-  'ghex-resources',
-  res_in,
-  c_name: 'ghex',
-  dependencies: app_ui
-)
 
 ghex_c_args = [
   '-DG_LOG_DOMAIN="GHex"'
