@@ -241,11 +241,11 @@ hex_buffer_read_finish (HexBuffer *self,
  * hex_buffer_write_to_file:
  * @file: #GFile to write to
  *
- * Write the buffer to the #GFile specified. This operation will block.
+ * Write the buffer to the #GFile specified. This operation will block. For a
+ * non-blocking version, use [method@Hex.Buffer.write_to_file_async].
  *
  * Returns: %TRUE if the operation was successful; %FALSE otherwise.
  */
-/* FIXME - insert reference to async version if/when it is written. */
 gboolean
 hex_buffer_write_to_file (HexBuffer *self, GFile *file)
 {
