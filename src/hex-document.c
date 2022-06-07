@@ -358,6 +358,8 @@ hex_document_init (HexDocument *doc)
 {
 #ifdef BACKEND_MMAP
 	doc->buffer = hex_buffer_util_new ("mmap", NULL);
+#elif defined BACKEND_DIRECT
+	doc->buffer = hex_buffer_util_new ("direct", NULL);
 #else
 	doc->buffer = hex_buffer_util_new (NULL, NULL);
 #endif

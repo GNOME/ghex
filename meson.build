@@ -17,6 +17,7 @@ endif
 
 # Backend plugins: (nb: only mmap exists at this time along with malloc, which is baked in)
 mmap_backend = get_option('mmap-buffer-backend')
+direct_backend = get_option('direct-buffer-backend')
 
 gir = find_program('g-ir-scanner', required : get_option('introspection'))
 generate_gir = gir.found() and (not meson.is_cross_build() or get_option('introspection').enabled())
@@ -90,8 +91,10 @@ config_h.set('LOCALEDIR', 'PACKAGE_LOCALE_DIR')
 config_h.set('CONFIG_H_SHADED_BOX_MAX', shaded_box_max)
 
 # nb: this config.h flag will likely be removed in a future release
-if mmap_backend
-  config_h.set('BACKEND_MMAP', true)
+#if mmap_backend
+#  config_h.set('BACKEND_MMAP', true)
+if direct_backend
+  config_h.set('BACKEND_DIRECT', true)
 endif
 
 config_h.set_quoted('LIBGTKHEX_RELEASE_STRING', 'gtkhex-@0@.0'.format(libgtkhex_api_version))
@@ -125,6 +128,23 @@ if mmap_backend
     if cc.has_function(f) == false
       error('Required C function not found: @0@'.format(f))
     endif
+  endforeach
+
+  message('...DONE')
+endif
+
+# direct buffer backend: Check for required headers
+if direct_backend
+  message('Checking dependencies for `direct` buffer backend...')
+
+  check_headers_direct = [
+    'unistd.h',
+    'fcntl.h',
+    'sys/ioctl.h',
+    'linux/fs.h',
+    ]
+  foreach h : check_headers_direct
+    cc.has_header(h, required: true)
   endforeach
 
   message('...DONE')
@@ -165,6 +185,7 @@ summary({'prefix': ghex_prefix,
 
 summary({'Development build': get_option('development'),
 	  '`mmap` buffer backend': mmap_backend,
+	  '`direct` buffer backend': direct_backend,
 	  'Static HTML help': get_option('static-html-help'),
 	  'API Documentation': build_gtk_doc,
         }, section: 'Configuration')

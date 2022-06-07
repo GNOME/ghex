@@ -102,6 +102,16 @@ if mmap_backend
   )
 endif
 
+if direct_backend
+    shared_module('hex-buffer-direct',
+    sources: 'hex-buffer-direct.c',
+    c_args: libgtkhex_c_args,
+    dependencies: libgtkhex_dep,
+    install_dir: ghex_plugindir,
+    install: true,
+  )
+endif
+
 ghex_sources = [
   'chartable.c',
   'common-ui.c',
