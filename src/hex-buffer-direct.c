@@ -66,6 +66,7 @@ struct _HexBufferDirect
 	gint64 payload;		/* size of the payload */
 
 	gint64 clean_bytes;	/* 'clean' size of the file (no additions or deletions */
+	GHashTable *changes;
 };
 
 static void hex_buffer_direct_iface_init (HexBufferInterface *iface);
@@ -146,6 +147,8 @@ set_error (HexBufferDirect *self, const char *blurb)
 	}
 	g_debug ("%s: %s", __func__, message);
 
+	g_clear_error (&self->error);
+
 	g_set_error (&self->error,
 			HEX_BUFFER_DIRECT_ERROR,
 			errno,
@@ -156,6 +159,35 @@ set_error (HexBufferDirect *self, const char *blurb)
 		self->last_errno = errno;
 
 	g_free (message);
+}
+
+/* mostly a helper for _get_data and _set_data */
+static char *
+get_file_data (HexBufferDirect *self,
+		gint64 offset,
+		size_t len)
+{
+	char *data = NULL;
+	off_t new_offset;
+	ssize_t nread;
+
+	data = g_malloc (len);
+	new_offset = lseek (self->fd, offset, SEEK_SET);
+
+	g_assert (offset == new_offset);
+
+	errno = 0;
+	nread = read (self->fd, data, len);
+
+	/* FIXME/TODO - test that if nread is less than amount requested, that it
+	 * marries up with amount left in payload */
+	if (nread == -1)
+	{
+		set_error (self, _("Failed to read data from file."));
+		g_clear_pointer (&data, g_free);
+	}
+
+	return data;
 }
 
 static int
@@ -212,6 +244,8 @@ static void
 hex_buffer_direct_init (HexBufferDirect *self)
 {
 	self->fd = -1;
+	self->changes = g_hash_table_new_full (g_int64_hash, g_int64_equal,
+			g_free, g_free);
 }
 
 static void
@@ -267,26 +301,28 @@ hex_buffer_direct_get_data (HexBuffer *buf,
 		size_t len)
 {
 	HexBufferDirect *self = HEX_BUFFER_DIRECT (buf);
-	char *data = NULL;
-	off_t new_offset;
-	ssize_t nread;
+	char *data;
 
 	g_return_val_if_fail (self->fd != -1, NULL);
 
-	data = g_malloc (len);
-	new_offset = lseek (self->fd, offset, SEEK_SET);
+	data = get_file_data (self, offset, len);
 
-	g_assert (offset == new_offset);
-
-	errno = 0;
-	nread = read (self->fd, data, len);
-
-	/* FIXME/TODO - test that if nread is less than amount requested, that it
-	 * marries up with amount left in payload */
-	if (nread == -1)
+	if (! data)
 	{
-		set_error (self, _("Failed to read data from file."));
-		g_clear_pointer (&data, g_free);
+		return NULL;
+	}
+
+	for (size_t i = 0; i < len; ++i)
+	{
+		char *cp;
+		gint64 loc = offset + i;
+
+		cp = g_hash_table_lookup (self->changes, &loc);
+		if (cp)
+		{
+			g_debug ("found change - swapping byte at: %ld", loc);
+			data[i] = *cp;
+		}
 	}
 
 	return data;
@@ -354,16 +390,31 @@ hex_buffer_direct_read (HexBuffer *buf)
 		return FALSE;
 	}
 
-	bytes = hex_buffer_util_get_file_size (self->file);
-
-	self->payload = self->clean_bytes = bytes;
-
 	tmp_fd = create_fd_from_path (self, file_path);
 	if (tmp_fd < 0)
 	{
 		set_error (self, _("Unable to read file"));
 		return FALSE;
 	}
+
+	/* will only return > 0 for a regular file. */
+	bytes = hex_buffer_util_get_file_size (self->file);
+
+	if (! bytes)	/* block device */
+	{
+		gint64 block_file_size;
+
+		if (ioctl (tmp_fd, BLKGETSIZE64, &block_file_size) != 0)
+		{
+			set_error (self, _("Error attempting to read block device"));
+			return FALSE;
+		}
+		bytes = block_file_size;
+	}
+
+	self->payload = self->clean_bytes = bytes;
+
+	self->fd = tmp_fd;
 
 	return TRUE;
 }
@@ -419,11 +470,46 @@ hex_buffer_direct_set_data (HexBuffer *buf,
 {
 	HexBufferDirect *self = HEX_BUFFER_DIRECT (buf);
 
-	g_warning ("%s: NOT IMPLEMENTED", __func__);
+	if (rep_len != len)
+	{
+		g_debug ("%s: rep_len != len; returning false", __func__);
+		return FALSE;
+	}
 
-	return FALSE;
+	for (size_t i = 0; i < len; ++i)
+	{
+		gboolean retval;
+		gint64 *ip = g_new (gint64, 1);
+		char *cp = g_new (char, 1);
 
-//	return TRUE;
+		*ip = offset + i;
+		*cp = data[i];
+
+		retval = g_hash_table_replace (self->changes, ip, cp);
+
+		// TEST
+		if (retval) /* key did not exist yet */
+		{
+			g_debug ("key did not exist yet");
+		}
+		else
+		{
+			char *tmp = NULL;
+
+			g_debug ("key already existed; replaced");
+
+			tmp = get_file_data (self, offset, 1);
+
+			if (*tmp == *cp)
+			{
+				g_debug ("key value back to what O.G. file was. Removing hash entry.");
+				g_hash_table_remove (self->changes, ip);
+			}
+			g_free (tmp);
+		}
+	}
+
+	return TRUE;
 }
 
 static gboolean
@@ -431,12 +517,39 @@ hex_buffer_direct_write_to_file (HexBuffer *buf,
 		GFile *file)
 {
 	HexBufferDirect *self = HEX_BUFFER_DIRECT (buf);
+	guint len;
+	gint64 **keys;
 
+	g_return_val_if_fail (self->fd != -1, FALSE);
 	g_return_val_if_fail (G_IS_FILE (file), FALSE);
 
-	g_warning ("%s: NOT IMPLEMENTED", __func__);
+	keys = (gint64 **)g_hash_table_get_keys_as_array (self->changes, &len);
 
-	return FALSE;
+	/* FIXME - very inefficient - we should at least implement a sorter
+	 * function that puts the changes in order, and merges changes that
+	 * are adjacent to one another.
+	 */
+	for (guint i = 0; i < len; ++i)
+	{
+		ssize_t nwritten;
+		char *cp = g_hash_table_lookup (self->changes, keys[i]);
+		off_t offset, new_offset;
+
+		offset = *keys[i];
+		new_offset = lseek (self->fd, offset, SEEK_SET);
+		g_assert (offset == new_offset);
+		g_debug ("%u: offset %ld: switch with: %c", i, offset, *cp);
+
+		errno = 0;
+		nwritten = write (self->fd, cp, 1);
+		if (nwritten != 1)
+		{
+			set_error (self, _("Error writing changes to file"));
+			return FALSE;
+		}
+	}
+	g_hash_table_remove_all (self->changes);
+	return TRUE;
 }
 
 static gboolean
