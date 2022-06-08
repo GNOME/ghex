@@ -38,6 +38,7 @@
 #include "converter.h"
 #include "preferences.h"
 #include "common-ui.h"
+#include "hex-buffer-malloc.h"
 
 G_BEGIN_DECLS
 
