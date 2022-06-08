@@ -37,9 +37,7 @@
 #define ACTIVE_GH	\
 	(ghex_application_window_get_hex (self))
 
-#ifndef BACKEND_MMAP
 static GFile *tmp_global_gfile_for_nag_screen;
-#endif
 
 /* This is dumb, but right now I can't think of a simpler solution. */
 static gpointer extra_user_data;
@@ -2036,7 +2034,6 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	show_hex_notebook (self);
 }
 
-#ifndef BACKEND_MMAP
 /* Helper */
 static void
 nag_screen_response_cb (GtkDialog *nag_screen,
@@ -2065,11 +2062,12 @@ do_nag_screen (GHexApplicationWindow *self)
 		GtkWidget *nag_screen;
 		char *msg = _("You are attempting to open a file 1GB or larger.\n\n"
 				"This can make GHex and your machine unstable as the file "
-				"will be loaded into memory.\n\n"
+				"will be loaded into memory, using the active backend.\n\n"
 				"Are you sure you want to proceed?\n\n"
 				"This message will not be shown again for the remainder of "
 				"this GHex session.\n\n"
-				"This limitation will be removed in a future version of GHex.");
+				"To avoid this message from appearing, try using a different "
+				"buffer backend.");
 	
 		g_printerr ("%s", msg);
 		g_printerr ("\n");
@@ -2084,7 +2082,6 @@ do_nag_screen (GHexApplicationWindow *self)
 				G_CALLBACK(nag_screen_response_cb), self);
 		gtk_widget_show (nag_screen);
 }
-#endif
 
 /* also takes extra_user_data ! Hooray for cheap shortcuts! */
 static void
@@ -2132,24 +2129,9 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 {
 	HexDocument *doc;
 	HexWidget *gh = NULL;
-#ifndef BACKEND_MMAP
 	static gboolean nag_screen_shown = FALSE;
-#endif
 
 	g_return_if_fail (GHEX_IS_APPLICATION_WINDOW(self));
-
-#ifndef BACKEND_MMAP
-	if (! nag_screen_shown)
-		/* FIXME: Temporary nag-screen until we get the underlying issues
-		 * sorted. */
-		if (hex_buffer_util_get_file_size (file) >= 1073741824)
-		{
-			nag_screen_shown = TRUE;
-			tmp_global_gfile_for_nag_screen = file;
-			do_nag_screen (self);
-			return;
-		}
-#endif
 
 	/* If we get it from the GApp :open signal, it's tfr:none - once
 	 * HexDocument gets hold of it, though, it _refs it itself so we don't need
@@ -2158,6 +2140,19 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 	g_object_ref (file);
 	doc = hex_document_new_from_file (file);
 	g_object_unref (file);
+
+	if (HEX_IS_BUFFER_MALLOC (hex_document_get_buffer (doc)) &&
+			! nag_screen_shown)
+	{
+		if (hex_buffer_util_get_file_size (file) >= 1073741824)
+		{
+			nag_screen_shown = TRUE;
+			tmp_global_gfile_for_nag_screen = file;
+			do_nag_screen (self);
+			g_object_unref (doc);
+			return;
+		}
+	}
 
 	if (doc)
 		gh = HEX_WIDGET(hex_widget_new (doc));

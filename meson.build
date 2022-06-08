@@ -90,13 +90,6 @@ config_h.set('LOCALEDIR', 'PACKAGE_LOCALE_DIR')
 
 config_h.set('CONFIG_H_SHADED_BOX_MAX', shaded_box_max)
 
-# nb: this config.h flag will likely be removed in a future release
-#if mmap_backend
-#  config_h.set('BACKEND_MMAP', true)
-if direct_backend
-  config_h.set('BACKEND_DIRECT', true)
-endif
-
 config_h.set_quoted('LIBGTKHEX_RELEASE_STRING', 'gtkhex-@0@.0'.format(libgtkhex_api_version))
 
 config_h.set('STATIC_HTML_HELP', get_option('static-html-help'))
