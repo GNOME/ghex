@@ -230,6 +230,7 @@ GFile *		hex_document_get_file (HexDocument *doc);
 gboolean	hex_document_set_file (HexDocument *doc, GFile *file);
 HexChangeData *	hex_document_get_undo_data (HexDocument *doc);
 HexBuffer * 	hex_document_get_buffer (HexDocument *doc);
+gboolean	hex_document_set_buffer (HexDocument *doc, HexBuffer *buf);
 
 /* HexDocumentFindData functions */
 
