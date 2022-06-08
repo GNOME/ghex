@@ -2159,7 +2159,21 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 	}
 
 	if (doc)
+	{
+		GFileType type;
+
+		type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
+		if (type == G_FILE_TYPE_SPECIAL)
+		{
+			HexBuffer *buf;
+
+			g_debug ("%s: attempting to set buffer to `direct`", __func__);
+			buf = hex_buffer_util_new ("direct", file);
+			hex_document_set_buffer (doc, buf);
+		}
+
 		gh = HEX_WIDGET(hex_widget_new (doc));
+	}
 
 	/* Display a fairly generic error message if we can't even get this far. */
 	if (! gh)

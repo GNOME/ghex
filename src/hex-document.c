@@ -1825,3 +1825,26 @@ hex_document_get_file (HexDocument *doc)
 {
 	return doc->file;
 }
+
+/**
+ * hex_document_set_buffer:
+ * @doc: a [class@Hex.Document] object
+ * @buf: [iface@Hex.Buffer]
+ *
+ * Set the [iface@Hex.Buffer] connected with the #HexDocument.
+ *
+ * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ *
+ * Since: 4.2
+ */
+gboolean
+hex_document_set_buffer (HexDocument *doc, HexBuffer *buf)
+{
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+	g_return_val_if_fail (HEX_IS_BUFFER (buf), FALSE);
+
+	g_clear_object (&doc->buffer);
+	doc->buffer = buf;
+
+	return TRUE;
+}
