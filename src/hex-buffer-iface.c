@@ -351,10 +351,13 @@ hex_buffer_get_payload_size (HexBuffer *self)
  *
  * Returns: (transfer full): a pointer to a valid implementation of a
  * [iface@Hex.Buffer] interface, pre-cast as type #HexBuffer, or %NULL if
- * the operation failed.
+ * the operation failed. Starting with 4.2, if a specific backend is requested,
+ * and the system supports plugins as a whole but cannot load that specified
+ * plugin, %NULL will be returned as though the operation failed, so as to
+ * customize the fallback scheme programmatically.
  */
-
-HexBuffer * hex_buffer_util_new (const char *plugin, GFile *file)
+HexBuffer *
+hex_buffer_util_new (const char *plugin, GFile *file)
 {
 	GModule *module;
 	HexBufferNewFunc func = NULL;
@@ -366,9 +369,15 @@ HexBuffer * hex_buffer_util_new (const char *plugin, GFile *file)
 	 * if NULL is passed, fall right back to `malloc` since it's the only one
 	 * baked in.
 	 */
-	if (!g_module_supported () || !plugin)
+	if (! plugin)
 	{
-		g_debug ("Modules not supported or NULL passed - falling back to `malloc` backend.");
+		g_debug ("No plugin specified; falling back to the `malloc` backend.");
+		return hex_buffer_malloc_new (file);
+	}
+	if (! g_module_supported () || !plugin)
+	{
+		g_message ("Modules not supported on this system; "
+				"falling back to `malloc` backend.");
 		return hex_buffer_malloc_new (file);
 	}
 
@@ -379,14 +388,13 @@ HexBuffer * hex_buffer_util_new (const char *plugin, GFile *file)
 
 	if (! module)
 	{
-		g_warning ("Unable to load plugin at %s - falling back to `malloc` backend",
-				plugin_path);
-		func = hex_buffer_malloc_new;
+		g_debug ("Unable to locate/load plugin at %s", plugin_path);
+		func = NULL;
 	}
 	else if (! g_module_symbol (module, symbol_name, (gpointer *)&func) ||
 			func == NULL)
 	{
-		g_warning ("Plugin found at %s - but unable to locate symbol: %s - "
+		g_message ("Plugin found at %s - but unable to locate symbol: %s - "
 				"falling back to `malloc` backend.",
 				plugin_path, symbol_name);
 		func = hex_buffer_malloc_new;
@@ -402,7 +410,10 @@ HexBuffer * hex_buffer_util_new (const char *plugin, GFile *file)
 	g_free (plugin_path);
 	g_free (symbol_name);
 
-	return func (file);
+	if (func)
+		return func (file);
+	else
+		return NULL;
 }
 
 /**

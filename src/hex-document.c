@@ -356,13 +356,17 @@ hex_document_class_init (HexDocumentClass *klass)
 static void
 hex_document_init (HexDocument *doc)
 {
-#ifdef BACKEND_MMAP
-	doc->buffer = hex_buffer_util_new ("mmap", NULL);
-#elif defined BACKEND_DIRECT
-	doc->buffer = hex_buffer_util_new ("direct", NULL);
-#else
-	doc->buffer = hex_buffer_util_new (NULL, NULL);
-#endif
+	HexBuffer *try_buf = NULL;
+
+	/* FIXME - make this a setting; preferred default backend, or
+	 * what-have-you.
+	 */
+	try_buf = hex_buffer_util_new ("mmap", NULL);
+	if (! try_buf)
+		try_buf = hex_buffer_util_new (NULL, NULL);
+
+	g_assert (try_buf != NULL);
+	doc->buffer = try_buf;
 
 	doc->undo_max = DEFAULT_UNDO_DEPTH;
 }
