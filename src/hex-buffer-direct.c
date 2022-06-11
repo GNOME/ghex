@@ -22,6 +22,8 @@
  */
 
 #include "hex-buffer-direct.h"
+// FIXME - TEST
+#include "hex-buffer-direct-child.h"
 
 #define HEX_BUFFER_DIRECT_ERROR hex_buffer_direct_error_quark ()
 GQuark
@@ -67,6 +69,12 @@ struct _HexBufferDirect
 
 	gint64 clean_bytes;	/* 'clean' size of the file (no additions or deletions */
 	GHashTable *changes;
+	
+	GSubprocess *sub;
+//	GOutputStream *stdin_pipe;
+//	GInputStream *stdout_pipe;
+//	GDataInputStream *stdout_stream;
+//	size_t nread;
 };
 
 static void hex_buffer_direct_iface_init (HexBufferInterface *iface);
@@ -78,6 +86,8 @@ G_DEFINE_TYPE_WITH_CODE (HexBufferDirect, hex_buffer_direct, G_TYPE_OBJECT,
 	
 static gboolean	hex_buffer_direct_set_file (HexBuffer *buf, GFile *file);
 static GFile *	hex_buffer_direct_get_file (HexBuffer *buf);
+static void		set_error (HexBufferDirect *self, const char *blurb);
+static void		setup_subprocess (HexBufferDirect *self);
 
 /* PROPERTIES - GETTERS AND SETTERS */
 
@@ -161,6 +171,534 @@ set_error (HexBufferDirect *self, const char *blurb)
 	g_free (message);
 }
 
+/* < Commands to send to child process >
+ * We use the templates below, and set `cmd_gvar = ...` to a GVariant
+ * representing the proper command format.
+ */
+
+static void
+child_terminated_cb (GObject *source_object,
+		GAsyncResult *res,
+		gpointer user_data)
+{
+	HexBufferDirect *self = HEX_BUFFER_DIRECT(user_data);
+	GSubprocess *sub = G_SUBPROCESS(source_object);
+	GError *local_error = NULL;
+	gboolean retval;
+
+	retval = g_subprocess_wait_finish (sub, res, &self->error);
+
+#if 0
+	if (retval)
+		g_print ("%s: child terminated successfully\n", __func__);
+	else
+		g_print ("%s: child terminated with error: %s\n", __func__,
+				self->error->message);
+#endif
+
+}
+
+
+#define SEND_CMD_TEMPLATE_PARAMS \
+	GVariant *cmd_gvar; \
+	GVariant *ret_base_gvar; \
+	GVariant *ret_params_gvar; \
+	char *cmd_str = NULL; \
+	GBytes *cmd_bytes = NULL; \
+	gboolean com_retval; \
+	GBytes *stdout_buf; \
+	char *line; \
+	gsize stdout_len; \
+	int err_num = 0; \
+	char *err_msg = NULL; \
+	gboolean was_err = FALSE;
+
+#define SEND_CMD_TEMPLATE_BOILERPLATE \
+	cmd_bytes = g_bytes_new (cmd_str, strlen(cmd_str)); \
+ \
+	setup_subprocess (self); \
+/*	g_subprocess_wait_async (self->sub, NULL, child_terminated_cb, self); */ \
+ \
+	g_clear_error (&self->error); \
+	com_retval = g_subprocess_communicate (self->sub, \
+                          cmd_bytes, \
+						  NULL,	/* cancellable */ \
+						  &stdout_buf, \
+						  NULL,	/* stderr_buf */ \
+                          &self->error); \
+	if (! com_retval) \
+	{ \
+		g_warning ("g_subprocess_communicate failed: %s", self->error->message); \
+		goto out; \
+	} \
+ \
+	line = g_bytes_unref_to_data (stdout_buf, &stdout_len); \
+	line[stdout_len - 1] =  0; \
+ \
+	ret_base_gvar = g_variant_parse (NULL, line, NULL, NULL, NULL); \
+	if (! ret_base_gvar) \
+	{ \
+		g_warning ("Failed to parse retval."); \
+		goto out; \
+	} \
+ \
+	g_variant_get (ret_base_gvar, FMT_CMD, NULL, &ret_params_gvar); \
+	if (! ret_params_gvar) \
+	{ \
+		g_warning ("No parameters provided or failed to parse parameters."); \
+		goto out; \
+	}
+
+#define SEND_CMD_TEMPLATE_HANDLE_ERROR \
+	if (was_err) \
+		set_error (self, err_msg);
+
+#define SEND_CMD_TEMPLATE_BOILERPLATE_CLEANUP \
+	g_variant_unref (cmd_gvar); \
+	g_free (cmd_str); \
+	g_bytes_unref (cmd_bytes);
+
+
+static gboolean
+send_close_cmd (HexBufferDirect *self)
+{
+	SEND_CMD_TEMPLATE_PARAMS
+
+	gboolean retval;
+
+	cmd_gvar = g_variant_new (FMT_CMD, CLOSE, g_variant_new_boolean (TRUE));
+	cmd_str = g_strdup_printf ("%s\n", g_variant_print (cmd_gvar, TRUE));
+
+	SEND_CMD_TEMPLATE_BOILERPLATE
+
+	g_variant_get (ret_params_gvar, RET_FMT_CLOSE,
+			&retval, &was_err, &err_num, &err_msg);
+
+	SEND_CMD_TEMPLATE_HANDLE_ERROR
+
+out:
+	SEND_CMD_TEMPLATE_BOILERPLATE_CLEANUP
+
+	return retval;
+}
+
+static char *
+send_read_cmd (HexBufferDirect *self, gint64 off_start, gint64 off_end)
+{
+	GVariant *cmd_gvar;
+	GVariant *ret_base_gvar;
+	GVariant *ret_params_gvar;
+	char *cmd_str = NULL;
+	GBytes *cmd_bytes = NULL;
+	gboolean com_retval;
+	GBytes *stdout_buf;
+	char *line;
+	gsize stdout_len;
+	int err_num = 0;
+	char *err_msg = NULL;
+	gboolean was_err = FALSE;
+
+	char *ret_data = NULL;
+//	char b = 0;
+	gboolean op_ret;
+	goffset ret_off;
+	GString *gstr = g_string_new (NULL);
+	char *stdout_str;
+	char **stdout_lines;
+//	char *tmp;
+	gint64 i;
+
+	g_assert (off_end >= off_start);
+
+	cmd_gvar = g_variant_new (FMT_CMD, OPEN, g_variant_new_string (g_file_peek_path (self->file)));
+	g_string_append_printf (gstr, "%s\n", g_variant_print (cmd_gvar, TRUE));
+	g_variant_unref (cmd_gvar);
+
+	for (i = 0; i <= off_end - off_start; ++i)
+	{
+		cmd_gvar = g_variant_new (FMT_CMD, READ, g_variant_new_int64 (off_start + i));
+		g_string_append_printf (gstr, "%s\n", g_variant_print (cmd_gvar, TRUE));
+		g_variant_unref (cmd_gvar);
+	}
+
+	cmd_gvar = g_variant_new (FMT_CMD, CLOSE, g_variant_new_boolean (TRUE));
+	g_string_append_printf (gstr, "%s\n", g_variant_print (cmd_gvar, TRUE));
+	g_variant_unref (cmd_gvar);
+
+//	cmd_str = g_strdup_printf ("%s\n", g_variant_print (cmd_gvar, TRUE));
+
+	cmd_bytes = g_bytes_new (gstr->str, gstr->len);
+
+	setup_subprocess (self);
+
+	g_clear_error (&self->error);
+	com_retval = g_subprocess_communicate (self->sub,
+                          cmd_bytes,
+						  NULL,	/* cancellable */
+						  &stdout_buf,
+						  NULL,	/* stderr_buf */
+                          &self->error);
+	if (! com_retval)
+	{
+		g_warning ("g_subprocess_communicate failed: %s", self->error->message);
+		goto out;
+	}
+
+//	cmd_str = g_strdup (gstr->str);
+
+	stdout_str = g_bytes_unref_to_data (stdout_buf, &stdout_len);
+
+	if (!stdout_str)
+		goto out;
+
+	stdout_lines = g_strsplit (stdout_str, "\n", -1);
+
+	for (gint j = 0; j < i; ++j)
+	{
+		char b;
+
+		/* skip first retval for OPEN */
+		ret_base_gvar = g_variant_parse (NULL, stdout_lines[j+1], NULL, NULL, NULL);
+		if (! ret_base_gvar)
+		{
+			g_warning ("Failed to parse retval.");
+			goto out;
+		}
+
+		g_variant_get (ret_base_gvar, FMT_CMD, NULL, &ret_params_gvar);
+		if (! ret_params_gvar)
+		{
+			g_warning ("No parameters provided or failed to parse parameters.");
+			goto out;
+		}
+
+		g_variant_get (ret_params_gvar, RET_FMT_READ,
+				&op_ret, &op_ret, &b, &op_ret, &ret_off, &was_err, &err_num, &err_msg);
+
+		/* Build array to return */
+		if (op_ret)
+		{
+			if (! ret_data)
+				ret_data = g_malloc (i);
+
+			ret_data[j] = b;
+		}
+		else if (was_err)
+		{
+			set_error (self, err_msg);
+		}
+
+		g_clear_pointer (&ret_base_gvar, g_variant_unref);
+		g_clear_pointer (&ret_params_gvar, g_variant_unref);
+	}
+
+	// TEST
+//	g_variant_get (ret_params_gvar, RET_FMT_READ,
+//			&op_ret, &op_ret, &retval, &op_ret, &ret_off, &was_err, &err_num, &err_msg);
+
+//	g_variant_get (ret_params_gvar, RET_FMT_READ,
+//			&op_ret, &op_ret, &b, &op_ret, &ret_off, &was_err, &err_num, &err_msg);
+
+//	g_debug ("operation: READ - retval: %d - byte: %c - offset: %ld - "
+//			"was_err: %d - err_num: %d - err_msg: %s\n",
+//			op_ret, b, ret_off, was_err, err_num, err_msg);
+
+
+out:
+	/* free stuff */
+
+	return ret_data;
+}
+
+
+static int
+send_open_cmd (HexBufferDirect *self, const char *path)
+{
+	SEND_CMD_TEMPLATE_PARAMS
+
+	int fd_retval = -1;
+
+	cmd_gvar = g_variant_new (FMT_CMD, OPEN, g_variant_new_string (path));
+	cmd_str = g_strdup_printf ("%s\n", g_variant_print (cmd_gvar, TRUE));
+
+	cmd_bytes = g_bytes_new (cmd_str, strlen(cmd_str));
+
+	setup_subprocess (self);
+/*	g_subprocess_wait_async (self->sub, NULL, child_terminated_cb, self); */
+
+	g_clear_error (&self->error);
+	com_retval = g_subprocess_communicate (self->sub,
+                          cmd_bytes,
+						  NULL,	/* cancellable */
+						  &stdout_buf,
+						  NULL,	/* stderr_buf */
+                          &self->error);
+	if (! com_retval)
+	{
+		g_warning ("g_subprocess_communicate failed: %s", self->error->message);
+		goto out;
+	}
+
+	line = g_bytes_unref_to_data (stdout_buf, &stdout_len);
+	if (! line)
+		goto out;
+
+	line[stdout_len - 1] =  0;
+
+	ret_base_gvar = g_variant_parse (NULL, line, NULL, NULL, NULL);
+	if (! ret_base_gvar)
+	{
+		g_warning ("Failed to parse retval.");
+		goto out;
+	}
+
+	g_variant_get (ret_base_gvar, FMT_CMD, NULL, &ret_params_gvar);
+	if (! ret_params_gvar)
+	{
+		g_warning ("No parameters provided or failed to parse parameters.");
+		goto out;
+	}
+ 
+
+
+	g_variant_get (ret_params_gvar, RET_FMT_NEW_OPEN,
+			&fd_retval, &was_err, &err_num, &err_msg);
+
+	g_debug ("operation: OPEN - fd: %d - was_err: %d - err_num: %d - err_msg: %s\n",
+			fd_retval, was_err, err_num, err_msg);
+
+	SEND_CMD_TEMPLATE_HANDLE_ERROR
+
+out:
+	SEND_CMD_TEMPLATE_BOILERPLATE_CLEANUP
+
+	return fd_retval;
+}
+
+static gboolean
+send_write_cmd (HexBufferDirect *self, gint64 offset, char byte)
+{
+	SEND_CMD_TEMPLATE_PARAMS
+
+	gboolean retval;
+
+	cmd_gvar = g_variant_new (FMT_CMD, WRITE,
+			g_variant_new (FMT_WRITE, offset, byte));
+	cmd_str = g_strdup_printf ("%s\n", g_variant_print (cmd_gvar, TRUE));
+
+	SEND_CMD_TEMPLATE_BOILERPLATE
+
+	g_variant_get (ret_params_gvar, RET_FMT_WRITE,
+			&retval, &was_err, &err_num, &err_msg);
+
+	SEND_CMD_TEMPLATE_HANDLE_ERROR
+
+out:
+	SEND_CMD_TEMPLATE_BOILERPLATE_CLEANUP
+
+	return retval;
+}
+
+static int 
+send_new_cmd (HexBufferDirect *self, const char *path)
+{
+	SEND_CMD_TEMPLATE_PARAMS
+
+	int fd_retval = -1;
+
+	cmd_gvar = g_variant_new (FMT_CMD, NEW, g_variant_new_string (path));
+	cmd_str = g_strdup_printf ("%s\n", g_variant_print (cmd_gvar, TRUE));
+
+	SEND_CMD_TEMPLATE_BOILERPLATE
+
+	g_variant_get (ret_params_gvar, RET_FMT_NEW_OPEN,
+			&fd_retval, &was_err, &err_num, &err_msg);
+
+	g_debug ("operation: NEW - fd: %d - was_err: %d - err_num: %d - err_msg: %s\n",
+			fd_retval, was_err, err_num, err_msg);
+
+	SEND_CMD_TEMPLATE_HANDLE_ERROR
+
+out:
+	SEND_CMD_TEMPLATE_BOILERPLATE_CLEANUP
+
+	return fd_retval;
+}
+
+/* </ Commands to send to child process > */
+
+#if 0
+static void
+stdout_read_line_cb (GObject *source_object,
+		GAsyncResult *res,
+		gpointer user_data)
+{
+	HexBufferDirect *self = HEX_BUFFER_DIRECT(user_data);
+	GDataInputStream *stdout_stream = G_DATA_INPUT_STREAM(source_object);
+	char *line;
+	GVariant *ret_gvar = NULL;
+	GVariant *params = NULL;
+	enum Command cmd;
+
+	line = g_data_input_stream_read_line_finish (stdout_stream, res, NULL, NULL);
+
+	ret_gvar = g_variant_parse (NULL, line, NULL, NULL, NULL);
+
+	if (! ret_gvar)
+	{
+		g_warning ("Failed to parse retval.");
+		goto out;
+	}
+
+	g_variant_get (ret_gvar, FMT_CMD, &cmd, &params);
+	if (! params)
+	{
+		g_warning ("No parameters provided or failed to parse parameters.");
+		goto out;
+	}
+
+	switch (cmd)
+	{
+		case NEW:
+		{
+			int fd = -1;
+			int err_num = 0;
+			char *err_msg = NULL;
+			gboolean was_err = FALSE;
+
+			g_variant_get (params, RET_FMT_NEW_OPEN,
+					&fd, &was_err, &err_num, &err_msg);
+
+			g_debug ("operation: NEW - fd: %d - was_err: %d - err_num: %d - err_msg: %s\n",
+					fd, was_err, err_num, err_msg);
+
+			if (was_err)
+			{
+				/* report error */
+			}
+			else
+			{
+				/* do stuff */
+			}
+
+		}
+			break;
+
+		case OPEN:
+		{
+			int fd = -1;
+			int err_num = 0;
+			char *err_msg = NULL;
+			gboolean was_err = FALSE;
+
+			g_variant_get (params, RET_FMT_NEW_OPEN,
+					&fd, &was_err, &err_num, &err_msg);
+
+			g_debug ("operation: OPEN - fd: %d - was_err: %d - err_num: %d - err_msg: %s\n",
+					fd, was_err, err_num, err_msg);
+
+			if (was_err)
+			{
+				/* report error */
+			}
+			else
+			{
+				/* do stuff */
+			}
+		}
+			break;
+
+		case CLOSE:
+		{
+			gboolean op_ret = FALSE;
+			int err_num = 0;
+			char *err_msg = NULL;
+			gboolean was_err = FALSE;
+
+			g_variant_get (params, RET_FMT_CLOSE,
+					&op_ret, &was_err, &err_num, &err_msg);
+
+			g_debug ("operation: CLOSE - retval: %d - was_err: %d - err_num: %d - err_msg: %s\n",
+					op_ret, was_err, err_num, err_msg);
+
+			if (! op_ret || was_err)
+			{
+				/* report error */
+			}
+			else
+			{
+				/* do stuff */
+			}
+
+		}
+			break;
+
+		case READ:
+		{
+			gboolean op_ret = FALSE;
+			char b;
+			gint64 off;
+			gboolean was_err = FALSE;
+			int err_num = 0;
+			char *err_msg = NULL;
+
+			g_variant_get (params, RET_FMT_READ,
+					&op_ret, &op_ret, &b, &op_ret, &off, &was_err, &err_num, &err_msg);
+
+			g_debug ("operation: READ - retval: %d - byte: %c - offset: %ld - was_err: %d - err_num: %d - err_msg: %s\n",
+					op_ret, b, off, was_err, err_num, err_msg);
+
+			if (was_err)
+			{
+				/* report error */
+			}
+			else
+			{
+				/* do stuff */
+			}
+		}
+			break;
+
+		case WRITE:
+		{
+			gboolean op_ret = FALSE;
+			gboolean was_err = FALSE;
+			int err_num = 0;
+			char *err_msg = NULL;
+
+			g_variant_get (params, RET_FMT_WRITE, &op_ret, &was_err, &err_num, &err_msg);
+
+			g_debug ("operation: WRITE - retval: %d - was_err: %d - err_num: %d - err_msg: %s\n",
+					op_ret, was_err, err_num, err_msg);
+
+			if (was_err)
+			{
+				/* report error */
+			}
+			else
+			{
+				/* do stuff */
+			}
+		}
+			break;
+
+		default:
+			g_warning ("Invalid retval. Ignoring.");
+			break;
+	}
+
+out:
+	g_variant_unref (ret_gvar);
+
+	g_data_input_stream_read_line_async (stdout_stream,
+			G_PRIORITY_DEFAULT,
+			NULL, /* cancellable */
+			stdout_read_line_cb,
+			self); /* data */
+}
+#endif
+
+#if 0
 /* mostly a helper for _get_data and _set_data */
 static char *
 get_file_data (HexBufferDirect *self,
@@ -189,6 +727,7 @@ get_file_data (HexBufferDirect *self,
 
 	return data;
 }
+#endif
 
 static int
 create_fd_from_path (HexBufferDirect *self, const char *path)
@@ -198,7 +737,7 @@ create_fd_from_path (HexBufferDirect *self, const char *path)
 
 	errno = 0;
 
-	if (stat (path, &statbuf) != 0)
+	if (stat (path, &statbuf) != 0)		/* new file */
 	{
 		if (errno != ENOENT) {
 			set_error (self,
@@ -206,16 +745,9 @@ create_fd_from_path (HexBufferDirect *self, const char *path)
 			return -1;
 		}
 
-		errno = 0;
-		fd = open(path, O_CREAT|O_TRUNC|O_RDWR,
-				S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
-
-		if (fd < 0) {
-			set_error (self, _("Unable to create file"));
-			return -1;
-		}
+		fd = send_new_cmd (self, path);
 	} 
-	else
+	else	/* open */
 	{
 		/* 	We only support regular files and block devices. */
 		if (! S_ISREG(statbuf.st_mode) && ! S_ISBLK(statbuf.st_mode))
@@ -224,18 +756,31 @@ create_fd_from_path (HexBufferDirect *self, const char *path)
 			return -1;
 		}
 
-		fd = open (path, O_RDWR);
-
-		if (fd < 0) {
-			errno = 0;
-			fd = open (path, O_RDONLY);
-			if (fd < 0) {
-				set_error (self, _("Unable to open file for reading"));
-				return -1;
-			}
-		}
+		fd = send_open_cmd (self, path);
 	}
+
 	return fd;
+}
+
+static void
+setup_subprocess (HexBufferDirect *self)
+{
+	g_clear_object (&self->sub);
+	g_clear_error (&self->error);
+
+	// TEST
+#define PACKAGE_LIBEXECDIR "/home/logan/git/ghex/src"
+	self->sub = g_subprocess_new (
+			G_SUBPROCESS_FLAGS_STDIN_PIPE | G_SUBPROCESS_FLAGS_STDOUT_PIPE |
+			G_SUBPROCESS_FLAGS_STDERR_PIPE | G_SUBPROCESS_FLAGS_INHERIT_FDS,
+			&self->error,
+			"pkexec",
+			PACKAGE_LIBEXECDIR "/gvar",	// FIXME - name, path, etc.
+			NULL);
+
+	// FIXME - shouldn't gerror-out here.
+	if (! self->sub)
+		g_error ("%s: Initializing subprocess object failed!", __func__);
 }
 
 /* CONSTRUCTORS AND DESTRUCTORS */
@@ -243,15 +788,21 @@ create_fd_from_path (HexBufferDirect *self, const char *path)
 static void
 hex_buffer_direct_init (HexBufferDirect *self)
 {
+	GInputStream *stdout_pipe;
+
 	self->fd = -1;
 	self->changes = g_hash_table_new_full (g_int64_hash, g_int64_equal,
 			g_free, g_free);
+
+	setup_subprocess (self);
 }
 
 static void
 hex_buffer_direct_dispose (GObject *gobject)
 {
 	HexBufferDirect *self = HEX_BUFFER_DIRECT(gobject);
+
+	g_clear_object (&self->sub);
 
 	/* chain up */
 	G_OBJECT_CLASS(hex_buffer_direct_parent_class)->dispose (gobject);
@@ -264,7 +815,7 @@ hex_buffer_direct_finalize (GObject *gobject)
 
 	if (self->fd >= 0)
 	{
-		close (self->fd);
+		send_close_cmd (self);
 	}
 
 	/* chain up */
@@ -305,8 +856,7 @@ hex_buffer_direct_get_data (HexBuffer *buf,
 
 	g_return_val_if_fail (self->fd != -1, NULL);
 
-	data = get_file_data (self, offset, len);
-
+	data = send_read_cmd (self, offset, offset + len-1);
 	if (! data)
 	{
 		return NULL;
@@ -333,14 +883,18 @@ hex_buffer_direct_get_byte (HexBuffer *buf,
 		gint64 offset)
 {
 	HexBufferDirect *self = HEX_BUFFER_DIRECT (buf);
-	char *cp = NULL;
+	char *data;
+	char b = 0;
 
-	cp = hex_buffer_direct_get_data (buf, offset, 1);
+	data = send_read_cmd (self, offset, offset);
 
-	if (cp)
-		return cp[0];
-	else
-		return 0;
+	if (data)
+	{
+		b = data[0];
+		g_free (data);
+	}
+
+	return b;
 }
 
 /* transfer: none */
@@ -390,12 +944,12 @@ hex_buffer_direct_read (HexBuffer *buf)
 		return FALSE;
 	}
 
-	tmp_fd = create_fd_from_path (self, file_path);
-	if (tmp_fd < 0)
-	{
-		set_error (self, _("Unable to read file"));
-		return FALSE;
-	}
+//	tmp_fd = create_fd_from_path (self, file_path);
+//	if (tmp_fd < 0)
+//	{
+//		set_error (self, _("Unable to read file"));
+//		return FALSE;
+//	}
 
 	/* will only return > 0 for a regular file. */
 	bytes = hex_buffer_util_get_file_size (self->file);
@@ -404,11 +958,12 @@ hex_buffer_direct_read (HexBuffer *buf)
 	{
 		gint64 block_file_size;
 
-		if (ioctl (tmp_fd, BLKGETSIZE64, &block_file_size) != 0)
-		{
-			set_error (self, _("Error attempting to read block device"));
-			return FALSE;
-		}
+//		if (ioctl (tmp_fd, BLKGETSIZE64, &block_file_size) != 0)
+//		{
+//			set_error (self, _("Error attempting to read block device"));
+//			return FALSE;
+//		}
+		g_debug ("DOING DUMB TEST NOW"); block_file_size = 100;
 		bytes = block_file_size;
 	}
 
@@ -498,13 +1053,15 @@ hex_buffer_direct_set_data (HexBuffer *buf,
 
 			g_debug ("key already existed; replaced");
 
-			tmp = get_file_data (self, offset, 1);
+			// TEST
+			tmp = send_read_cmd (self, offset, offset);
 
 			if (*tmp == *cp)
 			{
 				g_debug ("key value back to what O.G. file was. Removing hash entry.");
 				g_hash_table_remove (self->changes, ip);
 			}
+
 			g_free (tmp);
 		}
 	}
@@ -531,24 +1088,18 @@ hex_buffer_direct_write_to_file (HexBuffer *buf,
 	 */
 	for (guint i = 0; i < len; ++i)
 	{
-		ssize_t nwritten;
+		gboolean retval;
 		char *cp = g_hash_table_lookup (self->changes, keys[i]);
-		off_t offset, new_offset;
+		off_t offset = *keys[i];
 
-		offset = *keys[i];
-		new_offset = lseek (self->fd, offset, SEEK_SET);
-		g_assert (offset == new_offset);
-		g_debug ("%u: offset %ld: switch with: %c", i, offset, *cp);
+		retval = send_write_cmd (self, offset, *cp);
 
-		errno = 0;
-		nwritten = write (self->fd, cp, 1);
-		if (nwritten != 1)
-		{
-			set_error (self, _("Error writing changes to file"));
+		if (! retval)
 			return FALSE;
-		}
 	}
+
 	g_hash_table_remove_all (self->changes);
+
 	return TRUE;
 }
 

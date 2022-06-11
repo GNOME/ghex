@@ -37,6 +37,7 @@ libgtkhex_version = '@0@.@1@.@2@'.format(libgtkhex_api_version, libgtkhex_versio
 
 ghex_prefix = get_option('prefix')
 ghex_libdir = join_paths(ghex_prefix, get_option('libdir'))
+ghex_libexecdir = join_paths(ghex_prefix, get_option('libexecdir'))
 ghex_includedir = join_paths(ghex_prefix, get_option('includedir'))
 ghex_datadir = join_paths(ghex_prefix, get_option('datadir'))
 ghex_localedir = join_paths(ghex_prefix, get_option('localedir'))
@@ -80,6 +81,7 @@ config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
 config_h.set_quoted('PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), meson.project_version()))
 config_h.set_quoted('PACKAGE_DATADIR', ghex_datadir)
 config_h.set_quoted('PACKAGE_LIBDIR', ghex_libdir)
+config_h.set_quoted('PACKAGE_LIBEXECDIR', ghex_libexecdir)
 config_h.set_quoted('PACKAGE_PLUGINDIR', ghex_plugindir)
 config_h.set_quoted('PACKAGE_LOCALE_DIR', ghex_localedir)
 config_h.set_quoted('PACKAGE_DOCDIR', ghex_docdir)
@@ -171,6 +173,7 @@ gnome.post_install(
 
 summary({'prefix': ghex_prefix,
         'libdir': ghex_libdir,
+        'libexecdir': ghex_libexecdir,
         'datadir': ghex_datadir,
 	'docdir': ghex_docdir,
         'includedir': ghex_includedir,
