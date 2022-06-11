@@ -171,6 +171,14 @@ get_file_data (HexBufferDirect *self,
 	off_t new_offset;
 	ssize_t nread;
 
+	if (offset + len > self->payload)
+	{
+		g_critical ("%s: Programmer error - length is past payload. Reducing. "
+				"Some garbage may be displayed in the hex widget.", __func__);
+
+		len = self->payload - offset;
+	}
+
 	data = g_malloc (len);
 	new_offset = lseek (self->fd, offset, SEEK_SET);
 
@@ -179,8 +187,6 @@ get_file_data (HexBufferDirect *self,
 	errno = 0;
 	nread = read (self->fd, data, len);
 
-	/* FIXME/TODO - test that if nread is less than amount requested, that it
-	 * marries up with amount left in payload */
 	if (nread == -1)
 	{
 		set_error (self, _("Failed to read data from file."));
