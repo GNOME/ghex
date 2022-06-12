@@ -152,6 +152,7 @@ static void update_gui_data (GHexApplicationWindow *self);
 static gboolean assess_can_save (HexDocument *doc);
 static void do_close_window (GHexApplicationWindow *self);
 static void close_doc_confirmation_dialog (GHexApplicationWindow *self, GHexNotebookTab *tab);
+static void show_no_file_loaded_label (GHexApplicationWindow *self);
 
 static void doc_read_ready_cb (GObject *source_object, GAsyncResult *res,
 		gpointer user_data);
@@ -311,7 +312,7 @@ ghex_application_window_remove_tab (GHexApplicationWindow *self,
 	update_gui_data (self);
 
 	if (gtk_notebook_get_n_pages (GTK_NOTEBOOK(self->hex_notebook)) == 0)
-		do_close_window (self);
+		show_no_file_loaded_label (self);
 }
 
 static void
@@ -562,7 +563,10 @@ close_tab_shortcut_cb (GtkWidget *widget,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
 	GHexNotebookTab *tab = ghex_application_window_get_current_tab (self);
 
-	g_signal_emit_by_name (tab, "close-request");
+	if (tab)
+		g_signal_emit_by_name (tab, "close-request");
+	else
+		do_close_window (self);
 
 	return TRUE;
 }
