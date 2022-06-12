@@ -78,12 +78,54 @@ dark_mode_changed_cb (GSettings   *settings,
 void
 get_sys_default_is_dark (void)
 {
+	/* NOTE: for GTK 4.0 backwards compatibility, we manually define these
+	 * here. If we wish to add an additional dependency on
+	 * gsettings-desktop-schemas >= 42, this can be eliminated.
+	 */
+	enum {
+		SYSTEM_DEFAULT,
+		SYSTEM_PREFER_DARK,
+		SYSTEM_PREFER_LIGHT,
+	} color_scheme;
+	GSettings *set;
 	GtkSettings *gtk_settings;
+	GSettingsSchemaSource *source;
+	GSettingsSchema *schema;
+	char *schema_id = NULL;
 
-	gtk_settings = gtk_settings_get_default ();
-	g_object_get (gtk_settings,
-			"gtk-application-prefer-dark-theme", &sys_default_is_dark,
-			NULL);
+	source = g_settings_schema_source_get_default ();
+	schema = g_settings_schema_source_lookup (source, "org.freedesktop.appearance", TRUE);
+
+	if (schema && g_settings_schema_has_key (schema, "color-scheme"))
+	{
+		schema_id = "org.freedesktop.appearance";
+		g_settings_schema_unref (schema);
+	}
+	else
+	{
+		schema = g_settings_schema_source_lookup (source, "org.gnome.desktop.appearance", TRUE);
+		if (schema && g_settings_schema_has_key (schema, "color-scheme"))
+		{
+			schema_id = "org.gnome.desktop.appearance";
+			g_settings_schema_unref (schema);
+		}
+	}
+
+	if (schema_id)
+	{
+		set = g_settings_new (schema_id);
+		color_scheme = g_settings_get_enum (set, "color-scheme");
+		if (color_scheme == SYSTEM_PREFER_DARK)
+			sys_default_is_dark = TRUE;
+		g_object_unref (set);
+	}
+	else
+	{
+		gtk_settings = gtk_settings_get_default ();
+		g_object_get (gtk_settings,
+				"gtk-application-prefer-dark-theme", &sys_default_is_dark,
+				NULL);
+	}
 }
 
 static void
