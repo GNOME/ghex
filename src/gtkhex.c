@@ -1298,9 +1298,6 @@ adj_value_changed_cb (GtkAdjustment *adj, HexWidget *self)
 
 	self->top_line = gtk_adjustment_get_value (adj);
 
-	hex_widget_update_all_auto_highlights (self);
-	hex_widget_invalidate_all_highlights (self);
-
 	gtk_widget_queue_draw (GTK_WIDGET(self));
 }
 
@@ -2347,6 +2344,9 @@ hex_widget_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 		self->vis_lines = height / self->char_height;
 	else
 		self->vis_lines = self->default_lines;
+
+	hex_widget_update_all_auto_highlights (self);
+	hex_widget_invalidate_all_highlights (self);
 
 	/* queue child draw functions
 	 */
