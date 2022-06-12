@@ -121,7 +121,6 @@ create_hex_view (HexDocument *doc)
 	GtkWidget *gh;
 
 	gh = hex_widget_new (doc);
-	g_object_ref (gh);
 
 	gtk_widget_set_hexpand (gh, TRUE);
 	hex_widget_set_group_type (HEX_WIDGET(gh), def_group_type);
