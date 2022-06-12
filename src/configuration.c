@@ -103,10 +103,10 @@ get_sys_default_is_dark (void)
 	}
 	else
 	{
-		schema = g_settings_schema_source_lookup (source, "org.gnome.desktop.appearance", TRUE);
+		schema = g_settings_schema_source_lookup (source, "org.gnome.desktop.interface", TRUE);
 		if (schema && g_settings_schema_has_key (schema, "color-scheme"))
 		{
-			schema_id = "org.gnome.desktop.appearance";
+			schema_id = "org.gnome.desktop.interface";
 			g_settings_schema_unref (schema);
 		}
 	}
