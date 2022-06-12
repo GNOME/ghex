@@ -54,6 +54,8 @@ static void undo_stack_free             (HexDocument *doc);
 #define DEFAULT_UNDO_DEPTH 1024
 #define REGEX_SEARCH_LEN 1024	/* FIXME/TODO: This is kind of lazy. Stopgap? */
 
+/* SIGNALS */
+
 enum {
 	DOCUMENT_CHANGED,
 	UNDO,
@@ -67,6 +69,17 @@ enum {
 };
 
 static guint hex_signals[LAST_SIGNAL];
+
+/* PROPERTIES */
+
+enum
+{
+	GFILE = 1,
+	BUFFER,
+	N_PROPERTIES
+};
+
+static GParamSpec *properties[N_PROPERTIES];
 
 
 /* HexDocumentFindData GType Definitions */
@@ -144,6 +157,58 @@ struct _HexDocument
 };
 
 G_DEFINE_TYPE (HexDocument, hex_document, G_TYPE_OBJECT)
+
+
+/* PROPERTIES - GETTERS AND SETTERS */
+
+static void
+hex_document_set_property (GObject *object,
+		guint property_id,
+		const GValue *value,
+		GParamSpec *pspec)
+{
+	HexDocument *doc = HEX_DOCUMENT(object);
+
+	switch (property_id)
+	{
+		case GFILE:
+			hex_document_set_file (doc, g_value_get_object (value));
+			break;
+
+		case BUFFER:
+			hex_document_set_buffer (doc, g_value_get_object (value));
+			break;
+
+		default:
+			/* We don't have any other property... */
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void
+hex_document_get_property (GObject *object,
+		guint property_id,
+		GValue *value,
+		GParamSpec *pspec)
+{
+	HexDocument *doc = HEX_DOCUMENT(object);
+
+	switch (property_id)
+	{
+		case GFILE:
+			/* --- */
+			break;
+
+		case BUFFER:
+			break;
+
+		default:
+			/* We don't have any other property... */
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
 
 /* ---- */
 
@@ -276,9 +341,27 @@ static void
 hex_document_class_init (HexDocumentClass *klass)
 {
 	GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
+	GParamFlags default_flags = G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS |
+		G_PARAM_EXPLICIT_NOTIFY;
 	
 	gobject_class->finalize = hex_document_finalize;
-	gobject_class->dispose= hex_document_dispose;
+	gobject_class->dispose = hex_document_dispose;
+	gobject_class->set_property = hex_document_set_property;
+	gobject_class->get_property = hex_document_get_property;
+
+	/* PROPERTIES */
+
+	properties[GFILE] = g_param_spec_object ("file", NULL, NULL, 
+			G_TYPE_FILE,
+			default_flags);
+
+	properties[BUFFER] = g_param_spec_object ("buffer", NULL, NULL, 
+			HEX_TYPE_BUFFER,
+			default_flags);
+
+	g_object_class_install_properties (gobject_class, N_PROPERTIES, properties);
+
+	/* SIGNALS */
 	
 	hex_signals[DOCUMENT_CHANGED] =
 		g_signal_new_class_handler ("document-changed",
@@ -409,7 +492,9 @@ hex_document_set_file (HexDocument *doc, GFile *file)
 	}
 
 	doc->file = g_object_ref (file);
+
 	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[BUFFER]);
 
 	return TRUE;
 }
@@ -1846,5 +1931,6 @@ hex_document_set_buffer (HexDocument *doc, HexBuffer *buf)
 	g_clear_object (&doc->buffer);
 	doc->buffer = buf;
 
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[BUFFER]);
 	return TRUE;
 }

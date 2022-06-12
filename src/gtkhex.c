@@ -67,16 +67,6 @@ typedef enum {
 	VIEW_ASCII
 } HexWidgetViewType;
 
-enum {
-	CURSOR_MOVED_SIGNAL,
-	DATA_CHANGED_SIGNAL,
-	CUT_CLIPBOARD_SIGNAL,
-	COPY_CLIPBOARD_SIGNAL,
-	PASTE_CLIPBOARD_SIGNAL,
-	DRAW_COMPLETE_SIGNAL,
-	LAST_SIGNAL
-};
-
 /* highlighting information.
  */
 typedef struct _HexWidget_Highlight HexWidget_Highlight;
@@ -128,6 +118,30 @@ G_DEFINE_BOXED_TYPE (HexWidgetAutoHighlight, hex_widget_autohighlight,
  * Main HexWidget GObject definition
  * ------------------------------
  */
+
+/* PROPERTIES */
+
+enum
+{
+	DOCUMENT = 1,
+	N_PROPERTIES
+};
+
+static GParamSpec *properties[N_PROPERTIES];
+
+/* SIGNALS */
+
+enum {
+	CURSOR_MOVED_SIGNAL,
+	DATA_CHANGED_SIGNAL,
+	CUT_CLIPBOARD_SIGNAL,
+	COPY_CLIPBOARD_SIGNAL,
+	PASTE_CLIPBOARD_SIGNAL,
+	DRAW_COMPLETE_SIGNAL,
+	LAST_SIGNAL
+};
+
+static guint gtkhex_signals[LAST_SIGNAL] = { 0 };
 
 /**
  * HexWidget:
@@ -212,8 +226,6 @@ G_DEFINE_TYPE (HexWidget, hex_widget, GTK_TYPE_WIDGET)
 
 /* STATIC FORWARD DECLARATIONS */
 
-static guint gtkhex_signals[LAST_SIGNAL] = { 0 };
-
 static char *char_widths = NULL;
 
 static void render_highlights (HexWidget *self, cairo_t *cr, gint64 cursor_line,
@@ -239,6 +251,51 @@ static void hex_widget_update_auto_highlight (HexWidget *self, HexWidgetAutoHigh
 static void recalc_displays (HexWidget *self);
 
 static void show_cursor (HexWidget *self, gboolean show);
+
+
+/* PROPERTIES - GETTERS AND SETTERS */
+
+static void
+hex_widget_set_property (GObject *object,
+		guint property_id,
+		const GValue *value,
+		GParamSpec *pspec)
+{
+	HexWidget *self = HEX_WIDGET(object);
+
+	switch (property_id)
+	{
+		case DOCUMENT:
+			self->document = g_value_get_object (value);
+			break;
+
+		default:
+			/* We don't have any other property... */
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void
+hex_widget_get_property (GObject *object,
+		guint property_id,
+		GValue *value,
+		GParamSpec *pspec)
+{
+	HexWidget *self = HEX_WIDGET(object);
+
+	switch (property_id)
+	{
+		case DOCUMENT:
+			g_value_set_object (value, self->document);
+			break;
+
+		default:
+			/* We don't have any other property... */
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
 
 /* HexWidget - Method Definitions */
 
@@ -2321,6 +2378,32 @@ document_changed_cb (HexDocument* doc, gpointer change_data,
 }
 
 static void
+hex_widget_constructed (GObject *object)
+{
+	HexWidget *self = HEX_WIDGET(object);
+
+	/* Setup document signals */
+
+	g_signal_connect (self->document, "file-read-started",
+			G_CALLBACK (file_read_started_cb), self);
+
+	g_signal_connect (self->document, "file-loaded",
+			G_CALLBACK (file_loaded_cb), self);
+
+	g_signal_connect (self->document, "document-changed",
+			G_CALLBACK (document_changed_cb), self);
+
+	g_signal_connect (self->document, "undo",
+			G_CALLBACK (doc_undo_redo_cb), self);
+
+	g_signal_connect (self->document, "redo",
+			G_CALLBACK (doc_undo_redo_cb), self);
+
+	/* Chain up */
+	G_OBJECT_CLASS(hex_widget_parent_class)->constructed (object);
+}
+
+static void
 hex_widget_dispose (GObject *object)
 {
 	HexWidget *self = HEX_WIDGET(object);
@@ -2375,11 +2458,23 @@ hex_widget_class_init (HexWidgetClass *klass)
 
 	/* vfuncs */
 
+	object_class->constructed = hex_widget_constructed;
 	object_class->dispose = hex_widget_dispose;
 	object_class->finalize = hex_widget_finalize;
+	object_class->set_property = hex_widget_set_property;
+	object_class->get_property = hex_widget_get_property;
+
 	widget_class->snapshot = hex_widget_snapshot;
 
-	/* Layout manager: box-style layout. */
+	/* PROPERTIES */
+
+	properties[DOCUMENT] = g_param_spec_object ("document", NULL, NULL,
+			HEX_TYPE_DOCUMENT,
+			G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
+
+	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
+
+	/* Layout manager */
 
 	gtk_widget_class_set_layout_manager_type (widget_class,
 			HEX_TYPE_WIDGET_LAYOUT);
@@ -2746,8 +2841,6 @@ hex_widget_init (HexWidget *self)
 	gtk_widget_set_visible (self->busy_spinner, FALSE);
 	gtk_widget_set_parent (self->busy_spinner, widget);
 
-	/* SETUP SIGNALS */
-
 	/* GESTURES */
 
 	/* Whole HexWidget widget (for right-click context menu) */
@@ -2881,31 +2974,9 @@ hex_widget_init (HexWidget *self)
 GtkWidget *
 hex_widget_new (HexDocument *owner)
 {
-	HexWidget *self;
-
-	self = HEX_WIDGET (g_object_new (HEX_TYPE_WIDGET, NULL));
-	g_return_val_if_fail (self != NULL, NULL);
-
-	self->document = owner;
-
-	/* Setup document signals */
-
-    g_signal_connect (G_OBJECT (self->document), "file-read-started",
-            G_CALLBACK (file_read_started_cb), self);
-
-    g_signal_connect (G_OBJECT (self->document), "file-loaded",
-            G_CALLBACK (file_loaded_cb), self);
-
-    g_signal_connect (G_OBJECT (self->document), "document-changed",
-            G_CALLBACK (document_changed_cb), self);
-
-    g_signal_connect (G_OBJECT (self->document), "undo",
-            G_CALLBACK (doc_undo_redo_cb), self);
-	
-    g_signal_connect (G_OBJECT (self->document), "redo",
-            G_CALLBACK (doc_undo_redo_cb), self);
-	
-	return GTK_WIDGET(self);
+	return g_object_new (HEX_TYPE_WIDGET,
+			"document", owner,
+			NULL);
 }
 
 /**
