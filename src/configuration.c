@@ -129,8 +129,10 @@ static gboolean
 try_dark_from_portal (void)
 {
 	int color_scheme;
-	GDBusProxy *settings_portal;
-	GVariant *gvar;
+	char *color_scheme_str = NULL;
+	GDBusProxy *settings_portal = NULL;
+	GVariant *gvar = NULL, *gvar2 = NULL;
+	gboolean retval = FALSE;
 
 	settings_portal = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
 			G_DBUS_PROXY_FLAGS_NONE,
@@ -142,7 +144,7 @@ try_dark_from_portal (void)
 			NULL);
 
 	if (! settings_portal)
-		return FALSE;
+		goto out;
 
 	gvar = g_dbus_proxy_call_sync (settings_portal,
 			"Read",
@@ -152,8 +154,15 @@ try_dark_from_portal (void)
 			NULL,
 			NULL);
 
-	if (! gvar)
-		gvar = g_dbus_proxy_call_sync (settings_portal,
+	if (gvar)
+	{
+		g_variant_get (gvar, "(v)", &gvar2);
+		g_variant_get (g_variant_get_variant (gvar2), "u", &color_scheme);
+		retval = TRUE;
+		goto out;
+	}
+
+	gvar = g_dbus_proxy_call_sync (settings_portal,
 			"Read",
 			g_variant_new ("(ss)", "org.gnome.desktop.interface", "color-scheme"),
 			G_DBUS_CALL_FLAGS_NONE,
@@ -162,14 +171,27 @@ try_dark_from_portal (void)
 			NULL);
 
 	if (! gvar)
-		return FALSE;
+		goto out;
 
-	color_scheme = g_variant_get_uint32 (gvar);
+	g_variant_get (gvar, "(v)", &gvar2);
+	g_variant_get (g_variant_get_variant (gvar2), "s", &color_scheme_str);
+
+	if (color_scheme_str)
+	{
+		retval = TRUE;
+		if (g_strcmp0 (color_scheme_str, "prefer-dark") == 0)
+			color_scheme = SYSTEM_PREFER_DARK;
+	}
+
+out:
 	if (color_scheme == SYSTEM_PREFER_DARK)
 		sys_default_is_dark = TRUE;
-	g_variant_unref (gvar);
 
-	return TRUE;
+	g_clear_object (&settings_portal);
+	g_clear_pointer (&gvar, g_variant_unref);
+	g_clear_pointer (&gvar2, g_variant_unref);
+
+	return retval;
 }
 
 void
