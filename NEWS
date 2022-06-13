@@ -1,4 +1,18 @@
 =========
+GHex 42.3
+=========
+
+Bugfixes since 42.2 (all backports from master pending upcoming 43 release)
+(Logan Rathbone):
+
+- main: Hotfix to workaround gtk #4880 (affects Save As dialogs on X11
+  primarily)
+- config: Add GNOME 42+ compatibility for dark mode, and fetch dark settings
+  from portal if possible
+- widget: Properly update highlights upon resize
+- find-replace: Remove spurious g_object_ref() call
+
+=========
 GHex 42.2
 =========
 
