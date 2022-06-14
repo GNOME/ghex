@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-06-13 04:40+0000\n"
-"PO-Revision-Date: 2022-06-13 10:41+0300\n"
+"POT-Creation-Date: 2022-06-14 15:45+0000\n"
+"PO-Revision-Date: 2022-06-14 22:03+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
@@ -218,6 +218,62 @@ msgstr ""
 msgid "ERROR"
 msgstr "ПОМИЛКА"
 
+#: src/find-dialog.ui:33
+msgid "Find String"
+msgstr "Пошук рядка"
+
+#: src/find-dialog.ui:35
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Введіть шістнадцяткові дані ASCII дані для пошуку"
+
+#: src/find-dialog.ui:43
+msgid "Find _Next"
+msgstr "Знайти _наступне"
+
+#: src/find-dialog.ui:47
+msgid "Finds the next occurrence of the search string"
+msgstr "Знати наступне входження рядка пошуку"
+
+#: src/find-dialog.ui:52
+msgid "Find _Previous"
+msgstr "Знайти _попереднє"
+
+#: src/find-dialog.ui:55
+msgid "Finds the previous occurrence of the search string"
+msgstr "Знайти попереднє входження рядка пошуку"
+
+#: src/find-dialog.ui:60
+msgid "_Clear"
+msgstr "О_чистити"
+
+#: src/find-dialog.ui:63
+msgid "Clears the data you are searching for"
+msgstr "Вилучає дані, які ви шукали"
+
+#: src/find-dialog.ui:72
+msgid "Find options"
+msgstr "Параметри пошуку"
+
+#: src/find-dialog.ui:73
+msgid "View options of the find pane"
+msgstr "Перегляд параметрів панелі пошуку"
+
+#: src/find-dialog.ui:83 src/jump-dialog.ui:59
+msgid "Close"
+msgstr "Закрити"
+
+#: src/find-dialog.ui:84
+msgid "Closes the find pane"
+msgstr "Закриває панель пошуку"
+
+#: src/find-options.ui:60
+msgid "Show:"
+msgstr "Показ:"
+
+#: src/find-options.ui:68
+msgid "Both"
+msgstr "Обидва"
+
 #: src/findreplace.c:220
 msgid "No string provided."
 msgstr "Не надано рядка."
@@ -298,62 +354,6 @@ msgstr "Пошук завершено: виконано %d замін."
 #: src/findreplace.c:648
 msgid "No occurrences were found."
 msgstr "Не виявлено входжень."
-
-#: src/find-dialog.ui:33
-msgid "Find String"
-msgstr "Пошук рядка"
-
-#: src/find-dialog.ui:35
-msgid "Enter the hex data or ASCII data to search for"
-msgstr "Введіть шістнадцяткові дані ASCII дані для пошуку"
-
-#: src/find-dialog.ui:43
-msgid "Find _Next"
-msgstr "Знайти _наступне"
-
-#: src/find-dialog.ui:47
-msgid "Finds the next occurrence of the search string"
-msgstr "Знати наступне входження рядка пошуку"
-
-#: src/find-dialog.ui:52
-msgid "Find _Previous"
-msgstr "Знайти _попереднє"
-
-#: src/find-dialog.ui:55
-msgid "Finds the previous occurrence of the search string"
-msgstr "Знайти попереднє входження рядка пошуку"
-
-#: src/find-dialog.ui:60
-msgid "_Clear"
-msgstr "О_чистити"
-
-#: src/find-dialog.ui:63
-msgid "Clears the data you are searching for"
-msgstr "Вилучає дані, які ви шукали"
-
-#: src/find-dialog.ui:72
-msgid "Find options"
-msgstr "Параметри пошуку"
-
-#: src/find-dialog.ui:73
-msgid "View options of the find pane"
-msgstr "Перегляд параметрів панелі пошуку"
-
-#: src/find-dialog.ui:83 src/jump-dialog.ui:59
-msgid "Close"
-msgstr "Закрити"
-
-#: src/find-dialog.ui:84
-msgid "Closes the find pane"
-msgstr "Закриває панель пошуку"
-
-#: src/find-options.ui:60
-msgid "Show:"
-msgstr "Показ:"
-
-#: src/find-options.ui:68
-msgid "Both"
-msgstr "Обидва"
 
 #: src/ghex-application-window.c:330
 msgid ""
@@ -511,18 +511,6 @@ msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Зсув: <tt>0x%lX</tt>"
 
 #: src/ghex-application-window.c:2067
-#| msgid ""
-#| "You are attempting to open a file 1GB or larger.\n"
-#| "\n"
-#| "This can make GHex and your machine unstable as the file will be loaded "
-#| "into memory.\n"
-#| "\n"
-#| "Are you sure you want to proceed?\n"
-#| "\n"
-#| "This message will not be shown again for the remainder of this GHex "
-#| "session.\n"
-#| "\n"
-#| "This limitation will be removed in a future version of GHex."
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -545,8 +533,8 @@ msgstr ""
 "\n"
 "Це повідомлення більше не буде показано протягом цього сеансу роботу GHex.\n"
 "\n"
-"Щоб уникнути цього повідомлення, спробуйте скористатися іншим модулем обробки"
-" буфера."
+"Щоб уникнути цього повідомлення, спробуйте скористатися іншим модулем "
+"обробки буфера."
 
 #: src/ghex-application-window.c:2123
 msgid "There was an error reading the file."
@@ -790,7 +778,7 @@ msgstr "Показати вікно «Про програму»"
 msgid "Toggle insert mode"
 msgstr "Перемкнути режим вставлення"
 
-#: src/hex-buffer-mmap.c:50
+#: src/hex-buffer-direct.c:42 src/hex-buffer-mmap.c:50
 msgid "The file appears to have an invalid path."
 msgstr "Здається, шлях до файла є некоректним."
 
@@ -799,10 +787,46 @@ msgstr "Здається, шлях до файла є некоректним."
 #. * is the standard error message that will be reported from the system
 #. * (eg, 'No such file or directory').
 #.
-#: src/hex-buffer-mmap.c:173
+#: src/hex-buffer-direct.c:142 src/hex-buffer-mmap.c:173
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: src/hex-buffer-direct.c:192
+#| msgid "Failed to open temporary file."
+msgid "Failed to read data from file."
+msgstr "Не вдалося прочитати дані з файла."
+
+#: src/hex-buffer-direct.c:211 src/hex-buffer-mmap.c:585
+msgid "Unable to retrieve file or directory information"
+msgstr "Не вдалося отримати дані щодо файла або каталогу"
+
+#: src/hex-buffer-direct.c:220 src/hex-buffer-mmap.c:594
+msgid "Unable to create file"
+msgstr "Не вдалося створити файл"
+
+#: src/hex-buffer-direct.c:229
+#| msgid "Not a regular file"
+msgid "Not a regular file or block device"
+msgstr "Не є звичайним файлом або блоковим пристроєм"
+
+#: src/hex-buffer-direct.c:239 src/hex-buffer-mmap.c:614
+msgid "Unable to open file for reading"
+msgstr "Не вдалося відкрити файл для читання"
+
+#: src/hex-buffer-direct.c:402
+#| msgid "Unable to create file"
+msgid "Unable to read file"
+msgstr "Не вдалося прочитати дані з файла"
+
+#: src/hex-buffer-direct.c:415
+msgid "Error attempting to read block device"
+msgstr "Помилка під час спроби читання з блокового пристрою"
+
+#: src/hex-buffer-direct.c:553
+#| msgid "Error reading file"
+msgid "Error writing changes to file"
+msgstr "Помилка під час спроби записати зміни до файла."
 
 #: src/hex-buffer-mmap.c:308
 #, c-format
@@ -816,21 +840,9 @@ msgstr ""
 "Критична помилка: не вдалося пов'язати пам'ять із файлом (%lu байтів, "
 "дескриптор файла %d)"
 
-#: src/hex-buffer-mmap.c:585
-msgid "Unable to retrieve file or directory information"
-msgstr "Не вдалося отримати дані щодо файла або каталогу"
-
-#: src/hex-buffer-mmap.c:594
-msgid "Unable to create file"
-msgstr "Не вдалося створити файл"
-
 #: src/hex-buffer-mmap.c:604
 msgid "Not a regular file"
 msgstr "Не є звичайним файлом"
-
-#: src/hex-buffer-mmap.c:614
-msgid "Unable to open file for reading"
-msgstr "Не вдалося відкрити файл для читання"
 
 #: src/hex-buffer-mmap.c:645
 msgid "Failed to open temporary file."
@@ -838,7 +850,7 @@ msgstr "Не вдалося відкрити тимчасовий файл."
 
 #: src/hex-buffer-mmap.c:684
 msgid "Error reading file"
-msgstr "Помилка при зчитуванні файлу"
+msgstr "Помилка при зчитуванні файла"
 
 #: src/hex-buffer-mmap.c:700
 msgid "An error has occurred"
