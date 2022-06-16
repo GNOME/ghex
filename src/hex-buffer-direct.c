@@ -62,6 +62,7 @@ struct _HexBufferDirect
 	GError *error;		/* no custom codes; use codes from errno */
 	int last_errno;		/* cache in case we need to re-report errno error. */
 
+	char *path;
 	int fd;				/* file descriptor for direct read/write */
 	gint64 payload;		/* size of the payload */
 
@@ -272,6 +273,7 @@ hex_buffer_direct_finalize (GObject *gobject)
 	{
 		close (self->fd);
 	}
+	g_free (self->path);
 
 	/* chain up */
 	G_OBJECT_CLASS(hex_buffer_direct_parent_class)->finalize (gobject);
@@ -374,6 +376,7 @@ hex_buffer_direct_set_file (HexBuffer *buf, GFile *file)
 	}
 
 	self->file = file;
+	self->path = g_strdup (file_path);
 	g_object_notify (G_OBJECT(self), "file");
 	return TRUE;
 }
@@ -517,6 +520,13 @@ hex_buffer_direct_write_to_file (HexBuffer *buf,
 
 	g_return_val_if_fail (self->fd != -1, FALSE);
 	g_return_val_if_fail (G_IS_FILE (file), FALSE);
+
+	if (g_strcmp0 (self->path, g_file_peek_path (file)) != 0)
+	{
+		set_error (self, _("With direct-write mode, you cannot save a file "
+					"to a path other than its originating path"));
+		return FALSE;
+	}
 
 	keys = (gint64 **)g_hash_table_get_keys_as_array (self->changes, &len);
 
