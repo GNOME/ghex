@@ -314,6 +314,34 @@ ghex_application_window_remove_tab (GHexApplicationWindow *self,
 }
 
 static void
+file_save_write_cb (HexDocument *doc,
+		GAsyncResult *res,
+		GHexApplicationWindow *self)
+{
+	GError *local_error = NULL;
+	gboolean write_successful;
+
+	write_successful = hex_document_write_finish (doc, res, &local_error);
+
+	if (write_successful)
+	{
+		g_debug ("%s: File saved successfully.", __func__);
+	}
+	else
+	{
+		GString *full_errmsg = g_string_new (
+				_("There was an error saving the file."));
+
+		if (local_error)
+			g_string_append_printf (full_errmsg, "\n\n%s", local_error->message);
+
+		display_error_dialog (GTK_WINDOW(self), full_errmsg->str);
+
+		g_string_free (full_errmsg, TRUE);
+	}
+}
+
+static void
 file_save (GHexApplicationWindow *self)
 {
 	HexDocument *doc;
@@ -321,17 +349,10 @@ file_save (GHexApplicationWindow *self)
 	doc = hex_widget_get_document (ACTIVE_GH);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	if (hex_document_write (doc)) {
-		/* we're happy... */
-		g_debug ("%s: File saved successfully.", __func__);
-	}
-	else {
-		display_error_dialog (GTK_WINDOW(self),
-				_("There was an error saving the file."
-				"\n\n"
-				"Your permissions of the file may have been changed "
-				"by another program, or the file may have become corrupted."));
-	}
+	hex_document_write_async (doc,
+			NULL,
+			(GAsyncReadyCallback)file_save_write_cb,
+			self);
 }
 
 static void
@@ -995,6 +1016,44 @@ save_action (GtkWidget *widget,
 	file_save (self);
 }
 
+static void
+save_as_write_to_file_cb (HexDocument *doc,
+		GAsyncResult *res,
+		GHexApplicationWindow *self)
+{
+	GFile *gfile = extra_user_data;
+	GError *local_error = NULL;
+	gboolean write_successful;
+
+	write_successful = hex_document_write_finish (doc, res, &local_error);
+
+	if (! write_successful)
+	{
+		GString *full_errmsg = g_string_new (
+				_("There was an error saving the file to the path specified."));
+
+		if (local_error)
+			g_string_append_printf (full_errmsg, "\n\n%s", local_error->message);
+
+		display_error_dialog (GTK_WINDOW(self), full_errmsg->str);
+
+		g_string_free (full_errmsg, TRUE);
+		return;
+	}
+
+	if (hex_document_set_file (doc, gfile))
+	{
+		extra_user_data = ACTIVE_GH;
+		hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
+	}
+	else
+	{
+		display_error_dialog (GTK_WINDOW(self),
+				_("An unknown error has occurred in attempting to reload the "
+					"file you have just saved."));
+	}
+}
+
 /* save_as helper */
 static void
 save_as_response_cb (GtkNativeDialog *dialog,
@@ -1013,29 +1072,13 @@ save_as_response_cb (GtkNativeDialog *dialog,
 	/* Fetch doc. No need for sanity checks as this is just a helper. */
 	doc = hex_widget_get_document (ACTIVE_GH);
 
-	gfile = gtk_file_chooser_get_file (chooser);
+	extra_user_data = gfile = gtk_file_chooser_get_file (chooser);
 
-	if (! hex_document_write_to_file (doc, gfile))
-	{
-		display_error_dialog (GTK_WINDOW(self),
-				_("There was an error saving the file to the path specified."
-					"\n\n"
-					"You may not have the required permissions."));
-		goto end;
-	}
-
-	if (hex_document_set_file (doc, gfile))
-	{
-		extra_user_data = ACTIVE_GH;
-		hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
-	}
-	else
-	{
-		display_error_dialog (GTK_WINDOW(self),
-				_("An unknown error has occurred in attempting to reload the "
-					"file you have just saved."));
-		goto end;
-	}
+	hex_document_write_to_file_async (doc,
+			gfile,
+			NULL,
+			(GAsyncReadyCallback)save_as_write_to_file_cb,
+			self);
 
 end:
 	gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (dialog));

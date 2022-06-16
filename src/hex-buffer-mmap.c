@@ -178,6 +178,8 @@ set_error (HexBufferMmap *self, const char *blurb)
 	}
 	g_debug ("%s: %s", __func__, message);
 
+	g_clear_error (&self->error);
+
 	g_set_error (&self->error,
 			HEX_BUFFER_MMAP_ERROR,
 			errno,
@@ -787,6 +789,7 @@ hex_buffer_mmap_write_to_file (HexBuffer *buf,
 
 	hex_buffer_mmap_raw (self, &raw, 0, self->payload);
 
+	g_clear_error (&self->error);
 	retval = g_file_replace_contents (file,
 		/* const char* contents, */			raw,	
 		/* gsize length, */					self->payload,
