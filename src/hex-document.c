@@ -715,13 +715,10 @@ document_ready_cb (GObject *source_object,
 		GAsyncResult *res,
 		gpointer user_data)
 {
-	static HexChangeData change_data;
-
 	gboolean success;
 	GError *local_error = NULL;
 	HexBuffer *buf = HEX_BUFFER(source_object);
 	GTask *task = G_TASK (user_data);
-	gint64 payload;
 	HexDocument *doc;
 
 	doc = HEX_DOCUMENT(g_task_get_task_data (task));
@@ -742,13 +739,6 @@ document_ready_cb (GObject *source_object,
 
 	undo_stack_free(doc);
 
-	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
-
-	change_data.start = 0;
-	change_data.end = payload - 1;
-
-	doc->changed = FALSE;
-	hex_document_changed (doc, &change_data, FALSE);
 	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_LOADED], 0);
 	g_task_return_boolean (task, TRUE);
 
