@@ -86,7 +86,7 @@ ghex_locale_dir (void)
 }
 
 static void
-do_app_window (GtkApplication *app)
+do_app_window (AdwApplication *app)
 {
 	if (! window)
 		window = GTK_WINDOW(ghex_application_window_new (app));
@@ -110,7 +110,7 @@ handle_local_options (GApplication *application,
 }
 
 static void
-activate (GtkApplication *app,
+activate (AdwApplication *app,
 	gpointer user_data)
 {
 	/* WORKAROUND https://gitlab.gnome.org/GNOME/gtk/-/issues/4880 */
@@ -119,7 +119,7 @@ activate (GtkApplication *app,
 
 	do_app_window (app);
 
-	gtk_window_set_application (window, app);
+	gtk_window_set_application (window, GTK_APPLICATION(app));
 	gtk_window_present (window);
 }
 
@@ -132,7 +132,7 @@ open (GApplication *application,
 {
 	GHexApplicationWindow *app_win;
 
-	activate (GTK_APPLICATION(application), NULL);
+	activate (ADW_APPLICATION(application), NULL);
 	app_win = GHEX_APPLICATION_WINDOW(window);
 
 	for (int i = 0; i < n_files; ++i)
@@ -142,7 +142,7 @@ open (GApplication *application,
 int
 main (int argc, char *argv[])
 {
-	GtkApplication *app;
+	AdwApplication *app;
 	char *locale_dir;
 	int status;
 
@@ -158,7 +158,7 @@ main (int argc, char *argv[])
 
 	ghex_init_configuration ();
 
-	app = gtk_application_new (APP_ID, G_APPLICATION_HANDLES_OPEN);
+	app = adw_application_new (APP_ID, G_APPLICATION_HANDLES_OPEN);
 
 	g_application_add_main_option_entries (G_APPLICATION(app), entries);
 

@@ -34,6 +34,7 @@
 #define GHEX_CONFIGURATION_H
 
 #include <gtk/gtk.h>
+#include <adwaita.h>
 
 G_BEGIN_DECLS
 
@@ -62,17 +63,12 @@ extern gboolean		show_offsets_column;
 extern guint		shaded_box_size;
 extern int			def_group_type;
 extern int			def_dark_mode;
-extern gboolean		sys_default_is_dark;
 
 extern GSettings	*settings;
 extern GtkCssProvider *provider;
 
 /* Initializes the gsettings client */
 void ghex_init_configuration (void);
-
-/* Cache the system default of prefer-dark-theme as gtk does not do this for
- * us. */
-void get_sys_default_is_dark (void);
 
 G_END_DECLS
 

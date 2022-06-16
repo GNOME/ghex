@@ -34,6 +34,7 @@
 #define GHEX_PREFERENCES_H
 
 #include <gtk/gtk.h>
+#include <adwaita.h>
 #include <glib/gi18n.h>
 #include <string.h>
 

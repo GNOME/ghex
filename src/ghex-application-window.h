@@ -26,11 +26,11 @@
 #define GHEX_APPLICATION_WINDOW_H
 
 #include <gtk/gtk.h>
+#include <adwaita.h>
 #include <glib/gi18n.h>
 
 #include "gtkhex.h"
 #include "configuration.h"
-#include "ghex-notebook-tab.h"
 #include "hex-statusbar.h"
 #include "hex-dialog.h"
 #include "findreplace.h"
@@ -45,9 +45,9 @@ G_BEGIN_DECLS
 #define GHEX_TYPE_APPLICATION_WINDOW (ghex_application_window_get_type ())
 G_DECLARE_FINAL_TYPE (GHexApplicationWindow, ghex_application_window,
 				GHEX, APPLICATION_WINDOW,
-				GtkApplicationWindow)
+				AdwApplicationWindow)
 
-GtkWidget *	ghex_application_window_new (GtkApplication *app);
+GtkWidget *	ghex_application_window_new (AdwApplication *app);
 void		ghex_application_window_add_hex (GHexApplicationWindow *self,
 				HexWidget *gh);
 void		ghex_application_window_set_hex (GHexApplicationWindow *self,

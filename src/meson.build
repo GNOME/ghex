@@ -119,7 +119,6 @@ ghex_sources = [
   'converter.c',
   'findreplace.c',
   'ghex-application-window.c',
-  'ghex-notebook-tab.c',
   'gtkhex-paste-data.c',
   'hex-dialog.c',
   'hex-statusbar.c',
@@ -137,7 +136,8 @@ ghex = executable(
   meson.project_name(),
   ghex_sources + res,
   include_directories: ghex_root_dir,
-  dependencies: libgtkhex_dep,
+  dependencies: [adw_dep, libgtkhex_dep],
+  #  dependencies: [libgtkhex_dep, adw_dep],
   c_args: ghex_c_args,
   install: true
 )

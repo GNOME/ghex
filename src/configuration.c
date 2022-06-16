@@ -45,9 +45,6 @@ char *data_font_name;
 guint shaded_box_size;
 gboolean show_offsets_column;
 int def_dark_mode;
-/* Will default to false here. We can't set it until we get a 'screen', so
- * we'll save calling get_sys_default_is_dark() until GHex launches. */
-gboolean sys_default_is_dark;
 
 static void
 offsets_column_changed_cb (GSettings   *settings,
@@ -72,147 +69,27 @@ dark_mode_changed_cb (GSettings   *settings,
                   const gchar *key,
                   gpointer     user_data)
 {
+	AdwStyleManager *manager = adw_style_manager_get_default ();
+
     def_dark_mode = g_settings_get_enum (settings, key);
-}
 
-
-/* NOTE: for GTK 4.0 backwards compatibility, we manually define these
- * here. If we wish to add an additional dependency on
- * gsettings-desktop-schemas >= 42, this can be eliminated.
- */
-enum system_color_scheme {
-	SYSTEM_DEFAULT,
-	SYSTEM_PREFER_DARK,
-	SYSTEM_PREFER_LIGHT,
-};
-
-static gboolean
-try_dark_from_gsettings (void)
-{
-	int color_scheme;
-	GSettingsSchemaSource *source;
-	GSettingsSchema *schema;
-	char *schema_id = NULL;
-
-	source = g_settings_schema_source_get_default ();
-	schema = g_settings_schema_source_lookup (source, "org.freedesktop.appearance", TRUE);
-
-	if (schema && g_settings_schema_has_key (schema, "color-scheme"))
+	switch (def_dark_mode)
 	{
-		schema_id = "org.freedesktop.appearance";
+		case DARK_MODE_OFF:
+			adw_style_manager_set_color_scheme (manager, ADW_COLOR_SCHEME_FORCE_LIGHT);
+			break;
+
+		case DARK_MODE_ON:
+			adw_style_manager_set_color_scheme (manager, ADW_COLOR_SCHEME_FORCE_DARK);
+			break;
+
+		case DARK_MODE_SYSTEM:
+			adw_style_manager_set_color_scheme (manager, ADW_COLOR_SCHEME_DEFAULT);
+			break;
+
+		default:
+			break;
 	}
-	else
-	{
-		g_clear_pointer (&schema, g_settings_schema_unref);
-		schema = g_settings_schema_source_lookup (source, "org.gnome.desktop.interface", TRUE);
-		if (schema && g_settings_schema_has_key (schema, "color-scheme"))
-		{
-			schema_id = "org.gnome.desktop.interface";
-		}
-		g_clear_pointer (&schema, g_settings_schema_unref);
-	}
-
-	if (schema_id)
-	{
-		GSettings *set = g_settings_new (schema_id);
-		color_scheme = g_settings_get_enum (set, "color-scheme");
-		if (color_scheme == SYSTEM_PREFER_DARK)
-			sys_default_is_dark = TRUE;
-		g_object_unref (set);
-
-		return TRUE;
-	}
-	return FALSE;
-}
-
-static gboolean
-try_dark_from_portal (void)
-{
-	int color_scheme;
-	char *color_scheme_str = NULL;
-	GDBusProxy *settings_portal = NULL;
-	GVariant *gvar = NULL, *gvar2 = NULL;
-	gboolean retval = FALSE;
-
-	settings_portal = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
-			G_DBUS_PROXY_FLAGS_NONE,
-			NULL,
-			"org.freedesktop.portal.Desktop",
-			"/org/freedesktop/portal/desktop",
-			"org.freedesktop.portal.Settings",
-			NULL,
-			NULL);
-
-	if (! settings_portal)
-		goto out;
-
-	gvar = g_dbus_proxy_call_sync (settings_portal,
-			"Read",
-			g_variant_new ("(ss)", "org.freedesktop.appearance", "color-scheme"),
-			G_DBUS_CALL_FLAGS_NONE,
-			G_MAXINT,
-			NULL,
-			NULL);
-
-	if (gvar)
-	{
-		g_variant_get (gvar, "(v)", &gvar2);
-		g_variant_get (g_variant_get_variant (gvar2), "u", &color_scheme);
-		retval = TRUE;
-		goto out;
-	}
-
-	gvar = g_dbus_proxy_call_sync (settings_portal,
-			"Read",
-			g_variant_new ("(ss)", "org.gnome.desktop.interface", "color-scheme"),
-			G_DBUS_CALL_FLAGS_NONE,
-			G_MAXINT,
-			NULL,
-			NULL);
-
-	if (! gvar)
-		goto out;
-
-	g_variant_get (gvar, "(v)", &gvar2);
-	g_variant_get (g_variant_get_variant (gvar2), "s", &color_scheme_str);
-
-	if (color_scheme_str)
-	{
-		retval = TRUE;
-		if (g_strcmp0 (color_scheme_str, "prefer-dark") == 0)
-			color_scheme = SYSTEM_PREFER_DARK;
-	}
-
-out:
-	if (color_scheme == SYSTEM_PREFER_DARK)
-		sys_default_is_dark = TRUE;
-
-	g_clear_object (&settings_portal);
-	g_clear_pointer (&gvar, g_variant_unref);
-	g_clear_pointer (&gvar2, g_variant_unref);
-
-	return retval;
-}
-
-void
-get_sys_default_is_dark (void)
-{
-	GtkSettings *gtk_settings;
-	gboolean got_dark_pref;
-
-	got_dark_pref = try_dark_from_portal ();
-	if (got_dark_pref)
-		return;
-
-	got_dark_pref = try_dark_from_gsettings ();
-	if (got_dark_pref)
-		return;
-
-	/* If all else fails, try to fetch from GtkSettings. */
-	gtk_settings = gtk_settings_get_default ();
-	g_object_get (gtk_settings,
-			"gtk-application-prefer-dark-theme", &sys_default_is_dark,
-			NULL);
 }
 
 static void
