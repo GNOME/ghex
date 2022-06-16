@@ -326,7 +326,6 @@ hex_buffer_direct_get_data (HexBuffer *buf,
 		cp = g_hash_table_lookup (self->changes, &loc);
 		if (cp)
 		{
-			g_debug ("found change - swapping byte at: %ld", loc);
 			data[i] = *cp;
 		}
 	}
@@ -493,28 +492,18 @@ hex_buffer_direct_set_data (HexBuffer *buf,
 
 		retval = g_hash_table_replace (self->changes, ip, cp);
 
-		// TEST
-		if (retval) /* key did not exist yet */
-		{
-			g_debug ("key did not exist yet");
-		}
-		else
+		if (! retval)	/* key already existed; replace */
 		{
 			char *tmp = NULL;
 
-			g_debug ("key already existed; replaced");
-
 			tmp = get_file_data (self, offset, 1);
 
-			if (*tmp == *cp)
-			{
-				g_debug ("key value back to what O.G. file was. Removing hash entry.");
+			if (*tmp == *cp) {
 				g_hash_table_remove (self->changes, ip);
 			}
 			g_free (tmp);
 		}
 	}
-
 	return TRUE;
 }
 
@@ -544,7 +533,6 @@ hex_buffer_direct_write_to_file (HexBuffer *buf,
 		offset = *keys[i];
 		new_offset = lseek (self->fd, offset, SEEK_SET);
 		g_assert (offset == new_offset);
-		g_debug ("%u: offset %ld: switch with: %c", i, offset, *cp);
 
 		errno = 0;
 		nwritten = write (self->fd, cp, 1);
