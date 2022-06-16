@@ -877,6 +877,7 @@ write_ready_cb (GObject *source_object,
 {
 	HexBuffer *buf = HEX_BUFFER(source_object);
 	GTask *doc_task = G_TASK(user_data);
+	HexDocument *doc = g_task_get_source_object (doc_task);
 	gboolean success;
 	GError *local_error = NULL;
 
@@ -885,6 +886,8 @@ write_ready_cb (GObject *source_object,
 
 	if (success)
 	{
+		doc->changed = FALSE;
+		g_signal_emit (doc, hex_signals[FILE_SAVED], 0);
 		g_task_return_boolean (doc_task, TRUE);
 	}
 	else
