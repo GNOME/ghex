@@ -1275,7 +1275,6 @@ hex_document_compare_data_full (HexDocument *doc,
 		{
 			char *word = g_match_info_fetch (match_info, 0);
 
-			g_debug ("Found: %s", word);
 			find_data->found_len = strlen (word);
 			g_free (word);
 			retval = 0;
