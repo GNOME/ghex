@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-06-17 02:19+0000\n"
-"PO-Revision-Date: 2022-06-17 08:26+0300\n"
+"POT-Creation-Date: 2022-06-17 10:55+0000\n"
+"PO-Revision-Date: 2022-06-17 16:15+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
@@ -355,12 +355,18 @@ msgstr "Пошук завершено: виконано %d замін."
 msgid "No occurrences were found."
 msgstr "Не виявлено входжень."
 
-#: src/ghex-application-window.c:333
-#| msgid "There was an error reading the file."
+#. Translators: this is the string for an untitled buffer that will
+#. * be displayed in the titlebar when a user does File->New
+#.
+#: src/ghex-application-window.c:49 src/hex-document.c:1057
+msgid "Untitled"
+msgstr "Без назви"
+
+#: src/ghex-application-window.c:282
 msgid "There was an error saving the file."
 msgstr "Під час спроби зберегти файл сталася помилка."
 
-#: src/ghex-application-window.c:412
+#: src/ghex-application-window.c:339
 msgid ""
 "<b>You have one or more files open with unsaved changes.</b>\n"
 "\n"
@@ -372,18 +378,18 @@ msgstr ""
 "Ви справді хочете закрити вікно?\n"
 "\n"
 
-#: src/ghex-application-window.c:416
+#: src/ghex-application-window.c:343
 msgid "_Close Anyway"
 msgstr "_Закрити попри це"
 
-#: src/ghex-application-window.c:417 src/ghex-application-window.c:555
-#: src/ghex-application-window.c:1179
+#: src/ghex-application-window.c:344 src/ghex-application-window.c:462
+#: src/ghex-application-window.c:1117
 msgid "_Go Back"
 msgstr "П_овернутися"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:533
+#: src/ghex-application-window.c:440
 #, c-format
 msgid ""
 "<big><b>%s has been edited since opening.</b></big>\n"
@@ -394,7 +400,7 @@ msgstr ""
 "\n"
 "Хочете зберегти внесені зміни?"
 
-#: src/ghex-application-window.c:539
+#: src/ghex-application-window.c:446
 msgid ""
 "<b>The buffer has been edited since opening.</b>\n"
 "\n"
@@ -404,30 +410,19 @@ msgstr ""
 "\n"
 "Хочете зберегти внесені зміни?"
 
-#: src/ghex-application-window.c:553
+#: src/ghex-application-window.c:460
 msgid "_Save Changes"
 msgstr "З_берегти зміни"
 
-#: src/ghex-application-window.c:554
+#: src/ghex-application-window.c:461
 msgid "_Discard Changes"
 msgstr "_Відкинути зміни"
 
-#. Translators: this is the string for an untitled buffer that will
-#. * be displayed in the titlebar when a user does File->New
-#.
-#: src/ghex-application-window.c:862 src/hex-document.c:1057
-msgid "Untitled"
-msgstr "Без назви"
-
-#: src/ghex-application-window.c:1033
-#| msgid ""
-#| "There was an error saving the file to the path specified.\n"
-#| "\n"
-#| "You may not have the required permissions."
+#: src/ghex-application-window.c:971
 msgid "There was an error saving the file to the path specified."
 msgstr "Під час спроби збереження файла до вказаного каталогу сталася помилка."
 
-#: src/ghex-application-window.c:1052
+#: src/ghex-application-window.c:990
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -435,13 +430,13 @@ msgstr ""
 "Сталася невідома помилка під час спроби повторно завантажити файл, який ви "
 "щойно зберегли."
 
-#: src/ghex-application-window.c:1103
+#: src/ghex-application-window.c:1041
 msgid "Select a file to save buffer as"
 msgstr "Виберіть файл для збереження буфера"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1172
+#: src/ghex-application-window.c:1110
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -456,15 +451,15 @@ msgstr ""
 "\n"
 "Наслідки цієї дії не можна буде скасувати."
 
-#: src/ghex-application-window.c:1178 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1116 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "Від_новити"
 
-#: src/ghex-application-window.c:1262
+#: src/ghex-application-window.c:1200
 msgid "Select a file to open"
 msgstr "Вибрати файл для відкриття"
 
-#: src/ghex-application-window.c:1367
+#: src/ghex-application-window.c:1305
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -487,7 +482,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1443
+#: src/ghex-application-window.c:1381
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
@@ -496,12 +491,12 @@ msgstr ""
 "Зсув: <tt>0x%lX</tt>; позначено <tt>0x%lX</tt> байтів від <tt>0x%lX</tt> до "
 "<tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1447
+#: src/ghex-application-window.c:1385
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Зсув: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2110
+#: src/ghex-application-window.c:2005
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -527,11 +522,11 @@ msgstr ""
 "Щоб уникнути цього повідомлення, спробуйте скористатися іншим модулем "
 "обробки буфера."
 
-#: src/ghex-application-window.c:2166
+#: src/ghex-application-window.c:2062
 msgid "There was an error reading the file."
 msgstr "Під час читання з файла сталася помилка."
 
-#: src/ghex-application-window.c:2224
+#: src/ghex-application-window.c:2125
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -623,39 +618,50 @@ msgstr "_Довідка"
 msgid "_About GHex"
 msgstr "_Про GHex"
 
-#: src/ghex-application-window.ui.in:163
+#: src/ghex-application-window.ui.in:168
 msgid "Open a file for hex editing"
 msgstr "Відкрити файл у шістнадцятковому редакторі"
 
-#: src/ghex-application-window.ui.in:173
+#: src/ghex-application-window.ui.in:178
 msgid "Main menu"
 msgstr "Головне меню"
 
-#: src/ghex-application-window.ui.in:183
+#: src/ghex-application-window.ui.in:188
 msgid "Find a string in the hex document"
 msgstr "Знайти рядок у шістнадцятковому документі"
 
-#: src/ghex-application-window.ui.in:192
+#: src/ghex-application-window.ui.in:197
 msgid "Save document"
 msgstr "Зберегти документ"
 
-#: src/ghex-application-window.ui.in:215
-msgid "No file loaded."
-msgstr "Не завантажено жодного файла."
+#: src/ghex-application-window.ui.in:212
+#| msgid "No file loaded."
+msgid "No File Loaded"
+msgstr "Не завантажено жодного файла"
 
-#: src/ghex-application-window.ui.in:301
+#: src/ghex-application-window.ui.in:215
+msgid ""
+"• Press the Open button\n"
+"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+O to browse for a document\n"
+"\n"
+"Or, press Ctrl+W to close the window."
+msgstr ""
+"• Натисніть кнопку «Відкрити»\n"
+"• Натисніть Ctrl+N, щоб створити документ\n"
+"• Натисніть Ctrl+O, щоб перейти до наявного документа\n"
+"\n"
+"або натисніть Ctrl+W, щоб закрити вікно."
+
+#: src/ghex-application-window.ui.in:312
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Перемкнути режим вставлення (дописувати дані до файла, а не заміняти наявні "
 "дані)"
 
-#: src/ghex-application-window.ui.in:313
+#: src/ghex-application-window.ui.in:324
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Перемкнути панель, на якій показано різні числові перетворення"
-
-#: src/ghex-notebook-tab.c:41
-msgid "Untitled document"
-msgstr "Документ без заголовка"
 
 #: src/help-overlay.ui:14
 msgid "Files"
@@ -811,15 +817,15 @@ msgstr "Не вдалося прочитати дані з файла"
 msgid "Error attempting to read block device"
 msgstr "Помилка під час спроби читання з блокового пристрою"
 
-#: src/hex-buffer-direct.c:526
+#: src/hex-buffer-direct.c:527
 msgid ""
 "With direct-write mode, you cannot save a file to a path other than its "
 "originating path"
 msgstr ""
-"У режимі безпосереднього запису ви не можете зберігати файл до місця, яке є"
-" відмінним від початкового"
+"У режимі безпосереднього запису ви не можете зберігати файл до місця, яке є "
+"відмінним від початкового"
 
-#: src/hex-buffer-direct.c:551
+#: src/hex-buffer-direct.c:552
 msgid "Error writing changes to file"
 msgstr "Помилка під час спроби записати зміни до файла."
 
@@ -1123,6 +1129,9 @@ msgstr "Замінити _все"
 #: src/replace-dialog.ui:46
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Замінити всі екземпляри рядка пошуку рядком заміни"
+
+#~ msgid "Untitled document"
+#~ msgstr "Документ без заголовка"
 
 #~ msgid ""
 #~ "There was an error saving the file.\n"
