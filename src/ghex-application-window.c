@@ -46,7 +46,7 @@
 /* Translators: this is the string for an untitled buffer that will
  * be displayed in the titlebar when a user does File->New
  */
-#define UNTITLED_STRING N_("Untitled")
+static const char *UNTITLED_STRING = N_("Untitled");
 
 static GFile *tmp_global_gfile_for_nag_screen;
 
@@ -586,7 +586,7 @@ update_tabs (GHexApplicationWindow *self)
 	if (gfile)
 		basename = g_file_get_basename (gfile);
 	else
-		basename = g_strdup (UNTITLED_STRING);
+		basename = g_strdup (_(UNTITLED_STRING));
 
 	adw_tab_page_set_title (TAB_FOR_GH (gh), basename);
 	g_free (basename);
@@ -796,7 +796,7 @@ update_titlebar (GHexApplicationWindow *self)
 		if (G_IS_FILE (file = hex_document_get_file (doc)))
 			basename = g_file_get_basename (file);
 		else
-			basename = g_strdup (UNTITLED_STRING);
+			basename = g_strdup (_(UNTITLED_STRING));
 
 		title = g_strdup_printf ("%s - GHex", basename);
 		gtk_window_set_title (GTK_WINDOW(self), title);
@@ -2059,9 +2059,8 @@ doc_read_ready_cb (GObject *source_object,
 		}
 		else
 		{
-			char *generic_errmsg = N_("There was an error reading the file.");
-
-			display_error_dialog (GTK_WINDOW(self), generic_errmsg);
+			display_error_dialog (GTK_WINDOW(self),
+					_("There was an error reading the file."));
 		}
 	}
 	extra_user_data = NULL;
