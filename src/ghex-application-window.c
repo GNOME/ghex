@@ -2212,7 +2212,12 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 
 			g_debug ("%s: attempting to set buffer to `direct`", __func__);
 			buf = hex_buffer_util_new ("direct", file);
-			hex_document_set_buffer (doc, buf);
+			if (buf)
+				hex_document_set_buffer (doc, buf);
+			else
+				g_debug ("%s: setting buffer to `direct` failed. If this is "
+						"an attempt to open a block device, it will likely fail.",
+						__func__);
 		}
 
 		gh = HEX_WIDGET(hex_widget_new (doc));
