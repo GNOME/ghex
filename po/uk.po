@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-06-14 15:45+0000\n"
-"PO-Revision-Date: 2022-06-14 22:03+0300\n"
+"POT-Creation-Date: 2022-06-17 02:19+0000\n"
+"PO-Revision-Date: 2022-06-17 08:26+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
@@ -355,19 +355,12 @@ msgstr "Пошук завершено: виконано %d замін."
 msgid "No occurrences were found."
 msgstr "Не виявлено входжень."
 
-#: src/ghex-application-window.c:330
-msgid ""
-"There was an error saving the file.\n"
-"\n"
-"Your permissions of the file may have been changed by another program, or "
-"the file may have become corrupted."
-msgstr ""
-"Помилка при збереженні файла.\n"
-"\n"
-"Можливо, ваші права доступ до файла було змінено іншою програмою, або файл "
-"могло бути пошкоджено."
+#: src/ghex-application-window.c:333
+#| msgid "There was an error reading the file."
+msgid "There was an error saving the file."
+msgstr "Під час спроби зберегти файл сталася помилка."
 
-#: src/ghex-application-window.c:391
+#: src/ghex-application-window.c:412
 msgid ""
 "<b>You have one or more files open with unsaved changes.</b>\n"
 "\n"
@@ -379,18 +372,18 @@ msgstr ""
 "Ви справді хочете закрити вікно?\n"
 "\n"
 
-#: src/ghex-application-window.c:395
+#: src/ghex-application-window.c:416
 msgid "_Close Anyway"
 msgstr "_Закрити попри це"
 
-#: src/ghex-application-window.c:396 src/ghex-application-window.c:534
-#: src/ghex-application-window.c:1136
+#: src/ghex-application-window.c:417 src/ghex-application-window.c:555
+#: src/ghex-application-window.c:1179
 msgid "_Go Back"
 msgstr "П_овернутися"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:512
+#: src/ghex-application-window.c:533
 #, c-format
 msgid ""
 "<big><b>%s has been edited since opening.</b></big>\n"
@@ -401,7 +394,7 @@ msgstr ""
 "\n"
 "Хочете зберегти внесені зміни?"
 
-#: src/ghex-application-window.c:518
+#: src/ghex-application-window.c:539
 msgid ""
 "<b>The buffer has been edited since opening.</b>\n"
 "\n"
@@ -411,32 +404,30 @@ msgstr ""
 "\n"
 "Хочете зберегти внесені зміни?"
 
-#: src/ghex-application-window.c:532
+#: src/ghex-application-window.c:553
 msgid "_Save Changes"
 msgstr "З_берегти зміни"
 
-#: src/ghex-application-window.c:533
+#: src/ghex-application-window.c:554
 msgid "_Discard Changes"
 msgstr "_Відкинути зміни"
 
 #. Translators: this is the string for an untitled buffer that will
 #. * be displayed in the titlebar when a user does File->New
 #.
-#: src/ghex-application-window.c:841 src/hex-document.c:1064
+#: src/ghex-application-window.c:862 src/hex-document.c:1057
 msgid "Untitled"
 msgstr "Без назви"
 
-#: src/ghex-application-window.c:1021
-msgid ""
-"There was an error saving the file to the path specified.\n"
-"\n"
-"You may not have the required permissions."
-msgstr ""
-"Під час спроби збереження файла до вказаного каталогу сталася помилка.\n"
-"\n"
-"Можливо, у вас немає потрібних для запису прав доступу."
+#: src/ghex-application-window.c:1033
+#| msgid ""
+#| "There was an error saving the file to the path specified.\n"
+#| "\n"
+#| "You may not have the required permissions."
+msgid "There was an error saving the file to the path specified."
+msgstr "Під час спроби збереження файла до вказаного каталогу сталася помилка."
 
-#: src/ghex-application-window.c:1035
+#: src/ghex-application-window.c:1052
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -444,13 +435,13 @@ msgstr ""
 "Сталася невідома помилка під час спроби повторно завантажити файл, який ви "
 "щойно зберегли."
 
-#: src/ghex-application-window.c:1060
+#: src/ghex-application-window.c:1103
 msgid "Select a file to save buffer as"
 msgstr "Виберіть файл для збереження буфера"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1129
+#: src/ghex-application-window.c:1172
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -465,15 +456,15 @@ msgstr ""
 "\n"
 "Наслідки цієї дії не можна буде скасувати."
 
-#: src/ghex-application-window.c:1135 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1178 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "Від_новити"
 
-#: src/ghex-application-window.c:1219
+#: src/ghex-application-window.c:1262
 msgid "Select a file to open"
 msgstr "Вибрати файл для відкриття"
 
-#: src/ghex-application-window.c:1324
+#: src/ghex-application-window.c:1367
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -496,7 +487,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1400
+#: src/ghex-application-window.c:1443
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
@@ -505,12 +496,12 @@ msgstr ""
 "Зсув: <tt>0x%lX</tt>; позначено <tt>0x%lX</tt> байтів від <tt>0x%lX</tt> до "
 "<tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1404
+#: src/ghex-application-window.c:1447
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Зсув: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2067
+#: src/ghex-application-window.c:2110
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -536,11 +527,11 @@ msgstr ""
 "Щоб уникнути цього повідомлення, спробуйте скористатися іншим модулем "
 "обробки буфера."
 
-#: src/ghex-application-window.c:2123
+#: src/ghex-application-window.c:2166
 msgid "There was an error reading the file."
 msgstr "Під час читання з файла сталася помилка."
 
-#: src/ghex-application-window.c:2181
+#: src/ghex-application-window.c:2224
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -787,72 +778,76 @@ msgstr "Здається, шлях до файла є некоректним."
 #. * is the standard error message that will be reported from the system
 #. * (eg, 'No such file or directory').
 #.
-#: src/hex-buffer-direct.c:142 src/hex-buffer-mmap.c:173
+#: src/hex-buffer-direct.c:143 src/hex-buffer-mmap.c:173
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: src/hex-buffer-direct.c:192
-#| msgid "Failed to open temporary file."
+#: src/hex-buffer-direct.c:193
 msgid "Failed to read data from file."
 msgstr "Не вдалося прочитати дані з файла."
 
-#: src/hex-buffer-direct.c:211 src/hex-buffer-mmap.c:585
+#: src/hex-buffer-direct.c:212 src/hex-buffer-mmap.c:587
 msgid "Unable to retrieve file or directory information"
 msgstr "Не вдалося отримати дані щодо файла або каталогу"
 
-#: src/hex-buffer-direct.c:220 src/hex-buffer-mmap.c:594
+#: src/hex-buffer-direct.c:221 src/hex-buffer-mmap.c:596
 msgid "Unable to create file"
 msgstr "Не вдалося створити файл"
 
-#: src/hex-buffer-direct.c:229
-#| msgid "Not a regular file"
+#: src/hex-buffer-direct.c:230
 msgid "Not a regular file or block device"
 msgstr "Не є звичайним файлом або блоковим пристроєм"
 
-#: src/hex-buffer-direct.c:239 src/hex-buffer-mmap.c:614
+#: src/hex-buffer-direct.c:240 src/hex-buffer-mmap.c:616
 msgid "Unable to open file for reading"
 msgstr "Не вдалося відкрити файл для читання"
 
-#: src/hex-buffer-direct.c:402
-#| msgid "Unable to create file"
+#: src/hex-buffer-direct.c:404
 msgid "Unable to read file"
 msgstr "Не вдалося прочитати дані з файла"
 
-#: src/hex-buffer-direct.c:415
+#: src/hex-buffer-direct.c:417
 msgid "Error attempting to read block device"
 msgstr "Помилка під час спроби читання з блокового пристрою"
 
-#: src/hex-buffer-direct.c:553
-#| msgid "Error reading file"
+#: src/hex-buffer-direct.c:526
+msgid ""
+"With direct-write mode, you cannot save a file to a path other than its "
+"originating path"
+msgstr ""
+"У режимі безпосереднього запису ви не можете зберігати файл до місця, яке є"
+" відмінним від початкового"
+
+#: src/hex-buffer-direct.c:551
 msgid "Error writing changes to file"
 msgstr "Помилка під час спроби записати зміни до файла."
 
-#: src/hex-buffer-mmap.c:308
+#: src/hex-buffer-mmap.c:310
 #, c-format
 msgid "Could not adjust %s from %lu to %lu bytes"
 msgstr "Не вдалося скоригувати %s з %lu до %lu байтів"
 
-#: src/hex-buffer-mmap.c:357
+#: src/hex-buffer-mmap.c:359
 #, c-format
 msgid "Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"
 msgstr ""
 "Критична помилка: не вдалося пов'язати пам'ять із файлом (%lu байтів, "
 "дескриптор файла %d)"
 
-#: src/hex-buffer-mmap.c:604
+#: src/hex-buffer-mmap.c:606
 msgid "Not a regular file"
 msgstr "Не є звичайним файлом"
 
-#: src/hex-buffer-mmap.c:645
+#: src/hex-buffer-mmap.c:647
 msgid "Failed to open temporary file."
 msgstr "Не вдалося відкрити тимчасовий файл."
 
-#: src/hex-buffer-mmap.c:684
+#: src/hex-buffer-mmap.c:686
 msgid "Error reading file"
 msgstr "Помилка при зчитуванні файла"
 
-#: src/hex-buffer-mmap.c:700
+#: src/hex-buffer-mmap.c:702
 msgid "An error has occurred"
 msgstr "Сталася помилка"
 
@@ -924,22 +919,22 @@ msgstr "Довжина потоку:"
 msgid "FIXME: no conversion function"
 msgstr "FIXME: немає функції перетворення"
 
-#: src/hex-document.c:1092
+#: src/hex-document.c:1085
 #, c-format
 msgid "Page"
 msgstr "Сторінка"
 
-#: src/hex-document.c:1098 src/hex-document.c:1201
+#: src/hex-document.c:1091 src/hex-document.c:1194
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Шістнадцятковий дамп згенеровано за"
 
-#: src/hex-document.c:1124
+#: src/hex-document.c:1117
 #, c-format
 msgid "Previous page"
 msgstr "Попередня сторінка"
 
-#: src/hex-document.c:1139
+#: src/hex-document.c:1132
 #, c-format
 msgid "Next page"
 msgstr "наступна сторінка"
@@ -1128,6 +1123,17 @@ msgstr "Замінити _все"
 #: src/replace-dialog.ui:46
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Замінити всі екземпляри рядка пошуку рядком заміни"
+
+#~ msgid ""
+#~ "There was an error saving the file.\n"
+#~ "\n"
+#~ "Your permissions of the file may have been changed by another program, or "
+#~ "the file may have become corrupted."
+#~ msgstr ""
+#~ "Помилка при збереженні файла.\n"
+#~ "\n"
+#~ "Можливо, ваші права доступ до файла було змінено іншою програмою, або "
+#~ "файл могло бути пошкоджено."
 
 #~ msgid "Get cursor value"
 #~ msgstr "Взяти значення під курсором"
