@@ -145,59 +145,60 @@
 		</section>
 	</menu>
 
-	<template class="GHexApplicationWindow" parent="GtkApplicationWindow">
+	<template class="GHexApplicationWindow" parent="AdwApplicationWindow">
 		<property name="title" translatable="yes">GHex</property>
 		<property name="default-width">800</property>
 		<property name="default-height">600</property>
 		<property name="icon-name">@app_id@</property>
 
-		<child type="titlebar">
-			<object class="GtkHeaderBar" id="headerbar">
-				<property name="show-title-buttons">true</property>
-
-				<child>
-					<object class="GtkButton">
-						<property name="valign">center</property>
-						<property name="label">Open</property>
-						<property name="action-name">ghex.open</property>
-						<property name="tooltip-text" translatable="yes">Open a file for hex editing</property>
-					</object>
-				</child>
-
-				<child type="end">
-					<object class="GtkMenuButton" id="hamburger_menu_button">
-						<property name="valign">center</property>
-						<property name="menu-model">hamburger_menu</property>
-						<property name="icon-name">open-menu-symbolic</property>
-						<accessibility>
-							<property name="label" translatable="yes">Main menu</property>
-						</accessibility>
-					</object>
-				</child>
-
-				<child type="end">
-					<object class="GtkToggleButton" id="find_button">
-						<property name="valign">center</property>
-						<property name="icon-name">edit-find-symbolic</property>
-						<property name="action-name">ghex.find</property>
-						<property name="tooltip-text" translatable="yes">Find a string in the hex document</property>
-					</object>
-				</child>
-
-				<child type="end">
-					<object class="GtkButton">
-						<property name="valign">center</property>
-						<property name="icon-name">document-save-symbolic</property>
-						<property name="action-name">ghex.save</property>
-						<property name="tooltip-text" translatable="yes">Save document</property>
-					</object>
-				</child>
-			</object> <!-- headerbar -->
-		</child> <!-- titlebar -->
-
 		<child> <!-- main vert gtkbox -->
 			<object class="GtkBox"> <!-- main vert gtkbox -->
 				<property name="orientation">vertical</property>
+
+
+				<child>
+					<object class="GtkHeaderBar" id="headerbar">
+						<property name="show-title-buttons">true</property>
+
+						<child>
+							<object class="GtkButton">
+								<property name="valign">center</property>
+								<property name="label">Open</property>
+								<property name="action-name">ghex.open</property>
+								<property name="tooltip-text" translatable="yes">Open a file for hex editing</property>
+							</object>
+						</child>
+
+						<child type="end">
+							<object class="GtkMenuButton" id="hamburger_menu_button">
+								<property name="valign">center</property>
+								<property name="menu-model">hamburger_menu</property>
+								<property name="icon-name">open-menu-symbolic</property>
+								<accessibility>
+									<property name="label" translatable="yes">Main menu</property>
+								</accessibility>
+							</object>
+						</child>
+
+						<child type="end">
+							<object class="GtkToggleButton" id="find_button">
+								<property name="valign">center</property>
+								<property name="icon-name">edit-find-symbolic</property>
+								<property name="action-name">ghex.find</property>
+								<property name="tooltip-text" translatable="yes">Find a string in the hex document</property>
+							</object>
+						</child>
+
+						<child type="end">
+							<object class="GtkButton">
+								<property name="valign">center</property>
+								<property name="icon-name">document-save-symbolic</property>
+								<property name="action-name">ghex.save</property>
+								<property name="tooltip-text" translatable="yes">Save document</property>
+							</object>
+						</child>
+					</object> <!-- headerbar -->
+				</child> <!-- titlebar -->
 
 				<child> <!-- child_box for notebook & content area -->
 					<object class="GtkBox" id="child_box">
@@ -207,14 +208,18 @@
 						<property name="hexpand">true</property>
 
 						<child> <!-- label showing no doc loaded -->
-							<object class="GtkLabel" id="no_doc_label">
-								<style>
-									<class name="title" />
-								</style>
-								<property name="use-markup">true</property>
-								<property name="label" translatable="yes">No file loaded.</property>
-								<property name="halign">center</property>
-								<property name="valign">center</property>
+							<object class="AdwStatusPage" id="no_doc_label">
+								<property name="title" translatable="yes">No File Loaded</property>
+								<property name="child">
+									<object class="GtkLabel">
+										<property name="label" translatable="yes">• Press the Open button
+• Press Ctrl+N to start a new document
+• Press Ctrl+O to browse for a document
+
+Or, press Ctrl+W to close the window.</property>
+									</object>
+								</property>
+								<property name="icon-name">accessories-text-editor-symbolic</property>
 								<property name="hexpand">true</property>
 								<property name="vexpand">true</property>
 							</object>
@@ -232,18 +237,24 @@
 							</object>
 						</child> <!-- /doc_loading_spinner -->
 
-						<child> <!-- hex_notebook - tabs for GtkHex widget -->
-							<object class="GtkNotebook" id="hex_notebook">
-								<property name="enable-popup">true</property>
-								<property name="group-name">hex</property>
-								<property name="scrollable">true</property>
-								<property name="vexpand">true</property>
-								<property name="hexpand">true</property>
-								<property name="show-tabs">false</property>
+						<child>
+							<object class="GtkBox" id="tab_view_box">
+								<property name="orientation">vertical</property>
 								<!-- invisible by default to show the no_doc_label -->
 								<property name="visible">false</property>
-							</object>	
-						</child> <!-- hex_notebook -->
+								<child>
+									<object class="AdwTabBar">
+										<property name="view">hex_tab_view</property>
+									</object>
+								</child>
+								<child>
+									<object class="AdwTabView" id="hex_tab_view">
+										<property name="hexpand">true</property>
+										<property name="vexpand">true</property>
+									</object>
+								</child>
+							</object>
+						</child> <!-- tab_view_box -->
 
 					</object> <!-- child_box -->
 				</child> <!-- child_box -->

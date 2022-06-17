@@ -521,6 +521,7 @@ hex_buffer_direct_write_to_file (HexBuffer *buf,
 	g_return_val_if_fail (self->fd != -1, FALSE);
 	g_return_val_if_fail (G_IS_FILE (file), FALSE);
 
+	errno = 0;
 	if (g_strcmp0 (self->path, g_file_peek_path (file)) != 0)
 	{
 		set_error (self, _("With direct-write mode, you cannot save a file "

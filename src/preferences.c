@@ -373,7 +373,7 @@ setup_signals (void)
 static void
 grab_widget_values_from_settings (void)
 {
-	GtkSettings *gtk_settings;
+	AdwStyleManager *manager = adw_style_manager_get_default ();
 
 	/* font_button */
 	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(font_button),
@@ -388,8 +388,9 @@ grab_widget_values_from_settings (void)
 				TRUE);
 		gtk_widget_set_sensitive (dark_mode_switch, FALSE);
 		gtk_switch_set_state (GTK_SWITCH(dark_mode_switch),
-				sys_default_is_dark);
-	} else
+				adw_style_manager_get_dark (manager));
+	}
+	else
 	{
 		gtk_check_button_set_active (GTK_CHECK_BUTTON(system_default_chkbtn),
 				FALSE);

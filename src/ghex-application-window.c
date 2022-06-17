@@ -37,6 +37,17 @@
 #define ACTIVE_GH	\
 	(ghex_application_window_get_hex (self))
 
+#define GH_FOR_TAB(TV, NUM) \
+		(HEX_WIDGET(adw_tab_page_get_child (adw_tab_view_get_nth_page (TV, NUM))));
+
+#define TAB_FOR_GH(GH) \
+	(adw_tab_view_get_page (ADW_TAB_VIEW(self->hex_tab_view), GTK_WIDGET(GH)))
+
+/* Translators: this is the string for an untitled buffer that will
+ * be displayed in the titlebar when a user does File->New
+ */
+#define UNTITLED_STRING N_("Untitled")
+
 static GFile *tmp_global_gfile_for_nag_screen;
 
 /* This is dumb, but right now I can't think of a simpler solution. */
@@ -48,7 +59,7 @@ static gpointer extra_user_data;
 
 struct _GHexApplicationWindow
 {
-	GtkApplicationWindow parent_instance;
+	AdwApplicationWindow parent_instance;
 
 	HexWidget *gh;
 	HexDialog *dialog;
@@ -69,7 +80,8 @@ struct _GHexApplicationWindow
 
 	/* From GtkBuilder: */
 	GtkWidget *no_doc_label;
-	GtkWidget *hex_notebook;
+	GtkWidget *tab_view_box;
+	GtkWidget *hex_tab_view;
 	GtkWidget *conversions_box;
 	GtkWidget *findreplace_box;
 	GtkWidget *pane_toggle_button;
@@ -120,8 +132,7 @@ static const char *main_actions[] = {
 	NULL				/* last action */
 };
 
-G_DEFINE_TYPE (GHexApplicationWindow, ghex_application_window,
-		GTK_TYPE_APPLICATION_WINDOW)
+G_DEFINE_TYPE (GHexApplicationWindow, ghex_application_window, ADW_TYPE_APPLICATION_WINDOW)
 
 /* ---- */
 
@@ -141,47 +152,46 @@ static void ghex_application_window_set_show_jump (GHexApplicationWindow *self,
 		gboolean show);
 static void ghex_application_window_set_can_save (GHexApplicationWindow *self,
 		gboolean can_save);
-static void ghex_application_window_remove_tab (GHexApplicationWindow *self,
-		GHexNotebookTab *tab);
-static GHexNotebookTab * ghex_application_window_get_current_tab (GHexApplicationWindow *self);
 
 static void update_status_message (GHexApplicationWindow *self);
 static void update_gui_data (GHexApplicationWindow *self);
 static gboolean assess_can_save (HexDocument *doc);
 static void do_close_window (GHexApplicationWindow *self);
-static void close_doc_confirmation_dialog (GHexApplicationWindow *self, GHexNotebookTab *tab);
+static void close_doc_confirmation_dialog (GHexApplicationWindow *self,
+		AdwTabPage *page);
 static void show_no_file_loaded_label (GHexApplicationWindow *self);
 
 static void doc_read_ready_cb (GObject *source_object, GAsyncResult *res,
 		gpointer user_data);
+static void file_loaded (HexDocument *doc, GHexApplicationWindow *self);
 
 /* GHexApplicationWindow -- PRIVATE FUNCTIONS */
 
-/* Common macro to apply something to the 'gh' of each tab of the notebook.
+/* Common macro to apply something to the 'gh' of each tab of the tab view.
  *
  * Between _START and _END, put in function calls that use `gh` to be applied
- * to each gh in a tab. Technically you'll also have access to `notebook`
- * and `tab`, but there is generally no reason to directly access these.
+ * to each gh in a tab.
  */
-#define NOTEBOOK_GH_FOREACH_START											\
+#define TAB_VIEW_GH_FOREACH_START											\
 {																			\
-	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);				\
+	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);				\
 	int i;																	\
-	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i) {			\
+	for (i = adw_tab_view_get_n_pages(tab_view) - 1; i >= 0; --i) {			\
 		HexWidget *gh;														\
-		gh = HEX_WIDGET(gtk_notebook_get_nth_page (notebook, i));			\
-/* !NOTEBOOK_GH_FOREACH_START */
+		gh = HEX_WIDGET(adw_tab_page_get_child (							\
+					adw_tab_view_get_nth_page (tab_view, i)));
+/* !TAB_VIEW_GH_FOREACH_START */
 
-#define NOTEBOOK_GH_FOREACH_END												\
+#define TAB_VIEW_GH_FOREACH_END												\
 	} 																		\
 }																			\
-/* !NOTEBOOK_GH_FOREACH_END	*/
+/* !TAB_VIEW_GH_FOREACH_END	*/
 
 /* set_*_from_settings
  * These functions all basically set properties from the GSettings global
  * variables. They should be used when a new gh is created, and when we're
  * `foreaching` through all of our tabs via a settings-change cb. See also
- * the `NOTEBOOK_GH_FOREACH_{START,END}` macros above.
+ * the `TAB_VIEW_GH_FOREACH_{START,END}` macros above.
  */
 
 static void
@@ -197,38 +207,17 @@ set_gtkhex_group_type_from_settings (HexWidget *gh)
 }
 
 static void
-set_dark_mode_from_settings (GHexApplicationWindow *self)
-{
-	GtkSettings *gtk_settings;
-
-	gtk_settings = gtk_settings_get_default ();
-
-	if (def_dark_mode == DARK_MODE_SYSTEM) {
-		g_object_set (G_OBJECT(gtk_settings),
-				"gtk-application-prefer-dark-theme",
-				sys_default_is_dark,
-				NULL);
-	} else {
-		g_object_set (G_OBJECT(gtk_settings),
-				"gtk-application-prefer-dark-theme",
-				def_dark_mode == DARK_MODE_ON ? TRUE : FALSE,
-				NULL);
-	}
-}
-	
-
-static void
 settings_font_changed_cb (GSettings   *settings,
 		const gchar	*key,
 		gpointer 	user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	NOTEBOOK_GH_FOREACH_START
+	TAB_VIEW_GH_FOREACH_START
 
 	common_set_gtkhex_font_from_settings (gh);
 
-	NOTEBOOK_GH_FOREACH_END
+	TAB_VIEW_GH_FOREACH_END
 }
 
 static void
@@ -238,11 +227,11 @@ settings_offsets_column_changed_cb (GSettings   *settings,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	NOTEBOOK_GH_FOREACH_START
+	TAB_VIEW_GH_FOREACH_START
 
 	set_gtkhex_offsets_column_from_settings (gh);
 
-	NOTEBOOK_GH_FOREACH_END
+	TAB_VIEW_GH_FOREACH_END
 }
 
 static void
@@ -252,11 +241,11 @@ settings_group_type_changed_cb (GSettings   *settings,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	NOTEBOOK_GH_FOREACH_START
+	TAB_VIEW_GH_FOREACH_START
 
 	set_gtkhex_group_type_from_settings (gh);
 
-	NOTEBOOK_GH_FOREACH_END
+	TAB_VIEW_GH_FOREACH_END
 }
 
 /* ! settings*changed_cb 's */
@@ -272,47 +261,6 @@ refresh_dialogs (GHexApplicationWindow *self)
 	}
 }
 
-static GHexNotebookTab *
-ghex_application_window_get_current_tab (GHexApplicationWindow *self)
-{
-	GtkNotebook *notebook;
-	HexWidget *gh;
-	GHexNotebookTab *tab;
-
-	notebook = GTK_NOTEBOOK(self->hex_notebook);
-	gh = HEX_WIDGET(gtk_notebook_get_nth_page (notebook,
-			gtk_notebook_get_current_page (notebook)));
-
-	if (gh)
-		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,
-					GTK_WIDGET(gh)));
-	else
-		tab = NULL;
-
-	return tab;
-}
-
-static void
-ghex_application_window_remove_tab (GHexApplicationWindow *self,
-		GHexNotebookTab *tab)
-{
-	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
-	int page_num;
-	HexWidget *tab_gh;
-
-	tab_gh = ghex_notebook_tab_get_hex (tab);
-	page_num = gtk_notebook_page_num (notebook, GTK_WIDGET(tab_gh));
-	gtk_notebook_remove_page (notebook, page_num);
-
-	if (gtk_notebook_get_n_pages (GTK_NOTEBOOK(self->hex_notebook)) == 1)
-		gtk_notebook_set_show_tabs (GTK_NOTEBOOK(self->hex_notebook), FALSE);
-
-	update_gui_data (self);
-
-	if (gtk_notebook_get_n_pages (GTK_NOTEBOOK(self->hex_notebook)) == 0)
-		show_no_file_loaded_label (self);
-}
-
 static void
 file_save_write_cb (HexDocument *doc,
 		GAsyncResult *res,
@@ -326,6 +274,7 @@ file_save_write_cb (HexDocument *doc,
 	if (write_successful)
 	{
 		g_debug ("%s: File saved successfully.", __func__);
+		file_loaded (doc, self);
 	}
 	else
 	{
@@ -362,42 +311,20 @@ do_close_window (GHexApplicationWindow *self)
 }
 
 static void
-close_all_tabs (GHexApplicationWindow *self)
-{
-	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
-	int i;
-
-	g_debug("%s: %d", __func__, gtk_notebook_get_n_pages (notebook));
-
-	for (i = gtk_notebook_get_n_pages(notebook) - 1; i >= 0; --i)
-	{
-		GHexNotebookTab *tab;
-		HexWidget *gh;
-
-		gh = HEX_WIDGET(gtk_notebook_get_nth_page (notebook, i));
-		tab = GHEX_NOTEBOOK_TAB(gtk_notebook_get_tab_label (notebook,
-					GTK_WIDGET(gh)));
-
-		ghex_application_window_remove_tab (self, tab);
-	}
-}
-
-static void
 close_all_tabs_response_cb (GtkDialog *dialog,
 		int        response_id,
 		gpointer   user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	
+	if (response_id == GTK_RESPONSE_ACCEPT)
+	{
+		do_close_window (self);
+	}
+
 	/* Regardless of what the user chose, get rid of the dialog. */
 	gtk_window_destroy (GTK_WINDOW(dialog));
 
-	if (response_id == GTK_RESPONSE_ACCEPT)
-	{
-		g_debug ("%s: Decided to CLOSE despite changes.",	__func__);
-		close_all_tabs (self);
-		do_close_window (self);
-	}
 }
 
 static void
@@ -426,28 +353,10 @@ close_all_tabs_confirmation_dialog (GHexApplicationWindow *self)
 static void
 check_close_window (GHexApplicationWindow *self)
 {
-	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
+	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
 	gboolean unsaved_found = FALSE;
 	int i;
-	const int num_pages = gtk_notebook_get_n_pages (notebook);
-
-	/* We have only one tab open: */
-	if (num_pages == 1)
-	{
-		GHexNotebookTab *tab = ghex_application_window_get_current_tab (self);
-		HexDocument *doc = hex_widget_get_document (ACTIVE_GH);
-
-		if (hex_document_has_changed (doc))
-		{
-			close_doc_confirmation_dialog (self,
-					ghex_application_window_get_current_tab (self));
-		}
-		else
-		{
-			do_close_window (self);
-		}
-		return;
-	}
+	const int num_pages = adw_tab_view_get_n_pages (tab_view);
 
 	/* We have more than one tab open: */
 	for (i = num_pages - 1; i >= 0; --i)
@@ -455,7 +364,7 @@ check_close_window (GHexApplicationWindow *self)
 		HexWidget *gh;
 		HexDocument *doc = NULL;
 
-		gh = HEX_WIDGET(gtk_notebook_get_nth_page (notebook, i));
+		gh = GH_FOR_TAB (tab_view, i);
 		doc = hex_widget_get_document (gh);
 
 		if (hex_document_has_changed (doc))
@@ -465,7 +374,6 @@ check_close_window (GHexApplicationWindow *self)
 	if (unsaved_found) {
 		close_all_tabs_confirmation_dialog (self);
 	} else {
-		close_all_tabs (self);
 		do_close_window (self);
 	}
 }
@@ -487,40 +395,39 @@ close_doc_response_cb (GtkDialog *dialog,
 		gpointer   user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-	GHexNotebookTab *tab;
+	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
+	AdwTabPage *page = ADW_TAB_PAGE(extra_user_data);
 	
-	tab = ghex_application_window_get_current_tab (self);
-
 	if (response_id == GTK_RESPONSE_ACCEPT)
 	{
 		file_save (self);
-		ghex_application_window_remove_tab (self, tab);
+		adw_tab_view_close_page_finish (tab_view, page, TRUE);
 	}
 	else if (response_id == GTK_RESPONSE_REJECT)
 	{
-		ghex_application_window_remove_tab (self, tab);
+		adw_tab_view_close_page_finish (tab_view, page, TRUE);
+	}
+	else
+	{
+		adw_tab_view_close_page_finish (tab_view, page, FALSE);
 	}
 
 	gtk_window_destroy (GTK_WINDOW(dialog));
-
-	/* GtkNotebook likes to grab the focus. Possible TODO would be to subclass
-	 * GtkNotebook so we can maintain the grab on the gh widget more easily.
-	 */
 	gtk_widget_grab_focus (GTK_WIDGET (ACTIVE_GH));
+	extra_user_data = NULL;
 }
 
 static void
-close_doc_confirmation_dialog (GHexApplicationWindow *self,
-		GHexNotebookTab *tab)
+close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 {
 	GtkWidget *dialog;
 	HexDocument *doc;
 	GFile *file;
 	char *message;
 	char *basename = NULL;
-
-	HexWidget *gh = ghex_notebook_tab_get_hex (tab);
+	HexWidget *gh = HEX_WIDGET(adw_tab_page_get_child (page));
 	doc = hex_widget_get_document (gh);
+
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	if (G_IS_FILE (file = hex_document_get_file (doc)))
@@ -555,6 +462,7 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self,
 			_("_Go Back"),			GTK_RESPONSE_CANCEL,
 			NULL);
 
+	extra_user_data = page;
 	g_signal_connect (dialog, "response",
 			G_CALLBACK(close_doc_response_cb), self);
 
@@ -580,10 +488,10 @@ close_tab_shortcut_cb (GtkWidget *widget,
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
-	GHexNotebookTab *tab = ghex_application_window_get_current_tab (self);
+	AdwTabPage *page = adw_tab_view_get_selected_page (ADW_TAB_VIEW(self->hex_tab_view));
 
-	if (tab)
-		g_signal_emit_by_name (tab, "close-request");
+	if (page)
+		adw_tab_view_close_page (ADW_TAB_VIEW(self->hex_tab_view), page);
 	else
 		do_close_window (self);
 
@@ -650,17 +558,40 @@ assess_can_save (HexDocument *doc)
 }
 
 static void
-show_hex_notebook (GHexApplicationWindow *self)
+show_hex_tab_view (GHexApplicationWindow *self)
 {
 	gtk_widget_hide (self->no_doc_label);
-	gtk_widget_show (self->hex_notebook);
+	gtk_widget_show (self->tab_view_box);
 }
 
 static void
 show_no_file_loaded_label (GHexApplicationWindow *self)
 {
-	gtk_widget_hide (self->hex_notebook);
+	gtk_widget_hide (self->tab_view_box);
 	gtk_widget_show (self->no_doc_label);
+}
+
+static void
+update_tabs (GHexApplicationWindow *self)
+{
+	char *basename;
+	GFile *gfile = NULL;
+
+	TAB_VIEW_GH_FOREACH_START
+
+	/* set text of context menu tab switcher to the filename rather than
+	 * 'Page X' */
+	gfile = hex_document_get_file (hex_widget_get_document (gh));
+
+	if (gfile)
+		basename = g_file_get_basename (gfile);
+	else
+		basename = g_strdup (UNTITLED_STRING);
+
+	adw_tab_page_set_title (TAB_FOR_GH (gh), basename);
+	g_free (basename);
+
+	TAB_VIEW_GH_FOREACH_END
 }
 
 static void
@@ -690,8 +621,8 @@ file_loaded (HexDocument *doc, GHexApplicationWindow *self)
 {
 	document_loaded_or_saved_common (self, doc);
 	update_gui_data (self);
+	adw_tab_page_set_icon (TAB_FOR_GH (ACTIVE_GH), NULL);
 }
-
 
 static void
 document_changed_cb (HexDocument *doc,
@@ -702,29 +633,42 @@ document_changed_cb (HexDocument *doc,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
 	document_loaded_or_saved_common (self, doc);
+
+	TAB_VIEW_GH_FOREACH_START
+
+	if (hex_widget_get_document (gh) == doc)
+	{
+		GIcon *icon = g_themed_icon_new ("document-modified-symbolic");
+		adw_tab_page_set_icon (TAB_FOR_GH (gh), icon);
+		g_object_unref (icon);
+	}
+
+	TAB_VIEW_GH_FOREACH_END
 }
 
-static void
-tab_close_request_cb (GHexNotebookTab *tab,
+static gboolean
+tab_view_close_page_cb (AdwTabView *tab_view,
+		AdwTabPage* page,
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	HexDocument *doc;
 	HexWidget *gh;
 
-	gh = ghex_notebook_tab_get_hex (tab);
+	gh = HEX_WIDGET(adw_tab_page_get_child (page));
 	doc = hex_widget_get_document (gh);
-	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	if (hex_document_has_changed (doc)) {
-		close_doc_confirmation_dialog (self, tab);
+		close_doc_confirmation_dialog (self, page);
 	} else {
-		ghex_application_window_remove_tab (self, tab);
+		adw_tab_view_close_page_finish (tab_view, page, TRUE);
 	}
+
+	return GDK_EVENT_STOP;
 }
 
 static void
-notebook_page_changed_cb (GtkNotebook *notebook,
+tab_view_page_changed_cb (AdwTabView *tab_view,
 		GParamSpec *pspec,
 		gpointer    user_data)
 {
@@ -739,20 +683,17 @@ notebook_page_changed_cb (GtkNotebook *notebook,
 	doc = hex_widget_get_document (ACTIVE_GH);
 	ghex_application_window_set_can_save (self, assess_can_save (doc));
 
-	/* Update dialogs, offset status bar, etc. */
 	update_gui_data (self);
 }
 
 static void
-notebook_page_added_cb (GtkNotebook *notebook,
-		GtkWidget   *child,
-		guint        page_num,
-		gpointer     user_data)
+tab_view_page_attached_cb (AdwTabView *tab_view,
+		AdwTabPage *page,
+		int page_num,
+		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	
-	g_assert (GTK_WIDGET(notebook) == self->hex_notebook);
-
 	/* Let's play this super dumb. If a page is added, that will generally
 	 * mean we don't have to count the pages to see if we have > 0.
 	 */
@@ -760,16 +701,14 @@ notebook_page_added_cb (GtkNotebook *notebook,
 }
 
 static void
-notebook_page_removed_cb (GtkNotebook *notebook,
-		GtkWidget   *child,
-		guint        page_num,
-		gpointer     user_data)
+tab_view_page_detached_cb (AdwTabView *tab_view,
+		AdwTabPage *page,
+		int page_num,
+		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	g_assert (GTK_WIDGET(notebook) == self->hex_notebook);
-	
-	if (gtk_notebook_get_n_pages (notebook) == 0) {
+	if (adw_tab_view_get_n_pages (tab_view) == 0) {
 		enable_main_actions (self, FALSE);
 		ghex_application_window_set_show_find (self, FALSE);
 		ghex_application_window_set_show_replace (self, FALSE);
@@ -779,6 +718,7 @@ notebook_page_removed_cb (GtkNotebook *notebook,
 
 		show_no_file_loaded_label (self);
 	}
+	update_gui_data (self);
 }
 
 static void
@@ -847,7 +787,7 @@ update_titlebar (GHexApplicationWindow *self)
 			 * we hold any further references to gh doesn't seem to work
 			 * reliably.
 			 */
-			gtk_notebook_get_n_pages (GTK_NOTEBOOK(self->hex_notebook)))
+			adw_tab_view_get_n_pages (ADW_TAB_VIEW(self->hex_tab_view)))
 	{
 		char *basename;
 		char *title;
@@ -856,10 +796,7 @@ update_titlebar (GHexApplicationWindow *self)
 		if (G_IS_FILE (file = hex_document_get_file (doc)))
 			basename = g_file_get_basename (file);
 		else
-			/* Translators: this is the string for an untitled buffer that will
-			 * be displayed in the titlebar when a user does File->New
-			 */
-			basename = g_strdup (_("Untitled"));
+			basename = g_strdup (UNTITLED_STRING);
 
 		title = g_strdup_printf ("%s - GHex", basename);
 		gtk_window_set_title (GTK_WINDOW(self), title);
@@ -882,6 +819,7 @@ update_gui_data (GHexApplicationWindow *self)
 
 	update_status_message (self);
 	update_titlebar (self);
+	update_tabs (self);
 
 	if (ACTIVE_GH)
 	{
@@ -995,11 +933,11 @@ ghex_application_window_set_insert_mode (GHexApplicationWindow *self,
 {
 	self->insert_mode = insert_mode;
 
-	NOTEBOOK_GH_FOREACH_START
+	TAB_VIEW_GH_FOREACH_START
 
 	hex_widget_set_insert_mode (gh, insert_mode);
 
-	NOTEBOOK_GH_FOREACH_END
+	TAB_VIEW_GH_FOREACH_END
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_INSERT_MODE]);
 }
@@ -1585,12 +1523,6 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
 	gtk_widget_init_template (widget);
 
-	/* Cache system default of prefer-dark-mode; gtk does not do this. This
-	 * is run here as it cannot be done until we have a 'screen'. */
-	get_sys_default_is_dark ();
-	/* Do dark mode if requested */
-	set_dark_mode_from_settings (self);
-
 	/* Setup conversions box and pane */
 	self->dialog = hex_dialog_new ();
 	self->dialog_widget = hex_dialog_getview (self->dialog);
@@ -1628,9 +1560,6 @@ ghex_application_window_init (GHexApplicationWindow *self)
     g_signal_connect (settings, "changed::" GHEX_PREF_GROUP,
                       G_CALLBACK (settings_group_type_changed_cb), self);
 
-    g_signal_connect_swapped (settings, "changed::" GHEX_PREF_DARK_MODE,
-                      G_CALLBACK (set_dark_mode_from_settings), self);
-
 	/* Actions - SETTINGS */
 
 	/* for the 'group data by' stuff. There isn't a function to do this from
@@ -1640,16 +1569,19 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	action = g_settings_create_action (settings, GHEX_PREF_GROUP);
 	g_action_map_add_action (G_ACTION_MAP(self), action);
 
-	/* Setup notebook signals */
+	/* Setup tab view signals */
 
-	g_signal_connect (self->hex_notebook, "notify::page",
-			G_CALLBACK(notebook_page_changed_cb), self);
+	g_signal_connect (self->hex_tab_view, "notify::selected-page",
+			G_CALLBACK(tab_view_page_changed_cb), self);
 
-	g_signal_connect (self->hex_notebook, "page-added",
-			G_CALLBACK(notebook_page_added_cb), self);
+	g_signal_connect (self->hex_tab_view, "page-attached",
+			G_CALLBACK(tab_view_page_attached_cb), self);
 
-	g_signal_connect (self->hex_notebook, "page-removed",
-			G_CALLBACK(notebook_page_removed_cb), self);
+	g_signal_connect (self->hex_tab_view, "page-detached",
+			G_CALLBACK(tab_view_page_detached_cb), self);
+
+	g_signal_connect (self->hex_tab_view, "close-page",
+			G_CALLBACK(tab_view_close_page_cb), self);
 
 	/* Get find_dialog and friends geared up */
 
@@ -1960,7 +1892,7 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 			NULL);
 
 	/* In case you're looking for Ctrl+PageUp & PageDown - those are baked in
-	 * via GtkNotebook */
+	 * via AdwTabView */
 
 	/* WIDGET TEMPLATE .UI */
 
@@ -1970,7 +1902,9 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			no_doc_label);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
-			hex_notebook);
+			tab_view_box);
+	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
+			hex_tab_view);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			conversions_box);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
@@ -1988,7 +1922,7 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 }
 
 GtkWidget *
-ghex_application_window_new (GtkApplication *app)
+ghex_application_window_new (AdwApplication *app)
 {
 	return g_object_new (GHEX_TYPE_APPLICATION_WINDOW,
 			"application", app,
@@ -1999,15 +1933,13 @@ void
 ghex_application_window_activate_tab (GHexApplicationWindow *self,
 		HexWidget *gh)
 {
-	GtkNotebook *notebook = GTK_NOTEBOOK(self->hex_notebook);
-	int page_num;
+	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
 
 	g_return_if_fail (HEX_IS_WIDGET (gh));
-	g_return_if_fail (GTK_IS_NOTEBOOK (notebook));
 
-	page_num = gtk_notebook_page_num (notebook, GTK_WIDGET(gh));
+	adw_tab_view_set_selected_page (tab_view,
+			adw_tab_view_get_page (tab_view, GTK_WIDGET(gh)));
 
-	gtk_notebook_set_current_page (notebook, page_num);
 	gtk_widget_grab_focus (GTK_WIDGET(gh));
 }
 
@@ -2033,52 +1965,15 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	/* HexWidget: Set insert mode based on our global appwindow prop */
 	hex_widget_set_insert_mode (gh, self->insert_mode);
 
-	/* Generate a tab */
-	tab = ghex_notebook_tab_new (gh);
-
-	g_signal_connect (tab, "close-request",
-			G_CALLBACK(tab_close_request_cb), self);
-
-	gtk_notebook_append_page (GTK_NOTEBOOK(self->hex_notebook),
-			GTK_WIDGET(gh),
-			tab);
-
-	/* Because we ellipsize labels in ghex-notebook-tab, we need to set this
-	 * property to TRUE according to TFM, otherwise all the labels will just
-	 * show up as '...' */
-	g_object_set (gtk_notebook_get_page (GTK_NOTEBOOK(self->hex_notebook), GTK_WIDGET(gh)),
-			"tab-expand", TRUE,
-			NULL);
-
-	/* Only show the tab bar if there's more than one (1) tab. */
-	if (gtk_notebook_get_n_pages (GTK_NOTEBOOK(self->hex_notebook)) > 1)
-		gtk_notebook_set_show_tabs (GTK_NOTEBOOK(self->hex_notebook), TRUE);
-
-	/* FIXME - this seems to result in GTK_IS_BOX assertion failures.
-	 * These seem harmless as everything still seems to *work*, but just
-	 * documenting it here in case it becomes an issue in future.
-	 */
-	gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK(self->hex_notebook),
-			GTK_WIDGET(gh),
-			TRUE);
-
-	/* set text of context menu tab switcher to the filename rather than
-	 * 'Page X' */
-	gtk_notebook_set_menu_label_text (GTK_NOTEBOOK(self->hex_notebook),
-			GTK_WIDGET(gh),
-			ghex_notebook_tab_get_filename (GHEX_NOTEBOOK_TAB(tab)));
+	/* Add tab */
+	adw_tab_view_append (ADW_TAB_VIEW(self->hex_tab_view), GTK_WIDGET(gh));
 
 	/* Setup signals */
-    g_signal_connect (gh, "cursor-moved",
-			G_CALLBACK(cursor_moved_cb), self);
+    g_signal_connect (gh, "cursor-moved", G_CALLBACK(cursor_moved_cb), self);
+	g_signal_connect (doc, "document-changed", G_CALLBACK(document_changed_cb), self);
+	g_signal_connect (doc, "file-saved", G_CALLBACK(file_saved_cb), self);
 
-	g_signal_connect (doc, "document-changed",
-			G_CALLBACK(document_changed_cb), self);
-
-	g_signal_connect (doc, "file-saved",
-			G_CALLBACK(file_saved_cb), self);
-
-	show_hex_notebook (self);
+	show_hex_tab_view (self);
 }
 
 /* Helper */
@@ -2139,6 +2034,7 @@ doc_read_ready_cb (GObject *source_object,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	HexWidget *gh = HEX_WIDGET(extra_user_data);
 	HexDocument *doc = HEX_DOCUMENT(source_object);
+	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
 	gboolean result;
 	GError *local_error = NULL;
 
@@ -2153,8 +2049,8 @@ doc_read_ready_cb (GObject *source_object,
 	}
 	else
 	{
-		ghex_application_window_remove_tab (self,
-				ghex_application_window_get_current_tab (self));
+		adw_tab_view_close_page (tab_view,
+				adw_tab_view_get_selected_page (tab_view));
 
 		if (local_error)
 		{
@@ -2246,14 +2142,14 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 HexWidget *
 ghex_application_window_get_hex (GHexApplicationWindow *self)
 {
-	GHexNotebookTab *tab;
-	HexWidget *gh = NULL;
+	AdwTabPage *page;
 
 	g_return_val_if_fail (GHEX_IS_APPLICATION_WINDOW (self), NULL);
 
-	tab = ghex_application_window_get_current_tab (self);
-	if (tab)
-		gh = ghex_notebook_tab_get_hex (tab);
+	page = adw_tab_view_get_selected_page (ADW_TAB_VIEW(self->hex_tab_view));
 
-	return gh;
+	if (page)
+		return HEX_WIDGET(adw_tab_page_get_child (page));
+	else
+		return NULL;
 }

@@ -1618,14 +1618,20 @@ key_press_cb (GtkEventControllerKey *controller,
 			break;
 
 		case GDK_KEY_Page_Up:
-			hex_widget_set_cursor (self, MAX (0, self->cursor_pos - self->vis_lines*self->cpl));
-			ret = GDK_EVENT_STOP;
+			if (! (state & GDK_CONTROL_MASK))
+			{
+				hex_widget_set_cursor (self, MAX (0, self->cursor_pos - self->vis_lines*self->cpl));
+				ret = GDK_EVENT_STOP;
+			}
 			break;
 
 		case GDK_KEY_Page_Down:
-			hex_widget_set_cursor(self, MIN (payload_size,
-						self->cursor_pos + self->vis_lines*self->cpl));
-			ret = GDK_EVENT_STOP;
+			if (! (state & GDK_CONTROL_MASK))
+			{
+				hex_widget_set_cursor(self, MIN (payload_size,
+							self->cursor_pos + self->vis_lines*self->cpl));
+				ret = GDK_EVENT_STOP;
+			}
 			break;
 
 		case GDK_KEY_Home:
