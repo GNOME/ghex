@@ -127,8 +127,12 @@ create_dialog_prop (HexDialogEntryTypes type,
                                gint xpos, gint ypos)
 {
     GtkWidget *label;
+	char *markup;
 
-    label = gtk_label_new(_(HexDialogEntries[type].name));
+    label = gtk_label_new (NULL);
+	markup = g_strdup_printf ("<small>%s</small>", _(HexDialogEntries[type].name));
+	gtk_label_set_markup (GTK_LABEL(label), markup);
+	g_free (markup);
 	gtk_widget_set_halign (label, GTK_ALIGN_END);
     gtk_grid_attach (GTK_GRID (grid), label,
                      xpos, ypos, 1, 1);
@@ -166,6 +170,7 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     GtkWidget *label;
     GtkAdjustment *adjuster;
     GtkWidget *spin;
+	char *stream_length_str;
 
     grid = gtk_grid_new ();
     gtk_grid_set_row_spacing (GTK_GRID(grid), 6);
@@ -208,7 +213,10 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
                      G_CALLBACK(config_toggled_cb), dialog);
     gtk_box_append(GTK_BOX(hbox), dialog->config_hex);
 
-    label = gtk_label_new(_("Stream Length:"));
+    label = gtk_label_new (NULL);
+	stream_length_str = g_strdup_printf ("<small>%s</small>", _("Stream Length:"));
+	gtk_label_set_markup (GTK_LABEL(label), stream_length_str);
+	g_free (stream_length_str);
 	gtk_widget_set_halign (label, GTK_ALIGN_END);
     gtk_grid_attach (GTK_GRID (grid), label, 4, 3, 1, 1);
 
