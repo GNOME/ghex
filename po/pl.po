@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-05-03 01:26+0000\n"
-"PO-Revision-Date: 2022-05-03 15:15+0200\n"
+"POT-Creation-Date: 2022-06-17 10:55+0000\n"
+"PO-Revision-Date: 2022-06-19 12:50+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -220,87 +220,6 @@ msgstr ""
 msgid "ERROR"
 msgstr "BŁĄD"
 
-#: src/findreplace.c:222
-msgid "No string provided."
-msgstr "Nie podano ciągu."
-
-#: src/findreplace.c:397
-msgid ""
-"Beginning of file reached.\n"
-"\n"
-"No further matches found."
-msgstr ""
-"Osiągnięto początek pliku.\n"
-"\n"
-"Nie odnaleziono dalszych wyników."
-
-#: src/findreplace.c:399
-msgid ""
-"Beginning of file reached.\n"
-"\n"
-"No occurrences found from cursor."
-msgstr ""
-"Osiągnięto początek pliku.\n"
-"\n"
-"Nie odnaleziono wystąpień od kursora."
-
-#: src/findreplace.c:409
-msgid ""
-"End of file reached.\n"
-"\n"
-"No further matches found."
-msgstr ""
-"Osiągnięto koniec pliku.\n"
-"\n"
-"Nie odnaleziono dalszych wyników."
-
-#: src/findreplace.c:411
-msgid ""
-"End of file reached.\n"
-"\n"
-"No occurrences found from cursor."
-msgstr ""
-"Osiągnięto koniec pliku.\n"
-"\n"
-"Nie odnaleziono wystąpień od kursora."
-
-#: src/findreplace.c:480
-msgid "No offset has been specified."
-msgstr "Nie podano przesunięcia."
-
-#: src/findreplace.c:505
-msgid "The specified offset is beyond the  file boundaries."
-msgstr "Podane przesunięcie jest poza granicami pliku."
-
-#: src/findreplace.c:513
-msgid "Can not position cursor beyond the end of file."
-msgstr "Nie można umieścić kursora poza końcem pliku."
-
-#: src/findreplace.c:523
-msgid ""
-"You may only give the offset as:\n"
-"  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x', or\n"
-"  - a '+' or '-' sign, followed by a relative offset"
-msgstr ""
-"Można podawać przesunięcie tylko jako:\n"
-"  • dodatnia liczba dziesiętna lub\n"
-"  • liczba szesnastkowa, zaczynająca się od „0x” lub\n"
-"  • znak „+” lub „-” następujący po przesunięciu względnym"
-
-#: src/findreplace.c:580
-msgid "String was not found."
-msgstr "Nie odnaleziono ciągu."
-
-#: src/findreplace.c:644
-#, c-format
-msgid "Search complete: %d replacements made."
-msgstr "Ukończono wyszukiwanie, wprowadzone zastąpienia: %d."
-
-#: src/findreplace.c:651
-msgid "No occurrences were found."
-msgstr "Nie odnaleziono wystąpień."
-
 #: src/find-dialog.ui:33
 msgid "Find String"
 msgstr "Znajdź ciąg"
@@ -357,19 +276,99 @@ msgstr "Wyświetlanie:"
 msgid "Both"
 msgstr "Oba"
 
-#: src/ghex-application-window.c:335
-msgid ""
-"There was an error saving the file.\n"
-"\n"
-"Your permissions of the file may have been changed by another program, or "
-"the file may have become corrupted."
-msgstr ""
-"Wystąpił błąd podczas zapisu pliku.\n"
-"\n"
-"Uprawnienia użytkownika do pliku mogły zostać zmienione przez inny program "
-"lub plik mógł zostać uszkodzony."
+#: src/findreplace.c:220
+msgid "No string provided."
+msgstr "Nie podano ciągu."
 
-#: src/ghex-application-window.c:403
+#: src/findreplace.c:394
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+"Osiągnięto początek pliku.\n"
+"\n"
+"Nie odnaleziono dalszych wyników."
+
+#: src/findreplace.c:396
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+"Osiągnięto początek pliku.\n"
+"\n"
+"Nie odnaleziono wystąpień od kursora."
+
+#: src/findreplace.c:406
+msgid ""
+"End of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+"Osiągnięto koniec pliku.\n"
+"\n"
+"Nie odnaleziono dalszych wyników."
+
+#: src/findreplace.c:408
+msgid ""
+"End of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+"Osiągnięto koniec pliku.\n"
+"\n"
+"Nie odnaleziono wystąpień od kursora."
+
+#: src/findreplace.c:477
+msgid "No offset has been specified."
+msgstr "Nie podano przesunięcia."
+
+#: src/findreplace.c:502
+msgid "The specified offset is beyond the  file boundaries."
+msgstr "Podane przesunięcie jest poza granicami pliku."
+
+#: src/findreplace.c:510
+msgid "Can not position cursor beyond the end of file."
+msgstr "Nie można umieścić kursora poza końcem pliku."
+
+#: src/findreplace.c:520
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+"Można podawać przesunięcie tylko jako:\n"
+"  • dodatnia liczba dziesiętna lub\n"
+"  • liczba szesnastkowa, zaczynająca się od „0x” lub\n"
+"  • znak „+” lub „-” następujący po przesunięciu względnym"
+
+#: src/findreplace.c:577
+msgid "String was not found."
+msgstr "Nie odnaleziono ciągu."
+
+#: src/findreplace.c:641
+#, c-format
+msgid "Search complete: %d replacements made."
+msgstr "Ukończono wyszukiwanie, wprowadzone zastąpienia: %d."
+
+#: src/findreplace.c:648
+msgid "No occurrences were found."
+msgstr "Nie odnaleziono wystąpień."
+
+#. Translators: this is the string for an untitled buffer that will
+#. * be displayed in the titlebar when a user does File->New
+#.
+#: src/ghex-application-window.c:49 src/hex-document.c:1057
+msgid "Untitled"
+msgstr "Bez tytułu"
+
+#: src/ghex-application-window.c:282
+msgid "There was an error saving the file."
+msgstr "Wystąpił błąd podczas zapisywania pliku."
+
+#: src/ghex-application-window.c:339
 msgid ""
 "<b>You have one or more files open with unsaved changes.</b>\n"
 "\n"
@@ -381,18 +380,18 @@ msgstr ""
 "Na pewno zamknąć okno?\n"
 "\n"
 
-#: src/ghex-application-window.c:407
+#: src/ghex-application-window.c:343
 msgid "_Close Anyway"
 msgstr "Za_mknij mimo to"
 
-#: src/ghex-application-window.c:408 src/ghex-application-window.c:531
-#: src/ghex-application-window.c:1148
+#: src/ghex-application-window.c:344 src/ghex-application-window.c:462
+#: src/ghex-application-window.c:1117
 msgid "_Go Back"
 msgstr "_Wróć"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:509
+#: src/ghex-application-window.c:440
 #, c-format
 msgid ""
 "<big><b>%s has been edited since opening.</b></big>\n"
@@ -403,7 +402,7 @@ msgstr ""
 "\n"
 "Zapisać wprowadzone zmiany?"
 
-#: src/ghex-application-window.c:515
+#: src/ghex-application-window.c:446
 msgid ""
 "<b>The buffer has been edited since opening.</b>\n"
 "\n"
@@ -413,32 +412,19 @@ msgstr ""
 "\n"
 "Zapisać wprowadzone zmiany?"
 
-#: src/ghex-application-window.c:529
+#: src/ghex-application-window.c:460
 msgid "_Save Changes"
 msgstr "_Zapisz zmiany"
 
-#: src/ghex-application-window.c:530
+#: src/ghex-application-window.c:461
 msgid "_Discard Changes"
 msgstr "_Odrzuć zmiany"
 
-#. Translators: this is the string for an untitled buffer that will
-#. * be displayed in the titlebar when a user does File->New
-#.
-#: src/ghex-application-window.c:845 src/hex-document.c:973
-msgid "Untitled"
-msgstr "Bez tytułu"
+#: src/ghex-application-window.c:971
+msgid "There was an error saving the file to the path specified."
+msgstr "Wystąpił błąd podczas zapisywania pliku do podanej ścieżki."
 
-#: src/ghex-application-window.c:1031
-msgid ""
-"There was an error saving the file to the path specified.\n"
-"\n"
-"You may not have the required permissions."
-msgstr ""
-"Wystąpił błąd podczas zapisywania pliku do podanej ścieżki.\n"
-"\n"
-"Być może brak wymaganych uprawnień."
-
-#: src/ghex-application-window.c:1045
+#: src/ghex-application-window.c:990
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -446,13 +432,13 @@ msgstr ""
 "Wystąpił nieznany błąd podczas próby ponownego wczytania właśnie zapisanego "
 "pliku."
 
-#: src/ghex-application-window.c:1072
+#: src/ghex-application-window.c:1041
 msgid "Select a file to save buffer as"
 msgstr "Wybór pliku do zapisu buforu"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1141
+#: src/ghex-application-window.c:1110
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -467,15 +453,15 @@ msgstr ""
 "\n"
 "Nie można tego cofnąć."
 
-#: src/ghex-application-window.c:1147 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1116 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Przywróć"
 
-#: src/ghex-application-window.c:1231
+#: src/ghex-application-window.c:1200
 msgid "Select a file to open"
 msgstr "Wybór pliku do otwarcia"
 
-#: src/ghex-application-window.c:1336
+#: src/ghex-application-window.c:1305
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -498,7 +484,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1412
+#: src/ghex-application-window.c:1381
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
@@ -507,42 +493,43 @@ msgstr ""
 "Przesunięcie: <tt>0x%lX</tt>; zaznaczono <tt>0x%lX</tt> B od <tt>0x%lX</tt> "
 "do <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1416
+#: src/ghex-application-window.c:1385
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Przesunięcie: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2069
+#: src/ghex-application-window.c:2005
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
 "This can make GHex and your machine unstable as the file will be loaded into "
-"memory.\n"
+"memory, using the active backend.\n"
 "\n"
 "Are you sure you want to proceed?\n"
 "\n"
 "This message will not be shown again for the remainder of this GHex "
 "session.\n"
 "\n"
-"This limitation will be removed in a future version of GHex."
+"To avoid this message from appearing, try using a different buffer backend."
 msgstr ""
 "Nastąpiła próba otwarcia pliku o rozmiarze 1 GB lub większym.\n"
 "\n"
 "Może to spowodować niestabilność programu GHex i komputera, jako że plik "
-"zostanie wczytany do pamięci.\n"
+"zostanie wczytany do pamięci za pomocą aktywnego mechanizmu.\n"
 "\n"
 "Na pewno kontynuować?\n"
 "\n"
 "Ten komunikat nie będzie ponownie wyświetlany przez czas tej sesji programu "
 "GHex.\n"
 "\n"
-"To ograniczenie zostanie usunięte w przyszłej wersji."
+"Można spróbować użyć innego mechanizmu bufora, aby uniknąć pojawiania się "
+"tego komunikatu."
 
-#: src/ghex-application-window.c:2125
+#: src/ghex-application-window.c:2062
 msgid "There was an error reading the file."
 msgstr "Wystąpił błąd podczas odczytywania pliku."
 
-#: src/ghex-application-window.c:2171
+#: src/ghex-application-window.c:2125
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -634,39 +621,49 @@ msgstr "Pomo_c"
 msgid "_About GHex"
 msgstr "_O programie"
 
-#: src/ghex-application-window.ui.in:163
+#: src/ghex-application-window.ui.in:168
 msgid "Open a file for hex editing"
 msgstr "Otwiera plik do modyfikowania szesnastkowego"
 
-#: src/ghex-application-window.ui.in:173
+#: src/ghex-application-window.ui.in:178
 msgid "Main menu"
 msgstr "Menu główne"
 
-#: src/ghex-application-window.ui.in:183
+#: src/ghex-application-window.ui.in:188
 msgid "Find a string in the hex document"
 msgstr "Wyszukuje ciąg w dokumencie szesnastkowym"
 
-#: src/ghex-application-window.ui.in:192
+#: src/ghex-application-window.ui.in:197
 msgid "Save document"
 msgstr "Zapisuje dokument"
 
-#: src/ghex-application-window.ui.in:215
-msgid "No file loaded."
-msgstr "Nie wczytano pliku."
+#: src/ghex-application-window.ui.in:212
+msgid "No File Loaded"
+msgstr "Nie wczytano pliku"
 
-#: src/ghex-application-window.ui.in:300
+#: src/ghex-application-window.ui.in:215
+msgid ""
+"• Press the Open button\n"
+"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+O to browse for a document\n"
+"\n"
+"Or, press Ctrl+W to close the window."
+msgstr ""
+"• Kliknij przycisk „Otwórz”\n"
+"• Naciśnij klawisze Ctrl+N, aby zacząć nowy dokument\n"
+"• Naciśnij klawisze Ctrl+O, aby wyszukać dokument\n"
+"\n"
+"Lub naciśnij klawisze Ctrl+W, aby zamknąć okno."
+
+#: src/ghex-application-window.ui.in:312
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Przełącza tryb wstawiania (dodawanie danych do pliku zamiast zastępowania "
 "istniejących)"
 
-#: src/ghex-application-window.ui.in:312
+#: src/ghex-application-window.ui.in:324
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Przełącza panel wyświetlający różne konwersje numeryczne"
-
-#: src/ghex-notebook-tab.c:41
-msgid "Untitled document"
-msgstr "Dokument bez tytułu"
 
 #: src/help-overlay.ui:14
 msgid "Files"
@@ -780,7 +777,7 @@ msgstr "Wyświetlenie informacji o programie"
 msgid "Toggle insert mode"
 msgstr "Przełączenie trybu wstawiania"
 
-#: src/hex-buffer-mmap.c:50
+#: src/hex-buffer-direct.c:42 src/hex-buffer-mmap.c:50
 msgid "The file appears to have an invalid path."
 msgstr "Plik ma nieprawidłową ścieżkę."
 
@@ -789,47 +786,75 @@ msgstr "Plik ma nieprawidłową ścieżkę."
 #. * is the standard error message that will be reported from the system
 #. * (eg, 'No such file or directory').
 #.
-#: src/hex-buffer-mmap.c:173
+#: src/hex-buffer-direct.c:143 src/hex-buffer-mmap.c:173
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: src/hex-buffer-mmap.c:308
+#: src/hex-buffer-direct.c:193
+msgid "Failed to read data from file."
+msgstr "Odczytanie danych z pliku się nie powiodło."
+
+#: src/hex-buffer-direct.c:212 src/hex-buffer-mmap.c:587
+msgid "Unable to retrieve file or directory information"
+msgstr "Nie można uzyskać informacji o pliku lub katalogu"
+
+#: src/hex-buffer-direct.c:221 src/hex-buffer-mmap.c:596
+msgid "Unable to create file"
+msgstr "Nie można utworzyć pliku"
+
+#: src/hex-buffer-direct.c:230
+msgid "Not a regular file or block device"
+msgstr "To nie jest zwykły plik ani urządzenie blokowe"
+
+#: src/hex-buffer-direct.c:240 src/hex-buffer-mmap.c:616
+msgid "Unable to open file for reading"
+msgstr "Nie można otworzyć pliku do odczytania"
+
+#: src/hex-buffer-direct.c:404
+msgid "Unable to read file"
+msgstr "Nie można odczytać pliku"
+
+#: src/hex-buffer-direct.c:417
+msgid "Error attempting to read block device"
+msgstr "Błąd podczas próby odczytu urządzenia blokowego"
+
+#: src/hex-buffer-direct.c:527
+msgid ""
+"With direct-write mode, you cannot save a file to a path other than its "
+"originating path"
+msgstr ""
+"W trybie bezpośredniego zapisu nie można zapisać pliku w ścieżce innej niż "
+"ścieżka pochodzenia"
+
+#: src/hex-buffer-direct.c:552
+msgid "Error writing changes to file"
+msgstr "Błąd podczas zapisywania zmian do pliku"
+
+#: src/hex-buffer-mmap.c:310
 #, c-format
 msgid "Could not adjust %s from %lu to %lu bytes"
 msgstr "Nie można dostosować %s od %lu do %lu B"
 
-#: src/hex-buffer-mmap.c:357
+#: src/hex-buffer-mmap.c:359
 #, c-format
 msgid "Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"
 msgstr ""
 "Krytyczny błąd: mapowanie pamięci pliku (%lu B, DP %d) się nie powiodło"
 
-#: src/hex-buffer-mmap.c:585
-msgid "Unable to retrieve file or directory information"
-msgstr "Nie można uzyskać informacji o pliku lub katalogu"
-
-#: src/hex-buffer-mmap.c:594
-msgid "Unable to create file"
-msgstr "Nie można utworzyć pliku"
-
-#: src/hex-buffer-mmap.c:604
+#: src/hex-buffer-mmap.c:606
 msgid "Not a regular file"
 msgstr "To nie jest zwykły plik"
 
-#: src/hex-buffer-mmap.c:614
-msgid "Unable to open file for reading"
-msgstr "Nie można otworzyć pliku do odczytania"
-
-#: src/hex-buffer-mmap.c:645
+#: src/hex-buffer-mmap.c:647
 msgid "Failed to open temporary file."
 msgstr "Otwarcie pliku tymczasowego się nie powiodło."
 
-#: src/hex-buffer-mmap.c:684
+#: src/hex-buffer-mmap.c:686
 msgid "Error reading file"
 msgstr "Błąd podczas odczytywania pliku"
 
-#: src/hex-buffer-mmap.c:700
+#: src/hex-buffer-mmap.c:702
 msgid "An error has occurred"
 msgstr "Wystąpił błąd"
 
@@ -902,22 +927,22 @@ msgstr "Długość potoku:"
 msgid "FIXME: no conversion function"
 msgstr "FIXME: brak funkcji konwersji"
 
-#: src/hex-document.c:1001
+#: src/hex-document.c:1085
 #, c-format
 msgid "Page"
 msgstr "Strona"
 
-#: src/hex-document.c:1007 src/hex-document.c:1110
+#: src/hex-document.c:1091 src/hex-document.c:1194
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Zrzut szesnastkowy utworzony przez"
 
-#: src/hex-document.c:1033
+#: src/hex-document.c:1117
 #, c-format
 msgid "Previous page"
 msgstr "Poprzednia strona"
 
-#: src/hex-document.c:1048
+#: src/hex-document.c:1132
 #, c-format
 msgid "Next page"
 msgstr "Następna strona"
