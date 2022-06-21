@@ -130,13 +130,21 @@ inbtn_clicked_cb (GtkButton *button, gpointer user_data)
 	insert_char (treeview, model);
 }
 
-static void
-hide_chartable_cb (GtkButton *button, gpointer user_data)
+static gboolean
+key_press_cb (GtkEventControllerKey *key,
+  guint keyval,
+  guint keycode,
+  GdkModifierType state,
+  GtkWindow *ct)
 {
-	GtkWindow *win = GTK_WINDOW(user_data);
-
-	gtk_window_close (win);
+	if (keyval == GDK_KEY_Escape)
+	{
+		gtk_window_close (ct);
+		return GDK_EVENT_STOP;
+	}
+	return GDK_EVENT_PROPAGATE;
 }
+
 
 GtkWidget *create_char_table (GtkWindow *parent_win, HexWidget *gh)
 {
@@ -152,6 +160,7 @@ GtkWidget *create_char_table (GtkWindow *parent_win, HexWidget *gh)
 	GtkTreeSelection *selection;
 	int i, col;
 	gchar *label, ascii_printable_label[2], bin_label[9], *row[5];
+	GtkEventController *key;
 
 	/* set global HexWidget widget */
 	g_assert (HEX_IS_WIDGET(gh));
@@ -161,6 +170,10 @@ GtkWidget *create_char_table (GtkWindow *parent_win, HexWidget *gh)
 	 * if requested.
 	 */
 	ct = gtk_window_new ();
+
+	key = gtk_event_controller_key_new ();
+	gtk_widget_add_controller (ct, key);
+	g_signal_connect (key, "key-pressed", G_CALLBACK(key_press_cb), ct);
 
 	if (parent_win) {
 		g_assert (GTK_IS_WINDOW (parent_win));
@@ -241,8 +254,7 @@ GtkWidget *create_char_table (GtkWindow *parent_win, HexWidget *gh)
 					G_CALLBACK(inbtn_clicked_cb), ctv);
 
 	cbtn = gtk_button_new_with_mnemonic (_("_Close"));
-	g_signal_connect(G_OBJECT (cbtn), "clicked",
-					G_CALLBACK(hide_chartable_cb), ct);
+	g_signal_connect_swapped (cbtn, "clicked", G_CALLBACK(gtk_window_close), ct);
 
 	lbl = gtk_label_new ("");
 	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 4);
