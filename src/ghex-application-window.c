@@ -64,7 +64,6 @@ struct _GHexApplicationWindow
 	HexWidget *gh;
 	HexDialog *dialog;
 	GtkWidget *dialog_widget;
-	GtkCssProvider *conversions_box_provider;
 	GtkAdjustment *adj;
 	gboolean can_save;
 	gboolean insert_mode;
@@ -79,15 +78,16 @@ struct _GHexApplicationWindow
 	GtkWidget *copy_special_dialog;
 
 	/* From GtkBuilder: */
+	GtkWidget *headerbar_window_title;
 	GtkWidget *no_doc_label;
-	GtkWidget *tab_view_box;
+	GtkWidget *child_box;
 	GtkWidget *hex_tab_view;
 	GtkWidget *conversions_box;
 	GtkWidget *findreplace_box;
 	GtkWidget *pane_toggle_button;
 	GtkWidget *insert_mode_button;
 	GtkWidget *statusbar;
-	GtkWidget *pane_revealer;
+	GtkWidget *findreplace_revealer;
 	GtkWidget *conversions_revealer;
 };
 
@@ -561,13 +561,13 @@ static void
 show_hex_tab_view (GHexApplicationWindow *self)
 {
 	gtk_widget_hide (self->no_doc_label);
-	gtk_widget_show (self->tab_view_box);
+	gtk_widget_show (self->child_box);
 }
 
 static void
 show_no_file_loaded_label (GHexApplicationWindow *self)
 {
-	gtk_widget_hide (self->tab_view_box);
+	gtk_widget_hide (self->child_box);
 	gtk_widget_show (self->no_doc_label);
 }
 
@@ -729,8 +729,10 @@ pane_close_cb (PaneDialog *pane, gpointer user_data)
 	if (ACTIVE_GH)
 		gtk_widget_grab_focus (GTK_WIDGET(ACTIVE_GH));
 
-	gtk_revealer_set_transition_type (GTK_REVEALER(self->pane_revealer), GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN);
-	gtk_revealer_set_reveal_child (GTK_REVEALER(self->pane_revealer), FALSE);
+	gtk_revealer_set_transition_type (GTK_REVEALER(self->findreplace_revealer),
+			GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN);
+	gtk_revealer_set_reveal_child (GTK_REVEALER(self->findreplace_revealer),
+			FALSE);
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_OPEN]);
@@ -790,22 +792,43 @@ update_titlebar (GHexApplicationWindow *self)
 			adw_tab_view_get_n_pages (ADW_TAB_VIEW(self->hex_tab_view)))
 	{
 		char *basename;
+		char *pathname = NULL;
 		char *title;
 		HexDocument *doc = hex_widget_get_document (ACTIVE_GH);
 
 		if (G_IS_FILE (file = hex_document_get_file (doc)))
+		{
+			GFile *parent = g_file_get_parent (file);
+
 			basename = g_file_get_basename (file);
+			if (parent)
+				pathname = g_file_get_path (parent);
+
+			g_clear_object (&parent);
+		}
 		else
+		{
 			basename = g_strdup (_(UNTITLED_STRING));
+		}
+
+		adw_window_title_set_title (
+				ADW_WINDOW_TITLE(self->headerbar_window_title), basename);
+		adw_window_title_set_subtitle (
+				ADW_WINDOW_TITLE(self->headerbar_window_title), pathname);
 
 		title = g_strdup_printf ("%s - GHex", basename);
 		gtk_window_set_title (GTK_WINDOW(self), title);
 
 		g_free (basename);
 		g_free (title);
+		g_free (pathname);
 	}
 	else
 	{
+		adw_window_title_set_title (
+				ADW_WINDOW_TITLE(self->headerbar_window_title), "GHex");
+		adw_window_title_set_subtitle (
+				ADW_WINDOW_TITLE(self->headerbar_window_title), NULL);
 		gtk_window_set_title (GTK_WINDOW(self), "GHex");
 	}
 }
@@ -893,11 +916,11 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,			\
 		gtk_widget_hide (self->OTHER2 ## _dialog);									\
 		gtk_widget_show (self->WIDGET ## _dialog);									\
 		gtk_widget_grab_focus (self->WIDGET ## _dialog);							\
-		if (! gtk_revealer_get_reveal_child (GTK_REVEALER(self->pane_revealer)))	\
+		if (! gtk_revealer_get_reveal_child (GTK_REVEALER(self->findreplace_revealer)))	\
 		{																			\
-			gtk_revealer_set_transition_type (GTK_REVEALER(self->pane_revealer),	\
+			gtk_revealer_set_transition_type (GTK_REVEALER(self->findreplace_revealer),	\
 					GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP);							\
-			gtk_revealer_set_reveal_child (GTK_REVEALER(self->pane_revealer), TRUE);\
+			gtk_revealer_set_reveal_child (GTK_REVEALER(self->findreplace_revealer), TRUE); \
 		}																			\
 		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);		\
 		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_OPEN]);	\
@@ -1406,7 +1429,7 @@ get_pane_visible (GHexApplicationWindow *self, PaneDialog *pane)
 {
 	return (GTK_IS_WIDGET(GTK_WIDGET(pane)) &&
 		gtk_widget_get_visible (GTK_WIDGET(pane)) &&
-		gtk_revealer_get_reveal_child (GTK_REVEALER(self->pane_revealer)));
+		gtk_revealer_get_reveal_child (GTK_REVEALER(self->findreplace_revealer)));
 }
 
 /* PROPERTIES */
@@ -1520,6 +1543,7 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	GtkWidget *widget = GTK_WIDGET(self);
 	GtkStyleContext *context;
 	GAction *action;
+	GtkCssProvider *provider;
 
 	gtk_widget_init_template (widget);
 
@@ -1528,21 +1552,6 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	self->dialog_widget = hex_dialog_getview (self->dialog);
 
 	gtk_box_append (GTK_BOX(self->conversions_box), self->dialog_widget);
-
-	/* CSS - conversions_box */
-
-	context = gtk_widget_get_style_context (self->conversions_box);
-	self->conversions_box_provider = gtk_css_provider_new ();
-
-	gtk_css_provider_load_from_data (self->conversions_box_provider,
-									 "box {\n"
-									 "   padding: 12px;\n"
-									 "}\n", -1);
-
-	/* add the provider to our widget's style context. */
-	gtk_style_context_add_provider (context,
-			GTK_STYLE_PROVIDER (self->conversions_box_provider),
-			GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 	/* Setup signals */
 
@@ -1614,6 +1623,12 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	/* Grey out save (special case - it's not lumped in with mains */
 	gtk_widget_action_set_enabled (GTK_WIDGET(self),
 			"ghex.save", FALSE);
+
+	provider = gtk_css_provider_new ();
+	gtk_css_provider_load_from_resource (provider, RESOURCE_BASE_PATH "/css/ghex.css");
+	gtk_style_context_add_provider_for_display (gdk_display_get_default (),
+			GTK_STYLE_PROVIDER (provider),
+			GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 }
 
 static void
@@ -1630,9 +1645,6 @@ ghex_application_window_dispose(GObject *object)
 	g_clear_pointer (&self->jump_dialog, gtk_widget_unparent);
 	g_clear_pointer (&self->chartable, gtk_widget_unparent);
 	g_clear_pointer (&self->converter, gtk_widget_unparent);
-
-	/* Clear conversions box CSS provider */
-	g_clear_object (&self->conversions_box_provider);
 
 	/* Boilerplate: chain up
 	 */
@@ -1900,9 +1912,11 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 					RESOURCE_BASE_PATH "/ghex-application-window.ui");
 
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
+			headerbar_window_title);
+	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			no_doc_label);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
-			tab_view_box);
+			child_box);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			hex_tab_view);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
@@ -1916,7 +1930,7 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			statusbar);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
-			pane_revealer);
+			findreplace_revealer);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow,
 			conversions_revealer);
 }

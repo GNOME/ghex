@@ -1,0 +1,59 @@
+.hex {
+	font-family: Monospace;
+	font-size: 12pt;
+	font-feature-settings: "tnum";
+	color: @theme_fg_color;
+	background-color: @theme_bg_color;
+}
+
+/* nb: order matters for the next 2 selectors. */
+
+#hex-display:selected, #ascii-display:selected {
+        color: @theme_selected_fg_color;
+        background-color: alpha(shade(@theme_selected_bg_color, 0), 0.2);
+}
+
+#hex-display:focus-within, #ascii-display:focus-within {
+        color: @theme_selected_fg_color;
+        background-color: @theme_selected_bg_color;
+}
+
+/* ---- */
+
+.hex:link {
+	background-color: alpha(red, 0.5);
+}
+
+.hex:checked {
+	color: @theme_bg_color;
+	background-color: alpha(@theme_fg_color, 0.9);
+}
+
+.hex #offsets {
+	padding-top: 6px;
+        padding-left: 12px;
+	padding-right: 12px;
+	border-right: solid @borders 2px;
+	background-color: shade(@theme_bg_color, 0.9);
+}
+
+.hex #hex-display {
+	padding-top: 6px;
+        padding-left: 12px;
+        border-right: dotted 2px @borders;
+}
+
+.hex #ascii-display {
+	padding-top: 6px;
+        padding-left: 12px;
+}
+
+.hex scrollbar {
+  opacity: 0.25;
+  transition: opacity 300ms ease;
+
+}
+
+.hex scrollbar:hover {
+  opacity: 1.0;
+}

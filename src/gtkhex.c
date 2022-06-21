@@ -2720,7 +2720,7 @@ hex_widget_init (HexWidget *self)
 
 	self->provider = gtk_css_provider_new ();
 	gtk_css_provider_load_from_resource (GTK_CSS_PROVIDER (self->provider),
-		RESOURCE_BASE_PATH "/css/ghex.css");
+		RESOURCE_BASE_PATH "/css/gtkhex.css");
 
 	gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (self->provider),
 			GTK_STYLE_PROVIDER_PRIORITY_THEME);

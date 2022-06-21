@@ -197,6 +197,7 @@ GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
 					 G_CALLBACK(close_converter), conv->window);
 
 	grid = gtk_grid_new ();
+	gtk_widget_set_name (grid, "converter-grid");
 	gtk_grid_set_row_spacing (GTK_GRID (grid), 4);
 	gtk_grid_set_column_spacing (GTK_GRID (grid), 4);
 	gtk_box_append (GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(conv->window))),

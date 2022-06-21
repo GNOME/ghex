@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2022 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -64,7 +64,8 @@ G_DEFINE_TYPE_WITH_PRIVATE (PaneDialog, pane_dialog, GTK_TYPE_WIDGET)
 typedef struct {
 	HexDocument *f_doc;
 	GtkWidget *f_gh;
-	GtkWidget *frame;
+	GtkWidget *find_frame;
+	GtkWidget *find_string_label;
 	GtkWidget *vbox;
 	GtkWidget *hbox;
 	GtkWidget *f_next, *f_prev, *f_clear;
@@ -421,7 +422,9 @@ find_clear_cb (GtkButton *button, gpointer user_data)
 	new_doc = hex_document_new ();
 	new_gh = create_hex_view (new_doc);
 
-	gtk_frame_set_child (GTK_FRAME(f_priv->frame), new_gh);
+	gtk_box_remove (GTK_BOX(f_priv->find_frame),
+			gtk_widget_get_last_child (f_priv->find_frame));
+	gtk_box_append (GTK_BOX(f_priv->find_frame), new_gh);
 
 	f_priv->f_doc = new_doc;
 	f_priv->f_gh = new_gh;
@@ -666,7 +669,9 @@ replace_clear_cb (GtkButton *button, gpointer user_data)
 	new_r_doc = hex_document_new ();
 	new_r_gh = create_hex_view (new_r_doc);
 
-	gtk_frame_set_child (GTK_FRAME(self->r_frame), new_r_gh);
+	gtk_box_remove (GTK_BOX(self->r_frame),
+			gtk_widget_get_last_child (self->r_frame));
+	gtk_box_append (GTK_BOX(self->r_frame), new_r_gh);
 
 	self->r_doc = new_r_doc;
 	self->r_gh = new_r_gh;
@@ -827,7 +832,7 @@ find_dialog_init (FindDialog *self)
 	/* Setup HexWidget and make child of our frame */
 	f_priv->f_doc = hex_document_new ();
 	f_priv->f_gh = create_hex_view (f_priv->f_doc);
-	gtk_frame_set_child (GTK_FRAME(f_priv->frame), f_priv->f_gh);
+	gtk_box_append (GTK_BOX(f_priv->find_frame), f_priv->f_gh);
 	
 	/* Setup find options popover as child of our options menubutton */
 	builder = gtk_builder_new_from_resource (RESOURCE_BASE_PATH "/find-options.ui");
@@ -903,7 +908,9 @@ find_dialog_class_init (FindDialogClass *klass)
 	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
 			vbox);
 	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
-			frame);
+			find_frame);
+	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
+			find_string_label);
 	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
 			hbox);
 	gtk_widget_class_bind_template_child_private (widget_class, FindDialog,
@@ -941,9 +948,11 @@ replace_dialog_init (ReplaceDialog *self)
 	 */
 	builder = gtk_builder_new_from_resource (RESOURCE_BASE_PATH "/replace-dialog.ui");
 
+	gtk_widget_set_visible (f_priv->find_string_label, TRUE);
+
 	self->r_frame = GTK_WIDGET(gtk_builder_get_object (builder, "r_frame"));
-	gtk_frame_set_child (GTK_FRAME(self->r_frame), self->r_gh);
-	gtk_box_insert_child_after (GTK_BOX(f_priv->vbox), self->r_frame, f_priv->frame);
+	gtk_box_append (GTK_BOX(self->r_frame), self->r_gh);
+	gtk_box_insert_child_after (GTK_BOX(f_priv->vbox), self->r_frame, f_priv->find_frame);
 
 	self->replace = GTK_WIDGET(gtk_builder_get_object (builder, "replace"));
 	gtk_box_insert_child_after (GTK_BOX(f_priv->hbox), self->replace, f_priv->f_prev);
@@ -995,24 +1004,6 @@ static void
 jump_dialog_init (JumpDialog *self)
 {
 	GtkWidget *widget = GTK_WIDGET(self);
-	GtkStyleContext *context;
-	GtkCssProvider *provider;
-
-	/* CSS */
-
-	context = gtk_widget_get_style_context (widget);
-	provider = gtk_css_provider_new ();
-
-	gtk_css_provider_load_from_data (provider,
-									 JUMP_DIALOG_CSS_NAME " {\n"
-									 "   padding-left: 20px;\n"
-									 "   padding-top: 6px;\n"
-									 "   padding-bottom: 6px;\n"
-									 "}\n", -1);
-
-	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (provider),
-	                                GTK_STYLE_PROVIDER_PRIORITY_SETTINGS);
 
 	/* Widget - template, signals, etc. */
 

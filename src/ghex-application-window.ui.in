@@ -155,17 +155,26 @@
 			<object class="GtkBox"> <!-- main vert gtkbox -->
 				<property name="orientation">vertical</property>
 
-
 				<child>
 					<object class="GtkHeaderBar" id="headerbar">
 						<property name="show-title-buttons">true</property>
+						<property name="title-widget">
+							<object class="AdwWindowTitle" id="headerbar_window_title">
+								<property name="title">GHex</property>
+							</object>
+						</property>
 
 						<child>
 							<object class="GtkButton">
-								<property name="valign">center</property>
-								<property name="label">Open</property>
 								<property name="action-name">ghex.open</property>
 								<property name="tooltip-text" translatable="yes">Open a file for hex editing</property>
+								<property name="child">
+									<object class="AdwButtonContent">
+										<property name="label">_Open</property>
+										<property name="icon-name">document-open-symbolic</property>
+										<property name="use-underline">True</property>
+									</object>
+								</property>
 							</object>
 						</child>
 
@@ -198,53 +207,54 @@
 							</object>
 						</child>
 					</object> <!-- headerbar -->
-				</child> <!-- titlebar -->
+				</child> <!-- headerbar -->
 
-				<child> <!-- child_box for notebook & content area -->
-					<object class="GtkBox" id="child_box">
-						<property name="orientation">horizontal</property>
-						<property name="homogeneous">false</property>
-						<property name="vexpand">true</property>
-						<property name="hexpand">true</property>
-
-						<child> <!-- label showing no doc loaded -->
-							<object class="AdwStatusPage" id="no_doc_label">
-								<property name="title" translatable="yes">No File Loaded</property>
-								<property name="child">
-									<object class="GtkLabel">
-										<property name="label" translatable="yes">• Press the Open button
+				<child> <!-- label showing no doc loaded -->
+					<object class="AdwStatusPage" id="no_doc_label">
+						<property name="title" translatable="yes">No File Loaded</property>
+						<property name="child">
+							<object class="GtkLabel">
+								<property name="label" translatable="yes">• Press the Open button
 • Press Ctrl+N to start a new document
 • Press Ctrl+O to browse for a document
 
 Or, press Ctrl+W to close the window.</property>
-									</object>
-								</property>
-								<property name="icon-name">accessories-text-editor-symbolic</property>
-								<property name="hexpand">true</property>
-								<property name="vexpand">true</property>
 							</object>
-						</child> <!-- /no_doc_label -->
+						</property>
+						<property name="icon-name">accessories-text-editor-symbolic</property>
+						<property name="hexpand">true</property>
+						<property name="vexpand">true</property>
+					</object>
+				</child> <!-- /no_doc_label -->
 
-						<child> <!-- spinner showing document loading -->
-							<object class="GtkSpinner" id="doc_loading_spinner">
-								<property name="spinning">true</property> <!-- doesn't seem to work -->
-								<property name="halign">center</property>
-								<property name="valign">center</property>
-								<property name="hexpand">true</property>
-								<property name="vexpand">true</property>
-								<!-- invisible by default to show the no_doc_label -->
-								<property name="visible">false</property>
-							</object>
-						</child> <!-- /doc_loading_spinner -->
+				<child> <!-- child_box for notebook & content area -->
+					<object class="GtkBox" id="child_box">
+						<property name="orientation">vertical</property>
+						<property name="homogeneous">false</property>
+						<property name="vexpand">true</property>
+						<property name="hexpand">true</property>
+						<!-- invisible by default to show the no_doc_label -->
+						<property name="visible">false</property>
 
 						<child>
 							<object class="GtkBox" id="tab_view_box">
 								<property name="orientation">vertical</property>
-								<!-- invisible by default to show the no_doc_label -->
-								<property name="visible">false</property>
 								<child>
 									<object class="AdwTabBar">
 										<property name="view">hex_tab_view</property>
+									</object>
+								</child>
+								<child> <!-- type="overlay" -->
+									<object class="GtkRevealer" id="findreplace_revealer">
+										<property name="name">findreplace-revealer</property>
+										<property name="transition-type">slide-up</property>
+										<property name="valign">start</property>
+										<!-- box to put the `findreplace' dialogs. -->
+										<child>
+											<object class="GtkBox" id="findreplace_box">
+												<property name="name">findreplace-box</property>
+											</object>
+										</child>
 									</object>
 								</child>
 								<child>
@@ -253,80 +263,67 @@ Or, press Ctrl+W to close the window.</property>
 										<property name="vexpand">true</property>
 									</object>
 								</child>
+							</object> <!-- tab_view_box -->
+						</child>
+
+						<child>
+							<object class="GtkSeparator">
+								<property name="orientation">horizontal</property>
 							</object>
-						</child> <!-- tab_view_box -->
+						</child>
+
+						<child>
+							<object class="GtkRevealer" id="conversions_revealer">
+								<property name="transition-type">slide-up</property>
+								<child> <!-- box just to put the conversions_pane; APPEND -->
+									<object class="GtkBox" id="conversions_box">
+										<property name="name">conversions-box</property>
+									</object>
+								</child>
+							</object>
+						</child>
+
+						<child> <!-- status_box -->
+							<object class="GtkBox" id="status_box">
+								<property name="name">status-box</property>
+								<property name="orientation">horizontal</property>
+								<property name="homogeneous">false</property>
+								<property name="spacing">6</property>
+
+								<child>
+									<object class="HexStatusbar" id="statusbar">
+										<property name="hexpand">true</property>
+									</object>
+								</child>
+
+								<child> <!-- insert_mode_button -->
+									<object class="GtkToggleButton" id="insert_mode_button">
+										<property name="valign">center</property>
+										<property name="halign">end</property>
+										<property name="icon-name">insert-text-symbolic</property>
+										<property name="has-frame">false</property>
+										<property name="action-name">ghex.insert-mode</property>
+										<property name="tooltip-text" translatable="yes">Toggle insert mode (add data to file rather than replace existing data)</property>
+									</object>
+								</child> <!-- insert_mode_button -->
+
+								<!-- pane toggle btn -->
+								<child>
+									<object class="GtkButton" id="pane_toggle_button">
+										<property name="valign">center</property>
+										<property name="halign">end</property>
+										<property name="icon-name">pan-up-symbolic</property>
+										<property name="has-frame">false</property>
+										<property name="action-name">ghex.show-conversions</property>
+										<property name="tooltip-text" translatable="yes">Toggle a pane showing various numeric conversions</property>
+									</object>
+								</child>
+
+							</object> <!-- status_box -->
+						</child> <!-- status_box -->
 
 					</object> <!-- child_box -->
 				</child> <!-- child_box -->
-
-				<!-- "statusbar" separator -->
-				<child>
-					<object class="GtkSeparator">
-						<property name="orientation">horizontal</property>
-					</object>
-				</child>
-
-				<child>
-					<object class="GtkRevealer" id="pane_revealer">
-						<property name="transition-type">slide-up</property>
-						<child> <!-- box to put the `findreplace' dialogs. -->
-							<object class="GtkBox" id="findreplace_box" />
-						</child>
-					</object>
-				</child>
-
-				<!-- "findreplace" separator which comes and goes. -->
-				<child>
-					<object class="GtkSeparator">
-						<property name="orientation">horizontal</property>
-					</object>
-				</child>
-
-				<child>
-					<object class="GtkRevealer" id="conversions_revealer">
-						<property name="transition-type">slide-up</property>
-						<child> <!-- box just to put the conversions_pane; APPEND -->
-							<object class="GtkBox" id="conversions_box" />
-						</child>
-					</object>
-				</child>
-
-				<child> <!-- status_box -->
-					<object class="GtkBox" id="status_box">
-						<property name="orientation">horizontal</property>
-						<property name="homogeneous">false</property>
-
-
-						<child>
-							<object class="HexStatusbar" id="statusbar">
-								<property name="hexpand">true</property>
-							</object>
-						</child>
-
-						<child> <!-- insert_mode_button -->
-							<object class="GtkToggleButton" id="insert_mode_button">
-								<property name="valign">center</property>
-								<property name="halign">end</property>
-								<property name="icon-name">insert-text-symbolic</property>
-								<property name="action-name">ghex.insert-mode</property>
-								<property name="tooltip-text" translatable="yes">Toggle insert mode (add data to file rather than replace existing data)</property>
-							</object>
-						</child> <!-- insert_mode_button -->
-
-						<!-- pane toggle btn -->
-						<child>
-							<object class="GtkButton" id="pane_toggle_button">
-								<property name="valign">center</property>
-								<property name="halign">end</property>
-								<property name="icon-name">pan-up-symbolic</property>
-								<property name="has-frame">false</property>
-								<property name="action-name">ghex.show-conversions</property>
-								<property name="tooltip-text" translatable="yes">Toggle a pane showing various numeric conversions</property>
-							</object>
-						</child>
-
-					</object> <!-- status_box -->
-				</child> <!-- status_box -->
 
 			</object> <!-- main vert gtkbox -->
 		</child> <!-- main vert gtkbox -->

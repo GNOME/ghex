@@ -1,59 +1,57 @@
-.hex {
-	font-family: Monospace;
-	font-size: 12pt;
-	font-feature-settings: "tnum";
-	color: @theme_fg_color;
-	background-color: @theme_bg_color;
+/* Status Bar at bottom */
+
+#status-box {
+	padding-top: 4px;
+	padding-bottom: 3px;
 }
 
-/* nb: order matters for the next 2 selectors. */
+/* Find, replace and jump dialogs */
 
-#hex-display:selected, #ascii-display:selected {
-        color: @theme_selected_fg_color;
-        background-color: alpha(shade(@theme_selected_bg_color, 0), 0.2);
-}
-
-#hex-display:focus-within, #ascii-display:focus-within {
-        color: @theme_selected_fg_color;
-        background-color: @theme_selected_bg_color;
-}
-
-/* ---- */
-
-.hex:link {
-	background-color: alpha(red, 0.5);
-}
-
-.hex:checked {
-	color: @theme_bg_color;
-	background-color: alpha(@theme_fg_color, 0.9);
-}
-
-.hex #offsets {
+#findreplace-buttonbox {
 	padding-top: 6px;
-        padding-left: 12px;
-	padding-right: 12px;
-	border-right: solid @borders 2px;
-	background-color: shade(@theme_bg_color, 0.9);
+	padding-bottom: 6px;
 }
 
-.hex #hex-display {
-	padding-top: 6px;
-        padding-left: 12px;
-        border-right: dotted 2px @borders;
+#findreplace-box {
+	background: @popover_bg_color;
+	color: @popover_fg_color;
+	padding: 6px;
+	border-bottom: @borders solid 1px;
 }
 
-.hex #ascii-display {
-	padding-top: 6px;
-        padding-left: 12px;
+.findreplace-frame label {
+    padding-left: 12px;
+    padding-bottom: 2px;
+    font-size: small;
 }
 
-.hex scrollbar {
-  opacity: 0.25;
-  transition: opacity 300ms ease;
-
+.findreplace-frame hexwidget {
+  border-top: shade(@theme_bg_color, 0.9) 1px dashed;
+  border-bottom: shade(@theme_bg_color, 0.9) 1px dashed;
 }
 
-.hex scrollbar:hover {
-  opacity: 1.0;
+jumpdialog {
+	padding-left: 12px;
+}
+
+jumpdialog entry {
+	font-family: monospace;
+}
+
+/* Conversions pane/box */
+
+#conversions-box {
+	padding: 12px;
+}
+
+/* Character table */
+
+#chartable-action-area {
+	padding: 6px;
+}
+
+/* Base converter */
+
+#converter-grid {
+	padding: 6px;
 }

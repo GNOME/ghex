@@ -29,15 +29,27 @@
 		<child><object class="GtkBox" id="vbox">
 				<property name="orientation">vertical</property>
 
-				<child><object class="GtkFrame" id="frame">
-						<property name="label" translatable="yes">Find String</property>
+				<child><object class="GtkBox" id="find_frame">
+						<property name="orientation">vertical</property>
+						<style>
+							<class name="findreplace-frame" />
+						</style>
 						<accessibility>
 							<property name="description" translatable="yes">Enter the hex data or ASCII data to search for</property>
 						</accessibility>
+						<child><object class="GtkLabel" id="find_string_label">
+								<property name="label" translatable="yes">Find String</property>
+								<property name="use-markup">true</property>
+								<property name="halign">start</property>
+								<property name="hexpand">true</property>
+								<property name="visible">false</property>
+						</object></child>
 				</object></child> 
 
 				<child><object class="GtkBox" id="hbox">
+						<property name="name">findreplace-buttonbox</property>
 						<property name="orientation">horizontal</property>
+						<property name="spacing">6</property>
 
 						<child><object class="GtkButton" id="f_next">
 								<property name="label" translatable="yes">Find _Next</property>
@@ -68,6 +80,7 @@
 								<property name="hexpand">true</property>
 								<property name="halign">end</property>
 								<property name="icon-name">emblem-system-symbolic</property>
+								<property name="has-frame">false</property>
 								<accessibility>
 									<property name="label" translatable="yes">Find options</property>
 									<property name="description" translatable="yes">View options of the find pane</property>

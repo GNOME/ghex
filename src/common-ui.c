@@ -182,7 +182,7 @@ set_css_provider_font_from_settings (void)
 	desc = pango_font_description_from_string (def_font_name);
 	css_str = pango_font_description_to_css (desc, ".hex");
 
-	gtk_css_provider_load_from_data (provider,
+	gtk_css_provider_load_from_data (global_provider,
 			css_str, -1);
 	g_free (css_str);
 }
@@ -191,13 +191,13 @@ void
 common_set_gtkhex_font_from_settings (HexWidget *gh)
 {
 	g_return_if_fail (HEX_IS_WIDGET(gh));
-	g_return_if_fail (GTK_IS_STYLE_PROVIDER(provider));
+	g_return_if_fail (GTK_IS_STYLE_PROVIDER(global_provider));
 
 	/* Ensure global provider and settings are in sync font-wise. */
 	set_css_provider_font_from_settings ();
 
 	gtk_style_context_add_provider_for_display (gdk_display_get_default (),
-			GTK_STYLE_PROVIDER (provider),
+			GTK_STYLE_PROVIDER (global_provider),
 			GTK_STYLE_PROVIDER_PRIORITY_SETTINGS);
 }
 

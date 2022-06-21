@@ -36,6 +36,9 @@
 				</object></child>
 
 				<child><object class="GtkEntry" id="int_entry">
+						<property name="max-length">19</property> <!-- enough chars for 64-bit offset + 2 for '0x' + 1 for +/- -->
+						<property name="width-chars">19</property>
+						<property name="max-width-chars">20</property>
 						<accessibility>
 							<property name="description" translatable="yes">Enter the offset byte to jump to. The default is decimal format, but other format strings are supported such as hexidecimal format, if C-style notation using the '0x' prefix is used. If your string is not recognized, a dialog will be presented explaining the valid formats of strings accepted.</property>
 						</accessibility>
@@ -45,6 +48,8 @@
 						<property name="label" translatable="yes">_Jump</property>
 						<property name="use-underline">true</property>
 						<property name="receives-default">true</property>
+						<property name="halign">end</property>
+						<property name="hexpand">true</property>
 						<accessibility>
 							<property name="description" translatable="yes">Jumps to the specified byte</property>
 						</accessibility>
@@ -52,7 +57,6 @@
 
 				<child><object class="GtkButton" id="cancel">
 						<property name="icon-name">window-close-symbolic</property>
-						<property name="hexpand">true</property>
 						<property name="halign">end</property>
 						<property name="has-frame">false</property>
 						<accessibility>

@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2022 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -138,13 +138,13 @@ hide_chartable_cb (GtkButton *button, gpointer user_data)
 	gtk_window_close (win);
 }
 
-GtkWidget *create_char_table(GtkWindow *parent_win, HexWidget *gh)
+GtkWidget *create_char_table (GtkWindow *parent_win, HexWidget *gh)
 {
 	static gchar *fmt[] = { NULL, "%02X", "%03d", "%03o" };
 	static gchar *titles[] = {  N_("ASCII"), N_("Hex"), N_("Decimal"),
 		N_("Octal"), N_("Binary") };
 	gchar *real_titles[5];
-	GtkWidget *ct, *sw, *ctv, *inbtn, *cbtn, *vbox, *hbox, *lbl;
+	GtkWidget *ct, *sw, *ctv, *inbtn, *cbtn, *vbox, *hbox, *lbl, *sep;
 	GtkListStore *store;
 	GtkCellRenderer *cell_renderer;
 	GtkTreeViewColumn *column;
@@ -247,17 +247,22 @@ GtkWidget *create_char_table(GtkWindow *parent_win, HexWidget *gh)
 	lbl = gtk_label_new ("");
 	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 4);
 	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
+	gtk_widget_set_name (hbox, "chartable-action-area");
 
-	gtk_box_append (GTK_BOX(vbox), sw);
+	sep = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
+
 	gtk_box_append (GTK_BOX(hbox), lbl);
 	gtk_box_append (GTK_BOX(hbox), inbtn);
 	gtk_box_append (GTK_BOX(hbox), cbtn);
+
+	gtk_box_append (GTK_BOX(vbox), sw);
+	gtk_box_append (GTK_BOX(vbox), sep);
 	gtk_box_append (GTK_BOX(vbox), hbox);
 
 	gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW(sw), ctv);
-	gtk_window_set_child (GTK_WINDOW (ct), vbox);
+	gtk_window_set_child (GTK_WINDOW(ct), vbox);
 
-	gtk_widget_set_size_request(ct, 320, 320);
+	gtk_widget_set_size_request (ct, 320, 320);
 
 	return ct;
 }

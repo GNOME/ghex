@@ -36,7 +36,7 @@
 
 GSettings *settings;
 /* Global CSS provider for our HexWidget widgets */
-GtkCssProvider *provider;
+GtkCssProvider *global_provider;
 
 int def_group_type;
 char *def_font_name;
@@ -173,5 +173,5 @@ void ghex_init_configuration ()
 
 	/* Global CSS provider */
 
-	provider = gtk_css_provider_new ();
+	global_provider = gtk_css_provider_new ();
 }

@@ -65,7 +65,7 @@ extern int			def_group_type;
 extern int			def_dark_mode;
 
 extern GSettings	*settings;
-extern GtkCssProvider *provider;
+extern GtkCssProvider *global_provider;
 
 /* Initializes the gsettings client */
 void ghex_init_configuration (void);

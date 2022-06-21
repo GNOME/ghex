@@ -24,11 +24,20 @@
 -->
 
 <interface domain="gtk40">
-	<object class="GtkFrame" id="r_frame">
-		<property name="label" translatable="yes">Replace With</property>
+
+	<object class="GtkBox" id="r_frame">
+		<property name="orientation">vertical</property>
+		<style>
+			<class name="findreplace-frame" />
+		</style>
 		<accessibility>
 			<property name="description" translatable="yes">Enter the hex data or ASCII data to replace with</property>
 		</accessibility>
+		<child><object class="GtkLabel">
+				<property name="label" translatable="yes">Replace With</property>
+				<property name="halign">start</property>
+				<property name="hexpand">true</property>
+		</object></child>
 	</object>
 
 	<object class="GtkButton" id="replace">
