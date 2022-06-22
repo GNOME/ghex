@@ -79,55 +79,11 @@ static GtkWidget *long_chkbtn;
 static GtkWidget *quad_chkbtn;
 static GtkWidget *shaded_box_chkbtn;
 static GtkWidget *shaded_box_spinbtn;
-static GtkWidget *shaded_box_box;
+static GtkWidget *shaded_box_row;
 static GtkWidget *dark_mode_switch;
 static GtkWidget *system_default_chkbtn;
-static GtkWidget *close_button;
-static GtkWidget *help_button;
 
 /* PRIVATE FUNCTIONS */
-
-static void
-do_css_stuff(void)
-{
-	GtkCssProvider *box_provider, *frame_provider;
-
-	/* Grab layout-oriented widgets and set CSS styling. */
-	GET_WIDGET (content_area_box);
-	GET_WIDGET (font_frame);
-	GET_WIDGET (group_type_frame);
-	GET_WIDGET (print_font_frame);
-	
-	/* overall padding for content area: */
-	box_provider = gtk_css_provider_new ();
-	gtk_css_provider_load_from_data (box_provider,
-										"* {\n"
-										"  padding-left: 24px;\n"
-										"  padding-right: 24px;\n"
-										"}\n", -1);
-
-	APPLY_PROVIDER_TO (box_provider, content_area_box);
-
-	/* padding for our frames (they look god-awful without a bit) */
-	frame_provider = gtk_css_provider_new ();
-	gtk_css_provider_load_from_data (frame_provider,
-										"* {\n"
-										"  padding: 12px;\n"
-										"}\n",	-1);
-
-	APPLY_PROVIDER_TO (frame_provider, font_frame);
-	APPLY_PROVIDER_TO (frame_provider, group_type_frame);
-	APPLY_PROVIDER_TO (frame_provider, print_font_frame);
-}
-
-static void
-help_clicked_cb (GtkButton *button,
-		gpointer user_data)
-{
-	g_return_if_fail (GTK_IS_WINDOW (prefs_dialog));
-
-	common_help_cb (GTK_WINDOW(prefs_dialog));
-}
 
 /* wee helper */
 static void
@@ -159,7 +115,7 @@ shaded_box_chkbtn_toggled_cb (GtkCheckButton *checkbutton,
 
 	checked = gtk_check_button_get_active (checkbutton);
 
-	gtk_widget_set_sensitive (shaded_box_box,
+	gtk_widget_set_sensitive (shaded_box_row,
 			checked ? TRUE : FALSE);
 
 	if (checked) {
@@ -360,14 +316,6 @@ setup_signals (void)
 
 	g_signal_connect (shaded_box_spinbtn, "value-changed",
 			G_CALLBACK(shaded_box_spinbtn_value_changed_cb), NULL);
-
-	/* close and help */
-
-	g_signal_connect_swapped (close_button, "clicked",
-			G_CALLBACK(gtk_window_destroy), prefs_dialog);
-
-	g_signal_connect (help_button, "clicked",
-			G_CALLBACK(help_clicked_cb), NULL);
 }
 
 static void
@@ -466,11 +414,9 @@ init_widgets (void)
 	GET_WIDGET (quad_chkbtn);
 	GET_WIDGET (shaded_box_chkbtn);
 	GET_WIDGET (shaded_box_spinbtn);
-	GET_WIDGET (shaded_box_box);
+	GET_WIDGET (shaded_box_row);
 	GET_WIDGET (dark_mode_switch);
 	GET_WIDGET (system_default_chkbtn);
-	GET_WIDGET (close_button);
-	GET_WIDGET (help_button);
 
 	/* Make certain font choosers only allow monospace fonts. */
 	monospace_only (font_button);
@@ -494,7 +440,6 @@ create_preferences_dialog (GtkWindow *parent)
 {
 	builder = gtk_builder_new_from_resource (PREFS_RESOURCE);
 
-	do_css_stuff ();
 	init_widgets ();
 	grab_widget_values_from_settings ();
 	setup_signals ();
