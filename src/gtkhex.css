@@ -6,10 +6,16 @@
 	background-color: @theme_bg_color;
 }
 
+/* nb: order matters for the next 2 selectors. */
+
 #hex-display:selected, #ascii-display:selected {
         color: @theme_selected_fg_color;
+        background-color: alpha(shade(@theme_selected_bg_color, 0), 0.2);
+}
+
+#hex-display:focus-within, #ascii-display:focus-within {
+        color: @theme_selected_fg_color;
         background-color: @theme_selected_bg_color;
-        /* background-color: alpha(shade(@theme_selected_bg_color, 0), 0.1); */
 }
 
 /* ---- */
