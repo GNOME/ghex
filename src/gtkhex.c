@@ -113,7 +113,6 @@ hex_widget_autohighlight_copy (HexWidgetAutoHighlight *ahl)
 G_DEFINE_BOXED_TYPE (HexWidgetAutoHighlight, hex_widget_autohighlight,
 		hex_widget_autohighlight_copy, g_free)
 
-
 /* ------------------------------
  * Main HexWidget GObject definition
  * ------------------------------
@@ -218,11 +217,124 @@ struct _HexWidget
 	/* default characters per line and number of lines. */
 	int default_cpl;
 	int default_lines;
+
+	GdkContentProvider *selection_content;
 };
 
 G_DEFINE_TYPE (HexWidget, hex_widget, GTK_TYPE_WIDGET)
 
 /* ----- */
+
+/* HexContentProvider */
+
+#define HEX_TYPE_CONTENT_PROVIDER (hex_content_provider_get_type ())
+G_DECLARE_FINAL_TYPE (HexContentProvider, hex_content_provider, HEX, CONTENT_PROVIDER,
+		GdkContentProvider)
+
+struct _HexContentProvider
+{
+	GdkContentProvider parent_instance;
+
+	HexWidget *owner;
+};
+
+G_DEFINE_TYPE (HexContentProvider, hex_content_provider, GDK_TYPE_CONTENT_PROVIDER)
+
+static GdkContentFormats *
+hex_content_provider_ref_formats (GdkContentProvider *provider)
+{
+	HexContentProvider *content = HEX_CONTENT_PROVIDER (provider);
+	HexWidget *self = content->owner;
+	GdkContentFormatsBuilder *builder = gdk_content_formats_builder_new ();
+
+	gdk_content_formats_builder_add_gtype (builder, HEX_TYPE_PASTE_DATA);
+	gdk_content_formats_builder_add_gtype (builder, G_TYPE_STRING);
+
+	return gdk_content_formats_builder_free_to_formats (builder);
+}
+
+static void
+hex_content_provider_detach (GdkContentProvider *provider,
+		GdkClipboard *clipboard)
+{
+	HexContentProvider *content = HEX_CONTENT_PROVIDER (provider);
+	HexWidget *self = content->owner;
+
+	self->selecting = FALSE;
+	hex_widget_set_selection (self, self->cursor_pos, self->cursor_pos);
+}
+
+static gboolean
+hex_content_provider_get_value (GdkContentProvider *provider,
+		GValue *value,
+		GError **error)
+{
+	HexContentProvider *content = HEX_CONTENT_PROVIDER (provider);
+	HexWidget *self = content->owner;
+	HexPasteData *paste;
+	gint64 start_pos, end_pos;
+	size_t len;
+	char *doc_data;
+
+	/* cross-ref: hex_widget_real_copy_to_clipboard - similar initial code */
+
+	start_pos = MIN(self->selection.start, self->selection.end);
+	end_pos = MAX(self->selection.start, self->selection.end);
+
+	len = end_pos - start_pos + 1;
+	g_return_val_if_fail (len, FALSE);
+
+	doc_data = hex_buffer_get_data (hex_document_get_buffer(self->document),
+			start_pos, len);
+
+	paste = hex_paste_data_new (doc_data, len);
+	g_return_val_if_fail (HEX_IS_PASTE_DATA(paste), FALSE);
+
+	if (G_VALUE_HOLDS (value, G_TYPE_STRING))
+	{
+		char *string;
+
+		string = hex_paste_data_get_string (paste);
+		g_value_take_string (value, string);
+		g_object_unref (paste);
+
+		return TRUE;
+	}
+	else if (G_VALUE_HOLDS (value, HEX_TYPE_PASTE_DATA))
+	{
+		g_value_take_object (value, paste);
+
+		return TRUE;
+	}
+
+	/* chain up */
+	return GDK_CONTENT_PROVIDER_CLASS (hex_content_provider_parent_class)->get_value (
+			provider, value, error);
+}
+
+static void
+hex_content_provider_class_init (HexContentProviderClass *klass)
+{
+	GdkContentProviderClass *provider_class = GDK_CONTENT_PROVIDER_CLASS(klass);
+
+	provider_class->ref_formats = hex_content_provider_ref_formats;
+	provider_class->get_value = hex_content_provider_get_value;
+	provider_class->detach_clipboard = hex_content_provider_detach;
+}
+
+static void
+hex_content_provider_init (HexContentProvider *content)
+{
+}
+
+GdkContentProvider *
+hex_content_provider_new (void)
+{
+	return g_object_new (HEX_TYPE_CONTENT_PROVIDER, NULL);
+}
+
+/* --- */
+
 
 /* STATIC FORWARD DECLARATIONS */
 
@@ -1390,6 +1502,110 @@ pressed_gesture_helper (HexWidget *self,
 }
 
 static void
+update_primary_selection (HexWidget *self)
+{
+	GtkWidget *widget = GTK_WIDGET(self);
+	GdkClipboard *clipboard;
+
+	if (! gtk_widget_get_realized (widget))
+		return;
+
+	clipboard = gtk_widget_get_primary_clipboard (widget);
+
+	if (self->selection.start != self->selection.end)
+	{
+		gdk_clipboard_set_content (clipboard, self->selection_content);
+	}
+	else
+	{
+		if (gdk_clipboard_get_content (clipboard) == self->selection_content)
+			gdk_clipboard_set_content (clipboard, NULL);
+	}
+}
+
+static void
+plaintext_paste_received_cb (GObject *source_object,
+		GAsyncResult *result,
+		gpointer user_data)
+{
+	HexWidget *self = HEX_WIDGET(user_data);
+	GdkClipboard *clipboard;
+	char *text;
+	GError *error = NULL;
+
+	g_debug ("%s: We DON'T have HexPasteData. Falling back to plaintext paste",
+			__func__);
+
+	clipboard = GDK_CLIPBOARD (source_object);
+
+	/* Get the resulting text of the read operation */
+	text = gdk_clipboard_read_text_finish (clipboard, result, &error);
+
+	if (text) {
+		hex_document_set_data (self->document,
+				self->cursor_pos,
+				strlen(text),
+				0,	/* rep_len (0 to insert w/o replacing; what we want) */
+				text,
+				TRUE);
+
+		hex_widget_set_cursor (self, self->cursor_pos + strlen(text));
+		g_free(text);
+	}
+	else {
+		g_critical ("Error pasting text: %s",
+				error->message);
+		g_error_free (error);
+	}
+}
+
+static void
+paste_helper (HexWidget *self, GdkClipboard *clipboard)
+{
+	GdkContentProvider *content;
+	GValue value = G_VALUE_INIT;
+	HexPasteData *paste;
+	gboolean have_hex_paste_data = FALSE;
+
+	content = gdk_clipboard_get_content (clipboard);
+	g_value_init (&value, HEX_TYPE_PASTE_DATA);
+
+	/* If the clipboard contains our special HexPasteData, we'll use it.
+	 * If not, just fall back to plaintext.
+	 */
+	have_hex_paste_data = content ?
+		gdk_content_provider_get_value (content, &value, NULL) : FALSE;
+
+	if (have_hex_paste_data)
+	{
+		char *doc_data;
+		int elems;
+
+		g_debug("%s: We HAVE HexPasteData.", __func__);
+
+		paste = HEX_PASTE_DATA(g_value_get_object (&value));
+		doc_data = hex_paste_data_get_doc_data (paste);
+		elems = hex_paste_data_get_elems (paste);
+
+		hex_document_set_data (self->document,
+				self->cursor_pos,
+				elems,
+				0,	/* rep_len (0 to insert w/o replacing; what we want) */
+				doc_data,
+				TRUE);
+
+		hex_widget_set_cursor (self, self->cursor_pos + elems);
+	}
+	else
+	{
+		gdk_clipboard_read_text_async (clipboard,
+				NULL,	/* cancellable */
+				plaintext_paste_received_cb,
+				self);
+	}
+}
+
+static void
 released_gesture_helper (HexWidget *self,
 		GtkGestureClick *gesture,
 		int				n_press,
@@ -1409,8 +1625,17 @@ released_gesture_helper (HexWidget *self,
 			self->scroll_timeout = 0;
 			self->scroll_dir = 0;
 		}
+
+		update_primary_selection (self);
 		self->selecting = FALSE;
 		self->button = 0;
+	}
+	/* Single-click */
+	else if (button == GDK_BUTTON_MIDDLE && n_press == 1)
+	{
+		GdkClipboard *primary = gtk_widget_get_primary_clipboard (GTK_WIDGET(self));
+		g_debug ("%s: middle-click paste - TEST", __func__);
+		paste_helper (self, primary);
 	}
 }
 
@@ -2171,100 +2396,15 @@ hex_widget_real_cut_to_clipboard(HexWidget *self,
 }
 
 static void
-plaintext_paste_received_cb (GObject *source_object,
-		GAsyncResult *result,
-		gpointer user_data)
-{
-	HexWidget *self = HEX_WIDGET(user_data);
-	GdkClipboard *clipboard;
-	char *text;
-	GError *error = NULL;
-
-	g_debug ("%s: We DON'T have our special HexPasteData. Falling back "
-			"to plaintext paste.",
-			__func__);
-
-	clipboard = GDK_CLIPBOARD (source_object);
-
-	/* Get the resulting text of the read operation */
-	text = gdk_clipboard_read_text_finish (clipboard, result, &error);
-
-	if (text) {
-		hex_document_set_data (self->document,
-				self->cursor_pos,
-				strlen(text),
-				0,	/* rep_len (0 to insert w/o replacing; what we want) */
-				text,
-				TRUE);
-
-		hex_widget_set_cursor (self, self->cursor_pos + strlen(text));
-		
-		g_free(text);
-	}
-	else {
-		g_critical ("Error pasting text: %s", 
-				error->message);
-		g_error_free (error);
-	}
-}
-
-static void
 hex_widget_real_paste_from_clipboard (HexWidget *self,
 		gpointer user_data)
 {
 	GtkWidget *widget = GTK_WIDGET(self);
 	GdkClipboard *clipboard;
-	GdkContentProvider *content;
-	GValue value = G_VALUE_INIT;
-	HexPasteData *paste;
-	gboolean have_hex_paste_data = FALSE;
 
 	clipboard = gtk_widget_get_clipboard (widget);
-	content = gdk_clipboard_get_content (clipboard);
-	g_value_init (&value, HEX_TYPE_PASTE_DATA);
 
-	/* If the clipboard contains our special HexPasteData, we'll use it.
-	 * If not, just fall back to plaintext.
-	 *
-	 * Note the double test here; it seems the test is semi-superfluous for
-	 * *this* purpose because _get_content will itself return NULL if the
-	 * clipboard data we're getting is not owned by the process; that will
-	 * pretty much *always* be the case when we're falling back to plaintext,
-	 * ie, when pasting from external apps. Oh well.
-	 */
-	have_hex_paste_data =
-		GDK_IS_CONTENT_PROVIDER (content) &&
-		gdk_content_provider_get_value (content,
-				&value,
-				NULL);	/* GError - NULL to ignore */
-
-	if (have_hex_paste_data)
-	{
-		char *doc_data;
-		int elems;
-
-		g_debug("%s: We HAVE our special HexPasteData.",
-				__func__);
-
-		paste = HEX_PASTE_DATA(g_value_get_object (&value));
-		doc_data = hex_paste_data_get_doc_data (paste);
-		elems = hex_paste_data_get_elems (paste);
-
-		hex_document_set_data (self->document,
-				self->cursor_pos,
-				elems,
-				0,	/* rep_len (0 to insert w/o replacing; what we want) */
-				doc_data,
-				TRUE);
-
-		hex_widget_set_cursor (self, self->cursor_pos + elems);
-	}
-	else {
-		gdk_clipboard_read_text_async (clipboard,
-				NULL,	/* GCancellable *cancellable */
-				plaintext_paste_received_cb,
-				self);
-	}
+	paste_helper (self, clipboard);
 }
 
 static void
@@ -2964,6 +3104,11 @@ hex_widget_init (HexWidget *self)
 			"gtkhex.undo", FALSE);
 	gtk_widget_action_set_enabled (GTK_WIDGET(self),
 			"gtkhex.redo", FALSE);
+
+	/* PRIMARY selection content */
+
+	self->selection_content = hex_content_provider_new ();
+	HEX_CONTENT_PROVIDER (self->selection_content)->owner = self;
 }
 
 /*-------- public API starts here --------*/
