@@ -19,7 +19,10 @@
             "name": "ghex",
 	    "builddir" : true,
             "buildsystem": "meson",
-            "config-opts" : [ "-Ddevelopment=true" ],
+            "config-opts" : [
+		    "-Ddevelopment=true",
+		    "-Ddirect-buffer-backend=false"
+	    ],
             "sources": [{
                 "type": "git",
                 "url": "https://gitlab.gnome.org/GNOME/ghex.git"
