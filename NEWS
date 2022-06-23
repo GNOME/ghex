@@ -1,3 +1,97 @@
+=============
+GHex 43.alpha
+=============
+
+This release includes libgtkhex 4.1.90 (alpha release of 4.2) - note that there
+has been an ABI break with a soname versioning bump since 4.0.x. This was not
+intentional, but unfortunately unavoidable.
+
+Changes and Bugfixes since GHex 42.3 (Logan Rathbone):
+
+- Port to libadwaita, and fix UI papercuts that stood out more thereafter
+  (thanks to: Alexander Mikhaylenko, Bilal Elmoussaoui and Maximiliano for their
+  review: #48)
+    * Remove custom tab widget
+    * Rework preferences dialog as AdwPreferencesWindow
+- Introduce custom statusbar with monospace support
+- HexWidget:
+    * Add API to show/hide specific columns
+    * Disallow keyboard shortcuts to activate hidden panes
+    * Support PRIMARY selection
+- Find and Replace improvements:
+    * Support options for case-sensitivity, regex
+    * Choose visibility of hex/ascii/both in find/replace dialogs
+    * Show number of replacements with Replace All
+- New backend: HexBufferDirect, and support for reading/writing block devices
+  (disabled on Flatpak)
+- Load default backend plugins more intelligently
+    * docs: document slight change in hex_buffer_util_new behaviour when a
+    non-existent plugin is requested (return NULL instead of falling back to
+    malloc).
+- chartable: ESC should close dialog
+- Animate opening and closing of find/replace and conversions panes
+- paste-special: Move space-delim hex pairs to UTF8 list
+- build: Fix incorrect soname numbering; split resources between app and library
+- docs: document expanded HexDocument and HexWidget APIs
+- Error handling improvements and code cleanups
+
+Translation updates:
+
+UI translations:
+- Anders Jonsson (sv)
+- Andika Triwidada (id)
+- Asier Sarasua Garmendia (eu)
+- Enrico Nicoletto (pt_BR)
+- Piotr Drąg (pl)
+- Sergej A (ru)
+- Yuri Chornoivan (uk)
+- Мирослав Николић (sr)
+
+Doc translations:
+- Andika Triwidada (id)
+
+=========
+GHex 42.3
+=========
+
+Bugfixes since 42.2 (all backports from master pending upcoming 43 release)
+(Logan Rathbone):
+
+- main: Hotfix to workaround gtk #4880 (affects Save As dialogs on X11
+  primarily)
+- config: Add GNOME 42+ compatibility for dark mode, and fetch dark settings
+  from portal if possible
+- widget: Properly update highlights upon resize
+- find-replace: Remove spurious g_object_ref() call
+
+=========
+GHex 42.2
+=========
+
+Bugfixes since 42.1:
+
+- hexwidget: Fix redraw on keyboard focus change (Logan Rathbone)
+
+Translation updates:
+
+- Andika Triwidada (id)
+
+=========
+GHex 42.1
+=========
+
+Bugfixes since 42.0:
+
+- appwin: Fix hamburger menu checkmark for Find & Replace dialog (Logan
+  Rathbone)
+- appwin: Fix markup on tab-close dialogs (Logan Rathbone)
+- findreplace: Mark two a11y strings translatable (#43) (Logan Rathbone)
+
+Translation updates:
+
+- Piotr Drąg (pl)
+- Enrico Nicoletto (pt_BR)
+
 =========
 GHex 42.0
 =========
