@@ -461,6 +461,7 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 			_("_Discard Changes"),	GTK_RESPONSE_REJECT,
 			_("_Go Back"),			GTK_RESPONSE_CANCEL,
 			NULL);
+	gtk_dialog_set_default_response (GTK_DIALOG(dialog), GTK_RESPONSE_CANCEL);
 
 	extra_user_data = page;
 	g_signal_connect (dialog, "response",
