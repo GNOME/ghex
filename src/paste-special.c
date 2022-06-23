@@ -512,10 +512,6 @@ init_mime_hash (void)
 				_("Plain text (as ASCII)"),
 				ASCII_PLAINTEXT));
 
-	LIST = g_slist_append (LIST, create_known_mime_sub_type (MIME,
-				_("Plain text (as space-delimited hex pairs)"),
-				HEX_PLAINTEXT));
-
 	g_hash_table_insert (mime_hash,
 			g_strdup (MIME),
 			LIST);
@@ -532,6 +528,10 @@ init_mime_hash (void)
 	LIST = g_slist_append (LIST, create_known_mime_sub_type (MIME,
 				_("Plain text (Unicode)"),
 				NO_SUBTYPE));
+
+	LIST = g_slist_append (LIST, create_known_mime_sub_type (MIME,
+				_("Plain text (as space-delimited hex pairs)"),
+				HEX_PLAINTEXT));
 
 	g_hash_table_insert (mime_hash,
 			g_strdup (MIME),
