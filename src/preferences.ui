@@ -181,7 +181,9 @@
 									<object class="AdwActionRow" id="shaded_box_row">
 										<property name="title" translatable="yes">Span across lines:</property>
 										<child>
-											<object class="GtkSpinButton" id="shaded_box_spinbtn" />
+											<object class="GtkSpinButton" id="shaded_box_spinbtn">
+												<property name="valign">center</property>
+											</object>
 										</child>
 									</object>
 								</child>
