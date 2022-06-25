@@ -42,6 +42,7 @@
 								<child>
 									<object class="GtkFontButton" id="font_button">
 										<property name="halign">start</property>
+										<property name="valign">center</property>
 									</object>
 								</child>
 							</object>
@@ -143,7 +144,9 @@
 							<object class="AdwActionRow">
 								<property name="title" translatable="yes">Data font</property>
 								<child>
-									<object class="GtkFontButton" id="data_font_button" />
+									<object class="GtkFontButton" id="data_font_button">
+										<property name="valign">center</property>
+									</object>
 								</child>
 							</object>
 						</child>
@@ -152,7 +155,9 @@
 							<object class="AdwActionRow">
 								<property name="title" translatable="yes">Header font</property>
 								<child>
-									<object class="GtkFontButton" id="header_font_button" />
+									<object class="GtkFontButton" id="header_font_button">
+										<property name="valign">center</property>
+									</object>
 								</child>
 							</object>
 						</child>
@@ -176,7 +181,9 @@
 									<object class="AdwActionRow" id="shaded_box_row">
 										<property name="title" translatable="yes">Span across lines:</property>
 										<child>
-											<object class="GtkSpinButton" id="shaded_box_spinbtn" />
+											<object class="GtkSpinButton" id="shaded_box_spinbtn">
+												<property name="valign">center</property>
+											</object>
 										</child>
 									</object>
 								</child>
