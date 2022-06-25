@@ -959,7 +959,7 @@ hex_document_write_to_file_async (HexDocument *doc,
 {
 	GTask *doc_task;
 
-	g_return_if_fail (G_IS_FILE (doc->file));
+	g_return_if_fail (G_IS_FILE (file));
 
 	doc_task = g_task_new (doc, cancellable, callback, user_data);
 
