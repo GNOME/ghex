@@ -1885,6 +1885,8 @@ hex_document_get_undo_data (HexDocument *doc)
 HexBuffer *
 hex_document_get_buffer (HexDocument *doc)
 {
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), NULL);
+
 	return doc->buffer;
 }
 
@@ -1900,6 +1902,8 @@ hex_document_get_buffer (HexDocument *doc)
 GFile *
 hex_document_get_file (HexDocument *doc)
 {
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), NULL);
+
 	return doc->file;
 }
 
