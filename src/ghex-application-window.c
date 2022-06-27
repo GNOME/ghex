@@ -50,9 +50,6 @@ static const char *UNTITLED_STRING = N_("Untitled");
 
 static GFile *tmp_global_gfile_for_nag_screen;
 
-/* This is dumb, but right now I can't think of a simpler solution. */
-static gpointer extra_user_data;
-
 /* ----------------------- */
 /* MAIN GOBJECT DEFINITION */
 /* ----------------------- */
@@ -396,7 +393,7 @@ close_doc_response_cb (GtkDialog *dialog,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
-	AdwTabPage *page = ADW_TAB_PAGE(extra_user_data);
+	AdwTabPage *page = g_object_get_data (G_OBJECT(self), "target-page");
 	
 	if (response_id == GTK_RESPONSE_ACCEPT)
 	{
@@ -414,7 +411,6 @@ close_doc_response_cb (GtkDialog *dialog,
 
 	gtk_window_destroy (GTK_WINDOW(dialog));
 	gtk_widget_grab_focus (GTK_WIDGET (ACTIVE_GH));
-	extra_user_data = NULL;
 }
 
 static void
@@ -463,7 +459,8 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 			NULL);
 	gtk_dialog_set_default_response (GTK_DIALOG(dialog), GTK_RESPONSE_CANCEL);
 
-	extra_user_data = page;
+	g_object_set_data (G_OBJECT(self), "target-page", page);
+
 	g_signal_connect (dialog, "response",
 			G_CALLBACK(close_doc_response_cb), self);
 
@@ -983,7 +980,7 @@ save_as_write_to_file_cb (HexDocument *doc,
 		GAsyncResult *res,
 		GHexApplicationWindow *self)
 {
-	GFile *gfile = extra_user_data;
+	GFile *gfile = g_object_get_data (G_OBJECT(self), "target-file");
 	GError *local_error = NULL;
 	gboolean write_successful;
 
@@ -1005,7 +1002,7 @@ save_as_write_to_file_cb (HexDocument *doc,
 
 	if (hex_document_set_file (doc, gfile))
 	{
-		extra_user_data = ACTIVE_GH;
+		g_object_set_data (G_OBJECT(self), "target-gh", ACTIVE_GH);
 		hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 	}
 	else
@@ -1034,7 +1031,8 @@ save_as_response_cb (GtkNativeDialog *dialog,
 	/* Fetch doc. No need for sanity checks as this is just a helper. */
 	doc = hex_widget_get_document (ACTIVE_GH);
 
-	extra_user_data = gfile = gtk_file_chooser_get_file (chooser);
+	gfile = gtk_file_chooser_get_file (chooser);
+	g_object_set_data (G_OBJECT(self), "target-file", gfile);
 
 	hex_document_write_to_file_async (doc,
 			gfile,
@@ -1096,7 +1094,7 @@ revert_response_cb (GtkDialog *dialog,
 
 	doc = hex_widget_get_document (ACTIVE_GH);
 
-	extra_user_data = ACTIVE_GH;
+	g_object_set_data (G_OBJECT(self), "target-gh", ACTIVE_GH);
 	hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 
 end:
@@ -2040,14 +2038,13 @@ do_nag_screen (GHexApplicationWindow *self)
 		gtk_widget_show (nag_screen);
 }
 
-/* also takes extra_user_data ! Hooray for cheap shortcuts! */
 static void
 doc_read_ready_cb (GObject *source_object,
 		GAsyncResult *res,
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-	HexWidget *gh = HEX_WIDGET(extra_user_data);
+	HexWidget *gh = g_object_get_data (G_OBJECT(self), "target-gh");
 	HexDocument *doc = HEX_DOCUMENT(source_object);
 	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
 	gboolean result;
@@ -2078,7 +2075,6 @@ doc_read_ready_cb (GObject *source_object,
 					_("There was an error reading the file."));
 		}
 	}
-	extra_user_data = NULL;
 }
 			
 void
@@ -2098,10 +2094,13 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 	doc = hex_document_new_from_file (file);
 	g_object_unref (file);
 
-	if (HEX_IS_BUFFER_MALLOC (hex_document_get_buffer (doc)) &&
-			! nag_screen_shown)
+	if (doc)
 	{
-		if (hex_buffer_util_get_file_size (file) >= 1073741824)
+		GFileType type;
+
+		if (HEX_IS_BUFFER_MALLOC (hex_document_get_buffer (doc)) &&
+				! nag_screen_shown &&
+				hex_buffer_util_get_file_size (file) >= 1073741824)
 		{
 			nag_screen_shown = TRUE;
 			tmp_global_gfile_for_nag_screen = file;
@@ -2109,11 +2108,6 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 			g_object_unref (doc);
 			return;
 		}
-	}
-
-	if (doc)
-	{
-		GFileType type;
 
 		type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
 		if (type == G_FILE_TYPE_SPECIAL)
@@ -2134,7 +2128,7 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 	}
 
 	/* Display a fairly generic error message if we can't even get this far. */
-	if (! gh)
+	if (!doc || !gh)
 	{
 		char *error_msg = ("There was an error loading the requested file. "
 				"The file either no longer exists, is inaccessible, "
@@ -2149,7 +2143,7 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 	}
 
 	ghex_application_window_add_hex (self, gh);
-	extra_user_data = gh;
+	g_object_set_data (G_OBJECT(self), "target-gh", gh);
 	hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 }
 
