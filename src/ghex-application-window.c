@@ -150,10 +150,10 @@ static void ghex_application_window_set_show_jump (GHexApplicationWindow *self,
 static void ghex_application_window_set_can_save (GHexApplicationWindow *self,
 		gboolean can_save);
 
+static void enable_main_actions (GHexApplicationWindow *self, gboolean enable);
 static void update_status_message (GHexApplicationWindow *self);
 static void update_gui_data (GHexApplicationWindow *self);
 static gboolean assess_can_save (HexDocument *doc);
-static void do_close_window (GHexApplicationWindow *self);
 static void close_doc_confirmation_dialog (GHexApplicationWindow *self,
 		AdwTabPage *page);
 static void show_no_file_loaded_label (GHexApplicationWindow *self);
@@ -161,6 +161,11 @@ static void show_no_file_loaded_label (GHexApplicationWindow *self);
 static void doc_read_ready_cb (GObject *source_object, GAsyncResult *res,
 		gpointer user_data);
 static void file_loaded (HexDocument *doc, GHexApplicationWindow *self);
+
+static void ghex_application_window_disconnect_hex_signals (GHexApplicationWindow *self,
+		HexWidget *gh);
+static void ghex_application_window_connect_hex_signals (GHexApplicationWindow *self,
+		HexWidget *gh);
 
 /* GHexApplicationWindow -- PRIVATE FUNCTIONS */
 
@@ -302,26 +307,19 @@ file_save (GHexApplicationWindow *self)
 }
 
 static void
-do_close_window (GHexApplicationWindow *self)
-{
-	gtk_window_set_application (GTK_WINDOW(self), NULL);
-}
-
-static void
 close_all_tabs_response_cb (GtkDialog *dialog,
 		int        response_id,
 		gpointer   user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	
-	if (response_id == GTK_RESPONSE_ACCEPT)
-	{
-		do_close_window (self);
-	}
-
 	/* Regardless of what the user chose, get rid of the dialog. */
 	gtk_window_destroy (GTK_WINDOW(dialog));
 
+	if (response_id == GTK_RESPONSE_ACCEPT)
+	{
+		gtk_window_destroy (GTK_WINDOW(self));
+	}
 }
 
 static void
@@ -330,7 +328,7 @@ close_all_tabs_confirmation_dialog (GHexApplicationWindow *self)
 	GtkWidget *dialog;
 
 	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
-			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+			GTK_DIALOG_MODAL,
 			GTK_MESSAGE_QUESTION,
 			GTK_BUTTONS_NONE,
 			(_("<b>You have one or more files open with unsaved changes.</b>\n\n"
@@ -371,7 +369,7 @@ check_close_window (GHexApplicationWindow *self)
 	if (unsaved_found) {
 		close_all_tabs_confirmation_dialog (self);
 	} else {
-		do_close_window (self);
+		gtk_window_destroy (GTK_WINDOW(self));
 	}
 }
 
@@ -387,6 +385,24 @@ close_request_cb (GtkWindow *window,
 }
 
 static void
+close_page_finish_helper (GHexApplicationWindow *self, AdwTabView *tab_view, AdwTabPage *page, gboolean confirm)
+{
+	if (confirm && adw_tab_view_get_n_pages (tab_view) == 0)
+	{
+		enable_main_actions (self, FALSE);
+		ghex_application_window_set_show_find (self, FALSE);
+		ghex_application_window_set_show_replace (self, FALSE);
+		ghex_application_window_set_show_jump (self, FALSE);
+		ghex_application_window_set_show_chartable (self, FALSE);
+		ghex_application_window_set_show_converter (self, FALSE);
+
+		show_no_file_loaded_label (self);
+		update_gui_data (self);
+	}
+	adw_tab_view_close_page_finish (tab_view, page, confirm);
+}
+
+static void
 close_doc_response_cb (GtkDialog *dialog,
 		int        response_id,
 		gpointer   user_data)
@@ -398,15 +414,15 @@ close_doc_response_cb (GtkDialog *dialog,
 	if (response_id == GTK_RESPONSE_ACCEPT)
 	{
 		file_save (self);
-		adw_tab_view_close_page_finish (tab_view, page, TRUE);
+		close_page_finish_helper (self, tab_view, page, TRUE);
 	}
 	else if (response_id == GTK_RESPONSE_REJECT)
 	{
-		adw_tab_view_close_page_finish (tab_view, page, TRUE);
+		close_page_finish_helper (self, tab_view, page, TRUE);
 	}
 	else
 	{
-		adw_tab_view_close_page_finish (tab_view, page, FALSE);
+		close_page_finish_helper (self, tab_view, page, FALSE);
 	}
 
 	gtk_window_destroy (GTK_WINDOW(dialog));
@@ -444,7 +460,7 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 	}
 
 	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
-			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+			GTK_DIALOG_MODAL,
 			GTK_MESSAGE_QUESTION,
 			GTK_BUTTONS_NONE,
 			NULL);
@@ -491,7 +507,7 @@ close_tab_shortcut_cb (GtkWidget *widget,
 	if (page)
 		adw_tab_view_close_page (ADW_TAB_VIEW(self->hex_tab_view), page);
 	else
-		do_close_window (self);
+		gtk_window_destroy (GTK_WINDOW(self));
 
 	return TRUE;
 }
@@ -659,7 +675,7 @@ tab_view_close_page_cb (AdwTabView *tab_view,
 	if (hex_document_has_changed (doc)) {
 		close_doc_confirmation_dialog (self, page);
 	} else {
-		adw_tab_view_close_page_finish (tab_view, page, TRUE);
+		close_page_finish_helper (self, tab_view, page, TRUE);
 	}
 
 	return GDK_EVENT_STOP;
@@ -692,6 +708,9 @@ tab_view_page_attached_cb (AdwTabView *tab_view,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	
+	ghex_application_window_connect_hex_signals (self,
+			HEX_WIDGET(adw_tab_page_get_child (page)));
+
 	/* Let's play this super dumb. If a page is added, that will generally
 	 * mean we don't have to count the pages to see if we have > 0.
 	 */
@@ -706,17 +725,23 @@ tab_view_page_detached_cb (AdwTabView *tab_view,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	if (adw_tab_view_get_n_pages (tab_view) == 0) {
-		enable_main_actions (self, FALSE);
-		ghex_application_window_set_show_find (self, FALSE);
-		ghex_application_window_set_show_replace (self, FALSE);
-		ghex_application_window_set_show_jump (self, FALSE);
-		ghex_application_window_set_show_chartable (self, FALSE);
-		ghex_application_window_set_show_converter (self, FALSE);
+	ghex_application_window_disconnect_hex_signals (self,
+			HEX_WIDGET(adw_tab_page_get_child (page)));
+}
 
-		show_no_file_loaded_label (self);
-	}
-	update_gui_data (self);
+static AdwTabView *
+tab_view_create_window_cb (AdwTabView *tab_view, gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	GHexApplicationWindow *new_appwin;
+
+	new_appwin = GHEX_APPLICATION_WINDOW(ghex_application_window_new (
+				ADW_APPLICATION(gtk_window_get_application (GTK_WINDOW(self)))));
+
+	gtk_window_present (GTK_WINDOW(new_appwin));
+	show_hex_tab_view (new_appwin);
+
+	return ADW_TAB_VIEW(new_appwin->hex_tab_view);
 }
 
 static void
@@ -1124,7 +1149,7 @@ revert (GtkWidget *widget,
 	basename = g_file_get_basename (hex_document_get_file (doc));
 
 	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
-			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+			GTK_DIALOG_MODAL,
 			GTK_MESSAGE_QUESTION,
 			GTK_BUTTONS_NONE,
 			/* Translators: %s here is the filename the user is being asked to
@@ -1591,6 +1616,9 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	g_signal_connect (self->hex_tab_view, "close-page",
 			G_CALLBACK(tab_view_close_page_cb), self);
 
+	g_signal_connect (self->hex_tab_view, "create-window",
+			G_CALLBACK(tab_view_create_window_cb), self);
+
 	/* Get find_dialog and friends geared up */
 
 	self->find_dialog = find_dialog_new ();
@@ -1631,39 +1659,18 @@ ghex_application_window_init (GHexApplicationWindow *self)
 }
 
 static void
-ghex_application_window_dispose(GObject *object)
+ghex_application_window_dispose (GObject *object)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(object);
-	GtkWidget *widget = GTK_WIDGET(self);
-	GtkWidget *child;
 
-	/* Unparent children
-	 */
-	g_clear_pointer (&self->find_dialog, gtk_widget_unparent);
-	g_clear_pointer (&self->replace_dialog, gtk_widget_unparent);
-	g_clear_pointer (&self->jump_dialog, gtk_widget_unparent);
-	g_clear_pointer (&self->chartable, gtk_widget_unparent);
-	g_clear_pointer (&self->converter, gtk_widget_unparent);
+	g_clear_object (&self->dialog);
 
-	/* Boilerplate: chain up
-	 */
-	G_OBJECT_CLASS(ghex_application_window_parent_class)->dispose(object);
+	/* Chain up */
+	G_OBJECT_CLASS(ghex_application_window_parent_class)->dispose (object);
 }
 
 static void
-ghex_application_window_finalize(GObject *gobject)
-{
-	/* here, you would free stuff. I've got nuthin' for ya. */
-
-	/* --- */
-
-	/* Boilerplate: chain up
-	 */
-	G_OBJECT_CLASS(ghex_application_window_parent_class)->finalize(gobject);
-}
-
-static void
-ghex_application_window_class_init(GHexApplicationWindowClass *klass)
+ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
@@ -1671,7 +1678,6 @@ ghex_application_window_class_init(GHexApplicationWindowClass *klass)
 		G_PARAM_EXPLICIT_NOTIFY;
 
 	object_class->dispose = ghex_application_window_dispose;
-	object_class->finalize = ghex_application_window_finalize;
 	object_class->get_property = ghex_application_window_get_property;
 	object_class->set_property = ghex_application_window_set_property;
 
@@ -1956,6 +1962,35 @@ ghex_application_window_activate_tab (GHexApplicationWindow *self,
 	gtk_widget_grab_focus (GTK_WIDGET(gh));
 }
 
+static void
+ghex_application_window_disconnect_hex_signals (GHexApplicationWindow *self,
+		HexWidget *gh)
+{
+	HexDocument *doc;
+
+	g_return_if_fail (HEX_IS_WIDGET(gh));
+	doc = hex_widget_get_document (gh);
+	g_return_if_fail (HEX_IS_DOCUMENT(doc));
+
+	g_signal_handlers_disconnect_by_data (gh, self);
+	g_signal_handlers_disconnect_by_data (doc, self);
+}
+
+static void
+ghex_application_window_connect_hex_signals (GHexApplicationWindow *self,
+		HexWidget *gh)
+{
+	HexDocument *doc;
+
+	g_return_if_fail (HEX_IS_WIDGET(gh));
+	doc = hex_widget_get_document (gh);
+	g_return_if_fail (HEX_IS_DOCUMENT(doc));
+
+	g_signal_connect (gh, "cursor-moved", G_CALLBACK(cursor_moved_cb), self);
+	g_signal_connect (doc, "document-changed", G_CALLBACK(document_changed_cb), self);
+	g_signal_connect (doc, "file-saved", G_CALLBACK(file_saved_cb), self);
+}
+
 void
 ghex_application_window_add_hex (GHexApplicationWindow *self,
 		HexWidget *gh)
@@ -1980,11 +2015,6 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 
 	/* Add tab */
 	adw_tab_view_append (ADW_TAB_VIEW(self->hex_tab_view), GTK_WIDGET(gh));
-
-	/* Setup signals */
-    g_signal_connect (gh, "cursor-moved", G_CALLBACK(cursor_moved_cb), self);
-	g_signal_connect (doc, "document-changed", G_CALLBACK(document_changed_cb), self);
-	g_signal_connect (doc, "file-saved", G_CALLBACK(file_saved_cb), self);
 
 	show_hex_tab_view (self);
 }
@@ -2028,7 +2058,7 @@ do_nag_screen (GHexApplicationWindow *self)
 		g_printerr ("\n");
 
 		nag_screen = gtk_message_dialog_new (GTK_WINDOW(self),
-				GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+				GTK_DIALOG_MODAL,
 				GTK_MESSAGE_WARNING,
 				GTK_BUTTONS_YES_NO,
 				"%s",
