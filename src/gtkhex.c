@@ -2564,10 +2564,6 @@ hex_widget_dispose (GObject *object)
 	g_clear_pointer (&self->scrollbar, gtk_widget_unparent);
 	g_clear_pointer (&self->busy_spinner, gtk_widget_unparent);
 
-	/* FIXME - This results in assertion errors upon exit. I have been told
-	 * by ebassi on IRC (16-Dec-2021) that this may be a bug in gtk. See:
-	 * https://gitlab.gnome.org/GNOME/gtk/-/issues/4548
-	 */
 	g_clear_pointer (&self->context_menu, gtk_widget_unparent);
 
 	/* Clear pango layouts
@@ -2959,7 +2955,6 @@ hex_widget_init (HexWidget *self)
 	gtk_widget_set_parent (self->context_menu, widget);
 
 	g_object_unref (builder);
-	g_object_unref (menu);		/* ref'd by gtk_popover_menu_new_from_model */
 
 	/* Initialize Adjustment */
 	self->adj = gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
