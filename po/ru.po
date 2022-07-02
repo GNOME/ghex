@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-06-17 16:36+0000\n"
-"PO-Revision-Date: 2022-06-18 22:44+1000\n"
+"POT-Creation-Date: 2022-06-26 18:55+0000\n"
+"PO-Revision-Date: 2022-06-29 00:22+1000\n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -62,35 +62,35 @@ msgstr "Шестнадцатеричный редактор"
 msgid "binary;debug;"
 msgstr "binary;debug;двоичный;бинарный;отладка;"
 
-#: src/chartable.c:144 src/find-options.ui:67
+#: src/chartable.c:152 src/find-options.ui:67
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:144 src/find-options.ui:66
+#: src/chartable.c:152 src/find-options.ui:66
 msgid "Hex"
 msgstr "Шестнадц."
 
-#: src/chartable.c:144
+#: src/chartable.c:152
 msgid "Decimal"
 msgstr "Десятичное"
 
-#: src/chartable.c:145
+#: src/chartable.c:153
 msgid "Octal"
 msgstr "Восьмеричное"
 
-#: src/chartable.c:145
+#: src/chartable.c:153
 msgid "Binary"
 msgstr "Двоичное"
 
-#: src/chartable.c:171
+#: src/chartable.c:184
 msgid "Character table"
 msgstr "Таблица символов"
 
-#: src/chartable.c:239
+#: src/chartable.c:252
 msgid "_Insert Character"
 msgstr "Вставить _символ"
 
-#: src/chartable.c:243 src/converter.c:186 src/preferences.ui:261
+#: src/chartable.c:256 src/converter.c:186
 msgid "_Close"
 msgstr "_Закрыть"
 
@@ -188,86 +188,86 @@ msgid "Base Converter"
 msgstr "Конвертер представлений"
 
 #. entries
-#: src/converter.c:208
+#: src/converter.c:209
 msgid "_Binary:"
 msgstr "_Двоичное:"
 
-#: src/converter.c:210
+#: src/converter.c:211
 msgid "_Octal:"
 msgstr "_Восьмеричное:"
 
-#: src/converter.c:212
+#: src/converter.c:213
 msgid "_Decimal:"
 msgstr "Де_сятичное:"
 
-#: src/converter.c:214
+#: src/converter.c:215
 msgid "_Hex:"
 msgstr "_Шестнадцатеричное:"
 
-#: src/converter.c:216
+#: src/converter.c:217
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:220
+#: src/converter.c:221
 msgid "_Get cursor value"
 msgstr "Вз_ять значение под курсором"
 
-#: src/converter.c:229
+#: src/converter.c:230
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr ""
 "Получает значение из позиции курсора в двоичном, восьми-, десяти-, "
 "шестнадцатеричном и ACSII представлении"
 
-#: src/converter.c:370
+#: src/converter.c:371
 msgid "ERROR"
 msgstr "ОШИБКА"
 
-#: src/find-dialog.ui:33
-msgid "Find String"
-msgstr "Поиск строки"
-
-#: src/find-dialog.ui:35
+#: src/find-dialog.ui:38
 msgid "Enter the hex data or ASCII data to search for"
 msgstr "Введите шестнадцатеричные или ASCII данные для поиска"
 
-#: src/find-dialog.ui:43
+#: src/find-dialog.ui:41
+msgid "Find String"
+msgstr "Поиск строки"
+
+#: src/find-dialog.ui:58
 msgid "Find _Next"
 msgstr "Найти _следующее"
 
-#: src/find-dialog.ui:47
+#: src/find-dialog.ui:62
 msgid "Finds the next occurrence of the search string"
 msgstr "Находит следующее вхождение строки поиска"
 
-#: src/find-dialog.ui:52
+#: src/find-dialog.ui:67
 msgid "Find _Previous"
 msgstr "Найти _предыдущее"
 
-#: src/find-dialog.ui:55
+#: src/find-dialog.ui:70
 msgid "Finds the previous occurrence of the search string"
 msgstr "Находит предыдущее вхождение строки поиска"
 
-#: src/find-dialog.ui:60
+#: src/find-dialog.ui:75
 msgid "_Clear"
 msgstr "_Очистить"
 
-#: src/find-dialog.ui:63
+#: src/find-dialog.ui:78
 msgid "Clears the data you are searching for"
 msgstr "Очищает данные, которые вы искали"
 
-#: src/find-dialog.ui:72
+#: src/find-dialog.ui:88
 msgid "Find options"
 msgstr "Параметры поиска"
 
-#: src/find-dialog.ui:73
+#: src/find-dialog.ui:89
 msgid "View options of the find pane"
 msgstr "Просмотр параметров панели поиска"
 
-#: src/find-dialog.ui:83 src/jump-dialog.ui:59
+#: src/find-dialog.ui:99 src/jump-dialog.ui:63
 msgid "Close"
 msgstr "Закрыть"
 
-#: src/find-dialog.ui:84
+#: src/find-dialog.ui:100
 msgid "Closes the find pane"
 msgstr "Закрывает панель поиска"
 
@@ -279,11 +279,11 @@ msgstr "Показать:"
 msgid "Both"
 msgstr "Оба"
 
-#: src/findreplace.c:220
+#: src/findreplace.c:221
 msgid "No string provided."
 msgstr "Строка не указана."
 
-#: src/findreplace.c:394
+#: src/findreplace.c:395
 msgid ""
 "Beginning of file reached.\n"
 "\n"
@@ -293,7 +293,7 @@ msgstr ""
 "\n"
 "Больше совпадений не найдено."
 
-#: src/findreplace.c:396
+#: src/findreplace.c:397
 msgid ""
 "Beginning of file reached.\n"
 "\n"
@@ -303,7 +303,7 @@ msgstr ""
 "\n"
 "От курсора совпадений не найдено."
 
-#: src/findreplace.c:406
+#: src/findreplace.c:407
 msgid ""
 "End of file reached.\n"
 "\n"
@@ -313,7 +313,7 @@ msgstr ""
 "\n"
 "Больше совпадений не найдено."
 
-#: src/findreplace.c:408
+#: src/findreplace.c:409
 msgid ""
 "End of file reached.\n"
 "\n"
@@ -323,19 +323,19 @@ msgstr ""
 "\n"
 "От курсора совпадений не найдено."
 
-#: src/findreplace.c:477
+#: src/findreplace.c:480
 msgid "No offset has been specified."
 msgstr "Не было указано смещение."
 
-#: src/findreplace.c:502
+#: src/findreplace.c:505
 msgid "The specified offset is beyond the  file boundaries."
 msgstr "Указанное смещение лежит вне границ файла."
 
-#: src/findreplace.c:510
+#: src/findreplace.c:513
 msgid "Can not position cursor beyond the end of file."
 msgstr "Невозможно установить курсор за пределами файла."
 
-#: src/findreplace.c:520
+#: src/findreplace.c:523
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
@@ -347,16 +347,16 @@ msgstr ""
 "  - шестнадцатеричное число, начинающееся с «0x»;\n"
 "  - перед смещением может быть знак «+» или «-» sign"
 
-#: src/findreplace.c:577
+#: src/findreplace.c:580
 msgid "String was not found."
 msgstr "Строка не найдена."
 
-#: src/findreplace.c:641
+#: src/findreplace.c:644
 #, c-format
 msgid "Search complete: %d replacements made."
 msgstr "Поиск завершен: выполнено %d замен."
 
-#: src/findreplace.c:648
+#: src/findreplace.c:651
 msgid "No occurrences were found."
 msgstr "Вхождений не найдено."
 
@@ -388,7 +388,7 @@ msgid "_Close Anyway"
 msgstr "_Закрыть всё равно"
 
 #: src/ghex-application-window.c:344 src/ghex-application-window.c:462
-#: src/ghex-application-window.c:1117
+#: src/ghex-application-window.c:1141
 msgid "_Go Back"
 msgstr "_Вернуться"
 
@@ -423,11 +423,11 @@ msgstr "_Сохранить изменения"
 msgid "_Discard Changes"
 msgstr "_Отменить изменения"
 
-#: src/ghex-application-window.c:971
+#: src/ghex-application-window.c:995
 msgid "There was an error saving the file to the path specified."
 msgstr "Произошла ошибка при сохранении файла по указанному пути."
 
-#: src/ghex-application-window.c:990
+#: src/ghex-application-window.c:1014
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -435,13 +435,13 @@ msgstr ""
 "Произошла неизвестная ошибка при попытке перезагрузить только что "
 "сохранённый файл."
 
-#: src/ghex-application-window.c:1041
+#: src/ghex-application-window.c:1065
 msgid "Select a file to save buffer as"
 msgstr "Выбрать файл для сохранения из буфера"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1110
+#: src/ghex-application-window.c:1134
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -456,15 +456,15 @@ msgstr ""
 "\n"
 "Это действие не может быть отменено."
 
-#: src/ghex-application-window.c:1116 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1140 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "Восста_новить"
 
-#: src/ghex-application-window.c:1200
+#: src/ghex-application-window.c:1224
 msgid "Select a file to open"
 msgstr "Выбрать файл для открытия"
 
-#: src/ghex-application-window.c:1305
+#: src/ghex-application-window.c:1329
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -487,7 +487,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1381
+#: src/ghex-application-window.c:1405
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
@@ -496,12 +496,12 @@ msgstr ""
 "Смещение: выбрано <tt>0x%lX</tt>; <tt>0x%lX</tt> байт из <tt>0x%lX</tt> to "
 "<tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1385
+#: src/ghex-application-window.c:1409
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Смещение: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2005
+#: src/ghex-application-window.c:2020
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -527,17 +527,9 @@ msgstr ""
 "Чтобы это сообщение не появлялось, попробуйте использовать другой модуль "
 "обработки буфера."
 
-#: src/ghex-application-window.c:2063
+#: src/ghex-application-window.c:2078
 msgid "There was an error reading the file."
 msgstr "Произошла ошибка при чтении файла."
-
-#: src/ghex-application-window.c:2124
-msgid ""
-"There was an error loading the requested file. The file either no longer "
-"exists, is inaccessible, or you may not have permission to access the file."
-msgstr ""
-"При загрузке запрошенного файла произошла ошибка. Файл либо больше не "
-"существует, либо недоступен, либо у вас нет прав на доступ к файлу."
 
 #: src/ghex-application-window.ui.in:31
 msgid "_New"
@@ -615,7 +607,7 @@ msgstr "_Комбинации клавиш"
 msgid "_Preferences"
 msgstr "_Параметры"
 
-#: src/ghex-application-window.ui.in:136 src/preferences.ui:255
+#: src/ghex-application-window.ui.in:136
 msgid "_Help"
 msgstr "_Справка"
 
@@ -623,27 +615,27 @@ msgstr "_Справка"
 msgid "_About GHex"
 msgstr "_О GHex"
 
-#: src/ghex-application-window.ui.in:168
+#: src/ghex-application-window.ui.in:170
 msgid "Open a file for hex editing"
 msgstr "Открыть файл для редактирования в шестнадцатеричном формате"
 
-#: src/ghex-application-window.ui.in:178
+#: src/ghex-application-window.ui.in:187
 msgid "Main menu"
 msgstr "Главное меню"
 
-#: src/ghex-application-window.ui.in:188
+#: src/ghex-application-window.ui.in:197
 msgid "Find a string in the hex document"
 msgstr "Найти строку в шестнадцатеричном документе"
 
-#: src/ghex-application-window.ui.in:197
+#: src/ghex-application-window.ui.in:206
 msgid "Save document"
 msgstr "Сохранить документ"
 
-#: src/ghex-application-window.ui.in:212
+#: src/ghex-application-window.ui.in:214
 msgid "No File Loaded"
 msgstr "Файл не загружен"
 
-#: src/ghex-application-window.ui.in:215
+#: src/ghex-application-window.ui.in:217
 msgid ""
 "• Press the Open button\n"
 "• Press Ctrl+N to start a new document\n"
@@ -657,13 +649,13 @@ msgstr ""
 "\n"
 "Или нажмите Ctrl+W, чтобы закрыть окно."
 
-#: src/ghex-application-window.ui.in:312
+#: src/ghex-application-window.ui.in:306
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Переключить режим вставки (добавлять данные в файл, а не заменять "
 "существующие)"
 
-#: src/ghex-application-window.ui.in:324
+#: src/ghex-application-window.ui.in:318
 msgid "Toggle a pane showing various numeric conversions"
 msgstr ""
 "Переключить панель, на которой показаны различные числовые преобразования"
@@ -953,7 +945,7 @@ msgstr "След. страница"
 msgid "Jump to byte (enter offset):"
 msgstr "Перейти к байту (введите смещение):"
 
-#: src/jump-dialog.ui:40
+#: src/jump-dialog.ui:43
 msgid ""
 "Enter the offset byte to jump to. The default is decimal format, but other "
 "format strings are supported such as hexidecimal format, if C-style notation "
@@ -966,15 +958,15 @@ msgstr ""
 "использованием префикса «0x». Если ваша строка не распознана, появится "
 "диалоговое окно с объяснением допустимых форматов строк."
 
-#: src/jump-dialog.ui:45
+#: src/jump-dialog.ui:48
 msgid "_Jump"
 msgstr "_Перейти"
 
-#: src/jump-dialog.ui:49
+#: src/jump-dialog.ui:54
 msgid "Jumps to the specified byte"
 msgstr "Переходит к указанному байту"
 
-#: src/jump-dialog.ui:60
+#: src/jump-dialog.ui:64
 msgid "Closes the jump-to-byte pane"
 msgstr "Закрывает панель перехода-к-байту"
 
@@ -1019,13 +1011,13 @@ msgstr "Специальное копирование"
 msgid "Plain text (as ASCII)"
 msgstr "Обычный текст (как ASCII)"
 
-#: src/paste-special.c:516
-msgid "Plain text (as space-delimited hex pairs)"
-msgstr "Обычный текст (как разделённые пробелами шестнадцатеричные пары)"
-
-#: src/paste-special.c:533
+#: src/paste-special.c:529
 msgid "Plain text (Unicode)"
 msgstr "Обычный текст (Unicode)"
+
+#: src/paste-special.c:533
+msgid "Plain text (as space-delimited hex pairs)"
+msgstr "Обычный текст (как разделённые пробелами шестнадцатеричные пары)"
 
 #. paste_special_dialog
 #: src/paste-special.ui:28
@@ -1036,72 +1028,83 @@ msgstr "Специальная вставка"
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#. prefs_dialog
-#: src/preferences.ui:29
+#: src/preferences.ui:28
 msgid "Preferences"
 msgstr "Параметры"
 
-#: src/preferences.ui:52
+#: src/preferences.ui:33
 msgid "Display"
 msgstr "Представление"
 
-#: src/preferences.ui:63
+#: src/preferences.ui:37
+msgid "Appearance"
+msgstr "Внешний вид"
+
+#: src/preferences.ui:41
 msgid "Font"
 msgstr "Шрифт"
 
-#: src/preferences.ui:83
-msgid "Dark Mode"
+#: src/preferences.ui:53
+msgid "Dark mode"
 msgstr "Тёмный режим"
 
-#: src/preferences.ui:93
+#: src/preferences.ui:69
 msgid "Use system default"
 msgstr "Использовать системный"
 
-#: src/preferences.ui:102
-msgid "Hex Group Type"
-msgstr "Тип группировки шестнадцатеричных данных"
+#: src/preferences.ui:83
+msgid "Hex Display"
+msgstr "Шестнадцатеричное представление"
 
-#: src/preferences.ui:108
+#: src/preferences.ui:87
+msgid "Group data as"
+msgstr "Группировать данные как"
+
+#: src/preferences.ui:94
 msgid "Bytes (8-bit)"
 msgstr "Байты (8-bit)"
 
-#: src/preferences.ui:114
+#: src/preferences.ui:100
 msgid "Words (16-bit)"
 msgstr "Слова (16-bit)"
 
-#: src/preferences.ui:120
+#: src/preferences.ui:106
 msgid "Longwords (32-bit)"
 msgstr "Длинные слова (32-bit)"
 
-#: src/preferences.ui:126
+#: src/preferences.ui:112
 msgid "Quadwords (64-bit)"
 msgstr "Четыре слова (64-bit)"
 
-#: src/preferences.ui:138
+#: src/preferences.ui:122
 msgid "Show offsets column"
 msgstr "Показывать столбец смещений"
 
-#: src/preferences.ui:149
+#: src/preferences.ui:137
 msgid "Printing"
 msgstr "Печать"
 
-#: src/preferences.ui:159
+#: src/preferences.ui:141
 msgid "Fonts"
 msgstr "Шрифты"
 
-#: src/preferences.ui:172
-msgid "Data font:"
-msgstr "Шрифт данных:"
+#: src/preferences.ui:145
+msgid "Data font"
+msgstr "Шрифт данных"
 
-#: src/preferences.ui:182
-msgid "Header font:"
-msgstr "Шрифт заголовка:"
+#: src/preferences.ui:156
+msgid "Header font"
+msgstr "Шрифт заголовка"
 
-#: src/preferences.ui:221
+#: src/preferences.ui:170
+msgid "Shaded rows"
+msgstr "Затенённые строки"
+
+#: src/preferences.ui:174
 msgid "Print alternating shaded rows"
 msgstr "Печатать строки с чередующимся затенением"
 
-#: src/preferences.ui:233
+#: src/preferences.ui:182
 msgid "Span across lines:"
 msgstr "Разбивка длинных строк:"
 
@@ -1110,29 +1113,46 @@ msgstr "Разбивка длинных строк:"
 msgid "Page: %i/%i"
 msgstr "Страница: %i из %i"
 
-#: src/replace-dialog.ui:28
-msgid "Replace With"
-msgstr "Заменить на"
-
-#: src/replace-dialog.ui:30
+#: src/replace-dialog.ui:34
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "Введите шестнадцатеричные или ASCII данные для замены"
 
-#: src/replace-dialog.ui:35
+#: src/replace-dialog.ui:37
+msgid "Replace With"
+msgstr "Заменить на"
+
+#: src/replace-dialog.ui:47
 msgid "_Replace"
 msgstr "_Заменить"
 
-#: src/replace-dialog.ui:38
+#: src/replace-dialog.ui:50
 msgid "Replaces the search string with the replace string"
 msgstr "Заменяет строку поиска строкой замены"
 
-#: src/replace-dialog.ui:43
+#: src/replace-dialog.ui:55
 msgid "Replace _All"
 msgstr "Заменить _все"
 
-#: src/replace-dialog.ui:46
+#: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Заменяет все вхождения строки поиска строкой замены"
+
+#~ msgid ""
+#~ "There was an error loading the requested file. The file either no longer "
+#~ "exists, is inaccessible, or you may not have permission to access the "
+#~ "file."
+#~ msgstr ""
+#~ "При загрузке запрошенного файла произошла ошибка. Файл либо больше не "
+#~ "существует, либо недоступен, либо у вас нет прав на доступ к файлу."
+
+#~ msgid "Hex Group Type"
+#~ msgstr "Тип группировки шестнадцатеричных данных"
+
+#~ msgid "Data font:"
+#~ msgstr "Шрифт данных:"
+
+#~ msgid "Header font:"
+#~ msgstr "Шрифт заголовка:"
 
 #~ msgid "Untitled document"
 #~ msgstr "Безымянный документ"
@@ -1469,14 +1489,8 @@ msgstr "Заменяет все вхождения строки поиска с�
 #~ msgid "Paper size"
 #~ msgstr "Размер бумаги"
 
-#~ msgid "Data font"
-#~ msgstr "Шрифт данных"
-
 #~ msgid "Select the data font"
 #~ msgstr "Выберите шрифт для данных"
-
-#~ msgid "Header font"
-#~ msgstr "Шрифт заголовка"
 
 #~ msgid "Select the header font"
 #~ msgstr "Выберите шрифт заголовка"
