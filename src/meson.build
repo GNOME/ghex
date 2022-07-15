@@ -72,8 +72,9 @@ res = gnome.compile_resources(
   dependencies: app_ui
 )
 
+library_name = 'gtkhex-@0@'.format(libgtkhex_api_version)
 libgtkhex = library(
-  'gtkhex-@0@'.format(libgtkhex_api_version),
+  library_name,
   libgtkhex_sources + lib_res,
   version: '@0@.@1@.@2@'.format(
     libgtkhex_version_major, libgtkhex_version_minor, libgtkhex_version_micro),
@@ -164,4 +165,18 @@ if generate_gir
   install_dir_typelib: ghex_typelibdir,
            extra_args: [ '--warn-all' ],
   )
+
+  if generate_vapi
+    vapi_deps = [
+      'gmodule-2.0',
+      'glib-2.0',
+      'gio-2.0',
+      'gtk4',
+    ]
+    gnome.generate_vapi(library_name,
+                        install  : true,
+                        packages : vapi_deps,
+                        sources  : gtkhex_gir [0],
+    )
+  endif
 endif
