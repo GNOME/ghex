@@ -1813,9 +1813,18 @@ key_press_cb (GtkEventControllerKey *controller,
 	switch(keyval)
 	{
 		case GDK_KEY_BackSpace:
-			if (self->cursor_pos > 0) {
-				hex_document_set_data (self->document, self->cursor_pos - 1,
-						0, 1, NULL, TRUE);
+			if (self->cursor_pos > 0)
+			{
+				if (self->insert)
+					hex_document_set_data (self->document, self->cursor_pos - 1,
+							0, 1, NULL, TRUE);
+				else
+				{
+					char zero = 0;
+					hex_document_set_data (self->document, self->cursor_pos - 1,
+							1, 1, &zero, TRUE);
+				}
+
 				if (self->selecting)
 					self->selecting = FALSE;
 				hex_widget_set_cursor (self, self->cursor_pos - 1);
@@ -1824,9 +1833,20 @@ key_press_cb (GtkEventControllerKey *controller,
 			break;
 
 		case GDK_KEY_Delete:
-			if (self->cursor_pos < payload_size) {
-				hex_document_set_data (self->document, self->cursor_pos,
-						0, 1, NULL, TRUE);
+			if (self->cursor_pos < payload_size)
+			{
+				if (self->insert)
+					hex_document_set_data (self->document, self->cursor_pos,
+							0, 1, NULL, TRUE);
+				else
+				{
+					char zero = 0;
+					hex_document_set_data (self->document, self->cursor_pos,
+							1, 1, &zero, TRUE);
+				}
+
+//				hex_document_set_data (self->document, self->cursor_pos,
+//						0, self->insert, NULL, TRUE);
 				hex_widget_set_cursor (self, self->cursor_pos);
 				ret = GDK_EVENT_STOP;
 			}
