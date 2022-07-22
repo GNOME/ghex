@@ -1845,8 +1845,6 @@ key_press_cb (GtkEventControllerKey *controller,
 							1, 1, &zero, TRUE);
 				}
 
-//				hex_document_set_data (self->document, self->cursor_pos,
-//						0, self->insert, NULL, TRUE);
 				hex_widget_set_cursor (self, self->cursor_pos);
 				ret = GDK_EVENT_STOP;
 			}
