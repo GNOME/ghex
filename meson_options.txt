@@ -8,3 +8,4 @@ option('direct-buffer-backend', type : 'boolean', value: true, description: 'Bui
 option('introspection', type: 'feature', value: 'auto', description: 'Generate gir data (requires gobject-introspection)')
 option('gtk_doc', type: 'boolean', value: false, description: 'Build reference manual (requires gtk-doc)')
 option('static-html-help', type: 'boolean', value: false, description: 'Install static HTML help files (for systems without Yelp)')
+option('vapi', type: 'boolean', value: false, description: 'Generate VAPI files for Vala')

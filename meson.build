@@ -20,7 +20,14 @@ mmap_backend = get_option('mmap-buffer-backend')
 direct_backend = get_option('direct-buffer-backend')
 
 gir = find_program('g-ir-scanner', required : get_option('introspection'))
+vapigen = find_program('vapigen', required : get_option('vapi'))
 generate_gir = gir.found() and (not meson.is_cross_build() or get_option('introspection').enabled())
+
+if get_option('vapi')
+  assert (generate_gir, 'vapi requires GObject Introspection. Use -Dvapi=false to disable it')
+endif
+
+generate_vapi = generate_gir and vapigen.found() and get_option('vapi')
 build_gtk_doc = get_option('gtk_doc')
 
 # Directories, variables, etc.
