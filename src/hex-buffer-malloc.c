@@ -265,18 +265,6 @@ hex_buffer_malloc_set_data (HexBuffer *buf, gint64 offset, size_t len,
 		return FALSE;
 	}
 
-	i = 0;
-	ptr = &self->buffer[offset];
-
-	if (ptr >= self->gap_pos)
-		ptr += self->gap_size;
-
-	while (offset + i < self->payload_size && i < rep_len) {
-		if (ptr >= self->gap_pos && ptr < self->gap_pos + self->gap_size)
-			ptr += self->gap_size;
-		i++;
-	}
-
 	if (rep_len == len) {
 		if (self->buffer + offset >= self->gap_pos)
 			offset += self->gap_size;
@@ -296,6 +284,8 @@ hex_buffer_malloc_set_data (HexBuffer *buf, gint64 offset, size_t len,
 	ptr = &self->buffer[offset];
 	i = 0;
 	while (offset + i < self->buffer_size && i < len) {
+		if (ptr >= self->gap_pos && ptr < self->gap_pos + self->gap_size)
+			ptr += self->gap_size;
 		*ptr++ = *data++;
 		i++;
 	}
