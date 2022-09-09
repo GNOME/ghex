@@ -387,7 +387,7 @@ close_request_cb (GtkWindow *window,
 static void
 close_page_finish_helper (GHexApplicationWindow *self, AdwTabView *tab_view, AdwTabPage *page, gboolean confirm)
 {
-	if (confirm && adw_tab_view_get_n_pages (tab_view) == 0)
+	if (confirm && adw_tab_view_get_n_pages (tab_view) == 1)
 	{
 		enable_main_actions (self, FALSE);
 		ghex_application_window_set_show_find (self, FALSE);
@@ -397,9 +397,9 @@ close_page_finish_helper (GHexApplicationWindow *self, AdwTabView *tab_view, Adw
 		ghex_application_window_set_show_converter (self, FALSE);
 
 		show_no_file_loaded_label (self);
-		update_gui_data (self);
 	}
 	adw_tab_view_close_page_finish (tab_view, page, confirm);
+	update_gui_data (self);
 }
 
 static void
