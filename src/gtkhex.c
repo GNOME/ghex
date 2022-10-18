@@ -3279,6 +3279,8 @@ hex_widget_delete_selection (HexWidget *self)
 	hex_widget_set_cursor (self, start);
 }
 
+static char *zeros = NULL;
+
 /**
  * hex_widget_zero_selection:
  *
@@ -3291,7 +3293,7 @@ hex_widget_zero_selection (HexWidget *self)
 {
 	gint64 start, end;
 	size_t len;
-	char *zeros;
+	size_t written = 0;
 
 	start = MIN(self->selection.start, self->selection.end);
 	end = MAX(self->selection.start, self->selection.end);
@@ -3299,9 +3301,17 @@ hex_widget_zero_selection (HexWidget *self)
 	len = end - start + 1;
 	g_return_if_fail (len);
 
-	zeros = g_malloc0 (len);
-	hex_document_set_data (self->document, start, len, len, zeros, TRUE);
-	g_free (zeros);
+	if (zeros == NULL) {
+		zeros = g_malloc0 (512);
+	}
+
+	while (written < len) {
+		size_t batch_size = len < 512 ? len : 512;
+		hex_document_set_data (self->document,
+				start, batch_size, batch_size,
+				zeros, TRUE);
+		written += batch_size;
+	}
 }
 
 /**
