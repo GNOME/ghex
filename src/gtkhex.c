@@ -1814,8 +1814,11 @@ key_press_cb (GtkEventControllerKey *controller,
 	{
 		case GDK_KEY_BackSpace:
 			if (self->cursor_pos > 0) {
-				hex_document_set_data (self->document, self->cursor_pos - 1,
-						0, 1, NULL, TRUE);
+				if (self->insert)
+					hex_widget_delete_selection (self);
+				else
+					hex_widget_zero_selection (self);
+
 				if (self->selecting)
 					self->selecting = FALSE;
 				hex_widget_set_cursor (self, self->cursor_pos - 1);
@@ -1824,9 +1827,13 @@ key_press_cb (GtkEventControllerKey *controller,
 			break;
 
 		case GDK_KEY_Delete:
-			if (self->cursor_pos < payload_size) {
-				hex_document_set_data (self->document, self->cursor_pos,
-						0, 1, NULL, TRUE);
+			if (self->cursor_pos < payload_size)
+			{
+				if (self->insert)
+					hex_widget_delete_selection (self);
+				else
+					hex_widget_zero_selection (self);
+
 				hex_widget_set_cursor (self, self->cursor_pos);
 				ret = GDK_EVENT_STOP;
 			}
@@ -2391,7 +2398,10 @@ hex_widget_real_cut_to_clipboard(HexWidget *self,
 {
 	if (self->selection.start != -1 && self->selection.end != -1) {
 		hex_widget_real_copy_to_clipboard(self);
-		hex_widget_delete_selection(self);
+		if (self->insert)
+			hex_widget_delete_selection(self);
+		else
+			hex_widget_zero_selection(self);
 	}
 }
 
@@ -3269,6 +3279,41 @@ hex_widget_delete_selection (HexWidget *self)
 	hex_widget_set_cursor (self, start);
 }
 
+static char *zeros = NULL;
+
+/**
+ * hex_widget_zero_selection:
+ *
+ * Set the current selection to zero. The resulting action will be undoable.
+ *
+ * Since: 4.4
+ */
+void
+hex_widget_zero_selection (HexWidget *self)
+{
+	gint64 start, end;
+	size_t len;
+	size_t written = 0;
+
+	start = MIN(self->selection.start, self->selection.end);
+	end = MAX(self->selection.start, self->selection.end);
+
+	len = end - start + 1;
+	g_return_if_fail (len);
+
+	if (zeros == NULL) {
+		zeros = g_malloc0 (512);
+	}
+
+	while (written < len) {
+		size_t batch_size = len < 512 ? len : 512;
+		hex_document_set_data (self->document,
+				start, batch_size, batch_size,
+				zeros, TRUE);
+		written += batch_size;
+	}
+}
+
 /**
  * hex_widget_set_nibble:
  * @lower_nibble: %TRUE if the lower nibble of the current byte should be
@@ -3564,7 +3609,7 @@ hex_widget_set_insert_mode (HexWidget *self, gboolean insert)
 	self->insert = insert;
 
 	if (!self->insert && self->cursor_pos > 0 && self->cursor_pos >= payload_size)
-			self->cursor_pos = payload_size - 1;
+			hex_widget_set_cursor (self, payload_size - 1);
 }
 
 /**

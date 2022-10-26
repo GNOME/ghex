@@ -100,6 +100,7 @@ void hex_widget_set_selection (HexWidget *gh, gint64 start, gint64 end);
 gboolean hex_widget_get_selection (HexWidget *gh, gint64 *start, gint64 *end);
 void hex_widget_clear_selection (HexWidget *gh);
 void hex_widget_delete_selection (HexWidget *gh);
+void hex_widget_zero_selection (HexWidget *gh);
 
 HexWidgetAutoHighlight *
 hex_widget_insert_autohighlight (HexWidget *gh, const char *search, int len);
