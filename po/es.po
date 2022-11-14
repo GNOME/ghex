@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex.HEAD.es\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-06-26 18:55+0000\n"
-"PO-Revision-Date: 2022-06-30 10:45+0200\n"
+"POT-Creation-Date: 2022-11-06 13:42+0000\n"
+"PO-Revision-Date: 2022-11-14 10:31+0100\n"
 "Last-Translator: Daniel Mustieles García <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -50,7 +50,7 @@ msgstr ""
 "columnas , una con los valores hexadecimales y otra con su representación "
 "ASCII. Es una herramienta muy útil para trabajar con datos en bruto."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:45
+#: data/org.gnome.GHex.appdata.xml.in.in:40
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -361,11 +361,11 @@ msgstr "No se han encontrado coincidencias."
 msgid "Untitled"
 msgstr "Sin título"
 
-#: src/ghex-application-window.c:282
+#: src/ghex-application-window.c:284
 msgid "There was an error saving the file."
 msgstr "Hubo un error al guardar el archivo."
 
-#: src/ghex-application-window.c:339
+#: src/ghex-application-window.c:334
 msgid ""
 "<b>You have one or more files open with unsaved changes.</b>\n"
 "\n"
@@ -377,18 +377,18 @@ msgstr ""
 "¿Está seguro de querer cerrar esta ventana?\n"
 "\n"
 
-#: src/ghex-application-window.c:343
+#: src/ghex-application-window.c:338
 msgid "_Close Anyway"
 msgstr "Cerrar de _todas formas"
 
-#: src/ghex-application-window.c:344 src/ghex-application-window.c:462
-#: src/ghex-application-window.c:1141
+#: src/ghex-application-window.c:339 src/ghex-application-window.c:474
+#: src/ghex-application-window.c:1164
 msgid "_Go Back"
 msgstr "A_trás"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:440
+#: src/ghex-application-window.c:452
 #, c-format
 msgid ""
 "<big><b>%s has been edited since opening.</b></big>\n"
@@ -399,7 +399,7 @@ msgstr ""
 "\n"
 "¿Quiere guardar los cambios?"
 
-#: src/ghex-application-window.c:446
+#: src/ghex-application-window.c:458
 msgid ""
 "<b>The buffer has been edited since opening.</b>\n"
 "\n"
@@ -409,19 +409,19 @@ msgstr ""
 "\n"
 "¿Quiere guardar los cambios?"
 
-#: src/ghex-application-window.c:460
+#: src/ghex-application-window.c:472
 msgid "_Save Changes"
 msgstr "_Guardar cambios"
 
-#: src/ghex-application-window.c:461
+#: src/ghex-application-window.c:473
 msgid "_Discard Changes"
 msgstr "_Descartar cambios"
 
-#: src/ghex-application-window.c:995
+#: src/ghex-application-window.c:1017
 msgid "There was an error saving the file to the path specified."
 msgstr "Hubo un error al guardar el archivo en la ruta especificada."
 
-#: src/ghex-application-window.c:1014
+#: src/ghex-application-window.c:1036
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -429,13 +429,13 @@ msgstr ""
 "Hubo un error desconocido al intentar volver a cargar el archivo que acaba "
 "de guardar."
 
-#: src/ghex-application-window.c:1065
+#: src/ghex-application-window.c:1088
 msgid "Select a file to save buffer as"
 msgstr "Seleccione un archivo en el que guardar el búfer actual"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1134
+#: src/ghex-application-window.c:1157
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -450,15 +450,15 @@ msgstr ""
 "\n"
 "Esta acción no se puede deshacer."
 
-#: src/ghex-application-window.c:1140 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1163 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Revertir"
 
-#: src/ghex-application-window.c:1224
+#: src/ghex-application-window.c:1247
 msgid "Select a file to open"
 msgstr "Seleccione un archivo para abrir"
 
-#: src/ghex-application-window.c:1329
+#: src/ghex-application-window.c:1352
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -482,7 +482,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1405
+#: src/ghex-application-window.c:1428
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
@@ -491,12 +491,12 @@ msgstr ""
 "Desplazamiento: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes desde <tt>0x%lX</tt> a "
 "<tt>0x%lX</tt> seleccionados"
 
-#: src/ghex-application-window.c:1409
+#: src/ghex-application-window.c:1432
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Desplazamiento: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2020
+#: src/ghex-application-window.c:2048
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -510,8 +510,19 @@ msgid ""
 "\n"
 "To avoid this message from appearing, try using a different buffer backend."
 msgstr ""
+"Está intentando abrir un archivo de 1GB o más grande.\n"
+"\n"
+"Esto puede hacer que GHex y su equipo se vuelvan inestables ya que el "
+"archivo debe cargarse en memoria, usando el «backend» activo.\n"
+"\n"
+"¿Está seguro de que quiere continuar?\n"
+"\n"
+"Este mensaje no se volverá a mostrar durante esta sesión de GHex.\n"
+"\n"
+"Para evitar la aparición de este mensaje, pruebe a usar un backend de búfer "
+"diferente."
 
-#: src/ghex-application-window.c:2078
+#: src/ghex-application-window.c:2105
 msgid "There was an error reading the file."
 msgstr "Hubo un error al leer el archivo."
 
@@ -636,10 +647,12 @@ msgstr ""
 #: src/ghex-application-window.ui.in:306
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
+"Conmutar el modo de inserción (añadir datos al archivo en lugar de sustituir "
+"los datos existentes)"
 
 #: src/ghex-application-window.ui.in:318
 msgid "Toggle a pane showing various numeric conversions"
-msgstr ""
+msgstr "Conmutar un panel que muestra varias conversiones numéricas"
 
 #: src/help-overlay.ui:14
 msgid "Files"
@@ -647,7 +660,7 @@ msgstr "Archivos"
 
 #: src/help-overlay.ui:19
 msgid "New blank hex buffer"
-msgstr ""
+msgstr "Nuevo búfer hexadecimal en blanco"
 
 #: src/help-overlay.ui:26
 msgid "Open a file for editing"
@@ -723,11 +736,11 @@ msgstr "Navegación"
 
 #: src/help-overlay.ui:152
 msgid "Toggle left (hex) display"
-msgstr ""
+msgstr "Conmutar la visualización de la región izquierda (hexadecimal)"
 
 #: src/help-overlay.ui:159
 msgid "Toggle right (ASCII) display"
-msgstr ""
+msgstr "Conmutar la visualización de la región derecha (ASCII)"
 
 #: src/help-overlay.ui:166
 msgid "Switch to previous tab"
@@ -768,24 +781,20 @@ msgid "%s: %s"
 msgstr "%s: %s"
 
 #: src/hex-buffer-direct.c:193
-#, fuzzy
-#| msgid "Failed to open temporary file."
 msgid "Failed to read data from file."
-msgstr "Falló al abrir el archivo temporal."
+msgstr "Falló al leer datos del archivo."
 
 #: src/hex-buffer-direct.c:212 src/hex-buffer-mmap.c:587
 msgid "Unable to retrieve file or directory information"
-msgstr ""
+msgstr "No se pudo recuperar la información del archivo o carpeta"
 
 #: src/hex-buffer-direct.c:221 src/hex-buffer-mmap.c:596
 msgid "Unable to create file"
 msgstr "No se pudo crear el archivo"
 
 #: src/hex-buffer-direct.c:230
-#, fuzzy
-#| msgid "Not a regular file"
 msgid "Not a regular file or block device"
-msgstr "No es un archivo regular"
+msgstr "No es un archivo normal o un dispositivo de bloques"
 
 #: src/hex-buffer-direct.c:240 src/hex-buffer-mmap.c:616
 msgid "Unable to open file for reading"
@@ -804,6 +813,8 @@ msgid ""
 "With direct-write mode, you cannot save a file to a path other than its "
 "originating path"
 msgstr ""
+"Con el modo de escritura directa, no se puede guardar un archivo en una ruta "
+"diferente de su ruta original"
 
 #: src/hex-buffer-direct.c:552
 msgid "Error writing changes to file"
@@ -812,12 +823,12 @@ msgstr "Error al escribir los cambios en el archivo"
 #: src/hex-buffer-mmap.c:310
 #, c-format
 msgid "Could not adjust %s from %lu to %lu bytes"
-msgstr ""
+msgstr "No se puede ajustar %s de %lu a %lu bytes"
 
 #: src/hex-buffer-mmap.c:359
 #, c-format
 msgid "Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"
-msgstr ""
+msgstr "Error fatal: falló el mapeo de memoria del archivo (%lu bytes, fd %d)"
 
 #: src/hex-buffer-mmap.c:606
 msgid "Not a regular file"
@@ -934,6 +945,11 @@ msgid ""
 "using the '0x' prefix is used. If your string is not recognized, a dialog "
 "will be presented explaining the valid formats of strings accepted."
 msgstr ""
+"Introduzca el byte de desplazamiento al que saltar. De forma predeterminada "
+"se usa el formato decimal, pero se permiten otros formatos de cadena como el "
+"formato hexadecimal, si se usa la notación estilo C, usando «0x» como "
+"prefijo. Si la cadena no se reconoce, se mostrará una ventana de diálogo "
+"explicando los formatos aceptados de cadenas."
 
 #: src/jump-dialog.ui:48
 msgid "_Jump"
@@ -958,7 +974,7 @@ msgstr "Esto es GHex, versión %s\n"
 
 #: src/main.c:166
 msgid "GHex - A hex editor for the GNOME desktop"
-msgstr "GHex es un editor hexadecimal para el escritorio GNOME."
+msgstr "GHex es un editor hexadecimal para el escritorio GNOME"
 
 #: src/paste-special.c:220
 #, c-format
@@ -969,6 +985,12 @@ msgid ""
 "\n"
 "For example: \"FF 3D 99 0A\""
 msgstr ""
+"Falló al pegar; formato hexadecimal no válido.\n"
+"\n"
+"La cadena de estar en formato de pares de bytes hexadecimales separados por "
+"espacios.\n"
+"\n"
+"Por ejemplo: «FF 3D 99 0A»"
 
 #: src/paste-special.c:310
 msgid "GHex Paste Data"
@@ -1024,10 +1046,8 @@ msgid "Use system default"
 msgstr "Usar el predeterminado del sistema"
 
 #: src/preferences.ui:83
-#, fuzzy
-#| msgid "Display"
 msgid "Hex Display"
-msgstr "Pantalla"
+msgstr "Pantalla hexadecimal"
 
 #: src/preferences.ui:87
 msgid "Group data as"
@@ -1071,15 +1091,15 @@ msgstr "Tipografía de las cabeceras"
 
 #: src/preferences.ui:170
 msgid "Shaded rows"
-msgstr ""
+msgstr "Filas sombreadas"
 
 #: src/preferences.ui:174
 msgid "Print alternating shaded rows"
-msgstr ""
+msgstr "Mostrar filas sombreadas alternadas"
 
 #: src/preferences.ui:182
 msgid "Span across lines:"
-msgstr ""
+msgstr "Extender a lo largo de las líneas:"
 
 #: src/print.c:50
 #, c-format
