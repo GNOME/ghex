@@ -22,6 +22,12 @@
     <p>Press <keyseq><key>Alt</key><key>Right</key></keyseq> to focus the ASCII pane.</p>
    </item>
   </list>
+ </section>
+ <section>
+  <title>Editing the file using the hex or ASCII pane</title>
+  <p>Edit the ASCII format in the same way you edit a normal text file.</p>
+  <p>To edit the hexadecimal format, use the values 0 to 9 and a to f. This
+  operation is not case-sensitive.</p>
   <p>Use any of the following methods to move the cursor around the file:</p>
   <list>
    <item>
@@ -36,12 +42,11 @@
     The format of the hexadecimal value must be 0x followed by the offset, for example 0x3.</p>
    </item>
   </list>
- </section>
- <section>
-  <title>Editing the file using the hex or ASCII pane</title>
-  <p>Edit the ASCII format in the same way you edit a normal text file.</p>
-  <p>To edit the hexadecimal format, use the values 0 to 9 and a to f. This
-  operation is not case-sensitive.</p>
+  <p>To delete or zero-out data, use either the <key>Delete</key> or
+  <key>Backspace</key> keys. <gui>Cut</gui> operations will also have the
+  side-effect or removing or zeroing-out data. This behaviour is different
+  depending on whether or not <gui>Insert Mode</gui> is enabled. For more
+  information, please review the section below.</p>
  </section>
  <section>
   <title>Insert mode</title>
@@ -55,5 +60,13 @@
   some cases, such files may be of a fixed size and increasing or decreasing
   their size may cause undefined or unwanted behaviour in applications that open
   them.</p>
+  <p>Along these lines, <em>delete</em> operations work differently depending
+  upon whether or not <gui>Insert Mode</gui> is enabled.</p>
+  <p>If <gui>Insert Mode</gui> is enabled, delete operations (eg, by pressing
+  <key>Delete</key>, <key>Backspace</key>, or by a <gui>cut</gui> operation)
+  will alter the file +length, by removing the data from the file.</p>
+  <p>If <gui>Insert Mode</gui> is not enabled, <gui>delete</gui> operations will instead
+  zero-out affected bytes within the file, so as to avoid changing the length of
+  the file.</p>
  </section>
 </page>
