@@ -2,19 +2,20 @@
 # Copyright (C) 2021 ghex's COPYRIGHT HOLDER
 # This file is distributed under the same license as the ghex package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2021, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
-"POT-Creation-Date: 2022-03-15 18:05+0000\n"
-"PO-Revision-Date: 2022-03-15 20:52+0200\n"
+"POT-Creation-Date: 2023-01-25 17:37+0000\n"
+"PO-Revision-Date: 2023-01-27 17:07+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 20.12.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
@@ -334,18 +335,14 @@ msgstr "Варіантами дій при активації спеціальн
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:122
-#| msgid ""
-#| "These options work as described above in the <link xref=\"#paste-special"
-#| "\"/> section above, but in reverse. In other words, the data copied from "
-#| "GHex <em>to</em> the clipboard will be copied in the specified format."
 msgid ""
 "These options work as described in the <link xref=\"#paste-special\"/> "
 "section above, but in reverse. In other words, the data copied from GHex "
 "<em>to</em> the clipboard will be copied in the specified format."
 msgstr ""
 "Ці варіанти працюють так, які описано у розділі <link xref=\"#paste-special"
-"\"/>, але у зворотному напрямку. Іншими словами, дані, які скопійовано "
-"з GHex <em>до</em> буфера обміну даними, буде скопійовано у спеціальному "
+"\"/>, але у зворотному напрямку. Іншими словами, дані, які скопійовано з "
+"GHex <em>до</em> буфера обміну даними, буде скопійовано у спеціальному "
 "форматі."
 
 #. (itstool) path: section/p
@@ -450,15 +447,38 @@ msgstr ""
 "Натисніть комбінацію клавіш <keyseq><key>Alt</key><key>→</key></keyseq>, щоб "
 "перемістити фокус на панель даних ASCII."
 
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:27
+msgid "Editing the file using the hex or ASCII pane"
+msgstr ""
+"Редагування файла за допомогою панелі шістнадцяткових даних або панелі ASCII"
+
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:25
+#: C/basics-edit-file.page:28
+msgid "Edit the ASCII format in the same way you edit a normal text file."
+msgstr ""
+"Редагувати дані у форматі ASCII можна у той самий спосіб, у який ви "
+"редагуєте звичайний текстовий файл."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:29
+msgid ""
+"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
+"operation is not case-sensitive."
+msgstr ""
+"Для редагування у шістнадцятковому форматі використовуйте шістнадцяткові "
+"цифри: значення від 0 до 9 та літери від a до f. Регістр символів не має "
+"значення."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:31
 msgid "Use any of the following methods to move the cursor around the file:"
 msgstr ""
 "Скористайтеся будь-яким із таких способів для пересування курсора вмістом "
 "файла:"
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:28
+#: C/basics-edit-file.page:34
 msgid ""
 "Use the scrollbar on the window and the mouse to select a byte by clicking "
 "on it."
@@ -467,7 +487,7 @@ msgstr ""
 "байта клацанням на ньому лівою кнопкою миші."
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:31
+#: C/basics-edit-file.page:37
 msgid ""
 "Use the arrow keys, <key>Home</key>, <key>End</key>, <key>PageUp</key> or "
 "<key>PageDown</key> on the keyboard."
@@ -476,7 +496,7 @@ msgstr ""
 "key>, <key>PageUp</key> та <key>PageDown</key> на клавіатурі."
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:34
+#: C/basics-edit-file.page:40
 msgid ""
 "Choose <gui>Jump to Byte</gui> from the (Main menu) or press "
 "<keyseq><key>Ctrl</key><key>J</key></keyseq>, and enter the cursor offset as "
@@ -488,36 +508,28 @@ msgstr ""
 "відступ курсора у форматі десяткового або шістнадцяткового числа. Значення у "
 "шістнадцятковому форматі має містити префікс 0x, приклад: 0x3."
 
-#. (itstool) path: section/title
-#: C/basics-edit-file.page:41
-msgid "Editing the file using the hex or ASCII pane"
-msgstr ""
-"Редагування файла за допомогою панелі шістнадцяткових даних або панелі ASCII"
-
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:42
-msgid "Edit the ASCII format in the same way you edit a normal text file."
-msgstr ""
-"Редагувати дані у форматі ASCII можна у той самий спосіб, у який ви "
-"редагуєте звичайний текстовий файл."
-
-#. (itstool) path: section/p
-#: C/basics-edit-file.page:43
+#: C/basics-edit-file.page:45
 msgid ""
-"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
-"operation is not case-sensitive."
+"To delete or zero-out data, use either the <key>Delete</key> or "
+"<key>Backspace</key> keys. <gui>Cut</gui> operations will also have the side-"
+"effect or removing or zeroing-out data. This behaviour is different "
+"depending on whether or not <gui>Insert Mode</gui> is enabled. For more "
+"information, please review the section below."
 msgstr ""
-"Для редагування у шістнадцятковому форматі використовуйте шістнадцяткові "
-"цифри: значення від 0 до 9 та літери від a до f. Регістр символів не має "
-"значення."
+"Щоб вилучити або занулити дані, скористайтеся або клавішею <key>Delete</key"
+">, або клавішею <key>Backspace</key>. Дія <gui>Вирізати</gui> також має"
+" наслідком вилучення або занулення даних. Результат залежить від того, чи"
+" увімкнено <gui>Режим вставлення</gui>. Щоб дізнатися більше, будь ласка,"
+" зверніться до наступного розділу."
 
 #. (itstool) path: section/title
-#: C/basics-edit-file.page:47
+#: C/basics-edit-file.page:52
 msgid "Insert mode"
 msgstr "Режим вставлення"
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:48
+#: C/basics-edit-file.page:53
 msgid ""
 "<gui>Insert Mode</gui> can be toggled on or off by pressing <key>Insert</"
 "key>, or by clicking the <gui>Toggle insert mode</gui> button in the status "
@@ -528,7 +540,7 @@ msgstr ""
 "смужці стану."
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:50
+#: C/basics-edit-file.page:55
 msgid ""
 "When <gui>Insert Mode</gui> is enabled, this means data will be added to the "
 "file as opposed to replacing existing data."
@@ -537,7 +549,7 @@ msgstr ""
 "не замінюватимуть собою наявні дані."
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:52
+#: C/basics-edit-file.page:57
 msgid ""
 "Unlike traditional text editors, having <gui>Insert Mode</gui> <em>off</em> "
 "is considered the default state in GHex, given that hex editors are "
@@ -553,6 +565,37 @@ msgstr ""
 "випадках розмір таких файлів може бути фіксованим, а зміна розміру таких "
 "файлів може призвести до невизначеної або небажаної поведінки у програмах, "
 "які призначено для відкриття цих файлів."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:63
+msgid ""
+"Along these lines, <em>delete</em> operations work differently depending "
+"upon whether or not <gui>Insert Mode</gui> is enabled."
+msgstr ""
+"Отже, дії з <em>вилучення</em> працюють у різний спосіб, залежно від того,"
+" чи увімкнено <gui>режим вставлення</gui>."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:65
+msgid ""
+"If <gui>Insert Mode</gui> is enabled, delete operations (eg, by pressing "
+"<key>Delete</key>, <key>Backspace</key>, or by a <gui>cut</gui> operation) "
+"will alter the file length, by removing the data from the file."
+msgstr ""
+"Якщо <gui>режим вставлення</gui> увімкнено, дії з вилучення (наприклад,"
+" натискання клавіш <key>Delete</key>, <key>Backspace</key> або дія <gui"
+">Вирізати</gui>) змінюватимуть довжину файла, вилучаючи з файла дані."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:68
+msgid ""
+"If <gui>Insert Mode</gui> is not enabled, <gui>delete</gui> operations will "
+"instead zero-out affected bytes within the file, so as to avoid changing the "
+"length of the file."
+msgstr ""
+"Якщо ж <gui>режим вставлення</gui> вимкнено, дії з <gui>вилучення</gui>"
+" занулюватимуть відповідні байти у файлі, не змінюючи загальної довжини"
+" файла."
 
 #. (itstool) path: page/title
 #: C/basics-find-replace.page:12
@@ -581,7 +624,8 @@ msgstr "Викликати панель <gui>пошуку</gui> можна в о
 #. (itstool) path: item/p
 #: C/basics-find-replace.page:19
 msgid "Click the <gui>Find</gui> button on the header bar."
-msgstr "Натиснути кнопку <gui>Знайти</gui> на панелі заголовка вікна програми."
+msgstr ""
+"Натиснути кнопку <gui>Знайти</gui> на панелі заголовка вікна програми."
 
 #. (itstool) path: item/p
 #: C/basics-find-replace.page:22
@@ -728,10 +772,6 @@ msgstr "Збереження файлів"
 
 #. (itstool) path: page/p
 #: C/basics-save-file.page:13
-#| msgid ""
-#| "To save a file in place, maintaining its filename and location, use the "
-#| "<gui>Save</gui> operation by clicking the <gui>Save</gui> button on the "
-#| "header bar, or by pressing <keyseq><key>Ctrl</key><key>s</key></keyseq>."
 msgid ""
 "To save a file in place, maintaining its filename and location, use the "
 "<gui>Save</gui> operation by clicking the <gui>Save</gui> button on the "
@@ -1034,10 +1074,6 @@ msgstr "Таблиця символів"
 
 #. (itstool) path: page/p
 #: C/tools-chartable.page:13
-#| msgid ""
-#| "GHex includes a handy table of many standard ASCII characters so as to "
-#| "allow you to easily insert such characters into a file without having to "
-#| "memorize its decimal or hexidecimal character code."
 msgid ""
 "GHex includes a handy table of many standard ASCII characters so as to allow "
 "you to easily insert such characters into a file without having to memorize "
