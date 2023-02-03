@@ -898,6 +898,17 @@ cursor_moved_cb (HexWidget *gh, gpointer user_data)
 	}
 }
 
+static gboolean
+dnd_drop_cb (GtkDropTarget *target, const GValue *value, double x, double y,
+		gpointer data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(data);
+
+	ghex_application_window_open_file (self, g_value_get_object (value));
+
+	return TRUE;
+}
+
 /* ACTIONS */
 
 #define DIALOG_SET_SHOW_TEMPLATE(WIDGET, SETUP_FUNC, PROP_ARR_ENTRY)		\
@@ -1567,6 +1578,7 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	GtkWidget *widget = GTK_WIDGET(self);
 	GtkStyleContext *context;
 	GAction *action;
+	GtkDropTarget *target;
 	GtkCssProvider *provider;
 
 	gtk_widget_init_template (widget);
@@ -1650,6 +1662,14 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	/* Grey out save (special case - it's not lumped in with mains */
 	gtk_widget_action_set_enabled (GTK_WIDGET(self),
 			"ghex.save", FALSE);
+
+	/* DnD */
+
+	target = gtk_drop_target_new (G_TYPE_FILE, GDK_ACTION_COPY);
+	g_signal_connect (target, "drop", G_CALLBACK(dnd_drop_cb), self);
+	gtk_widget_add_controller (widget, GTK_EVENT_CONTROLLER(target));
+
+	/* CSS */
 
 	provider = gtk_css_provider_new ();
 	gtk_css_provider_load_from_resource (provider, RESOURCE_BASE_PATH "/css/ghex.css");
