@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- vim:ts=2 sw=2
+-->
+
+<interface>
+
+	<object class="GtkAdjustment" id="cpl_adjustment">
+		<property name="lower">0</property>
+		<property name="upper">128</property>
+		<property name="value">16</property>
+		<property name="step-increment">1</property>
+		<property name="page-increment">10</property>
+	</object>
+
+	<object class="GtkPopover" id="geometry_popover">
+		<property name="child">
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+				<property name="spacing">6</property>
+				<child>
+					<object class="GtkCheckButton" id="auto_geometry_checkbtn">
+						<property name="label" translatable="yes">Automatic geometry</property>
+						<property name="active">true</property>
+					</object>
+				</child>
+				<child>
+					<object class="GtkGrid">
+						<property name="sensitive" bind-source="auto_geometry_checkbtn" bind-property="active" bind-flags="invert-boolean | sync-create" />
+						<property name="column-spacing">24</property>
+						<child>
+							<object class="GtkLabel">
+								<property name="label" translatable="yes">Characters per line:</property>
+								<layout>
+									<property name="column">0</property>
+									<property name="row">0</property>
+								</layout>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkSpinButton" id="cpl_spinbtn">
+								<property name="halign">start</property>
+								<property name="adjustment">cpl_adjustment</property>
+								<property name="numeric">true</property>
+								<layout>
+									<property name="column">1</property>
+									<property name="row">0</property>
+								</layout>
+							</object>
+						</child>
+
+					</object> <!-- !grid -->
+				</child>
+			</object>
+		</property>
+	</object>
+
+	<menu id='context-menu'>
+		<section>
+			<item>
+				<attribute name='label' translatable='yes'>_Undo</attribute>
+				<attribute name='action'>gtkhex.undo</attribute>
+			</item>
+			<item>
+				<attribute name='label' translatable='yes'>_Redo</attribute>
+				<attribute name='action'>gtkhex.redo</attribute>
+			</item>
+		</section>
+		<section>
+			<item>
+				<attribute name='label' translatable='yes'>Cu_t</attribute>
+				<attribute name='action'>gtkhex.cut</attribute>
+			</item>
+			<item>
+				<attribute name='label' translatable='yes'>_Copy</attribute>
+				<attribute name='action'>gtkhex.copy</attribute>
+			</item>
+			<item>
+				<attribute name='label' translatable='yes'>_Paste</attribute>
+				<attribute name='action'>gtkhex.paste</attribute>
+			</item>
+		</section>
+		<section>
+			<item>
+				<attribute name='label' translatable='yes'>_Geometry</attribute>
+				<attribute name='action'>gtkhex.geometry</attribute>
+			</item>
+		</section>
+	</menu>
+</interface>

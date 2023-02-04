@@ -168,6 +168,8 @@ struct _HexWidget
 	PangoLayout *xlayout, *alayout, *olayout;
 
 	GtkWidget *context_menu;
+	GtkWidget *geometry_popover;
+	GtkWidget *auto_geometry_checkbtn, *cpl_spinbtn;
 
 	GtkAdjustment *adj;
 
@@ -522,6 +524,25 @@ toggle_ascii_action (GtkWidget *widget,
 		self->active_view = VIEW_ASCII;
 		gtk_widget_queue_draw (widget);
 	}
+}
+
+static void
+update_geometry (HexWidget *self, gpointer data)
+{
+	if (gtk_check_button_get_active (GTK_CHECK_BUTTON(self->auto_geometry_checkbtn)))
+		hex_widget_set_geometry (self, 0, 0);
+	else
+		hex_widget_set_geometry (self, gtk_spin_button_get_value (GTK_SPIN_BUTTON(self->cpl_spinbtn)), 0);
+}
+
+static void
+geometry_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	HexWidget *self = HEX_WIDGET (widget);
+
+	gtk_popover_popup (GTK_POPOVER(self->geometry_popover));
 }
 
 /*
@@ -2575,6 +2596,7 @@ hex_widget_dispose (GObject *object)
 	g_clear_pointer (&self->busy_spinner, gtk_widget_unparent);
 
 	g_clear_pointer (&self->context_menu, gtk_widget_unparent);
+	g_clear_pointer (&self->geometry_popover, gtk_widget_unparent);
 
 	/* Clear pango layouts
 	 */
@@ -2761,6 +2783,10 @@ hex_widget_class_init (HexWidgetClass *klass)
 	gtk_widget_class_install_action (widget_class, "gtkhex.toggle-ascii",
 			NULL,
 			toggle_ascii_action);
+
+	gtk_widget_class_install_action (widget_class, "gtkhex.geometry",
+			NULL,
+			geometry_action);
 
 	/* SHORTCUTS FOR ACTIONS (not to be confused with keybindings, which are
 	 * set up in hex_widget_init) */
@@ -2958,11 +2984,21 @@ hex_widget_init (HexWidget *self)
 
 	/* Context Menu */
 
-	builder = gtk_builder_new_from_resource (RESOURCE_BASE_PATH "/context-menu.ui");
+	builder = gtk_builder_new_from_resource (RESOURCE_BASE_PATH "/gtkhex.ui");
 	menu = G_MENU_MODEL(gtk_builder_get_object (builder, "context-menu"));
 	self->context_menu = gtk_popover_menu_new_from_model (menu);
 
 	gtk_widget_set_parent (self->context_menu, widget);
+
+	self->geometry_popover = GTK_WIDGET(gtk_builder_get_object (builder, "geometry_popover"));
+
+	self->auto_geometry_checkbtn = GTK_WIDGET(gtk_builder_get_object (builder, "auto_geometry_checkbtn"));
+	self->cpl_spinbtn = GTK_WIDGET(gtk_builder_get_object (builder, "cpl_spinbtn"));
+
+	g_signal_connect_swapped (self->auto_geometry_checkbtn, "toggled", G_CALLBACK(update_geometry), self);
+	g_signal_connect_swapped (self->cpl_spinbtn, "value-changed", G_CALLBACK(update_geometry), self);
+
+	gtk_widget_set_parent (self->geometry_popover, widget);
 
 	g_object_unref (builder);
 
