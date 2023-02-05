@@ -1,17 +1,17 @@
 # Polish translation for ghex.
-# Copyright © 1999-2022 the ghex authors.
+# Copyright © 1999-2023 the ghex authors.
 # This file is distributed under the same license as the ghex package.
 # Zbigniew Chyla <chyla@alice.ci.pwr.wroc.pl>, 1999-2003.
 # Artur Flinta <aflinta@at.kernel.pl>, 2003.
-# Piotr Drąg <piotrdrag@gmail.com>, 2012-2022.
-# Aviary.pl <community-poland@mozilla.org>, 2012-2022.
+# Piotr Drąg <piotrdrag@gmail.com>, 2012-2023.
+# Aviary.pl <community-poland@mozilla.org>, 2012-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-06-22 01:19+0000\n"
-"PO-Revision-Date: 2022-06-26 14:58+0200\n"
+"POT-Creation-Date: 2023-02-05 11:34+0000\n"
+"PO-Revision-Date: 2023-02-05 14:49+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -46,7 +46,7 @@ msgstr ""
 "w dwóch kolumnach: wartości szesnastkowe w jednej, a reprezentacja ASCII "
 "w drugiej. To przydatne narzędzie do pracy z surowymi danymi."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:45
+#: data/org.gnome.GHex.appdata.xml.in.in:41
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -146,8 +146,8 @@ msgid "translator-credits"
 msgstr ""
 "Zbigniew Chyla <chyla@alice.ci.pwr.wroc.pl>, 1999-2003\n"
 "Artur Flinta <aflinta@at.kernel.pl>, 2003\n"
-"Piotr Drąg <piotrdrag@gmail.com>, 2012-2022\n"
-"Aviary.pl <community-poland@mozilla.org>, 2012-2022"
+"Piotr Drąg <piotrdrag@gmail.com>, 2012-2023\n"
+"Aviary.pl <community-poland@mozilla.org>, 2012-2023"
 
 #: src/common-ui.c:285
 msgid "GHex Website"
@@ -159,26 +159,6 @@ msgstr "Witryna programu GHex"
 #, c-format
 msgid "An error has occurred: %s"
 msgstr "Wystąpił błąd: %s"
-
-#: src/context-menu.ui:30
-msgid "_Undo"
-msgstr "Cof_nij"
-
-#: src/context-menu.ui:34
-msgid "_Redo"
-msgstr "P_onów"
-
-#: src/context-menu.ui:40
-msgid "Cu_t"
-msgstr "_Wytnij"
-
-#: src/context-menu.ui:44 src/paste-special.c:405
-msgid "_Copy"
-msgstr "S_kopiuj"
-
-#: src/context-menu.ui:48 src/paste-special.ui:49
-msgid "_Paste"
-msgstr "Wk_lej"
 
 #: src/converter.c:183
 msgid "Base Converter"
@@ -228,43 +208,43 @@ msgstr "Proszę wprowadzić wyszukiwane dane szesnastkowe lub ASCII"
 msgid "Find String"
 msgstr "Znajdź ciąg"
 
-#: src/find-dialog.ui:55
+#: src/find-dialog.ui:58
 msgid "Find _Next"
 msgstr "Znajdź _następne"
 
-#: src/find-dialog.ui:59
+#: src/find-dialog.ui:62
 msgid "Finds the next occurrence of the search string"
 msgstr "Wyszukuje następne wystąpienie ciągu"
 
-#: src/find-dialog.ui:64
+#: src/find-dialog.ui:67
 msgid "Find _Previous"
 msgstr "Znajdź poprz_ednie"
 
-#: src/find-dialog.ui:67
+#: src/find-dialog.ui:70
 msgid "Finds the previous occurrence of the search string"
 msgstr "Wyszukuje poprzednie wystąpienie ciągu"
 
-#: src/find-dialog.ui:72
+#: src/find-dialog.ui:75
 msgid "_Clear"
 msgstr "Wy_czyść"
 
-#: src/find-dialog.ui:75
+#: src/find-dialog.ui:78
 msgid "Clears the data you are searching for"
 msgstr "Czyści wyszukiwane dane"
 
-#: src/find-dialog.ui:85
+#: src/find-dialog.ui:88
 msgid "Find options"
 msgstr "Opcje wyszukiwania"
 
-#: src/find-dialog.ui:86
+#: src/find-dialog.ui:89
 msgid "View options of the find pane"
 msgstr "Wyświetla opcje panelu wyszukiwania"
 
-#: src/find-dialog.ui:96 src/jump-dialog.ui:63
+#: src/find-dialog.ui:99 src/jump-dialog.ui:63
 msgid "Close"
 msgstr "Zamknij"
 
-#: src/find-dialog.ui:97
+#: src/find-dialog.ui:100
 msgid "Closes the find pane"
 msgstr "Zamyka panel wyszukiwania"
 
@@ -364,11 +344,11 @@ msgstr "Nie odnaleziono wystąpień."
 msgid "Untitled"
 msgstr "Bez tytułu"
 
-#: src/ghex-application-window.c:282
+#: src/ghex-application-window.c:284
 msgid "There was an error saving the file."
 msgstr "Wystąpił błąd podczas zapisywania pliku."
 
-#: src/ghex-application-window.c:339
+#: src/ghex-application-window.c:334
 msgid ""
 "<b>You have one or more files open with unsaved changes.</b>\n"
 "\n"
@@ -380,18 +360,18 @@ msgstr ""
 "Na pewno zamknąć okno?\n"
 "\n"
 
-#: src/ghex-application-window.c:343
+#: src/ghex-application-window.c:338
 msgid "_Close Anyway"
 msgstr "Za_mknij mimo to"
 
-#: src/ghex-application-window.c:344 src/ghex-application-window.c:462
-#: src/ghex-application-window.c:1140
+#: src/ghex-application-window.c:339 src/ghex-application-window.c:474
+#: src/ghex-application-window.c:1175
 msgid "_Go Back"
 msgstr "_Wróć"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:440
+#: src/ghex-application-window.c:452
 #, c-format
 msgid ""
 "<big><b>%s has been edited since opening.</b></big>\n"
@@ -402,7 +382,7 @@ msgstr ""
 "\n"
 "Zapisać wprowadzone zmiany?"
 
-#: src/ghex-application-window.c:446
+#: src/ghex-application-window.c:458
 msgid ""
 "<b>The buffer has been edited since opening.</b>\n"
 "\n"
@@ -412,19 +392,19 @@ msgstr ""
 "\n"
 "Zapisać wprowadzone zmiany?"
 
-#: src/ghex-application-window.c:460
+#: src/ghex-application-window.c:472
 msgid "_Save Changes"
 msgstr "_Zapisz zmiany"
 
-#: src/ghex-application-window.c:461
+#: src/ghex-application-window.c:473
 msgid "_Discard Changes"
 msgstr "_Odrzuć zmiany"
 
-#: src/ghex-application-window.c:994
+#: src/ghex-application-window.c:1028
 msgid "There was an error saving the file to the path specified."
 msgstr "Wystąpił błąd podczas zapisywania pliku do podanej ścieżki."
 
-#: src/ghex-application-window.c:1013
+#: src/ghex-application-window.c:1047
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -432,13 +412,13 @@ msgstr ""
 "Wystąpił nieznany błąd podczas próby ponownego wczytania właśnie zapisanego "
 "pliku."
 
-#: src/ghex-application-window.c:1064
+#: src/ghex-application-window.c:1099
 msgid "Select a file to save buffer as"
 msgstr "Wybór pliku do zapisu buforu"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1133
+#: src/ghex-application-window.c:1168
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -453,15 +433,15 @@ msgstr ""
 "\n"
 "Nie można tego cofnąć."
 
-#: src/ghex-application-window.c:1139 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1174 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Przywróć"
 
-#: src/ghex-application-window.c:1223
+#: src/ghex-application-window.c:1258
 msgid "Select a file to open"
 msgstr "Wybór pliku do otwarcia"
 
-#: src/ghex-application-window.c:1328
+#: src/ghex-application-window.c:1363
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -484,7 +464,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1404
+#: src/ghex-application-window.c:1439
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
@@ -493,12 +473,12 @@ msgstr ""
 "Przesunięcie: <tt>0x%lX</tt>; zaznaczono <tt>0x%lX</tt> B od <tt>0x%lX</tt> "
 "do <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1408
+#: src/ghex-application-window.c:1443
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Przesunięcie: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2019
+#: src/ghex-application-window.c:2068
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -525,17 +505,9 @@ msgstr ""
 "Można spróbować użyć innego mechanizmu bufora, aby uniknąć pojawiania się "
 "tego komunikatu."
 
-#: src/ghex-application-window.c:2077
+#: src/ghex-application-window.c:2125
 msgid "There was an error reading the file."
 msgstr "Wystąpił błąd podczas odczytywania pliku."
-
-#: src/ghex-application-window.c:2138
-msgid ""
-"There was an error loading the requested file. The file either no longer "
-"exists, is inaccessible, or you may not have permission to access the file."
-msgstr ""
-"Wystąpił błąd podczas wczytywania żądanego pliku. Plik już nie istnieje, "
-"jest niedostępny lub brak wymaganego uprawnienia do dostępu."
 
 #: src/ghex-application-window.ui.in:31
 msgid "_New"
@@ -664,6 +636,38 @@ msgstr ""
 #: src/ghex-application-window.ui.in:318
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Przełącza panel wyświetlający różne konwersje numeryczne"
+
+#: src/gtkhex.ui:23
+msgid "Automatic geometry"
+msgstr "Automatyczna geometria"
+
+#: src/gtkhex.ui:33
+msgid "Characters per line:"
+msgstr "Znaki na wiersz:"
+
+#: src/gtkhex.ui:62
+msgid "_Undo"
+msgstr "Cof_nij"
+
+#: src/gtkhex.ui:66
+msgid "_Redo"
+msgstr "P_onów"
+
+#: src/gtkhex.ui:72
+msgid "Cu_t"
+msgstr "_Wytnij"
+
+#: src/gtkhex.ui:76 src/paste-special.c:405
+msgid "_Copy"
+msgstr "S_kopiuj"
+
+#: src/gtkhex.ui:80 src/paste-special.ui:49
+msgid "_Paste"
+msgstr "Wk_lej"
+
+#: src/gtkhex.ui:86
+msgid "_Geometry"
+msgstr "_Geometria"
 
 #: src/help-overlay.ui:14
 msgid "Files"
@@ -1016,13 +1020,13 @@ msgstr "Skopiowanie specjalne"
 msgid "Plain text (as ASCII)"
 msgstr "Zwykły tekst (jako ASCII)"
 
-#: src/paste-special.c:516
-msgid "Plain text (as space-delimited hex pairs)"
-msgstr "Zwykły tekst (jako pary szesnastkowe oddzielone spacjami)"
-
-#: src/paste-special.c:533
+#: src/paste-special.c:529
 msgid "Plain text (Unicode)"
 msgstr "Zwykły tekst (Unicode)"
+
+#: src/paste-special.c:533
+msgid "Plain text (as space-delimited hex pairs)"
+msgstr "Zwykły tekst (jako pary szesnastkowe oddzielone spacjami)"
 
 #. paste_special_dialog
 #: src/paste-special.ui:28
@@ -1049,67 +1053,67 @@ msgstr "Wygląd"
 msgid "Font"
 msgstr "Czcionka"
 
-#: src/preferences.ui:52
+#: src/preferences.ui:53
 msgid "Dark mode"
 msgstr "Tryb ciemny"
 
-#: src/preferences.ui:68
+#: src/preferences.ui:69
 msgid "Use system default"
 msgstr "Domyślne systemu"
 
-#: src/preferences.ui:82
+#: src/preferences.ui:83
 msgid "Hex Display"
 msgstr "Wyświetlanie danych szesnastkowych"
 
-#: src/preferences.ui:86
+#: src/preferences.ui:87
 msgid "Group data as"
 msgstr "Grupowanie danych jako"
 
-#: src/preferences.ui:93
+#: src/preferences.ui:94
 msgid "Bytes (8-bit)"
 msgstr "Bajty (8-bitowe)"
 
-#: src/preferences.ui:99
+#: src/preferences.ui:100
 msgid "Words (16-bit)"
 msgstr "Słowa (16-bitowe)"
 
-#: src/preferences.ui:105
+#: src/preferences.ui:106
 msgid "Longwords (32-bit)"
 msgstr "Długie słowa (32-bitowe)"
 
-#: src/preferences.ui:111
+#: src/preferences.ui:112
 msgid "Quadwords (64-bit)"
 msgstr "Poczwórne słowa (64-bitowe)"
 
-#: src/preferences.ui:121
+#: src/preferences.ui:122
 msgid "Show offsets column"
 msgstr "Kolumna przesunięć"
 
-#: src/preferences.ui:136
+#: src/preferences.ui:137
 msgid "Printing"
 msgstr "Drukowanie"
 
-#: src/preferences.ui:140
+#: src/preferences.ui:141
 msgid "Fonts"
 msgstr "Czcionki"
 
-#: src/preferences.ui:144
+#: src/preferences.ui:145
 msgid "Data font"
 msgstr "Czcionka danych"
 
-#: src/preferences.ui:153
+#: src/preferences.ui:156
 msgid "Header font"
 msgstr "Czcionka nagłówka"
 
-#: src/preferences.ui:165
+#: src/preferences.ui:170
 msgid "Shaded rows"
 msgstr "Cieniowane rzędy"
 
-#: src/preferences.ui:169
+#: src/preferences.ui:174
 msgid "Print alternating shaded rows"
 msgstr "Cieniowanie co drugiego rzędu"
 
-#: src/preferences.ui:177
+#: src/preferences.ui:182
 msgid "Span across lines:"
 msgstr "Rozciąganie między wierszami:"
 
@@ -1126,18 +1130,18 @@ msgstr "Proszę wprowadzić dane szesnastkowo lub ASCII do zastąpienia"
 msgid "Replace With"
 msgstr "Zmiana na"
 
-#: src/replace-dialog.ui:44
+#: src/replace-dialog.ui:47
 msgid "_Replace"
 msgstr "Z_mień"
 
-#: src/replace-dialog.ui:47
+#: src/replace-dialog.ui:50
 msgid "Replaces the search string with the replace string"
 msgstr "Zastępuje wyszukiwany ciąg nowym"
 
-#: src/replace-dialog.ui:52
+#: src/replace-dialog.ui:55
 msgid "Replace _All"
 msgstr "Zmień _wszystkie"
 
-#: src/replace-dialog.ui:55
+#: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Zastępuje wszystkie wystąpienia wyszukiwanego ciągu nowym"
