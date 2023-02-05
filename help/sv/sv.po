@@ -1,22 +1,22 @@
 # Swedish translation for ghex help.
-# Copyright © 2016-2020 ghex's COPYRIGHT HOLDER
+# Copyright © 2016-2023 ghex's COPYRIGHT HOLDER
 # This file is distributed under the same license as the ghex package.
 # Daniel Nylander <po@danielnylander.se>, 2007.
 # Josef Andersson <josef.andersson@gmail.com>, 2016.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2020.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2020, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex doc\n"
-"POT-Creation-Date: 2022-03-15 18:05+0000\n"
-"PO-Revision-Date: 2022-03-15 20:22+0100\n"
+"POT-Creation-Date: 2023-01-29 21:08+0000\n"
+"PO-Revision-Date: 2023-02-05 13:55+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -438,13 +438,32 @@ msgstr ""
 "Trycka ned <keyseq><key>Alt</key><key>Höger</key></keyseq> för att fokusera "
 "ASCII-panelen."
 
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:27
+msgid "Editing the file using the hex or ASCII pane"
+msgstr "Redigera filen med hexadecimal- eller ASCII-panelen"
+
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:25
+#: C/basics-edit-file.page:28
+msgid "Edit the ASCII format in the same way you edit a normal text file."
+msgstr "Redigera ASCII på samma sätt som du redigerar i en vanlig textfil."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:29
+msgid ""
+"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
+"operation is not case-sensitive."
+msgstr ""
+"För att redigera det hexadecimala formatet använder du värdena 0 till 9 och "
+"a till f. Denna åtgärd är inte skiftlägeskänslig."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:31
 msgid "Use any of the following methods to move the cursor around the file:"
 msgstr "Om du vill flytta markören i filen gör du på något av följande sätt:"
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:28
+#: C/basics-edit-file.page:34
 msgid ""
 "Use the scrollbar on the window and the mouse to select a byte by clicking "
 "on it."
@@ -453,7 +472,7 @@ msgstr ""
 "klicka på den."
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:31
+#: C/basics-edit-file.page:37
 msgid ""
 "Use the arrow keys, <key>Home</key>, <key>End</key>, <key>PageUp</key> or "
 "<key>PageDown</key> on the keyboard."
@@ -462,7 +481,7 @@ msgstr ""
 "eller <key>PageDown</key> på tangentbordet."
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:34
+#: C/basics-edit-file.page:40
 msgid ""
 "Choose <gui>Jump to Byte</gui> from the (Main menu) or press "
 "<keyseq><key>Ctrl</key><key>J</key></keyseq>, and enter the cursor offset as "
@@ -474,32 +493,29 @@ msgstr ""
 "ett decimalt eller hexadecimalt värde. Formatet på det hexadecimala värdet "
 "måste vara 0x följt av positionen, till exempel 0x3."
 
-#. (itstool) path: section/title
-#: C/basics-edit-file.page:41
-msgid "Editing the file using the hex or ASCII pane"
-msgstr "Redigera filen med hexadecimal- eller ASCII-panelen"
-
+# TODO: behaviour -> behavior?
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:42
-msgid "Edit the ASCII format in the same way you edit a normal text file."
-msgstr "Redigera ASCII på samma sätt som du redigerar i en vanlig textfil."
-
-#. (itstool) path: section/p
-#: C/basics-edit-file.page:43
+#: C/basics-edit-file.page:45
 msgid ""
-"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
-"operation is not case-sensitive."
+"To delete or zero-out data, use either the <key>Delete</key> or "
+"<key>Backspace</key> keys. <gui>Cut</gui> operations will also have the side-"
+"effect of removing or zeroing-out data. This behaviour is different "
+"depending on whether or not <gui>Insert Mode</gui> is enabled. For more "
+"information, please review the section below."
 msgstr ""
-"För att redigera det hexadecimala formatet använder du värdena 0 till 9 och "
-"a till f. Denna åtgärd är inte skiftlägeskänslig."
+"För att ta bort eller nolla data använder du antingen tangenten <key>Delete</"
+"key> eller <key>Backsteg</key>. <gui>Klipp ut</gui>-åtgärder kommer också ha "
+"sidoeffekten av att ta bort eller nolla data. Detta beteende skiljer sig "
+"beroende på om <gui>Inskrivningsläge</gui> är aktiverat. Repetera avsnittet "
+"nedan för mer information."
 
 #. (itstool) path: section/title
-#: C/basics-edit-file.page:47
+#: C/basics-edit-file.page:52
 msgid "Insert mode"
 msgstr "Inskrivningsläge"
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:48
+#: C/basics-edit-file.page:53
 msgid ""
 "<gui>Insert Mode</gui> can be toggled on or off by pressing <key>Insert</"
 "key>, or by clicking the <gui>Toggle insert mode</gui> button in the status "
@@ -510,7 +526,7 @@ msgstr ""
 "inskrivningsläge</gui> i statusraden."
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:50
+#: C/basics-edit-file.page:55
 msgid ""
 "When <gui>Insert Mode</gui> is enabled, this means data will be added to the "
 "file as opposed to replacing existing data."
@@ -519,7 +535,7 @@ msgstr ""
 "läggas till i filen i stället för att ersätta befintliga data."
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:52
+#: C/basics-edit-file.page:57
 msgid ""
 "Unlike traditional text editors, having <gui>Insert Mode</gui> <em>off</em> "
 "is considered the default state in GHex, given that hex editors are "
@@ -534,6 +550,37 @@ msgstr ""
 "i binärfiler som har en väldigt specifik layout. I vissa fall kan sådana "
 "filer vara av fast filstorlek och att öka eller minska deras storlek kan "
 "orsaka odefinierat eller oönskat beteende i program som öppnar dem."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:63
+msgid ""
+"Along these lines, <em>delete</em> operations work differently depending "
+"upon whether or not <gui>Insert Mode</gui> is enabled."
+msgstr ""
+"På grund av detta kommer <em>ta bort</em>-åtgärder fungera olika beroende på "
+"huruvida <gui>Inskrivningsläge</gui> är aktiverat."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:65
+msgid ""
+"If <gui>Insert Mode</gui> is enabled, delete operations (eg, by pressing "
+"<key>Delete</key>, <key>Backspace</key>, or by a <gui>cut</gui> operation) "
+"will alter the file length, by removing the data from the file."
+msgstr ""
+"Om <gui>Inskrivningsläge</gui> är aktiverat kommer borttagningsåtgärder (t."
+"ex. att trycka <key>Delete</key>, <key>Backsteg</key>, eller en <gui>klipp "
+"ut</gui>-åtgärd) att ändra filens längd genom att ta bort data från filen."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:68
+msgid ""
+"If <gui>Insert Mode</gui> is not enabled, <gui>delete</gui> operations will "
+"instead zero-out affected bytes within the file, so as to avoid changing the "
+"length of the file."
+msgstr ""
+"Om <gui>Inskrivningsläge</gui> inte är aktiverat kommer <gui>ta bort</gui>-"
+"åtgärder i stället nolla påverkade byte i filen, för att förhindra att "
+"filens längd ändras."
 
 #. (itstool) path: page/title
 #: C/basics-find-replace.page:12
