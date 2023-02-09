@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-07-15 06:37+0000\n"
-"PO-Revision-Date: 2022-11-29 19:32+0700\n"
+"POT-Creation-Date: 2023-02-05 11:34+0000\n"
+"PO-Revision-Date: 2023-02-09 18:59+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.2.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
 #: src/ghex-application-window.ui.in:149
@@ -46,7 +46,7 @@ msgstr ""
 "ASCII di kolom lain. GHex adalag alat yang berguna untuk bekerja dengan data "
 "mentah."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:40
+#: data/org.gnome.GHex.appdata.xml.in.in:41
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -143,7 +143,8 @@ msgstr "Tentang GHex"
 msgid "translator-credits"
 msgstr ""
 "Abdul Hamid.A.N <hameed@linuxmail.org>, 2004.\n"
-"Andika Triwidada <andika@gmail.com>, 2009, 2012, 2013, 2016, 2018, 2022.\n"
+"Andika Triwidada <andika@gmail.com>, 2009, 2012, 2013, 2016, 2018, 2022, "
+"2023.\n"
 "Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2019."
 
 #: src/common-ui.c:285
@@ -156,26 +157,6 @@ msgstr "Situs Web GHex"
 #, c-format
 msgid "An error has occurred: %s"
 msgstr "Terjadi kesalahan: %s"
-
-#: src/context-menu.ui:30
-msgid "_Undo"
-msgstr "_Tak Jadi"
-
-#: src/context-menu.ui:34
-msgid "_Redo"
-msgstr "_Jadi Lagi"
-
-#: src/context-menu.ui:40
-msgid "Cu_t"
-msgstr "Po_tong"
-
-#: src/context-menu.ui:44 src/paste-special.c:405
-msgid "_Copy"
-msgstr "_Salin"
-
-#: src/context-menu.ui:48 src/paste-special.ui:49
-msgid "_Paste"
-msgstr "Tem_pel"
 
 #: src/converter.c:183
 msgid "Base Converter"
@@ -382,7 +363,7 @@ msgid "_Close Anyway"
 msgstr "_Tutup Saja"
 
 #: src/ghex-application-window.c:339 src/ghex-application-window.c:474
-#: src/ghex-application-window.c:1164
+#: src/ghex-application-window.c:1175
 msgid "_Go Back"
 msgstr "_Kembali"
 
@@ -417,11 +398,11 @@ msgstr "_Simpan Perubahan"
 msgid "_Discard Changes"
 msgstr "_Buang Perubahan"
 
-#: src/ghex-application-window.c:1017
+#: src/ghex-application-window.c:1028
 msgid "There was an error saving the file to the path specified."
 msgstr "Ada galat saat menyimpan berkas ke path yang dinyatakan."
 
-#: src/ghex-application-window.c:1036
+#: src/ghex-application-window.c:1047
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -429,13 +410,13 @@ msgstr ""
 "Kesalahan yang tidak diketahui telah terjadi dalam mencoba memuat ulang "
 "berkas yang baru saja Anda simpan."
 
-#: src/ghex-application-window.c:1088
+#: src/ghex-application-window.c:1099
 msgid "Select a file to save buffer as"
 msgstr "Pilih berkas sebagai tempat menyimpan penyangga"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1157
+#: src/ghex-application-window.c:1168
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -450,15 +431,15 @@ msgstr ""
 "\n"
 "Tindakan ini tidak dapat dibatalkan."
 
-#: src/ghex-application-window.c:1163 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1174 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Kembalikan"
 
-#: src/ghex-application-window.c:1247
+#: src/ghex-application-window.c:1258
 msgid "Select a file to open"
 msgstr "Pilih berkas untuk dibuka"
 
-#: src/ghex-application-window.c:1352
+#: src/ghex-application-window.c:1363
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -482,22 +463,21 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1428
+#: src/ghex-application-window.c:1439
 #, c-format
 msgid ""
-"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
-"%lX</tt> selected"
+"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+"<tt>0x%lX</tt> selected"
 msgstr ""
-"Ofset: <tt>0x%lX</tt>; <tt>0x%lX</tt> byte dari <tt>0x%lX</tt> hingga <tt>0x"
-"%lX</tt> dipilih"
+"Ofset: <tt>0x%lX</tt>; <tt>0x%lX</tt> byte dari <tt>0x%lX</tt> hingga "
+"<tt>0x%lX</tt> dipilih"
 
-#: src/ghex-application-window.c:1432
+#: src/ghex-application-window.c:1443
 #, c-format
-#| msgid "Offset: 0x%lX"
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Ofset: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2048
+#: src/ghex-application-window.c:2068
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -522,7 +502,7 @@ msgstr ""
 "\n"
 "Untuk menghindari pesan ini muncul, cobalah memakai backend penyangga lain."
 
-#: src/ghex-application-window.c:2105
+#: src/ghex-application-window.c:2125
 msgid "There was an error reading the file."
 msgstr "Galat saat membaca dari berkas."
 
@@ -653,6 +633,38 @@ msgstr ""
 #: src/ghex-application-window.ui.in:318
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Menjungkitkan panel yang memperlihatkan berbagai konversi numerik"
+
+#: src/gtkhex.ui:23
+msgid "Automatic geometry"
+msgstr "Geometri otomatis"
+
+#: src/gtkhex.ui:33
+msgid "Characters per line:"
+msgstr "Karakter per baris:"
+
+#: src/gtkhex.ui:62
+msgid "_Undo"
+msgstr "_Tak Jadi"
+
+#: src/gtkhex.ui:66
+msgid "_Redo"
+msgstr "_Jadi Lagi"
+
+#: src/gtkhex.ui:72
+msgid "Cu_t"
+msgstr "Po_tong"
+
+#: src/gtkhex.ui:76 src/paste-special.c:405
+msgid "_Copy"
+msgstr "_Salin"
+
+#: src/gtkhex.ui:80 src/paste-special.ui:49
+msgid "_Paste"
+msgstr "Tem_pel"
+
+#: src/gtkhex.ui:86
+msgid "_Geometry"
+msgstr "_Geometri"
 
 #: src/help-overlay.ui:14
 msgid "Files"
