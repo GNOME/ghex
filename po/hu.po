@@ -1,24 +1,24 @@
 # Hungarian translation for ghex.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2007, 2009, 2010, 2011, 2012, 2013, 2015, 2018, 2019, 2022 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2007, 2009, 2010, 2011, 2012, 2013, 2015, 2018, 2019, 2022, 2023 Free Software Foundation, Inc.
 # This file is distributed under the same license as the ghex package.
 #
 # Szabolcs Ban <shooby at gnome dot hu>, 1999, 2000, 2001.
 # Andras Timar <timar at gnome dot hu>, 2001, 2002, 2003.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2004, 2005, 2007, 2009, 2010, 2011.
-# Balázs Úr <ur.balazs at fsf dot hu>, 2012, 2013, 2015, 2018, 2019, 2022.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2012, 2013, 2015, 2018, 2019, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-07-15 06:37+0000\n"
-"PO-Revision-Date: 2022-08-30 00:42+0200\n"
+"POT-Creation-Date: 2023-02-18 13:33+0000\n"
+"PO-Revision-Date: 2023-02-21 01:25+0100\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.12.3\n"
+"X-Generator: Lokalize 22.08.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
@@ -47,7 +47,7 @@ msgstr ""
 "oszlopban, és az ASCII ábrázolással a másikban. A GHex hasznos eszköz a "
 "nyers adatokkal történő munkavégzésnél."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:40
+#: data/org.gnome.GHex.appdata.xml.in.in:42
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -158,26 +158,6 @@ msgstr "A GHex weboldala"
 msgid "An error has occurred: %s"
 msgstr "Hiba történt: %s"
 
-#: src/context-menu.ui:30
-msgid "_Undo"
-msgstr "_Visszavonás"
-
-#: src/context-menu.ui:34
-msgid "_Redo"
-msgstr "_Ismétlés"
-
-#: src/context-menu.ui:40
-msgid "Cu_t"
-msgstr "_Kivágás"
-
-#: src/context-menu.ui:44 src/paste-special.c:405
-msgid "_Copy"
-msgstr "_Másolás"
-
-#: src/context-menu.ui:48 src/paste-special.ui:49
-msgid "_Paste"
-msgstr "_Beillesztés"
-
 #: src/converter.c:183
 msgid "Base Converter"
 msgstr "Alapkonvertáló"
@@ -251,12 +231,10 @@ msgid "Clears the data you are searching for"
 msgstr "Törli azokat az adatokat, amiket keres"
 
 #: src/find-dialog.ui:88
-#| msgid "Find String"
 msgid "Find options"
 msgstr "Keresési beállítások"
 
 #: src/find-dialog.ui:89
-#| msgid "Closes the find pane"
 msgid "View options of the find pane"
 msgstr "A keresés ablaktábla beállításainak megtekintése"
 
@@ -365,7 +343,6 @@ msgid "Untitled"
 msgstr "Névtelen"
 
 #: src/ghex-application-window.c:284
-#| msgid "There was an error reading the file."
 msgid "There was an error saving the file."
 msgstr "Hiba történt a fájl mentése során."
 
@@ -386,7 +363,7 @@ msgid "_Close Anyway"
 msgstr "_Bezárás mindenképp"
 
 #: src/ghex-application-window.c:339 src/ghex-application-window.c:474
-#: src/ghex-application-window.c:1164
+#: src/ghex-application-window.c:1175
 msgid "_Go Back"
 msgstr "_Ugrás vissza"
 
@@ -421,15 +398,11 @@ msgstr "Változtatások _mentése"
 msgid "_Discard Changes"
 msgstr "Változtatások _elvetése"
 
-#: src/ghex-application-window.c:1017
-#| msgid ""
-#| "There was an error saving the file to the path specified.\n"
-#| "\n"
-#| "You may not have the required permissions."
+#: src/ghex-application-window.c:1028
 msgid "There was an error saving the file to the path specified."
 msgstr "Hiba történt a megadott útvonalra való fájlmentés során."
 
-#: src/ghex-application-window.c:1036
+#: src/ghex-application-window.c:1047
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -437,13 +410,13 @@ msgstr ""
 "Ismeretlen hiba történt a fájl újratöltési kísérlete során, amelyet épp most "
 "mentett el."
 
-#: src/ghex-application-window.c:1088
+#: src/ghex-application-window.c:1099
 msgid "Select a file to save buffer as"
 msgstr "Válasszon ki egy fájlt a mentéshez"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1157
+#: src/ghex-application-window.c:1168
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -458,15 +431,15 @@ msgstr ""
 "\n"
 "Ezt a műveletet nem lehet visszavonni."
 
-#: src/ghex-application-window.c:1163 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1174 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Visszaállítás"
 
-#: src/ghex-application-window.c:1247
+#: src/ghex-application-window.c:1258
 msgid "Select a file to open"
 msgstr "A megnyitandó fájl kiválasztása"
 
-#: src/ghex-application-window.c:1352
+#: src/ghex-application-window.c:1363
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -490,35 +463,21 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1428
+#: src/ghex-application-window.c:1439
 #, c-format
-#| msgid "Offset: 0x%lX; 0x%lX bytes from 0x%lX to 0x%lX selected"
 msgid ""
-"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
-"%lX</tt> selected"
+"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+"<tt>0x%lX</tt> selected"
 msgstr ""
-"Eltolás: <tt>0x%lX</tt>, <tt>0x%lX</tt> bájt <tt>0x%lX</tt> és <tt>0x%lX</tt>"
-" között kijelölve"
+"Eltolás: <tt>0x%lX</tt>, <tt>0x%lX</tt> bájt <tt>0x%lX</tt> és <tt>0x%lX</"
+"tt> között kijelölve"
 
-#: src/ghex-application-window.c:1432
+#: src/ghex-application-window.c:1443
 #, c-format
-#| msgid "Offset: 0x%lX"
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Eltolás: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2048
-#| msgid ""
-#| "You are attempting to open a file 1GB or larger.\n"
-#| "\n"
-#| "This can make GHex and your machine unstable as the file will be loaded "
-#| "into memory.\n"
-#| "\n"
-#| "Are you sure you want to proceed?\n"
-#| "\n"
-#| "This message will not be shown again for the remainder of this GHex "
-#| "session.\n"
-#| "\n"
-#| "This limitation will be removed in a future version of GHex."
+#: src/ghex-application-window.c:2068
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -541,10 +500,10 @@ msgstr ""
 "\n"
 "Ez az üzenet a GHex munkamenet hátralévő részében nem jelenik meg újra.\n"
 "\n"
-"Ezen üzenet megjelenésének elkerüléséhez próbáljon másik"
-" puffer-háttérprogramot használni."
+"Ezen üzenet megjelenésének elkerüléséhez próbáljon másik puffer-"
+"háttérprogramot használni."
 
-#: src/ghex-application-window.c:2105
+#: src/ghex-application-window.c:2125
 msgid "There was an error reading the file."
 msgstr "Hiba történt a fájl olvasása során."
 
@@ -557,7 +516,6 @@ msgid "Save _As"
 msgstr "M_entés másként"
 
 #: src/ghex-application-window.ui.in:46
-#| msgid "Printing"
 msgid "_Print"
 msgstr "_Nyomtatás"
 
@@ -566,7 +524,6 @@ msgid "Print Previe_w"
 msgstr "Nyomtatási _kép"
 
 #: src/ghex-application-window.ui.in:58
-#| msgid "_Replace"
 msgid "Find and _Replace"
 msgstr "Keresés és _csere"
 
@@ -579,12 +536,10 @@ msgid "_Edit"
 msgstr "Sz_erkesztés"
 
 #: src/ghex-application-window.ui.in:74
-#| msgid "Copy Special"
 msgid "_Copy Special"
 msgstr "Különleges karakter _másolása"
 
 #: src/ghex-application-window.ui.in:78
-#| msgid "Paste Special"
 msgid "_Paste Special"
 msgstr "Különleges karakter _beillesztése"
 
@@ -593,12 +548,10 @@ msgid "_Tools"
 msgstr "_Eszközök"
 
 #: src/ghex-application-window.ui.in:87
-#| msgid "Character table"
 msgid "_Character Table"
 msgstr "_Karaktertábla"
 
 #: src/ghex-application-window.ui.in:91
-#| msgid "Base Converter"
 msgid "_Base Converter"
 msgstr "_Alapkonvertáló"
 
@@ -607,22 +560,18 @@ msgid "G_roup Data As"
 msgstr "Adatok _csoportosítása mint"
 
 #: src/ghex-application-window.ui.in:100
-#| msgid "Bytes (8-bit)"
 msgid "_Bytes (8-bit)"
 msgstr "_Bájtok (8 bites)"
 
 #: src/ghex-application-window.ui.in:106
-#| msgid "Words (16-bit)"
 msgid "_Words (16-bit)"
 msgstr "_Szavak (16 bites)"
 
 #: src/ghex-application-window.ui.in:111
-#| msgid "Longwords (32-bit)"
 msgid "_Longwords (32-bit)"
 msgstr "_Hosszú szavak (32 bites)"
 
 #: src/ghex-application-window.ui.in:116
-#| msgid "Quadwords (64-bit)"
 msgid "_Quadwords (64-bit)"
 msgstr "_Négy szavak (64 bites)"
 
@@ -631,7 +580,6 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Gyorsbillentyűk"
 
 #: src/ghex-application-window.ui.in:131
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "_Beállítások"
 
@@ -640,13 +588,11 @@ msgid "_Help"
 msgstr "_Súgó"
 
 #: src/ghex-application-window.ui.in:141
-#| msgid "About GHex"
 msgid "_About GHex"
 msgstr "A GHex _névjegye"
 
 # src/ui.c:543
 #: src/ghex-application-window.ui.in:170
-#| msgid "Unable to open file for reading"
 msgid "Open a file for hex editing"
 msgstr "Fájl megnyitása hexadecimális szerkesztéshez"
 
@@ -659,7 +605,6 @@ msgid "Find a string in the hex document"
 msgstr "Karakterlánc keresése a hexadecimális dokumentumban"
 
 #: src/ghex-application-window.ui.in:206
-#| msgid "Untitled document"
 msgid "Save document"
 msgstr "Dokumentum mentése"
 
@@ -684,13 +629,46 @@ msgstr ""
 #: src/ghex-application-window.ui.in:306
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
-"Beszúrási mód be- vagy kikapcsolása (adatok hozzáadása a fájlhoz a meglévő"
-" adatok cseréje helyett)"
+"Beszúrási mód be- vagy kikapcsolása (adatok hozzáadása a fájlhoz a meglévő "
+"adatok cseréje helyett)"
 
 #: src/ghex-application-window.ui.in:318
 msgid "Toggle a pane showing various numeric conversions"
 msgstr ""
 "Különféle numerikus átváltásokat megjelenítő ablaktábla be- vagy kikapcsolása"
+
+#: src/gtkhex.ui:23
+msgid "Automatic geometry"
+msgstr "Automatikus geometria"
+
+#: src/gtkhex.ui:33
+#| msgid "Character table"
+msgid "Characters per line:"
+msgstr "Karakterek soronként:"
+
+#: src/gtkhex.ui:62
+msgid "_Undo"
+msgstr "_Visszavonás"
+
+#: src/gtkhex.ui:66
+msgid "_Redo"
+msgstr "_Ismétlés"
+
+#: src/gtkhex.ui:72
+msgid "Cu_t"
+msgstr "_Kivágás"
+
+#: src/gtkhex.ui:76 src/paste-special.c:405
+msgid "_Copy"
+msgstr "_Másolás"
+
+#: src/gtkhex.ui:80 src/paste-special.ui:49
+msgid "_Paste"
+msgstr "_Beillesztés"
+
+#: src/gtkhex.ui:86
+msgid "_Geometry"
+msgstr "_Geometria"
 
 #: src/help-overlay.ui:14
 msgid "Files"
@@ -702,7 +680,6 @@ msgstr "Új üres hexadecimális puffer"
 
 # src/ui.c:543
 #: src/help-overlay.ui:26
-#| msgid "Unable to open file for reading"
 msgid "Open a file for editing"
 msgstr "Fájl megnyitása szerkesztéshez"
 
@@ -711,12 +688,10 @@ msgid "Save file"
 msgstr "Fájl mentése"
 
 #: src/help-overlay.ui:40
-#| msgid "_Save Changes"
 msgid "Save as"
 msgstr "Mentés másként"
 
 #: src/help-overlay.ui:47
-#| msgid "Close"
 msgid "Close tab"
 msgstr "Lap bezárása"
 
@@ -753,7 +728,6 @@ msgid "Clipboard"
 msgstr "Vágólap"
 
 #: src/help-overlay.ui:110
-#| msgid "_Copy"
 msgid "Copy"
 msgstr "Másolás"
 
@@ -762,17 +736,14 @@ msgid "Cut"
 msgstr "Kivágás"
 
 #: src/help-overlay.ui:124
-#| msgid "_Paste"
 msgid "Paste"
 msgstr "Beillesztés"
 
 #: src/help-overlay.ui:131
-#| msgid "Copy Special"
 msgid "Copy special"
 msgstr "Különleges karakter másolása"
 
 #: src/help-overlay.ui:138
-#| msgid "Paste Special"
 msgid "Paste special"
 msgstr "Különleges karakter beillesztése"
 
@@ -797,7 +768,6 @@ msgid "Switch to next tab"
 msgstr "Váltás a következő lapra"
 
 #: src/help-overlay.ui:180
-#| msgid "Jumps to the specified byte"
 msgid "Jump to byte"
 msgstr "Ugrás bájtra"
 
@@ -828,7 +798,6 @@ msgid "%s: %s"
 msgstr "%s: %s"
 
 #: src/hex-buffer-direct.c:193
-#| msgid "Failed to open temporary file."
 msgid "Failed to read data from file."
 msgstr "Nem sikerült az adatok fájlból történő olvasása."
 
@@ -841,7 +810,6 @@ msgid "Unable to create file"
 msgstr "Nem lehet létrehozni a fájlt"
 
 #: src/hex-buffer-direct.c:230
-#| msgid "Not a regular file"
 msgid "Not a regular file or block device"
 msgstr "Nem szabályos fájl vagy blokkeszköz"
 
@@ -851,7 +819,6 @@ msgid "Unable to open file for reading"
 msgstr "Nem lehet megnyitni a fájlt olvasásra"
 
 #: src/hex-buffer-direct.c:404
-#| msgid "Unable to create file"
 msgid "Unable to read file"
 msgstr "Nem lehet olvasni a fájlt"
 
@@ -864,11 +831,10 @@ msgid ""
 "With direct-write mode, you cannot save a file to a path other than its "
 "originating path"
 msgstr ""
-"Közvetlen írási móddal nem menthet egy fájlt az eredeti útvonalától eltérő"
-" útvonalra"
+"Közvetlen írási móddal nem menthet egy fájlt az eredeti útvonalától eltérő "
+"útvonalra"
 
 #: src/hex-buffer-direct.c:552
-#| msgid "Error reading file"
 msgid "Error writing changes to file"
 msgstr "Hiba a változtatások fájlba történő írása során"
 
@@ -1092,7 +1058,6 @@ msgid "Font"
 msgstr "Betűkészlet"
 
 #: src/preferences.ui:53
-#| msgid "Dark Mode"
 msgid "Dark mode"
 msgstr "Sötét mód"
 
@@ -1101,7 +1066,6 @@ msgid "Use system default"
 msgstr "Rendszer alapértelmezettjének használata"
 
 #: src/preferences.ui:83
-#| msgid "Display"
 msgid "Hex Display"
 msgstr "Hexadecimális megjelenítés"
 
@@ -1138,12 +1102,10 @@ msgid "Fonts"
 msgstr "Betűkészletek"
 
 #: src/preferences.ui:145
-#| msgid "Data font:"
 msgid "Data font"
 msgstr "Adatok betűkészlete"
 
 #: src/preferences.ui:156
-#| msgid "Header font:"
 msgid "Header font"
 msgstr "Fejléc betűkészlete"
 
@@ -1165,7 +1127,6 @@ msgid "Page: %i/%i"
 msgstr "Oldal: %i/%i"
 
 #: src/replace-dialog.ui:34
-#| msgid "Enter the hex data or ASCII data to search for"
 msgid "Enter the hex data or ASCII data to replace with"
 msgstr "Adja meg a cserélendő hexadecimális vagy ASCII adatot"
 
@@ -1178,8 +1139,6 @@ msgid "_Replace"
 msgstr "_Csere"
 
 #: src/replace-dialog.ui:50
-#| msgid ""
-#| "Replaces all occurrences of the search string with the replace string"
 msgid "Replaces the search string with the replace string"
 msgstr "Kicseréli a keresett karakterláncot a helyettesítő karakterláncra"
 
