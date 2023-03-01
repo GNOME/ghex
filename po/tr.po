@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-09-21 19:01+0000\n"
-"PO-Revision-Date: 2022-09-24 11:04+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2023-02-18 13:33+0000\n"
+"PO-Revision-Date: 2023-02-21 00:54+0300\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgstr ""
 "onaltılık değer ve diğerinde ASCII gösterimi ile iki sütuna bölünmüştür. GHex ham "
 "verilerle çalışmak için yararlı bir araçtır."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:41
+#: data/org.gnome.GHex.appdata.xml.in.in:42
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -158,26 +158,6 @@ msgstr "GHex Web Sitesi"
 #, c-format
 msgid "An error has occurred: %s"
 msgstr "Hata oluştu: %s"
-
-#: src/context-menu.ui:30
-msgid "_Undo"
-msgstr "Geri _Al"
-
-#: src/context-menu.ui:34
-msgid "_Redo"
-msgstr "_Yinele"
-
-#: src/context-menu.ui:40
-msgid "Cu_t"
-msgstr "Ke_s"
-
-#: src/context-menu.ui:44 src/paste-special.c:405
-msgid "_Copy"
-msgstr "_Kopyala"
-
-#: src/context-menu.ui:48 src/paste-special.ui:49
-msgid "_Paste"
-msgstr "_Yapıştır"
 
 #: src/converter.c:183
 msgid "Base Converter"
@@ -383,7 +363,7 @@ msgid "_Close Anyway"
 msgstr "Yine De _Kapat"
 
 #: src/ghex-application-window.c:339 src/ghex-application-window.c:474
-#: src/ghex-application-window.c:1164
+#: src/ghex-application-window.c:1175
 msgid "_Go Back"
 msgstr "Geri _Git"
 
@@ -418,23 +398,23 @@ msgstr "Değişiklikleri _Kaydet"
 msgid "_Discard Changes"
 msgstr "Değişiklikleri _Gözden Çıkar"
 
-#: src/ghex-application-window.c:1017
+#: src/ghex-application-window.c:1028
 msgid "There was an error saving the file to the path specified."
 msgstr "Dosya belirtilen yola kaydedilirken hata oluştu."
 
-#: src/ghex-application-window.c:1036
+#: src/ghex-application-window.c:1047
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just saved."
 msgstr ""
 "Yeni kaydettiğiniz dosyayı yeniden yüklemeye çalışırken bilinmeyen hata oluştu."
 
-#: src/ghex-application-window.c:1088
+#: src/ghex-application-window.c:1099
 msgid "Select a file to save buffer as"
 msgstr "Arabellekteki dosyayı saklamak için dosya seç"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1157
+#: src/ghex-application-window.c:1168
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -449,15 +429,15 @@ msgstr ""
 "\n"
 "Bu işlem geri alınamaz."
 
-#: src/ghex-application-window.c:1163 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1174 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Geri Al"
 
-#: src/ghex-application-window.c:1247
+#: src/ghex-application-window.c:1258
 msgid "Select a file to open"
 msgstr "Açılacak dosyayı seç"
 
-#: src/ghex-application-window.c:1352
+#: src/ghex-application-window.c:1363
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -480,7 +460,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1428
+#: src/ghex-application-window.c:1439
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x%lX</tt> "
@@ -489,12 +469,12 @@ msgstr ""
 "Ofset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bayt, <tt>0x%lX</tt> ile <tt>0x%lX</tt> "
 "arasında seçildi"
 
-#: src/ghex-application-window.c:1432
+#: src/ghex-application-window.c:1443
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Ofset: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2048
+#: src/ghex-application-window.c:2068
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -518,7 +498,7 @@ msgstr ""
 "\n"
 "Bu iletinin görünmesini önlemek için başka arabellek arka ucu kullanmayı deneyin."
 
-#: src/ghex-application-window.c:2105
+#: src/ghex-application-window.c:2125
 msgid "There was an error reading the file."
 msgstr "Dosya okunurken hata oluştu."
 
@@ -649,6 +629,38 @@ msgstr ""
 #: src/ghex-application-window.ui.in:318
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Türlü sayısal dönüşümleri gösteren bölmeyi aç/kapat"
+
+#: src/gtkhex.ui:23
+msgid "Automatic geometry"
+msgstr "Kendiliğinden geometri"
+
+#: src/gtkhex.ui:33
+msgid "Characters per line:"
+msgstr "Satır başına karakter:"
+
+#: src/gtkhex.ui:62
+msgid "_Undo"
+msgstr "Geri _Al"
+
+#: src/gtkhex.ui:66
+msgid "_Redo"
+msgstr "_Yinele"
+
+#: src/gtkhex.ui:72
+msgid "Cu_t"
+msgstr "Ke_s"
+
+#: src/gtkhex.ui:76 src/paste-special.c:405
+msgid "_Copy"
+msgstr "_Kopyala"
+
+#: src/gtkhex.ui:80 src/paste-special.ui:49
+msgid "_Paste"
+msgstr "_Yapıştır"
+
+#: src/gtkhex.ui:86
+msgid "_Geometry"
+msgstr "_Geometri"
 
 #: src/help-overlay.ui:14
 msgid "Files"
