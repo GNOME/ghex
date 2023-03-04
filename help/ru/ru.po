@@ -1,30 +1,32 @@
 # Russian translation for ghex.
 # Copyright (C) 2015 ghex's COPYRIGHT HOLDER
 # This file is distributed under the same license as the ghex package.
-# Alexey Kabanov <ak099@mail.ru>, 2015.
-# Stas Solovey <whats_up@tut.by>, 2015.
+# Alexey Kabanov <ak099@mail.ru>, 2015
+# Stas Solovey <whats_up@tut.by>, 2015
+# Ser82-png <asvmail.as@gmail.com>, 2022-2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex gnome-3-8\n"
-"POT-Creation-Date: 2022-03-15 18:05+0000\n"
-"PO-Revision-Date: 2022-03-20 12:32+1000\n"
-"Last-Translator: Ser82-png <sw@atrus.ru>\n"
+"POT-Creation-Date: 2023-01-29 21:08+0000\n"
+"PO-Revision-Date: 2023-02-04 20:46+1000\n"
+"Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
 "Алексей Кабанов <ak099@mail.ru>, 2015\n"
-"Ser82-png <sw@atrus.ru>, 2022"
+"Stas Solovey <whats_up@tut.by>, 2015\n"
+"Ser82-png <asvmail.as@gmaol.com>, 2022-2023"
 
 #. (itstool) path: credit/name
 #: C/advanced-clipboard.page:7 C/basics-create-new-file.page:7
@@ -334,9 +336,10 @@ msgid ""
 "section above, but in reverse. In other words, the data copied from GHex "
 "<em>to</em> the clipboard will be copied in the specified format."
 msgstr ""
-"Эти параметры работают так же, как описано выше в разделе <link xref="
-"\"#paste-special\"/>, но наоборот. Другими словами, данные, скопированные из "
-"GHex <em>в</em> буфер обмена, будут скопированы в указанном формате."
+"Эти параметры работают так же, как описано выше в разделе <link "
+"xref=\"#paste-special\"/>, но наоборот. Другими словами, данные, "
+"скопированные из GHex <em>в</em> буфер обмена, будут скопированы в указанном "
+"формате."
 
 #. (itstool) path: section/p
 #: C/advanced-clipboard.page:125
@@ -438,13 +441,33 @@ msgstr ""
 "Нажмите <keyseq><key>Alt</key><key>Стрелка вправо</key></keyseq>, чтобы "
 "вывести в фокус панель ASCII."
 
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:27
+msgid "Editing the file using the hex or ASCII pane"
+msgstr ""
+"Редактирование файла с использованием шестнадцатеричной или ASCII-панели"
+
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:25
+#: C/basics-edit-file.page:28
+msgid "Edit the ASCII format in the same way you edit a normal text file."
+msgstr "Формат ASCII редактируется, как обычный текстовый файл."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:29
+msgid ""
+"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
+"operation is not case-sensitive."
+msgstr ""
+"Чтобы изменить шестнадцатеричный формат, используйте символы от 0 до 9 и от "
+"a до f. Эта операция не чувствительна к регистру."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:31
 msgid "Use any of the following methods to move the cursor around the file:"
 msgstr "Перемещать курсор по файлу можно одним из следующих способов:"
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:28
+#: C/basics-edit-file.page:34
 msgid ""
 "Use the scrollbar on the window and the mouse to select a byte by clicking "
 "on it."
@@ -453,7 +476,7 @@ msgstr ""
 "нему."
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:31
+#: C/basics-edit-file.page:37
 msgid ""
 "Use the arrow keys, <key>Home</key>, <key>End</key>, <key>PageUp</key> or "
 "<key>PageDown</key> on the keyboard."
@@ -462,7 +485,7 @@ msgstr ""
 "<key>PageUp</key> или <key>PageDown</key>."
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:34
+#: C/basics-edit-file.page:40
 msgid ""
 "Choose <gui>Jump to Byte</gui> from the (Main menu) or press "
 "<keyseq><key>Ctrl</key><key>J</key></keyseq>, and enter the cursor offset as "
@@ -474,33 +497,28 @@ msgstr ""
 "виде десятичного или шестнадцатеричного значения. Шестнадцатеричное значение "
 "смещения должно начинаться с 0x, например: 0x3."
 
-#. (itstool) path: section/title
-#: C/basics-edit-file.page:41
-msgid "Editing the file using the hex or ASCII pane"
-msgstr ""
-"Редактирование файла с использованием шестнадцатеричной или ASCII-панели"
-
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:42
-msgid "Edit the ASCII format in the same way you edit a normal text file."
-msgstr "Формат ASCII редактируется, как обычный текстовый файл."
-
-#. (itstool) path: section/p
-#: C/basics-edit-file.page:43
+#: C/basics-edit-file.page:45
 msgid ""
-"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
-"operation is not case-sensitive."
+"To delete or zero-out data, use either the <key>Delete</key> or "
+"<key>Backspace</key> keys. <gui>Cut</gui> operations will also have the side-"
+"effect of removing or zeroing-out data. This behaviour is different "
+"depending on whether or not <gui>Insert Mode</gui> is enabled. For more "
+"information, please review the section below."
 msgstr ""
-"Чтобы изменить шестнадцатеричный формат, используйте символы от 0 до 9 и от "
-"a до f. Эта операция не чувствительна к регистру."
+"Чтобы удалить или обнулить данные, используйте клавиши <key>Delete</key> или "
+"<key>Backspace</key>. Следствием эффекта от операции <gui>Вырезать</gui> "
+"также будет удаление или обнуление данных. Такое поведение будет различаться "
+"в зависимости от того, включён ли <gui>Режим вставки</gui>. Для получения "
+"дополнительной информации обратитесь к следующему разделу."
 
 #. (itstool) path: section/title
-#: C/basics-edit-file.page:47
+#: C/basics-edit-file.page:52
 msgid "Insert mode"
 msgstr "Режим вставки"
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:48
+#: C/basics-edit-file.page:53
 msgid ""
 "<gui>Insert Mode</gui> can be toggled on or off by pressing <key>Insert</"
 "key>, or by clicking the <gui>Toggle insert mode</gui> button in the status "
@@ -511,7 +529,7 @@ msgstr ""
 "состояния."
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:50
+#: C/basics-edit-file.page:55
 msgid ""
 "When <gui>Insert Mode</gui> is enabled, this means data will be added to the "
 "file as opposed to replacing existing data."
@@ -520,7 +538,7 @@ msgstr ""
 "файл, а не заменять существующие."
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:52
+#: C/basics-edit-file.page:57
 msgid ""
 "Unlike traditional text editors, having <gui>Insert Mode</gui> <em>off</em> "
 "is considered the default state in GHex, given that hex editors are "
@@ -536,6 +554,36 @@ msgstr ""
 "случаях такие файлы могут иметь фиксированный размер, и изменение их размера "
 "может привести к неопределенному или нежелательному поведению открывающих их "
 "приложений."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:63
+msgid ""
+"Along these lines, <em>delete</em> operations work differently depending "
+"upon whether or not <gui>Insert Mode</gui> is enabled."
+msgstr ""
+"Следовательно, действия <em>удаления</em> работают разными способами, в "
+"зависимости от того, включён ли <gui>Режим вставки</gui>."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:65
+msgid ""
+"If <gui>Insert Mode</gui> is enabled, delete operations (eg, by pressing "
+"<key>Delete</key>, <key>Backspace</key>, or by a <gui>cut</gui> operation) "
+"will alter the file length, by removing the data from the file."
+msgstr ""
+"Если <gui>Режим вставки</gui> включён, действия удаления (например, нажатие "
+"клавиши <key>Delete</key>, <key>Backspace</key> или действие <gui>Вырезать</"
+"gui>) будут изменять длину файла, удаляя из него данные."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:68
+msgid ""
+"If <gui>Insert Mode</gui> is not enabled, <gui>delete</gui> operations will "
+"instead zero-out affected bytes within the file, so as to avoid changing the "
+"length of the file."
+msgstr ""
+"Если <gui>Режим вставки</gui> выключен, действия <gui>удаления</gui> будут "
+"обнулять выбранные байты в файле, чтобы избежать изменения его длины."
 
 #. (itstool) path: page/title
 #: C/basics-find-replace.page:12
@@ -576,8 +624,8 @@ msgstr "Нажмите <keyseq><key>Ctrl</key><key>F</key></keyseq>."
 msgid ""
 "In order to easily search for a string in either hex or ASCII format, the "
 "<gui>Find</gui> pane acts like a miniature hex editor. You enter this string "
-"in the same way you would edit a file as described in the <link xref="
-"\"basics-edit-file\"/> section."
+"in the same way you would edit a file as described in the <link "
+"xref=\"basics-edit-file\"/> section."
 msgstr ""
 "Чтобы упростить поиск строки в шестнадцатеричном или ASCII-формате, панель "
 "<gui>Поиска</gui> работает как миниатюрный шестнадцатеричный редактор. Вы "
@@ -1401,12 +1449,12 @@ msgstr ""
 
 #~ msgid ""
 #~ "To report a bug or make a suggestion regarding the GHex application or "
-#~ "this manual, follow the directions in the <ulink url=\"help:gnome-feedback"
-#~ "\" type=\"help\">GNOME Feedback Page</ulink>."
+#~ "this manual, follow the directions in the <ulink url=\"help:gnome-"
+#~ "feedback\" type=\"help\">GNOME Feedback Page</ulink>."
 #~ msgstr ""
 #~ "Для того, чтобы сообщить об ошибке или внести предложение, касающееся "
-#~ "приложения GHex или этого руководства, следуйте инструкциям на <ulink url="
-#~ "\"help:gnome-feedback\" type=\"help\">странице обратной связи GNOME</"
+#~ "приложения GHex или этого руководства, следуйте инструкциям на <ulink "
+#~ "url=\"help:gnome-feedback\" type=\"help\">странице обратной связи GNOME</"
 #~ "ulink>."
 
 #~ msgid "<primary>GHex</primary>"
@@ -1454,13 +1502,13 @@ msgstr ""
 #~ msgstr "Окно GHex до открытия файла"
 
 #~ msgid ""
-#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
-#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window "
-#~ "before you open a file.</phrase> </textobject>"
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" "
+#~ "format=\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main "
+#~ "window before you open a file.</phrase> </textobject>"
 #~ msgstr ""
-#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" format="
-#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Показывает главное окно "
-#~ "GHex до открытия файла.</phrase> </textobject>"
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_empty.png\" "
+#~ "format=\"PNG\"/> </imageobject> <textobject> <phrase>Показывает главное "
+#~ "окно GHex до открытия файла.</phrase> </textobject>"
 
 #~ msgid ""
 #~ "To open a file, choose <menuchoice><guimenu>File</"
@@ -1486,13 +1534,13 @@ msgstr ""
 #~ msgstr "Окно GHex с открытым файлом"
 
 #~ msgid ""
-#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
-#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main window with "
-#~ "an open file</phrase> </textobject>"
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" "
+#~ "format=\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main "
+#~ "window with an open file</phrase> </textobject>"
 #~ msgstr ""
-#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" format="
-#~ "\"PNG\"/> </imageobject> <textobject> <phrase>Показывает главное окно "
-#~ "GHex с открытым файлом</phrase> </textobject>"
+#~ "<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" "
+#~ "format=\"PNG\"/> </imageobject> <textobject> <phrase>Показывает главное "
+#~ "окно GHex с открытым файлом</phrase> </textobject>"
 
 #~ msgid ""
 #~ "The <application>GHex</application> window contains the following "
@@ -1719,8 +1767,8 @@ msgstr ""
 #~ "linkend=\"ghex-search-criteria-add\"/>."
 #~ msgstr ""
 #~ "В диалоговом окне <guilabel>Поиск данных</guilabel> выберите требуемые "
-#~ "критерии поиска. Как добавлять критерий поиска смотрите <xref linkend="
-#~ "\"ghex-search-criteria-add\"/>."
+#~ "критерии поиска. Как добавлять критерий поиска смотрите <xref "
+#~ "linkend=\"ghex-search-criteria-add\"/>."
 
 #~ msgid ""
 #~ "Click <guibutton>Close</guibutton> to close the <guilabel>Find Data</"
