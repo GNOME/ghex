@@ -2,26 +2,27 @@
 # Russian translation of ghex
 # Copyright (C) 1999-2006, 2010 Free Software Foundation, Inc.
 #
+# Valek Filppov <frob@df.ru>, 1999-2003, 2006
+# Sergey Panov <sipan@mit.edu>, 1999,2000
+# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002
+# Yuri Kozlov <yuray@komyakino.ru>, 2010, 2011
+# Ser82-png <asvmail.as@gmail.com>, 2022-2023
 #
-# Valek Filppov <frob@df.ru>, 1999-2003, 2006.
-# Sergey Panov <sipan@mit.edu>, 1999,2000.
-# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002.
-# Yuri Kozlov <yuray@komyakino.ru>, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-06-26 18:55+0000\n"
-"PO-Revision-Date: 2022-06-29 00:22+1000\n"
+"POT-Creation-Date: 2023-02-18 13:33+0000\n"
+"PO-Revision-Date: 2023-02-19 20:27+1000\n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
 #: src/ghex-application-window.ui.in:149
@@ -49,7 +50,7 @@ msgstr ""
 "в одном столбце и представлением ASCII в другом. GHex — полезный инструмент "
 "для работы с необработанными данными."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:45
+#: data/org.gnome.GHex.appdata.xml.in.in:42
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -141,7 +142,7 @@ msgstr "Редактор двоичных файлов"
 
 #: src/common-ui.c:281
 msgid "About GHex"
-msgstr "_О GHex"
+msgstr "О приложении GHex"
 
 #: src/common-ui.c:282
 msgid "translator-credits"
@@ -150,7 +151,7 @@ msgstr ""
 "Sergey Panov <sipan@mit.edu>, 1999, 2000\n"
 "Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002\n"
 "Юрий Козлов <yuray@komaykino.ru>, 2011\n"
-"Ser82-png <asvmail.as@gmail.com>, 2022"
+"Ser82-png <asvmail.as@gmail.com>, 2022-2023"
 
 #: src/common-ui.c:285
 msgid "GHex Website"
@@ -162,26 +163,6 @@ msgstr "Веб-страница GHex"
 #, c-format
 msgid "An error has occurred: %s"
 msgstr "Произошла ошибка: %s"
-
-#: src/context-menu.ui:30
-msgid "_Undo"
-msgstr "_Отменить"
-
-#: src/context-menu.ui:34
-msgid "_Redo"
-msgstr "_Повторить"
-
-#: src/context-menu.ui:40
-msgid "Cu_t"
-msgstr "_Вырезать"
-
-#: src/context-menu.ui:44 src/paste-special.c:405
-msgid "_Copy"
-msgstr "_Копировать"
-
-#: src/context-menu.ui:48 src/paste-special.ui:49
-msgid "_Paste"
-msgstr "_Вставить"
 
 #: src/converter.c:183
 msgid "Base Converter"
@@ -367,11 +348,11 @@ msgstr "Вхождений не найдено."
 msgid "Untitled"
 msgstr "Без названия"
 
-#: src/ghex-application-window.c:282
+#: src/ghex-application-window.c:284
 msgid "There was an error saving the file."
 msgstr "Произошла ошибка при сохранении файла."
 
-#: src/ghex-application-window.c:339
+#: src/ghex-application-window.c:334
 msgid ""
 "<b>You have one or more files open with unsaved changes.</b>\n"
 "\n"
@@ -383,18 +364,18 @@ msgstr ""
 "Вы уверены, что хотите закрыть окно?\n"
 "\n"
 
-#: src/ghex-application-window.c:343
+#: src/ghex-application-window.c:338
 msgid "_Close Anyway"
 msgstr "_Закрыть всё равно"
 
-#: src/ghex-application-window.c:344 src/ghex-application-window.c:462
-#: src/ghex-application-window.c:1141
+#: src/ghex-application-window.c:339 src/ghex-application-window.c:474
+#: src/ghex-application-window.c:1175
 msgid "_Go Back"
 msgstr "_Вернуться"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:440
+#: src/ghex-application-window.c:452
 #, c-format
 msgid ""
 "<big><b>%s has been edited since opening.</b></big>\n"
@@ -405,7 +386,7 @@ msgstr ""
 "\n"
 "Сохранить изменения?"
 
-#: src/ghex-application-window.c:446
+#: src/ghex-application-window.c:458
 msgid ""
 "<b>The buffer has been edited since opening.</b>\n"
 "\n"
@@ -415,19 +396,19 @@ msgstr ""
 "\n"
 "Сохранить изменения?"
 
-#: src/ghex-application-window.c:460
+#: src/ghex-application-window.c:472
 msgid "_Save Changes"
 msgstr "_Сохранить изменения"
 
-#: src/ghex-application-window.c:461
+#: src/ghex-application-window.c:473
 msgid "_Discard Changes"
 msgstr "_Отменить изменения"
 
-#: src/ghex-application-window.c:995
+#: src/ghex-application-window.c:1028
 msgid "There was an error saving the file to the path specified."
 msgstr "Произошла ошибка при сохранении файла по указанному пути."
 
-#: src/ghex-application-window.c:1014
+#: src/ghex-application-window.c:1047
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -435,13 +416,13 @@ msgstr ""
 "Произошла неизвестная ошибка при попытке перезагрузить только что "
 "сохранённый файл."
 
-#: src/ghex-application-window.c:1065
+#: src/ghex-application-window.c:1099
 msgid "Select a file to save buffer as"
 msgstr "Выбрать файл для сохранения из буфера"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1134
+#: src/ghex-application-window.c:1168
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -456,15 +437,15 @@ msgstr ""
 "\n"
 "Это действие не может быть отменено."
 
-#: src/ghex-application-window.c:1140 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1174 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "Восста_новить"
 
-#: src/ghex-application-window.c:1224
+#: src/ghex-application-window.c:1258
 msgid "Select a file to open"
 msgstr "Выбрать файл для открытия"
 
-#: src/ghex-application-window.c:1329
+#: src/ghex-application-window.c:1363
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -487,21 +468,21 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1405
+#: src/ghex-application-window.c:1439
 #, c-format
 msgid ""
-"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
-"%lX</tt> selected"
+"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+"<tt>0x%lX</tt> selected"
 msgstr ""
 "Смещение: выбрано <tt>0x%lX</tt>; <tt>0x%lX</tt> байт из <tt>0x%lX</tt> to "
 "<tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1409
+#: src/ghex-application-window.c:1443
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Смещение: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2020
+#: src/ghex-application-window.c:2068
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -527,7 +508,7 @@ msgstr ""
 "Чтобы это сообщение не появлялось, попробуйте использовать другой модуль "
 "обработки буфера."
 
-#: src/ghex-application-window.c:2078
+#: src/ghex-application-window.c:2125
 msgid "There was an error reading the file."
 msgstr "Произошла ошибка при чтении файла."
 
@@ -613,7 +594,7 @@ msgstr "_Справка"
 
 #: src/ghex-application-window.ui.in:141
 msgid "_About GHex"
-msgstr "_О GHex"
+msgstr "_О приложении GHex"
 
 #: src/ghex-application-window.ui.in:170
 msgid "Open a file for hex editing"
@@ -659,6 +640,38 @@ msgstr ""
 msgid "Toggle a pane showing various numeric conversions"
 msgstr ""
 "Переключить панель, на которой показаны различные числовые преобразования"
+
+#: src/gtkhex.ui:23
+msgid "Automatic geometry"
+msgstr "Автоматическая геометрия"
+
+#: src/gtkhex.ui:33
+msgid "Characters per line:"
+msgstr "Символов в строке:"
+
+#: src/gtkhex.ui:62
+msgid "_Undo"
+msgstr "_Отменить"
+
+#: src/gtkhex.ui:66
+msgid "_Redo"
+msgstr "_Повторить"
+
+#: src/gtkhex.ui:72
+msgid "Cu_t"
+msgstr "_Вырезать"
+
+#: src/gtkhex.ui:76 src/paste-special.c:405
+msgid "_Copy"
+msgstr "_Копировать"
+
+#: src/gtkhex.ui:80 src/paste-special.ui:49
+msgid "_Paste"
+msgstr "_Вставить"
+
+#: src/gtkhex.ui:86
+msgid "_Geometry"
+msgstr "_Геометрия"
 
 #: src/help-overlay.ui:14
 msgid "Files"
