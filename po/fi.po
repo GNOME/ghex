@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2022-07-15 06:37+0000\n"
-"PO-Revision-Date: 2022-09-09 16:43+0300\n"
+"POT-Creation-Date: 2023-02-18 13:33+0000\n"
+"PO-Revision-Date: 2023-03-20 16:44+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
 #: src/ghex-application-window.ui.in:149
@@ -47,7 +47,7 @@ msgstr ""
 "palstaan, heksadesimaaliarvot yhdessä ja ASCII-esitys toisessa. GHex on "
 "hyödyllinen työkalu raakadatan kanssa työskentelyyn."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:40
+#: data/org.gnome.GHex.appdata.xml.in.in:42
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -155,26 +155,6 @@ msgstr "GHexin verkkosivusto"
 #, c-format
 msgid "An error has occurred: %s"
 msgstr "Tapahtui virhe: %s"
-
-#: src/context-menu.ui:30
-msgid "_Undo"
-msgstr "_Peru"
-
-#: src/context-menu.ui:34
-msgid "_Redo"
-msgstr "_Tee uudestaan"
-
-#: src/context-menu.ui:40
-msgid "Cu_t"
-msgstr "_Leikkaa"
-
-#: src/context-menu.ui:44 src/paste-special.c:405
-msgid "_Copy"
-msgstr "_Kopioi"
-
-#: src/context-menu.ui:48 src/paste-special.ui:49
-msgid "_Paste"
-msgstr "_Liitä"
 
 #: src/converter.c:183
 msgid "Base Converter"
@@ -382,7 +362,7 @@ msgid "_Close Anyway"
 msgstr "_Sulje silti"
 
 #: src/ghex-application-window.c:339 src/ghex-application-window.c:474
-#: src/ghex-application-window.c:1164
+#: src/ghex-application-window.c:1175
 msgid "_Go Back"
 msgstr "_Takaisin"
 
@@ -417,23 +397,23 @@ msgstr "_Tallenna muutokset"
 msgid "_Discard Changes"
 msgstr "_Hylkää muutokset"
 
-#: src/ghex-application-window.c:1017
+#: src/ghex-application-window.c:1028
 msgid "There was an error saving the file to the path specified."
 msgstr "Tiedostoa tallennettaessa valittuun polkuun tapahtui virhe."
 
-#: src/ghex-application-window.c:1036
+#: src/ghex-application-window.c:1047
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
 msgstr ""
 
-#: src/ghex-application-window.c:1088
+#: src/ghex-application-window.c:1099
 msgid "Select a file to save buffer as"
 msgstr "Valitse tiedosto johon puskuri tallennetaan"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1157
+#: src/ghex-application-window.c:1168
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -448,15 +428,15 @@ msgstr ""
 "\n"
 "Tätä toimintoa ei voi perua."
 
-#: src/ghex-application-window.c:1163 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1174 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "Pa_lauta"
 
-#: src/ghex-application-window.c:1247
+#: src/ghex-application-window.c:1258
 msgid "Select a file to open"
 msgstr "Valitse avattava tiedosto"
 
-#: src/ghex-application-window.c:1352
+#: src/ghex-application-window.c:1363
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -479,9 +459,8 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1428
+#: src/ghex-application-window.c:1439
 #, c-format
-#| msgid "; %s bytes from %s to %s selected"
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
 "<tt>0x%lX</tt> selected"
@@ -489,13 +468,12 @@ msgstr ""
 "Siirros: <tt>0x%lX</tt>; <tt>0x%lX</tt> tavua kohdasta <tt>0x%lX</tt> "
 "kohtaan <tt>0x%lX</tt> valittu"
 
-#: src/ghex-application-window.c:1432
+#: src/ghex-application-window.c:1443
 #, c-format
-#| msgid "Offset: 0x%lX"
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Siirros: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2048
+#: src/ghex-application-window.c:2068
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -521,7 +499,7 @@ msgstr ""
 "Jos haluat tästä viestistä kokonaan eroon, kokeile käyttää toista puskurin "
 "taustaosaa."
 
-#: src/ghex-application-window.c:2105
+#: src/ghex-application-window.c:2125
 msgid "There was an error reading the file."
 msgstr "Tiedostoa luettaessa tapahtui virhe."
 
@@ -652,6 +630,38 @@ msgstr ""
 #: src/ghex-application-window.ui.in:318
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Näytä/piilota paneeli, joka näyttää lukuisia numeerisia muunnoksia"
+
+#: src/gtkhex.ui:23
+msgid "Automatic geometry"
+msgstr "Automaattinen geometria"
+
+#: src/gtkhex.ui:33
+msgid "Characters per line:"
+msgstr "Merkkejä rivillä:"
+
+#: src/gtkhex.ui:62
+msgid "_Undo"
+msgstr "_Peru"
+
+#: src/gtkhex.ui:66
+msgid "_Redo"
+msgstr "_Tee uudestaan"
+
+#: src/gtkhex.ui:72
+msgid "Cu_t"
+msgstr "_Leikkaa"
+
+#: src/gtkhex.ui:76 src/paste-special.c:405
+msgid "_Copy"
+msgstr "_Kopioi"
+
+#: src/gtkhex.ui:80 src/paste-special.ui:49
+msgid "_Paste"
+msgstr "_Liitä"
+
+#: src/gtkhex.ui:86
+msgid "_Geometry"
+msgstr "_Geometria"
 
 #: src/help-overlay.ui:14
 msgid "Files"
