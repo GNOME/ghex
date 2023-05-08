@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2023 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -1544,6 +1544,17 @@ update_primary_selection (HexWidget *self)
 	}
 }
 
+inline static size_t
+clamp_rep_len (HexWidget *self, size_t rep_len)
+{
+	size_t payload_size = HEX_BUFFER_PAYLOAD (self->document);
+
+	if (rep_len > payload_size - self->cursor_pos)
+		rep_len = payload_size - self->cursor_pos;
+
+	return rep_len;
+}
+
 static void
 plaintext_paste_received_cb (GObject *source_object,
 		GAsyncResult *result,
@@ -1562,18 +1573,28 @@ plaintext_paste_received_cb (GObject *source_object,
 	/* Get the resulting text of the read operation */
 	text = gdk_clipboard_read_text_finish (clipboard, result, &error);
 
-	if (text) {
+	if (text)
+	{
+		size_t len = strlen (text);
+
+		if (! self->insert)
+			len = clamp_rep_len (self, len);
+
 		hex_document_set_data (self->document,
 				self->cursor_pos,
-				strlen(text),
-				0,	/* rep_len (0 to insert w/o replacing; what we want) */
+				len,
+				/* rep_len: either 0 (insert w/o replacing, what we want for
+				 * insert mode; or len, ie, to overwrite)
+				 */
+				self->insert ? 0 : len,
 				text,
 				TRUE);
 
 		hex_widget_set_cursor (self, self->cursor_pos + strlen(text));
 		g_free(text);
 	}
-	else {
+	else
+	{
 		g_critical ("Error pasting text: %s",
 				error->message);
 		g_error_free (error);
@@ -1608,10 +1629,16 @@ paste_helper (HexWidget *self, GdkClipboard *clipboard)
 		doc_data = hex_paste_data_get_doc_data (paste);
 		elems = hex_paste_data_get_elems (paste);
 
+		if (! self->insert)
+			elems = clamp_rep_len (self, elems);
+
 		hex_document_set_data (self->document,
 				self->cursor_pos,
 				elems,
-				0,	/* rep_len (0 to insert w/o replacing; what we want) */
+				/* rep_len: either 0 (insert w/o replacing, what we want for
+				 * insert mode; or elems, ie, to overwrite)
+				 */
+				self->insert ? 0 : elems,
 				doc_data,
 				TRUE);
 
@@ -3197,6 +3224,15 @@ hex_widget_cut_to_clipboard (HexWidget *self)
  * hex_widget_paste_from_clipboard:
  *
  * Paste clipboard data to widget at position of cursor.
+ *
+ * Since 4.6, the behaviour of this method has changed. With 4.4 and earlier,
+ * paste operations always inserted data into the payload, even if insert mode
+ * was disabled.
+ *
+ * Commencing in 4.6, if insert mode is not enabled, data will be overwritten
+ * by default with a paste operation, and possibly truncated in the event the
+ * payload is not large enough to absorb the paste data. This is to avoid
+ * increasing the payload size of a hex document when insert mode is disabled.
  */
 void
 hex_widget_paste_from_clipboard (HexWidget *self)
