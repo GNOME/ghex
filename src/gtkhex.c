@@ -1559,14 +1559,54 @@ update_primary_selection (HexWidget *self)
 }
 
 inline static size_t
-clamp_rep_len (HexWidget *self, size_t rep_len)
+clamp_rep_len (HexWidget *self, size_t start_pos, size_t rep_len)
 {
 	size_t payload_size = HEX_BUFFER_PAYLOAD (self->document);
 
-	if (rep_len > payload_size - self->cursor_pos)
-		rep_len = payload_size - self->cursor_pos;
+	if (rep_len > payload_size - start_pos)
+		rep_len = payload_size - start_pos;
 
 	return rep_len;
+}
+
+static void
+paste_set_data (HexWidget *self, char *data, size_t data_len)
+{
+	size_t start_pos = self->cursor_pos;
+	size_t len = data_len;
+	size_t rep_len = 0;
+
+	if (self->selection.start != self->selection.end) {
+		size_t selection_len, end_pos;
+
+		start_pos = MIN(self->selection.start, self->selection.end);
+		end_pos = MAX(self->selection.start, self->selection.end);
+		selection_len = end_pos - start_pos + 1;
+
+		if (self->insert) {
+			rep_len = selection_len;
+		} else {
+			len = rep_len = MIN(selection_len, len);
+		}
+	}
+
+	if (! self->insert)
+		len = rep_len = clamp_rep_len (self, start_pos, len);
+
+	hex_document_set_data (self->document,
+			start_pos,
+			len,
+			/* rep_len is either:
+			 * 0 (insert w/o replacing),
+			 * len (delete and paste the same number of bytes),
+			 * or a different number (delete and paste an arbitrary number
+			 * of bytes)
+			 */
+			rep_len,
+			data,
+			TRUE);
+
+	hex_widget_set_cursor (self, start_pos + len);
 }
 
 static void
@@ -1589,22 +1629,7 @@ plaintext_paste_received_cb (GObject *source_object,
 
 	if (text)
 	{
-		size_t len = strlen (text);
-
-		if (! self->insert)
-			len = clamp_rep_len (self, len);
-
-		hex_document_set_data (self->document,
-				self->cursor_pos,
-				len,
-				/* rep_len: either 0 (insert w/o replacing, what we want for
-				 * insert mode; or len, ie, to overwrite)
-				 */
-				self->insert ? 0 : len,
-				text,
-				TRUE);
-
-		hex_widget_set_cursor (self, self->cursor_pos + strlen(text));
+		paste_set_data(self, text, strlen(text));
 		g_free(text);
 	}
 	else
@@ -1635,28 +1660,15 @@ paste_helper (HexWidget *self, GdkClipboard *clipboard)
 	if (have_hex_paste_data)
 	{
 		char *doc_data;
-		int elems;
+		size_t start_pos, len, rep_len;
 
 		g_debug("%s: We HAVE HexPasteData.", __func__);
 
 		paste = HEX_PASTE_DATA(g_value_get_object (&value));
 		doc_data = hex_paste_data_get_doc_data (paste);
-		elems = hex_paste_data_get_elems (paste);
+		len = hex_paste_data_get_elems (paste);
 
-		if (! self->insert)
-			elems = clamp_rep_len (self, elems);
-
-		hex_document_set_data (self->document,
-				self->cursor_pos,
-				elems,
-				/* rep_len: either 0 (insert w/o replacing, what we want for
-				 * insert mode; or elems, ie, to overwrite)
-				 */
-				self->insert ? 0 : elems,
-				doc_data,
-				TRUE);
-
-		hex_widget_set_cursor (self, self->cursor_pos + elems);
+		paste_set_data(self, doc_data, len);
 	}
 	else
 	{
