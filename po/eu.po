@@ -10,15 +10,14 @@
 msgid ""
 msgstr "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-02-26 17:50+0000\n"
-"PO-Revision-Date: 2023-02-27 12:37+0200\n"
+"POT-Creation-Date: 2023-04-28 19:33+0000\n"
+"PO-Revision-Date: 2023-05-21 12:37+0200\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
@@ -40,7 +39,7 @@ msgid ""
 "traditional hex editor view. The display is split in two columns, with "
 "hexadecimal values in one column and the ASCII representation in the other. "
 "GHex is a useful tool for working with raw data."
-msgstr "Ghex aplikazioak fitxategi bitarren datu gordinak kargatu ditzake eta hamaseitarren editorearen ikuspegian bistaratu ditzake ediziorako prest. Ikuspegia bi zutabetan dago zatituta, zutabe batek balio hamaseitarrak erakusten ditu eta besteak ASCII adierazpena. Datu gordinekin lan egiteko tresna erabilgarria da."
+msgstr "Ghex aplikazioak fitxategi bitarren datu gordinak kargatu ditzake eta hamaseitarren editorearen ikuspegian bistaratu ditzake ediziorako prest. Ikuspegia bi zutabetan dago zatituta, zutabe batek balio hamaseitarrak erakusten ditu eta besteak ASCII adierazpena. GHex datu gordinekin lan egiteko tresna erabilgarria da."
 
 #: data/org.gnome.GHex.appdata.xml.in.in:41
 msgid "Logan Rathbone"
@@ -101,7 +100,7 @@ msgid ""
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details."
-msgstr "Programa hau erabilgarria izango delakoan banatzen da, baina, INOLAKO BERMERIK GABE; era berean, ez da bermatzen beraren EGOKITASUNA MERKATURATZEKO edo HELBURU PARTIKULARRETARAKO ERABILTZEKO. Argibide gehiago nahi izanez gero, ikus GNU Lizentzia Publiko Orokorra."
+msgstr "Programa hau erabilgarria izango delakoan banatzen da, baina, INOLAKO BERMERIK GABE; era berean, ez da bermatzen beraren EGOKITASUNA MERKATURATZEKO edo HELBURU PARTIKULARRETARAKO ERABILTZEKO.  Argibide gehiago nahi izanez gero, ikus GNU Lizentzia Publiko Orokorra."
 
 #: src/common-ui.c:248
 msgid ""
@@ -139,26 +138,6 @@ msgstr "GHex-en webgunea"
 #, c-format
 msgid "An error has occurred: %s"
 msgstr "Errorea gertatu da: %s"
-
-#: src/context-menu.ui:30
-msgid "_Undo"
-msgstr "_Desegin"
-
-#: src/context-menu.ui:34
-msgid "_Redo"
-msgstr "B_erregin"
-
-#: src/context-menu.ui:40
-msgid "Cu_t"
-msgstr "_Ebaki"
-
-#: src/context-menu.ui:44 src/paste-special.c:405
-msgid "_Copy"
-msgstr "_Kopiatu"
-
-#: src/context-menu.ui:48 src/paste-special.ui:49
-msgid "_Paste"
-msgstr "_Itsatsi"
 
 #: src/converter.c:183
 msgid "Base Converter"
@@ -357,7 +336,7 @@ msgid "_Close Anyway"
 msgstr "It_xi dena den"
 
 #: src/ghex-application-window.c:339 src/ghex-application-window.c:474
-#: src/ghex-application-window.c:1164
+#: src/ghex-application-window.c:1175
 msgid "_Go Back"
 msgstr "Joan a_tzera"
 
@@ -390,23 +369,23 @@ msgstr "_Gorde aldaketak"
 msgid "_Discard Changes"
 msgstr "_Baztertu aldaketak"
 
-#: src/ghex-application-window.c:1017
+#: src/ghex-application-window.c:1028
 msgid "There was an error saving the file to the path specified."
 msgstr "Errorea gertatu da zehaztutako bide-izenean fitxategia gordetzean."
 
-#: src/ghex-application-window.c:1036
+#: src/ghex-application-window.c:1047
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
 msgstr "Errorea gertatu da gorde berri den fitxategia birkargatzeko saialdian."
 
-#: src/ghex-application-window.c:1088
+#: src/ghex-application-window.c:1099
 msgid "Select a file to save buffer as"
 msgstr "Hautatu fitxategi bat bufferra gordetzeko honela"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1157
+#: src/ghex-application-window.c:1168
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -420,15 +399,15 @@ msgstr "<big><b>Ziur zaude %s leheneratu nahi duzula?</b></big>\n"
 "\n"
 "Ekintza hau ezin da desegin."
 
-#: src/ghex-application-window.c:1163 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1174 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Leheneratu"
 
-#: src/ghex-application-window.c:1247
+#: src/ghex-application-window.c:1258
 msgid "Select a file to open"
 msgstr "Hautatu fitxategi bat irekitzeko"
 
-#: src/ghex-application-window.c:1352
+#: src/ghex-application-window.c:1363
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -450,19 +429,19 @@ msgstr "Laguntza ezin izan da ireki.\n"
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1428
+#: src/ghex-application-window.c:1439
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
 "<tt>0x%lX</tt> selected"
 msgstr "Desplazamentua: <tt>0x%lX</tt>; <tt>0x%lX</tt> / <tt>0x%lX</tt> to <tt>0x%lX</tt> byte hautatu dira"
 
-#: src/ghex-application-window.c:1432
+#: src/ghex-application-window.c:1443
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Desplazamendua: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2048
+#: src/ghex-application-window.c:2068
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -485,7 +464,7 @@ msgstr "1 GB edo gehiago dituen fitxategi bat irekitzen saiatzen ari zara.\n"
 "\n"
 "Mezu hau agertu dadin saihesteko, saiatu beste buffer-motor bat erabiltzen."
 
-#: src/ghex-application-window.c:2105
+#: src/ghex-application-window.c:2125
 msgid "There was an error reading the file."
 msgstr "Errorea gertatu da fitxategia irakurtzean."
 
@@ -613,6 +592,38 @@ msgstr "Txandakatu txertatze modua (gehitu datuak fitxategiari, lehendik dauden 
 #: src/ghex-application-window.ui.in:318
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Txandakatu zebakizko bihurketak erakusten dituen panela"
+
+#: src/gtkhex.ui:23
+msgid "Automatic geometry"
+msgstr "Geometria automatikoa"
+
+#: src/gtkhex.ui:33
+msgid "Characters per line:"
+msgstr "Karaktereak lerroko:"
+
+#: src/gtkhex.ui:62
+msgid "_Undo"
+msgstr "_Desegin"
+
+#: src/gtkhex.ui:66
+msgid "_Redo"
+msgstr "B_erregin"
+
+#: src/gtkhex.ui:72
+msgid "Cu_t"
+msgstr "_Ebaki"
+
+#: src/gtkhex.ui:76 src/paste-special.c:405
+msgid "_Copy"
+msgstr "_Kopiatu"
+
+#: src/gtkhex.ui:80 src/paste-special.ui:49
+msgid "_Paste"
+msgstr "_Itsatsi"
+
+#: src/gtkhex.ui:86
+msgid "_Geometry"
+msgstr "_Geometria"
 
 #: src/help-overlay.ui:14
 msgid "Files"
@@ -804,71 +815,71 @@ msgstr "Errorea fitxategia irakurtzean"
 msgid "An error has occurred"
 msgstr "Errore bat gertatu da"
 
-#: src/hex-dialog.c:72
+#: src/hex-dialog.c:70
 msgid "Signed 8 bit:"
 msgstr "8 bit zeinuarekin:"
 
-#: src/hex-dialog.c:73
+#: src/hex-dialog.c:71
 msgid "Unsigned 8 bit:"
 msgstr "8 bit zeinurik gabe:"
 
-#: src/hex-dialog.c:74
+#: src/hex-dialog.c:72
 msgid "Signed 16 bit:"
 msgstr "16 bit zeinuarekin:"
 
-#: src/hex-dialog.c:75
+#: src/hex-dialog.c:73
 msgid "Unsigned 16 bit:"
 msgstr "16 bit zeinurik gabe:"
 
-#: src/hex-dialog.c:76
+#: src/hex-dialog.c:74
 msgid "Signed 32 bit:"
 msgstr "32 bit zeinuarekin:"
 
-#: src/hex-dialog.c:77
+#: src/hex-dialog.c:75
 msgid "Unsigned 32 bit:"
 msgstr "32 bit zeinurik gabe:"
 
-#: src/hex-dialog.c:78
+#: src/hex-dialog.c:76
 msgid "Signed 64 bit:"
 msgstr "64 bit zeinuarekin:"
 
-#: src/hex-dialog.c:79
+#: src/hex-dialog.c:77
 msgid "Unsigned 64 bit:"
 msgstr "64 bit zeinurik gabe:"
 
-#: src/hex-dialog.c:80
+#: src/hex-dialog.c:78
 msgid "Float 32 bit:"
 msgstr "32 bit mugikorra:"
 
-#: src/hex-dialog.c:81
+#: src/hex-dialog.c:79
 msgid "Float 64 bit:"
 msgstr "64 bit mugikorra:"
 
-#: src/hex-dialog.c:82
+#: src/hex-dialog.c:80
 msgid "Hexadecimal:"
 msgstr "Hamaseitarra:"
 
-#: src/hex-dialog.c:83
+#: src/hex-dialog.c:81
 msgid "Octal:"
 msgstr "Zortzitarra:"
 
-#: src/hex-dialog.c:84
+#: src/hex-dialog.c:82
 msgid "Binary:"
 msgstr "Bitarra:"
 
-#: src/hex-dialog.c:205
+#: src/hex-dialog.c:201
 msgid "Show little endian decoding"
 msgstr "Erakutsi 'little-endian' deskodeketa"
 
-#: src/hex-dialog.c:211
+#: src/hex-dialog.c:207
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Erakutsi zeinu gabekoak eta mugikorrak hamaseitar gisa"
 
-#: src/hex-dialog.c:217
+#: src/hex-dialog.c:213
 msgid "Stream Length:"
 msgstr "Korrontearen luzera:"
 
-#: src/hex-dialog.c:241
+#: src/hex-dialog.c:237
 msgid "FIXME: no conversion function"
 msgstr "ZUZENTZEKO: bihurtzeko funtziorik ez"
 
