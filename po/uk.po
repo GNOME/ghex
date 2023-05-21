@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-02-05 11:34+0000\n"
-"PO-Revision-Date: 2023-02-06 11:27+0200\n"
+"POT-Creation-Date: 2023-05-20 07:10+0000\n"
+"PO-Revision-Date: 2023-05-21 09:22+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
@@ -46,7 +46,7 @@ msgstr ""
 "шістнадцяткові значення, а у другому — представлення цих значень символами "
 "ASCII. Корисний інструмент для роботи із необробленими даними."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:41
+#: data/org.gnome.GHex.appdata.xml.in.in:40
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -245,6 +245,14 @@ msgstr "Закрити"
 #: src/find-dialog.ui:100
 msgid "Closes the find pane"
 msgstr "Закриває панель пошуку"
+
+#: src/find-options.ui:35
+msgid "_Regular expressions"
+msgstr "_Формальні вирази"
+
+#: src/find-options.ui:44
+msgid "_Ignore case"
+msgstr "_Ігнорувати регістр"
 
 #: src/find-options.ui:60
 msgid "Show:"
@@ -466,8 +474,8 @@ msgstr ""
 #: src/ghex-application-window.c:1439
 #, c-format
 msgid ""
-"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
-"%lX</tt> selected"
+"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+"<tt>0x%lX</tt> selected"
 msgstr ""
 "Зсув: <tt>0x%lX</tt>; позначено <tt>0x%lX</tt> байтів від <tt>0x%lX</tt> до "
 "<tt>0x%lX</tt>"
@@ -595,23 +603,33 @@ msgstr "_Про GHex"
 msgid "Open a file for hex editing"
 msgstr "Відкрити файл у шістнадцятковому редакторі"
 
-#: src/ghex-application-window.ui.in:187
+#: src/ghex-application-window.ui.in:173
+#| msgid "_Open..."
+msgid "_Open"
+msgstr "_Відкрити"
+
+#: src/ghex-application-window.ui.in:186
+#| msgid "Main menu"
+msgid "Main Menu"
+msgstr "Головне меню"
+
+#: src/ghex-application-window.ui.in:188
 msgid "Main menu"
 msgstr "Головне меню"
 
-#: src/ghex-application-window.ui.in:197
+#: src/ghex-application-window.ui.in:198
 msgid "Find a string in the hex document"
 msgstr "Знайти рядок у шістнадцятковому документі"
 
-#: src/ghex-application-window.ui.in:206
+#: src/ghex-application-window.ui.in:207
 msgid "Save document"
 msgstr "Зберегти документ"
 
-#: src/ghex-application-window.ui.in:214
+#: src/ghex-application-window.ui.in:215
 msgid "No File Loaded"
 msgstr "Не завантажено жодного файла"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:218
 msgid ""
 "• Press the Open button\n"
 "• Press Ctrl+N to start a new document\n"
@@ -625,14 +643,14 @@ msgstr ""
 "\n"
 "або натисніть Ctrl+W, щоб закрити вікно."
 
-#: src/ghex-application-window.ui.in:306
+#: src/ghex-application-window.ui.in:307
 msgid ""
 "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Перемкнути режим вставлення (дописувати дані до файла, а не заміняти наявні "
 "дані)"
 
-#: src/ghex-application-window.ui.in:318
+#: src/ghex-application-window.ui.in:319
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Перемкнути панель, на якій показано різні числові перетворення"
 
@@ -641,7 +659,6 @@ msgid "Automatic geometry"
 msgstr "Автоматична геометрія"
 
 #: src/gtkhex.ui:33
-#| msgid "Character table"
 msgid "Characters per line:"
 msgstr "Символів на рядок:"
 
@@ -863,71 +880,71 @@ msgstr "Помилка при зчитуванні файла"
 msgid "An error has occurred"
 msgstr "Сталася помилка"
 
-#: src/hex-dialog.c:72
+#: src/hex-dialog.c:70
 msgid "Signed 8 bit:"
 msgstr "Зі знаком 8 біт:"
 
-#: src/hex-dialog.c:73
+#: src/hex-dialog.c:71
 msgid "Unsigned 8 bit:"
 msgstr "Без знаку 8 біт:"
 
-#: src/hex-dialog.c:74
+#: src/hex-dialog.c:72
 msgid "Signed 16 bit:"
 msgstr "Зі знаком 16 біт:"
 
-#: src/hex-dialog.c:75
+#: src/hex-dialog.c:73
 msgid "Unsigned 16 bit:"
 msgstr "Без знаку 16 біт:"
 
-#: src/hex-dialog.c:76
+#: src/hex-dialog.c:74
 msgid "Signed 32 bit:"
 msgstr "Зі знаком 32 біт:"
 
-#: src/hex-dialog.c:77
+#: src/hex-dialog.c:75
 msgid "Unsigned 32 bit:"
 msgstr "Без знаку 32 біт:"
 
-#: src/hex-dialog.c:78
+#: src/hex-dialog.c:76
 msgid "Signed 64 bit:"
 msgstr "64-бітове зі знаком:"
 
-#: src/hex-dialog.c:79
+#: src/hex-dialog.c:77
 msgid "Unsigned 64 bit:"
 msgstr "64-бітове без знаку:"
 
-#: src/hex-dialog.c:80
+#: src/hex-dialog.c:78
 msgid "Float 32 bit:"
 msgstr "Дійсне 32-бітове:"
 
-#: src/hex-dialog.c:81
+#: src/hex-dialog.c:79
 msgid "Float 64 bit:"
 msgstr "Дійсне 64-бітове:"
 
-#: src/hex-dialog.c:82
+#: src/hex-dialog.c:80
 msgid "Hexadecimal:"
 msgstr "Шістнадцяткове:"
 
-#: src/hex-dialog.c:83
+#: src/hex-dialog.c:81
 msgid "Octal:"
 msgstr "Вісімкове:"
 
-#: src/hex-dialog.c:84
+#: src/hex-dialog.c:82
 msgid "Binary:"
 msgstr "Двійкове:"
 
-#: src/hex-dialog.c:205
+#: src/hex-dialog.c:201
 msgid "Show little endian decoding"
 msgstr "Показувати у розшифровці little endian"
 
-#: src/hex-dialog.c:211
+#: src/hex-dialog.c:207
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Показувати беззнакові та з рухомою комою як шістнадцяткові"
 
-#: src/hex-dialog.c:217
+#: src/hex-dialog.c:213
 msgid "Stream Length:"
 msgstr "Довжина потоку:"
 
-#: src/hex-dialog.c:241
+#: src/hex-dialog.c:237
 msgid "FIXME: no conversion function"
 msgstr "FIXME: немає функції перетворення"
 
@@ -1307,9 +1324,6 @@ msgstr "Замінити всі екземпляри рядка пошуку р�
 
 #~ msgid "_Windows"
 #~ msgstr "В_ікна"
-
-#~ msgid "_Open..."
-#~ msgstr "_Відкрити..."
 
 #~ msgid "Open a file"
 #~ msgstr "Відкрити файл"
