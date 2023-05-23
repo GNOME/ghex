@@ -1,13 +1,13 @@
 # Indonesian translation for ghex help.
 # Copyright (C) 2012 ghex's COPYRIGHT HOLDER
 # This file is distributed under the same license as the ghex package.
-# Andika Triwidada <andika@gmail.com>, 2012, 2013.
+# Andika Triwidada <andika@gmail.com>, 2012, 2013, 2022, 2023.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ghex help master\n"
-"POT-Creation-Date: 2022-07-15 06:37+0000\n"
-"PO-Revision-Date: 2022-11-30 12:02+0700\n"
+"Project-Id-Version: ghex help ghex-44\n"
+"POT-Creation-Date: 2023-04-28 19:33+0000\n"
+"PO-Revision-Date: 2023-05-23 13:58+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.2.1\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Andika Triwidada <andika@gmail.com>, 2012, 2013, 2022."
+msgstr "Andika Triwidada <andika@gmail.com>, 2012, 2013, 2022, 2023."
 
 #. (itstool) path: credit/name
 #: C/advanced-clipboard.page:7 C/basics-create-new-file.page:7
@@ -361,7 +361,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/basics-create-new-file.page:12
 msgid "Create a new file"
-msgstr "Buat berkas baru"
+msgstr "Membuat berkas baru"
 
 #. (itstool) path: page/p
 #: C/basics-create-new-file.page:13
@@ -429,14 +429,35 @@ msgstr ""
 "Tekan <keyseq><key>Alt</key><key>Kanan</key></keyseq> untuk memfokuskan "
 "panel ASCII."
 
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:27
+msgid "Editing the file using the hex or ASCII pane"
+msgstr "Menyunting berkas menggunakan panel heksa atau ASCII"
+
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:25
+#: C/basics-edit-file.page:28
+msgid "Edit the ASCII format in the same way you edit a normal text file."
+msgstr ""
+"Sunting format ASCII dengan cara yang sama seperti Anda menyunting berkas "
+"teks normal."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:29
+msgid ""
+"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
+"operation is not case-sensitive."
+msgstr ""
+"Untuk mengedit format heksadesimal, gunakan nilai 0 hingga 9 dan a hingga f. "
+"Operasi ini tidak peka huruf besar/kecil."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:31
 msgid "Use any of the following methods to move the cursor around the file:"
 msgstr ""
 "Gunakan salah satu dari metoda berikut untuk memindahkan kursor dalam berkas:"
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:28
+#: C/basics-edit-file.page:34
 msgid ""
 "Use the scrollbar on the window and the mouse to select a byte by clicking "
 "on it."
@@ -445,7 +466,7 @@ msgstr ""
 "menggulung sepanjang berkas."
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:31
+#: C/basics-edit-file.page:37
 msgid ""
 "Use the arrow keys, <key>Home</key>, <key>End</key>, <key>PageUp</key> or "
 "<key>PageDown</key> on the keyboard."
@@ -454,7 +475,7 @@ msgstr ""
 "atau <key>PageDown</key> pada papan ketik."
 
 #. (itstool) path: item/p
-#: C/basics-edit-file.page:34
+#: C/basics-edit-file.page:40
 msgid ""
 "Choose <gui>Jump to Byte</gui> from the (Main menu) or press "
 "<keyseq><key>Ctrl</key><key>J</key></keyseq>, and enter the cursor offset as "
@@ -466,34 +487,28 @@ msgstr ""
 "sebagai nilai desimal atau heksadesimal. Format nilai heksadesimal harus 0x "
 "diikuti oleh ofset, misalnya 0x3."
 
-#. (itstool) path: section/title
-#: C/basics-edit-file.page:41
-msgid "Editing the file using the hex or ASCII pane"
-msgstr "Menyunting berkas menggunakan panel heksa atau ASCII"
-
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:42
-msgid "Edit the ASCII format in the same way you edit a normal text file."
-msgstr ""
-"Sunting format ASCII dengan cara yang sama seperti Anda menyunting berkas "
-"teks normal."
-
-#. (itstool) path: section/p
-#: C/basics-edit-file.page:43
+#: C/basics-edit-file.page:45
 msgid ""
-"To edit the hexadecimal format, use the values 0 to 9 and a to f. This "
-"operation is not case-sensitive."
+"To delete or zero-out data, use either the <key>Delete</key> or "
+"<key>Backspace</key> keys. <gui>Cut</gui> operations will also have the side-"
+"effect of removing or zeroing-out data. This behaviour is different "
+"depending on whether or not <gui>Insert Mode</gui> is enabled. For more "
+"information, please review the section below."
 msgstr ""
-"Untuk mengedit format heksadesimal, gunakan nilai 0 hingga 9 dan a hingga f. "
-"Operasi ini tidak peka huruf besar/kecil."
+"Untuk menghapus atau mengenolkan data, gunakan tombol <key>Delete</key> atau "
+"<key>Backspace</key>. Operasi <gui>Potong</gui> juga akan punya efek samping "
+"menghapus atau mengenolkan data. Perilaku ini berbeda bergantung kepada "
+"apakah <gui>Mode Sisip</gui> difungsikan. Untuk informasi lebih lanjut, "
+"silakan tinjau bagian di bawah."
 
 #. (itstool) path: section/title
-#: C/basics-edit-file.page:47
+#: C/basics-edit-file.page:52
 msgid "Insert mode"
 msgstr "Mode sisip"
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:48
+#: C/basics-edit-file.page:53
 msgid ""
 "<gui>Insert Mode</gui> can be toggled on or off by pressing <key>Insert</"
 "key>, or by clicking the <gui>Toggle insert mode</gui> button in the status "
@@ -504,7 +519,7 @@ msgstr ""
 "gui> di bilah status."
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:50
+#: C/basics-edit-file.page:55
 msgid ""
 "When <gui>Insert Mode</gui> is enabled, this means data will be added to the "
 "file as opposed to replacing existing data."
@@ -513,7 +528,7 @@ msgstr ""
 "ke berkas sebagai lawan dari mengganti data yang ada."
 
 #. (itstool) path: section/p
-#: C/basics-edit-file.page:52
+#: C/basics-edit-file.page:57
 msgid ""
 "Unlike traditional text editors, having <gui>Insert Mode</gui> <em>off</em> "
 "is considered the default state in GHex, given that hex editors are "
@@ -530,10 +545,42 @@ msgstr ""
 "dapat menyebabkan perilaku yang tidak terdefinisi atau tidak diinginkan "
 "dalam aplikasi yang membukanya."
 
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:63
+msgid ""
+"Along these lines, <em>delete</em> operations work differently depending "
+"upon whether or not <gui>Insert Mode</gui> is enabled."
+msgstr ""
+"Serupa dengan itu, operasi <em>hapus</em> bekerja secara berbeda bergantung "
+"kepada apakah <gui>Mode Sisip</gui> difungsikan atau tidak."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:65
+msgid ""
+"If <gui>Insert Mode</gui> is enabled, delete operations (eg, by pressing "
+"<key>Delete</key>, <key>Backspace</key>, or by a <gui>cut</gui> operation) "
+"will alter the file length, by removing the data from the file."
+msgstr ""
+"Bila <gui>Mode Sisip</gui> difungsikan, operasi hapus (mis. dengan menekan "
+"<key>Delete</key>, <key>Backspace</key>, atau oleh suatu operasi "
+"<gui>potong</gui>) akan mengubah panjang berkas, dengan menghapus data dari "
+"berkas."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:68
+msgid ""
+"If <gui>Insert Mode</gui> is not enabled, <gui>delete</gui> operations will "
+"instead zero-out affected bytes within the file, so as to avoid changing the "
+"length of the file."
+msgstr ""
+"Bila <gui>Mode Sisip</gui> tidak difungsikan, operasi <gui>hapus</gui> alih-"
+"alih akan mengenolkan byte yang terpengaruh dalam berkas, agar menghindari "
+"mengubah panjang berkas."
+
 #. (itstool) path: page/title
 #: C/basics-find-replace.page:12
 msgid "Find and replace"
-msgstr "Cari dan ganti"
+msgstr "Mencari dan mengganti"
 
 #. (itstool) path: section/title
 #: C/basics-find-replace.page:14
@@ -569,8 +616,8 @@ msgstr "Tekan <keyseq><key>Ctrl</key><key>F</key></keyseq>."
 msgid ""
 "In order to easily search for a string in either hex or ASCII format, the "
 "<gui>Find</gui> pane acts like a miniature hex editor. You enter this string "
-"in the same way you would edit a file as described in the <link xref="
-"\"basics-edit-file\"/> section."
+"in the same way you would edit a file as described in the <link "
+"xref=\"basics-edit-file\"/> section."
 msgstr ""
 "Untuk dengan mudah mencari string dalam format hex atau ASCII, panel "
 "<gui>Cari</gui> bertindak seperti penyunting hex miniatur. Anda memasukkan "
@@ -666,7 +713,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/basics-open-file.page:12
 msgid "Open a file"
-msgstr "Buka sebuah berkas"
+msgstr "Membuka sebuah berkas"
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:13
@@ -974,12 +1021,12 @@ msgstr "GHex memungkinkan Anda untuk melakukan tindakan berikut:"
 #. (itstool) path: item/p
 #: C/index.page:17
 msgid "View a file in ASCII or hexadecimal format simultaneously."
-msgstr "Tilik berkas dalam format ASCII atau heksadesimal secara simultan."
+msgstr "Melihat berkas dalam format ASCII atau heksadesimal secara simultan."
 
 #. (itstool) path: item/p
 #: C/index.page:20
 msgid "Edit a file in either ASCII or hexadecimal format."
-msgstr "Sunting berkas dalam format ASCII atau heksadesimal."
+msgstr "Menyunting berkas dalam format ASCII atau heksadesimal."
 
 #. (itstool) path: section/title
 #: C/index.page:27
