@@ -1581,6 +1581,10 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	GtkDropTarget *target;
 	GtkCssProvider *provider;
 
+	/* Ensure the custom statusbar widget is registered with the type system.
+	 */
+	g_type_ensure (HEX_TYPE_STATUSBAR);
+
 	gtk_widget_init_template (widget);
 
 	/* Setup conversions box and pane */
