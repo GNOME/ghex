@@ -1839,6 +1839,13 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			"ghex.help",
 			NULL);	/* no args. */
 
+	/* Ctrl+comma - show preferences */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_comma,
+			GDK_CONTROL_MASK,
+			"ghex.preferences",
+			NULL);	/* no args. */
+
 	/* Insert - toggle insert mode */
 	gtk_widget_class_add_binding_action (widget_class,
 			GDK_KEY_Insert,
