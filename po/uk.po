@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-05-20 07:10+0000\n"
-"PO-Revision-Date: 2023-05-21 09:22+0300\n"
+"POT-Creation-Date: 2023-05-24 00:19+0000\n"
+"PO-Revision-Date: 2023-05-24 18:47+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
@@ -485,7 +485,7 @@ msgstr ""
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Зсув: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2068
+#: src/ghex-application-window.c:2075
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -511,7 +511,7 @@ msgstr ""
 "Щоб уникнути цього повідомлення, спробуйте скористатися іншим модулем "
 "обробки буфера."
 
-#: src/ghex-application-window.c:2125
+#: src/ghex-application-window.c:2132
 msgid "There was an error reading the file."
 msgstr "Під час читання з файла сталася помилка."
 
@@ -604,12 +604,10 @@ msgid "Open a file for hex editing"
 msgstr "Відкрити файл у шістнадцятковому редакторі"
 
 #: src/ghex-application-window.ui.in:173
-#| msgid "_Open..."
 msgid "_Open"
 msgstr "_Відкрити"
 
 #: src/ghex-application-window.ui.in:186
-#| msgid "Main menu"
 msgid "Main Menu"
 msgstr "Головне меню"
 
@@ -791,10 +789,15 @@ msgid "General"
 msgstr "Загальне"
 
 #: src/help-overlay.ui:194
-msgid "Show About dialog"
-msgstr "Показати вікно «Про програму»"
+msgid "Show help"
+msgstr "Показати довідку"
 
 #: src/help-overlay.ui:201
+#| msgid "Preferences"
+msgid "Show preferences"
+msgstr "Показати налаштування"
+
+#: src/help-overlay.ui:208
 msgid "Toggle insert mode"
 msgstr "Перемкнути режим вставлення"
 
@@ -1163,6 +1166,9 @@ msgstr "Замінити _все"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Замінити всі екземпляри рядка пошуку рядком заміни"
+
+#~ msgid "Show About dialog"
+#~ msgstr "Показати вікно «Про програму»"
 
 #~ msgid ""
 #~ "There was an error loading the requested file. The file either no longer "
