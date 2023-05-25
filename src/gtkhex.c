@@ -545,6 +545,20 @@ geometry_action (GtkWidget *widget,
 	gtk_popover_popup (GTK_POPOVER(self->geometry_popover));
 }
 
+static void
+move_to_buffer_ends_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	HexWidget *self = HEX_WIDGET (widget);
+	gboolean beginning, extend_selection;
+
+	g_variant_get (parameter, "(bb)", &beginning, &extend_selection);
+
+	self->selecting = extend_selection;
+	hex_widget_set_cursor (self, beginning ? 0 : HEX_BUFFER_PAYLOAD (self->document));
+}
+
 /*
  * ?_to_pointer translates mouse coordinates in hex/ascii view
  * to cursor coordinates.
@@ -1850,7 +1864,11 @@ key_press_cb (GtkEventControllerKey *controller,
 
 	show_cursor (self, FALSE);
 
-	/* Figure out if we're holding shift or not. */
+	/* don't trample over Ctrl or Alt (reserved for actions) */
+	if (state & (GDK_CONTROL_MASK | GDK_ALT_MASK)) {
+		return FALSE;
+	}
+
 	if (state & GDK_SHIFT_MASK)
 		self->selecting = TRUE;
 	else
@@ -1898,62 +1916,37 @@ key_press_cb (GtkEventControllerKey *controller,
 			break;
 
 		case GDK_KEY_Page_Up:
-			if (! (state & GDK_CONTROL_MASK))
-			{
-				hex_widget_set_cursor (self, MAX (0, self->cursor_pos - self->vis_lines*self->cpl));
-				ret = GDK_EVENT_STOP;
-			}
+			hex_widget_set_cursor (self, MAX (0, self->cursor_pos - self->vis_lines*self->cpl));
+			ret = GDK_EVENT_STOP;
 			break;
 
 		case GDK_KEY_Page_Down:
-			if (! (state & GDK_CONTROL_MASK))
-			{
-				hex_widget_set_cursor(self, MIN (payload_size,
-							self->cursor_pos + self->vis_lines*self->cpl));
-				ret = GDK_EVENT_STOP;
-			}
+			hex_widget_set_cursor(self, MIN (payload_size,
+						self->cursor_pos + self->vis_lines*self->cpl));
+			ret = GDK_EVENT_STOP;
 			break;
 
 		case GDK_KEY_Home:
-			if (state & GDK_CONTROL_MASK)
-			{
-				hex_widget_set_cursor (self, 0);
-			}
-			else
-			{
-				gint64 line_beg = self->cursor_pos; 
+			gint64 line_beg = self->cursor_pos;
 
-				while (line_beg % self->cpl != 0)
-					--line_beg;
+			while (line_beg % self->cpl != 0)
+				--line_beg;
 
-				hex_widget_set_cursor (self, line_beg);
-			}
+			hex_widget_set_cursor (self, line_beg);
 			ret = GDK_EVENT_STOP;
 			break;
 
 		case GDK_KEY_End:
-			if (state & GDK_CONTROL_MASK)
-			{
-				hex_widget_set_cursor (self, payload_size);
-			}
-			else
-			{
-				gint64 line_end = self->cursor_pos; 
+			gint64 line_end = self->cursor_pos;
 
-				while (line_end % self->cpl != self->cpl - 1)
-					++line_end;
+			while (line_end % self->cpl != self->cpl - 1)
+				++line_end;
 
-				hex_widget_set_cursor (self, MIN (line_end, payload_size));
-			}
+			hex_widget_set_cursor (self, MIN (line_end, payload_size));
 			ret = GDK_EVENT_STOP;
 			break;
 
 		default:
-			/* don't trample over Ctrl or Alt (reserved for actions) */
-			if (state & GDK_CONTROL_MASK || state & GDK_ALT_MASK) {
-				return FALSE;
-			}
-
 			if (self->active_view == VIEW_HEX)
 			{
 				switch(keyval)
@@ -2815,6 +2808,10 @@ hex_widget_class_init (HexWidgetClass *klass)
 			NULL,
 			geometry_action);
 
+	gtk_widget_class_install_action (widget_class, "gtkhex.move-to-buffer-ends",
+			"(bb)",
+			move_to_buffer_ends_action);
+
 	/* SHORTCUTS FOR ACTIONS (not to be confused with keybindings, which are
 	 * set up in hex_widget_init) */
 
@@ -2866,6 +2863,34 @@ hex_widget_class_init (HexWidgetClass *klass)
 			GDK_ALT_MASK,
 			"gtkhex.toggle-ascii",
 			NULL);
+
+	/* Ctrl+Home - move to beginning of buffer */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_Home,
+			GDK_CONTROL_MASK,
+			"gtkhex.move-to-buffer-ends",
+			"(bb)", TRUE, FALSE);
+
+	/* Ctrl+End - move to end of buffer */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_End,
+			GDK_CONTROL_MASK,
+			"gtkhex.move-to-buffer-ends",
+			"(bb)", FALSE, FALSE);
+
+	/* Shift+Ctrl+Home - move to beginning of buffer with selection */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_Home,
+			GDK_SHIFT_MASK | GDK_CONTROL_MASK,
+			"gtkhex.move-to-buffer-ends",
+			"(bb)", TRUE, TRUE);
+
+	/* Shift+Ctrl+End - move to end of buffer with selection */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_End,
+			GDK_SHIFT_MASK | GDK_CONTROL_MASK,
+			"gtkhex.move-to-buffer-ends",
+			"(bb)", FALSE, TRUE);
 }
 
 static void
