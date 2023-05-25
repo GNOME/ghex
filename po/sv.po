@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-02-05 11:34+0000\n"
-"PO-Revision-Date: 2023-02-05 13:56+0100\n"
+"POT-Creation-Date: 2023-05-25 16:03+0000\n"
+"PO-Revision-Date: 2023-05-25 20:49+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -253,6 +253,14 @@ msgstr "Stäng"
 msgid "Closes the find pane"
 msgstr "Stänger sökpanelen"
 
+#: src/find-options.ui:35
+msgid "_Regular expressions"
+msgstr "_Reguljära uttryck"
+
+#: src/find-options.ui:44
+msgid "_Ignore case"
+msgstr "_Ignorera skiftläge"
+
 #: src/find-options.ui:60
 msgid "Show:"
 msgstr "Visa:"
@@ -484,7 +492,7 @@ msgstr ""
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Position: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2068
+#: src/ghex-application-window.c:2079
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -511,7 +519,7 @@ msgstr ""
 "Pröva använda en annan buffertbakände för att inte behöva se detta "
 "meddelande."
 
-#: src/ghex-application-window.c:2125
+#: src/ghex-application-window.c:2136
 msgid "There was an error reading the file."
 msgstr "Det uppstod ett fel vid läsning av filen."
 
@@ -603,23 +611,31 @@ msgstr "_Om GHex"
 msgid "Open a file for hex editing"
 msgstr "Öppna en fil för hexadecimalredigering"
 
-#: src/ghex-application-window.ui.in:187
+#: src/ghex-application-window.ui.in:173
+msgid "_Open"
+msgstr "Ö_ppna"
+
+#: src/ghex-application-window.ui.in:186
+msgid "Main Menu"
+msgstr "Huvudmeny"
+
+#: src/ghex-application-window.ui.in:188
 msgid "Main menu"
 msgstr "Huvudmeny"
 
-#: src/ghex-application-window.ui.in:197
+#: src/ghex-application-window.ui.in:198
 msgid "Find a string in the hex document"
 msgstr "Sök en sträng i hexdokumentet"
 
-#: src/ghex-application-window.ui.in:206
+#: src/ghex-application-window.ui.in:207
 msgid "Save document"
 msgstr "Spara dokument"
 
-#: src/ghex-application-window.ui.in:214
+#: src/ghex-application-window.ui.in:215
 msgid "No File Loaded"
 msgstr "Ingen fil inläst"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:218
 msgid ""
 "• Press the Open button\n"
 "• Press Ctrl+N to start a new document\n"
@@ -633,13 +649,13 @@ msgstr ""
 "\n"
 "Eller tryck Ctrl+W för att stänga fönstret."
 
-#: src/ghex-application-window.ui.in:306
+#: src/ghex-application-window.ui.in:307
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Växla inskrivningsläge (lägg till data till fil snarare än att ersätta "
 "befintliga data)"
 
-#: src/ghex-application-window.ui.in:318
+#: src/ghex-application-window.ui.in:319
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Visa/dölj en panel som visar diverse numeriska konverteringar"
 
@@ -780,10 +796,14 @@ msgid "General"
 msgstr "Allmänt"
 
 #: src/help-overlay.ui:194
-msgid "Show About dialog"
-msgstr "Visa Om-dialog"
+msgid "Show help"
+msgstr "Visa hjälp"
 
 #: src/help-overlay.ui:201
+msgid "Show preferences"
+msgstr "Visa inställningar"
+
+#: src/help-overlay.ui:208
 msgid "Toggle insert mode"
 msgstr "Växla inskrivningsläge"
 
@@ -867,72 +887,72 @@ msgstr "Fel vid läsning av fil"
 msgid "An error has occurred"
 msgstr "Ett fel har inträffat"
 
-#: src/hex-dialog.c:72
+#: src/hex-dialog.c:70
 msgid "Signed 8 bit:"
 msgstr "8-bitars med tecken:"
 
-#: src/hex-dialog.c:73
+#: src/hex-dialog.c:71
 msgid "Unsigned 8 bit:"
 msgstr "Teckenlöst 8-bitars:"
 
-#: src/hex-dialog.c:74
+#: src/hex-dialog.c:72
 msgid "Signed 16 bit:"
 msgstr "16-bitars med tecken:"
 
-#: src/hex-dialog.c:75
+#: src/hex-dialog.c:73
 msgid "Unsigned 16 bit:"
 msgstr "Teckenlöst 16-bitars:"
 
-#: src/hex-dialog.c:76
+#: src/hex-dialog.c:74
 msgid "Signed 32 bit:"
 msgstr "32-bitars med tecken:"
 
-#: src/hex-dialog.c:77
+#: src/hex-dialog.c:75
 msgid "Unsigned 32 bit:"
 msgstr "Teckenlöst 32-bitars:"
 
-#: src/hex-dialog.c:78
+#: src/hex-dialog.c:76
 msgid "Signed 64 bit:"
 msgstr "64-bitars med tecken:"
 
-#: src/hex-dialog.c:79
+#: src/hex-dialog.c:77
 msgid "Unsigned 64 bit:"
 msgstr "Teckenlöst 64-bitars:"
 
-#: src/hex-dialog.c:80
+#: src/hex-dialog.c:78
 msgid "Float 32 bit:"
 msgstr "Flytande 32 bitar:"
 
-#: src/hex-dialog.c:81
+#: src/hex-dialog.c:79
 msgid "Float 64 bit:"
 msgstr "Flytande 64 bitar:"
 
-#: src/hex-dialog.c:82
+#: src/hex-dialog.c:80
 msgid "Hexadecimal:"
 msgstr "Hexadecimalt:"
 
-#: src/hex-dialog.c:83
+#: src/hex-dialog.c:81
 msgid "Octal:"
 msgstr "Oktalt:"
 
-#: src/hex-dialog.c:84
+#: src/hex-dialog.c:82
 msgid "Binary:"
 msgstr "Binärt:"
 
-#: src/hex-dialog.c:205
+#: src/hex-dialog.c:201
 msgid "Show little endian decoding"
 msgstr "Visa little endian-avkodning"
 
 # Osäker.
-#: src/hex-dialog.c:211
+#: src/hex-dialog.c:207
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Visa teckenlösa och flyttal hexadecimalt"
 
-#: src/hex-dialog.c:217
+#: src/hex-dialog.c:213
 msgid "Stream Length:"
 msgstr "Strömlängd:"
 
-#: src/hex-dialog.c:241
+#: src/hex-dialog.c:237
 msgid "FIXME: no conversion function"
 msgstr "FIXAMIG: ingen konverteringsfunktion"
 
@@ -1149,6 +1169,9 @@ msgstr "Ersätt _alla"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Ersätter alla förekomster av söksträngen med ersättningssträngen"
+
+#~ msgid "Show About dialog"
+#~ msgstr "Visa Om-dialog"
 
 #~ msgid ""
 #~ "There was an error loading the requested file. The file either no longer "
@@ -1625,9 +1648,6 @@ msgstr "Ersätter alla förekomster av söksträngen med ersättningssträngen"
 
 #~ msgid "Help Chat"
 #~ msgstr "Hjälpchatt"
-
-#~ msgid "Open"
-#~ msgstr "Öppna"
 
 #~ msgid "Print"
 #~ msgstr "Skriv ut"
