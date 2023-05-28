@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-02-05 11:34+0000\n"
-"PO-Revision-Date: 2023-02-05 14:49+0100\n"
+"POT-Creation-Date: 2023-05-26 10:47+0000\n"
+"PO-Revision-Date: 2023-05-28 12:25+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -248,6 +248,14 @@ msgstr "Zamknij"
 msgid "Closes the find pane"
 msgstr "Zamyka panel wyszukiwania"
 
+#: src/find-options.ui:35
+msgid "_Regular expressions"
+msgstr "_Wyrażenia regularne"
+
+#: src/find-options.ui:44
+msgid "_Ignore case"
+msgstr "_Ignorowanie wielkości znaków"
+
 #: src/find-options.ui:60
 msgid "Show:"
 msgstr "Wyświetlanie:"
@@ -467,8 +475,8 @@ msgstr ""
 #: src/ghex-application-window.c:1439
 #, c-format
 msgid ""
-"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
-"%lX</tt> selected"
+"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+"<tt>0x%lX</tt> selected"
 msgstr ""
 "Przesunięcie: <tt>0x%lX</tt>; zaznaczono <tt>0x%lX</tt> B od <tt>0x%lX</tt> "
 "do <tt>0x%lX</tt>"
@@ -478,7 +486,7 @@ msgstr ""
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Przesunięcie: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2068
+#: src/ghex-application-window.c:2079
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -505,7 +513,7 @@ msgstr ""
 "Można spróbować użyć innego mechanizmu bufora, aby uniknąć pojawiania się "
 "tego komunikatu."
 
-#: src/ghex-application-window.c:2125
+#: src/ghex-application-window.c:2136
 msgid "There was an error reading the file."
 msgstr "Wystąpił błąd podczas odczytywania pliku."
 
@@ -597,23 +605,31 @@ msgstr "_O programie"
 msgid "Open a file for hex editing"
 msgstr "Otwiera plik do modyfikowania szesnastkowego"
 
-#: src/ghex-application-window.ui.in:187
+#: src/ghex-application-window.ui.in:173
+msgid "_Open"
+msgstr "_Otwórz"
+
+#: src/ghex-application-window.ui.in:186
+msgid "Main Menu"
+msgstr "Menu główne"
+
+#: src/ghex-application-window.ui.in:188
 msgid "Main menu"
 msgstr "Menu główne"
 
-#: src/ghex-application-window.ui.in:197
+#: src/ghex-application-window.ui.in:198
 msgid "Find a string in the hex document"
 msgstr "Wyszukuje ciąg w dokumencie szesnastkowym"
 
-#: src/ghex-application-window.ui.in:206
+#: src/ghex-application-window.ui.in:207
 msgid "Save document"
 msgstr "Zapisuje dokument"
 
-#: src/ghex-application-window.ui.in:214
+#: src/ghex-application-window.ui.in:215
 msgid "No File Loaded"
 msgstr "Nie wczytano pliku"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:218
 msgid ""
 "• Press the Open button\n"
 "• Press Ctrl+N to start a new document\n"
@@ -627,13 +643,13 @@ msgstr ""
 "\n"
 "Lub naciśnij klawisze Ctrl+W, aby zamknąć okno."
 
-#: src/ghex-application-window.ui.in:306
+#: src/ghex-application-window.ui.in:307
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Przełącza tryb wstawiania (dodawanie danych do pliku zamiast zastępowania "
 "istniejących)"
 
-#: src/ghex-application-window.ui.in:318
+#: src/ghex-application-window.ui.in:319
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Przełącza panel wyświetlający różne konwersje numeryczne"
 
@@ -774,10 +790,14 @@ msgid "General"
 msgstr "Ogólne"
 
 #: src/help-overlay.ui:194
-msgid "Show About dialog"
-msgstr "Wyświetlenie informacji o programie"
+msgid "Show help"
+msgstr "Wyświetlenie pomocy"
 
 #: src/help-overlay.ui:201
+msgid "Show preferences"
+msgstr "Wyświetlenie preferencji"
+
+#: src/help-overlay.ui:208
 msgid "Toggle insert mode"
 msgstr "Przełączenie trybu wstawiania"
 
@@ -862,72 +882,72 @@ msgstr "Błąd podczas odczytywania pliku"
 msgid "An error has occurred"
 msgstr "Wystąpił błąd"
 
-#: src/hex-dialog.c:72
+#: src/hex-dialog.c:70
 msgid "Signed 8 bit:"
 msgstr "8 bitów ze znakiem:"
 
-#: src/hex-dialog.c:73
+#: src/hex-dialog.c:71
 msgid "Unsigned 8 bit:"
 msgstr "8 bitów bez znaku:"
 
-#: src/hex-dialog.c:74
+#: src/hex-dialog.c:72
 msgid "Signed 16 bit:"
 msgstr "16 bitów ze znakiem:"
 
-#: src/hex-dialog.c:75
+#: src/hex-dialog.c:73
 msgid "Unsigned 16 bit:"
 msgstr "16 bitów bez znaku:"
 
-#: src/hex-dialog.c:76
+#: src/hex-dialog.c:74
 msgid "Signed 32 bit:"
 msgstr "32 bity ze znakiem:"
 
-#: src/hex-dialog.c:77
+#: src/hex-dialog.c:75
 msgid "Unsigned 32 bit:"
 msgstr "32 bity bez znaku:"
 
-#: src/hex-dialog.c:78
+#: src/hex-dialog.c:76
 msgid "Signed 64 bit:"
 msgstr "64 bity ze znakiem:"
 
-#: src/hex-dialog.c:79
+#: src/hex-dialog.c:77
 msgid "Unsigned 64 bit:"
 msgstr "64 bity bez znaku:"
 
-#: src/hex-dialog.c:80
+#: src/hex-dialog.c:78
 msgid "Float 32 bit:"
 msgstr "Zmiennoprzecinkowe 32 bity:"
 
-#: src/hex-dialog.c:81
+#: src/hex-dialog.c:79
 msgid "Float 64 bit:"
 msgstr "Zmiennoprzecinkowe 64 bity:"
 
-#: src/hex-dialog.c:82
+#: src/hex-dialog.c:80
 msgid "Hexadecimal:"
 msgstr "Szesnastkowo:"
 
-#: src/hex-dialog.c:83
+#: src/hex-dialog.c:81
 msgid "Octal:"
 msgstr "Ósemkowo:"
 
-#: src/hex-dialog.c:84
+#: src/hex-dialog.c:82
 msgid "Binary:"
 msgstr "Binarnie:"
 
-#: src/hex-dialog.c:205
+#: src/hex-dialog.c:201
 msgid "Show little endian decoding"
 msgstr "Wyświetlanie dekodowania little endian"
 
-#: src/hex-dialog.c:211
+#: src/hex-dialog.c:207
 msgid "Show unsigned and float as hexadecimal"
 msgstr ""
 "Wyświetlanie wartości bez znaku i zmiennoprzecinkowych jako szesnastkowe"
 
-#: src/hex-dialog.c:217
+#: src/hex-dialog.c:213
 msgid "Stream Length:"
 msgstr "Długość potoku:"
 
-#: src/hex-dialog.c:241
+#: src/hex-dialog.c:237
 msgid "FIXME: no conversion function"
 msgstr "FIXME: brak funkcji konwersji"
 
