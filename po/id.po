@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the ghex package.
 # Abdul Hamid.A.N <hameed@linuxmail.org>, 2004.
 # Andika Triwidada <andika@gmail.com>, 2009, 2012, 2013.
-#
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2019, 2023.
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-02-05 11:34+0000\n"
-"PO-Revision-Date: 2023-02-09 18:59+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"POT-Creation-Date: 2023-05-25 16:03+0000\n"
+"PO-Revision-Date: 2023-05-31 19:50+0700\n"
+"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -145,7 +146,7 @@ msgstr ""
 "Abdul Hamid.A.N <hameed@linuxmail.org>, 2004.\n"
 "Andika Triwidada <andika@gmail.com>, 2009, 2012, 2013, 2016, 2018, 2022, "
 "2023.\n"
-"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2019."
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2019, 2023."
 
 #: src/common-ui.c:285
 msgid "GHex Website"
@@ -244,6 +245,14 @@ msgstr "Tutup"
 #: src/find-dialog.ui:100
 msgid "Closes the find pane"
 msgstr "Menutup panel pencarian"
+
+#: src/find-options.ui:35
+msgid "_Regular expressions"
+msgstr "Ekspresi _Reguler"
+
+#: src/find-options.ui:44
+msgid "_Ignore case"
+msgstr "Abaikan besar kecil huruf"
 
 #: src/find-options.ui:60
 msgid "Show:"
@@ -477,7 +486,7 @@ msgstr ""
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Ofset: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2068
+#: src/ghex-application-window.c:2079
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -502,7 +511,7 @@ msgstr ""
 "\n"
 "Untuk menghindari pesan ini muncul, cobalah memakai backend penyangga lain."
 
-#: src/ghex-application-window.c:2125
+#: src/ghex-application-window.c:2136
 msgid "There was an error reading the file."
 msgstr "Galat saat membaca dari berkas."
 
@@ -594,23 +603,31 @@ msgstr "Tent_ang GHex"
 msgid "Open a file for hex editing"
 msgstr "Membuka berkas untuk penyuntingan heksa"
 
-#: src/ghex-application-window.ui.in:187
+#: src/ghex-application-window.ui.in:173
+msgid "_Open"
+msgstr "B_uka"
+
+#: src/ghex-application-window.ui.in:186
+msgid "Main Menu"
+msgstr "Menu Utama"
+
+#: src/ghex-application-window.ui.in:188
 msgid "Main menu"
 msgstr "Menu utama"
 
-#: src/ghex-application-window.ui.in:197
+#: src/ghex-application-window.ui.in:198
 msgid "Find a string in the hex document"
 msgstr "Mencari string dalam dokumen hex"
 
-#: src/ghex-application-window.ui.in:206
+#: src/ghex-application-window.ui.in:207
 msgid "Save document"
 msgstr "Simpan dokumen"
 
-#: src/ghex-application-window.ui.in:214
+#: src/ghex-application-window.ui.in:215
 msgid "No File Loaded"
 msgstr "Tidak Ada Berkas yang Dimuat"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:218
 msgid ""
 "• Press the Open button\n"
 "• Press Ctrl+N to start a new document\n"
@@ -624,13 +641,13 @@ msgstr ""
 "\n"
 "Atau, tekan Ctrl+W untuk menutup jendela."
 
-#: src/ghex-application-window.ui.in:306
+#: src/ghex-application-window.ui.in:307
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Jungkitkan mode sisip (tambahkan data ke berkas daripada menggantikan data "
 "yang ada)"
 
-#: src/ghex-application-window.ui.in:318
+#: src/ghex-application-window.ui.in:319
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Menjungkitkan panel yang memperlihatkan berbagai konversi numerik"
 
@@ -771,10 +788,14 @@ msgid "General"
 msgstr "Umum"
 
 #: src/help-overlay.ui:194
-msgid "Show About dialog"
-msgstr "Tampilkan dialog Tentang"
+msgid "Show help"
+msgstr "Tampilkan bantuan"
 
 #: src/help-overlay.ui:201
+msgid "Show preferences"
+msgstr "Tampilkan preferensi"
+
+#: src/help-overlay.ui:208
 msgid "Toggle insert mode"
 msgstr "Jungkitkan mode sisip"
 
@@ -858,71 +879,71 @@ msgstr "Galat saat membaca berkas"
 msgid "An error has occurred"
 msgstr "Terjadi suatu kesalahan"
 
-#: src/hex-dialog.c:72
+#: src/hex-dialog.c:70
 msgid "Signed 8 bit:"
 msgstr "Signed 8 bit:"
 
-#: src/hex-dialog.c:73
+#: src/hex-dialog.c:71
 msgid "Unsigned 8 bit:"
 msgstr "Unsigned 8 bit:"
 
-#: src/hex-dialog.c:74
+#: src/hex-dialog.c:72
 msgid "Signed 16 bit:"
 msgstr "Signed 16 bit:"
 
-#: src/hex-dialog.c:75
+#: src/hex-dialog.c:73
 msgid "Unsigned 16 bit:"
 msgstr "Unsigned 16 bit:"
 
-#: src/hex-dialog.c:76
+#: src/hex-dialog.c:74
 msgid "Signed 32 bit:"
 msgstr "Signed 32 bit:"
 
-#: src/hex-dialog.c:77
+#: src/hex-dialog.c:75
 msgid "Unsigned 32 bit:"
 msgstr "Unsigned 32 bit:"
 
-#: src/hex-dialog.c:78
+#: src/hex-dialog.c:76
 msgid "Signed 64 bit:"
 msgstr "Signed 64 bit:"
 
-#: src/hex-dialog.c:79
+#: src/hex-dialog.c:77
 msgid "Unsigned 64 bit:"
 msgstr "Unsigned 64 bit:"
 
-#: src/hex-dialog.c:80
+#: src/hex-dialog.c:78
 msgid "Float 32 bit:"
 msgstr "Float 32 bit:"
 
-#: src/hex-dialog.c:81
+#: src/hex-dialog.c:79
 msgid "Float 64 bit:"
 msgstr "Float 64 bit:"
 
-#: src/hex-dialog.c:82
+#: src/hex-dialog.c:80
 msgid "Hexadecimal:"
 msgstr "Heksadesimal:"
 
-#: src/hex-dialog.c:83
+#: src/hex-dialog.c:81
 msgid "Octal:"
 msgstr "Oktal:"
 
-#: src/hex-dialog.c:84
+#: src/hex-dialog.c:82
 msgid "Binary:"
 msgstr "Biner:"
 
-#: src/hex-dialog.c:205
+#: src/hex-dialog.c:201
 msgid "Show little endian decoding"
 msgstr "Perlihatkan decoding little endian"
 
-#: src/hex-dialog.c:211
+#: src/hex-dialog.c:207
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Tampilkan unsigned dan float sebagai heksadesimal"
 
-#: src/hex-dialog.c:217
+#: src/hex-dialog.c:213
 msgid "Stream Length:"
 msgstr "Panjang Stream:"
 
-#: src/hex-dialog.c:241
+#: src/hex-dialog.c:237
 msgid "FIXME: no conversion function"
 msgstr "PERBAIKI: tidak ada fungsi konversi"
 
@@ -1139,3 +1160,6 @@ msgstr "Gantikan Semu_a"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Ganti semua kemunculan string yang dicari dengan string pengganti"
+
+#~ msgid "Show About dialog"
+#~ msgstr "Tampilkan dialog Tentang"
