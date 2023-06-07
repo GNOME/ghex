@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-05-20 07:10+0000\n"
-"PO-Revision-Date: 2023-05-20 22:01+1000\n"
+"POT-Creation-Date: 2023-05-25 18:50+0000\n"
+"PO-Revision-Date: 2023-05-26 22:29+1000\n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -490,7 +490,7 @@ msgstr ""
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Смещение: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2068
+#: src/ghex-application-window.c:2079
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -516,7 +516,7 @@ msgstr ""
 "Чтобы это сообщение не появлялось, попробуйте использовать другой модуль "
 "обработки буфера."
 
-#: src/ghex-application-window.c:2125
+#: src/ghex-application-window.c:2136
 msgid "There was an error reading the file."
 msgstr "Произошла ошибка при чтении файла."
 
@@ -789,15 +789,27 @@ msgstr "Переключиться на следующую вкладку"
 msgid "Jump to byte"
 msgstr "Перейти к байту"
 
-#: src/help-overlay.ui:189
+#: src/help-overlay.ui:187
+msgid "Move to beginning of document"
+msgstr "Перейти в начало документа"
+
+#: src/help-overlay.ui:194
+msgid "Move to end of document"
+msgstr "Перейти в конец документа"
+
+#: src/help-overlay.ui:203
 msgid "General"
 msgstr "Основное"
 
-#: src/help-overlay.ui:194
-msgid "Show About dialog"
-msgstr "Показать окно «О приложении»"
+#: src/help-overlay.ui:208
+msgid "Show help"
+msgstr "Показать справку"
 
-#: src/help-overlay.ui:201
+#: src/help-overlay.ui:215
+msgid "Show preferences"
+msgstr "Показать параметры"
+
+#: src/help-overlay.ui:222
 msgid "Toggle insert mode"
 msgstr "Переключить режим вставки"
 
@@ -1165,6 +1177,9 @@ msgstr "Заменить _все"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Заменяет все вхождения строки поиска строкой замены"
+
+#~ msgid "Show About dialog"
+#~ msgstr "Показать окно «О приложении»"
 
 #~ msgid ""
 #~ "There was an error loading the requested file. The file either no longer "
