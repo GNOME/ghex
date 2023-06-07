@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-02-18 13:33+0000\n"
-"PO-Revision-Date: 2023-02-19 20:27+1000\n"
+"POT-Creation-Date: 2023-05-26 10:47+0000\n"
+"PO-Revision-Date: 2023-06-06 22:59+1000\n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -50,7 +50,7 @@ msgstr ""
 "в одном столбце и представлением ASCII в другом. GHex — полезный инструмент "
 "для работы с необработанными данными."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:42
+#: data/org.gnome.GHex.appdata.xml.in.in:41
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -251,6 +251,14 @@ msgstr "Закрыть"
 #: src/find-dialog.ui:100
 msgid "Closes the find pane"
 msgstr "Закрывает панель поиска"
+
+#: src/find-options.ui:35
+msgid "_Regular expressions"
+msgstr "_Регулярные выражения"
+
+#: src/find-options.ui:44
+msgid "_Ignore case"
+msgstr "_Игнорировать регистр"
 
 #: src/find-options.ui:60
 msgid "Show:"
@@ -482,7 +490,7 @@ msgstr ""
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Смещение: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2068
+#: src/ghex-application-window.c:2079
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -508,7 +516,7 @@ msgstr ""
 "Чтобы это сообщение не появлялось, попробуйте использовать другой модуль "
 "обработки буфера."
 
-#: src/ghex-application-window.c:2125
+#: src/ghex-application-window.c:2136
 msgid "There was an error reading the file."
 msgstr "Произошла ошибка при чтении файла."
 
@@ -594,29 +602,37 @@ msgstr "_Справка"
 
 #: src/ghex-application-window.ui.in:141
 msgid "_About GHex"
-msgstr "_О приложении GHex"
+msgstr "_О приложении"
 
 #: src/ghex-application-window.ui.in:170
 msgid "Open a file for hex editing"
 msgstr "Открыть файл для редактирования в шестнадцатеричном формате"
 
-#: src/ghex-application-window.ui.in:187
+#: src/ghex-application-window.ui.in:173
+msgid "_Open"
+msgstr "_Открыть"
+
+#: src/ghex-application-window.ui.in:186
+msgid "Main Menu"
+msgstr "Главное меню"
+
+#: src/ghex-application-window.ui.in:188
 msgid "Main menu"
 msgstr "Главное меню"
 
-#: src/ghex-application-window.ui.in:197
+#: src/ghex-application-window.ui.in:198
 msgid "Find a string in the hex document"
 msgstr "Найти строку в шестнадцатеричном документе"
 
-#: src/ghex-application-window.ui.in:206
+#: src/ghex-application-window.ui.in:207
 msgid "Save document"
 msgstr "Сохранить документ"
 
-#: src/ghex-application-window.ui.in:214
+#: src/ghex-application-window.ui.in:215
 msgid "No File Loaded"
 msgstr "Файл не загружен"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:218
 msgid ""
 "• Press the Open button\n"
 "• Press Ctrl+N to start a new document\n"
@@ -630,13 +646,13 @@ msgstr ""
 "\n"
 "Или нажмите Ctrl+W, чтобы закрыть окно."
 
-#: src/ghex-application-window.ui.in:306
+#: src/ghex-application-window.ui.in:307
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Переключить режим вставки (добавлять данные в файл, а не заменять "
 "существующие)"
 
-#: src/ghex-application-window.ui.in:318
+#: src/ghex-application-window.ui.in:319
 msgid "Toggle a pane showing various numeric conversions"
 msgstr ""
 "Переключить панель, на которой показаны различные числовые преобразования"
@@ -778,10 +794,14 @@ msgid "General"
 msgstr "Основное"
 
 #: src/help-overlay.ui:194
-msgid "Show About dialog"
-msgstr "Показать окно «О приложении»"
+msgid "Show help"
+msgstr "Показать справку"
 
 #: src/help-overlay.ui:201
+msgid "Show preferences"
+msgstr "Показать параметры"
+
+#: src/help-overlay.ui:208
 msgid "Toggle insert mode"
 msgstr "Переключить режим вставки"
 
@@ -866,71 +886,71 @@ msgstr "Ошибка чтения файла"
 msgid "An error has occurred"
 msgstr "Произошла ошибка"
 
-#: src/hex-dialog.c:72
+#: src/hex-dialog.c:70
 msgid "Signed 8 bit:"
 msgstr "8 бит со знаком:"
 
-#: src/hex-dialog.c:73
+#: src/hex-dialog.c:71
 msgid "Unsigned 8 bit:"
 msgstr "8 бит без знака:"
 
-#: src/hex-dialog.c:74
+#: src/hex-dialog.c:72
 msgid "Signed 16 bit:"
 msgstr "16 бит со знаком:"
 
-#: src/hex-dialog.c:75
+#: src/hex-dialog.c:73
 msgid "Unsigned 16 bit:"
 msgstr "16 бит без знака:"
 
-#: src/hex-dialog.c:76
+#: src/hex-dialog.c:74
 msgid "Signed 32 bit:"
 msgstr "32 бита со знаком:"
 
-#: src/hex-dialog.c:77
+#: src/hex-dialog.c:75
 msgid "Unsigned 32 bit:"
 msgstr "32 бита без знака:"
 
-#: src/hex-dialog.c:78
+#: src/hex-dialog.c:76
 msgid "Signed 64 bit:"
 msgstr "64 бита со знаком:"
 
-#: src/hex-dialog.c:79
+#: src/hex-dialog.c:77
 msgid "Unsigned 64 bit:"
 msgstr "64 бита без знака:"
 
-#: src/hex-dialog.c:80
+#: src/hex-dialog.c:78
 msgid "Float 32 bit:"
 msgstr "32 бита с плавающей запятой:"
 
-#: src/hex-dialog.c:81
+#: src/hex-dialog.c:79
 msgid "Float 64 bit:"
 msgstr "64 бита с плавающей запятой:"
 
-#: src/hex-dialog.c:82
+#: src/hex-dialog.c:80
 msgid "Hexadecimal:"
 msgstr "Шестнадцатеричное:"
 
-#: src/hex-dialog.c:83
+#: src/hex-dialog.c:81
 msgid "Octal:"
 msgstr "Восьмеричное:"
 
-#: src/hex-dialog.c:84
+#: src/hex-dialog.c:82
 msgid "Binary:"
 msgstr "Двоичное:"
 
-#: src/hex-dialog.c:205
+#: src/hex-dialog.c:201
 msgid "Show little endian decoding"
 msgstr "Декодирование от младшего к старшему"
 
-#: src/hex-dialog.c:211
+#: src/hex-dialog.c:207
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Беззнаковые и вещественные как шестнадцатеричные"
 
-#: src/hex-dialog.c:217
+#: src/hex-dialog.c:213
 msgid "Stream Length:"
 msgstr "Длина потока:"
 
-#: src/hex-dialog.c:241
+#: src/hex-dialog.c:237
 msgid "FIXME: no conversion function"
 msgstr "ИСПРАВИТЬ: нет функции преобразования"
 
@@ -1150,6 +1170,9 @@ msgstr "Заменить _все"
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Заменяет все вхождения строки поиска строкой замены"
 
+#~ msgid "Show About dialog"
+#~ msgstr "Показать окно «О приложении»"
+
 #~ msgid ""
 #~ "There was an error loading the requested file. The file either no longer "
 #~ "exists, is inaccessible, or you may not have permission to access the "
@@ -1290,9 +1313,6 @@ msgstr "Заменяет все вхождения строки поиска с�
 
 #~ msgid "_Windows"
 #~ msgstr "_Окна"
-
-#~ msgid "_Open..."
-#~ msgstr "_Открыть…"
 
 #~ msgid "Open a file"
 #~ msgstr "Открыть файл"
