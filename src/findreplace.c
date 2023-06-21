@@ -512,6 +512,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 			display_error_dialog(parent,
 								 _("Can not position cursor beyond the "
 								   "end of file."));
+			return;
 		} else {
 			/* SUCCESS */
 			hex_widget_set_cursor (priv->gh, byte);
@@ -524,7 +525,9 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 					"  - a positive decimal number, or\n"
 					"  - a hex number, beginning with '0x', or\n"
 					"  - a '+' or '-' sign, followed by a relative offset"));
+		return;
 	}
+	g_signal_emit(self, signals[CLOSED], 0);
 }
 
 static void
