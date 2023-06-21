@@ -1028,6 +1028,11 @@ jump_dialog_grab_focus (GtkWidget *widget)
 {
 	JumpDialog *self = JUMP_DIALOG(widget);
 	gboolean retval;
+	GtkWindow *parent = NULL;
+
+	parent = GTK_WINDOW(gtk_widget_get_root (GTK_WIDGET(self)));
+	if (GTK_IS_WINDOW(parent))
+		gtk_window_set_default_widget (parent, self->ok);
 
 	if (gtk_event_controller_focus_contains_focus (
 				GTK_EVENT_CONTROLLER_FOCUS(self->focus_controller)))
