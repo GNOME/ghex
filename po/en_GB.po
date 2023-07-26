@@ -4,1003 +4,102 @@
 # Gareth Owen <gowen72@yahoo.com>, David Lodge <dave@cirt.net>, 2004.
 # Jen Ockwell <jenfraggleubuntu@gmai.com>, 2009.
 # Chris Leonard <cjlhomeaddress@gmail.com>, 2012.
-# Bruce Cowan <bruce@bcowan.me.uk>, 2012.
+# Bruce Cowan <bruce@bcowan.me.uk>, 2012-2023.
 # Zander Brown <zbrown@gnome.org>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex CVS\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2019-06-10 16:36+0000\n"
-"PO-Revision-Date: 2019-08-27 23:13+0100\n"
-"Last-Translator: Zander Brown <zbrown@gnome.org>\n"
+"POT-Creation-Date: 2023-05-25 16:03+0000\n"
+"PO-Revision-Date: 2023-07-26 11:11+0100\n"
+"Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: English - United Kingdom <en_GB@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.32.1\n"
+"X-Generator: Poedit 3.3.1\n"
 "X-Project-Style: gnome\n"
 
-#: data/org.gnome.GHex.appdata.xml.in:6
-#| msgid "GNOME Hexadecimal Editor"
-msgid "GNOME Hex Editor"
-msgstr "GNOME Hex Editor"
+#: data/org.gnome.GHex.appdata.xml.in.in:6
+#: src/ghex-application-window.ui.in:149
+msgid "GHex"
+msgstr "GHex"
 
-#: data/org.gnome.GHex.appdata.xml.in:7 data/org.gnome.GHex.desktop.in:5
+#: data/org.gnome.GHex.appdata.xml.in.in:7 data/org.gnome.GHex.desktop.in.in:6
 msgid "Inspect and edit binary files"
 msgstr "Inspect and edit binary files"
 
-#: data/org.gnome.GHex.appdata.xml.in:9
+#: data/org.gnome.GHex.appdata.xml.in.in:9
 msgid "GHex is a hex editor for the GNOME desktop."
 msgstr "GHex is a hex editor for the GNOME desktop."
 
-#: data/org.gnome.GHex.appdata.xml.in:12
+#: data/org.gnome.GHex.appdata.xml.in.in:12
+#| msgid ""
+#| "GHex can load raw data from binary files and display them for editing in "
+#| "the traditional hex editor view. The display is split in two columns, "
+#| "with hexadecimal values in one column and the ASCII representation in the "
+#| "other. A useful tool for working with raw data."
 msgid ""
 "GHex can load raw data from binary files and display them for editing in the "
 "traditional hex editor view. The display is split in two columns, with "
 "hexadecimal values in one column and the ASCII representation in the other. "
-"A useful tool for working with raw data."
+"GHex is a useful tool for working with raw data."
 msgstr ""
 "GHex can load raw data from binary files and display them for editing in the "
 "traditional hex editor view. The display is split in two columns, with "
 "hexadecimal values in one column and the ASCII representation in the other. "
-"A useful tool for working with raw data."
+"GHex is a useful tool for working with raw data."
 
-#: data/org.gnome.GHex.appdata.xml.in:41
-msgid "The GNOME Project"
-msgstr "The GNOME Project"
+#: data/org.gnome.GHex.appdata.xml.in.in:41
+msgid "Logan Rathbone"
+msgstr "Logan Rathbone"
 
-#: data/org.gnome.GHex.desktop.in:3 src/ghex-window.c:662
-#: src/ghex-window.c:1106
-msgid "GHex"
-msgstr "GHex"
-
-#: data/org.gnome.GHex.desktop.in:4
+#: data/org.gnome.GHex.desktop.in.in:5
 msgid "Hex Editor"
 msgstr "Hex Editor"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
-#: data/org.gnome.GHex.desktop.in:7
+#: data/org.gnome.GHex.desktop.in.in:8
 msgid "binary;debug;"
 msgstr "binary;debug;ghex;hex;"
 
-#: src/chartable.c:147
+#: src/chartable.c:152 src/find-options.ui:67
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.c:147
+#: src/chartable.c:152 src/find-options.ui:66
 msgid "Hex"
 msgstr "Hex"
 
-#: src/chartable.c:147 src/preferences.c:142
+#: src/chartable.c:152
 msgid "Decimal"
 msgstr "Decimal"
 
-#: src/chartable.c:148
+#: src/chartable.c:153
 msgid "Octal"
 msgstr "Octal"
 
-#: src/chartable.c:148
+#: src/chartable.c:153
 msgid "Binary"
 msgstr "Binary"
 
-#: src/chartable.c:164
+#: src/chartable.c:184
 msgid "Character table"
 msgstr "Character table"
 
-#: src/converter.c:232
-msgid "Base Converter"
-msgstr "Base Converter"
-
-#. entries
-#: src/converter.c:253
-msgid "_Binary:"
-msgstr "_Binary:"
-
-#: src/converter.c:255
-msgid "_Octal:"
-msgstr "_Octal:"
-
-#: src/converter.c:257
-msgid "_Decimal:"
-msgstr "_Decimal:"
-
-#: src/converter.c:259
-msgid "_Hex:"
-msgstr "_Hex:"
-
-#: src/converter.c:261
-msgid "_ASCII:"
-msgstr "_ASCII:"
-
-#. get cursor button
-#: src/converter.c:265
-msgid "_Get cursor value"
-msgstr "_Get cursor value"
-
-#: src/converter.c:279
-msgid "Get cursor value"
-msgstr "Get cursor value"
-
-#: src/converter.c:279
-msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
-msgstr "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
-
-#: src/converter.c:419
-msgid "ERROR"
-msgstr "ERROR"
-
-#: src/findreplace.c:97 src/findreplace.c:221 src/ui.c:892
-#, c-format
-msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): Find Data"
-
-#: src/findreplace.c:101 src/findreplace.c:161 src/findreplace.c:359
-msgid "Find String"
-msgstr "Find String"
-
-#: src/findreplace.c:108 src/findreplace.c:258
-msgid "Find _Next"
-msgstr "Find _Next"
-
-#: src/findreplace.c:115 src/findreplace.c:267
-msgid "Find _Previous"
-msgstr "Find _Previous"
-
-#: src/findreplace.c:138 src/findreplace.c:413
-msgid "Find Data"
-msgstr "Find Data"
-
-#: src/findreplace.c:138 src/findreplace.c:413
-msgid "Enter the hex data or ASCII data to search for"
-msgstr "Enter the hex data or ASCII data to search for"
-
-#: src/findreplace.c:139
-msgid "Find Next"
-msgstr "Find Next"
-
-#: src/findreplace.c:139 src/findreplace.c:415
-msgid "Finds the next occurrence of the search string"
-msgstr "Finds the next occurrence of the search string"
-
-#: src/findreplace.c:140
-msgid "Find previous"
-msgstr "Find previous"
-
-#: src/findreplace.c:140
-msgid "Finds the previous occurrence of the search string "
-msgstr "Finds the previous occurrence of the search string "
-
-#: src/findreplace.c:141 src/findreplace.c:418 src/findreplace.c:469
-msgid "Cancel"
-msgstr "Cancel"
-
-#: src/findreplace.c:141
-msgid "Closes find data window"
-msgstr "Closes find data window"
-
-#: src/findreplace.c:157
-#, c-format
-msgid "GHex (%s): Find Data: Add search"
-msgstr "GHex (%s): Find Data: Add search"
-
-#: src/findreplace.c:179
-msgid "Add"
-msgstr "Add"
-
-#: src/findreplace.c:235
-msgid "Search String"
-msgstr "Search String"
-
-#: src/findreplace.c:243
-msgid "Highlight Colour"
-msgstr "Highlight Colour"
-
-#: src/findreplace.c:280
-msgid "_Add New"
-msgstr "_Add New"
-
-#: src/findreplace.c:289
-msgid "_Remove Selected"
-msgstr "_Remove Selected"
-
-#: src/findreplace.c:309
-msgid "Close"
-msgstr "Close"
-
-#: src/findreplace.c:309
-msgid "Closes advanced find window"
-msgstr "Closes advanced find window"
-
-#: src/findreplace.c:355 src/ui.c:890
-#, c-format
-msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): Find & Replace Data"
-
-#: src/findreplace.c:368
-msgid "Replace With"
-msgstr "Replace With"
-
-#: src/findreplace.c:375
-msgid "Find _next"
-msgstr "Find _next"
-
-#: src/findreplace.c:383
-msgid "_Replace"
-msgstr "_Replace"
-
-#: src/findreplace.c:391
-msgid "Replace _All"
-msgstr "Replace _All"
-
-#: src/findreplace.c:414
-msgid "Replace Data"
-msgstr "Replace Data"
-
-#: src/findreplace.c:414
-msgid "Enter the hex data or ASCII data to replace with"
-msgstr "Enter the hex data or ASCII data to replace with"
-
-#: src/findreplace.c:415
-msgid "Find next"
-msgstr "Find next"
-
-#: src/findreplace.c:416
-msgid "Replace"
-msgstr "Replace"
-
-#: src/findreplace.c:416
-msgid "Replaces the search string with the replace string"
-msgstr "Replaces the search string with the replace string"
-
-#: src/findreplace.c:417
-msgid "Replace All"
-msgstr "Replace All"
-
-#: src/findreplace.c:417
-msgid "Replaces all occurrences of the search string with the replace string"
-msgstr "Replaces all occurrences of the search string with the replace string"
-
-#: src/findreplace.c:418
-msgid "Closes find and replace data window"
-msgstr "Closes find and replace data window"
-
-#: src/findreplace.c:434 src/ui.c:888
-#, c-format
-msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): Jump To Byte"
-
-#: src/findreplace.c:467
-msgid "Jump to byte"
-msgstr "Jump to byte"
-
-#: src/findreplace.c:467
-msgid "Enter the byte to jump to"
-msgstr "Enter the byte to jump to"
-
-#: src/findreplace.c:468
-msgid "OK"
-msgstr "OK"
-
-#: src/findreplace.c:468
-msgid "Jumps to the specified byte"
-msgstr "Jumps to the specified byte"
-
-#: src/findreplace.c:469
-msgid "Closes jump to byte window"
-msgstr "Closes jump to byte window"
-
-#: src/findreplace.c:532 src/findreplace.c:566 src/findreplace.c:673
-msgid "There is no active document to search!"
-msgstr "There is no active document to search!"
-
-#: src/findreplace.c:539 src/findreplace.c:573 src/findreplace.c:680
-#: src/findreplace.c:714 src/findreplace.c:759
-msgid "There is no string to search for!"
-msgstr "There is no string for which to search!"
-
-#: src/findreplace.c:551 src/findreplace.c:689 src/findreplace.c:879
-msgid "End Of File reached"
-msgstr "End of file reached"
-
-#: src/findreplace.c:552 src/findreplace.c:585 src/findreplace.c:688
-#: src/findreplace.c:880 src/findreplace.c:903
-msgid "String was not found!\n"
-msgstr "String was not found!\n"
-
-#: src/findreplace.c:584 src/findreplace.c:902
-msgid "Beginning Of File reached"
-msgstr "Beginning of file reached"
-
-#: src/findreplace.c:601
-msgid "There is no active document to move the cursor in!"
-msgstr "There is no active document in which to move the cursor!"
-
-#: src/findreplace.c:619
-msgid "No offset has been specified!"
-msgstr "No offset has been specified!"
-
-#: src/findreplace.c:644
-msgid "The specified offset is beyond the  file boundaries!"
-msgstr "The specified offset is beyond the file boundaries!"
-
-#: src/findreplace.c:652
-msgid "Can not position cursor beyond the End Of File!"
-msgstr "Can not position cursor beyond the end of the file!"
-
-#: src/findreplace.c:659
-msgid ""
-"You may only give the offset as:\n"
-"  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x', or\n"
-"  - a '+' or '-' sign, followed by a relative offset"
-msgstr ""
-"You may only give the offset as:\n"
-"  - a positive decimal number, or\n"
-"  - a hex number, beginning with '0x', or\n"
-"  - a '+' or '-' sign, followed by a relative offset"
-
-#: src/findreplace.c:705
-msgid "There is no active buffer to replace data in!"
-msgstr "There is no active buffer to replace data in!"
-
-#: src/findreplace.c:730 src/findreplace.c:731
-msgid "End Of File reached!"
-msgstr "End of file reached!"
-
-#: src/findreplace.c:750
-msgid "There is no active document to replace data in!"
-msgstr "There is no active document in which to replace data!"
-
-#: src/findreplace.c:780
-msgid "No occurrences were found."
-msgstr "No occurrences were found."
-
-#: src/findreplace.c:783
-#, c-format
-msgid "Replaced %d occurrence."
-msgid_plural "Replaced %d occurrences."
-msgstr[0] "Replaced %d occurrence."
-msgstr[1] "Replaced %d occurrences."
-
-#: src/findreplace.c:823
-msgid "No string to search for!"
-msgstr "No string to search for!"
-
-#: src/ghex-window.c:88
-#, c-format
-msgid ""
-"Can not open URI:\n"
-"%s"
-msgstr ""
-"Can not open URI:\n"
-"%s"
-
-#: src/ghex-window.c:109
-#, c-format
-msgid ""
-"Can not open file:\n"
-"%s"
-msgstr ""
-"Can not open file:\n"
-"%s"
-
-#: src/ghex-window.c:338
-msgid "_File"
-msgstr "_File"
-
-#: src/ghex-window.c:339
-msgid "_Edit"
-msgstr "_Edit"
-
-#: src/ghex-window.c:340
-msgid "_View"
-msgstr "_View"
-
-#: src/ghex-window.c:341
-msgid "_Group Data As"
-msgstr "_Group Data As"
-
-#. View submenu
-#: src/ghex-window.c:342
-msgid "_Windows"
-msgstr "_Windows"
-
-#: src/ghex-window.c:343
-msgid "_Help"
-msgstr "_Help"
-
-#. File menu
-#: src/ghex-window.c:346
-msgid "_Open..."
-msgstr "_Open…"
-
-#: src/ghex-window.c:347
-msgid "Open a file"
-msgstr "Open a file"
-
-#: src/ghex-window.c:349
-msgid "_Save"
-msgstr "_Save"
-
-#: src/ghex-window.c:350
-msgid "Save the current file"
-msgstr "Save the current file"
-
-#: src/ghex-window.c:352
-msgid "Save _As..."
-msgstr "Save _As…"
-
-#: src/ghex-window.c:353
-msgid "Save the current file with a different name"
-msgstr "Save the current file with a different name"
-
-#: src/ghex-window.c:355
-msgid "Save As _HTML..."
-msgstr "Save As _HTML…"
-
-#: src/ghex-window.c:356
-msgid "Export data to HTML source"
-msgstr "Export data to HTML source"
-
-#: src/ghex-window.c:358
-msgid "_Revert"
-msgstr "_Revert"
-
-#: src/ghex-window.c:359
-msgid "Revert to a saved version of the file"
-msgstr "Revert to a saved version of the file"
-
-#: src/ghex-window.c:361
-msgid "_Print"
-msgstr "_Print"
-
-#: src/ghex-window.c:362
-msgid "Print the current file"
-msgstr "Print the current file"
-
-#: src/ghex-window.c:364
-msgid "Print Previe_w..."
-msgstr "Print Previe_w…"
-
-#: src/ghex-window.c:365
-msgid "Preview printed data"
-msgstr "Preview printed data"
-
-#: src/ghex-window.c:367
+#: src/chartable.c:252
+#| msgid "_Insert Mode"
+msgid "_Insert Character"
+msgstr "_Insert Character"
+
+#: src/chartable.c:256 src/converter.c:186
 msgid "_Close"
 msgstr "_Close"
 
-#: src/ghex-window.c:368
-msgid "Close the current file"
-msgstr "Close the current file"
-
-#: src/ghex-window.c:370
-msgid "E_xit"
-msgstr "E_xit"
-
-#: src/ghex-window.c:371
-msgid "Exit the program"
-msgstr "Exit the program"
-
-#. Edit menu
-#: src/ghex-window.c:375
-msgid "_Undo"
-msgstr "_Undo"
-
-#: src/ghex-window.c:376
-msgid "Undo the last action"
-msgstr "Undo the last action"
-
-#: src/ghex-window.c:378
-msgid "_Redo"
-msgstr "_Redo"
-
-#: src/ghex-window.c:379
-msgid "Redo the undone action"
-msgstr "Redo the undone action"
-
-#: src/ghex-window.c:381
-msgid "_Copy"
-msgstr "_Copy"
-
-#: src/ghex-window.c:382
-msgid "Copy selection to clipboard"
-msgstr "Copy selection to clipboard"
-
-#: src/ghex-window.c:384
-msgid "Cu_t"
-msgstr "Cu_t"
-
-#: src/ghex-window.c:385
-msgid "Cut selection"
-msgstr "Cut selection"
-
-#: src/ghex-window.c:387
-msgid "Pa_ste"
-msgstr "Pa_ste"
-
-#: src/ghex-window.c:388
-msgid "Paste data from clipboard"
-msgstr "Paste data from clipboard"
-
-#: src/ghex-window.c:390
-msgid "_Find"
-msgstr "_Find"
-
-#: src/ghex-window.c:391
-msgid "Search for a string"
-msgstr "Search for a string"
-
-#: src/ghex-window.c:393
-msgid "_Advanced Find"
-msgstr "_Advanced Find"
-
-#: src/ghex-window.c:394
-msgid "Advanced Find"
-msgstr "Advanced Find"
-
-#: src/ghex-window.c:396
-msgid "R_eplace"
-msgstr "R_eplace"
-
-#: src/ghex-window.c:397
-msgid "Replace a string"
-msgstr "Replace a string"
-
-#: src/ghex-window.c:399
-msgid "_Goto Byte..."
-msgstr "_Goto Byte…"
-
-#: src/ghex-window.c:400
-msgid "Jump to a certain position"
-msgstr "Jump to a certain position"
-
-#: src/ghex-window.c:402
-msgid "_Preferences"
-msgstr "_Preferences"
-
-#: src/ghex-window.c:403
-msgid "Configure the application"
-msgstr "Configure the application"
-
-#. View menu
-#: src/ghex-window.c:407
-msgid "_Add View"
-msgstr "_Add View"
-
-#: src/ghex-window.c:408
-msgid "Add a new view to the buffer"
-msgstr "Add a new view to the buffer"
-
-#: src/ghex-window.c:410
-msgid "_Remove View"
-msgstr "_Remove View"
-
-#: src/ghex-window.c:411
-msgid "Remove the current view of the buffer"
-msgstr "Remove the current view of the buffer"
-
-#. Help menu
-#: src/ghex-window.c:415
-msgid "_Contents"
-msgstr "_Contents"
-
-#: src/ghex-window.c:416
-msgid "Help on this application"
-msgstr "Help on this application"
-
-#: src/ghex-window.c:418
-msgid "_About"
-msgstr "_About"
-
-#: src/ghex-window.c:419
-msgid "About this application"
-msgstr "About this application"
-
-#. Edit menu
-#: src/ghex-window.c:426
-msgid "_Insert Mode"
-msgstr "_Insert Mode"
-
-#: src/ghex-window.c:427
-msgid "Insert/overwrite data"
-msgstr "Insert/overwrite data"
-
-#. Windows menu
-#: src/ghex-window.c:431
-msgid "Character _Table"
-msgstr "Character _Table"
-
-#: src/ghex-window.c:432
-msgid "Show the character table"
-msgstr "Show the character table"
-
-#: src/ghex-window.c:434
-msgid "_Base Converter"
-msgstr "_Base Converter"
-
-#: src/ghex-window.c:435
-msgid "Open base conversion dialog"
-msgstr "Open base conversion dialogue"
-
-#: src/ghex-window.c:437
-msgid "Type Conversion _Dialog"
-msgstr "Type Conversion _Dialogue"
-
-#: src/ghex-window.c:438
-msgid "Show the type conversion dialog in the edit window"
-msgstr "Show the type conversion dialogue in the edit window"
-
-#: src/ghex-window.c:444 src/ui.c:48
-msgid "_Bytes"
-msgstr "_Bytes"
-
-#: src/ghex-window.c:445
-msgid "Group data by 8 bits"
-msgstr "Group data by 8 bits"
-
-#: src/ghex-window.c:446 src/ui.c:49
-msgid "_Words"
-msgstr "_Words"
-
-#: src/ghex-window.c:447
-msgid "Group data by 16 bits"
-msgstr "Group data by 16 bits"
-
-#: src/ghex-window.c:448 src/ui.c:50
-msgid "_Longwords"
-msgstr "_Longwords"
-
-#: src/ghex-window.c:449
-msgid "Group data by 32 bits"
-msgstr "Group data by 32 bits"
-
-#: src/ghex-window.c:787
-#, c-format
-msgid "Offset: %s"
-msgstr "Offset: %s"
-
-#: src/ghex-window.c:790
-#, c-format
-msgid "; %s bytes from %s to %s selected"
-msgstr "; %s bytes from %s to %s selected"
-
-#: src/ghex-window.c:1066
-#, c-format
-msgid "Activate file %s"
-msgstr "Activate file %s"
-
-#: src/ghex-window.c:1102
-#, c-format
-msgid "%s - GHex"
-msgstr "%s - GHex"
-
-#: src/ghex-window.c:1224
-msgid "Select a file to save buffer as"
-msgstr "Select a file to save buffer as"
-
-#: src/ghex-window.c:1256
-#, c-format
-msgid ""
-"File %s exists.\n"
-"Do you want to overwrite it?"
-msgstr ""
-"File %s exists.\n"
-"Do you want to overwrite it?"
-
-#: src/ghex-window.c:1282 src/ui.c:310
-#, c-format
-msgid "Saved buffer to file %s"
-msgstr "Saved buffer to file %s"
-
-#: src/ghex-window.c:1289
-msgid "Error saving file!"
-msgstr "Error saving file!"
-
-#: src/ghex-window.c:1295
-msgid "Can't open file for writing!"
-msgstr "Can't open file for writing!"
-
-#: src/ghex-window.c:1340
-#, c-format
-msgid ""
-"File %s has changed since last save.\n"
-"Do you want to save changes?"
-msgstr ""
-"File %s has changed since last save.\n"
-"Do you want to save changes?"
-
-#: src/ghex-window.c:1344
-msgid "Do_n't save"
-msgstr "Do_n't save"
-
-#: src/ghex-window.c:1364 src/ui.c:298
-msgid "You don't have the permissions to save the file!"
-msgstr "You don't have the permissions to save the file!"
-
-#: src/ghex-window.c:1368 src/ui.c:303
-msgid "An error occurred while saving file!"
-msgstr "An error occurred while saving file!"
-
-#: src/hex-dialog.c:61
-msgid "Signed 8 bit:"
-msgstr "Signed 8 bit:"
-
-#: src/hex-dialog.c:62
-msgid "Unsigned 8 bit:"
-msgstr "Unsigned 8 bit:"
-
-#: src/hex-dialog.c:63
-msgid "Signed 16 bit:"
-msgstr "Signed 16 bit:"
-
-#: src/hex-dialog.c:64
-msgid "Unsigned 16 bit:"
-msgstr "Unsigned 16 bit:"
-
-#: src/hex-dialog.c:65
-msgid "Signed 32 bit:"
-msgstr "Signed 32 bit:"
-
-#: src/hex-dialog.c:66
-msgid "Unsigned 32 bit:"
-msgstr "Unsigned 32 bit:"
-
-#: src/hex-dialog.c:67
-#| msgid "Signed 16 bit:"
-msgid "Signed 64 bit:"
-msgstr "Signed 64 bit:"
-
-#: src/hex-dialog.c:68
-#| msgid "Unsigned 16 bit:"
-msgid "Unsigned 64 bit:"
-msgstr "Unsigned 64 bit:"
-
-#: src/hex-dialog.c:69
-msgid "Float 32 bit:"
-msgstr "Float 32 bit:"
-
-#: src/hex-dialog.c:70
-msgid "Float 64 bit:"
-msgstr "Float 64 bit:"
-
-#: src/hex-dialog.c:71
-msgid "Hexadecimal:"
-msgstr "Hexadecimal:"
-
-#: src/hex-dialog.c:72
-msgid "Octal:"
-msgstr "Octal:"
-
-#: src/hex-dialog.c:73
-msgid "Binary:"
-msgstr "Binary:"
-
-#: src/hex-dialog.c:214
-msgid "Show little endian decoding"
-msgstr "Show little endian decoding"
-
-#: src/hex-dialog.c:221
-msgid "Show unsigned and float as hexadecimal"
-msgstr "Show unsigned and float as hexadecimal"
-
-#: src/hex-dialog.c:227
-msgid "Stream Length:"
-msgstr "Stream Length:"
-
-#: src/hex-dialog.c:250
-msgid "FIXME: no conversion function"
-msgstr "FIXME: no conversion function"
-
-#: src/hex-document.c:435
-msgid "New document"
-msgstr "New document"
-
-#: src/hex-document.c:784
-#, c-format
-msgid "Page"
-msgstr "Page"
-
-#: src/hex-document.c:790 src/hex-document.c:915
-#, c-format
-msgid "Hex dump generated by"
-msgstr "Hex dump generated by"
-
-#: src/hex-document.c:801
-msgid "Saving to HTML..."
-msgstr "Saving to HTML…"
-
-#: src/hex-document.c:838
-#, c-format
-msgid "Previous page"
-msgstr "Previous page"
-
-#: src/hex-document.c:853
-#, c-format
-msgid "Next page"
-msgstr "Next page"
-
-#: src/main.c:36
-msgid "X geometry specification (see \"X\" man page)."
-msgstr "X geometry specification (see \"X\" man page)."
-
-#: src/main.c:36
-msgid "GEOMETRY"
-msgstr "GEOMETRY"
-
-#: src/main.c:37
-msgid "FILES"
-msgstr "FILES"
-
-#: src/main.c:99
-msgid "- GTK+ binary editor"
-msgstr "- GTK+ binary editor"
-
-#: src/main.c:103
-#, c-format
-msgid ""
-"%s\n"
-"Run '%s --help' to see a full list of available command line options.\n"
-msgstr ""
-"%s\n"
-"Run '%s --help' to see a full list of available command line options.\n"
-
-#: src/main.c:133 src/main.c:146
-#, c-format
-msgid "Invalid geometry string \"%s\"\n"
-msgstr "Invalid geometry string \"%s\"\n"
-
-#: src/preferences.c:69
-msgid "GHex Preferences"
-msgstr "GHex Preferences"
-
-#: src/preferences.c:101
-msgid "_Maximum number of undo levels:"
-msgstr "_Maximum number of undo levels:"
-
-#: src/preferences.c:121
-msgid "Undo levels"
-msgstr "Undo levels"
-
-#: src/preferences.c:121
-msgid "Select maximum number of undo levels"
-msgstr "Select maximum number of undo levels"
-
-#: src/preferences.c:125
-msgid "_Show cursor offset in statusbar as:"
-msgstr "_Show cursor offset in statusbar as:"
-
-#: src/preferences.c:144
-msgid "Hexadecimal"
-msgstr "Hexadecimal"
-
-#: src/preferences.c:146
-msgid "Custom"
-msgstr "Custom"
-
-#: src/preferences.c:155
-msgid "Enter the cursor offset format"
-msgstr "Enter the cursor offset format"
-
-#: src/preferences.c:156
-msgid "Select the cursor offset format"
-msgstr "Select the cursor offset format"
-
-#. show offsets check button
-#: src/preferences.c:166
-msgid "Sh_ow offsets column"
-msgstr "Sh_ow offsets column"
-
-#: src/preferences.c:171
-msgid "Editing"
-msgstr "Editing"
-
-#. display font
-#: src/preferences.c:180
-msgid "Font"
-msgstr "Font"
-
-#. default group type
-#: src/preferences.c:203
-msgid "Default Group Type"
-msgstr "Default Group Type"
-
-#: src/preferences.c:219
-msgid "Display"
-msgstr "Display"
-
-#. paper selection
-#: src/preferences.c:228
-msgid "Paper size"
-msgstr "Paper size"
-
-#. data & header font selection
-#: src/preferences.c:233
-msgid "Fonts"
-msgstr "Fonts"
-
-#: src/preferences.c:245
-msgid "_Data font:"
-msgstr "_Data font:"
-
-#: src/preferences.c:259
-msgid "Data font"
-msgstr "Data font"
-
-#: src/preferences.c:259
-msgid "Select the data font"
-msgstr "Select the data font"
-
-#: src/preferences.c:268
-msgid "Header fo_nt:"
-msgstr "Header fo_nt:"
-
-#: src/preferences.c:281
-msgid "Header font"
-msgstr "Header font"
-
-#: src/preferences.c:281
-msgid "Select the header font"
-msgstr "Select the header font"
-
-#: src/preferences.c:306
-msgid "_Print shaded box over:"
-msgstr "_Print shaded box over:"
-
-#: src/preferences.c:318
-msgid "Box size"
-msgstr "Box size"
-
-#: src/preferences.c:318
-msgid "Select size of box (in number of lines)"
-msgstr "Select size of box (in number of lines)"
-
-#: src/preferences.c:322
-msgid "lines (0 for no box)"
-msgstr "lines (0 for no box)"
-
-#: src/preferences.c:329
-msgid "Printing"
-msgstr "Printing"
-
-#: src/preferences.c:447 src/ui.c:219
-#, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-"There was an error displaying help: \n"
-"%s"
-
-#: src/preferences.c:499
-msgid "Can not open desired font!"
-msgstr "Can not open desired font!"
-
-#: src/preferences.c:560
-msgid ""
-"The offset format string contains invalid format specifier.\n"
-"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
-msgstr ""
-"The offset format string contains invalid format specifier.\n"
-"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
-
-#: src/print.c:57
-#, c-format
-msgid "Page: %i/%i"
-msgstr "Page: %i/%i"
-
-#: src/ui.c:55
-msgid "hex data"
-msgstr "hex data"
-
-#: src/ui.c:56
-msgid "ASCII data"
-msgstr "ASCII data"
-
-#: src/ui.c:160
+#: src/common-ui.c:240
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -1012,7 +111,7 @@ msgstr ""
 "Software Foundation; either version 2 of the Licence, or (at your option) "
 "any later version."
 
-#: src/ui.c:164
+#: src/common-ui.c:244
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -1024,7 +123,7 @@ msgstr ""
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence for "
 "more details."
 
-#: src/ui.c:168
+#: src/common-ui.c:248
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
@@ -1036,19 +135,21 @@ msgstr ""
 
 #. Translators: these two strings here indicate the copyright time span,
 #. e.g. 1998-2018.
-#: src/ui.c:180
-msgid "Copyright © %Id–%Id The GHex authors"
-msgstr "Copyright © %Id–%Id The GHex authors"
+#: src/common-ui.c:260
+#, c-format
+#| msgid "Copyright © %Id–%Id The GHex authors"
+msgid "Copyright © %d–%d The GHex authors"
+msgstr "Copyright © %d–%d The GHex authors"
 
-#: src/ui.c:184
+#: src/common-ui.c:274
 msgid "A binary file editor"
 msgstr "A binary file editor"
 
-#: src/ui.c:190
+#: src/common-ui.c:281
 msgid "About GHex"
 msgstr "About GHex"
 
-#: src/ui.c:191
+#: src/common-ui.c:282
 msgid "translator-credits"
 msgstr ""
 "Gareth Owen <gowen72@yahoo.com>\n"
@@ -1057,52 +158,1498 @@ msgstr ""
 "Chris Leonard <cjl@laptop.org>\n"
 "Bruce Cowan <bruce@bcowan.me.uk>"
 
-#: src/ui.c:194
+#: src/common-ui.c:285
 msgid "GHex Website"
 msgstr "GHex Website"
 
-#: src/ui.c:328
+#. Translators: This is an error string for a print-related error
+#. * dialog.  The %s is the error generated by GError.
+#: src/common-ui.c:349
+#, c-format
+#| msgid "An error occurred while saving file!"
+msgid "An error has occurred: %s"
+msgstr "An error has occurred: %s"
+
+#: src/converter.c:183
+msgid "Base Converter"
+msgstr "Base Converter"
+
+#. entries
+#: src/converter.c:209
+msgid "_Binary:"
+msgstr "_Binary:"
+
+#: src/converter.c:211
+msgid "_Octal:"
+msgstr "_Octal:"
+
+#: src/converter.c:213
+msgid "_Decimal:"
+msgstr "_Decimal:"
+
+#: src/converter.c:215
+msgid "_Hex:"
+msgstr "_Hex:"
+
+#: src/converter.c:217
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+#. get cursor button
+#: src/converter.c:221
+msgid "_Get cursor value"
+msgstr "_Get cursor value"
+
+#: src/converter.c:230
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+
+#: src/converter.c:371
+msgid "ERROR"
+msgstr "ERROR"
+
+#: src/find-dialog.ui:38
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Enter the hex data or ASCII data to search for"
+
+#: src/find-dialog.ui:41
+msgid "Find String"
+msgstr "Find String"
+
+#: src/find-dialog.ui:58
+msgid "Find _Next"
+msgstr "Find _Next"
+
+#: src/find-dialog.ui:62
+msgid "Finds the next occurrence of the search string"
+msgstr "Finds the next occurrence of the search string"
+
+#: src/find-dialog.ui:67
+msgid "Find _Previous"
+msgstr "Find _Previous"
+
+#: src/find-dialog.ui:70
+#| msgid "Finds the previous occurrence of the search string "
+msgid "Finds the previous occurrence of the search string"
+msgstr "Finds the previous occurrence of the search string"
+
+#: src/find-dialog.ui:75
+msgid "_Clear"
+msgstr "_Clear"
+
+#: src/find-dialog.ui:78
+#| msgid "Enter the hex data or ASCII data to search for"
+msgid "Clears the data you are searching for"
+msgstr "Clears the data you are searching for"
+
+#: src/find-dialog.ui:88
+#| msgid "Find previous"
+msgid "Find options"
+msgstr "Find options"
+
+#: src/find-dialog.ui:89
+msgid "View options of the find pane"
+msgstr "View options of the find pane"
+
+#: src/find-dialog.ui:99 src/jump-dialog.ui:63
+msgid "Close"
+msgstr "Close"
+
+#: src/find-dialog.ui:100
+#| msgid "Closes find data window"
+msgid "Closes the find pane"
+msgstr "Closes the find pane"
+
+#: src/find-options.ui:35
+msgid "_Regular expressions"
+msgstr "_Regular expressions"
+
+#: src/find-options.ui:44
+msgid "_Ignore case"
+msgstr "_Ignore case"
+
+#: src/find-options.ui:60
+msgid "Show:"
+msgstr "Show:"
+
+#: src/find-options.ui:68
+msgid "Both"
+msgstr "Both"
+
+#: src/findreplace.c:221
+msgid "No string provided."
+msgstr "No string provided."
+
+#: src/findreplace.c:395
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+"Beginning of file reached.\n"
+"\n"
+"No further matches found."
+
+#: src/findreplace.c:397
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+"Beginning of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+
+#: src/findreplace.c:407
+msgid ""
+"End of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+"End of file reached.\n"
+"\n"
+"No further matches found."
+
+#: src/findreplace.c:409
+msgid ""
+"End of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+"End of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+
+#: src/findreplace.c:480
+#| msgid "No offset has been specified!"
+msgid "No offset has been specified."
+msgstr "No offset has been specified."
+
+#: src/findreplace.c:505
+#| msgid "The specified offset is beyond the  file boundaries!"
+msgid "The specified offset is beyond the  file boundaries."
+msgstr "The specified offset is beyond the  file boundaries."
+
+#: src/findreplace.c:513
+#| msgid "Can not position cursor beyond the End Of File!"
+msgid "Can not position cursor beyond the end of file."
+msgstr "Can not position cursor beyond the end of file."
+
+#: src/findreplace.c:523
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+
+#: src/findreplace.c:580
+#| msgid "String was not found!\n"
+msgid "String was not found."
+msgstr "String was not found."
+
+#: src/findreplace.c:644
+#, c-format
+msgid "Search complete: %d replacements made."
+msgstr "Search complete: %d replacements made."
+
+#: src/findreplace.c:651
+msgid "No occurrences were found."
+msgstr "No occurrences were found."
+
+#. Translators: this is the string for an untitled buffer that will
+#. * be displayed in the titlebar when a user does File->New
+#.
+#: src/ghex-application-window.c:49 src/hex-document.c:1057
+#| msgid "Title"
+msgid "Untitled"
+msgstr "Untitled"
+
+#: src/ghex-application-window.c:284
+#| msgid ""
+#| "There was an error displaying help: \n"
+#| "%s"
+msgid "There was an error saving the file."
+msgstr "There was an error saving the file."
+
+#: src/ghex-application-window.c:334
+msgid ""
+"<b>You have one or more files open with unsaved changes.</b>\n"
+"\n"
+"Are you sure you want to close the window?\n"
+"\n"
+msgstr ""
+"<b>You have one or more files open with unsaved changes.</b>\n"
+"\n"
+"Are you sure you want to close the window?\n"
+"\n"
+
+#: src/ghex-application-window.c:338
+#| msgid "_Close"
+msgid "_Close Anyway"
+msgstr "_Close Anyway"
+
+#: src/ghex-application-window.c:339 src/ghex-application-window.c:474
+#: src/ghex-application-window.c:1175
+msgid "_Go Back"
+msgstr "_Go Back"
+
+#. Translators: %s is the filename that is currently being
+#. * edited.
+#: src/ghex-application-window.c:452
+#, c-format
+msgid ""
+"<big><b>%s has been edited since opening.</b></big>\n"
+"\n"
+"Would you like to save your changes?"
+msgstr ""
+"<big><b>%s has been edited since opening.</b></big>\n"
+"\n"
+"Would you like to save your changes?"
+
+#: src/ghex-application-window.c:458
+msgid ""
+"<b>The buffer has been edited since opening.</b>\n"
+"\n"
+"Would you like to save your changes?"
+msgstr ""
+"<b>The buffer has been edited since opening.</b>\n"
+"\n"
+"Would you like to save your changes?"
+
+#: src/ghex-application-window.c:472
+#| msgid "Save As"
+msgid "_Save Changes"
+msgstr "_Save Changes"
+
+#: src/ghex-application-window.c:473
+msgid "_Discard Changes"
+msgstr "_Discard Changes"
+
+#: src/ghex-application-window.c:1028
+#| msgid ""
+#| "There was an error displaying help: \n"
+#| "%s"
+msgid "There was an error saving the file to the path specified."
+msgstr "There was an error saving the file to the path specified."
+
+#: src/ghex-application-window.c:1047
+msgid ""
+"An unknown error has occurred in attempting to reload the file you have just "
+"saved."
+msgstr ""
+"An unknown error has occurred in attempting to reload the file you have just "
+"saved."
+
+#: src/ghex-application-window.c:1099
+msgid "Select a file to save buffer as"
+msgstr "Select a file to save buffer as"
+
+#. Translators: %s here is the filename the user is being asked to
+#. * confirm whether they want to revert.
+#: src/ghex-application-window.c:1168
+#, c-format
+msgid ""
+"<big><b>Are you sure you want to revert %s?</b></big>\n"
+"\n"
+"Your changes will be lost.\n"
+"\n"
+"This action cannot be undone."
+msgstr ""
+"<big><b>Are you sure you want to revert %s?</b></big>\n"
+"\n"
+"Your changes will be lost.\n"
+"\n"
+"This action cannot be undone."
+
+#: src/ghex-application-window.c:1174 src/ghex-application-window.ui.in:39
+msgid "_Revert"
+msgstr "_Revert"
+
+#: src/ghex-application-window.c:1258
 msgid "Select a file to open"
 msgstr "Select a file to open"
 
-#: src/ui.c:360
+#: src/ghex-application-window.c:1363
 #, c-format
-msgid "Loaded file %s"
-msgstr "Loaded file %s"
-
-#: src/ui.c:368
-msgid "Can not open file!"
-msgstr "Can not open file!"
-
-#: src/ui.c:433
-msgid "Select path and file name for the HTML source"
-msgstr "Select path and file name for the HTML source"
-
-#: src/ui.c:465
-msgid "You need to specify a base name for the HTML files."
-msgstr "You need to specify a base name for the HTML files."
-
-#: src/ui.c:476 src/ui.c:502
-msgid "You don't have the permission to write to the selected path.\n"
-msgstr "You don't have the permission to write to the selected path.\n"
-
-#: src/ui.c:488
 msgid ""
-"Saving to HTML will overwrite some files.\n"
-"Do you want to proceed?"
+"Sorry, but help could not be opened.\n"
+"\n"
+"Various attempts were made to locate the help documentation unsuccessfully.\n"
+"\n"
+"Please ensure the application was properly installed.\n"
+"\n"
+"The specific error message is:\n"
+"\n"
+"%s"
 msgstr ""
-"Saving to HTML will overwrite some files.\n"
-"Do you want to proceed?"
+"Sorry, but help could not be opened.\n"
+"\n"
+"Various attempts were made to locate the help documentation unsuccessfully.\n"
+"\n"
+"Please ensure the application was properly installed.\n"
+"\n"
+"The specific error message is:\n"
+"\n"
+"%s"
 
-#: src/ui.c:756
+#: src/ghex-application-window.c:1439
 #, c-format
-msgid "Really revert file %s?"
-msgstr "Really revert file %s?"
+msgid ""
+"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+"<tt>0x%lX</tt> selected"
+msgstr ""
+"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+"<tt>0x%lX</tt> selected"
 
-#: src/ui.c:770
+#: src/ghex-application-window.c:1443
 #, c-format
-msgid "Reverted buffer from file %s"
-msgstr "Reverted buffer from file %s"
+msgid "Offset: <tt>0x%lX</tt>"
+msgstr "Offset: <tt>0x%lX</tt>"
+
+#: src/ghex-application-window.c:2079
+msgid ""
+"You are attempting to open a file 1GB or larger.\n"
+"\n"
+"This can make GHex and your machine unstable as the file will be loaded into "
+"memory, using the active backend.\n"
+"\n"
+"Are you sure you want to proceed?\n"
+"\n"
+"This message will not be shown again for the remainder of this GHex "
+"session.\n"
+"\n"
+"To avoid this message from appearing, try using a different buffer backend."
+msgstr ""
+"You are attempting to open a file 1GB or larger.\n"
+"\n"
+"This can make GHex and your machine unstable as the file will be loaded into "
+"memory, using the active backend.\n"
+"\n"
+"Are you sure you want to proceed?\n"
+"\n"
+"This message will not be shown again for the remainder of this GHex "
+"session.\n"
+"\n"
+"To avoid this message from appearing, try using a different buffer backend."
+
+#: src/ghex-application-window.c:2136
+#| msgid ""
+#| "There was an error displaying help: \n"
+#| "%s"
+msgid "There was an error reading the file."
+msgstr "There was an error reading the file."
+
+#: src/ghex-application-window.ui.in:31
+msgid "_New"
+msgstr "_New"
+
+#: src/ghex-application-window.ui.in:35
+#| msgid "Save As"
+msgid "Save _As"
+msgstr "Save _As"
+
+#: src/ghex-application-window.ui.in:46
+msgid "_Print"
+msgstr "_Print"
+
+#: src/ghex-application-window.ui.in:50
+#| msgid "Print Previe_w..."
+msgid "Print Previe_w"
+msgstr "Print Previe_w"
+
+#: src/ghex-application-window.ui.in:58
+#| msgid "_Replace"
+msgid "Find and _Replace"
+msgstr "Find and _Replace"
+
+#: src/ghex-application-window.ui.in:62
+#| msgid "Jump to byte"
+msgid "_Jump to Byte"
+msgstr "_Jump to Byte"
+
+#: src/ghex-application-window.ui.in:72
+msgid "_Edit"
+msgstr "_Edit"
+
+#: src/ghex-application-window.ui.in:74
+msgid "_Copy Special"
+msgstr "_Copy Special"
+
+#: src/ghex-application-window.ui.in:78
+#| msgid "_Paste"
+msgid "_Paste Special"
+msgstr "_Paste Special"
+
+#: src/ghex-application-window.ui.in:85
+msgid "_Tools"
+msgstr "_Tools"
+
+#: src/ghex-application-window.ui.in:87
+#| msgid "Character _Table"
+msgid "_Character Table"
+msgstr "_Character Table"
+
+#: src/ghex-application-window.ui.in:91
+msgid "_Base Converter"
+msgstr "_Base Converter"
+
+#: src/ghex-application-window.ui.in:98
+#| msgid "_Group Data As"
+msgid "G_roup Data As"
+msgstr "G_roup Data As"
+
+#: src/ghex-application-window.ui.in:100
+#| msgid "_Bytes"
+msgid "_Bytes (8-bit)"
+msgstr "_Bytes (8-bit)"
+
+#: src/ghex-application-window.ui.in:106
+msgid "_Words (16-bit)"
+msgstr "_Words (16-bit)"
+
+#: src/ghex-application-window.ui.in:111
+#| msgid "_Longwords"
+msgid "_Longwords (32-bit)"
+msgstr "_Longwords (32-bit)"
+
+#: src/ghex-application-window.ui.in:116
+msgid "_Quadwords (64-bit)"
+msgstr "_Quadwords (64-bit)"
+
+#: src/ghex-application-window.ui.in:126
+msgid "_Keyboard Shortcuts"
+msgstr "_Keyboard Shortcuts"
+
+#: src/ghex-application-window.ui.in:131
+msgid "_Preferences"
+msgstr "_Preferences"
+
+#: src/ghex-application-window.ui.in:136
+msgid "_Help"
+msgstr "_Help"
+
+#: src/ghex-application-window.ui.in:141
+#| msgid "About GHex"
+msgid "_About GHex"
+msgstr "_About GHex"
+
+#: src/ghex-application-window.ui.in:170
+#| msgid "Can't open file for writing!"
+msgid "Open a file for hex editing"
+msgstr "Open a file for hex editing"
+
+#: src/ghex-application-window.ui.in:173
+#| msgid "Open"
+msgid "_Open"
+msgstr "_Open"
+
+#: src/ghex-application-window.ui.in:186
+msgid "Main Menu"
+msgstr "Main Menu"
+
+#: src/ghex-application-window.ui.in:188
+msgid "Main menu"
+msgstr "Main menu"
+
+#: src/ghex-application-window.ui.in:198
+msgid "Find a string in the hex document"
+msgstr "Find a string in the hex document"
+
+#: src/ghex-application-window.ui.in:207
+#| msgid "New document"
+msgid "Save document"
+msgstr "Save document"
+
+#: src/ghex-application-window.ui.in:215
+msgid "No File Loaded"
+msgstr "No File Loaded"
+
+#: src/ghex-application-window.ui.in:218
+msgid ""
+"• Press the Open button\n"
+"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+O to browse for a document\n"
+"\n"
+"Or, press Ctrl+W to close the window."
+msgstr ""
+"• Press the Open button\n"
+"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+O to browse for a document\n"
+"\n"
+"Or, press Ctrl+W to close the window."
+
+#: src/ghex-application-window.ui.in:307
+msgid "Toggle insert mode (add data to file rather than replace existing data)"
+msgstr ""
+"Toggle insert mode (add data to file rather than replace existing data)"
+
+#: src/ghex-application-window.ui.in:319
+msgid "Toggle a pane showing various numeric conversions"
+msgstr "Toggle a pane showing various numeric conversions"
+
+#: src/gtkhex.ui:23
+msgid "Automatic geometry"
+msgstr "Automatic geometry"
+
+#: src/gtkhex.ui:33
+#| msgid "Character table"
+msgid "Characters per line:"
+msgstr "Characters per line:"
+
+#: src/gtkhex.ui:62
+msgid "_Undo"
+msgstr "_Undo"
+
+#: src/gtkhex.ui:66
+msgid "_Redo"
+msgstr "_Redo"
+
+#: src/gtkhex.ui:72
+msgid "Cu_t"
+msgstr "Cu_t"
+
+#: src/gtkhex.ui:76 src/paste-special.c:405
+msgid "_Copy"
+msgstr "_Copy"
+
+#: src/gtkhex.ui:80 src/paste-special.ui:49
+msgid "_Paste"
+msgstr "_Paste"
+
+#: src/gtkhex.ui:86
+msgid "_Geometry"
+msgstr "_Geometry"
+
+#: src/help-overlay.ui:14
+#| msgid "_File"
+msgid "Files"
+msgstr "Files"
+
+#: src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr "New blank hex buffer"
+
+#: src/help-overlay.ui:26
+#| msgid "Can't open file for writing!"
+msgid "Open a file for editing"
+msgstr "Open a file for editing"
+
+#: src/help-overlay.ui:33
+#| msgid "Save As"
+msgid "Save file"
+msgstr "Save file"
+
+#: src/help-overlay.ui:40
+#| msgid "Save As"
+msgid "Save as"
+msgstr "Save as"
+
+#: src/help-overlay.ui:47
+#| msgid "Close"
+msgid "Close tab"
+msgstr "Close tab"
+
+#: src/help-overlay.ui:54
+#| msgid "Print the current file"
+msgid "Print the hex file"
+msgstr "Print the hex file"
+
+#: src/help-overlay.ui:63
+msgid "Undo and Redo"
+msgstr "Undo and Redo"
+
+#: src/help-overlay.ui:68
+msgid "Undo"
+msgstr "Undo"
+
+#: src/help-overlay.ui:75
+msgid "Redo"
+msgstr "Redo"
+
+#: src/help-overlay.ui:84
+#| msgid "Replace"
+msgid "Find and Replace"
+msgstr "Find and Replace"
+
+#: src/help-overlay.ui:89
+msgid "Find"
+msgstr "Find"
+
+#: src/help-overlay.ui:96
+msgid "Find and replace"
+msgstr "Find and replace"
+
+#: src/help-overlay.ui:105
+msgid "Clipboard"
+msgstr "Clipboard"
+
+#: src/help-overlay.ui:110
+msgid "Copy"
+msgstr "Copy"
+
+#: src/help-overlay.ui:117
+msgid "Cut"
+msgstr "Cut"
+
+#: src/help-overlay.ui:124
+msgid "Paste"
+msgstr "Paste"
+
+#: src/help-overlay.ui:131
+msgid "Copy special"
+msgstr "Copy special"
+
+#: src/help-overlay.ui:138
+msgid "Paste special"
+msgstr "Paste special"
+
+#: src/help-overlay.ui:147
+msgid "Navigation"
+msgstr "Navigation"
+
+#: src/help-overlay.ui:152
+msgid "Toggle left (hex) display"
+msgstr "Toggle left (hex) display"
+
+#: src/help-overlay.ui:159
+msgid "Toggle right (ASCII) display"
+msgstr "Toggle right (ASCII) display"
+
+#: src/help-overlay.ui:166
+msgid "Switch to previous tab"
+msgstr "Switch to previous tab"
+
+#: src/help-overlay.ui:173
+msgid "Switch to next tab"
+msgstr "Switch to next tab"
+
+#: src/help-overlay.ui:180
+msgid "Jump to byte"
+msgstr "Jump to byte"
+
+#: src/help-overlay.ui:189
+msgid "General"
+msgstr "General"
+
+#: src/help-overlay.ui:194
+#| msgid "Show size"
+msgid "Show help"
+msgstr "Show help"
+
+#: src/help-overlay.ui:201
+#| msgid "Preferences"
+msgid "Show preferences"
+msgstr "Show preferences"
+
+#: src/help-overlay.ui:208
+#| msgid "Insert Mode"
+msgid "Toggle insert mode"
+msgstr "Toggle insert mode"
+
+#: src/hex-buffer-direct.c:42 src/hex-buffer-mmap.c:50
+msgid "The file appears to have an invalid path."
+msgstr "The file appears to have an invalid path."
+
+#. Translators:  the first '%s' is the blurb indicating some kind of an
+#. * error has occurred (eg, 'An error has occurred', and the the 2nd '%s'
+#. * is the standard error message that will be reported from the system
+#. * (eg, 'No such file or directory').
+#.
+#: src/hex-buffer-direct.c:143 src/hex-buffer-mmap.c:173
+#, c-format
+#| msgid "Offset: %s"
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: src/hex-buffer-direct.c:193
+msgid "Failed to read data from file."
+msgstr "Failed to read data from file."
+
+#: src/hex-buffer-direct.c:212 src/hex-buffer-mmap.c:587
+msgid "Unable to retrieve file or directory information"
+msgstr "Unable to retrieve file or directory information"
+
+#: src/hex-buffer-direct.c:221 src/hex-buffer-mmap.c:596
+#| msgid "Save the current file"
+msgid "Unable to create file"
+msgstr "Unable to create file"
+
+#: src/hex-buffer-direct.c:230
+msgid "Not a regular file or block device"
+msgstr "Not a regular file or block device"
+
+#: src/hex-buffer-direct.c:240 src/hex-buffer-mmap.c:616
+#| msgid "Can't open file for writing!"
+msgid "Unable to open file for reading"
+msgstr "Unable to open file for reading"
+
+#: src/hex-buffer-direct.c:404
+#| msgid "Save the current file"
+msgid "Unable to read file"
+msgstr "Unable to read file"
+
+#: src/hex-buffer-direct.c:417
+msgid "Error attempting to read block device"
+msgstr "Error attempting to read block device"
+
+#: src/hex-buffer-direct.c:527
+msgid ""
+"With direct-write mode, you cannot save a file to a path other than its "
+"originating path"
+msgstr ""
+"With direct-write mode, you cannot save a file to a path other than its "
+"originating path"
+
+#: src/hex-buffer-direct.c:552
+msgid "Error writing changes to file"
+msgstr "Error writing changes to file"
+
+#: src/hex-buffer-mmap.c:310
+#, c-format
+msgid "Could not adjust %s from %lu to %lu bytes"
+msgstr "Could not adjust %s from %lu to %lu bytes"
+
+#: src/hex-buffer-mmap.c:359
+#, c-format
+msgid "Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"
+msgstr "Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"
+
+#: src/hex-buffer-mmap.c:606
+msgid "Not a regular file"
+msgstr "Not a regular file"
+
+#: src/hex-buffer-mmap.c:647
+msgid "Failed to open temporary file."
+msgstr "Failed to open temporary file."
+
+#: src/hex-buffer-mmap.c:686
+#| msgid "Error saving file!"
+msgid "Error reading file"
+msgstr "Error reading file"
+
+#: src/hex-buffer-mmap.c:702
+msgid "An error has occurred"
+msgstr "An error has occurred"
+
+#: src/hex-dialog.c:70
+msgid "Signed 8 bit:"
+msgstr "Signed 8 bit:"
+
+#: src/hex-dialog.c:71
+msgid "Unsigned 8 bit:"
+msgstr "Unsigned 8 bit:"
+
+#: src/hex-dialog.c:72
+msgid "Signed 16 bit:"
+msgstr "Signed 16 bit:"
+
+#: src/hex-dialog.c:73
+msgid "Unsigned 16 bit:"
+msgstr "Unsigned 16 bit:"
+
+#: src/hex-dialog.c:74
+msgid "Signed 32 bit:"
+msgstr "Signed 32 bit:"
+
+#: src/hex-dialog.c:75
+msgid "Unsigned 32 bit:"
+msgstr "Unsigned 32 bit:"
+
+#: src/hex-dialog.c:76
+msgid "Signed 64 bit:"
+msgstr "Signed 64 bit:"
+
+#: src/hex-dialog.c:77
+msgid "Unsigned 64 bit:"
+msgstr "Unsigned 64 bit:"
+
+#: src/hex-dialog.c:78
+msgid "Float 32 bit:"
+msgstr "Float 32 bit:"
+
+#: src/hex-dialog.c:79
+msgid "Float 64 bit:"
+msgstr "Float 64 bit:"
+
+#: src/hex-dialog.c:80
+msgid "Hexadecimal:"
+msgstr "Hexadecimal:"
+
+#: src/hex-dialog.c:81
+msgid "Octal:"
+msgstr "Octal:"
+
+#: src/hex-dialog.c:82
+msgid "Binary:"
+msgstr "Binary:"
+
+#: src/hex-dialog.c:201
+msgid "Show little endian decoding"
+msgstr "Show little endian decoding"
+
+#: src/hex-dialog.c:207
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Show unsigned and float as hexadecimal"
+
+#: src/hex-dialog.c:213
+msgid "Stream Length:"
+msgstr "Stream Length:"
+
+#: src/hex-dialog.c:237
+msgid "FIXME: no conversion function"
+msgstr "FIXME: no conversion function"
+
+#: src/hex-document.c:1085
+#, c-format
+msgid "Page"
+msgstr "Page"
+
+#: src/hex-document.c:1091 src/hex-document.c:1194
+#, c-format
+msgid "Hex dump generated by"
+msgstr "Hex dump generated by"
+
+#: src/hex-document.c:1117
+#, c-format
+msgid "Previous page"
+msgstr "Previous page"
+
+#: src/hex-document.c:1132
+#, c-format
+msgid "Next page"
+msgstr "Next page"
+
+#: src/jump-dialog.ui:35
+#| msgid "Jump to byte"
+msgid "Jump to byte (enter offset):"
+msgstr "Jump to byte (enter offset):"
+
+#: src/jump-dialog.ui:43
+msgid ""
+"Enter the offset byte to jump to. The default is decimal format, but other "
+"format strings are supported such as hexidecimal format, if C-style notation "
+"using the '0x' prefix is used. If your string is not recognized, a dialog "
+"will be presented explaining the valid formats of strings accepted."
+msgstr ""
+"Enter the offset byte to jump to. The default is decimal format, but other "
+"format strings are supported such as hexadecimal format, if C-style notation "
+"using the '0x' prefix is used. If your string is not recognised, a dialogue "
+"will be presented explaining the valid formats of strings accepted."
+
+#: src/jump-dialog.ui:48
+msgid "_Jump"
+msgstr "_Jump"
+
+#: src/jump-dialog.ui:54
+msgid "Jumps to the specified byte"
+msgstr "Jumps to the specified byte"
+
+#: src/jump-dialog.ui:64
+#| msgid "Closes jump to byte window"
+msgid "Closes the jump-to-byte pane"
+msgstr "Closes the jump-to-byte pane"
+
+#: src/main.c:44
+#| msgid "Configure the application"
+msgid "Show the application version"
+msgstr "Show the application version"
+
+#: src/main.c:105
+#, c-format
+msgid "This is GHex, version %s\n"
+msgstr "This is GHex, version %s\n"
+
+#: src/main.c:166
+#| msgid "GHex is a hex editor for the GNOME desktop."
+msgid "GHex - A hex editor for the GNOME desktop"
+msgstr "GHex - A hex editor for the GNOME desktop"
+
+#: src/paste-special.c:220
+#, c-format
+msgid ""
+"Paste failed; invalid hex format.\n"
+"\n"
+"The string must be in the format of space-delineated hex byte pairs.\n"
+"\n"
+"For example: \"FF 3D 99 0A\""
+msgstr ""
+"Paste failed; invalid hex format.\n"
+"\n"
+"The string must be in the format of space-delineated hex byte pairs.\n"
+"\n"
+"For example: \"FF 3D 99 0A\""
+
+#: src/paste-special.c:310
+#| msgid "GHex (%s): Find Data"
+msgid "GHex Paste Data"
+msgstr "GHex Paste Data"
+
+#: src/paste-special.c:407
+msgid "Copy Special"
+msgstr "Copy Special"
+
+#: src/paste-special.c:512
+msgid "Plain text (as ASCII)"
+msgstr "Plain text (as ASCII)"
+
+#: src/paste-special.c:529
+msgid "Plain text (Unicode)"
+msgstr "Plain text (Unicode)"
+
+#: src/paste-special.c:533
+msgid "Plain text (as space-delimited hex pairs)"
+msgstr "Plain text (as space-delimited hex pairs)"
+
+#. paste_special_dialog
+#: src/paste-special.ui:28
+msgid "Paste Special"
+msgstr "Paste Special"
+
+#: src/paste-special.ui:55
+#| msgid "Cancel"
+msgid "_Cancel"
+msgstr "_Cancel"
+
+#: src/preferences.ui:28
+msgid "Preferences"
+msgstr "Preferences"
+
+#: src/preferences.ui:33
+msgid "Display"
+msgstr "Display"
+
+#: src/preferences.ui:37
+msgid "Appearance"
+msgstr "Appearance"
+
+#: src/preferences.ui:41
+msgid "Font"
+msgstr "Font"
+
+#: src/preferences.ui:53
+msgid "Dark mode"
+msgstr "Dark mode"
+
+#: src/preferences.ui:69
+msgid "Use system default"
+msgstr "Use system default"
+
+#: src/preferences.ui:83
+#| msgid "Display"
+msgid "Hex Display"
+msgstr "Hex Display"
+
+#: src/preferences.ui:87
+#| msgid "_Group Data As"
+msgid "Group data as"
+msgstr "Group data as"
+
+#: src/preferences.ui:94
+msgid "Bytes (8-bit)"
+msgstr "Bytes (8-bit)"
+
+#: src/preferences.ui:100
+msgid "Words (16-bit)"
+msgstr "Words (16-bit)"
+
+#: src/preferences.ui:106
+#| msgid "Longwords"
+msgid "Longwords (32-bit)"
+msgstr "Longwords (32-bit)"
+
+#: src/preferences.ui:112
+msgid "Quadwords (64-bit)"
+msgstr "Quadwords (64-bit)"
+
+#: src/preferences.ui:122
+#| msgid "Sh_ow offsets column"
+msgid "Show offsets column"
+msgstr "Show offsets column"
+
+#: src/preferences.ui:137
+msgid "Printing"
+msgstr "Printing"
+
+#: src/preferences.ui:141
+msgid "Fonts"
+msgstr "Fonts"
+
+#: src/preferences.ui:145
+msgid "Data font"
+msgstr "Data font"
+
+#: src/preferences.ui:156
+msgid "Header font"
+msgstr "Header font"
+
+#: src/preferences.ui:170
+msgid "Shaded rows"
+msgstr "Shaded rows"
+
+#: src/preferences.ui:174
+msgid "Print alternating shaded rows"
+msgstr "Print alternating shaded rows"
+
+#: src/preferences.ui:182
+msgid "Span across lines:"
+msgstr "Span across lines:"
+
+#: src/print.c:50
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Page: %i/%i"
+
+#: src/replace-dialog.ui:34
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Enter the hex data or ASCII data to replace with"
+
+#: src/replace-dialog.ui:37
+msgid "Replace With"
+msgstr "Replace With"
+
+#: src/replace-dialog.ui:47
+msgid "_Replace"
+msgstr "_Replace"
+
+#: src/replace-dialog.ui:50
+msgid "Replaces the search string with the replace string"
+msgstr "Replaces the search string with the replace string"
+
+#: src/replace-dialog.ui:55
+msgid "Replace _All"
+msgstr "Replace _All"
+
+#: src/replace-dialog.ui:58
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Replaces all occurrences of the search string with the replace string"
+
+#~| msgid "GNOME Hexadecimal Editor"
+#~ msgid "GNOME Hex Editor"
+#~ msgstr "GNOME Hex Editor"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "The GNOME Project"
+
+#~ msgid "Get cursor value"
+#~ msgstr "Get cursor value"
+
+#~ msgid "Find Data"
+#~ msgstr "Find Data"
+
+#~ msgid "Find Next"
+#~ msgstr "Find Next"
+
+#, c-format
+#~ msgid "GHex (%s): Find Data: Add search"
+#~ msgstr "GHex (%s): Find Data: Add search"
+
+#~ msgid "Add"
+#~ msgstr "Add"
+
+#~ msgid "Search String"
+#~ msgstr "Search String"
+
+#~ msgid "Highlight Colour"
+#~ msgstr "Highlight Colour"
+
+#~ msgid "_Add New"
+#~ msgstr "_Add New"
+
+#~ msgid "_Remove Selected"
+#~ msgstr "_Remove Selected"
+
+#~ msgid "Closes advanced find window"
+#~ msgstr "Closes advanced find window"
+
+#, c-format
+#~ msgid "GHex (%s): Find & Replace Data"
+#~ msgstr "GHex (%s): Find & Replace Data"
+
+#~ msgid "Find _next"
+#~ msgstr "Find _next"
+
+#~ msgid "Replace Data"
+#~ msgstr "Replace Data"
+
+#~ msgid "Find next"
+#~ msgstr "Find next"
+
+#~ msgid "Replace All"
+#~ msgstr "Replace All"
+
+#~ msgid "Closes find and replace data window"
+#~ msgstr "Closes find and replace data window"
+
+#, c-format
+#~ msgid "GHex (%s): Jump To Byte"
+#~ msgstr "GHex (%s): Jump To Byte"
+
+#~ msgid "Enter the byte to jump to"
+#~ msgstr "Enter the byte to jump to"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "There is no active document to search!"
+#~ msgstr "There is no active document to search!"
+
+#~ msgid "There is no string to search for!"
+#~ msgstr "There is no string for which to search!"
+
+#~ msgid "End Of File reached"
+#~ msgstr "End of file reached"
+
+#~ msgid "Beginning Of File reached"
+#~ msgstr "Beginning of file reached"
+
+#~ msgid "There is no active document to move the cursor in!"
+#~ msgstr "There is no active document in which to move the cursor!"
+
+#~ msgid "There is no active buffer to replace data in!"
+#~ msgstr "There is no active buffer to replace data in!"
+
+#~ msgid "End Of File reached!"
+#~ msgstr "End of file reached!"
+
+#~ msgid "There is no active document to replace data in!"
+#~ msgstr "There is no active document in which to replace data!"
+
+#, c-format
+#~ msgid "Replaced %d occurrence."
+#~ msgid_plural "Replaced %d occurrences."
+#~ msgstr[0] "Replaced %d occurrence."
+#~ msgstr[1] "Replaced %d occurrences."
+
+#~ msgid "No string to search for!"
+#~ msgstr "No string to search for!"
+
+#, c-format
+#~ msgid ""
+#~ "Can not open URI:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Can not open URI:\n"
+#~ "%s"
+
+#, c-format
+#~ msgid ""
+#~ "Can not open file:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Can not open file:\n"
+#~ "%s"
+
+#~ msgid "_View"
+#~ msgstr "_View"
+
+#~ msgid "_Windows"
+#~ msgstr "_Windows"
+
+#~ msgid "_Open..."
+#~ msgstr "_Open…"
+
+#~ msgid "Open a file"
+#~ msgstr "Open a file"
+
+#~ msgid "_Save"
+#~ msgstr "_Save"
+
+#~ msgid "Save _As..."
+#~ msgstr "Save _As…"
+
+#~ msgid "Save the current file with a different name"
+#~ msgstr "Save the current file with a different name"
+
+#~ msgid "Save As _HTML..."
+#~ msgstr "Save As _HTML…"
+
+#~ msgid "Export data to HTML source"
+#~ msgstr "Export data to HTML source"
+
+#~ msgid "Revert to a saved version of the file"
+#~ msgstr "Revert to a saved version of the file"
+
+#~ msgid "Preview printed data"
+#~ msgstr "Preview printed data"
+
+#~ msgid "Close the current file"
+#~ msgstr "Close the current file"
+
+#~ msgid "E_xit"
+#~ msgstr "E_xit"
+
+#~ msgid "Exit the program"
+#~ msgstr "Exit the program"
+
+#~ msgid "Undo the last action"
+#~ msgstr "Undo the last action"
+
+#~ msgid "Redo the undone action"
+#~ msgstr "Redo the undone action"
+
+#~ msgid "Copy selection to clipboard"
+#~ msgstr "Copy selection to clipboard"
+
+#~ msgid "Cut selection"
+#~ msgstr "Cut selection"
+
+#~ msgid "Pa_ste"
+#~ msgstr "Pa_ste"
+
+#~ msgid "Paste data from clipboard"
+#~ msgstr "Paste data from clipboard"
+
+#~ msgid "_Find"
+#~ msgstr "_Find"
+
+#~ msgid "Search for a string"
+#~ msgstr "Search for a string"
+
+#~ msgid "_Advanced Find"
+#~ msgstr "_Advanced Find"
+
+#~ msgid "Advanced Find"
+#~ msgstr "Advanced Find"
+
+#~ msgid "R_eplace"
+#~ msgstr "R_eplace"
+
+#~ msgid "Replace a string"
+#~ msgstr "Replace a string"
+
+#~ msgid "_Goto Byte..."
+#~ msgstr "_Goto Byte…"
+
+#~ msgid "Jump to a certain position"
+#~ msgstr "Jump to a certain position"
+
+#~ msgid "_Add View"
+#~ msgstr "_Add View"
+
+#~ msgid "Add a new view to the buffer"
+#~ msgstr "Add a new view to the buffer"
+
+#~ msgid "_Remove View"
+#~ msgstr "_Remove View"
+
+#~ msgid "Remove the current view of the buffer"
+#~ msgstr "Remove the current view of the buffer"
+
+#~ msgid "_Contents"
+#~ msgstr "_Contents"
+
+#~ msgid "Help on this application"
+#~ msgstr "Help on this application"
+
+#~ msgid "_About"
+#~ msgstr "_About"
+
+#~ msgid "About this application"
+#~ msgstr "About this application"
+
+#~ msgid "Insert/overwrite data"
+#~ msgstr "Insert/overwrite data"
+
+#~ msgid "Show the character table"
+#~ msgstr "Show the character table"
+
+#~ msgid "Open base conversion dialog"
+#~ msgstr "Open base conversion dialogue"
+
+#~ msgid "Type Conversion _Dialog"
+#~ msgstr "Type Conversion _Dialogue"
+
+#~ msgid "Show the type conversion dialog in the edit window"
+#~ msgstr "Show the type conversion dialogue in the edit window"
+
+#~ msgid "Group data by 8 bits"
+#~ msgstr "Group data by 8 bits"
+
+#~ msgid "_Words"
+#~ msgstr "_Words"
+
+#~ msgid "Group data by 16 bits"
+#~ msgstr "Group data by 16 bits"
+
+#~ msgid "Group data by 32 bits"
+#~ msgstr "Group data by 32 bits"
+
+#, c-format
+#~ msgid "; %s bytes from %s to %s selected"
+#~ msgstr "; %s bytes from %s to %s selected"
+
+#, c-format
+#~ msgid "Activate file %s"
+#~ msgstr "Activate file %s"
+
+#, c-format
+#~ msgid "%s - GHex"
+#~ msgstr "%s - GHex"
+
+#, c-format
+#~ msgid ""
+#~ "File %s exists.\n"
+#~ "Do you want to overwrite it?"
+#~ msgstr ""
+#~ "File %s exists.\n"
+#~ "Do you want to overwrite it?"
+
+#, c-format
+#~ msgid "Saved buffer to file %s"
+#~ msgstr "Saved buffer to file %s"
+
+#, c-format
+#~ msgid ""
+#~ "File %s has changed since last save.\n"
+#~ "Do you want to save changes?"
+#~ msgstr ""
+#~ "File %s has changed since last save.\n"
+#~ "Do you want to save changes?"
+
+#~ msgid "Do_n't save"
+#~ msgstr "Do_n't save"
+
+#~ msgid "You don't have the permissions to save the file!"
+#~ msgstr "You don't have the permissions to save the file!"
+
+#~ msgid "Saving to HTML..."
+#~ msgstr "Saving to HTML…"
+
+#~ msgid "X geometry specification (see \"X\" man page)."
+#~ msgstr "X geometry specification (see \"X\" man page)."
+
+#~ msgid "GEOMETRY"
+#~ msgstr "GEOMETRY"
+
+#~ msgid "FILES"
+#~ msgstr "FILES"
+
+#~ msgid "- GTK+ binary editor"
+#~ msgstr "- GTK+ binary editor"
+
+#, c-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Run '%s --help' to see a full list of available command line options.\n"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Run '%s --help' to see a full list of available command line options.\n"
+
+#, c-format
+#~ msgid "Invalid geometry string \"%s\"\n"
+#~ msgstr "Invalid geometry string \"%s\"\n"
+
+#~ msgid "GHex Preferences"
+#~ msgstr "GHex Preferences"
+
+#~ msgid "_Maximum number of undo levels:"
+#~ msgstr "_Maximum number of undo levels:"
+
+#~ msgid "Undo levels"
+#~ msgstr "Undo levels"
+
+#~ msgid "Select maximum number of undo levels"
+#~ msgstr "Select maximum number of undo levels"
+
+#~ msgid "_Show cursor offset in statusbar as:"
+#~ msgstr "_Show cursor offset in statusbar as:"
+
+#~ msgid "Hexadecimal"
+#~ msgstr "Hexadecimal"
+
+#~ msgid "Custom"
+#~ msgstr "Custom"
+
+#~ msgid "Enter the cursor offset format"
+#~ msgstr "Enter the cursor offset format"
+
+#~ msgid "Select the cursor offset format"
+#~ msgstr "Select the cursor offset format"
+
+#~ msgid "Editing"
+#~ msgstr "Editing"
+
+#~ msgid "Default Group Type"
+#~ msgstr "Default Group Type"
+
+#~ msgid "Paper size"
+#~ msgstr "Paper size"
+
+#~ msgid "_Data font:"
+#~ msgstr "_Data font:"
+
+#~ msgid "Select the data font"
+#~ msgstr "Select the data font"
+
+#~ msgid "Header fo_nt:"
+#~ msgstr "Header fo_nt:"
+
+#~ msgid "Select the header font"
+#~ msgstr "Select the header font"
+
+#~ msgid "_Print shaded box over:"
+#~ msgstr "_Print shaded box over:"
+
+#~ msgid "Box size"
+#~ msgstr "Box size"
+
+#~ msgid "Select size of box (in number of lines)"
+#~ msgstr "Select size of box (in number of lines)"
+
+#~ msgid "lines (0 for no box)"
+#~ msgstr "lines (0 for no box)"
+
+#~ msgid "Can not open desired font!"
+#~ msgstr "Can not open desired font!"
+
+#~ msgid ""
+#~ "The offset format string contains invalid format specifier.\n"
+#~ "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+#~ msgstr ""
+#~ "The offset format string contains invalid format specifier.\n"
+#~ "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+
+#~ msgid "hex data"
+#~ msgstr "hex data"
+
+#~ msgid "ASCII data"
+#~ msgstr "ASCII data"
+
+#, c-format
+#~ msgid "Loaded file %s"
+#~ msgstr "Loaded file %s"
+
+#~ msgid "Can not open file!"
+#~ msgstr "Can not open file!"
+
+#~ msgid "Select path and file name for the HTML source"
+#~ msgstr "Select path and file name for the HTML source"
+
+#~ msgid "You need to specify a base name for the HTML files."
+#~ msgstr "You need to specify a base name for the HTML files."
+
+#~ msgid "You don't have the permission to write to the selected path.\n"
+#~ msgstr "You don't have the permission to write to the selected path.\n"
+
+#~ msgid ""
+#~ "Saving to HTML will overwrite some files.\n"
+#~ "Do you want to proceed?"
+#~ msgstr ""
+#~ "Saving to HTML will overwrite some files.\n"
+#~ "Do you want to proceed?"
+
+#, c-format
+#~ msgid "Really revert file %s?"
+#~ msgstr "Really revert file %s?"
+
+#, c-format
+#~ msgid "Reverted buffer from file %s"
+#~ msgstr "Reverted buffer from file %s"
 
 #~ msgid "Add View"
 #~ msgstr "Add View"
@@ -1119,20 +1666,11 @@ msgstr "Reverted buffer from file %s"
 #~ msgid "Converter..."
 #~ msgstr "Converter..."
 
-#~ msgid "Copy"
-#~ msgstr "Copy"
-
-#~ msgid "Cut"
-#~ msgstr "Cut"
-
 #~ msgid "Exit"
 #~ msgstr "Exit"
 
 #~ msgid "Export to HTML..."
 #~ msgstr "Export to HTML..."
-
-#~ msgid "Find"
-#~ msgstr "Find"
 
 #~ msgid "Goto Byte"
 #~ msgstr "Goto Byte"
@@ -1140,29 +1678,11 @@ msgstr "Reverted buffer from file %s"
 #~ msgid "Help Chat"
 #~ msgstr "Help Chat"
 
-#~ msgid "Insert Mode"
-#~ msgstr "Insert Mode"
-
-#~ msgid "Longwords"
-#~ msgstr "Longwords"
-
-#~ msgid "Open"
-#~ msgstr "Open"
-
-#~ msgid "Paste"
-#~ msgstr "Paste"
-
-#~ msgid "Preferences"
-#~ msgstr "Preferences"
-
 #~ msgid "Print"
 #~ msgstr "Print"
 
 #~ msgid "Print Preview..."
 #~ msgstr "Print Preview..."
-
-#~ msgid "Redo"
-#~ msgstr "Redo"
 
 #~ msgid "Remove View"
 #~ msgstr "Remove View"
@@ -1173,14 +1693,8 @@ msgstr "Reverted buffer from file %s"
 #~ msgid "Save"
 #~ msgstr "Save"
 
-#~ msgid "Save As"
-#~ msgstr "Save As"
-
 #~ msgid "Type Conversion Dialog..."
 #~ msgstr "Type Conversion Dialogue..."
-
-#~ msgid "Undo"
-#~ msgstr "Undo"
 
 #~ msgid "Words"
 #~ msgstr "Words"
@@ -1209,9 +1723,6 @@ msgstr "Reverted buffer from file %s"
 #~ msgid "Pick a Font"
 #~ msgstr "Pick a Font"
 
-#~ msgid "Title"
-#~ msgstr "Title"
-
 #~ msgid "The title of the selection dialog box"
 #~ msgstr "The title of the selection dialog box"
 
@@ -1238,9 +1749,6 @@ msgstr "Reverted buffer from file %s"
 
 #~ msgid "Font size for label in font info mode"
 #~ msgstr "Font size for label in font info mode"
-
-#~ msgid "Show size"
-#~ msgstr "Show size"
 
 #~ msgid "Show size in font info mode"
 #~ msgstr "Show size in font info mode"
@@ -1281,6 +1789,3 @@ msgstr "Reverted buffer from file %s"
 
 #~ msgid "C_ut"
 #~ msgstr "C_ut"
-
-#~ msgid "_Paste"
-#~ msgstr "_Paste"
