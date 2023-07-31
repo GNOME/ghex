@@ -868,9 +868,11 @@ find_dialog_grab_focus (GtkWidget *widget)
 {
 	FindDialog *self = FIND_DIALOG(widget);
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
+	GtkWindow *parent = NULL;
 
-	if (gtk_widget_has_focus (f_priv->f_gh))
-		return FALSE;
+	parent = GTK_WINDOW(gtk_widget_get_root (GTK_WIDGET(self)));
+	if (GTK_IS_WINDOW(parent))
+		gtk_window_set_default_widget (parent, f_priv->f_next);
 
 	return gtk_widget_grab_focus (f_priv->f_gh);
 }
