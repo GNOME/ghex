@@ -39,6 +39,7 @@
 						<property name="max-length">19</property> <!-- enough chars for 64-bit offset + 2 for '0x' + 1 for +/- -->
 						<property name="width-chars">19</property>
 						<property name="max-width-chars">20</property>
+						<property name="activates-default">true</property>
 						<accessibility>
 							<property name="description" translatable="yes">Enter the offset byte to jump to. The default is decimal format, but other format strings are supported such as hexadecimal format, if C-style notation using the '0x' prefix is used. If your string is not recognized, a dialog will be presented explaining the valid formats of strings accepted.</property>
 						</accessibility>

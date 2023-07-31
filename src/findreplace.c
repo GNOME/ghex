@@ -512,6 +512,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 			display_error_dialog(parent,
 								 _("Can not position cursor beyond the "
 								   "end of file."));
+			return;
 		} else {
 			/* SUCCESS */
 			hex_widget_set_cursor (priv->gh, byte);
@@ -524,7 +525,9 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 					"  - a positive decimal number, or\n"
 					"  - a hex number, beginning with '0x', or\n"
 					"  - a '+' or '-' sign, followed by a relative offset"));
+		return;
 	}
+	g_signal_emit(self, signals[CLOSED], 0);
 }
 
 static void
@@ -1025,6 +1028,11 @@ jump_dialog_grab_focus (GtkWidget *widget)
 {
 	JumpDialog *self = JUMP_DIALOG(widget);
 	gboolean retval;
+	GtkWindow *parent = NULL;
+
+	parent = GTK_WINDOW(gtk_widget_get_root (GTK_WIDGET(self)));
+	if (GTK_IS_WINDOW(parent))
+		gtk_window_set_default_widget (parent, self->ok);
 
 	if (gtk_event_controller_focus_contains_focus (
 				GTK_EVENT_CONTROLLER_FOCUS(self->focus_controller)))
