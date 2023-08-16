@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-05-25 15:52+0000\n"
-"PO-Revision-Date: 2023-05-25 20:51+0200\n"
+"POT-Creation-Date: 2023-07-31 19:59+0000\n"
+"PO-Revision-Date: 2023-08-16 23:10+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
 #: src/ghex-application-window.ui.in:149
@@ -245,7 +245,7 @@ msgstr "Sökalternativ"
 msgid "View options of the find pane"
 msgstr "Visa alternativ för sökpanelen"
 
-#: src/find-dialog.ui:99 src/jump-dialog.ui:63
+#: src/find-dialog.ui:99 src/jump-dialog.ui:64
 msgid "Close"
 msgstr "Stäng"
 
@@ -326,7 +326,7 @@ msgstr "Den angivna positionen ligger utanför filgränserna."
 msgid "Can not position cursor beyond the end of file."
 msgstr "Kan inte placera markören efter filslutet."
 
-#: src/findreplace.c:523
+#: src/findreplace.c:524
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
@@ -338,16 +338,16 @@ msgstr ""
 "  - ett hexadecimalt nummer, som börjar med ”0x” eller\n"
 "  - ett ”+” eller ”-”-tecken, följt av en relativ position"
 
-#: src/findreplace.c:580
+#: src/findreplace.c:583
 msgid "String was not found."
 msgstr "Strängen hittades inte."
 
-#: src/findreplace.c:644
+#: src/findreplace.c:647
 #, c-format
 msgid "Search complete: %d replacements made."
 msgstr "Sökning slutförd: %d ersättningar gjorda."
 
-#: src/findreplace.c:651
+#: src/findreplace.c:654
 msgid "No occurrences were found."
 msgstr "Inga förekomster hittades."
 
@@ -988,27 +988,27 @@ msgstr "Nästa sida"
 msgid "Jump to byte (enter offset):"
 msgstr "Hoppa till byte (ange position):"
 
-#: src/jump-dialog.ui:43
+#: src/jump-dialog.ui:44
 msgid ""
 "Enter the offset byte to jump to. The default is decimal format, but other "
-"format strings are supported such as hexidecimal format, if C-style notation "
+"format strings are supported such as hexadecimal format, if C-style notation "
 "using the '0x' prefix is used. If your string is not recognized, a dialog "
 "will be presented explaining the valid formats of strings accepted."
 msgstr ""
 "Ange positionsbyten att hoppa till. Standard är decimalformat, men andra "
-"formatsträngar stöds, såsom hexidecimalt format om notation i C-stil med "
+"formatsträngar stöds, såsom hexadecimalt format om notation i C-stil med "
 "prefixet ”0x” används. Om din sträng inte känns igen kommer en dialogruta "
 "att visas som förklarar de giltiga strängformaten som accepteras."
 
-#: src/jump-dialog.ui:48
+#: src/jump-dialog.ui:49
 msgid "_Jump"
 msgstr "_Hoppa"
 
-#: src/jump-dialog.ui:54
+#: src/jump-dialog.ui:55
 msgid "Jumps to the specified byte"
 msgstr "Hoppar till den angivna byten"
 
-#: src/jump-dialog.ui:64
+#: src/jump-dialog.ui:65
 msgid "Closes the jump-to-byte pane"
 msgstr "Stänger hoppa-till-byte-fönstret"
 
