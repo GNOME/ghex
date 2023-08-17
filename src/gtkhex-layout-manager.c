@@ -24,6 +24,8 @@
 
 #include "gtkhex-layout-manager.h"
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 #define DEFAULT_OFFSET_CPL	8
 
 struct _HexWidgetLayout {
@@ -561,3 +563,5 @@ hex_widget_layout_util_hex_cpl_from_ascii_cpl (int ascii_cpl,
 {
 	return ascii_cpl * 2 + ascii_cpl / group_type;
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS

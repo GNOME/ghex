@@ -34,6 +34,9 @@
 
 #include <config.h>
 
+/* TODO: Replace GtkTreeView usage */
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 /* STATIC GLOBALS */
 
 static GtkTreeSelection *sel_row = NULL;
@@ -278,3 +281,5 @@ GtkWidget *create_char_table (GtkWindow *parent_win, HexWidget *gh)
 
 	return ct;
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS

@@ -34,6 +34,7 @@
 #define GHEX_CONVERTER_H
 
 #include <gtk/gtk.h>
+#include <adwaita.h>
 
 G_BEGIN_DECLS
 

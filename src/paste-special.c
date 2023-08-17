@@ -247,7 +247,7 @@ delimited_paste_received_cb (GObject *source_object,
 		g_debug ("%s: Received invalid delimeter string. Returning.",
 				__func__);
 		if (err) {
-			display_error_dialog (GTK_WINDOW(app_window), err->message);
+			display_dialog (GTK_WINDOW(app_window), err->message);
 			g_error_free (err);
 		}
 		return;

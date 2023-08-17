@@ -182,8 +182,12 @@ set_css_provider_font_from_settings (void)
 	desc = pango_font_description_from_string (def_font_name);
 	css_str = pango_font_description_to_css (desc, ".hex");
 
+	/* TODO: Move to gtk_uri_launcher_launch - requires gtk >= 4.10 */
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	gtk_css_provider_load_from_data (global_provider,
 			css_str, -1);
+	G_GNUC_END_IGNORE_DEPRECATIONS
+
 	g_free (css_str);
 }
 
@@ -204,9 +208,11 @@ common_set_gtkhex_font_from_settings (HexWidget *gh)
 void
 common_help_cb (GtkWindow *parent)
 {
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	gtk_show_uri (parent,
 	              "help:ghex",
 	              GDK_CURRENT_TIME);
+	G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 void
@@ -349,7 +355,7 @@ common_print (GtkWindow *parent, HexWidget *gh, gboolean preview)
 		tmp = g_strdup_printf (_("An error has occurred: %s"),
 					error->message);
 
-		display_error_dialog (parent, tmp);
+		display_dialog (parent, tmp);
 		
 		g_free (tmp);
 		g_error_free (error);
@@ -358,37 +364,17 @@ common_print (GtkWindow *parent, HexWidget *gh, gboolean preview)
 	g_free (basename);
 }
 
-static void
-display_dialog (GtkWindow *parent, const char *msg, GtkMessageType type)
+void
+display_dialog (GtkWindow *parent, const char *msg)
 {
 	GtkWidget *dialog;
 
 	g_return_if_fail (GTK_IS_WINDOW(parent));
 	g_return_if_fail (msg);
 
-	dialog = gtk_message_dialog_new (parent,
-			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-			type,
-			GTK_BUTTONS_CLOSE,
-			"%s", msg);
-
-	gtk_dialog_set_default_response (GTK_DIALOG (dialog),
-			GTK_RESPONSE_CLOSE);
-	gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-	gtk_widget_show (dialog);
-
-	g_signal_connect (dialog, "response",
-			G_CALLBACK (gtk_window_destroy), NULL);
-}
-
-void
-display_error_dialog (GtkWindow *parent, const char *msg)
-{
-	display_dialog (parent, msg, GTK_MESSAGE_ERROR);
-}
-
-void
-display_info_dialog (GtkWindow *parent, const char *msg)
-{
-	display_dialog (parent, msg, GTK_MESSAGE_INFO);
+	dialog = adw_message_dialog_new (parent, NULL, msg);
+	adw_message_dialog_add_response (ADW_MESSAGE_DIALOG(dialog), "close", _("Close"));
+	adw_message_dialog_set_default_response (ADW_MESSAGE_DIALOG(dialog), "close");
+	g_signal_connect (dialog, "response", G_CALLBACK(gtk_window_destroy), NULL);
+	gtk_window_present (GTK_WINDOW(dialog));
 }

@@ -165,7 +165,9 @@ find_options_show_pane_changed_cb (GtkComboBox *cb, gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	const char *active_id = gtk_combo_box_get_active_id (cb);
+	G_GNUC_END_IGNORE_DEPRECATIONS
 	gboolean show_ascii, show_hex;
 
 	if (g_strcmp0 (active_id, "ascii") == 0)
@@ -217,8 +219,7 @@ common_cancel_cb (GtkButton *button, gpointer user_data)
 static void
 no_string_dialog (GtkWindow *parent)
 {
-	display_error_dialog (parent,
-			_("No string provided."));
+	display_dialog (parent, _("No string provided."));
 }
 
 static void
@@ -309,7 +310,7 @@ find_ready_cb (GObject *source_object,
 	}
 	else
 	{
-		display_info_dialog (parent,
+		display_dialog (parent,
 			f_priv->found ? find_data->found_msg : find_data->not_found_msg);
 
 		f_priv->found = FALSE;
@@ -477,7 +478,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	}
 	
 	if (len == 0) {
-		display_error_dialog (parent, _("No offset has been specified."));
+		display_dialog (parent, _("No offset has been specified."));
 		return;
 	}
 
@@ -501,7 +502,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 		(sscanf(byte_str, "%ld", &byte) == 1))) {
 		if(is_relative) {
 			if(is_relative == -1 && byte > cursor_pos) {
-				display_error_dialog(parent,
+				display_dialog (parent,
 								 _("The specified offset is beyond the "
 								" file boundaries."));
 				return;
@@ -509,7 +510,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 			byte = byte * is_relative + cursor_pos;
 		}
 		if (byte >= payload) {
-			display_error_dialog(parent,
+			display_dialog (parent,
 								 _("Can not position cursor beyond the "
 								   "end of file."));
 			return;
@@ -520,7 +521,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 		}
 	}
 	else {
-		display_error_dialog(parent,
+		display_dialog (parent,
 				_("You may only give the offset as:\n"
 					"  - a positive decimal number, or\n"
 					"  - a hex number, beginning with '0x', or\n"
@@ -580,7 +581,7 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	}
 	else
 	{
-		display_info_dialog (parent, _("String was not found."));
+		display_dialog (parent, _("String was not found."));
 	}
 
 clean_up:
@@ -646,12 +647,12 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 		char *msg;
 		msg = g_strdup_printf (_("Search complete: %d replacements made."),
 					count);
-		display_info_dialog (parent, msg);
+		display_dialog (parent, msg);
 		g_free (msg);
 	}
 	else
 	{
-		display_info_dialog (parent, _("No occurrences were found."));
+		display_dialog (parent, _("No occurrences were found."));
 	}
 	
 clean_up:

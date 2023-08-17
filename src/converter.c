@@ -156,12 +156,6 @@ create_converter_entry(const gchar *name, GtkWidget *grid, gint pos, gint base)
        
 	return entry;
 }
-       
-static void
-close_converter(GtkWidget *dialog, int response_id, gpointer user_data)
-{
-	g_signal_emit_by_name (dialog, "close", G_TYPE_NONE);
-}
 
 GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
 		HexWidget *gh)
@@ -169,6 +163,7 @@ GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
 	Converter *conv;
 	GtkWidget *grid;
 	GtkWidget *converter_get;
+	GtkWidget *close_btn;
 	int i;
  
 	conv = g_new0(Converter, 1);
@@ -180,31 +175,17 @@ GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
 	g_assert (HEX_IS_WIDGET(gh));
 	conv->gh = gh;
 
-	conv->window = gtk_dialog_new_with_buttons(_("Base Converter"),
-						/* don't set modal _now_; will be done by app window */
-											   NULL, 0,
-											   _("_Close"),
-											   GTK_RESPONSE_CLOSE,
-											   NULL);
-
-	if (parent_win) {
-		g_assert (GTK_IS_WINDOW (parent_win));
-
-		gtk_window_set_transient_for (GTK_WINDOW(conv->window), parent_win);
-	}
-
-	g_signal_connect(G_OBJECT(conv->window), "response",
-					 G_CALLBACK(close_converter), conv->window);
+	conv->window = gtk_window_new ();
+	gtk_window_set_transient_for (GTK_WINDOW(conv->window), parent_win);
+	gtk_window_set_title (GTK_WINDOW(conv->window), _("Base Converter"));
 
 	grid = gtk_grid_new ();
 	gtk_widget_set_name (grid, "converter-grid");
 	gtk_grid_set_row_spacing (GTK_GRID (grid), 4);
 	gtk_grid_set_column_spacing (GTK_GRID (grid), 4);
-	gtk_box_append (GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(conv->window))),
-			grid);
-	gtk_box_set_spacing(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(conv->window))),
-			2);
-	
+
+	gtk_window_set_child (GTK_WINDOW(conv->window), grid);
+
 	/* entries */
 	conv->entry[0] = create_converter_entry (_("_Binary:"), grid,
 											 0, 2);
@@ -219,11 +200,13 @@ GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
 
 	/* get cursor button */
 	converter_get = gtk_button_new_with_mnemonic (_("_Get cursor value"));
+	close_btn = gtk_button_new_with_mnemonic (_("_Close"));
 
-	g_signal_connect(G_OBJECT(converter_get), "clicked",
-					 G_CALLBACK(get_cursor_val_cb), conv);
+	g_signal_connect (converter_get, "clicked", G_CALLBACK(get_cursor_val_cb), conv);
+	g_signal_connect_swapped (close_btn, "clicked", G_CALLBACK(gtk_window_close), conv->window);
 
 	gtk_grid_attach (GTK_GRID (grid), converter_get, 0, 5, 2, 1);
+	gtk_grid_attach (GTK_GRID (grid), close_btn, 0, 6, 2, 1);
 
 	gtk_accessible_update_property (GTK_ACCESSIBLE(converter_get),
 			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,

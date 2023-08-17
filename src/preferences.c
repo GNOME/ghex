@@ -199,7 +199,9 @@ font_set_cb (GtkFontButton *widget,
 					__func__);
 			break;
 	}
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	tmp = gtk_font_chooser_get_font (chooser);
+	G_GNUC_END_IGNORE_DEPRECATIONS
 
 	if (tmp) {
 		g_settings_set_string (settings,
@@ -221,9 +223,11 @@ monospace_only (GtkWidget *font_button)
 
 	g_return_if_fail (GTK_IS_FONT_CHOOSER (chooser));
 
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	gtk_font_chooser_set_filter_func (chooser,
 			(GtkFontFilterFunc)monospace_font_filter,
 			NULL, NULL);	/* no user data, no destroy func for same. */
+	G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static gboolean
@@ -324,8 +328,10 @@ grab_widget_values_from_settings (void)
 	AdwStyleManager *manager = adw_style_manager_get_default ();
 
 	/* font_button */
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(font_button),
 			def_font_name);
+	G_GNUC_END_IGNORE_DEPRECATIONS
 
 	/* dark mode stuff */
 
@@ -347,6 +353,7 @@ grab_widget_values_from_settings (void)
 				def_dark_mode == DARK_MODE_ON ? TRUE : FALSE);
 	}
 
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	/* data_font_button */
 	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(data_font_button),
 			data_font_name);
@@ -354,6 +361,7 @@ grab_widget_values_from_settings (void)
 	/* header_font_button */
 	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(header_font_button),
 			header_font_name);
+	G_GNUC_END_IGNORE_DEPRECATIONS
 
 	/* show_offsets_chkbtn */
 	gtk_check_button_set_active (GTK_CHECK_BUTTON(show_offsets_chkbtn),

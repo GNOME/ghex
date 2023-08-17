@@ -381,10 +381,18 @@ hex_buffer_util_new (const char *plugin, GFile *file)
 		return hex_buffer_malloc_new (file);
 	}
 
+/* g_module_build_path has been deprecated as of glib 2.76, but the behaviour
+ * of g_module_open has also been changed^W improved. Since it's unclear at
+ * this point whether these improvements are backwards-compatible, we use the
+ * legacy functions for now until the changes have had some time to cook for a
+ * while.
+ */
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	plugin_soname = g_strdup_printf ("hex-buffer-%s", plugin);
 	plugin_path = g_module_build_path (PACKAGE_PLUGINDIR, plugin_soname);
 	symbol_name = g_strdup_printf ("hex_buffer_%s_new", plugin);
 	module = g_module_open (plugin_path, G_MODULE_BIND_LAZY);
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 	if (! module)
 	{

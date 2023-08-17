@@ -2,7 +2,7 @@
  * -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* ghex-application-window.c - GHex main application window
 
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2023 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -286,7 +286,7 @@ file_save_write_cb (HexDocument *doc,
 		if (local_error)
 			g_string_append_printf (full_errmsg, "\n\n%s", local_error->message);
 
-		display_error_dialog (GTK_WINDOW(self), full_errmsg->str);
+		display_dialog (GTK_WINDOW(self), full_errmsg->str);
 
 		g_string_free (full_errmsg, TRUE);
 	}
@@ -307,42 +307,37 @@ file_save (GHexApplicationWindow *self)
 }
 
 static void
-close_all_tabs_response_cb (GtkDialog *dialog,
-		int        response_id,
-		gpointer   user_data)
+close_all_tabs_response_cb (AdwMessageDialog *dialog,
+		const char *response,
+		GHexApplicationWindow *self)
 {
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-	
 	/* Regardless of what the user chose, get rid of the dialog. */
-	gtk_window_destroy (GTK_WINDOW(dialog));
+	gtk_window_close (GTK_WINDOW(dialog));
 
-	if (response_id == GTK_RESPONSE_ACCEPT)
-	{
+	if (g_strcmp0 (response, "accept") == 0)
 		gtk_window_destroy (GTK_WINDOW(self));
-	}
 }
 
 static void
 close_all_tabs_confirmation_dialog (GHexApplicationWindow *self)
 {
-	GtkWidget *dialog;
+	GtkWidget *dialog = adw_message_dialog_new (GTK_WINDOW(self), NULL, NULL);
 
-	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
-			GTK_DIALOG_MODAL,
-			GTK_MESSAGE_QUESTION,
-			GTK_BUTTONS_NONE,
-			(_("<b>You have one or more files open with unsaved changes.</b>\n\n"
-			   "Are you sure you want to close the window?\n\n")));
-
-	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
-			_("_Close Anyway"),		GTK_RESPONSE_ACCEPT,
-			_("_Go Back"),			GTK_RESPONSE_REJECT,
+	adw_message_dialog_format_body_markup (ADW_MESSAGE_DIALOG(dialog),
+			_("<b>You have one or more files open with unsaved changes.</b>\n\n"
+			   "Are you sure you want to close the window?\n\n"));
+	adw_message_dialog_add_responses (ADW_MESSAGE_DIALOG(dialog),
+			"accept", _("_Close Anyway"),
+			"reject", _("_Go Back"),
 			NULL);
+	/* workaround since AdwMessageDialog sets destroy-with-parent to true, which
+	 * can cause runtime errors upon exit. See: https://discourse.gnome.org/t/glib-gobject-critical-and-glib-gobject-warning-messages/9909
+	 */
+	gtk_window_set_destroy_with_parent (GTK_WINDOW(dialog), FALSE);
 
-	g_signal_connect (dialog, "response",
-			G_CALLBACK(close_all_tabs_response_cb), self);
+	g_signal_connect (dialog, "response", G_CALLBACK(close_all_tabs_response_cb), self);
 
-	gtk_widget_show (dialog);
+	gtk_window_present (GTK_WINDOW(dialog));
 }
 
 static void
@@ -404,19 +399,18 @@ close_page_finish_helper (GHexApplicationWindow *self, AdwTabView *tab_view, Adw
 
 static void
 close_doc_response_cb (GtkDialog *dialog,
-		int        response_id,
-		gpointer   user_data)
+		const char *response,
+		GHexApplicationWindow *self)
 {
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
 	AdwTabPage *page = g_object_get_data (G_OBJECT(self), "target-page");
 	
-	if (response_id == GTK_RESPONSE_ACCEPT)
+	if (g_strcmp0 (response, "accept") == 0)
 	{
 		file_save (self);
 		close_page_finish_helper (self, tab_view, page, TRUE);
 	}
-	else if (response_id == GTK_RESPONSE_REJECT)
+	else if (g_strcmp0 (response, "reject") == 0)
 	{
 		close_page_finish_helper (self, tab_view, page, TRUE);
 	}
@@ -459,28 +453,23 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 			   "Would you like to save your changes?"));
 	}
 
-	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
-			GTK_DIALOG_MODAL,
-			GTK_MESSAGE_QUESTION,
-			GTK_BUTTONS_NONE,
-			NULL);
-	gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (dialog),
-			message);
+	dialog = adw_message_dialog_new (GTK_WINDOW(self), NULL, NULL);
+	adw_message_dialog_set_body_use_markup (ADW_MESSAGE_DIALOG(dialog), TRUE);
+	adw_message_dialog_set_body (ADW_MESSAGE_DIALOG(dialog), message);
+
 	g_free (message);
 
-	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
-			_("_Save Changes"),		GTK_RESPONSE_ACCEPT,
-			_("_Discard Changes"),	GTK_RESPONSE_REJECT,
-			_("_Go Back"),			GTK_RESPONSE_CANCEL,
+	adw_message_dialog_add_responses (ADW_MESSAGE_DIALOG(dialog),
+			"accept", _("_Save Changes"),
+			"reject", _("_Discard Changes"),
+			"cancel", _("_Go Back"),
 			NULL);
-	gtk_dialog_set_default_response (GTK_DIALOG(dialog), GTK_RESPONSE_CANCEL);
+	adw_message_dialog_set_default_response (ADW_MESSAGE_DIALOG(dialog), "cancel");
+	g_signal_connect (dialog, "response", G_CALLBACK(close_doc_response_cb), self);
 
 	g_object_set_data (G_OBJECT(self), "target-page", page);
 
-	g_signal_connect (dialog, "response",
-			G_CALLBACK(close_doc_response_cb), self);
-
-	gtk_widget_show (dialog);
+	gtk_window_present (GTK_WINDOW(dialog));
 }
 
 static void
@@ -574,15 +563,15 @@ assess_can_save (HexDocument *doc)
 static void
 show_hex_tab_view (GHexApplicationWindow *self)
 {
-	gtk_widget_hide (self->no_doc_label);
-	gtk_widget_show (self->child_box);
+	gtk_widget_set_visible (self->no_doc_label, FALSE);
+	gtk_widget_set_visible (self->child_box, TRUE);
 }
 
 static void
 show_no_file_loaded_label (GHexApplicationWindow *self)
 {
-	gtk_widget_hide (self->child_box);
-	gtk_widget_show (self->no_doc_label);
+	gtk_widget_set_visible (self->child_box, FALSE);
+	gtk_widget_set_visible (self->no_doc_label, TRUE);
 }
 
 static void
@@ -762,22 +751,12 @@ pane_close_cb (PaneDialog *pane, gpointer user_data)
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_JUMP_OPEN]);
 }
 
-static void
-chartable_close_cb (GtkWindow *window,
-		gpointer user_data)
+static gboolean
+chartable_close_cb (GHexApplicationWindow *self)
 {
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-
 	ghex_application_window_set_show_chartable (self, FALSE);
-}
 
-static void
-converter_close_cb (GtkWindow *window,
-		gpointer user_data)
-{
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-
-	ghex_application_window_set_show_converter (self, FALSE);
+	return GDK_EVENT_STOP;
 }
 
 static void
@@ -787,8 +766,16 @@ setup_chartable (GHexApplicationWindow *self)
 
 	self->chartable = create_char_table (GTK_WINDOW(self), ACTIVE_GH);
 
-    g_signal_connect(self->chartable, "close-request",
+    g_signal_connect_swapped (self->chartable, "close-request",
                      G_CALLBACK(chartable_close_cb), self);
+}
+
+static gboolean
+converter_close_cb (GHexApplicationWindow *self)
+{
+	ghex_application_window_set_show_converter (self, FALSE);
+
+	return GDK_EVENT_STOP;
 }
 
 static void
@@ -798,8 +785,8 @@ setup_converter (GHexApplicationWindow *self)
 
 	self->converter = create_converter (GTK_WINDOW(self), ACTIVE_GH);
 
-	g_signal_connect(self->converter, "close-request",
-                     G_CALLBACK(converter_close_cb), self);
+    g_signal_connect_swapped (self->converter, "close-request",
+			G_CALLBACK(converter_close_cb), self);
 }
 
 static void
@@ -921,13 +908,13 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,	\
 		if (! GTK_IS_WIDGET(self->WIDGET)) {								\
 			SETUP_FUNC;														\
 		}																	\
-		gtk_widget_show (self->WIDGET);										\
+		gtk_widget_set_visible (self->WIDGET, TRUE);						\
 	}																		\
 	else																	\
 	{																		\
 		if (GTK_IS_WIDGET (self->WIDGET) &&									\
 				gtk_widget_is_visible (self->WIDGET)) {						\
-			gtk_widget_hide (self->WIDGET);									\
+			gtk_widget_set_visible (self->WIDGET, FALSE);					\
 			gtk_widget_grab_focus (GTK_WIDGET(ACTIVE_GH));					\
 		}																	\
 	}																		\
@@ -946,9 +933,9 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,			\
 		gboolean show)																\
 {																					\
 	if (show) {																		\
-		gtk_widget_hide (self->OTHER1 ## _dialog);									\
-		gtk_widget_hide (self->OTHER2 ## _dialog);									\
-		gtk_widget_show (self->WIDGET ## _dialog);									\
+		gtk_widget_set_visible (self->OTHER1 ## _dialog, FALSE);					\
+		gtk_widget_set_visible (self->OTHER2 ## _dialog, FALSE);					\
+		gtk_widget_set_visible (self->WIDGET ## _dialog, TRUE);						\
 		gtk_widget_grab_focus (self->WIDGET ## _dialog);							\
 		if (! gtk_revealer_get_reveal_child (GTK_REVEALER(self->findreplace_revealer)))	\
 		{																			\
@@ -1030,7 +1017,7 @@ save_as_write_to_file_cb (HexDocument *doc,
 		if (local_error)
 			g_string_append_printf (full_errmsg, "\n\n%s", local_error->message);
 
-		display_error_dialog (GTK_WINDOW(self), full_errmsg->str);
+		display_dialog (GTK_WINDOW(self), full_errmsg->str);
 
 		g_string_free (full_errmsg, TRUE);
 		return;
@@ -1043,12 +1030,13 @@ save_as_write_to_file_cb (HexDocument *doc,
 	}
 	else
 	{
-		display_error_dialog (GTK_WINDOW(self),
+		display_dialog (GTK_WINDOW(self),
 				_("An unknown error has occurred in attempting to reload the "
 					"file you have just saved."));
 	}
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 /* save_as helper */
 static void
 save_as_response_cb (GtkNativeDialog *dialog,
@@ -1115,17 +1103,16 @@ save_as (GtkWidget *widget,
 
 	gtk_native_dialog_show (GTK_NATIVE_DIALOG(file_sel));
 }
-
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
 revert_response_cb (GtkDialog *dialog,
-		int response_id,
-		gpointer user_data)
+		const char *response,
+		GHexApplicationWindow *self)
 {
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 	HexDocument *doc;
 
-	if (response_id != GTK_RESPONSE_ACCEPT)
+	if (g_strcmp0 (response, "accept") != 0)
 		goto end;
 
 	doc = hex_widget_get_document (ACTIVE_GH);
@@ -1159,27 +1146,24 @@ revert (GtkWidget *widget,
 
 	basename = g_file_get_basename (hex_document_get_file (doc));
 
-	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW(self),
-			GTK_DIALOG_MODAL,
-			GTK_MESSAGE_QUESTION,
-			GTK_BUTTONS_NONE,
+	dialog = adw_message_dialog_new (GTK_WINDOW(self), NULL, NULL);
+	adw_message_dialog_format_body_markup (ADW_MESSAGE_DIALOG(dialog),
 			/* Translators: %s here is the filename the user is being asked to
 			 * confirm whether they want to revert. */
 			_("<big><b>Are you sure you want to revert %s?</b></big>\n\n"
 			"Your changes will be lost.\n\n"
 			"This action cannot be undone."),
 			basename);
-
-	gtk_dialog_add_buttons (GTK_DIALOG(dialog),
-			_("_Revert"), GTK_RESPONSE_ACCEPT,
-			_("_Go Back"), GTK_RESPONSE_REJECT,
+	adw_message_dialog_add_responses (ADW_MESSAGE_DIALOG(dialog),
+			"accept", _("_Revert"),
+			"reject", _("_Go Back"),
 			NULL);
-	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_REJECT);
+	adw_message_dialog_set_default_response (ADW_MESSAGE_DIALOG(dialog), "reject");
 
-	g_signal_connect (dialog, "response",
-			G_CALLBACK (revert_response_cb), self);
+	g_signal_connect (dialog, "response", G_CALLBACK(revert_response_cb), self);
 
-	gtk_widget_show (dialog);
+	gtk_widget_set_visible (dialog, TRUE);
+
 	g_free (basename);
 }
 			
@@ -1226,6 +1210,7 @@ new_file (GtkWidget *widget,
 	file_loaded (doc, self);
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 static void
 open_response_cb (GtkNativeDialog *dialog,
 		int resp,
@@ -1266,6 +1251,7 @@ open_file_action (GtkWidget *widget,
 
 	gtk_native_dialog_show (GTK_NATIVE_DIALOG(file_sel));
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
 toggle_conversions (GtkWidget *widget,
@@ -1293,6 +1279,7 @@ toggle_conversions (GtkWidget *widget,
 	}
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 static void
 open_help_ready_cb (GObject *source_object,
 		GAsyncResult *res,
@@ -1367,7 +1354,7 @@ error:
 					"The specific error message is:\n\n"
 					"%s"),
 				local_error->message);
-		display_error_dialog (GTK_WINDOW(self), full_errmsg);
+		display_dialog (GTK_WINDOW(self), full_errmsg);
 out:
 		g_clear_object (&file);
 		g_free (uri);
@@ -1375,7 +1362,7 @@ out:
 		g_clear_pointer (&local_error, g_error_free);
 #undef URI_PREFIX
 #else
-		display_error_dialog (GTK_WINDOW(self), local_error->message);
+		display_dialog (GTK_WINDOW(self), local_error->message);
 #endif
 	}
 }
@@ -1394,6 +1381,7 @@ open_help (GtkWidget *widget,
 			open_help_ready_cb,
 			NULL);
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
 open_about (GtkWidget *widget,
@@ -1416,7 +1404,7 @@ open_preferences (GtkWidget *widget,
 			! gtk_widget_get_visible (self->prefs_dialog)) {
 		self->prefs_dialog = create_preferences_dialog (GTK_WINDOW(self));
 	}
-	gtk_widget_show (self->prefs_dialog);
+	gtk_widget_set_visible (self->prefs_dialog, TRUE);
 }
 
 /* --- */
@@ -1456,7 +1444,7 @@ out:
 static gboolean
 get_dialog_visible (GtkWidget *widget)
 {
-	return (GTK_IS_WIDGET(widget) && gtk_widget_get_visible (widget));
+	return (GTK_IS_WIDGET (widget) && gtk_widget_get_visible (widget));
 }
 
 static gboolean
@@ -1640,21 +1628,21 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	self->find_dialog = find_dialog_new ();
 	gtk_widget_set_hexpand (self->find_dialog, TRUE);
 	gtk_box_append (GTK_BOX(self->findreplace_box), self->find_dialog);
-	gtk_widget_hide (self->find_dialog);
+	gtk_widget_set_visible (self->find_dialog, FALSE);
 	g_signal_connect (self->find_dialog, "closed",
 			G_CALLBACK(pane_close_cb), self);
 
 	self->replace_dialog = replace_dialog_new ();
 	gtk_widget_set_hexpand (self->replace_dialog, TRUE);
 	gtk_box_append (GTK_BOX(self->findreplace_box), self->replace_dialog);
-	gtk_widget_hide (self->replace_dialog);
+	gtk_widget_set_visible (self->replace_dialog, FALSE);
 	g_signal_connect (self->replace_dialog, "closed",
 			G_CALLBACK(pane_close_cb), self);
 
 	self->jump_dialog = jump_dialog_new ();
 	gtk_widget_set_hexpand (self->jump_dialog, TRUE);
 	gtk_box_append (GTK_BOX(self->findreplace_box), self->jump_dialog);
-	gtk_widget_hide (self->jump_dialog);
+	gtk_widget_set_visible (self->jump_dialog, FALSE);
 	g_signal_connect (self->jump_dialog, "closed",
 			G_CALLBACK(pane_close_cb), self);
 
@@ -2050,6 +2038,10 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	show_hex_tab_view (self);
 }
 
+/* This nag screen is kind of stop-gap-ish anyway and will likely be removed
+ * in ghex5, so we're going to be lazy and not port it to AdwMessageDialog.
+ */
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 /* Helper */
 static void
 nag_screen_response_cb (GtkDialog *nag_screen,
@@ -2096,8 +2088,9 @@ do_nag_screen (GHexApplicationWindow *self)
 				msg);
 		g_signal_connect (nag_screen, "response",
 				G_CALLBACK(nag_screen_response_cb), self);
-		gtk_widget_show (nag_screen);
+		gtk_widget_set_visible (nag_screen, TRUE);
 }
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
 doc_read_ready_cb (GObject *source_object,
@@ -2127,12 +2120,12 @@ doc_read_ready_cb (GObject *source_object,
 
 		if (local_error)
 		{
-			display_error_dialog (GTK_WINDOW(self), local_error->message);
+			display_dialog (GTK_WINDOW(self), local_error->message);
 			g_error_free (local_error);
 		}
 		else
 		{
-			display_error_dialog (GTK_WINDOW(self),
+			display_dialog (GTK_WINDOW(self),
 					_("There was an error reading the file."));
 		}
 	}
@@ -2195,7 +2188,7 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 				"The file either no longer exists, is inaccessible, "
 				"or you may not have permission to access the file.");
 
-		display_error_dialog (GTK_WINDOW(self), error_msg);
+		display_dialog (GTK_WINDOW(self), error_msg);
 
 		/* This fcn is also used to handle open operations on the cmdline. */
 		g_printerr ("%s\n", error_msg);

@@ -38,6 +38,8 @@
 
 #include <config.h>
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 /* Don't move these from the source file as they are not part of the public
  * header.
  */
@@ -3879,3 +3881,5 @@ hex_widget_get_group_type (HexWidget *self)
 
 	return self->group_type;
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS
