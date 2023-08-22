@@ -69,4 +69,18 @@
   zero-out affected bytes within the file, so as to avoid changing the length of
   the file.</p>
  </section>
+ <section>
+  <title>Setting geometry</title>
+  <p>By default, GHex fits as many characters as the width of the window can
+  reasonably allow. However, GHex also allows you to specify how many
+  characters will be displayed per line. This can be useful when working with
+  data that is grouped into chunks (eg, 16 bytes at a time) or simply as a way of
+  visually keeping track of offsets on a line-by-line basis.</p>
+  <p>In GHex, this is called setting <em>geometry</em>. Geometry can be
+  customized by right-clicking anywhere in the hex or ASCII panes, and clicking
+  <gui>Geometry</gui>, unchecking <gui>Automatic geometry</gui> and then
+  specifying the desired number of characters per line. GHex will then
+  automatically reformat the hex and ASCII panes accordingly. This only takes
+  effect for the file being worked on, and does not persist across sessions.</p>
+ </section>
 </page>
