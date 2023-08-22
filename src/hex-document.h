@@ -79,7 +79,7 @@ typedef enum
  * @what: (array length=len): a pointer to the data to search within the
  *   #HexDocument
  * @len: length in bytes of the data to be searched for
- * @flags: [enum@Hex.SearchFlags] search flags (Since: 4.2)
+ * @flags: [flags@Hex.SearchFlags] search flags (Since: 4.2)
  * @offset: offset of the found string
  * @found_len: length of the found string (may be different from the search
  *   string when dealing with regular expressions, for example) (Since: 4.2)
