@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-02-18 13:33+0000\n"
-"PO-Revision-Date: 2023-03-20 16:44+0200\n"
+"POT-Creation-Date: 2023-07-26 14:02+0000\n"
+"PO-Revision-Date: 2023-08-27 19:54+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
 #: src/ghex-application-window.ui.in:149
@@ -47,7 +47,7 @@ msgstr ""
 "palstaan, heksadesimaaliarvot yhdessä ja ASCII-esitys toisessa. GHex on "
 "hyödyllinen työkalu raakadatan kanssa työskentelyyn."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:42
+#: data/org.gnome.GHex.appdata.xml.in.in:40
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -243,6 +243,14 @@ msgstr "Sulje"
 #: src/find-dialog.ui:100
 msgid "Closes the find pane"
 msgstr "Sulkee hakuikkunan"
+
+#: src/find-options.ui:35
+msgid "_Regular expressions"
+msgstr "_Säännölliset lausekkeet"
+
+#: src/find-options.ui:44
+msgid "_Ignore case"
+msgstr "_Älä huomioi kirjainkokoa"
 
 #: src/find-options.ui:60
 msgid "Show:"
@@ -473,7 +481,7 @@ msgstr ""
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Siirros: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2068
+#: src/ghex-application-window.c:2079
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -499,7 +507,7 @@ msgstr ""
 "Jos haluat tästä viestistä kokonaan eroon, kokeile käyttää toista puskurin "
 "taustaosaa."
 
-#: src/ghex-application-window.c:2125
+#: src/ghex-application-window.c:2136
 msgid "There was an error reading the file."
 msgstr "Tiedostoa luettaessa tapahtui virhe."
 
@@ -591,23 +599,31 @@ msgstr "_Tietoja - GHex"
 msgid "Open a file for hex editing"
 msgstr "Avaa tiedosto heksamuokattavaksi"
 
-#: src/ghex-application-window.ui.in:187
+#: src/ghex-application-window.ui.in:173
+msgid "_Open"
+msgstr "_Avaa"
+
+#: src/ghex-application-window.ui.in:186
+msgid "Main Menu"
+msgstr "Päävalikko"
+
+#: src/ghex-application-window.ui.in:188
 msgid "Main menu"
 msgstr "Päävalikko"
 
-#: src/ghex-application-window.ui.in:197
+#: src/ghex-application-window.ui.in:198
 msgid "Find a string in the hex document"
 msgstr "Löydä merkkijono heksa-asiakirjasta"
 
-#: src/ghex-application-window.ui.in:206
+#: src/ghex-application-window.ui.in:207
 msgid "Save document"
 msgstr "Tallenna asiakirja"
 
-#: src/ghex-application-window.ui.in:214
+#: src/ghex-application-window.ui.in:215
 msgid "No File Loaded"
 msgstr "Mitään tiedostoa ei ole ladattu"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:218
 msgid ""
 "• Press the Open button\n"
 "• Press Ctrl+N to start a new document\n"
@@ -621,13 +637,13 @@ msgstr ""
 "\n"
 "Tai paina Ctrl+W sulkeaksesi ikkunan."
 
-#: src/ghex-application-window.ui.in:306
+#: src/ghex-application-window.ui.in:307
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Syöttötila päälle/pois (lisää dataa tiedostoon sen sijaan että korvaisit "
 "olemassa olevaa dataa)"
 
-#: src/ghex-application-window.ui.in:318
+#: src/ghex-application-window.ui.in:319
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Näytä/piilota paneeli, joka näyttää lukuisia numeerisia muunnoksia"
 
@@ -763,15 +779,27 @@ msgstr "Siirry seuraavaan välilehteen"
 msgid "Jump to byte"
 msgstr "Siirtyy tavuun"
 
-#: src/help-overlay.ui:189
+#: src/help-overlay.ui:187
+msgid "Move to beginning of document"
+msgstr "Siirry asiakirjan alkuun"
+
+#: src/help-overlay.ui:194
+msgid "Move to end of document"
+msgstr "Siirry asiakirjan loppuun"
+
+#: src/help-overlay.ui:203
 msgid "General"
 msgstr "Yleiset"
 
-#: src/help-overlay.ui:194
-msgid "Show About dialog"
-msgstr "Näytä Tietoja-ikkuna"
+#: src/help-overlay.ui:208
+msgid "Show help"
+msgstr "Näytä ohje"
 
-#: src/help-overlay.ui:201
+#: src/help-overlay.ui:215
+msgid "Show preferences"
+msgstr "Näytä asetukset"
+
+#: src/help-overlay.ui:222
 msgid "Toggle insert mode"
 msgstr "Syöttötila päälle/pois"
 
@@ -853,71 +881,71 @@ msgstr "Virhe tiedostoa luettaessa"
 msgid "An error has occurred"
 msgstr "Tapahtui virhe"
 
-#: src/hex-dialog.c:72
+#: src/hex-dialog.c:70
 msgid "Signed 8 bit:"
 msgstr "Etumerkillinen 8-bittinen:"
 
-#: src/hex-dialog.c:73
+#: src/hex-dialog.c:71
 msgid "Unsigned 8 bit:"
 msgstr "Etumerkitön 8-bittinen:"
 
-#: src/hex-dialog.c:74
+#: src/hex-dialog.c:72
 msgid "Signed 16 bit:"
 msgstr "Etumerkillinen 16-bittinen:"
 
-#: src/hex-dialog.c:75
+#: src/hex-dialog.c:73
 msgid "Unsigned 16 bit:"
 msgstr "Etumerkitön 16-bittinen:"
 
-#: src/hex-dialog.c:76
+#: src/hex-dialog.c:74
 msgid "Signed 32 bit:"
 msgstr "Etumerkillinen 32-bittinen:"
 
-#: src/hex-dialog.c:77
+#: src/hex-dialog.c:75
 msgid "Unsigned 32 bit:"
 msgstr "Etumerkitön 32-bittinen:"
 
-#: src/hex-dialog.c:78
+#: src/hex-dialog.c:76
 msgid "Signed 64 bit:"
 msgstr "Etumerkillinen 64-bittinen:"
 
-#: src/hex-dialog.c:79
+#: src/hex-dialog.c:77
 msgid "Unsigned 64 bit:"
 msgstr "Etumerkitön 64-bittinen:"
 
-#: src/hex-dialog.c:80
+#: src/hex-dialog.c:78
 msgid "Float 32 bit:"
 msgstr "Liuku 32-bit:"
 
-#: src/hex-dialog.c:81
+#: src/hex-dialog.c:79
 msgid "Float 64 bit:"
 msgstr "Liuku 64-bit:"
 
-#: src/hex-dialog.c:82
+#: src/hex-dialog.c:80
 msgid "Hexadecimal:"
 msgstr "Heksadesimaali:"
 
-#: src/hex-dialog.c:83
+#: src/hex-dialog.c:81
 msgid "Octal:"
 msgstr "Oktaali:"
 
-#: src/hex-dialog.c:84
+#: src/hex-dialog.c:82
 msgid "Binary:"
 msgstr "Binääri:"
 
-#: src/hex-dialog.c:205
+#: src/hex-dialog.c:201
 msgid "Show little endian decoding"
 msgstr "Näytä little-endian -koodauksen purku"
 
-#: src/hex-dialog.c:211
+#: src/hex-dialog.c:207
 msgid "Show unsigned and float as hexadecimal"
 msgstr "Näytä etumerkittömät ja liukuluvut heksadesimaalina"
 
-#: src/hex-dialog.c:217
+#: src/hex-dialog.c:213
 msgid "Stream Length:"
 msgstr "Virran pituus:"
 
-#: src/hex-dialog.c:241
+#: src/hex-dialog.c:237
 msgid "FIXME: no conversion function"
 msgstr "KORJAATÄMÄ: ei muunnosfunktiota"
 
@@ -948,7 +976,7 @@ msgstr "Siirry tavuun (kirjoita siirros):"
 #: src/jump-dialog.ui:43
 msgid ""
 "Enter the offset byte to jump to. The default is decimal format, but other "
-"format strings are supported such as hexidecimal format, if C-style notation "
+"format strings are supported such as hexadecimal format, if C-style notation "
 "using the '0x' prefix is used. If your string is not recognized, a dialog "
 "will be presented explaining the valid formats of strings accepted."
 msgstr ""
@@ -1136,6 +1164,9 @@ msgstr "Korvaa k_aikki"
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Korvaa kaikki haetun merkkijonon osumat korvaavalla merkkijonolla"
 
+#~ msgid "Show About dialog"
+#~ msgstr "Näytä Tietoja-ikkuna"
+
 #, fuzzy
 #~| msgid "Default Group Type"
 #~ msgid "Hex Group Type"
@@ -1264,9 +1295,6 @@ msgstr "Korvaa kaikki haetun merkkijonon osumat korvaavalla merkkijonolla"
 
 #~ msgid "_Windows"
 #~ msgstr "_Ikkunat"
-
-#~ msgid "_Open..."
-#~ msgstr "_Avaa..."
 
 #~ msgid "Open a file"
 #~ msgstr "Avaa tiedosto"
