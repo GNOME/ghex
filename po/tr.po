@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-03-01 22:09+0000\n"
-"PO-Revision-Date: 2023-03-08 00:30+0300\n"
+"POT-Creation-Date: 2023-08-28 19:15+0000\n"
+"PO-Revision-Date: 2023-09-03 11:05+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-POOTLE-MTIME: 1423957989.000000\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6 src/ghex-application-window.ui.in:149
@@ -244,6 +244,14 @@ msgstr "Kapat"
 #: src/find-dialog.ui:100
 msgid "Closes the find pane"
 msgstr "Bul bölmesini kapatır"
+
+#: src/find-options.ui:35
+msgid "_Regular expressions"
+msgstr "_Düzenli ifade"
+
+#: src/find-options.ui:44
+msgid "_Ignore case"
+msgstr "_Büyük/küçük harfi görmezden gel"
 
 #: src/find-options.ui:60
 msgid "Show:"
@@ -474,7 +482,7 @@ msgstr ""
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Ofset: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2068
+#: src/ghex-application-window.c:2079
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -498,7 +506,7 @@ msgstr ""
 "\n"
 "Bu iletinin görünmesini önlemek için başka tampon arka ucu kullanmayı deneyin."
 
-#: src/ghex-application-window.c:2125
+#: src/ghex-application-window.c:2136
 msgid "There was an error reading the file."
 msgstr "Dosya okunurken hata oluştu."
 
@@ -591,23 +599,31 @@ msgstr "GHex _Hakkında"
 msgid "Open a file for hex editing"
 msgstr "Onaltılık düzenlemek için dosya aç"
 
-#: src/ghex-application-window.ui.in:187
+#: src/ghex-application-window.ui.in:173
+msgid "_Open"
+msgstr "_Aç"
+
+#: src/ghex-application-window.ui.in:186
+msgid "Main Menu"
+msgstr "Ana Menü"
+
+#: src/ghex-application-window.ui.in:188
 msgid "Main menu"
 msgstr "Ana menü"
 
-#: src/ghex-application-window.ui.in:197
+#: src/ghex-application-window.ui.in:198
 msgid "Find a string in the hex document"
 msgstr "Hex belgesinde dizge bul"
 
-#: src/ghex-application-window.ui.in:206
+#: src/ghex-application-window.ui.in:207
 msgid "Save document"
 msgstr "Belgeyi kaydet"
 
-#: src/ghex-application-window.ui.in:214
+#: src/ghex-application-window.ui.in:215
 msgid "No File Loaded"
 msgstr "Dosya Yüklenmedi"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:218
 msgid ""
 "• Press the Open button\n"
 "• Press Ctrl+N to start a new document\n"
@@ -621,12 +637,12 @@ msgstr ""
 "\n"
 "Veya pencereyi kapatmak için Ctrl+W tuşlarına basın."
 
-#: src/ghex-application-window.ui.in:306
+#: src/ghex-application-window.ui.in:307
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Ekleme kipini aç/kapat (var olan verileri değiştirmek yerine dosyaya veri ekle)"
 
-#: src/ghex-application-window.ui.in:318
+#: src/ghex-application-window.ui.in:319
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Türlü sayısal dönüşümleri gösteren bölmeyi aç/kapat"
 
@@ -769,10 +785,14 @@ msgid "General"
 msgstr "Genel"
 
 #: src/help-overlay.ui:194
-msgid "Show About dialog"
-msgstr "Hakkında iletişim kutusunu göster"
+msgid "Show help"
+msgstr "Yardımı göster"
 
 #: src/help-overlay.ui:201
+msgid "Show preferences"
+msgstr "Tercihleri göster"
+
+#: src/help-overlay.ui:208
 msgid "Toggle insert mode"
 msgstr "Ekleme kipini aç/kapat"
 
@@ -855,71 +875,71 @@ msgstr "Dosya okunurken hata oluştu"
 msgid "An error has occurred"
 msgstr "Hata oluştu"
 
-#: src/hex-dialog.c:72
+#: src/hex-dialog.c:70
 msgid "Signed 8 bit:"
 msgstr "İşaretli 8 bit:"
 
-#: src/hex-dialog.c:73
+#: src/hex-dialog.c:71
 msgid "Unsigned 8 bit:"
 msgstr "İşaretsiz 8 bit:"
 
-#: src/hex-dialog.c:74
+#: src/hex-dialog.c:72
 msgid "Signed 16 bit:"
 msgstr "İşaretli 16 bit:"
 
-#: src/hex-dialog.c:75
+#: src/hex-dialog.c:73
 msgid "Unsigned 16 bit:"
 msgstr "İşaretsiz 16 bit:"
 
-#: src/hex-dialog.c:76
+#: src/hex-dialog.c:74
 msgid "Signed 32 bit:"
 msgstr "İşaretli 32 bit:"
 
-#: src/hex-dialog.c:77
+#: src/hex-dialog.c:75
 msgid "Unsigned 32 bit:"
 msgstr "İşaretsiz 32 bit:"
 
-#: src/hex-dialog.c:78
+#: src/hex-dialog.c:76
 msgid "Signed 64 bit:"
 msgstr "İşaretli 64 bit:"
 
-#: src/hex-dialog.c:79
+#: src/hex-dialog.c:77
 msgid "Unsigned 64 bit:"
 msgstr "İşaretsiz 64 bit:"
 
-#: src/hex-dialog.c:80
+#: src/hex-dialog.c:78
 msgid "Float 32 bit:"
 msgstr "Float 32 bit:"
 
-#: src/hex-dialog.c:81
+#: src/hex-dialog.c:79
 msgid "Float 64 bit:"
 msgstr "Float 64 bit:"
 
-#: src/hex-dialog.c:82
+#: src/hex-dialog.c:80
 msgid "Hexadecimal:"
 msgstr "Onaltılık:"
 
-#: src/hex-dialog.c:83
+#: src/hex-dialog.c:81
 msgid "Octal:"
 msgstr "Sekizlik:"
 
-#: src/hex-dialog.c:84
+#: src/hex-dialog.c:82
 msgid "Binary:"
 msgstr "İkilik:"
 
-#: src/hex-dialog.c:205
+#: src/hex-dialog.c:201
 msgid "Show little endian decoding"
 msgstr "Küçük endian kodlamasını göster"
 
-#: src/hex-dialog.c:211
+#: src/hex-dialog.c:207
 msgid "Show unsigned and float as hexadecimal"
 msgstr "İşaretsiz ve ondalık değerleri onaltılık olarak göster"
 
-#: src/hex-dialog.c:217
+#: src/hex-dialog.c:213
 msgid "Stream Length:"
 msgstr "Akım Uzunluğu:"
 
-#: src/hex-dialog.c:241
+#: src/hex-dialog.c:237
 msgid "FIXME: no conversion function"
 msgstr "BENİ DÜZELT: çevrim işlevi yok"
 
@@ -1137,3 +1157,6 @@ msgstr "_Tümünü Değiştir"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Arama dizgesinin her belirimini değiştirme dizgesi ile değiştirir"
+
+#~ msgid "Show About dialog"
+#~ msgstr "Hakkında iletişim kutusunu göster"
