@@ -8,15 +8,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex doc\n"
-"POT-Creation-Date: 2023-01-29 21:08+0000\n"
-"PO-Revision-Date: 2023-02-05 13:55+0100\n"
+"POT-Creation-Date: 2023-08-22 18:30+0000\n"
+"PO-Revision-Date: 2023-08-22 21:42+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -581,6 +581,43 @@ msgstr ""
 "Om <gui>Inskrivningsläge</gui> inte är aktiverat kommer <gui>ta bort</gui>-"
 "åtgärder i stället nolla påverkade byte i filen, för att förhindra att "
 "filens längd ändras."
+
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:73
+msgid "Setting geometry"
+msgstr "Ställa in geometri"
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:74
+msgid ""
+"By default, GHex fits as many characters as the width of the window can "
+"reasonably allow. However, GHex also allows you to specify how many "
+"characters will be displayed per line. This can be useful when working with "
+"data that is grouped into chunks (eg, 16 bytes at a time) or simply as a way "
+"of visually keeping track of offsets on a line-by-line basis."
+msgstr ""
+"Som standard passar GHex in så många tecken som bredden på fönstret rimligen "
+"kan tillåta. GHex låter dig dock också ange hur många tecken som ska visas "
+"per rad. Detta kan vara användbart vid arbete med data som grupperas i "
+"stycken (t.ex. 16 byte åt gången) eller helt enkelt som ett sätt att "
+"visuellt hålla koll på förskjutningar rad-för-rad."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:79
+msgid ""
+"In GHex, this is called setting <em>geometry</em>. Geometry can be "
+"customized by right-clicking anywhere in the hex or ASCII panes, and "
+"clicking <gui>Geometry</gui>, unchecking <gui>Automatic geometry</gui> and "
+"then specifying the desired number of characters per line. GHex will then "
+"automatically reformat the hex and ASCII panes accordingly. This only takes "
+"effect for the file being worked on, and does not persist across sessions."
+msgstr ""
+"I GHex kallas detta <em>geometri</em>. Geometri kan anpassas genom att "
+"högerklicka var som helst i hex- eller ASCII-panelerna och klicka "
+"<gui>Geometri</gui>, avmarkera <gui>Automatisk geometri</gui> och sedan ange "
+"det önskade antalet tecken per rad. GHex kommer sedan automatiskt formatera "
+"om hex- och ASCII-panelerna enligt detta. Detta har bara effekt på filen som "
+"arbetas på, och är inte beständigt mellan sessioner."
 
 #. (itstool) path: page/title
 #: C/basics-find-replace.page:12
