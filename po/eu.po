@@ -10,8 +10,8 @@
 msgid ""
 msgstr "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-04-28 19:33+0000\n"
-"PO-Revision-Date: 2023-05-21 12:37+0200\n"
+"POT-Creation-Date: 2023-09-03 08:18+0000\n"
+"PO-Revision-Date: 2023-09-12 12:37+0200\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -41,7 +41,7 @@ msgid ""
 "GHex is a useful tool for working with raw data."
 msgstr "Ghex aplikazioak fitxategi bitarren datu gordinak kargatu ditzake eta hamaseitarren editorearen ikuspegian bistaratu ditzake ediziorako prest. Ikuspegia bi zutabetan dago zatituta, zutabe batek balio hamaseitarrak erakusten ditu eta besteak ASCII adierazpena. GHex datu gordinekin lan egiteko tresna erabilgarria da."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:41
+#: data/org.gnome.GHex.appdata.xml.in.in:42
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -224,6 +224,14 @@ msgstr "Itxi"
 #: src/find-dialog.ui:100
 msgid "Closes the find pane"
 msgstr "Bilaketa-panela ixten du"
+
+#: src/find-options.ui:35
+msgid "_Regular expressions"
+msgstr "Adierazpen e_rregularrak"
+
+#: src/find-options.ui:44
+msgid "_Ignore case"
+msgstr "_Ez bereizi maiuskulak eta minuskulak"
 
 #: src/find-options.ui:60
 msgid "Show:"
@@ -441,7 +449,7 @@ msgstr "Desplazamentua: <tt>0x%lX</tt>; <tt>0x%lX</tt> / <tt>0x%lX</tt> to <tt>0
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Desplazamendua: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2068
+#: src/ghex-application-window.c:2079
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -464,7 +472,7 @@ msgstr "1 GB edo gehiago dituen fitxategi bat irekitzen saiatzen ari zara.\n"
 "\n"
 "Mezu hau agertu dadin saihesteko, saiatu beste buffer-motor bat erabiltzen."
 
-#: src/ghex-application-window.c:2125
+#: src/ghex-application-window.c:2136
 msgid "There was an error reading the file."
 msgstr "Errorea gertatu da fitxategia irakurtzean."
 
@@ -556,23 +564,31 @@ msgstr "GHex aplikazioari _buruz"
 msgid "Open a file for hex editing"
 msgstr "Ireki fitxategi bat edizio hamaseitarrerako"
 
-#: src/ghex-application-window.ui.in:187
+#: src/ghex-application-window.ui.in:173
+msgid "_Open"
+msgstr "_Ireki"
+
+#: src/ghex-application-window.ui.in:186
+msgid "Main Menu"
+msgstr "Menu nagusia"
+
+#: src/ghex-application-window.ui.in:188
 msgid "Main menu"
 msgstr "Menu nagusia"
 
-#: src/ghex-application-window.ui.in:197
+#: src/ghex-application-window.ui.in:198
 msgid "Find a string in the hex document"
 msgstr "Bilatu kate bat hamaseitar dokumentuan"
 
-#: src/ghex-application-window.ui.in:206
+#: src/ghex-application-window.ui.in:207
 msgid "Save document"
 msgstr "Gorde dokumentua"
 
-#: src/ghex-application-window.ui.in:214
+#: src/ghex-application-window.ui.in:215
 msgid "No File Loaded"
 msgstr "Ez da fitxategirik kargatu"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:218
 msgid ""
 "• Press the Open button\n"
 "• Press Ctrl+N to start a new document\n"
@@ -585,11 +601,11 @@ msgstr "• Sakatu 'Ireki' botoia\n"
 "\n"
 "Edo sakatu Ctrl+W leihoa ixteko."
 
-#: src/ghex-application-window.ui.in:306
+#: src/ghex-application-window.ui.in:307
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr "Txandakatu txertatze modua (gehitu datuak fitxategiari, lehendik dauden datuak ordeztu ordez)"
 
-#: src/ghex-application-window.ui.in:318
+#: src/ghex-application-window.ui.in:319
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Txandakatu zebakizko bihurketak erakusten dituen panela"
 
@@ -730,10 +746,14 @@ msgid "General"
 msgstr "Orokorra"
 
 #: src/help-overlay.ui:194
-msgid "Show About dialog"
-msgstr "Erakutsi 'Honi buruz' elkarrizketa-koadroa"
+msgid "Show help"
+msgstr "Erakutsi laguntza"
 
 #: src/help-overlay.ui:201
+msgid "Show preferences"
+msgstr "Erakutsi hobespenak"
+
+#: src/help-overlay.ui:208
 msgid "Toggle insert mode"
 msgstr "Txandakatu txertatze modua"
 
@@ -1091,6 +1111,9 @@ msgstr "Ordeztu _guztiak"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Ordeztu bilaketako testu guztiak ordezko testuarekin"
+
+#~ msgid "Show About dialog"
+#~ msgstr "Erakutsi 'Honi buruz' elkarrizketa-koadroa"
 
 #~ msgid ""
 #~ "There was an error loading the requested file. The file either no longer "
@@ -1543,9 +1566,6 @@ msgstr "Ordeztu bilaketako testu guztiak ordezko testuarekin"
 #~ msgid "Help Chat"
 #~ msgstr "Laguntzako berriketa"
 
-#~ msgid "Open"
-#~ msgstr "Ireki"
-
 #~ msgid "Print"
 #~ msgstr "Inprimatu"
 
@@ -1614,9 +1634,6 @@ msgstr "Ordeztu bilaketako testu guztiak ordezko testuarekin"
 
 #~ msgid "Font size for label in font info mode"
 #~ msgstr "Letra-tipoaren tamaina etiketentzat letra-tipo informazio moduan"
-
-#~ msgid "Show size"
-#~ msgstr "Erakutsi tamaina"
 
 #~ msgid "Show size in font info mode"
 #~ msgstr "Erakutsi tamaina letra-tipoaren informazio moduan"
