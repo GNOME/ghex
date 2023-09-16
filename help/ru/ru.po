@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex gnome-3-8\n"
-"POT-Creation-Date: 2023-01-29 21:08+0000\n"
-"PO-Revision-Date: 2023-02-04 20:46+1000\n"
+"POT-Creation-Date: 2023-08-27 16:54+0000\n"
+"PO-Revision-Date: 2023-08-28 19:36+1000\n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -585,6 +585,44 @@ msgstr ""
 "Если <gui>Режим вставки</gui> выключен, действия <gui>удаления</gui> будут "
 "обнулять выбранные байты в файле, чтобы избежать изменения его длины."
 
+#. (itstool) path: section/title
+#: C/basics-edit-file.page:73
+msgid "Setting geometry"
+msgstr "Настройки геометрии"
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:74
+msgid ""
+"By default, GHex fits as many characters as the width of the window can "
+"reasonably allow. However, GHex also allows you to specify how many "
+"characters will be displayed per line. This can be useful when working with "
+"data that is grouped into chunks (eg, 16 bytes at a time) or simply as a way "
+"of visually keeping track of offsets on a line-by-line basis."
+msgstr ""
+"По умолчанию GHex пытается вместить в ширину окна как можно больше символов. "
+"Однако в GHex предусмотрена возможность указать количество символов, которое "
+"будет отображаться в строке. Это может быть полезно при работе с данными, "
+"которые сгруппированы в блоки (например, по 16 байт), или для упрощения "
+"визуального отслеживания отступов в последовательных строках."
+
+#. (itstool) path: section/p
+#: C/basics-edit-file.page:79
+msgid ""
+"In GHex, this is called setting <em>geometry</em>. Geometry can be "
+"customized by right-clicking anywhere in the hex or ASCII panes, and "
+"clicking <gui>Geometry</gui>, unchecking <gui>Automatic geometry</gui> and "
+"then specifying the desired number of characters per line. GHex will then "
+"automatically reformat the hex and ASCII panes accordingly. This only takes "
+"effect for the file being worked on, and does not persist across sessions."
+msgstr ""
+"В GHex это называется настройкой <em>геометрии</em>. Геометрию можно "
+"настроить, щёлкнув правой кнопкой мыши в любом месте панели "
+"шестнадцатеричных или ASCII значений и выбрав <gui>Геометрия</gui>, сняв "
+"флажок с пункта <gui>Автоматическая геометрия</gui>, и указав желаемое "
+"количество символов в строке. После этого GHex автоматически переформатирует "
+"панели шестнадцатеричных и ASCII значений. Эти изменения имеют силу только "
+"для обрабатываемого файла и не сохраняется в других сеансах."
+
 #. (itstool) path: page/title
 #: C/basics-find-replace.page:12
 msgid "Find and replace"
@@ -721,7 +759,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/basics-open-file.page:12
 msgid "Open a file"
-msgstr "Открытие файл"
+msgstr "Открытие файла"
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:13
