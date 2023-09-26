@@ -12,15 +12,15 @@
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2008, 2011, 2015, 2018.
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2012.
 # Wolfgang Stöggl <c72578@yahoo.de>, 2012.
-# Jürgen Benvenuti <gastornis@posteo.org>, 2022.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-05-25 16:03+0000\n"
-"PO-Revision-Date: 2023-08-28 21:13+0200\n"
-"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
+"POT-Creation-Date: 2023-09-03 08:18+0000\n"
+"PO-Revision-Date: 2023-09-14 20:45+0200\n"
+"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr ""
 "Darstellung auf der anderen. GHex ist ein nützliches Werkzeug für den Umgang "
 "mit Rohdaten."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:41
+#: data/org.gnome.GHex.appdata.xml.in.in:42
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -132,7 +132,8 @@ msgid ""
 msgstr ""
 "Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem "
 "Programm erhalten haben. Falls nicht, schreiben Sie an die Free Software "
-"Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
+"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  "
+"USA"
 
 #. Translators: these two strings here indicate the copyright time span,
 #. e.g. 1998-2018.
@@ -252,10 +253,8 @@ msgid "Find options"
 msgstr "Sucheinstellungen"
 
 #: src/find-dialog.ui:89
-#, fuzzy
-#| msgid "Closes the find pane"
 msgid "View options of the find pane"
-msgstr "Schließt den Suchen-Dialog"
+msgstr "Ansichtseinstellungen des Suchen-Fensters"
 
 #: src/find-dialog.ui:99 src/jump-dialog.ui:63
 msgid "Close"
@@ -357,7 +356,7 @@ msgstr "Die Zeichenkette wurde nicht gefunden."
 #: src/findreplace.c:644
 #, c-format
 msgid "Search complete: %d replacements made."
-msgstr ""
+msgstr "Suche abgeschlossen: %d Ersetzungen wurden durchgeführt."
 
 #: src/findreplace.c:651
 msgid "No occurrences were found."
@@ -371,10 +370,8 @@ msgid "Untitled"
 msgstr "Namenlos"
 
 #: src/ghex-application-window.c:284
-#, fuzzy
-#| msgid "There was an error reading the file."
 msgid "There was an error saving the file."
-msgstr "Beim Lesen der Datei ist ein Fehler aufgetreten."
+msgstr "Beim Speichern der Datei ist ein Fehler aufgetreten."
 
 #: src/ghex-application-window.c:334
 msgid ""
@@ -407,6 +404,9 @@ msgid ""
 "\n"
 "Would you like to save your changes?"
 msgstr ""
+"<big><b>%s wurde seit dem Öffnen bearbeitet.</b></big>\n"
+"\n"
+"Sollen die Änderungen gespeichert werden?"
 
 #: src/ghex-application-window.c:458
 msgid ""
@@ -414,6 +414,9 @@ msgid ""
 "\n"
 "Would you like to save your changes?"
 msgstr ""
+"<big><b>Der Puffer wurde seit dem Öffnen bearbeitet.</b></big>\n"
+"\n"
+"Sollen die Änderungen gespeichert werden?"
 
 #: src/ghex-application-window.c:472
 msgid "_Save Changes"
@@ -424,17 +427,9 @@ msgid "_Discard Changes"
 msgstr "Änderungen _verwerfen"
 
 #: src/ghex-application-window.c:1028
-#, fuzzy
-#| msgid ""
-#| "There was an error saving the file to the path specified.\n"
-#| "\n"
-#| "You may not have the required permissions."
 msgid "There was an error saving the file to the path specified."
 msgstr ""
-"Beim Speichern der Datei in den angegebenen Pfad ist ein Fehler "
-"aufgetreten.\n"
-"\n"
-"Möglicherweise besitzen Sie nicht die nötigen Berechtigungen."
+"Beim Speichern der Datei in den angegebenen Pfad ist ein Fehler aufgetreten."
 
 #: src/ghex-application-window.c:1047
 msgid ""
@@ -512,19 +507,6 @@ msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Versatz: <tt>0x%lX</tt>"
 
 #: src/ghex-application-window.c:2079
-#, fuzzy
-#| msgid ""
-#| "You are attempting to open a file 1GB or larger.\n"
-#| "\n"
-#| "This can make GHex and your machine unstable as the file will be loaded "
-#| "into memory.\n"
-#| "\n"
-#| "Are you sure you want to proceed?\n"
-#| "\n"
-#| "This message will not be shown again for the remainder of this GHex "
-#| "session.\n"
-#| "\n"
-#| "This limitation will be removed in a future version of GHex."
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -541,15 +523,14 @@ msgstr ""
 "Sie versuchen gerade, eine Datei zu öffnen, die 1GB oder größer ist.\n"
 "\n"
 "Dies kann zu Instabilitäten von GHex und Ihrem Rechner führen, während die "
-"Datei in den Arbeitsspeicher geladen wird.\n"
+"Datei mit dem aktiven Backend in den Arbeitsspeicher geladen wird.\n"
 "\n"
 "Sind Sie sicher, dass Sie fortfahren möchten?\n"
 "\n"
 "Diese Nachricht wird während der verbleibenden GHex-Sitzung nicht wieder "
 "angezeigt werden.\n"
 "\n"
-"Diese Beschränkung wird in einer zukünftigen Version von GHex entfernt "
-"werden."
+"Verwenden Sie ein anderes Puffer-Backend, um diese Beschränkung zu umgehen."
 
 #: src/ghex-application-window.c:2136
 msgid "There was an error reading the file."
@@ -576,10 +557,8 @@ msgid "Find and _Replace"
 msgstr "Suchen und _Ersetzen"
 
 #: src/ghex-application-window.ui.in:62
-#, fuzzy
-#| msgid "_Goto Byte..."
 msgid "_Jump to Byte"
-msgstr "_Gehe zu Byte …"
+msgstr "Zu Byte _springen"
 
 #: src/ghex-application-window.ui.in:72
 msgid "_Edit"
@@ -624,10 +603,8 @@ msgid "_Longwords (32-bit)"
 msgstr "_Langwörter (32-Bit)"
 
 #: src/ghex-application-window.ui.in:116
-#, fuzzy
-#| msgid "Words (16-bit)"
 msgid "_Quadwords (64-bit)"
-msgstr "Wörter (16-Bit)"
+msgstr "_Quadrupel-Wörter (64-Bit)"
 
 #: src/ghex-application-window.ui.in:126
 msgid "_Keyboard Shortcuts"
@@ -646,10 +623,8 @@ msgid "_About GHex"
 msgstr "_Info zu GHex"
 
 #: src/ghex-application-window.ui.in:170
-#, fuzzy
-#| msgid "Unable to open file for reading"
 msgid "Open a file for hex editing"
-msgstr "Die Datei kann nicht zum Lesen geöffnet werden"
+msgstr "Eine Datei zum Bearbeiten im Hex-Editor öffnen"
 
 #: src/ghex-application-window.ui.in:173
 msgid "_Open"
@@ -698,7 +673,7 @@ msgstr "Automatische Geometrie"
 
 #: src/gtkhex.ui:33
 msgid "Characters per line:"
-msgstr "Zeichen pro Zeile"
+msgstr "Zeichen pro Zeile:"
 
 #: src/gtkhex.ui:62
 msgid "_Undo"
@@ -730,7 +705,7 @@ msgstr "Dateien"
 
 #: src/help-overlay.ui:19
 msgid "New blank hex buffer"
-msgstr ""
+msgstr "Neuer leerer Hexadezimal-Puffer"
 
 #: src/help-overlay.ui:26
 msgid "Open a file for editing"
@@ -749,10 +724,8 @@ msgid "Close tab"
 msgstr "Reiter schließen"
 
 #: src/help-overlay.ui:54
-#, fuzzy
-#| msgid "Print the current file"
 msgid "Print the hex file"
-msgstr "Aktuelle Datei drucken"
+msgstr "Die Hex-Datei drucken"
 
 #: src/help-overlay.ui:63
 msgid "Undo and Redo"
@@ -808,11 +781,11 @@ msgstr "Navigation"
 
 #: src/help-overlay.ui:152
 msgid "Toggle left (hex) display"
-msgstr ""
+msgstr "Linke (Hex)-Anzeige anzeigen/verbergen"
 
 #: src/help-overlay.ui:159
 msgid "Toggle right (ASCII) display"
-msgstr ""
+msgstr "Rechte (ASCII)-Anzeige anzeigen/verbergen"
 
 #: src/help-overlay.ui:166
 msgid "Switch to previous tab"
@@ -869,10 +842,8 @@ msgid "Unable to create file"
 msgstr "Die Datei kann nicht erstellt werden"
 
 #: src/hex-buffer-direct.c:230
-#, fuzzy
-#| msgid "Not a regular file"
 msgid "Not a regular file or block device"
-msgstr "Keine reguläre Datei"
+msgstr "Keine reguläre Datei und kein Block-Gerät"
 
 #: src/hex-buffer-direct.c:240 src/hex-buffer-mmap.c:616
 msgid "Unable to open file for reading"
@@ -893,10 +864,8 @@ msgid ""
 msgstr ""
 
 #: src/hex-buffer-direct.c:552
-#, fuzzy
-#| msgid "Error reading file"
 msgid "Error writing changes to file"
-msgstr "Fehler beim Lesen der Datei"
+msgstr "Fehler beim Schreiben der Änderungen in die Datei"
 
 #: src/hex-buffer-mmap.c:310
 #, c-format
@@ -1121,16 +1090,12 @@ msgid "Use system default"
 msgstr "Systemvoreinstellungen verwenden"
 
 #: src/preferences.ui:83
-#, fuzzy
-#| msgid "Display"
 msgid "Hex Display"
-msgstr "Anzeige"
+msgstr "Hexadezimal-Anzeige"
 
 #: src/preferences.ui:87
-#, fuzzy
-#| msgid "_Group Data As"
 msgid "Group data as"
-msgstr "Daten _gruppieren als"
+msgstr "Daten gruppieren als"
 
 #: src/preferences.ui:94
 msgid "Bytes (8-bit)"
@@ -1144,9 +1109,11 @@ msgstr "Wörter (16-Bit)"
 msgid "Longwords (32-bit)"
 msgstr "Langwörter (32-Bit)"
 
+# https://de.wikipedia.org/wiki/Tupel
+# und https://de.wikipedia.org/wiki/Datenwort
 #: src/preferences.ui:112
 msgid "Quadwords (64-bit)"
-msgstr ""
+msgstr "Quadrupel-Wort (64-Bit)"
 
 #: src/preferences.ui:122
 msgid "Show offsets column"
