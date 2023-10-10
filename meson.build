@@ -1,6 +1,6 @@
 project(
   'ghex', 'c',
-  version: '44.2',
+  version: '44.3',
   meson_version: '>=0.59.0',
   license: 'GPL2'
 )
