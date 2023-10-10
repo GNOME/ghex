@@ -264,7 +264,7 @@ common_about_cb (GtkWindow *parent)
 	/* Translators: these two strings here indicate the copyright time span,
 	   e.g. 1998-2018. */
 	copyright = g_strdup_printf (_("Copyright © %d–%d The GHex authors"),
-			1998, 2021);
+			1998, 2023);
 
 	if (strstr (APP_ID, "Devel"))
 		version = g_strdup_printf ("%s (Running against GTK %d.%d.%d)",
