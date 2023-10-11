@@ -74,6 +74,8 @@ struct _GHexApplicationWindow
 	GtkWidget *paste_special_dialog;
 	GtkWidget *copy_special_dialog;
 
+	GtkEventController *hex_tab_view_focus_controller;
+
 	/* From GtkBuilder: */
 	GtkWidget *headerbar_window_title;
 	GtkWidget *no_doc_label;
@@ -1558,6 +1560,12 @@ ghex_application_window_get_property (GObject *object,
 }
 
 
+static void
+hex_tab_view_focus_cb (GHexApplicationWindow *self)
+{
+	gtk_window_set_default_widget (GTK_WINDOW(self), GTK_WIDGET(ACTIVE_GH));
+}
+
 /* GHexApplicationWindow -- CONSTRUCTORS AND DESTRUCTORS */
 
 static void
@@ -1606,7 +1614,12 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	action = g_settings_create_action (settings, GHEX_PREF_GROUP);
 	g_action_map_add_action (G_ACTION_MAP(self), action);
 
-	/* Setup tab view signals */
+	/* Setup tab view */
+
+	self->hex_tab_view_focus_controller = gtk_event_controller_focus_new ();
+	g_signal_connect_swapped (self->hex_tab_view_focus_controller, "enter",
+			G_CALLBACK(hex_tab_view_focus_cb), self);
+	gtk_widget_add_controller (self->hex_tab_view, self->hex_tab_view_focus_controller);
 
 	g_signal_connect (self->hex_tab_view, "notify::selected-page",
 			G_CALLBACK(tab_view_page_changed_cb), self);
