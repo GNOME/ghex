@@ -2184,7 +2184,7 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 	/* Display a fairly generic error message if we can't even get this far. */
 	if (!doc || !gh)
 	{
-		char *error_msg = ("There was an error loading the requested file. "
+		char *error_msg = _("There was an error loading the requested file. "
 				"The file either no longer exists, is inaccessible, "
 				"or you may not have permission to access the file.");
 
