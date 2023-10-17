@@ -275,22 +275,20 @@ common_about_cb (GtkWindow *parent)
 	else
 		version = PACKAGE_VERSION;
 
-	gtk_show_about_dialog (parent,
-	                       "authors", authors,
-	                       "comments", _("A binary file editor"),
-	                       "copyright", copyright,
-	                       "documenters", documentation_credits,
-	                       "license", license_translated,
-	                       "logo-icon-name", APP_ID,
-	                       "program-name",
-						   strstr (APP_ID, "Devel") ? "GHex (Development)" : "GHex",
-	                       "title", _("About GHex"),
-	                       "translator-credits", _("translator-credits"),
-	                       "version", version,
-	                       "website", "https://wiki.gnome.org/Apps/Ghex",
-	                       "website-label", _("GHex Website"),
-	                       "wrap-license", TRUE,
-	                       NULL);
+    adw_show_about_window (parent,
+                          "developers", authors,
+                          "copyright", copyright,
+                          "issue-url", "https://gitlab.gnome.org/GNOME/ghex/-/issues",
+                          "documenters", documentation_credits,
+                          "license", license_translated,
+                          "application-icon", APP_ID,
+                          "application-name",
+                          strstr (APP_ID, "Devel") ? "GHex (Development)" : "GHex",
+                          "title", _("About GHex"),
+                          "translator-credits", _("translator-credits"),
+                          "version", version,
+                          "website", "https://wiki.gnome.org/Apps/Ghex",
+                          NULL);
 
 	g_free (license_translated);
 	g_free (copyright);
