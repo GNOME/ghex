@@ -1941,6 +1941,7 @@ key_press_cb (GtkEventControllerKey *controller,
 			break;
 
 		case GDK_KEY_Home:
+		{
 			gint64 line_beg = self->cursor_pos;
 
 			while (line_beg % self->cpl != 0)
@@ -1948,9 +1949,11 @@ key_press_cb (GtkEventControllerKey *controller,
 
 			hex_widget_set_cursor (self, line_beg);
 			ret = GDK_EVENT_STOP;
+		}
 			break;
 
 		case GDK_KEY_End:
+		{
 			gint64 line_end = self->cursor_pos;
 
 			while (line_end % self->cpl != self->cpl - 1)
@@ -1958,6 +1961,7 @@ key_press_cb (GtkEventControllerKey *controller,
 
 			hex_widget_set_cursor (self, MIN (line_end, payload_size));
 			ret = GDK_EVENT_STOP;
+		}
 			break;
 
 		default:
