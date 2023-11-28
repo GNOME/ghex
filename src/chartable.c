@@ -235,7 +235,7 @@ hex_chartable_value_init (HexChartableValue *self)
 }
 
 static HexChartableValue *
-hex_chartable_value_new (int val)
+hex_chartable_value_new (guchar val)
 {
 	return g_object_new (HEX_TYPE_CHARTABLE_VALUE,
 			"value", val,
@@ -281,7 +281,7 @@ setup_columnview (GtkWidget *columnview)
 
 	for (int i = 0; i < 256; ++i)
 	{
-		HexChartableValue *hv = hex_chartable_value_new (i);
+		HexChartableValue *hv = hex_chartable_value_new ((guchar)i);
 		g_list_store_append (store, hv);
 		g_object_unref (hv);
 	}
