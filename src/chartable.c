@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021-2022 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2023 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -33,9 +33,6 @@
 #include "chartable.h"
 
 #include <config.h>
-
-/* TODO: Replace GtkTreeView usage */
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
 /* STATIC GLOBALS */
 
@@ -77,60 +74,222 @@ static char *ascii_non_printable_label[] = {
 	"US"
 };
 
-static void
-insert_char (GtkTreeView *treeview, GtkTreeModel *model)
+/* HexChartableValue object */
+
+#define HEX_TYPE_CHARTABLE_VALUE (hex_chartable_value_get_type ())
+G_DECLARE_FINAL_TYPE (HexChartableValue, hex_chartable_value, HEX, CHARTABLE_VALUE, GObject);
+
+enum {
+  PROP_0,
+  PROP_VALUE,
+  PROP_ASCII,
+  PROP_HEX,
+  PROP_DECIMAL,
+  PROP_OCTAL,
+  PROP_BINARY,
+  N_PROPS
+};
+
+static GParamSpec *properties[N_PROPS];
+
+struct _HexChartableValue
 {
-	GtkTreeIter iter;
-	GtkTreeSelection *selection;
-	GValue value = { 0 };
-	HexDocument *doc;
+	GObject parent_instance;
 
-	g_return_if_fail (HEX_IS_WIDGET(gh_glob));
+	guchar val;
+};
 
-	doc = hex_widget_get_document (gh_glob);
+G_DEFINE_TYPE (HexChartableValue, hex_chartable_value, G_TYPE_OBJECT)
 
-	selection = gtk_tree_view_get_selection(treeview);
-	if (! gtk_tree_selection_get_selected (selection, &model, &iter))
-		return;
+/* All of the getters below should be transfer: full */
 
-	gtk_tree_model_get_value(model, &iter, 2, &value);
-	if (selection == sel_row) {
-		hex_document_set_byte (doc,
-				(guchar)atoi(g_value_get_string(&value)),
-				hex_widget_get_cursor (gh_glob),
-				hex_widget_get_insert_mode (gh_glob),
-				TRUE);	/* undoable */
+static char *
+hex_chartable_value_get_ascii (HexChartableValue *self)
+{
+	char *str = NULL;
 
-		hex_widget_set_cursor (gh_glob, hex_widget_get_cursor (gh_glob) + 1);
+	if (self->val< 0x20) {
+		str = g_strdup (ascii_non_printable_label[self->val]);
 	}
-	g_value_unset(&value);
-	sel_row = selection;
+	else if (self->val < 0x7f) {
+		str = g_strdup_printf ("%c", self->val);
+	}
+
+	return str;
+}
+
+static char *
+hex_chartable_value_get_hex (HexChartableValue *self)
+{
+	return g_strdup_printf ("%02X", self->val);
+}
+
+static char *
+hex_chartable_value_get_decimal (HexChartableValue *self)
+{
+	return g_strdup_printf ("%03d", self->val);
+}
+
+static char *
+hex_chartable_value_get_octal (HexChartableValue *self)
+{
+	return g_strdup_printf ("%03o", self->val);
+}
+
+static char *
+hex_chartable_value_get_binary (HexChartableValue *self)
+{
+	/* 9 == 8 characters + null terminator. */
+	char *bin_label = g_malloc0 (9);
+
+	/* fill in character string with 0's and 1's backwards. */
+	for (int col = 0; col < 8; ++col) {
+		bin_label[7-col] = (self->val & (1L << col)) ? '1' : '0';
+	}
+
+	return bin_label;
+}
+
+static void hex_chartable_value_get_property (GObject *object,
+		guint property_id,
+		GValue *value,
+		GParamSpec *pspec)
+{
+	HexChartableValue *self = HEX_CHARTABLE_VALUE(object);
+
+	switch (property_id)
+	{
+		case PROP_VALUE:
+			g_value_set_uchar (value, self->val);
+			break;
+
+		case PROP_ASCII:
+			g_value_take_string (value, hex_chartable_value_get_ascii (self));
+			break;
+
+		case PROP_HEX:
+			g_value_take_string (value, hex_chartable_value_get_hex (self));
+			break;
+
+		case PROP_DECIMAL:
+			g_value_take_string (value, hex_chartable_value_get_decimal (self));
+			break;
+
+		case PROP_OCTAL:
+			g_value_take_string (value, hex_chartable_value_get_octal (self));
+			break;
+
+		case PROP_BINARY:
+			g_value_take_string (value, hex_chartable_value_get_binary (self));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void hex_chartable_value_set_property (GObject *object,
+		guint property_id,
+		const GValue *value,
+		GParamSpec *pspec)
+{
+	HexChartableValue *self = HEX_CHARTABLE_VALUE(object);
+
+	switch (property_id)
+	{
+		case PROP_VALUE:
+			self->val = g_value_get_uchar (value);
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
 }
 
 static void
-chartable_row_activated_cb (GtkTreeView *tree_view,
-		GtkTreePath *path,
-		GtkTreeViewColumn *column,
+hex_chartable_value_class_init (HexChartableValueClass *klass)
+{
+	GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
+	/* flags for all properties EXCEPT 'value' */
+	GParamFlags flags = G_PARAM_READABLE | G_PARAM_STATIC_STRINGS;
+
+	gobject_class->get_property = hex_chartable_value_get_property;
+	gobject_class->set_property = hex_chartable_value_set_property;
+
+	properties[PROP_VALUE] = g_param_spec_uchar ("value", NULL, NULL, 0, 255, 0,
+			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT_ONLY);
+	properties[PROP_ASCII] = g_param_spec_string ("ascii", NULL, NULL, NULL, flags);
+	properties[PROP_HEX] = g_param_spec_string ("hex", NULL, NULL, NULL, flags);
+	properties[PROP_DECIMAL] = g_param_spec_string ("decimal", NULL, NULL, NULL, flags);
+	properties[PROP_OCTAL] = g_param_spec_string ("octal", NULL, NULL, NULL, flags);
+	properties[PROP_BINARY] = g_param_spec_string ("binary", NULL, NULL, NULL, flags);
+
+	g_object_class_install_properties (gobject_class, N_PROPS, properties);
+}
+
+static void
+hex_chartable_value_init (HexChartableValue *self)
+{
+}
+
+static HexChartableValue *
+hex_chartable_value_new (int val)
+{
+	return g_object_new (HEX_TYPE_CHARTABLE_VALUE,
+			"value", val,
+			NULL);
+}
+
+/* --- */
+
+static void
+insert_char (guchar byte)
+{
+	hex_document_set_byte (hex_widget_get_document (gh_glob),
+			byte,
+			hex_widget_get_cursor (gh_glob),
+			hex_widget_get_insert_mode (gh_glob),
+			TRUE);	/* undoable */
+
+	hex_widget_set_cursor (gh_glob, hex_widget_get_cursor (gh_glob) + 1);
+}
+
+
+static void
+columnview_activate_cb (GtkColumnView *columnview,
+		guint position,
 		gpointer user_data)
 {
-	GtkTreeModel *model = GTK_TREE_MODEL(user_data);
-
-	g_debug("%s: start", __func__);
-
-	insert_char (tree_view, model);
+	insert_char ((guchar)position);
 }
 
 static void
-inbtn_clicked_cb (GtkButton *button, gpointer user_data)
+insert_button_clicked_cb (GtkButton *button, GtkColumnView *columnview)
 {
-	GtkTreeView *treeview = GTK_TREE_VIEW(user_data);
-	GtkTreeModel *model;
+	GtkSingleSelection *selection = GTK_SINGLE_SELECTION(gtk_column_view_get_model (columnview));
 
-	g_return_if_fail (GTK_IS_TREE_VIEW(treeview));
+	insert_char ((guchar)gtk_single_selection_get_selected (selection));
+}
 
-	model = gtk_tree_view_get_model (treeview);
+static void
+setup_columnview (GtkWidget *columnview)
+{
+	GListStore *store = g_list_store_new (HEX_TYPE_CHARTABLE_VALUE);
+	GtkSingleSelection *selection;
 
-	insert_char (treeview, model);
+	for (int i = 0; i < 256; ++i)
+	{
+		HexChartableValue *hv = hex_chartable_value_new (i);
+		g_list_store_append (store, hv);
+		g_object_unref (hv);
+	}
+
+	selection = gtk_single_selection_new (G_LIST_MODEL(store));
+	gtk_column_view_set_model (GTK_COLUMN_VIEW(columnview), GTK_SELECTION_MODEL(selection));
+
+	g_signal_connect (columnview, "activate", G_CALLBACK(columnview_activate_cb), NULL);
 }
 
 static gboolean
@@ -149,137 +308,37 @@ key_press_cb (GtkEventControllerKey *key,
 }
 
 
-GtkWidget *create_char_table (GtkWindow *parent_win, HexWidget *gh)
+GtkWidget *
+create_char_table (GtkWindow *parent_win, HexWidget *gh)
 {
-	static gchar *fmt[] = { NULL, "%02X", "%03d", "%03o" };
-	static gchar *titles[] = {  N_("ASCII"), N_("Hex"), N_("Decimal"),
-		N_("Octal"), N_("Binary") };
-	gchar *real_titles[5];
-	GtkWidget *ct, *sw, *ctv, *inbtn, *cbtn, *vbox, *hbox, *lbl, *sep;
-	GtkListStore *store;
-	GtkCellRenderer *cell_renderer;
-	GtkTreeViewColumn *column;
-	GtkTreeIter iter;
-	GtkTreeSelection *selection;
-	int i, col;
-	gchar *label, ascii_printable_label[2], bin_label[9], *row[5];
+	GtkBuilder *builder = gtk_builder_new_from_resource (RESOURCE_BASE_PATH "/chartable.ui");
+	GtkWidget *window = GTK_WIDGET(gtk_builder_get_object (builder, "window"));
+	GtkWidget *columnview = GTK_WIDGET(gtk_builder_get_object (builder, "columnview"));
+	GtkWidget *insert_button = GTK_WIDGET(gtk_builder_get_object (builder, "insert_button"));
+	GtkWidget *close_button = GTK_WIDGET(gtk_builder_get_object (builder, "close_button"));
 	GtkEventController *key;
 
 	/* set global HexWidget widget */
 	g_assert (HEX_IS_WIDGET(gh));
 	gh_glob = gh;
 
-	/* Create our char table window and set as child of parent window,
-	 * if requested.
-	 */
-	ct = gtk_window_new ();
-
+	/* Make ESC close the dialog */
 	key = gtk_event_controller_key_new ();
-	gtk_widget_add_controller (ct, key);
-	g_signal_connect (key, "key-pressed", G_CALLBACK(key_press_cb), ct);
+	gtk_widget_add_controller (window, key);
+	g_signal_connect (key, "key-pressed", G_CALLBACK(key_press_cb), window);
 
 	if (parent_win) {
 		g_assert (GTK_IS_WINDOW (parent_win));
 
-		gtk_window_set_transient_for (GTK_WINDOW(ct), parent_win);
+		gtk_window_set_transient_for (GTK_WINDOW(window), parent_win);
 	}
 
-	gtk_window_set_title(GTK_WINDOW(ct), _("Character table"));
+	setup_columnview (columnview);
 
-	sw = gtk_scrolled_window_new ();
-	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw),
-			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	g_signal_connect_swapped (close_button, "clicked", G_CALLBACK(gtk_window_close), window);
+	g_signal_connect (insert_button, "clicked", G_CALLBACK(insert_button_clicked_cb), columnview);
 
-	for(i = 0; i < 5; i++)
-		real_titles[i] = _(titles[i]);
+	g_object_unref (builder);
 
-	store = gtk_list_store_new(5, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-	cell_renderer = gtk_cell_renderer_text_new();
-	ctv = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
-	gtk_widget_set_hexpand (ctv, TRUE);
-	gtk_widget_set_vexpand (ctv, TRUE);
-
-	for (i = 0; i < 5; i++) {
-		column = gtk_tree_view_column_new_with_attributes (real_titles[i], cell_renderer, "text", i, NULL);
-		gtk_tree_view_append_column(GTK_TREE_VIEW(ctv), column);
-	}
-
-	bin_label[8] = 0;
-	ascii_printable_label[1] = 0;
-	for(i = 0; i < 256; i++) {
-		if(i < 0x20)
-			row[0] = ascii_non_printable_label[i];
-		else if(i < 0x7f) {
-			ascii_printable_label[0] = i;
-			row[0] = ascii_printable_label;
-		}
-		else
-			row[0] = "";
-		for(col = 1; col < 4; col++) {
-#if defined(__GNUC__) && (__GNUC__ > 4)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wformat-nonliteral"
-#endif
-			label = g_strdup_printf(fmt[col], i);
-#if defined(__GNUC__) && (__GNUC__ > 4)
-#pragma GCC diagnostic pop
-#endif
-			row[col] = label;
-		}
-		for(col = 0; col < 8; col++) {
-			bin_label[7-col] = (i & (1L << col))?'1':'0';
-			row[4] = bin_label;
-		}
-
-		gtk_list_store_append(GTK_LIST_STORE(store), &iter);
-		gtk_list_store_set(GTK_LIST_STORE(store), &iter,
-				   0, row[0],
-				   1, row[1],
-				   2, row[2],
-				   3, row[3],
-				   4, row[4],
-				   -1);
-
-		for(col = 1; col < 4; col++)
-			g_free(row[col]);
-	}
-
-	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW (ctv));
-	gtk_tree_selection_set_mode(selection, GTK_SELECTION_SINGLE);
-
-	g_signal_connect (ctv, "row-activated",
-			G_CALLBACK(chartable_row_activated_cb), GTK_TREE_MODEL(store));
-
-	gtk_widget_grab_focus(ctv);
-
-	inbtn = gtk_button_new_with_mnemonic (_("_Insert Character"));
-	g_signal_connect(G_OBJECT (inbtn), "clicked",
-					G_CALLBACK(inbtn_clicked_cb), ctv);
-
-	cbtn = gtk_button_new_with_mnemonic (_("_Close"));
-	g_signal_connect_swapped (cbtn, "clicked", G_CALLBACK(gtk_window_close), ct);
-
-	lbl = gtk_label_new ("");
-	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 4);
-	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
-	gtk_widget_set_name (hbox, "chartable-action-area");
-
-	sep = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
-
-	gtk_box_append (GTK_BOX(hbox), lbl);
-	gtk_box_append (GTK_BOX(hbox), inbtn);
-	gtk_box_append (GTK_BOX(hbox), cbtn);
-
-	gtk_box_append (GTK_BOX(vbox), sw);
-	gtk_box_append (GTK_BOX(vbox), sep);
-	gtk_box_append (GTK_BOX(vbox), hbox);
-
-	gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW(sw), ctv);
-	gtk_window_set_child (GTK_WINDOW(ct), vbox);
-
-	gtk_widget_set_size_request (ct, 320, 320);
-
-	return ct;
+	return window;
 }
-
-G_GNUC_END_IGNORE_DEPRECATIONS

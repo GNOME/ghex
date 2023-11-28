@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- vim: ts=2 sw=2 expandtab foldmethod=indent
+-->
+
+<interface>
+  <object class="GtkWindow" id="window">
+    <property name="default-width">400</property>
+    <property name="default-height">400</property>
+    <property name="title" translatable="yes">Character table</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkScrolledWindow">
+            <child>
+              <object class="GtkColumnView" id="columnview">
+                <property name="single-click-activate">false</property>
+                <property name="vexpand">true</property>
+                <property name="hexpand">true</property>
+                <child>
+                  <object class="GtkColumnViewColumn" id="ascii_column">
+                    <property name="title" translatable="yes">ASCII</property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+                        <property name="bytes"><![CDATA[
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <interface>
+                          <template class="GtkListItem">
+                            <property name="child">
+                              <object class="GtkLabel">
+                                <binding name="label">
+                                  <lookup name="ascii" type="HexChartableValue">
+                                    <lookup name="item">GtkListItem</lookup>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </property>
+                          </template>
+                        </interface>
+                          ]]></property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkColumnViewColumn" id="hex_column">
+                    <property name="title" translatable="yes">Hex</property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+                        <property name="bytes"><![CDATA[
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <interface>
+                          <template class="GtkListItem">
+                            <property name="child">
+                              <object class="GtkLabel">
+                                <binding name="label">
+                                  <lookup name="hex" type="HexChartableValue">
+                                    <lookup name="item">GtkListItem</lookup>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </property>
+                          </template>
+                        </interface>
+                          ]]></property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkColumnViewColumn" id="decimal_column">
+                    <property name="title" translatable="yes">Decimal</property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+                        <property name="bytes"><![CDATA[
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <interface>
+                          <template class="GtkListItem">
+                            <property name="child">
+                              <object class="GtkLabel">
+                                <binding name="label">
+                                  <lookup name="decimal" type="HexChartableValue">
+                                    <lookup name="item">GtkListItem</lookup>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </property>
+                          </template>
+                        </interface>
+                          ]]></property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkColumnViewColumn" id="octal_column">
+                    <property name="title" translatable="yes">Octal</property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+                        <property name="bytes"><![CDATA[
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <interface>
+                          <template class="GtkListItem">
+                            <property name="child">
+                              <object class="GtkLabel">
+                                <binding name="label">
+                                  <lookup name="octal" type="HexChartableValue">
+                                    <lookup name="item">GtkListItem</lookup>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </property>
+                          </template>
+                        </interface>
+                          ]]></property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkColumnViewColumn" id="binary_column">
+                    <property name="title" translatable="yes">Binary</property>
+                    <property name="factory">
+                      <object class="GtkBuilderListItemFactory">
+                        <property name="bytes"><![CDATA[
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <interface>
+                          <template class="GtkListItem">
+                            <property name="child">
+                              <object class="GtkLabel">
+                                <binding name="label">
+                                  <lookup name="binary" type="HexChartableValue">
+                                    <lookup name="item">GtkListItem</lookup>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </property>
+                          </template>
+                        </interface>
+                          ]]></property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">6</property>
+            <property name="name">chartable-action-area</property>
+            <child>
+              <object class="GtkButton" id="insert_button">
+                <property name="use-underline">true</property>
+                <property name="label">_Insert Character</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="close_button">
+                <property name="use-underline">true</property>
+                <property name="label">_Close</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
