@@ -398,7 +398,7 @@ close_page_finish_helper (GHexApplicationWindow *self, AdwTabView *tab_view, Adw
 }
 
 static void
-close_doc_response_cb (GtkDialog *dialog,
+close_doc_response_cb (AdwMessageDialog *dialog,
 		const char *response,
 		GHexApplicationWindow *self)
 {
@@ -1106,7 +1106,7 @@ save_as (GtkWidget *widget,
 G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
-revert_response_cb (GtkDialog *dialog,
+revert_response_cb (AdwMessageDialog *dialog,
 		const char *response,
 		GHexApplicationWindow *self)
 {

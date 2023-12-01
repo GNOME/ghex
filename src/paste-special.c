@@ -3,7 +3,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* paste-special.c - `Paste special' dialog for GHex
 
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2023 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -79,8 +79,6 @@ struct _MimeSubTypeLabel {
 G_DEFINE_TYPE (MimeSubTypeLabel, mime_sub_type_label, GTK_TYPE_WIDGET)
 
 /* PRIVATE FORWARD DECLARATIONS */
-static void dialog_response_cb (GtkDialog *dialog, int response_id,
-		gpointer user_data);
 static void destroy_paste_special_dialog (void);
 
 /* STATIC GLOBALS */
@@ -380,9 +378,25 @@ row_activated_cb (GtkListBox *box,
 #undef STANDARD_PASTE
 #undef STANDARD_COPY
 
+static gboolean
+key_press_cb (GtkEventControllerKey *key,
+		guint keyval,
+		guint keycode,
+		GdkModifierType state,
+		GtkWindow *ct)
+{
+	if (keyval == GDK_KEY_Escape)
+	{
+		destroy_paste_special_dialog ();
+		return GDK_EVENT_STOP;
+	}
+	return GDK_EVENT_PROPAGATE;
+}
+
 static void
 common_init_widgets (void)
 {
+	GtkEventController *key = gtk_event_controller_key_new ();
 	GET_WIDGET (paste_special_dialog);
 	GET_WIDGET (paste_button);
 	GET_WIDGET (cancel_button);
@@ -390,6 +404,10 @@ common_init_widgets (void)
 
 	gtk_list_box_set_activate_on_single_click (GTK_LIST_BOX(paste_special_listbox),
 			FALSE);
+
+	/* Make ESC close the dialog */
+	gtk_widget_add_controller (paste_special_dialog, key);
+	g_signal_connect (key, "key-pressed", G_CALLBACK(key_press_cb), NULL);
 }
 
 static void
@@ -542,12 +560,17 @@ init_mime_hash (void)
 }
 
 static void
+paste_button_clicked_cb (GtkButton *btn, gpointer user_data)
+{
+	GtkListBoxRow *row = gtk_list_box_get_selected_row (GTK_LIST_BOX (paste_special_listbox));
+	g_signal_emit_by_name (row, "activate");
+}
+
+static void
 common_setup_signals (void)
 {
-	g_return_if_fail (GTK_IS_DIALOG (paste_special_dialog));
-
-	g_signal_connect (paste_special_dialog, "response",
-			G_CALLBACK(dialog_response_cb), NULL);
+	g_signal_connect (paste_button, "clicked", G_CALLBACK(paste_button_clicked_cb), NULL);
+	g_signal_connect (cancel_button, "clicked", G_CALLBACK(destroy_paste_special_dialog), NULL);
 }
 
 static void
@@ -672,27 +695,6 @@ destroy_paste_special_dialog (void)
 		hex_paste_data = NULL;
 
 	gtk_window_destroy (GTK_WINDOW(paste_special_dialog));
-}
-
-static void
-dialog_response_cb (GtkDialog *dialog,
-		int        response_id,
-		gpointer   user_data)
-{
-	GtkListBoxRow *row;
-
-	switch (response_id)
-	{
-		case GTK_RESPONSE_ACCEPT:
-			row = gtk_list_box_get_selected_row
-				(GTK_LIST_BOX(paste_special_listbox));
-			g_signal_emit_by_name (row, "activate");
-			break;
-
-		default:
-			destroy_paste_special_dialog ();
-			break;
-	}
 }
 
 /* PUBLIC FUNCTIONS */
