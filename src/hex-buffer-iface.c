@@ -365,10 +365,15 @@ hex_buffer_util_new (const char *plugin, GFile *file)
 	char *plugin_path = NULL;
 	char *symbol_name = NULL;
 
-	/* If dynamic loading of plugins isn't even supported on the platform, or
-	 * if NULL is passed, fall right back to `malloc` since it's the only one
-	 * baked in.
+	/* If the malloc backend is specifically requested, or if dynamic loading
+	 * of plugins isn't even supported on the platform, or if NULL is passed,
+	 * fall back to `malloc` since it's the only one baked in.
 	 */
+	if (g_strcmp0 (plugin, "malloc") == 0)
+	{
+		g_debug ("malloc buffer explicitly specified; no need to load any plugin.");
+		return hex_buffer_malloc_new (file);
+	}
 	if (! plugin)
 	{
 		g_debug ("No plugin specified; falling back to the `malloc` backend.");
@@ -376,17 +381,16 @@ hex_buffer_util_new (const char *plugin, GFile *file)
 	}
 	if (! g_module_supported () || !plugin)
 	{
-		g_message ("Modules not supported on this system; "
-				"falling back to `malloc` backend.");
+		g_warning ("Modules not supported on this system; falling back to `malloc` backend.");
 		return hex_buffer_malloc_new (file);
 	}
 
-/* g_module_build_path has been deprecated as of glib 2.76, but the behaviour
- * of g_module_open has also been changed^W improved. Since it's unclear at
- * this point whether these improvements are backwards-compatible, we use the
- * legacy functions for now until the changes have had some time to cook for a
- * while.
- */
+	/* g_module_build_path has been deprecated as of glib 2.76, but the behaviour
+	 * of g_module_open has also been changed^W improved. Since it's unclear at
+	 * this point whether these improvements are backwards-compatible, we use the
+	 * legacy functions for now until the changes have had some time to cook for a
+	 * while.
+	 */
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	plugin_soname = g_strdup_printf ("hex-buffer-%s", plugin);
 	plugin_path = g_module_build_path (PACKAGE_PLUGINDIR, plugin_soname);
@@ -396,13 +400,13 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 	if (! module)
 	{
-		g_debug ("Unable to locate/load plugin at %s", plugin_path);
+		g_warning ("Unable to locate/load plugin at %s", plugin_path);
 		func = NULL;
 	}
 	else if (! g_module_symbol (module, symbol_name, (gpointer *)&func) ||
 			func == NULL)
 	{
-		g_message ("Plugin found at %s - but unable to locate symbol: %s - "
+		g_warning ("Plugin found at %s - but unable to locate symbol: %s - "
 				"falling back to `malloc` backend.",
 				plugin_path, symbol_name);
 		func = hex_buffer_malloc_new;
