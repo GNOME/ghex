@@ -197,10 +197,11 @@ hex_document_get_property (GObject *object,
 	switch (property_id)
 	{
 		case GFILE:
-			/* --- */
+			g_value_set_object (value, hex_document_get_file (doc));
 			break;
 
 		case BUFFER:
+			g_value_set_object (value, hex_document_get_buffer (doc));
 			break;
 
 		default:
