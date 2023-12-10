@@ -440,11 +440,13 @@ static void
 hex_document_init (HexDocument *doc)
 {
 	HexBuffer *try_buf = NULL;
+	const char *default_buf;
 
-	/* FIXME - make this a setting; preferred default backend, or
-	 * what-have-you.
-	 */
-	try_buf = hex_buffer_util_new ("mmap", NULL);
+	default_buf = g_getenv ("HEX_BUFFER");
+	if (! default_buf)
+		default_buf = "mmap";
+
+	try_buf = hex_buffer_util_new (default_buf, NULL);
 	if (! try_buf)
 		try_buf = hex_buffer_util_new (NULL, NULL);
 
@@ -461,6 +463,11 @@ hex_document_init (HexDocument *doc)
  * hex_document_new:
  *
  * Create a new empty [class@Hex.Document] object.
+ *
+ * Since 4.6, the HEX_BUFFER environment variable can optionally be set to
+ * specify which backend should be tried first as the default. Otherwise, the
+ * `mmap` buffer will be attempted to be loaded if available, and if it is not,
+ * it will fall back to the `malloc` buffer backend.
  *
  * Returns: a new [class@Hex.Document] object.
  */
