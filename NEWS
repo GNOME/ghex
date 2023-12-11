@@ -1,3 +1,30 @@
+=============
+GHex 46.alpha
+=============
+
+Changes and bugfixes since 45.0:
+- GObject property getter fixes (Logan Rathbone)
+- buf-malloc/mmap: Implement GObject 'file' property getter properly (Logan
+  Rathbone)
+- hex-buf/doc: Clarify GI transfer annotations (Logan Rathbone)
+- hex-doc/buf: Support opening zero-length files (See: #73) (Logan Rathbone)
+- hex-buf-iface: More appropriate messages when selecting backend (Logan
+  Rathbone)
+- hex-doc: Allow setting HEX_BUFFER env var to specify default backend (Logan
+  Rathbone)
+- Remove almost all remaining GtkDialog use (Logan Rathbone)
+- about: port dialog to libadwaita (Titouan Real)
+- Update POTFILES.in (Logan Rathbone)
+- chartable: Port to GtkColumnView (Logan Rathbone)
+- gtkhex: Local variables in switch statement should be in own scope (ie, fix
+  clang build issues) (Fixes: #74) (David C. Manuelda, Logan Rathbone)
+- appwin: Mark error message string properly translatable (Logan Rathbone)
+
+Translation updates:
+- Alan Mortensen (da)
+- Anders Jonsson (sv)
+- Emin Tufan Çetin (tr)
+
 =========
 GHex 45.0
 =========
