@@ -1931,7 +1931,7 @@ hex_document_get_file (HexDocument *doc)
 /**
  * hex_document_set_buffer:
  * @doc: a [class@Hex.Document] object
- * @buf: [iface@Hex.Buffer]
+ * @buf: (transfer full): [iface@Hex.Buffer]
  *
  * Set the [iface@Hex.Buffer] connected with the #HexDocument.
  *

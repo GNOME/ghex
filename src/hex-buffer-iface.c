@@ -144,7 +144,7 @@ hex_buffer_set_data (HexBuffer *self,
 
 /**
  * hex_buffer_set_file:
- * @file: the file to be utilized by the buffer
+ * @file: (transfer full): the file to be utilized by the buffer
  *
  * Set the #GFile to be utilized by the buffer. Once it has been set,
  * you can read it into the buffer with [method@Hex.Buffer.read] or
