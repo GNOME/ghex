@@ -434,6 +434,15 @@ G_GNUC_END_IGNORE_DEPRECATIONS
  *
  * Utility function to obtain the size of a #GFile.
  *
+ * Since 4.6, this function will return an unspecified negative value if the
+ * file size was unable to be obtained, as opposed to 0 as it previously did.
+ * This is to distinguish between valid zero-length files and files for which
+ * the size was not able to be obtained (eg, if it was unreadable). In the
+ * future, these negative values may be defined as specific enums which have a
+ * more specific meaning. But presently and going forward, testing for a
+ * negative value is sufficient to determine that the file size was
+ * unobtainable.
+ *
  * Returns: the size of the file, in bytes
  */
 gint64
@@ -445,7 +454,7 @@ hex_buffer_util_get_file_size (GFile *file)
 			G_FILE_ATTRIBUTE_STANDARD_SIZE, G_FILE_QUERY_INFO_NONE, NULL, NULL);
 
 	if (! info)
-		return 0;
+		return -1;
 
 	return g_file_info_get_size (info);
 }

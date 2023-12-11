@@ -122,12 +122,13 @@ hex_buffer_malloc_get_property (GObject *object,
 static gboolean
 update_payload_size_from_file (HexBufferMalloc *self)
 {
-	self->payload_size = hex_buffer_util_get_file_size (self->file);
+	gint64 file_size = hex_buffer_util_get_file_size (self->file);
 
-	if (! self->payload_size)
+	if (file_size < 0)
 		return FALSE;
-	else
-		return TRUE;
+
+	self->payload_size = file_size;
+	return TRUE;
 }
 
 /* transfer: none */

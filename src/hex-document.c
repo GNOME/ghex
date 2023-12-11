@@ -490,6 +490,19 @@ hex_document_new (void)
 gboolean
 hex_document_set_file (HexDocument *doc, GFile *file)
 {
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+	g_return_val_if_fail (G_IS_FILE (file), FALSE);
+
+	/* Only the malloc backend can open 0-length files */
+	if (hex_buffer_util_get_file_size (file) == 0)
+	{
+		HexBuffer *buf;
+
+		g_debug ("%s: Zero-length file detected. Attempting to set `malloc` buffer.", __func__);
+		buf = hex_buffer_util_new ("malloc", file);
+		hex_document_set_buffer (doc, buf);
+	}
+
 	if (! hex_buffer_set_file (doc->buffer, file)) {
 		g_debug ("%s: Invalid file", __func__);
 		return FALSE;
