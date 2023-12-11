@@ -107,7 +107,7 @@ hex_buffer_malloc_get_property (GObject *object,
 	switch (property_id)
 	{
 		case PROP_FILE:
-			g_value_set_pointer (value, self->file);
+			g_value_set_object (value, self->file);
 			break;
 
 		default:
