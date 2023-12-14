@@ -54,6 +54,8 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 #define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
 #define is_copyable(c) (is_displayable(c) || (c) == 0x0a || (c) == 0x0d)
 
+#define PANGO_COLOR_FROM_FLOAT(C) (C * UINT_MAX)
+
 #define HEX_BUFFER_PAYLOAD(X)	\
 	hex_buffer_get_payload_size (hex_document_get_buffer (X))
 
@@ -1109,6 +1111,38 @@ end_of_loop:
 	}
 }
 
+inline static void
+fade_zeroes (HexWidget *self, PangoLayout *layout)
+{
+	GtkWidget *widget = GTK_WIDGET(self);
+	GtkStyleContext *context = gtk_widget_get_style_context (widget);
+	GtkStateFlags state = gtk_widget_get_state_flags (widget);
+	const int color_modifier = UINT16_MAX * 0.4;
+	const char *text = pango_layout_get_text (layout);
+	PangoAttrList *list = pango_attr_list_new ();
+	GdkRGBA fg_color;
+
+	gtk_style_context_get_color (context, &fg_color);
+
+	for (int i = 0; text[i]; ++i)
+	{
+		if (text[i] == '0' && text[i+1] == '0')
+		{
+			PangoAttribute *attr = pango_attr_foreground_new (
+					PANGO_COLOR_FROM_FLOAT(fg_color.red) + color_modifier,
+					PANGO_COLOR_FROM_FLOAT(fg_color.green) + color_modifier,
+					PANGO_COLOR_FROM_FLOAT(fg_color.blue) + color_modifier);
+
+			attr->start_index = i;
+			attr->end_index = i+2;
+
+			pango_attr_list_insert (list, attr);
+		}
+	}
+	pango_layout_set_attributes (layout, list);
+	pango_attr_list_unref (list);
+}
+
 /*
  * when calling render_lines() the min_lines and max_lines arguments are the
  * numbers of the first and last line TO BE DISPLAYED in the range
@@ -1209,6 +1243,9 @@ render_lines (HexWidget *self,
 		pango_layout_set_text (layout,
 				(char *)self->disp_buffer + (i - min_lines) * cpl,
 				MIN(cpl, tmp));
+
+		if (type == VIEW_HEX)
+			fade_zeroes (self, layout);
 
 		render_highlights (self, cr, i, type);
 
