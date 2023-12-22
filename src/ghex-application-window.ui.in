@@ -62,6 +62,10 @@
 				<attribute name="label" translatable="yes">_Jump to Byte</attribute>
 				<attribute name="action">ghex.jump</attribute>
 			</item>
+			<item>
+				<attribute name="label" translatable="yes">_Marks</attribute>
+				<attribute name="action">ghex.mark-dialog</attribute>
+			</item>
 		</section>
 
 		<!-- SUBMENUS -->
@@ -78,6 +82,30 @@
 					<attribute name="label" translatable="yes">_Paste Special</attribute>
 					<attribute name="action">ghex.paste-special</attribute>
 				</item>
+				<submenu>
+					<attribute name="label" translatable="yes">G_roup Data As</attribute>
+					<item>
+						<attribute name="label" translatable="yes">_Bytes (8-bit)</attribute>
+						<!-- use 'win' prefix for these because that's what gets set automatically by g_settings_create_action in _init -->
+						<attribute name="action">win.group-data-by</attribute>
+						<attribute name="target">bytes</attribute>
+					</item>
+					<item>
+						<attribute name="label" translatable="yes">_Words (16-bit)</attribute>
+						<attribute name="action">win.group-data-by</attribute>
+						<attribute name="target">words</attribute>
+					</item>
+					<item>
+						<attribute name="label" translatable="yes">_Longwords (32-bit)</attribute>
+						<attribute name="action">win.group-data-by</attribute>
+						<attribute name="target">longwords</attribute>
+					</item>
+					<item>
+						<attribute name="label" translatable="yes">_Quadwords (64-bit)</attribute>
+						<attribute name="action">win.group-data-by</attribute>
+						<attribute name="target">quadwords</attribute>
+					</item>
+				</submenu>
 			</submenu>
 
 			<!-- TOOLS -->
@@ -90,32 +118,6 @@
 				<item>
 					<attribute name="label" translatable="yes">_Base Converter</attribute>
 					<attribute name="action">ghex.converter</attribute>
-				</item>
-			</submenu>
-
-			<!-- GROUP DATA AS -->
-			<submenu>
-				<attribute name="label" translatable="yes">G_roup Data As</attribute>
-				<item>
-					<attribute name="label" translatable="yes">_Bytes (8-bit)</attribute>
-					<!-- use 'win' prefix for these because that's what gets set automatically by g_settings_create_action in _init -->
-					<attribute name="action">win.group-data-by</attribute>
-					<attribute name="target">bytes</attribute>
-				</item>
-				<item>
-					<attribute name="label" translatable="yes">_Words (16-bit)</attribute>
-					<attribute name="action">win.group-data-by</attribute>
-					<attribute name="target">words</attribute>
-				</item>
-				<item>
-					<attribute name="label" translatable="yes">_Longwords (32-bit)</attribute>
-					<attribute name="action">win.group-data-by</attribute>
-					<attribute name="target">longwords</attribute>
-				</item>
-				<item>
-					<attribute name="label" translatable="yes">_Quadwords (64-bit)</attribute>
-					<attribute name="action">win.group-data-by</attribute>
-					<attribute name="target">quadwords</attribute>
 				</item>
 			</submenu>
 		</section>

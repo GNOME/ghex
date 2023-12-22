@@ -102,6 +102,27 @@
 
 				<child>
 					<object class="GtkShortcutsGroup">
+						<property name="title" translatable="yes">Marks</property>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;m</property>
+								<property name="title" translatable="yes">Marks dialog</property>
+							</object>
+						</child>
+
+						<child>
+							<object class="GtkShortcutsShortcut">
+								<property name="accelerator">&lt;Control&gt;0...&lt;Control&gt;9</property>
+								<property name="title" translatable="yes">Activate mark (0-9)</property>
+							</object>
+						</child>
+
+					</object>
+				</child> <!-- /Marks -->
+
+				<child>
+					<object class="GtkShortcutsGroup">
 						<property name="title" translatable="yes">Clipboard</property>
 
 						<child>

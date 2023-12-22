@@ -79,8 +79,6 @@ struct _HexWidget_Highlight
 {
 	gint64 start, end;
 	gint64 start_line, end_line;
-
-	HexWidget_Highlight *prev, *next;
 };
 
 /**
@@ -99,8 +97,7 @@ struct _HexWidgetAutoHighlight
 	gint64 view_min;
 	gint64 view_max;
 
-	HexWidget_Highlight *highlights;
-	HexWidgetAutoHighlight *next, *prev;
+	GPtrArray *highlights;
 };
 
 /* FIXME - only defined to create a boxed type and may be unreliable. */
@@ -112,6 +109,207 @@ hex_widget_autohighlight_copy (HexWidgetAutoHighlight *ahl)
 
 G_DEFINE_BOXED_TYPE (HexWidgetAutoHighlight, hex_widget_autohighlight,
 		hex_widget_autohighlight_copy, g_free)
+
+enum {
+	MARK_HAVE_CUSTOM_COLOR = 1,
+	MARK_CUSTOM_COLOR,
+	MARK_N_PROPERTIES
+};
+
+static GParamSpec *mark_properties[MARK_N_PROPERTIES];
+
+/**
+ * HexWidgetMark:
+ *
+ * `HexWidgetMark` is a `GObject` which contains the metadata associated with a
+ * mark for a hex document.
+ *
+ * To instantiate a `HexWidgetMark` object, use the [method@HexWidget.add_mark]
+ * method.
+ */
+struct _HexWidgetMark
+{
+	GObject parent_instance;
+
+	HexWidget_Highlight highlight;
+	gboolean have_custom_color;
+	GdkRGBA custom_color;
+};
+
+G_DEFINE_TYPE (HexWidgetMark, hex_widget_mark, G_TYPE_OBJECT)
+
+/**
+ * hex_widget_mark_get_have_custom_color:
+ *
+ * Returns whether the `HexWidgetMark` has a custom color associated with it.
+ *
+ * Returns: `TRUE` if the `HexWidgetMark` has a custom color associated with
+ *   it; `FALSE` otherwise.
+ *
+ * Since: 4.8
+ */
+gboolean
+hex_widget_mark_get_have_custom_color (HexWidgetMark *mark)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET_MARK (mark), FALSE);
+
+	return mark->have_custom_color;
+}
+
+/**
+ * hex_widget_mark_get_custom_color:
+ * @color: (out): A `GdkRGBA` structure to be set with the custom color
+ *   associated with the `HexWidgetMark`, if applicable
+ *
+ * Obtains the custom color associated with a `HexWidgetMark` object, if
+ * any.
+ *
+ * Since: 4.8
+ */
+void
+hex_widget_mark_get_custom_color (HexWidgetMark *mark, GdkRGBA *color)
+{
+	g_return_if_fail (HEX_IS_WIDGET_MARK (mark));
+	g_return_if_fail (color != NULL);
+
+	*color = mark->custom_color;
+}
+
+static void
+hex_widget_mark_set_custom_color (HexWidgetMark *mark, GdkRGBA *color)
+{
+	g_return_if_fail (HEX_IS_WIDGET_MARK (mark));
+	g_return_if_fail (color != NULL);
+
+	mark->have_custom_color = TRUE;
+	mark->custom_color = *color;
+
+	g_object_notify_by_pspec (G_OBJECT(mark), mark_properties[MARK_CUSTOM_COLOR]);
+	g_object_notify_by_pspec (G_OBJECT(mark), mark_properties[MARK_HAVE_CUSTOM_COLOR]);
+}
+
+/**
+ * hex_widget_mark_get_start_offset:
+ *
+ * Obtains the start offset of a `HexWidgetMark`.
+ *
+ * Returns: The start offset of the mark
+ *
+ * Since: 4.8
+ */
+gint64
+hex_widget_mark_get_start_offset (HexWidgetMark *mark)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET_MARK (mark), -1);
+
+	return mark->highlight.start;
+}
+
+/**
+ * hex_widget_mark_get_end_offset:
+ *
+ * Obtains the end offset of a `HexWidgetMark`.
+ *
+ * Returns: The end offset of the mark
+ *
+ * Since: 4.8
+ */
+gint64
+hex_widget_mark_get_end_offset (HexWidgetMark *mark)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET_MARK (mark), -1);
+
+	return mark->highlight.end;
+}
+
+static void
+hex_widget_mark_set_property (GObject *object,
+		guint property_id,
+		const GValue *value,
+		GParamSpec *pspec)
+{
+	HexWidgetMark *mark = HEX_WIDGET_MARK(object);
+
+	switch (property_id)
+	{
+		case MARK_CUSTOM_COLOR:
+			hex_widget_mark_set_custom_color (mark, g_value_get_boxed (value));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void
+hex_widget_mark_get_property (GObject *object,
+		guint property_id,
+		GValue *value,
+		GParamSpec *pspec)
+{
+	HexWidgetMark *mark = HEX_WIDGET_MARK(object);
+
+	switch (property_id)
+	{
+		case MARK_HAVE_CUSTOM_COLOR:
+			g_value_set_boolean (value, hex_widget_mark_get_have_custom_color (mark));
+			break;
+
+		case MARK_CUSTOM_COLOR:
+		{
+			GdkRGBA color;
+
+			hex_widget_mark_get_custom_color (mark, &color);
+			g_value_set_boxed (value, &color);
+		}
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void
+hex_widget_mark_init (HexWidgetMark *mark)
+{
+}
+
+static void
+hex_widget_mark_class_init (HexWidgetMarkClass *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS(klass);
+
+	object_class->set_property = hex_widget_mark_set_property;
+	object_class->get_property = hex_widget_mark_get_property;
+
+	/**
+	 * HexWidgetMark:have-custom-color:
+	 *
+	 * Whether the `HexWidgetMark` has a custom color.
+	 */
+	mark_properties[MARK_HAVE_CUSTOM_COLOR] = g_param_spec_boolean ("have-custom-color", NULL, NULL,
+			FALSE,
+			G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+
+	/**
+	 * HexWidgetMark:custom-color:
+	 *
+	 * The custom color of the `HexWidgetMark`, if applicable.
+	 */
+	mark_properties[MARK_CUSTOM_COLOR] = g_param_spec_boxed ("custom-color", NULL, NULL,
+			GDK_TYPE_RGBA,
+			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+
+	g_object_class_install_properties (object_class, MARK_N_PROPERTIES, mark_properties);
+}
+
+static HexWidgetMark *
+hex_widget_mark_new (void)
+{
+	return g_object_new (HEX_TYPE_WIDGET_MARK, NULL);
+}
 
 /* ------------------------------
  * Main HexWidget GObject definition
@@ -202,7 +400,8 @@ struct _HexWidget
 	/* width of the hex display `xdisp` and ascii display `adisp` */
 	int xdisp_width, adisp_width;
 
-	HexWidgetAutoHighlight *auto_highlight;
+	GPtrArray *auto_highlights;
+	GPtrArray *marks;
 
 	/* scroll direction: 0 means no scrolling; a -ve number means we're
 	 * scrolling up, and a +ve number means we're scrolling down. */
@@ -351,12 +550,6 @@ static void render_lines (HexWidget *self, cairo_t *cr, int min_lines, int max_l
 		HexWidgetViewType type);
 
 static void hex_widget_update_all_auto_highlights (HexWidget *self);
-
-static HexWidget_Highlight *hex_widget_insert_highlight (HexWidget *self,
-		HexWidgetAutoHighlight *ahl, gint64 start, gint64 end);
-
-static void hex_widget_delete_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
-		HexWidget_Highlight *hl);
 
 static void hex_widget_update_auto_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
 		gboolean delete, gboolean add);
@@ -967,23 +1160,29 @@ update_highlight_start_and_end_lines (HexWidget *self, HexWidget_Highlight *hl)
 	hl->end_line = MAX(hl->start, hl->end) / self->cpl - self->top_line;
 }
 
-static void
-render_highlights (HexWidget *self,
+inline static void
+render_highlight (HexWidget *self,
 		cairo_t *cr,
-		gint64 cursor_line,
-		HexWidgetViewType type)
+		HexWidgetViewType type,
+		HexWidget_Highlight *highlight,
+		HexWidgetAutoHighlight *auto_highlight,	/* can NULL */
+		HexWidgetMark *mark,					/* can NULL */
+		gint64 cursor_line)
 {
-	/* Shorthand tracers to walk through highlight lists */
-	HexWidget_Highlight *highlight = &self->selection;
-	HexWidgetAutoHighlight *auto_highlight = self->auto_highlight;
 	GtkWidget *widget;		/* shorthand for the hex or ascii drawing area */
 	PangoLayout *layout;	/* shorthand for the hex or ascii pango layout */
+	int hex_cpl = get_hex_cpl (self);
+	int y = cursor_line * self->char_height;
 	GtkStyleContext *context;
 	GtkStateFlags state;
-	int hex_cpl;
+	gint64 cursor_off = 0;
+	size_t len;
+	int range[2];
+	double x1, x2, y1, y2;
 	cairo_region_t *region;
-	int y;
-	gboolean is_autohighlight = FALSE;
+
+	/* Shorthands for readability of this loop */
+	gint64 start, end, start_line, end_line;
 
 	if (type == VIEW_HEX)
 	{
@@ -996,129 +1195,151 @@ render_highlights (HexWidget *self,
 		layout = self->alayout;
 	}
 
-	hex_cpl = get_hex_cpl (self);
+	context = gtk_widget_get_style_context (widget);
+	gtk_style_context_save (context);
 
-	y = cursor_line * self->char_height;
-
-	while (highlight)
+	state = gtk_style_context_get_state (context);
+	if (auto_highlight)
+		state |= GTK_STATE_FLAG_LINK;
+	else if (mark)
+		state |= GTK_STATE_FLAG_VISITED;
+	else
 	{
-		gint64 cursor_off = 0;
-		size_t len;
-
-		int range[2];
-		double x1, x2, y1, y2;
-
-		/* Shorthands for readability of this loop */
-		gint64 start, end, start_line, end_line;
-
-		context = gtk_widget_get_style_context (widget);
-		gtk_style_context_save (context);
-
-		state = gtk_style_context_get_state (context);
-		if (is_autohighlight)
-			state |= GTK_STATE_FLAG_LINK;
-		else
+		if (gtk_widget_has_focus (GTK_WIDGET(self)))
 		{
-			if (gtk_widget_has_focus (GTK_WIDGET(self)))
-			{
-				state |= GTK_STATE_FLAG_FOCUS_WITHIN;
-			}
-			state |= GTK_STATE_FLAG_SELECTED;
+			state |= GTK_STATE_FLAG_FOCUS_WITHIN;
 		}
+		state |= GTK_STATE_FLAG_SELECTED;
+	}
 
-		gtk_style_context_set_state (context, state);
+	gtk_style_context_set_state (context, state);
 
-		update_highlight_start_and_end_lines (self, highlight);
+	update_highlight_start_and_end_lines (self, highlight);
 
-		start = MIN(highlight->start, highlight->end);
-		end = MAX(highlight->start, highlight->end);
-		start_line = highlight->start_line;
-		end_line = highlight->end_line;
+	start = MIN(highlight->start, highlight->end);
+	end = MAX(highlight->start, highlight->end);
+	start_line = highlight->start_line;
+	end_line = highlight->end_line;
 
-		if (start == end)
-			goto end_of_loop;
+	if (start == end)
+		goto out;
 
-		if (cursor_line == start_line)
-		{
-			if (type == VIEW_HEX) {
-				cursor_off = 2 * (start % self->cpl) +
-					(start % self->cpl) / self->group_type;
+	if (cursor_line == start_line)
+	{
+		if (type == VIEW_HEX) {
+			cursor_off = 2 * (start % self->cpl) +
+				(start % self->cpl) / self->group_type;
 
-				if (cursor_line == end_line)
-					len = 2 * (end % self->cpl + 1) +
-						(end % self->cpl) / self->group_type;
-				else
-					len = hex_cpl;
-
-				len = len - cursor_off;
-			}
-			else {	/* VIEW_ASCII */
-				cursor_off = start % self->cpl;
-
-				if (cursor_line == end_line)
-					len = end - start + 1;
-				else
-					len = self->cpl - cursor_off;
-			}
-
-			range[0] = cursor_off;
-			range[1] = cursor_off + len;
-		}
-		else if (cursor_line == end_line)
-		{
-			if (type == VIEW_HEX) {
-				cursor_off = 2 * (end % self->cpl + 1) + 
+			if (cursor_line == end_line)
+				len = 2 * (end % self->cpl + 1) +
 					(end % self->cpl) / self->group_type;
-			}
-			else {	/* VIEW_ASCII */
-				cursor_off = end % self->cpl + 1;
-			}
+			else
+				len = hex_cpl;
 
-			range[0] = 0;
-			range[1] = cursor_off;
+			len = len - cursor_off;
 		}
-		else if (cursor_line > start_line && cursor_line < end_line)
-		{
-			int cpl = (type == VIEW_HEX) ? hex_cpl : self->cpl;
+		else {	/* VIEW_ASCII */
+			cursor_off = start % self->cpl;
 
-			range[0] = 0;
-			range[1] = cpl;
+			if (cursor_line == end_line)
+				len = end - start + 1;
+			else
+				len = self->cpl - cursor_off;
 		}
-		else
-			goto end_of_loop;
 
+		range[0] = cursor_off;
+		range[1] = cursor_off + len;
+	}
+	else if (cursor_line == end_line)
+	{
+		if (type == VIEW_HEX) {
+			cursor_off = 2 * (end % self->cpl + 1) +
+				(end % self->cpl) / self->group_type;
+		}
+		else {	/* VIEW_ASCII */
+			cursor_off = end % self->cpl + 1;
+		}
+
+		range[0] = 0;
+		range[1] = cursor_off;
+	}
+	else if (cursor_line > start_line && cursor_line < end_line)
+	{
+		int cpl = (type == VIEW_HEX) ? hex_cpl : self->cpl;
+
+		range[0] = 0;
+		range[1] = cpl;
+	}
+	else
+		goto out;
+
+	cairo_save (cr);
+
+	region = gdk_pango_layout_get_clip_region (layout,
+			0,	/* x */
+			y,
+			range,
+			1);
+
+	gdk_cairo_region (cr, region);
+	cairo_clip (cr);
+	cairo_clip_extents (cr, &x1, &y1, &x2, &y2);
+
+	if (mark && mark->have_custom_color)
+	{
 		cairo_save (cr);
-
-		region = gdk_pango_layout_get_clip_region (layout,
-				0,	/* x */
-				y,
-				range,
-				1);
-
-		gdk_cairo_region (cr, region);
-		cairo_clip (cr);
-		cairo_clip_extents (cr, &x1, &y1, &x2, &y2);
-
+		cairo_set_source_rgba (cr,
+				mark->custom_color.red,
+				mark->custom_color.green,
+				mark->custom_color.blue,
+				mark->custom_color.alpha);
+		cairo_rectangle (cr, x1, y1, ABS(x2-x1), ABS(y2-y1));
+		cairo_fill (cr);
+		cairo_restore (cr);
+	}
+	else
+	{
 		gtk_render_background (context, cr,
 				x1,
 				y1,
 				ABS(x2-x1),
 				ABS(y2-y1));
+	}
 
-		cairo_restore (cr);
+	cairo_restore (cr);
 
-end_of_loop:
-		highlight = highlight->next;
+out:
+	gtk_style_context_restore (context);
+}
 
-		/* if there are no selection highlights left, look for auto-highlights
-		 */
-		while (highlight == NULL && auto_highlight)
+static void
+render_highlights (HexWidget *self,
+		cairo_t *cr,
+		gint64 cursor_line,
+		HexWidgetViewType type)
+{
+	/* Render primary highlighted selection */
+	render_highlight (self, cr, type, &self->selection, NULL, NULL, cursor_line);
+
+	/* Render auto highlights */
+	for (guint i = 0; i < self->auto_highlights->len; ++i)
+	{
+		HexWidgetAutoHighlight *auto_highlight = g_ptr_array_index (self->auto_highlights, i);
+
+		for (guint j = 0; j < auto_highlight->highlights->len; ++j)
 		{
-			highlight = auto_highlight->highlights;
-			auto_highlight = auto_highlight->next;
-			is_autohighlight = TRUE;
+			HexWidget_Highlight *highlight = g_ptr_array_index (auto_highlight->highlights, j);
+
+			render_highlight (self, cr, type, highlight, auto_highlight, NULL, cursor_line);
 		}
-		gtk_style_context_restore (context);
+	}
+
+	/* Render marks */
+	for (guint i = 0; i < self->marks->len; ++i)
+	{
+		HexWidgetMark *mark = g_ptr_array_index (self->marks, i);
+
+		render_highlight (self, cr, type, &mark->highlight, NULL, mark, cursor_line);
 	}
 }
 
@@ -2210,66 +2431,43 @@ hex_widget_real_data_changed (HexWidget *self, gpointer data)
 }
 
 static void
-bytes_changed (HexWidget *self, gint64 start, gint64 end)
-{
-	gint64 start_line;
-	gint64 end_line;
-
-	/* check for divide-by-zero issues */
-	g_return_if_fail (self->cpl);
-
-	start_line = start / self->cpl - self->top_line;
-	start_line = MAX (start_line, 0);
-
-	end_line = end / self->cpl - self->top_line;
-
-	/* Nothing needs to be done in some instances */
-	if (end_line < 0 || start_line > self->vis_lines)
-		return;
-
-	gtk_widget_queue_draw (GTK_WIDGET(self));
-}
-
-static HexWidget_Highlight *
-hex_widget_insert_highlight (HexWidget *self,
+insert_highlight_into_auto_highlight (HexWidget *self,
 		HexWidgetAutoHighlight *ahl,
 		gint64 start,
 		gint64 end)
 {
+	HexWidget_Highlight *new = NULL;
 	size_t payload_size;
 
-	g_return_val_if_fail (HEX_IS_DOCUMENT (self->document), NULL);
+	/* Sanity check - make sure highlight attempting to add doesn't already
+	 * exist in ahl - FIXME - this shouldn't have to exist at all.
+	 */
+	for (guint i = 0; i < ahl->highlights->len; ++i)
+	{
+		HexWidget_Highlight *hl = g_ptr_array_index (ahl->highlights, i);
 
+		if (start == hl->start && end == hl->end) {
+			return;
+		}
+	}
+
+	new = g_new0 (HexWidget_Highlight, 1);
 	payload_size = HEX_BUFFER_PAYLOAD (self->document);
-	HexWidget_Highlight *new = g_new0 (HexWidget_Highlight, 1);
 
 	new->start = CLAMP(MIN(start, end), 0, payload_size);
 	new->end = MIN(MAX(start, end), payload_size);
 
-	new->prev = NULL;
-	new->next = ahl->highlights;
-	if (new->next) new->next->prev = new;
-	ahl->highlights = new;
+	g_ptr_array_add (ahl->highlights, new);
 
-	bytes_changed (self, new->start, new->end);
-
-	return new;
+	gtk_widget_queue_draw (GTK_WIDGET(self));
 }
 
 static void
-hex_widget_delete_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
+delete_highlight_from_auto_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
 		HexWidget_Highlight *hl)
 {
-	gint64 start, end;
-	start = hl->start;
-	end = hl->end;
-	if (hl->prev) hl->prev->next = hl->next;
-	if (hl->next) hl->next->prev = hl->prev;
-
-	if (hl == ahl->highlights) ahl->highlights = hl->next;
-
-	g_free(hl);
-	bytes_changed(self, start, end);
+	g_ptr_array_remove (ahl->highlights, hl);
+	gtk_widget_queue_draw (GTK_WIDGET(self));
 }
 
 static gboolean
@@ -2320,11 +2518,9 @@ hex_widget_update_auto_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
 {
 	gint64 del_min, del_max;
 	gint64 add_min, add_max;
-	gint64 foundpos = -1;
 	size_t found_len;
 	gint64 prev_min = ahl->view_min;
 	gint64 prev_max = ahl->view_max;
-	HexWidget_Highlight *cur;
 
 	ahl_set_view_min_max (self, ahl);
 
@@ -2353,60 +2549,62 @@ hex_widget_update_auto_highlight (HexWidget *self, HexWidgetAutoHighlight *ahl,
 	add_min = MAX(add_min, 0);
 	del_min = MAX(del_min, 0);
 
-	cur = ahl->highlights;
-	while (delete && cur)
+	if (delete)
 	{
-		if (cur->start >= del_min && cur->start <= del_max)
+		for (guint i = 0; i < ahl->highlights->len; ++i)
 		{
-			HexWidget_Highlight *next = cur->next;
+			HexWidget_Highlight *highlight = g_ptr_array_index (ahl->highlights, i);
 
-			hex_widget_delete_highlight (self, ahl, cur);
-			cur = next;
+			if (highlight->start >= del_min && highlight->start <= del_max)
+			{
+				delete_highlight_from_auto_highlight (self, ahl, highlight);
+			}
 		}
-		else
-			cur = cur->next;
 	}
 
-	while (add &&
-		   hex_widget_find_limited (self,
-			   ahl->search_string,
-			   ahl->search_len,
-			   ahl->search_flags,
-			   MAX(add_min, foundpos+1),	/* lower */
-			   add_max,						/* upper */
-			   &foundpos,
-			   &found_len))
+	if (add)
 	{
-		hex_widget_insert_highlight (self, ahl,
-				foundpos,
-				foundpos + found_len - 1);
+		gint64 foundpos = -1;
+
+		while (hex_widget_find_limited (self,
+					ahl->search_string,
+					ahl->search_len,
+					ahl->search_flags,
+					MAX(add_min, foundpos+1),		/* lower */
+					add_max,						/* upper */
+					&foundpos,
+					&found_len))
+		{
+			insert_highlight_into_auto_highlight (self, ahl,
+					foundpos,
+					foundpos + found_len - 1);
+		}
 	}
 }
 
 static void
 hex_widget_update_all_auto_highlights (HexWidget *self)
 {
-	HexWidgetAutoHighlight *cur = self->auto_highlight;
-
 	int mult = 10;
 
 	gint64 top_line_pos = self->top_line * self->cpl;
 	gint64 bot_line_pos = (self->top_line + self->vis_lines) * self->cpl;
 
-	while (cur)
+	for (guint i = 0; i < self->auto_highlights->len; ++i)
 	{
+		HexWidgetAutoHighlight *ahl = g_ptr_array_index (self->auto_highlights, i);
+
 		/* only refresh possibilities within a certain number of line numbers
 		 */
-		if (top_line_pos - mult * self->vis_lines * self->cpl > cur->view_min ||
-			bot_line_pos + mult * self->vis_lines * self->cpl < cur->view_max)
+		if (top_line_pos - mult * self->vis_lines * self->cpl > ahl->view_min ||
+			bot_line_pos + mult * self->vis_lines * self->cpl < ahl->view_max)
 		{
 			/* do nothing */
 		}
 		else
 		{
-			hex_widget_update_auto_highlight (self, cur, TRUE, TRUE);
+			hex_widget_update_auto_highlight (self, ahl, TRUE, TRUE);
 		}
-		cur = cur->next;
 	}
 }
 
@@ -2930,6 +3128,20 @@ hex_widget_class_init (HexWidgetClass *klass)
 			GDK_SHIFT_MASK | GDK_CONTROL_MASK,
 			"gtkhex.move-to-buffer-ends",
 			"(bb)", FALSE, TRUE);
+
+	/* Alt+Delete - dumb */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_Delete,
+			GDK_ALT_MASK,
+			"gtkhex.dumb",
+			NULL);
+
+	/* Shift+Alt+Delete - dumb2 */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_Delete,
+			GDK_ALT_MASK | GDK_SHIFT_MASK,
+			"gtkhex.dumb2",
+			NULL);
 }
 
 static void
@@ -2966,9 +3178,9 @@ hex_widget_init (HexWidget *self)
 	self->selecting = FALSE;
 
 	self->selection.start = self->selection.end = 0;
-	self->selection.next = self->selection.prev = NULL;
 
-	self->auto_highlight = NULL;
+	self->auto_highlights = g_ptr_array_new_with_free_func (g_free);
+	self->marks = g_ptr_array_new_with_free_func (g_object_unref);
 
 	gtk_widget_set_can_focus (widget, TRUE);
 	gtk_widget_set_focusable (widget, TRUE);
@@ -3333,13 +3545,13 @@ hex_widget_set_selection (HexWidget *self, gint64 start, gint64 end)
 	ne = MAX(self->selection.start, self->selection.end);
 
 	if (ns != os && ne != oe) {
-		bytes_changed(self, MIN(ns, os), MAX(ne, oe));
+		gtk_widget_queue_draw (GTK_WIDGET(self));
 	}
 	else if (ne != oe) {
-		bytes_changed(self, MIN(ne, oe), MAX(ne, oe));
+		gtk_widget_queue_draw (GTK_WIDGET(self));
 	}
 	else if (ns != os) {
-		bytes_changed(self, MIN(ns, os), MAX(ns, os));
+		gtk_widget_queue_draw (GTK_WIDGET(self));
 	}
 }
 
@@ -3460,14 +3672,14 @@ hex_widget_set_nibble (HexWidget *self, gboolean lower_nibble)
 	g_return_if_fail (HEX_IS_WIDGET(self));
 
 	if (self->selecting) {
-		bytes_changed(self, self->cursor_pos, self->cursor_pos);
+		gtk_widget_queue_draw (GTK_WIDGET(self));
 		self->lower_nibble = lower_nibble;
 	}
 	else if(self->selection.end != self->selection.start) {
 		guint start = MIN(self->selection.start, self->selection.end);
 		guint end = MAX(self->selection.start, self->selection.end);
 		self->selection.end = self->selection.start = 0;
-		bytes_changed(self, start, end);
+		gtk_widget_queue_draw (GTK_WIDGET(self));
 		self->lower_nibble = lower_nibble;
 	}
 	else {
@@ -3488,12 +3700,10 @@ void
 hex_widget_set_cursor (HexWidget *self, gint64 index)
 {
 	gint64 y;
-	gint64 old_pos;
 	size_t payload_size;
 
 	g_return_if_fail (HEX_IS_WIDGET (self));
 
-	old_pos = self->cursor_pos;
 	payload_size = HEX_BUFFER_PAYLOAD (self->document);
 
 	if ((index >= 0) && (index <= payload_size))
@@ -3531,22 +3741,20 @@ hex_widget_set_cursor (HexWidget *self, gint64 index)
 		{
 			hex_widget_set_selection(self, self->selection.start, self->cursor_pos);
 
-			bytes_changed (self,
-					MIN (self->cursor_pos, old_pos),
-					MAX (self->cursor_pos, old_pos));
+			gtk_widget_queue_draw (GTK_WIDGET(self));
 		}
 		else
 		{
 			gint64 start = MIN (self->selection.start, self->selection.end);
 			gint64 end = MAX (self->selection.start, self->selection.end);
 
-			bytes_changed (self, start, end);
+			gtk_widget_queue_draw (GTK_WIDGET(self));
 			self->selection.end = self->selection.start = self->cursor_pos;
 		}
 
 		g_signal_emit_by_name (self, "cursor-moved");
 
-		bytes_changed (self, old_pos, old_pos);
+		gtk_widget_queue_draw (GTK_WIDGET(self));
 		show_cursor (self, TRUE);
 	}
 }
@@ -3563,12 +3771,10 @@ void
 hex_widget_set_cursor_by_row_and_col (HexWidget *self, int col_x, gint64 line_y)
 {
 	gint64 tmp_cursor_pos;
-	gint64 old_pos;
 	gint64 payload_size;
 
 	g_return_if_fail (HEX_IS_WIDGET(self));
 
-	old_pos = self->cursor_pos;
 	tmp_cursor_pos = line_y * self->cpl + col_x;
 	payload_size = HEX_BUFFER_PAYLOAD (self->document);
 
@@ -3598,17 +3804,15 @@ hex_widget_set_cursor_by_row_and_col (HexWidget *self, int col_x, gint64 line_y)
 		
 		if (self->selecting) {
 			hex_widget_set_selection(self, self->selection.start, self->cursor_pos);
-			bytes_changed(self,
-					MIN(self->cursor_pos, old_pos), MAX(self->cursor_pos,
-						old_pos));
+			gtk_widget_queue_draw (GTK_WIDGET(self));
 		}
 		else if (self->selection.end != self->selection.start) {
 			gint64 start = MIN(self->selection.start, self->selection.end);
 			gint64 end = MAX(self->selection.start, self->selection.end);
 			self->selection.end = self->selection.start = 0;
-			bytes_changed(self, start, end);
+			gtk_widget_queue_draw (GTK_WIDGET(self));
 		}
-		bytes_changed(self, old_pos, old_pos);
+		gtk_widget_queue_draw (GTK_WIDGET(self));
 		show_cursor (self, TRUE);
 	}
 }
@@ -3772,14 +3976,9 @@ hex_widget_insert_autohighlight_full (HexWidget *self,
 	new->search_len = len;
 	new->search_flags = flags;
 
-	new->highlights = NULL;
+	new->highlights = g_ptr_array_new_with_free_func (g_free);
 
-	new->next = self->auto_highlight;
-	new->prev = NULL;
-	if (new->next) new->next->prev = new;
-	self->auto_highlight = new;
-
-	ahl_set_view_min_max (self, new);
+	g_ptr_array_add (self->auto_highlights, new);
 
 	hex_widget_update_auto_highlight (self, new, FALSE, TRUE);
 
@@ -3817,17 +4016,142 @@ void hex_widget_delete_autohighlight (HexWidget *self,
 {
 	g_free (ahl->search_string);
 
-	while (ahl->highlights)
+	for (guint i = 0; i < ahl->highlights->len; ++i)
 	{
-		hex_widget_delete_highlight (self, ahl, ahl->highlights);
+		HexWidget_Highlight *highlight = g_ptr_array_index (ahl->highlights, i);
+
+		delete_highlight_from_auto_highlight (self, ahl, highlight);
 	}
+	g_ptr_array_unref (ahl->highlights);
 
-	if (ahl->next) ahl->next->prev = ahl->prev;
-	if (ahl->prev) ahl->prev->next = ahl->next;
+	g_ptr_array_remove (self->auto_highlights, ahl);
+}
 
-	if (self->auto_highlight == ahl) self->auto_highlight = ahl->next;
+/**
+ * hex_widget_set_mark_custom_color:
+ * @mark: The `HexWidgetMark` for which the custom color will be set
+ * @color: The custom color to be set for the mark
+ *
+ * Set a custom color for a `HexWidgetMark` object.
+ *
+ * Since: 4.8
+ */
+void
+hex_widget_set_mark_custom_color (HexWidget *self, HexWidgetMark *mark, GdkRGBA *color)
+{
+	g_return_if_fail (HEX_IS_WIDGET (self));
+	g_return_if_fail (HEX_IS_WIDGET_MARK (mark));
+	g_return_if_fail (color != NULL);
 
-	g_free (ahl);
+	hex_widget_mark_set_custom_color (mark, color);
+
+	gtk_widget_queue_draw (GTK_WIDGET(self));
+}
+
+/**
+ * hex_widget_get_mark_custom_color:
+ * @mark: The `HexWidgetMark` for which to obtain the associated custom color
+ * @color: (out): A `GdkRGBA` structure to be set with the custom color
+ *   associated with the `HexWidgetMark`, if applicable
+ *
+ * Obtains the custom color associated with a `HexWidgetMark` object, if
+ * any.
+ *
+ * Returns: `TRUE` if the `HexWidgetMark` has a custom color associated with
+ *   it; `FALSE` if it does not.
+ *
+ * Since: 4.8
+ */
+gboolean
+hex_widget_get_mark_custom_color (HexWidget *self, HexWidgetMark *mark, GdkRGBA *color)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), FALSE);
+	g_return_val_if_fail (HEX_IS_WIDGET_MARK (mark), FALSE);
+	g_return_val_if_fail (color != NULL, FALSE);
+
+	if (!mark->have_custom_color)
+		return FALSE;
+	else
+	{
+		*color = mark->custom_color;
+		return TRUE;
+	}
+}
+
+/**
+ * hex_widget_add_mark:
+ * @start: The start offset of the mark
+ * @end: The start offset of the mark
+ * @color: (nullable): A custom color to set for the mark, or `NULL` to use the
+ *   default
+ *
+ * Add a mark for a `HexWidget` object at the specified absolute `start` and
+ * `end` offsets.
+ *
+ * Although the mark obtains an index within the widget internally, this index
+ * numeral is private and is not retrievable. As a result, it is recommended
+ * that applications wishing to manipulate marks retain the pointer returned by
+ * this function, and implement their own tracking mechanism for the marks.
+ *
+ * Returns: (transfer none): A pointer to a `HexWidgetMark` object, owned by
+ * the `HexWidget`.
+ *
+ * Since: 4.8
+ */
+HexWidgetMark *
+hex_widget_add_mark (HexWidget *self, gint64 start, gint64 end, GdkRGBA *color)
+{
+	HexWidgetMark *mark;
+
+	g_return_val_if_fail (HEX_IS_WIDGET (self), NULL);
+
+	mark = hex_widget_mark_new ();
+	mark->highlight.start = start;
+	mark->highlight.end = end;
+
+	if (color)
+		hex_widget_set_mark_custom_color (self, mark, color);
+
+	g_ptr_array_add (self->marks, mark);
+	gtk_widget_queue_draw (GTK_WIDGET(self));
+
+	return mark;
+}
+
+/**
+ * hex_widget_delete_mark:
+ * @mark: The `HexWidgetMark` to delete
+ *
+ * Delete a `HexWidgetMark` from a `HexWidget`.
+ *
+ * Since: 4.8
+ */
+void
+hex_widget_delete_mark (HexWidget *self, HexWidgetMark *mark)
+{
+	g_return_if_fail (HEX_IS_WIDGET (self));
+	g_return_if_fail (HEX_IS_WIDGET_MARK (mark));
+
+	g_ptr_array_remove (self->marks, mark);
+	gtk_widget_queue_draw (GTK_WIDGET(self));
+}
+
+/**
+ * hex_widget_goto_mark:
+ * @mark: The mark to jump to
+ *
+ * Jump the cursor in the `HexWidget` specified to the mark in question.
+ *
+ * Since: 4.8
+ */
+void
+hex_widget_goto_mark (HexWidget *self, HexWidgetMark *mark)
+{
+	g_return_if_fail (HEX_IS_WIDGET (self));
+	g_return_if_fail (HEX_IS_WIDGET_MARK (mark));
+
+	hex_widget_set_cursor (self, mark->highlight.start);
+	hex_widget_set_nibble (self, FALSE);
 }
 
 /**

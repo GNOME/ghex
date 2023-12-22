@@ -124,6 +124,7 @@ ghex_sources = [
   'hex-dialog.c',
   'hex-statusbar.c',
   'main.c',
+  'mark-dialog.c',
   'paste-special.c',
   'preferences.c',
   'print.c',
