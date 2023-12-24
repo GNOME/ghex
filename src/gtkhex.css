@@ -1,16 +1,44 @@
+/* HO HO HO */
+
+.about {
+	background: #FF5050;
+	background-size: contain;
+}
+
+.about list {
+	background: #FF8888;
+}
+
+
+list {
+	background: #50EE80;
+}
+
+popover contents, arrow {
+	background: #FF5050;
+}
+
+headerbar {
+	background: #009900;
+}
+
+window {
+	background: #00BB00;
+}
+
 .hex {
 	font-family: Monospace;
 	font-size: 12pt;
 	font-feature-settings: "tnum";
-	color: @theme_fg_color;
-	background-color: @theme_bg_color;
+	color: red;
+	background: lightgreen;
 }
 
 /* nb: order matters for the next 2 selectors. */
 
 #hex-display:selected, #ascii-display:selected {
-        color: @theme_selected_fg_color;
-	background-color: @theme_selected_bg_color;
+        color: red;
+	background-color: #880000;
 }
 
 /* ---- */
@@ -21,7 +49,7 @@
 
 .hex:checked {
 	color: @theme_bg_color;
-	background-color: alpha(@theme_fg_color, 0.9);
+	background-color: alpha(red, 0.9);
 }
 
 .hex #offsets {
@@ -29,7 +57,7 @@
         padding-left: 12px;
 	padding-right: 12px;
 	border-right: solid @borders 2px;
-	background-color: shade(@theme_bg_color, 0.9);
+	background-color: shade(#FFFEFE, 0.9);
 }
 
 .hex #hex-display {

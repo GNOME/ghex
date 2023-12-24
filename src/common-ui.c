@@ -256,6 +256,7 @@ common_about_cb (GtkWindow *parent)
 		   "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA")
 	};
 	license_translated = g_strjoin ("\n\n",
+									"Happy Holidays! Wishing you a Happy New Year, 2024, from the GHex team.",
 	                                _(license[0]),
 	                                _(license[1]),
 	                                _(license[2]),
