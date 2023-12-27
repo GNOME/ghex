@@ -75,14 +75,10 @@ typedef enum {
  */
 typedef struct _HexWidget_Highlight HexWidget_Highlight;
 
-/* start_line and end_line only have to be set (and valid) of
- * valid is set to TRUE. */
 struct _HexWidget_Highlight
 {
 	gint64 start, end;
 	gint64 start_line, end_line;
-
-	gboolean valid;
 
 	HexWidget_Highlight *prev, *next;
 };
@@ -350,10 +346,6 @@ static void render_highlights (HexWidget *self, cairo_t *cr, gint64 cursor_line,
 		HexWidgetViewType type);
 static void render_lines (HexWidget *self, cairo_t *cr, int min_lines, int max_lines,
 		HexWidgetViewType type);
-
-static void hex_widget_validate_highlight (HexWidget *self, HexWidget_Highlight *hl);
-static void hex_widget_invalidate_highlight (HexWidget *self, HexWidget_Highlight *hl);
-static void hex_widget_invalidate_all_highlights (HexWidget *self);
 
 static void hex_widget_update_all_auto_highlights (HexWidget *self);
 
@@ -956,6 +948,13 @@ get_hex_cpl (HexWidget *self)
 	return hex_cpl;
 }
 
+inline static void
+update_highlight_start_and_end_lines (HexWidget *self, HexWidget_Highlight *hl)
+{
+	hl->start_line = MIN(hl->start, hl->end) / self->cpl - self->top_line;
+	hl->end_line = MAX(hl->start, hl->end) / self->cpl - self->top_line;
+}
+
 static void
 render_highlights (HexWidget *self,
 		cairo_t *cr,
@@ -1017,7 +1016,7 @@ render_highlights (HexWidget *self,
 
 		gtk_style_context_set_state (context, state);
 
-		hex_widget_validate_highlight (self, highlight);
+		update_highlight_start_and_end_lines (self, highlight);
 
 		start = MIN(highlight->start, highlight->end);
 		end = MAX(highlight->start, highlight->end);
@@ -2226,42 +2225,6 @@ bytes_changed (HexWidget *self, gint64 start, gint64 end)
 	gtk_widget_queue_draw (GTK_WIDGET(self));
 }
 
-static void
-hex_widget_validate_highlight(HexWidget *self, HexWidget_Highlight *hl)
-{
-	if (!hl->valid)
-	{
-		hl->start_line = MIN(hl->start, hl->end) / self->cpl - self->top_line;
-		hl->end_line = MAX(hl->start, hl->end) / self->cpl - self->top_line;
-		hl->valid = TRUE;
-	}
-}
-
-static void
-hex_widget_invalidate_highlight (HexWidget *self, HexWidget_Highlight *hl)
-{
-	hl->valid = FALSE;
-}
-
-static void
-hex_widget_invalidate_all_highlights (HexWidget *self)
-{
-	HexWidget_Highlight *cur = &self->selection;
-	HexWidgetAutoHighlight *nextList = self->auto_highlight;
-
-	while (cur)
-	{
-		hex_widget_invalidate_highlight (self, cur);
-		cur = cur->next;
-
-		while (cur == NULL && nextList)
-		{
-			cur = nextList->highlights;
-			nextList = nextList->next;
-		}
-	}
-}
-
 static HexWidget_Highlight *
 hex_widget_insert_highlight (HexWidget *self,
 		HexWidgetAutoHighlight *ahl,
@@ -2277,8 +2240,6 @@ hex_widget_insert_highlight (HexWidget *self,
 
 	new->start = CLAMP(MIN(start, end), 0, payload_size);
 	new->end = MIN(MAX(start, end), payload_size);
-
-	new->valid = FALSE;
 
 	new->prev = NULL;
 	new->next = ahl->highlights;
@@ -2547,7 +2508,6 @@ hex_widget_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 		self->vis_lines = self->default_lines;
 
 	hex_widget_update_all_auto_highlights (self);
-	hex_widget_invalidate_all_highlights (self);
 
 	/* queue child draw functions
 	 */
@@ -2983,7 +2943,6 @@ hex_widget_init (HexWidget *self)
 
 	self->selection.start = self->selection.end = 0;
 	self->selection.next = self->selection.prev = NULL;
-	self->selection.valid = FALSE;
 
 	self->auto_highlight = NULL;
 
@@ -3345,8 +3304,6 @@ hex_widget_set_selection (HexWidget *self, gint64 start, gint64 end)
 
 	self->selection.start = CLAMP(start, 0, payload_size);
 	self->selection.end = MIN(end, payload_size);
-
-	hex_widget_invalidate_highlight(self, &self->selection);
 
 	ns = MIN(self->selection.start, self->selection.end);
 	ne = MAX(self->selection.start, self->selection.end);
