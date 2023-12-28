@@ -38,7 +38,7 @@ ghex_version_major = version_arr[0].to_int()
 # libgtkhex version info
 libgtkhex_api_version   = 4
 libgtkhex_version_major = 1  # for soname (ABI major version) only
-libgtkhex_version_minor = 4
+libgtkhex_version_minor = 6
 libgtkhex_version_micro = 0
 libgtkhex_version = '@0@.@1@.@2@'.format(libgtkhex_api_version, libgtkhex_version_minor, libgtkhex_version_micro)
 
