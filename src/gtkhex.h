@@ -102,6 +102,9 @@ void hex_widget_clear_selection (HexWidget *gh);
 void hex_widget_delete_selection (HexWidget *gh);
 void hex_widget_zero_selection (HexWidget *gh);
 
+void hex_widget_set_fade_zeroes (HexWidget *self, gboolean fade);
+gboolean hex_widget_get_fade_zeroes (HexWidget *self);
+
 HexWidgetAutoHighlight *
 hex_widget_insert_autohighlight (HexWidget *gh, const char *search, int len);
 HexWidgetAutoHighlight *

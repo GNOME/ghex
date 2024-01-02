@@ -1201,7 +1201,10 @@ new_file (GtkWidget *widget,
 	HexWidget *gh;
 
 	doc = hex_document_new ();
-	gh = HEX_WIDGET(hex_widget_new (doc));
+	gh = g_object_new (HEX_TYPE_WIDGET,
+			"document", doc,
+			"fade-zeroes", TRUE,
+			NULL);
 
 	ghex_application_window_add_hex (self, gh);
 	refresh_dialogs (self);
@@ -2178,7 +2181,10 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 						__func__);
 		}
 
-		gh = HEX_WIDGET(hex_widget_new (doc));
+		gh = g_object_new (HEX_TYPE_WIDGET,
+				"document", doc,
+				"fade-zeroes", TRUE,
+				NULL);
 	}
 
 	/* Display a fairly generic error message if we can't even get this far. */

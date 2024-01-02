@@ -123,6 +123,7 @@ G_DEFINE_BOXED_TYPE (HexWidgetAutoHighlight, hex_widget_autohighlight,
 enum
 {
 	DOCUMENT = 1,
+	FADE_ZEROES,
 	N_PROPERTIES
 };
 
@@ -221,6 +222,8 @@ struct _HexWidget
 	int default_lines;
 
 	GdkContentProvider *selection_content;
+
+	gboolean fade_zeroes;
 };
 
 G_DEFINE_TYPE (HexWidget, hex_widget, GTK_TYPE_WIDGET)
@@ -377,6 +380,11 @@ hex_widget_set_property (GObject *object,
 	{
 		case DOCUMENT:
 			self->document = g_value_get_object (value);
+			g_object_notify_by_pspec (G_OBJECT(self), properties[DOCUMENT]);
+			break;
+
+		case FADE_ZEROES:
+			hex_widget_set_fade_zeroes (self, g_value_get_boolean (value));
 			break;
 
 		default:
@@ -398,6 +406,10 @@ hex_widget_get_property (GObject *object,
 	{
 		case DOCUMENT:
 			g_value_set_object (value, self->document);
+			break;
+
+		case FADE_ZEROES:
+			g_value_set_boolean (value, hex_widget_get_fade_zeroes (self));
 			break;
 
 		default:
@@ -1243,7 +1255,7 @@ render_lines (HexWidget *self,
 				(char *)self->disp_buffer + (i - min_lines) * cpl,
 				MIN(cpl, tmp));
 
-		if (type == VIEW_HEX)
+		if (type == VIEW_HEX && self->fade_zeroes)
 			fade_zeroes (self, layout);
 
 		render_highlights (self, cr, i, type);
@@ -2664,6 +2676,7 @@ hex_widget_class_init (HexWidgetClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+	GParamFlags prop_flags = G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY;
 
 	/* vfuncs */
 
@@ -2679,7 +2692,11 @@ hex_widget_class_init (HexWidgetClass *klass)
 
 	properties[DOCUMENT] = g_param_spec_object ("document", NULL, NULL,
 			HEX_TYPE_DOCUMENT,
-			G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
+			G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+
+	properties[FADE_ZEROES] = g_param_spec_boolean ("fade-zeroes", NULL, NULL,
+			FALSE,
+			G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
@@ -3878,6 +3895,25 @@ hex_widget_get_group_type (HexWidget *self)
 	g_assert (HEX_IS_WIDGET (self));
 
 	return self->group_type;
+}
+
+gboolean
+hex_widget_get_fade_zeroes (HexWidget *self)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), FALSE);
+
+	return self->fade_zeroes;
+}
+
+void
+hex_widget_set_fade_zeroes (HexWidget *self, gboolean fade)
+{
+	g_return_if_fail (HEX_IS_WIDGET (self));
+
+	self->fade_zeroes = fade;
+
+	gtk_widget_queue_draw (GTK_WIDGET(self));
+	g_object_notify_by_pspec (G_OBJECT(self), properties[FADE_ZEROES]);
 }
 
 G_GNUC_END_IGNORE_DEPRECATIONS
