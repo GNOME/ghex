@@ -1609,7 +1609,14 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	action = g_settings_create_action (settings, GHEX_PREF_GROUP);
 	g_action_map_add_action (G_ACTION_MAP(self), action);
 
-	/* Setup tab view signals */
+	/* Setup tab view */
+
+	/* Don't trample over Ctrl+Home/End & friends. */
+	adw_tab_view_remove_shortcuts (ADW_TAB_VIEW(self->hex_tab_view),
+			ADW_TAB_VIEW_SHORTCUT_CONTROL_END |
+			ADW_TAB_VIEW_SHORTCUT_CONTROL_HOME |
+			ADW_TAB_VIEW_SHORTCUT_CONTROL_SHIFT_END |
+			ADW_TAB_VIEW_SHORTCUT_CONTROL_SHIFT_HOME);
 
 	g_signal_connect (self->hex_tab_view, "notify::selected-page",
 			G_CALLBACK(tab_view_page_changed_cb), self);
