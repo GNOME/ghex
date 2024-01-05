@@ -182,7 +182,6 @@ set_css_provider_font_from_settings (void)
 	desc = pango_font_description_from_string (def_font_name);
 	css_str = pango_font_description_to_css (desc, ".hex");
 
-	/* TODO: Move to gtk_uri_launcher_launch - requires gtk >= 4.10 */
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	gtk_css_provider_load_from_data (global_provider,
 			css_str, -1);
@@ -208,6 +207,7 @@ common_set_gtkhex_font_from_settings (HexWidget *gh)
 void
 common_help_cb (GtkWindow *parent)
 {
+	/* TODO: Move to gtk_uri_launcher_launch - requires gtk >= 4.10 */
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	gtk_show_uri (parent,
 	              "help:ghex",
