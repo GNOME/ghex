@@ -2690,10 +2690,20 @@ hex_widget_class_init (HexWidgetClass *klass)
 
 	/* PROPERTIES */
 
+	/**
+	 * HexWidget:document:
+	 *
+	 * `HexDocument` affiliated with and owned by the `HexWidget`.
+	 */
 	properties[DOCUMENT] = g_param_spec_object ("document", NULL, NULL,
 			HEX_TYPE_DOCUMENT,
 			G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
+	/**
+	 * HexWidget:fade-zeroes:
+	 *
+	 * Whether zeroes (`00`) will be faded on the hex side of the `HexWidget`.
+	 */
 	properties[FADE_ZEROES] = g_param_spec_boolean ("fade-zeroes", NULL, NULL,
 			FALSE,
 			G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
