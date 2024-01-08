@@ -3758,7 +3758,8 @@ hex_widget_set_insert_mode (HexWidget *self, gboolean insert)
  * for specifying string match types for auto-highlights over and above
  * exact byte-for-byte string matches.
  *
- * Returns: a newly created [struct@Hex.WidgetAutoHighlight] structure
+ * Returns: (transfer none): a newly created [struct@Hex.WidgetAutoHighlight]
+ *   structure, owned by the `HexWidget`
  *
  * Since: 4.2
  */
@@ -3795,7 +3796,8 @@ hex_widget_insert_autohighlight_full (HexWidget *self,
  *
  * Insert an auto-highlight of a given search string.
  *
- * Returns: a newly created [struct@Hex.WidgetAutoHighlight] structure
+ * Returns: (transfer none): a newly created [struct@Hex.WidgetAutoHighlight]
+ *   structure, owned by the `HexWidget`
  */
 HexWidgetAutoHighlight *
 hex_widget_insert_autohighlight (HexWidget *self,
