@@ -2694,6 +2694,8 @@ hex_widget_class_init (HexWidgetClass *klass)
 	 * HexWidget:document:
 	 *
 	 * `HexDocument` affiliated with and owned by the `HexWidget`.
+	 *
+	 * Since: 4.2
 	 */
 	properties[DOCUMENT] = g_param_spec_object ("document", NULL, NULL,
 			HEX_TYPE_DOCUMENT,
