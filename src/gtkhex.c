@@ -54,7 +54,7 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 #define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
 #define is_copyable(c) (is_displayable(c) || (c) == 0x0a || (c) == 0x0d)
 
-#define PANGO_COLOR_FROM_FLOAT(C) (C * UINT_MAX)
+#define PANGO_COLOR_FROM_FLOAT(C) (C * UINT16_MAX)
 
 #define HEX_BUFFER_PAYLOAD(X)	\
 	hex_buffer_get_payload_size (hex_document_get_buffer (X))
