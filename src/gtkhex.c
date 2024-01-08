@@ -2703,6 +2703,8 @@ hex_widget_class_init (HexWidgetClass *klass)
 	 * HexWidget:fade-zeroes:
 	 *
 	 * Whether zeroes (`00`) will be faded on the hex side of the `HexWidget`.
+	 *
+	 * Since: 4.8
 	 */
 	properties[FADE_ZEROES] = g_param_spec_boolean ("fade-zeroes", NULL, NULL,
 			FALSE,
@@ -3909,6 +3911,15 @@ hex_widget_get_group_type (HexWidget *self)
 	return self->group_type;
 }
 
+/**
+ * hex_widget_get_fade_zeroes:
+ *
+ * Retrieve whether zeroes (`00`) are faded in the hex display.
+ *
+ * Returns: `TRUE` if zeroes are faded; `FALSE` otherwise
+ *
+ * Since: 4.8
+ */
 gboolean
 hex_widget_get_fade_zeroes (HexWidget *self)
 {
@@ -3917,6 +3928,14 @@ hex_widget_get_fade_zeroes (HexWidget *self)
 	return self->fade_zeroes;
 }
 
+/**
+ * hex_widget_set_fade_zeroes:
+ * @fade: Whether zeroes (`00` in the hex display) should be faded
+ *
+ * Set whether zeroes (`00`) are faded in the hex display.
+ *
+ * Since: 4.8
+ */
 void
 hex_widget_set_fade_zeroes (HexWidget *self, gboolean fade)
 {
