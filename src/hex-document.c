@@ -52,7 +52,7 @@ static void undo_stack_ascend           (HexDocument *doc);
 static void undo_stack_free             (HexDocument *doc);
 
 #define DEFAULT_UNDO_DEPTH 1024
-#define REGEX_SEARCH_LEN 1024	/* FIXME/TODO: This is kind of lazy. Stopgap? */
+#define REGEX_SEARCH_LEN 1024
 
 /* SIGNALS */
 
