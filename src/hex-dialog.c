@@ -10,7 +10,7 @@
  * maintain the source code under the licensing terms described
  * herein and below.
  *
- * Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+ * Copyright © 2021-2024 Logan Rathbone <poprocks@gmail.com>
  *
  *  GHex is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU General Public License as
@@ -230,11 +230,13 @@ dialog_prop_get_text(HexDialogEntryTypes type,
                                   HexDialog *dialog,
                                   HexDialogVal64 *val)
 {
-    char *buf;
+    char *buf = "";
+
     if (HexDialogEntries[type].conv_function)
         buf = HexDialogEntries[type].conv_function(val, &dialog->properties);
     else
-        buf = _("FIXME: no conversion function");
+		g_warning ("No conversion function found");
+
     return buf;
 }
 
@@ -242,13 +244,9 @@ static void update_dialog_prop(HexDialogEntryTypes type,
                                HexDialog *dialog,
                                HexDialogVal64 *val)
 {
-    char *buf;
-    GtkEntryBuffer *eb;
+    char *buf = dialog_prop_get_text (type, dialog, val);
 
-    buf = dialog_prop_get_text (type, dialog, val);
-    eb = gtk_entry_get_buffer (GTK_ENTRY(dialog->entry[type]));
-
-    gtk_entry_buffer_set_text (eb, buf, -1);
+	gtk_editable_set_text (GTK_EDITABLE(dialog->entry[type]), buf);
 }
 
 /* if val is NULL, uses the previous used val */
