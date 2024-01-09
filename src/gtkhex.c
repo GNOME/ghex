@@ -1440,27 +1440,20 @@ recalc_scrolling (HexWidget *self)
 	gboolean scroll_to_cursor;
 	double value;
 
-	scroll_to_cursor = (self->cpl == 0) ||
-		((self->cursor_pos / self->cpl >= gtk_adjustment_get_value (self->adj)) &&
-		 (self->cursor_pos / self->cpl <= gtk_adjustment_get_value (self->adj) +
-			  self->vis_lines - 1));
+	if (self->cpl == 0)
+		return;
 
-	/* calculate new display position */
-	if (self->cpl == 0)		/* avoid divide by zero (FIXME - feels hackish) */
-		value = 0;
-	else
-		value = MIN (self->top_line, self->lines - self->vis_lines);
-
+	value = MIN (self->top_line, self->lines - self->vis_lines);
 	/* clamp value */
 	value = MAX (0, value);
 
-	/* keep cursor on screen if it was on screen before */
-	if (self->cpl == 0) {		/* avoid divide by zero (FIXME - feels hackish) */
-		value = 0;
-	}
-	else if (scroll_to_cursor &&
+	scroll_to_cursor = ((self->cursor_pos / self->cpl >= gtk_adjustment_get_value (self->adj)) &&
+		(self->cursor_pos / self->cpl <= gtk_adjustment_get_value (self->adj) + self->vis_lines - 1) &&
 	    ((self->cursor_pos / self->cpl < value) ||
-	     (self->cursor_pos / self->cpl > value + self->vis_lines - 1))) {
+			(self->cursor_pos / self->cpl > value + self->vis_lines - 1)));
+
+	if (scroll_to_cursor)
+	{
 		value = MIN (self->cursor_pos / self->cpl, self->lines - self->vis_lines);
 		value = MAX (0, value);
 	}
