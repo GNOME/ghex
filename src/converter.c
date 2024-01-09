@@ -67,20 +67,6 @@ static gchar * clean(gchar *ptr);
 
 static Converter *converter = NULL;
 
-/* --- */
-
-/* reimplement this old function to avoid headaches. FIXME - make this common,
- * perhaps?
- */
-static void
-my_gtk_entry_set_text (GtkEntry *entry, char *text)
-{
-	GtkEntryBuffer *buffer;
-
-	buffer = gtk_entry_get_buffer (entry);
-	gtk_entry_buffer_set_text (buffer, text, -1);
-}
-
 static gboolean
 is_char_ok(signed char c, gint base)
 {
@@ -274,13 +260,13 @@ set_values(Converter *conv, gulong val)
 	for(i = 0; i < 32; i++)
 		buffer[i] =((val & (1L << (31 - i)))?'1':'0');
 	buffer[i] = 0;
-	my_gtk_entry_set_text(GTK_ENTRY(conv->entry[0]), clean(buffer));
+	gtk_editable_set_text (GTK_EDITABLE(conv->entry[0]), clean(buffer));
 
 	g_snprintf(buffer, CONV_BUFFER_LEN, "%o",(unsigned int)val);
-	my_gtk_entry_set_text(GTK_ENTRY(conv->entry[1]), buffer);
+	gtk_editable_set_text (GTK_EDITABLE(conv->entry[1]), buffer);
 	
 	g_snprintf(buffer, CONV_BUFFER_LEN, "%lu", val);
-	my_gtk_entry_set_text(GTK_ENTRY(conv->entry[2]), buffer);
+	gtk_editable_set_text (GTK_EDITABLE(conv->entry[2]), buffer);
 
 	for(i = 0, tmp = val; i < nhex; i++) {
 		buffer[nhex - i - 1] = (tmp & 0x0000000FL);
@@ -291,7 +277,7 @@ set_values(Converter *conv, gulong val)
 		tmp = tmp >> 4;
 	}
 	buffer[i] = '\0';
-	my_gtk_entry_set_text(GTK_ENTRY(conv->entry[3]), buffer);
+	gtk_editable_set_text (GTK_EDITABLE(conv->entry[3]), buffer);
 	
 	for(i = 0, tmp = val; i < nbytes; i++) {
 		buffer[nbytes - i - 1] = tmp & 0x000000FF;
@@ -300,7 +286,7 @@ set_values(Converter *conv, gulong val)
 		tmp = tmp >> 8;
 	}
 	buffer[i] = 0;
-	my_gtk_entry_set_text(GTK_ENTRY(conv->entry[4]), buffer);
+	gtk_editable_set_text (GTK_EDITABLE(conv->entry[4]), buffer);
 }
 
 static void
@@ -350,8 +336,7 @@ conv_entry_cb(GtkEntry *entry, gint base)
 		if(*endptr != 0) {
 			converter->value = 0;
 			for(i = 0; i < 5; i++)
-				my_gtk_entry_set_text(GTK_ENTRY(converter->entry[i]),
-						_("ERROR"));
+				gtk_editable_set_text (GTK_EDITABLE(converter->entry[i]), _("ERROR"));
 			gtk_editable_select_region(GTK_EDITABLE(entry), 0, -1);
 			return;
 		}
