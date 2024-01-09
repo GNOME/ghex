@@ -474,7 +474,7 @@ static void
 hex_widget_layout_init (HexWidgetLayout *self)
 {
 	self->offset_cpl = DEFAULT_OFFSET_CPL;
-	/* FIXME - dumb test initial default */
+	/* Just pick an arbitrary initial default */
 	self->char_width = 20;
 	self->group_type = HEX_WIDGET_GROUP_BYTE;
 }
