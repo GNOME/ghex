@@ -122,11 +122,25 @@ G_DEFINE_BOXED_TYPE (HexDocumentFindData, hex_document_find_data,
 
 /* HexChangeData GType Definitions */
 
-/* FIXME - unused and could be unreliable */
 static HexChangeData *
 hex_change_data_copy (HexChangeData *data)
 {
-	return data;
+	HexChangeData *new = NULL;
+
+	g_return_val_if_fail (data != NULL, NULL);
+
+	new = g_new0 (HexChangeData, 1);
+
+	new->start = data->start;
+	new->end = data->end;
+	new->rep_len = data->rep_len;
+	new->lower_nibble = data->lower_nibble;
+	new->insert = data->insert;
+	new->type = data->type;
+	new->v_string = g_strdup (data->v_string);
+	new->v_byte = data->v_byte;
+
+	return new;
 }
 
 G_DEFINE_BOXED_TYPE (HexChangeData, hex_change_data,
