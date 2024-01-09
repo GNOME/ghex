@@ -599,8 +599,7 @@ create_fd_from_path (HexBufferMmap *self, const char *path)
 	} 
 	else
 	{
-		/* FIXME - this is probably overkill - hex editor users may wish to
-		 * open a 'non-regular' file.
+		/* Non-regular files should be using a different backend, eg, direct.
 		 */
 		if (!S_ISREG(statbuf.st_mode)) {
 			set_error (self, _("Not a regular file"));
@@ -794,10 +793,10 @@ hex_buffer_mmap_write_to_file (HexBuffer *buf,
 		/* const char* contents, */			raw,	
 		/* gsize length, */					self->payload,
 		/* const char* etag, */				NULL,
-		/* gboolean make_backup, */			FALSE,	/* FIXME - make optional? */
+		/* gboolean make_backup, */			FALSE,
 		/* GFileCreateFlags flags, */		G_FILE_CREATE_NONE,
 		/* char** new_etag, */				NULL,
-		/* GCancellable* cancellable, */	NULL,	/* FIXME */
+		/* GCancellable* cancellable, */	NULL,
 		/* GError** error */				&self->error);
 
 	return retval;
