@@ -798,7 +798,6 @@ hex_document_read_async (HexDocument *doc,
 		GAsyncReadyCallback callback,
 		gpointer user_data)
 {
-	static HexChangeData change_data;
 	GTask *task;
 	gint64 payload;
 
