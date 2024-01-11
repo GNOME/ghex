@@ -767,7 +767,7 @@ document_ready_cb (GObject *source_object,
 		else
 			g_task_return_boolean (task, FALSE);
 
-		return;
+		goto cleanup;
 	}
 
 	/* Initialize data for new doc */
@@ -776,6 +776,9 @@ document_ready_cb (GObject *source_object,
 
 	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_LOADED], 0);
 	g_task_return_boolean (task, TRUE);
+
+cleanup:
+	g_object_unref (task);
 }
 
 /**
