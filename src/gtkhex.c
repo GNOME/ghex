@@ -3246,12 +3246,12 @@ hex_widget_init (HexWidget *self)
 
 /**
  * hex_widget_new:
- * @owner: the [class@Hex.Document] object to be associated with the
- *   newly created #HexWidget
+ * @owner: (transfer full): the [class@Hex.Document] object to be associated
+ *   with the newly created `HexWidget`
  *
- * Create a new #HexWidget object.
+ * Create a new `HexWidget` object.
  *
- * Returns: a newly created #HexWidget object, or %NULL
+ * Returns: a newly created `HexWidget` object, or %NULL
  */
 GtkWidget *
 hex_widget_new (HexDocument *owner)
