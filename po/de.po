@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-09-03 08:18+0000\n"
-"PO-Revision-Date: 2023-09-14 20:45+0200\n"
+"POT-Creation-Date: 2023-10-17 17:29+0000\n"
+"PO-Revision-Date: 2024-01-03 14:19+0100\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
 #: src/ghex-application-window.ui.in:149
@@ -55,7 +55,7 @@ msgstr ""
 "Darstellung auf der anderen. GHex ist ein nützliches Werkzeug für den Umgang "
 "mit Rohdaten."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:42
+#: data/org.gnome.GHex.appdata.xml.in.in:43
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -162,7 +162,8 @@ msgstr ""
 "Hendrik Richter <hendrikr@gnome.org>\n"
 "Andre Klapper <ak-47@gmx.net>\n"
 "Mario Blättermann <mario.blaettermann@gmail.com>\n"
-"Jürgen Benvenuti <gastornis@posteo.org>"
+"Jürgen Benvenuti <gastornis@posteo.org>\n"
+"Christian Kirbach <christian.kirbach@gmail.com>"
 
 #: src/common-ui.c:285
 msgid "GHex Website"
@@ -536,6 +537,15 @@ msgstr ""
 msgid "There was an error reading the file."
 msgstr "Beim Lesen der Datei ist ein Fehler aufgetreten."
 
+#: src/ghex-application-window.c:2194
+msgid ""
+"There was an error loading the requested file. The file either no longer "
+"exists, is inaccessible, or you may not have permission to access the file."
+msgstr ""
+"Es gab einen Fehler beim Laden der angeforderten Datei. Die Datei existiert "
+"entweder nicht länger, ist nicht zugreifbar, oder Sie besitzen nicht die "
+"Berechtigung, um auf die Datei zuzugreifen."
+
 #: src/ghex-application-window.ui.in:31
 msgid "_New"
 msgstr "_Neu"
@@ -658,6 +668,11 @@ msgid ""
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
+"• Drücken Sie auf den Knopf Öffnen\n"
+"• Ctrl+N erstellt ein neues Dokument\n"
+"• Suchen Sie mit Strg+O nach einem Dokument\n"
+"\n"
+"Ctrl+W schießt das aktuelle Fenster."
 
 #: src/ghex-application-window.ui.in:307
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
@@ -666,6 +681,7 @@ msgstr ""
 #: src/ghex-application-window.ui.in:319
 msgid "Toggle a pane showing various numeric conversions"
 msgstr ""
+"Ein Seitenfenster mit verschiedenen numerischen Umrechnungen ein-/ausblenden"
 
 #: src/gtkhex.ui:23
 msgid "Automatic geometry"
@@ -870,7 +886,7 @@ msgstr "Fehler beim Schreiben der Änderungen in die Datei"
 #: src/hex-buffer-mmap.c:310
 #, c-format
 msgid "Could not adjust %s from %lu to %lu bytes"
-msgstr ""
+msgstr "%s konnte nicht angepasst werden von %lu auf %lu Byte"
 
 #: src/hex-buffer-mmap.c:359
 #, c-format
@@ -1035,10 +1051,8 @@ msgstr ""
 "Zum Beispiel: »FF 3D 99 0A«"
 
 #: src/paste-special.c:310
-#, fuzzy
-#| msgid "GHex (%s): Find Data"
 msgid "GHex Paste Data"
-msgstr "GHex (%s): Daten suchen"
+msgstr "GHex Daten einfügen"
 
 #: src/paste-special.c:407
 msgid "Copy Special"
@@ -1145,7 +1159,7 @@ msgstr "Abwechselnd schattierte Zeilen ausgeben"
 
 #: src/preferences.ui:182
 msgid "Span across lines:"
-msgstr ""
+msgstr "Zeilenübergreifend:"
 
 #: src/print.c:50
 #, c-format
@@ -1189,15 +1203,6 @@ msgstr ""
 #~ "\n"
 #~ "Ihre Berechtigungen bezüglich der Datei wurden möglicherweise durch ein "
 #~ "anderes Programm geändert, oder die Datei könnte beschädigt worden sein."
-
-#~ msgid ""
-#~ "There was an error loading the requested file. The file either no longer "
-#~ "exists, is inaccessible, or you may not have permission to access the "
-#~ "file."
-#~ msgstr ""
-#~ "Es gab einen Fehler beim Laden der angeforderten Datei. Die Datei "
-#~ "existiert entweder nicht länger, ist nicht zugreifbar, oder Sie besitzen "
-#~ "nicht die Berechtigung, um auf die Datei zuzugreifen."
 
 #~ msgid "Hex Group Type"
 #~ msgstr "Hex-Gruppentyp"
