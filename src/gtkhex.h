@@ -69,6 +69,9 @@ G_DECLARE_FINAL_TYPE(HexWidget, hex_widget, HEX, WIDGET, GtkWidget)
 GType hex_widget_autohighlight_get_type (void) G_GNUC_CONST;
 typedef struct _HexWidgetAutoHighlight HexWidgetAutoHighlight;
 
+#define HEX_TYPE_WIDGET_MARK (hex_widget_mark_get_type ())
+G_DECLARE_FINAL_TYPE (HexWidgetMark, hex_widget_mark, HEX, WIDGET_MARK, GObject)
+
 /* PUBLIC METHOD DECLARATIONS */
 
 GtkWidget *hex_widget_new (HexDocument *owner);
@@ -114,6 +117,17 @@ void hex_widget_delete_autohighlight (HexWidget *gh, HexWidgetAutoHighlight *ahl
 
 GtkAdjustment *hex_widget_get_adjustment(HexWidget *gh);
 HexDocument *hex_widget_get_document (HexWidget *gh);
+
+HexWidgetMark *hex_widget_add_mark (HexWidget *self, gint64 start, gint64 end,
+		GdkRGBA *color);
+void hex_widget_delete_mark (HexWidget *self, HexWidgetMark *mark);
+void hex_widget_goto_mark (HexWidget *self, HexWidgetMark *mark);
+void hex_widget_set_mark_custom_color (HexWidget *self, HexWidgetMark *mark,
+		GdkRGBA *color);
+void hex_widget_mark_get_custom_color (HexWidgetMark *mark, GdkRGBA *color);
+gboolean hex_widget_mark_get_have_custom_color (HexWidgetMark *mark);
+gint64 hex_widget_mark_get_start_offset (HexWidgetMark *mark);
+gint64 hex_widget_mark_get_end_offset (HexWidgetMark *mark);
 
 G_END_DECLS
 

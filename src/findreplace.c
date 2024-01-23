@@ -813,6 +813,19 @@ pane_dialog_set_hex (PaneDialog *self, HexWidget *gh)
 	pane_dialog_update_busy_state (self);
 }
 
+/* (transfer none) */
+HexWidget *
+pane_dialog_get_hex (PaneDialog *self)
+{
+	PaneDialogPrivate *priv;
+
+	g_return_val_if_fail (PANE_IS_DIALOG (self), NULL);
+
+	priv = pane_dialog_get_instance_private (self);
+
+	return priv->gh;
+}
+
 void
 pane_dialog_close (PaneDialog *self)
 {

@@ -34,6 +34,7 @@
 #include "hex-statusbar.h"
 #include "hex-dialog.h"
 #include "findreplace.h"
+#include "mark-dialog.h"
 #include "chartable.h"
 #include "converter.h"
 #include "preferences.h"

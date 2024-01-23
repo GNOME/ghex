@@ -68,6 +68,8 @@ struct _GHexApplicationWindow
 	GtkWidget *find_dialog;
 	GtkWidget *replace_dialog;
 	GtkWidget *jump_dialog;
+	GtkWidget *mark_dialog;
+
 	GtkWidget *chartable;
 	GtkWidget *converter;
 	GtkWidget *prefs_dialog;
@@ -97,6 +99,7 @@ typedef enum
 	PROP_FIND_OPEN,
 	PROP_REPLACE_OPEN,
 	PROP_JUMP_OPEN,
+	PROP_MARK_OPEN,
 	PROP_CAN_SAVE,
 	PROP_INSERT_MODE,
 	N_PROPERTIES
@@ -126,6 +129,7 @@ static const char *main_actions[] = {
 	"ghex.converter",
 	"ghex.copy-special",
 	"ghex.paste-special",
+	"ghex.mark-dialog",
 	NULL				/* last action */
 };
 
@@ -147,8 +151,11 @@ static void ghex_application_window_set_show_replace (GHexApplicationWindow *sel
 		gboolean show);
 static void ghex_application_window_set_show_jump (GHexApplicationWindow *self,
 		gboolean show);
+static void ghex_application_window_set_show_mark (GHexApplicationWindow *self,
+		gboolean show);
 static void ghex_application_window_set_can_save (GHexApplicationWindow *self,
 		gboolean can_save);
+static gboolean get_pane_visible (GHexApplicationWindow *self, PaneDialog *pane);
 
 static void enable_main_actions (GHexApplicationWindow *self, gboolean enable);
 static void update_status_message (GHexApplicationWindow *self);
@@ -260,6 +267,8 @@ refresh_dialogs (GHexApplicationWindow *self)
 		pane_dialog_set_hex (PANE_DIALOG(self->find_dialog), ACTIVE_GH);
 		pane_dialog_set_hex (PANE_DIALOG(self->replace_dialog), ACTIVE_GH);
 		pane_dialog_set_hex (PANE_DIALOG(self->jump_dialog), ACTIVE_GH);
+		pane_dialog_set_hex (PANE_DIALOG(self->mark_dialog), ACTIVE_GH);
+		mark_dialog_refresh (MARK_DIALOG(self->mark_dialog));
 	}
 }
 
@@ -388,6 +397,7 @@ close_page_finish_helper (GHexApplicationWindow *self, AdwTabView *tab_view, Adw
 		ghex_application_window_set_show_find (self, FALSE);
 		ghex_application_window_set_show_replace (self, FALSE);
 		ghex_application_window_set_show_jump (self, FALSE);
+		ghex_application_window_set_show_mark (self, FALSE);
 		ghex_application_window_set_show_chartable (self, FALSE);
 		ghex_application_window_set_show_converter (self, FALSE);
 
@@ -749,6 +759,7 @@ pane_close_cb (PaneDialog *pane, gpointer user_data)
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_OPEN]);
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_JUMP_OPEN]);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_MARK_OPEN]);
 }
 
 static gboolean
@@ -927,7 +938,7 @@ DIALOG_SET_SHOW_TEMPLATE(converter, setup_converter(self), PROP_CONVERTER_OPEN)
 /* Note that in this macro, it's up to the "closed" cb functions to notify
  * by pspec
  */
-#define PANE_SET_SHOW_TEMPLATE(WIDGET, OTHER1, OTHER2)								\
+#define PANE_SET_SHOW_TEMPLATE(WIDGET, OTHER1, OTHER2, OTHER3)						\
 static void																			\
 ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,			\
 		gboolean show)																\
@@ -935,6 +946,7 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,			\
 	if (show) {																		\
 		gtk_widget_set_visible (self->OTHER1 ## _dialog, FALSE);					\
 		gtk_widget_set_visible (self->OTHER2 ## _dialog, FALSE);					\
+		gtk_widget_set_visible (self->OTHER3 ## _dialog, FALSE);					\
 		gtk_widget_set_visible (self->WIDGET ## _dialog, TRUE);						\
 		gtk_widget_grab_focus (self->WIDGET ## _dialog);							\
 		if (! gtk_revealer_get_reveal_child (GTK_REVEALER(self->findreplace_revealer)))	\
@@ -946,14 +958,16 @@ ghex_application_window_set_show_ ##WIDGET (GHexApplicationWindow *self,			\
 		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FIND_OPEN]);		\
 		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_OPEN]);	\
 		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_JUMP_OPEN]);		\
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_MARK_OPEN]);		\
 	} else {																		\
 		g_signal_emit_by_name (self->WIDGET ## _dialog, "closed");					\
 	}																				\
 }												/* PANE_SET_SHOW_TEMPLATE */
 
-PANE_SET_SHOW_TEMPLATE(find,		replace, jump)
-PANE_SET_SHOW_TEMPLATE(replace,		find, jump)
-PANE_SET_SHOW_TEMPLATE(jump,		find, replace)
+PANE_SET_SHOW_TEMPLATE(find,		replace, jump, mark)
+PANE_SET_SHOW_TEMPLATE(replace,		find, jump, mark)
+PANE_SET_SHOW_TEMPLATE(jump,		find, replace, mark)
+PANE_SET_SHOW_TEMPLATE(mark,		find, replace, jump)
 
 /* Property setters without templates: */
 
@@ -1410,6 +1424,123 @@ open_preferences (GtkWidget *widget,
 	gtk_widget_set_visible (self->prefs_dialog, TRUE);
 }
 
+/* Mark actions */
+
+static void
+goto_mark (GHexApplicationWindow *self, const char *key)
+{
+	HexWidgetMark *mark;
+
+	mark = g_object_get_data (G_OBJECT(ACTIVE_GH), key);
+
+	if (! mark) {
+		g_debug ("%s: No mark found at %s", __func__, key);
+		return;
+	}
+
+	hex_widget_goto_mark (ACTIVE_GH, mark);
+	gtk_widget_grab_focus (GTK_WIDGET(ACTIVE_GH));
+}
+
+static void
+set_mark (GHexApplicationWindow *self, const char *key)
+{
+	HexWidgetMark *mark;
+	gint64 ss, se;
+
+	mark = g_object_get_data (G_OBJECT(ACTIVE_GH), key);
+
+	if (mark) {
+		g_debug ("%s: Pre-existing mark found at %s - deleting", __func__, key);
+		hex_widget_delete_mark (ACTIVE_GH, mark);
+	}
+
+	hex_widget_get_selection (ACTIVE_GH, &ss, &se);
+	mark = hex_widget_add_mark (ACTIVE_GH, ss, se, /*GdkRGBA *color*)*/ NULL);
+
+	g_object_set_data (G_OBJECT(ACTIVE_GH), key, mark);
+
+	hex_widget_clear_selection (ACTIVE_GH);
+	update_gui_data (self);
+	gtk_widget_grab_focus (GTK_WIDGET(ACTIVE_GH));
+}
+
+static void
+delete_mark (GHexApplicationWindow *self, const char *key)
+{
+	HexWidgetMark *mark;
+
+	mark = g_object_get_data (G_OBJECT(ACTIVE_GH), key);
+
+	if (mark) {
+		hex_widget_delete_mark (ACTIVE_GH, mark);
+	}
+	else {
+		g_debug ("%s: No mark found at %s - ignoring", __func__, key);
+		return;
+	}
+
+	g_object_set_data (G_OBJECT(ACTIVE_GH), key, NULL);
+
+	update_gui_data (self);
+	gtk_widget_grab_focus (GTK_WIDGET(ACTIVE_GH));
+}
+
+static void
+mark_action (GtkWidget *widget, const char *action_name, GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+	HexWidgetMark *mark;
+	char *mark_action;
+	int mark_num;
+	char *mark_name;
+	char *key;
+
+	if (! ACTIVE_GH)
+		return;
+
+	g_variant_get (parameter, "(sims)", &mark_action, &mark_num, &mark_name);
+	key = g_strdup_printf ("mark%d", mark_num);
+
+	if (g_strcmp0 (mark_action, "jump") == 0)
+	{
+		goto_mark (self, key);
+	}
+	else if (g_strcmp0 (mark_action, "set") == 0)
+	{
+		set_mark (self, key);
+	}
+	else if (g_strcmp0 (mark_action, "delete") == 0)
+	{
+		delete_mark (self, key);
+	}
+	else
+	{
+		g_critical ("%s: Invalid action: %s", __func__, mark_action);
+	}
+
+	g_free (mark_action);
+	g_free (mark_name);
+	g_free (key);
+}
+
+static void
+activate_mark_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+	int mark_num = g_variant_get_int32 (parameter);
+
+	if (mark_num < 0 || mark_num > 9) {
+		g_warning ("%s: Programmer error: invalid mark number", __func__);
+		return;
+	}
+
+	if (get_pane_visible (self, PANE_DIALOG(self->mark_dialog)))
+		mark_dialog_activate_mark_num (MARK_DIALOG(self->mark_dialog), mark_num);
+}
+
 /* --- */
 
 static void
@@ -1495,6 +1626,11 @@ ghex_application_window_set_property (GObject *object,
 					g_value_get_boolean (value));
 			break;
 
+		case PROP_MARK_OPEN:
+			ghex_application_window_set_show_mark (self,
+					g_value_get_boolean (value));
+			break;
+
 		case PROP_CAN_SAVE:
 			ghex_application_window_set_can_save (self,
 					g_value_get_boolean (value));
@@ -1543,6 +1679,11 @@ ghex_application_window_get_property (GObject *object,
 		case PROP_JUMP_OPEN:
 			g_value_set_boolean (value,
 					get_pane_visible (self, PANE_DIALOG(self->jump_dialog)));
+			break;
+
+		case PROP_MARK_OPEN:
+			g_value_set_boolean (value,
+					get_pane_visible (self, PANE_DIALOG(self->mark_dialog)));
 			break;
 
 		case PROP_CAN_SAVE:
@@ -1656,6 +1797,13 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	g_signal_connect (self->jump_dialog, "closed",
 			G_CALLBACK(pane_close_cb), self);
 
+	self->mark_dialog = mark_dialog_new ();
+	gtk_widget_set_hexpand (self->mark_dialog, TRUE);
+	gtk_box_append (GTK_BOX(self->findreplace_box), self->mark_dialog);
+	gtk_widget_set_visible (self->mark_dialog, FALSE);
+	g_signal_connect (self->mark_dialog, "closed",
+			G_CALLBACK(pane_close_cb), self);
+
 	hex_statusbar_clear (HEX_STATUSBAR(self->statusbar));
 
 	/* Grey out main actions at the beginning */
@@ -1705,7 +1853,6 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 
 	/* PROPERTIES */
 
-
 	properties[PROP_CHARTABLE_OPEN] =
 		g_param_spec_boolean ("chartable-open",
 			"Character table open",
@@ -1741,6 +1888,11 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			FALSE,	/* gboolean default_value */
 			prop_flags);
 
+	properties[PROP_MARK_OPEN] =
+		g_param_spec_boolean ("mark-open", NULL, NULL,
+			FALSE,	/* gboolean default_value */
+			prop_flags);
+
 	properties[PROP_CAN_SAVE] =
 		g_param_spec_boolean ("can-save",
 			"Can save",
@@ -1756,7 +1908,6 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			prop_flags);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
-
 
 	/* ACTIONS */
 
@@ -1812,11 +1963,22 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			NULL,	/* GVariant string param_type */
 			open_about);
 
+	gtk_widget_class_install_action (widget_class, "ghex.mark",
+			"(sims)",
+			mark_action);
+
+	gtk_widget_class_install_action (widget_class, "ghex.activate-mark",
+			"i",
+			activate_mark_action);
+
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.find", "find-open");
 
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.replace", "replace-open");
+
+	gtk_widget_class_install_property_action (widget_class,
+			"ghex.mark-dialog", "mark-open");
 
 	gtk_widget_class_install_property_action (widget_class,
 			"ghex.jump", "jump-open");
@@ -1881,6 +2043,13 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			"ghex.jump",
 			NULL);	/* no args. */
 
+	/* Ctrl+M - marks */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_m,
+			GDK_CONTROL_MASK,
+			"ghex.mark-dialog",
+			NULL);
+
 	/* Ctrl+Shift+V - paste special */
 	gtk_widget_class_add_binding_action (widget_class,
 			GDK_KEY_v,
@@ -1936,6 +2105,130 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			GDK_CONTROL_MASK,
 			close_tab_shortcut_cb,
 			NULL);
+
+	/* Ctrl+{0-9} - activate mark spinbtn value */
+	/* r! ./generate-mark-bindings.sh
+	 */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_0,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			0);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_0,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			0);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_1,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			1);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_1,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			1);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_2,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			2);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_2,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			2);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_3,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			3);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_3,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			3);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_4,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			4);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_4,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			4);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_5,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			5);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_5,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			5);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_6,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			6);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_6,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			6);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_7,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			7);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_7,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			7);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_8,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			8);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_8,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			8);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_9,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			9);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_9,
+			GDK_CONTROL_MASK,
+			"ghex.activate-mark",
+			"i",
+			9);
 
 	/* In case you're looking for Ctrl+PageUp & PageDown - those are baked in
 	 * via AdwTabView */

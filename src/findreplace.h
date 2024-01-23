@@ -79,6 +79,7 @@ G_DECLARE_FINAL_TYPE (JumpDialog, jump_dialog, JUMP, DIALOG, PaneDialog)
 
 /* PaneDialog (generic) */
 void pane_dialog_set_hex (PaneDialog *self, HexWidget *gh);
+HexWidget *pane_dialog_get_hex (PaneDialog *self);
 void pane_dialog_close (PaneDialog *self);
 
 /* FindDialog */
