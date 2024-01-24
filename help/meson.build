@@ -1,6 +1,7 @@
 #(cd C; for i in *.{page,xml}; do echo "  '$i',"; done;)
 help_pages = [
   'advanced-clipboard.page',
+  'advanced-marks.page',
   'basics-create-new-file.page',
   'basics-edit-file.page',
   'basics-find-replace.page',
