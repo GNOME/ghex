@@ -3951,7 +3951,8 @@ hex_widget_set_insert_mode (HexWidget *self, gboolean insert)
 
 /**
  * hex_widget_insert_autohighlight_full:
- * @search: (array length=len) (transfer full): search string to auto-highlight
+ * @search: (array length=len) (element-type gint8) (transfer full): search
+ *   string to auto-highlight
  * @len: length of the @search string
  * @flags: #HexSearchFlags to specify match type
  *
@@ -3987,7 +3988,8 @@ hex_widget_insert_autohighlight_full (HexWidget *self,
 
 /**
  * hex_widget_insert_autohighlight:
- * @search: (array length=len) (transfer full): search string to auto-highlight
+ * @search: (array length=len) (element-type gint8) (transfer full): search
+ *   string to auto-highlight
  * @len: length of the @search string
  *
  * Insert an auto-highlight of a given search string.

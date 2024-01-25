@@ -663,7 +663,7 @@ hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
  * @offset: offset in bytes within the payload
  * @len: length in bytes of the data to be set
  * @rep_len: amount of bytes to replace/overwrite (if any)
- * @data: (array length=len) (transfer full): a pointer to the data being
+ * @data: (array length=len) (element-type gint8): a pointer to the data being
  *   provided
  * @undoable: whether the operation should be undoable
  *
@@ -1349,8 +1349,8 @@ out:
 /**
  * hex_document_compare_data:
  * @doc: a [class@Hex.Document] object
- * @what: (array length=len): a pointer to the data to compare to data within
- *   the #HexDocument
+ * @what: (array length=len) (element-type gint8): a pointer to the data to
+ *   compare to data within the #HexDocument
  * @pos: offset position of the #HexDocument data to compare with @what
  * @len: size of the #HexDocument data to compare with @what, in bytes
  *
@@ -1419,8 +1419,8 @@ hex_document_find_forward_full (HexDocument *doc,
  * hex_document_find_forward:
  * @doc: a [class@Hex.Document] object
  * @start: starting offset byte of the payload to commence the search
- * @what: (array length=len): a pointer to the data to search within the
- *   #HexDocument
+ * @what: (array length=len) (element-type gint8): a pointer to the data to
+ *   search within the #HexDocument
  * @len: length in bytes of the data to be searched for
  * @offset: (out): offset of the found string, if the method returns %TRUE
  * 
@@ -1543,8 +1543,8 @@ FIND_FULL_ASYNC_TEMPLATE(hex_document_find_forward_full_async,
  * hex_document_find_forward_async:
  * @doc: a [class@Hex.Document] object
  * @start: starting offset byte of the payload to commence the search
- * @what: (array length=len): a pointer to the data to search within the
- *   #HexDocument
+ * @what: (array length=len) (element-type gint8): a pointer to the data to
+ *   search within the #HexDocument
  * @len: length in bytes of the data to be searched for
  * @offset: (out): offset of the found string, if the method returns %TRUE
  * @found_msg: message intended to be displayed by the client if the string
@@ -1632,8 +1632,8 @@ hex_document_find_backward_full (HexDocument *doc,
  * hex_document_find_backward:
  * @doc: a [class@Hex.Document] object
  * @start: starting offset byte of the payload to commence the search
- * @what: (array length=len): a pointer to the data to search within the
- *   #HexDocument
+ * @what: (array length=len) (element-type gint8): a pointer to the data to
+ *   search within the #HexDocument
  * @len: length in bytes of the data to be searched for
  * @offset: (out): offset of the found string, if the method returns %TRUE
  * 
@@ -1704,8 +1704,8 @@ FIND_FULL_ASYNC_TEMPLATE(hex_document_find_backward_full_async,
  * hex_document_find_backward_async:
  * @doc: a [class@Hex.Document] object
  * @start: starting offset byte of the payload to commence the search
- * @what: (array length=len): a pointer to the data to search within the
- *   #HexDocument
+ * @what: (array length=len) (element-type gint8): a pointer to the data to
+ *   search within the #HexDocument
  * @len: length in bytes of the data to be searched for
  * @offset: (out): offset of the found string, if the method returns %TRUE
  * @found_msg: message intended to be displayed by the client if the string
