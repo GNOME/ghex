@@ -2,12 +2,12 @@
 # Copyright (C) 2021 ghex's COPYRIGHT HOLDER
 # This file is distributed under the same license as the ghex package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2021, 2022, 2023.
+# Yuri Chornoivan <yurchor@ukr.net>, 2021, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
-"POT-Creation-Date: 2023-08-22 18:30+0000\n"
-"PO-Revision-Date: 2023-08-24 22:55+0300\n"
+"POT-Creation-Date: 2024-02-01 05:07+0000\n"
+"PO-Revision-Date: 2024-02-01 19:29+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 23.04.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -24,11 +24,11 @@ msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>"
 
 #. (itstool) path: credit/name
-#: C/advanced-clipboard.page:7 C/basics-create-new-file.page:7
-#: C/basics-edit-file.page:7 C/basics-find-replace.page:7
-#: C/basics-open-file.page:7 C/basics-save-file.page:7 C/conf-grouptype.page:7
-#: C/conf-preferences.page:7 C/index.page:6 C/tools-chartable.page:7
-#: C/tools-converter.page:7
+#: C/advanced-clipboard.page:7 C/advanced-marks.page:7
+#: C/basics-create-new-file.page:7 C/basics-edit-file.page:7
+#: C/basics-find-replace.page:7 C/basics-open-file.page:7
+#: C/basics-save-file.page:7 C/conf-grouptype.page:7 C/conf-preferences.page:7
+#: C/index.page:6 C/tools-chartable.page:7 C/tools-converter.page:7
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -373,6 +373,128 @@ msgstr ""
 "тим, як копіюються дані з буфера редагування програми до буфера обміну "
 "даними."
 
+#. (itstool) path: credit/years
+#: C/advanced-marks.page:9
+msgid "2024"
+msgstr "2024"
+
+#. (itstool) path: page/title
+#: C/advanced-marks.page:12
+msgid "Marks"
+msgstr "Позначки"
+
+#. (itstool) path: page/p
+#: C/advanced-marks.page:13
+msgid ""
+"Marks provide a convenient way to earmark chunks or sections of data that "
+"can be quickly jumped to."
+msgstr ""
+"Позначки є зручним способом визначення фрагментів або розділів даних, до"
+" яких потрібен швидкий перехід."
+
+#. (itstool) path: page/p
+#: C/advanced-marks.page:14
+msgid ""
+"To open the marks dialog, open the Main Menu, and click <gui>Marks</gui>, or "
+"use the keyboard shortcut <keyseq><key>Ctrl</key><key>M</key></keyseq>."
+msgstr ""
+"Щоб відкрити діалогове вікно позначок, відкрийте головне меню програми і"
+" виберіть пункт <gui>Позначки</gui> або скористайтеся клавіатурним"
+" скороченням <keyseq><key>Ctrl</key><key>M</key></keyseq>."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:16
+msgid "Selecting marks"
+msgstr "Вибір позначок"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:17
+msgid ""
+"Marks are numbered 0-9. To select a mark to work with, choose the mark "
+"number you would like to select by selecting the number in the <gui>Mark:</"
+"gui> spin button, or by pressing <keyseq><key>Ctrl</key><key>0...9</key></"
+"keyseq>."
+msgstr ""
+"Позначки мають номери від 0 до 9. Щоб позначити позначку, з якою слід"
+" працювати, виберіть номер позначки, яку ви хочете позначити, шляхом вибору"
+" номера у полі лічильника <gui>Позначка:</"
+"gui> або натисканням комбінації клавіш <keyseq><key>Ctrl</key><key>0...9<"
+"/key></keyseq>."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:20
+#| msgid "Setting geometry"
+msgid "Setting marks"
+msgstr "Встановлення позначок"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:21
+msgid ""
+"To set a mark, select the mark number you would like to set. Next, highlight "
+"the data for which you would like to set a mark. Finally, click <gui>Set</"
+"gui> to set that mark."
+msgstr ""
+"Щоб встановити позначку, виберіть номер позначки, яку ви хочете встановити."
+" Потім позначте дані, для яких ви хочете встановити позначку. Нарешті,"
+" натисніть кнопку <gui>Встановити</"
+"gui>, щоб встановити позначку."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:24
+msgid "Jumping to marks"
+msgstr "Перехід до позначок"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:25
+msgid ""
+"To jump to a mark, select the mark number you would like to jump to. Then, "
+"click <gui>Jump</gui> to jump to that mark. This will set the cursor "
+"position to the starting point of that mark instantaneously."
+msgstr ""
+"Щоб перейти до позначки, позначте номер позначки, до якої ви хочете перейти."
+" Потім натисніть кнопку <gui>Перейти</gui>, щоб перейти до цієї позначки."
+" Програма негайно змістить курсор до початкової точки позначки."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:28
+msgid "Deleting marks"
+msgstr "Вилучення позначок"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:29
+msgid ""
+"To delete a mark, select the mark number you would like to delete. Then, "
+"click <gui>Delete</gui> to delete that mark."
+msgstr ""
+"Щоб визначити позначку, позначте номер позначки, яку ви хочете вилучити."
+" Потім натисніть кнопку <gui>Вилучити</gui>, щоб вилучити цю позначку."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:32
+msgid "Setting a custom color for a mark"
+msgstr "Встановлення нетипового кольору для позначки"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:33
+msgid ""
+"Marks have a default color which should make them stand out from other "
+"highlighted items. However, you can also optionally set a custom color for a "
+"mark if desired."
+msgstr ""
+"Позначки мають типовий колір, який має виділити їх серед інших підсвічених"
+" елементів. Втім, ви, якщо захочете, встановити нетиповий колір для позначок."
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:34
+msgid ""
+"Custom colors can only be set after a mark has been created. Once a mark has "
+"been created, click the color chooser button next to the <gui>Mark:</gui> "
+"spin button, and select your desired color."
+msgstr ""
+"Нетипові кольори можна встановлювати лише після створення позначки. Після"
+" створення позначки натисніть кнопку вибору, яку розташовано поруч із полем"
+" лічильника <gui>Позначка:</gui>, і виберіть бажаний колір."
+
 #. (itstool) path: page/title
 #: C/basics-create-new-file.page:12
 msgid "Create a new file"
@@ -610,11 +732,11 @@ msgid ""
 "data that is grouped into chunks (eg, 16 bytes at a time) or simply as a way "
 "of visually keeping track of offsets on a line-by-line basis."
 msgstr ""
-"Типово, GHex намагається умістити у ширину вікна якомога більше символів."
-" Втім, у GHex передбачено можливість вказати кількість символів, які може"
-" бути показано в одному рядку. Це корисно при роботі з даним, які згруповано"
-" у фрагменти (наприклад по 16 байтів) або для спрощення візуального стеження"
-" за відступами у послідовних рядках."
+"Типово, GHex намагається умістити у ширину вікна якомога більше символів. "
+"Втім, у GHex передбачено можливість вказати кількість символів, які може "
+"бути показано в одному рядку. Це корисно при роботі з даним, які згруповано "
+"у фрагменти (наприклад по 16 байтів) або для спрощення візуального стеження "
+"за відступами у послідовних рядках."
 
 #. (itstool) path: section/p
 #: C/basics-edit-file.page:79
@@ -626,14 +748,14 @@ msgid ""
 "automatically reformat the hex and ASCII panes accordingly. This only takes "
 "effect for the file being worked on, and does not persist across sessions."
 msgstr ""
-"У GHex це називається «встановлення <em>геометрії</em>». Геометрію можна"
-" налаштувати, клацнувши правою кнопкою миші будь-де на панелі"
-" шістнадцяткових значень або ASCII і вибравши <gui>Геометрія</gui>. Зніміть"
-" позначку з пункту <gui>Автоматична геометрія</gui> і вкажіть бажану"
-" кількість символів у рядку. Після встановлення цієї кількості GHex"
-" автоматично переформатує панелі шістнадцяткових записів і ASCII. Це"
-" стосується лише файла, з яким ви працюєте. Параметри геометрії не"
-" зберігаються між сеансами роботи з програмою."
+"У GHex це називається «встановлення <em>геометрії</em>». Геометрію можна "
+"налаштувати, клацнувши правою кнопкою миші будь-де на панелі шістнадцяткових "
+"значень або ASCII і вибравши <gui>Геометрія</gui>. Зніміть позначку з пункту "
+"<gui>Автоматична геометрія</gui> і вкажіть бажану кількість символів у "
+"рядку. Після встановлення цієї кількості GHex автоматично переформатує "
+"панелі шістнадцяткових записів і ASCII. Це стосується лише файла, з яким ви "
+"працюєте. Параметри геометрії не зберігаються між сеансами роботи з "
+"програмою."
 
 #. (itstool) path: page/title
 #: C/basics-find-replace.page:12
