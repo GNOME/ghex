@@ -902,7 +902,13 @@ dnd_drop_cb (GtkDropTarget *target, const GValue *value, double x, double y,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(data);
 
-	ghex_application_window_open_file (self, g_value_get_object (value));
+	GSList *file_list = g_value_get_boxed (value);
+	GSList *l;
+	for (l = file_list; l; l = l->next)
+	{
+		GFile *file = l->data;
+		ghex_application_window_open_file (self, file);
+	}
 
 	return TRUE;
 }
@@ -1816,6 +1822,7 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	/* DnD */
 
 	target = gtk_drop_target_new (G_TYPE_FILE, GDK_ACTION_COPY);
+	gtk_drop_target_set_gtypes (target, (GType[1]) { GDK_TYPE_FILE_LIST }, 1);
 	g_signal_connect (target, "drop", G_CALLBACK(dnd_drop_cb), self);
 	gtk_widget_add_controller (widget, GTK_EVENT_CONTROLLER(target));
 
