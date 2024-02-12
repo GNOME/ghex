@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2024-02-01 18:49+0000\n"
-"PO-Revision-Date: 2024-02-03 09:27+0200\n"
+"POT-Creation-Date: 2024-02-12 06:30+0000\n"
+"PO-Revision-Date: 2024-02-12 20:39+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
@@ -358,7 +358,7 @@ msgid "_Close Anyway"
 msgstr "_Закрити попри це"
 
 #: src/ghex-application-window.c:340 src/ghex-application-window.c:475
-#: src/ghex-application-window.c:1173
+#: src/ghex-application-window.c:1179
 msgid "_Go Back"
 msgstr "П_овернутися"
 
@@ -393,12 +393,12 @@ msgstr "З_берегти зміни"
 msgid "_Discard Changes"
 msgstr "_Відкинути зміни"
 
-#: src/ghex-application-window.c:1029
+#: src/ghex-application-window.c:1035
 msgid "There was an error saving the file to the path specified."
 msgstr ""
 "Під час спроби збереження файла до вказаного каталогу сталася помилка."
 
-#: src/ghex-application-window.c:1048
+#: src/ghex-application-window.c:1054
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -406,13 +406,13 @@ msgstr ""
 "Сталася невідома помилка під час спроби повторно завантажити файл, який ви "
 "щойно зберегли."
 
-#: src/ghex-application-window.c:1101
+#: src/ghex-application-window.c:1107
 msgid "Select a file to save buffer as"
 msgstr "Виберіть файл для збереження буфера"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1167
+#: src/ghex-application-window.c:1173
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -427,15 +427,15 @@ msgstr ""
 "\n"
 "Наслідки цієї дії не можна буде скасувати."
 
-#: src/ghex-application-window.c:1172 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1178 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "Від_новити"
 
-#: src/ghex-application-window.c:1260
+#: src/ghex-application-window.c:1266
 msgid "Select a file to open"
 msgstr "Вибрати файл для відкриття"
 
-#: src/ghex-application-window.c:1367
+#: src/ghex-application-window.c:1373
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -458,7 +458,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1561
+#: src/ghex-application-window.c:1567
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -467,12 +467,12 @@ msgstr ""
 "Зсув: <tt>0x%lX</tt>; позначено <tt>0x%lX</tt> байтів від <tt>0x%lX</tt> до "
 "<tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1565
+#: src/ghex-application-window.c:1571
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Зсув: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2374
+#: src/ghex-application-window.c:2381
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -498,11 +498,11 @@ msgstr ""
 "Щоб уникнути цього повідомлення, спробуйте скористатися іншим модулем "
 "обробки буфера."
 
-#: src/ghex-application-window.c:2432
+#: src/ghex-application-window.c:2439
 msgid "There was an error reading the file."
 msgstr "Під час читання з файла сталася помилка."
 
-#: src/ghex-application-window.c:2493
+#: src/ghex-application-window.c:2500
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -1036,15 +1036,19 @@ msgid "0x%lX - 0x%lX"
 msgstr "0x%lX – 0x%lX"
 
 #: src/mark-dialog.ui:36
-#| msgid "Marks"
 msgid "Mark:"
 msgstr "Позначка:"
 
 #: src/mark-dialog.ui:50
 msgid "Select the desired mark to set, jump to, or delete"
 msgstr ""
-"Виберіть позначку, яку слід встановити, до якої слід перейти або яку слід"
-" вилучити"
+"Виберіть позначку, яку слід встановити, до якої слід перейти або яку слід "
+"вилучити"
+
+#: src/mark-dialog.ui:58
+#| msgid "Pick a custom color for the mark, if desired."
+msgid "Optional custom color for the mark"
+msgstr "Необов'язковий нетиповий колір для позначки"
 
 #: src/mark-dialog.ui:74
 msgid "Pick a custom color for the mark, if desired."
@@ -1059,7 +1063,6 @@ msgid "Set a mark on a byte or range of bytes"
 msgstr "Встановити позначку на байті або діапазоні байтів"
 
 #: src/mark-dialog.ui:122
-#| msgid "Jumps to the specified byte"
 msgid "Bring the cursor to the specified mark"
 msgstr "Перевести курсор до вказаної позначки"
 
@@ -1068,12 +1071,10 @@ msgid "_Delete"
 msgstr "Ви_лучити"
 
 #: src/mark-dialog.ui:141
-#| msgid "Jumps to the specified byte"
 msgid "Delete the specified mark"
 msgstr "Вилучити вказану позначку"
 
 #: src/mark-dialog.ui:153
-#| msgid "Closes the find pane"
 msgid "Closes the marks pane"
 msgstr "Закриває панель позначок"
 
