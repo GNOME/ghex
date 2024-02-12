@@ -55,7 +55,7 @@
 				<child>
 					<object class="GtkColorButton" id="color_button">
 						<property name="use-alpha">false</property>
-						<property name="tooltip-text">Optional custom color for the mark</property>
+						<property name="tooltip-text" translatable="yes">Optional custom color for the mark</property>
 						<binding name="sensitive">
 							<closure type="gboolean" function="sensitive_closure_cb">
 								<closure type="HexWidgetMark" function="mark_spin_button_closure_cb">
