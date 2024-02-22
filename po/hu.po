@@ -1,17 +1,17 @@
 # Hungarian translation for ghex.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2007, 2009, 2010, 2011, 2012, 2013, 2015, 2018, 2019, 2022, 2023 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2007, 2009, 2010, 2011, 2012, 2013, 2015, 2018, 2019, 2022, 2023, 2024 Free Software Foundation, Inc.
 # This file is distributed under the same license as the ghex package.
 #
 # Szabolcs Ban <shooby at gnome dot hu>, 1999, 2000, 2001.
 # Andras Timar <timar at gnome dot hu>, 2001, 2002, 2003.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2004, 2005, 2007, 2009, 2010, 2011.
-# Balázs Úr <ur.balazs at fsf dot hu>, 2012, 2013, 2015, 2018, 2019, 2022, 2023.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2012, 2013, 2015, 2018, 2019, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-05-25 16:03+0000\n"
-"PO-Revision-Date: 2023-07-27 01:36+0200\n"
+"POT-Creation-Date: 2024-01-22 20:30+0000\n"
+"PO-Revision-Date: 2024-02-22 01:27+0100\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
 #: src/ghex-application-window.ui.in:149
@@ -47,7 +47,7 @@ msgstr ""
 "oszlopban, és az ASCII ábrázolással a másikban. A GHex hasznos eszköz a "
 "nyers adatokkal történő munkavégzésnél."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:41
+#: data/org.gnome.GHex.appdata.xml.in.in:43
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -515,6 +515,14 @@ msgstr ""
 msgid "There was an error reading the file."
 msgstr "Hiba történt a fájl olvasása során."
 
+#: src/ghex-application-window.c:2194
+msgid ""
+"There was an error loading the requested file. The file either no longer "
+"exists, is inaccessible, or you may not have permission to access the file."
+msgstr ""
+"Hiba történt a kért fájl betöltése során. A fájl már vagy nem létezik, vagy"
+" nem érhető el, vagy nincs jogosultsága a fájl eléréséhez."
+
 #: src/ghex-application-window.ui.in:31
 msgid "_New"
 msgstr "Ú_j"
@@ -609,7 +617,6 @@ msgid "_Open"
 msgstr "_Megnyitás"
 
 #: src/ghex-application-window.ui.in:186
-#| msgid "Main menu"
 msgid "Main Menu"
 msgstr "Főmenü"
 
@@ -796,7 +803,6 @@ msgid "Show help"
 msgstr "Súgó megjelenítése"
 
 #: src/help-overlay.ui:201
-#| msgid "Preferences"
 msgid "Show preferences"
 msgstr "Beállítások megjelenítése"
 
