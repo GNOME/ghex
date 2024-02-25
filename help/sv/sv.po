@@ -1,22 +1,22 @@
 # Swedish translation for ghex help.
-# Copyright © 2016-2023 ghex's COPYRIGHT HOLDER
+# Copyright © 2016-2024 ghex's COPYRIGHT HOLDER
 # This file is distributed under the same license as the ghex package.
 # Daniel Nylander <po@danielnylander.se>, 2007.
 # Josef Andersson <josef.andersson@gmail.com>, 2016.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2020, 2022, 2023.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2020, 2022, 2023, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex doc\n"
-"POT-Creation-Date: 2023-08-22 18:30+0000\n"
-"PO-Revision-Date: 2023-08-22 21:42+0200\n"
+"POT-Creation-Date: 2024-02-01 05:07+0000\n"
+"PO-Revision-Date: 2024-02-25 14:13+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -30,11 +30,11 @@ msgstr ""
 "<tp-sv@listor.tp-sv.se>."
 
 #. (itstool) path: credit/name
-#: C/advanced-clipboard.page:7 C/basics-create-new-file.page:7
-#: C/basics-edit-file.page:7 C/basics-find-replace.page:7
-#: C/basics-open-file.page:7 C/basics-save-file.page:7 C/conf-grouptype.page:7
-#: C/conf-preferences.page:7 C/index.page:6 C/tools-chartable.page:7
-#: C/tools-converter.page:7
+#: C/advanced-clipboard.page:7 C/advanced-marks.page:7
+#: C/basics-create-new-file.page:7 C/basics-edit-file.page:7
+#: C/basics-find-replace.page:7 C/basics-open-file.page:7
+#: C/basics-save-file.page:7 C/conf-grouptype.page:7 C/conf-preferences.page:7
+#: C/index.page:6 C/tools-chartable.page:7 C/tools-converter.page:7
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -364,6 +364,126 @@ msgstr ""
 "redigera ovanliga datatyper så kan det finnas andra tider då det är önskvärt "
 "för användaren att ha full kontroll på hur data från bufferten kopieras till "
 "urklipp."
+
+#. (itstool) path: credit/years
+#: C/advanced-marks.page:9
+msgid "2024"
+msgstr "2024"
+
+#. (itstool) path: page/title
+#: C/advanced-marks.page:12
+msgid "Marks"
+msgstr "Märken"
+
+#. (itstool) path: page/p
+#: C/advanced-marks.page:13
+msgid ""
+"Marks provide a convenient way to earmark chunks or sections of data that "
+"can be quickly jumped to."
+msgstr ""
+"Märken tillhandahåller ett enkelt sätt att öronmärka block eller stycken av "
+"data som snabbt kan hoppas till."
+
+#. (itstool) path: page/p
+#: C/advanced-marks.page:14
+msgid ""
+"To open the marks dialog, open the Main Menu, and click <gui>Marks</gui>, or "
+"use the keyboard shortcut <keyseq><key>Ctrl</key><key>M</key></keyseq>."
+msgstr ""
+"För att öppna märkesdialogen, öppna huvudmenyn och klicka på <gui>Märken</"
+"gui>, eller använd tangentbordsgenvägen <keyseq><key>Ctrl</key><key>M</key></"
+"keyseq>."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:16
+msgid "Selecting marks"
+msgstr "Välja märken"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:17
+msgid ""
+"Marks are numbered 0-9. To select a mark to work with, choose the mark "
+"number you would like to select by selecting the number in the <gui>Mark:</"
+"gui> spin button, or by pressing <keyseq><key>Ctrl</key><key>0...9</key></"
+"keyseq>."
+msgstr ""
+"Märken är numrerade 0-9. För att välja ett märke att arbeta med, välj "
+"märkesnumret som du vill ha genom att välja numret i stegningsrutan "
+"<gui>Märke:</gui>, eller genom att trycka ned <keyseq><key>Ctrl</key><key>0…"
+"9</key></keyseq>."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:20
+msgid "Setting marks"
+msgstr "Ställa in märken"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:21
+msgid ""
+"To set a mark, select the mark number you would like to set. Next, highlight "
+"the data for which you would like to set a mark. Finally, click <gui>Set</"
+"gui> to set that mark."
+msgstr ""
+"För att ställa in ett märke, välj märkesnumret som du vill ställa in. "
+"Markera sedan de data för vilka du vill ställa in ett märke. Klicka "
+"slutligen på <gui>Ställ in</gui> för att ställa in det märket."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:24
+msgid "Jumping to marks"
+msgstr "Hoppa till märken"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:25
+msgid ""
+"To jump to a mark, select the mark number you would like to jump to. Then, "
+"click <gui>Jump</gui> to jump to that mark. This will set the cursor "
+"position to the starting point of that mark instantaneously."
+msgstr ""
+"För att hoppa till ett märke, välj märkesnumret som du vill hoppa till. "
+"Klicka sedan på <gui>Hoppa</gui> för att hoppa till det märket. Detta kommer "
+"omedelbart ställa in märkespositionen till startpunkten för det märket."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:28
+msgid "Deleting marks"
+msgstr "Ta bort märken"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:29
+msgid ""
+"To delete a mark, select the mark number you would like to delete. Then, "
+"click <gui>Delete</gui> to delete that mark."
+msgstr ""
+"För att ta bort ett märke, välj märkesnumret som du vill ta bort. Klicka "
+"sedan på <gui>Ta bort</gui> för att ta bort det märket."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:32
+msgid "Setting a custom color for a mark"
+msgstr "Ställa in en anpassad färg för ett märke"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:33
+msgid ""
+"Marks have a default color which should make them stand out from other "
+"highlighted items. However, you can also optionally set a custom color for a "
+"mark if desired."
+msgstr ""
+"Märken har en standardfärg som bör få dem att skilja sig från andra "
+"markerade objekt. Du kan dock valfritt även ställa in en anpassad färg för "
+"ett märke om du vill."
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:34
+msgid ""
+"Custom colors can only be set after a mark has been created. Once a mark has "
+"been created, click the color chooser button next to the <gui>Mark:</gui> "
+"spin button, and select your desired color."
+msgstr ""
+"Anpassade färger kan endast ställas in efter att ett märke har skapats. Då "
+"märket har skapats klickar du på färgväljarknappen intill stegningsrutan "
+"<gui>Märke:</gui> och väljer din önskade färg."
 
 #. (itstool) path: page/title
 #: C/basics-create-new-file.page:12
@@ -1521,18 +1641,6 @@ msgstr ""
 #~ msgid "GHex Window with an Open File"
 #~ msgstr "GHex med en öppnad fil"
 
-#~| msgctxt "_"
-#~| msgid ""
-#~| "external ref='figures/ghex_window_open.png' "
-#~| "md5='9c4ae66bb45a43803e1f70abfaede88b'"
-#~ msgctxt "_"
-#~ msgid ""
-#~ "external ref='figures/ghex_window_open.png' "
-#~ "md5='31fc4c732edba8668056e88d1f4239f2'"
-#~ msgstr ""
-#~ "external ref='figures/ghex_window_open.png' "
-#~ "md5='31fc4c732edba8668056e88d1f4239f2'"
-
 #~ msgid ""
 #~ "<imageobject> <imagedata fileref=\"figures/ghex_window_open.png\" "
 #~ "format=\"PNG\"/> </imageobject> <textobject> <phrase>Shows GHex main "
@@ -2223,14 +2331,6 @@ msgstr ""
 #~ "på stegningsrutan är 0 skriver <application>GHex</application> inte ut "
 #~ "någon skuggad ruta."
 
-#~ msgctxt "_"
-#~ msgid ""
-#~ "external ref='figures/ghex_window_empty.png' "
-#~ "md5='89b78d734e989c368b82592f385db8dd'"
-#~ msgstr ""
-#~ "external ref='figures/ghex_window_empty.png' "
-#~ "md5='89b78d734e989c368b82592f385db8dd'"
-
 #~ msgid "When You Start GHex"
 #~ msgstr "När du startar GHex"
 
@@ -2254,9 +2354,6 @@ msgstr ""
 
 #~ msgid "GHex Manual V2.5"
 #~ msgstr "GHex"
-
-#~ msgid "2002"
-#~ msgstr "2003"
 
 #~ msgid "2003"
 #~ msgstr "2003"
@@ -2368,9 +2465,6 @@ msgstr ""
 #~ msgstr ""
 #~ "där <replaceable>fil1.txt</replaceable> och <replaceable>fil2.txt</"
 #~ "replaceable>är namnen på de filer som du vill öppna."
-
-#~ msgid "2004-03-04"
-#~ msgstr "2002-08-28"
 
 #~ msgid "user's guide"
 #~ msgstr "användarhandbok"
