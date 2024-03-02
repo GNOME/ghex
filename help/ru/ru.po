@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex gnome-3-8\n"
-"POT-Creation-Date: 2023-08-27 16:54+0000\n"
-"PO-Revision-Date: 2023-08-28 19:36+1000\n"
+"POT-Creation-Date: 2024-02-01 05:07+0000\n"
+"PO-Revision-Date: 2024-02-15 17:46+1000\n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -29,11 +29,11 @@ msgstr ""
 "Ser82-png <asvmail.as@gmaol.com>, 2022-2023"
 
 #. (itstool) path: credit/name
-#: C/advanced-clipboard.page:7 C/basics-create-new-file.page:7
-#: C/basics-edit-file.page:7 C/basics-find-replace.page:7
-#: C/basics-open-file.page:7 C/basics-save-file.page:7 C/conf-grouptype.page:7
-#: C/conf-preferences.page:7 C/index.page:6 C/tools-chartable.page:7
-#: C/tools-converter.page:7
+#: C/advanced-clipboard.page:7 C/advanced-marks.page:7
+#: C/basics-create-new-file.page:7 C/basics-edit-file.page:7
+#: C/basics-find-replace.page:7 C/basics-open-file.page:7
+#: C/basics-save-file.page:7 C/conf-grouptype.page:7 C/conf-preferences.page:7
+#: C/index.page:6 C/tools-chartable.page:7 C/tools-converter.page:7
 msgid "Logan Rathbone"
 msgstr "Logan Rathbone"
 
@@ -367,6 +367,125 @@ msgstr ""
 "шестнадцатеричный редактор, часто используется для редактирования необычных "
 "типов данных, могут быть и другие случаи, когда пользователю желательно "
 "иметь полный контроль над тем, как данные копируются в буфер обмена."
+
+#. (itstool) path: credit/years
+#: C/advanced-marks.page:9
+msgid "2024"
+msgstr "2024"
+
+#. (itstool) path: page/title
+#: C/advanced-marks.page:12
+msgid "Marks"
+msgstr "Метки"
+
+#. (itstool) path: page/p
+#: C/advanced-marks.page:13
+msgid ""
+"Marks provide a convenient way to earmark chunks or sections of data that "
+"can be quickly jumped to."
+msgstr ""
+"Метки обеспечивают удобный способ выделения фрагментов или разделов данных "
+"для быстрого перехода к ним."
+
+#. (itstool) path: page/p
+#: C/advanced-marks.page:14
+msgid ""
+"To open the marks dialog, open the Main Menu, and click <gui>Marks</gui>, or "
+"use the keyboard shortcut <keyseq><key>Ctrl</key><key>M</key></keyseq>."
+msgstr ""
+"Чтобы открыть диалоговое окно работы с метками, откройте главное меню и "
+"выберите пункт <gui>Метки</gui> или используйте комбинацию клавиш "
+"<keyseq><key>Ctrl</key><key>M</key></keyseq>."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:16
+msgid "Selecting marks"
+msgstr "Выбор меток"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:17
+msgid ""
+"Marks are numbered 0-9. To select a mark to work with, choose the mark "
+"number you would like to select by selecting the number in the <gui>Mark:</"
+"gui> spin button, or by pressing <keyseq><key>Ctrl</key><key>0...9</key></"
+"keyseq>."
+msgstr ""
+"Метки пронумерованы от 0 до 9. Чтобы выбрать метку для работы, установите её "
+"номер в счётчике <gui>Метка:</gui> или воспользуйтесь комбинациями клавиш "
+"<keyseq><key>Ctrl</key><key>0...9</key></keyseq>."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:20
+msgid "Setting marks"
+msgstr "Установка меток"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:21
+msgid ""
+"To set a mark, select the mark number you would like to set. Next, highlight "
+"the data for which you would like to set a mark. Finally, click <gui>Set</"
+"gui> to set that mark."
+msgstr ""
+"Чтобы установить метку, сначала выберите для неё номер. Затем выделите "
+"данные, для которых вы хотели бы установить метку. И, наконец, нажмите "
+"кнопку <gui>Установить</gui>."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:24
+msgid "Jumping to marks"
+msgstr "Переход к меткам"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:25
+msgid ""
+"To jump to a mark, select the mark number you would like to jump to. Then, "
+"click <gui>Jump</gui> to jump to that mark. This will set the cursor "
+"position to the starting point of that mark instantaneously."
+msgstr ""
+"Чтобы перейти к метке, выберите её номер, затем нажмите кнопку <gui>Перейти</"
+"gui>. Это действие мгновенно установит положение курсора в начальной точке "
+"выбранной метки."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:28
+msgid "Deleting marks"
+msgstr "Удаление меток"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:29
+msgid ""
+"To delete a mark, select the mark number you would like to delete. Then, "
+"click <gui>Delete</gui> to delete that mark."
+msgstr ""
+"Чтобы удалить метку, сначала выберите её номер, затем нажмите кнопку "
+"<gui>Удалить</gui>."
+
+#. (itstool) path: section/title
+#: C/advanced-marks.page:32
+msgid "Setting a custom color for a mark"
+msgstr "Установка собственного цвета метки"
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:33
+msgid ""
+"Marks have a default color which should make them stand out from other "
+"highlighted items. However, you can also optionally set a custom color for a "
+"mark if desired."
+msgstr ""
+"Цвет меток, который должен выделять их на фоне других элементов, уже "
+"установлен по умолчанию. Однако при желании вы также можете выбрать "
+"собственный цвет для метки."
+
+#. (itstool) path: section/p
+#: C/advanced-marks.page:34
+msgid ""
+"Custom colors can only be set after a mark has been created. Once a mark has "
+"been created, click the color chooser button next to the <gui>Mark:</gui> "
+"spin button, and select your desired color."
+msgstr ""
+"Собственные цвета можно задать только после создания метки. Как только метка "
+"будет создана, нажмите кнопку выбора цвета рядом с полем счётчика <gui>Метка:"
+"</gui> и выберите желаемый цвет."
 
 #. (itstool) path: page/title
 #: C/basics-create-new-file.page:12
