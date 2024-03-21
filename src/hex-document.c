@@ -62,6 +62,7 @@ enum {
 	REDO,
 	UNDO_STACK_FORGET,
 	FILE_NAME_CHANGED,
+	FILE_SAVE_STARTED,
 	FILE_SAVED,
 	FILE_READ_STARTED,
 	FILE_LOADED,
@@ -401,6 +402,20 @@ hex_document_class_init (HexDocumentClass *klass)
 
 	hex_signals[FILE_NAME_CHANGED] = 
 		g_signal_new_class_handler ("file-name-changed",
+				G_OBJECT_CLASS_TYPE (gobject_class),
+				G_SIGNAL_RUN_FIRST,
+				NULL,
+				NULL, NULL, NULL,
+				G_TYPE_NONE,
+				0);
+
+	/**
+	 * HexDocument::file-save-started:
+	 *
+	 * Since: 4.6.1
+	 */
+	hex_signals[FILE_SAVE_STARTED] =
+		g_signal_new_class_handler ("file-save-started",
 				G_OBJECT_CLASS_TYPE (gobject_class),
 				G_SIGNAL_RUN_FIRST,
 				NULL,
@@ -814,6 +829,8 @@ hex_document_write (HexDocument *doc)
 
 	g_return_val_if_fail (G_IS_FILE (doc->file), FALSE);
 
+	g_signal_emit (doc, hex_signals[FILE_SAVE_STARTED], 0);
+
 	path = g_file_get_path (doc->file);
 	if (! path)
 		goto out;
@@ -921,6 +938,8 @@ hex_document_write_async (HexDocument *doc,
 	path = g_file_get_path (doc->file);
 	if (! path)
 		goto out;
+
+	g_signal_emit (doc, hex_signals[FILE_SAVE_STARTED], 0);
 
 	doc_task = g_task_new (doc, cancellable, callback, user_data);
 
