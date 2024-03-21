@@ -2793,6 +2793,18 @@ document_changed_cb (HexDocument* doc, gpointer change_data,
 }
 
 static void
+file_save_started_cb (HexWidget *self, HexDocument *doc)
+{
+	set_busy_state (self, TRUE);
+}
+
+static void
+file_saved_cb (HexWidget *self, HexDocument *doc)
+{
+	set_busy_state (self, FALSE);
+}
+
+static void
 hex_widget_constructed (GObject *object)
 {
 	HexWidget *self = HEX_WIDGET(object);
@@ -2813,6 +2825,12 @@ hex_widget_constructed (GObject *object)
 
 	g_signal_connect (self->document, "redo",
 			G_CALLBACK (doc_undo_redo_cb), self);
+
+	g_signal_connect_swapped (self->document, "file-save-started",
+			G_CALLBACK (file_save_started_cb), self);
+
+	g_signal_connect_swapped (self->document, "file-saved",
+			G_CALLBACK (file_saved_cb), self);
 
 	/* Chain up */
 	G_OBJECT_CLASS(hex_widget_parent_class)->constructed (object);
