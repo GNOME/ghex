@@ -15,7 +15,7 @@ else
   resource_base_path = '/org/gnome/GHex'
 endif
 
-# Backend plugins: (nb: only mmap exists at this time along with malloc, which is baked in)
+# Backend plugins (over and above 'malloc', which is baked in)
 mmap_backend = get_option('mmap-buffer-backend')
 direct_backend = get_option('direct-buffer-backend')
 
