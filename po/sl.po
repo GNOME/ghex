@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2024-02-12 06:30+0000\n"
-"PO-Revision-Date: 2024-04-27 18:43+0200\n"
+"POT-Creation-Date: 2024-04-27 16:44+0000\n"
+"PO-Revision-Date: 2024-05-02 15:40+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -36,12 +36,6 @@ msgid "GHex is a hex editor for the GNOME desktop."
 msgstr "GHex je šestnajstiški urejevalnik za namizje GNOME."
 
 #: data/org.gnome.GHex.appdata.xml.in.in:12
-#, fuzzy
-#| msgid ""
-#| "GHex can load raw data from binary files and display them for editing in "
-#| "the traditional hex editor view. The display is split in two columns, "
-#| "with hexadecimal values in one column and the ASCII representation in the "
-#| "other. A useful tool for working with raw data."
 msgid ""
 "GHex can load raw data from binary files and display them for editing in the "
 "traditional hex editor view. The display is split in two columns, with "
@@ -50,7 +44,7 @@ msgid ""
 msgstr ""
 "Program GHex omogoča nalaganje surovih podatkov dvojiških datotek in možnost "
 "urejanja v šestnajstiškem urejevalniku. Pogled je razdeljen na dva stolpca, "
-"šestnajtiški zapis v enem in običajni ASCII v drugem. Program je uporabno "
+"šestnajstiški zapis v enem in običajni ASCII v drugem. Program je uporabno "
 "orodje za urejanje kodiranega zapisa."
 
 #: data/org.gnome.GHex.desktop.in.in:5
@@ -266,6 +260,9 @@ msgid ""
 "\n"
 "No further matches found."
 msgstr ""
+"Dosežen začetek datoteke.\n"
+"\n"
+"Nadaljnjih zadetkov ni bilo mogoče najti."
 
 #: src/findreplace.c:398
 msgid ""
@@ -273,6 +270,9 @@ msgid ""
 "\n"
 "No occurrences found from cursor."
 msgstr ""
+"Dosežen začetek datoteke.\n"
+"\n"
+"Od kazalca ni bilo nobenih zadetkov."
 
 #: src/findreplace.c:408
 msgid ""
@@ -280,6 +280,9 @@ msgid ""
 "\n"
 "No further matches found."
 msgstr ""
+"Dosežen konec datoteke.\n"
+"\n"
+"Nadaljnjih zadetkov ni bilo mogoče najti."
 
 #: src/findreplace.c:410
 msgid ""
@@ -287,12 +290,13 @@ msgid ""
 "\n"
 "No occurrences found from cursor."
 msgstr ""
+"Dosežen konec datoteke.\n"
+"\n"
+"Od kazalca ni bilo nobenih zadetkov."
 
 #: src/findreplace.c:481
-#, fuzzy
-#| msgid "No offset has been specified!"
 msgid "No offset has been specified."
-msgstr "Ni določen odmik!"
+msgstr "Odmik ni določen."
 
 #: src/findreplace.c:506
 msgid "The specified offset is beyond the  file boundaries."
@@ -321,7 +325,7 @@ msgstr "Niza ni bilo mogoče najti."
 #: src/findreplace.c:648
 #, c-format
 msgid "Search complete: %d replacements made."
-msgstr ""
+msgstr "Iskanje dokončano: opravljenih je bilo %d zamenjav."
 
 #: src/findreplace.c:655
 msgid "No occurrences were found."
@@ -330,7 +334,7 @@ msgstr "Niza ni mogoče najti."
 #. Translators: this is the string for an untitled buffer that will
 #. * be displayed in the titlebar when a user does File->New
 #.
-#: src/ghex-application-window.c:49 src/hex-document.c:1091
+#: src/ghex-application-window.c:49 src/hex-document.c:1110
 msgid "Untitled"
 msgstr "Neimenovano"
 
@@ -345,6 +349,10 @@ msgid ""
 "Are you sure you want to close the window?\n"
 "\n"
 msgstr ""
+"<b>Odprta je ena ali več datotek z neshranjenimi spremembami.</b>\n"
+"\n"
+"Ali ste prepričani, da želite zapreti okno?\n"
+"\n"
 
 #: src/ghex-application-window.c:339
 msgid "_Close Anyway"
@@ -364,6 +372,9 @@ msgid ""
 "\n"
 "Would you like to save your changes?"
 msgstr ""
+"<big><b>%s je bila urejena od odprtja.</b></big>\n"
+"\n"
+"Ali želite shraniti spremembe?"
 
 #: src/ghex-application-window.c:462
 msgid ""
@@ -371,6 +382,9 @@ msgid ""
 "\n"
 "Would you like to save your changes?"
 msgstr ""
+"<b>Medpomnilnik je bil od odprtja urejen</b>.\n"
+"\n"
+"Ali želite shraniti spremembe?"
 
 #: src/ghex-application-window.c:473
 msgid "_Save Changes"
@@ -378,7 +392,7 @@ msgstr "_Shrani spremembe"
 
 #: src/ghex-application-window.c:474
 msgid "_Discard Changes"
-msgstr ""
+msgstr "_Zavrzi spremembe"
 
 #: src/ghex-application-window.c:1035
 msgid "There was an error saving the file to the path specified."
@@ -389,6 +403,8 @@ msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
 msgstr ""
+"Pri poskusu vnovičnega nalaganja datoteke, ki ste jo pravkar shranili, je "
+"prišlo do neznane napake."
 
 #: src/ghex-application-window.c:1107
 msgid "Select a file to save buffer as"
@@ -405,6 +421,11 @@ msgid ""
 "\n"
 "This action cannot be undone."
 msgstr ""
+"<big><b>Ste prepričani, da želite povrniti %s?</b></big>\n"
+"\n"
+"Vaše spremembe bodo izgubljene.\n"
+"\n"
+"Tega dejanja ni mogoče razveljaviti."
 
 #: src/ghex-application-window.c:1178 src/ghex-application-window.ui.in:39
 msgid "_Revert"
@@ -427,6 +448,15 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Žal pomoči ni bilo mogoče odpreti.\n"
+"\n"
+"Izvedeni so bili različni poskusi, da bi našli dokumentacijo o pomoči.\n"
+"\n"
+"Preverite, ali je bil program pravilno nameščen.\n"
+"\n"
+"Specifično sporočilo o napaki je:\n"
+"\n"
+"%s"
 
 #: src/ghex-application-window.c:1567
 #, c-format
@@ -434,11 +464,13 @@ msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
 "%lX</tt> selected"
 msgstr ""
+"Odmik: <tt>0x%lX</tt>; izbranih <tt>0x%lX</tt> bajtov od <tt>0x%lX</tt> do "
+"<tt>0x%lX</tt>"
 
 #: src/ghex-application-window.c:1571
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
-msgstr ""
+msgstr "Odmik: <tt>0x%lX</tt>"
 
 #: src/ghex-application-window.c:2381
 msgid ""
@@ -454,6 +486,17 @@ msgid ""
 "\n"
 "To avoid this message from appearing, try using a different buffer backend."
 msgstr ""
+"Poskušate odpreti datoteko, ki je velika 1 GB ali večja.\n"
+"\n"
+"Zaradi tega lahko GHex in računalnik ostaneta nestabilna, saj bo datoteka "
+"naložena v pomnilnik z dejavnim zaledjem.\n"
+"\n"
+"Ali ste prepričani, da želite nadaljevati?\n"
+"\n"
+"To sporočilo ne bo več prikazano do konca te seje GHex.\n"
+"\n"
+"Če se želite izogniti prikazu tega sporočila, poskusite uporabiti drugo "
+"hrbtenico medpomnilnika."
 
 #: src/ghex-application-window.c:2439
 msgid "There was an error reading the file."
@@ -464,6 +507,8 @@ msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
 msgstr ""
+"Pri nalaganju zahtevane datoteke je prišlo do napake. Datoteka ne obstaja "
+"več, ni dostopna ali pa morda nimate dovoljenja za dostop do datoteke."
 
 #: src/ghex-application-window.ui.in:31
 msgid "_New"
@@ -486,10 +531,8 @@ msgid "Find and _Replace"
 msgstr "Najdi in _zamenjaj"
 
 #: src/ghex-application-window.ui.in:62
-#, fuzzy
-#| msgid "Jump to byte"
 msgid "_Jump to Byte"
-msgstr "Skoči na bit"
+msgstr "S_koči na bajt"
 
 #: src/ghex-application-window.ui.in:66
 msgid "_Marks"
@@ -512,25 +555,21 @@ msgid "G_roup Data As"
 msgstr "_Združi podatke kot"
 
 #: src/ghex-application-window.ui.in:88
-#, fuzzy
-#| msgid "_Bytes"
 msgid "_Bytes (8-bit)"
-msgstr "_Biti"
+msgstr "_Bajti (8-bitni)"
 
 #: src/ghex-application-window.ui.in:94
-#, fuzzy
 msgid "_Words (16-bit)"
 msgstr "_Besede (16-bitne)"
 
 #: src/ghex-application-window.ui.in:99
-#, fuzzy
-#| msgid "_Longwords"
 msgid "_Longwords (32-bit)"
-msgstr "_Dolge besede"
+msgstr "_Dolge besede (32-bitne)"
 
 #: src/ghex-application-window.ui.in:104
+#, fuzzy
 msgid "_Quadwords (64-bit)"
-msgstr ""
+msgstr "_Štiridelne besede (64-bitne)"
 
 #: src/ghex-application-window.ui.in:113
 msgid "_Tools"
@@ -596,18 +635,25 @@ msgid ""
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
+"• Pritisnite gumb Odpri.\n"
+"• Pritisnite krmilka+N, da pripravite nov dokument.\n"
+"• Pritisnite krmilka+O, da poiščete dokument.\n"
+"\n"
+"Ali pa pritisnite krmilka+W, da zaprete okno."
 
 #: src/ghex-application-window.ui.in:309
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
+"Preklopi način vstavljanja (dodajanje podatkov v datoteko in ne zamenjava "
+"obstoječih)"
 
 #: src/ghex-application-window.ui.in:321
 msgid "Toggle a pane showing various numeric conversions"
-msgstr ""
+msgstr "Preklopi podokno z različnimi številskimi pretvorbami"
 
 #: src/gtkhex.ui:23
 msgid "Automatic geometry"
-msgstr ""
+msgstr "Samodejna geometrija"
 
 #: src/gtkhex.ui:33
 msgid "Characters per line:"
@@ -643,7 +689,7 @@ msgstr "Datoteke"
 
 #: src/help-overlay.ui:19
 msgid "New blank hex buffer"
-msgstr ""
+msgstr "Nov prazni šestnajstiški medpomnilnik"
 
 #: src/help-overlay.ui:26
 msgid "Open a file for editing"
@@ -662,10 +708,8 @@ msgid "Close tab"
 msgstr "Zapri zavihek"
 
 #: src/help-overlay.ui:54
-#, fuzzy
-#| msgid "Print the current file"
 msgid "Print the hex file"
-msgstr "Natisni trenutno datoteko"
+msgstr "Natisni šestnajstiško datoteko"
 
 #: src/help-overlay.ui:63
 msgid "Undo and Redo"
@@ -701,7 +745,7 @@ msgstr "Pogovorno okno »Oznake«"
 
 #: src/help-overlay.ui:117
 msgid "Activate mark (0-9)"
-msgstr ""
+msgstr "Aktiviraj oznako (0-9)"
 
 #: src/help-overlay.ui:126
 msgid "Clipboard"
@@ -733,19 +777,19 @@ msgstr "Krmarjenje"
 
 #: src/help-overlay.ui:173
 msgid "Toggle left (hex) display"
-msgstr ""
+msgstr "Preklopi levi (šestnajstiški) prikaz"
 
 #: src/help-overlay.ui:180
 msgid "Toggle right (ASCII) display"
-msgstr ""
+msgstr "Preklopi desni (ASCII) prikaz"
 
 #: src/help-overlay.ui:187
 msgid "Switch to previous tab"
-msgstr ""
+msgstr "Preklopi na prejšnji zavihek"
 
 #: src/help-overlay.ui:194
 msgid "Switch to next tab"
-msgstr ""
+msgstr "Preklopi na naslednji zavihek"
 
 #: src/help-overlay.ui:201
 msgid "Jump to byte"
@@ -753,11 +797,11 @@ msgstr "Skoči na bit"
 
 #: src/help-overlay.ui:208
 msgid "Move to beginning of document"
-msgstr ""
+msgstr "Premakni na začetek dokumenta"
 
 #: src/help-overlay.ui:215
 msgid "Move to end of document"
-msgstr ""
+msgstr "Premakni na konec dokumenta"
 
 #: src/help-overlay.ui:224
 msgid "General"
@@ -777,7 +821,7 @@ msgstr "Preklopi način vstavljanja"
 
 #: src/hex-buffer-direct.c:42 src/hex-buffer-mmap.c:50
 msgid "The file appears to have an invalid path."
-msgstr ""
+msgstr "Zdi se, da ima datoteka neveljavno pot."
 
 #. Translators:  the first '%s' is the blurb indicating some kind of an
 #. * error has occurred (eg, 'An error has occurred', and the the 2nd '%s'
@@ -791,11 +835,11 @@ msgstr "%s: %s"
 
 #: src/hex-buffer-direct.c:193
 msgid "Failed to read data from file."
-msgstr ""
+msgstr "Ni bilo mogoče prebrati podatkov iz datoteke."
 
 #: src/hex-buffer-direct.c:212 src/hex-buffer-mmap.c:587
 msgid "Unable to retrieve file or directory information"
-msgstr ""
+msgstr "Ni mogoče pridobiti informacij o datoteki ali mapi"
 
 #: src/hex-buffer-direct.c:221 src/hex-buffer-mmap.c:596
 msgid "Unable to create file"
@@ -803,7 +847,7 @@ msgstr "Datoteke ni mogoče ustvariti"
 
 #: src/hex-buffer-direct.c:230
 msgid "Not a regular file or block device"
-msgstr ""
+msgstr "Ni običajna datoteka ali blokovna naprava"
 
 #: src/hex-buffer-direct.c:240 src/hex-buffer-mmap.c:615
 msgid "Unable to open file for reading"
@@ -815,13 +859,15 @@ msgstr "Ni mogoče brati datoteke"
 
 #: src/hex-buffer-direct.c:417
 msgid "Error attempting to read block device"
-msgstr ""
+msgstr "Napaka pri poskusu branja blokovne naprave"
 
 #: src/hex-buffer-direct.c:527
 msgid ""
 "With direct-write mode, you cannot save a file to a path other than its "
 "originating path"
 msgstr ""
+"V načinu neposrednega pisanja datoteke ne morete shraniti na pot, ki ni "
+"njena izvorna pot"
 
 #: src/hex-buffer-direct.c:552
 msgid "Error writing changes to file"
@@ -830,12 +876,13 @@ msgstr "Napake pri pisanju sprememb v datoteki"
 #: src/hex-buffer-mmap.c:310
 #, c-format
 msgid "Could not adjust %s from %lu to %lu bytes"
-msgstr ""
+msgstr "Ni bilo mogoče prilagoditi %s od %lu do %lu bajtov"
 
 #: src/hex-buffer-mmap.c:359
 #, c-format
 msgid "Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"
 msgstr ""
+"Usodna napaka: preslikava pomnilnika datoteke (%lu bajtov, fd %d) ni uspela"
 
 #: src/hex-buffer-mmap.c:605
 msgid "Not a regular file"
@@ -917,31 +964,29 @@ msgstr "Šestnajstiški prikaz nepodpisanih števil in plavajoče vejice"
 msgid "Stream Length:"
 msgstr "Dolžina podatka:"
 
-#: src/hex-document.c:1119
+#: src/hex-document.c:1138
 #, c-format
 msgid "Page"
 msgstr "Stran"
 
-#: src/hex-document.c:1125 src/hex-document.c:1228
+#: src/hex-document.c:1144 src/hex-document.c:1247
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Šestnajstiški izpis je ustvaril"
 
-#: src/hex-document.c:1151
+#: src/hex-document.c:1170
 #, c-format
 msgid "Previous page"
 msgstr "Predhodna stran"
 
-#: src/hex-document.c:1166
+#: src/hex-document.c:1185
 #, c-format
 msgid "Next page"
 msgstr "Naslednja stran"
 
 #: src/jump-dialog.ui:35
-#, fuzzy
-#| msgid "Jump to byte"
 msgid "Jump to byte (enter offset):"
-msgstr "Skoči na bit"
+msgstr "Skoči na bajt (vneiste odmik):"
 
 #: src/jump-dialog.ui:44
 msgid ""
@@ -950,6 +995,11 @@ msgid ""
 "using the '0x' prefix is used. If your string is not recognized, a dialog "
 "will be presented explaining the valid formats of strings accepted."
 msgstr ""
+"Vnesite odmaknjeni bajt, na katerega lahko skočite. Privzeta vrednost je "
+"decimalne oblike, vendar so podprti tudi nizi drugih oblik, npr. "
+"šestnajstiški zapis, če je uporabljen zapis sloga C s predpono »0x«. Če niz "
+"ni prepoznan, se prikaže pogovorno okno z razlago veljavnih oblik sprejetih "
+"nizov."
 
 #: src/jump-dialog.ui:49 src/mark-dialog.ui:110
 msgid "_Jump"
@@ -960,10 +1010,8 @@ msgid "Jumps to the specified byte"
 msgstr "Skoči na določen bit"
 
 #: src/jump-dialog.ui:65
-#, fuzzy
-#| msgid "Closes jump to byte window"
 msgid "Closes the jump-to-byte pane"
-msgstr "Zapre pogovorno okno skoka na bit"
+msgstr "Zapre podokno skoka na bajt"
 
 #: src/main.c:44
 msgid "Show the application version"
@@ -975,10 +1023,8 @@ msgid "This is GHex, version %s\n"
 msgstr "To je GHex, različica %s\n"
 
 #: src/main.c:166
-#, fuzzy
-#| msgid "GHex is a hex editor for the GNOME desktop."
 msgid "GHex - A hex editor for the GNOME desktop"
-msgstr "GHex je šestnajstiški urejevalnik za namizje GNOME."
+msgstr "GHex — šestnajstiški urejevalnik za namizje GNOME"
 
 #. Translators: this is meant to show a range of hex offset values.
 #. * eg, "0xAA - 0xFF"
@@ -990,11 +1036,13 @@ msgstr "0x%lX - 0x%lX"
 
 #: src/mark-dialog.ui:36
 msgid "Mark:"
-msgstr ""
+msgstr "Oznaka:"
 
 #: src/mark-dialog.ui:50
 msgid "Select the desired mark to set, jump to, or delete"
 msgstr ""
+"Izberite želeno oznako, ki jo želite nastaviti, skočiti nanjo ali jo "
+"izbrisati"
 
 #: src/mark-dialog.ui:58
 msgid "Optional custom color for the mark"
@@ -1013,26 +1061,20 @@ msgid "Set a mark on a byte or range of bytes"
 msgstr "Nastavite oznako na bajtu ali obsegu bajtov"
 
 #: src/mark-dialog.ui:122
-#, fuzzy
-#| msgid "Jumps to the specified byte"
 msgid "Bring the cursor to the specified mark"
-msgstr "Skoči na določen bit"
+msgstr "Postavi kazalko na navedeno oznako"
 
 #: src/mark-dialog.ui:129
 msgid "_Delete"
 msgstr "_Izbriši"
 
 #: src/mark-dialog.ui:141
-#, fuzzy
-#| msgid "Jumps to the specified byte"
 msgid "Delete the specified mark"
-msgstr "Skoči na določen bit"
+msgstr "Izbriše določeno oznako"
 
 #: src/mark-dialog.ui:153
-#, fuzzy
-#| msgid "Close the current file"
 msgid "Closes the marks pane"
-msgstr "Zapri trenutno datoteko"
+msgstr "Zapre podokno oznak"
 
 #: src/paste-special.c:218
 #, c-format
@@ -1043,12 +1085,15 @@ msgid ""
 "\n"
 "For example: \"FF 3D 99 0A\""
 msgstr ""
+"Lepljenje ni uspelo; neveljaven šestnajstiški zapis.\n"
+"\n"
+"Niz mora biti v obliki presledkovno označenih šestnajstiških bajtnih parov.\n"
+"\n"
+"Primer: »FF 3D 99 0A«"
 
 #: src/paste-special.c:305
-#, fuzzy
-#| msgid "GHex (%s): Find Data"
 msgid "GHex Paste Data"
-msgstr "GHex (%s): iskanje niza"
+msgstr "Lepljenje podatkov GHex"
 
 #: src/paste-special.c:422
 msgid "Copy Special"
@@ -1096,43 +1141,36 @@ msgstr "Temni način"
 
 #: src/preferences.ui:69
 msgid "Use system default"
-msgstr ""
+msgstr "Uporabi sistemsko privzeto vrednost"
 
 #: src/preferences.ui:83
-#, fuzzy
-#| msgid "Display"
 msgid "Hex Display"
-msgstr "Pokaži"
+msgstr "Šestnajstiški prikaz"
 
 #: src/preferences.ui:87
-#, fuzzy
-#| msgid "_Group Data As"
 msgid "Group data as"
-msgstr "_Združi podatke kot"
+msgstr "Združi podatke kot"
 
 #: src/preferences.ui:94
 msgid "Bytes (8-bit)"
-msgstr ""
+msgstr "Bajti (8-bitni)"
 
 #: src/preferences.ui:100
 msgid "Words (16-bit)"
-msgstr ""
+msgstr "Besede (16-bitne)"
 
 #: src/preferences.ui:106
-#, fuzzy
-#| msgid "Longwords"
 msgid "Longwords (32-bit)"
-msgstr "Dolge besede"
+msgstr "Dolge besede (32-bitne)"
 
 #: src/preferences.ui:112
+#, fuzzy
 msgid "Quadwords (64-bit)"
-msgstr ""
+msgstr "Štiridelne besede (64-bitne)"
 
 #: src/preferences.ui:122
-#, fuzzy
-#| msgid "Sh_ow offsets column"
 msgid "Show offsets column"
-msgstr "Pokaži _stolpec odmikov"
+msgstr "Pokaži stolpec odmikov"
 
 #: src/preferences.ui:137
 msgid "Printing"
@@ -1156,11 +1194,11 @@ msgstr "Senčene vrstice"
 
 #: src/preferences.ui:174
 msgid "Print alternating shaded rows"
-msgstr ""
+msgstr "Natisni izmenično osenčene vrstice"
 
 #: src/preferences.ui:182
 msgid "Span across lines:"
-msgstr ""
+msgstr "Razpni čez vrstice:"
 
 #: src/print.c:50
 #, c-format
