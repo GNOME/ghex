@@ -3573,14 +3573,16 @@ hex_widget_set_selection (HexWidget *self, gint64 start, gint64 end)
 
 /**
  * hex_widget_get_selection:
- * @start: (out): where to store the start of the current selection, as offset
- *   by byte within the buffer
- * @end: (out): where to store the end of the current selection, as offset by
- *   byte within the buffer
+ * @start: (nullable) (out): where to store the start of the current selection,
+ *   as offset by byte within the buffer
+ * @end: (nullable) (out): where to store the end of the current selection, as
+ *   offset by byte within the buffer
  *
  * Get the current widget selection (highlights).
  *
- * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ * Returns: %TRUE if there is an active selection (start and end are
+ * different), and %FALSE if there is no selection (start and end are the
+ * same).
  */
 gboolean
 hex_widget_get_selection (HexWidget *self, gint64 *start, gint64 *end)
