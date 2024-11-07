@@ -11,6 +11,11 @@
 		<value nick="longwords" value="4"/>
 		<value nick="quadwords" value="8"/>
 	</enum>
+	<enum id="@app_id@.StatusBarOffsetFormat">
+		<value nick="hex" value="1"/>
+		<value nick="dec" value="2"/>
+		<value nick="both" value="3"/>
+	</enum>
 	<enum id="@app_id@.DarkMode">
 		<value nick="off" value="0"/>
 		<value nick="on" value="1"/>
@@ -23,6 +28,9 @@
 		</key>
 		<key name="group-data-by" enum="@app_id@.GroupType">
 			<default>'bytes'</default>
+		</key>
+		<key name="statusbar-offset-format" enum="@app_id@.StatusBarOffsetFormat">
+			<default>'hex'</default>
 		</key>
 		<key name="print-font-data" type="s">
 			<default>'Monospace 10'</default>

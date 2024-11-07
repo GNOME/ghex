@@ -77,6 +77,9 @@ static GtkWidget *bytes_chkbtn;
 static GtkWidget *words_chkbtn;
 static GtkWidget *long_chkbtn;
 static GtkWidget *quad_chkbtn;
+static GtkWidget *offsethex_chkbtn;
+static GtkWidget *offsetdec_chkbtn;
+static GtkWidget *offsetboth_chkbtn;
 static GtkWidget *shaded_box_chkbtn;
 static GtkWidget *shaded_box_spinbtn;
 static GtkWidget *shaded_box_row;
@@ -154,6 +157,23 @@ group_type_set_cb (GtkCheckButton *checkbutton,
 		g_settings_set_enum (settings,
 				GHEX_PREF_GROUP,
 				group_type);
+	}
+}
+
+static void
+offset_format_set_cb (GtkCheckButton *checkbutton,
+		gpointer user_data)
+{
+	int sb_format = GPOINTER_TO_INT(user_data);
+
+	/* this signal activate when the state *changes*, so we still need to see
+	 * whether or not the button associated with our enum is *checked or not.
+	 */
+	if (gtk_check_button_get_active (checkbutton))
+	{
+		g_settings_set_enum (settings,
+				GHEX_PREF_SB_OFFSET_FORMAT,
+				sb_format);
 	}
 }
 
@@ -308,6 +328,17 @@ setup_signals (void)
 	g_signal_connect (quad_chkbtn, "toggled",
 			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_WIDGET_GROUP_QUAD));
 
+	/* status bar offset format checkbuttons */
+
+	g_signal_connect (offsethex_chkbtn, "toggled",
+			G_CALLBACK(offset_format_set_cb), GINT_TO_POINTER(HEX_WIDGET_STATUS_BAR_OFFSET_HEX));
+
+	g_signal_connect (offsetdec_chkbtn, "toggled",
+			G_CALLBACK(offset_format_set_cb), GINT_TO_POINTER(HEX_WIDGET_STATUS_BAR_OFFSET_DEC));
+
+	g_signal_connect (offsetboth_chkbtn, "toggled",
+			G_CALLBACK(offset_format_set_cb), GINT_TO_POINTER(HEX_WIDGET_STATUS_BAR_OFFSET_HEX | HEX_WIDGET_STATUS_BAR_OFFSET_DEC));
+
 	/* show offsets checkbutton */
 
 	g_signal_connect (show_offsets_chkbtn, "toggled",
@@ -397,6 +428,31 @@ grab_widget_values_from_settings (void)
 			break;
 	}
 
+	/* sb_offset_format radio buttons
+	 */
+	switch (def_sb_offset_format) {
+		case HEX_WIDGET_STATUS_BAR_OFFSET_HEX | HEX_WIDGET_STATUS_BAR_OFFSET_DEC:
+			gtk_check_button_set_active (GTK_CHECK_BUTTON(offsetboth_chkbtn),
+					TRUE);
+			break;
+
+		case HEX_WIDGET_STATUS_BAR_OFFSET_HEX:
+			gtk_check_button_set_active (GTK_CHECK_BUTTON(offsethex_chkbtn),
+					TRUE);
+			break;
+
+		case HEX_WIDGET_STATUS_BAR_OFFSET_DEC:
+			gtk_check_button_set_active (GTK_CHECK_BUTTON(offsetdec_chkbtn),
+					TRUE);
+			break;
+
+		default:
+			g_warning ("sb_offset_format option invalid; falling back to HEX.");
+			gtk_check_button_set_active (GTK_CHECK_BUTTON(offsethex_chkbtn),
+					TRUE);
+			break;
+	}
+
 	/* shaded_box_* */
 	gtk_check_button_set_active (GTK_CHECK_BUTTON(shaded_box_chkbtn),
 			shaded_box_size > 0 ? TRUE : FALSE);
@@ -420,6 +476,9 @@ init_widgets (void)
 	GET_WIDGET (words_chkbtn);
 	GET_WIDGET (long_chkbtn);
 	GET_WIDGET (quad_chkbtn);
+	GET_WIDGET (offsethex_chkbtn);
+	GET_WIDGET (offsetdec_chkbtn);
+	GET_WIDGET (offsetboth_chkbtn);
 	GET_WIDGET (shaded_box_chkbtn);
 	GET_WIDGET (shaded_box_spinbtn);
 	GET_WIDGET (shaded_box_row);

@@ -41,6 +41,7 @@ G_BEGIN_DECLS
 /* GSettings keys */
 #define GHEX_PREF_FONT				"font"
 #define GHEX_PREF_GROUP				"group-data-by"
+#define GHEX_PREF_SB_OFFSET_FORMAT	"statusbar-offset-format"
 #define GHEX_PREF_DATA_FONT			"print-font-data"
 #define GHEX_PREF_HEADER_FONT		"print-font-header"
 #define GHEX_PREF_BOX_SIZE			"print-shaded-rows"
@@ -62,6 +63,7 @@ extern char			*offset_fmt;
 extern gboolean		show_offsets_column;
 extern guint		shaded_box_size;
 extern int			def_group_type;
+extern int        def_sb_offset_format;
 extern int			def_dark_mode;
 
 extern GSettings	*settings;

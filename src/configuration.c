@@ -39,6 +39,7 @@ GSettings *settings;
 GtkCssProvider *global_provider;
 
 int def_group_type;
+int def_sb_offset_format;
 char *def_font_name;
 char *header_font_name;
 char *data_font_name;
@@ -62,6 +63,14 @@ group_changed_cb (GSettings   *settings,
                   gpointer     user_data)
 {
     def_group_type = g_settings_get_enum (settings, key);
+}
+
+static void
+sb_offsetformat_changed_cb (GSettings   *settings,
+                  const gchar *key,
+                  gpointer     user_data)
+{
+    def_sb_offset_format = g_settings_get_enum (settings, key);
 }
 
 static void
@@ -149,6 +158,10 @@ void ghex_init_configuration ()
     g_signal_connect (settings, "changed::" GHEX_PREF_GROUP,
                       G_CALLBACK (group_changed_cb), NULL);
     group_changed_cb (settings, GHEX_PREF_GROUP, NULL);
+
+    g_signal_connect (settings, "changed::" GHEX_PREF_SB_OFFSET_FORMAT,
+                      G_CALLBACK (sb_offsetformat_changed_cb), NULL);
+    sb_offsetformat_changed_cb (settings, GHEX_PREF_SB_OFFSET_FORMAT, NULL);
 
     g_signal_connect (settings, "changed::" GHEX_PREF_DARK_MODE,
                       G_CALLBACK (dark_mode_changed_cb), NULL);
