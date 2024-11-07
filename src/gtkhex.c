@@ -2153,7 +2153,16 @@ key_press_cb (GtkEventControllerKey *controller,
 	switch(keyval)
 	{
 		case GDK_KEY_BackSpace:
-			if (self->cursor_pos > 0) {
+			if (self->cursor_pos > 0)
+			{
+				/* If we have only one character selected, what we want to do
+				 * is delete the prior character. Otherwise, this should
+				 * essentially work the same way as delete if we have a
+				 * highlighted selection.
+				 */
+				if (! hex_widget_get_selection (self, NULL, NULL))
+					hex_widget_set_cursor (self, self->cursor_pos - 1);
+
 				if (self->insert)
 					hex_widget_delete_selection (self);
 				else
@@ -2161,7 +2170,6 @@ key_press_cb (GtkEventControllerKey *controller,
 
 				if (self->selecting)
 					self->selecting = FALSE;
-				hex_widget_set_cursor (self, self->cursor_pos - 1);
 				ret = GDK_EVENT_STOP;
 			}
 			break;
