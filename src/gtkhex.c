@@ -2150,8 +2150,6 @@ key_press_cb (GtkEventControllerKey *controller,
 	else
 		self->selecting = FALSE;
 
-	/* FIXME - This could use a cleanup. Mostly flown in from old code.
-	 */
 	switch(keyval)
 	{
 		case GDK_KEY_BackSpace:
