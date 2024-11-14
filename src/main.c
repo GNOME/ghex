@@ -36,7 +36,7 @@
 
 #include <config.h>
 
-GOptionEntry entries[] = {
+static GOptionEntry entries[] = {
 	{	.long_name = 	"version",
 		.short_name =	'v',
 		.flags = 		G_OPTION_FLAG_NONE,
@@ -110,16 +110,22 @@ handle_local_options (GApplication *application,
 }
 
 static void
+startup (AdwApplication *app,
+	gpointer user_data)
+{
+	ghex_init_configuration ();
+
+	/* WORKAROUND https://gitlab.gnome.org/GNOME/gtk/-/issues/4880 */
+	g_object_set (gtk_settings_get_default (), "gtk-dialogs-use-header", TRUE, NULL);
+
+}
+
+static void
 activate (AdwApplication *app,
 	gpointer user_data)
 {
-	/* WORKAROUND https://gitlab.gnome.org/GNOME/gtk/-/issues/4880 */
-
-	g_object_set (gtk_settings_get_default (), "gtk-dialogs-use-header", TRUE, NULL);
-
 	do_app_window (app);
 
-	gtk_window_set_application (window, GTK_APPLICATION(app));
 	gtk_window_present (window);
 }
 
@@ -156,8 +162,6 @@ main (int argc, char *argv[])
 	textdomain (GETTEXT_PACKAGE);
 	/* </i18n> */
 
-	ghex_init_configuration ();
-
 	app = adw_application_new (APP_ID, G_APPLICATION_HANDLES_OPEN);
 
 	g_application_add_main_option_entries (G_APPLICATION(app), entries);
@@ -165,12 +169,11 @@ main (int argc, char *argv[])
 	g_application_set_option_context_summary (G_APPLICATION(app),
 			_("GHex - A hex editor for the GNOME desktop"));;
 
+	g_signal_connect (app, "startup", G_CALLBACK(startup), NULL);
 	g_signal_connect (app, "activate", G_CALLBACK(activate), NULL);
 	g_signal_connect (app, "open", G_CALLBACK(open), NULL);
 	g_signal_connect (app, "handle-local-options",
 			G_CALLBACK(handle_local_options), NULL);
-
-	g_application_register (G_APPLICATION (app), NULL, NULL);
 
 	status = g_application_run (G_APPLICATION(app), argc, argv);
 
