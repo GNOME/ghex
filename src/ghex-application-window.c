@@ -316,37 +316,37 @@ file_save (GHexApplicationWindow *self)
 }
 
 static void
-close_all_tabs_response_cb (AdwMessageDialog *dialog,
+close_all_tabs_response_cb (AdwAlertDialog *dialog,
 		const char *response,
 		GHexApplicationWindow *self)
 {
 	/* Regardless of what the user chose, get rid of the dialog. */
-	gtk_window_close (GTK_WINDOW(dialog));
+	adw_dialog_close (ADW_DIALOG (dialog));
 
-	if (g_strcmp0 (response, "accept") == 0)
+	if (g_strcmp0 (response, "discard") == 0)
 		gtk_window_destroy (GTK_WINDOW(self));
 }
 
 static void
 close_all_tabs_confirmation_dialog (GHexApplicationWindow *self)
 {
-	GtkWidget *dialog = adw_message_dialog_new (GTK_WINDOW(self), NULL, NULL);
+	AdwDialog *dialog = adw_alert_dialog_new (_("Save Changes?"), NULL);
 
-	adw_message_dialog_format_body_markup (ADW_MESSAGE_DIALOG(dialog),
-			_("<b>You have one or more files open with unsaved changes.</b>\n\n"
-			   "Are you sure you want to close the window?\n\n"));
-	adw_message_dialog_add_responses (ADW_MESSAGE_DIALOG(dialog),
-			"accept", _("_Close Anyway"),
-			"reject", _("_Go Back"),
+	adw_alert_dialog_set_body (ADW_ALERT_DIALOG(dialog),
+			_("Open documents contain unsaved changes.\n"
+			   "Changes which are not saved will be permanently lost."));
+	adw_alert_dialog_add_responses (ADW_ALERT_DIALOG(dialog),
+			"cancel", _("_Cancel"),
+			"discard", _("_Discard"),
 			NULL);
-	/* workaround since AdwMessageDialog sets destroy-with-parent to true, which
-	 * can cause runtime errors upon exit. See: https://discourse.gnome.org/t/glib-gobject-critical-and-glib-gobject-warning-messages/9909
-	 */
-	gtk_window_set_destroy_with_parent (GTK_WINDOW(dialog), FALSE);
+	adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG(dialog),
+			"discard",
+			ADW_RESPONSE_DESTRUCTIVE);
+	adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG(dialog), "cancel");
 
 	g_signal_connect (dialog, "response", G_CALLBACK(close_all_tabs_response_cb), self);
 
-	gtk_window_present (GTK_WINDOW(dialog));
+	adw_dialog_present (dialog, GTK_WIDGET(self));
 }
 
 static void
@@ -408,19 +408,19 @@ close_page_finish_helper (GHexApplicationWindow *self, AdwTabView *tab_view, Adw
 }
 
 static void
-close_doc_response_cb (AdwMessageDialog *dialog,
+close_doc_response_cb (AdwAlertDialog *dialog,
 		const char *response,
 		GHexApplicationWindow *self)
 {
 	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
 	AdwTabPage *page = g_object_get_data (G_OBJECT(self), "target-page");
-	
-	if (g_strcmp0 (response, "accept") == 0)
+
+	if (g_strcmp0 (response, "save") == 0)
 	{
 		file_save (self);
 		close_page_finish_helper (self, tab_view, page, TRUE);
 	}
-	else if (g_strcmp0 (response, "reject") == 0)
+	else if (g_strcmp0 (response, "discard") == 0)
 	{
 		close_page_finish_helper (self, tab_view, page, TRUE);
 	}
@@ -429,16 +429,17 @@ close_doc_response_cb (AdwMessageDialog *dialog,
 		close_page_finish_helper (self, tab_view, page, FALSE);
 	}
 
-	gtk_window_destroy (GTK_WINDOW(dialog));
+	adw_dialog_close (ADW_DIALOG (dialog));
 	gtk_widget_grab_focus (GTK_WIDGET (ACTIVE_GH));
 }
 
 static void
 close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 {
-	GtkWidget *dialog;
+	AdwDialog *dialog;
 	HexDocument *doc;
 	GFile *file;
+	char *title;
 	char *message;
 	char *basename = NULL;
 	HexWidget *gh = HEX_WIDGET(adw_tab_page_get_child (page));
@@ -450,36 +451,36 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 		basename = g_file_get_basename (hex_document_get_file (doc));
 
 	if (basename) {
-		message = g_strdup_printf (
-				/* Translators: %s is the filename that is currently being
-				 * edited. */
-				_("<big><b>%s has been edited since opening.</b></big>\n\n"
-			   "Would you like to save your changes?"), basename);
+		/* Translators: %s is the filename that is currently being
+		 * edited. */
+		title = g_strdup_printf (_("%s has been edited since opening."), basename);
 		g_free (basename);
 	}
 	else {
-		message = g_strdup (
-				_("<b>The buffer has been edited since opening.</b>\n\n"
-			   "Would you like to save your changes?"));
+		title = _("The buffer has been edited since opening.");
 	}
 
-	dialog = adw_message_dialog_new (GTK_WINDOW(self), NULL, NULL);
-	adw_message_dialog_set_body_use_markup (ADW_MESSAGE_DIALOG(dialog), TRUE);
-	adw_message_dialog_set_body (ADW_MESSAGE_DIALOG(dialog), message);
+	message = _("Would you like to save your changes?");
 
-	g_free (message);
-
-	adw_message_dialog_add_responses (ADW_MESSAGE_DIALOG(dialog),
-			"accept", _("_Save Changes"),
-			"reject", _("_Discard Changes"),
-			"cancel", _("_Go Back"),
+	dialog = adw_alert_dialog_new (title, NULL);
+	adw_alert_dialog_set_body (ADW_ALERT_DIALOG(dialog), message);
+	adw_alert_dialog_add_responses (ADW_ALERT_DIALOG(dialog),
+			"cancel", _("_Cancel"),
+			"discard", _("_Discard"),
+			"save", _("_Save"),
 			NULL);
-	adw_message_dialog_set_default_response (ADW_MESSAGE_DIALOG(dialog), "cancel");
+	adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG(dialog), "cancel");
+	adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG(dialog),
+			"discard",
+			ADW_RESPONSE_DESTRUCTIVE);
+	adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG(dialog),
+			"save",
+			ADW_RESPONSE_SUGGESTED);
 	g_signal_connect (dialog, "response", G_CALLBACK(close_doc_response_cb), self);
 
 	g_object_set_data (G_OBJECT(self), "target-page", page);
 
-	gtk_window_present (GTK_WINDOW(dialog));
+	adw_dialog_present (ADW_DIALOG(dialog), GTK_WIDGET (self));
 }
 
 static void
@@ -534,7 +535,7 @@ copy_special (GtkWidget *widget,
 	gtk_window_present (GTK_WINDOW(self->copy_special_dialog));
 }
 
-static void 
+static void
 paste_special (GtkWidget *widget,
 		const char *action_name,
 		GVariant *parameter)
@@ -706,7 +707,7 @@ tab_view_page_attached_cb (AdwTabView *tab_view,
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-	
+
 	ghex_application_window_connect_hex_signals (self,
 			HEX_WIDGET(adw_tab_page_get_child (page)));
 
@@ -1126,13 +1127,13 @@ save_as (GtkWidget *widget,
 G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
-revert_response_cb (AdwMessageDialog *dialog,
+revert_response_cb (AdwAlertDialog *dialog,
 		const char *response,
 		GHexApplicationWindow *self)
 {
 	HexDocument *doc;
 
-	if (g_strcmp0 (response, "accept") != 0)
+	if (g_strcmp0 (response, "revert") != 0)
 		goto end;
 
 	doc = hex_widget_get_document (ACTIVE_GH);
@@ -1141,7 +1142,7 @@ revert_response_cb (AdwMessageDialog *dialog,
 	hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 
 end:
-	gtk_window_destroy (GTK_WINDOW(dialog));
+	adw_dialog_close (ADW_DIALOG(dialog));
 }
 
 static void
@@ -1151,10 +1152,10 @@ revert (GtkWidget *widget,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
    	HexDocument *doc;
-	GtkWidget *dialog;
+	AdwDialog *dialog;
 	gint reply;
 	char *basename = NULL;
-	
+
 	g_return_if_fail (HEX_IS_WIDGET (ACTIVE_GH));
 
 	doc = hex_widget_get_document (ACTIVE_GH);
@@ -1166,27 +1167,28 @@ revert (GtkWidget *widget,
 
 	basename = g_file_get_basename (hex_document_get_file (doc));
 
-	dialog = adw_message_dialog_new (GTK_WINDOW(self), NULL, NULL);
-	adw_message_dialog_format_body_markup (ADW_MESSAGE_DIALOG(dialog),
-			/* Translators: %s here is the filename the user is being asked to
-			 * confirm whether they want to revert. */
-			_("<big><b>Are you sure you want to revert %s?</b></big>\n\n"
-			"Your changes will be lost.\n\n"
-			"This action cannot be undone."),
-			basename);
-	adw_message_dialog_add_responses (ADW_MESSAGE_DIALOG(dialog),
-			"accept", _("_Revert"),
-			"reject", _("_Go Back"),
+	/* Translators: %s here is the filename the user is being asked to
+	 * confirm whether they want to revert. */
+	dialog = adw_alert_dialog_new (g_strdup_printf (_("Are you sure you want to revert %s?"), basename), NULL);
+	adw_alert_dialog_set_body (ADW_ALERT_DIALOG(dialog),
+			_("Your changes will be lost.\n"
+			"This action cannot be undone."));
+	adw_alert_dialog_add_responses (ADW_ALERT_DIALOG(dialog),
+			"cancel", _("_Cancel"),
+			"revert", _("_Revert"),
 			NULL);
-	adw_message_dialog_set_default_response (ADW_MESSAGE_DIALOG(dialog), "reject");
+	adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG(dialog), "cancel");
+	adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG(dialog),
+			"revert",
+			ADW_RESPONSE_DESTRUCTIVE);
 
 	g_signal_connect (dialog, "response", G_CALLBACK(revert_response_cb), self);
 
-	gtk_widget_set_visible (dialog, TRUE);
+	adw_dialog_present (dialog, GTK_WIDGET (self));
 
 	g_free (basename);
 }
-			
+
 static void
 print_preview (GtkWidget *widget,
 		const char *action_name,
@@ -1574,7 +1576,7 @@ update_status_message (GHexApplicationWindow *self)
 	hex_statusbar_set_status (HEX_STATUSBAR(self->statusbar), status);
 	g_free (status);
 	return;
-	
+
 out:
 	hex_statusbar_clear (HEX_STATUSBAR(self->statusbar));
 }
@@ -1906,7 +1908,7 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			"Whether the Save (or Revert) button should currently be clickable",
 			FALSE,	/* gboolean default_value */
 			prop_flags);
-	
+
 	properties[PROP_INSERT_MODE] =
 		g_param_spec_boolean ("insert-mode",
 			"Insert mode",
@@ -2338,7 +2340,7 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	/* HexWidget: Sync up appwindow-specific settings. */
 	set_gtkhex_offsets_column_from_settings (gh);
 	set_gtkhex_group_type_from_settings (gh);
-	
+
 	/* HexWidget: Set insert mode based on our global appwindow prop */
 	hex_widget_set_insert_mode (gh, self->insert_mode);
 
@@ -2386,7 +2388,7 @@ do_nag_screen (GHexApplicationWindow *self)
 				"this GHex session.\n\n"
 				"To avoid this message from appearing, try using a different "
 				"buffer backend.");
-	
+
 		g_printerr ("%s", msg);
 		g_printerr ("\n");
 
@@ -2440,7 +2442,7 @@ doc_read_ready_cb (GObject *source_object,
 		}
 	}
 }
-			
+
 void
 ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 {
