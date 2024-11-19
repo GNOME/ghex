@@ -275,20 +275,18 @@ common_about_cb (GtkWindow *parent)
 	else
 		version = PACKAGE_VERSION;
 
-    adw_show_about_window (parent,
-                          "developers", authors,
-                          "copyright", copyright,
-                          "issue-url", "https://gitlab.gnome.org/GNOME/ghex/-/issues",
-                          "documenters", documentation_credits,
-                          "license", license_translated,
-                          "application-icon", APP_ID,
-                          "application-name",
-                          strstr (APP_ID, "Devel") ? "GHex (Development)" : "GHex",
-                          "title", _("About GHex"),
-                          "translator-credits", _("translator-credits"),
-                          "version", version,
-                          "website", "https://wiki.gnome.org/Apps/Ghex",
-                          NULL);
+	adw_show_about_dialog (GTK_WIDGET (parent),
+	                       "application-icon", APP_ID,
+	                       "application-name", strstr (APP_ID, "Devel") ? "GHex (Development)" : "GHex",
+	                       "developer-name", "Logan Rathbone",
+	                       "version", version,
+	                       "issue-url", "https://gitlab.gnome.org/GNOME/ghex/-/issues",
+	                       "developers", authors,
+	                       "documenters", documentation_credits,
+	                       "translator-credits", _("translator-credits"),
+	                       "copyright", copyright,
+	                       "license-type", GTK_LICENSE_GPL_2_0,
+	                       NULL);
 
 	g_free (license_translated);
 	g_free (copyright);
@@ -365,14 +363,14 @@ common_print (GtkWindow *parent, HexWidget *gh, gboolean preview)
 void
 display_dialog (GtkWindow *parent, const char *msg)
 {
-	GtkWidget *dialog;
+	AdwDialog *dialog;
 
 	g_return_if_fail (GTK_IS_WINDOW(parent));
 	g_return_if_fail (msg);
 
-	dialog = adw_message_dialog_new (parent, NULL, msg);
-	adw_message_dialog_add_response (ADW_MESSAGE_DIALOG(dialog), "close", _("Close"));
-	adw_message_dialog_set_default_response (ADW_MESSAGE_DIALOG(dialog), "close");
+	dialog = adw_alert_dialog_new (NULL, msg);
+	adw_alert_dialog_add_response (ADW_ALERT_DIALOG(dialog), "close", _("Close"));
+	adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG(dialog), "close");
 	g_signal_connect (dialog, "response", G_CALLBACK(gtk_window_destroy), NULL);
-	gtk_window_present (GTK_WINDOW(dialog));
+	adw_dialog_present (dialog, GTK_WIDGET(parent));
 }
