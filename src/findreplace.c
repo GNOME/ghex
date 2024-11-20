@@ -161,13 +161,13 @@ pane_dialog_real_close (PaneDialog *self)
 }
 
 static void
-find_options_show_pane_changed_cb (GtkComboBox *cb, gpointer user_data)
+find_options_show_pane_changed_cb (AdwToggleGroup *tg,
+				GParamSpec *pspec,
+				gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
-	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-	const char *active_id = gtk_combo_box_get_active_id (cb);
-	G_GNUC_END_IGNORE_DEPRECATIONS
+	const char *active_id = adw_toggle_group_get_active_name (tg);
 	gboolean show_ascii, show_hex;
 
 	if (g_strcmp0 (active_id, "ascii") == 0)
@@ -430,7 +430,7 @@ find_clear_cb (GtkButton *button, gpointer user_data)
 	f_priv->f_doc = new_doc;
 	f_priv->f_gh = new_gh;
 
-	find_options_show_pane_changed_cb (GTK_COMBO_BOX(f_priv->options_show_pane), self);
+	find_options_show_pane_changed_cb (ADW_TOGGLE_GROUP(f_priv->options_show_pane), NULL, self);
 
 	gtk_widget_grab_focus (GTK_WIDGET(self));
 }
@@ -680,7 +680,7 @@ replace_clear_cb (GtkButton *button, gpointer user_data)
 	self->r_doc = new_r_doc;
 	self->r_gh = new_r_gh;
 
-	find_options_show_pane_changed_cb (GTK_COMBO_BOX(f_priv->options_show_pane), self);
+	find_options_show_pane_changed_cb (ADW_TOGGLE_GROUP(f_priv->options_show_pane), NULL, self);
 
 	gtk_widget_grab_focus (GTK_WIDGET(self));
 }
@@ -873,7 +873,7 @@ find_dialog_init (FindDialog *self)
 	g_signal_connect (f_priv->f_clear, "clicked", G_CALLBACK(find_clear_cb), self);
 	g_signal_connect (f_priv->close, "clicked", G_CALLBACK(common_cancel_cb), self);
 	g_signal_connect (f_priv->close, "clicked", G_CALLBACK(find_cancel_cb), self);
-	g_signal_connect (f_priv->options_show_pane, "changed",
+	g_signal_connect (f_priv->options_show_pane, "notify::active",
 			G_CALLBACK(find_options_show_pane_changed_cb), self);
 }
 
