@@ -4253,7 +4253,7 @@ hex_widget_get_insert_mode (HexWidget *self)
 HexWidgetGroupType
 hex_widget_get_group_type (HexWidget *self)
 {
-	g_assert (HEX_IS_WIDGET (self));
+	g_return_val_if_fail (HEX_IS_WIDGET (self), HEX_WIDGET_GROUP_BYTE);
 
 	return self->group_type;
 }
