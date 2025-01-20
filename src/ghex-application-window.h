@@ -55,7 +55,6 @@ void		ghex_application_window_set_hex (GHexApplicationWindow *self,
 				HexWidget *gh);
 void		ghex_application_window_activate_tab (GHexApplicationWindow *self,
 				HexWidget *gh);
-GList *		ghex_application_window_get_list (GHexApplicationWindow *self);
 void		ghex_application_window_open_file (GHexApplicationWindow *self,
 				GFile *file);
 HexWidget *	ghex_application_window_get_hex (GHexApplicationWindow *self);
