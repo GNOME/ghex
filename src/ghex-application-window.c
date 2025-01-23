@@ -257,6 +257,20 @@ settings_group_type_changed_cb (GSettings   *settings,
 	TAB_VIEW_GH_FOREACH_END
 }
 
+static void
+settings_show_control_chars_changed_cb (GSettings   *settings,
+		const gchar	*key,
+		gpointer 	user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+
+	TAB_VIEW_GH_FOREACH_START
+
+	hex_widget_set_display_control_characters (gh, def_display_control_characters);
+
+	TAB_VIEW_GH_FOREACH_END
+}
+
 /* ! settings*changed_cb 's */
 
 static void
@@ -1749,6 +1763,9 @@ ghex_application_window_init (GHexApplicationWindow *self)
     g_signal_connect (settings, "changed::" GHEX_PREF_GROUP,
                       G_CALLBACK (settings_group_type_changed_cb), self);
 
+    g_signal_connect (settings, "changed::" GHEX_PREF_CONTROL_CHARS,
+                      G_CALLBACK (settings_show_control_chars_changed_cb), self);
+
 	/* Actions - SETTINGS */
 
 	/* for the 'group data by' stuff. There isn't a function to do this from
@@ -2340,6 +2357,7 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	/* HexWidget: Sync up appwindow-specific settings. */
 	set_gtkhex_offsets_column_from_settings (gh);
 	set_gtkhex_group_type_from_settings (gh);
+	hex_widget_set_display_control_characters (gh, def_display_control_characters);
 
 	/* HexWidget: Set insert mode based on our global appwindow prop */
 	hex_widget_set_insert_mode (gh, self->insert_mode);

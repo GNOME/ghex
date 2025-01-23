@@ -3,7 +3,7 @@
 <!-- vim: ts=2 sw=2
 -->
 <!--
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2025 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -128,8 +128,24 @@
 
 					</object> <!-- /group -->
 				</child>
+
+				<child>
+					<object class="AdwPreferencesGroup">
+						<property name="title" translatable="yes">ASCII Display</property>
+						<child>
+							<object class="AdwActionRow">
+								<property name="title" translatable="yes">Display ASCII control characters</property>
+								<child>
+									<object class="GtkCheckButton" id="show_control_chars_checkbtn" />
+								</child>
+							</object> <!-- /row -->
+						</child>
+					</object> <!-- /group -->
+				</child>
+
 			</object> <!-- /page1 -->
 		</child>
+
 
 		<child>
 			<object class="AdwPreferencesPage">

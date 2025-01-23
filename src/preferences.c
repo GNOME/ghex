@@ -82,6 +82,7 @@ static GtkWidget *shaded_box_spinbtn;
 static GtkWidget *shaded_box_row;
 static GtkWidget *dark_mode_switch;
 static GtkWidget *system_default_chkbtn;
+static GtkWidget *show_control_chars_checkbtn;
 
 /* PRIVATE FUNCTIONS */
 
@@ -137,6 +138,19 @@ show_offsets_set_cb (GtkCheckButton *checkbutton,
 
 	g_settings_set_boolean (settings,
 			GHEX_PREF_OFFSETS_COLUMN,
+			show_or_hide);
+}
+
+static void
+show_control_chars_set_cb (GtkCheckButton *checkbutton,
+		gpointer user_data)
+{
+	gboolean show_or_hide;
+
+	show_or_hide = gtk_check_button_get_active (checkbutton);
+
+	g_settings_set_boolean (settings,
+			GHEX_PREF_CONTROL_CHARS,
 			show_or_hide);
 }
 
@@ -313,6 +327,11 @@ setup_signals (void)
 	g_signal_connect (show_offsets_chkbtn, "toggled",
 			G_CALLBACK(show_offsets_set_cb), NULL);
 
+	/* show control chars checkbutton */
+
+	g_signal_connect (show_control_chars_checkbtn, "toggled",
+			G_CALLBACK(show_control_chars_set_cb), NULL);
+
 	/* shaded box for printing */
 
 	g_signal_connect (shaded_box_chkbtn, "toggled",
@@ -366,6 +385,10 @@ grab_widget_values_from_settings (void)
 	/* show_offsets_chkbtn */
 	gtk_check_button_set_active (GTK_CHECK_BUTTON(show_offsets_chkbtn),
 			show_offsets_column);
+
+	/* show_control_chars_checkbtn */
+	gtk_check_button_set_active (GTK_CHECK_BUTTON(show_control_chars_checkbtn),
+			def_display_control_characters);
 
 	/* group_type radio buttons
 	 */
@@ -425,6 +448,7 @@ init_widgets (void)
 	GET_WIDGET (shaded_box_row);
 	GET_WIDGET (dark_mode_switch);
 	GET_WIDGET (system_default_chkbtn);
+	GET_WIDGET (show_control_chars_checkbtn);
 
 	/* Make certain font choosers only allow monospace fonts. */
 	monospace_only (font_button);

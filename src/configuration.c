@@ -45,6 +45,7 @@ char *data_font_name;
 guint shaded_box_size;
 gboolean show_offsets_column;
 int def_dark_mode;
+gboolean def_display_control_characters;
 
 static void
 offsets_column_changed_cb (GSettings   *settings,
@@ -135,6 +136,16 @@ header_font_changed_cb (GSettings   *settings,
     header_font_name = g_strdup (g_settings_get_string (settings, key));
 }
 
+static void
+control_chars_changed_cb (GSettings   *settings,
+                         const gchar *key,
+                         gpointer     user_data)
+{
+    gboolean show = g_settings_get_boolean (settings, key);
+
+    def_display_control_characters = show;
+}
+
 void ghex_init_configuration ()
 {
 	/* GSettings */
@@ -170,6 +181,10 @@ void ghex_init_configuration ()
     g_signal_connect (settings, "changed::" GHEX_PREF_HEADER_FONT,
                       G_CALLBACK (header_font_changed_cb), NULL);
     header_font_changed_cb (settings, GHEX_PREF_HEADER_FONT, NULL);
+
+    g_signal_connect (settings, "changed::" GHEX_PREF_CONTROL_CHARS,
+                      G_CALLBACK (control_chars_changed_cb), NULL);
+    control_chars_changed_cb (settings, GHEX_PREF_CONTROL_CHARS, NULL);
 
 	/* Global CSS provider */
 

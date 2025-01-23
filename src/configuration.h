@@ -46,6 +46,7 @@ G_BEGIN_DECLS
 #define GHEX_PREF_BOX_SIZE			"print-shaded-rows"
 #define GHEX_PREF_OFFSETS_COLUMN	"show-offsets"
 #define GHEX_PREF_DARK_MODE			"dark-mode"
+#define GHEX_PREF_CONTROL_CHARS		"display-control-characters"
 
 enum dark_mode {
 	DARK_MODE_OFF,
@@ -63,6 +64,7 @@ extern gboolean		show_offsets_column;
 extern guint		shaded_box_size;
 extern int			def_group_type;
 extern int			def_dark_mode;
+extern gboolean		def_display_control_characters;
 
 extern GSettings	*settings;
 extern GtkCssProvider *global_provider;

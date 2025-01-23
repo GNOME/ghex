@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021-2023 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2025 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -52,7 +52,7 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 #define STARTING_OFFSET 0
 
 #define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
-#define is_copyable(c) (is_displayable(c) || (c) == 0x0a || (c) == 0x0d)
+#define is_control_character(c) (((c) >= 0x00) && ((c) <= 0x1f))
 
 #define PANGO_COLOR_FROM_FLOAT(C) (C * UINT16_MAX)
 
@@ -70,6 +70,43 @@ typedef enum {
 	VIEW_HEX,
 	VIEW_ASCII
 } HexWidgetViewType;
+
+/* ASCII control characters - lookup table */
+
+static const gunichar control_characters_lookup_table[] = {
+    U'\u2400', // U+2400: NUL
+    U'\u2401', // U+2401: SOH
+    U'\u2402', // U+2402: STX
+    U'\u2403', // U+2403: ETX
+    U'\u2404', // U+2404: EOT
+    U'\u2405', // U+2405: ENQ
+    U'\u2406', // U+2406: ACK
+    U'\u2407', // U+2407: BEL
+    U'\u2408', // U+2408: BS
+    U'\u2409', // U+2409: HT
+    U'\u240A', // U+240A: LF
+    U'\u240B', // U+240B: VT
+    U'\u240C', // U+240C: FF
+    U'\u240D', // U+240D: CR
+    U'\u240E', // U+240E: SO
+    U'\u240F', // U+240F: SI
+    U'\u2410', // U+2410: DLE
+    U'\u2411', // U+2411: DC1
+    U'\u2412', // U+2412: DC2
+    U'\u2413', // U+2413: DC3
+    U'\u2414', // U+2414: DC4
+    U'\u2415', // U+2415: NAK
+    U'\u2416', // U+2416: SYN
+    U'\u2417', // U+2417: ETB
+    U'\u2418', // U+2418: CAN
+    U'\u2419', // U+2419: EM
+    U'\u241A', // U+241A: SUB
+    U'\u241B', // U+241B: ESC
+    U'\u241C', // U+241C: FS
+    U'\u241D', // U+241D: GS
+    U'\u241E', // U+241E: RS
+    U'\u241F'  // U+241F: US
+};
 
 /* highlighting information.
  */
@@ -322,6 +359,7 @@ enum
 {
 	DOCUMENT = 1,
 	FADE_ZEROES,
+	DISPLAY_CONTROL_CHARACTERS,
 	N_PROPERTIES
 };
 
@@ -414,7 +452,7 @@ struct _HexWidget
 
 	/* Buffer for storing formatted data for rendering;
 	   dynamically adjusts its size to the display size */
-	guchar *disp_buffer;
+	GArray *disp_buffer;	/* of gunichar */
 
 	/* default characters per line and number of lines. */
 	int default_cpl;
@@ -423,6 +461,7 @@ struct _HexWidget
 	GdkContentProvider *selection_content;
 
 	gboolean fade_zeroes;
+	gboolean display_control_characters;
 };
 
 G_DEFINE_TYPE (HexWidget, hex_widget, GTK_TYPE_WIDGET)
@@ -580,6 +619,10 @@ hex_widget_set_property (GObject *object,
 			hex_widget_set_fade_zeroes (self, g_value_get_boolean (value));
 			break;
 
+		case DISPLAY_CONTROL_CHARACTERS:
+			hex_widget_set_display_control_characters (self, g_value_get_boolean (value));
+			break;
+
 		default:
 			/* We don't have any other property... */
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -603,6 +646,10 @@ hex_widget_get_property (GObject *object,
 
 		case FADE_ZEROES:
 			g_value_set_boolean (value, hex_widget_get_fade_zeroes (self));
+			break;
+
+		case DISPLAY_CONTROL_CHARACTERS:
+			g_value_set_boolean (value, hex_widget_get_display_control_characters (self));
 			break;
 
 		default:
@@ -850,40 +897,55 @@ get_char_width (HexWidget *self)
  * Returns: length of resulting number of bytes/characters in buffer.
  */
 static int
-format_xblock (HexWidget *self, char *out, gint64 start, gint64 end)
+format_xblock (HexWidget *self, gint64 start, gint64 end)
 {
-	gint64 i, j;
 	int low, high;
-	guchar c;
+	gunichar c;
 
-	for (i = start + 1, j = 0; i <= end; i++)
+	for (gint64 i = start + 1; i <= end; ++i)
 	{
 		c = hex_widget_get_byte (self, i - 1);
+
 		low = c & 0x0F;
+		low = (low < 10) ? (low + '0') : (low - 10 + 'A');
+
 		high = (c & 0xF0) >> 4;
-		
-		out[j++] = (high < 10) ? (high + '0') : (high - 10 + 'A');
-		out[j++] = (low < 10) ? (low + '0') : (low - 10 + 'A');
-		
+		high = (high < 10) ? (high + '0') : (high - 10 + 'A');
+
+		g_array_append_val (self->disp_buffer, high);
+		g_array_append_val (self->disp_buffer, low);
+
 		if (i % self->group_type == 0)
-			out[j++] = ' ';
+		{
+			gunichar spc = ' ';
+			g_array_append_val (self->disp_buffer, spc);
+		}
 	}
-	return j;
+	return self->disp_buffer->len;
 }
 
 static int
-format_ablock (HexWidget *self, char *out, gint64 start, gint64 end)
+format_ablock (HexWidget *self, gint64 start, gint64 end)
 {
-	gint64 i, j;
-	guchar c;
+	gint64 i;
+	gunichar c;
 
-	for (i = start, j = 0; i < end; i++, j++) {
+	for (gint64 i = start; i < end; ++i)
+	{
 		c = hex_widget_get_byte (self, i);
+
 		if (is_displayable(c))
-			out[j] = c;
-		else
-			out[j] = '.';
+			g_array_append_val (self->disp_buffer, c);
+		else if (is_control_character(c) && self->display_control_characters) {
+			c = control_characters_lookup_table[c];
+			g_array_append_val (self->disp_buffer, c);
+		}
+		else {
+			c = '.';
+			g_array_append_val (self->disp_buffer, c);
+		}
 	}
+
 	return end - start;
 }
 
@@ -980,6 +1042,12 @@ invalidate_ac (HexWidget *self)
 	}
 }
 
+inline static int
+char_index_to_utf8_byte_index (const char *str, int index)
+{
+	return g_utf8_offset_to_pointer (str, index) - str;
+}
+
 static void
 render_cursor (HexWidget *self,
 		cairo_t *cr,
@@ -1046,6 +1114,9 @@ render_cursor (HexWidget *self,
 			--range[1];
 		}
 	}
+
+	range[0] = char_index_to_utf8_byte_index (pango_layout_get_text (layout), range[0]);
+	range[1] = char_index_to_utf8_byte_index (pango_layout_get_text (layout), range[1]);
 
 	region = gdk_pango_layout_get_clip_region (layout,
 			0,	/* x */
@@ -1273,6 +1344,9 @@ render_highlight (HexWidget *self,
 	else
 		goto out;
 
+	range[0] = char_index_to_utf8_byte_index (pango_layout_get_text (layout), range[0]);
+	range[1] = char_index_to_utf8_byte_index (pango_layout_get_text (layout), range[1]);
+	
 	cairo_save (cr);
 
 	region = gdk_pango_layout_get_clip_region (layout,
@@ -1395,7 +1469,7 @@ render_lines (HexWidget *self,
 	GtkWidget *widget;
 	GtkStateFlags state;
 	PangoLayout *layout;
-	int (*block_format_func) (HexWidget *self, char *out, gint64 start, gint64 end);
+	int (*block_format_func) (HexWidget *self, gint64 start, gint64 end);
 	int block_format_len;
 	GtkAllocation allocation;
 	GtkStyleContext *context;
@@ -1460,7 +1534,6 @@ render_lines (HexWidget *self,
 	max_lines = MIN(max_lines, self->lines);
 
 	block_format_len = block_format_func (self,
-			(char *)self->disp_buffer,
 			(self->top_line + min_lines) * self->cpl,
 			MIN( (self->top_line + max_lines + 1) * self->cpl,
 				HEX_BUFFER_PAYLOAD (self->document) ));
@@ -1468,13 +1541,20 @@ render_lines (HexWidget *self,
 	for (int i = min_lines; i <= max_lines; i++)
 	{
 		int tmp = block_format_len - ((i - min_lines) * cpl);
+		char *disp_buffer_as_utf8 = NULL;
 
 		if (tmp <= 0)
 			break;
 
-		pango_layout_set_text (layout,
-				(char *)self->disp_buffer + (i - min_lines) * cpl,
-				MIN(cpl, tmp));
+		/* Get current line in the buffer as a utf-8 string
+		 */
+		disp_buffer_as_utf8 = g_ucs4_to_utf8 (
+				(gunichar *)self->disp_buffer->data + (i - min_lines) * cpl,
+				CLAMP (MIN (cpl, tmp), 0, self->disp_buffer->len),
+				NULL, NULL, NULL);
+
+		pango_layout_set_text (layout, disp_buffer_as_utf8, -1);
+		g_free (disp_buffer_as_utf8);
 
 		if (type == VIEW_HEX && self->fade_zeroes)
 			fade_zeroes (self, layout);
@@ -1567,17 +1647,10 @@ static void
 allocate_display_buffer (HexWidget *self, HexWidgetViewType type)
 {
 	GtkWidget *widget = GTK_WIDGET (self);
-	int cpl;
 
-	if (type == VIEW_HEX)
-		cpl = get_hex_cpl (self);
-	else
-		cpl = self->cpl;
+	g_clear_pointer (&self->disp_buffer, g_array_unref);
 
-	if (self->disp_buffer)
-		g_free (self->disp_buffer);
-
-	self->disp_buffer = g_malloc ((cpl + 1) * (self->vis_lines + 1));
+	self->disp_buffer = g_array_new (FALSE, FALSE, sizeof (gunichar));
 }
 
 /* draw_func for the hex drawing area
@@ -2877,11 +2950,9 @@ hex_widget_finalize (GObject *gobject)
 {
 	HexWidget *self = HEX_WIDGET(gobject);
 	
-	if (self->disp_buffer)
-		g_free (self->disp_buffer);
+	g_clear_pointer (&self->disp_buffer, g_array_unref);
 
-	/* Boilerplate; keep here. Chain up to the parent class.
-	 */
+	/* Chain up */
 	G_OBJECT_CLASS(hex_widget_parent_class)->finalize(gobject);
 }
 
@@ -2924,6 +2995,19 @@ hex_widget_class_init (HexWidgetClass *klass)
 	 * Since: 4.8
 	 */
 	properties[FADE_ZEROES] = g_param_spec_boolean ("fade-zeroes", NULL, NULL,
+			FALSE,
+			G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+
+	/**
+	 * HexWidget:display-control-characters:
+	 *
+	 * Whether ASCII control characters (ASCII characters 0x0 through
+	 * 0x1F) will be rendered as unicode symbols on the ASCII side of the
+	 * `HexWidget`.
+	 *
+	 * Since: 4.10
+	 */
+	properties[DISPLAY_CONTROL_CHARACTERS] = g_param_spec_boolean ("display-control-characters", NULL, NULL,
 			FALSE,
 			G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
@@ -3184,8 +3268,6 @@ hex_widget_init (HexWidget *self)
 	GtkEventController *controller;
 
 	self->layout_manager = gtk_widget_get_layout_manager (widget);
-
-	self->disp_buffer = NULL;
 
 	self->scroll_timeout = 0;
 
@@ -4292,6 +4374,42 @@ hex_widget_set_fade_zeroes (HexWidget *self, gboolean fade)
 
 	gtk_widget_queue_draw (GTK_WIDGET(self));
 	g_object_notify_by_pspec (G_OBJECT(self), properties[FADE_ZEROES]);
+}
+
+/**
+ * hex_widget_get_display_control_characters:
+ *
+ * Retrieve whether ASCII control characters are shown in the ASCII display.
+ *
+ * Returns: `TRUE` if control characters are displayed; `FALSE` otherwise
+ *
+ * Since: 4.10
+ */
+gboolean
+hex_widget_get_display_control_characters (HexWidget *self)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), FALSE);
+
+	return self->display_control_characters;
+}
+
+/**
+ * hex_widget_set_display_control_characters
+ * @display: Whether ASCII control characters should be displayed
+ *
+ * Set whether ASCII control characters are shown in the ASCII display.
+ *
+ * Since: 4.10
+ */
+void
+hex_widget_set_display_control_characters (HexWidget *self, gboolean display)
+{
+	g_return_if_fail (HEX_IS_WIDGET (self));
+
+	self->display_control_characters = display;
+
+	gtk_widget_queue_draw (GTK_WIDGET(self));
+	g_object_notify_by_pspec (G_OBJECT(self), properties[DISPLAY_CONTROL_CHARACTERS]);
 }
 
 G_GNUC_END_IGNORE_DEPRECATIONS
