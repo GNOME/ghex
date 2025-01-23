@@ -72,7 +72,7 @@ void print_page (GtkPrintOperation *operation,
                  int               page_nr,
                  gpointer           data);
 GHexPrintJobInfo *ghex_print_job_info_new (HexDocument *doc,
-		guint group_type);
+		HexWidgetGroupType group_type);
 void ghex_print_job_info_destroy(GHexPrintJobInfo *pji);
 
 G_END_DECLS
