@@ -9,7 +9,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2025 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -107,6 +107,9 @@ void hex_widget_zero_selection (HexWidget *gh);
 
 void hex_widget_set_fade_zeroes (HexWidget *self, gboolean fade);
 gboolean hex_widget_get_fade_zeroes (HexWidget *self);
+
+void hex_widget_set_display_control_characters (HexWidget *self, gboolean display);
+gboolean hex_widget_get_display_control_characters (HexWidget *self);
 
 HexWidgetAutoHighlight *
 hex_widget_insert_autohighlight (HexWidget *gh, const char *search, int len);
