@@ -3,13 +3,13 @@
 #
 # Yuri Syrota <rasta@renome.rovno.ua>, 1999.
 # Maxim Dziumanenko <mvd@mylinux.ua>, 2005.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022, 2023, 2024.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2024-11-19 15:56+0000\n"
-"PO-Revision-Date: 2024-11-19 18:18+0200\n"
+"POT-Creation-Date: 2025-01-25 05:27+0000\n"
+"PO-Revision-Date: 2025-01-25 15:24+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -333,16 +333,15 @@ msgstr "Не виявлено входжень."
 msgid "Untitled"
 msgstr "Без назви"
 
-#: src/ghex-application-window.c:293
+#: src/ghex-application-window.c:307
 msgid "There was an error saving the file."
 msgstr "Під час спроби зберегти файл сталася помилка."
 
-#: src/ghex-application-window.c:333
-#| msgid "_Save Changes"
+#: src/ghex-application-window.c:347
 msgid "Save Changes?"
 msgstr "Зберегти зміни?"
 
-#: src/ghex-application-window.c:336
+#: src/ghex-application-window.c:350
 msgid ""
 "Open documents contain unsaved changes.\n"
 "Changes which are not saved will be permanently lost."
@@ -350,45 +349,40 @@ msgstr ""
 "До відкритих документів внесено незбережені зміни..\n"
 "Зміни, які не збережено, буде назавжди втрачено."
 
-#: src/ghex-application-window.c:339 src/ghex-application-window.c:468
-#: src/ghex-application-window.c:1177 src/paste-special.ui:53
+#: src/ghex-application-window.c:353 src/ghex-application-window.c:482
+#: src/ghex-application-window.c:1191 src/paste-special.ui:53
 msgid "_Cancel"
 msgstr "_Скасувати"
 
-#: src/ghex-application-window.c:340 src/ghex-application-window.c:469
-#| msgid "_Discard Changes"
+#: src/ghex-application-window.c:354 src/ghex-application-window.c:483
 msgid "_Discard"
 msgstr "Від_кинути"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:456
+#: src/ghex-application-window.c:470
 #, c-format
 msgid "%s has been edited since opening."
 msgstr "%s було редаговано з моменту відкриття."
 
-#: src/ghex-application-window.c:460
-#| msgid ""
-#| "<b>The buffer has been edited since opening.</b>\n"
-#| "\n"
-#| "Would you like to save your changes?"
+#: src/ghex-application-window.c:474
 msgid "The buffer has been edited since opening."
 msgstr "Буфер було змінено з моменту відкриття."
 
-#: src/ghex-application-window.c:463
+#: src/ghex-application-window.c:477
 msgid "Would you like to save your changes?"
 msgstr "Хочете зберегти внесені вами зміни?"
 
-#: src/ghex-application-window.c:470
+#: src/ghex-application-window.c:484
 msgid "_Save"
 msgstr "З_берегти"
 
-#: src/ghex-application-window.c:1036
+#: src/ghex-application-window.c:1050
 msgid "There was an error saving the file to the path specified."
 msgstr ""
 "Під час спроби збереження файла до вказаного каталогу сталася помилка."
 
-#: src/ghex-application-window.c:1055
+#: src/ghex-application-window.c:1069
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -396,24 +390,18 @@ msgstr ""
 "Сталася невідома помилка під час спроби повторно завантажити файл, який ви "
 "щойно зберегли."
 
-#: src/ghex-application-window.c:1108
+#: src/ghex-application-window.c:1122
 msgid "Select a file to save buffer as"
 msgstr "Виберіть файл для збереження буфера"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1172
+#: src/ghex-application-window.c:1186
 #, c-format
 msgid "Are you sure you want to revert %s?"
 msgstr "Ви справді хочете повернутися до попередньої версії %s?"
 
-#: src/ghex-application-window.c:1174
-#| msgid ""
-#| "<big><b>Are you sure you want to revert %s?</b></big>\n"
-#| "\n"
-#| "Your changes will be lost.\n"
-#| "\n"
-#| "This action cannot be undone."
+#: src/ghex-application-window.c:1188
 msgid ""
 "Your changes will be lost.\n"
 "This action cannot be undone."
@@ -421,15 +409,15 @@ msgstr ""
 "Внесені вами зміни буде втрачено.\n"
 "Наслідки цієї дії не можна буде скасувати."
 
-#: src/ghex-application-window.c:1178 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1192 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "Від_новити"
 
-#: src/ghex-application-window.c:1268
+#: src/ghex-application-window.c:1282
 msgid "Select a file to open"
 msgstr "Вибрати файл для відкриття"
 
-#: src/ghex-application-window.c:1375
+#: src/ghex-application-window.c:1389
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -452,7 +440,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1569
+#: src/ghex-application-window.c:1583
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -461,12 +449,12 @@ msgstr ""
 "Зсув: <tt>0x%lX</tt>; позначено <tt>0x%lX</tt> байтів від <tt>0x%lX</tt> до "
 "<tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1573
+#: src/ghex-application-window.c:1587
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Зсув: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2383
+#: src/ghex-application-window.c:2401
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -492,11 +480,11 @@ msgstr ""
 "Щоб уникнути цього повідомлення, спробуйте скористатися іншим модулем "
 "обробки буфера."
 
-#: src/ghex-application-window.c:2441
+#: src/ghex-application-window.c:2459
 msgid "There was an error reading the file."
 msgstr "Під час читання з файла сталася помилка."
 
-#: src/ghex-application-window.c:2502
+#: src/ghex-application-window.c:2520
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -1163,31 +1151,40 @@ msgstr "Чотири слова (64-бітові)"
 msgid "Show offsets column"
 msgstr "Показувати стовпчик зміщень"
 
+#: src/preferences.ui:134
+#| msgid "Display"
+msgid "ASCII Display"
+msgstr "Показ ASCII"
+
 #: src/preferences.ui:137
+msgid "Display ASCII control characters"
+msgstr "Показати керівні символи ASCII"
+
+#: src/preferences.ui:153
 msgid "Printing"
 msgstr "Друкування"
 
-#: src/preferences.ui:141
+#: src/preferences.ui:157
 msgid "Fonts"
 msgstr "Шрифти"
 
-#: src/preferences.ui:145
+#: src/preferences.ui:161
 msgid "Data font"
 msgstr "Шрифт даних"
 
-#: src/preferences.ui:156
+#: src/preferences.ui:172
 msgid "Header font"
 msgstr "Шрифт заголовка"
 
-#: src/preferences.ui:170
+#: src/preferences.ui:186
 msgid "Shaded rows"
 msgstr "Затінені рядки"
 
-#: src/preferences.ui:174
+#: src/preferences.ui:190
 msgid "Print alternating shaded rows"
 msgstr "Малювання рядків різними кольорами"
 
-#: src/preferences.ui:182
+#: src/preferences.ui:198
 msgid "Span across lines:"
 msgstr "Розбиття довгих рядків:"
 
