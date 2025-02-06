@@ -1571,20 +1571,46 @@ update_status_message (GHexApplicationWindow *self)
 	char *status = NULL;
 	gint64 current_pos, ss, se;
 	int len;
+	gboolean selection;
 
 	if (! ACTIVE_GH)
 		goto out;
 
 	current_pos = hex_widget_get_cursor (ACTIVE_GH);
+	selection = hex_widget_get_selection (ACTIVE_GH, &ss, &se);
 
-	if (hex_widget_get_selection (ACTIVE_GH, &ss, &se))
-	{
-		status = g_strdup_printf (
-				_("Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x%lX</tt> selected"),
-				current_pos, se - ss + 1, ss, se);
-	}
-	else {
-		status = g_strdup_printf (_("Offset: <tt>0x%lX</tt>"), current_pos);
+	switch (def_sb_offset_format) {
+		case HEX_WIDGET_STATUS_BAR_OFFSET_HEX:
+			if (selection) {
+				status = g_strdup_printf (
+					_("Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x%lX</tt> selected"),
+					current_pos, se - ss + 1, ss, se);
+			} else {
+				status = g_strdup_printf (_("Offset: <tt>0x%lX</tt>"), current_pos);
+			}
+			break;
+
+		case HEX_WIDGET_STATUS_BAR_OFFSET_DEC:
+			if (selection) {
+				status = g_strdup_printf (
+					_("Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> selected"),
+					current_pos, se - ss + 1, ss, se);
+			} else {
+				status = g_strdup_printf (_("Offset: <tt>%ld</tt>"), current_pos);
+			}
+			break;
+
+		case HEX_WIDGET_STATUS_BAR_OFFSET_HEX | HEX_WIDGET_STATUS_BAR_OFFSET_DEC:
+			if (selection) {
+				status = g_strdup_printf (
+					/* Weird rendering if you don't put the space at the start */
+					_(" <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x%lX</tt> selected <sub>DEC</sub> Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> selected"),
+					current_pos, se - ss + 1, ss, se,
+					current_pos, se - ss + 1, ss, se);
+			} else {
+				status = g_strdup_printf (_(" <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"), current_pos, current_pos);
+			}
+			break;
 	}
 
 	hex_statusbar_set_status (HEX_STATUSBAR(self->statusbar), status);

@@ -142,7 +142,42 @@
 						</child>
 					</object> <!-- /group -->
 				</child>
+				<child>
+					<object class="AdwPreferencesGroup">
+						<property name="title" translatable="yes">Status Bar</property>
 
+						<child>
+							<object class="AdwExpanderRow">
+								<property name="title" translatable="yes">Format offset as</property>
+
+								<child>
+									<object class="GtkBox">
+										<property name="orientation">vertical</property>
+										<child>
+											<object class="GtkCheckButton" id="offsethex_chkbtn">
+												<property name="label" translatable="yes">Hexadecimal</property>
+												<!-- note: don't put group="offsethex_chkbtn" here. -->
+											</object>
+										</child>
+										<child>
+											<object class="GtkCheckButton" id="offsetdec_chkbtn">
+												<property name="label" translatable="yes">Decimal</property>
+												<property name="group">offsethex_chkbtn</property>
+											</object>
+										</child>
+										<child>
+											<object class="GtkCheckButton" id="offsetboth_chkbtn">
+												<property name="label" translatable="yes">Both</property>
+												<property name="group">offsethex_chkbtn</property>
+											</object>
+										</child>
+									</object> <!-- /box -->
+								</child>
+							</object> <!-- /row -->
+						</child>
+
+					</object> <!-- /group -->
+				</child>
 			</object> <!-- /page1 -->
 		</child>
 

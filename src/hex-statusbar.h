@@ -26,6 +26,23 @@
 
 #include <gtk/gtk.h>
 
+/* ENUMS */
+
+/**
+ * HexWidgetStatusBarOffsetFormat:
+ * @HEX_WIDGET_STATUS_BAR_OFFSET_HEX: hexadecimal
+ * @HEX_WIDGET_STATUS_BAR_OFFSET_DEC: decimal
+ *
+ * Specifies the format of the offset shown on the status bar. Can be ORed for both.
+ */
+typedef enum
+{
+   HEX_WIDGET_STATUS_BAR_OFFSET_HEX  =    1,
+   HEX_WIDGET_STATUS_BAR_OFFSET_DEC  =    2
+} HexWidgetStatusBarOffsetFormat;
+
+/* GOBJECT DECLARATION */
+
 #define HEX_TYPE_STATUSBAR (hex_statusbar_get_type ())
 G_DECLARE_FINAL_TYPE (HexStatusbar, hex_statusbar, HEX, STATUSBAR, GtkWidget)
 
