@@ -120,7 +120,6 @@ ghex_sources = [
   'converter.c',
   'findreplace.c',
   'ghex-application-window.c',
-  'gtkhex-paste-data.c',
   'hex-dialog.c',
   'hex-statusbar.c',
   'main.c',
