@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-01-25 05:27+0000\n"
-"PO-Revision-Date: 2025-01-25 15:24+0200\n"
+"POT-Creation-Date: 2025-02-06 18:46+0000\n"
+"PO-Revision-Date: 2025-02-07 18:24+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -69,7 +69,7 @@ msgstr "ASCII"
 msgid "Hex"
 msgstr "Шістнадцяткова"
 
-#: src/chartable.ui:94
+#: src/chartable.ui:94 src/preferences.ui:164
 msgid "Decimal"
 msgstr "Десяткова"
 
@@ -241,7 +241,7 @@ msgstr "_Ігнорувати регістр"
 msgid "Show:"
 msgstr "Показ:"
 
-#: src/find-options.ui:68
+#: src/find-options.ui:68 src/preferences.ui:170
 msgid "Both"
 msgstr "Обидва"
 
@@ -440,7 +440,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1583
+#: src/ghex-application-window.c:1586
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -449,12 +449,53 @@ msgstr ""
 "Зсув: <tt>0x%lX</tt>; позначено <tt>0x%lX</tt> байтів від <tt>0x%lX</tt> до "
 "<tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1587
+#: src/ghex-application-window.c:1589
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Зсув: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2401
+#: src/ghex-application-window.c:1596
+#, c-format
+#| msgid ""
+#| "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+#| "<tt>0x%lX</tt> selected"
+msgid ""
+"Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
+"selected"
+msgstr ""
+"Зсув: <tt>%ld</tt>; <tt>%ld</tt> байтів позначено від <tt>%ld</tt> до <tt>"
+"%ld</tt>"
+
+#: src/ghex-application-window.c:1599
+#, c-format
+#| msgid "Offset: <tt>0x%lX</tt>"
+msgid "Offset: <tt>%ld</tt>"
+msgstr "Зсув: <tt>%ld</tt>"
+
+#. Weird rendering if you don't put the space at the start
+#: src/ghex-application-window.c:1607
+#, c-format
+#| msgid ""
+#| "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+#| "<tt>0x%lX</tt> selected"
+msgid ""
+" <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
+"tt> to <tt>0x%lX</tt> selected <sub>DEC</sub> Offset: <tt>%ld</tt>; <tt>%ld</"
+"tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> selected"
+msgstr ""
+" <sub>ШІС</sub> Зсув: <tt>0x%lX</tt>; позначено <tt>0x%lX</tt> байтів від <"
+"tt>0x%lX</"
+"tt> до <tt>0x%lX</tt> <sub>ДЕС</sub> Зсув: <tt>%ld</tt>; позначено <tt>%ld</"
+"tt> байтів від <tt>%ld</tt> до <tt>%ld</tt>"
+
+#: src/ghex-application-window.c:1611
+#, c-format
+msgid ""
+" <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"
+msgstr ""
+" <sub>ШІС</sub> Зсув: <tt>0x%lX</tt> <sub>ДЕС</sub> Зсув: <tt>%ld</tt>"
+
+#: src/ghex-application-window.c:2427
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -480,11 +521,11 @@ msgstr ""
 "Щоб уникнути цього повідомлення, спробуйте скористатися іншим модулем "
 "обробки буфера."
 
-#: src/ghex-application-window.c:2459
+#: src/ghex-application-window.c:2485
 msgid "There was an error reading the file."
 msgstr "Під час читання з файла сталася помилка."
 
-#: src/ghex-application-window.c:2520
+#: src/ghex-application-window.c:2546
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -1152,7 +1193,6 @@ msgid "Show offsets column"
 msgstr "Показувати стовпчик зміщень"
 
 #: src/preferences.ui:134
-#| msgid "Display"
 msgid "ASCII Display"
 msgstr "Показ ASCII"
 
@@ -1160,31 +1200,43 @@ msgstr "Показ ASCII"
 msgid "Display ASCII control characters"
 msgstr "Показати керівні символи ASCII"
 
-#: src/preferences.ui:153
+#: src/preferences.ui:147
+msgid "Status Bar"
+msgstr "Смужка стану"
+
+#: src/preferences.ui:151
+msgid "Format offset as"
+msgstr "Форматувати зсув як"
+
+#: src/preferences.ui:158
+msgid "Hexadecimal"
+msgstr "Шістнадцятковий"
+
+#: src/preferences.ui:188
 msgid "Printing"
 msgstr "Друкування"
 
-#: src/preferences.ui:157
+#: src/preferences.ui:192
 msgid "Fonts"
 msgstr "Шрифти"
 
-#: src/preferences.ui:161
+#: src/preferences.ui:196
 msgid "Data font"
 msgstr "Шрифт даних"
 
-#: src/preferences.ui:172
+#: src/preferences.ui:207
 msgid "Header font"
 msgstr "Шрифт заголовка"
 
-#: src/preferences.ui:186
+#: src/preferences.ui:221
 msgid "Shaded rows"
 msgstr "Затінені рядки"
 
-#: src/preferences.ui:190
+#: src/preferences.ui:225
 msgid "Print alternating shaded rows"
 msgstr "Малювання рядків різними кольорами"
 
-#: src/preferences.ui:198
+#: src/preferences.ui:233
 msgid "Span across lines:"
 msgstr "Розбиття довгих рядків:"
 
@@ -1601,9 +1653,6 @@ msgstr "Замінити всі екземпляри рядка пошуку р�
 #~| msgid "Show cursor offset in statusbar as:"
 #~ msgid "_Show cursor offset in statusbar as:"
 #~ msgstr "По_казувати зміщення курсора на смужці стану як:"
-
-#~ msgid "Hexadecimal"
-#~ msgstr "Шістнадцятковий"
 
 #~ msgid "Custom"
 #~ msgstr "Нетиповий"
