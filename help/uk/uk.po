@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
-"POT-Creation-Date: 2025-01-28 00:34+0000\n"
-"PO-Revision-Date: 2025-01-28 22:47+0200\n"
+"POT-Creation-Date: 2025-02-09 05:11+0000\n"
+"PO-Revision-Date: 2025-02-09 20:38+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1113,9 +1113,6 @@ msgstr "Показати керівні символи ASCII"
 
 #. (itstool) path: section/p
 #: C/conf-preferences.page:50
-#| msgid ""
-#| "If selected, ASCII control characters (<code>0x00</code> to <code>0x1F</"
-#| "code>) will be displayed as as unicode picture symbols in the ASCII pane."
 msgid ""
 "If selected, ASCII control characters (<code>0x00</code> to <code>0x1F</"
 "code>) will be displayed as unicode picture symbols in the ASCII pane."
@@ -1142,25 +1139,41 @@ msgid ""
 "sure to select a font that includes all of the unicode ASCII control symbols "
 "in its character set."
 msgstr ""
-"Зауважте, що позначення цього пункту може призвести до того, що GHex"
-" вибиратиме символи з іншого шрифту, ніж вибраний шрифт, якщо символи"
-" Unicode недоступні у вибраному шрифті. Іноді це може спричинити певне"
-" зміщення шістнадцяткових рядків і рядків ASCII. Щоб отримати найкращі"
-" результати з цим пунктом, переконайтеся, що вибрано шрифт, який містить у"
-" своєму наборі символів усі контрольні символи ASCII Unicode."
+"Зауважте, що позначення цього пункту може призвести до того, що GHex "
+"вибиратиме символи з іншого шрифту, ніж вибраний шрифт, якщо символи Unicode "
+"недоступні у вибраному шрифті. Іноді це може спричинити певне зміщення "
+"шістнадцяткових рядків і рядків ASCII. Щоб отримати найкращі результати з "
+"цим пунктом, переконайтеся, що вибрано шрифт, який містить у своєму наборі "
+"символів усі контрольні символи ASCII Unicode."
 
 #. (itstool) path: section/title
+#: C/conf-preferences.page:61
+msgid "Status Bar offset format"
+msgstr "Формат відступу на смужці стану"
+
+#. (itstool) path: section/p
 #: C/conf-preferences.page:62
+msgid ""
+"This allows you to choose how the offset of the selected byte(s) is "
+"displayed in the status bar of the editor. It can be displayed in "
+"hexadecimal, decimal or both."
+msgstr ""
+"За допомогою цього пункту ви зможете вибрати, як буде показано зсув"
+" позначених байтів на смужці стану редактора. Дані може бути показано у"
+" шістнадцятковому режимі, десятковому режимі або в обох режимах."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:67
 msgid "Printing"
 msgstr "Друкування"
 
 #. (itstool) path: section/title
-#: C/conf-preferences.page:64
+#: C/conf-preferences.page:69
 msgid "Fonts"
 msgstr "Шрифти"
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:65
+#: C/conf-preferences.page:70
 msgid ""
 "This section allows you to choose the fonts you would like for hex printouts."
 msgstr ""
@@ -1168,7 +1181,7 @@ msgstr ""
 "для друку шістнадцяткових даних."
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:66
+#: C/conf-preferences.page:71
 msgid ""
 "<gui>Data font</gui> will apply to the content of your hex document (ie, hex "
 "and ASCII digits)."
@@ -1177,7 +1190,7 @@ msgstr ""
 "документа (тобто шістнадцяткових цифр та даних ASCII)."
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:68
+#: C/conf-preferences.page:73
 msgid ""
 "<gui>Header font</gui> will apply to the header on your printout, which will "
 "show the document title and page number."
@@ -1186,12 +1199,12 @@ msgstr ""
 "матеріалу, у якому буде наведено заголовок документа та номер сторінки."
 
 #. (itstool) path: section/title
-#: C/conf-preferences.page:72
+#: C/conf-preferences.page:77
 msgid "Shaded rows"
 msgstr "Затінені рядки"
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:73
+#: C/conf-preferences.page:78
 msgid ""
 "If <gui>Print alternating shaded rows</gui> is selected, your printout will "
 "have alternating rows of your hex and ASCII data printed out with a shaded "
@@ -1202,7 +1215,7 @@ msgstr ""
 "із різним тлом (сірим і білим), що може спростити читання рядків."
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:76
+#: C/conf-preferences.page:81
 msgid ""
 "Please note that this may use more printer ink/toner than leaving it "
 "disabled."
@@ -1211,7 +1224,7 @@ msgstr ""
 "або тонера принтера, ніж якщо не позначати цей пункт."
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:77
+#: C/conf-preferences.page:82
 msgid ""
 "<gui>Span across lines</gui> allows you to customize how many lines will be "
 "shaded, followed by not shaded, on a repeated basis. Again, this is simply "
