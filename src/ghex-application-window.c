@@ -1792,6 +1792,9 @@ ghex_application_window_init (GHexApplicationWindow *self)
     g_signal_connect (settings, "changed::" GHEX_PREF_CONTROL_CHARS,
                       G_CALLBACK (settings_show_control_chars_changed_cb), self);
 
+    g_signal_connect_swapped (settings, "changed::" GHEX_PREF_SB_OFFSET_FORMAT,
+                      G_CALLBACK (update_status_message), self);
+
 	/* Actions - SETTINGS */
 
 	/* for the 'group data by' stuff. There isn't a function to do this from
