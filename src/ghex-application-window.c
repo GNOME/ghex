@@ -38,10 +38,10 @@
 	(ghex_application_window_get_hex (self))
 
 #define GH_FOR_TAB(TV, NUM) \
-		(HEX_WIDGET(adw_tab_page_get_child (adw_tab_view_get_nth_page (TV, NUM))));
+		(HEX_WIDGET(gtk_scrolled_window_get_child (GTK_SCROLLED_WINDOW(adw_tab_page_get_child (adw_tab_view_get_nth_page (TV, NUM))))));
 
 #define TAB_FOR_GH(GH) \
-	(adw_tab_view_get_page (ADW_TAB_VIEW(self->hex_tab_view), GTK_WIDGET(GH)))
+	(adw_tab_view_get_page (ADW_TAB_VIEW(self->hex_tab_view), gtk_widget_get_parent (GTK_WIDGET(GH))))
 
 /* Translators: this is the string for an untitled buffer that will
  * be displayed in the titlebar when a user does File->New
@@ -187,8 +187,9 @@ static void ghex_application_window_connect_hex_signals (GHexApplicationWindow *
 	int i;																	\
 	for (i = adw_tab_view_get_n_pages(tab_view) - 1; i >= 0; --i) {			\
 		HexWidget *gh;														\
-		gh = HEX_WIDGET(adw_tab_page_get_child (							\
-					adw_tab_view_get_nth_page (tab_view, i)));
+		gh = HEX_WIDGET(gtk_scrolled_window_get_child (						\
+					GTK_SCROLLED_WINDOW(adw_tab_page_get_child (			\
+							adw_tab_view_get_nth_page (tab_view, i)))));
 /* !TAB_VIEW_GH_FOREACH_START */
 
 #define TAB_VIEW_GH_FOREACH_END												\
@@ -456,7 +457,8 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 	char *title;
 	char *message;
 	char *basename = NULL;
-	HexWidget *gh = HEX_WIDGET(adw_tab_page_get_child (page));
+	HexWidget *gh = HEX_WIDGET(gtk_scrolled_window_get_child (
+				GTK_SCROLLED_WINDOW(adw_tab_page_get_child (page))));
 	doc = hex_widget_get_document (gh);
 
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
@@ -683,7 +685,7 @@ tab_view_close_page_cb (AdwTabView *tab_view,
 	HexDocument *doc;
 	HexWidget *gh;
 
-	gh = HEX_WIDGET(adw_tab_page_get_child (page));
+	gh = HEX_WIDGET(gtk_scrolled_window_get_child (GTK_SCROLLED_WINDOW(adw_tab_page_get_child (page))));
 	doc = hex_widget_get_document (gh);
 
 	if (hex_document_has_changed (doc)) {
@@ -723,7 +725,8 @@ tab_view_page_attached_cb (AdwTabView *tab_view,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
 	ghex_application_window_connect_hex_signals (self,
-			HEX_WIDGET(adw_tab_page_get_child (page)));
+			HEX_WIDGET(gtk_scrolled_window_get_child (
+					GTK_SCROLLED_WINDOW(adw_tab_page_get_child (page)))));
 
 	/* Let's play this super dumb. If a page is added, that will generally
 	 * mean we don't have to count the pages to see if we have > 0.
@@ -740,7 +743,8 @@ tab_view_page_detached_cb (AdwTabView *tab_view,
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
 	ghex_application_window_disconnect_hex_signals (self,
-			HEX_WIDGET(adw_tab_page_get_child (page)));
+			HEX_WIDGET(gtk_scrolled_window_get_child (
+					GTK_SCROLLED_WINDOW(adw_tab_page_get_child (page)))));
 }
 
 static AdwTabView *
@@ -2334,7 +2338,7 @@ ghex_application_window_activate_tab (GHexApplicationWindow *self,
 	g_return_if_fail (HEX_IS_WIDGET (gh));
 
 	adw_tab_view_set_selected_page (tab_view,
-			adw_tab_view_get_page (tab_view, GTK_WIDGET(gh)));
+			adw_tab_view_get_page (tab_view, gtk_widget_get_parent (GTK_WIDGET(gh))));
 
 	gtk_widget_grab_focus (GTK_WIDGET(gh));
 }
@@ -2374,6 +2378,7 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 {
 	GtkWidget *tab;
 	HexDocument *doc;
+	GtkWidget *scrolled_window;
 
 	g_return_if_fail (HEX_IS_WIDGET(gh));
 
@@ -2392,7 +2397,9 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	hex_widget_set_insert_mode (gh, self->insert_mode);
 
 	/* Add tab */
-	adw_tab_view_append (ADW_TAB_VIEW(self->hex_tab_view), GTK_WIDGET(gh));
+	scrolled_window = gtk_scrolled_window_new ();
+	gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW(scrolled_window), GTK_WIDGET(gh));
+	adw_tab_view_append (ADW_TAB_VIEW(self->hex_tab_view), scrolled_window);
 
 	show_hex_tab_view (self);
 }
@@ -2573,7 +2580,8 @@ ghex_application_window_get_hex (GHexApplicationWindow *self)
 	page = adw_tab_view_get_selected_page (ADW_TAB_VIEW(self->hex_tab_view));
 
 	if (page)
-		return HEX_WIDGET(adw_tab_page_get_child (page));
+		return HEX_WIDGET(gtk_scrolled_window_get_child (
+					GTK_SCROLLED_WINDOW(adw_tab_page_get_child (page))));
 	else
 		return NULL;
 }

@@ -360,7 +360,14 @@ enum
 	DOCUMENT = 1,
 	FADE_ZEROES,
 	DISPLAY_CONTROL_CHARACTERS,
-	N_PROPERTIES
+
+	/* GtkScrollable properties */
+	PROP_VADJUSTMENT,
+	PROP_HADJUSTMENT,
+	PROP_VSCROLL_POLICY,
+	PROP_HSCROLL_POLICY,
+
+	N_PROPERTIES = DISPLAY_CONTROL_CHARACTERS
 };
 
 static GParamSpec *properties[N_PROPERTIES];
@@ -398,7 +405,6 @@ struct _HexWidget
 
 	GtkWidget *xdisp, *adisp;	/* DrawingArea */
 	GtkWidget *offsets;			/* DrawingArea */
-	GtkWidget *scrollbar;
 
 	GtkWidget *busy_spinner;
 
@@ -409,6 +415,7 @@ struct _HexWidget
 	GtkWidget *auto_geometry_checkbtn, *cpl_spinbtn;
 
 	GtkAdjustment *adj;
+	GtkScrollablePolicy vscroll_policy;
 
 	HexWidgetViewType active_view;
 
@@ -464,7 +471,11 @@ struct _HexWidget
 	gboolean display_control_characters;
 };
 
-G_DEFINE_TYPE (HexWidget, hex_widget, GTK_TYPE_WIDGET)
+static void scrollable_interface_init (GtkScrollableInterface *iface);
+static void _hex_widget_set_vadjustment (HexWidget *self, GtkAdjustment *adj);
+
+G_DEFINE_TYPE_WITH_CODE (HexWidget, hex_widget, GTK_TYPE_WIDGET,
+		G_IMPLEMENT_INTERFACE (GTK_TYPE_SCROLLABLE, scrollable_interface_init))
 
 /* ----- */
 
@@ -596,7 +607,7 @@ static void hex_widget_update_auto_highlight (HexWidget *self, HexWidgetAutoHigh
 static void recalc_displays (HexWidget *self);
 
 static void show_cursor (HexWidget *self, gboolean show);
-
+static void adj_value_changed_cb (GtkAdjustment *adj, HexWidget *self);
 
 /* PROPERTIES - GETTERS AND SETTERS */
 
@@ -621,6 +632,20 @@ hex_widget_set_property (GObject *object,
 
 		case DISPLAY_CONTROL_CHARACTERS:
 			hex_widget_set_display_control_characters (self, g_value_get_boolean (value));
+			break;
+
+		case PROP_VADJUSTMENT:
+			_hex_widget_set_vadjustment (self, g_value_get_object (value));
+			break;
+
+		case PROP_HADJUSTMENT:
+			break;
+
+		case PROP_VSCROLL_POLICY:
+			self->vscroll_policy = g_value_get_enum (value);
+			break;
+
+		case PROP_HSCROLL_POLICY:
 			break;
 
 		default:
@@ -652,11 +677,49 @@ hex_widget_get_property (GObject *object,
 			g_value_set_boolean (value, hex_widget_get_display_control_characters (self));
 			break;
 
+		case PROP_VADJUSTMENT:
+			g_value_set_object (value, self->adj);
+			break;
+
+		case PROP_HADJUSTMENT:
+			g_value_set_object (value, NULL);
+			break;
+
+		case PROP_VSCROLL_POLICY:
+			g_value_set_enum (value, self->vscroll_policy);
+			break;
+
+		case PROP_HSCROLL_POLICY:
+			g_value_set_enum (value, 0);
+			break;
+
 		default:
 			/* We don't have any other property... */
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
 	}
+}
+
+/* Scrollable interface */
+static void
+scrollable_interface_init (GtkScrollableInterface *iface)
+{
+}
+
+static void
+_hex_widget_set_vadjustment (HexWidget *self, GtkAdjustment *adj)
+{
+	g_clear_object (&self->adj);
+
+	if (adj)
+	{
+		self->adj = g_object_ref_sink (adj);
+		g_signal_connect_object (self->adj, "value-changed",
+			G_CALLBACK (adj_value_changed_cb), self, 0);
+		return;
+	}
+	else
+		self->adj = NULL;
 }
 
 /* HexWidget - Method Definitions */
@@ -2821,7 +2884,6 @@ set_busy_state (HexWidget *self, gboolean busy)
 		gtk_widget_hide (self->offsets);
 		gtk_widget_hide (self->xdisp);
 		gtk_widget_hide (self->adisp);
-		gtk_widget_hide (self->scrollbar);
 		gtk_widget_show (self->busy_spinner);
 	}
 	else
@@ -2830,7 +2892,6 @@ set_busy_state (HexWidget *self, gboolean busy)
 		gtk_widget_set_visible (self->offsets, self->show_offsets);
 		gtk_widget_show (self->xdisp);
 		gtk_widget_show (self->adisp);
-		gtk_widget_show (self->scrollbar);
 	}
 }
 
@@ -2927,7 +2988,6 @@ hex_widget_dispose (GObject *object)
 	g_clear_pointer (&self->xdisp, gtk_widget_unparent);
 	g_clear_pointer (&self->adisp, gtk_widget_unparent);
 	g_clear_pointer (&self->offsets, gtk_widget_unparent);
-	g_clear_pointer (&self->scrollbar, gtk_widget_unparent);
 	g_clear_pointer (&self->busy_spinner, gtk_widget_unparent);
 
 	g_clear_pointer (&self->context_menu, gtk_widget_unparent);
@@ -3012,6 +3072,13 @@ hex_widget_class_init (HexWidgetClass *klass)
 			G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
+
+	/* GtkScrollableInterface properties */
+
+	g_object_class_override_property (object_class, PROP_VADJUSTMENT, "vadjustment");
+	g_object_class_override_property (object_class, PROP_HADJUSTMENT, "hadjustment");
+	g_object_class_override_property (object_class, PROP_VSCROLL_POLICY, "vscroll-policy");
+	g_object_class_override_property (object_class, PROP_HSCROLL_POLICY, "hscroll-policy");
 
 	/* Layout manager */
 
@@ -3413,22 +3480,6 @@ hex_widget_init (HexWidget *self)
 	/* Initialize Adjustment */
 	self->adj = gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
-	/* Setup scrollbar. */
-
-	self->scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL,
-			self->adj);
-
-	context = gtk_widget_get_style_context (GTK_WIDGET (self->scrollbar));
-	gtk_style_context_add_class (context, "hex");
-	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (self->provider),
-	                                GTK_STYLE_PROVIDER_PRIORITY_THEME);
-
-	gtk_widget_set_parent (self->scrollbar, widget);
-	child_info = HEX_WIDGET_LAYOUT_CHILD (gtk_layout_manager_get_layout_child
-			(self->layout_manager, self->scrollbar));
-	hex_widget_layout_child_set_column (child_info, SCROLLBAR_COLUMN);
-	
 	/* Setup busy spinner */
 
 	self->busy_spinner = gtk_spinner_new ();
@@ -3541,11 +3592,6 @@ hex_widget_init (HexWidget *self)
 			G_CALLBACK(gtk_widget_queue_draw), widget);
 
 	gtk_widget_add_controller (widget, GTK_EVENT_CONTROLLER(controller));
-
-	/* Connect signal for adjustment */
-
-	g_signal_connect (self->adj, "value-changed",
-					 G_CALLBACK (adj_value_changed_cb), self);
 
 	/* ACTIONS - Undo / Redo should start out disabled. */
 

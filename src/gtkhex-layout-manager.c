@@ -224,7 +224,7 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 	GtkAllocation sbar_alloc = BASE_ALLOC;
 
 	int avail_width = full_width;
-	GtkWidget *hex = NULL, *ascii = NULL, *offsets = NULL, *scrollbar = NULL;
+	GtkWidget *hex = NULL, *ascii = NULL, *offsets = NULL;
 
 	for (child = gtk_widget_get_first_child (widget);
 			child != NULL;
@@ -256,8 +256,6 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 				break;
 			case ASCII_COLUMN:		ascii = child;
 				break;
-			case SCROLLBAR_COLUMN:	scrollbar = child;
-				break;
 
 			case NO_COLUMN:
 			{
@@ -285,8 +283,8 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 		}
 	}
 
-	/* Order doesn't really matter for the offsets & scrollbar columns since
-	 * they're essentially fixed, so let's do those first.
+	/* Order doesn't really matter for the offsets column since
+	 * it's essentially fixed, so let's do that first.
 	 */
 	if (offsets)
 	{
@@ -306,21 +304,6 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 			borders.left + borders.right;
 
 		avail_width -= off_alloc.width;
-	}
-
-	if (scrollbar)
-	{
-		GtkRequisition req = { .width = 0, .height = 0 };
-		gtk_widget_get_preferred_size (scrollbar, &req, NULL);
-
-		/* It's always going to be its full width and will always be to the far
-		 * right, so just plop it there.
-		 */
-		sbar_alloc.x = full_width - req.width;
-		sbar_alloc.width = req.width;
-		sbar_alloc.height = full_height;
-
-		avail_width -= sbar_alloc.width;
 	}
 
 	/* Let's measure ascii next, as hex's width is essentially locked to it, if
@@ -429,8 +412,6 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 
 	if (offsets)
 		gtk_widget_size_allocate (offsets, &off_alloc, -1);
-	if (scrollbar)
-		gtk_widget_size_allocate (scrollbar, &sbar_alloc, -1);
 	if (hex)
 		gtk_widget_size_allocate (hex, &hex_alloc, -1);
 	if (ascii)

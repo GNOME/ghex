@@ -42,7 +42,6 @@ typedef enum {
 	OFFSETS_COLUMN,
 	HEX_COLUMN,
 	ASCII_COLUMN,
-	SCROLLBAR_COLUMN
 } HexWidgetLayoutColumn;
 
 #define HEX_TYPE_WIDGET_LAYOUT_CHILD (hex_widget_layout_child_get_type ())
