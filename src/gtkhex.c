@@ -713,7 +713,12 @@ _hex_widget_set_vadjustment (HexWidget *self, GtkAdjustment *adj)
 
 	if (adj)
 	{
+		/* It seems we already get a sunk object by the time we get this far.
+		 * But if it's already sunk, this just behaves the same as g_object_ref
+		 * anyway, so might as well leave it this way to be on the safe side.
+		 */
 		self->adj = g_object_ref_sink (adj);
+
 		g_signal_connect_object (self->adj, "value-changed",
 			G_CALLBACK (adj_value_changed_cb), self, 0);
 		return;
@@ -1797,6 +1802,9 @@ recalc_scrolling (HexWidget *self)
 	gboolean scroll_to_cursor;
 	double value;
 
+	if (!self->adj)
+		return;
+
 	if (self->cpl == 0)
 		return;
 
@@ -1863,6 +1871,7 @@ scroll_timeout_handler (HexWidget *self)
 	return G_SOURCE_CONTINUE;
 }
 
+#if 0
 static gboolean
 scroll_cb (GtkEventControllerScroll *controller,
                double                    dx,
@@ -1881,6 +1890,7 @@ scroll_cb (GtkEventControllerScroll *controller,
 	 */
 	return TRUE;
 }
+#endif
 
 /* Helper function for *_pressed_cb 's
  */
@@ -2999,6 +3009,10 @@ hex_widget_dispose (GObject *object)
 	g_clear_object (&self->alayout);
 	g_clear_object (&self->olayout);
 
+	/* Clear scrollable adjustment
+	 */
+	g_clear_object (&self->adj);
+
 	g_clear_object (&self->document);
 	
 	/* Chain up */
@@ -3555,6 +3569,7 @@ hex_widget_init (HexWidget *self)
 	gtk_widget_add_controller (self->adisp,
 			GTK_EVENT_CONTROLLER(gesture));
 
+#if 0
 	/* Event controller - scrolling */
 
 	controller =
@@ -3567,6 +3582,7 @@ hex_widget_init (HexWidget *self)
 			self);
 	gtk_widget_add_controller (widget,
 			GTK_EVENT_CONTROLLER(controller));
+#endif
 
 	/* Event controller - keyboard - for the widget *as a whole* */
 	
