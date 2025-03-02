@@ -385,6 +385,7 @@ hex_buffer_malloc_write_to_file (HexBuffer *buf, GFile *file)
 	FILE *fp = NULL;
 	gboolean ret = FALSE;
 	gint64 exp_len;
+	gint64 len;
 
 	path = g_file_get_path (file);
 	if (! path)
@@ -395,19 +396,21 @@ hex_buffer_malloc_write_to_file (HexBuffer *buf, GFile *file)
 	if ((fp = fopen(path, "wb")) == NULL)
 		goto out;
 
+	ret = TRUE;
+
 	if (self->gap_pos > self->buffer)
 	{
 		exp_len = MIN (self->payload_size,
 				(gint64)(self->gap_pos - self->buffer));
-		ret = fwrite (self->buffer, 1, exp_len, fp);
-		ret = (ret == exp_len) ? TRUE : FALSE;
+		len = fwrite (self->buffer, 1, exp_len, fp);
+		ret = (ret && (len == exp_len)) ? TRUE : FALSE;
 	}
 
 	if (self->gap_pos < self->buffer + self->payload_size)
 	{
 		exp_len = self->payload_size - (self->gap_pos - self->buffer);
-		ret = fwrite (self->gap_pos + self->gap_size, 1, exp_len, fp);
-		ret = (ret == exp_len) ? TRUE : FALSE;
+		len = fwrite (self->gap_pos + self->gap_size, 1, exp_len, fp);
+		ret = (ret && (len == exp_len)) ? TRUE : FALSE;
 	}
 
 out:
