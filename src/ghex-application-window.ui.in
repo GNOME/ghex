@@ -28,8 +28,8 @@
 		<!-- "FILE" -->
 		<section>
 			<item>
-				<attribute name="label" translatable="yes">_New</attribute>
-				<attribute name="action">ghex.new</attribute>
+				<attribute name="label" translatable="yes">_New Window</attribute>
+				<attribute name="action">app.new-window</attribute>
 			</item>
 			<item>
 				<attribute name="label" translatable="yes">Save _As</attribute>
@@ -180,6 +180,14 @@
 							</object>
 						</child>
 
+						<child>
+							<object class="GtkButton" id="new_button">
+								<property name="action-name">ghex.new</property>
+								<property name="icon-name">tab-new-symbolic</property>
+								<property name="tooltip-text" translatable="yes">New blank hex buffer</property>
+							</object>
+						</child>
+
 						<child type="end">
 							<object class="GtkMenuButton" id="hamburger_menu_button">
 								<property name="valign">center</property>
@@ -218,7 +226,7 @@
 						<property name="child">
 							<object class="GtkLabel">
 								<property name="label" translatable="yes">• Press the Open button
-• Press Ctrl+N to start a new document
+• Press Ctrl+T to start a new document
 • Press Ctrl+O to browse for a document
 
 Or, press Ctrl+W to close the window.</property>
