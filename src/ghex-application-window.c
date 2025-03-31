@@ -2119,9 +2119,16 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			"ghex.copy-special",
 			NULL);
 
-	/* Ctrl+N - new */
+	/* Ctrl+N - new window */
 	gtk_widget_class_add_binding_action (widget_class,
 			GDK_KEY_n,
+			GDK_CONTROL_MASK,
+			"app.new-window",
+			NULL);
+
+	/* Ctrl+T - new tab */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_t,
 			GDK_CONTROL_MASK,
 			"ghex.new",
 			NULL);
