@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-02-06 18:46+0000\n"
-"PO-Revision-Date: 2025-02-06 23:06+0100\n"
+"POT-Creation-Date: 2025-03-31 20:29+0000\n"
+"PO-Revision-Date: 2025-04-01 08:23+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -61,11 +61,11 @@ msgstr "razhroščevanje;binarni;osmiški;urejevalnik;"
 msgid "Character table"
 msgstr "Razpredelnica znakov"
 
-#: src/chartable.ui:44 src/find-options.ui:67
+#: src/chartable.ui:44 src/find-options.ui:69
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.ui:69 src/find-options.ui:66
+#: src/chartable.ui:69 src/find-options.ui:65
 msgid "Hex"
 msgstr "Šestnajstiško"
 
@@ -244,7 +244,7 @@ msgstr "_Prezri velikost črk"
 msgid "Show:"
 msgstr "Pokaži:"
 
-#: src/find-options.ui:68 src/preferences.ui:170
+#: src/find-options.ui:73 src/preferences.ui:170
 msgid "Both"
 msgstr "Oboje"
 
@@ -489,7 +489,7 @@ msgid ""
 msgstr ""
 "<sub>ŠESTN</sub> Odmik: <tt>0x%lX</tt> <sub>DEC</sub> Odmik:<tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2427
+#: src/ghex-application-window.c:2437
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -515,11 +515,11 @@ msgstr ""
 "Če se želite izogniti prikazu tega sporočila, poskusite uporabiti drugo "
 "hrbtenico medpomnilnika."
 
-#: src/ghex-application-window.c:2485
+#: src/ghex-application-window.c:2495
 msgid "There was an error reading the file."
 msgstr "Pri branju datoteke je prišlo do napake."
 
-#: src/ghex-application-window.c:2546
+#: src/ghex-application-window.c:2556
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -528,8 +528,8 @@ msgstr ""
 "več, ni dostopna ali pa morda nimate dovoljenja za dostop do datoteke."
 
 #: src/ghex-application-window.ui.in:31
-msgid "_New"
-msgstr "_Nov"
+msgid "_New Window"
+msgstr "_Novo okno"
 
 #: src/ghex-application-window.ui.in:35
 msgid "Save _As"
@@ -623,47 +623,51 @@ msgstr "Odprite datoteko za šestnajstiško urejanje"
 msgid "_Open"
 msgstr "_Odpri"
 
-#: src/ghex-application-window.ui.in:188
+#: src/ghex-application-window.ui.in:187 src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr "Nov prazni šestnajstiški medpomnilnik"
+
+#: src/ghex-application-window.ui.in:196
 msgid "Main Menu"
 msgstr "Glavni meni"
 
-#: src/ghex-application-window.ui.in:190
+#: src/ghex-application-window.ui.in:198
 msgid "Main menu"
 msgstr "Glavni meni"
 
-#: src/ghex-application-window.ui.in:200
+#: src/ghex-application-window.ui.in:208
 msgid "Find a string in the hex document"
 msgstr "Iskanje niza v šestnajstiškem dokumentu"
 
-#: src/ghex-application-window.ui.in:209
+#: src/ghex-application-window.ui.in:217
 msgid "Save document"
 msgstr "Shrani dokument"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:225
 msgid "No File Loaded"
 msgstr "Datoteka ni naložena"
 
-#: src/ghex-application-window.ui.in:220
+#: src/ghex-application-window.ui.in:228
 msgid ""
 "• Press the Open button\n"
-"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+T to start a new document\n"
 "• Press Ctrl+O to browse for a document\n"
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
 "• Pritisnite gumb Odpri.\n"
-"• Pritisnite krmilka+N, da pripravite nov dokument.\n"
+"• Pritisnite krmilka+T, da pripravite nov dokument.\n"
 "• Pritisnite krmilka+O, da poiščete dokument.\n"
 "\n"
 "Ali pa pritisnite krmilka+W, da zaprete okno."
 
-#: src/ghex-application-window.ui.in:309
+#: src/ghex-application-window.ui.in:317
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Preklopi način vstavljanja (dodajanje podatkov v datoteko in ne zamenjava "
 "obstoječih)"
 
-#: src/ghex-application-window.ui.in:321
+#: src/ghex-application-window.ui.in:329
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Preklopi podokno z različnimi številskimi pretvorbami"
 
@@ -702,10 +706,6 @@ msgstr "_Geometrija"
 #: src/help-overlay.ui:14
 msgid "Files"
 msgstr "Datoteke"
-
-#: src/help-overlay.ui:19
-msgid "New blank hex buffer"
-msgstr "Nov prazni šestnajstiški medpomnilnik"
 
 #: src/help-overlay.ui:26
 msgid "Open a file for editing"
@@ -824,14 +824,18 @@ msgid "General"
 msgstr "Splošno"
 
 #: src/help-overlay.ui:229
+msgid "New window"
+msgstr "Novo okno"
+
+#: src/help-overlay.ui:236
 msgid "Show help"
 msgstr "Pokaži pomoč"
 
-#: src/help-overlay.ui:236
+#: src/help-overlay.ui:243
 msgid "Show preferences"
 msgstr "Pokaži nastavitve"
 
-#: src/help-overlay.ui:243
+#: src/help-overlay.ui:250
 msgid "Toggle insert mode"
 msgstr "Preklopi način vstavljanja"
 
@@ -1033,12 +1037,12 @@ msgstr "Zapre podokno skoka na bajt"
 msgid "Show the application version"
 msgstr "Pokaži različico programa"
 
-#: src/main.c:105
+#: src/main.c:93
 #, c-format
 msgid "This is GHex, version %s\n"
 msgstr "To je GHex, različica %s\n"
 
-#: src/main.c:170
+#: src/main.c:178
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "GHex — šestnajstiški urejevalnik za namizje GNOME"
 
