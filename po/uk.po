@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-02-06 18:46+0000\n"
-"PO-Revision-Date: 2025-02-07 18:24+0200\n"
+"POT-Creation-Date: 2025-03-31 20:29+0000\n"
+"PO-Revision-Date: 2025-04-01 09:25+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -61,11 +61,11 @@ msgstr ""
 msgid "Character table"
 msgstr "Таблиця символів"
 
-#: src/chartable.ui:44 src/find-options.ui:67
+#: src/chartable.ui:44 src/find-options.ui:69
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.ui:69 src/find-options.ui:66
+#: src/chartable.ui:69 src/find-options.ui:65
 msgid "Hex"
 msgstr "Шістнадцяткова"
 
@@ -241,7 +241,7 @@ msgstr "_Ігнорувати регістр"
 msgid "Show:"
 msgstr "Показ:"
 
-#: src/find-options.ui:68 src/preferences.ui:170
+#: src/find-options.ui:73 src/preferences.ui:170
 msgid "Both"
 msgstr "Обидва"
 
@@ -456,37 +456,29 @@ msgstr "Зсув: <tt>0x%lX</tt>"
 
 #: src/ghex-application-window.c:1596
 #, c-format
-#| msgid ""
-#| "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
-#| "<tt>0x%lX</tt> selected"
 msgid ""
 "Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
 "selected"
 msgstr ""
-"Зсув: <tt>%ld</tt>; <tt>%ld</tt> байтів позначено від <tt>%ld</tt> до <tt>"
-"%ld</tt>"
+"Зсув: <tt>%ld</tt>; <tt>%ld</tt> байтів позначено від <tt>%ld</tt> до "
+"<tt>%ld</tt>"
 
 #: src/ghex-application-window.c:1599
 #, c-format
-#| msgid "Offset: <tt>0x%lX</tt>"
 msgid "Offset: <tt>%ld</tt>"
 msgstr "Зсув: <tt>%ld</tt>"
 
 #. Weird rendering if you don't put the space at the start
 #: src/ghex-application-window.c:1607
 #, c-format
-#| msgid ""
-#| "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
-#| "<tt>0x%lX</tt> selected"
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
 "tt> to <tt>0x%lX</tt> selected <sub>DEC</sub> Offset: <tt>%ld</tt>; <tt>%ld</"
 "tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> selected"
 msgstr ""
-" <sub>ШІС</sub> Зсув: <tt>0x%lX</tt>; позначено <tt>0x%lX</tt> байтів від <"
-"tt>0x%lX</"
-"tt> до <tt>0x%lX</tt> <sub>ДЕС</sub> Зсув: <tt>%ld</tt>; позначено <tt>%ld</"
-"tt> байтів від <tt>%ld</tt> до <tt>%ld</tt>"
+" <sub>ШІС</sub> Зсув: <tt>0x%lX</tt>; позначено <tt>0x%lX</tt> байтів від "
+"<tt>0x%lX</tt> до <tt>0x%lX</tt> <sub>ДЕС</sub> Зсув: <tt>%ld</tt>; "
+"позначено <tt>%ld</tt> байтів від <tt>%ld</tt> до <tt>%ld</tt>"
 
 #: src/ghex-application-window.c:1611
 #, c-format
@@ -495,7 +487,7 @@ msgid ""
 msgstr ""
 " <sub>ШІС</sub> Зсув: <tt>0x%lX</tt> <sub>ДЕС</sub> Зсув: <tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2427
+#: src/ghex-application-window.c:2437
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -521,11 +513,11 @@ msgstr ""
 "Щоб уникнути цього повідомлення, спробуйте скористатися іншим модулем "
 "обробки буфера."
 
-#: src/ghex-application-window.c:2485
+#: src/ghex-application-window.c:2495
 msgid "There was an error reading the file."
 msgstr "Під час читання з файла сталася помилка."
 
-#: src/ghex-application-window.c:2546
+#: src/ghex-application-window.c:2556
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -534,8 +526,9 @@ msgstr ""
 "він недоступний, або, можливо, у вас немає прав доступу до файла."
 
 #: src/ghex-application-window.ui.in:31
-msgid "_New"
-msgstr "С_творити"
+#| msgid "_Windows"
+msgid "_New Window"
+msgstr "С_творити вікно"
 
 #: src/ghex-application-window.ui.in:35
 msgid "Save _As"
@@ -629,48 +622,58 @@ msgstr "Відкрити файл у шістнадцятковому редак
 msgid "_Open"
 msgstr "_Відкрити"
 
-#: src/ghex-application-window.ui.in:188
+#: src/ghex-application-window.ui.in:187 src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr "Новий порожній шістнадцятковий буфер"
+
+#: src/ghex-application-window.ui.in:196
 msgid "Main Menu"
 msgstr "Головне меню"
 
-#: src/ghex-application-window.ui.in:190
+#: src/ghex-application-window.ui.in:198
 msgid "Main menu"
 msgstr "Головне меню"
 
-#: src/ghex-application-window.ui.in:200
+#: src/ghex-application-window.ui.in:208
 msgid "Find a string in the hex document"
 msgstr "Знайти рядок у шістнадцятковому документі"
 
-#: src/ghex-application-window.ui.in:209
+#: src/ghex-application-window.ui.in:217
 msgid "Save document"
 msgstr "Зберегти документ"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:225
 msgid "No File Loaded"
 msgstr "Не завантажено жодного файла"
 
-#: src/ghex-application-window.ui.in:220
+#: src/ghex-application-window.ui.in:228
+#| msgid ""
+#| "• Press the Open button\n"
+#| "• Press Ctrl+N to start a new document\n"
+#| "• Press Ctrl+O to browse for a document\n"
+#| "\n"
+#| "Or, press Ctrl+W to close the window."
 msgid ""
 "• Press the Open button\n"
-"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+T to start a new document\n"
 "• Press Ctrl+O to browse for a document\n"
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
 "• Натисніть кнопку «Відкрити»\n"
-"• Натисніть Ctrl+N, щоб створити документ\n"
+"• Натисніть Ctrl+T, щоб створити документ\n"
 "• Натисніть Ctrl+O, щоб перейти до наявного документа\n"
 "\n"
 "або натисніть Ctrl+W, щоб закрити вікно."
 
-#: src/ghex-application-window.ui.in:309
+#: src/ghex-application-window.ui.in:317
 msgid ""
 "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Перемкнути режим вставлення (дописувати дані до файла, а не заміняти наявні "
 "дані)"
 
-#: src/ghex-application-window.ui.in:321
+#: src/ghex-application-window.ui.in:329
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Перемкнути панель, на якій показано різні числові перетворення"
 
@@ -709,10 +712,6 @@ msgstr "_Геометрія"
 #: src/help-overlay.ui:14
 msgid "Files"
 msgstr "Файли"
-
-#: src/help-overlay.ui:19
-msgid "New blank hex buffer"
-msgstr "Новий порожній шістнадцятковий буфер"
 
 #: src/help-overlay.ui:26
 msgid "Open a file for editing"
@@ -831,14 +830,18 @@ msgid "General"
 msgstr "Загальне"
 
 #: src/help-overlay.ui:229
+msgid "New window"
+msgstr "Нове вікно"
+
+#: src/help-overlay.ui:236
 msgid "Show help"
 msgstr "Показати довідку"
 
-#: src/help-overlay.ui:236
+#: src/help-overlay.ui:243
 msgid "Show preferences"
 msgstr "Показати налаштування"
 
-#: src/help-overlay.ui:243
+#: src/help-overlay.ui:250
 msgid "Toggle insert mode"
 msgstr "Перемкнути режим вставлення"
 
@@ -1041,12 +1044,12 @@ msgstr "Закриває панель переходу до байта"
 msgid "Show the application version"
 msgstr "Показати версію програми"
 
-#: src/main.c:105
+#: src/main.c:93
 #, c-format
 msgid "This is GHex, version %s\n"
 msgstr "Це GHex, версія %s\n"
 
-#: src/main.c:170
+#: src/main.c:178
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "GHex — шістнадцятковий редактор для середовища GNOME."
 
@@ -1269,6 +1272,9 @@ msgstr "Замінити _все"
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Замінити всі екземпляри рядка пошуку рядком заміни"
 
+#~ msgid "_New"
+#~ msgstr "С_творити"
+
 #~ msgid "About GHex"
 #~ msgstr "Про GHex"
 
@@ -1466,9 +1472,6 @@ msgstr "Замінити всі екземпляри рядка пошуку р�
 
 #~ msgid "_View"
 #~ msgstr "_Вигляд"
-
-#~ msgid "_Windows"
-#~ msgstr "В_ікна"
 
 #~ msgid "Open a file"
 #~ msgstr "Відкрити файл"
