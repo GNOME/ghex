@@ -9,21 +9,22 @@
 # Enrico Nicoletto <hiko@duck.com>, 2021-2022.
 # Matheus Barbosa <mdpb.matheus@gmail.com>, 2022.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2011-2025.
+# Álvaro Burns <>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-02-06 18:46+0000\n"
-"PO-Revision-Date: 2025-02-09 02:09-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"POT-Creation-Date: 2025-03-31 20:29+0000\n"
+"PO-Revision-Date: 2025-03-31 18:43-0300\n"
+"Last-Translator: Álvaro Burns <>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 47.1\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Gtranslator 48.0\n"
 "X-Project-Style: gnome\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
@@ -64,11 +65,11 @@ msgstr "binário;depurar;hexadecimal;"
 msgid "Character table"
 msgstr "Tabela de caracteres"
 
-#: src/chartable.ui:44 src/find-options.ui:67
+#: src/chartable.ui:44 src/find-options.ui:69
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.ui:69 src/find-options.ui:66
+#: src/chartable.ui:69 src/find-options.ui:65
 msgid "Hex"
 msgstr "Hexa"
 
@@ -247,7 +248,7 @@ msgstr "_Ignorar maiusculização"
 msgid "Show:"
 msgstr "Mostrar:"
 
-#: src/find-options.ui:68 src/preferences.ui:170
+#: src/find-options.ui:73 src/preferences.ui:170
 msgid "Both"
 msgstr "Ambos"
 
@@ -495,7 +496,7 @@ msgstr ""
 " <sub>HEX</sub> Deslocamento: <tt>0x%lX</tt> <sub>DEC</sub> Deslocamento: "
 "<tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2427
+#: src/ghex-application-window.c:2437
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -521,11 +522,11 @@ msgstr ""
 "Para que esta mensagem não apareça mais, tente usar um backend de buffer "
 "diferente."
 
-#: src/ghex-application-window.c:2485
+#: src/ghex-application-window.c:2495
 msgid "There was an error reading the file."
 msgstr "Ocorreu um erro ao ler arquivo."
 
-#: src/ghex-application-window.c:2546
+#: src/ghex-application-window.c:2556
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -534,8 +535,8 @@ msgstr ""
 "existir mais, estar inacessível ou você não ter permissão de acesso a isto."
 
 #: src/ghex-application-window.ui.in:31
-msgid "_New"
-msgstr "_Novo"
+msgid "_New Window"
+msgstr "_Nova janela"
 
 #: src/ghex-application-window.ui.in:35
 msgid "Save _As"
@@ -629,47 +630,51 @@ msgstr "Abre um arquivo para edição hex"
 msgid "_Open"
 msgstr "_Abrir"
 
-#: src/ghex-application-window.ui.in:188
+#: src/ghex-application-window.ui.in:187 src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr "Novo buffer hex vazio"
+
+#: src/ghex-application-window.ui.in:196
 msgid "Main Menu"
 msgstr "Menu principal"
 
-#: src/ghex-application-window.ui.in:190
+#: src/ghex-application-window.ui.in:198
 msgid "Main menu"
 msgstr "Visibilidade do menu principal"
 
-#: src/ghex-application-window.ui.in:200
+#: src/ghex-application-window.ui.in:208
 msgid "Find a string in the hex document"
 msgstr "Localiza uma string no documento hex"
 
-#: src/ghex-application-window.ui.in:209
+#: src/ghex-application-window.ui.in:217
 msgid "Save document"
 msgstr "Salva o documento"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:225
 msgid "No File Loaded"
 msgstr "Nenhum documento carregado"
 
-#: src/ghex-application-window.ui.in:220
+#: src/ghex-application-window.ui.in:228
 msgid ""
 "• Press the Open button\n"
-"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+T to start a new document\n"
 "• Press Ctrl+O to browse for a document\n"
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
 "• Pressione o botão Abrir\n"
-"• Pressione Ctrl+N para iniciar um novo documento\n"
+"• Pressione Ctrl+T para iniciar um novo documento\n"
 "• Pressione Ctrl+O para procurar por um documento\n"
 "\n"
 "Ou pressione Ctrl+W para fechar a janela."
 
-#: src/ghex-application-window.ui.in:309
+#: src/ghex-application-window.ui.in:317
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Alterna modo de inserção (adicionar dados ao arquivo em vez de substituir "
 "dados existentes)"
 
-#: src/ghex-application-window.ui.in:321
+#: src/ghex-application-window.ui.in:329
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Alterna um painel mostrando várias conversões numéricas"
 
@@ -708,10 +713,6 @@ msgstr "_Geometria"
 #: src/help-overlay.ui:14
 msgid "Files"
 msgstr "Arquivos"
-
-#: src/help-overlay.ui:19
-msgid "New blank hex buffer"
-msgstr "Novo buffer hex vazio"
 
 #: src/help-overlay.ui:26
 msgid "Open a file for editing"
@@ -830,14 +831,18 @@ msgid "General"
 msgstr "Geral"
 
 #: src/help-overlay.ui:229
+msgid "New window"
+msgstr "Nova janela"
+
+#: src/help-overlay.ui:236
 msgid "Show help"
 msgstr "Mostra ajuda"
 
-#: src/help-overlay.ui:236
+#: src/help-overlay.ui:243
 msgid "Show preferences"
 msgstr "Mostra preferências"
 
-#: src/help-overlay.ui:243
+#: src/help-overlay.ui:250
 msgid "Toggle insert mode"
 msgstr "Alterna modo de inserção"
 
@@ -1038,12 +1043,12 @@ msgstr "Fecha o painel de salto para byte"
 msgid "Show the application version"
 msgstr "Mostra a versão do aplicativo"
 
-#: src/main.c:105
+#: src/main.c:93
 #, c-format
 msgid "This is GHex, version %s\n"
 msgstr "Este é o GHex, versão %s\n"
 
-#: src/main.c:170
+#: src/main.c:178
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "GHex - Um editor hexadecimal para o ambiente GNOME"
 
@@ -1264,6 +1269,9 @@ msgid "Replaces all occurrences of the search string with the replace string"
 msgstr ""
 "Substitui todas as ocorrências da expressão de busca com a expressão de "
 "substituição"
+
+#~ msgid "_New"
+#~ msgstr "_Novo"
 
 #~ msgid "About GHex"
 #~ msgstr "Sobre o GHex"
