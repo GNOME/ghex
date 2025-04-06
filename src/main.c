@@ -37,6 +37,12 @@
 #include <config.h>
 
 static GOptionEntry entries[] = {
+	{	.long_name = 	"new-window",
+		.short_name =	'w',
+		.flags = 		G_OPTION_FLAG_NONE,
+		.arg =			G_OPTION_ARG_NONE,
+		.description =	N_("Open a new window"),
+	},
 	{	.long_name = 	"version",
 		.short_name =	'v',
 		.flags = 		G_OPTION_FLAG_NONE,
@@ -88,6 +94,16 @@ handle_local_options (GApplication *application,
 		GVariantDict *options,
 		gpointer      user_data)
 {
+	if (g_variant_dict_contains (options, "new-window"))
+	{
+		g_application_register (application, NULL, NULL);
+
+		if (g_application_get_is_remote (application))
+		{
+			g_action_group_activate_action (G_ACTION_GROUP(application), "new-window", NULL);
+			return 0;
+		}
+	}
 	if (g_variant_dict_contains (options, "version"))
 	{
 		g_print (_("This is GHex, version %s\n"), PACKAGE_VERSION);
