@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-03-31 20:29+0000\n"
-"PO-Revision-Date: 2025-04-01 09:25+0300\n"
+"POT-Creation-Date: 2025-04-08 02:44+0000\n"
+"PO-Revision-Date: 2025-04-08 16:00+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -56,6 +56,11 @@ msgid "binary;debug;hexadecimal;"
 msgstr ""
 "binary;debug;hexadecimal;двійковий;бінарний;діагностика;зневадження;"
 "шістнадцятковий;"
+
+#: data/org.gnome.GHex.desktop.in.in:20
+#| msgid "_New Window"
+msgid "New Window"
+msgstr "Створити вікно"
 
 #: src/chartable.ui:30
 msgid "Character table"
@@ -526,7 +531,6 @@ msgstr ""
 "він недоступний, або, можливо, у вас немає прав доступу до файла."
 
 #: src/ghex-application-window.ui.in:31
-#| msgid "_Windows"
 msgid "_New Window"
 msgstr "С_творити вікно"
 
@@ -647,12 +651,6 @@ msgid "No File Loaded"
 msgstr "Не завантажено жодного файла"
 
 #: src/ghex-application-window.ui.in:228
-#| msgid ""
-#| "• Press the Open button\n"
-#| "• Press Ctrl+N to start a new document\n"
-#| "• Press Ctrl+O to browse for a document\n"
-#| "\n"
-#| "Or, press Ctrl+W to close the window."
 msgid ""
 "• Press the Open button\n"
 "• Press Ctrl+T to start a new document\n"
@@ -1041,15 +1039,20 @@ msgid "Closes the jump-to-byte pane"
 msgstr "Закриває панель переходу до байта"
 
 #: src/main.c:44
+#| msgid "New window"
+msgid "Open a new window"
+msgstr "Відкрити нове вікно"
+
+#: src/main.c:50
 msgid "Show the application version"
 msgstr "Показати версію програми"
 
-#: src/main.c:93
+#: src/main.c:109
 #, c-format
 msgid "This is GHex, version %s\n"
 msgstr "Це GHex, версія %s\n"
 
-#: src/main.c:178
+#: src/main.c:194
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "GHex — шістнадцятковий редактор для середовища GNOME."
 
