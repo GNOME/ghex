@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-02-10 01:50+0000\n"
-"PO-Revision-Date: 2025-03-09 21:46+0100\n"
+"POT-Creation-Date: 2025-04-08 02:44+0000\n"
+"PO-Revision-Date: 2025-04-08 07:46+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -56,15 +56,19 @@ msgstr "Hexadecimalredigerare"
 msgid "binary;debug;hexadecimal;"
 msgstr "binär;felsök;debug;hexadecimal;"
 
+#: data/org.gnome.GHex.desktop.in.in:20
+msgid "New Window"
+msgstr "Nytt fönster"
+
 #: src/chartable.ui:30
 msgid "Character table"
 msgstr "Teckentabell"
 
-#: src/chartable.ui:44 src/find-options.ui:67
+#: src/chartable.ui:44 src/find-options.ui:69
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.ui:69 src/find-options.ui:66
+#: src/chartable.ui:69 src/find-options.ui:65
 msgid "Hex"
 msgstr "Hexadecimalt"
 
@@ -246,7 +250,7 @@ msgstr "_Ignorera skiftläge"
 msgid "Show:"
 msgstr "Visa:"
 
-#: src/find-options.ui:68 src/preferences.ui:170
+#: src/find-options.ui:73 src/preferences.ui:170
 msgid "Both"
 msgstr "Båda"
 
@@ -493,7 +497,7 @@ msgstr ""
 " <sub>HEX</sub>-position: <tt>0x%lX</tt> <sub>DEC</sub>-position: <tt>%ld</"
 "tt>"
 
-#: src/ghex-application-window.c:2430
+#: src/ghex-application-window.c:2437
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -520,11 +524,11 @@ msgstr ""
 "Pröva använda en annan buffertbakände för att inte behöva se detta "
 "meddelande."
 
-#: src/ghex-application-window.c:2488
+#: src/ghex-application-window.c:2495
 msgid "There was an error reading the file."
 msgstr "Det uppstod ett fel vid läsning av filen."
 
-#: src/ghex-application-window.c:2549
+#: src/ghex-application-window.c:2556
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -534,8 +538,8 @@ msgstr ""
 "åt filen."
 
 #: src/ghex-application-window.ui.in:31
-msgid "_New"
-msgstr "_Ny"
+msgid "_New Window"
+msgstr "_Nytt fönster"
 
 #: src/ghex-application-window.ui.in:35
 msgid "Save _As"
@@ -629,47 +633,51 @@ msgstr "Öppna en fil för hexadecimalredigering"
 msgid "_Open"
 msgstr "Ö_ppna"
 
-#: src/ghex-application-window.ui.in:188
+#: src/ghex-application-window.ui.in:187 src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr "Ny tom hexbuffert"
+
+#: src/ghex-application-window.ui.in:196
 msgid "Main Menu"
 msgstr "Huvudmeny"
 
-#: src/ghex-application-window.ui.in:190
+#: src/ghex-application-window.ui.in:198
 msgid "Main menu"
 msgstr "Huvudmeny"
 
-#: src/ghex-application-window.ui.in:200
+#: src/ghex-application-window.ui.in:208
 msgid "Find a string in the hex document"
 msgstr "Sök en sträng i hexdokumentet"
 
-#: src/ghex-application-window.ui.in:209
+#: src/ghex-application-window.ui.in:217
 msgid "Save document"
 msgstr "Spara dokument"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:225
 msgid "No File Loaded"
 msgstr "Ingen fil inläst"
 
-#: src/ghex-application-window.ui.in:220
+#: src/ghex-application-window.ui.in:228
 msgid ""
 "• Press the Open button\n"
-"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+T to start a new document\n"
 "• Press Ctrl+O to browse for a document\n"
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
 "• Tryck på knappen Öppna\n"
-"• Tryck Ctrl+N för att starta ett nytt dokument\n"
+"• Tryck Ctrl+T för att starta ett nytt dokument\n"
 "• Tryck Ctrl+O för att bläddra efter ett dokument\n"
 "\n"
 "Eller tryck Ctrl+W för att stänga fönstret."
 
-#: src/ghex-application-window.ui.in:309
+#: src/ghex-application-window.ui.in:317
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Växla inskrivningsläge (lägg till data till fil snarare än att ersätta "
 "befintliga data)"
 
-#: src/ghex-application-window.ui.in:321
+#: src/ghex-application-window.ui.in:329
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Visa/dölj en panel som visar diverse numeriska konverteringar"
 
@@ -708,10 +716,6 @@ msgstr "_Geometri"
 #: src/help-overlay.ui:14
 msgid "Files"
 msgstr "Filer"
-
-#: src/help-overlay.ui:19
-msgid "New blank hex buffer"
-msgstr "Ny tom hexbuffert"
 
 #: src/help-overlay.ui:26
 msgid "Open a file for editing"
@@ -830,14 +834,18 @@ msgid "General"
 msgstr "Allmänt"
 
 #: src/help-overlay.ui:229
+msgid "New window"
+msgstr "Nytt fönster"
+
+#: src/help-overlay.ui:236
 msgid "Show help"
 msgstr "Visa hjälp"
 
-#: src/help-overlay.ui:236
+#: src/help-overlay.ui:243
 msgid "Show preferences"
 msgstr "Visa inställningar"
 
-#: src/help-overlay.ui:243
+#: src/help-overlay.ui:250
 msgid "Toggle insert mode"
 msgstr "Växla inskrivningsläge"
 
@@ -1035,15 +1043,19 @@ msgid "Closes the jump-to-byte pane"
 msgstr "Stänger hoppa-till-byte-fönstret"
 
 #: src/main.c:44
+msgid "Open a new window"
+msgstr "Öppna ett nytt fönster"
+
+#: src/main.c:50
 msgid "Show the application version"
 msgstr "Visa programmets version"
 
-#: src/main.c:105
+#: src/main.c:109
 #, c-format
 msgid "This is GHex, version %s\n"
 msgstr "Detta är GHex, version %s\n"
 
-#: src/main.c:170
+#: src/main.c:194
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "GHex - En hexadecimalredigerare för GNOME-skrivbordet"
 
@@ -1263,6 +1275,9 @@ msgstr "Ersätt _alla"
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Ersätter alla förekomster av söksträngen med ersättningssträngen"
 
+#~ msgid "_New"
+#~ msgstr "_Ny"
+
 #~ msgid "About GHex"
 #~ msgstr "Om GHex"
 
@@ -1460,9 +1475,6 @@ msgstr "Ersätter alla förekomster av söksträngen med ersättningssträngen"
 
 #~ msgid "_View"
 #~ msgstr "_Visa"
-
-#~ msgid "_Windows"
-#~ msgstr "_Fönster"
 
 #~ msgid "_Open..."
 #~ msgstr "_Öppna…"
