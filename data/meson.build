@@ -93,3 +93,13 @@ if appstreamcli_prg.found()
     args: ['validate', '--no-net', '--explain', appdata]
   )
 endif
+
+service_conf = configuration_data()
+service_conf.set('app_id', app_id)
+service_conf.set('bindir', ghex_bindir)
+configure_file(
+  input: 'org.gnome.GHex.service.in',
+  output: '@0@.service'.format(app_id),
+  configuration: service_conf,
+  install_dir: ghex_servicedir
+)
