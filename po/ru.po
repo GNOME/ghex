@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-02-10 23:18+0000\n"
-"PO-Revision-Date: 2025-02-16 01:27+1000\n"
+"POT-Creation-Date: 2025-04-08 02:44+0000\n"
+"PO-Revision-Date: 2025-04-08 20:19+1000\n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -59,15 +59,19 @@ msgstr "Шестнадцатеричный редактор"
 msgid "binary;debug;hexadecimal;"
 msgstr "binary;debug;hexadecimal;двоичный;бинарный;отладка;шестнадцатеричный;"
 
+#: data/org.gnome.GHex.desktop.in.in:20
+msgid "New Window"
+msgstr "Новое окно"
+
 #: src/chartable.ui:30
 msgid "Character table"
 msgstr "Таблица символов"
 
-#: src/chartable.ui:44 src/find-options.ui:67
+#: src/chartable.ui:44 src/find-options.ui:69
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.ui:69 src/find-options.ui:66
+#: src/chartable.ui:69 src/find-options.ui:65
 msgid "Hex"
 msgstr "Шестнадц."
 
@@ -245,7 +249,7 @@ msgstr "_Игнорировать регистр"
 msgid "Show:"
 msgstr "Показать:"
 
-#: src/find-options.ui:68 src/preferences.ui:170
+#: src/find-options.ui:73 src/preferences.ui:170
 msgid "Both"
 msgstr "Оба"
 
@@ -474,9 +478,6 @@ msgstr "Смещение: <tt>%ld</tt>"
 #. Weird rendering if you don't put the space at the start
 #: src/ghex-application-window.c:1607
 #, c-format
-#| msgid ""
-#| "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
-#| "<tt>0x%lX</tt> selected"
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
 "tt> to <tt>0x%lX</tt> selected <sub>DEC</sub> Offset: <tt>%ld</tt>; <tt>%ld</"
@@ -494,7 +495,7 @@ msgstr ""
 " <sub>HEX</sub> Смещение: <tt>0x%lX</tt> <sub>DEC</sub> Смещение: <tt>%ld</"
 "tt>"
 
-#: src/ghex-application-window.c:2430
+#: src/ghex-application-window.c:2437
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -520,11 +521,11 @@ msgstr ""
 "Чтобы это сообщение не появлялось, попробуйте использовать другой модуль "
 "обработки буфера."
 
-#: src/ghex-application-window.c:2488
+#: src/ghex-application-window.c:2495
 msgid "There was an error reading the file."
 msgstr "Произошла ошибка при чтении файла."
 
-#: src/ghex-application-window.c:2549
+#: src/ghex-application-window.c:2556
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -533,8 +534,8 @@ msgstr ""
 "существует, либо недоступен, либо у вас нет прав на доступ к файлу."
 
 #: src/ghex-application-window.ui.in:31
-msgid "_New"
-msgstr "_Создать"
+msgid "_New Window"
+msgstr "_Новое окно"
 
 #: src/ghex-application-window.ui.in:35
 msgid "Save _As"
@@ -628,47 +629,51 @@ msgstr "Открыть файл для редактирования в шест�
 msgid "_Open"
 msgstr "_Открыть"
 
-#: src/ghex-application-window.ui.in:188
+#: src/ghex-application-window.ui.in:187 src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr "Новый пустой шестнадцатеричный буфер"
+
+#: src/ghex-application-window.ui.in:196
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: src/ghex-application-window.ui.in:190
+#: src/ghex-application-window.ui.in:198
 msgid "Main menu"
 msgstr "Главное меню"
 
-#: src/ghex-application-window.ui.in:200
+#: src/ghex-application-window.ui.in:208
 msgid "Find a string in the hex document"
 msgstr "Найти строку в шестнадцатеричном документе"
 
-#: src/ghex-application-window.ui.in:209
+#: src/ghex-application-window.ui.in:217
 msgid "Save document"
 msgstr "Сохранить документ"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:225
 msgid "No File Loaded"
 msgstr "Файл не загружен"
 
-#: src/ghex-application-window.ui.in:220
+#: src/ghex-application-window.ui.in:228
 msgid ""
 "• Press the Open button\n"
-"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+T to start a new document\n"
 "• Press Ctrl+O to browse for a document\n"
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
 "• Нажмите кнопку «Открыть»\n"
-"• Нажмите Ctrl+N, чтобы создать новый документ\n"
+"• Нажмите Ctrl+T, чтобы создать новый документ\n"
 "• Нажмите Ctrl+O, чтобы открыть документ\n"
 "\n"
 "Или нажмите Ctrl+W, чтобы закрыть окно."
 
-#: src/ghex-application-window.ui.in:309
+#: src/ghex-application-window.ui.in:317
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Переключить режим вставки (добавлять данные в файл, а не заменять "
 "существующие)"
 
-#: src/ghex-application-window.ui.in:321
+#: src/ghex-application-window.ui.in:329
 msgid "Toggle a pane showing various numeric conversions"
 msgstr ""
 "Переключить панель, на которой показаны различные числовые преобразования"
@@ -708,10 +713,6 @@ msgstr "_Геометрия"
 #: src/help-overlay.ui:14
 msgid "Files"
 msgstr "Файлы"
-
-#: src/help-overlay.ui:19
-msgid "New blank hex buffer"
-msgstr "Новый пустой шестнадцатеричный буфер"
 
 #: src/help-overlay.ui:26
 msgid "Open a file for editing"
@@ -830,14 +831,18 @@ msgid "General"
 msgstr "Основное"
 
 #: src/help-overlay.ui:229
+msgid "New window"
+msgstr "Новое окно"
+
+#: src/help-overlay.ui:236
 msgid "Show help"
 msgstr "Показать справку"
 
-#: src/help-overlay.ui:236
+#: src/help-overlay.ui:243
 msgid "Show preferences"
 msgstr "Показать параметры"
 
-#: src/help-overlay.ui:243
+#: src/help-overlay.ui:250
 msgid "Toggle insert mode"
 msgstr "Переключить режим вставки"
 
@@ -1036,15 +1041,19 @@ msgid "Closes the jump-to-byte pane"
 msgstr "Закрывает панель перехода-к-байту"
 
 #: src/main.c:44
+msgid "Open a new window"
+msgstr "Открыть новое окно"
+
+#: src/main.c:50
 msgid "Show the application version"
 msgstr "Показать версию приложения"
 
-#: src/main.c:105
+#: src/main.c:109
 #, c-format
 msgid "This is GHex, version %s\n"
 msgstr "GHex, версия %s\n"
 
-#: src/main.c:170
+#: src/main.c:194
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "GHex — шестнадцатеричный редактор для рабочего стола GNOME"
 
@@ -1191,7 +1200,6 @@ msgid "Show offsets column"
 msgstr "Показывать столбец смещений"
 
 #: src/preferences.ui:134
-#| msgid "Display"
 msgid "ASCII Display"
 msgstr "Отображение ASCII"
 
@@ -1267,6 +1275,9 @@ msgstr "Заменить _все"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Заменяет все вхождения строки поиска строкой замены"
+
+#~ msgid "_New"
+#~ msgstr "_Создать"
 
 #~ msgid "About GHex"
 #~ msgstr "О приложении GHex"
@@ -1446,9 +1457,6 @@ msgstr "Заменяет все вхождения строки поиска с�
 
 #~ msgid "_View"
 #~ msgstr "_Вид"
-
-#~ msgid "_Windows"
-#~ msgstr "_Окна"
 
 #~ msgid "Open a file"
 #~ msgstr "Открыть файл"
