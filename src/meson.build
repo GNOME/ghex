@@ -1,17 +1,18 @@
 libgtkhex_sources = [
+  'gtkhex-layout-manager.c',
+  'gtkhex-paste-data.c',
   'gtkhex.c',
   'hex-buffer-iface.c',
   'hex-buffer-malloc.c',
-  'gtkhex-layout-manager.c',
-  'gtkhex-paste-data.c',
-  'hex-document.c'
+  'hex-document.c',
+  'hex-file-monitor.c',
 ]
 
 libgtkhex_headers = [
-  'hex-document.h',
-  'hex-buffer-iface.h',
+  'gtkhex-paste-data.h',
   'gtkhex.h',
-  'gtkhex-paste-data.h'
+  'hex-buffer-iface.h',
+  'hex-document.h',
 ]
 
 libgtkhex_deps = [
