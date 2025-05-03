@@ -81,15 +81,15 @@ appdata = i18n.merge_file(
   install: true
 )
 
-appstream_util_prg = find_program(
-  'appstream-util',
+appstreamcli_prg = find_program(
+  'appstreamcli',
   required: false
 )
 
-if appstream_util_prg.found()
+if appstreamcli_prg.found()
   test(
     'Validate appstream file',
-    appstream_util_prg,
-    args: ['validate-relax', '--nonet', appdata]
+    appstreamcli_prg,
+    args: ['validate', '--no-net', '--explain', appdata]
   )
 endif
