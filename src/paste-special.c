@@ -769,4 +769,3 @@ create_copy_special_dialog (GHexApplicationWindow *parent,
 
 	return paste_special_dialog;
 }
-
