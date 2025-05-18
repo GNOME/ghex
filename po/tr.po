@@ -15,16 +15,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-02-10 01:50+0000\n"
-"PO-Revision-Date: 2025-02-16 08:00+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2025-05-16 14:58+0000\n"
+"PO-Revision-Date: 2025-05-16 22:06+0300\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "X-POOTLE-MTIME: 1423957989.000000\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
@@ -61,15 +61,19 @@ msgstr "Onaltılık Düzenliyici"
 msgid "binary;debug;hexadecimal;"
 msgstr "ikilik;ikili;hata ayıklama;onaltılık;"
 
+#: data/org.gnome.GHex.desktop.in.in:21
+msgid "New Window"
+msgstr "Yeni Pencere"
+
 #: src/chartable.ui:30
 msgid "Character table"
 msgstr "Karakter tablosu"
 
-#: src/chartable.ui:44 src/find-options.ui:67
+#: src/chartable.ui:44 src/find-options.ui:69
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.ui:69 src/find-options.ui:66
+#: src/chartable.ui:69 src/find-options.ui:65
 msgid "Hex"
 msgstr "Onaltılık"
 
@@ -241,7 +245,7 @@ msgstr "_Büyük/küçük harfi görmezden gel"
 msgid "Show:"
 msgstr "Göster:"
 
-#: src/find-options.ui:68 src/preferences.ui:170
+#: src/find-options.ui:73 src/preferences.ui:170
 msgid "Both"
 msgstr "Her İkisi"
 
@@ -487,7 +491,7 @@ msgid ""
 msgstr ""
 " <sub>HEX</sub> Ofset: <tt>0x%lX</tt> <sub>DEC</sub> Ofset: <tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2430
+#: src/ghex-application-window.c:2437
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -513,11 +517,11 @@ msgstr ""
 "Bu iletinin görünmesini önlemek için başka tampon arka ucu kullanmayı "
 "deneyin."
 
-#: src/ghex-application-window.c:2488
+#: src/ghex-application-window.c:2495
 msgid "There was an error reading the file."
 msgstr "Dosya okunurken hata oluştu."
 
-#: src/ghex-application-window.c:2549
+#: src/ghex-application-window.c:2556
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -526,8 +530,8 @@ msgstr ""
 "dosyaya erişim izniniz yok."
 
 #: src/ghex-application-window.ui.in:31
-msgid "_New"
-msgstr "_Yeni"
+msgid "_New Window"
+msgstr "_Yeni Pencere"
 
 #: src/ghex-application-window.ui.in:35
 msgid "Save _As"
@@ -622,47 +626,51 @@ msgstr "Onaltılık düzenlemek için dosya aç"
 msgid "_Open"
 msgstr "_Aç"
 
-#: src/ghex-application-window.ui.in:188
+#: src/ghex-application-window.ui.in:187 src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr "Yeni boş onaltılık tampon"
+
+#: src/ghex-application-window.ui.in:196
 msgid "Main Menu"
 msgstr "Ana Menü"
 
-#: src/ghex-application-window.ui.in:190
+#: src/ghex-application-window.ui.in:198
 msgid "Main menu"
 msgstr "Ana menü"
 
-#: src/ghex-application-window.ui.in:200
+#: src/ghex-application-window.ui.in:208
 msgid "Find a string in the hex document"
 msgstr "Hex belgesinde dizge bul"
 
-#: src/ghex-application-window.ui.in:209
+#: src/ghex-application-window.ui.in:217
 msgid "Save document"
 msgstr "Belgeyi kaydet"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:225
 msgid "No File Loaded"
 msgstr "Dosya Yüklenmedi"
 
-#: src/ghex-application-window.ui.in:220
+#: src/ghex-application-window.ui.in:228
 msgid ""
 "• Press the Open button\n"
-"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+T to start a new document\n"
 "• Press Ctrl+O to browse for a document\n"
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
 "• Aç düğmesine basın\n"
-"• Yeni belge başlatmak için Ctrl+N tuşlarına basın\n"
+"• Yeni belge başlatmak için Ctrl+T tuşlarına basın\n"
 "• Belgeye göz atmak için Ctrl+O tuşlarına basın\n"
 "\n"
 "Veya pencereyi kapatmak için Ctrl+W tuşlarına basın."
 
-#: src/ghex-application-window.ui.in:309
+#: src/ghex-application-window.ui.in:317
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Ekleme kipini aç/kapat (var olan verileri değiştirmek yerine dosyaya veri "
 "ekle)"
 
-#: src/ghex-application-window.ui.in:321
+#: src/ghex-application-window.ui.in:329
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Türlü sayısal dönüşümleri gösteren bölmeyi aç/kapat"
 
@@ -701,10 +709,6 @@ msgstr "_Geometri"
 #: src/help-overlay.ui:14
 msgid "Files"
 msgstr "Dosyalar"
-
-#: src/help-overlay.ui:19
-msgid "New blank hex buffer"
-msgstr "Yeni boş onaltılık tampon"
 
 #: src/help-overlay.ui:26
 msgid "Open a file for editing"
@@ -825,14 +829,18 @@ msgid "General"
 msgstr "Genel"
 
 #: src/help-overlay.ui:229
+msgid "New window"
+msgstr "Yeni pencere"
+
+#: src/help-overlay.ui:236
 msgid "Show help"
 msgstr "Yardımı göster"
 
-#: src/help-overlay.ui:236
+#: src/help-overlay.ui:243
 msgid "Show preferences"
 msgstr "Tercihleri göster"
 
-#: src/help-overlay.ui:243
+#: src/help-overlay.ui:250
 msgid "Toggle insert mode"
 msgstr "Ekleme kipini aç/kapat"
 
@@ -1030,15 +1038,19 @@ msgid "Closes the jump-to-byte pane"
 msgstr "Bayt’a git bölmesini kapatır"
 
 #: src/main.c:44
+msgid "Open a new window"
+msgstr "Yeni pencere aç"
+
+#: src/main.c:50
 msgid "Show the application version"
 msgstr "Uygulama sürümünü göster"
 
-#: src/main.c:105
+#: src/main.c:109
 #, c-format
 msgid "This is GHex, version %s\n"
 msgstr "GHex, sürüm %s\n"
 
-#: src/main.c:170
+#: src/main.c:194
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "GHex - GNOME masaüstü için onaltılık düzenleyici"
 
