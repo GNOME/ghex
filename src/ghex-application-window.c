@@ -1136,6 +1136,7 @@ save_as (GtkWidget *widget,
 	g_signal_connect (file_sel, "response",
 			G_CALLBACK(save_as_response_cb), self);
 
+	gtk_native_dialog_set_modal (GTK_NATIVE_DIALOG (file_sel), TRUE);
 	gtk_native_dialog_show (GTK_NATIVE_DIALOG(file_sel));
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
@@ -1288,6 +1289,7 @@ open_file_action (GtkWidget *widget,
 	g_signal_connect (file_sel, "response",
 			G_CALLBACK(open_response_cb), self);
 
+	gtk_native_dialog_set_modal (GTK_NATIVE_DIALOG (file_sel), TRUE);
 	gtk_native_dialog_show (GTK_NATIVE_DIALOG(file_sel));
 }
 G_GNUC_END_IGNORE_DEPRECATIONS
