@@ -4,6 +4,7 @@
 /* paste-special.c - `Paste special' dialog for GHex
 
    Copyright © 2021-2023 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2025 Dilnavas Roshan <dilnavasroshan@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -43,7 +44,8 @@ typedef enum operations {
 } PasteSpecialOperation;
 
 typedef enum {
-	HEX_PASTE_ERROR_INVALID
+	HEX_PASTE_ERROR_UNEXPECTED_END,
+	HEX_PASTE_ERROR_INVALID_DIGIT
 
 } HexPasteError;
 
@@ -178,48 +180,76 @@ hex_paste_data_to_delimited_hex (void)
 	return ret_str;
 }
 
-static GString *
-delimited_hex_to_gstring (const char *hex_str, GError **err)
+gint
+to_hex_digit_value (gchar digit)
 {
-	char *copy;
-	char *cp;
-	GString *buf;
+	digit = g_ascii_toupper (digit);
+	if (g_ascii_isdigit (digit))
+		return digit - '0';
+	else if (g_ascii_isxdigit (digit))
+		return 10 + digit - 'A';
+	return -1;
+}
 
-	g_return_val_if_fail (hex_str, NULL);
+static GString *
+hex_string_to_bytes (const gchar  *hex_str,
+                     GError      **error)
+{
+	GString *byte_values;
+	gchar value;
+	gchar dig1, dig2;
+	gint dig1_val, dig2_val;
 
-	buf = g_string_new (NULL);
-	copy = g_strdup (hex_str);
+	byte_values = g_string_new (NULL);
+	while (*hex_str)
+	{
+		/* The space chars can come in between bytes, but they are not
+		 * allowed in between hex digits representing a single byte. */
 
-	cp = strtok(copy, " ");
-	do {
-		guint hex_char;
-		int scan_ct;
+		if (g_unichar_isspace (*hex_str))
+		{
+			hex_str++;
+			continue;
+		}
 
-		if (strlen(cp) != 2) goto fail;
+		dig1 = *hex_str;
+		hex_str++;
 
-		scan_ct = sscanf(cp, "%x", &hex_char);
+		if (!*hex_str) /* The next char shouldn't be a null char. */
+		{
+			g_debug ("%s: unexpected end of text", __func__);
+			g_set_error (error,
+			             HEX_PASTE_ERROR,
+			             HEX_PASTE_ERROR_UNEXPECTED_END,
+			             _ ("Failed to paste. "
+			                "Unexpected end of text"));
+			goto error;
+		}
 
-		if (scan_ct != 1) goto fail;
-		if (hex_char > 255) goto fail;
+		dig2 = *hex_str;
 
-		g_string_append_printf (buf, "%c", hex_char);
+		if ((dig1_val = to_hex_digit_value (dig1)) < 0 ||
+		    (dig2_val = to_hex_digit_value (dig2)) < 0)
+		{
+			g_debug ("%s: invalid hex digit", __func__);
+			g_set_error (error,
+			             HEX_PASTE_ERROR,
+			             HEX_PASTE_ERROR_INVALID_DIGIT,
+			             _ ("Failed to paste. "
+			                "The pasted string contains an invalid hex digit."));
+			goto error;
+		}
 
-	} while ((cp = strtok(NULL, " ")) != NULL);
+		value = (dig1_val << 4) + dig2_val;
+		g_string_append_printf (byte_values, "%c", value);
 
-	g_free (copy);
+		hex_str++;
+	}
 
-	return buf;
+	return byte_values;
 
-fail:
-	g_debug ("%s: Invalid hex format detected", __func__);
-	g_set_error (err,
-			HEX_PASTE_ERROR,
-			HEX_PASTE_ERROR_INVALID,
-			_("Paste failed; invalid hex format.\n\n"
-			"The string must be in the format of space-delineated "
-			"hex byte pairs.\n\n"
-			"For example: \"FF 3D 99 0A\""));
-	g_free (copy);
+error:
+	g_string_free (byte_values, TRUE);
 	return NULL;
 }
 
@@ -239,7 +269,7 @@ delimited_paste_received_cb (GObject *source_object,
 			result,
 			NULL);	/* GError */
 
-	buf = delimited_hex_to_gstring (text, &err);
+	buf = hex_string_to_bytes (text, &err);
 	if (! buf)
 	{
 		g_debug ("%s: Received invalid delimeter string. Returning.",
@@ -545,7 +575,7 @@ init_mime_hash (void)
 				NO_SUBTYPE));
 
 	LIST = g_slist_append (LIST, create_known_mime_sub_type (MIME,
-				_("Plain text (as space-delimited hex pairs)"),
+				_("Plain text (as hex string representing bytes)"),
 				HEX_PLAINTEXT));
 
 	g_hash_table_insert (mime_hash,
