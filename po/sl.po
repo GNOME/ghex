@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-04-08 02:44+0000\n"
-"PO-Revision-Date: 2025-04-08 09:09+0200\n"
+"POT-Creation-Date: 2025-06-12 21:03+0000\n"
+"PO-Revision-Date: 2025-06-13 07:35+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -57,7 +57,7 @@ msgstr "Urejevalnik šestnajstiških datotek"
 msgid "binary;debug;hexadecimal;"
 msgstr "razhroščevanje;binarni;osmiški;urejevalnik;"
 
-#: data/org.gnome.GHex.desktop.in.in:20
+#: data/org.gnome.GHex.desktop.in.in:21
 msgid "New Window"
 msgstr "Novo okno"
 
@@ -357,7 +357,7 @@ msgstr ""
 "Neshranjene spremembe bodo trajno izgubljene."
 
 #: src/ghex-application-window.c:353 src/ghex-application-window.c:482
-#: src/ghex-application-window.c:1191 src/paste-special.ui:53
+#: src/ghex-application-window.c:1192 src/paste-special.ui:53
 msgid "_Cancel"
 msgstr "Pre_kliči"
 
@@ -402,12 +402,12 @@ msgstr "Izbor datoteke za shranjevanje medpomnilnika"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1186
+#: src/ghex-application-window.c:1187
 #, c-format
 msgid "Are you sure you want to revert %s?"
 msgstr "Ali ste prepričani, da želite povrniti %s?"
 
-#: src/ghex-application-window.c:1188
+#: src/ghex-application-window.c:1189
 msgid ""
 "Your changes will be lost.\n"
 "This action cannot be undone."
@@ -415,15 +415,15 @@ msgstr ""
 "Vaše spremembe bodo izgubljene.\n"
 "Tega dejanja ni mogoče razveljaviti."
 
-#: src/ghex-application-window.c:1192 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1193 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Povrni"
 
-#: src/ghex-application-window.c:1282
+#: src/ghex-application-window.c:1283
 msgid "Select a file to open"
 msgstr "Izbor datoteke za odpiranje"
 
-#: src/ghex-application-window.c:1389
+#: src/ghex-application-window.c:1391
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -446,7 +446,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1586
+#: src/ghex-application-window.c:1588
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to <tt>0x"
@@ -455,12 +455,12 @@ msgstr ""
 "Odmik: <tt>0x%lX</tt>; izbranih <tt>0x%lX</tt> bajtov od <tt>0x%lX</tt> do "
 "<tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1589
+#: src/ghex-application-window.c:1591
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Odmik: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1596
+#: src/ghex-application-window.c:1598
 #, c-format
 msgid ""
 "Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
@@ -469,13 +469,13 @@ msgstr ""
 "Odmik: <tt>%ld</tt>; izbranin <tt>%ld</tt> bajtov od <tt>%ld</tt> do <tt>"
 "%ld</tt>"
 
-#: src/ghex-application-window.c:1599
+#: src/ghex-application-window.c:1601
 #, c-format
 msgid "Offset: <tt>%ld</tt>"
 msgstr "Odmik: <tt>%ld</tt>"
 
 #. Weird rendering if you don't put the space at the start
-#: src/ghex-application-window.c:1607
+#: src/ghex-application-window.c:1609
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
@@ -486,14 +486,14 @@ msgstr ""
 "<tt>0x%lX</tt> do <tt>0x%lX</tt> <sub>DEC</sub> Odmik: izbranih <tt>%ld</"
 "tt>; <tt>%ld</tt> bajtov od <tt>%ld</tt> do <tt>%ld</tt>"
 
-#: src/ghex-application-window.c:1611
+#: src/ghex-application-window.c:1613
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"
 msgstr ""
 "<sub>ŠESTN</sub> Odmik: <tt>0x%lX</tt> <sub>DEC</sub> Odmik:<tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2437
+#: src/ghex-application-window.c:2439
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -519,11 +519,11 @@ msgstr ""
 "Če se želite izogniti prikazu tega sporočila, poskusite uporabiti drugo "
 "hrbtenico medpomnilnika."
 
-#: src/ghex-application-window.c:2495
+#: src/ghex-application-window.c:2497
 msgid "There was an error reading the file."
 msgstr "Pri branju datoteke je prišlo do napake."
 
-#: src/ghex-application-window.c:2556
+#: src/ghex-application-window.c:2558
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -695,7 +695,7 @@ msgstr "_Ponovno uveljavi"
 msgid "Cu_t"
 msgstr "_Izreži"
 
-#: src/gtkhex.ui:76 src/paste-special.c:420
+#: src/gtkhex.ui:76 src/paste-special.c:450
 msgid "_Copy"
 msgstr "_Kopiraj"
 
@@ -1104,40 +1104,36 @@ msgstr "Izbriše določeno oznako"
 msgid "Closes the marks pane"
 msgstr "Zapre podokno oznak"
 
-#: src/paste-special.c:218
+#: src/paste-special.c:224
 #, c-format
-msgid ""
-"Paste failed; invalid hex format.\n"
-"\n"
-"The string must be in the format of space-delineated hex byte pairs.\n"
-"\n"
-"For example: \"FF 3D 99 0A\""
-msgstr ""
-"Lepljenje ni uspelo; neveljaven šestnajstiški zapis.\n"
-"\n"
-"Niz mora biti v obliki presledkovno označenih šestnajstiških bajtnih parov.\n"
-"\n"
-"Primer: »FF 3D 99 0A«"
+msgid "Failed to paste. Unexpected end of text"
+msgstr "Lepljenje ni uspelo. Nepričakovan konec besedila."
 
-#: src/paste-special.c:305
+#: src/paste-special.c:238
+#, c-format
+msgid "Failed to paste. The pasted string contains an invalid hex digit."
+msgstr ""
+"Lepljenje ni uspelo. Prilepljeni niz vsebuje neveljavno šestnajstiško števko."
+
+#: src/paste-special.c:335
 msgid "GHex Paste Data"
 msgstr "Lepljenje podatkov GHex"
 
-#: src/paste-special.c:422
+#: src/paste-special.c:452
 msgid "Copy Special"
 msgstr "Posebno kopiranje"
 
-#: src/paste-special.c:527
+#: src/paste-special.c:557
 msgid "Plain text (as ASCII)"
 msgstr "Navadno besedilo (kot ASCII)"
 
-#: src/paste-special.c:544
+#: src/paste-special.c:574
 msgid "Plain text (Unicode)"
 msgstr "Navadno besedilo (Unicode)"
 
-#: src/paste-special.c:548
-msgid "Plain text (as space-delimited hex pairs)"
-msgstr "Navadno besedilo (kot šestnajstiški pari, ločeni s presledkom)"
+#: src/paste-special.c:578
+msgid "Plain text (as hex string representing bytes)"
+msgstr "Navadno besedilo (kot šestnajstiški niz, ki predstavlja bajte)"
 
 #: src/paste-special.ui:28
 msgid "Paste Special"
