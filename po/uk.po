@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-04-08 02:44+0000\n"
-"PO-Revision-Date: 2025-04-08 16:00+0300\n"
+"POT-Creation-Date: 2025-06-12 21:03+0000\n"
+"PO-Revision-Date: 2025-06-13 14:20+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -57,8 +57,7 @@ msgstr ""
 "binary;debug;hexadecimal;двійковий;бінарний;діагностика;зневадження;"
 "шістнадцятковий;"
 
-#: data/org.gnome.GHex.desktop.in.in:20
-#| msgid "_New Window"
+#: data/org.gnome.GHex.desktop.in.in:21
 msgid "New Window"
 msgstr "Створити вікно"
 
@@ -355,7 +354,7 @@ msgstr ""
 "Зміни, які не збережено, буде назавжди втрачено."
 
 #: src/ghex-application-window.c:353 src/ghex-application-window.c:482
-#: src/ghex-application-window.c:1191 src/paste-special.ui:53
+#: src/ghex-application-window.c:1192 src/paste-special.ui:53
 msgid "_Cancel"
 msgstr "_Скасувати"
 
@@ -401,12 +400,12 @@ msgstr "Виберіть файл для збереження буфера"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1186
+#: src/ghex-application-window.c:1187
 #, c-format
 msgid "Are you sure you want to revert %s?"
 msgstr "Ви справді хочете повернутися до попередньої версії %s?"
 
-#: src/ghex-application-window.c:1188
+#: src/ghex-application-window.c:1189
 msgid ""
 "Your changes will be lost.\n"
 "This action cannot be undone."
@@ -414,15 +413,15 @@ msgstr ""
 "Внесені вами зміни буде втрачено.\n"
 "Наслідки цієї дії не можна буде скасувати."
 
-#: src/ghex-application-window.c:1192 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1193 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "Від_новити"
 
-#: src/ghex-application-window.c:1282
+#: src/ghex-application-window.c:1283
 msgid "Select a file to open"
 msgstr "Вибрати файл для відкриття"
 
-#: src/ghex-application-window.c:1389
+#: src/ghex-application-window.c:1391
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -445,7 +444,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1586
+#: src/ghex-application-window.c:1588
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -454,12 +453,12 @@ msgstr ""
 "Зсув: <tt>0x%lX</tt>; позначено <tt>0x%lX</tt> байтів від <tt>0x%lX</tt> до "
 "<tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1589
+#: src/ghex-application-window.c:1591
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Зсув: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1596
+#: src/ghex-application-window.c:1598
 #, c-format
 msgid ""
 "Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
@@ -468,13 +467,13 @@ msgstr ""
 "Зсув: <tt>%ld</tt>; <tt>%ld</tt> байтів позначено від <tt>%ld</tt> до "
 "<tt>%ld</tt>"
 
-#: src/ghex-application-window.c:1599
+#: src/ghex-application-window.c:1601
 #, c-format
 msgid "Offset: <tt>%ld</tt>"
 msgstr "Зсув: <tt>%ld</tt>"
 
 #. Weird rendering if you don't put the space at the start
-#: src/ghex-application-window.c:1607
+#: src/ghex-application-window.c:1609
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
@@ -485,14 +484,14 @@ msgstr ""
 "<tt>0x%lX</tt> до <tt>0x%lX</tt> <sub>ДЕС</sub> Зсув: <tt>%ld</tt>; "
 "позначено <tt>%ld</tt> байтів від <tt>%ld</tt> до <tt>%ld</tt>"
 
-#: src/ghex-application-window.c:1611
+#: src/ghex-application-window.c:1613
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"
 msgstr ""
 " <sub>ШІС</sub> Зсув: <tt>0x%lX</tt> <sub>ДЕС</sub> Зсув: <tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2437
+#: src/ghex-application-window.c:2439
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -518,11 +517,11 @@ msgstr ""
 "Щоб уникнути цього повідомлення, спробуйте скористатися іншим модулем "
 "обробки буфера."
 
-#: src/ghex-application-window.c:2495
+#: src/ghex-application-window.c:2497
 msgid "There was an error reading the file."
 msgstr "Під час читання з файла сталася помилка."
 
-#: src/ghex-application-window.c:2556
+#: src/ghex-application-window.c:2558
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -695,7 +694,7 @@ msgstr "Повт_орити"
 msgid "Cu_t"
 msgstr "Ви_різати"
 
-#: src/gtkhex.ui:76 src/paste-special.c:420
+#: src/gtkhex.ui:76 src/paste-special.c:450
 msgid "_Copy"
 msgstr "_Копіювати"
 
@@ -1039,7 +1038,6 @@ msgid "Closes the jump-to-byte pane"
 msgstr "Закриває панель переходу до байта"
 
 #: src/main.c:44
-#| msgid "New window"
 msgid "Open a new window"
 msgstr "Відкрити нове вікно"
 
@@ -1106,41 +1104,37 @@ msgstr "Вилучити вказану позначку"
 msgid "Closes the marks pane"
 msgstr "Закриває панель позначок"
 
-#: src/paste-special.c:218
+#: src/paste-special.c:224
 #, c-format
-msgid ""
-"Paste failed; invalid hex format.\n"
-"\n"
-"The string must be in the format of space-delineated hex byte pairs.\n"
-"\n"
-"For example: \"FF 3D 99 0A\""
-msgstr ""
-"Не вдалося вставити. Некоректний формат шістнадцяткових чисел.\n"
-"\n"
-"Рядок має бути вказано у форматі відокремлених пробілами пар шістнадцяткових "
-"байтів.\n"
-"\n"
-"Приклад: «FF 3D 99 0A»"
+msgid "Failed to paste. Unexpected end of text"
+msgstr "Не вдалося вставити. Неочікуване завершення тексту"
 
-#: src/paste-special.c:305
+#: src/paste-special.c:238
+#, c-format
+msgid "Failed to paste. The pasted string contains an invalid hex digit."
+msgstr ""
+"Не вдалося вставити. У вставленому рядку міститься некоректна шістнадцяткова"
+" цифра."
+
+#: src/paste-special.c:335
 msgid "GHex Paste Data"
 msgstr "Вставлення даних GHex"
 
-#: src/paste-special.c:422
+#: src/paste-special.c:452
 msgid "Copy Special"
 msgstr "Спеціальне копіювання"
 
-#: src/paste-special.c:527
+#: src/paste-special.c:557
 msgid "Plain text (as ASCII)"
 msgstr "Звичайний текст (як ASCII)"
 
-#: src/paste-special.c:544
+#: src/paste-special.c:574
 msgid "Plain text (Unicode)"
 msgstr "Звичайний текст (Unicode)"
 
-#: src/paste-special.c:548
-msgid "Plain text (as space-delimited hex pairs)"
-msgstr "Звичайний текст (як відокремлені пробілами шістн. пари)"
+#: src/paste-special.c:578
+msgid "Plain text (as hex string representing bytes)"
+msgstr "Звичайний текст (як шістнадцятковий рядок, що відповідає байтам)"
 
 #: src/paste-special.ui:28
 msgid "Paste Special"
@@ -1274,6 +1268,24 @@ msgstr "Замінити _все"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Замінити всі екземпляри рядка пошуку рядком заміни"
+
+#, c-format
+#~ msgid ""
+#~ "Paste failed; invalid hex format.\n"
+#~ "\n"
+#~ "The string must be in the format of space-delineated hex byte pairs.\n"
+#~ "\n"
+#~ "For example: \"FF 3D 99 0A\""
+#~ msgstr ""
+#~ "Не вдалося вставити. Некоректний формат шістнадцяткових чисел.\n"
+#~ "\n"
+#~ "Рядок має бути вказано у форматі відокремлених пробілами пар "
+#~ "шістнадцяткових байтів.\n"
+#~ "\n"
+#~ "Приклад: «FF 3D 99 0A»"
+
+#~ msgid "Plain text (as space-delimited hex pairs)"
+#~ msgstr "Звичайний текст (як відокремлені пробілами шістн. пари)"
 
 #~ msgid "_New"
 #~ msgstr "С_творити"
