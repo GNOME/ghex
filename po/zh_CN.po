@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-04-01 06:25+0000\n"
-"PO-Revision-Date: 2025-04-02 07:31+0800\n"
+"POT-Creation-Date: 2025-06-12 21:03+0000\n"
+"PO-Revision-Date: 2025-06-18 08:32+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -60,6 +60,10 @@ msgstr "十六进制编辑器"
 #: data/org.gnome.GHex.desktop.in.in:8
 msgid "binary;debug;hexadecimal;"
 msgstr "binary;debug;hexadecimal;二进制;调试;十六进制;"
+
+#: data/org.gnome.GHex.desktop.in.in:21
+msgid "New Window"
+msgstr "新建窗口"
 
 #: src/chartable.ui:30
 msgid "Character table"
@@ -354,7 +358,7 @@ msgstr ""
 "未保存的更改将永久丢失。"
 
 #: src/ghex-application-window.c:353 src/ghex-application-window.c:482
-#: src/ghex-application-window.c:1191 src/paste-special.ui:53
+#: src/ghex-application-window.c:1192 src/paste-special.ui:53
 msgid "_Cancel"
 msgstr "取消(_C)"
 
@@ -397,12 +401,12 @@ msgstr "选择用来保存缓冲区的文件"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1186
+#: src/ghex-application-window.c:1187
 #, c-format
 msgid "Are you sure you want to revert %s?"
 msgstr "您确定要还原 %s 吗？"
 
-#: src/ghex-application-window.c:1188
+#: src/ghex-application-window.c:1189
 msgid ""
 "Your changes will be lost.\n"
 "This action cannot be undone."
@@ -410,15 +414,15 @@ msgstr ""
 "您的改动将会丢失。\n"
 "此操作无法被撤销。"
 
-#: src/ghex-application-window.c:1192 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1193 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "还原(_R)"
 
-#: src/ghex-application-window.c:1282
+#: src/ghex-application-window.c:1283
 msgid "Select a file to open"
 msgstr "选择要打开的文件"
 
-#: src/ghex-application-window.c:1389
+#: src/ghex-application-window.c:1391
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -441,7 +445,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1586
+#: src/ghex-application-window.c:1588
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -450,12 +454,12 @@ msgstr ""
 "偏移值： <tt>0x%lX</tt>; <tt>0x%lX</tt> 个字节，从 <tt>0x%lX</tt> 到 "
 "<tt>0x%lX</tt> 已被选择"
 
-#: src/ghex-application-window.c:1589
+#: src/ghex-application-window.c:1591
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "偏移值： <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1596
+#: src/ghex-application-window.c:1598
 #, c-format
 msgid ""
 "Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
@@ -464,13 +468,13 @@ msgstr ""
 "偏移值： <tt>%ld</tt>; <tt>%ld</tt> 个字节，从 <tt>%ld</tt> 到 <tt>%ld</tt> "
 "已被选择"
 
-#: src/ghex-application-window.c:1599
+#: src/ghex-application-window.c:1601
 #, c-format
 msgid "Offset: <tt>%ld</tt>"
 msgstr "偏移值： <tt>%ld</tt>"
 
 #. Weird rendering if you don't put the space at the start
-#: src/ghex-application-window.c:1607
+#: src/ghex-application-window.c:1609
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
@@ -481,14 +485,14 @@ msgstr ""
 "<tt>0x%lX</tt> 到 <tt>0x%lX</tt> 已选择 <sub>DEC</sub> 偏移值： <tt>%ld</"
 "tt>; <tt>%ld</tt> 个字节，从 <tt>%ld</tt> 到 <tt>%ld</tt> 已选择"
 
-#: src/ghex-application-window.c:1611
+#: src/ghex-application-window.c:1613
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"
 msgstr ""
 " <sub>HEX</sub> 偏移值： <tt>0x%lX</tt> <sub>DEC</sub> 偏移值： <tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2437
+#: src/ghex-application-window.c:2439
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -512,11 +516,11 @@ msgstr ""
 "\n"
 "若想避免此消息出现，可以尝试使用不同的缓冲区后端。"
 
-#: src/ghex-application-window.c:2495
+#: src/ghex-application-window.c:2497
 msgid "There was an error reading the file."
 msgstr "读取文件时出错。"
 
-#: src/ghex-application-window.c:2556
+#: src/ghex-application-window.c:2558
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -685,7 +689,7 @@ msgstr "重复(_R)"
 msgid "Cu_t"
 msgstr "剪切(_T)"
 
-#: src/gtkhex.ui:76 src/paste-special.c:420
+#: src/gtkhex.ui:76 src/paste-special.c:450
 msgid "_Copy"
 msgstr "复制(_C)"
 
@@ -1025,15 +1029,19 @@ msgid "Closes the jump-to-byte pane"
 msgstr "关闭“跳转到字节位置”窗格"
 
 #: src/main.c:44
+msgid "Open a new window"
+msgstr "打开新窗口"
+
+#: src/main.c:50
 msgid "Show the application version"
 msgstr "显示应用程序版本"
 
-#: src/main.c:93
+#: src/main.c:109
 #, c-format
 msgid "This is GHex, version %s\n"
 msgstr "这是 GHex，版本 %s\n"
 
-#: src/main.c:178
+#: src/main.c:194
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "GHex — 用于 GNOME 桌面的十六进制编辑器"
 
@@ -1085,41 +1093,36 @@ msgstr "删除指定的标记"
 msgid "Closes the marks pane"
 msgstr "关闭标记窗格"
 
-#: src/paste-special.c:218
+#: src/paste-special.c:224
 #, c-format
-msgid ""
-"Paste failed; invalid hex format.\n"
-"\n"
-"The string must be in the format of space-delineated hex byte pairs.\n"
-"\n"
-"For example: \"FF 3D 99 0A\""
-msgstr ""
-"粘贴失败；无效十六进制格式。\n"
-"\n"
-"字符串必须采用由空格分隔的十六进制字节对格式。\n"
-"\n"
-"如：“FF 3D 99 0A”"
+msgid "Failed to paste. Unexpected end of text"
+msgstr "粘贴失败。意外的文本末尾"
 
-#: src/paste-special.c:305
+#: src/paste-special.c:238
+#, c-format
+msgid "Failed to paste. The pasted string contains an invalid hex digit."
+msgstr "粘贴失败。粘贴的字符串包含无效的十六进制数字。"
+
+#: src/paste-special.c:335
 msgid "GHex Paste Data"
 msgstr "GHex 粘贴数据"
 
-#: src/paste-special.c:422
+#: src/paste-special.c:452
 msgid "Copy Special"
 msgstr "特殊复制"
 
-#: src/paste-special.c:527
+#: src/paste-special.c:557
 msgid "Plain text (as ASCII)"
 msgstr "纯文本（ASCII）"
 
 # Unicode 的翻译不统一，Characters 和 Meld 将其译为万国码，但也有应用选择保留原文，如 Disks 和 Totem
-#: src/paste-special.c:544
+#: src/paste-special.c:574
 msgid "Plain text (Unicode)"
 msgstr "纯文本（Unicode）"
 
-#: src/paste-special.c:548
-msgid "Plain text (as space-delimited hex pairs)"
-msgstr "纯文本（空格分隔十六进制字节对）"
+#: src/paste-special.c:578
+msgid "Plain text (as hex string representing bytes)"
+msgstr "纯文本（以 HEX 字符串表示字节）"
 
 #: src/paste-special.ui:28
 msgid "Paste Special"
@@ -1253,6 +1256,23 @@ msgstr "全部替换(_A)"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "将所有的搜索字符串替换为替换字符串"
+
+#, c-format
+#~ msgid ""
+#~ "Paste failed; invalid hex format.\n"
+#~ "\n"
+#~ "The string must be in the format of space-delineated hex byte pairs.\n"
+#~ "\n"
+#~ "For example: \"FF 3D 99 0A\""
+#~ msgstr ""
+#~ "粘贴失败；无效十六进制格式。\n"
+#~ "\n"
+#~ "字符串必须采用由空格分隔的十六进制字节对格式。\n"
+#~ "\n"
+#~ "如：“FF 3D 99 0A”"
+
+#~ msgid "Plain text (as space-delimited hex pairs)"
+#~ msgstr "纯文本（空格分隔十六进制字节对）"
 
 #~ msgid "_New"
 #~ msgstr "新建(_N)"
