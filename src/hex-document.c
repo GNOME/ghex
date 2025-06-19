@@ -31,6 +31,7 @@
  */
 
 #include "hex-document.h"
+#include "hex-file-monitor.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -164,6 +165,7 @@ struct _HexDocument
 	GFile *file;
 	gboolean changed;
 	HexBuffer *buffer;
+	HexFileMonitor *monitor;
 
 	GList *undo_stack; /* stack base */
 	GList *undo_top;   /* top of the stack (for redo) */
@@ -507,6 +509,18 @@ hex_document_new (void)
 	return g_object_new (HEX_TYPE_DOCUMENT, NULL);
 }
 
+static void
+hex_document_file_changed_cb (HexDocument *doc,
+                              GParamSpec *pspec,
+                              HexFileMonitor *monitor)
+{
+	if (hex_file_monitor_get_changed(monitor)) {
+		doc->changed = TRUE;
+		HexChangeData *change_data = g_new0 (HexChangeData, 1);
+		hex_document_changed (doc, &change_data, FALSE);
+	}
+}
+
 /**
  * hex_document_set_file:
  * @doc: a [class@Hex.Document] object
@@ -545,6 +559,13 @@ hex_document_set_file (HexDocument *doc, GFile *file)
 
 	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
 	g_object_notify_by_pspec (G_OBJECT(doc), properties[BUFFER]);
+
+	doc->monitor = hex_file_monitor_new (file);
+	g_signal_connect_object(doc->monitor,
+	                        "notify::changed",
+	                        G_CALLBACK (hex_document_file_changed_cb),
+	                        doc,
+	                        G_CONNECT_SWAPPED);
 
 	return TRUE;
 }
@@ -788,6 +809,8 @@ document_ready_cb (GObject *source_object,
 	/* Initialize data for new doc */
 
 	undo_stack_free(doc);
+	doc->changed = FALSE;
+	hex_file_monitor_reset (doc->monitor);
 
 	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_LOADED], 0);
 	g_task_return_boolean (task, TRUE);
@@ -873,6 +896,7 @@ hex_document_write (HexDocument *doc)
 	if (ret)
 	{
 		doc->changed = FALSE;
+		hex_file_monitor_reset (doc->monitor);
 		g_signal_emit (G_OBJECT(doc), hex_signals[FILE_SAVED], 0);
 	}
 
@@ -928,6 +952,7 @@ write_ready_cb (GObject *source_object,
 	if (success)
 	{
 		doc->changed = FALSE;
+		hex_file_monitor_reset (doc->monitor);
 		g_signal_emit (doc, hex_signals[FILE_SAVED], 0);
 		g_task_return_boolean (doc_task, TRUE);
 	}
