@@ -37,12 +37,6 @@
 #define ACTIVE_GH	\
 	(ghex_application_window_get_hex (self))
 
-#define GH_FOR_TAB(TV, NUM) \
-		(HEX_WIDGET(adw_tab_page_get_child (adw_tab_view_get_nth_page (TV, NUM))));
-
-#define TAB_FOR_GH(GH) \
-	(adw_tab_view_get_page (ADW_TAB_VIEW(self->hex_tab_view), GTK_WIDGET(GH)))
-
 /* Translators: this is the string for an untitled buffer that will
  * be displayed in the titlebar when a user does File->New
  */
@@ -176,6 +170,28 @@ static void ghex_application_window_connect_hex_signals (GHexApplicationWindow *
 
 /* GHexApplicationWindow -- PRIVATE FUNCTIONS */
 
+static HexWidget *
+get_gh_for_page (GHexApplicationWindow *self, AdwTabPage *page)
+{
+	GtkWidget *box = adw_tab_page_get_child (page);
+
+	for (GtkWidget *child = gtk_widget_get_first_child (box);
+			child != NULL;
+			child = gtk_widget_get_next_sibling (child))
+	{
+		if (HEX_IS_WIDGET (child))
+			return HEX_WIDGET(child);
+	}
+
+	return NULL;
+}
+
+static HexWidget *
+get_gh_for_tab (GHexApplicationWindow *self, AdwTabView *tv, int num)
+{
+	return get_gh_for_page (self, adw_tab_view_get_nth_page (tv, num));
+}
+
 /* Common macro to apply something to the 'gh' of each tab of the tab view.
  *
  * Between _START and _END, put in function calls that use `gh` to be applied
@@ -186,15 +202,49 @@ static void ghex_application_window_connect_hex_signals (GHexApplicationWindow *
 	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);				\
 	int i;																	\
 	for (i = adw_tab_view_get_n_pages(tab_view) - 1; i >= 0; --i) {			\
-		HexWidget *gh;														\
-		gh = HEX_WIDGET(adw_tab_page_get_child (							\
-					adw_tab_view_get_nth_page (tab_view, i)));
+		AdwTabPage *tab_page = adw_tab_view_get_nth_page (tab_view, i);		\
+		HexWidget *gh = get_gh_for_tab (self, tab_view, i);
 /* !TAB_VIEW_GH_FOREACH_START */
 
 #define TAB_VIEW_GH_FOREACH_END												\
 	} 																		\
 }																			\
 /* !TAB_VIEW_GH_FOREACH_END	*/
+
+static AdwTabPage *
+get_tab_for_gh (GHexApplicationWindow *self, HexWidget *target_gh)
+{
+	TAB_VIEW_GH_FOREACH_START
+
+	if (gh == target_gh)
+		return tab_page;
+
+	TAB_VIEW_GH_FOREACH_END
+
+	return NULL;
+}
+
+static HexInfoBar *
+get_info_bar_for_gh (GHexApplicationWindow *self, HexWidget *target_gh)
+{
+	TAB_VIEW_GH_FOREACH_START
+
+	if (gh == target_gh)
+	{
+		GtkWidget *box = adw_tab_page_get_child (tab_page);
+		for (GtkWidget *child = gtk_widget_get_first_child (box);
+				child != NULL;
+				child = gtk_widget_get_next_sibling (child))
+		{
+			if (HEX_IS_INFO_BAR (child))
+				return HEX_INFO_BAR(child);
+		}
+	}
+
+	TAB_VIEW_GH_FOREACH_END
+
+	return NULL;
+}
 
 /* set_*_from_settings
  * These functions all basically set properties from the GSettings global
@@ -377,7 +427,7 @@ check_close_window (GHexApplicationWindow *self)
 		HexWidget *gh;
 		HexDocument *doc = NULL;
 
-		gh = GH_FOR_TAB (tab_view, i);
+		gh = get_gh_for_tab (self, tab_view, i);
 		doc = hex_widget_get_document (gh);
 
 		if (hex_document_has_changed (doc))
@@ -456,7 +506,7 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 	char *title;
 	char *message;
 	char *basename = NULL;
-	HexWidget *gh = HEX_WIDGET(adw_tab_page_get_child (page));
+	HexWidget *gh = get_gh_for_page (self, page);
 	doc = hex_widget_get_document (gh);
 
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
@@ -616,7 +666,7 @@ update_tabs (GHexApplicationWindow *self)
 	else
 		basename = g_strdup (_(UNTITLED_STRING));
 
-	adw_tab_page_set_title (TAB_FOR_GH (gh), basename);
+	adw_tab_page_set_title (get_tab_for_gh (self, gh), basename);
 	g_free (basename);
 
 	TAB_VIEW_GH_FOREACH_END
@@ -649,12 +699,13 @@ file_loaded (HexDocument *doc, GHexApplicationWindow *self)
 {
 	document_loaded_or_saved_common (self, doc);
 	update_gui_data (self);
-	adw_tab_page_set_icon (TAB_FOR_GH (ACTIVE_GH), NULL);
+	adw_tab_page_set_icon (get_tab_for_gh (self, ACTIVE_GH), NULL);
+	hex_info_bar_set_shown (get_info_bar_for_gh (self, ACTIVE_GH), FALSE);
 }
 
 static void
 document_changed_cb (HexDocument *doc,
-		gpointer change_data,
+		HexChangeData *change_data,
 		gboolean push_undo,
 		gpointer user_data)
 {
@@ -666,9 +717,15 @@ document_changed_cb (HexDocument *doc,
 
 	if (hex_widget_get_document (gh) == doc)
 	{
-		GIcon *icon = g_themed_icon_new ("document-modified-symbolic");
-		adw_tab_page_set_icon (TAB_FOR_GH (gh), icon);
+		GIcon *icon;
+		HexInfoBar *info_bar;
+
+		icon = g_themed_icon_new ("document-modified-symbolic");
+		adw_tab_page_set_icon (get_tab_for_gh (self, gh), icon);
 		g_object_unref (icon);
+
+		info_bar = get_info_bar_for_gh (self, gh);
+		hex_info_bar_set_shown (info_bar, change_data->external_file_change);
 	}
 
 	TAB_VIEW_GH_FOREACH_END
@@ -683,7 +740,7 @@ tab_view_close_page_cb (AdwTabView *tab_view,
 	HexDocument *doc;
 	HexWidget *gh;
 
-	gh = HEX_WIDGET(adw_tab_page_get_child (page));
+	gh = get_gh_for_page (self, page);
 	doc = hex_widget_get_document (gh);
 
 	if (hex_document_has_changed (doc)) {
@@ -722,8 +779,7 @@ tab_view_page_attached_cb (AdwTabView *tab_view,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	ghex_application_window_connect_hex_signals (self,
-			HEX_WIDGET(adw_tab_page_get_child (page)));
+	ghex_application_window_connect_hex_signals (self, get_gh_for_page (self, page));
 
 	/* Let's play this super dumb. If a page is added, that will generally
 	 * mean we don't have to count the pages to see if we have > 0.
@@ -739,8 +795,7 @@ tab_view_page_detached_cb (AdwTabView *tab_view,
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
 
-	ghex_application_window_disconnect_hex_signals (self,
-			HEX_WIDGET(adw_tab_page_get_child (page)));
+	ghex_application_window_disconnect_hex_signals (self, get_gh_for_page (self, page));
 }
 
 static AdwTabView *
@@ -1763,9 +1818,9 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	GtkDropTarget *target;
 	GtkCssProvider *provider;
 
-	/* Ensure the custom statusbar widget is registered with the type system.
-	 */
+	/* Ensure widgets are registered with the type system. */
 	g_type_ensure (HEX_TYPE_STATUSBAR);
+	g_type_ensure (HEX_TYPE_INFO_BAR);
 
 	gtk_widget_init_template (widget);
 
@@ -2342,8 +2397,7 @@ ghex_application_window_activate_tab (GHexApplicationWindow *self,
 
 	g_return_if_fail (HEX_IS_WIDGET (gh));
 
-	adw_tab_view_set_selected_page (tab_view,
-			adw_tab_view_get_page (tab_view, GTK_WIDGET(gh)));
+	adw_tab_view_set_selected_page (tab_view, get_tab_for_gh (self, gh));
 
 	gtk_widget_grab_focus (GTK_WIDGET(gh));
 }
@@ -2381,6 +2435,8 @@ void
 ghex_application_window_add_hex (GHexApplicationWindow *self,
 		HexWidget *gh)
 {
+	GtkWidget *info_bar;
+	GtkWidget *box;
 	GtkWidget *tab;
 	HexDocument *doc;
 
@@ -2400,8 +2456,17 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	/* HexWidget: Set insert mode based on our global appwindow prop */
 	hex_widget_set_insert_mode (gh, self->insert_mode);
 
+	/* Setup box to hold info_bar and HexWidget */
+	box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+	info_bar = hex_info_bar_new ();
+
+	gtk_box_append (GTK_BOX(box), info_bar);
+	gtk_box_append (GTK_BOX(box), GTK_WIDGET(gh));
+	gtk_widget_set_hexpand (GTK_WIDGET(gh), TRUE);
+	gtk_widget_set_vexpand (GTK_WIDGET(gh), TRUE);
+
 	/* Add tab */
-	adw_tab_view_append (ADW_TAB_VIEW(self->hex_tab_view), GTK_WIDGET(gh));
+	adw_tab_view_append (ADW_TAB_VIEW(self->hex_tab_view), box);
 
 	show_hex_tab_view (self);
 }
@@ -2582,7 +2647,17 @@ ghex_application_window_get_hex (GHexApplicationWindow *self)
 	page = adw_tab_view_get_selected_page (ADW_TAB_VIEW(self->hex_tab_view));
 
 	if (page)
-		return HEX_WIDGET(adw_tab_page_get_child (page));
+	{
+		GtkWidget *box = adw_tab_page_get_child (page);
+		for (GtkWidget *child = gtk_widget_get_first_child (box);
+				child != NULL;
+				child = gtk_widget_get_next_sibling (child))
+		{
+			if (HEX_IS_WIDGET (child))
+				return HEX_WIDGET(child);
+		}
+		return NULL;
+	}
 	else
 		return NULL;
 }
