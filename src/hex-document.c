@@ -514,9 +514,15 @@ hex_document_file_changed_cb (HexDocument *doc,
                               GParamSpec *pspec,
                               HexFileMonitor *monitor)
 {
-	if (hex_file_monitor_get_changed(monitor)) {
+	if (hex_file_monitor_get_changed(monitor))
+	{
+		HexChangeData *change_data;
+
 		doc->changed = TRUE;
-		HexChangeData *change_data = g_new0 (HexChangeData, 1);
+
+		change_data = g_new0 (HexChangeData, 1);
+		change_data->external_file_change = TRUE;
+
 		hex_document_changed (doc, &change_data, FALSE);
 	}
 }
