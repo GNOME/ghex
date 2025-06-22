@@ -126,6 +126,8 @@ typedef struct
  *   or a single byte)
  * @v_string: string of the data representing a change, or %NULL
  * @v_byte: character representing a single byte to be changed, if applicable
+ * @external_file_change: whether the change came externally (typically from
+ *   another program) (Since: 4.10)
  *
  * A structure containing metadata about a change made to a
  * [class@Hex.Document].
@@ -148,7 +150,10 @@ typedef struct
 	/*< private >*/
 	gpointer padding1[5];
 	gint64 padding2[5];
-	int padding3[5];
+	/*< public >*/
+	gboolean external_file_change;
+	/*< private >*/
+	int padding3[4];
 } HexChangeData;
 
 

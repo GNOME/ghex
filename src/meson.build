@@ -122,6 +122,7 @@ ghex_sources = [
   'findreplace.c',
   'ghex-application-window.c',
   'hex-dialog.c',
+  'hex-info-bar.c',
   'hex-statusbar.c',
   'main.c',
   'mark-dialog.c',
