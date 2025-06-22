@@ -1,3 +1,49 @@
+============
+GHex 48.beta
+============
+
+Changes and bugfixes since 48.alpha:
+- appwin: Put each window in its own group (Logan Rathbone, Balló György) (!71)
+- Implement info bar to communicate external file changes (Logan Rathbone) (!75)
+- doc: Add external_file_change member to HexChangeData struct (Logan Rathbone)
+  (!75)
+- Enable/disable save and revert actions based on external file changes (Jordan
+  Christiansen) (#67, !73)
+- Add file monitor to track external file changes (Jordan Christiansen) (#67,
+  !73)
+- paste: Allow for pasting of hex strings with or without delimiters (Dilnavas
+  Roshan) (#89, !74)
+- Add D-Bus service file (Balló György) (!70)
+- Set file selection dialog for 'Open' and 'Save As' as modal dialog (#80, !72)
+- Use appstreamcli for validation instead of appstream-util (Matthias Klumpp)
+- Add "new-window" command-line option (Balló György) (!68)
+- Implement new-window action (Balló György) (!67)
+- findrep: replace option's ComboBox by a ToggleGroup (g.willems) (!62, #58,
+  #81)
+- Fix erroneous error message when writing empty files (Jordan Christiansen)
+  (#73, !66)
+- appwin: Refresh status bar on changing of format setting (Logan Rathbone)
+- build: Don't include gtk-hex-paste-data.c symbols in both lib and binary
+  (Logan Rathbone) (#78, !65)
+- Add option to change status bar offset format (cheezy837)
+- appdata: Update screenshot URLs (Logan Rathbone) (#90)
+
+Translation updates:
+- Alan Mortensen (da)
+- Álvaro Burns (pt_BR)
+- Anders Jonsson (sv)
+- Andika Triwidada (id)
+- Ekaterine Papava (ka)
+- Jane Doe (zh_CN)
+- Jiri Grönroos (fi)
+- Jordi Mas i Hernandez (ca)
+- Luming Zh (zh_CN)
+- Martin (sl)
+- Rafael Fontenelle (pt_BR)
+- Sabri Ünal (tr)
+- Sergej A. (ru)
+- Yuri Chornoivan (uk)
+
 =============
 GHex 48.alpha
 =============
