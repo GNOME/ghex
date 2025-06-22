@@ -1718,6 +1718,7 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	GAction *action;
 	GtkDropTarget *target;
 	GtkCssProvider *provider;
+	GtkWindowGroup *group;
 
 	/* Ensure the custom statusbar widget is registered with the type system.
 	 */
@@ -1833,6 +1834,12 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	gtk_style_context_add_provider_for_display (gdk_display_get_default (),
 			GTK_STYLE_PROVIDER (provider),
 			GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+	/* Add to window group */
+
+	group = gtk_window_group_new ();
+	gtk_window_group_add_window (group, GTK_WINDOW(self));
+	g_object_unref (group);
 }
 
 static void
