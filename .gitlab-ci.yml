@@ -4,11 +4,9 @@ include:
   - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
     inputs:
       dist-job-name: "flatpak"
-      tarball-artifact-path: "${TARBALL_ARTIFACT_PATH}"
 
 variables: #<1.>
   FLATPAK_MODULE: "ghex"
-  TARBALL_ARTIFACT_PATH: ".flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/meson-dist/${CI_PROJECT_NAME}-${CI_COMMIT_TAG}.tar.xz"
 
 flatpak:
   extends: '.flatpak'
