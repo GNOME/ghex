@@ -371,6 +371,5 @@ display_dialog (GtkWindow *parent, const char *msg)
 	dialog = adw_alert_dialog_new (NULL, msg);
 	adw_alert_dialog_add_response (ADW_ALERT_DIALOG(dialog), "close", _("Close"));
 	adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG(dialog), "close");
-	g_signal_connect (dialog, "response", G_CALLBACK(gtk_window_destroy), NULL);
 	adw_dialog_present (dialog, GTK_WIDGET(parent));
 }
