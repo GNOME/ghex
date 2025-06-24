@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-06-12 21:03+0000\n"
-"PO-Revision-Date: 2025-06-13 14:20+0300\n"
+"POT-Creation-Date: 2025-06-24 12:25+0000\n"
+"PO-Revision-Date: 2025-06-24 16:24+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -333,19 +333,19 @@ msgstr "Не виявлено входжень."
 #. Translators: this is the string for an untitled buffer that will
 #. * be displayed in the titlebar when a user does File->New
 #.
-#: src/ghex-application-window.c:49 src/hex-document.c:1110
+#: src/ghex-application-window.c:43 src/hex-document.c:1141
 msgid "Untitled"
 msgstr "Без назви"
 
-#: src/ghex-application-window.c:307
+#: src/ghex-application-window.c:357
 msgid "There was an error saving the file."
 msgstr "Під час спроби зберегти файл сталася помилка."
 
-#: src/ghex-application-window.c:347
+#: src/ghex-application-window.c:397
 msgid "Save Changes?"
 msgstr "Зберегти зміни?"
 
-#: src/ghex-application-window.c:350
+#: src/ghex-application-window.c:400
 msgid ""
 "Open documents contain unsaved changes.\n"
 "Changes which are not saved will be permanently lost."
@@ -353,40 +353,40 @@ msgstr ""
 "До відкритих документів внесено незбережені зміни..\n"
 "Зміни, які не збережено, буде назавжди втрачено."
 
-#: src/ghex-application-window.c:353 src/ghex-application-window.c:482
-#: src/ghex-application-window.c:1192 src/paste-special.ui:53
+#: src/ghex-application-window.c:403 src/ghex-application-window.c:532
+#: src/ghex-application-window.c:1247 src/paste-special.ui:53
 msgid "_Cancel"
 msgstr "_Скасувати"
 
-#: src/ghex-application-window.c:354 src/ghex-application-window.c:483
+#: src/ghex-application-window.c:404 src/ghex-application-window.c:533
 msgid "_Discard"
 msgstr "Від_кинути"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:470
+#: src/ghex-application-window.c:520
 #, c-format
 msgid "%s has been edited since opening."
 msgstr "%s було редаговано з моменту відкриття."
 
-#: src/ghex-application-window.c:474
+#: src/ghex-application-window.c:524
 msgid "The buffer has been edited since opening."
 msgstr "Буфер було змінено з моменту відкриття."
 
-#: src/ghex-application-window.c:477
+#: src/ghex-application-window.c:527
 msgid "Would you like to save your changes?"
 msgstr "Хочете зберегти внесені вами зміни?"
 
-#: src/ghex-application-window.c:484
+#: src/ghex-application-window.c:534
 msgid "_Save"
 msgstr "З_берегти"
 
-#: src/ghex-application-window.c:1050
+#: src/ghex-application-window.c:1105
 msgid "There was an error saving the file to the path specified."
 msgstr ""
 "Під час спроби збереження файла до вказаного каталогу сталася помилка."
 
-#: src/ghex-application-window.c:1069
+#: src/ghex-application-window.c:1124
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -394,18 +394,18 @@ msgstr ""
 "Сталася невідома помилка під час спроби повторно завантажити файл, який ви "
 "щойно зберегли."
 
-#: src/ghex-application-window.c:1122
+#: src/ghex-application-window.c:1177
 msgid "Select a file to save buffer as"
 msgstr "Виберіть файл для збереження буфера"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1187
+#: src/ghex-application-window.c:1242
 #, c-format
 msgid "Are you sure you want to revert %s?"
 msgstr "Ви справді хочете повернутися до попередньої версії %s?"
 
-#: src/ghex-application-window.c:1189
+#: src/ghex-application-window.c:1244
 msgid ""
 "Your changes will be lost.\n"
 "This action cannot be undone."
@@ -413,15 +413,15 @@ msgstr ""
 "Внесені вами зміни буде втрачено.\n"
 "Наслідки цієї дії не можна буде скасувати."
 
-#: src/ghex-application-window.c:1193 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1248 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "Від_новити"
 
-#: src/ghex-application-window.c:1283
+#: src/ghex-application-window.c:1338
 msgid "Select a file to open"
 msgstr "Вибрати файл для відкриття"
 
-#: src/ghex-application-window.c:1391
+#: src/ghex-application-window.c:1446
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -444,7 +444,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1588
+#: src/ghex-application-window.c:1643
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -453,12 +453,12 @@ msgstr ""
 "Зсув: <tt>0x%lX</tt>; позначено <tt>0x%lX</tt> байтів від <tt>0x%lX</tt> до "
 "<tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1591
+#: src/ghex-application-window.c:1646
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Зсув: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1598
+#: src/ghex-application-window.c:1653
 #, c-format
 msgid ""
 "Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
@@ -467,13 +467,13 @@ msgstr ""
 "Зсув: <tt>%ld</tt>; <tt>%ld</tt> байтів позначено від <tt>%ld</tt> до "
 "<tt>%ld</tt>"
 
-#: src/ghex-application-window.c:1601
+#: src/ghex-application-window.c:1656
 #, c-format
 msgid "Offset: <tt>%ld</tt>"
 msgstr "Зсув: <tt>%ld</tt>"
 
 #. Weird rendering if you don't put the space at the start
-#: src/ghex-application-window.c:1609
+#: src/ghex-application-window.c:1664
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
@@ -484,14 +484,14 @@ msgstr ""
 "<tt>0x%lX</tt> до <tt>0x%lX</tt> <sub>ДЕС</sub> Зсув: <tt>%ld</tt>; "
 "позначено <tt>%ld</tt> байтів від <tt>%ld</tt> до <tt>%ld</tt>"
 
-#: src/ghex-application-window.c:1613
+#: src/ghex-application-window.c:1668
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"
 msgstr ""
 " <sub>ШІС</sub> Зсув: <tt>0x%lX</tt> <sub>ДЕС</sub> Зсув: <tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2439
+#: src/ghex-application-window.c:2511
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -517,11 +517,11 @@ msgstr ""
 "Щоб уникнути цього повідомлення, спробуйте скористатися іншим модулем "
 "обробки буфера."
 
-#: src/ghex-application-window.c:2497
+#: src/ghex-application-window.c:2569
 msgid "There was an error reading the file."
 msgstr "Під час читання з файла сталася помилка."
 
-#: src/ghex-application-window.c:2558
+#: src/ghex-application-window.c:2630
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -988,25 +988,37 @@ msgstr "Показувати беззнакові та з рухомою ком�
 msgid "Stream Length:"
 msgstr "Довжина потоку:"
 
-#: src/hex-document.c:1138
+#: src/hex-document.c:1169
 #, c-format
 msgid "Page"
 msgstr "Сторінка"
 
-#: src/hex-document.c:1144 src/hex-document.c:1247
+#: src/hex-document.c:1175 src/hex-document.c:1278
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Шістнадцятковий дамп згенеровано за"
 
-#: src/hex-document.c:1170
+#: src/hex-document.c:1201
 #, c-format
 msgid "Previous page"
 msgstr "Попередня сторінка"
 
-#: src/hex-document.c:1185
+#: src/hex-document.c:1216
 #, c-format
 msgid "Next page"
 msgstr "наступна сторінка"
+
+#: src/hex-info-bar.c:207
+msgid "File Has Changed on Disk"
+msgstr "Файл змінено на диску"
+
+#: src/hex-info-bar.c:211
+msgid "The file has been changed by another program."
+msgstr "Сторонньою програмою було внесено зміни до файла."
+
+#: src/hex-info-bar.ui:69
+msgid "_Discard Changes and Reload"
+msgstr "Від_кинути зміни і перезавантажити"
 
 #: src/jump-dialog.ui:35
 msgid "Jump to byte (enter offset):"
@@ -1113,8 +1125,8 @@ msgstr "Не вдалося вставити. Неочікуване завер�
 #, c-format
 msgid "Failed to paste. The pasted string contains an invalid hex digit."
 msgstr ""
-"Не вдалося вставити. У вставленому рядку міститься некоректна шістнадцяткова"
-" цифра."
+"Не вдалося вставити. У вставленому рядку міститься некоректна шістнадцяткова "
+"цифра."
 
 #: src/paste-special.c:335
 msgid "GHex Paste Data"
