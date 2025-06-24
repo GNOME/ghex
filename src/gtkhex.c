@@ -403,6 +403,8 @@ struct _HexWidget
 	GtkWidget *busy_spinner;
 
 	PangoLayout *xlayout, *alayout, *olayout;
+	PangoLayout *xlayout_top_line_cache;
+	PangoLayout *alayout_top_line_cache;
 
 	GtkWidget *context_menu;
 	GtkWidget *geometry_popover;
@@ -811,41 +813,63 @@ move_to_buffer_ends_action (GtkWidget *widget,
  * ?_to_pointer translates mouse coordinates in hex/ascii view
  * to cursor coordinates.
  */
+static int
+hex_layout_index_to_line_byte_offset (PangoLayout *layout,
+		int hex_layout_index,
+		gboolean *lower_nibble)
+{
+	const char *str = pango_layout_get_text (layout);
+
+	g_assert (str);
+
+	for (int i = 0, hex_char_ct = 0, retval = 0; i < strlen (str); ++i)
+	{
+		if (str[i] == ' ')
+			continue;
+
+		++hex_char_ct;
+
+		if (i >= hex_layout_index)
+		{
+			if (lower_nibble != NULL)
+				*lower_nibble = (hex_char_ct % 2 == 0);
+
+			return retval;
+		}
+
+		if (hex_char_ct % 2 == 0)
+			++retval;
+	}
+
+	return 0;
+}
+
 static void
 hex_to_pointer (HexWidget *self, int mx, int my)
 {
-	int x = 0, cx = 0;
-	gint64 cy;
+	const gint64 cy = self->top_line + my/self->char_height;
+	PangoLayout *layout = self->xlayout_top_line_cache;
+	int cx = 0;
+	int index = 0;
+	gboolean lower_nibble = FALSE;
 	
-	cy = self->top_line + my/self->char_height;
+	pango_layout_xy_to_index (layout, mx * PANGO_SCALE, 0, &index, NULL);
 
-	while (cx < 2 * self->cpl)
-	{
-		x += self->char_width;
-		
-		if (x > mx)
-		{
-			hex_widget_set_cursor_by_row_and_col (self, cx/2, cy);
-			hex_widget_set_nibble (self, ((cx%2 == 0)?UPPER_NIBBLE:LOWER_NIBBLE));
-			
-			cx = 2*self->cpl;
-		}
-		
-		cx++;
-		
-		if(cx%(2*self->group_type) == 0)
-			x += self->char_width;
-	}
+	cx = hex_layout_index_to_line_byte_offset (layout, index, &lower_nibble);
+
+	hex_widget_set_cursor_by_row_and_col (self, cx, cy);
+	hex_widget_set_nibble (self, lower_nibble);
 }
 
 static void
 ascii_to_pointer (HexWidget *self, int mx, int my)
 {
-	gint64 cy;
-	
-	cy = self->top_line + my/self->char_height;
-	
-	hex_widget_set_cursor_by_row_and_col (self, mx/self->char_width, cy);
+	const gint64 cy = self->top_line + my/self->char_height;
+	int cx = 0;
+	PangoLayout *layout = self->alayout_top_line_cache;
+
+	/*cx = */ pango_layout_xy_to_index (layout, mx * PANGO_SCALE, 0, &cx, NULL);
+	hex_widget_set_cursor_by_row_and_col (self, cx, cy);
 }
 
 static int
@@ -1469,6 +1493,7 @@ render_lines (HexWidget *self,
 	GtkWidget *widget;
 	GtkStateFlags state;
 	PangoLayout *layout;
+	PangoLayout *layout_top_line_cache;
 	int (*block_format_func) (HexWidget *self, gint64 start, gint64 end);
 	int block_format_len;
 	GtkAllocation allocation;
@@ -1486,6 +1511,7 @@ render_lines (HexWidget *self,
 	{
 		widget = self->xdisp;
 		layout = self->xlayout;
+		layout_top_line_cache = self->xlayout_top_line_cache;
 		block_format_func = format_xblock;
 
 		if (! self->default_cpl)
@@ -1500,6 +1526,7 @@ render_lines (HexWidget *self,
 	{
 		widget = self->adisp;
 		layout = self->alayout;
+		layout_top_line_cache = self->alayout_top_line_cache;
 		block_format_func = format_ablock;
 		cpl = self->cpl;
 	}
@@ -1524,6 +1551,8 @@ render_lines (HexWidget *self,
 			! hex_document_has_changed (self->document))
 	{
 		pango_layout_set_text (layout, " ", -1);
+		pango_layout_set_text (layout_top_line_cache,
+				pango_layout_get_text (layout), -1);
 		goto no_more_lines_to_draw;
 	}
 
@@ -1554,6 +1583,12 @@ render_lines (HexWidget *self,
 				NULL, NULL, NULL);
 
 		pango_layout_set_text (layout, disp_buffer_as_utf8, -1);
+
+		if (i == min_lines) {
+			pango_layout_set_text (layout_top_line_cache,
+					pango_layout_get_text (layout), -1);
+		}
+
 		g_free (disp_buffer_as_utf8);
 
 		if (type == VIEW_HEX && self->fade_zeroes)
@@ -2939,6 +2974,9 @@ hex_widget_dispose (GObject *object)
 	g_clear_object (&self->alayout);
 	g_clear_object (&self->olayout);
 
+	g_clear_object (&self->xlayout_top_line_cache);
+	g_clear_object (&self->alayout_top_line_cache);
+
 	g_clear_object (&self->document);
 	
 	/* Chain up */
@@ -3345,6 +3383,7 @@ hex_widget_init (HexWidget *self)
 
 	/* Create the pango layout for the widget */
 	self->xlayout = gtk_widget_create_pango_layout (self->xdisp, "");
+	self->xlayout_top_line_cache = pango_layout_copy (self->xlayout);
 
 	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (self->xdisp),
 			hex_draw,
@@ -3370,6 +3409,7 @@ hex_widget_init (HexWidget *self)
 
 	/* Create the pango layout for the widget */
 	self->alayout = gtk_widget_create_pango_layout (self->adisp, "");
+	self->alayout_top_line_cache = pango_layout_copy (self->alayout);
 
 	gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (self->adisp),
 			ascii_draw,
