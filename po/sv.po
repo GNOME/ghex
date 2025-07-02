@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-04-08 02:44+0000\n"
-"PO-Revision-Date: 2025-04-08 07:46+0200\n"
+"POT-Creation-Date: 2025-06-24 12:25+0000\n"
+"PO-Revision-Date: 2025-06-24 23:05+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
 #: src/ghex-application-window.ui.in:151
@@ -56,7 +56,7 @@ msgstr "Hexadecimalredigerare"
 msgid "binary;debug;hexadecimal;"
 msgstr "binär;felsök;debug;hexadecimal;"
 
-#: data/org.gnome.GHex.desktop.in.in:20
+#: data/org.gnome.GHex.desktop.in.in:21
 msgid "New Window"
 msgstr "Nytt fönster"
 
@@ -339,19 +339,19 @@ msgstr "Inga förekomster hittades."
 #. Translators: this is the string for an untitled buffer that will
 #. * be displayed in the titlebar when a user does File->New
 #.
-#: src/ghex-application-window.c:49 src/hex-document.c:1110
+#: src/ghex-application-window.c:43 src/hex-document.c:1141
 msgid "Untitled"
 msgstr "Namnlös"
 
-#: src/ghex-application-window.c:307
+#: src/ghex-application-window.c:357
 msgid "There was an error saving the file."
 msgstr "Det uppstod ett fel när filen skulle sparas."
 
-#: src/ghex-application-window.c:347
+#: src/ghex-application-window.c:397
 msgid "Save Changes?"
 msgstr "Spara ändringar?"
 
-#: src/ghex-application-window.c:350
+#: src/ghex-application-window.c:400
 msgid ""
 "Open documents contain unsaved changes.\n"
 "Changes which are not saved will be permanently lost."
@@ -359,39 +359,39 @@ msgstr ""
 "Öppna dokument innehåller osparade ändringar.\n"
 "Ändringar som inte har sparats kommer att förloras permanent."
 
-#: src/ghex-application-window.c:353 src/ghex-application-window.c:482
-#: src/ghex-application-window.c:1191 src/paste-special.ui:53
+#: src/ghex-application-window.c:403 src/ghex-application-window.c:532
+#: src/ghex-application-window.c:1247 src/paste-special.ui:53
 msgid "_Cancel"
 msgstr "A_vbryt"
 
-#: src/ghex-application-window.c:354 src/ghex-application-window.c:483
+#: src/ghex-application-window.c:404 src/ghex-application-window.c:533
 msgid "_Discard"
 msgstr "_Förkasta"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:470
+#: src/ghex-application-window.c:520
 #, c-format
 msgid "%s has been edited since opening."
 msgstr "%s har redigerats sedan den öppnades."
 
-#: src/ghex-application-window.c:474
+#: src/ghex-application-window.c:524
 msgid "The buffer has been edited since opening."
 msgstr "Bufferten har redigerats sedan den öppnades."
 
-#: src/ghex-application-window.c:477
+#: src/ghex-application-window.c:527
 msgid "Would you like to save your changes?"
 msgstr "Vill du spara dina ändringar?"
 
-#: src/ghex-application-window.c:484
+#: src/ghex-application-window.c:534
 msgid "_Save"
 msgstr "_Spara"
 
-#: src/ghex-application-window.c:1050
+#: src/ghex-application-window.c:1105
 msgid "There was an error saving the file to the path specified."
 msgstr "Det uppstod ett fel när filen skulle sparas på den angivna sökvägen."
 
-#: src/ghex-application-window.c:1069
+#: src/ghex-application-window.c:1124
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -399,18 +399,18 @@ msgstr ""
 "Ett okänt fel har inträffat vid försök att på nytt läsa filen du just har "
 "sparat."
 
-#: src/ghex-application-window.c:1122
+#: src/ghex-application-window.c:1177
 msgid "Select a file to save buffer as"
 msgstr "Välj en fil att spara bufferten som"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1186
+#: src/ghex-application-window.c:1242
 #, c-format
 msgid "Are you sure you want to revert %s?"
 msgstr "Är du säker på att du vill återställa %s?"
 
-#: src/ghex-application-window.c:1188
+#: src/ghex-application-window.c:1244
 msgid ""
 "Your changes will be lost.\n"
 "This action cannot be undone."
@@ -418,15 +418,15 @@ msgstr ""
 "Dina ändringar kommer att gå förlorade.\n"
 "Denna åtgärd kan inte ångras."
 
-#: src/ghex-application-window.c:1192 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1248 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Återgå"
 
-#: src/ghex-application-window.c:1282
+#: src/ghex-application-window.c:1338
 msgid "Select a file to open"
 msgstr "Välj en fil att öppna"
 
-#: src/ghex-application-window.c:1389
+#: src/ghex-application-window.c:1446
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -449,7 +449,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1586
+#: src/ghex-application-window.c:1643
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -458,12 +458,12 @@ msgstr ""
 "Position: <tt>0x%lX</tt>; <tt>0x%lX</tt> byte från <tt>0x%lX</tt> till "
 "<tt>0x%lX</tt> markerade"
 
-#: src/ghex-application-window.c:1589
+#: src/ghex-application-window.c:1646
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Position: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1596
+#: src/ghex-application-window.c:1653
 #, c-format
 msgid ""
 "Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
@@ -472,13 +472,13 @@ msgstr ""
 "Position: <tt>%ld</tt>; <tt>%ld</tt> byte från <tt>%ld</tt> till <tt>%ld</"
 "tt> markerade"
 
-#: src/ghex-application-window.c:1599
+#: src/ghex-application-window.c:1656
 #, c-format
 msgid "Offset: <tt>%ld</tt>"
 msgstr "Position: <tt>%ld</tt>"
 
 #. Weird rendering if you don't put the space at the start
-#: src/ghex-application-window.c:1607
+#: src/ghex-application-window.c:1664
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
@@ -489,7 +489,7 @@ msgstr ""
 "<tt>0x%lX</tt> till <tt>0x%lX</tt> markerade <sub>DEC</sub>-position: "
 "<tt>%ld</tt>; <tt>%ld</tt> byte från <tt>%ld</tt> till <tt>%ld</tt> markerade"
 
-#: src/ghex-application-window.c:1611
+#: src/ghex-application-window.c:1668
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"
@@ -497,7 +497,7 @@ msgstr ""
 " <sub>HEX</sub>-position: <tt>0x%lX</tt> <sub>DEC</sub>-position: <tt>%ld</"
 "tt>"
 
-#: src/ghex-application-window.c:2437
+#: src/ghex-application-window.c:2511
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -524,11 +524,11 @@ msgstr ""
 "Pröva använda en annan buffertbakände för att inte behöva se detta "
 "meddelande."
 
-#: src/ghex-application-window.c:2495
+#: src/ghex-application-window.c:2569
 msgid "There was an error reading the file."
 msgstr "Det uppstod ett fel vid läsning av filen."
 
-#: src/ghex-application-window.c:2556
+#: src/ghex-application-window.c:2630
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -701,7 +701,7 @@ msgstr "_Gör om"
 msgid "Cu_t"
 msgstr "Klipp _ut"
 
-#: src/gtkhex.ui:76 src/paste-special.c:420
+#: src/gtkhex.ui:76 src/paste-special.c:450
 msgid "_Copy"
 msgstr "_Kopiera"
 
@@ -994,25 +994,37 @@ msgstr "Visa teckenlösa och flyttal hexadecimalt"
 msgid "Stream Length:"
 msgstr "Strömlängd:"
 
-#: src/hex-document.c:1138
+#: src/hex-document.c:1169
 #, c-format
 msgid "Page"
 msgstr "Sida"
 
-#: src/hex-document.c:1144 src/hex-document.c:1247
+#: src/hex-document.c:1175 src/hex-document.c:1278
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Hexdump genererad av"
 
-#: src/hex-document.c:1170
+#: src/hex-document.c:1201
 #, c-format
 msgid "Previous page"
 msgstr "Föregående sida"
 
-#: src/hex-document.c:1185
+#: src/hex-document.c:1216
 #, c-format
 msgid "Next page"
 msgstr "Nästa sida"
+
+#: src/hex-info-bar.c:207
+msgid "File Has Changed on Disk"
+msgstr "Filen har ändrats på disk"
+
+#: src/hex-info-bar.c:211
+msgid "The file has been changed by another program."
+msgstr "Filen har ändrats av ett annat program."
+
+#: src/hex-info-bar.ui:69
+msgid "_Discard Changes and Reload"
+msgstr "_Förkasta ändringar och läs in på nytt"
 
 #: src/jump-dialog.ui:35
 msgid "Jump to byte (enter offset):"
@@ -1107,40 +1119,37 @@ msgstr "Ta bort det angivna märket"
 msgid "Closes the marks pane"
 msgstr "Stänger märkespanelen"
 
-#: src/paste-special.c:218
+#: src/paste-special.c:224
 #, c-format
-msgid ""
-"Paste failed; invalid hex format.\n"
-"\n"
-"The string must be in the format of space-delineated hex byte pairs.\n"
-"\n"
-"For example: \"FF 3D 99 0A\""
-msgstr ""
-"Klistra in misslyckades, ogiltigt hexformat.\n"
-"\n"
-"Strängen måste vara i formatet blankstegsavgränsade hexbytepar.\n"
-"\n"
-"Till exempel: ”FF 3D 99 0A”"
+msgid "Failed to paste. Unexpected end of text"
+msgstr "Misslyckades med att klistra in. Oväntat slut på text"
 
-#: src/paste-special.c:305
+#: src/paste-special.c:238
+#, c-format
+msgid "Failed to paste. The pasted string contains an invalid hex digit."
+msgstr ""
+"Misslyckades med att klistra in. Den inklistrade strängen innehåller en "
+"ogiltig hexadecimal siffra."
+
+#: src/paste-special.c:335
 msgid "GHex Paste Data"
 msgstr "Klistra in GHex-data"
 
-#: src/paste-special.c:422
+#: src/paste-special.c:452
 msgid "Copy Special"
 msgstr "Kopiera special"
 
-#: src/paste-special.c:527
+#: src/paste-special.c:557
 msgid "Plain text (as ASCII)"
 msgstr "Vanlig text (som ASCII)"
 
-#: src/paste-special.c:544
+#: src/paste-special.c:574
 msgid "Plain text (Unicode)"
 msgstr "Vanlig text (Unicode)"
 
-#: src/paste-special.c:548
-msgid "Plain text (as space-delimited hex pairs)"
-msgstr "Vanlig text (som blankstegsavgränsade hexpar)"
+#: src/paste-special.c:578
+msgid "Plain text (as hex string representing bytes)"
+msgstr "Vanlig text (som hexadecimal sträng som representerar byte)"
 
 #: src/paste-special.ui:28
 msgid "Paste Special"
@@ -1274,6 +1283,23 @@ msgstr "Ersätt _alla"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Ersätter alla förekomster av söksträngen med ersättningssträngen"
+
+#, c-format
+#~ msgid ""
+#~ "Paste failed; invalid hex format.\n"
+#~ "\n"
+#~ "The string must be in the format of space-delineated hex byte pairs.\n"
+#~ "\n"
+#~ "For example: \"FF 3D 99 0A\""
+#~ msgstr ""
+#~ "Klistra in misslyckades, ogiltigt hexformat.\n"
+#~ "\n"
+#~ "Strängen måste vara i formatet blankstegsavgränsade hexbytepar.\n"
+#~ "\n"
+#~ "Till exempel: ”FF 3D 99 0A”"
+
+#~ msgid "Plain text (as space-delimited hex pairs)"
+#~ msgstr "Vanlig text (som blankstegsavgränsade hexpar)"
 
 #~ msgid "_New"
 #~ msgstr "_Ny"
