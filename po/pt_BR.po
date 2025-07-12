@@ -10,15 +10,16 @@
 # Matheus Barbosa <mdpb.matheus@gmail.com>, 2022.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2011-2025.
 # Álvaro Burns <>, 2025.
+# Juliano de Souza Camargo <julianosc@pm.me>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-04-08 02:44+0000\n"
-"PO-Revision-Date: 2025-04-08 20:43-0300\n"
-"Last-Translator: Álvaro Burns <>\n"
-"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao/>\n"
+"POT-Creation-Date: 2025-06-28 17:41+0000\n"
+"PO-Revision-Date: 2025-07-12 11:05-0300\n"
+"Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
+"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,7 +62,7 @@ msgstr "Editor hexadecimal"
 msgid "binary;debug;hexadecimal;"
 msgstr "binário;depurar;hexadecimal;"
 
-#: data/org.gnome.GHex.desktop.in.in:20
+#: data/org.gnome.GHex.desktop.in.in:21
 msgid "New Window"
 msgstr "Nova janela"
 
@@ -340,19 +341,19 @@ msgstr "Nenhuma ocorrência foi encontrada."
 #. Translators: this is the string for an untitled buffer that will
 #. * be displayed in the titlebar when a user does File->New
 #.
-#: src/ghex-application-window.c:49 src/hex-document.c:1110
+#: src/ghex-application-window.c:43 src/hex-document.c:1141
 msgid "Untitled"
 msgstr "Sem título"
 
-#: src/ghex-application-window.c:307
+#: src/ghex-application-window.c:357
 msgid "There was an error saving the file."
 msgstr "Ocorreu um erro ao salvar o arquivo."
 
-#: src/ghex-application-window.c:347
+#: src/ghex-application-window.c:397
 msgid "Save Changes?"
 msgstr "Salvar alterações?"
 
-#: src/ghex-application-window.c:350
+#: src/ghex-application-window.c:400
 msgid ""
 "Open documents contain unsaved changes.\n"
 "Changes which are not saved will be permanently lost."
@@ -360,39 +361,39 @@ msgstr ""
 "Documentos abertos contêm alterações não salvas.\n"
 "Alterações que não forem salvas serão perdidas permanentemente."
 
-#: src/ghex-application-window.c:353 src/ghex-application-window.c:482
-#: src/ghex-application-window.c:1191 src/paste-special.ui:53
+#: src/ghex-application-window.c:403 src/ghex-application-window.c:532
+#: src/ghex-application-window.c:1247 src/paste-special.ui:53
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/ghex-application-window.c:354 src/ghex-application-window.c:483
+#: src/ghex-application-window.c:404 src/ghex-application-window.c:533
 msgid "_Discard"
 msgstr "_Descartar"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:470
+#: src/ghex-application-window.c:520
 #, c-format
 msgid "%s has been edited since opening."
 msgstr "%s foi editado desde a abertura."
 
-#: src/ghex-application-window.c:474
+#: src/ghex-application-window.c:524
 msgid "The buffer has been edited since opening."
 msgstr "O buffer foi editado desde a abertura."
 
-#: src/ghex-application-window.c:477
+#: src/ghex-application-window.c:527
 msgid "Would you like to save your changes?"
 msgstr "Você deseja salvar suas alterações?"
 
-#: src/ghex-application-window.c:484
+#: src/ghex-application-window.c:534
 msgid "_Save"
 msgstr "_Salvar"
 
-#: src/ghex-application-window.c:1050
+#: src/ghex-application-window.c:1105
 msgid "There was an error saving the file to the path specified."
 msgstr "Ocorreu um erro ao salvar o arquivo no caminho especificado."
 
-#: src/ghex-application-window.c:1069
+#: src/ghex-application-window.c:1124
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -400,18 +401,18 @@ msgstr ""
 "Ocorreu um erro desconhecido ao tentar recarregar o arquivo que acabou de "
 "salvar."
 
-#: src/ghex-application-window.c:1122
+#: src/ghex-application-window.c:1177
 msgid "Select a file to save buffer as"
 msgstr "Escolha um arquivo para gravar o buffer como"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1186
+#: src/ghex-application-window.c:1242
 #, c-format
 msgid "Are you sure you want to revert %s?"
 msgstr "Tem certeza de que deseja reverter %s?"
 
-#: src/ghex-application-window.c:1188
+#: src/ghex-application-window.c:1244
 msgid ""
 "Your changes will be lost.\n"
 "This action cannot be undone."
@@ -419,15 +420,15 @@ msgstr ""
 "Suas alterações serão perdidas.\n"
 "Esta ação não pode ser desfeita."
 
-#: src/ghex-application-window.c:1192 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1248 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Reverter"
 
-#: src/ghex-application-window.c:1282
+#: src/ghex-application-window.c:1338
 msgid "Select a file to open"
 msgstr "Escolha um arquivo para abrir"
 
-#: src/ghex-application-window.c:1389
+#: src/ghex-application-window.c:1446
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -451,7 +452,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1586
+#: src/ghex-application-window.c:1643
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -460,12 +461,12 @@ msgstr ""
 "Deslocamento: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes de <tt>0x%lX</tt> para "
 "<tt>0x%lX</tt> selecionados"
 
-#: src/ghex-application-window.c:1589
+#: src/ghex-application-window.c:1646
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Deslocamento: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1596
+#: src/ghex-application-window.c:1653
 #, c-format
 msgid ""
 "Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
@@ -474,13 +475,13 @@ msgstr ""
 "Deslocamento: <tt>%ld</tt>; <tt>%ld</tt> bytes de <tt>%ld</tt> para <tt>%ld</"
 "tt> selecionados"
 
-#: src/ghex-application-window.c:1599
+#: src/ghex-application-window.c:1656
 #, c-format
 msgid "Offset: <tt>%ld</tt>"
 msgstr "Deslocamento: <tt>%ld</tt>"
 
 #. Weird rendering if you don't put the space at the start
-#: src/ghex-application-window.c:1607
+#: src/ghex-application-window.c:1664
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
@@ -492,7 +493,7 @@ msgstr ""
 "<tt>%ld</tt>; <tt>%ld</tt> bytes de <tt>%ld</tt> para <tt>%ld</tt> "
 "selecionados"
 
-#: src/ghex-application-window.c:1611
+#: src/ghex-application-window.c:1668
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"
@@ -500,7 +501,7 @@ msgstr ""
 " <sub>HEX</sub> Deslocamento: <tt>0x%lX</tt> <sub>DEC</sub> Deslocamento: "
 "<tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2437
+#: src/ghex-application-window.c:2511
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -526,11 +527,11 @@ msgstr ""
 "Para que esta mensagem não apareça mais, tente usar um backend de buffer "
 "diferente."
 
-#: src/ghex-application-window.c:2495
+#: src/ghex-application-window.c:2569
 msgid "There was an error reading the file."
 msgstr "Ocorreu um erro ao ler arquivo."
 
-#: src/ghex-application-window.c:2556
+#: src/ghex-application-window.c:2630
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -702,7 +703,7 @@ msgstr "_Refazer"
 msgid "Cu_t"
 msgstr "Cor_tar"
 
-#: src/gtkhex.ui:76 src/paste-special.c:420
+#: src/gtkhex.ui:76 src/paste-special.c:450
 msgid "_Copy"
 msgstr "_Copiar"
 
@@ -994,25 +995,37 @@ msgstr "Mostrar números sem sinal e flutuantes como hexadecimal"
 msgid "Stream Length:"
 msgstr "Tamanho do fluxo:"
 
-#: src/hex-document.c:1138
+#: src/hex-document.c:1169
 #, c-format
 msgid "Page"
 msgstr "Página"
 
-#: src/hex-document.c:1144 src/hex-document.c:1247
+#: src/hex-document.c:1175 src/hex-document.c:1278
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Despejo hexa gerado por"
 
-#: src/hex-document.c:1170
+#: src/hex-document.c:1201
 #, c-format
 msgid "Previous page"
 msgstr "Página anterior"
 
-#: src/hex-document.c:1185
+#: src/hex-document.c:1216
 #, c-format
 msgid "Next page"
 msgstr "Próxima página"
+
+#: src/hex-info-bar.c:207
+msgid "File Has Changed on Disk"
+msgstr "O arquivo mudou no Disco"
+
+#: src/hex-info-bar.c:211
+msgid "The file has been changed by another program."
+msgstr "O arquivo foi modificado por um outro programa."
+
+#: src/hex-info-bar.ui:69
+msgid "_Discard Changes and Reload"
+msgstr "_Descartar as mudanças e recarregar"
 
 #: src/jump-dialog.ui:35
 msgid "Jump to byte (enter offset):"
@@ -1108,40 +1121,35 @@ msgstr "Exclui a marca especificada"
 msgid "Closes the marks pane"
 msgstr "Fecha o painel de marcas"
 
-#: src/paste-special.c:218
+#: src/paste-special.c:224
 #, c-format
-msgid ""
-"Paste failed; invalid hex format.\n"
-"\n"
-"The string must be in the format of space-delineated hex byte pairs.\n"
-"\n"
-"For example: \"FF 3D 99 0A\""
-msgstr ""
-"Falha ao colar; formato hexa inválido.\n"
-"\n"
-"A expressão deve estar em formato de pares hexa delineados por espaço.\n"
-"\n"
-"Por exemplo: \"FF 3D 99 0A\""
+msgid "Failed to paste. Unexpected end of text"
+msgstr "Falhou ao colar. Fim do texto inesperado"
 
-#: src/paste-special.c:305
+#: src/paste-special.c:238
+#, c-format
+msgid "Failed to paste. The pasted string contains an invalid hex digit."
+msgstr "Falhou ao colar. A cadeia colada contém um dígito hex inválido."
+
+#: src/paste-special.c:335
 msgid "GHex Paste Data"
 msgstr "GHex Colar dados"
 
-#: src/paste-special.c:422
+#: src/paste-special.c:452
 msgid "Copy Special"
 msgstr "Copiar Especial"
 
-#: src/paste-special.c:527
+#: src/paste-special.c:557
 msgid "Plain text (as ASCII)"
 msgstr "Texto simples (como ASCII)"
 
-#: src/paste-special.c:544
+#: src/paste-special.c:574
 msgid "Plain text (Unicode)"
 msgstr "Texto simples (Unicode)"
 
-#: src/paste-special.c:548
-msgid "Plain text (as space-delimited hex pairs)"
-msgstr "Texto simples (como pares hexa delimitados por espaços)"
+#: src/paste-special.c:578
+msgid "Plain text (as hex string representing bytes)"
+msgstr "Texto simples (cadeia hex representando os bytes)"
 
 #: src/paste-special.ui:28
 msgid "Paste Special"
@@ -1277,6 +1285,23 @@ msgid "Replaces all occurrences of the search string with the replace string"
 msgstr ""
 "Substitui todas as ocorrências da expressão de busca com a expressão de "
 "substituição"
+
+#, c-format
+#~ msgid ""
+#~ "Paste failed; invalid hex format.\n"
+#~ "\n"
+#~ "The string must be in the format of space-delineated hex byte pairs.\n"
+#~ "\n"
+#~ "For example: \"FF 3D 99 0A\""
+#~ msgstr ""
+#~ "Falha ao colar; formato hexa inválido.\n"
+#~ "\n"
+#~ "A expressão deve estar em formato de pares hexa delineados por espaço.\n"
+#~ "\n"
+#~ "Por exemplo: \"FF 3D 99 0A\""
+
+#~ msgid "Plain text (as space-delimited hex pairs)"
+#~ msgstr "Texto simples (como pares hexa delimitados por espaços)"
 
 #~ msgid "_New"
 #~ msgstr "_Novo"
