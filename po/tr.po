@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-05-16 14:58+0000\n"
-"PO-Revision-Date: 2025-05-16 22:06+0300\n"
+"POT-Creation-Date: 2025-06-24 12:25+0000\n"
+"PO-Revision-Date: 2025-06-25 14:46+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -334,19 +334,19 @@ msgstr "Hiçbir belirimi bulunamadı."
 #. Translators: this is the string for an untitled buffer that will
 #. * be displayed in the titlebar when a user does File->New
 #.
-#: src/ghex-application-window.c:49 src/hex-document.c:1110
+#: src/ghex-application-window.c:43 src/hex-document.c:1141
 msgid "Untitled"
 msgstr "Başlıksız"
 
-#: src/ghex-application-window.c:307
+#: src/ghex-application-window.c:357
 msgid "There was an error saving the file."
 msgstr "Dosya kaydedilirken hata oluştu."
 
-#: src/ghex-application-window.c:347
+#: src/ghex-application-window.c:397
 msgid "Save Changes?"
 msgstr "Değişiklikler Kaydedilsin Mi?"
 
-#: src/ghex-application-window.c:350
+#: src/ghex-application-window.c:400
 msgid ""
 "Open documents contain unsaved changes.\n"
 "Changes which are not saved will be permanently lost."
@@ -354,39 +354,39 @@ msgstr ""
 "Açık belgeler kaydedilmemiş değişiklikler içeriyor.\n"
 "Kaydedilmeyen değişiklikler kalıcı olarak yitirilecek."
 
-#: src/ghex-application-window.c:353 src/ghex-application-window.c:482
-#: src/ghex-application-window.c:1191 src/paste-special.ui:53
+#: src/ghex-application-window.c:403 src/ghex-application-window.c:532
+#: src/ghex-application-window.c:1247 src/paste-special.ui:53
 msgid "_Cancel"
 msgstr "İ_ptal"
 
-#: src/ghex-application-window.c:354 src/ghex-application-window.c:483
+#: src/ghex-application-window.c:404 src/ghex-application-window.c:533
 msgid "_Discard"
 msgstr "_Gözden Çıkar"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:470
+#: src/ghex-application-window.c:520
 #, c-format
 msgid "%s has been edited since opening."
 msgstr "%s açıldıktan sonra düzenlendi."
 
-#: src/ghex-application-window.c:474
+#: src/ghex-application-window.c:524
 msgid "The buffer has been edited since opening."
 msgstr "Tampon açıldıktan sonra düzenlendi."
 
-#: src/ghex-application-window.c:477
+#: src/ghex-application-window.c:527
 msgid "Would you like to save your changes?"
 msgstr "Değişikliklerinizi kaydetmek ister misiniz?"
 
-#: src/ghex-application-window.c:484
+#: src/ghex-application-window.c:534
 msgid "_Save"
 msgstr "_Kaydet"
 
-#: src/ghex-application-window.c:1050
+#: src/ghex-application-window.c:1105
 msgid "There was an error saving the file to the path specified."
 msgstr "Dosya belirtilen yola kaydedilirken hata oluştu."
 
-#: src/ghex-application-window.c:1069
+#: src/ghex-application-window.c:1124
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
@@ -394,18 +394,18 @@ msgstr ""
 "Yeni kaydettiğiniz dosyayı yeniden yüklemeye çalışırken bilinmeyen hata "
 "oluştu."
 
-#: src/ghex-application-window.c:1122
+#: src/ghex-application-window.c:1177
 msgid "Select a file to save buffer as"
 msgstr "Tampondaki dosyayı saklamak için dosya seç"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1186
+#: src/ghex-application-window.c:1242
 #, c-format
 msgid "Are you sure you want to revert %s?"
 msgstr "%s geri alınsın ister misiniz?"
 
-#: src/ghex-application-window.c:1188
+#: src/ghex-application-window.c:1244
 msgid ""
 "Your changes will be lost.\n"
 "This action cannot be undone."
@@ -413,15 +413,15 @@ msgstr ""
 "Değişiklikleriniz yitecek.\n"
 "Bu işlem geri alınamaz."
 
-#: src/ghex-application-window.c:1192 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1248 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Geri Al"
 
-#: src/ghex-application-window.c:1282
+#: src/ghex-application-window.c:1338
 msgid "Select a file to open"
 msgstr "Açılacak dosyayı seç"
 
-#: src/ghex-application-window.c:1389
+#: src/ghex-application-window.c:1446
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -444,7 +444,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1586
+#: src/ghex-application-window.c:1643
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -453,12 +453,12 @@ msgstr ""
 "Ofset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bayt, <tt>0x%lX</tt> ile <tt>0x%lX</"
 "tt> arasında seçildi"
 
-#: src/ghex-application-window.c:1589
+#: src/ghex-application-window.c:1646
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Ofset: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1596
+#: src/ghex-application-window.c:1653
 #, c-format
 msgid ""
 "Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
@@ -467,13 +467,13 @@ msgstr ""
 "Ofset: <tt>%ld</tt>; <tt>%ld</tt> bayt, <tt>%ld</tt> ile <tt>%ld</tt> "
 "arasında seçildi"
 
-#: src/ghex-application-window.c:1599
+#: src/ghex-application-window.c:1656
 #, c-format
 msgid "Offset: <tt>%ld</tt>"
 msgstr "Ofset: <tt>%ld</tt>"
 
 #. Weird rendering if you don't put the space at the start
-#: src/ghex-application-window.c:1607
+#: src/ghex-application-window.c:1664
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
@@ -484,14 +484,14 @@ msgstr ""
 "ile <tt>0x%lX</tt> arası seçildi <sub>DEC</sub> Ofset: <tt>%ld</tt>; "
 "<tt>%ld</tt> bayt, <tt>%ld</tt> ile <tt>%ld</tt> arasında seçildi"
 
-#: src/ghex-application-window.c:1611
+#: src/ghex-application-window.c:1668
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"
 msgstr ""
 " <sub>HEX</sub> Ofset: <tt>0x%lX</tt> <sub>DEC</sub> Ofset: <tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2437
+#: src/ghex-application-window.c:2511
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -517,11 +517,11 @@ msgstr ""
 "Bu iletinin görünmesini önlemek için başka tampon arka ucu kullanmayı "
 "deneyin."
 
-#: src/ghex-application-window.c:2495
+#: src/ghex-application-window.c:2569
 msgid "There was an error reading the file."
 msgstr "Dosya okunurken hata oluştu."
 
-#: src/ghex-application-window.c:2556
+#: src/ghex-application-window.c:2630
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -694,7 +694,7 @@ msgstr "_Yinele"
 msgid "Cu_t"
 msgstr "Ke_s"
 
-#: src/gtkhex.ui:76 src/paste-special.c:420
+#: src/gtkhex.ui:76 src/paste-special.c:450
 msgid "_Copy"
 msgstr "_Kopyala"
 
@@ -989,25 +989,37 @@ msgstr "İşaretsiz ve ondalık değerleri onaltılık olarak göster"
 msgid "Stream Length:"
 msgstr "Akım Uzunluğu:"
 
-#: src/hex-document.c:1138
+#: src/hex-document.c:1169
 #, c-format
 msgid "Page"
 msgstr "Sayfa"
 
-#: src/hex-document.c:1144 src/hex-document.c:1247
+#: src/hex-document.c:1175 src/hex-document.c:1278
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Onaltılık baskıyı yaratan"
 
-#: src/hex-document.c:1170
+#: src/hex-document.c:1201
 #, c-format
 msgid "Previous page"
 msgstr "Önceki sayfa"
 
-#: src/hex-document.c:1185
+#: src/hex-document.c:1216
 #, c-format
 msgid "Next page"
 msgstr "Sonraki sayfa"
+
+#: src/hex-info-bar.c:207
+msgid "File Has Changed on Disk"
+msgstr "Dosya Diskte Değiştirildi"
+
+#: src/hex-info-bar.c:211
+msgid "The file has been changed by another program."
+msgstr "Dosya başka bir programca değiştirildi"
+
+#: src/hex-info-bar.ui:69
+msgid "_Discard Changes and Reload"
+msgstr "Değişiklikleri _Gözden Çıkar ve Yeniden Yükle"
 
 #: src/jump-dialog.ui:35
 msgid "Jump to byte (enter offset):"
@@ -1102,39 +1114,36 @@ msgstr "Belirtilen imi sil"
 msgid "Closes the marks pane"
 msgstr "İmler bölmesini kapatır"
 
-#: src/paste-special.c:218
+#: src/paste-special.c:224
 #, c-format
-msgid ""
-"Paste failed; invalid hex format.\n"
-"\n"
-"The string must be in the format of space-delineated hex byte pairs.\n"
-"\n"
-"For example: \"FF 3D 99 0A\""
-msgstr ""
-"Yapıştırılamadı; geçersiz onaltılık biçim.\n"
-"\n"
-"Dizge, boşlukla ayrılmış onaltılık bayt çiftleri biçiminde olmalıdır.\n"
-"\n"
-"Örnek: \"FF 3D 99 0A\""
+msgid "Failed to paste. Unexpected end of text"
+msgstr "Yapıştırılamadı. Beklenmeyen metin sonu"
 
-#: src/paste-special.c:305
+#: src/paste-special.c:238
+#, c-format
+msgid "Failed to paste. The pasted string contains an invalid hex digit."
+msgstr ""
+"Yapıştırma başarısız oldu. Yapıştırılan dizge geçersiz onaltılık rakam "
+"içeriyor."
+
+#: src/paste-special.c:335
 msgid "GHex Paste Data"
 msgstr "GHex Veriyi Yapıştır"
 
-#: src/paste-special.c:422
+#: src/paste-special.c:452
 msgid "Copy Special"
 msgstr "Özel Kopyala"
 
-#: src/paste-special.c:527
+#: src/paste-special.c:557
 msgid "Plain text (as ASCII)"
 msgstr "Düz metin (ASCII olarak)"
 
-#: src/paste-special.c:544
+#: src/paste-special.c:574
 msgid "Plain text (Unicode)"
 msgstr "Düz metin (Unicode)"
 
-#: src/paste-special.c:548
-msgid "Plain text (as space-delimited hex pairs)"
+#: src/paste-special.c:578
+msgid "Plain text (as hex string representing bytes)"
 msgstr "Düz metin (boşlukla ayrılmış onaltılık çiftler olarak)"
 
 #: src/paste-special.ui:28
@@ -1270,3 +1279,20 @@ msgstr "_Tümünü Değiştir"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Arama dizgesinin her belirimini değiştirme dizgesi ile değiştirir"
+
+#, c-format
+#~ msgid ""
+#~ "Paste failed; invalid hex format.\n"
+#~ "\n"
+#~ "The string must be in the format of space-delineated hex byte pairs.\n"
+#~ "\n"
+#~ "For example: \"FF 3D 99 0A\""
+#~ msgstr ""
+#~ "Yapıştırılamadı; geçersiz onaltılık biçim.\n"
+#~ "\n"
+#~ "Dizge, boşlukla ayrılmış onaltılık bayt çiftleri biçiminde olmalıdır.\n"
+#~ "\n"
+#~ "Örnek: \"FF 3D 99 0A\""
+
+#~ msgid "Plain text (as space-delimited hex pairs)"
+#~ msgstr "Düz metin (boşlukla ayrılmış onaltılık çiftler olarak)"
