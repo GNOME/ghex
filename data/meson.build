@@ -65,19 +65,19 @@ configure_file(
   install: true
 )
 
-appdata_in_conf = configuration_data()
-appdata_in_conf.set('app_id', app_id)
-appdata_in = configure_file(
-  input: 'org.gnome.GHex.appdata.xml.in.in',
-  output: '@0@.appdata.xml.in'.format(app_id),
-  configuration: appdata_in_conf,
+metainfo_in_conf = configuration_data()
+metainfo_in_conf.set('app_id', app_id)
+metainfo_in = configure_file(
+  input: 'org.gnome.GHex.metainfo.xml.in.in',
+  output: '@0@.metainfo.xml.in'.format(app_id),
+  configuration: metainfo_in_conf,
 )
 
-appdata = i18n.merge_file(
-  input: appdata_in,
-  output: '@0@.appdata.xml'.format(app_id),
+metainfo = i18n.merge_file(
+  input: metainfo_in,
+  output: '@0@.metainfo.xml'.format(app_id),
   po_dir: ghex_po_dir,
-  install_dir: ghex_appdatadir,
+  install_dir: ghex_metainfodir,
   install: true
 )
 
@@ -90,7 +90,7 @@ if appstreamcli_prg.found()
   test(
     'Validate appstream file',
     appstreamcli_prg,
-    args: ['validate', '--no-net', '--explain', appdata]
+    args: ['validate', '--no-net', '--explain', metainfo]
   )
 endif
 
