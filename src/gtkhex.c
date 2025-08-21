@@ -4343,6 +4343,7 @@ hex_widget_get_adjustment (HexWidget *self)
 HexDocument *
 hex_widget_get_document (HexWidget *self)
 {
+	g_return_val_if_fail (HEX_IS_WIDGET (self), NULL);
 	g_return_val_if_fail (HEX_IS_DOCUMENT(self->document), NULL);
 
 	return self->document;
