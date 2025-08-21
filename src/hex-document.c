@@ -816,7 +816,9 @@ document_ready_cb (GObject *source_object,
 
 	undo_stack_free(doc);
 	doc->changed = FALSE;
-	hex_file_monitor_reset (doc->monitor);
+
+	if (doc->monitor)
+		hex_file_monitor_reset (doc->monitor);
 
 	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_LOADED], 0);
 	g_task_return_boolean (task, TRUE);
@@ -890,7 +892,9 @@ hex_document_write (HexDocument *doc)
 	gboolean ret = FALSE;
 	char *path = NULL;
 
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
 	g_return_val_if_fail (G_IS_FILE (doc->file), FALSE);
+	g_return_val_if_fail (HEX_IS_FILE_MONITOR (doc->monitor), FALSE);
 
 	g_signal_emit (doc, hex_signals[FILE_SAVE_STARTED], 0);
 
@@ -958,7 +962,13 @@ write_ready_cb (GObject *source_object,
 	if (success)
 	{
 		doc->changed = FALSE;
-		hex_file_monitor_reset (doc->monitor);
+
+		/* If going from untitled to a saved-as document, we might not have a
+		 * file monitor yet.
+		 */
+		if (doc->monitor)
+			hex_file_monitor_reset (doc->monitor);
+
 		g_signal_emit (doc, hex_signals[FILE_SAVED], 0);
 		g_task_return_boolean (doc_task, TRUE);
 	}
