@@ -329,10 +329,9 @@ hex_document_dispose (GObject *obj)
 {
 	HexDocument *doc = HEX_DOCUMENT(obj);
 	
-	if (doc->file)
-		g_object_unref (doc->file);
-
+	g_clear_object (&doc->file);
 	g_clear_object (&doc->buffer);
+	g_clear_object (&doc->monitor);
 
 	G_OBJECT_CLASS(hex_document_parent_class)->dispose (obj);
 }
@@ -557,15 +556,13 @@ hex_document_set_file (HexDocument *doc, GFile *file)
 		return FALSE;
 	}
 
-	if (G_IS_FILE (doc->file)) {
-		g_object_unref (doc->file);
-	}
-
+	g_clear_object (&doc->file);
 	doc->file = g_object_ref (file);
 
 	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
 	g_object_notify_by_pspec (G_OBJECT(doc), properties[BUFFER]);
 
+	g_clear_object (&doc->monitor);
 	doc->monitor = hex_file_monitor_new (file);
 	g_signal_connect_object(doc->monitor,
 	                        "notify::changed",
