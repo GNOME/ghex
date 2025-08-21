@@ -2928,8 +2928,8 @@ hex_widget_constructed (GObject *object)
 	g_signal_connect (self->document, "file-read-started",
 			G_CALLBACK (file_read_started_cb), self);
 
-	g_signal_connect (self->document, "file-loaded",
-			G_CALLBACK (file_loaded_cb), self);
+	g_signal_connect_object (self->document, "file-loaded",
+			G_CALLBACK (file_loaded_cb), self, 0);
 
 	g_signal_connect (self->document, "document-changed",
 			G_CALLBACK (document_changed_cb), self);
