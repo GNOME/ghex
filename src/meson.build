@@ -139,7 +139,7 @@ ghex = executable(
   meson.project_name(),
   ghex_sources + res,
   include_directories: ghex_root_dir,
-  dependencies: [adw_dep, libgtkhex_dep],
+  dependencies: [adw_dep, libpanel_dep, libgtkhex_dep],
   c_args: ghex_c_args,
   install: true
 )

@@ -70,6 +70,11 @@ struct _GHexApplicationWindow
 	GtkWidget *paste_special_dialog;
 	GtkWidget *copy_special_dialog;
 
+	gboolean close_pending;
+
+	PanelChangesDialog *changes_dialog;
+	GHashTable *changes_dialog_data;
+
 	/* From GtkBuilder: */
 	GtkWidget *headerbar_window_title;
 	GtkWidget *no_doc_label;
@@ -83,6 +88,38 @@ struct _GHexApplicationWindow
 	GtkWidget *findreplace_revealer;
 	GtkWidget *conversions_revealer;
 };
+
+typedef struct
+{
+	HexDocument *doc;
+	GTask *task;
+	GtkFileChooserNative *save_as_file_sel;
+} ChangesDialogData;
+
+static ChangesDialogData *
+changes_dialog_data_new (HexDocument *doc)
+{
+	ChangesDialogData *data;
+	
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	data = g_new0 (ChangesDialogData, 1);
+	data->doc = g_object_ref (doc);
+
+	return data;
+}
+
+static void
+changes_dialog_data_destroy (ChangesDialogData *data)
+{
+	g_assert (data);
+
+	g_clear_object (&data->doc);
+	g_clear_object (&data->task);
+	g_clear_object (&data->save_as_file_sel);
+
+	g_free (data);
+}
 
 /* GHexApplicationWindow - Globals for Properties and Signals */
 
@@ -161,7 +198,6 @@ static void show_no_file_loaded_label (GHexApplicationWindow *self);
 
 static void doc_read_ready_cb (GObject *source_object, GAsyncResult *res,
 		gpointer user_data);
-static void file_loaded (HexDocument *doc, GHexApplicationWindow *self);
 
 static void ghex_application_window_disconnect_hex_signals (GHexApplicationWindow *self,
 		HexWidget *gh);
@@ -342,14 +378,16 @@ file_save_write_cb (HexDocument *doc,
 		GHexApplicationWindow *self)
 {
 	GError *local_error = NULL;
-	gboolean write_successful;
+	gboolean write_successful = FALSE;
+	ChangesDialogData *data = NULL;
+
+	g_assert (self->changes_dialog_data != NULL);
 
 	write_successful = hex_document_write_finish (doc, res, &local_error);
 
 	if (write_successful)
 	{
 		g_debug ("%s: File saved successfully.", __func__);
-		file_loaded (doc, self);
 	}
 	else
 	{
@@ -363,14 +401,26 @@ file_save_write_cb (HexDocument *doc,
 
 		g_string_free (full_errmsg, TRUE);
 	}
+
+	data = g_hash_table_lookup (self->changes_dialog_data, doc);
+	g_assert (data != NULL);
+
+	if (data->task)
+	{
+		g_assert (G_IS_TASK (data->task));
+
+		g_task_return_boolean (data->task, write_successful);
+	}
+
+	g_hash_table_remove (self->changes_dialog_data, doc);
 }
 
 static void
-file_save (GHexApplicationWindow *self)
+file_save_for_gh (GHexApplicationWindow *self, HexWidget *gh)
 {
 	HexDocument *doc;
 
-	doc = hex_widget_get_document (ACTIVE_GH);
+	doc = hex_widget_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	hex_document_write_async (doc,
@@ -380,74 +430,434 @@ file_save (GHexApplicationWindow *self)
 }
 
 static void
-close_all_tabs_response_cb (AdwAlertDialog *dialog,
-		const char *response,
+file_save (GHexApplicationWindow *self)
+{
+	file_save_for_gh (self, ACTIVE_GH);
+}
+
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
+static void
+save_as_write_to_file_cb (HexDocument *doc,
+		GAsyncResult *res,
 		GHexApplicationWindow *self)
 {
-	/* Regardless of what the user chose, get rid of the dialog. */
-	adw_dialog_close (ADW_DIALOG (dialog));
+	GFile *gfile;
+	GError *local_error = NULL;
+	gboolean write_successful;
+	ChangesDialogData *data = NULL;
 
-	if (g_strcmp0 (response, "discard") == 0)
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	gfile = g_object_get_data (G_OBJECT(doc), "target-file");
+	g_assert (G_IS_FILE (gfile));
+
+	write_successful = hex_document_write_finish (doc, res, &local_error);
+
+	if (! write_successful)
+	{
+		GString *full_errmsg = g_string_new (
+				_("There was an error saving the file to the path specified."));
+
+		if (local_error)
+			g_string_append_printf (full_errmsg, "\n\n%s", local_error->message);
+
+		display_dialog (GTK_WINDOW(self), full_errmsg->str);
+
+		g_string_free (full_errmsg, TRUE);
+		return;
+	}
+
+	if (hex_document_set_file (doc, gfile))
+	{
+		g_object_set_data_full (G_OBJECT(doc), "parent-gh", g_object_ref (ACTIVE_GH), g_object_unref);
+		hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
+	}
+	else
+	{
+		display_dialog (GTK_WINDOW(self),
+				_("An unknown error has occurred in attempting to reload the "
+					"file you have just saved."));
+	}
+
+	g_object_set_data (G_OBJECT(doc), "target-file", NULL);
+
+	data = g_hash_table_lookup (self->changes_dialog_data, doc);
+	g_assert (data != NULL);
+
+	if (data->task)
+	{
+		g_assert (G_IS_TASK (data->task));
+
+		g_task_return_boolean (data->task, write_successful);
+	}
+
+	g_hash_table_remove (self->changes_dialog_data, doc);
+}
+
+static void
+save_as_response_cb (GtkNativeDialog *dialog,
+		int resp,
+		gpointer user_data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
+	HexWidget *gh = NULL;
+	HexDocument *doc = NULL;
+	GFile *gfile = NULL;
+
+	gh = g_object_get_data (G_OBJECT(chooser), "target-gh");
+	g_assert (HEX_IS_WIDGET (gh));
+
+	doc = hex_widget_get_document (ACTIVE_GH);
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	/* If user doesn't click Save, just bail out now. */
+
+	if (resp != GTK_RESPONSE_ACCEPT)
+	{
+		ChangesDialogData *data;
+		GCancellable *cancellable = NULL;
+
+		g_assert (self->changes_dialog_data != NULL);
+
+		data = g_hash_table_lookup (self->changes_dialog_data, doc);
+		g_assert (data && G_IS_TASK (data->task));
+
+		cancellable = g_task_get_cancellable (data->task);
+		g_assert (G_IS_CANCELLABLE (cancellable));
+
+		g_cancellable_cancel (cancellable);
+
+		goto end;
+	}
+
+	gfile = gtk_file_chooser_get_file (chooser);
+	g_object_set_data_full (G_OBJECT(doc), "target-file", g_object_ref (gfile), g_object_unref);
+
+	hex_document_write_to_file_async (doc,
+			gfile,
+			NULL,
+			(GAsyncReadyCallback)save_as_write_to_file_cb,
+			self);
+
+end:
+	g_object_set_data (G_OBJECT(chooser), "target-gh", NULL);
+	g_clear_object (&gfile);
+	gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (dialog));
+}
+
+static void
+save_as_for_gh (GHexApplicationWindow *self, HexWidget *gh)
+{
+	HexDocument *doc = hex_widget_get_document (gh);
+	ChangesDialogData *data;
+	GFile *default_file;
+
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	default_file = hex_document_get_file (doc);
+
+	data = g_hash_table_lookup (self->changes_dialog_data, doc);
+	g_assert (data);
+
+	data->save_as_file_sel = gtk_file_chooser_native_new (
+			_("Select a file to save buffer as"),
+				GTK_WINDOW(self),
+				GTK_FILE_CHOOSER_ACTION_SAVE,
+				NULL,
+				NULL);
+	g_object_ref (data->save_as_file_sel);
+
+	/* Default suggested file == existing file. */
+	if (default_file && G_IS_FILE (default_file))
+	{
+		gtk_file_chooser_set_file (GTK_FILE_CHOOSER(data->save_as_file_sel),
+				hex_document_get_file (doc),
+				NULL);	/* GError **error */
+	}
+
+	g_object_set_data_full (G_OBJECT(data->save_as_file_sel), "target-gh", g_object_ref (gh), g_object_unref);
+
+	g_signal_connect (data->save_as_file_sel, "response",
+			G_CALLBACK(save_as_response_cb), self);
+
+	gtk_native_dialog_set_modal (GTK_NATIVE_DIALOG(data->save_as_file_sel), TRUE);
+	gtk_native_dialog_show (GTK_NATIVE_DIALOG(data->save_as_file_sel));
+}
+
+static void
+save_as_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
+
+	save_as_for_gh (self, ACTIVE_GH);
+}
+
+G_GNUC_END_IGNORE_DEPRECATIONS
+
+static void
+delegate_cancel_cb (GCancellable *cancellable, HexWidget *gh)
+{
+	GHexApplicationWindow *self;
+	HexDocument *doc;
+	ChangesDialogData *data;
+
+	g_assert (HEX_IS_WIDGET (gh));
+
+	self = (GHexApplicationWindow *) gtk_widget_get_root (GTK_WIDGET(gh));
+	doc = hex_widget_get_document (gh);
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+	g_assert (HEX_IS_DOCUMENT (doc));
+	g_assert (self->changes_dialog_data != NULL);
+
+	data = g_hash_table_lookup (self->changes_dialog_data, doc);
+	g_assert (data && G_IS_TASK (data->task));
+
+	g_task_return_boolean (data->task, FALSE);
+
+	if (data->save_as_file_sel)
+		gtk_native_dialog_destroy (GTK_NATIVE_DIALOG(data->save_as_file_sel));
+
+	g_hash_table_remove (self->changes_dialog_data, doc);
+	data = NULL;
+
+	if (g_hash_table_size (self->changes_dialog_data) == 0)
+	{
+		if (self->changes_dialog)
+		{
+			g_debug ("%s: forcing to close changes_dialog", __func__);
+			adw_dialog_force_close (ADW_DIALOG(self->changes_dialog));
+		}
+	}
+}
+
+static gboolean
+delegate_save_cb (GHexApplicationWindow *self, GTask *task, PanelSaveDelegate *delegate)
+{
+	HexWidget *gh;
+	HexDocument *doc;
+	GFile *gfile;
+	GCancellable *cancellable;
+	ChangesDialogData *data;
+
+	g_assert (G_IS_TASK (task));
+	g_assert (self->changes_dialog_data != NULL);
+
+	/* Since we have :save-after-close enabled, the gh references will be
+	 * dropped in the "close" callback.
+	 */
+	gh = g_object_get_data (G_OBJECT(delegate), "gh");
+	g_assert (HEX_IS_WIDGET (gh));
+
+	doc = hex_widget_get_document (gh);
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	/* All delegates & the PanelChangesDialog share a cancellable so we connect
+	 * multiple signals with the same cancellable but different target gh
+	 * objects.
+	 */
+	cancellable = g_task_get_cancellable (task);
+	g_assert (G_IS_CANCELLABLE (cancellable));
+
+	g_signal_connect_object (cancellable, "cancelled", G_CALLBACK(delegate_cancel_cb), gh, 0);
+
+	data = g_hash_table_lookup (self->changes_dialog_data, doc);
+	g_assert (data != NULL);
+	data->task = g_object_ref (task);
+
+	gfile = hex_document_get_file (doc);
+
+	if (gfile)
+		file_save_for_gh (self, gh);
+	else
+		save_as_for_gh (self, gh);
+
+	return TRUE;
+}
+
+static void
+delegate_discard_cb (GHexApplicationWindow *self, PanelSaveDelegate *delegate)
+{
+	/* Since PanelChangesDialog has a close-after-save property but not a
+	 * 'close-after-discard' property, we manually emit the 'close' signal here
+	 * after discarding.
+	 */
+	panel_save_delegate_close (delegate);
+}
+
+static void
+delegate_close_cb (GHexApplicationWindow *self, PanelSaveDelegate *delegate)
+{
+	HexWidget *gh = g_object_get_data (G_OBJECT(delegate), "gh");
+	AdwTabPage *page = get_tab_for_gh (self, gh);
+
+	g_object_set_data (G_OBJECT(page), "close-confirmed", GINT_TO_POINTER (TRUE));
+	adw_tab_view_close_page (ADW_TAB_VIEW(self->hex_tab_view), page);
+
+	g_object_set_data (G_OBJECT(delegate), "gh", NULL);
+}
+
+static void
+create_delegate_for_gh (GHexApplicationWindow *self, HexWidget *gh)
+{
+	PanelSaveDelegate *delegate;
+	HexDocument *doc;
+	GFile *gfile;
+	const char *title;
+	ChangesDialogData *data;
+
+	g_assert (PANEL_IS_CHANGES_DIALOG (self->changes_dialog));
+	g_assert (self->changes_dialog_data != NULL);
+
+	delegate = panel_save_delegate_new ();
+	doc = hex_widget_get_document (gh);
+	gfile = hex_document_get_file (doc);
+	title = gfile ? g_file_peek_path (gfile) : _(UNTITLED_STRING);
+
+	panel_save_delegate_set_title (delegate, title);
+
+	g_object_set_data_full (G_OBJECT(delegate), "gh", g_object_ref (gh), g_object_unref);
+
+	g_signal_connect_object (delegate, "save",
+			G_CALLBACK(delegate_save_cb), self, G_CONNECT_SWAPPED);
+
+	g_signal_connect_object (delegate, "discard",
+			G_CALLBACK(delegate_discard_cb), self, G_CONNECT_SWAPPED);
+
+	g_signal_connect_object (delegate, "close",
+			G_CALLBACK(delegate_close_cb), self, G_CONNECT_SWAPPED);
+
+	data = changes_dialog_data_new (doc);
+	g_assert (! g_hash_table_lookup (self->changes_dialog_data, doc));
+	g_hash_table_insert (self->changes_dialog_data, doc, data);
+
+	panel_changes_dialog_add_delegate (self->changes_dialog, delegate);
+}
+
+static void
+collect_delegates_for_all_tabs (GHexApplicationWindow *self)
+{
+	g_assert (PANEL_IS_CHANGES_DIALOG (self->changes_dialog));
+
+	TAB_VIEW_GH_FOREACH_START
+
+	create_delegate_for_gh (self, gh);
+
+	TAB_VIEW_GH_FOREACH_END
+}
+
+static gboolean
+create_panel_changes_dialog (GHexApplicationWindow *self)
+{
+	if (self->changes_dialog)
+	{
+		g_debug ("%s: changes_dialog already exists. Returning", __func__);
+		return FALSE;
+	}
+
+	self->changes_dialog = (PanelChangesDialog *) panel_changes_dialog_new ();
+	panel_changes_dialog_set_close_after_save (self->changes_dialog, TRUE);
+	g_object_add_weak_pointer (G_OBJECT(self->changes_dialog), (gpointer *)&self->changes_dialog);
+
+	g_clear_pointer (&self->changes_dialog_data, g_hash_table_unref);
+	self->changes_dialog_data = g_hash_table_new_full (NULL, NULL, NULL,
+			(GDestroyNotify)changes_dialog_data_destroy);
+
+	return TRUE;
+}
+
+static gboolean
+safely_close_window_tick_cb (GHexApplicationWindow *self)
+{
+	if (! self->close_pending)
+	{
+		g_debug ("%s: close_pending is false. Possible programmer error.", __func__);
+		return G_SOURCE_REMOVE;
+	}
+
+	if (adw_tab_view_get_n_pages (ADW_TAB_VIEW(self->hex_tab_view)) == 0)
+	{
 		gtk_window_destroy (GTK_WINDOW(self));
+		return G_SOURCE_REMOVE;
+	}
+
+	return G_SOURCE_CONTINUE;
+}
+
+static void
+changes_dialog_ready_cb (GObject *source_object, GAsyncResult *res, gpointer data)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(data);
+	PanelChangesDialog *dialog = PANEL_CHANGES_DIALOG(source_object);
+	GError *error = NULL;
+	gboolean retval = FALSE;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+	g_assert (PANEL_IS_CHANGES_DIALOG (dialog));
+	g_assert (g_task_is_valid (res, source_object));
+
+	retval = panel_changes_dialog_run_finish (dialog, res, &error);
+
+	if (!retval && error)
+	{
+		if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+		{
+			self->close_pending = FALSE;
+
+			return;
+		}
+		else
+			display_dialog (GTK_WINDOW(self), error->message);
+	}
+
+	if (self->close_pending)
+	{
+		g_timeout_add (100, G_SOURCE_FUNC(safely_close_window_tick_cb), self);
+	}
 }
 
 static void
 close_all_tabs_confirmation_dialog (GHexApplicationWindow *self)
 {
-	AdwDialog *dialog = adw_alert_dialog_new (_("Save Changes?"), NULL);
+	if (! create_panel_changes_dialog (self))
+		return;
 
-	adw_alert_dialog_set_body (ADW_ALERT_DIALOG(dialog),
-			_("Open documents contain unsaved changes.\n"
-			   "Changes which are not saved will be permanently lost."));
-	adw_alert_dialog_add_responses (ADW_ALERT_DIALOG(dialog),
-			"cancel", _("_Cancel"),
-			"discard", _("_Discard"),
-			NULL);
-	adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG(dialog),
-			"discard",
-			ADW_RESPONSE_DESTRUCTIVE);
-	adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG(dialog), "cancel");
+	collect_delegates_for_all_tabs (self);
+	self->close_pending = TRUE;
 
-	g_signal_connect (dialog, "response", G_CALLBACK(close_all_tabs_response_cb), self);
-
-	adw_dialog_present (dialog, GTK_WIDGET(self));
+	panel_changes_dialog_run_async (self->changes_dialog, GTK_WIDGET(self), NULL, changes_dialog_ready_cb, self);
 }
 
-static void
-check_close_window (GHexApplicationWindow *self)
+static gboolean
+unsaved_found (GHexApplicationWindow *self)
 {
-	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
 	gboolean unsaved_found = FALSE;
-	int i;
-	const int num_pages = adw_tab_view_get_n_pages (tab_view);
+	const int num_pages = adw_tab_view_get_n_pages (ADW_TAB_VIEW(self->hex_tab_view));
 
 	/* We have more than one tab open: */
-	for (i = num_pages - 1; i >= 0; --i)
+	for (int i = num_pages - 1; i >= 0; --i)
 	{
-		HexWidget *gh;
-		HexDocument *doc = NULL;
-
-		gh = get_gh_for_tab (self, tab_view, i);
-		doc = hex_widget_get_document (gh);
+		HexWidget *gh = get_gh_for_tab (self, ADW_TAB_VIEW(self->hex_tab_view), i);
+		HexDocument *doc = hex_widget_get_document (gh);
 
 		if (hex_document_has_changed (doc))
 			unsaved_found = TRUE;
 	}
 
-	if (unsaved_found) {
-		close_all_tabs_confirmation_dialog (self);
-	} else {
-		gtk_window_destroy (GTK_WINDOW(self));
-	}
+	return unsaved_found;
 }
 
 static gboolean
-close_request_cb (GtkWindow *window,
-		gpointer user_data)
+close_request_cb (GHexApplicationWindow *self)
 {
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-
-	check_close_window (self);
+	if (unsaved_found (self))
+		close_all_tabs_confirmation_dialog (self);
+	else
+		gtk_window_destroy (GTK_WINDOW(self));
 
 	return GDK_EVENT_STOP;
 }
@@ -467,84 +877,25 @@ close_page_finish_helper (GHexApplicationWindow *self, AdwTabView *tab_view, Adw
 
 		show_no_file_loaded_label (self);
 	}
+
 	adw_tab_view_close_page_finish (tab_view, page, confirm);
+
 	update_gui_data (self);
-}
-
-static void
-close_doc_response_cb (AdwAlertDialog *dialog,
-		const char *response,
-		GHexApplicationWindow *self)
-{
-	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
-	AdwTabPage *page = g_object_get_data (G_OBJECT(self), "target-page");
-
-	if (g_strcmp0 (response, "save") == 0)
-	{
-		file_save (self);
-		close_page_finish_helper (self, tab_view, page, TRUE);
-	}
-	else if (g_strcmp0 (response, "discard") == 0)
-	{
-		close_page_finish_helper (self, tab_view, page, TRUE);
-	}
-	else
-	{
-		close_page_finish_helper (self, tab_view, page, FALSE);
-	}
-
-	adw_dialog_close (ADW_DIALOG (dialog));
-	gtk_widget_grab_focus (GTK_WIDGET (ACTIVE_GH));
 }
 
 static void
 close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 {
-	AdwDialog *dialog;
-	HexDocument *doc;
-	GFile *file;
-	char *title;
-	char *message;
-	char *basename = NULL;
-	HexWidget *gh = get_gh_for_page (self, page);
-	doc = hex_widget_get_document (gh);
+	HexWidget *gh;
+	PanelSaveDelegate *delegate; 
 
-	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+	if (! create_panel_changes_dialog (self))
+		return;
 
-	if (G_IS_FILE (file = hex_document_get_file (doc)))
-		basename = g_file_get_basename (hex_document_get_file (doc));
+	gh = get_gh_for_page (self, page);
+	create_delegate_for_gh (self, gh);
 
-	if (basename) {
-		/* Translators: %s is the filename that is currently being
-		 * edited. */
-		title = g_strdup_printf (_("%s has been edited since opening."), basename);
-		g_free (basename);
-	}
-	else {
-		title = _("The buffer has been edited since opening.");
-	}
-
-	message = _("Would you like to save your changes?");
-
-	dialog = adw_alert_dialog_new (title, NULL);
-	adw_alert_dialog_set_body (ADW_ALERT_DIALOG(dialog), message);
-	adw_alert_dialog_add_responses (ADW_ALERT_DIALOG(dialog),
-			"cancel", _("_Cancel"),
-			"discard", _("_Discard"),
-			"save", _("_Save"),
-			NULL);
-	adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG(dialog), "cancel");
-	adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG(dialog),
-			"discard",
-			ADW_RESPONSE_DESTRUCTIVE);
-	adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG(dialog),
-			"save",
-			ADW_RESPONSE_SUGGESTED);
-	g_signal_connect (dialog, "response", G_CALLBACK(close_doc_response_cb), self);
-
-	g_object_set_data (G_OBJECT(self), "target-page", page);
-
-	adw_dialog_present (ADW_DIALOG(dialog), GTK_WIDGET (self));
+	panel_changes_dialog_run_async (self->changes_dialog, GTK_WIDGET(self), NULL, changes_dialog_ready_cb, self);
 }
 
 static void
@@ -673,18 +1024,13 @@ update_tabs (GHexApplicationWindow *self)
 }
 
 static void
-file_saved_cb (HexDocument *doc,
-		gpointer user_data)
-{
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-
-	ghex_application_window_set_can_save (self, assess_can_save (doc));
-}
-
-static void
 document_loaded_or_saved_common (GHexApplicationWindow *self,
 		HexDocument *doc)
 {
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+	g_assert (HEX_IS_DOCUMENT (doc));
+	g_assert (HEX_IS_WIDGET (ACTIVE_GH));
+
 	/* The appwindow as a whole not interested in any document changes that
 	 * don't pertain to the one that is actually in view.
 	 */
@@ -692,14 +1038,34 @@ document_loaded_or_saved_common (GHexApplicationWindow *self,
 		return;
 
 	ghex_application_window_set_can_save (self, assess_can_save (doc));
+	adw_tab_page_set_icon (get_tab_for_gh (self, ACTIVE_GH), NULL);
 }
 
 static void
-file_loaded (HexDocument *doc, GHexApplicationWindow *self)
+file_saved_cb (GHexApplicationWindow *self, HexDocument *doc)
 {
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	document_loaded_or_saved_common (self, doc);
+}
+
+static void
+file_loaded_cb (HexDocument *doc, GtkBox *box)
+{
+	GtkRoot *root;
+	GHexApplicationWindow *self;
+
+	g_assert (GTK_IS_BOX (box));
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	root = gtk_widget_get_root (GTK_WIDGET(box));
+
+	self = GHEX_APPLICATION_WINDOW(root);
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+
 	document_loaded_or_saved_common (self, doc);
 	update_gui_data (self);
-	adw_tab_page_set_icon (get_tab_for_gh (self, ACTIVE_GH), NULL);
 	hex_info_bar_set_shown (get_info_bar_for_gh (self, ACTIVE_GH), FALSE);
 }
 
@@ -737,16 +1103,17 @@ tab_view_close_page_cb (AdwTabView *tab_view,
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-	HexDocument *doc;
-	HexWidget *gh;
+	HexWidget *gh = get_gh_for_page (self, page);
+	HexDocument *doc = hex_widget_get_document (gh);
 
-	gh = get_gh_for_page (self, page);
-	doc = hex_widget_get_document (gh);
-
-	if (hex_document_has_changed (doc)) {
-		close_doc_confirmation_dialog (self, page);
-	} else {
+	if (g_object_get_data (G_OBJECT(page), "close-confirmed") || !hex_document_has_changed (doc))
+	{
 		close_page_finish_helper (self, tab_view, page, TRUE);
+	}
+	else
+	{
+		close_page_finish_helper (self, tab_view, page, FALSE);
+		close_doc_confirmation_dialog (self, page);
 	}
 
 	return GDK_EVENT_STOP;
@@ -1089,114 +1456,6 @@ save_action (GtkWidget *widget,
 }
 
 static void
-save_as_write_to_file_cb (HexDocument *doc,
-		GAsyncResult *res,
-		GHexApplicationWindow *self)
-{
-	GFile *gfile = g_object_get_data (G_OBJECT(self), "target-file");
-	GError *local_error = NULL;
-	gboolean write_successful;
-
-	write_successful = hex_document_write_finish (doc, res, &local_error);
-
-	if (! write_successful)
-	{
-		GString *full_errmsg = g_string_new (
-				_("There was an error saving the file to the path specified."));
-
-		if (local_error)
-			g_string_append_printf (full_errmsg, "\n\n%s", local_error->message);
-
-		display_dialog (GTK_WINDOW(self), full_errmsg->str);
-
-		g_string_free (full_errmsg, TRUE);
-		return;
-	}
-
-	if (hex_document_set_file (doc, gfile))
-	{
-		g_object_set_data (G_OBJECT(self), "target-gh", ACTIVE_GH);
-		hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
-	}
-	else
-	{
-		display_dialog (GTK_WINDOW(self),
-				_("An unknown error has occurred in attempting to reload the "
-					"file you have just saved."));
-	}
-}
-
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-/* save_as helper */
-static void
-save_as_response_cb (GtkNativeDialog *dialog,
-		int resp,
-		gpointer user_data)
-{
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-	GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
-	HexDocument *doc;
-	GFile *gfile;
-
-	/* If user doesn't click Save, just bail out now. */
-	if (resp != GTK_RESPONSE_ACCEPT)
-		goto end;
-
-	/* Fetch doc. No need for sanity checks as this is just a helper. */
-	doc = hex_widget_get_document (ACTIVE_GH);
-
-	gfile = gtk_file_chooser_get_file (chooser);
-	g_object_set_data (G_OBJECT(self), "target-file", gfile);
-
-	hex_document_write_to_file_async (doc,
-			gfile,
-			NULL,
-			(GAsyncReadyCallback)save_as_write_to_file_cb,
-			self);
-
-end:
-	gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (dialog));
-}
-
-static void
-save_as (GtkWidget *widget,
-		const char *action_name,
-		GVariant *parameter)
-{
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(widget);
-	GtkFileChooserNative *file_sel;
-	GtkResponseType resp;
-	HexDocument *doc;
-	GFile *default_file;
-
-	doc = hex_widget_get_document (ACTIVE_GH);
-	g_return_if_fail (HEX_IS_DOCUMENT (doc));
-
-	default_file = hex_document_get_file (doc);
-	file_sel = gtk_file_chooser_native_new (
-			_("Select a file to save buffer as"),
-				GTK_WINDOW(self),
-				GTK_FILE_CHOOSER_ACTION_SAVE,
-				NULL,
-				NULL);
-
-	/* Default suggested file == existing file. */
-	if (G_IS_FILE (default_file))
-	{
-		gtk_file_chooser_set_file (GTK_FILE_CHOOSER(file_sel),
-				hex_document_get_file (doc),
-				NULL);	/* GError **error */
-	}
-
-	g_signal_connect (file_sel, "response",
-			G_CALLBACK(save_as_response_cb), self);
-
-	gtk_native_dialog_set_modal (GTK_NATIVE_DIALOG (file_sel), TRUE);
-	gtk_native_dialog_show (GTK_NATIVE_DIALOG(file_sel));
-}
-G_GNUC_END_IGNORE_DEPRECATIONS
-
-static void
 revert_response_cb (AdwAlertDialog *dialog,
 		const char *response,
 		GHexApplicationWindow *self)
@@ -1208,7 +1467,7 @@ revert_response_cb (AdwAlertDialog *dialog,
 
 	doc = hex_widget_get_document (ACTIVE_GH);
 
-	g_object_set_data (G_OBJECT(self), "target-gh", ACTIVE_GH);
+	g_object_set_data_full (G_OBJECT(doc), "parent-gh", g_object_ref (ACTIVE_GH), g_object_unref);
 	hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 
 end:
@@ -1302,7 +1561,6 @@ new_file (GtkWidget *widget,
 	refresh_dialogs (self);
 	ghex_application_window_activate_tab (self, gh);
 	ghex_application_window_set_insert_mode (self, TRUE);
-	file_loaded (doc, self);
 }
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
@@ -1833,8 +2091,7 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
 	/* Setup signals */
 
-	g_signal_connect (self, "close-request",
-			G_CALLBACK(close_request_cb), self);
+	g_signal_connect (self, "close-request", G_CALLBACK(close_request_cb), NULL);
 
 	/* Signals - SETTINGS */
 
@@ -2044,7 +2301,7 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 
 	gtk_widget_class_install_action (widget_class, "ghex.save-as",
 			NULL,	/* GVariant string param_type */
-			save_as);
+			save_as_action);
 
 	gtk_widget_class_install_action (widget_class, "ghex.revert",
 			NULL,	/* GVariant string param_type */
@@ -2400,13 +2657,24 @@ void
 ghex_application_window_activate_tab (GHexApplicationWindow *self,
 		HexWidget *gh)
 {
+	AdwTabPage *page;
 	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
 
 	g_return_if_fail (HEX_IS_WIDGET (gh));
 
-	adw_tab_view_set_selected_page (tab_view, get_tab_for_gh (self, gh));
+	page = get_tab_for_gh (self, gh);
 
-	gtk_widget_grab_focus (GTK_WIDGET(gh));
+	if (page)
+	{
+		adw_tab_view_set_selected_page (ADW_TAB_VIEW(self->hex_tab_view), page);
+		gtk_widget_grab_focus (GTK_WIDGET(gh));
+	}
+	else
+	{
+		g_debug ("%s: Can't activate tab for gh %p - "
+				"perhaps tab has closed since document was saved/loaded.",
+				__func__, (void *)gh);
+	}
 }
 
 static void
@@ -2428,14 +2696,20 @@ ghex_application_window_connect_hex_signals (GHexApplicationWindow *self,
 		HexWidget *gh)
 {
 	HexDocument *doc;
+	GtkWidget *gh_box;
 
-	g_return_if_fail (HEX_IS_WIDGET(gh));
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+	g_assert (HEX_IS_WIDGET(gh));
+
 	doc = hex_widget_get_document (gh);
-	g_return_if_fail (HEX_IS_DOCUMENT(doc));
+	g_assert (HEX_IS_DOCUMENT(doc));
+	gh_box = gtk_widget_get_parent (GTK_WIDGET(gh));
+	g_assert (GTK_IS_BOX (gh_box));
 
 	g_signal_connect (gh, "cursor-moved", G_CALLBACK(cursor_moved_cb), self);
-	g_signal_connect (doc, "document-changed", G_CALLBACK(document_changed_cb), self);
-	g_signal_connect (doc, "file-saved", G_CALLBACK(file_saved_cb), self);
+	g_signal_connect_object (doc, "document-changed", G_CALLBACK(document_changed_cb), self, 0);
+	g_signal_connect_object (doc, "file-saved", G_CALLBACK(file_saved_cb), self, G_CONNECT_SWAPPED);
+	g_signal_connect_object (doc, "file-loaded", G_CALLBACK(file_loaded_cb), gh_box, 0);
 }
 
 void
@@ -2448,6 +2722,8 @@ ghex_application_window_add_hex (GHexApplicationWindow *self,
 	HexDocument *doc;
 
 	g_return_if_fail (HEX_IS_WIDGET(gh));
+
+	/* Ensure doc is valid and setup signals */
 
 	doc = hex_widget_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT(doc));
@@ -2538,8 +2814,8 @@ doc_read_ready_cb (GObject *source_object,
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
-	HexWidget *gh = g_object_get_data (G_OBJECT(self), "target-gh");
 	HexDocument *doc = HEX_DOCUMENT(source_object);
+	HexWidget *gh = g_object_get_data (G_OBJECT(doc), "parent-gh");
 	AdwTabView *tab_view = ADW_TAB_VIEW(self->hex_tab_view);
 	gboolean result;
 	GError *local_error = NULL;
@@ -2551,7 +2827,6 @@ doc_read_ready_cb (GObject *source_object,
 	if (result)
 	{
 		refresh_dialogs (self);
-		file_loaded (doc, self);
 	}
 	else
 	{
@@ -2569,6 +2844,8 @@ doc_read_ready_cb (GObject *source_object,
 					_("There was an error reading the file."));
 		}
 	}
+
+	g_object_set_data (G_OBJECT(doc), "parent-gh", NULL);
 }
 
 void
@@ -2640,7 +2917,7 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 	}
 
 	ghex_application_window_add_hex (self, gh);
-	g_object_set_data (G_OBJECT(self), "target-gh", gh);
+	g_object_set_data_full (G_OBJECT(doc), "parent-gh", g_object_ref (gh), g_object_unref);
 	hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
 }
 

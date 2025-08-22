@@ -27,6 +27,7 @@
 
 #include <gtk/gtk.h>
 #include <adwaita.h>
+#include <libpanel.h>
 #include <glib/gi18n.h>
 
 #include "gtkhex.h"

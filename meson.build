@@ -158,6 +158,7 @@ glib_dep = dependency('glib-2.0', version: glib_ver)
 gio_dep = dependency('gio-2.0', version: glib_ver)
 gtk_dep = dependency('gtk4', version: '>= 4.17.5')
 adw_dep = dependency('libadwaita-1', version: '>= 1.7')
+libpanel_dep = dependency('libpanel-1', version: '>= 1.8')
 
 configure_file(
   output: 'config.h',
