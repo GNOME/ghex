@@ -17,12 +17,12 @@
     "modules": [
         {
             "name": "ghex",
-	    "builddir" : true,
+            "builddir" : true,
             "buildsystem": "meson",
             "config-opts" : [
-		    "-Ddevelopment=true",
-		    "-Ddirect-buffer-backend=false"
-	    ],
+		        "-Ddevelopment=true",
+		        "-Ddirect-buffer-backend=false"
+	        ],
             "sources": [{
                 "type": "git",
                 "url": "https://gitlab.gnome.org/GNOME/ghex.git"
