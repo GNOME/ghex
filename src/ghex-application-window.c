@@ -57,7 +57,9 @@ struct _GHexApplicationWindow
 	GtkWidget *dialog_widget;
 	GtkAdjustment *adj;
 	gboolean can_save;
+
 	gboolean insert_mode;
+	GBinding *insert_mode_binding;
 
 	GtkWidget *find_dialog;
 	GtkWidget *replace_dialog;
@@ -768,6 +770,15 @@ tab_view_page_changed_cb (AdwTabView *tab_view,
 	doc = hex_widget_get_document (ACTIVE_GH);
 	ghex_application_window_set_can_save (self, assess_can_save (doc));
 
+	/* Bind insert mode between widget and appwin */
+
+	g_clear_pointer (&self->insert_mode_binding, g_binding_unbind);
+	self->insert_mode_binding = g_object_bind_property (ACTIVE_GH, "insert-mode",
+			self, "insert-mode",
+			G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
+	g_object_add_weak_pointer (G_OBJECT(self->insert_mode_binding),
+			(gpointer *)&self->insert_mode_binding);
+
 	update_gui_data (self);
 }
 
@@ -791,6 +802,7 @@ static void
 tab_view_page_detached_cb (AdwTabView *tab_view,
 		AdwTabPage *page,
 		int page_num,
+
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
@@ -1066,12 +1078,6 @@ ghex_application_window_set_insert_mode (GHexApplicationWindow *self,
 		gboolean insert_mode)
 {
 	self->insert_mode = insert_mode;
-
-	TAB_VIEW_GH_FOREACH_START
-
-	hex_widget_set_insert_mode (gh, insert_mode);
-
-	TAB_VIEW_GH_FOREACH_END
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_INSERT_MODE]);
 }
@@ -1953,6 +1959,8 @@ ghex_application_window_dispose (GObject *object)
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(object);
 
 	g_clear_object (&self->dialog);
+
+	g_clear_weak_pointer (&self->insert_mode_binding);
 
 	/* Chain up */
 	G_OBJECT_CLASS(ghex_application_window_parent_class)->dispose (object);
