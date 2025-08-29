@@ -1960,6 +1960,8 @@ ghex_application_window_dispose (GObject *object)
 
 	g_clear_object (&self->dialog);
 
+	g_clear_weak_pointer (&self->copy_special_dialog);
+	g_clear_weak_pointer (&self->paste_special_dialog);
 	g_clear_weak_pointer (&self->insert_mode_binding);
 
 	/* Chain up */
