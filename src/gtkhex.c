@@ -360,6 +360,7 @@ enum
 	DOCUMENT = 1,
 	FADE_ZEROES,
 	DISPLAY_CONTROL_CHARACTERS,
+	INSERT_MODE,
 	N_PROPERTIES
 };
 
@@ -625,6 +626,10 @@ hex_widget_set_property (GObject *object,
 			hex_widget_set_display_control_characters (self, g_value_get_boolean (value));
 			break;
 
+		case INSERT_MODE:
+			hex_widget_set_insert_mode (self, g_value_get_boolean (value));
+			break;
+
 		default:
 			/* We don't have any other property... */
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -652,6 +657,10 @@ hex_widget_get_property (GObject *object,
 
 		case DISPLAY_CONTROL_CHARACTERS:
 			g_value_set_boolean (value, hex_widget_get_display_control_characters (self));
+			break;
+
+		case INSERT_MODE:
+			g_value_set_boolean (value, hex_widget_get_insert_mode (self));
 			break;
 
 		default:
@@ -3049,6 +3058,17 @@ hex_widget_class_init (HexWidgetClass *klass)
 			FALSE,
 			G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
+	/**
+	 * HexWidget:insert-mode
+	 *
+	 * Whether insert-mode (versus overwrite) is currently engaged.
+	 *
+	 * Since: 4.10
+	 */
+	properties[INSERT_MODE] = g_param_spec_boolean ("insert-mode", NULL, NULL,
+			FALSE,
+			G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
 	/* Layout manager */
@@ -4094,7 +4114,9 @@ hex_widget_set_insert_mode (HexWidget *self, gboolean insert)
 	self->insert = insert;
 
 	if (!self->insert && self->cursor_pos > 0 && self->cursor_pos >= payload_size)
-			hex_widget_set_cursor (self, payload_size - 1);
+		hex_widget_set_cursor (self, payload_size - 1);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[INSERT_MODE]);
 }
 
 /**
