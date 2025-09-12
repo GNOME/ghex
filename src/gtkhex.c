@@ -2773,6 +2773,8 @@ hex_widget_real_copy_to_clipboard (HexWidget *self)
 
 	/* Finally, set our content to our newly created union. */
 	gdk_clipboard_set_content (clipboard, provider_union);
+
+	g_free (string);
 }
 
 static void
