@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2025-02-10 23:18+0000\n"
-"PO-Revision-Date: 2025-03-02 12:11+0200\n"
+"POT-Creation-Date: 2025-09-12 13:42+0000\n"
+"PO-Revision-Date: 2025-09-12 19:25+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -20,22 +20,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.7\n"
 
-#: data/org.gnome.GHex.appdata.xml.in.in:6
+#: data/org.gnome.GHex.desktop.in.in:4
+msgid "Hex Editor"
+msgstr "Heksadesimaalimuokkain"
+
+#: data/org.gnome.GHex.desktop.in.in:5 data/org.gnome.GHex.metainfo.xml.in.in:7
+msgid "Inspect and edit binary files"
+msgstr "Tutki ja muokkaa binääritiedostoja"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
+#: data/org.gnome.GHex.desktop.in.in:7
+msgid "binary;debug;hexadecimal;"
+msgstr "binary;debug;binääri;vianetsintä;vianjäljitys;heksadesimaali;"
+
+#: data/org.gnome.GHex.desktop.in.in:20
+msgid "New Window"
+msgstr "Uusi ikkuna"
+
+#: data/org.gnome.GHex.metainfo.xml.in.in:6
 #: src/ghex-application-window.ui.in:151
 msgid "GHex"
 msgstr "GHex"
 
-#: data/org.gnome.GHex.appdata.xml.in.in:7 data/org.gnome.GHex.desktop.in.in:6
-msgid "Inspect and edit binary files"
-msgstr "Tutki ja muokkaa binääritiedostoja"
-
-#: data/org.gnome.GHex.appdata.xml.in.in:9
+#: data/org.gnome.GHex.metainfo.xml.in.in:9
 msgid "GHex is a hex editor for the GNOME desktop."
 msgstr "GHex on heksamuokkain Gnome-työpöydälle."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:12
+#: data/org.gnome.GHex.metainfo.xml.in.in:12
 msgid ""
 "GHex can load raw data from binary files and display them for editing in the "
 "traditional hex editor view. The display is split in two columns, with "
@@ -47,24 +60,15 @@ msgstr ""
 "palstaan, heksadesimaaliarvot yhdessä ja ASCII-esitys toisessa. GHex on "
 "hyödyllinen työkalu raakadatan kanssa työskentelyyn."
 
-#: data/org.gnome.GHex.desktop.in.in:5
-msgid "Hex Editor"
-msgstr "Heksadesimaalimuokkain"
-
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
-#: data/org.gnome.GHex.desktop.in.in:8
-msgid "binary;debug;hexadecimal;"
-msgstr "binary;debug;binääri;vianetsintä;vianjäljitys;heksadesimaali;"
-
 #: src/chartable.ui:30
 msgid "Character table"
 msgstr "Markkitaulu"
 
-#: src/chartable.ui:44 src/find-options.ui:67
+#: src/chartable.ui:44 src/find-options.ui:69
 msgid "ASCII"
 msgstr "ASCII"
 
-#: src/chartable.ui:69 src/find-options.ui:66
+#: src/chartable.ui:69 src/find-options.ui:65
 msgid "Hex"
 msgstr "Heksa"
 
@@ -237,7 +241,7 @@ msgstr "_Älä huomioi kirjainkokoa"
 msgid "Show:"
 msgstr "Näytä:"
 
-#: src/find-options.ui:68 src/preferences.ui:170
+#: src/find-options.ui:73 src/preferences.ui:170
 msgid "Both"
 msgstr "Molemmat"
 
@@ -325,19 +329,19 @@ msgstr "Osumia ei löytynyt."
 #. Translators: this is the string for an untitled buffer that will
 #. * be displayed in the titlebar when a user does File->New
 #.
-#: src/ghex-application-window.c:49 src/hex-document.c:1110
+#: src/ghex-application-window.c:43 src/hex-document.c:1148
 msgid "Untitled"
 msgstr "Nimetön"
 
-#: src/ghex-application-window.c:307
+#: src/ghex-application-window.c:359
 msgid "There was an error saving the file."
 msgstr "Virhe tallennettaessa tiedostoa."
 
-#: src/ghex-application-window.c:347
+#: src/ghex-application-window.c:399
 msgid "Save Changes?"
 msgstr "Tallennetaanko muutokset?"
 
-#: src/ghex-application-window.c:350
+#: src/ghex-application-window.c:402
 msgid ""
 "Open documents contain unsaved changes.\n"
 "Changes which are not saved will be permanently lost."
@@ -345,57 +349,57 @@ msgstr ""
 "Avoinna olevat asiakirjat sisältävät tallentamattomia muutoksia.\n"
 "Tallentamattomat muutokset, joita ei tallenneta, häviävät pysyvästi."
 
-#: src/ghex-application-window.c:353 src/ghex-application-window.c:482
-#: src/ghex-application-window.c:1191 src/paste-special.ui:53
+#: src/ghex-application-window.c:405 src/ghex-application-window.c:534
+#: src/ghex-application-window.c:1253 src/paste-special.ui:53
 msgid "_Cancel"
 msgstr "_Peru"
 
-#: src/ghex-application-window.c:354 src/ghex-application-window.c:483
+#: src/ghex-application-window.c:406 src/ghex-application-window.c:535
 msgid "_Discard"
 msgstr "_Hylkää"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:470
+#: src/ghex-application-window.c:522
 #, c-format
 msgid "%s has been edited since opening."
 msgstr "Tiedostoa %s on muokattu sen avaamisen jälkeen."
 
-#: src/ghex-application-window.c:474
+#: src/ghex-application-window.c:526
 msgid "The buffer has been edited since opening."
 msgstr "Puskuria on muokattu avaamisen jälkeen."
 
-#: src/ghex-application-window.c:477
+#: src/ghex-application-window.c:529
 msgid "Would you like to save your changes?"
 msgstr "Haluatko tallentaa muutokset?"
 
-#: src/ghex-application-window.c:484
+#: src/ghex-application-window.c:536
 msgid "_Save"
 msgstr "_Tallenna"
 
-#: src/ghex-application-window.c:1050
+#: src/ghex-application-window.c:1111
 msgid "There was an error saving the file to the path specified."
 msgstr "Tiedostoa tallennettaessa valittuun polkuun tapahtui virhe."
 
-#: src/ghex-application-window.c:1069
+#: src/ghex-application-window.c:1130
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
 msgstr ""
 "Juuri tallentamaasi tiedostoa ladatessa uudelleen tapahtui tuntematon virhe."
 
-#: src/ghex-application-window.c:1122
+#: src/ghex-application-window.c:1183
 msgid "Select a file to save buffer as"
 msgstr "Valitse tiedosto johon puskuri tallennetaan"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1186
+#: src/ghex-application-window.c:1248
 #, c-format
 msgid "Are you sure you want to revert %s?"
 msgstr "Haluatko palauttaa tiedoston %s?"
 
-#: src/ghex-application-window.c:1188
+#: src/ghex-application-window.c:1250
 msgid ""
 "Your changes will be lost.\n"
 "This action cannot be undone."
@@ -403,15 +407,15 @@ msgstr ""
 "Muutokset häviävät.\n"
 "Tätä toimintoa ei voi perua."
 
-#: src/ghex-application-window.c:1192 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1254 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "Pa_lauta"
 
-#: src/ghex-application-window.c:1282
+#: src/ghex-application-window.c:1344
 msgid "Select a file to open"
 msgstr "Valitse avattava tiedosto"
 
-#: src/ghex-application-window.c:1389
+#: src/ghex-application-window.c:1452
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -434,7 +438,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1586
+#: src/ghex-application-window.c:1649
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -443,12 +447,12 @@ msgstr ""
 "Siirros: <tt>0x%lX</tt>; <tt>0x%lX</tt> tavua kohdasta <tt>0x%lX</tt> "
 "kohtaan <tt>0x%lX</tt> valittu"
 
-#: src/ghex-application-window.c:1589
+#: src/ghex-application-window.c:1652
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Siirros: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1596
+#: src/ghex-application-window.c:1659
 #, c-format
 msgid ""
 "Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
@@ -457,18 +461,14 @@ msgstr ""
 "Siirros: <tt>%ld</tt>; <tt>%ld</tt> tavua kohdasta <tt>%ld</tt> kohtaan "
 "<tt>%ld</tt> valittu"
 
-#: src/ghex-application-window.c:1599
+#: src/ghex-application-window.c:1662
 #, c-format
-#| msgid "Offset: <tt>0x%lX</tt>"
 msgid "Offset: <tt>%ld</tt>"
 msgstr "Siirros: <tt>%ld</tt>"
 
 #. Weird rendering if you don't put the space at the start
-#: src/ghex-application-window.c:1607
+#: src/ghex-application-window.c:1670
 #, c-format
-#| msgid ""
-#| "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
-#| "<tt>0x%lX</tt> selected"
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
 "tt> to <tt>0x%lX</tt> selected <sub>DEC</sub> Offset: <tt>%ld</tt>; <tt>%ld</"
@@ -479,14 +479,14 @@ msgstr ""
 "<tt>%ld</tt>; <tt>%ld</tt> tavua kohdasta <tt>%ld</tt> kohtaan <tt>%ld</tt> "
 "valittu"
 
-#: src/ghex-application-window.c:1611
+#: src/ghex-application-window.c:1674
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"
 msgstr ""
 " <sub>HEX</sub> Siirros: <tt>0x%lX</tt> <sub>DEC</sub> Siirros: <tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2430
+#: src/ghex-application-window.c:2521
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -512,11 +512,11 @@ msgstr ""
 "Jos haluat tästä viestistä kokonaan eroon, kokeile käyttää toista puskurin "
 "taustaosaa."
 
-#: src/ghex-application-window.c:2488
+#: src/ghex-application-window.c:2579
 msgid "There was an error reading the file."
 msgstr "Tiedostoa luettaessa tapahtui virhe."
 
-#: src/ghex-application-window.c:2549
+#: src/ghex-application-window.c:2640
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -526,8 +526,8 @@ msgstr ""
 "käyttämiseen."
 
 #: src/ghex-application-window.ui.in:31
-msgid "_New"
-msgstr "_Uusi"
+msgid "_New Window"
+msgstr "_Uusi ikkuna"
 
 #: src/ghex-application-window.ui.in:35
 msgid "Save _As"
@@ -621,47 +621,51 @@ msgstr "Avaa tiedosto heksamuokattavaksi"
 msgid "_Open"
 msgstr "_Avaa"
 
-#: src/ghex-application-window.ui.in:188
+#: src/ghex-application-window.ui.in:187 src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr "Uusi tyhjä heksapuskuri"
+
+#: src/ghex-application-window.ui.in:196
 msgid "Main Menu"
 msgstr "Päävalikko"
 
-#: src/ghex-application-window.ui.in:190
+#: src/ghex-application-window.ui.in:198
 msgid "Main menu"
 msgstr "Päävalikko"
 
-#: src/ghex-application-window.ui.in:200
+#: src/ghex-application-window.ui.in:208
 msgid "Find a string in the hex document"
 msgstr "Löydä merkkijono heksa-asiakirjasta"
 
-#: src/ghex-application-window.ui.in:209
+#: src/ghex-application-window.ui.in:217
 msgid "Save document"
 msgstr "Tallenna asiakirja"
 
-#: src/ghex-application-window.ui.in:217
+#: src/ghex-application-window.ui.in:225
 msgid "No File Loaded"
 msgstr "Mitään tiedostoa ei ole ladattu"
 
-#: src/ghex-application-window.ui.in:220
+#: src/ghex-application-window.ui.in:228
 msgid ""
 "• Press the Open button\n"
-"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+T to start a new document\n"
 "• Press Ctrl+O to browse for a document\n"
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
 "• Paina Avaa-painiketta\n"
-"• Paina Ctrl+N avataksesi uuden asiakirjan\n"
+"• Paina Ctrl+T avataksesi uuden asiakirjan\n"
 "• Paina Ctrl+O selataksesi asiakirjaa\n"
 "\n"
 "Tai paina Ctrl+W sulkeaksesi ikkunan."
 
-#: src/ghex-application-window.ui.in:309
+#: src/ghex-application-window.ui.in:317
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Syöttötila päälle/pois (lisää dataa tiedostoon sen sijaan että korvaisit "
 "olemassa olevaa dataa)"
 
-#: src/ghex-application-window.ui.in:321
+#: src/ghex-application-window.ui.in:329
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Näytä/piilota paneeli, joka näyttää lukuisia numeerisia muunnoksia"
 
@@ -685,7 +689,7 @@ msgstr "_Tee uudestaan"
 msgid "Cu_t"
 msgstr "_Leikkaa"
 
-#: src/gtkhex.ui:76 src/paste-special.c:420
+#: src/gtkhex.ui:76 src/paste-special.c:450
 msgid "_Copy"
 msgstr "_Kopioi"
 
@@ -700,10 +704,6 @@ msgstr "_Geometria"
 #: src/help-overlay.ui:14
 msgid "Files"
 msgstr "Tiedostot"
-
-#: src/help-overlay.ui:19
-msgid "New blank hex buffer"
-msgstr "Uusi tyhjä heksapuskuri"
 
 #: src/help-overlay.ui:26
 msgid "Open a file for editing"
@@ -822,14 +822,18 @@ msgid "General"
 msgstr "Yleiset"
 
 #: src/help-overlay.ui:229
+msgid "New window"
+msgstr "Uusi ikkuna"
+
+#: src/help-overlay.ui:236
 msgid "Show help"
 msgstr "Näytä ohje"
 
-#: src/help-overlay.ui:236
+#: src/help-overlay.ui:243
 msgid "Show preferences"
 msgstr "Näytä asetukset"
 
-#: src/help-overlay.ui:243
+#: src/help-overlay.ui:250
 msgid "Toggle insert mode"
 msgstr "Syöttötila päälle/pois"
 
@@ -880,6 +884,8 @@ msgid ""
 "With direct-write mode, you cannot save a file to a path other than its "
 "originating path"
 msgstr ""
+"Suorakirjoitustilassa et voi tallentaa tiedostoa muuhun kuin alkuperäiseen "
+"polkuun"
 
 #: src/hex-buffer-direct.c:552
 msgid "Error writing changes to file"
@@ -975,25 +981,37 @@ msgstr "Näytä etumerkittömät ja liukuluvut heksadesimaalina"
 msgid "Stream Length:"
 msgstr "Virran pituus:"
 
-#: src/hex-document.c:1138
+#: src/hex-document.c:1176
 #, c-format
 msgid "Page"
 msgstr "Sivu"
 
-#: src/hex-document.c:1144 src/hex-document.c:1247
+#: src/hex-document.c:1182 src/hex-document.c:1285
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Heksadumpin luonut"
 
-#: src/hex-document.c:1170
+#: src/hex-document.c:1208
 #, c-format
 msgid "Previous page"
 msgstr "Edellinen sivu"
 
-#: src/hex-document.c:1185
+#: src/hex-document.c:1223
 #, c-format
 msgid "Next page"
 msgstr "Seuraava sivu"
+
+#: src/hex-info-bar.c:207
+msgid "File Has Changed on Disk"
+msgstr "Tiedosto on muuttunut levyllä"
+
+#: src/hex-info-bar.c:211
+msgid "The file has been changed by another program."
+msgstr "Toinen ohjelma on muuttanut tiedostoa."
+
+#: src/hex-info-bar.ui:69
+msgid "_Discard Changes and Reload"
+msgstr "_Hylkää muutokset ja lataa uudelleen"
 
 #: src/jump-dialog.ui:35
 msgid "Jump to byte (enter offset):"
@@ -1025,15 +1043,19 @@ msgid "Closes the jump-to-byte pane"
 msgstr "Sulkee \"Siirry tavuun\"-ikkunan"
 
 #: src/main.c:44
+msgid "Open a new window"
+msgstr "Avaa uusi ikkuna"
+
+#: src/main.c:50
 msgid "Show the application version"
 msgstr "Näytä sovelluksen versio"
 
-#: src/main.c:105
+#: src/main.c:109
 #, c-format
 msgid "This is GHex, version %s\n"
 msgstr "Tämä on GHex, versio %s\n"
 
-#: src/main.c:170
+#: src/main.c:194
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "GHex - Heksamuokkain Gnome-työpöydälle"
 
@@ -1085,40 +1107,37 @@ msgstr "Poista määritetty merkintä"
 msgid "Closes the marks pane"
 msgstr "Sulkee merkintäpaneelin"
 
-#: src/paste-special.c:218
+#: src/paste-special.c:224
 #, c-format
-msgid ""
-"Paste failed; invalid hex format.\n"
-"\n"
-"The string must be in the format of space-delineated hex byte pairs.\n"
-"\n"
-"For example: \"FF 3D 99 0A\""
-msgstr ""
-"Liittäminen epäonnistui. virheellinen heksamuoto.\n"
-"\n"
-"Merkkijonon tulee olla välilyönnillä erotettuja heksatavujen pareja.\n"
-"\n"
-"Esimerkki: \"FF 3D 99 0A\""
+msgid "Failed to paste. Unexpected end of text"
+msgstr "Liittäminen epäonnistui. Odottamaton tekstin loppu"
 
-#: src/paste-special.c:305
+#: src/paste-special.c:238
+#, c-format
+msgid "Failed to paste. The pasted string contains an invalid hex digit."
+msgstr ""
+"Liittäminen epäonnistui. Liitetty merkkijono sisältää virheellisen "
+"heksanumeron."
+
+#: src/paste-special.c:335
 msgid "GHex Paste Data"
 msgstr "GHexin liitosdata"
 
-#: src/paste-special.c:422
+#: src/paste-special.c:452
 msgid "Copy Special"
 msgstr "Kopioi erityisesti"
 
-#: src/paste-special.c:527
+#: src/paste-special.c:557
 msgid "Plain text (as ASCII)"
 msgstr "Muotoilematon teksti (ASCII)"
 
-#: src/paste-special.c:544
+#: src/paste-special.c:574
 msgid "Plain text (Unicode)"
 msgstr "Muotoilematon teksti (Unicode)"
 
-#: src/paste-special.c:548
-msgid "Plain text (as space-delimited hex pairs)"
-msgstr "Muotoilematon teksti (välilyönnillä rajatut heksaparit)"
+#: src/paste-special.c:578
+msgid "Plain text (as hex string representing bytes)"
+msgstr "Raakateksti (heksamerkkijonona esittäen tavuja)"
 
 #: src/paste-special.ui:28
 msgid "Paste Special"
@@ -1252,6 +1271,26 @@ msgstr "Korvaa k_aikki"
 #: src/replace-dialog.ui:58
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Korvaa kaikki haetun merkkijonon osumat korvaavalla merkkijonolla"
+
+#~ msgid "_New"
+#~ msgstr "_Uusi"
+
+#, c-format
+#~ msgid ""
+#~ "Paste failed; invalid hex format.\n"
+#~ "\n"
+#~ "The string must be in the format of space-delineated hex byte pairs.\n"
+#~ "\n"
+#~ "For example: \"FF 3D 99 0A\""
+#~ msgstr ""
+#~ "Liittäminen epäonnistui. virheellinen heksamuoto.\n"
+#~ "\n"
+#~ "Merkkijonon tulee olla välilyönnillä erotettuja heksatavujen pareja.\n"
+#~ "\n"
+#~ "Esimerkki: \"FF 3D 99 0A\""
+
+#~ msgid "Plain text (as space-delimited hex pairs)"
+#~ msgstr "Muotoilematon teksti (välilyönnillä rajatut heksaparit)"
 
 #~ msgid "About GHex"
 #~ msgstr "Tietoja - GHex"
@@ -1427,9 +1466,6 @@ msgstr "Korvaa kaikki haetun merkkijonon osumat korvaavalla merkkijonolla"
 
 #~ msgid "_View"
 #~ msgstr "_Näytä"
-
-#~ msgid "_Windows"
-#~ msgstr "_Ikkunat"
 
 #~ msgid "Open a file"
 #~ msgstr "Avaa tiedosto"
