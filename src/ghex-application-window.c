@@ -504,32 +504,30 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 {
 	AdwDialog *dialog;
 	HexDocument *doc;
-	GFile *file;
-	char *title;
-	char *message;
 	char *basename = NULL;
+	char *title = NULL;
 	HexWidget *gh = get_gh_for_page (self, page);
-	doc = hex_widget_get_document (gh);
 
+	doc = hex_widget_get_document (gh);
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	if (G_IS_FILE (file = hex_document_get_file (doc)))
-		basename = g_file_get_basename (hex_document_get_file (doc));
+	basename = common_get_ui_basename (doc);
 
 	if (basename) {
 		/* Translators: %s is the filename that is currently being
 		 * edited. */
 		title = g_strdup_printf (_("%s has been edited since opening."), basename);
-		g_free (basename);
 	}
 	else {
 		title = _("The buffer has been edited since opening.");
 	}
-
-	message = _("Would you like to save your changes?");
+	g_free (basename);
 
 	dialog = adw_alert_dialog_new (title, NULL);
-	adw_alert_dialog_set_body (ADW_ALERT_DIALOG(dialog), message);
+	g_free (title);
+
+	adw_alert_dialog_set_body (ADW_ALERT_DIALOG(dialog),
+			_("Would you like to save your changes?"));
 	adw_alert_dialog_add_responses (ADW_ALERT_DIALOG(dialog),
 			"cancel", _("_Cancel"),
 			"discard", _("_Discard"),
@@ -654,21 +652,25 @@ show_no_file_loaded_label (GHexApplicationWindow *self)
 static void
 update_tabs (GHexApplicationWindow *self)
 {
-	char *basename;
+	HexDocument *doc = NULL;
 	GFile *gfile = NULL;
 
 	TAB_VIEW_GH_FOREACH_START
 
+	char *basename = NULL;
+
 	/* set text of context menu tab switcher to the filename rather than
 	 * 'Page X' */
-	gfile = hex_document_get_file (hex_widget_get_document (gh));
+	doc = hex_widget_get_document (gh);
+	gfile = hex_document_get_file (doc);
 
 	if (gfile)
-		basename = g_file_get_basename (gfile);
+		basename = common_get_ui_basename (doc);
 	else
 		basename = g_strdup (_(UNTITLED_STRING));
 
 	adw_tab_page_set_title (get_tab_for_gh (self, gh), basename);
+
 	g_free (basename);
 
 	TAB_VIEW_GH_FOREACH_END
@@ -903,9 +905,9 @@ update_titlebar (GHexApplicationWindow *self)
 		{
 			GFile *parent = g_file_get_parent (file);
 
-			basename = g_file_get_basename (file);
+			basename = common_get_ui_basename (doc);
 			if (parent)
-				pathname = g_file_get_path (parent);
+				pathname = g_utf8_make_valid (g_file_peek_path (parent), -1);
 
 			g_clear_object (&parent);
 		}
@@ -1241,11 +1243,14 @@ revert (GtkWidget *widget,
 	 * to the user at all if there is nothing to revert. */
 	g_return_if_fail (hex_document_has_changed (doc));
 
-	basename = g_file_get_basename (hex_document_get_file (doc));
+	basename = common_get_ui_basename (doc);
 
 	/* Translators: %s here is the filename the user is being asked to
 	 * confirm whether they want to revert. */
 	dialog = adw_alert_dialog_new (g_strdup_printf (_("Are you sure you want to revert %s?"), basename), NULL);
+
+	g_free (basename);
+
 	adw_alert_dialog_set_body (ADW_ALERT_DIALOG(dialog),
 			_("Your changes will be lost.\n"
 			"This action cannot be undone."));
@@ -1261,8 +1266,6 @@ revert (GtkWidget *widget,
 	g_signal_connect (dialog, "response", G_CALLBACK(revert_response_cb), self);
 
 	adw_dialog_present (dialog, GTK_WIDGET (self));
-
-	g_free (basename);
 }
 
 static void
