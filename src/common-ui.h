@@ -49,6 +49,7 @@ void common_about_cb (GtkWindow *parent);
 void common_print (GtkWindow *parent, HexWidget *gh, gboolean preview);
 void common_set_gtkhex_font_from_settings (HexWidget *gh);
 void display_dialog (GtkWindow *parent, const char *msg);
+char *common_get_ui_basename (HexDocument *doc);
 
 G_END_DECLS
 

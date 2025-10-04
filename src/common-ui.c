@@ -373,3 +373,38 @@ display_dialog (GtkWindow *parent, const char *msg)
 	adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG(dialog), "close");
 	adw_dialog_present (dialog, GTK_WIDGET(parent));
 }
+
+/* transfer full */
+char *
+common_get_ui_basename (HexDocument *doc)
+{
+	char *retval = NULL;
+	GFile *gfile = NULL;
+	GFileInfo *info = NULL;
+	GError *local_error = NULL;
+
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), NULL);
+
+	gfile = hex_document_get_file (doc);
+
+	if (!gfile)
+		return NULL;
+
+	info = g_file_query_info (gfile, G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
+			G_FILE_QUERY_INFO_NONE, NULL, &local_error);
+
+	if (local_error)
+	{
+		g_debug ("%s: Returning null due to error: %s",
+				__func__, local_error->message);
+		g_assert (!retval);
+		goto out;
+	}
+
+	retval = g_strdup (g_file_info_get_display_name (info));
+
+out:
+	g_clear_error (&local_error);
+	g_object_unref (info);
+	return retval;
+}
