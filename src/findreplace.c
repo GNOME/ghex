@@ -74,6 +74,7 @@ typedef struct {
 	GtkWidget *options_popover;
 	GtkWidget *options_regex;
 	GtkWidget *options_ignore_case;
+	GtkWidget *options_nibble_wise;
 	GtkWidget *options_show_pane;
 	gboolean found;
 	GCancellable *cancellable;
@@ -263,6 +264,8 @@ search_flags_from_checkboxes (const FindDialogPrivate *f_priv)
 		flags |= HEX_SEARCH_REGEX;
 	if (gtk_check_button_get_active (GTK_CHECK_BUTTON(f_priv->options_ignore_case)))
 		flags |= HEX_SEARCH_IGNORE_CASE;
+	if (gtk_check_button_get_active (GTK_CHECK_BUTTON(f_priv->options_nibble_wise)))
+		flags |= HEX_SEARCH_NIBBLE_WISE;
 
 	return flags;
 }
@@ -859,6 +862,8 @@ find_dialog_init (FindDialog *self)
 			gtk_builder_get_object (builder, "find_options_regex"));
 	f_priv->options_ignore_case = GTK_WIDGET(
 			gtk_builder_get_object (builder, "find_options_ignore_case"));
+	f_priv->options_nibble_wise = GTK_WIDGET(
+			gtk_builder_get_object (builder, "find_options_nibble_wise"));
 	f_priv->options_show_pane = GTK_WIDGET(
 			gtk_builder_get_object (builder, "find_options_show_pane"));
 

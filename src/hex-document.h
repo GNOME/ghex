@@ -60,6 +60,7 @@ typedef enum
  * @HEX_SEARCH_NONE: no search flags (byte-for-byte match)
  * @HEX_SEARCH_REGEX: regular expression search
  * @HEX_SEARCH_IGNORE_CASE: case-insensitive search
+ * @HEX_SEARCH_NIBBLE_WISE: nibble-wise search (Since: 4.12)
  *
  * Bitwise flags for search options that can be combined as desired.
  *
@@ -70,6 +71,7 @@ typedef enum
 	HEX_SEARCH_NONE				= 0,
 	HEX_SEARCH_REGEX			= 1 << 0,
 	HEX_SEARCH_IGNORE_CASE		= 1 << 1,
+	HEX_SEARCH_NIBBLE_WISE		= 1 << 2,
 } HexSearchFlags;
 
 /**

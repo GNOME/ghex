@@ -1293,6 +1293,41 @@ hex_document_export_html (HexDocument *doc,
 	return TRUE;
 }
 
+/* It is the allocator's responsibility to ensure that the @data param has one
+ * extra byte allocated so that if the pattern is found offset by 1 nibble,
+ * it'll actually be caught by this function. All it does is convert to a
+ * string of hex digits and do a strstr() comparison.
+ */
+static int
+nibble_wise_memcmp (const char *data, const char *what, size_t len)
+{
+	GString *data_gstr = g_string_new (NULL);
+	GString *what_gstr = g_string_new (NULL);
+	const guchar *cp;
+	size_t i;
+
+	/* Must use unsigned here because otherwise signed char's may be
+	 * promoted to integers for printf purposes, which will result in a
+	 * negative number becoming a huge 4-byte hex figure.
+	 */
+	for (cp = (guchar *)data, i = 0; i < len; ++cp, ++i)
+	{
+		g_string_append_printf (data_gstr, "%02X", *cp);
+	}
+
+	for (cp = (guchar *)what, i = 0; i < len - 1; ++cp, ++i)
+	{
+		g_string_append_printf (what_gstr, "%02X", *cp);
+	}
+
+	g_assert (data_gstr->str && what_gstr->str);
+
+	if (strstr (data_gstr->str, what_gstr->str))
+		return 0;
+
+	return 1;
+}
+
 /**
  * hex_document_compare_data_full:
  * @find_data: a #HexDocumentFindData structure
@@ -1383,15 +1418,25 @@ hex_document_compare_data_full (HexDocument *doc,
 	}
 	else	/* non regex */
 	{
-		cp = hex_buffer_get_data (doc->buffer, pos, find_data->len);
-
-		if (find_data->flags & HEX_SEARCH_IGNORE_CASE)
+		if (find_data->flags & HEX_SEARCH_NIBBLE_WISE)
 		{
-			retval = g_ascii_strncasecmp (cp, find_data->what, find_data->len);
+			size_t len = find_data->len + 1;
+
+			cp = hex_buffer_get_data (doc->buffer, pos, len);
+			retval = nibble_wise_memcmp (cp, find_data->what, len);
 		}
 		else
 		{
-			retval = memcmp (cp, find_data->what, find_data->len);
+			cp = hex_buffer_get_data (doc->buffer, pos, find_data->len);
+
+			if (find_data->flags & HEX_SEARCH_IGNORE_CASE)
+			{
+				retval = g_ascii_strncasecmp (cp, find_data->what, find_data->len);
+			}
+			else
+			{
+				retval = memcmp (cp, find_data->what, find_data->len);
+			}
 		}
 
 		if (retval == 0)
