@@ -18,6 +18,12 @@ Please see the meson.build file for details.
 
 Please refer to the help files.
 
+## API Documentation
+
+You can find
+[API documentation for `libgtkhex`](https://gnome.pages.gitlab.gnome.org/ghex/gtkhex-4.0/index.html)
+updated as part of the CI pipeline.
+
 ## Authors and Copyright Information
 
 The original author of GHex was Jaka Mocnik, who licensed it under the
