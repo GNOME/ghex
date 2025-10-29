@@ -806,7 +806,7 @@ document_ready_cb (GObject *source_object,
 		else
 			g_task_return_boolean (task, FALSE);
 
-		goto cleanup;
+		return;
 	}
 
 	/* Initialize data for new doc */
@@ -819,9 +819,6 @@ document_ready_cb (GObject *source_object,
 
 	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_LOADED], 0);
 	g_task_return_boolean (task, TRUE);
-
-cleanup:
-	g_object_unref (task);
 }
 
 /**
@@ -976,8 +973,6 @@ write_ready_cb (GObject *source_object,
 		else
 			g_task_return_boolean (doc_task, FALSE);
 	}
-
-	g_object_unref (doc_task);	/* g_task_return_* takes a ref. */
 }
 
 /**
@@ -1431,6 +1426,33 @@ hex_document_compare_data (HexDocument *doc,
 	return retval;
 }
 
+gboolean
+find_forward_full_helper (HexDocument *doc,
+		HexDocumentFindData *find_data,
+		GCancellable *cancellable)
+{
+	gint64 pos;
+	gint64 payload = hex_buffer_get_payload_size (
+			hex_document_get_buffer (doc));
+
+	g_return_val_if_fail (find_data != NULL, FALSE);
+
+	pos = find_data->start;
+	while (pos < payload)
+	{
+		if (g_cancellable_is_cancelled (cancellable))
+			return FALSE;
+
+		if (hex_document_compare_data_full (doc, find_data, pos) == 0)
+		{
+			find_data->offset = pos;
+			return TRUE;
+		}
+		pos++;
+	}
+
+	return FALSE;
+}
 /**
  * hex_document_find_forward_full:
  * @find_data: a #HexDocumentFindData structure
@@ -1452,24 +1474,7 @@ gboolean
 hex_document_find_forward_full (HexDocument *doc,
 		HexDocumentFindData *find_data)
 {
-	gint64 pos;
-	gint64 payload = hex_buffer_get_payload_size (
-			hex_document_get_buffer (doc));
-
-	g_return_val_if_fail (find_data != NULL, FALSE);
-
-	pos = find_data->start;
-	while (pos < payload)
-	{
-		if (hex_document_compare_data_full (doc, find_data, pos) == 0)
-		{
-			find_data->offset = pos;
-			return TRUE;
-		}
-		pos++;
-	}
-
-	return FALSE;
+	return find_forward_full_helper (doc, find_data, NULL);
 }
 
 /**
@@ -1542,13 +1547,13 @@ FUNC_NAME (GTask *task, \
  \
 	g_return_if_fail (find_data); \
  \
-	find_data->found = FUNC_TO_CALL (doc, find_data); \
+	find_data->found = FUNC_TO_CALL (doc, find_data, cancellable); \
  \
 	g_task_return_pointer (task, find_data, g_free); \
 }
 
 FIND_FULL_THREAD_TEMPLATE(hex_document_find_forward_full_thread,
-		hex_document_find_forward_full)
+		find_forward_full_helper)
 
 static void
 hex_document_find_forward_thread (GTask *task,
@@ -1577,9 +1582,9 @@ FUNC_NAME (HexDocument *doc, \
 	GTask *task; \
  \
 	task = g_task_new (doc, cancellable, callback, user_data); \
-	g_task_set_return_on_cancel (task, TRUE); \
-	g_task_set_task_data (task, find_data, g_free); \
+	g_task_set_task_data (task, find_data, NULL); \
 	g_task_run_in_thread (task, FUNC_TO_CALL); \
+	g_object_unref (task);	/* _run_in_thread takes a ref */ \
 }
 
 /**
@@ -1639,14 +1644,38 @@ FUNC_NAME (HexDocument *doc, \
 	find_data->not_found_msg = not_found_msg; \
  \
 	task = g_task_new (doc, cancellable, callback, user_data); \
-	g_task_set_return_on_cancel (task, TRUE); \
-	g_task_set_task_data (task, find_data, g_free); \
+	g_task_set_task_data (task, find_data, NULL); \
 	g_task_run_in_thread (task, FUNC_TO_CALL); \
 	g_object_unref (task);	/* _run_in_thread takes a ref */ \
 }
 
 FIND_ASYNC_TEMPLATE(hex_document_find_forward_async,
 		hex_document_find_forward_thread)
+
+static gboolean
+find_backward_full_helper (HexDocument *doc,
+		HexDocumentFindData *find_data,
+		GCancellable *cancellable)
+{
+	gint64 pos = find_data->start;
+
+	if (pos == 0)
+		return FALSE;
+
+	do {
+		if (g_cancellable_is_cancelled (cancellable))
+			return FALSE;
+
+		pos--;
+
+		if (hex_document_compare_data_full (doc, find_data, pos) == 0) {
+			find_data->offset = pos;
+			return TRUE;
+		}
+	} while (pos > 0);
+
+	return FALSE;
+}
 
 /**
  * hex_document_find_backward_full:
@@ -1669,20 +1698,7 @@ gboolean
 hex_document_find_backward_full (HexDocument *doc,
 		HexDocumentFindData *find_data)
 {
-	gint64 pos = find_data->start;
-	
-	if (pos == 0)
-		return FALSE;
-
-	do {
-		pos--;
-		if (hex_document_compare_data_full (doc, find_data, pos) == 0) {
-			find_data->offset = pos;
-			return TRUE;
-		}
-	} while (pos > 0);
-
-	return FALSE;
+	return find_backward_full_helper (doc, find_data, NULL);
 }
 
 /**
@@ -1725,7 +1741,7 @@ hex_document_find_backward (HexDocument *doc, gint64 start, const char *what,
 }
 
 FIND_FULL_THREAD_TEMPLATE(hex_document_find_backward_full_thread,
-		hex_document_find_backward_full)
+		find_backward_full_helper)
 
 static void
 hex_document_find_backward_thread (GTask *task,
