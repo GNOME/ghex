@@ -203,8 +203,12 @@ find_cancel_cb (GtkButton *button, gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
+	PaneDialogPrivate *priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 
 	g_cancellable_cancel (f_priv->cancellable);
+
+	mark_gh_busy (priv->gh, FALSE);
+	pane_dialog_update_busy_state (PANE_DIALOG(self));
 }
 
 static void
@@ -287,7 +291,7 @@ find_ready_cb (GObject *source_object,
 	 * an error, but not much we can do to report a search error anyway.
 	 */
 	if (! find_data)
-		goto out;
+		return;
 
 	flags = search_flags_from_checkboxes (f_priv);
 
@@ -317,8 +321,6 @@ find_ready_cb (GObject *source_object,
 	}
 	mark_gh_busy (priv->gh, FALSE);
 	pane_dialog_update_busy_state (PANE_DIALOG(self));
-out:
-	g_object_unref (task);
 }
 
 static void
