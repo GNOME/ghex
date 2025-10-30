@@ -1,4 +1,18 @@
 =========
+GHex 48.2
+=========
+
+This is a bugfix release that contains a stability fix for lengthy, and
+subsequently cancelled, find/replace operations.
+
+Changes and bugfixes since 48.1
+- findrep: Cancelling find ops should allow to search again right away (Logan
+  Rathbone)
+- lib: Fix lifetimes issue with threaded find/rep operations (Logan Rathbone)
+
+This release includes libgtkhex 4.10.1
+
+=========
 GHex 48.1
 =========
 
