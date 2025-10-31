@@ -1,9 +1,4 @@
 include:
-  - project: "gnome/citemplates"
-    file: "flatpak/flatpak_ci_initiative.yml"
-  - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
-    inputs:
-      dist-job-name: "flatpak"
   - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master"
     inputs:
       meson-options: "-Dgtk_doc=true"
@@ -11,6 +6,11 @@ include:
   - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@master"
     inputs:
       docs-job-name: "build-gnomeos"
+  - project: "gnome/citemplates"
+    file: "flatpak/flatpak_ci_initiative.yml"
+  - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
+    inputs:
+      dist-job-name: "flatpak"
 
 flatpak:
   extends: '.flatpak'
