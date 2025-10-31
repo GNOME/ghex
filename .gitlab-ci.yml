@@ -5,18 +5,15 @@ include:
     inputs:
       dist-job-name: "flatpak"
 
-variables: #<1.>
-  FLATPAK_MODULE: "ghex"
-
 flatpak:
   extends: '.flatpak'
+  dependencies: []
   variables:
+    FLATPAK_MODULE: "ghex"
     MANIFEST_PATH: "org.gnome.GHex.Devel.json"
-    RUNTIME_REPO: 'https://sdk.gnome.org/gnome-nightly.flatpakrepo'
     APP_ID: "org.gnome.GHex.Devel"
     BUNDLE: "ghex-dev.flatpak"
 
 nightly:
   extends: '.publish_nightly'
   dependencies: ['flatpak']
-  needs: ['flatpak']
