@@ -12,13 +12,11 @@ include:
     inputs:
       docs-job-name: "build-gnomeos"
 
-variables:
-  FLATPAK_MODULE: "ghex"
-  BRANCH: "master"
-
 flatpak:
   extends: '.flatpak'
   variables:
+    FLATPAK_MODULE: "ghex"
+    BRANCH: "master"
     MANIFEST_PATH: "org.gnome.GHex.Devel.json"
     RUNTIME_REPO: 'https://sdk.gnome.org/gnome-nightly.flatpakrepo'
     APP_ID: "org.gnome.GHex.Devel"
