@@ -4,13 +4,13 @@ include:
   - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
     inputs:
       dist-job-name: "flatpak"
-#  - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master"
-#    inputs:
-#      meson-options: "-Dgtk_doc=true"
-#      grcov-c: "disabled"
-#  - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@master"
-#    inputs:
-#      docs-job-name: "build-gnomeos"
+  - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master"
+    inputs:
+      meson-options: "-Dgtk_doc=true"
+      grcov-c: "disabled"
+  - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@master"
+    inputs:
+      docs-job-name: "build-gnomeos"
 
 variables:
   FLATPAK_MODULE: "ghex"
