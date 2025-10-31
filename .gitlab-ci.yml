@@ -1,17 +1,20 @@
 include:
   - project: "gnome/citemplates"
     file: "flatpak/flatpak_ci_initiative.yml"
-  - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master"
-    inputs:
-      meson-options: "-Dgtk_doc=true"
-      grcov-c: "disabled"
-  - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@master"
   - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
     inputs:
       dist-job-name: "flatpak"
+#  - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master"
+#    inputs:
+#      meson-options: "-Dgtk_doc=true"
+#      grcov-c: "disabled"
+#  - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@master"
+#    inputs:
+#      docs-job-name: "build-gnomeos"
 
-variables: #<1.>
+variables:
   FLATPAK_MODULE: "ghex"
+  BRANCH: "master"
 
 flatpak:
   extends: '.flatpak'
