@@ -2292,6 +2292,7 @@ key_press_cb (GtkEventControllerKey *controller,
 			break;
 
 		case GDK_KEY_Delete:
+		case GDK_KEY_KP_Delete:
 			if (self->cursor_pos < payload_size)
 			{
 				if (self->insert)
@@ -2305,27 +2306,32 @@ key_press_cb (GtkEventControllerKey *controller,
 			break;
 
 		case GDK_KEY_Up:
+		case GDK_KEY_KP_Up:
 			hex_widget_set_cursor (self, self->cursor_pos - self->cpl);
 			ret = GDK_EVENT_STOP;
 			break;
 
 		case GDK_KEY_Down:
+		case GDK_KEY_KP_Down:
 			hex_widget_set_cursor (self, self->cursor_pos + self->cpl);
 			ret = GDK_EVENT_STOP;
 			break;
 
 		case GDK_KEY_Page_Up:
+		case GDK_KEY_KP_Page_Up:
 			hex_widget_set_cursor (self, MAX (0, self->cursor_pos - self->vis_lines*self->cpl));
 			ret = GDK_EVENT_STOP;
 			break;
 
 		case GDK_KEY_Page_Down:
+		case GDK_KEY_KP_Page_Down:
 			hex_widget_set_cursor(self, MIN (payload_size,
 						self->cursor_pos + self->vis_lines*self->cpl));
 			ret = GDK_EVENT_STOP;
 			break;
 
 		case GDK_KEY_Home:
+		case GDK_KEY_KP_Home:
 		{
 			gint64 line_beg = self->cursor_pos;
 
@@ -2338,6 +2344,7 @@ key_press_cb (GtkEventControllerKey *controller,
 			break;
 
 		case GDK_KEY_End:
+		case GDK_KEY_KP_End:
 		{
 			gint64 line_end = self->cursor_pos;
 
@@ -2355,6 +2362,7 @@ key_press_cb (GtkEventControllerKey *controller,
 				switch(keyval)
 				{
 					case GDK_KEY_Left:
+					case GDK_KEY_KP_Left:
 						if (state & GDK_SHIFT_MASK) {
 							hex_widget_set_cursor (self, self->cursor_pos - 1);
 						}
@@ -2367,6 +2375,7 @@ key_press_cb (GtkEventControllerKey *controller,
 						break;
 
 					case GDK_KEY_Right:
+					case GDK_KEY_KP_Right:
 						if (self->cursor_pos >= payload_size) {
 							ret = GDK_EVENT_STOP;
 							break;
@@ -2440,11 +2449,13 @@ key_press_cb (GtkEventControllerKey *controller,
 				switch (keyval)
 				{
 					case GDK_KEY_Left:
+					case GDK_KEY_KP_Left:
 						hex_widget_set_cursor (self, self->cursor_pos - 1);
 						ret = GDK_EVENT_STOP;
 						break;
 
 					case GDK_KEY_Right:
+					case GDK_KEY_KP_Right:
 						hex_widget_set_cursor (self, self->cursor_pos + 1);
 						ret = GDK_EVENT_STOP;
 						break;
@@ -3261,10 +3272,20 @@ hex_widget_class_init (HexWidgetClass *klass)
 			GDK_ALT_MASK,
 			"gtkhex.toggle-hex",
 			NULL);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_Left,
+			GDK_ALT_MASK,
+			"gtkhex.toggle-hex",
+			NULL);
 
 	/* Alt+Right - toggle ascii display */
 	gtk_widget_class_add_binding_action (widget_class,
 			GDK_KEY_Right,
+			GDK_ALT_MASK,
+			"gtkhex.toggle-ascii",
+			NULL);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_Right,
 			GDK_ALT_MASK,
 			"gtkhex.toggle-ascii",
 			NULL);
@@ -3275,10 +3296,20 @@ hex_widget_class_init (HexWidgetClass *klass)
 			GDK_CONTROL_MASK,
 			"gtkhex.move-to-buffer-ends",
 			"(bb)", TRUE, FALSE);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_Home,
+			GDK_CONTROL_MASK,
+			"gtkhex.move-to-buffer-ends",
+			"(bb)", TRUE, FALSE);
 
 	/* Ctrl+End - move to end of buffer */
 	gtk_widget_class_add_binding_action (widget_class,
 			GDK_KEY_End,
+			GDK_CONTROL_MASK,
+			"gtkhex.move-to-buffer-ends",
+			"(bb)", FALSE, FALSE);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_End,
 			GDK_CONTROL_MASK,
 			"gtkhex.move-to-buffer-ends",
 			"(bb)", FALSE, FALSE);
@@ -3289,10 +3320,20 @@ hex_widget_class_init (HexWidgetClass *klass)
 			GDK_SHIFT_MASK | GDK_CONTROL_MASK,
 			"gtkhex.move-to-buffer-ends",
 			"(bb)", TRUE, TRUE);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_Home,
+			GDK_SHIFT_MASK | GDK_CONTROL_MASK,
+			"gtkhex.move-to-buffer-ends",
+			"(bb)", TRUE, TRUE);
 
 	/* Shift+Ctrl+End - move to end of buffer with selection */
 	gtk_widget_class_add_binding_action (widget_class,
 			GDK_KEY_End,
+			GDK_SHIFT_MASK | GDK_CONTROL_MASK,
+			"gtkhex.move-to-buffer-ends",
+			"(bb)", FALSE, TRUE);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_End,
 			GDK_SHIFT_MASK | GDK_CONTROL_MASK,
 			"gtkhex.move-to-buffer-ends",
 			"(bb)", FALSE, TRUE);
