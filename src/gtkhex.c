@@ -40,6 +40,10 @@
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
+/* PRIVATE FORWARD DECLARATIONS */
+
+static void _hex_widget_set_document (HexWidget *self, HexDocument *doc);
+
 /* Don't move these from the source file as they are not part of the public
  * header.
  */
@@ -614,8 +618,7 @@ hex_widget_set_property (GObject *object,
 	switch (property_id)
 	{
 		case DOCUMENT:
-			self->document = g_value_get_object (value);
-			g_object_notify_by_pspec (G_OBJECT(self), properties[DOCUMENT]);
+			_hex_widget_set_document (self, g_value_get_object (value));
 			break;
 
 		case FADE_ZEROES:
@@ -648,7 +651,7 @@ hex_widget_get_property (GObject *object,
 	switch (property_id)
 	{
 		case DOCUMENT:
-			g_value_set_object (value, self->document);
+			g_value_set_object (value, hex_widget_get_document (self));
 			break;
 
 		case FADE_ZEROES:
@@ -4395,6 +4398,17 @@ hex_widget_get_adjustment (HexWidget *self)
 	g_return_val_if_fail (GTK_IS_ADJUSTMENT(self->adj), NULL);
 
 	return self->adj;
+}
+
+static void
+_hex_widget_set_document (HexWidget *self, HexDocument *doc)
+{
+	g_assert (HEX_IS_WIDGET (self));
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	self->document = g_object_ref (doc);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[DOCUMENT]);
 }
 
 /**
