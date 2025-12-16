@@ -4406,6 +4406,9 @@ _hex_widget_set_document (HexWidget *self, HexDocument *doc)
 	g_assert (HEX_IS_WIDGET (self));
 	g_assert (HEX_IS_DOCUMENT (doc));
 
+	/* This is a setter for a construct-only property. */
+	g_assert (!self->document);
+
 	self->document = g_object_ref (doc);
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[DOCUMENT]);
