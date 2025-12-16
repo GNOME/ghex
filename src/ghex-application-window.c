@@ -496,7 +496,9 @@ close_doc_response_cb (AdwAlertDialog *dialog,
 	}
 
 	adw_dialog_close (ADW_DIALOG (dialog));
-	gtk_widget_grab_focus (GTK_WIDGET (ACTIVE_GH));
+
+	if (ACTIVE_GH)
+		gtk_widget_grab_focus (GTK_WIDGET (ACTIVE_GH));
 }
 
 static void
