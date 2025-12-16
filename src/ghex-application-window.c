@@ -517,11 +517,11 @@ close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page)
 		/* Translators: %s is the filename that is currently being
 		 * edited. */
 		title = g_strdup_printf (_("%s has been edited since opening."), basename);
+		g_free (basename);
 	}
 	else {
-		title = _("The buffer has been edited since opening.");
+		title = g_strdup (_("The buffer has been edited since opening."));
 	}
-	g_free (basename);
 
 	dialog = adw_alert_dialog_new (title, NULL);
 	g_free (title);
