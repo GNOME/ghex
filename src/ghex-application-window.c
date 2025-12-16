@@ -1312,6 +1312,8 @@ new_file (GtkWidget *widget,
 	ghex_application_window_activate_tab (self, gh);
 	ghex_application_window_set_insert_mode (self, TRUE);
 	file_loaded (doc, self);
+
+	g_object_unref (doc);
 }
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
@@ -2612,8 +2614,8 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 			nag_screen_shown = TRUE;
 			tmp_global_gfile_for_nag_screen = file;
 			do_nag_screen (self);
-			g_object_unref (doc);
-			return;
+
+			goto out;
 		}
 
 		type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
@@ -2649,12 +2651,15 @@ ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file)
 		/* This fcn is also used to handle open operations on the cmdline. */
 		g_printerr ("%s\n", error_msg);
 
-		return;
+		goto out;
 	}
 
 	ghex_application_window_add_hex (self, gh);
 	g_object_set_data (G_OBJECT(self), "target-gh", gh);
 	hex_document_read_async (doc, NULL, doc_read_ready_cb, self);
+
+out:
+	g_clear_object (&doc);
 }
 
 HexWidget *
