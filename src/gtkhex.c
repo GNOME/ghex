@@ -1779,10 +1779,12 @@ static void
 recalc_scrolling (HexWidget *self)
 {
 	gboolean scroll_to_cursor;
-	double value;
+	double value, lower, upper, step_increment, page_size, page_increment;
 
 	if (self->cpl == 0)
 		return;
+
+	/* Calculate value */
 
 	value = MIN (self->top_line, self->lines - self->vis_lines);
 	/* clamp value */
@@ -1799,14 +1801,20 @@ recalc_scrolling (HexWidget *self)
 		value = MAX (0, value);
 	}
 
+	/* Calculate other adjustment figures */
+
+	lower = 0;
+	upper = self->lines;
+	step_increment = 1;
+	page_size = MIN (self->vis_lines, self->lines);
+	page_increment = page_size - 1;
+
+	g_assert (lower + page_size <= upper);
+
 	/* adjust the scrollbar and display position to new values */
+
 	gtk_adjustment_configure (self->adj,
-	                          value,             /* value */
-	                          0,                 /* lower */
-	                          self->lines,         /* upper */
-	                          1,                 /* step increment */
-	                          self->vis_lines - 1, /* page increment */
-	                          self->vis_lines      /* page size */);
+			value, lower, upper, step_increment, page_increment, page_size);
 }
 
 /*
