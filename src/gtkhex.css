@@ -2,8 +2,8 @@
 	font-family: Monospace;
 	font-size: 12pt;
 	font-feature-settings: "tnum";
-	color: red;
-	background-color: lightgreen;
+	color: @theme_fg_color;
+	background-color: @theme_bg_color;
 }
 
 /* nb: order matters for the next 2 selectors. */
@@ -33,8 +33,7 @@
         padding-left: 12px;
 	padding-right: 12px;
 	border-right: solid @borders 2px;
-	background-color: green;
-	color: pink;
+	background-color: shade(@theme_bg_color, 0.9);
 }
 
 .hex #hex-display {
