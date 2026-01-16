@@ -3688,9 +3688,13 @@ hex_widget_init (HexWidget *self)
 GtkWidget *
 hex_widget_new (HexDocument *owner)
 {
+	g_return_val_if_fail (HEX_IS_DOCUMENT (owner), NULL);
+
 	return g_object_new (HEX_TYPE_WIDGET,
 			"document", owner,
 			NULL);
+
+	g_object_unref (owner);
 }
 
 /**
@@ -4411,11 +4415,11 @@ hex_widget_get_adjustment (HexWidget *self)
 static void
 _hex_widget_set_document (HexWidget *self, HexDocument *doc)
 {
-	g_assert (HEX_IS_WIDGET (self));
-	g_assert (HEX_IS_DOCUMENT (doc));
+	g_return_if_fail (HEX_IS_WIDGET (self));
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	/* This is a setter for a construct-only property. */
-	g_assert (!self->document);
+	g_return_if_fail (self->document == NULL);
 
 	self->document = g_object_ref (doc);
 
