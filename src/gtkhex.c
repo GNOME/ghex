@@ -3678,7 +3678,7 @@ hex_widget_init (HexWidget *self)
 
 /**
  * hex_widget_new:
- * @owner: (transfer full): the [class@Hex.Document] object to be associated
+ * @document: (transfer full): the [class@Hex.Document] object to be associated
  *   with the newly created `HexWidget`
  *
  * Create a new `HexWidget` object.
@@ -3686,15 +3686,19 @@ hex_widget_init (HexWidget *self)
  * Returns: a newly created `HexWidget` object, or %NULL
  */
 GtkWidget *
-hex_widget_new (HexDocument *owner)
+hex_widget_new (HexDocument *document)
 {
-	g_return_val_if_fail (HEX_IS_DOCUMENT (owner), NULL);
+	GtkWidget *self = NULL;
 
-	return g_object_new (HEX_TYPE_WIDGET,
-			"document", owner,
+	g_return_val_if_fail (HEX_IS_DOCUMENT (document), NULL);
+
+	self = g_object_new (HEX_TYPE_WIDGET,
+			"document", document,
 			NULL);
 
-	g_object_unref (owner);
+	g_object_unref (document);
+
+	return self;
 }
 
 /**

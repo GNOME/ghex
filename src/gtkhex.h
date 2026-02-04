@@ -74,7 +74,7 @@ G_DECLARE_FINAL_TYPE (HexWidgetMark, hex_widget_mark, HEX, WIDGET_MARK, GObject)
 
 /* PUBLIC METHOD DECLARATIONS */
 
-GtkWidget *hex_widget_new (HexDocument *owner);
+GtkWidget *hex_widget_new (HexDocument *document);
 
 void hex_widget_set_cursor (HexWidget *gh, gint64 index);
 void hex_widget_set_cursor_by_row_and_col (HexWidget *gh, int col_x, gint64 line_y);
