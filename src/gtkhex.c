@@ -3804,7 +3804,7 @@ static char *zeros = NULL;
 void
 hex_widget_zero_selection (HexWidget *self)
 {
-	gint64 start, end;
+	gint64 start, end, i;
 	size_t len;
 	size_t written = 0;
 
@@ -3818,11 +3818,16 @@ hex_widget_zero_selection (HexWidget *self)
 		zeros = g_malloc0 (512);
 	}
 
-	while (written < len) {
+	i = start;
+	while (written < len)
+	{
 		size_t batch_size = len < 512 ? len : 512;
+
 		hex_document_set_data (self->document,
-				start, batch_size, batch_size,
+				i, batch_size, batch_size,
 				zeros, TRUE);
+
+		i += batch_size;
 		written += batch_size;
 	}
 }
