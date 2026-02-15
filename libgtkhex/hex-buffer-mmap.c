@@ -221,8 +221,10 @@ hex_buffer_mmap_finalize (GObject *gobject)
 {
 	HexBufferMmap *self = HEX_BUFFER_MMAP (gobject);
 
-	munmap (self->data, self->mapped);
-	munmap (self->clean, self->clean_bytes);
+	if (self->data)
+		munmap (self->data, self->mapped);
+	if (self->clean)
+		munmap (self->clean, self->clean_bytes);
 
 	if (self->fd >= 0)
 	{
@@ -255,12 +257,19 @@ hex_buffer_mmap_class_init (HexBufferMmapClass *klass)
 	g_object_class_override_property (gobject_class, PROP_FILE, "file");
 }
 
-static void
+/* Retuns TRUE if the operation was successful or unneeded; FALSE upon error.
+ */
+static gboolean
 hex_buffer_mmap_place_gap (HexBufferMmap *self, gint64 offset)
 {
-	g_return_if_fail (HEX_IS_BUFFER_MMAP (self));
+	size_t gapsize = 0;
 
-	size_t gapsize = buffer_gap_bytes (self);
+	g_return_val_if_fail (HEX_IS_BUFFER_MMAP (self), FALSE);
+
+	if (!self->data)	/* Gap placement not yet required */
+		return TRUE;
+
+	gapsize = buffer_gap_bytes (self);
 
 	if (offset > self->payload)
 		offset = self->payload;
@@ -278,18 +287,20 @@ hex_buffer_mmap_place_gap (HexBufferMmap *self, gint64 offset)
 
 	if (self->fd >= 0 && gapsize)
 		memset (self->data + self->gap, ' ', gapsize);
+
+	return TRUE;
 }
 
-static void
+static gboolean
 hex_buffer_mmap_resize (HexBufferMmap *self, gint64 payload_bytes)
 {
-	void *p;
+	void *p = NULL;
 	char *old = self->data;
 	int fd;
 	int mapflags = 0;
 	gint64 map_bytes = payload_bytes;
 
-	g_return_if_fail (HEX_IS_BUFFER_MMAP (self));
+	g_return_val_if_fail (HEX_IS_BUFFER_MMAP (self), FALSE);
 
 	/* Whole pages, with extras as size increases */
 	map_bytes += self->pagesize - 1;
@@ -298,8 +309,11 @@ hex_buffer_mmap_resize (HexBufferMmap *self, gint64 payload_bytes)
 	map_bytes /= 10;
 	map_bytes *= self->pagesize;
 
-	if (map_bytes < self->mapped)
-		munmap (old + map_bytes, self->mapped - map_bytes);
+	if (old)
+	{
+		if (map_bytes < self->mapped)
+			munmap (old + map_bytes, self->mapped - map_bytes);
+	}
 
 	if (self->fd >= 0  &&  map_bytes != self->mapped)
 	{
@@ -312,14 +326,14 @@ hex_buffer_mmap_resize (HexBufferMmap *self, gint64 payload_bytes)
 
 			set_error (self, errmsg);
 			g_free (errmsg);
-			return;
+			return FALSE;
 		}
 	}
 
 	if (map_bytes <= self->mapped)
 	{
 		self->mapped = map_bytes;
-		return;
+		return TRUE;
 	}
 
 	if (old)
@@ -361,7 +375,7 @@ hex_buffer_mmap_resize (HexBufferMmap *self, gint64 payload_bytes)
 
 		set_error (self, errmsg);
 		g_free (errmsg);
-		return;
+		return FALSE;
 	}
 
 	if (old)
@@ -371,8 +385,25 @@ hex_buffer_mmap_resize (HexBufferMmap *self, gint64 payload_bytes)
 	}
 
 done:
+
+	if (p == NULL || p == MAP_FAILED)
+	{
+		char *errmsg = g_strdup_printf (
+			_("Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"),
+				(long)map_bytes, fd);
+
+		errno = 0;
+		set_error (self, errmsg);
+
+		g_free (errmsg);
+
+		return FALSE;
+	}
+
 	self->data = p;
 	self->mapped = map_bytes;
+
+	return TRUE;
 }
 
 #define ADJUST_OFFSET_AND_BYTES				\
@@ -381,11 +412,14 @@ done:
 	if (offset + bytes > self->payload)		\
 		bytes = self->payload - offset;		\
 
-size_t
+static size_t
 hex_buffer_mmap_raw (HexBufferMmap *self,
 		char **out, gint64 offset, size_t bytes)
 {
 	g_assert (HEX_IS_BUFFER_MMAP (self));
+	g_assert (out != NULL);
+
+	g_return_val_if_fail (self->data != NULL, 0);
 	
 	ADJUST_OFFSET_AND_BYTES
 
@@ -457,17 +491,31 @@ static size_t
 hex_buffer_mmap_insert (HexBufferMmap *self,
 		const void *in, gint64 offset, size_t bytes)
 {
+	gboolean ret = FALSE;
+
 	g_assert (HEX_IS_BUFFER_MMAP (self));
 
 	if (offset > self->payload)
 		offset = self->payload;
 
-	if (bytes > buffer_gap_bytes (self)) {
-		hex_buffer_mmap_place_gap (self, self->payload);
-		hex_buffer_mmap_resize (self, self->payload + bytes);
+	if (bytes > buffer_gap_bytes (self))
+	{
+		ret = hex_buffer_mmap_place_gap (self, self->payload);
+		if (!ret) return 0;
+
+		ret = hex_buffer_mmap_resize (self, self->payload + bytes);
+		if (!ret) return 0;
 	}
 
-	hex_buffer_mmap_place_gap (self, offset);
+	ret = hex_buffer_mmap_place_gap (self, offset);
+	if (!ret) return 0;
+
+	/* Since this doubles up as an initialization function for self->data via
+	 * hex_buffer_mmap_read by calling _resize for the first time above, if
+	 * we've gotten this far and self->data is NULL, we have a serious
+	 * problem.
+	 */
+	g_assert (self->data != NULL);
 
 	if (in)
 		memcpy (self->data + offset, in, bytes);
@@ -478,35 +526,6 @@ hex_buffer_mmap_insert (HexBufferMmap *self,
 	self->payload += bytes;
 
 	return bytes;
-}
-
-size_t
-hex_buffer_mmap_move (HexBufferMmap *to,
-		gint64 to_offset,
-		HexBufferMmap *from,
-		gint64 from_offset,
-		size_t bytes)
-{
-	char *raw = NULL;
-
-	bytes = hex_buffer_mmap_raw (from, &raw, from_offset, bytes);
-	hex_buffer_mmap_insert (to, raw, to_offset, bytes);
-
-	return hex_buffer_mmap_delete (from, from_offset, bytes);
-}
-
-void 
-hex_buffer_mmap_snap (HexBufferMmap *self)
-{
-	g_return_if_fail (HEX_IS_BUFFER_MMAP (self));
-
-	if (self->fd >= 0)
-	{
-		hex_buffer_mmap_place_gap (self, self->payload);
-		if (ftruncate (self->fd, self->payload)) {
-			/* don't care */
-		}
-	}
 }
 
 char * hex_buffer_mmap_get_data (HexBuffer *buf,
@@ -710,6 +729,9 @@ hex_buffer_mmap_read (HexBuffer *buf)
 
 	/* FIXME/TODO - sanity check against # of bytes read? */
 	hex_buffer_mmap_insert (self, self->clean, 0, self->clean_bytes);
+
+	if (!self->data || self->data == MAP_FAILED)
+		return FALSE;
 
 	return TRUE;
 }
