@@ -833,3 +833,19 @@ hex_widget_new (void)
 {
 	return g_object_new (HEX_TYPE_WIDGET, NULL);
 }
+
+HexTextHex *
+hex_widget_get_hex_display (HexWidget *self)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), NULL);
+
+	return HEX_TEXT_HEX(self->xdisp);
+}
+
+HexTextAscii *
+hex_widget_get_ascii_display (HexWidget *self)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), NULL);
+
+	return HEX_TEXT_ASCII(self->adisp);
+}

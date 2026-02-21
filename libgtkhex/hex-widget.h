@@ -5,6 +5,8 @@
 #include <gtk/gtk.h>
 
 #include "hex-view.h"
+#include "hex-text-hex.h"
+#include "hex-text-ascii.h"
 
 G_BEGIN_DECLS
 
@@ -19,5 +21,7 @@ void hex_widget_copy_to_clipboard (HexWidget *self);
 void hex_widget_paste_from_clipboard (HexWidget *self);
 void hex_widget_set_cpl (HexWidget *self, int cpl);
 int hex_widget_get_cpl (HexWidget *self);
+HexTextHex *hex_widget_get_hex_display (HexWidget *self);
+HexTextAscii *hex_widget_get_ascii_display (HexWidget *self);
 
 G_END_DECLS
