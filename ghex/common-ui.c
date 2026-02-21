@@ -273,7 +273,7 @@ common_about_cb (GtkWindow *parent)
 				gtk_get_minor_version (),
 				gtk_get_micro_version ());
 	else
-		version = PACKAGE_VERSION;
+		version = g_strdup (PACKAGE_VERSION);
 
 	adw_show_about_dialog (GTK_WIDGET (parent),
 	                       "application-icon", APP_ID,
@@ -288,6 +288,7 @@ common_about_cb (GtkWindow *parent)
 	                       "license-type", GTK_LICENSE_GPL_2_0,
 	                       NULL);
 
+	g_free (version);
 	g_free (license_translated);
 	g_free (copyright);
 }
@@ -308,15 +309,23 @@ common_print (GtkWindow *parent, HexWidget *gh, gboolean preview)
 	GtkPrintOperationResult result;
 	GError *error = NULL;
 	char *basename;
+	GtkLayoutManager *layout_manager;
+	HexWidgetGroupType group_type = 0;
 
 	g_return_if_fail (HEX_IS_WIDGET (gh));
 
-	doc = hex_widget_get_document (gh);
+	doc = hex_view_get_document (HEX_VIEW(gh));
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	basename = g_file_get_basename (hex_document_get_file (doc));
 
-	job = ghex_print_job_info_new (doc, hex_widget_get_group_type (gh));
+	layout_manager = gtk_widget_get_layout_manager (GTK_WIDGET(gh));
+	g_assert (HEX_IS_WIDGET_LAYOUT (layout_manager));
+
+	g_object_get (layout_manager, "group-type", &group_type, NULL);
+	g_assert (group_type != 0);
+
+	job = ghex_print_job_info_new (doc, group_type);
 	job->master = gtk_print_operation_new ();
 	job->config = gtk_print_settings_new ();
 	gtk_print_settings_set (job->config, GTK_PRINT_SETTINGS_OUTPUT_BASENAME,
