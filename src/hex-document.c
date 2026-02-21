@@ -1530,7 +1530,7 @@ HexDocumentFindData *
 hex_document_find_finish (HexDocument *doc,
 		GAsyncResult *result)
 {
-	g_return_val_if_fail (g_task_is_valid (result, G_OBJECT(doc)), FALSE);
+	g_return_val_if_fail (g_task_is_valid (result, G_OBJECT(doc)), NULL);
 
 	return g_task_propagate_pointer (G_TASK(result), NULL);
 }
