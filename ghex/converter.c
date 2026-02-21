@@ -206,22 +206,29 @@ static void
 get_cursor_val_cb(GtkButton *button, Converter *conv)
 {
 	guint val, start;
-	guint group_type;
+	guint group_type = 0;
 	HexDocument *doc;
-	size_t payload;
+	HexSelection *selection;
+	gint64 payload;
+	GtkLayoutManager *layout_manager;
 
 	g_return_if_fail (HEX_IS_WIDGET(conv->gh));
 
-	doc = hex_widget_get_document (conv->gh);
+	doc = hex_view_get_document (HEX_VIEW(conv->gh));
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
-	group_type = hex_widget_get_group_type (conv->gh);
-	start = hex_widget_get_cursor (conv->gh);
+	layout_manager = gtk_widget_get_layout_manager (GTK_WIDGET(conv->gh));
+	selection = hex_view_get_selection (HEX_VIEW(conv->gh));
+
+	g_object_get (layout_manager, "group-type", &group_type, NULL);
+	g_assert (group_type != 0);
+
+	start = hex_selection_get_cursor_pos (selection);
 	start = start - start % group_type;
 
 	val = 0;
 	do {
 		val <<= 8;
-		val |= hex_widget_get_byte(conv->gh, start);
+		val |= hex_buffer_get_byte (hex_document_get_buffer (doc), start);
 		start++;
 	} while((start % group_type != 0) &&
 			(start < payload) );
