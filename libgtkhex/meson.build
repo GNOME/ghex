@@ -44,8 +44,26 @@ libgtkhex_res = gnome.compile_resources('libgtkhex-resources',
 )
 
 libgtkhex_headers = [
+  'gtkhex.h',
+  'gtkhex-layout-manager.h',
+  'gtkhex-paste-data.h',
+  'hex-auto-highlight.h',
   'hex-buffer-iface.h',
+  'hex-buffer-malloc.h',
   'hex-document.h',
+  'hex-file-monitor.h',
+  'hex-highlight.h',
+  'hex-mark.h',
+  'hex-search-info.h',
+  'hex-selection.h',
+  'hex-text-ascii.h',
+  'hex-text-common.h',
+  'hex-text-editable.h',
+  'hex-text.h',
+  'hex-text-hex.h',
+  'hex-text-offsets.h',
+  'hex-view.h',
+  'hex-widget.h',
 ]
 
 libgtkhex_deps = [
@@ -189,7 +207,8 @@ endif
 libgtkhex_dep = declare_dependency(
   link_with: libgtkhex,
   dependencies: libgtkhex_deps,
-  sources: libgtkhex_headers
+  sources: libgtkhex_headers,
+  include_directories: include_directories('.'),
 )
 
 if get_option('docs')
