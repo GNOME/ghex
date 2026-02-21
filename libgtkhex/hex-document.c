@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -32,6 +32,8 @@
 
 #include "hex-document.h"
 #include "hex-file-monitor.h"
+#include "hex-document-private.h"
+#include "hex-search-info-private.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -41,7 +43,7 @@
 #include <config.h>
 
 static void hex_document_real_changed   (HexDocument *doc,
-										 gpointer change_data,
+										 HexChangeData *change_data,
 										 gboolean undoable);
 static void hex_document_real_redo      (HexDocument *doc);
 static void hex_document_real_undo      (HexDocument *doc);
@@ -61,7 +63,6 @@ enum {
 	DOCUMENT_CHANGED,
 	UNDO,
 	REDO,
-	UNDO_STACK_FORGET,
 	FILE_NAME_CHANGED,
 	FILE_SAVE_STARTED,
 	FILE_SAVED,
@@ -76,51 +77,37 @@ static guint hex_signals[LAST_SIGNAL];
 
 enum
 {
-	GFILE = 1,
-	BUFFER,
+	PROP_0,
+	PROP_GFILE,
+	PROP_BUFFER,
+	PROP_CAN_UNDO,
+	PROP_CAN_REDO,
 	N_PROPERTIES
 };
 
 static GParamSpec *properties[N_PROPERTIES];
 
+/* <HexChangeData> */
 
-/* HexDocumentFindData GType Definitions */
-
-/**
- * hex_document_find_data_new:
- *
- * Create a new empty [struct@Hex.DocumentFindData] structure.
- *
- * Returns: a new #HexDocumentFindData structure. Can be freed with
- *   `g_free ()`.
- *
- * Since: 4.2
- */
-HexDocumentFindData *
-hex_document_find_data_new (void)
+gint64
+hex_change_data_get_start_offset (HexChangeData *data)
 {
-	return g_new0 (HexDocumentFindData, 1);
+	g_return_val_if_fail (data != NULL, 0);
+
+	return data->start;
 }
 
-/**
- * hex_document_find_data_copy:
- *
- * Copy a [struct@Hex.DocumentFindData] structure. This function is likely
- * only useful for language bindings.
- *
- * Returns: a newly allocated #HexDocumentFindData structure. Can be freed with
- *   `g_free ()`.
- *
- * Since: 4.2
- */
-HexDocumentFindData *
-hex_document_find_data_copy (HexDocumentFindData *data)
+gint64
+hex_change_data_get_end_offset (HexChangeData *data)
 {
-	return g_memdup2 (data, sizeof *data);
+	g_return_val_if_fail (data != NULL, 0);
+
+	return data->end;
 }
 
-G_DEFINE_BOXED_TYPE (HexDocumentFindData, hex_document_find_data,
-		hex_document_find_data_copy, g_free)
+// FIXME/TODO - more accessor functions? Let's let this cook for a bit and see where we want to go with this concept.
+
+/* </HexChangeData> */
 
 /* HexChangeData GType Definitions */
 
@@ -188,11 +175,11 @@ hex_document_set_property (GObject *object,
 
 	switch (property_id)
 	{
-		case GFILE:
+		case PROP_GFILE:
 			hex_document_set_file (doc, g_value_get_object (value));
 			break;
 
-		case BUFFER:
+		case PROP_BUFFER:
 			hex_document_set_buffer (doc, g_value_get_object (value));
 			break;
 
@@ -213,12 +200,20 @@ hex_document_get_property (GObject *object,
 
 	switch (property_id)
 	{
-		case GFILE:
+		case PROP_GFILE:
 			g_value_set_object (value, hex_document_get_file (doc));
 			break;
 
-		case BUFFER:
+		case PROP_BUFFER:
 			g_value_set_object (value, hex_document_get_buffer (doc));
+			break;
+
+		case PROP_CAN_UNDO:
+			g_value_set_boolean (value, hex_document_get_can_undo (doc));
+			break;
+
+		case PROP_CAN_REDO:
+			g_value_set_boolean (value, hex_document_get_can_redo (doc));
 			break;
 
 		default:
@@ -281,6 +276,9 @@ undo_stack_push(HexDocument *doc, HexChangeData *change_data)
 		doc->undo_stack = g_list_prepend(doc->undo_stack, cd);
 		doc->undo_top = doc->undo_stack;
 
+		g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_UNDO]);
+		g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_REDO]);
+
 		return TRUE;
 	}
 
@@ -295,6 +293,9 @@ undo_stack_descend(HexDocument *doc)
 
 	doc->undo_top = doc->undo_top->next;
 	doc->undo_depth--;
+
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_UNDO]);
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_REDO]);
 }
 
 static void
@@ -308,6 +309,9 @@ undo_stack_ascend(HexDocument *doc)
 	else
 		doc->undo_top = doc->undo_top->prev;
 	doc->undo_depth++;
+
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_UNDO]);
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_REDO]);
 }
 
 static void
@@ -321,7 +325,27 @@ undo_stack_free(HexDocument *doc)
 	doc->undo_top = NULL;
 	doc->undo_depth = 0;
 
-	g_signal_emit(G_OBJECT(doc), hex_signals[UNDO_STACK_FORGET], 0);
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_UNDO]);
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_REDO]);
+}
+
+static void
+hex_document_file_changed_cb (HexDocument *doc,
+                              GParamSpec *pspec,
+                              HexFileMonitor *monitor)
+{
+	if (hex_file_monitor_get_changed(monitor))
+	{
+		HexChangeData *change_data;
+
+		doc->changed = TRUE;
+
+		// FIXME - leak
+		change_data = g_new0 (HexChangeData, 1);
+		change_data->external_file_change = TRUE;
+
+		hex_document_changed (doc, change_data, FALSE);
+	}
 }
 
 static void
@@ -347,11 +371,11 @@ hex_document_finalize (GObject *obj)
 }
 
 static void
-hex_document_real_changed (HexDocument *doc, gpointer change_data,
+hex_document_real_changed (HexDocument *doc, HexChangeData *change_data,
 						  gboolean push_undo)
 {
-	if(push_undo && doc->undo_max > 0)
-		undo_stack_push(doc, change_data);
+	if (push_undo && doc->undo_max > 0)
+		undo_stack_push (doc, change_data);
 }
 
 static void
@@ -368,13 +392,21 @@ hex_document_class_init (HexDocumentClass *klass)
 
 	/* PROPERTIES */
 
-	properties[GFILE] = g_param_spec_object ("file", NULL, NULL, 
+	properties[PROP_GFILE] = g_param_spec_object ("file", NULL, NULL,
 			G_TYPE_FILE,
 			default_flags);
 
-	properties[BUFFER] = g_param_spec_object ("buffer", NULL, NULL, 
+	properties[PROP_BUFFER] = g_param_spec_object ("buffer", NULL, NULL,
 			HEX_TYPE_BUFFER,
 			default_flags);
+
+	properties[PROP_CAN_UNDO] = g_param_spec_boolean ("can-undo", NULL, NULL,
+			FALSE,
+			G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_READABLE);
+
+	properties[PROP_CAN_REDO] = g_param_spec_boolean ("can-redo", NULL, NULL,
+			FALSE,
+			G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_READABLE);
 
 	g_object_class_install_properties (gobject_class, N_PROPERTIES, properties);
 
@@ -387,7 +419,7 @@ hex_document_class_init (HexDocumentClass *klass)
 				G_CALLBACK(hex_document_real_changed),
 				NULL, NULL, NULL,
 				G_TYPE_NONE,
-				2, G_TYPE_POINTER, G_TYPE_BOOLEAN);
+				2, HEX_TYPE_CHANGE_DATA, G_TYPE_BOOLEAN);
 
 	hex_signals[UNDO] = 
 		g_signal_new_class_handler ("undo",
@@ -403,15 +435,6 @@ hex_document_class_init (HexDocumentClass *klass)
 				G_OBJECT_CLASS_TYPE (gobject_class),
 				G_SIGNAL_RUN_FIRST,
 				G_CALLBACK(hex_document_real_redo),
-				NULL, NULL, NULL,
-				G_TYPE_NONE,
-				0);
-
-	hex_signals[UNDO_STACK_FORGET] = 
-		g_signal_new_class_handler ("undo_stack_forget",
-				G_OBJECT_CLASS_TYPE (gobject_class),
-				G_SIGNAL_RUN_FIRST,
-				NULL,
 				NULL, NULL, NULL,
 				G_TYPE_NONE,
 				0);
@@ -508,32 +531,14 @@ hex_document_new (void)
 	return g_object_new (HEX_TYPE_DOCUMENT, NULL);
 }
 
-static void
-hex_document_file_changed_cb (HexDocument *doc,
-                              GParamSpec *pspec,
-                              HexFileMonitor *monitor)
-{
-	if (hex_file_monitor_get_changed(monitor))
-	{
-		HexChangeData *change_data;
-
-		doc->changed = TRUE;
-
-		change_data = g_new0 (HexChangeData, 1);
-		change_data->external_file_change = TRUE;
-
-		hex_document_changed (doc, &change_data, FALSE);
-	}
-}
-
 /**
  * hex_document_set_file:
  * @doc: a [class@Hex.Document] object
- * @file: a #GFile pointing to a valid file on the system
+ * @file: a `GFile` pointing to a valid file on the system
  *
- * Set the file of a [class@Hex.Document] object by #GFile.
+ * Set the file of a [class@Hex.Document] object by `GFile`.
  *
- * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ * Returns: `TRUE` if the operation was successful; `FALSE` otherwise.
  */
 gboolean
 hex_document_set_file (HexDocument *doc, GFile *file)
@@ -559,8 +564,8 @@ hex_document_set_file (HexDocument *doc, GFile *file)
 	g_clear_object (&doc->file);
 	doc->file = g_object_ref (file);
 
-	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_NAME_CHANGED], 0);
-	g_object_notify_by_pspec (G_OBJECT(doc), properties[BUFFER]);
+	g_signal_emit (doc, hex_signals[FILE_NAME_CHANGED], 0);
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_BUFFER]);
 
 	g_clear_object (&doc->monitor);
 	doc->monitor = hex_file_monitor_new (file);
@@ -575,12 +580,12 @@ hex_document_set_file (HexDocument *doc, GFile *file)
 
 /**
  * hex_document_new_from_file:
- * @file: a #GFile pointing to a valid file on the system
+ * @file: a `GFile` pointing to a valid file on the system
  *
  * A convenience method to create a new [class@Hex.Document] from file.
  *
- * Returns: a [class@Hex.Document] pre-loaded with a #GFile ready for a
- * `read` operation, or %NULL if the operation failed.
+ * Returns: a [class@Hex.Document] pre-loaded with a `GFile` ready for a
+ * `read` operation, or `NULL` if the operation failed.
  */
 HexDocument *
 hex_document_new_from_file (GFile *file)
@@ -590,7 +595,6 @@ hex_document_new_from_file (GFile *file)
 	g_return_val_if_fail (G_IS_FILE (file), NULL);
 	
 	doc = hex_document_new ();
-	g_return_val_if_fail (doc, NULL);
 
 	if (! hex_document_set_file (doc, file))
 	{
@@ -605,13 +609,13 @@ hex_document_new_from_file (GFile *file)
  * @doc: a [class@Hex.Document] object
  * @val: a character to set the nibble as
  * @offset: offset in bytes within the payload
- * @lower_nibble: %TRUE if targetting the lower nibble (2nd hex digit) %FALSE
- *   if targetting the upper nibble (1st hex digit)
- * @insert: %TRUE if the operation should be insert mode, %FALSE if in
+ * @lower_nibble: `TRUE` if targetting the lower nibble (2nd hex digit);
+ *   `FALSE` if targetting the upper nibble (1st hex digit)
+ * @insert: `TRUE` if the operation should be insert mode, `FALSE` if in
  *   overwrite mode
  * @undoable: whether the operation should be undoable
  *
- * Set a particular nibble of a #HexDocument. 
+ * Set a particular nibble of a `HexDocument`.
  */
 void
 hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
@@ -621,6 +625,8 @@ hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
 	static HexChangeData tmp_change_data;
 	static HexChangeData change_data;
 	char tmp_data[2] = {0};		/* 1 char + NUL */
+
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	doc->changed = TRUE;
 	tmp_change_data.start = offset;
@@ -660,11 +666,11 @@ hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
  * @doc: a [class@Hex.Document] object
  * @val: a character to set the byte as
  * @offset: offset in bytes within the payload
- * @insert: %TRUE if the operation should be insert mode, %FALSE if in
+ * @insert: `TRUE` if the operation should be insert mode, `FALSE` if in
  *   overwrite mode
  * @undoable: whether the operation should be undoable
  *
- * Set a particular byte of a #HexDocument at position `offset` within 
+ * Set a particular byte of a `HexDocument` at position `offset` within
  * the payload.
  */
 void
@@ -674,6 +680,8 @@ hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
 	static HexChangeData tmp_change_data;
 	static HexChangeData change_data;
 	char tmp_data[2] = {0};		/* 1 char + NUL */
+
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	doc->changed = TRUE;
 	tmp_change_data.start = offset;
@@ -718,6 +726,8 @@ hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
 	static HexChangeData tmp_change_data;
 	static HexChangeData change_data;
 
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+
 	doc->changed = TRUE;
 
 	tmp_change_data.start = offset;
@@ -751,6 +761,8 @@ void
 hex_document_delete_data (HexDocument *doc,
 		gint64 offset, size_t len, gboolean undoable)
 {
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+
 	hex_document_set_data (doc, offset, 0, len, NULL, undoable);
 }
 
@@ -758,7 +770,7 @@ hex_document_delete_data (HexDocument *doc,
  * hex_document_read_finish:
  * @doc: a [class@Hex.Document] object
  * @result: result of the task
- * @error: (nullable): optional pointer to a #GError object to populate with
+ * @error: (nullable): optional pointer to a `GError` object to populate with
  *   any error returned by the task
  *
  * Obtain the result of a completed file read operation.
@@ -767,11 +779,11 @@ hex_document_delete_data (HexDocument *doc,
  * but takes some additional steps and emits the appropriate signals
  * applicable to the document object above and beyond the buffer.
  *
- * This method is typically called from the #GAsyncReadyCallback function
+ * This method is typically called from the `GAsyncReadyCallback` function
  * passed to [method@Hex.Document.read_async] to obtain the result of the
  * operation.
  *
- * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ * Returns: `TRUE` if the operation was successful; `FALSE` otherwise.
  */
 gboolean
 hex_document_read_finish (HexDocument *doc,
@@ -824,11 +836,11 @@ document_ready_cb (GObject *source_object,
 /**
  * hex_document_read_async:
  * @doc: a [class@Hex.Document] object
- * @cancellable: (nullable): a #GCancellable
+ * @cancellable: (nullable): a `GCancellable`
  * @callback: (scope async): function to be called when the operation is
  *   complete
  *
- * Read the #GFile into the buffer connected to the #HexDocument object.
+ * Read the `GFile` into the buffer connected to the `HexDocument` object.
  *
  * This method is mostly a wrapper around [method@Hex.Buffer.read_async]
  * but will allow additional steps and appropriate signals to be emitted
@@ -844,6 +856,7 @@ hex_document_read_async (HexDocument *doc,
 	GTask *task;
 	gint64 payload;
 
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 	g_return_if_fail (G_IS_FILE (doc->file));
 
 	task = g_task_new (doc, cancellable, callback, user_data);
@@ -851,23 +864,27 @@ hex_document_read_async (HexDocument *doc,
 
 	/* Read the actual file on disk into the buffer */
 	hex_buffer_read_async (doc->buffer, NULL, document_ready_cb, task);
-	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_READ_STARTED], 0);
+
+	g_signal_emit (doc, hex_signals[FILE_READ_STARTED], 0);
 }
 
 /**
  * hex_document_write_to_file:
  * @doc: a [class@Hex.Document] object
- * @file: #GFile to be written to
+ * @file: `GFile` to be written to
  *
  * Write the buffer to `file`. This can be used for a 'Save As' operation.
  *
  * This operation will block.
  *
- * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ * Returns: `TRUE` if the operation was successful; `FALSE` otherwise.
  */
 gboolean
 hex_document_write_to_file (HexDocument *doc, GFile *file)
 {
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+	g_return_val_if_fail (G_IS_FILE (doc->file), FALSE);
+
 	return hex_buffer_write_to_file (doc->buffer, file);
 }
 
@@ -875,10 +892,10 @@ hex_document_write_to_file (HexDocument *doc, GFile *file)
  * hex_document_write:
  * @doc: a [class@Hex.Document] object
  *
- * Write the buffer to the pre-existing #GFile connected to the #HexDocument
+ * Write the buffer to the pre-existing `GFile` connected to the `HexDocument`
  * object. This can be used for a 'Save (in place)' operation.
  *
- * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ * Returns: `TRUE` if the operation was successful; `FALSE` otherwise.
  */
 gboolean
 hex_document_write (HexDocument *doc)
@@ -913,7 +930,7 @@ out:
  * hex_document_write_finish:
  * @doc: a [class@Hex.Document] object
  * @result: result of the task
- * @error: (nullable): optional pointer to a #GError object to populate with
+ * @error: (nullable): optional pointer to a `GError` object to populate with
  *   any error returned by the task
  *
  * Obtain the result of a completed write-to-file operation.
@@ -921,12 +938,12 @@ out:
  * Currently, this method is mostly a wrapper around
  * [method@Hex.Buffer.write_to_file_finish].
  *
- * This method is typically called from the #GAsyncReadyCallback function
+ * This method is typically called from the `GAsyncReadyCallback` function
  * passed to [method@Hex.Document.write_async] or
  * [method@Hex.Document.write_to_file_async] to obtain the result of the
  * operation.
  *
- * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ * Returns: `TRUE` if the operation was successful; `FALSE` otherwise.
  */
 gboolean
 hex_document_write_finish (HexDocument *doc,
@@ -1000,6 +1017,7 @@ hex_document_write_async (HexDocument *doc,
 	GTask *doc_task;
 	char *path = NULL;
 
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 	g_return_if_fail (G_IS_FILE (doc->file));
 
 	path = g_file_get_path (doc->file);
@@ -1023,8 +1041,8 @@ out:
 /**
  * hex_document_write_to_file_async:
  * @doc: a [class@Hex.Document] object
- * @file: #GFile to be written to
- * @cancellable: (nullable): a #GCancellable
+ * @file: `GFile` to be written to
+ * @cancellable: (nullable): a `GCancellable`
  * @callback: (scope async): function to be called when the operation is
  *   complete
  *
@@ -1034,7 +1052,7 @@ out:
  *
  * Note that for both this method and [method@Hex.Document.write_async],
  * [method@Hex.Document.write_finish] is the method to retrieve the return
- * value in your #GAsyncReadyCallback function.
+ * value in your `GAsyncReadyCallback` function.
  */
 void
 hex_document_write_to_file_async (HexDocument *doc,
@@ -1045,6 +1063,7 @@ hex_document_write_to_file_async (HexDocument *doc,
 {
 	GTask *doc_task;
 
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 	g_return_if_fail (G_IS_FILE (file));
 
 	doc_task = g_task_new (doc, cancellable, callback, user_data);
@@ -1064,14 +1083,16 @@ hex_document_write_to_file_async (HexDocument *doc,
  *
  * Convenience method to emit the [signal@Hex.Document::document-changed]
  * signal. This method is mostly only useful for widgets utilizing
- * #HexDocument.
+ * `HexDocument`.
  */
 void
-hex_document_changed (HexDocument *doc, gpointer change_data,
+hex_document_changed (HexDocument *doc, HexChangeData *change_data,
 					 gboolean push_undo)
 {
-	g_signal_emit(G_OBJECT(doc), hex_signals[DOCUMENT_CHANGED], 0,
-				  change_data, push_undo);
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+	g_return_if_fail (change_data != NULL);
+
+	g_signal_emit (doc, hex_signals[DOCUMENT_CHANGED], 0, change_data, push_undo);
 }
 
 /**
@@ -1085,6 +1106,8 @@ hex_document_changed (HexDocument *doc, gpointer change_data,
 gboolean
 hex_document_has_changed (HexDocument *doc)
 {
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+
 	return doc->changed;
 }
 
@@ -1098,9 +1121,14 @@ hex_document_has_changed (HexDocument *doc)
 void
 hex_document_set_max_undo (HexDocument *doc, int max_undo)
 {
-	if(doc->undo_max != max_undo) {
-		if(doc->undo_max > max_undo)
-			undo_stack_free(doc);
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+	g_return_if_fail (max_undo > 0);
+
+	if (doc->undo_max != max_undo)
+	{
+		if (doc->undo_max > max_undo)
+			undo_stack_free (doc);
+
 		doc->undo_max = max_undo;
 	}
 }
@@ -1117,9 +1145,9 @@ hex_document_set_max_undo (HexDocument *doc, int max_undo)
  * @lpp: lines per page
  * @cpw: characters per word (for grouping of nibbles)
  *
- * Export the #HexDocument to HTML.
+ * Export the `HexDocument` to HTML.
  *
- * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ * Returns: `TRUE` if the operation was successful; `FALSE` otherwise.
  */
 gboolean
 hex_document_export_html (HexDocument *doc,
@@ -1135,8 +1163,14 @@ hex_document_export_html (HexDocument *doc,
 	guint page, line, pos, lines, pages, c;
 	gchar *page_name, b;
 	gchar *progress_str;
-	gint64 payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
+	gint64 payload;
 	char *basename;
+
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+	g_return_val_if_fail (html_path != NULL, FALSE);
+	g_return_val_if_fail (base_name != NULL, FALSE);
+
+	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 
 	basename = g_file_get_basename (doc->file);
 	if (! basename)
@@ -1290,33 +1324,29 @@ hex_document_export_html (HexDocument *doc,
 
 /**
  * hex_document_compare_data_full:
- * @find_data: a #HexDocumentFindData structure
- * @pos: offset position of the #HexDocument data to compare with the
- *   string contained in the `find_data` structure
+ * @search_info: a `HexSearchInfo` object
  *
  * Full version of [method@Hex.Document.compare_data] to allow data
  * comparisons broader than byte-for-byte matches only. However, it is
  * less convenient than the above since it requires the caller to allocate
- * and free a #HexDocumentFindData structure.
+ * and free a `HexSearchInfo` object.
  *
  * Returns: 0 if the comparison is an exact match; otherwise, a non-zero
  *   value is returned.
- *
- * Since: 4.2
  */
 int
 hex_document_compare_data_full (HexDocument *doc,
-		HexDocumentFindData *find_data,
-		gint64 pos)
+		HexSearchInfo *search_info)
 {
 	char *cp = 0;
 	GError *local_error = NULL;
 	int retval = 1;		/* match will make it zero, so set it non-zero now. */
+	size_t found_len = 0;
 
-	g_return_val_if_fail (find_data, 0);
-	g_return_val_if_fail (find_data->what, 0);
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), -1);
+	g_return_val_if_fail (HEX_IS_SEARCH_INFO (search_info), -1);
 
-	if (find_data->flags & HEX_SEARCH_REGEX)
+	if (search_info->flags & HEX_SEARCH_REGEX)
 	{
 		GRegex *regex;
 		GMatchInfo *match_info;
@@ -1326,14 +1356,14 @@ hex_document_compare_data_full (HexDocument *doc,
 		/* GRegex doesn't let you specify the length of the search string, so
 		 * it needs to be NULL-terminated.
 		 */
-		regex_search_str = g_malloc (find_data->len+1);
-		memcpy (regex_search_str, find_data->what, find_data->len);
-		regex_search_str[find_data->len] = 0;
+		regex_search_str = g_malloc (search_info->len+1);
+		memcpy (regex_search_str, search_info->what, search_info->len);
+		regex_search_str[search_info->len] = 0;
 
 		/* match string doesn't have to be UTF-8 */
 		regex_compile_flags = G_REGEX_RAW;
 
-		if (find_data->flags & HEX_SEARCH_IGNORE_CASE)
+		if (search_info->flags & HEX_SEARCH_IGNORE_CASE)
 			regex_compile_flags |= G_REGEX_CASELESS;
 
 		regex = g_regex_new (regex_search_str,
@@ -1350,7 +1380,7 @@ hex_document_compare_data_full (HexDocument *doc,
 			goto out;
 		}
 
-		cp = hex_buffer_get_data (doc->buffer, pos, REGEX_SEARCH_LEN);
+		cp = hex_buffer_get_data (doc->buffer, search_info->pos, REGEX_SEARCH_LEN);
 
 		if (g_regex_match_full (regex, cp,
 					REGEX_SEARCH_LEN,	/* length of string being searched */
@@ -1361,7 +1391,7 @@ hex_document_compare_data_full (HexDocument *doc,
 		{
 			char *word = g_match_info_fetch (match_info, 0);
 
-			find_data->found_len = strlen (word);
+			found_len = strlen (word);
 			g_free (word);
 			retval = 0;
 		}
@@ -1378,21 +1408,25 @@ hex_document_compare_data_full (HexDocument *doc,
 	}
 	else	/* non regex */
 	{
-		cp = hex_buffer_get_data (doc->buffer, pos, find_data->len);
+		cp = hex_buffer_get_data (doc->buffer, search_info->pos, search_info->len);
 
-		if (find_data->flags & HEX_SEARCH_IGNORE_CASE)
+		if (search_info->flags & HEX_SEARCH_IGNORE_CASE)
 		{
-			retval = g_ascii_strncasecmp (cp, find_data->what, find_data->len);
+			retval = g_ascii_strncasecmp (cp, search_info->what, search_info->len);
 		}
 		else
 		{
-			retval = memcmp (cp, find_data->what, find_data->len);
+			retval = memcmp (cp, search_info->what, search_info->len);
 		}
 
 		if (retval == 0)
-			find_data->found_len = find_data->len;
+			found_len = search_info->len;
 	}
+
 out:
+	if (retval == 0)
+		_hex_search_info_found (search_info, search_info->pos, found_len);
+
 	g_clear_error (&local_error);
 	g_free (cp);
 	return retval;
@@ -1402,9 +1436,9 @@ out:
  * hex_document_compare_data:
  * @doc: a [class@Hex.Document] object
  * @what: (array length=len) (element-type gint8): a pointer to the data to
- *   compare to data within the #HexDocument
- * @pos: offset position of the #HexDocument data to compare with @what
- * @len: size of the #HexDocument data to compare with @what, in bytes
+ *   compare to data within the `HexDocument`
+ * @pos: offset position of the `HexDocument` data to compare with @what
+ * @len: size of the `HexDocument` data to compare with @what, in bytes
  *
  * Returns: 0 if the comparison is an exact match; otherwise, a non-zero
  *   value comparable to strcmp().
@@ -1414,67 +1448,64 @@ hex_document_compare_data (HexDocument *doc,
 		const char *what, gint64 pos, size_t len)
 {
 	int retval;
-	HexDocumentFindData *find_data = hex_document_find_data_new ();
+	HexSearchInfo *search_info;
 
-	find_data->what = what;
-	find_data->len = len;
-	find_data->flags = HEX_SEARCH_NONE;
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), -1);
+	g_return_val_if_fail (what != NULL, -1);
 
-	retval = hex_document_compare_data_full (doc, find_data, pos);
-	g_free (find_data);
+	search_info = g_object_new (HEX_TYPE_SEARCH_INFO,
+			"what", what,
+			"start", pos,
+			"len", len,
+			"flags", HEX_SEARCH_NONE,
+			NULL);
+
+	retval = hex_document_compare_data_full (doc, search_info);
+
+	g_clear_object (&search_info);
 
 	return retval;
 }
 
-gboolean
-find_forward_full_helper (HexDocument *doc,
-		HexDocumentFindData *find_data,
-		GCancellable *cancellable)
-{
-	gint64 pos;
-	gint64 payload = hex_buffer_get_payload_size (
-			hex_document_get_buffer (doc));
-
-	g_return_val_if_fail (find_data != NULL, FALSE);
-
-	pos = find_data->start;
-	while (pos < payload)
-	{
-		if (g_cancellable_is_cancelled (cancellable))
-			return FALSE;
-
-		if (hex_document_compare_data_full (doc, find_data, pos) == 0)
-		{
-			find_data->offset = pos;
-			return TRUE;
-		}
-		pos++;
-	}
-
-	return FALSE;
-}
 /**
  * hex_document_find_forward_full:
- * @find_data: a #HexDocumentFindData structure
+ * @search_info: [class@Hex.SearchInfo]
  *
  * Full version of [method@Hex.Document.find_forward] which allows for
  * more flexibility than the above, which is only for a byte-by-byte exact
  * match. However, it is less convenient to call since the caller must
- * create and and free a #HexDocumentFindData structure manually.
+ * create and and free a `HexSearchInfo` object manually.
  *
  * This method will block. For a non-blocking version, use
  * [method@Hex.Document.find_forward_async].
  *
- * Returns: %TRUE if the search string contained in `find_data` was found by
- *   the requested operation; %FALSE otherwise.
+ * Returns: `TRUE` if the search string contained in `search_info` was found by
+ *   the requested operation; `FALSE` otherwise.
  *
  * Since: 4.2
  */
 gboolean
 hex_document_find_forward_full (HexDocument *doc,
-		HexDocumentFindData *find_data)
+		HexSearchInfo *search_info)
 {
-	return find_forward_full_helper (doc, find_data, NULL);
+	gint64 payload;
+
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+	g_return_val_if_fail (HEX_IS_SEARCH_INFO (search_info), FALSE);
+
+	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
+
+	while (search_info->pos < payload)
+	{
+		if (hex_document_compare_data_full (doc, search_info) == 0)
+		{
+			_hex_search_info_found (search_info, search_info->pos, search_info->len);
+			return TRUE;
+		}
+		++search_info->pos;
+	}
+
+	return FALSE;
 }
 
 /**
@@ -1501,17 +1532,25 @@ hex_document_find_forward (HexDocument *doc, gint64 start, const char *what,
 						  size_t len, gint64 *offset)
 {
 	gboolean retval;
-	HexDocumentFindData *find_data = hex_document_find_data_new ();
+	HexSearchInfo *search_info;
 
-	find_data->start = start;
-	find_data->what = what;
-	find_data->len = len;
-	find_data->flags = HEX_SEARCH_NONE;
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+	g_return_val_if_fail (what != NULL, FALSE);
+	g_return_val_if_fail (offset != NULL, FALSE);
 
-	retval = hex_document_find_forward_full (doc, find_data);
-	*offset = find_data->offset;
+	search_info = g_object_new (HEX_TYPE_SEARCH_INFO,
+			"start", start,
+			"what", what,
+			"len", len,
+			"flags", HEX_SEARCH_NONE,
+			NULL);
 
-	g_free (find_data);
+	retval = hex_document_find_forward_full (doc, search_info);
+
+	if (retval)
+		*offset = search_info->found_offset;
+
+	g_clear_object (&search_info);
 
 	return retval;
 }
@@ -1524,15 +1563,22 @@ hex_document_find_forward (HexDocument *doc, gint64 start, const char *what,
  * Obtain the result of a completed asynchronous find operation (forwards or
  * backwards).
  *
- * Returns: a pointer to a [struct@Hex.DocumentFindData] structure, or %NULL
+ * Returns: a newly allocated [class@Hex.SearchInfo] object, or `NULL`
  */
-HexDocumentFindData *
+HexSearchInfo *
 hex_document_find_finish (HexDocument *doc,
 		GAsyncResult *result)
 {
-	g_return_val_if_fail (g_task_is_valid (result, G_OBJECT(doc)), NULL);
+	HexSearchInfo *search_info;
 
-	return g_task_propagate_pointer (G_TASK(result), NULL);
+	g_return_val_if_fail (g_task_is_valid (result, doc), NULL);
+
+	search_info = g_task_propagate_pointer (G_TASK(result), NULL);
+	g_assert (search_info == NULL || HEX_IS_SEARCH_INFO (search_info));
+
+	g_object_thaw_notify (G_OBJECT(search_info));
+
+	return search_info;
 }
 
 #define FIND_FULL_THREAD_TEMPLATE(FUNC_NAME, FUNC_TO_CALL) \
@@ -1542,18 +1588,19 @@ FUNC_NAME (GTask *task, \
 		gpointer task_data, \
 		GCancellable *cancellable) \
 { \
-	HexDocument *doc = HEX_DOCUMENT (source_object); \
-	HexDocumentFindData *find_data = task_data; \
+	HexDocument *doc = source_object; \
+	HexSearchInfo *search_info = task_data; \
  \
-	g_return_if_fail (find_data); \
+	g_assert (HEX_IS_DOCUMENT (doc)); \
+	g_assert (HEX_IS_SEARCH_INFO (search_info)); \
  \
-	find_data->found = FUNC_TO_CALL (doc, find_data, cancellable); \
+	FUNC_TO_CALL (doc, search_info); \
  \
-	g_task_return_pointer (task, find_data, g_free); \
+	g_task_return_pointer (task, g_object_ref (search_info), g_object_unref); \
 }
 
 FIND_FULL_THREAD_TEMPLATE(hex_document_find_forward_full_thread,
-		find_forward_full_helper)
+		hex_document_find_forward_full)
 
 static void
 hex_document_find_forward_thread (GTask *task,
@@ -1561,35 +1608,40 @@ hex_document_find_forward_thread (GTask *task,
 		gpointer task_data,
 		GCancellable *cancellable)
 {
-	HexDocument *doc = HEX_DOCUMENT (source_object);
-	HexDocumentFindData *find_data = task_data;
+	HexDocument *doc = (HexDocument *) source_object;
+	HexSearchInfo *search_info = task_data;
 
-	find_data->found = hex_document_find_forward (doc,
-			find_data->start, find_data->what,
-			find_data->len, &find_data->offset);
+	g_assert (HEX_IS_DOCUMENT (doc));
+	g_assert (HEX_IS_SEARCH_INFO (search_info));
 
-	g_task_return_pointer (task, find_data, g_free);
+	hex_document_find_forward_full (doc, search_info);
+
+	g_task_return_pointer (task, g_object_ref (search_info), g_object_unref);
 }
 
 #define FIND_FULL_ASYNC_TEMPLATE(FUNC_NAME, FUNC_TO_CALL) \
 void \
 FUNC_NAME (HexDocument *doc, \
-		HexDocumentFindData *find_data, \
+		HexSearchInfo *search_info, \
 		GCancellable *cancellable, \
 		GAsyncReadyCallback callback, \
 		gpointer user_data) \
 { \
 	GTask *task; \
  \
+	g_return_if_fail (HEX_IS_DOCUMENT (doc)); \
+	g_return_if_fail (HEX_IS_SEARCH_INFO (search_info)); \
+ \
 	task = g_task_new (doc, cancellable, callback, user_data); \
-	g_task_set_task_data (task, find_data, NULL); \
+	g_task_set_task_data (task, search_info, g_object_unref); \
+	g_object_freeze_notify (G_OBJECT(search_info)); \
 	g_task_run_in_thread (task, FUNC_TO_CALL); \
 	g_object_unref (task);	/* _run_in_thread takes a ref */ \
 }
 
 /**
  * hex_document_find_forward_full_async:
- * @find_data: a #HexDocumentFindData structure
+ * @search_info: [class@Hex.SearchInfo]
  * @cancellable: (nullable): a #GCancellable
  * @callback: (scope async): function to be called when the operation is
  *   complete
@@ -1635,16 +1687,21 @@ FUNC_NAME (HexDocument *doc, \
 		gpointer user_data) \
 { \
 	GTask *task; \
-	HexDocumentFindData *find_data = hex_document_find_data_new (); \
+	HexSearchInfo *search_info; \
  \
-	find_data->start = start; \
-	find_data->what = what; \
-	find_data->len = len; \
-	find_data->found_msg = found_msg; \
-	find_data->not_found_msg = not_found_msg; \
+	g_return_if_fail (HEX_IS_DOCUMENT (doc)); \
+ \
+	search_info = g_object_new (HEX_TYPE_SEARCH_INFO, \
+			"start", start, \
+			"what", what, \
+			"len", len, \
+			"found-msg", found_msg, \
+			"not-found-msg", not_found_msg, \
+			NULL); \
  \
 	task = g_task_new (doc, cancellable, callback, user_data); \
-	g_task_set_task_data (task, find_data, NULL); \
+	g_task_set_task_data (task, search_info, g_object_unref); \
+	g_object_freeze_notify (G_OBJECT(search_info)); \
 	g_task_run_in_thread (task, FUNC_TO_CALL); \
 	g_object_unref (task);	/* _run_in_thread takes a ref */ \
 }
@@ -1652,53 +1709,41 @@ FUNC_NAME (HexDocument *doc, \
 FIND_ASYNC_TEMPLATE(hex_document_find_forward_async,
 		hex_document_find_forward_thread)
 
-static gboolean
-find_backward_full_helper (HexDocument *doc,
-		HexDocumentFindData *find_data,
-		GCancellable *cancellable)
-{
-	gint64 pos = find_data->start;
-
-	if (pos == 0)
-		return FALSE;
-
-	do {
-		if (g_cancellable_is_cancelled (cancellable))
-			return FALSE;
-
-		pos--;
-
-		if (hex_document_compare_data_full (doc, find_data, pos) == 0) {
-			find_data->offset = pos;
-			return TRUE;
-		}
-	} while (pos > 0);
-
-	return FALSE;
-}
-
 /**
  * hex_document_find_backward_full:
- * @find_data: a #HexDocumentFindData structure
+ * @search_info: [class@Hex.SearchInfo]
  *
  * Full version of [method@Hex.Document.find_backward] which allows for
  * more flexibility than the above, which is only for a byte-by-byte exact
  * match. However, it is less convenient to call since the caller must
- * create and and free a #HexDocumentFindData structure manually.
+ * create a `HexSearchInfo` object manually.
  *
  * This method will block. For a non-blocking version, use
  * [method@Hex.Document.find_backward_full_async].
  *
- * Returns: %TRUE if the search string contained in `find_data` was found by
- *   the requested operation; %FALSE otherwise.
+ * Returns: `TRUE` if the search string contained in `search_info` was found by
+ *   the requested operation; `FALSE` otherwise.
  *
  * Since: 4.2
  */
 gboolean
 hex_document_find_backward_full (HexDocument *doc,
-		HexDocumentFindData *find_data)
+		HexSearchInfo *search_info)
 {
-	return find_backward_full_helper (doc, find_data, NULL);
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+	g_return_val_if_fail (HEX_IS_SEARCH_INFO (search_info), FALSE);
+
+	if (search_info->pos <= 0)
+		return FALSE;
+
+	do {
+		--search_info->pos;
+		if (hex_document_compare_data_full (doc, search_info) == 0) {
+			return TRUE;
+		}
+	} while (search_info->pos > 0);
+
+	return FALSE;
 }
 
 /**
@@ -1725,23 +1770,31 @@ hex_document_find_backward (HexDocument *doc, gint64 start, const char *what,
 						   size_t len, gint64 *offset)
 {
 	gboolean retval;
-	HexDocumentFindData *find_data = hex_document_find_data_new ();
+	HexSearchInfo *search_info;
 
-	find_data->start = start;
-	find_data->what = what;
-	find_data->len = len;
-	find_data->flags = HEX_SEARCH_NONE;
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+	g_return_val_if_fail (what != NULL, FALSE);
+	g_return_val_if_fail (offset != NULL, FALSE);
 
-	retval = hex_document_find_backward_full (doc, find_data);
-	*offset = find_data->offset;
+	search_info = g_object_new (HEX_TYPE_SEARCH_INFO,
+			"start", start,
+			"what", what,
+			"len", len,
+			"flags", HEX_SEARCH_NONE,
+			NULL);
 
-	g_free (find_data);
+	retval = hex_document_find_backward_full (doc, search_info);
+
+	if (retval)
+		*offset = search_info->found_offset;
+
+	g_clear_object (&search_info);
 
 	return retval;
 }
 
 FIND_FULL_THREAD_TEMPLATE(hex_document_find_backward_full_thread,
-		find_backward_full_helper)
+		hex_document_find_backward_full)
 
 static void
 hex_document_find_backward_thread (GTask *task,
@@ -1749,20 +1802,21 @@ hex_document_find_backward_thread (GTask *task,
 		gpointer task_data,
 		GCancellable *cancellable)
 {
-	HexDocument *doc = HEX_DOCUMENT (source_object);
-	HexDocumentFindData *find_data = task_data;
+	HexDocument *doc = (HexDocument *) source_object;
+	HexSearchInfo *search_info = task_data;
 
-	find_data->found = hex_document_find_backward (doc,
-			find_data->start, find_data->what,
-			find_data->len, &find_data->offset);
+	g_assert (HEX_IS_DOCUMENT (doc));
+	g_assert (HEX_IS_SEARCH_INFO (search_info));
 
-	g_task_return_pointer (task, find_data, g_free);
+	hex_document_find_backward_full (doc, search_info);
+
+	g_task_return_pointer (task, g_object_ref (search_info), g_object_unref);
 }
 
 /**
  * hex_document_find_backward_full_async:
- * @find_data: a #HexDocumentFindData structure
- * @cancellable: (nullable): a #GCancellable
+ * @search_info: [class@Hex.SearchInfo]
+ * @cancellable: (nullable): a `GCancellable`
  * @callback: (scope async): function to be called when the operation is
  *   complete
  *
@@ -1801,15 +1855,17 @@ FIND_ASYNC_TEMPLATE(hex_document_find_backward_async,
  *
  * Perform an undo operation.
  *
- * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ * Returns: `TRUE` if the operation was successful; `FALSE` otherwise.
  */
 gboolean
 hex_document_undo (HexDocument *doc)
 {
-	if(doc->undo_top == NULL)
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+
+	if (!hex_document_get_can_undo (doc))
 		return FALSE;
 
-	g_signal_emit(G_OBJECT(doc), hex_signals[UNDO], 0);
+	g_signal_emit (doc, hex_signals[UNDO], 0);
 
 	return TRUE;
 }
@@ -1867,15 +1923,17 @@ hex_document_real_undo (HexDocument *doc)
  *
  * Perform a redo operation.
  *
- * Returns: %TRUE if the operation was successful; %FALSE otherwise.
+ * Returns: `TRUE` if the operation was successful; `FALSE` otherwise.
  */
 gboolean 
 hex_document_redo (HexDocument *doc)
 {
-	if(doc->undo_stack == NULL || doc->undo_top == doc->undo_stack)
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+
+	if (!hex_document_get_can_redo (doc))
 		return FALSE;
 
-	g_signal_emit(G_OBJECT(doc), hex_signals[REDO], 0);
+	g_signal_emit (doc, hex_signals[REDO], 0);
 
 	return TRUE;
 }
@@ -1928,16 +1986,18 @@ hex_document_real_redo(HexDocument *doc)
 }
 
 /**
- * hex_document_can_undo:
+ * hex_document_get_can_undo:
  * @doc: a [class@Hex.Document] object
  *
  * Determine whether an undo operation is possible.
  *
- * Returns: %TRUE if an undo operation is possible; %FALSE otherwise
+ * Returns: `TRUE` if an undo operation is possible; `FALSE` otherwise
  */
 gboolean
-hex_document_can_undo (HexDocument *doc)
+hex_document_get_can_undo (HexDocument *doc)
 {
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+
 	if (! doc->undo_max)
 		return FALSE;
 	else if (doc->undo_top)
@@ -1947,16 +2007,18 @@ hex_document_can_undo (HexDocument *doc)
 }
 
 /**
- * hex_document_can_redo:
+ * hex_document_get_can_redo:
  * @doc: a [class@Hex.Document] object
  *
  * Determine whether a redo operation is possible.
  *
- * Returns: %TRUE if a redo operation is possible; %FALSE otherwise
+ * Returns: `TRUE` if a redo operation is possible; `FALSE` otherwise
  */
 gboolean
-hex_document_can_redo (HexDocument *doc)
+hex_document_get_can_redo (HexDocument *doc)
 {
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+
 	if (! doc->undo_stack)
 		return FALSE;
 	else if (doc->undo_stack != doc->undo_top)
@@ -1977,6 +2039,8 @@ hex_document_can_redo (HexDocument *doc)
 HexChangeData *
 hex_document_get_undo_data (HexDocument *doc)
 {
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), NULL);
+
 	return doc->undo_top->data;
 }
 
@@ -2034,6 +2098,6 @@ hex_document_set_buffer (HexDocument *doc, HexBuffer *buf)
 	g_clear_object (&doc->buffer);
 	doc->buffer = buf;
 
-	g_object_notify_by_pspec (G_OBJECT(doc), properties[BUFFER]);
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_BUFFER]);
 	return TRUE;
 }

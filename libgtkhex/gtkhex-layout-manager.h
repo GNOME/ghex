@@ -27,9 +27,28 @@
 
 #include <gtk/gtk.h>
 
-/* Not a circular dep; this is just for the HEX_WIDGET_GROUP_* enums defined
- * there. */
-#include "gtkhex.h"
+/* ENUMS */
+
+// FIXME  move
+#define HEX_TYPE_WIDGET_GROUP_TYPE (hex_widget_group_type_get_type ())
+GType hex_widget_group_type_get_type (void);
+
+/**
+ * HexWidgetGroupType:
+ * @HEX_WIDGET_GROUP_BYTE: group data by byte (8-bit)
+ * @HEX_WIDGET_GROUP_WORD: group data by word (16-bit)
+ * @HEX_WIDGET_GROUP_LONG: group data by long (32-bit)
+ * @HEX_WIDGET_GROUP_QUAD: group data by quadword (64-bit)
+ *
+ * Specifies how data is to be grouped by the #HexWidget.
+ */
+typedef enum
+{
+	HEX_WIDGET_GROUP_BYTE =		1,
+	HEX_WIDGET_GROUP_WORD =		2,
+	HEX_WIDGET_GROUP_LONG =		4,
+	HEX_WIDGET_GROUP_QUAD =		8
+} HexWidgetGroupType;
 
 G_BEGIN_DECLS
 
@@ -58,8 +77,6 @@ int					hex_widget_layout_get_cpl (HexWidgetLayout *layout);
 int 				hex_widget_layout_get_hex_cpl (HexWidgetLayout *layout);
 void				hex_widget_layout_set_group_type (HexWidgetLayout *layout,
 						HexWidgetGroupType group_type);
-void				hex_widget_layout_set_cursor_pos (HexWidgetLayout *layout,
-						int x, int y);
 void				hex_widget_layout_set_offset_cpl (HexWidgetLayout *layout,
 						int offset_cpl);
 int					hex_widget_layout_get_offset_cpl (HexWidgetLayout *layout);

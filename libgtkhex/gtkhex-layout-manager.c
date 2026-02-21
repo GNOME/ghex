@@ -24,9 +24,29 @@
 
 #include "gtkhex-layout-manager.h"
 
+#include "hex-widget.h"
+
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
 #define DEFAULT_OFFSET_CPL	8
+
+enum {
+	PROP_CPL = 1,
+	PROP_HEX_CPL,
+	PROP_OFFSET_CPL,
+	PROP_CHAR_WIDTH,
+	PROP_GROUP_TYPE,
+	N_PROPERTIES
+};
+
+static GParamSpec *properties[N_PROPERTIES];
+
+enum {
+	SIZE_ALLOCATED,
+	N_SIGNALS
+};
+
+static guint signals[N_SIGNALS];
 
 struct _HexWidgetLayout {
 	GtkLayoutManager parent_instance;
@@ -75,6 +95,25 @@ hex_widget_layout_column_get_type (void)
 			g_enum_register_static ("HexWidgetLayoutColumn", format_types);
 	}
 	return hex_layout_column_type;
+}
+
+// FIXME - move
+GType
+hex_widget_group_type_get_type (void)
+{
+	static GType hex_widget_group_type = 0;
+	static const GEnumValue format_types[] = {
+		{HEX_WIDGET_GROUP_BYTE, "HEX_WIDGET_GROUP_BYTE", "byte"},
+		{HEX_WIDGET_GROUP_WORD, "HEX_WIDGET_GROUP_WORD", "word"},
+		{HEX_WIDGET_GROUP_LONG, "HEX_WIDGET_GROUP_LONG", "long"},
+		{HEX_WIDGET_GROUP_QUAD, "HEX_WIDGET_GROUP_QUAD", "quad"},
+		{0, NULL, NULL}
+	};
+	if (! hex_widget_group_type) {
+		hex_widget_group_type =
+			g_enum_register_static ("HexWidgetGroupType", format_types);
+	}
+	return hex_widget_group_type;
 }
 
 
@@ -170,6 +209,65 @@ hex_widget_layout_child_init (HexWidgetLayoutChild *self)
 /* LAYOUT MANAGER METHODS */
 
 static void
+hex_widget_layout_set_property (GObject *gobject,
+		guint         prop_id,
+		const GValue *value,
+		GParamSpec   *pspec)
+{
+	HexWidgetLayout *self = HEX_WIDGET_LAYOUT(gobject);
+
+	switch (prop_id)
+	{
+		case PROP_CHAR_WIDTH:
+			hex_widget_layout_set_char_width (self, g_value_get_int (value));
+			break;
+
+		case PROP_GROUP_TYPE:
+			hex_widget_layout_set_group_type (self, g_value_get_enum (value));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
+			break;
+	}
+}
+
+static void
+hex_widget_layout_get_property (GObject    *gobject,
+		guint       prop_id,
+		GValue     *value,
+		GParamSpec *pspec)
+{
+	HexWidgetLayout *self = HEX_WIDGET_LAYOUT(gobject);
+
+	switch (prop_id)
+	{
+		case PROP_CPL:
+			g_value_set_int (value, self->cpl);
+			break;
+
+		case PROP_HEX_CPL:
+			g_value_set_int (value, self->hex_cpl);
+			break;
+
+		case PROP_OFFSET_CPL:
+			g_value_set_int (value, self->offset_cpl);
+			break;
+
+		case PROP_CHAR_WIDTH:
+			g_value_set_int (value, self->char_width);
+			break;
+
+		case PROP_GROUP_TYPE:
+			g_value_set_enum (value, self->group_type);
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
+			break;
+	}
+}
+static void
 hex_widget_layout_measure (GtkLayoutManager *layout_manager,
 		GtkWidget		*widget,
 		GtkOrientation	orientation,
@@ -232,11 +330,13 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 	{
 		HexWidgetLayoutChild *child_info;
 
+#if 0
 		if (GTK_IS_POPOVER (child))
 		{
 			gtk_popover_set_pointing_to (GTK_POPOVER(child),
 					&(const GdkRectangle){ self->cursor_x, self->cursor_y, 1, 1 });
 		}
+#endif
 
 		/* If it's invisible, etc., this should fail. */
 		if (! gtk_widget_should_layout (child))
@@ -435,6 +535,12 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 		gtk_widget_size_allocate (hex, &hex_alloc, -1);
 	if (ascii)
 		gtk_widget_size_allocate (ascii, &asc_alloc, -1);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_CPL]);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_HEX_CPL]);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_OFFSET_CPL]);
+
+	g_signal_emit (self, signals[SIZE_ALLOCATED], 0);
 }
 #undef BASE_ALLOC
 
@@ -462,12 +568,48 @@ hex_widget_layout_create_layout_child (GtkLayoutManager *manager,
 static void
 hex_widget_layout_class_init (HexWidgetLayoutClass *klass)
 {
+	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkLayoutManagerClass *layout_class = GTK_LAYOUT_MANAGER_CLASS (klass);
+	GParamFlags default_flags = G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY;
+
+	object_class->set_property = hex_widget_layout_set_property;
+	object_class->get_property = hex_widget_layout_get_property;
 
 	layout_class->get_request_mode = hex_widget_layout_get_request_mode;
 	layout_class->measure = hex_widget_layout_measure;
 	layout_class->allocate = hex_widget_layout_allocate;
 	layout_class->create_layout_child = hex_widget_layout_create_layout_child;
+
+	properties[PROP_CPL] = g_param_spec_int ("cpl", NULL, NULL,
+			0, 10000, 20,
+			default_flags | G_PARAM_READABLE);
+
+	properties[PROP_HEX_CPL] = g_param_spec_int ("hex-cpl", NULL, NULL,
+			0, 10000, 20,
+			default_flags | G_PARAM_READABLE);
+
+	properties[PROP_OFFSET_CPL] = g_param_spec_int ("offset-cpl", NULL, NULL,
+			0, 10000, 20,
+			default_flags | G_PARAM_READABLE);
+
+	properties[PROP_CHAR_WIDTH] = g_param_spec_int ("char-width", NULL, NULL,
+			0, 1000, 20,
+			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+	properties[PROP_GROUP_TYPE] = g_param_spec_enum ("group-type", NULL, NULL,
+			HEX_TYPE_WIDGET_GROUP_TYPE,
+			HEX_WIDGET_GROUP_BYTE,
+			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
+
+	signals[SIZE_ALLOCATED] = g_signal_new_class_handler ("size-allocated",
+			G_TYPE_FROM_CLASS (klass),
+			G_SIGNAL_RUN_LAST,
+			NULL,
+			NULL, NULL, NULL,
+			G_TYPE_NONE,
+			0);
 }
 
 static void
@@ -493,6 +635,7 @@ hex_widget_layout_set_char_width (HexWidgetLayout *layout, int width)
 	layout->char_width = width;
 
 	gtk_layout_manager_layout_changed (GTK_LAYOUT_MANAGER(layout));
+	g_object_notify_by_pspec (G_OBJECT(layout), properties[PROP_CHAR_WIDTH]);
 }
 
 void
@@ -502,6 +645,7 @@ hex_widget_layout_set_group_type (HexWidgetLayout *layout,
 	layout->group_type = group_type;
 
 	gtk_layout_manager_layout_changed (GTK_LAYOUT_MANAGER(layout));
+	g_object_notify_by_pspec (G_OBJECT(layout), properties[PROP_GROUP_TYPE]);
 }
 
 int
@@ -514,13 +658,6 @@ int
 hex_widget_layout_get_hex_cpl (HexWidgetLayout *layout)
 {
 	return layout->hex_cpl;
-}
-
-void
-hex_widget_layout_set_cursor_pos (HexWidgetLayout *layout, int x, int y)
-{
-	layout->cursor_x = x;
-	layout->cursor_y = y;
 }
 
 void

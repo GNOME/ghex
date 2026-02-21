@@ -1,0 +1,97 @@
+<!--
+vim: ts=2 sw=2 expandtab
+-->
+<interface>
+  <template class="HexWidget" parent="HexView">
+    <property name="layout-manager">
+      <object class="HexWidgetLayout" id="layout_manager" />
+    </property>
+    <child>
+      <object class="HexTextOffsets" id="offsets">
+        <style>
+          <class name="offsets" />
+        </style>
+        <layout>
+          <property name="column">offsets</property>
+        </layout>
+        <binding name="document">
+          <lookup name="document">HexWidget</lookup>
+        </binding>
+        <property name="auto-geometry" bind-source="HexWidget" bind-property="auto-geometry" bind-flags="bidirectional" />
+        <binding name="offset-cpl">
+          <lookup name="offset-cpl">layout_manager</lookup>
+        </binding>
+        <binding name="vadjustment">
+          <lookup name="vadjustment">HexWidget</lookup>
+        </binding>
+      </object>
+    </child>
+    <child>
+      <object class="HexTextHex" id="xdisp">
+        <style>
+          <class name="hex" />
+        </style>
+        <layout>
+          <property name="column">hex</property>
+        </layout>
+        <binding name="document">
+          <lookup name="document">HexWidget</lookup>
+        </binding>
+        <property name="auto-geometry" bind-source="HexWidget" bind-property="auto-geometry" bind-flags="bidirectional" />
+        <binding name="vadjustment">
+          <lookup name="vadjustment">HexWidget</lookup>
+        </binding>
+        <binding name="group-type">
+          <lookup name="group-type">layout_manager</lookup>
+        </binding>
+        <binding name="blink-cursor">
+          <lookup name="blink-cursor">HexWidget</lookup>
+        </binding>
+        <binding name="selection">
+          <lookup name="selection">HexWidget</lookup>
+        </binding>
+        <binding name="marks">
+          <lookup name="marks">HexWidget</lookup>
+        </binding>
+        <binding name="auto-highlights">
+          <lookup name="auto-highlights">HexWidget</lookup>
+        </binding>
+        <binding name="insert-mode">
+          <lookup name="insert-mode">HexWidget</lookup>
+        </binding>
+      </object>
+    </child>
+    <child>
+      <object class="HexTextAscii" id="adisp">
+        <style>
+          <class name="ascii" />
+        </style>
+        <layout>
+          <property name="column">ascii</property>
+        </layout>
+        <binding name="document">
+          <lookup name="document">HexWidget</lookup>
+        </binding>
+        <property name="auto-geometry" bind-source="HexWidget" bind-property="auto-geometry" bind-flags="bidirectional" />
+        <binding name="vadjustment">
+          <lookup name="vadjustment">HexWidget</lookup>
+        </binding>
+        <binding name="blink-cursor">
+          <lookup name="blink-cursor">HexWidget</lookup>
+        </binding>
+        <binding name="selection">
+          <lookup name="selection">HexWidget</lookup>
+        </binding>
+        <binding name="marks">
+          <lookup name="marks">HexWidget</lookup>
+        </binding>
+        <binding name="auto-highlights">
+          <lookup name="auto-highlights">HexWidget</lookup>
+        </binding>
+        <binding name="insert-mode">
+          <lookup name="insert-mode">HexWidget</lookup>
+        </binding>
+      </object>
+    </child>
+  </template>
+</interface>
