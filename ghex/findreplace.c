@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021-2022 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -55,14 +55,13 @@ static guint signals[LAST_SIGNAL];
 typedef struct
 {
 	HexWidget *gh;
-	HexWidgetAutoHighlight *auto_highlight;
+	HexAutoHighlight *auto_highlight;
 
 } PaneDialogPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (PaneDialog, pane_dialog, GTK_TYPE_WIDGET)
 
 typedef struct {
-	HexDocument *f_doc;
 	GtkWidget *f_gh;
 	GtkWidget *find_frame;
 	GtkWidget *find_string_label;
@@ -86,7 +85,6 @@ struct _ReplaceDialog {
 	FindDialog parent_instance;
 
 	GtkWidget *r_gh;
-	HexDocument *r_doc;
 
 	GtkWidget *r_frame;
 	GtkWidget *replace, *replace_all;
@@ -122,16 +120,15 @@ static void pane_dialog_update_busy_state (PaneDialog *self);
 static void mark_gh_busy (HexWidget *gh, gboolean busy);
 
 static GtkWidget *
-create_hex_view (HexDocument *doc)
+create_hex_view (void)
 {
 	GtkWidget *gh;
 
-	gh = hex_widget_new (doc);
+	gh = hex_widget_new ();
 
 	gtk_widget_set_hexpand (gh, TRUE);
-	hex_widget_set_group_type (HEX_WIDGET(gh), def_group_type);
 	common_set_gtkhex_font_from_settings (HEX_WIDGET(gh));
-    hex_widget_set_insert_mode (HEX_WIDGET(gh), TRUE);
+    hex_view_set_insert_mode (HEX_VIEW(gh), TRUE);
 
     return gh;
 }
@@ -155,9 +152,9 @@ pane_dialog_real_close (PaneDialog *self)
 	PaneDialogPrivate *priv = pane_dialog_get_instance_private (self);
 
 	if (priv->auto_highlight && priv->gh) {
-		hex_widget_delete_autohighlight (priv->gh, priv->auto_highlight);
+		hex_view_remove_auto_highlight (HEX_VIEW(priv->gh), priv->auto_highlight);
 	}
-	priv->auto_highlight = NULL;
+	g_clear_object (&priv->auto_highlight);
 }
 
 static void
@@ -186,15 +183,13 @@ find_options_show_pane_changed_cb (AdwToggleGroup *tg,
 		show_hex = TRUE;
 	}
 
-	hex_widget_show_hex_column (HEX_WIDGET(f_priv->f_gh), show_hex);
-	hex_widget_show_ascii_column (HEX_WIDGET(f_priv->f_gh), show_ascii);
+	gtk_widget_set_visible (GTK_WIDGET(hex_widget_get_hex_display (HEX_WIDGET(f_priv->f_gh))), show_hex);
+	gtk_widget_set_visible (GTK_WIDGET(hex_widget_get_ascii_display (HEX_WIDGET(f_priv->f_gh))), show_ascii);
 
 	if (REPLACE_IS_DIALOG (self))
 	{
-		hex_widget_show_hex_column (HEX_WIDGET(REPLACE_DIALOG(self)->r_gh),
-				show_hex);
-		hex_widget_show_ascii_column (HEX_WIDGET(REPLACE_DIALOG(self)->r_gh),
-				show_ascii);
+		gtk_widget_set_visible (GTK_WIDGET(hex_widget_get_hex_display (HEX_WIDGET(REPLACE_DIALOG(self)->r_gh))), show_hex);
+		gtk_widget_set_visible (GTK_WIDGET(hex_widget_get_ascii_display (HEX_WIDGET(REPLACE_DIALOG(self)->r_gh))), show_ascii);
 	}
 }
 
@@ -278,44 +273,46 @@ find_ready_cb (GObject *source_object,
 {
 	HexDocument *doc = HEX_DOCUMENT (source_object);
 	FindDialog *self = FIND_DIALOG (user_data);
-	HexDocumentFindData *find_data;
+	HexSearchInfo *search_info;
 	GTask *task = G_TASK(res);
 	PaneDialogPrivate *priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
 	GtkWindow *parent = GTK_WINDOW(gtk_widget_get_native (GTK_WIDGET(self)));
-	HexSearchFlags flags;
 
-	find_data = hex_document_find_finish (doc, res);
+	search_info = hex_document_find_finish (doc, res);
 
 	/* Typically this will be due to a cancellation - could theoretically be
 	 * an error, but not much we can do to report a search error anyway.
 	 */
-	if (! find_data)
+	if (! search_info)
 		return;
 
-	flags = search_flags_from_checkboxes (f_priv);
-
-	if (find_data->found)
+	if (hex_search_info_get_found (search_info))
 	{
+		HexSelection *selection = hex_view_get_selection (HEX_VIEW(priv->gh));
 		f_priv->found = TRUE;
 
-		hex_widget_set_cursor (priv->gh, find_data->offset);
+		hex_selection_collapse (selection, hex_search_info_get_found_offset (search_info));
 
 		/* If string found, insert auto-highlights of search string */
 
 		if (priv->auto_highlight)
-			hex_widget_delete_autohighlight (priv->gh, priv->auto_highlight);
+			hex_view_remove_auto_highlight (HEX_VIEW(priv->gh), priv->auto_highlight);
 
-		priv->auto_highlight = NULL;
-		priv->auto_highlight = hex_widget_insert_autohighlight_full (priv->gh,
-				find_data->what, find_data->len, flags);
+		g_clear_object (&priv->auto_highlight);
+
+		priv->auto_highlight = hex_auto_highlight_new (doc, search_info);
+
+		hex_view_insert_auto_highlight (HEX_VIEW(priv->gh), priv->auto_highlight);
 
 		gtk_widget_grab_focus (GTK_WIDGET(priv->gh));
 	}
 	else
 	{
 		display_dialog (parent,
-			f_priv->found ? find_data->found_msg : find_data->not_found_msg);
+			hex_search_info_get_found (search_info) ?
+				hex_search_info_get_found_msg (search_info) :
+				hex_search_info_get_not_found_msg (search_info));
 
 		f_priv->found = FALSE;
 	}
@@ -332,20 +329,23 @@ find_common (FindDialog *self, enum FindDirection direction,
 	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
+	HexSelection *selection;
 	gint64 cursor_pos;
 	gint64 str_len;
 	char *str;
-	HexDocumentFindData *find_data = NULL;
+	HexSearchInfo *search_info = NULL;
+	gint64 start_offset = 0;
 	
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 	f_priv = find_dialog_get_instance_private (self);
 
 	parent = GTK_WINDOW(gtk_widget_get_native (widget));
 
-	doc = hex_widget_get_document (priv->gh);
-	cursor_pos = hex_widget_get_cursor (priv->gh);
+	doc = hex_view_get_document (HEX_VIEW(priv->gh));
+	selection = hex_view_get_selection (HEX_VIEW(priv->gh));
+	cursor_pos = hex_selection_get_cursor_pos (selection);
 
-	str_len = get_search_string (f_priv->f_doc, &str);
+	str_len = get_search_string (hex_view_get_document (HEX_VIEW(f_priv->f_gh)), &str);
 	if (str_len == 0)
 	{
 		no_string_dialog (parent);
@@ -354,33 +354,41 @@ find_common (FindDialog *self, enum FindDirection direction,
 
 	/* Search for requested string */
 
-	find_data = hex_document_find_data_new ();
-	find_data->what = str;
-	find_data->len = str_len;
-	find_data->found_msg = found_msg;
-	find_data->not_found_msg = not_found_msg;
-	find_data->flags = search_flags_from_checkboxes (f_priv);
-	
+	if (direction == FIND_FORWARD)
+	{
+		start_offset = f_priv->found == FALSE ?
+								cursor_pos :
+								cursor_pos + 1;
+
+	}
+	else	/* FIND_BACKWARD */
+	{
+		start_offset = cursor_pos;
+	}
+
+	search_info = g_object_new (HEX_TYPE_SEARCH_INFO,
+			"what", str,
+			"len", str_len,
+			"found-msg", found_msg,
+			"not-found-msg", not_found_msg,
+			"flags", search_flags_from_checkboxes (f_priv),
+			"start", start_offset,
+			NULL);
+
 	g_cancellable_reset (f_priv->cancellable);
 
 	if (direction == FIND_FORWARD)
 	{
-		find_data->start = f_priv->found == FALSE ?
-								cursor_pos :
-								cursor_pos + 1;
-
 		hex_document_find_forward_full_async (doc,
-				find_data,
+				search_info,
 				f_priv->cancellable,
 				find_ready_cb,
 				self);
 	}
 	else	/* FIND_BACKWARD */
 	{
-		find_data->start = cursor_pos;
-
 		hex_document_find_backward_full_async (doc,
-				find_data,
+				search_info,
 				f_priv->cancellable,
 				find_ready_cb,
 				self);
@@ -419,18 +427,8 @@ find_clear_cb (GtkButton *button, gpointer user_data)
 {
 	FindDialog *self = FIND_DIALOG(user_data);
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (self);
-	GtkWidget *new_gh;
-	HexDocument *new_doc;
 
-	new_doc = hex_document_new ();
-	new_gh = create_hex_view (new_doc);
-
-	gtk_box_remove (GTK_BOX(f_priv->find_frame),
-			gtk_widget_get_last_child (f_priv->find_frame));
-	gtk_box_append (GTK_BOX(f_priv->find_frame), new_gh);
-
-	f_priv->f_doc = new_doc;
-	f_priv->f_gh = new_gh;
+	hex_view_set_document (HEX_VIEW(f_priv->f_gh), NULL);
 
 	find_options_show_pane_changed_cb (ADW_TOGGLE_GROUP(f_priv->options_show_pane), NULL, self);
 
@@ -444,6 +442,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	PaneDialogPrivate *priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 	GtkWindow *parent;
 	HexDocument *doc;
+	HexSelection *selection = NULL;
 	gint64 cursor_pos;
 	GtkEntry *entry;
 	GtkEntryBuffer *buffer;
@@ -458,8 +457,9 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = hex_widget_get_document (priv->gh);
-	cursor_pos = hex_widget_get_cursor (priv->gh);
+	doc = hex_view_get_document (HEX_VIEW(priv->gh));
+	selection = hex_view_get_selection (HEX_VIEW(priv->gh));
+	cursor_pos = hex_selection_get_cursor_pos (selection);
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 
 	entry = GTK_ENTRY(self->int_entry);
@@ -518,7 +518,7 @@ goto_byte_cb (GtkButton *button, gpointer user_data)
 			return;
 		} else {
 			/* SUCCESS */
-			hex_widget_set_cursor (priv->gh, byte);
+			hex_selection_collapse (selection, byte);
 			gtk_widget_grab_focus (GTK_WIDGET(priv->gh));
 		}
 	}
@@ -541,11 +541,12 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	FindDialogPrivate *f_priv;
 	GtkWindow *parent;
 	HexDocument *doc;
+	HexSelection *selection;
 	gint64 cursor_pos;
 	char *find_str = NULL, *rep_str = NULL;
 	size_t find_len, rep_str_len;
 	gint64 payload;
-	HexDocumentFindData *find_data = NULL;
+	HexSearchInfo *search_info = NULL;
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
 	f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
@@ -554,12 +555,13 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = hex_widget_get_document (priv->gh);
-	cursor_pos = hex_widget_get_cursor (priv->gh);
+	doc = hex_view_get_document (HEX_VIEW(priv->gh));
+	selection = hex_view_get_selection (HEX_VIEW(priv->gh));
+	cursor_pos = hex_selection_get_cursor_pos (selection);
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 	
-	if ((find_len = get_search_string (f_priv->f_doc, &find_str)) == 0	||
-		(rep_str_len = get_search_string (self->r_doc, &rep_str)) == 0)
+	if ((find_len = get_search_string (hex_view_get_document (HEX_VIEW(f_priv->f_gh)), &find_str)) == 0	||
+		(rep_str_len = get_search_string (hex_view_get_document (HEX_VIEW(self->r_gh)), &rep_str)) == 0)
 	{
 		no_string_dialog (parent);
 		goto clean_up;
@@ -568,18 +570,18 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 	if (find_len > payload - cursor_pos)
 		goto clean_up;
 	
-	find_data = hex_document_find_data_new ();
-	find_data->start = cursor_pos;
-	find_data->what = find_str;
-	find_data->len = find_len;
-	find_data->flags = search_flags_from_checkboxes (f_priv);
+	search_info = g_object_new (HEX_TYPE_SEARCH_INFO,
+			"start", cursor_pos,
+			"what", find_str,
+			"len", find_len,
+			"flags", search_flags_from_checkboxes (f_priv),
+			NULL);
 
-	if (hex_document_find_forward_full (doc, find_data))
+	if (hex_document_find_forward_full (doc, search_info))
 	{
-		hex_widget_set_cursor (priv->gh, find_data->offset);
-		cursor_pos = hex_widget_get_cursor (priv->gh);
+		hex_selection_collapse (selection, hex_search_info_get_found_offset (search_info));
 		hex_document_set_data (doc,
-				cursor_pos, rep_str_len, find_data->found_len, rep_str, TRUE);
+				hex_selection_get_cursor_pos (selection), rep_str_len, hex_search_info_get_found_len (search_info), rep_str, TRUE);
 	}
 	else
 	{
@@ -589,7 +591,7 @@ replace_one_cb (GtkButton *button, gpointer user_data)
 clean_up:
 	g_free (find_str);
 	g_free (rep_str);
-	g_free (find_data);
+	g_object_unref (search_info);
 }
 
 static void
@@ -605,7 +607,8 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	char *find_str = NULL, *rep_str = NULL;
 	size_t find_len, rep_str_len;
 	gint64 payload;
-	HexDocumentFindData *find_data = NULL;
+	HexSearchInfo *search_info = NULL;
+	HexSelection *selection = NULL;
 	int count;
 
 	priv = pane_dialog_get_instance_private (PANE_DIALOG(self));
@@ -615,12 +618,13 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	if (! GTK_IS_WINDOW(parent))
 		parent = NULL;
 
-	doc = hex_widget_get_document (priv->gh);
-	cursor_pos = hex_widget_get_cursor (priv->gh);
+	doc = hex_view_get_document (HEX_VIEW(priv->gh));
+	selection = hex_view_get_selection (HEX_VIEW(priv->gh));
+	cursor_pos = hex_selection_get_cursor_pos (selection);
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
 
-	if ((find_len = get_search_string (f_priv->f_doc, &find_str)) == 0	||
-		(rep_str_len = get_search_string (self->r_doc, &rep_str)) == 0)
+	if ((find_len = get_search_string (hex_view_get_document (HEX_VIEW(f_priv->f_gh)), &find_str)) == 0	||
+		(rep_str_len = get_search_string (hex_view_get_document (HEX_VIEW(self->r_gh)), &rep_str)) == 0)
 	{
 		no_string_dialog (parent);
 		goto clean_up;
@@ -629,17 +633,21 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 	if (find_len > payload - cursor_pos)
 		goto clean_up;
 	
-	find_data = hex_document_find_data_new ();
-	find_data->start = 0;
-	find_data->what = find_str;
-	find_data->len = find_len;
-	find_data->flags = search_flags_from_checkboxes (f_priv);
+	search_info = g_object_new (HEX_TYPE_SEARCH_INFO,
+			"start", 0,
+			"what", find_str,
+			"len", find_len,
+			"flags", search_flags_from_checkboxes (f_priv),
+			NULL);
 
 	count = 0;
-	while (hex_document_find_forward_full (doc, find_data))
+	while (hex_document_find_forward_full (doc, search_info))
 	{
 		hex_document_set_data (doc,
-				find_data->offset, rep_str_len, find_data->found_len, rep_str,
+				hex_search_info_get_found_offset (search_info),
+				rep_str_len,
+				hex_search_info_get_found_len (search_info),
+				rep_str,
 				TRUE);
 		count++;
 	}
@@ -660,7 +668,7 @@ replace_all_cb (GtkButton *button, gpointer user_data)
 clean_up:
 	g_free (find_str);
 	g_free (rep_str);
-	g_free (find_data);
+	g_object_unref (search_info);
 }
 
 /* CROSSREF: find_clear_cb */
@@ -669,18 +677,8 @@ replace_clear_cb (GtkButton *button, gpointer user_data)
 {
 	ReplaceDialog *self = REPLACE_DIALOG(user_data);
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
-	GtkWidget *new_r_gh;
-	HexDocument *new_r_doc;
 
-	new_r_doc = hex_document_new ();
-	new_r_gh = create_hex_view (new_r_doc);
-
-	gtk_box_remove (GTK_BOX(self->r_frame),
-			gtk_widget_get_last_child (self->r_frame));
-	gtk_box_append (GTK_BOX(self->r_frame), new_r_gh);
-
-	self->r_doc = new_r_doc;
-	self->r_gh = new_r_gh;
+	hex_view_set_document (HEX_VIEW(self->r_gh), NULL);
 
 	find_options_show_pane_changed_cb (ADW_TOGGLE_GROUP(f_priv->options_show_pane), NULL, self);
 
@@ -807,8 +805,9 @@ pane_dialog_set_hex (PaneDialog *self, HexWidget *gh)
 	/* Clear auto-highlight if any.
 	 */
 	if (priv->auto_highlight)
-		hex_widget_delete_autohighlight (priv->gh, priv->auto_highlight);
-	priv->auto_highlight = NULL;
+		hex_view_remove_auto_highlight (HEX_VIEW(priv->gh), priv->auto_highlight);
+
+	g_clear_object (&priv->auto_highlight);
 
 	priv->gh = gh;
 
@@ -849,8 +848,7 @@ find_dialog_init (FindDialog *self)
 	f_priv->cancellable = g_cancellable_new ();
 
 	/* Setup HexWidget and make child of our frame */
-	f_priv->f_doc = hex_document_new ();
-	f_priv->f_gh = create_hex_view (f_priv->f_doc);
+	f_priv->f_gh = create_hex_view ();
 	gtk_box_append (GTK_BOX(f_priv->find_frame), f_priv->f_gh);
 	
 	/* Setup find options popover as child of our options menubutton */
@@ -961,8 +959,7 @@ replace_dialog_init (ReplaceDialog *self)
 	FindDialogPrivate *f_priv = find_dialog_get_instance_private (FIND_DIALOG(self));
 	GtkBuilder *builder;
 
-	self->r_doc = hex_document_new ();
-	self->r_gh = create_hex_view (self->r_doc);
+	self->r_gh = create_hex_view ();
 
 	/* Instantiate ReplaceDialog-specific widgets and plug them into the
 	 * FindDialog in the right places.
