@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021-2023 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -36,10 +36,9 @@
 
 /* STATIC GLOBALS */
 
-static GtkTreeSelection *sel_row = NULL;
 static HexWidget *gh_glob = NULL;
 
-static char *ascii_non_printable_label[] = {
+static const char *ascii_non_printable_label[] = {
 	"NUL",
 	"SOH",
 	"STX",
@@ -247,13 +246,13 @@ hex_chartable_value_new (guchar val)
 static void
 insert_char (guchar byte)
 {
-	hex_document_set_byte (hex_widget_get_document (gh_glob),
-			byte,
-			hex_widget_get_cursor (gh_glob),
-			hex_widget_get_insert_mode (gh_glob),
-			TRUE);	/* undoable */
+	HexDocument *doc = hex_view_get_document (HEX_VIEW(gh_glob));
+	HexSelection *selection = hex_view_get_selection (HEX_VIEW(gh_glob));
+	const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
+	const gboolean insert_mode = hex_view_get_insert_mode (HEX_VIEW(gh_glob));
 
-	hex_widget_set_cursor (gh_glob, hex_widget_get_cursor (gh_glob) + 1);
+	hex_document_set_byte (doc, byte, cursor_pos, insert_mode, TRUE);
+	hex_selection_collapse (selection, cursor_pos + 1);
 }
 
 
