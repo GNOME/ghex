@@ -85,10 +85,15 @@ ghex_c_args = [
   '-DG_LOG_DOMAIN="GHex"'
 ]
 
+ghex_deps = [
+  libgtkhex_dep,
+  dependency('libadwaita-1', version: '>= 1.4'),
+]
+
 ghex = executable(
   meson.project_name(),
   ghex_sources + ghex_res,
-  dependencies: [adw_dep, libgtkhex_dep],
+  dependencies: ghex_deps,
   c_args: ghex_c_args,
   install: true
 )
