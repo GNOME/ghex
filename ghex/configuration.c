@@ -34,9 +34,10 @@
 
 #include "configuration.h"
 
-GSettings *settings;
+static GSettings *global_settings;
+
 /* Global CSS provider for our HexWidget widgets */
-GtkCssProvider *global_provider;
+static GtkCssProvider *global_provider;
 
 int def_group_type;
 int def_sb_offset_format;
@@ -155,51 +156,70 @@ control_chars_changed_cb (GSettings   *settings,
     def_display_control_characters = show;
 }
 
-void ghex_init_configuration ()
+void
+ghex_init_configuration (void)
 {
 	/* GSettings */
 
-    settings = g_settings_new (APP_ID);
-    g_return_if_fail (settings);
+    global_settings = g_settings_new (APP_ID);
+    g_return_if_fail (global_settings);
 
-    g_signal_connect (settings, "changed::" GHEX_PREF_OFFSETS_COLUMN,
+    g_signal_connect (global_settings, "changed::" GHEX_PREF_OFFSETS_COLUMN,
                       G_CALLBACK (offsets_column_changed_cb), NULL);
-    offsets_column_changed_cb (settings, GHEX_PREF_OFFSETS_COLUMN, NULL);
+    offsets_column_changed_cb (global_settings, GHEX_PREF_OFFSETS_COLUMN, NULL);
 
-    g_signal_connect (settings, "changed::" GHEX_PREF_GROUP,
+    g_signal_connect (global_settings, "changed::" GHEX_PREF_GROUP,
                       G_CALLBACK (group_changed_cb), NULL);
-    group_changed_cb (settings, GHEX_PREF_GROUP, NULL);
+    group_changed_cb (global_settings, GHEX_PREF_GROUP, NULL);
 
-    g_signal_connect (settings, "changed::" GHEX_PREF_SB_OFFSET_FORMAT,
+    g_signal_connect (global_settings, "changed::" GHEX_PREF_SB_OFFSET_FORMAT,
                       G_CALLBACK (sb_offsetformat_changed_cb), NULL);
-    sb_offsetformat_changed_cb (settings, GHEX_PREF_SB_OFFSET_FORMAT, NULL);
+    sb_offsetformat_changed_cb (global_settings, GHEX_PREF_SB_OFFSET_FORMAT, NULL);
 
-    g_signal_connect (settings, "changed::" GHEX_PREF_DARK_MODE,
+    g_signal_connect (global_settings, "changed::" GHEX_PREF_DARK_MODE,
                       G_CALLBACK (dark_mode_changed_cb), NULL);
-    dark_mode_changed_cb (settings, GHEX_PREF_DARK_MODE, NULL);
+    dark_mode_changed_cb (global_settings, GHEX_PREF_DARK_MODE, NULL);
 
-    g_signal_connect (settings, "changed::" GHEX_PREF_BOX_SIZE,
+    g_signal_connect (global_settings, "changed::" GHEX_PREF_BOX_SIZE,
                       G_CALLBACK (box_size_changed_cb), NULL);
-    box_size_changed_cb (settings, GHEX_PREF_BOX_SIZE, NULL);
+    box_size_changed_cb (global_settings, GHEX_PREF_BOX_SIZE, NULL);
 
-    g_signal_connect (settings, "changed::" GHEX_PREF_FONT,
+    g_signal_connect (global_settings, "changed::" GHEX_PREF_FONT,
                       G_CALLBACK (font_changed_cb), NULL);
-    font_changed_cb (settings, GHEX_PREF_FONT, NULL);
+    font_changed_cb (global_settings, GHEX_PREF_FONT, NULL);
 
-    g_signal_connect (settings, "changed::" GHEX_PREF_DATA_FONT,
+    g_signal_connect (global_settings, "changed::" GHEX_PREF_DATA_FONT,
                       G_CALLBACK (data_font_changed_cb), NULL);
 
-    data_font_changed_cb (settings, GHEX_PREF_DATA_FONT, NULL);
+    data_font_changed_cb (global_settings, GHEX_PREF_DATA_FONT, NULL);
 
-    g_signal_connect (settings, "changed::" GHEX_PREF_HEADER_FONT,
+    g_signal_connect (global_settings, "changed::" GHEX_PREF_HEADER_FONT,
                       G_CALLBACK (header_font_changed_cb), NULL);
-    header_font_changed_cb (settings, GHEX_PREF_HEADER_FONT, NULL);
+    header_font_changed_cb (global_settings, GHEX_PREF_HEADER_FONT, NULL);
 
-    g_signal_connect (settings, "changed::" GHEX_PREF_CONTROL_CHARS,
+    g_signal_connect (global_settings, "changed::" GHEX_PREF_CONTROL_CHARS,
                       G_CALLBACK (control_chars_changed_cb), NULL);
-    control_chars_changed_cb (settings, GHEX_PREF_CONTROL_CHARS, NULL);
+    control_chars_changed_cb (global_settings, GHEX_PREF_CONTROL_CHARS, NULL);
 
 	/* Global CSS provider */
 
 	global_provider = gtk_css_provider_new ();
+}
+
+/* Transfer none */
+GSettings *
+ghex_get_global_settings (void)
+{
+	g_assert (G_IS_SETTINGS (global_settings));
+
+	return global_settings;
+}
+
+/* Transfer none */
+GtkCssProvider *
+ghex_get_global_css_provider (void)
+{
+	g_assert (GTK_IS_CSS_PROVIDER (global_provider));
+
+	return global_provider;
 }
