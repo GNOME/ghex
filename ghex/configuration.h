@@ -68,11 +68,11 @@ extern int        def_sb_offset_format;
 extern int			def_dark_mode;
 extern gboolean		def_display_control_characters;
 
-extern GSettings	*settings;
-extern GtkCssProvider *global_provider;
-
 /* Initializes the gsettings client */
 void ghex_init_configuration (void);
+
+GSettings * ghex_get_global_settings (void);
+GtkCssProvider * ghex_get_global_css_provider (void);
 
 G_END_DECLS
 
