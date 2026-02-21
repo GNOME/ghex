@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- vim:ts=4 sw=4
+<!-- vim:ts=4 sw=4 expandtab
 -->
 <!--
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -24,10 +24,11 @@
 -->
 
 <gresources>
-	<gresource prefix="@resource_base_path@">
-		<file preprocess="xml-stripblanks" compressed="true">gtkhex.ui</file>
-	</gresource>
-	<gresource prefix="@resource_base_path@/css">
-		<file>gtkhex.css</file>
-	</gresource>
+   <gresource prefix="/org/gnome/libgtkhex/css/">
+       <file>libgtkhex.css</file>
+   </gresource>
+   <gresource prefix="/org/gnome/libgtkhex/ui/">
+       <file preprocess="xml-stripblanks" compressed="true">hex-widget.ui</file>
+       <file preprocess="xml-stripblanks" compressed="true">context-menu.ui</file>
+   </gresource>
 </gresources>

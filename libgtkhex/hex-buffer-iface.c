@@ -4,7 +4,7 @@
 /* hex-buffer-iface.c - Generic buffer interface intended for use with the
  * HexDocument API
  *
- * Copyright © 2021 Logan Rathbone
+ * Copyright © 2021-2026 Logan Rathbone
  *
  * GHex is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,6 +24,7 @@
 
 #include "hex-buffer-iface.h"
 #include "hex-buffer-malloc.h"
+
 #include <config.h>
 
 /**

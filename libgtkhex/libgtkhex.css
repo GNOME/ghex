@@ -1,0 +1,20 @@
+.hex-text {
+	font-feature-settings: "tnum";
+	color: @theme_fg_color;
+	background-color: @theme_bg_color;
+	padding-left: 12px;
+}
+
+.hex-text.hex {
+        border-right: dotted 2px @borders;
+}
+
+.hex-text.ascii {
+	padding-right: 1em;
+}
+
+.hex-text.offsets {
+	padding-right: 12px;
+        border-right: solid @borders 2px;
+	background-color: shade(@theme_bg_color, 0.9);
+}
