@@ -4,10 +4,10 @@ libgtkhex_version_minor = 0
 libgtkhex_version_micro = 0
 libgtkhex_version = '@0@.@1@.@2@'.format(libgtkhex_api_version, libgtkhex_version_minor, libgtkhex_version_micro)
 
-plugindir = join_paths(libdir, 'gtkhex-@0@.0'.format(libgtkhex_api_version))
+libgtkhex_plugindir = join_paths(libdir, 'gtkhex-@0@.0'.format(libgtkhex_api_version))
 
 config_h = configuration_data()
-config_h.set_quoted('PACKAGE_PLUGINDIR', plugindir)
+config_h.set_quoted('PACKAGE_PLUGINDIR', libgtkhex_plugindir)
 config_h.set_quoted('LIBGTKHEX_RELEASE_STRING', 'gtkhex-@0@.0'.format(libgtkhex_api_version))
 
 configure_file(
@@ -102,7 +102,7 @@ if get_option('mmap-buffer-backend')
     sources: 'hex-buffer-mmap.c',
     c_args: libgtkhex_c_args,
     dependencies: libgtkhex_deps,
-    install_dir: plugindir,
+    install_dir: libgtkhex_plugindir,
     install: true,
   )
 
@@ -129,7 +129,7 @@ if get_option('direct-buffer-backend')
     sources: 'hex-buffer-direct.c',
     c_args: libgtkhex_c_args,
     dependencies: libgtkhex_deps,
-    install_dir: plugindir,
+    install_dir: libgtkhex_plugindir,
     install: true,
   )
 
@@ -138,6 +138,22 @@ endif # direct
 install_headers(
   libgtkhex_headers,
   subdir: 'gtkhex-@0@'.format(libgtkhex_api_version)
+)
+
+pkg_conf = configuration_data()
+pkg_conf.set('prefix', prefix)
+pkg_conf.set('exec_prefix', prefix)
+pkg_conf.set('libdir', libdir)
+pkg_conf.set('includedir', includedir)
+
+pkg_conf.set('LIBGTKHEX_VERSION', libgtkhex_version)
+
+configure_file(
+  input: 'libgtkhex-5.pc.in',
+  output: 'libgtkhex-5.pc',
+  configuration: pkg_conf,
+  install_dir: pkgconfigdir,
+  install: true
 )
 
 if get_option('introspection').allowed()

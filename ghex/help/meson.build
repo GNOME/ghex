@@ -20,12 +20,3 @@ gnome.yelp(
   meson.project_name(),
   sources: help_pages,
 )
-
-if get_option('static-html-help')
-  custom_target('static-html-help',
-    output : 'HTML',
-    input : 'HTML.tar.gz',
-    command : [find_program('tar'), 'xvf', '@INPUT@', '-C', '@OUTDIR@'],
-    install : true,
-    install_dir : ghex_docdir)
-endif
