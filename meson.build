@@ -175,9 +175,7 @@ endforeach
 add_project_arguments(project_c_args, language: 'c')
 
 subdir('libgtkhex')
-
-# TODO
-#subdir('ghex')
+subdir('ghex')
 
 summary({'prefix': prefix,
         'libdir': libdir,

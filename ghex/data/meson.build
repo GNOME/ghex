@@ -17,9 +17,9 @@ desktop_file_in = configure_file(
 desktop_file = i18n.merge_file(
   input: desktop_file_in,
   output: '@0@.desktop'.format(app_id),
-  po_dir: ghex_po_dir,
+  po_dir: po_dir,
   type: 'desktop',
-  install_dir: ghex_applicationsdir,
+  install_dir: applicationsdir,
   install: true
 )
 
@@ -36,22 +36,6 @@ if desktop_file_validate_prg.found()
   )
 endif
 
-pkg_conf = configuration_data()
-pkg_conf.set('prefix', ghex_prefix)
-pkg_conf.set('exec_prefix', ghex_prefix)
-pkg_conf.set('libdir', ghex_libdir)
-pkg_conf.set('includedir', ghex_includedir)
-
-pkg_conf.set('LIBGTKHEX_VERSION', libgtkhex_version)
-
-configure_file(
-  input: 'gtkhex-4.pc.in',
-  output: 'gtkhex-4.pc',
-  configuration: pkg_conf,
-  install_dir: ghex_pkgconfigdir,
-  install: true
-)
-
 schema_conf = configuration_data()
 schema_conf.set('shaded_box_max', shaded_box_max)
 schema_conf.set('app_id', app_id)
@@ -61,7 +45,7 @@ configure_file(
   input: 'org.gnome.GHex.gschema.xml.in',
   output: '@0@.gschema.xml'.format(app_id),
   configuration: schema_conf,
-  install_dir: ghex_schemasdir,
+  install_dir: schemasdir,
   install: true
 )
 
@@ -76,8 +60,8 @@ metainfo_in = configure_file(
 metainfo = i18n.merge_file(
   input: metainfo_in,
   output: '@0@.metainfo.xml'.format(app_id),
-  po_dir: ghex_po_dir,
-  install_dir: ghex_metainfodir,
+  po_dir: po_dir,
+  install_dir: metainfodir,
   install: true
 )
 
@@ -96,10 +80,10 @@ endif
 
 service_conf = configuration_data()
 service_conf.set('app_id', app_id)
-service_conf.set('bindir', ghex_bindir)
+service_conf.set('bindir', bindir)
 configure_file(
   input: 'org.gnome.GHex.service.in',
   output: '@0@.service'.format(app_id),
   configuration: service_conf,
-  install_dir: ghex_servicedir
+  install_dir: servicedir
 )
