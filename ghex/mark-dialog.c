@@ -3,7 +3,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /* mark-dialog.c - marks dialog
 
-   Copyright © 2023 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2023-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -68,18 +68,18 @@ update_action_targets (MarkDialog *self)
 }
 
 static gboolean
-sensitive_closure_cb (GObject *object, HexWidgetMark *mark, gpointer user_data)
+sensitive_closure_cb (GObject *object, HexMark *mark, gpointer user_data)
 {
 	return mark ? TRUE : FALSE;
 }
 
-static HexWidgetMark *
+static HexMark *
 mark_spin_button_closure_cb (GObject *object, double spin_button_value, gpointer user_data)
 {
 	MarkDialog *self = MARK_DIALOG(object);
 	HexWidget *gh = pane_dialog_get_hex (PANE_DIALOG(self));
 	char *key = NULL;
-	HexWidgetMark *mark = NULL;
+	HexMark *mark = NULL;
 
 	if (! gh)
 		goto out;
@@ -90,7 +90,7 @@ mark_spin_button_closure_cb (GObject *object, double spin_button_value, gpointer
 	if (! mark)
 		goto out;
 
-	if (! hex_widget_mark_get_have_custom_color (mark))
+	if (! hex_mark_get_have_custom_color (mark))
 		goto out;
 
 out:
@@ -107,7 +107,7 @@ out:
  * free it.
  */
 static char *
-mark_description_label_closure_cb (GObject *object, HexWidgetMark *mark, gpointer user_data)
+mark_description_label_closure_cb (GObject *object, HexMark *mark, gpointer user_data)
 {
 	MarkDialog *self = MARK_DIALOG(object);
 	char *str = NULL;
@@ -116,8 +116,8 @@ mark_description_label_closure_cb (GObject *object, HexWidgetMark *mark, gpointe
 	if (! mark)
 		return NULL;
 
-	start = hex_widget_mark_get_start_offset (mark);
-	end = hex_widget_mark_get_end_offset (mark);
+	start = hex_mark_get_start_offset (mark);
+	end = hex_mark_get_end_offset (mark);
 
 	/* Translators: this is meant to show a range of hex offset values.
 	 * eg, "0xAA - 0xFF"
@@ -132,7 +132,7 @@ color_set_cb (MarkDialog *self, GtkColorButton *color_button)
 {
 	char *key = g_strdup_printf ("mark%d", gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(self->spin_button)));
 	HexWidget *gh = pane_dialog_get_hex (PANE_DIALOG(self));
-	HexWidgetMark *mark = g_object_get_data (G_OBJECT(gh), key);
+	HexMark *mark = g_object_get_data (G_OBJECT(gh), key);
 	GdkRGBA color = {0};
 
 	if (!mark)
@@ -143,7 +143,7 @@ color_set_cb (MarkDialog *self, GtkColorButton *color_button)
 	G_GNUC_END_IGNORE_DEPRECATIONS
 	color.alpha = 0.5;
 
-	hex_widget_set_mark_custom_color (gh, mark, &color);
+	hex_mark_set_custom_color (mark, &color);
 
 out:
 	g_free (key);
