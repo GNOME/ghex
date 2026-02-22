@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -98,7 +98,7 @@ sync_shaded_box_size_with_spinbtn (void)
 	guint tmp = gtk_spin_button_get_value_as_int (spin_button);
 
 	if (tmp != shaded_box_size) {
-		g_settings_set_uint (settings,
+		g_settings_set_uint (ghex_get_global_settings (),
 				GHEX_PREF_BOX_SIZE,
 				tmp);
 	}
@@ -125,7 +125,7 @@ shaded_box_chkbtn_toggled_cb (GtkCheckButton *checkbutton,
 	if (checked) {
 		sync_shaded_box_size_with_spinbtn ();
 	} else if (shaded_box_size) {
-		g_settings_set_uint (settings,
+		g_settings_set_uint (ghex_get_global_settings (),
 				GHEX_PREF_BOX_SIZE,
 				0);
 	}
@@ -139,7 +139,7 @@ show_offsets_set_cb (GtkCheckButton *checkbutton,
 
 	show_or_hide = gtk_check_button_get_active (checkbutton);
 
-	g_settings_set_boolean (settings,
+	g_settings_set_boolean (ghex_get_global_settings (),
 			GHEX_PREF_OFFSETS_COLUMN,
 			show_or_hide);
 }
@@ -152,7 +152,7 @@ show_control_chars_set_cb (GtkCheckButton *checkbutton,
 
 	show_or_hide = gtk_check_button_get_active (checkbutton);
 
-	g_settings_set_boolean (settings,
+	g_settings_set_boolean (ghex_get_global_settings (),
 			GHEX_PREF_CONTROL_CHARS,
 			show_or_hide);
 }
@@ -168,7 +168,7 @@ group_type_set_cb (GtkCheckButton *checkbutton,
 	 */
 	if (gtk_check_button_get_active (checkbutton))
 	{
-		g_settings_set_enum (settings,
+		g_settings_set_enum (ghex_get_global_settings (),
 				GHEX_PREF_GROUP,
 				group_type);
 	}
@@ -185,7 +185,7 @@ offset_format_set_cb (GtkCheckButton *checkbutton,
 	 */
 	if (gtk_check_button_get_active (checkbutton))
 	{
-		g_settings_set_enum (settings,
+		g_settings_set_enum (ghex_get_global_settings (),
 				GHEX_PREF_SB_OFFSET_FORMAT,
 				sb_format);
 	}
@@ -212,7 +212,7 @@ font_set_cb (GtkFontButton *widget,
 	GtkFontChooser *chooser = GTK_FONT_CHOOSER(widget);
 	FontType type = GPOINTER_TO_INT(user_data);
 	char *tmp;
-	char *pref;
+	const char *pref;
 
 	switch (type)
 	{
@@ -229,8 +229,7 @@ font_set_cb (GtkFontButton *widget,
 			break;
 
 		default:
-			g_error ("%s: Programmer error - invalid enum passed to function.",
-					__func__);
+			g_assert_not_reached ();
 			break;
 	}
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
@@ -238,7 +237,7 @@ font_set_cb (GtkFontButton *widget,
 	G_GNUC_END_IGNORE_DEPRECATIONS
 
 	if (tmp) {
-		g_settings_set_string (settings,
+		g_settings_set_string (ghex_get_global_settings (),
 				pref,
 				tmp);
 		g_free (tmp);
@@ -251,9 +250,9 @@ font_set_cb (GtkFontButton *widget,
 
 /* Quick helper function for font buttons */
 static void
-monospace_only (GtkWidget *font_button)
+monospace_only (GtkWidget *font_button_)
 {
-	GtkFontChooser *chooser = GTK_FONT_CHOOSER(font_button);
+	GtkFontChooser *chooser = GTK_FONT_CHOOSER(font_button_);
 
 	g_return_if_fail (GTK_IS_FONT_CHOOSER (chooser));
 
@@ -276,7 +275,7 @@ dark_mode_set_cb (GtkSwitch *widget,
 	else
 		dark_mode = DARK_MODE_OFF;
 
-	g_settings_set_enum (settings,
+	g_settings_set_enum (ghex_get_global_settings (),
 			GHEX_PREF_DARK_MODE,
 			dark_mode);
 
@@ -301,7 +300,7 @@ system_default_set_cb (GtkCheckButton *checkbutton,
 		dark_mode = gtk_switch_get_active (GTK_SWITCH(dark_mode_switch)) ?
 			DARK_MODE_ON : DARK_MODE_OFF;
 	}
-	g_settings_set_enum (settings,
+	g_settings_set_enum (ghex_get_global_settings (),
 			GHEX_PREF_DARK_MODE,
 			dark_mode);
 }
