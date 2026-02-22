@@ -49,23 +49,23 @@ struct _HexDialog
 };
 
 /* conversion functions */
-static char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_US8(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_S16(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_US16(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_S32(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_32float(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_hex(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_oct(HexDialogVal64 *val, HexConversionProperties *prop);
-static char *HexConvert_bin(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_US8(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_S16(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_US16(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_S32(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_32float(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_hex(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_oct(HexDialogVal64 *val, HexConversionProperties *prop);
+static const char *HexConvert_bin(HexDialogVal64 *val, HexConversionProperties *prop);
 
 static struct {
-    char *name;
-    char *(*conv_function)(HexDialogVal64 *val, HexConversionProperties *prop);
+    const char *name;
+    const char *(*conv_function)(HexDialogVal64 *val, HexConversionProperties *prop);
 } HexDialogEntries[ENTRY_MAX] = {
     { N_("Signed 8 bit:"), HexConvert_S8 },
     { N_("Unsigned 8 bit:"), HexConvert_US8 },
@@ -225,12 +225,12 @@ GtkWidget *hex_dialog_getview(HexDialog *dialog)
     return vbox;
 }
 
-static char *
+static const char *
 dialog_prop_get_text(HexDialogEntryTypes type,
                                   HexDialog *dialog,
                                   HexDialogVal64 *val)
 {
-    char *buf = "";
+    const char *buf = "";
 
     if (HexDialogEntries[type].conv_function)
         buf = HexDialogEntries[type].conv_function(val, &dialog->properties);
@@ -244,7 +244,7 @@ static void update_dialog_prop(HexDialogEntryTypes type,
                                HexDialog *dialog,
                                HexDialogVal64 *val)
 {
-    char *buf = dialog_prop_get_text (type, dialog, val);
+    const char *buf = dialog_prop_get_text (type, dialog, val);
 
 	gtk_editable_set_text (GTK_EDITABLE(dialog->entry[type]), buf);
 }
@@ -297,7 +297,7 @@ inline static unsigned long long int llpow2(int p)
     return r;
 }
 
-static char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i, local = 0;
     for (i = 0; i < 7; i++)
@@ -308,7 +308,7 @@ static char *HexConvert_S8(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-static char *HexConvert_US8(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_US8(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i, local = 0;
     for (i = 0; i < 8; i++)
@@ -321,7 +321,7 @@ static char *HexConvert_US8(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-static char *HexConvert_S16(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_S16(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[2];
     int i, local = 0;
@@ -345,7 +345,7 @@ static char *HexConvert_S16(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-static char *HexConvert_US16(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_US16(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[2];
     int i, local = 0;
@@ -372,7 +372,7 @@ static char *HexConvert_US16(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-static char *HexConvert_S32(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_S32(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[4];
     int i, local = 0;
@@ -404,7 +404,7 @@ static char *HexConvert_S32(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-static char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[4];
     unsigned int i, local = 0;
@@ -438,7 +438,7 @@ static char *HexConvert_US32(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-static char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[8];
     long long i, local = 0;
@@ -486,7 +486,7 @@ static char *HexConvert_S64(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-static char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     guchar in[8];
     long long unsigned i, local = 0;
@@ -539,7 +539,7 @@ static char *HexConvert_US64(HexDialogVal64 *val, HexConversionProperties *prop)
 /* for floats we just cast them, can't be bothered
  * interpretting them properly
  */
-static char *HexConvert_32float(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_32float(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     union
     {
@@ -577,7 +577,7 @@ static char *HexConvert_32float(HexDialogVal64 *val, HexConversionProperties *pr
     return convbuffer;
 }
 
-static char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     union
     {
@@ -624,7 +624,7 @@ static char *HexConvert_64float(HexDialogVal64 *val, HexConversionProperties *pr
 }
 
 /* these three care not for endianness, they take the input as a stream */
-static char *HexConvert_hex(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_hex(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i;
     int local = 0;
@@ -666,7 +666,7 @@ static char *HexConvert_hex(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-static char *HexConvert_oct(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_oct(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i;
     int local = 0;
@@ -708,7 +708,7 @@ static char *HexConvert_oct(HexDialogVal64 *val, HexConversionProperties *prop)
     return convbuffer;
 }
 
-static char *HexConvert_bin(HexDialogVal64 *val, HexConversionProperties *prop)
+static const char *HexConvert_bin(HexDialogVal64 *val, HexConversionProperties *prop)
 {
     int i;
 
