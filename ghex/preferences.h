@@ -38,8 +38,8 @@
 #include <glib/gi18n.h>
 #include <string.h>
 
-#include <gtkhex.h>	/* for HexWidgetGroupType enum */
-#include <hex-statusbar.h>	/* for HexWidgetStatusBarOffsetFormat enum */
+#include "gtkhex.h"	/* for HexWidgetGroupType enum */
+#include "hex-statusbar.h"	/* for HexWidgetStatusBarOffsetFormat enum */
 
 #include "configuration.h"
 #include "common-ui.h"
