@@ -34,7 +34,8 @@
 
 /* ENUMS AND DATATYPES */
 
-#define HEX_PASTE_ERROR hex_paste_error_quark ()
+#define HEX_PASTE_ERROR (hex_paste_error_quark ())
+GQuark hex_paste_error_quark (void);
 G_DEFINE_QUARK (hex-paste-error-quark, hex_paste_error)
 
 typedef enum operations {
@@ -134,7 +135,7 @@ mime_sub_type_label_class_init (MimeSubTypeLabelClass *klass)
 			GTK_TYPE_BOX_LAYOUT);
 }
 
-GtkWidget *
+static GtkWidget *
 mime_sub_type_label_new (KnownMimeType *known_type)
 {
 	MimeSubTypeLabel *self = g_object_new (mime_sub_type_label_get_type (),
@@ -180,7 +181,7 @@ hex_paste_data_to_delimited_hex (void)
 	return ret_str;
 }
 
-gint
+static int
 to_hex_digit_value (gchar digit)
 {
 	digit = g_ascii_toupper (digit);
@@ -260,6 +261,7 @@ delimited_paste_received_cb (GObject *source_object,
 {
 	HexWidget *gh;
 	HexDocument *doc;
+	HexSelection *selection;
 	char *text;
 	GString *buf = NULL;
 	GError *err = NULL; 
@@ -282,13 +284,13 @@ delimited_paste_received_cb (GObject *source_object,
 	}
 
 	gh = ghex_application_window_get_hex (app_window);
-	g_return_if_fail (HEX_IS_WIDGET (gh));
-
-	doc = hex_widget_get_document (gh);
-	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+	g_assert (HEX_IS_WIDGET (gh));
+	doc = hex_view_get_document (HEX_VIEW(gh));
+	g_assert (HEX_IS_DOCUMENT (doc));
+	selection = hex_view_get_selection (HEX_VIEW(gh));
 
 	hex_document_set_data (doc,
-			hex_widget_get_cursor (gh),
+			hex_selection_get_cursor_pos (selection),
 			buf->len,
 			0,	/* rep_len (0 to insert w/o replacing; what we want) */
 			buf->str,
@@ -498,7 +500,7 @@ mime_hash_func (gconstpointer key)
 
 	if (g_ascii_strcasecmp (str, "text/plain") == 0)
 	{
-		char *utf_str = "charset=utf";
+		const char *utf_str = "charset=utf";
 
 		hash = PLAINTEXT_MIME;
 		cp = strtok (NULL, ";");
