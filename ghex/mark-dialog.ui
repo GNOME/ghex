@@ -58,14 +58,14 @@
 						<property name="tooltip-text" translatable="yes">Optional custom color for the mark</property>
 						<binding name="sensitive">
 							<closure type="gboolean" function="sensitive_closure_cb">
-								<closure type="HexWidgetMark" function="mark_spin_button_closure_cb">
+								<closure type="HexMark" function="mark_spin_button_closure_cb">
 									<lookup name="value">spin_button</lookup>
 								</closure>
 							</closure>
 						</binding>
 						<binding name="rgba">
 							<lookup name="custom-color">
-								<closure type="HexWidgetMark" function="mark_spin_button_closure_cb">
+								<closure type="HexMark" function="mark_spin_button_closure_cb">
 									<lookup name="value">spin_button</lookup>
 								</closure>
 							</lookup>
@@ -83,7 +83,7 @@
 						<property name="name">mark-description-label</property>
 						<binding name="label">
 							<closure type="gchararray" function="mark_description_label_closure_cb">
-								<closure type="HexWidgetMark" function="mark_spin_button_closure_cb">
+								<closure type="HexMark" function="mark_spin_button_closure_cb">
 									<lookup name="value">spin_button</lookup>
 								</closure>
 							</closure>
@@ -113,7 +113,7 @@
 						<property name="action-name">ghex.mark</property>
 						<binding name="sensitive">
 							<closure type="gboolean" function="sensitive_closure_cb">
-								<closure type="HexWidgetMark" function="mark_spin_button_closure_cb">
+								<closure type="HexMark" function="mark_spin_button_closure_cb">
 									<lookup name="value">spin_button</lookup>
 								</closure>
 							</closure>
@@ -132,7 +132,7 @@
 						<property name="action-name">ghex.mark</property>
 						<binding name="sensitive">
 							<closure type="gboolean" function="sensitive_closure_cb">
-								<closure type="HexWidgetMark" function="mark_spin_button_closure_cb">
+								<closure type="HexMark" function="mark_spin_button_closure_cb">
 									<lookup name="value">spin_button</lookup>
 								</closure>
 							</closure>
