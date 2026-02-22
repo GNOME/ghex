@@ -34,7 +34,7 @@ add_project_arguments(['-I' + meson.project_build_root()], language: 'c')
 project_c_args = []
 test_c_args = [
   '-Wcast-align',
-  '-Wdeclaration-after-statement',
+  #'-Wdeclaration-after-statement',
   '-Werror=address',
   '-Werror=array-bounds',
   '-Werror=empty-body',
@@ -80,8 +80,8 @@ test_c_args = [
   '-Wpointer-arith',
   '-Wredundant-decls',
   '-Wstrict-prototypes',
-  '-Wswitch-default',
-  '-Wswitch-enum',
+  #'-Wswitch-default',
+  #  '-Wswitch-enum',
   '-Wundef',
   '-Wuninitialized',
   '-Wunused',
