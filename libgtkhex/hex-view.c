@@ -172,6 +172,31 @@ hex_view_selection_real_set_selection_anchor (HexSelection *selection, gint64 se
 
 /* --- */
 
+static void
+
+doc_read_cb (GObject *source_object, GAsyncResult *res, gpointer data)
+{
+	HexView *self = data;
+	HexDocument *doc = (HexDocument *) source_object;
+	g_autoptr(GError) error = NULL;
+	gboolean retval = FALSE;
+
+	g_assert (HEX_IS_VIEW (self));
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	retval = hex_document_read_finish (HEX_DOCUMENT(source_object), res, &error);
+
+	if (retval)
+	{
+		g_debug ("%s: document %p read successfully", __func__, doc);
+		gtk_widget_queue_draw (GTK_WIDGET(self));
+	}
+	else
+	{
+		g_debug ("%s: document read failed", __func__);
+	}
+}
+
 void
 hex_view_set_document (HexView *self, HexDocument *document)
 {
@@ -192,6 +217,10 @@ hex_view_set_document (HexView *self, HexDocument *document)
 	g_signal_connect_object (priv->document, "document-changed", G_CALLBACK(gtk_widget_queue_allocate), self, G_CONNECT_SWAPPED);
 
 	g_debug ("%s: document set to: %p", __func__, priv->document);
+
+	// FIXME - should this be necessary??
+
+	hex_document_read_async (priv->document, NULL, doc_read_cb, self);
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_DOCUMENT]);
 }
