@@ -671,9 +671,7 @@ hex_widget_class_init (HexWidgetClass *klass)
 
 	g_type_ensure (HEX_TYPE_WIDGET_LAYOUT);
 
-	// FIXME - resource
-	gtk_widget_class_set_template (widget_class, g_file_load_bytes (g_file_new_for_path ("hex-widget.ui"),
-				NULL, NULL, NULL));
+	gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/libgtkhex/ui/hex-widget.ui");
 
 	gtk_widget_class_bind_template_child (widget_class, HexWidget, offsets);
 	gtk_widget_class_bind_template_child (widget_class, HexWidget, xdisp);
