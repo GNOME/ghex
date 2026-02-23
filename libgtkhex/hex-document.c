@@ -31,6 +31,7 @@
  */
 
 #include "hex-document.h"
+#include "hex-buffer-malloc.h"
 #include "hex-file-monitor.h"
 #include "hex-document-private.h"
 #include "hex-search-info-private.h"
@@ -151,7 +152,10 @@ struct _HexDocument
 
 	GFile *file;
 	gboolean changed;
+
 	HexBuffer *buffer;
+	gboolean file_buffer_set;
+
 	HexFileMonitor *monitor;
 
 	GList *undo_stack; /* stack base */
@@ -493,20 +497,10 @@ hex_document_class_init (HexDocumentClass *klass)
 static void
 hex_document_init (HexDocument *doc)
 {
-	HexBuffer *try_buf = NULL;
-	const char *default_buf;
-
-	default_buf = g_getenv ("HEX_BUFFER");
-	if (! default_buf)
-		default_buf = "mmap";
-
-	try_buf = hex_buffer_util_new (default_buf, NULL);
-	if (! try_buf)
-		try_buf = hex_buffer_util_new (NULL, NULL);
-
-	g_assert (try_buf != NULL);
-	doc->buffer = try_buf;
-
+	/* Initialize the malloc buffer for now. If a file is set, the preferred
+	 * buffer will be initialized at that time.
+	 */
+	doc->buffer = hex_buffer_malloc_new (NULL);
 	doc->undo_max = DEFAULT_UNDO_DEPTH;
 }
 
@@ -545,6 +539,36 @@ hex_document_set_file (HexDocument *doc, GFile *file)
 {
 	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
 	g_return_val_if_fail (G_IS_FILE (file), FALSE);
+
+	if (!doc->file_buffer_set)
+	{
+		HexBuffer *try_buf = NULL;
+		const char *default_buf;
+
+		default_buf = g_getenv ("HEX_BUFFER");
+
+		/* Set the mmap buffer if possible */
+
+		if (!default_buf)
+			default_buf = "mmap";
+
+		g_debug ("%s: Trying to set requested buffer: %s", __func__, default_buf);
+
+		try_buf = hex_buffer_util_new (default_buf, NULL);
+		if (! try_buf)
+		{
+			if G_LIKELY (default_buf != NULL)
+			{
+				g_warning ("%s: Failed to initialize the requested buffer: %s. Falling back to `malloc`.",
+						__func__, default_buf);
+				try_buf = hex_buffer_util_new (NULL, NULL);
+			}
+			else
+				g_error ("Failed to initialize the standard `malloc` buffer.");
+		}
+
+		doc->file_buffer_set = TRUE;
+	}
 
 	/* Only the malloc backend can open 0-length files */
 	if (hex_buffer_util_get_file_size (file) == 0)
