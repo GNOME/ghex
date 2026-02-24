@@ -160,6 +160,23 @@ util_have_object_transform_to (GBinding *binding,
 	return TRUE;
 }
 
+/* Transform a GFile to a document title string */
+gboolean
+file_title_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer data)
+{
+	GFile *file = g_value_get_object (from_value);
+	g_autofree char *str = NULL;
+
+	if (file)
+		str = g_file_get_basename (file);
+	else
+		str = g_strdup (_("Untitled"));
+
+	g_value_set_string (to_value, str);
+
+	return TRUE;
+}
+
 /* transfer: full */
 char *
 util_gdk_rgba_to_hex_color (const GdkRGBA *color)

@@ -27,3 +27,4 @@ gboolean util_delete_selection_in_doc (gpointer source_object);
 gboolean util_zero_selection_in_doc (gpointer source_object);
 gboolean util_have_object_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer data);
 char * util_gdk_rgba_to_hex_color (const GdkRGBA *color);
+gboolean file_title_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer data);
