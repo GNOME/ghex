@@ -173,7 +173,6 @@ hex_view_selection_real_set_selection_anchor (HexSelection *selection, gint64 se
 /* --- */
 
 static void
-
 doc_read_cb (GObject *source_object, GAsyncResult *res, gpointer data)
 {
 	HexView *self = data;
@@ -220,7 +219,8 @@ hex_view_set_document (HexView *self, HexDocument *document)
 
 	// FIXME - should this be necessary??
 
-	hex_document_read_async (priv->document, NULL, doc_read_cb, self);
+	if (hex_document_get_file (priv->document) != NULL)
+		hex_document_read_async (priv->document, NULL, doc_read_cb, self);
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_DOCUMENT]);
 }
