@@ -1,3 +1,22 @@
+ghex_sources = [
+  #  'chartable.c',
+  'common-ui.c',
+  'configuration.c',
+  #'converter.c',
+  # 'findreplace.c',
+  'ghex-application.c',
+  'ghex-application-window.c',
+  'ghex-conversion-pane.c',
+  'ghex-info-bar.c',
+  'ghex-view-container.c',
+  'hex-statusbar.c',
+  'main.c',
+  #'mark-dialog.c',
+  #'paste-special.c',
+  #'preferences.c',
+  'print.c',
+]
+
 # define app_id and resource_base_path
 
 if get_option('development')
@@ -63,23 +82,6 @@ ghex_res = gnome.compile_resources(
   c_name: 'ghex',
   dependencies: app_ui
 )
-
-ghex_sources = [
-  'chartable.c',
-  'common-ui.c',
-  'configuration.c',
-  'converter.c',
-  'findreplace.c',
-  'ghex-application-window.c',
-  'hex-dialog.c',
-  'hex-info-bar.c',
-  'hex-statusbar.c',
-  'main.c',
-  'mark-dialog.c',
-  'paste-special.c',
-  'preferences.c',
-  'print.c',
-]
 
 ghex_c_args = [
   '-DG_LOG_DOMAIN="GHex"'
