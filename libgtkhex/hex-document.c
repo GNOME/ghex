@@ -83,6 +83,7 @@ enum
 	PROP_BUFFER,
 	PROP_CAN_UNDO,
 	PROP_CAN_REDO,
+	PROP_CHANGED,
 	N_PROPERTIES
 };
 
@@ -104,6 +105,14 @@ hex_change_data_get_end_offset (HexChangeData *data)
 	g_return_val_if_fail (data != NULL, 0);
 
 	return data->end;
+}
+
+gboolean
+hex_change_data_get_external_file_change (HexChangeData *data)
+{
+	g_return_val_if_fail (data != NULL, 0);
+
+	return data->external_file_change;
 }
 
 // FIXME/TODO - more accessor functions? Let's let this cook for a bit and see where we want to go with this concept.
@@ -218,6 +227,10 @@ hex_document_get_property (GObject *object,
 
 		case PROP_CAN_REDO:
 			g_value_set_boolean (value, hex_document_get_can_redo (doc));
+			break;
+
+		case PROP_CHANGED:
+			g_value_set_boolean (value, hex_document_get_changed (doc));
 			break;
 
 		default:
@@ -342,7 +355,7 @@ hex_document_file_changed_cb (HexDocument *doc,
 	{
 		HexChangeData *change_data;
 
-		doc->changed = TRUE;
+		_hex_document_set_changed (doc, TRUE);
 
 		// FIXME - leak
 		change_data = g_new0 (HexChangeData, 1);
@@ -409,6 +422,10 @@ hex_document_class_init (HexDocumentClass *klass)
 			G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_READABLE);
 
 	properties[PROP_CAN_REDO] = g_param_spec_boolean ("can-redo", NULL, NULL,
+			FALSE,
+			G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_READABLE);
+
+	properties[PROP_CHANGED] = g_param_spec_boolean ("changed", NULL, NULL,
 			FALSE,
 			G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_READABLE);
 
@@ -652,7 +669,8 @@ hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
 
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	doc->changed = TRUE;
+	_hex_document_set_changed (doc, TRUE);
+
 	tmp_change_data.start = offset;
 	tmp_change_data.end = offset;
 	tmp_change_data.v_string = NULL;
@@ -707,7 +725,8 @@ hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
 
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	doc->changed = TRUE;
+	_hex_document_set_changed (doc, TRUE);
+
 	tmp_change_data.start = offset;
 	tmp_change_data.end = offset;
 	tmp_change_data.rep_len = (insert ? 0 : 1);
@@ -752,7 +771,7 @@ hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
 
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
-	doc->changed = TRUE;
+	_hex_document_set_changed (doc, TRUE);
 
 	tmp_change_data.start = offset;
 	tmp_change_data.end = tmp_change_data.start + len - 1;
@@ -848,7 +867,8 @@ document_ready_cb (GObject *source_object,
 	/* Initialize data for new doc */
 
 	undo_stack_free(doc);
-	doc->changed = FALSE;
+
+	_hex_document_set_changed (doc, FALSE);
 
 	if (doc->monitor)
 		hex_file_monitor_reset (doc->monitor);
@@ -940,7 +960,7 @@ hex_document_write (HexDocument *doc)
 	ret = hex_buffer_write_to_file (doc->buffer, doc->file);
 	if (ret)
 	{
-		doc->changed = FALSE;
+		_hex_document_set_changed (doc, FALSE);
 		hex_file_monitor_reset (doc->monitor);
 		g_signal_emit (G_OBJECT(doc), hex_signals[FILE_SAVED], 0);
 	}
@@ -996,7 +1016,7 @@ write_ready_cb (GObject *source_object,
 
 	if (success)
 	{
-		doc->changed = FALSE;
+		_hex_document_set_changed (doc, TRUE);
 
 		/* If going from untitled to a saved-as document, we might not have a
 		 * file monitor yet.
@@ -1117,22 +1137,6 @@ hex_document_changed (HexDocument *doc, HexChangeData *change_data,
 	g_return_if_fail (change_data != NULL);
 
 	g_signal_emit (doc, hex_signals[DOCUMENT_CHANGED], 0, change_data, push_undo);
-}
-
-/**
- * hex_document_has_changed:
- * @doc: a [class@Hex.Document] object
- * 
- * Method to check whether the #HexDocument has changed.
- *
- * Returns: %TRUE if the document has changed, %FALSE otherwise
- */
-gboolean
-hex_document_has_changed (HexDocument *doc)
-{
-	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
-
-	return doc->changed;
 }
 
 /**
@@ -2124,4 +2128,30 @@ hex_document_set_buffer (HexDocument *doc, HexBuffer *buf)
 
 	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_BUFFER]);
 	return TRUE;
+}
+
+static void
+_hex_document_set_changed (HexDocument *doc, gboolean changed)
+{
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+
+	doc->changed = changed;
+
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CHANGED]);
+}
+
+/**
+ * hex_document_get_changed:
+ * @doc: a [class@Hex.Document] object
+ *
+ * Gets whether the document has changed.
+ *
+ * Returns: `TRUE` if the document has changed; `FALSE` otherwise
+ */
+gboolean
+hex_document_get_changed (HexDocument *doc)
+{
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+
+	return doc->changed;
 }
