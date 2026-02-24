@@ -4,8 +4,6 @@
 
 #include "hex-text-offsets.h"
 
-#define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
-
 enum
 {
 	PROP_0,
