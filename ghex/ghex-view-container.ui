@@ -1,0 +1,80 @@
+<!--
+vim: ts=2 sw=2 expandtab
+-->
+<interface>
+  <template class="GHexViewContainer" parent="GtkWidget">
+
+    <property name="layout-manager">
+      <object class="GtkBoxLayout" id="layout_manager">
+        <property name="orientation">vertical</property>
+      </object>
+    </property>
+
+    <child>
+      <object class="GHexInfoBar" id="info_bar">
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkScrolledWindow" id="scrolled_window">
+        <property name="vexpand">true</property>
+        <property name="hexpand">true</property>
+        <property name="child">
+          <object class="HexWidget" id="hex" />
+        </property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkSeparator" id="separator">
+        <property name="orientation">horizontal</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkRevealer" id="conversions_revealer">
+        <property name="child">
+          <object class="GHexConversionPane" id="conversion_pane">
+          </object>
+        </property>
+      </object>
+    </child>
+
+    <child> <!-- status_box -->
+      <object class="GtkBox" id="status_box">
+        <property name="orientation">horizontal</property>
+        <property name="homogeneous">false</property>
+        <property name="spacing">6</property>
+
+        <child>
+          <object class="HexStatusbar" id="statusbar">
+            <property name="hexpand">true</property>
+          </object>
+        </child>
+
+        <child> <!-- insert_mode_button -->
+          <object class="GtkToggleButton" id="insert_mode_button">
+            <property name="valign">center</property>
+            <property name="halign">end</property>
+            <property name="icon-name">insert-text-symbolic</property>
+            <property name="has-frame">false</property>
+            <property name="tooltip-text" translatable="yes">Toggle insert mode (add data to file rather than replace existing data)</property>
+            <property name="active" bind-source="hex" bind-property="insert-mode" bind-flags="bidirectional" />
+          </object>
+        </child> <!-- insert_mode_button -->
+
+        <!-- pane toggle btn -->
+        <child>
+          <object class="GtkToggleButton" id="conversions_toggle_button">
+            <property name="valign">center</property>
+            <property name="halign">end</property>
+            <property name="icon-name">pan-up-symbolic</property>
+            <property name="has-frame">false</property>
+            <property name="tooltip-text" translatable="yes">Toggle a pane showing various numeric conversions</property>
+          </object>
+        </child>
+      </object> <!-- status_box -->
+    </child> <!-- status_box -->
+
+  </template>
+</interface>
