@@ -2131,7 +2131,7 @@ hex_document_set_buffer (HexDocument *doc, HexBuffer *buf)
 	return TRUE;
 }
 
-static void
+void
 _hex_document_set_changed (HexDocument *doc, gboolean changed)
 {
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
