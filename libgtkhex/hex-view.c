@@ -188,7 +188,6 @@ doc_read_cb (GObject *source_object, GAsyncResult *res, gpointer data)
 	if (retval)
 	{
 		g_debug ("%s: document %p read successfully", __func__, doc);
-		gtk_widget_queue_draw (GTK_WIDGET(self));
 	}
 	else
 	{
@@ -214,6 +213,9 @@ hex_view_set_document (HexView *self, HexDocument *document)
 
 	g_signal_connect_object (priv->document, "document-changed", G_CALLBACK(gtk_widget_queue_draw), self, G_CONNECT_SWAPPED);
 	g_signal_connect_object (priv->document, "document-changed", G_CALLBACK(gtk_widget_queue_allocate), self, G_CONNECT_SWAPPED);
+
+	g_signal_connect_object (priv->document, "file-loaded", G_CALLBACK(gtk_widget_queue_draw), self, G_CONNECT_SWAPPED);
+	g_signal_connect_object (priv->document, "file-loaded", G_CALLBACK(gtk_widget_queue_allocate), self, G_CONNECT_SWAPPED);
 
 	g_debug ("%s: document set to: %p", __func__, priv->document);
 
