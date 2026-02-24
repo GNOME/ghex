@@ -171,6 +171,7 @@ pango_font_description_to_css (PangoFontDescription *desc,
 	return g_string_free (s, FALSE);
 }
 
+#if 0
 /* helper for common_set_gtkhex_font_from_settings.
  */
 static void
@@ -203,96 +204,7 @@ common_set_gtkhex_font_from_settings (HexWidget *gh)
 			GTK_STYLE_PROVIDER (global_provider),
 			GTK_STYLE_PROVIDER_PRIORITY_SETTINGS);
 }
-
-void
-common_help_cb (GtkWindow *parent)
-{
-	/* TODO: Move to gtk_uri_launcher_launch - requires gtk >= 4.10 */
-	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-	gtk_show_uri (parent,
-	              "help:ghex",
-	              GDK_CURRENT_TIME);
-	G_GNUC_END_IGNORE_DEPRECATIONS
-}
-
-void
-common_about_cb (GtkWindow *parent)
-{
-	char *copyright;
-	char *license_translated;
-	char *version;
-
-	g_return_if_fail (GTK_IS_WINDOW(parent));
-
-	const char *authors[] = {
-		"Jaka Mo\304\215nik",
-		"Chema Celorio",
-		"Shivram Upadhyayula",
-		"Rodney Dawes",
-		"Jonathon Jongsma",
-		"Kalev Lember",
-		"Logan Rathbone",
-		NULL
-	};
-
-	const char *documentation_credits[] = {
-		"Jaka Mo\304\215nik",
-		"Sun GNOME Documentation Team",
-		"Logan Rathbone",
-		NULL
-	};
-
-	const char *license[] = {
-		N_("This program is free software; you can redistribute it and/or modify "
-		   "it under the terms of the GNU General Public License as published by "
-		   "the Free Software Foundation; either version 2 of the License, or "
-		   "(at your option) any later version."),
-		N_("This program is distributed in the hope that it will be useful, "
-		   "but WITHOUT ANY WARRANTY; without even the implied warranty of "
-		   "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
-		   "GNU General Public License for more details."),
-		N_("You should have received a copy of the GNU General Public License "
-		   "along with this program; if not, write to the Free Software Foundation, Inc., "
-		   "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA")
-	};
-	license_translated = g_strjoin ("\n\n",
-	                                _(license[0]),
-	                                _(license[1]),
-	                                _(license[2]),
-	                                NULL);
-
-	/* Translators: these two strings here indicate the copyright time span,
-	   e.g. 1998-2018. */
-	copyright = g_strdup_printf (_("Copyright © %d–%d The GHex authors"),
-			1998, 2023);
-
-	if (strstr (APP_ID, "Devel"))
-		version = g_strdup_printf ("%s (Running against GTK %d.%d.%d)",
-				PACKAGE_VERSION,
-				gtk_get_major_version (),
-				gtk_get_minor_version (),
-				gtk_get_micro_version ());
-	else
-		version = g_strdup (PACKAGE_VERSION);
-
-	adw_show_about_dialog (GTK_WIDGET (parent),
-	                       "application-icon", APP_ID,
-	                       "application-name", strstr (APP_ID, "Devel") ? "GHex (Development)" : "GHex",
-	                       "developer-name", "Logan Rathbone",
-	                       "version", version,
-	                       "issue-url", "https://gitlab.gnome.org/GNOME/ghex/-/issues",
-	                       "developers", authors,
-	                       "documenters", documentation_credits,
-	                       "translator-credits", _("translator-credits"),
-	                       "copyright", copyright,
-	                       "license-type", GTK_LICENSE_GPL_2_0,
-	                       NULL);
-
-	g_free (version);
-	g_free (license_translated);
-	g_free (copyright);
-}
-
+#endif
 
 /* common_print
  *
@@ -360,7 +272,7 @@ common_print (GtkWindow *parent, HexWidget *gh, gboolean preview)
 		tmp = g_strdup_printf (_("An error has occurred: %s"),
 					error->message);
 
-		display_dialog (parent, tmp);
+		ghex_display_dialog (parent, tmp);
 		
 		g_free (tmp);
 		g_error_free (error);
@@ -370,7 +282,7 @@ common_print (GtkWindow *parent, HexWidget *gh, gboolean preview)
 }
 
 void
-display_dialog (GtkWindow *parent, const char *msg)
+ghex_display_dialog (GtkWindow *parent, const char *msg)
 {
 	AdwDialog *dialog;
 
