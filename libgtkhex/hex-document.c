@@ -138,6 +138,7 @@ hex_change_data_copy (HexChangeData *data)
 	new->type = data->type;
 	new->v_string = g_strdup (data->v_string);
 	new->v_byte = data->v_byte;
+	new->external_file_change = data->external_file_change;
 
 	return new;
 }
