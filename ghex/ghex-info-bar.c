@@ -1,8 +1,8 @@
-/* vim: ts=4 sw=4 colorcolumn=80
- */
-/* hex-info-bar.c - Implementation of hex info bar widget
+// vim: linebreak breakindent breakindentopt=shift\:4
+
+/* ghex-info-bar.c - Implementation of info bar widget
  *
- * Copyright © 2025 Logan Rathbone
+ * Copyright © 2025-2026 Logan Rathbone
  *
  * GHex is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -22,7 +22,7 @@
  * Original GHex Author: Jaka Mocnik
  */
 
-#include "hex-info-bar.h"
+#include "ghex-info-bar.h"
 
 #include <config.h>
 
@@ -36,7 +36,7 @@ enum {
 
 static GParamSpec *properties[N_PROPERTIES];
 
-struct _HexInfoBar
+struct _GHexInfoBar
 {
 	GtkWidget parent_instance;
 
@@ -48,20 +48,20 @@ struct _HexInfoBar
 	GtkWidget *close_button;
 };
 
-G_DEFINE_TYPE (HexInfoBar, hex_info_bar, GTK_TYPE_WIDGET)
+G_DEFINE_TYPE (GHexInfoBar, ghex_info_bar, GTK_TYPE_WIDGET)
 
 gboolean
-hex_info_bar_get_shown (HexInfoBar *self)
+ghex_info_bar_get_shown (GHexInfoBar *self)
 {
-	g_return_val_if_fail (HEX_IS_INFO_BAR (self), FALSE);
+	g_return_val_if_fail (GHEX_IS_INFO_BAR (self), FALSE);
 
 	return gtk_revealer_get_reveal_child (GTK_REVEALER(self->revealer));
 }
 
 void
-hex_info_bar_set_shown (HexInfoBar *self, gboolean shown)
+ghex_info_bar_set_shown (GHexInfoBar *self, gboolean shown)
 {
-	g_return_if_fail (HEX_IS_INFO_BAR (self));
+	g_return_if_fail (GHEX_IS_INFO_BAR (self));
 
 	gtk_revealer_set_reveal_child (GTK_REVEALER(self->revealer), shown);
 
@@ -69,17 +69,17 @@ hex_info_bar_set_shown (HexInfoBar *self, gboolean shown)
 }
 
 static const char *
-hex_info_bar_get_title (HexInfoBar *self)
+ghex_info_bar_get_title (GHexInfoBar *self)
 {
-	g_return_val_if_fail (HEX_IS_INFO_BAR (self), NULL);
+	g_return_val_if_fail (GHEX_IS_INFO_BAR (self), NULL);
 
 	return self->title;
 }
 
 void
-hex_info_bar_set_title (HexInfoBar *self, const char *title)
+ghex_info_bar_set_title (GHexInfoBar *self, const char *title)
 {
-	g_return_if_fail (HEX_IS_INFO_BAR (self));
+	g_return_if_fail (GHEX_IS_INFO_BAR (self));
 
 	g_free (self->title);
 	self->title = g_strdup (title);
@@ -88,17 +88,17 @@ hex_info_bar_set_title (HexInfoBar *self, const char *title)
 }
 
 const char *
-hex_info_bar_get_description (HexInfoBar *self)
+ghex_info_bar_get_description (GHexInfoBar *self)
 {
-	g_return_val_if_fail (HEX_IS_INFO_BAR (self), NULL);
+	g_return_val_if_fail (GHEX_IS_INFO_BAR (self), NULL);
 
 	return self->description;
 }
 
 void
-hex_info_bar_set_description (HexInfoBar *self, const char *description)
+ghex_info_bar_set_description (GHexInfoBar *self, const char *description)
 {
-	g_return_if_fail (HEX_IS_INFO_BAR (self));
+	g_return_if_fail (GHEX_IS_INFO_BAR (self));
 
 	g_free (self->description);
 	self->description = g_strdup (description);
@@ -107,25 +107,25 @@ hex_info_bar_set_description (HexInfoBar *self, const char *description)
 }
 
 static void
-hex_info_bar_set_property (GObject *object,
+ghex_info_bar_set_property (GObject *object,
 		guint property_id,
 		const GValue *value,
 		GParamSpec *pspec)
 {
-	HexInfoBar *self = HEX_INFO_BAR(object);
+	GHexInfoBar *self = GHEX_INFO_BAR(object);
 
 	switch (property_id)
 	{
 		case PROP_SHOWN:
-			hex_info_bar_set_shown (self, g_value_get_boolean (value));
+			ghex_info_bar_set_shown (self, g_value_get_boolean (value));
 			break;
 
 		case PROP_TITLE:
-			hex_info_bar_set_title (self, g_value_get_string (value));
+			ghex_info_bar_set_title (self, g_value_get_string (value));
 			break;
 
 		case PROP_DESCRIPTION:
-			hex_info_bar_set_description (self, g_value_get_string (value));
+			ghex_info_bar_set_description (self, g_value_get_string (value));
 			break;
 
 		default:
@@ -135,25 +135,25 @@ hex_info_bar_set_property (GObject *object,
 }
 
 static void
-hex_info_bar_get_property (GObject *object,
+ghex_info_bar_get_property (GObject *object,
 		guint property_id,
 		GValue *value,
 		GParamSpec *pspec)
 {
-	HexInfoBar *self = HEX_INFO_BAR(object);
+	GHexInfoBar *self = GHEX_INFO_BAR(object);
 
 	switch (property_id)
 	{
 		case PROP_SHOWN:
-			g_value_set_boolean (value, hex_info_bar_get_shown (self));
+			g_value_set_boolean (value, ghex_info_bar_get_shown (self));
 			break;
 
 		case PROP_TITLE:
-			g_value_set_string (value, hex_info_bar_get_title (self));
+			g_value_set_string (value, ghex_info_bar_get_title (self));
 			break;
 
 		case PROP_DESCRIPTION:
-			g_value_set_string (value, hex_info_bar_get_description (self));
+			g_value_set_string (value, ghex_info_bar_get_description (self));
 			break;
 
 		default:
@@ -163,41 +163,41 @@ hex_info_bar_get_property (GObject *object,
 }
 
 static void
-hex_info_bar_init (HexInfoBar *self)
+ghex_info_bar_init (GHexInfoBar *self)
 {
 	gtk_widget_init_template (GTK_WIDGET(self));
 }
 
 static void
-hex_info_bar_dispose (GObject *object)
+ghex_info_bar_dispose (GObject *object)
 {
-	HexInfoBar *self = HEX_INFO_BAR(object);
+	GHexInfoBar *self = GHEX_INFO_BAR(object);
 
-	gtk_widget_dispose_template (GTK_WIDGET(self), HEX_TYPE_INFO_BAR);
+	gtk_widget_dispose_template (GTK_WIDGET(self), GHEX_TYPE_INFO_BAR);
 
 	/* Chain up */
-	G_OBJECT_CLASS(hex_info_bar_parent_class)->dispose (object);
+	G_OBJECT_CLASS(ghex_info_bar_parent_class)->dispose (object);
 }
 
 static void
-hex_info_bar_finalize (GObject *object)
+ghex_info_bar_finalize (GObject *object)
 {
 	/* Chain up */
-	G_OBJECT_CLASS(hex_info_bar_parent_class)->finalize (object);
+	G_OBJECT_CLASS(ghex_info_bar_parent_class)->finalize (object);
 }
 
 static void
-hex_info_bar_class_init (HexInfoBarClass *klass)
+ghex_info_bar_class_init (GHexInfoBarClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 	GParamFlags default_flags = G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY;
 
-	object_class->dispose = hex_info_bar_dispose;
-	object_class->finalize = hex_info_bar_finalize;
+	object_class->dispose = ghex_info_bar_dispose;
+	object_class->finalize = ghex_info_bar_finalize;
 
-	object_class->get_property = hex_info_bar_get_property;
-	object_class->set_property = hex_info_bar_set_property;
+	object_class->get_property = ghex_info_bar_get_property;
+	object_class->set_property = ghex_info_bar_set_property;
 
 	properties[PROP_SHOWN] = g_param_spec_boolean ("shown", NULL, NULL,
 			FALSE,
@@ -220,15 +220,15 @@ hex_info_bar_class_init (HexInfoBarClass *klass)
 	/* WIDGET TEMPLATE .UI */
 
 	gtk_widget_class_set_template_from_resource (widget_class,
-					RESOURCE_BASE_PATH "/hex-info-bar.ui");
-	gtk_widget_class_bind_template_child (widget_class, HexInfoBar,
+					RESOURCE_BASE_PATH "/ghex-info-bar.ui");
+	gtk_widget_class_bind_template_child (widget_class, GHexInfoBar,
 			revealer);
-	gtk_widget_class_bind_template_child (widget_class, HexInfoBar,
+	gtk_widget_class_bind_template_child (widget_class, GHexInfoBar,
 			close_button);
 }
 
 GtkWidget *
-hex_info_bar_new (void)
+ghex_info_bar_new (void)
 {
-	return g_object_new (HEX_TYPE_INFO_BAR, NULL);
+	return g_object_new (GHEX_TYPE_INFO_BAR, NULL);
 }
