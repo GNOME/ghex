@@ -70,6 +70,7 @@ typedef struct _HexChangeData HexChangeData;
 
 gint64 hex_change_data_get_start_offset (HexChangeData *data);
 gint64 hex_change_data_get_end_offset (HexChangeData *data);
+gboolean hex_change_data_get_external_file_change (HexChangeData *data);
 
 HexDocument	*hex_document_new (void);
 HexDocument	*hex_document_new_from_file (GFile *file);
@@ -102,7 +103,6 @@ gboolean	hex_document_write_finish (HexDocument *doc, GAsyncResult *result,
 gboolean	hex_document_export_html (HexDocument *doc, const char *html_path,
 		const char *base_name, gint64 start, gint64 end, guint cpl, guint lpp,
 		guint cpw);
-gboolean	hex_document_has_changed (HexDocument *doc);
 void		hex_document_changed (HexDocument *doc, HexChangeData *change_data,
 		gboolean push_undo);
 void		hex_document_set_max_undo (HexDocument *doc, int max_undo);
@@ -144,6 +144,7 @@ hex_document_find_finish (HexDocument *doc, GAsyncResult *result);
 
 gboolean	hex_document_get_can_undo (HexDocument *doc);
 gboolean	hex_document_get_can_redo (HexDocument *doc);
+gboolean	hex_document_get_changed (HexDocument *doc);
 gint64		hex_document_get_file_size (HexDocument *doc);
 GFile *		hex_document_get_file (HexDocument *doc);
 gboolean	hex_document_set_file (HexDocument *doc, GFile *file);
