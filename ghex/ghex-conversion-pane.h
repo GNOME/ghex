@@ -1,14 +1,13 @@
-/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+// vim: linebreak breakindent breakindentopt=shift\:4
 /*
- * Copright (c) David Hammerton 2003
- * David Hammerton <crazney@crazney.net>
+ * Copright (c) David Hammerton 2003 <crazney@crazney.net>
  *
  * Copyright © 2004-2020 Various individual contributors, including
  * but not limited to: Jonathon Jongsma, Kalev Lember, who continued to
  * maintain the source code under the licensing terms described
  * herein and below.
  *
- * Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+ * Copyright © 2021-2026 Logan Rathbone <poprocks@gmail.com>
  *
  *  GHex is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU General Public License as
@@ -26,56 +25,19 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef HEX_DIALOG_H
-#define HEX_DIALOG_H
+#pragma once
 
 #include <gtk/gtk.h>
-
-typedef enum
-{
-    S8 = 0,
-    US8,
-    S16,
-    US16,
-    S32,
-    US32,
-    S64,
-    US64,
-    FLOAT32,
-    FLOAT64,
-    HEX,
-    OCT,
-    BIN,
-    ENTRY_MAX
-} HexDialogEntryTypes;
 
 typedef struct
 {
     guchar v[8];
-} HexDialogVal64;
+} GHexConversionVal64;
 
-typedef enum
-{
-    LITTLE,
-    BIG
-} HexEndian;
-
-typedef struct
-{
-    HexEndian endian;
-    gboolean hexHint;        /* only some functions use the Hint parameter */
-    guchar streamBitsHint;
-} HexConversionProperties;
-
-#define HEX_TYPE_DIALOG (hex_dialog_get_type ())
-G_DECLARE_FINAL_TYPE (HexDialog, hex_dialog, HEX, DIALOG, GObject)
-
+#define GHEX_TYPE_CONVERSION_PANE (ghex_conversion_pane_get_type ())
+G_DECLARE_FINAL_TYPE (GHexConversionPane, ghex_conversion_pane, GHEX, CONVERSION_PANE, GtkWidget)
 
 /* PUBLIC METHOD DECLARATIONS */
 
-HexDialog    *hex_dialog_new (void);
-GtkWidget    *hex_dialog_getview (HexDialog *);
-void         hex_dialog_updateview (HexDialog *dialog, HexDialogVal64 *val);
-
-
-#endif /* HEX_DIALOG_H */
+GHexConversionPane    *ghex_conversion_pane_new (void);
+void         ghex_conversion_pane_update (GHexConversionPane *dialog, GHexConversionVal64 *val);
