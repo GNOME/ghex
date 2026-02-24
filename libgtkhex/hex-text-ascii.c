@@ -295,6 +295,9 @@ hex_text_ascii_pressed (HexText *ht, GdkModifierType state, PangoLayout *layout,
 	int cpl = hex_view_get_cpl (HEX_VIEW(self));
 	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
 
+	if (!layout)
+		goto chain_up;
+
 	pango_layout_xy_to_index (layout, rel_x * PANGO_SCALE, rel_y * PANGO_SCALE, &index, NULL);
 
 	cursor_pos = (render_data->top_disp_line + click_line) * cpl + index;
@@ -304,7 +307,7 @@ hex_text_ascii_pressed (HexText *ht, GdkModifierType state, PangoLayout *layout,
 	if (! (state & GDK_SHIFT_MASK))
 		hex_selection_set_selection_anchor (selection, cursor_pos);
 
-	/* Chain up */
+chain_up:
 	HEX_TEXT_CLASS(hex_text_ascii_parent_class)->pressed (ht, state, layout, click_line, rel_x, rel_y);
 }
 
