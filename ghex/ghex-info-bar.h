@@ -1,8 +1,8 @@
-/* vim: ts=4 sw=4 colorcolumn=80
- */
-/* hex-info-bar.h - Declaration of hex info bar widget
+// vim: linebreak breakindent breakindentopt=shift\:4
+
+/* ghex-info-bar.h - Declaration of info bar widget
  *
- * Copyright © 2025 Logan Rathbone
+ * Copyright © 2025-2026 Logan Rathbone
  *
  * GHex is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -30,14 +30,14 @@
 
 G_BEGIN_DECLS
 
-#define HEX_TYPE_INFO_BAR (hex_info_bar_get_type ())
-G_DECLARE_FINAL_TYPE (HexInfoBar, hex_info_bar, HEX, INFO_BAR, GtkWidget)
+#define GHEX_TYPE_INFO_BAR (ghex_info_bar_get_type ())
+G_DECLARE_FINAL_TYPE (GHexInfoBar, ghex_info_bar, GHEX, INFO_BAR, GtkWidget)
 
-GtkWidget *	hex_info_bar_new (void);
-gboolean hex_info_bar_get_shown (HexInfoBar *self);
-void hex_info_bar_set_shown (HexInfoBar *self, gboolean shown);
-void hex_info_bar_set_title (HexInfoBar *self, const char *title);
-const char * hex_info_bar_get_description (HexInfoBar *self);
-void hex_info_bar_set_description (HexInfoBar *self, const char *description);
+GtkWidget *	ghex_info_bar_new (void);
+gboolean ghex_info_bar_get_shown (GHexInfoBar *self);
+void ghex_info_bar_set_shown (GHexInfoBar *self, gboolean shown);
+void ghex_info_bar_set_title (GHexInfoBar *self, const char *title);
+const char * ghex_info_bar_get_description (GHexInfoBar *self);
+void ghex_info_bar_set_description (GHexInfoBar *self, const char *description);
 
 G_END_DECLS
