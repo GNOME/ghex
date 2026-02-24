@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- vim:ts=4 sw=4
+<!-- vim:ts=2 sw=2 expandtab foldmethod=indent
 -->
 <!--
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -24,320 +24,254 @@
 -->
 
 <interface>
-	<menu id="hamburger_menu">
-		<!-- "FILE" -->
-		<section>
-			<item>
-				<attribute name="label" translatable="yes">_New Window</attribute>
-				<attribute name="action">app.new-window</attribute>
-			</item>
-			<item>
-				<attribute name="label" translatable="yes">Save _As</attribute>
-				<attribute name="action">ghex.save-as</attribute>
-			</item>
-			<item>
-				<attribute name="label" translatable="yes">_Revert</attribute>
-				<attribute name="action">ghex.revert</attribute>
-			</item>
-		</section>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="Adw" version="1.0"/>
+  <menu id="hamburger_menu">
+    <!-- "FILE" -->
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_New Window</attribute>
+        <attribute name="action">app.new-window</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Save _As</attribute>
+        <attribute name="action">win.save-as</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Revert</attribute>
+        <attribute name="action">win.revert</attribute>
+      </item>
+    </section>
 
-		<section>
-			<item>
-				<attribute name="label" translatable="yes">_Print</attribute>
-				<attribute name="action">ghex.print</attribute>
-			</item>
-			<item>
-				<attribute name="label" translatable="yes">Print Previe_w</attribute>
-				<attribute name="action">ghex.print-preview</attribute>
-			</item>
-		</section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Print</attribute>
+        <attribute name="action">ghex.print</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Print Previe_w</attribute>
+        <attribute name="action">ghex.print-preview</attribute>
+      </item>
+    </section>
 
-		<!-- OTHER COMMON TASKS -->
-		<section>
-			<item>
-				<attribute name="label" translatable="yes">Find and _Replace</attribute>
-				<attribute name="action">ghex.replace</attribute>
-			</item>
-			<item>
-				<attribute name="label" translatable="yes">_Jump to Byte</attribute>
-				<attribute name="action">ghex.jump</attribute>
-			</item>
-			<item>
-				<attribute name="label" translatable="yes">_Marks</attribute>
-				<attribute name="action">ghex.mark-dialog</attribute>
-			</item>
-		</section>
+    <!-- OTHER COMMON TASKS -->
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Find and _Replace</attribute>
+        <attribute name="action">ghex.replace</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Jump to Byte</attribute>
+        <attribute name="action">ghex.jump</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Marks</attribute>
+        <attribute name="action">ghex.mark-dialog</attribute>
+      </item>
+    </section>
 
-		<!-- SUBMENUS -->
-		<section>
+    <!-- SUBMENUS -->
+    <section>
 
-			<!-- EDIT -->
-			<submenu>
-				<attribute name="label" translatable="yes">_Edit</attribute>
-				<item>
-					<attribute name="label" translatable="yes">_Copy Special</attribute>
-					<attribute name="action">ghex.copy-special</attribute>
-				</item>
-				<item>
-					<attribute name="label" translatable="yes">_Paste Special</attribute>
-					<attribute name="action">ghex.paste-special</attribute>
-				</item>
-				<submenu>
-					<attribute name="label" translatable="yes">G_roup Data As</attribute>
-					<item>
-						<attribute name="label" translatable="yes">_Bytes (8-bit)</attribute>
-						<!-- use 'win' prefix for these because that's what gets set automatically by g_settings_create_action in _init -->
-						<attribute name="action">win.group-data-by</attribute>
-						<attribute name="target">bytes</attribute>
-					</item>
-					<item>
-						<attribute name="label" translatable="yes">_Words (16-bit)</attribute>
-						<attribute name="action">win.group-data-by</attribute>
-						<attribute name="target">words</attribute>
-					</item>
-					<item>
-						<attribute name="label" translatable="yes">_Longwords (32-bit)</attribute>
-						<attribute name="action">win.group-data-by</attribute>
-						<attribute name="target">longwords</attribute>
-					</item>
-					<item>
-						<attribute name="label" translatable="yes">_Quadwords (64-bit)</attribute>
-						<attribute name="action">win.group-data-by</attribute>
-						<attribute name="target">quadwords</attribute>
-					</item>
-				</submenu>
-			</submenu>
+      <!-- EDIT -->
+      <submenu>
+        <attribute name="label" translatable="yes">_Edit</attribute>
+        <item>
+          <attribute name="label" translatable="yes">_Copy Special</attribute>
+          <attribute name="action">ghex.copy-special</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">_Paste Special</attribute>
+          <attribute name="action">ghex.paste-special</attribute>
+        </item>
+        <submenu>
+          <attribute name="label" translatable="yes">G_roup Data As</attribute>
+          <item>
+            <attribute name="label" translatable="yes">_Bytes (8-bit)</attribute>
+            <!-- use 'win' prefix for these because that's what gets set automatically by g_settings_create_action in _init -->
+            <attribute name="action">win.group-data-by</attribute>
+            <attribute name="target">bytes</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">_Words (16-bit)</attribute>
+            <attribute name="action">win.group-data-by</attribute>
+            <attribute name="target">words</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">_Longwords (32-bit)</attribute>
+            <attribute name="action">win.group-data-by</attribute>
+            <attribute name="target">longwords</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">_Quadwords (64-bit)</attribute>
+            <attribute name="action">win.group-data-by</attribute>
+            <attribute name="target">quadwords</attribute>
+          </item>
+        </submenu>
+      </submenu>
 
-			<!-- TOOLS -->
-			<submenu>
-				<attribute name="label" translatable="yes">_Tools</attribute>
-				<item>
-					<attribute name="label" translatable="yes">_Character Table</attribute>
-					<attribute name="action">ghex.chartable</attribute>
-				</item>
-				<item>
-					<attribute name="label" translatable="yes">_Base Converter</attribute>
-					<attribute name="action">ghex.converter</attribute>
-				</item>
-			</submenu>
-		</section>
+      <!-- TOOLS -->
+      <submenu>
+        <attribute name="label" translatable="yes">_Tools</attribute>
+        <item>
+          <attribute name="label" translatable="yes">_Character Table</attribute>
+          <attribute name="action">ghex.chartable</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">_Base Converter</attribute>
+          <attribute name="action">ghex.converter</attribute>
+        </item>
+      </submenu>
+    </section>
 
-		<!-- PREFS AND ABOUT -->
-		<section>
-			<item>
-				<attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
-				<attribute name="action">win.show-help-overlay</attribute>
-			</item>
+    <!-- PREFS AND ABOUT -->
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
 
-			<item>
-				<attribute name="label" translatable="yes">_Preferences</attribute>
-				<attribute name="action">ghex.preferences</attribute>
-			</item>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">ghex.preferences</attribute>
+      </item>
 
-			<item>
-				<attribute name="label" translatable="yes">_Help</attribute>
-				<attribute name="action">ghex.help</attribute>
-			</item>
+      <item>
+        <attribute name="label" translatable="yes">_Help</attribute>
+        <attribute name="action">app.help</attribute>
+      </item>
 
-			<item>
-				<attribute name="label" translatable="yes">_About GHex</attribute>
-				<attribute name="action">ghex.about</attribute>
-			</item>
+      <item>
+        <attribute name="label" translatable="yes">_About GHex</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
 
-		</section>
-	</menu>
+    </section>
+  </menu>
 
-	<template class="GHexApplicationWindow" parent="AdwApplicationWindow">
-		<property name="title" translatable="yes">GHex</property>
-		<property name="default-width">800</property>
-		<property name="default-height">600</property>
-		<property name="icon-name">@app_id@</property>
+  <template class="GHexApplicationWindow" parent="AdwApplicationWindow">
+    <property name="title" translatable="yes">GHex</property>
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
+    <property name="icon-name">@app_id@</property>
 
-		<child> <!-- main vert gtkbox -->
-			<object class="GtkBox"> <!-- main vert gtkbox -->
-				<property name="orientation">vertical</property>
+    <property name="content">
 
-				<child>
-					<object class="GtkHeaderBar" id="headerbar">
-						<property name="show-title-buttons">true</property>
-						<property name="title-widget">
-							<object class="AdwWindowTitle" id="headerbar_window_title">
-								<property name="title">GHex</property>
-							</object>
-						</property>
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
 
-						<child>
-							<object class="GtkButton">
-								<property name="action-name">ghex.open</property>
-								<property name="tooltip-text" translatable="yes">Open a file for hex editing</property>
-								<property name="child">
-									<object class="AdwButtonContent">
-										<property name="label" translatable="yes">_Open</property>
-										<property name="icon-name">document-open-symbolic</property>
-										<property name="use-underline">True</property>
-									</object>
-								</property>
-							</object>
-						</child>
+            <!-- Headerbar toolbar buttons -->
+            <child>
+              <object class="GtkButton">
+                <property name="action-name">win.open</property>
+                <property name="tooltip-text" translatable="yes">Open a file for hex editing</property>
+                <property name="child">
+                  <object class="AdwButtonContent">
+                    <property name="label" translatable="yes">_Open</property>
+                    <property name="icon-name">document-open-symbolic</property>
+                    <property name="use-underline">True</property>
+                  </object>
+                </property>
+              </object>
+            </child>
 
-						<child>
-							<object class="GtkButton" id="new_button">
-								<property name="action-name">ghex.new</property>
-								<property name="icon-name">tab-new-symbolic</property>
-								<property name="tooltip-text" translatable="yes">New blank hex buffer</property>
-							</object>
-						</child>
+            <child>
+              <object class="GtkButton" id="new_button">
+                <property name="action-name">win.new-file</property>
+                <property name="icon-name">tab-new-symbolic</property>
+                <property name="tooltip-text" translatable="yes">New blank hex buffer</property>
+              </object>
+            </child>
 
-						<child type="end">
-							<object class="GtkMenuButton" id="hamburger_menu_button">
-								<property name="valign">center</property>
-								<property name="menu-model">hamburger_menu</property>
-								<property name="icon-name">open-menu-symbolic</property>
-								<property name="tooltip_text" translatable="yes">Main Menu</property>
-								<accessibility>
-									<property name="label" translatable="yes">Main menu</property>
-								</accessibility>
-							</object>
-						</child>
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="primary">True</property>
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Main Menu</property>
+                <property name="menu-model">hamburger_menu</property>
+              </object>
+            </child>
 
-						<child type="end">
-							<object class="GtkToggleButton" id="find_button">
-								<property name="valign">center</property>
-								<property name="icon-name">edit-find-symbolic</property>
-								<property name="action-name">ghex.find</property>
-								<property name="tooltip-text" translatable="yes">Find a string in the hex document</property>
-							</object>
-						</child>
+            <child type="end">
+              <object class="GtkToggleButton" id="find_button">
+                <property name="valign">center</property>
+                <property name="icon-name">edit-find-symbolic</property>
+                <property name="action-name">ghex.find</property>
+                <property name="tooltip-text" translatable="yes">Find a string in the hex document</property>
+              </object>
+            </child>
 
-						<child type="end">
-							<object class="GtkButton">
-								<property name="valign">center</property>
-								<property name="icon-name">document-save-symbolic</property>
-								<property name="action-name">ghex.save</property>
-								<property name="tooltip-text" translatable="yes">Save document</property>
-							</object>
-						</child>
-					</object> <!-- headerbar -->
-				</child> <!-- headerbar -->
+            <child type="end">
+              <object class="GtkButton">
+                <property name="valign">center</property>
+                <property name="icon-name">document-save-symbolic</property>
+                <property name="action-name">win.save</property>
+                <property name="tooltip-text" translatable="yes">Save document</property>
+              </object>
+            </child>
 
-				<child> <!-- label showing no doc loaded -->
-					<object class="AdwStatusPage" id="no_doc_label">
-						<property name="title" translatable="yes">No File Loaded</property>
-						<property name="child">
-							<object class="GtkLabel">
-								<property name="label" translatable="yes">• Press the Open button
+          </object> <!-- AdwHeaderBar -->
+        </child> <!-- AdwToolbarView child type top -->
+
+        <property name="content">
+          <!-- CONTENT GOES HERE -->
+
+          <object class="AdwViewStack" id="stack">
+            <child>
+              <object class="AdwViewStackPage">
+                <property name="name">no-doc-loaded</property>
+                <property name="child">
+                  <object class="AdwStatusPage" id="no_doc_label">
+                    <property name="title" translatable="yes">No File Loaded</property>
+                    <property name="child">
+                      <object class="GtkLabel">
+                        <property name="label" translatable="yes">• Press the Open button
 • Press Ctrl+T to start a new document
 • Press Ctrl+O to browse for a document
 
 Or, press Ctrl+W to close the window.</property>
-							</object>
-						</property>
-						<property name="icon-name">accessories-text-editor-symbolic</property>
-						<property name="hexpand">true</property>
-						<property name="vexpand">true</property>
-					</object>
-				</child> <!-- /no_doc_label -->
+                      </object>
+                    </property>
+                    <property name="icon-name">accessories-text-editor-symbolic</property>
+                    <property name="hexpand">true</property>
+                    <property name="vexpand">true</property>
+                  </object>
+                </property>
+              </object>
+            </child>
 
-				<child> <!-- child_box for notebook & content area -->
-					<object class="GtkBox" id="child_box">
-						<property name="orientation">vertical</property>
-						<property name="homogeneous">false</property>
-						<property name="vexpand">true</property>
-						<property name="hexpand">true</property>
-						<!-- invisible by default to show the no_doc_label -->
-						<property name="visible">false</property>
+            <child>
+              <object class="AdwViewStackPage">
+                <property name="name">hex-display</property>
+                <property name="child">
 
-						<child>
-							<object class="GtkBox" id="tab_view_box">
-								<property name="orientation">vertical</property>
-								<child>
-									<object class="AdwTabBar">
-										<property name="view">hex_tab_view</property>
-									</object>
-								</child>
-								<child> <!-- type="overlay" -->
-									<object class="GtkRevealer" id="findreplace_revealer">
-										<property name="name">findreplace-revealer</property>
-										<property name="transition-type">slide-up</property>
-										<property name="valign">start</property>
-										<!-- box to put the `findreplace' dialogs. -->
-										<child>
-											<object class="GtkBox" id="findreplace_box">
-												<property name="name">findreplace-box</property>
-											</object>
-										</child>
-									</object>
-								</child>
-								<child>
-									<object class="AdwTabView" id="hex_tab_view">
-										<property name="hexpand">true</property>
-										<property name="vexpand">true</property>
-									</object>
-								</child>
-							</object> <!-- tab_view_box -->
-						</child>
+                  <!-- main hex view stuff starts here -->
 
-						<child>
-							<object class="GtkSeparator">
-								<property name="orientation">horizontal</property>
-							</object>
-						</child>
+                  <object class="GtkBox" id="tab_view_box">
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="AdwTabBar">
+                        <property name="view">hex_tab_view</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwTabView" id="hex_tab_view">
+                        <property name="hexpand">true</property>
+                        <property name="vexpand">true</property>
+                      </object>
+                    </child>
+                  </object> <!-- tab_view_box -->
 
-						<child>
-							<object class="GtkRevealer" id="conversions_revealer">
-								<property name="transition-type">slide-up</property>
-								<child> <!-- box just to put the conversions_pane; APPEND -->
-									<object class="GtkBox" id="conversions_box">
-										<property name="name">conversions-box</property>
-									</object>
-								</child>
-							</object>
-						</child>
+                  <!-- main hex view stuff ends here -->
 
-						<child> <!-- status_box -->
-							<object class="GtkBox" id="status_box">
-								<property name="name">status-box</property>
-								<property name="orientation">horizontal</property>
-								<property name="homogeneous">false</property>
-								<property name="spacing">6</property>
+                </property> <!-- AdwViewStackPage :child -->
 
-								<child>
-									<object class="HexStatusbar" id="statusbar">
-										<property name="hexpand">true</property>
-									</object>
-								</child>
-
-								<child> <!-- insert_mode_button -->
-									<object class="GtkToggleButton" id="insert_mode_button">
-										<property name="valign">center</property>
-										<property name="halign">end</property>
-										<property name="icon-name">insert-text-symbolic</property>
-										<property name="has-frame">false</property>
-										<property name="action-name">ghex.insert-mode</property>
-										<property name="tooltip-text" translatable="yes">Toggle insert mode (add data to file rather than replace existing data)</property>
-									</object>
-								</child> <!-- insert_mode_button -->
-
-								<!-- pane toggle btn -->
-								<child>
-									<object class="GtkButton" id="pane_toggle_button">
-										<property name="valign">center</property>
-										<property name="halign">end</property>
-										<property name="icon-name">pan-up-symbolic</property>
-										<property name="has-frame">false</property>
-										<property name="action-name">ghex.show-conversions</property>
-										<property name="tooltip-text" translatable="yes">Toggle a pane showing various numeric conversions</property>
-									</object>
-								</child>
-
-							</object> <!-- status_box -->
-						</child> <!-- status_box -->
-
-					</object> <!-- child_box -->
-				</child> <!-- child_box -->
-
-			</object> <!-- main vert gtkbox -->
-		</child> <!-- main vert gtkbox -->
-	</template>
-
+              </object> <!-- AdwViewStackPage -->
+            </child> <!-- AdwViewStackPage -->
+          </object> <!-- AdwViewStack -->
+        </property> <!-- AdwToolbarView :content -->
+      </object>
+    </property> <!-- win :content -->
+  </template>
 </interface>
