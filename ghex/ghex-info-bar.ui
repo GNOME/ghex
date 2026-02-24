@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- vim:ts=4 sw=4
+<!-- vim:ts=2 sw=2 expandtab
 -->
 <!--
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2025-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -24,66 +24,66 @@
 -->
 
 <interface>
-	<template class="HexInfoBar" parent="GtkWidget">
-		<property name="layout-manager">
-			<object class="GtkBinLayout"/>
-		</property>
-		<child>
-			<object class="GtkRevealer" id="revealer">
-				<property name="child">
-					<object class="GtkBox">
-						<!-- part of the box, not the revealer - otherwise, padding gets added even when revealer is hidden -->
-						<property name="name">info-bar</property>
-						<property name="orientation">horizontal</property>
-						<property name="spacing">6</property>
-						<child>
-							<object class="GtkBox">
-								<property name="orientation">vertical</property>
-								<property name="spacing">6</property>
-								<child>
-									<object class="GtkLabel" id="title_label">
-										<property name="halign">start</property>
-										<property name="hexpand">true</property>
-										<binding name="label">
-											<lookup name="title">HexInfoBar</lookup>
-										</binding>
-										<attributes>
-											<attribute name="weight" value="bold"/>
-										</attributes>
-									</object>
-								</child>
-								<child>
-									<object class="GtkLabel" id="description_label">
-										<property name="halign">start</property>
-										<property name="hexpand">true</property>
-										<binding name="label">
-											<lookup name="description">HexInfoBar</lookup>
-										</binding>
-									</object>
-								</child>
-							</object>
-						</child>
-						<child>
-							<object class="GtkButton">
-								<property name="use-underline">true</property>
-								<property name="label" translatable="yes">_Discard Changes and Reload</property>
-								<property name="action-name">ghex.revert</property>
-							</object>
-						</child>
-						<child>
-							<object class="GtkButton" id="close_button">
-								<property name="halign">end</property>
-								<property name="icon-name">window-close-symbolic</property>
-								<!-- if the property is boolean the action TOGGLES the property value; so if it's shown, clicking close will hide it -->
-								<property name="action-name">infobar.shown</property>
-								<style>
-									<class name="flat"/>
-								</style>
-							</object>
-						</child>
-					</object>
-				</property>
-			</object>
-		</child>
-	</template>
+  <template class="GHexInfoBar" parent="GtkWidget">
+    <property name="layout-manager">
+      <object class="GtkBinLayout"/>
+    </property>
+    <child>
+      <object class="GtkRevealer" id="revealer">
+        <property name="child">
+          <object class="GtkBox">
+            <!-- part of the box, not the revealer - otherwise, padding gets added even when revealer is hidden -->
+            <property name="name">info-bar</property>
+            <property name="orientation">horizontal</property>
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkLabel" id="title_label">
+                    <property name="halign">start</property>
+                    <property name="hexpand">true</property>
+                    <binding name="label">
+                      <lookup name="title">GHexInfoBar</lookup>
+                    </binding>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="description_label">
+                    <property name="halign">start</property>
+                    <property name="hexpand">true</property>
+                    <binding name="label">
+                      <lookup name="description">GHexInfoBar</lookup>
+                    </binding>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="use-underline">true</property>
+                <property name="label" translatable="yes">_Discard Changes and Reload</property>
+                <property name="action-name">win.revert</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="close_button">
+                <property name="halign">end</property>
+                <property name="icon-name">window-close-symbolic</property>
+                <!-- if the property is boolean the action TOGGLES the property value; so if it's shown, clicking close will hide it -->
+                <property name="action-name">infobar.shown</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </property>
+      </object>
+    </child>
+  </template>
 </interface>
