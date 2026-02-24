@@ -34,4 +34,6 @@ struct _HexChangeData
 	gboolean external_file_change;
 };
 
+void _hex_document_set_changed (HexDocument *doc, gboolean changed);
+
 G_END_DECLS
