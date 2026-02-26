@@ -47,7 +47,7 @@
 
 G_BEGIN_DECLS
 
-GtkWidget *	create_preferences_dialog (GtkWindow *parent);
+GtkWidget *	ghex_create_preferences_dialog (GtkWindow *parent);
 
 G_END_DECLS
 
