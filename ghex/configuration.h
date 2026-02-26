@@ -38,22 +38,11 @@
 
 G_BEGIN_DECLS
 
-/* GSettings keys */
-#define GHEX_PREF_FONT				"font"
-#define GHEX_PREF_GROUP				"group-data-by"
-#define GHEX_PREF_SB_OFFSET_FORMAT	"statusbar-offset-format"
-#define GHEX_PREF_DATA_FONT			"print-font-data"
-#define GHEX_PREF_HEADER_FONT		"print-font-header"
-#define GHEX_PREF_BOX_SIZE			"print-shaded-rows"
-#define GHEX_PREF_OFFSETS_COLUMN	"show-offsets"
-#define GHEX_PREF_DARK_MODE			"dark-mode"
-#define GHEX_PREF_CONTROL_CHARS		"display-control-characters"
-
-enum dark_mode {
-	DARK_MODE_OFF,
-	DARK_MODE_ON,
-	DARK_MODE_SYSTEM
-};
+typedef enum {
+	GHEX_DARK_MODE_OFF,
+	GHEX_DARK_MODE_ON,
+	GHEX_DARK_MODE_SYSTEM
+} GHexDarkModeOption;
 
 /* Our preferred settings; as only one copy of them is required,
  * we'll make them global vars, though this is a bit ugly.

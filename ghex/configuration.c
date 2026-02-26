@@ -86,15 +86,15 @@ dark_mode_changed_cb (GSettings   *settings,
 
 	switch (def_dark_mode)
 	{
-		case DARK_MODE_OFF:
+		case GHEX_DARK_MODE_OFF:
 			adw_style_manager_set_color_scheme (manager, ADW_COLOR_SCHEME_FORCE_LIGHT);
 			break;
 
-		case DARK_MODE_ON:
+		case GHEX_DARK_MODE_ON:
 			adw_style_manager_set_color_scheme (manager, ADW_COLOR_SCHEME_FORCE_DARK);
 			break;
 
-		case DARK_MODE_SYSTEM:
+		case GHEX_DARK_MODE_SYSTEM:
 			adw_style_manager_set_color_scheme (manager, ADW_COLOR_SCHEME_DEFAULT);
 			break;
 
@@ -164,42 +164,42 @@ ghex_init_configuration (void)
     global_settings = g_settings_new (APP_ID);
     g_return_if_fail (global_settings);
 
-    g_signal_connect (global_settings, "changed::" GHEX_PREF_OFFSETS_COLUMN,
+    g_signal_connect (global_settings, "changed::show-offsets",
                       G_CALLBACK (offsets_column_changed_cb), NULL);
-    offsets_column_changed_cb (global_settings, GHEX_PREF_OFFSETS_COLUMN, NULL);
+    offsets_column_changed_cb (global_settings, "show-offsets", NULL);
 
-    g_signal_connect (global_settings, "changed::" GHEX_PREF_GROUP,
+    g_signal_connect (global_settings, "changed::group-data-by",
                       G_CALLBACK (group_changed_cb), NULL);
-    group_changed_cb (global_settings, GHEX_PREF_GROUP, NULL);
+    group_changed_cb (global_settings, "group-data-by", NULL);
 
-    g_signal_connect (global_settings, "changed::" GHEX_PREF_SB_OFFSET_FORMAT,
+    g_signal_connect (global_settings, "changed::statusbar-offset-format",
                       G_CALLBACK (sb_offsetformat_changed_cb), NULL);
-    sb_offsetformat_changed_cb (global_settings, GHEX_PREF_SB_OFFSET_FORMAT, NULL);
+    sb_offsetformat_changed_cb (global_settings, "statusbar-offset-format", NULL);
 
-    g_signal_connect (global_settings, "changed::" GHEX_PREF_DARK_MODE,
+    g_signal_connect (global_settings, "changed::dark-mode",
                       G_CALLBACK (dark_mode_changed_cb), NULL);
-    dark_mode_changed_cb (global_settings, GHEX_PREF_DARK_MODE, NULL);
+    dark_mode_changed_cb (global_settings, "dark-mode", NULL);
 
-    g_signal_connect (global_settings, "changed::" GHEX_PREF_BOX_SIZE,
+    g_signal_connect (global_settings, "changed::print-shaded-rows",
                       G_CALLBACK (box_size_changed_cb), NULL);
-    box_size_changed_cb (global_settings, GHEX_PREF_BOX_SIZE, NULL);
+    box_size_changed_cb (global_settings, "print-shaded-rows", NULL);
 
-    g_signal_connect (global_settings, "changed::" GHEX_PREF_FONT,
+    g_signal_connect (global_settings, "changed::font",
                       G_CALLBACK (font_changed_cb), NULL);
-    font_changed_cb (global_settings, GHEX_PREF_FONT, NULL);
+    font_changed_cb (global_settings, "font", NULL);
 
-    g_signal_connect (global_settings, "changed::" GHEX_PREF_DATA_FONT,
+    g_signal_connect (global_settings, "changed::print-font-data",
                       G_CALLBACK (data_font_changed_cb), NULL);
 
-    data_font_changed_cb (global_settings, GHEX_PREF_DATA_FONT, NULL);
+    data_font_changed_cb (global_settings, "print-font-data", NULL);
 
-    g_signal_connect (global_settings, "changed::" GHEX_PREF_HEADER_FONT,
+    g_signal_connect (global_settings, "changed::print-font-header",
                       G_CALLBACK (header_font_changed_cb), NULL);
-    header_font_changed_cb (global_settings, GHEX_PREF_HEADER_FONT, NULL);
+    header_font_changed_cb (global_settings, "print-font-header", NULL);
 
-    g_signal_connect (global_settings, "changed::" GHEX_PREF_CONTROL_CHARS,
+    g_signal_connect (global_settings, "changed::display-control-characters",
                       G_CALLBACK (control_chars_changed_cb), NULL);
-    control_chars_changed_cb (global_settings, GHEX_PREF_CONTROL_CHARS, NULL);
+    control_chars_changed_cb (global_settings, "display-control-characters", NULL);
 
 	/* Global CSS provider */
 
