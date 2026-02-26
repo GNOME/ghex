@@ -21,8 +21,10 @@
 
 #include "ghex-application-window.h"
 
+#include "preferences.h"
 #include "common-ui.h"
 #include "util.h"
+
 #include "config.h"
 
 enum
@@ -41,6 +43,8 @@ struct _GHexApplicationWindow
 	GBinding *revert_binding;
 	GBinding *save_binding;
 	GBinding *save_as_binding;
+
+	GtkWidget *prefs_dialog;
 
 	/* Template widgets */
 
@@ -544,6 +548,19 @@ ghex_application_window_close_tab_action (GtkWidget *widget, const char *action_
 }
 
 static void
+ghex_application_window_preferences_action (GtkWidget *widget, const char *action_name, GVariant *parameter)
+{
+	GHexApplicationWindow *self = (GHexApplicationWindow *) widget;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+
+	if (! self->prefs_dialog)
+		self->prefs_dialog = ghex_create_preferences_dialog (GTK_WINDOW(self));
+
+	gtk_widget_set_visible (self->prefs_dialog, TRUE);
+}
+
+static void
 close_all_tabs_response_cb (GHexApplicationWindow *self, const char *response, AdwAlertDialog *dialog)
 {
 	/* Regardless of what the user chose, get rid of the dialog. */
@@ -636,6 +653,8 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 
 	gtk_widget_class_install_action (widget_class, "win.close-tab", NULL, ghex_application_window_close_tab_action);
 
+	gtk_widget_class_install_action (widget_class, "win.preferences", NULL, ghex_application_window_preferences_action);
+
 	/* Bindings */
 
 	/* Ctrl+T - new file */
@@ -672,6 +691,13 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			GDK_CONTROL_MASK,
 			"win.close-tab",
 			NULL);
+
+	/* Ctrl+comma - show preferences */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_comma,
+			GDK_CONTROL_MASK,
+			"win.preferences",
+			NULL);	/* no args. */
 
 	/* Template */
 

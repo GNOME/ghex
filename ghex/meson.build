@@ -13,7 +13,7 @@ ghex_sources = [
   'main.c',
   #'mark-dialog.c',
   #'paste-special.c',
-  #'preferences.c',
+  'preferences.c',
   'print.c',
 ]
 
