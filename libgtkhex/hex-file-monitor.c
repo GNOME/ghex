@@ -195,11 +195,9 @@ hex_file_monitor_class_init (HexFileMonitorClass *klass)
 	gobject_class->finalize = hex_file_monitor_finalize;
 
 	properties [PROP_CHANGED] =
-		g_param_spec_boolean ("changed",
-		                      "Changed",
-		                      "If the open file changed on disk since it was last read",
-		                      FALSE,
-		                      (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+		g_param_spec_boolean ("changed", NULL, NULL,
+				FALSE,
+				G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
 
 	g_object_class_install_properties (gobject_class, N_PROPERTIES, properties);
 }
