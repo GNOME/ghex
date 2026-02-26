@@ -99,7 +99,7 @@ sync_shaded_box_size_with_spinbtn (void)
 
 	if (tmp != shaded_box_size) {
 		g_settings_set_uint (ghex_get_global_settings (),
-				GHEX_PREF_BOX_SIZE,
+				"print-shaded-rows",
 				tmp);
 	}
 }
@@ -126,7 +126,7 @@ shaded_box_chkbtn_toggled_cb (GtkCheckButton *checkbutton,
 		sync_shaded_box_size_with_spinbtn ();
 	} else if (shaded_box_size) {
 		g_settings_set_uint (ghex_get_global_settings (),
-				GHEX_PREF_BOX_SIZE,
+				"print-shaded-rows",
 				0);
 	}
 }
@@ -140,7 +140,7 @@ show_offsets_set_cb (GtkCheckButton *checkbutton,
 	show_or_hide = gtk_check_button_get_active (checkbutton);
 
 	g_settings_set_boolean (ghex_get_global_settings (),
-			GHEX_PREF_OFFSETS_COLUMN,
+			"show-offsets",
 			show_or_hide);
 }
 
@@ -153,7 +153,7 @@ show_control_chars_set_cb (GtkCheckButton *checkbutton,
 	show_or_hide = gtk_check_button_get_active (checkbutton);
 
 	g_settings_set_boolean (ghex_get_global_settings (),
-			GHEX_PREF_CONTROL_CHARS,
+			"display-control-characters",
 			show_or_hide);
 }
 
@@ -169,7 +169,7 @@ group_type_set_cb (GtkCheckButton *checkbutton,
 	if (gtk_check_button_get_active (checkbutton))
 	{
 		g_settings_set_enum (ghex_get_global_settings (),
-				GHEX_PREF_GROUP,
+				"group-data-by",
 				group_type);
 	}
 }
@@ -186,7 +186,7 @@ offset_format_set_cb (GtkCheckButton *checkbutton,
 	if (gtk_check_button_get_active (checkbutton))
 	{
 		g_settings_set_enum (ghex_get_global_settings (),
-				GHEX_PREF_SB_OFFSET_FORMAT,
+				"statusbar-offset-format",
 				sb_format);
 	}
 }
@@ -217,15 +217,15 @@ font_set_cb (GtkFontButton *widget,
 	switch (type)
 	{
 		case GUI_FONT:
-			pref = GHEX_PREF_FONT;
+			pref = "font";
 			break;
 
 		case DATA_FONT:
-			pref = GHEX_PREF_DATA_FONT;
+			pref = "print-font-data";
 			break;
 
 		case HEADER_FONT:
-			pref = GHEX_PREF_HEADER_FONT;
+			pref = "print-font-header";
 			break;
 
 		default:
@@ -276,7 +276,7 @@ dark_mode_set_cb (GtkSwitch *widget,
 		dark_mode = DARK_MODE_OFF;
 
 	g_settings_set_enum (ghex_get_global_settings (),
-			GHEX_PREF_DARK_MODE,
+			"dark-mode",
 			dark_mode);
 
 	return GDK_EVENT_PROPAGATE;
@@ -301,7 +301,7 @@ system_default_set_cb (GtkCheckButton *checkbutton,
 			DARK_MODE_ON : DARK_MODE_OFF;
 	}
 	g_settings_set_enum (ghex_get_global_settings (),
-			GHEX_PREF_DARK_MODE,
+			"dark-mode",
 			dark_mode);
 }
 
