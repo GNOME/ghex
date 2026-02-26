@@ -3,9 +3,15 @@
 #define G_LOG_DOMAIN "hex-text-hex"
 
 #include "hex-text-hex.h"
+
+// for enum - FIXME - probably should be moved.
+#include "gtkhex-layout-manager.h"
+
 #include "hex-text-common.h"
 #include "hex-mark-private.h"
 #include "util.h"
+
+#include "libgtkhex-enums.h"
 
 enum
 {

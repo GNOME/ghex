@@ -4,7 +4,6 @@
 
 #include "hex-auto-highlight-private.h"
 #include "hex-highlight-private.h"
-#include "hex-document-private.h"
 #include "hex-search-info-private.h"
 #include "util.h"
 

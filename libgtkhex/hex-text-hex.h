@@ -4,9 +4,6 @@
 
 #include "hex-text-editable.h"
 
-// FIXME - enum shouldn't be in here
-#include "gtkhex-layout-manager.h"
-
 G_BEGIN_DECLS
 
 #define HEX_TYPE_TEXT_HEX (hex_text_hex_get_type ())
