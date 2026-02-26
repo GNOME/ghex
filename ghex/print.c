@@ -26,7 +26,7 @@
 
 #include "print.h"
 
-#include <config.h>
+#include "config.h"
 
 #define is_printable(c) (((((guchar)c)>=0x20) && (((guchar)c)<0x7F))?1:0)
 
@@ -176,13 +176,13 @@ static void format_ascii (HexDocument *doc,
 static void print_shaded_boxes(GHexPrintJobInfo *pji, guint page,
 		guint max_row)
 {
-	guint i;
-	guint box_size = shaded_box_size;
+	GSettings *settings = ghex_get_global_settings ();
+	guint box_size = g_settings_get_uint (settings, "print-shaded-rows");
 
 	if (box_size == 0)
 		return;
 
-	for (i = box_size + 1;
+	for (guint i = box_size + 1;
 		i <= pji->rows_per_page && i <= max_row;
 		i += box_size*2)
 	{
@@ -224,6 +224,9 @@ ghex_print_job_info_new (HexDocument *doc, HexWidgetGroupType group_type)
 	GHexPrintJobInfo *pji;
 	PangoFontDescription *d_font;
 	PangoFontDescription *h_font;
+	GSettings *settings = ghex_get_global_settings ();
+	g_autofree char *data_font_name = g_settings_get_string (settings, "print-font-data");
+	g_autofree char *header_font_name = g_settings_get_string (settings, "print-font-header");
 
 	if (!doc)
 		return NULL;

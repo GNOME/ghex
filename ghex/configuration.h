@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -30,8 +30,7 @@
    Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef GHEX_CONFIGURATION_H
-#define GHEX_CONFIGURATION_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include <adwaita.h>
@@ -44,25 +43,7 @@ typedef enum {
 	GHEX_DARK_MODE_SYSTEM
 } GHexDarkModeOption;
 
-/* Our preferred settings; as only one copy of them is required,
- * we'll make them global vars, though this is a bit ugly.
- */
-extern char			*def_font_name;
-extern char			*data_font_name, *header_font_name;
-extern char			*offset_fmt;
-extern gboolean		show_offsets_column;
-extern guint		shaded_box_size;
-extern int			def_group_type;
-extern int        def_sb_offset_format;
-extern int			def_dark_mode;
-extern gboolean		def_display_control_characters;
-
-/* Initializes the gsettings client */
-void ghex_init_configuration (void);
-
 GSettings * ghex_get_global_settings (void);
 GtkCssProvider * ghex_get_global_css_provider (void);
 
 G_END_DECLS
-
-#endif /* GHEX_CONFIGURATION_H */
