@@ -66,6 +66,14 @@ libgtkhex_headers = [
   'hex-widget.h',
 ]
 
+libgtkhex_enums = gnome.mkenums_simple('libgtkhex-enums',
+  sources: libgtkhex_headers,
+  install_header: true,
+  install_dir: join_paths(includedir, 'gtkhex-@0@'.format(libgtkhex_api_version)),
+)
+
+libgtkhex_enums_h = libgtkhex_enums [1]
+
 libgtkhex_deps = [
   dependency('gtk4', version: '>= 4.18'),
   dependency('gmodule-2.0'),
@@ -81,7 +89,7 @@ lib_osx_version = [osx_current, '@0@.@1@'.format(osx_current, libgtkhex_version_
 library_name = 'gtkhex-@0@'.format(libgtkhex_api_version)
 libgtkhex = library(
   library_name,
-  [libgtkhex_sources, libgtkhex_res],
+  [libgtkhex_sources, libgtkhex_res, libgtkhex_enums],
   version: '@0@.@1@.@2@'.format(
     libgtkhex_version_major, libgtkhex_version_minor, libgtkhex_version_micro),
   darwin_versions: lib_osx_version,
@@ -176,7 +184,7 @@ configure_file(
 
 if get_option('introspection').allowed()
   libgtkhex_gir = gnome.generate_gir(libgtkhex,
-              sources: [libgtkhex_sources, libgtkhex_headers],
+              sources: [libgtkhex_sources, libgtkhex_headers, libgtkhex_enums],
             nsversion: libgtkhex_api_version.to_string(),
             namespace: 'Hex',
         symbol_prefix: 'hex',
@@ -216,9 +224,9 @@ if get_option('docs')
 endif
 
 summary({
-	  '`mmap` buffer backend': get_option('mmap-buffer-backend'),
-	  '`direct` buffer backend': get_option('direct-buffer-backend'),
-          'GObject Introspection': get_option('introspection'),
-	  'VAPI': get_option('vapi'),
-	  'API Documentation': get_option('docs'),
-        }, section: 'libgtkhex Options')
+  '`mmap` buffer backend': get_option('mmap-buffer-backend'),
+  '`direct` buffer backend': get_option('direct-buffer-backend'),
+  'GObject Introspection': get_option('introspection'),
+  'VAPI': get_option('vapi'),
+  'API Documentation': get_option('docs'),
+  }, section: 'libgtkhex Options')

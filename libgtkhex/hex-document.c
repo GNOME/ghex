@@ -36,6 +36,8 @@
 #include "hex-document-private.h"
 #include "hex-search-info-private.h"
 
+#include "libgtkhex-enums.h"
+
 #include <stdio.h>
 #include <string.h>
 
