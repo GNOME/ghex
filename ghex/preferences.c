@@ -34,11 +34,6 @@
 
 #include <config.h>
 
-/* CONSTANTS */
-
-#define SHADED_BOX_MAX		CONFIG_H_SHADED_BOX_MAX
-#define PREFS_RESOURCE		RESOURCE_BASE_PATH "/preferences.ui"
-
 /* PRIVATE DATATYPES */
 
 /* The types of fonts that can be set via font choosers. I suppose we could
@@ -93,6 +88,8 @@ static GtkWidget *show_control_chars_checkbtn;
 static void
 sync_shaded_box_size_with_spinbtn (void)
 {
+	GSettings *settings = ghex_get_global_settings ();
+	guint shaded_box_size = g_settings_get_uint (settings, "print-shaded-rows");
 	GtkSpinButton *spin_button = GTK_SPIN_BUTTON(shaded_box_spinbtn);
 	/* we _want_ implicit conversion here. */
 	guint tmp = gtk_spin_button_get_value_as_int (spin_button);
@@ -115,6 +112,8 @@ static void
 shaded_box_chkbtn_toggled_cb (GtkCheckButton *checkbutton,
 		gpointer user_data)
 {
+	GSettings *settings = ghex_get_global_settings ();
+	guint shaded_box_size = g_settings_get_uint (settings, "print-shaded-rows");
 	gboolean checked;
 
 	checked = gtk_check_button_get_active (checkbutton);
@@ -271,9 +270,9 @@ dark_mode_set_cb (GtkSwitch *widget,
 	int dark_mode;
 
 	if (state)
-		dark_mode = DARK_MODE_ON;
+		dark_mode = GHEX_DARK_MODE_ON;
 	else
-		dark_mode = DARK_MODE_OFF;
+		dark_mode = GHEX_DARK_MODE_OFF;
 
 	g_settings_set_enum (ghex_get_global_settings (),
 			"dark-mode",
@@ -295,10 +294,10 @@ system_default_set_cb (GtkCheckButton *checkbutton,
 			checked ? FALSE : TRUE);
 
 	if (checked) {
-		dark_mode = DARK_MODE_SYSTEM;
+		dark_mode = GHEX_DARK_MODE_SYSTEM;
 	} else {
 		dark_mode = gtk_switch_get_active (GTK_SWITCH(dark_mode_switch)) ?
-			DARK_MODE_ON : DARK_MODE_OFF;
+			GHEX_DARK_MODE_ON : GHEX_DARK_MODE_OFF;
 	}
 	g_settings_set_enum (ghex_get_global_settings (),
 			"dark-mode",
@@ -375,17 +374,27 @@ static void
 grab_widget_values_from_settings (void)
 {
 	AdwStyleManager *manager = adw_style_manager_get_default ();
+	GSettings *settings = ghex_get_global_settings ();
+	g_autofree char *font_name = g_settings_get_string (settings, "font");
+	GHexDarkModeOption dark_mode = g_settings_get_enum (settings, "dark-mode");
+	guint shaded_box_size = g_settings_get_uint (settings, "print-shaded-rows");
+	g_autofree char *print_font_data = g_settings_get_string (settings, "print-font-data");
+	g_autofree char *print_font_header = g_settings_get_string (settings, "print-font-header");
+	gboolean show_offsets = g_settings_get_boolean (settings, "show-offsets");
+	gboolean display_control_characters = g_settings_get_boolean (settings, "display-control-characters");
+	HexWidgetGroupType group_type = g_settings_get_enum (settings, "group-data-by");
+	HexWidgetStatusBarOffsetFormat statusbar_offset_format = g_settings_get_enum (settings, "statusbar-offset-format");
 
 	/* font_button */
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(font_button),
-			def_font_name);
+			font_name);
 	G_GNUC_END_IGNORE_DEPRECATIONS
 
 	/* dark mode stuff */
 
 	/* Set switch to appropriate position and grey out if system default */
-	if (def_dark_mode == DARK_MODE_SYSTEM)
+	if (dark_mode == GHEX_DARK_MODE_SYSTEM)
 	{
 		gtk_check_button_set_active (GTK_CHECK_BUTTON(system_default_chkbtn),
 				TRUE);
@@ -399,30 +408,30 @@ grab_widget_values_from_settings (void)
 				FALSE);
 		gtk_widget_set_sensitive (dark_mode_switch, TRUE);
 		gtk_switch_set_state (GTK_SWITCH(dark_mode_switch),
-				def_dark_mode == DARK_MODE_ON ? TRUE : FALSE);
+				dark_mode == GHEX_DARK_MODE_ON ? TRUE : FALSE);
 	}
 
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	/* data_font_button */
 	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(data_font_button),
-			data_font_name);
+			print_font_data);
 
 	/* header_font_button */
 	gtk_font_chooser_set_font (GTK_FONT_CHOOSER(header_font_button),
-			header_font_name);
+			print_font_header);
 	G_GNUC_END_IGNORE_DEPRECATIONS
 
 	/* show_offsets_chkbtn */
 	gtk_check_button_set_active (GTK_CHECK_BUTTON(show_offsets_chkbtn),
-			show_offsets_column);
+			show_offsets);
 
 	/* show_control_chars_checkbtn */
 	gtk_check_button_set_active (GTK_CHECK_BUTTON(show_control_chars_checkbtn),
-			def_display_control_characters);
+			display_control_characters);
 
 	/* group_type radio buttons
 	 */
-	switch (def_group_type) {
+	switch (group_type) {
 		case HEX_WIDGET_GROUP_BYTE:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(bytes_chkbtn),
 					TRUE);
@@ -452,7 +461,7 @@ grab_widget_values_from_settings (void)
 
 	/* sb_offset_format radio buttons
 	 */
-	switch (def_sb_offset_format) {
+	switch ((int) statusbar_offset_format) {
 		case HEX_WIDGET_STATUS_BAR_OFFSET_HEX | HEX_WIDGET_STATUS_BAR_OFFSET_DEC:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(offsetboth_chkbtn),
 					TRUE);
@@ -515,7 +524,7 @@ init_widgets (void)
 	/* shaded box entry */
 	shaded_box_adj = GTK_ADJUSTMENT(gtk_adjustment_new(1,
 				1,				/* min; no point in having 0 if ineffective */
-				SHADED_BOX_MAX,
+				CONFIG_H_SHADED_BOX_MAX,
 				1,				/* step incr */
 				10,				/* page incr */
 				0));			/* page size */
@@ -526,9 +535,9 @@ init_widgets (void)
 /* PUBLIC FUNCTIONS */
 
 GtkWidget *
-create_preferences_dialog (GtkWindow *parent)
+ghex_create_preferences_dialog (GtkWindow *parent)
 {
-	builder = gtk_builder_new_from_resource (PREFS_RESOURCE);
+	builder = gtk_builder_new_from_resource (RESOURCE_BASE_PATH "/preferences.ui");
 
 	init_widgets ();
 	grab_widget_values_from_settings ();
