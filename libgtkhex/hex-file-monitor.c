@@ -38,12 +38,14 @@ struct _HexFileMonitor
 };
 G_DEFINE_TYPE (HexFileMonitor, hex_file_monitor, G_TYPE_OBJECT)
 
-typedef enum {
-	PROP_CHANGED = 1,
-	PROP_LAST,
-} HexFileMonitorProperty;
+enum
+{
+	PROP_0,
+	PROP_CHANGED,
+	N_PROPERTIES,
+};
 
-static GParamSpec *properties[PROP_LAST];
+static GParamSpec *properties[N_PROPERTIES];
 
 static void
 hex_file_monitor_changed_cb (HexFileMonitor *self,
@@ -199,6 +201,6 @@ hex_file_monitor_class_init (HexFileMonitorClass *klass)
 		                      FALSE,
 		                      (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
-	g_object_class_install_properties (gobject_class, PROP_LAST, properties);
+	g_object_class_install_properties (gobject_class, N_PROPERTIES, properties);
 }
 
