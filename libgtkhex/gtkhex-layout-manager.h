@@ -29,10 +29,6 @@
 
 /* ENUMS */
 
-// FIXME  move
-#define HEX_TYPE_WIDGET_GROUP_TYPE (hex_widget_group_type_get_type ())
-GType hex_widget_group_type_get_type (void);
-
 /**
  * HexWidgetGroupType:
  * @HEX_WIDGET_GROUP_BYTE: group data by byte (8-bit)
@@ -57,11 +53,10 @@ G_DECLARE_FINAL_TYPE (HexWidgetLayout, hex_widget_layout, HEX, WIDGET_LAYOUT,
 		GtkLayoutManager)
 
 typedef enum {
-	NO_COLUMN,
-	OFFSETS_COLUMN,
-	HEX_COLUMN,
-	ASCII_COLUMN,
-	SCROLLBAR_COLUMN
+	HEX_WIDGET_LAYOUT_COLUMN_NONE,
+	HEX_WIDGET_LAYOUT_COLUMN_OFFSETS,
+	HEX_WIDGET_LAYOUT_COLUMN_HEX,
+	HEX_WIDGET_LAYOUT_COLUMN_ASCII,
 } HexWidgetLayoutColumn;
 
 #define HEX_TYPE_WIDGET_LAYOUT_CHILD (hex_widget_layout_child_get_type ())

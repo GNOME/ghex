@@ -24,7 +24,7 @@
 
 #include "gtkhex-layout-manager.h"
 
-#include "hex-widget.h"
+#include "libgtkhex-enums.h"
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
@@ -75,47 +75,6 @@ enum {
 };
 
 static GParamSpec *child_props[N_CHILD_PROPERTIES];
-
-/* Some code required to use g_param_spec_enum below. */
-
-#define HEX_WIDGET_LAYOUT_COLUMN (hex_widget_layout_column_get_type ())
-static GType
-hex_widget_layout_column_get_type (void)
-{
-	static GType hex_layout_column_type = 0;
-	static const GEnumValue format_types[] = {
-		{NO_COLUMN, "No column", "no-column"},
-		{OFFSETS_COLUMN, "Offsets", "offsets"},
-		{HEX_COLUMN, "Hex", "hex"},
-		{ASCII_COLUMN, "ASCII", "ascii"},
-		{0, NULL, NULL}
-	};
-	if (! hex_layout_column_type) {
-		hex_layout_column_type =
-			g_enum_register_static ("HexWidgetLayoutColumn", format_types);
-	}
-	return hex_layout_column_type;
-}
-
-// FIXME - move
-GType
-hex_widget_group_type_get_type (void)
-{
-	static GType hex_widget_group_type = 0;
-	static const GEnumValue format_types[] = {
-		{HEX_WIDGET_GROUP_BYTE, "HEX_WIDGET_GROUP_BYTE", "byte"},
-		{HEX_WIDGET_GROUP_WORD, "HEX_WIDGET_GROUP_WORD", "word"},
-		{HEX_WIDGET_GROUP_LONG, "HEX_WIDGET_GROUP_LONG", "long"},
-		{HEX_WIDGET_GROUP_QUAD, "HEX_WIDGET_GROUP_QUAD", "quad"},
-		{0, NULL, NULL}
-	};
-	if (! hex_widget_group_type) {
-		hex_widget_group_type =
-			g_enum_register_static ("HexWidgetGroupType", format_types);
-	}
-	return hex_widget_group_type;
-}
-
 
 G_DEFINE_TYPE (HexWidgetLayoutChild, hex_widget_layout_child, GTK_TYPE_LAYOUT_CHILD)
 
@@ -188,11 +147,9 @@ hex_widget_layout_child_class_init (HexWidgetLayoutChildClass *klass)
 	gobject_class->finalize = hex_widget_layout_child_finalize;
 	gobject_class->dispose = hex_widget_layout_child_dispose;
 
-	child_props[PROP_CHILD_COLUMN] = g_param_spec_enum ("column",
-			"Column type",
-			"The column type of a child of a hex layout",
-			HEX_WIDGET_LAYOUT_COLUMN,
-			NO_COLUMN,
+	child_props[PROP_CHILD_COLUMN] = g_param_spec_enum ("column", NULL, NULL,
+			HEX_TYPE_WIDGET_LAYOUT_COLUMN,
+			HEX_WIDGET_LAYOUT_COLUMN_NONE,
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS |
 				G_PARAM_EXPLICIT_NOTIFY);
 
@@ -350,16 +307,19 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 
 		switch (child_info->column)
 		{
-			case OFFSETS_COLUMN:	offsets = child;
-				break;
-			case HEX_COLUMN:		hex = child;
-				break;
-			case ASCII_COLUMN:		ascii = child;
-				break;
-			case SCROLLBAR_COLUMN:	scrollbar = child;
+			case HEX_WIDGET_LAYOUT_COLUMN_OFFSETS:
+				offsets = child;
 				break;
 
-			case NO_COLUMN:
+			case HEX_WIDGET_LAYOUT_COLUMN_HEX:
+				hex = child;
+				break;
+
+			case HEX_WIDGET_LAYOUT_COLUMN_ASCII:
+				ascii = child;
+				break;
+
+			case HEX_WIDGET_LAYOUT_COLUMN_NONE:
 			{
 				GtkRequisition child_req = {0};
 				GtkAllocation alloc = BASE_ALLOC;
@@ -378,9 +338,9 @@ hex_widget_layout_allocate (GtkLayoutManager *layout_manager,
 				break;
 
 				/* We won't test for this each loop. */
+
 			default:
-				g_error ("%s: Programmer error. Requested column invalid.",
-						__func__);
+				g_assert_not_reached ();
 				break;
 		}
 	}

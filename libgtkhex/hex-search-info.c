@@ -1,5 +1,7 @@
 #include "hex-search-info.h"
+
 #include "hex-search-info-private.h"
+#include "libgtkhex-enums.h"
 
 #include <stdint.h>
 
@@ -203,8 +205,7 @@ hex_search_info_set_property (GObject *object,
 			break;
 
 		case PROP_FLAGS:
-			// FIXME enum
-			hex_search_info_set_flags (self, g_value_get_int (value));
+			hex_search_info_set_flags (self, g_value_get_flags (value));
 			break;
 
 		case PROP_FOUND_MSG:
@@ -244,8 +245,7 @@ hex_search_info_get_property (GObject *object,
 			break;
 
 		case PROP_FLAGS:
-			// FIXME - enum
-			g_value_set_int (value, hex_search_info_get_flags (self));
+			g_value_set_flags (value, hex_search_info_get_flags (self));
 			break;
 
 		case PROP_FOUND_MSG:
@@ -326,9 +326,9 @@ hex_search_info_class_init (HexSearchInfoClass *klass)
 			0, INT64_MAX, 0,
 			G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | default_flags);
 
-	// FIXME - enum
-	properties[PROP_FLAGS] = g_param_spec_int ("flags", NULL, NULL,
-			HEX_SEARCH_NONE, HEX_SEARCH_IGNORE_CASE, HEX_SEARCH_NONE,
+	properties[PROP_FLAGS] = g_param_spec_flags ("flags", NULL, NULL,
+			HEX_TYPE_SEARCH_FLAGS,
+			HEX_SEARCH_NONE,
 			G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | default_flags);
 
 	properties[PROP_FOUND_MSG] = g_param_spec_string ("found-msg", NULL, NULL,
