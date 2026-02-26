@@ -185,32 +185,6 @@ scroll_timeout_handler (HexTextEditable *self)
 	return G_SOURCE_CONTINUE;
 }
 
-#if 0
-static gboolean
-scroll_timeout_handler (HexTextEditable *self)
-{
-	HexTextEditablePrivate *priv = hex_text_editable_get_instance_private (self);
-	GtkAdjustment *adj = hex_view_get_vadjustment (HEX_VIEW(self));
-
-	switch (priv->auto_scroll)
-	{
-		case GTK_SCROLL_STEP_UP:
-			gtk_adjustment_set_value (adj, gtk_adjustment_get_value (adj) - gtk_adjustment_get_step_increment (adj));
-			break;
-
-		case GTK_SCROLL_STEP_DOWN:
-			gtk_adjustment_set_value (adj, gtk_adjustment_get_value (adj) + gtk_adjustment_get_step_increment (adj));
-			break;
-
-		default:
-			g_clear_handle_id (&priv->scroll_timeout, g_source_remove);
-			return G_SOURCE_REMOVE;
-	}
-
-	return G_SOURCE_CONTINUE;
-}
-#endif
-
 static void
 hex_text_editable_pressed (HexText *ht, GdkModifierType state, PangoLayout *layout, int click_line, int rel_x, int rel_y)
 {
@@ -227,8 +201,6 @@ hex_text_editable_released (HexText *ht, PangoLayout *layout, int click_line, in
 	HexTextEditable *self = HEX_TEXT_EDITABLE(ht);
 	HexTextEditablePrivate *priv = hex_text_editable_get_instance_private (self);
 
-	g_debug ("%s: start", __func__);
-
 	priv->auto_scroll = GTK_SCROLL_NONE;
 	g_clear_handle_id (&priv->scroll_timeout, g_source_remove);
 
@@ -240,17 +212,6 @@ hex_text_editable_dragged (HexText *ht, PangoLayout *layout, int drag_line, int 
 {
 	HexTextEditable *self = HEX_TEXT_EDITABLE(ht);
 	HexTextEditablePrivate *priv = hex_text_editable_get_instance_private (self);
-
-#if 0
-	// TEST - debug
-	{
-		g_autofree char *enum_str = g_enum_to_string (GTK_TYPE_SCROLL_TYPE, scroll);
-		g_debug ("%s: n_vis_lines: %d",
-				__func__, hex_view_get_n_vis_lines (HEX_VIEW(ht)));
-		g_debug ("%s: drag_line: %d; rel_x: %d; rel_y: %d; scroll_type: %s",
-				__func__, drag_line, rel_x, rel_y, enum_str);
-	}
-#endif
 
 	if (priv->auto_scroll == GTK_SCROLL_NONE || priv->auto_scroll != scroll)
 	{
@@ -270,26 +231,6 @@ hex_text_editable_dragged (HexText *ht, PangoLayout *layout, int drag_line, int 
 				break;
 		}
 	}
-
-
-#if 0
-	HexTextEditable *self = HEX_TEXT_EDITABLE(ht);
-	HexTextEditablePrivate *priv = hex_text_editable_get_instance_private (self);
-
-	priv->auto_scroll = scroll;
-
-	switch (priv->auto_scroll)
-	{
-		case GTK_SCROLL_STEP_UP:
-		case GTK_SCROLL_STEP_DOWN:
-			if (! priv->scroll_timeout)
-				priv->scroll_timeout = g_timeout_add (SCROLL_TIMEOUT, G_SOURCE_FUNC(scroll_timeout_handler), self);
-			break;
-		default:
-			g_clear_handle_id (&priv->scroll_timeout, g_source_remove);
-			break;
-	}
-#endif
 }
 
 static void
@@ -423,20 +364,6 @@ hex_text_editable_class_init (HexTextEditableClass *klass)
 
 	klass->move_cursor = hex_text_editable_real_move_cursor;
 
-	//g_object_class_install_properties (object_class, N_PROPERTIES, properties);
-
-#if 0
-	signals[SIGNAL_ONE] = g_signal_new_class_handler ("signal-one",
-			G_OBJECT_CLASS_TYPE (object_class),
-			G_SIGNAL_RUN_LAST,
-		/* no default C function */
-			NULL,
-		/* defaults for accumulator, marshaller &c. */
-			NULL, NULL, NULL,	
-		/* No return type or params. */
-			G_TYPE_NONE, 0);
-#endif
-
 	/* Actions */
 
 	// FIXME - action signals instead??
@@ -447,11 +374,7 @@ hex_text_editable_class_init (HexTextEditableClass *klass)
 
 	gtk_widget_class_install_action (widget_class, "editable.delete", NULL, (GtkWidgetActionActivateFunc)delete_action);
 
-
-
 	gtk_widget_class_install_action (widget_class, "layout.geometry", NULL, (GtkWidgetActionActivateFunc)geometry_popover_action);
-
-
 
 	/* Keybindings */
 
