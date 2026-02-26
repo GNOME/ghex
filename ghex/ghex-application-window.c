@@ -106,7 +106,12 @@ ghex_application_window_get_active_view (GHexApplicationWindow *self)
 	else
 	{
 		AdwTabPage *page = adw_tab_view_get_selected_page (self->hex_tab_view);
-		gpointer active_view = adw_tab_page_get_child (page);
+		gpointer active_view;
+
+		if (!page)	/* eg, last page is closed */
+			return NULL;
+
+		active_view = adw_tab_page_get_child (page);
 
 		g_assert (GHEX_IS_VIEW_CONTAINER (active_view));
 
@@ -301,6 +306,7 @@ doc_read_ready_cb (GObject *source_object, GAsyncResult *res, gpointer user_data
 			ghex_display_dialog (GTK_WINDOW(self), _("There was an error reading the file."));
 	}
 }
+
 static void
 revert_response_cb (GHexApplicationWindow *self, const char *response, AdwAlertDialog *dialog)
 {
@@ -451,7 +457,7 @@ save_as_response_cb (GtkNativeDialog *dialog,
 		int resp,
 		gpointer user_data)
 {
-	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	GHexApplicationWindow *self = (GHexApplicationWindow *) user_data;
 	GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
 	HexDocument *doc;
 	g_autoptr(GFile) gfile = NULL;
@@ -514,14 +520,102 @@ ghex_application_window_save_as_action (GSimpleAction *action, GVariant *paramet
 }
 
 static void
+ghex_application_window_close_tab_action (GtkWidget *widget, const char *action_name, GVariant *parameter)
+{
+	GHexApplicationWindow *self = (GHexApplicationWindow *) widget;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+
+	const int n_pages = adw_tab_view_get_n_pages (self->hex_tab_view);
+
+	if (n_pages == 0)
+	{
+		gtk_window_close (GTK_WINDOW(self));
+	}
+	else
+	{
+		gpointer page = adw_tab_view_get_selected_page (self->hex_tab_view);
+
+		adw_tab_view_close_page (self->hex_tab_view, page);
+
+		if (n_pages == 1)
+			ghex_application_window_set_active_view (self, NULL);
+	}
+}
+
+static void
+close_all_tabs_response_cb (GHexApplicationWindow *self, const char *response, AdwAlertDialog *dialog)
+{
+	/* Regardless of what the user chose, get rid of the dialog. */
+	adw_dialog_close (ADW_DIALOG (dialog));
+
+	if (g_strcmp0 (response, "discard") == 0)
+		gtk_window_destroy (GTK_WINDOW(self));
+}
+
+static void
+close_all_tabs_confirmation_dialog (GHexApplicationWindow *self)
+{
+	AdwDialog *dialog = adw_alert_dialog_new (_("Save Changes?"), NULL);
+
+	adw_alert_dialog_set_body (ADW_ALERT_DIALOG(dialog),
+			_("Open documents contain unsaved changes.\n"
+			   "Changes which are not saved will be permanently lost."));
+	adw_alert_dialog_add_responses (ADW_ALERT_DIALOG(dialog),
+			"cancel", _("_Cancel"),
+			"discard", _("_Discard"),
+			NULL);
+	adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG(dialog),
+			"discard",
+			ADW_RESPONSE_DESTRUCTIVE);
+	adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG(dialog), "cancel");
+
+	g_signal_connect_object (dialog, "response", G_CALLBACK(close_all_tabs_response_cb), self, G_CONNECT_SWAPPED);
+
+	adw_dialog_present (dialog, GTK_WIDGET(self));
+}
+
+static gboolean
+ghex_application_window_close_request (GtkWindow *window)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(window);
+	gboolean unsaved_found = FALSE;
+	const int num_pages = adw_tab_view_get_n_pages (self->hex_tab_view);
+
+	/* We have more than one tab open: */
+	for (int i = num_pages - 1; i >= 0; --i)
+	{
+		AdwTabPage *page = adw_tab_view_get_nth_page (self->hex_tab_view, i);
+		GHexViewContainer *container = GHEX_VIEW_CONTAINER(adw_tab_page_get_child (page));
+		HexDocument *doc = ghex_view_container_get_document (container);
+
+		if (hex_document_get_changed (doc)) {
+			unsaved_found = TRUE;
+			break;
+		}
+	}
+
+	if (unsaved_found)
+	{
+		close_all_tabs_confirmation_dialog (self);
+		return GDK_EVENT_STOP;
+	}
+
+	return GTK_WINDOW_CLASS(ghex_application_window_parent_class)->close_request (window);
+}
+
+static void
 ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 {
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+	GtkWindowClass *window_class = GTK_WINDOW_CLASS(klass);
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GParamFlags default_flags = G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY;
 
 	object_class->set_property = ghex_application_window_set_property;
 	object_class->get_property = ghex_application_window_get_property;
+
+	window_class->close_request = ghex_application_window_close_request;
 
 	/* Properties */
 
@@ -533,9 +627,14 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 
 	/* Actions */
 
+	/* These are the actions that don't require GObject property bindings to be
+	 * applied. For those that do, see init()
+	 */
 	gtk_widget_class_install_action (widget_class, "win.new-file", NULL, (GtkWidgetActionActivateFunc) ghex_application_window_new_file);
 
 	gtk_widget_class_install_action (widget_class, "win.open", NULL, ghex_application_window_open_action);
+
+	gtk_widget_class_install_action (widget_class, "win.close-tab", NULL, ghex_application_window_close_tab_action);
 
 	/* Bindings */
 
@@ -565,6 +664,13 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			GDK_KEY_s,
 			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
 			"win.save-as",
+			NULL);
+
+	/* Ctrl+W - close tab */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_w,
+			GDK_CONTROL_MASK,
+			"win.close-tab",
 			NULL);
 
 	/* Template */
@@ -613,11 +719,137 @@ active_view_notify_cb (GHexApplicationWindow *self)
 }
 
 static void
+close_doc_response_cb (GHexApplicationWindow *self, const char *response, AdwAlertDialog *dialog)
+{
+	AdwTabPage *page = g_object_get_data (G_OBJECT(self), "target-page");
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+	g_assert (ADW_IS_TAB_PAGE (page));
+
+	if (g_strcmp0 (response, "save") == 0)
+	{
+		gtk_widget_activate_action (GTK_WIDGET(self), "win.save", NULL);
+		adw_tab_view_close_page_finish (self->hex_tab_view, page, TRUE);
+	}
+	else if (g_strcmp0 (response, "discard") == 0)
+	{
+		adw_tab_view_close_page_finish (self->hex_tab_view, page, TRUE);
+	}
+	else
+	{
+		adw_tab_view_close_page_finish (self->hex_tab_view, page, FALSE);
+	}
+
+	adw_dialog_close (ADW_DIALOG (dialog));
+
+	g_object_set_data (G_OBJECT(self), "target-page", NULL);
+}
+
+static void
+close_doc_confirmation_dialog (GHexApplicationWindow *self, AdwTabPage *page, HexDocument *doc)
+{
+	AdwDialog *dialog;
+	GHexViewContainer *container;
+	g_autofree char *basename = NULL;
+	g_autofree char *title = NULL;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+	g_assert (ADW_IS_TAB_PAGE (page));
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	basename = common_get_ui_basename (doc);
+
+	if (basename) {
+		/* Translators: %s is the filename that is currently being
+		 * edited. */
+		title = g_strdup_printf (_("%s has been edited since opening."), basename);
+	}
+	else {
+		title = g_strdup (_("The buffer has been edited since opening."));
+	}
+
+	dialog = adw_alert_dialog_new (title, NULL);
+
+	adw_alert_dialog_set_body (ADW_ALERT_DIALOG(dialog),
+			_("Would you like to save your changes?"));
+	adw_alert_dialog_add_responses (ADW_ALERT_DIALOG(dialog),
+			"cancel", _("_Cancel"),
+			"discard", _("_Discard"),
+			"save", _("_Save"),
+			NULL);
+	adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG(dialog), "cancel");
+	adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG(dialog),
+			"discard",
+			ADW_RESPONSE_DESTRUCTIVE);
+	adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG(dialog),
+			"save",
+			ADW_RESPONSE_SUGGESTED);
+
+	g_signal_connect_object (dialog, "response", G_CALLBACK(close_doc_response_cb), self, G_CONNECT_SWAPPED);
+
+	g_object_set_data_full (G_OBJECT(self), "target-page", g_object_ref (page), g_object_unref);
+
+	adw_dialog_present (ADW_DIALOG(dialog), GTK_WIDGET (self));
+}
+
+static gboolean
+tab_view_close_page_cb (GHexApplicationWindow *self, AdwTabPage *page, AdwTabView *tab_view)
+{
+	GHexViewContainer *container;
+	HexDocument *doc;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+	g_assert (ADW_IS_TAB_VIEW (tab_view));
+
+	container = GHEX_VIEW_CONTAINER (adw_tab_page_get_child (page));
+	doc = ghex_view_container_get_document (container);
+
+	if (!hex_document_get_changed (doc))
+	{
+		adw_tab_view_close_page_finish (tab_view, page, TRUE);
+		return GDK_EVENT_STOP;
+	}
+	else
+	{
+		ghex_application_window_set_active_view (self, container);
+		close_doc_confirmation_dialog (self, page, doc);
+	}
+
+	return GDK_EVENT_STOP;
+}
+
+static void
+tab_view_page_attached_cb (GHexApplicationWindow *self, AdwTabPage *page, int position, AdwTabView *tab_view)
+{
+	GHexViewContainer *container = GHEX_VIEW_CONTAINER(adw_tab_page_get_child (page));
+
+	ghex_application_window_set_active_view (self, container);
+}
+
+static AdwTabView *
+tab_view_create_window_cb (AdwTabView *self, gpointer user_data)
+{
+	GHexApplicationWindow *new_win = GHEX_APPLICATION_WINDOW (ghex_application_window_new (ADW_APPLICATION(g_application_get_default ())));
+
+	gtk_window_present (GTK_WINDOW(new_win));
+
+	return new_win->hex_tab_view;
+}
+
+static void
 ghex_application_window_init (GHexApplicationWindow *self)
 {
 	gtk_widget_init_template (GTK_WIDGET (self));
 
+	/* Tab view signals */
+
+	g_signal_connect (self->hex_tab_view, "create-window", G_CALLBACK(tab_view_create_window_cb), NULL);
+
+	g_signal_connect_object (self->hex_tab_view, "close-page", G_CALLBACK(tab_view_close_page_cb), self, G_CONNECT_SWAPPED);
+
 	g_signal_connect_object (self->hex_tab_view, "notify::selected-page", G_CALLBACK(tab_view_selected_notify_cb), self, G_CONNECT_SWAPPED);
+
+	g_signal_connect_object (self->hex_tab_view, "page-attached", G_CALLBACK(tab_view_page_attached_cb), self, G_CONNECT_SWAPPED);
 
 	g_signal_connect_after (self, "notify::active-view", G_CALLBACK(active_view_notify_cb), NULL);
 
