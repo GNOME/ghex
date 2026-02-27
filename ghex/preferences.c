@@ -32,7 +32,12 @@
 
 #include "preferences.h"
 
-#include <config.h>
+#include "gtkhex-layout-manager.h"
+#include "configuration.h"
+#include "common-macros.h"
+#include "ghex-statusbar.h"
+
+#include "config.h"
 
 /* PRIVATE DATATYPES */
 
@@ -343,13 +348,13 @@ setup_signals (void)
 	/* status bar offset format checkbuttons */
 
 	g_signal_connect (offsethex_chkbtn, "toggled",
-			G_CALLBACK(offset_format_set_cb), GINT_TO_POINTER(HEX_WIDGET_STATUS_BAR_OFFSET_HEX));
+			G_CALLBACK(offset_format_set_cb), GINT_TO_POINTER(GHEX_STATUSBAR_OFFSET_HEX));
 
 	g_signal_connect (offsetdec_chkbtn, "toggled",
-			G_CALLBACK(offset_format_set_cb), GINT_TO_POINTER(HEX_WIDGET_STATUS_BAR_OFFSET_DEC));
+			G_CALLBACK(offset_format_set_cb), GINT_TO_POINTER(GHEX_STATUSBAR_OFFSET_DEC));
 
 	g_signal_connect (offsetboth_chkbtn, "toggled",
-			G_CALLBACK(offset_format_set_cb), GINT_TO_POINTER(HEX_WIDGET_STATUS_BAR_OFFSET_HEX | HEX_WIDGET_STATUS_BAR_OFFSET_DEC));
+			G_CALLBACK(offset_format_set_cb), GINT_TO_POINTER(GHEX_STATUSBAR_OFFSET_BOTH));
 
 	/* show offsets checkbutton */
 
@@ -383,7 +388,7 @@ grab_widget_values_from_settings (void)
 	gboolean show_offsets = g_settings_get_boolean (settings, "show-offsets");
 	gboolean display_control_characters = g_settings_get_boolean (settings, "display-control-characters");
 	HexWidgetGroupType group_type = g_settings_get_enum (settings, "group-data-by");
-	HexWidgetStatusBarOffsetFormat statusbar_offset_format = g_settings_get_enum (settings, "statusbar-offset-format");
+	GHexStatusbarOffsetFormat statusbar_offset_format = g_settings_get_enum (settings, "statusbar-offset-format");
 
 	/* font_button */
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
@@ -462,17 +467,17 @@ grab_widget_values_from_settings (void)
 	/* sb_offset_format radio buttons
 	 */
 	switch ((int) statusbar_offset_format) {
-		case HEX_WIDGET_STATUS_BAR_OFFSET_HEX | HEX_WIDGET_STATUS_BAR_OFFSET_DEC:
+		case GHEX_STATUSBAR_OFFSET_BOTH:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(offsetboth_chkbtn),
 					TRUE);
 			break;
 
-		case HEX_WIDGET_STATUS_BAR_OFFSET_HEX:
+		case GHEX_STATUSBAR_OFFSET_HEX:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(offsethex_chkbtn),
 					TRUE);
 			break;
 
-		case HEX_WIDGET_STATUS_BAR_OFFSET_DEC:
+		case GHEX_STATUSBAR_OFFSET_DEC:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(offsetdec_chkbtn),
 					TRUE);
 			break;
