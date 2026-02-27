@@ -2,10 +2,11 @@
 
 #include "ghex-conversion-pane.h"
 #include "ghex-info-bar.h"
+#include "ghex-statusbar.h"
+#include "configuration.h"
+#include "gtkhex-layout-manager.h"
 
 #include "config.h"
-
-/* PROPERTIES */
 
 enum
 {
@@ -27,6 +28,7 @@ struct _GHexViewContainer
 	GHexConversionPane *conversion_pane;
 	GtkToggleButton *conversions_toggle_button;
 	GHexInfoBar *info_bar;
+	GHexStatusbar *statusbar;
 
 	/* These may not all be used but need to be defined anyway so that
 	 * gtk_widget_dispose_template actually cleans up after itself.
@@ -175,6 +177,20 @@ sel_cursor_pos_notify_conversion_pane_cb (GHexViewContainer *self, GParamSpec *p
 }
 
 static void
+bind_settings (GHexViewContainer *self)
+{
+	GSettings *settings = ghex_get_global_settings ();
+
+	g_settings_bind (settings, "font", self->hex, "font", G_SETTINGS_BIND_DEFAULT);
+
+	{
+		HexWidgetLayout *layout_manager = HEX_WIDGET_LAYOUT(gtk_widget_get_layout_manager (GTK_WIDGET(self->hex)));
+
+		g_settings_bind (settings, "group-data-by", layout_manager, "group-type", G_SETTINGS_BIND_DEFAULT);
+	}
+}
+
+static void
 ghex_view_container_init (GHexViewContainer *self)
 {
 	gtk_widget_init_template (GTK_WIDGET (self));
@@ -182,6 +198,8 @@ ghex_view_container_init (GHexViewContainer *self)
 	g_object_bind_property (self->conversions_toggle_button, "active", self->conversions_revealer, "reveal-child", G_BINDING_DEFAULT);
 
 	g_object_bind_property_full (self->conversions_toggle_button, "active", self->conversions_revealer, "transition-type", G_BINDING_SYNC_CREATE, toggle_button_active_revealer_transition_type_transform_to, NULL, NULL, NULL);
+
+	bind_settings (self);
 }
 
 static void
@@ -248,6 +266,7 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, separator);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, conversions_revealer);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, status_box);
+	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, statusbar);
 }
 
 GtkWidget *
