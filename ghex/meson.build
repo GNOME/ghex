@@ -8,14 +8,23 @@ ghex_sources = [
   'ghex-application-window.c',
   'ghex-conversion-pane.c',
   'ghex-info-bar.c',
+  'ghex-statusbar.c',
   'ghex-view-container.c',
-  'hex-statusbar.c',
   'main.c',
   #'mark-dialog.c',
   #'paste-special.c',
   'preferences.c',
   'print.c',
 ]
+
+ghex_enums_headers = [
+  'ghex-statusbar.h',
+]
+
+ghex_enums = gnome.mkenums_simple('ghex-enums',
+  sources: ghex_enums_headers,
+  identifier_prefix: 'GHex',
+)
 
 # define app_id and resource_base_path
 
@@ -94,7 +103,7 @@ ghex_deps = [
 
 ghex = executable(
   meson.project_name(),
-  ghex_sources + ghex_res,
+  [ghex_sources, ghex_res, ghex_enums],
   dependencies: ghex_deps,
   c_args: ghex_c_args,
   install: true
