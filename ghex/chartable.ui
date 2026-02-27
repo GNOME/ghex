@@ -3,7 +3,7 @@
 <!-- vim: ts=2 sw=2 expandtab foldmethod=indent
 -->
 <!--
-   Copyright © 2023 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2023-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -24,12 +24,14 @@
 -->
 
 <interface>
-  <object class="GtkWindow" id="window">
+  <template class="GHexCharTable" parent="GtkWindow">
     <property name="default-width">400</property>
     <property name="default-height">400</property>
+    <property name="destroy-with-parent">true</property>
+    <property name="hide-on-close">true</property>
     <property name="title" translatable="yes">Character table</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="main_box">
         <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <child>
@@ -39,6 +41,7 @@
                 <property name="single-click-activate">false</property>
                 <property name="vexpand">true</property>
                 <property name="hexpand">true</property>
+                <signal name="activate" handler="columnview_activate_cb" object="GHexCharTable" swapped="yes" />
                 <child>
                   <object class="GtkColumnViewColumn" id="ascii_column">
                     <property name="title" translatable="yes">ASCII</property>
@@ -177,17 +180,19 @@
               <object class="GtkButton" id="insert_button">
                 <property name="use-underline">true</property>
                 <property name="label">_Insert Character</property>
+                <signal name="clicked" handler="insert_button_clicked_cb" object="GHexCharTable" swapped="yes" />
               </object>
             </child>
             <child>
               <object class="GtkButton" id="close_button">
                 <property name="use-underline">true</property>
                 <property name="label">_Close</property>
+                <signal name="clicked" handler="gtk_window_close" object="GHexCharTable" swapped="yes" />
               </object>
             </child>
           </object>
         </child>
       </object>
     </child>
-  </object>
+  </template>
 </interface>
