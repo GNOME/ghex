@@ -32,11 +32,9 @@
 
 #include "chartable.h"
 
-#include <config.h>
+#include "util.h"
 
-/* STATIC GLOBALS */
-
-static HexWidget *gh_glob = NULL;
+#include "config.h"
 
 static const char *ascii_non_printable_label[] = {
 	"NUL",
@@ -79,17 +77,17 @@ static const char *ascii_non_printable_label[] = {
 G_DECLARE_FINAL_TYPE (HexChartableValue, hex_chartable_value, HEX, CHARTABLE_VALUE, GObject);
 
 enum {
-  PROP_0,
+  CHARTABLE_VALUE_PROP_0,
   PROP_VALUE,
   PROP_ASCII,
   PROP_HEX,
   PROP_DECIMAL,
   PROP_OCTAL,
   PROP_BINARY,
-  N_PROPS
+  CHARTABLE_VALUE_N_PROPS
 };
 
-static GParamSpec *properties[N_PROPS];
+static GParamSpec *chartable_value_properties[CHARTABLE_VALUE_N_PROPS];
 
 struct _HexChartableValue
 {
@@ -217,15 +215,15 @@ hex_chartable_value_class_init (HexChartableValueClass *klass)
 	gobject_class->get_property = hex_chartable_value_get_property;
 	gobject_class->set_property = hex_chartable_value_set_property;
 
-	properties[PROP_VALUE] = g_param_spec_uchar ("value", NULL, NULL, 0, 255, 0,
+	chartable_value_properties[PROP_VALUE] = g_param_spec_uchar ("value", NULL, NULL, 0, 255, 0,
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT_ONLY);
-	properties[PROP_ASCII] = g_param_spec_string ("ascii", NULL, NULL, NULL, flags);
-	properties[PROP_HEX] = g_param_spec_string ("hex", NULL, NULL, NULL, flags);
-	properties[PROP_DECIMAL] = g_param_spec_string ("decimal", NULL, NULL, NULL, flags);
-	properties[PROP_OCTAL] = g_param_spec_string ("octal", NULL, NULL, NULL, flags);
-	properties[PROP_BINARY] = g_param_spec_string ("binary", NULL, NULL, NULL, flags);
+	chartable_value_properties[PROP_ASCII] = g_param_spec_string ("ascii", NULL, NULL, NULL, flags);
+	chartable_value_properties[PROP_HEX] = g_param_spec_string ("hex", NULL, NULL, NULL, flags);
+	chartable_value_properties[PROP_DECIMAL] = g_param_spec_string ("decimal", NULL, NULL, NULL, flags);
+	chartable_value_properties[PROP_OCTAL] = g_param_spec_string ("octal", NULL, NULL, NULL, flags);
+	chartable_value_properties[PROP_BINARY] = g_param_spec_string ("binary", NULL, NULL, NULL, flags);
 
-	g_object_class_install_properties (gobject_class, N_PROPS, properties);
+	g_object_class_install_properties (gobject_class, CHARTABLE_VALUE_N_PROPS, chartable_value_properties);
 }
 
 static void
@@ -243,33 +241,128 @@ hex_chartable_value_new (guchar val)
 
 /* --- */
 
-static void
-insert_char (guchar byte)
+enum
 {
-	HexDocument *doc = hex_view_get_document (HEX_VIEW(gh_glob));
-	HexSelection *selection = hex_view_get_selection (HEX_VIEW(gh_glob));
-	const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
-	const gboolean insert_mode = hex_view_get_insert_mode (HEX_VIEW(gh_glob));
+	PROP_0,
+	PROP_HEX_VIEW,
+	N_PROPERTIES
+};
 
-	hex_document_set_byte (doc, byte, cursor_pos, insert_mode, TRUE);
-	hex_selection_collapse (selection, cursor_pos + 1);
+static GParamSpec *properties[N_PROPERTIES];
+
+struct _GHexCharTable
+{
+	GtkWindow parent_instance;
+
+	HexView *hex;
+	
+	/* From template */
+	GtkWidget *main_box;
+	GtkWidget *columnview;
+	GtkWidget *insert_button;
+	GtkWidget *close_button;
+};
+
+G_DEFINE_FINAL_TYPE (GHexCharTable, ghex_char_table, GTK_TYPE_WINDOW)
+
+/* can-NULL */
+void
+ghex_char_table_set_hex (GHexCharTable *self, HexView *hex)
+{
+	g_return_if_fail (GHEX_IS_CHAR_TABLE (self));
+	g_return_if_fail (hex == NULL || HEX_IS_VIEW (hex));
+
+	g_clear_object (&self->hex);
+
+	if (hex)
+		self->hex = g_object_ref (hex);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_HEX_VIEW]);
 }
 
+HexView *
+ghex_char_table_get_hex (GHexCharTable *self)
+{
+	g_return_val_if_fail (GHEX_IS_CHAR_TABLE (self), NULL);
+
+	return self->hex;
+}
 
 static void
-columnview_activate_cb (GtkColumnView *columnview,
+ghex_char_table_set_property (GObject *object,
+		guint property_id,
+		const GValue *value,
+		GParamSpec *pspec)
+{
+	GHexCharTable *self = GHEX_CHAR_TABLE(object);
+
+	switch (property_id)
+	{
+		case PROP_HEX_VIEW:
+			ghex_char_table_set_hex (self, g_value_get_object (value));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void
+ghex_char_table_get_property (GObject *object,
+		guint property_id,
+		GValue *value,
+		GParamSpec *pspec)
+{
+	GHexCharTable *self = GHEX_CHAR_TABLE(object);
+
+	switch (property_id)
+	{
+		case PROP_HEX_VIEW:
+			g_value_set_object (value, ghex_char_table_get_hex (self));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void
+insert_char (GHexCharTable *self, guchar byte)
+{
+	if (self->hex)
+	{
+		g_assert (HEX_IS_VIEW (self->hex));
+
+		HexDocument *doc = hex_view_get_document (self->hex);
+		HexSelection *selection = hex_view_get_selection (self->hex);
+		const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
+		const gboolean insert_mode = hex_view_get_insert_mode (self->hex);
+
+		hex_document_set_byte (doc, byte, cursor_pos, insert_mode, TRUE);
+		hex_selection_collapse (selection, cursor_pos + 1);
+	}
+}
+
+static void
+columnview_activate_cb (GHexCharTable *self,
 		guint position,
-		gpointer user_data)
+		GtkColumnView *columnview)
 {
-	insert_char ((guchar)position);
+	g_assert (GHEX_IS_CHAR_TABLE (self));
+
+	insert_char (self, (guchar)position);
 }
 
 static void
-insert_button_clicked_cb (GtkButton *button, GtkColumnView *columnview)
+insert_button_clicked_cb (GHexCharTable *self)
 {
-	GtkSingleSelection *selection = GTK_SINGLE_SELECTION(gtk_column_view_get_model (columnview));
+	g_assert (GHEX_IS_CHAR_TABLE (self));
 
-	insert_char ((guchar)gtk_single_selection_get_selected (selection));
+	GtkSingleSelection *selection = GTK_SINGLE_SELECTION(gtk_column_view_get_model (GTK_COLUMN_VIEW (self->columnview)));
+
+	insert_char (self, (guchar)gtk_single_selection_get_selected (selection));
 }
 
 static void
@@ -287,57 +380,84 @@ setup_columnview (GtkWidget *columnview)
 
 	selection = gtk_single_selection_new (G_LIST_MODEL(store));
 	gtk_column_view_set_model (GTK_COLUMN_VIEW(columnview), GTK_SELECTION_MODEL(selection));
-
-	g_signal_connect (columnview, "activate", G_CALLBACK(columnview_activate_cb), NULL);
 }
 
 static gboolean
-key_press_cb (GtkEventControllerKey *key,
+esc_key_press_cb (GtkEventControllerKey *key,
   guint keyval,
   guint keycode,
   GdkModifierType state,
-  GtkWindow *ct)
+  GHexCharTable *self)
 {
 	if (keyval == GDK_KEY_Escape)
 	{
-		gtk_window_close (ct);
+		gtk_window_close (GTK_WINDOW(self));
 		return GDK_EVENT_STOP;
 	}
 	return GDK_EVENT_PROPAGATE;
 }
 
-
-GtkWidget *
-create_char_table (GtkWindow *parent_win, HexWidget *gh)
+static void
+ghex_char_table_init (GHexCharTable *self)
 {
-	GtkBuilder *builder = gtk_builder_new_from_resource (RESOURCE_BASE_PATH "/chartable.ui");
-	GtkWidget *window = GTK_WIDGET(gtk_builder_get_object (builder, "window"));
-	GtkWidget *columnview = GTK_WIDGET(gtk_builder_get_object (builder, "columnview"));
-	GtkWidget *insert_button = GTK_WIDGET(gtk_builder_get_object (builder, "insert_button"));
-	GtkWidget *close_button = GTK_WIDGET(gtk_builder_get_object (builder, "close_button"));
-	GtkEventController *key;
+	gtk_widget_init_template (GTK_WIDGET(self));
 
-	/* set global HexWidget widget */
-	g_assert (HEX_IS_WIDGET(gh));
-	gh_glob = gh;
+	g_object_bind_property_full (self, "hex", self->main_box, "sensitive", G_BINDING_DEFAULT, util_have_object_transform_to, NULL, NULL, NULL);
 
 	/* Make ESC close the dialog */
-	key = gtk_event_controller_key_new ();
-	gtk_widget_add_controller (window, key);
-	g_signal_connect (key, "key-pressed", G_CALLBACK(key_press_cb), window);
+	{
+		GtkEventController *key = gtk_event_controller_key_new ();
 
-	if (parent_win) {
-		g_assert (GTK_IS_WINDOW (parent_win));
+		gtk_widget_add_controller (GTK_WIDGET(self), key);
 
-		gtk_window_set_transient_for (GTK_WINDOW(window), parent_win);
+		g_signal_connect_object (key, "key-pressed", G_CALLBACK(esc_key_press_cb), self, G_CONNECT_DEFAULT);
 	}
 
-	setup_columnview (columnview);
+	setup_columnview (self->columnview);
+}
 
-	g_signal_connect_swapped (close_button, "clicked", G_CALLBACK(gtk_window_close), window);
-	g_signal_connect (insert_button, "clicked", G_CALLBACK(insert_button_clicked_cb), columnview);
+static void
+ghex_char_table_dispose (GObject *object)
+{
+	GHexCharTable *self = GHEX_CHAR_TABLE(object);
 
-	g_object_unref (builder);
+	gtk_widget_dispose_template (GTK_WIDGET(self), GHEX_TYPE_CHAR_TABLE);
+}
 
-	return window;
+static void
+ghex_char_table_class_init (GHexCharTableClass *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS(klass);
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+	GParamFlags default_flags = G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY;
+
+	object_class->set_property = ghex_char_table_set_property;
+	object_class->get_property = ghex_char_table_get_property;
+	object_class->dispose = ghex_char_table_dispose;
+
+	properties[PROP_HEX_VIEW] = g_param_spec_object ("hex", NULL, NULL,
+			HEX_TYPE_VIEW,
+			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
+
+	gtk_widget_class_set_template_from_resource (widget_class, RESOURCE_BASE_PATH "/chartable.ui");
+
+	gtk_widget_class_bind_template_child (widget_class, GHexCharTable, main_box);
+	gtk_widget_class_bind_template_child (widget_class, GHexCharTable, columnview);
+	gtk_widget_class_bind_template_child (widget_class, GHexCharTable, insert_button);
+	gtk_widget_class_bind_template_child (widget_class, GHexCharTable, close_button);
+
+	gtk_widget_class_bind_template_callback (widget_class, insert_button_clicked_cb);
+	gtk_widget_class_bind_template_callback (widget_class, columnview_activate_cb);
+}
+
+GtkWidget *
+ghex_char_table_new (GtkWindow *parent_win)
+{
+	g_return_val_if_fail (GTK_IS_WINDOW (parent_win), NULL);
+
+	return g_object_new (GHEX_TYPE_CHAR_TABLE,
+			"transient-for", parent_win,
+			NULL);
 }
