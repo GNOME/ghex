@@ -10,7 +10,7 @@
    to maintain the source code under the licensing terms described
    herein and below.
 
-   Copyright © 2021 Logan Rathbone
+   Copyright © 2021-2026 Logan Rathbone
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -30,21 +30,16 @@
    Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef COMMON_UI_H
-#define COMMON_UI_H
+#pragma once
 
+#include <adwaita.h>
 #include "gtkhex.h"
-#include "print.h"
 
 G_BEGIN_DECLS
 
 /* various ui convenience functions */
 
-void common_print (GtkWindow *parent, HexWidget *gh, gboolean preview);
-//void common_set_gtkhex_font_from_settings (HexWidget *gh);
 void ghex_display_dialog (GtkWindow *parent, const char *msg);
 char *common_get_ui_basename (HexDocument *doc);
 
 G_END_DECLS
-
-#endif /* COMMON_UI_H */
