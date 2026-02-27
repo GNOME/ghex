@@ -23,8 +23,7 @@
    Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef GHEX_PRINT_H
-#define GHEX_PRINT_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
@@ -35,46 +34,6 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GHexPrintJobInfo  GHexPrintJobInfo;
-
-struct _GHexPrintJobInfo {
-	GtkPrintOperation *master;
-	GtkPrintContext *pc;
-	GtkPrintSettings *config;
-
-	PangoFontDescription *d_font, *h_font;
-	HexDocument *doc;
-
-	int pages;
-	int range;
-	int page_first;
-	int page_last;
-
-	double header_height;
-	
-	int font_char_width;
-	int font_char_height;
-
-	int  bytes_per_row, rows_per_page;
-	double pad_size;
-	int offset_chars ; /* How many chars are used in the offset window */
-	int gt;            /* group_type */
-	gboolean preview;
-};
-
-/* FUNCTION DECLARATIONS */
-
-void begin_print (GtkPrintOperation *operation,
-                  GtkPrintContext   *context,
-                  gpointer           data);
-void print_page (GtkPrintOperation *operation,
-                 GtkPrintContext   *context,
-                 int               page_nr,
-                 gpointer           data);
-GHexPrintJobInfo *ghex_print_job_info_new (HexDocument *doc,
-		HexWidgetGroupType group_type);
-void ghex_print_job_info_destroy(GHexPrintJobInfo *pji);
+void ghex_print (GtkWindow *parent, HexWidget *gh, gboolean preview);
 
 G_END_DECLS
-
-#endif /* GHEX_PRINT_H */
