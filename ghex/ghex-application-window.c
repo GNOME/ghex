@@ -26,6 +26,7 @@
 #include "util.h"
 #include "configuration.h"
 #include "converter.h"
+#include "chartable.h"
 
 #include "config.h"
 
@@ -47,7 +48,9 @@ struct _GHexApplicationWindow
 	GBinding *save_as_binding;
 
 	GtkWidget *prefs_dialog;
+
 	GHexConverter *converter;
+	GHexCharTable *chartable;
 
 	/* Template widgets */
 
@@ -730,15 +733,19 @@ active_view_notify_cb (GHexApplicationWindow *self)
 	
 	container = ghex_application_window_get_active_view (self);
 
-	/* Set converter's hex to that of container if applicable */
+	/* Set converter and chartable's hex to that of container if applicable */
 
 	if (!container)
+	{
 		ghex_converter_set_hex (self->converter, NULL);
+		ghex_char_table_set_hex (self->chartable, NULL);
+	}
 	else
 	{
 		HexView *view = HEX_VIEW (ghex_view_container_get_hex (container));
 
 		ghex_converter_set_hex (self->converter, view);
+		ghex_char_table_set_hex (self->chartable, view);
 	}
 
 	/* Bind document actions if applicable */
@@ -894,6 +901,15 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
 	{
 		g_autoptr(GPropertyAction) action = g_property_action_new ("converter", self->converter, "visible");
+		g_action_map_add_action (G_ACTION_MAP(self), G_ACTION(action));
+	}
+
+	/* Setup chartable */
+
+	self->chartable = (GHexCharTable *) ghex_char_table_new (GTK_WINDOW(self));
+
+	{
+		g_autoptr(GPropertyAction) action = g_property_action_new ("chartable", self->chartable, "visible");
 		g_action_map_add_action (G_ACTION_MAP(self), G_ACTION(action));
 	}
 
