@@ -89,9 +89,6 @@ init_global_css_provider (void)
 GSettings *
 ghex_get_global_settings (void)
 {
-	if (! global_settings)
-		init_global_settings ();
-
 	g_assert (G_IS_SETTINGS (global_settings));
 
 	return global_settings;
@@ -101,10 +98,14 @@ ghex_get_global_settings (void)
 GtkCssProvider *
 ghex_get_global_css_provider (void)
 {
-	if (! global_provider)
-		init_global_css_provider ();
-
 	g_assert (GTK_IS_CSS_PROVIDER (global_provider));
 
 	return global_provider;
+}
+
+void
+ghex_init_configuration (void)
+{
+	init_global_css_provider ();
+	init_global_settings ();
 }

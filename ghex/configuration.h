@@ -43,6 +43,7 @@ typedef enum {
 	GHEX_DARK_MODE_SYSTEM
 } GHexDarkModeOption;
 
+void ghex_init_configuration (void);
 GSettings * ghex_get_global_settings (void);
 GtkCssProvider * ghex_get_global_css_provider (void);
 
