@@ -25,25 +25,20 @@
    If not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-   Author: Jaka Mocnik <jaka@gnu.org>
+   Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef GHEX_CHARTABLE_H
-#define GHEX_CHARTABLE_H
-
-#include <stdlib.h>
-
-#include <gtk/gtk.h>
-#include <glib/gi18n.h>
+#pragma once
 
 #include "gtkhex.h"
-#include "common-ui.h"
 
 G_BEGIN_DECLS
 
-GtkWidget *create_char_table (GtkWindow *parent_win, /* can-NULL */
-		HexWidget *gh);
+#define GHEX_TYPE_CHAR_TABLE (ghex_char_table_get_type ())
+G_DECLARE_FINAL_TYPE (GHexCharTable, ghex_char_table, GHEX, CHAR_TABLE, GtkWindow)
+
+GtkWidget * ghex_char_table_new (GtkWindow *parent_win);
+void ghex_char_table_set_hex (GHexCharTable *self, HexView *hex);
+HexView *ghex_char_table_get_hex (GHexCharTable *self);
 
 G_END_DECLS
-
-#endif /* GHEX_CHARTABLE_H */
