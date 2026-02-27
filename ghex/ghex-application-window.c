@@ -24,6 +24,7 @@
 #include "preferences.h"
 #include "common-ui.h"
 #include "util.h"
+#include "configuration.h"
 
 #include "config.h"
 
@@ -878,6 +879,14 @@ ghex_application_window_init (GHexApplicationWindow *self)
 	g_signal_connect_object (self->hex_tab_view, "page-attached", G_CALLBACK(tab_view_page_attached_cb), self, G_CONNECT_SWAPPED);
 
 	g_signal_connect_after (self, "notify::active-view", G_CALLBACK(active_view_notify_cb), NULL);
+
+	/* Settings actions */
+
+	{
+		GSettings *settings = ghex_get_global_settings ();
+		g_autoptr(GAction) action = g_settings_create_action (settings, "group-data-by");
+		g_action_map_add_action (G_ACTION_MAP(self), action);
+	}
 
 	/* Setup actions which can use bindings to determine when they should be
 	 * enabled/disabled.*/
