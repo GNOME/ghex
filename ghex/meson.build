@@ -1,5 +1,5 @@
 ghex_sources = [
-  #  'chartable.c',
+  'chartable.c',
   'common-ui.c',
   'configuration.c',
   'converter.c',
