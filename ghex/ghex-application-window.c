@@ -25,6 +25,7 @@
 #include "common-ui.h"
 #include "util.h"
 #include "configuration.h"
+#include "converter.h"
 
 #include "config.h"
 
@@ -46,6 +47,7 @@ struct _GHexApplicationWindow
 	GBinding *save_as_binding;
 
 	GtkWidget *prefs_dialog;
+	GHexConverter *converter;
 
 	/* Template widgets */
 
@@ -656,6 +658,8 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 
 	gtk_widget_class_install_action (widget_class, "win.preferences", NULL, ghex_application_window_preferences_action);
 
+	gtk_widget_class_install_action (widget_class, "win.preferences", NULL, ghex_application_window_preferences_action);
+
 	/* Bindings */
 
 	/* Ctrl+T - new file */
@@ -720,9 +724,25 @@ active_view_notify_cb (GHexApplicationWindow *self)
 {
 	GAction *action;
 	HexDocument *doc;
+	GHexViewContainer *container;
 
 	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
 	
+	container = ghex_application_window_get_active_view (self);
+
+	/* Set converter's hex to that of container if applicable */
+
+	if (!container)
+		ghex_converter_set_hex (self->converter, NULL);
+	else
+	{
+		HexView *view = HEX_VIEW (ghex_view_container_get_hex (container));
+
+		ghex_converter_set_hex (self->converter, view);
+	}
+
+	/* Bind document actions if applicable */
+
 	doc = get_active_doc (self);
 	if (!doc)
 		return;
@@ -867,6 +887,15 @@ static void
 ghex_application_window_init (GHexApplicationWindow *self)
 {
 	gtk_widget_init_template (GTK_WIDGET (self));
+
+	/* Setup converter */
+
+	self->converter = (GHexConverter *) ghex_converter_new (GTK_WINDOW(self));
+
+	{
+		g_autoptr(GPropertyAction) action = g_property_action_new ("converter", self->converter, "visible");
+		g_action_map_add_action (G_ACTION_MAP(self), G_ACTION(action));
+	}
 
 	/* Tab view signals */
 

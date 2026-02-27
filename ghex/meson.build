@@ -2,7 +2,7 @@ ghex_sources = [
   #  'chartable.c',
   'common-ui.c',
   'configuration.c',
-  #'converter.c',
+  'converter.c',
   # 'findreplace.c',
   'ghex-application.c',
   'ghex-application-window.c',

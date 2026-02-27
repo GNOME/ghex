@@ -30,17 +30,17 @@
    Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef GHEX_CONVERTER_H
-#define GHEX_CONVERTER_H
+#pragma once
 
-#include <gtk/gtk.h>
-#include <adwaita.h>
+#include "gtkhex.h"
 
 G_BEGIN_DECLS
 
-GtkWidget *create_converter (GtkWindow *parent_win, /* can-NULL */
-		HexWidget *gh);
+#define GHEX_TYPE_CONVERTER (ghex_converter_get_type ())
+G_DECLARE_FINAL_TYPE (GHexConverter, ghex_converter, GHEX, CONVERTER, GtkWindow)
+
+GtkWidget * ghex_converter_new (GtkWindow *parent_win);
+void ghex_converter_set_hex (GHexConverter *self, HexView *hex);
+HexView * ghex_converter_get_hex (GHexConverter *self);
 
 G_END_DECLS
-
-#endif /* GHEX_CONVERTER_H */
