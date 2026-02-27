@@ -27,6 +27,7 @@
 #include "configuration.h"
 #include "converter.h"
 #include "chartable.h"
+#include "print.h"
 
 #include "config.h"
 
@@ -566,6 +567,40 @@ ghex_application_window_preferences_action (GtkWidget *widget, const char *actio
 	gtk_widget_set_visible (self->prefs_dialog, TRUE);
 }
 
+inline static void
+do_print (GHexApplicationWindow *self, gboolean preview)
+{
+	GHexViewContainer *container = NULL;
+
+	if (container = ghex_application_window_get_active_view (self))
+	{
+		HexWidget *hex = ghex_view_container_get_hex (container);
+
+		ghex_print (GTK_WINDOW(self), hex, preview);
+	}
+}
+
+static void
+ghex_application_window_print_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+	GHexApplicationWindow *self = user_data;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+
+	do_print (self, FALSE);
+}
+
+static void
+ghex_application_window_print_preview_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+	GHexApplicationWindow *self = user_data;
+	GHexViewContainer *container = NULL;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+
+	do_print (self, TRUE);
+}
+
 static void
 close_all_tabs_response_cb (GHexApplicationWindow *self, const char *response, AdwAlertDialog *dialog)
 {
@@ -663,7 +698,7 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 
 	gtk_widget_class_install_action (widget_class, "win.preferences", NULL, ghex_application_window_preferences_action);
 
-	/* Bindings */
+	/* Key Bindings */
 
 	/* Ctrl+T - new file */
 	gtk_widget_class_add_binding_action (widget_class,
@@ -705,7 +740,14 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			GDK_KEY_comma,
 			GDK_CONTROL_MASK,
 			"win.preferences",
-			NULL);	/* no args. */
+			NULL);
+
+	/* Ctrl+P - print */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_p,
+			GDK_CONTROL_MASK,
+			"win.print",
+			NULL);
 
 	/* Template */
 
@@ -940,6 +982,8 @@ ghex_application_window_init (GHexApplicationWindow *self)
 			{"revert", ghex_application_window_revert_action},
 			{"save", ghex_application_window_save_action},
 			{"save-as", ghex_application_window_save_as_action},
+			{"print", ghex_application_window_print_action},
+			{"print-preview", ghex_application_window_print_preview_action},
 		};
 
 		g_action_map_add_action_entries (G_ACTION_MAP(self), entries, G_N_ELEMENTS (entries), self);
@@ -952,6 +996,19 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
 			g_simple_action_set_enabled (action, FALSE);
 		}
+	}
+
+	/* Bind certain actions to whether we have an active document or not */
+	{
+		GAction *action;
+
+		action = g_action_map_lookup_action (G_ACTION_MAP(self), "print");
+
+		g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
+
+		action = g_action_map_lookup_action (G_ACTION_MAP(self), "print-preview");
+
+		g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
 	}
 }
 
