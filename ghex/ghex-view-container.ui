@@ -47,8 +47,11 @@ vim: ts=2 sw=2 expandtab
         <property name="spacing">6</property>
 
         <child>
-          <object class="HexStatusbar" id="statusbar">
+          <object class="GHexStatusbar" id="statusbar">
             <property name="hexpand">true</property>
+            <binding name="selection">
+              <lookup name="selection">hex</lookup>
+            </binding>
           </object>
         </child>
 
