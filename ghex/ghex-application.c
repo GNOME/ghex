@@ -23,7 +23,9 @@
 #include <glib/gi18n.h>
 
 #include "ghex-application.h"
+
 #include "ghex-application-window.h"
+#include "configuration.h"
 
 struct _GHexApplication
 {
@@ -78,6 +80,8 @@ ghex_application_activate (GApplication *app)
 	GtkWindow *window;
 
 	g_assert (GHEX_IS_APPLICATION (app));
+
+	ghex_init_configuration ();
 
 	window = gtk_application_get_active_window (GTK_APPLICATION(app));
 
