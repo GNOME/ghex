@@ -381,6 +381,8 @@ ghex_converter_init (GHexConverter *self)
 	GtkWidget *close_btn;
 	int i;
 
+	gtk_window_set_destroy_with_parent (GTK_WINDOW(self), TRUE);
+
 	g_object_bind_property_full (self, "hex", self, "sensitive", G_BINDING_DEFAULT, util_have_object_transform_to, NULL, NULL, NULL);
 
 	gtk_window_set_title (GTK_WINDOW(self), _("Base Converter"));
