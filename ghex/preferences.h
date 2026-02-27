@@ -30,25 +30,12 @@
    Original Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef GHEX_PREFERENCES_H
-#define GHEX_PREFERENCES_H
+#pragma once
 
-#include <gtk/gtk.h>
 #include <adwaita.h>
-#include <glib/gi18n.h>
-#include <string.h>
-
-#include "gtkhex.h"	/* for HexWidgetGroupType enum */
-#include "hex-statusbar.h"	/* for HexWidgetStatusBarOffsetFormat enum */
-
-#include "configuration.h"
-#include "common-ui.h"
-#include "common-macros.h"
 
 G_BEGIN_DECLS
 
 GtkWidget *	ghex_create_preferences_dialog (GtkWindow *parent);
 
 G_END_DECLS
-
-#endif /* GHEX_PREFERENCES_H */
