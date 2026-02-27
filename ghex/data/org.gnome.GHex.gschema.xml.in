@@ -6,10 +6,10 @@
 		See: https://github.com/mesonbuild/meson/issues/1687
 	-->
 	<enum id="@app_id@.GroupType">
-		<value nick="bytes" value="1"/>
-		<value nick="words" value="2"/>
-		<value nick="longwords" value="4"/>
-		<value nick="quadwords" value="8"/>
+		<value nick="byte" value="1"/>
+		<value nick="word" value="2"/>
+		<value nick="long" value="4"/>
+		<value nick="quad" value="8"/>
 	</enum>
 	<enum id="@app_id@.StatusBarOffsetFormat">
 		<value nick="hex" value="1"/>
@@ -27,7 +27,7 @@
 			<default>'Monospace 12'</default>
 		</key>
 		<key name="group-data-by" enum="@app_id@.GroupType">
-			<default>'bytes'</default>
+			<default>'byte'</default>
 		</key>
 		<key name="statusbar-offset-format" enum="@app_id@.StatusBarOffsetFormat">
 			<default>'hex'</default>
