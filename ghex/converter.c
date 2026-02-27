@@ -58,6 +58,7 @@ struct _GHexConverter
 {
 	GtkWindow parent_instance;
 
+	GtkWidget *grid;
 	HexView *hex;
 	GtkWidget *entry[5];
 	GtkWidget *close;
@@ -237,14 +238,14 @@ conv_entry_cb (GHexConverter *self, GtkEntry *entry)
 #undef CONV_BUFFER_LEN
 
 static GtkWidget *
-create_converter_entry (GHexConverter *self, const gchar *name, GtkWidget *grid, gint pos, gint base)
+create_converter_entry (GHexConverter *self, const gchar *name, gint pos, gint base)
 {
 	GtkWidget *label;
     GtkWidget *entry;
 
 	/* label */
 	label = gtk_label_new_with_mnemonic(name);
-	gtk_grid_attach (GTK_GRID (grid), label, 0, pos, 1, 1);
+	gtk_grid_attach (GTK_GRID(self->grid), label, 0, pos, 1, 1);
 
 	/* entry */
 	entry = gtk_entry_new();
@@ -257,7 +258,7 @@ create_converter_entry (GHexConverter *self, const gchar *name, GtkWidget *grid,
 
 	gtk_label_set_mnemonic_widget(GTK_LABEL(label), entry);
 	gtk_widget_set_hexpand (entry, TRUE);
-	gtk_grid_attach (GTK_GRID (grid), entry, 1, pos, 1, 1);
+	gtk_grid_attach (GTK_GRID(self->grid), entry, 1, pos, 1, 1);
 
 	return entry;
 }
@@ -373,38 +374,59 @@ ghex_converter_class_init (GHexConverterClass *klass)
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 }
 
+static gboolean
+esc_key_press_cb (GtkEventControllerKey *key,
+  guint keyval,
+  guint keycode,
+  GdkModifierType state,
+  GHexConverter *self)
+{
+	if (keyval == GDK_KEY_Escape)
+	{
+		gtk_window_close (GTK_WINDOW(self));
+		return GDK_EVENT_STOP;
+	}
+	return GDK_EVENT_PROPAGATE;
+}
+
 static void
 ghex_converter_init (GHexConverter *self)
 {
-	GtkWidget *grid;
 	GtkWidget *converter_get;
 	GtkWidget *close_btn;
 	int i;
 
 	gtk_window_set_destroy_with_parent (GTK_WINDOW(self), TRUE);
-
-	g_object_bind_property_full (self, "hex", self, "sensitive", G_BINDING_DEFAULT, util_have_object_transform_to, NULL, NULL, NULL);
-
 	gtk_window_set_title (GTK_WINDOW(self), _("Base Converter"));
 	gtk_window_set_hide_on_close (GTK_WINDOW(self), TRUE);
 
-	grid = gtk_grid_new ();
-	gtk_widget_set_name (grid, "converter-grid");
-	gtk_grid_set_row_spacing (GTK_GRID (grid), 4);
-	gtk_grid_set_column_spacing (GTK_GRID (grid), 4);
+	/* Make ESC close the dialog */
+	{
+		GtkEventController *key = gtk_event_controller_key_new ();
+		gtk_widget_add_controller (GTK_WIDGET(self), key);
+		g_signal_connect_object (key, "key-pressed", G_CALLBACK(esc_key_press_cb), self, G_CONNECT_DEFAULT);
+	}
 
-	gtk_window_set_child (GTK_WINDOW(self), grid);
+	self->grid = gtk_grid_new ();
+
+	g_object_bind_property_full (self, "hex", self->grid, "sensitive", G_BINDING_DEFAULT, util_have_object_transform_to, NULL, NULL, NULL);
+
+	gtk_widget_set_name (self->grid, "converter-grid");
+	gtk_grid_set_row_spacing (GTK_GRID(self->grid), 4);
+	gtk_grid_set_column_spacing (GTK_GRID(self->grid), 4);
+
+	gtk_window_set_child (GTK_WINDOW(self), self->grid);
 
 	/* entries */
-	self->entry[0] = create_converter_entry (self, _("_Binary:"), grid,
+	self->entry[0] = create_converter_entry (self, _("_Binary:"),
 											 0, 2);
-	self->entry[1] = create_converter_entry (self, _("_Octal:"), grid,
+	self->entry[1] = create_converter_entry (self, _("_Octal:"),
 											 1, 8);
-	self->entry[2] = create_converter_entry (self, _("_Decimal:"), grid,
+	self->entry[2] = create_converter_entry (self, _("_Decimal:"),
 											 2, 10);
-	self->entry[3] = create_converter_entry (self, _("_Hex:"), grid,
+	self->entry[3] = create_converter_entry (self, _("_Hex:"),
 											 3, 16);
-	self->entry[4] = create_converter_entry (self, _("_ASCII:"), grid,
+	self->entry[4] = create_converter_entry (self, _("_ASCII:"),
 											 4, 0);
 
 	/* get cursor button */
@@ -414,8 +436,8 @@ ghex_converter_init (GHexConverter *self)
 	g_signal_connect_object (converter_get, "clicked", G_CALLBACK(get_cursor_val_cb), self, G_CONNECT_SWAPPED);
 	g_signal_connect_object (close_btn, "clicked", G_CALLBACK(gtk_window_close), self, G_CONNECT_SWAPPED);
 
-	gtk_grid_attach (GTK_GRID (grid), converter_get, 0, 5, 2, 1);
-	gtk_grid_attach (GTK_GRID (grid), close_btn, 0, 6, 2, 1);
+	gtk_grid_attach (GTK_GRID(self->grid), converter_get, 0, 5, 2, 1);
+	gtk_grid_attach (GTK_GRID(self->grid), close_btn, 0, 6, 2, 1);
 
 	gtk_accessible_update_property (GTK_ACCESSIBLE(converter_get),
 			GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
