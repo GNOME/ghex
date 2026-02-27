@@ -160,6 +160,10 @@
         <child type="top">
           <object class="AdwHeaderBar">
 
+            <property name="title-widget">
+              <object class="AdwWindowTitle" id="headerbar_window_title" />
+            </property>
+
             <!-- Headerbar toolbar buttons -->
             <child>
               <object class="GtkButton">

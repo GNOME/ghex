@@ -55,6 +55,7 @@ struct _GHexApplicationWindow
 
 	/* Template widgets */
 
+	AdwWindowTitle *headerbar_window_title;
 	AdwViewStack *stack;
 	AdwTabView *hex_tab_view;
 	GtkBox *tab_view_box;
@@ -753,6 +754,7 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 
 	gtk_widget_class_set_template_from_resource (widget_class, RESOURCE_BASE_PATH "/ghex-application-window.ui");
 
+	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow, headerbar_window_title);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow, stack);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow, hex_tab_view);
 	gtk_widget_class_bind_template_child (widget_class, GHexApplicationWindow, tab_view_box);
@@ -932,10 +934,82 @@ tab_view_create_window_cb (AdwTabView *self, gpointer user_data)
 	return new_win->hex_tab_view;
 }
 
+gboolean
+active_view_title_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer data)
+{
+	GHexViewContainer *container = g_value_get_object (from_value);
+
+	if (!container)
+	{
+		g_value_set_string (to_value, _("GHex"));
+		return TRUE;
+	}
+	else
+	{
+		HexDocument *doc = NULL;
+		GFile *file = NULL;
+
+		g_assert (GHEX_IS_VIEW_CONTAINER (container));
+
+		doc = ghex_view_container_get_document (container);
+		file = hex_document_get_file (doc);
+
+		if (file)
+		{
+			g_value_take_string (to_value, g_file_get_basename (file));
+			return TRUE;
+		}
+		else
+		{
+			g_value_set_string (to_value, _("Untitled"));
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+gboolean
+active_view_subtitle_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer data)
+{
+	GHexViewContainer *container = g_value_get_object (from_value);
+	HexDocument *doc = NULL;
+	GFile *file = NULL;
+
+	if (!container)
+		goto out;
+
+	g_assert (GHEX_IS_VIEW_CONTAINER (container));
+
+	doc = ghex_view_container_get_document (container);
+	file = hex_document_get_file (doc);
+
+	if (file)
+	{
+		g_autoptr(GFile) parent = g_file_get_parent (file);
+
+		if (!parent)
+			return FALSE;
+
+		g_value_take_string (to_value, g_utf8_make_valid (g_file_peek_path (parent), -1));
+
+		return TRUE;
+	}
+
+out:
+	g_value_set_string (to_value, NULL);
+	return TRUE;
+}
+
 static void
 ghex_application_window_init (GHexApplicationWindow *self)
 {
 	gtk_widget_init_template (GTK_WIDGET (self));
+
+	/* Bind title and subtitle via closure */
+
+	g_object_bind_property_full (self, "active-view", self->headerbar_window_title, "title", G_BINDING_SYNC_CREATE, active_view_title_transform_to, NULL, NULL, NULL);
+	g_object_bind_property_full (self, "active-view", self->headerbar_window_title, "subtitle", G_BINDING_SYNC_CREATE, active_view_subtitle_transform_to, NULL, NULL, NULL);
 
 	/* Setup converter */
 
