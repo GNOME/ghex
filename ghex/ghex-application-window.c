@@ -131,6 +131,20 @@ ghex_application_window_get_active_view (GHexApplicationWindow *self)
 	}
 }
 
+/* Wrapper around adw_tab_view_close_page_finish () to also go back to the
+ * no-doc-loaded page if closing the last tab.
+ */
+static void
+close_page_finish_helper (GHexApplicationWindow *self, AdwTabPage *page, gboolean confirm)
+{
+	const int n_pages_before_close = adw_tab_view_get_n_pages (self->hex_tab_view);
+
+	adw_tab_view_close_page_finish (self->hex_tab_view, page, confirm);
+
+	if (confirm && n_pages_before_close == 1)
+		ghex_application_window_set_active_view (self, NULL);
+}
+
 gboolean
 doc_changed_icon_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer data)
 {
@@ -549,9 +563,6 @@ ghex_application_window_close_tab_action (GtkWidget *widget, const char *action_
 		gpointer page = adw_tab_view_get_selected_page (self->hex_tab_view);
 
 		adw_tab_view_close_page (self->hex_tab_view, page);
-
-		if (n_pages == 1)
-			ghex_application_window_set_active_view (self, NULL);
 	}
 }
 
@@ -819,24 +830,29 @@ active_view_notify_cb (GHexApplicationWindow *self)
 static void
 close_doc_response_cb (GHexApplicationWindow *self, const char *response, AdwAlertDialog *dialog)
 {
-	AdwTabPage *page = g_object_get_data (G_OBJECT(self), "target-page");
+	AdwTabPage *page = NULL;
+	gboolean page_should_close = FALSE;
 
 	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+
+	page = g_object_get_data (G_OBJECT(self), "target-page");
 	g_assert (ADW_IS_TAB_PAGE (page));
 
 	if (g_strcmp0 (response, "save") == 0)
 	{
 		gtk_widget_activate_action (GTK_WIDGET(self), "win.save", NULL);
-		adw_tab_view_close_page_finish (self->hex_tab_view, page, TRUE);
+		page_should_close = TRUE;
 	}
 	else if (g_strcmp0 (response, "discard") == 0)
 	{
-		adw_tab_view_close_page_finish (self->hex_tab_view, page, TRUE);
+		page_should_close = TRUE;
 	}
 	else
 	{
-		adw_tab_view_close_page_finish (self->hex_tab_view, page, FALSE);
+		page_should_close = FALSE;
 	}
+
+	close_page_finish_helper (self, page, page_should_close);
 
 	adw_dialog_close (ADW_DIALOG (dialog));
 
@@ -902,9 +918,10 @@ tab_view_close_page_cb (GHexApplicationWindow *self, AdwTabPage *page, AdwTabVie
 	container = GHEX_VIEW_CONTAINER (adw_tab_page_get_child (page));
 	doc = ghex_view_container_get_document (container);
 
+
 	if (!hex_document_get_changed (doc))
 	{
-		adw_tab_view_close_page_finish (tab_view, page, TRUE);
+		close_page_finish_helper (self, page, TRUE);
 		return GDK_EVENT_STOP;
 	}
 	else
