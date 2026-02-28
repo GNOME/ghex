@@ -934,7 +934,7 @@ tab_view_create_window_cb (AdwTabView *self, gpointer user_data)
 	return new_win->hex_tab_view;
 }
 
-gboolean
+static gboolean
 active_view_title_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer data)
 {
 	GHexViewContainer *container = g_value_get_object (from_value);
@@ -969,7 +969,7 @@ active_view_title_transform_to (GBinding *binding, const GValue *from_value, GVa
 	return FALSE;
 }
 
-gboolean
+static gboolean
 active_view_subtitle_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer data)
 {
 	GHexViewContainer *container = g_value_get_object (from_value);
