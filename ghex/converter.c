@@ -266,11 +266,11 @@ create_converter_entry (GHexConverter *self, const gchar *name, gint pos, gint b
 static void
 get_cursor_val_cb (GHexConverter *self, GtkButton *button)
 {
-	guint val, start;
-	guint group_type = 0;
+	guint val;
+	gint64 start, payload;
+	int group_type = 0;
 	HexDocument *doc;
 	HexSelection *selection;
-	gint64 payload;
 	GtkLayoutManager *layout_manager;
 
 	doc = hex_view_get_document (self->hex);
@@ -287,7 +287,7 @@ get_cursor_val_cb (GHexConverter *self, GtkButton *button)
 	val = 0;
 	do {
 		val <<= 8;
-		val |= hex_buffer_get_byte (hex_document_get_buffer (doc), start);
+		val |= (guchar) hex_buffer_get_byte (hex_document_get_buffer (doc), start);
 		start++;
 	} while((start % group_type != 0) &&
 			(start < payload) );
