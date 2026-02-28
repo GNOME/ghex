@@ -1,9 +1,8 @@
-/* vim: colorcolumn=80 ts=4 sw=4
- */
-/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* paste-special.h - Declarations for paste special dialog
+// vim: ts=4 sw=4 breakindent breakindentopt=shift\:4
 
-   Copyright © 2021 Logan Rathbone <poprocks@gmail.com>
+/* ghex-clipboard.h - Declarations for GHex clipboard dialogs
+
+   Copyright © 2021-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -23,26 +22,31 @@
    Original GHex Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#ifndef PASTE_SPECIAL_H
-#define PASTE_SPECIAL_H
-
-#include <gtk/gtk.h>
-#include <glib/gi18n.h>
+#pragma once
 
 #include "gtkhex.h"
-#include "gtkhex-paste-data.h"
-#include "ghex-application-window.h"
-#include "common-ui.h"
-#include "common-macros.h"
 
 G_BEGIN_DECLS
 
-GtkWidget *	create_paste_special_dialog (GHexApplicationWindow *parent,
-		GdkClipboard *clip);
+#define GHEX_TYPE_CLIPBOARD_DIALOG (ghex_clipboard_dialog_get_type ())
+G_DECLARE_DERIVABLE_TYPE (GHexClipboardDialog, ghex_clipboard_dialog, GHEX, CLIPBOARD_DIALOG, GtkWindow)
 
-GtkWidget *	create_copy_special_dialog (GHexApplicationWindow *parent,
-		GdkClipboard *clip);
+struct _GHexClipboardDialogClass
+{
+	GtkWindowClass window;
+};
+
+HexWidget * ghex_clipboard_dialog_get_hex (GHexClipboardDialog *self);
+void ghex_clipboard_dialog_set_hex (GHexClipboardDialog *self, HexWidget *hex);
+
+#define GHEX_TYPE_PASTE_SPECIAL_DIALOG (ghex_paste_special_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (GHexPasteSpecialDialog, ghex_paste_special_dialog, GHEX, PASTE_SPECIAL_DIALOG, GHexClipboardDialog)
+
+GtkWidget * ghex_paste_special_dialog_new (GtkWindow *parent);
+
+#define GHEX_TYPE_COPY_SPECIAL_DIALOG (ghex_copy_special_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (GHexCopySpecialDialog, ghex_copy_special_dialog, GHEX, COPY_SPECIAL_DIALOG, GHexClipboardDialog)
+
+GtkWidget * ghex_copy_special_dialog_new (GtkWindow *parent);
 
 G_END_DECLS
-
-#endif /* PASTE_SPECIAL_H */

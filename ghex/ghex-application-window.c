@@ -21,6 +21,7 @@
 
 #include "ghex-application-window.h"
 
+#include "ghex-clipboard.h"
 #include "preferences.h"
 #include "common-ui.h"
 #include "util.h"
@@ -52,6 +53,9 @@ struct _GHexApplicationWindow
 
 	GHexConverter *converter;
 	GHexCharTable *chartable;
+
+	GHexCopySpecialDialog *copy_special_dialog;
+	GHexPasteSpecialDialog *paste_special_dialog;
 
 	/* Template widgets */
 
@@ -579,6 +583,26 @@ ghex_application_window_preferences_action (GtkWidget *widget, const char *actio
 	gtk_widget_set_visible (self->prefs_dialog, TRUE);
 }
 
+static void
+ghex_application_window_copy_special_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+	GHexApplicationWindow *self = user_data;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+
+	gtk_window_present (GTK_WINDOW(self->copy_special_dialog));
+}
+
+static void
+ghex_application_window_paste_special_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+	GHexApplicationWindow *self = user_data;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+
+	gtk_window_present (GTK_WINDOW(self->paste_special_dialog));
+}
+
 inline static void
 do_print (GHexApplicationWindow *self, gboolean preview)
 {
@@ -708,8 +732,6 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 
 	gtk_widget_class_install_action (widget_class, "win.preferences", NULL, ghex_application_window_preferences_action);
 
-	gtk_widget_class_install_action (widget_class, "win.preferences", NULL, ghex_application_window_preferences_action);
-
 	/* Key Bindings */
 
 	/* Ctrl+T - new file */
@@ -761,6 +783,20 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			"win.print",
 			NULL);
 
+	/* Ctrl+Shift+V - paste special */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_v,
+			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+			"win.paste-special",
+			NULL);
+
+	/* Ctrl+Shift+C - copy special */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_c,
+			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+			"win.copy-special",
+			NULL);
+
 	/* Template */
 
 	gtk_widget_class_set_template_from_resource (widget_class, RESOURCE_BASE_PATH "/ghex-application-window.ui");
@@ -794,6 +830,8 @@ active_view_notify_cb (GHexApplicationWindow *self)
 	{
 		ghex_converter_set_hex (self->converter, NULL);
 		ghex_char_table_set_hex (self->chartable, NULL);
+		ghex_clipboard_dialog_set_hex (GHEX_CLIPBOARD_DIALOG(self->copy_special_dialog), NULL);
+		ghex_clipboard_dialog_set_hex (GHEX_CLIPBOARD_DIALOG(self->paste_special_dialog), NULL);
 	}
 	else
 	{
@@ -801,6 +839,8 @@ active_view_notify_cb (GHexApplicationWindow *self)
 
 		ghex_converter_set_hex (self->converter, view);
 		ghex_char_table_set_hex (self->chartable, view);
+		ghex_clipboard_dialog_set_hex (GHEX_CLIPBOARD_DIALOG(self->copy_special_dialog), HEX_WIDGET(view));
+		ghex_clipboard_dialog_set_hex (GHEX_CLIPBOARD_DIALOG(self->paste_special_dialog), HEX_WIDGET(view));
 	}
 
 	/* Bind document actions if applicable */
@@ -1046,6 +1086,12 @@ ghex_application_window_init (GHexApplicationWindow *self)
 		g_action_map_add_action (G_ACTION_MAP(self), G_ACTION(action));
 	}
 
+	/* Setup clipboard dialogs */
+
+	self->copy_special_dialog = (GHexCopySpecialDialog *) ghex_copy_special_dialog_new (GTK_WINDOW(self));
+
+	self->paste_special_dialog = (GHexPasteSpecialDialog *) ghex_paste_special_dialog_new (GTK_WINDOW(self));
+
 	/* Tab view signals */
 
 	g_signal_connect (self->hex_tab_view, "create-window", G_CALLBACK(tab_view_create_window_cb), NULL);
@@ -1075,6 +1121,8 @@ ghex_application_window_init (GHexApplicationWindow *self)
 			{"save-as", ghex_application_window_save_as_action},
 			{"print", ghex_application_window_print_action},
 			{"print-preview", ghex_application_window_print_preview_action},
+			{"copy-special", ghex_application_window_copy_special_action},
+			{"paste-special", ghex_application_window_paste_special_action},
 		};
 
 		g_action_map_add_action_entries (G_ACTION_MAP(self), entries, G_N_ELEMENTS (entries), self);
@@ -1098,6 +1146,14 @@ ghex_application_window_init (GHexApplicationWindow *self)
 		g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
 
 		action = g_action_map_lookup_action (G_ACTION_MAP(self), "print-preview");
+
+		g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
+
+		action = g_action_map_lookup_action (G_ACTION_MAP(self), "copy-special");
+
+		g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
+
+		action = g_action_map_lookup_action (G_ACTION_MAP(self), "paste-special");
 
 		g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
 	}
