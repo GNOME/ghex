@@ -571,9 +571,9 @@ ghex_application_window_preferences_action (GtkWidget *widget, const char *actio
 inline static void
 do_print (GHexApplicationWindow *self, gboolean preview)
 {
-	GHexViewContainer *container = NULL;
+	GHexViewContainer *container = ghex_application_window_get_active_view (self);
 
-	if (container = ghex_application_window_get_active_view (self))
+	if (container)
 	{
 		HexWidget *hex = ghex_view_container_get_hex (container);
 
