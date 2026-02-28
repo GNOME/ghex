@@ -38,7 +38,7 @@ G_DECLARE_FINAL_TYPE (HexPasteData, hex_paste_data, HEX, PASTE_DATA, GObject)
 
 HexPasteData *	hex_paste_data_new (char *doc_data, int elems);
 char *				hex_paste_data_get_string (HexPasteData *self);
-char *			hex_paste_data_get_doc_data (HexPasteData *self);
+const char *	hex_paste_data_get_doc_data (HexPasteData *self);
 int				hex_paste_data_get_elems (HexPasteData *self);
 
 G_END_DECLS

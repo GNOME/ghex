@@ -102,7 +102,7 @@ hex_paste_data_get_string (HexPasteData *self)
 	return string;
 }
 
-char *
+const char *
 hex_paste_data_get_doc_data (HexPasteData *self)
 {
 	g_return_val_if_fail (self->doc_data, NULL);
