@@ -437,7 +437,7 @@ ghex_char_table_class_init (GHexCharTableClass *klass)
 
 	properties[PROP_HEX_VIEW] = g_param_spec_object ("hex", NULL, NULL,
 			HEX_TYPE_VIEW,
-			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+			default_flags | G_PARAM_READWRITE);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
