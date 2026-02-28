@@ -407,10 +407,17 @@ inline static void
 clipboard_operation_activate_helper (GHexClipboardDialog *self, int operation)
 {
 	GHexClipboardDialogPrivate *priv = ghex_clipboard_dialog_get_instance_private (self);
-	GtkWidget *child = gtk_list_box_row_get_child (gtk_list_box_get_selected_row (priv->listbox));
+	GtkListBoxRow *row;
+	GtkWidget *child;
 
 	if (! priv->hex)
 		return;
+
+	row = gtk_list_box_get_selected_row (priv->listbox);
+	if (!row)
+		return;
+
+	child = gtk_list_box_row_get_child (row);
 
 	if (GHEX_IS_MIME_SUB_TYPE_LABEL (child))
 	{
@@ -657,6 +664,8 @@ populate_paste_special_listbox (GHexClipboardDialog *self)
 			gtk_list_box_append (priv->listbox, label);
 		}
 	}
+
+	gtk_list_box_select_row (priv->listbox, gtk_list_box_get_row_at_index (priv->listbox, 0));
 }
 
 static void
@@ -692,6 +701,8 @@ populate_copy_special_listbox (GHexClipboardDialog *self)
 			gtk_list_box_append (priv->listbox, label);
 		}
 	}
+
+	gtk_list_box_select_row (priv->listbox, gtk_list_box_get_row_at_index (priv->listbox, 0));
 }
 
 /* < GHexClipboardDialog > */
@@ -906,7 +917,7 @@ ghex_clipboard_dialog_class_init (GHexClipboardDialogClass *klass)
 	object_class->dispose = ghex_clipboard_dialog_dispose;
 	object_class->set_property = ghex_clipboard_dialog_set_property;
 	object_class->get_property = ghex_clipboard_dialog_get_property;
-
+	
 	if (! MIME_HASH)
 		init_global_mime_hash ();
 
