@@ -3,7 +3,7 @@
 <!-- vim: ts=2 sw=2 foldmethod=indent
 -->
 <!--
-   Copyright © 2021-2023 Logan Rathbone <poprocks@gmail.com>
+   Copyright © 2021-2026 Logan Rathbone <poprocks@gmail.com>
 
    GHex is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License as
@@ -24,17 +24,19 @@
 -->
 
 <interface>
-	<object class="GtkWindow" id="paste_special_dialog">
-		<property name="title" translatable="yes">Paste Special</property>
+	<template class="GHexClipboardDialog" parent="GtkWindow">
 		<property name="default-width">400</property>
 		<property name="default-height">200</property>
+		<property name="hide-on-close">true</property>
 		<child>
 			<object class="GtkBox" id="main_vbox">
 				<property name="orientation">vertical</property>
 				<child>
-					<object class="GtkListBox" id="paste_special_listbox">
+					<object class="GtkListBox" id="listbox">
 						<property name="hexpand">true</property>
 						<property name="vexpand">true</property>
+						<property name="selection-mode">single</property>
+						<property name="activate-on-single-click">false</property>
 					</object>
 				</child>
 				<child>
@@ -42,9 +44,8 @@
 						<property name="orientation">horizontal</property>
 						<property name="spacing">4</property>
 						<child>
-							<object class="GtkButton" id="paste_button">
+							<object class="GtkButton" id="action_button">
 								<property name="use-underline">true</property>
-								<property name="label" translatable="yes">_Paste</property>
 							</object>
 						</child>
 						<child>
@@ -57,5 +58,5 @@
 				</child>
 			</object>
 		</child>
-	</object>
+	</template>
 </interface>

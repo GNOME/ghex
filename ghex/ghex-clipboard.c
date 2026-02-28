@@ -1,9 +1,8 @@
-/* vim: colorcolumn=80 ts=4 sw=4
- */
-/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* paste-special.c - `Paste special' dialog for GHex
+// vim: ts=4 sw=4 breakindent breakindentopt=shift\:4
 
-   Copyright © 2021-2023 Logan Rathbone <poprocks@gmail.com>
+/* ghex-clipboard.c - Clipboard dialogs for GHex
+
+   Copyright © 2021-2026 Logan Rathbone <poprocks@gmail.com>
    Copyright © 2025 Dilnavas Roshan <dilnavasroshan@gmail.com>
 
    GHex is free software; you can redistribute it and/or
@@ -24,88 +23,113 @@
    Original GHex Author: Jaka Mocnik <jaka@gnu.org>
 */
 
-#include "paste-special.h"
+#include "ghex-clipboard.h"
 
-#include <config.h>
+#include "common-ui.h"
 
-/* DEFINES */
+#include <glib/gi18n.h>
 
-#define PASTE_SPECIAL_RESOURCE		RESOURCE_BASE_PATH "/paste-special.ui"
+#include "config.h"
 
-/* ENUMS AND DATATYPES */
-
-#define HEX_PASTE_ERROR (hex_paste_error_quark ())
-GQuark hex_paste_error_quark (void);
-G_DEFINE_QUARK (hex-paste-error-quark, hex_paste_error)
-
-typedef enum operations {
-	COPY_OPERATION,
-	PASTE_OPERATION
-
-} PasteSpecialOperation;
+#define GHEX_CLIPBOARD_ERROR (ghex_clipboard_error_quark ())
+GQuark ghex_clipboard_error_quark (void);
+G_DEFINE_QUARK (ghex-clipboard-error-quark, ghex_clipboard_error)
 
 typedef enum {
-	HEX_PASTE_ERROR_UNEXPECTED_END,
-	HEX_PASTE_ERROR_INVALID_DIGIT
-
-} HexPasteError;
-
-enum mime_types {
-	NO_MIME,
-	PLAINTEXT_MIME,
-	UTF_PLAINTEXT_MIME,
-	LAST_MIME
-};
+	GHEX_CLIPBOARD_ERROR_UNEXPECTED_END,
+	GHEX_CLIPBOARD_ERROR_INVALID_DIGIT
+} GHexClipboardErrorCode;
 
 typedef enum {
-	NO_SUBTYPE,
-	ASCII_PLAINTEXT,
-	HEX_PLAINTEXT
-} MimeSubType;
+	GHEX_MIME_TYPE_NONE,
+	GHEX_MIME_TYPE_PLAINTEXT,
+	GHEX_MIME_TYPE_UTF_PLAINTEXT,
+	GHEX_MIME_TYPE_LAST
+} GHexMimeType;
+
+typedef enum {
+	GHEX_MIME_SUB_TYPE_NONE,
+	GHEX_MIME_SUB_TYPE_ASCII_PLAINTEXT,
+	GHEX_MIME_SUB_TYPE_HEX_PLAINTEXT,
+} GHexMimeSubType;
 
 typedef struct {
 	char *mime_type;
 	char *pretty_name;
-	MimeSubType sub_type;
-} KnownMimeType;
+	GHexMimeSubType sub_type;
+} GHexKnownMimeSubType;
 
-G_DECLARE_FINAL_TYPE (MimeSubTypeLabel, mime_sub_type_label, MIME_SUB_TYPE, LABEL,
+static GHashTable *MIME_HASH;
+static GSList *KNOWN_MIME[GHEX_MIME_TYPE_LAST];
+
+/* < GHexClipboardDialog > */
+
+enum
+{
+	PROP_0,
+	PROP_HEX,
+	PROP_ACTION_BUTTON_LABEL,
+	PROP_ACTION_NAME,
+	GHEX_CLIPBOARD_DIALOG_N_PROPERTIES
+};
+
+static GParamSpec *ghex_clipboard_dialog_properties[GHEX_CLIPBOARD_DIALOG_N_PROPERTIES];
+
+typedef struct
+{
+	HexWidget *hex;
+	char *action_button_label;
+
+	/* From template */
+	GtkListBox *listbox;
+	GtkWidget *action_button;
+	GtkWidget *cancel_button;
+} GHexClipboardDialogPrivate;
+
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (GHexClipboardDialog, ghex_clipboard_dialog, GTK_TYPE_WINDOW)
+
+/* </ GHexClipboardDialog > */
+
+/* < GHexPasteSpecialDialog > */
+
+struct _GHexPasteSpecialDialog
+{
+	GHexClipboardDialog parent_instance;
+};
+
+G_DEFINE_FINAL_TYPE (GHexPasteSpecialDialog, ghex_paste_special_dialog, GHEX_TYPE_CLIPBOARD_DIALOG)
+
+/* </ GHexPasteSpecialDialog > */
+
+/* < GHexCopySpecialDialog > */
+
+struct _GHexCopySpecialDialog
+{
+	GHexClipboardDialog parent_instance;
+};
+
+G_DEFINE_FINAL_TYPE (GHexCopySpecialDialog, ghex_copy_special_dialog, GHEX_TYPE_CLIPBOARD_DIALOG)
+
+/* </ GHexCopySpecialDialog > */
+
+/* < GHexMimeSubTypeLabel > */
+
+#define GHEX_TYPE_MIME_SUB_TYPE_LABEL (ghex_mime_sub_type_label_get_type ())
+G_DECLARE_FINAL_TYPE (GHexMimeSubTypeLabel, ghex_mime_sub_type_label, GHEX, MIME_SUB_TYPE_LABEL,
 		GtkWidget)
 
-struct _MimeSubTypeLabel {
+struct _GHexMimeSubTypeLabel
+{
 	GtkWidget parent_instance;
 
 	GtkWidget *label;
-	KnownMimeType *known_type;
+	GHexKnownMimeSubType *known_sub_type;
 };
 
-G_DEFINE_TYPE (MimeSubTypeLabel, mime_sub_type_label, GTK_TYPE_WIDGET)
-
-/* PRIVATE FORWARD DECLARATIONS */
-static void destroy_paste_special_dialog (void);
-
-/* STATIC GLOBALS */
-
-static GtkBuilder *builder;
-static GHexApplicationWindow *app_window;
-static GdkClipboard *clipboard;
-static HexPasteData *hex_paste_data;
-static GHashTable *mime_hash;
-static GSList *known_mime[LAST_MIME];
-static GtkWidget *hex_paste_data_label;
-
-/* use GET_WIDGET(X) macro to set these from builder, where
- * X == var name == builder id name. Don't include quotation marks. */
-
-static GtkWidget *paste_special_dialog;
-static GtkWidget *paste_button;
-static GtkWidget *cancel_button;
-static GtkWidget *paste_special_listbox;
-
-/* MimeSubTypeLabel - Constructors and Destructors */
+G_DEFINE_FINAL_TYPE (GHexMimeSubTypeLabel, ghex_mime_sub_type_label, GTK_TYPE_WIDGET)
 
 static void
-mime_sub_type_label_init (MimeSubTypeLabel *self)
+ghex_mime_sub_type_label_init (GHexMimeSubTypeLabel *self)
 {
 	self->label = gtk_label_new (NULL);
 	gtk_widget_set_hexpand (self->label, TRUE);
@@ -114,53 +138,55 @@ mime_sub_type_label_init (MimeSubTypeLabel *self)
 }
 
 static void
-mime_sub_type_label_dispose (GObject *object)
+ghex_mime_sub_type_label_dispose (GObject *object)
 {
-	MimeSubTypeLabel *self = MIME_SUB_TYPE_LABEL (object);
+	GHexMimeSubTypeLabel *self = GHEX_MIME_SUB_TYPE_LABEL (object);
 
 	g_clear_pointer (&self->label, gtk_widget_unparent);
 
-	G_OBJECT_CLASS (mime_sub_type_label_parent_class)->dispose (object);
+	G_OBJECT_CLASS (ghex_mime_sub_type_label_parent_class)->dispose (object);
 }
 
 static void
-mime_sub_type_label_class_init (MimeSubTypeLabelClass *klass)
+ghex_mime_sub_type_label_class_init (GHexMimeSubTypeLabelClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-	object_class->dispose = mime_sub_type_label_dispose;
+	object_class->dispose = ghex_mime_sub_type_label_dispose;
 
 	gtk_widget_class_set_layout_manager_type (widget_class,
 			GTK_TYPE_BOX_LAYOUT);
 }
 
 static GtkWidget *
-mime_sub_type_label_new (KnownMimeType *known_type)
+ghex_mime_sub_type_label_new (GHexKnownMimeSubType *known_sub_type)
 {
-	MimeSubTypeLabel *self = g_object_new (mime_sub_type_label_get_type (),
-			NULL);
+	GHexMimeSubTypeLabel *self;
 
-	g_return_val_if_fail (known_type->pretty_name, NULL);
+	g_return_val_if_fail (known_sub_type != NULL, NULL);
+	g_return_val_if_fail (known_sub_type->pretty_name != NULL, NULL);
 
-	self->known_type = known_type;
-	gtk_label_set_text (GTK_LABEL(self->label), known_type->pretty_name);
+	self = g_object_new (GHEX_TYPE_MIME_SUB_TYPE_LABEL, NULL);
+
+	self->known_sub_type = known_sub_type;
+	gtk_label_set_text (GTK_LABEL(self->label), known_sub_type->pretty_name);
 
 	return GTK_WIDGET(self);
 }
 
-/* PRIVATE FUNCTIONS */
+/* </ GHexMimeSubTypeLabel > */
 
 /* Note - I looked into reusing the hex block formatting code from HexWidget,
  * but honestly, it looks like it'd be more trouble than it's worth.
  */
+/* Transfer: full */
 static char *
-hex_paste_data_to_delimited_hex (void)
+hex_paste_data_to_delimited_hex (HexPasteData *hex_paste_data)
 {
-	GString *buf;
-	char *doc_data = NULL;
+	g_autoptr(GString) buf = NULL;
+	const char *doc_data = NULL;
 	int elems;
-	char *ret_str;
 
 	g_return_val_if_fail (HEX_IS_PASTE_DATA (hex_paste_data), NULL);
 
@@ -175,10 +201,8 @@ hex_paste_data_to_delimited_hex (void)
 		if (i < elems - 1)
 			g_string_append_c (buf, ' ');
 	}
-	ret_str = g_string_free (buf,
-			FALSE);		/* Free the GString container but grab the C-string. */
 
-	return ret_str;
+	return g_steal_pointer (&buf->str);
 }
 
 static int
@@ -193,13 +217,13 @@ to_hex_digit_value (gchar digit)
 }
 
 static GString *
-hex_string_to_bytes (const gchar  *hex_str,
+hex_string_to_bytes (const char   *hex_str,
                      GError      **error)
 {
-	GString *byte_values;
-	gchar value;
-	gchar dig1, dig2;
-	gint dig1_val, dig2_val;
+	g_autoptr(GString) byte_values = NULL;
+	char value;
+	char dig1, dig2;
+	int dig1_val, dig2_val;
 
 	byte_values = g_string_new (NULL);
 	while (*hex_str)
@@ -220,11 +244,11 @@ hex_string_to_bytes (const gchar  *hex_str,
 		{
 			g_debug ("%s: unexpected end of text", __func__);
 			g_set_error (error,
-			             HEX_PASTE_ERROR,
-			             HEX_PASTE_ERROR_UNEXPECTED_END,
+			             GHEX_CLIPBOARD_ERROR,
+			             GHEX_CLIPBOARD_ERROR_UNEXPECTED_END,
 			             _ ("Failed to paste. "
 			                "Unexpected end of text"));
-			goto error;
+			return NULL;
 		}
 
 		dig2 = *hex_str;
@@ -234,11 +258,11 @@ hex_string_to_bytes (const gchar  *hex_str,
 		{
 			g_debug ("%s: invalid hex digit", __func__);
 			g_set_error (error,
-			             HEX_PASTE_ERROR,
-			             HEX_PASTE_ERROR_INVALID_DIGIT,
+			             GHEX_CLIPBOARD_ERROR,
+			             GHEX_CLIPBOARD_ERROR_INVALID_DIGIT,
 			             _ ("Failed to paste. "
 			                "The pasted string contains an invalid hex digit."));
-			goto error;
+			return NULL;
 		}
 
 		value = (dig1_val << 4) + dig2_val;
@@ -247,11 +271,7 @@ hex_string_to_bytes (const gchar  *hex_str,
 		hex_str++;
 	}
 
-	return byte_values;
-
-error:
-	g_string_free (byte_values, TRUE);
-	return NULL;
+	return g_steal_pointer (&byte_values);
 }
 
 static void
@@ -259,35 +279,41 @@ delimited_paste_received_cb (GObject *source_object,
 		GAsyncResult *result,
 		gpointer user_data)
 {
-	HexWidget *gh;
+	GHexClipboardDialog *self = user_data;
+	GdkClipboard *clipboard = (GdkClipboard *) source_object;
+	GHexClipboardDialogPrivate *priv;
 	HexDocument *doc;
 	HexSelection *selection;
-	char *text;
-	GString *buf = NULL;
-	GError *err = NULL; 
+	g_autofree char *text = NULL;
+	g_autoptr(GString) buf = NULL;
+	g_autoptr(GError) error = NULL;
+
+	g_assert (GHEX_IS_CLIPBOARD_DIALOG (self));
+	g_assert (GDK_IS_CLIPBOARD (clipboard));
+
+	priv = ghex_clipboard_dialog_get_instance_private (self);
+	g_assert (HEX_IS_WIDGET (priv->hex));
 
 	/* Get the resulting text of the read operation */
-	text = gdk_clipboard_read_text_finish (GDK_CLIPBOARD(source_object),
+	text = gdk_clipboard_read_text_finish (clipboard,
 			result,
 			NULL);	/* GError */
 
-	buf = hex_string_to_bytes (text, &err);
+	buf = hex_string_to_bytes (text, &error);
 	if (! buf)
 	{
-		g_debug ("%s: Received invalid delimeter string. Returning.",
-				__func__);
-		if (err) {
-			display_dialog (GTK_WINDOW(app_window), err->message);
-			g_error_free (err);
-		}
+		GtkWindow *parent = GTK_WINDOW (gtk_widget_get_root (GTK_WIDGET(priv->hex)));
+
+		g_debug ("%s: Received invalid delimeter string. Returning.", __func__);
+
+		if (parent)
+			ghex_display_dialog (parent, error->message);
+
 		return;
 	}
 
-	gh = ghex_application_window_get_hex (app_window);
-	g_assert (HEX_IS_WIDGET (gh));
-	doc = hex_view_get_document (HEX_VIEW(gh));
-	g_assert (HEX_IS_DOCUMENT (doc));
-	selection = hex_view_get_selection (HEX_VIEW(gh));
+	doc = hex_view_get_document (HEX_VIEW(priv->hex));
+	selection = hex_view_get_selection (HEX_VIEW(priv->hex));
 
 	hex_document_set_data (doc,
 			hex_selection_get_cursor_pos (selection),
@@ -298,167 +324,151 @@ delimited_paste_received_cb (GObject *source_object,
 }
 
 static void
-delimited_hex_paste (void)
+_ghex_clipboard_dialog_delimited_hex_paste (GHexClipboardDialog *self)
 {
-	gdk_clipboard_read_text_async (clipboard,
-			NULL,	/* GCancellable *cancellable */
-			delimited_paste_received_cb,
-			NULL);	/* user_data */
+	GHexClipboardDialogPrivate *priv;
+	GdkClipboard *clipboard;
+
+	g_assert (GHEX_IS_CLIPBOARD_DIALOG (self));
+
+	priv = ghex_clipboard_dialog_get_instance_private (self);
+
+	if (!priv->hex)
+		return;
+
+	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(priv->hex));
+
+	gdk_clipboard_read_text_async (clipboard, NULL, delimited_paste_received_cb, self);
 }
 
 static void
-delimited_hex_copy (void)
+_ghex_clipboard_dialog_delimited_hex_copy (GHexClipboardDialog *self)
 {
-	GdkContentProvider *provider;
-	GValue value = G_VALUE_INIT;
-	GError *error = NULL;
-	gboolean have_hex_paste_data = FALSE;
-	char *hex_str = NULL;
+	GdkContentProvider *provider = NULL;
+	GdkClipboard *clipboard = NULL;
+	g_auto(GValue) value = G_VALUE_INIT;
+	g_autoptr(GError) error = NULL;
+	g_autofree char *hex_str = NULL;
+	gboolean got_val = FALSE;
+	HexPasteData *hex_paste_data = NULL;
+	GHexClipboardDialogPrivate *priv;
+
+	g_assert (GHEX_IS_CLIPBOARD_DIALOG (self));
+
+	priv = ghex_clipboard_dialog_get_instance_private (self);
+
+	if (!priv->hex)
+		return;
+
+	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(priv->hex));
 
 	/* Save selection to clipboard as HexPasteData */
-	hex_widget_copy_to_clipboard (ghex_application_window_get_hex(app_window));
+	hex_widget_copy_to_clipboard (priv->hex);
 
 	provider = gdk_clipboard_get_content (clipboard);
 	g_return_if_fail (GDK_IS_CONTENT_PROVIDER(provider));
 
 	g_value_init (&value, HEX_TYPE_PASTE_DATA);
-	gdk_content_provider_get_value (provider, &value, &error);
+	got_val = gdk_content_provider_get_value (provider, &value, &error);
+	if (!got_val)
+	{
+		g_critical ("%s: Failed to retrieve value from content provider: %s",
+				__func__, error->message);
+		return;
+	}
+
 	hex_paste_data = HEX_PASTE_DATA(g_value_get_object (&value));
 
-	hex_str = hex_paste_data_to_delimited_hex ();
+	hex_str = hex_paste_data_to_delimited_hex (hex_paste_data);
 
 	if (hex_str)
 		gdk_clipboard_set_text (clipboard, hex_str);
 }
 
-static void
+static GtkWidget *
 create_hex_paste_data_label (void)
 {
-	hex_paste_data_label = gtk_label_new (_("GHex Paste Data"));
-	gtk_widget_set_halign (hex_paste_data_label, GTK_ALIGN_START);
-	gtk_widget_set_hexpand (hex_paste_data_label, TRUE);
+	GtkWidget *label = gtk_label_new (_("GHex Paste Data"));
+
+	gtk_widget_set_halign (label, GTK_ALIGN_START);
+	gtk_widget_set_hexpand (label, TRUE);
+
+	g_object_set_data (G_OBJECT(label), "is_hex_paste_data_label", GINT_TO_POINTER(TRUE));
+
+	return label;
 }
 
-static void
-row_activated_cb (GtkListBox *box,
-		GtkListBoxRow *row,
-		gpointer user_data)
+enum {
+	CLIPBOARD_OPERATION_COPY,
+	CLIPBOARD_OPERATION_PASTE
+};
+
+inline static void
+clipboard_operation_activate_helper (GHexClipboardDialog *self, int operation)
 {
-#define STANDARD_PASTE \
-	hex_widget_paste_from_clipboard \
-		(ghex_application_window_get_hex(app_window));
+	GHexClipboardDialogPrivate *priv = ghex_clipboard_dialog_get_instance_private (self);
+	GtkWidget *child = gtk_list_box_row_get_child (gtk_list_box_get_selected_row (priv->listbox));
 
-#define STANDARD_COPY \
-	hex_widget_copy_to_clipboard \
-		(ghex_application_window_get_hex(app_window));
+	if (! priv->hex)
+		return;
 
-	GtkWidget *child = gtk_list_box_row_get_child (row);
-	PasteSpecialOperation operation = GPOINTER_TO_INT (user_data);
-
-	g_return_if_fail (GTK_IS_WIDGET(child));
-
-	if (MIME_SUB_TYPE_IS_LABEL (child))
+	if (GHEX_IS_MIME_SUB_TYPE_LABEL (child))
 	{
-		MimeSubTypeLabel *label = MIME_SUB_TYPE_LABEL(child);
+		GHexMimeSubTypeLabel *label = GHEX_MIME_SUB_TYPE_LABEL(child);
 
-		switch (label->known_type->sub_type)
+		switch (label->known_sub_type->sub_type)
 		{
-			case NO_SUBTYPE:
-				if (operation == COPY_OPERATION) {
-					STANDARD_COPY
-				} else {
-					STANDARD_PASTE
-				}
+			case GHEX_MIME_SUB_TYPE_NONE:
+				if (operation == CLIPBOARD_OPERATION_COPY)
+					hex_widget_copy_to_clipboard (priv->hex);
+				else if (operation == CLIPBOARD_OPERATION_PASTE)
+					hex_widget_paste_from_clipboard (priv->hex);
+				else
+					g_assert_not_reached ();
 				break;
 
-			case ASCII_PLAINTEXT:
-				if (operation == COPY_OPERATION) {
-					STANDARD_COPY
-				} else {
-					STANDARD_PASTE
-				}
+			case GHEX_MIME_SUB_TYPE_ASCII_PLAINTEXT:
+				if (operation == CLIPBOARD_OPERATION_COPY)
+					hex_widget_copy_to_clipboard (priv->hex);
+				else if (operation == CLIPBOARD_OPERATION_PASTE)
+					hex_widget_paste_from_clipboard (priv->hex);
+				else
+					g_assert_not_reached ();
 				break;
 
-			case HEX_PLAINTEXT:
-				if (operation == COPY_OPERATION) {
-					delimited_hex_copy ();
-				} else {
-					delimited_hex_paste ();
-				}
+			case GHEX_MIME_SUB_TYPE_HEX_PLAINTEXT:
+				if (operation == CLIPBOARD_OPERATION_COPY)
+					_ghex_clipboard_dialog_delimited_hex_copy (self);
+				else if (operation == CLIPBOARD_OPERATION_PASTE)
+					_ghex_clipboard_dialog_delimited_hex_paste (self);
+				else
+					g_assert_not_reached ();
 				break;
 
 			default:
-				g_error ("%s: ERROR - INVALID MIME TYPE. "
-						"THIS SHOULDN'T HAPPEN!",
-						__func__);
-				break;
+				g_assert_not_reached ();
 		}
 	}
-	else	/* HexPasteData */
+	else if (g_object_get_data (G_OBJECT(child), "is_hex_paste_data_label"))
 	{
-		if (operation == COPY_OPERATION) {
-			STANDARD_COPY
-		} else {
-			STANDARD_PASTE
-		}
+		if (operation == CLIPBOARD_OPERATION_COPY)
+			hex_widget_copy_to_clipboard (priv->hex);
+		else if (operation == CLIPBOARD_OPERATION_PASTE)
+			hex_widget_paste_from_clipboard (priv->hex);
+		else
+			g_assert_not_reached ();
 	}
-	destroy_paste_special_dialog ();
-}
-#undef STANDARD_PASTE
-#undef STANDARD_COPY
-
-static gboolean
-key_press_cb (GtkEventControllerKey *key,
-		guint keyval,
-		guint keycode,
-		GdkModifierType state,
-		GtkWindow *ct)
-{
-	if (keyval == GDK_KEY_Escape)
-	{
-		destroy_paste_special_dialog ();
-		return GDK_EVENT_STOP;
+	else {
+		g_assert_not_reached ();
 	}
-	return GDK_EVENT_PROPAGATE;
+
+	gtk_window_close (GTK_WINDOW(self));
 }
 
-static void
-common_init_widgets (void)
+static GHexKnownMimeSubType *
+ghex_known_mime_sub_type_new (const char *mime_type, const char *pretty_name, GHexMimeSubType sub_type)
 {
-	GtkEventController *key = gtk_event_controller_key_new ();
-	GET_WIDGET (paste_special_dialog);
-	GET_WIDGET (paste_button);
-	GET_WIDGET (cancel_button);
-	GET_WIDGET (paste_special_listbox);
-
-	gtk_list_box_set_activate_on_single_click (GTK_LIST_BOX(paste_special_listbox),
-			FALSE);
-
-	/* Make ESC close the dialog */
-	gtk_widget_add_controller (paste_special_dialog, key);
-	g_signal_connect (key, "key-pressed", G_CALLBACK(key_press_cb), NULL);
-}
-
-static void
-paste_special_init_widgets (void)
-{
-	common_init_widgets ();
-}
-
-static void
-copy_special_init_widgets (void)
-{
-	common_init_widgets ();
-	gtk_button_set_label (GTK_BUTTON(paste_button), _("_Copy"));
-	gtk_window_set_title (GTK_WINDOW(paste_special_dialog),
-			_("Copy Special"));
-}
-
-static KnownMimeType *
-create_known_mime_sub_type (const char *mime_type, const char *pretty_name,
-		MimeSubType sub_type)
-{
-	KnownMimeType *new_subtype = g_new0 (KnownMimeType, 1);
+	GHexKnownMimeSubType *new_subtype = g_new0 (GHexKnownMimeSubType, 1);
 
 	new_subtype->mime_type = g_strdup (mime_type);
 	new_subtype->pretty_name = g_strdup (pretty_name);
@@ -468,31 +478,26 @@ create_known_mime_sub_type (const char *mime_type, const char *pretty_name,
 }
 
 static void
-known_mime_sub_type_destroy (KnownMimeType *known_type)
+ghex_known_mime_sub_type_destroy (GHexKnownMimeSubType *known_sub_type)
 {
-	if (known_type->mime_type)
-		g_free (known_type->mime_type);
-
-	if (known_type->pretty_name)
-		g_free (known_type->pretty_name);
-
-	g_free (known_type);
+	g_free (known_sub_type->mime_type);
+	g_free (known_sub_type->pretty_name);
+	g_free (known_sub_type);
 }
 
 static void
-known_mime_list_destroy (gpointer data)
+ghex_known_mime_list_destroy (gpointer data)
 {
 	GSList *list = data;
 
-	g_slist_free_full (list,
-			(GDestroyNotify)known_mime_sub_type_destroy);
+	g_slist_free_full (list, (GDestroyNotify) ghex_known_mime_sub_type_destroy);
 }
 
 static guint
 mime_hash_func (gconstpointer key)
 {
 	char *str = g_strdup ((const char *)key);
-	guint hash = NO_MIME;
+	guint hash = GHEX_MIME_TYPE_NONE;
 	char *cp;
 
 	/* strip off parameters. */
@@ -502,11 +507,11 @@ mime_hash_func (gconstpointer key)
 	{
 		const char *utf_str = "charset=utf";
 
-		hash = PLAINTEXT_MIME;
+		hash = GHEX_MIME_TYPE_PLAINTEXT;
 		cp = strtok (NULL, ";");
 
 		if (cp && g_ascii_strncasecmp (cp, utf_str, strlen(utf_str)) == 0)
-			hash = UTF_PLAINTEXT_MIME;
+			hash = GHEX_MIME_TYPE_UTF_PLAINTEXT;
 	}
 	g_free (str);
 	return hash;
@@ -531,23 +536,18 @@ mime_hash_equal (gconstpointer a,
 }
 
 static void
-init_mime_hash (void)
+init_global_mime_hash (void)
 {
-	/* Create mime_hash, clearing any existing */
+	g_assert (MIME_HASH == NULL);
 
-	if (mime_hash) {
-		g_clear_pointer (&mime_hash, g_hash_table_destroy);
-	}
-	g_assert (mime_hash == NULL);
+	g_debug ("GHexClipboardDialogClass: initializing MIME_HASH");
 
-	mime_hash = g_hash_table_new_full (mime_hash_func,
+	MIME_HASH = g_hash_table_new_full (mime_hash_func,
 			mime_hash_equal,
 			g_free,
-			known_mime_list_destroy);
-	g_assert (mime_hash);
+			ghex_known_mime_list_destroy);
 
-	/* PLAINTEXT_MIME */
-#define LIST known_mime[PLAINTEXT_MIME]
+#define LIST KNOWN_MIME[GHEX_MIME_TYPE_PLAINTEXT]
 #define MIME "text/plain"
 
 	/* _destroy will already handle the freeing, but we need to set it to NULL
@@ -555,32 +555,31 @@ init_mime_hash (void)
 	if (LIST)
 		LIST = NULL;
 
-	LIST = g_slist_append (LIST, create_known_mime_sub_type (MIME,
+	LIST = g_slist_append (LIST, ghex_known_mime_sub_type_new (MIME,
 				_("Plain text (as ASCII)"),
-				ASCII_PLAINTEXT));
+				GHEX_MIME_SUB_TYPE_ASCII_PLAINTEXT));
 
-	g_hash_table_insert (mime_hash,
+	g_hash_table_insert (MIME_HASH,
 			g_strdup (MIME),
 			LIST);
 #undef LIST
 #undef MIME
 
-	/* UTF_PLAINTEXT_MIME */
-#define LIST known_mime[UTF_PLAINTEXT_MIME]
+#define LIST KNOWN_MIME[GHEX_MIME_TYPE_UTF_PLAINTEXT]
 #define MIME "text/plain;charset=utf-8"
 
 	if (LIST)
 		LIST = NULL;
 
-	LIST = g_slist_append (LIST, create_known_mime_sub_type (MIME,
+	LIST = g_slist_append (LIST, ghex_known_mime_sub_type_new (MIME,
 				_("Plain text (Unicode)"),
-				NO_SUBTYPE));
+				GHEX_MIME_SUB_TYPE_ASCII_PLAINTEXT));
 
-	LIST = g_slist_append (LIST, create_known_mime_sub_type (MIME,
+	LIST = g_slist_append (LIST, ghex_known_mime_sub_type_new (MIME,
 				_("Plain text (as hex string representing bytes)"),
-				HEX_PLAINTEXT));
+				GHEX_MIME_SUB_TYPE_HEX_PLAINTEXT));
 
-	g_hash_table_insert (mime_hash,
+	g_hash_table_insert (MIME_HASH,
 			g_strdup (MIME),
 			LIST);
 
@@ -589,46 +588,27 @@ init_mime_hash (void)
 }
 
 static void
-paste_button_clicked_cb (GtkButton *btn, gpointer user_data)
+populate_paste_special_listbox (GHexClipboardDialog *self)
 {
-	GtkListBoxRow *row = gtk_list_box_get_selected_row (GTK_LIST_BOX (paste_special_listbox));
-	g_signal_emit_by_name (row, "activate");
-}
-
-static void
-common_setup_signals (void)
-{
-	g_signal_connect (paste_button, "clicked", G_CALLBACK(paste_button_clicked_cb), NULL);
-	g_signal_connect (cancel_button, "clicked", G_CALLBACK(destroy_paste_special_dialog), NULL);
-}
-
-static void
-paste_special_setup_signals (void)
-{
-	common_setup_signals ();
-
-	g_signal_connect (paste_special_listbox, "row-activated",
-			G_CALLBACK(row_activated_cb), GINT_TO_POINTER (PASTE_OPERATION));
-}
-
-static void
-copy_special_setup_signals (void)
-{
-	common_setup_signals ();
-
-	g_signal_connect (paste_special_listbox, "row-activated",
-			G_CALLBACK(row_activated_cb), GINT_TO_POINTER (COPY_OPERATION));
-}
-
-static void
-paste_special_populate_listbox (void)
-{
+	GHexClipboardDialogPrivate *priv = ghex_clipboard_dialog_get_instance_private (self);
+	GdkClipboard *clipboard;
 	GdkContentProvider *provider;
 	GdkContentFormats *formats;
 	GValue value = G_VALUE_INIT;
-	GError *error = NULL;
+	g_autoptr(GError) error = NULL;
 	gboolean have_hex_paste_data = FALSE;
 	const char * const * mime_types;
+
+	g_assert (MIME_HASH != NULL);
+
+	if (! priv->hex)
+		return;
+	if (! gtk_widget_get_visible (GTK_WIDGET(self)))
+		return;
+
+	gtk_list_box_remove_all (priv->listbox);
+
+	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(priv->hex));
 
 	/* Note: this will return NULL if the contents are NOT owned by
 	 * the local process, as opposed to _get_formats */
@@ -643,6 +623,7 @@ paste_special_populate_listbox (void)
 			gdk_content_formats_to_string (formats));
 
 	mime_types = gdk_content_formats_get_mime_types (formats, NULL);
+	g_assert (mime_types != NULL);
 
 	g_value_init (&value, HEX_TYPE_PASTE_DATA);
 	have_hex_paste_data = GDK_IS_CONTENT_PROVIDER (provider) &&
@@ -650,12 +631,9 @@ paste_special_populate_listbox (void)
 
 	if (have_hex_paste_data)
 	{
-		hex_paste_data = HEX_PASTE_DATA(g_value_get_object (&value));
+		GtkWidget *hex_paste_data_label = create_hex_paste_data_label ();
 
-		create_hex_paste_data_label ();
-
-		gtk_list_box_append (GTK_LIST_BOX(paste_special_listbox),
-				hex_paste_data_label);
+		gtk_list_box_append (priv->listbox, hex_paste_data_label);
 	}
 
 	for (int i = 0; mime_types[i] != NULL; ++i)
@@ -665,109 +643,372 @@ paste_special_populate_listbox (void)
 		g_debug ("%s: checking mime_types[%d]: %s",
 				__func__, i, mime_types[i]);
 
-		for (tracer = g_hash_table_lookup (mime_hash, mime_types[i]);
+		for (tracer = g_hash_table_lookup (MIME_HASH, mime_types[i]);
 				tracer != NULL;
 				tracer = tracer->next)
 		{
 			GtkWidget *label;
-			KnownMimeType *type = tracer->data;
+			GHexKnownMimeSubType *known_sub_type = tracer->data;
 
-			g_debug ("%s: MATCH - type->pretty_name: %s",
-					__func__, type->pretty_name);
+			g_debug ("%s: MATCH - known_sub_type->pretty_name: %s",
+					__func__, known_sub_type->pretty_name);
 
-			label = mime_sub_type_label_new (type);
-			gtk_list_box_append (GTK_LIST_BOX(paste_special_listbox), label);
+			label = ghex_mime_sub_type_label_new (known_sub_type);
+			gtk_list_box_append (priv->listbox, label);
 		}
 	}
 }
 
 static void
-copy_special_populate_listbox (void)
+populate_copy_special_listbox (GHexClipboardDialog *self)
 {
-	/* We always give the option to copy to HexPasteData. */
-	create_hex_paste_data_label ();
+	GHexClipboardDialogPrivate *priv = ghex_clipboard_dialog_get_instance_private (self);
+	GtkWidget *hex_paste_data_label;
 
-	gtk_list_box_append (GTK_LIST_BOX(paste_special_listbox),
-			hex_paste_data_label);
+	if (! priv->hex)
+		return;
+	if (! gtk_widget_get_visible (GTK_WIDGET(self)))
+		return;
+
+	gtk_list_box_remove_all (priv->listbox);
+
+	/* We always give the option to copy to HexPasteData. */
+
+	hex_paste_data_label = create_hex_paste_data_label ();
+	gtk_list_box_append (priv->listbox, hex_paste_data_label);
 
 	/* Add a listbox entry for each known mime type. */
-	for (int i = 0; i < LAST_MIME; ++i)
+	for (int i = 0; i < GHEX_MIME_TYPE_LAST; ++i)
 	{
 		GSList *tracer;
 		
-		for (tracer = known_mime[i];
+		for (tracer = KNOWN_MIME[i];
 				tracer != NULL;
 				tracer = tracer->next)
 		{
-			GtkWidget *label;
-			KnownMimeType *type = tracer->data;
+			GHexKnownMimeSubType *known_sub_type = tracer->data;
+			GtkWidget *label = ghex_mime_sub_type_label_new (known_sub_type);
 
-			label = mime_sub_type_label_new (type);
-			gtk_list_box_append (GTK_LIST_BOX(paste_special_listbox), label);
+			gtk_list_box_append (priv->listbox, label);
 		}
 	}
 }
 
+/* < GHexClipboardDialog > */
+
+static const char *
+_ghex_clipboard_dialog_get_action_button_label (GHexClipboardDialog *self)
+{
+	GHexClipboardDialogPrivate *priv;
+
+	g_return_val_if_fail (GHEX_IS_CLIPBOARD_DIALOG (self), NULL);
+
+	priv = ghex_clipboard_dialog_get_instance_private (self);
+
+	return gtk_button_get_label (GTK_BUTTON(priv->action_button));
+}
+
 static void
-destroy_paste_special_dialog (void)
+_ghex_clipboard_dialog_set_action_button_label (GHexClipboardDialog *self, const char *action_button_label)
 {
-	g_return_if_fail (GTK_IS_WINDOW (paste_special_dialog));
+	GHexClipboardDialogPrivate *priv;
 
-	if (builder)
-		g_clear_object (&builder);
+	g_return_if_fail (GHEX_IS_CLIPBOARD_DIALOG (self));
 
-	if (mime_hash)
-		g_clear_pointer (&mime_hash, g_hash_table_destroy);
+	priv = ghex_clipboard_dialog_get_instance_private (self);
 
-	/* This is not refcounted and is just a pure pointer */
-	if (hex_paste_data)
-		hex_paste_data = NULL;
+	if (g_strcmp0 (action_button_label, _ghex_clipboard_dialog_get_action_button_label (self)) != 0)
+	{
+		gtk_button_set_label (GTK_BUTTON(priv->action_button), action_button_label);
 
-	gtk_window_destroy (GTK_WINDOW(paste_special_dialog));
+		g_object_notify_by_pspec (G_OBJECT(self), ghex_clipboard_dialog_properties[PROP_ACTION_BUTTON_LABEL]);
+	}
 }
 
-/* PUBLIC FUNCTIONS */
+static void
+_ghex_clipboard_dialog_set_action_name (GHexClipboardDialog *self, const char *action_name)
+{
+	GHexClipboardDialogPrivate *priv;
+
+	g_return_if_fail (GHEX_IS_CLIPBOARD_DIALOG (self));
+
+	priv = ghex_clipboard_dialog_get_instance_private (self);
+
+	gtk_actionable_set_action_name (GTK_ACTIONABLE(priv->action_button), action_name);
+
+	g_object_notify_by_pspec (G_OBJECT(self), ghex_clipboard_dialog_properties[PROP_ACTION_NAME]);
+}
+
+static const char *
+_ghex_clipboard_dialog_get_action_name (GHexClipboardDialog *self)
+{
+	GHexClipboardDialogPrivate *priv;
+
+	g_return_val_if_fail (GHEX_IS_CLIPBOARD_DIALOG (self), NULL);
+
+	priv = ghex_clipboard_dialog_get_instance_private (self);
+
+	return gtk_actionable_get_action_name (GTK_ACTIONABLE(priv->action_button));
+}
+
+void
+ghex_clipboard_dialog_set_hex (GHexClipboardDialog *self, HexWidget *hex)
+{
+	GHexClipboardDialogPrivate *priv;
+
+	g_return_if_fail (GHEX_IS_CLIPBOARD_DIALOG (self));
+	g_return_if_fail (hex == NULL || HEX_IS_WIDGET (hex));
+
+	priv = ghex_clipboard_dialog_get_instance_private (self);
+
+	g_clear_object (&priv->hex);
+
+	if (hex)
+		priv->hex = g_object_ref (hex);
+
+	g_object_notify_by_pspec (G_OBJECT(self), ghex_clipboard_dialog_properties[PROP_HEX]);
+}
+
+HexWidget *
+ghex_clipboard_dialog_get_hex (GHexClipboardDialog *self)
+{
+	GHexClipboardDialogPrivate *priv;
+
+	g_return_val_if_fail (GHEX_IS_CLIPBOARD_DIALOG (self), NULL);
+
+	priv = ghex_clipboard_dialog_get_instance_private (self);
+
+	return priv->hex;
+}
+
+static void
+ghex_clipboard_dialog_set_property (GObject *object,
+		guint property_id,
+		const GValue *value,
+		GParamSpec *pspec)
+{
+	GHexClipboardDialog *self = GHEX_CLIPBOARD_DIALOG (object);
+
+	switch (property_id)
+	{
+		case PROP_HEX:
+			ghex_clipboard_dialog_set_hex (self, g_value_get_object (value));
+			break;
+
+		case PROP_ACTION_NAME:
+			_ghex_clipboard_dialog_set_action_name (self, g_value_get_string (value));
+			break;
+
+		case PROP_ACTION_BUTTON_LABEL:
+			_ghex_clipboard_dialog_set_action_button_label (self, g_value_get_string (value));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void
+ghex_clipboard_dialog_get_property (GObject *object,
+		guint property_id,
+		GValue *value,
+		GParamSpec *pspec)
+{
+	GHexClipboardDialog *self = GHEX_CLIPBOARD_DIALOG (object);
+
+	switch (property_id)
+	{
+		case PROP_HEX:
+			g_value_set_object (value, ghex_clipboard_dialog_get_hex (self));
+			break;
+
+		case PROP_ACTION_NAME:
+			g_value_set_string (value, _ghex_clipboard_dialog_get_action_name (self));
+			break;
+
+		case PROP_ACTION_BUTTON_LABEL:
+			g_value_set_string (value, _ghex_clipboard_dialog_get_action_button_label (self));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static gboolean
+esc_key_press_cb (GtkEventControllerKey *key,
+		guint keyval,
+		guint keycode,
+		GdkModifierType state,
+		GHexClipboardDialog *self)
+{
+	if (keyval == GDK_KEY_Escape)
+	{
+		gtk_window_close (GTK_WINDOW(self));
+		return GDK_EVENT_STOP;
+	}
+	return GDK_EVENT_PROPAGATE;
+}
+
+static void
+_ghex_clipboard_dialog_activate_action (GHexClipboardDialog *self)
+{
+	GHexClipboardDialogPrivate *priv = ghex_clipboard_dialog_get_instance_private (self);
+	const char *action = _ghex_clipboard_dialog_get_action_name (self);
+
+	gtk_widget_activate_action (GTK_WIDGET(self), action, NULL);
+}
+
+static void
+ghex_clipboard_dialog_init (GHexClipboardDialog *self)
+{
+	GHexClipboardDialogPrivate *priv = ghex_clipboard_dialog_get_instance_private (self);
+
+	gtk_widget_init_template (GTK_WIDGET(self));
+
+	/* Setup signals */
+
+	g_signal_connect_object (priv->action_button, "clicked", G_CALLBACK(_ghex_clipboard_dialog_activate_action), self, G_CONNECT_SWAPPED);
+
+	g_signal_connect_object (priv->listbox, "row-activated", G_CALLBACK(_ghex_clipboard_dialog_activate_action), self, G_CONNECT_SWAPPED);
+
+	g_signal_connect_object (priv->cancel_button, "clicked", G_CALLBACK(gtk_window_close), self, G_CONNECT_SWAPPED);
+
+	/* Make ESC close the dialog */
+	{
+		GtkEventController *key = gtk_event_controller_key_new ();
+
+		gtk_widget_add_controller (GTK_WIDGET(self), key);
+		g_signal_connect_object (key, "key-pressed", G_CALLBACK(esc_key_press_cb), self, G_CONNECT_DEFAULT);
+	}
+}
+
+static void
+ghex_clipboard_dialog_dispose (GObject *object)
+{
+	GHexClipboardDialog *self = GHEX_CLIPBOARD_DIALOG(object);
+	GHexClipboardDialogPrivate *priv = ghex_clipboard_dialog_get_instance_private (self);
+
+	g_clear_object (&priv->hex);
+
+	G_OBJECT_CLASS(ghex_clipboard_dialog_parent_class)->dispose (object);
+}
+
+static void
+ghex_clipboard_dialog_class_init (GHexClipboardDialogClass *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS(klass);
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+	GParamFlags default_flags = G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY;
+
+	object_class->dispose = ghex_clipboard_dialog_dispose;
+	object_class->set_property = ghex_clipboard_dialog_set_property;
+	object_class->get_property = ghex_clipboard_dialog_get_property;
+
+	if (! MIME_HASH)
+		init_global_mime_hash ();
+
+	ghex_clipboard_dialog_properties[PROP_HEX] = g_param_spec_object ("hex", NULL, NULL,
+			HEX_TYPE_WIDGET,
+			default_flags | G_PARAM_READWRITE);
+
+	ghex_clipboard_dialog_properties[PROP_ACTION_NAME] = g_param_spec_string ("action-name", NULL, NULL,
+			NULL,
+			default_flags | G_PARAM_READWRITE);
+
+	ghex_clipboard_dialog_properties[PROP_ACTION_BUTTON_LABEL] = g_param_spec_string ("action-button-label", NULL, NULL,
+			NULL,
+			default_flags | G_PARAM_READWRITE);
+
+	g_object_class_install_properties (object_class, GHEX_CLIPBOARD_DIALOG_N_PROPERTIES, ghex_clipboard_dialog_properties);
+
+	gtk_widget_class_set_template_from_resource (widget_class, RESOURCE_BASE_PATH "/ghex-clipboard-dialog.ui");
+
+	gtk_widget_class_bind_template_child_private (widget_class, GHexClipboardDialog, listbox);
+	gtk_widget_class_bind_template_child_private (widget_class, GHexClipboardDialog, action_button);
+	gtk_widget_class_bind_template_child_private (widget_class, GHexClipboardDialog, cancel_button);
+}
+
+/* < GHexPasteSpecialDialog > */
+
+static void
+ghex_paste_special_dialog_action (GtkWidget *widget, const char *action_name, GVariant *parameter)
+{
+	gpointer self = widget;
+
+	g_assert (GHEX_IS_PASTE_SPECIAL_DIALOG (self));
+
+	clipboard_operation_activate_helper (self, CLIPBOARD_OPERATION_PASTE);
+}
+
+static void
+ghex_paste_special_dialog_init (GHexPasteSpecialDialog *self)
+{
+	gtk_widget_init_template (GTK_WIDGET(self));
+
+	g_signal_connect (self, "notify::visible", G_CALLBACK(populate_paste_special_listbox), NULL);
+}
+
+static void
+ghex_paste_special_dialog_class_init (GHexPasteSpecialDialogClass *klass)
+{
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+
+	gtk_widget_class_install_action (widget_class, "clipboard.paste-special", NULL, ghex_paste_special_dialog_action);
+
+	gtk_widget_class_set_template_from_resource (widget_class, RESOURCE_BASE_PATH "/ghex-paste-special-dialog.ui");
+}
 
 GtkWidget *
-create_paste_special_dialog (GHexApplicationWindow *parent,
-		GdkClipboard *clip)
+ghex_paste_special_dialog_new (GtkWindow *parent)
 {
-	g_return_val_if_fail (GDK_IS_CLIPBOARD (clip), NULL);
-	g_return_val_if_fail (GHEX_IS_APPLICATION_WINDOW (parent), NULL);
+	return g_object_new (GHEX_TYPE_PASTE_SPECIAL_DIALOG,
+			"transient-for", parent,
+			NULL);
+}
 
-	clipboard = clip;
-	app_window = parent;
-	builder = gtk_builder_new_from_resource (PASTE_SPECIAL_RESOURCE);
+/* </ GHexPasteSpecialDialog > */
 
-	init_mime_hash ();
-	paste_special_init_widgets ();
-	paste_special_populate_listbox ();
-	paste_special_setup_signals ();
+/* < GHexCopySpecialDialog > */
 
-	gtk_window_set_transient_for (GTK_WINDOW(paste_special_dialog),
-			GTK_WINDOW(parent));
+static void
+ghex_copy_special_dialog_action (GtkWidget *widget, const char *action_name, GVariant *parameter)
+{
+	gpointer self = widget;
 
-	return paste_special_dialog;
+	g_assert (GHEX_IS_COPY_SPECIAL_DIALOG (self));
+
+	clipboard_operation_activate_helper (self, CLIPBOARD_OPERATION_COPY);
+}
+
+static void
+ghex_copy_special_dialog_init (GHexCopySpecialDialog *self)
+{
+	gtk_widget_init_template (GTK_WIDGET(self));
+
+	g_signal_connect (self, "notify::visible", G_CALLBACK(populate_copy_special_listbox), NULL);
+}
+
+static void
+ghex_copy_special_dialog_class_init (GHexCopySpecialDialogClass *klass)
+{
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+
+	gtk_widget_class_install_action (widget_class, "clipboard.copy-special", NULL, ghex_copy_special_dialog_action);
+
+	gtk_widget_class_set_template_from_resource (widget_class, RESOURCE_BASE_PATH "/ghex-copy-special-dialog.ui");
 }
 
 GtkWidget *
-create_copy_special_dialog (GHexApplicationWindow *parent,
-		GdkClipboard *clip)
+ghex_copy_special_dialog_new (GtkWindow *parent)
 {
-	g_return_val_if_fail (GDK_IS_CLIPBOARD (clip), NULL);
-	g_return_val_if_fail (GHEX_IS_APPLICATION_WINDOW (parent), NULL);
+	g_return_val_if_fail (GTK_IS_WINDOW (parent), NULL);
 
-	clipboard = clip;
-	app_window = parent;
-	builder = gtk_builder_new_from_resource (PASTE_SPECIAL_RESOURCE);
-
-	init_mime_hash ();
-	copy_special_init_widgets ();
-	copy_special_populate_listbox ();
-	copy_special_setup_signals ();
-
-	gtk_window_set_transient_for (GTK_WINDOW(paste_special_dialog),
-			GTK_WINDOW(parent));
-
-	return paste_special_dialog;
+	return g_object_new (GHEX_TYPE_COPY_SPECIAL_DIALOG,
+			"transient-for", parent,
+			NULL);
 }
+
+/* </ GHexCopySpecialDialog > */
