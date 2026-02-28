@@ -666,6 +666,7 @@ populate_paste_special_listbox (GHexClipboardDialog *self)
 	}
 
 	gtk_list_box_select_row (priv->listbox, gtk_list_box_get_row_at_index (priv->listbox, 0));
+	gtk_widget_grab_focus (GTK_WIDGET(gtk_list_box_get_row_at_index (priv->listbox, 0)));
 }
 
 static void
@@ -703,6 +704,7 @@ populate_copy_special_listbox (GHexClipboardDialog *self)
 	}
 
 	gtk_list_box_select_row (priv->listbox, gtk_list_box_get_row_at_index (priv->listbox, 0));
+	gtk_widget_grab_focus (GTK_WIDGET(gtk_list_box_get_row_at_index (priv->listbox, 0)));
 }
 
 /* < GHexClipboardDialog > */
