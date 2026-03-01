@@ -13,8 +13,6 @@ void hex_mark_set_custom_color (HexMark *mark,
 		GdkRGBA *color);
 void hex_mark_get_custom_color (HexMark *mark, GdkRGBA *color);
 gboolean hex_mark_get_have_custom_color (HexMark *mark);
-gint64 hex_mark_get_start_offset (HexMark *mark);
-gint64 hex_mark_get_end_offset (HexMark *mark);
 HexHighlight * hex_mark_get_highlight (HexMark *self);
 
 HexMark *hex_mark_new (void);
