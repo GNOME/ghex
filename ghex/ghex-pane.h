@@ -36,5 +36,6 @@ struct _GHexPaneClass
 GtkWidget *	ghex_pane_new (void);
 void ghex_pane_set_hex (GHexPane *self, HexView *hex);
 HexView * ghex_pane_get_hex (GHexPane *self);
+void ghex_pane_close (GHexPane *self);
 
 G_END_DECLS

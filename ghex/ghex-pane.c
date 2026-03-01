@@ -124,6 +124,9 @@ static void
 ghex_pane_dispose (GObject *object)
 {
 	GHexPane *self = GHEX_PANE(object);
+	GHexPanePrivate *priv = ghex_pane_get_instance_private (self);
+
+	g_clear_object (&priv->hex);
 
 	/* Chain up */
 	G_OBJECT_CLASS(ghex_pane_parent_class)->dispose (object);
@@ -179,4 +182,12 @@ GtkWidget *
 ghex_pane_new (void)
 {
 	return g_object_new (GHEX_TYPE_PANE, NULL);
+}
+
+void
+ghex_pane_close (GHexPane *self)
+{
+	g_return_if_fail (GHEX_IS_PANE (self));
+
+	g_signal_emit (self, signals[CLOSE], 0);
 }

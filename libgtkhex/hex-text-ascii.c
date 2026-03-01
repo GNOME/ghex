@@ -237,7 +237,7 @@ render_highlights__marks (HexTextAscii *self, GtkSnapshot *snapshot, int line_nu
 	{
 		g_autoptr(HexMark) mark = g_list_model_get_item (marks, i);
 
-		render_single_highlight (self, snapshot, line_num, layout, mark->highlight, mark->have_custom_color ? &mark->custom_color : NULL);
+		render_single_highlight (self, snapshot, line_num, layout, mark->highlight, mark->have_custom_color ? &mark->custom_color : &HEX_MARK_DEFAULT_COLOR);
 	}
 }
 
