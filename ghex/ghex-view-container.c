@@ -141,17 +141,6 @@ ghex_view_container_get_property (GObject *object,
 	}
 }
 
-static gboolean
-toggle_button_active_revealer_transition_type_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer user_data)
-{
-	gboolean active = g_value_get_boolean (from_value);
-	GtkRevealerTransitionType transition = active ? GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN : GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP;
-
-	g_value_set_enum (to_value, transition);
-
-	return TRUE;
-}
-
 static void
 sel_cursor_pos_notify_conversion_pane_cb (GHexViewContainer *self, GParamSpec *pspec, HexSelection *selection)
 {
@@ -199,8 +188,6 @@ ghex_view_container_init (GHexViewContainer *self)
 	gtk_widget_init_template (GTK_WIDGET (self));
 
 	g_object_bind_property (self->conversions_toggle_button, "active", self->conversions_revealer, "reveal-child", G_BINDING_DEFAULT);
-
-	g_object_bind_property_full (self->conversions_toggle_button, "active", self->conversions_revealer, "transition-type", G_BINDING_SYNC_CREATE, toggle_button_active_revealer_transition_type_transform_to, NULL, NULL, NULL);
 
 	bind_settings (self);
 }
