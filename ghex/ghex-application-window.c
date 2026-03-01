@@ -1113,6 +1113,14 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
 	self->paste_special_dialog = (GHexPasteSpecialDialog *) ghex_paste_special_dialog_new (GTK_WINDOW(self));
 
+	/* Tab view: Don't trample over Ctrl+Home/End & friends. */
+
+	adw_tab_view_remove_shortcuts (ADW_TAB_VIEW(self->hex_tab_view),
+			ADW_TAB_VIEW_SHORTCUT_CONTROL_END |
+			ADW_TAB_VIEW_SHORTCUT_CONTROL_HOME |
+			ADW_TAB_VIEW_SHORTCUT_CONTROL_SHIFT_END |
+			ADW_TAB_VIEW_SHORTCUT_CONTROL_SHIFT_HOME);
+
 	/* Tab view signals */
 
 	g_signal_connect (self->hex_tab_view, "create-window", G_CALLBACK(tab_view_create_window_cb), NULL);
