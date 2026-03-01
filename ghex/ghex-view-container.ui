@@ -19,6 +19,8 @@ vim: ts=2 sw=2 expandtab
       <object class="GtkRevealer" id="mark_pane_revealer">
         <property name="child">
           <object class="GHexMarkPane" id="mark_pane">
+            <property name="hex">hex</property>
+            <signal name="close" handler="mark_pane_close_cb" object="mark_pane_revealer" swapped="yes" />
           </object>
         </property>
       </object>

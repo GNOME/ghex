@@ -24,4 +24,12 @@ struct _HexMark
 	GdkRGBA custom_color;
 };
 
+#define HEX_MARK_DEFAULT_COLOR \
+	((GdkRGBA){ \
+		.red = 1.0f, \
+		.green = 1.0f, \
+		.blue = 0.0f, \
+		.alpha = 0.5f \
+	})
+
 G_END_DECLS

@@ -93,7 +93,7 @@
             <property name="receives-default">true</property>
             <property name="halign">end</property>
             <property name="hexpand">true</property>
-            <property name="action-name">ghex.mark</property>
+            <property name="action-name">mark-pane.mark</property>
             <accessibility>
               <property name="description" translatable="yes">Set a mark on a byte or range of bytes</property>
             </accessibility>
@@ -105,7 +105,7 @@
             <property name="label" translatable="yes">_Jump</property>
             <property name="use-underline">true</property>
             <property name="halign">end</property>
-            <property name="action-name">ghex.mark</property>
+            <property name="action-name">mark-pane.mark</property>
             <binding name="sensitive">
               <closure type="gboolean" function="sensitive_closure_cb">
                 <closure type="HexMark" function="mark_spin_button_closure_cb">
@@ -124,7 +124,7 @@
             <property name="label" translatable="yes">_Delete</property>
             <property name="use-underline">true</property>
             <property name="halign">end</property>
-            <property name="action-name">ghex.mark</property>
+            <property name="action-name">mark-pane.mark</property>
             <binding name="sensitive">
               <closure type="gboolean" function="sensitive_closure_cb">
                 <closure type="HexMark" function="mark_spin_button_closure_cb">

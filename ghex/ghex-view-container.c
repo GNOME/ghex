@@ -6,6 +6,7 @@
 #include "ghex-statusbar.h"
 #include "configuration.h"
 #include "gtkhex-layout-manager.h"
+#include "util.h"
 
 #include "config.h"
 
@@ -169,6 +170,23 @@ sel_cursor_pos_notify_conversion_pane_cb (GHexViewContainer *self, GParamSpec *p
 }
 
 static void
+scrolled_window_notify_hex (GHexViewContainer *self)
+{
+	GtkWidget *child = gtk_scrolled_window_get_child (GTK_SCROLLED_WINDOW(self->scrolled_window));
+
+	if (child && HEX_IS_VIEW (child))
+	{
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_HEX]);
+	}
+}
+
+static void
+mark_pane_close_cb (GtkRevealer *mark_pane_revealer)
+{
+	gtk_revealer_set_reveal_child (mark_pane_revealer, FALSE);
+}
+
+static void
 bind_settings (GHexViewContainer *self)
 {
 	GSettings *settings = ghex_get_global_settings ();
@@ -183,13 +201,31 @@ bind_settings (GHexViewContainer *self)
 }
 
 static void
+setup_actions (GHexViewContainer *self)
+{
+	g_autoptr(GSimpleActionGroup) actions = g_simple_action_group_new ();
+
+	gtk_widget_insert_action_group (GTK_WIDGET(self), "container", G_ACTION_GROUP(actions));
+
+	/* container.mark-pane */
+	{
+		g_autoptr(GPropertyAction) action = g_property_action_new ("mark-pane", self->mark_pane_revealer, "reveal-child");
+
+		g_action_map_add_action (G_ACTION_MAP(actions), G_ACTION(action));
+	}
+}
+
+static void
 ghex_view_container_init (GHexViewContainer *self)
 {
 	gtk_widget_init_template (GTK_WIDGET (self));
 
 	g_object_bind_property (self->conversions_toggle_button, "active", self->conversions_revealer, "reveal-child", G_BINDING_DEFAULT);
 
+	g_signal_connect_object (self->scrolled_window, "notify::child", G_CALLBACK(scrolled_window_notify_hex), self, G_CONNECT_SWAPPED);
+
 	bind_settings (self);
+	setup_actions (self);
 }
 
 static void
@@ -259,6 +295,8 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, statusbar);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, mark_pane_revealer);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, mark_pane);
+
+	gtk_widget_class_bind_template_callback (widget_class, mark_pane_close_cb);
 }
 
 GtkWidget *

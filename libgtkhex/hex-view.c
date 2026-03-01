@@ -852,6 +852,7 @@ hex_view_init (HexView *self)
  * Returns: (transfer none): A pointer to a [class@Hex.Mark] object, owned by
  * the `HexView`.
  */
+#if 0
 HexMark *
 hex_view_add_mark (HexView *self, gint64 start, gint64 end, GdkRGBA *color)
 {
@@ -873,6 +874,21 @@ hex_view_add_mark (HexView *self, gint64 start, gint64 end, GdkRGBA *color)
 	g_list_store_append (G_LIST_STORE(priv->marks), mark);
 
 	return mark;
+}
+#endif
+
+void
+hex_view_add_mark (HexView *self, HexMark *mark)
+{
+	HexViewPrivate *priv;
+	GListModel *marks;
+
+	g_return_if_fail (HEX_IS_VIEW (self));
+	g_return_if_fail (HEX_IS_MARK (mark));
+
+	priv = hex_view_get_instance_private (self);
+
+	g_list_store_append (G_LIST_STORE(priv->marks), mark);
 }
 
 /**

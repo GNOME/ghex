@@ -180,3 +180,11 @@ ghex_pane_new (void)
 {
 	return g_object_new (GHEX_TYPE_PANE, NULL);
 }
+
+void
+ghex_pane_close (GHexPane *self)
+{
+	g_return_if_fail (GHEX_IS_PANE (self));
+
+	g_signal_emit (self, signals[CLOSE], 0);
+}
