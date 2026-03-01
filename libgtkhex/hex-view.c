@@ -403,6 +403,7 @@ hex_view_set_marks (HexView *self, GListModel *marks)
 	if (marks && g_list_model_get_item_type (marks) == HEX_TYPE_MARK)
 	{
 		priv->marks =  g_object_ref (marks);
+		g_signal_connect_object (priv->marks, "items-changed", G_CALLBACK(gtk_widget_queue_draw), self, G_CONNECT_SWAPPED);
 	}
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_MARKS]);
@@ -734,7 +735,20 @@ hex_view_dispose (GObject *object)
 	HexViewPrivate *priv = hex_view_get_instance_private (self);
 
 	g_clear_object (&priv->selection);
-	g_clear_object (&priv->marks);
+
+	if (priv->marks)
+	{
+		for (guint i = 0; i < g_list_model_get_n_items (priv->marks); ++i)
+		{
+			HexMark *mark = g_list_model_get_item (priv->marks, i);
+
+			g_signal_handlers_disconnect_by_data (mark, self);
+
+			g_object_unref (mark);
+		}
+
+		g_clear_object (&priv->marks);
+	}
 
 	/* Chain up */
 	G_OBJECT_CLASS(hex_view_parent_class)->dispose (object);
@@ -852,6 +866,7 @@ hex_view_init (HexView *self)
  * Returns: (transfer none): A pointer to a [class@Hex.Mark] object, owned by
  * the `HexView`.
  */
+#if 0
 HexMark *
 hex_view_add_mark (HexView *self, gint64 start, gint64 end, GdkRGBA *color)
 {
@@ -874,6 +889,38 @@ hex_view_add_mark (HexView *self, gint64 start, gint64 end, GdkRGBA *color)
 
 	return mark;
 }
+#endif
+
+static void
+custom_color_notify_cb (HexView *self, GParamSpec *pspec, HexMark *mark)
+{
+	HexViewPrivate *priv;
+
+	g_assert (HEX_IS_VIEW (self));
+	g_assert (HEX_IS_MARK (mark));
+
+	priv = hex_view_get_instance_private (self);
+
+	// FIXME - same 'API abuse' comment applies here as with auto_highlights.
+
+	g_list_model_items_changed (priv->marks, 0, 0, 0);
+}
+
+void
+hex_view_add_mark (HexView *self, HexMark *mark)
+{
+	HexViewPrivate *priv;
+	GListModel *marks;
+
+	g_return_if_fail (HEX_IS_VIEW (self));
+	g_return_if_fail (HEX_IS_MARK (mark));
+
+	priv = hex_view_get_instance_private (self);
+
+	g_signal_connect_object (mark, "notify::custom-color", G_CALLBACK(custom_color_notify_cb), self, G_CONNECT_SWAPPED);
+
+	g_list_store_append (G_LIST_STORE(priv->marks), mark);
+}
 
 /**
  * hex_view_delete_mark:
@@ -895,9 +942,9 @@ hex_view_delete_mark (HexView *self, HexMark *mark)
 	if (! g_list_store_find (G_LIST_STORE(priv->marks), mark, &pos))
 		return;
 
-	g_list_store_remove (G_LIST_STORE(priv->marks), pos);
+	g_signal_handlers_disconnect_by_data (mark, self);
 
-	gtk_widget_queue_draw (GTK_WIDGET(self));
+	g_list_store_remove (G_LIST_STORE(priv->marks), pos);
 }
 
 /**

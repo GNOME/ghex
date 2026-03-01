@@ -45,7 +45,8 @@ void hex_view_insert_auto_highlight (HexView *self, HexAutoHighlight *auto_highl
 gboolean hex_view_remove_auto_highlight (HexView *self, HexAutoHighlight *auto_highlight);
 void hex_view_clear_auto_highlights (HexView *self);
 
-HexMark *hex_view_add_mark (HexView *self, gint64 start, gint64 end, GdkRGBA *color);
+//HexMark *hex_view_add_mark (HexView *self, gint64 start, gint64 end, GdkRGBA *color);
+void hex_view_add_mark (HexView *self, HexMark *mark);
 void hex_view_delete_mark (HexView *self, HexMark *mark);
 void hex_view_goto_mark (HexView *self, HexMark *mark);
 
