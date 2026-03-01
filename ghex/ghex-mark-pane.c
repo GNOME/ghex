@@ -287,6 +287,8 @@ mark_action (GtkWidget *widget, const char *action_name, GVariant *parameter)
 	{
 		g_critical ("%s: Invalid action: %s", __func__, mark_action);
 	}
+
+	_ghex_mark_pane_refresh (self);
 }
 
 static void
