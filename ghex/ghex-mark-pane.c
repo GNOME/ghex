@@ -1,39 +1,34 @@
-/* vim: colorcolumn=80 ts=4 sw=4
+// vim: ts=4 sw=4 breakindent breakindentopt=shift\:4
+/* ghex-mark-pane.c
+ *
+ * Copyright © 2023-2026 Logan Rathbone
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * SPDX-License-Identifier: GPL-2.0-or-later
  */
-/* -*- Mode: C; tab-width: 4; indent-tabs-mode: t; c-basic-offset: 4 -*- */
-/* mark-dialog.c - marks dialog
 
-   Copyright © 2023-2026 Logan Rathbone <poprocks@gmail.com>
-
-   GHex is free software; you can redistribute it and/or
-   modify it under the terms of the GNU General Public License as
-   published by the Free Software Foundation; either version 2 of the
-   License, or (at your option) any later version.
-
-   GHex is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with GHex; see the file COPYING.
-   If not, write to the Free Software Foundation, Inc.,
-   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-   Original GHex Author: Jaka Mocnik <jaka@gnu.org>
-*/
-
-#include "mark-dialog.h"
+#include "ghex-mark-pane.h"
 
 #include <glib/gi18n.h>
-#include <config.h>
 
-/* DEFINES */
+#include "config.h"
 
-#define MARK_DIALOG_CSS_NAME "markdialog"
+struct _GHexMarkPane
+{
+	GHexPane parent_instance;
 
-struct _MarkDialog {
-	PaneDialog parent_instance;
+	HexView *hex;
+	
+	/* From template: */
 
 	GtkWidget *box;
 	GtkWidget *spin_button;
@@ -43,13 +38,12 @@ struct _MarkDialog {
 	GtkWidget *goto_mark_button;
 	GtkWidget *delete_mark_button;
 	GtkWidget *close_button;
-	GtkEventController *focus_controller;
 };
 
-G_DEFINE_TYPE (MarkDialog, mark_dialog, PANE_TYPE_DIALOG)
+G_DEFINE_TYPE (GHexMarkPane, ghex_mark_pane, GHEX_TYPE_PANE)
 
 static void
-update_action_targets (MarkDialog *self)
+update_action_targets (GHexMarkPane *self)
 {
 	gtk_actionable_set_action_target (GTK_ACTIONABLE(self->set_mark_button), "(sims)",
 			"set",
@@ -76,16 +70,15 @@ sensitive_closure_cb (GObject *object, HexMark *mark, gpointer user_data)
 static HexMark *
 mark_spin_button_closure_cb (GObject *object, double spin_button_value, gpointer user_data)
 {
-	MarkDialog *self = MARK_DIALOG(object);
-	HexWidget *gh = pane_dialog_get_hex (PANE_DIALOG(self));
+	GHexMarkPane *self = GHEX_MARK_PANE(object);
 	char *key = NULL;
 	HexMark *mark = NULL;
 
-	if (! gh)
+	if (! self->hex)
 		goto out;
 
 	key = g_strdup_printf ("mark%d", (int)spin_button_value);
-	mark = g_object_get_data (G_OBJECT(gh), key);
+	mark = g_object_get_data (G_OBJECT(self->hex), key);
 
 	if (! mark)
 		goto out;
@@ -109,15 +102,18 @@ out:
 static char *
 mark_description_label_closure_cb (GObject *object, HexMark *mark, gpointer user_data)
 {
-	MarkDialog *self = MARK_DIALOG(object);
+	GHexMarkPane *self = GHEX_MARK_PANE(object);
+	HexHighlight *highlight;
 	char *str = NULL;
 	gint64 start, end;
 
 	if (! mark)
 		return NULL;
 
-	start = hex_mark_get_start_offset (mark);
-	end = hex_mark_get_end_offset (mark);
+	highlight = hex_mark_get_highlight (mark);
+
+	start = hex_highlight_get_start_offset (highlight);
+	end = hex_highlight_get_end_offset (highlight);
 
 	/* Translators: this is meant to show a range of hex offset values.
 	 * eg, "0xAA - 0xFF"
@@ -128,11 +124,10 @@ mark_description_label_closure_cb (GObject *object, HexMark *mark, gpointer user
 }
 
 static void
-color_set_cb (MarkDialog *self, GtkColorButton *color_button)
+color_set_cb (GHexMarkPane *self, GtkColorButton *color_button)
 {
 	char *key = g_strdup_printf ("mark%d", gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(self->spin_button)));
-	HexWidget *gh = pane_dialog_get_hex (PANE_DIALOG(self));
-	HexMark *mark = g_object_get_data (G_OBJECT(gh), key);
+	HexMark *mark = g_object_get_data (G_OBJECT(self->hex), key);
 	GdkRGBA color = {0};
 
 	if (!mark)
@@ -150,7 +145,7 @@ out:
 }
 
 static void
-mark_dialog_init (MarkDialog *self)
+ghex_mark_pane_init (GHexMarkPane *self)
 {
 	GtkWidget *widget = GTK_WIDGET(self);
 
@@ -160,51 +155,53 @@ mark_dialog_init (MarkDialog *self)
 
 	g_signal_connect_swapped (self->color_button, "color-set", G_CALLBACK(color_set_cb), self);
 	g_signal_connect_swapped (self->spin_button, "value-changed", G_CALLBACK(update_action_targets), self);
-	g_signal_connect_swapped (self->close_button, "clicked", G_CALLBACK(pane_dialog_close), self);
+//	g_signal_connect_swapped (self->close_button, "clicked", G_CALLBACK(ghex_mark_pane_close), self);
 }
 
 static void
-mark_dialog_dispose (GObject *object)
+ghex_mark_pane_dispose (GObject *object)
 {
-	MarkDialog *self = MARK_DIALOG(object);
+	GHexMarkPane *self = GHEX_MARK_PANE(object);
 
 	g_clear_pointer (&self->box, gtk_widget_unparent);
 
 	/* Chain up */
-	G_OBJECT_CLASS(mark_dialog_parent_class)->dispose (object);
+	G_OBJECT_CLASS(ghex_mark_pane_parent_class)->dispose (object);
 }
 
 static void
-mark_dialog_class_init (MarkDialogClass *klass)
+ghex_mark_pane_class_init (GHexMarkPaneClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 
-	object_class->dispose = mark_dialog_dispose;
+	object_class->dispose = ghex_mark_pane_dispose;
 
-	gtk_widget_class_set_css_name (widget_class, MARK_DIALOG_CSS_NAME);
+	gtk_widget_class_set_css_name (widget_class, "markpane");
 
 	/* Setup template */
 
 	gtk_widget_class_set_template_from_resource (widget_class,
-			RESOURCE_BASE_PATH "/mark-dialog.ui");
-	gtk_widget_class_bind_template_child (widget_class, MarkDialog, box);
-	gtk_widget_class_bind_template_child (widget_class, MarkDialog, spin_button);
-	gtk_widget_class_bind_template_child (widget_class, MarkDialog, color_button);
-	gtk_widget_class_bind_template_child (widget_class, MarkDialog, mark_description_label);
-	gtk_widget_class_bind_template_child (widget_class, MarkDialog, set_mark_button);
-	gtk_widget_class_bind_template_child (widget_class, MarkDialog, goto_mark_button);
-	gtk_widget_class_bind_template_child (widget_class, MarkDialog, delete_mark_button);
-	gtk_widget_class_bind_template_child (widget_class, MarkDialog, close_button);
+			RESOURCE_BASE_PATH "/ghex-mark-pane.ui");
+
+	gtk_widget_class_bind_template_child (widget_class, GHexMarkPane, box);
+	gtk_widget_class_bind_template_child (widget_class, GHexMarkPane, spin_button);
+	gtk_widget_class_bind_template_child (widget_class, GHexMarkPane, color_button);
+	gtk_widget_class_bind_template_child (widget_class, GHexMarkPane, mark_description_label);
+	gtk_widget_class_bind_template_child (widget_class, GHexMarkPane, set_mark_button);
+	gtk_widget_class_bind_template_child (widget_class, GHexMarkPane, goto_mark_button);
+	gtk_widget_class_bind_template_child (widget_class, GHexMarkPane, delete_mark_button);
+	gtk_widget_class_bind_template_child (widget_class, GHexMarkPane, close_button);
+
 	gtk_widget_class_bind_template_callback (widget_class, sensitive_closure_cb);
 	gtk_widget_class_bind_template_callback (widget_class, mark_spin_button_closure_cb);
 	gtk_widget_class_bind_template_callback (widget_class, mark_description_label_closure_cb);
 }
 
 void
-mark_dialog_refresh (MarkDialog *self)
+ghex_mark_pane_refresh (GHexMarkPane *self)
 {
-	g_return_if_fail (MARK_IS_DIALOG (self));
+	g_return_if_fail (GHEX_IS_MARK_PANE (self));
 
 	/* This is kind of lame, but since we've bound our spin button's value to
 	 * updating sensitivity, etc., there are times we want things to react as
@@ -215,9 +212,9 @@ mark_dialog_refresh (MarkDialog *self)
 }
 
 void
-mark_dialog_activate_mark_num (MarkDialog *self, int mark_num)
+ghex_mark_pane_activate_mark_num (GHexMarkPane *self, int mark_num)
 {
-	g_return_if_fail (MARK_IS_DIALOG (self));
+	g_return_if_fail (GHEX_IS_MARK_PANE (self));
 
 	if (mark_num < 0 || mark_num > 9) {
 		g_warning ("%s: Programmer error: invalid mark number", __func__);
@@ -228,7 +225,7 @@ mark_dialog_activate_mark_num (MarkDialog *self, int mark_num)
 }
 
 GtkWidget *
-mark_dialog_new (void)
+ghex_mark_pane_new (void)
 {
-	return g_object_new (MARK_TYPE_DIALOG, NULL);
+	return g_object_new (GHEX_TYPE_MARK_PANE, NULL);
 }

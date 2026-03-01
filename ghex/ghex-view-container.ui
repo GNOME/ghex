@@ -16,6 +16,15 @@ vim: ts=2 sw=2 expandtab
     </child>
 
     <child>
+      <object class="GtkRevealer" id="mark_pane_revealer">
+        <property name="child">
+          <object class="GHexMarkPane" id="mark_pane">
+          </object>
+        </property>
+      </object>
+    </child>
+
+    <child>
       <object class="GtkScrolledWindow" id="scrolled_window">
         <property name="vexpand">true</property>
         <property name="hexpand">true</property>

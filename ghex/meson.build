@@ -9,10 +9,11 @@ ghex_sources = [
   'ghex-clipboard.c',
   'ghex-conversion-pane.c',
   'ghex-info-bar.c',
+  'ghex-mark-pane.c',
+  'ghex-pane.c',
   'ghex-statusbar.c',
   'ghex-view-container.c',
   'main.c',
-  #'mark-dialog.c',
   'preferences.c',
   'print.c',
 ]

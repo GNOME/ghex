@@ -1,6 +1,7 @@
 #include "ghex-view-container.h"
 
 #include "ghex-conversion-pane.h"
+#include "ghex-mark-pane.h"
 #include "ghex-info-bar.h"
 #include "ghex-statusbar.h"
 #include "configuration.h"
@@ -25,6 +26,7 @@ struct _GHexViewContainer
 	/* From template: */
 
 	HexWidget *hex;
+	GHexMarkPane *mark_pane;
 	GHexConversionPane *conversion_pane;
 	GtkToggleButton *conversions_toggle_button;
 	GHexInfoBar *info_bar;
@@ -37,6 +39,7 @@ struct _GHexViewContainer
 	GtkWidget *separator;
 	GtkWidget *conversions_revealer;
 	GtkWidget *status_box;
+	GtkWidget *mark_pane_revealer;
 };
 
 G_DEFINE_TYPE (GHexViewContainer, ghex_view_container, GTK_TYPE_WIDGET)
@@ -267,6 +270,8 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, conversions_revealer);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, status_box);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, statusbar);
+	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, mark_pane_revealer);
+	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, mark_pane);
 }
 
 GtkWidget *

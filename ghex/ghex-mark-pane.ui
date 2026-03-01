@@ -1,161 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- vim: ts=2 sw=2
+<!-- vim: ts=2 sw=2 expandtab
 -->
 <!--
-  Copyright © 2023 Logan Rathbone <poprocks@gmail.com>
+  Copyright © 2023-2026 Logan Rathbone <poprocks@gmail.com>
 
-	GHex is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License as
-	published by the Free Software Foundation; either version 2 of the
-	License, or (at your option) any later version.
+  GHex is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 2 of the
+  License, or (at your option) any later version.
 
-	GHex is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	General Public License for more details.
+  GHex is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with GHex; see the file COPYING.
-	If not, write to the Free Software Foundation, Inc.,
-	51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-	Original GHex Author: Jaka Mocnik <jaka@gnu.org>
+  Original GHex Author: Jaka Mocnik <jaka@gnu.org>
 -->
 
 <interface>
-	<template class="MarkDialog" parent="PaneDialog">
+  <template class="GHexMarkPane" parent="GHexPane">
 
-		<child>
-			<object class="GtkBox" id="box">
-				<property name="orientation">horizontal</property>
-				<property name="spacing">12</property>
+    <child>
+      <object class="GtkBox" id="box">
+        <property name="orientation">horizontal</property>
+        <property name="spacing">12</property>
 
-				<child>
-					<object class="GtkLabel" id="label">
-						<property name="label" translatable="yes">Mark:</property>
-					</object>
-				</child>
+        <child>
+          <object class="GtkLabel" id="label">
+            <property name="label" translatable="yes">Mark:</property>
+          </object>
+        </child>
 
-				<child>
-					<object class="GtkSpinButton" id="spin_button">
-						<property name="adjustment">
-							<object class="GtkAdjustment">
-								<property name="lower">0.0</property>
-								<property name="upper">9.0</property>
-								<property name="step-increment">1.0</property>
-							</object>
-						</property>
-						<accessibility>
-							<property name="description" translatable="yes">Select the desired mark to set, jump to, or delete</property>
-						</accessibility>
-					</object>
-				</child>
+        <child>
+          <object class="GtkSpinButton" id="spin_button">
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="lower">0.0</property>
+                <property name="upper">9.0</property>
+                <property name="step-increment">1.0</property>
+              </object>
+            </property>
+            <accessibility>
+              <property name="description" translatable="yes">Select the desired mark to set, jump to, or delete</property>
+            </accessibility>
+          </object>
+        </child>
 
-				<child>
-					<object class="GtkColorButton" id="color_button">
-						<property name="use-alpha">false</property>
-						<property name="tooltip-text" translatable="yes">Optional custom color for the mark</property>
-						<binding name="sensitive">
-							<closure type="gboolean" function="sensitive_closure_cb">
-								<closure type="HexMark" function="mark_spin_button_closure_cb">
-									<lookup name="value">spin_button</lookup>
-								</closure>
-							</closure>
-						</binding>
-						<binding name="rgba">
-							<lookup name="custom-color">
-								<closure type="HexMark" function="mark_spin_button_closure_cb">
-									<lookup name="value">spin_button</lookup>
-								</closure>
-							</lookup>
-						</binding>
-						<accessibility>
-							<property name="description" translatable="yes">Pick a custom color for the mark, if desired.</property>
-						</accessibility>
-					</object>
-				</child>
+        <child>
+          <object class="GtkColorButton" id="color_button">
+            <property name="use-alpha">false</property>
+            <property name="tooltip-text" translatable="yes">Optional custom color for the mark</property>
+            <binding name="sensitive">
+              <closure type="gboolean" function="sensitive_closure_cb">
+                <closure type="HexMark" function="mark_spin_button_closure_cb">
+                  <lookup name="value">spin_button</lookup>
+                </closure>
+              </closure>
+            </binding>
+            <binding name="rgba">
+              <lookup name="custom-color">
+                <closure type="HexMark" function="mark_spin_button_closure_cb">
+                  <lookup name="value">spin_button</lookup>
+                </closure>
+              </lookup>
+            </binding>
+            <accessibility>
+              <property name="description" translatable="yes">Pick a custom color for the mark, if desired.</property>
+            </accessibility>
+          </object>
+        </child>
 
-				<child>
-					<object class="GtkLabel" id="mark_description_label">
-						<property name="hexpand">true</property>
-						<property name="use-markup">true</property>
-						<property name="name">mark-description-label</property>
-						<binding name="label">
-							<closure type="gchararray" function="mark_description_label_closure_cb">
-								<closure type="HexMark" function="mark_spin_button_closure_cb">
-									<lookup name="value">spin_button</lookup>
-								</closure>
-							</closure>
-						</binding>
-					</object>
-				</child>
+        <child>
+          <object class="GtkLabel" id="mark_description_label">
+            <property name="hexpand">true</property>
+            <property name="use-markup">true</property>
+            <property name="name">mark-description-label</property>
+            <binding name="label">
+              <closure type="gchararray" function="mark_description_label_closure_cb">
+                <closure type="HexMark" function="mark_spin_button_closure_cb">
+                  <lookup name="value">spin_button</lookup>
+                </closure>
+              </closure>
+            </binding>
+          </object>
+        </child>
 
-				<child>
-					<object class="GtkButton" id="set_mark_button">
-						<property name="label" translatable="yes">_Set</property>
-						<property name="use-underline">true</property>
-						<property name="receives-default">true</property>
-						<property name="halign">end</property>
-						<property name="hexpand">true</property>
-						<property name="action-name">ghex.mark</property>
-						<accessibility>
-							<property name="description" translatable="yes">Set a mark on a byte or range of bytes</property>
-						</accessibility>
-					</object>
-				</child>
+        <child>
+          <object class="GtkButton" id="set_mark_button">
+            <property name="label" translatable="yes">_Set</property>
+            <property name="use-underline">true</property>
+            <property name="receives-default">true</property>
+            <property name="halign">end</property>
+            <property name="hexpand">true</property>
+            <property name="action-name">ghex.mark</property>
+            <accessibility>
+              <property name="description" translatable="yes">Set a mark on a byte or range of bytes</property>
+            </accessibility>
+          </object>
+        </child>
 
-				<child>
-					<object class="GtkButton" id="goto_mark_button">
-						<property name="label" translatable="yes">_Jump</property>
-						<property name="use-underline">true</property>
-						<property name="halign">end</property>
-						<property name="action-name">ghex.mark</property>
-						<binding name="sensitive">
-							<closure type="gboolean" function="sensitive_closure_cb">
-								<closure type="HexMark" function="mark_spin_button_closure_cb">
-									<lookup name="value">spin_button</lookup>
-								</closure>
-							</closure>
-						</binding>
-						<accessibility>
-							<property name="description" translatable="yes">Bring the cursor to the specified mark</property>
-						</accessibility>
-					</object>
-				</child>
+        <child>
+          <object class="GtkButton" id="goto_mark_button">
+            <property name="label" translatable="yes">_Jump</property>
+            <property name="use-underline">true</property>
+            <property name="halign">end</property>
+            <property name="action-name">ghex.mark</property>
+            <binding name="sensitive">
+              <closure type="gboolean" function="sensitive_closure_cb">
+                <closure type="HexMark" function="mark_spin_button_closure_cb">
+                  <lookup name="value">spin_button</lookup>
+                </closure>
+              </closure>
+            </binding>
+            <accessibility>
+              <property name="description" translatable="yes">Bring the cursor to the specified mark</property>
+            </accessibility>
+          </object>
+        </child>
 
-				<child>
-					<object class="GtkButton" id="delete_mark_button">
-						<property name="label" translatable="yes">_Delete</property>
-						<property name="use-underline">true</property>
-						<property name="halign">end</property>
-						<property name="action-name">ghex.mark</property>
-						<binding name="sensitive">
-							<closure type="gboolean" function="sensitive_closure_cb">
-								<closure type="HexMark" function="mark_spin_button_closure_cb">
-									<lookup name="value">spin_button</lookup>
-								</closure>
-							</closure>
-						</binding>
-						<accessibility>
-							<property name="description" translatable="yes">Delete the specified mark</property>
-						</accessibility>
-					</object>
-				</child>
+        <child>
+          <object class="GtkButton" id="delete_mark_button">
+            <property name="label" translatable="yes">_Delete</property>
+            <property name="use-underline">true</property>
+            <property name="halign">end</property>
+            <property name="action-name">ghex.mark</property>
+            <binding name="sensitive">
+              <closure type="gboolean" function="sensitive_closure_cb">
+                <closure type="HexMark" function="mark_spin_button_closure_cb">
+                  <lookup name="value">spin_button</lookup>
+                </closure>
+              </closure>
+            </binding>
+            <accessibility>
+              <property name="description" translatable="yes">Delete the specified mark</property>
+            </accessibility>
+          </object>
+        </child>
 
-				<child>
-					<object class="GtkButton" id="close_button">
-						<property name="icon-name">window-close-symbolic</property>
-						<property name="halign">end</property>
-						<property name="has-frame">false</property>
-						<accessibility>
-							<property name="label" translatable="yes">Close</property>
-							<property name="description" translatable="yes">Closes the marks pane</property>
-						</accessibility>
-					</object>
-				</child>
+        <child>
+          <object class="GtkButton" id="close_button">
+            <property name="icon-name">window-close-symbolic</property>
+            <property name="halign">end</property>
+            <property name="has-frame">false</property>
+            <accessibility>
+              <property name="label" translatable="yes">Close</property>
+              <property name="description" translatable="yes">Closes the marks pane</property>
+            </accessibility>
+          </object>
+        </child>
 
-			</object>
-		</child>
-	</template>
+      </object>
+    </child>
+  </template>
 </interface>
