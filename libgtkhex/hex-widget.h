@@ -23,5 +23,11 @@ void hex_widget_set_cpl (HexWidget *self, int cpl);
 int hex_widget_get_cpl (HexWidget *self);
 HexTextHex *hex_widget_get_hex_display (HexWidget *self);
 HexTextAscii *hex_widget_get_ascii_display (HexWidget *self);
+void hex_widget_set_show_offsets (HexWidget *self, gboolean show);
+gboolean hex_widget_get_show_offsets (HexWidget *self);
+void hex_widget_set_show_hex (HexWidget *self, gboolean show);
+gboolean hex_widget_get_show_hex (HexWidget *self);
+void hex_widget_set_show_ascii (HexWidget *self, gboolean show);
+gboolean hex_widget_get_show_ascii (HexWidget *self);
 
 G_END_DECLS
