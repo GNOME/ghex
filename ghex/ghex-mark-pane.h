@@ -29,6 +29,7 @@ G_DECLARE_FINAL_TYPE (GHexMarkPane, ghex_mark_pane, GHEX, MARK_PANE, GHexPane)
 /* PUBLIC METHOD DECLARATIONS */
 
 GtkWidget * ghex_mark_pane_new (void);
-void ghex_mark_pane_activate_mark_num (GHexMarkPane *self, int mark_num);
+void ghex_mark_pane_set_mark_num (GHexMarkPane *self, int mark_num);
+int ghex_mark_pane_get_mark_num (GHexMarkPane *self);
 
 G_END_DECLS
