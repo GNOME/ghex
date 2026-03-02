@@ -22,6 +22,15 @@
 
 #include "config.h"
 
+enum
+{
+	PROP_0,
+	PROP_MARK_NUM,
+	N_PROPERTIES
+};
+
+static GParamSpec *properties[N_PROPERTIES];
+
 struct _GHexMarkPane
 {
 	GHexPane parent_instance;
@@ -291,6 +300,67 @@ mark_action (GtkWidget *widget, const char *action_name, GVariant *parameter)
 	_ghex_mark_pane_refresh (self);
 }
 
+void
+ghex_mark_pane_set_mark_num (GHexMarkPane *self, int mark_num)
+{
+	GParamSpecInt *pspec_int = G_PARAM_SPEC_INT(properties[PROP_MARK_NUM]);
+
+	g_return_if_fail (GHEX_IS_MARK_PANE (self));
+	g_return_if_fail (mark_num <= pspec_int->maximum && mark_num >= pspec_int->minimum);
+
+	gtk_spin_button_set_value (GTK_SPIN_BUTTON(self->spin_button), mark_num);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_MARK_NUM]);
+}
+
+int
+ghex_mark_pane_get_mark_num (GHexMarkPane *self)
+{
+	g_return_val_if_fail (GHEX_IS_MARK_PANE (self), 0);
+
+	return gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(self->spin_button));
+}
+
+static void
+ghex_mark_pane_set_property (GObject *object,
+		guint property_id,
+		const GValue *value,
+		GParamSpec *pspec)
+{
+	GHexMarkPane *self = GHEX_MARK_PANE(object);
+
+	switch (property_id)
+	{
+		case PROP_MARK_NUM:
+			ghex_mark_pane_set_mark_num (self, g_value_get_int (value));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void
+ghex_mark_pane_get_property (GObject *object,
+		guint property_id,
+		GValue *value,
+		GParamSpec *pspec)
+{
+	GHexMarkPane *self = GHEX_MARK_PANE(object);
+
+	switch (property_id)
+	{
+		case PROP_MARK_NUM:
+			g_value_set_int (value, ghex_mark_pane_get_mark_num (self));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
 static void
 ghex_mark_pane_init (GHexMarkPane *self)
 {
@@ -329,10 +399,21 @@ ghex_mark_pane_class_init (GHexMarkPaneClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 	GHexPaneClass *pane_class = GHEX_PANE_CLASS(klass);
+	GParamFlags default_flags = G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY;
 
 	object_class->dispose = ghex_mark_pane_dispose;
+	object_class->set_property = ghex_mark_pane_set_property;
+	object_class->get_property = ghex_mark_pane_get_property;
 
 	gtk_widget_class_set_css_name (widget_class, "markpane");
+
+	/* Properties */
+
+	properties[PROP_MARK_NUM] = g_param_spec_int ("mark-num", NULL, NULL,
+			0, 9, 0,
+			default_flags | G_PARAM_READWRITE);
+
+	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
 	/* Actions */
 
@@ -357,19 +438,6 @@ ghex_mark_pane_class_init (GHexMarkPaneClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, sensitive_closure_cb);
 	gtk_widget_class_bind_template_callback (widget_class, mark_spin_button_closure_cb);
 	gtk_widget_class_bind_template_callback (widget_class, mark_description_label_closure_cb);
-}
-
-void
-ghex_mark_pane_activate_mark_num (GHexMarkPane *self, int mark_num)
-{
-	g_return_if_fail (GHEX_IS_MARK_PANE (self));
-
-	if (mark_num < 0 || mark_num > 9) {
-		g_warning ("%s: Programmer error: invalid mark number", __func__);
-		return;
-	}
-
-	gtk_spin_button_set_value (GTK_SPIN_BUTTON(self->spin_button), mark_num);
 }
 
 GtkWidget *

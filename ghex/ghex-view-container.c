@@ -32,6 +32,7 @@ struct _GHexViewContainer
 	GtkToggleButton *conversions_toggle_button;
 	GHexInfoBar *info_bar;
 	GHexStatusbar *statusbar;
+	GtkRevealer *mark_pane_revealer;
 
 	/* These may not all be used but need to be defined anyway so that
 	 * gtk_widget_dispose_template actually cleans up after itself.
@@ -40,7 +41,6 @@ struct _GHexViewContainer
 	GtkWidget *separator;
 	GtkWidget *conversions_revealer;
 	GtkWidget *status_box;
-	GtkWidget *mark_pane_revealer;
 };
 
 G_DEFINE_TYPE (GHexViewContainer, ghex_view_container, GTK_TYPE_WIDGET)
@@ -140,6 +140,23 @@ ghex_view_container_get_property (GObject *object,
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
 	}
+}
+
+static void
+activate_mark_action (GtkWidget *widget,
+		const char *action_name,
+		GVariant *parameter)
+{
+	GHexViewContainer *self = (GHexViewContainer *) widget;
+
+	g_assert (GHEX_IS_VIEW_CONTAINER (self));
+
+	if (! gtk_revealer_get_child_revealed (self->mark_pane_revealer))
+		return;
+
+	const int mark_num = g_variant_get_int32 (parameter);
+
+	ghex_mark_pane_set_mark_num (self->mark_pane, mark_num);
 }
 
 static void
@@ -279,6 +296,138 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 			default_flags | G_PARAM_READWRITE);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
+
+	/* Actions (where bindings not required) */
+
+	gtk_widget_class_install_action (widget_class, "container.activate-mark", "i", activate_mark_action);
+
+	/* < auto-generated activate-mark bindings > */
+
+	/* r! ghex/generate-mark-bindings.sh
+	 */
+
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_0,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			0);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_0,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			0);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_1,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			1);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_1,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			1);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_2,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			2);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_2,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			2);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_3,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			3);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_3,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			3);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_4,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			4);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_4,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			4);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_5,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			5);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_5,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			5);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_6,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			6);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_6,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			6);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_7,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			7);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_7,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			7);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_8,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			8);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_8,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			8);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_9,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			9);
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_KP_9,
+			GDK_CONTROL_MASK,
+			"container.activate-mark",
+			"i",
+			9);
+
+	/* </ auto-generated activate-mark bindings > */
 
 	/* Template */
 
