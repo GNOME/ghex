@@ -22,6 +22,9 @@ enum
 	PROP_NUM_LINES,
 	PROP_CAN_UNDO,
 	PROP_CAN_REDO,
+	PROP_SHOW_OFFSETS,
+	PROP_SHOW_HEX,
+	PROP_SHOW_ASCII,
 	N_PROPERTIES
 };
 
@@ -551,6 +554,63 @@ hex_widget_get_can_redo (HexWidget *self)
 	return self->can_redo;
 }
 
+void
+hex_widget_set_show_offsets (HexWidget *self, gboolean show)
+{
+	g_return_if_fail (HEX_IS_WIDGET (self));
+
+	if (show != hex_widget_get_show_offsets (self))
+		gtk_widget_set_visible (self->offsets, show);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_SHOW_OFFSETS]);
+}
+
+gboolean
+hex_widget_get_show_offsets (HexWidget *self)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), TRUE);
+
+	return gtk_widget_get_visible (self->offsets);
+}
+
+void
+hex_widget_set_show_hex (HexWidget *self, gboolean show)
+{
+	g_return_if_fail (HEX_IS_WIDGET (self));
+
+	if (show != hex_widget_get_show_hex (self))
+		gtk_widget_set_visible (self->xdisp, show);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_SHOW_HEX]);
+}
+
+gboolean
+hex_widget_get_show_hex (HexWidget *self)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), TRUE);
+
+	return gtk_widget_get_visible (self->xdisp);
+}
+
+void
+hex_widget_set_show_ascii (HexWidget *self, gboolean show)
+{
+	g_return_if_fail (HEX_IS_WIDGET (self));
+
+	if (show != hex_widget_get_show_ascii (self))
+		gtk_widget_set_visible (self->adisp, show);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_SHOW_ASCII]);
+}
+
+gboolean
+hex_widget_get_show_ascii (HexWidget *self)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), TRUE);
+
+	return gtk_widget_get_visible (self->adisp);
+}
+
 static void
 hex_widget_set_property (GObject *object,
 		guint property_id,
@@ -567,6 +627,18 @@ hex_widget_set_property (GObject *object,
 
 		case PROP_CAN_REDO:
 			hex_widget_set_can_redo (self, g_value_get_boolean (value));
+			break;
+
+		case PROP_SHOW_OFFSETS:
+			hex_widget_set_show_offsets (self, g_value_get_boolean (value));
+			break;
+
+		case PROP_SHOW_HEX:
+			hex_widget_set_show_hex (self, g_value_get_boolean (value));
+			break;
+
+		case PROP_SHOW_ASCII:
+			hex_widget_set_show_ascii (self, g_value_get_boolean (value));
 			break;
 
 		default:
@@ -599,6 +671,18 @@ hex_widget_get_property (GObject *object,
 
 		case PROP_CAN_REDO:
 			g_value_set_boolean (value, hex_widget_get_can_redo (self));
+			break;
+
+		case PROP_SHOW_OFFSETS:
+			g_value_set_boolean (value, hex_widget_get_show_offsets (self));
+			break;
+
+		case PROP_SHOW_HEX:
+			g_value_set_boolean (value, hex_widget_get_show_hex (self));
+			break;
+
+		case PROP_SHOW_ASCII:
+			g_value_set_boolean (value, hex_widget_get_show_ascii (self));
 			break;
 
 		default:
@@ -694,6 +778,18 @@ hex_widget_class_init (HexWidgetClass *klass)
 	properties[PROP_CAN_REDO] = g_param_spec_boolean ("can-redo", NULL, NULL,
 			FALSE,
 			default_flags | G_PARAM_READWRITE);
+
+	properties[PROP_SHOW_OFFSETS] = g_param_spec_boolean ("show-offsets", NULL, NULL,
+			TRUE,
+			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+	properties[PROP_SHOW_HEX] = g_param_spec_boolean ("show-hex", NULL, NULL,
+			TRUE,
+			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+	properties[PROP_SHOW_ASCII] = g_param_spec_boolean ("show-ascii", NULL, NULL,
+			TRUE,
+			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
