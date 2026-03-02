@@ -210,6 +210,8 @@ bind_settings (GHexViewContainer *self)
 
 	g_settings_bind (settings, "font", self->hex, "font", G_SETTINGS_BIND_DEFAULT);
 
+	g_settings_bind (settings, "show-offsets", self->hex, "show-offsets", G_SETTINGS_BIND_DEFAULT);
+
 	{
 		HexWidgetLayout *layout_manager = HEX_WIDGET_LAYOUT(gtk_widget_get_layout_manager (GTK_WIDGET(self->hex)));
 
