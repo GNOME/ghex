@@ -713,6 +713,25 @@ ghex_application_window_close_request (GtkWindow *window)
 }
 
 static void
+ghex_application_window_dispose (GObject *object)
+{
+	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(object);
+
+	gtk_widget_dispose_template (GTK_WIDGET(self), GHEX_TYPE_APPLICATION_WINDOW);
+
+	g_clear_pointer (&self->revert_binding, g_binding_unbind);
+	g_clear_pointer (&self->save_binding, g_binding_unbind);
+	g_clear_pointer (&self->save_as_binding, g_binding_unbind);
+	g_clear_pointer ((GtkWindow**)&self->prefs_dialog, gtk_window_destroy);
+	g_clear_pointer ((GtkWindow**)&self->converter, gtk_window_destroy);
+	g_clear_pointer ((GtkWindow**)&self->chartable, gtk_window_destroy);
+	g_clear_pointer ((GtkWindow**)&self->copy_special_dialog, gtk_window_destroy);
+	g_clear_pointer ((GtkWindow**)&self->paste_special_dialog, gtk_window_destroy);
+
+	G_OBJECT_CLASS(ghex_application_window_parent_class)->dispose (object);
+}
+
+static void
 ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 {
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
@@ -722,6 +741,7 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 
 	object_class->set_property = ghex_application_window_set_property;
 	object_class->get_property = ghex_application_window_get_property;
+	object_class->dispose = ghex_application_window_dispose;
 
 	window_class->close_request = ghex_application_window_close_request;
 
