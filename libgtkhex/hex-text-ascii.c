@@ -12,6 +12,7 @@
 enum
 {
 	PROP_0,
+	PROP_DISPLAY_CONTROL_CHARACTERS,
 	N_PROPERTIES
 };
 
@@ -20,9 +21,55 @@ static GParamSpec *properties[N_PROPERTIES];
 struct _HexTextAscii
 {
 	HexTextEditable parent_instance;
+
+	gboolean display_control_characters;
 };
 
 G_DEFINE_TYPE (HexTextAscii, hex_text_ascii, HEX_TYPE_TEXT_EDITABLE)
+
+/* ASCII control characters - lookup table */
+
+static const gunichar control_characters_lookup_table[] = {
+    U'\u2400', // U+2400: NUL
+    U'\u2401', // U+2401: SOH
+    U'\u2402', // U+2402: STX
+    U'\u2403', // U+2403: ETX
+    U'\u2404', // U+2404: EOT
+    U'\u2405', // U+2405: ENQ
+    U'\u2406', // U+2406: ACK
+    U'\u2407', // U+2407: BEL
+    U'\u2408', // U+2408: BS
+    U'\u2409', // U+2409: HT
+    U'\u240A', // U+240A: LF
+    U'\u240B', // U+240B: VT
+    U'\u240C', // U+240C: FF
+    U'\u240D', // U+240D: CR
+    U'\u240E', // U+240E: SO
+    U'\u240F', // U+240F: SI
+    U'\u2410', // U+2410: DLE
+    U'\u2411', // U+2411: DC1
+    U'\u2412', // U+2412: DC2
+    U'\u2413', // U+2413: DC3
+    U'\u2414', // U+2414: DC4
+    U'\u2415', // U+2415: NAK
+    U'\u2416', // U+2416: SYN
+    U'\u2417', // U+2417: ETB
+    U'\u2418', // U+2418: CAN
+    U'\u2419', // U+2419: EM
+    U'\u241A', // U+241A: SUB
+    U'\u241B', // U+241B: ESC
+    U'\u241C', // U+241C: FS
+    U'\u241D', // U+241D: GS
+    U'\u241E', // U+241E: RS
+    U'\u241F'  // U+241F: US
+};
+
+inline static gboolean
+is_control_character (guint8 character)
+{
+	/* nb: Checking for >= 0 is redundant given the unsigned data type. */
+	return character <= 0x1f;
+}
 
 inline static void
 key_press_cb__set_byte (HexTextAscii *self, guchar val)
@@ -97,6 +144,10 @@ hex_text_ascii_set_property (GObject *object,
 
 	switch (property_id)
 	{
+		case PROP_DISPLAY_CONTROL_CHARACTERS:
+			hex_text_ascii_set_display_control_characters (self, g_value_get_boolean (value));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
@@ -113,6 +164,10 @@ hex_text_ascii_get_property (GObject *object,
 
 	switch (property_id)
 	{
+		case PROP_DISPLAY_CONTROL_CHARACTERS:
+			g_value_set_boolean (value, hex_text_ascii_get_display_control_characters (self));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
@@ -142,8 +197,23 @@ hex_text_ascii_format_line (HexText *ht, int line_num, guchar *line_data, size_t
 		for (size_t i = 0; i < line_len; ++i)
 		{
 			guchar character = line_data[i];
-			g_autofree char *char_str = g_strdup_printf ("%c", is_displayable (character) ? character : '.');
-			g_autofree char *escaped_char_str = g_markup_escape_text (char_str, -1);
+			g_autofree char *char_str = NULL;
+			g_autofree char *escaped_char_str = NULL;
+
+			if (self->display_control_characters && is_control_character (character))
+			{
+				g_autoptr(GString) tmp = g_string_new (NULL);
+
+				g_string_append_unichar (tmp, control_characters_lookup_table[character]);
+
+				char_str = g_steal_pointer (&tmp->str);
+			}
+			else
+			{
+				char_str = g_strdup_printf ("%c", is_displayable (character) ? character : '.');
+			}
+
+			escaped_char_str = g_markup_escape_text (char_str, -1);
 
 			g_string_append (gstr, escaped_char_str);
 		}
@@ -203,15 +273,21 @@ hex_text_ascii_render_cursor (HexTextAscii *self, GtkSnapshot *snapshot, int lin
 static void
 render_single_highlight (HexTextAscii *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout, HexHighlight *highlight, const GdkRGBA *color)
 {
+	const char *layout_str;
 	int sel_start, sel_end;
+	const char *start_cp, *end_cp;
 	int range[2];
 
 	if (! hex_text_highlight_is_visible (HEX_TEXT(self), highlight, line_num, &sel_start, &sel_end))
 		return;
 
-	range[0] = sel_start;
-	range[1] = sel_end;
-	++range[1];
+	layout_str = pango_layout_get_text (layout);
+	start_cp = g_utf8_offset_to_pointer (layout_str, sel_start);
+	end_cp = g_utf8_offset_to_pointer (layout_str, sel_end);
+	end_cp = g_utf8_find_next_char (end_cp, NULL);
+
+	range[0] = start_cp - layout_str;
+	range[1] = end_cp - layout_str;
 
 	hex_text_common_render_highlight (GTK_WIDGET(self), snapshot, layout, range, color);
 }
@@ -285,6 +361,35 @@ hex_text_ascii_render_line (HexText *ht, GtkSnapshot *snapshot, int line_num, Pa
 	hex_text_ascii_render_cursor (self, snapshot, line_num, layout);
 }
 
+static gint64
+get_offset_from_mouse (HexTextAscii *self, PangoLayout *layout, int click_line, int rel_x, int rel_y)
+{
+	HexTextRenderData *render_data = hex_text_get_render_data (HEX_TEXT(self));
+	const int cpl = hex_view_get_cpl (HEX_VIEW(self));
+	int byte_index;
+	gint64 retval;
+
+	pango_layout_xy_to_index (layout, rel_x * PANGO_SCALE, rel_y * PANGO_SCALE, &byte_index, NULL);
+
+	if (self->display_control_characters)
+	{
+		const char *layout_str = pango_layout_get_text (layout);
+		long visible_index;
+
+		g_assert (layout_str && byte_index < strlen (layout_str));
+
+		visible_index = g_utf8_pointer_to_offset (layout_str, layout_str + byte_index);
+
+		retval = (render_data->top_disp_line + click_line) * cpl + visible_index;
+	}
+	else
+	{
+		retval = (render_data->top_disp_line + click_line) * cpl + byte_index;
+	}
+
+	return retval;
+}
+
 static void
 hex_text_ascii_pressed (HexText *ht, GdkModifierType state, PangoLayout *layout, int click_line, int rel_x, int rel_y)
 {
@@ -298,9 +403,7 @@ hex_text_ascii_pressed (HexText *ht, GdkModifierType state, PangoLayout *layout,
 	if (!layout)
 		goto chain_up;
 
-	pango_layout_xy_to_index (layout, rel_x * PANGO_SCALE, rel_y * PANGO_SCALE, &index, NULL);
-
-	cursor_pos = (render_data->top_disp_line + click_line) * cpl + index;
+	cursor_pos = get_offset_from_mouse (self, layout, click_line, rel_x, rel_y);
 
 	hex_selection_set_cursor_pos (selection, cursor_pos);
 
@@ -316,7 +419,7 @@ hex_text_ascii_dragged (HexText *ht, PangoLayout *layout, int drag_line, int rel
 {
 	HexTextAscii *self = HEX_TEXT_ASCII(ht);
 	int index = 0;
-	gint64 byte_under_cursor;
+	gint64 cursor_pos;
 	HexTextRenderData *render_data = hex_text_get_render_data (ht);
 	int cpl = hex_view_get_cpl (HEX_VIEW(self));
 	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
@@ -324,11 +427,9 @@ hex_text_ascii_dragged (HexText *ht, PangoLayout *layout, int drag_line, int rel
 	if (!layout)
 		goto chain_up;
 
-	pango_layout_xy_to_index (layout, rel_x * PANGO_SCALE, rel_y * PANGO_SCALE, &index, NULL);
+	cursor_pos = get_offset_from_mouse (self, layout, drag_line, rel_x, rel_y);
 
-	byte_under_cursor = (render_data->top_disp_line + drag_line) * cpl + index;
-
-	hex_selection_set_cursor_pos (selection, byte_under_cursor);
+	hex_selection_set_cursor_pos (selection, cursor_pos);
 
 chain_up:
 	HEX_TEXT_CLASS(hex_text_ascii_parent_class)->dragged (ht, layout, drag_line, rel_x, rel_y, scroll);
@@ -371,6 +472,20 @@ hex_text_ascii_class_init (HexTextAsciiClass *klass)
 
 	HEX_TEXT_EDITABLE_CLASS(klass)->move_cursor = hex_text_ascii_move_cursor;
 
+	/* Properties */
+
+	/**
+	 * HexTextAscii:display-control-characters:
+	 *
+	 * Whether ASCII control characters (ASCII characters 0x0 through
+	 * 0x1F) will be rendered as unicode symbols.
+	 */
+	properties[PROP_DISPLAY_CONTROL_CHARACTERS] = g_param_spec_boolean ("display-control-characters", NULL, NULL,
+			FALSE,
+			default_flags | G_PARAM_READWRITE);
+
+	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
+
 	/* Keybindings */
 
 	hex_text_common_add_move_binding (widget_class, GDK_KEY_Right, 0,
@@ -399,4 +514,24 @@ hex_text_ascii_init (HexTextAscii *self)
 		g_signal_connect (controller, "key-pressed", G_CALLBACK(key_press_cb), self);
 		gtk_widget_add_controller (GTK_WIDGET(self), controller);
 	}
+}
+
+void
+hex_text_ascii_set_display_control_characters (HexTextAscii *self, gboolean display_control_characters)
+{
+	g_return_if_fail (HEX_IS_TEXT_ASCII (self));
+
+	self->display_control_characters = display_control_characters;
+
+	gtk_widget_queue_draw (GTK_WIDGET (self));
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_DISPLAY_CONTROL_CHARACTERS]);
+}
+
+gboolean
+hex_text_ascii_get_display_control_characters (HexTextAscii *self)
+{
+	g_return_val_if_fail (HEX_IS_TEXT_ASCII (self), FALSE);
+
+	return self->display_control_characters;
 }

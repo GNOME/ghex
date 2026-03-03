@@ -9,4 +9,7 @@ G_BEGIN_DECLS
 #define HEX_TYPE_TEXT_ASCII (hex_text_ascii_get_type ())
 G_DECLARE_FINAL_TYPE (HexTextAscii, hex_text_ascii, HEX, TEXT_ASCII, HexTextEditable)
 
+void hex_text_ascii_set_display_control_characters (HexTextAscii *self, gboolean display_control_characters);
+gboolean hex_text_ascii_get_display_control_characters (HexTextAscii *self);
+
 G_END_DECLS
