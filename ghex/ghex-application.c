@@ -26,10 +26,15 @@
 
 #include "ghex-application-window.h"
 #include "configuration.h"
+#include "util.h"
+
+#include "config.h"
 
 struct _GHexApplication
 {
 	AdwApplication parent_instance;
+
+	gboolean activated;
 };
 
 G_DEFINE_FINAL_TYPE (GHexApplication, ghex_application, ADW_TYPE_APPLICATION)
@@ -50,15 +55,15 @@ ghex_application_new (const char        *application_id,
 #define LOCAL_OPTIONS_LET_PROCESSING_CONTINUE -1
 #define LOCAL_OPTIONS_EXIT_SUCCESSFULLY 0
 static int
-ghex_application_handle_local_options (GApplication *application, GVariantDict *options)
+ghex_application_handle_local_options (GApplication *app, GVariantDict *options)
 {
 	if (g_variant_dict_contains (options, "new-window"))
 	{
-		g_application_register (application, NULL, NULL);
+		g_application_register (app, NULL, NULL);
 
-		if (g_application_get_is_remote (application))
+		if (g_application_get_is_remote (app))
 		{
-			g_action_group_activate_action (G_ACTION_GROUP(application), "new-window", NULL);
+			g_action_group_activate_action (G_ACTION_GROUP(app), "new-window", NULL);
 
 			return LOCAL_OPTIONS_EXIT_SUCCESSFULLY;
 		}
@@ -75,13 +80,27 @@ ghex_application_handle_local_options (GApplication *application, GVariantDict *
 #undef LOCAL_OPTIONS_LET_PROCESSING_CONTINUE
 
 static void
+ghex_application_startup (GApplication *app)
+{
+	g_assert (GHEX_IS_APPLICATION (app));
+
+	ghex_init_configuration ();
+
+	G_APPLICATION_CLASS(ghex_application_parent_class)->startup (app);
+}
+
+static void
 ghex_application_activate (GApplication *app)
 {
+	GHexApplication *self = GHEX_APPLICATION(app);
 	GtkWindow *window;
 
 	g_assert (GHEX_IS_APPLICATION (app));
 
-	ghex_init_configuration ();
+	if (self->activated)
+		return;
+
+	self->activated = TRUE;
 
 	window = gtk_application_get_active_window (GTK_APPLICATION(app));
 
@@ -91,18 +110,76 @@ ghex_application_activate (GApplication *app)
 	gtk_window_present (window);
 }
 
-static void
-ghex_application_open__gapp_method (GApplication *application, GFile *files[], int n_files, const char *hint)
+static gboolean
+open_source_func (gpointer user_data)
 {
-	GtkWindow *window;
+	UtilTuple *tuple = user_data;
+	GHexApplication *self = tuple->data[0];
+	GFile *file = tuple->data[1];
+	int attempt = GPOINTER_TO_INT (tuple->data[2]);
+	const int max_attempts = 100;
+	GHexApplicationWindow *window = NULL;
 
-	window = gtk_application_get_active_window (GTK_APPLICATION(application));
+	g_assert (GHEX_IS_APPLICATION (self));
+	g_assert (G_IS_FILE (file));
 
-	if (!window)
-		ghex_application_activate (application);
+	g_debug ("%s: attempt: %d to open file (max_attempts: %d)",
+			__func__, attempt, max_attempts);
+
+	window = GHEX_APPLICATION_WINDOW (gtk_application_get_active_window (GTK_APPLICATION(self)));
+
+	if G_UNLIKELY (!window)
+	{
+		if (attempt < max_attempts)
+		{
+			++attempt;
+			tuple->data[2] = GINT_TO_POINTER (attempt);
+
+			return G_SOURCE_CONTINUE;
+		}
+		else
+		{
+			g_printerr (_("GHex failed to open an application window to open the requested file: %s\n"), g_file_peek_path (file));
+
+			return G_SOURCE_REMOVE;
+		}
+	}
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (window));
+
+	ghex_application_window_open_file (window, file);
+
+	return G_SOURCE_REMOVE;
+}
+
+static void
+ghex_application_open_file (GHexApplication *self, GFile *file)
+{
+	g_autoptr(UtilTuple) tuple = NULL;
+	g_assert (GHEX_IS_APPLICATION (self));
+	g_assert (G_IS_FILE (file));
+
+	tuple = util_tuple_new ();
+	tuple->data[0] =    g_object_ref (self);
+	tuple->destroy[0] = g_object_unref;
+	tuple->data[1] =    g_object_ref (file);
+	tuple->destroy[1] = g_object_unref;
+	tuple->data[2] =    GINT_TO_POINTER (0);
+
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, open_source_func, g_steal_pointer (&tuple), (GDestroyNotify) util_tuple_destroy);
+}
+
+static void
+ghex_application_open__gapp_method (GApplication *app, GFile *files[], int n_files, const char *hint)
+{
+	GHexApplication *self = GHEX_APPLICATION(app);
+
+	g_assert (GHEX_IS_APPLICATION (self));
 
 	for (int i = 0; i < n_files; ++i)
-		ghex_application_window_open_file (GHEX_APPLICATION_WINDOW(window), files[i]);
+		ghex_application_open_file (self, files[i]);
+
+	ghex_application_activate (app);
 }
 
 static void
@@ -111,6 +188,7 @@ ghex_application_class_init (GHexApplicationClass *klass)
 	GApplicationClass *app_class = G_APPLICATION_CLASS (klass);
 
 	app_class->handle_local_options = ghex_application_handle_local_options;
+	app_class->startup = ghex_application_startup;
 	app_class->activate = ghex_application_activate;
 	app_class->open = ghex_application_open__gapp_method;
 }
