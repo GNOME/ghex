@@ -26,15 +26,12 @@
 
 #include "ghex-application-window.h"
 #include "configuration.h"
-#include "util.h"
 
 #include "config.h"
 
 struct _GHexApplication
 {
 	AdwApplication parent_instance;
-
-	gboolean activated;
 };
 
 G_DEFINE_FINAL_TYPE (GHexApplication, ghex_application, ADW_TYPE_APPLICATION)
@@ -97,11 +94,6 @@ ghex_application_activate (GApplication *app)
 
 	g_assert (GHEX_IS_APPLICATION (app));
 
-	if (self->activated)
-		return;
-
-	self->activated = TRUE;
-
 	window = gtk_application_get_active_window (GTK_APPLICATION(app));
 
 	if (!window)
@@ -110,76 +102,25 @@ ghex_application_activate (GApplication *app)
 	gtk_window_present (window);
 }
 
-static gboolean
-open_source_func (gpointer user_data)
+static void
+ghex_application_open (GApplication *app, GFile *files[], int n_files, const char *hint)
 {
-	UtilTuple *tuple = user_data;
-	GHexApplication *self = tuple->data[0];
-	GFile *file = tuple->data[1];
-	int attempt = GPOINTER_TO_INT (tuple->data[2]);
-	const int max_attempts = 100;
-	GHexApplicationWindow *window = NULL;
+	GHexApplication *self = GHEX_APPLICATION(app);
+	GtkWindow *window;
 
 	g_assert (GHEX_IS_APPLICATION (self));
-	g_assert (G_IS_FILE (file));
 
-	g_debug ("%s: attempt: %d to open file (max_attempts: %d)",
-			__func__, attempt, max_attempts);
+	window = gtk_application_get_active_window (GTK_APPLICATION(app));
 
-	window = GHEX_APPLICATION_WINDOW (gtk_application_get_active_window (GTK_APPLICATION(self)));
-
-	if G_UNLIKELY (!window)
-	{
-		if (attempt < max_attempts)
-		{
-			++attempt;
-			tuple->data[2] = GINT_TO_POINTER (attempt);
-
-			return G_SOURCE_CONTINUE;
-		}
-		else
-		{
-			g_printerr (_("GHex failed to open an application window to open the requested file: %s\n"), g_file_peek_path (file));
-
-			return G_SOURCE_REMOVE;
-		}
-	}
+	if (!window)
+		window = GTK_WINDOW(ghex_application_window_new (ADW_APPLICATION(app)));
 
 	g_assert (GHEX_IS_APPLICATION_WINDOW (window));
 
-	ghex_application_window_open_file (window, file);
-
-	return G_SOURCE_REMOVE;
-}
-
-static void
-ghex_application_open_file (GHexApplication *self, GFile *file)
-{
-	g_autoptr(UtilTuple) tuple = NULL;
-	g_assert (GHEX_IS_APPLICATION (self));
-	g_assert (G_IS_FILE (file));
-
-	tuple = util_tuple_new ();
-	tuple->data[0] =    g_object_ref (self);
-	tuple->destroy[0] = g_object_unref;
-	tuple->data[1] =    g_object_ref (file);
-	tuple->destroy[1] = g_object_unref;
-	tuple->data[2] =    GINT_TO_POINTER (0);
-
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, open_source_func, g_steal_pointer (&tuple), (GDestroyNotify) util_tuple_destroy);
-}
-
-static void
-ghex_application_open__gapp_method (GApplication *app, GFile *files[], int n_files, const char *hint)
-{
-	GHexApplication *self = GHEX_APPLICATION(app);
-
-	g_assert (GHEX_IS_APPLICATION (self));
-
 	for (int i = 0; i < n_files; ++i)
-		ghex_application_open_file (self, files[i]);
+		ghex_application_window_open_file (GHEX_APPLICATION_WINDOW(window), files[i]);
 
-	ghex_application_activate (app);
+	gtk_window_present (window);
 }
 
 static void
@@ -190,7 +131,7 @@ ghex_application_class_init (GHexApplicationClass *klass)
 	app_class->handle_local_options = ghex_application_handle_local_options;
 	app_class->startup = ghex_application_startup;
 	app_class->activate = ghex_application_activate;
-	app_class->open = ghex_application_open__gapp_method;
+	app_class->open = ghex_application_open;
 }
 
 static void
