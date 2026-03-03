@@ -15,6 +15,7 @@ enum
 	PROP_0,
 	PROP_DOCUMENT,
 	PROP_HEX,
+	PROP_LOADING,
 	N_PROPERTIES
 };
 
@@ -26,6 +27,9 @@ struct _GHexViewContainer
 
 	/* From template: */
 
+	/* Direct child: */
+	AdwViewStack *stack;
+
 	HexWidget *hex;
 	GHexMarkPane *mark_pane;
 	GHexConversionPane *conversion_pane;
@@ -33,14 +37,8 @@ struct _GHexViewContainer
 	GHexInfoBar *info_bar;
 	GHexStatusbar *statusbar;
 	GtkRevealer *mark_pane_revealer;
-
-	/* These may not all be used but need to be defined anyway so that
-	 * gtk_widget_dispose_template actually cleans up after itself.
-	 */
-	GtkWidget *scrolled_window;
-	GtkWidget *separator;
-	GtkWidget *conversions_revealer;
-	GtkWidget *status_box;
+	GtkScrolledWindow *scrolled_window;
+	GtkRevealer *conversions_revealer;
 };
 
 G_DEFINE_TYPE (GHexViewContainer, ghex_view_container, GTK_TYPE_WIDGET)
@@ -77,12 +75,35 @@ doc_file_loaded_info_bar_cb (GHexInfoBar *info_bar)
 	ghex_info_bar_set_shown (info_bar, FALSE);
 }
 
+static void
+file_read_started_cb (GHexViewContainer *self)
+{
+	g_assert (GHEX_IS_VIEW_CONTAINER (self));
+
+	ghex_view_container_set_loading (self, TRUE);
+}
+
+static void
+file_loaded_cb (GHexViewContainer *self)
+{
+	g_assert (GHEX_IS_VIEW_CONTAINER (self));
+
+	ghex_view_container_set_loading (self, FALSE);
+}
+
 void
 ghex_view_container_set_document (GHexViewContainer *self, HexDocument *doc)
 {
 	g_return_if_fail (GHEX_IS_VIEW_CONTAINER (self));
 
 	hex_view_set_document (HEX_VIEW(self->hex), doc);
+
+	// FIXME - this shouldn't be necessary - need to improve our plumbing here.
+	if (hex_document_get_file (doc))
+		ghex_view_container_set_loading (self, TRUE);
+
+	g_signal_connect_object (doc, "file-read-started", G_CALLBACK(file_read_started_cb), self, G_CONNECT_SWAPPED);
+	g_signal_connect_object (doc, "file-loaded", G_CALLBACK(file_loaded_cb), self, G_CONNECT_SWAPPED);
 
 	g_signal_connect_object (doc, "document-changed", G_CALLBACK(doc_changed_info_bar_cb), self->info_bar, G_CONNECT_DEFAULT);
 	g_signal_connect_object (doc, "file-loaded", G_CALLBACK(doc_file_loaded_info_bar_cb), self->info_bar, G_CONNECT_SWAPPED);
@@ -98,6 +119,35 @@ ghex_view_container_get_document (GHexViewContainer *self)
 	return hex_view_get_document (HEX_VIEW(self->hex));
 }
 
+gboolean
+ghex_view_container_get_loading (GHexViewContainer *self)
+{
+	if (g_strcmp0 (adw_view_stack_get_visible_child_name (self->stack), "loading-page") == 0)
+	{
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+void
+ghex_view_container_set_loading (GHexViewContainer *self, gboolean loading)
+{
+	if (ghex_view_container_get_loading (self) != loading)
+	{
+		if (loading)
+		{
+			adw_view_stack_set_visible_child_name (self->stack, "loading-page");
+		}
+		else
+		{
+			adw_view_stack_set_visible_child_name (self->stack, "container-page");
+		}
+
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_LOADING]);
+	}
+}
+
 static void
 ghex_view_container_set_property (GObject *object,
 		guint property_id,
@@ -110,6 +160,10 @@ ghex_view_container_set_property (GObject *object,
 	{
 		case PROP_DOCUMENT:
 			ghex_view_container_set_document (self, g_value_get_object (value));
+			break;
+
+		case PROP_LOADING:
+			ghex_view_container_set_loading (self, g_value_get_boolean (value));
 			break;
 
 		default:
@@ -134,6 +188,10 @@ ghex_view_container_get_property (GObject *object,
 
 		case PROP_DOCUMENT:
 			g_value_set_object (value, ghex_view_container_get_document (self));
+			break;
+
+		case PROP_LOADING:
+			g_value_set_boolean (value, ghex_view_container_get_loading (self));
 			break;
 
 		default:
@@ -189,7 +247,7 @@ sel_cursor_pos_notify_conversion_pane_cb (GHexViewContainer *self, GParamSpec *p
 static void
 scrolled_window_notify_hex (GHexViewContainer *self)
 {
-	GtkWidget *child = gtk_scrolled_window_get_child (GTK_SCROLLED_WINDOW(self->scrolled_window));
+	GtkWidget *child = gtk_scrolled_window_get_child (self->scrolled_window);
 
 	if (child && HEX_IS_VIEW (child))
 	{
@@ -297,6 +355,10 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 
 	properties[PROP_DOCUMENT] = g_param_spec_object ("document", NULL, NULL,
 			HEX_TYPE_DOCUMENT,
+			default_flags | G_PARAM_READWRITE);
+
+	properties[PROP_LOADING] = g_param_spec_boolean ("loading", NULL, NULL,
+			FALSE,
 			default_flags | G_PARAM_READWRITE);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
@@ -437,14 +499,13 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 
 	gtk_widget_class_set_template_from_resource (widget_class, RESOURCE_BASE_PATH "/ghex-view-container.ui");
 
+	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, stack);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, hex);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, conversion_pane);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, conversions_toggle_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, info_bar);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, scrolled_window);
-	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, separator);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, conversions_revealer);
-	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, status_box);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, statusbar);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, mark_pane_revealer);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, mark_pane);

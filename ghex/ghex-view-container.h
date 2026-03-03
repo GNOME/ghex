@@ -15,5 +15,7 @@ GtkWidget *	ghex_view_container_new (void);
 HexWidget * ghex_view_container_get_hex (GHexViewContainer *self);
 void ghex_view_container_set_document (GHexViewContainer *self, HexDocument *doc);
 HexDocument * ghex_view_container_get_document (GHexViewContainer *self);
+void ghex_view_container_set_loading (GHexViewContainer *self, gboolean loading);
+gboolean ghex_view_container_get_loading (GHexViewContainer *self);
 
 G_END_DECLS
