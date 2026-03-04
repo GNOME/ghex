@@ -904,6 +904,8 @@ ghex_clipboard_dialog_dispose (GObject *object)
 	GHexClipboardDialog *self = GHEX_CLIPBOARD_DIALOG(object);
 	GHexClipboardDialogPrivate *priv = ghex_clipboard_dialog_get_instance_private (self);
 
+	/* Don't dispose template - chain-up will destroy window:child */
+
 	g_clear_object (&priv->hex);
 
 	G_OBJECT_CLASS(ghex_clipboard_dialog_parent_class)->dispose (object);
