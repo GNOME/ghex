@@ -134,7 +134,7 @@ hex_widget_layout_child_dispose (GObject *gobject)
 {
 	HexWidgetLayoutChild *self = HEX_WIDGET_LAYOUT_CHILD (gobject);
 
-	G_OBJECT_CLASS (hex_widget_layout_child_parent_class)->finalize (gobject);
+	G_OBJECT_CLASS (hex_widget_layout_child_parent_class)->dispose (gobject);
 }
 
 static void
