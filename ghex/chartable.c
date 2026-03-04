@@ -422,6 +422,10 @@ ghex_char_table_dispose (GObject *object)
 	GHexCharTable *self = GHEX_CHAR_TABLE(object);
 
 	gtk_widget_dispose_template (GTK_WIDGET(self), GHEX_TYPE_CHAR_TABLE);
+
+	g_clear_object (&self->hex);
+
+	G_OBJECT_CLASS(ghex_char_table_parent_class)->dispose (object);
 }
 
 static void
