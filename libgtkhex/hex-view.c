@@ -722,6 +722,8 @@ hex_view_dispose (GObject *object)
 		g_clear_object (&priv->marks);
 	}
 
+	g_clear_object (&priv->auto_highlights);
+
 	/* Chain up */
 	G_OBJECT_CLASS(hex_view_parent_class)->dispose (object);
 }
