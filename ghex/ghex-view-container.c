@@ -6,7 +6,7 @@
 #include "ghex-statusbar.h"
 #include "configuration.h"
 #include "gtkhex-layout-manager.h"
-#include "util.h"
+#include "common-ui.h"
 
 #include "config.h"
 
@@ -91,6 +91,36 @@ file_loaded_cb (GHexViewContainer *self)
 	ghex_view_container_set_loading (self, FALSE);
 }
 
+static void
+doc_read_cb (GObject *source_object, GAsyncResult *res, gpointer data)
+{
+	GHexViewContainer *self = data;
+	HexDocument *doc = (HexDocument *) source_object;
+	g_autoptr(GError) error = NULL;
+	gboolean retval = FALSE;
+
+	g_assert (GHEX_IS_VIEW_CONTAINER (self));
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	retval = hex_document_read_finish (doc, res, &error);
+
+	if (retval)
+	{
+		g_debug ("%s: document %p read successfully", __func__, doc);
+	}
+	else
+	{
+		GtkWindow *parent = GTK_WINDOW (gtk_widget_get_root (GTK_WIDGET(self)));
+
+		g_debug ("%s: document read failed", __func__);
+
+		// FIXME/TODO - error should never be null here.
+		ghex_display_dialog (parent, error ? error->message : "Unknown error");
+
+		g_signal_emit_by_name (self, "destroy");
+	}
+}
+
 void
 ghex_view_container_set_document (GHexViewContainer *self, HexDocument *doc)
 {
@@ -98,9 +128,13 @@ ghex_view_container_set_document (GHexViewContainer *self, HexDocument *doc)
 
 	hex_view_set_document (HEX_VIEW(self->hex), doc);
 
-	// FIXME - this shouldn't be necessary - need to improve our plumbing here.
-	if (hex_document_get_file (doc))
+	if (hex_document_get_file (doc) != NULL)
+	{
+		// FIXME - this shouldn't be necessary - need to improve our plumbing here.
 		ghex_view_container_set_loading (self, TRUE);
+
+		hex_document_read_async (doc, NULL, doc_read_cb, self);
+	}
 
 	g_signal_connect_object (doc, "file-read-started", G_CALLBACK(file_read_started_cb), self, G_CONNECT_SWAPPED);
 	g_signal_connect_object (doc, "file-loaded", G_CALLBACK(file_loaded_cb), self, G_CONNECT_SWAPPED);
