@@ -58,8 +58,9 @@ struct _GHexConverter
 {
 	GtkWindow parent_instance;
 
-	GtkWidget *grid;
 	HexView *hex;
+
+	GtkWidget *grid;
 	GtkWidget *entry[5];
 	GtkWidget *close;
 	GtkWidget *get;
@@ -359,11 +360,22 @@ ghex_converter_get_property (GObject *object,
 }
 
 static void
+ghex_converter_dispose (GObject *object)
+{
+	GHexConverter *self = GHEX_CONVERTER(object);
+
+	g_clear_object (&self->hex);
+
+	G_OBJECT_CLASS(ghex_converter_parent_class)->dispose (object);
+}
+
+static void
 ghex_converter_class_init (GHexConverterClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GParamFlags default_flags = G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY;
 
+	object_class->dispose = ghex_converter_dispose;
 	object_class->set_property = ghex_converter_set_property;
 	object_class->get_property = ghex_converter_get_property;
 
