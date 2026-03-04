@@ -16,6 +16,7 @@ enum
 	PROP_DOCUMENT,
 	PROP_HEX,
 	PROP_LOADING,
+	PROP_SHOW_MARK_PANE,
 	N_PROPERTIES
 };
 
@@ -24,6 +25,9 @@ static GParamSpec *properties[N_PROPERTIES];
 struct _GHexViewContainer
 {
 	GtkWidget parent_instance;
+
+	/* Work-around glitchy APIs */
+	gboolean show_mark_pane;
 
 	/* From template: */
 
@@ -200,6 +204,11 @@ ghex_view_container_set_property (GObject *object,
 			ghex_view_container_set_loading (self, g_value_get_boolean (value));
 			break;
 
+		case PROP_SHOW_MARK_PANE:
+			self->show_mark_pane = g_value_get_boolean (value);
+			g_object_notify_by_pspec (object, pspec);
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
@@ -226,6 +235,10 @@ ghex_view_container_get_property (GObject *object,
 
 		case PROP_LOADING:
 			g_value_set_boolean (value, ghex_view_container_get_loading (self));
+			break;
+
+		case PROP_SHOW_MARK_PANE:
+			g_value_set_boolean (value, self->show_mark_pane);
 			break;
 
 		default:
@@ -314,31 +327,17 @@ bind_settings (GHexViewContainer *self)
 }
 
 static void
-setup_actions (GHexViewContainer *self)
-{
-	g_autoptr(GSimpleActionGroup) actions = g_simple_action_group_new ();
-
-	gtk_widget_insert_action_group (GTK_WIDGET(self), "container", G_ACTION_GROUP(actions));
-
-	/* container.mark-pane */
-	{
-		g_autoptr(GPropertyAction) action = g_property_action_new ("mark-pane", self->mark_pane_revealer, "reveal-child");
-
-		g_action_map_add_action (G_ACTION_MAP(actions), G_ACTION(action));
-	}
-}
-
-static void
 ghex_view_container_init (GHexViewContainer *self)
 {
 	gtk_widget_init_template (GTK_WIDGET (self));
+
+	g_object_bind_property (self, "show-mark-pane", self->mark_pane_revealer, "reveal-child", G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
 
 	g_object_bind_property (self->conversions_toggle_button, "active", self->conversions_revealer, "reveal-child", G_BINDING_DEFAULT);
 
 	g_signal_connect_object (self->scrolled_window, "notify::child", G_CALLBACK(scrolled_window_notify_hex), self, G_CONNECT_SWAPPED);
 
 	bind_settings (self);
-	setup_actions (self);
 }
 
 static void
@@ -395,11 +394,22 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 			FALSE,
 			default_flags | G_PARAM_READWRITE);
 
+	/* Doing this via an intermediary property rather than binding directly to
+	 * our revealer's :reveal-child property, because doing so means we need
+	 * to use GPropertyAction, and doing that causes a reference leak I can't
+	 * seem to crack.
+	 */
+	properties[PROP_SHOW_MARK_PANE] = g_param_spec_boolean ("show-mark-pane", NULL, NULL,
+			FALSE,
+			default_flags | G_PARAM_READWRITE);
+
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
-	/* Actions (where bindings not required) */
+	/* Actions */
 
 	gtk_widget_class_install_action (widget_class, "container.activate-mark", "i", activate_mark_action);
+
+	gtk_widget_class_install_property_action (widget_class, "container.mark-pane", "show-mark-pane");
 
 	/* < auto-generated activate-mark bindings > */
 
