@@ -30,7 +30,7 @@
     <property name="destroy-with-parent">true</property>
     <property name="hide-on-close">true</property>
     <property name="title" translatable="yes">Character table</property>
-    <child>
+    <property name="child">
       <object class="GtkBox" id="main_box">
         <property name="orientation">vertical</property>
         <property name="spacing">6</property>
@@ -193,6 +193,6 @@
           </object>
         </child>
       </object>
-    </child>
+    </property>
   </template>
 </interface>
