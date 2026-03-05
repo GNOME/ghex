@@ -231,13 +231,12 @@ hex_view_set_cpl (HexView *self, int cpl)
 
 /* transfer none */
 
-// FIXME - should this always return non-zero?
 int
 hex_view_get_cpl (HexView *self)
 {
 	HexViewPrivate *priv;
 
-	g_return_val_if_fail (HEX_IS_VIEW (self), 0);
+	g_return_val_if_fail (HEX_IS_VIEW (self), 1);
 
 	priv = hex_view_get_instance_private (self);
 
@@ -753,10 +752,9 @@ hex_view_class_init (HexViewClass *klass)
 			HEX_TYPE_DOCUMENT,
 			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
-	// FIXME - should this default to non-zero?
 	properties[PROP_CPL] = g_param_spec_int ("cpl", NULL, NULL,
-			0, 10000, 2,
-			default_flags | G_PARAM_READWRITE);
+			1, 10000, 1,
+			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
 	properties[PROP_AUTO_GEOMETRY] = g_param_spec_boolean ("auto-geometry", NULL, NULL,
 			TRUE,
