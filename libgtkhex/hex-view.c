@@ -706,6 +706,8 @@ hex_view_dispose (GObject *object)
 	HexView *self = HEX_VIEW(object);
 	HexViewPrivate *priv = hex_view_get_instance_private (self);
 
+	g_clear_object (&priv->document);
+
 	g_clear_object (&priv->selection);
 
 	if (priv->marks)
