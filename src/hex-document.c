@@ -791,11 +791,16 @@ document_ready_cb (GObject *source_object,
 {
 	gboolean success;
 	GError *local_error = NULL;
-	HexBuffer *buf = HEX_BUFFER(source_object);
-	GTask *task = G_TASK (user_data);
+	HexBuffer *buf = (HexBuffer *) (source_object);
+	GTask *task = user_data;
 	HexDocument *doc;
 
-	doc = HEX_DOCUMENT(g_task_get_task_data (task));
+	g_assert (HEX_IS_BUFFER (buf));
+	g_assert (G_IS_TASK (task));
+
+	doc = g_task_get_source_object (task);
+	g_assert (HEX_IS_DOCUMENT (doc));
+
 	success = hex_buffer_read_finish (buf, res, &local_error);
 	g_debug ("%s: DONE -- result: %d", __func__, success);
 
@@ -806,6 +811,7 @@ document_ready_cb (GObject *source_object,
 		else
 			g_task_return_boolean (task, FALSE);
 
+		g_object_unref (task);
 		return;
 	}
 
@@ -819,6 +825,7 @@ document_ready_cb (GObject *source_object,
 
 	g_signal_emit (G_OBJECT(doc), hex_signals[FILE_LOADED], 0);
 	g_task_return_boolean (task, TRUE);
+	g_object_unref (task);
 }
 
 /**
@@ -847,7 +854,6 @@ hex_document_read_async (HexDocument *doc,
 	g_return_if_fail (G_IS_FILE (doc->file));
 
 	task = g_task_new (doc, cancellable, callback, user_data);
-	g_task_set_task_data (task, doc, NULL);
 
 	/* Read the actual file on disk into the buffer */
 	hex_buffer_read_async (doc->buffer, NULL, document_ready_cb, task);
