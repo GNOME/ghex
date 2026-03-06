@@ -857,7 +857,6 @@ tab_view_selected_notify_cb (GHexApplicationWindow *self, GParamSpec *pspec, Adw
 static void
 active_view_notify_cb (GHexApplicationWindow *self)
 {
-	GAction *action;
 	HexDocument *doc;
 	GHexViewContainer *container;
 
@@ -886,26 +885,27 @@ active_view_notify_cb (GHexApplicationWindow *self)
 
 	/* Bind document actions if applicable */
 
-	doc = get_active_doc (self);
-	if (!doc)
-		return;
-
-	g_assert (HEX_IS_DOCUMENT (doc));
-
-	action = g_action_map_lookup_action (G_ACTION_MAP(self), "revert");
-
 	g_clear_pointer (&self->revert_binding, g_binding_unbind);
-	self->revert_binding = g_object_bind_property (doc, "changed", action, "enabled", G_BINDING_SYNC_CREATE);
-
-	action = g_action_map_lookup_action (G_ACTION_MAP(self), "save");
-
 	g_clear_pointer (&self->save_binding, g_binding_unbind);
-	self->save_binding = g_object_bind_property (doc, "changed", action, "enabled", G_BINDING_SYNC_CREATE);
-
-	action = g_action_map_lookup_action (G_ACTION_MAP(self), "save-as");
-
 	g_clear_pointer (&self->save_as_binding, g_binding_unbind);
-	self->save_as_binding = g_object_bind_property (doc, "changed", action, "enabled", G_BINDING_SYNC_CREATE);
+
+	doc = get_active_doc (self);
+	if (doc)
+	{
+		GAction *action;
+
+		action = g_action_map_lookup_action (G_ACTION_MAP(self), "revert");
+
+		self->revert_binding = g_object_bind_property (doc, "changed", action, "enabled", G_BINDING_SYNC_CREATE);
+
+		action = g_action_map_lookup_action (G_ACTION_MAP(self), "save");
+
+		self->save_binding = g_object_bind_property (doc, "changed", action, "enabled", G_BINDING_SYNC_CREATE);
+
+		action = g_action_map_lookup_action (G_ACTION_MAP(self), "save-as");
+
+		self->save_as_binding = g_object_bind_property (doc, "changed", action, "enabled", G_BINDING_SYNC_CREATE);
+	}
 }
 
 static void
