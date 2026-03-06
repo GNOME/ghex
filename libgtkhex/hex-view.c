@@ -82,7 +82,7 @@ hex_view_selection_dispose (GObject *object)
 {
 	HexViewSelection *self = HEX_VIEW_SELECTION(object);
 
-	g_clear_object (&self->parent);
+	self->parent = NULL;
 
 	/* Chain up */
 	G_OBJECT_CLASS(hex_view_selection_parent_class)->dispose (object);
@@ -106,9 +106,13 @@ hex_view_selection_init (HexViewSelection *self)
 static HexSelection *
 hex_view_selection_new (HexView *parent)
 {
-	HexViewSelection *self = g_object_new (HEX_TYPE_VIEW_SELECTION, NULL);
+	HexViewSelection *self;
 
-	self->parent = g_object_ref (parent);
+	g_assert (HEX_IS_VIEW (parent));
+
+	self = g_object_new (HEX_TYPE_VIEW_SELECTION, NULL);
+
+	self->parent = parent;
 
 	return HEX_SELECTION(self);
 }
