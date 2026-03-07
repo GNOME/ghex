@@ -877,10 +877,19 @@ static void
 ascii_to_pointer (HexWidget *self, int mx, int my)
 {
 	const gint64 cy = self->top_line + my/self->char_height;
+	int byte_index = 0;
 	int cx = 0;
+	int visible_index = 0;
 	PangoLayout *layout = self->alayout_top_line_cache;
+	const char *layout_str = pango_layout_get_text (layout);
 
-	/*cx = */ pango_layout_xy_to_index (layout, mx * PANGO_SCALE, 0, &cx, NULL);
+	pango_layout_xy_to_index (layout, mx * PANGO_SCALE, 0, &byte_index, NULL);
+
+	cx = (int) CLAMP (
+			g_utf8_pointer_to_offset (layout_str, layout_str + byte_index),
+			0,
+			INT16_MAX);
+
 	hex_widget_set_cursor_by_row_and_col (self, cx, cy);
 }
 
