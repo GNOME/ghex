@@ -501,6 +501,11 @@ hex_buffer_direct_set_data (HexBuffer *buf,
 
 			tmp = get_file_data (self, offset, 1);
 
+			if (!tmp) {
+				g_debug ("%s: got no data at offset: %ld", __func__, offset);
+				return FALSE;
+			}
+
 			if (*tmp == *cp) {
 				g_hash_table_remove (self->changes, ip);
 			}
