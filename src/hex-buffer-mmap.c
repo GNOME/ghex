@@ -56,11 +56,15 @@ static char *invalid_path_msg = N_("The file appears to have an invalid path.");
  * allowing it to be used as a #HexBuffer backend to be used with
  * [class@Hex.Document].
  *
- * Unlike the [class@Hex.BufferMalloc] object, which replicates the legacy
- * backend of GHex, #HexBufferMmap allows for files to be memory-mapped
+ * Unlike the [class@Hex.BufferMalloc] object,
+ * #HexBufferMmap allows for files to be memory-mapped
  * by the operating system when being read. This can make files take a bit
  * longer to load, but once loaded will work much faster and more reliably
  * with very large files.
+ *
+ * `HexBufferMmap` is only intended to be used with regular files. Trying to
+ * utilize this buffer without calling [method@Hex.Buffer.set_file] on a
+ * regular file, or not setting a file at all, is undefined behaviour.
  *
  * #HexBufferMmap uses the POSIX mmap() function at the backend, which
  * requires a POSIX system, and also depends on the mremap() function
