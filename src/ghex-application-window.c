@@ -793,13 +793,21 @@ tab_view_page_attached_cb (AdwTabView *tab_view,
 		gpointer user_data)
 {
 	GHexApplicationWindow *self = GHEX_APPLICATION_WINDOW(user_data);
+	HexWidget *gh = get_gh_for_page (self, page);
 
-	ghex_application_window_connect_hex_signals (self, get_gh_for_page (self, page));
+	ghex_application_window_connect_hex_signals (self, gh);
 
 	/* Let's play this super dumb. If a page is added, that will generally
 	 * mean we don't have to count the pages to see if we have > 0.
 	 */
 	enable_main_actions (self, TRUE);
+
+	/* Insert mode not permitted with the 'direct' HexBuffer backend */
+
+	const char *buf_type = G_OBJECT_TYPE_NAME (hex_document_get_buffer (hex_widget_get_document (gh)));
+
+	if (g_strcmp0 (buf_type, "HexBufferDirect") == 0)
+		gtk_widget_action_set_enabled (GTK_WIDGET(self), "ghex.insert-mode", FALSE);
 }
 
 static void
