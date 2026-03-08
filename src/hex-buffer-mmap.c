@@ -727,7 +727,6 @@ hex_buffer_mmap_read (HexBuffer *buf)
 	clear_buffer (self);
 	create_buffer (self);
 
-	/* FIXME/TODO - sanity check against # of bytes read? */
 	hex_buffer_mmap_insert (self, self->clean, 0, self->clean_bytes);
 
 	if (!self->data || self->data == MAP_FAILED)
