@@ -5,14 +5,14 @@
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2005, 2006, 2007, 2008, 2010.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2014, 2015.
 # Edurne Labaka <elabaka@uzei.com>, 2015.
-# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2022, 2023.
+# Asier Saratsua Garmendia <asiersarasua@ni.eus>, 2022, 2023, 2026.
 #
 msgid ""
 msgstr "Project-Id-Version: ghex master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
-"POT-Creation-Date: 2023-07-26 14:02+0000\n"
-"PO-Revision-Date: 2023-08-20 12:37+0200\n"
-"Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
+"POT-Creation-Date: 2025-06-28 11:50+0000\n"
+"PO-Revision-Date: 2026-03-08 12:37+0200\n"
+"Last-Translator: Asier Saratsua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr "Project-Id-Version: ghex master\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/org.gnome.GHex.appdata.xml.in.in:6
-#: src/ghex-application-window.ui.in:149
+#: src/ghex-application-window.ui.in:151
 msgid "GHex"
 msgstr "GHex"
 
-#: data/org.gnome.GHex.appdata.xml.in.in:7 data/org.gnome.GHex.desktop.in.in:6
+#: data/org.gnome.GHex.appdata.xml.in.in:7 data/org.gnome.GHex.desktop.in.in:5
 msgid "Inspect and edit binary files"
 msgstr "Aztertu eta editatu fitxategi bitarrak"
 
@@ -41,52 +41,40 @@ msgid ""
 "GHex is a useful tool for working with raw data."
 msgstr "Ghex aplikazioak fitxategi bitarren datu gordinak kargatu ditzake eta hamaseitarren editorearen ikuspegian bistaratu ditzake ediziorako prest. Ikuspegia bi zutabetan dago zatituta, zutabe batek balio hamaseitarrak erakusten ditu eta besteak ASCII adierazpena. Datu gordinekin lan egiteko tresna erabilgarria da."
 
-#: data/org.gnome.GHex.appdata.xml.in.in:40
-msgid "Logan Rathbone"
-msgstr "Logan Rathbone"
-
-#: data/org.gnome.GHex.desktop.in.in:5
+#: data/org.gnome.GHex.desktop.in.in:4
 msgid "Hex Editor"
 msgstr "Hamaseitarren editorea"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
-#: data/org.gnome.GHex.desktop.in.in:8
-msgid "binary;debug;"
-msgstr "bitarra;arazketa;"
+#: data/org.gnome.GHex.desktop.in.in:7
+msgid "binary;debug;hexadecimal;"
+msgstr "bitarra;arazketa;hamaseitarra;"
 
-#: src/chartable.c:152 src/find-options.ui:67
-msgid "ASCII"
-msgstr "ASCII"
-
-#: src/chartable.c:152 src/find-options.ui:66
-msgid "Hex"
-msgstr "Hamaseitarra"
-
-#: src/chartable.c:152
-msgid "Decimal"
-msgstr "Hamartarra"
-
-#: src/chartable.c:153
-msgid "Octal"
-msgstr "Zortzitarra"
-
-#: src/chartable.c:153
-msgid "Binary"
-msgstr "Bitarra"
-
-#: src/chartable.c:184
+#: src/chartable.ui:30
 msgid "Character table"
 msgstr "Karaktere-taula"
 
-#: src/chartable.c:252
-msgid "_Insert Character"
-msgstr "_Txertatu karakterea"
+#: src/chartable.ui:44 src/find-options.ui:67
+msgid "ASCII"
+msgstr "ASCII"
 
-#: src/chartable.c:256 src/converter.c:186
-msgid "_Close"
-msgstr "It_xi"
+#: src/chartable.ui:69 src/find-options.ui:66
+msgid "Hex"
+msgstr "Hamaseitarra"
 
-#: src/common-ui.c:240
+#: src/chartable.ui:94
+msgid "Decimal"
+msgstr "Hamartarra"
+
+#: src/chartable.ui:119
+msgid "Octal"
+msgstr "Zortzitarra"
+
+#: src/chartable.ui:144
+msgid "Binary"
+msgstr "Bitarra"
+
+#: src/common-ui.c:246
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -94,7 +82,7 @@ msgid ""
 "any later version."
 msgstr "Programa hau software librea da; banatzeko edota aldatzeko baimena duzu GNU General Public License-kin ados datozen terminoetan Free Software Foundation-ek argitaratu bezala; nola baimenaren 2. bertsioa edo(nahi izanez gero) ondorengo edozein bertsio."
 
-#: src/common-ui.c:244
+#: src/common-ui.c:250
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -102,7 +90,7 @@ msgid ""
 "more details."
 msgstr "Programa hau erabilgarria izango delakoan banatzen da, baina, INOLAKO BERMERIK GABE; era berean, ez da bermatzen beraren EGOKITASUNA MERKATURATZEKO edo HELBURU PARTIKULARRETARAKO ERABILTZEKO.  Argibide gehiago nahi izanez gero, ikus GNU Lizentzia Publiko Orokorra."
 
-#: src/common-ui.c:248
+#: src/common-ui.c:254
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
@@ -111,69 +99,70 @@ msgstr "Programa honekin batera GNU Lizentzia Publiko Orokorraren kopia bat jaso
 
 #. Translators: these two strings here indicate the copyright time span,
 #. e.g. 1998-2018.
-#: src/common-ui.c:260
+#: src/common-ui.c:266
 #, c-format
 msgid "Copyright © %d–%d The GHex authors"
 msgstr "Copyright © %d–%d GHex egileak"
 
-#: src/common-ui.c:274
-msgid "A binary file editor"
-msgstr "Fitxategi bitarren editorea"
-
-#: src/common-ui.c:281
+#: src/common-ui.c:287
 msgid "About GHex"
 msgstr "GHex-i buruz"
 
-#: src/common-ui.c:282
+#: src/common-ui.c:288
 msgid "translator-credits"
 msgstr "Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>"
 
-#: src/common-ui.c:285
-msgid "GHex Website"
-msgstr "GHex-en webgunea"
-
 #. Translators: This is an error string for a print-related error
 #. * dialog.  The %s is the error generated by GError.
-#: src/common-ui.c:349
+#: src/common-ui.c:353
 #, c-format
 msgid "An error has occurred: %s"
 msgstr "Errorea gertatu da: %s"
 
-#: src/converter.c:183
+#: src/common-ui.c:374 src/find-dialog.ui:99 src/jump-dialog.ui:64
+#: src/mark-dialog.ui:152
+msgid "Close"
+msgstr "Itxi"
+
+#: src/converter.c:166
 msgid "Base Converter"
 msgstr "Bihurtzailea"
 
 #. entries
-#: src/converter.c:209
+#: src/converter.c:176
 msgid "_Binary:"
 msgstr "_Bitarra:"
 
-#: src/converter.c:211
+#: src/converter.c:178
 msgid "_Octal:"
 msgstr "_Zortzitarra:"
 
-#: src/converter.c:213
+#: src/converter.c:180
 msgid "_Decimal:"
 msgstr "_Hamartarra:"
 
-#: src/converter.c:215
+#: src/converter.c:182
 msgid "_Hex:"
 msgstr "Hama_seitarra:"
 
-#: src/converter.c:217
+#: src/converter.c:184
 msgid "_ASCII:"
 msgstr "_ASCII:"
 
 #. get cursor button
-#: src/converter.c:221
+#: src/converter.c:188
 msgid "_Get cursor value"
 msgstr "Ha_rtu kurtsore-balioa"
 
-#: src/converter.c:230
+#: src/converter.c:189
+msgid "_Close"
+msgstr "It_xi"
+
+#: src/converter.c:199
 msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
 msgstr "Hartu kurtsorearen balioa bitarrean, zortzitarrean, hamartarrean, hamaseitarrean eta ASCII"
 
-#: src/converter.c:371
+#: src/converter.c:339
 msgid "ERROR"
 msgstr "ERROREA"
 
@@ -217,10 +206,6 @@ msgstr "Bilaketa-aukerak"
 msgid "View options of the find pane"
 msgstr "Ikusi bilaketa-paneleko aukerak"
 
-#: src/find-dialog.ui:99 src/jump-dialog.ui:63
-msgid "Close"
-msgstr "Itxi"
-
 #: src/find-dialog.ui:100
 msgid "Closes the find pane"
 msgstr "Bilaketa-panela ixten du"
@@ -241,11 +226,11 @@ msgstr "Erakutsi:"
 msgid "Both"
 msgstr "Biak"
 
-#: src/findreplace.c:221
+#: src/findreplace.c:222
 msgid "No string provided."
 msgstr "Ez da katerik eman."
 
-#: src/findreplace.c:395
+#: src/findreplace.c:396
 msgid ""
 "Beginning of file reached.\n"
 "\n"
@@ -254,7 +239,7 @@ msgstr "Fitxategi-hasierara iritsi da.\n"
 "\n"
 "Ez da bat etortze gehiagorik aurkitu."
 
-#: src/findreplace.c:397
+#: src/findreplace.c:398
 msgid ""
 "Beginning of file reached.\n"
 "\n"
@@ -263,7 +248,7 @@ msgstr "Fitxategi-hasierara iritsi da.\n"
 "\n"
 "Ez da agerrialdi gehiagorik aurkitu kurtsoretik."
 
-#: src/findreplace.c:407
+#: src/findreplace.c:408
 msgid ""
 "End of file reached.\n"
 "\n"
@@ -272,7 +257,7 @@ msgstr "Fitxategi-amaierara iritsi da.\n"
 "\n"
 "Ez da bat etortze gehiagorik aurkitu."
 
-#: src/findreplace.c:409
+#: src/findreplace.c:410
 msgid ""
 "End of file reached.\n"
 "\n"
@@ -281,19 +266,19 @@ msgstr "Fitxategi-amaierara iritsi da.\n"
 "\n"
 "Ez da agerrialdi gehiagorik aurkitu kurtsoretik."
 
-#: src/findreplace.c:480
+#: src/findreplace.c:481
 msgid "No offset has been specified."
 msgstr "Ez da desplazamendurik zehaztu."
 
-#: src/findreplace.c:505
+#: src/findreplace.c:506
 msgid "The specified offset is beyond the  file boundaries."
 msgstr "Zehaztutako desplazamendua fitxategiaren mugetatik kanpo dago."
 
-#: src/findreplace.c:513
+#: src/findreplace.c:514
 msgid "Can not position cursor beyond the end of file."
 msgstr "Kurtsorea ezin da fitxategi-amaieraz harago kokatu."
 
-#: src/findreplace.c:523
+#: src/findreplace.c:525
 msgid ""
 "You may only give the offset as:\n"
 "  - a positive decimal number, or\n"
@@ -304,31 +289,31 @@ msgstr "Desplazamendua honakoekin bakarrik zehatz daiteke:\n"
 "  - zenbaki hamaseitarra, '0x' karaktereekin hasita, edo\n"
 "  - '+' edo '-' ikur bat desplazamendu erlatibo batekin jarraituz"
 
-#: src/findreplace.c:580
+#: src/findreplace.c:584
 msgid "String was not found."
 msgstr "Ez da katea aurkitu."
 
-#: src/findreplace.c:644
+#: src/findreplace.c:648
 #, c-format
 msgid "Search complete: %d replacements made."
 msgstr "Bilaketa osatu da: %d ordezkapen egin dira."
 
-#: src/findreplace.c:651
+#: src/findreplace.c:655
 msgid "No occurrences were found."
 msgstr "Ez da agerraldirik aurkitu."
 
 #. Translators: this is the string for an untitled buffer that will
 #. * be displayed in the titlebar when a user does File->New
 #.
-#: src/ghex-application-window.c:49 src/hex-document.c:1057
+#: src/ghex-application-window.c:49 src/hex-document.c:1110
 msgid "Untitled"
 msgstr "Izengabea"
 
-#: src/ghex-application-window.c:284
+#: src/ghex-application-window.c:293
 msgid "There was an error saving the file."
 msgstr "Errorea gertatu da fitxategia gordetzean."
 
-#: src/ghex-application-window.c:334
+#: src/ghex-application-window.c:336
 msgid ""
 "<b>You have one or more files open with unsaved changes.</b>\n"
 "\n"
@@ -339,18 +324,18 @@ msgstr "<b>Gorde gabeko aldaketak dituzten fitxategiak daude.</b>\n"
 "Ziur zaude leihoa itxi nahi duzula?\n"
 "\n"
 
-#: src/ghex-application-window.c:338
+#: src/ghex-application-window.c:339
 msgid "_Close Anyway"
 msgstr "It_xi dena den"
 
-#: src/ghex-application-window.c:339 src/ghex-application-window.c:474
-#: src/ghex-application-window.c:1175
+#: src/ghex-application-window.c:340 src/ghex-application-window.c:475
+#: src/ghex-application-window.c:1179
 msgid "_Go Back"
 msgstr "Joan a_tzera"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:452
+#: src/ghex-application-window.c:456
 #, c-format
 msgid ""
 "<big><b>%s has been edited since opening.</b></big>\n"
@@ -360,7 +345,7 @@ msgstr "<big><b>%s editatu egin da ireki zen azken alditik.</b></big>\n"
 "\n"
 "Aldaketak gorde nahi al dituzu?"
 
-#: src/ghex-application-window.c:458
+#: src/ghex-application-window.c:462
 msgid ""
 "<b>The buffer has been edited since opening.</b>\n"
 "\n"
@@ -369,31 +354,31 @@ msgstr "<big><b>Bufferra editatu egin da ireki zen azken alditik.</b></big>\n"
 "\n"
 "Aldaketak gorde nahi al dituzu?"
 
-#: src/ghex-application-window.c:472
+#: src/ghex-application-window.c:473
 msgid "_Save Changes"
 msgstr "_Gorde aldaketak"
 
-#: src/ghex-application-window.c:473
+#: src/ghex-application-window.c:474
 msgid "_Discard Changes"
 msgstr "_Baztertu aldaketak"
 
-#: src/ghex-application-window.c:1028
+#: src/ghex-application-window.c:1035
 msgid "There was an error saving the file to the path specified."
 msgstr "Errorea gertatu da zehaztutako bide-izenean fitxategia gordetzean."
 
-#: src/ghex-application-window.c:1047
+#: src/ghex-application-window.c:1054
 msgid ""
 "An unknown error has occurred in attempting to reload the file you have just "
 "saved."
 msgstr "Errorea gertatu da gorde berri den fitxategia birkargatzeko saialdian."
 
-#: src/ghex-application-window.c:1099
+#: src/ghex-application-window.c:1107
 msgid "Select a file to save buffer as"
 msgstr "Hautatu fitxategi bat bufferra gordetzeko honela"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1168
+#: src/ghex-application-window.c:1173
 #, c-format
 msgid ""
 "<big><b>Are you sure you want to revert %s?</b></big>\n"
@@ -407,15 +392,15 @@ msgstr "<big><b>Ziur zaude %s leheneratu nahi duzula?</b></big>\n"
 "\n"
 "Ekintza hau ezin da desegin."
 
-#: src/ghex-application-window.c:1174 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1178 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Leheneratu"
 
-#: src/ghex-application-window.c:1258
+#: src/ghex-application-window.c:1266
 msgid "Select a file to open"
 msgstr "Hautatu fitxategi bat irekitzeko"
 
-#: src/ghex-application-window.c:1363
+#: src/ghex-application-window.c:1373
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
@@ -437,19 +422,19 @@ msgstr "Laguntza ezin izan da ireki.\n"
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1439
+#: src/ghex-application-window.c:1567
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
 "<tt>0x%lX</tt> selected"
 msgstr "Desplazamentua: <tt>0x%lX</tt>; <tt>0x%lX</tt> / <tt>0x%lX</tt> to <tt>0x%lX</tt> byte hautatu dira"
 
-#: src/ghex-application-window.c:1443
+#: src/ghex-application-window.c:1571
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Desplazamendua: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:2079
+#: src/ghex-application-window.c:2388
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
@@ -472,9 +457,15 @@ msgstr "1 GB edo gehiago dituen fitxategi bat irekitzen saiatzen ari zara.\n"
 "\n"
 "Mezu hau agertu dadin saihesteko, saiatu beste buffer-motor bat erabiltzen."
 
-#: src/ghex-application-window.c:2136
+#: src/ghex-application-window.c:2446
 msgid "There was an error reading the file."
 msgstr "Errorea gertatu da fitxategia irakurtzean."
+
+#: src/ghex-application-window.c:2507
+msgid ""
+"There was an error loading the requested file. The file either no longer "
+"exists, is inaccessible, or you may not have permission to access the file."
+msgstr "Errorea gertatu da eskatutako fitxategia kargatzean. Fitxategia ez da existitzen, ezin da atzitu edo ez duzu baimenik hura atzitzeko."
 
 #: src/ghex-application-window.ui.in:31
 msgid "_New"
@@ -500,95 +491,99 @@ msgstr "Bilatu eta _ordeztu"
 msgid "_Jump to Byte"
 msgstr "_Joan bytera"
 
-#: src/ghex-application-window.ui.in:72
+#: src/ghex-application-window.ui.in:66
+msgid "_Marks"
+msgstr "_Markak"
+
+#: src/ghex-application-window.ui.in:76
 msgid "_Edit"
 msgstr "_Editatu"
 
-#: src/ghex-application-window.ui.in:74
+#: src/ghex-application-window.ui.in:78
 msgid "_Copy Special"
 msgstr "Kopiatu bere_zia"
 
-#: src/ghex-application-window.ui.in:78
+#: src/ghex-application-window.ui.in:82
 msgid "_Paste Special"
 msgstr "It_satsi berezia"
 
-#: src/ghex-application-window.ui.in:85
-msgid "_Tools"
-msgstr "_Tresnak"
-
-#: src/ghex-application-window.ui.in:87
-msgid "_Character Table"
-msgstr "_Karaktere-taula"
-
-#: src/ghex-application-window.ui.in:91
-msgid "_Base Converter"
-msgstr "_Oinarri-bihurtzailea"
-
-#: src/ghex-application-window.ui.in:98
+#: src/ghex-application-window.ui.in:86
 msgid "G_roup Data As"
 msgstr "E_lkartu datuak honela"
 
-#: src/ghex-application-window.ui.in:100
+#: src/ghex-application-window.ui.in:88
 msgid "_Bytes (8-bit)"
 msgstr "B_yteak (8-bit)"
 
-#: src/ghex-application-window.ui.in:106
+#: src/ghex-application-window.ui.in:94
 msgid "_Words (16-bit)"
 msgstr "_Hitzak (16-bit)"
 
-#: src/ghex-application-window.ui.in:111
+#: src/ghex-application-window.ui.in:99
 msgid "_Longwords (32-bit)"
 msgstr "Hitz l_uzeak (32-bit)"
 
-#: src/ghex-application-window.ui.in:116
+#: src/ghex-application-window.ui.in:104
 msgid "_Quadwords (64-bit)"
 msgstr "Hitz lau_koitzak (64-bit)"
 
-#: src/ghex-application-window.ui.in:126
+#: src/ghex-application-window.ui.in:113
+msgid "_Tools"
+msgstr "_Tresnak"
+
+#: src/ghex-application-window.ui.in:115
+msgid "_Character Table"
+msgstr "_Karaktere-taula"
+
+#: src/ghex-application-window.ui.in:119
+msgid "_Base Converter"
+msgstr "_Oinarri-bihurtzailea"
+
+#: src/ghex-application-window.ui.in:128
 msgid "_Keyboard Shortcuts"
 msgstr "Laste_r-teklak"
 
-#: src/ghex-application-window.ui.in:131
+#: src/ghex-application-window.ui.in:133
 msgid "_Preferences"
 msgstr "_Hobespenak"
 
-#: src/ghex-application-window.ui.in:136
+#: src/ghex-application-window.ui.in:138
 msgid "_Help"
 msgstr "_Laguntza"
 
-#: src/ghex-application-window.ui.in:141
+#: src/ghex-application-window.ui.in:143
 msgid "_About GHex"
 msgstr "GHex aplikazioari _buruz"
 
-#: src/ghex-application-window.ui.in:170
+#: src/ghex-application-window.ui.in:172
 msgid "Open a file for hex editing"
 msgstr "Ireki fitxategi bat edizio hamaseitarrerako"
 
-#: src/ghex-application-window.ui.in:173
+#: src/ghex-application-window.ui.in:175
 msgid "_Open"
 msgstr "_Ireki"
 
-#: src/ghex-application-window.ui.in:186
+#: src/ghex-application-window.ui.in:188
 msgid "Main Menu"
 msgstr "Menu nagusia"
 
-#: src/ghex-application-window.ui.in:188
+#: src/ghex-application-window.ui.in:190
 msgid "Main menu"
 msgstr "Menu nagusia"
 
-#: src/ghex-application-window.ui.in:198
+#: src/ghex-application-window.ui.in:200
 msgid "Find a string in the hex document"
 msgstr "Bilatu kate bat hamaseitar dokumentuan"
 
-#: src/ghex-application-window.ui.in:207
+#: src/ghex-application-window.ui.in:209
 msgid "Save document"
 msgstr "Gorde dokumentua"
 
-#: src/ghex-application-window.ui.in:215
+#: src/ghex-application-window.ui.in:217
 msgid "No File Loaded"
 msgstr "Ez da fitxategirik kargatu"
 
-#: src/ghex-application-window.ui.in:218
+#: src/ghex-application-window.ui.in:220
 msgid ""
 "• Press the Open button\n"
 "• Press Ctrl+N to start a new document\n"
@@ -601,11 +596,11 @@ msgstr "• Sakatu 'Ireki' botoia\n"
 "\n"
 "Edo sakatu Ctrl+W leihoa ixteko."
 
-#: src/ghex-application-window.ui.in:307
+#: src/ghex-application-window.ui.in:309
 msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr "Txandakatu txertatze modua (gehitu datuak fitxategiari, lehendik dauden datuak ordeztu ordez)"
 
-#: src/ghex-application-window.ui.in:319
+#: src/ghex-application-window.ui.in:321
 msgid "Toggle a pane showing various numeric conversions"
 msgstr "Txandakatu zebakizko bihurketak erakusten dituen panela"
 
@@ -629,11 +624,11 @@ msgstr "B_erregin"
 msgid "Cu_t"
 msgstr "_Ebaki"
 
-#: src/gtkhex.ui:76 src/paste-special.c:405
+#: src/gtkhex.ui:76 src/paste-special.c:420
 msgid "_Copy"
 msgstr "_Kopiatu"
 
-#: src/gtkhex.ui:80 src/paste-special.ui:49
+#: src/gtkhex.ui:80 src/paste-special.ui:47
 msgid "_Paste"
 msgstr "_Itsatsi"
 
@@ -694,74 +689,86 @@ msgid "Find and replace"
 msgstr "Bilatu eta ordeztu"
 
 #: src/help-overlay.ui:105
+msgid "Marks"
+msgstr "Markak"
+
+#: src/help-overlay.ui:110
+msgid "Marks dialog"
+msgstr "Marken elkarrizketa-koadroa"
+
+#: src/help-overlay.ui:117
+msgid "Activate mark (0-9)"
+msgstr "Aktibatu marka (0-9)"
+
+#: src/help-overlay.ui:126
 msgid "Clipboard"
 msgstr "Arbela"
 
-#: src/help-overlay.ui:110
+#: src/help-overlay.ui:131
 msgid "Copy"
 msgstr "Kopiatu"
 
-#: src/help-overlay.ui:117
+#: src/help-overlay.ui:138
 msgid "Cut"
 msgstr "Ebaki"
 
-#: src/help-overlay.ui:124
+#: src/help-overlay.ui:145
 msgid "Paste"
 msgstr "Itsatsi"
 
-#: src/help-overlay.ui:131
+#: src/help-overlay.ui:152
 msgid "Copy special"
 msgstr "Kopiatu berezia"
 
-#: src/help-overlay.ui:138
+#: src/help-overlay.ui:159
 msgid "Paste special"
 msgstr "Itsatsi berezia"
 
-#: src/help-overlay.ui:147
+#: src/help-overlay.ui:168
 msgid "Navigation"
 msgstr "Nabigazioa"
 
-#: src/help-overlay.ui:152
+#: src/help-overlay.ui:173
 msgid "Toggle left (hex) display"
 msgstr "Txandakatu ezkerreko (hamaseitar) monitorea"
 
-#: src/help-overlay.ui:159
+#: src/help-overlay.ui:180
 msgid "Toggle right (ASCII) display"
 msgstr "Txandakatu eskuineko (ASCII) monitorea"
 
-#: src/help-overlay.ui:166
+#: src/help-overlay.ui:187
 msgid "Switch to previous tab"
 msgstr "Joan aurreko fitxara"
 
-#: src/help-overlay.ui:173
+#: src/help-overlay.ui:194
 msgid "Switch to next tab"
 msgstr "Joan hurrengo fitxara"
 
-#: src/help-overlay.ui:180
+#: src/help-overlay.ui:201
 msgid "Jump to byte"
 msgstr "Joan bytera"
 
-#: src/help-overlay.ui:187
+#: src/help-overlay.ui:208
 msgid "Move to beginning of document"
 msgstr "Joan dokumentuaren hasierara"
 
-#: src/help-overlay.ui:194
+#: src/help-overlay.ui:215
 msgid "Move to end of document"
 msgstr "Joan dokumentuaren amaierara"
 
-#: src/help-overlay.ui:203
+#: src/help-overlay.ui:224
 msgid "General"
 msgstr "Orokorra"
 
-#: src/help-overlay.ui:208
+#: src/help-overlay.ui:229
 msgid "Show help"
 msgstr "Erakutsi laguntza"
 
-#: src/help-overlay.ui:215
+#: src/help-overlay.ui:236
 msgid "Show preferences"
 msgstr "Erakutsi hobespenak"
 
-#: src/help-overlay.ui:222
+#: src/help-overlay.ui:243
 msgid "Toggle insert mode"
 msgstr "Txandakatu txertatze modua"
 
@@ -795,7 +802,7 @@ msgstr "Ezin da fitxategia sortu"
 msgid "Not a regular file or block device"
 msgstr "Ez da fitxategi arrunta edo bloke-gailua"
 
-#: src/hex-buffer-direct.c:240 src/hex-buffer-mmap.c:616
+#: src/hex-buffer-direct.c:240 src/hex-buffer-mmap.c:615
 msgid "Unable to open file for reading"
 msgstr "Ezin da fitxategia irakurtzeko moduan ireki"
 
@@ -827,19 +834,19 @@ msgstr "Ezin da %s doitu %lu eta %lu byte artean"
 msgid "Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"
 msgstr "Errore larria: Fitxategiaren memoria-mapatzeak (%lu byte, fd %d) huts egin du"
 
-#: src/hex-buffer-mmap.c:606
+#: src/hex-buffer-mmap.c:605
 msgid "Not a regular file"
 msgstr "Ez da fitxategi arrunta"
 
-#: src/hex-buffer-mmap.c:647
+#: src/hex-buffer-mmap.c:646
 msgid "Failed to open temporary file."
 msgstr "Aldi baterako fitxategia irekitzeak huts egin du."
 
-#: src/hex-buffer-mmap.c:686
+#: src/hex-buffer-mmap.c:685
 msgid "Error reading file"
 msgstr "Errorea fitxategia irakurtzean"
 
-#: src/hex-buffer-mmap.c:702
+#: src/hex-buffer-mmap.c:701
 msgid "An error has occurred"
 msgstr "Errore bat gertatu da"
 
@@ -907,26 +914,22 @@ msgstr "Erakutsi zeinu gabekoak eta mugikorrak hamaseitar gisa"
 msgid "Stream Length:"
 msgstr "Korrontearen luzera:"
 
-#: src/hex-dialog.c:237
-msgid "FIXME: no conversion function"
-msgstr "ZUZENTZEKO: bihurtzeko funtziorik ez"
-
-#: src/hex-document.c:1085
+#: src/hex-document.c:1138
 #, c-format
 msgid "Page"
 msgstr "Orrialdea"
 
-#: src/hex-document.c:1091 src/hex-document.c:1194
+#: src/hex-document.c:1144 src/hex-document.c:1247
 #, c-format
 msgid "Hex dump generated by"
 msgstr "Iraulketa hamaseitarraren sortzailea:"
 
-#: src/hex-document.c:1117
+#: src/hex-document.c:1170
 #, c-format
 msgid "Previous page"
 msgstr "Aurreko orrialdea"
 
-#: src/hex-document.c:1132
+#: src/hex-document.c:1185
 #, c-format
 msgid "Next page"
 msgstr "Hurrengo orrialdea"
@@ -935,7 +938,7 @@ msgstr "Hurrengo orrialdea"
 msgid "Jump to byte (enter offset):"
 msgstr "Joan honako bytera (sartu desplazamendua):"
 
-#: src/jump-dialog.ui:43
+#: src/jump-dialog.ui:44
 msgid ""
 "Enter the offset byte to jump to. The default is decimal format, but other "
 "format strings are supported such as hexadecimal format, if C-style notation "
@@ -943,15 +946,15 @@ msgid ""
 "will be presented explaining the valid formats of strings accepted."
 msgstr "Sartu zein desplazamendu-bytera egingo den salto. Balio lehenetsia formatu hamartarra da, baina beste fotmatuetako kateak ere, adibidez hamaseitar formatua, onartzen da '0x' aurrizkia darabilen C estiloko notazioa erabiltzen bada. Zure katea ezagutzen ez bada, onartzen diren baliozko kate-formatuak azaltzen dituen elkarrizketa-koadro bat erakutsiko da."
 
-#: src/jump-dialog.ui:48
+#: src/jump-dialog.ui:49 src/mark-dialog.ui:110
 msgid "_Jump"
 msgstr "_Jauzi"
 
-#: src/jump-dialog.ui:54
+#: src/jump-dialog.ui:55
 msgid "Jumps to the specified byte"
 msgstr "Joan zehaztutako bytera"
 
-#: src/jump-dialog.ui:64
+#: src/jump-dialog.ui:65
 msgid "Closes the jump-to-byte pane"
 msgstr "Zehaztutako bytera joateko panela ixten du"
 
@@ -964,11 +967,59 @@ msgstr "Erakutsi aplikazioaren bertsioa"
 msgid "This is GHex, version %s\n"
 msgstr "Hau GHex da, %s bertsioa\n"
 
-#: src/main.c:166
+#: src/main.c:170
 msgid "GHex - A hex editor for the GNOME desktop"
 msgstr "Ghex - GNOME mahaigainerako hamaseitarren editorea"
 
-#: src/paste-special.c:220
+#. Translators: this is meant to show a range of hex offset values.
+#. * eg, "0xAA - 0xFF"
+#.
+#: src/mark-dialog.c:125
+#, c-format
+msgid "0x%lX - 0x%lX"
+msgstr "0x%lX - 0x%lX"
+
+#: src/mark-dialog.ui:36
+msgid "Mark:"
+msgstr "Marka:"
+
+#: src/mark-dialog.ui:50
+msgid "Select the desired mark to set, jump to, or delete"
+msgstr "Hautatu ezarri, saltatu edo ezabatu nahi duzun marka"
+
+#: src/mark-dialog.ui:58
+msgid "Optional custom color for the mark"
+msgstr "Aukerako kolore pertsonalizatua markarako"
+
+#: src/mark-dialog.ui:74
+msgid "Pick a custom color for the mark, if desired."
+msgstr "Aukeratu kolore pertsonalizatua markarako, nahi izanez gero."
+
+#: src/mark-dialog.ui:96
+msgid "_Set"
+msgstr "E_zarri"
+
+#: src/mark-dialog.ui:103
+msgid "Set a mark on a byte or range of bytes"
+msgstr "Ezarri marka bat byte batean edo byte-barruti batean"
+
+#: src/mark-dialog.ui:122
+msgid "Bring the cursor to the specified mark"
+msgstr "Eraman kurtsorea zehaztutako markara"
+
+#: src/mark-dialog.ui:129
+msgid "_Delete"
+msgstr "_Ezabatu"
+
+#: src/mark-dialog.ui:141
+msgid "Delete the specified mark"
+msgstr "Ezabatu zehaztutako marka"
+
+#: src/mark-dialog.ui:153
+msgid "Closes the marks pane"
+msgstr "Marken panela ixten du"
+
+#: src/paste-special.c:218
 #, c-format
 msgid ""
 "Paste failed; invalid hex format.\n"
@@ -982,32 +1033,31 @@ msgstr "Itsasteak huts egin du; hamaseitar formatu baliogabea.\n"
 "\n"
 "Adibidez: \"FF 3D 99 0A\""
 
-#: src/paste-special.c:310
+#: src/paste-special.c:305
 msgid "GHex Paste Data"
 msgstr "GHex itsaste-datuak"
 
-#: src/paste-special.c:407
+#: src/paste-special.c:422
 msgid "Copy Special"
 msgstr "Kopiatu berezia"
 
-#: src/paste-special.c:512
+#: src/paste-special.c:527
 msgid "Plain text (as ASCII)"
 msgstr "Testu soila (ASCII gisa)"
 
-#: src/paste-special.c:529
+#: src/paste-special.c:544
 msgid "Plain text (Unicode)"
 msgstr "Testu soila (Unicode)"
 
-#: src/paste-special.c:533
+#: src/paste-special.c:548
 msgid "Plain text (as space-delimited hex pairs)"
 msgstr "Testu soila (zuriunez banandutako hex bikote gisa)"
 
-#. paste_special_dialog
 #: src/paste-special.ui:28
 msgid "Paste Special"
 msgstr "Itsatsi berezia"
 
-#: src/paste-special.ui:55
+#: src/paste-special.ui:53
 msgid "_Cancel"
 msgstr "_Utzi"
 
@@ -1120,16 +1170,23 @@ msgstr "Ordeztu _guztiak"
 msgid "Replaces all occurrences of the search string with the replace string"
 msgstr "Ordeztu bilaketako testu guztiak ordezko testuarekin"
 
+#~ msgid "Logan Rathbone"
+#~ msgstr "Logan Rathbone"
+
+#~ msgid "_Insert Character"
+#~ msgstr "_Txertatu karakterea"
+
+#~ msgid "A binary file editor"
+#~ msgstr "Fitxategi bitarren editorea"
+
+#~ msgid "GHex Website"
+#~ msgstr "GHex-en webgunea"
+
+#~ msgid "FIXME: no conversion function"
+#~ msgstr "ZUZENTZEKO: bihurtzeko funtziorik ez"
+
 #~ msgid "Show About dialog"
 #~ msgstr "Erakutsi 'Honi buruz' elkarrizketa-koadroa"
-
-#~ msgid ""
-#~ "There was an error loading the requested file. The file either no longer "
-#~ "exists, is inaccessible, or you may not have permission to access the "
-#~ "file."
-#~ msgstr ""
-#~ "Errorea gertatu da eskatutako fitxategia kargatzean. Fitxategia ez da "
-#~ "existitzen, ezin da atzitu edo ez duzu baimenik hura atzitzeko."
 
 #~ msgid "Hex Group Type"
 #~ msgstr "Hex talde mota"
