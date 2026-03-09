@@ -1052,7 +1052,7 @@ out:
 }
 
 /**
- * hex_document_write_to_file_async:
+ * hex_document_write_to_file_async: (finish-func hex_document_write_finish)
  * @doc: a [class@Hex.Document] object
  * @file: #GFile to be written to
  * @cancellable: (nullable): a #GCancellable
@@ -1619,7 +1619,7 @@ FUNC_NAME (HexDocument *doc, \
 }
 
 /**
- * hex_document_find_forward_full_async:
+ * hex_document_find_forward_full_async: (finish-func hex_document_find_finish)
  * @find_data: a #HexDocumentFindData structure
  * @cancellable: (nullable): a #GCancellable
  * @callback: (scope async): function to be called when the operation is
@@ -1633,7 +1633,7 @@ FIND_FULL_ASYNC_TEMPLATE(hex_document_find_forward_full_async,
 		hex_document_find_forward_full_thread)
 
 /**
- * hex_document_find_forward_async:
+ * hex_document_find_forward_async: (finish-func hex_document_find_finish)
  * @doc: a [class@Hex.Document] object
  * @start: starting offset byte of the payload to commence the search
  * @what: (array length=len) (element-type gint8): a pointer to the data to
@@ -1791,7 +1791,7 @@ hex_document_find_backward_thread (GTask *task,
 }
 
 /**
- * hex_document_find_backward_full_async:
+ * hex_document_find_backward_full_async: (finish-func hex_document_find_finish)
  * @find_data: a #HexDocumentFindData structure
  * @cancellable: (nullable): a #GCancellable
  * @callback: (scope async): function to be called when the operation is
@@ -1805,7 +1805,7 @@ FIND_FULL_ASYNC_TEMPLATE(hex_document_find_backward_full_async,
 		hex_document_find_backward_full_thread)
 
 /**
- * hex_document_find_backward_async:
+ * hex_document_find_backward_async: (finish-func hex_document_find_finish)
  * @doc: a [class@Hex.Document] object
  * @start: starting offset byte of the payload to commence the search
  * @what: (array length=len) (element-type gint8): a pointer to the data to
