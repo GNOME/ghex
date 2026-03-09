@@ -1,3 +1,60 @@
+==========
+GHex 50.rc
+==========
+
+We skipped the formal GNOME 49 release cycle and just released some bugfix
+releases for GHex 48.x during that cycle. GHex 50 will mostly be a bugfix
+release as well, but the collection of bugfixes is more significant.
+
+Changes and bugfixes since 48.0:
+- widget: Add :insert-mode property (Logan Rathbone)
+- appwin: Bind appwin's insert-mode with widgets' for per-document insert-mode
+  (Logan Rathbone)
+- hex-buf-direct: Fix possible nullptr dereference (Logan Rathbone)
+- hex-buf-mmap: Document that using without a file is undefined behaviour
+  (Logan Rathbone)
+- hex-doc: Make default backend malloc unless/until file is set (Logan
+  Rathbone)
+- hex-buffer-mmap: Tighten unhappy code paths and avoid potential nullptr
+  operations (Logan Rathbone)
+- appwin: Don't allow insert-mode for the direct HexBuffer backend (Logan
+  Rathbone)
+- widget: Fix regression re: mouse clicks on ascii pane with control chars
+  (Logan Rathbone)
+- appwin/widget/hex-doc/findrep: Fix ownership/lifetime issues and add/fix some
+  assertions (Logan Rathbone)
+- widget: Fix regression from 5bf9ac6 in hex_widget_zero_selection() (Logan
+  Rathbone)
+- widget: Don't violate new GTK assertions for GtkAdjustment's (Logan Rathbone)
+- appwin: Only grab focus of active HexWidget after closing tab if there is one
+  (Logan Rathbone)
+- appwin: Duplicate title for close doc conf dialog (fixes: regression from
+  8b8f7e3f) (Logan Rathbone)
+- widget: Fix ownership of :document property of HexWidget (#98) (Logan
+  Rathbone)
+- widget: Handle numpad navigational keys (Logan Rathbone)
+- CI fixes (Logan Rathbone; thanks to alatiera)
+- CI: Add job to deploy docs for libgtkhex; update README.md to link to API
+  docs (Logan Rathbone)
+- findrep: Cancelling find ops should allow to search again right away (Logan
+  Rathbone)
+- appwin/common: Fetch basename of files more sanely (#93) (!79) (Logan
+  Rathbone)
+- lib: Don't leak string when setting up GdkContentProvider (Logan Rathbone)
+- appwin: Clear weak pointers for copy/paste special dialogs (Logan Rathbone)
+- widget: Use g_signal_connect_object for doc signal handlers (Logan Rathbone)
+- hex-doc: Don't leak monitor use g_clear_object w.r.t. gfile (Logan Rathbone)
+- hex-doc: Add more sanity checks to file monitor operations (Logan Rathbone)
+- hex-doc: Add GI annotations for _finish() functions where required (Logan
+  Rathbone)
+
+Translation updates:
+- Asier Saratsua Garmendia (eu)
+- Balázs Úr (hu)
+- Daniel Rusek (cs)
+- Jiri Grönroos (fi)
+- Makoto Sakaguchi (ja)
+
 =========
 GHex 48.0
 =========
