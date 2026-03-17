@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ghex ghex-46\n"
-"POT-Creation-Date: 2026-03-14 18:50+0000\n"
-"PO-Revision-Date: 2026-03-17 22:30+0500\n"
+"POT-Creation-Date: 2026-03-17 17:33+0000\n"
+"PO-Revision-Date: 2026-03-17 22:57+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <Kazakh>\n"
 "Language: kk\n"
@@ -34,8 +34,7 @@ msgstr "Logan Rathbone"
 #: C/advanced-clipboard.page:9 C/basics-create-new-file.page:9
 #: C/basics-edit-file.page:9 C/basics-find-replace.page:9
 #: C/basics-open-file.page:9 C/basics-save-file.page:9 C/conf-grouptype.page:9
-#: C/conf-preferences.page:9 C/index.page:8 C/tools-chartable.page:9
-#: C/tools-converter.page:9
+#: C/index.page:8 C/tools-chartable.page:9 C/tools-converter.page:9
 msgid "2022"
 msgstr "2022"
 
@@ -983,6 +982,11 @@ msgstr ""
 msgid "From the <link xref=\"conf-preferences\"/> dialog."
 msgstr "<link xref=\"conf-preferences\"/> сұхбат терезесінен."
 
+#. (itstool) path: credit/years
+#: C/conf-preferences.page:9
+msgid "2022-2025"
+msgstr "2022-2025"
+
 #. (itstool) path: page/title
 #: C/conf-preferences.page:12
 msgid "Preferences"
@@ -1090,17 +1094,73 @@ msgid "See <link xref=\"conf-grouptype\"/> for more details."
 msgstr "Толығырақ ақпаратты <link xref=\"conf-grouptype\"/> бөлімінен қараңыз."
 
 #. (itstool) path: section/title
+#: C/conf-preferences.page:49
+msgid "Display ASCII Control Characters"
+msgstr "ASCII басқару таңбаларын көрсету"
+
+#. (itstool) path: section/p
 #: C/conf-preferences.page:50
+msgid ""
+"If selected, ASCII control characters (<code>0x00</code> to <code>0x1F</"
+"code>) will be displayed as unicode picture symbols in the ASCII pane."
+msgstr ""
+"Егер таңдалса, ASCII басқару таңбалары (<code>0x00</code>-ден <code>0x1F</"
+"code>-ге дейін) ASCII панелінде юникодтық сурет таңбалары ретінде "
+"көрсетіледі."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:52
+msgid ""
+"Otherwise, such control characters will be displayed as a dot, just as other "
+"non-displayable ASCII characters are."
+msgstr ""
+"Әйтпесе, мұндай басқару таңбалары басқа көрсетілмейтін ASCII таңбалары "
+"сияқты нүкте ретінде көрсетіледі."
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:54
+msgid ""
+"Please note that enabling this option may cause GHex to choose characters "
+"from a font other than the selected font, if the unicode symbols are not "
+"available in the font selected. This can sometimes cause the hex and ASCII "
+"rows to become slightly misaligned. For best results with this option, be "
+"sure to select a font that includes all of the unicode ASCII control symbols "
+"in its character set."
+msgstr ""
+"Ескеріңіз, бұл опцияны іске қосу, егер юникод таңбалары таңдалған қаріпте "
+"жоқ болса, GHex-тің таңдалған қаріптен басқа қаріптен таңбаларды таңдауына "
+"әкелуі мүмкін. Бұл кейде hex және ASCII жолдарының сәл ауытқуына себеп болуы "
+"мүмкін. Бұл опциямен жақсы нәтижелерге қол жеткізу үшін, таңбалар "
+"жиынтығында барлық юникодтық ASCII басқару таңбалары бар қаріпті таңдаңыз."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:61
+msgid "Status Bar offset format"
+msgstr "Қалып-күй жолағындағы ығысу пішімі"
+
+#. (itstool) path: section/p
+#: C/conf-preferences.page:62
+msgid ""
+"This allows you to choose how the offset of the selected byte(s) is "
+"displayed in the status bar of the editor. It can be displayed in "
+"hexadecimal, decimal or both."
+msgstr ""
+"Бұл таңдалған байт(тар)дың ығысуы редактордың қалып-күй жолағында қалай "
+"көрсетілетінін таңдауға мүмкіндік береді. Ол он алтылық, ондық немесе екеуі "
+"де түрінде көрсетілуі мүмкін."
+
+#. (itstool) path: section/title
+#: C/conf-preferences.page:67
 msgid "Printing"
 msgstr "Басып шығару"
 
 #. (itstool) path: section/title
-#: C/conf-preferences.page:52
+#: C/conf-preferences.page:69
 msgid "Fonts"
 msgstr "Қаріптер"
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:53
+#: C/conf-preferences.page:70
 msgid ""
 "This section allows you to choose the fonts you would like for hex printouts."
 msgstr ""
@@ -1108,7 +1168,7 @@ msgstr ""
 "береді."
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:54
+#: C/conf-preferences.page:71
 msgid ""
 "<gui>Data font</gui> will apply to the content of your hex document (ie, hex "
 "and ASCII digits)."
@@ -1117,7 +1177,7 @@ msgstr ""
 "және ASCII цифрлары) қолданылады."
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:56
+#: C/conf-preferences.page:73
 msgid ""
 "<gui>Header font</gui> will apply to the header on your printout, which will "
 "show the document title and page number."
@@ -1126,12 +1186,12 @@ msgstr ""
 "нөмірін көрсететін тақырыптамаға қолданылады."
 
 #. (itstool) path: section/title
-#: C/conf-preferences.page:60
+#: C/conf-preferences.page:77
 msgid "Shaded rows"
 msgstr "Көлеңкеленген жолдар"
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:61
+#: C/conf-preferences.page:78
 msgid ""
 "If <gui>Print alternating shaded rows</gui> is selected, your printout will "
 "have alternating rows of your hex and ASCII data printed out with a shaded "
@@ -1142,7 +1202,7 @@ msgstr ""
 "жолдары көлеңкеленген сұр фонмен басып шығарылады."
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:64
+#: C/conf-preferences.page:81
 msgid ""
 "Please note that this may use more printer ink/toner than leaving it "
 "disabled."
@@ -1151,7 +1211,7 @@ msgstr ""
 "пайдалануы мүмкін екенін ескеріңіз."
 
 #. (itstool) path: section/p
-#: C/conf-preferences.page:65
+#: C/conf-preferences.page:82
 msgid ""
 "<gui>Span across lines</gui> allows you to customize how many lines will be "
 "shaded, followed by not shaded, on a repeated basis. Again, this is simply "
