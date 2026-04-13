@@ -11,6 +11,16 @@
 #define TOP_LINE_MARGIN			6
 #define FALLBACK_BLINK_RATE		1200	/* in ms - this happens to be the GTK default */
 
+enum
+{
+	PROP_0,
+	PROP_USE_COLOR_CODE,
+	PROP_COLOR_CODE,
+	N_PROPERTIES
+};
+
+static GParamSpec *properties[N_PROPERTIES];
+
 typedef struct
 {
 	/* Could use an array, but using a basic hashtable gives us poor-man's
@@ -22,6 +32,8 @@ typedef struct
 	gboolean cursor_visible;
 	guint cursor_blink_id;
 	guint scroll_to_cursor_id;
+	gboolean use_color_code;
+	HexColorCode *color_code;
 } HexTextPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (HexText, hex_text, HEX_TYPE_VIEW)
@@ -552,6 +564,112 @@ hex_text_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 	gtk_snapshot_pop (snapshot);
 }
 
+gboolean
+hex_text_get_use_color_code (HexText *self)
+{
+	HexTextPrivate *priv;
+
+	g_return_val_if_fail (HEX_IS_TEXT (self), FALSE);
+
+	priv = hex_text_get_instance_private (self);
+
+	return priv->use_color_code;
+}
+
+void
+hex_text_set_use_color_code (HexText *self, gboolean use_color_code)
+{
+	HexTextPrivate *priv;
+
+	g_return_if_fail (HEX_IS_TEXT (self));
+
+	priv = hex_text_get_instance_private (self);
+
+	priv->use_color_code = use_color_code;
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_USE_COLOR_CODE]);
+}
+
+/* Transfer none */
+void
+hex_text_set_color_code (HexText *self, HexColorCode *color_code)
+{
+	HexTextPrivate *priv;
+
+	g_return_if_fail (HEX_IS_TEXT (self));
+	g_return_if_fail (HEX_IS_COLOR_CODE (color_code));
+
+	priv = hex_text_get_instance_private (self);
+
+	g_clear_object (&priv->color_code);
+	priv->color_code = g_object_ref (color_code);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_COLOR_CODE]);
+}
+
+/* Transfer none */
+HexColorCode *
+hex_text_get_color_code (HexText *self)
+{
+	HexTextPrivate *priv;
+
+	g_return_val_if_fail (HEX_IS_TEXT (self), NULL);
+
+	priv = hex_text_get_instance_private (self);
+
+	g_assert (HEX_IS_COLOR_CODE (priv->color_code));
+
+	return priv->color_code;
+}
+
+static void
+hex_text_set_property (GObject *object,
+		guint property_id,
+		const GValue *value,
+		GParamSpec *pspec)
+{
+	HexText *self = HEX_TEXT(object);
+
+	switch (property_id)
+	{
+		case PROP_COLOR_CODE:
+			hex_text_set_color_code (self, g_value_get_object (value));
+			break;
+
+		case PROP_USE_COLOR_CODE:
+			hex_text_set_use_color_code (self, g_value_get_boolean (value));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
+static void
+hex_text_get_property (GObject *object,
+		guint property_id,
+		GValue *value,
+		GParamSpec *pspec)
+{
+	HexText *self = HEX_TEXT(object);
+
+	switch (property_id)
+	{
+		case PROP_COLOR_CODE:
+			g_value_set_object (value, hex_text_get_color_code (self));
+			break;
+
+		case PROP_USE_COLOR_CODE:
+			g_value_set_boolean (value, hex_text_get_use_color_code (self));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
+}
+
 static void
 adj_setup_signals_cb (HexView *view, GParamSpec *pspec, gpointer user_data)
 {
@@ -598,6 +716,8 @@ hex_text_class_init (HexTextClass *klass)
 
 	object_class->dispose = hex_text_dispose;
 	object_class->finalize = hex_text_finalize;
+	object_class->set_property = hex_text_set_property;
+	object_class->get_property = hex_text_get_property;
 
 	widget_class->size_allocate = hex_text_size_allocate;
 	widget_class->snapshot = hex_text_snapshot;
@@ -608,6 +728,16 @@ hex_text_class_init (HexTextClass *klass)
 	klass->dragged = NULL;		/* pure virtual function */
 	klass->right_click = NULL;	/* pure virtual function */
 	klass->render_line = hex_text_render_line;
+
+	properties[PROP_USE_COLOR_CODE] = g_param_spec_boolean ("use-color-code", NULL, NULL,
+			FALSE,
+			default_flags | G_PARAM_READWRITE);
+
+	properties[PROP_COLOR_CODE] = g_param_spec_object ("color-code", NULL, NULL,
+			HEX_TYPE_COLOR_CODE,
+			default_flags | G_PARAM_READWRITE);
+
+	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 }
 
 static void
@@ -656,6 +786,11 @@ hex_text_init (HexText *self)
 		gtk_widget_add_controller (GTK_WIDGET(self), focus);
 		g_signal_connect_swapped (focus, "enter", G_CALLBACK(gtk_widget_queue_draw), self);
 		g_signal_connect_swapped (focus, "leave", G_CALLBACK(gtk_widget_queue_draw), self);
+	}
+
+	{
+		g_autoptr(HexColorCode) color_code = hex_color_code_new ();
+		hex_text_set_color_code (self, color_code);
 	}
 }
 

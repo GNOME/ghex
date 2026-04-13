@@ -3,6 +3,7 @@
 #pragma once
 
 #include "hex-view.h"
+#include "hex-color-code.h"
 
 G_BEGIN_DECLS
 
@@ -41,5 +42,9 @@ void hex_text_set_cursor_visible (HexText *self, gboolean visible);
 gboolean hex_text_get_cursor_visible (HexText *self);
 gboolean hex_text_offset_is_visible (HexText *self, gint64 offset, int *line_num);
 gboolean hex_text_highlight_is_visible (HexText *self, HexHighlight *highlight, int disp_line_num, int *disp_line_offset_start, int *disp_line_offset_end);
+gboolean hex_text_get_use_color_code (HexText *self);
+void hex_text_set_use_color_code (HexText *self, gboolean use_color_code);
+HexColorCode * hex_text_get_color_code (HexText *self);
+void hex_text_set_color_code (HexText *self, HexColorCode *color_code);
 
 G_END_DECLS

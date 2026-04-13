@@ -21,6 +21,7 @@ libgtkhex_sources = [
   'hex-auto-highlight.c',
   'hex-buffer-iface.c',
   'hex-buffer-malloc.c',
+  'hex-color-code.c',
   'hex-document.c',
   'hex-file-monitor.c',
   'hex-highlight.c',

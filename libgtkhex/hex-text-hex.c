@@ -331,15 +331,16 @@ hex_text_hex_format_line (HexText *ht, int line_num, gint64 line_start_offset, s
 	HexBuffer *buf = hex_document_get_buffer (doc);
 	g_autoptr(GString) gstr = g_string_new (NULL);
 	g_autofree guchar *line_data = hex_buffer_get_data (buf, line_start_offset, line_len);
+	g_autoptr(GString) line_gstr = g_string_new (NULL);
 
-	g_string_append_printf (gstr, "<span font=\"%s\">", hex_view_get_font (HEX_VIEW(self)));
+	g_string_append_printf (line_gstr, "<span font=\"%s\">", hex_view_get_font (HEX_VIEW(self)));
 
 	/* Special case: for an empty or new file, set the layout text to 2 spaces
 	 * so that we have one (visibly empty) set of hex pairs to render a cursor over.
 	 */
 	if (line_len == 0)
 	{
-		g_string_append (gstr, "  ");
+		g_string_append (line_gstr, "  ");
 	}
 	else
 	{
@@ -349,20 +350,47 @@ hex_text_hex_format_line (HexText *ht, int line_num, gint64 line_start_offset, s
 		{
 			guchar character = line_data[i];
 			g_autofree char *char_str = g_strdup_printf ("%02X", character);
+			g_autoptr(GString) char_gstr = g_string_new (char_str);
 
+			/* Apply formatting to individual character within line */
+
+			if (hex_text_get_use_color_code (ht))
+			{
+				g_autofree char *hex_color_str = NULL;
+				g_autofree char *open_span_tag_str = NULL;
+				HexColorCode *color_code = hex_text_get_color_code (ht);
+				GdkRGBA color;
+
+				hex_color_code_get_color_at (color_code, character, &color);
+
+				hex_color_str = util_gdk_rgba_to_hex_color (&color);
+				g_assert (hex_color_str != NULL);
+
+				open_span_tag_str = g_strdup_printf ("<span foreground=\"%s\">", hex_color_str);
+
+				g_string_prepend (char_gstr, open_span_tag_str);
+				g_string_append  (char_gstr, "</span>");
+			}
+
+			// FIXME - don't hard-code 'grey'
 			if (self->fade_zeroes && character == 0)
-				g_string_append_printf (gstr, "<span foreground=\"grey\">%s</span>", char_str);
-			else
-				g_string_append (gstr, char_str);
+			{
+				g_string_prepend (char_gstr, "<span foreground=\"grey\">");
+				g_string_append  (char_gstr, "</span>");
+			}
 
+			g_string_append (line_gstr, char_gstr->str);
+
+			/* Formatting for characters complete. Add space after hex chars if applicable. */
+			
 			if ((i+1) % self->group_type == 0)
-				g_string_append_c (gstr, ' ');
+				g_string_append_c (line_gstr, ' ');
 		}
 	}
 
-	g_string_append (gstr, "</span>");
+	g_string_append (line_gstr, "</span>");
 
-	return g_steal_pointer (&gstr->str);
+	return g_steal_pointer (&line_gstr->str);
 }
 
 static void
