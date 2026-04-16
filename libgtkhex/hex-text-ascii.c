@@ -7,12 +7,15 @@
 #include "hex-mark-private.h"
 #include "util.h"
 
-#define is_displayable(c) (((c) >= 0x20) && ((c) < 0x7f))
+#include "libgtkhex-enums.h"
+
+#define is_ascii(c) (((c) >= 0x20) && ((c) < 0x7f))
 
 enum
 {
 	PROP_0,
 	PROP_DISPLAY_CONTROL_CHARACTERS,
+	PROP_ENCODING,
 	N_PROPERTIES
 };
 
@@ -23,6 +26,7 @@ struct _HexTextAscii
 	HexTextEditable parent_instance;
 
 	gboolean display_control_characters;
+	HexTextAsciiEncodingType encoding_type;
 };
 
 G_DEFINE_TYPE (HexTextAscii, hex_text_ascii, HEX_TYPE_TEXT_EDITABLE)
@@ -96,7 +100,7 @@ key_press_cb (GtkEventControllerKey *controller,
 	if (state & mod_mask)
 		return GDK_EVENT_PROPAGATE;
 
-	if (is_displayable (keyval))
+	if (is_ascii(keyval))
 	{
 		key_press_cb__set_byte (self, keyval);
 		return GDK_EVENT_STOP;
@@ -148,6 +152,10 @@ hex_text_ascii_set_property (GObject *object,
 			hex_text_ascii_set_display_control_characters (self, g_value_get_boolean (value));
 			break;
 
+		case PROP_ENCODING:
+			hex_text_ascii_set_encoding (self, g_value_get_enum (value));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
@@ -168,10 +176,131 @@ hex_text_ascii_get_property (GObject *object,
 			g_value_set_boolean (value, hex_text_ascii_get_display_control_characters (self));
 			break;
 
+		case PROP_ENCODING:
+			g_value_set_enum (value, hex_text_ascii_get_encoding (self));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
 	}
+}
+
+/* helper */
+static char *
+format_line__ascii (HexTextAscii *self, int line_num, gint64 line_start_offset, size_t line_len)
+{
+	HexDocument *doc = hex_view_get_document (HEX_VIEW(self));
+	HexBuffer *buf = hex_document_get_buffer (doc);
+	g_autofree guchar *line_data = hex_buffer_get_data (buf, line_start_offset, line_len);
+	g_autoptr(GString) gstr = g_string_new (NULL);
+
+	g_assert (line_data != NULL);
+
+	for (size_t i = 0; i < line_len; ++i)
+	{
+		guchar character = line_data[i];
+		g_autofree char *char_str = NULL;
+
+		if (self->display_control_characters && is_control_character (character))
+		{
+			g_autoptr(GString) tmp = g_string_new (NULL);
+
+			g_string_append_unichar (tmp, control_characters_lookup_table[character]);
+
+			char_str = g_steal_pointer (&tmp->str);
+		}
+		else
+		{
+			char_str = g_strdup_printf ("%c", is_ascii(character) ? character : '.');
+		}
+
+		g_string_append (gstr, char_str);
+	}
+
+	// FIXME - temporary. No way will this assertion pass if/when we start adding font attributes
+	g_assert (g_utf8_strlen (gstr->str, -1) == line_len);
+
+	return g_steal_pointer (&gstr->str);
+}
+
+typedef enum
+{
+	UTF_PARSE_STATE_UNKNOWN,
+	UTF_PARSE_STATE_IN_UNICHAR,
+} Utf8ParseState;
+
+/* helper */
+static char *
+format_line__utf8 (HexTextAscii *self, int line_num, gint64 line_start_offset, size_t line_len)
+{
+	HexDocument *doc = hex_view_get_document (HEX_VIEW(self));
+	HexBuffer *buf = hex_document_get_buffer (doc);
+
+	const gint64 payload_size = hex_buffer_get_payload_size (buf);
+	const size_t two_lines_data_len = MIN (line_len * 2, payload_size - line_start_offset);
+	g_autofree char *two_lines_data = hex_buffer_get_data (buf, line_start_offset, two_lines_data_len);
+	g_autoptr(GString) gstr = g_string_new (NULL);
+
+	char *cp = two_lines_data;
+	int byte_count = 0;
+
+	while (byte_count < line_len)
+	{
+		gunichar uni = g_utf8_get_char_validated (cp, two_lines_data_len);
+
+		/* Either invalid utf8 char, or mid-char */
+		if (uni == -1 || uni == -2)
+		{
+			g_string_append_c (gstr, '.');
+
+			++cp, ++byte_count;
+			continue;
+		}
+		/* valid utf8 char */
+		else
+		{
+			/* Passing NULL only computes length */
+			int uni_byte_len = g_unichar_to_utf8 (uni, NULL);
+
+			if (g_unichar_isgraph (uni))
+			{
+				g_string_append_unichar (gstr, uni);
+			}
+			else if (uni == ' ')
+			{
+				g_string_append_c (gstr, ' ');
+			}
+			else if (g_unichar_iscntrl (uni))
+			{
+				if (self->display_control_characters && uni < G_N_ELEMENTS (control_characters_lookup_table))
+					g_string_append_unichar (gstr, control_characters_lookup_table[uni]);
+				else
+					g_string_append_c (gstr, '.');
+			}
+			else
+			{
+				g_string_append_c (gstr, '.');
+			}
+
+			/* Pad remaining bytes with spaces */
+
+			for (int i = 0; i < MIN (uni_byte_len - 1, two_lines_data + line_len - cp - 1); ++i)
+			{
+				g_string_append_c (gstr, ' ');
+			}
+
+			cp += uni_byte_len, byte_count += uni_byte_len;
+			continue;
+		}
+
+		g_assert_not_reached ();
+	}
+
+	// FIXME - temporary. No way will this assertion pass if/when we start adding font attributes
+	g_assert (g_utf8_strlen (gstr->str, -1) == line_len);
+
+	return g_steal_pointer (&gstr->str);
 }
 
 /* transfer full */
@@ -182,7 +311,6 @@ hex_text_ascii_format_line (HexText *ht, int line_num, gint64 line_start_offset,
 	HexDocument *doc = hex_view_get_document (HEX_VIEW(self));
 	HexBuffer *buf = hex_document_get_buffer (doc);
 	g_autoptr(GString) gstr = g_string_new (NULL);
-	g_autofree guchar *line_data = hex_buffer_get_data (buf, line_start_offset, line_len);
 	
 	g_string_append_printf (gstr, "<span font=\"%s\">", hex_view_get_font (HEX_VIEW(self)));
 
@@ -195,31 +323,26 @@ hex_text_ascii_format_line (HexText *ht, int line_num, gint64 line_start_offset,
 	}
 	else
 	{
-		g_assert (line_data != NULL);
+		g_autofree char *content_str = NULL;
+		g_autofree char *escaped_content_str = NULL;
 
-		for (size_t i = 0; i < line_len; ++i)
+		switch (self->encoding_type)
 		{
-			guchar character = line_data[i];
-			g_autofree char *char_str = NULL;
-			g_autofree char *escaped_char_str = NULL;
+			case HEX_TEXT_ASCII_ENCODING_ASCII:
+				content_str = format_line__ascii (self, line_num, line_start_offset, line_len);
+				break;
 
-			if (self->display_control_characters && is_control_character (character))
-			{
-				g_autoptr(GString) tmp = g_string_new (NULL);
+			case HEX_TEXT_ASCII_ENCODING_UTF8:
+				content_str = format_line__utf8 (self, line_num, line_start_offset, line_len);
+				break;
 
-				g_string_append_unichar (tmp, control_characters_lookup_table[character]);
-
-				char_str = g_steal_pointer (&tmp->str);
-			}
-			else
-			{
-				char_str = g_strdup_printf ("%c", is_displayable (character) ? character : '.');
-			}
-
-			escaped_char_str = g_markup_escape_text (char_str, -1);
-
-			g_string_append (gstr, escaped_char_str);
+			default:
+				g_assert_not_reached ();
 		}
+
+		escaped_content_str = g_markup_escape_text (content_str, -1);
+
+		g_string_append (gstr, escaped_content_str);
 	}
 
 	g_string_append (gstr, "</span>");
@@ -487,6 +610,16 @@ hex_text_ascii_class_init (HexTextAsciiClass *klass)
 			FALSE,
 			default_flags | G_PARAM_READWRITE);
 
+	/**
+	 * HexTextAscii:encoding:
+	 *
+	 * Encoding type for the ASCII pane (eg, plain ASCII or UTF-8).
+	 */
+	properties[PROP_ENCODING] = g_param_spec_enum ("encoding", NULL, NULL,
+			HEX_TYPE_TEXT_ASCII_ENCODING_TYPE,
+			HEX_TEXT_ASCII_ENCODING_ASCII,
+			default_flags | G_PARAM_READWRITE);
+
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
 	/* Keybindings */
@@ -537,4 +670,24 @@ hex_text_ascii_get_display_control_characters (HexTextAscii *self)
 	g_return_val_if_fail (HEX_IS_TEXT_ASCII (self), FALSE);
 
 	return self->display_control_characters;
+}
+
+void
+hex_text_ascii_set_encoding (HexTextAscii *self, HexTextAsciiEncodingType encoding)
+{
+	g_return_if_fail (HEX_IS_TEXT_ASCII (self));
+
+	self->encoding_type = encoding;
+
+	gtk_widget_queue_draw (GTK_WIDGET (self));
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_ENCODING]);
+}
+
+HexTextAsciiEncodingType
+hex_text_ascii_get_encoding (HexTextAscii *self)
+{
+	g_return_val_if_fail (HEX_IS_TEXT_ASCII (self), HEX_TEXT_ASCII_ENCODING_ASCII);
+
+	return self->encoding_type;
 }
