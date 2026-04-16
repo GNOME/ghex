@@ -81,7 +81,7 @@ hex_text_offsets_get_property (GObject *object,
 }
 
 static char *
-hex_text_offsets_format_line (HexText *ht, int line_num, guchar *line_data, size_t line_len)
+hex_text_offsets_format_line (HexText *ht, int line_num, gint64 line_start_offset, size_t line_len)
 {
 	HexTextOffsets *self = HEX_TEXT_OFFSETS(ht);
 	HexTextRenderData *render_data = hex_text_get_render_data (HEX_TEXT(self));

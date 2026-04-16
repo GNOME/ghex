@@ -497,41 +497,30 @@ hex_text_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 			.x = 0,
 			.y = i * render_data->line_height + render_data->fine_translate_value,
 		};
-		gint64 line_offset;
+		gint64 line_start_offset;
 		int line_len;
 		g_autofree char *formatted_line = NULL;
-		g_autofree guchar *line_data = NULL;
 		PangoLayout *layout = NULL;
 
-		line_offset = (render_data->top_disp_line + i) * cpl;
+		line_start_offset = (render_data->top_disp_line + i) * cpl;
 
-		if (line_offset < 0)
+		if (line_start_offset < 0)
 			continue;
-		if (line_offset > payload)
+		if (line_start_offset > payload)
 			break;
 
-		line_len = CLAMP (payload - line_offset, 0, cpl);
+		line_len = CLAMP (payload - line_start_offset, 0, cpl);
 
 		if (line_len == 0)
 		{
 			/* 0 line_len is fine if it's the first line - ie, an empty file. */
-			if (line_offset == 0)
+			if (line_start_offset == 0)
 				;
 			else
 				continue;
 		}
 
-		line_data = hex_buffer_get_data (buf, line_offset, line_len);
-
-		if (! line_data)
-		{
-			if (line_len == 0 && line_offset == 0)
-				;
-			else
-				continue;
-		}
-
-		formatted_line = klass->format_line (self, i, line_data, line_len);
+		formatted_line = klass->format_line (self, i, line_start_offset, line_len);
 
 		if ((layout = g_hash_table_lookup (priv->layouts, GINT_TO_POINTER (i))) == NULL)
 		{
