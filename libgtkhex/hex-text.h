@@ -21,7 +21,7 @@ struct _HexTextClass
 	GtkWidgetClass parent_class;
 
 	/* transfer full */
-	char *	(*format_line)	(HexText *self, int line_num, guchar *line_data, size_t line_len);
+	char *	(*format_line)	(HexText *self, int line_num, gint64 line_start_offset, size_t line_len);
 
 	void	(*render_line)	(HexText *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout);
 

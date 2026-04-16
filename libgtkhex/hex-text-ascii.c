@@ -176,10 +176,13 @@ hex_text_ascii_get_property (GObject *object,
 
 /* transfer full */
 static char *
-hex_text_ascii_format_line (HexText *ht, int line_num, guchar *line_data, size_t line_len)
+hex_text_ascii_format_line (HexText *ht, int line_num, gint64 line_start_offset, size_t line_len)
 {
 	HexTextAscii *self = HEX_TEXT_ASCII(ht);
+	HexDocument *doc = hex_view_get_document (HEX_VIEW(self));
+	HexBuffer *buf = hex_document_get_buffer (doc);
 	g_autoptr(GString) gstr = g_string_new (NULL);
+	g_autofree guchar *line_data = hex_buffer_get_data (buf, line_start_offset, line_len);
 	
 	g_string_append_printf (gstr, "<span font=\"%s\">", hex_view_get_font (HEX_VIEW(self)));
 
