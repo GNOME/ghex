@@ -186,9 +186,9 @@ util_gdk_rgba_to_hex_color (const GdkRGBA *color)
 	g_assert (color != NULL);
 
 	retval = g_strdup_printf ("#%02X%02X%02X",
-			(int) (color->red	* 255),
-			(int) (color->green	* 255),
-			(int) (color->blue	* 255)
+			(guchar) (color->red	* 255),
+			(guchar) (color->green	* 255),
+			(guchar) (color->blue	* 255)
 			);
 
 	return retval;
