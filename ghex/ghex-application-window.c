@@ -30,6 +30,10 @@
 #include "chartable.h"
 #include "print.h"
 
+// TEST
+#include "ghex-color-grid.h"
+#include "ghex-gradient-editor.h"
+
 #include "config.h"
 
 enum
@@ -170,6 +174,181 @@ setup_doc_bindings_for_page (HexDocument *doc, AdwTabPage *page)
 	g_object_bind_property_full (doc, "changed", page, "icon", G_BINDING_DEFAULT, doc_changed_icon_transform_to, NULL, NULL, NULL);
 }
 
+static void
+TEST_grid_sync_to_hex_cb (gpointer hex)
+{
+	HexColorCode *color_code = NULL;
+	gpointer editor, grid, bar;
+	gpointer hth;
+	g_autoptr(GdkRGBA) colors = NULL;
+
+	g_assert (HEX_IS_WIDGET (hex));
+
+	hth = hex_widget_get_hex_display (hex);
+
+	editor = g_object_get_data (hex, "editor");
+	grid = g_object_get_data (hex, "grid");
+
+	g_assert (GHEX_IS_GRADIENT_EDITOR (editor));
+	g_assert (GHEX_IS_COLOR_GRID (grid));
+
+	bar = ghex_gradient_editor_get_bar (editor);
+	color_code = hex_text_get_color_code (hth);
+	colors = ghex_color_grid_to_rgba_array (grid);
+
+	hex_color_code_sync_from_color_array (color_code, colors);
+}
+
+static void
+TEST_editor_sync_button_click_cb (gpointer button, gpointer hex)
+{
+	g_autofree GdkRGBA *colors = NULL;
+	gpointer editor, grid, bar;
+	HexGradient *gradient;
+
+	g_assert (GTK_IS_BUTTON (button));
+	g_assert (HEX_IS_WIDGET (hex));
+
+	editor = g_object_get_data (hex, "editor");
+	grid = g_object_get_data (hex, "grid");
+
+	g_assert (GHEX_IS_GRADIENT_EDITOR (editor));
+	g_assert (GHEX_IS_COLOR_GRID (grid));
+
+	bar = ghex_gradient_editor_get_bar (editor);
+	gradient = ghex_gradient_bar_get_gradient (bar);
+	colors = hex_gradient_to_rgba_array (gradient, 256);
+
+	ghex_color_grid_populate (grid, colors);
+}
+
+static void
+TEST_gradient_changed_cb (HexGradient *gradient, gpointer hex)
+{
+	g_autofree GdkRGBA *colors = NULL;
+	gpointer hth, grid;
+
+	g_assert (HEX_IS_GRADIENT (gradient));
+	g_assert (HEX_IS_WIDGET (hex));
+
+	grid = g_object_get_data (hex, "grid");
+	g_assert (GHEX_IS_COLOR_GRID (grid));
+
+	hth = hex_widget_get_hex_display (hex);
+	g_assert (HEX_IS_TEXT (hth));
+
+	colors = hex_gradient_to_rgba_array (gradient, 256);
+	ghex_color_grid_populate (grid, colors);
+}
+
+static void
+TEST_editor_auto_sync_bindings_cb (gpointer check, GParamSpec *pspec, gpointer hex)
+{
+	static gulong sigid;
+
+	gpointer editor, grid, bar;
+	HexGradient *gradient;
+	gboolean checked;
+
+	g_assert (GTK_IS_CHECK_BUTTON (check));
+	g_assert (HEX_IS_WIDGET (hex));
+
+	checked = gtk_check_button_get_active (check);
+
+	editor = g_object_get_data (hex, "editor");
+	grid = g_object_get_data (hex, "grid");
+
+	g_assert (GHEX_IS_GRADIENT_EDITOR (editor));
+	g_assert (GHEX_IS_COLOR_GRID (grid));
+
+	bar = ghex_gradient_editor_get_bar (editor);
+	gradient = ghex_gradient_bar_get_gradient (bar);
+
+	g_clear_signal_handler (&sigid, gradient);
+
+	if (checked)
+	{
+		sigid = g_signal_connect_object (gradient, "changed", G_CALLBACK(TEST_gradient_changed_cb), hex, 0);
+	}
+}
+
+static void
+TEST_grid_auto_sync_bindings_cb (gpointer check, GParamSpec *pspec, gpointer hex)
+{
+	static gulong sigid;
+
+	gpointer grid;
+	gboolean checked;
+
+	g_assert (GTK_IS_CHECK_BUTTON (check));
+	g_assert (HEX_IS_WIDGET (hex));
+
+	checked = gtk_check_button_get_active (check);
+
+	grid = g_object_get_data (hex, "grid");
+	g_assert (GHEX_IS_COLOR_GRID (grid));
+
+	g_clear_signal_handler (&sigid, grid);
+
+	if (checked)
+	{
+		sigid = g_signal_connect_object (grid, "changed", G_CALLBACK(TEST_grid_sync_to_hex_cb), hex, G_CONNECT_SWAPPED);
+	}
+}
+
+static void
+TEST_setup_color_grid (gpointer hex)
+{
+	g_assert (HEX_IS_WIDGET (hex));
+
+	gpointer app = g_application_get_default ();
+    gpointer win1 = gtk_application_window_new (app);
+    gpointer win2 = gtk_application_window_new (app);
+	gpointer editor = ghex_gradient_editor_new ();
+	gpointer grid = ghex_color_grid_new ();
+	gpointer box;
+	gpointer button;
+	gpointer check;
+
+	g_object_set_data (hex, "editor", editor);
+	g_object_set_data (hex, "grid", grid);
+
+	box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+	check = gtk_check_button_new_with_label ("Auto-Sync");
+	button = gtk_button_new_with_label ("Sync it up, buuuuuddy!");
+
+	g_signal_connect_swapped (button, "clicked", G_CALLBACK(TEST_grid_sync_to_hex_cb), hex);
+	g_signal_connect (check, "notify::active", G_CALLBACK(TEST_grid_auto_sync_bindings_cb), hex);
+
+    gtk_window_set_title (win1, "Color Grid");
+    gtk_window_set_default_size (win1, 500, 200);
+
+	gtk_box_append (box, grid);
+	gtk_box_append (box, check);
+	gtk_box_append (box, button);
+
+    gtk_window_set_child (win1, box);
+
+	box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+	check = gtk_check_button_new_with_label ("Auto-Sync");
+	button = gtk_button_new_with_label ("Sync it up, buuuuuddy!");
+
+	g_signal_connect (button, "clicked", G_CALLBACK(TEST_editor_sync_button_click_cb), hex);
+	g_signal_connect (check, "notify::active", G_CALLBACK(TEST_editor_auto_sync_bindings_cb), hex);
+
+	gtk_box_append (box, editor);
+	gtk_box_append (box, check);
+	gtk_box_append (box, button);
+
+    gtk_window_set_child (win2, box);
+
+    gtk_window_set_title (win2, "Gradient Editor");
+    gtk_window_set_default_size (win2, 500, 200);
+
+	gtk_window_present (win1);
+	gtk_window_present (win2);
+}
+
 static GHexViewContainer *
 add_container (GHexApplicationWindow *self, HexDocument *doc)
 {
@@ -191,6 +370,9 @@ add_container (GHexApplicationWindow *self, HexDocument *doc)
 	setup_doc_bindings_for_page (doc, page);
 
 	ghex_application_window_set_active_view (self, container);
+
+	// TEST
+	TEST_setup_color_grid (ghex_view_container_get_hex (container));
 
 	return container;
 }

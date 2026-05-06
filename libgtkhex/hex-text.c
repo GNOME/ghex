@@ -585,6 +585,11 @@ hex_text_set_use_color_code (HexText *self, gboolean use_color_code)
 
 	priv = hex_text_get_instance_private (self);
 
+	g_signal_handlers_disconnect_by_data (priv->color_code, self);
+
+	if (use_color_code)
+		g_signal_connect_object (priv->color_code, "changed", G_CALLBACK(gtk_widget_queue_draw), self, G_CONNECT_SWAPPED);
+
 	priv->use_color_code = use_color_code;
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_USE_COLOR_CODE]);

@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include "hex-gradient.h"
 
 G_BEGIN_DECLS
 
@@ -16,9 +16,7 @@ G_DECLARE_FINAL_TYPE (HexColorCode, hex_color_code, HEX, COLOR_CODE, GObject)
 HexColorCode *	hex_color_code_new (void);
 
 void hex_color_code_get_color_at (HexColorCode *self, guint8 pos, GdkRGBA *color);
-void hex_color_code_set_start_gradient_color (HexColorCode *self, const GdkRGBA *start_gradient_color);
-void hex_color_code_get_start_gradient_color (HexColorCode *self, GdkRGBA *start_gradient_color);
-void hex_color_code_set_end_gradient_color (HexColorCode *self, const GdkRGBA *end_gradient_color);
-void hex_color_code_get_end_gradient_color (HexColorCode *self, GdkRGBA *end_gradient_color);
+void hex_color_code_sync_from_gradient (HexColorCode *self, HexGradient *gradient);
+void hex_color_code_sync_from_color_array (HexColorCode *self, const GdkRGBA *colors);
 
 G_END_DECLS
