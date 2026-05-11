@@ -52,8 +52,6 @@ G_DECLARE_FINAL_TYPE (GHexApplicationWindow, ghex_application_window,
 GtkWidget *	ghex_application_window_new (AdwApplication *app);
 void		ghex_application_window_add_hex (GHexApplicationWindow *self,
 				HexWidget *gh);
-void		ghex_application_window_set_hex (GHexApplicationWindow *self,
-				HexWidget *gh);
 void		ghex_application_window_activate_tab (GHexApplicationWindow *self,
 				HexWidget *gh);
 void		ghex_application_window_open_file (GHexApplicationWindow *self,
