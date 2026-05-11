@@ -365,6 +365,8 @@ file_save_write_cb (HexDocument *doc,
 
 		g_string_free (full_errmsg, TRUE);
 	}
+
+	g_clear_error (&local_error);
 }
 
 static void
@@ -1142,6 +1144,8 @@ save_as_write_to_file_cb (HexDocument *doc,
 				_("An unknown error has occurred in attempting to reload the "
 					"file you have just saved."));
 	}
+
+	g_clear_error (&local_error);
 }
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
@@ -1476,7 +1480,7 @@ out:
 		g_clear_object (&file);
 		g_free (uri);
 		g_free (full_errmsg);
-		g_clear_pointer (&local_error, g_error_free);
+		g_clear_error (&local_error);
 #undef URI_PREFIX
 #else
 		display_dialog (GTK_WINDOW(self), local_error->message);
