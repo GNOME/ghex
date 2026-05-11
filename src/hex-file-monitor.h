@@ -34,7 +34,6 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (HexFileMonitor, hex_file_monitor, HEX, FILE_MONITOR, GObject)
 
 HexFileMonitor * hex_file_monitor_new (GFile *file);
-gboolean hex_file_monitor_set_file (HexFileMonitor *monitor, GFile *file);
 gboolean hex_file_monitor_get_changed (HexFileMonitor *monitor);
 void hex_file_monitor_reset (HexFileMonitor *monitor);
 
