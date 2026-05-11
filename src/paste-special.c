@@ -677,6 +677,8 @@ paste_special_populate_listbox (void)
 			gtk_list_box_append (GTK_LIST_BOX(paste_special_listbox), label);
 		}
 	}
+
+	g_clear_error (&error);
 }
 
 static void
