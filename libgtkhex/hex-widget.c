@@ -44,7 +44,7 @@ struct _HexWidget
 	GtkWidget *adisp;
 };
 
-G_DEFINE_TYPE (HexWidget, hex_widget, HEX_TYPE_VIEW)
+G_DEFINE_FINAL_TYPE (HexWidget, hex_widget, HEX_TYPE_VIEW)
 
 /* --- */
 

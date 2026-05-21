@@ -27,7 +27,7 @@ enum
 	PROP_VSCROLL_POLICY,
 	PROP_HSCROLL_POLICY,
 
-	N_PROPERTIES = PROP_VADJUSTMENT
+	N_PROPERTIES
 };
 
 static GParamSpec *properties[N_PROPERTIES];
@@ -277,19 +277,34 @@ hex_view_get_auto_geometry (HexView *self)
 void
 hex_view_set_vadjustment (HexView *self, GtkAdjustment *vadj)
 {
-	HexViewPrivate *priv = hex_view_get_instance_private (self);
+	HexViewPrivate *priv;
+
+	g_return_if_fail (HEX_IS_VIEW (self));
+	g_return_if_fail (vadj == NULL || GTK_IS_ADJUSTMENT (vadj));
+
+	priv = hex_view_get_instance_private (self);
+
+	if (!vadj)
+		vadj = gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+
+	if (vadj == priv->vadj)
+		return;
 
 	g_clear_object (&priv->vadj);
+	priv->vadj = g_object_ref_sink (vadj);
 
-	if (vadj)
-		priv->vadj = g_object_ref (vadj);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_VADJUSTMENT]);
 }
 
 /* transfer none */
 GtkAdjustment *
 hex_view_get_vadjustment (HexView *self)
 {
-	HexViewPrivate *priv = hex_view_get_instance_private (self);
+	HexViewPrivate *priv;
+
+	g_return_val_if_fail (HEX_IS_VIEW (self), NULL);
+
+	priv = hex_view_get_instance_private (self);
 
 	return priv->vadj;
 }
@@ -297,7 +312,11 @@ hex_view_get_vadjustment (HexView *self)
 const char *
 hex_view_get_font (HexView *self)
 {
-	HexViewPrivate *priv = hex_view_get_instance_private (self);
+	HexViewPrivate *priv;
+
+	g_return_val_if_fail (HEX_IS_VIEW (self), NULL);
+
+	priv = hex_view_get_instance_private (self);
 
 	return priv->font;
 }
@@ -745,6 +764,7 @@ hex_view_class_init (HexViewClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+	gpointer scrollable_iface = g_type_default_interface_peek (GTK_TYPE_SCROLLABLE);
 	GParamFlags default_flags = G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY;
 
 	object_class->dispose = hex_view_dispose;
@@ -792,14 +812,17 @@ hex_view_class_init (HexViewClass *klass)
 			FALSE,
 			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
+	/* GtkScrollableInterface */
+
+	properties[PROP_VADJUSTMENT] = g_param_spec_override ("vadjustment", g_object_interface_find_property (scrollable_iface, "vadjustment"));
+
+	properties[PROP_HADJUSTMENT] = g_param_spec_override ("hadjustment", g_object_interface_find_property (scrollable_iface, "hadjustment"));
+
+	properties[PROP_VSCROLL_POLICY] = g_param_spec_override ("vscroll-policy", g_object_interface_find_property (scrollable_iface, "vscroll-policy"));
+
+	properties[PROP_HSCROLL_POLICY] = g_param_spec_override ("hscroll-policy", g_object_interface_find_property (scrollable_iface, "hscroll-policy"));
+
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
-
-	/* GtkScrollableInterface properties */
-
-	g_object_class_override_property (object_class, PROP_VADJUSTMENT, "vadjustment");
-	g_object_class_override_property (object_class, PROP_HADJUSTMENT, "hadjustment");
-	g_object_class_override_property (object_class, PROP_VSCROLL_POLICY, "vscroll-policy");
-	g_object_class_override_property (object_class, PROP_HSCROLL_POLICY, "hscroll-policy");
 }
 
 static void

@@ -617,6 +617,20 @@ ghex_application_window_marks_action (GSimpleAction *action, GVariant *parameter
 	gtk_widget_activate_action (GTK_WIDGET(container), "container.mark-pane", NULL);
 }
 
+static void
+ghex_application_window_find_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+	GHexApplicationWindow *self = user_data;
+	GHexViewContainer *container;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+
+	container = ghex_application_window_get_active_view (self);
+	g_assert (GHEX_IS_VIEW_CONTAINER (container));
+
+	gtk_widget_activate_action (GTK_WIDGET(container), "container.search-bar", NULL);
+}
+
 inline static void
 do_print (GHexApplicationWindow *self, gboolean preview)
 {
@@ -822,6 +836,14 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			GDK_KEY_m,
 			GDK_CONTROL_MASK,
 			"win.marks",
+			NULL);
+
+	// TEST
+	/* Ctrl+F - find */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_f,
+			GDK_CONTROL_MASK,
+			"win.find",
 			NULL);
 
 	/* Ctrl+Shift+V - paste special */
@@ -1173,6 +1195,7 @@ ghex_application_window_init (GHexApplicationWindow *self)
 			{"copy-special", ghex_application_window_copy_special_action},
 			{"paste-special", ghex_application_window_paste_special_action},
 			{"marks", ghex_application_window_marks_action},
+			{"find", ghex_application_window_find_action},
 		};
 
 		g_action_map_add_action_entries (G_ACTION_MAP(self), entries, G_N_ELEMENTS (entries), self);
@@ -1189,27 +1212,19 @@ ghex_application_window_init (GHexApplicationWindow *self)
 
 	/* Bind certain actions to whether we have an active document or not */
 	{
-		GAction *action;
+		const char *action_names[] = {
+			"print", "print-preview", "copy-special", "paste-special", "marks", "find"
+		};
 
-		action = g_action_map_lookup_action (G_ACTION_MAP(self), "print");
+		for (guint i = 0; i < G_N_ELEMENTS (action_names); ++i)
+		{
+			const char *action_name = action_names[i];
+			GAction *action = g_action_map_lookup_action (G_ACTION_MAP(self), action_name);
 
-		g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
+			g_assert (G_IS_ACTION (action));
 
-		action = g_action_map_lookup_action (G_ACTION_MAP(self), "print-preview");
-
-		g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
-
-		action = g_action_map_lookup_action (G_ACTION_MAP(self), "copy-special");
-
-		g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
-
-		action = g_action_map_lookup_action (G_ACTION_MAP(self), "paste-special");
-
-		g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
-
-		action = g_action_map_lookup_action (G_ACTION_MAP(self), "marks");
-
-		g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
+			g_object_bind_property_full (self, "active-view", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
+		}
 	}
 }
 

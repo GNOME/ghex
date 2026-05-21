@@ -46,7 +46,7 @@ vim: ts=2 sw=2 expandtab
                     <property name="child">
                       <object class="GHexMarkPane" id="mark_pane">
                         <property name="hex">hex</property>
-                        <signal name="close" handler="mark_pane_close_cb" object="mark_pane_revealer" swapped="yes" />
+                        <signal name="close" handler="revealer_close_cb" object="mark_pane_revealer" swapped="yes" />
                       </object>
                     </property>
                   </object>
@@ -65,6 +65,17 @@ vim: ts=2 sw=2 expandtab
                 <child>
                   <object class="GtkSeparator" id="separator">
                     <property name="orientation">horizontal</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkRevealer" id="search_bar_revealer">
+                    <property name="child">
+                      <object class="GHexSearchBar" id="search_bar">
+                        <property name="hex">hex</property>
+                        <signal name="close" handler="revealer_close_cb" object="search_bar_revealer" swapped="yes" />
+                      </object>
+                    </property>
                   </object>
                 </child>
 

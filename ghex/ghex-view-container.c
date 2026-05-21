@@ -2,6 +2,7 @@
 
 #include "ghex-conversion-pane.h"
 #include "ghex-mark-pane.h"
+#include "ghex-search-bar.h"
 #include "ghex-info-bar.h"
 #include "ghex-statusbar.h"
 #include "configuration.h"
@@ -17,6 +18,7 @@ enum
 	PROP_HEX,
 	PROP_LOADING,
 	PROP_SHOW_MARK_PANE,
+	PROP_SHOW_SEARCH_BAR,
 	N_PROPERTIES
 };
 
@@ -28,6 +30,7 @@ struct _GHexViewContainer
 
 	/* Work-around glitchy APIs */
 	gboolean show_mark_pane;
+	gboolean show_search_bar;
 
 	/* From template: */
 
@@ -36,11 +39,13 @@ struct _GHexViewContainer
 
 	HexWidget *hex;
 	GHexMarkPane *mark_pane;
+	GHexSearchBar *search_bar;
 	GHexConversionPane *conversion_pane;
 	GtkToggleButton *conversions_toggle_button;
 	GHexInfoBar *info_bar;
 	GHexStatusbar *statusbar;
 	GtkRevealer *mark_pane_revealer;
+	GtkRevealer *search_bar_revealer;
 	GtkScrolledWindow *scrolled_window;
 	GtkRevealer *conversions_revealer;
 };
@@ -209,6 +214,11 @@ ghex_view_container_set_property (GObject *object,
 			g_object_notify_by_pspec (object, pspec);
 			break;
 
+		case PROP_SHOW_SEARCH_BAR:
+			self->show_search_bar = g_value_get_boolean (value);
+			g_object_notify_by_pspec (object, pspec);
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
@@ -239,6 +249,10 @@ ghex_view_container_get_property (GObject *object,
 
 		case PROP_SHOW_MARK_PANE:
 			g_value_set_boolean (value, self->show_mark_pane);
+			break;
+
+		case PROP_SHOW_SEARCH_BAR:
+			g_value_set_boolean (value, self->show_search_bar);
 			break;
 
 		default:
@@ -303,9 +317,11 @@ scrolled_window_notify_hex (GHexViewContainer *self)
 }
 
 static void
-mark_pane_close_cb (GtkRevealer *mark_pane_revealer)
+revealer_close_cb (GtkRevealer *revealer)
 {
-	gtk_revealer_set_reveal_child (mark_pane_revealer, FALSE);
+	g_assert (GTK_IS_REVEALER (revealer));
+
+	gtk_revealer_set_reveal_child (revealer, FALSE);
 }
 
 static void
@@ -332,6 +348,8 @@ ghex_view_container_init (GHexViewContainer *self)
 	gtk_widget_init_template (GTK_WIDGET (self));
 
 	g_object_bind_property (self, "show-mark-pane", self->mark_pane_revealer, "reveal-child", G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+
+	g_object_bind_property (self, "show-search-bar", self->search_bar_revealer, "reveal-child", G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
 
 	g_object_bind_property (self->conversions_toggle_button, "active", self->conversions_revealer, "reveal-child", G_BINDING_DEFAULT);
 
@@ -394,12 +412,16 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 			FALSE,
 			default_flags | G_PARAM_READWRITE);
 
-	/* Doing this via an intermediary property rather than binding directly to
+	/* Doing these via an intermediary property rather than binding directly to
 	 * our revealer's :reveal-child property, because doing so means we need
 	 * to use GPropertyAction, and doing that causes a reference leak I can't
 	 * seem to crack.
 	 */
 	properties[PROP_SHOW_MARK_PANE] = g_param_spec_boolean ("show-mark-pane", NULL, NULL,
+			FALSE,
+			default_flags | G_PARAM_READWRITE);
+
+	properties[PROP_SHOW_SEARCH_BAR] = g_param_spec_boolean ("show-search-bar", NULL, NULL,
 			FALSE,
 			default_flags | G_PARAM_READWRITE);
 
@@ -410,6 +432,8 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 	gtk_widget_class_install_action (widget_class, "container.activate-mark", "i", activate_mark_action);
 
 	gtk_widget_class_install_property_action (widget_class, "container.mark-pane", "show-mark-pane");
+
+	gtk_widget_class_install_property_action (widget_class, "container.search-bar", "show-search-bar");
 
 	/* < auto-generated activate-mark bindings > */
 
@@ -553,8 +577,10 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, statusbar);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, mark_pane_revealer);
 	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, mark_pane);
+	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, search_bar_revealer);
+	gtk_widget_class_bind_template_child (widget_class, GHexViewContainer, search_bar);
 
-	gtk_widget_class_bind_template_callback (widget_class, mark_pane_close_cb);
+	gtk_widget_class_bind_template_callback (widget_class, revealer_close_cb);
 }
 
 GtkWidget *
