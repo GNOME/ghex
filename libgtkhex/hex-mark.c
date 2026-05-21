@@ -13,7 +13,7 @@ enum {
 
 static GParamSpec *properties[N_PROPERTIES];
 
-G_DEFINE_TYPE (HexMark, hex_mark, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (HexMark, hex_mark, G_TYPE_OBJECT)
 
 GdkRGBA
 _hex_mark_get_default_color (HexMark *self)

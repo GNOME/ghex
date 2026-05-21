@@ -35,7 +35,7 @@ enum
 
 static guint signals[N_SIGNALS];
 
-G_DEFINE_TYPE (HexAutoHighlight, hex_auto_highlight, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (HexAutoHighlight, hex_auto_highlight, G_TYPE_OBJECT)
 
 typedef struct
 {

@@ -20,7 +20,7 @@ enum
 
 static GParamSpec *properties[N_PROPERTIES];
 
-G_DEFINE_TYPE (HexHighlight, hex_highlight, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (HexHighlight, hex_highlight, G_TYPE_OBJECT)
 
 void
 hex_highlight_update (HexHighlight *self, gint64 start_offset, gint64 end_offset)

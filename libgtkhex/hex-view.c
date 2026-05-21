@@ -73,7 +73,7 @@ struct _HexViewSelection
 	HexView *parent;
 };
 
-G_DEFINE_TYPE (HexViewSelection, hex_view_selection, HEX_TYPE_SELECTION)
+G_DEFINE_FINAL_TYPE (HexViewSelection, hex_view_selection, HEX_TYPE_SELECTION)
 
 /* --- */
 

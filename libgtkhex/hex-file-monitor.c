@@ -36,7 +36,7 @@ struct _HexFileMonitor
 	GFileMonitor *monitor;
 	gboolean changed;
 };
-G_DEFINE_TYPE (HexFileMonitor, hex_file_monitor, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (HexFileMonitor, hex_file_monitor, G_TYPE_OBJECT)
 
 enum
 {

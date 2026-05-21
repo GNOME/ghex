@@ -90,7 +90,7 @@ struct _ReplaceDialog {
 	GtkWidget *replace, *replace_all;
 }; 
 
-G_DEFINE_TYPE (ReplaceDialog, replace_dialog, FIND_TYPE_DIALOG)
+G_DEFINE_FINAL_TYPE (ReplaceDialog, replace_dialog, FIND_TYPE_DIALOG)
 
 struct _JumpDialog {
 	PaneDialog parent_instance;
@@ -102,7 +102,7 @@ struct _JumpDialog {
 	GtkEventController *focus_controller;
 };
 
-G_DEFINE_TYPE (JumpDialog, jump_dialog, PANE_TYPE_DIALOG)
+G_DEFINE_FINAL_TYPE (JumpDialog, jump_dialog, PANE_TYPE_DIALOG)
 
 
 /* PRIVATE FUNCTION DECLARATIONS */

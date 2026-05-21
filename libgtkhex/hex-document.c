@@ -176,7 +176,7 @@ struct _HexDocument
 	int undo_max;    /* max undo depth */
 };
 
-G_DEFINE_TYPE (HexDocument, hex_document, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (HexDocument, hex_document, G_TYPE_OBJECT)
 
 
 /* PROPERTIES - GETTERS AND SETTERS */

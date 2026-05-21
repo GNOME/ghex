@@ -111,7 +111,7 @@ struct _GHexConversionPane
     GHexConversionVal64 val;
 };
 
-G_DEFINE_TYPE (GHexConversionPane, ghex_conversion_pane, GTK_TYPE_WIDGET)
+G_DEFINE_FINAL_TYPE (GHexConversionPane, ghex_conversion_pane, GTK_TYPE_WIDGET)
 
 static void
 create_pane_prop (GHexConversionPane *self, EntryType type, GtkWidget *grid, gint xpos, gint ypos)

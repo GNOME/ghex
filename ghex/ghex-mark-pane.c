@@ -49,7 +49,7 @@ struct _GHexMarkPane
 	GtkWidget *close_button;
 };
 
-G_DEFINE_TYPE (GHexMarkPane, ghex_mark_pane, GHEX_TYPE_PANE)
+G_DEFINE_FINAL_TYPE (GHexMarkPane, ghex_mark_pane, GHEX_TYPE_PANE)
 
 static HexMark *
 marks_ht_get (GHexMarkPane *self, int index)
