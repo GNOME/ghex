@@ -20,7 +20,7 @@ struct _HexTextOffsets
 	int offset_cpl;
 };
 
-G_DEFINE_TYPE (HexTextOffsets, hex_text_offsets, HEX_TYPE_TEXT)
+G_DEFINE_FINAL_TYPE (HexTextOffsets, hex_text_offsets, HEX_TYPE_TEXT)
 
 int
 hex_text_offsets_get_offset_cpl (HexTextOffsets *self)

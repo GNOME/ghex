@@ -48,7 +48,7 @@ struct _GHexInfoBar
 	GtkWidget *close_button;
 };
 
-G_DEFINE_TYPE (GHexInfoBar, ghex_info_bar, GTK_TYPE_WIDGET)
+G_DEFINE_FINAL_TYPE (GHexInfoBar, ghex_info_bar, GTK_TYPE_WIDGET)
 
 gboolean
 ghex_info_bar_get_shown (GHexInfoBar *self)

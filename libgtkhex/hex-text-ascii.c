@@ -29,7 +29,7 @@ struct _HexTextAscii
 	HexTextAsciiEncodingType encoding_type;
 };
 
-G_DEFINE_TYPE (HexTextAscii, hex_text_ascii, HEX_TYPE_TEXT_EDITABLE)
+G_DEFINE_FINAL_TYPE (HexTextAscii, hex_text_ascii, HEX_TYPE_TEXT_EDITABLE)
 
 /* ASCII control characters - lookup table */
 

@@ -61,7 +61,7 @@ struct _HexWidgetLayout {
 	int cursor_x, cursor_y;
 };
 
-G_DEFINE_TYPE (HexWidgetLayout, hex_widget_layout, GTK_TYPE_LAYOUT_MANAGER)
+G_DEFINE_FINAL_TYPE (HexWidgetLayout, hex_widget_layout, GTK_TYPE_LAYOUT_MANAGER)
 
 struct _HexWidgetLayoutChild {
 	GtkLayoutChild parent_instance;
@@ -76,7 +76,7 @@ enum {
 
 static GParamSpec *child_props[N_CHILD_PROPERTIES];
 
-G_DEFINE_TYPE (HexWidgetLayoutChild, hex_widget_layout_child, GTK_TYPE_LAYOUT_CHILD)
+G_DEFINE_FINAL_TYPE (HexWidgetLayoutChild, hex_widget_layout_child, GTK_TYPE_LAYOUT_CHILD)
 
 
 /* LAYOUT CHILD METHODS */

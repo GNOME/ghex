@@ -23,7 +23,7 @@ enum
 
 static GParamSpec *properties[N_PROPERTIES];
 
-G_DEFINE_TYPE (HexSearchInfo, hex_search_info, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (HexSearchInfo, hex_search_info, G_TYPE_OBJECT)
 
 static void
 hex_search_info_set_what (HexSearchInfo *self, const guint8 *what)

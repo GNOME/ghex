@@ -50,7 +50,7 @@ struct _GHexViewContainer
 	GtkRevealer *conversions_revealer;
 };
 
-G_DEFINE_TYPE (GHexViewContainer, ghex_view_container, GTK_TYPE_WIDGET)
+G_DEFINE_FINAL_TYPE (GHexViewContainer, ghex_view_container, GTK_TYPE_WIDGET)
 
 HexWidget *
 ghex_view_container_get_hex (GHexViewContainer *self)

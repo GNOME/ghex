@@ -46,7 +46,7 @@ struct _GHexStatusbar
 	GHexStatusbarOffsetFormat offset_format;
 };
 
-G_DEFINE_TYPE (GHexStatusbar, ghex_statusbar, GTK_TYPE_WIDGET)
+G_DEFINE_FINAL_TYPE (GHexStatusbar, ghex_statusbar, GTK_TYPE_WIDGET)
 
 static void
 _hex_statusbar_set_str (GHexStatusbar *self, const char *msg)

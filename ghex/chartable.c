@@ -96,7 +96,7 @@ struct _HexChartableValue
 	guchar val;
 };
 
-G_DEFINE_TYPE (HexChartableValue, hex_chartable_value, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (HexChartableValue, hex_chartable_value, G_TYPE_OBJECT)
 
 /* All of the getters below should be transfer: full */
 

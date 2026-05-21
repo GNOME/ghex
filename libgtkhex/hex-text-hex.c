@@ -33,7 +33,7 @@ struct _HexTextHex
 	gboolean fade_zeroes;
 };
 
-G_DEFINE_TYPE (HexTextHex, hex_text_hex, HEX_TYPE_TEXT_EDITABLE)
+G_DEFINE_FINAL_TYPE (HexTextHex, hex_text_hex, HEX_TYPE_TEXT_EDITABLE)
 
 static void hex_text_hex_set_group_type (HexTextHex *self, HexWidgetGroupType group_type);
 static void hex_text_hex_set_lower_nibble (HexTextHex *self, gboolean lower_nibble);

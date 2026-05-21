@@ -35,7 +35,7 @@ struct _HexPasteData
 	int elems;
 };
 
-G_DEFINE_TYPE (HexPasteData, hex_paste_data, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (HexPasteData, hex_paste_data, G_TYPE_OBJECT)
 
 
 /* Helper Functions */
