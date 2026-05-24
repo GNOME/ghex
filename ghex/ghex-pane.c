@@ -50,12 +50,8 @@ ghex_pane_set_hex (GHexPane *self, HexView *hex)
 
 	priv = ghex_pane_get_instance_private (self);
 
-	g_clear_object (&priv->hex);
-
-	if (hex)
-		priv->hex = g_object_ref (hex);
-
-	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_HEX]);
+	if (g_set_object (&priv->hex, hex))
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_HEX]);
 }
 
 HexView *
