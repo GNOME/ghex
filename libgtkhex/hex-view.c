@@ -539,13 +539,15 @@ void
 hex_view_insert_auto_highlight (HexView *self, HexAutoHighlight *auto_highlight)
 {
 	HexViewPrivate *priv;
+	g_autoptr(GCancellable) cancellable = NULL;
 
 	g_return_if_fail (HEX_IS_VIEW (self));
 	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
 
 	g_signal_connect_object (auto_highlight, "refresh-complete", G_CALLBACK(ahl_refresh_complete_cb), self, G_CONNECT_SWAPPED); 
 
-	hex_auto_highlight_refresh_async (auto_highlight, g_cancellable_new (), refresh_ready_cb, self);
+	cancellable = g_cancellable_new ();
+	hex_auto_highlight_refresh_async (auto_highlight, cancellable, refresh_ready_cb, self);
 }
 
 gboolean
