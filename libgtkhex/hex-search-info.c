@@ -25,16 +25,19 @@ static GParamSpec *properties[N_PROPERTIES];
 
 G_DEFINE_FINAL_TYPE (HexSearchInfo, hex_search_info, G_TYPE_OBJECT)
 
+/* transfer full */
 static void
 hex_search_info_set_what (HexSearchInfo *self, const guint8 *what)
 {
 	g_return_if_fail (HEX_IS_SEARCH_INFO (self));
 
+	g_free (self->what);
 	self->what = what;
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_WHAT]);
 }
 
+/* transfer none */
 const guint8 *
 hex_search_info_get_what (HexSearchInfo *self)
 {
@@ -316,28 +319,28 @@ hex_search_info_class_init (HexSearchInfoClass *klass)
 	/* PROPERTIES */
 
 	properties[PROP_WHAT] = g_param_spec_pointer ("what", NULL, NULL,
-			G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | default_flags);
+			G_PARAM_READWRITE | default_flags);
 
 	properties[PROP_LEN] = g_param_spec_ulong ("len", NULL, NULL,
 			0, SIZE_MAX, 0,
-			G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | default_flags);
+			G_PARAM_READWRITE | default_flags);
 
 	properties[PROP_START] = g_param_spec_int64 ("start", NULL, NULL,
 			0, INT64_MAX, 0,
-			G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | default_flags);
+			G_PARAM_READWRITE | default_flags);
 
 	properties[PROP_FLAGS] = g_param_spec_flags ("flags", NULL, NULL,
 			HEX_TYPE_SEARCH_FLAGS,
 			HEX_SEARCH_NONE,
-			G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | default_flags);
+			G_PARAM_READWRITE | default_flags);
 
 	properties[PROP_FOUND_MSG] = g_param_spec_string ("found-msg", NULL, NULL,
 			NULL,
-			G_PARAM_READWRITE | G_PARAM_CONSTRUCT | default_flags);
+			G_PARAM_READWRITE | default_flags);
 
 	properties[PROP_NOT_FOUND_MSG] = g_param_spec_string ("not-found-msg", NULL, NULL,
 			NULL,
-			G_PARAM_READWRITE | G_PARAM_CONSTRUCT | default_flags);
+			G_PARAM_READWRITE | default_flags);
 
 	properties[PROP_POS] = g_param_spec_int64 ("pos", NULL, NULL,
 			0, INT64_MAX, 0,
