@@ -69,6 +69,25 @@ emit_search_progress_update__threadsafe (gpointer user_data)
 }
 
 static void
+reset_view_min_and_max (HexAutoHighlight *self)
+{
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (self));
+
+	self->view_min = 0;
+
+	if (!self->document)
+	{
+		self->view_max = 0;
+	}
+	else
+	{
+		HexBuffer *buf = hex_document_get_buffer (self->document);
+
+		self->view_max = hex_buffer_get_payload_size (buf);
+	}
+}
+
+static void
 do_refresh (HexAutoHighlight *self, gboolean async)
 {
 	g_autoptr(GTimer) timer = NULL;
@@ -121,6 +140,8 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 			g_timer_start (timer);
 		}
 	}
+
+	g_signal_emit (self, signals[SIG_REFRESH_COMPLETE], 0);
 }
 
 void
@@ -131,16 +152,12 @@ hex_auto_highlight_refresh_sync (HexAutoHighlight *self)
 	g_return_if_fail (HEX_IS_DOCUMENT (self->document));
 
 	do_refresh (self, FALSE);
-
-	g_signal_emit (self, signals[SIG_REFRESH_COMPLETE], 0);
 }
 
 gboolean
 hex_auto_highlight_refresh_finish (HexAutoHighlight *self, GAsyncResult *result)
 {
 	g_return_val_if_fail (g_task_is_valid (result, self), FALSE);
-
-	g_signal_emit (self, signals[SIG_REFRESH_COMPLETE], 0);
 
 	return g_task_propagate_boolean (G_TASK(result), NULL);
 }
@@ -278,9 +295,18 @@ hex_auto_highlight_set_document (HexAutoHighlight *self, HexDocument *document)
 	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (self));
 	g_return_if_fail (HEX_IS_DOCUMENT (document));
 
-	self->document = g_object_ref (document);
+	if (g_set_object (&self->document, document))
+	{
+		reset_view_min_and_max (self);
 
-	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_DOCUMENT]);
+		g_signal_handlers_disconnect_by_data (self->document, self);
+
+		g_signal_connect_object (self->document, "file-loaded", G_CALLBACK(reset_view_min_and_max), self, G_CONNECT_SWAPPED);
+		g_signal_connect_object (self->document, "document-changed", G_CALLBACK(reset_view_min_and_max), self, G_CONNECT_SWAPPED);
+		g_signal_connect_object (self->document, "file-name-changed", G_CALLBACK(reset_view_min_and_max), self, G_CONNECT_SWAPPED);
+
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_DOCUMENT]);
+	}
 }
 
 /* Transfer none */
@@ -345,20 +371,6 @@ hex_auto_highlight_get_property (GObject *object,
 }
 
 static void
-hex_auto_highlight_constructed (GObject *object)
-{
-	HexAutoHighlight *self = HEX_AUTO_HIGHLIGHT(object);
-
-	// TEST
-	{
-		HexBuffer *buf = hex_document_get_buffer (self->document);
-
-		self->view_min = 0;
-		self->view_max = hex_buffer_get_payload_size (buf);
-	}
-}
-
-static void
 hex_auto_highlight_init (HexAutoHighlight *self)
 {
 	self->highlights = g_list_store_new (HEX_TYPE_HIGHLIGHT);
@@ -398,17 +410,16 @@ hex_auto_highlight_class_init (HexAutoHighlightClass *klass)
 
 	object_class->dispose =  hex_auto_highlight_dispose;
 	object_class->finalize = hex_auto_highlight_finalize;
-	object_class->constructed = hex_auto_highlight_constructed;
 	object_class->set_property = hex_auto_highlight_set_property;
 	object_class->get_property = hex_auto_highlight_get_property;
 
 	properties[PROP_DOCUMENT] = g_param_spec_object ("document", NULL, NULL,
 			HEX_TYPE_DOCUMENT,
-			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+			default_flags | G_PARAM_READWRITE);
 
 	properties[PROP_SEARCH_INFO] = g_param_spec_object ("search-info", NULL, NULL,
 			HEX_TYPE_SEARCH_INFO,
-			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+			default_flags | G_PARAM_READWRITE);
 
 	properties[PROP_HIGHLIGHTS] = g_param_spec_object ("highlights", NULL, NULL,
 			G_TYPE_LIST_MODEL,
@@ -443,7 +454,7 @@ HexAutoHighlight *
 hex_auto_highlight_new (HexDocument *document, HexSearchInfo *search_info)
 {
 	g_return_val_if_fail (HEX_IS_DOCUMENT (document), NULL);
-	g_return_val_if_fail (HEX_IS_SEARCH_INFO (search_info), NULL);
+	g_return_val_if_fail (search_info == NULL || HEX_IS_SEARCH_INFO (search_info), NULL);
 
 	return g_object_new (HEX_TYPE_AUTO_HIGHLIGHT,
 			"document", document,
