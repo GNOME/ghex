@@ -44,18 +44,35 @@ typedef struct
 	gint64 end_offset;
 } HighlightCreationData;
 
-static gboolean
-add_highlight__threadsafe (gpointer user_data)
+static void
+_hex_auto_highlight_sort (HexAutoHighlight *self)
 {
-	g_autofree HighlightCreationData *data = user_data;
-	g_autoptr(HexHighlight) highlight = hex_highlight_new ();
+	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (self));
 
-	g_assert (data && data->ahl);
+	if (self->freeze_sorting)
+		self->sort_queued = TRUE;
+	else
+		g_list_store_sort (self->highlights, _hex_highlight_compare_func, NULL);
+}
 
-	hex_highlight_update (highlight, data->start_offset, data->end_offset);
-	hex_auto_highlight_add_highlight (data->ahl, highlight);
+static void
+_hex_auto_highlight_freeze_sorting (HexAutoHighlight *self)
+{
+	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (self));
 
-	return G_SOURCE_REMOVE;
+	self->freeze_sorting = TRUE;
+}
+
+static void
+_hex_auto_highlight_thaw_sorting (HexAutoHighlight *self)
+{
+	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (self));
+
+	if (self->freeze_sorting && self->sort_queued)
+		_hex_auto_highlight_sort (self);
+
+	self->freeze_sorting = FALSE;
+	self->sort_queued = FALSE;
 }
 
 static gboolean
@@ -63,7 +80,25 @@ emit_search_progress_update__threadsafe (gpointer user_data)
 {
 	HexAutoHighlight *self = user_data;
 
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (self));
+	g_assert (g_main_context_is_owner (g_main_context_default ()));
+
+	g_debug ("%s: search progress: %.4f%%", __func__, 100.0 * self->search_progress);
+
 	g_signal_emit (self, signals[SIG_SEARCH_PROGRESS_UPDATE], 0, self->search_progress);
+	
+	return G_SOURCE_REMOVE;
+}
+
+static gboolean
+emit_refresh_complete__threadsafe (gpointer user_data)
+{
+	HexAutoHighlight *self = user_data;
+
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (self));
+	g_assert (g_main_context_is_owner (g_main_context_default ()));
+
+	g_signal_emit (self, signals[SIG_REFRESH_COMPLETE], 0);
 
 	return G_SOURCE_REMOVE;
 }
@@ -98,6 +133,8 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 
 	timer = g_timer_new ();
 
+	_hex_auto_highlight_freeze_sorting (self);
+
 	for (gint64 i = self->search_info->start; i <= self->view_max; ++i)
 	{
 		i = CLAMP (i, self->view_min, self->view_max);
@@ -121,13 +158,14 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 
 		if (hex_document_compare_data_full (self->document, self->search_info) == 0)
 		{
-			g_autofree HighlightCreationData *data = g_new0 (HighlightCreationData, 1);
+			g_autoptr(HexHighlight) highlight = NULL;
+			const gint64 start_offset = self->search_info->pos;
+			const gint64 end_offset = self->search_info->pos + self->search_info->found_len - 1;
 
-			data->ahl = self;
-			data->start_offset = self->search_info->pos;
-			data->end_offset = self->search_info->pos + self->search_info->found_len - 1;
+			highlight = hex_highlight_new ();
+			hex_highlight_update (highlight, start_offset, end_offset);
 
-			g_main_context_invoke (NULL, add_highlight__threadsafe, g_steal_pointer (&data));
+			hex_auto_highlight_add_highlight (self, highlight);
 		}
 
 		if (g_timer_elapsed (timer, NULL) >= PROGRESS_REFRESH_RATE)
@@ -136,12 +174,15 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 
 			self->search_progress = percent;
 
-			g_main_context_invoke (NULL, emit_search_progress_update__threadsafe, self);
+			g_idle_add_full (G_PRIORITY_DEFAULT, emit_search_progress_update__threadsafe, g_object_ref (self), g_object_unref);
+
 			g_timer_start (timer);
 		}
 	}
 
-	g_signal_emit (self, signals[SIG_REFRESH_COMPLETE], 0);
+	_hex_auto_highlight_thaw_sorting (self);
+
+	g_idle_add_full (G_PRIORITY_DEFAULT, emit_refresh_complete__threadsafe, g_object_ref (self), g_object_unref);
 }
 
 void
@@ -158,6 +199,8 @@ gboolean
 hex_auto_highlight_refresh_finish (HexAutoHighlight *self, GAsyncResult *result)
 {
 	g_return_val_if_fail (g_task_is_valid (result, self), FALSE);
+
+	g_object_thaw_notify (G_OBJECT(self->highlights));
 
 	return g_task_propagate_boolean (G_TASK(result), NULL);
 }
@@ -217,8 +260,10 @@ hex_auto_highlight_refresh_async (HexAutoHighlight *self, GCancellable *cancella
 	g_autoptr(GTask) pending_task = NULL;
 
 	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (self));
-	g_return_if_fail (HEX_IS_SEARCH_INFO (self->search_info));
-	g_return_if_fail (HEX_IS_DOCUMENT (self->document));
+	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
+
+	g_assert (HEX_IS_SEARCH_INFO (self->search_info));
+	g_assert (HEX_IS_DOCUMENT (self->document));
 
 	task = g_task_new (self, cancellable, callback, user_data);
 
@@ -234,6 +279,10 @@ hex_auto_highlight_refresh_async (HexAutoHighlight *self, GCancellable *cancella
 
 	g_weak_ref_set (&self->search_pending_wr, task);
 
+	g_set_object (&self->cancellable, cancellable);
+
+	g_object_freeze_notify (G_OBJECT(self->highlights));
+
 	g_task_run_in_thread (task, refresh_task_func);
 }
 
@@ -244,6 +293,8 @@ hex_auto_highlight_add_highlight (HexAutoHighlight *self, HexHighlight *highligh
 	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (self));
 	g_return_if_fail (HEX_IS_HIGHLIGHT (highlight));
 
+	// FIXME - disable checking for dupes for now - seems too slow.
+#if 0
 	for (guint i = 0; i < g_list_model_get_n_items (G_LIST_MODEL(self->highlights)); ++i)
 	{
 		g_autoptr(HexHighlight) existing_hl = g_list_model_get_item (G_LIST_MODEL(self->highlights), i);
@@ -253,9 +304,10 @@ hex_auto_highlight_add_highlight (HexAutoHighlight *self, HexHighlight *highligh
 			return;
 		}
 	}
+#endif
 
 	g_list_store_append (self->highlights, highlight);
-	g_list_store_sort (self->highlights, _hex_highlight_compare_func, NULL);
+	_hex_auto_highlight_sort (self);
 }
 
 /* Transfer none */
@@ -387,6 +439,9 @@ hex_auto_highlight_dispose (GObject *object)
 	g_clear_object (&self->highlights); 
 	g_clear_object (&self->search_info);
 
+	g_cancellable_cancel (self->cancellable);
+	g_clear_object (&self->cancellable);
+
 	/* Chain up */
 	G_OBJECT_CLASS(hex_auto_highlight_parent_class)->dispose (object);
 }
@@ -486,4 +541,15 @@ _hex_auto_highlight_build_1d_list (GListModel *auto_highlights)
 	g_list_store_sort (retval, _hex_highlight_compare_func, NULL);
 
 	return (GListModel *) g_steal_pointer (&retval);
+}
+
+/* Gets the cancellable passed to hex_auto_highlight_refresh_async(), or NULL
+ * transfer none
+ */
+GCancellable *
+hex_auto_highlight_get_cancellable (HexAutoHighlight *self)
+{
+	g_return_val_if_fail (HEX_IS_AUTO_HIGHLIGHT (self), NULL);
+
+	return self->cancellable;
 }

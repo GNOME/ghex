@@ -20,11 +20,15 @@ struct _HexAutoHighlight
 	HexSearchInfo *search_info;
 	GListStore *highlights;
 
+	gboolean freeze_sorting;
+	gboolean sort_queued;
+
 	gint64 view_min;
 	gint64 view_max;
 
 	double search_progress;	/* use-setter */
 
+	GCancellable *cancellable;
 	GWeakRef search_pending_wr;
 	guint search_status_timeout_id;
 };

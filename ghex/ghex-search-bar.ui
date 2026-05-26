@@ -20,18 +20,6 @@
 		<property name="layout-manager">
 			<object class="GtkBinLayout" />
 		</property>
-		<property name="auto-highlight">
-			<object class="HexAutoHighlight">
-				<property name="search-info">
-					<object class="HexSearchInfo" id="search_info" />
-				</property>
-				<binding name="document">
-					<lookup name="document">
-						<lookup name="hex">GHexSearchBar</lookup>
-					</lookup>
-				</binding>
-			</object>
-		</property>
     <child>
       <object class="AdwBreakpointBin" id="breakpoint_bin">
 				<child>
