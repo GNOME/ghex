@@ -488,7 +488,6 @@ static void
 refresh_ready_cb (GObject *source_object, GAsyncResult *res, gpointer user_data)
 {
 	HexView *self = user_data;
-	HexViewPrivate *priv;
 	gboolean retval;
 
 	/* We assume ownership here so we need to transfer ownership or destroy it when done */
@@ -497,21 +496,18 @@ refresh_ready_cb (GObject *source_object, GAsyncResult *res, gpointer user_data)
 	g_assert (HEX_IS_VIEW (self));
 	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
 
-	priv = hex_view_get_instance_private (self);
-
 	retval = hex_auto_highlight_refresh_finish (auto_highlight, res);
 
 	if (retval)
 	{
-		g_list_store_append (G_LIST_STORE(priv->auto_highlights), auto_highlight);
-
 		g_debug ("%s: search finished", __func__);
 	}
 	else
 	{
 		g_debug ("%s: search cancelled", __func__);
-	}
 
+		hex_view_remove_auto_highlight (self, auto_highlight);
+	}
 }
 
 static void
@@ -544,6 +540,10 @@ hex_view_insert_auto_highlight (HexView *self, HexAutoHighlight *auto_highlight)
 	g_return_if_fail (HEX_IS_VIEW (self));
 	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
 
+	priv = hex_view_get_instance_private (self);
+
+	g_list_store_append (G_LIST_STORE(priv->auto_highlights), auto_highlight);
+
 	g_signal_connect_object (auto_highlight, "refresh-complete", G_CALLBACK(ahl_refresh_complete_cb), self, G_CONNECT_SWAPPED); 
 
 	cancellable = g_cancellable_new ();
@@ -564,7 +564,9 @@ hex_view_remove_auto_highlight (HexView *self, HexAutoHighlight *auto_highlight)
 	if (! g_list_store_find (G_LIST_STORE(priv->auto_highlights), auto_highlight, &pos))
 		return FALSE;
 
+	g_cancellable_cancel (hex_auto_highlight_get_cancellable (auto_highlight));
 	g_list_store_remove (G_LIST_STORE(priv->auto_highlights), pos);
+
 	return TRUE;
 }
 

@@ -26,7 +26,7 @@ struct _HexSearchInfo
 	GObject parent_instance;
 
 	/* in */
-	const guint8 *what;
+	guint8 *what;
 	size_t len;
 	gint64 start;
 	HexSearchFlags flags;
