@@ -1386,10 +1386,10 @@ hex_document_compare_data_full (HexDocument *doc,
 
 	if (search_info->flags & HEX_SEARCH_REGEX)
 	{
-		GRegex *regex;
-		GMatchInfo *match_info;
-		char *regex_search_str;
-		GRegexCompileFlags regex_compile_flags;
+		GRegex *regex = NULL;
+		GMatchInfo *match_info = NULL;
+		char *regex_search_str = NULL;
+		GRegexCompileFlags regex_compile_flags = 0;
 
 		/* GRegex doesn't let you specify the length of the search string, so
 		 * it needs to be NULL-terminated.
@@ -1429,9 +1429,12 @@ hex_document_compare_data_full (HexDocument *doc,
 		{
 			char *word = g_match_info_fetch (match_info, 0);
 
-			found_len = strlen (word);
-			g_free (word);
-			retval = 0;
+			if (word)
+			{
+				found_len = strlen (word);
+				g_free (word);
+				retval = 0;
+			}
 		}
 		else
 		{
@@ -1443,6 +1446,9 @@ hex_document_compare_data_full (HexDocument *doc,
 			}
 			retval = 1;
 		}
+
+		g_clear_pointer (&match_info, g_match_info_unref);
+		g_clear_pointer (&regex, g_regex_unref);
 	}
 	else	/* non regex */
 	{
