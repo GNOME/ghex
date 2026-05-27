@@ -43,6 +43,7 @@ vim: ts=2 sw=2 expandtab
 
                 <child>
                   <object class="GtkRevealer" id="mark_pane_revealer">
+                    <property name="transition-type">slide-down</property>
                     <property name="child">
                       <object class="GHexMarkPane" id="mark_pane">
                         <property name="hex">hex</property>
@@ -70,6 +71,7 @@ vim: ts=2 sw=2 expandtab
 
                 <child>
                   <object class="GtkRevealer" id="search_bar_revealer">
+                    <property name="transition-type">slide-up</property>
                     <property name="child">
                       <object class="GHexSearchBar" id="search_bar">
                         <property name="hex">hex</property>
@@ -81,6 +83,7 @@ vim: ts=2 sw=2 expandtab
 
                 <child>
                   <object class="GtkRevealer" id="conversions_revealer">
+                    <property name="transition-type">slide-up</property>
                     <property name="child">
                       <object class="GHexConversionPane" id="conversion_pane">
                       </object>

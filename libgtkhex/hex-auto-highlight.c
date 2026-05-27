@@ -9,7 +9,7 @@
 
 /* Rate in number of seconds (as double) that the auto-highlight will report a progress update for a search operation.
  */
-#define PROGRESS_REFRESH_RATE 3.0
+#define PROGRESS_REFRESH_RATE 1.0
 
 /* Number of seconds (as integer) we're willing to wait for a threaded search to take before we give up.
  */
