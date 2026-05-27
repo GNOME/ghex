@@ -826,9 +826,6 @@ hex_widget_class_init (HexWidgetClass *klass)
 	/* Shift-F3 - prev match */
 	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_F3, GDK_SHIFT_MASK, "find.prev-match", NULL);
 
-	/* ESC - clear auto-highlights */
-	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "find.clear-matches", NULL);
-
 	/* Load global CSS data for widget */
 	{
 		GdkDisplay *display = gdk_display_get_default ();

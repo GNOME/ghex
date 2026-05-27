@@ -192,6 +192,42 @@ ghex_view_container_set_loading (GHexViewContainer *self, gboolean loading)
 }
 
 static void
+_ghex_view_container_set_show_mark_pane (GHexViewContainer *self, gboolean show_mark_pane)
+{
+	g_return_if_fail (GHEX_IS_VIEW_CONTAINER (self));
+
+	self->show_mark_pane = show_mark_pane;
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_SHOW_MARK_PANE]);
+}
+
+static gboolean
+_ghex_view_container_get_show_mark_pane (GHexViewContainer *self)
+{
+	g_return_val_if_fail (GHEX_IS_VIEW_CONTAINER (self), FALSE);
+
+	return self->show_mark_pane;
+}
+
+static void
+_ghex_view_container_set_show_search_bar (GHexViewContainer *self, gboolean show_search_bar)
+{
+	g_return_if_fail (GHEX_IS_VIEW_CONTAINER (self));
+
+	self->show_search_bar = show_search_bar;
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_SHOW_SEARCH_BAR]);
+}
+
+static gboolean
+_ghex_view_container_get_show_search_bar (GHexViewContainer *self)
+{
+	g_return_val_if_fail (GHEX_IS_VIEW_CONTAINER (self), FALSE);
+
+	return self->show_search_bar;
+}
+
+static void
 ghex_view_container_set_property (GObject *object,
 		guint property_id,
 		const GValue *value,
@@ -210,13 +246,11 @@ ghex_view_container_set_property (GObject *object,
 			break;
 
 		case PROP_SHOW_MARK_PANE:
-			self->show_mark_pane = g_value_get_boolean (value);
-			g_object_notify_by_pspec (object, pspec);
+			_ghex_view_container_set_show_mark_pane (self, g_value_get_boolean (value));
 			break;
 
 		case PROP_SHOW_SEARCH_BAR:
-			self->show_search_bar = g_value_get_boolean (value);
-			g_object_notify_by_pspec (object, pspec);
+			_ghex_view_container_set_show_search_bar (self, g_value_get_boolean (value));
 			break;
 
 		default:
@@ -248,11 +282,11 @@ ghex_view_container_get_property (GObject *object,
 			break;
 
 		case PROP_SHOW_MARK_PANE:
-			g_value_set_boolean (value, self->show_mark_pane);
+			g_value_set_boolean (value, _ghex_view_container_get_show_mark_pane (self));
 			break;
 
 		case PROP_SHOW_SEARCH_BAR:
-			g_value_set_boolean (value, self->show_search_bar);
+			g_value_set_boolean (value, _ghex_view_container_get_show_search_bar (self));
 			break;
 
 		default:
@@ -276,6 +310,16 @@ activate_mark_action (GtkWidget *widget,
 	const int mark_num = g_variant_get_int32 (parameter);
 
 	ghex_mark_pane_set_mark_num (self->mark_pane, mark_num);
+}
+
+static void
+close_search_bar_action (GtkWidget *widget, const char *action_name, GVariant *parameter)
+{
+	GHexViewContainer *self = (GHexViewContainer *) widget;
+
+	g_assert (GHEX_IS_VIEW_CONTAINER (self));
+
+	ghex_pane_close (GHEX_PANE(self->search_bar));
 }
 
 static void
@@ -434,6 +478,11 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 	gtk_widget_class_install_property_action (widget_class, "container.mark-pane", "show-mark-pane");
 
 	gtk_widget_class_install_property_action (widget_class, "container.search-bar", "show-search-bar");
+
+	gtk_widget_class_install_action (widget_class, "container.close-search-bar", NULL, close_search_bar_action);
+
+	/* ESC: close search bar */
+	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "container.close-search-bar", NULL);
 
 	/* < auto-generated activate-mark bindings > */
 

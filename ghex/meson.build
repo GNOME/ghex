@@ -20,6 +20,7 @@ ghex_sources = [
 
 ghex_enums_headers = [
   'ghex-statusbar.h',
+  'ghex-search-bar.h',
 ]
 
 ghex_enums = gnome.mkenums_simple('ghex-enums',

@@ -6,6 +6,7 @@
 enum
 {
 	PROP_AUTO_HIGHLIGHT = 1,
+	PROP_REPLACE_MODE,
 	N_PROPERTIES
 };
 
@@ -24,6 +25,7 @@ struct _GHexSearchBar
 
 	HexAutoHighlight *auto_highlight;
 	GCancellable *cancellable;
+	gboolean replace_mode;
 
 	/* From template: */
 
@@ -38,9 +40,31 @@ struct _GHexSearchBar
 	gpointer replace_entry;
 	gpointer replace_mode_button;
 	gpointer search_entry;
+	gpointer search_progress_revealer;
+	gpointer search_progress_bar;
 };
 
 G_DEFINE_FINAL_TYPE (GHexSearchBar, ghex_search_bar, GHEX_TYPE_PANE)
+
+static void
+auto_highlight_search_progress_update_cb (GHexSearchBar *self, double progress, HexAutoHighlight *auto_highlight)
+{
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
+
+	gtk_revealer_set_reveal_child (self->search_progress_revealer, TRUE);
+	gtk_progress_bar_set_fraction (self->search_progress_bar, progress);
+}
+
+static void
+auto_highlight_refresh_complete_cb (GHexSearchBar *self, HexAutoHighlight *auto_highlight)
+{
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
+
+	gtk_revealer_set_reveal_child (self->search_progress_revealer, FALSE);
+	gtk_progress_bar_set_fraction (self->search_progress_bar, 0.0);
+}
 
 /* transfer none */
 static void
@@ -49,24 +73,31 @@ _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto
 	HexView *substantive_view;
 
 	g_return_if_fail (GHEX_IS_SEARCH_BAR (self));
-	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
+	g_return_if_fail (auto_highlight == NULL || HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
 
 	substantive_view = ghex_pane_get_hex (GHEX_PANE(self));
+	g_return_if_fail (substantive_view != NULL);
 
-	if (self->auto_highlight && substantive_view)
+	if (self->auto_highlight)
 		hex_view_remove_auto_highlight (substantive_view, self->auto_highlight);
 
 	if (g_set_object (&self->auto_highlight, auto_highlight))
 	{
-		if (substantive_view)
+		if (auto_highlight)
+		{
+			g_signal_connect_object (auto_highlight, "search-progress-update", G_CALLBACK(auto_highlight_search_progress_update_cb), self, G_CONNECT_SWAPPED);
+
+			g_signal_connect_object (auto_highlight, "refresh-complete", G_CALLBACK(auto_highlight_refresh_complete_cb), self, G_CONNECT_SWAPPED);
+
 			hex_view_insert_auto_highlight (substantive_view, self->auto_highlight);
+		}
 
 		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_AUTO_HIGHLIGHT]);
 	}
 }
 
 /* transfer none */
-static HexAutoHighlight *
+HexAutoHighlight *
 ghex_search_bar_get_auto_highlight (GHexSearchBar *self)
 {
 	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), NULL);
@@ -74,38 +105,72 @@ ghex_search_bar_get_auto_highlight (GHexSearchBar *self)
 	return self->auto_highlight;
 }
 
-static void
-search_entry_changed_cb (GHexSearchBar *self, HexChangeData *change_data, gboolean undoable, HexDocument *search_entry_doc)
+void
+ghex_search_bar_set_replace_mode (GHexSearchBar *self, gboolean replace_mode)
 {
+	g_return_if_fail (GHEX_IS_SEARCH_BAR (self));
+
+	gpointer replace_widgets[] = {self->replace_all_button, self->replace_button, self->replace_entry};
+
+	if (replace_mode == self->replace_mode)
+		return;
+
+	for (guint i = 0; i < G_N_ELEMENTS (replace_widgets); ++i)
+		gtk_widget_set_visible (replace_widgets[i], replace_mode);
+
+	self->replace_mode = replace_mode;
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REPLACE_MODE]);
+}
+
+gboolean
+ghex_search_bar_get_replace_mode (GHexSearchBar *self)
+{
+	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), FALSE);
+
+	return self->replace_mode;
+}
+
+static void
+search_entry_refresh_cb (GHexSearchBar *self)
+{
+	HexDocument *search_entry_doc;
 	HexBuffer *search_entry_buf;
 	HexView *substantive_view;
 	HexDocument *substantive_doc;
 
-	g_assert (GHEX_IS_SEARCH_BAR (self));
-	g_assert (HEX_IS_WIDGET (self->search_entry));
-	g_assert (HEX_IS_DOCUMENT (search_entry_doc));
+	g_autofree char *contents = NULL;
+	g_autoptr(HexSearchInfo) search_info = NULL;
+	g_autoptr(HexAutoHighlight) auto_highlight = NULL;
 
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	search_entry_doc = hex_view_get_document (self->search_entry);
 	search_entry_buf = hex_document_get_buffer (search_entry_doc);
+
+	const gint64 payload_size = hex_buffer_get_payload_size (search_entry_buf);
+
+	if (payload_size == 0)
+	{
+		_ghex_search_bar_set_auto_highlight (self, NULL);
+		return;
+	}
+
+	contents = hex_buffer_get_data (search_entry_buf, 0, payload_size);
+
+	search_info = g_object_new (HEX_TYPE_SEARCH_INFO,
+			"what", g_steal_pointer (&contents),
+			"len", payload_size,
+			"found-msg", "Found",	// TEST
+			"not-found-msg", "Not found",	// TEST
+			NULL);
+
 	substantive_view = ghex_pane_get_hex (GHEX_PANE(self));
 	substantive_doc = hex_view_get_document (substantive_view);
 
-	{
-		const gint64 payload_size = hex_buffer_get_payload_size (search_entry_buf);
-		g_autofree char *contents = hex_buffer_get_data (search_entry_buf, 0, payload_size);
-		g_autoptr(HexSearchInfo) search_info = NULL;
-		g_autoptr(HexAutoHighlight) auto_highlight = NULL;
-		
-		search_info = g_object_new (HEX_TYPE_SEARCH_INFO,
-				"what", g_steal_pointer (&contents),
-				"len", payload_size,
-				"found-msg", "Found",	// TEST
-				"not-found-msg", "Not found",	// TEST
-				NULL);
+	auto_highlight = hex_auto_highlight_new (substantive_doc, search_info);
 
-		auto_highlight = hex_auto_highlight_new (substantive_doc, search_info);
-
-		_ghex_search_bar_set_auto_highlight (self, auto_highlight);
-	}
+	_ghex_search_bar_set_auto_highlight (self, auto_highlight);
 }
 
 static void
@@ -118,6 +183,10 @@ ghex_search_bar_set_property (GObject *object,
 
 	switch (property_id)
 	{
+		case PROP_REPLACE_MODE:
+			ghex_search_bar_set_replace_mode (self, g_value_get_boolean (value));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
@@ -138,10 +207,24 @@ ghex_search_bar_get_property (GObject *object,
 			g_value_set_object (value, ghex_search_bar_get_auto_highlight (self));
 			break;
 
+		case PROP_REPLACE_MODE:
+			g_value_set_boolean (value, ghex_search_bar_get_replace_mode (self));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
 	}
+}
+
+static void
+ghex_search_bar_close (GHexPane *pane)
+{
+	GHexSearchBar *self = GHEX_SEARCH_BAR(pane);
+
+	_ghex_search_bar_set_auto_highlight (self, NULL);
+
+	GHEX_PANE_CLASS(ghex_search_bar_parent_class)->close (pane);
 }
 
 static void
@@ -156,15 +239,10 @@ ghex_search_bar_init (GHexSearchBar *self)
 	{
 		HexDocument *search_entry_doc = hex_view_get_document (self->search_entry);
 
-		g_signal_connect_object (search_entry_doc, "document-changed", G_CALLBACK(search_entry_changed_cb), self, G_CONNECT_SWAPPED);
+		g_signal_connect_object (search_entry_doc, "document-changed", G_CALLBACK(search_entry_refresh_cb), self, G_CONNECT_SWAPPED);
+
+		g_signal_connect_object (self, "map", G_CALLBACK(search_entry_refresh_cb), self, G_CONNECT_SWAPPED);
 	}
-}
-
-static void
-ghex_search_bar_constructed (GObject *object)
-{
-	GHexSearchBar *self = GHEX_SEARCH_BAR(object);
-
 }
 
 static void
@@ -197,15 +275,20 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 	GParamFlags default_flags = G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY;
 
-	object_class->constructed = ghex_search_bar_constructed;
 	object_class->dispose =  ghex_search_bar_dispose;
 	object_class->finalize = ghex_search_bar_finalize;
 	object_class->set_property = ghex_search_bar_set_property;
 	object_class->get_property = ghex_search_bar_get_property;
 
+	GHEX_PANE_CLASS(klass)->close = ghex_search_bar_close;
+
 	properties[PROP_AUTO_HIGHLIGHT] = g_param_spec_object ("auto-highlight", NULL, NULL,
 			HEX_TYPE_AUTO_HIGHLIGHT,
 			default_flags | G_PARAM_READABLE);
+
+	properties[PROP_REPLACE_MODE] = g_param_spec_boolean ("replace-mode", NULL, NULL,
+			FALSE,
+			default_flags | G_PARAM_READWRITE);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
@@ -234,6 +317,8 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, replace_entry);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, replace_mode_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_entry);
+	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_revealer);
+	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_bar);
 }
 
 GtkWidget *

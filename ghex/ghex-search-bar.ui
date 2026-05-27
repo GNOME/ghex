@@ -28,15 +28,19 @@
               <class name="toolbar"/>
             </style>
             <child>
-							<object class="HexWidget" id="search_entry">
-                <property name="hexpand">true</property>
-								<property name="show-offsets">false</property>
-								<property name="insert-mode">true</property>
+							<object class="GtkScrolledWindow">
                 <layout>
                   <property name="row">0</property>
                   <property name="column">0</property>
                 </layout>
-              </object>
+								<property name="child">
+									<object class="HexWidget" id="search_entry">
+										<property name="hexpand">true</property>
+										<property name="show-offsets">false</property>
+										<property name="insert-mode">true</property>
+									</object>
+								</property>
+							</object>
             </child>
             <child>
               <object class="GtkEntry" id="replace_entry">
@@ -97,6 +101,7 @@
                 <property name="tooltip-text" translatable="yes">Search &amp; Replace</property>
                 <property name="icon-name">edit-find-replace-symbolic</property>
                 <property name="focus-on-click">false</property>
+								<property name="active" bind-source="GHexSearchBar" bind-property="replace-mode" bind-flags="bidirectional" />
                 <layout>
                   <property name="row">0</property>
                   <property name="column">2</property>
@@ -167,6 +172,22 @@
                   <property name="column">2</property>
                   <property name="column-span">3</property>
                 </layout>
+              </object>
+            </child>
+            <child>
+              <object class="GtkRevealer" id="search_progress_revealer">
+                <layout>
+                  <property name="row">2</property>
+                  <property name="column">0</property>
+									<property name="column-span">5</property>
+                </layout>
+								<property name="transition-type">slide-up</property>
+								<property name="child">
+									<object class="GtkProgressBar" id="search_progress_bar">
+										<property name="show-text">true</property>
+										<property name="text" translatable="yes">Search Progress</property>
+									</object>
+								</property>
               </object>
             </child>
           </object>
