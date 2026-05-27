@@ -1,4 +1,17 @@
 =========
+GHex 50.2
+=========
+
+Bugfixes since 50.1:
+- Fixes for minor issues detected by goblint (Logan Rathbone)
+- paste-special: Fix GError leak (Logan Rathbone)
+- buf-malloc: Ensure payload_size is clamped to zero (Logan Rathbone)
+- hex-doc: Plug GRegex leak and avoid possible strlen on null pointer (Logan
+  Rathbone)
+
+This release includes libgtkhex 4.12.1
+
+=========
 GHex 50.1
 =========
 
