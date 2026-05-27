@@ -1,5 +1,6 @@
 #include "ghex-search-bar.h"
 #include "hex-auto-highlight-private.h"
+#include "libgtkhex-enums.h"
 
 #include "config.h"
 
@@ -7,17 +8,13 @@ enum
 {
 	PROP_AUTO_HIGHLIGHT = 1,
 	PROP_REPLACE_MODE,
+	PROP_REGEX_ENABLED,
+	PROP_IGNORE_CASE,
+	PROP_SEARCH_FLAGS,
 	N_PROPERTIES
 };
 
 static GParamSpec *properties[N_PROPERTIES];
-
-enum signal_types {
-	SIGNAL_ONE,
-	N_SIGNALS
-};
-
-static guint signals[N_SIGNALS];
 
 struct _GHexSearchBar
 {
@@ -26,6 +23,10 @@ struct _GHexSearchBar
 	HexAutoHighlight *auto_highlight;
 	GCancellable *cancellable;
 	gboolean replace_mode;
+
+	gboolean regex_enabled;
+	gboolean ignore_case;
+	HexSearchFlags search_flags;
 
 	/* From template: */
 
@@ -156,6 +157,7 @@ search_entry_refresh_cb (GHexSearchBar *self)
 	search_info = g_object_new (HEX_TYPE_SEARCH_INFO,
 			"what", g_steal_pointer (&contents),
 			"len", payload_size,
+			"flags", self->search_flags,
 			"found-msg", "Found",	// TEST
 			"not-found-msg", "Not found",	// TEST
 			NULL);
@@ -166,6 +168,68 @@ search_entry_refresh_cb (GHexSearchBar *self)
 	auto_highlight = hex_auto_highlight_new (substantive_doc, search_info);
 
 	_ghex_search_bar_set_auto_highlight (self, auto_highlight);
+}
+
+static void
+refresh_search_flags (GHexSearchBar *self)
+{
+	self->search_flags = 0;
+
+	if (self->regex_enabled)
+		self->search_flags |= HEX_SEARCH_REGEX;
+
+	if (self->ignore_case)
+		self->search_flags |= HEX_SEARCH_IGNORE_CASE;
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_SEARCH_FLAGS]);
+}
+
+static void
+_ghex_search_bar_set_regex_enabled (GHexSearchBar *self, gboolean regex_enabled)
+{
+	g_return_if_fail (GHEX_IS_SEARCH_BAR (self));
+
+	self->regex_enabled = regex_enabled;
+
+	refresh_search_flags (self);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_REGEX_ENABLED]);
+}
+
+static gboolean
+_ghex_search_bar_get_regex_enabled (GHexSearchBar *self)
+{
+	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), FALSE);
+
+	return self->regex_enabled;
+}
+
+static void
+_ghex_search_bar_set_ignore_case (GHexSearchBar *self, gboolean ignore_case)
+{
+	g_return_if_fail (GHEX_IS_SEARCH_BAR (self));
+
+	self->ignore_case = ignore_case;
+
+	refresh_search_flags (self);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_IGNORE_CASE]);
+}
+
+static gboolean
+_ghex_search_bar_get_ignore_case (GHexSearchBar *self)
+{
+	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), FALSE);
+
+	return self->ignore_case;
+}
+
+static HexSearchFlags
+_ghex_search_bar_get_search_flags (GHexSearchBar *self)
+{
+	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), HEX_SEARCH_NONE);
+
+	return self->search_flags;
 }
 
 static void
@@ -180,6 +244,14 @@ ghex_search_bar_set_property (GObject *object,
 	{
 		case PROP_REPLACE_MODE:
 			ghex_search_bar_set_replace_mode (self, g_value_get_boolean (value));
+			break;
+
+		case PROP_REGEX_ENABLED:
+			_ghex_search_bar_set_regex_enabled (self, g_value_get_boolean (value));
+			break;
+
+		case PROP_IGNORE_CASE:
+			_ghex_search_bar_set_ignore_case (self, g_value_get_boolean (value));
 			break;
 
 		default:
@@ -204,6 +276,18 @@ ghex_search_bar_get_property (GObject *object,
 
 		case PROP_REPLACE_MODE:
 			g_value_set_boolean (value, ghex_search_bar_get_replace_mode (self));
+			break;
+
+		case PROP_REGEX_ENABLED:
+			g_value_set_boolean (value, _ghex_search_bar_get_regex_enabled (self));
+			break;
+
+		case PROP_IGNORE_CASE:
+			g_value_set_boolean (value, _ghex_search_bar_get_ignore_case (self));
+			break;
+			
+		case PROP_SEARCH_FLAGS:
+			g_value_set_flags (value, _ghex_search_bar_get_search_flags (self));
 			break;
 
 		default:
@@ -283,17 +367,23 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 			FALSE,
 			default_flags | G_PARAM_READWRITE);
 
+	properties[PROP_REGEX_ENABLED] = g_param_spec_boolean ("regex-enabled", NULL, NULL,
+			FALSE,
+			default_flags | G_PARAM_READWRITE);
+
+	properties[PROP_IGNORE_CASE] = g_param_spec_boolean ("ignore-case", NULL, NULL,
+			FALSE,
+			default_flags | G_PARAM_READWRITE);
+
+	properties[PROP_SEARCH_FLAGS] = g_param_spec_flags ("search-flags", NULL, NULL,
+			HEX_TYPE_SEARCH_FLAGS,
+			HEX_SEARCH_NONE,
+			default_flags | G_PARAM_READABLE);
+
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
-	signals[SIGNAL_ONE] = g_signal_new_class_handler ("signal-one",
-			G_OBJECT_CLASS_TYPE (object_class),
-			G_SIGNAL_RUN_LAST,
-		/* no default C function */
-			NULL,
-		/* defaults for accumulator, marshaller &c. */
-			NULL, NULL, NULL,	
-		/* No return type or params. */
-			G_TYPE_NONE, 0);
+	gtk_widget_class_install_property_action (widget_class, "search-options.regex", "regex-enabled");
+	gtk_widget_class_install_property_action (widget_class, "search-options.ignore-case", "ignore-case");
 
 	gtk_widget_class_set_css_name (widget_class, "searchbar");
 
