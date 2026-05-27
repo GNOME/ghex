@@ -131,7 +131,10 @@ update_payload_size_from_file (HexBufferMalloc *self)
 	gint64 file_size = hex_buffer_util_get_file_size (self->file);
 
 	if (file_size < 0)
+	{
+		self->payload_size = 0;
 		return FALSE;
+	}
 
 	self->payload_size = file_size;
 	return TRUE;
@@ -286,6 +289,7 @@ hex_buffer_malloc_set_data (HexBuffer *buf, gint64 offset, size_t len,
 		self->gap_pos -= rep_len - len;
 		self->gap_size += rep_len - len;
 		self->payload_size += len - rep_len;
+		self->payload_size = CLAMP (self->payload_size, 0, INT64_MAX);
 	}
 
 	ptr = &self->buffer[offset];
