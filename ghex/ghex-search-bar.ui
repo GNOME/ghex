@@ -184,14 +184,29 @@
                 </layout>
 								<property name="transition-type">slide-up</property>
 								<property name="child">
-									<object class="GtkProgressBar" id="search_progress_bar">
-										<property name="show-text">true</property>
-										<property name="text" translatable="yes">Search Progress</property>
+									<object class="GtkBox">
+										<property name="orientation">horizontal</property>
+										<property name="spacing">6</property>
+										<child>
+											<object class="GtkProgressBar" id="search_progress_bar">
+												<property name="show-text">true</property>
+												<property name="text" translatable="yes">Search Progress</property>
+												<property name="hexpand">true</property>
+											</object>
+										</child>
+										<child>
+											<object class="GtkButton" id="search_progress_cancel_button">
+												<property name="use-underline">true</property>
+												<property name="label" translatable="yes">_Cancel</property>
+												<property name="sensitive">false</property>
+												<signal name="clicked" handler="_ghex_search_bar_cancel_query" object="GHexSearchBar" swapped="yes" />
+											</object>
+										</child>
 									</object>
 								</property>
               </object>
-            </child>
-          </object>
+						</child>
+					</object>
 				</child>
       </object>
     </child>

@@ -38,6 +38,7 @@ struct _GHexSearchBar
 	HexView *search_entry;
 	GtkRevealer *search_progress_revealer;
 	GtkProgressBar *search_progress_bar;
+	GtkButton *search_progress_cancel_button;
 };
 
 G_DEFINE_FINAL_TYPE (GHexSearchBar, ghex_search_bar, GHEX_TYPE_PANE)
@@ -48,6 +49,7 @@ auto_highlight_search_progress_update_cb (GHexSearchBar *self, double progress, 
 	g_assert (GHEX_IS_SEARCH_BAR (self));
 	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
 
+	gtk_widget_set_sensitive (GTK_WIDGET(self->search_progress_cancel_button), TRUE);
 	gtk_revealer_set_reveal_child (self->search_progress_revealer, TRUE);
 	gtk_progress_bar_set_fraction (self->search_progress_bar, progress);
 }
@@ -58,6 +60,7 @@ auto_highlight_refresh_complete_cb (GHexSearchBar *self, HexAutoHighlight *auto_
 	g_assert (GHEX_IS_SEARCH_BAR (self));
 	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
 
+	gtk_widget_set_sensitive (GTK_WIDGET(self->search_progress_cancel_button), FALSE);
 	gtk_revealer_set_reveal_child (self->search_progress_revealer, FALSE);
 	gtk_progress_bar_set_fraction (self->search_progress_bar, 0.0);
 }
@@ -128,7 +131,7 @@ ghex_search_bar_get_replace_mode (GHexSearchBar *self)
 }
 
 static void
-search_entry_refresh_cb (GHexSearchBar *self)
+_ghex_search_bar_refresh_query (GHexSearchBar *self)
 {
 	HexDocument *search_entry_doc;
 	HexBuffer *search_entry_buf;
@@ -297,11 +300,19 @@ ghex_search_bar_get_property (GObject *object,
 }
 
 static void
+_ghex_search_bar_cancel_query (GHexSearchBar *self)
+{
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	_ghex_search_bar_set_auto_highlight (self, NULL);
+}
+
+static void
 ghex_search_bar_close (GHexPane *pane)
 {
 	GHexSearchBar *self = GHEX_SEARCH_BAR(pane);
 
-	_ghex_search_bar_set_auto_highlight (self, NULL);
+	_ghex_search_bar_cancel_query (self);
 
 	GHEX_PANE_CLASS(ghex_search_bar_parent_class)->close (pane);
 }
@@ -309,17 +320,17 @@ ghex_search_bar_close (GHexPane *pane)
 static void
 ghex_search_bar_init (GHexSearchBar *self)
 {
+	HexDocument *search_entry_doc = NULL;
+
 	gtk_widget_init_template (GTK_WIDGET(self));
 
 	self->cancellable = g_cancellable_new ();
 
-	{
-		HexDocument *search_entry_doc = hex_view_get_document (self->search_entry);
+	search_entry_doc = hex_view_get_document (self->search_entry);
 
-		g_signal_connect_object (search_entry_doc, "document-changed", G_CALLBACK(search_entry_refresh_cb), self, G_CONNECT_SWAPPED);
-
-		g_signal_connect_object (self, "map", G_CALLBACK(search_entry_refresh_cb), self, G_CONNECT_SWAPPED);
-	}
+	g_signal_connect_object (search_entry_doc, "document-changed", G_CALLBACK(_ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
+	g_signal_connect_object (self, "map", G_CALLBACK(_ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
+	g_signal_connect_object (self, "notify::search-flags", G_CALLBACK(_ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
 }
 
 static void
@@ -396,6 +407,9 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_entry);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_revealer);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_bar);
+	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_cancel_button);
+
+	gtk_widget_class_bind_template_callback (widget_class, _ghex_search_bar_cancel_query);
 }
 
 GtkWidget *
