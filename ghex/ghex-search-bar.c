@@ -29,19 +29,14 @@ struct _GHexSearchBar
 
 	/* From template: */
 
-	gpointer breakpoint_bin;
-	gpointer close_button;
-	gpointer grid;
-	gpointer move_previous;
-	gpointer move_next;
-	gpointer options_button;
-	gpointer replace_all_button;
-	gpointer replace_button;
-	gpointer replace_entry;
-	gpointer replace_mode_button;
-	gpointer search_entry;
-	gpointer search_progress_revealer;
-	gpointer search_progress_bar;
+	/* direct parent; otherwise unused */
+	GtkWidget *breakpoint_bin;
+	GtkButton *replace_all_button;
+	GtkButton *replace_button;
+	GtkButton *replace_entry;
+	HexView *search_entry;
+	GtkRevealer *search_progress_revealer;
+	GtkProgressBar *search_progress_bar;
 };
 
 G_DEFINE_FINAL_TYPE (GHexSearchBar, ghex_search_bar, GHEX_TYPE_PANE)
@@ -234,8 +229,6 @@ ghex_search_bar_init (GHexSearchBar *self)
 
 	self->cancellable = g_cancellable_new ();
 
-	g_signal_connect_object (self->close_button, "clicked", G_CALLBACK(ghex_pane_close), self, G_CONNECT_SWAPPED);
-
 	{
 		HexDocument *search_entry_doc = hex_view_get_document (self->search_entry);
 
@@ -307,15 +300,9 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 	gtk_widget_class_set_template_from_resource (widget_class, RESOURCE_BASE_PATH "/ghex-search-bar.ui");
 
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, breakpoint_bin);
-	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, close_button);
-	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, grid);
-	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, move_previous);
-	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, move_next);
-	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, options_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, replace_all_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, replace_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, replace_entry);
-	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, replace_mode_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_entry);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_revealer);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_bar);
