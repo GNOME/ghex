@@ -29,11 +29,6 @@
 
 #include <hex-buffer-iface.h>
 
-#define _GNU_SOURCE
-
-#include <stdio.h>
-#include <errno.h>
-
 G_BEGIN_DECLS
 
 #define HEX_TYPE_BUFFER_MALLOC hex_buffer_malloc_get_type ()
