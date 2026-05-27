@@ -134,6 +134,7 @@
                 <property name="tooltip-text" translatable="yes">Close Search</property>
                 <property name="icon-name">window-close-symbolic</property>
                 <property name="focus-on-click">false</property>
+								<signal name="clicked" handler="ghex_pane_close" object="GHexSearchBar" swapped="yes" />
                 <style>
                   <class name="flat"/>
                   <class name="small-button"/>
