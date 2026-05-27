@@ -26,6 +26,12 @@
 
 #include "hex-buffer-malloc.h"
 
+#define _GNU_SOURCE
+
+#include <stdio.h>
+#include <errno.h>
+#include <stdint.h>
+
 /* PROPERTIES */
 
 enum
