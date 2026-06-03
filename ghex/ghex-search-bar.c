@@ -1,6 +1,9 @@
 #include "ghex-search-bar.h"
+
+#include "hex-highlight-private.h"
 #include "hex-auto-highlight-private.h"
 #include "libgtkhex-enums.h"
+#include "util.h"
 
 #include "config.h"
 
@@ -39,6 +42,7 @@ struct _GHexSearchBar
 	GtkRevealer *search_progress_revealer;
 	GtkProgressBar *search_progress_bar;
 	GtkButton *search_progress_cancel_button;
+	GtkLabel *num_matches_label;
 };
 
 G_DEFINE_FINAL_TYPE (GHexSearchBar, ghex_search_bar, GHEX_TYPE_PANE)
@@ -65,6 +69,59 @@ auto_highlight_refresh_complete_cb (GHexSearchBar *self, HexAutoHighlight *auto_
 	gtk_progress_bar_set_fraction (self->search_progress_bar, 0.0);
 }
 
+/* follows prototype of HexView::found-highlight */
+
+static void
+refresh_num_matches_label (GHexSearchBar *self, HexHighlight *hl G_GNUC_UNUSED, guint index, HexView *view G_GNUC_UNUSED)
+{
+	GListModel *highlights = NULL;
+	g_autofree char *label = NULL;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	if (self->auto_highlight)
+		highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
+
+	if (highlights)
+	{
+		guint n_highlights = g_list_model_get_n_items (highlights);
+
+		label = g_strdup_printf (_("%u of %u"), index + 1, n_highlights);
+	}
+
+	gtk_label_set_label (self->num_matches_label, label);
+}
+
+static void
+num_matches_changed_cb (GHexSearchBar *self)
+{
+	HexView *view = NULL;
+	GListModel *highlights = NULL;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	if (!self->auto_highlight) return;
+
+	view = ghex_pane_get_hex (GHEX_PANE(self));
+	if (!view) return;
+
+	highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
+	if (!highlights) return;
+
+	/* Will emit found-highlight, causing the num_matches_label to get
+	 * refreshed for the current cursor pos
+	 */
+	hex_view_find_next_highlight (view, highlights, NULL);
+}
+
+static void
+found_highlight_cb (GHexSearchBar *self, HexHighlight *highlight, guint index, HexView *view)
+{
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+	g_assert (HEX_IS_HIGHLIGHT (highlight));
+	g_assert (HEX_IS_VIEW (view));
+}
+
 /* transfer none */
 static void
 _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto_highlight)
@@ -75,7 +132,9 @@ _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto
 	g_return_if_fail (auto_highlight == NULL || HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
 
 	substantive_view = ghex_pane_get_hex (GHEX_PANE(self));
-	g_return_if_fail (substantive_view != NULL);
+	g_return_if_fail (HEX_IS_VIEW (substantive_view));
+
+	refresh_num_matches_label (self, NULL, 0, NULL);
 
 	if (self->auto_highlight)
 		hex_view_remove_auto_highlight (substantive_view, self->auto_highlight);
@@ -85,8 +144,10 @@ _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto
 		if (auto_highlight)
 		{
 			g_signal_connect_object (auto_highlight, "search-progress-update", G_CALLBACK(auto_highlight_search_progress_update_cb), self, G_CONNECT_SWAPPED);
-
 			g_signal_connect_object (auto_highlight, "refresh-complete", G_CALLBACK(auto_highlight_refresh_complete_cb), self, G_CONNECT_SWAPPED);
+			g_signal_connect_object (auto_highlight, "highlights-changed", G_CALLBACK(num_matches_changed_cb), self, G_CONNECT_SWAPPED);
+
+			g_signal_connect_object (substantive_view, "found-highlight", G_CALLBACK(refresh_num_matches_label), self, G_CONNECT_SWAPPED);
 
 			hex_view_insert_auto_highlight (substantive_view, self->auto_highlight);
 		}
@@ -300,6 +361,68 @@ ghex_search_bar_get_property (GObject *object,
 }
 
 static void
+next_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+	GHexSearchBar *self = GHEX_SEARCH_BAR(user_data);
+	HexView *view = ghex_pane_get_hex (GHEX_PANE(self));
+
+	if (!view)
+		return;
+
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (self->auto_highlight));
+
+	{
+		HexDocument *document = hex_view_get_document (view);
+		GListModel *highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
+		HexSelection *selection = hex_view_get_selection (view);
+		const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
+		HexHighlight *next_highlight = NULL;
+
+		next_highlight = hex_view_find_next_highlight (view, highlights, NULL);
+
+		if (next_highlight)
+			hex_selection_collapse (selection, next_highlight->start_offset);
+	}
+}
+
+static void
+prev_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+	GHexSearchBar *self = GHEX_SEARCH_BAR(user_data);
+	HexView *view = ghex_pane_get_hex (GHEX_PANE(self));
+
+	if (!view)
+		return;
+
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (self->auto_highlight));
+
+	{
+		HexDocument *document = hex_view_get_document (view);
+		GListModel *highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
+		HexSelection *selection = hex_view_get_selection (view);
+		const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
+		HexHighlight *prev_highlight = NULL;
+
+		prev_highlight = hex_view_find_prev_highlight (view, highlights, NULL);
+
+		if (prev_highlight)
+			hex_selection_collapse (selection, prev_highlight->start_offset);
+	}
+}
+
+static void
+clear_matches_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+	GHexSearchBar *self = GHEX_SEARCH_BAR(user_data);
+	HexView *view = ghex_pane_get_hex (GHEX_PANE(self));
+
+	if (!view)
+		return;
+
+	hex_view_clear_auto_highlights (view);
+}
+
+static void
 _ghex_search_bar_cancel_query (GHexSearchBar *self)
 {
 	g_assert (GHEX_IS_SEARCH_BAR (self));
@@ -329,8 +452,34 @@ ghex_search_bar_init (GHexSearchBar *self)
 	search_entry_doc = hex_view_get_document (self->search_entry);
 
 	g_signal_connect_object (search_entry_doc, "document-changed", G_CALLBACK(_ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
+
+	// FIXME - WRONG - switching back and forth between tabs causes a refresh. Need a better heuristic
 	g_signal_connect_object (self, "map", G_CALLBACK(_ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
+
 	g_signal_connect_object (self, "notify::search-flags", G_CALLBACK(_ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
+
+	/* Setup actions which use bindings to determine when they should be enabled/disabled.
+	 * XREF: class_init, for other actions.
+	 */
+	{
+		GActionEntry find_entries[] = {
+			{"next-match", next_match_action},
+			{"prev-match", prev_match_action},
+			{"clear-matches", clear_matches_action},
+		};
+		g_autoptr(GSimpleActionGroup) find_actions = g_simple_action_group_new ();
+		GAction *action;
+
+		g_action_map_add_action_entries (G_ACTION_MAP(find_actions), find_entries, G_N_ELEMENTS (find_entries), self);
+
+		gtk_widget_insert_action_group (GTK_WIDGET(self), "find", G_ACTION_GROUP(find_actions));
+
+		action = g_action_map_lookup_action (G_ACTION_MAP(find_actions), "next-match");
+		g_object_bind_property_full (self, "auto-highlight", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
+
+		action = g_action_map_lookup_action (G_ACTION_MAP(find_actions), "prev-match");
+		g_object_bind_property_full (self, "auto-highlight", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
+	}
 }
 
 static void
@@ -408,6 +557,7 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_revealer);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_bar);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_cancel_button);
+	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, num_matches_label);
 
 	gtk_widget_class_bind_template_callback (widget_class, _ghex_search_bar_cancel_query);
 }

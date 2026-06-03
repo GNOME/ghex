@@ -584,6 +584,40 @@ ghex_application_window_preferences_action (GtkWidget *widget, const char *actio
 }
 
 static void
+ghex_application_window_find_next_action (GtkWidget *widget, const char *action_name, GVariant *parameter)
+{
+	GHexApplicationWindow *self = (GHexApplicationWindow *) widget;
+	GHexViewContainer *container;
+	GHexSearchBar *search_bar;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+
+	container = ghex_application_window_get_active_view (self);
+	if (! container) return;
+
+	search_bar = ghex_view_container_get_search_bar (container);
+
+	gtk_widget_activate_action (GTK_WIDGET(search_bar), "find.next-match", NULL);
+}
+
+static void
+ghex_application_window_find_prev_action (GtkWidget *widget, const char *action_name, GVariant *parameter)
+{
+	GHexApplicationWindow *self = (GHexApplicationWindow *) widget;
+	GHexViewContainer *container;
+	GHexSearchBar *search_bar;
+
+	g_assert (GHEX_IS_APPLICATION_WINDOW (self));
+
+	container = ghex_application_window_get_active_view (self);
+	if (! container) return;
+
+	search_bar = ghex_view_container_get_search_bar (container);
+
+	gtk_widget_activate_action (GTK_WIDGET(search_bar), "find.prev-match", NULL);
+}
+
+static void
 ghex_application_window_copy_special_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
 {
 	GHexApplicationWindow *self = user_data;
@@ -780,6 +814,10 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 
 	gtk_widget_class_install_action (widget_class, "win.preferences", NULL, ghex_application_window_preferences_action);
 
+	gtk_widget_class_install_action (widget_class, "win.find-next", NULL, ghex_application_window_find_next_action);
+
+	gtk_widget_class_install_action (widget_class, "win.find-prev", NULL, ghex_application_window_find_prev_action);
+
 	/* Key Bindings */
 
 	/* Ctrl+T - new file */
@@ -858,6 +896,20 @@ ghex_application_window_class_init (GHexApplicationWindowClass *klass)
 			GDK_KEY_c,
 			GDK_CONTROL_MASK | GDK_SHIFT_MASK,
 			"win.copy-special",
+			NULL);
+
+	/* F3 - next match */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_F3,
+			0,
+			"win.find-next",
+			NULL);
+
+	/* Shift+F3 - prev match */
+	gtk_widget_class_add_binding_action (widget_class,
+			GDK_KEY_F3,
+			GDK_SHIFT_MASK,
+			"win.find-prev",
 			NULL);
 
 	/* Template */

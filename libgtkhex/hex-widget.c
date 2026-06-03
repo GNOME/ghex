@@ -302,72 +302,6 @@ redo_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
 }
 
 static void
-next_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
-{
-	HexWidget *self = user_data;
-	HexDocument *document = hex_view_get_document (HEX_VIEW(self));
-	GListModel *auto_highlights = hex_view_get_auto_highlights (HEX_VIEW(self));
-	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
-	const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
-	g_autoptr(GListModel) all_highlights = NULL;
-
-	all_highlights = _hex_auto_highlight_build_1d_list (auto_highlights);
-
-	for (guint i = 0; i < g_list_model_get_n_items (all_highlights); ++i)
-	{
-		g_autoptr(HexHighlight) hl = g_list_model_get_item (all_highlights, i);
-
-		g_assert (HEX_IS_HIGHLIGHT (hl));
-
-		if (hl->start_offset > cursor_pos)
-		{
-			hex_selection_collapse (selection, hl->start_offset);
-			return;
-		}
-	}
-}
-
-static void
-prev_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
-{
-	HexWidget *self = user_data;
-	HexDocument *document = hex_view_get_document (HEX_VIEW(self));
-	GListModel *auto_highlights = hex_view_get_auto_highlights (HEX_VIEW(self));
-	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
-	const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
-	g_autoptr(GListModel) all_highlights = NULL;
-
-	all_highlights = _hex_auto_highlight_build_1d_list (auto_highlights);
-
-	/* A n_items is a guint which will wraparound, so it makes the test overly
-	 * convoluted. Just assert that there are no more than INT_MAX items, which
-	 * would be a nutso amount of items to have in a highlight list anyway.
-	 */
-	g_return_if_fail (g_list_model_get_n_items (all_highlights) <= INT_MAX);
-
-	for (int i = (int) g_list_model_get_n_items (all_highlights) - 1; i >= 0; --i)
-	{
-		g_autoptr(HexHighlight) hl = g_list_model_get_item (all_highlights, i);
-
-		g_assert (HEX_IS_HIGHLIGHT (hl));
-
-		if (hl->start_offset < cursor_pos)
-		{
-			hex_selection_collapse (selection, hl->start_offset);
-			return;
-		}
-	}
-}
-
-static void
-clear_matches_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
-{
-	HexWidget *self = user_data;
-
-	hex_view_clear_auto_highlights (HEX_VIEW(self));
-}
-
-static void
 recalc_adjustment (HexWidget *self, HexWidgetLayout *layout_manager)
 {
 	HexDocument *document = hex_view_get_document (HEX_VIEW(self));
@@ -820,12 +754,6 @@ hex_widget_class_init (HexWidgetClass *klass)
 	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Insert, 0, "document.insert-mode", NULL);
 	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Insert, 0, "document.insert-mode", NULL);
 
-	/* F3 - next match */
-	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_F3, 0, "find.next-match", NULL);
-
-	/* Shift-F3 - prev match */
-	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_F3, GDK_SHIFT_MASK, "find.prev-match", NULL);
-
 	/* Load global CSS data for widget */
 	{
 		GdkDisplay *display = gdk_display_get_default ();
@@ -896,25 +824,6 @@ hex_widget_init (HexWidget *self)
 		g_object_bind_property_full (self, "document", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
 
 		action = g_action_map_lookup_action (G_ACTION_MAP(clipboard_actions), "paste");
-		g_object_bind_property_full (self, "document", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
-	}
-	{
-		GActionEntry find_entries[] = {
-			{"next-match", next_match_action},
-			{"prev-match", prev_match_action},
-			{"clear-matches", clear_matches_action},
-		};
-		g_autoptr(GSimpleActionGroup) find_actions = g_simple_action_group_new ();
-		GAction *action;
-
-		g_action_map_add_action_entries (G_ACTION_MAP(find_actions), find_entries, G_N_ELEMENTS (find_entries), self);
-
-		gtk_widget_insert_action_group (GTK_WIDGET(self), "find", G_ACTION_GROUP(find_actions));
-
-		action = g_action_map_lookup_action (G_ACTION_MAP(find_actions), "next-match");
-		g_object_bind_property_full (self, "document", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
-
-		action = g_action_map_lookup_action (G_ACTION_MAP(find_actions), "prev-match");
 		g_object_bind_property_full (self, "document", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
 	}
 }
