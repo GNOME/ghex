@@ -30,6 +30,7 @@ enum
 {
 	SIG_SEARCH_PROGRESS_UPDATE,
 	SIG_REFRESH_COMPLETE,
+	SIG_HIGHLIGHTS_CHANGED,
 	N_SIGNALS
 };
 
@@ -37,12 +38,43 @@ static guint signals[N_SIGNALS];
 
 G_DEFINE_FINAL_TYPE (HexAutoHighlight, hex_auto_highlight, G_TYPE_OBJECT)
 
+/* <HighlightAdditionData> - helper for threadsafe addition of highlight to auto_highlight */
+
 typedef struct
 {
-	HexAutoHighlight *ahl;
-	gint64 start_offset;
-	gint64 end_offset;
-} HighlightCreationData;
+	HexAutoHighlight *auto_highlight;
+	HexHighlight *highlight;
+} HighlightAdditionData;
+
+static HighlightAdditionData *
+highlight_addition_data_new (HexAutoHighlight *auto_highlight, HexHighlight *highlight)
+{
+	HighlightAdditionData *data;
+
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
+	g_assert (HEX_IS_HIGHLIGHT (highlight));
+
+	data = g_new0 (HighlightAdditionData, 1);
+	data->auto_highlight = g_object_ref (auto_highlight);
+	data->highlight = g_object_ref (highlight);
+
+	return data;
+}
+
+static void
+highlight_addition_data_destroy (HighlightAdditionData *data)
+{
+	if (!data)
+		return;
+
+	g_clear_object (&data->auto_highlight);
+	g_clear_object (&data->highlight);
+	g_free (data);
+}
+
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (HighlightAdditionData, highlight_addition_data_destroy)
+
+/* </HighlightAdditionData> */
 
 static void
 _hex_auto_highlight_sort (HexAutoHighlight *self)
@@ -73,6 +105,34 @@ _hex_auto_highlight_thaw_sorting (HexAutoHighlight *self)
 
 	self->freeze_sorting = FALSE;
 	self->sort_queued = FALSE;
+}
+
+static gboolean
+add_highlight__threadsafe (gpointer user_data)
+{
+	HighlightAdditionData *addition_data = user_data;
+
+	g_assert (addition_data != NULL);
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (addition_data->auto_highlight));
+	g_assert (HEX_IS_HIGHLIGHT (addition_data->highlight));
+	g_assert (g_main_context_is_owner (g_main_context_default ()));
+
+	hex_auto_highlight_add_highlight (addition_data->auto_highlight, addition_data->highlight);
+
+	return G_SOURCE_REMOVE;
+}
+
+static gboolean
+emit_highlights_changed__threadsafe (gpointer user_data)
+{
+	HexAutoHighlight *self = user_data;
+
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (self));
+	g_assert (g_main_context_is_owner (g_main_context_default ()));
+
+	g_signal_emit (self, signals[SIG_HIGHLIGHTS_CHANGED], 0);
+
+	return G_SOURCE_REMOVE;
 }
 
 static gboolean
@@ -158,6 +218,7 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 
 		if (hex_document_compare_data_full (self->document, self->search_info) == 0)
 		{
+			//g_autoptr(HighlightAdditionData) addition_data = NULL;
 			g_autoptr(HexHighlight) highlight = NULL;
 			const gint64 start_offset = self->search_info->pos;
 			const gint64 end_offset = self->search_info->pos + self->search_info->found_len - 1;
@@ -166,6 +227,12 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 			hex_highlight_update (highlight, start_offset, end_offset);
 
 			hex_auto_highlight_add_highlight (self, highlight);
+
+#if 0
+			addition_data = highlight_addition_data_new (self, highlight);
+
+			g_idle_add_full (G_PRIORITY_DEFAULT, add_highlight__threadsafe, g_steal_pointer (&addition_data), (GDestroyNotify) highlight_addition_data_destroy);
+#endif
 		}
 
 		if (g_timer_elapsed (timer, NULL) >= PROGRESS_REFRESH_RATE)
@@ -241,7 +308,7 @@ refresh_task_func (GTask *task, gpointer source_object, gpointer task_data, GCan
 
 	g_clear_handle_id (&self->search_status_timeout_id, g_source_remove);
 	
-	self->search_status_timeout_id = g_timeout_add_seconds (SEARCH_TIMEOUT, search_status_func, self);
+	self->search_status_timeout_id = g_timeout_add_seconds_full (G_PRIORITY_LOW, SEARCH_TIMEOUT, search_status_func, g_object_ref (self), g_object_unref);
 
 	do_refresh (self, TRUE);
 
@@ -307,7 +374,10 @@ hex_auto_highlight_add_highlight (HexAutoHighlight *self, HexHighlight *highligh
 #endif
 
 	g_list_store_append (self->highlights, highlight);
+
 	_hex_auto_highlight_sort (self);
+
+	g_idle_add_full (G_PRIORITY_DEFAULT, emit_highlights_changed__threadsafe, g_object_ref (self), g_object_unref);
 }
 
 /* Transfer none */
@@ -503,6 +573,15 @@ hex_auto_highlight_class_init (HexAutoHighlightClass *klass)
 			NULL, NULL, NULL,
 			G_TYPE_NONE,
 			0);
+
+	signals[SIG_HIGHLIGHTS_CHANGED] = g_signal_new_class_handler (
+			"highlights-changed",
+			G_TYPE_FROM_CLASS (klass),
+			G_SIGNAL_RUN_LAST,
+			NULL,
+			NULL, NULL, NULL,
+			G_TYPE_NONE,
+			0);
 }
 
 HexAutoHighlight *
@@ -517,6 +596,7 @@ hex_auto_highlight_new (HexDocument *document, HexSearchInfo *search_info)
 			NULL);
 }
 
+//FIXME- publicize??
 GListModel *
 _hex_auto_highlight_build_1d_list (GListModel *auto_highlights)
 {

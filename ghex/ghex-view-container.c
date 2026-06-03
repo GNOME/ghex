@@ -2,7 +2,6 @@
 
 #include "ghex-conversion-pane.h"
 #include "ghex-mark-pane.h"
-#include "ghex-search-bar.h"
 #include "ghex-info-bar.h"
 #include "ghex-statusbar.h"
 #include "configuration.h"
@@ -52,12 +51,22 @@ struct _GHexViewContainer
 
 G_DEFINE_FINAL_TYPE (GHexViewContainer, ghex_view_container, GTK_TYPE_WIDGET)
 
+/* transfer none */
 HexWidget *
 ghex_view_container_get_hex (GHexViewContainer *self)
 {
 	g_return_val_if_fail (GHEX_IS_VIEW_CONTAINER (self), NULL);
 
 	return self->hex;
+}
+
+/* transfer none */
+GHexSearchBar *
+ghex_view_container_get_search_bar (GHexViewContainer *self)
+{
+	g_return_val_if_fail (GHEX_IS_VIEW_CONTAINER (self), NULL);
+
+	return self->search_bar;
 }
 
 static void

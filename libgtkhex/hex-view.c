@@ -32,6 +32,14 @@ enum
 
 static GParamSpec *properties[N_PROPERTIES];
 
+enum
+{
+	SIG_FOUND_HIGHLIGHT,
+	N_SIGNALS
+};
+
+static guint signals[N_SIGNALS];
+
 typedef struct
 {
 	HexDocument *document;
@@ -827,6 +835,17 @@ hex_view_class_init (HexViewClass *klass)
 	properties[PROP_HSCROLL_POLICY] = g_param_spec_override ("hscroll-policy", g_object_interface_find_property (scrollable_iface, "hscroll-policy"));
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
+
+	signals[SIG_FOUND_HIGHLIGHT] = g_signal_new_class_handler ("found-highlight",
+			G_TYPE_FROM_CLASS (klass),
+			G_SIGNAL_RUN_LAST,
+			NULL,
+			NULL, NULL, NULL,
+			G_TYPE_NONE,
+			2,
+			HEX_TYPE_HIGHLIGHT,
+			G_TYPE_UINT
+			);
 }
 
 static void
@@ -972,3 +991,83 @@ hex_view_goto_mark (HexView *self, HexMark *mark)
 }
 
 /* </Marks> */
+
+/* transfer none, index (out) & can-null */
+HexHighlight *
+hex_view_find_next_highlight (HexView *self, GListModel *highlights, guint *index)
+{
+	HexViewPrivate *priv;
+	gint64 cursor_pos;
+
+	g_return_val_if_fail (HEX_IS_VIEW (self), NULL);
+	g_return_val_if_fail (G_IS_LIST_MODEL (highlights) && g_list_model_get_item_type (highlights) == HEX_TYPE_HIGHLIGHT, NULL);
+
+	priv = hex_view_get_instance_private (self);
+
+	cursor_pos = hex_selection_get_cursor_pos (priv->selection);
+
+	for (guint i = 0; i < g_list_model_get_n_items (highlights); ++i)
+	{
+		g_autoptr(HexHighlight) hl = g_list_model_get_item (highlights, i);
+
+		g_assert (HEX_IS_HIGHLIGHT (hl));
+
+		if (hl->start_offset > cursor_pos)
+		{
+			g_signal_emit (self, signals[SIG_FOUND_HIGHLIGHT], 0, hl, i);
+
+			if (index)
+				*index = i;
+
+			/* Because g_list_model_get_item takes a ref, and we want transfer:none */
+			g_object_unref (hl);
+
+			return g_steal_pointer (&hl);
+		}
+	}
+
+	return NULL;
+}
+
+/* transfer none, index (out) & can-null */
+HexHighlight *
+hex_view_find_prev_highlight (HexView *self, GListModel *highlights, guint *index)
+{
+	HexViewPrivate *priv;
+	gint64 cursor_pos;
+
+	g_return_val_if_fail (HEX_IS_VIEW (self), NULL);
+	g_return_val_if_fail (G_IS_LIST_MODEL (highlights) && g_list_model_get_item_type (highlights) == HEX_TYPE_HIGHLIGHT, NULL);
+
+	priv = hex_view_get_instance_private (self);
+
+	cursor_pos = hex_selection_get_cursor_pos (priv->selection);
+
+	/* A n_items is a guint which will wraparound, so it makes the test overly
+	 * convoluted. Just assert that there are no more than INT_MAX items, which
+	 * would be a nutso amount of items to have in a highlight list anyway.
+	 */
+	g_return_val_if_fail (g_list_model_get_n_items (highlights) <= INT_MAX, NULL);
+
+	for (int i = (int) g_list_model_get_n_items (highlights) - 1; i >= 0; --i)
+	{
+		g_autoptr(HexHighlight) hl = g_list_model_get_item (highlights, i);
+
+		g_assert (HEX_IS_HIGHLIGHT (hl));
+
+		if (hl->start_offset < cursor_pos)
+		{
+			g_signal_emit (self, signals[SIG_FOUND_HIGHLIGHT], 0, hl, i);
+
+			if (index)
+				*index = i;
+
+			/* Because g_list_model_get_item takes a ref, and we want transfer:none */
+			g_object_unref (hl);
+
+			return g_steal_pointer (&hl);
+		}
+	}
+
+	return NULL;
+}

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "hex-widget.h"
+#include "ghex-search-bar.h"
 
 G_BEGIN_DECLS
 
@@ -13,6 +14,7 @@ G_DECLARE_FINAL_TYPE (GHexViewContainer, ghex_view_container, GHEX, VIEW_CONTAIN
 
 GtkWidget *	ghex_view_container_new (void);
 HexWidget * ghex_view_container_get_hex (GHexViewContainer *self);
+GHexSearchBar *ghex_view_container_get_search_bar (GHexViewContainer *self);
 void ghex_view_container_set_document (GHexViewContainer *self, HexDocument *doc);
 HexDocument * ghex_view_container_get_document (GHexViewContainer *self);
 void ghex_view_container_set_loading (GHexViewContainer *self, gboolean loading);
