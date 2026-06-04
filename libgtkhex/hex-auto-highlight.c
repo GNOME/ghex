@@ -21,6 +21,7 @@ enum
 	PROP_DOCUMENT,
 	PROP_SEARCH_INFO,
 	PROP_HIGHLIGHTS,
+	PROP_CANCELLABLE,
 	N_PROPERTIES
 };
 
@@ -77,6 +78,17 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (HighlightAdditionData, highlight_addition_data_de
 /* </HighlightAdditionData> */
 
 static void
+_hex_auto_highlight_set_cancellable (HexAutoHighlight *self, GCancellable *cancellable)
+{
+	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (self));
+	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
+
+	if (g_set_object (&self->cancellable, cancellable))
+		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_CANCELLABLE]);
+}
+
+#if 0
+static void
 _hex_auto_highlight_sort (HexAutoHighlight *self)
 {
 	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (self));
@@ -106,6 +118,7 @@ _hex_auto_highlight_thaw_sorting (HexAutoHighlight *self)
 	self->freeze_sorting = FALSE;
 	self->sort_queued = FALSE;
 }
+#endif
 
 static gboolean
 add_highlight__threadsafe (gpointer user_data)
@@ -193,7 +206,7 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 
 	timer = g_timer_new ();
 
-	_hex_auto_highlight_freeze_sorting (self);
+//	_hex_auto_highlight_freeze_sorting (self);
 
 	for (gint64 i = self->search_info->start; i <= self->view_max; ++i)
 	{
@@ -218,7 +231,7 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 
 		if (hex_document_compare_data_full (self->document, self->search_info) == 0)
 		{
-			//g_autoptr(HighlightAdditionData) addition_data = NULL;
+			g_autoptr(HighlightAdditionData) addition_data = NULL;
 			g_autoptr(HexHighlight) highlight = NULL;
 			const gint64 start_offset = self->search_info->pos;
 			const gint64 end_offset = self->search_info->pos + self->search_info->found_len - 1;
@@ -226,13 +239,11 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 			highlight = hex_highlight_new ();
 			hex_highlight_update (highlight, start_offset, end_offset);
 
-			hex_auto_highlight_add_highlight (self, highlight);
+//			hex_auto_highlight_add_highlight (self, highlight);
 
-#if 0
 			addition_data = highlight_addition_data_new (self, highlight);
 
 			g_idle_add_full (G_PRIORITY_DEFAULT, add_highlight__threadsafe, g_steal_pointer (&addition_data), (GDestroyNotify) highlight_addition_data_destroy);
-#endif
 		}
 
 		if (g_timer_elapsed (timer, NULL) >= PROGRESS_REFRESH_RATE)
@@ -247,7 +258,7 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 		}
 	}
 
-	_hex_auto_highlight_thaw_sorting (self);
+//	_hex_auto_highlight_thaw_sorting (self);
 
 	g_idle_add_full (G_PRIORITY_DEFAULT, emit_refresh_complete__threadsafe, g_object_ref (self), g_object_unref);
 }
@@ -346,7 +357,7 @@ hex_auto_highlight_refresh_async (HexAutoHighlight *self, GCancellable *cancella
 
 	g_weak_ref_set (&self->search_pending_wr, task);
 
-	g_set_object (&self->cancellable, cancellable);
+	_hex_auto_highlight_set_cancellable (self, cancellable);
 
 	g_object_freeze_notify (G_OBJECT(self->highlights));
 
@@ -375,9 +386,11 @@ hex_auto_highlight_add_highlight (HexAutoHighlight *self, HexHighlight *highligh
 
 	g_list_store_append (self->highlights, highlight);
 
-	_hex_auto_highlight_sort (self);
+//	_hex_auto_highlight_sort (self);
 
-	g_idle_add_full (G_PRIORITY_DEFAULT, emit_highlights_changed__threadsafe, g_object_ref (self), g_object_unref);
+	g_signal_emit (self, signals[SIG_HIGHLIGHTS_CHANGED], 0);
+
+//	g_idle_add_full (G_PRIORITY_DEFAULT, emit_highlights_changed__threadsafe, g_object_ref (self), g_object_unref);
 }
 
 /* Transfer none */
@@ -486,6 +499,10 @@ hex_auto_highlight_get_property (GObject *object,
 			g_value_set_object (value, hex_auto_highlight_get_highlights (self));
 			break;
 
+		case PROP_CANCELLABLE:
+			g_value_set_object (value, hex_auto_highlight_get_cancellable (self));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
@@ -548,6 +565,10 @@ hex_auto_highlight_class_init (HexAutoHighlightClass *klass)
 
 	properties[PROP_HIGHLIGHTS] = g_param_spec_object ("highlights", NULL, NULL,
 			G_TYPE_LIST_MODEL,
+			default_flags | G_PARAM_READABLE);
+
+	properties[PROP_CANCELLABLE] = g_param_spec_object ("cancellable", NULL, NULL,
+			G_TYPE_CANCELLABLE,
 			default_flags | G_PARAM_READABLE);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
