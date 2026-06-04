@@ -7,6 +7,10 @@
 
 #include "config.h"
 
+/* time (in ms) that we wait before processing a typeahead search query. */
+
+#define TYPEAHEAD_DELAY_TIME	500
+
 enum
 {
 	PROP_AUTO_HIGHLIGHT = 1,
@@ -24,12 +28,13 @@ struct _GHexSearchBar
 	GHexPane parent_instance;
 
 	HexAutoHighlight *auto_highlight;
-	GCancellable *cancellable;
 	gboolean replace_mode;
 
 	gboolean regex_enabled;
 	gboolean ignore_case;
 	HexSearchFlags search_flags;
+
+	guint search_entry_refresh_timeout_id;
 
 	/* From template: */
 
@@ -46,6 +51,8 @@ struct _GHexSearchBar
 };
 
 G_DEFINE_FINAL_TYPE (GHexSearchBar, ghex_search_bar, GHEX_TYPE_PANE)
+
+static void _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto_highlight);
 
 static void
 auto_highlight_search_progress_update_cb (GHexSearchBar *self, double progress, HexAutoHighlight *auto_highlight)
@@ -115,11 +122,43 @@ num_matches_changed_cb (GHexSearchBar *self)
 }
 
 static void
-found_highlight_cb (GHexSearchBar *self, HexHighlight *highlight, guint index, HexView *view)
+_ghex_search_bar_cancel_query (GHexSearchBar *self)
 {
 	g_assert (GHEX_IS_SEARCH_BAR (self));
-	g_assert (HEX_IS_HIGHLIGHT (highlight));
-	g_assert (HEX_IS_VIEW (view));
+
+	_ghex_search_bar_set_auto_highlight (self, NULL);
+}
+
+static void
+auto_highlight_cancellable_cancelled_cb (GCancellable *cancellable, GHexSearchBar *self)
+{
+	g_assert (G_IS_CANCELLABLE (cancellable));
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	/* This looks like it may be semi-recursive since it calls
+	 * _set_auto_highlight where the signal was connected, but that code path
+	 * will not be reached since we're clearing the auto_highlight and it will
+	 * be only passed as NULL.
+	 */
+	_ghex_search_bar_cancel_query (self);
+}
+
+static void
+auto_highlight_notify_cancellable_cb (GHexSearchBar *self, GParamSpec *pspec G_GNUC_UNUSED, HexAutoHighlight *auto_highlight)
+{
+	GCancellable *cancellable;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
+
+	/* Sometimes the auto_highlight cancellable will cancel itself
+	 * other than when it is destroyed - eg, when the search times out.
+	 * If that happens, we want to cancel and clear our search object.
+	 */
+	cancellable = hex_auto_highlight_get_cancellable (auto_highlight);
+
+	if (cancellable)
+		g_cancellable_connect (cancellable, G_CALLBACK(auto_highlight_cancellable_cancelled_cb), g_object_ref (self), g_object_unref);
 }
 
 /* transfer none */
@@ -146,6 +185,7 @@ _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto
 			g_signal_connect_object (auto_highlight, "search-progress-update", G_CALLBACK(auto_highlight_search_progress_update_cb), self, G_CONNECT_SWAPPED);
 			g_signal_connect_object (auto_highlight, "refresh-complete", G_CALLBACK(auto_highlight_refresh_complete_cb), self, G_CONNECT_SWAPPED);
 			g_signal_connect_object (auto_highlight, "highlights-changed", G_CALLBACK(num_matches_changed_cb), self, G_CONNECT_SWAPPED);
+			g_signal_connect_object (auto_highlight, "notify::cancellable", G_CALLBACK(auto_highlight_notify_cancellable_cb), self, G_CONNECT_SWAPPED);
 
 			g_signal_connect_object (substantive_view, "found-highlight", G_CALLBACK(refresh_num_matches_label), self, G_CONNECT_SWAPPED);
 
@@ -232,6 +272,29 @@ _ghex_search_bar_refresh_query (GHexSearchBar *self)
 	auto_highlight = hex_auto_highlight_new (substantive_doc, search_info);
 
 	_ghex_search_bar_set_auto_highlight (self, auto_highlight);
+}
+
+static gboolean
+refresh_search_query_source_func (gpointer data)
+{
+	GHexSearchBar *self = data;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	_ghex_search_bar_refresh_query (self);
+
+	self->search_entry_refresh_timeout_id = 0;
+	return G_SOURCE_REMOVE;
+}
+
+static void
+search_entry_doc_changed_cb (GHexSearchBar *self)
+{
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	g_clear_handle_id (&self->search_entry_refresh_timeout_id, g_source_remove);
+
+	self->search_entry_refresh_timeout_id = g_timeout_add_full (G_PRIORITY_LOW, TYPEAHEAD_DELAY_TIME, refresh_search_query_source_func, g_object_ref (self), g_object_unref);
 }
 
 static void
@@ -423,14 +486,6 @@ clear_matches_action (GSimpleAction *action, GVariant *parameter, gpointer user_
 }
 
 static void
-_ghex_search_bar_cancel_query (GHexSearchBar *self)
-{
-	g_assert (GHEX_IS_SEARCH_BAR (self));
-
-	_ghex_search_bar_set_auto_highlight (self, NULL);
-}
-
-static void
 ghex_search_bar_close (GHexPane *pane)
 {
 	GHexSearchBar *self = GHEX_SEARCH_BAR(pane);
@@ -447,11 +502,9 @@ ghex_search_bar_init (GHexSearchBar *self)
 
 	gtk_widget_init_template (GTK_WIDGET(self));
 
-	self->cancellable = g_cancellable_new ();
-
 	search_entry_doc = hex_view_get_document (self->search_entry);
 
-	g_signal_connect_object (search_entry_doc, "document-changed", G_CALLBACK(_ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
+	g_signal_connect_object (search_entry_doc, "document-changed", G_CALLBACK(search_entry_doc_changed_cb), self, G_CONNECT_SWAPPED);
 
 	// FIXME - WRONG - switching back and forth between tabs causes a refresh. Need a better heuristic
 	g_signal_connect_object (self, "map", G_CALLBACK(_ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
@@ -489,8 +542,7 @@ ghex_search_bar_dispose (GObject *object)
 
 	gtk_widget_dispose_template (GTK_WIDGET(self), GHEX_TYPE_SEARCH_BAR);
 
-	g_cancellable_cancel (self->cancellable);
-	g_clear_object (&self->cancellable);
+	g_clear_handle_id (&self->search_entry_refresh_timeout_id, g_source_remove);
 
 	g_clear_object (&self->auto_highlight);
 
