@@ -1013,7 +1013,7 @@ hex_view_find_next_highlight (HexView *self, HexHighlightList *highlights, guint
 	payload_size = hex_buffer_get_payload_size (buf);
 	cursor_pos = hex_selection_get_cursor_pos (priv->selection);
 
-	hl_arr = hex_highlight_list_get_highlights_for_range (highlights, cursor_pos, payload_size-1, &n_highlights);
+	hl_arr = hex_highlight_list_get_highlights_for_range (highlights, 0, payload_size-1, &n_highlights);
 
 	if (!hl_arr)
 		return NULL;
@@ -1063,7 +1063,6 @@ HexHighlight *
 hex_view_find_prev_highlight (HexView *self, HexHighlightList *highlights, guint *index)
 {
 	HexViewPrivate *priv;
-	HexBuffer *buf;
 	gint64 cursor_pos;
 	g_autofree HexHighlight **hl_arr = NULL;
 	guint n_highlights;
@@ -1073,9 +1072,9 @@ hex_view_find_prev_highlight (HexView *self, HexHighlightList *highlights, guint
 
 	priv = hex_view_get_instance_private (self);
 
-	buf = hex_document_get_buffer (priv->document);
 	cursor_pos = hex_selection_get_cursor_pos (priv->selection);
 
+	/* Since we're finding backwards, we don't need any of the highlights after the cursor_pos. */
 	hl_arr = hex_highlight_list_get_highlights_for_range (highlights, 0, cursor_pos, &n_highlights);
 
 	if (!hl_arr)
