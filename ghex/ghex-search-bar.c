@@ -82,6 +82,9 @@ auto_highlight_search_progress_update_cb (GHexSearchBar *self, double progress, 
 	g_assert (GHEX_IS_SEARCH_BAR (self));
 	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
 
+	if (auto_highlight != self->auto_highlight)
+		return;
+
 	gtk_widget_set_sensitive (GTK_WIDGET(self->search_progress_cancel_button), TRUE);
 	gtk_revealer_set_reveal_child (self->search_progress_revealer, TRUE);
 	gtk_progress_bar_set_fraction (self->search_progress_bar, progress);
@@ -93,6 +96,9 @@ auto_highlight_refresh_complete_cb (GHexSearchBar *self, HexAutoHighlight *auto_
 	g_assert (GHEX_IS_SEARCH_BAR (self));
 	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
 
+	if (auto_highlight != self->auto_highlight)
+		return;
+
 	gtk_widget_set_sensitive (GTK_WIDGET(self->search_progress_cancel_button), FALSE);
 	gtk_revealer_set_reveal_child (self->search_progress_revealer, FALSE);
 	gtk_progress_bar_set_fraction (self->search_progress_bar, 0.0);
@@ -103,8 +109,6 @@ auto_highlight_refresh_complete_cb (GHexSearchBar *self, HexAutoHighlight *auto_
 		guint index;
 
 		hex_view_find_next_highlight (substantive_view, highlights, &index);
-
-		refresh_num_matches_label (self, index);
 	}
 }
 
@@ -434,10 +438,8 @@ next_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 	GHexSearchBar *self = GHEX_SEARCH_BAR(user_data);
 	HexView *view = ghex_pane_get_hex (GHEX_PANE(self));
 
-	if (!view)
+	if (!self->auto_highlight || !view)
 		return;
-
-	g_assert (HEX_IS_AUTO_HIGHLIGHT (self->auto_highlight));
 
 	{
 		HexDocument *document = hex_view_get_document (view);
@@ -459,10 +461,8 @@ prev_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 	GHexSearchBar *self = GHEX_SEARCH_BAR(user_data);
 	HexView *view = ghex_pane_get_hex (GHEX_PANE(self));
 
-	if (!view)
+	if (!self->auto_highlight || !view)
 		return;
-
-	g_assert (HEX_IS_AUTO_HIGHLIGHT (self->auto_highlight));
 
 	{
 		HexDocument *document = hex_view_get_document (view);
