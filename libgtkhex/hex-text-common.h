@@ -4,6 +4,9 @@
 
 #include "hex-text-editable.h"
 
+
+typedef void (*HexTextCommonHighlightRenderFunc) (HexTextEditable *hte, GtkSnapshot *snapshot, int line_num, PangoLayout *layout, HexHighlight *highlight, const GdkRGBA *color);
+
 void hex_text_common_render_cursor (HexText *ht, GtkSnapshot *snapshot, PangoLayout *layout, int *range, gboolean insert_mode, gboolean at_file_end, gboolean at_new_row, gboolean lower_nibble);
 void hex_text_common_render_highlight (GtkWidget *widget, GtkSnapshot *snapshot, PangoLayout *layout, int *range, const GdkRGBA *color);
 int hex_text_common_char_index_to_utf8_byte_index (const char *str, int index);
@@ -14,3 +17,4 @@ void hex_text_common_finish_move_cursor (HexTextEditable *self, gint64 new_curso
 gint64 hex_text_common_get_file_end_cursor_pos (HexTextEditable *self);
 gboolean hex_text_common_get_is_cursor_at_file_end (HexTextEditable *self);
 gboolean hex_text_common_get_is_cursor_at_new_row (HexTextEditable *self);
+void hex_text_common_render_auto_highlights (HexTextEditable *self, GtkSnapshot *snapshot, int disp_line_num, PangoLayout *layout, HexTextCommonHighlightRenderFunc render_single_highlight);

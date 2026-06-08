@@ -6,6 +6,9 @@
 
 #define GRAPHENE_RECT_FROM_RECT(_r) (GRAPHENE_RECT_INIT ((_r)->x, (_r)->y, (_r)->width, (_r)->height))
 
+/* Number of lines above and below display area to look for possible auto-highlights to render */
+#define AUTO_HIGHLIGHTS_OFFSCREEN_RENDER_MARGIN 5
+
 void
 hex_text_common_render_cursor (HexText *ht, GtkSnapshot *snapshot, PangoLayout *layout, int *range, gboolean insert_mode, gboolean at_file_end, gboolean at_new_row, gboolean lower_nibble)
 {
@@ -210,4 +213,49 @@ hex_text_common_get_is_cursor_at_new_row (HexTextEditable *self)
 		return FALSE;
 
 	return cursor_pos % cpl == 0;
+}
+
+void
+hex_text_common_render_auto_highlights (HexTextEditable *self, GtkSnapshot *snapshot, int disp_line_num, PangoLayout *layout, HexTextCommonHighlightRenderFunc render_single_highlight)
+{
+	GListModel *auto_highlights;
+	HexTextRenderData *render_data;
+	int cpl, num_lines;
+	gint64 line_start_offset, range_start_offset, range_end_offset;
+
+	g_return_if_fail (render_single_highlight != NULL);
+
+	auto_highlights = hex_view_get_auto_highlights (HEX_VIEW(self));
+	if (! auto_highlights)
+		return;
+
+	render_data = hex_text_get_render_data (HEX_TEXT(self));
+
+	cpl = hex_view_get_cpl (HEX_VIEW(self));
+	num_lines = hex_view_get_n_vis_lines (HEX_VIEW(self));
+
+	line_start_offset = (render_data->top_disp_line + disp_line_num) * cpl;
+
+	range_start_offset = MAX (0, line_start_offset - AUTO_HIGHLIGHTS_OFFSCREEN_RENDER_MARGIN * cpl);
+	range_end_offset = line_start_offset + (num_lines + AUTO_HIGHLIGHTS_OFFSCREEN_RENDER_MARGIN) * cpl;
+
+	for (guint i = 0; i < g_list_model_get_n_items (auto_highlights); ++i)
+	{
+		g_autoptr(HexAutoHighlight) auto_highlight = g_list_model_get_item (auto_highlights, i);
+		HexHighlightList *hl_list = hex_auto_highlight_get_highlights (auto_highlight);
+		guint n_highlights;
+		g_autofree HexHighlight **highlights = hex_highlight_list_get_highlights_for_range (hl_list, range_start_offset, range_end_offset, &n_highlights);
+
+		if (!highlights)
+			continue;
+
+		for (guint j = 0; j < n_highlights; ++j)
+		{
+			HexHighlight *highlight = highlights[j];
+			// TEST
+			GdkRGBA color = {1.0, 1.0, 0.5, 0.75};
+
+			render_single_highlight (self, snapshot, disp_line_num, layout, highlight, &color);
+		}
+	}
 }
