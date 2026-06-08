@@ -18,7 +18,7 @@ struct _HexAutoHighlight
 
 	HexDocument *document;
 	HexSearchInfo *search_info;
-	GListStore *highlights;
+	HexHighlightList *highlights;
 
 	gboolean freeze_sorting;
 	gboolean sort_queued;
@@ -33,6 +33,6 @@ struct _HexAutoHighlight
 	guint search_status_timeout_id;
 };
 
-GListModel * _hex_auto_highlight_build_1d_list (GListModel *list);
+//GListModel * _hex_auto_highlight_build_1d_list (GListModel *list);
 
 G_END_DECLS

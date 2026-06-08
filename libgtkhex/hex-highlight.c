@@ -231,3 +231,25 @@ _hex_highlight_compare_func (gconstpointer a, gconstpointer b, gpointer user_dat
 
 	return hl_a->start_offset - hl_b->start_offset;
 }
+
+gboolean
+hex_highlight_equal (gconstpointer a, gconstpointer b)
+{
+	const HexHighlight *hl_a = a;
+	const HexHighlight *hl_b = b;
+
+	g_return_val_if_fail (HEX_IS_HIGHLIGHT (hl_a), FALSE);
+	g_return_val_if_fail (HEX_IS_HIGHLIGHT (hl_b), FALSE);
+
+	return hl_a->start_offset == hl_b->start_offset && hl_a->end_offset == hl_b->end_offset;
+}
+
+guint
+hex_highlight_hash (gconstpointer ptr)
+{
+	const HexHighlight *self = ptr;
+
+	g_return_val_if_fail (HEX_IS_HIGHLIGHT (self), 0);
+
+	return g_int64_hash (&self->start_offset) ^ (g_int64_hash (&self->end_offset) << 1);
+}

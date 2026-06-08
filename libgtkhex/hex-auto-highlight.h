@@ -4,6 +4,7 @@
 
 #include <hex-document.h>
 #include "hex-highlight.h"
+#include "hex-highlight-list.h"
 
 G_BEGIN_DECLS
 
@@ -15,7 +16,7 @@ G_DECLARE_FINAL_TYPE (HexAutoHighlight, hex_auto_highlight, HEX, AUTO_HIGHLIGHT,
 HexAutoHighlight *hex_auto_highlight_new (HexDocument *document, HexSearchInfo *search_info);
 HexSearchFlags hex_auto_highlight_get_search_flags (HexAutoHighlight *self);
 void hex_auto_highlight_add_highlight (HexAutoHighlight *self, HexHighlight *highlight);
-GListModel *hex_auto_highlight_get_highlights (HexAutoHighlight *self);
+HexHighlightList *hex_auto_highlight_get_highlights (HexAutoHighlight *self);
 HexDocument *hex_auto_highlight_get_document (HexAutoHighlight *self);
 void hex_auto_highlight_set_search_info (HexAutoHighlight *self, HexSearchInfo *search_info);
 HexSearchInfo * hex_auto_highlight_get_search_info (HexAutoHighlight *self);

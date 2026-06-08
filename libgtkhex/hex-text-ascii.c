@@ -444,26 +444,56 @@ render_highlights__marks (HexTextAscii *self, GtkSnapshot *snapshot, int line_nu
 }
 
 static void
-render_highlights__auto_highlights (HexTextAscii *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout)
+render_highlights__auto_highlights (HexTextAscii *self, GtkSnapshot *snapshot, int disp_line_num, PangoLayout *layout)
 {
 	GListModel *auto_highlights = hex_view_get_auto_highlights (HEX_VIEW(self));
+	HexTextRenderData *render_data;
+	int cpl, num_lines;
+	gint64 line_start_offset, range_start_offset, range_end_offset;
 
 	if (! auto_highlights)
 		return;
 
+	render_data = hex_text_get_render_data (HEX_TEXT(self));
+
+	cpl = hex_view_get_cpl (HEX_VIEW(self));
+	num_lines = hex_view_get_n_vis_lines (HEX_VIEW(self));
+
+	line_start_offset = (render_data->top_disp_line + disp_line_num) * cpl;
+
+	// TEST
+	range_start_offset = MAX (0, line_start_offset - 5 * cpl);
+	range_end_offset = line_start_offset + (num_lines + 5) * cpl;
+
 	for (guint i = 0; i < g_list_model_get_n_items (auto_highlights); ++i)
 	{
 		g_autoptr(HexAutoHighlight) auto_highlight = g_list_model_get_item (auto_highlights, i);
-		GListModel *highlights = hex_auto_highlight_get_highlights (auto_highlight);
+		HexHighlightList *hl_list = hex_auto_highlight_get_highlights (auto_highlight);
+		guint n_highlights;
+		g_autofree HexHighlight **highlights = hex_highlight_list_get_highlights_for_range (hl_list, range_start_offset, range_end_offset, &n_highlights);
 
+		if (!highlights)
+			continue;
+
+		for (guint j = 0; j < n_highlights; ++j)
+		{
+			HexHighlight *highlight = highlights[j];
+			// TEST
+			GdkRGBA color = {1.0, 1.0, 0.5, 0.75};
+
+			render_single_highlight (self, snapshot, disp_line_num, layout, highlight, &color);
+		}
+
+#if 0
 		for (guint j = 0; j < g_list_model_get_n_items (highlights); ++j)
 		{
 			g_autoptr(HexHighlight) highlight = g_list_model_get_item (highlights, j);
 			// TEST
 			GdkRGBA color = {1.0, 1.0, 0.5, 0.75};
 
-			render_single_highlight (self, snapshot, line_num, layout, highlight, &color);
+			render_single_highlight (self, snapshot, disp_line_num, layout, highlight, &color);
 		}
+#endif
 	}
 }
 
