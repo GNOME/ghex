@@ -202,7 +202,7 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 
 	g_return_if_fail (self->view_max > self->view_min && self->view_max != 0);
 
-	g_list_store_remove_all (self->highlights);
+	hex_highlight_list_remove_all (self->highlights);
 
 	timer = g_timer_new ();
 
@@ -384,7 +384,7 @@ hex_auto_highlight_add_highlight (HexAutoHighlight *self, HexHighlight *highligh
 	}
 #endif
 
-	g_list_store_append (self->highlights, highlight);
+	hex_highlight_list_append (self->highlights, highlight);
 
 //	_hex_auto_highlight_sort (self);
 
@@ -394,12 +394,12 @@ hex_auto_highlight_add_highlight (HexAutoHighlight *self, HexHighlight *highligh
 }
 
 /* Transfer none */
-GListModel *
+HexHighlightList *
 hex_auto_highlight_get_highlights (HexAutoHighlight *self)
 {
 	g_return_val_if_fail (HEX_IS_AUTO_HIGHLIGHT (self), NULL);
 
-	return G_LIST_MODEL (self->highlights);
+	return self->highlights;
 }
 
 /* Transfer none */
@@ -512,7 +512,7 @@ hex_auto_highlight_get_property (GObject *object,
 static void
 hex_auto_highlight_init (HexAutoHighlight *self)
 {
-	self->highlights = g_list_store_new (HEX_TYPE_HIGHLIGHT);
+	self->highlights = hex_highlight_list_new ();
 	g_weak_ref_init (&self->search_pending_wr, NULL);
 }
 
@@ -564,7 +564,7 @@ hex_auto_highlight_class_init (HexAutoHighlightClass *klass)
 			default_flags | G_PARAM_READWRITE);
 
 	properties[PROP_HIGHLIGHTS] = g_param_spec_object ("highlights", NULL, NULL,
-			G_TYPE_LIST_MODEL,
+			HEX_TYPE_HIGHLIGHT_LIST,
 			default_flags | G_PARAM_READABLE);
 
 	properties[PROP_CANCELLABLE] = g_param_spec_object ("cancellable", NULL, NULL,
@@ -617,6 +617,7 @@ hex_auto_highlight_new (HexDocument *document, HexSearchInfo *search_info)
 			NULL);
 }
 
+#if 0
 //FIXME- publicize??
 GListModel *
 _hex_auto_highlight_build_1d_list (GListModel *auto_highlights)
@@ -643,6 +644,7 @@ _hex_auto_highlight_build_1d_list (GListModel *auto_highlights)
 
 	return (GListModel *) g_steal_pointer (&retval);
 }
+#endif
 
 /* Gets the cancellable passed to hex_auto_highlight_refresh_async(), or NULL
  * transfer none

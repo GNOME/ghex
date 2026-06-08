@@ -573,6 +573,7 @@ hex_view_remove_auto_highlight (HexView *self, HexAutoHighlight *auto_highlight)
 		return FALSE;
 
 	g_cancellable_cancel (hex_auto_highlight_get_cancellable (auto_highlight));
+
 	g_list_store_remove (G_LIST_STORE(priv->auto_highlights), pos);
 
 	return TRUE;
@@ -994,18 +995,45 @@ hex_view_goto_mark (HexView *self, HexMark *mark)
 
 /* transfer none, index (out) & can-null */
 HexHighlight *
-hex_view_find_next_highlight (HexView *self, GListModel *highlights, guint *index)
+hex_view_find_next_highlight (HexView *self, HexHighlightList *highlights, guint *index)
 {
 	HexViewPrivate *priv;
+	HexBuffer *buf;
 	gint64 cursor_pos;
+	gint64 payload_size;
+	g_autofree HexHighlight **hl_arr = NULL;
+	guint n_highlights;
 
 	g_return_val_if_fail (HEX_IS_VIEW (self), NULL);
-	g_return_val_if_fail (G_IS_LIST_MODEL (highlights) && g_list_model_get_item_type (highlights) == HEX_TYPE_HIGHLIGHT, NULL);
+	g_return_val_if_fail (HEX_IS_HIGHLIGHT_LIST (highlights), NULL);
 
 	priv = hex_view_get_instance_private (self);
 
+	buf = hex_document_get_buffer (priv->document);
+	payload_size = hex_buffer_get_payload_size (buf);
 	cursor_pos = hex_selection_get_cursor_pos (priv->selection);
 
+	hl_arr = hex_highlight_list_get_highlights_for_range (highlights, cursor_pos, payload_size-1, &n_highlights);
+
+	if (!hl_arr)
+		return NULL;
+
+	for (guint i = 0; i < n_highlights; ++i)
+	{
+		HexHighlight *hl = hl_arr[i];
+
+		if (hl->start_offset > cursor_pos)
+		{
+			g_signal_emit (self, signals[SIG_FOUND_HIGHLIGHT], 0, hl, i);
+
+			if (index)
+				*index = i;
+
+			return hl;
+		}
+	}
+
+#if 0
 	for (guint i = 0; i < g_list_model_get_n_items (highlights); ++i)
 	{
 		g_autoptr(HexHighlight) hl = g_list_model_get_item (highlights, i);
@@ -1025,24 +1053,56 @@ hex_view_find_next_highlight (HexView *self, GListModel *highlights, guint *inde
 			return g_steal_pointer (&hl);
 		}
 	}
+#endif
 
 	return NULL;
 }
 
 /* transfer none, index (out) & can-null */
 HexHighlight *
-hex_view_find_prev_highlight (HexView *self, GListModel *highlights, guint *index)
+hex_view_find_prev_highlight (HexView *self, HexHighlightList *highlights, guint *index)
 {
 	HexViewPrivate *priv;
+	HexBuffer *buf;
 	gint64 cursor_pos;
+	g_autofree HexHighlight **hl_arr = NULL;
+	guint n_highlights;
 
 	g_return_val_if_fail (HEX_IS_VIEW (self), NULL);
-	g_return_val_if_fail (G_IS_LIST_MODEL (highlights) && g_list_model_get_item_type (highlights) == HEX_TYPE_HIGHLIGHT, NULL);
+	g_return_val_if_fail (HEX_IS_HIGHLIGHT_LIST (highlights), NULL);
 
 	priv = hex_view_get_instance_private (self);
 
+	buf = hex_document_get_buffer (priv->document);
 	cursor_pos = hex_selection_get_cursor_pos (priv->selection);
 
+	hl_arr = hex_highlight_list_get_highlights_for_range (highlights, 0, cursor_pos, &n_highlights);
+
+	if (!hl_arr)
+		return NULL;
+
+	/* n_highlights is a guint which will wraparound, so it makes the test overly
+	 * convoluted. Just assert that there are no more than INT_MAX items, which
+	 * would be a nutso amount of items to have in a highlight list anyway.
+	 */
+	g_return_val_if_fail (n_highlights <= INT_MAX, NULL);
+
+	for (int i = (int) n_highlights - 1; i >= 0; --i)
+	{
+		HexHighlight *hl = hl_arr[i];
+
+		if (hl->start_offset < cursor_pos)
+		{
+			g_signal_emit (self, signals[SIG_FOUND_HIGHLIGHT], 0, hl, i);
+
+			if (index)
+				*index = i;
+
+			return hl;
+		}
+	}
+
+#if 0
 	/* A n_items is a guint which will wraparound, so it makes the test overly
 	 * convoluted. Just assert that there are no more than INT_MAX items, which
 	 * would be a nutso amount of items to have in a highlight list anyway.
@@ -1068,6 +1128,7 @@ hex_view_find_prev_highlight (HexView *self, GListModel *highlights, guint *inde
 			return g_steal_pointer (&hl);
 		}
 	}
+#endif
 
 	return NULL;
 }

@@ -24,6 +24,7 @@ libgtkhex_sources = [
   'hex-document.c',
   'hex-file-monitor.c',
   'hex-highlight.c',
+  'hex-highlight-list.c',
   'hex-mark.c',
   'hex-search-info.c',
   'hex-selection.c',

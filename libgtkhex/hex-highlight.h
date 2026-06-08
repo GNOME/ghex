@@ -18,4 +18,9 @@ void hex_highlight_set_end_offset (HexHighlight *self, gint64 end_offset);
 gint64 hex_highlight_get_end_offset (HexHighlight *self);
 gsize hex_highlight_get_n_selected (HexHighlight *self);
 
+/* GHashTable functions */
+
+gboolean hex_highlight_equal (gconstpointer a, gconstpointer b);
+guint hex_highlight_hash (gconstpointer key);
+
 G_END_DECLS

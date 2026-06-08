@@ -1,5 +1,6 @@
 #include "ghex-search-bar.h"
 
+#include "hex-highlight-list.h"
 #include "hex-highlight-private.h"
 #include "hex-auto-highlight-private.h"
 #include "libgtkhex-enums.h"
@@ -55,6 +56,27 @@ G_DEFINE_FINAL_TYPE (GHexSearchBar, ghex_search_bar, GHEX_TYPE_PANE)
 static void _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto_highlight);
 
 static void
+refresh_num_matches_label (GHexSearchBar *self, guint index)
+{
+	HexHighlightList *highlights = NULL;
+	g_autofree char *label = NULL;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	if (self->auto_highlight)
+		highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
+
+	if (highlights)
+	{
+		guint n_highlights = g_list_model_get_n_items (G_LIST_MODEL(highlights));
+
+		label = g_strdup_printf (_("%u of %u"), index + 1, n_highlights);
+	}
+
+	gtk_label_set_label (self->num_matches_label, label);
+}
+
+static void
 auto_highlight_search_progress_update_cb (GHexSearchBar *self, double progress, HexAutoHighlight *auto_highlight)
 {
 	g_assert (GHEX_IS_SEARCH_BAR (self));
@@ -74,51 +96,24 @@ auto_highlight_refresh_complete_cb (GHexSearchBar *self, HexAutoHighlight *auto_
 	gtk_widget_set_sensitive (GTK_WIDGET(self->search_progress_cancel_button), FALSE);
 	gtk_revealer_set_reveal_child (self->search_progress_revealer, FALSE);
 	gtk_progress_bar_set_fraction (self->search_progress_bar, 0.0);
-}
 
-/* follows prototype of HexView::found-highlight */
-
-static void
-refresh_num_matches_label (GHexSearchBar *self, HexHighlight *hl G_GNUC_UNUSED, guint index, HexView *view G_GNUC_UNUSED)
-{
-	GListModel *highlights = NULL;
-	g_autofree char *label = NULL;
-
-	g_assert (GHEX_IS_SEARCH_BAR (self));
-
-	if (self->auto_highlight)
-		highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
-
-	if (highlights)
 	{
-		guint n_highlights = g_list_model_get_n_items (highlights);
+		HexView *substantive_view = ghex_pane_get_hex (GHEX_PANE(self));
+		HexHighlightList *highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
+		guint index;
 
-		label = g_strdup_printf (_("%u of %u"), index + 1, n_highlights);
+		hex_view_find_next_highlight (substantive_view, highlights, &index);
+
+		refresh_num_matches_label (self, index);
 	}
-
-	gtk_label_set_label (self->num_matches_label, label);
 }
 
 static void
-num_matches_changed_cb (GHexSearchBar *self)
+found_highlight_cb (GHexSearchBar *self, HexHighlight *hl G_GNUC_UNUSED, guint index, HexView *view G_GNUC_UNUSED)
 {
-	HexView *view = NULL;
-	GListModel *highlights = NULL;
-
 	g_assert (GHEX_IS_SEARCH_BAR (self));
 
-	if (!self->auto_highlight) return;
-
-	view = ghex_pane_get_hex (GHEX_PANE(self));
-	if (!view) return;
-
-	highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
-	if (!highlights) return;
-
-	/* Will emit found-highlight, causing the num_matches_label to get
-	 * refreshed for the current cursor pos
-	 */
-	hex_view_find_next_highlight (view, highlights, NULL);
+	refresh_num_matches_label (self, index);
 }
 
 static void
@@ -165,35 +160,45 @@ auto_highlight_notify_cancellable_cb (GHexSearchBar *self, GParamSpec *pspec G_G
 static void
 _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto_highlight)
 {
-	HexView *substantive_view;
+	HexView *substantive_view = NULL;
+	HexAutoHighlight *old_auto_highlight = NULL;
 
 	g_return_if_fail (GHEX_IS_SEARCH_BAR (self));
 	g_return_if_fail (auto_highlight == NULL || HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
 
+	if (auto_highlight == self->auto_highlight)
+		return;
+
+	refresh_num_matches_label (self, 0);
+
+	/* self->auto_highlight needs to be cleared right at the beginning, because
+	 * otherwise the semi-recursive nature of this function won't work.
+	 */
+	if (self->auto_highlight)
+		old_auto_highlight = g_steal_pointer (&self->auto_highlight);
+
 	substantive_view = ghex_pane_get_hex (GHEX_PANE(self));
 	g_return_if_fail (HEX_IS_VIEW (substantive_view));
 
-	refresh_num_matches_label (self, NULL, 0, NULL);
+	if (old_auto_highlight)
+		hex_view_remove_auto_highlight (substantive_view, old_auto_highlight);
 
-	if (self->auto_highlight)
-		hex_view_remove_auto_highlight (substantive_view, self->auto_highlight);
+	g_clear_object (&old_auto_highlight);
 
-	if (g_set_object (&self->auto_highlight, auto_highlight))
-	{
-		if (auto_highlight)
-		{
-			g_signal_connect_object (auto_highlight, "search-progress-update", G_CALLBACK(auto_highlight_search_progress_update_cb), self, G_CONNECT_SWAPPED);
-			g_signal_connect_object (auto_highlight, "refresh-complete", G_CALLBACK(auto_highlight_refresh_complete_cb), self, G_CONNECT_SWAPPED);
-			g_signal_connect_object (auto_highlight, "highlights-changed", G_CALLBACK(num_matches_changed_cb), self, G_CONNECT_SWAPPED);
-			g_signal_connect_object (auto_highlight, "notify::cancellable", G_CALLBACK(auto_highlight_notify_cancellable_cb), self, G_CONNECT_SWAPPED);
+	if (auto_highlight)
+		self->auto_highlight = g_object_ref (g_steal_pointer (&auto_highlight));
+	else
+		return;
 
-			g_signal_connect_object (substantive_view, "found-highlight", G_CALLBACK(refresh_num_matches_label), self, G_CONNECT_SWAPPED);
+	g_signal_connect_object (self->auto_highlight, "search-progress-update", G_CALLBACK(auto_highlight_search_progress_update_cb), self, G_CONNECT_SWAPPED);
+	g_signal_connect_object (self->auto_highlight, "refresh-complete", G_CALLBACK(auto_highlight_refresh_complete_cb), self, G_CONNECT_SWAPPED);
+	g_signal_connect_object (self->auto_highlight, "notify::cancellable", G_CALLBACK(auto_highlight_notify_cancellable_cb), self, G_CONNECT_SWAPPED);
 
-			hex_view_insert_auto_highlight (substantive_view, self->auto_highlight);
-		}
+	g_signal_connect_object (substantive_view, "found-highlight", G_CALLBACK(found_highlight_cb), self, G_CONNECT_SWAPPED);
 
-		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_AUTO_HIGHLIGHT]);
-	}
+	hex_view_insert_auto_highlight (substantive_view, self->auto_highlight);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_AUTO_HIGHLIGHT]);
 }
 
 /* transfer none */
@@ -436,7 +441,7 @@ next_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 
 	{
 		HexDocument *document = hex_view_get_document (view);
-		GListModel *highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
+		HexHighlightList *highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
 		HexSelection *selection = hex_view_get_selection (view);
 		const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
 		HexHighlight *next_highlight = NULL;
@@ -461,7 +466,7 @@ prev_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 
 	{
 		HexDocument *document = hex_view_get_document (view);
-		GListModel *highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
+		HexHighlightList *highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
 		HexSelection *selection = hex_view_get_selection (view);
 		const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
 		HexHighlight *prev_highlight = NULL;
