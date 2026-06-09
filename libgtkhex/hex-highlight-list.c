@@ -28,6 +28,7 @@ struct _HexHighlightList
 	GObject parent_instance;
 
 	GHashTable *ht;
+	GPtrArray *arr;
 };
 
 /* <GListModelInterface> */
@@ -39,20 +40,8 @@ static guint
 hex_highlight_list_get_n_items (GListModel *list)
 {
 	HexHighlightList *self = HEX_HIGHLIGHT_LIST (list);
-	GHashTableIter iter;
-	guint retval = 0;
-	g_autoptr(GPtrArray) values_arr = NULL;
 
-	values_arr = g_hash_table_get_values_as_ptr_array (self->ht);
-
-	for (guint i = 0; i < values_arr->len; ++i)
-	{
-		GPtrArray *hl_arr = g_ptr_array_index (values_arr, i);
-
-		retval += hl_arr->len;
-	}
-
-	return retval;
+	return self->arr->len;
 }
 
 /* This will be slow with a large number of items. Not recommended for general usage. */
@@ -61,38 +50,16 @@ static gpointer
 hex_highlight_list_get_item (GListModel *list, guint position)
 {
 	HexHighlightList *self = HEX_HIGHLIGHT_LIST (list);
-	g_autoptr(GPtrArray) values_arr = g_hash_table_get_values_as_ptr_array (self->ht);
-	g_autoptr(GPtrArray) flat_arr = NULL;
-	HexHighlight *retval = NULL;
+	HexHighlight *retval;
 
-	/* Build flat array */
+	if (position >= self->arr->len)
+		return NULL;
 
-	flat_arr = g_ptr_array_new ();
+	retval = g_ptr_array_index (self->arr, position);
 
-	for (guint i = 0; i < values_arr->len; ++i)
-	{
-		GPtrArray *hl_arr = g_ptr_array_index (values_arr, i);
+	g_assert (HEX_IS_HIGHLIGHT (retval));
 
-		for (guint j = 0; j < hl_arr->len; ++j)
-		{
-			HexHighlight *highlight = g_ptr_array_index (hl_arr, j);
-
-			g_ptr_array_add (flat_arr, highlight);
-		}
-	}
-
-	g_return_val_if_fail (position < flat_arr->len, NULL);
-
-	/* Fetch highlight from requested 1d position and take a ref on it as required by the GListModel iface */
-
-	retval = g_ptr_array_index (flat_arr, position);
-
-	g_assert (retval == NULL || HEX_IS_HIGHLIGHT (retval));
-
-	if (retval)
-		g_object_ref (retval);
-
-	return retval;
+	return g_object_ref (retval);
 }
 
 static GType
@@ -155,6 +122,8 @@ static void
 hex_highlight_list_init (HexHighlightList *self)
 {
 	self->ht = g_hash_table_new_full (g_int64_hash, g_int64_equal, g_free, (GDestroyNotify)g_ptr_array_unref);
+
+	self->arr = g_ptr_array_new_with_free_func (g_object_unref);
 }
 
 static void
@@ -163,6 +132,7 @@ hex_highlight_list_dispose (GObject *object)
 	HexHighlightList *self = HEX_HIGHLIGHT_LIST(object);
 
 	g_clear_pointer (&self->ht, g_hash_table_unref);
+	g_clear_pointer (&self->arr, g_ptr_array_unref);
 
 	G_OBJECT_CLASS(hex_highlight_list_parent_class)->dispose (object);
 }
@@ -242,18 +212,12 @@ hex_highlight_list_get_highlights_for_range (HexHighlightList *self, gint64 star
 	return (HexHighlight **) g_steal_pointer (&ret_arr->pdata);
 }
 
-/* item = transfer none */
+/* append() helpers */
 
-void
-hex_highlight_list_append (HexHighlightList *self, gpointer item)
+static void
+append_ht (HexHighlightList *self, HexHighlight *highlight)
 {
-	HexHighlight *highlight = item;
-	GPtrArray *existing_val_arr = NULL;
-
-	g_return_if_fail (HEX_IS_HIGHLIGHT_LIST (self));
-	g_return_if_fail (HEX_IS_HIGHLIGHT (highlight));
-
-	existing_val_arr = g_hash_table_lookup (self->ht, &highlight->start_offset);
+	GPtrArray *existing_val_arr = g_hash_table_lookup (self->ht, &highlight->start_offset);
 
 	if (existing_val_arr)
 	{
@@ -271,26 +235,42 @@ hex_highlight_list_append (HexHighlightList *self, gpointer item)
 
 		g_hash_table_insert (self->ht, g_steal_pointer (&keyp), g_steal_pointer (&new_val_arr));
 	}
-
-	// FIXME - wrong pos.
-	g_list_model_items_changed (G_LIST_MODEL(self), 0, 0, 1);
 }
 
-void
-hex_highlight_list_remove (HexHighlightList *self, HexHighlight *highlight)
+static void
+append_arr (HexHighlightList *self, HexHighlight *highlight)
 {
-	GPtrArray *values_arr;
+	g_ptr_array_add (self->arr, g_object_ref (highlight));
+
+	g_list_model_items_changed (G_LIST_MODEL(self), self->arr->len - 1, 0, 1);
+}
+
+/* item = transfer none */
+
+void
+hex_highlight_list_append (HexHighlightList *self, gpointer item)
+{
+	HexHighlight *highlight = item;
 
 	g_return_if_fail (HEX_IS_HIGHLIGHT_LIST (self));
 	g_return_if_fail (HEX_IS_HIGHLIGHT (highlight));
 
-	values_arr = g_hash_table_lookup (self->ht, &highlight->start_offset);
+	append_ht (self, highlight);
+	append_arr (self, highlight);
+}
+
+/* remove() helpers */
+
+static gboolean
+remove_ht (HexHighlightList *self, HexHighlight *highlight)
+{
+	GPtrArray *values_arr = g_hash_table_lookup (self->ht, &highlight->start_offset);
 
 	if (!values_arr)
 	{
 		g_debug ("%s: No highlights found in list %p at offset %ld", __func__, self, highlight->start_offset);
 
-		return;
+		return FALSE;
 	}
 
 	for (guint i = 0; i < values_arr->len; ++i)
@@ -309,12 +289,42 @@ hex_highlight_list_remove (HexHighlightList *self, HexHighlight *highlight)
 				g_assert (g_hash_table_lookup (self->ht, &highlight->start_offset) == NULL);
 			}
 
-			// FIXME - wrong position.
-			g_list_model_items_changed (G_LIST_MODEL(self), 0, 1, 0);
-
-			return;
+			return TRUE;
 		}
 	}
+	
+	return FALSE;
+}
+
+static gboolean
+remove_arr (HexHighlightList *self, HexHighlight *highlight)
+{
+	guint index;
+
+	if (g_ptr_array_find (self->arr, highlight, &index))
+	{
+		g_ptr_array_remove_index (self->arr, index);
+
+		g_list_model_items_changed (G_LIST_MODEL(self), index, 1, 0);
+
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+void
+hex_highlight_list_remove (HexHighlightList *self, HexHighlight *highlight)
+{
+	gboolean ht_ret, arr_ret;
+
+	g_return_if_fail (HEX_IS_HIGHLIGHT_LIST (self));
+	g_return_if_fail (HEX_IS_HIGHLIGHT (highlight));
+
+	ht_ret = remove_ht (self, highlight);
+	arr_ret = remove_arr (self, highlight);
+
+	g_assert (ht_ret == arr_ret);
 }
 
 void
@@ -324,9 +334,10 @@ hex_highlight_list_remove_all (HexHighlightList *self)
 
 	g_return_if_fail (HEX_IS_HIGHLIGHT_LIST (self));
 
-	n_items_before = hex_highlight_list_get_n_items (G_LIST_MODEL(self));
+	n_items_before = self->arr->len;
 
 	g_hash_table_remove_all (self->ht);
+	g_ptr_array_set_size (self->arr, 0);
 
 	g_list_model_items_changed (G_LIST_MODEL(self), 0, n_items_before, 0);
 }
