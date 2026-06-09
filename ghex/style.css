@@ -9,6 +9,36 @@
 
 /* Find, replace and jump dialogs */
 
+searchbar label.small {
+  font-size: 80%;
+}
+
+searchbar .search-entry .hex-text {
+  background-color: var(--sidebar-bg-color);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+searchbar .search-entry .hex {
+  border-left: 1px solid var(--border-color);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+searchbar .search-entry .ascii {
+  border-right: 1px solid var(--border-color);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+searchbar .search-entry .hex-text:focus {
+  background-color: var(--sidebar-shade-color);
+
+  transition:
+    background-color 200ms ease-in-out,
+    color 200ms ease-in-out;
+}
+
 /*
 searchbar .hex-text {
   background-color: var(--shade-color);

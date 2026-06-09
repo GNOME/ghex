@@ -15,6 +15,8 @@
 enum
 {
 	PROP_AUTO_HIGHLIGHT = 1,
+	PROP_SELECTED_HIGHLIGHT,
+	PROP_WRAPAROUND,
 	PROP_REPLACE_MODE,
 	PROP_REGEX_ENABLED,
 	PROP_IGNORE_CASE,
@@ -29,6 +31,10 @@ struct _GHexSearchBar
 	GHexPane parent_instance;
 
 	HexAutoHighlight *auto_highlight;
+	guint selected_highlight;
+
+	gboolean wraparound;
+
 	gboolean replace_mode;
 
 	gboolean regex_enabled;
@@ -54,27 +60,6 @@ struct _GHexSearchBar
 G_DEFINE_FINAL_TYPE (GHexSearchBar, ghex_search_bar, GHEX_TYPE_PANE)
 
 static void _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto_highlight);
-
-static void
-refresh_num_matches_label (GHexSearchBar *self, guint index)
-{
-	HexHighlightList *highlights = NULL;
-	g_autofree char *label = NULL;
-
-	g_assert (GHEX_IS_SEARCH_BAR (self));
-
-	if (self->auto_highlight)
-		highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
-
-	if (highlights)
-	{
-		guint n_highlights = g_list_model_get_n_items (G_LIST_MODEL(highlights));
-
-		label = g_strdup_printf (_("%u of %u"), index + 1, n_highlights);
-	}
-
-	gtk_label_set_label (self->num_matches_label, label);
-}
 
 static void
 auto_highlight_search_progress_update_cb (GHexSearchBar *self, double progress, HexAutoHighlight *auto_highlight)
@@ -103,21 +88,7 @@ auto_highlight_refresh_complete_cb (GHexSearchBar *self, HexAutoHighlight *auto_
 	gtk_revealer_set_reveal_child (self->search_progress_revealer, FALSE);
 	gtk_progress_bar_set_fraction (self->search_progress_bar, 0.0);
 
-	{
-		HexView *substantive_view = ghex_pane_get_hex (GHEX_PANE(self));
-		HexHighlightList *highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
-		guint index;
-
-		hex_view_find_next_highlight (substantive_view, highlights, &index);
-	}
-}
-
-static void
-found_highlight_cb (GHexSearchBar *self, HexHighlight *hl G_GNUC_UNUSED, guint index, HexView *view G_GNUC_UNUSED)
-{
-	g_assert (GHEX_IS_SEARCH_BAR (self));
-
-	refresh_num_matches_label (self, index);
+	ghex_search_bar_set_selected_highlight (self, 0);
 }
 
 static void
@@ -173,7 +144,7 @@ _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto
 	if (auto_highlight == self->auto_highlight)
 		return;
 
-	refresh_num_matches_label (self, 0);
+	ghex_search_bar_set_selected_highlight (self, 0);
 
 	/* self->auto_highlight needs to be cleared right at the beginning, because
 	 * otherwise the semi-recursive nature of this function won't work.
@@ -197,8 +168,6 @@ _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto
 	g_signal_connect_object (self->auto_highlight, "search-progress-update", G_CALLBACK(auto_highlight_search_progress_update_cb), self, G_CONNECT_SWAPPED);
 	g_signal_connect_object (self->auto_highlight, "refresh-complete", G_CALLBACK(auto_highlight_refresh_complete_cb), self, G_CONNECT_SWAPPED);
 	g_signal_connect_object (self->auto_highlight, "notify::cancellable", G_CALLBACK(auto_highlight_notify_cancellable_cb), self, G_CONNECT_SWAPPED);
-
-	g_signal_connect_object (substantive_view, "found-highlight", G_CALLBACK(found_highlight_cb), self, G_CONNECT_SWAPPED);
 
 	hex_view_insert_auto_highlight (substantive_view, self->auto_highlight);
 
@@ -238,6 +207,24 @@ ghex_search_bar_get_replace_mode (GHexSearchBar *self)
 	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), FALSE);
 
 	return self->replace_mode;
+}
+
+void
+ghex_search_bar_set_wraparound (GHexSearchBar *self, gboolean wraparound)
+{
+	g_return_if_fail (GHEX_IS_SEARCH_BAR (self));
+
+	self->wraparound = wraparound;
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_WRAPAROUND]);
+}
+
+gboolean
+ghex_search_bar_get_wraparound (GHexSearchBar *self)
+{
+	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), TRUE);
+
+	return self->wraparound;
 }
 
 static void
@@ -368,6 +355,73 @@ _ghex_search_bar_get_search_flags (GHexSearchBar *self)
 	return self->search_flags;
 }
 
+void
+ghex_search_bar_set_selected_highlight (GHexSearchBar *self, guint selected_highlight)
+{
+	g_autofree char *label = NULL;
+
+	g_return_if_fail (GHEX_IS_SEARCH_BAR (self));
+
+	if (self->auto_highlight == NULL)
+	{
+		if G_UNLIKELY (selected_highlight != 0)
+		{
+			g_warning ("%s: %s %p has no auto_highlight set, so the only valid value for selected_highlight is 0; setting selected_highlight to 0.", __func__, G_OBJECT_TYPE_NAME (self), self);
+		}
+
+		self->selected_highlight = 0;
+	}
+	else
+	{
+		HexHighlightList *hl_list = hex_auto_highlight_get_highlights (self->auto_highlight);
+
+		if (hl_list)
+		{
+			guint n_highlights = g_list_model_get_n_items (G_LIST_MODEL(hl_list));
+
+			self->selected_highlight = MIN (selected_highlight, n_highlights);
+
+			if (self->selected_highlight == 0)
+			{
+				/* Translators: This is the number of total search results. */
+				label = g_strdup_printf (_("%u matches"), n_highlights);
+			}
+			else
+			{
+				HexView *view;
+				g_autoptr(HexHighlight) highlight = NULL;
+
+				highlight = g_list_model_get_item (G_LIST_MODEL(hl_list), self->selected_highlight - 1);
+
+				view = ghex_pane_get_hex (GHEX_PANE(self));
+				if (view)
+				{
+					HexSelection *selection = hex_view_get_selection (view);
+
+					hex_selection_collapse (selection, highlight->start_offset);
+				}
+
+				/* Translators: This is the selected search result out of the
+				 * number of total search results.
+				*/
+				label = g_strdup_printf (_("%u of %u"), self->selected_highlight, n_highlights);
+			}
+		}
+	}
+
+	gtk_label_set_label (self->num_matches_label, label);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_SELECTED_HIGHLIGHT]);
+}
+
+guint
+ghex_search_bar_get_selected_highlight (GHexSearchBar *self)
+{
+	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), 0);
+
+	return self->selected_highlight;
+}
+
 static void
 ghex_search_bar_set_property (GObject *object,
 		guint property_id,
@@ -378,6 +432,14 @@ ghex_search_bar_set_property (GObject *object,
 
 	switch (property_id)
 	{
+		case PROP_SELECTED_HIGHLIGHT:
+			ghex_search_bar_set_selected_highlight (self, g_value_get_uint (value));
+			break;
+
+		case PROP_WRAPAROUND:
+			ghex_search_bar_set_wraparound (self, g_value_get_boolean (value));
+			break;
+
 		case PROP_REPLACE_MODE:
 			ghex_search_bar_set_replace_mode (self, g_value_get_boolean (value));
 			break;
@@ -410,6 +472,14 @@ ghex_search_bar_get_property (GObject *object,
 			g_value_set_object (value, ghex_search_bar_get_auto_highlight (self));
 			break;
 
+		case PROP_SELECTED_HIGHLIGHT:
+			g_value_set_uint (value, ghex_search_bar_get_selected_highlight (self));
+			break;
+
+		case PROP_WRAPAROUND:
+			g_value_set_boolean (value, ghex_search_bar_get_wraparound (self));
+			break;
+
 		case PROP_REPLACE_MODE:
 			g_value_set_boolean (value, ghex_search_bar_get_replace_mode (self));
 			break;
@@ -437,21 +507,42 @@ next_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 {
 	GHexSearchBar *self = GHEX_SEARCH_BAR(user_data);
 	HexView *view = ghex_pane_get_hex (GHEX_PANE(self));
+	HexHighlightList *hl_list;
+	guint n_highlights;
 
 	if (!self->auto_highlight || !view)
 		return;
 
+	hl_list = hex_auto_highlight_get_highlights (self->auto_highlight);
+	n_highlights = g_list_model_get_n_items (G_LIST_MODEL(hl_list));
+
+	if (n_highlights != 0)
 	{
-		HexDocument *document = hex_view_get_document (view);
-		HexHighlightList *highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
-		HexSelection *selection = hex_view_get_selection (view);
-		const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
-		HexHighlight *next_highlight = NULL;
+		guint next_highlight_num = 0;
 
-		next_highlight = hex_view_find_next_highlight (view, highlights, NULL);
+		if (self->selected_highlight)
+		{
+			if (self->wraparound)
+			{
+				next_highlight_num = self->selected_highlight + 1;
 
-		if (next_highlight)
-			hex_selection_collapse (selection, next_highlight->start_offset);
+				if (next_highlight_num > n_highlights)
+					next_highlight_num = 1;
+			}
+			else
+			{
+				next_highlight_num = CLAMP (self->selected_highlight + 1, 1, n_highlights);
+			}
+		}
+		else
+		{
+			guint next_highlight_idx;
+
+			if (hex_view_find_next_highlight (view, hl_list, &next_highlight_idx))
+				next_highlight_num = next_highlight_idx + 1;
+		}
+
+		ghex_search_bar_set_selected_highlight (self, next_highlight_num);
 	}
 }
 
@@ -460,21 +551,42 @@ prev_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 {
 	GHexSearchBar *self = GHEX_SEARCH_BAR(user_data);
 	HexView *view = ghex_pane_get_hex (GHEX_PANE(self));
+	HexHighlightList *hl_list;
+	guint n_highlights;
 
 	if (!self->auto_highlight || !view)
 		return;
 
+	hl_list = hex_auto_highlight_get_highlights (self->auto_highlight);
+	n_highlights = g_list_model_get_n_items (G_LIST_MODEL(hl_list));
+
+	if (n_highlights != 0)
 	{
-		HexDocument *document = hex_view_get_document (view);
-		HexHighlightList *highlights = hex_auto_highlight_get_highlights (self->auto_highlight);
-		HexSelection *selection = hex_view_get_selection (view);
-		const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
-		HexHighlight *prev_highlight = NULL;
+		guint prev_highlight_num = 0;
 
-		prev_highlight = hex_view_find_prev_highlight (view, highlights, NULL);
+		if (self->selected_highlight)
+		{
+			if (self->wraparound)
+			{
+				if (self->selected_highlight == 1)
+					prev_highlight_num = n_highlights;
+				else
+					prev_highlight_num = self->selected_highlight - 1;
+			}
+			else
+			{
+				prev_highlight_num = CLAMP (self->selected_highlight - 1, 1, n_highlights);
+			}
+		}
+		else
+		{
+			guint prev_highlight_idx;
 
-		if (prev_highlight)
-			hex_selection_collapse (selection, prev_highlight->start_offset);
+			if (hex_view_find_prev_highlight (view, hl_list, &prev_highlight_idx))
+				prev_highlight_num = prev_highlight_idx + 1;
+		}
+
+		ghex_search_bar_set_selected_highlight (self, prev_highlight_num);
 	}
 }
 
@@ -579,6 +691,14 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 	properties[PROP_AUTO_HIGHLIGHT] = g_param_spec_object ("auto-highlight", NULL, NULL,
 			HEX_TYPE_AUTO_HIGHLIGHT,
 			default_flags | G_PARAM_READABLE);
+
+	properties[PROP_SELECTED_HIGHLIGHT] = g_param_spec_uint ("selected-highlight", NULL, NULL,
+			0, UINT_MAX, 0,
+			default_flags | G_PARAM_READWRITE);
+
+	properties[PROP_WRAPAROUND] = g_param_spec_boolean ("wraparound", NULL, NULL,
+			TRUE,
+			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
 	properties[PROP_REPLACE_MODE] = g_param_spec_boolean ("replace-mode", NULL, NULL,
 			FALSE,
