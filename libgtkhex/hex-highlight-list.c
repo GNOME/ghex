@@ -212,6 +212,15 @@ hex_highlight_list_get_highlights_for_range (HexHighlightList *self, gint64 star
 	return (HexHighlight **) g_steal_pointer (&ret_arr->pdata);
 }
 
+/* transfer none */
+HexHighlight **
+hex_highlight_list_get_highlights_for_offset (HexHighlightList *self, gint64 offset, guint *n_found)
+{
+	g_return_val_if_fail (HEX_IS_HIGHLIGHT_LIST (self), NULL);
+
+	return hex_highlight_list_get_highlights_for_range (self, offset, offset, n_found);
+}
+
 /* append() helpers */
 
 static void
