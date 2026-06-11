@@ -146,8 +146,12 @@ auto_highlight_notify_cancellable_cb (GHexSearchBar *self, GParamSpec *pspec G_G
 	 */
 	cancellable = hex_auto_highlight_get_cancellable (auto_highlight);
 
+	/* Trying ref/unref on self here creates a reference cycle that is overly
+	 * complicated to break. We own the object that owns the cancellable, so if
+	 * it's out-living us, we have bigger problems.
+	 */
 	if (cancellable)
-		g_cancellable_connect (cancellable, G_CALLBACK(auto_highlight_cancellable_cancelled_cb), g_object_ref (self), g_object_unref);
+		g_cancellable_connect (cancellable, G_CALLBACK(auto_highlight_cancellable_cancelled_cb), self, NULL);
 }
 
 /* transfer none */
