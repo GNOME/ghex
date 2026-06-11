@@ -62,6 +62,25 @@ G_DEFINE_FINAL_TYPE (GHexSearchBar, ghex_search_bar, GHEX_TYPE_PANE)
 static void _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto_highlight);
 
 static void
+show_search_progress (GHexSearchBar *self)
+{
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	gtk_widget_set_sensitive (GTK_WIDGET(self->search_progress_cancel_button), TRUE);
+	gtk_revealer_set_reveal_child (self->search_progress_revealer, TRUE);
+}
+
+static void
+clear_search_progress (GHexSearchBar *self)
+{
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	gtk_widget_set_sensitive (GTK_WIDGET(self->search_progress_cancel_button), FALSE);
+	gtk_revealer_set_reveal_child (self->search_progress_revealer, FALSE);
+	gtk_progress_bar_set_fraction (self->search_progress_bar, 0.0);
+}
+
+static void
 auto_highlight_search_progress_update_cb (GHexSearchBar *self, double progress, HexAutoHighlight *auto_highlight)
 {
 	g_assert (GHEX_IS_SEARCH_BAR (self));
@@ -70,8 +89,8 @@ auto_highlight_search_progress_update_cb (GHexSearchBar *self, double progress, 
 	if (auto_highlight != self->auto_highlight)
 		return;
 
-	gtk_widget_set_sensitive (GTK_WIDGET(self->search_progress_cancel_button), TRUE);
-	gtk_revealer_set_reveal_child (self->search_progress_revealer, TRUE);
+	show_search_progress (self);
+
 	gtk_progress_bar_set_fraction (self->search_progress_bar, progress);
 }
 
@@ -84,9 +103,7 @@ auto_highlight_refresh_complete_cb (GHexSearchBar *self, HexAutoHighlight *auto_
 	if (auto_highlight != self->auto_highlight)
 		return;
 
-	gtk_widget_set_sensitive (GTK_WIDGET(self->search_progress_cancel_button), FALSE);
-	gtk_revealer_set_reveal_child (self->search_progress_revealer, FALSE);
-	gtk_progress_bar_set_fraction (self->search_progress_bar, 0.0);
+	clear_search_progress (self);
 
 	ghex_search_bar_set_selected_highlight (self, 0);
 }
@@ -95,6 +112,8 @@ static void
 _ghex_search_bar_cancel_query (GHexSearchBar *self)
 {
 	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	clear_search_progress (self);
 
 	_ghex_search_bar_set_auto_highlight (self, NULL);
 }
