@@ -667,3 +667,24 @@ _hex_auto_highlight_build_1d_list (GListModel *auto_highlights)
 	return (GListModel *) g_steal_pointer (&retval);
 }
 #endif
+
+/*
+ * returns the cancellable set by hex_auto_highlight_refresh_async, or `NULL`
+ *
+ * transfer none
+ */
+GCancellable *
+hex_auto_highlight_get_cancellable (HexAutoHighlight *self)
+{
+	g_autoptr(GTask) task = NULL;
+	GCancellable *cancellable = NULL;
+
+	g_return_val_if_fail (HEX_IS_AUTO_HIGHLIGHT (self), NULL);
+
+	task = g_weak_ref_get (&self->search_pending_wr);
+
+	if (task)
+		cancellable = g_task_get_cancellable (task);
+
+	return cancellable;
+}

@@ -17,6 +17,7 @@ enum
 	PROP_AUTO_HIGHLIGHT = 1,
 	PROP_SELECTED_HIGHLIGHT,
 	PROP_WRAPAROUND,
+	PROP_TYPEAHEAD,
 	PROP_REPLACE_MODE,
 	PROP_REGEX_ENABLED,
 	PROP_IGNORE_CASE,
@@ -34,8 +35,10 @@ struct _GHexSearchBar
 	guint selected_highlight;
 
 	gboolean wraparound;
-
 	gboolean replace_mode;
+
+	gboolean typeahead;
+	gulong typeahead_handler;
 
 	gboolean regex_enabled;
 	gboolean ignore_case;
@@ -81,6 +84,16 @@ clear_search_progress (GHexSearchBar *self)
 }
 
 static void
+_ghex_search_bar_cancel_query (GHexSearchBar *self)
+{
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	clear_search_progress (self);
+
+	_ghex_search_bar_set_auto_highlight (self, NULL);
+}
+
+static void
 auto_highlight_search_progress_update_cb (GHexSearchBar *self, double progress, HexAutoHighlight *auto_highlight)
 {
 	g_assert (GHEX_IS_SEARCH_BAR (self));
@@ -109,13 +122,38 @@ auto_highlight_refresh_complete_cb (GHexSearchBar *self, HexAutoHighlight *auto_
 }
 
 static void
-_ghex_search_bar_cancel_query (GHexSearchBar *self)
+auto_highlight_refresh_cancelled_cb (GHexSearchBar *self, HexAutoHighlight *auto_highlight)
+{
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
+
+	if (auto_highlight != self->auto_highlight)
+		return;
+
+	_ghex_search_bar_cancel_query (self);
+}
+
+static gboolean
+refresh_search_query_source_func (gpointer data)
+{
+	GHexSearchBar *self = data;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	ghex_search_bar_refresh_query (self);
+
+	self->search_entry_refresh_timeout_id = 0;
+	return G_SOURCE_REMOVE;
+}
+
+static void
+search_entry_doc_changed_cb (GHexSearchBar *self)
 {
 	g_assert (GHEX_IS_SEARCH_BAR (self));
 
-	clear_search_progress (self);
+	g_clear_handle_id (&self->search_entry_refresh_timeout_id, g_source_remove);
 
-	_ghex_search_bar_set_auto_highlight (self, NULL);
+	self->search_entry_refresh_timeout_id = g_timeout_add_full (G_PRIORITY_LOW, TYPEAHEAD_DELAY_TIME, refresh_search_query_source_func, g_object_ref (self), g_object_unref);
 }
 
 /* transfer none */
@@ -143,8 +181,11 @@ _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto
 	g_return_if_fail (HEX_IS_VIEW (substantive_view));
 
 	if (old_auto_highlight)
+	{
 		hex_view_remove_auto_highlight (substantive_view, old_auto_highlight);
 
+		g_cancellable_cancel (hex_auto_highlight_get_cancellable (old_auto_highlight));
+	}
 	g_clear_object (&old_auto_highlight);
 
 	if (auto_highlight)
@@ -152,8 +193,10 @@ _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto
 		self->auto_highlight = g_object_ref (g_steal_pointer (&auto_highlight));
 
 		g_signal_connect_object (self->auto_highlight, "search-progress-update", G_CALLBACK(auto_highlight_search_progress_update_cb), self, G_CONNECT_SWAPPED);
+
 		g_signal_connect_object (self->auto_highlight, "refresh-complete", G_CALLBACK(auto_highlight_refresh_complete_cb), self, G_CONNECT_SWAPPED);
-		g_signal_connect_object (self->auto_highlight, "refresh-cancelled", G_CALLBACK(_ghex_search_bar_cancel_query), self, G_CONNECT_SWAPPED);
+
+		g_signal_connect_object (self->auto_highlight, "refresh-cancelled", G_CALLBACK(auto_highlight_refresh_cancelled_cb), self, G_CONNECT_SWAPPED);
 
 		hex_view_insert_auto_highlight (substantive_view, self->auto_highlight);
 	}
@@ -201,6 +244,9 @@ ghex_search_bar_set_wraparound (GHexSearchBar *self, gboolean wraparound)
 {
 	g_return_if_fail (GHEX_IS_SEARCH_BAR (self));
 
+	if (self->wraparound == wraparound)
+		return;
+
 	self->wraparound = wraparound;
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_WRAPAROUND]);
@@ -212,6 +258,38 @@ ghex_search_bar_get_wraparound (GHexSearchBar *self)
 	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), TRUE);
 
 	return self->wraparound;
+}
+
+void
+ghex_search_bar_set_typeahead (GHexSearchBar *self, gboolean typeahead)
+{
+	HexDocument *search_entry_doc;
+
+	g_return_if_fail (GHEX_IS_SEARCH_BAR (self));
+
+	if (self->typeahead == typeahead)
+		return;
+
+	self->typeahead = typeahead;
+
+	search_entry_doc = hex_view_get_document (self->search_entry);
+
+	g_clear_signal_handler (&self->typeahead_handler, search_entry_doc);
+
+	if (self->typeahead)
+	{
+		self->typeahead_handler = g_signal_connect_object (search_entry_doc, "document-changed", G_CALLBACK(search_entry_doc_changed_cb), self, G_CONNECT_SWAPPED);
+	}
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_TYPEAHEAD]);
+}
+
+gboolean
+ghex_search_bar_get_typeahead (GHexSearchBar *self)
+{
+	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), TRUE);
+
+	return self->typeahead;
 }
 
 void
@@ -255,29 +333,6 @@ ghex_search_bar_refresh_query (GHexSearchBar *self)
 	auto_highlight = hex_auto_highlight_new (substantive_doc, search_info);
 
 	_ghex_search_bar_set_auto_highlight (self, auto_highlight);
-}
-
-static gboolean
-refresh_search_query_source_func (gpointer data)
-{
-	GHexSearchBar *self = data;
-
-	g_assert (GHEX_IS_SEARCH_BAR (self));
-
-	ghex_search_bar_refresh_query (self);
-
-	self->search_entry_refresh_timeout_id = 0;
-	return G_SOURCE_REMOVE;
-}
-
-static void
-search_entry_doc_changed_cb (GHexSearchBar *self)
-{
-	g_assert (GHEX_IS_SEARCH_BAR (self));
-
-	g_clear_handle_id (&self->search_entry_refresh_timeout_id, g_source_remove);
-
-	self->search_entry_refresh_timeout_id = g_timeout_add_full (G_PRIORITY_LOW, TYPEAHEAD_DELAY_TIME, refresh_search_query_source_func, g_object_ref (self), g_object_unref);
 }
 
 static void
@@ -427,6 +482,10 @@ ghex_search_bar_set_property (GObject *object,
 			ghex_search_bar_set_wraparound (self, g_value_get_boolean (value));
 			break;
 
+		case PROP_TYPEAHEAD:
+			ghex_search_bar_set_typeahead (self, g_value_get_boolean (value));
+			break;
+
 		case PROP_REPLACE_MODE:
 			ghex_search_bar_set_replace_mode (self, g_value_get_boolean (value));
 			break;
@@ -465,6 +524,10 @@ ghex_search_bar_get_property (GObject *object,
 
 		case PROP_WRAPAROUND:
 			g_value_set_boolean (value, ghex_search_bar_get_wraparound (self));
+			break;
+
+		case PROP_TYPEAHEAD:
+			g_value_set_boolean (value, ghex_search_bar_get_typeahead (self));
 			break;
 
 		case PROP_REPLACE_MODE:
@@ -639,13 +702,7 @@ ghex_search_bar_close (GHexPane *pane)
 static void
 ghex_search_bar_init (GHexSearchBar *self)
 {
-	HexDocument *search_entry_doc = NULL;
-
 	gtk_widget_init_template (GTK_WIDGET(self));
-
-	search_entry_doc = hex_view_get_document (self->search_entry);
-
-	g_signal_connect_object (search_entry_doc, "document-changed", G_CALLBACK(search_entry_doc_changed_cb), self, G_CONNECT_SWAPPED);
 
 	g_signal_connect_object (self, "notify::search-flags", G_CALLBACK(ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
 
@@ -678,11 +735,17 @@ ghex_search_bar_dispose (GObject *object)
 {
 	GHexSearchBar *self = GHEX_SEARCH_BAR(object);
 
-	gtk_widget_dispose_template (GTK_WIDGET(self), GHEX_TYPE_SEARCH_BAR);
-
 	g_clear_handle_id (&self->search_entry_refresh_timeout_id, g_source_remove);
 
+	{
+		HexDocument *search_entry_doc = hex_view_get_document (self->search_entry);
+
+		g_clear_signal_handler (&self->typeahead_handler, search_entry_doc);
+	}
+
 	g_clear_object (&self->auto_highlight);
+
+	gtk_widget_dispose_template (GTK_WIDGET(self), GHEX_TYPE_SEARCH_BAR);
 
 	G_OBJECT_CLASS(ghex_search_bar_parent_class)->dispose (object);
 }
@@ -721,6 +784,10 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 			TRUE,
 			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
+	properties[PROP_TYPEAHEAD] = g_param_spec_boolean ("typeahead", NULL, NULL,
+			TRUE,
+			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
 	properties[PROP_REPLACE_MODE] = g_param_spec_boolean ("replace-mode", NULL, NULL,
 			FALSE,
 			default_flags | G_PARAM_READWRITE);
@@ -742,6 +809,10 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 
 	gtk_widget_class_install_property_action (widget_class, "search-options.regex", "regex-enabled");
 	gtk_widget_class_install_property_action (widget_class, "search-options.ignore-case", "ignore-case");
+
+	gtk_widget_class_install_action (widget_class, "search.submit", NULL, (GtkWidgetActionActivateFunc) ghex_search_bar_refresh_query);
+	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, 0, "search.submit", NULL);
+	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, 0, "search.submit", NULL);
 
 	gtk_widget_class_set_css_name (widget_class, "searchbar");
 
