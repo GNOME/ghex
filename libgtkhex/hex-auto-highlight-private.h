@@ -4,8 +4,6 @@
 
 #include "hex-auto-highlight.h"
 
-G_BEGIN_DECLS
-
 /**
  * HexAutoHighlight:
  *
@@ -34,5 +32,3 @@ struct _HexAutoHighlight
 };
 
 //GListModel * _hex_auto_highlight_build_1d_list (GListModel *list);
-
-G_END_DECLS
