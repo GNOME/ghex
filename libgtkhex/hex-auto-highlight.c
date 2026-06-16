@@ -21,7 +21,6 @@ enum
 	PROP_DOCUMENT,
 	PROP_SEARCH_INFO,
 	PROP_HIGHLIGHTS,
-	PROP_CANCELLABLE,
 	N_PROPERTIES
 };
 
@@ -31,6 +30,7 @@ enum
 {
 	SIG_SEARCH_PROGRESS_UPDATE,
 	SIG_REFRESH_COMPLETE,
+	SIG_REFRESH_CANCELLED,
 	SIG_HIGHLIGHTS_CHANGED,
 	N_SIGNALS
 };
@@ -76,16 +76,6 @@ highlight_addition_data_destroy (HighlightAdditionData *data)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (HighlightAdditionData, highlight_addition_data_destroy)
 
 /* </HighlightAdditionData> */
-
-static void
-_hex_auto_highlight_set_cancellable (HexAutoHighlight *self, GCancellable *cancellable)
-{
-	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (self));
-	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
-
-	if (g_set_object (&self->cancellable, cancellable))
-		g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_CANCELLABLE]);
-}
 
 #if 0
 static void
@@ -176,6 +166,19 @@ emit_refresh_complete__threadsafe (gpointer user_data)
 	return G_SOURCE_REMOVE;
 }
 
+static gboolean
+emit_refresh_cancelled__threadsafe (gpointer user_data)
+{
+	HexAutoHighlight *self = user_data;
+
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (self));
+	g_assert (g_main_context_is_owner (g_main_context_default ()));
+
+	g_signal_emit (self, signals[SIG_REFRESH_CANCELLED], 0);
+
+	return G_SOURCE_REMOVE;
+}
+
 static void
 reset_view_min_and_max (HexAutoHighlight *self)
 {
@@ -215,7 +218,7 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 
 		if (async)
 		{
-			GTask *task = g_weak_ref_get (&self->search_pending_wr);
+			g_autoptr(GTask) task = g_weak_ref_get (&self->search_pending_wr);
 			GCancellable *cancellable = NULL;
 
 			if G_UNLIKELY (!task)
@@ -331,6 +334,15 @@ refresh_task_func (GTask *task, gpointer source_object, gpointer task_data, GCan
 		g_task_return_boolean (task, TRUE);
 }
 
+static void
+cancellable_cancelled_cb (GCancellable *cancellable, HexAutoHighlight *self)
+{
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (self));
+	g_assert (G_IS_CANCELLABLE (cancellable));
+
+	g_idle_add_full (G_PRIORITY_DEFAULT, emit_refresh_cancelled__threadsafe, g_object_ref (self), g_object_unref);
+}
+
 void
 hex_auto_highlight_refresh_async (HexAutoHighlight *self, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data)
 {
@@ -357,7 +369,10 @@ hex_auto_highlight_refresh_async (HexAutoHighlight *self, GCancellable *cancella
 
 	g_weak_ref_set (&self->search_pending_wr, task);
 
-	_hex_auto_highlight_set_cancellable (self, cancellable);
+	if (cancellable)
+	{
+		g_cancellable_connect (cancellable, G_CALLBACK(cancellable_cancelled_cb), g_object_ref (self), g_object_unref);
+	}
 
 	g_object_freeze_notify (G_OBJECT(self->highlights));
 
@@ -499,10 +514,6 @@ hex_auto_highlight_get_property (GObject *object,
 			g_value_set_object (value, hex_auto_highlight_get_highlights (self));
 			break;
 
-		case PROP_CANCELLABLE:
-			g_value_set_object (value, hex_auto_highlight_get_cancellable (self));
-			break;
-
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 			break;
@@ -521,13 +532,19 @@ hex_auto_highlight_dispose (GObject *object)
 {
 	HexAutoHighlight *self = HEX_AUTO_HIGHLIGHT(object);
 
+	{
+		g_autoptr(GTask) task = g_weak_ref_get (&self->search_pending_wr);
+
+		if (task)
+			g_cancellable_cancel (g_task_get_cancellable (task));
+
+		g_weak_ref_set (&self->search_pending_wr, NULL);
+	}
+
 	g_clear_handle_id (&self->search_status_timeout_id, g_source_remove);
 	g_clear_object (&self->document);
 	g_clear_object (&self->highlights); 
 	g_clear_object (&self->search_info);
-
-	g_cancellable_cancel (self->cancellable);
-	g_clear_object (&self->cancellable);
 
 	/* Chain up */
 	G_OBJECT_CLASS(hex_auto_highlight_parent_class)->dispose (object);
@@ -567,10 +584,6 @@ hex_auto_highlight_class_init (HexAutoHighlightClass *klass)
 			HEX_TYPE_HIGHLIGHT_LIST,
 			default_flags | G_PARAM_READABLE);
 
-	properties[PROP_CANCELLABLE] = g_param_spec_object ("cancellable", NULL, NULL,
-			G_TYPE_CANCELLABLE,
-			default_flags | G_PARAM_READABLE);
-
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
 	/* Signals */
@@ -588,6 +601,15 @@ hex_auto_highlight_class_init (HexAutoHighlightClass *klass)
 
 	signals[SIG_REFRESH_COMPLETE] = g_signal_new_class_handler (
 			"refresh-complete",
+			G_TYPE_FROM_CLASS (klass),
+			G_SIGNAL_RUN_LAST,
+			NULL,
+			NULL, NULL, NULL,
+			G_TYPE_NONE,
+			0);
+
+	signals[SIG_REFRESH_CANCELLED] = g_signal_new_class_handler (
+			"refresh-cancelled",
 			G_TYPE_FROM_CLASS (klass),
 			G_SIGNAL_RUN_LAST,
 			NULL,
@@ -645,14 +667,3 @@ _hex_auto_highlight_build_1d_list (GListModel *auto_highlights)
 	return (GListModel *) g_steal_pointer (&retval);
 }
 #endif
-
-/* Gets the cancellable passed to hex_auto_highlight_refresh_async(), or NULL
- * transfer none
- */
-GCancellable *
-hex_auto_highlight_get_cancellable (HexAutoHighlight *self)
-{
-	g_return_val_if_fail (HEX_IS_AUTO_HIGHLIGHT (self), NULL);
-
-	return self->cancellable;
-}

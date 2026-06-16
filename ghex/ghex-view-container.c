@@ -223,7 +223,13 @@ _ghex_view_container_set_show_search_bar (GHexViewContainer *self, gboolean show
 {
 	g_return_if_fail (GHEX_IS_VIEW_CONTAINER (self));
 
+	if (self->show_search_bar == show_search_bar)
+		return;
+
 	self->show_search_bar = show_search_bar;
+
+	if (self->show_search_bar)
+		ghex_search_bar_refresh_query (self->search_bar);
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_SHOW_SEARCH_BAR]);
 }

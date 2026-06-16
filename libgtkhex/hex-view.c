@@ -51,6 +51,7 @@ typedef struct
 	GListModel *marks;
 	GListModel *auto_highlights;
 	gboolean insert_mode;
+	gboolean finding_highlight;
 
 	/* GtkScrollable interface */
 
@@ -495,11 +496,10 @@ hex_view_get_insert_mode (HexView *self)
 static void
 refresh_ready_cb (GObject *source_object, GAsyncResult *res, gpointer user_data)
 {
-	HexView *self = user_data;
+	/* hex_auto_highlight_refresh_async() took a ref */
+	g_autoptr(HexView) self = user_data;
+	HexAutoHighlight *auto_highlight = (HexAutoHighlight *) source_object;
 	gboolean retval;
-
-	/* We assume ownership here so we need to transfer ownership or destroy it when done */
-	g_autoptr(HexAutoHighlight) auto_highlight = (HexAutoHighlight *) source_object;
 
 	g_assert (HEX_IS_VIEW (self));
 	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
@@ -555,7 +555,7 @@ hex_view_insert_auto_highlight (HexView *self, HexAutoHighlight *auto_highlight)
 	g_signal_connect_object (auto_highlight, "refresh-complete", G_CALLBACK(ahl_refresh_complete_cb), self, G_CONNECT_SWAPPED); 
 
 	cancellable = g_cancellable_new ();
-	hex_auto_highlight_refresh_async (auto_highlight, cancellable, refresh_ready_cb, self);
+	hex_auto_highlight_refresh_async (auto_highlight, cancellable, refresh_ready_cb, g_object_ref (self));
 }
 
 gboolean
@@ -571,8 +571,6 @@ hex_view_remove_auto_highlight (HexView *self, HexAutoHighlight *auto_highlight)
 
 	if (! g_list_store_find (G_LIST_STORE(priv->auto_highlights), auto_highlight, &pos))
 		return FALSE;
-
-	g_cancellable_cancel (hex_auto_highlight_get_cancellable (auto_highlight));
 
 	g_list_store_remove (G_LIST_STORE(priv->auto_highlights), pos);
 
@@ -995,7 +993,7 @@ hex_view_goto_mark (HexView *self, HexMark *mark)
 
 /* transfer none, index (out) & can-null */
 HexHighlight *
-hex_view_find_next_highlight (HexView *self, HexHighlightList *highlights, guint *index)
+hex_view_find_next_highlight_sync (HexView *self, HexHighlightList *highlights, guint *index)
 {
 	HexViewPrivate *priv;
 	HexBuffer *buf;
@@ -1033,34 +1031,12 @@ hex_view_find_next_highlight (HexView *self, HexHighlightList *highlights, guint
 		}
 	}
 
-#if 0
-	for (guint i = 0; i < g_list_model_get_n_items (highlights); ++i)
-	{
-		g_autoptr(HexHighlight) hl = g_list_model_get_item (highlights, i);
-
-		g_assert (HEX_IS_HIGHLIGHT (hl));
-
-		if (hl->start_offset > cursor_pos)
-		{
-			g_signal_emit (self, signals[SIG_FOUND_HIGHLIGHT], 0, hl, i);
-
-			if (index)
-				*index = i;
-
-			/* Because g_list_model_get_item takes a ref, and we want transfer:none */
-			g_object_unref (hl);
-
-			return g_steal_pointer (&hl);
-		}
-	}
-#endif
-
 	return NULL;
 }
 
 /* transfer none, index (out) & can-null */
 HexHighlight *
-hex_view_find_prev_highlight (HexView *self, HexHighlightList *highlights, guint *index)
+hex_view_find_prev_highlight_sync (HexView *self, HexHighlightList *highlights, guint *index)
 {
 	HexViewPrivate *priv;
 	gint64 cursor_pos;
@@ -1101,33 +1077,146 @@ hex_view_find_prev_highlight (HexView *self, HexHighlightList *highlights, guint
 		}
 	}
 
-#if 0
-	/* A n_items is a guint which will wraparound, so it makes the test overly
-	 * convoluted. Just assert that there are no more than INT_MAX items, which
-	 * would be a nutso amount of items to have in a highlight list anyway.
-	 */
-	g_return_val_if_fail (g_list_model_get_n_items (highlights) <= INT_MAX, NULL);
+	return NULL;
+}
 
-	for (int i = (int) g_list_model_get_n_items (highlights) - 1; i >= 0; --i)
+typedef HexHighlight * (*HexViewFindHighlightSyncFunc) (HexView *self, HexHighlightList *highlights, guint *index);
+
+typedef struct
+{
+	HexHighlight *highlight;
+	guint index;
+} FindHighlightReturnData;
+
+static HexHighlight *
+generic_find_highlight_finish (HexView *self, GAsyncResult *result, guint *index)
+{
+	HexViewPrivate *priv;
+	GTask *task = (GTask *) result;
+	g_autofree FindHighlightReturnData *data = NULL;
+
+	g_return_val_if_fail (HEX_IS_VIEW (self), NULL);
+	g_return_val_if_fail (g_task_is_valid (task, self), NULL);
+
+	priv = hex_view_get_instance_private (self);
+
+	priv->finding_highlight = FALSE;
+
+	data = g_task_propagate_pointer (task, NULL);
+
+	if (data)
 	{
-		g_autoptr(HexHighlight) hl = g_list_model_get_item (highlights, i);
+		g_assert (HEX_IS_HIGHLIGHT (data->highlight));
 
-		g_assert (HEX_IS_HIGHLIGHT (hl));
+		if (index)
+			*index = data->index;
 
-		if (hl->start_offset < cursor_pos)
-		{
-			g_signal_emit (self, signals[SIG_FOUND_HIGHLIGHT], 0, hl, i);
-
-			if (index)
-				*index = i;
-
-			/* Because g_list_model_get_item takes a ref, and we want transfer:none */
-			g_object_unref (hl);
-
-			return g_steal_pointer (&hl);
-		}
+		return data->highlight;
 	}
-#endif
 
 	return NULL;
+}
+
+HexHighlight *
+hex_view_find_next_highlight_finish (HexView *self, GAsyncResult *result, guint *index)
+{
+	return generic_find_highlight_finish (self, result, index);
+}
+
+HexHighlight *
+hex_view_find_prev_highlight_finish (HexView *self, GAsyncResult *result, guint *index)
+{
+	return generic_find_highlight_finish (self, result, index);
+}
+
+static void
+generic_highlight_thread_func (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable, HexViewFindHighlightSyncFunc sync_func)
+{
+	HexView *self = source_object;
+	HexHighlightList *highlights = task_data;
+	HexHighlight *highlight_ret;
+	guint index_ret;
+
+	g_assert (HEX_IS_VIEW (self));
+	g_assert (HEX_IS_HIGHLIGHT_LIST (highlights));
+	g_assert (sync_func != NULL);
+
+	if (g_cancellable_is_cancelled (g_task_get_cancellable (task)))
+	{
+		g_task_return_pointer (task, NULL, NULL);
+		return;
+	}
+
+	highlight_ret = sync_func (self, highlights, &index_ret);
+
+	if (highlight_ret)
+	{
+		FindHighlightReturnData *data = g_new0 (FindHighlightReturnData, 1);
+
+		data->highlight = highlight_ret;
+		data->index = index_ret;
+
+		g_task_return_pointer (task, data, g_free);
+		return;
+	}
+
+	g_task_return_pointer (task, NULL, NULL);
+}
+
+static void
+find_next_highlight_thread_func (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable)
+{
+	generic_highlight_thread_func (task, source_object, task_data, cancellable, hex_view_find_next_highlight_sync);
+}
+
+static void
+find_prev_highlight_thread_func (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable)
+{
+	generic_highlight_thread_func (task, source_object, task_data, cancellable, hex_view_find_prev_highlight_sync);
+}
+
+void
+hex_view_find_prev_highlight_async (HexView *self, HexHighlightList *highlights, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data)
+{
+	HexViewPrivate *priv;
+	g_autoptr(GTask) task = NULL;
+
+	g_return_if_fail (HEX_IS_VIEW (self));
+	g_return_if_fail (HEX_IS_HIGHLIGHT_LIST (highlights));
+
+	priv = hex_view_get_instance_private (self);
+
+	if (priv->finding_highlight)
+		return;
+
+	priv->finding_highlight = TRUE;
+
+	task = g_task_new (self, cancellable, callback, user_data);
+	g_task_set_task_data (task, g_object_ref (highlights), g_object_unref);
+	g_task_set_source_tag (task, hex_view_find_prev_highlight_async);
+
+	g_task_run_in_thread (task, find_prev_highlight_thread_func);
+}
+
+void
+hex_view_find_next_highlight_async (HexView *self, HexHighlightList *highlights, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data)
+{
+	HexViewPrivate *priv;
+	g_autoptr(GTask) task = NULL;
+
+	g_return_if_fail (HEX_IS_VIEW (self));
+	g_return_if_fail (HEX_IS_HIGHLIGHT_LIST (highlights));
+
+	priv = hex_view_get_instance_private (self);
+
+	if (priv->finding_highlight)
+		return;
+
+	priv->finding_highlight = TRUE;
+
+	task = g_task_new (self, cancellable, callback, user_data);
+	g_task_set_task_data (task, g_object_ref (highlights), g_object_unref);
+	g_task_set_source_tag (task, hex_view_find_next_highlight_async);
+
+	g_task_run_in_thread (task, find_next_highlight_thread_func);
 }

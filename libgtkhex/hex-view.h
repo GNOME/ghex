@@ -49,7 +49,11 @@ void hex_view_clear_auto_highlights (HexView *self);
 void hex_view_add_mark (HexView *self, HexMark *mark);
 void hex_view_delete_mark (HexView *self, HexMark *mark);
 void hex_view_goto_mark (HexView *self, HexMark *mark);
-HexHighlight * hex_view_find_next_highlight (HexView *self, HexHighlightList *highlights, guint *index);
-HexHighlight * hex_view_find_prev_highlight (HexView *self, HexHighlightList *highlights, guint *index);
+HexHighlight * hex_view_find_next_highlight_sync (HexView *self, HexHighlightList *highlights, guint *index);
+HexHighlight * hex_view_find_prev_highlight_sync (HexView *self, HexHighlightList *highlights, guint *index);
+void hex_view_find_next_highlight_async (HexView *self, HexHighlightList *highlights, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data);
+HexHighlight * hex_view_find_next_highlight_finish (HexView *self, GAsyncResult *result, guint *index);
+void hex_view_find_prev_highlight_async (HexView *self, HexHighlightList *highlights, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data);
+HexHighlight * hex_view_find_prev_highlight_finish (HexView *self, GAsyncResult *result, guint *index);
 
 G_END_DECLS
