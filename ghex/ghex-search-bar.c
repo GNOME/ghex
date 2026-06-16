@@ -118,42 +118,6 @@ _ghex_search_bar_cancel_query (GHexSearchBar *self)
 	_ghex_search_bar_set_auto_highlight (self, NULL);
 }
 
-static void
-auto_highlight_cancellable_cancelled_cb (GCancellable *cancellable, GHexSearchBar *self)
-{
-	g_assert (G_IS_CANCELLABLE (cancellable));
-	g_assert (GHEX_IS_SEARCH_BAR (self));
-
-	/* This looks like it may be semi-recursive since it calls
-	 * _set_auto_highlight where the signal was connected, but that code path
-	 * will not be reached since we're clearing the auto_highlight and it will
-	 * be only passed as NULL.
-	 */
-	_ghex_search_bar_cancel_query (self);
-}
-
-static void
-auto_highlight_notify_cancellable_cb (GHexSearchBar *self, GParamSpec *pspec G_GNUC_UNUSED, HexAutoHighlight *auto_highlight)
-{
-	GCancellable *cancellable;
-
-	g_assert (GHEX_IS_SEARCH_BAR (self));
-	g_assert (HEX_IS_AUTO_HIGHLIGHT (auto_highlight));
-
-	/* Sometimes the auto_highlight cancellable will cancel itself
-	 * other than when it is destroyed - eg, when the search times out.
-	 * If that happens, we want to cancel and clear our search object.
-	 */
-	cancellable = hex_auto_highlight_get_cancellable (auto_highlight);
-
-	/* Trying ref/unref on self here creates a reference cycle that is overly
-	 * complicated to break. We own the object that owns the cancellable, so if
-	 * it's out-living us, we have bigger problems.
-	 */
-	if (cancellable)
-		g_cancellable_connect (cancellable, G_CALLBACK(auto_highlight_cancellable_cancelled_cb), self, NULL);
-}
-
 /* transfer none */
 static void
 _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto_highlight)
@@ -184,15 +148,15 @@ _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto
 	g_clear_object (&old_auto_highlight);
 
 	if (auto_highlight)
+	{
 		self->auto_highlight = g_object_ref (g_steal_pointer (&auto_highlight));
-	else
-		return;
 
-	g_signal_connect_object (self->auto_highlight, "search-progress-update", G_CALLBACK(auto_highlight_search_progress_update_cb), self, G_CONNECT_SWAPPED);
-	g_signal_connect_object (self->auto_highlight, "refresh-complete", G_CALLBACK(auto_highlight_refresh_complete_cb), self, G_CONNECT_SWAPPED);
-	g_signal_connect_object (self->auto_highlight, "notify::cancellable", G_CALLBACK(auto_highlight_notify_cancellable_cb), self, G_CONNECT_SWAPPED);
+		g_signal_connect_object (self->auto_highlight, "search-progress-update", G_CALLBACK(auto_highlight_search_progress_update_cb), self, G_CONNECT_SWAPPED);
+		g_signal_connect_object (self->auto_highlight, "refresh-complete", G_CALLBACK(auto_highlight_refresh_complete_cb), self, G_CONNECT_SWAPPED);
+		g_signal_connect_object (self->auto_highlight, "refresh-cancelled", G_CALLBACK(_ghex_search_bar_cancel_query), self, G_CONNECT_SWAPPED);
 
-	hex_view_insert_auto_highlight (substantive_view, self->auto_highlight);
+		hex_view_insert_auto_highlight (substantive_view, self->auto_highlight);
+	}
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_AUTO_HIGHLIGHT]);
 }
@@ -250,8 +214,8 @@ ghex_search_bar_get_wraparound (GHexSearchBar *self)
 	return self->wraparound;
 }
 
-static void
-_ghex_search_bar_refresh_query (GHexSearchBar *self)
+void
+ghex_search_bar_refresh_query (GHexSearchBar *self)
 {
 	HexDocument *search_entry_doc;
 	HexBuffer *search_entry_buf;
@@ -300,7 +264,7 @@ refresh_search_query_source_func (gpointer data)
 
 	g_assert (GHEX_IS_SEARCH_BAR (self));
 
-	_ghex_search_bar_refresh_query (self);
+	ghex_search_bar_refresh_query (self);
 
 	self->search_entry_refresh_timeout_id = 0;
 	return G_SOURCE_REMOVE;
@@ -526,6 +490,27 @@ ghex_search_bar_get_property (GObject *object,
 }
 
 static void
+next_highlight_found_cb (GObject *source_object, GAsyncResult *res, gpointer data)
+{
+	GHexSearchBar *self = data;
+	HexView *view = (HexView *) source_object;
+	HexHighlight *next_highlight;
+	guint next_highlight_idx;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+	g_assert (HEX_IS_VIEW (view));
+
+	next_highlight = hex_view_find_next_highlight_finish (view, res, &next_highlight_idx);
+
+	if (next_highlight)
+	{
+		guint next_highlight_num = next_highlight_idx + 1;
+
+		ghex_search_bar_set_selected_highlight (self, next_highlight_num);
+	}
+}
+
+static void
 next_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
 {
 	GHexSearchBar *self = GHEX_SEARCH_BAR(user_data);
@@ -541,10 +526,11 @@ next_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 
 	if (n_highlights != 0)
 	{
-		guint next_highlight_num = 0;
 
 		if (self->selected_highlight)
 		{
+			guint next_highlight_num = 0;
+
 			if (self->wraparound)
 			{
 				next_highlight_num = self->selected_highlight + 1;
@@ -556,16 +542,34 @@ next_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 			{
 				next_highlight_num = CLAMP (self->selected_highlight + 1, 1, n_highlights);
 			}
+
+			ghex_search_bar_set_selected_highlight (self, next_highlight_num);
 		}
 		else
 		{
-			guint next_highlight_idx;
-
-			if (hex_view_find_next_highlight (view, hl_list, &next_highlight_idx))
-				next_highlight_num = next_highlight_idx + 1;
+			hex_view_find_next_highlight_async (view, hl_list, NULL, next_highlight_found_cb, self);
 		}
+	}
+}
 
-		ghex_search_bar_set_selected_highlight (self, next_highlight_num);
+static void
+prev_highlight_found_cb (GObject *source_object, GAsyncResult *res, gpointer data)
+{
+	GHexSearchBar *self = data;
+	HexView *view = (HexView *) source_object;
+	HexHighlight *prev_highlight;
+	guint prev_highlight_idx;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+	g_assert (HEX_IS_VIEW (view));
+
+	prev_highlight = hex_view_find_prev_highlight_finish (view, res, &prev_highlight_idx);
+
+	if (prev_highlight)
+	{
+		guint prev_highlight_num = prev_highlight_idx + 1;
+
+		ghex_search_bar_set_selected_highlight (self, prev_highlight_num);
 	}
 }
 
@@ -585,10 +589,10 @@ prev_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 
 	if (n_highlights != 0)
 	{
-		guint prev_highlight_num = 0;
-
 		if (self->selected_highlight)
 		{
+			guint prev_highlight_num = 0;
+
 			if (self->wraparound)
 			{
 				if (self->selected_highlight == 1)
@@ -600,16 +604,13 @@ prev_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 			{
 				prev_highlight_num = CLAMP (self->selected_highlight - 1, 1, n_highlights);
 			}
+
+			ghex_search_bar_set_selected_highlight (self, prev_highlight_num);
 		}
 		else
 		{
-			guint prev_highlight_idx;
-
-			if (hex_view_find_prev_highlight (view, hl_list, &prev_highlight_idx))
-				prev_highlight_num = prev_highlight_idx + 1;
+			hex_view_find_prev_highlight_async (view, hl_list, NULL, prev_highlight_found_cb, self);
 		}
-
-		ghex_search_bar_set_selected_highlight (self, prev_highlight_num);
 	}
 }
 
@@ -646,10 +647,7 @@ ghex_search_bar_init (GHexSearchBar *self)
 
 	g_signal_connect_object (search_entry_doc, "document-changed", G_CALLBACK(search_entry_doc_changed_cb), self, G_CONNECT_SWAPPED);
 
-	// FIXME - WRONG - switching back and forth between tabs causes a refresh. Need a better heuristic
-	g_signal_connect_object (self, "map", G_CALLBACK(_ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
-
-	g_signal_connect_object (self, "notify::search-flags", G_CALLBACK(_ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
+	g_signal_connect_object (self, "notify::search-flags", G_CALLBACK(ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
 
 	/* Setup actions which use bindings to determine when they should be enabled/disabled.
 	 * XREF: class_init, for other actions.
