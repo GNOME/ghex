@@ -298,7 +298,7 @@ search_status_func (gpointer data)
 	self->search_status_timeout_id = 0;
 
 	search_pending = g_weak_ref_get (&self->search_pending_wr);
-	if (! search_pending)
+	if G_UNLIKELY (!search_pending)
 	{
 		g_debug ("%s: Search no longer pending. Will stop checking status.", __func__);
 		return G_SOURCE_REMOVE;
@@ -314,7 +314,7 @@ search_status_func (gpointer data)
 }
 
 static void
-refresh_task_func (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable)
+refresh_task_thread_func (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable)
 {
 	HexAutoHighlight *self = source_object;
 
@@ -339,6 +339,8 @@ cancellable_cancelled_cb (GCancellable *cancellable, HexAutoHighlight *self)
 {
 	g_assert (HEX_IS_AUTO_HIGHLIGHT (self));
 	g_assert (G_IS_CANCELLABLE (cancellable));
+
+	g_clear_handle_id (&self->search_status_timeout_id, g_source_remove);
 
 	g_idle_add_full (G_PRIORITY_DEFAULT, emit_refresh_cancelled__threadsafe, g_object_ref (self), g_object_unref);
 }
@@ -376,7 +378,7 @@ hex_auto_highlight_refresh_async (HexAutoHighlight *self, GCancellable *cancella
 
 	g_object_freeze_notify (G_OBJECT(self->highlights));
 
-	g_task_run_in_thread (task, refresh_task_func);
+	g_task_run_in_thread (task, refresh_task_thread_func);
 }
 
 /* Transfer none */
