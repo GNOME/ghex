@@ -91,6 +91,7 @@ _ghex_search_bar_cancel_query (GHexSearchBar *self)
 	clear_search_progress (self);
 
 	_ghex_search_bar_set_auto_highlight (self, NULL);
+	ghex_search_bar_set_selected_highlight (self, 0);
 }
 
 static void
