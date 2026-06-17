@@ -42,6 +42,9 @@
                     <property name="hexpand">true</property>
                     <property name="show-offsets">false</property>
                     <property name="insert-mode">true</property>
+                    <accessibility>
+                      <property name="label" translatable="yes">Search</property>
+                    </accessibility>
                   </object>
                 </property>
               </object>
@@ -150,25 +153,28 @@
             </child>
 
             <child>
-              <object class="GtkEntry" id="replace_entry">
-                <property name="primary-icon-name">edit-find-replace-symbolic</property>
-                <property name="max-width-chars">20</property>
-                <property name="hexpand">true</property>
-                <property name="visible">false</property>
-                <property name="placeholder-text" translatable="yes">Replace</property>
-                <accessibility>
-                  <property name="label" translatable="yes">Replace</property>
-                </accessibility>
+              <object class="GtkScrolledWindow" id="replace_entry_sw">
                 <layout>
                   <property name="row">2</property>
                   <property name="column">0</property>
+                  <property name="row-span">2</property>
                 </layout>
+                <property name="visible">false</property>
+                <property name="child">
+                  <object class="HexWidget" id="replace_entry">
+                    <style>
+                      <class name="search-entry"/>
+                    </style>
+                    <property name="hexpand">true</property>
+                    <property name="show-offsets">false</property>
+                    <property name="insert-mode">true</property>
+                  </object>
+                </property>
               </object>
             </child>
-
             <child>
               <object class="GtkButton" id="replace_button">
-                <property name="action-name">search.replace-one</property>
+                <property name="action-name">find.replace-one</property>
                 <property name="use-underline">true</property>
                 <property name="label" translatable="yes">_Replace</property>
                 <property name="visible">false</property>
@@ -182,7 +188,7 @@
             </child>
             <child>
               <object class="GtkButton" id="replace_all_button">
-                <property name="action-name">search.replace-all</property>
+                <property name="action-name">find.replace-all</property>
                 <property name="use-underline">true</property>
                 <property name="label" translatable="yes">Replace _All</property>
                 <property name="visible">false</property>
