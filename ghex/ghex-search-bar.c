@@ -52,7 +52,8 @@ struct _GHexSearchBar
 	GtkWidget *breakpoint_bin;
 	GtkButton *replace_all_button;
 	GtkButton *replace_button;
-	GtkButton *replace_entry;
+	HexView *replace_entry;
+	GtkScrolledWindow *replace_entry_sw;
 	HexView *search_entry;
 	GtkRevealer *search_progress_revealer;
 	GtkProgressBar *search_progress_bar;
@@ -63,6 +64,25 @@ struct _GHexSearchBar
 G_DEFINE_FINAL_TYPE (GHexSearchBar, ghex_search_bar, GHEX_TYPE_PANE)
 
 static void _ghex_search_bar_set_auto_highlight (GHexSearchBar *self, HexAutoHighlight *auto_highlight);
+
+static char *
+get_search_string (HexDocument *doc, gint64 *sizep)
+{
+	char *retval = NULL;
+	gint64 size = 0;
+
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	size = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
+	
+	if (size > 0)
+		retval = hex_buffer_get_data (hex_document_get_buffer (doc), 0, size);
+
+	if (retval && sizep)
+		*sizep = size;
+
+	return retval;
+}
 
 static void
 show_search_progress (GHexSearchBar *self)
@@ -219,7 +239,7 @@ ghex_search_bar_set_replace_mode (GHexSearchBar *self, gboolean replace_mode)
 {
 	g_return_if_fail (GHEX_IS_SEARCH_BAR (self));
 
-	gpointer replace_widgets[] = {self->replace_all_button, self->replace_button, self->replace_entry};
+	gpointer replace_widgets[] = {self->replace_all_button, self->replace_button, self->replace_entry_sw};
 
 	if (replace_mode == self->replace_mode)
 		return;
@@ -679,15 +699,47 @@ prev_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 }
 
 static void
-clear_matches_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+replace_one_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
 {
-	GHexSearchBar *self = GHEX_SEARCH_BAR(user_data);
-	HexView *view = ghex_pane_get_hex (GHEX_PANE(self));
+	GHexSearchBar *self = user_data;
+	HexView *view;
+	HexDocument *replace_entry_doc, *substantive_doc;
+	gboolean insert_mode;
+	HexHighlightList *hl_list;
+	g_autoptr(HexHighlight) highlight = NULL;
+	guint highlight_idx;
+	size_t data_len, rep_len;
+	g_autofree char *replace_entry_str = NULL;
+	gint64 replace_entry_len = 0;
 
-	if (!view)
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	view = ghex_pane_get_hex (GHEX_PANE(self));
+
+	if (!self->auto_highlight || !view)
 		return;
 
-	hex_view_clear_auto_highlights (view);
+	/* If we've got this far, this can't be true because the action would be
+	 * disabled otherwise */
+	g_assert (self->selected_highlight != 0);
+
+	hl_list = hex_auto_highlight_get_highlights (self->auto_highlight);
+	highlight_idx = self->selected_highlight - 1;
+	highlight = g_list_model_get_item (G_LIST_MODEL(hl_list), highlight_idx);
+
+	g_assert (HEX_IS_HIGHLIGHT (highlight));
+
+	replace_entry_doc = hex_view_get_document (self->replace_entry);
+	substantive_doc = hex_view_get_document (view);
+
+	insert_mode = hex_view_get_insert_mode (view);
+	replace_entry_str = get_search_string (replace_entry_doc, &replace_entry_len);
+	rep_len = highlight->end_offset - highlight->start_offset + 1;
+	data_len = insert_mode ? replace_entry_len : rep_len;
+
+	hex_document_set_data (substantive_doc, highlight->start_offset, data_len, rep_len, replace_entry_str, TRUE);
+
+	ghex_search_bar_refresh_query (self);
 }
 
 static void
@@ -714,7 +766,7 @@ ghex_search_bar_init (GHexSearchBar *self)
 		GActionEntry find_entries[] = {
 			{"next-match", next_match_action},
 			{"prev-match", prev_match_action},
-			{"clear-matches", clear_matches_action},
+			{"replace-one", replace_one_action},
 		};
 		g_autoptr(GSimpleActionGroup) find_actions = g_simple_action_group_new ();
 		GAction *action;
@@ -728,6 +780,10 @@ ghex_search_bar_init (GHexSearchBar *self)
 
 		action = g_action_map_lookup_action (G_ACTION_MAP(find_actions), "prev-match");
 		g_object_bind_property_full (self, "auto-highlight", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
+
+		action = g_action_map_lookup_action (G_ACTION_MAP(find_actions), "replace-one");
+		/* Abuse the fact that gboolean isn't really a boolean (ie, 0 is false, anything else is true) to avoid using a transform_to */
+		g_object_bind_property (self, "selected-highlight", action, "enabled", G_BINDING_SYNC_CREATE);
 	}
 }
 
@@ -823,6 +879,7 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, replace_all_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, replace_button);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, replace_entry);
+	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, replace_entry_sw);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_entry);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_revealer);
 	gtk_widget_class_bind_template_child (widget_class, GHexSearchBar, search_progress_bar);

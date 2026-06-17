@@ -44,8 +44,6 @@ hex_highlight_list_get_n_items (GListModel *list)
 	return self->arr->len;
 }
 
-/* This will be slow with a large number of items. Not recommended for general usage. */
-
 static gpointer
 hex_highlight_list_get_item (GListModel *list, guint position)
 {
