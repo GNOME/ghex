@@ -46,6 +46,9 @@ struct _GHexSearchBar
 
 	guint search_entry_refresh_timeout_id;
 
+	gulong substantive_view_set_handler;
+	gulong substantive_doc_set_handler;
+
 	/* From template: */
 
 	/* direct parent; otherwise unused */
@@ -743,6 +746,39 @@ replace_one_action (GSimpleAction *action, GVariant *parameter, gpointer user_da
 }
 
 static void
+substantive_doc_set_cb (GHexSearchBar *self, GParamSpec *pspec G_GNUC_UNUSED, HexView *view)
+{
+	HexDocument *substantive_doc;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+	g_assert (HEX_IS_VIEW (view));
+
+	substantive_doc = hex_view_get_document (view);
+
+	g_signal_connect_object (substantive_doc, "document-changed", G_CALLBACK(ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
+}
+
+static void
+substantive_view_set_cb (GHexSearchBar *self)
+{
+	HexView *view;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	view = ghex_pane_get_hex (GHEX_PANE(self));
+	if (!view) return;	/* view is can-null */
+	g_assert (HEX_IS_VIEW (view));
+
+	if (self->substantive_doc_set_handler)
+	{
+		g_warning ("%s: %s only allows the :hex property to be set once", __func__, G_OBJECT_TYPE_NAME (self));
+		return;
+	}
+
+	self->substantive_doc_set_handler = g_signal_connect_object (view, "notify::document", G_CALLBACK(substantive_doc_set_cb), self, G_CONNECT_SWAPPED);
+}
+
+static void
 ghex_search_bar_close (GHexPane *pane)
 {
 	GHexSearchBar *self = GHEX_SEARCH_BAR(pane);
@@ -758,6 +794,7 @@ ghex_search_bar_init (GHexSearchBar *self)
 	gtk_widget_init_template (GTK_WIDGET(self));
 
 	g_signal_connect_object (self, "notify::search-flags", G_CALLBACK(ghex_search_bar_refresh_query), self, G_CONNECT_SWAPPED);
+	g_signal_connect (self, "notify::hex", G_CALLBACK(substantive_view_set_cb), NULL);
 
 	/* Setup actions which use bindings to determine when they should be enabled/disabled.
 	 * XREF: class_init, for other actions.
