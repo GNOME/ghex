@@ -11,10 +11,6 @@
  */
 #define PROGRESS_REFRESH_RATE 1.0
 
-/* Number of seconds (as integer) we're willing to wait for a threaded search to take before we give up.
- */
-#define SEARCH_TIMEOUT 20
-
 enum
 {
 	PROP_0,
@@ -286,43 +282,12 @@ hex_auto_highlight_refresh_finish (HexAutoHighlight *self, GAsyncResult *result)
 	return g_task_propagate_boolean (G_TASK(result), NULL);
 }
 
-static gboolean
-search_status_func (gpointer data)
-{
-	HexAutoHighlight *self = data;
-	GCancellable *cancellable = NULL;
-	g_autoptr(GTask) search_pending = NULL;
-
-	g_assert (HEX_IS_AUTO_HIGHLIGHT (self));
-
-	self->search_status_timeout_id = 0;
-
-	search_pending = g_weak_ref_get (&self->search_pending_wr);
-	if G_UNLIKELY (!search_pending)
-	{
-		g_debug ("%s: Search no longer pending. Will stop checking status.", __func__);
-		return G_SOURCE_REMOVE;
-	}
-
-	g_return_val_if_fail (g_task_is_valid (search_pending, self), G_SOURCE_REMOVE);
-
-	cancellable = g_task_get_cancellable (search_pending);
-	g_debug ("%s: search has taken longer than %d seconds. Cancelling.", __func__, SEARCH_TIMEOUT);
-	g_cancellable_cancel (cancellable);
-
-	return G_SOURCE_REMOVE;
-}
-
 static void
 refresh_task_thread_func (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable)
 {
 	HexAutoHighlight *self = source_object;
 
 	g_assert (g_task_is_valid (task, source_object));
-
-	g_clear_handle_id (&self->search_status_timeout_id, g_source_remove);
-	
-	self->search_status_timeout_id = g_timeout_add_seconds_full (G_PRIORITY_LOW, SEARCH_TIMEOUT, search_status_func, g_object_ref (self), g_object_unref);
 
 	do_refresh (self, TRUE);
 
@@ -339,8 +304,6 @@ cancellable_cancelled_cb (GCancellable *cancellable, HexAutoHighlight *self)
 {
 	g_assert (HEX_IS_AUTO_HIGHLIGHT (self));
 	g_assert (G_IS_CANCELLABLE (cancellable));
-
-	g_clear_handle_id (&self->search_status_timeout_id, g_source_remove);
 
 	g_idle_add_full (G_PRIORITY_DEFAULT, emit_refresh_cancelled__threadsafe, g_object_ref (self), g_object_unref);
 }
@@ -543,7 +506,6 @@ hex_auto_highlight_dispose (GObject *object)
 		g_weak_ref_set (&self->search_pending_wr, NULL);
 	}
 
-	g_clear_handle_id (&self->search_status_timeout_id, g_source_remove);
 	g_clear_object (&self->document);
 	g_clear_object (&self->highlights); 
 	g_clear_object (&self->search_info);

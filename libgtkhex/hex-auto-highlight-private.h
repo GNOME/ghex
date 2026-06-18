@@ -28,7 +28,6 @@ struct _HexAutoHighlight
 
 	GCancellable *cancellable;
 	GWeakRef search_pending_wr;
-	guint search_status_timeout_id;
 };
 
 //GListModel * _hex_auto_highlight_build_1d_list (GListModel *list);
