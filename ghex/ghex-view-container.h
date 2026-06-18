@@ -1,3 +1,5 @@
+// vim: linebreak breakindent breakindentopt=shift\:4
+
 #pragma once
 
 #include "hex-widget.h"

@@ -1,3 +1,5 @@
+// vim: linebreak breakindent breakindentopt=shift\:4
+
 #include "ghex-view-container.h"
 
 #include "ghex-conversion-pane.h"
@@ -384,6 +386,39 @@ revealer_close_cb (GtkRevealer *revealer)
 }
 
 static void
+doc_changed_refresh_search_bar_cb (GHexViewContainer *self, HexChangeData *change_data G_GNUC_UNUSED, gboolean undoable G_GNUC_UNUSED, HexDocument *doc)
+{
+	g_assert (GHEX_IS_VIEW_CONTAINER (self));
+	g_assert (HEX_IS_DOCUMENT (doc));
+
+	if (doc != hex_view_get_document (HEX_VIEW(self->hex)))
+	{
+		g_debug ("%s: stale doc %p detected - disconnecting signal handler", __func__, doc);
+		g_signal_handlers_disconnect_by_func (doc, doc_changed_refresh_search_bar_cb, self);
+		return;
+	}
+
+	if (! self->show_search_bar)
+		return;
+
+	ghex_search_bar_refresh_query (self->search_bar);
+}
+
+static void
+doc_set_cb (GHexViewContainer *self, GParamSpec *pspec G_GNUC_UNUSED, HexView *view)
+{
+	HexDocument *doc;
+
+	g_assert (GHEX_IS_VIEW_CONTAINER (self));
+	g_assert (HEX_IS_VIEW (view));
+	g_assert (view == (HexView *)self->hex);
+
+	doc = hex_view_get_document (HEX_VIEW(self->hex));
+
+	g_signal_connect_object (doc, "document-changed", G_CALLBACK(doc_changed_refresh_search_bar_cb), self, G_CONNECT_SWAPPED);
+}
+
+static void
 bind_settings (GHexViewContainer *self)
 {
 	GSettings *settings = ghex_get_global_settings ();
@@ -444,6 +479,8 @@ ghex_view_container_constructed (GObject *object)
 	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self->hex));
 
 	g_signal_connect_object (selection, "notify::cursor-pos", G_CALLBACK(sel_cursor_pos_notify_conversion_pane_cb), self, G_CONNECT_SWAPPED);
+
+	g_signal_connect_object (self->hex, "notify::document", G_CALLBACK(doc_set_cb), self, G_CONNECT_SWAPPED);
 }
 
 static void
