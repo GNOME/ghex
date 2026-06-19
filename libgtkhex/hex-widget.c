@@ -625,6 +625,47 @@ hex_widget_get_property (GObject *object,
 	}
 }
 
+static gboolean
+hex_widget_focus (GtkWidget *widget, GtkDirectionType dir)
+{
+	HexWidget *self = HEX_WIDGET(widget);
+
+	switch (dir)
+	{
+		case GTK_DIR_TAB_BACKWARD:
+			if (gtk_widget_is_focus (self->xdisp))
+				return FALSE;
+			else if (gtk_widget_is_focus (self->adisp))
+				return gtk_widget_grab_focus (self->xdisp);
+			break;
+
+		case GTK_DIR_TAB_FORWARD:
+			if (gtk_widget_is_focus (self->adisp))
+				return FALSE;
+			else if (gtk_widget_is_focus (self->xdisp))
+				return gtk_widget_grab_focus (self->adisp);
+			break;
+
+		default:
+			break;
+	}
+
+	return GTK_WIDGET_CLASS (hex_widget_parent_class)->focus (widget, dir);
+}
+
+static gboolean
+hex_widget_grab_focus (GtkWidget *widget)
+{
+	HexWidget *self = HEX_WIDGET(widget);
+
+	if (hex_widget_get_show_hex (self) && gtk_widget_grab_focus (self->xdisp))
+		return TRUE;
+	else if (hex_widget_get_show_ascii (self) && gtk_widget_grab_focus (self->adisp))
+		return TRUE;
+
+	return GTK_WIDGET_CLASS (hex_widget_parent_class)->grab_focus (widget);
+}
+
 static void
 hex_widget_dispose (GObject *object)
 {
@@ -684,6 +725,9 @@ hex_widget_class_init (HexWidgetClass *klass)
 	object_class->finalize = hex_widget_finalize;
 	object_class->set_property = hex_widget_set_property;
 	object_class->get_property = hex_widget_get_property;
+
+	widget_class->focus = hex_widget_focus;
+	widget_class->grab_focus = hex_widget_grab_focus;
 
 	/* TEMPLATE */
 
@@ -773,6 +817,8 @@ static void
 hex_widget_init (HexWidget *self)
 {
 	gtk_widget_init_template (GTK_WIDGET(self));
+
+	gtk_widget_set_focusable (GTK_WIDGET(self), TRUE);
 
 	g_signal_connect (self, "notify::document", G_CALLBACK(document_set_cb), NULL);
 	g_signal_connect (self, "notify::font", G_CALLBACK(font_set_cb), NULL);
