@@ -461,6 +461,8 @@ ghex_search_bar_set_selected_highlight (GHexSearchBar *self, guint selected_high
 					HexSelection *selection = hex_view_get_selection (view);
 
 					hex_selection_collapse (selection, highlight->start_offset);
+
+					gtk_widget_grab_focus (GTK_WIDGET(view));
 				}
 
 				/* Translators: This is the selected search result out of the
