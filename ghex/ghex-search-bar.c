@@ -700,35 +700,24 @@ prev_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 }
 
 static void
-replace_one_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+replace_highlight_at_idx (GHexSearchBar *self, HexHighlightList *hl_list, guint highlight_idx)
 {
-	GHexSearchBar *self = user_data;
 	HexView *view;
 	HexDocument *replace_entry_doc, *substantive_doc;
 	gboolean insert_mode;
-	HexHighlightList *hl_list;
-	g_autoptr(HexHighlight) highlight = NULL;
-	guint highlight_idx;
-	size_t data_len, rep_len;
 	g_autofree char *replace_entry_str = NULL;
 	gint64 replace_entry_len = 0;
+	size_t rep_len, data_len;
+	g_autoptr(HexHighlight) highlight = NULL;
 
 	g_assert (GHEX_IS_SEARCH_BAR (self));
+	g_assert (HEX_IS_HIGHLIGHT_LIST (hl_list));
+	g_assert (highlight_idx < g_list_model_get_n_items (G_LIST_MODEL(hl_list)));
 
 	view = ghex_pane_get_hex (GHEX_PANE(self));
+	if (!view) return;
 
-	if (!self->auto_highlight || !view)
-		return;
-
-	/* If we've got this far, this can't be true because the action would be
-	 * disabled otherwise */
-	g_assert (self->selected_highlight != 0);
-
-	hl_list = hex_auto_highlight_get_highlights (self->auto_highlight);
-	highlight_idx = self->selected_highlight - 1;
 	highlight = g_list_model_get_item (G_LIST_MODEL(hl_list), highlight_idx);
-
-	g_assert (HEX_IS_HIGHLIGHT (highlight));
 
 	replace_entry_doc = hex_view_get_document (self->replace_entry);
 	substantive_doc = hex_view_get_document (view);
@@ -739,8 +728,105 @@ replace_one_action (GSimpleAction *action, GVariant *parameter, gpointer user_da
 	data_len = insert_mode ? replace_entry_len : rep_len;
 
 	hex_document_set_data (substantive_doc, highlight->start_offset, data_len, rep_len, replace_entry_str, TRUE);
+}
+
+static void
+replace_selected_highlight (GHexSearchBar *self)
+{
+	HexHighlightList *hl_list;
+	guint highlight_idx;
+
+	if (!self->auto_highlight)
+		return;
+
+	hl_list = hex_auto_highlight_get_highlights (self->auto_highlight);
+	highlight_idx = self->selected_highlight - 1;
+
+	replace_highlight_at_idx (self, hl_list, highlight_idx);
+}
+
+static void
+replace_one_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+	GHexSearchBar *self = user_data;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	/* If we've got this far, this can't be true because the action would be
+	 * disabled otherwise */
+	g_assert (self->selected_highlight != 0);
+
+	replace_selected_highlight (self);
 
 	ghex_search_bar_refresh_query (self);
+}
+
+static void replace_all_looper (GHexSearchBar *self, HexAutoHighlight *our_ahl);
+static void replace_all_refresh_ready_cb (GObject *source_object, GAsyncResult *res, gpointer data);
+
+static void
+replace_all_looper (GHexSearchBar *self, HexAutoHighlight *our_ahl)
+{
+	HexHighlightList *hl_list;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (our_ahl));
+
+	hl_list = hex_auto_highlight_get_highlights (our_ahl);
+
+	if (g_list_model_get_n_items (G_LIST_MODEL(hl_list)) > 0)
+	{
+		hex_auto_highlight_refresh_async (our_ahl, /*cancellable TODO*/ NULL, replace_all_refresh_ready_cb, g_object_ref (self));
+
+		return;
+	}
+
+	/* Break out of the loop and drop our reference to the ahl, which we no longer need. */
+	g_object_unref (our_ahl);
+
+	ghex_search_bar_refresh_query (self);
+}
+
+static void
+replace_all_refresh_ready_cb (GObject *source_object, GAsyncResult *res, gpointer data)
+{
+	/* hex_auto_highlight_refresh_async took a ref */
+	g_autoptr(GHexSearchBar) self = data;
+	HexAutoHighlight *our_ahl = (HexAutoHighlight *) source_object;
+	HexHighlightList *hl_list;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (our_ahl));
+
+	hl_list = hex_auto_highlight_get_highlights (our_ahl);
+
+	if (g_list_model_get_n_items (G_LIST_MODEL(hl_list)) > 0)
+		replace_highlight_at_idx (self, HEX_HIGHLIGHT_LIST(hl_list), 0);
+
+	replace_all_looper (self, our_ahl);
+}
+
+static void
+replace_all_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+	GHexSearchBar *self = user_data;
+	HexView *view;
+	HexHighlightList *hl_list;
+	HexAutoHighlight *our_ahl = NULL;
+	g_autoptr(GTask) task = NULL;
+
+	g_assert (GHEX_IS_SEARCH_BAR (self));
+
+	view = ghex_pane_get_hex (GHEX_PANE(self));
+
+	if (!self->auto_highlight || !view)
+		return;
+
+	our_ahl = g_object_ref (self->auto_highlight);
+	g_signal_handlers_disconnect_by_data (our_ahl, self);
+	_ghex_search_bar_set_auto_highlight (self, NULL);
+
+	replace_all_looper (self, our_ahl);
 }
 
 static void
@@ -768,6 +854,7 @@ ghex_search_bar_init (GHexSearchBar *self)
 			{"next-match", next_match_action},
 			{"prev-match", prev_match_action},
 			{"replace-one", replace_one_action},
+			{"replace-all", replace_all_action},
 		};
 		g_autoptr(GSimpleActionGroup) find_actions = g_simple_action_group_new ();
 		GAction *action;
@@ -785,6 +872,9 @@ ghex_search_bar_init (GHexSearchBar *self)
 		action = g_action_map_lookup_action (G_ACTION_MAP(find_actions), "replace-one");
 		/* Abuse the fact that gboolean isn't really a boolean (ie, 0 is false, anything else is true) to avoid using a transform_to */
 		g_object_bind_property (self, "selected-highlight", action, "enabled", G_BINDING_SYNC_CREATE);
+
+		action = g_action_map_lookup_action (G_ACTION_MAP(find_actions), "replace-all");
+		g_object_bind_property_full (self, "auto-highlight", action, "enabled", G_BINDING_SYNC_CREATE, util_have_object_transform_to, NULL, NULL, NULL);
 	}
 }
 
