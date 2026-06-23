@@ -350,7 +350,7 @@ undo_stack_free(HexDocument *doc)
 }
 
 static void
-hex_document_file_changed_cb (HexDocument *doc,
+monitor_file_changed_cb (HexDocument *doc,
                               GParamSpec *pspec,
                               HexFileMonitor *monitor)
 {
@@ -360,11 +360,12 @@ hex_document_file_changed_cb (HexDocument *doc,
 
 		_hex_document_set_changed (doc, TRUE);
 
-		// FIXME - leak
 		change_data = g_new0 (HexChangeData, 1);
 		change_data->external_file_change = TRUE;
 
 		hex_document_changed (doc, change_data, FALSE);
+
+		g_free (change_data);
 	}
 }
 
@@ -616,7 +617,7 @@ hex_document_set_file (HexDocument *doc, GFile *file)
 	doc->monitor = hex_file_monitor_new (file);
 	g_signal_connect_object(doc->monitor,
 	                        "notify::changed",
-	                        G_CALLBACK (hex_document_file_changed_cb),
+	                        G_CALLBACK (monitor_file_changed_cb),
 	                        doc,
 	                        G_CONNECT_SWAPPED);
 
