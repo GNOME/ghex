@@ -271,16 +271,18 @@ undo_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
 	HexWidget *self = user_data;
 	HexDocument *document = hex_view_get_document (HEX_VIEW(self));
 	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
-	HexChangeData *cd;
+	GListModel *change_list;
+	g_autoptr(HexChangeData) last_change = NULL;
 
 	g_assert (HEX_IS_DOCUMENT (document));
 	g_assert (hex_document_get_can_undo (document));
 
-	cd = hex_document_get_undo_data (document);
+	change_list = hex_document_get_undo_data (document);
+	last_change = g_list_model_get_item (change_list, g_list_model_get_n_items (change_list) - 1);
 
 	hex_document_undo (document);
 
-	hex_selection_collapse (selection, hex_change_data_get_start_offset (cd));
+	hex_selection_collapse (selection, hex_change_data_get_start_offset (last_change));
 }
 
 static void
@@ -289,16 +291,18 @@ redo_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
 	HexWidget *self = user_data;
 	HexDocument *document = hex_view_get_document (HEX_VIEW(self));
 	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
-	HexChangeData *cd;
+	GListModel *change_list;
+	g_autoptr(HexChangeData) last_change = NULL;
 
 	g_assert (HEX_IS_DOCUMENT (document));
 	g_assert (hex_document_get_can_redo (document));
 
 	hex_document_redo (document);
 
-	cd = hex_document_get_undo_data (document);
+	change_list = hex_document_get_undo_data (document);
+	last_change = g_list_model_get_item (change_list, g_list_model_get_n_items (change_list) - 1);
 
-	hex_selection_collapse (selection, hex_change_data_get_start_offset (cd));
+	hex_selection_collapse (selection, hex_change_data_get_start_offset (last_change));
 }
 
 static void
