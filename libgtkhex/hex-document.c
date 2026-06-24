@@ -45,19 +45,16 @@
 
 #include <config.h>
 
-static void hex_document_real_changed   (HexDocument *doc,
-										 HexChangeData *change_data,
-										 gboolean undoable);
+static void hex_document_real_changed   (HexDocument *doc, GListModel *change_list, gboolean undoable);
 static void hex_document_real_redo      (HexDocument *doc);
 static void hex_document_real_undo      (HexDocument *doc);
 static void free_stack                  (GList *stack);
-static gint undo_stack_push             (HexDocument *doc,
-									     HexChangeData *change_data);
+static void undo_stack_push             (HexDocument *doc, GListModel *change_list);
 static void undo_stack_descend          (HexDocument *doc);
 static void undo_stack_ascend           (HexDocument *doc);
 static void undo_stack_free             (HexDocument *doc);
 
-#define DEFAULT_UNDO_DEPTH 1024
+#define MAX_UNDO_DEPTH 1024
 #define REGEX_SEARCH_LEN 1024
 
 /* SIGNALS */
@@ -93,10 +90,33 @@ static GParamSpec *properties[N_PROPERTIES];
 
 /* <HexChangeData> */
 
+G_DEFINE_FINAL_TYPE (HexChangeData, hex_change_data, G_TYPE_OBJECT)
+
+static void
+hex_change_data_init (HexChangeData *data)
+{
+}
+
+static void
+hex_change_data_finalize (GObject *object)
+{
+	HexChangeData *data = HEX_CHANGE_DATA(object);
+
+	g_free (data->v_string);
+}
+
+static void
+hex_change_data_class_init (HexChangeDataClass *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS(klass);
+
+	object_class->finalize = hex_change_data_finalize;
+}
+
 gint64
 hex_change_data_get_start_offset (HexChangeData *data)
 {
-	g_return_val_if_fail (data != NULL, 0);
+	g_return_val_if_fail (HEX_IS_CHANGE_DATA (data), 0);
 
 	return data->start;
 }
@@ -104,7 +124,7 @@ hex_change_data_get_start_offset (HexChangeData *data)
 gint64
 hex_change_data_get_end_offset (HexChangeData *data)
 {
-	g_return_val_if_fail (data != NULL, 0);
+	g_return_val_if_fail (HEX_IS_CHANGE_DATA (data), 0);
 
 	return data->end;
 }
@@ -112,7 +132,7 @@ hex_change_data_get_end_offset (HexChangeData *data)
 gboolean
 hex_change_data_get_external_file_change (HexChangeData *data)
 {
-	g_return_val_if_fail (data != NULL, 0);
+	g_return_val_if_fail (HEX_IS_CHANGE_DATA (data), 0);
 
 	return data->external_file_change;
 }
@@ -120,34 +140,6 @@ hex_change_data_get_external_file_change (HexChangeData *data)
 // FIXME/TODO - more accessor functions? Let's let this cook for a bit and see where we want to go with this concept.
 
 /* </HexChangeData> */
-
-/* HexChangeData GType Definitions */
-
-static HexChangeData *
-hex_change_data_copy (HexChangeData *data)
-{
-	HexChangeData *new = NULL;
-
-	g_return_val_if_fail (data != NULL, NULL);
-
-	new = g_new0 (HexChangeData, 1);
-
-	new->start = data->start;
-	new->end = data->end;
-	new->rep_len = data->rep_len;
-	new->lower_nibble = data->lower_nibble;
-	new->insert = data->insert;
-	new->type = data->type;
-	new->v_string = g_strdup (data->v_string);
-	new->v_byte = data->v_byte;
-	new->external_file_change = data->external_file_change;
-
-	return new;
-}
-
-G_DEFINE_BOXED_TYPE (HexChangeData, hex_change_data,
-		hex_change_data_copy, g_free)
-
 
 /* GOBJECT DEFINITION */
 
@@ -173,7 +165,6 @@ struct _HexDocument
 	GList *undo_stack; /* stack base */
 	GList *undo_top;   /* top of the stack (for redo) */
 	int undo_depth;  /* number of els on stack */
-	int undo_max;    /* max undo depth */
 };
 
 G_DEFINE_FINAL_TYPE (HexDocument, hex_document, G_TYPE_OBJECT)
@@ -246,27 +237,25 @@ hex_document_get_property (GObject *object,
 /* ---- */
 
 static void
-free_stack(GList *stack)
+free_stack (GList *stack)
 {
-	HexChangeData *cd;
+	if (!stack)
+		return;
 
-	while(stack) {
-		cd = (HexChangeData *)stack->data;
-		if(cd->v_string)
-			g_free (cd->v_string);
-		stack = g_list_remove(stack, cd);
-		g_free (cd);
-	}
+	g_list_free_full (stack, g_object_unref);
 }
 
-static gint
-undo_stack_push(HexDocument *doc, HexChangeData *change_data)
+/* change_list: transfer none (takes a ref) */
+static void
+undo_stack_push (HexDocument *doc, GListModel *change_list)
 {
-	HexChangeData *cd;
-	GList *stack_rest;
+	g_assert (HEX_IS_DOCUMENT (doc));
+	g_assert (G_IS_LIST_MODEL (change_list));
 
-	if(doc->undo_stack != doc->undo_top) {
-		stack_rest = doc->undo_stack;
+	if (doc->undo_stack != doc->undo_top)
+	{
+		GList *stack_rest = doc->undo_stack;
+
 		doc->undo_stack = doc->undo_top;
 		if(doc->undo_top) {
 			doc->undo_top->prev->next = NULL;
@@ -275,40 +264,28 @@ undo_stack_push(HexDocument *doc, HexChangeData *change_data)
 		free_stack(stack_rest);
 	}
 
-	if((cd = g_new(HexChangeData, 1)) != NULL) {
-		memcpy(cd, change_data, sizeof(HexChangeData));
-		if(change_data->v_string) {
-			cd->v_string = g_malloc(cd->rep_len);
-			memcpy(cd->v_string, change_data->v_string, cd->rep_len);
-		}
+	doc->undo_depth++;
 
-		doc->undo_depth++;
+	if(doc->undo_depth > MAX_UNDO_DEPTH) {
+		GList *last;
 
-		if(doc->undo_depth > doc->undo_max) {
-			GList *last;
-
-			last = g_list_last(doc->undo_stack);
-			doc->undo_stack = g_list_remove_link(doc->undo_stack, last);
-			doc->undo_depth--;
-			free_stack(last);
-		}
-
-		doc->undo_stack = g_list_prepend(doc->undo_stack, cd);
-		doc->undo_top = doc->undo_stack;
-
-		g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_UNDO]);
-		g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_REDO]);
-
-		return TRUE;
+		last = g_list_last(doc->undo_stack);
+		doc->undo_stack = g_list_remove_link(doc->undo_stack, last);
+		doc->undo_depth--;
+		free_stack(last);
 	}
 
-	return FALSE;
+	doc->undo_stack = g_list_prepend (doc->undo_stack, g_object_ref (change_list));
+	doc->undo_top = doc->undo_stack;
+
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_UNDO]);
+	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_REDO]);
 }
 
 static void
-undo_stack_descend(HexDocument *doc)
+undo_stack_descend (HexDocument *doc)
 {
-	if(doc->undo_top == NULL)
+	if (doc->undo_top == NULL)
 		return;
 
 	doc->undo_top = doc->undo_top->next;
@@ -319,15 +296,16 @@ undo_stack_descend(HexDocument *doc)
 }
 
 static void
-undo_stack_ascend(HexDocument *doc)
+undo_stack_ascend (HexDocument *doc)
 {
-	if(doc->undo_stack == NULL || doc->undo_top == doc->undo_stack)
+	if (doc->undo_stack == NULL || doc->undo_top == doc->undo_stack)
 		return;
 
-	if(doc->undo_top == NULL)
-		doc->undo_top = g_list_last(doc->undo_stack);
+	if (doc->undo_top == NULL)
+		doc->undo_top = g_list_last (doc->undo_stack);
 	else
 		doc->undo_top = doc->undo_top->prev;
+
 	doc->undo_depth++;
 
 	g_object_notify_by_pspec (G_OBJECT(doc), properties[PROP_CAN_UNDO]);
@@ -335,13 +313,12 @@ undo_stack_ascend(HexDocument *doc)
 }
 
 static void
-undo_stack_free(HexDocument *doc)
+undo_stack_free (HexDocument *doc)
 {
-	if(doc->undo_stack == NULL)
+	if (doc->undo_stack == NULL)
 		return;
 
-	free_stack(doc->undo_stack);
-	doc->undo_stack = NULL;
+	g_clear_pointer (&doc->undo_stack, free_stack);
 	doc->undo_top = NULL;
 	doc->undo_depth = 0;
 
@@ -356,16 +333,14 @@ monitor_file_changed_cb (HexDocument *doc,
 {
 	if (hex_file_monitor_get_changed(monitor))
 	{
-		HexChangeData *change_data;
+		g_autoptr(HexChangeData) change_data = NULL;
 
 		_hex_document_set_changed (doc, TRUE);
 
-		change_data = g_new0 (HexChangeData, 1);
+		change_data = g_object_new (HEX_TYPE_CHANGE_DATA, NULL);
 		change_data->external_file_change = TRUE;
 
 		hex_document_changed (doc, change_data, FALSE);
-
-		g_free (change_data);
 	}
 }
 
@@ -392,11 +367,13 @@ hex_document_finalize (GObject *obj)
 }
 
 static void
-hex_document_real_changed (HexDocument *doc, HexChangeData *change_data,
-						  gboolean push_undo)
+hex_document_real_changed (HexDocument *doc, GListModel *change_list, gboolean undoable)
 {
-	if (push_undo && doc->undo_max > 0)
-		undo_stack_push (doc, change_data);
+	g_assert (HEX_IS_DOCUMENT (doc));
+	g_assert (G_IS_LIST_MODEL (change_list) && g_list_model_get_item_type (change_list) == HEX_TYPE_CHANGE_DATA);
+
+	if (undoable)
+		undo_stack_push (doc, change_list);
 }
 
 static void
@@ -444,7 +421,8 @@ hex_document_class_init (HexDocumentClass *klass)
 				G_CALLBACK(hex_document_real_changed),
 				NULL, NULL, NULL,
 				G_TYPE_NONE,
-				2, HEX_TYPE_CHANGE_DATA, G_TYPE_BOOLEAN);
+				2,
+				G_TYPE_LIST_MODEL, G_TYPE_BOOLEAN);
 
 	hex_signals[UNDO] = 
 		g_signal_new_class_handler ("undo",
@@ -522,7 +500,6 @@ hex_document_init (HexDocument *doc)
 	 * buffer will be initialized at that time.
 	 */
 	doc->buffer = hex_buffer_malloc_new (NULL);
-	doc->undo_max = DEFAULT_UNDO_DEPTH;
 }
 
 /*-------- public API starts here --------*/
@@ -668,22 +645,22 @@ hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
 						gboolean lower_nibble, gboolean insert,
 						gboolean undoable)
 {
-	static HexChangeData tmp_change_data;
-	static HexChangeData change_data;
+	g_autoptr(HexChangeData) change_data = NULL;
 	char tmp_data[2] = {0};		/* 1 char + NUL */
 
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	_hex_document_set_changed (doc, TRUE);
 
-	tmp_change_data.start = offset;
-	tmp_change_data.end = offset;
-	tmp_change_data.v_string = NULL;
-	tmp_change_data.type = HEX_CHANGE_BYTE;
-	tmp_change_data.lower_nibble = lower_nibble;
-	tmp_change_data.insert = insert;
+	change_data = g_object_new (HEX_TYPE_CHANGE_DATA, NULL);
 
-	tmp_change_data.v_byte = hex_buffer_get_byte (doc->buffer, offset);
+	change_data->start = offset;
+	change_data->end = offset;
+	change_data->type = HEX_CHANGE_BYTE;
+	change_data->lower_nibble = lower_nibble;
+	change_data->insert = insert;
+
+	change_data->v_byte = hex_buffer_get_byte (doc->buffer, offset);
 
 	/* If in insert mode and on lower nibble, let the user enter the 2nd
 	 * nibble on the selected byte, and don't insert a new byte until the
@@ -691,20 +668,18 @@ hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
 	 * insert a new byte if you're on the upper nibble...
 	 */
 	if (!lower_nibble && insert)
-		tmp_change_data.rep_len = 0;
+		change_data->rep_len = 0;
 	else
-		tmp_change_data.rep_len = 1;
+		change_data->rep_len = 1;
 
 	/* some 80s C magic right here, folks */
 	snprintf (tmp_data, 2, "%c",
-			(tmp_change_data.v_byte & (lower_nibble ? 0xF0 : 0x0F)) |
+			(change_data->v_byte & (lower_nibble ? 0xF0 : 0x0F)) |
 			(lower_nibble ? val : (val << 4)));
 
-	if (hex_buffer_set_data (doc->buffer, offset, 1, tmp_change_data.rep_len,
-				tmp_data))
+	if (hex_buffer_set_data (doc->buffer, offset, 1, change_data->rep_len, tmp_data))
 	{
-		change_data = tmp_change_data;
-		hex_document_changed (doc, &change_data, undoable);
+		hex_document_changed (doc, change_data, undoable);
 	}
 }
 
@@ -724,31 +699,30 @@ void
 hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
 					  gboolean insert, gboolean undoable)
 {
-	static HexChangeData tmp_change_data;
-	static HexChangeData change_data;
+	g_autoptr(HexChangeData) change_data = NULL;
 	char tmp_data[2] = {0};		/* 1 char + NUL */
 
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	_hex_document_set_changed (doc, TRUE);
 
-	tmp_change_data.start = offset;
-	tmp_change_data.end = offset;
-	tmp_change_data.rep_len = (insert ? 0 : 1);
-	tmp_change_data.v_string = NULL;
-	tmp_change_data.type = HEX_CHANGE_BYTE;
-	tmp_change_data.lower_nibble = FALSE;
-	tmp_change_data.insert = insert;
+	change_data = g_object_new (HEX_TYPE_CHANGE_DATA, NULL);
 
-	tmp_change_data.v_byte = hex_buffer_get_byte (doc->buffer, offset);
+	change_data->start = offset;
+	change_data->end = offset;
+	change_data->rep_len = (insert ? 0 : 1);
+	change_data->v_string = NULL;
+	change_data->type = HEX_CHANGE_BYTE;
+	change_data->lower_nibble = FALSE;
+	change_data->insert = insert;
+
+	change_data->v_byte = hex_buffer_get_byte (doc->buffer, offset);
 
 	snprintf (tmp_data, 2, "%c", val);
 
-	if (hex_buffer_set_data (doc->buffer, offset, 1, tmp_change_data.rep_len,
-				tmp_data))
+	if (hex_buffer_set_data (doc->buffer, offset, 1, change_data->rep_len, tmp_data))
 	{
-		change_data = tmp_change_data;
-		hex_document_changed (doc, &change_data, undoable);
+		hex_document_changed (doc, change_data, undoable);
 	}
 }
 
@@ -769,31 +743,84 @@ void
 hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
 					  size_t rep_len, char *data, gboolean undoable)
 {
-	int i;
-	char *ptr;
-	static HexChangeData tmp_change_data;
-	static HexChangeData change_data;
+	g_autoptr(HexChangeData) change_data = NULL;
 
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
 
 	_hex_document_set_changed (doc, TRUE);
 
-	tmp_change_data.start = offset;
-	tmp_change_data.end = tmp_change_data.start + len - 1;
-	tmp_change_data.rep_len = rep_len;
-	tmp_change_data.type = HEX_CHANGE_STRING;
-	tmp_change_data.lower_nibble = FALSE;
+	change_data = g_object_new (HEX_TYPE_CHANGE_DATA, NULL);
 
-	g_clear_pointer (&tmp_change_data.v_string, g_free);
+	change_data->start = offset;
+	change_data->end = change_data->start + len - 1;
+	change_data->rep_len = rep_len;
+	change_data->type = HEX_CHANGE_STRING;
+	change_data->lower_nibble = FALSE;
 
-	tmp_change_data.v_string = hex_buffer_get_data (doc->buffer,
-			tmp_change_data.start, tmp_change_data.rep_len);
+	change_data->v_string = hex_buffer_get_data (doc->buffer, change_data->start, change_data->rep_len);
 
 	if (hex_buffer_set_data (doc->buffer, offset, len, rep_len, data))
 	{
-		change_data = tmp_change_data;
-		hex_document_changed (doc, &change_data, undoable);
+		hex_document_changed (doc, change_data, undoable);
 	}
+}
+
+/* transfer full */
+GListModel *
+hex_document_set_data_multi_start (HexDocument *doc)
+{
+	g_autoptr(GListStore) store = NULL;
+
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), NULL);
+
+	store = g_list_store_new (HEX_TYPE_CHANGE_DATA);
+
+	return G_LIST_MODEL (g_steal_pointer (&store));
+}
+
+gboolean
+hex_document_set_data_multi_add (HexDocument *doc, GListModel *change_list, gint64 offset, size_t len, size_t rep_len, char *data)
+{
+	GListStore *store = (GListStore *) change_list;
+	g_autoptr(HexChangeData) change_data = NULL;
+
+	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
+	g_return_val_if_fail (G_IS_LIST_STORE (store), FALSE);
+
+	change_data = g_object_new (HEX_TYPE_CHANGE_DATA, NULL);
+
+	change_data->start = offset;
+	change_data->end = change_data->start + len - 1;
+	change_data->rep_len = rep_len;
+	change_data->type = HEX_CHANGE_STRING;
+	change_data->lower_nibble = FALSE;
+
+	change_data->v_string = hex_buffer_get_data (doc->buffer, change_data->start, change_data->rep_len);
+
+	if (hex_buffer_set_data (doc->buffer, change_data->start, change_data->end - change_data->start + 1, change_data->rep_len, data))
+	{
+		g_list_store_append (store, change_data);
+
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+/* change_list transfer: full */
+void
+hex_document_set_data_multi_end (HexDocument *doc, GListModel *change_list, gboolean undoable)
+{
+	/* We regain ownership here */
+	g_autoptr(GListStore) store = (GListStore *) change_list;
+
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+	g_return_if_fail (G_IS_LIST_STORE (store));
+
+	hex_document_changed_multi (doc, change_list, undoable);
+
+	if (g_list_model_get_n_items (change_list) > 0)
+		_hex_document_set_changed (doc, TRUE);
 }
 
 /**
@@ -1134,42 +1161,33 @@ hex_document_write_to_file_async (HexDocument *doc,
  * hex_document_changed:
  * @doc: a [class@Hex.Document] object
  * @change_data: pointer to a [struct@Hex.ChangeData] structure
- * @push_undo: whether the undo stack should be pushed to
+ * @undoable: whether the operation is undoable
  *
  * Convenience method to emit the [signal@Hex.Document::document-changed]
  * signal. This method is mostly only useful for widgets utilizing
  * `HexDocument`.
  */
 void
-hex_document_changed (HexDocument *doc, HexChangeData *change_data,
-					 gboolean push_undo)
+hex_document_changed (HexDocument *doc, HexChangeData *change_data, gboolean undoable)
 {
-	g_return_if_fail (HEX_IS_DOCUMENT (doc));
-	g_return_if_fail (change_data != NULL);
+	g_autoptr(GListStore) change_list = NULL;
 
-	g_signal_emit (doc, hex_signals[DOCUMENT_CHANGED], 0, change_data, push_undo);
+	g_return_if_fail (HEX_IS_DOCUMENT (doc));
+	g_return_if_fail (HEX_IS_CHANGE_DATA (change_data));
+
+	change_list = g_list_store_new (HEX_TYPE_CHANGE_DATA);
+	g_list_store_append (change_list, change_data);
+
+	hex_document_changed_multi (doc, G_LIST_MODEL(change_list), undoable);
 }
 
-/**
- * hex_document_set_max_undo:
- * @doc: a [class@Hex.Document] object
- * @max_undo: the new maximum size of the undo stack
- *
- * Set the maximum size of the #HexDocument undo stack.
- */
 void
-hex_document_set_max_undo (HexDocument *doc, int max_undo)
+hex_document_changed_multi (HexDocument *doc, GListModel *change_list, gboolean undoable)
 {
 	g_return_if_fail (HEX_IS_DOCUMENT (doc));
-	g_return_if_fail (max_undo > 0);
+	g_return_if_fail (G_IS_LIST_MODEL (change_list) && g_list_model_get_item_type (change_list) == HEX_TYPE_CHANGE_DATA);
 
-	if (doc->undo_max != max_undo)
-	{
-		if (doc->undo_max > max_undo)
-			undo_stack_free (doc);
-
-		doc->undo_max = max_undo;
-	}
+	g_signal_emit (doc, hex_signals[DOCUMENT_CHANGED], 0, change_list, undoable);
 }
 
 /**
@@ -1918,46 +1936,58 @@ hex_document_undo (HexDocument *doc)
 static void
 hex_document_real_undo (HexDocument *doc)
 {
-	HexChangeData *cd;
+	GListModel *change_list;
 	size_t len;
 	char *rep_data;
 	char c_val;
 
-	cd = doc->undo_top->data;
+	g_assert (HEX_IS_DOCUMENT (doc));
 
-	switch(cd->type) {
+	if (!hex_document_get_can_undo (doc))
+		return;
 
-	case HEX_CHANGE_BYTE:
+	g_assert (doc->undo_top != NULL);
+
+	change_list = doc->undo_top->data;
+
+	for (guint i = 0; i < g_list_model_get_n_items (change_list); ++i)
 	{
-		gint64 payload = hex_buffer_get_payload_size (
-				hex_document_get_buffer (doc));
+		g_autoptr(HexChangeData) cd = g_list_model_get_item (change_list, i);
 
-		if (cd->end < payload)
+		switch(cd->type) {
+
+		case HEX_CHANGE_BYTE:
 		{
-			c_val = hex_buffer_get_byte (doc->buffer, cd->start);
-			if(cd->rep_len > 0)
-				hex_document_set_byte(doc, cd->v_byte, cd->start, FALSE, FALSE);
-			else if(cd->rep_len == 0)
-				hex_document_delete_data(doc, cd->start, 1, FALSE);
-			else
-				hex_document_set_byte(doc, cd->v_byte, cd->start, TRUE, FALSE);
-			cd->v_byte = c_val;
+			gint64 payload = hex_buffer_get_payload_size (
+					hex_document_get_buffer (doc));
+
+			if (cd->end < payload)
+			{
+				c_val = hex_buffer_get_byte (doc->buffer, cd->start);
+				if(cd->rep_len > 0)
+					hex_document_set_byte(doc, cd->v_byte, cd->start, FALSE, FALSE);
+				else if(cd->rep_len == 0)
+					hex_document_delete_data(doc, cd->start, 1, FALSE);
+				else
+					hex_document_set_byte(doc, cd->v_byte, cd->start, TRUE, FALSE);
+				cd->v_byte = c_val;
+			}
 		}
+			break;
+
+		case HEX_CHANGE_STRING:
+			len = cd->end - cd->start + 1;
+			rep_data = hex_buffer_get_data (doc->buffer, cd->start, len);
+			hex_document_set_data (doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
+			g_free (cd->v_string);
+			cd->end = cd->start + cd->rep_len - 1;
+			cd->rep_len = len;
+			cd->v_string = rep_data;
+			break;
+		}	/* switch */
 	}
-		break;
 
-	case HEX_CHANGE_STRING:
-		len = cd->end - cd->start + 1;
-		rep_data = hex_buffer_get_data (doc->buffer, cd->start, len);
-		hex_document_set_data (doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
-		g_free (cd->v_string);
-		cd->end = cd->start + cd->rep_len - 1;
-		cd->rep_len = len;
-		cd->v_string = rep_data;
-		break;
-	}	/* switch */
-
-	hex_document_changed(doc, cd, FALSE);
+	hex_document_changed_multi (doc, change_list, FALSE);
 
 	undo_stack_descend(doc);
 }
@@ -1984,50 +2014,62 @@ hex_document_redo (HexDocument *doc)
 }
 
 static void
-hex_document_real_redo(HexDocument *doc)
+hex_document_real_redo (HexDocument *doc)
 {
-	HexChangeData *cd;
-	int len;
+	GListModel *change_list;
+	size_t len;
 	char *rep_data;
 	char c_val;
 
-	undo_stack_ascend(doc);
+	g_assert (HEX_IS_DOCUMENT (doc));
 
-	cd = (HexChangeData *)doc->undo_top->data;
+	if (!hex_document_get_can_redo (doc))
+		return;
 
-	switch(cd->type) {
+	undo_stack_ascend (doc);
 
-	case HEX_CHANGE_BYTE:
+	g_assert (doc->undo_top != NULL);
+
+	change_list = doc->undo_top->data;
+
+	for (guint i = 0; i < g_list_model_get_n_items (change_list); ++i)
 	{
-		gint64 payload = hex_buffer_get_payload_size (
-				hex_document_get_buffer (doc));
+		g_autoptr(HexChangeData) cd = g_list_model_get_item (change_list, i);
 
-		if (cd->end <= payload)
+		switch(cd->type) {
+
+		case HEX_CHANGE_BYTE:
 		{
-			c_val = hex_buffer_get_byte (doc->buffer, cd->start);
-			if(cd->rep_len > 0)
-				hex_document_set_byte(doc, cd->v_byte, cd->start, FALSE, FALSE);
-			else if(cd->rep_len == 0)
-				hex_document_set_byte(doc, cd->v_byte, cd->start, cd->insert, FALSE);
-			else
-				hex_document_set_byte(doc, cd->v_byte, cd->start, TRUE, FALSE);
-			cd->v_byte = c_val;
+			gint64 payload = hex_buffer_get_payload_size (
+					hex_document_get_buffer (doc));
+
+			if (cd->end <= payload)
+			{
+				c_val = hex_buffer_get_byte (doc->buffer, cd->start);
+				if(cd->rep_len > 0)
+					hex_document_set_byte(doc, cd->v_byte, cd->start, FALSE, FALSE);
+				else if(cd->rep_len == 0)
+					hex_document_set_byte(doc, cd->v_byte, cd->start, cd->insert, FALSE);
+				else
+					hex_document_set_byte(doc, cd->v_byte, cd->start, TRUE, FALSE);
+				cd->v_byte = c_val;
+			}
+		}
+			break;
+
+		case HEX_CHANGE_STRING:
+			len = cd->end - cd->start + 1;
+			rep_data = hex_buffer_get_data (doc->buffer, cd->start, len);
+			hex_document_set_data (doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
+			g_free (cd->v_string);
+			cd->end = cd->start + cd->rep_len - 1;
+			cd->rep_len = len;
+			cd->v_string = rep_data;
+			break;
 		}
 	}
-		break;
 
-	case HEX_CHANGE_STRING:
-		len = cd->end - cd->start + 1;
-		rep_data = hex_buffer_get_data (doc->buffer, cd->start, len);
-		hex_document_set_data (doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
-		g_free (cd->v_string);
-		cd->end = cd->start + cd->rep_len - 1;
-		cd->rep_len = len;
-		cd->v_string = rep_data;
-		break;
-	}
-
-	hex_document_changed(doc, cd, FALSE);
+	hex_document_changed_multi (doc, change_list, FALSE);
 }
 
 /**
@@ -2043,12 +2085,7 @@ hex_document_get_can_undo (HexDocument *doc)
 {
 	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), FALSE);
 
-	if (! doc->undo_max)
-		return FALSE;
-	else if (doc->undo_top)
-		return TRUE;
-	else
-		return FALSE;
+	return doc->undo_top != NULL;
 }
 
 /**
@@ -2078,10 +2115,10 @@ hex_document_get_can_redo (HexDocument *doc)
  *
  * Get the undo data at the top of the undo stack of a #HexDocument, if any.
  *
- * Returns: (transfer none): a pointer to the [struct@Hex.ChangeData]
- *   structure at the top of the undo stack, or %NULL
+ * Returns: (transfer none): a `GListModel` of [class@Hex.ChangeData] at the
+ *   at the top of the undo stack, or `NULL`
  */
-HexChangeData *
+GListModel *
 hex_document_get_undo_data (HexDocument *doc)
 {
 	g_return_val_if_fail (HEX_IS_DOCUMENT (doc), NULL);

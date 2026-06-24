@@ -22,6 +22,8 @@ G_BEGIN_DECLS
  */
 struct _HexChangeData
 {
+	GObject parent_instance;
+
 	gint64 start, end;
 	/* `replace length`: length to replace (overwrite); (0 to insert without
 	 * overwriting) */

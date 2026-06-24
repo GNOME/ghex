@@ -57,16 +57,14 @@ typedef enum
 /**
  * HexChangeData:
  *
- * A opaque structure containing metadata about a change made
+ * An object containing metadata about a change made
  * to a [class@Hex.Document].
  *
  * The data is modified internally as the `HexDocument`
  * changes, but when accessed it is read-only.
  */
 #define HEX_TYPE_CHANGE_DATA (hex_change_data_get_type ())
-GType hex_change_data_get_type (void) G_GNUC_CONST;
-
-typedef struct _HexChangeData HexChangeData;
+G_DECLARE_FINAL_TYPE (HexChangeData, hex_change_data, HEX, CHANGE_DATA, GObject)
 
 gint64 hex_change_data_get_start_offset (HexChangeData *data);
 gint64 hex_change_data_get_end_offset (HexChangeData *data);
@@ -76,6 +74,11 @@ HexDocument	*hex_document_new (void);
 HexDocument	*hex_document_new_from_file (GFile *file);
 void		hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
 		size_t rep_len, char *data, gboolean undoable);
+
+GListModel * hex_document_set_data_multi_start (HexDocument *doc);
+gboolean hex_document_set_data_multi_add (HexDocument *doc, GListModel *change_list, gint64 offset, size_t len, size_t rep_len, char *data);
+void hex_document_set_data_multi_end (HexDocument *doc, GListModel *change_list, gboolean undoable);
+
 void		hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
 		gboolean insert, gboolean undoable);
 void		hex_document_set_nibble (HexDocument *doc, char val, gint64 offset,
@@ -103,9 +106,8 @@ gboolean	hex_document_write_finish (HexDocument *doc, GAsyncResult *result,
 gboolean	hex_document_export_html (HexDocument *doc, const char *html_path,
 		const char *base_name, gint64 start, gint64 end, guint cpl, guint lpp,
 		guint cpw);
-void		hex_document_changed (HexDocument *doc, HexChangeData *change_data,
-		gboolean push_undo);
-void		hex_document_set_max_undo (HexDocument *doc, int max_undo);
+void hex_document_changed (HexDocument *doc, HexChangeData *change_data, gboolean undoable);
+void hex_document_changed_multi (HexDocument *doc, GListModel *change_list, gboolean undoable);
 gboolean	hex_document_undo (HexDocument *doc);
 gboolean	hex_document_redo (HexDocument *doc);
 int			hex_document_compare_data (HexDocument *doc, const char *what,
@@ -148,7 +150,7 @@ gboolean	hex_document_get_changed (HexDocument *doc);
 gint64		hex_document_get_file_size (HexDocument *doc);
 GFile *		hex_document_get_file (HexDocument *doc);
 gboolean	hex_document_set_file (HexDocument *doc, GFile *file);
-HexChangeData *	hex_document_get_undo_data (HexDocument *doc);
+GListModel * hex_document_get_undo_data (HexDocument *doc);
 HexBuffer * 	hex_document_get_buffer (HexDocument *doc);
 gboolean	hex_document_set_buffer (HexDocument *doc, HexBuffer *buf);
 

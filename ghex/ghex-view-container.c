@@ -72,19 +72,26 @@ ghex_view_container_get_search_bar (GHexViewContainer *self)
 }
 
 static void
-doc_changed_info_bar_cb (HexDocument *doc, HexChangeData *change_data, gboolean undoable, GHexInfoBar *info_bar)
+doc_changed_info_bar_cb (HexDocument *doc, GListModel *change_list, gboolean undoable, GHexInfoBar *info_bar)
 {
+	gboolean external_file_change = FALSE;
+
 	g_assert (HEX_IS_DOCUMENT (doc));
+	g_assert (G_IS_LIST_MODEL (change_list));
 	g_assert (GHEX_IS_INFO_BAR (info_bar));
 
-	if (hex_document_get_changed (doc) && hex_change_data_get_external_file_change (change_data))
+	for (guint i = 0; i < g_list_model_get_n_items (change_list); ++i)
 	{
-		ghex_info_bar_set_shown (info_bar, TRUE);
+		g_autoptr(HexChangeData) change_data = g_list_model_get_item (change_list, i);
+
+		if (hex_change_data_get_external_file_change (change_data))
+		{
+			external_file_change = TRUE;
+			break;
+		}
 	}
-	else
-	{
-		ghex_info_bar_set_shown (info_bar, FALSE);
-	}
+
+	ghex_info_bar_set_shown (info_bar, hex_document_get_changed (doc) && external_file_change);
 }
 
 static void
@@ -386,7 +393,7 @@ revealer_close_cb (GtkRevealer *revealer)
 }
 
 static void
-doc_changed_refresh_search_bar_cb (GHexViewContainer *self, HexChangeData *change_data G_GNUC_UNUSED, gboolean undoable G_GNUC_UNUSED, HexDocument *doc)
+doc_changed_refresh_search_bar_cb (GHexViewContainer *self, GListModel *change_list G_GNUC_UNUSED, gboolean undoable G_GNUC_UNUSED, HexDocument *doc)
 {
 	g_assert (GHEX_IS_VIEW_CONTAINER (self));
 	g_assert (HEX_IS_DOCUMENT (doc));
