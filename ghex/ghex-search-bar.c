@@ -1,3 +1,5 @@
+#define G_LOG_DOMAIN "ghex-search-bar"
+
 #include "ghex-search-bar.h"
 
 #include "hex-highlight-list.h"
@@ -16,6 +18,7 @@ enum
 {
 	PROP_AUTO_HIGHLIGHT = 1,
 	PROP_SELECTED_HIGHLIGHT,
+	PROP_BUSY,
 	PROP_WRAPAROUND,
 	PROP_TYPEAHEAD,
 	PROP_REPLACE_MODE,
@@ -34,6 +37,7 @@ struct _GHexSearchBar
 	HexAutoHighlight *auto_highlight;
 	guint selected_highlight;
 
+	gboolean busy;
 	gboolean wraparound;
 	gboolean replace_mode;
 
@@ -258,6 +262,27 @@ ghex_search_bar_get_replace_mode (GHexSearchBar *self)
 	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), FALSE);
 
 	return self->replace_mode;
+}
+
+static void
+_ghex_search_bar_set_busy (GHexSearchBar *self, gboolean busy)
+{
+	g_return_if_fail (GHEX_IS_SEARCH_BAR (self));
+
+	if (self->busy == busy)
+		return;
+
+	self->busy = busy;
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_BUSY]);
+}
+
+gboolean
+ghex_search_bar_get_busy (GHexSearchBar *self)
+{
+	g_return_val_if_fail (GHEX_IS_SEARCH_BAR (self), TRUE);
+
+	return self->busy;
 }
 
 void
@@ -544,6 +569,10 @@ ghex_search_bar_get_property (GObject *object,
 			g_value_set_uint (value, ghex_search_bar_get_selected_highlight (self));
 			break;
 
+		case PROP_BUSY:
+			g_value_set_boolean (value, ghex_search_bar_get_busy (self));
+			break;
+
 		case PROP_WRAPAROUND:
 			g_value_set_boolean (value, ghex_search_bar_get_wraparound (self));
 			break;
@@ -699,8 +728,12 @@ prev_match_action (GSimpleAction *action, GVariant *parameter, gpointer user_dat
 	}
 }
 
-static void
-replace_highlight_at_idx (GHexSearchBar *self, HexHighlightList *hl_list, guint highlight_idx)
+/* Helper. If this is a batch operation, for @change_list pass the list model
+ * retrieved from hex_document_set_data_multi_start(). If it is a single
+ * operation, pass NULL.
+ */
+static gboolean
+replace_highlight_at_idx (GHexSearchBar *self, HexHighlightList *hl_list, guint highlight_idx, GListModel *change_list)
 {
 	HexView *view;
 	HexDocument *replace_entry_doc, *substantive_doc;
@@ -713,9 +746,11 @@ replace_highlight_at_idx (GHexSearchBar *self, HexHighlightList *hl_list, guint 
 	g_assert (GHEX_IS_SEARCH_BAR (self));
 	g_assert (HEX_IS_HIGHLIGHT_LIST (hl_list));
 	g_assert (highlight_idx < g_list_model_get_n_items (G_LIST_MODEL(hl_list)));
+	g_assert (change_list == NULL || G_IS_LIST_MODEL (change_list));
 
 	view = ghex_pane_get_hex (GHEX_PANE(self));
-	if (!view) return;
+	if (!view)
+		return FALSE;
 
 	highlight = g_list_model_get_item (G_LIST_MODEL(hl_list), highlight_idx);
 
@@ -727,7 +762,18 @@ replace_highlight_at_idx (GHexSearchBar *self, HexHighlightList *hl_list, guint 
 	rep_len = highlight->end_offset - highlight->start_offset + 1;
 	data_len = insert_mode ? replace_entry_len : rep_len;
 
-	hex_document_set_data (substantive_doc, highlight->start_offset, data_len, rep_len, replace_entry_str, TRUE);
+	if (change_list)
+	{
+		return hex_document_set_data_multi_add (substantive_doc, change_list, highlight->start_offset, data_len, rep_len, replace_entry_str);
+	}
+	else
+	{
+		hex_document_set_data (substantive_doc, highlight->start_offset, data_len, rep_len, replace_entry_str, TRUE);
+
+		return TRUE;
+	}
+
+	return FALSE;
 }
 
 static void
@@ -742,7 +788,7 @@ replace_selected_highlight (GHexSearchBar *self)
 	hl_list = hex_auto_highlight_get_highlights (self->auto_highlight);
 	highlight_idx = self->selected_highlight - 1;
 
-	replace_highlight_at_idx (self, hl_list, highlight_idx);
+	replace_highlight_at_idx (self, hl_list, highlight_idx, NULL);
 }
 
 static void
@@ -761,49 +807,93 @@ replace_one_action (GSimpleAction *action, GVariant *parameter, gpointer user_da
 	ghex_search_bar_refresh_query (self);
 }
 
-static void replace_all_looper (GHexSearchBar *self, HexAutoHighlight *our_ahl);
-static void replace_all_refresh_ready_cb (GObject *source_object, GAsyncResult *res, gpointer data);
-
 static void
-replace_all_looper (GHexSearchBar *self, HexAutoHighlight *our_ahl)
+replace_all_ready_cb (GObject *source_object, GAsyncResult *res, gpointer data)
 {
-	HexHighlightList *hl_list;
+	/* hex_auto_highlight_refresh_async took a ref */
+	g_autoptr(GHexSearchBar) self = data;
+	/* We take ownership here */
+	g_autoptr(HexAutoHighlight) our_ahl = (HexAutoHighlight *) source_object;
+	g_autoptr(GListModel) change_list = NULL;
+	g_autoptr(GError) error = NULL;
+	GTask *task = (GTask *) res;
+	HexDocument *doc;
 
 	g_assert (GHEX_IS_SEARCH_BAR (self));
 	g_assert (HEX_IS_AUTO_HIGHLIGHT (our_ahl));
+	g_assert (g_task_is_valid (task, source_object));
 
-	hl_list = hex_auto_highlight_get_highlights (our_ahl);
+	doc = hex_auto_highlight_get_document (our_ahl);
 
-	if (g_list_model_get_n_items (G_LIST_MODEL(hl_list)) > 0)
+	_ghex_search_bar_set_busy (self, FALSE);
+
+	change_list = g_task_propagate_pointer (task, &error);
+	if G_UNLIKELY (!change_list)
 	{
-		hex_auto_highlight_refresh_async (our_ahl, /*cancellable TODO*/ NULL, replace_all_refresh_ready_cb, g_object_ref (self));
-
+		g_warning ("%s: %s", __func__, error->message);
 		return;
 	}
 
-	/* Break out of the loop and drop our reference to the ahl, which we no longer need. */
-	g_object_unref (our_ahl);
+	hex_document_set_data_multi_end (doc, g_steal_pointer (&change_list), TRUE);
 
 	ghex_search_bar_refresh_query (self);
 }
 
 static void
-replace_all_refresh_ready_cb (GObject *source_object, GAsyncResult *res, gpointer data)
+replace_all_thread_func (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable)
 {
-	/* hex_auto_highlight_refresh_async took a ref */
-	g_autoptr(GHexSearchBar) self = data;
-	HexAutoHighlight *our_ahl = (HexAutoHighlight *) source_object;
-	HexHighlightList *hl_list;
+	GHexSearchBar *self = task_data;
+	HexAutoHighlight *our_ahl = source_object;
+	g_autoptr(GListModel) change_list = NULL;
+	HexDocument *doc;
+	HexView *view;
 
 	g_assert (GHEX_IS_SEARCH_BAR (self));
 	g_assert (HEX_IS_AUTO_HIGHLIGHT (our_ahl));
 
-	hl_list = hex_auto_highlight_get_highlights (our_ahl);
+	doc = hex_auto_highlight_get_document (our_ahl);
+	g_assert (HEX_IS_DOCUMENT (doc));
 
-	if (g_list_model_get_n_items (G_LIST_MODEL(hl_list)) > 0)
-		replace_highlight_at_idx (self, HEX_HIGHLIGHT_LIST(hl_list), 0);
+	view = ghex_pane_get_hex (GHEX_PANE(self));
+	g_assert (HEX_IS_VIEW (view));
 
-	replace_all_looper (self, our_ahl);
+	change_list = hex_document_set_data_multi_start (doc);
+
+	for (guint i = 0;;)
+	{
+		HexHighlightList *hl_list;
+		guint n_highlights;
+		gboolean ret;
+
+		if (hex_view_get_insert_mode (view))
+			hex_auto_highlight_refresh_sync (our_ahl, cancellable);
+
+		hl_list = hex_auto_highlight_get_highlights (our_ahl);
+
+		n_highlights = g_list_model_get_n_items (G_LIST_MODEL(hl_list));
+
+		g_debug ("%s: n_highlights: %u", __func__, n_highlights);
+
+		if (n_highlights == 0)
+			break;
+
+		/* This will call hex_document_set_data_multi_add() */
+		ret = replace_highlight_at_idx (self, hl_list, i, change_list);
+
+		if G_UNLIKELY (!ret) {
+			g_task_return_new_error (task, G_IO_ERROR, G_IO_ERROR_FAILED, "Replace all failed");
+			return;
+		}
+
+		if (!hex_view_get_insert_mode (view))
+		{
+			++i;
+			if (i >= n_highlights)
+				break;
+		}
+	}
+
+	g_task_return_pointer (task, g_steal_pointer (&change_list), g_object_unref);
 }
 
 static void
@@ -826,7 +916,12 @@ replace_all_action (GSimpleAction *action, GVariant *parameter, gpointer user_da
 	g_signal_handlers_disconnect_by_data (our_ahl, self);
 	_ghex_search_bar_set_auto_highlight (self, NULL);
 
-	replace_all_looper (self, our_ahl);
+	_ghex_search_bar_set_busy (self, TRUE);
+
+	task = g_task_new (our_ahl, /*TODO cancellable*/ NULL, replace_all_ready_cb, g_object_ref (self));
+	g_task_set_source_tag (task, replace_all_action);
+	g_task_set_task_data (task, g_object_ref (self), g_object_unref);
+	g_task_run_in_thread (task, replace_all_thread_func);
 }
 
 static void
@@ -927,6 +1022,10 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 	properties[PROP_SELECTED_HIGHLIGHT] = g_param_spec_uint ("selected-highlight", NULL, NULL,
 			0, UINT_MAX, 0,
 			default_flags | G_PARAM_READWRITE);
+
+	properties[PROP_BUSY] = g_param_spec_boolean ("busy", NULL, NULL,
+			FALSE,
+			default_flags | G_PARAM_READABLE);
 
 	properties[PROP_WRAPAROUND] = g_param_spec_boolean ("wraparound", NULL, NULL,
 			TRUE,

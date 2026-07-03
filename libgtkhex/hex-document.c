@@ -1989,7 +1989,7 @@ hex_document_real_undo (HexDocument *doc)
 
 	hex_document_changed_multi (doc, change_list, FALSE);
 
-	undo_stack_descend(doc);
+	undo_stack_descend (doc);
 }
 
 /**
