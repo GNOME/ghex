@@ -195,7 +195,7 @@ reset_view_min_and_max (HexAutoHighlight *self)
 }
 
 static void
-do_refresh (HexAutoHighlight *self, gboolean async)
+do_refresh (HexAutoHighlight *self, GCancellable *cancellable, gboolean async)
 {
 	g_autoptr(GTimer) timer = NULL;
 
@@ -209,28 +209,14 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 
 	for (gint64 i = self->search_info->start; i <= self->view_max; ++i)
 	{
+		if (g_cancellable_is_cancelled (cancellable))
+			break;
+
 		i = CLAMP (i, self->view_min, self->view_max);
 		self->search_info->pos = i;
 
-		if (async)
-		{
-			g_autoptr(GTask) task = g_weak_ref_get (&self->search_pending_wr);
-			GCancellable *cancellable = NULL;
-
-			if G_UNLIKELY (!task)
-			{
-				g_debug ("%s: We have no task. Unexpected! Breaking.", __func__);
-				break;
-			}
-
-			cancellable = g_task_get_cancellable (task);
-			if (g_cancellable_is_cancelled (cancellable))
-				break;
-		}
-
 		if (hex_document_compare_data_full (self->document, self->search_info) == 0)
 		{
-			g_autoptr(HighlightAdditionData) addition_data = NULL;
 			g_autoptr(HexHighlight) highlight = NULL;
 			const gint64 start_offset = self->search_info->pos;
 			const gint64 end_offset = self->search_info->pos + self->search_info->found_len - 1;
@@ -238,11 +224,14 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 			highlight = hex_highlight_new ();
 			hex_highlight_update (highlight, start_offset, end_offset);
 
-//			hex_auto_highlight_add_highlight (self, highlight);
+			if (async)
+			{
+				g_autoptr(HighlightAdditionData) addition_data = highlight_addition_data_new (self, highlight);
 
-			addition_data = highlight_addition_data_new (self, highlight);
-
-			g_idle_add_full (G_PRIORITY_DEFAULT, add_highlight__threadsafe, g_steal_pointer (&addition_data), (GDestroyNotify) highlight_addition_data_destroy);
+				g_main_context_invoke_full (NULL, G_PRIORITY_DEFAULT, add_highlight__threadsafe, g_steal_pointer (&addition_data), (GDestroyNotify) highlight_addition_data_destroy);
+			}
+			else
+				hex_auto_highlight_add_highlight (self, highlight);
 		}
 
 		if (g_timer_elapsed (timer, NULL) >= PROGRESS_REFRESH_RATE)
@@ -251,7 +240,7 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 
 			self->search_progress = percent;
 
-			g_idle_add_full (G_PRIORITY_DEFAULT, emit_search_progress_update__threadsafe, g_object_ref (self), g_object_unref);
+			g_main_context_invoke_full (NULL, G_PRIORITY_DEFAULT, emit_search_progress_update__threadsafe, g_object_ref (self), g_object_unref);
 
 			g_timer_start (timer);
 		}
@@ -259,17 +248,17 @@ do_refresh (HexAutoHighlight *self, gboolean async)
 
 //	_hex_auto_highlight_thaw_sorting (self);
 
-	g_idle_add_full (G_PRIORITY_DEFAULT, emit_refresh_complete__threadsafe, g_object_ref (self), g_object_unref);
+	g_main_context_invoke_full (NULL, G_PRIORITY_DEFAULT, emit_refresh_complete__threadsafe, g_object_ref (self), g_object_unref);
 }
 
 void
-hex_auto_highlight_refresh_sync (HexAutoHighlight *self)
+hex_auto_highlight_refresh_sync (HexAutoHighlight *self, GCancellable *cancellable)
 {
 	g_return_if_fail (HEX_IS_AUTO_HIGHLIGHT (self));
 	g_return_if_fail (HEX_IS_SEARCH_INFO (self->search_info));
 	g_return_if_fail (HEX_IS_DOCUMENT (self->document));
 
-	do_refresh (self, FALSE);
+	do_refresh (self, cancellable, FALSE);
 }
 
 gboolean
@@ -289,7 +278,7 @@ refresh_task_thread_func (GTask *task, gpointer source_object, gpointer task_dat
 
 	g_assert (g_task_is_valid (task, source_object));
 
-	do_refresh (self, TRUE);
+	do_refresh (self, cancellable, TRUE);
 
 	g_weak_ref_set (&self->search_pending_wr, NULL);
 
@@ -305,7 +294,7 @@ cancellable_cancelled_cb (GCancellable *cancellable, HexAutoHighlight *self)
 	g_assert (HEX_IS_AUTO_HIGHLIGHT (self));
 	g_assert (G_IS_CANCELLABLE (cancellable));
 
-	g_idle_add_full (G_PRIORITY_DEFAULT, emit_refresh_cancelled__threadsafe, g_object_ref (self), g_object_unref);
+	g_main_context_invoke_full (NULL, G_PRIORITY_DEFAULT, emit_refresh_cancelled__threadsafe, g_object_ref (self), g_object_unref);
 }
 
 void
@@ -370,7 +359,7 @@ hex_auto_highlight_add_highlight (HexAutoHighlight *self, HexHighlight *highligh
 
 	g_signal_emit (self, signals[SIG_HIGHLIGHTS_CHANGED], 0);
 
-//	g_idle_add_full (G_PRIORITY_DEFAULT, emit_highlights_changed__threadsafe, g_object_ref (self), g_object_unref);
+//	g_main_context_invoke_full (NULL, G_PRIORITY_DEFAULT, emit_highlights_changed__threadsafe, g_object_ref (self), g_object_unref);
 }
 
 /* Transfer none */
