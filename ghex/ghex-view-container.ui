@@ -58,7 +58,9 @@ vim: ts=2 sw=2 expandtab
                     <property name="vexpand">true</property>
                     <property name="hexpand">true</property>
                     <property name="child">
-                      <object class="HexWidget" id="hex" />
+                      <object class="HexWidget" id="hex">
+                        <property name="sensitive" bind-source="search_bar" bind-property="busy" bind-flags="invert-boolean" />
+                      </object>
                     </property>
                   </object>
                 </child>

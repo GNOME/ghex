@@ -22,7 +22,7 @@ void hex_auto_highlight_set_search_info (HexAutoHighlight *self, HexSearchInfo *
 HexSearchInfo * hex_auto_highlight_get_search_info (HexAutoHighlight *self);
 void hex_auto_highlight_refresh_async (HexAutoHighlight *self, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data);
 gboolean hex_auto_highlight_refresh_finish (HexAutoHighlight *self, GAsyncResult *result);
-void hex_auto_highlight_refresh_sync (HexAutoHighlight *self);
+void hex_auto_highlight_refresh_sync (HexAutoHighlight *self, GCancellable *cancellable);
 GCancellable * hex_auto_highlight_get_cancellable (HexAutoHighlight *self);
 
 G_END_DECLS

@@ -14,6 +14,7 @@ void ghex_search_bar_set_selected_highlight (GHexSearchBar *self, guint selected
 guint ghex_search_bar_get_selected_highlight (GHexSearchBar *self);
 void ghex_search_bar_set_replace_mode (GHexSearchBar *self, gboolean replace_mode);
 gboolean ghex_search_bar_get_replace_mode (GHexSearchBar *self);
+gboolean ghex_search_bar_get_busy (GHexSearchBar *self);
 void ghex_search_bar_set_wraparound (GHexSearchBar *self, gboolean wraparound);
 gboolean ghex_search_bar_get_wraparound (GHexSearchBar *self);
 void ghex_search_bar_refresh_query (GHexSearchBar *self);
