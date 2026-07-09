@@ -5,6 +5,7 @@
 #include "hex-highlight-list.h"
 #include "hex-highlight-private.h"
 #include "hex-auto-highlight-private.h"
+#include "hex-search-info-private.h"
 #include "libgtkhex-enums.h"
 #include "util.h"
 
@@ -810,29 +811,28 @@ replace_one_action (GSimpleAction *action, GVariant *parameter, gpointer user_da
 static void
 replace_all_ready_cb (GObject *source_object, GAsyncResult *res, gpointer data)
 {
-	/* hex_auto_highlight_refresh_async took a ref */
-	g_autoptr(GHexSearchBar) self = data;
-	/* We take ownership here */
-	g_autoptr(HexAutoHighlight) our_ahl = (HexAutoHighlight *) source_object;
-	g_autoptr(GListModel) change_list = NULL;
-	g_autoptr(GError) error = NULL;
+	GHexSearchBar *self = (GHexSearchBar *) source_object;
 	GTask *task = (GTask *) res;
 	HexDocument *doc;
+	g_autoptr(GListModel) change_list = NULL;
+	g_autoptr(GError) error = NULL;
 
 	g_assert (GHEX_IS_SEARCH_BAR (self));
-	g_assert (HEX_IS_AUTO_HIGHLIGHT (our_ahl));
 	g_assert (g_task_is_valid (task, source_object));
 
-	doc = hex_auto_highlight_get_document (our_ahl);
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (self->auto_highlight));
 
-	_ghex_search_bar_set_busy (self, FALSE);
-
+	doc = hex_auto_highlight_get_document (self->auto_highlight);
 	change_list = g_task_propagate_pointer (task, &error);
+
 	if G_UNLIKELY (!change_list)
 	{
-		g_warning ("%s: %s", __func__, error->message);
+		// FIXME
+		g_warning ("%s failed: %s", __func__, error->message);
 		return;
 	}
+
+	_ghex_search_bar_set_busy (self, FALSE);
 
 	hex_document_set_data_multi_end (doc, g_steal_pointer (&change_list), TRUE);
 
@@ -842,55 +842,35 @@ replace_all_ready_cb (GObject *source_object, GAsyncResult *res, gpointer data)
 static void
 replace_all_thread_func (GTask *task, gpointer source_object, gpointer task_data, GCancellable *cancellable)
 {
-	GHexSearchBar *self = task_data;
-	HexAutoHighlight *our_ahl = source_object;
+	GHexSearchBar *self = source_object;
 	g_autoptr(GListModel) change_list = NULL;
 	HexDocument *doc;
 	HexView *view;
+	HexSearchInfo *search_info;
 
 	g_assert (GHEX_IS_SEARCH_BAR (self));
-	g_assert (HEX_IS_AUTO_HIGHLIGHT (our_ahl));
-
-	doc = hex_auto_highlight_get_document (our_ahl);
-	g_assert (HEX_IS_DOCUMENT (doc));
+	g_assert (HEX_IS_AUTO_HIGHLIGHT (self->auto_highlight));
 
 	view = ghex_pane_get_hex (GHEX_PANE(self));
 	g_assert (HEX_IS_VIEW (view));
+	doc = hex_auto_highlight_get_document (self->auto_highlight);
+	search_info = hex_auto_highlight_get_search_info (self->auto_highlight);
+	g_assert (HEX_IS_SEARCH_INFO (search_info));
 
 	change_list = hex_document_set_data_multi_start (doc);
 
-	for (guint i = 0;;)
+	search_info->pos = search_info->start = 0;
+
+	while (hex_document_find_forward_full (doc, search_info))
 	{
-		HexHighlightList *hl_list;
-		guint n_highlights;
-		gboolean ret;
+		gint64 replace_entry_len = 0;
+		const gboolean insert_mode = hex_view_get_insert_mode (view);
+		HexDocument *replace_entry_doc = hex_view_get_document (self->replace_entry);
+		g_autofree char *replace_entry_str = get_search_string (replace_entry_doc, &replace_entry_len);
+		size_t rep_len = search_info->found_len;	// TEST
+		size_t data_len = insert_mode ? replace_entry_len : rep_len;
 
-		if (hex_view_get_insert_mode (view))
-			hex_auto_highlight_refresh_sync (our_ahl, cancellable);
-
-		hl_list = hex_auto_highlight_get_highlights (our_ahl);
-
-		n_highlights = g_list_model_get_n_items (G_LIST_MODEL(hl_list));
-
-		g_debug ("%s: n_highlights: %u", __func__, n_highlights);
-
-		if (n_highlights == 0)
-			break;
-
-		/* This will call hex_document_set_data_multi_add() */
-		ret = replace_highlight_at_idx (self, hl_list, i, change_list);
-
-		if G_UNLIKELY (!ret) {
-			g_task_return_new_error (task, G_IO_ERROR, G_IO_ERROR_FAILED, "Replace all failed");
-			return;
-		}
-
-		if (!hex_view_get_insert_mode (view))
-		{
-			++i;
-			if (i >= n_highlights)
-				break;
-		}
+		hex_document_set_data_multi_add (doc, change_list, search_info->found_offset, data_len, rep_len, replace_entry_str);
 	}
 
 	g_task_return_pointer (task, g_steal_pointer (&change_list), g_object_unref);
@@ -901,8 +881,6 @@ replace_all_action (GSimpleAction *action, GVariant *parameter, gpointer user_da
 {
 	GHexSearchBar *self = user_data;
 	HexView *view;
-	HexHighlightList *hl_list;
-	HexAutoHighlight *our_ahl = NULL;
 	g_autoptr(GTask) task = NULL;
 
 	g_assert (GHEX_IS_SEARCH_BAR (self));
@@ -912,15 +890,13 @@ replace_all_action (GSimpleAction *action, GVariant *parameter, gpointer user_da
 	if (!self->auto_highlight || !view)
 		return;
 
-	our_ahl = g_object_ref (self->auto_highlight);
-	g_signal_handlers_disconnect_by_data (our_ahl, self);
-	_ghex_search_bar_set_auto_highlight (self, NULL);
+	if (self->auto_highlight)
+		g_signal_handlers_disconnect_by_data (self->auto_highlight, self);
 
 	_ghex_search_bar_set_busy (self, TRUE);
 
-	task = g_task_new (our_ahl, /*TODO cancellable*/ NULL, replace_all_ready_cb, g_object_ref (self));
+	task = g_task_new (self, /*TODO cancellable*/ NULL, replace_all_ready_cb, NULL);
 	g_task_set_source_tag (task, replace_all_action);
-	g_task_set_task_data (task, g_object_ref (self), g_object_unref);
 	g_task_run_in_thread (task, replace_all_thread_func);
 }
 
