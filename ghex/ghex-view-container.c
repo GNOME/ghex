@@ -398,7 +398,7 @@ doc_changed_refresh_search_bar_cb (GHexViewContainer *self, GListModel *change_l
 	g_assert (GHEX_IS_VIEW_CONTAINER (self));
 	g_assert (HEX_IS_DOCUMENT (doc));
 
-	if (doc != hex_view_get_document (HEX_VIEW(self->hex)))
+	if G_UNLIKELY (doc != hex_view_get_document (HEX_VIEW(self->hex)))
 	{
 		g_debug ("%s: stale doc %p detected - disconnecting signal handler", __func__, doc);
 		g_signal_handlers_disconnect_by_func (doc, doc_changed_refresh_search_bar_cb, self);
@@ -406,6 +406,14 @@ doc_changed_refresh_search_bar_cb (GHexViewContainer *self, GListModel *change_l
 	}
 
 	if (! self->show_search_bar)
+		return;
+
+	/* This isn't quite analagous to a 'user action' but it's close enough.
+	 * Otherwise, every time the document gets changed internally such as
+	 * through a multi-part undo operation, we'll try to refresh the search
+	 * query.
+	 */
+	if (! undoable)
 		return;
 
 	ghex_search_bar_refresh_query (self->search_bar);
