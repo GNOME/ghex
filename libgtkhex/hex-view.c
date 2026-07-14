@@ -786,7 +786,7 @@ hex_view_class_init (HexViewClass *klass)
 
 	properties[PROP_DOCUMENT] = g_param_spec_object ("document", NULL, NULL,
 			HEX_TYPE_DOCUMENT,
-			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+			default_flags | G_PARAM_READWRITE);
 
 	properties[PROP_CPL] = g_param_spec_int ("cpl", NULL, NULL,
 			1, 10000, 1,
@@ -851,6 +851,10 @@ hex_view_class_init (HexViewClass *klass)
 static void
 hex_view_init (HexView *self)
 {
+	/* Set up a default document by explicitly passing NULL to the setter */
+
+	hex_view_set_document (self, NULL);
+
 	/* Set up a dummy selection - this property will almost certainly be subsequently bound to its parent's */
 	{
 		g_autoptr(HexSelection) selection = hex_view_selection_new (self);
