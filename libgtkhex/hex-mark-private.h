@@ -7,6 +7,20 @@
 G_BEGIN_DECLS
 
 /**
+ * HEX_MARK_DEFAULT_COLOR:
+ *
+ * Provides the default mark color by way of a compound literal of type
+ * `GdkRGBA`.
+ */
+#define HEX_MARK_DEFAULT_COLOR \
+	((GdkRGBA){ \
+		.red = 1.0f, \
+		.green = 1.0f, \
+		.blue = 0.0f, \
+		.alpha = 0.5f \
+	})
+
+/**
  * HexMark:
  *
  * `HexMark` is a `GObject` which contains the metadata associated with a
@@ -24,12 +38,6 @@ struct _HexMark
 	GdkRGBA custom_color;
 };
 
-#define HEX_MARK_DEFAULT_COLOR \
-	((GdkRGBA){ \
-		.red = 1.0f, \
-		.green = 1.0f, \
-		.blue = 0.0f, \
-		.alpha = 0.5f \
-	})
+GdkRGBA _hex_mark_get_default_color (HexMark *self);
 
 G_END_DECLS

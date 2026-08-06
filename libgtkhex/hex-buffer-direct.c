@@ -23,12 +23,7 @@
 
 #include "hex-buffer-direct.h"
 
-#define HEX_BUFFER_DIRECT_ERROR hex_buffer_direct_error_quark ()
-GQuark
-hex_buffer_direct_error_quark (void)
-{
-  return g_quark_from_static_string ("hex-buffer-direct-error-quark");
-}
+G_DEFINE_QUARK (hex-buffer-direct-error-quark, hex_buffer_direct_error)
 
 /* PROPERTIES */
 

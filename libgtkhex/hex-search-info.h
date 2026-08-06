@@ -37,5 +37,6 @@ const char * hex_search_info_get_not_found_msg (HexSearchInfo *self);
 gboolean hex_search_info_get_found (HexSearchInfo *self);
 gint64 hex_search_info_get_found_offset (HexSearchInfo *self);
 size_t hex_search_info_get_found_len (HexSearchInfo *self);
+gint64 hex_search_info_get_pos (HexSearchInfo *self);
 
 G_END_DECLS

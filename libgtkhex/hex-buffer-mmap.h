@@ -28,8 +28,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef HEX_DOCUMENT_MMAP_H
-#define HEX_DOCUMENT_MMAP_H
+#pragma once
 
 #include <hex-buffer-iface.h>
 
@@ -43,6 +42,9 @@
 
 G_BEGIN_DECLS
 
+#define HEX_BUFFER_MMAP_ERROR (hex_buffer_mmap_error_quark ())
+GQuark hex_buffer_mmap_error_quark (void);
+
 #define HEX_TYPE_BUFFER_MMAP hex_buffer_mmap_get_type ()
 G_DECLARE_FINAL_TYPE (HexBufferMmap, hex_buffer_mmap, HEX, BUFFER_MMAP, GObject)
 
@@ -50,4 +52,3 @@ G_DECLARE_FINAL_TYPE (HexBufferMmap, hex_buffer_mmap, HEX, BUFFER_MMAP, GObject)
 HexBuffer *hex_buffer_mmap_new (GFile *file);
 
 G_END_DECLS
-#endif

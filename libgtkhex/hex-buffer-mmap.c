@@ -30,13 +30,7 @@
 
 #include "hex-buffer-mmap.h"
 
-#define HEX_BUFFER_MMAP_ERROR hex_buffer_mmap_error_quark ()
-GQuark
-hex_buffer_mmap_error_quark (void)
-{
-  return g_quark_from_static_string ("hex-buffer-mmap-error-quark");
-}
-
+G_DEFINE_QUARK (hex-buffer-mmap-error-quark, hex_buffer_mmap_error)
 
 /* PROPERTIES */
 
@@ -442,7 +436,7 @@ hex_buffer_mmap_raw (HexBufferMmap *self,
 	return bytes;
 }
 
-size_t
+static size_t
 hex_buffer_mmap_copy_data (HexBufferMmap *self,
 		void *out, gint64 offset, size_t bytes)
 {
@@ -476,7 +470,7 @@ hex_buffer_mmap_copy_data (HexBufferMmap *self,
 	return bytes;
 }
 
-size_t
+static size_t
 hex_buffer_mmap_delete (HexBufferMmap *self,
 		     gint64 offset, size_t bytes)
 {
@@ -532,7 +526,8 @@ hex_buffer_mmap_insert (HexBufferMmap *self,
 	return bytes;
 }
 
-char * hex_buffer_mmap_get_data (HexBuffer *buf,
+static char *
+hex_buffer_mmap_get_data (HexBuffer *buf,
 		gint64 offset,
 		size_t len)
 {
@@ -545,7 +540,8 @@ char * hex_buffer_mmap_get_data (HexBuffer *buf,
 	return data;
 }
 
-char hex_buffer_mmap_get_byte (HexBuffer *buf,
+static char
+hex_buffer_mmap_get_byte (HexBuffer *buf,
 		gint64 offset)
 {
 	HexBufferMmap *self = HEX_BUFFER_MMAP (buf);
