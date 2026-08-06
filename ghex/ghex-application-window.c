@@ -149,7 +149,7 @@ close_page_finish_helper (GHexApplicationWindow *self, AdwTabPage *page, gboolea
 		ghex_application_window_set_active_view (self, NULL);
 }
 
-gboolean
+static gboolean
 doc_changed_icon_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer data)
 {
 	gboolean changed = g_value_get_boolean (from_value);

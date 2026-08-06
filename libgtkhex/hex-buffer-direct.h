@@ -21,8 +21,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef HEX_DOCUMENT_DIRECT_H
-#define HEX_DOCUMENT_DIRECT_H
+#pragma once
 
 #include <hex-buffer-iface.h>
 
@@ -37,6 +36,9 @@
 
 G_BEGIN_DECLS
 
+#define HEX_BUFFER_DIRECT_ERROR (hex_buffer_direct_error_quark ())
+GQuark hex_buffer_direct_error_quark (void);
+
 #define HEX_TYPE_BUFFER_DIRECT hex_buffer_direct_get_type ()
 G_DECLARE_FINAL_TYPE (HexBufferDirect, hex_buffer_direct, HEX, BUFFER_DIRECT, GObject)
 
@@ -44,4 +46,3 @@ G_DECLARE_FINAL_TYPE (HexBufferDirect, hex_buffer_direct, HEX, BUFFER_DIRECT, GO
 HexBuffer *hex_buffer_direct_new (GFile *file);
 
 G_END_DECLS
-#endif

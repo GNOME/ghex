@@ -37,5 +37,6 @@ void ghex_application_window_new_file (GHexApplicationWindow *self);
 void ghex_application_window_open_file (GHexApplicationWindow *self, GFile *file);
 GHexViewContainer * ghex_application_window_get_active_view (GHexApplicationWindow *self);
 void ghex_application_window_set_active_view (GHexApplicationWindow *self, GHexViewContainer *container);
+void ghex_application_window_add_document (GHexApplicationWindow *self, HexDocument *doc);
 
 G_END_DECLS
