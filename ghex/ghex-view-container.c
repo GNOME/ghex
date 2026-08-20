@@ -408,14 +408,6 @@ doc_changed_refresh_search_bar_cb (GHexViewContainer *self, GListModel *change_l
 	if (! self->show_search_bar)
 		return;
 
-	/* This isn't quite analagous to a 'user action' but it's close enough.
-	 * Otherwise, every time the document gets changed internally such as
-	 * through a multi-part undo operation, we'll try to refresh the search
-	 * query.
-	 */
-	if (! undoable)
-		return;
-
 	ghex_search_bar_refresh_query (self->search_bar);
 }
 
