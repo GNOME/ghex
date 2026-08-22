@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ghex ghex-46\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
-"POT-Creation-Date: 2026-03-10 22:06+0000\n"
-"PO-Revision-Date: 2026-03-15 01:31+0500\n"
+"POT-Creation-Date: 2026-05-27 18:45+0000\n"
+"PO-Revision-Date: 2026-08-22 08:45+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <Kazakh>\n"
 "Language: kk\n"
@@ -21,14 +21,11 @@ msgstr ""
 msgid "Hex Editor"
 msgstr "Hex редакторы"
 
-#: data/org.gnome.GHex.desktop.in.in:5
-#: data/org.gnome.GHex.metainfo.xml.in.in:7
+#: data/org.gnome.GHex.desktop.in.in:5 data/org.gnome.GHex.metainfo.xml.in.in:7
 msgid "Inspect and edit binary files"
 msgstr "Бинарлық файлдарды қарау және түзету"
 
-#. Translators: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon! Here,
-#. 'binary' means a binary file (not the base-2 numeric system).
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
 #: data/org.gnome.GHex.desktop.in.in:7
 msgid "binary;debug;hexadecimal;"
 msgstr "бинарлық;жөндеу;он алтылық;"
@@ -48,8 +45,8 @@ msgstr "GHex — GNOME жұмыс үстеліне арналған hex реда
 
 #: data/org.gnome.GHex.metainfo.xml.in.in:12
 msgid ""
-"GHex can load raw data from binary files and display them for editing in "
-"the traditional hex editor view. The display is split in two columns, with "
+"GHex can load raw data from binary files and display them for editing in the "
+"traditional hex editor view. The display is split in two columns, with "
 "hexadecimal values in one column and the ASCII representation in the other. "
 "GHex is a useful tool for working with raw data."
 msgstr ""
@@ -57,6 +54,10 @@ msgstr ""
 "редакторы түрінде түзету үшін көрсете алады. Көрсетілім екі бағанға "
 "бөлінген: біріншісінде он алтылық мәндер, екіншісінде ASCII нұсқасы. GHex — "
 "шикі деректермен жұмыс істеуге арналған пайдалы сайман."
+
+#: data/org.gnome.GHex.metainfo.xml.in.in:43
+msgid "Logan Rathbone"
+msgstr "Logan Rathbone"
 
 #: src/chartable.ui:30
 msgid "Character table"
@@ -108,8 +109,8 @@ msgstr ""
 
 #: src/common-ui.c:254
 msgid ""
-"You should have received a copy of the GNU General Public License along "
-"with this program; if not, write to the Free Software Foundation, Inc., 51 "
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
 "Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
 msgstr ""
 "Сіз осы бағдарламамен бірге GNU General Public License көшірмесін алуыңыз "
@@ -325,6 +326,7 @@ msgstr "Ешқандай сәйкестік табылмады."
 
 #. Translators: this is the string for an untitled buffer that will
 #. * be displayed in the titlebar when a user does File->New
+#.
 #: src/ghex-application-window.c:43 src/hex-document.c:1174
 msgid "Untitled"
 msgstr "Атаусыз"
@@ -333,11 +335,11 @@ msgstr "Атаусыз"
 msgid "There was an error saving the file."
 msgstr "Файлды сақтау кезінде қате орын алды."
 
-#: src/ghex-application-window.c:399
+#: src/ghex-application-window.c:401
 msgid "Save Changes?"
 msgstr "Өзгерістерді сақтау керек пе?"
 
-#: src/ghex-application-window.c:402
+#: src/ghex-application-window.c:404
 msgid ""
 "Open documents contain unsaved changes.\n"
 "Changes which are not saved will be permanently lost."
@@ -345,57 +347,57 @@ msgstr ""
 "Ашық құжаттарда сақталмаған өзгерістер бар.\n"
 "Сақталмаған өзгерістер біржола жоғалады."
 
-#: src/ghex-application-window.c:405 src/ghex-application-window.c:534
-#: src/ghex-application-window.c:1268 src/paste-special.ui:53
+#: src/ghex-application-window.c:407 src/ghex-application-window.c:536
+#: src/ghex-application-window.c:1272 src/paste-special.ui:53
 msgid "_Cancel"
 msgstr "_Бас тарту"
 
-#: src/ghex-application-window.c:406 src/ghex-application-window.c:535
+#: src/ghex-application-window.c:408 src/ghex-application-window.c:537
 msgid "_Discard"
 msgstr "_Елемеу"
 
 #. Translators: %s is the filename that is currently being
 #. * edited.
-#: src/ghex-application-window.c:521
+#: src/ghex-application-window.c:523
 #, c-format
 msgid "%s has been edited since opening."
 msgstr "%s ашылғаннан бері түзетілген."
 
-#: src/ghex-application-window.c:525
+#: src/ghex-application-window.c:527
 msgid "The buffer has been edited since opening."
 msgstr "Буфер ашылғаннан бері түзетілген."
 
-#: src/ghex-application-window.c:532
+#: src/ghex-application-window.c:534
 msgid "Would you like to save your changes?"
 msgstr "Өзгерістерді сақтауды қалайсыз ба?"
 
-#: src/ghex-application-window.c:536
+#: src/ghex-application-window.c:538
 msgid "_Save"
 msgstr "_Сақтау"
 
-#: src/ghex-application-window.c:1123
+#: src/ghex-application-window.c:1125
 msgid "There was an error saving the file to the path specified."
 msgstr "Файлды көрсетілген жолға сақтау кезінде қате орын алды."
 
-#: src/ghex-application-window.c:1142
+#: src/ghex-application-window.c:1144
 msgid ""
-"An unknown error has occurred in attempting to reload the file you have "
-"just saved."
+"An unknown error has occurred in attempting to reload the file you have just "
+"saved."
 msgstr ""
 "Сіз жаңа ғана сақтаған файлды қайта жүктеу кезінде белгісіз қате орын алды."
 
-#: src/ghex-application-window.c:1195
+#: src/ghex-application-window.c:1199
 msgid "Select a file to save buffer as"
 msgstr "Буферді қалайша сақтау үшін файлды таңдаңыз"
 
 #. Translators: %s here is the filename the user is being asked to
 #. * confirm whether they want to revert.
-#: src/ghex-application-window.c:1260
+#: src/ghex-application-window.c:1264
 #, c-format
 msgid "Are you sure you want to revert %s?"
 msgstr "%s бастапқы қалпына келтіруге сенімдісіз бе?"
 
-#: src/ghex-application-window.c:1265
+#: src/ghex-application-window.c:1269
 msgid ""
 "Your changes will be lost.\n"
 "This action cannot be undone."
@@ -403,21 +405,20 @@ msgstr ""
 "Өзгерістеріңіз жоғалады.\n"
 "Бұл әрекетті болдырмау мүмкін емес."
 
-#: src/ghex-application-window.c:1269 src/ghex-application-window.ui.in:39
+#: src/ghex-application-window.c:1273 src/ghex-application-window.ui.in:39
 msgid "_Revert"
 msgstr "_Қалпына келтіру"
 
-#: src/ghex-application-window.c:1359
+#: src/ghex-application-window.c:1363
 msgid "Select a file to open"
 msgstr "Ашу үшін файлды таңдаңыз"
 
-#: src/ghex-application-window.c:1467
+#: src/ghex-application-window.c:1471
 #, c-format
 msgid ""
 "Sorry, but help could not be opened.\n"
 "\n"
-"Various attempts were made to locate the help documentation "
-"unsuccessfully.\n"
+"Various attempts were made to locate the help documentation unsuccessfully.\n"
 "\n"
 "Please ensure the application was properly installed.\n"
 "\n"
@@ -435,7 +436,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/ghex-application-window.c:1664
+#: src/ghex-application-window.c:1668
 #, c-format
 msgid ""
 "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
@@ -444,12 +445,12 @@ msgstr ""
 "Ығысу: <tt>0x%lX</tt>; <tt>0x%lX</tt> байт <tt>0x%lX</tt> және <tt>0x%lX</"
 "tt> аралығында таңдалды"
 
-#: src/ghex-application-window.c:1667
+#: src/ghex-application-window.c:1671
 #, c-format
 msgid "Offset: <tt>0x%lX</tt>"
 msgstr "Ығысу: <tt>0x%lX</tt>"
 
-#: src/ghex-application-window.c:1674
+#: src/ghex-application-window.c:1678
 #, c-format
 msgid ""
 "Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
@@ -458,36 +459,36 @@ msgstr ""
 "Ығысу: <tt>%ld</tt>; <tt>%ld</tt> байт <tt>%ld</tt> бастап <tt>%ld</tt> "
 "дейін таңдалды"
 
-#: src/ghex-application-window.c:1677
+#: src/ghex-application-window.c:1681
 #, c-format
 msgid "Offset: <tt>%ld</tt>"
 msgstr "Ығысу: <tt>%ld</tt>"
 
 #. Weird rendering if you don't put the space at the start
-#: src/ghex-application-window.c:1685
+#: src/ghex-application-window.c:1689
 #, c-format
 msgid ""
-" <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from "
-"<tt>0x%lX</tt> to <tt>0x%lX</tt> selected <sub>DEC</sub> Offset: <tt>%ld</"
-"tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> selected"
+" <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
+"tt> to <tt>0x%lX</tt> selected <sub>DEC</sub> Offset: <tt>%ld</tt>; <tt>%ld</"
+"tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> selected"
 msgstr ""
 " <sub>HEX</sub> Ығысу: <tt>0x%lX</tt>; <tt>0x%lX</tt> байт <tt>0x%lX</tt> "
 "бастап <tt>0x%lX</tt> дейін таңдалды <sub>DEC</sub> Ығысу: <tt>%ld</tt>; "
 "<tt>%ld</tt> байт <tt>%ld</tt> бастап <tt>%ld</tt> дейін таңдалды"
 
-#: src/ghex-application-window.c:1689
+#: src/ghex-application-window.c:1693
 #, c-format
 msgid ""
 " <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"
 msgstr ""
 " <sub>HEX</sub> Ығысу: <tt>0x%lX</tt> <sub>DEC</sub> Ығысу: <tt>%ld</tt>"
 
-#: src/ghex-application-window.c:2536
+#: src/ghex-application-window.c:2540
 msgid ""
 "You are attempting to open a file 1GB or larger.\n"
 "\n"
-"This can make GHex and your machine unstable as the file will be loaded "
-"into memory, using the active backend.\n"
+"This can make GHex and your machine unstable as the file will be loaded into "
+"memory, using the active backend.\n"
 "\n"
 "Are you sure you want to proceed?\n"
 "\n"
@@ -507,11 +508,11 @@ msgstr ""
 "\n"
 "Бұл хабарламаның алдын алу үшін басқа буфер бэкендін пайдаланып көріңіз."
 
-#: src/ghex-application-window.c:2594
+#: src/ghex-application-window.c:2598
 msgid "There was an error reading the file."
 msgstr "Файлды оқу кезінде қате орын алды."
 
-#: src/ghex-application-window.c:2655
+#: src/ghex-application-window.c:2659
 msgid ""
 "There was an error loading the requested file. The file either no longer "
 "exists, is inaccessible, or you may not have permission to access the file."
@@ -654,8 +655,7 @@ msgstr ""
 "Немесе, терезені жабу үшін Ctrl+W басыңыз."
 
 #: src/ghex-application-window.ui.in:317
-msgid ""
-"Toggle insert mode (add data to file rather than replace existing data)"
+msgid "Toggle insert mode (add data to file rather than replace existing data)"
 msgstr ""
 "Кірістіру режимін ауыстыру (бар деректерді алмастырудың орнына файлға "
 "деректер қосу)"
@@ -840,6 +840,7 @@ msgstr "Файл жолы қате сияқты."
 #. * error has occurred (eg, 'An error has occurred', and the the 2nd '%s'
 #. * is the standard error message that will be reported from the system
 #. * (eg, 'No such file or directory').
+#.
 #: src/hex-buffer-direct.c:143 src/hex-buffer-mmap.c:177
 #, c-format
 msgid "%s: %s"
@@ -1014,14 +1015,14 @@ msgstr "Байтқа өту (ығысуды енгізіңіз):"
 #: src/jump-dialog.ui:44
 msgid ""
 "Enter the offset byte to jump to. The default is decimal format, but other "
-"format strings are supported such as hexadecimal format, if C-style "
-"notation using the '0x' prefix is used. If your string is not recognized, a "
-"dialog will be presented explaining the valid formats of strings accepted."
+"format strings are supported such as hexadecimal format, if C-style notation "
+"using the '0x' prefix is used. If your string is not recognized, a dialog "
+"will be presented explaining the valid formats of strings accepted."
 msgstr ""
 "Өтетін ығысу байтын енгізіңіз. Бастапқы пішім — ондық, бірақ '0x' префиксі "
-"бар C-стиліндегі белгілеу қолданылса, он алтылық пішім сияқты басқа "
-"пішімдер де қолданыла алады. Егер жол танылмаса, қабылданған жолдардың "
-"жарамды пішімдері түсіндірілетін сұхбат терезесі көрсетіледі."
+"бар C-стиліндегі белгілеу қолданылса, он алтылық пішім сияқты басқа пішімдер "
+"де қолданыла алады. Егер жол танылмаса, қабылданған жолдардың жарамды "
+"пішімдері түсіндірілетін сұхбат терезесі көрсетіледі."
 
 #: src/jump-dialog.ui:49 src/mark-dialog.ui:110
 msgid "_Jump"
@@ -1054,6 +1055,7 @@ msgstr "GHex — GNOME жұмыс үстеліне арналған hex реда
 
 #. Translators: this is meant to show a range of hex offset values.
 #. * eg, "0xAA - 0xFF"
+#.
 #: src/mark-dialog.c:125
 #, c-format
 msgid "0x%lX - 0x%lX"
