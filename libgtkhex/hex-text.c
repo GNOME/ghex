@@ -493,10 +493,6 @@ hex_text_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 
 	for (int i = 0 - OFFSCREEN_LINE_MARGIN; i < hex_view_get_n_vis_lines (HEX_VIEW(self)) + OFFSCREEN_LINE_MARGIN; ++i)
 	{
-		graphene_point_t point = {
-			.x = 0,
-			.y = i * render_data->line_height + render_data->fine_translate_value,
-		};
 		gint64 line_start_offset;
 		int line_len;
 		g_autofree char *formatted_line = NULL;
@@ -533,7 +529,7 @@ hex_text_snapshot (GtkWidget *widget, GtkSnapshot *snapshot)
 		pango_layout_set_markup (layout, formatted_line, -1);
 
 		gtk_snapshot_save (snapshot);
-		gtk_snapshot_translate (snapshot, &point);
+		gtk_snapshot_translate (snapshot, &(graphene_point_t){.x = 0, .y = i * render_data->line_height + render_data->fine_translate_value});
 
 		if (render_data->top_disp_line == 0)
 		{
