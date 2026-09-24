@@ -19,7 +19,6 @@ enum
 {
 	PROP_0,
 	PROP_CHAR_WIDTH,
-	PROP_NUM_LINES,
 	PROP_CAN_UNDO,
 	PROP_CAN_REDO,
 	PROP_SHOW_OFFSETS,
@@ -309,6 +308,39 @@ redo_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
 	hex_selection_collapse (selection, hex_change_data_get_start_offset (last_change));
 }
 
+static int
+calc_n_vis_lines (HexWidget *self)
+{
+	int char_height = 0;
+	int pane_height = 0;
+	GtkWidget *children[] = {self->offsets, self->xdisp, self->adisp};
+
+	g_return_val_if_fail (HEX_IS_WIDGET (self), 0);
+
+	char_height = hex_widget_get_char_height (self);
+
+	for (guint i = 0; i < G_N_ELEMENTS (children); ++i)
+	{
+		GtkWidget *child = children[i];
+
+		if (! gtk_widget_is_visible (child) || ! gtk_widget_get_realized (child))
+			continue;
+
+		if ((pane_height = gtk_widget_get_height (child)) > 0)
+			break;
+	}
+
+	g_debug ("%s: pane_height: %d - char_height: %d", __func__, pane_height, char_height);
+	
+	if (pane_height && char_height)
+	{
+		g_debug ("%s: retval: %d", __func__, pane_height / char_height);
+		return pane_height / char_height;
+	}
+
+	return 0;
+}
+
 static void
 recalc_adjustment (HexWidget *self, HexWidgetLayout *layout_manager)
 {
@@ -324,7 +356,7 @@ recalc_adjustment (HexWidget *self, HexWidgetLayout *layout_manager)
 	if (! (payload && cpl))
 		return;
 
-	num_disp_lines = hex_widget_get_num_lines (self);
+	num_disp_lines = calc_n_vis_lines (self);
 	num_total_lines = payload / cpl;
 
 	upper = MAX (payload / cpl * HEX_ADJ_PIXEL_MULTIPLIER,
@@ -432,39 +464,6 @@ hex_widget_get_char_height (HexWidget *self)
 	get_char_metrics (self, &dummy, &retval);
 
 	return retval;
-}
-
-int
-hex_widget_get_num_lines (HexWidget *self)
-{
-	int char_height = 0;
-	int pane_height = 0;
-	GtkWidget *children[] = {self->offsets, self->xdisp, self->adisp};
-
-	g_return_val_if_fail (HEX_IS_WIDGET (self), 0);
-
-	char_height = hex_widget_get_char_height (self);
-
-	for (guint i = 0; i < G_N_ELEMENTS (children); ++i)
-	{
-		GtkWidget *child = children[i];
-
-		if (! gtk_widget_is_visible (child) || ! gtk_widget_get_realized (child))
-			continue;
-
-		if ((pane_height = gtk_widget_get_height (child)) > 0)
-			break;
-	}
-
-	g_debug ("%s: pane_height: %d - char_height: %d", __func__, pane_height, char_height);
-	
-	if (pane_height && char_height)
-	{
-		g_debug ("%s: num_lines retval: %d", __func__, pane_height / char_height);
-		return pane_height / char_height;
-	}
-
-	return 0;
 }
 
 static void
@@ -631,10 +630,6 @@ hex_widget_get_property (GObject *object,
 			g_value_set_int (value, hex_widget_get_char_width (self));
 			break;
 
-		case PROP_NUM_LINES:
-			g_value_set_int (value, hex_widget_get_num_lines (self));
-			break;
-
 		case PROP_CAN_UNDO:
 			g_value_set_boolean (value, hex_widget_get_can_undo (self));
 			break;
@@ -779,10 +774,6 @@ hex_widget_class_init (HexWidgetClass *klass)
 
 	properties[PROP_CHAR_WIDTH] = g_param_spec_int ("char-width", NULL, NULL,
 			0, 1000, 10,
-			default_flags | G_PARAM_READABLE);
-
-	properties[PROP_NUM_LINES] = g_param_spec_int ("num-lines", NULL, NULL,
-			0, 10000, 0,
 			default_flags | G_PARAM_READABLE);
 
 	properties[PROP_CAN_UNDO] = g_param_spec_boolean ("can-undo", NULL, NULL,
