@@ -14,6 +14,8 @@ enum
 	PROP_CPL,
 	PROP_AUTO_GEOMETRY,
 	PROP_FONT,
+	PROP_CHAR_WIDTH,
+	PROP_CHAR_HEIGHT,
 	PROP_BLINK_CURSOR,
 	PROP_SELECTION,
 	PROP_MARKS,
@@ -52,6 +54,7 @@ typedef struct
 	GListModel *auto_highlights;
 	gboolean insert_mode;
 	gboolean finding_highlight;
+	gboolean vadj_set;
 
 	/* GtkScrollable interface */
 
@@ -294,13 +297,20 @@ hex_view_set_vadjustment (HexView *self, GtkAdjustment *vadj)
 	priv = hex_view_get_instance_private (self);
 
 	if (!vadj)
-		vadj = gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	{
+		g_clear_object (&priv->vadj);
+		priv->vadj = g_object_ref_sink (gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+		priv->vadj_set = FALSE;
+	}
+	else
+	{
+		if (vadj == priv->vadj)
+			return;
 
-	if (vadj == priv->vadj)
-		return;
-
-	g_clear_object (&priv->vadj);
-	priv->vadj = g_object_ref_sink (vadj);
+		g_clear_object (&priv->vadj);
+		priv->vadj = g_object_ref_sink (vadj);
+		priv->vadj_set = TRUE;
+	}
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_VADJUSTMENT]);
 }
@@ -348,6 +358,8 @@ hex_view_set_font (HexView *self, const char *font)
 	priv->font = g_strdup (font);
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FONT]);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_CHAR_WIDTH]);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_CHAR_HEIGHT]);
 }
 
 void
@@ -590,6 +602,153 @@ hex_view_clear_auto_highlights (HexView *self)
 }
 
 static void
+get_char_metrics (HexView *self, int *width_retval, int *height_retval)
+{
+	HexViewPrivate *priv;
+	/* No autoptr available :( */
+	PangoContext *context;
+	PangoFont *pango_font;
+	PangoFontMetrics *metrics;
+	PangoFontDescription *font_desc;
+	int default_width = 0, width = 0;
+	int default_height = 0, height = 0;
+
+	g_assert (HEX_IS_VIEW (self));
+
+	priv = hex_view_get_instance_private (self);
+
+	context = gtk_widget_create_pango_context (GTK_WIDGET(self));
+
+	/* Get default */
+
+	metrics = pango_context_get_metrics (context, NULL, NULL);
+
+	default_width = MAX (pango_font_metrics_get_approximate_digit_width (metrics),
+			pango_font_metrics_get_approximate_char_width (metrics));
+	default_width = PANGO_PIXELS (default_width);
+
+	default_height = pango_font_metrics_get_height (metrics);
+	default_height = PANGO_PIXELS (default_height);
+
+	g_clear_pointer (&metrics, pango_font_metrics_unref);
+
+	/* Get custom */
+
+	font_desc = pango_font_description_from_string (priv->font);
+	pango_font = pango_context_load_font (context, font_desc);
+
+	if (pango_font)
+	{
+		metrics = pango_font_get_metrics (pango_font, NULL);
+
+		width = MAX (pango_font_metrics_get_approximate_digit_width (metrics), pango_font_metrics_get_approximate_char_width (metrics));
+		width = PANGO_PIXELS (width);
+
+		height = pango_font_metrics_get_height (metrics);
+		height = PANGO_PIXELS (height);
+	}
+
+	/* A height or width of 0 means either the font is invalid or no size info
+	 * was provided, so grab the context's default width info instead.
+	 */
+	if (width_retval)
+		*width_retval = width > 0 ? width : default_width;
+
+	if (height_retval)
+		*height_retval = height > 0 ? height : default_height;
+	
+	g_object_unref (context);
+	g_object_unref (pango_font);
+	pango_font_description_free (font_desc);
+	pango_font_metrics_unref (metrics);
+}
+
+int
+hex_view_get_char_width (HexView *self)
+{
+	int retval;
+
+	g_return_val_if_fail (HEX_IS_VIEW (self), 10);
+
+	get_char_metrics (self, &retval, NULL);
+
+	return retval;
+}
+
+int
+hex_view_get_char_height (HexView *self)
+{
+	int retval;
+
+	g_return_val_if_fail (HEX_IS_VIEW (self), 10);
+
+	get_char_metrics (self, NULL, &retval);
+
+	return retval;
+}
+
+static int
+calc_n_vis_lines (HexView *self)
+{
+	int char_height = 0;
+	int pane_height = 0;
+
+	g_assert (HEX_IS_VIEW (self));
+
+	char_height = hex_view_get_char_height (self);
+	pane_height = gtk_widget_get_height (GTK_WIDGET(self));
+
+	g_debug ("%s: pane_height: %d - char_height: %d", __func__, pane_height, char_height);
+	
+	if (pane_height && char_height)
+	{
+		g_debug ("%s: retval: %d", __func__, pane_height / char_height);
+		return pane_height / char_height;
+	}
+
+	return 0;
+}
+
+static void
+recalc_adjustment (HexView *self)
+{
+	HexViewPrivate *priv = hex_view_get_instance_private (self);
+	HexBuffer *buf = hex_document_get_buffer (priv->document);
+	const gint64 payload = hex_buffer_get_payload_size (buf);
+	int num_total_lines;
+	int num_disp_lines;
+	double upper;
+
+	if (! (payload && priv->cpl))
+		return;
+
+	num_disp_lines = calc_n_vis_lines (self);
+	num_total_lines = payload / priv->cpl;
+
+	upper = MAX (payload / priv->cpl * HEX_ADJ_PIXEL_MULTIPLIER,
+			(num_total_lines + num_disp_lines / 2) * HEX_ADJ_PIXEL_MULTIPLIER
+			);
+
+	gtk_adjustment_set_lower (priv->vadj, 0.0);
+	gtk_adjustment_set_upper (priv->vadj, upper);
+	gtk_adjustment_set_step_increment (priv->vadj, 1.0 * HEX_ADJ_PIXEL_MULTIPLIER);
+	gtk_adjustment_set_page_increment (priv->vadj, (num_disp_lines - 1) * HEX_ADJ_PIXEL_MULTIPLIER);
+	gtk_adjustment_set_page_size (priv->vadj, num_disp_lines * HEX_ADJ_PIXEL_MULTIPLIER);
+}
+
+static void
+hex_view_size_allocate (GtkWidget *widget, int width, int height, int baseline)
+{
+	HexView *self = HEX_VIEW(widget);
+	HexViewPrivate *priv = hex_view_get_instance_private (self);
+
+	if (!priv->vadj_set)
+		recalc_adjustment (self);
+
+	GTK_WIDGET_CLASS(hex_view_parent_class)->size_allocate (widget, width, height, baseline);
+}
+
+static void
 hex_view_set_property (GObject *object,
 		guint property_id,
 		const GValue *value,
@@ -683,6 +842,14 @@ hex_view_get_property (GObject *object,
 
 		case PROP_FONT:
 			g_value_set_string (value, hex_view_get_font (self));
+			break;
+
+		case PROP_CHAR_WIDTH:
+			g_value_set_int (value, hex_view_get_char_width (self));
+			break;
+
+		case PROP_CHAR_HEIGHT:
+			g_value_set_int (value, hex_view_get_char_height (self));
 			break;
 
 		case PROP_BLINK_CURSOR:
@@ -783,6 +950,8 @@ hex_view_class_init (HexViewClass *klass)
 	object_class->set_property = hex_view_set_property;
 	object_class->get_property = hex_view_get_property;
 
+	widget_class->size_allocate = hex_view_size_allocate;
+
 	properties[PROP_DOCUMENT] = g_param_spec_object ("document", NULL, NULL,
 			HEX_TYPE_DOCUMENT,
 			default_flags | G_PARAM_READWRITE);
@@ -798,6 +967,14 @@ hex_view_class_init (HexViewClass *klass)
 	properties[PROP_FONT] = g_param_spec_string ("font", NULL, NULL,
 			"monospace 10",
 			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+	properties[PROP_CHAR_WIDTH] = g_param_spec_int ("char-width", NULL, NULL,
+			0, 1000, 10,
+			default_flags | G_PARAM_READABLE);
+
+	properties[PROP_CHAR_HEIGHT] = g_param_spec_int ("char-height", NULL, NULL,
+			0, 1000, 10,
+			default_flags | G_PARAM_READABLE);
 
 	properties[PROP_BLINK_CURSOR] = g_param_spec_boolean ("blink-cursor", NULL, NULL,
 			FALSE,
@@ -850,7 +1027,9 @@ hex_view_class_init (HexViewClass *klass)
 static void
 hex_view_init (HexView *self)
 {
-	/* Set up a default document by explicitly passing NULL to the setter */
+	/* Set up dummy objects */
+
+	hex_view_set_vadjustment (self, NULL);
 
 	hex_view_set_document (self, NULL);
 

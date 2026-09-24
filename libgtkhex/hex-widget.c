@@ -18,7 +18,6 @@ static gboolean hex_widget_get_can_redo (HexWidget *self);
 enum
 {
 	PROP_0,
-	PROP_CHAR_WIDTH,
 	PROP_CAN_UNDO,
 	PROP_CAN_REDO,
 	PROP_SHOW_OFFSETS,
@@ -308,68 +307,6 @@ redo_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
 	hex_selection_collapse (selection, hex_change_data_get_start_offset (last_change));
 }
 
-static int
-calc_n_vis_lines (HexWidget *self)
-{
-	int char_height = 0;
-	int pane_height = 0;
-	GtkWidget *children[] = {self->offsets, self->xdisp, self->adisp};
-
-	g_return_val_if_fail (HEX_IS_WIDGET (self), 0);
-
-	char_height = hex_widget_get_char_height (self);
-
-	for (guint i = 0; i < G_N_ELEMENTS (children); ++i)
-	{
-		GtkWidget *child = children[i];
-
-		if (! gtk_widget_is_visible (child) || ! gtk_widget_get_realized (child))
-			continue;
-
-		if ((pane_height = gtk_widget_get_height (child)) > 0)
-			break;
-	}
-
-	g_debug ("%s: pane_height: %d - char_height: %d", __func__, pane_height, char_height);
-	
-	if (pane_height && char_height)
-	{
-		g_debug ("%s: retval: %d", __func__, pane_height / char_height);
-		return pane_height / char_height;
-	}
-
-	return 0;
-}
-
-static void
-recalc_adjustment (HexWidget *self, HexWidgetLayout *layout_manager)
-{
-	HexDocument *document = hex_view_get_document (HEX_VIEW(self));
-	HexBuffer *buf = hex_document_get_buffer (document);
-	gint64 payload = hex_buffer_get_payload_size (buf);
-	int cpl = hex_view_get_cpl (HEX_VIEW(self));
-	GtkAdjustment *vadj = hex_view_get_vadjustment (HEX_VIEW(self));
-	int num_total_lines;
-	int num_disp_lines;
-	double upper;
-
-	if (! (payload && cpl))
-		return;
-
-	num_disp_lines = calc_n_vis_lines (self);
-	num_total_lines = payload / cpl;
-
-	upper = MAX (payload / cpl * HEX_ADJ_PIXEL_MULTIPLIER,
-			(num_total_lines + num_disp_lines / 2) * HEX_ADJ_PIXEL_MULTIPLIER
-			);
-
-	gtk_adjustment_set_lower (vadj, 0.0);
-	gtk_adjustment_set_upper (vadj, upper);
-	gtk_adjustment_set_step_increment (vadj, 1.0 * HEX_ADJ_PIXEL_MULTIPLIER);
-	gtk_adjustment_set_page_increment (vadj, (num_disp_lines - 1) * HEX_ADJ_PIXEL_MULTIPLIER);
-	gtk_adjustment_set_page_size (vadj, num_disp_lines * HEX_ADJ_PIXEL_MULTIPLIER);
-}
-
 /* --- */
 
 static void
@@ -379,97 +316,6 @@ document_set_cb (HexWidget *self, GParamSpec *pspec, gpointer user_data)
 
 	g_object_bind_property (document, "can-undo", self, "can-undo", G_BINDING_SYNC_CREATE);
 	g_object_bind_property (document, "can-redo", self, "can-redo", G_BINDING_SYNC_CREATE);
-}
-
-static void
-get_char_metrics (HexWidget *self, int *width_retval, int *height_retval)
-{
-	const char *font;
-	/* No autoptr available :( */
-	PangoContext *context;
-	PangoFont *pango_font;
-	PangoFontMetrics *metrics;
-	PangoFontDescription *font_desc;
-	int default_width = 0, width = 0;
-	int default_height = 0, height = 0;
-
-	g_assert (HEX_IS_WIDGET (self));
-
-	font = hex_view_get_font (HEX_VIEW(self));
-	context = gtk_widget_create_pango_context (GTK_WIDGET(self));
-
-	/* Get default */
-
-	metrics = pango_context_get_metrics (context, NULL, NULL);
-
-	default_width = MAX (pango_font_metrics_get_approximate_digit_width (metrics),
-			pango_font_metrics_get_approximate_char_width (metrics));
-	default_width = PANGO_PIXELS (default_width);
-
-	default_height = pango_font_metrics_get_height (metrics);
-	default_height = PANGO_PIXELS (default_height);
-
-	g_clear_pointer (&metrics, pango_font_metrics_unref);
-
-	/* Get custom */
-
-	font_desc = pango_font_description_from_string (font);
-	pango_font = pango_context_load_font (context, font_desc);
-
-	if (pango_font)
-	{
-		metrics = pango_font_get_metrics (pango_font, NULL);
-
-		width = MAX (pango_font_metrics_get_approximate_digit_width (metrics), pango_font_metrics_get_approximate_char_width (metrics));
-		width = PANGO_PIXELS (width);
-
-		height = pango_font_metrics_get_height (metrics);
-		height = PANGO_PIXELS (height);
-	}
-
-	/* A height or width of 0 means either the font is invalid or no size info
-	 * was provided, so grab the context's default width info instead.
-	 */
-	if (width_retval)
-		*width_retval = width > 0 ? width : default_width;
-
-	if (height_retval)
-		*height_retval = height > 0 ? height : default_height;
-	
-	g_object_unref (context);
-	g_object_unref (pango_font);
-	pango_font_description_free (font_desc);
-	pango_font_metrics_unref (metrics);
-}
-
-int
-hex_widget_get_char_width (HexWidget *self)
-{
-	int retval, dummy;
-
-	g_return_val_if_fail (HEX_IS_WIDGET (self), 10);
-
-	get_char_metrics (self, &retval, &dummy);
-
-	return retval;
-}
-
-int
-hex_widget_get_char_height (HexWidget *self)
-{
-	int retval, dummy;
-
-	g_return_val_if_fail (HEX_IS_WIDGET (self), 10);
-
-	get_char_metrics (self, &dummy, &retval);
-
-	return retval;
-}
-
-static void
-font_set_cb (HexWidget *self, GParamSpec *pspec, gpointer user_data)
-{
-	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_CHAR_WIDTH]);
 }
 
 static void
@@ -626,10 +472,6 @@ hex_widget_get_property (GObject *object,
 
 	switch (property_id)
 	{
-		case PROP_CHAR_WIDTH:
-			g_value_set_int (value, hex_widget_get_char_width (self));
-			break;
-
 		case PROP_CAN_UNDO:
 			g_value_set_boolean (value, hex_widget_get_can_undo (self));
 			break;
@@ -730,8 +572,6 @@ hex_widget_constructed (GObject *object)
 	g_object_bind_property (self, "font", self->xdisp, "font", G_BINDING_SYNC_CREATE);
 	g_object_bind_property (self, "font", self->offsets, "font", G_BINDING_SYNC_CREATE);
 
-	/* Pegged to :font which is also a construct property... */
-
 	g_object_bind_property (self, "char-width", layout_manager, "char-width", G_BINDING_SYNC_CREATE);
 
 	/* This depends on the binding between the widget and layout manager being set up, which doesn't happen until the constructor properties are set.
@@ -771,10 +611,6 @@ hex_widget_class_init (HexWidgetClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, HexWidget, adisp);
 
 	/* PROPERTIES */
-
-	properties[PROP_CHAR_WIDTH] = g_param_spec_int ("char-width", NULL, NULL,
-			0, 1000, 10,
-			default_flags | G_PARAM_READABLE);
 
 	properties[PROP_CAN_UNDO] = g_param_spec_boolean ("can-undo", NULL, NULL,
 			FALSE,
@@ -848,7 +684,6 @@ hex_widget_init (HexWidget *self)
 	gtk_widget_set_focusable (GTK_WIDGET(self), TRUE);
 
 	g_signal_connect (self, "notify::document", G_CALLBACK(document_set_cb), NULL);
-	g_signal_connect (self, "notify::font", G_CALLBACK(font_set_cb), NULL);
 	g_signal_connect (self, "notify::auto-geometry", G_CALLBACK(auto_geometry_set_cb), NULL);
 
 	/* Setup layout manager */
