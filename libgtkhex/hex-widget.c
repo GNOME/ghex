@@ -349,8 +349,8 @@ document_set_cb (HexWidget *self, GParamSpec *pspec, gpointer user_data)
 	g_object_bind_property (document, "can-redo", self, "can-redo", G_BINDING_SYNC_CREATE);
 }
 
-int
-hex_widget_get_char_width (HexWidget *self)
+static void
+get_char_metrics (HexWidget *self, int *width_retval, int *height_retval)
 {
 	const char *font;
 	/* No autoptr available :( */
@@ -358,22 +358,25 @@ hex_widget_get_char_width (HexWidget *self)
 	PangoFont *pango_font;
 	PangoFontMetrics *metrics;
 	PangoFontDescription *font_desc;
-	int default_width = 0, width = 0, retval;
+	int default_width = 0, width = 0;
+	int default_height = 0, height = 0;
 
-	g_return_val_if_fail (HEX_IS_WIDGET (self), 10);
+	g_assert (HEX_IS_WIDGET (self));
 
 	font = hex_view_get_font (HEX_VIEW(self));
-
-	g_return_val_if_fail (font != NULL, 10);
-	
 	context = gtk_widget_create_pango_context (GTK_WIDGET(self));
 
 	/* Get default */
 
 	metrics = pango_context_get_metrics (context, NULL, NULL);
+
 	default_width = MAX (pango_font_metrics_get_approximate_digit_width (metrics),
 			pango_font_metrics_get_approximate_char_width (metrics));
 	default_width = PANGO_PIXELS (default_width);
+
+	default_height = pango_font_metrics_get_height (metrics);
+	default_height = PANGO_PIXELS (default_height);
+
 	g_clear_pointer (&metrics, pango_font_metrics_unref);
 
 	/* Get custom */
@@ -384,23 +387,49 @@ hex_widget_get_char_width (HexWidget *self)
 	if (pango_font)
 	{
 		metrics = pango_font_get_metrics (pango_font, NULL);
-		width = MAX (pango_font_metrics_get_approximate_digit_width (metrics),
-				pango_font_metrics_get_approximate_char_width (metrics));
+
+		width = MAX (pango_font_metrics_get_approximate_digit_width (metrics), pango_font_metrics_get_approximate_char_width (metrics));
 		width = PANGO_PIXELS (width);
+
+		height = pango_font_metrics_get_height (metrics);
+		height = PANGO_PIXELS (height);
 	}
 
-	/* A width of 0 means either the font is invalid or no size info was
-	 * provided, so grab the context's default width info instead.
+	/* A height or width of 0 means either the font is invalid or no size info
+	 * was provided, so grab the context's default width info instead.
 	 */
-	if (width <= 0)
-		retval = default_width;
-	else
-		retval = width;
+	if (width_retval)
+		*width_retval = width > 0 ? width : default_width;
+
+	if (height_retval)
+		*height_retval = height > 0 ? height : default_height;
 	
 	g_object_unref (context);
 	g_object_unref (pango_font);
 	pango_font_description_free (font_desc);
 	pango_font_metrics_unref (metrics);
+}
+
+int
+hex_widget_get_char_width (HexWidget *self)
+{
+	int retval, dummy;
+
+	g_return_val_if_fail (HEX_IS_WIDGET (self), 10);
+
+	get_char_metrics (self, &retval, &dummy);
+
+	return retval;
+}
+
+int
+hex_widget_get_char_height (HexWidget *self)
+{
+	int retval, dummy;
+
+	g_return_val_if_fail (HEX_IS_WIDGET (self), 10);
+
+	get_char_metrics (self, &dummy, &retval);
 
 	return retval;
 }
@@ -408,19 +437,13 @@ hex_widget_get_char_width (HexWidget *self)
 int
 hex_widget_get_num_lines (HexWidget *self)
 {
-	PangoContext *context;
-	PangoFontMetrics *metrics;
 	int char_height = 0;
 	int pane_height = 0;
 	GtkWidget *children[] = {self->offsets, self->xdisp, self->adisp};
 
 	g_return_val_if_fail (HEX_IS_WIDGET (self), 0);
 
-	context = gtk_widget_get_pango_context (GTK_WIDGET(self));
-	metrics = pango_context_get_metrics (context, NULL, NULL);
-
-	char_height = pango_font_metrics_get_height (metrics);
-	char_height = PANGO_PIXELS (char_height);
+	char_height = hex_widget_get_char_height (self);
 
 	for (guint i = 0; i < G_N_ELEMENTS (children); ++i)
 	{
@@ -432,9 +455,14 @@ hex_widget_get_num_lines (HexWidget *self)
 		if ((pane_height = gtk_widget_get_height (child)) > 0)
 			break;
 	}
+
+	g_debug ("%s: pane_height: %d - char_height: %d", __func__, pane_height, char_height);
 	
 	if (pane_height && char_height)
+	{
+		g_debug ("%s: num_lines retval: %d", __func__, pane_height / char_height);
 		return pane_height / char_height;
+	}
 
 	return 0;
 }
