@@ -674,6 +674,7 @@ hex_text_offset_is_visible (HexText *self, gint64 offset, int *line_num)
 	int cpl = hex_view_get_cpl (HEX_VIEW(self));
 	int top_line = render_data->top_disp_line;
 	int num_lines = hex_view_get_n_vis_lines (HEX_VIEW(self));
+	g_debug ("%s: num_lines: %d", __func__, num_lines);
 
 	/* Special case: blank file with nothing in it yet */
 
