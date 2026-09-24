@@ -33,11 +33,11 @@
 
 #include <gtk/gtk.h>
 
-#include "gtkhex-layout-manager.h"
 #include "gtkhex-paste-data.h"
 #include "hex-auto-highlight.h"
 #include "hex-buffer-iface.h"
 #include "hex-buffer-malloc.h"
+#include "hex-common.h"
 #include "hex-document.h"
 #include "hex-file-monitor.h"
 #include "hex-highlight.h"

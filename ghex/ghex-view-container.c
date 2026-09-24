@@ -7,7 +7,6 @@
 #include "ghex-info-bar.h"
 #include "ghex-statusbar.h"
 #include "configuration.h"
-#include "gtkhex-layout-manager.h"
 #include "common-ui.h"
 
 #include "config.h"
@@ -434,13 +433,9 @@ bind_settings (GHexViewContainer *self)
 
 	g_settings_bind (settings, "show-offsets", self->hex, "show-offsets", G_SETTINGS_BIND_DEFAULT);
 
+	g_settings_bind (settings, "group-data-by", self->hex, "group-type", G_SETTINGS_BIND_DEFAULT);
+
 	g_settings_bind (settings, "display-control-characters", hex_widget_get_ascii_display (self->hex), "display-control-characters", G_SETTINGS_BIND_DEFAULT);
-
-	{
-		HexWidgetLayout *layout_manager = HEX_WIDGET_LAYOUT(gtk_widget_get_layout_manager (GTK_WIDGET(self->hex)));
-
-		g_settings_bind (settings, "group-data-by", layout_manager, "group-type", G_SETTINGS_BIND_DEFAULT);
-	}
 }
 
 static void

@@ -4,6 +4,8 @@
 
 #include "hex-text-offsets.h"
 
+#define DEFAULT_OFFSET_CPL	8
+
 enum
 {
 	PROP_0,
@@ -99,6 +101,19 @@ hex_text_offsets_format_line (HexText *ht, int line_num, gint64 line_start_offse
 }
 
 static void
+hex_text_offsets_measure (GtkWidget *widget, GtkOrientation orientation, int for_size, int *minimum, int *natural, int *minimum_baseline, int *natural_baseline)
+{
+	HexTextOffsets *self = HEX_TEXT_OFFSETS(widget);
+	const int char_width = hex_view_get_char_width (HEX_VIEW(self));
+	const int nat = char_width * self->offset_cpl;
+
+	if (minimum)
+		*minimum = char_width;
+	if (natural)
+		*natural = nat;
+}
+
+static void
 hex_text_offsets_dispose (GObject *object)
 {
 	HexTextOffsets *self = HEX_TEXT_OFFSETS(object);
@@ -128,10 +143,12 @@ hex_text_offsets_class_init (HexTextOffsetsClass *klass)
 	object_class->set_property = hex_text_offsets_set_property;
 	object_class->get_property = hex_text_offsets_get_property;
 
+	widget_class->measure = hex_text_offsets_measure;
+
 	HEX_TEXT_CLASS(klass)->format_line = hex_text_offsets_format_line;
 
 	properties[PROP_OFFSET_CPL] = g_param_spec_int ("offset-cpl", NULL, NULL,
-			0, 100, 8,
+			0, 100, DEFAULT_OFFSET_CPL,
 			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);

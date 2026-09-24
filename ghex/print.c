@@ -67,7 +67,7 @@ static void print_page (GtkPrintOperation *operation,
                  int               page_nr,
                  gpointer           data);
 static GHexPrintJobInfo *ghex_print_job_info_new (HexDocument *doc,
-		HexWidgetGroupType group_type);
+		HexGroupType group_type);
 static void ghex_print_job_info_destroy(GHexPrintJobInfo *pji);
 
 static void print_header(GHexPrintJobInfo *pji, unsigned int page);
@@ -250,8 +250,8 @@ static void print_shaded_box (GHexPrintJobInfo *pji, guint row, guint rows)
 
 /**
  * ghex_print_job_info_new:
- * @doc: Pointer to the HexDocument to be printed.
- * @group_type: How to group bytes, as HexWidgetGroupType.
+ * @doc: Pointer to the HexDocument to be printed
+ * @group_type: How to group bytes, as [enum@Hex.GroupType]
  *
  * Return value: A pointer to a newly-created GHexPrintJobInfo object.
  * NULL if unable to create.
@@ -259,7 +259,7 @@ static void print_shaded_box (GHexPrintJobInfo *pji, guint row, guint rows)
  * Creates a new GHexPrintJobInfo object.
  **/
 GHexPrintJobInfo *
-ghex_print_job_info_new (HexDocument *doc, HexWidgetGroupType group_type)
+ghex_print_job_info_new (HexDocument *doc, HexGroupType group_type)
 {
 	GHexPrintJobInfo *pji;
 	PangoFontDescription *d_font;
@@ -408,10 +408,10 @@ print_page (GtkPrintOperation *operation,
  *
  * Prints or previews the current document.
  *
- * @parent: The parent window requesting the print operation.
- * @hex: The `HexWidget` containing the document to be printed.
+ * @parent: The parent window requesting the print operation
+ * @hex: The [class@Hex.Widget] containing the document to be printed
  * @preview: Indicates whether to show only a print preview (TRUE) or to
- *   display the print dialog.
+ *   display the print dialog
  */
 void
 ghex_print (GtkWindow *parent, HexWidget *gh, gboolean preview)
@@ -421,8 +421,7 @@ ghex_print (GtkWindow *parent, HexWidget *gh, gboolean preview)
 	GtkPrintOperationResult result;
 	g_autoptr(GError) error = NULL;
 	g_autofree char *basename = NULL;
-	GtkLayoutManager *layout_manager;
-	HexWidgetGroupType group_type = 0;
+	HexGroupType group_type = HEX_GROUP_INVALID;
 
 	g_return_if_fail (HEX_IS_WIDGET (gh));
 
@@ -431,11 +430,8 @@ ghex_print (GtkWindow *parent, HexWidget *gh, gboolean preview)
 
 	basename = g_file_get_basename (hex_document_get_file (doc));
 
-	layout_manager = gtk_widget_get_layout_manager (GTK_WIDGET(gh));
-	g_assert (HEX_IS_WIDGET_LAYOUT (layout_manager));
-
-	g_object_get (layout_manager, "group-type", &group_type, NULL);
-	g_assert (group_type != 0);
+	group_type = hex_widget_get_group_type (gh);
+	g_return_if_fail (group_type != HEX_GROUP_INVALID);
 
 	job = ghex_print_job_info_new (doc, group_type);
 	job->master = gtk_print_operation_new ();
