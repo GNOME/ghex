@@ -652,13 +652,4 @@ hex_widget_layout_child_set_column (HexWidgetLayoutChild *child,
 			child_props[PROP_CHILD_COLUMN]);
 }
 
-/* Utility functions */
-
-int
-hex_widget_layout_util_hex_cpl_from_ascii_cpl (int ascii_cpl,
-		HexWidgetGroupType group_type)
-{
-	return ascii_cpl * 2 + ascii_cpl / group_type;
-}
-
 G_GNUC_END_IGNORE_DEPRECATIONS

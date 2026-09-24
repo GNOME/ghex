@@ -4,9 +4,7 @@
 
 #include "hex-text-hex.h"
 
-// for enum - FIXME - probably should be moved.
-#include "gtkhex-layout-manager.h"
-
+#include "hex-common.h"
 #include "hex-text-common.h"
 #include "hex-mark-private.h"
 #include "util.h"
@@ -28,14 +26,14 @@ struct _HexTextHex
 {
 	HexTextEditable parent_instance;
 
-	HexWidgetGroupType group_type;
+	HexGroupType group_type;
 	gboolean lower_nibble;
 	gboolean fade_zeroes;
 };
 
 G_DEFINE_FINAL_TYPE (HexTextHex, hex_text_hex, HEX_TYPE_TEXT_EDITABLE)
 
-static void hex_text_hex_set_group_type (HexTextHex *self, HexWidgetGroupType group_type);
+static void hex_text_hex_set_group_type (HexTextHex *self, HexGroupType group_type);
 static void hex_text_hex_set_lower_nibble (HexTextHex *self, gboolean lower_nibble);
 static void hex_text_hex_set_fade_zeroes (HexTextHex *self, gboolean fade_zeroes);
 
@@ -239,7 +237,7 @@ chain_up:
 }
 
 static void
-hex_text_hex_set_group_type (HexTextHex *self, HexWidgetGroupType group_type)
+hex_text_hex_set_group_type (HexTextHex *self, HexGroupType group_type)
 {
 	self->group_type = group_type;
 	gtk_widget_queue_draw (GTK_WIDGET(self));
@@ -532,8 +530,8 @@ hex_text_hex_class_init (HexTextHexClass *klass)
 	HEX_TEXT_EDITABLE_CLASS(klass)->move_cursor = hex_text_hex_move_cursor;
 
 	properties[PROP_GROUP_TYPE] = g_param_spec_enum ("group-type", NULL, NULL,
-			HEX_TYPE_WIDGET_GROUP_TYPE,
-			HEX_WIDGET_GROUP_BYTE,
+			HEX_TYPE_GROUP_TYPE,
+			HEX_GROUP_BYTE,
 			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
 	properties[PROP_LOWER_NIBBLE] = g_param_spec_boolean ("lower-nibble", NULL, NULL,

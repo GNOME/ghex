@@ -29,6 +29,8 @@ void hex_view_set_vadjustment (HexView *self, GtkAdjustment *vadj);
 GtkAdjustment * hex_view_get_vadjustment (HexView *self);
 const char * hex_view_get_font (HexView *self);
 void hex_view_set_font (HexView *self, const char *font);
+int hex_view_get_char_width (HexView *self);
+int hex_view_get_char_height (HexView *self);
 void hex_view_set_blink_cursor (HexView *self, gboolean blink);
 gboolean hex_view_get_blink_cursor (HexView *self);
 void hex_view_set_selection (HexView *self, HexSelection *selection);
