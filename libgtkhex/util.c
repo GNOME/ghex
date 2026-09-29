@@ -3,6 +3,7 @@
 #define G_LOG_DOMAIN "hex-util"
 
 #include "util.h"
+
 #include "hex-selection.h"
 
 /* <UtilTuple> */
@@ -329,4 +330,10 @@ util_pango_font_description_to_css (PangoFontDescription *desc,
 	g_string_append (s, "}");
 
 	return g_string_free (s, FALSE);
+}
+
+int
+util_hex_cpl_from_ascii_cpl (int ascii_cpl, HexGroupType group_type)
+{
+	return ascii_cpl * 2 + ascii_cpl / group_type;
 }

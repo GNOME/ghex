@@ -3,6 +3,8 @@
 #pragma once
 
 #include <gtk/gtk.h>
+
+#include "hex-common.h"
 #include "hex-document.h"
 #include "hex-highlight.h"
 
@@ -29,3 +31,4 @@ gboolean util_have_object_transform_to (GBinding *binding, const GValue *from_va
 char * util_gdk_rgba_to_hex_color (const GdkRGBA *color);
 gboolean file_title_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer data);
 char * util_pango_font_description_to_css (PangoFontDescription *desc, const char *selector);
+int util_hex_cpl_from_ascii_cpl (int ascii_cpl, HexGroupType group_type);

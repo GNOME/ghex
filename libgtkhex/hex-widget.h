@@ -4,6 +4,7 @@
 
 #include <gtk/gtk.h>
 
+#include "hex-common.h"
 #include "hex-view.h"
 #include "hex-text-hex.h"
 #include "hex-text-ascii.h"
@@ -25,5 +26,10 @@ void hex_widget_set_show_hex (HexWidget *self, gboolean show);
 gboolean hex_widget_get_show_hex (HexWidget *self);
 void hex_widget_set_show_ascii (HexWidget *self, gboolean show);
 gboolean hex_widget_get_show_ascii (HexWidget *self);
+int hex_widget_get_offset_cpl (HexWidget *self);
+int hex_widget_get_hex_cpl (HexWidget *self);
+int hex_widget_get_auto_geometry_cpl (HexWidget *self);
+void hex_widget_set_group_type (HexWidget *self, HexGroupType group_type);
+HexGroupType hex_widget_get_group_type (HexWidget *self);
 
 G_END_DECLS

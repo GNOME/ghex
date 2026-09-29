@@ -6,11 +6,12 @@
 
 #include "hex-private-common.h"
 #include "gtkhex-paste-data.h"
-#include "gtkhex-layout-manager.h"
 #include "hex-highlight-private.h"
 #include "hex-auto-highlight-private.h"
-
+#include "hex-text-offsets.h"
 #include "util.h"
+
+#include "libgtkhex-enums.h"
 
 static gboolean hex_widget_get_can_undo (HexWidget *self);
 static gboolean hex_widget_get_can_redo (HexWidget *self);
@@ -23,6 +24,10 @@ enum
 	PROP_SHOW_OFFSETS,
 	PROP_SHOW_HEX,
 	PROP_SHOW_ASCII,
+	PROP_HEX_CPL,
+	PROP_OFFSET_CPL,
+	PROP_AUTO_GEOMETRY_CPL,
+	PROP_GROUP_TYPE,
 	N_PROPERTIES
 };
 
@@ -35,6 +40,10 @@ struct _HexWidget
 	GBinding *auto_geometry_binding;
 	gboolean can_undo;
 	gboolean can_redo;
+	int hex_cpl;
+	int offset_cpl;
+	int auto_geo_cpl;
+	HexGroupType group_type;
 	
 	/* From template */
 	GtkWidget *offsets;
@@ -327,9 +336,7 @@ auto_geometry_set_cb (HexWidget *self, GParamSpec *pspec, gpointer user_data)
 
 	if (auto_geometry)
 	{
-		GtkLayoutManager *layout_manager = gtk_widget_get_layout_manager (GTK_WIDGET(self));
-
-		self->auto_geometry_binding = g_object_bind_property (layout_manager, "cpl", self, "cpl", G_BINDING_SYNC_CREATE);
+		self->auto_geometry_binding = g_object_bind_property (self, "auto-geometry-cpl", self, "cpl", G_BINDING_SYNC_CREATE);
 	}
 }
 
@@ -426,6 +433,48 @@ hex_widget_get_show_ascii (HexWidget *self)
 	return gtk_widget_get_visible (self->adisp);
 }
 
+int
+hex_widget_get_offset_cpl (HexWidget *self)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), 20);
+	
+	return self->offset_cpl;
+}
+
+int
+hex_widget_get_hex_cpl (HexWidget *self)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), 20);
+
+	return self->hex_cpl;
+}
+
+int
+hex_widget_get_auto_geometry_cpl (HexWidget *self)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), 20);
+
+	return self->auto_geo_cpl;
+}
+
+void
+hex_widget_set_group_type (HexWidget *self, HexGroupType group_type)
+{
+	g_return_if_fail (HEX_IS_WIDGET (self));
+
+	self->group_type = group_type;
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_GROUP_TYPE]);
+}
+
+HexGroupType
+hex_widget_get_group_type (HexWidget *self)
+{
+	g_return_val_if_fail (HEX_IS_WIDGET (self), HEX_GROUP_BYTE);
+
+	return self->group_type;
+}
+
 static void
 hex_widget_set_property (GObject *object,
 		guint property_id,
@@ -454,6 +503,10 @@ hex_widget_set_property (GObject *object,
 
 		case PROP_SHOW_ASCII:
 			hex_widget_set_show_ascii (self, g_value_get_boolean (value));
+			break;
+
+		case PROP_GROUP_TYPE:
+			hex_widget_set_group_type (self, g_value_get_enum (value));
 			break;
 
 		default:
@@ -490,6 +543,22 @@ hex_widget_get_property (GObject *object,
 
 		case PROP_SHOW_ASCII:
 			g_value_set_boolean (value, hex_widget_get_show_ascii (self));
+			break;
+
+		case PROP_HEX_CPL:
+			g_value_set_int (value, hex_widget_get_hex_cpl (self));
+			break;
+
+		case PROP_OFFSET_CPL:
+			g_value_set_int (value, hex_widget_get_offset_cpl (self));
+			break;
+
+		case PROP_AUTO_GEOMETRY_CPL:
+			g_value_set_int (value, hex_widget_get_auto_geometry_cpl (self));
+			break;
+
+		case PROP_GROUP_TYPE:
+			g_value_set_enum (value, hex_widget_get_group_type (self));
 			break;
 
 		default:
@@ -540,6 +609,184 @@ hex_widget_grab_focus (GtkWidget *widget)
 }
 
 static void
+hex_widget_measure (GtkWidget *widget, GtkOrientation orientation, int for_size, int *minimum, int *natural, int *minimum_baseline, int *natural_baseline)
+{
+	GtkWidget *child;
+	int minimum_size = 0;
+	int natural_size = 0;
+
+	for (child = gtk_widget_get_first_child (widget);
+			child != NULL;
+			child = gtk_widget_get_next_sibling (child))
+	{
+		int child_min = 0, child_nat = 0;
+
+		if (!gtk_widget_should_layout (child))
+			continue;
+
+		gtk_widget_measure (child, orientation,
+				/* for-size: */ -1,		/* == unknown. */
+				&child_min, &child_nat,
+				NULL, NULL);
+		minimum_size = MAX (minimum_size, child_min);
+		natural_size = MAX (natural_size, child_nat);
+	}
+
+	if (minimum != NULL)
+		*minimum = minimum_size;
+	if (natural != NULL)
+		*natural = natural_size;
+}
+
+#define BASE_ALLOC (GtkAllocation){.x = 0, .y = 0, .width = 0, .height = full_height}
+
+static void
+hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, int baseline)
+{
+	HexWidget *self = HEX_WIDGET(widget);
+	GtkWidget *child;
+	GtkAllocation off_alloc = BASE_ALLOC;
+	GtkAllocation hex_alloc = BASE_ALLOC;
+	GtkAllocation asc_alloc = BASE_ALLOC;
+	GtkWidget *hex = NULL, *ascii = NULL, *offsets = NULL;
+	int tmp_auto_cpl = 0;
+	const int char_width = hex_view_get_char_width (HEX_VIEW(self));
+
+	g_return_if_fail (char_width != 0);
+
+	for (child = gtk_widget_get_first_child (widget);
+			child != NULL;
+			child = gtk_widget_get_next_sibling (child))
+	{
+		if (! gtk_widget_should_layout (child))
+			continue;
+
+		/* Setup allocation depending on what column we're in.
+		 * This loop is run through again once we obtain some initial values. */
+
+		if (HEX_IS_TEXT_OFFSETS (child))
+			offsets = child;
+		else if (HEX_IS_TEXT_HEX (child))
+			hex = child;
+		else if (HEX_IS_TEXT_ASCII (child))
+			ascii = child;
+		else
+		{
+			GtkRequisition child_req = {0};
+			GtkAllocation alloc = BASE_ALLOC;
+
+			g_debug ("%s: unexpected child: %s - %p", __func__, G_OBJECT_TYPE_NAME (child), (void *) child);
+
+			/* just position the widget in the centre at its preferred
+			 * size. TODO: check v/halign and v/hexand
+			 */
+			gtk_widget_get_preferred_size (child, &child_req, NULL);
+			alloc.width = child_req.width;
+			alloc.height = child_req.height;
+			alloc.x = (full_width / 2) - (alloc.width / 2);
+			alloc.y = (full_height / 2) - (alloc.height / 2);
+			gtk_widget_size_allocate (child, &alloc, -1);
+		}
+	}
+
+	/* Order doesn't really matter for the offsets column since
+	 * it's essentially fixed, so let's do that first.
+	 */
+	if (offsets)
+	{
+		/* offsets always goes at x coordinate 0 so just leave it as it's
+		 * zeroed out anyway. */
+
+		off_alloc.width = self->offset_cpl * char_width;
+	}
+
+	/* Let's measure ascii next, as hex's width is essentially locked to it, if
+	 * it's visible. Since hex and ascii are both drawing areas, they both
+	 * default to preferring a width of 0, so we have to measure completely.
+	 */
+	if (ascii)
+	{
+		int ascii_max_width;
+
+		/* Use width of offsets (if any) as baseline for x posn of ascii and
+		 * go from there.
+		 */
+		asc_alloc.x = off_alloc.width;
+
+		ascii_max_width = asc_alloc.width = full_width - off_alloc.width;
+
+		tmp_auto_cpl = asc_alloc.width / char_width - 1;
+		self->hex_cpl = 0;
+
+		if (hex)
+		{
+			const int max_width_left = ascii_max_width;
+			int tot_cpl, hex_cpl, ascii_cpl;
+
+			tot_cpl = max_width_left / char_width;
+
+			/* Calculate how many hex vs. ascii characters can be stuffed
+			 * on one line.
+			 */
+			ascii_cpl = 0;
+			do {
+				if (ascii_cpl % self->group_type == 0 &&
+						tot_cpl < self->group_type * 3)
+					break;
+		
+				++ascii_cpl;
+				tot_cpl -= 3;   /* 2 for hex disp, 1 for ascii disp */
+		
+				if (ascii_cpl % self->group_type == 0) /* just ended a group */
+					tot_cpl--;
+			}
+			while (tot_cpl > 0);
+
+			hex_cpl = util_hex_cpl_from_ascii_cpl (ascii_cpl, self->group_type);
+
+			asc_alloc.width = ascii_cpl * char_width;
+			hex_alloc.width = max_width_left - asc_alloc.width;
+
+			hex_alloc.x = off_alloc.width;
+			asc_alloc.x = hex_alloc.x + hex_alloc.width;
+
+			self->hex_cpl = hex_cpl;
+			tmp_auto_cpl = ascii_cpl;
+		}
+	}
+
+	/* Already determined what to do if have ascii and hex together */
+	if (hex && !ascii)
+	{
+		hex_alloc.x = off_alloc.width;
+
+		hex_alloc.width = full_width - off_alloc.width;
+
+		self->hex_cpl = hex_alloc.width / char_width;
+
+		tmp_auto_cpl = (hex_alloc.width / char_width) / 3;
+
+		self->hex_cpl = util_hex_cpl_from_ascii_cpl (tmp_auto_cpl, self->group_type);
+	}
+
+	if (offsets)
+		gtk_widget_size_allocate (offsets, &off_alloc, -1);
+	if (hex)
+		gtk_widget_size_allocate (hex, &hex_alloc, -1);
+	if (ascii)
+		gtk_widget_size_allocate (ascii, &asc_alloc, -1);
+
+	self->auto_geo_cpl = tmp_auto_cpl;
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_AUTO_GEOMETRY_CPL]);
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_HEX_CPL]);
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_OFFSET_CPL]);
+
+	GTK_WIDGET_CLASS(hex_widget_parent_class)->size_allocate (widget, full_width, full_height, baseline);
+}
+#undef BASE_ALLOC
+
+static void
 hex_widget_dispose (GObject *object)
 {
 	HexWidget *self = HEX_WIDGET(object);
@@ -563,7 +810,6 @@ static void
 hex_widget_constructed (GObject *object)
 {
 	HexWidget *self = HEX_WIDGET(object);
-	HexWidgetLayout *layout_manager = HEX_WIDGET_LAYOUT(gtk_widget_get_layout_manager (GTK_WIDGET(self)));
 
 	/* We need the object fully constructed before we bind the font properties so
 	 * it can't be done in the ui file.
@@ -572,10 +818,7 @@ hex_widget_constructed (GObject *object)
 	g_object_bind_property (self, "font", self->xdisp, "font", G_BINDING_SYNC_CREATE);
 	g_object_bind_property (self, "font", self->offsets, "font", G_BINDING_SYNC_CREATE);
 
-	g_object_bind_property (self, "char-width", layout_manager, "char-width", G_BINDING_SYNC_CREATE);
-
-	/* This depends on the binding between the widget and layout manager being set up, which doesn't happen until the constructor properties are set.
-	 */
+	// FIXME - not sure if we still need this here or if it can be in the .ui file
 	g_object_bind_property (self, "cpl", self->adisp, "cpl", G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 	g_object_bind_property (self, "cpl", self->xdisp, "cpl", G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 	g_object_bind_property (self, "cpl", self->offsets, "cpl", G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
@@ -599,10 +842,10 @@ hex_widget_class_init (HexWidgetClass *klass)
 
 	widget_class->focus = hex_widget_focus;
 	widget_class->grab_focus = hex_widget_grab_focus;
+	widget_class->size_allocate = hex_widget_size_allocate;
+	widget_class->measure = hex_widget_measure;
 
 	/* TEMPLATE */
-
-	g_type_ensure (HEX_TYPE_WIDGET_LAYOUT);
 
 	gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/libgtkhex/ui/hex-widget.ui");
 
@@ -630,6 +873,23 @@ hex_widget_class_init (HexWidgetClass *klass)
 
 	properties[PROP_SHOW_ASCII] = g_param_spec_boolean ("show-ascii", NULL, NULL,
 			TRUE,
+			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+	properties[PROP_HEX_CPL] = g_param_spec_int ("hex-cpl", NULL, NULL,
+			0, 10000, 20,
+			default_flags | G_PARAM_READABLE);
+
+	properties[PROP_OFFSET_CPL] = g_param_spec_int ("offset-cpl", NULL, NULL,
+			0, 10000, 20,
+			default_flags | G_PARAM_READABLE);
+
+	properties[PROP_AUTO_GEOMETRY_CPL] = g_param_spec_int ("auto-geometry-cpl", NULL, NULL,
+			0, 10000, 20,
+			default_flags | G_PARAM_READABLE);
+
+	properties[PROP_GROUP_TYPE] = g_param_spec_enum ("group-type", NULL, NULL,
+			HEX_TYPE_GROUP_TYPE,
+			HEX_GROUP_BYTE,
 			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
@@ -685,13 +945,6 @@ hex_widget_init (HexWidget *self)
 
 	g_signal_connect (self, "notify::document", G_CALLBACK(document_set_cb), NULL);
 	g_signal_connect (self, "notify::auto-geometry", G_CALLBACK(auto_geometry_set_cb), NULL);
-
-	/* Setup layout manager */
-	{
-		HexWidgetLayout *layout_manager = HEX_WIDGET_LAYOUT(gtk_widget_get_layout_manager (GTK_WIDGET(self)));
-
-		g_signal_connect_object (layout_manager, "size-allocated", G_CALLBACK(recalc_adjustment), self, G_CONNECT_SWAPPED);
-	}
 
 	/* Setup actions and use bindings to determine when they should be enabled/disabled.*/
 	{

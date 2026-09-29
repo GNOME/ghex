@@ -16,7 +16,6 @@ configure_file(
 )
 
 libgtkhex_sources = [
-  'gtkhex-layout-manager.c',
   'gtkhex-paste-data.c',
   'hex-auto-highlight.c',
   'hex-buffer-iface.c',
@@ -46,11 +45,11 @@ libgtkhex_res = gnome.compile_resources('libgtkhex-resources',
 
 libgtkhex_headers = [
   'gtkhex.h',
-  'gtkhex-layout-manager.h',
   'gtkhex-paste-data.h',
   'hex-auto-highlight.h',
   'hex-buffer-iface.h',
   'hex-buffer-malloc.h',
+  'hex-common.h',
   'hex-document.h',
   'hex-file-monitor.h',
   'hex-highlight.h',
