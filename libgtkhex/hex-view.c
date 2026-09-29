@@ -54,7 +54,7 @@ typedef struct
 	GListModel *auto_highlights;
 	gboolean insert_mode;
 	gboolean finding_highlight;
-	gboolean vadj_set;
+	gboolean vadj_delegated;
 
 	/* GtkScrollable interface */
 
@@ -300,7 +300,7 @@ hex_view_set_vadjustment (HexView *self, GtkAdjustment *vadj)
 	{
 		g_clear_object (&priv->vadj);
 		priv->vadj = g_object_ref_sink (gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
-		priv->vadj_set = FALSE;
+		priv->vadj_delegated = FALSE;
 	}
 	else
 	{
@@ -308,8 +308,8 @@ hex_view_set_vadjustment (HexView *self, GtkAdjustment *vadj)
 			return;
 
 		g_clear_object (&priv->vadj);
-		priv->vadj = g_object_ref_sink (vadj);
-		priv->vadj_set = TRUE;
+		priv->vadj_delegated = g_object_is_floating (vadj);
+		priv->vadj = g_object_ref_sink (g_steal_pointer (&vadj));
 	}
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_VADJUSTMENT]);
@@ -742,7 +742,7 @@ hex_view_size_allocate (GtkWidget *widget, int width, int height, int baseline)
 	HexView *self = HEX_VIEW(widget);
 	HexViewPrivate *priv = hex_view_get_instance_private (self);
 
-	if (!priv->vadj_set)
+	if (!priv->vadj_delegated)
 		recalc_adjustment (self);
 
 	GTK_WIDGET_CLASS(hex_view_parent_class)->size_allocate (widget, width, height, baseline);

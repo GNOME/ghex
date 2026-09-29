@@ -25,7 +25,6 @@ enum
 	PROP_SHOW_HEX,
 	PROP_SHOW_ASCII,
 	PROP_HEX_CPL,
-	PROP_OFFSET_CPL,
 	PROP_AUTO_GEOMETRY_CPL,
 	PROP_GROUP_TYPE,
 	N_PROPERTIES
@@ -41,7 +40,6 @@ struct _HexWidget
 	gboolean can_undo;
 	gboolean can_redo;
 	int hex_cpl;
-	int offset_cpl;
 	int auto_geo_cpl;
 	HexGroupType group_type;
 	
@@ -434,14 +432,6 @@ hex_widget_get_show_ascii (HexWidget *self)
 }
 
 int
-hex_widget_get_offset_cpl (HexWidget *self)
-{
-	g_return_val_if_fail (HEX_IS_WIDGET (self), 20);
-	
-	return self->offset_cpl;
-}
-
-int
 hex_widget_get_hex_cpl (HexWidget *self)
 {
 	g_return_val_if_fail (HEX_IS_WIDGET (self), 20);
@@ -547,10 +537,6 @@ hex_widget_get_property (GObject *object,
 
 		case PROP_HEX_CPL:
 			g_value_set_int (value, hex_widget_get_hex_cpl (self));
-			break;
-
-		case PROP_OFFSET_CPL:
-			g_value_set_int (value, hex_widget_get_offset_cpl (self));
 			break;
 
 		case PROP_AUTO_GEOMETRY_CPL:
@@ -694,10 +680,16 @@ hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, in
 	 */
 	if (offsets)
 	{
+		int min, nat;
+
+		gtk_widget_measure (widget, GTK_ORIENTATION_HORIZONTAL, -1, &min, &nat, NULL, NULL);
+
+		g_debug ("%s: min: %d - nat: %d", __func__, min, nat);
+
 		/* offsets always goes at x coordinate 0 so just leave it as it's
 		 * zeroed out anyway. */
 
-		off_alloc.width = self->offset_cpl * char_width;
+		off_alloc.width = min;
 	}
 
 	/* Let's measure ascii next, as hex's width is essentially locked to it, if
@@ -780,7 +772,6 @@ hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, in
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_AUTO_GEOMETRY_CPL]);
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_HEX_CPL]);
-	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_OFFSET_CPL]);
 
 	GTK_WIDGET_CLASS(hex_widget_parent_class)->size_allocate (widget, full_width, full_height, baseline);
 }
@@ -876,10 +867,6 @@ hex_widget_class_init (HexWidgetClass *klass)
 			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
 	properties[PROP_HEX_CPL] = g_param_spec_int ("hex-cpl", NULL, NULL,
-			0, 10000, 20,
-			default_flags | G_PARAM_READABLE);
-
-	properties[PROP_OFFSET_CPL] = g_param_spec_int ("offset-cpl", NULL, NULL,
 			0, 10000, 20,
 			default_flags | G_PARAM_READABLE);
 
