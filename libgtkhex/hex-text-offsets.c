@@ -104,12 +104,13 @@ static void
 hex_text_offsets_measure (GtkWidget *widget, GtkOrientation orientation, int for_size, int *minimum, int *natural, int *minimum_baseline, int *natural_baseline)
 {
 	HexTextOffsets *self = HEX_TEXT_OFFSETS(widget);
-	const int width = hex_view_get_char_width (HEX_VIEW(self)) * self->offset_cpl;
+	const int char_width = hex_view_get_char_width (HEX_VIEW(self));
+	const int nat = char_width * self->offset_cpl;
 
 	if (minimum)
-		*minimum = width;
+		*minimum = char_width;
 	if (natural)
-		*natural = width;
+		*natural = nat;
 }
 
 static void

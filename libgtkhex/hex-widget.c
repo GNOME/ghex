@@ -24,7 +24,6 @@ enum
 	PROP_SHOW_OFFSETS,
 	PROP_SHOW_HEX,
 	PROP_SHOW_ASCII,
-	PROP_HEX_CPL,
 	PROP_AUTO_GEOMETRY_CPL,
 	PROP_GROUP_TYPE,
 	N_PROPERTIES
@@ -39,7 +38,6 @@ struct _HexWidget
 	GBinding *auto_geometry_binding;
 	gboolean can_undo;
 	gboolean can_redo;
-	int hex_cpl;
 	int auto_geo_cpl;
 	HexGroupType group_type;
 	
@@ -431,12 +429,17 @@ hex_widget_get_show_ascii (HexWidget *self)
 	return gtk_widget_get_visible (self->adisp);
 }
 
-int
-hex_widget_get_hex_cpl (HexWidget *self)
+static void
+_hex_widget_set_auto_geometry_cpl (HexWidget *self, int auto_geo_cpl)
 {
-	g_return_val_if_fail (HEX_IS_WIDGET (self), 20);
+	g_return_if_fail (HEX_IS_WIDGET (self));
 
-	return self->hex_cpl;
+	if (auto_geo_cpl == self->auto_geo_cpl)
+		return;
+
+	self->auto_geo_cpl = auto_geo_cpl;
+
+	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_AUTO_GEOMETRY_CPL]);
 }
 
 int
@@ -535,10 +538,6 @@ hex_widget_get_property (GObject *object,
 			g_value_set_boolean (value, hex_widget_get_show_ascii (self));
 			break;
 
-		case PROP_HEX_CPL:
-			g_value_set_int (value, hex_widget_get_hex_cpl (self));
-			break;
-
 		case PROP_AUTO_GEOMETRY_CPL:
 			g_value_set_int (value, hex_widget_get_auto_geometry_cpl (self));
 			break;
@@ -625,7 +624,6 @@ hex_widget_measure (GtkWidget *widget, GtkOrientation orientation, int for_size,
 }
 
 #define BASE_ALLOC (GtkAllocation){.x = 0, .y = 0, .width = 0, .height = full_height}
-
 static void
 hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, int baseline)
 {
@@ -689,43 +687,52 @@ hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, in
 		/* offsets always goes at x coordinate 0 so just leave it as it's
 		 * zeroed out anyway. */
 
-		off_alloc.width = min;
+		off_alloc.width = nat;
 	}
 
-	/* Let's measure ascii next, as hex's width is essentially locked to it, if
-	 * it's visible. Since hex and ascii are both drawing areas, they both
-	 * default to preferring a width of 0, so we have to measure completely.
-	 */
 	if (ascii)
 	{
-		int ascii_max_width;
+		int ascii_padding;
 
-		/* Use width of offsets (if any) as baseline for x posn of ascii and
-		 * go from there.
-		 */
 		asc_alloc.x = off_alloc.width;
+		asc_alloc.width = full_width - off_alloc.width;
 
-		ascii_max_width = asc_alloc.width = full_width - off_alloc.width;
+		/* Hack to estimate how much space GTK needs for CSS borders, padding, etc. */
+		gtk_widget_size_allocate (ascii, &(GtkAllocation){.x=asc_alloc.x, .y=0, .width=asc_alloc.width, .height=full_width}, -1);
+		ascii_padding = asc_alloc.width - gtk_widget_get_width (ascii);
 
-		tmp_auto_cpl = asc_alloc.width / char_width - 1;
-		self->hex_cpl = 0;
+		tmp_auto_cpl = gtk_widget_get_width (ascii) / char_width; // - 1;
 
 		if (hex)
 		{
-			const int max_width_left = ascii_max_width;
-			int tot_cpl, hex_cpl, ascii_cpl;
+			int tot_cpl, ascii_cpl;
+			int hex_padding;
+			const int max_width_left = asc_alloc.width;
 
-			tot_cpl = max_width_left / char_width;
+			/* Same hack as above */
+			gtk_widget_size_allocate (hex, &(GtkAllocation){.x=asc_alloc.x, .y=0, .width=max_width_left, .height=full_height}, -1);
+			hex_padding = max_width_left - gtk_widget_get_width (hex);
+
+			tot_cpl = gtk_widget_get_width (hex) / char_width;
 
 			/* Calculate how many hex vs. ascii characters can be stuffed
 			 * on one line.
 			 */
 			ascii_cpl = 0;
 			do {
+				int tmp_asc_w = ascii_cpl * char_width + ascii_padding;
+				int tmp_hex_w = util_hex_cpl_from_ascii_cpl (ascii_cpl, self->group_type) * char_width + hex_padding;
+
+				if (tmp_asc_w + tmp_hex_w > max_width_left)
+					break;
+
 				if (ascii_cpl % self->group_type == 0 &&
 						tot_cpl < self->group_type * 3)
 					break;
-		
+
+				asc_alloc.width = tmp_asc_w;
+				hex_alloc.width = tmp_hex_w;
+
 				++ascii_cpl;
 				tot_cpl -= 3;   /* 2 for hex disp, 1 for ascii disp */
 		
@@ -734,31 +741,34 @@ hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, in
 			}
 			while (tot_cpl > 0);
 
-			hex_cpl = util_hex_cpl_from_ascii_cpl (ascii_cpl, self->group_type);
+			g_assert (hex_alloc.width + asc_alloc.width <= max_width_left);
 
-			asc_alloc.width = ascii_cpl * char_width;
-			hex_alloc.width = max_width_left - asc_alloc.width;
+			if (max_width_left > hex_alloc.width + asc_alloc.width)
+			{
+				const int extra_space = max_width_left - (hex_alloc.width + asc_alloc.width);
+
+				hex_alloc.width += 0.5 * extra_space;
+				asc_alloc.width += 0.5 * extra_space;
+			}
 
 			hex_alloc.x = off_alloc.width;
 			asc_alloc.x = hex_alloc.x + hex_alloc.width;
 
-			self->hex_cpl = hex_cpl;
 			tmp_auto_cpl = ascii_cpl;
 		}
 	}
 
-	/* Already determined what to do if have ascii and hex together */
+	// FIXME
 	if (hex && !ascii)
 	{
-		hex_alloc.x = off_alloc.width;
+		int tmp_cpl;
 
+		hex_alloc.x = off_alloc.width;
 		hex_alloc.width = full_width - off_alloc.width;
 
-		self->hex_cpl = hex_alloc.width / char_width;
-
+		/* FIXME: This is kind of lazy and will be optimized for the 'byte'
+		 * grouptype; rework if possible to adapt to group type. */
 		tmp_auto_cpl = (hex_alloc.width / char_width) / 3;
-
-		self->hex_cpl = util_hex_cpl_from_ascii_cpl (tmp_auto_cpl, self->group_type);
 	}
 
 	if (offsets)
@@ -768,10 +778,7 @@ hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, in
 	if (ascii)
 		gtk_widget_size_allocate (ascii, &asc_alloc, -1);
 
-	self->auto_geo_cpl = tmp_auto_cpl;
-	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_AUTO_GEOMETRY_CPL]);
-
-	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_HEX_CPL]);
+	_hex_widget_set_auto_geometry_cpl (self, tmp_auto_cpl);
 
 	GTK_WIDGET_CLASS(hex_widget_parent_class)->size_allocate (widget, full_width, full_height, baseline);
 }
@@ -865,10 +872,6 @@ hex_widget_class_init (HexWidgetClass *klass)
 	properties[PROP_SHOW_ASCII] = g_param_spec_boolean ("show-ascii", NULL, NULL,
 			TRUE,
 			default_flags | G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
-
-	properties[PROP_HEX_CPL] = g_param_spec_int ("hex-cpl", NULL, NULL,
-			0, 10000, 20,
-			default_flags | G_PARAM_READABLE);
 
 	properties[PROP_AUTO_GEOMETRY_CPL] = g_param_spec_int ("auto-geometry-cpl", NULL, NULL,
 			0, 10000, 20,
