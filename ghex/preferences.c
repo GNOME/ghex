@@ -32,7 +32,6 @@
 
 #include "preferences.h"
 
-#include "gtkhex-layout-manager.h"
 #include "configuration.h"
 #include "common-macros.h"
 #include "ghex-statusbar.h"
@@ -334,16 +333,16 @@ setup_signals (void)
 	/* group type checkbuttons */
 
 	g_signal_connect (bytes_chkbtn, "toggled",
-			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_WIDGET_GROUP_BYTE));
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_GROUP_BYTE));
 
 	g_signal_connect (words_chkbtn, "toggled",
-			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_WIDGET_GROUP_WORD));
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_GROUP_WORD));
 
 	g_signal_connect (long_chkbtn, "toggled",
-			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_WIDGET_GROUP_LONG));
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_GROUP_LONG));
 
 	g_signal_connect (quad_chkbtn, "toggled",
-			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_WIDGET_GROUP_QUAD));
+			G_CALLBACK(group_type_set_cb), GINT_TO_POINTER(HEX_GROUP_QUAD));
 
 	/* status bar offset format checkbuttons */
 
@@ -387,7 +386,7 @@ grab_widget_values_from_settings (void)
 	g_autofree char *print_font_header = g_settings_get_string (settings, "print-font-header");
 	gboolean show_offsets = g_settings_get_boolean (settings, "show-offsets");
 	gboolean display_control_characters = g_settings_get_boolean (settings, "display-control-characters");
-	HexWidgetGroupType group_type = g_settings_get_enum (settings, "group-data-by");
+	HexGroupType group_type = g_settings_get_enum (settings, "group-data-by");
 	GHexStatusbarOffsetFormat statusbar_offset_format = g_settings_get_enum (settings, "statusbar-offset-format");
 
 	/* font_button */
@@ -437,22 +436,22 @@ grab_widget_values_from_settings (void)
 	/* group_type radio buttons
 	 */
 	switch (group_type) {
-		case HEX_WIDGET_GROUP_BYTE:
+		case HEX_GROUP_BYTE:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(bytes_chkbtn),
 					TRUE);
 			break;
 
-		case HEX_WIDGET_GROUP_WORD:
+		case HEX_GROUP_WORD:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(words_chkbtn),
 					TRUE);
 			break;
 
-		case HEX_WIDGET_GROUP_LONG:
+		case HEX_GROUP_LONG:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(long_chkbtn),
 					TRUE);
 			break;
 
-		case HEX_WIDGET_GROUP_QUAD:
+		case HEX_GROUP_QUAD:
 			gtk_check_button_set_active (GTK_CHECK_BUTTON(quad_chkbtn),
 					TRUE);
 			break;
