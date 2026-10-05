@@ -32,7 +32,7 @@
 
 #pragma once
 
-#include <adwaita.h>
+#include "gtkhex.h"
 
 G_BEGIN_DECLS
 

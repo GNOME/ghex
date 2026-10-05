@@ -269,18 +269,14 @@ get_cursor_val_cb (GHexConverter *self, GtkButton *button)
 {
 	guint val;
 	gint64 start, payload;
-	int group_type = 0;
+	HexGroupType group_type;
 	HexDocument *doc;
 	HexSelection *selection;
-	GtkLayoutManager *layout_manager;
 
 	doc = hex_view_get_document (self->hex);
 	payload = hex_buffer_get_payload_size (hex_document_get_buffer (doc));
-	layout_manager = gtk_widget_get_layout_manager (GTK_WIDGET(self->hex));
 	selection = hex_view_get_selection (self->hex);
-
-	g_object_get (layout_manager, "group-type", &group_type, NULL);
-	g_assert (group_type != 0);
+	group_type = hex_widget_get_group_type (HEX_WIDGET(self->hex));
 
 	start = hex_selection_get_cursor_pos (selection);
 	start = start - start % group_type;
