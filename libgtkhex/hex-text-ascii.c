@@ -423,6 +423,13 @@ render_highlights__selection (HexTextAscii *self, GtkSnapshot *snapshot, int lin
 {
 	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
 	HexHighlight *highlight = hex_selection_get_highlight (selection);
+	const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
+	const gint64 start = hex_highlight_get_start_offset (highlight);
+	const gint64 end = hex_highlight_get_end_offset (highlight);
+
+	/* Don't render cursor as a highlight */
+	if (cursor_pos == start && start == end)
+		return;
 
 	render_single_highlight (self, snapshot, line_num, layout, highlight, NULL);
 }
