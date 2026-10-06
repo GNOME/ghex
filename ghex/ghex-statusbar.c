@@ -225,6 +225,7 @@ static void
 ghex_statusbar_init (GHexStatusbar *self)
 {
 	self->label = gtk_label_new (NULL);
+	gtk_label_set_ellipsize (GTK_LABEL(self->label), PANGO_ELLIPSIZE_END);
 	gtk_widget_set_parent (self->label, GTK_WIDGET(self));
 
 	g_signal_connect (self, "notify::offset-format", G_CALLBACK(update_status_message), NULL);
