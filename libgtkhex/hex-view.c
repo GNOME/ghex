@@ -698,13 +698,8 @@ calc_n_vis_lines (HexView *self)
 	char_height = hex_view_get_char_height (self);
 	pane_height = gtk_widget_get_height (GTK_WIDGET(self));
 
-	g_debug ("%s: pane_height: %d - char_height: %d", __func__, pane_height, char_height);
-	
 	if (pane_height && char_height)
-	{
-		g_debug ("%s: retval: %d", __func__, pane_height / char_height);
 		return pane_height / char_height;
-	}
 
 	return 0;
 }
