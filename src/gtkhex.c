@@ -1401,6 +1401,7 @@ render_highlight (HexWidget *self,
 			1);
 
 	gdk_cairo_region (cr, region);
+	g_clear_pointer (&region, cairo_region_destroy);
 	cairo_clip (cr);
 	cairo_clip_extents (cr, &x1, &y1, &x2, &y2);
 
