@@ -29,6 +29,8 @@ hex_text_common_render_cursor (HexText *ht, GtkSnapshot *snapshot, PangoLayout *
 	opposite_color.blue = 1.0 - color.blue;
 
 	cairo_region_get_rectangle (region, 0, &clip_rect);
+	g_clear_pointer (&region, cairo_region_destroy);
+
 	rect = GRAPHENE_RECT_FROM_RECT (&clip_rect);
 
 	// TEST
@@ -95,6 +97,8 @@ hex_text_common_render_highlight (GtkWidget *widget, GtkSnapshot *snapshot, Pang
 	}
 
 	cairo_region_get_rectangle (region, 0, &clip_rect);
+	g_clear_pointer (&region, cairo_region_destroy);
+
 	rect = GRAPHENE_RECT_FROM_RECT (&clip_rect);
 
 	gtk_snapshot_push_clip (snapshot, &rect);
