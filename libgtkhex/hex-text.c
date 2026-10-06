@@ -722,38 +722,28 @@ hex_text_highlight_is_visible (HexText *self, HexHighlight *highlight, int disp_
 
 	/* No overlap */
 
-    if (real_end_offset <= line_start_offset || real_start_offset >= line_end_offset)
+    if (real_end_offset < line_start_offset || real_start_offset > line_end_offset)
 	{
         return FALSE;
     }
 
 	/* Set retvals */
 
+	if (disp_line_offset_start)
 	{
-		int disp_line_offset_start__retval = -1;
-		int disp_line_offset_end__retval = -1;
-
-		if (disp_line_offset_start)
-		{
-			gint64 effective_start = MAX (real_start_offset, line_start_offset);
-			disp_line_offset_start__retval = effective_start - line_start_offset;
-		}
-
-		if (disp_line_offset_end)
-		{
-			gint64 effective_end = MIN (real_end_offset, line_end_offset);
-			disp_line_offset_end__retval = effective_end - line_start_offset;
-		}
-
-		// FIXME - should this be the behaviour?
-		//
-		/* Only cursor should be rendered (not a highlight) if the start and end offsets are the same.
-		*/
-		if (disp_line_offset_start__retval == disp_line_offset_end__retval)
-			return FALSE;
+		gint64 effective_start = MAX (real_start_offset, line_start_offset);
+		int disp_line_offset_start__retval = effective_start - line_start_offset;
 
 		*disp_line_offset_start = disp_line_offset_start__retval;
+	}
+
+	if (disp_line_offset_end)
+	{
+		gint64 effective_end = MIN (real_end_offset, line_end_offset);
+		int disp_line_offset_end__retval = effective_end - line_start_offset;
+
 		*disp_line_offset_end = disp_line_offset_end__retval;
 	}
+
 	return TRUE;
 }
