@@ -38,6 +38,4 @@ struct _HexMark
 	GdkRGBA custom_color;
 };
 
-GdkRGBA _hex_mark_get_default_color (HexMark *self);
-
 G_END_DECLS
