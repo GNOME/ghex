@@ -10,7 +10,7 @@ G_BEGIN_DECLS
 
 /* Type declaration */
 
-#define HEX_TYPE_AUTO_HIGHLIGHT hex_auto_highlight_get_type()
+#define HEX_TYPE_AUTO_HIGHLIGHT (hex_auto_highlight_get_type())
 G_DECLARE_FINAL_TYPE (HexAutoHighlight, hex_auto_highlight, HEX, AUTO_HIGHLIGHT, GObject)
 
 HexAutoHighlight *hex_auto_highlight_new (HexDocument *document, HexSearchInfo *search_info);
