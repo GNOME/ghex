@@ -6,7 +6,6 @@
 
 #include "hex-common.h"
 #include "hex-text-common.h"
-#include "hex-mark-private.h"
 #include "util.h"
 
 #include "libgtkhex-enums.h"
@@ -364,8 +363,9 @@ hex_text_hex_format_line (HexText *ht, int line_num, gint64 line_start_offset, s
 }
 
 static void
-hex_text_hex_render_cursor (HexTextHex *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout)
+hex_text_hex_render_cursor (HexTextEditable *hte, GtkSnapshot *snapshot, int line_num, PangoLayout *layout)
 {
+	HexTextHex *self = HEX_TEXT_HEX(hte);
 	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
 	const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
 	const int cpl = hex_view_get_cpl (HEX_VIEW(self));
@@ -426,7 +426,7 @@ hex_text_hex_render_cursor (HexTextHex *self, GtkSnapshot *snapshot, int line_nu
 }
 
 static void
-render_single_highlight (HexTextHex *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout, HexHighlight *highlight, const GdkRGBA *color)
+_hex_text_hex_render_single_highlight (HexTextHex *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout, HexHighlight *highlight, const GdkRGBA *color)
 {
 	int sel_start, sel_end;
 	int range[2];
@@ -442,61 +442,9 @@ render_single_highlight (HexTextHex *self, GtkSnapshot *snapshot, int line_num, 
 }
 
 static void
-render_highlights__selection (HexTextHex *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout)
+hex_text_hex_render_highlights_for_line (HexTextEditable *hte, GtkSnapshot *snapshot, int line_num, PangoLayout *layout)
 {
-	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
-	HexHighlight *highlight = hex_selection_get_highlight (selection);
-	const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
-	const gint64 start = hex_highlight_get_start_offset (highlight);
-	const gint64 end = hex_highlight_get_end_offset (highlight);
-
-	/* Don't render cursor as a highlight */
-	if (cursor_pos == start && start == end)
-		return;
-
-	render_single_highlight (self, snapshot, line_num, layout, highlight, NULL);
-}
-
-static void
-render_highlights__marks (HexTextHex *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout)
-{
-	GListModel *marks = hex_view_get_marks (HEX_VIEW(self));
-
-	if (! marks)
-		return;
-
-	for (guint i = 0; i < g_list_model_get_n_items (marks); ++i)
-	{
-		g_autoptr(HexMark) mark = g_list_model_get_item (marks, i);
-
-		render_single_highlight (self, snapshot, line_num, layout, mark->highlight, mark->have_custom_color ? &mark->custom_color : &HEX_MARK_DEFAULT_COLOR);
-	}
-}
-
-static void
-render_highlights__auto_highlights (HexTextHex *self, GtkSnapshot *snapshot, int disp_line_num, PangoLayout *layout)
-{
-	hex_text_common_render_auto_highlights (HEX_TEXT_EDITABLE(self), snapshot, disp_line_num, layout, (HexTextCommonHighlightRenderFunc) render_single_highlight);
-}
-
-static void	
-hex_text_hex_render_highlights (HexTextHex *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout)
-{
-	render_highlights__selection (self, snapshot, line_num, layout);
-	render_highlights__marks (self, snapshot, line_num, layout);
-	render_highlights__auto_highlights (self, snapshot, line_num, layout);
-}
-
-static void	
-hex_text_hex_render_line (HexText *ht, GtkSnapshot *snapshot, int line_num, PangoLayout *layout)
-{
-	HexTextHex *self = HEX_TEXT_HEX(ht);
-
-	hex_text_hex_render_highlights (self, snapshot, line_num, layout);
-
-	HEX_TEXT_CLASS(hex_text_hex_parent_class)->render_line (ht, snapshot, line_num, layout);
-
-	hex_text_hex_render_cursor (self, snapshot, line_num, layout);
+	hex_text_common_render_highlights_for_line (hte, snapshot, line_num, layout, (HexTextCommonHighlightRenderFunc) _hex_text_hex_render_single_highlight);
 }
 
 static void
@@ -530,11 +478,12 @@ hex_text_hex_class_init (HexTextHexClass *klass)
 	object_class->get_property = hex_text_hex_get_property;
 
 	HEX_TEXT_CLASS(klass)->format_line = hex_text_hex_format_line;
-	HEX_TEXT_CLASS(klass)->render_line = hex_text_hex_render_line;
 	HEX_TEXT_CLASS(klass)->pressed = hex_text_hex_pressed;
 	HEX_TEXT_CLASS(klass)->dragged = hex_text_hex_dragged;
 
 	HEX_TEXT_EDITABLE_CLASS(klass)->move_cursor = hex_text_hex_move_cursor;
+	HEX_TEXT_EDITABLE_CLASS(klass)->render_highlights_for_line = hex_text_hex_render_highlights_for_line;
+	HEX_TEXT_EDITABLE_CLASS(klass)->render_cursor = hex_text_hex_render_cursor;
 
 	properties[PROP_GROUP_TYPE] = g_param_spec_enum ("group-type", NULL, NULL,
 			HEX_TYPE_GROUP_TYPE,

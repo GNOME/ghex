@@ -4,6 +4,9 @@
 
 #include "hex-text-common.h"
 
+#include "hex-mark-private.h"
+
+
 #define GRAPHENE_RECT_FROM_RECT(_r) (GRAPHENE_RECT_INIT ((_r)->x, (_r)->y, (_r)->width, (_r)->height))
 
 /* Number of lines above and below display area to look for possible auto-highlights to render */
@@ -219,8 +222,8 @@ hex_text_common_get_is_cursor_at_new_row (HexTextEditable *self)
 	return cursor_pos % cpl == 0;
 }
 
-void
-hex_text_common_render_auto_highlights (HexTextEditable *self, GtkSnapshot *snapshot, int disp_line_num, PangoLayout *layout, HexTextCommonHighlightRenderFunc render_single_highlight)
+static void
+render_highlights__auto_highlights (HexTextEditable *self, GtkSnapshot *snapshot, int disp_line_num, PangoLayout *layout, HexTextCommonHighlightRenderFunc render_single_highlight)
 {
 	GListModel *auto_highlights;
 	HexTextRenderData *render_data;
@@ -262,4 +265,54 @@ hex_text_common_render_auto_highlights (HexTextEditable *self, GtkSnapshot *snap
 			render_single_highlight (self, snapshot, disp_line_num, layout, highlight, &color);
 		}
 	}
+}
+
+static void
+render_highlights__selection (HexTextEditable *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout, HexTextCommonHighlightRenderFunc render_func)
+{
+	g_assert (HEX_IS_TEXT_EDITABLE (self));
+	g_assert (render_func != NULL);
+
+	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
+	HexHighlight *highlight = hex_selection_get_highlight (selection);
+	const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
+	const gint64 start = hex_highlight_get_start_offset (highlight);
+	const gint64 end = hex_highlight_get_end_offset (highlight);
+
+	/* Don't render cursor as a highlight */
+	if (cursor_pos == start && start == end)
+		return;
+
+	render_func (self, snapshot, line_num, layout, highlight, NULL);
+}
+
+static void
+render_highlights__marks (HexTextEditable *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout, HexTextCommonHighlightRenderFunc render_func)
+{
+	GListModel *marks;
+
+	g_assert (render_func != NULL);
+
+	marks = hex_view_get_marks (HEX_VIEW(self));
+
+	if (! marks)
+		return;
+
+	for (guint i = 0; i < g_list_model_get_n_items (marks); ++i)
+	{
+		g_autoptr(HexMark) mark = g_list_model_get_item (marks, i);
+
+		render_func (self, snapshot, line_num, layout, mark->highlight, mark->have_custom_color ? &mark->custom_color : &HEX_MARK_DEFAULT_COLOR);
+	}
+}
+
+void
+hex_text_common_render_highlights_for_line (HexTextEditable *self, GtkSnapshot *snapshot, int disp_line_num, PangoLayout *layout, HexTextCommonHighlightRenderFunc render_func)
+{
+	g_return_if_fail (HEX_IS_TEXT_EDITABLE (self));
+	g_return_if_fail (render_func != NULL);
+
+	render_highlights__selection (self, snapshot, disp_line_num, layout, render_func);
+	render_highlights__marks (self, snapshot, disp_line_num, layout, render_func);
+	render_highlights__auto_highlights (self, snapshot, disp_line_num, layout, render_func);
 }

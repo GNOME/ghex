@@ -162,6 +162,26 @@ hex_text_editable_move_cursor (HexTextEditable *self, GtkMovementStep step, int 
 	klass->move_cursor (self, step, count, extend_selection);
 }
 
+void
+hex_text_editable_render_highlights_for_line (HexTextEditable *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout)
+{
+	HexTextEditableClass *klass = HEX_TEXT_EDITABLE_GET_CLASS (self);
+
+	g_return_if_fail (klass->render_highlights_for_line != NULL);
+
+	klass->render_highlights_for_line (self, snapshot, line_num, layout);
+}
+
+void
+hex_text_editable_render_cursor (HexTextEditable *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout)
+{
+	HexTextEditableClass *klass = HEX_TEXT_EDITABLE_GET_CLASS (self);
+
+	g_return_if_fail (klass->render_cursor != NULL);
+
+	klass->render_cursor (self, snapshot, line_num, layout);
+}
+
 static gboolean
 scroll_timeout_handler (HexTextEditable *self)
 {
@@ -245,6 +265,18 @@ hex_text_editable_right_click (HexText *ht, PangoLayout *layout, int click_line,
 	gtk_popover_popup (GTK_POPOVER(priv->context_menu));
 
 	/* Don't chain up - parent implementation is pure virtual */
+}
+
+static void
+hex_text_editable_render_line (HexText *ht, GtkSnapshot *snapshot, int line_num, PangoLayout *layout)
+{
+	HexTextEditable *self = HEX_TEXT_EDITABLE(ht);
+
+	hex_text_editable_render_highlights_for_line (self, snapshot, line_num, layout);
+
+	HEX_TEXT_CLASS(hex_text_editable_parent_class)->render_line (ht, snapshot, line_num, layout);
+
+	hex_text_editable_render_cursor (self, snapshot, line_num, layout);
 }
 
 static void
@@ -361,6 +393,7 @@ hex_text_editable_class_init (HexTextEditableClass *klass)
 	HEX_TEXT_CLASS(klass)->pressed = hex_text_editable_pressed;
 	HEX_TEXT_CLASS(klass)->released = hex_text_editable_released;
 	HEX_TEXT_CLASS(klass)->right_click = hex_text_editable_right_click;
+	HEX_TEXT_CLASS(klass)->render_line = hex_text_editable_render_line;
 
 	klass->move_cursor = hex_text_editable_real_move_cursor;
 

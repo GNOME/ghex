@@ -15,9 +15,15 @@ struct _HexTextEditableClass
 
 	void	(*move_cursor) (HexTextEditable *self, GtkMovementStep step, int count, gboolean extend_selection);
 
+	void	(*render_highlights_for_line) (HexTextEditable *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout);
+
+	void	(*render_cursor) (HexTextEditable *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout);
+
 	gpointer padding[12];
 };
 
 void hex_text_editable_move_cursor (HexTextEditable *self, GtkMovementStep step, int count, gboolean extend_selection);
+void hex_text_editable_render_highlights_for_line (HexTextEditable *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout);
+void hex_text_editable_render_cursor (HexTextEditable *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout);
 
 G_END_DECLS
