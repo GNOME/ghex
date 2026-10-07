@@ -36,7 +36,6 @@ hex_text_common_render_cursor (HexText *ht, GtkSnapshot *snapshot, PangoLayout *
 
 	rect = GRAPHENE_RECT_FROM_RECT (&clip_rect);
 
-	// TEST
 	if (insert_mode && at_file_end)
 	{
 		if (at_new_row)
@@ -51,15 +50,6 @@ hex_text_common_render_cursor (HexText *ht, GtkSnapshot *snapshot, PangoLayout *
 				rect.origin.x += rect.size.width;
 		}
 	}
-#if 0
-	if (insert_mode)
-	{
-		if (at_new_row && !at_file_end)
-			rect.origin.y += rect.size.height;
-		else if (at_file_end)
-			rect.origin.x += rect.size.width;
-	}
-#endif
 
 	gtk_snapshot_push_clip (snapshot, &rect);
 
