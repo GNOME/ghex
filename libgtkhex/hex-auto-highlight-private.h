@@ -30,4 +30,18 @@ struct _HexAutoHighlight
 	GWeakRef search_pending_wr;
 };
 
+/**
+ * HEX_AUTO_HIGHLIGHT_DEFAULT_COLOR:
+ *
+ * Provides the default auto-highlight color by way of a compound literal of
+ * type `GdkRGBA`.
+ */
+#define HEX_AUTO_HIGHLIGHT_DEFAULT_COLOR \
+	((GdkRGBA){ \
+		.red = 1.0f, \
+		.green = 1.0f, \
+		.blue = 0.5f, \
+		.alpha = 0.75f \
+	})
+
 //GListModel * _hex_auto_highlight_build_1d_list (GListModel *list);

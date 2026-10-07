@@ -5,6 +5,7 @@
 #include "hex-text-common.h"
 
 #include "hex-mark-private.h"
+#include "hex-auto-highlight-private.h"
 
 
 #define GRAPHENE_RECT_FROM_RECT(_r) (GRAPHENE_RECT_INIT ((_r)->x, (_r)->y, (_r)->width, (_r)->height))
@@ -249,10 +250,8 @@ render_highlights__auto_highlights (HexTextEditable *self, GtkSnapshot *snapshot
 		for (guint j = 0; j < n_highlights; ++j)
 		{
 			HexHighlight *highlight = highlights[j];
-			// TEST
-			GdkRGBA color = {1.0, 1.0, 0.5, 0.75};
 
-			render_single_highlight (self, snapshot, disp_line_num, layout, highlight, &color);
+			render_single_highlight (self, snapshot, disp_line_num, layout, highlight, &HEX_AUTO_HIGHLIGHT_DEFAULT_COLOR);
 		}
 	}
 }
