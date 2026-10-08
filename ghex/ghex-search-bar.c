@@ -910,6 +910,14 @@ ghex_search_bar_close (GHexPane *pane)
 	GHEX_PANE_CLASS(ghex_search_bar_parent_class)->close (pane);
 }
 
+static gboolean
+ghex_search_bar_grab_focus (GtkWidget *widget)
+{
+	GHexSearchBar *self = GHEX_SEARCH_BAR(widget);
+
+	return gtk_widget_grab_focus (GTK_WIDGET(self->search_entry));
+}
+
 static void
 ghex_search_bar_init (GHexSearchBar *self)
 {
@@ -988,6 +996,8 @@ ghex_search_bar_class_init (GHexSearchBarClass *klass)
 	object_class->finalize = ghex_search_bar_finalize;
 	object_class->set_property = ghex_search_bar_set_property;
 	object_class->get_property = ghex_search_bar_get_property;
+
+	widget_class->grab_focus = ghex_search_bar_grab_focus;
 
 	GHEX_PANE_CLASS(klass)->close = ghex_search_bar_close;
 

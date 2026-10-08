@@ -439,6 +439,25 @@ bind_settings (GHexViewContainer *self)
 }
 
 static void
+search_bar_revealed_cb (GHexViewContainer *self)
+{
+	g_assert (GHEX_IS_VIEW_CONTAINER (self));
+
+	if (gtk_revealer_get_child_revealed (self->search_bar_revealer))
+		gtk_widget_grab_focus (GTK_WIDGET(self->search_bar));
+	else
+		gtk_widget_grab_focus (GTK_WIDGET(self));
+}
+
+static gboolean
+ghex_view_container_grab_focus (GtkWidget *widget)
+{
+	GHexViewContainer *self = GHEX_VIEW_CONTAINER(widget);
+
+	return gtk_widget_grab_focus (GTK_WIDGET(self->hex));
+}
+
+static void
 ghex_view_container_init (GHexViewContainer *self)
 {
 	gtk_widget_init_template (GTK_WIDGET (self));
@@ -446,6 +465,7 @@ ghex_view_container_init (GHexViewContainer *self)
 	g_object_bind_property (self, "show-mark-pane", self->mark_pane_revealer, "reveal-child", G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
 
 	g_object_bind_property (self, "show-search-bar", self->search_bar_revealer, "reveal-child", G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+	g_signal_connect_object (self->search_bar_revealer, "notify::child-revealed", G_CALLBACK(search_bar_revealed_cb), self, G_CONNECT_SWAPPED);
 
 	g_object_bind_property (self->conversions_toggle_button, "active", self->conversions_revealer, "reveal-child", G_BINDING_DEFAULT);
 
@@ -497,6 +517,8 @@ ghex_view_container_class_init (GHexViewContainerClass *klass)
 	object_class->constructed = ghex_view_container_constructed;
 	object_class->set_property = ghex_view_container_set_property;
 	object_class->get_property = ghex_view_container_get_property;
+
+	widget_class->grab_focus = ghex_view_container_grab_focus;
 
 	properties[PROP_HEX] = g_param_spec_object ("hex", NULL, NULL,
 			HEX_TYPE_VIEW,
