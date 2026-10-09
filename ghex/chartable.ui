@@ -25,6 +25,9 @@
 
 <interface>
   <template class="GHexCharTable" parent="GtkWindow">
+    <style>
+      <class name="chartable" />
+    </style>
     <property name="default-width">400</property>
     <property name="default-height">400</property>
     <property name="destroy-with-parent">true</property>
@@ -45,6 +48,7 @@
                 <child>
                   <object class="GtkColumnViewColumn" id="ascii_column">
                     <property name="title" translatable="yes">ASCII</property>
+                    <property name="expand">true</property>
                     <property name="factory">
                       <object class="GtkBuilderListItemFactory">
                         <property name="bytes"><![CDATA[
@@ -53,6 +57,9 @@
                           <template class="GtkListItem">
                             <property name="child">
                               <object class="GtkLabel">
+                                <style>
+                                  <class name="chartable-entry" />
+                                </style>
                                 <binding name="label">
                                   <lookup name="ascii" type="HexChartableValue">
                                     <lookup name="item">GtkListItem</lookup>
@@ -70,6 +77,7 @@
                 <child>
                   <object class="GtkColumnViewColumn" id="hex_column">
                     <property name="title" translatable="yes">Hex</property>
+                    <property name="expand">true</property>
                     <property name="factory">
                       <object class="GtkBuilderListItemFactory">
                         <property name="bytes"><![CDATA[
@@ -78,6 +86,9 @@
                           <template class="GtkListItem">
                             <property name="child">
                               <object class="GtkLabel">
+                                <style>
+                                  <class name="chartable-entry" />
+                                </style>
                                 <binding name="label">
                                   <lookup name="hex" type="HexChartableValue">
                                     <lookup name="item">GtkListItem</lookup>
@@ -95,6 +106,7 @@
                 <child>
                   <object class="GtkColumnViewColumn" id="decimal_column">
                     <property name="title" translatable="yes">Decimal</property>
+                    <property name="expand">true</property>
                     <property name="factory">
                       <object class="GtkBuilderListItemFactory">
                         <property name="bytes"><![CDATA[
@@ -103,6 +115,9 @@
                           <template class="GtkListItem">
                             <property name="child">
                               <object class="GtkLabel">
+                                <style>
+                                  <class name="chartable-entry" />
+                                </style>
                                 <binding name="label">
                                   <lookup name="decimal" type="HexChartableValue">
                                     <lookup name="item">GtkListItem</lookup>
@@ -120,6 +135,7 @@
                 <child>
                   <object class="GtkColumnViewColumn" id="octal_column">
                     <property name="title" translatable="yes">Octal</property>
+                    <property name="expand">true</property>
                     <property name="factory">
                       <object class="GtkBuilderListItemFactory">
                         <property name="bytes"><![CDATA[
@@ -128,6 +144,9 @@
                           <template class="GtkListItem">
                             <property name="child">
                               <object class="GtkLabel">
+                                <style>
+                                  <class name="chartable-entry" />
+                                </style>
                                 <binding name="label">
                                   <lookup name="octal" type="HexChartableValue">
                                     <lookup name="item">GtkListItem</lookup>
@@ -145,6 +164,7 @@
                 <child>
                   <object class="GtkColumnViewColumn" id="binary_column">
                     <property name="title" translatable="yes">Binary</property>
+                    <property name="expand">true</property>
                     <property name="factory">
                       <object class="GtkBuilderListItemFactory">
                         <property name="bytes"><![CDATA[
@@ -153,6 +173,9 @@
                           <template class="GtkListItem">
                             <property name="child">
                               <object class="GtkLabel">
+                                <style>
+                                  <class name="chartable-entry" />
+                                </style>
                                 <binding name="label">
                                   <lookup name="binary" type="HexChartableValue">
                                     <lookup name="item">GtkListItem</lookup>
@@ -175,7 +198,9 @@
           <object class="GtkBox">
             <property name="orientation">horizontal</property>
             <property name="spacing">6</property>
-            <property name="name">chartable-action-area</property>
+            <style>
+              <class name="action-area" />
+            </style>
             <child>
               <object class="GtkButton" id="insert_button">
                 <property name="use-underline">true</property>
