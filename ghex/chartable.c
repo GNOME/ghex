@@ -71,37 +71,37 @@ static const char *ascii_non_printable_label[] = {
 	"US"
 };
 
-/* HexChartableValue object */
+/* GHexCharTableValue object */
 
-#define HEX_TYPE_CHARTABLE_VALUE (hex_chartable_value_get_type ())
-G_DECLARE_FINAL_TYPE (HexChartableValue, hex_chartable_value, HEX, CHARTABLE_VALUE, GObject);
+#define GHEX_TYPE_CHAR_TABLE_VALUE (ghex_char_table_value_get_type ())
+G_DECLARE_FINAL_TYPE (GHexCharTableValue, ghex_char_table_value, GHEX, CHAR_TABLE_VALUE, GObject);
 
 enum {
-  CHARTABLE_VALUE_PROP_0,
+  GHEX_CHAR_TABLE_VALUE_PROP_0,
   PROP_VALUE,
   PROP_ASCII,
   PROP_HEX,
   PROP_DECIMAL,
   PROP_OCTAL,
   PROP_BINARY,
-  CHARTABLE_VALUE_N_PROPS
+  GHEX_CHAR_TABLE_VALUE_N_PROPS
 };
 
-static GParamSpec *chartable_value_properties[CHARTABLE_VALUE_N_PROPS];
+static GParamSpec *ghex_char_table_value_properties[GHEX_CHAR_TABLE_VALUE_N_PROPS];
 
-struct _HexChartableValue
+struct _GHexCharTableValue
 {
 	GObject parent_instance;
 
 	guchar val;
 };
 
-G_DEFINE_FINAL_TYPE (HexChartableValue, hex_chartable_value, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (GHexCharTableValue, ghex_char_table_value, G_TYPE_OBJECT)
 
 /* All of the getters below should be transfer: full */
 
 static char *
-hex_chartable_value_get_ascii (HexChartableValue *self)
+ghex_char_table_value_get_ascii (GHexCharTableValue *self)
 {
 	char *str = NULL;
 
@@ -116,25 +116,25 @@ hex_chartable_value_get_ascii (HexChartableValue *self)
 }
 
 static char *
-hex_chartable_value_get_hex (HexChartableValue *self)
+ghex_char_table_value_get_hex (GHexCharTableValue *self)
 {
 	return g_strdup_printf ("%02X", self->val);
 }
 
 static char *
-hex_chartable_value_get_decimal (HexChartableValue *self)
+ghex_char_table_value_get_decimal (GHexCharTableValue *self)
 {
 	return g_strdup_printf ("%03d", self->val);
 }
 
 static char *
-hex_chartable_value_get_octal (HexChartableValue *self)
+ghex_char_table_value_get_octal (GHexCharTableValue *self)
 {
 	return g_strdup_printf ("%03o", self->val);
 }
 
 static char *
-hex_chartable_value_get_binary (HexChartableValue *self)
+ghex_char_table_value_get_binary (GHexCharTableValue *self)
 {
 	/* 9 == 8 characters + null terminator. */
 	char *bin_label = g_malloc0 (9);
@@ -147,12 +147,12 @@ hex_chartable_value_get_binary (HexChartableValue *self)
 	return bin_label;
 }
 
-static void hex_chartable_value_get_property (GObject *object,
+static void ghex_char_table_value_get_property (GObject *object,
 		guint property_id,
 		GValue *value,
 		GParamSpec *pspec)
 {
-	HexChartableValue *self = HEX_CHARTABLE_VALUE(object);
+	GHexCharTableValue *self = GHEX_CHAR_TABLE_VALUE(object);
 
 	switch (property_id)
 	{
@@ -161,23 +161,23 @@ static void hex_chartable_value_get_property (GObject *object,
 			break;
 
 		case PROP_ASCII:
-			g_value_take_string (value, hex_chartable_value_get_ascii (self));
+			g_value_take_string (value, ghex_char_table_value_get_ascii (self));
 			break;
 
 		case PROP_HEX:
-			g_value_take_string (value, hex_chartable_value_get_hex (self));
+			g_value_take_string (value, ghex_char_table_value_get_hex (self));
 			break;
 
 		case PROP_DECIMAL:
-			g_value_take_string (value, hex_chartable_value_get_decimal (self));
+			g_value_take_string (value, ghex_char_table_value_get_decimal (self));
 			break;
 
 		case PROP_OCTAL:
-			g_value_take_string (value, hex_chartable_value_get_octal (self));
+			g_value_take_string (value, ghex_char_table_value_get_octal (self));
 			break;
 
 		case PROP_BINARY:
-			g_value_take_string (value, hex_chartable_value_get_binary (self));
+			g_value_take_string (value, ghex_char_table_value_get_binary (self));
 			break;
 
 		default:
@@ -186,12 +186,12 @@ static void hex_chartable_value_get_property (GObject *object,
 	}
 }
 
-static void hex_chartable_value_set_property (GObject *object,
+static void ghex_char_table_value_set_property (GObject *object,
 		guint property_id,
 		const GValue *value,
 		GParamSpec *pspec)
 {
-	HexChartableValue *self = HEX_CHARTABLE_VALUE(object);
+	GHexCharTableValue *self = GHEX_CHAR_TABLE_VALUE(object);
 
 	switch (property_id)
 	{
@@ -206,35 +206,35 @@ static void hex_chartable_value_set_property (GObject *object,
 }
 
 static void
-hex_chartable_value_class_init (HexChartableValueClass *klass)
+ghex_char_table_value_class_init (GHexCharTableValueClass *klass)
 {
 	GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
 	/* flags for all properties EXCEPT 'value' */
 	GParamFlags flags = G_PARAM_READABLE | G_PARAM_STATIC_STRINGS;
 
-	gobject_class->get_property = hex_chartable_value_get_property;
-	gobject_class->set_property = hex_chartable_value_set_property;
+	gobject_class->get_property = ghex_char_table_value_get_property;
+	gobject_class->set_property = ghex_char_table_value_set_property;
 
-	chartable_value_properties[PROP_VALUE] = g_param_spec_uchar ("value", NULL, NULL, 0, 255, 0,
+	ghex_char_table_value_properties[PROP_VALUE] = g_param_spec_uchar ("value", NULL, NULL, 0, 255, 0,
 			G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT_ONLY);
-	chartable_value_properties[PROP_ASCII] = g_param_spec_string ("ascii", NULL, NULL, NULL, flags);
-	chartable_value_properties[PROP_HEX] = g_param_spec_string ("hex", NULL, NULL, NULL, flags);
-	chartable_value_properties[PROP_DECIMAL] = g_param_spec_string ("decimal", NULL, NULL, NULL, flags);
-	chartable_value_properties[PROP_OCTAL] = g_param_spec_string ("octal", NULL, NULL, NULL, flags);
-	chartable_value_properties[PROP_BINARY] = g_param_spec_string ("binary", NULL, NULL, NULL, flags);
+	ghex_char_table_value_properties[PROP_ASCII] = g_param_spec_string ("ascii", NULL, NULL, NULL, flags);
+	ghex_char_table_value_properties[PROP_HEX] = g_param_spec_string ("hex", NULL, NULL, NULL, flags);
+	ghex_char_table_value_properties[PROP_DECIMAL] = g_param_spec_string ("decimal", NULL, NULL, NULL, flags);
+	ghex_char_table_value_properties[PROP_OCTAL] = g_param_spec_string ("octal", NULL, NULL, NULL, flags);
+	ghex_char_table_value_properties[PROP_BINARY] = g_param_spec_string ("binary", NULL, NULL, NULL, flags);
 
-	g_object_class_install_properties (gobject_class, CHARTABLE_VALUE_N_PROPS, chartable_value_properties);
+	g_object_class_install_properties (gobject_class, GHEX_CHAR_TABLE_VALUE_N_PROPS, ghex_char_table_value_properties);
 }
 
 static void
-hex_chartable_value_init (HexChartableValue *self)
+ghex_char_table_value_init (GHexCharTableValue *self)
 {
 }
 
-static HexChartableValue *
-hex_chartable_value_new (guchar val)
+static GHexCharTableValue *
+ghex_char_table_value_new (guchar val)
 {
-	return g_object_new (HEX_TYPE_CHARTABLE_VALUE,
+	return g_object_new (GHEX_TYPE_CHAR_TABLE_VALUE,
 			"value", val,
 			NULL);
 }
@@ -368,12 +368,12 @@ insert_button_clicked_cb (GHexCharTable *self)
 static void
 setup_columnview (GtkWidget *columnview)
 {
-	GListStore *store = g_list_store_new (HEX_TYPE_CHARTABLE_VALUE);
+	GListStore *store = g_list_store_new (GHEX_TYPE_CHAR_TABLE_VALUE);
 	GtkSingleSelection *selection;
 
 	for (int i = 0; i < 256; ++i)
 	{
-		HexChartableValue *hv = hex_chartable_value_new ((guchar)i);
+		GHexCharTableValue *hv = ghex_char_table_value_new ((guchar)i);
 		g_list_store_append (store, hv);
 		g_object_unref (hv);
 	}
