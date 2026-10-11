@@ -9,6 +9,8 @@ libgtkhex_plugindir = join_paths(libdir, 'gtkhex-@0@.0'.format(libgtkhex_api_ver
 config_h = configuration_data()
 config_h.set_quoted('PACKAGE_PLUGINDIR', libgtkhex_plugindir)
 config_h.set_quoted('LIBGTKHEX_RELEASE_STRING', 'gtkhex-@0@.0'.format(libgtkhex_api_version))
+config_h.set_quoted('LOCALEDIR', localedir)
+config_h.set('GETTEXT_PACKAGE', 'LIBGTKHEX_RELEASE_STRING')
 
 configure_file(
   output: 'config.h',
@@ -16,6 +18,7 @@ configure_file(
 )
 
 libgtkhex_sources = [
+  'gtkhex.c',
   'gtkhex-paste-data.c',
   'hex-auto-highlight.c',
   'hex-buffer-iface.c',
@@ -218,6 +221,8 @@ libgtkhex_dep = declare_dependency(
   sources: libgtkhex_headers,
   include_directories: include_directories('.'),
 )
+
+subdir('po')
 
 if get_option('docs')
   subdir('docs')

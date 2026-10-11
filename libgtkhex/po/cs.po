@@ -1,0 +1,1358 @@
+# Czech message catalog for ghex.
+# Copyright (C) 1999, 2003, 2004, 2009 the author(s) of ghex.
+# Copyright (C) 2004 Miloslav Trmac <mitr@volny.cz>.
+# This file is distributed under the same license as the ghex package.
+#
+# David Sauer <davids@penguin.cz>, 1999.
+# Michal Bukovjan <bukm@centrum.cz>, 2002, 2003.
+# Miloslav Trmac <mitr@volny.cz>, 2004.
+# Lucas Lommer <llommer@svn.gnome.org>, 2009. (just an update).
+# Petr Kovar <pknbe@volny.cz>, 2010
+# Marek Černocký <marek@manet.cz>, 2010, 2011, 2012, 2013, 2015, 2018, 2019, 2022.
+# Václav Koterec <kot.va@centrum.cz>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ghex\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues/\n"
+"POT-Creation-Date: 2026-02-21 03:43+0000\n"
+"PO-Revision-Date: 2026-02-27 16:34+0100\n"
+"Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
+"Language-Team: čeština <gnome-cs-list@gnome.org>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Poedit 3.8\n"
+
+#: data/org.gnome.GHex.desktop.in.in:4
+msgid "Hex Editor"
+msgstr "Hexadecimálních editor"
+
+#: data/org.gnome.GHex.desktop.in.in:5 data/org.gnome.GHex.metainfo.xml.in.in:7
+msgid "Inspect and edit binary files"
+msgstr "Zkoumejte a upravujte obsah binárních souborů"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
+#: data/org.gnome.GHex.desktop.in.in:7
+msgid "binary;debug;hexadecimal;"
+msgstr "binární soubor;ladění;hexadecimální;šestnáctkový;"
+
+#: data/org.gnome.GHex.desktop.in.in:20
+msgid "New Window"
+msgstr "Nové okno"
+
+#: data/org.gnome.GHex.metainfo.xml.in.in:6
+#: src/ghex-application-window.ui.in:151
+msgid "GHex"
+msgstr "GHex"
+
+#: data/org.gnome.GHex.metainfo.xml.in.in:9
+msgid "GHex is a hex editor for the GNOME desktop."
+msgstr "GHex je hexadecimální editor pro uživatelské prostředí GNOME."
+
+#: data/org.gnome.GHex.metainfo.xml.in.in:12
+msgid ""
+"GHex can load raw data from binary files and display them for editing in the "
+"traditional hex editor view. The display is split in two columns, with "
+"hexadecimal values in one column and the ASCII representation in the other. "
+"GHex is a useful tool for working with raw data."
+msgstr ""
+"GHex umí načíst surová data z binárních souborů a zobrazit je pro úpravy v "
+"tradiční podobě hexadecimálních editorů. Zobrazení je rozdělené do dvou "
+"sloupců, s šestnáctkovými hodnotami v jednom sloupci a znaky ASCII v druhém. "
+"Jde o užitečný nástroj pro práci se surovými daty."
+
+#: src/chartable.ui:30
+msgid "Character table"
+msgstr "Tabulka znaků"
+
+#: src/chartable.ui:44 src/find-options.ui:69
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.ui:69 src/find-options.ui:65
+msgid "Hex"
+msgstr "Šestnáctkově"
+
+#: src/chartable.ui:94 src/preferences.ui:164
+msgid "Decimal"
+msgstr "Desítkově"
+
+#: src/chartable.ui:119
+msgid "Octal"
+msgstr "Osmičkově"
+
+#: src/chartable.ui:144
+msgid "Binary"
+msgstr "Dvojkově"
+
+#: src/common-ui.c:246
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"GHex je svobodný software: Můžete jej dále šířit a/nebo upravovat za "
+"podmínek licence GNU General Public License v podobě, v jaké ji vydala Free "
+"Software Foundation, a to buď ve verzi 2 této licence nebo (dle vaší volby) "
+"v libovolné novější verzi."
+
+#: src/common-ui.c:250
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"GHex je šířen ve víře, že bude užitečný, ale BEZ JAKÝCHKOLIV ZÁRUK, a to i "
+"bez předpokládané záruky na PRODEJNOST nebo VHODNOST PRO KONKRÉTNÍ ÚČEL. "
+"Více podrobností najdete přímo v licenci GNU General Public License."
+
+#: src/common-ui.c:254
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"Spolu s aplikací GHex byste měli obdržet kopii licence GNU General Public "
+"License. Pokud se tak nestalo, napište na Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+
+#. Translators: these two strings here indicate the copyright time span,
+#. e.g. 1998-2018.
+#: src/common-ui.c:266
+#, c-format
+msgid "Copyright © %d–%d The GHex authors"
+msgstr "Copyright © %d – %d autoři aplikace GHex"
+
+#: src/common-ui.c:286
+msgid "translator-credits"
+msgstr ""
+"Marek Černocký <marek@manet.cz>\n"
+"Václav Koterec <kot.va@centrum.cz>"
+
+#. Translators: This is an error string for a print-related error
+#. * dialog.  The %s is the error generated by GError.
+#: src/common-ui.c:351
+#, c-format
+msgid "An error has occurred: %s"
+msgstr "Vyskytla se chyba: %s"
+
+#: src/common-ui.c:372 src/find-dialog.ui:99 src/jump-dialog.ui:64
+#: src/mark-dialog.ui:152
+msgid "Close"
+msgstr "Zavřít"
+
+#: src/converter.c:166
+msgid "Base Converter"
+msgstr "Převodník soustav"
+
+#. entries
+#: src/converter.c:176
+msgid "_Binary:"
+msgstr "D_vojkově:"
+
+#: src/converter.c:178
+msgid "_Octal:"
+msgstr "_Osmičkově:"
+
+#: src/converter.c:180
+msgid "_Decimal:"
+msgstr "_Desítkově:"
+
+#: src/converter.c:182
+msgid "_Hex:"
+msgstr "Še_stnáctkově:"
+
+#: src/converter.c:184
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+#. get cursor button
+#: src/converter.c:188
+msgid "_Get cursor value"
+msgstr "_Načíst hodnotu pod kurzorem"
+
+#: src/converter.c:189
+msgid "_Close"
+msgstr "_Zavřít"
+
+#: src/converter.c:199
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"Načte hodnotu pod kurzorem v podobách dvojkové, osmičkové, desítkové, "
+"šestnáctkové nebo ASCII"
+
+#: src/converter.c:339
+msgid "ERROR"
+msgstr "CHYBA"
+
+#: src/find-dialog.ui:38
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Zadejte data, která se mají hledat, v šestnáctkovém podobě nebo ASCII"
+
+#: src/find-dialog.ui:41
+msgid "Find String"
+msgstr "Hledat řetězec"
+
+#: src/find-dialog.ui:58
+msgid "Find _Next"
+msgstr "Hledat _následující"
+
+#: src/find-dialog.ui:62
+msgid "Finds the next occurrence of the search string"
+msgstr "Nalezne následující výskyt hledaného řetězce"
+
+#: src/find-dialog.ui:67
+msgid "Find _Previous"
+msgstr "Hledat _předchozí"
+
+#: src/find-dialog.ui:70
+msgid "Finds the previous occurrence of the search string"
+msgstr "Nalezne předchozí výskyt hledaného řetězce"
+
+#: src/find-dialog.ui:75
+msgid "_Clear"
+msgstr "_Smazat"
+
+#: src/find-dialog.ui:78
+msgid "Clears the data you are searching for"
+msgstr "Vymaže data, která hledáte"
+
+#: src/find-dialog.ui:88
+msgid "Find options"
+msgstr "Najít možnosti"
+
+#: src/find-dialog.ui:89
+msgid "View options of the find pane"
+msgstr "Zobrazit možnosti panelu hledání"
+
+#: src/find-dialog.ui:100
+msgid "Closes the find pane"
+msgstr "Zavře panel vyhledávání"
+
+#: src/find-options.ui:35
+msgid "_Regular expressions"
+msgstr "_Regulární výrazy"
+
+#: src/find-options.ui:44
+msgid "_Ignore case"
+msgstr "_Ignorovat malá a velká písmena"
+
+#: src/find-options.ui:60
+msgid "Show:"
+msgstr "Zobrazit:"
+
+#: src/find-options.ui:73 src/preferences.ui:170
+msgid "Both"
+msgstr "Oba"
+
+#: src/findreplace.c:226
+msgid "No string provided."
+msgstr "Nebyl zadán žádný řetězec."
+
+#: src/findreplace.c:398
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+"Dosažen začátek souboru.\n"
+"\n"
+"Nenalezeny žádné další shody."
+
+#: src/findreplace.c:400
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+"Dosažen začátek souboru.\n"
+"\n"
+"Od pozice kurzoru nenalezen žádný výsky."
+
+#: src/findreplace.c:410
+msgid ""
+"End of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+"Dosažen konec souboru.\n"
+"\n"
+"Nenalezeny žádné další shody."
+
+#: src/findreplace.c:412
+msgid ""
+"End of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+"Dosažen konec souboru.\n"
+"\n"
+"Od pozice kurzoru nenalezen žádný výsky."
+
+#: src/findreplace.c:483
+msgid "No offset has been specified."
+msgstr "Nebyl zadán žádný posun."
+
+#: src/findreplace.c:508
+msgid "The specified offset is beyond the  file boundaries."
+msgstr "Zadaný posun je mimo hranice souboru."
+
+#: src/findreplace.c:516
+msgid "Can not position cursor beyond the end of file."
+msgstr "Nelze umístit kurzor za konec souboru."
+
+#: src/findreplace.c:527
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+"Posun můžete zadat jen jako:\n"
+"  - kladné desítkové číslo nebo\n"
+"  - šestnáctkové číslo začínající „0x“\n"
+"  - znaménko „+“ nebo „-“ následované relativním posunem"
+
+#: src/findreplace.c:586
+msgid "String was not found."
+msgstr "Řetězec nebyl nalezen."
+
+#: src/findreplace.c:650
+#, c-format
+msgid "Search complete: %d replacements made."
+msgstr "Hledání dokončeno: provedeno %d náhrad."
+
+#: src/findreplace.c:657
+msgid "No occurrences were found."
+msgstr "Nebyl nalezen žádný výskyt."
+
+#. Translators: this is the string for an untitled buffer that will
+#. * be displayed in the titlebar when a user does File->New
+#.
+#: src/ghex-application-window.c:43 src/hex-document.c:1143
+msgid "Untitled"
+msgstr "Bez názvu"
+
+#: src/ghex-application-window.c:359
+msgid "There was an error saving the file."
+msgstr "Při ukládání souboru došlo k chybě."
+
+#: src/ghex-application-window.c:399
+msgid "Save Changes?"
+msgstr "Uložit změny?"
+
+#: src/ghex-application-window.c:402
+msgid ""
+"Open documents contain unsaved changes.\n"
+"Changes which are not saved will be permanently lost."
+msgstr ""
+"Otevřené dokumenty obsahují neuložené změny.\n"
+"Změny, které nebudou uloženy, budou trvale ztraceny."
+
+#: src/ghex-application-window.c:405 src/ghex-application-window.c:534
+#: src/ghex-application-window.c:1260 src/paste-special.ui:53
+msgid "_Cancel"
+msgstr "_Zrušit"
+
+#: src/ghex-application-window.c:406 src/ghex-application-window.c:535
+msgid "_Discard"
+msgstr "_Zahodit"
+
+#. Translators: %s is the filename that is currently being
+#. * edited.
+#: src/ghex-application-window.c:521
+#, c-format
+msgid "%s has been edited since opening."
+msgstr "%s byl od otevření upraven."
+
+#: src/ghex-application-window.c:525
+msgid "The buffer has been edited since opening."
+msgstr "Vyrovnávací paměť byla od otevření upravena."
+
+#: src/ghex-application-window.c:532
+msgid "Would you like to save your changes?"
+msgstr "Chcete uložit změny?"
+
+#: src/ghex-application-window.c:536
+msgid "_Save"
+msgstr "_Uložit"
+
+#: src/ghex-application-window.c:1115
+msgid "There was an error saving the file to the path specified."
+msgstr "Došlo k chybě při ukládání souboru do zadaného umístění."
+
+#: src/ghex-application-window.c:1134
+msgid ""
+"An unknown error has occurred in attempting to reload the file you have just "
+"saved."
+msgstr ""
+"Došlo k neznámé chybě při pokusu o načtení souboru, který jste právě uložili."
+
+#: src/ghex-application-window.c:1187
+msgid "Select a file to save buffer as"
+msgstr "Vyberte soubor pro uložení vyrovnávací paměti"
+
+#. Translators: %s here is the filename the user is being asked to
+#. * confirm whether they want to revert.
+#: src/ghex-application-window.c:1252
+#, c-format
+msgid "Are you sure you want to revert %s?"
+msgstr "Opravdu chcete vrátit %s?"
+
+#: src/ghex-application-window.c:1257
+msgid ""
+"Your changes will be lost.\n"
+"This action cannot be undone."
+msgstr ""
+"Vaše změny budou ztraceny.\n"
+"Po provedení to již nepůjde vrátit zpět."
+
+#: src/ghex-application-window.c:1261 src/ghex-application-window.ui.in:39
+msgid "_Revert"
+msgstr "V_rátit změny"
+
+#: src/ghex-application-window.c:1351
+msgid "Select a file to open"
+msgstr "Vyberte soubor k otevření"
+
+#: src/ghex-application-window.c:1459
+#, c-format
+msgid ""
+"Sorry, but help could not be opened.\n"
+"\n"
+"Various attempts were made to locate the help documentation unsuccessfully.\n"
+"\n"
+"Please ensure the application was properly installed.\n"
+"\n"
+"The specific error message is:\n"
+"\n"
+"%s"
+msgstr ""
+"Bohužel, ale nápovědu se nezdařilo otevřít.\n"
+"\n"
+"Byly bez úspěchu vyzkoušeny různé způsoby jak najít dokumentaci s "
+"nápovědou.\n"
+"\n"
+"Ověřte prosím, jestli je aplikace správně nainstalovaná.\n"
+"\n"
+"Konkrétní chybová zpráva je:\n"
+"\n"
+"%s"
+
+#: src/ghex-application-window.c:1656
+#, c-format
+msgid ""
+"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+"<tt>0x%lX</tt> selected"
+msgstr ""
+"Posun: <tt>0x%lX</tt>; vybráno <tt>0x%lX</tt> bajtů od <tt>0x%lX</tt> do "
+"<tt>0x%lX</tt>"
+
+#: src/ghex-application-window.c:1659
+#, c-format
+msgid "Offset: <tt>0x%lX</tt>"
+msgstr "Posun: <tt>0x%lX</tt>"
+
+#: src/ghex-application-window.c:1666
+#, c-format
+msgid ""
+"Offset: <tt>%ld</tt>; <tt>%ld</tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> "
+"selected"
+msgstr ""
+"Posun: <tt>%ld</tt>; vybráno <tt>%ld</tt> bajtů od <tt>%ld</tt> do <tt>%ld</"
+"tt>"
+
+#: src/ghex-application-window.c:1669
+#, c-format
+msgid "Offset: <tt>%ld</tt>"
+msgstr "Posun: <tt>%ld</tt>"
+
+#. Weird rendering if you don't put the space at the start
+#: src/ghex-application-window.c:1677
+#, c-format
+#| msgid ""
+#| "Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+#| "<tt>0x%lX</tt> selected"
+msgid ""
+" <sub>HEX</sub> Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</"
+"tt> to <tt>0x%lX</tt> selected <sub>DEC</sub> Offset: <tt>%ld</tt>; <tt>%ld</"
+"tt> bytes from <tt>%ld</tt> to <tt>%ld</tt> selected"
+msgstr ""
+
+#: src/ghex-application-window.c:1681
+#, c-format
+msgid ""
+" <sub>HEX</sub> Offset: <tt>0x%lX</tt> <sub>DEC</sub> Offset: <tt>%ld</tt>"
+msgstr ""
+
+#: src/ghex-application-window.c:2528
+msgid ""
+"You are attempting to open a file 1GB or larger.\n"
+"\n"
+"This can make GHex and your machine unstable as the file will be loaded into "
+"memory, using the active backend.\n"
+"\n"
+"Are you sure you want to proceed?\n"
+"\n"
+"This message will not be shown again for the remainder of this GHex "
+"session.\n"
+"\n"
+"To avoid this message from appearing, try using a different buffer backend."
+msgstr ""
+"Snažíte se otevřít soubor o velikosti 1 GB nebo více.\n"
+"\n"
+"Jelikož se celý soubor načítá do operační paměti, může to způsobit problémy "
+"s aplikací nebo i celým systémem.\n"
+"\n"
+"Přejete si přesto pokračovat?\n"
+"\n"
+"Tato zpráva se v tomto sezení již znovu nezobrazí.\n"
+"\n"
+"V budoucích verzích GHex by mělo být toto omezení odstraněno.\n"
+"\n"
+"Aby se tato zpráva nezobrazovala, zkuste použít jiný backend vyrovnávací "
+"paměti."
+
+#: src/ghex-application-window.c:2586
+msgid "There was an error reading the file."
+msgstr "Při čtení souboru došlo k chybě."
+
+#: src/ghex-application-window.c:2647
+msgid ""
+"There was an error loading the requested file. The file either no longer "
+"exists, is inaccessible, or you may not have permission to access the file."
+msgstr ""
+"Došlo k chybě při načítání požadovaného souboru. Soubor buď již neexistuje, "
+"je nepřístupný nebo k němu nemáte dostatečná oprávnění."
+
+#: src/ghex-application-window.ui.in:31
+msgid "_New Window"
+msgstr "_Nové okno"
+
+#: src/ghex-application-window.ui.in:35
+msgid "Save _As"
+msgstr "Uložit _jako"
+
+#: src/ghex-application-window.ui.in:46
+msgid "_Print"
+msgstr "Tisk"
+
+#: src/ghex-application-window.ui.in:50
+msgid "Print Previe_w"
+msgstr "Vytisknout _náhled"
+
+#: src/ghex-application-window.ui.in:58
+msgid "Find and _Replace"
+msgstr "Najít a nah_radit"
+
+#: src/ghex-application-window.ui.in:62
+msgid "_Jump to Byte"
+msgstr "_Skok na bajt"
+
+#: src/ghex-application-window.ui.in:66
+msgid "_Marks"
+msgstr "_Značky"
+
+#: src/ghex-application-window.ui.in:76
+msgid "_Edit"
+msgstr "_Upravit"
+
+#: src/ghex-application-window.ui.in:78
+msgid "_Copy Special"
+msgstr "Z_kopírovat jinak"
+
+#: src/ghex-application-window.ui.in:82
+msgid "_Paste Special"
+msgstr "_Vložit jinak"
+
+#: src/ghex-application-window.ui.in:86
+msgid "G_roup Data As"
+msgstr "S_eskupit data jako"
+
+#: src/ghex-application-window.ui.in:88
+msgid "_Bytes (8-bit)"
+msgstr "_Bajty (8 bitů)"
+
+#: src/ghex-application-window.ui.in:94
+msgid "_Words (16-bit)"
+msgstr "_Slova (16 bitů)"
+
+#: src/ghex-application-window.ui.in:99
+msgid "_Longwords (32-bit)"
+msgstr "_Dlouhá slova (32 bitů)"
+
+#: src/ghex-application-window.ui.in:104
+msgid "_Quadwords (64-bit)"
+msgstr "Č_tyřnásobná slova (64 bitů)"
+
+#: src/ghex-application-window.ui.in:113
+msgid "_Tools"
+msgstr "_Nástroje"
+
+#: src/ghex-application-window.ui.in:115
+msgid "_Character Table"
+msgstr "_Tabulka znaků"
+
+#: src/ghex-application-window.ui.in:119
+msgid "_Base Converter"
+msgstr "Převodník _soustav"
+
+#: src/ghex-application-window.ui.in:128
+msgid "_Keyboard Shortcuts"
+msgstr "_Klávesové zkratky"
+
+#: src/ghex-application-window.ui.in:133
+msgid "_Preferences"
+msgstr "_Předvolby"
+
+#: src/ghex-application-window.ui.in:138
+msgid "_Help"
+msgstr "_Nápověda"
+
+#: src/ghex-application-window.ui.in:143
+msgid "_About GHex"
+msgstr "O _aplikaci GHex"
+
+#: src/ghex-application-window.ui.in:172
+msgid "Open a file for hex editing"
+msgstr "Otevřít soubor pro hexadecimální úpravy"
+
+#: src/ghex-application-window.ui.in:175
+msgid "_Open"
+msgstr "_Otevřít"
+
+#: src/ghex-application-window.ui.in:187 src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr "Nový prázdný hexadecimální buffer"
+
+#: src/ghex-application-window.ui.in:196
+msgid "Main Menu"
+msgstr "Hlavní nabídka"
+
+#: src/ghex-application-window.ui.in:198
+msgid "Main menu"
+msgstr "Hlavní nabídka"
+
+#: src/ghex-application-window.ui.in:208
+msgid "Find a string in the hex document"
+msgstr "Vyhledat řetězec v hexadecimálním dokumentu"
+
+#: src/ghex-application-window.ui.in:217
+msgid "Save document"
+msgstr "Uložit dokument"
+
+#: src/ghex-application-window.ui.in:225
+msgid "No File Loaded"
+msgstr "Nebyl načten žádný soubor"
+
+#: src/ghex-application-window.ui.in:228
+msgid ""
+"• Press the Open button\n"
+"• Press Ctrl+T to start a new document\n"
+"• Press Ctrl+O to browse for a document\n"
+"\n"
+"Or, press Ctrl+W to close the window."
+msgstr ""
+"• Stiskněte tlačítko Otevřít\n"
+"• Stisknutím klávesové zkratky Ctrl+T otevřete nový dokument\n"
+"• Stisknutím klávesové zkratky Ctrl+O vyhledáte dokument\n"
+"\n"
+"Nebo stiskněte klávesovou zkratku Ctrl+W pro zavření okna."
+
+#: src/ghex-application-window.ui.in:317
+msgid "Toggle insert mode (add data to file rather than replace existing data)"
+msgstr ""
+"Přepnutí režimu vkládání (přidání dat do souboru místo nahrazení stávajících "
+"dat)"
+
+#: src/ghex-application-window.ui.in:329
+msgid "Toggle a pane showing various numeric conversions"
+msgstr "Přepínání panelu zobrazujícího různé číselné převody"
+
+#: src/gtkhex.ui:23
+msgid "Automatic geometry"
+msgstr "Automatická geometrie"
+
+#: src/gtkhex.ui:33
+msgid "Characters per line:"
+msgstr "Znaky na řádek:"
+
+#: src/gtkhex.ui:62
+msgid "_Undo"
+msgstr "_Zpět"
+
+#: src/gtkhex.ui:66
+msgid "_Redo"
+msgstr "_Vpřed"
+
+#: src/gtkhex.ui:72
+msgid "Cu_t"
+msgstr "V_yjmout"
+
+#: src/gtkhex.ui:76 src/paste-special.c:450
+msgid "_Copy"
+msgstr "Z_kopírovat"
+
+#: src/gtkhex.ui:80 src/paste-special.ui:47
+msgid "_Paste"
+msgstr "V_ložit"
+
+#: src/gtkhex.ui:86
+msgid "_Geometry"
+msgstr "_Geometrie"
+
+#: src/help-overlay.ui:14
+msgid "Files"
+msgstr "Soubory"
+
+#: src/help-overlay.ui:26
+msgid "Open a file for editing"
+msgstr "Otevřete soubor pro úpravy"
+
+#: src/help-overlay.ui:33
+msgid "Save file"
+msgstr "Uložit soubor"
+
+#: src/help-overlay.ui:40
+msgid "Save as"
+msgstr "_Uložit jako"
+
+#: src/help-overlay.ui:47
+msgid "Close tab"
+msgstr "Zavřít záložku"
+
+#: src/help-overlay.ui:54
+msgid "Print the hex file"
+msgstr "Tisk hexadecimálního souboru"
+
+#: src/help-overlay.ui:63
+msgid "Undo and Redo"
+msgstr "Zrušit a opakovat"
+
+#: src/help-overlay.ui:68
+msgid "Undo"
+msgstr "Zpět"
+
+#: src/help-overlay.ui:75
+msgid "Redo"
+msgstr "Vpřed"
+
+#: src/help-overlay.ui:84
+msgid "Find and Replace"
+msgstr "Najít a nahradit"
+
+#: src/help-overlay.ui:89
+msgid "Find"
+msgstr "Najít"
+
+#: src/help-overlay.ui:96
+msgid "Find and replace"
+msgstr "Najít a nahradit"
+
+#: src/help-overlay.ui:105
+msgid "Marks"
+msgstr "Značky"
+
+#: src/help-overlay.ui:110
+msgid "Marks dialog"
+msgstr "Dialogové okno pro značky"
+
+#: src/help-overlay.ui:117
+msgid "Activate mark (0-9)"
+msgstr "Aktivační značka (0-9)"
+
+#: src/help-overlay.ui:126
+msgid "Clipboard"
+msgstr "Schránka"
+
+#: src/help-overlay.ui:131
+msgid "Copy"
+msgstr "Zkopírovat"
+
+#: src/help-overlay.ui:138
+msgid "Cut"
+msgstr "Vyjmout"
+
+#: src/help-overlay.ui:145
+msgid "Paste"
+msgstr "Vložit"
+
+#: src/help-overlay.ui:152
+msgid "Copy special"
+msgstr "Zkopírovat jinak"
+
+#: src/help-overlay.ui:159
+msgid "Paste special"
+msgstr "Vložit jinak"
+
+#: src/help-overlay.ui:168
+msgid "Navigation"
+msgstr "Navigace"
+
+#: src/help-overlay.ui:173
+msgid "Toggle left (hex) display"
+msgstr "Přepínání levého (hexadecimálního) displeje"
+
+#: src/help-overlay.ui:180
+msgid "Toggle right (ASCII) display"
+msgstr "Přepínání pravého (ASCII) displeje"
+
+#: src/help-overlay.ui:187
+msgid "Switch to previous tab"
+msgstr "Přepnutí na předchozí kartu"
+
+#: src/help-overlay.ui:194
+msgid "Switch to next tab"
+msgstr "Přepnutí na další kartu"
+
+#: src/help-overlay.ui:201
+msgid "Jump to byte"
+msgstr "Skočí na bajt"
+
+#: src/help-overlay.ui:208
+msgid "Move to beginning of document"
+msgstr "Přesunout na začátek dokumentu"
+
+#: src/help-overlay.ui:215
+msgid "Move to end of document"
+msgstr "Přesunout na konec dokumentu"
+
+#: src/help-overlay.ui:224
+msgid "General"
+msgstr "Obecné"
+
+#: src/help-overlay.ui:229
+msgid "New window"
+msgstr "Nové okno"
+
+#: src/help-overlay.ui:236
+msgid "Show help"
+msgstr "Zobrazit nápovědu"
+
+#: src/help-overlay.ui:243
+msgid "Show preferences"
+msgstr "Předvolby"
+
+#: src/help-overlay.ui:250
+msgid "Toggle insert mode"
+msgstr "Přepnutí režimu vkládání"
+
+#: src/hex-buffer-direct.c:42 src/hex-buffer-mmap.c:50
+msgid "The file appears to have an invalid path."
+msgstr "Vypadá to, že soubor má neplatnou cestu."
+
+#. Translators:  the first '%s' is the blurb indicating some kind of an
+#. * error has occurred (eg, 'An error has occurred', and the the 2nd '%s'
+#. * is the standard error message that will be reported from the system
+#. * (eg, 'No such file or directory').
+#.
+#: src/hex-buffer-direct.c:143 src/hex-buffer-mmap.c:173
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: src/hex-buffer-direct.c:193
+msgid "Failed to read data from file."
+msgstr "Načtení dat ze souboru se nezdařilo."
+
+#: src/hex-buffer-direct.c:212 src/hex-buffer-mmap.c:587
+msgid "Unable to retrieve file or directory information"
+msgstr "Nelze získat informace o souboru nebo složce"
+
+#: src/hex-buffer-direct.c:221 src/hex-buffer-mmap.c:596
+msgid "Unable to create file"
+msgstr "Nelze vytvořit soubor"
+
+#: src/hex-buffer-direct.c:230
+msgid "Not a regular file or block device"
+msgstr "Nejedná se o běžný soubor nebo blokové zařízení"
+
+#: src/hex-buffer-direct.c:240 src/hex-buffer-mmap.c:615
+msgid "Unable to open file for reading"
+msgstr "Soubor nelze otevřít pro čtení"
+
+#: src/hex-buffer-direct.c:404
+msgid "Unable to read file"
+msgstr "Soubor nelze přečíst"
+
+#: src/hex-buffer-direct.c:417
+msgid "Error attempting to read block device"
+msgstr "Chyba při pokusu o čtení blokového zařízení"
+
+#: src/hex-buffer-direct.c:527
+msgid ""
+"With direct-write mode, you cannot save a file to a path other than its "
+"originating path"
+msgstr ""
+"V režimu přímého zápisu nelze soubor uložit do jiné cesty, než je jeho "
+"původní cesta."
+
+#: src/hex-buffer-direct.c:552
+msgid "Error writing changes to file"
+msgstr "Chyba při zápisu změn do souboru"
+
+#: src/hex-buffer-mmap.c:310
+#, c-format
+msgid "Could not adjust %s from %lu to %lu bytes"
+msgstr "Nezdařilo se přizpůsobit velikost „%s“ z %lu na %lu bajtů"
+
+#: src/hex-buffer-mmap.c:359
+#, c-format
+msgid "Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"
+msgstr "Kritická chyba: Selhalo mapování souboru (%lu B, fd %d) do paměti"
+
+#: src/hex-buffer-mmap.c:605
+msgid "Not a regular file"
+msgstr "Nejedná se o běžný soubor"
+
+#: src/hex-buffer-mmap.c:646
+msgid "Failed to open temporary file."
+msgstr "Selhalo otevření dočasného souboru."
+
+#: src/hex-buffer-mmap.c:685
+msgid "Error reading file"
+msgstr "Chyba při čtení souboru"
+
+#: src/hex-buffer-mmap.c:701
+msgid "An error has occurred"
+msgstr "Vyskytla se chyba"
+
+#: src/hex-dialog.c:70
+msgid "Signed 8 bit:"
+msgstr "8 bitů se znaménkem:"
+
+#: src/hex-dialog.c:71
+msgid "Unsigned 8 bit:"
+msgstr "8 bitů bez znaménka:"
+
+#: src/hex-dialog.c:72
+msgid "Signed 16 bit:"
+msgstr "16 bitů se znaménkem:"
+
+#: src/hex-dialog.c:73
+msgid "Unsigned 16 bit:"
+msgstr "16 bitů bez znaménka:"
+
+#: src/hex-dialog.c:74
+msgid "Signed 32 bit:"
+msgstr "32 bitů se znaménkem:"
+
+#: src/hex-dialog.c:75
+msgid "Unsigned 32 bit:"
+msgstr "32 bitů bez znaménka:"
+
+#: src/hex-dialog.c:76
+msgid "Signed 64 bit:"
+msgstr "64 bitů se znaménkem:"
+
+#: src/hex-dialog.c:77
+msgid "Unsigned 64 bit:"
+msgstr "64 bitů bez znaménka:"
+
+#: src/hex-dialog.c:78
+msgid "Float 32 bit:"
+msgstr "32 bitů desetinné:"
+
+#: src/hex-dialog.c:79
+msgid "Float 64 bit:"
+msgstr "64 bitů desetinné:"
+
+#: src/hex-dialog.c:80
+msgid "Hexadecimal:"
+msgstr "Šestnáctkově:"
+
+#: src/hex-dialog.c:81
+msgid "Octal:"
+msgstr "Osmičkově:"
+
+#: src/hex-dialog.c:82
+msgid "Binary:"
+msgstr "Dvojkově:"
+
+#: src/hex-dialog.c:201
+msgid "Show little endian decoding"
+msgstr "Zobrazovat v kódování little endian"
+
+#: src/hex-dialog.c:207
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Zobrazovat plovoucí a bezznaménkové hodnoty šestnáctkově"
+
+#: src/hex-dialog.c:213
+msgid "Stream Length:"
+msgstr "Délka dat:"
+
+#: src/hex-document.c:1171
+#, c-format
+msgid "Page"
+msgstr "Stránka"
+
+#: src/hex-document.c:1177 src/hex-document.c:1280
+#, c-format
+msgid "Hex dump generated by"
+msgstr "Hexadecimální výpis generovaný"
+
+#: src/hex-document.c:1203
+#, c-format
+msgid "Previous page"
+msgstr "Předchozí stránka"
+
+#: src/hex-document.c:1218
+#, c-format
+msgid "Next page"
+msgstr "Následující stránka"
+
+#: src/hex-info-bar.c:207
+msgid "File Has Changed on Disk"
+msgstr "Soubor se na disku změnil"
+
+#: src/hex-info-bar.c:211
+msgid "The file has been changed by another program."
+msgstr "Soubor byl změněn jiným programem."
+
+#: src/hex-info-bar.ui:69
+msgid "_Discard Changes and Reload"
+msgstr "_Zahodit změny a znovu načíst"
+
+#: src/jump-dialog.ui:35
+msgid "Jump to byte (enter offset):"
+msgstr "Skočit na bajt (zadejte posun):"
+
+#: src/jump-dialog.ui:44
+msgid ""
+"Enter the offset byte to jump to. The default is decimal format, but other "
+"format strings are supported such as hexadecimal format, if C-style notation "
+"using the '0x' prefix is used. If your string is not recognized, a dialog "
+"will be presented explaining the valid formats of strings accepted."
+msgstr ""
+"Zadejte pozici bajtu, na který chcete skočit. Výchozí je desítkový formát, "
+"ale jsou podporovány i jiné formáty, jako třeba šestnáctkový, když použijte "
+"notaci jazyka C, tj. třeba 0x. Pokud vyše zadání nebude rozpoznáno, zobrazí "
+"se vám v dialogovém okně legenda k platným formátům."
+
+#: src/jump-dialog.ui:49 src/mark-dialog.ui:110
+msgid "_Jump"
+msgstr "_Skočit"
+
+#: src/jump-dialog.ui:55
+msgid "Jumps to the specified byte"
+msgstr "Skočí na zadaný bajt"
+
+#: src/jump-dialog.ui:65
+msgid "Closes the jump-to-byte pane"
+msgstr "Zavře panel přeskočení na bajt"
+
+#: src/main.c:44
+msgid "Open a new window"
+msgstr "Otevřít nové okno"
+
+#: src/main.c:50
+msgid "Show the application version"
+msgstr "Zobrazit verzi aplikace"
+
+#: src/main.c:109
+#, c-format
+msgid "This is GHex, version %s\n"
+msgstr "GHex verze %s\n"
+
+#: src/main.c:194
+msgid "GHex - A hex editor for the GNOME desktop"
+msgstr "GHex – hexadecimální editor pro uživatelské prostředí GNOME"
+
+#. Translators: this is meant to show a range of hex offset values.
+#. * eg, "0xAA - 0xFF"
+#.
+#: src/mark-dialog.c:125
+#, c-format
+msgid "0x%lX - 0x%lX"
+msgstr "0x%lX - 0x%lX"
+
+#: src/mark-dialog.ui:36
+msgid "Mark:"
+msgstr "Značka:"
+
+#: src/mark-dialog.ui:50
+msgid "Select the desired mark to set, jump to, or delete"
+msgstr ""
+"Vyberte požadovanou značku, na kterou chcete skočit, nastavit nebo odstranit"
+
+#: src/mark-dialog.ui:58
+msgid "Optional custom color for the mark"
+msgstr "Volitelná vlastní barva značky"
+
+#: src/mark-dialog.ui:74
+msgid "Pick a custom color for the mark, if desired."
+msgstr "V případě potřeby vyberte vlastní barvu značky."
+
+#: src/mark-dialog.ui:96
+msgid "_Set"
+msgstr "Nas_tavit"
+
+#: src/mark-dialog.ui:103
+msgid "Set a mark on a byte or range of bytes"
+msgstr "Nastavit značku na bajtu nebo rozsah bajtů"
+
+#: src/mark-dialog.ui:122
+msgid "Bring the cursor to the specified mark"
+msgstr "Přesuňte kurzor na zadanou značku"
+
+#: src/mark-dialog.ui:129
+msgid "_Delete"
+msgstr "O_dstranit"
+
+#: src/mark-dialog.ui:141
+msgid "Delete the specified mark"
+msgstr "Odstranit zadanou značku"
+
+#: src/mark-dialog.ui:153
+msgid "Closes the marks pane"
+msgstr "Zavře panel značek"
+
+#: src/paste-special.c:224
+#, c-format
+msgid "Failed to paste. Unexpected end of text"
+msgstr "Vložení se nezdařilo. Neočekávaný konec textu"
+
+#: src/paste-special.c:238
+#, c-format
+msgid "Failed to paste. The pasted string contains an invalid hex digit."
+msgstr ""
+"Vložení se nezdařilo. Vložený řetězec obsahuje neplatnou hexadecimální "
+"číslici."
+
+#: src/paste-special.c:335
+msgid "GHex Paste Data"
+msgstr "Vložení dat"
+
+#: src/paste-special.c:452
+msgid "Copy Special"
+msgstr "Zkopírovat jinak"
+
+#: src/paste-special.c:557
+msgid "Plain text (as ASCII)"
+msgstr "Prostý text (jako ASCII)"
+
+#: src/paste-special.c:574
+msgid "Plain text (Unicode)"
+msgstr "Prostý text (Unikód)"
+
+#: src/paste-special.c:578
+msgid "Plain text (as hex string representing bytes)"
+msgstr "Prostý text (jako hex. řetězec představující bajty)"
+
+#: src/paste-special.ui:28
+msgid "Paste Special"
+msgstr "Vložit jinak"
+
+#: src/preferences.ui:28
+msgid "Preferences"
+msgstr "Předvolby"
+
+#: src/preferences.ui:33
+msgid "Display"
+msgstr "Zobrazit"
+
+#: src/preferences.ui:37
+msgid "Appearance"
+msgstr "Vzhled"
+
+#: src/preferences.ui:41
+msgid "Font"
+msgstr "Písmo"
+
+#: src/preferences.ui:53
+msgid "Dark mode"
+msgstr "Tmavý režim"
+
+#: src/preferences.ui:69
+msgid "Use system default"
+msgstr "Používat výchozí systémový"
+
+#: src/preferences.ui:83
+msgid "Hex Display"
+msgstr "Hexadecimální zobrazení"
+
+#: src/preferences.ui:87
+msgid "Group data as"
+msgstr "Seskupit data jako"
+
+#: src/preferences.ui:94
+msgid "Bytes (8-bit)"
+msgstr "Bajty (8 bitů)"
+
+#: src/preferences.ui:100
+msgid "Words (16-bit)"
+msgstr "Slova (16 bitů)"
+
+#: src/preferences.ui:106
+msgid "Longwords (32-bit)"
+msgstr "Dlouhá slova (32 bitů)"
+
+#: src/preferences.ui:112
+msgid "Quadwords (64-bit)"
+msgstr "Čtyřnásobná slova (64 bitů)"
+
+#: src/preferences.ui:122
+msgid "Show offsets column"
+msgstr "Zobrazovat sloupec s posuny"
+
+#: src/preferences.ui:134
+msgid "ASCII Display"
+msgstr "Zobrazení ASCII"
+
+#: src/preferences.ui:137
+msgid "Display ASCII control characters"
+msgstr "Zobrazit řídicí znaky ASCII"
+
+#: src/preferences.ui:147
+msgid "Status Bar"
+msgstr "Stavový řádek"
+
+#: src/preferences.ui:151
+msgid "Format offset as"
+msgstr "Formátovat posun jako"
+
+#: src/preferences.ui:158
+msgid "Hexadecimal"
+msgstr "Šestnáctkově"
+
+#: src/preferences.ui:188
+msgid "Printing"
+msgstr "Tisk"
+
+#: src/preferences.ui:192
+msgid "Fonts"
+msgstr "Fonty"
+
+#: src/preferences.ui:196
+msgid "Data font"
+msgstr "Font dat"
+
+#: src/preferences.ui:207
+msgid "Header font"
+msgstr "Font hlavičky"
+
+#: src/preferences.ui:221
+msgid "Shaded rows"
+msgstr "Stínované řádky"
+
+#: src/preferences.ui:225
+msgid "Print alternating shaded rows"
+msgstr "Tisknout střídavě podbarvené řádky"
+
+#: src/preferences.ui:233
+msgid "Span across lines:"
+msgstr "Rozteč mezi řádky:"
+
+#: src/print.c:50
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Stránka: %i/%i"
+
+#: src/replace-dialog.ui:34
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Zadejte data, která se mají nahradit, v šestnáctkové podobě nebo ASCII"
+
+#: src/replace-dialog.ui:37
+msgid "Replace With"
+msgstr "Nahradit s"
+
+#: src/replace-dialog.ui:47
+msgid "_Replace"
+msgstr "Nah_radit"
+
+#: src/replace-dialog.ui:50
+msgid "Replaces the search string with the replace string"
+msgstr "Nahradí hledaný řetězec náhradním řetězcem"
+
+#: src/replace-dialog.ui:55
+msgid "Replace _All"
+msgstr "N_ahradit vše"
+
+#: src/replace-dialog.ui:58
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Nahradí všechny výskyty hledaného řetězce řetězcem pro nahrazení"
+
+#~ msgid "About GHex"
+#~ msgstr "O _aplikaci GHex"
+
+#~ msgid ""
+#~ "<b>You have one or more files open with unsaved changes.</b>\n"
+#~ "\n"
+#~ "Are you sure you want to close the window?\n"
+#~ "\n"
+#~ msgstr ""
+#~ "<b>Máte jede, či více, otevřených souborů s neuloženými změnami.</b>\n"
+#~ "\n"
+#~ "Opravdu chcete zavřít okno?\n"
+#~ "\n"
+
+#~ msgid "_Close Anyway"
+#~ msgstr "Přesto _zavřít"
+
+#~ msgid "_Go Back"
+#~ msgstr "_Jít zpět"
+
+#, c-format
+#~ msgid ""
+#~ "<big><b>%s has been edited since opening.</b></big>\n"
+#~ "\n"
+#~ "Would you like to save your changes?"
+#~ msgstr ""
+#~ "<big><b>„%s“ byl od otevření upraven.</b></big>\n"
+#~ "\n"
+#~ "Přejete si své změny uložit?"
+
+#~ msgid "_New"
+#~ msgstr "_Nový"
+
+#, c-format
+#~ msgid ""
+#~ "Paste failed; invalid hex format.\n"
+#~ "\n"
+#~ "The string must be in the format of space-delineated hex byte pairs.\n"
+#~ "\n"
+#~ "For example: \"FF 3D 99 0A\""
+#~ msgstr ""
+#~ "Vložení selhalo: neplatný šestnáctkový formát.\n"
+#~ "\n"
+#~ "Řetězec musí mít podobu mezerami oddělených bajtů ve formátu páru "
+#~ "šestnáctkových číslic.\n"
+#~ "\n"
+#~ "Například: FF 3D 99 0A"
+
+#~ msgid "Plain text (as space-delimited hex pairs)"
+#~ msgstr "Prostý text (jako šetnáctkové dvojice s mezerami)"
+
+#~ msgid "Logan Rathbone"
+#~ msgstr "Logan Rathbone"
+
+#~ msgid "_Insert Character"
+#~ msgstr "Vlož_it znak"
+
+#~ msgid "A binary file editor"
+#~ msgstr "Editor binárních souborů"
+
+#~ msgid "GHex Website"
+#~ msgstr "Webové stránky GHex"
+
+#~ msgid ""
+#~ "There was an error saving the file.\n"
+#~ "\n"
+#~ "Your permissions of the file may have been changed by another program, or "
+#~ "the file may have become corrupted."
+#~ msgstr ""
+#~ "Vyskytla se chyba při ukládání souboru.\n"
+#~ "\n"
+#~ "Možná jiný program změnil vaše oprávnění k souboru nebo třeba došlo k "
+#~ "poškození souboru."
+
+#~ msgid "FIXME: no conversion function"
+#~ msgstr "OPRAVIT: chybí funkce pro převod"
+
+#~ msgid "Hex Group Type"
+#~ msgstr "Typ šestnáctkového seskupování"

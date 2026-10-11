@@ -1,0 +1,2768 @@
+# ghex Greek translation.
+# Copyright (C) 2000-2001 Free Software Foundation, Inc.
+# Spiros Papadimitriou <spapadim+@cs.cmu.edu>, 2000.
+# Simos Xenitellis <simos@hellug.gr>, 2000-2001.
+# Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2013.
+# Vangelis Skarmoutsos <skarmoutsosv@gmail.com>, 2015, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ghex 1.2\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
+"POT-Creation-Date: 2023-02-05 11:31+0000\n"
+"PO-Revision-Date: 2024-01-16 10:52+0200\n"
+"Last-Translator: Vangelis Skarmoutsos <skarmoutsosv@gmail.com>\n"
+"Language-Team: Ελληνικά <team@gnome.gr>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Project-Style: gnome\n"
+
+#: data/org.gnome.GHex.appdata.xml.in.in:6
+#: src/ghex-application-window.ui.in:149
+msgid "GHex"
+msgstr "GHex"
+
+#: data/org.gnome.GHex.appdata.xml.in.in:7 data/org.gnome.GHex.desktop.in.in:6
+msgid "Inspect and edit binary files"
+msgstr "Ελέγξτε και επεξεργαστείτε εκτελέσιμα αρχεία"
+
+#: data/org.gnome.GHex.appdata.xml.in.in:9
+msgid "GHex is a hex editor for the GNOME desktop."
+msgstr "Το GHex είναι ένας δεκαεξαδικός διορθωτής για το GNOME desktop."
+
+#: data/org.gnome.GHex.appdata.xml.in.in:12
+msgid ""
+"GHex can load raw data from binary files and display them for editing in the "
+"traditional hex editor view. The display is split in two columns, with "
+"hexadecimal values in one column and the ASCII representation in the other. "
+"GHex is a useful tool for working with raw data."
+msgstr ""
+
+#: data/org.gnome.GHex.appdata.xml.in.in:40
+msgid "Logan Rathbone"
+msgstr ""
+
+#: data/org.gnome.GHex.desktop.in.in:5
+msgid "Hex Editor"
+msgstr "Δεκαεξαδικός επεξεργαστής"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
+#: data/org.gnome.GHex.desktop.in.in:8
+msgid "binary;debug;"
+msgstr "δυαδικό;αποσφαλμάτωση;εκτελέσιμο;binary;debug;"
+
+#: src/chartable.c:152 src/find-options.ui:67
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:152 src/find-options.ui:66
+msgid "Hex"
+msgstr "Δεκαεξαδικό"
+
+#: src/chartable.c:152
+msgid "Decimal"
+msgstr "Δεκαδικό"
+
+#: src/chartable.c:153
+msgid "Octal"
+msgstr "Οκταδικό"
+
+#: src/chartable.c:153
+msgid "Binary"
+msgstr "Δυαδικό"
+
+#: src/chartable.c:184
+msgid "Character table"
+msgstr "Πίνακας χαρακτήρων"
+
+#: src/chartable.c:252
+msgid "_Insert Character"
+msgstr "Εισαγωγή χαρακτήρα"
+
+#: src/chartable.c:256 src/converter.c:186
+msgid "_Close"
+msgstr "_Κλείσιμο"
+
+#: src/common-ui.c:240
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"Αυτό το πρόγραμμα είναι ελεύθερο λογισμικό· επιτρέπεται η αναδιανομή ή/και η "
+"τροποποίησή του υπό τους όρους της Γενικής Άδειας Δημόσιας Χρήσης GNU όπως "
+"αυτή δημοσιεύεται από το Ίδρυμα Ελεύθερου Λογισμικού· είτε της έκδοσης 2 της "
+"άδειας, είτε (κατ' επιλογήν) οποιασδήποτε μεταγενέστερης έκδοσης."
+
+#: src/common-ui.c:244
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ "
+"ΚΑΜΙΑ ΑΠΟΛΥΤΩΣ ΕΓΓΥΗΣΗ· χωρίς ακόμη και την έμμεση εγγύηση ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ "
+"ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Δείτε για περισσότερες λεπτομέρειες "
+"τη Γενική Άδεια Δημόσιας Χρήσης GNU."
+
+#: src/common-ui.c:248
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"Θα πρέπει να έχετε λάβει ένα αντίγραφο της Γενικής Άδειας Δημόσιας Χρήσης "
+"GNU (GNU General Public License) μαζί με αυτό το πρόγραμμα. Αν όχι, "
+"επικοινωνήστε γραπτώς με το Ίδρυμα Ελεύθερου Λογισμικού (Free Software "
+"Foundation, Inc.), 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, "
+"USA"
+
+#. Translators: these two strings here indicate the copyright time span,
+#. e.g. 1998-2018.
+#: src/common-ui.c:260
+#, c-format
+msgid "Copyright © %d–%d The GHex authors"
+msgstr "Πνευματικά δικαιώματα © %d–%d Οι συγγραφείς του GHex"
+
+#: src/common-ui.c:274
+msgid "A binary file editor"
+msgstr "Ένας διορθωτής δυαδικών αρχείων"
+
+#: src/common-ui.c:281
+msgid "About GHex"
+msgstr "Σχετικά με το GHex"
+
+#: src/common-ui.c:282
+msgid "translator-credits"
+msgstr ""
+"Ελληνική μεταφραστική ομάδα GNOME\n"
+"Δημήτρης Σπίγγος <dmtrs32@gmail.com>\n"
+"Βαγγέλης Σκαρμούτσος <skarmoutsosv@gmail.com>\n"
+"\n"
+"Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
+"http://gnome.gr"
+
+#: src/common-ui.c:285
+msgid "GHex Website"
+msgstr "Ιστότοπος GHex"
+
+#. Translators: This is an error string for a print-related error
+#. * dialog.  The %s is the error generated by GError.
+#: src/common-ui.c:349
+#, fuzzy, c-format
+#| msgid "An error occurred while saving file!"
+msgid "An error has occurred: %s"
+msgstr "Σφάλμα κατά την αποθήκευση του αρχείου!"
+
+#: src/context-menu.ui:30
+msgid "_Undo"
+msgstr "Αναίρεση"
+
+#: src/context-menu.ui:34
+msgid "_Redo"
+msgstr "Α_κύρωση αναίρεσης"
+
+#: src/context-menu.ui:40
+msgid "Cu_t"
+msgstr "Απο_κοπή"
+
+#: src/context-menu.ui:44 src/paste-special.c:405
+msgid "_Copy"
+msgstr "Α_ντιγραφή"
+
+#: src/context-menu.ui:48 src/paste-special.ui:49
+#, fuzzy
+msgid "_Paste"
+msgstr "Σελίδα"
+
+#: src/converter.c:183
+msgid "Base Converter"
+msgstr "Μετατροπέας βάσης"
+
+#. entries
+#: src/converter.c:209
+msgid "_Binary:"
+msgstr "Δυαδικό:"
+
+#: src/converter.c:211
+msgid "_Octal:"
+msgstr "_Οκταδικό:"
+
+#: src/converter.c:213
+msgid "_Decimal:"
+msgstr "_Δεκαδικό:"
+
+#: src/converter.c:215
+msgid "_Hex:"
+msgstr "Δεκαεξαδικό:"
+
+#: src/converter.c:217
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+#. get cursor button
+#: src/converter.c:221
+msgid "_Get cursor value"
+msgstr "_Λήψη τιμής δρομέα"
+
+#: src/converter.c:230
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"Δέχεται την τιμή στον δρομέα σε δυαδική, οκταδική, δεκαδική, δεκαεξαδική και "
+"ASCII"
+
+#: src/converter.c:371
+msgid "ERROR"
+msgstr "ΣΦΑΛΜΑ"
+
+#: src/find-dialog.ui:38
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Εισάγετε τα δεκαεξαδικά δεδομένα ή δεδομένα ASCII για αναζήτηση"
+
+#: src/find-dialog.ui:41
+msgid "Find String"
+msgstr "Εύρεση συμβολοσειράς"
+
+#: src/find-dialog.ui:58
+msgid "Find _Next"
+msgstr "Εύρεση _επόμενου"
+
+#: src/find-dialog.ui:62
+msgid "Finds the next occurrence of the search string"
+msgstr "Εύρεση της επόμενης αντιστοίχισης της ζητούμενης συμβολοσειράς"
+
+#: src/find-dialog.ui:67
+msgid "Find _Previous"
+msgstr "Εύρεση _προηγούμενου"
+
+#: src/find-dialog.ui:70
+#, fuzzy
+#| msgid "Finds the previous occurrence of the search string "
+msgid "Finds the previous occurrence of the search string"
+msgstr "Εύρεση προηγούμενης αντιστοίχισης της ζητούμενης συμβολοσειράς "
+
+#: src/find-dialog.ui:75
+msgid "_Clear"
+msgstr ""
+
+#: src/find-dialog.ui:78
+#, fuzzy
+#| msgid "Enter the hex data or ASCII data to search for"
+msgid "Clears the data you are searching for"
+msgstr "Εισάγετε τα δεκαεξαδικά δεδομένα ή δεδομένα ASCII για αναζήτηση"
+
+#: src/find-dialog.ui:88
+#, fuzzy
+#| msgid "Find previous"
+msgid "Find options"
+msgstr "Εύρεση προηγούμενου"
+
+#: src/find-dialog.ui:89
+msgid "View options of the find pane"
+msgstr ""
+
+#: src/find-dialog.ui:99 src/jump-dialog.ui:63
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: src/find-dialog.ui:100
+#, fuzzy
+#| msgid "Closes find data window"
+msgid "Closes the find pane"
+msgstr "Κλείνει το παράθυρο εύρεσης δεδομένων"
+
+#: src/find-options.ui:60
+msgid "Show:"
+msgstr ""
+
+#: src/find-options.ui:68
+msgid "Both"
+msgstr ""
+
+#: src/findreplace.c:221
+msgid "No string provided."
+msgstr ""
+
+#: src/findreplace.c:395
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+
+#: src/findreplace.c:397
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+
+#: src/findreplace.c:407
+msgid ""
+"End of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+
+#: src/findreplace.c:409
+msgid ""
+"End of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+
+#: src/findreplace.c:480
+msgid "No offset has been specified."
+msgstr "Δεν ορίστηκε μετατόπιση."
+
+#: src/findreplace.c:505
+msgid "The specified offset is beyond the  file boundaries."
+msgstr "Η καθορισμένη μετατόπιση είναι πέρα από τα όρια του αρχείου."
+
+#: src/findreplace.c:513
+#, fuzzy
+#| msgid "Can not position cursor beyond the End Of File!"
+msgid "Can not position cursor beyond the end of file."
+msgstr "Αδύνατη η τοποθέτηση δρομέα πέρα από το τέλος αρχείου!"
+
+#: src/findreplace.c:523
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+"Μπορείτε να δώσετε την μετατόπιση μόνο ως:\n"
+"  - θετικό δεκαδικό αριθμό, ή\n"
+"  - δεκαεξαδικό αριθμό, που ξεκινά με '0x', ή\n"
+"  - πρόσημο '+' or '-', ακολουθούμενο από μια σχετική μετατόπιση"
+
+#: src/findreplace.c:580
+#, fuzzy
+#| msgid "String was not found!\n"
+msgid "String was not found."
+msgstr "Δε βρέθηκε η συμβολοσειρά!\n"
+
+#: src/findreplace.c:644
+#, c-format
+msgid "Search complete: %d replacements made."
+msgstr ""
+
+#: src/findreplace.c:651
+msgid "No occurrences were found."
+msgstr "Δεν βρέθηκαν εμφανίσεις."
+
+#. Translators: this is the string for an untitled buffer that will
+#. * be displayed in the titlebar when a user does File->New
+#.
+#: src/ghex-application-window.c:49 src/hex-document.c:1057
+#, fuzzy
+msgid "Untitled"
+msgstr "_Αρχείο"
+
+#: src/ghex-application-window.c:284
+#, fuzzy
+#| msgid ""
+#| "There was an error displaying help: \n"
+#| "%s"
+msgid "There was an error saving the file."
+msgstr ""
+"Παρουσιάστηκε σφάλμα κατά την εμφάνιση της βοήθειας: \n"
+"%s"
+
+#: src/ghex-application-window.c:334
+msgid ""
+"<b>You have one or more files open with unsaved changes.</b>\n"
+"\n"
+"Are you sure you want to close the window?\n"
+"\n"
+msgstr ""
+"<b>Έχετε ένα ή περισσότερα αρχεία ανοιχτά με μη αποθηκευμένες αλλαγές.</b>\n"
+"\n"
+"Σίγουρα θέλετε να κλείσετε το παράθυρο;\n"
+"\n"
+
+#: src/ghex-application-window.c:338
+#, fuzzy
+#| msgid "_Close"
+msgid "_Close Anyway"
+msgstr "_Κλείσιμο"
+
+#: src/ghex-application-window.c:339 src/ghex-application-window.c:474
+#: src/ghex-application-window.c:1164
+msgid "_Go Back"
+msgstr ""
+
+#. Translators: %s is the filename that is currently being
+#. * edited.
+#: src/ghex-application-window.c:452
+#, c-format
+msgid ""
+"<big><b>%s has been edited since opening.</b></big>\n"
+"\n"
+"Would you like to save your changes?"
+msgstr ""
+"<big><b>%s έχει επεξεργαστεί μετά το άνοιγμα.</b></big>\n"
+"\n"
+"Θέλετε να αποθηκεύσετε τις αλλαγές;"
+
+#: src/ghex-application-window.c:458
+msgid ""
+"<b>The buffer has been edited since opening.</b>\n"
+"\n"
+"Would you like to save your changes?"
+msgstr ""
+
+#: src/ghex-application-window.c:472
+#, fuzzy
+msgid "_Save Changes"
+msgstr "Αποθήκευση Ως"
+
+#: src/ghex-application-window.c:473
+#, fuzzy
+#| msgid "Displayed range"
+msgid "_Discard Changes"
+msgstr "Απεικονιζόμενο εύρος τιμών"
+
+#: src/ghex-application-window.c:1017
+#, fuzzy
+#| msgid ""
+#| "There was an error displaying help: \n"
+#| "%s"
+msgid "There was an error saving the file to the path specified."
+msgstr ""
+"Παρουσιάστηκε σφάλμα κατά την εμφάνιση της βοήθειας: \n"
+"%s"
+
+#: src/ghex-application-window.c:1036
+msgid ""
+"An unknown error has occurred in attempting to reload the file you have just "
+"saved."
+msgstr ""
+
+#: src/ghex-application-window.c:1088
+msgid "Select a file to save buffer as"
+msgstr "Επιλογή αρχείου για αποθήκευση ενδιάμεσης μνήμης ως"
+
+#. Translators: %s here is the filename the user is being asked to
+#. * confirm whether they want to revert.
+#: src/ghex-application-window.c:1157
+#, c-format
+msgid ""
+"<big><b>Are you sure you want to revert %s?</b></big>\n"
+"\n"
+"Your changes will be lost.\n"
+"\n"
+"This action cannot be undone."
+msgstr ""
+"<big><b>Σίγουρα θέλετε να επαναφέρετε %s;</b></big>\n"
+"\n"
+"Οι αλλαγές σας θα χαθούν.\n"
+"\n"
+"Αυτή η ενέργεια δεν μπορεί να αναιρεθεί."
+
+#: src/ghex-application-window.c:1163 src/ghex-application-window.ui.in:39
+msgid "_Revert"
+msgstr "Επανα_φορά"
+
+#: src/ghex-application-window.c:1247
+msgid "Select a file to open"
+msgstr "Επιλέξτε αρχείο για άνοιγμα"
+
+#: src/ghex-application-window.c:1352
+#, c-format
+msgid ""
+"Sorry, but help could not be opened.\n"
+"\n"
+"Various attempts were made to locate the help documentation unsuccessfully.\n"
+"\n"
+"Please ensure the application was properly installed.\n"
+"\n"
+"The specific error message is:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: src/ghex-application-window.c:1428
+#, c-format
+msgid ""
+"Offset: <tt>0x%lX</tt>; <tt>0x%lX</tt> bytes from <tt>0x%lX</tt> to "
+"<tt>0x%lX</tt> selected"
+msgstr ""
+"Μετατόπιση: <tt>0x%lX</tt>; <tt>0x%lX</tt> byte από <tt>0x%lX</tt> έως "
+"<tt>0x%lX</tt> επιλέχθηκαν"
+
+#: src/ghex-application-window.c:1432
+#, c-format
+msgid "Offset: <tt>0x%lX</tt>"
+msgstr "Μετατόπιση: <tt>0x%lX</tt>"
+
+#: src/ghex-application-window.c:2048
+msgid ""
+"You are attempting to open a file 1GB or larger.\n"
+"\n"
+"This can make GHex and your machine unstable as the file will be loaded into "
+"memory, using the active backend.\n"
+"\n"
+"Are you sure you want to proceed?\n"
+"\n"
+"This message will not be shown again for the remainder of this GHex "
+"session.\n"
+"\n"
+"To avoid this message from appearing, try using a different buffer backend."
+msgstr ""
+
+#: src/ghex-application-window.c:2105
+#, fuzzy
+#| msgid ""
+#| "There was an error displaying help: \n"
+#| "%s"
+msgid "There was an error reading the file."
+msgstr ""
+"Παρουσιάστηκε σφάλμα κατά την εμφάνιση της βοήθειας: \n"
+"%s"
+
+#: src/ghex-application-window.ui.in:31
+msgid "_New"
+msgstr "Νέο"
+
+#: src/ghex-application-window.ui.in:35
+msgid "Save _As"
+msgstr "_Αποθήκευση ως"
+
+#: src/ghex-application-window.ui.in:46
+msgid "_Print"
+msgstr "_Εκτύπωση"
+
+#: src/ghex-application-window.ui.in:50
+msgid "Print Previe_w"
+msgstr "Προεπισκόπηση εκτύπωσης"
+
+#: src/ghex-application-window.ui.in:58
+msgid "Find and _Replace"
+msgstr "Εύ_ρεση και αντικατάσταση"
+
+#: src/ghex-application-window.ui.in:62
+#, fuzzy
+#| msgid "Jump to byte"
+msgid "_Jump to Byte"
+msgstr "Μετάβαση σε byte"
+
+#: src/ghex-application-window.ui.in:72
+msgid "_Edit"
+msgstr "_Επεξεργασία"
+
+#: src/ghex-application-window.ui.in:74
+msgid "_Copy Special"
+msgstr "Ειδική αντιγραφή"
+
+#: src/ghex-application-window.ui.in:78
+msgid "_Paste Special"
+msgstr "Ειδική επικόλληση"
+
+#: src/ghex-application-window.ui.in:85
+#, fuzzy
+#| msgid "Tools"
+msgid "_Tools"
+msgstr "Εργαλεία"
+
+#: src/ghex-application-window.ui.in:87
+msgid "_Character Table"
+msgstr "Πίνακας χαρακτήρων"
+
+#: src/ghex-application-window.ui.in:91
+msgid "_Base Converter"
+msgstr "Μετατροπέας _βάσης"
+
+#: src/ghex-application-window.ui.in:98
+msgid "G_roup Data As"
+msgstr "Ομαδοποίηση δεδομένων ως"
+
+#: src/ghex-application-window.ui.in:100
+#, fuzzy
+#| msgid "_Bytes"
+msgid "_Bytes (8-bit)"
+msgstr "_Bytes"
+
+#: src/ghex-application-window.ui.in:106
+msgid "_Words (16-bit)"
+msgstr ""
+
+#: src/ghex-application-window.ui.in:111
+#, fuzzy
+#| msgid "_Longwords"
+msgid "_Longwords (32-bit)"
+msgstr "Με_γάλες λέξεις"
+
+#: src/ghex-application-window.ui.in:116
+msgid "_Quadwords (64-bit)"
+msgstr ""
+
+#: src/ghex-application-window.ui.in:126
+msgid "_Keyboard Shortcuts"
+msgstr "Συντομεύσεις πλη_κτρολογίου"
+
+#: src/ghex-application-window.ui.in:131
+msgid "_Preferences"
+msgstr "_Προτιμήσεις"
+
+#: src/ghex-application-window.ui.in:136
+msgid "_Help"
+msgstr "_Βοήθεια"
+
+#: src/ghex-application-window.ui.in:141
+#, fuzzy
+#| msgid "About GHex"
+msgid "_About GHex"
+msgstr "Σχετικά με το GHex"
+
+#: src/ghex-application-window.ui.in:170
+msgid "Open a file for hex editing"
+msgstr "Άνοιγμα αρχείου για δεκαεξαδική επεξεργασία"
+
+#: src/ghex-application-window.ui.in:187
+msgid "Main menu"
+msgstr ""
+
+#: src/ghex-application-window.ui.in:197
+msgid "Find a string in the hex document"
+msgstr "Εύρεση αλφαριθμητικού σε δεκαεξαδικό έγγραφο"
+
+#: src/ghex-application-window.ui.in:206
+msgid "Save document"
+msgstr "Αποθήκευση εγγράφου"
+
+#: src/ghex-application-window.ui.in:214
+msgid "No File Loaded"
+msgstr ""
+
+#: src/ghex-application-window.ui.in:217
+msgid ""
+"• Press the Open button\n"
+"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+O to browse for a document\n"
+"\n"
+"Or, press Ctrl+W to close the window."
+msgstr ""
+"• Πατήστε το κουμπί Άνοιγμα\n"
+"• Πατήστε Ctrl+N για να ξεκινήσετε ένα νέο έγγραφο\n"
+"• Πατήστε Ctrl+O για να πλοηγηθείτε σε ένα έγγραφο\n"
+"\n"
+"ή πατήστε Ctrl+W για να κλείσετε το παράθυρο."
+
+#: src/ghex-application-window.ui.in:306
+msgid "Toggle insert mode (add data to file rather than replace existing data)"
+msgstr ""
+"Εναλλαγή κατάστασης εισαγωγής (προσθήκη δεδομένων στο αρχείο αντί να "
+"αντικαθιστά υπάρχοντα δεδομένα)"
+
+#: src/ghex-application-window.ui.in:318
+msgid "Toggle a pane showing various numeric conversions"
+msgstr ""
+
+#: src/help-overlay.ui:14
+msgid "Files"
+msgstr "Αρχεία"
+
+#: src/help-overlay.ui:19
+msgid "New blank hex buffer"
+msgstr ""
+
+#: src/help-overlay.ui:26
+msgid "Open a file for editing"
+msgstr "Άνοιγμα αρχείου για επεξεργασία"
+
+#: src/help-overlay.ui:33
+#, fuzzy
+msgid "Save file"
+msgstr "Αποθήκευση Ως"
+
+#: src/help-overlay.ui:40
+#, fuzzy
+msgid "Save as"
+msgstr "Αποθήκευση Ως"
+
+#: src/help-overlay.ui:47
+#, fuzzy
+#| msgid "Close"
+msgid "Close tab"
+msgstr "Κλείσιμο"
+
+#: src/help-overlay.ui:54
+msgid "Print the hex file"
+msgstr "Εκτύπωση του δεκαεξαδικού αρχείου"
+
+#: src/help-overlay.ui:63
+msgid "Undo and Redo"
+msgstr "Αναίρεση και Επανάληψη"
+
+#: src/help-overlay.ui:68
+msgid "Undo"
+msgstr "Αναίρεση"
+
+#: src/help-overlay.ui:75
+#, fuzzy
+msgid "Redo"
+msgstr "Διαγραφή"
+
+#: src/help-overlay.ui:84
+msgid "Find and Replace"
+msgstr "Εύρεση και Αντικατάσταση"
+
+#: src/help-overlay.ui:89
+msgid "Find"
+msgstr "Αναζήτηση"
+
+#: src/help-overlay.ui:96
+msgid "Find and replace"
+msgstr "Εύρεση και αντικατάσταση"
+
+#: src/help-overlay.ui:105
+msgid "Clipboard"
+msgstr ""
+
+#: src/help-overlay.ui:110
+msgid "Copy"
+msgstr "Αντιγραφή"
+
+#: src/help-overlay.ui:117
+msgid "Cut"
+msgstr "Κοπή"
+
+#: src/help-overlay.ui:124
+#, fuzzy
+msgid "Paste"
+msgstr "Σελίδα"
+
+#: src/help-overlay.ui:131
+msgid "Copy special"
+msgstr "Ειδική αντιγραφή"
+
+#: src/help-overlay.ui:138
+msgid "Paste special"
+msgstr "Ειδική επικόλληση"
+
+#: src/help-overlay.ui:147
+msgid "Navigation"
+msgstr "Πλοήγηση"
+
+#: src/help-overlay.ui:152
+msgid "Toggle left (hex) display"
+msgstr "Εναλλαγή στην αριστερή (hex) προβολή"
+
+#: src/help-overlay.ui:159
+msgid "Toggle right (ASCII) display"
+msgstr "Εναλλαγή στην δεξιά (ASCII) προβολή"
+
+#: src/help-overlay.ui:166
+msgid "Switch to previous tab"
+msgstr ""
+
+#: src/help-overlay.ui:173
+msgid "Switch to next tab"
+msgstr ""
+
+#: src/help-overlay.ui:180
+msgid "Jump to byte"
+msgstr "Μετάβαση σε byte"
+
+#: src/help-overlay.ui:189
+msgid "General"
+msgstr "Γενικά"
+
+#: src/help-overlay.ui:194
+msgid "Show About dialog"
+msgstr "Εμφάνιση του διαλόγου Σχετικά"
+
+#: src/help-overlay.ui:201
+msgid "Toggle insert mode"
+msgstr "Εναλλαγή κατάστασης εισαγωγής"
+
+#: src/hex-buffer-direct.c:42 src/hex-buffer-mmap.c:50
+msgid "The file appears to have an invalid path."
+msgstr ""
+
+#. Translators:  the first '%s' is the blurb indicating some kind of an
+#. * error has occurred (eg, 'An error has occurred', and the the 2nd '%s'
+#. * is the standard error message that will be reported from the system
+#. * (eg, 'No such file or directory').
+#.
+#: src/hex-buffer-direct.c:143 src/hex-buffer-mmap.c:173
+#, fuzzy, c-format
+#| msgid "Offset: %s"
+msgid "%s: %s"
+msgstr "Μετατόπιση: %s"
+
+#: src/hex-buffer-direct.c:193
+msgid "Failed to read data from file."
+msgstr ""
+
+#: src/hex-buffer-direct.c:212 src/hex-buffer-mmap.c:587
+msgid "Unable to retrieve file or directory information"
+msgstr ""
+
+#: src/hex-buffer-direct.c:221 src/hex-buffer-mmap.c:596
+#, fuzzy
+#| msgid "Unable to access the drive."
+msgid "Unable to create file"
+msgstr "Πρόσβαση στο δίσκο αδύνατη."
+
+#: src/hex-buffer-direct.c:230
+msgid "Not a regular file or block device"
+msgstr ""
+
+#: src/hex-buffer-direct.c:240 src/hex-buffer-mmap.c:616
+msgid "Unable to open file for reading"
+msgstr "Αδύνατο το άνοιγμα αρχείου για ανάγνωση"
+
+#: src/hex-buffer-direct.c:404
+#, fuzzy
+#| msgid "Unable to access the drive."
+msgid "Unable to read file"
+msgstr "Πρόσβαση στο δίσκο αδύνατη."
+
+#: src/hex-buffer-direct.c:417
+msgid "Error attempting to read block device"
+msgstr ""
+
+#: src/hex-buffer-direct.c:527
+msgid ""
+"With direct-write mode, you cannot save a file to a path other than its "
+"originating path"
+msgstr ""
+
+#: src/hex-buffer-direct.c:552
+msgid "Error writing changes to file"
+msgstr ""
+
+#: src/hex-buffer-mmap.c:310
+#, c-format
+msgid "Could not adjust %s from %lu to %lu bytes"
+msgstr ""
+
+#: src/hex-buffer-mmap.c:359
+#, c-format
+msgid "Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"
+msgstr ""
+
+#: src/hex-buffer-mmap.c:606
+msgid "Not a regular file"
+msgstr ""
+
+#: src/hex-buffer-mmap.c:647
+msgid "Failed to open temporary file."
+msgstr "Αποτυχία ανοίγματος προσωρινού αρχείου."
+
+#: src/hex-buffer-mmap.c:686
+#, fuzzy
+#| msgid "Error saving file!"
+msgid "Error reading file"
+msgstr "Σφάλμα κατά την αποθήκευση του αρχείου!"
+
+#: src/hex-buffer-mmap.c:702
+msgid "An error has occurred"
+msgstr ""
+
+#: src/hex-dialog.c:72
+msgid "Signed 8 bit:"
+msgstr "Με πρόσημο 8 bit:"
+
+#: src/hex-dialog.c:73
+msgid "Unsigned 8 bit:"
+msgstr "Χωρίς πρόσημο 8 bit:"
+
+#: src/hex-dialog.c:74
+msgid "Signed 16 bit:"
+msgstr "Με πρόσημο 16 bit:"
+
+#: src/hex-dialog.c:75
+msgid "Unsigned 16 bit:"
+msgstr "Χωρίς πρόσημο 16 bit:"
+
+#: src/hex-dialog.c:76
+msgid "Signed 32 bit:"
+msgstr "Με πρόσημο 32 bit:"
+
+#: src/hex-dialog.c:77
+msgid "Unsigned 32 bit:"
+msgstr "Χωρίς πρόσημο 32 bit:"
+
+#: src/hex-dialog.c:78
+msgid "Signed 64 bit:"
+msgstr "Με πρόσημο 64 bit:"
+
+#: src/hex-dialog.c:79
+msgid "Unsigned 64 bit:"
+msgstr "Χωρίς πρόσημο 64 bit:"
+
+#: src/hex-dialog.c:80
+msgid "Float 32 bit:"
+msgstr "Κινητής υποδιαστολής 32 bit:"
+
+#: src/hex-dialog.c:81
+msgid "Float 64 bit:"
+msgstr "Κινητής υποδιαστολής 64 bit:"
+
+#: src/hex-dialog.c:82
+msgid "Hexadecimal:"
+msgstr "Δεκαεξαδικό:"
+
+#: src/hex-dialog.c:83
+msgid "Octal:"
+msgstr "Οκταδικό:"
+
+#: src/hex-dialog.c:84
+msgid "Binary:"
+msgstr "Δυαδικό:"
+
+#: src/hex-dialog.c:205
+msgid "Show little endian decoding"
+msgstr "Εμφάνιση αποκωδικοποίησης little endian"
+
+#: src/hex-dialog.c:211
+msgid "Show unsigned and float as hexadecimal"
+msgstr ""
+"Εμφάνιση αριθμών (χωρίς πρόσημο/κινητής υποδιαστολής), ως δεκαεξαδικούς"
+
+#: src/hex-dialog.c:217
+msgid "Stream Length:"
+msgstr "Μήκος ροής:"
+
+#: src/hex-dialog.c:241
+msgid "FIXME: no conversion function"
+msgstr "ΔΙΟΡΘΩΣΗ: χωρίς συνάρτηση μετατροπής"
+
+#: src/hex-document.c:1085
+#, c-format
+msgid "Page"
+msgstr "Σελίδα"
+
+#: src/hex-document.c:1091 src/hex-document.c:1194
+#, c-format
+msgid "Hex dump generated by"
+msgstr "Δεκαεξαδικό αποτύπωμα δημιουργημένο από το"
+
+#: src/hex-document.c:1117
+#, c-format
+msgid "Previous page"
+msgstr "Προηγούμενη σελίδα"
+
+#: src/hex-document.c:1132
+#, c-format
+msgid "Next page"
+msgstr "Επόμενη σελίδα"
+
+#: src/jump-dialog.ui:35
+msgid "Jump to byte (enter offset):"
+msgstr "Μετάβαση σε byte (εισαγωγή μετατόπισης)"
+
+#: src/jump-dialog.ui:43
+msgid ""
+"Enter the offset byte to jump to. The default is decimal format, but other "
+"format strings are supported such as hexidecimal format, if C-style notation "
+"using the '0x' prefix is used. If your string is not recognized, a dialog "
+"will be presented explaining the valid formats of strings accepted."
+msgstr ""
+
+#: src/jump-dialog.ui:48
+msgid "_Jump"
+msgstr ""
+
+#: src/jump-dialog.ui:54
+msgid "Jumps to the specified byte"
+msgstr "Μεταβαίνει στο συγκεκριμένο byte"
+
+#: src/jump-dialog.ui:64
+#, fuzzy
+#| msgid "Closes jump to byte window"
+msgid "Closes the jump-to-byte pane"
+msgstr "Κλείνει το παράθυρο της μετάβασης σε byte"
+
+#: src/main.c:44
+#, fuzzy
+#| msgid "Configure the application"
+msgid "Show the application version"
+msgstr "Ρύθμιση της εφαρμογής"
+
+#: src/main.c:105
+#, c-format
+msgid "This is GHex, version %s\n"
+msgstr "Αυτό είναι το GHex, έκδοση %s\n"
+
+#: src/main.c:166
+msgid "GHex - A hex editor for the GNOME desktop"
+msgstr "GHex - Ένας δεκαεξαδικός διορθωτής για το GNOME desktop"
+
+#: src/paste-special.c:220
+#, c-format
+msgid ""
+"Paste failed; invalid hex format.\n"
+"\n"
+"The string must be in the format of space-delineated hex byte pairs.\n"
+"\n"
+"For example: \"FF 3D 99 0A\""
+msgstr ""
+
+#: src/paste-special.c:310
+msgid "GHex Paste Data"
+msgstr "GHex Επικόλληση δεδομένων"
+
+#: src/paste-special.c:407
+msgid "Copy Special"
+msgstr "Ειδική αντιγραφή"
+
+#: src/paste-special.c:512
+msgid "Plain text (as ASCII)"
+msgstr ""
+
+#: src/paste-special.c:529
+msgid "Plain text (Unicode)"
+msgstr ""
+
+#: src/paste-special.c:533
+msgid "Plain text (as space-delimited hex pairs)"
+msgstr ""
+
+#. paste_special_dialog
+#: src/paste-special.ui:28
+msgid "Paste Special"
+msgstr "Ειδική επικόλληση"
+
+#: src/paste-special.ui:55
+#, fuzzy
+#| msgid "Cancel"
+msgid "_Cancel"
+msgstr "Άκυρο"
+
+#: src/preferences.ui:28
+msgid "Preferences"
+msgstr "Ρυθμίσεις"
+
+#: src/preferences.ui:33
+msgid "Display"
+msgstr "Απεικόνιση"
+
+#: src/preferences.ui:37
+msgid "Appearance"
+msgstr "Εμφάνιση"
+
+#: src/preferences.ui:41
+msgid "Font"
+msgstr "Γραμματοσειρά"
+
+#: src/preferences.ui:53
+msgid "Dark mode"
+msgstr ""
+
+# Using standard translation for "default" for consistency, although
+# it is not quite suitable in this context...
+#: src/preferences.ui:69
+#, fuzzy
+#| msgid "Add some defaults"
+msgid "Use system default"
+msgstr "Προσθήκη εξ' ορισμού εντολών"
+
+#: src/preferences.ui:83
+msgid "Hex Display"
+msgstr "Δεκαεξαδική προβολή"
+
+#: src/preferences.ui:87
+msgid "Group data as"
+msgstr "Ομαδοποίηση δεδομένων ως"
+
+#: src/preferences.ui:94
+msgid "Bytes (8-bit)"
+msgstr ""
+
+#: src/preferences.ui:100
+#, fuzzy
+#| msgid "16-bit"
+msgid "Words (16-bit)"
+msgstr "16-bit"
+
+#: src/preferences.ui:106
+#, fuzzy
+#| msgid "Longwords"
+msgid "Longwords (32-bit)"
+msgstr "Μεγάλες λέξεις"
+
+#: src/preferences.ui:112
+msgid "Quadwords (64-bit)"
+msgstr ""
+
+#: src/preferences.ui:122
+msgid "Show offsets column"
+msgstr "Εμφάνιση στήλης μετατοπίσεων"
+
+#: src/preferences.ui:137
+msgid "Printing"
+msgstr "Εκτύπωση"
+
+#: src/preferences.ui:141
+msgid "Fonts"
+msgstr "Γραμματοσειρές"
+
+#: src/preferences.ui:145
+msgid "Data font"
+msgstr "Γραμματοσειρά δεδομένων"
+
+#: src/preferences.ui:156
+msgid "Header font"
+msgstr "Γραμματοσειρά κεφαλίδας"
+
+#: src/preferences.ui:170
+msgid "Shaded rows"
+msgstr "Σκιασμένες σειρές"
+
+#: src/preferences.ui:174
+msgid "Print alternating shaded rows"
+msgstr "Εκτύπωση εναλλασσόμενων σκιασμένων σειρών"
+
+#: src/preferences.ui:182
+msgid "Span across lines:"
+msgstr "Διάστημα ανάμεσα σε σειρές:"
+
+#: src/print.c:50
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Σελίδα: %i/%i"
+
+#: src/replace-dialog.ui:34
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Εισάγετε τα δεκαεξαδικά ή ASCII δεδομένα για αντικατάσταση"
+
+#: src/replace-dialog.ui:37
+msgid "Replace With"
+msgstr "Αντικατάσταση με"
+
+#: src/replace-dialog.ui:47
+msgid "_Replace"
+msgstr "Α_ντικατάσταση"
+
+#: src/replace-dialog.ui:50
+msgid "Replaces the search string with the replace string"
+msgstr ""
+"Αντικαθιστά τη συμβολοσειρά αναζήτησης με τη συμβολοσειρά αντικατάστασης"
+
+#: src/replace-dialog.ui:55
+msgid "Replace _All"
+msgstr "Αντικατάσταση ό_λων"
+
+#: src/replace-dialog.ui:58
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr ""
+"Αντικαθιστά όλες τις εμφανίσεις της συμβολοσειράς αναζήτησης με τη "
+"συμβολοσειρά αντικατάστασης"
+
+#~ msgid "Get cursor value"
+#~ msgstr "Λήψη τιμής δρομέα"
+
+#~ msgid "Find Data"
+#~ msgstr "Εύρεση δεδομένων"
+
+#~ msgid "Find Next"
+#~ msgstr "Εύρεση επομένου"
+
+#, c-format
+#~ msgid "GHex (%s): Find Data: Add search"
+#~ msgstr "GHex (%s): Αναζήτηση δεδομένων: Προσθήκη αναζήτησης"
+
+#~ msgid "Add"
+#~ msgstr "Προσθήκη"
+
+#~ msgid "Search String"
+#~ msgstr "Αναζήτηση συμβολοσειράς"
+
+#~ msgid "Highlight Colour"
+#~ msgstr "Επισήμανση χρώματος"
+
+#~ msgid "_Add New"
+#~ msgstr "_Προσθήκη νέου"
+
+#~ msgid "_Remove Selected"
+#~ msgstr "_Αφαίρεση επιλεγμένου"
+
+#~ msgid "Closes advanced find window"
+#~ msgstr "Κλείνει το προχωρημένο παράθυρο αναζήτησης"
+
+#, c-format
+#~ msgid "GHex (%s): Find & Replace Data"
+#~ msgstr "GHex (%s): Εύρεση και αντικατάσταση δεδομένων"
+
+#~ msgid "Find _next"
+#~ msgstr "Εύρεση επό_μενου"
+
+#~ msgid "Replace Data"
+#~ msgstr "Αντικατάσταση δεδομένων"
+
+#~ msgid "Find next"
+#~ msgstr "Εύρεση επομένου"
+
+#~ msgid "Replace All"
+#~ msgstr "Αντικατάσταση όλων"
+
+#~ msgid "Closes find and replace data window"
+#~ msgstr "Κλείνει το παράθυρο εύρεσης και αντικατάστασης δεδομένων"
+
+#, c-format
+#~ msgid "GHex (%s): Jump To Byte"
+#~ msgstr "GHex (%s): Μετάβαση σε byte"
+
+#~ msgid "Enter the byte to jump to"
+#~ msgstr "Εισάγετε το byte στο οποίο θα μεταβείτε"
+
+#~ msgid "OK"
+#~ msgstr "Εντάξει"
+
+#~ msgid "There is no active document to search!"
+#~ msgstr "Δεν υπάρχει ενεργό έγγραφο για αναζήτηση!"
+
+#~ msgid "There is no string to search for!"
+#~ msgstr "Δεν υπάρχει συμβολοσειρά για αναζήτηση!"
+
+#~ msgid "End Of File reached"
+#~ msgstr "Έφτασε το τέλος του αρχείου"
+
+#~ msgid "Beginning Of File reached"
+#~ msgstr "Έφτασε η αρχή του αρχείου"
+
+#~ msgid "There is no active document to move the cursor in!"
+#~ msgstr "Δεν υπάρχει ενεργό έγγραφο για μετακίνηση του δρομέα!"
+
+#~ msgid "There is no active buffer to replace data in!"
+#~ msgstr "Δεν υπάρχει ενεργή ενδιάμεση μνήμη για αντικατάσταση των δεδομένων!"
+
+#~ msgid "End Of File reached!"
+#~ msgstr "Έφτασε το τέλος του αρχείου!"
+
+#~ msgid "There is no active document to replace data in!"
+#~ msgstr "Δεν υπάρχει ενεργό έγγραφο για αντικατάσταση των δεδομένων!"
+
+#, c-format
+#~ msgid "Replaced %d occurrence."
+#~ msgid_plural "Replaced %d occurrences."
+#~ msgstr[0] "Αντικαταστάθηκε %d αντιστοιχία."
+#~ msgstr[1] "Αντικαταστάθηκαν %d αντιστοιχίες."
+
+#~ msgid "No string to search for!"
+#~ msgstr "Δε υπάρχει συμβολοσειρά για αναζήτηση!"
+
+#, c-format
+#~ msgid ""
+#~ "Can not open URI:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Αδύνατο το άνοιγμα URI:\n"
+#~ "%s"
+
+#, c-format
+#~ msgid ""
+#~ "Can not open file:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Αδύνατο το άνοιγμα του αρχείου:\n"
+#~ "%s"
+
+#~ msgid "_View"
+#~ msgstr "_Προβολή"
+
+#~ msgid "_Windows"
+#~ msgstr "_Παράθυρα"
+
+#~ msgid "_Open..."
+#~ msgstr "Ά_νοιγμα..."
+
+#~ msgid "Open a file"
+#~ msgstr "Άνοιγμα αρχείου"
+
+#~ msgid "_Save"
+#~ msgstr "Απο_θήκευση"
+
+#~ msgid "Save the current file"
+#~ msgstr "Αποθήκευση του τρέχοντος αρχείου"
+
+#~ msgid "Save _As..."
+#~ msgstr "Αποθήκευση _ως..."
+
+#~ msgid "Save the current file with a different name"
+#~ msgstr "Αποθήκευση του τρέχοντος αρχείου με διαφορετικό όνομα"
+
+#~ msgid "Save As _HTML..."
+#~ msgstr "Αποθήκευση ως _HTML..."
+
+#~ msgid "Export data to HTML source"
+#~ msgstr "Εξαγωγή δεδομένων σε πηγή HTML"
+
+#~ msgid "Revert to a saved version of the file"
+#~ msgstr "Επαναφορά σε αποθηκευμένη έκδοση του αρχείου"
+
+#~ msgid "Preview printed data"
+#~ msgstr "Προεπισκόπηση δεδομένων προς εκτύπωση"
+
+#~ msgid "Close the current file"
+#~ msgstr "Κλείσιμο του τρέχοντος αρχείου"
+
+#~ msgid "E_xit"
+#~ msgstr "Έ_ξοδος"
+
+#~ msgid "Exit the program"
+#~ msgstr "Έξοδος από το πρόγραμμα"
+
+#~ msgid "Undo the last action"
+#~ msgstr "Αναίρεση της τελευταίας ενέργειας"
+
+#~ msgid "Redo the undone action"
+#~ msgstr "Ακύρωση της αναιρεμένης ενέργειας"
+
+#~ msgid "Copy selection to clipboard"
+#~ msgstr "Αντιγραφή επιλογής στο πρόχειρο"
+
+#~ msgid "Cut selection"
+#~ msgstr "Αποκοπή επιλογής"
+
+#~ msgid "Pa_ste"
+#~ msgstr "Επικό_λληση"
+
+#~ msgid "Paste data from clipboard"
+#~ msgstr "Επικόλληση δεδομένων από το πρόχειρο"
+
+#~ msgid "_Find"
+#~ msgstr "Εύρεσ_η"
+
+#~ msgid "Search for a string"
+#~ msgstr "Αναζήτηση συμβολοσειράς"
+
+#~ msgid "_Advanced Find"
+#~ msgstr "_Προχωρημένη εύρεση"
+
+#~ msgid "Advanced Find"
+#~ msgstr "Προχωρημένη εύρεση"
+
+#~ msgid "R_eplace"
+#~ msgstr "Αν_τικατάσταση"
+
+#~ msgid "Replace a string"
+#~ msgstr "Αντικατάσταση συμβολοσειράς"
+
+#~ msgid "_Goto Byte..."
+#~ msgstr "_Μετάβαση σε byte..."
+
+#~ msgid "Jump to a certain position"
+#~ msgstr "Μετάβαση σε συγκεκριμένη θέση"
+
+#~ msgid "_Add View"
+#~ msgstr "_Προσθήκη προβολής"
+
+#~ msgid "Add a new view to the buffer"
+#~ msgstr "Προσθήκη νέας προβολής στην ενδιάμεση μνήμη"
+
+#~ msgid "_Remove View"
+#~ msgstr "Α_φαίρεση προβολής"
+
+#~ msgid "Remove the current view of the buffer"
+#~ msgstr "Αφαίρεση της παρούσας προβολής της ενδιάμεσης μνήμης"
+
+#~ msgid "_Contents"
+#~ msgstr "_Περιεχόμενα"
+
+#~ msgid "Help on this application"
+#~ msgstr "Βοήθεια για αυτήν την εφαρμογή"
+
+#~ msgid "_About"
+#~ msgstr "_Περί"
+
+#~ msgid "About this application"
+#~ msgstr "Σχετικά με αυτήν την εφαρμογή"
+
+#~ msgid "Insert/overwrite data"
+#~ msgstr "Εισαγωγή/αντικατάσταση δεδομένων"
+
+#~ msgid "Show the character table"
+#~ msgstr "Εμφάνιση πίνακα χαρακτήρων"
+
+#~ msgid "Open base conversion dialog"
+#~ msgstr "Άνοιγμα διαλόγου μετατροπής βάσης"
+
+#~ msgid "Type Conversion _Dialog"
+#~ msgstr "Τύπος _διαλόγου μετατροπής"
+
+#~ msgid "Show the type conversion dialog in the edit window"
+#~ msgstr "Εμφάνιση του διαλόγου μετατροπής τύπου στο παράθυρο επεξεργασίας"
+
+#~ msgid "Group data by 8 bits"
+#~ msgstr "Ομαδοποίηση δεδομένων ανά 8 bit"
+
+#~ msgid "_Words"
+#~ msgstr "_Λέξεις"
+
+#~ msgid "Group data by 16 bits"
+#~ msgstr "Ομαδοποίηση δεδομένων ανά 16 bit"
+
+#~ msgid "Group data by 32 bits"
+#~ msgstr "Ομαδοποίηση δεδομένων ανά 32 bit"
+
+#, c-format
+#~ msgid "; %s bytes from %s to %s selected"
+#~ msgstr "; %s bytes από %s σε %s επιλέχτηκαν"
+
+#, c-format
+#~ msgid "Activate file %s"
+#~ msgstr "Ενεργοποίηση αρχείου %s"
+
+#, c-format
+#~ msgid "%s - GHex"
+#~ msgstr "%s - GHex"
+
+#, c-format
+#~ msgid ""
+#~ "File %s exists.\n"
+#~ "Do you want to overwrite it?"
+#~ msgstr ""
+#~ "Το αρχείο %s υπάρχει.\n"
+#~ "Θέλετε να το αντικαταστήσετε;"
+
+#, c-format
+#~ msgid "Saved buffer to file %s"
+#~ msgstr "Αποθηκευμένη ενδιάμεση μνήμη στο αρχείο %s"
+
+#, c-format
+#~ msgid ""
+#~ "File %s has changed since last save.\n"
+#~ "Do you want to save changes?"
+#~ msgstr ""
+#~ "Το αρχείο %s έχει μεταβληθεί από την τελευταία αποθήκευση.\n"
+#~ "Θέλετε να αποθηκεύσετε τις αλλαγές;"
+
+#~ msgid "Do_n't save"
+#~ msgstr "Να _μην αποθηκευτούν"
+
+#~ msgid "You don't have the permissions to save the file!"
+#~ msgstr "Δεν έχετε τα απαραίτητα δικαιώματα για αποθήκευση του αρχείου!"
+
+#~ msgid "Saving to HTML..."
+#~ msgstr "Αποθήκευση σε HTML..."
+
+#~ msgid "X geometry specification (see \"X\" man page)."
+#~ msgstr "Προδιαγραφή γεωμετρίας Χ (δείτε σελίδα εγχειριδίου \"Χ\")."
+
+#~ msgid "GEOMETRY"
+#~ msgstr "ΓΕΩΜΕΤΡΙΑ"
+
+#~ msgid "FILES"
+#~ msgstr "ΑΡΧΕΙΑ"
+
+#~ msgid "- GTK+ binary editor"
+#~ msgstr "- GTK+ δυαδικός επεξεργαστής"
+
+#, c-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Run '%s --help' to see a full list of available command line options.\n"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Εκτελέστε '%s --help' για να δείτε μια πλήρη λίστα με τις διαθέσιμες "
+#~ "επιλογές γραμμής εντολών.\n"
+
+#, c-format
+#~ msgid "Invalid geometry string \"%s\"\n"
+#~ msgstr "Άκυρη συμβολοσειρά γεωμετρίας \"%s\"\n"
+
+#~ msgid "GHex Preferences"
+#~ msgstr "Προτιμήσεις GHex"
+
+#~ msgid "_Maximum number of undo levels:"
+#~ msgstr "_Μέγιστος αριθμός επιπέδων αναίρεσης:"
+
+#~ msgid "Undo levels"
+#~ msgstr "Επίπεδα αναίρεσης"
+
+#~ msgid "Select maximum number of undo levels"
+#~ msgstr "Επιλέξτε τον μέγιστο αριθμό επιπέδων αναίρεσης"
+
+#~ msgid "_Show cursor offset in statusbar as:"
+#~ msgstr "Ε_μφάνιση μετατόπισης δρομέα στη γραμμή κατάστασης ως:"
+
+#~ msgid "Hexadecimal"
+#~ msgstr "Δεκαεξαδική"
+
+#~ msgid "Custom"
+#~ msgstr "Προσαρμοσμένη"
+
+#~ msgid "Enter the cursor offset format"
+#~ msgstr "Εισάγετε τη μορφή μετατόπισης δρομέα"
+
+#~ msgid "Select the cursor offset format"
+#~ msgstr "Επιλέξτε τη μορφή μετατόπισης δρομέα"
+
+#~ msgid "Editing"
+#~ msgstr "Επεξεργασία"
+
+#~ msgid "Default Group Type"
+#~ msgstr "Προεπιλεγμένος τύπος ομαδοποίησης"
+
+#~ msgid "Paper size"
+#~ msgstr "Μέγεθος χαρτιού"
+
+#~ msgid "_Data font:"
+#~ msgstr "Γραμματοσειρά _δεδομένων:"
+
+#~ msgid "Select the data font"
+#~ msgstr "Επιλέξτε τη γραμματοσειρά δεδομένων"
+
+#~ msgid "Header fo_nt:"
+#~ msgstr "Γ_ραμματοσειρά κεφαλίδας:"
+
+#~ msgid "Select the header font"
+#~ msgstr "Επιλέξτε τη γραμματοσειρά κεφαλίδας"
+
+#~ msgid "_Print shaded box over:"
+#~ msgstr "Ε_κτύπωση σκιασμένου πλαισίου πάνω από:"
+
+#~ msgid "Box size"
+#~ msgstr "Μέγεθος πλαισίου"
+
+#~ msgid "Select size of box (in number of lines)"
+#~ msgstr "Επιλέξτε μέγεθος πλαισίου (σε αριθμό γραμμών)"
+
+#~ msgid "lines (0 for no box)"
+#~ msgstr "γραμμές (0 για κανένα πλαίσιο)"
+
+#~ msgid "Can not open desired font!"
+#~ msgstr "Αδύνατο το άνοιγμα της επιθυμητής γραμματοσειράς!"
+
+#~ msgid ""
+#~ "The offset format string contains invalid format specifier.\n"
+#~ "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+#~ msgstr ""
+#~ "Η συμβολοσειρά μορφής μετατόπισης περιέχει άκυρο προσδιοριστικό μορφής.\n"
+#~ "Μόνο τα 'x', 'X', 'p', 'P', 'd' και 'o' επιτρέπονται."
+
+#~ msgid "hex data"
+#~ msgstr "δεκαεξαδικά δεδομένα"
+
+#~ msgid "ASCII data"
+#~ msgstr "ASCII δεδομένα"
+
+#, c-format
+#~ msgid "Loaded file %s"
+#~ msgstr "Φορτωμένο αρχείο %s"
+
+#~ msgid "Can not open file!"
+#~ msgstr "Αδύνατο το άνοιγμα του αρχείου!"
+
+#~ msgid "Select path and file name for the HTML source"
+#~ msgstr "Επιλέξτε διαδρομή και όνομα αρχείου για το κώδικα HTML"
+
+#~ msgid "You need to specify a base name for the HTML files."
+#~ msgstr "Πρέπει να καθορίσετε ένα όνομα βάσης για τα αρχεία HTML."
+
+#~ msgid "You don't have the permission to write to the selected path.\n"
+#~ msgstr "Δεν έχετε το δικαίωμα εγγραφής στην επιλεγμένη διαδρομή.\n"
+
+#~ msgid ""
+#~ "Saving to HTML will overwrite some files.\n"
+#~ "Do you want to proceed?"
+#~ msgstr ""
+#~ "Η αποθήκευση σε HTML θα αντικαταστήσει μερικά αρχεία.\n"
+#~ "Θέλετε να συνεχίσετε;"
+
+#, c-format
+#~ msgid "Really revert file %s?"
+#~ msgstr "Θέλετε πραγματικά να επαναφερθεί το αρχείο %s;"
+
+#, c-format
+#~ msgid "Reverted buffer from file %s"
+#~ msgstr "Επαναφορά ενδιάμεσης μνήμης από το αρχείο %s"
+
+#~ msgid "GNOME Hexadecimal Editor"
+#~ msgstr "Δεκαεξαδικός επεξεργαστής του GNOME"
+
+#, fuzzy
+#~ msgid "Add View"
+#~ msgstr "_Νέα απεικόνιση"
+
+#~ msgid "Bytes"
+#~ msgstr "Byte"
+
+#~ msgid "Character Table..."
+#~ msgstr "Πίνακας Χαρακτήρων..."
+
+#, fuzzy
+#~ msgid "Contents"
+#~ msgstr "Γραμματοσειρές"
+
+#, fuzzy
+#~ msgid "Converter..."
+#~ msgstr "Μετατ_ροπέας"
+
+#~ msgid "Exit"
+#~ msgstr "Έξοδος"
+
+#~ msgid "Export to HTML..."
+#~ msgstr "Εξαγωγή σε HTML..."
+
+#, fuzzy
+#~ msgid "Goto Byte"
+#~ msgstr "_Μετάβαση στο Byte..."
+
+#, fuzzy
+#~ msgid "Help Chat"
+#~ msgstr "Βοήθεια"
+
+#, fuzzy
+#~ msgid "Insert Mode"
+#~ msgstr "_Κατάσταση εισαγωγής"
+
+#, fuzzy
+#~ msgid "Print"
+#~ msgstr "Σε εκτύπωση"
+
+#, fuzzy
+#~ msgid "Print Preview..."
+#~ msgstr "Προεπισκόπηση..."
+
+#, fuzzy
+#~ msgid "Remove View"
+#~ msgstr "_Διαγραφή απεικόνισης"
+
+#, fuzzy
+#~ msgid "Revert"
+#~ msgstr "Διαγραφή"
+
+#~ msgid "Save"
+#~ msgstr "Αποθήκευση"
+
+#, fuzzy
+#~ msgid "Type Conversion Dialog..."
+#~ msgstr "Άνοιγμα διαλόγου μετατροπής συστήματος αρίθμισης"
+
+#~ msgid "Words"
+#~ msgstr "Λέξεις"
+
+#, fuzzy
+#~ msgid "Modify preview phrase..."
+#~ msgstr "Προεπισκόπηση..."
+
+#, fuzzy
+#~ msgid "Preview"
+#~ msgstr "Συσκευή"
+
+#, fuzzy
+#~ msgid "Font Selection"
+#~ msgstr "Επιλογέας Γραμματοσειράς"
+
+#, fuzzy
+#~ msgid "Font name"
+#~ msgstr "Όνομα αρχείου"
+
+#, fuzzy
+#~ msgid "Preview text"
+#~ msgstr "Προεπισκόπηση δεδομένων προς εκτύπωση"
+
+#, fuzzy
+#~ msgid "Show size"
+#~ msgstr "`Χρονόμετρο'"
+
+#, fuzzy
+#~ msgid "The gnome binary editor"
+#~ msgstr "GHex, δυαδικός διορθωτής αρχείων"
+
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "Διανέμεται σύμφωνα με τους όρους της Δημόσιας άδειας GNU (GPL)"
+
+#, fuzzy
+#~ msgid "Printing file..."
+#~ msgstr "Προεπισκόπηση..."
+
+#, fuzzy
+#~ msgid "Pages"
+#~ msgstr "Σελίδα"
+
+#~ msgid "GHex (%s): Print Preview"
+#~ msgstr "GHex (%s): Προεπισκόπηση Εκτύπωσης"
+
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "Η μετατόπιση πρέπει να έχει θετική ακέραια τιμή!"
+
+#~ msgid "Strange find or replace string!"
+#~ msgstr "Παράξενη ακολουθία αναζήτησης ή αντικατάστασης!"
+
+#~ msgid "Default"
+#~ msgstr "Εξ' ορισμού"
+
+#~ msgid "Notebook"
+#~ msgstr "Τετράδιο"
+
+#~ msgid "Modal"
+#~ msgstr "Modal"
+
+#~ msgid "Browse..."
+#~ msgstr "Εξερεύνηση..."
+
+#~ msgid "MDI Mode"
+#~ msgstr "Ρυθμίσεις MDI"
+
+#~ msgid "MDI"
+#~ msgstr "MDI"
+
+#~ msgid "GHex: Character table"
+#~ msgstr "GHex: Πίνακας χαρακτήρων"
+
+#~ msgid "Both strings must be of the same length!"
+#~ msgstr "Οι ακολουθίες πρέπει να έχουν το ίδιο μήκος!"
+
+#~ msgid "The Gnome Calculator"
+#~ msgstr "Η Αριθμομηχανή του Gnome"
+
+#~ msgid "Simple double precision calculator similiar to xcalc"
+#~ msgstr "Απλή αριθμομηχανή διπλής ακριβείας παρόμοια με το xcalc"
+
+#~ msgid "Gnome Calculator"
+#~ msgstr "Αριθμομηχανή του Gnome"
+
+# Possibly revise translation of "dial" (don't like it!)
+#~ msgid ""
+#~ "A quick hack to show the amount of space free on mounted file systems "
+#~ "uitilizing a dial."
+#~ msgstr ""
+#~ "Πρόχειρο πρόγραμμα για εμφάνιση ελεύθερου χώρου στους δίσκους, με "
+#~ "στροφικό δείκτη."
+
+#~ msgid "Don't search subdirectories"
+#~ msgstr "Όχι αναζήτηση σε υποκαταλόγους"
+
+#~ msgid "File owner"
+#~ msgstr "Ιδιοκτήτης αρχείου"
+
+#~ msgid "File owner group"
+#~ msgstr "Ομάδα ιδιοκτήτη αρχείου"
+
+#~ msgid "Last modification time"
+#~ msgstr "Ώρα τελευταίας αλλαγής"
+
+#~ msgid "Don't search mounted filesystems"
+#~ msgstr "Όχι αναζήτηση σε προσαρτημένα συστήματα αρχείων"
+
+#~ msgid "Empty file"
+#~ msgstr "Άδειο αρχείο"
+
+#~ msgid "Invalid user or group"
+#~ msgstr "Άκυρος χρήστης ή ομάδα"
+
+#~ msgid "Filenames except"
+#~ msgstr "Ονόματα αρχείων εκτός από"
+
+#~ msgid "Follow symbolic links"
+#~ msgstr "Ακολούθηση συμβολικών συνδέσμων"
+
+#~ msgid "Simple substring search"
+#~ msgstr "Αναζήτηση απλής υπακολουθίας"
+
+#~ msgid "Regular expression search"
+#~ msgstr "Αναζήτηση κανονικής έκφρασης"
+
+# Translation of "extended" follows standard, but is quite
+# unsuitable in this context...
+#~ msgid "Extended regular expression search"
+#~ msgstr "Αναζήτησης εκτεταμένης κανονικής έκφρασης"
+
+#~ msgid "grep options found in find list bad bad!"
+#~ msgstr "ορίσματα του grep βρέθηκαν στη λίστα αναζήτησης, κακό!"
+
+#~ msgid "non-grep option found in grep list, bad bad!"
+#~ msgstr "ορίσματα γραμμής εντολών βρέθηκαν στη λίστα αναζήτησης, κακό!"
+
+#~ msgid "Search Results"
+#~ msgstr "Αποτελέσματα Αναζήτησης"
+
+#~ msgid "Enable"
+#~ msgstr "Ενεργοποίηση"
+
+#~ msgid "Start in directory:"
+#~ msgstr "Έναρξη στον κατάλογο:"
+
+#~ msgid "Start"
+#~ msgstr "Εκκίνηση"
+
+#~ msgid "Stop"
+#~ msgstr "Τέλος"
+
+#~ msgid "This is not yet implemented"
+#~ msgstr "Προς το παρόν μη υλοποιημένο"
+
+#~ msgid "Full find (find)"
+#~ msgstr "Πλήρης αναζήτηση (find)"
+
+#~ msgid "Quick find (locate)"
+#~ msgstr "Γρήγορη αναζήτηση (locate)"
+
+#~ msgid "The Gnome Search Tool"
+#~ msgstr "Το Εργαλείο Αναζήτησης του Gnome"
+
+#~ msgid "(C) 1998 the Free Software Foundation"
+#~ msgstr "(C) 1998 Free Software Foundation"
+
+#~ msgid "Frontend to the unix find/grep/locate commands"
+#~ msgstr "Διεπιφάνεια για τις εντολές find/grep/locate του UNIX"
+
+#~ msgid "Gnome Search Tool"
+#~ msgstr "Εργαλείο Αναζήτησης του Gnome"
+
+#~ msgid "rparen expected"
+#~ msgstr "αναμενόμενη δεξία παρένθεση"
+
+#~ msgid "no such field: %d"
+#~ msgstr "ανύπαρκτο πεδίο: %d"
+
+#~ msgid "missing variable identifer"
+#~ msgstr "ανύπαρκτο όνομα μεταβλητής"
+
+#~ msgid "invalid variable identifer: %s"
+#~ msgstr "άκυρο όνομα μεταβλητής: %s"
+
+#~ msgid "number expected"
+#~ msgstr "αναμενόμενος αριθμός"
+
+#~ msgid "extra gunk at end: \"%s\""
+#~ msgstr "επιπλέον σκουπίδια στο τέλος: \"%s\""
+
+#~ msgid "%s, line %d: "
+#~ msgstr "%s, γραμμή %d: "
+
+#~ msgid "can't open config file \"%s\""
+#~ msgstr "άνοιγμα αρχείου ρυθμίσεων \"%s\" αδύνατο"
+
+#~ msgid ""
+#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "άνοιγμα αρχείου ρυθμίσεων \"./gstripchart.conf\", \"%s\", \"%s\", ή "
+#~ "\"%s\" αδύνατο"
+
+#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "άνοιγμα αρχείου ρυθμίσεων \"./gstripchart.conf\", \"%s\", \"%s\", ή "
+#~ "\"%s\" αδύνατο"
+
+#~ msgid "unrecognized color: %s"
+#~ msgstr "άγνωστο χρώμα: %s"
+
+#~ msgid "scale must be either \"log\" or \"linear\""
+#~ msgstr ""
+#~ "η κλίμακα πρέπει να είναι είτε \"log\" (λογαριθμική) ή "
+#~ "\"linear\" (γραμμική)"
+
+#~ msgid "no equation found"
+#~ msgstr "δε βρέθηκε εξίσωση"
+
+#~ msgid "Terminate the stripchart program"
+#~ msgstr "Τερματισμός του προγράμματος γραφημάτων"
+
+#~ msgid "Copyright 1998,99 John Kodis"
+#~ msgstr "Πνευματικά δικαιώματα 1998,99 John Kodis"
+
+#~ msgid ""
+#~ "The GNOME stripchart program plots various user-specified parameters as a "
+#~ "function of time.  Its main use is to chart system performance parameters "
+#~ "such as CPU load, CPU utilization, network traffic levels, and the like.  "
+#~ "Other more ingenious uses are left as an exercise for the interested user."
+#~ msgstr ""
+#~ "Το πρόγραμμα γραφημάτων του GNOME απεικονίζει δίαφορες παραμέτρους ως "
+#~ "συνάρτηση του χρόνου. Η βασική λειτουργία του είναι η απεικόνιση διαφόρων "
+#~ "παραμέτρων της απόδοσης του συστήματος, όπως φόρτος CPU load, αξιοποίηση "
+#~ "CPU, επίπεδα κίνησης δικτύου, και τα σχετικά. Άλλες ευφυέστερες χρήσεις "
+#~ "αφήνονται ως άσκηση για τους ενδιαφερόμενους χρήστες."
+
+#~ msgid "Info about the striphart program"
+#~ msgstr "Πληροφορίες για το πρόγραμμα γραφημάτων"
+
+#~ msgid "Param"
+#~ msgstr "Παράμετρος"
+
+#~ msgid "Value"
+#~ msgstr "Τιμή"
+
+#~ msgid "Identifier"
+#~ msgstr "Τίτλος"
+
+#~ msgid "Color"
+#~ msgstr "Χρώμα"
+
+#~ msgid "Filename"
+#~ msgstr "Όνομα αρχείου"
+
+#~ msgid "Equation"
+#~ msgstr "Εξίσωση"
+
+#~ msgid "Expected range"
+#~ msgstr "Αναμενόμενο εύρος τιμών"
+
+#~ msgid "Current value"
+#~ msgstr "Τρέχουσα τιμή"
+
+#~ msgid "Active"
+#~ msgstr "Ενεργό"
+
+#~ msgid "Stripchart Parameters"
+#~ msgstr "Παράμετροι Γραφημάτων"
+
+#~ msgid "Current"
+#~ msgstr "Τρέχον"
+
+#~ msgid "Top"
+#~ msgstr "Κορυφή"
+
+#~ msgid "Params"
+#~ msgstr "Παράμετροι"
+
+#~ msgid "gstripchart"
+#~ msgstr "gstripchart"
+
+#~ msgid "Stripchart Viewer"
+#~ msgstr "Απεικόνιση Γραφημάτων"
+
+#~ msgid "Params..."
+#~ msgstr "Παράμετροι..."
+
+#~ msgid "invalid display type: %s\n"
+#~ msgstr "άκυρος τύπος απεικόνισης: %s\n"
+
+#~ msgid "Geometry string: WxH+X+Y"
+#~ msgstr "Ακολουθία γεωμετρίας ΠxΥ+Χ+Ψ"
+
+#~ msgid "Configuration file name"
+#~ msgstr "Όνομα αρχείου ρυθμίσεων"
+
+#~ msgid "Chart update interval"
+#~ msgstr "Χρόνος ανανέωσης γραφήματος"
+
+#~ msgid "Chart low-pass filter time constant"
+#~ msgstr "Σταθερά χρόνου βαθυπερατού φίλτρου γραφήματος"
+
+#~ msgid "Adds a menubar to the main window"
+#~ msgstr "Προσθήκη γραμμής μενού στο κυρίως παράθυρο"
+
+#~ msgid "TYPE is one of gtk, applet, text, or none"
+#~ msgstr "Το `TYPE' είναι ένα από τα gtk, applet, text, ή κενό"
+
+#~ msgid "TYPE is one of gtk, text, or none"
+#~ msgstr "Το `TYPE' είναι ένα από τα gtk, text, ή κενό"
+
+#~ msgid "white"
+#~ msgstr "λευκό"
+
+#~ msgid "black"
+#~ msgstr "μαύρο"
+
+#~ msgid "red"
+#~ msgstr "κόκκινο"
+
+#~ msgid "yellow"
+#~ msgstr "κίτρινο"
+
+#~ msgid "blue"
+#~ msgstr "μπλέ"
+
+#~ msgid "green"
+#~ msgstr "πράσινο"
+
+#~ msgid "cyan"
+#~ msgstr "κυανό"
+
+#~ msgid "magenta"
+#~ msgstr "μώβ"
+
+#~ msgid "Busy"
+#~ msgstr "Απασχολημένο"
+
+#~ msgid "Load"
+#~ msgstr "Φόρτος"
+
+#~ msgid "Battery"
+#~ msgstr "Μπαταρία"
+
+#~ msgid "Net In"
+#~ msgstr "Δίκτυο / Εισερχόμενα"
+
+#~ msgid "Net Out"
+#~ msgstr "Δίκτυο / Εξερχόμενα"
+
+#~ msgid "ppp"
+#~ msgstr "ppp"
+
+#~ msgid "no project selected"
+#~ msgstr "δεν έχει επιλεχθεί έργο"
+
+#~ msgid "00:00"
+#~ msgstr "00:00"
+
+#~ msgid "Total"
+#~ msgstr "Σύνολο"
+
+#~ msgid "Today"
+#~ msgstr "Σήμερα"
+
+#~ msgid "Project Title"
+#~ msgstr "Τίτλος Έργου"
+
+#~ msgid "Description"
+#~ msgstr "Περιγραφή"
+
+#~ msgid "program started"
+#~ msgstr "πρόγραμμα εκκινήθηκε"
+
+#~ msgid "no description"
+#~ msgstr "κενή περιγραφή"
+
+#~ msgid "program exited"
+#~ msgstr "πρόγραμμα τερματίστηκε"
+
+#~ msgid "Error"
+#~ msgstr "Σφάλμα"
+
+#~ msgid ""
+#~ "An error occured while reading the configuration file.\n"
+#~ "Shall I setup a new configuration?"
+#~ msgstr ""
+#~ "Προέκυψε σφάλμα κατά την ανάγνωση του αρχείου ρυθμίσεων.\n"
+#~ "Δημιουργία νέων ρυθμίσεων;"
+
+#~ msgid "Specify geometry"
+#~ msgstr "Καθορισμός γεωμετρίας"
+
+#~ msgid "Select a project on startup"
+#~ msgstr "Επιλογή έργου κατά την εκκίνηση"
+
+#~ msgid "Warning"
+#~ msgstr "Προειδοποίηση"
+
+#~ msgid "I could not write the configuration file!"
+#~ msgstr "Εγγραφή αρχείου ρυθμίσεων ανεπιτυχής!"
+
+#~ msgid "New Project..."
+#~ msgstr "Νέο Έργο..."
+
+#~ msgid "Please enter the name of the new project:"
+#~ msgstr "Παρακαλώ εισάγετε το όνομα του νέου έργου:"
+
+#~ msgid "I could not read the configuration file"
+#~ msgstr "Ανάγνωση αρχείου ρυθμίσεων ανεπιτυχής"
+
+#~ msgid "Reload Configuration File"
+#~ msgstr "Επανανάγνωση Αρχείου Ρυθμίσεων"
+
+#~ msgid ""
+#~ "This will overwrite your current set of projects.\n"
+#~ "Do you really want to reload the configuration file?"
+#~ msgstr ""
+#~ "Η ενέργεια αυτή θα διαγράψει τον τρέχοντα κατάλογο έργων.\n"
+#~ "Είσαστε βέβαιοι ότι θέλετε να ξαναδιαβάσετε το αρχείο ρυθμίσεων;"
+
+#~ msgid "_New Project..."
+#~ msgstr "_Νέο Έργο..."
+
+#~ msgid "_Reload Configuration File"
+#~ msgstr "Επα_νανάγνωση Αρχείου Ρυθμίσεων"
+
+#~ msgid "_Save Configuration File"
+#~ msgstr "_Αποθήκευση Αρχείου Ρυθμίσεων"
+
+#~ msgid "Clear _Daily Counter"
+#~ msgstr "Καθαρισμός _Ημερ΄ησιου Μετρητή"
+
+#~ msgid "St_art"
+#~ msgstr "Έ_ναρξη"
+
+#~ msgid "Sto_p"
+#~ msgstr "Τε_ρματισμός"
+
+#~ msgid "_Timer Running"
+#~ msgstr "_Χρονόμετρο Τρέχει"
+
+#~ msgid "_Timer"
+#~ msgstr "_Χρονόμετρο"
+
+#~ msgid "Show Seconds"
+#~ msgstr "Εμφάνιση Δευτερολέπτων"
+
+#~ msgid "Show Status Bar"
+#~ msgstr "Εμφάνιση Γραμμής Κατάστασης"
+
+#~ msgid "Show Table Header"
+#~ msgstr "Εμφάνιση Επικεφαλίδας Πίνακα"
+
+#~ msgid "Show Toolbar Icons"
+#~ msgstr "Εμφάνιση Εικονιδίων Εργαλείων"
+
+#~ msgid "Show Toolbar Texts"
+#~ msgstr "Εμφάνιση Κειμένου Εργαλείων"
+
+#~ msgid "Show Tooltips"
+#~ msgstr "Εμφάνιση Βοηθημάτων"
+
+#~ msgid "Toolbar Segments"
+#~ msgstr "Τμήματα Γραμμής Εργαλείων"
+
+#~ msgid "Show `New'"
+#~ msgstr "`Νέο'"
+
+#~ msgid "Show `Save', `Reload'"
+#~ msgstr "`Αποθήκευση', `Επανανάγνωση'"
+
+#~ msgid "Show `Cut', `Copy', `Paste'"
+#~ msgstr "`Κοπή', `Αντιγραφή', `Επικόλληση'"
+
+#~ msgid "Show `Properties'"
+#~ msgstr "`Ιδιότητες'"
+
+#~ msgid "Show `Preferences'"
+#~ msgstr "`Ρυθμίσεις'"
+
+#~ msgid "Show `Help'"
+#~ msgstr "`Βοήθεια'"
+
+#~ msgid "Show `Quit'"
+#~ msgstr "`Τέλος'"
+
+#~ msgid "Shell Commands"
+#~ msgstr "Εντολές Κελύφους"
+
+#~ msgid "Switch Project Command:"
+#~ msgstr "Εντολή Αλλαγής Έργου:"
+
+#~ msgid "No Project Command:"
+#~ msgstr "Εντολή Τέλους Έργου:"
+
+#~ msgid "Logfile"
+#~ msgstr "Αρχείο Μητρώου"
+
+#~ msgid "Use Logfile"
+#~ msgstr "Χρήση Μητρώου"
+
+#~ msgid "Filename:"
+#~ msgstr "Όνομα Αρχείου:"
+
+#~ msgid "Entry Start:"
+#~ msgstr "Έναρξη Καταχώρησης:"
+
+#~ msgid "Entry Stop:"
+#~ msgstr "Τέλος Καταχώρησης:"
+
+#~ msgid "Timeout in secs:"
+#~ msgstr "Χρόνος λήξης σε δ/λεπτα:"
+
+#~ msgid "Misc"
+#~ msgstr "Δίαφορα"
+
+#~ msgid "project %t started"
+#~ msgstr "έναρξη έργου %t"
+
+#~ msgid "stopped project %t"
+#~ msgstr "τέλος έργου %t"
+
+#~ msgid "empty"
+#~ msgstr "κενό"
+
+#~ msgid "Project"
+#~ msgstr "Έργο"
+
+#~ msgid "Project Title:"
+#~ msgstr "Τίτλος Έργου:"
+
+#~ msgid "Project Description:"
+#~ msgstr "Περιγραφή Έργου:"
+
+#~ msgid "Project Time today:"
+#~ msgstr "Σημερινός Χρόνος Έργου:"
+
+#~ msgid "hours"
+#~ msgstr "ώρες"
+
+#~ msgid "mins"
+#~ msgstr "λεπτά"
+
+#~ msgid "secs"
+#~ msgstr "δ/λεπτα"
+
+#~ msgid "Project Time ever:"
+#~ msgstr "Συνολικός Χρόνος Έργου:"
+
+#~ msgid "[GTT]New"
+#~ msgstr "[GTT]Νέο"
+
+#~ msgid "Reload"
+#~ msgstr "Επανανάγν."
+
+#~ msgid "Save Configuration File"
+#~ msgstr "Αποθήκευση Αρχείου Ρυθμίσεων"
+
+#~ msgid "Cut Selected Project"
+#~ msgstr "Κοπή Επιλεγμένου Έργου"
+
+#~ msgid "Copy Selected Project"
+#~ msgstr "Αντιγραφή Επιλεγμένου Έργου"
+
+#~ msgid "Props"
+#~ msgstr "Ιδιότητες"
+
+#~ msgid "Edit Properties..."
+#~ msgstr "Αλλαγή Ιδιοτήτων..."
+
+#~ msgid "Timer"
+#~ msgstr "Χρονόμετρο"
+
+#~ msgid "Start/Stop Timer"
+#~ msgstr "Έναρξη/Τέλος Χρονομέτρου"
+
+#~ msgid "Prefs"
+#~ msgstr "Ρυθμίσεις"
+
+#~ msgid "Edit Preferences..."
+#~ msgstr "Αλλαγή Προτιμήσεων..."
+
+# Revise translation of "manual" (as in opposite of "automatic", not synonym of "documentation")
+#~ msgid "Manual"
+#~ msgstr "Χειροκίνητο"
+
+#~ msgid "Manual..."
+#~ msgstr "Χειροκίνητο..."
+
+#~ msgid "Quit"
+#~ msgstr "Τέλος"
+
+#~ msgid "Quit GTimeTracker"
+#~ msgstr "Τερματισμός του GTimeTracker"
+
+#~ msgid "Gnome Color Browser"
+#~ msgstr "Πρόγραμμα Εξερεύνησης Χρωμάτων του Gnome"
+
+#~ msgid "Format Style:"
+#~ msgstr "Μορφή:"
+
+#~ msgid "Color Name:"
+#~ msgstr "Όνομα Χρώματος:"
+
+#~ msgid "Color Values:"
+#~ msgstr "Τιμές Χρώματος:"
+
+#~ msgid "Name"
+#~ msgstr "Όνομα"
+
+#~ msgid "Error, cannot find the file 'rgb.txt' on your system!"
+#~ msgstr "Σφάλμα, το αρχείο 'rgb.txt' δε βρέθηκε στο σύστημά σας!"
+
+#~ msgid "Decimal (8 bit)"
+#~ msgstr "Δεκαδικό (8 bit)"
+
+#~ msgid "Decimal (16 bit)"
+#~ msgstr "Δεκαδικό (16 bit)"
+
+#~ msgid "Small utility to browse available X11 colors."
+#~ msgstr "Μικρή εφαρμογή γιά εξερεύνηση διαθέσιμων χρωμάτων στα X11."
+
+#~ msgid "Font to load"
+#~ msgstr "Γραμματοσειρά προς απεικόνιση"
+
+#~ msgid "Print selected font name on exit"
+#~ msgstr "Εκτύπωση επιλεγμένης γραμματοσειράς κατά την έξοδο"
+
+#~ msgid "Copyright 1998, under the GNU General Public License."
+#~ msgstr "Copyright 1998, σύμφωνα με τη Γενική Δημόσια άδεια GNU (GNU GPL)."
+
+#~ msgid "Reason %d\n"
+#~ msgstr "Αιτία %d\n"
+
+#~ msgid "Where to put the window, and its size"
+#~ msgstr "Θέση και μέγεθος παραθύρου"
+
+#~ msgid "New text viewer window"
+#~ msgstr "Νέο παράθυρο απεικόνισης κειμένου"
+
+#~ msgid "_Fixed Font"
+#~ msgstr "Γραμματοσειρά Στα_θερού Πλάτους"
+
+#~ msgid "Display text with a fixed font"
+#~ msgstr "Απεικόνιση κειμένου με γραμματοσειρά σταθερού πλάτους"
+
+#~ msgid "Text File Viewer"
+#~ msgstr "Πρόγραμμα Απεικόνισης Αρχείων Κειμένου"
+
+#~ msgid "Loading..."
+#~ msgstr "Ανάγνωση..."
+
+#~ msgid ""
+#~ "No such file or directory:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ανύπαρκτο αρχείο ή κατάλογος:\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Failed to decompress and display the file:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Αποσυμπίεση και εμφάνιση του αρχείου ανεπιτυχής:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Unable to display compressed file.\n"
+#~ "zcat not found in your path."
+#~ msgstr ""
+#~ "Εμφάνιση συμπιεσμένων αρχείων αδύνατη.\n"
+#~ "Το zcat δε βρέθηκε στη διαδρομή."
+
+#~ msgid ""
+#~ "Error loading file:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ανάγνωση αρχείου ανεπιτυχής:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Failed to write file:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Εγγραφή στο αρχείο ανεπιτυχής:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid "Save Text As..."
+#~ msgstr "Αποθήκευση Κειμένου Ως..."
+
+#~ msgid ""
+#~ "Failed to execute command:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Εκτέλεση εντολής ανεπιτυχής:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid "Run Program"
+#~ msgstr "Εκτέλεση Προγράμματος"
+
+#~ msgid "Run"
+#~ msgstr "Εκτέλεση"
+
+#~ msgid "Select a program to run"
+#~ msgstr "Επιλογή προγράμματος πρός εκτέλεση"
+
+#~ msgid "Shut Down"
+#~ msgstr "Κλείσιμο Υπολογιστή"
+
+#~ msgid "Runlevel 2"
+#~ msgstr "Runlevel 2"
+
+#~ msgid "Runlevel 3"
+#~ msgstr "Runlevel 3"
+
+#~ msgid "Runlevel 4"
+#~ msgstr "Runlevel 4"
+
+#~ msgid "Runlevel 5"
+#~ msgstr "Runlevel 5"
+
+#~ msgid "Reboot"
+#~ msgstr "Επανεκκίνιση Υπολογιστή"
+
+#~ msgid "Are you sure you want to shut down the computer?"
+#~ msgstr "Είσαστε βέβαιοι ότι θέλετε να κλείσετε τον υπολογιστή;"
+
+#~ msgid "Are you sure you want to switch to single user mode?"
+#~ msgstr "Είσαστε βέβαιοι ότι θέλετε να μεταβείτε σε κατάσταση ενός χρήστη;"
+
+#~ msgid "Are you sure you want to switch to runlevel 2?"
+#~ msgstr "Είσαστε βέβαιοι ότι θέλετε να μεταβείτε σε runlevel 2;"
+
+#~ msgid "Are you sure you want to switch to runlevel 3?"
+#~ msgstr "Είσαστε βέβαιοι ότι θέλετε να μεταβείτε σε runlevel 3;"
+
+#~ msgid "Are you sure you want to switch to runlevel 4?"
+#~ msgstr "Είσαστε βέβαιοι ότι θέλετε να μεταβείτε σε runlevel 4;"
+
+#~ msgid "Are you sure you want to switch to runlevel 5?"
+#~ msgstr "Είσαστε βέβαιοι ότι θέλετε να μεταβείτε σε runlevel 5;"
+
+#~ msgid "Are you sure you want to reboot the system?"
+#~ msgstr "Είσαστε βέβαιοι ότι θέλετε να επανεκιννήσετε τον υπολογιστή;"
+
+#~ msgid ""
+#~ "You must be the super-user (root) to shut down or restart the computer."
+#~ msgstr ""
+#~ "Μόνο ο υπερχρήστης (root) επιτρέπεται να κλείσει ή επανεκκινήσει τον "
+#~ "υπολογιστή."
+
+#~ msgid "Shutdown or Reboot"
+#~ msgstr "Τερματισμός ή Επανεκκίνηση Υπολογιστή"
+
+#~ msgid "Easy"
+#~ msgstr "Απλό"
+
+#~ msgid ""
+#~ "Click OK to shutdown or reboot. You will lose\n"
+#~ "any unsaved information in open applications."
+#~ msgstr ""
+#~ "Κάντε κλίκ στο Εντάξει για να κλείσετε ή να επανεκκινήσετε τον "
+#~ "υπολογιστή.\n"
+#~ "Οι μη αποθηκευμένες αλλαγές σε ανοιχτά προγράμματα θα χαθούν."
+
+#~ msgid "Revert to Defaults"
+#~ msgstr "Επαναφορά εξ' ορισμού ρυθμίσεων"
+
+#~ msgid "Commands"
+#~ msgstr "Εντολές"
+
+#~ msgid "Confirm before shutdown?"
+#~ msgstr "Επιβεβαίωση τερματισμού λειτουργίας υπολογιστή;"
+
+#~ msgid ""
+#~ "%s\n"
+#~ "You will lose any unsaved work."
+#~ msgstr ""
+#~ "%s\n"
+#~ "Οι μη αποθηκευμένες αλλαγές θα χαθούν."
+
+#~ msgid "Command execution failed: fork failed"
+#~ msgstr "Εκτέλεση εντολής ανεπιτυχής: ανεπιτυχές fork"
+
+#~ msgid "Make guname act as a control center applet"
+#~ msgstr "Συμπεριφορά του guname ως εφαρμογιδίου κέντρου ελέγχου"
+
+#~ msgid "an initialization error occurred while starting 'guname-capplet'."
+#~ msgstr "σφάλμα αρχικοποίησης κατά την εκκίνιση του 'guname-capplet'."
+
+#~ msgid "System Information"
+#~ msgstr "Πληροφορίες Συστήματος"
+
+#~ msgid "Logo file not found"
+#~ msgstr "Αρχείο λογοτύπου δε βρέθηκε"
+
+#~ msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
+#~ msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
+
+#~ msgid "GNOME: The GNU Network Object Model Environment"
+#~ msgstr "GNOME: The GNU Network Object Model Environment"
+
+#~ msgid "Email Information..."
+#~ msgstr "Αποστολή Πληροφορίων..."
+
+#~ msgid "Save Information to File..."
+#~ msgstr "Αποθήκευση Πληροφοριών σε Αρχείο..."
+
+#~ msgid "Detailed Information..."
+#~ msgstr "Λεπτομερείς Πληροφορίες..."
+
+#~ msgid "Category"
+#~ msgstr "Κατηγορία"
+
+#~ msgid "Your System"
+#~ msgstr "Το Σύστημα Σας"
+
+#~ msgid "Mail To..."
+#~ msgstr "Αποστολή Σε..."
+
+#~ msgid ""
+#~ "Error closing file `%s': \n"
+#~ "%s\n"
+#~ "Some or all data may not have been written."
+#~ msgstr ""
+#~ "Σφάλμα κατά το κλείσιμο του αρχείου `%s': \n"
+#~ "%s\n"
+#~ "Ενδέχεται μερικά ή όλα τα δεδομένα να μην έχουν αποθηκευτεί."
+
+#~ msgid "Couldn't open file `%s': %s"
+#~ msgstr "Άνοιγμα αρχείου `%s' ανεπιτυχές: %s"
+
+#~ msgid "Save System Information As..."
+#~ msgstr "Αποθήκευση Πληροφοριών Συστήματος Ως..."
+
+#~ msgid "Command failed ` %s ': %s"
+#~ msgstr "Εκτέλεση της εντολής ` %s ' ανεπιτυχής: %s"
+
+#~ msgid "Couldn't run command ` %s ': %s"
+#~ msgstr "Εκτέλεση της εντολής ` %s ' αδύνατη: %s"
+
+#~ msgid ""
+#~ "The following mail will be sent to %s.\n"
+#~ " Are you sure you want to mail this information?"
+#~ msgstr ""
+#~ "Το ακόλουθο email θα σταλεί προς %s.\n"
+#~ " Είσαστε βέβαιοι ότι θέλετε να στείλετε αυτές τις πληροφορίες;"
+
+#~ msgid "Are you sure?"
+#~ msgstr "Είσαστε βέβαιοι;"
+
+#~ msgid "Address to mail to:"
+#~ msgstr "Αποστολή email προς:"
+
+#~ msgid "Distribution:"
+#~ msgstr "Διανομή:"
+
+#~ msgid "Operating System:"
+#~ msgstr "Λειτουργικό Σύστημα:"
+
+#~ msgid "Distribution Version:"
+#~ msgstr "Έκδοση Διανομής:"
+
+#~ msgid "Operating System Version:"
+#~ msgstr "Έκδοση Λειτουργικού Συστήματος:"
+
+# Revise translation for "release" (current sucks!)
+#~ msgid "Operating System Release:"
+#~ msgstr "Αριθμός Διανομής Λειτουργικού:"
+
+#~ msgid "Processor Type:"
+#~ msgstr "Τύπος Επεξεργαστή:"
+
+#~ msgid "Processor Speed:"
+#~ msgstr "Ταχύτητα Επεξεργαστή:"
+
+#~ msgid "Host Name:"
+#~ msgstr "Όνομα Συστήματος:"
+
+#~ msgid "Domain Name:"
+#~ msgstr "Όνομα Περιοχής (domain):"
+
+#~ msgid "User Name:"
+#~ msgstr "Όνομα Χρήστη:"
+
+#~ msgid "X Display Name:"
+#~ msgstr "Όνομα οθόνης X (display):"
+
+#~ msgid "System Status:"
+#~ msgstr "Κατάσταση Συστήματος:"
+
+#~ msgid "Real Memory:"
+#~ msgstr "Πραγματική Μνήμη:"
+
+#~ msgid "Swap Space (\"virtual memory\"):"
+#~ msgstr "Εικονική Μνήμη:"
+
+#~ msgid "Total Memory:"
+#~ msgstr "Συνολική Μνήμη:"
+
+#~ msgid "Free Memory:"
+#~ msgstr "Ελεύθερη Μνήμη:"
+
+#~ msgid "Size"
+#~ msgstr "Μέγεθος"
+
+#~ msgid "Used space"
+#~ msgstr "Κατειλλημένος χώρος"
+
+#~ msgid "Free space"
+#~ msgstr "Ελεύθερος χώρος"
+
+#~ msgid "Percent free"
+#~ msgstr "Επί τοις εκατό ελεύθερο"
+
+#~ msgid "Mount point"
+#~ msgstr "Σημείο προσάρτησης"
+
+#~ msgid "Unknown"
+#~ msgstr "Άγνωστο"
+
+#~ msgid "Unknown filesystem"
+#~ msgstr "Άγνωστο σύστημα αρχείων"
+
+#~ msgid "No information for this filesystem."
+#~ msgstr "Δεν υπάρχουν πληροφορίες για αυτό το σύστημα αρχείων."
+
+#~ msgid "Memory"
+#~ msgstr "Μνήμη"
+
+#~ msgid "Kilobytes"
+#~ msgstr "Kbyte"
+
+#~ msgid "%ld%% memory used."
+#~ msgstr "κατειλλημένη μνήμη %ld%%."
+
+#~ msgid "%ld%% swap used."
+#~ msgstr "κατειλλημένη εικονική μνήμη %ld%%."
+
+#~ msgid "CPU %d"
+#~ msgstr "CPU %d"
+
+#~ msgid "Detailed System Information"
+#~ msgstr "Λεπτομερείς Πληροφορίες Συστήματος"
+
+#~ msgid "Disk Information"
+#~ msgstr "Πληροφορίες Δίσκων"
+
+#~ msgid "Memory Information"
+#~ msgstr "Πληροφορίες Μνήμης"
+
+#~ msgid "CPU Information"
+#~ msgstr "Πληροφορίες CPU"
+
+#~ msgid "Mount Point: "
+#~ msgstr "Σημείο Προσάρτησης: "
+
+#~ msgid "    Device: "
+#~ msgstr "    Συσκεύη: "
+
+#~ msgid "    Filesystem Type: "
+#~ msgstr "    Τύπος Συστήματος Αρχείων: "
+
+#~ msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
+#~ msgstr "%ld Mbyte, %ld ελεύθερα (%ld υπερχρήστη); %ld inode, %ld ελεύθεροι."
+
+#~ msgid "%2d%% full "
+#~ msgstr "%2d%% πλήρες "
+
+#~ msgid ""
+#~ "Couldn't find the \"w\" command in your path.\n"
+#~ "This command is needed for the program to work."
+#~ msgstr ""
+#~ "Η εντολή \"w\" δε βρέθηκε στη διαδρομή.\n"
+#~ "Η εντολή αυτή απαιτείται για τη λειτουργία του προγράμματος."
+
+#~ msgid "Write information to disk"
+#~ msgstr "Εγγραφή πληροφοριών στο δίσκο"
+
+#~ msgid "Active User Listing"
+#~ msgstr "Κατάλογος Τρέχοντων Χρηστών"
+
+#~ msgid "Update Information"
+#~ msgstr "Ανανέωση Πληροφοριών"
+
+#~ msgid "Save not implemented yet\n"
+#~ msgstr "Η αποθήκευση δεν έχει υλοποιηθεί ακόμη\n"
+
+#~ msgid "Command Line"
+#~ msgstr "Γραμμή Εντολών"
+
+#~ msgid "Delete"
+#~ msgstr "Διαγραφή"
+
+#~ msgid "Command Editor"
+#~ msgstr "Διορθωτής Εντολών"
+
+#~ msgid ""
+#~ "You can configure the commands on the popup menus.\n"
+#~ "Just enter the name you want to appear on the \n"
+#~ "menu, and the command to execute.\n"
+#~ "In the command, you can use %u to represent the\n"
+#~ "currently selected username, and %t for the tty."
+#~ msgstr ""
+#~ "Μπορείτε να ρυθμίσετε τις εντολές του μενού.\n"
+#~ "Απλώς εισάγετε το όνομα που θέλετε να εμφανίζεται \n"
+#~ "στο μενού και την εντολή προς εκτέλεση.\n"
+#~ "Στην εντολή, μπορείτε να χρησιμοποιήσετε το %u για τον\n"
+#~ "τρέχοντα χρήστη, και %t για το τερματικό (tty)."
+
+#~ msgid ""
+#~ "Click this button to add\n"
+#~ "some sample commands."
+#~ msgstr ""
+#~ "Κάντε κλίκ σε αυτό το κουμπί για να\n"
+#~ "προσθέσετε μερικά δείγματα εντολών."
+
+#~ msgid "Menu items"
+#~ msgstr "Στοιχεία μενού"
+
+#~ msgid "Command"
+#~ msgstr "Εντολή"
+
+#~ msgid "Running: %s\n"
+#~ msgstr "Εκτελείται: %s\n"
+
+#~ msgid "32-bit"
+#~ msgstr "32-bit"
+
+#~ msgid "32-bit w/sync"
+#~ msgstr "32-bit με sync"
+
+#~ msgid "Active/Idle"
+#~ msgstr "Ενεργός/Ανενεργός"
+
+#~ msgid "Standby"
+#~ msgstr "Αναμονή"
+
+#~ msgid "The DMA setting for this drive cannot be changed."
+#~ msgstr "Οι ρυθμίσεις DMA για αυτόν τον δίσκο δεν μπορούν να αλλαχθούν."
+
+#~ msgid "Enabled"
+#~ msgstr "Ενεργό"
+
+#~ msgid "Disabled"
+#~ msgstr "Ανενεργό"
+
+#~ msgid "The IRQ unmask setting for this drive cannot be changed."
+#~ msgstr "Η ρύθμιση IRQ unmask για αυτόν τον δίσκο δε μπορεί να αλλαχθεί."
+
+#~ msgid "The drive refused to keep its settings."
+#~ msgstr "Ο δίσκος αρνήθηκε να αλλάξει τις ρυθμίσεις του."
+
+#~ msgid "Keep settings"
+#~ msgstr "Διατήρηση ρυθμίσεων"
+
+#~ msgid "None"
+#~ msgstr "Καμία"
+
+#~ msgid "(1 Sector)"
+#~ msgstr "(1 Τομέας)"
+
+#~ msgid "(Dual Port)"
+#~ msgstr "(Δίπορτη)"
+
+#~ msgid "(Dual Port Cache)"
+#~ msgstr "(Δίπορτη Κρυφή Μνήμη)"
+
+#~ msgid "No"
+#~ msgstr "Όχι"
+
+#~ msgid "Yes (%d sector)"
+#~ msgstr "Ναι (%d τομέας)"
+
+#~ msgid "Yes (%d sectors)"
+#~ msgstr "Ναι (%d τομείς)"
+
+#~ msgid "Model"
+#~ msgstr "Μοντέλο"
+
+#~ msgid "Serial No."
+#~ msgstr "Σειριακός Αρ."
+
+#~ msgid "Geometry"
+#~ msgstr "Γεωμετρία"
+
+#~ msgid "Cache"
+#~ msgstr "Κρυφή Μνήμη"
+
+#~ msgid "Status"
+#~ msgstr "Κατάσταση"
+
+#~ msgid "Legacy MFM/RLL drive"
+#~ msgstr "Δίσκος MFM/RLL"
+
+#~ msgid "DMA Mode"
+#~ msgstr "Κατάσταση DMA"
+
+#~ msgid "IO Mode"
+#~ msgstr "Κατάσταση εισόδου/εξόδου (IO)"
+
+#~ msgid "IRQ Unmask"
+#~ msgstr "IRQ Unmask"
+
+#~ msgid "Multisector"
+#~ msgstr "Πολλαπλοί τομείς"
+
+#~ msgid "IDE Status"
+#~ msgstr "Κατάσταση IDE"
+
+#~ msgid "Only the superuser can use this tool"
+#~ msgstr "Μόνο ο υπερχρήστης επιτρέπεται να χρησιμοποιήσει το εργαλείο αυτό"
+
+#~ msgid "You appear to have no IDE drives"
+#~ msgstr "Δε φαίνεται να έχετε δίσκους IDE"

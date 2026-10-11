@@ -1,0 +1,1469 @@
+# Dutch translation of GHEX
+# Copyright (C) 2000 Free Software Foundation, Inc.
+# Dennis Smit <synap@area101.penguin.nl>,2000.
+# Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002
+# Tino Meinen <a.t.meinen@chello.nl>, 2002, 2003, 2004
+# Jeroen Vloothuis <j.vloothuis@quicknet.nl>, 2002
+# Nathan Follens <nfollens@gnome.org>, 2022
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ghex\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
+"POT-Creation-Date: 2022-08-07 15:20+0000\n"
+"PO-Revision-Date: 2022-11-06 14:41+0100\n"
+"Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
+"Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#: data/org.gnome.GHex.appdata.xml.in.in:6
+msgid "GHex"
+msgstr "GHex"
+
+#: data/org.gnome.GHex.appdata.xml.in.in:7 data/org.gnome.GHex.desktop.in.in:6
+msgid "Inspect and edit binary files"
+msgstr "Inspecteer en bewerk binaire bestanden"
+
+#: data/org.gnome.GHex.appdata.xml.in.in:9
+msgid "GHex is a hex editor for the GNOME desktop."
+msgstr "GHex is een hexbewerker voor de GNOME-werkomgeving."
+
+#: data/org.gnome.GHex.appdata.xml.in.in:12
+msgid ""
+"GHex can load raw data from binary files and display them for editing in the "
+"traditional hex editor view. The display is split in two columns, with "
+"hexadecimal values in one column and the ASCII representation in the other. "
+"GHex is a useful tool for working with raw data."
+msgstr ""
+"GHex kan de ruwe gegevens uit binaire bestanden laden en ze weergeven om in "
+"de traditionele hexbewerkerweergave te bewerken. De weergave is "
+"onderverdeeld in twee kolommen, met in de ene kolom de hexadecimale waarden, "
+"en in de andere kolom de ASCII-waarde ervan. GHex is een nuttig hulpmiddel "
+"om met ruwe gegevens te werken."
+
+#: data/org.gnome.GHex.appdata.xml.in.in:43
+msgid "Logan Rathbone"
+msgstr "Logan Rathbone"
+
+#: data/org.gnome.GHex.desktop.in.in:5
+msgid "Hex Editor"
+msgstr "Hexbewerker"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
+#: data/org.gnome.GHex.desktop.in.in:8
+msgid "binary;debug;"
+msgstr "binary;debug;binair;debuggen;"
+
+#: src/chartable.c:148
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:148
+msgid "Hex"
+msgstr "Hexadecimaal"
+
+#: src/chartable.c:148
+msgid "Decimal"
+msgstr "Decimaal"
+
+#: src/chartable.c:149
+msgid "Octal"
+msgstr "Octaal"
+
+#: src/chartable.c:149
+msgid "Binary"
+msgstr "Binair"
+
+#: src/chartable.c:175
+msgid "Character table"
+msgstr "Tekentabel"
+
+#: src/chartable.c:243
+msgid "_Insert Character"
+msgstr "Teken _invoegen"
+
+#: src/chartable.c:247 src/converter.c:186 src/preferences.ui:261
+msgid "_Close"
+msgstr "Sl_uiten"
+
+#: src/common-ui.c:240
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"Dit programma is vrije software; u kunt het verspreiden en/of wijzigen onder "
+"de voorwaarden van de GNU General Public License zoals gepubliceerd door de "
+"Free Software Foundation; bekijk versie 2 van deze licentie, of (naar wens) "
+"een latere versie."
+
+#: src/common-ui.c:244
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"Dit programma wordt verspreid in de hoop dat het bruikbaar zal zijn, maar "
+"ZONDER ENIGE GARANTIE; zelfs zonder de impliciete garantie voor "
+"VERKOOPBAARHEID of GESCHIKTHEID VOOR EEN SPECIFIEK DOEL. Zie de GNU General "
+"Public License voor meer details."
+
+#: src/common-ui.c:248
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"U zou een kopie van de GNU General Public License ontvangen moeten hebben "
+"samen met dit programma; indien dit niet zo is, schrijf dan naar de Free "
+"Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA "
+"02110-1301, VS"
+
+#. Translators: these two strings here indicate the copyright time span,
+#. e.g. 1998-2018.
+#: src/common-ui.c:260
+#, c-format
+msgid "Copyright © %d–%d The GHex authors"
+msgstr "Copyright © %d–%d de auteurs van GHex"
+
+#: src/common-ui.c:274
+msgid "A binary file editor"
+msgstr "Een bewerker voor binaire bestanden"
+
+#: src/common-ui.c:281
+msgid "About GHex"
+msgstr "Over GHex"
+
+#: src/common-ui.c:282
+msgid "translator-credits"
+msgstr ""
+"Nathan Follens <nfollens@gnome.org>\n"
+"Meer info over Gnome-NL https://nl.gnome.org/"
+
+#: src/common-ui.c:285
+msgid "GHex Website"
+msgstr "GHex-website"
+
+#. Translators: This is an error string for a print-related error
+#. * dialog.  The %s is the error generated by GError.
+#: src/common-ui.c:349
+#, c-format
+msgid "An error has occurred: %s"
+msgstr "Er is een fout opgetreden: %s"
+
+#: src/converter.c:183
+msgid "Base Converter"
+msgstr "Basisomzetter"
+
+#. entries
+#: src/converter.c:208
+msgid "_Binary:"
+msgstr "_Binair:"
+
+#: src/converter.c:210
+msgid "_Octal:"
+msgstr "_Octaal:"
+
+#: src/converter.c:212
+msgid "_Decimal:"
+msgstr "_Decimaal:"
+
+#: src/converter.c:214
+msgid "_Hex:"
+msgstr "_Hexadecimaal:"
+
+#: src/converter.c:216
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+#. get cursor button
+#: src/converter.c:220
+msgid "_Get cursor value"
+msgstr "Cursorwaarde opvra_gen"
+
+#: src/converter.c:229
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"Leest de waarde bij de cursorpositie in binair, octaal, decimaal, "
+"hexadecimaal en ASCII"
+
+#: src/converter.c:370
+msgid "ERROR"
+msgstr "FOUT"
+
+#: src/findreplace.c:186
+msgid "No string provided."
+msgstr "Geen tekenreeks opgegeven."
+
+#: src/findreplace.c:344
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+"Begin van bestand bereikt.\n"
+"\n"
+"Geen verdere resultaten gevonden."
+
+#: src/findreplace.c:346
+msgid ""
+"Beginning of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+"Begin van bestand bereikt.\n"
+"\n"
+"Geen resultaten vanaf cursor gevonden."
+
+#: src/findreplace.c:356
+msgid ""
+"End of file reached.\n"
+"\n"
+"No further matches found."
+msgstr ""
+"Einde van bestand bereikt.\n"
+"\n"
+"Geen verdere resultaten gevonden."
+
+#: src/findreplace.c:358
+msgid ""
+"End of file reached.\n"
+"\n"
+"No occurrences found from cursor."
+msgstr ""
+"Einde van bestand bereikt.\n"
+"\n"
+"Geen resultaten vanaf cursor gevonden."
+
+#: src/findreplace.c:441
+msgid "No offset has been specified."
+msgstr "Er is geen verschuiving opgegeven."
+
+#: src/findreplace.c:466
+msgid "The specified offset is beyond the  file boundaries."
+msgstr "De opgegeven verschuiving zit buiten de grenzen van het bestand."
+
+#: src/findreplace.c:474
+msgid "Can not position cursor beyond the end of file."
+msgstr "Kan cursor niet buiten het einde van het bestand zetten."
+
+#: src/findreplace.c:484
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+"U kunt de verschuiving alleen opgeven als:\n"
+" - een positief decimaal getal, of\n"
+" - een hexadecimaal getal beginnend met '0x', of\n"
+" - een teken ‘+’ of ‘-’, gevolgd door een relatieve verschuiving"
+
+#: src/findreplace.c:546
+msgid "String was not found."
+msgstr "Tekenreeks niet gevonden."
+
+#: src/findreplace.c:610
+msgid "No occurrences were found."
+msgstr "Geen resultaten gevonden."
+
+#: src/findreplace.c:799
+msgid "Find String"
+msgstr "Tekenreeks zoeken"
+
+#: src/findreplace.c:806
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Voer de hexadecimale of ASCII-gegevens in om naar te zoeken"
+
+#: src/findreplace.c:812
+msgid "Find _Next"
+msgstr "Volge_nde zoeken"
+
+#: src/findreplace.c:819
+msgid "Finds the next occurrence of the search string"
+msgstr "Zoekt de volgende overeenkomst met de zoektekst"
+
+#: src/findreplace.c:822
+msgid "Find _Previous"
+msgstr "Vo_rige zoeken"
+
+#: src/findreplace.c:828
+msgid "Finds the previous occurrence of the search string"
+msgstr "Zoekt de vorige overeenkomst met de zoektekst"
+
+#: src/findreplace.c:831
+msgid "_Clear"
+msgstr "Wi_ssen"
+
+#: src/findreplace.c:837
+msgid "Clears the data you are searching for"
+msgstr "Wist de gegevens waar u naar zoekt"
+
+#: src/findreplace.c:851 src/findreplace.c:1079
+msgid "Close"
+msgstr "Sluiten"
+
+#: src/findreplace.c:855
+msgid "Closes the find pane"
+msgstr "Sluit het zoekpaneel"
+
+#: src/findreplace.c:929
+msgid "Replace With"
+msgstr "Vervangen door"
+
+#: src/findreplace.c:935
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Voer de vervangende hexadecimale of ASCII-gegevens in"
+
+#: src/findreplace.c:938
+msgid "_Replace"
+msgstr "Ve_rvangen"
+
+#: src/findreplace.c:946
+msgid "Replaces the search string with the replace string"
+msgstr "Vervangt de zoektekst door de vervangende tekst"
+
+#: src/findreplace.c:949
+msgid "Replace _All"
+msgstr "Alles ve_rvangen"
+
+#: src/findreplace.c:957
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Vervangt alle overeenkomsten door de vervangende tekst"
+
+#: src/findreplace.c:1036
+msgid "Jump to byte (enter offset):"
+msgstr "Springen naar byte (voer verschuiving in):"
+
+#: src/findreplace.c:1040
+msgid ""
+"Enter the offset byte to jump to. The default is decimal format, but other "
+"format strings are supported such as hexidecimal format, if C-style notation "
+"using the '0x' prefix is used. If your string is not recognized, a dialog "
+"will be presented explaining the valid formats of strings accepted."
+msgstr ""
+"Voer de verschuivingsbyte waarnaar u wilt springen in. Standaard is dit in "
+"decimale indeling, maar andere formaten worden ook ondersteund, zoals "
+"hexadecimaal, indien notatie in C-stijl met het voorvoegsel ‘0x’ gebruikt "
+"wordt. Indien uw tekenreeks niet herkend wordt, zal er een dialoogvenster "
+"verschijnen waarin de verschillende geldige formaten van tekenreeksen "
+"uitgelegd worden."
+
+#: src/findreplace.c:1057
+msgid "_Jump"
+msgstr "Springen _naar"
+
+#: src/findreplace.c:1065
+msgid "Jumps to the specified byte"
+msgstr "Springt naar de opgegeven byte"
+
+#: src/findreplace.c:1083
+msgid "Closes the jump-to-byte pane"
+msgstr "Sluit het ‘Springen naar byte’-paneel"
+
+#: src/ghex-application-window.c:335
+msgid ""
+"There was an error saving the file.\n"
+"\n"
+"Your permissions of the file may have been changed by another program, or "
+"the file may have become corrupted."
+msgstr ""
+"Er is een fout opgetreden bij het opslaan van het bestand.\n"
+"\n"
+"Mogelijk zijn uw toegangsrechten voor het bestand gewijzigd door een ander "
+"programma, of is het bestand beschadigd geraakt."
+
+#: src/ghex-application-window.c:403
+msgid ""
+"<b>You have one or more files open with unsaved changes.</b>\n"
+"\n"
+"Are you sure you want to close the window?\n"
+"\n"
+msgstr ""
+"<b>U hebt één of meerdere bestanden met niet-opgeslagen wijzigingen.</b>\n"
+"\n"
+"Weet u zeker dat u het venster wilt sluiten?\n"
+"\n"
+
+#: src/ghex-application-window.c:407
+msgid "_Close Anyway"
+msgstr "_Toch sluiten"
+
+#: src/ghex-application-window.c:408 src/ghex-application-window.c:531
+#: src/ghex-application-window.c:1186
+msgid "_Go Back"
+msgstr "Teru_g"
+
+#. Translators: %s is the filename that is currently being
+#. * edited.
+#: src/ghex-application-window.c:509
+#, c-format
+msgid ""
+"<big><b>%s has been edited since opening.</b></big>\n"
+"\n"
+"Would you like to save your changes?"
+msgstr ""
+"<big><b>%s is bewerkt sinds geopend te zijn.</b></big>\n"
+"\n"
+"Wilt u uw wijzigingen opslaan?"
+
+#: src/ghex-application-window.c:515
+msgid ""
+"<b>The buffer has been edited since opening.</b>\n"
+"\n"
+"Would you like to save your changes?"
+msgstr ""
+"<b>De buffer is bewerkt sinds geopend te zijn.</b>\n"
+"\n"
+"Wilt u uw wijzigingen opslaan?"
+
+#: src/ghex-application-window.c:529
+msgid "_Save Changes"
+msgstr "Wijzigingen op_slaan"
+
+#: src/ghex-application-window.c:530
+msgid "_Discard Changes"
+msgstr "Wijzigingen _verwerpen"
+
+#. Translators: this is the string for an untitled buffer that will
+#. * be displayed in the titlebar when a user does File->New
+#.
+#: src/ghex-application-window.c:890 src/hex-document.c:950
+msgid "Untitled"
+msgstr "Naamloos"
+
+#: src/ghex-application-window.c:1069
+msgid ""
+"There was an error saving the file to the path specified.\n"
+"\n"
+"You may not have the required permissions."
+msgstr ""
+"Er is een fout opgetreden bij het opslaan van het bestand naar het opgegeven "
+"pad.\n"
+"\n"
+"U beschikt mogelijk niet over de vereiste toegangsrechten."
+
+#: src/ghex-application-window.c:1083
+msgid ""
+"An unknown error has occurred in attempting to reload the file you have just "
+"saved."
+msgstr ""
+"Er is een onbekende fout opgetreden bij het herladen van het bestand dat u "
+"zojuist opgeslagen hebt."
+
+#: src/ghex-application-window.c:1110
+msgid "Select a file to save buffer as"
+msgstr "Kies een bestand om de buffer in op te slaan"
+
+#. Translators: %s here is the filename the user is being asked to
+#. * confirm whether they want to revert.
+#: src/ghex-application-window.c:1179
+#, c-format
+msgid ""
+"<big><b>Are you sure you want to revert %s?</b></big>\n"
+"\n"
+"Your changes will be lost.\n"
+"\n"
+"This action cannot be undone."
+msgstr ""
+"<big><b>Weet u zeker dat u %s wilt terugdraaien?</b></big>\n"
+"\n"
+"Uw wijzigingen zullen verloren gaan.\n"
+"\n"
+"Deze handeling kan niet ongedaan gemaakt worden."
+
+#: src/ghex-application-window.c:1185
+msgid "_Revert"
+msgstr "Te_rugdraaien"
+
+#: src/ghex-application-window.c:1271
+msgid "Select a file to open"
+msgstr "Kies een bestand om te openen"
+
+#: src/ghex-application-window.c:1370
+#, c-format
+msgid ""
+"Sorry, but help could not be opened.\n"
+"\n"
+"Various attempts were made to locate the help documentation unsuccessfully.\n"
+"\n"
+"Please ensure the application was properly installed.\n"
+"\n"
+"The specific error message is:\n"
+"\n"
+"%s"
+msgstr ""
+"Sorry, de hulpbestanden konden niet geopend worden.\n"
+"\n"
+"Er zijn verschillende pogingen ondernomen om de hulpdocumentatie te vinden, "
+"zonder resultaat.\n"
+"\n"
+"Zorg ervoor dat de toepassing correct geïnstalleerd is.\n"
+"\n"
+"De specifieke foutmelding is:\n"
+"\n"
+"%s"
+
+#: src/ghex-application-window.c:1467
+#, c-format
+#| msgid "; %s bytes from %s to %s selected"
+msgid "Offset: 0x%lX; 0x%lX bytes from 0x%lX to 0x%lX selected"
+msgstr "Verschuiving: 0x%lX; 0x%lX bytes van 0x%lX tot 0x%lX geselecteerd"
+
+#: src/ghex-application-window.c:1471
+#, c-format
+#| msgid "Offset: %s"
+msgid "Offset: 0x%lX"
+msgstr "Verschuiving: 0x%lX"
+
+#: src/ghex-application-window.c:2113
+msgid ""
+"You are attempting to open a file 1GB or larger.\n"
+"\n"
+"This can make GHex and your machine unstable as the file will be loaded into "
+"memory.\n"
+"\n"
+"Are you sure you want to proceed?\n"
+"\n"
+"This message will not be shown again for the remainder of this GHex "
+"session.\n"
+"\n"
+"This limitation will be removed in a future version of GHex."
+msgstr ""
+"U probeert een bestand van 1GB of groter te openen.\n"
+"\n"
+"Doordat het bestand ingeladen wordt in het geheugen, kan dit ertoe leiden "
+"dat GHex en uw computer onstabiel worden.\n"
+"\n"
+"Weet u zeker dat u verder wilt gaan?\n"
+"\n"
+"Dit bericht zal voor de rest van deze GHex-sessie niet meer weergegeven "
+"worden.\n"
+"\n"
+"Deze beperking zal in een toekomstige versie van GHex verwijderd worden."
+
+#: src/ghex-application-window.c:2169
+msgid "There was an error reading the file."
+msgstr "Er is een fout opgetreden bij het lezen van het bestand."
+
+#: src/ghex-application-window.c:2215
+msgid ""
+"There was an error loading the requested file. The file either no longer "
+"exists, is inaccessible, or you may not have permission to access the file."
+msgstr ""
+"Er is een fout opgetreden bij het laden van het gevraagde bestand. Mogelijk "
+"bestaat het bestand niet meer, is het ontoegankelijk, of beschikt u over "
+"onvoldoende toegangsrechten om het te benaderen."
+
+#: src/ghex-notebook-tab.c:41
+msgid "Untitled document"
+msgstr "Naamloos document"
+
+#: src/hex-buffer-mmap.c:50
+msgid "The file appears to have an invalid path."
+msgstr "Het bestandspad lijkt ongeldig."
+
+#. Translators:  the first '%s' is the blurb indicating some kind of an
+#. * error has occurred (eg, 'An error has occurred', and the the 2nd '%s'
+#. * is the standard error message that will be reported from the system
+#. * (eg, 'No such file or directory').
+#.
+#: src/hex-buffer-mmap.c:173
+#, c-format
+#| msgid "Offset: %s"
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: src/hex-buffer-mmap.c:308
+#, c-format
+msgid "Could not adjust %s from %lu to %lu bytes"
+msgstr "Kon %s niet aanpassen van %lu naar %lu bytes"
+
+#: src/hex-buffer-mmap.c:357
+#, c-format
+msgid "Fatal error: Memory mapping of file (%lu bytes, fd %d) failed"
+msgstr ""
+"Kritieke fout: geheugenmappen van bestand (%lu bytes, fd %d) is mislukt"
+
+#: src/hex-buffer-mmap.c:585
+msgid "Unable to retrieve file or directory information"
+msgstr "Kan geen informatie over bestand of map verkrijgen"
+
+#: src/hex-buffer-mmap.c:594
+msgid "Unable to create file"
+msgstr "Kan bestand niet aanmaken"
+
+#: src/hex-buffer-mmap.c:604
+msgid "Not a regular file"
+msgstr "Geen gewoon bestand"
+
+#: src/hex-buffer-mmap.c:614
+msgid "Unable to open file for reading"
+msgstr "Kan bestand niet voor lezen openen"
+
+#: src/hex-buffer-mmap.c:645
+msgid "Failed to open temporary file."
+msgstr "Openen van tijdelijk bestand is mislukt."
+
+#: src/hex-buffer-mmap.c:684
+msgid "Error reading file"
+msgstr "Fout bij lezen van bestand"
+
+#: src/hex-buffer-mmap.c:700
+msgid "An error has occurred"
+msgstr "Er is een fout opgetreden"
+
+#: src/hex-dialog.c:72
+msgid "Signed 8 bit:"
+msgstr "8-bits met teken:"
+
+#: src/hex-dialog.c:73
+msgid "Unsigned 8 bit:"
+msgstr "8-bits zonder teken:"
+
+#: src/hex-dialog.c:74
+msgid "Signed 16 bit:"
+msgstr "16-bits met teken:"
+
+#: src/hex-dialog.c:75
+msgid "Unsigned 16 bit:"
+msgstr "16-bits zonder teken:"
+
+#: src/hex-dialog.c:76
+msgid "Signed 32 bit:"
+msgstr "32-bits met teken:"
+
+#: src/hex-dialog.c:77
+msgid "Unsigned 32 bit:"
+msgstr "32-bits zonder teken:"
+
+#: src/hex-dialog.c:78
+msgid "Signed 64 bit:"
+msgstr "64-bits met teken:"
+
+#: src/hex-dialog.c:79
+msgid "Unsigned 64 bit:"
+msgstr "64-bits zonder teken:"
+
+#: src/hex-dialog.c:80
+msgid "Float 32 bit:"
+msgstr "32-bits met drijvende komma:"
+
+#: src/hex-dialog.c:81
+msgid "Float 64 bit:"
+msgstr "64-bits met drijvende komma:"
+
+#: src/hex-dialog.c:82
+msgid "Hexadecimal:"
+msgstr "Hexadecimaal:"
+
+#: src/hex-dialog.c:83
+msgid "Octal:"
+msgstr "Octaal:"
+
+#: src/hex-dialog.c:84
+msgid "Binary:"
+msgstr "Binair:"
+
+#: src/hex-dialog.c:200
+msgid "Show little endian decoding"
+msgstr "‘Little endian’-decodering tonen"
+
+#: src/hex-dialog.c:206
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Zonder teken en drijvende komma tonen als hexadecimaal"
+
+#: src/hex-dialog.c:211
+msgid "Stream Length:"
+msgstr "Streamlengte:"
+
+#: src/hex-dialog.c:233
+msgid "FIXME: no conversion function"
+msgstr "FIXME: geen conversiefunctie"
+
+#: src/hex-document.c:978
+#, c-format
+msgid "Page"
+msgstr "Pagina"
+
+#: src/hex-document.c:984 src/hex-document.c:1087
+#, c-format
+msgid "Hex dump generated by"
+msgstr "Hexdump gegenereerd door"
+
+#: src/hex-document.c:1010
+#, c-format
+msgid "Previous page"
+msgstr "Vorige pagina"
+
+#: src/hex-document.c:1025
+#, c-format
+msgid "Next page"
+msgstr "Volgende pagina"
+
+#: src/main.c:44
+msgid "Show the application version"
+msgstr "De toepassingsversie tonen"
+
+#: src/main.c:105
+#, c-format
+msgid "This is GHex, version %s\n"
+msgstr "Dit is GHex, versie %s\n"
+
+#: src/main.c:168
+msgid "GHex - A hex editor for the GNOME desktop"
+msgstr "GHex - een hexbewerker voor de GNOME-werkomgeving"
+
+#: src/paste-special.c:220
+#, c-format
+msgid ""
+"Paste failed; invalid hex format.\n"
+"\n"
+"The string must be in the format of space-delineated hex byte pairs.\n"
+"\n"
+"For example: \"FF 3D 99 0A\""
+msgstr ""
+"Kopiëren mislukt, ongeldig hexformaat.\n"
+"\n"
+"De tekenreeks moet opgesteld zijn volgens het formaat van hexadecimale paren "
+"gescheiden door spaties.\n"
+"\n"
+"Bijvoorbeeld: ‘FF 3D 99 0A’"
+
+#: src/paste-special.c:310
+msgid "GHex Paste Data"
+msgstr "GHex-klembordgegevens"
+
+#: src/paste-special.c:405
+msgid "_Copy"
+msgstr "_Kopiëren"
+
+#: src/paste-special.c:407
+msgid "Copy Special"
+msgstr "Speciaal kopiëren"
+
+#: src/paste-special.c:512
+msgid "Plain text (as ASCII)"
+msgstr "Platte tekst (als ASCII)"
+
+#: src/paste-special.c:516
+msgid "Plain text (as space-delimited hex pairs)"
+msgstr "Platte tekst (als hexadecimale paren gescheiden door spaties)"
+
+#: src/paste-special.c:533
+msgid "Plain text (Unicode)"
+msgstr "Platte tekst (Unicode)"
+
+#. paste_special_dialog
+#: src/paste-special.ui:28
+msgid "Paste Special"
+msgstr "Speciaal plakken"
+
+#: src/paste-special.ui:49
+msgid "_Paste"
+msgstr "_Plakken"
+
+#: src/paste-special.ui:55
+msgid "_Cancel"
+msgstr "_Annuleren"
+
+#. prefs_dialog
+#: src/preferences.ui:29
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: src/preferences.ui:52
+msgid "Display"
+msgstr "Weergave"
+
+#: src/preferences.ui:63
+msgid "Font"
+msgstr "Lettertype"
+
+#: src/preferences.ui:83
+msgid "Dark Mode"
+msgstr "Donkere modus"
+
+#: src/preferences.ui:93
+msgid "Use system default"
+msgstr "Systeemstandaard gebruiken"
+
+#: src/preferences.ui:102
+msgid "Hex Group Type"
+msgstr "Hexadecimaal groeptype"
+
+#: src/preferences.ui:108
+msgid "Bytes (8-bit)"
+msgstr "Bytes (8-bits)"
+
+#: src/preferences.ui:114
+msgid "Words (16-bit)"
+msgstr "Woorden (16-bits)"
+
+#: src/preferences.ui:120
+msgid "Longwords (32-bit)"
+msgstr "Longwords (32-bits)"
+
+#: src/preferences.ui:126
+msgid "Quadwords (64-bit)"
+msgstr "Quadwords (64-bits)"
+
+#: src/preferences.ui:138
+msgid "Show offsets column"
+msgstr "Verschuivingskolom weergeven"
+
+#: src/preferences.ui:149
+msgid "Printing"
+msgstr "Afdrukken"
+
+#: src/preferences.ui:159
+msgid "Fonts"
+msgstr "Lettertypen"
+
+#: src/preferences.ui:172
+msgid "Data font:"
+msgstr "Lettertype voor gegevens:"
+
+#: src/preferences.ui:182
+msgid "Header font:"
+msgstr "Lettertype voor kop:"
+
+#: src/preferences.ui:221
+msgid "Print alternating shaded rows"
+msgstr "Alternerende rijkleuren afdrukken"
+
+#: src/preferences.ui:233
+msgid "Span across lines:"
+msgstr "Regels overspannen:"
+
+#: src/preferences.ui:255
+msgid "_Help"
+msgstr "_Hulp"
+
+#: src/print.c:50
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Pagina: %i/%i"
+
+#~ msgid "GNOME Hexadecimal Editor"
+#~ msgstr "GNOME Hexadecimale Editor"
+
+#~ msgid "Get cursor value"
+#~ msgstr "Vraag cursorwaarde"
+
+#~ msgid "Find Data"
+#~ msgstr "Data Zoeken"
+
+#~ msgid "Find Next"
+#~ msgstr "Volgende Zoeken"
+
+#~ msgid "Find previous"
+#~ msgstr "Vorige zoeken"
+
+#, c-format
+#~ msgid "GHex (%s): Find Data: Add search"
+#~ msgstr "GHex (%s):  Data zoeken: Zoekopdracht toevoegen"
+
+#~ msgid "Add"
+#~ msgstr "Toevoegen"
+
+#~ msgid "Search String"
+#~ msgstr "Zoektekst"
+
+#~ msgid "Highlight Colour"
+#~ msgstr "Oplichtkleur"
+
+#~ msgid "_Add New"
+#~ msgstr "Nieuwe _toevoegen"
+
+#~ msgid "_Remove Selected"
+#~ msgstr "_Geselecteerde verwijderen"
+
+#~ msgid "Closes advanced find window"
+#~ msgstr "Sluit het geavanceerde zoekvenster"
+
+#, c-format
+#~ msgid "GHex (%s): Find & Replace Data"
+#~ msgstr "GHex (%s): Data Zoeken & Vervangen"
+
+#~ msgid "Find _next"
+#~ msgstr "Vo_lgende zoeken"
+
+#~ msgid "Replace Data"
+#~ msgstr "Data Vervangen"
+
+#~ msgid "Find next"
+#~ msgstr "Volgende zoeken"
+
+#~ msgid "Replace"
+#~ msgstr "Vervangen"
+
+#~ msgid "Replace All"
+#~ msgstr "Alles Vervangen"
+
+#~ msgid "Closes find and replace data window"
+#~ msgstr "Sluit het zoeken en vervangen venster"
+
+#, c-format
+#~ msgid "GHex (%s): Jump To Byte"
+#~ msgstr "GHex (%s): Naar Byte Springen"
+
+#~ msgid "Enter the byte to jump to"
+#~ msgstr "Voer de byte in om naar te springen"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "There is no active document to search!"
+#~ msgstr "Er is geen actief document om te doorzoeken!"
+
+#~ msgid "There is no string to search for!"
+#~ msgstr "Er is geen tekenreeks om naar te zoeken!"
+
+#~ msgid "End Of File reached"
+#~ msgstr "Einde van bestand bereikt"
+
+#~ msgid "Beginning Of File reached"
+#~ msgstr "Begin van bestand bereikt"
+
+#~ msgid "There is no active document to move the cursor in!"
+#~ msgstr "Er is geen actief document om de cursor in te verplaatsen!"
+
+#~ msgid "There is no active buffer to replace data in!"
+#~ msgstr "Er is geen actieve buffer om data in te vervangen!"
+
+#~ msgid "End Of File reached!"
+#~ msgstr "Einde Van Bestand bereikt!"
+
+#~ msgid "There is no active document to replace data in!"
+#~ msgstr "Er is geen actief document om data in te vervangen!"
+
+# overeenkomsten/resultaten
+#, c-format
+#~ msgid "Replaced %d occurrences."
+#~ msgstr "%d overeenkomsten vervangen."
+
+#~ msgid "No string to search for!"
+#~ msgstr "Er is geen tekenreeks om naar te zoeken!"
+
+#~ msgid "About this application"
+#~ msgstr "Info over deze toepassing"
+
+#~ msgid "Add View"
+#~ msgstr "Weergave Toevoegen"
+
+#~ msgid "Add a new view to the buffer"
+#~ msgstr "Voeg een nieuwe weergave aan de buffer toe"
+
+#~ msgid "Advanced Find"
+#~ msgstr "Geavanceerd zoeken"
+
+#~ msgid "Bytes"
+#~ msgstr "Bytes"
+
+#~ msgid "C_ut"
+#~ msgstr "K_nippen"
+
+#~ msgid "Character Table..."
+#~ msgstr "Karaktertabel..."
+
+#~ msgid "Character _Table..."
+#~ msgstr "Karakter_tabel..."
+
+#~ msgid "Close the current file"
+#~ msgstr "Het huidige bestand sluiten"
+
+#~ msgid "Contents"
+#~ msgstr "Inhoud"
+
+#~ msgid "Converter..."
+#~ msgstr "Omzetter..."
+
+#~ msgid "Copy"
+#~ msgstr "Kopiëren"
+
+#~ msgid "Copy selection to clipboard"
+#~ msgstr "Selectie naar het klembord kopiëren"
+
+#~ msgid "Cut"
+#~ msgstr "Knippen"
+
+#~ msgid "Cut selection"
+#~ msgstr "Selectie knippen"
+
+#~ msgid "E_xit"
+#~ msgstr "_Afsluiten"
+
+#~ msgid "Exit"
+#~ msgstr "Afsluiten"
+
+#~ msgid "Exit the program"
+#~ msgstr "Programma afsluiten"
+
+#~ msgid "Export data to HTML source"
+#~ msgstr "Data naar HTML bron exporteren"
+
+#~ msgid "Export to HTML..."
+#~ msgstr "Naar HTML exporteren..."
+
+#~ msgid "Find"
+#~ msgstr "Zoeken"
+
+#~ msgid "Goto Byte"
+#~ msgstr "Ga naar Byte..."
+
+#~ msgid "Group data by 16 bits"
+#~ msgstr "Data per 16 bits groeperen"
+
+#~ msgid "Group data by 32 bits"
+#~ msgstr "Data per 32 bits groeperen"
+
+#~ msgid "Group data by 8 bits"
+#~ msgstr "Data per 8 bits groeperen"
+
+#~ msgid "Help Chat"
+#~ msgstr "Hulp Chat"
+
+#~ msgid "Help on this application"
+#~ msgstr "Hulp bij dit programma."
+
+#~ msgid "Insert/overwrite data"
+#~ msgstr "Insert/overschrijf data "
+
+#~ msgid "Jump to a certain position"
+#~ msgstr "Spring naar een zekere positie"
+
+#~ msgid "Open"
+#~ msgstr "Openen"
+
+#~ msgid "Open a file"
+#~ msgstr "Bestand openen"
+
+#~ msgid "Open base conversion dialog"
+#~ msgstr "Basisomzet-dialoogvenster openen"
+
+#~ msgid "Paste"
+#~ msgstr "Plakken"
+
+#~ msgid "Paste data from clipboard"
+#~ msgstr "Data van het klembord plakken"
+
+#~ msgid "Preview printed data"
+#~ msgstr "Voorbeeld afgedrukte data"
+
+#~ msgid "Print"
+#~ msgstr "Afdrukken"
+
+#~ msgid "Print Previe_w..."
+#~ msgstr "Afdruk_voorbeeld..."
+
+#~ msgid "Print Preview..."
+#~ msgstr "Afdrukvoorbeeld..."
+
+#~ msgid "Print the current file"
+#~ msgstr "Het huidige bestand afdrukken"
+
+#~ msgid "Redo"
+#~ msgstr "Opnieuw"
+
+#~ msgid "Redo the undone action"
+#~ msgstr "De ongedaan gemaakte actie opnieuw uitvoeren"
+
+#~ msgid "Remove View"
+#~ msgstr "Weergave Verwijderen"
+
+#~ msgid "Remove the current view of the buffer"
+#~ msgstr "De gebruikte weergave uit de buffer verwijderen"
+
+#~ msgid "Replace a string"
+#~ msgstr "Een string vervangen"
+
+#~ msgid "Revert"
+#~ msgstr "Terugdraaien"
+
+#~ msgid "Revert to a saved version of the file"
+#~ msgstr "Terugkeren naar een bewaarde versie van het bestand"
+
+#~ msgid "Save"
+#~ msgstr "Opslaan"
+
+#~ msgid "Save As _HTML..."
+#~ msgstr "Opslaan As _HTML...."
+
+#~ msgid "Save _As..."
+#~ msgstr "Opslaan _als..."
+
+#~ msgid "Save the current file with a different name"
+#~ msgstr "Het huidige bestand opslaan onder een andere naam"
+
+#~ msgid "Search for a string"
+#~ msgstr "Naar een tekenreeks zoeken"
+
+#~ msgid "Show the character table"
+#~ msgstr "Karaktertabel tonen"
+
+#~ msgid "Show the type conversion dialog in the edit window"
+#~ msgstr "Het typeomzet-dialoogvenster tonen in het edit-venster"
+
+#~ msgid "Type Conversion Dialog..."
+#~ msgstr "Typeomzet-dialoogvenster..."
+
+#~ msgid "Type Conversion _Dialog"
+#~ msgstr "Typeomzet-_dialoogvenster"
+
+#~ msgid "Undo"
+#~ msgstr "Ongedaan maken"
+
+#~ msgid "Undo the last action"
+#~ msgstr "Laatste bewerking ongedaan maken"
+
+#~ msgid "Words"
+#~ msgstr "Woorden"
+
+#~ msgid "_Add View"
+#~ msgstr "Weergave _Toevoegen"
+
+#~ msgid "_Advanced Find"
+#~ msgstr "_Geavanceerd zoeken"
+
+#~ msgid "_Base Converter"
+#~ msgstr "_Basisomzetter"
+
+#~ msgid "_Bytes"
+#~ msgstr "_Bytes"
+
+#~ msgid "_Contents"
+#~ msgstr "_Inhoud"
+
+#~ msgid "_Edit"
+#~ msgstr "Be_werken"
+
+#~ msgid "_File"
+#~ msgstr "_Bestand"
+
+#~ msgid "_Find"
+#~ msgstr "_Zoeken"
+
+#~ msgid "_Goto Byte..."
+#~ msgstr "_Ga naar Byte..."
+
+#~ msgid "_Group Data As"
+#~ msgstr "Data _Groeperen Als"
+
+#~ msgid "_Longwords"
+#~ msgstr "_Longwords"
+
+#~ msgid "_Open..."
+#~ msgstr "_Openen..."
+
+#~ msgid "_Preferences"
+#~ msgstr "_Voorkeuren"
+
+#~ msgid "_Print"
+#~ msgstr "Af_drukken"
+
+#~ msgid "_Redo"
+#~ msgstr "O_pnieuw"
+
+#~ msgid "_Remove View"
+#~ msgstr "Weergave Ve_rwijderen"
+
+#~ msgid "_Save"
+#~ msgstr "Op_slaan"
+
+#~ msgid "_Undo"
+#~ msgstr "_Ongedaan maken"
+
+#~ msgid "_View"
+#~ msgstr "Beel_d"
+
+#~ msgid "_Windows"
+#~ msgstr "_Vensters"
+
+#~ msgid "_Words"
+#~ msgstr "_Woorden"
+
+#, c-format
+#~ msgid ""
+#~ "Can not open URI:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Kan URI niet openen:\n"
+#~ "%s"
+
+#, c-format
+#~ msgid ""
+#~ "Can not open file:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Kan bestand niet openen:\n"
+#~ "%s"
+
+#, c-format
+#~ msgid "Activate file %s"
+#~ msgstr "Bestand %s activeren"
+
+#, c-format
+#~ msgid "%s - GHex"
+#~ msgstr "%s - GHex"
+
+#, c-format
+#~ msgid ""
+#~ "File %s exists.\n"
+#~ "Do you want to overwrite it?"
+#~ msgstr ""
+#~ "Bestand %s bestaad reeds.\n"
+#~ "Wilt u het overschrijven?"
+
+#, c-format
+#~ msgid "Saved buffer to file %s"
+#~ msgstr "Buffer naar bestand %s geschreven"
+
+#, c-format
+#~ msgid ""
+#~ "File %s has changed since last save.\n"
+#~ "Do you want to save changes?"
+#~ msgstr ""
+#~ "Bestand %s is veranderd sinds laatste opgeslagen versie.\n"
+#~ "Wilt u de veranderingen bewaren?"
+
+#~ msgid "Do_n't save"
+#~ msgstr "_Niet opslaan."
+
+#~ msgid "You don't have the permissions to save the file!"
+#~ msgstr "U heeft de toestemming niet om het bestand op te slaan!"
+
+#~ msgid "_Insert a new preview phrase."
+#~ msgstr "Een _nieuwe voorbeeldfrase invoegen."
+
+#~ msgid "Modify preview phrase..."
+#~ msgstr "Voorbeeldfrase aanpassen..."
+
+#~ msgid "Preview"
+#~ msgstr "Afdrukvoorbeeld"
+
+#~ msgid "_Modify preview phrase..."
+#~ msgstr "_Voorbeeldfrase aanpassen..."
+
+#~ msgid "Font Selection"
+#~ msgstr "Lettertypeselectie"
+
+#~ msgid "Sans Regular 12"
+#~ msgstr "Sans Regular 12"
+
+#~ msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+#~ msgstr "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+
+#~ msgid "Pick a Font"
+#~ msgstr "Lettertype kiezen"
+
+#~ msgid "The title of the selection dialog box"
+#~ msgstr "De titel van de selectie-dialoog"
+
+#~ msgid "Font name"
+#~ msgstr "Lettertypenaam"
+
+#~ msgid "Name of the selected font"
+#~ msgstr "Naam van het geselecteerde lettertype"
+
+#~ msgid "Preview text"
+#~ msgstr "Afdrukvoorbeeld tekst"
+
+#~ msgid "Preview text shown in the dialog"
+#~ msgstr "Voorbeeldtekst getoont in het dialoogvenster"
+
+#~ msgid "Use font in label"
+#~ msgstr "Lettertype in label gebruiken"
+
+#~ msgid "Use font in the label in font info mode"
+#~ msgstr "Lettertype in het label gebruiken in lettertype info-modus"
+
+#~ msgid "Font size for label"
+#~ msgstr "Lettertypegrootte voor label"
+
+#~ msgid "Font size for label in font info mode"
+#~ msgstr "Lettertypegrootte voor label in lettertype info-modus"
+
+#~ msgid "Show size"
+#~ msgstr "Afmeting tonen"
+
+#~ msgid "Show size in font info mode"
+#~ msgstr "Afmeting tonen in lettertype info-modus"
+
+#~ msgid "32 bit float:"
+#~ msgstr "32 bit float:"
+
+#~ msgid "64 bit float:"
+#~ msgstr "64 bit float:"
+
+#~ msgid "Saving to HTML..."
+#~ msgstr "Opslaan As HTML..."
+
+#~ msgid "X geometry specification (see \"X\" man page)."
+#~ msgstr "X-geometrie-specificatie (zie \"X\" man pagina)"
+
+#~ msgid "GEOMETRY"
+#~ msgstr "GEOMETRIE"
+
+#~ msgid "The gnome binary editor"
+#~ msgstr "Gnome Hex editor"
+
+#~ msgid "Could not initialize Bonobo!\n"
+#~ msgstr "Kon Bonobo niet initialiseren!\n"
+
+#, c-format
+#~ msgid "Invalid geometry string \"%s\"\n"
+#~ msgstr "Ongeldige geometrie-tekenreeks \"%s\"\n"
+
+#~ msgid "GHex Preferences"
+#~ msgstr "GHex Voorkeuren"
+
+#~ msgid "_Maximum number of undo levels:"
+#~ msgstr "_Maximum aantal herstelacties:"
+
+#~ msgid "Undo levels"
+#~ msgstr "Herstelacties"
+
+#~ msgid "Select maximum number of undo levels"
+#~ msgstr "Geef maximum aantal herstelacties"
+
+#~ msgid "Show cursor offset in statusbar as:"
+#~ msgstr "Cursorverschuiving in statusbar weergeven als:"
+
+#~ msgid "Hexadecimal"
+#~ msgstr "Hexadecimaal"
+
+#~ msgid "Custom"
+#~ msgstr "Aangepast"
+
+#~ msgid "Enter the cursor offset format"
+#~ msgstr "De cursorverschuiving formatering invoeren"
+
+#~ msgid "Select the cursor offset format"
+#~ msgstr "Geef het cursorverschuivingsformaat"
+
+#~ msgid "Editing"
+#~ msgstr "Bewerken"
+
+#~ msgid "Paper size"
+#~ msgstr "Papier grootte"
+
+#~ msgid "Data font"
+#~ msgstr "Data lettertype"
+
+#~ msgid "Select the data font"
+#~ msgstr "Datalettertype selecteren"
+
+#~ msgid "Header font"
+#~ msgstr "Header lettertype"
+
+#~ msgid "Select the header font"
+#~ msgstr "Lettertype voor de kop selecteren"
+
+#~ msgid "_Print shaded box over:"
+#~ msgstr "Print geaccentueerd kader over:"
+
+#~ msgid "Box size"
+#~ msgstr "Kader-grootte"
+
+#~ msgid "Select size of box (in number of lines)"
+#~ msgstr "Opgeven grootte van kader (aantal lijnen)"
+
+#~ msgid "lines (0 for no box)"
+#~ msgstr "lijnen (0 voor geen kader)"
+
+#~ msgid "Can not open desired font!"
+#~ msgstr "Kan het gewenste lettertype niet openen!"
+
+#~ msgid ""
+#~ "The offset format string contains invalid format specifier.\n"
+#~ "Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+#~ msgstr ""
+#~ "De tekenreeks met het verschuiving-formaat bevat formaatspecificaties.\n"
+#~ "Alleen 'x', 'X', 'p', 'P', 'd' en 'o' zijn toegestaan."
+
+#, c-format
+#~ msgid ""
+#~ "GHex could not find the font \"%s\".\n"
+#~ "GHex is unable to print without this font installed."
+#~ msgstr ""
+#~ "GHex kan lettertype \"%s\" niet vinden.\n"
+#~ "GHex kan niet printen zonder dat lettertype."
+
+#~ msgid "hex data"
+#~ msgstr "hex data"
+
+#~ msgid "ASCII data"
+#~ msgstr "ASCII data"
+
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "Uitgebracht onder de voorwaarden van de GNU Public License"
+
+#, c-format
+#~ msgid "Loaded file %s"
+#~ msgstr "Bestand %s geladen"
+
+#~ msgid "Can not open file!"
+#~ msgstr "Kan bestand niet openen!"
+
+#~ msgid "Select path and file name for the HTML source"
+#~ msgstr "Kies pad en bestandsnaam om de HTML bron in op te slaan"
+
+#~ msgid "You need to specify a base name for the HTML files."
+#~ msgstr "U moet een basisnaam opgeven voor de HTML-bestanden"
+
+#~ msgid "You don't have the permission to write to the selected path.\n"
+#~ msgstr ""
+#~ "U heeft de toestemming niet om naar het opgegeven pad te schrijven\n"
+
+#~ msgid ""
+#~ "Saving to HTML will overwrite some files.\n"
+#~ "Do you want to proceed?"
+#~ msgstr ""
+#~ "Opslaan in HTML zal sommige bestanden overschrijven.\n"
+#~ "Wilt u toch doorgaan?"
+
+#, c-format
+#~ msgid "Really revert file %s?"
+#~ msgstr "Wilt u echt bestand %s terugzetten?"
+
+#, c-format
+#~ msgid "Reverted buffer from file %s"
+#~ msgstr "Buffer uit bestand %s teruggezet"
+
+#~ msgid "Printing file..."
+#~ msgstr "Bestand wordt afgedrukt..."
+
+#~ msgid "Print Hex Document"
+#~ msgstr "Hex Document Afdrukken"
+
+#~ msgid "Pages"
+#~ msgstr "Pagina's"
+
+#, c-format
+#~ msgid "GHex (%s): Print Preview"
+#~ msgstr "GHex (%s): Afdrukvoorbeeld"
+
+#~ msgid "Search for %s"
+#~ msgstr "Zoeken naar %s"
+
+#~ msgid "Replace %s"
+#~ msgstr "%s Vervangen"
+
+#~ msgid "The string is not appropriate for the selected data type!"
+#~ msgstr "De tekenreeks is niet geschikt voor het selecteerde datatype!"
+
+#~ msgid "Strings are not appropriate for the selected data type!"
+#~ msgstr "Tekenreeksen zijn niet geschikt voor het geselecteerde datatype!"
+
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "Een offset moet een positieve geheel getal zijn!"
+
+#~ msgid "GHex - %s"
+#~ msgstr "GHex - %s"

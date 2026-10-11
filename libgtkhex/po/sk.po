@@ -1,0 +1,1228 @@
+# translation of ghex.HEAD.po to Slovak
+# translation of sk.po to Slovak
+# Slovak translation of sk.po
+# GHex Slovak translation
+# Copyright (C) 2000-2002, 2003 Free Software Foundation, Inc.
+# Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2000-2002.
+# Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>, 2002.
+# Stanislav Visnovsky <visnovsky@kde.org>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ghex.HEAD\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-04-08 14:17+0000\n"
+"PO-Revision-Date: 2017-09-30 11:27+0200\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Language-Team: Slovak <sk-i18n@linux.sk>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.3\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
+#: ../src/ghex-window.c:1108
+msgid "GHex"
+msgstr "GHex"
+
+#: ../data/ghex.desktop.in.h:2
+msgid "Hex Editor"
+msgstr "Hexadecimálny editor"
+
+#: ../data/ghex.desktop.in.h:3
+msgid "Inspect and edit binary files"
+msgstr "Kontroluje a upravuje binárne súbory"
+
+#. TRANSLATORS: here, 'binary' means a binary file (not the base-2 numeric system)
+#: ../data/ghex.desktop.in.h:5
+msgid "binary;debug;"
+msgstr "binárny;binárne;ladenie;ladiace;ladiť;"
+
+#: ../src/chartable.c:147
+msgid "ASCII"
+msgstr "ASCII"
+
+#: ../src/chartable.c:147
+msgid "Hex"
+msgstr "Šestnástkové"
+
+#: ../src/chartable.c:147 ../src/preferences.c:142
+msgid "Decimal"
+msgstr "Desiatkové"
+
+#: ../src/chartable.c:148
+msgid "Octal"
+msgstr "Osmičkové"
+
+#: ../src/chartable.c:148
+msgid "Binary"
+msgstr "Dvojkové"
+
+#: ../src/chartable.c:164
+msgid "Character table"
+msgstr "Tabuľka znakov"
+
+#: ../src/converter.c:232
+msgid "Base Converter"
+msgstr "Prevádzač číselných sústav"
+
+#. entries
+#: ../src/converter.c:253
+msgid "_Binary:"
+msgstr "_Dvojkové:"
+
+#: ../src/converter.c:255
+msgid "_Octal:"
+msgstr "_Osmičkové:"
+
+#: ../src/converter.c:257
+msgid "_Decimal:"
+msgstr "_Desiatkové:"
+
+#: ../src/converter.c:259
+msgid "_Hex:"
+msgstr "_Hexadecimálne:"
+
+#: ../src/converter.c:261
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+#. get cursor button
+#: ../src/converter.c:265
+msgid "_Get cursor value"
+msgstr "Vložiť z pozície _kurzoru"
+
+#: ../src/converter.c:279
+msgid "Get cursor value"
+msgstr "Vložiť z pozície kurzoru"
+
+#: ../src/converter.c:279
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"Získa hodnotu pod kurzorom v binárnej, osmičkovej, desiatkovej šestnástkovej "
+"sústave a v ASCII"
+
+#: ../src/converter.c:419
+msgid "ERROR"
+msgstr "CHYBA"
+
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:892
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr "GHex (%s): Nájsť dáta"
+
+#: ../src/findreplace.c:101 ../src/findreplace.c:161 ../src/findreplace.c:359
+#, fuzzy
+#| msgid "Find Data"
+msgid "Find String"
+msgstr "Hľadať dáta"
+
+#: ../src/findreplace.c:108 ../src/findreplace.c:258
+msgid "Find _Next"
+msgstr "Hľadať _následujúce"
+
+#: ../src/findreplace.c:115 ../src/findreplace.c:267
+msgid "Find _Previous"
+msgstr "Hľadať _predchádzajúce"
+
+#: ../src/findreplace.c:138 ../src/findreplace.c:413
+msgid "Find Data"
+msgstr "Hľadať dáta"
+
+#: ../src/findreplace.c:138 ../src/findreplace.c:413
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Zadajte hexadecimálne alebo ASCII dáta, ktoré chcete nájsť"
+
+#: ../src/findreplace.c:139
+msgid "Find Next"
+msgstr "Hľadať následujúce"
+
+#: ../src/findreplace.c:139 ../src/findreplace.c:415
+msgid "Finds the next occurrence of the search string"
+msgstr "Nájde nasledujúci výskyt hľadaného reťazca"
+
+#: ../src/findreplace.c:140
+msgid "Find previous"
+msgstr "Hľadať predchádzajúce"
+
+#: ../src/findreplace.c:140
+msgid "Finds the previous occurrence of the search string "
+msgstr "Nájde predchádzajúci výskyt hľadaného reťazca"
+
+#: ../src/findreplace.c:141 ../src/findreplace.c:418 ../src/findreplace.c:469
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: ../src/findreplace.c:141
+msgid "Closes find data window"
+msgstr "Zavrie okno pre hľadanie dát"
+
+#: ../src/findreplace.c:157
+#, fuzzy, c-format
+#| msgid "GHex (%s): Find Data"
+msgid "GHex (%s): Find Data: Add search"
+msgstr "GHex (%s): Nájsť dáta"
+
+#: ../src/findreplace.c:179
+msgid "Add"
+msgstr ""
+
+#: ../src/findreplace.c:235
+#, fuzzy
+#| msgid "Search for a string"
+msgid "Search String"
+msgstr "Hľadanie reťazca"
+
+#: ../src/findreplace.c:243
+msgid "Highlight Colour"
+msgstr ""
+
+#: ../src/findreplace.c:280
+#, fuzzy
+#| msgid "_Add View"
+msgid "_Add New"
+msgstr "_Pridať pohľad"
+
+#: ../src/findreplace.c:289
+#, fuzzy
+#| msgid "_Remove View"
+msgid "_Remove Selected"
+msgstr "_Odstrániť pohľad"
+
+#: ../src/findreplace.c:309
+msgid "Close"
+msgstr "Zavrieť"
+
+#: ../src/findreplace.c:309
+#, fuzzy
+#| msgid "Closes find data window"
+msgid "Closes advanced find window"
+msgstr "Zavrie okno pre hľadanie dát"
+
+#: ../src/findreplace.c:355 ../src/ui.c:890
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "GHex (%s): Nájsť & Nahradiť dáta"
+
+#: ../src/findreplace.c:368
+#, fuzzy
+#| msgid "Replace Data"
+msgid "Replace With"
+msgstr "Nahradiť dáta"
+
+#: ../src/findreplace.c:375
+msgid "Find _next"
+msgstr "Hľadať _následujúce"
+
+#: ../src/findreplace.c:383
+msgid "_Replace"
+msgstr "Na_hradiť"
+
+#: ../src/findreplace.c:391
+msgid "Replace _All"
+msgstr "Nahradiť _všetky"
+
+#: ../src/findreplace.c:414
+msgid "Replace Data"
+msgstr "Nahradiť dáta"
+
+#: ../src/findreplace.c:414
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Zadajte hexadecimálne alebo ASCII dáta, ktorými chcete nahradiť"
+
+#: ../src/findreplace.c:415
+msgid "Find next"
+msgstr "Hľadať následujúce"
+
+#: ../src/findreplace.c:416
+msgid "Replace"
+msgstr "Nahradiť"
+
+#: ../src/findreplace.c:416
+msgid "Replaces the search string with the replace string"
+msgstr "Nahradí hľadaný reťazec iným zadaným reťazcom"
+
+#: ../src/findreplace.c:417
+msgid "Replace All"
+msgstr "Nahradiť všetky"
+
+#: ../src/findreplace.c:417
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Nahradí všetky výskyty hľadaného reťazca iným zadaným reťazcom"
+
+#: ../src/findreplace.c:418
+msgid "Closes find and replace data window"
+msgstr "Zavrie okno pre hľadanie a náhradu dát"
+
+#: ../src/findreplace.c:434 ../src/ui.c:888
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr "GHex (%s): Prejsť na bajt"
+
+#: ../src/findreplace.c:467
+msgid "Jump to byte"
+msgstr "Prejsť na bajt"
+
+#: ../src/findreplace.c:467
+msgid "Enter the byte to jump to"
+msgstr "Zadajte bajt, na ktorý chcete prejsť"
+
+#: ../src/findreplace.c:468
+msgid "OK"
+msgstr "OK"
+
+#: ../src/findreplace.c:468
+msgid "Jumps to the specified byte"
+msgstr "Prejde na zadaný bajt"
+
+#: ../src/findreplace.c:469
+msgid "Closes jump to byte window"
+msgstr "Zavrie okno pre prechod na daný bajt"
+
+#: ../src/findreplace.c:532 ../src/findreplace.c:566 ../src/findreplace.c:673
+msgid "There is no active document to search!"
+msgstr "Nie je žiadny aktívny dokument pre hľadanie!"
+
+#: ../src/findreplace.c:539 ../src/findreplace.c:573 ../src/findreplace.c:680
+#: ../src/findreplace.c:714 ../src/findreplace.c:759
+#, fuzzy
+#| msgid "There seems to be no string to search for!"
+msgid "There is no string to search for!"
+msgstr "Vyzerá to, že nie je čo hľadať."
+
+#: ../src/findreplace.c:551 ../src/findreplace.c:689 ../src/findreplace.c:879
+msgid "End Of File reached"
+msgstr "Dosiahnutý koniec súboru"
+
+#: ../src/findreplace.c:552 ../src/findreplace.c:585 ../src/findreplace.c:688
+#: ../src/findreplace.c:880 ../src/findreplace.c:903
+msgid "String was not found!\n"
+msgstr "Reťazec nenájdený.\n"
+
+#: ../src/findreplace.c:584 ../src/findreplace.c:902
+msgid "Beginning Of File reached"
+msgstr "Dosiahnutý začiatok súboru"
+
+#: ../src/findreplace.c:601
+msgid "There is no active document to move the cursor in!"
+msgstr "Nie je žiadny aktívny dokument pre presun!"
+
+#: ../src/findreplace.c:619
+msgid "No offset has been specified!"
+msgstr "Neuvedený posun!"
+
+#: ../src/findreplace.c:644
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr ""
+
+#: ../src/findreplace.c:652
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "Nie je možné umiestniť kurzor za koniec súboru!"
+
+#: ../src/findreplace.c:659
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+
+#: ../src/findreplace.c:705
+msgid "There is no active buffer to replace data in!"
+msgstr "Nie je žiadny aktívny bufer pre nahradzovanie."
+
+#: ../src/findreplace.c:730 ../src/findreplace.c:731
+msgid "End Of File reached!"
+msgstr "Dosiahnutý koniec súboru!"
+
+#: ../src/findreplace.c:750
+msgid "There is no active document to replace data in!"
+msgstr "Nie je žiadny aktívny dokument pre nahradzovanie!"
+
+#: ../src/findreplace.c:780
+#, fuzzy
+#| msgid "No occurences were found."
+msgid "No occurrences were found."
+msgstr "Nič nenájdené."
+
+#: ../src/findreplace.c:783
+#, fuzzy, c-format
+#| msgid "Replaced %d occurencies."
+msgid "Replaced %d occurrence."
+msgid_plural "Replaced %d occurrences."
+msgstr[0] "%d nahradení."
+msgstr[1] "%d nahradení."
+msgstr[2] ""
+
+#: ../src/findreplace.c:823
+#, fuzzy
+#| msgid "There seems to be no string to search for!"
+msgid "No string to search for!"
+msgstr "Vyzerá to, že nie je čo hľadať."
+
+#: ../src/ghex-window.c:90
+#, fuzzy, c-format
+#| msgid "Can not open file!"
+msgid ""
+"Can not open URI:\n"
+"%s"
+msgstr "Nie je možné otvoriť súbor!"
+
+#: ../src/ghex-window.c:111
+#, fuzzy, c-format
+#| msgid "Can not open file!"
+msgid ""
+"Can not open file:\n"
+"%s"
+msgstr "Nie je možné otvoriť súbor!"
+
+#: ../src/ghex-window.c:340
+msgid "_File"
+msgstr "_Súbor"
+
+#: ../src/ghex-window.c:341
+msgid "_Edit"
+msgstr "_Upraviť"
+
+#: ../src/ghex-window.c:342
+msgid "_View"
+msgstr "_Zobraziť"
+
+#: ../src/ghex-window.c:343
+msgid "_Group Data As"
+msgstr "_Zoskupiť dáta"
+
+#. View submenu
+#: ../src/ghex-window.c:344
+msgid "_Windows"
+msgstr "_Okná"
+
+#: ../src/ghex-window.c:345
+msgid "_Help"
+msgstr "_Pomocník"
+
+#. File menu
+#: ../src/ghex-window.c:348
+msgid "_Open..."
+msgstr "_Otvoriť..."
+
+#: ../src/ghex-window.c:349
+msgid "Open a file"
+msgstr "Otvorí súbor"
+
+#: ../src/ghex-window.c:351
+msgid "_Save"
+msgstr "_Uložiť"
+
+#: ../src/ghex-window.c:352
+msgid "Save the current file"
+msgstr "Uloží aktuálny súbor"
+
+#: ../src/ghex-window.c:354
+msgid "Save _As..."
+msgstr "Uložiť _ako..."
+
+#: ../src/ghex-window.c:355
+msgid "Save the current file with a different name"
+msgstr "Uloží aktuálny súbor pod iným menom"
+
+#: ../src/ghex-window.c:357
+msgid "Save As _HTML..."
+msgstr "Uložiť ako _HTML..."
+
+#: ../src/ghex-window.c:358
+msgid "Export data to HTML source"
+msgstr "Exportuje dáta do HTML"
+
+#: ../src/ghex-window.c:360
+msgid "_Revert"
+msgstr "_Vrátiť"
+
+#: ../src/ghex-window.c:361
+msgid "Revert to a saved version of the file"
+msgstr "Vráti sa k uloženej verzii súboru"
+
+#: ../src/ghex-window.c:363
+msgid "_Print"
+msgstr "_Tlačiť"
+
+#: ../src/ghex-window.c:364
+msgid "Print the current file"
+msgstr "Vytlačí aktuálny súbor"
+
+#: ../src/ghex-window.c:366
+msgid "Print Previe_w..."
+msgstr "_Náhľad pred tlačou..."
+
+#: ../src/ghex-window.c:367
+msgid "Preview printed data"
+msgstr "Ukáže tlačené dáta"
+
+#: ../src/ghex-window.c:369
+msgid "_Close"
+msgstr "Za_vrieť"
+
+#: ../src/ghex-window.c:370
+msgid "Close the current file"
+msgstr "Zavrie aktuálny súbor"
+
+#: ../src/ghex-window.c:372
+msgid "E_xit"
+msgstr "_Koniec"
+
+#: ../src/ghex-window.c:373
+msgid "Exit the program"
+msgstr "Ukončí program"
+
+#. Edit menu
+#: ../src/ghex-window.c:377
+msgid "_Undo"
+msgstr "_Vrátiť späť"
+
+#: ../src/ghex-window.c:378
+msgid "Undo the last action"
+msgstr "Vráti späť poslednú akciu"
+
+#: ../src/ghex-window.c:380
+msgid "_Redo"
+msgstr "_Opakovať vrátené"
+
+#: ../src/ghex-window.c:381
+msgid "Redo the undone action"
+msgstr "Zopakuje poslednú vrátenú akciu"
+
+#: ../src/ghex-window.c:383
+msgid "_Copy"
+msgstr "_Kopírovať"
+
+#: ../src/ghex-window.c:384
+msgid "Copy selection to clipboard"
+msgstr "Kopírovať výber do schránky"
+
+#: ../src/ghex-window.c:386
+msgid "Cu_t"
+msgstr ""
+
+#: ../src/ghex-window.c:387
+msgid "Cut selection"
+msgstr "Vystrihnúť výber"
+
+#: ../src/ghex-window.c:389
+msgid "Pa_ste"
+msgstr ""
+
+#: ../src/ghex-window.c:390
+msgid "Paste data from clipboard"
+msgstr "Vložiť dáta zo schránky"
+
+#: ../src/ghex-window.c:392
+msgid "_Find"
+msgstr "_Nájsť"
+
+#: ../src/ghex-window.c:393
+msgid "Search for a string"
+msgstr "Hľadanie reťazca"
+
+#: ../src/ghex-window.c:395
+msgid "_Advanced Find"
+msgstr ""
+
+#: ../src/ghex-window.c:396
+msgid "Advanced Find"
+msgstr ""
+
+#: ../src/ghex-window.c:398
+#, fuzzy
+#| msgid "Replace"
+msgid "R_eplace"
+msgstr "Nahradiť"
+
+#: ../src/ghex-window.c:399
+msgid "Replace a string"
+msgstr "Nahradiť reťazec"
+
+#: ../src/ghex-window.c:401
+msgid "_Goto Byte..."
+msgstr "_Prejsť na bajt..."
+
+#: ../src/ghex-window.c:402
+msgid "Jump to a certain position"
+msgstr "Prejsť na danú pozíciu"
+
+#: ../src/ghex-window.c:404
+msgid "_Preferences"
+msgstr "Nas_tavenie"
+
+#: ../src/ghex-window.c:405
+msgid "Configure the application"
+msgstr "Nastaví aplikáciu"
+
+#. View menu
+#: ../src/ghex-window.c:409
+msgid "_Add View"
+msgstr "_Pridať pohľad"
+
+#: ../src/ghex-window.c:410
+msgid "Add a new view to the buffer"
+msgstr "Pridá nový pohľad na bufer"
+
+#: ../src/ghex-window.c:412
+msgid "_Remove View"
+msgstr "_Odstrániť pohľad"
+
+#: ../src/ghex-window.c:413
+msgid "Remove the current view of the buffer"
+msgstr "Odstáni aktuálny pohľad na bufer"
+
+#. Help menu
+#: ../src/ghex-window.c:417
+msgid "_Contents"
+msgstr "O_bsah"
+
+#: ../src/ghex-window.c:418
+msgid "Help on this application"
+msgstr "Pomocník pre túto aplikáciu"
+
+#: ../src/ghex-window.c:420
+msgid "_About"
+msgstr "_O programe"
+
+#: ../src/ghex-window.c:421
+msgid "About this application"
+msgstr "O tejto aplikácii"
+
+#. Edit menu
+#: ../src/ghex-window.c:428
+msgid "_Insert Mode"
+msgstr "_Vkladanie"
+
+#: ../src/ghex-window.c:429
+msgid "Insert/overwrite data"
+msgstr "Vkladanie/Prepisovanie dát"
+
+#. Windows menu
+#: ../src/ghex-window.c:433
+#, fuzzy
+#| msgid "Character _Table..."
+msgid "Character _Table"
+msgstr "_Tabuľka znakov..."
+
+#: ../src/ghex-window.c:434
+msgid "Show the character table"
+msgstr "Zobrazí tabuľku znakov"
+
+#: ../src/ghex-window.c:436
+msgid "_Base Converter"
+msgstr "_Prevádzač číselných sústav"
+
+#: ../src/ghex-window.c:437
+msgid "Open base conversion dialog"
+msgstr "Otvorí dialóg pre prevod medzi sústavami"
+
+#: ../src/ghex-window.c:439
+#, fuzzy
+#| msgid "Open base conversion dialog"
+msgid "Type Conversion _Dialog"
+msgstr "Otvorí dialóg pre prevod medzi sústavami"
+
+#: ../src/ghex-window.c:440
+msgid "Show the type conversion dialog in the edit window"
+msgstr ""
+
+#: ../src/ghex-window.c:446 ../src/ui.c:48
+msgid "_Bytes"
+msgstr "_Bajt"
+
+#: ../src/ghex-window.c:447
+msgid "Group data by 8 bits"
+msgstr "Zoskupiť dáta po 8 bitoch"
+
+#: ../src/ghex-window.c:448 ../src/ui.c:49
+msgid "_Words"
+msgstr "_Word"
+
+#: ../src/ghex-window.c:449
+msgid "Group data by 16 bits"
+msgstr "Zoskupiť dáta po 16 bitoch"
+
+#: ../src/ghex-window.c:450 ../src/ui.c:50
+msgid "_Longwords"
+msgstr "_LongWord"
+
+#: ../src/ghex-window.c:451
+msgid "Group data by 32 bits"
+msgstr "Zoskupiť dáta po 32 bitoch"
+
+#: ../src/ghex-window.c:789
+#, c-format
+msgid "Offset: %s"
+msgstr "Posun: %s"
+
+#: ../src/ghex-window.c:792
+#, c-format
+msgid "; %s bytes from %s to %s selected"
+msgstr ""
+
+#: ../src/ghex-window.c:1068
+#, c-format
+msgid "Activate file %s"
+msgstr "Aktivovať súbor %s"
+
+#: ../src/ghex-window.c:1104
+#, fuzzy, c-format
+#| msgid "GHex"
+msgid "%s - GHex"
+msgstr "GHex"
+
+#: ../src/ghex-window.c:1226
+msgid "Select a file to save buffer as"
+msgstr "Vyberte súbor pre uloženie buferu"
+
+#: ../src/ghex-window.c:1258
+#, c-format
+msgid ""
+"File %s exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"Súbor %s existuje.\n"
+"Chcete ho prepísať?"
+
+#: ../src/ghex-window.c:1284 ../src/ui.c:310
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "Bufer uložený do súboru %s"
+
+#: ../src/ghex-window.c:1291
+msgid "Error saving file!"
+msgstr "Chyba pri ukladaní súboru!"
+
+#: ../src/ghex-window.c:1297
+msgid "Can't open file for writing!"
+msgstr "Nie je možné otvoriť súbor pre zápis!"
+
+#: ../src/ghex-window.c:1342
+#, c-format
+msgid ""
+"File %s has changed since last save.\n"
+"Do you want to save changes?"
+msgstr ""
+"Súbor %s bol od posledného uloženia zmenený.\n"
+"Chcete zmenu uložiť?"
+
+#: ../src/ghex-window.c:1346
+msgid "Do_n't save"
+msgstr "_Neukladať"
+
+#: ../src/ghex-window.c:1366 ../src/ui.c:298
+msgid "You don't have the permissions to save the file!"
+msgstr "Nemáte práva pre zápis do súboru."
+
+#: ../src/ghex-window.c:1370 ../src/ui.c:303
+#, fuzzy
+#| msgid "An error occured while saving file!"
+msgid "An error occurred while saving file!"
+msgstr "Chyba pri ukladaní súboru!"
+
+#: ../src/hex-dialog.c:61
+msgid "Signed 8 bit:"
+msgstr ""
+
+#: ../src/hex-dialog.c:62
+msgid "Unsigned 8 bit:"
+msgstr ""
+
+#: ../src/hex-dialog.c:63
+msgid "Signed 16 bit:"
+msgstr ""
+
+#: ../src/hex-dialog.c:64
+msgid "Unsigned 16 bit:"
+msgstr ""
+
+#: ../src/hex-dialog.c:65
+msgid "Signed 32 bit:"
+msgstr ""
+
+#: ../src/hex-dialog.c:66
+msgid "Unsigned 32 bit:"
+msgstr ""
+
+#: ../src/hex-dialog.c:67
+msgid "Signed 64 bit:"
+msgstr ""
+
+#: ../src/hex-dialog.c:68
+msgid "Unsigned 64 bit:"
+msgstr ""
+
+#: ../src/hex-dialog.c:69
+msgid "Float 32 bit:"
+msgstr ""
+
+#: ../src/hex-dialog.c:70
+msgid "Float 64 bit:"
+msgstr ""
+
+#: ../src/hex-dialog.c:71
+#, fuzzy
+#| msgid "Hexadecimal"
+msgid "Hexadecimal:"
+msgstr "Šestnástková"
+
+#: ../src/hex-dialog.c:72
+#, fuzzy
+#| msgid "_Octal:"
+msgid "Octal:"
+msgstr "_Osmičkové:"
+
+#: ../src/hex-dialog.c:73
+#, fuzzy
+#| msgid "_Binary:"
+msgid "Binary:"
+msgstr "_Dvojkové:"
+
+#: ../src/hex-dialog.c:214
+msgid "Show little endian decoding"
+msgstr ""
+
+#: ../src/hex-dialog.c:221
+msgid "Show unsigned and float as hexadecimal"
+msgstr ""
+
+#: ../src/hex-dialog.c:227
+msgid "Stream Length:"
+msgstr ""
+
+#: ../src/hex-dialog.c:250
+msgid "FIXME: no conversion function"
+msgstr ""
+
+#: ../src/hex-document.c:435
+#, fuzzy
+#| msgid "Print Hex Document"
+msgid "New document"
+msgstr "Tlačiť hexadecimálny dokument"
+
+#: ../src/hex-document.c:784
+#, c-format
+msgid "Page"
+msgstr "Stránka"
+
+#: ../src/hex-document.c:790 ../src/hex-document.c:915
+#, c-format
+msgid "Hex dump generated by"
+msgstr "Šestnástkový výpis generovaný"
+
+#: ../src/hex-document.c:801
+msgid "Saving to HTML..."
+msgstr "Uložiť ako HTML..."
+
+#: ../src/hex-document.c:838
+#, c-format
+msgid "Previous page"
+msgstr "Predchádzajúca stránka"
+
+#: ../src/hex-document.c:853
+#, c-format
+msgid "Next page"
+msgstr "Následujúca stránka"
+
+#: ../src/main.c:36
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "Špecifikácia geometrie X (viď. manuálová stránka \"X\")."
+
+#: ../src/main.c:36
+msgid "GEOMETRY"
+msgstr "GEOMETRIA"
+
+#: ../src/main.c:37
+msgid "FILES"
+msgstr ""
+
+#: ../src/main.c:99
+#, fuzzy
+#| msgid "The gnome binary editor"
+msgid "- GTK+ binary editor"
+msgstr "Binárny editor pre GNOME"
+
+#: ../src/main.c:103
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+
+#: ../src/main.c:133 ../src/main.c:146
+#, c-format
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "Neplatný reťazec geometrie \"%s\"\n"
+
+#: ../src/preferences.c:69
+msgid "GHex Preferences"
+msgstr "GHex: Nastavenia"
+
+#: ../src/preferences.c:101
+msgid "_Maximum number of undo levels:"
+msgstr "Ma_ximálny počet úrovní vrátenia späť:"
+
+#: ../src/preferences.c:121
+msgid "Undo levels"
+msgstr "Krokov vrátenia:"
+
+#: ../src/preferences.c:121
+msgid "Select maximum number of undo levels"
+msgstr "Vyberte maximálny počet krokov vrátenia späť"
+
+#: ../src/preferences.c:125
+#, fuzzy
+#| msgid "Show cursor offset in statusbar as:"
+msgid "_Show cursor offset in statusbar as:"
+msgstr "Zobraziť pozíciu kurzoru v stavovom riadku ako:"
+
+#: ../src/preferences.c:144
+msgid "Hexadecimal"
+msgstr "Šestnástková"
+
+#: ../src/preferences.c:146
+msgid "Custom"
+msgstr "Vlastné"
+
+#: ../src/preferences.c:155
+msgid "Enter the cursor offset format"
+msgstr "Zadajte formát pre pozíciu kurzoru"
+
+#: ../src/preferences.c:156
+msgid "Select the cursor offset format"
+msgstr "Vyberte formát pre pozíciu kurzoru"
+
+#. show offsets check button
+#: ../src/preferences.c:166
+#, fuzzy
+#| msgid "Show offsets column"
+msgid "Sh_ow offsets column"
+msgstr "Zobraziť stĺpec posunu"
+
+#: ../src/preferences.c:171
+msgid "Editing"
+msgstr "Úpravy"
+
+#. display font
+#: ../src/preferences.c:180
+msgid "Font"
+msgstr "Písmo"
+
+#. default group type
+#: ../src/preferences.c:203
+msgid "Default Group Type"
+msgstr "Štandardný typ zoskupovania"
+
+#: ../src/preferences.c:219
+msgid "Display"
+msgstr "Zobrazenie"
+
+#. paper selection
+#: ../src/preferences.c:228
+msgid "Paper size"
+msgstr "Papier"
+
+#. data & header font selection
+#: ../src/preferences.c:233
+msgid "Fonts"
+msgstr "Písma"
+
+#: ../src/preferences.c:245
+msgid "_Data font:"
+msgstr "Písmo _dát:"
+
+#: ../src/preferences.c:259
+msgid "Data font"
+msgstr "Písmo dát"
+
+#: ../src/preferences.c:259
+msgid "Select the data font"
+msgstr "Vyberte písmo dát"
+
+#: ../src/preferences.c:268
+msgid "Header fo_nt:"
+msgstr "Písmo _hlavičky:"
+
+#: ../src/preferences.c:281
+msgid "Header font"
+msgstr "Písmo hlavičky"
+
+#: ../src/preferences.c:281
+msgid "Select the header font"
+msgstr "Vyberte písmo hlavičky"
+
+#: ../src/preferences.c:306
+msgid "_Print shaded box over:"
+msgstr "Tlačiť _tieňovanú plochu cez:"
+
+#: ../src/preferences.c:318
+msgid "Box size"
+msgstr "Veľkosť plochy"
+
+#: ../src/preferences.c:318
+msgid "Select size of box (in number of lines)"
+msgstr "Vyberte veľkosť plochy (v počte riadkov)"
+
+#: ../src/preferences.c:322
+msgid "lines (0 for no box)"
+msgstr "riadkov (0 pre žiadnu)"
+
+#: ../src/preferences.c:329
+msgid "Printing"
+msgstr "Tlač"
+
+#: ../src/preferences.c:447 ../src/ui.c:219
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Pri zobrazení Pomocníka nastala chyba:\n"
+"%s"
+
+#: ../src/preferences.c:499
+msgid "Can not open desired font!"
+msgstr "Nie je možné otvoriť požadované písmo!"
+
+#: ../src/preferences.c:560
+msgid ""
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"Formátovací reťazec pre pozíciu obsahuje neplatný špecifikátor formátu.\n"
+"Povolené sú iba 'x', 'X', 'p', 'P', 'd' a 'o'."
+
+#: ../src/print.c:57
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Stránka: %i/%i"
+
+#: ../src/ui.c:55
+msgid "hex data"
+msgstr "hex dáta"
+
+#: ../src/ui.c:56
+msgid "ASCII data"
+msgstr "ASCII dáta"
+
+#: ../src/ui.c:160
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+
+#: ../src/ui.c:164
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+
+#: ../src/ui.c:168
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+
+#. Translators: these two strings here indicate the copyright time span,
+#. e.g. 1998-2012.
+#: ../src/ui.c:180
+msgid "Copyright © %Id–%Id The GHex authors"
+msgstr ""
+
+#: ../src/ui.c:184
+#, fuzzy
+#| msgid "GHex, a binary file editor"
+msgid "A binary file editor"
+msgstr "GHex, binárny editor súborov"
+
+#: ../src/ui.c:190
+#, fuzzy
+#| msgid "_About"
+msgid "About GHex"
+msgstr "_O programe"
+
+#: ../src/ui.c:191
+msgid "translator-credits"
+msgstr ""
+
+#: ../src/ui.c:194
+msgid "GHex Website"
+msgstr ""
+
+#: ../src/ui.c:328
+msgid "Select a file to open"
+msgstr "Vyberte súbor pre otvorenie"
+
+#: ../src/ui.c:360
+#, c-format
+msgid "Loaded file %s"
+msgstr "Nahraný súbor %s"
+
+#: ../src/ui.c:368
+msgid "Can not open file!"
+msgstr "Nie je možné otvoriť súbor!"
+
+#: ../src/ui.c:433
+msgid "Select path and file name for the HTML source"
+msgstr "Vyberte cestu a meno súboru pre HTML"
+
+#: ../src/ui.c:465
+msgid "You need to specify a base name for the HTML files."
+msgstr "Musíte zadať základné meno pre súbory HTML."
+
+#: ../src/ui.c:476 ../src/ui.c:502
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "Nemáte práva na zápis do vybranej cesty.\n"
+
+#: ../src/ui.c:488
+msgid ""
+"Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr ""
+"Uloženie do HTML prepíše niektoré súbory.\n"
+"Chcete pokračovať?"
+
+#: ../src/ui.c:756
+#, c-format
+msgid "Really revert file %s?"
+msgstr "Naozaj sa vrátiť k pôvodnému obsahu %s?"
+
+#: ../src/ui.c:770
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "Vrátený pôvodný obsah súboru %s"
+
+#~ msgid "GNOME Hexadecimal Editor"
+#~ msgstr "Hexadecimálny editor pre GNOME"
+
+#~ msgid "Search for %s"
+#~ msgstr "Hľadám %s"
+
+#~ msgid "Replace %s"
+#~ msgstr "Nahradiť %s"
+
+#~ msgid "The string is not appropriate for the selected data type!"
+#~ msgstr "Reťazec nie je vhodný pre vybraný typ dát!"
+
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "Posun musí byť kladné celé číslo!"
+
+#~ msgid "Strings are not appropriate for the selected data type!"
+#~ msgstr "Reťazce nie sú vhodné pre vybraný typ dát."
+
+#~ msgid "Add View"
+#~ msgstr "Pridať pohľad"
+
+#~ msgid "Bytes"
+#~ msgstr "Bajt"
+
+#~ msgid "C_ut"
+#~ msgstr "Vys_trihnúť"
+
+#~ msgid "Character Table..."
+#~ msgstr "Tabuľka znakov..."
+
+#~ msgid "Contents"
+#~ msgstr "Obsah"
+
+#~ msgid "Converter..."
+#~ msgstr "Prevod..."
+
+#~ msgid "Copy"
+#~ msgstr "Kopírovať"
+
+#~ msgid "Cut"
+#~ msgstr "Vystrihnúť"
+
+#~ msgid "Exit"
+#~ msgstr "Koniec"
+
+#~ msgid "Export to HTML..."
+#~ msgstr "Export do HTML..."
+
+#~ msgid "Find"
+#~ msgstr "Nájsť"
+
+#~ msgid "Goto Byte"
+#~ msgstr "Prejsť na bajt"
+
+#~ msgid "Help Chat"
+#~ msgstr "Pomocník Chat"
+
+#~ msgid "Insert Mode"
+#~ msgstr "Mód vkladania"
+
+#~ msgid "Longwords"
+#~ msgstr "Longword"
+
+#~ msgid "Open"
+#~ msgstr "Otvoriť"
+
+#~ msgid "Paste"
+#~ msgstr "Vložiť"
+
+#~ msgid "Preferences"
+#~ msgstr "Nastavenia"
+
+#~ msgid "Print"
+#~ msgstr "Tlačiť"
+
+#~ msgid "Print Preview..."
+#~ msgstr "Náhľad pred tlačou..."
+
+#~ msgid "Redo"
+#~ msgstr "Opakovať vrátené"
+
+#~ msgid "Remove View"
+#~ msgstr "Odstrániť pohľad"
+
+#~ msgid "Revert"
+#~ msgstr "Vrátiť"
+
+#~ msgid "Save"
+#~ msgstr "Uložiť"
+
+#~ msgid "Save As"
+#~ msgstr "Uložiť ako"
+
+#~ msgid "Undo"
+#~ msgstr "Vrátiť späť"
+
+#~ msgid "Words"
+#~ msgstr "Word"
+
+#~ msgid "_Paste"
+#~ msgstr "V_ložiť"
+
+#~ msgid "GHex - %s"
+#~ msgstr "GHex - %s"
+
+#~ msgid "Could not initialize Bonobo!\n"
+#~ msgstr "Nepodarilo sa inicializovat Bonobo\n"
+
+#~ msgid ""
+#~ "GHex could not find the font \"%s\".\n"
+#~ "GHex is unable to print without this font installed."
+#~ msgstr ""
+#~ "GHex nenašiel písmo \"%s\".\n"
+#~ "Bez tohto písma GHex nemôže tlačiť."
+
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "Distribuovaný pod GNU Public License"
+
+#~ msgid "Pages"
+#~ msgstr "Strany"
+
+#~ msgid "GHex (%s): Print Preview"
+#~ msgstr "GHex (%s): Ukážka pred tlačou"

@@ -1,0 +1,1256 @@
+# translation of ghex.HEAD.po to Latvian
+# translation of ghex.HEAD.po to
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Raivis Dejus <orvils@gmail.com>, 2007.
+# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: ghex.HEAD\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-08-27 22:57+0000\n"
+"PO-Revision-Date: 2013-10-05 10:21+0300\n"
+"Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
+"Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:664
+#: ../src/ghex-window.c:1100
+msgid "GHex"
+msgstr "GHex"
+
+#: ../data/ghex.desktop.in.h:2
+msgid "Hex Editor"
+msgstr "Heksadecimālais redaktors"
+
+#: ../data/ghex.desktop.in.h:3
+msgid "Inspect and edit binary files"
+msgstr "Pētiet un rediģējiet bināros failus"
+
+#. TRANSLATORS: here, 'binay' means a binary file (not the base-2 numeric system)
+#: ../data/ghex.desktop.in.h:5
+msgid "binary;debug;"
+msgstr "binārs;atkļūdošana;"
+
+#: ../src/chartable.c:147
+msgid "ASCII"
+msgstr "ASCII"
+
+#: ../src/chartable.c:147
+msgid "Hex"
+msgstr "Heksa"
+
+#: ../src/chartable.c:147 ../src/preferences.c:142
+msgid "Decimal"
+msgstr "Decimāls"
+
+#: ../src/chartable.c:148
+msgid "Octal"
+msgstr "Oktāls"
+
+#: ../src/chartable.c:148
+msgid "Binary"
+msgstr "Binārs"
+
+#: ../src/chartable.c:164
+msgid "Character table"
+msgstr "Rakstzīmju tabula"
+
+#: ../src/converter.c:232
+msgid "Base Converter"
+msgstr "Pamata pārveidotājs"
+
+#. entries
+#: ../src/converter.c:253
+msgid "_Binary:"
+msgstr "_Binārs:"
+
+#: ../src/converter.c:255
+msgid "_Octal:"
+msgstr "_Oktāls:"
+
+#: ../src/converter.c:257
+msgid "_Decimal:"
+msgstr "_Decimāls:"
+
+#: ../src/converter.c:259
+msgid "_Hex:"
+msgstr "_Heksa:"
+
+#: ../src/converter.c:261
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+#. get cursor button
+#: ../src/converter.c:265
+msgid "_Get cursor value"
+msgstr "Dabūt _kursora vērtību"
+
+#: ../src/converter.c:279
+msgid "Get cursor value"
+msgstr "Dabūt kursora vērtibu"
+
+#: ../src/converter.c:279
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"Dabū vērtibu pie kursora binārā, oktālā, decimālā, heksadecimālā un ASCII "
+"formā"
+
+#: ../src/converter.c:419
+msgid "ERROR"
+msgstr "ERROR"
+
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:877
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr "GHex (%s): Atrast datus"
+
+#: ../src/findreplace.c:101 ../src/findreplace.c:161 ../src/findreplace.c:359
+msgid "Find String"
+msgstr "Atrast virkni"
+
+#: ../src/findreplace.c:108 ../src/findreplace.c:258
+msgid "Find _Next"
+msgstr "Atrast _nākamo"
+
+#: ../src/findreplace.c:115 ../src/findreplace.c:267
+msgid "Find _Previous"
+msgstr "Atrast ie_priekšējo"
+
+#: ../src/findreplace.c:138 ../src/findreplace.c:413
+msgid "Find Data"
+msgstr "ATrast datus"
+
+#: ../src/findreplace.c:138 ../src/findreplace.c:413
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Ievadiet heksadecimālus vai ASCII datus, kurus meklēt"
+
+#: ../src/findreplace.c:139
+msgid "Find Next"
+msgstr "Meklēt nākamo"
+
+#: ../src/findreplace.c:139 ../src/findreplace.c:415
+msgid "Finds the next occurrence of the search string"
+msgstr "Atrod nākamo meklēšanas rindas gadījumu"
+
+#: ../src/findreplace.c:140
+msgid "Find previous"
+msgstr "Atrast iepriekšejo"
+
+#: ../src/findreplace.c:140
+msgid "Finds the previous occurrence of the search string "
+msgstr "Atrod iepriekšejo meklēšanas rindas gadījumu"
+
+#: ../src/findreplace.c:141 ../src/findreplace.c:418 ../src/findreplace.c:469
+msgid "Cancel"
+msgstr "Atsaukt"
+
+#: ../src/findreplace.c:141
+msgid "Closes find data window"
+msgstr "Aizver datu meklēšanas logu"
+
+#: ../src/findreplace.c:157
+#, c-format
+msgid "GHex (%s): Find Data: Add search"
+msgstr "GHex (%s): Atrast datus: Pievienot meklēšanu"
+
+#: ../src/findreplace.c:179
+msgid "Add"
+msgstr "Pievienot"
+
+#: ../src/findreplace.c:235
+msgid "Search String"
+msgstr "Meklēt virkni"
+
+#: ../src/findreplace.c:243
+msgid "Highlight Colour"
+msgstr "Izgaismot krāsu"
+
+#: ../src/findreplace.c:280
+msgid "_Add New"
+msgstr "_PIevienot jaunu"
+
+#: ../src/findreplace.c:289
+msgid "_Remove Selected"
+msgstr "_Dzēst atlasīto"
+
+#: ../src/findreplace.c:309
+msgid "Close"
+msgstr "Aizvērt"
+
+#: ../src/findreplace.c:309
+msgid "Closes advanced find window"
+msgstr "Aizver izvērsto meklēšanas logu"
+
+#: ../src/findreplace.c:355 ../src/ui.c:875
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "GHex (%s): Atrast un aizvietot datus"
+
+#: ../src/findreplace.c:368
+msgid "Replace With"
+msgstr "Aizvietot ar"
+
+#: ../src/findreplace.c:375
+msgid "Find _next"
+msgstr "Atrast _nākamo"
+
+#: ../src/findreplace.c:383
+msgid "_Replace"
+msgstr "_Aizvietot"
+
+#: ../src/findreplace.c:391
+msgid "Replace _All"
+msgstr "Aizvietot _visus"
+
+#: ../src/findreplace.c:414
+msgid "Replace Data"
+msgstr "Aizvietot datus"
+
+#: ../src/findreplace.c:414
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Ievadiet heksadecimālus vai ASCII datus ar kuriem aizvietot"
+
+#: ../src/findreplace.c:415
+msgid "Find next"
+msgstr "Atrast nākamo"
+
+#: ../src/findreplace.c:416
+msgid "Replace"
+msgstr "Aizvietot"
+
+#: ../src/findreplace.c:416
+msgid "Replaces the search string with the replace string"
+msgstr "AIzvieto meklējamo virkni ar aizvietojamo virkni"
+
+#: ../src/findreplace.c:417
+msgid "Replace All"
+msgstr "Aizvietot visus"
+
+#: ../src/findreplace.c:417
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Aizvieto meklējamo virkni ar aizvietojamo virkni  visos gadījumos"
+
+#: ../src/findreplace.c:418
+msgid "Closes find and replace data window"
+msgstr "Aizver datu atrašanas un aizvēršanas logu"
+
+#: ../src/findreplace.c:434 ../src/ui.c:873
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr "GHex (%s): Lekt uz baitu"
+
+#: ../src/findreplace.c:467
+msgid "Jump to byte"
+msgstr "Lekt uz baitu"
+
+#: ../src/findreplace.c:467
+msgid "Enter the byte to jump to"
+msgstr "Ievadiet baitu uz kuru lekt"
+
+#: ../src/findreplace.c:468
+msgid "OK"
+msgstr "Labi"
+
+#: ../src/findreplace.c:468
+msgid "Jumps to the specified byte"
+msgstr "Lec uz norādito baitu"
+
+#: ../src/findreplace.c:469
+msgid "Closes jump to byte window"
+msgstr "Aizver lekšanas uz baitu logu"
+
+#: ../src/findreplace.c:532 ../src/findreplace.c:566 ../src/findreplace.c:673
+msgid "There is no active document to search!"
+msgstr "Nav aktīva dokumenta meklēšanai!"
+
+#: ../src/findreplace.c:539 ../src/findreplace.c:573 ../src/findreplace.c:680
+#: ../src/findreplace.c:714 ../src/findreplace.c:759
+msgid "There is no string to search for!"
+msgstr "Nav virknes ko meklēt!"
+
+#: ../src/findreplace.c:551 ../src/findreplace.c:689 ../src/findreplace.c:879
+msgid "End Of File reached"
+msgstr "Sasniegtas faila beigas"
+
+#: ../src/findreplace.c:552 ../src/findreplace.c:585 ../src/findreplace.c:688
+#: ../src/findreplace.c:880 ../src/findreplace.c:903
+msgid "String was not found!\n"
+msgstr "Virkne netika atrasta!\n"
+
+#: ../src/findreplace.c:584 ../src/findreplace.c:902
+msgid "Beginning Of File reached"
+msgstr "Sasniegts faila sākums"
+
+#: ../src/findreplace.c:601
+msgid "There is no active document to move the cursor in!"
+msgstr "Nav aktīva dokumenta kurā pārvietot kursoru!"
+
+#: ../src/findreplace.c:619
+msgid "No offset has been specified!"
+msgstr "Nav noteikta nobīde!"
+
+#: ../src/findreplace.c:644
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "Norādītā nobīde iziet ārpus faila robežām!"
+
+#: ../src/findreplace.c:652
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "NAv iespējams pozicionēt kursoru zem faila beigām!"
+
+#: ../src/findreplace.c:659
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+"Jūs varat noteikt nobīdi tikai kā:\n"
+"  - pozitīvu decimālu skaitli,\n"
+"  - heksadecimālu skaitli, sākot ar '0x' vai\n"
+"  - '+' vai '-' zīme, kam seko relatīva nobīde"
+
+#: ../src/findreplace.c:705
+msgid "There is no active buffer to replace data in!"
+msgstr "Nav aktīva bufera kurā aizvietot datus!"
+
+#: ../src/findreplace.c:730 ../src/findreplace.c:731
+msgid "End Of File reached!"
+msgstr "SAsniegtas faila beigas!"
+
+#: ../src/findreplace.c:750
+msgid "There is no active document to replace data in!"
+msgstr "Nav aktīva dokumenta kurā aizvietot datus!"
+
+#: ../src/findreplace.c:780
+msgid "No occurrences were found."
+msgstr "Neviens gadījums netika atrasts."
+
+#: ../src/findreplace.c:783
+#, c-format
+msgid "Replaced %d occurrence."
+msgid_plural "Replaced %d occurrences."
+msgstr[0] "Aizvietots %d gadījums."
+msgstr[1] "Aizvietoti %d gadījumi."
+msgstr[2] "Aizvietoti %d gadījumi."
+
+#: ../src/findreplace.c:823
+msgid "No string to search for!"
+msgstr "Nav virknes ko meklēt!"
+
+#: ../src/ghex-window.c:90
+#, c-format
+msgid ""
+"Can not open URI:\n"
+"%s"
+msgstr ""
+"Nav iespējams atvērt URI:\n"
+"%s"
+
+#: ../src/ghex-window.c:111
+#, c-format
+msgid ""
+"Can not open file:\n"
+"%s"
+msgstr ""
+"Nav iespējams atvērt failu:\n"
+"%s"
+
+#: ../src/ghex-window.c:340
+msgid "_File"
+msgstr "_Fails"
+
+#: ../src/ghex-window.c:341
+msgid "_Edit"
+msgstr "_Rediģēt"
+
+#: ../src/ghex-window.c:342
+msgid "_View"
+msgstr "_Skats"
+
+#: ../src/ghex-window.c:343
+msgid "_Group Data As"
+msgstr "_Grupēt datus kā"
+
+#. View submenu
+#: ../src/ghex-window.c:344
+msgid "_Windows"
+msgstr "_Logi"
+
+#: ../src/ghex-window.c:345
+msgid "_Help"
+msgstr "_Palīdzība"
+
+#. File menu
+#: ../src/ghex-window.c:348
+msgid "_Open..."
+msgstr "_Atvērt..."
+
+#: ../src/ghex-window.c:349
+msgid "Open a file"
+msgstr "Atvērt failu"
+
+#: ../src/ghex-window.c:351
+msgid "_Save"
+msgstr "_Saglabāt"
+
+#: ../src/ghex-window.c:352
+msgid "Save the current file"
+msgstr "Saglabāt pašreizējo failu"
+
+#: ../src/ghex-window.c:354
+msgid "Save _As..."
+msgstr "Saglabāt _Kā..."
+
+#: ../src/ghex-window.c:355
+msgid "Save the current file with a different name"
+msgstr "Saglabāt pašreizējo failu ar citu nosaukumu"
+
+#: ../src/ghex-window.c:357
+msgid "Save As _HTML..."
+msgstr "Saglabāt kā _HTML..."
+
+#: ../src/ghex-window.c:358
+msgid "Export data to HTML source"
+msgstr "Eksportēt datus uz HTML avotu"
+
+#: ../src/ghex-window.c:360
+msgid "_Revert"
+msgstr "_Atgriezt"
+
+#: ../src/ghex-window.c:361
+msgid "Revert to a saved version of the file"
+msgstr "Atgriezt faila saglabāto versiju"
+
+#: ../src/ghex-window.c:363
+msgid "_Print"
+msgstr "_Drukāt"
+
+#: ../src/ghex-window.c:364
+msgid "Print the current file"
+msgstr "Drukāt pašreizējo failu"
+
+#: ../src/ghex-window.c:366
+msgid "Print Previe_w..."
+msgstr "Drukas priekšska_ts..."
+
+#: ../src/ghex-window.c:367
+msgid "Preview printed data"
+msgstr "Priekšskatīt drukājamos datus"
+
+#: ../src/ghex-window.c:369
+msgid "_Close"
+msgstr "_Aizvērt"
+
+#: ../src/ghex-window.c:370
+msgid "Close the current file"
+msgstr "Aizvērt pašreizējo failu"
+
+#: ../src/ghex-window.c:372
+msgid "E_xit"
+msgstr "I_ziet"
+
+#: ../src/ghex-window.c:373
+msgid "Exit the program"
+msgstr "Iziet no programmas"
+
+#. Edit menu
+#: ../src/ghex-window.c:377
+msgid "_Undo"
+msgstr "_Atsaukt"
+
+#: ../src/ghex-window.c:378
+msgid "Undo the last action"
+msgstr "Atsaukt pēdējo darbību"
+
+#: ../src/ghex-window.c:380
+msgid "_Redo"
+msgstr "_Restaurēt"
+
+#: ../src/ghex-window.c:381
+msgid "Redo the undone action"
+msgstr "Pārdarīt atcelto darbību"
+
+#: ../src/ghex-window.c:383
+msgid "_Copy"
+msgstr "_Kopēt"
+
+#: ../src/ghex-window.c:384
+msgid "Copy selection to clipboard"
+msgstr "Kopēt izvēlēto iztvērumu uz starpliktuvi"
+
+#: ../src/ghex-window.c:386
+msgid "Cu_t"
+msgstr "Izgriez_t"
+
+#: ../src/ghex-window.c:387
+msgid "Cut selection"
+msgstr "Izgriezt izvēlēto"
+
+#: ../src/ghex-window.c:389
+msgid "Pa_ste"
+msgstr "_Ielīmēt"
+
+#: ../src/ghex-window.c:390
+msgid "Paste data from clipboard"
+msgstr "Ievietot datus no starpliktuves"
+
+#: ../src/ghex-window.c:392
+msgid "_Find"
+msgstr "At_rast"
+
+#: ../src/ghex-window.c:393
+msgid "Search for a string"
+msgstr "Meklēt virkni"
+
+#: ../src/ghex-window.c:395
+msgid "_Advanced Find"
+msgstr "Izvērstā meklēšan_a"
+
+#: ../src/ghex-window.c:396
+msgid "Advanced Find"
+msgstr "Izvērstā meklēšana"
+
+#: ../src/ghex-window.c:398
+msgid "R_eplace"
+msgstr "_Aizvietot"
+
+#: ../src/ghex-window.c:399
+msgid "Replace a string"
+msgstr "Aizvietot virkni"
+
+#: ../src/ghex-window.c:401
+msgid "_Goto Byte..."
+msgstr "_Iet uz baitu..."
+
+#: ../src/ghex-window.c:402
+msgid "Jump to a certain position"
+msgstr "Lekt uz noteiktu pozīciju"
+
+#: ../src/ghex-window.c:404
+msgid "_Preferences"
+msgstr "_Iestatījumi"
+
+#: ../src/ghex-window.c:405
+msgid "Configure the application"
+msgstr "Konfigurēt šo aplikāciju"
+
+#. View menu
+#: ../src/ghex-window.c:409
+msgid "_Add View"
+msgstr "Pievienot Sk_atu"
+
+#: ../src/ghex-window.c:410
+msgid "Add a new view to the buffer"
+msgstr "Pievienot jaunu skatu buferim"
+
+#: ../src/ghex-window.c:412
+msgid "_Remove View"
+msgstr "_Aizvākt skatu"
+
+#: ../src/ghex-window.c:413
+msgid "Remove the current view of the buffer"
+msgstr "AIzvākt tekošo bufera skatu"
+
+#. Help menu
+#: ../src/ghex-window.c:417
+msgid "_Contents"
+msgstr "_Saturs"
+
+#: ../src/ghex-window.c:418
+msgid "Help on this application"
+msgstr "Palīdziba šai aplikācijai"
+
+#: ../src/ghex-window.c:420
+msgid "_About"
+msgstr "P_ar"
+
+#: ../src/ghex-window.c:421
+msgid "About this application"
+msgstr "Par šo programmu"
+
+#. Edit menu
+#: ../src/ghex-window.c:428
+msgid "_Insert Mode"
+msgstr "_Ievietošanas režīms"
+
+#: ../src/ghex-window.c:429
+msgid "Insert/overwrite data"
+msgstr "Ievietot/pārrakstīt datus"
+
+#. Windows menu
+#: ../src/ghex-window.c:433
+msgid "Character _Table"
+msgstr "Rakstzīmju _tabula"
+
+#: ../src/ghex-window.c:434
+msgid "Show the character table"
+msgstr "Rādīt simbolu tabulu"
+
+#: ../src/ghex-window.c:436
+msgid "_Base Converter"
+msgstr "_Pamata pārveidotājs"
+
+#: ../src/ghex-window.c:437
+msgid "Open base conversion dialog"
+msgstr "Atvērt pamata pārveidošanas dialogu"
+
+#: ../src/ghex-window.c:439
+msgid "Type Conversion _Dialog"
+msgstr "Tipa pārvēršanas _dialogs"
+
+#: ../src/ghex-window.c:440
+msgid "Show the type conversion dialog in the edit window"
+msgstr "Rādit tipa pārvēršanas dialogu rediģēšanas logā"
+
+#: ../src/ghex-window.c:446 ../src/ui.c:48
+msgid "_Bytes"
+msgstr "_Baiti"
+
+#: ../src/ghex-window.c:447
+msgid "Group data by 8 bits"
+msgstr "Grupēt datus pēc 8 bitiem"
+
+#: ../src/ghex-window.c:448 ../src/ui.c:49
+msgid "_Words"
+msgstr "_Vārdi"
+
+#: ../src/ghex-window.c:449
+msgid "Group data by 16 bits"
+msgstr "Grupēt datus pēc 16 bitiem"
+
+#: ../src/ghex-window.c:450 ../src/ui.c:50
+msgid "_Longwords"
+msgstr "_Garie vārdi"
+
+#: ../src/ghex-window.c:451
+msgid "Group data by 32 bits"
+msgstr "Grupēt datus pēc 32 bitiem"
+
+#: ../src/ghex-window.c:785
+#, c-format
+msgid "Offset: %s"
+msgstr "Nobīde: %s"
+
+#: ../src/ghex-window.c:788
+#, c-format
+msgid "; %s bytes from %s to %s selected"
+msgstr "; %s baiti no %s uz %s izvēlēti"
+
+#: ../src/ghex-window.c:1060
+#, c-format
+msgid "Activate file %s"
+msgstr "Aktivizēt failu %s"
+
+#: ../src/ghex-window.c:1096
+#, c-format
+msgid "%s - GHex"
+msgstr "%s - GHex"
+
+#: ../src/ghex-window.c:1218
+msgid "Select a file to save buffer as"
+msgstr "Izvēlieties failu lai saglabātu buferi kā"
+
+#: ../src/ghex-window.c:1250
+#, c-format
+msgid ""
+"File %s exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"Fails %s jau eksistē.\n"
+"Vai vēlaties pārrakstīt to?"
+
+#: ../src/ghex-window.c:1276 ../src/ui.c:303
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "Buferis saglabāts failā %s"
+
+#: ../src/ghex-window.c:1283
+msgid "Error saving file!"
+msgstr "Kļūda saglabājot failu!"
+
+#: ../src/ghex-window.c:1289
+msgid "Can't open file for writing!"
+msgstr "Nevar atvērt failu rakstīšanai!"
+
+#: ../src/ghex-window.c:1334
+#, c-format
+msgid ""
+"File %s has changed since last save.\n"
+"Do you want to save changes?"
+msgstr ""
+"Fails %s ticis mainīts pēc pēdejās saglabāšanas.\n"
+"Vai jūs vēlaties saglabāt izmaiņas?"
+
+#: ../src/ghex-window.c:1338
+msgid "Do_n't save"
+msgstr "_Nesaglabāt"
+
+#: ../src/ghex-window.c:1358 ../src/ui.c:291
+msgid "You don't have the permissions to save the file!"
+msgstr "Jums nav tiesību saglabāt failu!"
+
+#: ../src/ghex-window.c:1362 ../src/ui.c:296
+msgid "An error occurred while saving file!"
+msgstr "Gadījās kļūda faila saglabāšanas laikā!"
+
+#: ../src/hex-dialog.c:59
+msgid "Signed 8 bit:"
+msgstr "Skaitlis ar zīmi 8 bitu:"
+
+#: ../src/hex-dialog.c:60
+msgid "Unsigned 8 bit:"
+msgstr "Pozitīvs 8 bitu:"
+
+#: ../src/hex-dialog.c:61
+msgid "Signed 16 bit:"
+msgstr "Skaitlis ar zīmi 16 bitu:"
+
+#: ../src/hex-dialog.c:62
+msgid "Unsigned 16 bit:"
+msgstr "Pozitīvs 16 bitu:"
+
+#: ../src/hex-dialog.c:63
+msgid "Signed 32 bit:"
+msgstr "Skaitlis ar zīmi 32 bitu:"
+
+#: ../src/hex-dialog.c:64
+msgid "Unsigned 32 bit:"
+msgstr "Pozitīvs 32 bitu:"
+
+#: ../src/hex-dialog.c:65
+msgid "Float 32 bit:"
+msgstr "Peldošs 32 bitu:"
+
+#: ../src/hex-dialog.c:66
+msgid "Float 64 bit:"
+msgstr "Peldošs 64 bitu:"
+
+#: ../src/hex-dialog.c:67
+msgid "Hexadecimal:"
+msgstr "Heksadecimāls:"
+
+#: ../src/hex-dialog.c:68
+msgid "Octal:"
+msgstr "Oktāls:"
+
+#: ../src/hex-dialog.c:69
+msgid "Binary:"
+msgstr "Binārs:"
+
+#: ../src/hex-dialog.c:207
+msgid "Show little endian decoding"
+msgstr "Rādīt little endian atšifrēšanu"
+
+#: ../src/hex-dialog.c:214
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Rādit absolūtos un reālos skaitļus heksadecimālā formā"
+
+#: ../src/hex-dialog.c:220
+msgid "Stream Length:"
+msgstr "Plūsmas garums:"
+
+#: ../src/hex-dialog.c:243
+msgid "FIXME: no conversion function"
+msgstr "FIXME: nav pārveidošanas funkcijas"
+
+#: ../src/hex-document.c:435
+msgid "New document"
+msgstr "Jauns dokuments"
+
+#: ../src/hex-document.c:784
+#, c-format
+msgid "Page"
+msgstr "Lapa"
+
+#: ../src/hex-document.c:790 ../src/hex-document.c:915
+#, c-format
+msgid "Hex dump generated by"
+msgstr "Heksadecimālās atmiņas izmetni radījis"
+
+#: ../src/hex-document.c:801
+msgid "Saving to HTML..."
+msgstr "Saglabā kā HTML..."
+
+#: ../src/hex-document.c:838
+#, c-format
+msgid "Previous page"
+msgstr "Iepriekšējā lapa"
+
+#: ../src/hex-document.c:853
+#, c-format
+msgid "Next page"
+msgstr "Nākamā lapa"
+
+#: ../src/main.c:36
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "X ģeometrijas specifikācija (skatīt \"X\" galvenajā lapā)."
+
+#: ../src/main.c:36
+msgid "GEOMETRY"
+msgstr "ĢEOMETRIJA"
+
+#: ../src/main.c:37
+msgid "FILES"
+msgstr "FAILI"
+
+#: ../src/main.c:99
+msgid "- GTK+ binary editor"
+msgstr "- GTK+ bināro failu redaktors"
+
+#: ../src/main.c:103
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"Palaidiet '%s --help', lai redzētu pilnu sarakstu ar pieejamajām "
+"komandrindas opcijām.\n"
+
+#: ../src/main.c:133 ../src/main.c:146
+#, c-format
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "Nederīga ģeometrijas virkne \"%s\"\n"
+
+#: ../src/preferences.c:69
+msgid "GHex Preferences"
+msgstr "GHex uzstādijumi"
+
+#: ../src/preferences.c:101
+msgid "_Maximum number of undo levels:"
+msgstr "_maksimālais skaits atsaukšanas līmeņiem:"
+
+#: ../src/preferences.c:121
+msgid "Undo levels"
+msgstr "Atsaukšanas līmeņi"
+
+#: ../src/preferences.c:121
+msgid "Select maximum number of undo levels"
+msgstr "Uzstādīt maksimālo atsaukšanas līmeņu skaitu"
+
+#: ../src/preferences.c:125
+msgid "_Show cursor offset in statusbar as:"
+msgstr "Rādīt kur_sora nobīdi stāvokļa joslā kā:"
+
+#: ../src/preferences.c:144
+msgid "Hexadecimal"
+msgstr "Heksadecimāls"
+
+#: ../src/preferences.c:146
+msgid "Custom"
+msgstr "Pielāgots"
+
+#: ../src/preferences.c:155
+msgid "Enter the cursor offset format"
+msgstr "Ievadiet kursora nobīdes formātu"
+
+#: ../src/preferences.c:156
+msgid "Select the cursor offset format"
+msgstr "Izvēlieties kursora nobīdes formātu"
+
+#. show offsets check button
+#: ../src/preferences.c:166
+msgid "Sh_ow offsets column"
+msgstr "Rādīt n_obīdes kolonnu"
+
+#: ../src/preferences.c:171
+msgid "Editing"
+msgstr "Rediģēšana"
+
+#. display font
+#: ../src/preferences.c:180
+msgid "Font"
+msgstr "Fonts"
+
+#. default group type
+#: ../src/preferences.c:203
+msgid "Default Group Type"
+msgstr "Noklusētais grupas tips"
+
+#: ../src/preferences.c:219
+msgid "Display"
+msgstr "Ekrāns"
+
+#. paper selection
+#: ../src/preferences.c:228
+msgid "Paper size"
+msgstr "Papīra izmēri"
+
+#. data & header font selection
+#: ../src/preferences.c:233
+msgid "Fonts"
+msgstr "Fonti"
+
+#: ../src/preferences.c:245
+msgid "_Data font:"
+msgstr "_DAtu fonts:"
+
+#: ../src/preferences.c:259
+msgid "Data font"
+msgstr "Datu fonts"
+
+#: ../src/preferences.c:259
+msgid "Select the data font"
+msgstr "Izvēlieties datu fontu"
+
+#: ../src/preferences.c:268
+msgid "Header fo_nt:"
+msgstr "Galvenes fo_nts:"
+
+#: ../src/preferences.c:281
+msgid "Header font"
+msgstr "Galvenes fonts"
+
+#: ../src/preferences.c:281
+msgid "Select the header font"
+msgstr "Izvēlieties galvenes fontu"
+
+#: ../src/preferences.c:306
+msgid "_Print shaded box over:"
+msgstr "_Drukāt ēnotu rāmīti pāri:"
+
+#: ../src/preferences.c:318
+msgid "Box size"
+msgstr "Rāmīša izmērs"
+
+#: ../src/preferences.c:318
+msgid "Select size of box (in number of lines)"
+msgstr "Izvēlieties rāmīša izmēru (norādiet rindu skaitu)"
+
+#: ../src/preferences.c:322
+msgid "lines (0 for no box)"
+msgstr "rindas (0 lai nebūtu rāmīša)"
+
+#: ../src/preferences.c:329
+msgid "Printing"
+msgstr "Drukāju"
+
+#: ../src/preferences.c:447 ../src/ui.c:212
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"kļūda, parādot palīdzību: \n"
+"%s"
+
+#: ../src/preferences.c:499
+msgid "Can not open desired font!"
+msgstr "Nav iespējams atvērt izvēlēto fontu!"
+
+#: ../src/preferences.c:560
+msgid ""
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"Nobīdes formāta virkne satur nederīgu formāta noteicēju.\n"
+"Tikai 'x', 'X', 'p', 'P', 'd' un 'o' ir atļauti."
+
+#: ../src/print.c:57
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Lapa: %i/%i"
+
+#: ../src/ui.c:55
+msgid "hex data"
+msgstr "heksadecimāli dati"
+
+#: ../src/ui.c:56
+msgid "ASCII data"
+msgstr "ASCII dati"
+
+#: ../src/ui.c:153
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"Šī ir brīva programmatūra; jūs varat to brīvi modificēt un/vai izplatīt "
+"saskaņā ar Free Software Foundation GNU Vispārējās publiskās licences 2 vai "
+"kādas brīvi izvēlētas vēlākas versijas noteikumiem."
+
+#: ../src/ui.c:157
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"Šī programma tiek izplatīta ar cerību, ka tā būs noderīga, tā tiek izplatīta "
+"BEZ JEBKĀDAS GARANTIJAS vai DERĪBAS KĀDAM MĒRĶIM. Sīkāku informāciju "
+"meklējiet GNU Vispārējās publiskās licences tekstā."
+
+#: ../src/ui.c:161
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"Jums vajadzēja kopā ar šo programmu saņemt GNU General Public License "
+"kopiju. Ja tas tā nav, tad rakstiet Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
+
+#. Translators: these two strings here indicate the copyright time span,
+#. e.g. 1998-2012.
+#: ../src/ui.c:173
+msgid "Copyright © %Id–%Id The GHex authors"
+msgstr "Autortiesības © %Id–%Id GHex autori"
+
+#: ../src/ui.c:177
+msgid "A binary file editor"
+msgstr "Bināru failu redaktors"
+
+#: ../src/ui.c:183
+msgid "About GHex"
+msgstr "P_ar GHex"
+
+#: ../src/ui.c:184
+msgid "translator-credits"
+msgstr ""
+"Raivis Dejus <orvils@gmail.com> Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
+
+#: ../src/ui.c:187
+msgid "GHex Website"
+msgstr "GHex tīmekļa vietne"
+
+#: ../src/ui.c:321
+msgid "Select a file to open"
+msgstr "Izvēlieties failu, ko atvērt"
+
+#: ../src/ui.c:353
+#, c-format
+msgid "Loaded file %s"
+msgstr "Ielādets fails %s"
+
+#: ../src/ui.c:361
+msgid "Can not open file!"
+msgstr "Nav iespējams atvērt failu!"
+
+#: ../src/ui.c:426
+msgid "Select path and file name for the HTML source"
+msgstr "Norādiet atrašanās vietu un faila vārdu HTML avotam"
+
+#: ../src/ui.c:458
+msgid "You need to specify a base name for the HTML files."
+msgstr "Jums nepieciešams norādit pamata vārdu HTML failiem."
+
+#: ../src/ui.c:469 ../src/ui.c:495
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "Jums nav tiesību rakstīt norāditajā vietā.\n"
+
+#: ../src/ui.c:481
+msgid ""
+"Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr ""
+"Saglabājot kā HTML tiks pārrakstīti daži faili.\n"
+"Vēlaties turpināt?"
+
+#: ../src/ui.c:749
+#, c-format
+msgid "Really revert file %s?"
+msgstr "Tiešām atgriezt failu %s?"
+
+#: ../src/ui.c:763
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "Atgrieztais buferis no faila %s"
+
+#~ msgid "32 bit float:"
+#~ msgstr "32 bitu peldošs:"
+
+#~ msgid "64 bit float:"
+#~ msgstr "64 bitu peldošs:"
+
+#~ msgid ""
+#~ "Copyright © 1998 - 2006 Jaka Močnik\n"
+#~ "Copyright © 2006 - 2010 GHex Contributors"
+#~ msgstr ""
+#~ "Autortiesības © 1998 - 2006 Jaka Močnik\n"
+#~ "Autortiesības © 2006 - 2010 GHex veidotāji"
+
+#~| msgid "GNOME Hexadecimal Editor"
+#~ msgid "Hexadecimal Editor"
+#~ msgstr "Heksadecimālais redaktors"
+
+#~ msgid "Add View"
+#~ msgstr "Pievienošanas skats"
+
+#~ msgid "Bytes"
+#~ msgstr "Baiti"
+
+#~ msgid "Character Table..."
+#~ msgstr "Simbolu tabula..."
+
+#~ msgid "Contents"
+#~ msgstr "Saturs"
+
+#~ msgid "Converter..."
+#~ msgstr "Pārveidotājs..."
+
+#~ msgid "Copy"
+#~ msgstr "Kopēt"
+
+#~ msgid "Cut"
+#~ msgstr "Izgriezt"
+
+#~ msgid "Exit"
+#~ msgstr "Iziet"
+
+#~ msgid "Export to HTML..."
+#~ msgstr "Eksportēt uz HTML..."
+
+#~ msgid "Find"
+#~ msgstr "Meklēt"
+
+#~ msgid "Goto Byte"
+#~ msgstr "Iet uz baitu"
+
+#~ msgid "Help Chat"
+#~ msgstr "Palīdzības tērzētava"
+
+#~ msgid "Insert Mode"
+#~ msgstr "Ievietošanas režīms"
+
+#~ msgid "Longwords"
+#~ msgstr "Gari vārdi"
+
+#~ msgid "Open"
+#~ msgstr "Atvērt"
+
+#~ msgid "Paste"
+#~ msgstr "Ievietot"
+
+#~ msgid "Preferences"
+#~ msgstr "Uzstādījumi"
+
+#~ msgid "Print"
+#~ msgstr "Drukāt"
+
+#~ msgid "Print Preview..."
+#~ msgstr "Drukas priekšskats..."
+
+#~ msgid "Redo"
+#~ msgstr "Restaurēt"
+
+#~ msgid "Remove View"
+#~ msgstr "Aizvākt skatu"
+
+#~ msgid "Revert"
+#~ msgstr "Atgriezt"
+
+#~ msgid "Save"
+#~ msgstr "Saglabāt"
+
+#~ msgid "Save As"
+#~ msgstr "Saglabāt kā"
+
+#~ msgid "Type Conversion Dialog..."
+#~ msgstr "Tipa pārvēršanas dialogs..."
+
+#~ msgid "Undo"
+#~ msgstr "Atsaukt"
+
+#~ msgid "Words"
+#~ msgstr "Vārdi"
+
+#~ msgid "_Insert a new preview phrase."
+#~ msgstr "_Ievietot jaunu priekšskatījuma formulējumu."
+
+#~ msgid "Modify preview phrase..."
+#~ msgstr "Pārveidot priekšskatījuma formulējumu..."
+
+#~ msgid "Preview"
+#~ msgstr "Apskatīt"
+
+#~ msgid "_Modify preview phrase..."
+#~ msgstr "Pārveidot priekšskatīju_ma formulējumu..."
+
+#~ msgid "Font Selection"
+#~ msgstr "Fonta izvēle"
+
+#~ msgid "Sans Regular 12"
+#~ msgstr "Sans Regular 12"
+
+#~ msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+#~ msgstr "AaĀāBbCcČčDdEeĒēFfGgĢģHhIiĪīJjKkĶķLlĻļMmNnŅņOoPpQqRrSsŠšTtUuŪūVvWwXxYyZz"
+
+#~ msgid "Pick a Font"
+#~ msgstr "Izvēlieties fontu"
+
+#~ msgid "Title"
+#~ msgstr "Virsraksts"
+
+#~ msgid "The title of the selection dialog box"
+#~ msgstr "Virsaksts izvēles dialoga kastītei"
+
+#~ msgid "Font name"
+#~ msgstr "Fonta nosaukums"
+
+#~ msgid "Name of the selected font"
+#~ msgstr "Izvēlēto fontu nosaukums"
+
+#~ msgid "Preview text"
+#~ msgstr "Pirmsapskates teksts"
+
+#~ msgid "Preview text shown in the dialog"
+#~ msgstr "Dialogā redzamais pirmsapskates teksts"
+
+#~ msgid "Use font in label"
+#~ msgstr "Virsrakstā izmantojamais fonts"
+
+#~ msgid "Use font in the label in font info mode"
+#~ msgstr "Lietot fontu, kas iezīmē, fonta info režīmā"
+
+#~ msgid "Font size for label"
+#~ msgstr "Fonta izmērs iezīmei"
+
+#~ msgid "Font size for label in font info mode"
+#~ msgstr "Fonta izmērs iezīmei fonta info režīmā"
+
+#~ msgid "Show size"
+#~ msgstr "Parādīt izmēru"
+
+#~ msgid "Show size in font info mode"
+#~ msgstr "Parādīt izmēru fonta info režīmā"
+
+#~ msgid "Could not initialize Bonobo!\n"
+#~ msgstr "Nevarēju inicializēt Bonobo!\n"
+
+#~ msgid ""
+#~ "GHex could not find the font \"%s\".\n"
+#~ "GHex is unable to print without this font installed."
+#~ msgstr ""
+#~ "GHex nevar atrast fontu \"%s\".\n"
+#~ "GHex nav spējīgs drukāt bez šī fonta instalācijas."
+
+#~ msgid "Printing file..."
+#~ msgstr "Fails tiek drukāts..."
+
+#~ msgid "Print Hex Document"
+#~ msgstr "Drukāt Heksadecimālu dokumentu"
+
+#~ msgid "Pages"
+#~ msgstr "Lapas"
+
+#~ msgid "GHex (%s): Print Preview"
+#~ msgstr "GHex (%s): drukas priekšskatījums"
+
+#~ msgid "C_ut"
+#~ msgstr "Iz_griezt"
+
+#~ msgid "_Paste"
+#~ msgstr "_Ievietot"
+
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "Izdots balstoties uz GNU publiskās licences noteikumiem"

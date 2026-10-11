@@ -1,0 +1,1097 @@
+# ghex ko.po
+# Changwoo Ryu <cwryu@debian.org>, 1998
+# Chideok, Hwang <hwang@mizi.co.kr> 2001.
+# Changwoo Ryu <cwryu@debian.org>, 2002
+# Namhyung Kim <namhyung@gmail.com>, 2007.
+# Seong-ho Cho <shcho@gnome.org>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ghex master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
+"POT-Creation-Date: 2020-06-03 07:04+0000\n"
+"PO-Revision-Date: 2021-09-23 12:47+0900\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.3.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: data/org.gnome.GHex.appdata.xml.in:6
+msgid "GNOME Hex Editor"
+msgstr "그놈 16진 편집기"
+
+#: data/org.gnome.GHex.appdata.xml.in:7 data/org.gnome.GHex.desktop.in:5
+msgid "Inspect and edit binary files"
+msgstr "바이너리 파일을 살펴보고 편집합니다"
+
+#: data/org.gnome.GHex.appdata.xml.in:9
+msgid "GHex is a hex editor for the GNOME desktop."
+msgstr "지헥스는 그놈 데스트톱용 16진수 편집 프로그램입니다."
+
+#: data/org.gnome.GHex.appdata.xml.in:12
+msgid ""
+"GHex can load raw data from binary files and display them for editing in the "
+"traditional hex editor view. The display is split in two columns, with "
+"hexadecimal values in one column and the ASCII representation in the other. "
+"A useful tool for working with raw data."
+msgstr ""
+"지헥스는 기존 16진수 편집기 보기 화면에서 이진 파일의 원시 데이터를 불러오고 "
+"편집 용도로 표시할 수 있습니다. 화면을 두 부분으로 나누어 한 부분은 16진수"
+"로, 한 부분은 아스키 방식으로 표현합니다. 원시 데이터를 다루기에 참 쓸만한 도"
+"구입니다."
+
+#: data/org.gnome.GHex.appdata.xml.in:44
+msgid "The GNOME Project"
+msgstr "그놈 프로젝트"
+
+#: data/org.gnome.GHex.desktop.in:3 src/ghex-window.c:662
+#: src/ghex-window.c:1106
+msgid "GHex"
+msgstr "지헥스"
+
+#: data/org.gnome.GHex.desktop.in:4
+msgid "Hex Editor"
+msgstr "16진 편집기"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
+#: data/org.gnome.GHex.desktop.in:7
+msgid "binary;debug;"
+msgstr "binary;바이너리;debug;디버깅;"
+
+#: src/chartable.c:147
+msgid "ASCII"
+msgstr "아스키"
+
+#: src/chartable.c:147
+msgid "Hex"
+msgstr "16진수"
+
+#: src/chartable.c:147 src/preferences.c:142
+msgid "Decimal"
+msgstr "10진수"
+
+#: src/chartable.c:148
+msgid "Octal"
+msgstr "8진수"
+
+#: src/chartable.c:148
+msgid "Binary"
+msgstr "2진수"
+
+#: src/chartable.c:164
+msgid "Character table"
+msgstr "문자표"
+
+#: src/converter.c:232
+msgid "Base Converter"
+msgstr "진법 변환기"
+
+#. entries
+#: src/converter.c:253
+msgid "_Binary:"
+msgstr "2진수(_B):"
+
+#: src/converter.c:255
+msgid "_Octal:"
+msgstr "8진수(_O):"
+
+#: src/converter.c:257
+msgid "_Decimal:"
+msgstr "10진수(_D):"
+
+#: src/converter.c:259
+msgid "_Hex:"
+msgstr "16진수(_H):"
+
+#: src/converter.c:261
+msgid "_ASCII:"
+msgstr "아스키(_A):"
+
+#. get cursor button
+#: src/converter.c:265
+msgid "_Get cursor value"
+msgstr "커서 값 알아내기(_G)"
+
+#: src/converter.c:279
+msgid "Get cursor value"
+msgstr "커서 값 알아내기"
+
+#: src/converter.c:279
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"커서가 있는 위치의 값을 2진수, 8수, 10진수, 16진수, 아스키 값으로 알아냅니다"
+
+#: src/converter.c:419
+msgid "ERROR"
+msgstr "오류"
+
+#: src/findreplace.c:97 src/findreplace.c:221 src/ui.c:892
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr "지헥스 (%s): 자료 찾기"
+
+#: src/findreplace.c:101 src/findreplace.c:161 src/findreplace.c:359
+msgid "Find String"
+msgstr "문자열 찾기"
+
+#: src/findreplace.c:108 src/findreplace.c:258
+msgid "Find _Next"
+msgstr "다음 찾기(_N)"
+
+#: src/findreplace.c:115 src/findreplace.c:267
+msgid "Find _Previous"
+msgstr "이전 찾기(_P)"
+
+#: src/findreplace.c:138 src/findreplace.c:413
+msgid "Find Data"
+msgstr "데이터 찾기"
+
+#: src/findreplace.c:138 src/findreplace.c:413
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "찾을 16진 데이터 또는 아스키 데이터를 입력하십시오"
+
+#: src/findreplace.c:139
+msgid "Find Next"
+msgstr "다음 찾기"
+
+#: src/findreplace.c:139 src/findreplace.c:415
+msgid "Finds the next occurrence of the search string"
+msgstr "찾을 문자열이 다음에 나타나는 위치를 찾습니다"
+
+#: src/findreplace.c:140
+msgid "Find previous"
+msgstr "이전 찾기"
+
+#: src/findreplace.c:140
+msgid "Finds the previous occurrence of the search string "
+msgstr "찾을 문자열이 이전에 나타나는 위치를 찾습니다"
+
+#: src/findreplace.c:141 src/findreplace.c:418 src/findreplace.c:469
+msgid "Cancel"
+msgstr "취소"
+
+#: src/findreplace.c:141
+msgid "Closes find data window"
+msgstr "데이터 찾기 창을 닫습니다"
+
+#: src/findreplace.c:157
+#, c-format
+msgid "GHex (%s): Find Data: Add search"
+msgstr "지헥스 (%s): 데이터 찾기: 검색 추가"
+
+#: src/findreplace.c:179
+msgid "Add"
+msgstr "추가"
+
+#: src/findreplace.c:235
+msgid "Search String"
+msgstr "찾을 문자열"
+
+#: src/findreplace.c:243
+msgid "Highlight Colour"
+msgstr "강조 색상"
+
+#: src/findreplace.c:280
+msgid "_Add New"
+msgstr "새로 추가(_A)"
+
+#: src/findreplace.c:289
+msgid "_Remove Selected"
+msgstr "선택 항목 제거(_R)"
+
+#: src/findreplace.c:309
+msgid "Close"
+msgstr "닫기"
+
+#: src/findreplace.c:309
+msgid "Closes advanced find window"
+msgstr "고급 찾기 창을 닫습니다"
+
+#: src/findreplace.c:355 src/ui.c:890
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "지헥스 (%s): 데이터 찾아 바꾸기"
+
+#: src/findreplace.c:368
+msgid "Replace With"
+msgstr "바꿀 데이터"
+
+#: src/findreplace.c:375
+msgid "Find _next"
+msgstr "다음 찾기(_N)"
+
+#: src/findreplace.c:383
+msgid "_Replace"
+msgstr "바꾸기(_R)"
+
+#: src/findreplace.c:391
+msgid "Replace _All"
+msgstr "모두 바꾸기(_A)"
+
+#: src/findreplace.c:414
+msgid "Replace Data"
+msgstr "바꿀 데이터"
+
+#: src/findreplace.c:414
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "바꿀 16진 데이터 또는 아스키 데이터를 입력하십시오"
+
+#: src/findreplace.c:415
+msgid "Find next"
+msgstr "다음 찾기"
+
+#: src/findreplace.c:416
+msgid "Replace"
+msgstr "바꾸기"
+
+#: src/findreplace.c:416
+msgid "Replaces the search string with the replace string"
+msgstr "찾은 문자열을 바꾸기 데이터로 바꿉니다"
+
+#: src/findreplace.c:417
+msgid "Replace All"
+msgstr "모두 바꾸기"
+
+#: src/findreplace.c:417
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "찾은 모든 문자열을 바꾸기 문자열로 바꿉니다"
+
+#: src/findreplace.c:418
+msgid "Closes find and replace data window"
+msgstr "찾기 및 바꾸기 데이터 창을 닫습니다"
+
+#: src/findreplace.c:434 src/ui.c:888
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr "지헥스 (%s): 바이트로 이동"
+
+#: src/findreplace.c:467
+msgid "Jump to byte"
+msgstr "바이트로 이동"
+
+#: src/findreplace.c:467
+msgid "Enter the byte to jump to"
+msgstr "이동할 바이트를 입력합니다"
+
+#: src/findreplace.c:468
+msgid "OK"
+msgstr "확인"
+
+#: src/findreplace.c:468
+msgid "Jumps to the specified byte"
+msgstr "지정한 바이트로 이동합니다"
+
+#: src/findreplace.c:469
+msgid "Closes jump to byte window"
+msgstr "바이트로 이동 창을 닫습니다"
+
+#: src/findreplace.c:532 src/findreplace.c:566 src/findreplace.c:673
+msgid "There is no active document to search!"
+msgstr "검색할 활성 버퍼가 없습니다!"
+
+#: src/findreplace.c:539 src/findreplace.c:573 src/findreplace.c:680
+#: src/findreplace.c:714 src/findreplace.c:759
+msgid "There is no string to search for!"
+msgstr "찾을 문자열이 없습니다!"
+
+#: src/findreplace.c:551 src/findreplace.c:689 src/findreplace.c:879
+msgid "End Of File reached"
+msgstr "파일의 끝입니다"
+
+#: src/findreplace.c:552 src/findreplace.c:585 src/findreplace.c:688
+#: src/findreplace.c:880 src/findreplace.c:903
+msgid "String was not found!\n"
+msgstr "문자열을 찾을 수 없습니다!\n"
+
+#: src/findreplace.c:584 src/findreplace.c:902
+msgid "Beginning Of File reached"
+msgstr "파일의 처음입니다"
+
+#: src/findreplace.c:601
+msgid "There is no active document to move the cursor in!"
+msgstr "커서를 이동할 활성화된 버퍼가 없습니다!"
+
+#: src/findreplace.c:619
+msgid "No offset has been specified!"
+msgstr "오프셋이 지정되지 않았습니다!"
+
+#: src/findreplace.c:644
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "지정 오프셋이 파일 범위를 벗어납니다!"
+
+#: src/findreplace.c:652
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "파일의 끝보다 뒤에 커서를 위치할 수는 없습니다!"
+
+#: src/findreplace.c:659
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+"다음 형식으로만 오프셋을 지정할 수 있습니다:\n"
+"  - 양의 정수(10진수)\n"
+"  - '0x'로 시작하는 16진수\n"
+"  - 상대적 오프셋 값이 따라오는 '+', '-' 기호"
+
+#: src/findreplace.c:705
+msgid "There is no active buffer to replace data in!"
+msgstr "데이터를 바꿀 버퍼가 없습니다!"
+
+#: src/findreplace.c:730 src/findreplace.c:731
+msgid "End Of File reached!"
+msgstr "파일의 끝입니다!"
+
+#: src/findreplace.c:750
+msgid "There is no active document to replace data in!"
+msgstr "데이터를 바꿀 활성 문서가 없습니다!"
+
+#: src/findreplace.c:780
+msgid "No occurrences were found."
+msgstr "바꿀 데이터를 찾지 못했습니다."
+
+#: src/findreplace.c:783
+#, c-format
+msgid "Replaced %d occurrence."
+msgid_plural "Replaced %d occurrences."
+msgstr[0] "%d번 바꾸었습니다."
+
+#: src/findreplace.c:823
+msgid "No string to search for!"
+msgstr "찾을 문자열이 없습니다!"
+
+#: src/ghex-window.c:88
+#, c-format
+msgid ""
+"Can not open URI:\n"
+"%s"
+msgstr ""
+"URI를 열 수 없습니다:\n"
+"%s"
+
+#: src/ghex-window.c:109
+#, c-format
+msgid ""
+"Can not open file:\n"
+"%s"
+msgstr ""
+"파일을 열 수 없습니다:\n"
+"%s"
+
+#: src/ghex-window.c:338
+msgid "_File"
+msgstr "파일(_F)"
+
+#: src/ghex-window.c:339
+msgid "_Edit"
+msgstr "편집(_E)"
+
+#: src/ghex-window.c:340
+msgid "_View"
+msgstr "보기(_V)"
+
+#: src/ghex-window.c:341
+msgid "_Group Data As"
+msgstr "데이터 묶기(_G)"
+
+#. View submenu
+#: src/ghex-window.c:342
+msgid "_Windows"
+msgstr "창(_W)"
+
+#: src/ghex-window.c:343
+msgid "_Help"
+msgstr "도움말(_H)"
+
+#. File menu
+#: src/ghex-window.c:346
+msgid "_Open..."
+msgstr "열기(_O)..."
+
+#: src/ghex-window.c:347
+msgid "Open a file"
+msgstr "파일 열기"
+
+#: src/ghex-window.c:349
+msgid "_Save"
+msgstr "저장(_S)"
+
+#: src/ghex-window.c:350
+msgid "Save the current file"
+msgstr "현재 파일 저장"
+
+#: src/ghex-window.c:352
+msgid "Save _As..."
+msgstr "다른 이름으로 저장(_A)..."
+
+#: src/ghex-window.c:353
+msgid "Save the current file with a different name"
+msgstr "현재 파일을 다른 이름으로 저장"
+
+#: src/ghex-window.c:355
+msgid "Save As _HTML..."
+msgstr "HTML로 저장(_H)..."
+
+#: src/ghex-window.c:356
+msgid "Export data to HTML source"
+msgstr "데이터를 HTML 소스로 내보냅니다"
+
+#: src/ghex-window.c:358
+msgid "_Revert"
+msgstr "되돌리기(_R)"
+
+#: src/ghex-window.c:359
+msgid "Revert to a saved version of the file"
+msgstr "파일의 저장된 버전으로 되돌리기"
+
+#: src/ghex-window.c:361
+msgid "_Print"
+msgstr "인쇄(_P)"
+
+#: src/ghex-window.c:362
+msgid "Print the current file"
+msgstr "현재 파일 인쇄"
+
+#: src/ghex-window.c:364
+msgid "Print Previe_w..."
+msgstr "인쇄 미리 보기(_W)..."
+
+#: src/ghex-window.c:365
+msgid "Preview printed data"
+msgstr "인쇄 결과를 미리 봅니다"
+
+#: src/ghex-window.c:367
+msgid "_Close"
+msgstr "닫기(_C)"
+
+#: src/ghex-window.c:368
+msgid "Close the current file"
+msgstr "현재 파일 닫기"
+
+#: src/ghex-window.c:370
+msgid "E_xit"
+msgstr "나가기(_X)"
+
+#: src/ghex-window.c:371
+msgid "Exit the program"
+msgstr "프로그램에서 나가기"
+
+#. Edit menu
+#: src/ghex-window.c:375
+msgid "_Undo"
+msgstr "실행 취소(_U)"
+
+#: src/ghex-window.c:376
+msgid "Undo the last action"
+msgstr "마지막 작업 실행 취소"
+
+#: src/ghex-window.c:378
+msgid "_Redo"
+msgstr "다시 실행(_R)"
+
+#: src/ghex-window.c:379
+msgid "Redo the undone action"
+msgstr "실행 취소한 작업 다시 실행"
+
+#: src/ghex-window.c:381
+msgid "_Copy"
+msgstr "복사(_C)"
+
+#: src/ghex-window.c:382
+msgid "Copy selection to clipboard"
+msgstr "선택 영역을 클립보드로 복사"
+
+#: src/ghex-window.c:384
+msgid "Cu_t"
+msgstr "잘라내기(_T)"
+
+#: src/ghex-window.c:385
+msgid "Cut selection"
+msgstr "선택 영역 잘라내기"
+
+#: src/ghex-window.c:387
+msgid "Pa_ste"
+msgstr "붙여넣기(_S)"
+
+#: src/ghex-window.c:388
+msgid "Paste data from clipboard"
+msgstr "클립보드의 데이터를 붙여넣습니다"
+
+#: src/ghex-window.c:390
+msgid "_Find"
+msgstr "찾기(_F)"
+
+#: src/ghex-window.c:391
+msgid "Search for a string"
+msgstr "문자열을 검색합니다"
+
+#: src/ghex-window.c:393
+msgid "_Advanced Find"
+msgstr "고급 찾기(_A)"
+
+#: src/ghex-window.c:394
+msgid "Advanced Find"
+msgstr "고급 옵션으로 원하는 내용을 찾습니다"
+
+#: src/ghex-window.c:396
+msgid "R_eplace"
+msgstr "바꾸기(_E)"
+
+#: src/ghex-window.c:397
+msgid "Replace a string"
+msgstr "문자열을 바꿉니다"
+
+#: src/ghex-window.c:399
+msgid "_Goto Byte..."
+msgstr "지정 바이트로 이동(_G)..."
+
+#: src/ghex-window.c:400
+msgid "Jump to a certain position"
+msgstr "지정 위치로 이동합니다"
+
+#: src/ghex-window.c:402
+msgid "_Preferences"
+msgstr "기본 설정(_P)"
+
+#: src/ghex-window.c:403
+msgid "Configure the application"
+msgstr "프로그램을 설정합니다"
+
+#. View menu
+#: src/ghex-window.c:407
+msgid "_Add View"
+msgstr "보기 추가(_A)"
+
+#: src/ghex-window.c:408
+msgid "Add a new view to the buffer"
+msgstr "버퍼에 대한 새로운 보기를 더합니다"
+
+#: src/ghex-window.c:410
+msgid "_Remove View"
+msgstr "뷰 제거(_R)"
+
+#: src/ghex-window.c:411
+msgid "Remove the current view of the buffer"
+msgstr "버퍼의 현재 뷰를 제거합니다"
+
+#. Help menu
+#: src/ghex-window.c:415
+msgid "_Contents"
+msgstr "내용(_C)"
+
+#: src/ghex-window.c:416
+msgid "Help on this application"
+msgstr "이 프로그램의 도움말"
+
+#: src/ghex-window.c:418
+msgid "_About"
+msgstr "정보(_A)"
+
+#: src/ghex-window.c:419
+msgid "About this application"
+msgstr "이 프로그램 정보"
+
+#. Edit menu
+#: src/ghex-window.c:426
+msgid "_Insert Mode"
+msgstr "삽입 모드(_I)"
+
+#: src/ghex-window.c:427
+msgid "Insert/overwrite data"
+msgstr "데이터를 삽입/겹쳐쓰기"
+
+#. Windows menu
+#: src/ghex-window.c:431
+msgid "Character _Table"
+msgstr "문자표(_T)"
+
+#: src/ghex-window.c:432
+msgid "Show the character table"
+msgstr "문자 테이블 보기"
+
+#: src/ghex-window.c:434
+msgid "_Base Converter"
+msgstr "진법 변환기(_B)"
+
+#: src/ghex-window.c:435
+msgid "Open base conversion dialog"
+msgstr "기본 변환 대화창 열기"
+
+#: src/ghex-window.c:437
+msgid "Type Conversion _Dialog"
+msgstr "형 변환 대화상자(_D)"
+
+#: src/ghex-window.c:438
+msgid "Show the type conversion dialog in the edit window"
+msgstr "편집창에 형 변환 대화상자 표시"
+
+#: src/ghex-window.c:444 src/ui.c:48
+msgid "_Bytes"
+msgstr "바이트(_B)"
+
+#: src/ghex-window.c:445
+msgid "Group data by 8 bits"
+msgstr "데이터를 8 비트 단위로 모음"
+
+#: src/ghex-window.c:446 src/ui.c:49
+msgid "_Words"
+msgstr "워드(_W)"
+
+#: src/ghex-window.c:447
+msgid "Group data by 16 bits"
+msgstr "데이터를 16 비트 단위로 모음"
+
+#: src/ghex-window.c:448 src/ui.c:50
+msgid "_Longwords"
+msgstr "긴 단어(_L)"
+
+#: src/ghex-window.c:449
+msgid "Group data by 32 bits"
+msgstr "데이터를 32 비트 단위로 모음"
+
+#: src/ghex-window.c:787
+#, c-format
+msgid "Offset: %s"
+msgstr "오프셋: %s"
+
+#: src/ghex-window.c:790
+#, c-format
+msgid "; %s bytes from %s to %s selected"
+msgstr ": %s 바이트(%s부터 %s까지 선택함)"
+
+#: src/ghex-window.c:1066
+#, c-format
+msgid "Activate file %s"
+msgstr "%s 파일 활성화"
+
+#: src/ghex-window.c:1102
+#, c-format
+msgid "%s - GHex"
+msgstr "%s - 지헥스"
+
+#: src/ghex-window.c:1224
+msgid "Select a file to save buffer as"
+msgstr "버퍼를 저장할 파일 선택"
+
+#: src/ghex-window.c:1256
+#, c-format
+msgid ""
+"File %s exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"%s 파일이 이미 존재합니다.\n"
+"파일을 덮어쓰시겠습니까?"
+
+#: src/ghex-window.c:1282 src/ui.c:310
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "버퍼를 파일 %s에 저장했습니다"
+
+#: src/ghex-window.c:1289
+msgid "Error saving file!"
+msgstr "파일 저장 오류!"
+
+#: src/ghex-window.c:1295
+msgid "Can't open file for writing!"
+msgstr "쓰기위해 파일을 열 수 없습니다!"
+
+#: src/ghex-window.c:1340
+#, c-format
+msgid ""
+"File %s has changed since last save.\n"
+"Do you want to save changes?"
+msgstr ""
+"문서 %s이(가) 마지막에 저장한 후로 바뀌었습니다.\n"
+"바뀐 내용을 저장하시겠습니까?"
+
+#: src/ghex-window.c:1344
+msgid "Do_n't save"
+msgstr "저장 안 함(_N)"
+
+#: src/ghex-window.c:1364 src/ui.c:298
+msgid "You don't have the permissions to save the file!"
+msgstr "파일을 저장할 권한이 없습니다!"
+
+#: src/ghex-window.c:1368 src/ui.c:303
+msgid "An error occurred while saving file!"
+msgstr "파일 저장 중 오류가 발생했습니다!"
+
+#: src/hex-dialog.c:61
+msgid "Signed 8 bit:"
+msgstr "부호화 8 비트:"
+
+#: src/hex-dialog.c:62
+msgid "Unsigned 8 bit:"
+msgstr "무부호 8 비트:"
+
+#: src/hex-dialog.c:63
+msgid "Signed 16 bit:"
+msgstr "부호화 16 비트:"
+
+#: src/hex-dialog.c:64
+msgid "Unsigned 16 bit:"
+msgstr "무부호 16 비트:"
+
+#: src/hex-dialog.c:65
+msgid "Signed 32 bit:"
+msgstr "부호화 32 비트:"
+
+#: src/hex-dialog.c:66
+msgid "Unsigned 32 bit:"
+msgstr "무부호 32 비트:"
+
+#: src/hex-dialog.c:67
+msgid "Signed 64 bit:"
+msgstr "부호화 16 비트:"
+
+#: src/hex-dialog.c:68
+msgid "Unsigned 64 bit:"
+msgstr "무부호 16 비트:"
+
+#: src/hex-dialog.c:69
+msgid "Float 32 bit:"
+msgstr "실수형 32 비트:"
+
+#: src/hex-dialog.c:70
+msgid "Float 64 bit:"
+msgstr "실수형 64 비트:"
+
+#: src/hex-dialog.c:71
+msgid "Hexadecimal:"
+msgstr "16진수:"
+
+#: src/hex-dialog.c:72
+msgid "Octal:"
+msgstr "8진수:"
+
+#: src/hex-dialog.c:73
+msgid "Binary:"
+msgstr "2진수:"
+
+#: src/hex-dialog.c:214
+msgid "Show little endian decoding"
+msgstr "리틀 엔디안 값으로 표시"
+
+#: src/hex-dialog.c:221
+msgid "Show unsigned and float as hexadecimal"
+msgstr "무부호 및 실수형은 16진수로 표시"
+
+#: src/hex-dialog.c:227
+msgid "Stream Length:"
+msgstr "스트림 길이:"
+
+#: src/hex-dialog.c:250
+msgid "FIXME: no conversion function"
+msgstr "FIXME: 변환 함수 없음"
+
+#: src/hex-document.c:435
+msgid "New document"
+msgstr "새 문서"
+
+#: src/hex-document.c:784
+#, c-format
+msgid "Page"
+msgstr "페이지"
+
+#: src/hex-document.c:790 src/hex-document.c:915
+#, c-format
+msgid "Hex dump generated by"
+msgstr "16진수 덤프 생성자"
+
+#: src/hex-document.c:801
+msgid "Saving to HTML..."
+msgstr "HTML로 저장..."
+
+#: src/hex-document.c:838
+#, c-format
+msgid "Previous page"
+msgstr "이전 페이지"
+
+#: src/hex-document.c:853
+#, c-format
+msgid "Next page"
+msgstr "다음 페이지"
+
+#: src/main.c:36
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "X 위치 및 크기 지정(\"X\" man 페이지 참조)."
+
+#: src/main.c:36
+msgid "GEOMETRY"
+msgstr "GEOMETRY"
+
+#: src/main.c:37
+msgid "FILES"
+msgstr "<파일>"
+
+#: src/main.c:99
+msgid "- GTK+ binary editor"
+msgstr "- GTK+ 이진 파일 편집기"
+
+#: src/main.c:103
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"명령행 옵션 전체 목록을 보려면 '%s --help'를 실행하십시오.\n"
+
+#: src/main.c:133 src/main.c:146
+#, c-format
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "잘못된 위치 문자열 \"%s\"\n"
+
+#: src/preferences.c:69
+msgid "GHex Preferences"
+msgstr "지헥스 기본 설정"
+
+#: src/preferences.c:101
+msgid "_Maximum number of undo levels:"
+msgstr "실행 취소 최대 횟수(_M):"
+
+#: src/preferences.c:121
+msgid "Undo levels"
+msgstr "실행 취소 단계"
+
+#: src/preferences.c:121
+msgid "Select maximum number of undo levels"
+msgstr "실행 취소 단계 최대 횟수를 선택합니다"
+
+#: src/preferences.c:125
+msgid "_Show cursor offset in statusbar as:"
+msgstr "상태 표시줄에 커서 오프셋 표시(_S):"
+
+#: src/preferences.c:144
+msgid "Hexadecimal"
+msgstr "16진수"
+
+#: src/preferences.c:146
+msgid "Custom"
+msgstr "사용자 지정"
+
+#: src/preferences.c:155
+msgid "Enter the cursor offset format"
+msgstr "커서 오프셋 형식을 입력합니다"
+
+#: src/preferences.c:156
+msgid "Select the cursor offset format"
+msgstr "커서 오프셋 형식을 선택합니다"
+
+#. show offsets check button
+#: src/preferences.c:166
+msgid "Sh_ow offsets column"
+msgstr "오프셋 열 표시(_O)"
+
+#: src/preferences.c:171
+msgid "Editing"
+msgstr "편집"
+
+#. display font
+#: src/preferences.c:180
+msgid "Font"
+msgstr "글꼴"
+
+#. default group type
+#: src/preferences.c:203
+msgid "Default Group Type"
+msgstr "기본 그룹 형식"
+
+#: src/preferences.c:219
+msgid "Display"
+msgstr "표시"
+
+#. paper selection
+#: src/preferences.c:228
+msgid "Paper size"
+msgstr "종이 크기"
+
+#. data & header font selection
+#: src/preferences.c:233
+msgid "Fonts"
+msgstr "글꼴"
+
+#: src/preferences.c:245
+msgid "_Data font:"
+msgstr "데이터 글꼴(_D):"
+
+#: src/preferences.c:259
+msgid "Data font"
+msgstr "데이터 글꼴"
+
+#: src/preferences.c:259
+msgid "Select the data font"
+msgstr "데이터 글꼴 선택"
+
+#: src/preferences.c:268
+msgid "Header fo_nt:"
+msgstr "헤더 글꼴(_N):"
+
+#: src/preferences.c:281
+msgid "Header font"
+msgstr "헤더 글꼴"
+
+#: src/preferences.c:281
+msgid "Select the header font"
+msgstr "헤더 글꼴 선택"
+
+#: src/preferences.c:306
+msgid "_Print shaded box over:"
+msgstr "음영 상자 인쇄(_P):"
+
+#: src/preferences.c:318
+msgid "Box size"
+msgstr "상자 크기"
+
+#: src/preferences.c:318
+msgid "Select size of box (in number of lines)"
+msgstr "상자의 크기(줄 갯수)"
+
+#: src/preferences.c:322
+msgid "lines (0 for no box)"
+msgstr "줄마다(0은 인쇄 안 함)"
+
+#: src/preferences.c:329
+msgid "Printing"
+msgstr "인쇄"
+
+#: src/preferences.c:447 src/ui.c:219
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"도움말을 표시하는 데 오류가 발생했습니다: \n"
+"%s"
+
+#: src/preferences.c:499
+msgid "Can not open desired font!"
+msgstr "선택한 글꼴을 열 수 없습니다!"
+
+#: src/preferences.c:560
+msgid ""
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"옵셋 형식 문자열에 잘못된 형식 지정자가 들어 있습니다.\n"
+"옵셋 형식에 'x', 'X', 'p', 'P', 'd', 그리고 'o'만 사용할 수 있습니다."
+
+#: src/print.c:57
+#, c-format
+msgid "Page: %i/%i"
+msgstr "페이지: %i/%i"
+
+#: src/ui.c:55
+msgid "hex data"
+msgstr "16진수 데이터"
+
+#: src/ui.c:56
+msgid "ASCII data"
+msgstr "아스키 데이터"
+
+#: src/ui.c:160
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"이 프로그램은 자유 소프트웨어입니다. 자유 소프트웨어 재단이 공표한 GNU 일반 "
+"공중 사용 허가서 2판 또는(취향에 따라) 이후 판의 허가서 조항에 따라 재배포 또"
+"는 수정할 수 있습니다."
+
+#: src/ui.c:164
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"이 프로그램은 유용성을 바라며 배포하지만, 어떤 보증도 하지 않으며, 상업성, 특"
+"정 목적의 적합성에 대한 암묵적 보증도 하지 않습니다. 자세한 내용은 GNU 일반 "
+"공중 사용 허가서를 살펴보십시오."
+
+#: src/ui.c:168
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"이 프로그램과 GNU 일반 공중 사용 허가서 사본을 받으셔야 합니다. 없다면 자유 "
+"소프트웨어 재단에 요청하십시오.  51 Franklin Street, Fifth Floor, Boston, "
+"MA  02110-1301  USA"
+
+#. Translators: these two strings here indicate the copyright time span,
+#. e.g. 1998-2018.
+#: src/ui.c:180
+msgid "Copyright © %Id–%Id The GHex authors"
+msgstr "Copyright © %Id–%Id The 지헥스 authors"
+
+#: src/ui.c:184
+msgid "A binary file editor"
+msgstr "이진 파일 편집기"
+
+#: src/ui.c:190
+msgid "About GHex"
+msgstr "지헥스 정보"
+
+#: src/ui.c:191
+msgid "translator-credits"
+msgstr ""
+"류창우 <cwryu@debian.org>\n"
+"황치덕 <hwang@mizi.co.kr>\n"
+"김남형 <namhyung@gmail.com>\n"
+"조성호 <shcho@gnome.org>"
+
+#: src/ui.c:194
+msgid "GHex Website"
+msgstr "지헥스 웹사이트"
+
+#: src/ui.c:328
+msgid "Select a file to open"
+msgstr "열고 싶은 파일 선택"
+
+#: src/ui.c:360
+#, c-format
+msgid "Loaded file %s"
+msgstr "%s 파일 읽어들임"
+
+#: src/ui.c:368
+msgid "Can not open file!"
+msgstr "파일을 열 수 없습니다!"
+
+#: src/ui.c:433
+msgid "Select path and file name for the HTML source"
+msgstr "HTML 소스를 위한 경로와 파일 이름을 선택하십시오"
+
+#: src/ui.c:465
+msgid "You need to specify a base name for the HTML files."
+msgstr "HTML 파일의 이름을 지정하십시오."
+
+#: src/ui.c:476 src/ui.c:502
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "선택된 경로에 파일을 쓸 권한이 없습니다.\n"
+
+#: src/ui.c:488
+msgid ""
+"Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr ""
+"HTML로 저장하면 일부 파일을 덮어씁니다.\n"
+"계속 진행하시겠습니까?"
+
+#: src/ui.c:756
+#, c-format
+msgid "Really revert file %s?"
+msgstr "정말로 %s 파일을 원래대로 되돌리시겠습니까?"
+
+#: src/ui.c:770
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "파일 %s에서 버퍼 복구"

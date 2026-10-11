@@ -1,0 +1,1318 @@
+# Romanian translation for GNOME Utils
+# Copyright (C) 1999 Free Software Foundation, Inc.
+# Iustin Pop <iusty@geocities.com>
+# Dan Damian <dand@dnttm.ro>, 1999.
+# FIXME: De tradus: hack, buffer
+# Iacobescu Cristian <cristy_hereg93@yahoo.com>, 2010.
+# Daniel Șerbănescu <cyber19rider@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: ghex 1.0.13\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/ghex/issues\n"
+"POT-Creation-Date: 2020-06-03 07:04+0000\n"
+"PO-Revision-Date: 2020-07-10 16:51+0300\n"
+"Last-Translator: Florentina Mușat <florentina.musat.28@gmail.com>\n"
+"Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#: data/org.gnome.GHex.appdata.xml.in:6
+msgid "GNOME Hex Editor"
+msgstr "Editor Hex GNOME"
+
+#: data/org.gnome.GHex.appdata.xml.in:7 data/org.gnome.GHex.desktop.in:5
+msgid "Inspect and edit binary files"
+msgstr "Inspectează și editează fișiere binare"
+
+#: data/org.gnome.GHex.appdata.xml.in:9
+msgid "GHex is a hex editor for the GNOME desktop."
+msgstr "GHex este un editor hex pentru desktop-ul GNOME."
+
+#: data/org.gnome.GHex.appdata.xml.in:12
+msgid ""
+"GHex can load raw data from binary files and display them for editing in the "
+"traditional hex editor view. The display is split in two columns, with "
+"hexadecimal values in one column and the ASCII representation in the other. "
+"A useful tool for working with raw data."
+msgstr ""
+"GHez poate încărca datele brute de la fișiere binare și poate să se afișeze "
+"pentru editare în vizualizarea editor hex tradițională. Afișajul este "
+"împărțit în două coloane, cu valori hexazecimale într-o coloană și "
+"reprezentarea ASCII în cealaltă coloană. O unealtă utilă pentru lucrul cu "
+"datele brute."
+
+#: data/org.gnome.GHex.appdata.xml.in:44
+msgid "The GNOME Project"
+msgstr "Proiectul GNOME"
+
+#: data/org.gnome.GHex.desktop.in:3 src/ghex-window.c:662
+#: src/ghex-window.c:1106
+msgid "GHex"
+msgstr "GHex"
+
+#: data/org.gnome.GHex.desktop.in:4
+msgid "Hex Editor"
+msgstr "Editor Hex"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon! Here, 'binary' means a binary file (not the base-2 numeric system).
+#: data/org.gnome.GHex.desktop.in:7
+msgid "binary;debug;"
+msgstr "binary;debug;binar;depanare;"
+
+#: src/chartable.c:147
+msgid "ASCII"
+msgstr "ASCII"
+
+#: src/chartable.c:147
+msgid "Hex"
+msgstr "Hex"
+
+#: src/chartable.c:147 src/preferences.c:142
+msgid "Decimal"
+msgstr "Zecimal"
+
+#: src/chartable.c:148
+msgid "Octal"
+msgstr "Octal"
+
+#: src/chartable.c:148
+msgid "Binary"
+msgstr "Binar"
+
+#: src/chartable.c:164
+msgid "Character table"
+msgstr "Tabel de caractere"
+
+#: src/converter.c:232
+msgid "Base Converter"
+msgstr "Convertor de bază"
+
+#. entries
+#: src/converter.c:253
+msgid "_Binary:"
+msgstr "_Binar:"
+
+#: src/converter.c:255
+msgid "_Octal:"
+msgstr "_Octal:"
+
+#: src/converter.c:257
+msgid "_Decimal:"
+msgstr "_Zecimal:"
+
+#: src/converter.c:259
+msgid "_Hex:"
+msgstr "_Hex:"
+
+#: src/converter.c:261
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+#. get cursor button
+#: src/converter.c:265
+msgid "_Get cursor value"
+msgstr "_Obține valoarea cursorului"
+
+#: src/converter.c:279
+msgid "Get cursor value"
+msgstr "Obține valoarea cursorului"
+
+#: src/converter.c:279
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr "Obține valoarea cursorului în binar, octal, zecimal, hex și ASCII"
+
+#: src/converter.c:419
+msgid "ERROR"
+msgstr "EROARE"
+
+#: src/findreplace.c:97 src/findreplace.c:221 src/ui.c:892
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr "GHex (%s): Caută date"
+
+#: src/findreplace.c:101 src/findreplace.c:161 src/findreplace.c:359
+msgid "Find String"
+msgstr "Caută șir"
+
+#: src/findreplace.c:108 src/findreplace.c:258
+msgid "Find _Next"
+msgstr "Caută _următorul"
+
+#: src/findreplace.c:115 src/findreplace.c:267
+msgid "Find _Previous"
+msgstr "Caută _precedentul"
+
+#: src/findreplace.c:138 src/findreplace.c:413
+msgid "Find Data"
+msgstr "Caută date"
+
+#: src/findreplace.c:138 src/findreplace.c:413
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Introdu data hex sau ASCII pentru a căuta"
+
+#: src/findreplace.c:139
+msgid "Find Next"
+msgstr "Caută urătorul"
+
+#: src/findreplace.c:139 src/findreplace.c:415
+msgid "Finds the next occurrence of the search string"
+msgstr "Găsește următoarea apariție a șirului de căutare"
+
+#: src/findreplace.c:140
+msgid "Find previous"
+msgstr "Caută precedentul"
+
+#: src/findreplace.c:140
+msgid "Finds the previous occurrence of the search string "
+msgstr "Găsește precedenta apariție a șirului de căutare "
+
+#: src/findreplace.c:141 src/findreplace.c:418 src/findreplace.c:469
+msgid "Cancel"
+msgstr "Anulează"
+
+#: src/findreplace.c:141
+msgid "Closes find data window"
+msgstr "Închide fereastra pentru căutarea de date"
+
+#: src/findreplace.c:157
+#, c-format
+msgid "GHex (%s): Find Data: Add search"
+msgstr "GHex (%s): Caută date: Adaugă căutare"
+
+#: src/findreplace.c:179
+msgid "Add"
+msgstr "Adaugă"
+
+#: src/findreplace.c:235
+msgid "Search String"
+msgstr "Șir de căutare"
+
+#: src/findreplace.c:243
+msgid "Highlight Colour"
+msgstr "Culoarea evidențierii"
+
+#: src/findreplace.c:280
+msgid "_Add New"
+msgstr "_Adaugă nou"
+
+#: src/findreplace.c:289
+msgid "_Remove Selected"
+msgstr "_Elimină selecția"
+
+#: src/findreplace.c:309
+msgid "Close"
+msgstr "Închide"
+
+#: src/findreplace.c:309
+msgid "Closes advanced find window"
+msgstr "Închide fereastra de căutare avansată"
+
+#: src/findreplace.c:355 src/ui.c:890
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "GHex (%s): Caută și înlocuiește date"
+
+#: src/findreplace.c:368
+msgid "Replace With"
+msgstr "Înlocuiește cu"
+
+#: src/findreplace.c:375
+msgid "Find _next"
+msgstr "Caută _următorul"
+
+#: src/findreplace.c:383
+msgid "_Replace"
+msgstr "Î_nlocuiește"
+
+#: src/findreplace.c:391
+msgid "Replace _All"
+msgstr "Înlocuiește _tot"
+
+#: src/findreplace.c:414
+msgid "Replace Data"
+msgstr "Înlocuiește date"
+
+#: src/findreplace.c:414
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Introdu data hex sau ASCII pentru a înlocui cu"
+
+#: src/findreplace.c:415
+msgid "Find next"
+msgstr "Caută următorul"
+
+#: src/findreplace.c:416
+msgid "Replace"
+msgstr "Înlocuiește"
+
+#: src/findreplace.c:416
+msgid "Replaces the search string with the replace string"
+msgstr "Înlocuiește șirul de căutare cu șirul de înlocuire"
+
+#: src/findreplace.c:417
+msgid "Replace All"
+msgstr "Înlocuiește tot"
+
+#: src/findreplace.c:417
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr ""
+"Înlocuiește toate aparițiile din șirul de căutare cu șirul de înlocuire"
+
+#: src/findreplace.c:418
+msgid "Closes find and replace data window"
+msgstr "Închide fereastra de căutare și înlocuire a datelor"
+
+#: src/findreplace.c:434 src/ui.c:888
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr "GHex (%s): Sari la octet"
+
+#: src/findreplace.c:467
+msgid "Jump to byte"
+msgstr "Sari la octet"
+
+#: src/findreplace.c:467
+msgid "Enter the byte to jump to"
+msgstr "Introduceți octetul la care să se sară"
+
+#: src/findreplace.c:468
+msgid "OK"
+msgstr "OK"
+
+#: src/findreplace.c:468
+msgid "Jumps to the specified byte"
+msgstr "Sari la octetul specificat"
+
+#: src/findreplace.c:469
+msgid "Closes jump to byte window"
+msgstr "Închide fereastra pentru sărire la octet"
+
+#: src/findreplace.c:532 src/findreplace.c:566 src/findreplace.c:673
+msgid "There is no active document to search!"
+msgstr "Nu există niciun document activ pentru a căuta!"
+
+#: src/findreplace.c:539 src/findreplace.c:573 src/findreplace.c:680
+#: src/findreplace.c:714 src/findreplace.c:759
+msgid "There is no string to search for!"
+msgstr "Nu există niciun șir pentru a căuta!"
+
+#: src/findreplace.c:551 src/findreplace.c:689 src/findreplace.c:879
+msgid "End Of File reached"
+msgstr "S-a atins sfârșitul fișierului"
+
+#: src/findreplace.c:552 src/findreplace.c:585 src/findreplace.c:688
+#: src/findreplace.c:880 src/findreplace.c:903
+msgid "String was not found!\n"
+msgstr "Șirul nu a fost găsit!\n"
+
+#: src/findreplace.c:584 src/findreplace.c:902
+msgid "Beginning Of File reached"
+msgstr "S-a ajuns la începutul fișierului"
+
+#: src/findreplace.c:601
+msgid "There is no active document to move the cursor in!"
+msgstr "Nu există niciun document activ pentru a muta cursorul în acesta!"
+
+#: src/findreplace.c:619
+msgid "No offset has been specified!"
+msgstr "Nu s-a specificat niciun decalaj!"
+
+#: src/findreplace.c:644
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "Decalajul specificat este peste limitele fișierului!"
+
+#: src/findreplace.c:652
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "Nu se poate poziționa cursorul dincolo de sfârșitul fișierului!"
+
+#: src/findreplace.c:659
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+"Puteți oferi decalajul doar ca:\n"
+"  - un număr zecimal pozitiv, sau\n"
+"  - un număr hex, care începe cu „0x”, sau\n"
+"  - un semn „+” sau „-”, urmat de un decalaj relativ"
+
+#: src/findreplace.c:705
+msgid "There is no active buffer to replace data in!"
+msgstr "Nu există nicio preîncărcare în care să se înlocuiască datele!"
+
+#: src/findreplace.c:730 src/findreplace.c:731
+msgid "End Of File reached!"
+msgstr "S-a atins sfârșitul fișierului!"
+
+#: src/findreplace.c:750
+msgid "There is no active document to replace data in!"
+msgstr "Nu există niciun document activ pentru a înlocui datele în acesta!"
+
+#: src/findreplace.c:780
+msgid "No occurrences were found."
+msgstr "Nu au fost găsite evenimente."
+
+#: src/findreplace.c:783
+#, c-format
+msgid "Replaced %d occurrence."
+msgid_plural "Replaced %d occurrences."
+msgstr[0] "O apariție înlocuită."
+msgstr[1] "%d apariții înlocuite."
+msgstr[2] "%d de apariții înlocuite."
+
+#: src/findreplace.c:823
+msgid "No string to search for!"
+msgstr "Nu există șir de căutat!"
+
+#: src/ghex-window.c:88
+#, c-format
+msgid ""
+"Can not open URI:\n"
+"%s"
+msgstr ""
+"Nu s-a putut deschide URI-ul:\n"
+"%s"
+
+#: src/ghex-window.c:109
+#, c-format
+msgid ""
+"Can not open file:\n"
+"%s"
+msgstr ""
+"Nu s-a putut deschide fișierul:\n"
+"%s"
+
+#: src/ghex-window.c:338
+msgid "_File"
+msgstr "_Fișier"
+
+#: src/ghex-window.c:339
+msgid "_Edit"
+msgstr "_Editează"
+
+#: src/ghex-window.c:340
+msgid "_View"
+msgstr "_Vizualizează"
+
+#: src/ghex-window.c:341
+msgid "_Group Data As"
+msgstr "_Grupează datele ca"
+
+#. View submenu
+#: src/ghex-window.c:342
+msgid "_Windows"
+msgstr "_Ferestre"
+
+#: src/ghex-window.c:343
+msgid "_Help"
+msgstr "_Ajutor"
+
+#. File menu
+#: src/ghex-window.c:346
+msgid "_Open..."
+msgstr "_Deschide..."
+
+#: src/ghex-window.c:347
+msgid "Open a file"
+msgstr "Deschide un fișier"
+
+#: src/ghex-window.c:349
+msgid "_Save"
+msgstr "_Salvează"
+
+#: src/ghex-window.c:350
+msgid "Save the current file"
+msgstr "Salvează fișierul curent"
+
+#: src/ghex-window.c:352
+msgid "Save _As..."
+msgstr "Salvează c_a..."
+
+#: src/ghex-window.c:353
+msgid "Save the current file with a different name"
+msgstr "Salvează fișierul curent cu un alt nume"
+
+#: src/ghex-window.c:355
+msgid "Save As _HTML..."
+msgstr "Salvează ca _HTML..."
+
+#: src/ghex-window.c:356
+msgid "Export data to HTML source"
+msgstr "Exportă data în sursa HTML"
+
+#: src/ghex-window.c:358
+msgid "_Revert"
+msgstr "_Revenire"
+
+#: src/ghex-window.c:359
+msgid "Revert to a saved version of the file"
+msgstr "Revine la o versiune salvată a fișierului"
+
+#: src/ghex-window.c:361
+msgid "_Print"
+msgstr "_Tipărește"
+
+#: src/ghex-window.c:362
+msgid "Print the current file"
+msgstr "Tipărește fișierul curent"
+
+#: src/ghex-window.c:364
+msgid "Print Previe_w..."
+msgstr "Pr_evizualizare tipărire..."
+
+#: src/ghex-window.c:365
+msgid "Preview printed data"
+msgstr "Previzualizare date de tipărit"
+
+#: src/ghex-window.c:367
+msgid "_Close"
+msgstr "În_chide"
+
+#: src/ghex-window.c:368
+msgid "Close the current file"
+msgstr "Închide fișierul curent"
+
+#: src/ghex-window.c:370
+msgid "E_xit"
+msgstr "_Ieșire"
+
+#: src/ghex-window.c:371
+msgid "Exit the program"
+msgstr "Ieșiți din program"
+
+#. Edit menu
+#: src/ghex-window.c:375
+msgid "_Undo"
+msgstr "_Anulează"
+
+#: src/ghex-window.c:376
+msgid "Undo the last action"
+msgstr "Anulează ultima acțiune"
+
+#: src/ghex-window.c:378
+msgid "_Redo"
+msgstr "_Refă"
+
+#: src/ghex-window.c:379
+msgid "Redo the undone action"
+msgstr "Refă acțiunea anulată"
+
+#: src/ghex-window.c:381
+msgid "_Copy"
+msgstr "_Copiază"
+
+#: src/ghex-window.c:382
+msgid "Copy selection to clipboard"
+msgstr "Copiază selecția în clipboard"
+
+#: src/ghex-window.c:384
+msgid "Cu_t"
+msgstr "_Taie"
+
+#: src/ghex-window.c:385
+msgid "Cut selection"
+msgstr "Selecție de tăiat"
+
+#: src/ghex-window.c:387
+msgid "Pa_ste"
+msgstr "Li_pește"
+
+#: src/ghex-window.c:388
+msgid "Paste data from clipboard"
+msgstr "Lipește date din clipboard"
+
+#: src/ghex-window.c:390
+msgid "_Find"
+msgstr "_Caută"
+
+#: src/ghex-window.c:391
+msgid "Search for a string"
+msgstr "Caută un șir"
+
+#: src/ghex-window.c:393
+msgid "_Advanced Find"
+msgstr "Căutare _avansată"
+
+#: src/ghex-window.c:394
+msgid "Advanced Find"
+msgstr "Căutare avansată"
+
+#: src/ghex-window.c:396
+msgid "R_eplace"
+msgstr "Î_nlocuiește"
+
+#: src/ghex-window.c:397
+msgid "Replace a string"
+msgstr "Înlocuiește un șir"
+
+#: src/ghex-window.c:399
+msgid "_Goto Byte..."
+msgstr "_Navighează la octet-ul..."
+
+#: src/ghex-window.c:400
+msgid "Jump to a certain position"
+msgstr "Sari la o poziție specifică"
+
+#: src/ghex-window.c:402
+msgid "_Preferences"
+msgstr "_Preferințe"
+
+#: src/ghex-window.c:403
+msgid "Configure the application"
+msgstr "Configurează aplicația"
+
+#. View menu
+#: src/ghex-window.c:407
+msgid "_Add View"
+msgstr "_Adaugă vizualizare"
+
+#: src/ghex-window.c:408
+msgid "Add a new view to the buffer"
+msgstr "Adaugă o nouă vizualizare a tamponului"
+
+#: src/ghex-window.c:410
+msgid "_Remove View"
+msgstr "Elimină vizualiza_rea"
+
+#: src/ghex-window.c:411
+msgid "Remove the current view of the buffer"
+msgstr "Elimină vizualizarea curentă a tamponului"
+
+#. Help menu
+#: src/ghex-window.c:415
+msgid "_Contents"
+msgstr "_Conținut"
+
+#: src/ghex-window.c:416
+msgid "Help on this application"
+msgstr "Ajutor pentru această aplicație"
+
+#: src/ghex-window.c:418
+msgid "_About"
+msgstr "_Despre"
+
+#: src/ghex-window.c:419
+msgid "About this application"
+msgstr "Despre această aplicație"
+
+#. Edit menu
+#: src/ghex-window.c:426
+msgid "_Insert Mode"
+msgstr "Mod de _introducere"
+
+#: src/ghex-window.c:427
+msgid "Insert/overwrite data"
+msgstr "Introdu/suprascrie date"
+
+#. Windows menu
+#: src/ghex-window.c:431
+msgid "Character _Table"
+msgstr "_Tabel de caractere"
+
+#: src/ghex-window.c:432
+msgid "Show the character table"
+msgstr "Afișează tabela de caractere"
+
+#: src/ghex-window.c:434
+msgid "_Base Converter"
+msgstr "Convertor de _bază"
+
+#: src/ghex-window.c:435
+msgid "Open base conversion dialog"
+msgstr "Deschide dialogul bazei de conversie"
+
+#: src/ghex-window.c:437
+msgid "Type Conversion _Dialog"
+msgstr "_Dialogul tipul conversiei"
+
+#: src/ghex-window.c:438
+msgid "Show the type conversion dialog in the edit window"
+msgstr "Arată dialogul tipul conversiei în fereastra de editare"
+
+#: src/ghex-window.c:444 src/ui.c:48
+msgid "_Bytes"
+msgstr "_Octeți"
+
+#: src/ghex-window.c:445
+msgid "Group data by 8 bits"
+msgstr "Grupează datele pe 8 biți"
+
+#: src/ghex-window.c:446 src/ui.c:49
+msgid "_Words"
+msgstr "Cu_vinte"
+
+#: src/ghex-window.c:447
+msgid "Group data by 16 bits"
+msgstr "Grupează datele pe 16 biți"
+
+#: src/ghex-window.c:448 src/ui.c:50
+msgid "_Longwords"
+msgstr "Cu_vinte lungi"
+
+#: src/ghex-window.c:449
+msgid "Group data by 32 bits"
+msgstr "Grupează datele pe 32 de biți"
+
+#: src/ghex-window.c:787
+#, c-format
+msgid "Offset: %s"
+msgstr "Compensează: %s"
+
+#: src/ghex-window.c:790
+#, c-format
+msgid "; %s bytes from %s to %s selected"
+msgstr "; %s octeți de la %s la %s selectați"
+
+#: src/ghex-window.c:1066
+#, c-format
+msgid "Activate file %s"
+msgstr "Activează fișierul %s"
+
+#: src/ghex-window.c:1102
+#, c-format
+msgid "%s - GHex"
+msgstr "%s - GHex"
+
+#: src/ghex-window.c:1224
+msgid "Select a file to save buffer as"
+msgstr "Selectați un fișier pentru a salva preîncărcarea ca"
+
+#: src/ghex-window.c:1256
+#, c-format
+msgid ""
+"File %s exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"Fișierul %s există.\n"
+"Doriți să-l suprascrieți?"
+
+#: src/ghex-window.c:1282 src/ui.c:310
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "Preîncărcare salvată la fișierul %s"
+
+#: src/ghex-window.c:1289
+msgid "Error saving file!"
+msgstr "Eroare la salvarea fișierului!"
+
+#: src/ghex-window.c:1295
+msgid "Can't open file for writing!"
+msgstr "Nu se poate deschide fișierul pentru scriere!"
+
+#: src/ghex-window.c:1340
+#, c-format
+msgid ""
+"File %s has changed since last save.\n"
+"Do you want to save changes?"
+msgstr ""
+"Documentul %s s-a modificat de la ultima salvare.\n"
+"Doriți să salvați modificările?"
+
+#: src/ghex-window.c:1344
+msgid "Do_n't save"
+msgstr "_Nu salva"
+
+#: src/ghex-window.c:1364 src/ui.c:298
+msgid "You don't have the permissions to save the file!"
+msgstr "Nu aveți permisiuni pentru a salva fișierul!"
+
+#: src/ghex-window.c:1368 src/ui.c:303
+msgid "An error occurred while saving file!"
+msgstr "A intervenit o eroare la salvarea fișierului!"
+
+#: src/hex-dialog.c:61
+msgid "Signed 8 bit:"
+msgstr "Semnat la 8 biți:"
+
+#: src/hex-dialog.c:62
+msgid "Unsigned 8 bit:"
+msgstr "Nesemnat la 8 biți:"
+
+#: src/hex-dialog.c:63
+msgid "Signed 16 bit:"
+msgstr "Semnat la 16 biți:"
+
+#: src/hex-dialog.c:64
+msgid "Unsigned 16 bit:"
+msgstr "Nesemnat la 16 biți:"
+
+#: src/hex-dialog.c:65
+msgid "Signed 32 bit:"
+msgstr "Semnat la 32 de biți:"
+
+#: src/hex-dialog.c:66
+msgid "Unsigned 32 bit:"
+msgstr "Nesemnat la 32 de biți:"
+
+#: src/hex-dialog.c:67
+msgid "Signed 64 bit:"
+msgstr "Cu semn 64 bit:"
+
+#: src/hex-dialog.c:68
+msgid "Unsigned 64 bit:"
+msgstr "Fără semn 64 bit:"
+
+#: src/hex-dialog.c:69
+msgid "Float 32 bit:"
+msgstr "Float 32 bit:"
+
+#: src/hex-dialog.c:70
+msgid "Float 64 bit:"
+msgstr "Float 64 bit:"
+
+#: src/hex-dialog.c:71
+msgid "Hexadecimal:"
+msgstr "Hexazecimal:"
+
+#: src/hex-dialog.c:72
+msgid "Octal:"
+msgstr "Octal:"
+
+#: src/hex-dialog.c:73
+msgid "Binary:"
+msgstr "Binar:"
+
+#: src/hex-dialog.c:214
+msgid "Show little endian decoding"
+msgstr "Arată decodarea mic endian"
+
+#: src/hex-dialog.c:221
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Arată fără semn și float ca hexazecimal"
+
+#: src/hex-dialog.c:227
+msgid "Stream Length:"
+msgstr "Lungime flux:"
+
+#: src/hex-dialog.c:250
+msgid "FIXME: no conversion function"
+msgstr "FIXME: nicio funcție de conversie"
+
+#: src/hex-document.c:435
+msgid "New document"
+msgstr "Document nou"
+
+#: src/hex-document.c:784
+#, c-format
+msgid "Page"
+msgstr "Pagina"
+
+#: src/hex-document.c:790 src/hex-document.c:915
+#, c-format
+msgid "Hex dump generated by"
+msgstr "Transferul Hex generat de"
+
+#: src/hex-document.c:801
+msgid "Saving to HTML..."
+msgstr "Salvează în HTML..."
+
+#: src/hex-document.c:838
+#, c-format
+msgid "Previous page"
+msgstr "Pagina precedentă"
+
+#: src/hex-document.c:853
+#, c-format
+msgid "Next page"
+msgstr "Pagina următoare"
+
+#: src/main.c:36
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "Specificație de geometrie X (consultați pagina de manual „X”)"
+
+#: src/main.c:36
+msgid "GEOMETRY"
+msgstr "GEOMETRIE"
+
+#: src/main.c:37
+msgid "FILES"
+msgstr "FIȘIERE"
+
+#: src/main.c:99
+msgid "- GTK+ binary editor"
+msgstr "- GTK+ editor binar"
+
+#: src/main.c:103
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"Rulați „%s --help” pentru a vedea o listă completă a opțiunilor disponibile "
+"în linia de comandă.\n"
+
+#: src/main.c:133 src/main.c:146
+#, c-format
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "Geometrie nevalidă a șirului „%s”\n"
+
+#: src/preferences.c:69
+msgid "GHex Preferences"
+msgstr "Preferințe GHex"
+
+#: src/preferences.c:101
+msgid "_Maximum number of undo levels:"
+msgstr "Numărul _maxim de nivele de anulare:"
+
+#: src/preferences.c:121
+msgid "Undo levels"
+msgstr "Nivele de anulare"
+
+#: src/preferences.c:121
+msgid "Select maximum number of undo levels"
+msgstr "Selectează numărul maxim de nivele de anulare"
+
+#: src/preferences.c:125
+msgid "_Show cursor offset in statusbar as:"
+msgstr "_Afișează poziția cursor-ului în bara de stare ca:"
+
+#: src/preferences.c:144
+msgid "Hexadecimal"
+msgstr "Hexazecimal"
+
+#: src/preferences.c:146
+msgid "Custom"
+msgstr "Personalizat"
+
+#: src/preferences.c:155
+msgid "Enter the cursor offset format"
+msgstr "Introdu decalajul formatului cursorului"
+
+#: src/preferences.c:156
+msgid "Select the cursor offset format"
+msgstr "Selectează decalajul formatului cursorului"
+
+#. show offsets check button
+#: src/preferences.c:166
+msgid "Sh_ow offsets column"
+msgstr "A_fișează coloana de poziție"
+
+#: src/preferences.c:171
+msgid "Editing"
+msgstr "Editare"
+
+#. display font
+#: src/preferences.c:180
+msgid "Font"
+msgstr "Font"
+
+#. default group type
+#: src/preferences.c:203
+msgid "Default Group Type"
+msgstr "Tipul grupului implicit"
+
+#: src/preferences.c:219
+msgid "Display"
+msgstr "Afișaj"
+
+#. paper selection
+#: src/preferences.c:228
+msgid "Paper size"
+msgstr "Dimensiune hârtie"
+
+#. data & header font selection
+#: src/preferences.c:233
+msgid "Fonts"
+msgstr "Fonturi"
+
+#: src/preferences.c:245
+msgid "_Data font:"
+msgstr "Font de _date:"
+
+#: src/preferences.c:259
+msgid "Data font"
+msgstr "Font de date"
+
+#: src/preferences.c:259
+msgid "Select the data font"
+msgstr "Selectează fontul de date"
+
+#: src/preferences.c:268
+msgid "Header fo_nt:"
+msgstr "Fo_ntul antetului:"
+
+#: src/preferences.c:281
+msgid "Header font"
+msgstr "Fontul antetului"
+
+#: src/preferences.c:281
+msgid "Select the header font"
+msgstr "Selectează fontul antetului"
+
+#: src/preferences.c:306
+msgid "_Print shaded box over:"
+msgstr "_Tipărește peste caseta umbrită:"
+
+#: src/preferences.c:318
+msgid "Box size"
+msgstr "Dimensiunea casetei"
+
+#: src/preferences.c:318
+msgid "Select size of box (in number of lines)"
+msgstr "Selectează mărimea casetei (în număr de linii)"
+
+#: src/preferences.c:322
+msgid "lines (0 for no box)"
+msgstr "linii (0 pentru nicio casetă)"
+
+#: src/preferences.c:329
+msgid "Printing"
+msgstr "Tipărire"
+
+#: src/preferences.c:447 src/ui.c:219
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"S-a constatat o eroare afișând ajutor: \n"
+"%s"
+
+#: src/preferences.c:499
+msgid "Can not open desired font!"
+msgstr "Nu se poate deschide fontul dorit!"
+
+#: src/preferences.c:560
+msgid ""
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"Poziția șirului de formatare conține specificatori nevalizi.\n"
+"Doar „x”, „X”, „p”, „P”, „d” și „o” sunt permiși."
+
+#: src/print.c:57
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Pagina: %i/%i"
+
+#: src/ui.c:55
+msgid "hex data"
+msgstr "date hex"
+
+#: src/ui.c:56
+msgid "ASCII data"
+msgstr "Date ASCII"
+
+#: src/ui.c:160
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"Acest program este liber; îl puteți redistribui și/sau modifica în "
+"conformitate cu termenii licenței Publice Generale GNU așa cum este "
+"publicată de Free Software Foundation; fie versiunea 2 a Licenței, fie (la "
+"latitudinea dumneavoastră) orice versiune ulterioară."
+
+#: src/ui.c:164
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"Acest program este distribuit cu speranța că va fi util, dar FĂRĂ NICI O "
+"GARANȚIE, fără garanție implicită de vandabilitate și  conformitate unui "
+"anumit scop.  Citiți Licența Publică Generală GNU pentru detalii."
+
+#: src/ui.c:168
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"Trebuie să fi primit o copie a GNU General Public Licence împreună cu acest "
+"program; dacă nu, scrieți la Free Software Foundation, Inc, 51 Franklin "
+"Street, Fifth Floor, Boston, MA 02110 la 1301 Statele Unite ale Americii"
+
+#. Translators: these two strings here indicate the copyright time span,
+#. e.g. 1998-2018.
+#: src/ui.c:180
+msgid "Copyright © %Id–%Id The GHex authors"
+msgstr "Drepturi de autor © %Id–%Id Autorii GHex"
+
+#: src/ui.c:184
+msgid "A binary file editor"
+msgstr "Un fișier de editare binară"
+
+#: src/ui.c:190
+msgid "About GHex"
+msgstr "Despre GHex"
+
+#: src/ui.c:191
+msgid "translator-credits"
+msgstr ""
+"Cristi Iacobescu <cristy_hereg93@yahoo.com>\n"
+"Florentina Mușat <florentina [dot] musat [dot] 28 [at] gmail [dot] com>, 2020"
+
+#: src/ui.c:194
+msgid "GHex Website"
+msgstr "Pagina web GHex"
+
+#: src/ui.c:328
+msgid "Select a file to open"
+msgstr "Selectează un fișier pentru a-l deschide"
+
+#: src/ui.c:360
+#, c-format
+msgid "Loaded file %s"
+msgstr "Fișierul încărcat %s"
+
+#: src/ui.c:368
+msgid "Can not open file!"
+msgstr "Nu s-a putut deschide fișierul!"
+
+#: src/ui.c:433
+msgid "Select path and file name for the HTML source"
+msgstr "Selectați calea și numele fișier pentru sursa HTML"
+
+#: src/ui.c:465
+msgid "You need to specify a base name for the HTML files."
+msgstr "Trebuie să specificați un nume de bază pentru fișierele HTML."
+
+#: src/ui.c:476 src/ui.c:502
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "Nu aveți permisiunea de a scrie la calea selectată.\n"
+
+#: src/ui.c:488
+msgid ""
+"Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr ""
+"Se salvează în HTML se vor suprascrie unele fișiere.\n"
+"Doriți să continuați?"
+
+#: src/ui.c:756
+#, c-format
+msgid "Really revert file %s?"
+msgstr "Sigur reveniți fișierul %s?"
+
+#: src/ui.c:770
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "Preîncărcare revenită de la fișierul %s"
+
+#~ msgid "Add View"
+#~ msgstr "Adaugă vizualizare"
+
+#~ msgid "Bytes"
+#~ msgstr "Octeți"
+
+#~ msgid "Character Table..."
+#~ msgstr "Tabel de caractere..."
+
+#~ msgid "Contents"
+#~ msgstr "Conținut"
+
+#~ msgid "Converter..."
+#~ msgstr "Convertor..."
+
+#~ msgid "Copy"
+#~ msgstr "Copiază"
+
+#~ msgid "Cut"
+#~ msgstr "Taie"
+
+#~ msgid "Exit"
+#~ msgstr "Ieșire"
+
+#~ msgid "Export to HTML..."
+#~ msgstr "Exportă în HTML..."
+
+#~ msgid "Find"
+#~ msgstr "Caută"
+
+#~ msgid "Goto Byte"
+#~ msgstr "Navighează la octet"
+
+#~ msgid "Help Chat"
+#~ msgstr "Conversație pentru ajutor"
+
+#~ msgid "Insert Mode"
+#~ msgstr "Mod de introducere"
+
+#~ msgid "Longwords"
+#~ msgstr "Cuvinte lungi"
+
+#~ msgid "Open"
+#~ msgstr "Deschide"
+
+#~ msgid "Paste"
+#~ msgstr "Lipește"
+
+#~ msgid "Preferences"
+#~ msgstr "Preferințe"
+
+#~ msgid "Print"
+#~ msgstr "Tipărește"
+
+#~ msgid "Print Preview..."
+#~ msgstr "Previzualizare tipărire..."
+
+#~ msgid "Redo"
+#~ msgstr "Refă"
+
+#~ msgid "Remove View"
+#~ msgstr "Vizualizare de eliminare"
+
+#~ msgid "Revert"
+#~ msgstr "Revino"
+
+#~ msgid "Save"
+#~ msgstr "Salvează"
+
+#~ msgid "Save As"
+#~ msgstr "Salvează ca"
+
+#~ msgid "Type Conversion Dialog..."
+#~ msgstr "Dialogul tipul conversiei..."
+
+#~ msgid "Undo"
+#~ msgstr "Anulează"
+
+#~ msgid "Words"
+#~ msgstr "Cuvinte"
+
+#~ msgid "_Insert a new preview phrase."
+#~ msgstr "_Introdu o nouă frază de previzualizare."
+
+#~| msgid "Print preview..."
+#~ msgid "Modify preview phrase..."
+#~ msgstr "Modifică fraza de previzualizare..."
+
+#~| msgid "Print preview..."
+#~ msgid "Preview"
+#~ msgstr "Previzualizare"
+
+#~ msgid "_Modify preview phrase..."
+#~ msgstr "_Modifică fraza de previzualizare..."
+
+#~| msgid "Select font"
+#~ msgid "Font Selection"
+#~ msgstr "Selecție font"
+
+#~ msgid "Sans Regular 12"
+#~ msgstr "Sans Regular 12"
+
+#~ msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+#~ msgstr "AaĂăÂâBbCcDdEeFfGgHhIiÎiJjKkLlMmNnOoPpQqRrSsȘșTtȚțUuVvWwXxYyZz"
+
+#~ msgid "Pick a Font"
+#~ msgstr "Alege un font"
+
+#~ msgid "Title"
+#~ msgstr "Titlu"
+
+#~ msgid "The title of the selection dialog box"
+#~ msgstr "Titlul selecției casetei de dialog"
+
+#~| msgid "Font"
+#~ msgid "Font name"
+#~ msgstr "Numele fontului"
+
+#~ msgid "Name of the selected font"
+#~ msgstr "Numele fontului selectat"
+
+#~| msgid "Preview printed data"
+#~ msgid "Preview text"
+#~ msgstr "Previzualizează textul"
+
+#~ msgid "Preview text shown in the dialog"
+#~ msgstr "Previzualizează textul care apare în dialog"
+
+#~ msgid "Use font in label"
+#~ msgstr "Utilizează fontul în etichetă"
+
+#~ msgid "Use font in the label in font info mode"
+#~ msgstr "Utilizează fontul pentru etichetă în modul info font"
+
+#~ msgid "Font size for label"
+#~ msgstr "Dimensiunea fontului pentru etichetă"
+
+#~ msgid "Font size for label in font info mode"
+#~ msgstr "Dimensiunea fontului pentru etichetă în modul info font"
+
+#~ msgid "Show size"
+#~ msgstr "Arată dimensiunea"
+
+#~ msgid "Show size in font info mode"
+#~ msgstr "Arată dimensiunea în modulul info font"
+
+#, fuzzy
+#~ msgid "32 bit float:"
+#~ msgstr "32 biți plutesc:"
+
+#, fuzzy
+#~ msgid "64 bit float:"
+#~ msgstr "64 biți plutesc:"
+
+#~ msgid "Could not initialize Bonobo!\n"
+#~ msgstr "Nu s-a putut inițializa Bonobo!\n"
+
+#~ msgid ""
+#~ "GHex could not find the font \"%s\".\n"
+#~ "GHex is unable to print without this font installed."
+#~ msgstr ""
+#~ "GHex nu a putut găsi fontul \"%s\".\n"
+#~ "GHex nu poate tipării fără acest font instalat."
+
+#~ msgid ""
+#~ "Copyright © 1998 - 2006 Jaka Močnik\n"
+#~ "Copyright © 2006 - 2010 GHex Contributors"
+#~ msgstr ""
+#~ "Drepturi de autor © 1998 - 2006 Jaka Močnik\n"
+#~ "Drepturi de autor © 2006 - 2010 Contribuitorii GHex"
+
+#~| msgid "Print preview..."
+#~ msgid "Printing file..."
+#~ msgstr "Se tipărește fișierul..."
+
+#~ msgid "Print Hex Document"
+#~ msgstr "Tipărește documentul Hex"
+
+#~| msgid "Page"
+#~ msgid "Pages"
+#~ msgstr "Pagini"
+
+#~ msgid "GHex (%s): Print Preview"
+#~ msgstr "GHex (%s): Previzualizare tipărire"
+
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "Lungimea de deplasare trebuie sã fie un întreg pozitiv!"
+
+#~ msgid "Strange find or replace string!"
+#~ msgstr "ªir de cãutat sau înlocuit bizar!"
+
+#~ msgid "Default"
+#~ msgstr "Implicit"
+
+#~ msgid "Notebook"
+#~ msgstr "Carnet"
+
+#~ msgid "Modal"
+#~ msgstr "Modal"
+
+#~ msgid "Browse..."
+#~ msgstr "Rãsfoiesc..."
+
+#~ msgid "MDI Mode"
+#~ msgstr "Modul MDI"
+
+#~ msgid "MDI"
+#~ msgstr "MDI"
+
+#~ msgid "Tools"
+#~ msgstr "Instrumente"
+
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "Distribuit sub termenii Licenþei Publice GNU"
+
+#~ msgid "GHex: Character table"
+#~ msgstr "GHex: tabelã caractere"

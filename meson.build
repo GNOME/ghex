@@ -25,7 +25,6 @@ servicedir = join_paths(datadir, 'dbus-1/services')
 iconsdir = join_paths(datadir, 'icons')
 girdir = join_paths(datadir, 'gir-1.0')
 typelibdir = join_paths(libdir, 'girepository-1.0')
-po_dir = join_paths(meson.project_source_root(), 'po')
 
 # compiler options
 

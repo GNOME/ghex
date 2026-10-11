@@ -1,0 +1,1126 @@
+# ---------------------------------------------------------
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Rüstəm Əsgərov <rustam@boun.edu.tr>, 2000-2001.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ghex 1.1.4\n"
+"POT-Creation-Date: 2003-08-11 11:47+0200\n"
+"PO-Revision-Date: 2003-08-11 18:53+0200\n"
+"Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
+"Language-Team: Azerbaijani Turkish <gnome@azitt.com>\n"
+"Language: az\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# src/preferences.c:166
+#: ghex.desktop.in.h:1
+msgid "GNOME Hexadecimal Editor"
+msgstr "GNOME Onaltılıq Editoru"
+
+#: ghex.desktop.in.h:2
+msgid "Hex Editor"
+msgstr "Onaltılıq Editor"
+
+# src/chartable.c:90 src/converter.c:83
+#: src/chartable.c:140
+msgid "ASCII"
+msgstr "ASCII"
+
+# src/chartable.c:90 src/converter.c:73
+#: src/chartable.c:140
+msgid "Hex"
+msgstr "Onaltılıq"
+
+# src/chartable.c:90 src/converter.c:63 src/preferences.c:161
+#: src/chartable.c:140
+#: src/preferences.c:164
+msgid "Decimal"
+msgstr "Onluq"
+
+# src/chartable.c:91
+#: src/chartable.c:141
+msgid "Octal"
+msgstr "Səkkizli"
+
+# src/chartable.c:91 src/converter.c:53
+#: src/chartable.c:141
+msgid "Binary"
+msgstr "Ikili"
+
+# src/chartable.c:97
+#: src/chartable.c:157
+msgid "Character table"
+msgstr "Xarakter cədvəli"
+
+# src/converter.c:44
+#: src/converter.c:209
+msgid "Base Converter"
+msgstr "Baza Dönüşdürücüsü"
+
+# src/chartable.c:91 src/converter.c:53
+#. entries
+#: src/converter.c:228
+msgid "_Binary:"
+msgstr "_İkili:"
+
+# src/chartable.c:91
+#: src/converter.c:230
+msgid "_Octal:"
+msgstr "_Səkkizli:"
+
+# src/chartable.c:90 src/converter.c:63 src/preferences.c:161
+#: src/converter.c:232
+msgid "_Decimal:"
+msgstr "_Onluq:"
+
+# src/chartable.c:90 src/converter.c:73
+#: src/converter.c:234
+msgid "_Hex:"
+msgstr "_Onaltılıq:"
+
+# src/chartable.c:90 src/converter.c:83
+#: src/converter.c:236
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+# src/converter.c:93
+#. get cursor button
+#: src/converter.c:240
+msgid "_Get cursor value"
+msgstr "Kursor koordinatlarını _al"
+
+# src/converter.c:93
+#: src/converter.c:254
+msgid "Get cursor value"
+msgstr "Kursor dəyərini _al"
+
+#: src/converter.c:254
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr "Kursordaki dəyəri ikili, səkkizli, onluq, onaltılıq və ASCII olaraq alır"
+
+# src/converter.c:194
+#: src/converter.c:387
+msgid "ERROR"
+msgstr "XƏTA"
+
+# src/findreplace.c:58 src/main.c:96
+#: src/findreplace.c:60
+#: src/ui.c:891
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr "GHex (%s): Mə'lumat tap"
+
+# src/findreplace.c:67
+#: src/findreplace.c:69
+#, c-format
+msgid "Search for %s"
+msgstr "%s tap"
+
+# src/findreplace.c:83
+#: src/findreplace.c:86
+msgid "Find _Next"
+msgstr "_Sonrakını Tap"
+
+# src/findreplace.c:91
+#: src/findreplace.c:94
+msgid "Find _Previous"
+msgstr "_Əvvəlkini Tap"
+
+# src/findreplace.c:157
+#: src/findreplace.c:118
+#: src/findreplace.c:210
+msgid "Find Data"
+msgstr "mə'lumat tap"
+
+#: src/findreplace.c:118
+#: src/findreplace.c:210
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Axtarılacaq onaltılıq ya da ASCII mə'lumatı girin"
+
+# src/findreplace.c:83
+#: src/findreplace.c:119
+msgid "Find Next"
+msgstr "Sonrakını tap"
+
+#: src/findreplace.c:119
+#: src/findreplace.c:212
+msgid "Finds the next occurrence of the search string"
+msgstr "Axtarılan qatarın bir sonrakı nümunəsini tapar"
+
+# src/findreplace.c:91
+#: src/findreplace.c:120
+msgid "Find previous"
+msgstr "Əvvəlkini tap"
+
+#: src/findreplace.c:120
+msgid "Finds the previous occurrence of the search string "
+msgstr "Axtarılan qatarın bir öncəki nümunəsini tapar"
+
+#: src/findreplace.c:121
+#: src/findreplace.c:215
+#: src/findreplace.c:263
+msgid "Cancel"
+msgstr "Ləğv Et"
+
+#: src/findreplace.c:121
+msgid "Closes find data window"
+msgstr "mə'lumat tap pəncərəsini qapadır"
+
+# src/findreplace.c:127 src/main.c:98
+#: src/findreplace.c:140
+#: src/ui.c:889
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "GHex (%s): Mə'lumatı tap & dəyişdir"
+
+# src/findreplace.c:141
+#: src/findreplace.c:155
+#, c-format
+msgid "Replace %s"
+msgstr "%s dəyişdir"
+
+# src/findreplace.c:157
+#: src/findreplace.c:172
+msgid "Find _next"
+msgstr "_Sonrakını tap"
+
+# src/findreplace.c:165
+#: src/findreplace.c:180
+#: src/ghex-ui.xml.h:84
+msgid "_Replace"
+msgstr "_Dəyişdir"
+
+# src/findreplace.c:173
+#: src/findreplace.c:188
+msgid "Replace _All"
+msgstr "_Hamsını Dəyişdir"
+
+# src/findreplace.c:165
+#: src/findreplace.c:211
+msgid "Replace Data"
+msgstr "mə'lumatı Dəyişdir"
+
+#: src/findreplace.c:211
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Əvəz ediləcək onaltılıq ya da ASCII mə'lumatı girin"
+
+# src/findreplace.c:157
+#: src/findreplace.c:212
+msgid "Find next"
+msgstr "Sonrakını tap"
+
+# src/findreplace.c:165
+#: src/findreplace.c:213
+#: src/ghex-ui.xml.h:48
+msgid "Replace"
+msgstr "Dəyişdir"
+
+#: src/findreplace.c:213
+msgid "Replaces the search string with the replace string"
+msgstr "Axtarılan qatarı əvəz etmə qatarıyla dəyişdirir"
+
+# src/findreplace.c:173
+#: src/findreplace.c:214
+msgid "Replace All"
+msgstr "Hamsını dəyişdir"
+
+#: src/findreplace.c:214
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Axtarılan qatarla eyni bütün nümunələri əvəz etmə qatarıyla dəyişdirir"
+
+#: src/findreplace.c:215
+msgid "Closes find and replace data window"
+msgstr "Tap və əvəz et pəncərəsini qapadır"
+
+# src/findreplace.c:206 src/main.c:100
+#: src/findreplace.c:231
+#: src/ui.c:887
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr "GHex (%s): Bayta Get"
+
+#: src/findreplace.c:261
+msgid "Jump to byte"
+msgstr "Bayta Get"
+
+#: src/findreplace.c:261
+msgid "Enter the byte to jump to"
+msgstr "Gediləcək baytı girin"
+
+#: src/findreplace.c:262
+msgid "OK"
+msgstr "Oldu"
+
+#: src/findreplace.c:262
+msgid "Jumps to the specified byte"
+msgstr "GHex (%s): Bayta Get"
+
+#: src/findreplace.c:263
+msgid "Closes jump to byte window"
+msgstr "Bayta Get pəncərəsini qapadır"
+
+# src/findreplace.c:295 src/findreplace.c:320 src/findreplace.c:372
+#: src/findreplace.c:329
+#: src/findreplace.c:357
+#: src/findreplace.c:413
+msgid "There is no active document to search!"
+msgstr "Axtarmaq üçün fəal sənəd yoxdur!"
+
+# src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:337
+#: src/findreplace.c:365
+msgid "The string is not appropriate for the selected data type!"
+msgstr "Seçili mə'lumat növü üçün bu qatar uyğun deyil!"
+
+# src/findreplace.c:310 src/findreplace.c:388
+#: src/findreplace.c:344
+#: src/findreplace.c:430
+msgid "End Of File reached"
+msgstr "Faylın sonuna çatdım"
+
+#: src/findreplace.c:345
+#: src/findreplace.c:374
+#: src/findreplace.c:429
+msgid "String was not found!\n"
+msgstr "Qatar tapılmadı!\n"
+
+# src/findreplace.c:336
+#: src/findreplace.c:373
+msgid "Beginning Of File reached"
+msgstr "Faylın əvvəlinə çatdım"
+
+# src/findreplace.c:345
+#: src/findreplace.c:385
+msgid "There is no active document to move the cursor in!"
+msgstr "Kursoru hərəkət etdirmək üçün fəal sənəd yoxdur!"
+
+# src/findreplace.c:350
+#: src/findreplace.c:390
+msgid "No offset has been specified!"
+msgstr "Ofset tanımlanmadı!"
+
+# src/findreplace.c:357
+#: src/findreplace.c:397
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "Kursor fayl sonundan sonra yerləşdirilə bilməz!"
+
+# src/findreplace.c:362
+#: src/findreplace.c:402
+msgid "The offset must be a positive integer value!"
+msgstr "Offset müsbət rəgəm olmalıdır!"
+
+# src/findreplace.c:303 src/findreplace.c:328 src/findreplace.c:380
+#: src/findreplace.c:421
+msgid "There seems to be no string to search for!"
+msgstr "Axtarmaq üçün kəlmə yoxdur!"
+
+# src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:443
+msgid "There is no active buffer to replace data in!"
+msgstr "Mə'lumat dəğiştirmək üçün fəal ara yaddaş yoxdur!"
+
+#: src/findreplace.c:455
+#: src/findreplace.c:496
+msgid "Strings are not appropriate for the selected data type!"
+msgstr "Qatarlar seçili mə'lumat növünə uyğun gəlmir!"
+
+# src/findreplace.c:425
+#: src/findreplace.c:470
+#: src/findreplace.c:471
+msgid "End Of File reached!"
+msgstr "Faylın sonuna çatdım!"
+
+# src/findreplace.c:399 src/findreplace.c:436
+#: src/findreplace.c:484
+msgid "There is no active document to replace data in!"
+msgstr "Mə'lumatı dəğiştirmək üçün fəal sənəd yoxdur!"
+
+#: src/findreplace.c:516
+msgid "No occurences were found."
+msgstr "Heç bir nümunə tapıla bilmədi."
+
+# src/findreplace.c:463
+#: src/findreplace.c:519
+#, c-format
+msgid "Replaced %d occurencies."
+msgstr "%d dənə dəyişdirdim."
+
+#: src/ghex-ui.xml.h:1
+msgid "About this application"
+msgstr "Bu proqram haqqında"
+
+# src/hex-document-ui.c:87
+#: src/ghex-ui.xml.h:2
+msgid "Add View"
+msgstr "Görünüş Əlavə Et"
+
+# src/hex-document-ui.c:88
+#: src/ghex-ui.xml.h:3
+msgid "Add a new view to the buffer"
+msgstr "Ara yaddaşa yeni görünüş əlavə et"
+
+# src/ui.c:108
+#: src/ghex-ui.xml.h:4
+#: src/ui.c:64
+msgid "Bytes"
+msgstr "Baytlar"
+
+# src/preferences.c:172
+#: src/ghex-ui.xml.h:5
+msgid "C_ut"
+msgstr "Kə_s"
+
+# src/ui.c:76
+#: src/ghex-ui.xml.h:6
+msgid "Character Table..."
+msgstr "Xarakter Cədvəli..."
+
+# src/ui.c:76
+#: src/ghex-ui.xml.h:7
+msgid "Character _Table..."
+msgstr "Xarakter _Lövhəsi..."
+
+#: src/ghex-ui.xml.h:8
+msgid "Close"
+msgstr "bağla"
+
+#: src/ghex-ui.xml.h:9
+msgid "Close the current file"
+msgstr "Hazırkı faylı bağla"
+
+#: src/ghex-ui.xml.h:10
+msgid "Configure the application"
+msgstr "Proqram tə'minatını quraşdır"
+
+# src/preferences.c:298
+#: src/ghex-ui.xml.h:11
+msgid "Contents"
+msgstr "Məzmun"
+
+# src/ui.c:74
+#: src/ghex-ui.xml.h:12
+msgid "Converter..."
+msgstr "Dönüşdürücü..."
+
+#: src/ghex-ui.xml.h:13
+msgid "Copy"
+msgstr "Köçür"
+
+#: src/ghex-ui.xml.h:14
+msgid "Copy selection to clipboard"
+msgstr "Seçimi ara yaddaşa köçür"
+
+# src/preferences.c:172
+#: src/ghex-ui.xml.h:15
+msgid "Cut"
+msgstr "Kəs"
+
+#: src/ghex-ui.xml.h:16
+msgid "Cut selection"
+msgstr "Seçiləni kəs"
+
+#: src/ghex-ui.xml.h:17
+msgid "E_xit"
+msgstr "Çı_x"
+
+#: src/ghex-ui.xml.h:18
+msgid "Exit"
+msgstr "Çıx"
+
+#: src/ghex-ui.xml.h:19
+msgid "Exit the program"
+msgstr "Proqramdan çıx"
+
+# src/ui.c:57
+#: src/ghex-ui.xml.h:20
+msgid "Export data to HTML source"
+msgstr "Mə'lumatı HTML mənbə faylı kimi ixrac et"
+
+# src/ui.c:57
+#: src/ghex-ui.xml.h:21
+msgid "Export to HTML..."
+msgstr "_HTML olaraq ixrac et..."
+
+# src/findreplace.c:83
+#: src/ghex-ui.xml.h:22
+msgid "Find"
+msgstr "Tap"
+
+# src/hex-document-ui.c:74
+#: src/ghex-ui.xml.h:23
+msgid "Goto Byte"
+msgstr "Bayt'a Get"
+
+# src/hex-document-ui.c:53
+#: src/ghex-ui.xml.h:24
+msgid "Group data by 16 bits"
+msgstr "16 bitlik gruplanmış  mə'lumat"
+
+# src/hex-document-ui.c:55
+#: src/ghex-ui.xml.h:25
+msgid "Group data by 32 bits"
+msgstr "32 bitlik gruplanmış mə'lumat"
+
+# src/hex-document-ui.c:51
+#: src/ghex-ui.xml.h:26
+msgid "Group data by 8 bits"
+msgstr "8 bitlik gruplanmış mə'lumat"
+
+#: src/ghex-ui.xml.h:27
+msgid "Help Chat"
+msgstr "Yardım Çatı"
+
+#: src/ghex-ui.xml.h:28
+msgid "Help on this application"
+msgstr "Bu proqram haqqında yardım"
+
+# src/hex-document-ui.c:78
+#: src/ghex-ui.xml.h:29
+msgid "Insert Mode"
+msgstr "Araya Yazma Modu"
+
+# src/hex-document-ui.c:78
+#: src/ghex-ui.xml.h:30
+msgid "Insert/overwrite data"
+msgstr "Mə'lumatı araya/üzərinə yaz"
+
+# src/hex-document-ui.c:74
+#: src/ghex-ui.xml.h:31
+msgid "Jump to a certain position"
+msgstr "Müəyyən bir yerə get"
+
+# src/ui.c:110
+#: src/ghex-ui.xml.h:32
+#: src/ui.c:66
+msgid "Longwords"
+msgstr "Uzun Kəlmələr"
+
+#: src/ghex-ui.xml.h:33
+msgid "Open"
+msgstr "Aç"
+
+#: src/ghex-ui.xml.h:34
+msgid "Open a file"
+msgstr "Bir fayl aç"
+
+# src/ui.c:75
+#: src/ghex-ui.xml.h:35
+msgid "Open base conversion dialog"
+msgstr "Təməl çevirmə dialogu pencərəsini aç"
+
+# src/hex-document.c:707
+#: src/ghex-ui.xml.h:36
+msgid "Paste"
+msgstr "Yapışdır"
+
+#: src/ghex-ui.xml.h:37
+msgid "Paste data from clipboard"
+msgstr "mə'lumatı ara yaddaşdan yapışdır"
+
+#: src/ghex-ui.xml.h:38
+msgid "Preferences"
+msgstr "Seçənəklər"
+
+# src/ui.c:61
+#: src/ghex-ui.xml.h:39
+msgid "Preview printed data"
+msgstr "Yazılacağ mə'lumatı göstər"
+
+# src/preferences.c:361
+#: src/ghex-ui.xml.h:40
+msgid "Print"
+msgstr "Çap Et"
+
+# src/ui.c:61
+#: src/ghex-ui.xml.h:41
+msgid "Print Previe_w..."
+msgstr "Çap _Etmə Nümayişi..."
+
+# src/ui.c:61
+#: src/ghex-ui.xml.h:42
+msgid "Print Preview..."
+msgstr "Çap Etmə Nümayişi ..."
+
+#: src/ghex-ui.xml.h:43
+msgid "Print the current file"
+msgstr "Hazırkı faylı çap et"
+
+#: src/ghex-ui.xml.h:44
+msgid "Redo"
+msgstr "Yenidən Et"
+
+#: src/ghex-ui.xml.h:45
+msgid "Redo the undone action"
+msgstr "Geri alınan əməlliyatı yenidən et"
+
+# src/hex-document-ui.c:89
+#: src/ghex-ui.xml.h:46
+msgid "Remove View"
+msgstr "Görünüşü Sil"
+
+# src/hex-document-ui.c:90
+#: src/ghex-ui.xml.h:47
+msgid "Remove the current view of the buffer"
+msgstr "Aktiv görüntüşü ara yaddaşdan sil"
+
+# src/findreplace.c:141
+#: src/ghex-ui.xml.h:49
+msgid "Replace a string"
+msgstr "Qatarı dəyişdir"
+
+#: src/ghex-ui.xml.h:50
+msgid "Revert"
+msgstr "Çevir"
+
+#: src/ghex-ui.xml.h:51
+msgid "Revert to a saved version of the file"
+msgstr "Faylın qeyd edilmiş şəklinə keç"
+
+#: src/ghex-ui.xml.h:52
+msgid "Save"
+msgstr "Qeyd Et"
+
+#: src/ghex-ui.xml.h:53
+msgid "Save As"
+msgstr "Fərqli Qeyd Et"
+
+#: src/ghex-ui.xml.h:54
+msgid "Save As _HTML..."
+msgstr "_HTML Olaraq Qeyd Et"
+
+#: src/ghex-ui.xml.h:55
+msgid "Save _As..."
+msgstr "Fərqli _Qeyd Et..."
+
+#: src/ghex-ui.xml.h:56
+msgid "Save the current file"
+msgstr "Hazırkı faylı qeyd et"
+
+# src/hex-document-ui.c:90
+#: src/ghex-ui.xml.h:57
+msgid "Save the current file with a different name"
+msgstr "Hazırkı faylı fərqli adla qeyd et"
+
+# src/findreplace.c:67
+#: src/ghex-ui.xml.h:58
+msgid "Search for a string"
+msgstr "Qatarı tap"
+
+# src/ui.c:77
+#: src/ghex-ui.xml.h:59
+msgid "Show the character table"
+msgstr "Xarakter lövhəsini göstər"
+
+#: src/ghex-ui.xml.h:60
+msgid "Undo"
+msgstr "Geri al"
+
+#: src/ghex-ui.xml.h:61
+msgid "Undo the last action"
+msgstr "Son əməliyyatı geri al"
+
+# src/ui.c:109
+#: src/ghex-ui.xml.h:62
+#: src/ui.c:65
+msgid "Words"
+msgstr "Kəlmələr"
+
+#: src/ghex-ui.xml.h:63
+msgid "_About"
+msgstr "_Haqqında"
+
+# src/hex-document-ui.c:87
+#: src/ghex-ui.xml.h:64
+msgid "_Add View"
+msgstr "_Görünüş Əlavə Et"
+
+# src/converter.c:44
+#: src/ghex-ui.xml.h:65
+msgid "_Base Converter"
+msgstr "_Baza Dönüşdürücüsü"
+
+# src/hex-document-ui.c:50
+#: src/ghex-ui.xml.h:66
+msgid "_Bytes"
+msgstr "_Baytlar"
+
+#: src/ghex-ui.xml.h:67
+msgid "_Close"
+msgstr "_bağla"
+
+#: src/ghex-ui.xml.h:68
+msgid "_Contents"
+msgstr "_Məzmun"
+
+#: src/ghex-ui.xml.h:69
+msgid "_Copy"
+msgstr "_Köçür"
+
+# src/preferences.c:188
+#: src/ghex-ui.xml.h:70
+msgid "_Edit"
+msgstr "_Düzəlt"
+
+#: src/ghex-ui.xml.h:71
+msgid "_File"
+msgstr "_Fayl"
+
+#: src/ghex-ui.xml.h:72
+msgid "_Find"
+msgstr "_Axtar"
+
+# src/hex-document-ui.c:74
+#: src/ghex-ui.xml.h:73
+msgid "_Goto Byte..."
+msgstr "_Bayt'a Get..."
+
+# src/hex-document-ui.c:81
+#: src/ghex-ui.xml.h:74
+msgid "_Group Data As"
+msgstr "_Mə'lumatı ... şəklində grupla"
+
+# src/chartable.c:90 src/converter.c:73
+#: src/ghex-ui.xml.h:75
+msgid "_Help"
+msgstr "_Yardım"
+
+# src/hex-document-ui.c:78
+#: src/ghex-ui.xml.h:76
+msgid "_Insert Mode"
+msgstr "_Araya Yazma Modu"
+
+# src/hex-document-ui.c:54
+#: src/ghex-ui.xml.h:77
+msgid "_Longwords"
+msgstr "_Uzun Kəlmələr"
+
+#: src/ghex-ui.xml.h:78
+msgid "_Open..."
+msgstr "_Aç..."
+
+# src/hex-document.c:707
+#: src/ghex-ui.xml.h:79
+msgid "_Paste"
+msgstr "_Yapışdır"
+
+#: src/ghex-ui.xml.h:80
+msgid "_Preferences"
+msgstr "_Qurğular"
+
+# src/preferences.c:361
+#: src/ghex-ui.xml.h:81
+msgid "_Print"
+msgstr "_Çap Et"
+
+#: src/ghex-ui.xml.h:82
+msgid "_Redo"
+msgstr "_Yenidən Et"
+
+# src/hex-document-ui.c:89
+#: src/ghex-ui.xml.h:83
+msgid "_Remove View"
+msgstr "_Görünüşü Sil"
+
+#: src/ghex-ui.xml.h:85
+msgid "_Revert"
+msgstr "_Çevir"
+
+#: src/ghex-ui.xml.h:86
+msgid "_Save"
+msgstr "_Qeyd Et"
+
+#: src/ghex-ui.xml.h:87
+msgid "_Undo"
+msgstr "_Geri Al"
+
+#: src/ghex-ui.xml.h:88
+msgid "_View"
+msgstr "_Görünüş"
+
+#: src/ghex-ui.xml.h:89
+msgid "_Windows"
+msgstr "_Pəncələr"
+
+# src/hex-document-ui.c:52
+#: src/ghex-ui.xml.h:90
+msgid "_Words"
+msgstr "_Kəlmələr"
+
+# src/chartable.c:90 src/converter.c:73
+#: src/ghex-window.c:438
+#: src/ghex-window.c:816
+msgid "GHex"
+msgstr "GHex"
+
+# src/main.c:191
+#: src/ghex-window.c:571
+#, c-format
+msgid "Offset: %s"
+msgstr "Ofset: %s"
+
+# src/ui.c:495
+#: src/ghex-window.c:770
+#, c-format
+msgid "Activate file %s"
+msgstr "%s Faylını fəallaşdır"
+
+#: src/ghex-window.c:812
+#, c-format
+msgid "GHex - %s"
+msgstr "GHex - %s"
+
+# src/ui.c:284
+#: src/ghex-window.c:944
+msgid "Select a file to save buffer as"
+msgstr "Ara yaddaşı qeyd etmək üçün fayl seçin"
+
+# src/main.c:51
+#: src/ghex-window.c:974
+#, c-format
+msgid "File %s exists.\n"
+"Do you want to overwrite it?"
+msgstr "%s faylı onsuzda mövcuddur.\n"
+"Üstündən yazmaq istəyirsiniz?"
+
+# src/ui.c:230 src/ui.c:534
+#: src/ghex-window.c:1009
+#: src/ui.c:356
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "Ara yaddaş %s adlı fayla qeyd edildi"
+
+# src/ui.c:226 src/ui.c:539
+#: src/ghex-window.c:1015
+msgid "Error saving file!"
+msgstr "Faylı qeyd etmə xətası!"
+
+# src/ui.c:543
+#: src/ghex-window.c:1021
+msgid "Can't open file for writing!"
+msgstr "Faylı yazmag üçün aça bilmirəm!"
+
+# src/main.c:51
+#: src/ghex-window.c:1048
+#, c-format
+msgid "File %s has changed since last save.\n"
+"Do you want to save changes?"
+msgstr "%s faylında dəyişikliklər oldu.\n"
+"Dəyişikliklər qeyd edilsinmi?"
+
+#: src/ghex-window.c:1058
+msgid "Do_n't save"
+msgstr "Qeyd e_tmə"
+
+#: src/ghex-window.c:1078
+#: src/ui.c:344
+msgid "You don't have the permissions to save the file!"
+msgstr "Faylı geyd etməyə səlahiyyətləriniz yoxdur!"
+
+# src/ui.c:226 src/ui.c:539
+#: src/ghex-window.c:1082
+#: src/ui.c:349
+msgid "An error occured while saving file!"
+msgstr "Faylı qeyd edilirkən xəta yarandı!"
+
+# src/hex-document.c:707
+#: src/hex-document.c:746
+msgid "Page"
+msgstr "Səhifə"
+
+# src/hex-document.c:713 src/hex-document.c:814
+#: src/hex-document.c:752
+#: src/hex-document.c:877
+msgid "Hex dump generated by"
+msgstr "Onaltılıq yekunu yaradan"
+
+# src/ui.c:57
+#: src/hex-document.c:762
+msgid "Saving to HTML..."
+msgstr "HTML olaraq qeyd edilir..."
+
+# src/hex-document.c:737
+#: src/hex-document.c:800
+msgid "Previous page"
+msgstr "Əvvəlki səhifə"
+
+# src/hex-document.c:752
+#: src/hex-document.c:815
+msgid "Next page"
+msgstr "Sonraki səhifə"
+
+# src/ui.c:200
+#: src/main.c:49
+msgid "The gnome binary editor"
+msgstr "Gnome ikili editoru"
+
+#: src/main.c:64
+msgid "Could not initialize Bonobo!\n"
+msgstr "Bonobo başladıla bilmir!\n"
+
+#: src/main.c:88
+#: src/main.c:101
+#, c-format
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "Geçərsiz həndəsə qatarı \"%s\"\n"
+
+#: src/preferences.c:94
+msgid "GHex Preferences"
+msgstr "GHex Seçənəkləri"
+
+# src/preferences.c:132
+#: src/preferences.c:126
+msgid "_Maximum number of undo levels:"
+msgstr "_Maksimal geri alma səviyyəsi:"
+
+# src/preferences.c:54
+#: src/preferences.c:146
+msgid "Undo levels"
+msgstr "Geri alma səviyyəsi"
+
+# src/preferences.c:132
+#: src/preferences.c:146
+msgid "Select maximum number of undo levels"
+msgstr "Maksimal geri alma səviyyəsini seçin"
+
+# src/preferences.c:147
+#: src/preferences.c:150
+msgid "Show cursor offset in statusbar as:"
+msgstr "Kursor ofsetini hal çubuğunda belə göstər:"
+
+# src/preferences.c:166
+#: src/preferences.c:169
+msgid "Hexadecimal"
+msgstr "Onaltılıq"
+
+# src/preferences.c:172
+#: src/preferences.c:175
+msgid "Custom"
+msgstr "Şəxsi"
+
+#: src/preferences.c:187
+msgid "Enter the cursor offset format"
+msgstr "Kursor ofset formatını girin"
+
+#: src/preferences.c:188
+msgid "Select the cursor offset format"
+msgstr "Kursor ofset formatını seçin"
+
+# src/preferences.c:183
+#. show offsets check button
+#: src/preferences.c:198
+msgid "Show offsets column"
+msgstr "Sütun ofsetini göster"
+
+# src/preferences.c:188
+#: src/preferences.c:203
+msgid "Editing"
+msgstr "Dəyişdirmə"
+
+# src/preferences.c:197
+#. display font
+#: src/preferences.c:212
+msgid "Font"
+msgstr "Yazı növü"
+
+# src/preferences.c:233
+#. default group type
+#: src/preferences.c:240
+msgid "Default Group Type"
+msgstr "Əsas grup növü"
+
+# src/preferences.c:249
+#: src/preferences.c:256
+msgid "Display"
+msgstr "Göstər"
+
+# src/preferences.c:284
+#. paper selection
+#: src/preferences.c:265
+msgid "Paper size"
+msgstr "Kağız böyüklüyü"
+
+# src/preferences.c:298
+#. data & header font selection
+#: src/preferences.c:270
+msgid "Fonts"
+msgstr "Yazı növləri"
+
+# src/preferences.c:304
+#: src/preferences.c:276
+msgid "_Data font:"
+msgstr "_Mə'lumat yazı növü"
+
+# src/preferences.c:304
+#: src/preferences.c:295
+msgid "Data font"
+msgstr "Mə'lumat yazı növü"
+
+# src/preferences.c:77
+#: src/preferences.c:295
+msgid "Select the data font"
+msgstr "mə'lumat yazı növünü seç"
+
+# src/preferences.c:319
+#: src/preferences.c:309
+msgid "Header fo_nt:"
+msgstr "Başlıg  yazı _növü"
+
+# src/preferences.c:319
+#: src/preferences.c:327
+msgid "Header font"
+msgstr "Başlıg  yazı növü"
+
+# src/preferences.c:77
+#: src/preferences.c:327
+msgid "Select the header font"
+msgstr "Başlıq yazı növünü seç"
+
+# src/preferences.c:345
+#: src/preferences.c:353
+msgid "_Print shaded box over:"
+msgstr "Kölgəli qutunun üstünə _yaz:"
+
+#: src/preferences.c:365
+msgid "Box size"
+msgstr "Qutu böyüklüyü"
+
+#: src/preferences.c:365
+msgid "Select size of box (in number of lines)"
+msgstr "Qutunun böyüklüyünü seçin (isətir miqdarı olaraq)"
+
+# src/preferences.c:354
+#: src/preferences.c:369
+msgid "lines (0 for no box)"
+msgstr "xətlər (qutu yoxsa 0)"
+
+# src/preferences.c:361
+#: src/preferences.c:376
+msgid "Printing"
+msgstr "Çap Etmə"
+
+# src/preferences.c:570
+#: src/preferences.c:531
+msgid "Can not open desired font!"
+msgstr "Istənilən yazı növünü  aça bilmirəm"
+
+# src/preferences.c:534
+#: src/preferences.c:581
+msgid "The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr "Ofset format tanıdıcısında fərqli növ bildiricisi var!Təkcə 'x', 'X', 'p', 'P', 'd' və 'o' hərflərinə icazə var."
+
+# src/print.c:187
+#: src/print.c:53
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Səhifə: %i/%i"
+
+#: src/print.c:204
+#: src/print.c:218
+#, c-format
+msgid "GHex could not find the font \"%s\".\n"
+"GHex is unable to print without this font installed."
+msgstr "GHex \"%s\" yazı növünü tapa bilmir.\n"
+"GHex bu yazı növü olmadan çap edə bilməz."
+
+#: src/session.c:29
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "X hənəsə spesifikasiyası (\"X\" man səhifəsinə baxın)."
+
+#: src/session.c:30
+msgid "GEOMETRY"
+msgstr "GEOMETRİYA"
+
+# src/ui.c:115
+#: src/ui.c:71
+msgid "hex data"
+msgstr "Onaltılıq mə'lumat"
+
+# src/ui.c:116
+#: src/ui.c:72
+msgid "ASCII data"
+msgstr "ASCII mə'lumat"
+
+# src/ui.c:200
+#: src/ui.c:243
+msgid "GHex, a binary file editor"
+msgstr "GHex, ikili fayl təlkilatçısı"
+
+# src/ui.c:202
+#: src/ui.c:245
+msgid "Released under the terms of GNU Public License"
+msgstr "GNU  Lisenziyası altında buraxılmışdır"
+
+#: src/ui.c:268
+#, c-format
+msgid "There was an error displaying help: \n"
+"%s"
+msgstr "Yardım göstərilirkən xəta yarandı: \n"
+"%s"
+
+# src/ui.c:251
+#: src/ui.c:376
+msgid "Select a file to open"
+msgstr "Açmaq üçün fayl seç"
+
+# src/ui.c:495
+#: src/ui.c:414
+#, c-format
+msgid "Loaded file %s"
+msgstr "%s Faylını yüklədim"
+
+# src/ui.c:500
+#: src/ui.c:422
+msgid "Can not open file!"
+msgstr "Faylı aça bilmirəm!"
+
+# src/ui.c:370
+#: src/ui.c:486
+msgid "Select path and file name for the HTML source"
+msgstr "HTML qaynaq  kodu üçün fayl izini və adını seçin"
+
+# src/ui.c:370
+#: src/ui.c:521
+msgid "You need to specify a base name for the HTML files."
+msgstr "HTML faylları üçün əsas adı seçin"
+
+#: src/ui.c:532
+#: src/ui.c:554
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "Seçili cərgəyə yazma səlahiyyətiniz yoxdur.\n"
+
+#: src/ui.c:538
+msgid "Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr "HTML olaraq qeyd etmə bəzi faylların üstündən yazacaq.\n"
+"Dəvam etmək istəyirsiniz?"
+
+# src/ui.c:466
+#: src/ui.c:686
+#, c-format
+msgid "Really revert file %s?"
+msgstr "%s faylına geri?"
+
+# src/ui.c:479
+#: src/ui.c:704
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "%s adlı dosyedən ara yaddaşa geri döndüm"
+
+#: src/ui.c:778
+msgid "Print Hex Document"
+msgstr "Heks Sənədini Çap Et"
+
+# src/hex-document.c:707
+#: src/ui.c:783
+msgid "Pages"
+msgstr "Səhifələr"
+
+# src/print.c:171
+#: src/ui.c:829
+#, c-format
+msgid "GHex (%s): Print Preview"
+msgstr "GHex (%s): Çap Nümaişi"
+

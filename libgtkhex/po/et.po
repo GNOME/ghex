@@ -1,0 +1,1272 @@
+# GHex eesti keele tõlge
+# Copyright (C) 1999-2002 Free Software Foundation, Inc.
+# Lauris Kaplinski <lauris@ariman.ee>, 1999.
+# Ilmar Kerm <ikerm@hot.ee>, 2002.
+# Tõivo Leedjärv <toivo@linux.ee>, 2002.
+# Kalev Lember <klember@src.gnome.org>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ghex\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=ghex&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-02-21 04:50+0000\n"
+"PO-Revision-Date: 2012-02-21 08:02+0200\n"
+"Last-Translator: Kalev Lember <klember@src.gnome.org>\n"
+"Language-Team: Estonian <>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bits\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: ../data/ghex.desktop.in.h:1 ../src/ghex-window.c:675
+#: ../src/ghex-window.c:1109
+msgid "GHex"
+msgstr "GHex"
+
+#: ../data/ghex.desktop.in.h:2
+msgid "Hex Editor"
+msgstr "16nd-süsteemi redaktor"
+
+#: ../data/ghex.desktop.in.h:3
+msgid "Inspect and edit binary files"
+msgstr "Binaarfailide vaatamine ja redigeerimine"
+
+#: ../src/chartable.c:147
+msgid "ASCII"
+msgstr "ASCII"
+
+#: ../src/chartable.c:147
+msgid "Hex"
+msgstr "16nd-süsteem"
+
+#: ../src/chartable.c:147 ../src/preferences.c:142
+msgid "Decimal"
+msgstr "10nd-süsteem"
+
+#: ../src/chartable.c:148
+msgid "Octal"
+msgstr "8nd-süsteem"
+
+#: ../src/chartable.c:148
+msgid "Binary"
+msgstr "2nd-süsteem"
+
+#: ../src/chartable.c:164
+msgid "Character table"
+msgstr "Märgitabel"
+
+#: ../src/converter.c:232
+msgid "Base Converter"
+msgstr "Aluse konverter"
+
+#. entries
+#: ../src/converter.c:253
+msgid "_Binary:"
+msgstr "_2nd-süsteem:"
+
+#: ../src/converter.c:255
+msgid "_Octal:"
+msgstr "_8nd-süsteem:"
+
+#: ../src/converter.c:257
+msgid "_Decimal:"
+msgstr "_10nd-süsteem:"
+
+#: ../src/converter.c:259
+msgid "_Hex:"
+msgstr "1_6nd-süsteem:"
+
+#: ../src/converter.c:261
+msgid "_ASCII:"
+msgstr "_ASCII:"
+
+#. get cursor button
+#: ../src/converter.c:265
+msgid "_Get cursor value"
+msgstr "_Võta kursori väärtus"
+
+#: ../src/converter.c:279
+msgid "Get cursor value"
+msgstr "Võta kursori väärtus"
+
+#: ../src/converter.c:279
+msgid "Gets the value at cursor in binary, octal, decimal, hex and ASCII"
+msgstr ""
+"Võtab kursori all oleva märgi väärtuse 2nd-, 8nd-, 10nd-, 16-ndarvuna ja "
+"ASCII koodina"
+
+#: ../src/converter.c:419
+msgid "ERROR"
+msgstr "VIGA"
+
+#: ../src/findreplace.c:97 ../src/findreplace.c:221 ../src/ui.c:873
+#, c-format
+msgid "GHex (%s): Find Data"
+msgstr "GHex (%s): Andmete otsimine"
+
+#: ../src/findreplace.c:101 ../src/findreplace.c:161 ../src/findreplace.c:359
+msgid "Find String"
+msgstr "Teksti otsimine"
+
+#: ../src/findreplace.c:108 ../src/findreplace.c:258
+msgid "Find _Next"
+msgstr "Otsi _järgmine"
+
+#: ../src/findreplace.c:115 ../src/findreplace.c:267
+msgid "Find _Previous"
+msgstr "Otsi _eelmine"
+
+#: ../src/findreplace.c:138 ../src/findreplace.c:413
+msgid "Find Data"
+msgstr "Otsi andmeid"
+
+#: ../src/findreplace.c:138 ../src/findreplace.c:413
+msgid "Enter the hex data or ASCII data to search for"
+msgstr "Sisesta otsitavad andmed 16nd või ASCII kujul"
+
+#: ../src/findreplace.c:139
+msgid "Find Next"
+msgstr "Otsi järgmine"
+
+#: ../src/findreplace.c:139 ../src/findreplace.c:415
+msgid "Finds the next occurrence of the search string"
+msgstr "Otsi stringi järgmist esinemist"
+
+#: ../src/findreplace.c:140
+msgid "Find previous"
+msgstr "Otsi eelmine"
+
+#: ../src/findreplace.c:140
+msgid "Finds the previous occurrence of the search string "
+msgstr "Otsi stringi eelmist esinemist"
+
+#: ../src/findreplace.c:141 ../src/findreplace.c:418 ../src/findreplace.c:466
+msgid "Cancel"
+msgstr "Loobu"
+
+#: ../src/findreplace.c:141
+msgid "Closes find data window"
+msgstr "Sulgeb andmete otsimise akna"
+
+#: ../src/findreplace.c:157
+#, c-format
+msgid "GHex (%s): Find Data: Add search"
+msgstr "GHex (%s): Andmete otsimine: Otsingu lisamine"
+
+#: ../src/findreplace.c:179
+msgid "Add"
+msgstr "Lisa"
+
+#: ../src/findreplace.c:235
+msgid "Search String"
+msgstr "Otsi teksti"
+
+#: ../src/findreplace.c:243
+msgid "Highlight Colour"
+msgstr "Esile tõstetud värv"
+
+#: ../src/findreplace.c:280
+msgid "_Add New"
+msgstr "_Lisa uus"
+
+#: ../src/findreplace.c:289
+msgid "_Remove Selected"
+msgstr "_Eemalda valitud"
+
+#: ../src/findreplace.c:309
+msgid "Close"
+msgstr "Sulge"
+
+#: ../src/findreplace.c:309
+msgid "Closes advanced find window"
+msgstr "Sulgeb andmete otsimise akna"
+
+#: ../src/findreplace.c:355 ../src/ui.c:871
+#, c-format
+msgid "GHex (%s): Find & Replace Data"
+msgstr "GHex (%s): Otsi ja asenda andmeid"
+
+#: ../src/findreplace.c:368
+msgid "Replace With"
+msgstr "Asendada tekstiga"
+
+#: ../src/findreplace.c:375
+msgid "Find _next"
+msgstr "Otsi _järgmine"
+
+#: ../src/findreplace.c:383
+msgid "_Replace"
+msgstr "_Asenda"
+
+#: ../src/findreplace.c:391
+msgid "Replace _All"
+msgstr "Asenda _kõik"
+
+#: ../src/findreplace.c:414
+msgid "Replace Data"
+msgstr "Andmete asendamine"
+
+#: ../src/findreplace.c:414
+msgid "Enter the hex data or ASCII data to replace with"
+msgstr "Sisesta asendusandmed 16nd või ASCII kujul"
+
+#: ../src/findreplace.c:415
+msgid "Find next"
+msgstr "Otsi järgmine"
+
+#: ../src/findreplace.c:416
+msgid "Replace"
+msgstr "Asenda"
+
+#: ../src/findreplace.c:416
+msgid "Replaces the search string with the replace string"
+msgstr "Asendab otsingustringi asendusstringiga"
+
+#: ../src/findreplace.c:417
+msgid "Replace All"
+msgstr "Asenda kõik"
+
+#: ../src/findreplace.c:417
+msgid "Replaces all occurrences of the search string with the replace string"
+msgstr "Asendab kõik otsingustringi leiud asendusstringiga"
+
+#: ../src/findreplace.c:418
+msgid "Closes find and replace data window"
+msgstr "Sulgeb andmete otsimise ja asendamise akna"
+
+#: ../src/findreplace.c:434 ../src/ui.c:869
+#, c-format
+msgid "GHex (%s): Jump To Byte"
+msgstr "GHex (%s): Hüppa baidile"
+
+#: ../src/findreplace.c:464
+msgid "Jump to byte"
+msgstr "Hüppa baidile"
+
+#: ../src/findreplace.c:464
+msgid "Enter the byte to jump to"
+msgstr "Sisesta bait, kuhu hüpata"
+
+#: ../src/findreplace.c:465
+msgid "OK"
+msgstr "Olgu"
+
+#: ../src/findreplace.c:465
+msgid "Jumps to the specified byte"
+msgstr "Hüppa määratud baidile"
+
+#: ../src/findreplace.c:466
+msgid "Closes jump to byte window"
+msgstr "Sulgeb baidile hüppamise akna"
+
+#: ../src/findreplace.c:529 ../src/findreplace.c:563 ../src/findreplace.c:670
+msgid "There is no active document to search!"
+msgstr "Pole aktiivset dokumenti, kust otsida!"
+
+#: ../src/findreplace.c:536 ../src/findreplace.c:570 ../src/findreplace.c:677
+#: ../src/findreplace.c:711 ../src/findreplace.c:756
+msgid "There is no string to search for!"
+msgstr "Pole teksti mida otsida!"
+
+#: ../src/findreplace.c:548 ../src/findreplace.c:686 ../src/findreplace.c:876
+msgid "End Of File reached"
+msgstr "Faili lõpp käes"
+
+#: ../src/findreplace.c:549 ../src/findreplace.c:582 ../src/findreplace.c:685
+#: ../src/findreplace.c:877 ../src/findreplace.c:900
+msgid "String was not found!\n"
+msgstr "Teksti ei leitud!\n"
+
+#: ../src/findreplace.c:581 ../src/findreplace.c:899
+msgid "Beginning Of File reached"
+msgstr "Faili algus käes"
+
+#: ../src/findreplace.c:598
+msgid "There is no active document to move the cursor in!"
+msgstr "Ei ole aktiivset dokumenti, kus kursorit liigutada!"
+
+#: ../src/findreplace.c:616
+msgid "No offset has been specified!"
+msgstr "Asukoht ei ole määratud!"
+
+#: ../src/findreplace.c:641
+msgid "The specified offset is beyond the  file boundaries!"
+msgstr "Asukoht on faili piiridest väljaspool!"
+
+#: ../src/findreplace.c:649
+msgid "Can not position cursor beyond the End Of File!"
+msgstr "Kursorit ei saa panna faili lõpust kaugemale!"
+
+#: ../src/findreplace.c:656
+msgid ""
+"You may only give the offset as:\n"
+"  - a positive decimal number, or\n"
+"  - a hex number, beginning with '0x', or\n"
+"  - a '+' or '-' sign, followed by a relative offset"
+msgstr ""
+"Asukohta võib määrata kas:\n"
+"  - positiivse 10nd-numbrina, või\n"
+"  - 16nd-numbrina, mis algab '0x'-ga, või\n"
+"  - '+' või '-' märgiga, millele järgneb suhteline asukoht"
+
+#: ../src/findreplace.c:702
+msgid "There is no active buffer to replace data in!"
+msgstr "Ei ole aktiivset puhvrit, kus teksti asendada!"
+
+#: ../src/findreplace.c:727 ../src/findreplace.c:728
+msgid "End Of File reached!"
+msgstr "Faili lõpp käes!"
+
+#: ../src/findreplace.c:747
+msgid "There is no active document to replace data in!"
+msgstr "Ei ole aktiivset dokumenti, kus teksti asendada!"
+
+#: ../src/findreplace.c:777
+msgid "No occurrences were found."
+msgstr "Ei leia ühtegi otsitavat."
+
+#: ../src/findreplace.c:780
+#, c-format
+msgid "Replaced %d occurrence."
+msgid_plural "Replaced %d occurrences."
+msgstr[0] "%d leid asendatud."
+msgstr[1] "%d leidu asendatud."
+
+#: ../src/findreplace.c:820
+msgid "No string to search for!"
+msgstr "Pole teksti mida otsida!"
+
+#: ../src/ghex-window.c:75
+#, c-format
+msgid ""
+"Can not open URI:\n"
+"%s"
+msgstr ""
+"Ei saa URI avada:\n"
+"%s"
+
+#: ../src/ghex-window.c:96
+#, c-format
+msgid ""
+"Can not open file:\n"
+"%s"
+msgstr ""
+"Ei saa faili avada:\n"
+"%s"
+
+#: ../src/ghex-window.c:327
+msgid "_File"
+msgstr "_Fail"
+
+#: ../src/ghex-window.c:328
+msgid "_Edit"
+msgstr "_Redaktor"
+
+#: ../src/ghex-window.c:329
+msgid "_View"
+msgstr "_Vaade"
+
+#: ../src/ghex-window.c:330
+msgid "_Group Data As"
+msgstr "_Rühmita andmed"
+
+#. View submenu
+#: ../src/ghex-window.c:331
+msgid "_Windows"
+msgstr "_Aknad"
+
+#: ../src/ghex-window.c:332
+msgid "_Help"
+msgstr "_Abi"
+
+#. File menu
+#: ../src/ghex-window.c:335
+msgid "_Open..."
+msgstr "_Ava..."
+
+#: ../src/ghex-window.c:336
+msgid "Open a file"
+msgstr "Ava fail..."
+
+#: ../src/ghex-window.c:338
+msgid "_Save"
+msgstr "_Salvesta"
+
+#: ../src/ghex-window.c:339
+msgid "Save the current file"
+msgstr "Käesoleva faili salvestamine"
+
+#: ../src/ghex-window.c:341
+msgid "Save _As..."
+msgstr "Salvesta _kui..."
+
+#: ../src/ghex-window.c:342
+msgid "Save the current file with a different name"
+msgstr "Käesoleva faili salvestamine teise nime alla"
+
+#: ../src/ghex-window.c:344
+msgid "Save As _HTML..."
+msgstr "Salvesta kui _HTML..."
+
+#: ../src/ghex-window.c:345
+msgid "Export data to HTML source"
+msgstr "Andmete eksport HTML failiks"
+
+#: ../src/ghex-window.c:347
+msgid "_Revert"
+msgstr "_Taasta"
+
+#: ../src/ghex-window.c:348
+msgid "Revert to a saved version of the file"
+msgstr "Käesoleva faili salvestatud versioon taastamine"
+
+#: ../src/ghex-window.c:350
+msgid "_Print"
+msgstr "_Prindi"
+
+#: ../src/ghex-window.c:351
+msgid "Print the current file"
+msgstr "Käesoleva faili printimine"
+
+#: ../src/ghex-window.c:353
+msgid "Print Previe_w..."
+msgstr "Printimise eel_vaade..."
+
+#: ../src/ghex-window.c:354
+msgid "Preview printed data"
+msgstr "Vaata prinditavaid andmeid"
+
+#: ../src/ghex-window.c:356
+msgid "_Close"
+msgstr "_Sulge"
+
+#: ../src/ghex-window.c:357
+msgid "Close the current file"
+msgstr "Käesoleva faili sulgemine"
+
+#: ../src/ghex-window.c:359
+msgid "E_xit"
+msgstr "_Lõpeta"
+
+#: ../src/ghex-window.c:360
+msgid "Exit the program"
+msgstr "Programmi töö lõpetamine"
+
+#. Edit menu
+#: ../src/ghex-window.c:364
+msgid "_Undo"
+msgstr "_Unusta"
+
+#: ../src/ghex-window.c:365
+msgid "Undo the last action"
+msgstr "Viimase tegevuse unustamine"
+
+#: ../src/ghex-window.c:367
+msgid "_Redo"
+msgstr "_Uuesti"
+
+#: ../src/ghex-window.c:368
+msgid "Redo the undone action"
+msgstr "Unustatud tegevuse uuestitegemine"
+
+#: ../src/ghex-window.c:370
+msgid "_Copy"
+msgstr "_Kopeeri"
+
+#: ../src/ghex-window.c:371
+msgid "Copy selection to clipboard"
+msgstr "Kopeeri valik lõikelauale"
+
+#: ../src/ghex-window.c:373
+msgid "Cu_t"
+msgstr "_Lõika"
+
+#: ../src/ghex-window.c:374
+msgid "Cut selection"
+msgstr "Valiku lõikamine"
+
+#: ../src/ghex-window.c:376
+msgid "Pa_ste"
+msgstr "_Aseta"
+
+#: ../src/ghex-window.c:377
+msgid "Paste data from clipboard"
+msgstr "Lõikepuhvri sisu asetamine"
+
+#: ../src/ghex-window.c:379
+msgid "_Find"
+msgstr "_Otsi"
+
+#: ../src/ghex-window.c:380
+msgid "Search for a string"
+msgstr "Otsi stringi"
+
+#: ../src/ghex-window.c:382
+msgid "_Advanced Find"
+msgstr "_Täiustatud otsing"
+
+#: ../src/ghex-window.c:383
+msgid "Advanced Find"
+msgstr "Täiustatud otsing"
+
+#: ../src/ghex-window.c:385
+msgid "R_eplace"
+msgstr "_Asenda"
+
+#: ../src/ghex-window.c:386
+msgid "Replace a string"
+msgstr "Asenda string"
+
+#: ../src/ghex-window.c:388
+msgid "_Goto Byte..."
+msgstr "_Mine baidile..."
+
+#: ../src/ghex-window.c:389
+msgid "Jump to a certain position"
+msgstr "Liigu määratud asukohta"
+
+#: ../src/ghex-window.c:391
+msgid "_Preferences"
+msgstr "_Häälestus"
+
+#: ../src/ghex-window.c:392
+msgid "Configure the application"
+msgstr "Programmi konfiguratsioon"
+
+#. View menu
+#: ../src/ghex-window.c:396
+msgid "_Add View"
+msgstr "_Lisa vaade"
+
+#: ../src/ghex-window.c:397
+msgid "Add a new view to the buffer"
+msgstr "Lisa puhvrile uus vaade"
+
+#: ../src/ghex-window.c:399
+msgid "_Remove View"
+msgstr "_Eemalda vaade"
+
+#: ../src/ghex-window.c:400
+msgid "Remove the current view of the buffer"
+msgstr "Eemaldab käesoleva puhvri vaate"
+
+#. Help menu
+#: ../src/ghex-window.c:404
+msgid "_Contents"
+msgstr "_Sisu"
+
+#: ../src/ghex-window.c:405
+msgid "Help on this application"
+msgstr "Programmi abiinfo"
+
+#: ../src/ghex-window.c:407
+msgid "_About"
+msgstr "_Programmist lähemalt"
+
+#: ../src/ghex-window.c:408
+msgid "About this application"
+msgstr "Lähema teabe kuvamine programmi kohta"
+
+#. Edit menu
+#: ../src/ghex-window.c:415
+msgid "_Insert Mode"
+msgstr "_Lisamise režiim"
+
+#: ../src/ghex-window.c:416
+msgid "Insert/overwrite data"
+msgstr "Lisa/kirjuta andmed üle"
+
+#. Windows menu
+#: ../src/ghex-window.c:420
+msgid "Character _Table"
+msgstr "_Märgistik"
+
+#: ../src/ghex-window.c:421
+msgid "Show the character table"
+msgstr "Näitab märgistikku"
+
+#: ../src/ghex-window.c:423
+msgid "_Base Converter"
+msgstr "_Aluse konverter"
+
+#: ../src/ghex-window.c:424
+msgid "Open base conversion dialog"
+msgstr "Avab arvusüsteemide konverteri"
+
+#: ../src/ghex-window.c:426
+msgid "Type Conversion _Dialog"
+msgstr "Avab arvusüsteemide _konverteri"
+
+#: ../src/ghex-window.c:427
+msgid "Show the type conversion dialog in the edit window"
+msgstr "Näita konverterit redigeerimise aknas"
+
+#: ../src/ghex-window.c:433 ../src/ui.c:48
+msgid "_Bytes"
+msgstr "_Baidid"
+
+#: ../src/ghex-window.c:434
+msgid "Group data by 8 bits"
+msgstr "Rühmitab andmed 8 biti kaupa"
+
+#: ../src/ghex-window.c:435 ../src/ui.c:49
+msgid "_Words"
+msgstr "_Sõnad"
+
+#: ../src/ghex-window.c:436
+msgid "Group data by 16 bits"
+msgstr "Rühmitab andmed 16 biti kaupa"
+
+#: ../src/ghex-window.c:437 ../src/ui.c:50
+msgid "_Longwords"
+msgstr "_Pikad sõnad"
+
+#: ../src/ghex-window.c:438
+msgid "Group data by 32 bits"
+msgstr "Rühmitab andmed 32 biti kaupa"
+
+#: ../src/ghex-window.c:585
+#, c-format
+#| msgid "Failed to load ui: %s"
+msgid "Failed to load UI: %s"
+msgstr "Kasutajaliidese laadimine ebaõnnestus: %s"
+
+#: ../src/ghex-window.c:794
+#, c-format
+msgid "Offset: %s"
+msgstr "Asukoht: %s"
+
+#: ../src/ghex-window.c:797
+#, c-format
+msgid "; %s bytes from %s to %s selected"
+msgstr "; märgistatud %s baiti alates %s kuni %s"
+
+#: ../src/ghex-window.c:1069
+#, c-format
+msgid "Activate file %s"
+msgstr "Aktiiveeri fail %s"
+
+#: ../src/ghex-window.c:1105
+#, c-format
+msgid "%s - GHex"
+msgstr "%s - GHex"
+
+#: ../src/ghex-window.c:1231
+msgid "Select a file to save buffer as"
+msgstr "Valige fail, kuhu puhver salvestada"
+
+#: ../src/ghex-window.c:1263
+#, c-format
+msgid ""
+"File %s exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"Fail %s on olemas.\n"
+"Kas kirjutada üle?"
+
+#: ../src/ghex-window.c:1289 ../src/ui.c:300
+#, c-format
+msgid "Saved buffer to file %s"
+msgstr "Puhver salvestatud faili %s"
+
+#: ../src/ghex-window.c:1296
+msgid "Error saving file!"
+msgstr "Viga faili salvestamisel!"
+
+#: ../src/ghex-window.c:1302
+msgid "Can't open file for writing!"
+msgstr "Ei saa avada faili kirjutamiseks!"
+
+#: ../src/ghex-window.c:1347
+#, c-format
+msgid ""
+"File %s has changed since last save.\n"
+"Do you want to save changes?"
+msgstr ""
+"Faili %s on viimasest salvestamisest alates muudetud.\n"
+"Kas salvestada tehtud muudatused?"
+
+#: ../src/ghex-window.c:1351
+msgid "Do_n't save"
+msgstr "_Ära salvesta"
+
+#: ../src/ghex-window.c:1371 ../src/ui.c:288
+msgid "You don't have the permissions to save the file!"
+msgstr "Sul ei ole faili salvestamiseks piisavalt õigusi!"
+
+#: ../src/ghex-window.c:1375 ../src/ui.c:293
+msgid "An error occurred while saving file!"
+msgstr "Faili salvestamisel tekkis viga!"
+
+#: ../src/hex-dialog.c:58
+msgid "Signed 8 bit:"
+msgstr "Märgiga 8 bit:"
+
+#: ../src/hex-dialog.c:59
+msgid "Unsigned 8 bit:"
+msgstr "Märgita 8 bit:"
+
+#: ../src/hex-dialog.c:60
+msgid "Signed 16 bit:"
+msgstr "Märgiga 16 bit:"
+
+#: ../src/hex-dialog.c:61
+msgid "Unsigned 16 bit:"
+msgstr "Märgita 16 bit:"
+
+#: ../src/hex-dialog.c:62
+msgid "Signed 32 bit:"
+msgstr "Märgiga 32 bit:"
+
+#: ../src/hex-dialog.c:63
+msgid "Unsigned 32 bit:"
+msgstr "Märgita 32 bit:"
+
+#: ../src/hex-dialog.c:64
+msgid "Float 32 bit:"
+msgstr "Ujukoma 32 bit:"
+
+#: ../src/hex-dialog.c:65
+msgid "Float 64 bit:"
+msgstr "Ujukoma 64 bit:"
+
+#: ../src/hex-dialog.c:66
+msgid "Hexadecimal:"
+msgstr "16nd-süsteem:"
+
+#: ../src/hex-dialog.c:67
+msgid "Octal:"
+msgstr "8nd-süsteem:"
+
+#: ../src/hex-dialog.c:68
+msgid "Binary:"
+msgstr "2nd-süsteem:"
+
+#: ../src/hex-dialog.c:204
+msgid "Show little endian decoding"
+msgstr "Näita 'little endian' teisendust"
+
+#: ../src/hex-dialog.c:211
+msgid "Show unsigned and float as hexadecimal"
+msgstr "Näita märgita- ja ujukomaarve 16nd-süsteemis"
+
+#: ../src/hex-dialog.c:217
+msgid "Stream Length:"
+msgstr "Voo pikkus:"
+
+#: ../src/hex-dialog.c:239
+msgid "FIXME: no conversion function"
+msgstr "PARANDA MIND: konversiooni funktsioon puudub"
+
+#: ../src/hex-document.c:436
+msgid "New document"
+msgstr "Uus dokument"
+
+#: ../src/hex-document.c:785
+#, c-format
+msgid "Page"
+msgstr "Lehekülg"
+
+#: ../src/hex-document.c:791 ../src/hex-document.c:916
+#, c-format
+msgid "Hex dump generated by"
+msgstr "Hex dump generated by"
+
+#: ../src/hex-document.c:802
+msgid "Saving to HTML..."
+msgstr "HTMLina salvestamine..."
+
+#: ../src/hex-document.c:839
+#, c-format
+msgid "Previous page"
+msgstr "Eelmine lehekülg"
+
+#: ../src/hex-document.c:854
+#, c-format
+msgid "Next page"
+msgstr "Järgmine lehekülg"
+
+#: ../src/main.c:36
+msgid "X geometry specification (see \"X\" man page)."
+msgstr "Xi geomeetria spetsifikatsioon (vaata \"X\" manuaalilehte)."
+
+#: ../src/main.c:36
+msgid "GEOMETRY"
+msgstr "GEOMEETRIA"
+
+#: ../src/main.c:37
+msgid "FILES"
+msgstr "FAILID"
+
+#: ../src/main.c:53
+msgid "- GTK+ binary editor"
+msgstr "- GTK+ binaarfailide redaktor"
+
+#: ../src/main.c:57
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"Kõigi saadaolevate käsureavõtmete vaatamiseks Käivita '%s --help'.\n"
+
+#: ../src/main.c:80 ../src/main.c:93
+#, c-format
+msgid "Invalid geometry string \"%s\"\n"
+msgstr "Vigane geomeetriastring \"%s\"\n"
+
+#: ../src/preferences.c:69
+msgid "GHex Preferences"
+msgstr "GHex häälestus"
+
+#: ../src/preferences.c:101
+msgid "_Maximum number of undo levels:"
+msgstr "_Mitu tegevust on võimalik järjest unustada:"
+
+#: ../src/preferences.c:121
+msgid "Undo levels"
+msgstr "Unustamiste arv"
+
+#: ../src/preferences.c:121
+msgid "Select maximum number of undo levels"
+msgstr "Mitu tegevust on võimalik järjest unustada"
+
+#: ../src/preferences.c:125
+msgid "_Show cursor offset in statusbar as:"
+msgstr "_Näita kursori asukohta staatusreal kui:"
+
+#: ../src/preferences.c:144
+msgid "Hexadecimal"
+msgstr "16nd-süsteem"
+
+#: ../src/preferences.c:146
+msgid "Custom"
+msgstr "Omamääratud"
+
+#: ../src/preferences.c:155
+msgid "Enter the cursor offset format"
+msgstr "Sisesta kursori asukoha vorming"
+
+#: ../src/preferences.c:156
+msgid "Select the cursor offset format"
+msgstr "Vali kursori asukoha vorming"
+
+#. show offsets check button
+#: ../src/preferences.c:166
+msgid "Sh_ow offsets column"
+msgstr "_Näita asukoha veergu"
+
+#: ../src/preferences.c:171
+msgid "Editing"
+msgstr "Redaktor"
+
+#. display font
+#: ../src/preferences.c:180
+msgid "Font"
+msgstr "Kirjatüüp"
+
+#. default group type
+#: ../src/preferences.c:203
+msgid "Default Group Type"
+msgstr "Vaikimisi grupeering"
+
+#: ../src/preferences.c:219
+msgid "Display"
+msgstr "Esitus"
+
+#. paper selection
+#: ../src/preferences.c:228
+msgid "Paper size"
+msgstr "Paberi suurus"
+
+#. data & header font selection
+#: ../src/preferences.c:233
+msgid "Fonts"
+msgstr "Kirjatüübid"
+
+#: ../src/preferences.c:245
+msgid "_Data font:"
+msgstr "_Andmete kirjatüüp:"
+
+#: ../src/preferences.c:259
+msgid "Data font"
+msgstr "Andmete kirjatüüp"
+
+#: ../src/preferences.c:259
+msgid "Select the data font"
+msgstr "Vali andmete kirjatüüp"
+
+#: ../src/preferences.c:268
+msgid "Header fo_nt:"
+msgstr "_Päise kirjatüüp:"
+
+#: ../src/preferences.c:281
+msgid "Header font"
+msgstr "Päise kirjatüüp"
+
+#: ../src/preferences.c:281
+msgid "Select the header font"
+msgstr "Vali päise kirjatüüp"
+
+#: ../src/preferences.c:306
+msgid "_Print shaded box over:"
+msgstr "Prindi _tumedam taust üle:"
+
+#: ../src/preferences.c:318
+msgid "Box size"
+msgstr "Tumedama ala suurus"
+
+#: ../src/preferences.c:318
+msgid "Select size of box (in number of lines)"
+msgstr "Vali tumeda ala suurus (ridade arv)"
+
+#: ../src/preferences.c:322
+msgid "lines (0 for no box)"
+msgstr "rea (0, kui ei soovi)"
+
+#: ../src/preferences.c:329
+msgid "Printing"
+msgstr "Printimine"
+
+#: ../src/preferences.c:447 ../src/ui.c:209
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Abiinfo kuvamisel tekkis viga: \n"
+"%s"
+
+#: ../src/preferences.c:499
+msgid "Can not open desired font!"
+msgstr "Ei saa avada soovitud kirjatüüpi!"
+
+#: ../src/preferences.c:560
+msgid ""
+"The offset format string contains invalid format specifier.\n"
+"Only 'x', 'X', 'p', 'P', 'd' and 'o' are allowed."
+msgstr ""
+"Asukoha vormingustring sisaldab vigaseid vormingutunnuseid.\n"
+"Ainult 'x', 'X', 'p', 'P', 'd' ja 'o' on lubatud."
+
+#: ../src/print.c:57
+#, c-format
+msgid "Page: %i/%i"
+msgstr "Lehekülg: %i/%i"
+
+#: ../src/ui.c:55
+msgid "hex data"
+msgstr "16-nd süsteemis"
+
+#: ../src/ui.c:56
+msgid "ASCII data"
+msgstr "ASCII-s"
+
+#: ../src/ui.c:150
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"See programm on vaba tarkvara. Te võite seda edasi levitada ja/või muuta "
+"vastavalt GNU Üldise Avaliku Litsentsi tingimustele, nagu need on Vaba "
+"Tarkvara Fondi \n"
+"poolt avaldatud; kas Litsentsi versioon number 2 või (vastavalt Teie "
+"valikule) ükskõik milline hilisem versioon."
+
+#: ../src/ui.c:154
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"Seda programmi levitatakse lootuses, et see on kasulik, kuid ILMA IGASUGUSE "
+"GARANTIITA; isegi KESKMISE/TAVALISE KVALITEEDIGARANTIITA või SOBIVUSELE "
+"TEATUD KINDLAKS EESMÄRGIKS. Üksikasjade suhtes vaata GNU Üldist Avalikku "
+"Litsentsi."
+
+#: ../src/ui.c:158
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"Te peaks olema saanud GNU Üldise Avaliku Litsentsi koopia koos selle "
+"programmiga; kui ei, siis võtke ühendust Free Software Foundation'iga, 51 "
+"Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA"
+
+#. Translators: these two strings here indicate the copyright time span,
+#. e.g. 1998-2012.
+#: ../src/ui.c:170
+msgid "Copyright © %Id–%Id The GHex authors"
+msgstr "Autoriõigused © %Id–%Id GHex autorid"
+
+#: ../src/ui.c:174
+msgid "A binary file editor"
+msgstr "Binaarfailide redaktor"
+
+#: ../src/ui.c:180
+msgid "About GHex"
+msgstr "GHex'st lähemalt"
+
+#: ../src/ui.c:181
+msgid "translator-credits"
+msgstr ""
+"Lauris Kaplinski <lauris@ariman.ee>, 1999.\n"
+"Ilmar Kerm <ikerm@hot.ee>, 2002.\n"
+"Tõivo Leedjärv <toivo@linux.ee>, 2002.\n"
+"Kalev Lember <klember@src.gnome.org>, 2012."
+
+#: ../src/ui.c:184
+msgid "GHex Website"
+msgstr "GHex veebisait"
+
+#: ../src/ui.c:318
+msgid "Select a file to open"
+msgstr "Valige fail, mis avada"
+
+#: ../src/ui.c:349
+#, c-format
+msgid "Loaded file %s"
+msgstr "Fail %s loetud"
+
+#: ../src/ui.c:357
+msgid "Can not open file!"
+msgstr "Ei saa faili avada!"
+
+#: ../src/ui.c:422
+msgid "Select path and file name for the HTML source"
+msgstr "Vali kataloogitee ja failinimi HTML lähtekoodifaili jaoks"
+
+#: ../src/ui.c:454
+msgid "You need to specify a base name for the HTML files."
+msgstr "Sa pead HTML failide jaoks alusnime määrama."
+
+#: ../src/ui.c:465 ../src/ui.c:491
+msgid "You don't have the permission to write to the selected path.\n"
+msgstr "Sul ei ole valitud sihtkohta kirjutamiseks piisavalt õigusi.\n"
+
+#: ../src/ui.c:477
+msgid ""
+"Saving to HTML will overwrite some files.\n"
+"Do you want to proceed?"
+msgstr ""
+"HTMLi salvestamine kirjutab mõned failid üle.\n"
+"Kas soovid jätkata?"
+
+#: ../src/ui.c:745
+#, c-format
+msgid "Really revert file %s?"
+msgstr "Soovite tõesti faili %s endisena taastada?"
+
+#: ../src/ui.c:759
+#, c-format
+msgid "Reverted buffer from file %s"
+msgstr "Puhver taastatud failist %s"
+
+#~ msgid "32 bit float:"
+#~ msgstr "32 bit ujukomaarv:"
+
+#~ msgid "64 bit float:"
+#~ msgstr "64 bit ujukomaarv:"
+
+#~ msgid "GNOME Hexadecimal Editor"
+#~ msgstr "GNOME'i 16nd-süsteemi redaktor"
+
+#~ msgid "Search for %s"
+#~ msgstr "Otsi %s"
+
+#~ msgid "Replace %s"
+#~ msgstr "Asenda %s"
+
+#~ msgid "The string is not appropriate for the selected data type!"
+#~ msgstr "String ei ole valitud andmetüübiga ühilduv!"
+
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "Asukoht peab olema positiivne täisarv!"
+
+#~ msgid "Strings are not appropriate for the selected data type!"
+#~ msgstr "Stringid ei ole valitud andmetüübiga ühilduvad!"
+
+#~ msgid "Add View"
+#~ msgstr "Lisa vaade"
+
+#~ msgid "Bytes"
+#~ msgstr "Baidid"
+
+#~ msgid "C_ut"
+#~ msgstr "_Lõika"
+
+#~ msgid "Character Table..."
+#~ msgstr "Märgistik..."
+
+#~ msgid "Contents"
+#~ msgstr "Sisu"
+
+#~ msgid "Converter..."
+#~ msgstr "Konverter..."
+
+#~ msgid "Copy"
+#~ msgstr "Kopeeri"
+
+#~ msgid "Exit"
+#~ msgstr "Välju"
+
+#~ msgid "Export to HTML..."
+#~ msgstr "Ekspordi HTML-i..."
+
+#~ msgid "Find"
+#~ msgstr "Otsi"
+
+#~ msgid "Goto Byte"
+#~ msgstr "Mine baidile"
+
+#~ msgid "Help Chat"
+#~ msgstr "Abi jututuba"
+
+#~ msgid "Insert Mode"
+#~ msgstr "Lisamise režiim"
+
+#~ msgid "Longwords"
+#~ msgstr "Pikad sõnad"
+
+#~ msgid "Open"
+#~ msgstr "Ava"
+
+#~ msgid "Preferences"
+#~ msgstr "Häälestus"
+
+#~ msgid "Print"
+#~ msgstr "Prindi"
+
+#~ msgid "Print Preview..."
+#~ msgstr "Printimise eelvaade"
+
+#~ msgid "Redo"
+#~ msgstr "Uuesti"
+
+#~ msgid "Remove View"
+#~ msgstr "Eemalda vaade"
+
+#~ msgid "Revert"
+#~ msgstr "Taasta"
+
+#~ msgid "Save"
+#~ msgstr "Salvesta"
+
+#~ msgid "Save As"
+#~ msgstr "Salvesta kui..."
+
+#~ msgid "Undo"
+#~ msgstr "Unusta"
+
+#~ msgid "Words"
+#~ msgstr "Sõnad"
+
+#~ msgid "_About..."
+#~ msgstr "_Info..."
+
+#~ msgid "_Paste"
+#~ msgstr "_Aseta"
+
+#~ msgid "GHex - %s"
+#~ msgstr "GHex - %s"
+
+#~ msgid "Could not initialize Bonobo!\n"
+#~ msgstr "Ei saa Bonobot algväärtustada!\n"
+
+#~ msgid ""
+#~ "GHex could not find the font \"%s\".\n"
+#~ "GHex is unable to print without this font installed."
+#~ msgstr ""
+#~ "Ei leia kirjatüüpi \"%s\".\n"
+#~ "Ilma selle kirjatüübita ei saa printida."
+
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "Litsenseeritud vastavalt GNU GPL litsentsile"
+
+#~ msgid "Pages"
+#~ msgstr "Lehekülge"
+
+#~ msgid "GHex (%s): Print Preview"
+#~ msgstr "GHex (%s): printimise eelvaade"
+
+#~ msgid "About..."
+#~ msgstr "Info..."
+
+#~ msgid "Strange find or replace string!"
+#~ msgstr "Imelik otsitav või asendatav string!"
+
+#~ msgid ""
+#~ "Do you want to save the changes you made to the document ``%s''? \n"
+#~ "\n"
+#~ "Your changes will be lost if you don't save them."
+#~ msgstr ""
+#~ "Kas tahad dokumendi ``%s'' muudatusi salvestada? \n"
+#~ "\n"
+#~ "Salvestamata muudatused lähevad kaduma."
+
+#~ msgid "_Don't save"
+#~ msgstr "Är_a salvesta"
+
+#~ msgid "(modified)"
+#~ msgstr "(muudetud)"
+
+#~ msgid "(readonly)"
+#~ msgstr "(ainult loetav)"
+
+#~ msgid "Fi_les"
+#~ msgstr "_Failid"
+
+#~ msgid "_Tools"
+#~ msgstr "_Tööriistad"
+
+#~ msgid "Default"
+#~ msgstr "Vaikimisi"
+
+#~ msgid "Notebook"
+#~ msgstr "Märkmik"
+
+#~ msgid "Toplevel"
+#~ msgstr "Peaaken"
+
+#~ msgid "Modal"
+#~ msgstr "Modaalne"
+
+#~ msgid "Select font"
+#~ msgstr "Vali kirjatüüp"
+
+#~ msgid "Browse..."
+#~ msgstr "Vali..."
+
+#~ msgid "MDI Mode"
+#~ msgstr "MDI esitus"
+
+#~ msgid "MDI"
+#~ msgstr "MDI"
+
+#~ msgid "Export to _HTML..."
+#~ msgstr "Ekspordi _HTML-i..."
+
+#~ msgid "Print pre_view..."
+#~ msgstr "Printimise _eelvaade"
+
+#~ msgid "Con_verter..."
+#~ msgstr "_Konverter..."
+
+#~ msgid "GHex: Character table"
+#~ msgstr "GHex: Märgistik"
+
+#~ msgid "Con_verter"
+#~ msgstr "_Konverter"
+
+#~ msgid "Help"
+#~ msgstr "Abi"
+
+#~ msgid "_Settings"
+#~ msgstr "_Sätted"

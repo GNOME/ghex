@@ -52,3 +52,5 @@
 #include "hex-text-offsets.h"
 #include "hex-view.h"
 #include "hex-widget.h"
+
+void hex_init (void);
