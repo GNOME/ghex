@@ -32,6 +32,7 @@
 
 #include <glib/gi18n.h>
 
+#include "gtkhex.h"
 #include "ghex-application.h"
 
 int
@@ -43,6 +44,8 @@ main (int argc, char *argv[])
 	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
+
+	hex_init ();
 
 	app = ghex_application_new (APP_ID, G_APPLICATION_HANDLES_OPEN);
 	status = g_application_run (G_APPLICATION(app), argc, argv);
