@@ -130,19 +130,18 @@ undo_action (GSimpleAction *action, GVariant *parameter, gpointer user_data)
 	HexDocument *document = hex_view_get_document (HEX_VIEW(self));
 	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
 	GListModel *change_list;
-	guint n_items;
-	g_autoptr(HexChangeData) last_change = NULL;
+	g_autoptr(HexChangeData) first_change = NULL;
 
 	g_assert (HEX_IS_DOCUMENT (document));
 	g_assert (hex_document_get_can_undo (document));
 
 	change_list = hex_document_get_undo_data (document);
-	if ((n_items = g_list_model_get_n_items (change_list)) > 0)
-		last_change = g_list_model_get_item (change_list, n_items - 1);
+	if (g_list_model_get_n_items (change_list) > 0)
+		first_change = g_list_model_get_item (change_list, 0);
 
 	hex_document_undo (document);
 
-	hex_selection_collapse (selection, hex_change_data_get_start_offset (last_change));
+	hex_selection_collapse (selection, hex_change_data_get_start_offset (first_change));
 }
 
 static void
