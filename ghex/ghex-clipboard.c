@@ -352,6 +352,7 @@ _ghex_clipboard_dialog_delimited_hex_copy (GHexClipboardDialog *self)
 	gboolean got_val = FALSE;
 	HexPasteData *hex_paste_data = NULL;
 	GHexClipboardDialogPrivate *priv;
+	HexTextEditable *hte;
 
 	g_assert (GHEX_IS_CLIPBOARD_DIALOG (self));
 
@@ -360,10 +361,14 @@ _ghex_clipboard_dialog_delimited_hex_copy (GHexClipboardDialog *self)
 	if (!priv->hex)
 		return;
 
+	/* We can fetch either of these - doesn't matter since they both are in
+	 * sync and implement HexTextEditable
+	 */
+	hte = HEX_TEXT_EDITABLE (hex_widget_get_hex_display (priv->hex));
 	clipboard = gtk_widget_get_clipboard (GTK_WIDGET(priv->hex));
 
 	/* Save selection to clipboard as HexPasteData */
-	hex_widget_copy_to_clipboard (priv->hex);
+	hex_text_editable_copy_to_clipboard (hte);
 
 	provider = gdk_clipboard_get_content (clipboard);
 	g_return_if_fail (GDK_IS_CONTENT_PROVIDER(provider));
@@ -409,9 +414,12 @@ clipboard_operation_activate_helper (GHexClipboardDialog *self, int operation)
 	GHexClipboardDialogPrivate *priv = ghex_clipboard_dialog_get_instance_private (self);
 	GtkListBoxRow *row;
 	GtkWidget *child;
+	HexTextEditable *hte;
 
 	if (! priv->hex)
 		return;
+
+	hte = HEX_TEXT_EDITABLE (hex_widget_get_hex_display (priv->hex));
 
 	row = gtk_list_box_get_selected_row (priv->listbox);
 	if (!row)
@@ -427,18 +435,18 @@ clipboard_operation_activate_helper (GHexClipboardDialog *self, int operation)
 		{
 			case GHEX_MIME_SUB_TYPE_NONE:
 				if (operation == CLIPBOARD_OPERATION_COPY)
-					hex_widget_copy_to_clipboard (priv->hex);
+					hex_text_editable_copy_to_clipboard (hte);
 				else if (operation == CLIPBOARD_OPERATION_PASTE)
-					hex_widget_paste_from_clipboard (priv->hex);
+					hex_text_editable_paste_from_clipboard (hte);
 				else
 					g_assert_not_reached ();
 				break;
 
 			case GHEX_MIME_SUB_TYPE_ASCII_PLAINTEXT:
 				if (operation == CLIPBOARD_OPERATION_COPY)
-					hex_widget_copy_to_clipboard (priv->hex);
+					hex_text_editable_copy_to_clipboard (hte);
 				else if (operation == CLIPBOARD_OPERATION_PASTE)
-					hex_widget_paste_from_clipboard (priv->hex);
+					hex_text_editable_paste_from_clipboard (hte);
 				else
 					g_assert_not_reached ();
 				break;
@@ -459,9 +467,9 @@ clipboard_operation_activate_helper (GHexClipboardDialog *self, int operation)
 	else if (g_object_get_data (G_OBJECT(child), "is_hex_paste_data_label"))
 	{
 		if (operation == CLIPBOARD_OPERATION_COPY)
-			hex_widget_copy_to_clipboard (priv->hex);
+			hex_text_editable_copy_to_clipboard (hte);
 		else if (operation == CLIPBOARD_OPERATION_PASTE)
-			hex_widget_paste_from_clipboard (priv->hex);
+			hex_text_editable_paste_from_clipboard (hte);
 		else
 			g_assert_not_reached ();
 	}

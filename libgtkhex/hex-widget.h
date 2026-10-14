@@ -15,9 +15,6 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (HexWidget, hex_widget, HEX, WIDGET, HexView)
 
 GtkWidget *hex_widget_new (void);
-void hex_widget_cut_to_clipboard (HexWidget *self);
-void hex_widget_copy_to_clipboard (HexWidget *self);
-void hex_widget_paste_from_clipboard (HexWidget *self);
 HexTextHex *hex_widget_get_hex_display (HexWidget *self);
 HexTextAscii *hex_widget_get_ascii_display (HexWidget *self);
 void hex_widget_set_show_offsets (HexWidget *self, gboolean show);

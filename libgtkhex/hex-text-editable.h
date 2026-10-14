@@ -25,5 +25,12 @@ struct _HexTextEditableClass
 void hex_text_editable_move_cursor (HexTextEditable *self, GtkMovementStep step, int count, gboolean extend_selection);
 void hex_text_editable_render_highlights_for_line (HexTextEditable *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout);
 void hex_text_editable_render_cursor (HexTextEditable *self, GtkSnapshot *snapshot, int line_num, PangoLayout *layout);
+void hex_text_editable_paste_from_clipboard (HexTextEditable *self);
+void hex_text_editable_copy_to_clipboard (HexTextEditable *self);
+void hex_text_editable_cut_to_clipboard (HexTextEditable *self);
+void hex_text_editable_set_can_undo (HexTextEditable *self, gboolean can_undo);
+gboolean hex_text_editable_get_can_undo (HexTextEditable *self);
+void hex_text_editable_set_can_redo (HexTextEditable *self, gboolean can_redo);
+gboolean hex_text_editable_get_can_redo (HexTextEditable *self);
 
 G_END_DECLS
